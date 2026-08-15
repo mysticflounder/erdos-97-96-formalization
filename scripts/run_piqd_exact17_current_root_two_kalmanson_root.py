@@ -8,6 +8,10 @@ readback, and retains the sealed attempt journal, model, and log custody.
 SAT is returned only after the generic boundary independently replays the total
 assignment against the exact CNF.  UNSAT remains explicitly uncertified here:
 the generic static boundary does not retrieve or replay PIQD's proof.
+
+If the one-shot launch sealed a valid terminal SAT attempt but local terminal
+publication failed, ``finalize-existing`` reauthenticates and replays that
+attempt entirely offline.  It never prepares, confirms, polls, or contacts PIQD.
 """
 
 from __future__ import annotations
@@ -46,21 +50,33 @@ from validate_exact17_current_root_two_kalmanson_ingress import (
     _strict_json,
     validate_ingress,
 )
+from validate_exact17_current_root_two_kalmanson_ingress import (
+    _open_regular_nofollow as _open_ingress_regular_nofollow,
+)
 
 from census.p97_search.phase3_cegar_wave import (
+    LOCAL_CERTIFICATE,
+    STRUCTURAL_SAT,
+    WaveContractError,
     canonical_json_bytes,
     sha256_bytes,
     sha256_json,
+    validate_attempt_journal,
+    validate_wave_manifest,
+    wave_manifest_sha256,
 )
-from census.p97_search.phase3_piqd_driver import DriverPolicy
+from census.p97_search.phase3_piqd_driver import SEAL_SCHEMA, DriverPolicy
 from census.p97_search.phase3_piqd_oracle import (
     HttpResponse,
+    PiqdOracleError,
     Transport,
+    scan_dimacs,
     stdlib_http_transport,
 )
 from census.p97_search.phase3_piqd_static_solver_runner import (
     ATTESTED_SOLVER_RESULT,
     CERTIFICATE_BLOCKER,
+    CUSTODY_SEAL_SCHEMA,
     PRODUCER_SCHEMA,
     RECEIPT_SCHEMA,
     SOURCE_SCHEMA,
@@ -79,6 +95,10 @@ MAX_POLLS = 2_400
 POLL_INTERVAL_S = 2.0
 MAX_HTTP_JSON_BYTES = 1 << 20
 MAX_CNF_BYTES = 384 * 1024 * 1024
+MAX_OFFLINE_CONTROL_BYTES = 64 * 1024 * 1024
+OFFLINE_FINALIZATION_SCHEMA = (
+    "p97-exact17-current-root-two-kalmanson-offline-finalization/v1"
+)
 SOURCE_THEOREM = (
     "Problem97.ATailBlockerVExactSeventeenCurrentRootTwoKalmansonRefinements."
     "sourceAssign_extendedCurrentRootTwoKalmansonCnf"
@@ -641,13 +661,38 @@ def _validate_terminal_receipt(
         count("GET", rf"/jobs/{re.escape(str(receipt['job_id']))}/cnf") == 1,
         "stored CNF was not retrieved exactly once",
     )
+    status_poll_count = count("GET", rf"/jobs/{re.escape(str(receipt['job_id']))}")
     _require(
-        count("GET", rf"/jobs/{re.escape(str(receipt['job_id']))}") == 1,
-        "launch did not retrieve the result exactly once",
+        1 <= status_poll_count <= MAX_POLLS,
+        "launch status-poll count is outside the governed bound",
     )
     _require(
-        count("GET", rf"/jobs/{re.escape(str(receipt['job_id']))}/log.*") >= 1,
-        "solver log was not retrieved",
+        count(
+            "GET",
+            rf"/jobs/{re.escape(str(receipt['job_id']))}/log\?from=0&max=1048576",
+        )
+        == 1,
+        "solver log was not retrieved exactly once",
+    )
+    job_id_pattern = re.escape(str(receipt["job_id"]))
+    allowed = (
+        ("POST", r"/jobs/prepare-cnf"),
+        ("POST", rf"/jobs/confirm\?job_id={job_id_pattern}"),
+        ("GET", rf"/jobs/{job_id_pattern}"),
+        ("GET", rf"/jobs/{job_id_pattern}/cnf"),
+        ("GET", rf"/jobs/{job_id_pattern}/model"),
+        ("GET", rf"/jobs/{job_id_pattern}/log\?from=0&max=1048576"),
+    )
+    _require(
+        all(
+            any(
+                item.get("method") == method
+                and re.fullmatch(pattern, str(item.get("target"))) is not None
+                for method, pattern in allowed
+            )
+            for item in trace
+        ),
+        "endpoint trace crossed the governed job or endpoint set",
     )
     terminal = receipt.get("terminal_status")
     _require(
@@ -658,12 +703,20 @@ def _validate_terminal_receipt(
         terminal.get("result") == result.verdict,
         "terminal result crossed adapter verdict",
     )
-    receipt_path = Path(str(receipt.get("receipt_path")))
+    attempt_name = f"attempt-00000000-{spec.root_sha256[:16]}"
+    attempt_path = paths.journal_root / attempt_name
     _require(
-        receipt_path.is_relative_to(paths.journal_root),
-        "receipt escaped the governed run root",
+        receipt.get("attempt") == 0
+        and receipt.get("attempt_directory") == str(attempt_path)
+        and receipt.get("journal") == str(attempt_path / "attempt.jsonl")
+        and receipt.get("receipt_path") == str(attempt_path / "solver-receipt.json")
+        and receipt.get("custody_seal_path") == str(attempt_path / "custody-seal.json"),
+        "receipt escaped or renamed the governed sealed attempt",
     )
     if result.verdict == "SAT":
+        _validate_terminal_sat_status(
+            terminal, spec, str(receipt["job_id"]), producer_sha256
+        )
         _require(
             receipt.get("model_response_sha256") is not None,
             "SAT model custody is missing",
@@ -684,6 +737,949 @@ def _validate_terminal_receipt(
             receipt.get("model_response_sha256") is None,
             "UNSAT unexpectedly has a model",
         )
+        _require(
+            count("GET", rf"/jobs/{re.escape(str(receipt['job_id']))}/model") == 0,
+            "UNSAT unexpectedly retrieved a model",
+        )
+    expected_trace = [
+        {"method": "POST", "target": "/jobs/prepare-cnf"},
+        {"method": "GET", "target": f"/jobs/{receipt['job_id']}/cnf"},
+        {
+            "method": "POST",
+            "target": f"/jobs/confirm?job_id={receipt['job_id']}",
+        },
+        *(
+            {"method": "GET", "target": f"/jobs/{receipt['job_id']}"}
+            for _ in range(status_poll_count)
+        ),
+    ]
+    if result.verdict == "SAT":
+        expected_trace.append(
+            {"method": "GET", "target": f"/jobs/{receipt['job_id']}/model"}
+        )
+    expected_trace.append(
+        {
+            "method": "GET",
+            "target": f"/jobs/{receipt['job_id']}/log?from=0&max=1048576",
+        }
+    )
+    _require(
+        trace == expected_trace,
+        "endpoint trace is reordered or crosses the exact governed lifecycle",
+    )
+
+
+def _stable_file_identity(info: os.stat_result) -> tuple[int, ...]:
+    return (
+        info.st_dev,
+        info.st_ino,
+        info.st_mode,
+        info.st_nlink,
+        info.st_size,
+        info.st_mtime_ns,
+        info.st_ctime_ns,
+    )
+
+
+def _open_child_directory_at(parent_fd: int, name: str) -> int:
+    _require(
+        re.fullmatch(r"[A-Za-z0-9_.-]+", name) is not None,
+        "unsafe custody directory name",
+    )
+    flags = (
+        os.O_RDONLY
+        | os.O_DIRECTORY
+        | getattr(os, "O_NOFOLLOW", 0)
+        | getattr(os, "O_CLOEXEC", 0)
+    )
+    try:
+        descriptor = os.open(name, flags, dir_fd=parent_fd)
+        held = os.fstat(descriptor)
+        named = os.stat(name, dir_fd=parent_fd, follow_symlinks=False)
+    except OSError as exc:
+        raise CurrentRootTwoKalmansonRunnerError(
+            f"cannot open sealed custody directory {name}"
+        ) from exc
+    if (
+        not stat.S_ISDIR(held.st_mode)
+        or held.st_nlink < 1
+        or (held.st_dev, held.st_ino) != (named.st_dev, named.st_ino)
+    ):
+        os.close(descriptor)
+        raise CurrentRootTwoKalmansonRunnerError(
+            f"sealed custody directory {name} was substituted"
+        )
+    return descriptor
+
+
+def _open_regular_at(directory_fd: int, name: str) -> tuple[int, os.stat_result]:
+    _require(
+        re.fullmatch(r"[A-Za-z0-9_.-]+", name) is not None,
+        "unsafe custody filename",
+    )
+    flags = os.O_RDONLY | getattr(os, "O_NOFOLLOW", 0) | getattr(os, "O_CLOEXEC", 0)
+    try:
+        descriptor = os.open(name, flags, dir_fd=directory_fd)
+        held = os.fstat(descriptor)
+        named = os.stat(name, dir_fd=directory_fd, follow_symlinks=False)
+    except OSError as exc:
+        raise CurrentRootTwoKalmansonRunnerError(
+            f"cannot open sealed custody file {name}"
+        ) from exc
+    if (
+        not stat.S_ISREG(held.st_mode)
+        or held.st_nlink != 1
+        or (held.st_dev, held.st_ino) != (named.st_dev, named.st_ino)
+    ):
+        os.close(descriptor)
+        raise CurrentRootTwoKalmansonRunnerError(
+            f"sealed custody file {name} was substituted"
+        )
+    return descriptor, held
+
+
+def _read_regular_at(
+    directory_fd: int,
+    name: str,
+    *,
+    maximum_bytes: int,
+    allow_empty: bool = False,
+) -> tuple[bytes, os.stat_result]:
+    descriptor, before = _open_regular_at(directory_fd, name)
+    try:
+        _require(before.st_size <= maximum_bytes, f"custody file {name} is oversized")
+        chunks: list[bytes] = []
+        total = 0
+        while True:
+            block = os.read(descriptor, min(1 << 20, maximum_bytes + 1 - total))
+            if not block:
+                break
+            chunks.append(block)
+            total += len(block)
+            _require(total <= maximum_bytes, f"custody file {name} is oversized")
+        after = os.fstat(descriptor)
+        _require(
+            _stable_file_identity(before) == _stable_file_identity(after),
+            f"custody file {name} changed while reading",
+        )
+        raw = b"".join(chunks)
+        _require(allow_empty or bool(raw), f"custody file {name} is empty")
+        return raw, after
+    finally:
+        os.close(descriptor)
+
+
+def _hash_regular_at(
+    directory_fd: int,
+    name: str,
+    *,
+    maximum_bytes: int,
+) -> tuple[str, int, os.stat_result]:
+    descriptor, before = _open_regular_at(directory_fd, name)
+    digest = hashlib.sha256()
+    total = 0
+    try:
+        _require(before.st_size <= maximum_bytes, f"custody file {name} is oversized")
+        while True:
+            block = os.read(descriptor, 1 << 20)
+            if not block:
+                break
+            digest.update(block)
+            total += len(block)
+            _require(total <= maximum_bytes, f"custody file {name} is oversized")
+        after = os.fstat(descriptor)
+        _require(
+            _stable_file_identity(before) == _stable_file_identity(after),
+            f"custody file {name} changed while hashing",
+        )
+        return digest.hexdigest(), total, after
+    finally:
+        os.close(descriptor)
+
+
+def _canonical_file_object(raw: bytes, label: str) -> dict[str, Any]:
+    _require(raw.endswith(b"\n"), f"{label} is not newline-terminated")
+    payload = raw[:-1]
+    value = _strict_json(payload, label)
+    _require(canonical_json_bytes(value) == payload, f"{label} is not canonical JSON")
+    return value
+
+
+def _require_embedded_hash(value: Mapping[str, Any], hash_key: str, label: str) -> str:
+    unsigned = dict(value)
+    supplied = unsigned.pop(hash_key, None)
+    _require(
+        type(supplied) is str and re.fullmatch(r"[0-9a-f]{64}", supplied) is not None,
+        f"{label} hash is malformed",
+    )
+    _require(supplied == sha256_json(unsigned), f"{label} hash drifted")
+    return supplied
+
+
+def _decode_canonical_journal(raw: bytes) -> list[dict[str, Any]]:
+    _require(raw.endswith(b"\n"), "sealed journal is not newline-terminated")
+    records: list[dict[str, Any]] = []
+    for index, line in enumerate(raw.splitlines(keepends=True), start=1):
+        _require(line.endswith(b"\n") and len(line) > 1, "journal line is malformed")
+        payload = line[:-1]
+        record = _strict_json(payload, f"journal line {index}")
+        _require(
+            canonical_json_bytes(record) == payload,
+            f"journal line {index} is not canonical JSON",
+        )
+        records.append(record)
+    return records
+
+
+def _expected_wave_manifest(
+    spec: RunnerSpec,
+    source_manifest: Mapping[str, Any],
+    producer_manifest: Mapping[str, Any],
+    producer_sha256: str,
+) -> dict[str, Any]:
+    manifest = {
+        "schema": "p97-cegar-wave/v1",
+        "wave_id": f"static-{spec.root_sha256[:32]}-00000000",
+        "iteration": 0,
+        "parent_checkpoint_sha256": None,
+        "source": {
+            "live_leaf": source_manifest["source_id"],
+            "ingress_hypotheses_sha256": source_manifest["source_sha256"],
+            "finite_schema": source_manifest["finite_schema"],
+            "cardinality_scope": source_manifest["cardinality_scope"],
+            "source_theorem": source_manifest["source_theorem"],
+        },
+        "encoding": {
+            "cnf_sha256": spec.root_sha256,
+            "variable_map_sha256": producer_manifest["variable_map_sha256"],
+            "producer_manifest_sha256": producer_sha256,
+            "num_variables": spec.variables,
+            "num_clauses": spec.clauses,
+            "query_polarity": producer_manifest["query_polarity"],
+        },
+        "execution": {
+            "backend": producer_manifest["backend"],
+            "solver_profile": producer_manifest["solver_profile"],
+            "shard_id": 0,
+            "shard_count": 1,
+            "order_sha256": sha256_bytes(
+                canonical_json_bytes(
+                    {
+                        "cnf_sha256": spec.root_sha256,
+                        "producer_manifest_sha256": producer_sha256,
+                    }
+                )
+            ),
+            "seed": 97,
+        },
+        "promotion": {
+            "evidence_classification": LOCAL_CERTIFICATE,
+            "producer_theorem": None,
+            "lift_theorem": None,
+            "consumer_theorem": None,
+        },
+    }
+    validate_wave_manifest(manifest)
+    return manifest
+
+
+def _validate_recorded_live_identity(identity: object, spec: RunnerSpec) -> None:
+    _require(type(identity) is dict, "launch live identity is malformed")
+    expected_daemon = {
+        "name": "piqd",
+        "version": "0.1.0",
+        "protocol_version": spec.ingress.daemon_protocol_version,
+        "sha256": spec.ingress.daemon_sha256,
+    }
+    version = identity.get("version")
+    _require(
+        type(version) is dict and version.get("daemon") == expected_daemon,
+        "recorded PIQD daemon identity drifted",
+    )
+    solver = identity.get("solver")
+    _require(type(solver) is dict, "recorded PIQD solver identity is malformed")
+    for key, value in {
+        "name": spec.ingress.solver_name,
+        "sha256": spec.ingress.solver_sha256,
+        "solver_signature": spec.ingress.solver_signature,
+        "protocol_version": spec.ingress.daemon_protocol_version,
+        "solver": spec.ingress.backend,
+        "lane": "sat",
+        "usable": True,
+    }.items():
+        _require(solver.get(key) == value, f"recorded PIQD solver {key} drifted")
+    _require(
+        identity.get("fetched_endpoints") == ["/version", "/solvers"],
+        "recorded PIQD identity endpoints drifted",
+    )
+
+
+def _validate_terminal_sat_status(
+    status: object,
+    spec: RunnerSpec,
+    job_id: str,
+    producer_manifest_sha256: str = PRODUCER_MANIFEST_SHA256,
+) -> None:
+    _require(type(status) is dict, "terminal SAT status is malformed")
+    for key, value in {
+        "id": job_id,
+        "status": "completed",
+        "result": "SAT",
+        "backend": spec.ingress.backend,
+        "solver_profile": spec.ingress.solver_profile,
+        "project": spec.project,
+        "cnf_blob_hash": spec.root_sha256,
+        "producer_manifest_hash": producer_manifest_sha256,
+        "producer_manifest_blob_hash": producer_manifest_sha256,
+        "identity_hash": expected_identity_hash(spec, producer_manifest_sha256),
+        "requested_core_limit": spec.requested_core_limit,
+        "timeout_s": spec.timeout_s,
+        "march_timeout_s": spec.timeout_s,
+        "run_epoch": 1,
+        "attested_solver_processes": 1,
+        "attestation_basis": "SINGLE_PROCESS_NO_PARALLEL_FLAG",
+        "daemon_sha256": spec.ingress.daemon_sha256,
+        "recovery_action": None,
+    }.items():
+        _require(status.get(key) == value, f"terminal SAT status {key} drifted")
+    progress = status.get("progress")
+    _require(
+        type(progress) is dict
+        and progress.get("solver_started") is True
+        and progress.get("spawn_failure") is None,
+        "terminal SAT status does not attest a started solver",
+    )
+    for field in ("created_at", "confirmed_at", "started_at", "completed_at"):
+        _require(
+            type(status.get(field)) is int and status[field] >= 0,
+            f"terminal SAT status {field} is malformed",
+        )
+    _require(
+        status["created_at"]
+        <= status["confirmed_at"]
+        <= status["started_at"]
+        <= status["completed_at"],
+        "terminal SAT timestamps are inconsistent",
+    )
+
+
+def _validate_artifact_inventory(
+    artifact_fd: int,
+    inventory: object,
+) -> dict[str, dict[str, Any]]:
+    _require(type(inventory) is list, "custody artifact inventory is malformed")
+    observed_names = sorted(os.listdir(artifact_fd))
+    expected_names: list[str] = []
+    bindings: dict[str, dict[str, Any]] = {}
+    for item in inventory:
+        _require(
+            type(item) is dict and set(item) == {"sha256", "size", "device", "inode"},
+            "custody artifact binding is malformed",
+        )
+        digest = item.get("sha256")
+        _require(
+            type(digest) is str and re.fullmatch(r"[0-9a-f]{64}", digest) is not None,
+            "custody artifact digest is malformed",
+        )
+        _require(digest not in bindings, "custody artifact inventory has duplicates")
+        actual_digest, size, info = _hash_regular_at(
+            artifact_fd, digest, maximum_bytes=MAX_CNF_BYTES
+        )
+        _require(actual_digest == digest, "custody artifact filename/hash mismatch")
+        _require(
+            item
+            == {
+                "sha256": digest,
+                "size": size,
+                "device": info.st_dev,
+                "inode": info.st_ino,
+            },
+            "custody artifact binding drifted",
+        )
+        bindings[digest] = dict(item)
+        expected_names.append(digest)
+    _require(
+        observed_names == sorted(expected_names),
+        "custody artifact directory contents drifted",
+    )
+    return bindings
+
+
+def _validate_existing_attempt(
+    run_fd: int,
+    paths: RunnerPaths,
+    spec: RunnerSpec,
+    checked: Mapping[str, Any],
+    source_bytes: bytes,
+    producer_bytes: bytes,
+) -> dict[str, Any]:
+    expected_run_entries = {paths.launch.name, paths.lock.name, paths.journal_root.name}
+    _require(
+        set(os.listdir(run_fd)) == expected_run_entries,
+        "governed run root has unexpected or missing entries",
+    )
+    launch_raw, _launch_info = _read_regular_at(
+        run_fd, paths.launch.name, maximum_bytes=MAX_OFFLINE_CONTROL_BYTES
+    )
+    launch = _canonical_file_object(launch_raw, "launch record")
+    _require(
+        set(launch)
+        == {
+            "schema",
+            "status",
+            "root",
+            "export_receipt",
+            "source_manifest_sha256",
+            "producer_manifest_sha256",
+            "live_identity",
+            "execution",
+        },
+        "launch record shape drifted",
+    )
+    _require(
+        launch.get("schema") == LAUNCH_SCHEMA
+        and launch.get("status") == "LAUNCH_AUTHENTICATED",
+        "launch record status drifted",
+    )
+    _require(launch.get("root") == checked["ingress"]["dimacs"], "launch root drifted")
+    _require(
+        launch.get("export_receipt") == checked["ingress"]["export_receipt"],
+        "launch export receipt drifted",
+    )
+    _require(
+        launch.get("source_manifest_sha256") == sha256_bytes(source_bytes)
+        and launch.get("producer_manifest_sha256") == sha256_bytes(producer_bytes),
+        "launch manifest identity drifted",
+    )
+    _validate_recorded_live_identity(launch.get("live_identity"), spec)
+    _require(
+        launch.get("execution")
+        == {
+            "backend": spec.ingress.backend,
+            "solver_profile": spec.ingress.solver_profile,
+            "project": spec.project,
+            "timeout_s": spec.timeout_s,
+            "requested_core_limit": spec.requested_core_limit,
+            "maximum_requested_core_limit": spec.maximum_requested_core_limit,
+            "max_prepare_attempts": 1,
+            "max_confirm_attempts": 1,
+            "max_result_attempts": 1,
+            "max_polls": MAX_POLLS,
+            "poll_interval_s": POLL_INTERVAL_S,
+        },
+        "launch execution policy drifted",
+    )
+
+    attempts_fd = _open_child_directory_at(run_fd, paths.journal_root.name)
+    attempt_fd: int | None = None
+    artifact_fd: int | None = None
+    try:
+        attempt_name = f"attempt-00000000-{spec.root_sha256[:16]}"
+        _require(
+            os.listdir(attempts_fd) == [attempt_name],
+            "sealed journal root does not contain exactly one governed attempt",
+        )
+        attempt_fd = _open_child_directory_at(attempts_fd, attempt_name)
+        attempt_info = os.fstat(attempt_fd)
+        expected_attempt_entries = {
+            "attempt.jsonl",
+            "attempt.jsonl.lock",
+            "attempt.jsonl.artifacts",
+            "attempt.jsonl.seal.json",
+            "solver-receipt.json",
+            "custody-seal.json",
+        }
+        _require(
+            set(os.listdir(attempt_fd)) == expected_attempt_entries,
+            "sealed attempt contains unexpected or missing entries",
+        )
+        artifact_fd = _open_child_directory_at(attempt_fd, "attempt.jsonl.artifacts")
+        journal_raw, journal_info = _read_regular_at(
+            attempt_fd,
+            "attempt.jsonl",
+            maximum_bytes=MAX_OFFLINE_CONTROL_BYTES,
+        )
+        lock_raw, lock_info = _read_regular_at(
+            attempt_fd,
+            "attempt.jsonl.lock",
+            maximum_bytes=1,
+            allow_empty=True,
+        )
+        _require(lock_raw == b"", "sealed attempt lock is not empty")
+        driver_seal_raw, _driver_seal_info = _read_regular_at(
+            attempt_fd,
+            "attempt.jsonl.seal.json",
+            maximum_bytes=MAX_OFFLINE_CONTROL_BYTES,
+        )
+        receipt_raw, receipt_info = _read_regular_at(
+            attempt_fd,
+            "solver-receipt.json",
+            maximum_bytes=MAX_OFFLINE_CONTROL_BYTES,
+        )
+        custody_raw, _custody_info = _read_regular_at(
+            attempt_fd,
+            "custody-seal.json",
+            maximum_bytes=MAX_OFFLINE_CONTROL_BYTES,
+        )
+        driver_seal = _canonical_file_object(driver_seal_raw, "driver seal")
+        custody = _canonical_file_object(custody_raw, "custody seal")
+        receipt_object = _canonical_file_object(receipt_raw, "solver receipt")
+        receipt = _strict_solver_receipt(receipt_raw.decode("utf-8"))
+        _require(receipt == receipt_object, "solver receipt parser disagreement")
+        _require(
+            set(receipt)
+            == {
+                "schema",
+                "attempt",
+                "attempt_directory",
+                "journal",
+                "receipt_path",
+                "custody_seal_path",
+                "job_id",
+                "job_identity",
+                "prepare_freshness_claimed",
+                "outcome",
+                "adapter_verdict",
+                "adapter_returncode",
+                "cnf_sha256",
+                "num_variables",
+                "num_clauses",
+                "source_manifest_sha256",
+                "producer_manifest_sha256",
+                "terminal_record_sha256",
+                "journal_record_count",
+                "seal_sha256",
+                "status_classification",
+                "status_detail",
+                "terminal_status",
+                "terminal_status_canonical_sha256",
+                "terminal_status_raw_sha256",
+                "terminal_status_raw_size",
+                "terminal_status_raw_artifact_sha256",
+                "terminal_status_identity_scope",
+                "terminal_status_exposed_identity_fields",
+                "model_response_sha256",
+                "endpoint_trace",
+                "failure_detail",
+                "custody_retry_policy",
+                "legacy_drat_proof_path_written",
+                "proof_endpoint_called",
+                "certificate_blocker",
+                "claims",
+                "receipt_sha256",
+            },
+            "solver receipt shape drifted",
+        )
+        _require(
+            receipt.get("claims")
+            == {
+                "source_entitlement": False,
+                "theorem_coverage": False,
+                "universal_lift": False,
+                "lean_closure": False,
+                "one_process": False,
+                "one_core": False,
+            }
+            and receipt.get("prepare_freshness_claimed") is False
+            and receipt.get("custody_retry_policy")
+            == "REMOVE_UNSEALED_RESERVED_ATTEMPT"
+            and receipt.get("outcome") == STRUCTURAL_SAT
+            and receipt.get("failure_detail") is None,
+            "solver receipt trust claims or custody policy drifted",
+        )
+
+        _require(
+            set(custody)
+            == {
+                "schema",
+                "attempt_directory_device",
+                "attempt_directory_inode",
+                "receipt_sha256",
+                "receipt_file_sha256",
+                "receipt_file_size",
+                "receipt_device",
+                "receipt_inode",
+                "inventory",
+                "retry_policy",
+                "custody_seal_sha256",
+            }
+            and custody.get("schema") == CUSTODY_SEAL_SCHEMA,
+            "custody seal shape drifted",
+        )
+        custody_hash = _require_embedded_hash(
+            custody, "custody_seal_sha256", "custody seal"
+        )
+        _require(
+            custody.get("attempt_directory_device") == attempt_info.st_dev
+            and custody.get("attempt_directory_inode") == attempt_info.st_ino,
+            "custody seal no longer binds the attempt directory",
+        )
+        _require(
+            custody.get("receipt_sha256") == receipt.get("receipt_sha256")
+            and custody.get("receipt_file_sha256") == sha256_bytes(receipt_raw)
+            and custody.get("receipt_file_size") == len(receipt_raw)
+            and custody.get("receipt_device") == receipt_info.st_dev
+            and custody.get("receipt_inode") == receipt_info.st_ino,
+            "custody seal no longer binds the solver receipt",
+        )
+        _require(
+            custody.get("retry_policy") == "REMOVE_UNSEALED_RESERVED_ATTEMPT",
+            "custody retry policy drifted",
+        )
+
+        inventory = custody.get("inventory")
+        _require(
+            type(inventory) is dict
+            and set(inventory)
+            == {
+                "journal_sha256",
+                "journal_size",
+                "journal_device",
+                "journal_inode",
+                "lock_device",
+                "lock_inode",
+                "driver_seal_sha256",
+                "artifacts",
+            },
+            "custody inventory shape drifted",
+        )
+        _require(
+            inventory.get("journal_sha256") == sha256_bytes(journal_raw)
+            and inventory.get("journal_size") == len(journal_raw)
+            and inventory.get("journal_device") == journal_info.st_dev
+            and inventory.get("journal_inode") == journal_info.st_ino
+            and inventory.get("lock_device") == lock_info.st_dev
+            and inventory.get("lock_inode") == lock_info.st_ino
+            and inventory.get("driver_seal_sha256") == sha256_bytes(driver_seal_raw),
+            "custody inventory control-file binding drifted",
+        )
+        artifact_bindings = _validate_artifact_inventory(
+            artifact_fd, inventory.get("artifacts")
+        )
+        source_sha256 = sha256_bytes(source_bytes)
+        producer_sha256 = sha256_bytes(producer_bytes)
+        for digest, label in (
+            (spec.root_sha256, "CNF"),
+            (source_sha256, "source manifest"),
+            (producer_sha256, "producer manifest"),
+        ):
+            _require(digest in artifact_bindings, f"sealed {label} artifact is missing")
+        stored_source, _ = _read_regular_at(
+            artifact_fd, source_sha256, maximum_bytes=MAX_OFFLINE_CONTROL_BYTES
+        )
+        stored_producer, _ = _read_regular_at(
+            artifact_fd, producer_sha256, maximum_bytes=MAX_OFFLINE_CONTROL_BYTES
+        )
+        _require(stored_source == source_bytes, "sealed source manifest drifted")
+        _require(stored_producer == producer_bytes, "sealed producer manifest drifted")
+
+        source_manifest = _strict_json(source_bytes, "source manifest")
+        producer_manifest = _strict_json(producer_bytes, "producer manifest")
+        wave_manifest = _expected_wave_manifest(
+            spec, source_manifest, producer_manifest, producer_sha256
+        )
+        records = _decode_canonical_journal(journal_raw)
+        _require(
+            set(driver_seal)
+            == {
+                "schema",
+                "wave_manifest_sha256",
+                "record_count",
+                "terminal_attempt_sha256",
+                "journal_sha256",
+                "seal_sha256",
+            }
+            and driver_seal.get("schema") == SEAL_SCHEMA,
+            "driver seal shape drifted",
+        )
+        _require_embedded_hash(driver_seal, "seal_sha256", "driver seal")
+        _require(
+            driver_seal.get("wave_manifest_sha256")
+            == wave_manifest_sha256(wave_manifest)
+            and driver_seal.get("record_count") == len(records)
+            and driver_seal.get("journal_sha256") == sha256_bytes(journal_raw),
+            "driver seal no longer binds the journal",
+        )
+        terminal_record_sha256 = validate_attempt_journal(
+            records,
+            manifest=wave_manifest,
+            expected_record_count=len(records),
+            expected_terminal_sha256=driver_seal.get("terminal_attempt_sha256"),
+        )
+        _require(
+            records and terminal_record_sha256 is not None, "sealed journal is empty"
+        )
+
+        job_id = receipt.get("job_id")
+        _require(
+            type(job_id) is str
+            and re.fullmatch(r"[A-Za-z0-9_.-]+", job_id) is not None,
+            "sealed job ID is malformed",
+        )
+        event_keys = {
+            "schema",
+            "phase",
+            "disposition",
+            "retry_index",
+            "poll_index",
+            "job_id",
+            "status",
+            "result",
+            "detail",
+            "response",
+        }
+        events: list[dict[str, Any]] = []
+        for index, record in enumerate(records):
+            artifacts = record.get("artifacts")
+            _require(type(artifacts) is dict, "journal record artifacts are malformed")
+            for digest in artifacts.values():
+                if digest is not None:
+                    _require(
+                        digest in artifact_bindings,
+                        f"journal record {index} references an unsealed artifact",
+                    )
+            checkpoint = artifacts.get("checkpoint_sha256")
+            _require(type(checkpoint) is str, "journal checkpoint artifact is missing")
+            event_raw, _ = _read_regular_at(
+                artifact_fd,
+                checkpoint,
+                maximum_bytes=MAX_OFFLINE_CONTROL_BYTES,
+            )
+            event = _strict_json(event_raw, f"journal event {index}")
+            _require(
+                canonical_json_bytes(event) == event_raw
+                and set(event) == event_keys
+                and event.get("schema") == "p97-cegar-piqd-event/v1"
+                and event.get("disposition") == "SUCCESS",
+                f"journal event {index} shape drifted",
+            )
+            events.append(event)
+
+        poll_count = len(events) - 4
+        _require(1 <= poll_count <= MAX_POLLS, "journal poll count is outside policy")
+        _require(
+            [event["phase"] for event in events]
+            == ["DRIVER_START", "PREPARE", "CONFIRM"]
+            + ["POLL"] * poll_count
+            + ["MODEL"],
+            "journal lifecycle contains duplicate or reordered phases",
+        )
+        _require(events[0].get("job_id") is None, "driver start unexpectedly has a job")
+        _require(
+            events[0].get("response")
+            == {
+                "solver_timeout_s": spec.timeout_s,
+                "march_timeout_s": spec.timeout_s,
+                "max_prepare_attempts": 1,
+                "max_confirm_attempts": 1,
+                "max_result_attempts": 1,
+                "max_polls": MAX_POLLS,
+                "poll_interval_s": POLL_INTERVAL_S,
+                "project": spec.project,
+                "requested_core_limit": spec.requested_core_limit,
+            },
+            "driver-start policy event drifted",
+        )
+        _require(
+            all(event.get("job_id") == job_id for event in events[1:]),
+            "journal lifecycle crossed jobs",
+        )
+        _require(
+            events[1].get("retry_index") == 0
+            and events[2].get("retry_index") == 0
+            and events[-1].get("retry_index") == 0
+            and all(event.get("retry_index") is None for event in events[3:-1]),
+            "journal lifecycle retry indices drifted",
+        )
+        _require(
+            [event.get("poll_index") for event in events[3:-1]]
+            == list(range(poll_count)),
+            "journal poll indices are not dense",
+        )
+        prepare_response = events[1].get("response")
+        _require(type(prepare_response) is dict, "prepare event response is malformed")
+        for key, value in {
+            "existing": False,
+            "backend": spec.ingress.backend,
+            "solver_profile": spec.ingress.solver_profile,
+            "cnf_blob_hash": spec.root_sha256,
+            "identity_hash": expected_identity_hash(spec, producer_sha256),
+            "num_vars": spec.variables,
+            "num_clauses": spec.clauses,
+        }.items():
+            _require(prepare_response.get(key) == value, f"prepare event {key} drifted")
+        _require(
+            events[-2].get("status") == "completed"
+            and events[-2].get("result") == "SAT"
+            and events[-1].get("status") == "completed"
+            and events[-1].get("result") == "SAT",
+            "journal terminal SAT events drifted",
+        )
+        _require(
+            records[-1].get("outcome") == STRUCTURAL_SAT
+            and records[-1].get("record_sha256")
+            == receipt.get("terminal_record_sha256")
+            and receipt.get("journal_record_count") == len(records)
+            and receipt.get("seal_sha256") == driver_seal.get("seal_sha256"),
+            "solver receipt no longer binds the terminal journal record",
+        )
+
+        terminal_status = receipt.get("terminal_status")
+        _validate_terminal_sat_status(terminal_status, spec, job_id, producer_sha256)
+        _require(
+            receipt.get("terminal_status_identity_scope") == "EXPOSED_FIELDS_BOUND"
+            and receipt.get("terminal_status_exposed_identity_fields")
+            == [
+                "backend",
+                "cnf_blob_hash",
+                "identity_hash",
+                "project",
+                "solver_profile",
+            ]
+            and receipt.get("status_detail") == "one solver process returned SAT",
+            "terminal status attestation scope drifted",
+        )
+        terminal_raw_digest = receipt.get("terminal_status_raw_artifact_sha256")
+        _require(
+            type(terminal_raw_digest) is str
+            and terminal_raw_digest in artifact_bindings,
+            "terminal raw status artifact is missing",
+        )
+        terminal_raw, _ = _read_regular_at(
+            artifact_fd,
+            terminal_raw_digest,
+            maximum_bytes=MAX_OFFLINE_CONTROL_BYTES,
+        )
+        _require(
+            sha256_bytes(terminal_raw) == receipt.get("terminal_status_raw_sha256")
+            and len(terminal_raw) == receipt.get("terminal_status_raw_size")
+            and _strict_json(terminal_raw, "terminal raw status") == terminal_status
+            and sha256_bytes(canonical_json_bytes(terminal_status))
+            == receipt.get("terminal_status_canonical_sha256"),
+            "terminal raw/canonical status binding drifted",
+        )
+
+        model_digest = receipt.get("model_response_sha256")
+        terminal_artifacts = records[-1].get("artifacts")
+        _require(
+            type(model_digest) is str
+            and model_digest in artifact_bindings
+            and type(terminal_artifacts) is dict
+            and terminal_artifacts.get("model_sha256") == model_digest,
+            "sealed SAT model binding drifted",
+        )
+        model_raw, _ = _read_regular_at(
+            artifact_fd, model_digest, maximum_bytes=MAX_OFFLINE_CONTROL_BYTES
+        )
+        model = _strict_json(model_raw, "sealed SAT model")
+        _require(
+            set(model)
+            == {
+                "job_id",
+                "result",
+                "backend",
+                "solver_profile",
+                "num_assigned",
+                "assignment",
+            },
+            "sealed SAT model shape drifted",
+        )
+        assignment = model.get("assignment")
+        _require(
+            type(assignment) is list
+            and len(assignment) == spec.variables
+            and all(type(literal) is int and literal != 0 for literal in assignment),
+            "sealed SAT model is not a total signed-literal list",
+        )
+        _require(
+            {abs(literal) for literal in assignment}
+            == set(range(1, spec.variables + 1)),
+            "sealed SAT model does not assign every variable exactly once",
+        )
+        for key, value in {
+            "job_id": job_id,
+            "result": "SAT",
+            "backend": spec.ingress.backend,
+            "solver_profile": spec.ingress.solver_profile,
+            "num_assigned": spec.variables,
+        }.items():
+            _require(model.get(key) == value, f"sealed SAT model {key} drifted")
+        log_digest = terminal_artifacts.get("solver_log_sha256")
+        _require(
+            type(log_digest) is str and log_digest in artifact_bindings,
+            "sealed solver log is missing",
+        )
+        solver_log, _ = _read_regular_at(
+            artifact_fd, log_digest, maximum_bytes=MAX_OFFLINE_CONTROL_BYTES
+        )
+        _require(bool(solver_log), "sealed solver log is empty")
+
+        with _open_ingress_regular_nofollow(paths.ingress.child)[0] as stream:
+            cnf = stream.read(spec.root_bytes + 1)
+        _require(
+            len(cnf) == spec.root_bytes and sha256_bytes(cnf) == spec.root_sha256,
+            "local replay CNF drifted",
+        )
+        try:
+            replay_dimensions = scan_dimacs(cnf, tuple(assignment))
+        except PiqdOracleError as exc:
+            raise CurrentRootTwoKalmansonRunnerError(
+                "sealed SAT model failed independent full-CNF replay"
+            ) from exc
+        _require(
+            replay_dimensions == (spec.variables, spec.clauses),
+            "independent SAT replay dimensions drifted",
+        )
+        result = StaticSolverResult(
+            verdict="SAT",
+            assignment={abs(literal): literal > 0 for literal in assignment},
+            returncode=10,
+        )
+        _validate_terminal_receipt(
+            receipt,
+            result,
+            paths,
+            spec,
+            source_sha256,
+            producer_sha256,
+        )
+        attempt_path = paths.journal_root / attempt_name
+        _require(
+            receipt.get("attempt") == 0
+            and receipt.get("attempt_directory") == str(attempt_path)
+            and receipt.get("journal") == str(attempt_path / "attempt.jsonl")
+            and receipt.get("receipt_path") == str(attempt_path / "solver-receipt.json")
+            and receipt.get("custody_seal_path")
+            == str(attempt_path / "custody-seal.json"),
+            "solver receipt escaped or renamed its sealed attempt",
+        )
+        return {
+            "launch_sha256": sha256_bytes(launch_raw),
+            "job_id": job_id,
+            "receipt_path": receipt["receipt_path"],
+            "receipt_sha256": receipt["receipt_sha256"],
+            "custody_seal_path": receipt["custody_seal_path"],
+            "custody_seal_sha256": custody_hash,
+            "model_response_sha256": model_digest,
+            "solver_log_sha256": log_digest,
+            "terminal_status_canonical_sha256": receipt[
+                "terminal_status_canonical_sha256"
+            ],
+            "poll_count": poll_count,
+            "journal_record_count": len(records),
+            "run_epoch": terminal_status["run_epoch"],
+            "attested_solver_processes": terminal_status["attested_solver_processes"],
+            "producer_manifest_sha256": producer_sha256,
+            "producer_manifest_bytes": len(producer_bytes),
+            "replay_variables": replay_dimensions[0],
+            "replay_clauses": replay_dimensions[1],
+        }
+    finally:
+        if artifact_fd is not None:
+            os.close(artifact_fd)
+        if attempt_fd is not None:
+            os.close(attempt_fd)
+        os.close(attempts_fd)
 
 
 def static_check(
@@ -708,7 +1704,119 @@ def static_check(
     }
 
 
-def start(
+def _finalize_existing(
+    *,
+    paths: RunnerPaths = PRODUCTION_RUNNER_PATHS,
+    spec: RunnerSpec = PRODUCTION_RUNNER_SPEC,
+    static_checker: Callable[[RunnerPaths, RunnerSpec], dict[str, Any]],
+    attempt_validator: Callable[
+        [int, RunnerPaths, RunnerSpec, Mapping[str, Any], bytes, bytes],
+        dict[str, Any],
+    ],
+) -> dict[str, Any]:
+    """Finalize one already-sealed SAT attempt without any PIQD interaction."""
+
+    _require(spec.provisioned, "current-root-two-kalmanson runner is unprovisioned")
+    checked = static_checker(paths, spec)
+    _require(checked.get("status") == "PASS", "offline static check is not PASS")
+    source_bytes, producer_bytes = build_static_manifests(checked["ingress"], spec)
+    run_fd = _open_directory_nofollow(paths.run_root, create=False)
+    lock_fd: int | None = None
+    try:
+        lock_fd, lock_info = _open_regular_at(run_fd, paths.lock.name)
+        _require(lock_info.st_size == 0, "governed runner lock is not empty")
+        try:
+            fcntl.flock(lock_fd, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        except OSError as exc:
+            raise CurrentRootTwoKalmansonRunnerError(
+                "governed runner lock is already held"
+            ) from exc
+        try:
+            os.stat(paths.terminal.name, dir_fd=run_fd, follow_symlinks=False)
+        except FileNotFoundError:
+            pass
+        else:
+            raise FileExistsError("offline terminal finalization already exists")
+        evidence = attempt_validator(
+            run_fd,
+            paths,
+            spec,
+            checked,
+            source_bytes,
+            producer_bytes,
+        )
+        terminal = {
+            "schema": RUN_SCHEMA,
+            "status": "PASS",
+            "verdict": "SAT",
+            "certification": "SAT_MODEL_INDEPENDENTLY_REPLAYED",
+            "launch_sha256": evidence["launch_sha256"],
+            "job_id": evidence["job_id"],
+            "receipt": {
+                "path": evidence["receipt_path"],
+                "sha256": evidence["receipt_sha256"],
+                "custody_seal_path": evidence["custody_seal_path"],
+            },
+            "remote_producer_manifest": {
+                "job_id": evidence["job_id"],
+                "path": (
+                    f"/jobs/{evidence['job_id']}/blobs/"
+                    f"{evidence['producer_manifest_sha256']}"
+                ),
+                "sha256": evidence["producer_manifest_sha256"],
+                "bytes": evidence["producer_manifest_bytes"],
+                "verified_before_confirm": True,
+            },
+            "model_response_sha256": evidence["model_response_sha256"],
+            "terminal_status_canonical_sha256": evidence[
+                "terminal_status_canonical_sha256"
+            ],
+            "next_gate": "mine only this new SAT survivor",
+            "offline_finalization": {
+                "schema": OFFLINE_FINALIZATION_SCHEMA,
+                "network_requests": 0,
+                "prepare_attempts": 0,
+                "confirm_attempts": 0,
+                "poll_count": evidence["poll_count"],
+                "journal_record_count": evidence["journal_record_count"],
+                "run_epoch": evidence["run_epoch"],
+                "attested_solver_processes": evidence["attested_solver_processes"],
+                "custody_seal_sha256": evidence["custody_seal_sha256"],
+                "solver_log_sha256": evidence["solver_log_sha256"],
+                "replay_variables": evidence["replay_variables"],
+                "replay_clauses": evidence["replay_clauses"],
+            },
+        }
+        terminal_bytes = canonical_json_bytes(terminal) + b"\n"
+        terminal["terminal_file_sha256"] = _write_once(
+            run_fd, paths.terminal.name, terminal_bytes
+        )
+        return terminal
+    finally:
+        if lock_fd is not None:
+            try:
+                fcntl.flock(lock_fd, fcntl.LOCK_UN)
+            finally:
+                os.close(lock_fd)
+        os.close(run_fd)
+
+
+def finalize_existing(
+    *,
+    paths: RunnerPaths = PRODUCTION_RUNNER_PATHS,
+    spec: RunnerSpec = PRODUCTION_RUNNER_SPEC,
+) -> dict[str, Any]:
+    """Finalize the sole sealed SAT attempt using only production validators."""
+
+    return _finalize_existing(
+        paths=paths,
+        spec=spec,
+        static_checker=static_check,
+        attempt_validator=_validate_existing_attempt,
+    )
+
+
+def _start(
     *,
     base_url: str = "http://127.0.0.1:7272",
     paths: RunnerPaths = PRODUCTION_RUNNER_PATHS,
@@ -718,9 +1826,17 @@ def start(
     sleep: Callable[[float], None] = time.sleep,
     max_polls: int = MAX_POLLS,
     poll_interval_s: float = POLL_INTERVAL_S,
+    attempt_validator: Callable[
+        [int, RunnerPaths, RunnerSpec, Mapping[str, Any], bytes, bytes],
+        dict[str, Any],
+    ],
 ) -> dict[str, Any]:
     """Reserve and execute the sole governed production launch."""
 
+    _require(
+        max_polls == MAX_POLLS and poll_interval_s == POLL_INTERVAL_S,
+        "production polling policy is fixed and cannot be overridden",
+    )
     checked = static_check(paths, spec)
     source_bytes, producer_bytes = build_static_manifests(checked["ingress"], spec)
     with _reserve_run(paths) as run_fd:
@@ -793,6 +1909,25 @@ def start(
             sha256_bytes(source_bytes),
             sha256_bytes(producer_bytes),
         )
+        sealed_evidence: dict[str, Any] | None = None
+        if result.verdict == "SAT":
+            sealed_evidence = attempt_validator(
+                run_fd,
+                paths,
+                spec,
+                checked,
+                source_bytes,
+                producer_bytes,
+            )
+            _require(
+                sealed_evidence.get("receipt_sha256") == receipt.get("receipt_sha256")
+                and sealed_evidence.get("job_id") == receipt.get("job_id")
+                and sealed_evidence.get("model_response_sha256")
+                == receipt.get("model_response_sha256")
+                and sealed_evidence.get("replay_variables") == spec.variables
+                and sealed_evidence.get("replay_clauses") == spec.clauses,
+                "live SAT result disagrees with sealed offline replay evidence",
+            )
         certification = (
             "SAT_MODEL_INDEPENDENTLY_REPLAYED"
             if result.verdict == "SAT"
@@ -815,6 +1950,7 @@ def start(
             "terminal_status_canonical_sha256": receipt[
                 "terminal_status_canonical_sha256"
             ],
+            "sealed_sat_evidence": sealed_evidence,
             "next_gate": (
                 "mine only this new SAT survivor"
                 if result.verdict == "SAT"
@@ -828,9 +1964,37 @@ def start(
         return terminal
 
 
+def start(
+    *,
+    base_url: str = "http://127.0.0.1:7272",
+    paths: RunnerPaths = PRODUCTION_RUNNER_PATHS,
+    spec: RunnerSpec = PRODUCTION_RUNNER_SPEC,
+    transport: Transport | None = None,
+    identity_fetcher: Callable[[str, RunnerSpec], dict[str, Any]] = live_identity,
+    sleep: Callable[[float], None] = time.sleep,
+    max_polls: int = MAX_POLLS,
+    poll_interval_s: float = POLL_INTERVAL_S,
+) -> dict[str, Any]:
+    """Execute the sole launch with the non-overridable sealed-attempt validator."""
+
+    return _start(
+        base_url=base_url,
+        paths=paths,
+        spec=spec,
+        transport=transport,
+        identity_fetcher=identity_fetcher,
+        sleep=sleep,
+        max_polls=max_polls,
+        poll_interval_s=poll_interval_s,
+        attempt_validator=_validate_existing_attempt,
+    )
+
+
 def _parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("command", choices=("static-check", "start"))
+    parser.add_argument(
+        "command", choices=("static-check", "start", "finalize-existing")
+    )
     parser.add_argument("--base-url", default="http://127.0.0.1:7272")
     return parser
 
@@ -838,15 +2002,17 @@ def _parser() -> argparse.ArgumentParser:
 def main(argv: Sequence[str] | None = None) -> int:
     args = _parser().parse_args(argv)
     try:
-        payload = (
-            static_check()
-            if args.command == "static-check"
-            else start(base_url=args.base_url)
-        )
+        if args.command == "static-check":
+            payload = static_check()
+        elif args.command == "finalize-existing":
+            payload = finalize_existing()
+        else:
+            payload = start(base_url=args.base_url)
     except (
         IngressValidationError,
         StaticPiqdRunnerError,
         CurrentRootTwoKalmansonRunnerError,
+        WaveContractError,
         FileExistsError,
     ) as exc:
         print(f"current-root-two-kalmanson PIQD runner rejected: {exc}")

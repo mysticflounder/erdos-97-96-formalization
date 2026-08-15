@@ -2,7 +2,10 @@
 
 from __future__ import annotations
 
+import hashlib
+import inspect
 import json
+import os
 import urllib.parse
 from dataclasses import replace
 from pathlib import Path
@@ -41,26 +44,54 @@ def _receipt(
     verdict: str,
     source_sha256: str,
     producer_sha256: str,
+    status_polls: int = 1,
 ) -> str:
     spec = subject.PRODUCTION_RUNNER_SPEC
     job_id = "job-current-root-two-kalmanson"
+    attempt_path = paths.journal_root / f"attempt-00000000-{spec.root_sha256[:16]}"
     trace = [
         {"method": "POST", "target": "/jobs/prepare-cnf"},
         {"method": "GET", "target": f"/jobs/{job_id}/cnf"},
         {"method": "POST", "target": f"/jobs/confirm?job_id={job_id}"},
-        {"method": "GET", "target": f"/jobs/{job_id}"},
+        *({"method": "GET", "target": f"/jobs/{job_id}"} for _ in range(status_polls)),
     ]
     if verdict == "SAT":
         trace.append({"method": "GET", "target": f"/jobs/{job_id}/model"})
     trace.append({"method": "GET", "target": f"/jobs/{job_id}/log?from=0&max=1048576"})
+    terminal_status: dict[str, Any] = {"status": "completed", "result": verdict}
+    if verdict == "SAT":
+        terminal_status.update(
+            {
+                "id": job_id,
+                "backend": spec.ingress.backend,
+                "solver_profile": spec.ingress.solver_profile,
+                "project": spec.project,
+                "cnf_blob_hash": spec.root_sha256,
+                "producer_manifest_hash": producer_sha256,
+                "producer_manifest_blob_hash": producer_sha256,
+                "identity_hash": subject.expected_identity_hash(spec, producer_sha256),
+                "requested_core_limit": spec.requested_core_limit,
+                "timeout_s": spec.timeout_s,
+                "march_timeout_s": spec.timeout_s,
+                "run_epoch": 1,
+                "attested_solver_processes": 1,
+                "attestation_basis": "SINGLE_PROCESS_NO_PARALLEL_FLAG",
+                "daemon_sha256": spec.ingress.daemon_sha256,
+                "recovery_action": None,
+                "progress": {"solver_started": True, "spawn_failure": None},
+                "created_at": 1,
+                "confirmed_at": 2,
+                "started_at": 3,
+                "completed_at": 4,
+            }
+        )
     unsigned = {
         "schema": subject.RECEIPT_SCHEMA,
-        "receipt_path": str(
-            paths.journal_root / "attempt-00000000-fixture" / "solver-receipt.json"
-        ),
-        "custody_seal_path": str(
-            paths.journal_root / "attempt-00000000-fixture" / "custody-seal.json"
-        ),
+        "attempt": 0,
+        "attempt_directory": str(attempt_path),
+        "journal": str(attempt_path / "attempt.jsonl"),
+        "receipt_path": str(attempt_path / "solver-receipt.json"),
+        "custody_seal_path": str(attempt_path / "custody-seal.json"),
         "job_id": job_id,
         "job_identity": {
             "job_id": job_id,
@@ -85,7 +116,7 @@ def _receipt(
         "certificate_blocker": subject.CERTIFICATE_BLOCKER,
         "legacy_drat_proof_path_written": False,
         "proof_endpoint_called": False,
-        "terminal_status": {"status": "completed", "result": verdict},
+        "terminal_status": terminal_status,
         "terminal_status_canonical_sha256": "2" * 64,
         "model_response_sha256": "3" * 64 if verdict == "SAT" else None,
         "endpoint_trace": trace,
@@ -140,6 +171,27 @@ def _install_fake_boundary(
         return run
 
     monkeypatch.setattr(subject, "make_static_piqd_solver_runner", make_runner)
+    sat_receipt = json.loads(
+        _receipt(
+            paths,
+            verdict="SAT",
+            source_sha256=subject.sha256_bytes(source),
+            producer_sha256=subject.sha256_bytes(producer),
+        )
+    )
+    captured["attempt_validator_calls"] = 0
+
+    def attempt_validator(*_args: object) -> dict[str, Any]:
+        captured["attempt_validator_calls"] += 1
+        return {
+            "receipt_sha256": sat_receipt["receipt_sha256"],
+            "job_id": sat_receipt["job_id"],
+            "model_response_sha256": sat_receipt["model_response_sha256"],
+            "replay_variables": 308,
+            "replay_clauses": 7_037_176,
+        }
+
+    captured["attempt_validator"] = attempt_validator
     return captured
 
 
@@ -384,21 +436,23 @@ def test_sat_launch_uses_one_attempt_policy_and_seals_terminal(
     captured = _install_fake_boundary(monkeypatch, paths, verdict="SAT")
     identities: list[str] = []
 
-    result = subject.start(
+    result = subject._start(
         paths=paths,
         transport=object(),  # type: ignore[arg-type]
         identity_fetcher=lambda base_url, _spec: (
             identities.append(base_url) or {"live": True}
         ),
         sleep=lambda _seconds: None,
-        max_polls=7,
-        poll_interval_s=0,
+        max_polls=subject.MAX_POLLS,
+        poll_interval_s=subject.POLL_INTERVAL_S,
+        attempt_validator=captured["attempt_validator"],
     )
 
     policy = captured["policy"]
     assert policy.max_prepare_attempts == 1
     assert policy.max_confirm_attempts == 1
     assert policy.max_result_attempts == 1
+    assert policy.max_polls == subject.MAX_POLLS
     assert policy.solver_timeout_s == 3_600
     assert policy.requested_core_limit == 1
     assert captured["max_cnf_bytes"] >= 333_029_088
@@ -406,6 +460,7 @@ def test_sat_launch_uses_one_attempt_policy_and_seals_terminal(
     assert identities == ["http://127.0.0.1:7272"]
     assert result["status"] == "PASS"
     assert result["certification"] == "SAT_MODEL_INDEPENDENTLY_REPLAYED"
+    assert captured["attempt_validator_calls"] == 1
     assert paths.launch.is_file()
     assert paths.terminal.is_file()
     assert paths.lock.is_file()
@@ -421,8 +476,8 @@ def test_unsat_launch_is_explicitly_uncertified(
         paths=paths,
         identity_fetcher=lambda _base_url, _spec: {"live": True},
         sleep=lambda _seconds: None,
-        max_polls=1,
-        poll_interval_s=0,
+        max_polls=subject.MAX_POLLS,
+        poll_interval_s=subject.POLL_INTERVAL_S,
     )
 
     assert result["status"] == "UNSAT_UNCERTIFIED"
@@ -430,11 +485,37 @@ def test_unsat_launch_is_explicitly_uncertified(
     assert "proof" in result["next_gate"]
 
 
+def test_sat_launch_refuses_unbound_sealed_replay_evidence(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    paths = subject.RunnerPaths(run_root=tmp_path / "runs" / "bad-evidence")
+    _install_fake_boundary(monkeypatch, paths, verdict="SAT")
+
+    with pytest.raises(
+        subject.CurrentRootTwoKalmansonRunnerError,
+        match="disagrees with sealed offline replay evidence",
+    ):
+        subject._start(
+            paths=paths,
+            identity_fetcher=lambda _base_url, _spec: {"live": True},
+            sleep=lambda _seconds: None,
+            attempt_validator=lambda *_args: {
+                "receipt_sha256": "0" * 64,
+                "job_id": "job-current-root-two-kalmanson",
+                "model_response_sha256": "3" * 64,
+                "replay_variables": 308,
+                "replay_clauses": 7_037_176,
+            },
+        )
+
+    assert not paths.terminal.exists()
+
+
 def test_duplicate_reentry_fails_before_a_second_identity_fetch(
     tmp_path: Path, monkeypatch: pytest.MonkeyPatch
 ) -> None:
     paths = subject.RunnerPaths(run_root=tmp_path / "runs" / "production")
-    _install_fake_boundary(monkeypatch, paths, verdict="SAT")
+    captured = _install_fake_boundary(monkeypatch, paths, verdict="SAT")
     calls = 0
 
     def identity(_base_url: str, _spec: subject.RunnerSpec) -> dict[str, Any]:
@@ -442,7 +523,12 @@ def test_duplicate_reentry_fails_before_a_second_identity_fetch(
         calls += 1
         return {"live": True}
 
-    subject.start(paths=paths, identity_fetcher=identity, sleep=lambda _seconds: None)
+    subject._start(
+        paths=paths,
+        identity_fetcher=identity,
+        sleep=lambda _seconds: None,
+        attempt_validator=captured["attempt_validator"],
+    )
     with pytest.raises(FileExistsError, match="duplicate"):
         subject.start(
             paths=paths, identity_fetcher=identity, sleep=lambda _seconds: None
@@ -483,6 +569,381 @@ def test_duplicate_prepare_trace_is_rejected(tmp_path: Path) -> None:
         )
 
 
+@pytest.mark.parametrize(
+    ("target_suffix", "message"),
+    (
+        ("confirm?job_id=job-current-root-two-kalmanson", "confirm exactly once"),
+        ("job-current-root-two-kalmanson/model", "model endpoint count"),
+    ),
+)
+def test_duplicate_confirm_and_model_traces_are_rejected(
+    tmp_path: Path, target_suffix: str, message: str
+) -> None:
+    paths = subject.RunnerPaths(run_root=tmp_path / "run")
+    source_sha256 = "4" * 64
+    producer_sha256 = "5" * 64
+    receipt = json.loads(
+        _receipt(
+            paths,
+            verdict="SAT",
+            source_sha256=source_sha256,
+            producer_sha256=producer_sha256,
+        )
+    )
+    receipt["endpoint_trace"].append(
+        {
+            "method": "POST" if target_suffix.startswith("confirm") else "GET",
+            "target": f"/jobs/{target_suffix}",
+        }
+    )
+    result = subject.StaticSolverResult(
+        verdict="SAT",
+        assignment={index: True for index in range(1, 309)},
+        returncode=10,
+    )
+
+    with pytest.raises(subject.CurrentRootTwoKalmansonRunnerError, match=message):
+        subject._validate_terminal_receipt(
+            receipt,
+            result,
+            paths,
+            subject.PRODUCTION_RUNNER_SPEC,
+            source_sha256,
+            producer_sha256,
+        )
+
+
+@pytest.mark.parametrize("status_polls", (0, subject.MAX_POLLS + 1))
+def test_status_poll_count_must_be_nonzero_and_bounded(
+    tmp_path: Path, status_polls: int
+) -> None:
+    paths = subject.RunnerPaths(run_root=tmp_path / "run")
+    source_sha256 = "4" * 64
+    producer_sha256 = "5" * 64
+    receipt = json.loads(
+        _receipt(
+            paths,
+            verdict="SAT",
+            source_sha256=source_sha256,
+            producer_sha256=producer_sha256,
+            status_polls=status_polls,
+        )
+    )
+    result = subject.StaticSolverResult(
+        verdict="SAT",
+        assignment={index: True for index in range(1, 309)},
+        returncode=10,
+    )
+
+    with pytest.raises(
+        subject.CurrentRootTwoKalmansonRunnerError,
+        match="status-poll count",
+    ):
+        subject._validate_terminal_receipt(
+            receipt,
+            result,
+            paths,
+            subject.PRODUCTION_RUNNER_SPEC,
+            source_sha256,
+            producer_sha256,
+        )
+
+
+def test_432_status_polls_are_accepted(tmp_path: Path) -> None:
+    paths = subject.RunnerPaths(run_root=tmp_path / "run")
+    source_sha256 = "4" * 64
+    producer_sha256 = "5" * 64
+    receipt = json.loads(
+        _receipt(
+            paths,
+            verdict="SAT",
+            source_sha256=source_sha256,
+            producer_sha256=producer_sha256,
+            status_polls=432,
+        )
+    )
+    result = subject.StaticSolverResult(
+        verdict="SAT",
+        assignment={index: True for index in range(1, 309)},
+        returncode=10,
+    )
+
+    subject._validate_terminal_receipt(
+        receipt,
+        result,
+        paths,
+        subject.PRODUCTION_RUNNER_SPEC,
+        source_sha256,
+        producer_sha256,
+    )
+
+
+@pytest.mark.parametrize(
+    ("field", "value"),
+    (("run_epoch", 2), ("attested_solver_processes", 2)),
+)
+def test_terminal_sat_rejects_non_single_execution(
+    tmp_path: Path, field: str, value: int
+) -> None:
+    paths = subject.RunnerPaths(run_root=tmp_path / "run")
+    source_sha256 = "4" * 64
+    producer_sha256 = "5" * 64
+    receipt = json.loads(
+        _receipt(
+            paths,
+            verdict="SAT",
+            source_sha256=source_sha256,
+            producer_sha256=producer_sha256,
+        )
+    )
+    receipt["terminal_status"][field] = value
+    result = subject.StaticSolverResult(
+        verdict="SAT",
+        assignment={index: True for index in range(1, 309)},
+        returncode=10,
+    )
+
+    with pytest.raises(
+        subject.CurrentRootTwoKalmansonRunnerError,
+        match=f"terminal SAT status {field} drifted",
+    ):
+        subject._validate_terminal_receipt(
+            receipt,
+            result,
+            paths,
+            subject.PRODUCTION_RUNNER_SPEC,
+            source_sha256,
+            producer_sha256,
+        )
+
+
+def test_receipt_paths_must_name_the_exact_governed_attempt(tmp_path: Path) -> None:
+    paths = subject.RunnerPaths(run_root=tmp_path / "run")
+    source_sha256 = "4" * 64
+    producer_sha256 = "5" * 64
+    receipt = json.loads(
+        _receipt(
+            paths,
+            verdict="SAT",
+            source_sha256=source_sha256,
+            producer_sha256=producer_sha256,
+        )
+    )
+    receipt["receipt_path"] = str(paths.journal_root / "../forged-receipt.json")
+    result = subject.StaticSolverResult(
+        verdict="SAT",
+        assignment={index: True for index in range(1, 309)},
+        returncode=10,
+    )
+
+    with pytest.raises(
+        subject.CurrentRootTwoKalmansonRunnerError,
+        match="escaped or renamed",
+    ):
+        subject._validate_terminal_receipt(
+            receipt,
+            result,
+            paths,
+            subject.PRODUCTION_RUNNER_SPEC,
+            source_sha256,
+            producer_sha256,
+        )
+
+
+def test_cnf_retrieval_must_precede_confirmation(tmp_path: Path) -> None:
+    paths = subject.RunnerPaths(run_root=tmp_path / "run")
+    source_sha256 = "4" * 64
+    producer_sha256 = "5" * 64
+    receipt = json.loads(
+        _receipt(
+            paths,
+            verdict="SAT",
+            source_sha256=source_sha256,
+            producer_sha256=producer_sha256,
+        )
+    )
+    receipt["endpoint_trace"][1], receipt["endpoint_trace"][2] = (
+        receipt["endpoint_trace"][2],
+        receipt["endpoint_trace"][1],
+    )
+    result = subject.StaticSolverResult(
+        verdict="SAT",
+        assignment={index: True for index in range(1, 309)},
+        returncode=10,
+    )
+
+    with pytest.raises(
+        subject.CurrentRootTwoKalmansonRunnerError,
+        match="reordered",
+    ):
+        subject._validate_terminal_receipt(
+            receipt,
+            result,
+            paths,
+            subject.PRODUCTION_RUNNER_SPEC,
+            source_sha256,
+            producer_sha256,
+        )
+
+
+def test_unsat_receipt_rejects_any_model_retrieval(tmp_path: Path) -> None:
+    paths = subject.RunnerPaths(run_root=tmp_path / "run")
+    source_sha256 = "4" * 64
+    producer_sha256 = "5" * 64
+    receipt = json.loads(
+        _receipt(
+            paths,
+            verdict="UNSAT",
+            source_sha256=source_sha256,
+            producer_sha256=producer_sha256,
+        )
+    )
+    receipt["endpoint_trace"].append(
+        {
+            "method": "GET",
+            "target": "/jobs/job-current-root-two-kalmanson/model",
+        }
+    )
+    result = subject.StaticSolverResult(verdict="UNSAT", assignment={}, returncode=20)
+
+    with pytest.raises(
+        subject.CurrentRootTwoKalmansonRunnerError,
+        match="UNSAT unexpectedly retrieved a model",
+    ):
+        subject._validate_terminal_receipt(
+            receipt,
+            result,
+            paths,
+            subject.PRODUCTION_RUNNER_SPEC,
+            source_sha256,
+            producer_sha256,
+        )
+
+
+def test_mutated_embedded_seal_is_rejected() -> None:
+    unsigned = {"schema": "fixture/v1", "value": 7}
+    seal = {**unsigned, "seal_sha256": subject.sha256_json(unsigned)}
+    seal["value"] = 8
+
+    with pytest.raises(
+        subject.CurrentRootTwoKalmansonRunnerError, match="seal hash drifted"
+    ):
+        subject._require_embedded_hash(seal, "seal_sha256", "fixture seal")
+
+
+@pytest.mark.parametrize("artifact_kind", ("model", "CNF"))
+def test_mutated_content_addressed_model_and_cnf_are_rejected(
+    tmp_path: Path, artifact_kind: str
+) -> None:
+    artifact_root = tmp_path / "artifacts"
+    artifact_root.mkdir()
+    original = f"{artifact_kind}-original".encode()
+    digest = hashlib.sha256(original).hexdigest()
+    artifact = artifact_root / digest
+    artifact.write_bytes(original)
+    info = artifact.stat()
+    inventory = [
+        {
+            "sha256": digest,
+            "size": len(original),
+            "device": info.st_dev,
+            "inode": info.st_ino,
+        }
+    ]
+    artifact.write_bytes(f"{artifact_kind}-mutated!".encode())
+    directory_fd = os.open(artifact_root, os.O_RDONLY | os.O_DIRECTORY)
+    try:
+        with pytest.raises(
+            subject.CurrentRootTwoKalmansonRunnerError,
+            match="filename/hash mismatch",
+        ):
+            subject._validate_artifact_inventory(directory_fd, inventory)
+    finally:
+        os.close(directory_fd)
+
+
+def test_offline_finalization_never_contacts_piqd(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    paths = subject.RunnerPaths(run_root=tmp_path / "run")
+    paths.run_root.mkdir()
+    paths.lock.write_bytes(b"")
+    source = b'{"source":"offline"}'
+    producer = b'{"producer":"offline"}'
+    monkeypatch.setattr(
+        subject, "build_static_manifests", lambda _ingress, _spec: (source, producer)
+    )
+
+    def forbidden(*_args: object, **_kwargs: object) -> object:
+        raise AssertionError("offline finalization attempted PIQD I/O")
+
+    monkeypatch.setattr(subject, "_http_json", forbidden)
+    monkeypatch.setattr(subject, "stdlib_http_transport", forbidden)
+    monkeypatch.setattr(subject, "make_static_piqd_solver_runner", forbidden)
+    evidence = {
+        "launch_sha256": "1" * 64,
+        "job_id": "job-offline",
+        "receipt_path": str(tmp_path / "receipt.json"),
+        "receipt_sha256": "2" * 64,
+        "custody_seal_path": str(tmp_path / "custody.json"),
+        "custody_seal_sha256": "3" * 64,
+        "model_response_sha256": "4" * 64,
+        "solver_log_sha256": "5" * 64,
+        "terminal_status_canonical_sha256": "6" * 64,
+        "poll_count": 432,
+        "journal_record_count": 436,
+        "run_epoch": 1,
+        "attested_solver_processes": 1,
+        "producer_manifest_sha256": subject.sha256_bytes(producer),
+        "producer_manifest_bytes": len(producer),
+        "replay_variables": 308,
+        "replay_clauses": 7_037_176,
+    }
+    result = subject._finalize_existing(
+        paths=paths,
+        static_checker=lambda _paths, _spec: {"status": "PASS", "ingress": {}},
+        attempt_validator=lambda *_args: evidence,
+    )
+
+    assert result["status"] == "PASS"
+    assert result["offline_finalization"]["network_requests"] == 0
+    assert paths.terminal.is_file()
+    with pytest.raises(FileExistsError, match="already exists"):
+        subject._finalize_existing(
+            paths=paths,
+            static_checker=lambda _paths, _spec: {"status": "PASS", "ingress": {}},
+            attempt_validator=lambda *_args: evidence,
+        )
+
+
+def test_public_entrypoints_do_not_allow_validator_substitution() -> None:
+    assert "attempt_validator" not in inspect.signature(subject.start).parameters
+    parameters = inspect.signature(subject.finalize_existing).parameters
+    assert "attempt_validator" not in parameters
+    assert "static_checker" not in parameters
+
+
+def test_custody_reads_refuse_symlinks_and_multiply_linked_files(
+    tmp_path: Path,
+) -> None:
+    custody = tmp_path / "custody"
+    custody.mkdir()
+    target = custody / "target"
+    target.write_bytes(b"sealed")
+    (custody / "symlink").symlink_to(target)
+    os.link(target, custody / "hardlink")
+    directory_fd = os.open(custody, os.O_RDONLY | os.O_DIRECTORY)
+    try:
+        with pytest.raises(subject.CurrentRootTwoKalmansonRunnerError):
+            subject._read_regular_at(directory_fd, "symlink", maximum_bytes=1024)
+        with pytest.raises(
+            subject.CurrentRootTwoKalmansonRunnerError, match="substituted"
+        ):
+            subject._read_regular_at(directory_fd, "target", maximum_bytes=1024)
+    finally:
+        os.close(directory_fd)
+
+
 def test_runner_rejects_any_core_request_other_than_one_and_all_requests_over_twelve() -> (
     None
 ):
@@ -493,4 +954,24 @@ def test_runner_rejects_any_core_request_other_than_one_and_all_requests_over_tw
             subject.PRODUCTION_RUNNER_SPEC,
             requested_core_limit=13,
             maximum_requested_core_limit=13,
+        )
+
+
+def test_start_rejects_poll_policy_override_before_launch(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    monkeypatch.setattr(
+        subject,
+        "static_check",
+        lambda *_args: (_ for _ in ()).throw(
+            AssertionError("static check must not run after policy drift")
+        ),
+    )
+    with pytest.raises(
+        subject.CurrentRootTwoKalmansonRunnerError,
+        match="polling policy is fixed",
+    ):
+        subject.start(
+            paths=subject.RunnerPaths(run_root=tmp_path / "run"),
+            max_polls=432,
         )
