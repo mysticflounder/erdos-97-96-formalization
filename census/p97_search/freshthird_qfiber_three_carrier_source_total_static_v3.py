@@ -13,11 +13,14 @@ import argparse
 import hashlib
 import json
 import os
+import re
 import shutil
+import stat
 import subprocess
 import uuid
 from collections.abc import Callable, Mapping, Sequence
-from pathlib import Path
+from datetime import UTC, datetime
+from pathlib import Path, PurePosixPath
 from typing import Any
 
 from census.p97_search.freshthird_qfiber_three_carrier_cnf_v1 import (
@@ -61,7 +64,27 @@ STATUSES = frozenset(
 )
 CLAIM = "source-total finite discovery only; no universal or Lean closure"
 LANE_ID = "freshthird-source-total-static-v3"
+RUN_MANIFEST_SCHEMA = "worktree-run-manifest/v1"
 ROOT_MANIFEST_NAME = "run_manifest.json"
+WAVE_MANIFEST_NAME = "wave_manifest.json"
+RUN_OWNER = "source-total-static-runner"
+OUTPUT_CLASSES = ("artifacts", "events", "tmp")
+_ID = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$")
+_HEX40 = re.compile(r"^[0-9a-f]{40}$")
+_HEX64 = re.compile(r"^[0-9a-f]{64}$")
+_RUN_MANIFEST_KEYS = {
+    "schema",
+    "lane_id",
+    "run_id",
+    "root",
+    "owner",
+    "base_head",
+    "output_classes",
+    "source_digests",
+    "input_digests",
+    "created_utc",
+    "manifest_sha256",
+}
 
 QUERY_PATH = "census/p97_search/freshthird_qfiber_three_carrier_query_v1.py"
 SOURCE_THEOREM_MODULE = (
@@ -130,6 +153,16 @@ def _atomic_write_json(path: Path, value: object) -> str:
     return _atomic_write_bytes(path, _canonical_json(value))
 
 
+def _manifest_self_hash(value: Mapping[str, object]) -> str:
+    unsigned = {
+        key: item for key, item in value.items() if key != "manifest_sha256"
+    }
+    payload = json.dumps(
+        unsigned, ensure_ascii=True, sort_keys=True, separators=(",", ":")
+    ).encode("utf-8")
+    return _sha256(payload)
+
+
 def _read_canonical_json(path: Path, description: str) -> dict[str, object]:
     try:
         raw = path.read_bytes()
@@ -141,6 +174,141 @@ def _read_canonical_json(path: Path, description: str) -> dict[str, object]:
     if raw != _canonical_json(value):
         raise SourceTotalStaticError(f"{description} is not canonical JSON")
     return value
+
+
+def _snapshot_digest_map(
+    repo_root: Path, source_snapshot: Mapping[str, object]
+) -> dict[str, str]:
+    """Return the exact unique-regular-file digest map bound by the snapshot."""
+
+    rows = source_snapshot.get("rows")
+    if type(rows) is not list or not rows:
+        raise SourceTotalStaticError("source snapshot rows are malformed")
+    digests: dict[str, str] = {}
+    for row in rows:
+        if type(row) is not dict:
+            raise SourceTotalStaticError("source snapshot contains a malformed row")
+        path = row.get("path")
+        digest = row.get("sha256")
+        if not (
+            type(path) is str
+            and path
+            and PurePosixPath(path).as_posix() == path
+            and not PurePosixPath(path).is_absolute()
+            and ".." not in PurePosixPath(path).parts
+            and type(digest) is str
+            and _HEX64.fullmatch(digest) is not None
+        ):
+            raise SourceTotalStaticError("source snapshot row identity is malformed")
+        if path in digests:
+            raise SourceTotalStaticError("source snapshot contains duplicate paths")
+        absolute = repo_root / path
+        try:
+            info = absolute.lstat()
+            data = absolute.read_bytes()
+        except OSError as exc:
+            raise SourceTotalStaticError(
+                f"source snapshot path is unreadable: {path}"
+            ) from exc
+        if (
+            not stat.S_ISREG(info.st_mode)
+            or absolute.is_symlink()
+            or info.st_nlink != 1
+        ):
+            raise SourceTotalStaticError(
+                f"source snapshot path is not a unique regular file: {path}"
+            )
+        if _sha256(data) != digest:
+            raise SourceTotalStaticError(f"source snapshot digest drifted: {path}")
+        digests[path] = digest
+    return {path: digests[path] for path in sorted(digests)}
+
+
+def _run_root_identity(repo_root: Path, out_dir: Path) -> tuple[str, str]:
+    relative = out_dir.relative_to(repo_root).as_posix()
+    run_id = out_dir.name
+    if _ID.fullmatch(run_id) is None:
+        raise SourceTotalStaticError("output run id has an invalid form")
+    return relative, run_id
+
+
+def _new_standard_run_manifest(
+    *,
+    repo_root: Path,
+    out_dir: Path,
+    source_snapshot: Mapping[str, object],
+) -> dict[str, object]:
+    root, run_id = _run_root_identity(repo_root, out_dir)
+    base_head = source_snapshot.get("repo_head")
+    if type(base_head) is not str or _HEX40.fullmatch(base_head) is None:
+        raise SourceTotalStaticError("source snapshot repo_head is malformed")
+    source_digests = _snapshot_digest_map(repo_root, source_snapshot)
+    manifest: dict[str, object] = {
+        "schema": RUN_MANIFEST_SCHEMA,
+        "lane_id": LANE_ID,
+        "run_id": run_id,
+        "root": root,
+        "owner": RUN_OWNER,
+        "base_head": base_head,
+        "output_classes": list(OUTPUT_CLASSES),
+        "source_digests": source_digests,
+        # The authenticated snapshot rows are exactly this static run's inputs.
+        "input_digests": dict(source_digests),
+        "created_utc": datetime.now(UTC).isoformat().replace("+00:00", "Z"),
+        "manifest_sha256": "",
+    }
+    manifest["manifest_sha256"] = _manifest_self_hash(manifest)
+    return manifest
+
+
+def _validate_standard_run_manifest(
+    *,
+    repo_root: Path,
+    out_dir: Path,
+    source_snapshot: Mapping[str, object],
+) -> dict[str, object]:
+    manifest = _read_canonical_json(
+        out_dir / ROOT_MANIFEST_NAME, "standard run manifest"
+    )
+    if set(manifest) != _RUN_MANIFEST_KEYS:
+        raise SourceTotalStaticError("standard run manifest fields are malformed")
+    root, run_id = _run_root_identity(repo_root, out_dir)
+    source_digests = _snapshot_digest_map(repo_root, source_snapshot)
+    expected = {
+        "schema": RUN_MANIFEST_SCHEMA,
+        "lane_id": LANE_ID,
+        "run_id": run_id,
+        "root": root,
+        "owner": RUN_OWNER,
+        "base_head": source_snapshot.get("repo_head"),
+        "output_classes": list(OUTPUT_CLASSES),
+        "source_digests": source_digests,
+        "input_digests": dict(source_digests),
+    }
+    for key, value in expected.items():
+        if manifest.get(key) != value:
+            raise SourceTotalStaticError(f"standard run manifest mismatch: {key}")
+    created_utc = manifest.get("created_utc")
+    if type(created_utc) is not str or not created_utc.endswith("Z"):
+        raise SourceTotalStaticError("standard run manifest created_utc is malformed")
+    try:
+        parsed = datetime.fromisoformat(created_utc)
+    except ValueError as exc:
+        raise SourceTotalStaticError(
+            "standard run manifest created_utc is malformed"
+        ) from exc
+    if parsed.utcoffset() is None or parsed.utcoffset().total_seconds() != 0:
+        raise SourceTotalStaticError(
+            "standard run manifest created_utc is not UTC"
+        )
+    digest = manifest.get("manifest_sha256")
+    if not (
+        type(digest) is str
+        and _HEX64.fullmatch(digest) is not None
+        and digest == _manifest_self_hash(manifest)
+    ):
+        raise SourceTotalStaticError("standard run manifest self-hash drifted")
+    return manifest
 
 
 def build_source_snapshot(repo_root: str | Path) -> dict[str, Any]:
@@ -495,6 +663,41 @@ def _solver_identity(binary: str, injected: bool) -> dict[str, object]:
     }
 
 
+def _solver_identity_for_reentry(
+    binary: str, injected: bool, stored: object
+) -> dict[str, object]:
+    """Authenticate the stored solver identity without executing the solver."""
+
+    if type(stored) is not dict:
+        raise SourceTotalStaticError("terminal solver identity is malformed")
+    if injected:
+        expected = _solver_identity(binary, True)
+    else:
+        resolved = shutil.which(binary)
+        if resolved is None:
+            raise SourceTotalStaticError(f"CaDiCaL binary not found: {binary}")
+        executable = Path(resolved).resolve()
+        try:
+            data = executable.read_bytes()
+        except OSError as exc:
+            raise SourceTotalStaticError(
+                f"cannot authenticate CaDiCaL: {executable}"
+            ) from exc
+        expected = {
+            "binary": binary,
+            "resolved_path": str(executable),
+            "sha256": _sha256(data),
+            "version": stored.get("version"),
+            "return_codes": {"sat": 10, "unsat": 20},
+            "repo_root_custody_required": True,
+        }
+        if not isinstance(expected["version"], str) or not expected["version"]:
+            raise SourceTotalStaticError("terminal CaDiCaL version is malformed")
+    if stored != expected:
+        raise SourceTotalStaticError("terminal solver identity drifted")
+    return expected
+
+
 def _solver_status(returncode: int) -> str:
     if returncode == 10:
         return "SAT"
@@ -512,6 +715,7 @@ def _cell_result(
     cnf_sha256: str,
     variable_map_sha256: str,
     encoding_manifest_sha256: str,
+    stored_semantic_replay: Mapping[str, object] | None = None,
 ) -> dict[str, object]:
     solver_status = _solver_status(completed.returncode)
     common: dict[str, object] = {
@@ -533,20 +737,38 @@ def _cell_result(
         try:
             encoding.validate_source_total_assignment(assignment)
             model_result = encoding.result_from_assignment(assignment)
-            replay = encoding.replay_result(model_result, timeout_ms=REPLAY_TIMEOUT_MS)
         except (FreshThirdCarrierCnfError, ValueError) as exc:
             raise SourceTotalStaticError(
                 f"cell {boundary_index} SAT validation failed: {exc}"
             ) from exc
+        if stored_semantic_replay is None:
+            replay = encoding.replay_result(
+                model_result, timeout_ms=REPLAY_TIMEOUT_MS
+            )
+            replay_record = {
+                "accepted": replay.accepted,
+                "detail": replay.detail,
+            }
+        else:
+            if not (
+                type(stored_semantic_replay) is dict
+                and set(stored_semantic_replay) == {"accepted", "detail"}
+                and type(stored_semantic_replay.get("accepted")) is bool
+                and type(stored_semantic_replay.get("detail")) is str
+                and bool(stored_semantic_replay.get("detail"))
+            ):
+                raise SourceTotalStaticError(
+                    f"cell {boundary_index} stored semantic replay is malformed"
+                )
+            replay_record = dict(stored_semantic_replay)
         common["complete_model_verified"] = True
         common["source_total_assignment_verified"] = True
         common["model_result"] = model_result
-        common["semantic_replay"] = {
-            "accepted": replay.accepted,
-            "detail": replay.detail,
-        }
+        common["semantic_replay"] = replay_record
         common["status"] = (
-            "SAT_ABSTRACTION" if replay.accepted else "SAT_REPLAY_REJECTED"
+            "SAT_ABSTRACTION"
+            if replay_record["accepted"]
+            else "SAT_REPLAY_REJECTED"
         )
     elif solver_status == "UNSAT":
         common["status"] = "UNSAT_SOURCE_TOTAL_RELAXATION"
@@ -567,19 +789,20 @@ def _aggregate_status(statuses: Sequence[object]) -> str:
     return "UNKNOWN"
 
 
-def _artifact_inventory(out_dir: Path) -> list[dict[str, object]]:
+def _artifact_inventory(artifacts_dir: Path) -> list[dict[str, object]]:
     rows: list[dict[str, object]] = []
-    for path in sorted(out_dir.rglob("*")):
+    for path in sorted(artifacts_dir.rglob("*")):
         if path.is_symlink():
             raise SourceTotalStaticError(f"unsupported output artifact: {path}")
-        if path == out_dir / ROOT_MANIFEST_NAME or path.is_dir():
+        if path == artifacts_dir / WAVE_MANIFEST_NAME or path.is_dir():
             continue
-        if not path.is_file():
+        info = path.lstat()
+        if not stat.S_ISREG(info.st_mode) or info.st_nlink != 1:
             raise SourceTotalStaticError(f"unsupported output artifact: {path}")
         data = path.read_bytes()
         rows.append(
             {
-                "path": path.relative_to(out_dir).as_posix(),
+                "path": path.relative_to(artifacts_dir).as_posix(),
                 "bytes": len(data),
                 "sha256": _sha256(data),
             }
@@ -598,18 +821,48 @@ def _validate_output_root(repo_root: Path, out_dir: Path) -> Path:
         ) from exc
     if len(relative.parts) != 1 or not relative.parts[0]:
         raise SourceTotalStaticError("output root must name exactly one run id")
+    if _ID.fullmatch(relative.parts[0]) is None:
+        raise SourceTotalStaticError("output run id has an invalid form")
     return resolved
 
 
+def _validate_run_root_layout(out_dir: Path) -> Path:
+    """Require every mutable runner payload to live below ``artifacts/``."""
+
+    allowed = {ROOT_MANIFEST_NAME, *OUTPUT_CLASSES}
+    for child in out_dir.iterdir():
+        if child.name not in allowed or child.is_symlink():
+            raise SourceTotalStaticError(f"unsupported run-root entry: {child}")
+        if child.name == ROOT_MANIFEST_NAME:
+            info = child.lstat()
+            if not stat.S_ISREG(info.st_mode) or info.st_nlink != 1:
+                raise SourceTotalStaticError(
+                    "run_manifest.json is not a unique regular file"
+                )
+            continue
+        if not child.is_dir():
+            raise SourceTotalStaticError(
+                f"output class is not a directory: {child.name}"
+            )
+        if child.name in {"events", "tmp"} and any(child.iterdir()):
+            raise SourceTotalStaticError(
+                f"runner payload escaped artifacts/: {child.name}"
+            )
+    artifacts_dir = out_dir / "artifacts"
+    if not artifacts_dir.is_dir() or artifacts_dir.is_symlink():
+        raise SourceTotalStaticError("run root omits a regular artifacts directory")
+    return artifacts_dir
+
+
 def _validate_source_archive(
-    out_dir: Path,
+    artifacts_dir: Path,
     manifest: Mapping[str, object],
     source_snapshot: Mapping[str, object],
 ) -> None:
     archive = manifest.get("source_archive")
     if type(archive) is not dict:
         raise SourceTotalStaticError("terminal manifest omits source archive")
-    archive_path = out_dir / "source-nonclean" / "manifest.json"
+    archive_path = artifacts_dir / "source-nonclean" / "manifest.json"
     if not archive_path.is_file() or archive_path.read_bytes() != _canonical_json(
         archive
     ):
@@ -641,7 +894,7 @@ def _validate_source_archive(
             "porcelain_status": source_row.get("porcelain_status"),
         }:
             raise SourceTotalStaticError("source archive record drifted")
-        archived_path = out_dir / "source-nonclean" / record["path"]
+        archived_path = artifacts_dir / "source-nonclean" / record["path"]
         if not archived_path.is_file() or _sha256(
             archived_path.read_bytes()
         ) != record.get("sha256"):
@@ -696,6 +949,11 @@ def _validate_terminal_cell(
         stdout_path.read_bytes(),
         stderr_path.read_bytes(),
     )
+    stored_replay = stored.get("semantic_replay") if returncode == 10 else None
+    if returncode == 10 and type(stored_replay) is not dict:
+        raise SourceTotalStaticError(
+            f"cell {boundary_index} stored semantic replay is malformed"
+        )
     regenerated = _cell_result(
         boundary_index=boundary_index,
         encoding=encoding,
@@ -704,6 +962,7 @@ def _validate_terminal_cell(
         cnf_sha256=_sha256(cnf),
         variable_map_sha256=_sha256(variable_map),
         encoding_manifest_sha256=_sha256(encoding_manifest_bytes),
+        stored_semantic_replay=stored_replay,
     )
     if stored != regenerated:
         raise SourceTotalStaticError(f"cell {boundary_index} result replay drifted")
@@ -713,7 +972,7 @@ def _validate_terminal_cell(
 
 def _validate_terminal_manifest(
     *,
-    out_dir: Path,
+    artifacts_dir: Path,
     manifest: Mapping[str, object],
     source_snapshot: Mapping[str, object],
     plan: Mapping[str, object],
@@ -721,11 +980,17 @@ def _validate_terminal_manifest(
     timeout_seconds: int,
     solver_identity: Mapping[str, object],
 ) -> None:
-    manifest_path = out_dir / ROOT_MANIFEST_NAME
-    if not manifest_path.is_file() or manifest_path.read_bytes() != _canonical_json(
-        manifest
+    manifest_path = artifacts_dir / WAVE_MANIFEST_NAME
+    try:
+        manifest_info = manifest_path.lstat()
+    except OSError as exc:
+        raise SourceTotalStaticError("terminal wave manifest is missing") from exc
+    if (
+        not stat.S_ISREG(manifest_info.st_mode)
+        or manifest_info.st_nlink != 1
+        or manifest_path.read_bytes() != _canonical_json(manifest)
     ):
-        raise SourceTotalStaticError("terminal manifest is not canonical")
+        raise SourceTotalStaticError("terminal wave manifest is not canonical")
     producer = Path(__file__).resolve()
     required = {
         "schema": SCHEMA,
@@ -757,6 +1022,14 @@ def _validate_terminal_manifest(
     for key, value in required.items():
         if manifest.get(key) != value:
             raise SourceTotalStaticError(f"terminal manifest mismatch: {key}")
+    if set(manifest) != {
+        *required,
+        "source_archive",
+        "statuses",
+        "status",
+        "artifact_inventory",
+    }:
+        raise SourceTotalStaticError("terminal wave manifest fields are malformed")
     statuses = manifest.get("statuses")
     if not (
         type(statuses) is dict
@@ -766,9 +1039,9 @@ def _validate_terminal_manifest(
         raise SourceTotalStaticError("terminal statuses are malformed")
     if manifest.get("status") != _aggregate_status(tuple(statuses.values())):
         raise SourceTotalStaticError("terminal aggregate status mismatch")
-    if manifest.get("artifact_inventory") != _artifact_inventory(out_dir):
+    if manifest.get("artifact_inventory") != _artifact_inventory(artifacts_dir):
         raise SourceTotalStaticError("terminal artifact inventory mismatch")
-    _validate_source_archive(out_dir, manifest, source_snapshot)
+    _validate_source_archive(artifacts_dir, manifest, source_snapshot)
     plan_cells = plan.get("cells")
     if not (type(plan_cells) is list and len(plan_cells) == CELL_COUNT):
         raise SourceTotalStaticError("terminal plan cells are malformed")
@@ -779,7 +1052,7 @@ def _validate_terminal_manifest(
         ):
             raise SourceTotalStaticError("terminal plan cell order drifted")
         _validate_terminal_cell(
-            cell_dir=out_dir / f"cell-{boundary_index}",
+            cell_dir=artifacts_dir / f"cell-{boundary_index}",
             boundary_index=boundary_index,
             plan_cell=plan_cell,
             expected_status=statuses[str(boundary_index)],
@@ -790,7 +1063,7 @@ def _validate_terminal_manifest(
                 "-q",
                 "-t",
                 str(timeout_seconds),
-                str(out_dir / f"cell-{boundary_index}" / "input.cnf"),
+                str(artifacts_dir / f"cell-{boundary_index}" / "input.cnf"),
             ),
         )
 
@@ -825,20 +1098,32 @@ def run_wave(
     )
     output = _validate_output_root(repo, out_dir)
     injected = solver_runner is not None
-    solver_identity = _solver_identity(cadical, injected)
-    solver_binary = str(solver_identity.get("resolved_path", cadical))
 
     if output.exists():
+        if output.is_symlink():
+            raise SourceTotalStaticError("output root must not be a symlink")
         if not output.is_dir():
             raise SourceTotalStaticError("output root exists and is not a directory")
-        manifest_path = output / ROOT_MANIFEST_NAME
-        if not manifest_path.is_file():
+        run_manifest_path = output / ROOT_MANIFEST_NAME
+        if not run_manifest_path.is_file():
             raise SourceTotalStaticError("refusing any pre-existing nonterminal root")
-        existing = _read_canonical_json(manifest_path, "existing manifest")
+        _validate_standard_run_manifest(
+            repo_root=repo,
+            out_dir=output,
+            source_snapshot=source_snapshot,
+        )
+        artifacts_dir = _validate_run_root_layout(output)
+        wave_manifest_path = artifacts_dir / WAVE_MANIFEST_NAME
+        if not wave_manifest_path.is_file():
+            raise SourceTotalStaticError("refusing a run root without a wave manifest")
+        existing = _read_canonical_json(wave_manifest_path, "existing wave manifest")
         if existing.get("run_state") != "TERMINAL":
             raise SourceTotalStaticError("refusing to revive a RUNNING or stale wave")
+        solver_identity = _solver_identity_for_reentry(
+            cadical, injected, existing.get("solver")
+        )
         _validate_terminal_manifest(
-            out_dir=output,
+            artifacts_dir=artifacts_dir,
             manifest=existing,
             source_snapshot=source_snapshot,
             plan=plan,
@@ -848,7 +1133,17 @@ def run_wave(
         )
         return existing
 
+    solver_identity = _solver_identity(cadical, injected)
+    solver_binary = str(solver_identity.get("resolved_path", cadical))
     output.mkdir(parents=True, exist_ok=False)
+    run_manifest = _new_standard_run_manifest(
+        repo_root=repo,
+        out_dir=output,
+        source_snapshot=source_snapshot,
+    )
+    _atomic_write_json(output / ROOT_MANIFEST_NAME, run_manifest)
+    artifacts_dir = output / "artifacts"
+    artifacts_dir.mkdir()
     producer = Path(__file__).resolve()
     manifest: dict[str, object] = {
         "schema": SCHEMA,
@@ -874,11 +1169,12 @@ def run_wave(
     }
     try:
         manifest["source_archive"] = archive_nonclean_snapshot_rows(
-            repo, source_snapshot, output / "source-nonclean"
+            repo, source_snapshot, artifacts_dir / "source-nonclean"
         )
     except Exception as exc:
         raise SourceTotalStaticError(f"source archive failed: {exc}") from exc
-    _atomic_write_json(output / ROOT_MANIFEST_NAME, manifest)
+    wave_manifest_path = artifacts_dir / WAVE_MANIFEST_NAME
+    _atomic_write_json(wave_manifest_path, manifest)
 
     runner = _run_solver if solver_runner is None else solver_runner
     results: dict[str, dict[str, object]] = {}
@@ -886,7 +1182,7 @@ def run_wave(
         encoding, cnf, variable_map, encoding_manifest_bytes, _ = _encoding_artifacts(
             boundary_index
         )
-        cell_dir = output / f"cell-{boundary_index}"
+        cell_dir = artifacts_dir / f"cell-{boundary_index}"
         cell_dir.mkdir(parents=True, exist_ok=False)
         cnf_path = cell_dir / "input.cnf"
         _atomic_write_bytes(cnf_path, cnf)
@@ -930,7 +1226,7 @@ def run_wave(
         results[str(boundary_index)] = result
         manifest["solver_calls"] = boundary_index + 1
         manifest["statuses"] = {key: value["status"] for key, value in results.items()}
-        _atomic_write_json(output / ROOT_MANIFEST_NAME, manifest)
+        _atomic_write_json(wave_manifest_path, manifest)
 
     try:
         postflight = verify_snapshot(repo, source_snapshot)
@@ -948,8 +1244,8 @@ def run_wave(
     manifest["terminal"] = True
     manifest["statuses"] = {key: value["status"] for key, value in results.items()}
     manifest["status"] = _aggregate_status(tuple(manifest["statuses"].values()))
-    manifest["artifact_inventory"] = _artifact_inventory(output)
-    _atomic_write_json(output / ROOT_MANIFEST_NAME, manifest)
+    manifest["artifact_inventory"] = _artifact_inventory(artifacts_dir)
+    _atomic_write_json(wave_manifest_path, manifest)
     return manifest
 
 

@@ -8,6 +8,7 @@ from typing import ClassVar
 import pytest
 
 import census.p97_search.freshthird_qfiber_three_carrier_source_total_static_v3 as runner
+import scripts.check_worktree_hygiene as hygiene
 
 
 class _Replay:
@@ -269,6 +270,155 @@ def test_complete_sat_models_make_four_custodied_calls_and_reenter_without_calls
     assert second_calls == 0
 
 
+def test_run_root_has_standard_self_hashed_manifest_and_artifacts_only(custody) -> None:
+    repo, snapshot, receipt = custody
+    output = _out(repo, "standard-layout")
+    runner.run_wave(
+        output,
+        source_snapshot=snapshot,
+        phase_ingress_receipt=receipt,
+        solver_runner=_sat_solver([]),
+        repo_root=repo,
+    )
+
+    assert {path.name for path in output.iterdir()} == {
+        runner.ROOT_MANIFEST_NAME,
+        "artifacts",
+    }
+    run_manifest = runner._read_canonical_json(
+        output / runner.ROOT_MANIFEST_NAME, "standard run manifest"
+    )
+    assert run_manifest["schema"] == runner.RUN_MANIFEST_SCHEMA
+    assert run_manifest["lane_id"] == runner.LANE_ID
+    assert run_manifest["run_id"] == "standard-layout"
+    assert run_manifest["root"] == (
+        f"scratch/runs/{runner.LANE_ID}/standard-layout"
+    )
+    assert run_manifest["owner"] == runner.RUN_OWNER
+    assert run_manifest["base_head"] == snapshot["repo_head"]
+    assert run_manifest["output_classes"] == list(runner.OUTPUT_CLASSES)
+    expected_digests = {
+        row["path"]: row["sha256"] for row in snapshot["rows"]
+    }
+    assert run_manifest["source_digests"] == expected_digests
+    assert run_manifest["input_digests"] == expected_digests
+    assert run_manifest["manifest_sha256"] == runner._manifest_self_hash(
+        run_manifest
+    )
+    validated, referenced = hygiene._validate_standard_run_manifest(
+        repo,
+        run_manifest["root"],
+        hygiene.Checkpoint(
+            path=".codex/worktree-checkpoints/test.json",
+            lane_id=runner.LANE_ID,
+            owner=runner.RUN_OWNER,
+            base_head=snapshot["repo_head"],
+            owned_paths=(),
+            generated_roots=(run_manifest["root"],),
+            durable_paths=(),
+            raw_sha256="0" * 64,
+        ),
+        (output / runner.ROOT_MANIFEST_NAME).read_bytes(),
+    )
+    assert validated == run_manifest
+    assert set(referenced) == set(expected_digests)
+    artifacts = output / "artifacts"
+    assert (artifacts / runner.WAVE_MANIFEST_NAME).is_file()
+    assert all(
+        path == artifacts or artifacts in path.parents for path in artifacts.rglob("*")
+    )
+
+
+def test_standard_run_manifest_is_written_before_artifacts(
+    custody, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    repo, snapshot, receipt = custody
+    output = _out(repo, "manifest-first")
+    original = runner._atomic_write_json
+    observations: list[tuple[Path, bool]] = []
+
+    def observe(path: Path, value: object) -> str:
+        observations.append((path, (output / "artifacts").exists()))
+        return original(path, value)
+
+    monkeypatch.setattr(runner, "_atomic_write_json", observe)
+    runner.run_wave(
+        output,
+        source_snapshot=snapshot,
+        phase_ingress_receipt=receipt,
+        solver_runner=_sat_solver([]),
+        repo_root=repo,
+    )
+
+    assert observations[0] == (output / runner.ROOT_MANIFEST_NAME, False)
+
+
+def test_terminal_reentry_rejects_rehashed_wrong_standard_manifest_without_calls(
+    custody,
+) -> None:
+    repo, snapshot, receipt = custody
+    output = _out(repo, "bad-run-manifest")
+    runner.run_wave(
+        output,
+        source_snapshot=snapshot,
+        phase_ingress_receipt=receipt,
+        solver_runner=_sat_solver([]),
+        repo_root=repo,
+    )
+    path = output / runner.ROOT_MANIFEST_NAME
+    malformed = runner._read_canonical_json(path, "standard run manifest")
+    malformed["owner"] = "wrong-owner"
+    malformed["manifest_sha256"] = runner._manifest_self_hash(malformed)
+    path.write_bytes(runner._canonical_json(malformed))
+    calls = 0
+
+    def forbidden_solver(*_args):
+        nonlocal calls
+        calls += 1
+        raise AssertionError("solver called")
+
+    with pytest.raises(runner.SourceTotalStaticError, match="mismatch: owner"):
+        runner.run_wave(
+            output,
+            source_snapshot=snapshot,
+            phase_ingress_receipt=receipt,
+            solver_runner=forbidden_solver,
+            repo_root=repo,
+        )
+    assert calls == 0
+
+
+def test_terminal_reentry_uses_no_cadical_or_semantic_solver_calls(
+    custody, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    repo, snapshot, receipt = custody
+    output = _out(repo, "solver-free-reentry")
+    first = runner.run_wave(
+        output,
+        source_snapshot=snapshot,
+        phase_ingress_receipt=receipt,
+        solver_runner=_sat_solver([]),
+        repo_root=repo,
+    )
+
+    def forbidden_replay(*_args, **_kwargs):
+        raise AssertionError("terminal reentry called semantic replay")
+
+    monkeypatch.setattr(_FakeEncoding, "replay_result", forbidden_replay)
+
+    def forbidden_cadical(*_args):
+        raise AssertionError("terminal reentry called CaDiCaL")
+
+    second = runner.run_wave(
+        output,
+        source_snapshot=snapshot,
+        phase_ingress_receipt=receipt,
+        solver_runner=forbidden_cadical,
+        repo_root=repo,
+    )
+    assert second == first
+
+
 def test_sat_replay_rejection_is_conservative_terminal_status(
     custody, monkeypatch: pytest.MonkeyPatch
 ) -> None:
@@ -285,7 +435,11 @@ def test_sat_replay_rejection_is_conservative_terminal_status(
     )
     assert result["status"] == "SAT_REPLAY_REJECTED"
     cell = runner._read_canonical_json(
-        _out(repo, "replay-rejected") / "cell-0" / "result.json", "result"
+        _out(repo, "replay-rejected")
+        / "artifacts"
+        / "cell-0"
+        / "result.json",
+        "result",
     )
     assert cell["semantic_replay"]["accepted"] is False
 
@@ -311,7 +465,7 @@ def test_malformed_sat_model_fails_closed_after_one_solver_call(custody) -> None
     assert calls == 1
     assert (
         runner._read_canonical_json(
-            output / runner.ROOT_MANIFEST_NAME, "manifest"
+            output / "artifacts" / runner.WAVE_MANIFEST_NAME, "wave manifest"
         )["run_state"]
         == "RUNNING"
     )
@@ -421,7 +575,7 @@ def test_terminal_reentry_regenerates_and_rejects_tampered_artifacts(
         solver_runner=_sat_solver([]),
         repo_root=repo,
     )
-    target = output / "cell-0" / relative
+    target = output / "artifacts" / "cell-0" / relative
     target.write_bytes(target.read_bytes() + b"tamper")
 
     with pytest.raises(
@@ -539,7 +693,12 @@ def test_nonclean_snapshot_rows_are_archived_and_revalidated(custody) -> None:
             "porcelain_status": "?? " + runner.PHASE_INGRESS_PATH,
         }
     ]
-    assert (output / "source-nonclean" / runner.PHASE_INGRESS_PATH).is_file()
+    assert (
+        output
+        / "artifacts"
+        / "source-nonclean"
+        / runner.PHASE_INGRESS_PATH
+    ).is_file()
 
 
 def test_terminal_reentry_rejects_symlinked_directory_artifacts(custody) -> None:
@@ -554,7 +713,9 @@ def test_terminal_reentry_rejects_symlinked_directory_artifacts(custody) -> None
         ),
         repo_root=repo,
     )
-    (output / "symlink-directory").symlink_to(repo, target_is_directory=True)
+    (output / "artifacts" / "symlink-directory").symlink_to(
+        repo, target_is_directory=True
+    )
     with pytest.raises(runner.SourceTotalStaticError, match="unsupported output"):
         runner.run_wave(
             output,
