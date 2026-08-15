@@ -501,6 +501,17 @@ docs/live-blueprint.md.tmp
 /scratch/cegar-status.*
 /scratch/n11-v7-tail-manifest-extract.json
 
+# Historical FreshThird carrier-v1 discovery lane. Keep authenticated cell
+# results and mines visible; ignore only superseded/invalidated cells and
+# reproducible one-shot solver output.
+/scratch/p97-freshthird-qfiber-three-carrier-v1/portfolio-cvc5/boundary-0-exact.smt2
+/scratch/p97-freshthird-qfiber-three-carrier-v1/portfolio-cvc5/cvc5.exit
+/scratch/p97-freshthird-qfiber-three-carrier-v1/wave-0002/cell-*.json
+/scratch/p97-freshthird-qfiber-three-carrier-v1/wave-boundary-fan-normalized-0001/mine.stdout.json
+/scratch/p97-freshthird-qfiber-three-carrier-v1/wave-ordered-cap-saturated-0001/mine.stdout.json
+/scratch/p97-freshthird-qfiber-three-carrier-v1/wave-row-deletion-0001/mine.stdout.json
+/scratch/p97-freshthird-qfiber-three-carrier-v1/wave-row-overlap-0001/cell-*.json
+
 # Generic scratch runtime state. Cache/work trees are disposable by contract;
 # source, manifests, reports, certificates, and other durable files elsewhere
 # in scratch remain visible. Do not generalize this to runs/, out/, artifacts/,
