@@ -1,3 +1,7 @@
+# Copyright (c) 2026 Adam McKenna. All rights reserved.
+# Released under Apache 2.0 license as described in the file LICENSE.
+# Author: Adam McKenna <adam@mysticflounder.ai>
+
 """Deterministic structural-CNF shadow adapter for the FreshThird carrier query.
 
 This is the first migration seam away from the monolithic SMT query.  It

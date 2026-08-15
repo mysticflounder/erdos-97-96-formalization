@@ -49,9 +49,9 @@ seven source constraint groups. This keeps orchestration provenance distinct
 while ensuring replay rejection is a semantic source-query result rather than
 a metadata-schema mismatch.
 
-Terminal UNSAT certification, local DRAT/LRAT replay, four-cell aggregation,
-and Lean ingress are deliberately outside v1 and outside this implementation
-tranche.
+Terminal UNSAT certification, local DRAT/LRAT replay, and four-cell aggregation
+remain outside v1.  A companion Lean module now supplies only the narrow
+cap-alternation clause ingress described below.
 
 ## Deterministic cell-0 smoke checkpoint
 
@@ -109,3 +109,75 @@ structural-CEGAR custody layer.  Each child must bind the source manifest, CNF
 hash, variable-map hash, parent hash, decoded signature hash, and learned-clause
 record.  A terminal child must still be rerun through the independent local
 proof path before any promotion claim.
+
+## Cap-alternation certificate replay
+
+`freshthird_qfiber_three_carrier_cap_alternation_replay_v1.py` supplies the
+independent replay boundary for one learned cap-alternation clause.  Its strict
+canonical-JSON record binds:
+
+- the refinement and certificate schemas;
+- the boundary cell, cap, four roles, alternating membership parity, and exact
+  seven-literal clause;
+- the complete semantic-signature hash, explicitly scoped as readback-only and
+  carrying no source-SAT claim;
+- the source-query, encoder-manifest, DIMACS, and exact variable-map hashes;
+- the exact query, ingress, and aggregate Lean paths, qualified declarations,
+  aggregate import, and all three source-file byte hashes;
+- the clause hash, nullable hash of the supplied validated parent record, and a
+  self-hash under the versioned record domain; and
+- the two-theorem Lean source chain from geometric cap contiguity to the exact
+  propositional clause, plus explicit nonclaims for source SAT, terminal UNSAT,
+  and live closure.
+
+Replay regenerates and byte-compares the variable map, recomputes every hash,
+reads the query, ingress, and aggregate source bytes only from their named
+repository paths, verifies both source declarations and namespace envelopes,
+verifies the aggregate import as a complete line, and re-reads all three files
+after both building and replaying a certificate.  There is no public
+caller-supplied-source-bytes bypass.  A chained record must be accompanied by
+its actual parent record; a caller-supplied hash string is not accepted in its
+place.  Replay then checks that the four roles are distinct point classes in
+increasing order, requires the complete shared model-signature key/type shape,
+rechecks the four roles' cap membership against that signature, rebuilds
+all seven literals from semantic variable keys, and regenerates the producer's
+first deterministic refinement.  Duplicate keys, non-finite or noncanonical
+JSON, unknown/aliased roles, metadata changes, either Lean-source mutation,
+either alternating-parity sign mutation, and any literal mutation fail closed.
+
+The semantic signature is not independently replayed as a SAT model here.
+That omission is intentional and explicit: the certificate proves only that
+the seven literals are the exact propositional instance of a universal Lean
+theorem.  A structural-CEGAR runner must separately authenticate its SAT model
+before using this clause replayer as the append gate.
+
+The companion Lean module
+`FreshThirdQFiberThreeCarrierFiniteCnfIngress.lean` proves
+`capAlternationClause_of_noAlternatingCap`.  It converts the already proved
+`NoAlternatingCap` source law into the exact seven-disjunct clause for either
+membership parity.  The source chain is therefore:
+
+```text
+finite geometric view
+  -> noAlternatingCap_ofView
+  -> capAlternationClause_of_noAlternatingCap
+  -> authenticated seven-literal learned clause
+```
+
+This establishes learned-clause soundness only.  It does not prove the complete
+CNF encoding, terminal UNSAT, four-cell coverage, the full `QueryContract`, or
+any live FreshThird contradiction.
+
+Focused verification:
+
+```bash
+uv run ruff check \
+  census/p97_search/freshthird_qfiber_three_carrier_cnf_v1.py \
+  census/p97_search/freshthird_qfiber_three_carrier_cap_alternation_replay_v1.py \
+  census/p97_search/tests/test_freshthird_qfiber_three_carrier_cap_alternation_replay_v1.py
+PYTHONPATH=. uv run pytest -q \
+  census/p97_search/tests/test_freshthird_qfiber_three_carrier_cap_alternation_replay_v1.py \
+  census/p97_search/tests/test_freshthird_qfiber_three_carrier_cnf_v1.py
+lake-build \
+  Erdos9796Proof.P97.ATail.FrontierLiveClosure
+```
