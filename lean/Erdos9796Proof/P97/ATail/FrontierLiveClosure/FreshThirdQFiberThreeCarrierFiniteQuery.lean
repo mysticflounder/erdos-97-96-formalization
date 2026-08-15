@@ -440,6 +440,17 @@ def Before (A : FreshThirdQFiberThreeCarrierFiniteAssignment)
     (left right : PointRole) : Prop :=
   A.before left right = true
 
+/-- The restriction of each indexed cap to the named carrier roles is one
+cyclic interval.  Equivalently, four roles in increasing ambient boundary
+order cannot alternate in/out/in/out (in either parity). -/
+def NoAlternatingCap (A : FreshThirdQFiberThreeCarrierFiniteAssignment) : Prop :=
+  ∀ (cap : Fin 3) (a b c d : PointRole),
+    A.Before a b → A.Before b c → A.Before c d →
+      ¬ ((A.InCap a cap ∧ ¬ A.InCap b cap ∧
+            A.InCap c cap ∧ ¬ A.InCap d cap) ∨
+          (¬ A.InCap a cap ∧ A.InCap b cap ∧
+            ¬ A.InCap c cap ∧ A.InCap d cap))
+
 def SameDistanceFrom (A : FreshThirdQFiberThreeCarrierFiniteAssignment)
     (center left right : PointRole) : Prop :=
   A.sameDistanceFrom center left right = true
@@ -607,6 +618,170 @@ noncomputable def ofView
               P Pρ View right⟩ := by
   simp [Before, ofView]
 
+/-- Source semantics for cyclic cap contiguity on the complete named-role
+vocabulary.  The proof reads each indexed cap as either one closed interval
+or the complement of one open interval in the common global boundary order. -/
+theorem noAlternatingCap_ofView
+    {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
+    {Q : FreshThirdBlockerFiber P Pρ}
+    {B : BoundaryIndexing D.A} {qOutside qBetween : Fin B.n}
+    {center : ℝ²} {id : Fin B.n}
+    {DRow : SelectedFourClass D.A (B.boundary id)}
+    {freshCap rowCap : Fin 3}
+    {Packet : FreshThirdPinnedEndpointOutsideSeedQueryPacket
+      P Pρ C Q B qOutside qBetween center id DRow freshCap rowCap}
+    {G : TriApexAllLargeContext D S}
+    {Boundary : FreshThirdQFiberThreeBoundary P Pρ Q}
+    (View : FreshThirdQFiberThreeCarrierFiniteView P Pρ Packet G Boundary) :
+    NoAlternatingCap (ofView P Pρ View) := by
+  classical
+  intro cap a b c d hab hbc hcd
+  let rolePoint : PointRole → ℝ² :=
+    FreshThirdQFiberThreeCarrierFiniteView.point P Pρ View
+  let roleLabel : PointRole → CarrierLabel D.A := fun role ↦
+    ⟨rolePoint role,
+      FreshThirdQFiberThreeCarrierFiniteView.point_mem_carrier P Pρ View role⟩
+  let pos : PointRole → Fin B.n := fun role ↦ B.indexOf (roleLabel role)
+  have habPos : pos a < pos b := by
+    simpa [pos, roleLabel, rolePoint] using
+      (before_ofView_iff (P := P) (Pρ := Pρ) View a b).1 hab
+  have hbcPos : pos b < pos c := by
+    simpa [pos, roleLabel, rolePoint] using
+      (before_ofView_iff (P := P) (Pρ := Pρ) View b c).1 hbc
+  have hcdPos : pos c < pos d := by
+    simpa [pos, roleLabel, rolePoint] using
+      (before_ofView_iff (P := P) (Pρ := Pρ) View c d).1 hcd
+  simp only [inCap_ofView_iff]
+  change
+    ¬ ((rolePoint a ∈ S.capByIndex cap ∧
+          rolePoint b ∉ S.capByIndex cap ∧
+          rolePoint c ∈ S.capByIndex cap ∧
+          rolePoint d ∉ S.capByIndex cap) ∨
+        (rolePoint a ∉ S.capByIndex cap ∧
+          rolePoint b ∈ S.capByIndex cap ∧
+          rolePoint c ∉ S.capByIndex cap ∧
+          rolePoint d ∈ S.capByIndex cap))
+  let M := S.triangleByIndex cap
+  let label1 : CarrierLabel D.A := ⟨M.v1, M.v1_mem⟩
+  let label2 : CarrierLabel D.A := ⟨M.v2, M.v2_mem⟩
+  let label3 : CarrierLabel D.A := ⟨M.v3, M.v3_mem⟩
+  let ia := B.indexOf label2
+  let ib := B.indexOf label3
+  let ic := B.indexOf label1
+  have hia : B.boundary ia = M.v2 := B.point_eq label2
+  have hib : B.boundary ib = M.v3 := B.point_eq label3
+  have hic : B.boundary ic = M.v1 := B.point_eq label1
+  have hiab : ia ≠ ib := by
+    intro h
+    apply M.v23_ne
+    calc
+      M.v2 = B.boundary ia := hia.symm
+      _ = B.boundary ib := congrArg B.boundary h
+      _ = M.v3 := hib
+  have hiac : ia ≠ ic := by
+    intro h
+    apply M.v12_ne
+    calc
+      M.v1 = B.boundary ic := hic.symm
+      _ = B.boundary ia := congrArg B.boundary h.symm
+      _ = M.v2 := hia
+  have hibc : ib ≠ ic := by
+    intro h
+    apply M.v13_ne
+    calc
+      M.v1 = B.boundary ic := hic.symm
+      _ = B.boundary ib := congrArg B.boundary h.symm
+      _ = M.v3 := hib
+  have noAltInterval (lo hi : Fin B.n)
+      (hblock : ∀ x : ℝ²,
+        x ∈ S.capByIndex cap ↔
+          ∃ q : Fin B.n, lo ≤ q ∧ q ≤ hi ∧ B.boundary q = x) :
+      ¬ ((rolePoint a ∈ S.capByIndex cap ∧
+            rolePoint b ∉ S.capByIndex cap ∧
+            rolePoint c ∈ S.capByIndex cap ∧
+            rolePoint d ∉ S.capByIndex cap) ∨
+          (rolePoint a ∉ S.capByIndex cap ∧
+            rolePoint b ∈ S.capByIndex cap ∧
+            rolePoint c ∉ S.capByIndex cap ∧
+            rolePoint d ∈ S.capByIndex cap)) := by
+    have hmem (role : PointRole) :
+        rolePoint role ∈ S.capByIndex cap ↔
+          lo ≤ pos role ∧ pos role ≤ hi := by
+      constructor
+      · intro hrole
+        rcases (hblock _).1 hrole with ⟨q, hlo, hhi, hq⟩
+        have hqpos : q = pos role := by
+          apply B.boundary_injective
+          exact hq.trans (B.point_eq (roleLabel role)).symm
+        simpa [hqpos] using And.intro hlo hhi
+      · rintro ⟨hlo, hhi⟩
+        exact (hblock _).2
+          ⟨pos role, hlo, hhi, B.point_eq (roleLabel role)⟩
+    intro halt
+    rw [hmem a, hmem b, hmem c, hmem d] at halt
+    omega
+  have noAltComplement (lo hi : Fin B.n)
+      (hblock : ∀ x : ℝ²,
+        x ∈ S.capByIndex cap ↔
+          ∃ q : Fin B.n, (q ≤ lo ∨ hi ≤ q) ∧ B.boundary q = x) :
+      ¬ ((rolePoint a ∈ S.capByIndex cap ∧
+            rolePoint b ∉ S.capByIndex cap ∧
+            rolePoint c ∈ S.capByIndex cap ∧
+            rolePoint d ∉ S.capByIndex cap) ∨
+          (rolePoint a ∉ S.capByIndex cap ∧
+            rolePoint b ∈ S.capByIndex cap ∧
+            rolePoint c ∉ S.capByIndex cap ∧
+            rolePoint d ∈ S.capByIndex cap)) := by
+    have hmem (role : PointRole) :
+        rolePoint role ∈ S.capByIndex cap ↔
+          pos role ≤ lo ∨ hi ≤ pos role := by
+      constructor
+      · intro hrole
+        rcases (hblock _).1 hrole with ⟨q, houtside, hq⟩
+        have hqpos : q = pos role := by
+          apply B.boundary_injective
+          exact hq.trans (B.point_eq (roleLabel role)).symm
+        simpa [hqpos] using houtside
+      · intro houtside
+        exact (hblock _).2
+          ⟨pos role, houtside, B.point_eq (roleLabel role)⟩
+    intro halt
+    rw [hmem a, hmem b, hmem c, hmem d] at halt
+    omega
+  rcases lt_or_gt_of_ne hiab with hiab | hibia
+  · by_cases hcia : ic < ia
+    · exact noAltInterval ia ib
+        (S.capByIndex_interval_of_global_indices cap
+          B.boundary_ccw B.boundary_injective B.boundary_image
+          hiab (Or.inl hcia) hic hia hib)
+    · by_cases hbic : ib < ic
+      · exact noAltInterval ia ib
+          (S.capByIndex_interval_of_global_indices cap
+            B.boundary_ccw B.boundary_injective B.boundary_image
+            hiab (Or.inr hbic) hic hia hib)
+      · have haic : ia < ic := by omega
+        have hcib : ic < ib := by omega
+        exact noAltComplement ia ib
+          (S.capByIndex_complement_interval_of_global_indices cap
+            B.boundary_ccw B.boundary_injective B.boundary_image
+            haic hcib hic hia hib)
+  · by_cases hcib : ic < ib
+    · exact noAltInterval ib ia
+        (S.capByIndex_reverse_interval_of_global_indices cap
+          B.boundary_ccw B.boundary_injective B.boundary_image
+          hibia (Or.inl hcib) hic hia hib)
+    · by_cases haic : ia < ic
+      · exact noAltInterval ib ia
+          (S.capByIndex_reverse_interval_of_global_indices cap
+            B.boundary_ccw B.boundary_injective B.boundary_image
+            hibia (Or.inr haic) hic hia hib)
+      · have hbic : ib < ic := by omega
+        have hcia : ic < ia := by omega
+        exact noAltComplement ib ia
+          (S.capByIndex_reverse_complement_interval_of_global_indices cap
+            B.boundary_ccw B.boundary_injective B.boundary_image
+            hbic hcia hic hia hib)
+
 @[simp] theorem sameDistanceFrom_ofView_iff
     {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
     {Q : FreshThirdBlockerFiber P Pρ}
@@ -721,6 +896,7 @@ structure FreshThirdQFiberThreeCarrierFiniteRowTheory
                 targetRow ∧
               ¬ A.InCap
                 (freshThirdQFiberThreeCarrierRowSlot sourceRow (e k)) cap
+  cap_no_alternation : A.NoAlternatingCap
 
 namespace FreshThirdQFiberThreeCarrierFiniteRowTheory
 
@@ -816,6 +992,7 @@ theorem ofView
     row_no_three_of_centers_ne := ?_
     row_cap_no_three := ?_
     row_outside_cap_no_two := ?_
+    cap_no_alternation := ?_
   }
   · intro point
     exact (FreshThirdQFiberThreeCarrierFiniteAssignment.same_ofView_iff
@@ -1036,6 +1213,9 @@ theorem ofView
     have hle := Finset.card_le_card hsubset
     rw [hcard] at hle
     omega
+  · exact
+      FreshThirdQFiberThreeCarrierFiniteAssignment.noAlternatingCap_ofView
+        P Pρ View
 
 end FreshThirdQFiberThreeCarrierFiniteRowTheory
 

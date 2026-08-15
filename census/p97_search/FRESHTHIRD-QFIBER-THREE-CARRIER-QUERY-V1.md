@@ -21,6 +21,9 @@ four values of the intrinsic `boundaryIndex : Fin 4`.
 - cap membership and cap interior remain separate finite predicates, with
   source-proved interior inclusion and cross-cap exclusion;
 - boundary order is a strict total order on `Same` classes;
+- the restriction of each indexed cap to the named roles is one cyclic
+  interval in that boundary order; equivalently, four increasing roles cannot
+  alternate in/out/in/out in either parity;
 - distance equality is represented by finite equality classes;
 - `HasFourAfterDeleting` and `Nonrobust` remain ambient semantic atoms, but at
   every named selected-row center their exact source law is enforced:
@@ -46,16 +49,18 @@ The four second-order deletions are also retained collectively. Applying
 to the boundary blocker's row gives either a center-blocker/support-equality
 arm, or universal center separation together with both a repeated-cap pair
 and a mutual cross-deletion pair. The query encodes this complete disjunction,
-not just the four pointwise deletion packets.
+not just the four pointwise deletion packets. The two pairs are independent
+source existentials; model overlap between them is not a same-pair theorem.
 
 ## Constraint groups
 
 1. `same_equivalence_canonical`
 2. `complete_exact_row_theory`
 3. `complete_relational_theory`
-4. `cap_skolem_ranges`
-5. `pinned_source_theory`
-6. `carrier_source_theory`
+4. `cap_cyclic_interval_theory`
+5. `cap_skolem_ranges`
+6. `pinned_source_theory`
+7. `carrier_source_theory`
 
 Each group is tracked in Z3 for coarse UNSAT-core provenance. The manifest
 records exact SHA-256 hashes of the Python producer and the three Lean source
@@ -73,14 +78,15 @@ universal closure, Lean closure, or Euclidean realizability.
 
 ## Current wave objective
 
-The first two authenticated waves demonstrated a disjoint pinned-fan/Q
-survivor and exposed missing source ingress. They are discovery history, not
-evidence for the strengthened contract. The current clean wave is
-`wave-boundary-fan-normalized-0001`; it includes complete row deletion
-semantics, all named two-circle overlap cuts, and the collective second-order
-fan normalization. It remains satisfiable only through a same-cap pair with
-reciprocal cross-deletion survival. The next wave adds the source-proved
-center-cap row bound and the outside-pair uniqueness theorem to determine
-whether that residual already violates ordered-cap geometry or needs a new
-descent producer. No learned clause is admitted until its source producer and
-Lean consumer are named.
+The clean `wave-ordered-cap-saturated-0001` adds complete row deletion
+semantics, all named two-circle overlap cuts, collective second-order fan
+normalization, the center-cap row bound, and outside-pair uniqueness. All four
+cells remain SAT. Their cap-membership words have 10--26 cyclic transitions,
+however, so those models violate source cap contiguity. The current
+`wave-cap-cyclic-interval-0001` adds the Lean-proved `NoAlternatingCap` law.
+All four cells return fail-closed `UNKNOWN` after 180 seconds: no surviving
+model and no UNSAT claim were produced. The immediate action is a bounded
+backend/solver portfolio on the identical source hash, followed by migration
+of this layer to the structural CEGAR/CaDiCaL path if monolithic SMT remains
+inconclusive. No learned clause is admitted until its source producer and Lean
+consumer are named.

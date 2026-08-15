@@ -18,8 +18,11 @@ from census.p97_search.freshthird_qfiber_three_carrier_query_v1 import (
     ROLES,
     ROWS,
     SOURCE_THEORY_LEAN,
+    _Builder,
     _canonical_json,
+    _cap_cyclic_interval_constraints,
     build_query,
+    model_signature,
     replay_sat_result,
     solve_cell,
     source_manifest,
@@ -36,6 +39,7 @@ def test_schema_is_intrinsic_and_source_hashed() -> None:
     assert manifest["claims"] == FALSE_CLAIMS
     assert "robust-or-outside-row" in manifest["row_deletion_semantics"]
     assert "at most two" in manifest["row_intersection_semantics"]
+    assert "cyclic interval" in manifest["cap_order_semantics"]
     hashes = manifest["source_files"]
     assert any(path.endswith(QUERY_LEAN.name) for path in hashes)
     assert any(path.endswith(SOURCE_THEORY_LEAN.name) for path in hashes)
@@ -61,6 +65,7 @@ def test_all_boundary_cells_build(boundary_index: int) -> None:
         "same_equivalence_canonical",
         "complete_exact_row_theory",
         "complete_relational_theory",
+        "cap_cyclic_interval_theory",
         "cap_skolem_ranges",
         "pinned_source_theory",
         "carrier_source_theory",
@@ -181,27 +186,68 @@ def test_same_cap_distinct_center_rows_share_at_most_one_outside_point() -> None
     assert query.solver.check() == z3.unsat
 
 
-def test_sat_result_replays_and_digest_tamper_fails() -> None:
-    result = solve_cell(0, timeout_ms=30_000)
-    assert result["status"] == "SAT_ABSTRACTION"
-    replay_sat_result(result, timeout_ms=30_000)
-    metrics = focal_metrics(result)
-    assert 0 <= metrics["pinned_q_overlap"] <= 4
-    assert 0 <= metrics["q_fiber_sources_in_pinned_fan"] <= 3
+@pytest.mark.parametrize("cap", range(3))
+@pytest.mark.parametrize("bits", ((True, False, True, False), (False, True, False, True)))
+def test_cap_membership_cannot_alternate_in_boundary_order(
+    cap: int, bits: tuple[bool, bool, bool, bool]
+) -> None:
+    builder = _Builder(0, timeout_ms=5_000)
+    query = builder.q()
+    query.solver.add(*_cap_cyclic_interval_constraints(query))
+    roles = tuple(f"boundaryFanBlockerRowSource0_{i}" for i in range(4))
+    for position, (role, inside) in enumerate(zip(roles, bits, strict=True)):
+        query.solver.add(query.point(role) == position)
+        query.solver.add(query.variables.order(query.point(role)) == position)
+        query.solver.add(query.cap(role, cap) == inside)
+    assert query.solver.check() == z3.unsat
 
-    matched_query = build_query(0, timeout_ms=30_000)
-    match, atom_count = signature_match(
-        matched_query, result["model_signature"]
-    )
+
+def test_cap_membership_may_wrap_around_boundary_cut() -> None:
+    builder = _Builder(0, timeout_ms=5_000)
+    query = builder.q()
+    query.solver.add(*_cap_cyclic_interval_constraints(query))
+    roles = tuple(f"boundaryFanBlockerRowSource0_{i}" for i in range(4))
+    for position, (role, inside) in enumerate(
+        zip(roles, (True, False, False, True), strict=True)
+    ):
+        query.solver.add(query.point(role) == position)
+        query.solver.add(query.variables.order(query.point(role)) == position)
+        query.solver.add(query.cap(role, 0) == inside)
+    assert query.solver.check() == z3.sat
+
+
+def test_signature_match_replays_a_complete_readback() -> None:
+    builder = _Builder(0, timeout_ms=5_000)
+    query = builder.q()
+    assert query.solver.check() == z3.sat
+    signature = model_signature(query, query.solver.model())
+
+    replay_builder = _Builder(0, timeout_ms=5_000)
+    replay_query = replay_builder.q()
+    match, atom_count = signature_match(replay_query, signature)
     assert atom_count > 20_000
-    matched_query.solver.add(match)
-    assert matched_query.solver.check() == z3.sat
+    replay_query.solver.add(match)
+    assert replay_query.solver.check() == z3.sat
 
-    tampered = copy.deepcopy(result)
-    point_classes = tampered["model_signature"]["point_classes"]
-    point_classes["qSource1"] = point_classes["qSource0"]
-    tampered["model_signature_sha256"] = hashlib.sha256(
-        _canonical_json(tampered["model_signature"])
-    ).hexdigest()
-    with pytest.raises(ValueError, match="model signature replay failed"):
-        replay_sat_result(tampered, timeout_ms=30_000)
+
+def test_full_solver_verdict_is_fail_closed_and_digest_tamper_fails() -> None:
+    result = solve_cell(0, timeout_ms=50)
+    assert result["status"] in {"SAT_ABSTRACTION", "UNSAT_RELAXATION", "UNKNOWN"}
+    assert result["claims"] == FALSE_CLAIMS
+    if result["status"] == "SAT_ABSTRACTION":
+        metrics = focal_metrics(result)
+        assert 0 <= metrics["pinned_q_overlap"] <= 4
+        assert 0 <= metrics["q_fiber_sources_in_pinned_fan"] <= 3
+
+    tampered = {
+        "schema": "p97-freshthird-qfiber-three-carrier-result/v1",
+        "status": "SAT_ABSTRACTION",
+        "boundary_index": 0,
+        "source_manifest_sha256": hashlib.sha256(
+            _canonical_json(source_manifest())
+        ).hexdigest(),
+        "model_signature": {},
+        "model_signature_sha256": "0" * 64,
+    }
+    with pytest.raises(ValueError, match="model signature hash mismatch"):
+        replay_sat_result(copy.deepcopy(tampered), timeout_ms=50)

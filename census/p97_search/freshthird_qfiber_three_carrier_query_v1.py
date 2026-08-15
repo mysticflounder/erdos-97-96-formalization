@@ -175,6 +175,9 @@ class QueryVars:
     in_cap: z3.FuncDeclRef
     in_cap_interior: z3.FuncDeclRef
     order: z3.FuncDeclRef
+    cap_interval_lo: tuple[z3.IntNumRef, ...]
+    cap_interval_hi: tuple[z3.IntNumRef, ...]
+    cap_interval_mode: tuple[z3.IntNumRef, ...]
     radius_class: z3.FuncDeclRef
     has_four: z3.FuncDeclRef
     nonrobust: z3.FuncDeclRef
@@ -246,6 +249,11 @@ class _Builder:
                 "in_cap_interior", z3.IntSort(), z3.IntSort(), z3.BoolSort()
             ),
             order=z3.Function("boundary_order", z3.IntSort(), z3.IntSort()),
+            cap_interval_lo=tuple(z3.Int(f"cap_interval_lo__{i}") for i in range(3)),
+            cap_interval_hi=tuple(z3.Int(f"cap_interval_hi__{i}") for i in range(3)),
+            cap_interval_mode=tuple(
+                z3.Int(f"cap_interval_mode__{i}") for i in range(3)
+            ),
             radius_class=z3.Function(
                 "radius_class", z3.IntSort(), z3.IntSort(), z3.IntSort()
             ),
@@ -279,6 +287,51 @@ def _row_overlap_count(q: CarrierQuery, left: str, right: str) -> z3.ArithRef:
     return z3.Sum(
         *(z3.If(q.incident(slot, right), 1, 0) for slot in ROWS[left][1])
     )
+
+
+def _cap_interval_membership(
+    q: CarrierQuery, role: str, cap: int
+) -> z3.BoolRef:
+    """One cyclic interval over the represented global boundary ranks.
+
+    Modes are empty, one ordinary closed interval, one wrapping interval, and
+    full.  Rank gaps are harmless: the contract concerns only named carrier
+    roles, exactly as the Lean `NoAlternatingCap` projection does.
+    """
+    position = q.variables.order(q.point(role))
+    lo = q.variables.cap_interval_lo[cap]
+    hi = q.variables.cap_interval_hi[cap]
+    mode = q.variables.cap_interval_mode[cap]
+    return z3.Or(
+        mode == 3,
+        z3.And(mode == 1, lo <= position, position <= hi),
+        z3.And(mode == 2, z3.Or(position <= lo, hi <= position)),
+    )
+
+
+def _cap_cyclic_interval_constraints(q: CarrierQuery) -> tuple[z3.BoolRef, ...]:
+    constraints: list[z3.BoolRef] = []
+    for cap in range(3):
+        lo = q.variables.cap_interval_lo[cap]
+        hi = q.variables.cap_interval_hi[cap]
+        mode = q.variables.cap_interval_mode[cap]
+        constraints.extend(
+            (
+                mode >= 0,
+                mode <= 3,
+                lo >= 0,
+                lo < len(ROLES),
+                hi >= 0,
+                hi < len(ROLES),
+                z3.Implies(mode == 1, lo <= hi),
+                z3.Implies(mode == 2, lo < hi),
+            )
+        )
+        constraints.extend(
+            q.cap(role, cap) == _cap_interval_membership(q, role, cap)
+            for role in ROLES
+        )
+    return tuple(constraints)
 
 
 def _row_cap_count(
@@ -477,6 +530,8 @@ def build_query(boundary_index: int, *, timeout_ms: int = 60_000) -> CarrierQuer
                 z3.Implies(z3.Not(q.has4(deleted, center)), q.is_nonrobust(center))
             )
     b.add_group("complete_relational_theory", relational)
+
+    b.add_group("cap_cyclic_interval_theory", _cap_cyclic_interval_constraints(q))
 
     caps = (
         b.v.first_cap,
@@ -937,6 +992,9 @@ def source_manifest() -> dict[str, object]:
         ),
         "row_intersection_semantics": (
             "distinct-center named selected rows share at most two points"
+        ),
+        "cap_order_semantics": (
+            "each indexed cap restricts to one cyclic interval on named roles"
         ),
         "row_origins": {
             row: {"origin": origin, "slots": list(slots), "center": center}
