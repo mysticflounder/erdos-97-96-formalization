@@ -402,6 +402,21 @@ docs/live-blueprint.md.tmp
 /scratch/exact12-tagged-v3-smoke-cell0-20260808-1602.stdout.json
 /scratch/exact12-plan-search-20260811.json
 
+# Direct PIQD daemon/status snapshots and nthdegree recall dumps are local,
+# path-dependent query output.  PIQD specs, patches, receipts, manifests,
+# feature requests, and decomposition evidence remain visible.
+/scratch/piqd-*-recall.json
+/scratch/piqd-recall.json
+/scratch/piqd-jobs-*.json
+/scratch/piqd-sessions-*.json
+/scratch/piqd-solvers-*.json
+/scratch/piqd-version-*.json
+/scratch/piqd-restart-*.json
+/scratch/piqd-final-audit/*.txt
+/scratch/piqd-onboarding-audit/*.txt
+/scratch/piqd-residual-audit-*/direct-solver-*.txt
+/scratch/recall-*
+
 # Local agent/runtime configuration and root-level diagnostic spill files.
 /.claude/settings.json
 /exact12-v13-xu-w-*.log
