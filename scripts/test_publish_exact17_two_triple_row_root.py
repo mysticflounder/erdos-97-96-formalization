@@ -1,5 +1,8 @@
 from __future__ import annotations
 
+import hashlib
+import json
+from dataclasses import replace
 from pathlib import Path
 
 import publish_exact17_two_triple_row_root as publisher
@@ -27,7 +30,12 @@ def _fake_validation(paths: publisher.PublicationPaths, child: Path) -> dict[str
     return {
         "schema": publisher.validator.VALIDATION_SCHEMA, "status": "PASS",
         "parent": {"path": str(paths.parent.resolve()), "sha256": "a" * 64, "bytes": 6, "clauses": publisher.validator.PARENT_CLAUSES},
-        "child": {"path": str(child.resolve()), "sha256": "b" * 64, "bytes": 9, "clauses": publisher.validator.CHILD_CLAUSES},
+        "child": {
+            "path": str(child.resolve()),
+            "sha256": hashlib.sha256(b"candidate").hexdigest(),
+            "bytes": 9,
+            "clauses": publisher.validator.CHILD_CLAUSES,
+        },
         "suffix": {"sha256": publisher.validator.SUFFIX_SHA256, "bytes": publisher.validator.SUFFIX_BYTES, "clauses": publisher.validator.SUFFIX_CLAUSES},
     }
 
@@ -40,6 +48,11 @@ def test_publication_is_create_once_and_receipt_last(tmp_path: Path, monkeypatch
     receipt = publisher.publish(paths)
     assert receipt["schema"] == publisher.RECEIPT_SCHEMA
     assert paths.child.read_bytes() == b"candidate"
+    assert receipt["child"]["path"] == str(paths.child.resolve())
+    audit = json.loads(paths.audit_report.read_text())
+    assert audit["validation"]["child"]["path"] == str(paths.child.resolve())
+    assert ".two-triple-row-" not in paths.receipt.read_text()
+    assert ".two-triple-row-" not in paths.audit_report.read_text()
     assert paths.audit_report.exists() and paths.coverage_ledger.exists() and paths.receipt.exists()
     with pytest.raises(FileExistsError):
         publisher.publish(paths)
@@ -63,3 +76,33 @@ def test_validation_failure_publishes_nothing(tmp_path: Path, monkeypatch: pytes
     assert not paths.child.exists() and not paths.receipt.exists()
     assert not paths.audit_report.exists() and not paths.coverage_ledger.exists()
 
+
+def test_symlinked_package_directory_is_rejected(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    paths = _paths(tmp_path)
+    real_package = tmp_path / "real-package"
+    real_package.mkdir()
+    paths.child.parent.symlink_to(real_package, target_is_directory=True)
+    monkeypatch.setattr(publisher, "_require_source_commit", lambda _paths: None)
+    monkeypatch.setattr(publisher, "_run_lean", lambda *_args: pytest.fail("Lean must not run through symlink"))
+    with pytest.raises(ValueError, match="non-directory or symlink"):
+        publisher.publish(paths)
+
+
+def test_intermediate_symlink_is_rejected(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    paths = _paths(tmp_path)
+    real_package = tmp_path / "real-intermediate"
+    real_package.mkdir()
+    redirect = tmp_path / "redirect"
+    redirect.symlink_to(real_package, target_is_directory=True)
+    package = redirect / "nested"
+    paths = replace(
+        paths,
+        child=package / "child.cnf",
+        receipt=package / "receipt.json",
+        audit_report=package / "audit.json",
+        coverage_ledger=package / "coverage.json",
+    )
+    monkeypatch.setattr(publisher, "_require_source_commit", lambda _paths: None)
+    monkeypatch.setattr(publisher, "_run_lean", lambda *_args: pytest.fail("Lean must not follow intermediate symlink"))
+    with pytest.raises(ValueError, match="non-directory or symlink"):
+        publisher.publish(paths)
