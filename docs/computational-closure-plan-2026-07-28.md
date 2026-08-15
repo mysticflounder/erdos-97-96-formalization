@@ -11155,6 +11155,35 @@ disjoint survivors, and mine the first uniform row/cap/cross-deletion clause
 that is both absent from the current theory and provable at source.  This
 implementation checkpoint still closes no load-bearing `sorry`.
 
+The first structural-CNF successor is now complete under the strengthened
+execution contract. Commit `08a48e01` adds a transitive source snapshot,
+strict full-signature replay, repository-bound Lean certificates for every
+learned cap-alternation clause, validation of all prior learned clauses, and a
+tamper-checked terminal artifact inventory. The prelaunch snapshot covers
+2,864 local Lean files plus the toolchain and dependency lockfile and has
+content hash
+`d2675aa417c5078fa309b27650d674bc63926adf941692a6edc0cc4b54dd470e`.
+Preflight and postflight agree exactly.
+
+`wave-0001` terminates as `BUDGET` in all four boundary cells. Each cell is
+structural SAT after twelve independently replayed `NoAlternatingCap` clauses,
+but every terminal model fails the full source replay on the named
+`source__pinned_source_theory` group and still exposes a thirteenth valid
+cap-alternation refinement. Across the four cells the 48 certificates are four
+copies of one `0101` role pattern and four copies of eleven `1010` role
+patterns, all in cap 1. An independent post-run pass replayed all 48 parented
+certificate records, and terminal re-entry verified every artifact hash
+without another solver call.
+
+This is neither SAT evidence for the live source theory nor an UNSAT result.
+The wave-only mine yields no new mathematical theorem: the uniform obstruction
+is precisely the already-proved no-alternation law. Therefore do not raise the
+cut budget or repeat this schema. The next solver implementation must encode
+the complete no-alternation family compactly or in a source-total batch, with
+an independent equisatisfiability/replay argument, before a successor wave.
+No new general theorem-bank search is triggered by this result because the
+only candidate is already the clause source theorem.
+
 #### 13.24.1.35 FirstNonHit seven-row theorem and repaired execution contract (2026-08-14)
 
 The FirstNonHit exact-three incidence survivor supplied one fixed thirteen-row
