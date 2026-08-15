@@ -1,0 +1,5 @@
+theorem secondRowOutsidePoint_blocker_ne_first
+
+A genuinely new off-cap point of the second collision row cannot have the
+first collision blocker: equal actual blockers identify the two exact support
+rows, whose first-row off-cap part is already the named pair in `Q`.
