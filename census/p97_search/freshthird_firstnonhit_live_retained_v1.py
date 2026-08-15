@@ -92,6 +92,19 @@ SOURCE_FILES = (
     "lean/Erdos9796Proof/P97/ATail/MinimalDeletionCore.lean",
     "lean/Erdos9796Proof/P97/ATail/BlockerMultiplicityGeometry.lean",
     "lean/Erdos9796Proof/P97/ATail/TwoCollisionGlobalProducer.lean",
+    (
+        "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/"
+        "FreshThirdPinnedFanPacket.lean"
+    ),
+    (
+        "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/"
+        "FreshThirdQFiberThreeBoundary.lean"
+    ),
+    "lean/Erdos9796Proof/P97/ATail/FirstApexInteriorPairGeometry.lean",
+    "lean/Erdos9796Proof/P97/ATail/GlobalMinimalDeletion.lean",
+    "lean/Erdos9796Proof/P97/ATail/SelectedFourGeometry.lean",
+    "lean/Erdos9796Proof/P97/ATail/TwoTripleRowSixPointEuclideanObstruction.lean",
+    "lean/Erdos9796Proof/P97/Census554/ZeroCutBoundaryIndexing.lean",
 )
 SOURCE_THEOREMS = (
     "TwoCapSourceThirdCanonicalRowSurface",
@@ -100,6 +113,10 @@ SOURCE_THEOREMS = (
     "FreshThirdCapSourceNonHit",
     "FreshThirdCapSourceInteraction",
     "FreshThirdAlignedRetainedConsumerPacket",
+    "FreshThirdAlignedFixedDeletionCorePacket",
+    "FirstCapMultiPointRadiiRetained",
+    "CrossPairDeletionView",
+    "crossPairDeletionSurvival_iff_selectedSupportOmission",
     ("exists_freshThird_selectedRow_escape_tripleShellSeed_originIncidenceCases"),
     "MinimalDeletionCore.shellAt_selectedClass_eq",
     "MinimalDeletionCore.shellAt_capInteriorByIndex_card_ge_two",
@@ -206,6 +223,8 @@ def manifest() -> dict[str, object]:
         "abstraction_notes": [
             "SAT assignments are finite abstract valuations, not Lean constructor witnesses",
             "deletion-survival and opposite-blockage atoms remain source-owned opaque predicates",
+            "minimal-deletion-core existence remains a source-owned opaque predicate",
+            "the retained-radii universal is projected to every pair of named strict-cap roles",
             "opposite-radius labels preserve equality only and do not assert Euclidean realizability",
             "self-hashes provide integrity binding, not an external signature",
         ],
@@ -277,6 +296,20 @@ class LiveRetainedPacket:
             row: z3.Bool(f"retained_{row}_oppDoubleBlocked")
             for row in ("first", "second")
         }
+        self.minimal_core_nonempty = {
+            row: z3.Bool(f"retained_{row}_minimalCoreNonempty")
+            for row in ("first", "second")
+        }
+        self.cross_deletion_survives = {
+            row: {
+                endpoint: z3.Bool(f"retained_{row}_crossSurvives_{endpoint}")
+                for endpoint in ("p0", "p1", "r0", "r1")
+            }
+            for row in ("first", "second")
+        }
+        self.first_cap_multi_radius_retained = z3.Bool(
+            "firstCapMultiPointRadiiRetained"
+        )
         self.cap_card_ge_eight = z3.Bool("firstCapCardGeEight")
         self.provenance: list[dict[str, object]] = []
         self._emit()
@@ -475,6 +508,48 @@ class LiveRetainedPacket:
                 )
 
     def _emit_retained_packet(self) -> None:
+        for role in P_RADIUS_SUPPORT[1:]:
+            self.add(
+                f"retained.radius_row.P.{role}",
+                self.opp_radius_label[role] == self.opp_radius_label["p0"],
+                "P selected-class support has radius",
+            )
+        for role in P_RHO_RADIUS_SUPPORT[1:]:
+            self.add(
+                f"retained.radius_row.P_rho.{role}",
+                self.opp_radius_label[role] == self.opp_radius_label["r0"],
+                "Pρ selected-class support has radius ρ",
+            )
+        self.add(
+            "retained.named_radii_ne",
+            self.opp_radius_label["p0"] != self.opp_radius_label["r0"],
+            "hρne",
+        )
+        self.add(
+            "retained.multi_point_radii.source_field",
+            self.first_cap_multi_radius_retained,
+            "FreshThirdAlignedRetainedConsumerPacket FirstCapMultiPointRadiiRetained field",
+        )
+        for left, right in itertools.combinations(ROLES, 2):
+            self.add(
+                f"retained.multi_point_radii.named_pair.{left}.{right}",
+                z3.Implies(
+                    self.first_cap_multi_radius_retained,
+                    z3.Implies(
+                        z3.And(
+                            self.interior[left, 0],
+                            self.interior[right, 0],
+                            z3.Not(self.same(left, right)),
+                            self.opp_radius_label[left] == self.opp_radius_label[right],
+                        ),
+                        z3.Or(
+                            self.opp_radius_label[left] == self.opp_radius_label["p0"],
+                            self.opp_radius_label[left] == self.opp_radius_label["r0"],
+                        ),
+                    ),
+                ),
+                "FirstCapMultiPointRadiiRetained named-role consequence",
+            )
         for left in P_RADIUS_SUPPORT:
             for right in P_RHO_RADIUS_SUPPORT:
                 self.add(
@@ -545,6 +620,24 @@ class LiveRetainedPacket:
                     "FreshThirdAlignedRetainedConsumerPacket singleton slice",
                 )
         for row in ("first", "second"):
+            for endpoint in ("p0", "p1", "r0", "r1"):
+                self.add(
+                    f"retained.{row}.cross_deletion.{endpoint}",
+                    self.cross_deletion_survives[row][endpoint]
+                    == z3.Not(self.member(endpoint, row)),
+                    "cross_deletion_survives_iff_not_mem_selected_support",
+                )
+            for pair_name, endpoints in (
+                ("P", ("p0", "p1")),
+                ("P_rho", ("r0", "r1")),
+            ):
+                self.add(
+                    f"retained.{row}.cross_pair_view.{pair_name}",
+                    z3.Or(
+                        *(self.cross_deletion_survives[row][role] for role in endpoints)
+                    ),
+                    "CapSourceThirdCanonicalRowWitness CrossPairDeletionView field",
+                )
             self._one_hot(
                 f"retained.{row}.x_choice",
                 self.retained_x[row],
@@ -582,6 +675,11 @@ class LiveRetainedPacket:
                 f"retained.{row}.opp_double_blocked",
                 self.opp_double_blocked[row],
                 "FreshThirdAlignedFixedDeletionCorePacket first-apex blockage",
+            )
+            self.add(
+                f"retained.{row}.minimal_core_nonempty",
+                self.minimal_core_nonempty[row],
+                "FreshThirdAlignedFixedDeletionCorePacket MinimalDeletionCore field",
             )
 
     def _emit_nonhit(self) -> None:
@@ -895,6 +993,28 @@ def build_packet(
             packet.opp_radius_label["firstSource"]
             == packet.opp_radius_label["secondSource"]
         )
+    elif malformed == "retained_radius_row_label_mismatch":
+        packet.solver.add(
+            packet.opp_radius_label["p1"] != packet.opp_radius_label["p0"]
+        )
+    elif malformed == "retained_minimal_core_false":
+        packet.solver.add(z3.Not(packet.minimal_core_nonempty["first"]))
+    elif malformed == "retained_cross_pair_survival_false":
+        packet.solver.add(
+            z3.Not(packet.cross_deletion_survives["first"]["p0"]),
+            z3.Not(packet.cross_deletion_survives["first"]["p1"]),
+        )
+    elif malformed == "retained_multi_radius_false":
+        packet.solver.add(z3.Not(packet.first_cap_multi_radius_retained))
+    elif malformed == "retained_multi_radius_violation":
+        packet.solver.add(
+            packet.interior["capExtra0", 0],
+            packet.interior["capExtra1", 0],
+            packet.opp_radius_label["capExtra0"]
+            == packet.opp_radius_label["capExtra1"],
+            packet.opp_radius_label["capExtra0"] != packet.opp_radius_label["p0"],
+            packet.opp_radius_label["capExtra0"] != packet.opp_radius_label["r0"],
+        )
     elif malformed is not None:
         raise LiveRetainedEncodingError(f"unknown malformed control: {malformed}")
     return packet.solver, packet
@@ -913,7 +1033,19 @@ def _rank(model: z3.ModelRef, packet: LiveRetainedPacket, role: str) -> int:
 
 def validate_model(model: z3.ModelRef, packet: LiveRetainedPacket) -> dict[str, object]:
     """Independently replay the named finite invariants of a SAT assignment."""
+    assertions = packet.solver.assertions()
+    if len(assertions) < len(packet.provenance):
+        raise LiveRetainedEncodingError("solver lost an emitted provenance clause")
+    for provenance, assertion in zip(packet.provenance, assertions, strict=False):
+        if not _truth(model, assertion):
+            raise LiveRetainedEncodingError(
+                f"emitted clause is false in model: {provenance['key']}"
+            )
     ranks = {role: _rank(model, packet, role) for role in ROLES}
+    radius_labels = {
+        role: model.eval(packet.opp_radius_label[role], model_completion=True).as_long()
+        for role in ROLES
+    }
     if len({ranks[role] for role in CAP_EIGHT}) != 8:
         raise LiveRetainedEncodingError("cap-eight witnesses are not distinct")
     if any(not _truth(model, packet.in_cap[role, 0]) for role in CAP_EIGHT):
@@ -964,6 +1096,25 @@ def validate_model(model: z3.ModelRef, packet: LiveRetainedPacket) -> dict[str, 
         != packet.opp_radius_label["secondSource"],
     ):
         raise LiveRetainedEncodingError("retained source radii are not distinct")
+    if any(radius_labels[role] != radius_labels["p0"] for role in P_RADIUS_SUPPORT):
+        raise LiveRetainedEncodingError("P retained-radius row has mixed labels")
+    if any(radius_labels[role] != radius_labels["r0"] for role in P_RHO_RADIUS_SUPPORT):
+        raise LiveRetainedEncodingError("P-rho retained-radius row has mixed labels")
+    if radius_labels["p0"] == radius_labels["r0"]:
+        raise LiveRetainedEncodingError("the two named retained radii coincide")
+    if not _truth(model, packet.first_cap_multi_radius_retained):
+        raise LiveRetainedEncodingError("multi-point retained-radii field is false")
+    for left, right in itertools.combinations(ROLES, 2):
+        if (
+            _truth(model, packet.interior[left, 0])
+            and _truth(model, packet.interior[right, 0])
+            and ranks[left] != ranks[right]
+            and radius_labels[left] == radius_labels[right]
+            and radius_labels[left] not in {radius_labels["p0"], radius_labels["r0"]}
+        ):
+            raise LiveRetainedEncodingError(
+                "named strict-cap pair violates retained-radii universal"
+            )
     for row in ("first", "second"):
         if not _truth(model, packet.double_survives[row]):
             raise LiveRetainedEncodingError(
@@ -971,6 +1122,23 @@ def validate_model(model: z3.ModelRef, packet: LiveRetainedPacket) -> dict[str, 
             )
         if not _truth(model, packet.opp_double_blocked[row]):
             raise LiveRetainedEncodingError("retained first-apex blockage is false")
+        if not _truth(model, packet.minimal_core_nonempty[row]):
+            raise LiveRetainedEncodingError("retained minimal core is empty")
+        row_ranks = {ranks[role] for role in ROWS[row][1]}
+        for endpoint in ("p0", "p1", "r0", "r1"):
+            survives = _truth(model, packet.cross_deletion_survives[row][endpoint])
+            if survives != (ranks[endpoint] not in row_ranks):
+                raise LiveRetainedEncodingError(
+                    "cross-deletion survival differs from support omission"
+                )
+        if not any(
+            _truth(model, packet.cross_deletion_survives[row][endpoint])
+            for endpoint in ("p0", "p1")
+        ) or not any(
+            _truth(model, packet.cross_deletion_survives[row][endpoint])
+            for endpoint in ("r0", "r1")
+        ):
+            raise LiveRetainedEncodingError("cross-pair deletion view is absent")
 
     def selected_indices(atoms: Sequence[z3.BoolRef]) -> list[int]:
         return [index for index, atom in enumerate(atoms) if _truth(model, atom)]
@@ -1049,12 +1217,7 @@ def validate_model(model: z3.ModelRef, packet: LiveRetainedPacket) -> dict[str, 
             role: [_truth(model, packet.interior[role, cap]) for cap in range(3)]
             for role in ROLES
         },
-        "opp_radius_label": {
-            role: model.eval(
-                packet.opp_radius_label[role], model_completion=True
-            ).as_long()
-            for role in ROLES
-        },
+        "opp_radius_label": {role: radius_labels[role] for role in ROLES},
         "source_cap": [_truth(model, atom) for atom in packet.source_cap],
         "fresh_cap": [_truth(model, atom) for atom in packet.fresh_cap],
         "nonhit_deleted": [_truth(model, atom) for atom in packet.nonhit_deleted],
@@ -1079,6 +1242,17 @@ def validate_model(model: z3.ModelRef, packet: LiveRetainedPacket) -> dict[str, 
         "opp_double_blocked": {
             row: _truth(model, atom) for row, atom in packet.opp_double_blocked.items()
         },
+        "minimal_core_nonempty": {
+            row: _truth(model, atom)
+            for row, atom in packet.minimal_core_nonempty.items()
+        },
+        "cross_deletion_survives": {
+            row: {endpoint: _truth(model, atom) for endpoint, atom in row_atoms.items()}
+            for row, row_atoms in packet.cross_deletion_survives.items()
+        },
+        "first_cap_multi_radius_retained": _truth(
+            model, packet.first_cap_multi_radius_retained
+        ),
         "cap_card_ge_eight": _truth(model, packet.cap_card_ge_eight),
     }
     signature = {
@@ -1118,6 +1292,27 @@ def replay_signature(
         raise LiveRetainedEncodingError("signature is missing replay fields") from exc
     if not isinstance(assignment, Mapping):
         raise LiveRetainedEncodingError("abstract_assignment must be an object")
+    expected_assignment_fields = {
+        "rank",
+        "in_cap",
+        "interior",
+        "opp_radius_label",
+        "source_cap",
+        "fresh_cap",
+        "nonhit_deleted",
+        "interaction_deleted",
+        "deletion_survives",
+        "retained_x",
+        "retained_y",
+        "double_survives",
+        "opp_double_blocked",
+        "minimal_core_nonempty",
+        "cross_deletion_survives",
+        "first_cap_multi_radius_retained",
+        "cap_card_ge_eight",
+    }
+    if set(assignment) != expected_assignment_fields:
+        raise LiveRetainedEncodingError("abstract_assignment fields are malformed")
     solver, packet = build_packet(nonhit, interaction, origin)
     if (required_predicate is None) != (required_value is None):
         raise LiveRetainedEncodingError("predicate replay requires a name and value")
@@ -1179,6 +1374,7 @@ def replay_signature(
         ("deletion_survives", packet.deletion_survives),
         ("double_survives", packet.double_survives),
         ("opp_double_blocked", packet.opp_double_blocked),
+        ("minimal_core_nonempty", packet.minimal_core_nonempty),
     ):
         values = mapping_field(name)
         for key, atom in atoms.items():
@@ -1201,6 +1397,26 @@ def replay_signature(
                         f"{name}.{row} contains a non-Boolean"
                     )
                 solver.add(atom == value)
+    cross_values = mapping_field("cross_deletion_survives")
+    for row, row_atoms in packet.cross_deletion_survives.items():
+        row_values = cross_values.get(row)
+        if not isinstance(row_values, Mapping) or set(row_values) != set(row_atoms):
+            raise LiveRetainedEncodingError(
+                f"cross_deletion_survives.{row} fields are malformed"
+            )
+        for endpoint, atom in row_atoms.items():
+            value = row_values.get(endpoint)
+            if not isinstance(value, bool):
+                raise LiveRetainedEncodingError(
+                    f"cross_deletion_survives.{row}.{endpoint} is not Boolean"
+                )
+            solver.add(atom == value)
+    multi_radius = assignment.get("first_cap_multi_radius_retained")
+    if not isinstance(multi_radius, bool):
+        raise LiveRetainedEncodingError(
+            "first_cap_multi_radius_retained is not Boolean"
+        )
+    solver.add(packet.first_cap_multi_radius_retained == multi_radius)
     cap_card = assignment.get("cap_card_ge_eight")
     if not isinstance(cap_card, bool):
         raise LiveRetainedEncodingError("cap_card_ge_eight is not Boolean")

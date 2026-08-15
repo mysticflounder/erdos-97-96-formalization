@@ -75,6 +75,13 @@ origin arm are the Q row, not the retained first C row.  It must include:
   membership, without asserting nonmembership in unchosen caps);
 - retained endpoint omissions and double-deletion survival at both C centers;
 - first-apex double-deletion blockage;
+- both one-sided cross-pair deletion survivals for each P/Pρ endpoint pair,
+  linked exactly to selected-support omission, and the resulting two
+  `CrossPairDeletionView` disjunctions at each source;
+- the source-owned nonempty `MinimalDeletionCore` field for each selected
+  retained endpoint pair (kept opaque in the finite projection);
+- `FirstCapMultiPointRadiiRetained`, including its consequence for every pair
+  of distinct named strict-first-cap roles with a common first-apex radius;
 - the two named retained-radius rows, their disjointness, and their strict-cap
   incidence from the minimal-core API;
 - the global row's three-way origin, escaped point, overlap-at-most-two, and
@@ -106,7 +113,10 @@ Before launch, the runner additionally requires:
   solver identity, the exact artifact path set, and all artifact hashes without
   starting a solver; partial or failed reentry is rejected;
 - one nonblocking lock shared by the production run root and one durable
-  production receipt, so distinct output names cannot launch a second wave.
+  production receipt, so distinct output names cannot launch a second wave;
+- a clean source snapshot at the pushed `origin/main` commit and a clean full
+  tracked worktree before and after production (test runs may still exercise
+  authenticated dirty snapshots; untracked scratch does not enter the gate).
 
 `TwoSourceCanonicalSurface.lean` and `TwoSourceFreshThirdFiber.lean` are direct
 source inputs because they define the surface and constructor vocabulary used
@@ -115,6 +125,14 @@ terminal sources.  Independent validation also checks cap one-hotness, exact
 positive overlaps and cap implications, omission survival/one-hotness,
 retained-deletion flags, and the retained-radius inequality.  Each has a
 malformed-model negative control.
+
+The source archive also includes every direct import of
+`TwoSourceFreshThirdResidual.lean` that supplies the live packet's semantics,
+including the pinned-fan, Q-fiber boundary, first-apex geometry, global
+minimal-deletion, selected-four geometry, six-point obstruction, and zero-cut
+indexing files.  The active z3py loader module and the actual ctypes-loaded
+bundled `libz3` are both byte-bound.  Directory closure is exact—including
+empty directories—and every newly created ancestor is parent-fsynced.
 
 One arbitrary SAT signature per cell is only observed-model data.  The bounded
 wave therefore asks both `P` and `¬P` for exactly five retained-row

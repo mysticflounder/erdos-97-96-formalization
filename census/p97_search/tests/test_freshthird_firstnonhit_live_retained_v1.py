@@ -68,6 +68,12 @@ def test_every_live_constructor_cell_is_sat_and_model_is_valid() -> None:
         assert report["candidate_origin_overlap"] <= 2
         assert report["candidate_origin_outside"] >= 2
         assert report["candidate_q_overlap"] <= 2
+        assignment = report["abstract_assignment"]
+        assert assignment["first_cap_multi_radius_retained"] is True
+        assert all(assignment["minimal_core_nonempty"].values())
+        for row_values in assignment["cross_deletion_survives"].values():
+            assert row_values["p0"] or row_values["p1"]
+            assert row_values["r0"] or row_values["r1"]
 
 
 def test_malformed_controls_are_unsat_in_every_live_cell() -> None:
@@ -91,6 +97,9 @@ def test_manifest_binds_live_theorems_and_keeps_discovery_claims_false() -> None
         "FreshThirdCapSourceNonHit",
         "FreshThirdCapSourceInteraction",
         "FreshThirdAlignedRetainedConsumerPacket",
+        "FreshThirdAlignedFixedDeletionCorePacket",
+        "FirstCapMultiPointRadiiRetained",
+        "CrossPairDeletionView",
         "exists_freshThird_selectedRow_escape_tripleShellSeed_originIncidenceCases",
         (
             "Problem97.ATailFrontierLiveClosure."
@@ -112,6 +121,19 @@ def test_manifest_binds_live_theorems_and_keeps_discovery_claims_false() -> None
             "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/"
             "TwoSourceFreshThirdFiber.lean"
         ),
+        (
+            "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/"
+            "FreshThirdPinnedFanPacket.lean"
+        ),
+        (
+            "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/"
+            "FreshThirdQFiberThreeBoundary.lean"
+        ),
+        "lean/Erdos9796Proof/P97/ATail/FirstApexInteriorPairGeometry.lean",
+        "lean/Erdos9796Proof/P97/ATail/GlobalMinimalDeletion.lean",
+        "lean/Erdos9796Proof/P97/ATail/SelectedFourGeometry.lean",
+        ("lean/Erdos9796Proof/P97/ATail/TwoTripleRowSixPointEuclideanObstruction.lean"),
+        "lean/Erdos9796Proof/P97/Census554/ZeroCutBoundaryIndexing.lean",
     } <= set(manifest["source_files"])
     assert [row["id"] for row in manifest["synchronization_predicates"]] == [
         "common_p_omission",
@@ -133,6 +155,11 @@ def test_full_abstract_signature_replays_and_tampering_fails_closed() -> None:
     tampered = copy.deepcopy(signature)
     ranks = tampered["abstract_assignment"]["rank"]
     ranks["q1"] = ranks["q0"]
+    with pytest.raises(packet.LiveRetainedEncodingError):
+        packet.replay_signature(tampered)
+
+    tampered = copy.deepcopy(signature)
+    tampered["abstract_assignment"]["minimal_core_nonempty"]["first"] = False
     with pytest.raises(packet.LiveRetainedEncodingError):
         packet.replay_signature(tampered)
 
@@ -230,6 +257,11 @@ def test_interaction_omission_controls_are_unsat(malformed: str) -> None:
         "retained_double_survival_false",
         "retained_opp_blocked_false",
         "retained_radius_equal",
+        "retained_radius_row_label_mismatch",
+        "retained_minimal_core_false",
+        "retained_cross_pair_survival_false",
+        "retained_multi_radius_false",
+        "retained_multi_radius_violation",
     ),
 )
 def test_retained_packet_controls_are_unsat(malformed: str) -> None:

@@ -18,6 +18,7 @@ import hashlib
 import itertools
 import json
 import os
+import stat
 import subprocess
 import sys
 from collections.abc import Mapping, Sequence
@@ -86,8 +87,26 @@ def _fsync_directory(path: Path) -> None:
         os.close(descriptor)
 
 
+def _mkdir_durable(path: Path) -> None:
+    missing: list[Path] = []
+    candidate = path
+    while not candidate.exists():
+        if candidate.is_symlink():
+            raise StaticRunnerError(f"directory path is a symlink: {candidate}")
+        missing.append(candidate)
+        if candidate == candidate.parent:
+            raise StaticRunnerError(f"cannot find existing directory ancestor: {path}")
+        candidate = candidate.parent
+    _reject_symlink_ancestors(candidate)
+    if not candidate.is_dir():
+        raise StaticRunnerError(f"directory ancestor is not a directory: {candidate}")
+    for directory in reversed(missing):
+        directory.mkdir()
+        _fsync_directory(directory.parent)
+
+
 def _atomic_write(path: Path, payload: bytes) -> str:
-    path.parent.mkdir(parents=True, exist_ok=True)
+    _mkdir_durable(path.parent)
     temporary = path.with_name(f".{path.name}.{os.getpid()}.tmp")
     try:
         with temporary.open("xb") as stream:
@@ -211,6 +230,19 @@ def _source_snapshot() -> dict[str, object]:
     snapshot["source_content_sha256"] = _source_content_sha256(snapshot)
     snapshot["snapshot_sha256"] = _sha256_bytes(_canonical_json(snapshot))
     return snapshot
+
+
+def _validate_production_snapshot(snapshot: Mapping[str, object]) -> None:
+    git_head = snapshot.get("git_head")
+    if git_head != _git(["rev-parse", "refs/remotes/origin/main"]):
+        raise StaticRunnerError("production Git head is not pushed origin/main")
+    rows = snapshot.get("files")
+    if not isinstance(rows, list) or any(
+        not isinstance(row, Mapping) or row.get("clean") is not True for row in rows
+    ):
+        raise StaticRunnerError("production source snapshot contains dirty inputs")
+    if _git(["status", "--porcelain=v1", "--untracked-files=no"]):
+        raise StaticRunnerError("production tracked worktree is not clean")
 
 
 def _source_content_sha256(snapshot: Mapping[str, object]) -> str:
@@ -518,6 +550,7 @@ def _source_archive(
 
 def _solver_identity() -> dict[str, object]:
     module_path = Path(z3.__file__).resolve()
+    loader_path = Path(z3.z3core.__file__).resolve()
     library_dir = Path(z3.z3core._z3_lib_resource_path).resolve()
     library_name = {
         "darwin": "libz3.dylib",
@@ -528,13 +561,34 @@ def _solver_identity() -> dict[str, object]:
         raise StaticRunnerError(
             f"unsupported platform for native Z3 binding: {sys.platform}"
         )
-    native_path = library_dir / library_name
-    _require_single_link_file(native_path, "native Z3 library")
+    expected_native_path = (library_dir / library_name).resolve(strict=True)
+    defaults = getattr(z3.z3core.Z3_get_full_version, "__defaults__", None)
+    if not isinstance(defaults, tuple) or len(defaults) != 1:
+        raise StaticRunnerError("cannot recover the active native Z3 handle")
+    function = getattr(defaults[0], "f", None)
+    objects = getattr(function, "_objects", None)
+    loaded_libraries = (
+        [
+            value
+            for value in objects.values()
+            if hasattr(value, "_name") and isinstance(value._name, str)
+        ]
+        if isinstance(objects, Mapping)
+        else []
+    )
+    if len(loaded_libraries) != 1:
+        raise StaticRunnerError("active native Z3 handle is ambiguous")
+    native_path = Path(loaded_libraries[0]._name).resolve(strict=True)
+    if native_path != expected_native_path:
+        raise StaticRunnerError("active native Z3 library is not the bundled library")
+    _require_single_link_file(native_path, "active native Z3 library")
     return {
         "name": "z3py",
         "version": z3.get_version_string(),
         "module_path": str(module_path),
         "module_sha256": _sha256_file(module_path),
+        "loader_path": str(loader_path),
+        "loader_sha256": _sha256_file(loader_path),
         "native_path": str(native_path),
         "native_sha256": _sha256_file(native_path),
         "native_size": native_path.stat().st_size,
@@ -736,19 +790,26 @@ def _cell_result(
 
 def _artifact_inventory(artifacts: Path) -> list[dict[str, object]]:
     rows: list[dict[str, object]] = []
+    directories: set[str] = set()
     for path in sorted(artifacts.rglob("*")):
         if path.is_symlink():
             raise StaticRunnerError(f"artifact is a symlink: {path}")
-        if not path.is_file():
+        relative = path.relative_to(artifacts).as_posix()
+        if path.is_dir():
+            directories.add(relative)
             continue
+        if not path.is_file():
+            raise StaticRunnerError(f"artifact is not a regular file: {path}")
         _require_single_link_file(path, f"artifact {path}")
         rows.append(
             {
-                "path": path.relative_to(artifacts).as_posix(),
+                "path": relative,
                 "sha256": _sha256_file(path),
                 "size": path.stat().st_size,
             }
         )
+    if directories != _expected_artifact_directories():
+        raise StaticRunnerError("artifact directory path set is not closed")
     return rows
 
 
@@ -769,6 +830,16 @@ def _expected_artifact_paths() -> set[str]:
                 expected.add(f"{probe_root}/query.smt2")
                 expected.add(f"{probe_root}/result.json")
     return expected
+
+
+def _expected_artifact_directories() -> set[str]:
+    directories: set[str] = set()
+    for relative in _expected_artifact_paths():
+        parent = Path(relative).parent
+        while parent != Path("."):
+            directories.add(parent.as_posix())
+            parent = parent.parent
+    return directories
 
 
 def _run_state_value(
@@ -1099,13 +1170,25 @@ def _write_receipt(
 def _wave_lock(output_dir: Path, allow_test_output: bool):
     lock_root = output_dir.parent if allow_test_output else DEFAULT_RUN_PARENT
     _reject_symlink_ancestors(lock_root)
-    lock_root.mkdir(parents=True, exist_ok=True)
-    _fsync_directory(lock_root.parent)
+    _mkdir_durable(lock_root)
     lock_path = lock_root / ".freshthird-firstnonhit-live-retained-v1.lock"
-    descriptor = os.open(lock_path, os.O_RDWR | os.O_CREAT, 0o600)
+    _reject_symlink_ancestors(lock_path)
+    flags = os.O_RDWR | os.O_CREAT | getattr(os, "O_CLOEXEC", 0)
+    nofollow = getattr(os, "O_NOFOLLOW", None)
+    if nofollow is None:
+        raise StaticRunnerError("platform lacks no-follow lock-file opening")
     try:
-        if os.fstat(descriptor).st_nlink != 1:
-            raise StaticRunnerError("single-wave lock must have exactly one hard link")
+        descriptor = os.open(lock_path, flags | nofollow, 0o600)
+    except OSError as exc:
+        raise StaticRunnerError("single-wave lock cannot be opened safely") from exc
+    try:
+        metadata = os.fstat(descriptor)
+        if not stat.S_ISREG(metadata.st_mode) or metadata.st_nlink != 1:
+            raise StaticRunnerError(
+                "single-wave lock must be a singly-linked regular file"
+            )
+        os.fsync(descriptor)
+        _fsync_directory(lock_root)
         try:
             fcntl.flock(descriptor, fcntl.LOCK_EX | fcntl.LOCK_NB)
         except BlockingIOError as exc:
@@ -1131,21 +1214,18 @@ def _run_wave_locked(
     output_dir = _validate_output_root(output_dir, allow_test_output)
     source_snapshot = _source_snapshot()
     _validate_snapshot_self_hash(source_snapshot)
-    output_dir.mkdir(parents=True)
-    _fsync_directory(output_dir.parent)
-    artifacts = output_dir / "artifacts"
-    artifacts.mkdir()
-    _fsync_directory(output_dir)
+    if not allow_test_output:
+        _validate_production_snapshot(source_snapshot)
     packet_manifest = packet.manifest()
     _validate_packet_manifest_source_binding(packet_manifest, source_snapshot)
-    packet_manifest_sha256 = _atomic_json(
-        artifacts / "encoding-manifest.json", packet_manifest
-    )
-    _source_archive(artifacts, source_snapshot)
+    packet_manifest_sha256 = _sha256_bytes(_canonical_json(packet_manifest))
     solver_identity = _solver_identity()
     cells = plan_wave()
     run_id = output_dir.name
     completed_cells = 0
+    _mkdir_durable(output_dir)
+    artifacts = output_dir / "artifacts"
+    _mkdir_durable(artifacts)
     _write_run_state(
         output_dir,
         run_id=run_id,
@@ -1158,6 +1238,12 @@ def _run_wave_locked(
     )
     results: list[dict[str, object]] = []
     try:
+        written_manifest_sha256 = _atomic_json(
+            artifacts / "encoding-manifest.json", packet_manifest
+        )
+        if written_manifest_sha256 != packet_manifest_sha256:
+            raise StaticRunnerError("encoding manifest write digest mismatch")
+        _source_archive(artifacts, source_snapshot)
         for cell in cells:
             results.append(
                 _cell_result(
@@ -1181,6 +1267,8 @@ def _run_wave_locked(
             )
         post_snapshot = _source_snapshot()
         _validate_snapshot_self_hash(post_snapshot)
+        if not allow_test_output:
+            _validate_production_snapshot(post_snapshot)
         if post_snapshot["snapshot_sha256"] != source_snapshot["snapshot_sha256"]:
             raise StaticRunnerError("source or Git state drifted during the wave")
         statuses = [str(result["status"]) for result in results]
@@ -1252,16 +1340,32 @@ def run_wave(output_dir: Path, allow_test_output: bool = False) -> dict[str, obj
         run_id = output_dir.name
         if receipt_path.exists() or receipt_path.is_symlink():
             receipt = _validate_receipt(receipt_path)
-            if (
-                receipt.get("status") == "COMPLETE"
-                and receipt.get("run_id") == run_id
-                and receipt.get("output_dir") == str(output_dir.resolve(strict=False))
-            ):
-                manifest = _terminal_reentry(output_dir)
-                state = _validate_run_state(output_dir, "COMPLETE")
-                if receipt.get("run_state_sha256") != state.get("state_sha256"):
-                    raise StaticRunnerError(
-                        "single-wave receipt state binding mismatch"
+            same_run = receipt.get("run_id") == run_id and receipt.get(
+                "output_dir"
+            ) == str(output_dir.resolve(strict=False))
+            if same_run and receipt.get("status") in {"CLAIMED", "COMPLETE"}:
+                try:
+                    manifest = _terminal_reentry(output_dir)
+                    state = _validate_run_state(output_dir, "COMPLETE")
+                except StaticRunnerError as exc:
+                    if receipt.get("status") == "CLAIMED":
+                        raise StaticRunnerError(
+                            "claimed production wave is not recoverably complete"
+                        ) from exc
+                    raise
+                if receipt.get("status") == "COMPLETE":
+                    if receipt.get("run_state_sha256") != state.get("state_sha256"):
+                        raise StaticRunnerError(
+                            "single-wave receipt state binding mismatch"
+                        )
+                else:
+                    _write_receipt(
+                        receipt_path,
+                        run_id=run_id,
+                        output_dir=output_dir,
+                        status="COMPLETE",
+                        run_state_sha256=str(state["state_sha256"]),
+                        error=None,
                     )
                 return manifest
             raise StaticRunnerError(

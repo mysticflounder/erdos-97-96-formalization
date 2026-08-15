@@ -185,6 +185,26 @@ def test_cell_failure_leaves_durable_failed_state(
         runner.run_wave(output, allow_test_output=True)
 
 
+def test_archive_preflight_failure_leaves_durable_failed_state(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    output = tmp_path / "failed-archive"
+
+    def fail_archive(*_args: object, **_kwargs: object) -> None:
+        raise runner.StaticRunnerError("controlled archive failure")
+
+    monkeypatch.setattr(runner, "_source_archive", fail_archive)
+    with pytest.raises(runner.StaticRunnerError, match="controlled archive failure"):
+        runner.run_wave(output, allow_test_output=True)
+
+    state = runner._validate_run_state(output, "FAILED")
+    assert state["completed_cells"] == 0
+    assert state["error"] == {
+        "type": "StaticRunnerError",
+        "message": "controlled archive failure",
+    }
+
+
 def test_result_signature_tampering_fails_validation(
     completed_run: tuple[Path, dict[str, object]], tmp_path: Path
 ) -> None:
@@ -340,6 +360,16 @@ def test_rehashed_inventory_cannot_add_unreferenced_artifact(
         runner.validate_run(output)
 
 
+def test_extra_empty_artifact_directory_fails_validation(
+    completed_run: tuple[Path, dict[str, object]], tmp_path: Path
+) -> None:
+    output = _copy_run(completed_run[0], tmp_path, "extra-empty-directory")
+    (output / "artifacts" / "unreferenced-empty").mkdir()
+
+    with pytest.raises(runner.StaticRunnerError, match="directory path set"):
+        runner.validate_run(output)
+
+
 def test_aggregate_status_distinguishes_terminal_and_mixed_results() -> None:
     assert runner._aggregate_status(["SAT_ABSTRACTION"] * 24) == "SAT_ABSTRACTION"
     assert runner._aggregate_status(["UNSAT_RELAXATION"] * 24) == "UNSAT_RELAXATION"
@@ -417,17 +447,27 @@ def test_atomic_write_fsyncs_file_and_parent_directory(
     tmp_path: Path, monkeypatch: pytest.MonkeyPatch
 ) -> None:
     observed_modes: list[int] = []
+    observed_directories: list[Path] = []
     real_fsync = runner.os.fsync
+    real_directory_fsync = runner._fsync_directory
 
     def recording_fsync(descriptor: int) -> None:
         observed_modes.append(os.fstat(descriptor).st_mode)
         real_fsync(descriptor)
 
+    def recording_directory_fsync(path: Path) -> None:
+        observed_directories.append(path)
+        real_directory_fsync(path)
+
     monkeypatch.setattr(runner.os, "fsync", recording_fsync)
-    runner._atomic_write(tmp_path / "nested" / "value.txt", b"durable\n")
+    monkeypatch.setattr(runner, "_fsync_directory", recording_directory_fsync)
+    runner._atomic_write(tmp_path / "first" / "second" / "value.txt", b"durable\n")
 
     assert any(stat.S_ISREG(mode) for mode in observed_modes)
     assert any(stat.S_ISDIR(mode) for mode in observed_modes)
+    assert {tmp_path, tmp_path / "first", tmp_path / "first" / "second"} <= set(
+        observed_directories
+    )
 
 
 def test_solver_identity_binds_native_library() -> None:
@@ -440,6 +480,10 @@ def test_solver_identity_binds_native_library() -> None:
         identity["native_sha256"]
         == hashlib.sha256(native_path.read_bytes()).hexdigest()
     )
+    assert (
+        Path(str(identity["loader_path"])) == Path(runner.z3.z3core.__file__).resolve()
+    )
+    assert len(identity["loader_sha256"]) == 64
 
 
 def test_single_wave_lock_rejects_concurrent_holder(tmp_path: Path) -> None:
@@ -450,6 +494,56 @@ def test_single_wave_lock_rejects_concurrent_holder(tmp_path: Path) -> None:
         runner._wave_lock(output, allow_test_output=True),
     ):
         pass
+
+
+def test_single_wave_lock_rejects_symlink(tmp_path: Path) -> None:
+    output = tmp_path / "run"
+    target = tmp_path / "lock-target"
+    target.write_text("not a lock\n", encoding="utf-8")
+    lock_path = tmp_path / ".freshthird-firstnonhit-live-retained-v1.lock"
+    lock_path.symlink_to(target)
+
+    with (
+        pytest.raises(runner.StaticRunnerError),
+        runner._wave_lock(output, allow_test_output=True),
+    ):
+        pass
+
+
+def test_production_snapshot_requires_clean_pushed_inputs(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    snapshot: dict[str, object] = {
+        "git_head": "a" * 40,
+        "files": [{"clean": True}, {"clean": True}],
+    }
+    monkeypatch.setattr(
+        runner,
+        "_git",
+        lambda args: "" if args[0] == "status" else "a" * 40,
+    )
+    runner._validate_production_snapshot(snapshot)
+
+    snapshot["files"] = [{"clean": True}, {"clean": False}]
+    with pytest.raises(runner.StaticRunnerError, match="dirty"):
+        runner._validate_production_snapshot(snapshot)
+
+    snapshot["files"] = [{"clean": True}]
+    monkeypatch.setattr(
+        runner,
+        "_git",
+        lambda args: "" if args[0] == "status" else "b" * 40,
+    )
+    with pytest.raises(runner.StaticRunnerError, match="not pushed"):
+        runner._validate_production_snapshot(snapshot)
+
+    monkeypatch.setattr(
+        runner,
+        "_git",
+        lambda args: " M tracked.py" if args[0] == "status" else "a" * 40,
+    )
+    with pytest.raises(runner.StaticRunnerError, match="tracked worktree"):
+        runner._validate_production_snapshot(snapshot)
 
 
 def test_production_receipt_blocks_a_second_output(
@@ -482,6 +576,26 @@ def test_production_receipt_blocks_a_second_output(
     receipt = runner._validate_receipt(production_root / "single-wave-receipt.json")
     assert receipt["status"] == "COMPLETE"
     assert receipt["run_id"] == "first"
+
+    runner._write_receipt(
+        production_root / "single-wave-receipt.json",
+        run_id="first",
+        output_dir=first_output,
+        status="CLAIMED",
+        run_state_sha256=None,
+        error=None,
+    )
+    monkeypatch.setattr(
+        runner,
+        "_terminal_reentry",
+        lambda output: {"status": "recovered", "output": str(output)},
+    )
+    assert runner.run_wave(first_output) == {
+        "status": "recovered",
+        "output": str(first_output),
+    }
+    recovered = runner._validate_receipt(production_root / "single-wave-receipt.json")
+    assert recovered["status"] == "COMPLETE"
 
     with pytest.raises(runner.StaticRunnerError, match="already recorded"):
         runner.run_wave(second_output)
