@@ -219,6 +219,40 @@ theorem exists_freshThird_selectedRow_escape_tripleShellSeed
     ⟨center, hcenter, G.classAt center (hseedSub hcenter),
       z, hzRow, hzOutside⟩
 
+/-- CEGAR-ready form of the carrier-wide third-row producer.  The escaping
+row center lies on one of the two retained collision shells or on the live
+cap-source shell; no bounded-carrier or favorable-center assumption is added.
+
+This is only an ingress adapter: a downstream certificate must still consume
+the escaped row's incidence, cap-order, or metric data. -/
+theorem exists_freshThird_selectedRow_escape_tripleShellSeed_originCases
+    (hlarge : FrontierLargeOppositeCapsBiApexRobustResidual B)
+    (source : CriticalShellSystem.CarrierVertex D.A) :
+    ∃ center : ℝ²,
+      (center ∈
+          (H.selectedAt P.source₁
+            P.source₁_mem_A).toCriticalFourShell.support ∨
+        center ∈
+          (H.selectedAt Pρ.source₁
+            Pρ.source₁_mem_A).toCriticalFourShell.support ∨
+        center ∈
+          (H.selectedAt source.1
+            source.2).toCriticalFourShell.support) ∧
+      ∃ K : SelectedFourClass D.A center,
+        ∃ z : ℝ²,
+          z ∈ K.support ∧
+            z ∉ freshThirdCriticalTripleShellSeed P Pρ source := by
+  rcases
+      exists_freshThird_selectedRow_escape_tripleShellSeed
+        (P := P) (Pρ := Pρ) hlarge source with
+    ⟨center, hcenter, K, z, hzK, hzOutside⟩
+  refine ⟨center, ?_, K, z, hzK, hzOutside⟩
+  simp only [freshThirdCriticalTripleShellSeed, Finset.mem_union] at hcenter
+  rcases hcenter with (hP | hPρ) | hsource
+  · exact Or.inl hP
+  · exact Or.inr (Or.inl hPρ)
+  · exact Or.inr (Or.inr hsource)
+
 end
 end TwoSourceExactCollisionRowsTerminal
 end ATailFrontierLiveClosure
