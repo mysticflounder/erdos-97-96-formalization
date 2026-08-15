@@ -395,3 +395,10 @@ docs/live-blueprint.md.tmp
 /scratch-status.txt
 /=3
 /phi
+
+# Reproducible local solver/runtime trees from completed or superseded waves.
+/scratch/cegar-wave-v2/
+/scratch/debug-wave/
+/scratch/u3-mixed-olean-overlay/
+/scratch/exact17-child46-production-8205802e/
+/scratch/sidecar-sourcefaithful-common-missing-20260807-a7f3c1/
