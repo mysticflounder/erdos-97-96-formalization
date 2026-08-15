@@ -15,9 +15,13 @@
       "n_clauses": 7,
       "n_variables": 6,
       "omitted_unit": null,
+      "proof_file": "out/smoke-third-bisector.drat",
+      "proof_format": "DRAT",
       "proof_verified": true,
+      "requested_proof_file": "out/smoke-third-bisector.drat",
+      "solver_backend": "legacy-local",
       "verdict": "UNSAT",
-      "wall_seconds": 0.029
+      "wall_seconds": 0.052
     },
     {
       "case": "drop-Bis-t",
@@ -35,9 +39,13 @@
       "n_variables": 6,
       "omitted_atom_false_in_model": true,
       "omitted_unit": "Bis(t)",
+      "proof_file": null,
+      "proof_format": null,
       "proof_verified": false,
+      "requested_proof_file": "out/smoke-drop-Bis-t.drat",
+      "solver_backend": "legacy-local",
       "verdict": "SAT",
-      "wall_seconds": 0.005
+      "wall_seconds": 0.006
     },
     {
       "case": "drop-Ne-t-b1",
@@ -55,9 +63,13 @@
       "n_variables": 6,
       "omitted_atom_false_in_model": true,
       "omitted_unit": "Ne(t,b1)",
+      "proof_file": null,
+      "proof_format": null,
       "proof_verified": false,
+      "requested_proof_file": "out/smoke-drop-Ne-t-b1.drat",
+      "solver_backend": "legacy-local",
       "verdict": "SAT",
-      "wall_seconds": 0.005
+      "wall_seconds": 0.006
     },
     {
       "case": "drop-Ne-t-a2",
@@ -75,12 +87,16 @@
       "n_variables": 6,
       "omitted_atom_false_in_model": true,
       "omitted_unit": "Ne(t,a2)",
+      "proof_file": null,
+      "proof_format": null,
       "proof_verified": false,
+      "requested_proof_file": "out/smoke-drop-Ne-t-a2.drat",
+      "solver_backend": "legacy-local",
       "verdict": "SAT",
-      "wall_seconds": 0.005
+      "wall_seconds": 0.006
     }
   ],
-  "note": "DRAT applies to the UNSAT full gate. SAT near-misses are checked by CaDiCaL models, including falsity of the omitted atom.",
+  "note": "A checked proof applies to the UNSAT full gate. SAT near-misses are checked by exact models, including falsity of the omitted atom.",
   "schema": "p97-b-core-third-bisector-smoke.v1",
   "status": "PASS"
 }

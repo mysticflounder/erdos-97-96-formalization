@@ -1,5 +1,14 @@
 {
-  "b1_official_verdict": "OMITTED_PREREQUISITE_INGRESS_MISSING",
+  "b1_normal_form_source": {
+    "declaration": "Problem97.B2Arm3.b1_live_normalForm",
+    "file": "lean/scratch/b-family-bank/B2Arm3.lean",
+    "sha256": "96f6889077df9fc80a3bffabce9c4a23278815c30e38a664c2ef1565d097b4e9"
+  },
+  "b1_status": "LIVE_NORMAL_FORM_INGRESS_PROVED__NAMED_LOCAL_RESULT_ONLY",
+  "encoding_self_check": {
+    "b1_layer_clauses": 52,
+    "b1_live_normal_form": "PASS"
+  },
   "layer_clause_tags": {
     "B1-direct-shadow": [
       "B1-direct-shadow:B1-hblockersEq-congruence",
@@ -29,7 +38,31 @@
       "B1-direct-shadow:B1-hblockersEq-survival-congruence",
       "B1-direct-shadow:B1-hblockersEq-survival-congruence",
       "B1-direct-shadow:B1-hblockersEq-survival-congruence",
-      "B1-direct-shadow:B1-hblockersEq-survival-congruence"
+      "B1-direct-shadow:B1-hblockersEq-survival-congruence",
+      "B1-direct-shadow:B1-live-normalForm-support-equality",
+      "B1-direct-shadow:B1-live-normalForm-support-equality",
+      "B1-direct-shadow:B1-live-normalForm-support-equality",
+      "B1-direct-shadow:B1-live-normalForm-support-equality",
+      "B1-direct-shadow:B1-live-normalForm-support-equality",
+      "B1-direct-shadow:B1-live-normalForm-support-equality",
+      "B1-direct-shadow:B1-live-normalForm-support-equality",
+      "B1-direct-shadow:B1-live-normalForm-support-equality",
+      "B1-direct-shadow:B1-live-normalForm-support-equality",
+      "B1-direct-shadow:B1-live-normalForm-support-equality",
+      "B1-direct-shadow:B1-live-normalForm-support-equality",
+      "B1-direct-shadow:B1-live-normalForm-support-equality",
+      "B1-direct-shadow:B1-live-normalForm-support-equality",
+      "B1-direct-shadow:B1-live-normalForm-support-equality",
+      "B1-direct-shadow:B1-live-normalForm-support-equality",
+      "B1-direct-shadow:B1-live-normalForm-support-equality",
+      "B1-direct-shadow:B1-live-normalForm-support-equality",
+      "B1-direct-shadow:B1-live-normalForm-support-equality",
+      "B1-direct-shadow:B1-live-normalForm-cross-membership",
+      "B1-direct-shadow:B1-live-normalForm-cross-membership",
+      "B1-direct-shadow:B1-live-normalForm-physical-class-exclusion",
+      "B1-direct-shadow:B1-live-normalForm-physical-class-exclusion",
+      "B1-direct-shadow:B1-live-normalForm-physical-class-exclusion",
+      "B1-direct-shadow:B1-live-normalForm-physical-class-exclusion"
     ],
     "B2": [
       "B2:B2-hcollision-at-least-one",
@@ -309,15 +342,36 @@
       "base:B0-omission-to-survival"
     ]
   },
+  "producer_contract": {
+    "conditional_terminal_theorem": "Problem97.ATailFrontierLiveClosure.b1_live_false_of_escape_overlap_ge_three",
+    "evidence_classification": "LOCAL_CERTIFICATE",
+    "file": "census/frontier-packages/b_core/producer_contract.json",
+    "live_leaf": "Problem97.ATailFrontierLiveClosure.false_of_twoDistinctExactFourMutualOmissionJointDeletions_blockerCollision",
+    "missing_fields": [
+      "producer_theorem",
+      "lift_theorem"
+    ],
+    "partial_consumer_status": "SOURCE_CLEAN_AT_MOST_TWO_PACKET__CONDITIONAL_TERMINAL",
+    "partial_consumer_theorem": "Problem97.ATailFrontierLiveClosure.b1_live_escape_small_overlap",
+    "partial_producer_status": "SOURCE_CLEAN_NARROWING__NOT_BISECTOR_PRODUCER",
+    "partial_producer_theorem": "Problem97.ATailFrontierLiveClosure.b1_live_exists_third_interior_escape",
+    "promotion_eligible": false,
+    "schema": "p97-b1-global-gap-contract-v1",
+    "sha256": "e010f90163988e19dcf9d5cba85b692158ac3f7d1174023f95b77b13a2d9b07e",
+    "status": "PARKED-SPEC"
+  },
   "runs": [
     {
       "classification": "diagnostic baseline",
       "cnf_file": "out/base.cnf",
+      "cnf_sha256": "18bf3f2e715e43e1ba1dfbe6bcf636a89c878ef5bb53edbf53c2758d016d3fc6",
       "extra_clause_tags": [],
       "layers": [
         "base"
       ],
       "model_file": "out/base.model.json",
+      "model_sha256": "2e158dc6223d3078e22fe48e01841726cc3e16ad9f3386dd9d059ea83a7f6636",
+      "model_verified": true,
       "n_clauses": 57,
       "n_variables": 162,
       "proof_verified": false,
@@ -479,18 +533,21 @@
         "surv(z2,z2)"
       ],
       "verdict": "SAT",
-      "wall_seconds": 0.006
+      "wall_seconds": 0.007
     },
     {
-      "classification": "prerequisite ingress missing; NOT an official B1 verdict",
+      "classification": "proved live-normal-form named-local projection; not universal closure",
       "cnf_file": "out/B1-direct-shadow.cnf",
+      "cnf_sha256": "9aa86fab4b8cf01214e2bdcd2413f7590be76a7959d2aa377641749eaeb90eb1",
       "extra_clause_tags": [],
       "layers": [
         "base",
         "B1-direct-shadow"
       ],
       "model_file": "out/B1-direct-shadow.model.json",
-      "n_clauses": 85,
+      "model_sha256": "392278e97ecd0b25a933b8cd97a70e4f9ea2ecd64bed03db20dc7ac07573cd5f",
+      "model_verified": true,
+      "n_clauses": 109,
       "n_variables": 162,
       "proof_verified": false,
       "run": "B1-direct-shadow",
@@ -559,15 +616,11 @@
         "row(z1,a2)",
         "row(z1,bu)",
         "row(z1,bv)",
-        "row(z1,u)",
-        "row(z1,v)",
         "row(z1,z1)",
         "row(z1,z2)",
         "row(z2,a2)",
         "row(z2,bu)",
         "row(z2,bv)",
-        "row(z2,u)",
-        "row(z2,v)",
         "row(z2,z1)",
         "row(z2,z2)",
         "surv(a2,a2)",
@@ -647,17 +700,78 @@
         "surv(z2,z2)"
       ],
       "verdict": "SAT",
-      "wall_seconds": 0.005
+      "wall_seconds": 0.006
+    },
+    {
+      "classification": "B1 normal-form encoding self-test",
+      "cnf_file": "out/B1-check-support-equality.cnf",
+      "cnf_sha256": "20ade24fdfd4cb9dca57b5ac737a3cc13d4bd69555fbcb5f7ff1f2f917987b0d",
+      "extra_clause_tags": [
+        "RUN-pin:B1-check-support-equality",
+        "RUN-pin:B1-check-support-equality"
+      ],
+      "layers": [
+        "base",
+        "B1-direct-shadow"
+      ],
+      "n_clauses": 111,
+      "n_variables": 162,
+      "proof_sha256": "cead84f1ec3f36f7e1da33707b6411c451e346aeeed018f6fd8e34b667797deb",
+      "proof_verified": true,
+      "run": "B1-check-support-equality",
+      "verdict": "UNSAT",
+      "wall_seconds": 0.047
+    },
+    {
+      "classification": "B1 normal-form encoding self-test",
+      "cnf_file": "out/B1-check-cross-membership.cnf",
+      "cnf_sha256": "303eea7a153b40cedbaf53079ff88e8c190b67945043aa9a885502d38471e113",
+      "extra_clause_tags": [
+        "RUN-pin:B1-check-cross-membership"
+      ],
+      "layers": [
+        "base",
+        "B1-direct-shadow"
+      ],
+      "n_clauses": 110,
+      "n_variables": 162,
+      "proof_sha256": "c901b10828037709acd40c5464ca63045c46b11ed204dabb55fa8c9b7ebcdc87",
+      "proof_verified": true,
+      "run": "B1-check-cross-membership",
+      "verdict": "UNSAT",
+      "wall_seconds": 0.028
+    },
+    {
+      "classification": "B1 normal-form encoding self-test",
+      "cnf_file": "out/B1-check-physical-exclusion.cnf",
+      "cnf_sha256": "9a8a487c224b2cc4461452541f03260abb89dc2ca745b04ea0b4fb4433966ef5",
+      "extra_clause_tags": [
+        "RUN-pin:B1-check-physical-exclusion"
+      ],
+      "layers": [
+        "base",
+        "B1-direct-shadow"
+      ],
+      "n_clauses": 110,
+      "n_variables": 162,
+      "proof_sha256": "e98537e3775f7745df7159407820a903d883f16199674db8815c842cf0d0cbab",
+      "proof_verified": true,
+      "run": "B1-check-physical-exclusion",
+      "verdict": "UNSAT",
+      "wall_seconds": 0.027
     },
     {
       "classification": "B2 named-local package verdict",
       "cnf_file": "out/B2.cnf",
+      "cnf_sha256": "01c85d5ba521be0766548527c963a5d779970336e55937f11138b7d9ea697815",
       "extra_clause_tags": [],
       "layers": [
         "base",
         "B2"
       ],
       "model_file": "out/B2.model.json",
+      "model_sha256": "802ff81b04ad8a87e601c1985f01bcded34714551bfbcb96c8ff5197073f7945",
+      "model_verified": true,
       "n_clauses": 262,
       "n_variables": 162,
       "proof_verified": false,
@@ -728,6 +842,7 @@
     {
       "classification": "B2 arm isolation",
       "cnf_file": "out/B2-collision-u.cnf",
+      "cnf_sha256": "77cb252f2a4a3cde7ff81740b614e1baeb3786695a0cc2f899408a94d42e3a7a",
       "extra_clause_tags": [
         "RUN-pin:B2-collision-u"
       ],
@@ -736,6 +851,8 @@
         "B2"
       ],
       "model_file": "out/B2-collision-u.model.json",
+      "model_sha256": "5e2a7bc1cb54e7baf71e809cfedd2acb0a4832f9b0306545da20a92040748eaa",
+      "model_verified": true,
       "n_clauses": 263,
       "n_variables": 162,
       "proof_verified": false,
@@ -806,6 +923,7 @@
     {
       "classification": "B2 arm isolation",
       "cnf_file": "out/B2-collision-v.cnf",
+      "cnf_sha256": "926a9e20bffe18221100e5daf8330ac0db601e442eb1867d7762913427803f30",
       "extra_clause_tags": [
         "RUN-pin:B2-collision-v"
       ],
@@ -814,6 +932,8 @@
         "B2"
       ],
       "model_file": "out/B2-collision-v.model.json",
+      "model_sha256": "802ff81b04ad8a87e601c1985f01bcded34714551bfbcb96c8ff5197073f7945",
+      "model_verified": true,
       "n_clauses": 263,
       "n_variables": 162,
       "proof_verified": false,
@@ -884,6 +1004,7 @@
     {
       "classification": "B2 arm isolation",
       "cnf_file": "out/B2-collision-b2.cnf",
+      "cnf_sha256": "15d747210f4e5d492c45fb70f46eb98b0e54f36b348fa3856beb10d89b761156",
       "extra_clause_tags": [
         "RUN-pin:B2-collision-b2"
       ],
@@ -892,6 +1013,8 @@
         "B2"
       ],
       "model_file": "out/B2-collision-b2.model.json",
+      "model_sha256": "2a96e610985659f566e7dbaa6a1723f113769b1ed106805c71eb1506cb8fdeaa",
+      "model_verified": true,
       "n_clauses": 263,
       "n_variables": 162,
       "proof_verified": false,
@@ -962,12 +1085,15 @@
     {
       "classification": "B3 named-local package verdict",
       "cnf_file": "out/B3.cnf",
+      "cnf_sha256": "e0828f39efb199d8747fdada7adb4f3f7c69448e9d11244ac80890c177200eb1",
       "extra_clause_tags": [],
       "layers": [
         "base",
         "B3"
       ],
       "model_file": "out/B3.model.json",
+      "model_sha256": "2e158dc6223d3078e22fe48e01841726cc3e16ad9f3386dd9d059ea83a7f6636",
+      "model_verified": true,
       "n_clauses": 66,
       "n_variables": 162,
       "proof_verified": false,
@@ -1134,6 +1260,7 @@
     {
       "classification": "B3 arm isolation",
       "cnf_file": "out/B3-square-a2.cnf",
+      "cnf_sha256": "e89bcf29fdd4f5cd6b795c52185b04ad8971088c7f9d627e79f952584cc18eda",
       "extra_clause_tags": [
         "RUN-pin:B3-square-a2"
       ],
@@ -1142,6 +1269,8 @@
         "B3"
       ],
       "model_file": "out/B3-square-a2.model.json",
+      "model_sha256": "2e158dc6223d3078e22fe48e01841726cc3e16ad9f3386dd9d059ea83a7f6636",
+      "model_verified": true,
       "n_clauses": 67,
       "n_variables": 162,
       "proof_verified": false,
@@ -1308,6 +1437,7 @@
     {
       "classification": "B3 arm isolation",
       "cnf_file": "out/B3-square-bu.cnf",
+      "cnf_sha256": "9eb93f5b3da2cc4d45be3752d6c2d373e86a096975522d779746e57af5595bea",
       "extra_clause_tags": [
         "RUN-pin:B3-square-bu"
       ],
@@ -1316,6 +1446,8 @@
         "B3"
       ],
       "model_file": "out/B3-square-bu.model.json",
+      "model_sha256": "2e158dc6223d3078e22fe48e01841726cc3e16ad9f3386dd9d059ea83a7f6636",
+      "model_verified": true,
       "n_clauses": 67,
       "n_variables": 162,
       "proof_verified": false,
@@ -1482,6 +1614,7 @@
     {
       "classification": "B3 arm isolation",
       "cnf_file": "out/B3-square-bv.cnf",
+      "cnf_sha256": "8da69f0ee899f773b98bc399ffb4e11e1531540992d7998e8abe732acec68c1c",
       "extra_clause_tags": [
         "RUN-pin:B3-square-bv"
       ],
@@ -1490,6 +1623,8 @@
         "B3"
       ],
       "model_file": "out/B3-square-bv.model.json",
+      "model_sha256": "2e158dc6223d3078e22fe48e01841726cc3e16ad9f3386dd9d059ea83a7f6636",
+      "model_verified": true,
       "n_clauses": 67,
       "n_variables": 162,
       "proof_verified": false,
@@ -1656,6 +1791,7 @@
     {
       "classification": "B3 arm isolation",
       "cnf_file": "out/B3-square-b2.cnf",
+      "cnf_sha256": "08f1574854a056007dbedc265096c9e3c4edf4a5660d53219f2b711f577cf157",
       "extra_clause_tags": [
         "RUN-pin:B3-square-b2"
       ],
@@ -1664,6 +1800,8 @@
         "B3"
       ],
       "model_file": "out/B3-square-b2.model.json",
+      "model_sha256": "2e158dc6223d3078e22fe48e01841726cc3e16ad9f3386dd9d059ea83a7f6636",
+      "model_verified": true,
       "n_clauses": 67,
       "n_variables": 162,
       "proof_verified": false,
@@ -1828,12 +1966,15 @@
       "wall_seconds": 0.005
     }
   ],
-  "schema": "p97-b-core-named-local.v1",
-  "scope": "EMPIRICALLY VERIFIED only for the named-local CNF projection; SAT is not a geometric model and UNSAT would require a Lean ingress/replay bridge",
+  "schema": "p97-b-core-named-local.v2",
+  "scope": "EMPIRICALLY VERIFIED only for the named-local CNF projection; SAT is not a geometric model and does not close the universal B1 leaf",
   "tag_counts": {
     "B1-direct-shadow:B1-hblockersEq-congruence": 2,
     "B1-direct-shadow:B1-hblockersEq-row-congruence": 8,
     "B1-direct-shadow:B1-hblockersEq-survival-congruence": 18,
+    "B1-direct-shadow:B1-live-normalForm-cross-membership": 2,
+    "B1-direct-shadow:B1-live-normalForm-physical-class-exclusion": 4,
+    "B1-direct-shadow:B1-live-normalForm-support-equality": 18,
     "B2:B2-bank-canonical-row": 54,
     "B2:B2-bank-center-exclusion": 3,
     "B2:B2-bank-mutual-omission-disjunction": 1,

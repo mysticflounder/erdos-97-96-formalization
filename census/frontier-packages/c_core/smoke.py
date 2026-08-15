@@ -1,7 +1,7 @@
 """Smoke gates for the C-core encoder (spec section 7), run IN ORDER:
-G-BASE, G-SAT (hand-built witness), the G-EXCL analog (base+C1+srcU clash,
-base+C1+del-triple DEL3 clash), G-C69 (both physical leaves), then the four
-named probes P-SRC, P-COL, P-E5C, P-E8-src.
+G-BASE, G-SAT (hand-built witness), G-OVERFLOW, the G-EXCL analog
+(base+C1+srcU clash, base+C1+del-triple DEL3 clash), G-C69 (both physical
+leaves), then the four named probes P-SRC, P-COL, P-E5C, P-E8-src.
 
 Run from the repo root:
   uv run python census/frontier-packages/c_core/smoke.py
@@ -237,11 +237,55 @@ def gate_sat(
     }
     if result.verdict == "SAT" and result.cube is not None:
         model_path = OUT_DIR / "g_sat.model.json"
-        model_path.write_text(json.dumps(result.cube, sort_keys=True, indent=2), encoding="utf-8")
+        model_path.write_text(
+            json.dumps(result.cube, sort_keys=True, indent=2), encoding="utf-8"
+        )
         record["model_file"] = str(model_path.relative_to(OUT_DIR.parents[1]))
         record["derived_n_value"] = next(
             (i for i in range(encoder.MAXN + 1) if result.cube.get(f"n={i}")), None
         )
+    return record
+
+
+def gate_overflow(
+    encoder: enc.CCoreEncoder, timeout_seconds: int, solver: FrontierSolver
+) -> dict[str, Any]:
+    """The universal arithmetic abstraction must retain n>24 tuples.
+
+    The concrete cap-interior tuple (24,2,3) has n=24+2+3+3=32.  The old
+    MAXN-only encoding deleted it.  The repaired abstraction must accept it
+    and derive the n>=25 bucket.
+    """
+    assumptions = [
+        _lit(encoder, "nSig=24", True),
+        _lit(encoder, "nO1=2", True),
+        _lit(encoder, "nO2=3", True),
+    ]
+    instance = enc.RunInstance(encoder, encoder.base_clauses)
+    cnf_path = OUT_DIR / "g_overflow.cnf"
+    start = time.monotonic()
+    result = solver(
+        instance, cnf_path, extra_clauses=assumptions, timeout_seconds=timeout_seconds
+    )
+    wall = time.monotonic() - start
+    derived_overflow = bool(
+        result.cube and result.cube.get(f"n>={encoder.OVERFLOW}")
+    )
+    record: dict[str, Any] = {
+        "gate": "G-OVERFLOW",
+        "variant": "nSig=24,nO1=2,nO2=3 implies n>=25",
+        "verdict": result.verdict,
+        "expected": "SAT with n>=25",
+        "derived_n_overflow": derived_overflow,
+        "pass": result.verdict == "SAT" and derived_overflow,
+        "wall_seconds": round(wall, 3),
+    }
+    if result.verdict == "SAT" and result.cube is not None:
+        model_path = OUT_DIR / "g_overflow.model.json"
+        model_path.write_text(
+            json.dumps(result.cube, sort_keys=True, indent=2), encoding="utf-8"
+        )
+        record["model_file"] = str(model_path.relative_to(OUT_DIR.parents[1]))
     return record
 
 
@@ -573,7 +617,10 @@ def main() -> int:
             ),
             live_leaf="C-core C1/C2 finite-local smoke regressions",
             finite_schema="p97-c-core-layer1.v1.1-smoke",
-            cardinality_scope="named C-core regression atoms and symbolic cardinality buckets",
+            cardinality_scope=(
+                "named C-core regression atoms and symbolic cardinality buckets "
+                "with a conservative n>=25 overflow bucket"
+            ),
             source_theorem=(
                 "Problem97.ATailCriticalPairFrontier."
                 "cross_deletion_survives_iff_not_mem_selected_support"
@@ -600,6 +647,10 @@ def main() -> int:
     sat_result = gate_sat(encoder, args.timeout_seconds, solver)
     report["G-SAT"] = sat_result
     print(json.dumps(sat_result, indent=2))
+
+    overflow_result = gate_overflow(encoder, args.timeout_seconds, solver)
+    report["G-OVERFLOW"] = overflow_result
+    print(json.dumps(overflow_result, indent=2))
 
     srcu_clash = gate_c1_srcu_clash(
         encoder,
@@ -643,8 +694,9 @@ def main() -> int:
     print(json.dumps(probes_result, indent=2))
 
     report["ALL_GATES_PASS"] = (
-        base_result["pass"] and sat_result["pass"] and srcu_clash["pass"]
-        and del_triple["pass"] and c69_result["pass"] and probes_result["pass"]
+        base_result["pass"] and sat_result["pass"] and overflow_result["pass"]
+        and srcu_clash["pass"] and del_triple["pass"] and c69_result["pass"]
+        and probes_result["pass"]
     )
     (OUT_DIR / "smoke_report.json").write_text(
         json.dumps(report, sort_keys=True, indent=2), encoding="utf-8"

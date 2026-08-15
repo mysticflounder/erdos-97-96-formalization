@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import time
 from pathlib import Path
@@ -11,6 +12,7 @@ from typing import Any
 import encoding as enc
 
 from census.card_head.frontier_lane_piqd import (
+    LEGACY_LOCAL_BACKEND,
     FrontierSolver,
     add_solver_arguments,
     proof_manifest_fields,
@@ -23,6 +25,108 @@ from census.card_head.piqd_frontier_bc import (
 )
 
 OUT_DIR = Path(__file__).resolve().parent / "out"
+REPO_ROOT = Path(__file__).resolve().parents[3]
+NORMAL_FORM_SOURCE = REPO_ROOT / "lean/scratch/b-family-bank/B2Arm3.lean"
+PRODUCER_CONTRACT = Path(__file__).resolve().parent / "producer_contract.json"
+
+
+def load_producer_contract() -> dict[str, Any]:
+    """Load the B1 landing contract and fail closed on promotion drift."""
+
+    contract = json.loads(PRODUCER_CONTRACT.read_text())
+    required = {
+        "schema",
+        "status",
+        "evidence_classification",
+        "promotion_eligible",
+        "live_leaf",
+        "ingress_theorem",
+        "consumer_theorem",
+        "producer_theorem",
+        "lift_theorem",
+        "required_producer_outputs",
+        "required_lift",
+        "missing_fields",
+    }
+    missing = sorted(required - contract.keys())
+    if missing:
+        raise enc.EncodingError(
+            f"B1 producer contract is missing required fields: {missing}"
+        )
+    if contract["schema"] != "p97-b1-global-gap-contract-v1":
+        raise enc.EncodingError("unsupported B1 producer-contract schema")
+    if contract["promotion_eligible"]:
+        if contract["status"] != "PROMOTABLE":
+            raise enc.EncodingError("promotable B1 contract must have status PROMOTABLE")
+        if contract["missing_fields"]:
+            raise enc.EncodingError("promotable B1 contract still has missing fields")
+        if not contract.get("producer_theorem") or not contract["required_lift"].get(
+            "theorem"
+        ):
+            raise enc.EncodingError(
+                "promotable B1 contract needs producer and lift theorem names"
+            )
+    else:
+        if contract["status"] != "PARKED-SPEC":
+            raise enc.EncodingError("non-promotable B1 contract must remain PARKED-SPEC")
+        if not contract["missing_fields"]:
+            raise enc.EncodingError("parked B1 contract must name its missing fields")
+    expected_missing = sorted(
+        name
+        for name in ("producer_theorem", "lift_theorem")
+        if not contract[name]
+    )
+    if sorted(contract["missing_fields"]) != expected_missing:
+        raise enc.EncodingError(
+            "B1 contract missing_fields disagrees with theorem fields"
+        )
+    if contract["required_lift"].get("theorem") != contract["lift_theorem"]:
+        raise enc.EncodingError("B1 lift theorem fields disagree")
+    return contract
+
+
+def sha256_file(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def verify_sat_assignment(
+    encoder: enc.BEncoder,
+    clauses: list[tuple[int, ...]],
+    assignment: dict[str, bool],
+) -> None:
+    """Fail closed unless the decoded assignment satisfies the persisted CNF."""
+
+    by_variable = {variable: assignment[name] for name, variable in encoder.names.items()}
+    for index, clause in enumerate(clauses):
+        if not any(by_variable[abs(lit)] == (lit > 0) for lit in clause):
+            raise enc.EncodingError(f"decoded SAT assignment falsifies clause {index}")
+
+
+def check_b1_live_normal_form_layer(encoder: enc.BEncoder) -> None:
+    """Guard the exact clause projection promised by the B1 layer."""
+
+    clauses = set(encoder.layers["B1-direct-shadow"])
+
+    def require(clause: tuple[int, ...]) -> None:
+        if clause not in clauses:
+            raise enc.EncodingError(f"missing B1 normal-form clause {clause}")
+
+    for point in enc.LABELS:
+        left = encoder.atom(f"row(z1,{point})")
+        right = encoder.atom(f"row(z2,{point})")
+        require((-left, right))
+        require((left, -right))
+    for atom_name in ("row(z1,z2)", "row(z2,z1)"):
+        require((encoder.atom(atom_name),))
+    for source in ("z1", "z2"):
+        for point in ("u", "v"):
+            require((-encoder.atom(f"row({source},{point})"),))
+    if len(encoder.layers["B1-direct-shadow"]) != 52:
+        raise enc.EncodingError("unexpected B1 normal-form layer clause count")
 
 
 def run_one(
@@ -70,10 +174,20 @@ def run_one(
         )
     )
     if result.verdict == "SAT" and result.cube is not None:
+        verify_sat_assignment(encoder, clauses + extra, result.cube)
         model_path = OUT_DIR / f"{name}.model.json"
         model_path.write_text(json.dumps(result.cube, sort_keys=True, indent=2) + "\n")
         record["model_file"] = str(model_path.relative_to(OUT_DIR.parent))
+        record["model_verified"] = True
         record["true_atoms"] = sorted(k for k, value in result.cube.items() if value)
+        record["model_sha256"] = sha256_file(model_path)
+    record["cnf_sha256"] = sha256_file(cnf_path)
+    if (
+        backend == LEGACY_LOCAL_BACKEND
+        and result.verdict == "UNSAT"
+        and proof_path.is_file()
+    ):
+        record["proof_sha256"] = sha256_file(proof_path)
     return record
 
 
@@ -83,7 +197,9 @@ def main() -> int:
     add_solver_arguments(parser)
     args = parser.parse_args()
     OUT_DIR.mkdir(parents=True, exist_ok=True)
+    producer_contract = load_producer_contract()
     encoder = enc.BEncoder()
+    check_b1_live_normal_form_layer(encoder)
     solver = solver_from_args(
         args=args,
         encoder=encoder,
@@ -97,14 +213,10 @@ def main() -> int:
                     "deterministic B-core named propositional variables",
                 ),
             ),
-            live_leaf="B-core named-local diagnostic projection",
-            finite_schema="p97-b-core-named-local.v1",
-            cardinality_scope=(
-                "named-local B-core atoms only; no finite-carrier completeness claim"
-            ),
-            source_theorem=(
-                "NONE: named-local B-core projection has no theorem entitlement"
-            ),
+            live_leaf=producer_contract["live_leaf"],
+            finite_schema=producer_contract["finite_schema"],
+            cardinality_scope=producer_contract["cardinality_scope"],
+            source_theorem=producer_contract["ingress_theorem"],
         ),
         artifact_root=OUT_DIR,
         legacy_solver=enc.solve_cadical,
@@ -116,7 +228,28 @@ def main() -> int:
             "B1-direct-shadow",
             ("base", "B1-direct-shadow"),
             [],
-            "prerequisite ingress missing; NOT an official B1 verdict",
+            "proved live-normal-form named-local projection; not universal closure",
+        ),
+        (
+            "B1-check-support-equality",
+            ("base", "B1-direct-shadow"),
+            [
+                (encoder.atom("row(z1,a2)"),),
+                (-encoder.atom("row(z2,a2)"),),
+            ],
+            "B1 normal-form encoding self-test",
+        ),
+        (
+            "B1-check-cross-membership",
+            ("base", "B1-direct-shadow"),
+            [(-encoder.atom("row(z1,z2)"),)],
+            "B1 normal-form encoding self-test",
+        ),
+        (
+            "B1-check-physical-exclusion",
+            ("base", "B1-direct-shadow"),
+            [(encoder.atom("row(z1,u)"),)],
+            "B1 normal-form encoding self-test",
         ),
         ("B2", ("base", "B2"), [], "B2 named-local package verdict"),
         (
@@ -163,12 +296,46 @@ def main() -> int:
         for name, layers, extra, classification in matrix
     ]
     manifest = {
-        "schema": "p97-b-core-named-local.v1",
-        "b1_official_verdict": "OMITTED_PREREQUISITE_INGRESS_MISSING",
+        "schema": "p97-b-core-named-local.v2",
+        "b1_status": "LIVE_NORMAL_FORM_INGRESS_PROVED__NAMED_LOCAL_RESULT_ONLY",
         "scope": (
             "EMPIRICALLY VERIFIED only for the named-local CNF projection; "
-            "SAT is not a geometric model and UNSAT would require a Lean ingress/replay bridge"
+            "SAT is not a geometric model and does not close the universal B1 leaf"
         ),
+        "b1_normal_form_source": {
+            "declaration": "Problem97.B2Arm3.b1_live_normalForm",
+            "file": str(NORMAL_FORM_SOURCE.relative_to(REPO_ROOT)),
+            "sha256": sha256_file(NORMAL_FORM_SOURCE),
+        },
+        "producer_contract": {
+            "file": str(PRODUCER_CONTRACT.relative_to(REPO_ROOT)),
+            "sha256": sha256_file(PRODUCER_CONTRACT),
+            "schema": producer_contract["schema"],
+            "status": producer_contract["status"],
+            "evidence_classification": producer_contract["evidence_classification"],
+            "promotion_eligible": producer_contract["promotion_eligible"],
+            "live_leaf": producer_contract["live_leaf"],
+            "partial_producer_theorem": producer_contract.get(
+                "partial_producer_theorem"
+            ),
+            "partial_producer_status": producer_contract.get(
+                "partial_producer_status"
+            ),
+            "partial_consumer_theorem": producer_contract.get(
+                "partial_consumer_theorem"
+            ),
+            "conditional_terminal_theorem": producer_contract.get(
+                "conditional_terminal_theorem"
+            ),
+            "partial_consumer_status": producer_contract.get(
+                "partial_consumer_status"
+            ),
+            "missing_fields": producer_contract["missing_fields"],
+        },
+        "encoding_self_check": {
+            "b1_live_normal_form": "PASS",
+            "b1_layer_clauses": len(encoder.layers["B1-direct-shadow"]),
+        },
         "tag_counts": encoder.tag_counts(),
         "layer_clause_tags": encoder.layer_tags,
         "runs": records,
@@ -181,17 +348,23 @@ def main() -> int:
             f"vars={record['n_variables']:3d} clauses={record['n_clauses']:3d} "
             f"wall={record['wall_seconds']:.3f}s"
         )
-    print("B1 official verdict: OMITTED_PREREQUISITE_INGRESS_MISSING")
+    print("B1 status: live normal-form ingress proved; named-local result only")
     print(f"manifest -> {manifest_path}")
-    return (
-        0
-        if all(
-            record["verdict"] in {"SAT", "UNSAT"}
-            and (record["verdict"] != "UNSAT" or record["proof_verified"] is True)
-            for record in records
+    expected_unsat = {
+        "B1-check-support-equality",
+        "B1-check-cross-membership",
+        "B1-check-physical-exclusion",
+    }
+    run_ok = all(
+        (
+            record["verdict"] == "UNSAT"
+            and record["proof_verified"] is True
         )
-        else 1
+        if record["run"] in expected_unsat
+        else record["verdict"] in {"SAT", "UNSAT"}
+        for record in records
     )
+    return 0 if run_ok else 1
 
 
 if __name__ == "__main__":

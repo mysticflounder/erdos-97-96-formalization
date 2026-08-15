@@ -5,7 +5,17 @@
     "gate": "G-BASE",
     "pass": true,
     "verdict": "SAT",
-    "wall_seconds": 0.015
+    "wall_seconds": 0.018
+  },
+  "G-OVERFLOW": {
+    "derived_n_overflow": true,
+    "expected": "SAT with n>=25",
+    "gate": "G-OVERFLOW",
+    "model_file": "out/smoke/g_overflow.model.json",
+    "pass": true,
+    "variant": "nSig=24,nO1=4,nO2=4 implies n>=25",
+    "verdict": "SAT",
+    "wall_seconds": 0.018
   },
   "G-PROBES": {
     "gate": "G-PROBES",
@@ -15,41 +25,61 @@
         "expected": "UNSAT",
         "pass": true,
         "probe": "P-EBM3",
+        "proof_file": "out/smoke/g_probe_P-EBM3.drat",
+        "proof_format": "DRAT",
         "proof_verified": true,
+        "requested_proof_file": "out/smoke/g_probe_P-EBM3.drat",
+        "solver_backend": "legacy-local",
         "verdict": "UNSAT",
-        "wall_seconds": 0.043
+        "wall_seconds": 0.049
       },
       {
         "expected": "UNSAT",
         "pass": true,
         "probe": "P-ER2",
+        "proof_file": "out/smoke/g_probe_P-ER2.drat",
+        "proof_format": "DRAT",
         "proof_verified": true,
+        "requested_proof_file": "out/smoke/g_probe_P-ER2.drat",
+        "solver_backend": "legacy-local",
         "verdict": "UNSAT",
-        "wall_seconds": 0.043
+        "wall_seconds": 0.049
       },
       {
         "expected": "UNSAT",
         "pass": true,
         "probe": "P-DOM",
+        "proof_file": "out/smoke/g_probe_P-DOM.drat",
+        "proof_format": "DRAT",
         "proof_verified": true,
+        "requested_proof_file": "out/smoke/g_probe_P-DOM.drat",
+        "solver_backend": "legacy-local",
         "verdict": "UNSAT",
-        "wall_seconds": 0.044
+        "wall_seconds": 0.05
       },
       {
         "expected": "UNSAT",
         "pass": true,
         "probe": "P-EI34",
+        "proof_file": "out/smoke/g_probe_P-EI34.drat",
+        "proof_format": "DRAT",
         "proof_verified": true,
+        "requested_proof_file": "out/smoke/g_probe_P-EI34.drat",
+        "solver_backend": "legacy-local",
         "verdict": "UNSAT",
-        "wall_seconds": 0.044
+        "wall_seconds": 0.049
       },
       {
         "expected": "UNSAT",
         "pass": true,
         "probe": "P-COVER",
+        "proof_file": "out/smoke/g_probe_P-COVER.drat",
+        "proof_format": "DRAT",
         "proof_verified": true,
+        "requested_proof_file": "out/smoke/g_probe_P-COVER.drat",
+        "solver_backend": "legacy-local",
         "verdict": "UNSAT",
-        "wall_seconds": 0.066
+        "wall_seconds": 0.104
       }
     ]
   },
@@ -68,7 +98,7 @@
     "pass": true,
     "source": "scratch/triapex-incidence-obstruction/check_model.py (15-point equality shadow)",
     "verdict": "SAT",
-    "wall_seconds": 0.015
+    "wall_seconds": 0.018
   },
   "eq4_no_triangle": {
     "check": "EQ4-no-triangle",

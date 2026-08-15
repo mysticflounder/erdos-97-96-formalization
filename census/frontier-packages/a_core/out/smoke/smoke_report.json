@@ -4,8 +4,9 @@
     "expected": "SAT",
     "gate": "G-BASE",
     "pass": true,
+    "solver_backend": "legacy-local",
     "verdict": "SAT",
-    "wall_seconds": 0.017
+    "wall_seconds": 0.019
   },
   "G-C10": {
     "gate": "G-C10",
@@ -16,33 +17,40 @@
         "expected": "SAT",
         "pass": true,
         "proof_verified": false,
+        "solver_backend": "legacy-local",
         "variant": "pre_double_membership",
         "verdict": "SAT",
-        "wall_seconds": 0.017
+        "wall_seconds": 0.019
       },
       {
         "expected": "UNSAT",
         "pass": true,
+        "proof_file": "out/smoke/g_c10_post_double_membership.drat",
+        "proof_format": "DRAT",
         "proof_verified": true,
+        "requested_proof_file": "out/smoke/g_c10_post_double_membership.drat",
+        "solver_backend": "legacy-local",
         "variant": "post_double_membership",
         "verdict": "UNSAT",
-        "wall_seconds": 0.046
+        "wall_seconds": 0.05
       },
       {
         "expected": "SAT",
         "pass": true,
         "proof_verified": false,
+        "solver_backend": "legacy-local",
         "variant": "omit_qh_only",
         "verdict": "SAT",
-        "wall_seconds": 0.016
+        "wall_seconds": 0.019
       },
       {
         "expected": "SAT",
         "pass": true,
         "proof_verified": false,
+        "solver_backend": "legacy-local",
         "variant": "omit_wh_only",
         "verdict": "SAT",
-        "wall_seconds": 0.016
+        "wall_seconds": 0.019
       }
     ]
   },
@@ -50,9 +58,13 @@
     "expected": "UNSAT",
     "gate": "G-C6",
     "pass": true,
+    "proof_file": "out/smoke/g_c6.drat",
+    "proof_format": "DRAT",
     "proof_verified": true,
+    "requested_proof_file": "out/smoke/g_c6.drat",
+    "solver_backend": "legacy-local",
     "verdict": "UNSAT",
-    "wall_seconds": 0.047
+    "wall_seconds": 0.052
   },
   "G-EXCL": {
     "gate": "G-EXCL",
@@ -62,52 +74,76 @@
         "expected": "UNSAT",
         "pair": "A2xA3",
         "pass": true,
+        "proof_file": "out/smoke/g_excl_A2_A3.drat",
+        "proof_format": "DRAT",
         "proof_verified": true,
+        "requested_proof_file": "out/smoke/g_excl_A2_A3.drat",
+        "solver_backend": "legacy-local",
         "verdict": "UNSAT",
-        "wall_seconds": 0.046
+        "wall_seconds": 0.049
       },
       {
         "clash_family": "(BM1) beta(u) functional: b(u,zd) vs b(u,xv)",
         "expected": "UNSAT",
         "pair": "A2xA6",
         "pass": true,
+        "proof_file": "out/smoke/g_excl_A2_A6.drat",
+        "proof_format": "DRAT",
         "proof_verified": true,
+        "requested_proof_file": "out/smoke/g_excl_A2_A6.drat",
+        "solver_backend": "legacy-local",
         "verdict": "UNSAT",
-        "wall_seconds": 0.047
+        "wall_seconds": 0.064
       },
       {
         "clash_family": "(BM1) beta(u) functional: b(u,zd) vs b(u,xv)",
         "expected": "UNSAT",
         "pair": "A2xA7",
         "pass": true,
+        "proof_file": "out/smoke/g_excl_A2_A7.drat",
+        "proof_format": "DRAT",
         "proof_verified": true,
+        "requested_proof_file": "out/smoke/g_excl_A2_A7.drat",
+        "solver_backend": "legacy-local",
         "verdict": "UNSAT",
-        "wall_seconds": 0.046
+        "wall_seconds": 0.05
       },
       {
         "clash_family": "(BM1) beta(u) functional: b(u,zd) vs b(u,xv)",
         "expected": "UNSAT",
         "pair": "A2xA8",
         "pass": true,
+        "proof_file": "out/smoke/g_excl_A2_A8.drat",
+        "proof_format": "DRAT",
         "proof_verified": true,
+        "requested_proof_file": "out/smoke/g_excl_A2_A8.drat",
+        "solver_backend": "legacy-local",
         "verdict": "UNSAT",
-        "wall_seconds": 0.046
+        "wall_seconds": 0.047
       },
       {
         "clash_family": "(BM1) beta(u) functional: b(u,v) vs b(u,xv)",
         "expected": "UNSAT",
         "pair": "A3xA6",
         "pass": true,
+        "proof_file": "out/smoke/g_excl_A3_A6.drat",
+        "proof_format": "DRAT",
         "proof_verified": true,
+        "requested_proof_file": "out/smoke/g_excl_A3_A6.drat",
+        "solver_backend": "legacy-local",
         "verdict": "UNSAT",
-        "wall_seconds": 0.045
+        "wall_seconds": 0.047
       },
       {
         "clash_family": "(BM1) beta(u) functional: b(u,v) vs b(u,xv)",
         "expected": "UNSAT",
         "pair": "A3xA7",
         "pass": true,
+        "proof_file": "out/smoke/g_excl_A3_A7.drat",
+        "proof_format": "DRAT",
         "proof_verified": true,
+        "requested_proof_file": "out/smoke/g_excl_A3_A7.drat",
+        "solver_backend": "legacy-local",
         "verdict": "UNSAT",
         "wall_seconds": 0.047
       },
@@ -116,7 +152,11 @@
         "expected": "UNSAT",
         "pair": "A3xA8",
         "pass": true,
+        "proof_file": "out/smoke/g_excl_A3_A8.drat",
+        "proof_format": "DRAT",
         "proof_verified": true,
+        "requested_proof_file": "out/smoke/g_excl_A3_A8.drat",
+        "solver_backend": "legacy-local",
         "verdict": "UNSAT",
         "wall_seconds": 0.047
       },
@@ -125,16 +165,24 @@
         "expected": "UNSAT",
         "pair": "A6xA7",
         "pass": true,
+        "proof_file": "out/smoke/g_excl_A6_A7.drat",
+        "proof_format": "DRAT",
         "proof_verified": true,
+        "requested_proof_file": "out/smoke/g_excl_A6_A7.drat",
+        "solver_backend": "legacy-local",
         "verdict": "UNSAT",
-        "wall_seconds": 0.046
+        "wall_seconds": 0.047
       },
       {
         "clash_family": "inO2i(xu) unit clash: A6 asserts T, A8 asserts F",
         "expected": "UNSAT",
         "pair": "A6xA8",
         "pass": true,
+        "proof_file": "out/smoke/g_excl_A6_A8.drat",
+        "proof_format": "DRAT",
         "proof_verified": true,
+        "requested_proof_file": "out/smoke/g_excl_A6_A8.drat",
+        "solver_backend": "legacy-local",
         "verdict": "UNSAT",
         "wall_seconds": 0.047
       },
@@ -143,12 +191,27 @@
         "expected": "UNSAT",
         "pair": "A7xA8",
         "pass": true,
+        "proof_file": "out/smoke/g_excl_A7_A8.drat",
+        "proof_format": "DRAT",
         "proof_verified": true,
+        "requested_proof_file": "out/smoke/g_excl_A7_A8.drat",
+        "solver_backend": "legacy-local",
         "verdict": "UNSAT",
-        "wall_seconds": 0.046
+        "wall_seconds": 0.045
       }
     ],
     "pass": true
+  },
+  "G-OVERFLOW": {
+    "derived_n_overflow": true,
+    "expected": "SAT with n>=25",
+    "gate": "G-OVERFLOW",
+    "model_file": "out/smoke/g_overflow.model.json",
+    "pass": true,
+    "solver_backend": "legacy-local",
+    "variant": "nSig=24,nO1=2,nO2=3 implies n>=25",
+    "verdict": "SAT",
+    "wall_seconds": 0.017
   },
   "G-PROBES": {
     "gate": "G-PROBES",
@@ -158,33 +221,49 @@
         "expected": "UNSAT",
         "pass": true,
         "probe": "P-DEL3",
+        "proof_file": "out/smoke/g_probe_P-DEL3.drat",
+        "proof_format": "DRAT",
         "proof_verified": true,
+        "requested_proof_file": "out/smoke/g_probe_P-DEL3.drat",
+        "solver_backend": "legacy-local",
         "verdict": "UNSAT",
-        "wall_seconds": 0.046
+        "wall_seconds": 0.044
       },
       {
         "expected": "UNSAT",
         "pass": true,
         "probe": "P-E8",
+        "proof_file": "out/smoke/g_probe_P-E8.drat",
+        "proof_format": "DRAT",
         "proof_verified": true,
+        "requested_proof_file": "out/smoke/g_probe_P-E8.drat",
+        "solver_backend": "legacy-local",
         "verdict": "UNSAT",
-        "wall_seconds": 0.046
+        "wall_seconds": 0.05
       },
       {
         "expected": "UNSAT",
         "pass": true,
         "probe": "P-FB",
+        "proof_file": "out/smoke/g_probe_P-FB.drat",
+        "proof_format": "DRAT",
         "proof_verified": true,
+        "requested_proof_file": "out/smoke/g_probe_P-FB.drat",
+        "solver_backend": "legacy-local",
         "verdict": "UNSAT",
-        "wall_seconds": 0.048
+        "wall_seconds": 0.044
       },
       {
         "expected": "UNSAT",
         "pass": true,
         "probe": "P-CD5",
+        "proof_file": "out/smoke/g_probe_P-CD5.drat",
+        "proof_format": "DRAT",
         "proof_verified": true,
+        "requested_proof_file": "out/smoke/g_probe_P-CD5.drat",
+        "solver_backend": "legacy-local",
         "verdict": "UNSAT",
-        "wall_seconds": 0.05
+        "wall_seconds": 0.044
       }
     ]
   },
@@ -195,9 +274,10 @@
     "model_file": "out/smoke/g_sat.model.json",
     "n_assumptions": 88,
     "pass": true,
+    "solver_backend": "legacy-local",
     "variant": "hand-built-total-assignment (downgrade; witness does not map)",
     "verdict": "SAT",
-    "wall_seconds": 0.016
+    "wall_seconds": 0.017
   },
   "c10_presence": {
     "absent_from_base": true,

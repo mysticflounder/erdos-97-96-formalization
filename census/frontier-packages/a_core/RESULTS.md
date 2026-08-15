@@ -541,17 +541,11 @@ deviating from or extending the spec's clause content.
 ## 7. Implementation notes (not ambiguities — decisions with no live spec
 choice)
 
-- **Integer layer encoding**: implemented as a direct/"unary" one-hot value
-  encoding (`X=i` atoms for i=0..MAXN=24, exactly-one), which the spec's
-  "unary/order encoding" phrasing explicitly permits. (N1)'s sum equality
-  is a per-combo forward implication; combos whose sum would need
-  `n>MAXN` are explicitly **forbidden** (not left open) since `n`'s own
-  domain is capped at MAXN and (N1) is a genuine equality — leaving them
-  open let an early build land on a degenerate `nSig=nO1=nO2=n=24`
-  "witness" that didn't actually satisfy (N1); this was caught (by
-  eyeballing a decoded model) and fixed during this implementation session,
-  before the reported runs above. No commit has been made; the fix is only
-  in the working tree at `census/frontier-packages/a_core/encoding.py`.
+- **Integer layer encoding**: the original direct one-hot implementation used
+  exact atoms `X=i` for `i=0..24` and rejected every tuple whose (N1) sum
+  exceeded 24. That made the historical runs bounded diagnostics, because
+  the universal Lean leaves have no `n ≤ 24` hypothesis. This implementation
+  note is superseded by the sound overflow repair recorded in §10.
 - **Gamma's own (EQ1) closure (A1 run only)**: the spec's A1 leaf-delta
   entry does not mention an (EQ1) analog for γ's 6 eq atoms, and an early
   build let γ coincide with **all six** of `{a0,a1,qh,wh,f1,f2}`
@@ -664,3 +658,31 @@ Only physical runs gain the one C10 clause; no run gains a variable.
 for the branch projection. Clause wiring and the reported SAT/UNSAT outcomes
 remain diagnostic Python/CNF evidence; they do not constitute Lean closure
 or metric realization. All six A leaves remain **OPEN**.
+
+## 10. Universal-cardinality overflow repair (2026-08-04)
+
+The integer layer now has exact buckets `0,...,24` plus a `GE25` bucket for
+each of `nSig`, `nO1`, `nO2`, and `n`. For (N1), an exact input sum at most
+24 selects the corresponding exact `n`; a larger exact sum or any overflow
+input selects `nGE25`. Consequently every concrete nonnegative cardinality
+tuple has an abstract valuation. The encoder no longer assumes `n ≤ 24`.
+
+The new `G-OVERFLOW` regression fixes
+`(nSig,nO1,nO2)=(24,2,3)`, representing concrete `n=32`, and verifies SAT
+with `nGE25=true`. All smoke gates pass. The refreshed production census is:
+
+| Run | Verdict | Variables | Clauses |
+|---|---:|---:|---:|
+| base | SAT | 879 | 21,074 |
+| base+P | SAT | 889 | 21,101 |
+| base+P+A2 | SAT | 889 | 21,102 |
+| base+P+A3 | SAT | 889 | 21,104 |
+| base+P+A6 | SAT | 889 | 21,108 |
+| base+P+A7 | SAT | 889 | 21,105 |
+| base+P+A8 | SAT | 889 | 21,104 |
+| base+A1 | SAT | 1,070 | 21,544 |
+
+This repairs the universal ingress scope but supplies no contradiction: every
+A-core variant remains SAT, so all six A leaves remain **OPEN**. A future
+UNSAT still needs the remaining extraction, coverage, replay, and live-consumer
+parts of the universal-ingress contract.

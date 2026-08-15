@@ -641,6 +641,50 @@ def gate_sat(
     return record
 
 
+def gate_overflow(
+    encoder: enc.ACoreEncoder,
+    timeout_seconds: int,
+    solver: FrontierSolver,
+    backend: str,
+) -> dict[str, Any]:
+    """The universal arithmetic abstraction must retain n>24 tuples.
+
+    The concrete cap-interior tuple (24,2,3) has n=24+2+3+3=32.  The old
+    MAXN-only encoding deleted it.  The repaired abstraction must accept it
+    and derive the n>=25 bucket.
+    """
+    assumptions = [
+        _lit(encoder, "nSig=24", True),
+        _lit(encoder, "nO1=2", True),
+        _lit(encoder, "nO2=3", True),
+    ]
+    instance = enc.RunInstance(encoder, encoder.base_clauses)
+    cnf_path = OUT_DIR / "g_overflow.cnf"
+    start = time.monotonic()
+    result = solver(
+        instance, cnf_path, extra_clauses=assumptions, timeout_seconds=timeout_seconds
+    )
+    wall = time.monotonic() - start
+    derived_overflow = bool(result.cube and result.cube.get(f"n>={encoder.OVERFLOW}"))
+    record: dict[str, Any] = {
+        "gate": "G-OVERFLOW",
+        "variant": "nSig=24,nO1=2,nO2=3 implies n>=25",
+        "verdict": result.verdict,
+        "expected": "SAT with n>=25",
+        "derived_n_overflow": derived_overflow,
+        "pass": result.verdict == "SAT" and derived_overflow,
+        "solver_backend": backend,
+        "wall_seconds": round(wall, 3),
+    }
+    if result.verdict == "SAT" and result.cube is not None:
+        model_path = OUT_DIR / "g_overflow.model.json"
+        model_path.write_text(
+            json.dumps(result.cube, sort_keys=True, indent=2), encoding="utf-8"
+        )
+        record["model_file"] = str(model_path.relative_to(OUT_DIR.parents[1]))
+    return record
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--timeout-seconds", type=int, default=60)
@@ -682,7 +726,10 @@ def main() -> int:
             ),
             live_leaf="A-core finite-local smoke gates and regression probes",
             finite_schema="p97-a-core-layer1.v1.3-smoke",
-            cardinality_scope="named A-core regression atoms and symbolic cardinality buckets",
+            cardinality_scope=(
+                "named A-core regression atoms and symbolic cardinality buckets "
+                "with a conservative n>=25 overflow bucket"
+            ),
             source_theorem=(
                 "NONE: mixed A-core smoke checks have no aggregate theorem entitlement"
             ),
@@ -727,6 +774,11 @@ def main() -> int:
     report["G-SAT"] = sat_result
     print(json.dumps(sat_result, indent=2))
 
+    overflow_result = gate_overflow(
+        encoder, args.timeout_seconds, solver, args.solver_backend
+    )
+    report["G-OVERFLOW"] = overflow_result
+    print(json.dumps(overflow_result, indent=2))
 
     probes_result = gate_probes(
         encoder, del3_extra, args.timeout_seconds, solver, args.solver_backend
@@ -741,6 +793,7 @@ def main() -> int:
         and c10_result["pass"]
         and excl_result["pass"]
         and sat_result["pass"]
+        and overflow_result["pass"]
         and probes_result["pass"]
     )
     (OUT_DIR / "smoke_report.json").write_text(

@@ -25,12 +25,12 @@ physical verdict leaves and absent from the abstract/common `base`.
 
 | Run | Vars | Clauses |
 |---|---:|---:|
-| `base` (abstract/common; minus physical C6.9 and (DEL2)/(DEL3)) | 920 | 19727 |
-| `base+C1` (base + physical leaf C1 delta) | 930 | 19756 |
-| `base+C2` (base + physical leaf C2 extension, built last) | 956 | 19834 |
+| `base` (abstract/common; minus physical C6.9 and (DEL2)/(DEL3)) | 928 | 21690 |
+| `base+C1` (base + physical leaf C1 delta) | 938 | 21719 |
+| `base+C2` (base + physical leaf C2 extension, built last) | 964 | 21797 |
 
-`base+C2`'s declared 956 is 930+26 (leaf C1's own delta adds 0 new
-variables) rather than 920+26=946: (DEL3)'s 10 Sinz auxiliary variables are
+`base+C2`'s declared 964 is 938+26 (leaf C1's own delta adds 0 new
+variables) rather than 928+26=954: (DEL3)'s 10 Sinz auxiliary variables are
 allocated once, strictly after `base` is finalized and before either leaf
 is built (`run.py` builds `del3_extra` before `base+C1` and reuses the
 already-advanced global variable counter for `base+C2`), so those 10 IDs
@@ -41,13 +41,12 @@ in v1.2 — confirmed harmless (CaDiCaL accepts unused declared variables;
 existing `row_src` variables, while the other 106 clauses only reference
 the 26 variables `build_leaf_c2_extension` itself allocates).
 
-The v1.1 size/status delta is exact: `base` is unchanged; each physical
-leaf gains one clause and no variables. The three verdicts remain
-SAT/SAT/SAT. The three decoded model files remain three decoded model
-files, are value-for-value unchanged from v1.0, and retain respectively
-115, 112, and 128 true named atoms. `run.py` does not enumerate all
-satisfying assignments, so no total model count is claimed; these are
-three single decoded witness artifacts, one per SAT verdict run.
+The v1.1 C6.9 delta itself added one clause and no variables to each
+physical leaf. Separately, the universal-cardinality repair in section 5
+adds 8 variables and 1,963 clauses to every verdict. The three verdicts
+remain SAT/SAT/SAT. `run.py` does not enumerate all satisfying assignments,
+so no total model count is claimed; the refreshed model files are three
+single decoded witness artifacts, one per SAT verdict run.
 
 All solves complete in 0.017-0.018s, nowhere near the 60s timeout budget.
 
@@ -72,7 +71,7 @@ technique a_core's RESULTS.md section 6.1 uses).
 | sv(p) (SV1) | 13 | 13 | carried |
 | CD witness sets (CD1-CD3) | 146 | 224 | carried |
 | S5-analog arms | 2 | 2 | carried |
-| integer layer (N1-N7, N2 amended, N8 dropped) | 203 | 15985 | carried+amended |
+| integer layer (N1-N7, N2 amended, N8 dropped) | 211 | 17948 | carried+amended |
 | (EQ1)-(EQ4) consistency, enlarged eq set | 76 | 2411 | carried, row_src added to (EQ3) |
 | (E8a) rows x bisector (x in {u,v}) | 0 | 24 | carried |
 | (E8a-src) rows x bisector (row_src) | 0 | 24 | section 2, new |
@@ -82,13 +81,14 @@ technique a_core's RESULTS.md section 6.1 uses).
 | (CD5) B-set radius selectors | 4 | 98 | carried, rbs1 keys off row_u (confirmed) |
 | (R1') row_u at-most-4 2nd set | -- | -- | **DROPPED** (no replacement set exists) |
 | (FB) frontier-pair selector | 12 | 25 | amended: 2 of 3 implications dropped |
-| **base total** | **920** | **19727** | |
+| **base total** | **928** | **21690** | |
 
-Sanity check: `_build_integers`' 15985 clauses is dominated by (N1)'s full
-`(MAXN+1)^3 = 25^3 = 15625`-clause cube (unchanged encoding style from A);
-hand-recomputing every sub-family (int-var declarations, N2/N3/N4/N5/N7,
-S6 arms) from first principles reproduces 15985 exactly, confirming no
-stray clauses.
+Sanity check: `_build_integers`' 17,948 clauses are dominated by (N1)'s
+full `(OVERFLOW+1)^3 = 26^3 = 17,576`-clause abstract cube. The remaining
+372 clauses are the four 26-way exactly-one declarations plus
+N2/N3/N4/N5/N7 and the S6 arms. This is exactly 1,963 clauses and 8
+variables above the old bounded integer layer: 1,951 new N1 cube clauses,
+four GE25 atoms, four extra Sinz auxiliaries, and 12 extra Sinz clauses.
 
 ### Leaf C1 delta (29 clauses, 10 new vars — the 10 are (DEL3)'s Sinz aux)
 
@@ -130,6 +130,7 @@ Command: `uv run python census/frontier-packages/c_core/smoke.py`.
 |---|---|---|---|
 | G-BASE | SAT | SAT | yes |
 | G-SAT (hand-built total assignment) | SAT | SAT | yes |
+| G-OVERFLOW (`nSig=24,nO1=2,nO2=3`) | SAT with `nGE25` | SAT with `nGE25` | yes |
 | G-EXCL analog: `base+C1 + srcU` | UNSAT (DRAT verified) | UNSAT | yes |
 | G-EXCL analog: `base+C1 + del(zd)&del(u)&del(xu)` (DEL3 gate) | UNSAT (DRAT verified) | UNSAT | yes |
 | G-C69 (both physical leaves) | all 8 branch variants as expected | mixed | yes |
@@ -213,7 +214,7 @@ non-obvious/forced (not freely chosen) pins:
   the solver to *derive* via (N1) — came back `n=14`, well above the
   amended `N2` floor `n>=10`.
 
-Verdict: **SAT**, 113 assumption clauses, 0.016s.
+Verdict: **SAT**, 113 assumption clauses, 0.020s.
 
 ## 3. Verdict runs (spec section 6)
 
@@ -222,9 +223,9 @@ Command: `uv run python census/frontier-packages/c_core/run.py`. Output:
 
 | Run | Verdict | Vars | Clauses | Wall |
 |---|---|---:|---:|---:|
-| `base` | **SAT** | 920 | 19727 | 0.018s |
-| `base+C1` | **SAT** | 930 | 19756 | 0.018s |
-| `base+C2` | **SAT** | 956 | 19834 | 0.017s |
+| `base` | **SAT** | 928 | 21690 | 0.018s |
+| `base+C1` | **SAT** | 938 | 21719 | 0.018s |
+| `base+C2` | **SAT** | 964 | 21797 | 0.018s |
 
 Unlike A, there is no shared-context run (C spec section 6: "the two
 leaves ARE the two verdicts"). Both leaf verdicts (`base+C1`, `base+C2`)
@@ -234,42 +235,22 @@ incidence content (as approved by the spec) has no contradiction; it is
 
 ### Per-run decoded facts (organic CaDiCaL witnesses, no assumptions)
 
-All three runs' *organic* witnesses (found by CaDiCaL with zero
-assumptions, not the hand-built G-SAT one) independently landed on the
-**same** forced-coincidence fact discovered above: `eq(oth,v)=True` in
-every run (confirming it is a real, solver-independent consequence of
-`inT(oth)=T`, reachable via a *different* coincidence choice — `v`, not
-`u` — than the hand-built G-SAT witness used; both are valid, the forced
-disjunction just has multiple satisfying branches).
+All three refreshed *organic* witnesses (found by CaDiCaL with zero
+assumptions, not the hand-built G-SAT one) select `srcU=False`,
+`eq(oth,zd)=True`, S6 arm `s6a`, and the GE25 bucket for each of
+`nSig,nO1,nO2,n`. The latter is a legal saturated abstraction choice, not
+a claim that the four concrete cardinalities equal 25. It represents, for
+example, concrete inputs all at least 25 together with their correspondingly
+larger concrete sum.
 
-- **`base`**: `srcU=False`; `Delta={u,v,xu,xv,zd}` (all five — `base`
-  carries no (DEL2)/(DEL3), nothing forces a smaller set, same
-  "artifact of search order" caveat A documents for its own base run);
-  `eq`: `{a0=u, a0=f1, a2=f2, f1=u, oth=v, qh=xv}` (transitively closed:
-  `a0=u=f1` is one coincidence cluster, `oth=v` is the forced one, `a2=f2`
-  and `qh=xv` are independent); `inO2i(xu,v,oth)=T` (others F); `cl1(u)=T`
-  (u coincides with `f1`, a frontier label, so `cl1(u)` derives True via
-  (CL1) exactness — **not** forced False here since `srcU=False` in this
-  organic witness, so the `srcU`-conditional `cl1(u)` unit never fires);
-  S6 arm `s6c`; integer layer `(nSig,nO1,nO2,n)=(3,2,4,12)`; `b`:
-  `u->a1, v->OUT, zd->xu, xu->zd, xv->a1, oth->OUT, qh->a1, wh->a1`
-  (`b(u,a1)`/`b(xv,a1)` are forced by (BM4) since `cl1(u)=cl1(xv)=T` here
-  — `xv` coincides with `qh`, a frontier label).
-- **`base+C1`**: identical to `base` on every one of the facts above
-  *except* `Delta`, which collapses to `{u,zd}` (exactly 2, confirming
-  (DEL2)+(DEL3) are both doing real work: at-least-2 and at-most-2 pin it
-  exactly, same effect A's (DEL2)/(DEL3) have on its `base+P`-shaped runs).
-  `srcU=False` here is **forced** (leaf C1's own (C9.3) unit), not
-  incidental.
-- **`base+C2`**: identical to `base` on every §1-§8 fact, **plus** the new
-  leaf-C2 atoms: `eq(P,a0)=eq(P,f1)=True` (P joins the same `{a0,u,f1}`
-  coincidence cluster `base`'s own witness already had, extending it
-  rather than creating a new one — legal, no clause forbids `P` coinciding
-  with a target `u` already coincides with); `Delta={u,v,xu,xv,zd}` (all
-  five — leaf C2 carries no (DEL2)/(DEL3) either, same as `base`); **all
-  10 `col(s,t)` atoms True** (consistent since `Delta`=all five means
-  `del(s)&del(t)` already holds for every pair — CaDiCaL's default
-  branching, not a forced fact; (COL)'s own at-least-one only needs one).
+- **`base`**: `Delta={xv}`; all eight blocker-map sources use `OUT` except
+  `qh->a1` and `wh->a1`.
+- **`base+C1`**: `Delta={v,xv}` (exactly two, as required by
+  (DEL2)+(DEL3)); the only blocker-map difference from `base` is `xu->xv`.
+  Here `srcU=False` is forced by leaf C1's (C9.3) unit.
+- **`base+C2`**: `Delta={v,xv}` and `col(v,xv)=True`; every other `col`
+  atom is false. Its blocker map matches `base`. No P-equality atom is true;
+  `inO2i(P)=True` discharges P's cap classification.
 
 **Caveat on `row_u`/`row_v`/`row_src` values outside the atoms actually
 constrained by a base clause** (carried verbatim from A's RESULTS.md
@@ -315,3 +296,35 @@ slots is an artifact of its search order, not a semantic fact.
    to still apply correctly under the enlarged eq-atom / srcU-conditional
    machinery (traced explicitly in `encoding.py` comments at each carry
    point).
+
+## 5. Universal-cardinality overflow repair (2026-08-04)
+
+The integer layer now has exact buckets `0,...,24` plus a `GE25` bucket for
+each of `nSig`, `nO1`, `nO2`, and `n`. A concrete value maps to its exact
+bucket through 24 and to `GE25` thereafter. For (N1), an exact input sum at
+most 24 selects the corresponding exact `n`; a larger exact sum or any
+overflow input selects `nGE25`. Consequently every concrete nonnegative
+cap-partition tuple satisfying `n = nSig + nO1 + nO2 + 3` has an abstract
+valuation. The encoder no longer assumes `n <= 24`.
+
+Threshold clauses remain exact for every threshold at most 25: `X >= t`
+excludes precisely the exact buckets below `t` and retains `GE25`. Requests
+for a threshold above 25 now raise `EncodingError` rather than silently
+claiming an unsupported comparison. Exact-value clauses accept only
+`0,...,24`; `GE25` is never misread as the exact value 25.
+
+The new `G-OVERFLOW` regression fixes
+`(nSig,nO1,nO2)=(24,2,3)`, representing concrete `n=32`, and verifies SAT
+with `nGE25=true`. All smoke gates pass, including all previously recorded
+UNSAT gates with DRAT verification. The refreshed production census is:
+
+| Run | Verdict | Variables | Clauses |
+|---|---:|---:|---:|
+| base | SAT | 928 | 21,690 |
+| base+C1 | SAT | 938 | 21,719 |
+| base+C2 | SAT | 964 | 21,797 |
+
+This repairs the universal ingress scope but supplies no contradiction:
+every C-core verdict remains SAT. Neither physical C leaf is closed, and
+the CNF/DRAT smoke results remain local clause-family regression evidence,
+not Lean promotion or geometric realization.

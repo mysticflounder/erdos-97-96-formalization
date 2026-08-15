@@ -105,7 +105,12 @@ class ACoreEncoder:
     stashed (DEL2), leaf-delta (section 4), and A1-extension clause lists.
     """
 
+    # Values 0..MAXN are exact.  OVERFLOW is the abstract bucket GE25.
+    # This is load-bearing for universal soundness: the live A-core leaves
+    # have no upper bound on |A|, so values above 24 must be represented,
+    # not forbidden by the finite abstraction.
     MAXN = 24
+    OVERFLOW = MAXN + 1
     INT_VARS: tuple[str, ...] = ("nSig", "nO1", "nO2", "n")
     B_DOMAIN: tuple[str, ...] = ("u", "v", "zd", "xu", "xv", "oth", "qh", "wh")
     DEL_DOMAIN: tuple[str, ...] = ("zd", "u", "xu", "v", "xv")
@@ -406,8 +411,8 @@ class ACoreEncoder:
         # the source side is in B_DOMAIN).
         for x in self.B_DOMAIN:
             self.add(-self.b[(x, x)])
-        for pair in EQ_PAIRS:
-            p, q = tuple(pair)
+        for pair in sorted(EQ_PAIRS, key=lambda fs: tuple(sorted(fs))):
+            p, q = sorted(pair)
             ev = self.eq[pair]
             if p in self.B_DOMAIN:
                 self.add(-ev, -self.b[(p, q)])
@@ -504,6 +509,7 @@ class ACoreEncoder:
         vals: dict[int, int] = {}
         for i in range(self.MAXN + 1):
             vals[i] = self._new(f"{name}={i}")
+        vals[self.OVERFLOW] = self._new(f"{name}>={self.OVERFLOW}")
         self.int_val[name] = vals
         vs = list(vals.values())
         self.add(*vs)  # at-least-one
@@ -511,9 +517,17 @@ class ACoreEncoder:
         return vals
 
     def _int_ge(self, name: str, threshold: int, trigger: int | None = None) -> None:
-        """Assert name>=threshold, optionally gated by `trigger`."""
+        """Assert name>=threshold, optionally gated by `trigger`.
+
+        Thresholds at most OVERFLOW are exact in this abstraction: the
+        overflow bucket denotes every concrete value at least OVERFLOW.
+        """
+        if threshold > self.OVERFLOW:
+            raise EncodingError(
+                f"threshold {threshold} exceeds sound overflow boundary {self.OVERFLOW}"
+            )
         vals = self.int_val[name]
-        for i in range(min(threshold, self.MAXN + 1)):
+        for i in range(threshold):
             if trigger is None:
                 self.add(-vals[i])
             else:
@@ -522,33 +536,30 @@ class ACoreEncoder:
     def _int_eq(self, name: str, value: int, trigger: int) -> None:
         """Assert trigger -> name==value.  Relies on name's own exactly-one
         to force every other value false -- avoids enumerating 24 bans."""
+        if not 0 <= value <= self.MAXN:
+            raise EncodingError(f"exact value {value} is outside 0..{self.MAXN}")
         self.add(-trigger, self.int_val[name][value])
 
     def _build_integers(self) -> None:
         for name in self.INT_VARS:
             self._build_int_var(name)
         sig, o1, o2, n = (self.int_val[k] for k in self.INT_VARS)
-        # (N1) n = nSig + nO1 + nO2 + 3.  One-directional implication per
-        # in-range combo suffices given each var's own exactly-one (see
-        # module docstring / RESULTS.md for the argument).  Combos whose sum
-        # would overflow MAXN are explicitly FORBIDDEN rather than left
-        # unconstrained: since n itself is capped at MAXN and N1 asserts a
-        # genuine equality, nSig+nO1+nO2+3 > MAXN is provably infeasible
-        # (n could never equal it), not merely "out of representable range".
-        # Leaving those combos open let CaDiCaL land on a degenerate
-        # nSig=nO1=nO2=n=MAXN witness that does not actually satisfy N1;
-        # this closes that gap without adding a new clause family (it is
-        # the other half of the same N1 equality, not an improvisation).
-        # Full cube i,j,k in [0,MAXN]^3 (each var's own domain) -- 15625
-        # iterations, trivial in Python; avoids any partial-range bug.
-        for i in range(self.MAXN + 1):
-            for j in range(self.MAXN + 1):
-                for k in range(self.MAXN + 1):
-                    total = i + j + k + 3
-                    if total > self.MAXN:
-                        self.add(-sig[i], -o1[j], -o2[k])
+        # (N1) n = nSig + nO1 + nO2 + 3, abstracted exactly through MAXN
+        # and conservatively above it.  OVERFLOW denotes every value >=25.
+        # If all three inputs are exact, their exact sum selects either an
+        # exact n bucket or OVERFLOW.  If any input is OVERFLOW, the positive
+        # addends force n into OVERFLOW as well.  Thus every concrete
+        # cardinality tuple has an abstract image; unlike the old bounded
+        # encoding, no n>24 model is silently deleted.
+        for i in range(self.OVERFLOW + 1):
+            for j in range(self.OVERFLOW + 1):
+                for k in range(self.OVERFLOW + 1):
+                    if self.OVERFLOW in (i, j, k):
+                        out = self.OVERFLOW
                     else:
-                        self.add(-sig[i], -o1[j], -o2[k], n[total])
+                        total = i + j + k + 3
+                        out = total if total <= self.MAXN else self.OVERFLOW
+                    self.add(-sig[i], -o1[j], -o2[k], n[out])
         # (N2) n >= 12 (B1)
         self._int_ge("n", 12)
         # (N8) F-chain count [F + (B9) + (B3), v1.2]: three pairwise-disjoint
@@ -623,8 +634,8 @@ class ACoreEncoder:
             self.row_u, self.row_v, self.del_,
             self.bs1, self.bs2, self.bt1, self.bt2,
         )
-        for pair in EQ_PAIRS:
-            p, q = tuple(pair)
+        for pair in sorted(EQ_PAIRS, key=lambda fs: tuple(sorted(fs))):
+            p, q = sorted(pair)
             ev = self.eq[pair]
             for fam in unary_families:
                 if p in fam and q in fam:
@@ -799,8 +810,12 @@ class ACoreEncoder:
     # -- section 4: leaf deltas -----------------------------------------------
 
     def _ge_clauses(self, name: str, threshold: int) -> list[tuple[int, ...]]:
+        if threshold > self.OVERFLOW:
+            raise EncodingError(
+                f"threshold {threshold} exceeds sound overflow boundary {self.OVERFLOW}"
+            )
         vals = self.int_val[name]
-        return [(-vals[i],) for i in range(min(threshold, self.MAXN + 1))]
+        return [(-vals[i],) for i in range(threshold)]
 
     def leaf_delta_clauses(self, leaf: str) -> list[tuple[int, ...]]:
         b, o2 = self.b, self.inO2i

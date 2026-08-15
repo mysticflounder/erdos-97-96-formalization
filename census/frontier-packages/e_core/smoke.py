@@ -219,8 +219,50 @@ def gate_shadow(
         model_path.write_text(json.dumps(result.cube, sort_keys=True, indent=2), encoding="utf-8")
         record["model_file"] = str(model_path.relative_to(OUT_DIR.parents[1]))
         record["derived_n_value"] = next(
-            (i for i in range(encoder.MAXN + 1) if result.cube.get(f"n={i}")), None
+            (i for i in range(encoder.OVERFLOW + 1) if result.cube.get(
+                f"n>={encoder.OVERFLOW}" if i == encoder.OVERFLOW else f"n={i}"
+            )), None
         )
+    return record
+
+
+def gate_overflow(
+    encoder: "enc.EEncoder", timeout_seconds: int, solver: FrontierSolver
+) -> dict[str, Any]:
+    """Check that the universal cardinality abstraction retains |A| > 24.
+
+    The concrete cap tuple (nSig,nO1,nO2)=(24,4,4) gives n=35.  The old
+    exact-only encoding rejected that tuple; the repaired abstraction must
+    accept it and derive the GE25 bucket.
+    """
+    assumptions = [
+        _lit(encoder, "nSig=24", True),
+        _lit(encoder, "nO1=4", True),
+        _lit(encoder, "nO2=4", True),
+    ]
+    instance = enc.RunInstance(encoder, encoder.base_clauses)
+    cnf_path = OUT_DIR / "g_overflow.cnf"
+    start = time.monotonic()
+    result = solver(
+        instance, cnf_path, extra_clauses=assumptions, timeout_seconds=timeout_seconds
+    )
+    wall = time.monotonic() - start
+    derived_overflow = bool(
+        result.cube and result.cube.get(f"n>={encoder.OVERFLOW}")
+    )
+    record: dict[str, Any] = {
+        "gate": "G-OVERFLOW",
+        "variant": "nSig=24,nO1=4,nO2=4 implies n>=25",
+        "verdict": result.verdict,
+        "expected": "SAT with n>=25",
+        "derived_n_overflow": derived_overflow,
+        "pass": result.verdict == "SAT" and derived_overflow,
+        "wall_seconds": round(wall, 3),
+    }
+    if result.verdict == "SAT" and result.cube is not None:
+        model_path = OUT_DIR / "g_overflow.model.json"
+        model_path.write_text(json.dumps(result.cube, sort_keys=True, indent=2), encoding="utf-8")
+        record["model_file"] = str(model_path.relative_to(OUT_DIR.parents[1]))
     return record
 
 
@@ -331,6 +373,10 @@ def main() -> int:
     report["G-SHADOW"] = shadow_result
     print(json.dumps(shadow_result, indent=2))
 
+    overflow_result = gate_overflow(encoder, args.timeout_seconds, solver)
+    report["G-OVERFLOW"] = overflow_result
+    print(json.dumps(overflow_result, indent=2))
+
     probes_result = gate_probes(
         encoder, args.timeout_seconds, solver, args.solver_backend
     )
@@ -340,6 +386,7 @@ def main() -> int:
     report["ALL_GATES_PASS"] = (
         base_result["pass"]
         and shadow_result["pass"]
+        and overflow_result["pass"]
         and probes_result["pass"]
     )
     (OUT_DIR / "smoke_report.json").write_text(

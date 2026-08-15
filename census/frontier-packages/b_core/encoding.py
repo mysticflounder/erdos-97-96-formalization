@@ -2,8 +2,9 @@
 
 This is deliberately a *projection*, not a finite model of the carrier.
 Every emitted clause has a hypothesis/bank tag.  In particular the B1
-delta contains only facts available from the live B1 binders; it does not
-silently import the stronger historical B1 bank interface.
+delta contains the normal form now proved from the live B1 binders by
+`Problem97.B2Arm3.b1_live_normalForm`; it does not import any stronger
+historical B1 bank interface.
 """
 
 from __future__ import annotations
@@ -44,7 +45,7 @@ class BEncoder:
         self.layer_tags: dict[str, list[str]] = {layer: [] for layer in self.layers}
         self._allocate_atoms()
         self._build_base()
-        self._build_b1_direct_shadow()
+        self._build_b1_live_normal_form_shadow()
         self._build_b2()
         self._build_b3()
 
@@ -110,8 +111,13 @@ class BEncoder:
                     (self.atom(f"row({s},{x})"), self.atom(f"surv({x},{blocker})")),
                 )
 
-    def _build_b1_direct_shadow(self) -> None:
-        """Only direct B1 consequences; deliberately no historical bank NF."""
+    def _build_b1_live_normal_form_shadow(self) -> None:
+        """Project exactly the proved live B1 normal form into this vocabulary.
+
+        The layer name remains `B1-direct-shadow` so existing artifact paths
+        stay stable.  Its source is now `b1_live_normalForm`, not the obsolete
+        pre-normal-form binder-only interface.
+        """
 
         # hblockersEq: b1 = b2.  Project equality only through predicates
         # represented in this finite vocabulary.
@@ -148,6 +154,42 @@ class BEncoder:
                 "B1-hblockersEq-survival-congruence",
                 (self.atom(f"surv({x},b1)"), -self.atom(f"surv({x},b2)")),
             )
+
+        # b1_live_normalForm: Row(z1) = Row(z2).
+        for p in LABELS:
+            self.add(
+                "B1-direct-shadow",
+                "B1-live-normalForm-support-equality",
+                (-self.atom(f"row(z1,{p})"), self.atom(f"row(z2,{p})")),
+            )
+            self.add(
+                "B1-direct-shadow",
+                "B1-live-normalForm-support-equality",
+                (self.atom(f"row(z1,{p})"), -self.atom(f"row(z2,{p})")),
+            )
+
+        # Each deleted source lies on the other source's canonical row.
+        self.unit(
+            "B1-direct-shadow",
+            "B1-live-normalForm-cross-membership",
+            self.atom("row(z1,z2)"),
+        )
+        self.unit(
+            "B1-direct-shadow",
+            "B1-live-normalForm-cross-membership",
+            self.atom("row(z2,z1)"),
+        )
+
+        # The common row meets the physical second-apex class in exactly
+        # {z1,z2}.  Since u and v are distinct members of that physical class,
+        # neither can lie on either (equal) canonical row.
+        for source in ("z1", "z2"):
+            for point in ("u", "v"):
+                self.unit(
+                    "B1-direct-shadow",
+                    "B1-live-normalForm-physical-class-exclusion",
+                    -self.atom(f"row({source},{point})"),
+                )
 
     def _equality_projection(self, layer: str, selector: int, left: str, right: str) -> None:
         self.iff_under(

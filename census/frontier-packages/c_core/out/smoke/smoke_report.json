@@ -5,7 +5,7 @@
     "gate": "G-BASE",
     "pass": true,
     "verdict": "SAT",
-    "wall_seconds": 0.018
+    "wall_seconds": 0.02
   },
   "G-C69": {
     "clause": [
@@ -28,16 +28,20 @@
         "proof_verified": false,
         "variant": "pre_c69_both_memberships",
         "verdict": "SAT",
-        "wall_seconds": 0.017
+        "wall_seconds": 0.019
       },
       {
         "branch": "C1",
         "expected": "UNSAT",
         "pass": true,
+        "proof_file": "out/smoke/g_c69_c1_c69_both_memberships.drat",
+        "proof_format": "DRAT",
         "proof_verified": true,
+        "requested_proof_file": "out/smoke/g_c69_c1_c69_both_memberships.drat",
+        "solver_backend": "legacy-local",
         "variant": "c69_both_memberships",
         "verdict": "UNSAT",
-        "wall_seconds": 0.048
+        "wall_seconds": 0.05
       },
       {
         "branch": "C1",
@@ -46,7 +50,7 @@
         "proof_verified": false,
         "variant": "c69_omit_qh_only",
         "verdict": "SAT",
-        "wall_seconds": 0.018
+        "wall_seconds": 0.022
       },
       {
         "branch": "C1",
@@ -55,7 +59,7 @@
         "proof_verified": false,
         "variant": "c69_omit_wh_only",
         "verdict": "SAT",
-        "wall_seconds": 0.017
+        "wall_seconds": 0.019
       },
       {
         "branch": "C2",
@@ -64,16 +68,20 @@
         "proof_verified": false,
         "variant": "pre_c69_both_memberships",
         "verdict": "SAT",
-        "wall_seconds": 0.017
+        "wall_seconds": 0.019
       },
       {
         "branch": "C2",
         "expected": "UNSAT",
         "pass": true,
+        "proof_file": "out/smoke/g_c69_c2_c69_both_memberships.drat",
+        "proof_format": "DRAT",
         "proof_verified": true,
+        "requested_proof_file": "out/smoke/g_c69_c2_c69_both_memberships.drat",
+        "solver_backend": "legacy-local",
         "variant": "c69_both_memberships",
         "verdict": "UNSAT",
-        "wall_seconds": 0.05
+        "wall_seconds": 0.051
       },
       {
         "branch": "C2",
@@ -99,7 +107,11 @@
     "expected": "UNSAT",
     "gate": "G-EXCL-analog (base+C1+del-triple, DEL3 gate)",
     "pass": true,
+    "proof_file": "out/smoke/g_excl_c1_del_triple.drat",
+    "proof_format": "DRAT",
     "proof_verified": true,
+    "requested_proof_file": "out/smoke/g_excl_c1_del_triple.drat",
+    "solver_backend": "legacy-local",
     "verdict": "UNSAT",
     "wall_seconds": 0.05
   },
@@ -107,9 +119,23 @@
     "expected": "UNSAT",
     "gate": "G-EXCL-analog (base+C1+srcU)",
     "pass": true,
+    "proof_file": "out/smoke/g_excl_c1_srcu.drat",
+    "proof_format": "DRAT",
     "proof_verified": true,
+    "requested_proof_file": "out/smoke/g_excl_c1_srcu.drat",
+    "solver_backend": "legacy-local",
     "verdict": "UNSAT",
-    "wall_seconds": 0.05
+    "wall_seconds": 0.051
+  },
+  "G-OVERFLOW": {
+    "derived_n_overflow": true,
+    "expected": "SAT with n>=25",
+    "gate": "G-OVERFLOW",
+    "model_file": "out/smoke/g_overflow.model.json",
+    "pass": true,
+    "variant": "nSig=24,nO1=2,nO2=3 implies n>=25",
+    "verdict": "SAT",
+    "wall_seconds": 0.019
   },
   "G-PROBES": {
     "gate": "G-PROBES",
@@ -119,33 +145,49 @@
         "expected": "UNSAT",
         "pass": true,
         "probe": "P-SRC",
+        "proof_file": "out/smoke/g_probe_P-SRC.drat",
+        "proof_format": "DRAT",
         "proof_verified": true,
+        "requested_proof_file": "out/smoke/g_probe_P-SRC.drat",
+        "solver_backend": "legacy-local",
         "verdict": "UNSAT",
-        "wall_seconds": 0.049
+        "wall_seconds": 0.047
       },
       {
         "expected": "UNSAT",
         "pass": true,
         "probe": "P-COL",
+        "proof_file": "out/smoke/g_probe_P-COL.drat",
+        "proof_format": "DRAT",
         "proof_verified": true,
+        "requested_proof_file": "out/smoke/g_probe_P-COL.drat",
+        "solver_backend": "legacy-local",
         "verdict": "UNSAT",
-        "wall_seconds": 0.05
+        "wall_seconds": 0.047
       },
       {
         "expected": "UNSAT",
         "pass": true,
         "probe": "P-E5C",
+        "proof_file": "out/smoke/g_probe_P-E5C.drat",
+        "proof_format": "DRAT",
         "proof_verified": true,
+        "requested_proof_file": "out/smoke/g_probe_P-E5C.drat",
+        "solver_backend": "legacy-local",
         "verdict": "UNSAT",
-        "wall_seconds": 0.05
+        "wall_seconds": 0.047
       },
       {
         "expected": "UNSAT",
         "pass": true,
         "probe": "P-E8-src",
+        "proof_file": "out/smoke/g_probe_P-E8-src.drat",
+        "proof_format": "DRAT",
         "proof_verified": true,
+        "requested_proof_file": "out/smoke/g_probe_P-E8-src.drat",
+        "solver_backend": "legacy-local",
         "verdict": "UNSAT",
-        "wall_seconds": 0.049
+        "wall_seconds": 0.047
       }
     ]
   },
@@ -158,6 +200,6 @@
     "pass": true,
     "variant": "hand-built-total-assignment (spec section 7 default for C)",
     "verdict": "SAT",
-    "wall_seconds": 0.018
+    "wall_seconds": 0.02
   }
 }

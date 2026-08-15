@@ -102,7 +102,11 @@ class EEncoder:
     ``dom_unit_clause``.
     """
 
+    # Values 0..MAXN are exact.  OVERFLOW is the abstract bucket GE25.
+    # The E leaves are universal in |A|, so the old exact 0..24 domain was
+    # unsound: it silently deleted every instance with |A| > 24.
     MAXN = 24
+    OVERFLOW = MAXN + 1
     INT_VARS: tuple[str, ...] = ("nSig", "nO1", "nO2", "n", "nN", "nG1", "nG1O1")
     B_DOMAIN: tuple[str, ...] = ("x1", "x2", "qb", "wb")
     QS_DOMAIN: tuple[str, ...] = ("a0", "a1", "a2", "x1", "x2", "wb")  # labels \ {qb}
@@ -398,6 +402,7 @@ class EEncoder:
         vals: dict[int, int] = {}
         for i in range(self.MAXN + 1):
             vals[i] = self._new(f"{name}={i}")
+        vals[self.OVERFLOW] = self._new(f"{name}>={self.OVERFLOW}")
         self.int_val[name] = vals
         vs = list(vals.values())
         self.add(*vs)  # at-least-one
@@ -406,33 +411,59 @@ class EEncoder:
 
     def _int_ge(self, name: str, threshold: int, trigger: int | None = None) -> None:
         """Assert name>=threshold, optionally gated by `trigger`."""
+        if threshold > self.OVERFLOW:
+            raise EncodingError(
+                f"threshold {threshold} exceeds sound overflow boundary {self.OVERFLOW}"
+            )
         vals = self.int_val[name]
-        for i in range(min(threshold, self.MAXN + 1)):
+        for i in range(threshold):
             if trigger is None:
                 self.add(-vals[i])
             else:
                 self.add(-trigger, -vals[i])
 
     def _int_le_int(self, left: str, right: str) -> None:
-        """Assert left <= right by forbidding every (i,j) combo with i>j."""
+        """Assert left <= right, retaining soundness at GE25.
+
+        A GE25/GE25 pair is left unconstrained because the concrete values may
+        satisfy either ordering.  GE25 against an exact value is definitely
+        false; an exact value against GE25 is definitely true.
+        """
         left_vals, right_vals = self.int_val[left], self.int_val[right]
-        for i in range(self.MAXN + 1):
-            for j in range(self.MAXN + 1):
-                if i > j:
+        for i in range(self.OVERFLOW + 1):
+            for j in range(self.OVERFLOW + 1):
+                definitely_false = (
+                    (i == self.OVERFLOW and j < self.OVERFLOW)
+                    or (i < self.OVERFLOW and j < self.OVERFLOW and i > j)
+                )
+                if definitely_false:
                     self.add(-left_vals[i], -right_vals[j])
 
     def _int_lt_int(self, left: str, right: str) -> None:
-        """Assert left < right (left <= right-1) by forbidding i>=j combos."""
+        """Assert left < right, retaining soundness at GE25.
+
+        Both overflow buckets remain possible: two concrete values at least
+        25 can still be strictly ordered.  Only pairs that are definitely not
+        strict are forbidden.
+        """
         left_vals, right_vals = self.int_val[left], self.int_val[right]
-        for i in range(self.MAXN + 1):
-            for j in range(self.MAXN + 1):
-                if i >= j:
+        for i in range(self.OVERFLOW + 1):
+            for j in range(self.OVERFLOW + 1):
+                definitely_false = (
+                    i == self.OVERFLOW and j < self.OVERFLOW
+                ) or (
+                    i < self.OVERFLOW and j < self.OVERFLOW and i >= j
+                )
+                if definitely_false:
                     self.add(-left_vals[i], -right_vals[j])
 
     def _int_le_const(self, name: str, bound: int, trigger: int | None = None) -> None:
         """Assert name<=bound, optionally gated by `trigger`."""
+        if bound >= self.OVERFLOW:
+            return
         vals = self.int_val[name]
-        for i in range(bound + 1, self.MAXN + 1):
+        # GE25 is definitely above every supported finite bound.
+        for i in range(bound + 1, self.OVERFLOW + 1):
             if trigger is None:
                 self.add(-vals[i])
             else:
@@ -442,18 +473,19 @@ class EEncoder:
         for name in self.INT_VARS:
             self._build_int_var(name)
         sig, o1, o2, n = (self.int_val[k] for k in ("nSig", "nO1", "nO2", "n"))
-        # (EI1) n = nSig + nO1 + nO2 + 3 [cap partition]; full [0,MAXN]^3
-        # cube, same discipline as a_core's (N1) -- see that file's
-        # comment for why the "forbid overflow combos" half is needed, not
-        # merely the forward implication.
-        for i in range(self.MAXN + 1):
-            for j in range(self.MAXN + 1):
-                for k in range(self.MAXN + 1):
-                    total = i + j + k + 3
-                    if total > self.MAXN:
-                        self.add(-sig[i], -o1[j], -o2[k])
+        # (EI1) n = nSig + nO1 + nO2 + 3 [cap partition].  An exact sum at
+        # most 24 selects that exact n bucket; a larger sum or any overflow
+        # input selects GE25.  Thus every concrete tuple has an abstract
+        # image, unlike the old bounded encoding.
+        for i in range(self.OVERFLOW + 1):
+            for j in range(self.OVERFLOW + 1):
+                for k in range(self.OVERFLOW + 1):
+                    if self.OVERFLOW in (i, j, k):
+                        out = self.OVERFLOW
                     else:
-                        self.add(-sig[i], -o1[j], -o2[k], n[total])
+                        total = i + j + k + 3
+                        out = total if total <= self.MAXN else self.OVERFLOW
+                    self.add(-sig[i], -o1[j], -o2[k], n[out])
         # n > 9 (E3.3) -- subsumed by the (EI2) floors below but asserted
         # anyway (cheap), per spec.
         self._int_ge("n", 10)
@@ -465,9 +497,15 @@ class EEncoder:
         self._int_ge("nSig", 4)
         # (EI3) cover bound [(E6.4)]: n <= 4*nN; nN <= n.
         n_vals, nn_vals = self.int_val["n"], self.int_val["nN"]
-        for i in range(self.MAXN + 1):  # i = n value
-            for k in range(self.MAXN + 1):  # k = nN value
-                if i > 4 * k:
+        for i in range(self.OVERFLOW + 1):  # i = n value
+            for k in range(self.OVERFLOW + 1):  # k = nN value
+                # For n=GE25 and nN=k, n<=4k is definitely impossible only
+                # when 4k<25.  At k>=7 the bucket is mixed, so retain it.
+                definitely_false = (
+                    (i == self.OVERFLOW and k < self.OVERFLOW and 4 * k < self.OVERFLOW)
+                    or (i < self.OVERFLOW and k < self.OVERFLOW and i > 4 * k)
+                )
+                if definitely_false:
                     self.add(-n_vals[i], -nn_vals[k])
         self._int_le_int("nN", "n")
         # Membership links: >=k of {notRob(x1), notRob(x2)} true -> nN>=k
@@ -579,14 +617,21 @@ class EEncoder:
         probes that need an integer-layer assumption without touching the
         frozen base clause set (mirrors a_core/encoding.py's
         ``_ge_clauses``)."""
+        if threshold > self.OVERFLOW:
+            raise EncodingError(
+                f"threshold {threshold} exceeds sound overflow boundary {self.OVERFLOW}"
+            )
         vals = self.int_val[name]
-        return [(-vals[i],) for i in range(min(threshold, self.MAXN + 1))]
+        # GE25 itself satisfies every threshold at most 25, so only exact
+        # buckets below the threshold need to be banned.
+        return [(-vals[i],) for i in range(min(threshold, self.OVERFLOW))]
 
     def le_clauses(self, name: str, bound: int) -> list[tuple[int, ...]]:
         """Extra-clause list (does NOT mutate self.cnf) banning name's
         values above `bound` -- i.e. asserts name<=bound."""
         vals = self.int_val[name]
-        return [(-vals[i],) for i in range(bound + 1, self.MAXN + 1)]
+        # GE25 is definitely above every finite bound below 25.
+        return [(-vals[i],) for i in range(bound + 1, self.OVERFLOW + 1)]
 
     def dom_unit_clause(self, arm: str) -> list[tuple[int, ...]]:
         """base+domX (X in {1,2}): unit dom1 resp. dom2 (spec section 4)."""

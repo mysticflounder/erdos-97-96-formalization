@@ -17,12 +17,28 @@ geometric closure result. This package's own spec additionally states the
 expected base verdict IS SAT (the 15-point equality shadow satisfies the
 counting core) — SAT below is the expected outcome, not a failure.
 
+## 0.1 Universal-cardinality soundness repair (2026-08-04)
+
+The original integer layer had exact buckets `0,...,24` only, while the E
+leaves are universal and supply no upper bound on `|A|`.  It therefore did
+not represent models with `|A|>24`; any old UNSAT result was bounded to that
+truncated abstraction until replayed.  The encoder now adds a `GE25`
+overflow bucket for every integer variable.  Exact sums up to 24 retain
+their exact output; larger sums map to `GE25`, and inequality clauses forbid
+only comparisons that are definitely false for all concrete values in the
+abstract buckets.
+
+All five old UNSAT probes were replayed against the repaired CNF with fresh
+DRAT proofs, and remain UNSAT.  The new `G-OVERFLOW` SAT gate fixes
+`(nSig,nO1,nO2)=(24,4,4)` and derives `n>=25`.  These are still incidence
+probes, not closures of a universal Lean leaf.
+
 ## 0. Encoder size
 
 `base` (spec sections 1-3 in full — E has one leaf, no leaf deltas/context
-block, unlike A-core's 𝔓/A2-A8 structure): **551 variables, 18080
-clauses**. `base+dom1` and `base+dom2` each add 1 unit clause (551
-variables, 18081 clauses). All solves complete in 0.01-0.07s, nowhere near
+block, unlike A-core's 𝔓/A2-A8 structure): **565 variables, 20160
+clauses**. `base+dom1` and `base+dom2` each add 1 unit clause (565
+variables, 20161 clauses). All solves complete in 0.01-0.09s, nowhere near
 the 60s timeout budget.
 
 ## 1. Smoke gates (spec §5), run IN ORDER: G-BASE, G-SHADOW, G-PROBES
@@ -33,6 +49,7 @@ Command: `uv run python census/frontier-packages/e_core/smoke.py`
 |---|---|---|---|
 | G-BASE | SAT | SAT | yes |
 | G-SHADOW | SAT | SAT | yes |
+| G-OVERFLOW | SAT with `n>=25` | SAT with `n>=25` | yes |
 | P-EBM3 | UNSAT (DRAT verified) | UNSAT | yes |
 | P-ER2 | UNSAT (DRAT verified) | UNSAT | yes |
 | P-DOM | UNSAT (DRAT verified) | UNSAT | yes |
@@ -292,17 +309,13 @@ before/after variable and clause counts).
 | (EQ1)-(EQ4) consistency | `_build_eq_consistency` | 10 | 241 |
 | **Total** | | **551** | **18080** |
 
-The integer layer dominates the clause count: seven `MAXN=24` (25-value)
-unary/one-hot variables, each needing its own Sinz exactly-one encoding,
-plus (EI1)'s full `25×25×25` combinatorial cube (the same discipline
-`a_core`'s (N1) uses, and for the identical reason — see that file's
-comment: closing the "overflow" half of the equality, not just the forward
-implication) and (EI3)'s two `25×25` inequality grids (`n≤4·nN`, `nN≤n`).
-`a_core`'s own base run has a comparable total (18858 clauses) from only
-four integer vars (`nSig,nO1,nO2,n`) versus E's seven — the dominant cost
-in both encoders is the `MAXN=24` unary/one-hot machinery itself (each var
-independently needs its own ~24-clause Sinz exactly-one plus its role in
-the equality/inequality grids), not the label-family clause count.
+The integer layer dominates the clause count: seven exact buckets
+`0,...,24` plus one `GE25` overflow bucket per variable, each needing its
+own Sinz exactly-one encoding, plus (EI1)'s full `26×26×26` abstract cube
+and (EI3)'s two `26×26` inequality grids (`n≤4·nN`, `nN≤n`).  The extra
+bucket is the soundness repair; the additional clauses are the price of
+retaining all concrete cardinalities rather than silently deleting
+`|A|>24` instances.
 
 ## 4. Spec concerns / ambiguities
 

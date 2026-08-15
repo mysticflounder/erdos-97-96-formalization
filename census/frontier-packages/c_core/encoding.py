@@ -115,7 +115,12 @@ class CCoreEncoder:
     (C6.9, fresh label P, COL family, etc.).
     """
 
+    # Values 0..MAXN are exact.  OVERFLOW is the abstract bucket GE25.
+    # This is load-bearing for universal soundness: the live C-core leaves
+    # have no upper bound on |A|, so values above 24 must be represented,
+    # not forbidden by the finite abstraction.
     MAXN = 24
+    OVERFLOW = MAXN + 1
     INT_VARS: tuple[str, ...] = ("nSig", "nO1", "nO2", "n")
     B_DOMAIN: tuple[str, ...] = ("u", "v", "zd", "xu", "xv", "oth", "qh", "wh")
     DEL_DOMAIN: tuple[str, ...] = ("zd", "u", "xu", "v", "xv")
@@ -608,6 +613,7 @@ class CCoreEncoder:
         vals: dict[int, int] = {}
         for i in range(self.MAXN + 1):
             vals[i] = self._new(f"{name}={i}")
+        vals[self.OVERFLOW] = self._new(f"{name}>={self.OVERFLOW}")
         self.int_val[name] = vals
         vs = list(vals.values())
         self.add(*vs)  # at-least-one
@@ -615,9 +621,17 @@ class CCoreEncoder:
         return vals
 
     def _int_ge(self, name: str, threshold: int, trigger: int | None = None) -> None:
-        """Assert name>=threshold, optionally gated by `trigger`."""
+        """Assert name>=threshold, optionally gated by `trigger`.
+
+        Thresholds at most OVERFLOW are exact in this abstraction: the
+        overflow bucket denotes every concrete value at least OVERFLOW.
+        """
+        if threshold > self.OVERFLOW:
+            raise EncodingError(
+                f"threshold {threshold} exceeds sound overflow boundary {self.OVERFLOW}"
+            )
         vals = self.int_val[name]
-        for i in range(min(threshold, self.MAXN + 1)):
+        for i in range(threshold):
             if trigger is None:
                 self.add(-vals[i])
             else:
@@ -625,23 +639,30 @@ class CCoreEncoder:
 
     def _int_eq(self, name: str, value: int, trigger: int) -> None:
         """Assert trigger -> name==value."""
+        if not 0 <= value <= self.MAXN:
+            raise EncodingError(f"exact value {value} is outside 0..{self.MAXN}")
         self.add(-trigger, self.int_val[name][value])
 
     def _build_integers(self) -> None:
         for name in self.INT_VARS:
             self._build_int_var(name)
         sig, o1, o2, n = (self.int_val[k] for k in self.INT_VARS)
-        # (N1) n = nSig + nO1 + nO2 + 3.  Unchanged from A (full cube
-        # forward-implication + forbidding overflow combos -- see A's
-        # RESULTS.md section 7 for why the forbid-half is needed).
-        for i in range(self.MAXN + 1):
-            for j in range(self.MAXN + 1):
-                for k in range(self.MAXN + 1):
-                    total = i + j + k + 3
-                    if total > self.MAXN:
-                        self.add(-sig[i], -o1[j], -o2[k])
+        # (N1) n = nSig + nO1 + nO2 + 3, abstracted exactly through MAXN
+        # and conservatively above it.  OVERFLOW denotes every value >=25.
+        # If all three inputs are exact, their exact sum selects either an
+        # exact n bucket or OVERFLOW.  If any input is OVERFLOW, the positive
+        # addends force n into OVERFLOW as well.  Thus every concrete
+        # cardinality tuple has an abstract image; unlike the old bounded
+        # encoding, no n>24 model is silently deleted.
+        for i in range(self.OVERFLOW + 1):
+            for j in range(self.OVERFLOW + 1):
+                for k in range(self.OVERFLOW + 1):
+                    if self.OVERFLOW in (i, j, k):
+                        out = self.OVERFLOW
                     else:
-                        self.add(-sig[i], -o1[j], -o2[k], n[total])
+                        total = i + j + k + 3
+                        out = total if total <= self.MAXN else self.OVERFLOW
+                    self.add(-sig[i], -o1[j], -o2[k], n[out])
         # (N2) AMENDED [(C3.3): 9 < |A|] -- n >= 10, not n >= 12.
         self._int_ge("n", 10)
         # (N8) DROPPED [C spec section 4: its A-derivation needs the
