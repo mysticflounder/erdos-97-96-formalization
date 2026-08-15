@@ -66,6 +66,10 @@ from the promoted import chain.
 
 ## Mixed-v4 12-cell continuation checkpoint
 
+This is the historical mixed-v4 12-cell continuation.  It is not the
+2026-08-11 arm-static cell-6 v4 canary, whose status is
+`SAT_WITNESS_REPLAYED` with an unresolved structural survivor.
+
 A later bounded continuation ran all twelve exact-12 schedule cells against the
 current source-order contract.  It produced no terminal `UNSAT` cell:
 

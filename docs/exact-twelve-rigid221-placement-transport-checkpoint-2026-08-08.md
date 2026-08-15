@@ -46,6 +46,10 @@ Explicit axiom checks for the aggregate transport theorem and the separated
 This is source ingress plus a placement-coordinate representative cover.  It
 is not full finite branch/certificate coverage and not a contradiction.
 
+All computational statuses below concern the placement-transport/v14
+representative lane and should not be read as the separate arm-static cell-6
+v4 status.
+
 ## Computational status
 
 The bounded v18 canary in the new `u/q`, `(jd,v)=(0,4)`, `d=4` cell classified
@@ -121,6 +125,28 @@ capturing and checking the source bytes before path-free replay.  Legacy v2 and
 tagged-v3 journals are rejected rather than silently migrated.  The retained
 earlier waves remain historical nonterminal diagnostics; a fresh v4 wave is
 required for promotion.
+
+The separate `nextRowOnlyHit` successor runner now uses the same fail-closed v4
+principle.  Its records authenticate the exact 57-entry source-order bank, and
+replay reattests the current Lean/detector bytes and validates the whole journal
+on a shadow CNF before installing any clause.  The fresh cell-3 i84 canary
+replayed 84 records, including the new entry-56
+`nextRowCell3PositiveNogood` cut, and ended `ITERATION_LIMIT`.  It produced no
+terminal CNF, DRAT proof, all-cell coverage, universal lift, or live closure.
+
+The subsequent twelve-cell v4 wave reached 100 authenticated records in every
+cell and again ended `ITERATION_LIMIT` in all twelve cells.  Its 1,200 records
+contain 1,184 duplicate-center, eleven equilateral-bisector, three three-triad,
+one perpendicular-bisector/convex, and one entry-56 source-order cut.  The
+mandatory post-wave search found no new local theorem family.  It did identify
+that the bank's named terminal consumer was specific to the historical v14
+clause delta.  The next-row lane therefore now has a separate conditional
+`NextRowTerminalBankConsumer.false_of_terminalNextRowSourceOrderBank` endpoint,
+and its journal schema advances to v5.  Only proof-carrying source-order entries
+name that direct endpoint; structural Python certificates now name their
+obstruction family separately and carry no direct Lean consumer.  A concrete
+Lean reconstruction of each emitted next-row formula as a `CompiledNextRowJob`
+remains open; no v4 artifact is being promoted through the v14 consumer.
 
 Later checkpoint (2026-08-10): the separate five-omission v3 lane now has an
 authenticated 716-cut layered successor, but every deleted-label shard stopped
