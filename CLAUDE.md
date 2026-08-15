@@ -44,7 +44,79 @@ snapshot and verify candidate statements, imports, and trust state before reuse.
 ## Communication with parallel agents
 You can send messages to parallel agents via the erdos-97-96-formalization nthdegree convo. (`nthdegree convo`)
 
+## Worktree ownership and artifact hygiene
+
+Before a lane writes source or generates artifacts, give it a stable lane ID and
+write `.codex/worktree-checkpoints/<lane-id>.json` using schema
+`worktree-lane-checkpoint/v1`.  Declare exact source/test/doc paths in
+`owned_paths`, exact retained evidence in `durable_paths`, and each runtime tree
+in `generated_roots`.  Generated trees must use the registered layout
+`scratch/runs/<lane-id>/<run-id>/` (or the governed card-head run layout), never
+the repository root, `lean/`, or an ad hoc sibling of source files.
+
+Run the read-only hygiene report at a natural checkpoint and before asking
+another agent to take over:
+
+```bash
+python scripts/check_worktree_hygiene.py report --lane <lane-id>
+```
+
+Before staging or committing, stage exact owned paths only and require the
+staged check to pass:
+
+```bash
+python scripts/check_worktree_hygiene.py check --lane <lane-id> --staged
+```
+
+Foreign dirty paths are reported for coordination.  Foreign staged paths are a
+blocker: do not reset, unstage, amend, or commit them; wait for their owner or
+use a separately reviewed exact-path commit after ownership is resolved.  Do
+not use `git add .`, `git add -A`, directory pathspecs, or bulk formatting in a
+shared worktree.
+
+Runtime payloads are not made durable merely by living under `scratch/`.
+Promote only authenticated manifests, receipts, reports, certificates, and
+source needed for replay; put reproducible logs, caches, solver streams, and
+temporary work below the declared generated root.  Cleanup is move-only
+quarantine after a fresh reference/writer scan.  Never bulk-delete or
+blanket-ignore JSON, Python, Lean, Markdown, manifests, receipts, or
+certificates to make `git status` quiet.
+
 ## Proof obligations and promotion
 
 Refer to the lean-usage skill for proof promotion guidelines, sorry policy,
 etc.  If you don't see this skill in your context, notify the user immediately.
+
+## Memory
+
+This project uses nthdegree for persistent memory.
+
+```bash
+nthdegree recall "<query>"              # text output, default
+nthdegree recall "<query>" [--format json]   # for scripted ULID extraction
+nthdegree store "<content>" --type <decision|feedback|fact|reference>
+nthdegree list                           # all memories
+nthdegree stats
+```
+
+`recall` first before answering questions about past work in this project.
+
+### Docs & Lean search
+
+nthdegree also indexes ingested documentation corpora (project `docs/` trees,
+papers, mathlib) as hybrid keyword+semantic search — prefer it over
+`rg`/`find`/`grep` when what you want lives in a corpus (it finds by meaning,
+not literal matches).
+
+```bash
+nthdegree docs list                                # configured corpora
+nthdegree docs search --corpus <slug> "<query>"    # search one corpus
+nthdegree docs search --current-project "<query>"  # this repo's prose docs
+nthdegree docs search --lean "<query>"             # every project's Lean corpus, merged + ranked
+```
+
+For Lean, `--lean` searches every configured project's Lean corpus at once. To
+search only this repository's Lean source, use
+`--corpus erdos-97-96-formalization-lean`. Use `--current-project` only for this
+repository's prose documentation. Post-filter with `--kind theorem` /
+`--name add_*` / `--sig "↔"`.
