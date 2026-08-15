@@ -19,7 +19,7 @@ from typing import BinaryIO
 
 ROOT = Path(__file__).resolve().parents[1]
 PARENT_PATH = ROOT / "scratch/exact17-three-row-cycle-successor-20260814/root.cnf"
-CHILD_PATH = ROOT / "scratch/exact17-two-triple-row-package/exact17-two-triple-row.cnf"
+CHILD_PATH = ROOT / "scratch/exact17-two-triple-row-package-v2/exact17-two-triple-row.cnf"
 LEAN_ROOT_PATH = ROOT / "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenTwoTripleRowRefinements.lean"
 LEAN_EXPORT_PATH = ROOT / "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenTwoTripleRowRefinementsExport.lean"
 PARENT_LEAN_ROOT_PATH = ROOT / "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenThreeRowCycleRefinements.lean"

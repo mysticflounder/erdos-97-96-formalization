@@ -40,3 +40,7 @@ def test_support_paths_reject_symlinks(tmp_path: Path) -> None:
     link.symlink_to(target)
     with pytest.raises((OSError, ValueError)):
         validator.sha256_file(link)
+
+
+def test_default_child_path_is_v2_package() -> None:
+    assert validator.CHILD_PATH.parent.name == "exact17-two-triple-row-package-v2"
