@@ -1,0 +1,5 @@
+theorem false_of_twoCapSources_freshOutsideFirstBlockerFiber_acyclicIngress
+
+The live enlarged-first-fiber consumer.  The source-clean ingress is split
+once, and only the three provenance-preserving hard constructors reach the
+remaining residual.
