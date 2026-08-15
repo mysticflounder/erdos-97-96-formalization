@@ -2128,6 +2128,30 @@ exact agreement (25,032 / 15,588 / 2,585; crosscheck preserved in
 Obligations O3-O6 remain open.  No successor formula, canary, or
 solver wave is authorized by this banking.
 
+Obligations O3 and O4 are banked.  The new module
+`ExactTwelveRigid221AllOrderCommonFiveCertificate.lean` defines the
+label-general five-role data whose `rolesValid` side conditions mirror
+the validated orbit enumeration literally (SC1 distinctness, SC2
+spelled-out center-support exclusions, SC3 the decidable all-48
+orientation check), the positive-membership-only check over the
+family's four rows, a kernel-`decide` example that the v23 dominant
+mined core lies in the role domain, and the general producer
+`SourceOrderPositiveNogood.ofAllOrderCommonFive`, which assembles the
+checked `ConvexFivePointCore` and discharges its orientation
+obligation through the canonical-order bridge corollary — no
+per-family orientation lemma, which is the payoff of the bridge.
+Axiom closure was verified independently of the authoring worker:
+exactly `propext`, `Classical.choice`, `Quot.sound`; `native_decide`
+was authorized mid-flight but not needed, and the module contains no
+`sorry` and no heartbeat overrides.  Two differential oracles tie the
+decidable role domain to the independent Python enumeration (the
+dominant core is admitted; the non-between second-opposite triple is
+rejected).  Remaining obligations: O5, the generated CNF binding
+module under the approved `Lean.trustCompiler` policy, and O6, the
+Python family bank mirroring `rolesValid` and
+`source_boundary_orders()`.  No successor formula, canary, or solver
+wave is authorized by this banking.
+
 The card-at-least-13 adapter audit also rules out a tempting shortcut.  The
 pentagon residual does not supply a
 `LargeCapUniqueFiveSecondApexRadius`: in particular it has no
