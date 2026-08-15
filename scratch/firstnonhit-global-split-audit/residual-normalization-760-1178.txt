@@ -1,0 +1,419 @@
+   760	/-- Convert the negative guard used by the coordinator into the explicit
+   761	three-arm residual normal form. -/
+   762	theorem isResidual_of_not_hasDistinctCrossRows
+   763	    (obstruction : FreshThirdTwoCapSourceObstruction P Pρ)
+   764	    (hrows : ¬ obstruction.HasDistinctCrossRows) :
+   765	    obstruction.IsResidual := by
+   766	  cases obstruction with
+   767	  | normalized C Q _ _ =>
+   768	      by_cases hfirst :
+   769	          FreshThirdCrossRowHit P Pρ C.firstSource Q
+   770	      · by_cases hsecond :
+   771	            FreshThirdCrossRowHit P Pρ C.secondSource Q
+   772	        · by_cases hcenters :
+   773	              H.centerAt C.firstSource.1 C.firstSource.2 =
+   774	                H.centerAt C.secondSource.1 C.secondSource.2
+   775	          · exact Or.inr (Or.inr hcenters)
+   776	          · exact (hrows ⟨hfirst, hsecond, hcenters⟩).elim
+   777	        · exact Or.inr (Or.inl hsecond)
+   778	      · exact Or.inl hfirst
+   779	  | sameBlockerAllEndpointOmission => trivial
+   780	
+   781	omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+   782	  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+   783	/-- Expose the strict residual as constructor-specific positive data before it
+   784	reaches the single load-bearing leaf. -/
+   785	theorem residualCase_of_isResidual
+   786	    (obstruction : FreshThirdTwoCapSourceObstruction P Pρ)
+   787	    (hresidual : obstruction.IsResidual) :
+   788	    obstruction.ResidualCase := by
+   789	  cases obstruction with
+   790	  | normalized C Q firstInteraction secondInteraction =>
+   791	      exact freshThirdNormalizedResidualCase_of_crossRowResidual
+   792	        (P := P) (Pρ := Pρ) C Q firstInteraction secondInteraction hresidual
+   793	  | sameBlockerAllEndpointOmission => trivial
+   794	
+   795	/-! This is the narrowed frontier left after consuming the canonical
+   796	equal-center/`oppIndex1` interaction.  The positive equal-center packet now
+   797	stores only distinct-cap or noncanonical same-cap interactions; the original
+   798	same-blocker and source-row-omission constructors are eliminated by the hit
+   799	hypotheses before this packet is built. -/
+   800	inductive FreshThirdNormalizedResidualRemainingCase
+   801	    (C : TwoCapSourceThirdCanonicalRowSurface P Pρ)
+   802	    (Q : FreshThirdBlockerFiber P Pρ) : Prop where
+   803	  | firstNonHit
+   804	      (data : FreshThirdCapSourceNonHit P Pρ C.firstSource Q)
+   805	      (secondInteraction :
+   806	        FreshThirdCapSourceInteraction P Pρ C.secondSource Q)
+   807	  | secondNonHit
+   808	      (firstInteraction :
+   809	        FreshThirdCapSourceInteraction P Pρ C.firstSource Q)
+   810	      (data : FreshThirdCapSourceNonHit P Pρ C.secondSource Q)
+   811	  | equalCrossRowCenters
+   812	      (firstHit : FreshThirdCrossRowHit P Pρ C.firstSource Q)
+   813	      (secondHit : FreshThirdCrossRowHit P Pρ C.secondSource Q)
+   814	      (centers_eq :
+   815	        H.centerAt C.firstSource.1 C.firstSource.2 =
+   816	          H.centerAt C.secondSource.1 C.secondSource.2)
+   817	      (firstInteraction :
+   818	        FreshThirdNonCanonicalInteraction P Pρ C.firstSource Q)
+   819	      (secondInteraction :
+   820	        FreshThirdNonCanonicalInteraction P Pρ C.secondSource Q)
+   821	
+   822	omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+   823	  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+   824	/-- Refine the broad residual packet to the remaining-case interface.  The
+   825	same-blocker, source-omission, and canonical-cap arms are discharged here;
+   826	the two genuinely noncanonical interaction shapes are retained. -/
+   827	private theorem freshThirdNormalizedResidualRemainingCase_of_residual
+   828	    (C : TwoCapSourceThirdCanonicalRowSurface P Pρ)
+   829	    (Q : FreshThirdBlockerFiber P Pρ)
+   830	    (firstInteraction :
+   831	      FreshThirdCapSourceInteraction P Pρ C.firstSource Q)
+   832	    (secondInteraction :
+   833	      FreshThirdCapSourceInteraction P Pρ C.secondSource Q)
+   834	    (hresidual : FreshThirdNormalizedResidualCase P Pρ C Q) :
+   835	    FreshThirdNormalizedResidualRemainingCase P Pρ C Q := by
+   836	  have false_of_omission :
+   837	      ∀ (source : CriticalShellSystem.CarrierVertex D.A)
+   838	        (h : FreshThirdCrossRowHit P Pρ source Q)
+   839	        (deleted : CriticalShellSystem.CarrierVertex D.A)
+   840	        (deleted_eq : deleted = Q.source₁ ∨ deleted = Q.source₂)
+   841	        (deleted_not_mem :
+   842	          deleted.1 ∉
+   843	            (H.selectedAt source.1 source.2).toCriticalFourShell.support),
+   844	        False := by
+   845	    intro source h deleted deleted_eq deleted_not_mem
+   846	    rcases deleted_eq with rfl | rfl
+   847	    · exact deleted_not_mem h.2.1
+   848	    · exact deleted_not_mem h.2.2
+   849	  cases hresidual with
+   850	  | firstNonHit data => exact .firstNonHit data secondInteraction
+   851	  | secondNonHit data => exact .secondNonHit firstInteraction data
+   852	  | equalCrossRowCenters hfirst hsecond hcenters =>
+   853	      have closeCanonicalFirst :
+   854	          ∀ {capIndex : Fin 3},
+   855	            H.centerAt C.firstSource.1 C.firstSource.2 ∈
+   856	              S.capInteriorByIndex capIndex →
+   857	            (Q.source₁.1 ∈ S.capByIndex capIndex ∨
+   858	              Q.source₂.1 ∈ S.capByIndex capIndex) →
+   859	            capIndex = S.oppIndex1 → False := by
+   860	        intro capIndex sourceCenter_mem fiberSource_mem_cap hcapIndex
+   861	        exact
+   862	          false_of_freshThirdEqualCenter_sameCapOppIndex
+   863	            (P := P) (Pρ := Pρ) C Q hfirst hsecond hcenters
+   864	            hfirst.2.1 hfirst.2.2 capIndex sourceCenter_mem
+   865	            fiberSource_mem_cap hcapIndex
+   866	      cases firstInteraction with
+   867	      | sameBlocker center_eq _ => exact False.elim (hfirst.1 center_eq)
+   868	      | sourceRowOmission deleted deleted_eq deleted_not_mem _ =>
+   869	          exact False.elim (false_of_omission C.firstSource hfirst deleted
+   870	            deleted_eq deleted_not_mem)
+   871	      | distinctBlockersDifferentCaps centers_ne source₁_mem source₂_mem
+   872	          overlap_eq sourceCap freshCap sourceCenter_mem freshCenter_mem caps_ne =>
+   873	          let firstNonCanonical :=
+   874	            FreshThirdNonCanonicalInteraction.distinctBlockersDifferentCaps
+   875	              centers_ne source₁_mem source₂_mem overlap_eq sourceCap freshCap
+   876	              sourceCenter_mem freshCenter_mem caps_ne
+   877	          cases secondInteraction with
+   878	          | sameBlocker center_eq _ => exact False.elim (hsecond.1 center_eq)
+   879	          | sourceRowOmission deleted deleted_eq deleted_not_mem _ =>
+   880	              exact False.elim (false_of_omission C.secondSource hsecond deleted
+   881	                deleted_eq deleted_not_mem)
+   882	          | distinctBlockersDifferentCaps centers_ne' source₁_mem' source₂_mem'
+   883	              overlap_eq' sourceCap' freshCap' sourceCenter_mem' freshCenter_mem'
+   884	              caps_ne' =>
+   885	              exact .equalCrossRowCenters hfirst hsecond hcenters
+   886	                firstNonCanonical
+   887	                (.distinctBlockersDifferentCaps centers_ne' source₁_mem'
+   888	                  source₂_mem' overlap_eq' sourceCap' freshCap'
+   889	                  sourceCenter_mem' freshCenter_mem' caps_ne')
+   890	          | sameCapWithInternalFiberSource centers_ne' source₁_mem' source₂_mem'
+   891	              overlap_eq' capIndex' sourceCenter_mem' freshCenter_mem'
+   892	              fiberSource_mem_cap' =>
+   893	              by_cases hcapIndex' : capIndex' = S.oppIndex1
+   894	              · exact False.elim <| closeCanonicalFirst
+   895	                  (by simpa [hcenters] using sourceCenter_mem')
+   896	                  fiberSource_mem_cap' hcapIndex'
+   897	              · exact .equalCrossRowCenters hfirst hsecond hcenters
+   898	                  firstNonCanonical
+   899	                  (.sameCapWithInternalFiberSource centers_ne' source₁_mem'
+   900	                    source₂_mem' overlap_eq' capIndex' sourceCenter_mem'
+   901	                    freshCenter_mem' fiberSource_mem_cap' hcapIndex')
+   902	      | sameCapWithInternalFiberSource centers_ne source₁_mem source₂_mem
+   903	          overlap_eq capIndex sourceCenter_mem freshCenter_mem fiberSource_mem_cap =>
+   904	          by_cases hcapIndex : capIndex = S.oppIndex1
+   905	          · exact False.elim <| closeCanonicalFirst sourceCenter_mem
+   906	              fiberSource_mem_cap hcapIndex
+   907	          · let firstNonCanonical :=
+   908	              FreshThirdNonCanonicalInteraction.sameCapWithInternalFiberSource
+   909	                centers_ne source₁_mem source₂_mem overlap_eq capIndex
+   910	                sourceCenter_mem freshCenter_mem fiberSource_mem_cap hcapIndex
+   911	            cases secondInteraction with
+   912	            | sameBlocker center_eq _ => exact False.elim (hsecond.1 center_eq)
+   913	            | sourceRowOmission deleted deleted_eq deleted_not_mem _ =>
+   914	                exact False.elim (false_of_omission C.secondSource hsecond deleted
+   915	                  deleted_eq deleted_not_mem)
+   916	            | distinctBlockersDifferentCaps centers_ne' source₁_mem' source₂_mem'
+   917	                overlap_eq' sourceCap' freshCap' sourceCenter_mem' freshCenter_mem'
+   918	                caps_ne' =>
+   919	                have hsrc : capIndex = sourceCap' := by
+   920	                  by_contra hne
+   921	                  exact
+   922	                    (S.capInteriorByIndex_ne_of_mem_of_mem_ne sourceCenter_mem
+   923	                      (by simpa [hcenters] using sourceCenter_mem') hne) rfl
+   924	                have hfr : capIndex = freshCap' := by
+   925	                  by_contra hne
+   926	                  exact
+   927	                    (S.capInteriorByIndex_ne_of_mem_of_mem_ne freshCenter_mem
+   928	                      freshCenter_mem' hne) rfl
+   929	                exact False.elim (caps_ne' (hsrc.symm.trans hfr))
+   930	            | sameCapWithInternalFiberSource centers_ne' source₁_mem' source₂_mem'
+   931	                overlap_eq' capIndex' sourceCenter_mem' freshCenter_mem'
+   932	                fiberSource_mem_cap' =>
+   933	                by_cases hcapIndex' : capIndex' = S.oppIndex1
+   934	                · exact False.elim <| closeCanonicalFirst
+   935	                    (by simpa [hcenters] using sourceCenter_mem')
+   936	                    fiberSource_mem_cap' hcapIndex'
+   937	                · exact .equalCrossRowCenters hfirst hsecond hcenters
+   938	                    firstNonCanonical
+   939	                    (.sameCapWithInternalFiberSource centers_ne' source₁_mem'
+   940	                      source₂_mem' overlap_eq' capIndex' sourceCenter_mem'
+   941	                      freshCenter_mem' fiberSource_mem_cap' hcapIndex')
+   942	
+   943	omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+   944	  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+   945	/-- The positive three-center subcase of the obstruction is source-clean. -/
+   946	theorem false_of_hasDistinctCrossRows
+   947	    (obstruction : FreshThirdTwoCapSourceObstruction P Pρ)
+   948	    (hrows : obstruction.HasDistinctCrossRows) :
+   949	    False := by
+   950	  cases obstruction with
+   951	  | normalized C Q _ _ =>
+   952	      exact
+   953	        false_of_two_freshThirdCrossRowHits_distinctCenters
+   954	          (P := P) (Pρ := Pρ) Q C.firstSource C.secondSource
+   955	          hrows.1 hrows.2.1 hrows.2.2
+   956	  | sameBlockerAllEndpointOmission => exact hrows
+   957	
+   958	end FreshThirdTwoCapSourceObstruction
+   959	
+   960	omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+   961	  hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+   962	/-- The triple-shell escape is paired with the canonical global cover at the
+   963	escaped point.  This is a source-clean intermediate FreshThird packet: global
+   964	K4 supplies the escaping row, the critical-shell system supplies the
+   965	source-faithful cover and deletion obstruction, and distinct centers give the
+   966	exact two-circle overlap bound.  It is not yet a consumer-ready producer: the
+   967	existential seed membership does not identify which named source shell
+   968	supplies `center`, and the packet does not prove the corresponding source
+   969	endpoints lie in `K.support`.  Named seed-label transport, endpoint-support
+   970	facts, and ingress to a terminal consumer remain missing in addition to any
+   971	strict cyclic-order or cardinality argument that such a consumer may need. -/
+   972	theorem exists_freshThird_escape_with_sourceFaithful_cover
+   973	    (source : CriticalShellSystem.CarrierVertex D.A) :
+   974	    ∃ center : ℝ²,
+   975	      ∃ hcenter : center ∈
+   976	        freshThirdCriticalTripleShellSeed P Pρ source,
+   977	        ∃ K : SelectedFourClass D.A center,
+   978	          ∃ z : ℝ²,
+   979	            ∃ hzA : z ∈ D.A,
+   980	              z ∈ K.support ∧
+   981	                z ∉ freshThirdCriticalTripleShellSeed P Pρ source ∧
+   982	                ∃ i : Fin 3,
+   983	                  H.centerAt z hzA ∈ S.capInteriorByIndex i ∧
+   984	                  ¬ HasNEquidistantPointsAt 4
+   985	                    (D.A.erase z) (H.centerAt z hzA) ∧
+   986	                  ((center = H.centerAt z hzA ∧
+   987	                      K.support =
+   988	                        (H.selectedAt z hzA).toCriticalFourShell.support) ∨
+   989	                    (center ≠ H.centerAt z hzA ∧
+   990	                      (K.support ∩
+   991	                        (H.selectedAt z hzA).toCriticalFourShell.support).card ≤ 2)) := by
+   992	  rcases
+   993	      exists_freshThird_selectedRow_escape_tripleShellSeed
+   994	        (P := P) (Pρ := Pρ) (hlarge := L) source with
+   995	    ⟨center, hcenter, K, z, hzK, hzOutside⟩
+   996	  have hzA : z ∈ D.A := K.support_subset_A hzK
+   997	  rcases exists_blockerCenter_mem_capInteriorByIndex
+   998	      (T := T) ⟨z, hzA⟩ with ⟨i, hi⟩
+   999	  have hzBlocked :
+  1000	      ¬ HasNEquidistantPointsAt 4
+  1001	        (D.A.erase z) (H.centerAt z hzA) :=
+  1002	    H.no_qfree_at z hzA
+  1003	  by_cases hcenters : center = H.centerAt z hzA
+  1004	  · subst center
+  1005	    refine ⟨H.centerAt z hzA, hcenter, K, z, hzA, hzK, hzOutside,
+  1006	      i, hi, hzBlocked, ?_⟩
+  1007	    exact Or.inl ⟨rfl, H.selectedFourClass_support_eq_shell z hzA K⟩
+  1008	  · refine ⟨center, hcenter, K, z, hzA, hzK, hzOutside,
+  1009	      i, hi, hzBlocked, Or.inr ⟨hcenters, ?_⟩⟩
+  1010	    simpa [CriticalFourShell.toSelectedFourClass] using
+  1011	      (SelectedFourClass.inter_card_le_two K
+  1012	        (H.selectedAt z hzA).toCriticalFourShell.toSelectedFourClass
+  1013	        hcenters)
+  1014	
+  1015	omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  1016	  LPρ hLPρ MPρ LP hLP MP in
+  1017	/-- Source-clean multiplicity ingress for the two-collision producer.
+  1018	
+  1019	The older three-hit theorem consumed the geometric residual immediately,
+  1020	which made its apparent producer transitively depend on the FreshThird
+  1021	contradiction it was supposed to feed.  This boundary stops before any
+  1022	terminal: it exposes either a named cross-row hit, or the geometric residual
+  1023	together with the independent cap-eight/global split.  Any later consumer can
+  1024	now be audited against this proposition without importing a circular closer.
+  1025	-/
+  1026	theorem collisionRows_sourceCleanMultiplicityIngress
+  1027	    (hcapEightOrCross :
+  1028	      8 ≤ (S.capByIndex S.oppIndex1).card ∨
+  1029	        H.centerAt P.source₁ P.source₁_mem_A = Pρ.source₁ ∨
+  1030	          H.centerAt P.source₁ P.source₁_mem_A = Pρ.source₂ ∨
+  1031	            H.centerAt Pρ.source₁ Pρ.source₁_mem_A = P.source₁ ∨
+  1032	              H.centerAt Pρ.source₁ Pρ.source₁_mem_A = P.source₂) :
+  1033	    CollisionCrossHit P Pρ ∨
+  1034	      (GeometricMultiplicityResidual P Pρ ∧
+  1035	        TwoCollisionGlobalSplit P Pρ) := by
+  1036	  classical
+  1037	  have hglobalCapSplit : TwoCollisionGlobalSplit P Pρ :=
+  1038	    hcapEightOrCross.imp
+  1039	      (fun hcap =>
+  1040	        exists_capSource_thirdCanonicalRow_omits_each_collisionPair
+  1041	          P Pρ B.secondApex_robust hpairsDisjoint hcap)
+  1042	      id
+  1043	  let apex₁ : CriticalShellSystem.CarrierVertex D.A :=
+  1044	    ⟨S.oppApex1, by
+  1045	      simpa using S.oppositeVertexByIndex_mem S.oppIndex1⟩
+  1046	  let apex₂ : CriticalShellSystem.CarrierVertex D.A :=
+  1047	    ⟨S.oppApex2, by
+  1048	      simpa using S.oppositeVertexByIndex_mem S.oppIndex2⟩
+  1049	  let apex₃ : CriticalShellSystem.CarrierVertex D.A :=
+  1050	    ⟨S.surplusApex, by
+  1051	      simpa using S.oppositeVertexByIndex_mem S.surplusIdx⟩
+  1052	  let a₁ : CriticalShellSystem.CarrierVertex D.A :=
+  1053	    ⟨P.source₁, P.source₁_mem_A⟩
+  1054	  let a₂ : CriticalShellSystem.CarrierVertex D.A :=
+  1055	    ⟨P.source₂, P.source₂_mem_A⟩
+  1056	  let b₁ : CriticalShellSystem.CarrierVertex D.A :=
+  1057	    ⟨Pρ.source₁, Pρ.source₁_mem_A⟩
+  1058	  let b₂ : CriticalShellSystem.CarrierVertex D.A :=
+  1059	    ⟨Pρ.source₂, Pρ.source₂_mem_A⟩
+  1060	  have homitted₁ : ∀ x, H.blockerVertex x ≠ apex₁ := by
+  1061	    intro x
+  1062	    exact FullyDeletionRobustAt.blockerVertex_ne
+  1063	      (fullyDeletionRobustAt_of_apexRichClassStructure T.oppApex1_rich)
+  1064	      H x apex₁.2
+  1065	  have homitted₂ : ∀ x, H.blockerVertex x ≠ apex₂ := by
+  1066	    intro x
+  1067	    exact FullyDeletionRobustAt.blockerVertex_ne
+  1068	      (fullyDeletionRobustAt_of_apexRichClassStructure T.oppApex2_rich)
+  1069	      H x apex₂.2
+  1070	  have homitted₃ : ∀ x, H.blockerVertex x ≠ apex₃ := by
+  1071	    intro x
+  1072	    exact FullyDeletionRobustAt.blockerVertex_ne
+  1073	      (fullyDeletionRobustAt_of_apexRichClassStructure T.surplusApex_rich)
+  1074	      H x apex₃.2
+  1075	  have hapex₁₂ : apex₁ ≠ apex₂ := by
+  1076	    intro h
+  1077	    exact
+  1078	      (S.oppositeVertexByIndex_ne_of_ne S.oppIndex1_ne_oppIndex2)
+  1079	        (by simpa [apex₁, apex₂] using congrArg Subtype.val h)
+  1080	  have hapex₁₃ : apex₁ ≠ apex₃ := by
+  1081	    intro h
+  1082	    exact
+  1083	      (S.oppositeVertexByIndex_ne_of_ne
+  1084	        S.surplusIdx_ne_oppIndex1).symm
+  1085	        (by simpa [apex₁, apex₃] using congrArg Subtype.val h)
+  1086	  have hapex₂₃ : apex₂ ≠ apex₃ := by
+  1087	    intro h
+  1088	    exact
+  1089	      (S.oppositeVertexByIndex_ne_of_ne
+  1090	        S.surplusIdx_ne_oppIndex2).symm
+  1091	        (by simpa [apex₂, apex₃] using congrArg Subtype.val h)
+  1092	  have hfa : H.blockerVertex a₁ = H.blockerVertex a₂ := by
+  1093	    apply Subtype.ext
+  1094	    exact P.blockers_eq
+  1095	  have hfb : H.blockerVertex b₁ = H.blockerVertex b₂ := by
+  1096	    apply Subtype.ext
+  1097	    exact Pρ.blockers_eq
+  1098	  have hvalues : H.blockerVertex a₁ ≠ H.blockerVertex b₁ := by
+  1099	    intro h
+  1100	    apply hblockersNe
+  1101	    exact congrArg Subtype.val h.symm
+  1102	  have hblockerMultiplicity :=
+  1103	    third_fiber_or_larger_known_fiber_of_three_omissions
+  1104	      H.blockerVertex homitted₁ homitted₂ homitted₃
+  1105	      hapex₁₂ hapex₁₃ hapex₂₃ hfa hfb hvalues
+  1106	  rcases collisionCrossHit_or_geometricMultiplicity
+  1107	      P Pρ hblockerMultiplicity with hcross | hresidual
+  1108	  · exact Or.inl hcross
+  1109	  · exact Or.inr ⟨hresidual, hglobalCapSplit⟩
+  1110	
+  1111	omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  1112	  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+  1113	/-- A cap-wide alignment producer immediately kills a first-source non-hit.
+  1114	This adapter is intentionally source-clean: it consumes only the positive
+  1115	alignment packet and the non-hit constructor, leaving the cap-wide producer
+  1116	itself as the single mathematical bridge still required by the residual. -/
+  1117	theorem false_of_freshThird_firstNonHit_of_capWideAlignment
+  1118	    (C : TwoCapSourceThirdCanonicalRowSurface P Pρ)
+  1119	    (Q : FreshThirdBlockerFiber P Pρ)
+  1120	    (data : FreshThirdCapSourceNonHit P Pρ C.firstSource Q)
+  1121	    (halign : FreshThirdSameCapCrossRowAlignment P Pρ Q C.firstSource) :
+  1122	    False := by
+  1123	  rcases halign with
+  1124	    ⟨capIndex, hqCap, hsCap, hcentersNe,
+  1125	      hq1Off, hq2Off, hq1Mem, hq2Mem⟩
+  1126	  cases data with
+  1127	  | sameBlocker center_eq _ =>
+  1128	      exact hcentersNe center_eq
+  1129	  | sourceRowOmission deleted deleted_eq deleted_not_mem _ =>
+  1130	      rcases deleted_eq with rfl | rfl
+  1131	      · exact deleted_not_mem hq1Mem
+  1132	      · exact deleted_not_mem hq2Mem
+  1133	
+  1134	omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  1135	  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+  1136	/-- Symmetric cap-wide alignment adapter for a second-source non-hit. -/
+  1137	theorem false_of_freshThird_secondNonHit_of_capWideAlignment
+  1138	    (C : TwoCapSourceThirdCanonicalRowSurface P Pρ)
+  1139	    (Q : FreshThirdBlockerFiber P Pρ)
+  1140	    (data : FreshThirdCapSourceNonHit P Pρ C.secondSource Q)
+  1141	    (halign : FreshThirdSameCapCrossRowAlignment P Pρ Q C.secondSource) :
+  1142	    False := by
+  1143	  rcases halign with
+  1144	    ⟨capIndex, hqCap, hsCap, hcentersNe,
+  1145	      hq1Off, hq2Off, hq1Mem, hq2Mem⟩
+  1146	  cases data with
+  1147	  | sameBlocker center_eq _ =>
+  1148	      exact hcentersNe center_eq
+  1149	  | sourceRowOmission deleted deleted_eq deleted_not_mem _ =>
+  1150	      rcases deleted_eq with rfl | rfl
+  1151	      · exact deleted_not_mem hq1Mem
+  1152	      · exact deleted_not_mem hq2Mem
+  1153	
+  1154	include hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  1155	  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+  1156	/-- Exact global-incidence producer needed by the first-source non-hit branch.
+  1157	
+  1158	The produced selected row has a center distinct from the canonical Q-row
+  1159	center and overlaps that Q row in at least three points.  This is precisely the
+  1160	positive packet consumed by the clean two-circle terminal
+  1161	`false_of_centerAt_selectedFourClass_inter_card_ge_three`; proving it is the
+  1162	remaining mathematical content of this residual. -/
+  1163	theorem exists_freshThird_firstNonHit_selectedRow_overlap_card_ge_three
+  1164	    (C : TwoCapSourceThirdCanonicalRowSurface P Pρ)
+  1165	    (Q : FreshThirdBlockerFiber P Pρ)
+  1166	    (hingress :
+  1167	      FreshThirdAcyclicCanonicalConsumerPacket (P := P) (Pρ := Pρ) C)
+  1168	    (data : FreshThirdCapSourceNonHit P Pρ C.firstSource Q)
+  1169	    (secondInteraction :
+  1170	      FreshThirdCapSourceInteraction P Pρ C.secondSource Q) :
+  1171	    ∃ source : CriticalShellSystem.CarrierVertex D.A,
+  1172	      H.centerAt source.1 source.2 ≠
+  1173	          H.centerAt Q.source₁.1 Q.source₁.2 ∧
+  1174	      3 ≤
+  1175	        ((H.selectedAt source.1 source.2).toCriticalFourShell.support ∩
+  1176	          (H.selectedAt Q.source₁.1 Q.source₁.2).toCriticalFourShell.support).card := by
+  1177	  sorry
+  1178	

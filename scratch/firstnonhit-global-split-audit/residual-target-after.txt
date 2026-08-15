@@ -1,0 +1,126 @@
+two-point overlap needed by the finite-ingress producer. -/
+private theorem freshThirdNonCanonicalInteraction_overlap_eq
+    (C : TwoCapSourceThirdCanonicalRowSurface P Pρ)
+    (Q : FreshThirdBlockerFiber P Pρ)
+    (interaction :
+      FreshThirdNonCanonicalInteraction P Pρ C.firstSource Q) :
+    (H.selectedAt C.firstSource.1
+        C.firstSource.2).toCriticalFourShell.support ∩
+        (H.selectedAt Q.source₁.1
+          Q.source₁.2).toCriticalFourShell.support =
+      {Q.source₁.1, Q.source₂.1} := by
+  cases interaction with
+  | distinctBlockersDifferentCaps _ _ _ overlap_eq _ _ _ _ _ =>
+      exact overlap_eq
+  | sameCapWithInternalFiberSource _ _ _ overlap_eq _ _ _ _ _ =>
+      exact overlap_eq
+
+include hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- Direct residual for the equal-cross-row-center branch.
+
+The canonical shared pair is cyclically separated, so a same-arc pair is not
+a source-produced positive packet.  Keep the complete acyclic ingress and both
+noncanonical interactions and state the actual required result: their joint
+impossibility.  The mixed cap-interaction products close below; the two
+coherent products remain the mathematical branches of this single residual. -/
+theorem false_of_freshThirdEqualCenter_noncanonicalInteractions
+    (C : TwoCapSourceThirdCanonicalRowSurface P Pρ)
+    (Q : FreshThirdBlockerFiber P Pρ)
+    (hingress :
+      FreshThirdAcyclicCanonicalConsumerPacket (P := P) (Pρ := Pρ) C)
+    (hfirst : FreshThirdCrossRowHit P Pρ C.firstSource Q)
+    (hsecond : FreshThirdCrossRowHit P Pρ C.secondSource Q)
+    (hcenters :
+      H.centerAt C.firstSource.1 C.firstSource.2 =
+        H.centerAt C.secondSource.1 C.secondSource.2)
+    (firstInteraction :
+      FreshThirdNonCanonicalInteraction P Pρ C.firstSource Q)
+    (secondInteraction :
+      FreshThirdNonCanonicalInteraction P Pρ C.secondSource Q) :
+    False := by
+  have hoverlap :=
+    freshThirdNonCanonicalInteraction_overlap_eq P Pρ C Q firstInteraction
+  have _hsixWayIngress :=
+    exists_freshThirdEqualCenter_pinnedCenter_sixWayIngress
+      (P := P) (Pρ := Pρ) (T := T)
+      C Q hfirst hsecond hcenters hoverlap
+  cases firstInteraction with
+  | distinctBlockersDifferentCaps centers_ne source₁_mem source₂_mem
+      overlap_eq sourceCap freshCap sourceCenter_mem freshCenter_mem caps_ne =>
+      cases secondInteraction with
+      | distinctBlockersDifferentCaps centers_ne' source₁_mem' source₂_mem'
+          overlap_eq' sourceCap' freshCap' sourceCenter_mem' freshCenter_mem'
+          caps_ne' =>
+          sorry
+      | sameCapWithInternalFiberSource centers_ne' source₁_mem' source₂_mem'
+          overlap_eq' capIndex' sourceCenter_mem' freshCenter_mem'
+          fiberSource_mem_cap' hcapIndex' =>
+          have hsrc : sourceCap = capIndex' := by
+            by_contra hne
+            exact
+              (S.capInteriorByIndex_ne_of_mem_of_mem_ne sourceCenter_mem
+                (by simpa [hcenters] using sourceCenter_mem') hne) rfl
+          have hfr : freshCap = capIndex' := by
+            by_contra hne
+            exact
+              (S.capInteriorByIndex_ne_of_mem_of_mem_ne freshCenter_mem
+                freshCenter_mem' hne) rfl
+          exact False.elim (caps_ne (hsrc.trans hfr.symm))
+  | sameCapWithInternalFiberSource centers_ne source₁_mem source₂_mem
+      overlap_eq capIndex sourceCenter_mem freshCenter_mem fiberSource_mem_cap
+      hcapIndex =>
+      cases secondInteraction with
+      | distinctBlockersDifferentCaps centers_ne' source₁_mem' source₂_mem'
+          overlap_eq' sourceCap' freshCap' sourceCenter_mem' freshCenter_mem'
+          caps_ne' =>
+          have hsrc : capIndex = sourceCap' := by
+            by_contra hne
+            exact
+              (S.capInteriorByIndex_ne_of_mem_of_mem_ne sourceCenter_mem
+                (by simpa [hcenters] using sourceCenter_mem') hne) rfl
+          have hfr : capIndex = freshCap' := by
+            by_contra hne
+            exact
+              (S.capInteriorByIndex_ne_of_mem_of_mem_ne freshCenter_mem
+                freshCenter_mem' hne) rfl
+          exact False.elim (caps_ne' (hsrc.symm.trans hfr))
+      | sameCapWithInternalFiberSource centers_ne' source₁_mem' source₂_mem'
+          overlap_eq' capIndex' sourceCenter_mem' freshCenter_mem'
+          fiberSource_mem_cap' hcapIndex' =>
+          sorry
+
+include hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- The unresolved residual leaf after the canonical equal-center/`oppIndex1`
+arm has been removed.  Its interface retains the complete acyclic
+retained/common-radius producer packet, so the aligned singleton slices and
+minimal-deletion core are no longer erased before the surviving-row step. -/
+theorem false_of_twoCapSources_freshThirdBlockerFiber_normalized_remaining
+    (C : TwoCapSourceThirdCanonicalRowSurface P Pρ)
+    (Q : FreshThirdBlockerFiber P Pρ)
+    (hingress :
+      FreshThirdAcyclicCanonicalConsumerPacket (P := P) (Pρ := Pρ) C)
+    (hremaining :
+      FreshThirdTwoCapSourceObstruction.FreshThirdNormalizedResidualRemainingCase
+        P Pρ C Q) :
+    False := by
+  cases hremaining with
+  | firstNonHit data secondInteraction =>
+      exact
+        false_of_freshThird_firstNonHit
+          (P := P) (Pρ := Pρ)
+          (hρne := hρne) (hfrontierFour := hfrontierFour)
+          (hρfour := hρfour)
+          (hfrontierInteriorEq := hfrontierInteriorEq)
+          (hρInteriorEq := hρInteriorEq)
+          (T := T) (hpairsDisjoint := hpairsDisjoint)
+          (hblockersNe := hblockersNe)
+          (LPρ := LPρ) (hLPρ := hLPρ) (MPρ := MPρ)
+          (LP := LP) (hLP := hLP) (MP := MP)
+          C Q hingress data secondInteraction
+  | secondNonHit firstInteraction data =>
+      exact
+        false_of_freshThird_secondNonHit
+          (P := P) (Pρ := Pρ)
+          (hρne := hρne) (hfrontierFour := hfrontierFour)

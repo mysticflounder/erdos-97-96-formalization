@@ -1,0 +1,186 @@
+      exact Or.inr (Or.inr (Or.inr hfixed))
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
+  hpairsDisjoint hblockersNe
+  LPρ hLPρ MPρ LP hLP MP in
+/-- The retained-radii data that must remain available at the normalized
+FreshThird residual.  Both cap sources carry their own checked double-deletion
+packet; keeping only the first source would erase a source-produced symmetry
+needed by a faithful finite obstruction or universal consumer. -/
+abbrev FreshThirdAlignedRetainedConsumerPacket
+    (C : TwoCapSourceThirdCanonicalRowSurface P Pρ) : Prop :=
+  dist S.oppApex1 C.firstSource.1 ≠
+      dist S.oppApex1 C.secondSource.1 ∧
+    SelectedClass D.A S.oppApex1
+          (dist S.oppApex1 C.firstSource.1) ∩
+        S.capInteriorByIndex S.oppIndex1 = {C.firstSource.1} ∧
+    SelectedClass D.A S.oppApex1
+          (dist S.oppApex1 C.secondSource.1) ∩
+        S.capInteriorByIndex S.oppIndex1 = {C.secondSource.1} ∧
+    FreshThirdAlignedSourceDeletionCorePacket
+      (P := P) (Pρ := Pρ) C.firstSource ∧
+    FreshThirdAlignedSourceDeletionCorePacket
+      (P := P) (Pρ := Pρ) C.secondSource ∧
+    FirstCapMultiPointRadiiRetained
+      (S := S) (radius := radius) (ρ := ρ)
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
+  hpairsDisjoint hblockersNe
+  LPρ hLPρ MPρ LP hLP MP in
+/-- The aligned retained packet excludes both canonical sources from every
+first-apex radius whose strict first-cap slice contains at least two points. -/
+theorem freshThird_alignedRetainedConsumerPacket_sources_not_mem_firstApex_multiPointRadius
+    (C : TwoCapSourceThirdCanonicalRowSurface P Pρ)
+    (hretained : FreshThirdAlignedRetainedConsumerPacket
+      (P := P) (Pρ := Pρ) C)
+    {r : ℝ}
+    (htwo :
+      2 ≤
+        (SelectedClass D.A S.oppApex1 r ∩
+          S.capInteriorByIndex S.oppIndex1).card) :
+    C.firstSource.1 ∉ SelectedClass D.A S.oppApex1 r ∧
+      C.secondSource.1 ∉ SelectedClass D.A S.oppApex1 r := by
+  constructor
+  · intro hfirstClass
+    have hradius : dist S.oppApex1 C.firstSource.1 = r :=
+      (mem_selectedClass.mp hfirstClass).2
+    rw [← hradius, hretained.2.1, Finset.card_singleton] at htwo
+    omega
+  · intro hsecondClass
+    have hradius : dist S.oppApex1 C.secondSource.1 = r :=
+      (mem_selectedClass.mp hsecondClass).2
+    rw [← hradius, hretained.2.2.1, Finset.card_singleton] at htwo
+    omega
+
+#print axioms
+  freshThird_alignedRetainedConsumerPacket_sources_not_mem_firstApex_multiPointRadius
+
+omit hρne hfrontierFour hρfour hpairsDisjoint hblockersNe
+  LPρ hLPρ MPρ LP hLP MP in
+/-- The aligned retained consumer packet exposes the two rich first-apex radii
+as the retained pair, together with the absence of both canonical cap sources
+from each rich class. -/
+theorem freshThird_alignedRetainedConsumerPacket_oppApex1_rich_exactRetainedRadii
+    (C : TwoCapSourceThirdCanonicalRowSurface P Pρ)
+    (hretained : FreshThirdAlignedRetainedConsumerPacket
+      (P := P) (Pρ := Pρ) C) :
+    ∃ r₁ r₂ : ℝ,
+      0 < r₁ ∧ 0 < r₂ ∧ r₁ ≠ r₂ ∧
+      4 ≤ (SelectedClass D.A S.oppApex1 r₁).card ∧
+      4 ≤ (SelectedClass D.A S.oppApex1 r₂).card ∧
+      ((r₁ = radius ∧ r₂ = ρ) ∨ (r₁ = ρ ∧ r₂ = radius)) ∧
+      (C.firstSource.1 ∉ SelectedClass D.A S.oppApex1 r₁ ∧
+        C.secondSource.1 ∉ SelectedClass D.A S.oppApex1 r₁) ∧
+      (C.firstSource.1 ∉ SelectedClass D.A S.oppApex1 r₂ ∧
+        C.secondSource.1 ∉ SelectedClass D.A S.oppApex1 r₂) := by
+  rcases
+      oppApex1_rich_exactRetainedRadii_of_aligned
+        (P := P) (Pρ := Pρ)
+        (hfrontierInteriorEq := hfrontierInteriorEq)
+        (hρInteriorEq := hρInteriorEq) (T := T)
+        hretained.2.2.2.2.2 with
+    ⟨r₁, r₂, hr₁, hr₂, hradiiNe, hfour₁, hfour₂, hradii⟩
+  have hinter₁ :
+      2 ≤
+        (SelectedClass D.A S.oppApex1 r₁ ∩
+          S.capInteriorByIndex S.oppIndex1).card := by
+    have hfour₁' :
+        4 ≤
+          (SelectedClass D.A
+            (S.oppositeVertexByIndex S.oppIndex1) r₁).card := by
+      simpa using hfour₁
+    simpa using
+      S.selectedClass_capInteriorByIndex_card_ge_two
+        D.convex S.oppIndex1 hr₁ hfour₁'
+  have hinter₂ :
+      2 ≤
+        (SelectedClass D.A S.oppApex1 r₂ ∩
+          S.capInteriorByIndex S.oppIndex1).card := by
+    have hfour₂' :
+        4 ≤
+          (SelectedClass D.A
+            (S.oppositeVertexByIndex S.oppIndex1) r₂).card := by
+      simpa using hfour₂
+    simpa using
+      S.selectedClass_capInteriorByIndex_card_ge_two
+        D.convex S.oppIndex1 hr₂ hfour₂'
+  have hsources₁ :=
+    freshThird_alignedRetainedConsumerPacket_sources_not_mem_firstApex_multiPointRadius
+      P Pρ C hretained hinter₁
+  have hsources₂ :=
+    freshThird_alignedRetainedConsumerPacket_sources_not_mem_firstApex_multiPointRadius
+      P Pρ C hretained hinter₂
+  exact
+    ⟨r₁, r₂, hr₁, hr₂, hradiiNe, hfour₁, hfour₂, hradii,
+      hsources₁, hsources₂⟩
+
+#print axioms
+  freshThird_alignedRetainedConsumerPacket_oppApex1_rich_exactRetainedRadii
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
+  hpairsDisjoint hblockersNe
+  LPρ hLPρ MPρ LP hLP MP in
+/-- Both aligned cap sources admit an explicit four-arm endpoint
+canonicalization.  This is the finite coverage theorem for the retained
+branch; no bounded-cardinality assumption is introduced. -/
+theorem freshThird_alignedRetainedConsumerPacket_sourceDeletionCoreCases
+    (C : TwoCapSourceThirdCanonicalRowSurface P Pρ)
+    (hretained : FreshThirdAlignedRetainedConsumerPacket
+      (P := P) (Pρ := Pρ) C) :
+    FreshThirdAlignedSourceDeletionCoreCases
+        (S := S) (H := H) P Pρ C.firstSource ∧
+      FreshThirdAlignedSourceDeletionCoreCases
+        (S := S) (H := H) P Pρ C.secondSource := by
+  exact
+    ⟨freshThird_alignedSourceDeletionCorePacket_cases
+        P Pρ C.firstSource hretained.2.2.2.1,
+      freshThird_alignedSourceDeletionCorePacket_cases
+        P Pρ C.secondSource hretained.2.2.2.2.1⟩
+
+omit hpairsDisjoint hblockersNe
+  LPρ hLPρ MPρ LP hLP MP in
+/-- Every aligned cap source carries the complete double-deletion packet. -/
+theorem freshThird_acyclic_alignedSourceDeletionCorePacket
+    (source : CriticalShellSystem.CarrierVertex D.A)
+    (hsource : FirstFiberCapSourceWitness P Pρ source)
+    (haligned :
+      FirstCapMultiPointRadiiRetained
+        (S := S) (radius := radius) (ρ := ρ)) :
+    FreshThirdAlignedSourceDeletionCorePacket
+      (P := P) (Pρ := Pρ) source := by
+  rcases
+      freshThird_acyclic_exists_crossRetainedEndpoints_sourceSurvives_doubleDeletion
+        (P := P) (Pρ := Pρ)
+        (hfrontierFour := hfrontierFour)
+        (hρfour := hρfour)
+        (hfrontierInteriorEq := hfrontierInteriorEq)
+        (hρInteriorEq := hρInteriorEq)
+        source hsource haligned with
+    ⟨x, y, hx, hy, hxo, hyo, hsurv, hblocked⟩
+  exact
+    ⟨x, y, hx, hy, hxo, hyo, hsurv, hblocked,
+      freshThird_acyclic_firstApex_minimalDeletionCore_of_crossRetainedEndpoints
+        (P := P) (Pρ := Pρ) (hρne := hρne)
+        (hfrontierInteriorEq := hfrontierInteriorEq)
+        (hρInteriorEq := hρInteriorEq) (T := T) hx hy hblocked⟩
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
+  hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- The two canonical cap sources cannot be either outside point of a
+`FreshOutsideFirstBlockerFiber`: the former lie in the first cap interior,
+whereas both latter points lie outside the closed first cap.
+
+This is an ingress invariant for finite encoders, not a contradiction. -/
+theorem canonicalSources_ne_freshOutsideFirstBlockerFiber_outsidePoints
+    (C : TwoCapSourceThirdCanonicalRowSurface P Pρ)
+    (Q : FreshOutsideFirstBlockerFiber P Pρ) :
+    (C.firstSource.1 ≠ Q.source.1 ∧
+      C.secondSource.1 ≠ Q.source.1) ∧
+    (C.firstSource.1 ≠ Q.otherOutsidePoint ∧
+      C.secondSource.1 ≠ Q.otherOutsidePoint) := by
+  constructor
+  · constructor
+    · exact ne_of_mem_of_not_mem
+        (S.capInteriorByIndex_subset_capByIndex S.oppIndex1
+          C.firstSource_data.2.1)
+        Q.source_not_mem_firstCap

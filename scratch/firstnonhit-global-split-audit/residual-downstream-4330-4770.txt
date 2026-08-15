@@ -1,0 +1,437 @@
+
+include hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- Consume the common-radius packet in the equal-center residual.  The
+packet is useful precisely when either positive interaction is a
+noncanonical same-cap interaction: its source-center witness is then enough
+for the common-radius shell consumer.  The remaining constructor arms still
+use the original residual leaf, so this helper is an ingress refinement, not
+an independent closure claim. -/
+private theorem false_of_twoCapSources_freshThirdBlockerFiber_normalized_remaining_commonRadius
+    (C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ)
+    (Q : FreshThirdBlockerFiber P Pρ)
+    (hremaining :
+      FreshThirdTwoCapSourceObstruction.FreshThirdNormalizedResidualRemainingCase
+        P Pρ C.surface Q) :
+    False := by
+  cases hremaining with
+  | firstNonHit data secondInteraction =>
+      exact
+        false_of_twoCapSources_freshThirdBlockerFiber_normalized_remaining
+          (P := P) (Pρ := Pρ)
+          (hρne := hρne) (hfrontierFour := hfrontierFour)
+          (hρfour := hρfour)
+          (hfrontierInteriorEq := hfrontierInteriorEq)
+          (hρInteriorEq := hρInteriorEq)
+          (T := T) (hpairsDisjoint := hpairsDisjoint)
+          (hblockersNe := hblockersNe)
+          (LPρ := LPρ) (hLPρ := hLPρ) (MPρ := MPρ)
+          (LP := LP) (hLP := hLP) (MP := MP)
+          (hingress := Or.inr ⟨C⟩)
+          C.surface Q (.firstNonHit data secondInteraction)
+  | secondNonHit firstInteraction data =>
+      exact
+        false_of_twoCapSources_freshThirdBlockerFiber_normalized_remaining
+          (P := P) (Pρ := Pρ)
+          (hρne := hρne) (hfrontierFour := hfrontierFour)
+          (hρfour := hρfour)
+          (hfrontierInteriorEq := hfrontierInteriorEq)
+          (hρInteriorEq := hρInteriorEq)
+          (T := T) (hpairsDisjoint := hpairsDisjoint)
+          (hblockersNe := hblockersNe)
+          (LPρ := LPρ) (hLPρ := hLPρ) (MPρ := MPρ)
+          (LP := LP) (hLP := hLP) (MP := MP)
+          (hingress := Or.inr ⟨C⟩)
+          C.surface Q (.secondNonHit firstInteraction data)
+  | equalCrossRowCenters hfirst hsecond hcenters firstInteraction secondInteraction =>
+      cases firstInteraction with
+      | distinctBlockersDifferentCaps centers_ne source₁_mem source₂_mem
+          overlap_eq sourceCap freshCap sourceCenter_mem freshCenter_mem caps_ne =>
+          cases secondInteraction with
+          | distinctBlockersDifferentCaps centers_ne' source₁_mem' source₂_mem'
+              overlap_eq' sourceCap' freshCap' sourceCenter_mem' freshCenter_mem'
+              caps_ne' =>
+              rcases
+                  exists_freshThird_commonRadius_distinctCaps_survivingRow_oneArcSharedPairObstruction
+                    (P := P) (Pρ := Pρ)
+                    (hρne := hρne) (hfrontierFour := hfrontierFour)
+                    (hρfour := hρfour)
+                    (hfrontierInteriorEq := hfrontierInteriorEq)
+                    (hρInteriorEq := hρInteriorEq)
+                    (T := T) (hpairsDisjoint := hpairsDisjoint)
+                    (hblockersNe := hblockersNe)
+                    (LPρ := LPρ) (hLPρ := hLPρ) (MPρ := MPρ)
+                    (LP := LP) (hLP := hLP) (MP := MP)
+                    C Q hcenters centers_ne source₁_mem source₂_mem
+                    overlap_eq sourceCap freshCap sourceCenter_mem
+                    freshCenter_mem caps_ne centers_ne' source₁_mem'
+                    source₂_mem' overlap_eq' sourceCap' freshCap'
+                    sourceCenter_mem' freshCenter_mem' caps_ne' with
+                ⟨B, ic, id, rowRadius, DRow, hicd, hradius, hcard, htwo⟩
+              exact
+                false_of_selectedClass_and_row_two_shared_on_one_arc
+                  B ic id hicd hradius hcard DRow htwo
+              /-
+              · have hsourceCap :
+                    H.centerAt C.surface.firstSource.1 C.surface.firstSource.2 ∈
+                      S.capByIndex S.oppIndex1 :=
+                  S.capInteriorByIndex_subset_capByIndex _ hgeometry.1
+                have hfreshCap :
+                    H.centerAt Q.source₁.1 Q.source₁.2 ∈
+                      S.capByIndex S.oppIndex1 := by
+                  rw [← hfreshCanonical]
+                  exact
+                    S.capInteriorByIndex_subset_capByIndex _ freshCenter_mem
+                have hq1Off : Q.source₁.1 ∉ S.capByIndex S.oppIndex1 := by
+                  intro hqCap
+                  have hqInter :
+                      Q.source₁.1 ∈
+                        (H.selectedAt C.surface.firstSource.1
+                          C.surface.firstSource.2).toCriticalFourShell.support ∩
+                          S.capByIndex S.oppIndex1 :=
+                    Finset.mem_inter.mpr ⟨source₁_mem, hqCap⟩
+                  rw [hgeometry.2] at hqInter
+                  have hqCases :
+                      Q.source₁.1 = C.surface.firstSource.1 ∨
+                        Q.source₁.1 = C.surface.secondSource.1 := by
+                    simpa [Finset.mem_insert, Finset.mem_singleton] using hqInter
+                  rcases hqCases with hq | hq
+                  · apply centers_ne
+                    exact
+                      (congrArg
+                        (fun z : CriticalShellSystem.CarrierVertex D.A =>
+                          H.centerAt z.1 z.2)
+                        (Subtype.ext hq)).symm
+                  · apply centers_ne
+                    exact
+                      (congrArg
+                        (fun z : CriticalShellSystem.CarrierVertex D.A =>
+                          H.centerAt z.1 z.2)
+                        (Subtype.ext hq)).symm.trans
+                      (hcenters.symm.trans hcenters)
+                have hq2Off : Q.source₂.1 ∉ S.capByIndex S.oppIndex1 := by
+                  intro hqCap
+                  have hqInter :
+                      Q.source₂.1 ∈
+                        (H.selectedAt C.surface.firstSource.1
+                          C.surface.firstSource.2).toCriticalFourShell.support ∩
+                          S.capByIndex S.oppIndex1 :=
+                    Finset.mem_inter.mpr ⟨source₂_mem, hqCap⟩
+                  rw [hgeometry.2] at hqInter
+                  have hqCases :
+                      Q.source₂.1 = C.surface.firstSource.1 ∨
+                        Q.source₂.1 = C.surface.secondSource.1 := by
+                    simpa [Finset.mem_insert, Finset.mem_singleton] using hqInter
+                  have hQCenters :
+                      H.centerAt Q.source₂.1 Q.source₂.2 =
+                        H.centerAt Q.source₁.1 Q.source₁.2 :=
+                    congrArg Subtype.val Q.blockers_eq
+                  rcases hqCases with hq | hq
+                  · apply centers_ne
+                    exact
+                      (congrArg
+                        (fun z : CriticalShellSystem.CarrierVertex D.A =>
+                          H.centerAt z.1 z.2)
+                        (Subtype.ext hq)).symm.trans hQCenters
+                  · apply centers_ne
+                    exact
+                      (congrArg
+                        (fun z : CriticalShellSystem.CarrierVertex D.A =>
+                          H.centerAt z.1 z.2)
+                        (Subtype.ext hq)).symm.trans
+                      (hcenters.symm.trans hcenters).trans hQCenters
+                exact
+                  false_of_freshThird_sameCapCrossRowAlignment
+                    (P := P) (Pρ := Pρ) Q C.surface.firstSource
+                    ⟨S.oppIndex1, hfreshCap, hsourceCap, centers_ne,
+                      hq1Off, hq2Off, source₁_mem, source₂_mem⟩
+              · exact
+                  false_of_twoCapSources_freshThirdBlockerFiber_normalized_remaining
+                    (P := P) (Pρ := Pρ)
+                    (hρne := hρne) (hfrontierFour := hfrontierFour)
+                    (hρfour := hρfour)
+                    (hfrontierInteriorEq := hfrontierInteriorEq)
+                    (hρInteriorEq := hρInteriorEq)
+                    (T := T) (hpairsDisjoint := hpairsDisjoint)
+                    (hblockersNe := hblockersNe)
+                    (LPρ := LPρ) (hLPρ := hLPρ) (MPρ := MPρ)
+                    (LP := LP) (hLP := hLP) (MP := MP)
+                    (hingress := Or.inr ⟨C⟩)
+                    C.surface Q
+                    (.equalCrossRowCenters hfirst hsecond hcenters
+                      (.distinctBlockersDifferentCaps centers_ne source₁_mem
+                        source₂_mem overlap_eq sourceCap freshCap sourceCenter_mem
+                        freshCenter_mem caps_ne)
+                      (.distinctBlockersDifferentCaps centers_ne' source₁_mem'
+                        source₂_mem' overlap_eq' sourceCap' freshCap'
+                        sourceCenter_mem' freshCenter_mem' caps_ne'))
+              -/
+          | sameCapWithInternalFiberSource centers_ne' source₁_mem' source₂_mem'
+              overlap_eq' capIndex' sourceCenter_mem' freshCenter_mem'
+              fiberSource_mem_cap' hcapIndex' =>
+              have sourceCenter_mem_first :
+                  H.centerAt C.surface.firstSource.1 C.surface.firstSource.2 ∈
+                    S.capInteriorByIndex capIndex' := by
+                simpa [hcenters] using sourceCenter_mem'
+              exact
+                false_of_commonRadius_equalCenters_noncanonicalSameCap_packet
+                  (P := P) (Pρ := Pρ) C T.oppApex1_rich
+                  sourceCenter_mem_first hcapIndex' hcenters
+      | sameCapWithInternalFiberSource centers_ne source₁_mem source₂_mem
+          overlap_eq capIndex sourceCenter_mem freshCenter_mem fiberSource_mem_cap
+          hcapIndex =>
+          exact
+            false_of_commonRadius_equalCenters_noncanonicalSameCap_packet
+              (P := P) (Pρ := Pρ) C T.oppApex1_rich
+              sourceCenter_mem hcapIndex hcenters
+
+include hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- Common-radius version of the normalized core.  It keeps the producer's
+provenance through residual construction, allowing the packet-aware terminal
+to consume same-cap/equal-center branches before falling back to the existing
+residual leaf. -/
+theorem false_of_twoCapSources_freshThirdBlockerFiber_core_commonRadius
+    (C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ)
+    (Q : FreshThirdBlockerFiber P Pρ)
+    (firstInteraction :
+      FreshThirdCapSourceInteraction P Pρ C.surface.firstSource Q)
+    (secondInteraction :
+      FreshThirdCapSourceInteraction P Pρ C.surface.secondSource Q) :
+    False := by
+  let obstruction :=
+    FreshThirdTwoCapSourceObstruction.normalized
+      (P := P) (Pρ := Pρ) C.surface Q firstInteraction secondInteraction
+  by_cases hrows : obstruction.HasDistinctCrossRows
+  · exact
+      FreshThirdTwoCapSourceObstruction.false_of_hasDistinctCrossRows
+        (P := P) (Pρ := Pρ) obstruction hrows
+  · exact
+      let hresidual :=
+        FreshThirdTwoCapSourceObstruction.residualCase_of_isResidual
+          (P := P) (Pρ := Pρ) obstruction
+          (FreshThirdTwoCapSourceObstruction.isResidual_of_not_hasDistinctCrossRows
+            (P := P) (Pρ := Pρ) obstruction hrows)
+      have hremaining :=
+        FreshThirdTwoCapSourceObstruction.freshThirdNormalizedResidualRemainingCase_of_residual
+          (P := P) (Pρ := Pρ) C.surface Q firstInteraction secondInteraction
+          hresidual
+      false_of_twoCapSources_freshThirdBlockerFiber_normalized_remaining_commonRadius
+        (P := P) (Pρ := Pρ)
+        (hρne := hρne) (hfrontierFour := hfrontierFour)
+        (hρfour := hρfour)
+        (hfrontierInteriorEq := hfrontierInteriorEq)
+        (hρInteriorEq := hρInteriorEq)
+        (T := T) (hpairsDisjoint := hpairsDisjoint)
+        (hblockersNe := hblockersNe)
+        (LPρ := LPρ) (hLPρ := hLPρ) (MPρ := MPρ)
+        (LP := LP) (hLP := hLP) (MP := MP)
+        C Q hremaining
+
+include hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- Constructor-specific terminal for the normalized fresh-third packet after
+the checked distinct-three-center arm has been removed. -/
+theorem false_of_twoCapSources_freshThirdBlockerFiber_normalized_residual
+    (C : TwoCapSourceThirdCanonicalRowSurface P Pρ)
+    (Q : FreshThirdBlockerFiber P Pρ)
+    (firstInteraction :
+      FreshThirdCapSourceInteraction P Pρ C.firstSource Q)
+    (secondInteraction :
+      FreshThirdCapSourceInteraction P Pρ C.secondSource Q)
+    (hresidual : FreshThirdNormalizedResidualCase P Pρ C Q) :
+    False := by
+  have hingress :
+      FreshThirdAcyclicCanonicalConsumerPacket (P := P) (Pρ := Pρ) C :=
+    freshThird_acyclic_canonical_consumerPacket
+      (P := P) (Pρ := Pρ)
+      (hρne := hρne) (hfrontierFour := hfrontierFour)
+      (hρfour := hρfour)
+      (hfrontierInteriorEq := hfrontierInteriorEq)
+      (hρInteriorEq := hρInteriorEq) (T := T)
+      (hpairsDisjoint := hpairsDisjoint)
+      (hblockersNe := hblockersNe)
+      (LPρ := LPρ) (hLPρ := hLPρ) (MPρ := MPρ)
+      (LP := LP) (hLP := hLP) (MP := MP) C
+  have false_of_omission :
+      ∀ (source : CriticalShellSystem.CarrierVertex D.A)
+        (h : FreshThirdCrossRowHit P Pρ source Q)
+        (deleted : CriticalShellSystem.CarrierVertex D.A)
+        (deleted_eq : deleted = Q.source₁ ∨ deleted = Q.source₂)
+        (deleted_not_mem :
+          deleted.1 ∉
+            (H.selectedAt source.1 source.2).toCriticalFourShell.support),
+        False := by
+    intro source h deleted deleted_eq deleted_not_mem
+    rcases deleted_eq with rfl | rfl
+    · exact deleted_not_mem h.2.1
+    · exact deleted_not_mem h.2.2
+  cases hresidual with
+  | firstNonHit data =>
+      exact
+        false_of_twoCapSources_freshThirdBlockerFiber_normalized_remaining
+          (P := P) (Pρ := Pρ)
+          (hρne := hρne) (hfrontierFour := hfrontierFour)
+          (hρfour := hρfour)
+          (hfrontierInteriorEq := hfrontierInteriorEq)
+          (hρInteriorEq := hρInteriorEq)
+          (T := T) (hpairsDisjoint := hpairsDisjoint)
+          (hblockersNe := hblockersNe)
+          (LPρ := LPρ) (hLPρ := hLPρ) (MPρ := MPρ)
+          (LP := LP) (hLP := hLP) (MP := MP)
+          (hingress := hingress)
+          C Q
+          (.firstNonHit data secondInteraction)
+  | secondNonHit data =>
+      exact
+        false_of_twoCapSources_freshThirdBlockerFiber_normalized_remaining
+          (P := P) (Pρ := Pρ)
+          (hρne := hρne) (hfrontierFour := hfrontierFour)
+          (hρfour := hρfour)
+          (hfrontierInteriorEq := hfrontierInteriorEq)
+          (hρInteriorEq := hρInteriorEq)
+          (T := T) (hpairsDisjoint := hpairsDisjoint)
+          (hblockersNe := hblockersNe)
+          (LPρ := LPρ) (hLPρ := hLPρ) (MPρ := MPρ)
+          (LP := LP) (hLP := hLP) (MP := MP)
+          (hingress := hingress)
+          C Q
+          (.secondNonHit firstInteraction data)
+  | equalCrossRowCenters hfirst hsecond hcenters =>
+      have closeCanonicalFirst :
+          ∀ {capIndex : Fin 3},
+            H.centerAt C.firstSource.1 C.firstSource.2 ∈
+              S.capInteriorByIndex capIndex →
+            (Q.source₁.1 ∈ S.capByIndex capIndex ∨
+              Q.source₂.1 ∈ S.capByIndex capIndex) →
+            capIndex = S.oppIndex1 → False := by
+        intro capIndex sourceCenter_mem fiberSource_mem_cap hcapIndex
+        exact
+          false_of_freshThirdEqualCenter_sameCapOppIndex
+            (P := P) (Pρ := Pρ) C Q hfirst hsecond hcenters
+            hfirst.2.1 hfirst.2.2 capIndex sourceCenter_mem
+            fiberSource_mem_cap hcapIndex
+      cases firstInteraction with
+      | sameBlocker center_eq _ =>
+          exact hfirst.1 center_eq
+      | sourceRowOmission deleted deleted_eq deleted_not_mem _ =>
+          exact false_of_omission C.firstSource hfirst deleted deleted_eq
+            deleted_not_mem
+      | distinctBlockersDifferentCaps centers_ne source₁_mem source₂_mem
+          overlap_eq sourceCap freshCap sourceCenter_mem freshCenter_mem caps_ne =>
+          let firstNonCanonical :=
+            FreshThirdNonCanonicalInteraction.distinctBlockersDifferentCaps
+              centers_ne source₁_mem source₂_mem overlap_eq sourceCap freshCap
+              sourceCenter_mem freshCenter_mem caps_ne
+          cases secondInteraction with
+          | sameBlocker center_eq _ =>
+              exact hsecond.1 center_eq
+          | sourceRowOmission deleted deleted_eq deleted_not_mem _ =>
+              exact false_of_omission C.secondSource hsecond deleted deleted_eq
+                deleted_not_mem
+          | distinctBlockersDifferentCaps centers_ne' source₁_mem' source₂_mem'
+              overlap_eq' sourceCap' freshCap' sourceCenter_mem' freshCenter_mem'
+              caps_ne' =>
+              exact
+                false_of_twoCapSources_freshThirdBlockerFiber_normalized_remaining
+                  (P := P) (Pρ := Pρ)
+                  (hρne := hρne) (hfrontierFour := hfrontierFour)
+                  (hρfour := hρfour)
+                  (hfrontierInteriorEq := hfrontierInteriorEq)
+                  (hρInteriorEq := hρInteriorEq)
+                  (T := T) (hpairsDisjoint := hpairsDisjoint)
+                  (hblockersNe := hblockersNe)
+                  (LPρ := LPρ) (hLPρ := hLPρ) (MPρ := MPρ)
+                  (LP := LP) (hLP := hLP) (MP := MP)
+                  (hingress := hingress)
+                  C Q
+                  (.equalCrossRowCenters hfirst hsecond hcenters
+                    firstNonCanonical
+                    (FreshThirdNonCanonicalInteraction.distinctBlockersDifferentCaps
+                      centers_ne' source₁_mem' source₂_mem' overlap_eq'
+                      sourceCap' freshCap' sourceCenter_mem' freshCenter_mem'
+                      caps_ne'))
+          | sameCapWithInternalFiberSource centers_ne' source₁_mem' source₂_mem'
+              overlap_eq' capIndex' sourceCenter_mem' freshCenter_mem'
+              fiberSource_mem_cap' =>
+              by_cases hcapIndex' : capIndex' = S.oppIndex1
+              · have sourceCenter_mem_first :
+                    H.centerAt C.firstSource.1 C.firstSource.2 ∈
+                      S.capInteriorByIndex capIndex' := by
+                  simpa [hcenters] using sourceCenter_mem'
+                exact closeCanonicalFirst sourceCenter_mem_first
+                  fiberSource_mem_cap' hcapIndex'
+              · have hsrc : sourceCap = capIndex' := by
+                  by_contra hne
+                  exact
+                    (S.capInteriorByIndex_ne_of_mem_of_mem_ne sourceCenter_mem
+                      (by simpa [hcenters] using sourceCenter_mem') hne) rfl
+                have hfr : freshCap = capIndex' := by
+                  by_contra hne
+                  exact
+                    (S.capInteriorByIndex_ne_of_mem_of_mem_ne freshCenter_mem
+                      freshCenter_mem' hne) rfl
+                exact caps_ne (hsrc.trans hfr.symm)
+      | sameCapWithInternalFiberSource centers_ne source₁_mem source₂_mem
+          overlap_eq capIndex sourceCenter_mem freshCenter_mem fiberSource_mem_cap =>
+          by_cases hcapIndex : capIndex = S.oppIndex1
+          · exact closeCanonicalFirst sourceCenter_mem fiberSource_mem_cap hcapIndex
+          · let firstNonCanonical :=
+              FreshThirdNonCanonicalInteraction.sameCapWithInternalFiberSource
+                centers_ne source₁_mem source₂_mem overlap_eq capIndex
+                sourceCenter_mem freshCenter_mem fiberSource_mem_cap hcapIndex
+            cases secondInteraction with
+            | sameBlocker center_eq _ =>
+                exact hsecond.1 center_eq
+            | sourceRowOmission deleted deleted_eq deleted_not_mem _ =>
+                exact false_of_omission C.secondSource hsecond deleted deleted_eq
+                  deleted_not_mem
+            | distinctBlockersDifferentCaps centers_ne' source₁_mem' source₂_mem'
+                overlap_eq' sourceCap' freshCap' sourceCenter_mem' freshCenter_mem'
+                caps_ne' =>
+                have hsrc : capIndex = sourceCap' := by
+                  by_contra hne
+                  exact
+                    (S.capInteriorByIndex_ne_of_mem_of_mem_ne sourceCenter_mem
+                      (by simpa [hcenters] using sourceCenter_mem') hne) rfl
+                have hfr : capIndex = freshCap' := by
+                  by_contra hne
+                  exact
+                    (S.capInteriorByIndex_ne_of_mem_of_mem_ne freshCenter_mem
+                      freshCenter_mem' hne) rfl
+                exact caps_ne' (hsrc.symm.trans hfr)
+            | sameCapWithInternalFiberSource centers_ne' source₁_mem' source₂_mem'
+                overlap_eq' capIndex' sourceCenter_mem' freshCenter_mem'
+                fiberSource_mem_cap' =>
+                by_cases hcapIndex' : capIndex' = S.oppIndex1
+                · have sourceCenter_mem_first :
+                      H.centerAt C.firstSource.1 C.firstSource.2 ∈
+                        S.capInteriorByIndex capIndex' := by
+                    simpa [hcenters] using sourceCenter_mem'
+                  exact closeCanonicalFirst sourceCenter_mem_first
+                    fiberSource_mem_cap' hcapIndex'
+                · exact
+                    false_of_twoCapSources_freshThirdBlockerFiber_normalized_remaining
+                      (P := P) (Pρ := Pρ)
+                      (hρne := hρne) (hfrontierFour := hfrontierFour)
+                      (hρfour := hρfour)
+                      (hfrontierInteriorEq := hfrontierInteriorEq)
+                      (hρInteriorEq := hρInteriorEq)
+                      (T := T) (hpairsDisjoint := hpairsDisjoint)
+                      (hblockersNe := hblockersNe)
+                      (LPρ := LPρ) (hLPρ := hLPρ) (MPρ := MPρ)
+                      (LP := LP) (hLP := hLP) (MP := MP)
+                      (hingress := hingress)
+                      C Q
+                      (.equalCrossRowCenters hfirst hsecond hcenters
+                        firstNonCanonical
+                        (FreshThirdNonCanonicalInteraction.sameCapWithInternalFiberSource
+                          centers_ne' source₁_mem' source₂_mem' overlap_eq'
+                          capIndex' sourceCenter_mem' freshCenter_mem'
+                          fiberSource_mem_cap' hcapIndex'))
+
+
+end
+end TwoSourceExactCollisionRowsTerminal
+end ATailFrontierLiveClosure
+end Problem97

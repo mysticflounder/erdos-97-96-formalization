@@ -1,0 +1,18 @@
+theorem false_of_two_exactFourInteriorTwo_distinctRadiusBlockerCollisions_and_all_low_hits
+
+The symmetric two-radius collision normal form.
+
+Both distinct first-apex radii have cardinality exactly four, exactly two
+members of each radius lie in the strict first opposite cap, and the selected
+pair on each radius has a common actual blocker.  Every weaker second-radius
+outcome is already consumed by
+`false_of_retainedInteriorDirectedOmission_and_all_low_hits`: distinct
+blockers give a directed omission immediately, while a fifth class member or
+a third strict-cap member gives one through the checked collision reductions.
+
+Narrowing measure: before this split the second radius carried only a
+four-point lower bound and two selected strict-cap points.  This leaf adds a
+source-faithful common-deletion parent, an equal-blocker collision, exact class
+cardinality four, and exact strict-cap cardinality two at that radius.  The
+checked body delegates to the sole positive three-hit producer above and
+contradicts the live low-hit bound.

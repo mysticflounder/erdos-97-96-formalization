@@ -1,0 +1,511 @@
+   250	        (H.selectedAt C.secondSource.1
+   251	          C.secondSource.2).toCriticalFourShell.support := by
+   252	    exact transportFreshThirdSelectedFourClass_support _ _
+   253	  have hsupports :
+   254	      (H.selectedAt C.firstSource.1
+   255	          C.firstSource.2).toCriticalFourShell.support =
+   256	        (H.selectedAt C.secondSource.1
+   257	          C.secondSource.2).toCriticalFourShell.support := by
+   258	    calc
+   259	      (H.selectedAt C.firstSource.1
+   260	          C.firstSource.2).toCriticalFourShell.support = K₂.support :=
+   261	        (H.selectedFourClass_support_eq_shell
+   262	          C.firstSource.1 C.firstSource.2 K₂).symm
+   263	      _ = _ := hK₂Support
+   264	  have hsecondMem :
+   265	      C.secondSource.1 ∈
+   266	        (H.selectedAt C.firstSource.1
+   267	          C.firstSource.2).toCriticalFourShell.support := by
+   268	    rw [hsupports]
+   269	    exact
+   270	      (H.selectedAt C.secondSource.1
+   271	        C.secondSource.2).toCriticalFourShell.q_mem_support
+   272	  have hnamedSubset :
+   273	      ({C.firstSource.1, C.secondSource.1,
+   274	          Q.source₁.1, Q.source₂.1} : Finset ℝ²) ⊆
+   275	        (H.selectedAt C.firstSource.1
+   276	          C.firstSource.2).toCriticalFourShell.support := by
+   277	    intro z hz
+   278	    simp only [Finset.mem_insert, Finset.mem_singleton] at hz
+   279	    rcases hz with rfl | rfl | rfl | rfl
+   280	    · exact
+   281	        (H.selectedAt C.firstSource.1
+   282	          C.firstSource.2).toCriticalFourShell.q_mem_support
+   283	    · exact hsecondMem
+   284	    · exact source₁_mem
+   285	    · exact source₂_mem
+   286	  have hnamedCard :
+   287	      ({C.firstSource.1, C.secondSource.1,
+   288	          Q.source₁.1, Q.source₂.1} : Finset ℝ²).card = 4 := by
+   289	    have hqNe : Q.source₁.1 ≠ Q.source₂.1 := by
+   290	      intro h
+   291	      exact Q.sources_ne (Subtype.ext h)
+   292	    have hc₁q₁ : C.firstSource.1 ≠ Q.source₁.1 := by
+   293	      intro h
+   294	      apply centers_ne
+   295	      exact congrArg (fun q => H.centerAt q.1 q.2) (Subtype.ext h)
+   296	    have hQcenters :
+   297	        H.centerAt Q.source₁.1 Q.source₁.2 =
+   298	          H.centerAt Q.source₂.1 Q.source₂.2 := by
+   299	      simpa [CriticalShellSystem.blockerVertex] using
+   300	        congrArg Subtype.val Q.blockers_eq
+   301	    have hc₁q₂ : C.firstSource.1 ≠ Q.source₂.1 := by
+   302	      intro h
+   303	      apply centers_ne
+   304	      exact
+   305	        (congrArg (fun q => H.centerAt q.1 q.2)
+   306	          (Subtype.ext h)).trans hQcenters.symm
+   307	    have hc₂q₁ : C.secondSource.1 ≠ Q.source₁.1 := by
+   308	      intro h
+   309	      apply centers_ne
+   310	      exact hcenters.trans
+   311	        (congrArg (fun q => H.centerAt q.1 q.2) (Subtype.ext h))
+   312	    have hc₂q₂ : C.secondSource.1 ≠ Q.source₂.1 := by
+   313	      intro h
+   314	      apply centers_ne
+   315	      exact hcenters.trans
+   316	        ((congrArg (fun q => H.centerAt q.1 q.2)
+   317	          (Subtype.ext h)).trans hQcenters.symm)
+   318	    simp [C.sources_ne, hqNe, hc₁q₁, hc₁q₂,
+   319	      hc₂q₁, hc₂q₂]
+   320	  exact
+   321	    (Finset.eq_of_subset_of_card_le hnamedSubset (by
+   322	      rw [hnamedCard,
+   323	        (H.selectedAt C.firstSource.1
+   324	          C.firstSource.2).toCriticalFourShell.support_card])).symm
+   325	
+   326	omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+   327	  hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+   328	/-- Global minimality enters the locally satisfiable FreshThird incidence
+   329	packet through its exact six-point two-shell seed.  It pins a named seed
+   330	center at which every ambient selected four-row has a witness outside both
+   331	cross rows.  This is strictly stronger than choosing one favorable escape
+   332	row and is the producer consumed by the remaining finite source case split. -/
+   333	theorem exists_freshThirdCrossRow_pinnedCenter_allRows_escape_twoShellSeed
+   334	    (C : TwoCapSourceThirdCanonicalRowSurface P Pρ)
+   335	    (Q : FreshThirdBlockerFiber P Pρ)
+   336	    (overlap_eq :
+   337	      (H.selectedAt C.firstSource.1
+   338	          C.firstSource.2).toCriticalFourShell.support ∩
+   339	          (H.selectedAt Q.source₁.1
+   340	            Q.source₁.2).toCriticalFourShell.support =
+   341	        {Q.source₁.1, Q.source₂.1}) :
+   342	    ∃ center : ℝ²,
+   343	      ∃ _hcenterSeed :
+   344	          center ∈ freshThirdCrossRowTwoShellSeed P Pρ C Q,
+   345	        ∃ _hcenterA : center ∈ D.A,
+   346	          ∀ K : SelectedFourClass D.A center,
+   347	            ∃ z : ℝ²,
+   348	              z ∈ K.support ∧
+   349	                z ∉ freshThirdCrossRowTwoShellSeed P Pρ C Q := by
+   350	  have hseedSub :
+   351	      freshThirdCrossRowTwoShellSeed P Pρ C Q ⊆ D.A :=
+   352	    freshThirdCrossRowTwoShellSeed_subset_carrier P Pρ C Q
+   353	  have hseedNonempty :
+   354	      (freshThirdCrossRowTwoShellSeed P Pρ C Q).Nonempty := by
+   355	    refine ⟨C.firstSource.1, ?_⟩
+   356	    exact Finset.mem_union_left _
+   357	      (H.selectedAt C.firstSource.1
+   358	        C.firstSource.2).toCriticalFourShell.q_mem_support
+   359	  have hseedCard :
+   360	      (freshThirdCrossRowTwoShellSeed P Pρ C Q).card = 6 :=
+   361	    freshThirdCrossRowTwoShellSeed_card_eq_six P Pρ C Q overlap_eq
+   362	  have hseedProper : freshThirdCrossRowTwoShellSeed P Pρ C Q ≠ D.A := by
+   363	    intro hseedEq
+   364	    have hAcard : D.A.card = 6 := by
+   365	      simpa [hseedEq] using hseedCard
+   366	    have hAge : 15 ≤ D.A.card :=
+   367	      ATailExactFifteenApexProfile.card_ge_fifteen_of_all_cap_card_ge_six
+   368	        S (triApexAllLargeContext_of_residuals L N T).cap_card_ge_six
+   369	    omega
+   370	  rcases
+   371	      exists_center_all_selectedFourClass_escape_of_proper_subset
+   372	        R.minimal hseedNonempty hseedSub hseedProper with
+   373	    ⟨center, hcenterSeed, hEveryRowEscapes⟩
+   374	  exact
+   375	    ⟨center, hcenterSeed, hseedSub hcenterSeed, hEveryRowEscapes⟩
+   376	
+   377	omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+   378	  hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+   379	/-- Pinned-multiplicity form of the FreshThird two-shell escape producer.
+   380	
+   381	At one of the six seed points, every positive physical radius class contains
+   382	at most three seed points.  Unlike an existential selected-row statement,
+   383	this quantifier order is stable under every later choice of a selected
+   384	four-row and is therefore suitable as a finite-ingress contract. -/
+   385	theorem exists_freshThirdCrossRow_pinnedCenter_selectedClass_seed_card_le_three
+   386	    (C : TwoCapSourceThirdCanonicalRowSurface P Pρ)
+   387	    (Q : FreshThirdBlockerFiber P Pρ)
+   388	    (overlap_eq :
+   389	      (H.selectedAt C.firstSource.1
+   390	          C.firstSource.2).toCriticalFourShell.support ∩
+   391	          (H.selectedAt Q.source₁.1
+   392	            Q.source₁.2).toCriticalFourShell.support =
+   393	        {Q.source₁.1, Q.source₂.1}) :
+   394	    ∃ center : ℝ²,
+   395	      ∃ _hcenterSeed :
+   396	          center ∈ freshThirdCrossRowTwoShellSeed P Pρ C Q,
+   397	        ∀ shellRadius : ℝ,
+   398	          0 < shellRadius →
+   399	            ((SelectedClass D.A center shellRadius) ∩
+   400	                freshThirdCrossRowTwoShellSeed P Pρ C Q).card ≤ 3 := by
+   401	  have hseedSub :
+   402	      freshThirdCrossRowTwoShellSeed P Pρ C Q ⊆ D.A :=
+   403	    freshThirdCrossRowTwoShellSeed_subset_carrier P Pρ C Q
+   404	  have hseedNonempty :
+   405	      (freshThirdCrossRowTwoShellSeed P Pρ C Q).Nonempty := by
+   406	    refine ⟨C.firstSource.1, ?_⟩
+   407	    exact Finset.mem_union_left _
+   408	      (H.selectedAt C.firstSource.1
+   409	        C.firstSource.2).toCriticalFourShell.q_mem_support
+   410	  have hseedCard :
+   411	      (freshThirdCrossRowTwoShellSeed P Pρ C Q).card = 6 :=
+   412	    freshThirdCrossRowTwoShellSeed_card_eq_six P Pρ C Q overlap_eq
+   413	  have hseedProper : freshThirdCrossRowTwoShellSeed P Pρ C Q ≠ D.A := by
+   414	    intro hseedEq
+   415	    have hAcard : D.A.card = 6 := by
+   416	      simpa [hseedEq] using hseedCard
+   417	    have hAge : 15 ≤ D.A.card :=
+   418	      ATailExactFifteenApexProfile.card_ge_fifteen_of_all_cap_card_ge_six
+   419	        S (triApexAllLargeContext_of_residuals L N T).cap_card_ge_six
+   420	    omega
+   421	  exact
+   422	    Problem97.exists_center_selectedClass_inter_card_le_three_of_proper_subset
+   423	      R.minimal hseedNonempty hseedSub hseedProper
+   424	
+   425	omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+   426	  hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+   427	/-- The FreshThird pinned low-multiplicity center is distinct from the
+   428	centers of both exposed four-shells.  Either equality would put a complete
+   429	positive-radius four-class inside the seed, contradicting the pinned
+   430	three-point bound. -/
+   431	theorem exists_freshThirdCrossRow_pinnedCenter_ne_exposedCenters
+   432	    (C : TwoCapSourceThirdCanonicalRowSurface P Pρ)
+   433	    (Q : FreshThirdBlockerFiber P Pρ)
+   434	    (overlap_eq :
+   435	      (H.selectedAt C.firstSource.1
+   436	          C.firstSource.2).toCriticalFourShell.support ∩
+   437	          (H.selectedAt Q.source₁.1
+   438	            Q.source₁.2).toCriticalFourShell.support =
+   439	        {Q.source₁.1, Q.source₂.1}) :
+   440	    ∃ center : ℝ²,
+   441	      ∃ _hcenterSeed :
+   442	          center ∈ freshThirdCrossRowTwoShellSeed P Pρ C Q,
+   443	        center ≠ H.centerAt C.firstSource.1 C.firstSource.2 ∧
+   444	          center ≠ H.centerAt Q.source₁.1 Q.source₁.2 ∧
+   445	            ∀ shellRadius : ℝ,
+   446	              0 < shellRadius →
+   447	                ((SelectedClass D.A center shellRadius) ∩
+   448	                    freshThirdCrossRowTwoShellSeed P Pρ C Q).card ≤ 3 := by
+   449	  rcases
+   450	      exists_freshThirdCrossRow_pinnedCenter_selectedClass_seed_card_le_three
+   451	        (P := P) (Pρ := Pρ) (T := T) C Q overlap_eq with
+   452	    ⟨center, hcenterSeed, hmult⟩
+   453	  refine ⟨center, hcenterSeed, ?_, ?_, hmult⟩
+   454	  · intro hcenter
+   455	    let KC :=
+   456	      (H.selectedAt C.firstSource.1
+   457	        C.firstSource.2).toCriticalFourShell
+   458	    have hrowSub :
+   459	        KC.support ⊆
+   460	          SelectedClass D.A center KC.radius ∩
+   461	            freshThirdCrossRowTwoShellSeed P Pρ C Q := by
+   462	      intro z hz
+   463	      refine Finset.mem_inter.mpr ⟨?_, ?_⟩
+   464	      · rw [mem_selectedClass]
+   465	        exact ⟨KC.support_subset_A hz, by
+   466	          simpa [hcenter] using KC.support_eq_radius z hz⟩
+   467	      · exact Finset.mem_union_left _ hz
+   468	    have hfour := Finset.card_le_card hrowSub
+   469	    have hthree := hmult KC.radius KC.radius_pos
+   470	    rw [KC.support_card] at hfour
+   471	    omega
+   472	  · intro hcenter
+   473	    let KQ :=
+   474	      (H.selectedAt Q.source₁.1
+   475	        Q.source₁.2).toCriticalFourShell
+   476	    have hrowSub :
+   477	        KQ.support ⊆
+   478	          SelectedClass D.A center KQ.radius ∩
+   479	            freshThirdCrossRowTwoShellSeed P Pρ C Q := by
+   480	      intro z hz
+   481	      refine Finset.mem_inter.mpr ⟨?_, ?_⟩
+   482	      · rw [mem_selectedClass]
+   483	        exact ⟨KQ.support_subset_A hz, by
+   484	          simpa [hcenter] using KQ.support_eq_radius z hz⟩
+   485	      · exact Finset.mem_union_right _ hz
+   486	    have hfour := Finset.card_le_card hrowSub
+   487	    have hthree := hmult KQ.radius KQ.radius_pos
+   488	    rw [KQ.support_card] at hfour
+   489	    omega
+   490	
+   491	omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+   492	  hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+   493	/-- Uniform source-faithful dichotomy at the FreshThird pinned center.
+   494	
+   495	The center is chosen once.  Every selected four-row there, and every point
+   496	of that row outside the exact two-shell seed, either has the pinned center as
+   497	its canonical blocker (forcing equality of the two full supports and failure
+   498	of deletion robustness) or has a distinct canonical blocker whose critical
+   499	support meets the selected row in at most two points. -/
+   500	theorem exists_freshThirdCrossRow_pinnedCenter_universal_escape_dichotomy
+   501	    (C : TwoCapSourceThirdCanonicalRowSurface P Pρ)
+   502	    (Q : FreshThirdBlockerFiber P Pρ)
+   503	    (overlap_eq :
+   504	      (H.selectedAt C.firstSource.1
+   505	          C.firstSource.2).toCriticalFourShell.support ∩
+   506	          (H.selectedAt Q.source₁.1
+   507	            Q.source₁.2).toCriticalFourShell.support =
+   508	        {Q.source₁.1, Q.source₂.1}) :
+   509	    ∃ center : ℝ²,
+   510	      ∃ hcenterSeed :
+   511	          center ∈ freshThirdCrossRowTwoShellSeed P Pρ C Q,
+   512	        center ≠ H.centerAt C.firstSource.1 C.firstSource.2 ∧
+   513	          center ≠ H.centerAt Q.source₁.1 Q.source₁.2 ∧
+   514	            (∀ shellRadius : ℝ,
+   515	              0 < shellRadius →
+   516	                ((SelectedClass D.A center shellRadius) ∩
+   517	                    freshThirdCrossRowTwoShellSeed P Pρ C Q).card ≤ 3) ∧
+   518	              ∀ K : SelectedFourClass D.A center,
+   519	                ∀ z : ℝ²,
+   520	                  ∀ hzK : z ∈ K.support,
+   521	                    z ∉ freshThirdCrossRowTwoShellSeed P Pρ C Q →
+   522	                      ((center = H.centerAt z (K.support_subset_A hzK) ∧
+   523	                          K.support =
+   524	                            (H.selectedAt z
+   525	                              (K.support_subset_A hzK)).toCriticalFourShell.support ∧
+   526	                          ¬ FullyDeletionRobustAt D center) ∨
+   527	                        (center ≠ H.centerAt z (K.support_subset_A hzK) ∧
+   528	                          (K.support ∩
+   529	                            (H.selectedAt z
+   530	                              (K.support_subset_A hzK)).toCriticalFourShell.support).card ≤ 2)) := by
+   531	  rcases
+   532	      exists_freshThirdCrossRow_pinnedCenter_ne_exposedCenters
+   533	        (P := P) (Pρ := Pρ) (T := T) C Q overlap_eq with
+   534	    ⟨center, hcenterSeed, hcenterNeSource, hcenterNeFresh, hmult⟩
+   535	  refine
+   536	    ⟨center, hcenterSeed, hcenterNeSource, hcenterNeFresh, hmult,
+   537	      fun K z hzK _hzOutside ↦ ?_⟩
+   538	  have hzA : z ∈ D.A := K.support_subset_A hzK
+   539	  by_cases heq : center = H.centerAt z hzA
+   540	  · subst center
+   541	    left
+   542	    refine ⟨rfl, H.selectedFourClass_support_eq_shell z hzA K, ?_⟩
+   543	    intro hrobust
+   544	    exact H.no_qfree_at z hzA (hrobust.survives z hzA)
+   545	  · right
+   546	    exact ⟨heq, SelectedFourClass.inter_card_le_two K
+   547	      (H.selectedAt z hzA).toCriticalFourShell.toSelectedFourClass heq⟩
+   548	
+   549	omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+   550	  hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+   551	/-- A consumer-ready selected-row form of the FreshThird pinned-center producer.
+   552	
+   553	The center supplied by global minimality lies in the exact six-point seed.  Global
+   554	K4 supplies a selected four-row at that same center, and the pinned multiplicity-
+   555	three bound forces an actual row point outside the seed.  The point retains the
+   556	full canonical-blocker dichotomy, so no later argument has to identify the pinned
+   557	center with a separately chosen endpoint row. -/
+   558	theorem exists_freshThirdCrossRow_pinnedCenter_selectedRow_escape_dichotomy
+   559	    (C : TwoCapSourceThirdCanonicalRowSurface P Pρ)
+   560	    (Q : FreshThirdBlockerFiber P Pρ)
+   561	    (overlap_eq :
+   562	      (H.selectedAt C.firstSource.1
+   563	          C.firstSource.2).toCriticalFourShell.support ∩
+   564	          (H.selectedAt Q.source₁.1
+   565	            Q.source₁.2).toCriticalFourShell.support =
+   566	        {Q.source₁.1, Q.source₂.1}) :
+   567	    ∃ (center : ℝ²)
+   568	        (hcenterSeed : center ∈ freshThirdCrossRowTwoShellSeed P Pρ C Q),
+   569	      center ≠ H.centerAt C.firstSource.1 C.firstSource.2 ∧
+   570	      center ≠ H.centerAt Q.source₁.1 Q.source₁.2 ∧
+   571	      ∃ (K : SelectedFourClass D.A center) (z : ℝ²)
+   572	          (hzK : z ∈ K.support),
+   573	        z ∉ freshThirdCrossRowTwoShellSeed P Pρ C Q ∧
+   574	        ((center = H.centerAt z (K.support_subset_A hzK) ∧
+   575	            K.support =
+   576	              (H.selectedAt z
+   577	                (K.support_subset_A hzK)).toCriticalFourShell.support ∧
+   578	            ¬ FullyDeletionRobustAt D center) ∨
+   579	          (center ≠ H.centerAt z (K.support_subset_A hzK) ∧
+   580	            (K.support ∩
+   581	              (H.selectedAt z
+   582	                (K.support_subset_A hzK)).toCriticalFourShell.support).card ≤ 2)) := by
+   583	  classical
+   584	  rcases
+   585	      exists_freshThirdCrossRow_pinnedCenter_universal_escape_dichotomy
+   586	        (P := P) (Pρ := Pρ) (T := T) C Q overlap_eq with
+   587	    ⟨center, hcenterSeed, hcenterNeSource, hcenterNeFresh,
+   588	      hmult, hglobalEscape⟩
+   589	  have hcenterA : center ∈ D.A :=
+   590	    freshThirdCrossRowTwoShellSeed_subset_carrier P Pρ C Q hcenterSeed
+   591	  rcases exists_selectedFourClass_of_globalK4 D.K4 hcenterA with ⟨K⟩
+   592	  have hnotSub :
+   593	      ¬ K.support ⊆ freshThirdCrossRowTwoShellSeed P Pρ C Q := by
+   594	    intro hsub
+   595	    have hrowSub :
+   596	        K.support ⊆
+   597	          SelectedClass D.A center K.radius ∩
+   598	            freshThirdCrossRowTwoShellSeed P Pρ C Q := by
+   599	      intro x hx
+   600	      exact Finset.mem_inter.mpr
+   601	        ⟨mem_selectedClass.mpr
+   602	            ⟨K.support_subset_A hx, K.support_eq_radius x hx⟩,
+   603	          hsub hx⟩
+   604	    have hfour := Finset.card_le_card hrowSub
+   605	    have hthree := hmult K.radius K.radius_pos
+   606	    rw [K.support_card] at hfour
+   607	    omega
+   608	  rcases Finset.not_subset.mp hnotSub with ⟨z, hzK, hzOutside⟩
+   609	  exact
+   610	    ⟨center, hcenterSeed, hcenterNeSource, hcenterNeFresh,
+   611	      K, z, hzK, hzOutside, hglobalEscape K z hzK hzOutside⟩
+   612	
+   613	omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
+   614	  hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+   615	/-- A seed point in the equal-center arm is either one of the four named
+   616	source points or one of the two anonymous points contributed by the fresh
+   617	row. -/
+   618	theorem freshThirdEqualCenter_seed_mem_named_or_freshRemainder
+   619	    (C : TwoCapSourceThirdCanonicalRowSurface P Pρ)
+   620	    (Q : FreshThirdBlockerFiber P Pρ)
+   621	    (hexact : FreshThirdEqualCenterExactFourRow P Pρ C Q)
+   622	    {center : ℝ²}
+   623	    (hcenterSeed : center ∈ freshThirdCrossRowTwoShellSeed P Pρ C Q) :
+   624	    center ∈
+   625	        ({C.firstSource.1, C.secondSource.1,
+   626	          Q.source₁.1, Q.source₂.1} : Finset ℝ²) ∨
+   627	      center ∈ freshThirdCrossRowFreshRemainder P Pρ C Q := by
+   628	  rw [freshThirdCrossRowTwoShellSeed, Finset.mem_union] at hcenterSeed
+   629	  rcases hcenterSeed with hsource | hfresh
+   630	  · left
+   631	    rwa [hexact.first_support_eq] at hsource
+   632	  · by_cases hsource :
+   633	        center ∈
+   634	          (H.selectedAt C.firstSource.1
+   635	            C.firstSource.2).toCriticalFourShell.support
+   636	    · left
+   637	      rwa [hexact.first_support_eq] at hsource
+   638	    · right
+   639	      exact Finset.mem_sdiff.mpr ⟨hfresh, hsource⟩
+   640	
+   641	omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+   642	  hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+   643	/-- Source-level finite ingress for the equal-center FreshThird arm.
+   644	
+   645	Global minimality pins one center among six possibilities: four named source
+   646	points plus an anonymous fresh remainder of cardinality two.  The same center
+   647	retains the universal positive-radius multiplicity bound and the full
+   648	selected-row escape dichotomy, so a finite checker need not choose a favorable
+   649	row existentially. -/
+   650	theorem exists_freshThirdEqualCenter_pinnedCenter_sixWayIngress
+   651	    (C : TwoCapSourceThirdCanonicalRowSurface P Pρ)
+   652	    (Q : FreshThirdBlockerFiber P Pρ)
+   653	    (hfirst : FreshThirdCrossRowHit P Pρ C.firstSource Q)
+   654	    (hsecond : FreshThirdCrossRowHit P Pρ C.secondSource Q)
+   655	    (hcenters :
+   656	      H.centerAt C.firstSource.1 C.firstSource.2 =
+   657	        H.centerAt C.secondSource.1 C.secondSource.2)
+   658	    (overlap_eq :
+   659	      (H.selectedAt C.firstSource.1
+   660	          C.firstSource.2).toCriticalFourShell.support ∩
+   661	          (H.selectedAt Q.source₁.1
+   662	            Q.source₁.2).toCriticalFourShell.support =
+   663	        {Q.source₁.1, Q.source₂.1}) :
+   664	    ∃ center : ℝ²,
+   665	      (center ∈
+   666	          ({C.firstSource.1, C.secondSource.1,
+   667	            Q.source₁.1, Q.source₂.1} : Finset ℝ²) ∨
+   668	        center ∈ freshThirdCrossRowFreshRemainder P Pρ C Q) ∧
+   669	      ({C.firstSource.1, C.secondSource.1,
+   670	        Q.source₁.1, Q.source₂.1} : Finset ℝ²).card = 4 ∧
+   671	      (freshThirdCrossRowFreshRemainder P Pρ C Q).card = 2 ∧
+   672	      Disjoint
+   673	        ({C.firstSource.1, C.secondSource.1,
+   674	          Q.source₁.1, Q.source₂.1} : Finset ℝ²)
+   675	        (freshThirdCrossRowFreshRemainder P Pρ C Q) ∧
+   676	      center ≠ H.centerAt C.firstSource.1 C.firstSource.2 ∧
+   677	      center ≠ H.centerAt Q.source₁.1 Q.source₁.2 ∧
+   678	      (∀ shellRadius : ℝ,
+   679	        0 < shellRadius →
+   680	          ((SelectedClass D.A center shellRadius) ∩
+   681	              freshThirdCrossRowTwoShellSeed P Pρ C Q).card ≤ 3) ∧
+   682	      ∀ K : SelectedFourClass D.A center,
+   683	        ∀ z : ℝ²,
+   684	          ∀ hzK : z ∈ K.support,
+   685	            z ∉ freshThirdCrossRowTwoShellSeed P Pρ C Q →
+   686	              ((center = H.centerAt z (K.support_subset_A hzK) ∧
+   687	                  K.support =
+   688	                    (H.selectedAt z
+   689	                      (K.support_subset_A hzK)).toCriticalFourShell.support ∧
+   690	                  ¬ FullyDeletionRobustAt D center) ∨
+   691	                (center ≠ H.centerAt z (K.support_subset_A hzK) ∧
+   692	                  (K.support ∩
+   693	                    (H.selectedAt z
+   694	                      (K.support_subset_A hzK)).toCriticalFourShell.support).card ≤ 2)) := by
+   695	  have hexact : FreshThirdEqualCenterExactFourRow P Pρ C Q :=
+   696	    freshThirdEqualCenterExactFourRow_of_hits
+   697	      (P := P) (Pρ := Pρ) C Q hfirst hsecond hcenters
+   698	  have hremainderCard :
+   699	      (freshThirdCrossRowFreshRemainder P Pρ C Q).card = 2 :=
+   700	    freshThirdCrossRowFreshRemainder_card_eq_two P Pρ C Q overlap_eq
+   701	  have hnamedCard :
+   702	      ({C.firstSource.1, C.secondSource.1,
+   703	        Q.source₁.1, Q.source₂.1} : Finset ℝ²).card = 4 := by
+   704	    rw [← hexact.first_support_eq]
+   705	    exact
+   706	      (H.selectedAt C.firstSource.1
+   707	        C.firstSource.2).toCriticalFourShell.support_card
+   708	  have hnamedDisjointRemainder :
+   709	      Disjoint
+   710	        ({C.firstSource.1, C.secondSource.1,
+   711	          Q.source₁.1, Q.source₂.1} : Finset ℝ²)
+   712	        (freshThirdCrossRowFreshRemainder P Pρ C Q) := by
+   713	    rw [freshThirdCrossRowFreshRemainder, ← hexact.first_support_eq]
+   714	    exact Finset.disjoint_sdiff
+   715	  rcases
+   716	      exists_freshThirdCrossRow_pinnedCenter_universal_escape_dichotomy
+   717	        (P := P) (Pρ := Pρ) (T := T) C Q overlap_eq with
+   718	    ⟨center, hcenterSeed, hcenterNeSource, hcenterNeFresh, hmult, hescape⟩
+   719	  exact
+   720	    ⟨center,
+   721	      freshThirdEqualCenter_seed_mem_named_or_freshRemainder
+   722	        P Pρ C Q hexact hcenterSeed,
+   723	      hnamedCard, hremainderCard, hnamedDisjointRemainder,
+   724	      hcenterNeSource, hcenterNeFresh, hmult, hescape⟩
+   725	
+   726	namespace FreshThirdTwoCapSourceObstruction
+   727	
+   728	/-- The normalized two-source packet contains two distinct new centers on the
+   729	fresh pair's perpendicular bisector.  The stronger equal-blocker/all-endpoint-
+   730	omission constructor intentionally does not erase into this generic case. -/
+   731	def HasDistinctCrossRows :
+   732	    FreshThirdTwoCapSourceObstruction P Pρ → Prop
+   733	  | .normalized C Q _ _ =>
+   734	      FreshThirdCrossRowHit P Pρ C.firstSource Q ∧
+   735	        FreshThirdCrossRowHit P Pρ C.secondSource Q ∧
+   736	        H.centerAt C.firstSource.1 C.firstSource.2 ≠
+   737	          H.centerAt C.secondSource.1 C.secondSource.2
+   738	  | .sameBlockerAllEndpointOmission .. => False
+   739	
+   740	/-- Positive residual interface left after the checked three-center arm.  The
+   741	all-endpoint-omission constructor keeps all of its stronger fields in
+   742	`obstruction`; the proposition merely marks that it is already a residual
+   743	constructor rather than a generic normalized packet. -/
+   744	def IsResidual :
+   745	    FreshThirdTwoCapSourceObstruction P Pρ → Prop
+   746	  | .normalized C Q _ _ =>
+   747	      FreshThirdCrossRowResidual P Pρ C.firstSource C.secondSource Q
+   748	  | .sameBlockerAllEndpointOmission .. => True
+   749	
+   750	/-- Constructor-level positive residual packet consumed by the load-bearing
+   751	leaf.  Unlike `IsResidual`, the normalized arm has already converted failed
+   752	cross-row hits into equal-blocker or source-row-omission data. -/
+   753	def ResidualCase :
+   754	    FreshThirdTwoCapSourceObstruction P Pρ → Prop
+   755	  | .normalized C Q _ _ => FreshThirdNormalizedResidualCase P Pρ C Q
+   756	  | .sameBlockerAllEndpointOmission .. => True
+   757	
+   758	omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+   759	  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+   760	/-- Convert the negative guard used by the coordinator into the explicit

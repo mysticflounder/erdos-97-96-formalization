@@ -1,0 +1,246 @@
+which made its apparent producer transitively depend on the FreshThird
+contradiction it was supposed to feed.  This boundary stops before any
+terminal: it exposes either a named cross-row hit, or the geometric residual
+together with the independent cap-eight/global split.  Any later consumer can
+now be audited against this proposition without importing a circular closer.
+-/
+theorem collisionRows_sourceCleanMultiplicityIngress
+    (hcapEightOrCross :
+      8 ≤ (S.capByIndex S.oppIndex1).card ∨
+        H.centerAt P.source₁ P.source₁_mem_A = Pρ.source₁ ∨
+          H.centerAt P.source₁ P.source₁_mem_A = Pρ.source₂ ∨
+            H.centerAt Pρ.source₁ Pρ.source₁_mem_A = P.source₁ ∨
+              H.centerAt Pρ.source₁ Pρ.source₁_mem_A = P.source₂) :
+    CollisionCrossHit P Pρ ∨
+      (GeometricMultiplicityResidual P Pρ ∧
+        TwoCollisionGlobalSplit P Pρ) := by
+  classical
+  have hglobalCapSplit : TwoCollisionGlobalSplit P Pρ :=
+    hcapEightOrCross.imp
+      (fun hcap =>
+        exists_capSource_thirdCanonicalRow_omits_each_collisionPair
+          P Pρ B.secondApex_robust hpairsDisjoint hcap)
+      id
+  let apex₁ : CriticalShellSystem.CarrierVertex D.A :=
+    ⟨S.oppApex1, by
+      simpa using S.oppositeVertexByIndex_mem S.oppIndex1⟩
+  let apex₂ : CriticalShellSystem.CarrierVertex D.A :=
+    ⟨S.oppApex2, by
+      simpa using S.oppositeVertexByIndex_mem S.oppIndex2⟩
+  let apex₃ : CriticalShellSystem.CarrierVertex D.A :=
+    ⟨S.surplusApex, by
+      simpa using S.oppositeVertexByIndex_mem S.surplusIdx⟩
+  let a₁ : CriticalShellSystem.CarrierVertex D.A :=
+    ⟨P.source₁, P.source₁_mem_A⟩
+  let a₂ : CriticalShellSystem.CarrierVertex D.A :=
+    ⟨P.source₂, P.source₂_mem_A⟩
+  let b₁ : CriticalShellSystem.CarrierVertex D.A :=
+    ⟨Pρ.source₁, Pρ.source₁_mem_A⟩
+  let b₂ : CriticalShellSystem.CarrierVertex D.A :=
+    ⟨Pρ.source₂, Pρ.source₂_mem_A⟩
+  have homitted₁ : ∀ x, H.blockerVertex x ≠ apex₁ := by
+    intro x
+    exact FullyDeletionRobustAt.blockerVertex_ne
+      (fullyDeletionRobustAt_of_apexRichClassStructure T.oppApex1_rich)
+      H x apex₁.2
+  have homitted₂ : ∀ x, H.blockerVertex x ≠ apex₂ := by
+    intro x
+    exact FullyDeletionRobustAt.blockerVertex_ne
+      (fullyDeletionRobustAt_of_apexRichClassStructure T.oppApex2_rich)
+      H x apex₂.2
+  have homitted₃ : ∀ x, H.blockerVertex x ≠ apex₃ := by
+    intro x
+    exact FullyDeletionRobustAt.blockerVertex_ne
+      (fullyDeletionRobustAt_of_apexRichClassStructure T.surplusApex_rich)
+      H x apex₃.2
+  have hapex₁₂ : apex₁ ≠ apex₂ := by
+    intro h
+    exact
+      (S.oppositeVertexByIndex_ne_of_ne S.oppIndex1_ne_oppIndex2)
+        (by simpa [apex₁, apex₂] using congrArg Subtype.val h)
+  have hapex₁₃ : apex₁ ≠ apex₃ := by
+    intro h
+    exact
+      (S.oppositeVertexByIndex_ne_of_ne
+        S.surplusIdx_ne_oppIndex1).symm
+        (by simpa [apex₁, apex₃] using congrArg Subtype.val h)
+  have hapex₂₃ : apex₂ ≠ apex₃ := by
+    intro h
+    exact
+      (S.oppositeVertexByIndex_ne_of_ne
+        S.surplusIdx_ne_oppIndex2).symm
+        (by simpa [apex₂, apex₃] using congrArg Subtype.val h)
+  have hfa : H.blockerVertex a₁ = H.blockerVertex a₂ := by
+    apply Subtype.ext
+    exact P.blockers_eq
+  have hfb : H.blockerVertex b₁ = H.blockerVertex b₂ := by
+    apply Subtype.ext
+    exact Pρ.blockers_eq
+  have hvalues : H.blockerVertex a₁ ≠ H.blockerVertex b₁ := by
+    intro h
+    apply hblockersNe
+    exact congrArg Subtype.val h.symm
+  have hblockerMultiplicity :=
+    third_fiber_or_larger_known_fiber_of_three_omissions
+      H.blockerVertex homitted₁ homitted₂ homitted₃
+      hapex₁₂ hapex₁₃ hapex₂₃ hfa hfb hvalues
+  rcases collisionCrossHit_or_geometricMultiplicity
+      P Pρ hblockerMultiplicity with hcross | hresidual
+  · exact Or.inl hcross
+  · exact Or.inr ⟨hresidual, hglobalCapSplit⟩
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- A cap-wide alignment producer immediately kills a first-source non-hit.
+This adapter is intentionally source-clean: it consumes only the positive
+alignment packet and the non-hit constructor, leaving the cap-wide producer
+itself as the single mathematical bridge still required by the residual. -/
+theorem false_of_freshThird_firstNonHit_of_capWideAlignment
+    (C : TwoCapSourceThirdCanonicalRowSurface P Pρ)
+    (Q : FreshThirdBlockerFiber P Pρ)
+    (data : FreshThirdCapSourceNonHit P Pρ C.firstSource Q)
+    (halign : FreshThirdSameCapCrossRowAlignment P Pρ Q C.firstSource) :
+    False := by
+  rcases halign with
+    ⟨capIndex, hqCap, hsCap, hcentersNe,
+      hq1Off, hq2Off, hq1Mem, hq2Mem⟩
+  cases data with
+  | sameBlocker center_eq _ =>
+      exact hcentersNe center_eq
+  | sourceRowOmission deleted deleted_eq deleted_not_mem _ =>
+      rcases deleted_eq with rfl | rfl
+      · exact deleted_not_mem hq1Mem
+      · exact deleted_not_mem hq2Mem
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- Symmetric cap-wide alignment adapter for a second-source non-hit. -/
+theorem false_of_freshThird_secondNonHit_of_capWideAlignment
+    (C : TwoCapSourceThirdCanonicalRowSurface P Pρ)
+    (Q : FreshThirdBlockerFiber P Pρ)
+    (data : FreshThirdCapSourceNonHit P Pρ C.secondSource Q)
+    (halign : FreshThirdSameCapCrossRowAlignment P Pρ Q C.secondSource) :
+    False := by
+  rcases halign with
+    ⟨capIndex, hqCap, hsCap, hcentersNe,
+      hq1Off, hq2Off, hq1Mem, hq2Mem⟩
+  cases data with
+  | sameBlocker center_eq _ =>
+      exact hcentersNe center_eq
+  | sourceRowOmission deleted deleted_eq deleted_not_mem _ =>
+      rcases deleted_eq with rfl | rfl
+      · exact deleted_not_mem hq1Mem
+      · exact deleted_not_mem hq2Mem
+
+include hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- Exact global-incidence producer needed by the first-source non-hit branch.
+
+The produced selected row has a center distinct from the canonical Q-row
+center and overlaps that Q row in at least three points.  This is precisely the
+positive packet consumed by the clean two-circle terminal
+`false_of_centerAt_selectedFourClass_inter_card_ge_three`; proving it is the
+remaining mathematical content of this residual. -/
+theorem exists_freshThird_firstNonHit_selectedRow_overlap_card_ge_three
+    (C : TwoCapSourceThirdCanonicalRowSurface P Pρ)
+    (Q : FreshThirdBlockerFiber P Pρ)
+    (hingress :
+      FreshThirdAcyclicCanonicalConsumerPacket (P := P) (Pρ := Pρ) C)
+    (data : FreshThirdCapSourceNonHit P Pρ C.firstSource Q)
+    (secondInteraction :
+      FreshThirdCapSourceInteraction P Pρ C.secondSource Q) :
+    ∃ source : CriticalShellSystem.CarrierVertex D.A,
+      H.centerAt source.1 source.2 ≠
+          H.centerAt Q.source₁.1 Q.source₁.2 ∧
+      3 ≤
+        ((H.selectedAt source.1 source.2).toCriticalFourShell.support ∩
+          (H.selectedAt Q.source₁.1 Q.source₁.2).toCriticalFourShell.support).card := by
+  sorry
+
+include hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- Close the first-source non-hit branch from its exact global-incidence
+producer.  This adapter keeps the existing `False` interface stable for every
+downstream caller. -/
+theorem false_of_freshThird_firstNonHit
+    (C : TwoCapSourceThirdCanonicalRowSurface P Pρ)
+    (Q : FreshThirdBlockerFiber P Pρ)
+    (hingress :
+      FreshThirdAcyclicCanonicalConsumerPacket (P := P) (Pρ := Pρ) C)
+    (data : FreshThirdCapSourceNonHit P Pρ C.firstSource Q)
+    (secondInteraction :
+      FreshThirdCapSourceInteraction P Pρ C.secondSource Q) :
+    False := by
+  rcases exists_freshThird_firstNonHit_selectedRow_overlap_card_ge_three
+      C Q hingress data secondInteraction with
+    ⟨source, hcenters, hthree⟩
+  apply false_of_centerAt_selectedFourClass_inter_card_ge_three
+    H source.1 source.2
+    (H.selectedAt Q.source₁.1
+      Q.source₁.2).toCriticalFourShell.toSelectedFourClass
+    hcenters
+  simpa only [CriticalFourShell.toSelectedFourClass] using hthree
+
+include hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- Direct source-level residual for the second-source non-hit branch.
+This is the reflected companion of `false_of_freshThird_firstNonHit`; it keeps
+the full first interaction and acyclic ingress while avoiding the same
+impossible-alignment interface. -/
+theorem false_of_freshThird_secondNonHit
+    (C : TwoCapSourceThirdCanonicalRowSurface P Pρ)
+    (Q : FreshThirdBlockerFiber P Pρ)
+    (hingress :
+      FreshThirdAcyclicCanonicalConsumerPacket (P := P) (Pρ := Pρ) C)
+    (firstInteraction :
+      FreshThirdCapSourceInteraction P Pρ C.firstSource Q)
+    (data : FreshThirdCapSourceNonHit P Pρ C.secondSource Q) :
+    False := by
+  let Cswap : TwoCapSourceThirdCanonicalRowSurface P Pρ :=
+    { cap_card_ge_eight := C.cap_card_ge_eight
+      firstSource := C.secondSource
+      secondSource := C.firstSource
+      sources_ne := C.sources_ne.symm
+      firstSource_data := C.secondSource_data
+      secondSource_data := C.firstSource_data }
+  have hingressSwap :
+      FreshThirdAcyclicCanonicalConsumerPacket
+        (P := P) (Pρ := Pρ) Cswap :=
+    freshThird_acyclic_canonical_consumerPacket
+      (P := P) (Pρ := Pρ)
+      (hρne := hρne)
+      (hfrontierFour := hfrontierFour)
+      (hρfour := hρfour)
+      (hfrontierInteriorEq := hfrontierInteriorEq)
+      (hρInteriorEq := hρInteriorEq)
+      (T := T)
+      (hpairsDisjoint := hpairsDisjoint)
+      (hblockersNe := hblockersNe)
+      (LPρ := LPρ) (hLPρ := hLPρ) (MPρ := MPρ)
+      (LP := LP) (hLP := hLP) (MP := MP) Cswap
+  exact
+    false_of_freshThird_firstNonHit
+      (P := P) (Pρ := Pρ)
+      (hρne := hρne)
+      (hfrontierFour := hfrontierFour)
+      (hρfour := hρfour)
+      (hfrontierInteriorEq := hfrontierInteriorEq)
+      (hρInteriorEq := hρInteriorEq)
+      (T := T)
+      (hpairsDisjoint := hpairsDisjoint)
+      (hblockersNe := hblockersNe)
+      (LPρ := LPρ) (hLPρ := hLPρ) (MPρ := MPρ)
+      (LP := LP) (hLP := hLP) (MP := MP)
+      Cswap Q hingressSwap
+      (by simpa [Cswap] using data)
+      (by simpa [Cswap] using firstInteraction)
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
+  hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- Both noncanonical positive interaction constructors retain the exact
+two-point overlap needed by the finite-ingress producer. -/
+private theorem freshThirdNonCanonicalInteraction_overlap_eq
+    (C : TwoCapSourceThirdCanonicalRowSurface P Pρ)
+    (Q : FreshThirdBlockerFiber P Pρ)
+    (interaction :
+      FreshThirdNonCanonicalInteraction P Pρ C.firstSource Q) :

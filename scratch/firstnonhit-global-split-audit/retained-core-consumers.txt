@@ -1,0 +1,23 @@
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdRetainedProducer.lean:660:abbrev FreshThirdAlignedFixedDeletionCorePacket
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdRetainedProducer.lean:680:theorem freshThird_acyclic_fixedDeletionCorePacket_of_omitted
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdRetainedProducer.lean:694:    FreshThirdAlignedFixedDeletionCorePacket
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdRetainedProducer.lean:756:    FreshThirdAlignedFixedDeletionCorePacket (S := S) (H := H) source x y
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdRetainedProducer.lean:771:            FreshThirdAlignedFixedDeletionCorePacket
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdRetainedProducer.lean:773:            FreshThirdAlignedFixedDeletionCorePacket
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdRetainedProducer.lean:779:            FreshThirdAlignedFixedDeletionCorePacket
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdRetainedProducer.lean:781:            FreshThirdAlignedFixedDeletionCorePacket
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdRetainedProducer.lean:832:        freshThird_acyclic_fixedDeletionCorePacket_of_omitted
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdRetainedProducer.lean:838:        freshThird_acyclic_fixedDeletionCorePacket_of_omitted
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdRetainedProducer.lean:850:        freshThird_acyclic_fixedDeletionCorePacket_of_omitted
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdRetainedProducer.lean:856:        freshThird_acyclic_fixedDeletionCorePacket_of_omitted
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdRetainedProducer.lean:867:  FreshThirdAlignedFixedDeletionCorePacket
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdRetainedProducer.lean:869:    FreshThirdAlignedFixedDeletionCorePacket
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdRetainedProducer.lean:871:    FreshThirdAlignedFixedDeletionCorePacket
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdRetainedProducer.lean:873:    FreshThirdAlignedFixedDeletionCorePacket
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdRetainedProducer.lean:881:theorem freshThird_alignedSourceDeletionCorePacket_cases
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdRetainedProducer.lean:1025:theorem freshThird_alignedRetainedConsumerPacket_sourceDeletionCoreCases
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdRetainedProducer.lean:1034:    ⟨freshThird_alignedSourceDeletionCorePacket_cases
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdRetainedProducer.lean:1036:      freshThird_alignedSourceDeletionCorePacket_cases
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdRetainedProducer.lean:1042:theorem freshThird_acyclic_alignedSourceDeletionCorePacket
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdRetainedProducer.lean:1169:          freshThird_acyclic_alignedSourceDeletionCorePacket
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdRetainedProducer.lean:1175:          freshThird_acyclic_alignedSourceDeletionCorePacket

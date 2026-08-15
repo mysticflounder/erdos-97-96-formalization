@@ -1,0 +1,356 @@
+  have hsourceSurvives :
+      HasNEquidistantPointsAt 4
+        ((D.A.erase x).erase y) (H.centerAt source.1 source.2) := by
+    have hxOmittedK : x ∉ K.support := by
+      simpa [K] using hxOmitted
+    have hyOmittedK : y ∉ K.support := by
+      simpa [K] using hyOmitted
+    refine ⟨K.radius, K.radius_pos, ?_⟩
+    change
+      4 ≤
+        (SelectedClass ((D.A.erase x).erase y)
+          (H.centerAt source.1 source.2) K.radius).card
+    rw [selectedClass_erase_eq, selectedClass_erase_eq, hclassEq]
+    rw [Finset.erase_eq_of_notMem hxOmittedK,
+      Finset.erase_eq_of_notMem hyOmittedK]
+    exact K.support_card.ge
+  have hblocked :
+      ¬ HasNEquidistantPointsAt 4
+        ((D.A.erase x).erase y) S.oppApex1 :=
+    freshThird_acyclic_crossRetainedEndpoints_doubleDeletion_obstructsFirstApex
+      (hfrontierFour := hfrontierFour) (hρfour := hρfour)
+      haligned hxSelected hySelected
+  exact
+    ⟨hxOmitted, hyOmitted, hsourceSurvives, hblocked,
+      freshThird_acyclic_firstApex_minimalDeletionCore_of_crossRetainedEndpoints
+        (P := P) (Pρ := Pρ) (hρne := hρne)
+        (hfrontierInteriorEq := hfrontierInteriorEq)
+        (hρInteriorEq := hρInteriorEq) (T := T)
+        hxPair hyPair hblocked⟩
+
+/-- Complete deletion-core data produced for one aligned cap source. -/
+abbrev FreshThirdAlignedSourceDeletionCorePacket
+    (source : CriticalShellSystem.CarrierVertex D.A) : Prop :=
+  ∃ x y : ℝ²,
+    x ∈ ({P.source₁, P.source₂} : Finset ℝ²) ∧
+    y ∈ ({Pρ.source₁, Pρ.source₂} : Finset ℝ²) ∧
+    FreshThirdAlignedFixedDeletionCorePacket (S := S) (H := H) source x y
+
+/-- The two aligned source rows share one omitted collision endpoint, and
+each row retains a complete deletion core obtained by pairing that endpoint
+with an omitted endpoint from the other collision pair. -/
+abbrev FreshThirdAlignedCommonDeletionCorePairPacket
+    (C : TwoCapSourceThirdCanonicalRowSurface P Pρ) : Prop :=
+  ∃ z : ℝ²,
+    z ∈
+        (({P.source₁, P.source₂} : Finset ℝ²) ∪
+          {Pρ.source₁, Pρ.source₂}) ∧
+      ((z ∈ ({P.source₁, P.source₂} : Finset ℝ²) ∧
+          ∃ y y' : ℝ²,
+            y ∈ ({Pρ.source₁, Pρ.source₂} : Finset ℝ²) ∧
+            y' ∈ ({Pρ.source₁, Pρ.source₂} : Finset ℝ²) ∧
+            FreshThirdAlignedFixedDeletionCorePacket
+              (S := S) (H := H) C.firstSource z y ∧
+            FreshThirdAlignedFixedDeletionCorePacket
+              (S := S) (H := H) C.secondSource z y') ∨
+        (z ∈ ({Pρ.source₁, Pρ.source₂} : Finset ℝ²) ∧
+          ∃ x x' : ℝ²,
+            x ∈ ({P.source₁, P.source₂} : Finset ℝ²) ∧
+            x' ∈ ({P.source₁, P.source₂} : Finset ℝ²) ∧
+            FreshThirdAlignedFixedDeletionCorePacket
+              (S := S) (H := H) C.firstSource x z ∧
+            FreshThirdAlignedFixedDeletionCorePacket
+              (S := S) (H := H) C.secondSource x' z))
+
+omit hpairsDisjoint hblockersNe
+  LPρ hLPρ MPρ LP hLP MP in
+/-- Preserve a common omitted endpoint through the aligned deletion-core
+producer.  The other deleted endpoint may differ between the two source rows;
+no favorable coincidence is assumed. -/
+theorem freshThird_alignedCommonDeletionCorePairPacket_of_commonOmission
+    (C : TwoCapSourceThirdCanonicalRowSurface P Pρ)
+    (haligned :
+      FirstCapMultiPointRadiiRetained
+        (S := S) (radius := radius) (ρ := ρ))
+    (hcommon :
+      CommonCollisionEndpointOmission
+        (H := H) P Pρ C.firstSource C.secondSource) :
+    FreshThirdAlignedCommonDeletionCorePairPacket
+      (S := S) (H := H) P Pρ C := by
+  classical
+  have firstPairOmission
+      (source : CriticalShellSystem.CarrierVertex D.A)
+      (hsource : FirstFiberCapSourceWitness P Pρ source) :
+      ∃ x : ℝ²,
+        x ∈ ({P.source₁, P.source₂} : Finset ℝ²) ∧
+        x ∉
+          (H.selectedAt source.1 source.2).toCriticalFourShell.support := by
+    rcases hsource with
+      ⟨_, _, _, _, _, _, _, _, _, hfirstView, _⟩
+    rcases hfirstView.omits with hx | hx
+    · exact ⟨P.source₁, by simp, hx⟩
+    · exact ⟨P.source₂, by simp, hx⟩
+  have secondPairOmission
+      (source : CriticalShellSystem.CarrierVertex D.A)
+      (hsource : FirstFiberCapSourceWitness P Pρ source) :
+      ∃ y : ℝ²,
+        y ∈ ({Pρ.source₁, Pρ.source₂} : Finset ℝ²) ∧
+        y ∉
+          (H.selectedAt source.1 source.2).toCriticalFourShell.support := by
+    rcases hsource with
+      ⟨_, _, _, _, _, _, _, _, _, _, hsecondView⟩
+    rcases hsecondView.omits with hy | hy
+    · exact ⟨Pρ.source₁, by simp, hy⟩
+    · exact ⟨Pρ.source₂, by simp, hy⟩
+  rcases hcommon with ⟨z, hzEndpoints, hzFirst, hzSecond⟩
+  rcases Finset.mem_union.mp hzEndpoints with hzP | hzPρ
+  · rcases secondPairOmission C.firstSource C.firstSource_data with
+      ⟨y, hyPair, hyOmitted⟩
+    rcases secondPairOmission C.secondSource C.secondSource_data with
+      ⟨y', hyPair', hyOmitted'⟩
+    exact ⟨z, Finset.mem_union.mpr (Or.inl hzP), Or.inl
+      ⟨hzP, y, y', hyPair, hyPair',
+        freshThird_acyclic_fixedDeletionCorePacket_of_omitted
+          (P := P) (Pρ := Pρ) (hρne := hρne)
+          (hfrontierFour := hfrontierFour) (hρfour := hρfour)
+          (hfrontierInteriorEq := hfrontierInteriorEq)
+          (hρInteriorEq := hρInteriorEq) (T := T)
+          C.firstSource haligned hzP hyPair hzFirst hyOmitted,
+        freshThird_acyclic_fixedDeletionCorePacket_of_omitted
+          (P := P) (Pρ := Pρ) (hρne := hρne)
+          (hfrontierFour := hfrontierFour) (hρfour := hρfour)
+          (hfrontierInteriorEq := hfrontierInteriorEq)
+          (hρInteriorEq := hρInteriorEq) (T := T)
+          C.secondSource haligned hzP hyPair' hzSecond hyOmitted'⟩⟩
+  · rcases firstPairOmission C.firstSource C.firstSource_data with
+      ⟨x, hxPair, hxOmitted⟩
+    rcases firstPairOmission C.secondSource C.secondSource_data with
+      ⟨x', hxPair', hxOmitted'⟩
+    exact ⟨z, Finset.mem_union.mpr (Or.inr hzPρ), Or.inr
+      ⟨hzPρ, x, x', hxPair, hxPair',
+        freshThird_acyclic_fixedDeletionCorePacket_of_omitted
+          (P := P) (Pρ := Pρ) (hρne := hρne)
+          (hfrontierFour := hfrontierFour) (hρfour := hρfour)
+          (hfrontierInteriorEq := hfrontierInteriorEq)
+          (hρInteriorEq := hρInteriorEq) (T := T)
+          C.firstSource haligned hxPair hzPρ hxOmitted hzFirst,
+        freshThird_acyclic_fixedDeletionCorePacket_of_omitted
+          (P := P) (Pρ := Pρ) (hρne := hρne)
+          (hfrontierFour := hfrontierFour) (hρfour := hρfour)
+          (hfrontierInteriorEq := hfrontierInteriorEq)
+          (hρInteriorEq := hρInteriorEq) (T := T)
+          C.secondSource haligned hxPair' hzPρ hxOmitted' hzSecond⟩⟩
+
+/-- The source-level finite ingress: every existential endpoint choice belongs
+to one of four fixed, source-faithful deletion-core arms. -/
+abbrev FreshThirdAlignedSourceDeletionCoreCases
+    (source : CriticalShellSystem.CarrierVertex D.A) : Prop :=
+  FreshThirdAlignedFixedDeletionCorePacket
+      (S := S) (H := H) source P.source₁ Pρ.source₁ ∨
+    FreshThirdAlignedFixedDeletionCorePacket
+      (S := S) (H := H) source P.source₁ Pρ.source₂ ∨
+    FreshThirdAlignedFixedDeletionCorePacket
+      (S := S) (H := H) source P.source₂ Pρ.source₁ ∨
+    FreshThirdAlignedFixedDeletionCorePacket
+      (S := S) (H := H) source P.source₂ Pρ.source₂
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
+  hpairsDisjoint hblockersNe
+  LPρ hLPρ MPρ LP hLP MP in
+/-- Canonicalize the two binary endpoint memberships into the four fixed
+deletion-core arms used by finite search. -/
+theorem freshThird_alignedSourceDeletionCorePacket_cases
+    (source : CriticalShellSystem.CarrierVertex D.A)
+    (hpacket : FreshThirdAlignedSourceDeletionCorePacket
+      (P := P) (Pρ := Pρ) source) :
+    FreshThirdAlignedSourceDeletionCoreCases
+      (S := S) (H := H) P Pρ source := by
+  rcases hpacket with ⟨x, y, hx, hy, hfixed⟩
+  rcases Finset.mem_insert.mp hx with rfl | hx
+  · rcases Finset.mem_insert.mp hy with rfl | hy
+    · exact Or.inl hfixed
+    · have hy' : y = Pρ.source₂ := Finset.mem_singleton.mp hy
+      subst y
+      exact Or.inr (Or.inl hfixed)
+  · have hx' : x = P.source₂ := Finset.mem_singleton.mp hx
+    subst x
+    rcases Finset.mem_insert.mp hy with rfl | hy
+    · exact Or.inr (Or.inr (Or.inl hfixed))
+    · have hy' : y = Pρ.source₂ := Finset.mem_singleton.mp hy
+      subst y
+      exact Or.inr (Or.inr (Or.inr hfixed))
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
+  hpairsDisjoint hblockersNe
+  LPρ hLPρ MPρ LP hLP MP in
+/-- The retained-radii data that must remain available at the normalized
+FreshThird residual.  Both cap sources carry their own checked double-deletion
+packet; keeping only the first source would erase a source-produced symmetry
+needed by a faithful finite obstruction or universal consumer. -/
+abbrev FreshThirdAlignedRetainedConsumerPacket
+    (C : TwoCapSourceThirdCanonicalRowSurface P Pρ) : Prop :=
+  dist S.oppApex1 C.firstSource.1 ≠
+      dist S.oppApex1 C.secondSource.1 ∧
+    SelectedClass D.A S.oppApex1
+          (dist S.oppApex1 C.firstSource.1) ∩
+        S.capInteriorByIndex S.oppIndex1 = {C.firstSource.1} ∧
+    SelectedClass D.A S.oppApex1
+          (dist S.oppApex1 C.secondSource.1) ∩
+        S.capInteriorByIndex S.oppIndex1 = {C.secondSource.1} ∧
+    FreshThirdAlignedSourceDeletionCorePacket
+      (P := P) (Pρ := Pρ) C.firstSource ∧
+    FreshThirdAlignedSourceDeletionCorePacket
+      (P := P) (Pρ := Pρ) C.secondSource ∧
+    FirstCapMultiPointRadiiRetained
+      (S := S) (radius := radius) (ρ := ρ)
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
+  hpairsDisjoint hblockersNe
+  LPρ hLPρ MPρ LP hLP MP in
+/-- The aligned retained packet excludes both canonical sources from every
+first-apex radius whose strict first-cap slice contains at least two points. -/
+theorem freshThird_alignedRetainedConsumerPacket_sources_not_mem_firstApex_multiPointRadius
+    (C : TwoCapSourceThirdCanonicalRowSurface P Pρ)
+    (hretained : FreshThirdAlignedRetainedConsumerPacket
+      (P := P) (Pρ := Pρ) C)
+    {r : ℝ}
+    (htwo :
+      2 ≤
+        (SelectedClass D.A S.oppApex1 r ∩
+          S.capInteriorByIndex S.oppIndex1).card) :
+    C.firstSource.1 ∉ SelectedClass D.A S.oppApex1 r ∧
+      C.secondSource.1 ∉ SelectedClass D.A S.oppApex1 r := by
+  constructor
+  · intro hfirstClass
+    have hradius : dist S.oppApex1 C.firstSource.1 = r :=
+      (mem_selectedClass.mp hfirstClass).2
+    rw [← hradius, hretained.2.1, Finset.card_singleton] at htwo
+    omega
+  · intro hsecondClass
+    have hradius : dist S.oppApex1 C.secondSource.1 = r :=
+      (mem_selectedClass.mp hsecondClass).2
+    rw [← hradius, hretained.2.2.1, Finset.card_singleton] at htwo
+    omega
+
+#print axioms
+  freshThird_alignedRetainedConsumerPacket_sources_not_mem_firstApex_multiPointRadius
+
+omit hρne hfrontierFour hρfour hpairsDisjoint hblockersNe
+  LPρ hLPρ MPρ LP hLP MP in
+/-- The aligned retained consumer packet exposes the two rich first-apex radii
+as the retained pair, together with the absence of both canonical cap sources
+from each rich class. -/
+theorem freshThird_alignedRetainedConsumerPacket_oppApex1_rich_exactRetainedRadii
+    (C : TwoCapSourceThirdCanonicalRowSurface P Pρ)
+    (hretained : FreshThirdAlignedRetainedConsumerPacket
+      (P := P) (Pρ := Pρ) C) :
+    ∃ r₁ r₂ : ℝ,
+      0 < r₁ ∧ 0 < r₂ ∧ r₁ ≠ r₂ ∧
+      4 ≤ (SelectedClass D.A S.oppApex1 r₁).card ∧
+      4 ≤ (SelectedClass D.A S.oppApex1 r₂).card ∧
+      ((r₁ = radius ∧ r₂ = ρ) ∨ (r₁ = ρ ∧ r₂ = radius)) ∧
+      (C.firstSource.1 ∉ SelectedClass D.A S.oppApex1 r₁ ∧
+        C.secondSource.1 ∉ SelectedClass D.A S.oppApex1 r₁) ∧
+      (C.firstSource.1 ∉ SelectedClass D.A S.oppApex1 r₂ ∧
+        C.secondSource.1 ∉ SelectedClass D.A S.oppApex1 r₂) := by
+  rcases
+      oppApex1_rich_exactRetainedRadii_of_aligned
+        (P := P) (Pρ := Pρ)
+        (hfrontierInteriorEq := hfrontierInteriorEq)
+        (hρInteriorEq := hρInteriorEq) (T := T)
+        hretained.2.2.2.2.2 with
+    ⟨r₁, r₂, hr₁, hr₂, hradiiNe, hfour₁, hfour₂, hradii⟩
+  have hinter₁ :
+      2 ≤
+        (SelectedClass D.A S.oppApex1 r₁ ∩
+          S.capInteriorByIndex S.oppIndex1).card := by
+    have hfour₁' :
+        4 ≤
+          (SelectedClass D.A
+            (S.oppositeVertexByIndex S.oppIndex1) r₁).card := by
+      simpa using hfour₁
+    simpa using
+      S.selectedClass_capInteriorByIndex_card_ge_two
+        D.convex S.oppIndex1 hr₁ hfour₁'
+  have hinter₂ :
+      2 ≤
+        (SelectedClass D.A S.oppApex1 r₂ ∩
+          S.capInteriorByIndex S.oppIndex1).card := by
+    have hfour₂' :
+        4 ≤
+          (SelectedClass D.A
+            (S.oppositeVertexByIndex S.oppIndex1) r₂).card := by
+      simpa using hfour₂
+    simpa using
+      S.selectedClass_capInteriorByIndex_card_ge_two
+        D.convex S.oppIndex1 hr₂ hfour₂'
+  have hsources₁ :=
+    freshThird_alignedRetainedConsumerPacket_sources_not_mem_firstApex_multiPointRadius
+      P Pρ C hretained hinter₁
+  have hsources₂ :=
+    freshThird_alignedRetainedConsumerPacket_sources_not_mem_firstApex_multiPointRadius
+      P Pρ C hretained hinter₂
+  exact
+    ⟨r₁, r₂, hr₁, hr₂, hradiiNe, hfour₁, hfour₂, hradii,
+      hsources₁, hsources₂⟩
+
+#print axioms
+  freshThird_alignedRetainedConsumerPacket_oppApex1_rich_exactRetainedRadii
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
+  hpairsDisjoint hblockersNe
+  LPρ hLPρ MPρ LP hLP MP in
+/-- Both aligned cap sources admit an explicit four-arm endpoint
+canonicalization.  This is the finite coverage theorem for the retained
+branch; no bounded-cardinality assumption is introduced. -/
+theorem freshThird_alignedRetainedConsumerPacket_sourceDeletionCoreCases
+    (C : TwoCapSourceThirdCanonicalRowSurface P Pρ)
+    (hretained : FreshThirdAlignedRetainedConsumerPacket
+      (P := P) (Pρ := Pρ) C) :
+    FreshThirdAlignedSourceDeletionCoreCases
+        (S := S) (H := H) P Pρ C.firstSource ∧
+      FreshThirdAlignedSourceDeletionCoreCases
+        (S := S) (H := H) P Pρ C.secondSource := by
+  exact
+    ⟨freshThird_alignedSourceDeletionCorePacket_cases
+        P Pρ C.firstSource hretained.2.2.2.1,
+      freshThird_alignedSourceDeletionCorePacket_cases
+        P Pρ C.secondSource hretained.2.2.2.2.1⟩
+
+omit hpairsDisjoint hblockersNe
+  LPρ hLPρ MPρ LP hLP MP in
+/-- Every aligned cap source carries the complete double-deletion packet. -/
+theorem freshThird_acyclic_alignedSourceDeletionCorePacket
+    (source : CriticalShellSystem.CarrierVertex D.A)
+    (hsource : FirstFiberCapSourceWitness P Pρ source)
+    (haligned :
+      FirstCapMultiPointRadiiRetained
+        (S := S) (radius := radius) (ρ := ρ)) :
+    FreshThirdAlignedSourceDeletionCorePacket
+      (P := P) (Pρ := Pρ) source := by
+  rcases
+      freshThird_acyclic_exists_crossRetainedEndpoints_sourceSurvives_doubleDeletion
+        (P := P) (Pρ := Pρ)
+        (hfrontierFour := hfrontierFour)
+        (hρfour := hρfour)
+        (hfrontierInteriorEq := hfrontierInteriorEq)
+        (hρInteriorEq := hρInteriorEq)
+        source hsource haligned with
+    ⟨x, y, hx, hy, hxo, hyo, hsurv, hblocked⟩
+  exact
+    ⟨x, y, hx, hy, hxo, hyo, hsurv, hblocked,
+      freshThird_acyclic_firstApex_minimalDeletionCore_of_crossRetainedEndpoints
+        (P := P) (Pρ := Pρ) (hρne := hρne)
+        (hfrontierInteriorEq := hfrontierInteriorEq)
+        (hρInteriorEq := hρInteriorEq) (T := T) hx hy hblocked⟩
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
+  hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- The two canonical cap sources cannot be either outside point of a
+`FreshOutsideFirstBlockerFiber`: the former lie in the first cap interior,
+whereas both latter points lie outside the closed first cap.
+
+This is an ingress invariant for finite encoders, not a contradiction. -/
+theorem canonicalSources_ne_freshOutsideFirstBlockerFiber_outsidePoints
+    (C : TwoCapSourceThirdCanonicalRowSurface P Pρ)
+    (Q : FreshOutsideFirstBlockerFiber P Pρ) :

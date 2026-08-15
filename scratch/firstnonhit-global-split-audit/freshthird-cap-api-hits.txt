@@ -1,0 +1,140 @@
+lean/Erdos9796Proof/P97/ATail/BlockerMultiplicityGeometry.lean:70:structure FreshThirdBlockerFiber
+lean/Erdos9796Proof/P97/ATail/BlockerMultiplicityGeometry.lean:348:  Nonempty (FreshThirdBlockerFiber P Pρ) ∨
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshCanonicalOverride.lean:110:    (hthird : Nonempty (FreshThirdBlockerFiber P Pρ)) :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshCanonicalOverride.lean:687:  let third : FreshThirdBlockerFiber P' Pρ' := {
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceRetainedMinimalCore.lean:191:    (hthird : Nonempty (FreshThirdBlockerFiber P Pρ)) :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceRetainedMinimalCore.lean:230:    (hthird : Nonempty (FreshThirdBlockerFiber P Pρ)) :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceRetainedMinimalCore.lean:273:    (hthird : Nonempty (FreshThirdBlockerFiber P Pρ)) :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceRetainedMinimalCore.lean:314:    (hthird : Nonempty (FreshThirdBlockerFiber P Pρ)) :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceRetainedMinimalCore.lean:341:    (Q : FreshThirdBlockerFiber P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshCanonicalOverride.lean:110:    (hthird : Nonempty (FreshThirdBlockerFiber P Pρ)) :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshCanonicalOverride.lean:687:  let third : FreshThirdBlockerFiber P' Pρ' := {
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceCanonicalSurface.lean:175:    (Q : FreshThirdBlockerFiber P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceCanonicalSurface.lean:564:    (Q : FreshThirdBlockerFiber P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceCanonicalSurface.lean:581:    Q.source₁.1 ∉ S.capByIndex S.oppIndex1 ∧
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceCanonicalSurface.lean:582:      Q.source₂.1 ∉ S.capByIndex S.oppIndex1 := by
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceCanonicalSurface.lean:610:  have hq1Off : Q.source₁.1 ∉ S.capByIndex S.oppIndex1 := by
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceCanonicalSurface.lean:634:  have hq2Off : Q.source₂.1 ∉ S.capByIndex S.oppIndex1 := by
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceCanonicalSurface.lean:678:    (Q : FreshThirdBlockerFiber P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceCanonicalSurface.lean:700:      H.centerAt Q.source₁.1 Q.source₁.2 ∈ S.capInteriorByIndex freshCap)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceCanonicalSurface.lean:705:        Q.source₁.1 ∉ S.capByIndex S.oppIndex1 ∧
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceCanonicalSurface.lean:706:        Q.source₂.1 ∉ S.capByIndex S.oppIndex1) := by
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceCanonicalSurface.lean:749:        H.centerAt Q.source₁.1 Q.source₁.2 ∈ S.capByIndex S.oppIndex1 := by
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceCanonicalSurface.lean:809:    (Q : FreshThirdBlockerFiber P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceCanonicalSurface.lean:831:      H.centerAt Q.source₁.1 Q.source₁.2 ∈ S.capInteriorByIndex freshCap₁)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceCanonicalSurface.lean:851:      H.centerAt Q.source₁.1 Q.source₁.2 ∈ S.capInteriorByIndex freshCap₂)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceCanonicalSurface.lean:859:      Q.source₁.1 ∉ S.capByIndex S.oppIndex1 ∧
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceCanonicalSurface.lean:860:      Q.source₂.1 ∉ S.capByIndex S.oppIndex1 := by
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceCanonicalSurface.lean:935:    (Q : FreshThirdBlockerFiber P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceCanonicalSurface.lean:955:        Q.source₁.1 ∉ S.capByIndex S.oppIndex1 ∧
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceCanonicalSurface.lean:956:        Q.source₂.1 ∉ S.capByIndex S.oppIndex1) :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceCanonicalSurface.lean:980:          Q.source₁.1 ∉ S.capByIndex S.oppIndex1 ∧
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceCanonicalSurface.lean:981:          Q.source₂.1 ∉ S.capByIndex S.oppIndex1 ∧
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceCanonicalSurface.lean:1059:    (Q : FreshThirdBlockerFiber P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceCanonicalSurface.lean:1079:        Q.source₁.1 ∉ S.capByIndex S.oppIndex1 ∧
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceCanonicalSurface.lean:1080:        Q.source₂.1 ∉ S.capByIndex S.oppIndex1) :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceCanonicalSurface.lean:1111:      Q.source₁.1 ∉ S.capByIndex S.oppIndex1 ∧
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceCanonicalSurface.lean:1112:      Q.source₂.1 ∉ S.capByIndex S.oppIndex1 ∧
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceCanonicalSurface.lean:1140:    (Q : FreshThirdBlockerFiber P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceCanonicalSurface.lean:1155:        Q.source₁.1 ∉ S.capByIndex S.oppIndex1 ∧
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceCanonicalSurface.lean:1156:        Q.source₂.1 ∉ S.capByIndex S.oppIndex1) :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceCanonicalSurface.lean:1345:    (Q : FreshThirdBlockerFiber P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceCanonicalSurface.lean:1364:        Q.source₁.1 ∉ S.capByIndex S.oppIndex1 ∧
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceCanonicalSurface.lean:1365:        Q.source₂.1 ∉ S.capByIndex S.oppIndex1) :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceCanonicalSurface.lean:1502:    (Q : FreshThirdBlockerFiber P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceCanonicalSurface.lean:1521:        Q.source₁.1 ∉ S.capByIndex S.oppIndex1 ∧
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceCanonicalSurface.lean:1522:        Q.source₂.1 ∉ S.capByIndex S.oppIndex1) :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceCanonicalSurface.lean:1832:    (Q : FreshThirdBlockerFiber P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceCanonicalSurface.lean:1851:        Q.source₁.1 ∉ S.capByIndex S.oppIndex1 ∧
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceCanonicalSurface.lean:1852:        Q.source₂.1 ∉ S.capByIndex S.oppIndex1) :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:120:    (Q : FreshThirdBlockerFiber P Pρ) : Finset ℝ² :=
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:131:    (Q : FreshThirdBlockerFiber P Pρ) : Finset ℝ² :=
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:142:    (Q : FreshThirdBlockerFiber P Pρ) :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:160:    (Q : FreshThirdBlockerFiber P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:190:    (Q : FreshThirdBlockerFiber P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:224:    (Q : FreshThirdBlockerFiber P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:335:    (Q : FreshThirdBlockerFiber P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:387:    (Q : FreshThirdBlockerFiber P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:433:    (Q : FreshThirdBlockerFiber P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:502:    (Q : FreshThirdBlockerFiber P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:560:    (Q : FreshThirdBlockerFiber P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:620:    (Q : FreshThirdBlockerFiber P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:652:    (Q : FreshThirdBlockerFiber P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:802:    (Q : FreshThirdBlockerFiber P Pρ) : Prop where
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:829:    (Q : FreshThirdBlockerFiber P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:857:            (Q.source₁.1 ∈ S.capByIndex capIndex ∨
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:858:              Q.source₂.1 ∈ S.capByIndex capIndex) →
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:1119:    (Q : FreshThirdBlockerFiber P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:1139:    (Q : FreshThirdBlockerFiber P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:1165:    (Q : FreshThirdBlockerFiber P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:1186:    (Q : FreshThirdBlockerFiber P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:1211:    (Q : FreshThirdBlockerFiber P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:1263:    (Q : FreshThirdBlockerFiber P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:1288:    (Q : FreshThirdBlockerFiber P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:1360:    (Q : FreshThirdBlockerFiber P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:1420:    (Q : FreshThirdBlockerFiber P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:1578:    (Q : FreshThirdBlockerFiber P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:1835:    (Q : FreshThirdBlockerFiber P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:1933:    (Q : FreshThirdBlockerFiber P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:2092:    (Q : FreshThirdBlockerFiber P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:2102:    (hsource₁Off : Q.source₁.1 ∉ S.capByIndex S.oppIndex1)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:2103:    (hsource₂Off : Q.source₂.1 ∉ S.capByIndex S.oppIndex1) :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:2152:    (Q : FreshThirdBlockerFiber P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:2178:    (Q : FreshThirdBlockerFiber P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:2218:    (Q : FreshThirdBlockerFiber P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:2379:    (Q : FreshThirdBlockerFiber P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:2411:    (Q : FreshThirdBlockerFiber P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:2894:    (Q : FreshThirdBlockerFiber P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:3091:    (Q : FreshThirdBlockerFiber P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:3299:    (Q : FreshThirdBlockerFiber P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:3427:    (Q : FreshThirdBlockerFiber P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:3483:    (hsource₁OutsideFirst : Q.source₁.1 ∉ S.capByIndex S.oppIndex1)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:3484:    (hsource₂OutsideFirst : Q.source₂.1 ∉ S.capByIndex S.oppIndex1)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:3556:    (Q : FreshThirdBlockerFiber P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:3616:        Q.source₁.1 ∉ S.capByIndex S.oppIndex1 ∧
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:3617:        Q.source₂.1 ∉ S.capByIndex S.oppIndex1)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:3818:    (Q : FreshThirdBlockerFiber P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:3878:        Q.source₁.1 ∉ S.capByIndex S.oppIndex1 ∧
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:3879:        Q.source₂.1 ∉ S.capByIndex S.oppIndex1)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:4086:    (Q : FreshThirdBlockerFiber P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:4341:    (Q : FreshThirdBlockerFiber P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:4414:                have hq1Off : Q.source₁.1 ∉ S.capByIndex S.oppIndex1 := by
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:4441:                have hq2Off : Q.source₂.1 ∉ S.capByIndex S.oppIndex1 := by
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:4525:    (Q : FreshThirdBlockerFiber P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:4566:    (Q : FreshThirdBlockerFiber P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:4634:            (Q.source₁.1 ∈ S.capByIndex capIndex ∨
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:4635:              Q.source₂.1 ∈ S.capByIndex capIndex) →
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:120:    (Q : FreshThirdBlockerFiber P Pρ) : Finset ℝ² :=
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:131:    (Q : FreshThirdBlockerFiber P Pρ) : Finset ℝ² :=
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:142:    (Q : FreshThirdBlockerFiber P Pρ) :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:160:    (Q : FreshThirdBlockerFiber P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:190:    (Q : FreshThirdBlockerFiber P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:224:    (Q : FreshThirdBlockerFiber P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:335:    (Q : FreshThirdBlockerFiber P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:387:    (Q : FreshThirdBlockerFiber P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:433:    (Q : FreshThirdBlockerFiber P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:502:    (Q : FreshThirdBlockerFiber P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:560:    (Q : FreshThirdBlockerFiber P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:620:    (Q : FreshThirdBlockerFiber P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:652:    (Q : FreshThirdBlockerFiber P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:802:    (Q : FreshThirdBlockerFiber P Pρ) : Prop where
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:829:    (Q : FreshThirdBlockerFiber P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:857:            (Q.source₁.1 ∈ S.capByIndex capIndex ∨
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:858:              Q.source₂.1 ∈ S.capByIndex capIndex) →
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:1119:    (Q : FreshThirdBlockerFiber P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:1139:    (Q : FreshThirdBlockerFiber P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:1165:    (Q : FreshThirdBlockerFiber P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:1186:    (Q : FreshThirdBlockerFiber P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:1211:    (Q : FreshThirdBlockerFiber P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:1263:    (Q : FreshThirdBlockerFiber P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:1288:    (Q : FreshThirdBlockerFiber P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:1360:    (Q : FreshThirdBlockerFiber P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:1420:    (Q : FreshThirdBlockerFiber P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:1578:    (Q : FreshThirdBlockerFiber P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:1835:    (Q : FreshThirdBlockerFiber P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:1933:    (Q : FreshThirdBlockerFiber P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:2092:    (Q : FreshThirdBlockerFiber P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:2102:    (hsource₁Off : Q.source₁.1 ∉ S.capByIndex S.oppIndex1)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:2103:    (hsource₂Off : Q.source₂.1 ∉ S.capByIndex S.oppIndex1) :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:2152:    (Q : FreshThirdBlockerFiber P Pρ)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:2178:    (Q : FreshThirdBlockerFiber P Pρ)

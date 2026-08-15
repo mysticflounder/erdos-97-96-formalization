@@ -1,0 +1,14 @@
+Use these two documented routes.
+
+1) If you are in the equal-blocker/same-radius setting for a fresh-third pair, use  
+`equalBlocker_sameRadiusInterior_shell_inter_cap_eq_pair`: it states the two distinct source points are exactly the two points where the shared shell meets the indexed cap, and the shared blocker is strictly inside that cap. So both `Q.source₁` and `Q.source₂` lie in the indexed cap (hence in its closed cap around the common blocker).
+
+2) If you only have the “centers-and-common-blocker in one indexed cap” hypothesis, use  
+`source₁_mem_cap_or_source₂_mem_cap_of_centers_mem_cap`: this gives at least one of the two fresh sources in that cap.  
+To upgrade via the alternative branch in your question (“derive common physical-pair membership from centers in one cap”), combine with the geometric exclusion  
+`false_of_two_cap_centers_equidistant_outside_pair`: two distinct centers in one indexed ordered cap cannot both bisect the same distinct carrier pair outside the cap. So under those center-in-cap hypotheses, the common pair cannot be fully outside, hence is forced into cap-localized alignment.
+
+If you want both-source-in-cap as a direct fact, the strongest direct citation is the equal-blocker intersection lemma (`equalBlocker_sameRadiusInterior_shell_inter_cap_eq_pair`); otherwise the retained-collision lemma is the nearest one-step statement you can quote.
+  handles: FHXHX5 C49YXN K7MJY0  (read with `nthdegree docs show <handle>`)
+searched: nthdegree docs show FHXHX5 --corpus erdos-97-96-formalization-lean; nthdegree docs show AH2MYQ --corpus erdos-97-96-form…, nthdegree docs show DAS1AW --corpus erdos-97-96-formalization-lean; nthdegree docs show T96RYA --corpus erdos-97-96-form…, nthdegree docs search --corpus erdos-97-96-formalization-lean "fresh third blocker fiber source points lie in indexed ca…, nthdegree docs search --corpus erdos-97-96-formalization-lean "common physical pair centers in cap", nthdegree docs search --corpus erdos-97-96-formalization-lean "source₁_mem_cap_or_source₂_mem_cap", nthdegree docs show H4MMT8 --corpus erdos-97-96-formalization-lean; nthdegree docs show 0HRXY2 --corpus erdos-97-96-form…, nthdegree docs search --corpus erdos-97-96-formalization-lean "centers_mem_cap", nthdegree docs search --corpus erdos-97-96-formalization-lean "common physical pair"
+reminder: agent-written answer — apply rigor standards to all claims.  Verify against the cited chunks (`nthdegree docs show <handle> [--lean|--corpus <slug>]`).  treat uncited claims as unverified.

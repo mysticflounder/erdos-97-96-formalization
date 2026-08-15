@@ -1,0 +1,12 @@
+lean/scratch/b-family-bank/BFamilyBank.lean:662:  · exact qDeletedRow_at_actualBlocker_eq_canonicalSupport u.2
+lean/scratch/b-family-bank/BFamilyBank.lean:664:  · exact qDeletedRow_at_actualBlocker_eq_canonicalSupport v.2
+lean/scratch/b-family-bank/BFamilyBank.lean:666:  · exact qDeletedRow_at_actualBlocker_eq_canonicalSupport second.deleted.2
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:333:theorem exists_freshThirdCrossRow_pinnedCenter_allRows_escape_twoShellSeed
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:500:theorem exists_freshThirdCrossRow_pinnedCenter_universal_escape_dichotomy
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:558:theorem exists_freshThirdCrossRow_pinnedCenter_selectedRow_escape_dichotomy
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:585:      exists_freshThirdCrossRow_pinnedCenter_universal_escape_dichotomy
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:716:      exists_freshThirdCrossRow_pinnedCenter_universal_escape_dichotomy
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:993:      exists_freshThird_selectedRow_escape_tripleShellSeed
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:2304:      exists_freshThirdCrossRow_pinnedCenter_universal_escape_dichotomy
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean:575:theorem qDeletedRow_at_actualBlocker_eq_canonicalSupport
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceTripleShellEscape.lean:159:theorem exists_freshThird_selectedRow_escape_tripleShellSeed

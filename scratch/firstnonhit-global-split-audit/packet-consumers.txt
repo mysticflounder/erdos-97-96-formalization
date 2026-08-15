@@ -1,0 +1,21 @@
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceClosure.lean:3186:  (FreshThirdAlignedRetainedConsumerPacket (P := P) (Pρ := Pρ) C ∧
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceClosure.lean:3189:      FreshThirdAlignedCommonDeletionCorePairPacket
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceClosure.lean:3193:    (FreshThirdAlignedRetainedConsumerPacket (P := P) (Pρ := Pρ) C ∧
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceClosure.lean:3222:      FreshThirdAcyclicCanonicalConsumerPacket (P := P) (Pρ := Pρ) C) :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceClosure.lean:3246:          FreshThirdAlignedCommonDeletionCorePairPacket
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:1167:      FreshThirdAcyclicCanonicalConsumerPacket (P := P) (Pρ := Pρ) C)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:1188:      FreshThirdAcyclicCanonicalConsumerPacket (P := P) (Pρ := Pρ) C)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:1213:      FreshThirdAcyclicCanonicalConsumerPacket (P := P) (Pρ := Pρ) C)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:1226:      FreshThirdAcyclicCanonicalConsumerPacket
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:1290:      FreshThirdAcyclicCanonicalConsumerPacket (P := P) (Pρ := Pρ) C)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:1362:      FreshThirdAcyclicCanonicalConsumerPacket (P := P) (Pρ := Pρ) C)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:4574:      FreshThirdAcyclicCanonicalConsumerPacket (P := P) (Pρ := Pρ) C :=
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdRetainedProducer.lean:761:abbrev FreshThirdAlignedCommonDeletionCorePairPacket
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdRetainedProducer.lean:797:    FreshThirdAlignedCommonDeletionCorePairPacket
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdRetainedProducer.lean:909:abbrev FreshThirdAlignedRetainedConsumerPacket
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdRetainedProducer.lean:933:    (hretained : FreshThirdAlignedRetainedConsumerPacket
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdRetainedProducer.lean:964:    (hretained : FreshThirdAlignedRetainedConsumerPacket
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdRetainedProducer.lean:1027:    (hretained : FreshThirdAlignedRetainedConsumerPacket
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdRetainedProducer.lean:1140:abbrev FreshThirdAcyclicCanonicalConsumerPacket
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdRetainedProducer.lean:1142:  FreshThirdAlignedRetainedConsumerPacket (P := P) (Pρ := Pρ) C ∨
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdRetainedProducer.lean:1148:    FreshThirdAcyclicCanonicalConsumerPacket (P := P) (Pρ := Pρ) C := by

@@ -1,0 +1,77 @@
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdFiber.lean:1980:inductive FreshThirdCapSourceInteraction
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdFiber.lean:1999:  | distinctBlockersDifferentCaps
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdFiber.lean:2020:  | sameCapWithInternalFiberSource
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdFiber.lean:2068:inductive FreshThirdCapSourceNonHit
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdFiber.lean:2160:namespace FreshThirdCapSourceInteraction
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdFiber.lean:2170:    (interaction : FreshThirdCapSourceInteraction P Pρ source Q)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdFiber.lean:2172:    FreshThirdCapSourceNonHit P Pρ source Q := by
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdFiber.lean:2179:  | distinctBlockersDifferentCaps centers_ne source₁_mem source₂_mem
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdFiber.lean:2182:  | sameCapWithInternalFiberSource centers_ne source₁_mem source₂_mem
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdFiber.lean:2186:end FreshThirdCapSourceInteraction
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdFiber.lean:2195:      (data : FreshThirdCapSourceNonHit P Pρ C.firstSource Q)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdFiber.lean:2197:      (data : FreshThirdCapSourceNonHit P Pρ C.secondSource Q)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdFiber.lean:2212:  | distinctBlockersDifferentCaps
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdFiber.lean:2233:  | sameCapWithInternalFiberSource
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdFiber.lean:2266:      FreshThirdCapSourceInteraction P Pρ C.firstSource Q)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdFiber.lean:2268:      FreshThirdCapSourceInteraction P Pρ C.secondSource Q)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdFiber.lean:2279:        (FreshThirdCapSourceInteraction.nonHit_of_not_crossRowHit
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdFiber.lean:2282:      (FreshThirdCapSourceInteraction.nonHit_of_not_crossRowHit
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdFiber.lean:2813:    Nonempty (FreshThirdCapSourceInteraction P Pρ source Q) := by
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdFiber.lean:2866:          · exact ⟨.sameCapWithInternalFiberSource hcentersEq hsource₁
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdFiber.lean:2870:            · exact ⟨.sameCapWithInternalFiberSource hcentersEq hsource₁
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdFiber.lean:2879:        · exact ⟨.distinctBlockersDifferentCaps hcentersEq hsource₁
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdFiber.lean:2900:        FreshThirdCapSourceInteraction P Pρ C.firstSource Q)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdFiber.lean:2902:        FreshThirdCapSourceInteraction P Pρ C.secondSource Q) :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:804:      (data : FreshThirdCapSourceNonHit P Pρ C.firstSource Q)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:806:        FreshThirdCapSourceInteraction P Pρ C.secondSource Q)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:809:        FreshThirdCapSourceInteraction P Pρ C.firstSource Q)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:810:      (data : FreshThirdCapSourceNonHit P Pρ C.secondSource Q)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:831:      FreshThirdCapSourceInteraction P Pρ C.firstSource Q)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:833:      FreshThirdCapSourceInteraction P Pρ C.secondSource Q)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:871:      | distinctBlockersDifferentCaps centers_ne source₁_mem source₂_mem
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:874:            FreshThirdNonCanonicalInteraction.distinctBlockersDifferentCaps
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:882:          | distinctBlockersDifferentCaps centers_ne' source₁_mem' source₂_mem'
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:887:                (.distinctBlockersDifferentCaps centers_ne' source₁_mem'
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:890:          | sameCapWithInternalFiberSource centers_ne' source₁_mem' source₂_mem'
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:899:                  (.sameCapWithInternalFiberSource centers_ne' source₁_mem'
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:902:      | sameCapWithInternalFiberSource centers_ne source₁_mem source₂_mem
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:908:              FreshThirdNonCanonicalInteraction.sameCapWithInternalFiberSource
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:916:            | distinctBlockersDifferentCaps centers_ne' source₁_mem' source₂_mem'
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:930:            | sameCapWithInternalFiberSource centers_ne' source₁_mem' source₂_mem'
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:939:                    (.sameCapWithInternalFiberSource centers_ne' source₁_mem'
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:1120:    (data : FreshThirdCapSourceNonHit P Pρ C.firstSource Q)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:1140:    (data : FreshThirdCapSourceNonHit P Pρ C.secondSource Q)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:1168:    (data : FreshThirdCapSourceNonHit P Pρ C.firstSource Q)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:1170:      FreshThirdCapSourceInteraction P Pρ C.secondSource Q) :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:1189:    (data : FreshThirdCapSourceNonHit P Pρ C.firstSource Q)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:1191:      FreshThirdCapSourceInteraction P Pρ C.secondSource Q) :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:1215:      FreshThirdCapSourceInteraction P Pρ C.firstSource Q)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:1216:    (data : FreshThirdCapSourceNonHit P Pρ C.secondSource Q) :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:1272:  | distinctBlockersDifferentCaps _ _ _ overlap_eq _ _ _ _ _ =>
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:1274:  | sameCapWithInternalFiberSource _ _ _ overlap_eq _ _ _ _ _ =>
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:1308:  | distinctBlockersDifferentCaps centers_ne source₁_mem source₂_mem
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:1311:      | distinctBlockersDifferentCaps centers_ne' source₁_mem' source₂_mem'
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:1315:      | sameCapWithInternalFiberSource centers_ne' source₁_mem' source₂_mem'
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:1329:  | sameCapWithInternalFiberSource centers_ne source₁_mem source₂_mem
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:1333:      | distinctBlockersDifferentCaps centers_ne' source₁_mem' source₂_mem'
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:1347:      | sameCapWithInternalFiberSource centers_ne' source₁_mem' source₂_mem'
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:4377:      | distinctBlockersDifferentCaps centers_ne source₁_mem source₂_mem
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:4380:          | distinctBlockersDifferentCaps centers_ne' source₁_mem' source₂_mem'
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:4491:                      (.distinctBlockersDifferentCaps centers_ne source₁_mem
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:4494:                      (.distinctBlockersDifferentCaps centers_ne' source₁_mem'
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:4498:          | sameCapWithInternalFiberSource centers_ne' source₁_mem' source₂_mem'
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:4509:      | sameCapWithInternalFiberSource centers_ne source₁_mem source₂_mem
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:4527:      FreshThirdCapSourceInteraction P Pρ C.surface.firstSource Q)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:4529:      FreshThirdCapSourceInteraction P Pρ C.surface.secondSource Q) :
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:4568:      FreshThirdCapSourceInteraction P Pρ C.firstSource Q)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:4570:      FreshThirdCapSourceInteraction P Pρ C.secondSource Q)
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:4649:      | distinctBlockersDifferentCaps centers_ne source₁_mem source₂_mem
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:4652:            FreshThirdNonCanonicalInteraction.distinctBlockersDifferentCaps
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:4661:          | distinctBlockersDifferentCaps centers_ne' source₁_mem' source₂_mem'
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:4679:                    (FreshThirdNonCanonicalInteraction.distinctBlockersDifferentCaps
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:4683:          | sameCapWithInternalFiberSource centers_ne' source₁_mem' source₂_mem'
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:4704:      | sameCapWithInternalFiberSource centers_ne source₁_mem source₂_mem
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:4709:              FreshThirdNonCanonicalInteraction.sameCapWithInternalFiberSource
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:4718:            | distinctBlockersDifferentCaps centers_ne' source₁_mem' source₂_mem'
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:4732:            | sameCapWithInternalFiberSource centers_ne' source₁_mem' source₂_mem'
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:4757:                        (FreshThirdNonCanonicalInteraction.sameCapWithInternalFiberSource
