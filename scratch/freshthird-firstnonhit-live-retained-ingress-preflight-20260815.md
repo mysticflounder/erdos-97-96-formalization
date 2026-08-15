@@ -86,10 +86,35 @@ Lean packet-to-assignment coverage theorem and certificate replay are wired.
 
 The static discovery runner must archive every source/encoder/test file in the
 snapshot, bind clean files to their blob at the captured Git commit, require
-current bytes for replay, and verify the source-content digest before and after
-the wave.  Its self-hashes are integrity links rather than signatures, and the
-manifest must keep `promotion_ready`, theorem, Lean, source-entitlement, and
-universal claims false.
+current bytes and Git metadata for replay, validate dirty index objects, verify
+the full source snapshot before and after the wave, and reject any artifact path
+outside the exact closed plan.  Its self-hashes are integrity links rather than
+signatures, and the manifest must keep `promotion_ready`, theorem, Lean,
+source-entitlement, and universal claims false.
+
+Before launch, the runner additionally requires:
+
+- a 30-second Z3 timeout in every fresh base/probe/replay session and a
+  30-second timeout around every Git subprocess;
+- wrapper and native `libz3` path, byte hash, size, and version bindings;
+- single-link regular files throughout the source/archive/query/JSON custody
+  path, with symlinked ancestors and hardlinks rejected;
+- file and parent-directory `fsync` around each atomic replacement;
+- a canonical `RUNNING`/`FAILED`/`COMPLETE` state updated after each completed
+  cell, binding exact planned/completed cell and counterfactual counts;
+- completed same-path reentry that authenticates state, source/Git metadata,
+  solver identity, the exact artifact path set, and all artifact hashes without
+  starting a solver; partial or failed reentry is rejected;
+- one nonblocking lock shared by the production run root and one durable
+  production receipt, so distinct output names cannot launch a second wave.
+
+`TwoSourceCanonicalSurface.lean` and `TwoSourceFreshThirdFiber.lean` are direct
+source inputs because they define the surface and constructor vocabulary used
+by the packet; they are archived and hash-bound alongside the producer and
+terminal sources.  Independent validation also checks cap one-hotness, exact
+positive overlaps and cap implications, omission survival/one-hotness,
+retained-deletion flags, and the retained-radius inequality.  Each has a
+malformed-model negative control.
 
 One arbitrary SAT signature per cell is only observed-model data.  The bounded
 wave therefore asks both `P` and `¬P` for exactly five retained-row

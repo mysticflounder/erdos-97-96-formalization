@@ -102,6 +102,17 @@ def test_manifest_binds_live_theorems_and_keeps_discovery_claims_false() -> None
     claims = manifest["false_claims"]
     assert claims
     assert all(value is False for value in claims.values())
+    assert manifest["solver_timeout_ms"] == packet.SOLVER_TIMEOUT_MS
+    assert {
+        (
+            "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/"
+            "TwoSourceCanonicalSurface.lean"
+        ),
+        (
+            "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/"
+            "TwoSourceFreshThirdFiber.lean"
+        ),
+    } <= set(manifest["source_files"])
     assert [row["id"] for row in manifest["synchronization_predicates"]] == [
         "common_p_omission",
         "common_p_rho_omission",
@@ -163,5 +174,66 @@ def test_source_forbidden_cross_role_aliases_are_unsat(malformed: str) -> None:
         "distinctBlockersDifferentCaps",
         "P",
         malformed=malformed,
+    )
+    assert solver.check() == unsat
+
+
+@pytest.mark.parametrize(
+    "malformed",
+    (
+        "positive_source_cap_two_hot",
+        "positive_overlap_not_exact",
+        "positive_cap_implication_violation",
+    ),
+)
+def test_positive_interaction_controls_are_unsat(malformed: str) -> None:
+    solver, _ = packet.build_packet(
+        "sourceRowOmission",
+        "distinctBlockersDifferentCaps",
+        "P",
+        malformed=malformed,
+    )
+    assert solver.check() == unsat
+
+
+@pytest.mark.parametrize(
+    "malformed",
+    (
+        "nonhit_omission_survival_false",
+        "nonhit_omission_two_hot",
+    ),
+)
+def test_nonhit_omission_controls_are_unsat(malformed: str) -> None:
+    solver, _ = packet.build_packet(
+        "sourceRowOmission", "sameBlocker", "P", malformed=malformed
+    )
+    assert solver.check() == unsat
+
+
+@pytest.mark.parametrize(
+    "malformed",
+    (
+        "interaction_omission_survival_false",
+        "interaction_omission_two_hot",
+    ),
+)
+def test_interaction_omission_controls_are_unsat(malformed: str) -> None:
+    solver, _ = packet.build_packet(
+        "sameBlocker", "sourceRowOmission", "P", malformed=malformed
+    )
+    assert solver.check() == unsat
+
+
+@pytest.mark.parametrize(
+    "malformed",
+    (
+        "retained_double_survival_false",
+        "retained_opp_blocked_false",
+        "retained_radius_equal",
+    ),
+)
+def test_retained_packet_controls_are_unsat(malformed: str) -> None:
+    solver, _ = packet.build_packet(
+        "sourceRowOmission", "sourceRowOmission", "P", malformed=malformed
     )
     assert solver.check() == unsat

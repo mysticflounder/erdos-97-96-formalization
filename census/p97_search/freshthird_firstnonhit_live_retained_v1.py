@@ -21,6 +21,7 @@ import z3
 
 SCHEMA = "p97-freshthird-firstnonhit-live-retained/v1"
 RESULT_SCHEMA = "p97-freshthird-firstnonhit-live-retained-result/v1"
+SOLVER_TIMEOUT_MS = 30_000
 
 NONHIT_BRANCHES = ("sameBlocker", "sourceRowOmission")
 INTERACTION_BRANCHES = (
@@ -75,6 +76,11 @@ SOURCE_FILES = (
         "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/"
         "TwoSourceFreshThirdResidual.lean"
     ),
+    (
+        "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/"
+        "TwoSourceCanonicalSurface.lean"
+    ),
+    ("lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdFiber.lean"),
     (
         "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/"
         "TwoSourceFreshThirdRetainedProducer.lean"
@@ -186,6 +192,7 @@ def manifest() -> dict[str, object]:
         "cell_count": (
             len(NONHIT_BRANCHES) * len(INTERACTION_BRANCHES) * len(ORIGIN_BRANCHES)
         ),
+        "solver_timeout_ms": SOLVER_TIMEOUT_MS,
         "roles": list(ROLES),
         "rows": {
             name: {"center": center, "support": list(support)}
@@ -229,6 +236,7 @@ class LiveRetainedPacket:
         self.interaction = interaction
         self.origin = origin
         self.solver = z3.Solver()
+        self.solver.set(timeout=SOLVER_TIMEOUT_MS)
         self.rank = {role: z3.Int(f"rank_{role}") for role in ROLES}
         self.in_cap = {
             (role, cap): z3.Bool(f"inCap_{role}_{cap}")
@@ -821,6 +829,72 @@ def build_packet(
         packet.solver.add(packet.same("capExtra0", "capExtra1"))
     elif malformed == "blocker_alias":
         packet.solver.add(packet.same("pBlockerCenter", "rhoBlockerCenter"))
+    elif malformed == "positive_source_cap_two_hot":
+        if interaction not in (
+            "distinctBlockersDifferentCaps",
+            "sameCapWithInternalFiberSource",
+        ):
+            raise LiveRetainedEncodingError(
+                "positive malformed control needs positive interaction"
+            )
+        packet.solver.add(packet.source_cap[0], packet.source_cap[1])
+    elif malformed == "positive_overlap_not_exact":
+        if interaction not in (
+            "distinctBlockersDifferentCaps",
+            "sameCapWithInternalFiberSource",
+        ):
+            raise LiveRetainedEncodingError(
+                "positive malformed control needs positive interaction"
+            )
+        packet.solver.add(packet.member("q2", "second"))
+    elif malformed == "positive_cap_implication_violation":
+        if interaction not in (
+            "distinctBlockersDifferentCaps",
+            "sameCapWithInternalFiberSource",
+        ):
+            raise LiveRetainedEncodingError(
+                "positive malformed control needs positive interaction"
+            )
+        packet.solver.add(
+            z3.Or(
+                *(
+                    z3.And(
+                        packet.source_cap[cap],
+                        z3.Not(packet.interior["secondCenter", cap]),
+                    )
+                    for cap in range(3)
+                )
+            )
+        )
+    elif malformed == "nonhit_omission_survival_false":
+        if nonhit != "sourceRowOmission":
+            raise LiveRetainedEncodingError("NonHit malformed control needs omission")
+        packet.solver.add(z3.Not(packet.deletion_survives["nonhit"]))
+    elif malformed == "nonhit_omission_two_hot":
+        if nonhit != "sourceRowOmission":
+            raise LiveRetainedEncodingError("NonHit malformed control needs omission")
+        packet.solver.add(*packet.nonhit_deleted)
+    elif malformed == "interaction_omission_survival_false":
+        if interaction != "sourceRowOmission":
+            raise LiveRetainedEncodingError(
+                "interaction malformed control needs omission"
+            )
+        packet.solver.add(z3.Not(packet.deletion_survives["interaction"]))
+    elif malformed == "interaction_omission_two_hot":
+        if interaction != "sourceRowOmission":
+            raise LiveRetainedEncodingError(
+                "interaction malformed control needs omission"
+            )
+        packet.solver.add(*packet.interaction_deleted)
+    elif malformed == "retained_double_survival_false":
+        packet.solver.add(z3.Not(packet.double_survives["first"]))
+    elif malformed == "retained_opp_blocked_false":
+        packet.solver.add(z3.Not(packet.opp_double_blocked["first"]))
+    elif malformed == "retained_radius_equal":
+        packet.solver.add(
+            packet.opp_radius_label["firstSource"]
+            == packet.opp_radius_label["secondSource"]
+        )
     elif malformed is not None:
         raise LiveRetainedEncodingError(f"unknown malformed control: {malformed}")
     return packet.solver, packet
@@ -882,18 +956,81 @@ def validate_model(model: z3.ModelRef, packet: LiveRetainedPacket) -> dict[str, 
     q_overlap = len(candidate_ranks & {ranks[role] for role in Q_SUPPORT})
     if q_overlap > 2:
         raise LiveRetainedEncodingError("candidate/Q-row overlap exceeds two")
+    if not _truth(model, packet.cap_card_ge_eight):
+        raise LiveRetainedEncodingError("cap-cardinality witness flag is false")
+    if not _truth(
+        model,
+        packet.opp_radius_label["firstSource"]
+        != packet.opp_radius_label["secondSource"],
+    ):
+        raise LiveRetainedEncodingError("retained source radii are not distinct")
+    for row in ("first", "second"):
+        if not _truth(model, packet.double_survives[row]):
+            raise LiveRetainedEncodingError(
+                "retained double-deletion survival is false"
+            )
+        if not _truth(model, packet.opp_double_blocked[row]):
+            raise LiveRetainedEncodingError("retained first-apex blockage is false")
+
+    def selected_indices(atoms: Sequence[z3.BoolRef]) -> list[int]:
+        return [index for index, atom in enumerate(atoms) if _truth(model, atom)]
+
+    if packet.nonhit == "sourceRowOmission":
+        deleted = selected_indices(packet.nonhit_deleted)
+        if len(deleted) != 1:
+            raise LiveRetainedEncodingError("NonHit deleted witness is not one-hot")
+        if not _truth(model, packet.deletion_survives["nonhit"]):
+            raise LiveRetainedEncodingError("NonHit omission survival is false")
+        if ranks[Q_SUPPORT[deleted[0]]] in {ranks[role] for role in FIRST_SUPPORT}:
+            raise LiveRetainedEncodingError(
+                "NonHit deleted witness remains in source row"
+            )
+    if packet.interaction == "sourceRowOmission":
+        deleted = selected_indices(packet.interaction_deleted)
+        if len(deleted) != 1:
+            raise LiveRetainedEncodingError(
+                "Interaction deleted witness is not one-hot"
+            )
+        if not _truth(model, packet.deletion_survives["interaction"]):
+            raise LiveRetainedEncodingError("Interaction omission survival is false")
+        if ranks[Q_SUPPORT[deleted[0]]] in {ranks[role] for role in SECOND_SUPPORT}:
+            raise LiveRetainedEncodingError(
+                "Interaction deleted witness remains in source row"
+            )
+    if packet.interaction in (
+        "distinctBlockersDifferentCaps",
+        "sameCapWithInternalFiberSource",
+    ):
+        source_caps = selected_indices(packet.source_cap)
+        fresh_caps = selected_indices(packet.fresh_cap)
+        if len(source_caps) != 1 or len(fresh_caps) != 1:
+            raise LiveRetainedEncodingError("positive cap witnesses are not one-hot")
+        source_cap = source_caps[0]
+        fresh_cap = fresh_caps[0]
+        if not _truth(model, packet.interior["secondCenter", source_cap]):
+            raise LiveRetainedEncodingError("source cap witness misses source center")
+        if not _truth(model, packet.interior["qCenter", fresh_cap]):
+            raise LiveRetainedEncodingError("fresh cap witness misses fresh center")
+        second_q_intersection = {ranks[role] for role in SECOND_SUPPORT} & {
+            ranks[role] for role in Q_SUPPORT
+        }
+        if second_q_intersection != {ranks["q0"], ranks["q1"]}:
+            raise LiveRetainedEncodingError("positive Q/source overlap is not exact")
+        if packet.interaction == "distinctBlockersDifferentCaps":
+            if source_cap == fresh_cap:
+                raise LiveRetainedEncodingError("distinct-cap witnesses coincide")
+        else:
+            if source_cap != fresh_cap:
+                raise LiveRetainedEncodingError("same-cap witnesses differ")
+            if not (
+                _truth(model, packet.in_cap["q0", source_cap])
+                or _truth(model, packet.in_cap["q1", source_cap])
+            ):
+                raise LiveRetainedEncodingError("same-cap fiber source is absent")
     retained_choices: dict[str, dict[str, int]] = {}
     for row in ("first", "second"):
-        x_selected = [
-            index
-            for index, atom in enumerate(packet.retained_x[row])
-            if _truth(model, atom)
-        ]
-        y_selected = [
-            index
-            for index, atom in enumerate(packet.retained_y[row])
-            if _truth(model, atom)
-        ]
+        x_selected = selected_indices(packet.retained_x[row])
+        y_selected = selected_indices(packet.retained_y[row])
         if len(x_selected) != 1 or len(y_selected) != 1:
             raise LiveRetainedEncodingError("retained endpoint witness is not one-hot")
         x_role = P_RADIUS_SUPPORT[x_selected[0]]

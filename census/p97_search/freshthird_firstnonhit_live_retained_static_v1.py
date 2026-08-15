@@ -12,11 +12,14 @@ closure certificate.
 from __future__ import annotations
 
 import argparse
+import contextlib
+import fcntl
 import hashlib
 import itertools
 import json
 import os
 import subprocess
+import sys
 from collections.abc import Mapping, Sequence
 from pathlib import Path
 
@@ -27,6 +30,9 @@ from census.p97_search import freshthird_firstnonhit_live_retained_v1 as packet
 RUN_SCHEMA = "p97-freshthird-firstnonhit-live-retained-static-run/v1"
 CELL_SCHEMA = "p97-freshthird-firstnonhit-live-retained-static-cell/v1"
 PROBE_SCHEMA = "p97-freshthird-firstnonhit-live-retained-counterfactual/v1"
+RUN_STATE_SCHEMA = "p97-freshthird-firstnonhit-live-retained-run-state/v1"
+RECEIPT_SCHEMA = "p97-freshthird-firstnonhit-live-retained-single-wave/v1"
+GIT_TIMEOUT_SECONDS = 30
 DEFAULT_RUN_PARENT = (
     packet.REPO_ROOT / "scratch/runs/freshthird-firstnonhit-live-retained-v1"
 )
@@ -64,14 +70,35 @@ def _sha256_file(path: Path) -> str:
     return digest.hexdigest()
 
 
+def _require_single_link_file(path: Path, description: str) -> None:
+    if path.is_symlink() or not path.is_file():
+        raise StaticRunnerError(f"{description} is not a regular file")
+    if path.stat(follow_symlinks=False).st_nlink != 1:
+        raise StaticRunnerError(f"{description} must have exactly one hard link")
+
+
+def _fsync_directory(path: Path) -> None:
+    flags = os.O_RDONLY | getattr(os, "O_DIRECTORY", 0)
+    descriptor = os.open(path, flags)
+    try:
+        os.fsync(descriptor)
+    finally:
+        os.close(descriptor)
+
+
 def _atomic_write(path: Path, payload: bytes) -> str:
     path.parent.mkdir(parents=True, exist_ok=True)
     temporary = path.with_name(f".{path.name}.{os.getpid()}.tmp")
-    with temporary.open("xb") as stream:
-        stream.write(payload)
-        stream.flush()
-        os.fsync(stream.fileno())
-    os.replace(temporary, path)
+    try:
+        with temporary.open("xb") as stream:
+            stream.write(payload)
+            stream.flush()
+            os.fsync(stream.fileno())
+        os.replace(temporary, path)
+        _fsync_directory(path.parent)
+    finally:
+        if temporary.exists():
+            temporary.unlink()
     return _sha256_bytes(payload)
 
 
@@ -80,8 +107,7 @@ def _atomic_json(path: Path, value: object) -> str:
 
 
 def _read_canonical_json(path: Path, description: str) -> dict[str, object]:
-    if path.is_symlink() or not path.is_file():
-        raise StaticRunnerError(f"{description} is not a regular file")
+    _require_single_link_file(path, description)
     payload = path.read_bytes()
     try:
         value = json.loads(payload, parse_constant=_reject_json_constant)
@@ -95,35 +121,47 @@ def _read_canonical_json(path: Path, description: str) -> dict[str, object]:
 
 
 def _git(args: Sequence[str]) -> str:
-    completed = subprocess.run(
-        ["git", *args],
-        cwd=packet.REPO_ROOT,
-        check=True,
-        capture_output=True,
-        text=True,
-    )
+    try:
+        completed = subprocess.run(
+            ["git", *args],
+            cwd=packet.REPO_ROOT,
+            check=True,
+            capture_output=True,
+            text=True,
+            timeout=GIT_TIMEOUT_SECONDS,
+        )
+    except subprocess.TimeoutExpired as exc:
+        raise StaticRunnerError(f"git command timed out: {args}") from exc
     return completed.stdout.strip()
 
 
 def _git_bytes(args: Sequence[str]) -> bytes:
-    completed = subprocess.run(
-        ["git", *args],
-        cwd=packet.REPO_ROOT,
-        check=True,
-        capture_output=True,
-    )
+    try:
+        completed = subprocess.run(
+            ["git", *args],
+            cwd=packet.REPO_ROOT,
+            check=True,
+            capture_output=True,
+            timeout=GIT_TIMEOUT_SECONDS,
+        )
+    except subprocess.TimeoutExpired as exc:
+        raise StaticRunnerError(f"git command timed out: {args}") from exc
     return completed.stdout
 
 
 def _git_blob_oid(payload: bytes) -> str:
-    completed = subprocess.run(
-        ["git", "hash-object", "--stdin"],
-        cwd=packet.REPO_ROOT,
-        check=True,
-        input=payload,
-        capture_output=True,
-        text=False,
-    )
+    try:
+        completed = subprocess.run(
+            ["git", "hash-object", "--stdin"],
+            cwd=packet.REPO_ROOT,
+            check=True,
+            input=payload,
+            capture_output=True,
+            text=False,
+            timeout=GIT_TIMEOUT_SECONDS,
+        )
+    except subprocess.TimeoutExpired as exc:
+        raise StaticRunnerError("git hash-object timed out") from exc
     return completed.stdout.decode("ascii").strip()
 
 
@@ -333,6 +371,26 @@ def _validate_snapshot_self_hash(snapshot: Mapping[str, object]) -> None:
                 raise StaticRunnerError(
                     f"clean source Git-blob binding mismatch: {relative}"
                 )
+        elif git_status.startswith("?? "):
+            if index_blob_oid is not None:
+                raise StaticRunnerError(
+                    f"untracked source unexpectedly has an index blob: {relative}"
+                )
+        else:
+            if not isinstance(index_blob_oid, str):
+                raise StaticRunnerError(
+                    f"tracked dirty source lacks an index blob: {relative}"
+                )
+            try:
+                object_type = _git(["cat-file", "-t", index_blob_oid])
+            except subprocess.CalledProcessError as exc:
+                raise StaticRunnerError(
+                    f"dirty source index blob is absent: {relative}"
+                ) from exc
+            if object_type != "blob":
+                raise StaticRunnerError(
+                    f"dirty source index object is not a blob: {relative}"
+                )
     if actual_paths != expected_paths:
         raise StaticRunnerError("source snapshot path set or order mismatch")
     content_digest = snapshot.get("source_content_sha256")
@@ -359,8 +417,7 @@ def _validated_source_path(relative: str) -> Path:
         resolved.relative_to(packet.REPO_ROOT.resolve(strict=True))
     except (FileNotFoundError, ValueError) as exc:
         raise StaticRunnerError(f"source path escapes repository: {relative}") from exc
-    if not resolved.is_file():
-        raise StaticRunnerError(f"source path is not a regular file: {relative}")
+    _require_single_link_file(resolved, f"source {relative}")
     return resolved
 
 
@@ -461,11 +518,26 @@ def _source_archive(
 
 def _solver_identity() -> dict[str, object]:
     module_path = Path(z3.__file__).resolve()
+    library_dir = Path(z3.z3core._z3_lib_resource_path).resolve()
+    library_name = {
+        "darwin": "libz3.dylib",
+        "linux": "libz3.so",
+        "win32": "libz3.dll",
+    }.get(sys.platform)
+    if library_name is None:
+        raise StaticRunnerError(
+            f"unsupported platform for native Z3 binding: {sys.platform}"
+        )
+    native_path = library_dir / library_name
+    _require_single_link_file(native_path, "native Z3 library")
     return {
         "name": "z3py",
         "version": z3.get_version_string(),
         "module_path": str(module_path),
         "module_sha256": _sha256_file(module_path),
+        "native_path": str(native_path),
+        "native_sha256": _sha256_file(native_path),
+        "native_size": native_path.stat().st_size,
     }
 
 
@@ -669,6 +741,7 @@ def _artifact_inventory(artifacts: Path) -> list[dict[str, object]]:
             raise StaticRunnerError(f"artifact is a symlink: {path}")
         if not path.is_file():
             continue
+        _require_single_link_file(path, f"artifact {path}")
         rows.append(
             {
                 "path": path.relative_to(artifacts).as_posix(),
@@ -679,14 +752,385 @@ def _artifact_inventory(artifacts: Path) -> list[dict[str, object]]:
     return rows
 
 
-def run_wave(output_dir: Path, allow_test_output: bool = False) -> dict[str, object]:
+def _expected_artifact_paths() -> set[str]:
+    expected = {
+        "encoding-manifest.json",
+        "source-snapshot/manifest.json",
+        *(f"source-snapshot/{relative}" for relative in _snapshot_paths()),
+    }
+    for cell in plan_wave():
+        cell_root = f"cell-{cell['cell_id']}"
+        expected.add(f"{cell_root}/query.smt2")
+        expected.add(f"{cell_root}/result.json")
+        for predicate_row in packet.SYNCHRONIZATION_PREDICATES:
+            predicate_name = predicate_row["id"]
+            for polarity in ("true", "false"):
+                probe_root = f"{cell_root}/counterfactuals/{predicate_name}/{polarity}"
+                expected.add(f"{probe_root}/query.smt2")
+                expected.add(f"{probe_root}/result.json")
+    return expected
+
+
+def _run_state_value(
+    *,
+    run_id: str,
+    status: str,
+    source_snapshot_sha256: str,
+    encoding_manifest_sha256: str,
+    completed_cells: int,
+    error: dict[str, str] | None,
+    run_manifest_sha256: str | None,
+) -> dict[str, object]:
+    planned_cells = len(plan_wave())
+    probes_per_cell = len(packet.SYNCHRONIZATION_PREDICATES) * 2
+    value: dict[str, object] = {
+        "schema": RUN_STATE_SCHEMA,
+        "run_id": run_id,
+        "status": status,
+        "source_snapshot_sha256": source_snapshot_sha256,
+        "encoding_manifest_sha256": encoding_manifest_sha256,
+        "planned_cells": planned_cells,
+        "planned_counterfactuals": planned_cells * probes_per_cell,
+        "completed_cells": completed_cells,
+        "completed_counterfactuals": completed_cells * probes_per_cell,
+        "error": error,
+        "run_manifest_sha256": run_manifest_sha256,
+        "false_claims": packet.FALSE_CLAIMS,
+    }
+    value["state_sha256"] = _sha256_bytes(_canonical_json(value))
+    return value
+
+
+def _write_run_state(
+    output_dir: Path,
+    *,
+    run_id: str,
+    status: str,
+    source_snapshot_sha256: str,
+    encoding_manifest_sha256: str,
+    completed_cells: int,
+    error: dict[str, str] | None,
+    run_manifest_sha256: str | None,
+) -> dict[str, object]:
+    state = _run_state_value(
+        run_id=run_id,
+        status=status,
+        source_snapshot_sha256=source_snapshot_sha256,
+        encoding_manifest_sha256=encoding_manifest_sha256,
+        completed_cells=completed_cells,
+        error=error,
+        run_manifest_sha256=run_manifest_sha256,
+    )
+    _atomic_json(output_dir / "run_state.json", state)
+    return state
+
+
+def _validate_run_state(
+    output_dir: Path, expected_status: str | None = None
+) -> dict[str, object]:
+    state = _read_canonical_json(output_dir / "run_state.json", "run state")
+    _require_exact_fields(
+        state,
+        {
+            "schema",
+            "run_id",
+            "status",
+            "source_snapshot_sha256",
+            "encoding_manifest_sha256",
+            "planned_cells",
+            "planned_counterfactuals",
+            "completed_cells",
+            "completed_counterfactuals",
+            "error",
+            "run_manifest_sha256",
+            "false_claims",
+            "state_sha256",
+        },
+        "run state",
+    )
+    _validate_self_hash(state, "state_sha256")
+    if state.get("schema") != RUN_STATE_SCHEMA:
+        raise StaticRunnerError("run state schema mismatch")
+    status = state.get("status")
+    if status not in {"RUNNING", "FAILED", "COMPLETE"}:
+        raise StaticRunnerError("run state status is malformed")
+    run_id = state.get("run_id")
+    source_digest = state.get("source_snapshot_sha256")
+    encoding_digest = state.get("encoding_manifest_sha256")
+    if (
+        not isinstance(run_id, str)
+        or not run_id
+        or "/" in run_id
+        or not isinstance(source_digest, str)
+        or len(source_digest) != 64
+        or any(character not in "0123456789abcdef" for character in source_digest)
+        or not isinstance(encoding_digest, str)
+        or len(encoding_digest) != 64
+        or any(character not in "0123456789abcdef" for character in encoding_digest)
+    ):
+        raise StaticRunnerError("run state identity or digest is malformed")
+    if expected_status is not None and status != expected_status:
+        raise StaticRunnerError(f"run state is not {expected_status}")
+    planned_cells = len(plan_wave())
+    probes_per_cell = len(packet.SYNCHRONIZATION_PREDICATES) * 2
+    completed_cells = state.get("completed_cells")
+    completed_counterfactuals = state.get("completed_counterfactuals")
+    if (
+        state.get("planned_cells") != planned_cells
+        or state.get("planned_counterfactuals") != planned_cells * probes_per_cell
+        or type(completed_cells) is not int
+        or not 0 <= completed_cells <= planned_cells
+        or completed_counterfactuals != completed_cells * probes_per_cell
+        or state.get("false_claims") != packet.FALSE_CLAIMS
+    ):
+        raise StaticRunnerError(
+            "run state counts or false-claim boundary are malformed"
+        )
+    error = state.get("error")
+    manifest_sha256 = state.get("run_manifest_sha256")
+    if status == "COMPLETE":
+        if (
+            completed_cells != planned_cells
+            or error is not None
+            or not isinstance(manifest_sha256, str)
+            or len(manifest_sha256) != 64
+            or any(character not in "0123456789abcdef" for character in manifest_sha256)
+        ):
+            raise StaticRunnerError("complete run state is malformed")
+    elif status == "RUNNING":
+        if error is not None or manifest_sha256 is not None:
+            raise StaticRunnerError("running run state is malformed")
+    else:
+        if (
+            not isinstance(error, Mapping)
+            or set(error) != {"type", "message"}
+            or not all(isinstance(value, str) for value in error.values())
+            or manifest_sha256 is not None
+        ):
+            raise StaticRunnerError("failed run state is malformed")
+    return state
+
+
+def _validate_complete_topology(output_dir: Path) -> None:
+    expected = {"artifacts", "run_manifest.json", "run_state.json"}
+    actual = {path.name for path in output_dir.iterdir()}
+    if actual != expected:
+        raise StaticRunnerError("run root path set is not closed")
+
+
+def _terminal_reentry(output_dir: Path) -> dict[str, object]:
+    """Authenticate a completed run without launching any solver session."""
+    _validate_complete_topology(output_dir)
+    state = _validate_run_state(output_dir, "COMPLETE")
+    manifest = _read_canonical_json(output_dir / "run_manifest.json", "run manifest")
+    _require_exact_fields(
+        manifest,
+        {
+            "schema",
+            "run_id",
+            "packet_schema",
+            "status",
+            "promotion_ready",
+            "cell_plan",
+            "cell_results",
+            "predicate_panel",
+            "predicate_summary",
+            "counterfactual_contract",
+            "source_snapshot",
+            "postflight_source_snapshot_sha256",
+            "postflight_source_content_sha256",
+            "encoding_manifest_sha256",
+            "solver",
+            "artifact_inventory",
+            "false_claims",
+            "scope",
+            "run_manifest_sha256",
+        },
+        "terminal run manifest",
+    )
+    _validate_self_hash(manifest, "run_manifest_sha256")
+    if manifest.get("schema") != RUN_SCHEMA:
+        raise StaticRunnerError("terminal run schema mismatch")
+    if (
+        manifest.get("packet_schema") != packet.SCHEMA
+        or manifest.get("promotion_ready") is not False
+        or manifest.get("false_claims") != packet.FALSE_CLAIMS
+        or manifest.get("scope")
+        != "live retained arm packet only; not full FirstNonHit"
+        or manifest.get("predicate_panel") != list(packet.SYNCHRONIZATION_PREDICATES)
+        or manifest.get("counterfactual_contract") != packet.COUNTERFACTUAL_CONTRACT
+    ):
+        raise StaticRunnerError("terminal run boundary mismatch")
+    if state.get("run_id") != manifest.get("run_id"):
+        raise StaticRunnerError("terminal run id mismatch")
+    if state.get("run_manifest_sha256") != manifest.get("run_manifest_sha256"):
+        raise StaticRunnerError("terminal run manifest binding mismatch")
+    source_snapshot = manifest.get("source_snapshot")
+    if not isinstance(source_snapshot, Mapping):
+        raise StaticRunnerError("terminal source snapshot is missing")
+    if state.get("source_snapshot_sha256") != source_snapshot.get("snapshot_sha256"):
+        raise StaticRunnerError("terminal source snapshot binding mismatch")
+    if state.get("encoding_manifest_sha256") != manifest.get(
+        "encoding_manifest_sha256"
+    ):
+        raise StaticRunnerError("terminal encoding manifest binding mismatch")
+    _validate_snapshot_self_hash(source_snapshot)
+    if _source_snapshot().get("snapshot_sha256") != source_snapshot.get(
+        "snapshot_sha256"
+    ):
+        raise StaticRunnerError("current source or Git state differs from terminal run")
+    artifacts = output_dir / "artifacts"
+    _validate_inventory(artifacts, manifest.get("artifact_inventory"))
+    _validate_source_archive(artifacts, source_snapshot)
+    encoding_manifest = _read_canonical_json(
+        artifacts / "encoding-manifest.json", "encoding manifest"
+    )
+    if encoding_manifest != packet.manifest():
+        raise StaticRunnerError("terminal encoding manifest differs from live packet")
+    if manifest.get("solver") != _solver_identity():
+        raise StaticRunnerError("terminal solver identity mismatch")
+    if manifest.get("cell_plan") != plan_wave():
+        raise StaticRunnerError("terminal cell plan mismatch")
+    cell_results = manifest.get("cell_results")
+    if not isinstance(cell_results, list) or len(cell_results) != len(plan_wave()):
+        raise StaticRunnerError("terminal cell result summary is malformed")
+    return manifest
+
+
+def _receipt_value(
+    *,
+    run_id: str,
+    output_dir: Path,
+    status: str,
+    run_state_sha256: str | None,
+    error: dict[str, str] | None,
+) -> dict[str, object]:
+    value: dict[str, object] = {
+        "schema": RECEIPT_SCHEMA,
+        "run_id": run_id,
+        "output_dir": str(output_dir.resolve(strict=False)),
+        "status": status,
+        "run_state_sha256": run_state_sha256,
+        "error": error,
+    }
+    value["receipt_sha256"] = _sha256_bytes(_canonical_json(value))
+    return value
+
+
+def _validate_receipt(path: Path) -> dict[str, object]:
+    receipt = _read_canonical_json(path, "single-wave receipt")
+    _require_exact_fields(
+        receipt,
+        {
+            "schema",
+            "run_id",
+            "output_dir",
+            "status",
+            "run_state_sha256",
+            "error",
+            "receipt_sha256",
+        },
+        "single-wave receipt",
+    )
+    _validate_self_hash(receipt, "receipt_sha256")
+    if receipt.get("schema") != RECEIPT_SCHEMA:
+        raise StaticRunnerError("single-wave receipt schema mismatch")
+    status = receipt.get("status")
+    if status not in {"CLAIMED", "FAILED", "COMPLETE"}:
+        raise StaticRunnerError("single-wave receipt status is malformed")
+    if (
+        not isinstance(receipt.get("run_id"), str)
+        or not receipt.get("run_id")
+        or not isinstance(receipt.get("output_dir"), str)
+    ):
+        raise StaticRunnerError("single-wave receipt identity is malformed")
+    if status == "CLAIMED":
+        if (
+            receipt.get("run_state_sha256") is not None
+            or receipt.get("error") is not None
+        ):
+            raise StaticRunnerError("claimed single-wave receipt is malformed")
+    elif status == "COMPLETE":
+        if (
+            not isinstance(receipt.get("run_state_sha256"), str)
+            or len(receipt["run_state_sha256"]) != 64
+            or any(
+                character not in "0123456789abcdef"
+                for character in receipt["run_state_sha256"]
+            )
+            or receipt.get("error") is not None
+        ):
+            raise StaticRunnerError("complete single-wave receipt is malformed")
+    else:
+        error = receipt.get("error")
+        if (
+            not isinstance(error, Mapping)
+            or set(error) != {"type", "message"}
+            or not all(isinstance(value, str) for value in error.values())
+        ):
+            raise StaticRunnerError("failed single-wave receipt is malformed")
+    return receipt
+
+
+def _write_receipt(
+    path: Path,
+    *,
+    run_id: str,
+    output_dir: Path,
+    status: str,
+    run_state_sha256: str | None,
+    error: dict[str, str] | None,
+) -> dict[str, object]:
+    receipt = _receipt_value(
+        run_id=run_id,
+        output_dir=output_dir,
+        status=status,
+        run_state_sha256=run_state_sha256,
+        error=error,
+    )
+    _atomic_json(path, receipt)
+    return receipt
+
+
+@contextlib.contextmanager
+def _wave_lock(output_dir: Path, allow_test_output: bool):
+    lock_root = output_dir.parent if allow_test_output else DEFAULT_RUN_PARENT
+    _reject_symlink_ancestors(lock_root)
+    lock_root.mkdir(parents=True, exist_ok=True)
+    _fsync_directory(lock_root.parent)
+    lock_path = lock_root / ".freshthird-firstnonhit-live-retained-v1.lock"
+    descriptor = os.open(lock_path, os.O_RDWR | os.O_CREAT, 0o600)
+    try:
+        if os.fstat(descriptor).st_nlink != 1:
+            raise StaticRunnerError("single-wave lock must have exactly one hard link")
+        try:
+            fcntl.flock(descriptor, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        except BlockingIOError as exc:
+            raise StaticRunnerError(
+                "another retained-arm wave holds the run lock"
+            ) from exc
+        yield
+    finally:
+        with contextlib.suppress(OSError):
+            fcntl.flock(descriptor, fcntl.LOCK_UN)
+        os.close(descriptor)
+
+
+def _run_wave_locked(
+    output_dir: Path, allow_test_output: bool = False
+) -> dict[str, object]:
     """Execute exactly one authenticated 24-cell discovery wave."""
-    output_dir = _validate_output_root(Path(output_dir), allow_test_output)
+    output_dir = Path(output_dir)
+    if output_dir.exists() and not output_dir.is_symlink():
+        return _terminal_reentry(output_dir)
+    output_dir = _validate_output_root(output_dir, allow_test_output)
     source_snapshot = _source_snapshot()
     _validate_snapshot_self_hash(source_snapshot)
     output_dir.mkdir(parents=True)
+    _fsync_directory(output_dir.parent)
     artifacts = output_dir / "artifacts"
     artifacts.mkdir()
+    _fsync_directory(output_dir)
     packet_manifest = packet.manifest()
     _validate_packet_manifest_source_binding(packet_manifest, source_snapshot)
     packet_manifest_sha256 = _atomic_json(
@@ -695,51 +1139,167 @@ def run_wave(output_dir: Path, allow_test_output: bool = False) -> dict[str, obj
     _source_archive(artifacts, source_snapshot)
     solver_identity = _solver_identity()
     cells = plan_wave()
-    results = [
-        _cell_result(
-            cell,
-            artifacts,
-            source_snapshot,
-            packet_manifest_sha256,
-            solver_identity,
+    run_id = output_dir.name
+    completed_cells = 0
+    _write_run_state(
+        output_dir,
+        run_id=run_id,
+        status="RUNNING",
+        source_snapshot_sha256=str(source_snapshot["snapshot_sha256"]),
+        encoding_manifest_sha256=packet_manifest_sha256,
+        completed_cells=0,
+        error=None,
+        run_manifest_sha256=None,
+    )
+    results: list[dict[str, object]] = []
+    try:
+        for cell in cells:
+            results.append(
+                _cell_result(
+                    cell,
+                    artifacts,
+                    source_snapshot,
+                    packet_manifest_sha256,
+                    solver_identity,
+                )
+            )
+            completed_cells += 1
+            _write_run_state(
+                output_dir,
+                run_id=run_id,
+                status="RUNNING",
+                source_snapshot_sha256=str(source_snapshot["snapshot_sha256"]),
+                encoding_manifest_sha256=packet_manifest_sha256,
+                completed_cells=completed_cells,
+                error=None,
+                run_manifest_sha256=None,
+            )
+        post_snapshot = _source_snapshot()
+        _validate_snapshot_self_hash(post_snapshot)
+        if post_snapshot["snapshot_sha256"] != source_snapshot["snapshot_sha256"]:
+            raise StaticRunnerError("source or Git state drifted during the wave")
+        statuses = [str(result["status"]) for result in results]
+        aggregate = _aggregate_status(statuses)
+        run_manifest: dict[str, object] = {
+            "schema": RUN_SCHEMA,
+            "run_id": run_id,
+            "packet_schema": packet.SCHEMA,
+            "status": aggregate,
+            "promotion_ready": False,
+            "cell_plan": cells,
+            "cell_results": [
+                {
+                    "cell_id": result["cell"]["cell_id"],
+                    "status": result["status"],
+                    "result_sha256": result["result_sha256"],
+                }
+                for result in results
+            ],
+            "predicate_panel": list(packet.SYNCHRONIZATION_PREDICATES),
+            "predicate_summary": _predicate_summary(results),
+            "counterfactual_contract": packet.COUNTERFACTUAL_CONTRACT,
+            "source_snapshot": source_snapshot,
+            "postflight_source_snapshot_sha256": post_snapshot["snapshot_sha256"],
+            "postflight_source_content_sha256": post_snapshot["source_content_sha256"],
+            "encoding_manifest_sha256": packet_manifest_sha256,
+            "solver": solver_identity,
+            "artifact_inventory": _artifact_inventory(artifacts),
+            "false_claims": packet.FALSE_CLAIMS,
+            "scope": "live retained arm packet only; not full FirstNonHit",
+        }
+        run_manifest["run_manifest_sha256"] = _sha256_bytes(
+            _canonical_json(run_manifest)
         )
-        for cell in cells
-    ]
-    post_snapshot = _source_snapshot()
-    _validate_snapshot_self_hash(post_snapshot)
-    if post_snapshot["snapshot_sha256"] != source_snapshot["snapshot_sha256"]:
-        raise StaticRunnerError("source or Git state drifted during the wave")
-    statuses = [str(result["status"]) for result in results]
-    aggregate = _aggregate_status(statuses)
-    run_manifest: dict[str, object] = {
-        "schema": RUN_SCHEMA,
-        "packet_schema": packet.SCHEMA,
-        "status": aggregate,
-        "promotion_ready": False,
-        "cell_plan": cells,
-        "cell_results": [
-            {
-                "cell_id": result["cell"]["cell_id"],
-                "status": result["status"],
-                "result_sha256": result["result_sha256"],
-            }
-            for result in results
-        ],
-        "predicate_panel": list(packet.SYNCHRONIZATION_PREDICATES),
-        "predicate_summary": _predicate_summary(results),
-        "counterfactual_contract": packet.COUNTERFACTUAL_CONTRACT,
-        "source_snapshot": source_snapshot,
-        "postflight_source_snapshot_sha256": post_snapshot["snapshot_sha256"],
-        "postflight_source_content_sha256": post_snapshot["source_content_sha256"],
-        "encoding_manifest_sha256": packet_manifest_sha256,
-        "solver": solver_identity,
-        "artifact_inventory": _artifact_inventory(artifacts),
-        "false_claims": packet.FALSE_CLAIMS,
-        "scope": "live retained arm packet only; not full FirstNonHit",
-    }
-    run_manifest["run_manifest_sha256"] = _sha256_bytes(_canonical_json(run_manifest))
-    _atomic_json(output_dir / "run_manifest.json", run_manifest)
-    return run_manifest
+        _atomic_json(output_dir / "run_manifest.json", run_manifest)
+        _write_run_state(
+            output_dir,
+            run_id=run_id,
+            status="COMPLETE",
+            source_snapshot_sha256=str(source_snapshot["snapshot_sha256"]),
+            encoding_manifest_sha256=packet_manifest_sha256,
+            completed_cells=completed_cells,
+            error=None,
+            run_manifest_sha256=str(run_manifest["run_manifest_sha256"]),
+        )
+        return run_manifest
+    except BaseException as exc:
+        error = {"type": type(exc).__name__, "message": str(exc)[:500]}
+        _write_run_state(
+            output_dir,
+            run_id=run_id,
+            status="FAILED",
+            source_snapshot_sha256=str(source_snapshot["snapshot_sha256"]),
+            encoding_manifest_sha256=packet_manifest_sha256,
+            completed_cells=completed_cells,
+            error=error,
+            run_manifest_sha256=None,
+        )
+        raise
+
+
+def run_wave(output_dir: Path, allow_test_output: bool = False) -> dict[str, object]:
+    """Execute one wave, or authenticate its completed zero-solver reentry."""
+    output_dir = Path(output_dir)
+    with _wave_lock(output_dir, allow_test_output):
+        if allow_test_output:
+            return _run_wave_locked(output_dir, allow_test_output=True)
+        receipt_path = DEFAULT_RUN_PARENT / "single-wave-receipt.json"
+        run_id = output_dir.name
+        if receipt_path.exists() or receipt_path.is_symlink():
+            receipt = _validate_receipt(receipt_path)
+            if (
+                receipt.get("status") == "COMPLETE"
+                and receipt.get("run_id") == run_id
+                and receipt.get("output_dir") == str(output_dir.resolve(strict=False))
+            ):
+                manifest = _terminal_reentry(output_dir)
+                state = _validate_run_state(output_dir, "COMPLETE")
+                if receipt.get("run_state_sha256") != state.get("state_sha256"):
+                    raise StaticRunnerError(
+                        "single-wave receipt state binding mismatch"
+                    )
+                return manifest
+            raise StaticRunnerError(
+                "a production retained-arm wave is already recorded"
+            )
+        _validate_output_root(output_dir, allow_test_output=False)
+        _write_receipt(
+            receipt_path,
+            run_id=run_id,
+            output_dir=output_dir,
+            status="CLAIMED",
+            run_state_sha256=None,
+            error=None,
+        )
+        try:
+            manifest = _run_wave_locked(output_dir, allow_test_output=False)
+        except BaseException as exc:
+            state_sha256: str | None = None
+            if (output_dir / "run_state.json").is_file():
+                claimed_state_sha256 = _read_canonical_json(
+                    output_dir / "run_state.json", "failed run state"
+                ).get("state_sha256")
+                if isinstance(claimed_state_sha256, str):
+                    state_sha256 = claimed_state_sha256
+            _write_receipt(
+                receipt_path,
+                run_id=run_id,
+                output_dir=output_dir,
+                status="FAILED",
+                run_state_sha256=state_sha256,
+                error={"type": type(exc).__name__, "message": str(exc)[:500]},
+            )
+            raise
+        state = _validate_run_state(output_dir, "COMPLETE")
+        _write_receipt(
+            receipt_path,
+            run_id=run_id,
+            output_dir=output_dir,
+            status="COMPLETE",
+            run_state_sha256=str(state["state_sha256"]),
+            error=None,
+        )
+        return manifest
 
 
 def _validate_self_hash(value: Mapping[str, object], field: str) -> None:
@@ -947,8 +1507,7 @@ def _validate_source_archive(
                 f"source archive path escapes artifacts: {relative}"
             ) from exc
         _reject_symlink_ancestors(path)
-        if path.is_symlink() or not path.is_file():
-            raise StaticRunnerError(f"source archive path is invalid: {relative}")
+        _require_single_link_file(path, f"source archive {relative}")
         payload = path.read_bytes()
         if (
             _sha256_bytes(payload) != digest
@@ -982,6 +1541,8 @@ def _validate_inventory(artifacts: Path, rows: object) -> None:
         if relative in expected:
             raise StaticRunnerError(f"duplicate artifact inventory path: {relative}")
         expected[relative] = (digest, size)
+    if set(expected) != _expected_artifact_paths():
+        raise StaticRunnerError("artifact inventory path set is not closed")
     actual = {
         row["path"]: (row["sha256"], row["size"])
         for row in _artifact_inventory(artifacts)
@@ -996,6 +1557,8 @@ def validate_run(output_dir: Path) -> dict[str, object]:
     _reject_symlink_ancestors(output_dir)
     if output_dir.is_symlink() or not output_dir.is_dir():
         raise StaticRunnerError("run root is not a regular directory")
+    _validate_complete_topology(output_dir)
+    run_state = _validate_run_state(output_dir, "COMPLETE")
     manifest_value = _read_canonical_json(
         output_dir / "run_manifest.json", "run manifest"
     )
@@ -1003,6 +1566,7 @@ def validate_run(output_dir: Path) -> dict[str, object]:
         manifest_value,
         {
             "schema",
+            "run_id",
             "packet_schema",
             "status",
             "promotion_ready",
@@ -1026,6 +1590,16 @@ def validate_run(output_dir: Path) -> dict[str, object]:
     if manifest_value.get("schema") != RUN_SCHEMA:
         raise StaticRunnerError("run schema mismatch")
     _validate_self_hash(manifest_value, "run_manifest_sha256")
+    if run_state.get("run_id") != manifest_value.get("run_id"):
+        raise StaticRunnerError("run-state id binding mismatch")
+    if run_state.get("run_manifest_sha256") != manifest_value.get(
+        "run_manifest_sha256"
+    ):
+        raise StaticRunnerError("run-state manifest binding mismatch")
+    if run_state.get("encoding_manifest_sha256") != manifest_value.get(
+        "encoding_manifest_sha256"
+    ):
+        raise StaticRunnerError("run-state encoding binding mismatch")
     if manifest_value.get("packet_schema") != packet.SCHEMA:
         raise StaticRunnerError("packet schema mismatch")
     if manifest_value.get("promotion_ready") is not False:
@@ -1047,6 +1621,10 @@ def validate_run(output_dir: Path) -> dict[str, object]:
     source_snapshot = manifest_value.get("source_snapshot")
     if not isinstance(source_snapshot, Mapping):
         raise StaticRunnerError("source snapshot is missing")
+    if run_state.get("source_snapshot_sha256") != source_snapshot.get(
+        "snapshot_sha256"
+    ):
+        raise StaticRunnerError("run-state source snapshot binding mismatch")
     _validate_snapshot_self_hash(source_snapshot)
     _validate_source_archive(artifacts, source_snapshot)
     if manifest_value.get("postflight_source_snapshot_sha256") != source_snapshot.get(
@@ -1059,10 +1637,10 @@ def validate_run(output_dir: Path) -> dict[str, object]:
         raise StaticRunnerError("postflight source content binding mismatch")
     current = _source_snapshot()
     _validate_snapshot_self_hash(current)
-    if current.get("source_content_sha256") != source_snapshot.get(
-        "source_content_sha256"
-    ):
-        raise StaticRunnerError("current source bytes differ from captured source")
+    if current.get("snapshot_sha256") != source_snapshot.get("snapshot_sha256"):
+        raise StaticRunnerError(
+            "current source bytes or Git metadata differ from captured source"
+        )
     encoding_manifest = _read_canonical_json(
         artifacts / "encoding-manifest.json", "encoding manifest"
     )

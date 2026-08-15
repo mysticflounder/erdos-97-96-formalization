@@ -5,6 +5,7 @@ import json
 import math
 import os
 import shutil
+import stat
 import sys
 from itertools import product
 from pathlib import Path
@@ -88,6 +89,7 @@ def test_full_run_has_sat_cells_canonical_manifests_and_validates(
     manifests = [_json(path) for path in _manifest_paths(output)]
 
     assert summary["schema"] == runner.RUN_SCHEMA
+    assert summary["run_id"] == output.name
     assert len(results) == 24
     assert len(probe_results) == 24 * 5 * 2
     assert {result["status"] for result in results} == {"SAT_ABSTRACTION"}
@@ -128,6 +130,13 @@ def test_full_run_has_sat_cells_canonical_manifests_and_validates(
         runner._snapshot_paths()
     )
     assert all(len(row["git_blob_oid"]) == 40 for row in source_archive["archived"])
+    run_state = _json(output / "run_state.json")
+    assert run_state["status"] == "COMPLETE"
+    assert run_state["completed_cells"] == 24
+    assert run_state["completed_counterfactuals"] == 24 * 5 * 2
+    assert run_state["run_manifest_sha256"] == summary["run_manifest_sha256"]
+    assert summary["solver"]["native_path"]
+    assert len(summary["solver"]["native_sha256"]) == 64
 
     validated = runner.validate_run(output)
     assert validated["schema"] == runner.RUN_SCHEMA
@@ -139,11 +148,39 @@ def _copy_run(source: Path, tmp_path: Path, name: str) -> Path:
     return destination
 
 
-def test_rerun_to_same_path_rejects(
+def test_rerun_to_same_path_is_zero_solver_terminal_reentry(
     completed_run: tuple[Path, dict[str, object]],
+    monkeypatch: pytest.MonkeyPatch,
 ) -> None:
-    output, _ = completed_run
+    output, summary = completed_run
 
+    def unexpected_solver(*_args: object, **_kwargs: object) -> None:
+        raise AssertionError("terminal reentry must not construct a solver")
+
+    monkeypatch.setattr(runner.packet, "build_packet", unexpected_solver)
+
+    assert runner.run_wave(output, allow_test_output=True) == summary
+
+
+def test_cell_failure_leaves_durable_failed_state(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    output = tmp_path / "failed-run"
+
+    def fail_cell(*_args: object, **_kwargs: object) -> None:
+        raise runner.StaticRunnerError("controlled cell failure")
+
+    monkeypatch.setattr(runner, "_cell_result", fail_cell)
+    with pytest.raises(runner.StaticRunnerError, match="controlled cell failure"):
+        runner.run_wave(output, allow_test_output=True)
+
+    state = runner._validate_run_state(output, "FAILED")
+    assert state["completed_cells"] == 0
+    assert state["completed_counterfactuals"] == 0
+    assert state["error"] == {
+        "type": "StaticRunnerError",
+        "message": "controlled cell failure",
+    }
     with pytest.raises(runner.StaticRunnerError):
         runner.run_wave(output, allow_test_output=True)
 
@@ -244,6 +281,65 @@ def test_rehashed_snapshot_clean_flag_fails_structural_validation(
         runner._validate_snapshot_self_hash(snapshot)
 
 
+def test_rehashed_dirty_index_oid_must_name_a_git_blob(
+    completed_run: tuple[Path, dict[str, object]],
+) -> None:
+    snapshot = dict(completed_run[1]["source_snapshot"])
+    snapshot["files"] = [dict(row) for row in snapshot["files"]]
+    row = snapshot["files"][0]
+    row["git_status"] = f" M {row['path']}"
+    row["clean"] = False
+    row["index_blob_oid"] = "0" * 40
+    snapshot.pop("snapshot_sha256")
+    snapshot["snapshot_sha256"] = hashlib.sha256(_canonical_json(snapshot)).hexdigest()
+
+    with pytest.raises(runner.StaticRunnerError):
+        runner._validate_snapshot_self_hash(snapshot)
+
+
+def test_current_git_metadata_must_match_captured_snapshot(
+    completed_run: tuple[Path, dict[str, object]], monkeypatch: pytest.MonkeyPatch
+) -> None:
+    output, summary = completed_run
+    current = dict(summary["source_snapshot"])
+    current["files"] = [dict(row) for row in current["files"]]
+    row = current["files"][0]
+    row["git_status"] = f" M {row['path']}"
+    row["clean"] = False
+    current.pop("snapshot_sha256")
+    current["snapshot_sha256"] = hashlib.sha256(_canonical_json(current)).hexdigest()
+    monkeypatch.setattr(runner, "_source_snapshot", lambda: current)
+
+    with pytest.raises(runner.StaticRunnerError):
+        runner.validate_run(output)
+
+
+def test_rehashed_inventory_cannot_add_unreferenced_artifact(
+    completed_run: tuple[Path, dict[str, object]], tmp_path: Path
+) -> None:
+    output = _copy_run(completed_run[0], tmp_path, "tampered-extra-artifact")
+    extra = output / "artifacts" / "unreferenced.txt"
+    extra.write_bytes(b"unreferenced\n")
+    manifest_path = output / "run_manifest.json"
+    manifest = _json(manifest_path)
+    assert isinstance(manifest, dict)
+    manifest["artifact_inventory"].append(
+        {
+            "path": "unreferenced.txt",
+            "sha256": hashlib.sha256(extra.read_bytes()).hexdigest(),
+            "size": extra.stat().st_size,
+        }
+    )
+    manifest.pop("run_manifest_sha256")
+    manifest["run_manifest_sha256"] = hashlib.sha256(
+        _canonical_json(manifest)
+    ).hexdigest()
+    manifest_path.write_bytes(_canonical_json(manifest))
+
+    with pytest.raises(runner.StaticRunnerError):
+        runner.validate_run(output)
+
+
 def test_aggregate_status_distinguishes_terminal_and_mixed_results() -> None:
     assert runner._aggregate_status(["SAT_ABSTRACTION"] * 24) == "SAT_ABSTRACTION"
     assert runner._aggregate_status(["UNSAT_RELAXATION"] * 24) == "UNSAT_RELAXATION"
@@ -295,6 +391,101 @@ def test_nonstandard_json_number_is_rejected(tmp_path: Path) -> None:
     path.write_bytes(b'{"value":NaN}\n')
     with pytest.raises(runner.StaticRunnerError):
         runner._read_canonical_json(path, "NaN control")
+
+
+def test_hardlinked_json_and_source_are_rejected(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    original = tmp_path / "value.json"
+    original.write_bytes(b"{}\n")
+    alias = tmp_path / "alias.json"
+    os.link(original, alias)
+    with pytest.raises(runner.StaticRunnerError, match="hard link"):
+        runner._read_canonical_json(original, "hardlink control")
+
+    source_root = tmp_path / "repo"
+    source_root.mkdir()
+    source = source_root / "source.py"
+    source.write_text("pass\n", encoding="utf-8")
+    os.link(source, tmp_path / "source-alias.py")
+    monkeypatch.setattr(runner.packet, "REPO_ROOT", source_root)
+    with pytest.raises(runner.StaticRunnerError, match="hard link"):
+        runner._validated_source_path("source.py")
+
+
+def test_atomic_write_fsyncs_file_and_parent_directory(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    observed_modes: list[int] = []
+    real_fsync = runner.os.fsync
+
+    def recording_fsync(descriptor: int) -> None:
+        observed_modes.append(os.fstat(descriptor).st_mode)
+        real_fsync(descriptor)
+
+    monkeypatch.setattr(runner.os, "fsync", recording_fsync)
+    runner._atomic_write(tmp_path / "nested" / "value.txt", b"durable\n")
+
+    assert any(stat.S_ISREG(mode) for mode in observed_modes)
+    assert any(stat.S_ISDIR(mode) for mode in observed_modes)
+
+
+def test_solver_identity_binds_native_library() -> None:
+    identity = runner._solver_identity()
+    native_path = Path(str(identity["native_path"]))
+
+    assert native_path.is_file()
+    assert identity["native_size"] == native_path.stat().st_size
+    assert (
+        identity["native_sha256"]
+        == hashlib.sha256(native_path.read_bytes()).hexdigest()
+    )
+
+
+def test_single_wave_lock_rejects_concurrent_holder(tmp_path: Path) -> None:
+    output = tmp_path / "run"
+    with (
+        runner._wave_lock(output, allow_test_output=True),
+        pytest.raises(runner.StaticRunnerError, match="holds the run lock"),
+        runner._wave_lock(output, allow_test_output=True),
+    ):
+        pass
+
+
+def test_production_receipt_blocks_a_second_output(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    production_root = tmp_path / "production"
+    first_output = production_root / "first"
+    second_output = production_root / "second"
+    calls: list[Path] = []
+    monkeypatch.setattr(runner, "DEFAULT_RUN_PARENT", production_root)
+
+    def fake_run(output: Path, allow_test_output: bool = False) -> dict[str, object]:
+        assert allow_test_output is False
+        calls.append(output)
+        output.mkdir(parents=True)
+        runner._write_run_state(
+            output,
+            run_id=output.name,
+            status="COMPLETE",
+            source_snapshot_sha256="a" * 64,
+            encoding_manifest_sha256="b" * 64,
+            completed_cells=24,
+            error=None,
+            run_manifest_sha256="c" * 64,
+        )
+        return {"status": "controlled-complete"}
+
+    monkeypatch.setattr(runner, "_run_wave_locked", fake_run)
+    assert runner.run_wave(first_output) == {"status": "controlled-complete"}
+    receipt = runner._validate_receipt(production_root / "single-wave-receipt.json")
+    assert receipt["status"] == "COMPLETE"
+    assert receipt["run_id"] == "first"
+
+    with pytest.raises(runner.StaticRunnerError, match="already recorded"):
+        runner.run_wave(second_output)
+    assert calls == [first_output]
 
 
 def test_source_path_with_symlinked_ancestor_is_rejected(
