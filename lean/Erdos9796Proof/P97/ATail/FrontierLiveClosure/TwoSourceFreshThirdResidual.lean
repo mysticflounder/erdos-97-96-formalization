@@ -2965,12 +2965,49 @@ theorem retainedFirstApex_selectedClass_eq_fourPoints_of_oppositeAdjacent
 
 include hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
   T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- Retained-ingress residual for the first-source non-hit branch.
+
+This branch retains the aligned deletion-core packets for both canonical
+sources.  It is separated from the independent common-radius branch so that
+source-faithful deletion-core refinements do not silently claim coverage of
+the other ingress arm. -/
+theorem false_of_freshThird_firstNonHit_alignedRetained
+    (C : TwoCapSourceThirdCanonicalRowSurface P Pρ)
+    (Q : FreshThirdBlockerFiber P Pρ)
+    (hretained :
+      FreshThirdAlignedRetainedConsumerPacket (P := P) (Pρ := Pρ) C)
+    (data : FreshThirdCapSourceNonHit P Pρ C.firstSource Q)
+    (secondInteraction :
+      FreshThirdCapSourceInteraction P Pρ C.secondSource Q) :
+    False := by
+  sorry
+
+include hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- Common-radius-ingress residual for the first-source non-hit branch.
+
+The common-radius surface is an explicit source witness and is not identified
+with the named canonical surface `C`.  Keeping that distinction in the
+statement is the source-faithful boundary required by the finite query. -/
+theorem false_of_freshThird_firstNonHit_commonRadius
+    (C : TwoCapSourceThirdCanonicalRowSurface P Pρ)
+    (Q : FreshThirdBlockerFiber P Pρ)
+    (G : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ)
+    (data : FreshThirdCapSourceNonHit P Pρ C.firstSource Q)
+    (secondInteraction :
+      FreshThirdCapSourceInteraction P Pρ C.secondSource Q) :
+    False := by
+  sorry
+
+include hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
 /-- Direct source-level residual for the first-source non-hit branch.
 
 The local named-row alternatives do not produce a third row: each named row
 either has the canonical Q-row center or has overlap at most two with the Q
 row.  Closing this theorem therefore requires genuinely carrier-wide
-incidence, cap-order, or metric information. -/
+incidence, cap-order, or metric information.  The proof splits the exhaustive
+acyclic ingress into its aligned-retained and independent-common-radius arms. -/
 theorem false_of_freshThird_firstNonHit
     (C : TwoCapSourceThirdCanonicalRowSurface P Pρ)
     (Q : FreshThirdBlockerFiber P Pρ)
@@ -2980,7 +3017,31 @@ theorem false_of_freshThird_firstNonHit
     (secondInteraction :
       FreshThirdCapSourceInteraction P Pρ C.secondSource Q) :
     False := by
-  sorry
+  rcases hingress with hretained | hcommon
+  · exact
+      false_of_freshThird_firstNonHit_alignedRetained
+        (P := P) (Pρ := Pρ)
+        (hρne := hρne)
+        (hfrontierFour := hfrontierFour) (hρfour := hρfour)
+        (hfrontierInteriorEq := hfrontierInteriorEq)
+        (hρInteriorEq := hρInteriorEq)
+        (T := T) (hpairsDisjoint := hpairsDisjoint)
+        (hblockersNe := hblockersNe)
+        (LPρ := LPρ) (hLPρ := hLPρ) (MPρ := MPρ)
+        (LP := LP) (hLP := hLP) (MP := MP)
+        C Q hretained data secondInteraction
+  · exact
+      false_of_freshThird_firstNonHit_commonRadius
+        (P := P) (Pρ := Pρ)
+        (hρne := hρne)
+        (hfrontierFour := hfrontierFour) (hρfour := hρfour)
+        (hfrontierInteriorEq := hfrontierInteriorEq)
+        (hρInteriorEq := hρInteriorEq)
+        (T := T) (hpairsDisjoint := hpairsDisjoint)
+        (hblockersNe := hblockersNe)
+        (LPρ := LPρ) (hLPρ := hLPρ) (MPρ := MPρ)
+        (LP := LP) (hLP := hLP) (MP := MP)
+        C Q (Classical.choice hcommon) data secondInteraction
 
 include hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
   T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in

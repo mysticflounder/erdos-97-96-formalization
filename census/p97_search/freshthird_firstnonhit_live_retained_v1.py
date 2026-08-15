@@ -318,13 +318,15 @@ class LiveRetainedPacket:
         )
         self.cap_card_ge_eight = z3.Bool("firstCapCardGeEight")
         self.provenance: list[dict[str, object]] = []
+        self.provenance_keys: set[str] = set()
         self._emit()
 
     def add(self, key: str, expression: z3.BoolRef, theorem: str) -> None:
-        if any(item["key"] == key for item in self.provenance):
+        if key in self.provenance_keys:
             raise LiveRetainedEncodingError(f"duplicate clause key: {key}")
         self.solver.add(expression)
         self.provenance.append({"key": key, "source": theorem})
+        self.provenance_keys.add(key)
 
     def same(self, left: str, right: str) -> z3.BoolRef:
         return self.rank[left] == self.rank[right]
