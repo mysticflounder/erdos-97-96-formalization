@@ -77,10 +77,10 @@ def test_source_complete_clause_and_variable_budget() -> None:
         "SOURCE-PINNED-ORDER": 169,
         "SOURCE-PINNED-ESCAPE": 59,
         "SOURCE-PINNED-BLOCKER": 376,
-        "SOURCE-PINNED-NORMALIZED": 244,
+        "SOURCE-PINNED-NORMALIZED": 247,
         "SOURCE-CARRIER-BOUNDARY": 4,
         "SOURCE-CARRIER-FAN": 556,
-        "SOURCE-CARRIER-NORMALIZED": 244,
+        "SOURCE-CARRIER-NORMALIZED": 247,
     }
 
     assert tuple(expected_counts) == CLAUSE_TAGS
@@ -254,7 +254,15 @@ def test_source_witnesses_are_required_and_one_way_sound() -> None:
         for j in range(4)
         if i != j
     )
-    assert (-fallback, *(-alias for alias in root_aliases),) in encoding.clauses
+    for alias in root_aliases:
+        assert (-fallback, -alias) in encoding.clauses
+    distinct_clauses = tuple((-fallback, -alias) for alias in root_aliases)
+    for fallback_value, *alias_values in itertools.product((False, True), repeat=5):
+        values = {fallback: fallback_value}
+        values.update(dict(zip(root_aliases, alias_values, strict=True)))
+        assert _clauses_hold(distinct_clauses, values) == (
+            not fallback_value or not any(alias_values)
+        )
     assert (-fallback, *repeated) in encoding.clauses
     assert (-fallback, *mutual) in encoding.clauses
     assert any(

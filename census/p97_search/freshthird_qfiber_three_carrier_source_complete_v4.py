@@ -508,7 +508,8 @@ class FreshThirdCarrierSourceCompleteCnfEncoding(
 
         root_aliases = tuple(-self.same(root_center, center) for center in centers)
         fallback = self.source_witness(f"{prefix}-fallback", 0)
-        self._add(tag, (-fallback, *root_aliases))
+        for root_distinct in root_aliases:
+            self._add(tag, (-fallback, root_distinct))
         self._add(tag, (-fallback, *repeated_witnesses))
         self._add(tag, (-fallback, *mutual_witnesses))
         self._add(tag, (*center_witnesses, fallback))
