@@ -27,6 +27,14 @@ CHECKPOINT_SCHEMA = "worktree-lane-checkpoint/v1"
 RUN_MANIFEST_SCHEMA = "worktree-run-manifest/v1"
 REPORT_SCHEMA = "worktree-hygiene-report/v1"
 CARD_HEAD_SCHEMA = "p97_ahead_head_run_manifest.v1"
+P97_RUN_SCHEMAS = frozenset(
+    {
+        "p97-freshthird-firstnonhit-complete-finite-v2/run/v1",
+        "p97-freshthird-firstnonhit-cap-endpoint-v3/run/v1",
+        "p97-freshthird-firstnonhit-all-large-caps-v4/run/v1",
+        "p97-freshthird-firstnonhit-overlap-v5/run/v1",
+    }
+)
 PUBLICATION_LIMIT_BYTES = 100 * 1024 * 1024
 GENERATED_OUTPUT_CLASSES = ("artifacts", "events", "tmp")
 
@@ -116,6 +124,76 @@ _CARD_HEAD_EVIDENCE_SCOPE = (
     "EMPIRICALLY VERIFIED within one labeled finite card-head abstraction; "
     "not a geometric closure theorem"
 )
+_P97_SCHEMA_LANES = {
+    "p97-freshthird-firstnonhit-complete-finite-v2/run/v1": "firstnonhit-complete-cnf-v2",
+    "p97-freshthird-firstnonhit-cap-endpoint-v3/run/v1": "firstnonhit-cap-endpoint-v3",
+    "p97-freshthird-firstnonhit-all-large-caps-v4/run/v1": "firstnonhit-all-large-caps-v4",
+    "p97-freshthird-firstnonhit-overlap-v5/run/v1": "firstnonhit-overlap-v5",
+}
+_P97_MANIFEST_KEYS = {
+    schema: {
+        "schema",
+        "all_emitted_hard_clauses_source_mapped",
+        "binaries",
+        "commands",
+        "cross_check_requested",
+        "encoding",
+        "exactly_one_production_wave",
+        "independent_audit",
+        "n",
+        "no_cegar_successor",
+        "query_is_separate_assumption",
+        "run_manifest_sha256",
+        "run_root",
+        "scope_label",
+        "source_hashes",
+        "source_total",
+        "status",
+        "theorem_bank_search_planned",
+        "timeout_seconds",
+    }
+    for schema in P97_RUN_SCHEMAS
+}
+_P97_MANIFEST_KEYS["p97-freshthird-firstnonhit-cap-endpoint-v3/run/v1"].add(
+    "predecessor_model_control"
+)
+for _schema in (
+    "p97-freshthird-firstnonhit-all-large-caps-v4/run/v1",
+    "p97-freshthird-firstnonhit-overlap-v5/run/v1",
+):
+    _P97_MANIFEST_KEYS[_schema].add("predecessor_model_control")
+for _schema in (
+    "p97-freshthird-firstnonhit-all-large-caps-v4/run/v1",
+    "p97-freshthird-firstnonhit-overlap-v5/run/v1",
+):
+    _P97_MANIFEST_KEYS[_schema].add("cross_check_effective")
+_P97_MANIFEST_KEYS["p97-freshthird-firstnonhit-overlap-v5/run/v1"].update(
+    {"lean_ingress", "production_path"}
+)
+_P97_RECEIPT_KEYS = {
+    schema: {
+        "all_emitted_hard_clauses_source_mapped",
+        "artifact_inventory",
+        "independent_audit",
+        "no_cegar_successor",
+        "processes",
+        "result",
+        "run_manifest_sha256",
+        "schema",
+        "source_total",
+        "status",
+        "terminal_receipt_sha256",
+        "theorem_bank_search_run",
+    }
+    for schema in P97_RUN_SCHEMAS
+}
+for _schema in (
+    "p97-freshthird-firstnonhit-all-large-caps-v4/run/v1",
+    "p97-freshthird-firstnonhit-overlap-v5/run/v1",
+):
+    _P97_RECEIPT_KEYS[_schema].update(
+        {"cross_check_effective", "cross_check_requested"}
+    )
 
 
 class HygieneError(ValueError):
@@ -181,13 +259,29 @@ def _pairs_object(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
     return result
 
 
-def _load_json_object(data: bytes, description: str) -> dict[str, Any]:
+def _load_json_object(
+    data: bytes, description: str, *, require_canonical: bool = False
+) -> dict[str, Any]:
     try:
-        value = json.loads(data, object_pairs_hook=_pairs_object)
-    except (UnicodeDecodeError, json.JSONDecodeError, _DuplicateJsonKey) as exc:
+        value = json.loads(
+            data,
+            object_pairs_hook=_pairs_object,
+            parse_constant=lambda constant: (_ for _ in ()).throw(ValueError(constant)),
+        )
+    except (
+        UnicodeDecodeError,
+        json.JSONDecodeError,
+        _DuplicateJsonKey,
+        ValueError,
+    ) as exc:
         raise HygieneError(f"{description} is not strict UTF-8 JSON: {exc}") from exc
     if type(value) is not dict:
         raise HygieneError(f"{description} must be a JSON object")
+    if require_canonical and data not in {
+        canonical_json_bytes(value),
+        canonical_json_bytes(value) + b"\n",
+    }:
+        raise HygieneError(f"{description} is not canonical JSON")
     return value
 
 
@@ -300,7 +394,7 @@ def _base_is_ancestor(repo: Path, base_head: str) -> bool:
         env=environment,
     )
     if result.returncode not in {0, 1}:
-        raise HygieneError("cannot validate checkpoint base_head")
+        return False
     return result.returncode == 0
 
 
@@ -601,6 +695,225 @@ def _validate_standard_run_manifest(
     return value, tuple(path for path, _digest in sources + inputs)
 
 
+def _p97_self_hash(value: Mapping[str, Any], field: str) -> str:
+    unsigned = {key: item for key, item in value.items() if key != field}
+    return hashlib.sha256(canonical_json_bytes(unsigned) + b"\n").hexdigest()
+
+
+def _validate_p97_source_hashes(
+    repo: Path, value: Any, checkpoint: Checkpoint
+) -> tuple[str, ...]:
+    if type(value) is not dict or not value:
+        raise HygieneError("P97 source_hashes must be a nonempty JSON object")
+    paths: list[str] = []
+    for label, row in value.items():
+        _validate_id(label, "P97 source_hashes label")
+        if type(row) is not dict or set(row) != {"path", "sha256", "size"}:
+            raise HygieneError("P97 source hash row has an inexact schema")
+        path = validate_relative_path(row["path"], "P97 source path")
+        digest = row["sha256"]
+        size = row["size"]
+        if not isinstance(digest, str) or _HEX64.fullmatch(digest) is None:
+            raise HygieneError(f"P97 source hash is invalid: {path}")
+        if isinstance(size, bool) or not isinstance(size, int) or size < 0:
+            raise HygieneError(f"P97 source size is invalid: {path}")
+        kind, info = _path_kind(repo, path)
+        if kind != "file" or info is None or info.st_nlink != 1:
+            raise HygieneError(f"P97 source is not a unique regular file: {path}")
+        actual, actual_size = _file_digest_size(repo, path)
+        if actual != digest or actual_size != size:
+            raise HygieneError(f"P97 source digest/size mismatch: {path}")
+        if path == checkpoint.path and (
+            digest != checkpoint.raw_sha256 or size != info.st_size
+        ):
+            raise HygieneError("P97 source checkpoint does not bind exactly")
+        paths.append(path)
+    if len(paths) != len(set(paths)):
+        raise HygieneError("P97 source_hashes contain duplicate paths")
+    if checkpoint.path not in paths:
+        raise HygieneError("P97 source_hashes omit the lane checkpoint")
+    return tuple(sorted(paths))
+
+
+def _validate_p97_run_manifest(
+    repo: Path, root: str, checkpoint: Checkpoint, raw: bytes
+) -> tuple[dict[str, Any], tuple[str, ...]]:
+    value = _load_json_object(raw, f"{root}/run-manifest.json", require_canonical=True)
+    schema = value.get("schema")
+    if not isinstance(schema, str) or schema not in P97_RUN_SCHEMAS:
+        raise HygieneError("P97 run manifest schema is not explicitly allowlisted")
+    _validate_exact_keys(value, _P97_MANIFEST_KEYS[schema], "P97 run manifest")
+    expected_lane = _P97_SCHEMA_LANES[schema]
+    if checkpoint.lane_id != expected_lane:
+        raise HygieneError("P97 run manifest lane does not match its schema")
+    if checkpoint.owner != expected_lane:
+        raise HygieneError("P97 checkpoint owner does not match its schema")
+    if not _base_is_ancestor(repo, checkpoint.base_head):
+        raise HygieneError("P97 checkpoint base_head is not an ancestor of HEAD")
+    expected_root = f"scratch/runs/{expected_lane}/"
+    run_root = value["run_root"]
+    if (
+        not isinstance(run_root, str)
+        or not run_root.startswith(expected_root)
+        or run_root.endswith("/")
+        or root != run_root
+        or root not in checkpoint.generated_roots
+    ):
+        raise HygieneError("P97 run manifest root is not exactly checkpoint-owned")
+    run_id = run_root.removeprefix(expected_root)
+    _validate_id(run_id, "P97 run_id")
+    if value["status"] != "RUNNING":
+        raise HygieneError("P97 run manifest status is malformed")
+    for field, expected in (
+        ("n", 17),
+        ("source_total", False),
+        ("all_emitted_hard_clauses_source_mapped", True),
+        ("exactly_one_production_wave", True),
+        ("no_cegar_successor", True),
+        ("query_is_separate_assumption", True),
+        ("theorem_bank_search_planned", False),
+    ):
+        if value[field] != expected or type(value[field]) is not type(expected):
+            raise HygieneError(f"P97 run manifest {field} is malformed")
+    if not isinstance(value["scope_label"], str) or not value["scope_label"]:
+        raise HygieneError("P97 run manifest scope_label is malformed")
+    digest = value["run_manifest_sha256"]
+    if not isinstance(digest, str) or _HEX64.fullmatch(digest) is None:
+        raise HygieneError("P97 run manifest self-hash is malformed")
+    if digest != _p97_self_hash(value, "run_manifest_sha256"):
+        raise HygieneError("P97 run manifest self-hash mismatch")
+    sources = _validate_p97_source_hashes(repo, value["source_hashes"], checkpoint)
+    return value, sources
+
+
+def _p97_artifact_inventory(repo: Path, root: str) -> tuple[dict[str, Any], ...]:
+    descriptor = _open_relative(repo, root, _directory_flags())
+    rows: list[dict[str, Any]] = []
+    try:
+        try:
+            children = sorted(
+                os.scandir(descriptor), key=lambda item: os.fsencode(item.name)
+            )
+        except OSError as exc:
+            raise HygieneError(f"cannot enumerate P97 run root: {root}") from exc
+        for child in children:
+            name = child.name
+            validate_relative_path(name, "P97 artifact name")
+            try:
+                info = child.stat(follow_symlinks=False)
+            except OSError as exc:
+                raise HygieneError(
+                    f"cannot inspect P97 artifact: {root}/{name}"
+                ) from exc
+            if stat.S_ISLNK(info.st_mode):
+                raise HygieneError(f"P97 run root contains a symlink: {root}/{name}")
+            if not stat.S_ISREG(info.st_mode) or info.st_nlink != 1:
+                raise HygieneError(
+                    f"P97 run root artifact is not a unique regular file: {root}/{name}"
+                )
+            try:
+                child_descriptor = os.open(
+                    name, os.O_RDONLY | os.O_NOFOLLOW, dir_fd=descriptor
+                )
+            except OSError as exc:
+                raise HygieneError(
+                    f"cannot open P97 artifact without following links: {root}/{name}"
+                ) from exc
+            try:
+                digest, size, _data = _observe_descriptor(
+                    child_descriptor, f"{root}/{name}", collect_bytes=False
+                )
+            except OSError as exc:
+                raise HygieneError(
+                    f"cannot read P97 artifact consistently: {root}/{name}"
+                ) from exc
+            if name == "terminal-receipt.json":
+                continue
+            rows.append({"path": name, "sha256": digest, "size": size})
+    finally:
+        os.close(descriptor)
+    return tuple(rows)
+
+
+def _validate_p97_generated_root(
+    repo: Path, root: str, checkpoint: Checkpoint
+) -> tuple[dict[str, Any], tuple[str, ...], tuple[dict[str, Any], ...]]:
+    manifest_path = f"{root}/run-manifest.json"
+    kind, info = _path_kind(repo, manifest_path)
+    if kind != "file" or info is None or info.st_nlink != 1:
+        raise HygieneError(f"P97 root lacks a unique regular run-manifest.json: {root}")
+    manifest_raw = _read_file_bytes(repo, manifest_path)
+    manifest, source_paths = _validate_p97_run_manifest(
+        repo, root, checkpoint, manifest_raw
+    )
+    receipt_path = f"{root}/terminal-receipt.json"
+    kind, info = _path_kind(repo, receipt_path)
+    if kind != "file" or info is None or info.st_nlink != 1:
+        raise HygieneError(f"P97 root lacks a unique terminal-receipt.json: {root}")
+    receipt_raw = _read_file_bytes(repo, receipt_path)
+    receipt = _load_json_object(receipt_raw, receipt_path, require_canonical=True)
+    schema = manifest["schema"]
+    _validate_exact_keys(receipt, _P97_RECEIPT_KEYS[schema], "P97 terminal receipt")
+    if receipt["schema"] != f"{schema}/terminal-receipt/v1":
+        raise HygieneError("P97 terminal receipt schema mismatch")
+    receipt_digest = receipt["terminal_receipt_sha256"]
+    if not isinstance(receipt_digest, str) or _HEX64.fullmatch(receipt_digest) is None:
+        raise HygieneError("P97 terminal receipt self-hash is malformed")
+    if receipt_digest != _p97_self_hash(receipt, "terminal_receipt_sha256"):
+        raise HygieneError("P97 terminal receipt self-hash mismatch")
+    receipt_status = receipt["status"]
+    if not isinstance(receipt_status, str) or receipt_status not in {
+        "SAT",
+        "UNSAT",
+        "UNKNOWN",
+        "FAILED",
+    }:
+        raise HygieneError("P97 terminal receipt status is malformed")
+    if receipt["run_manifest_sha256"] != hashlib.sha256(manifest_raw).hexdigest():
+        raise HygieneError("P97 terminal receipt is not bound to the run manifest")
+    if (
+        receipt["source_total"] is not False
+        or receipt["all_emitted_hard_clauses_source_mapped"] is not True
+    ):
+        raise HygieneError("P97 terminal receipt boundary flags are malformed")
+    inventory = _p97_artifact_inventory(repo, root)
+    declared_inventory = receipt["artifact_inventory"]
+    if type(declared_inventory) is not list or tuple(declared_inventory) != inventory:
+        raise HygieneError("P97 terminal artifact inventory does not replay exactly")
+    for row in declared_inventory:
+        if type(row) is not dict or set(row) != {"path", "sha256", "size"}:
+            raise HygieneError("P97 terminal artifact inventory row is malformed")
+        if not isinstance(row["path"], str) or not isinstance(row["sha256"], str):
+            raise HygieneError("P97 terminal artifact inventory row is malformed")
+        if (
+            _HEX64.fullmatch(row["sha256"]) is None
+            or isinstance(row["size"], bool)
+            or not isinstance(row["size"], int)
+            or row["size"] < 0
+        ):
+            raise HygieneError("P97 terminal artifact inventory row is malformed")
+    rows = tuple(
+        [
+            {
+                "kind": "file",
+                "path": receipt_path,
+                "sha256": hashlib.sha256(receipt_raw).hexdigest(),
+                "size": len(receipt_raw),
+            },
+        ]
+        + [
+            {
+                "kind": "file",
+                "path": f"{root}/{row['path']}",
+                "sha256": row["sha256"],
+                "size": row["size"],
+            }
+            for row in inventory
+        ]
+    )
+    return manifest, source_paths, tuple(sorted(rows, key=lambda row: row["path"]))
+
+
 def _validate_card_head_run_manifest(
     repo: Path, root: str, raw: bytes
 ) -> tuple[dict[str, Any], tuple[str, ...]]:
@@ -790,21 +1103,29 @@ def _walk_root(repo: Path, root: str) -> tuple[dict[str, Any], ...]:
 def _validate_generated_root(
     repo: Path, root: str, checkpoint: Checkpoint
 ) -> tuple[dict[str, Any], tuple[str, ...], tuple[dict[str, Any], ...]]:
-    manifest_path = f"{root}/run_manifest.json"
-    kind, info = _path_kind(repo, manifest_path)
-    if kind != "file" or info is None or info.st_nlink != 1:
-        raise HygieneError(
-            f"generated root lacks a unique regular run_manifest.json: {root}"
+    standard_manifest_path = f"{root}/run_manifest.json"
+    p97_manifest_path = f"{root}/run-manifest.json"
+    standard_kind, standard_info = _path_kind(repo, standard_manifest_path)
+    p97_kind, p97_info = _path_kind(repo, p97_manifest_path)
+    if standard_kind == "file" and standard_info is not None:
+        manifest_path = standard_manifest_path
+        raw = _read_file_bytes(repo, manifest_path)
+        if root.startswith("scratch/runs/"):
+            manifest, source_paths = _validate_standard_run_manifest(
+                repo, root, checkpoint, raw
+            )
+        else:
+            manifest, source_paths = _validate_card_head_run_manifest(repo, root, raw)
+    elif p97_kind == "file" and p97_info is not None:
+        manifest, source_paths, rows = _validate_p97_generated_root(
+            repo, root, checkpoint
         )
-    raw = _read_file_bytes(repo, manifest_path)
-    if root.startswith("scratch/runs/"):
-        manifest, source_paths = _validate_standard_run_manifest(
-            repo, root, checkpoint, raw
-        )
+        return manifest, source_paths, rows
     else:
-        manifest, source_paths = _validate_card_head_run_manifest(repo, root, raw)
+        raise HygieneError(
+            f"generated root lacks a unique standard or P97 run manifest: {root}"
+        )
     rows = _walk_root(repo, root)
-    manifest_path = f"{root}/run_manifest.json"
     manifest_row = next(
         (row for row in rows if row["path"] == manifest_path and row["kind"] == "file"),
         None,

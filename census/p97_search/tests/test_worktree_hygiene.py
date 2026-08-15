@@ -26,6 +26,7 @@ CHECKPOINT_SCHEMA = _CHECKER.CHECKPOINT_SCHEMA
 GENERATED_OUTPUT_CLASSES = _CHECKER.GENERATED_OUTPUT_CLASSES
 PUBLICATION_LIMIT_BYTES = _CHECKER.PUBLICATION_LIMIT_BYTES
 RUN_MANIFEST_SCHEMA = _CHECKER.RUN_MANIFEST_SCHEMA
+P97_RUN_SCHEMAS = _CHECKER.P97_RUN_SCHEMAS
 canonical_json_bytes = _CHECKER.canonical_json_bytes
 inspect_worktree = _CHECKER.inspect_worktree
 manifest_self_hash = _CHECKER.manifest_self_hash
@@ -168,6 +169,146 @@ def _card_head_run(repo: Path, run_id: str = "compat-1") -> str:
     }
     (run_root / "run_manifest.json").write_bytes(canonical_json_bytes(value) + b"\n")
     return root
+
+
+P97_LANES = {schema: _CHECKER._P97_SCHEMA_LANES[schema] for schema in P97_RUN_SCHEMAS}
+
+
+def _p97_self_hash(value: dict[str, Any], field: str) -> str:
+    unsigned = {key: item for key, item in value.items() if key != field}
+    return hashlib.sha256(canonical_json_bytes(unsigned) + b"\n").hexdigest()
+
+
+def _p97_run(repo: Path, schema: str) -> tuple[str, str]:
+    lane = P97_LANES[schema]
+    checkpoint_rel = f".codex/worktree-checkpoints/{lane}.json"
+    root = f"scratch/runs/{lane}/n17-one-shot-audit-approved"
+    checkpoint = {
+        "schema": CHECKPOINT_SCHEMA,
+        "lane_id": lane,
+        "owner": lane,
+        "base_head": _head(repo),
+        "owned_paths": [checkpoint_rel],
+        "generated_roots": [root],
+        "durable_paths": [],
+        "created_utc": CREATED,
+        "manifest_sha256": "",
+    }
+    checkpoint["manifest_sha256"] = manifest_self_hash(checkpoint)
+    checkpoint_path = repo / checkpoint_rel
+    checkpoint_path.parent.mkdir(parents=True, exist_ok=True)
+    checkpoint_path.write_bytes(canonical_json_bytes(checkpoint) + b"\n")
+    run_root = repo / root
+    run_root.mkdir(parents=True)
+    (run_root / "problem.cnf").write_bytes(b"p cnf 1 0\n")
+    source_rows = {
+        "checkpoint": {
+            "path": checkpoint_rel,
+            "sha256": _sha(checkpoint_path),
+            "size": checkpoint_path.stat().st_size,
+        },
+        "source": {
+            "path": "source.txt",
+            "sha256": _sha(repo / "source.txt"),
+            "size": (repo / "source.txt").stat().st_size,
+        },
+    }
+    manifest: dict[str, Any] = {
+        "schema": schema,
+        "status": "RUNNING",
+        "run_root": root,
+        "n": 17,
+        "source_total": False,
+        "scope_label": "sound finite relaxation",
+        "all_emitted_hard_clauses_source_mapped": True,
+        "independent_audit": {"status": "APPROVED"},
+        "encoding": {"variables": 1, "clauses": 0},
+        "source_hashes": source_rows,
+        "binaries": {},
+        "commands": {},
+        "timeout_seconds": 1,
+        "cross_check_requested": False,
+        "query_is_separate_assumption": True,
+        "exactly_one_production_wave": True,
+        "no_cegar_successor": True,
+        "theorem_bank_search_planned": False,
+        "run_manifest_sha256": "",
+    }
+    if schema.endswith(
+        (
+            "cap-endpoint-v3/run/v1",
+            "all-large-caps-v4/run/v1",
+            "overlap-v5/run/v1",
+        )
+    ):
+        manifest["predecessor_model_control"] = {}
+    if schema.endswith(("all-large-caps-v4/run/v1", "overlap-v5/run/v1")):
+        manifest["cross_check_effective"] = False
+    if schema.endswith("overlap-v5/run/v1"):
+        manifest["lean_ingress"] = {}
+        manifest["production_path"] = {}
+    manifest["run_manifest_sha256"] = _p97_self_hash(manifest, "run_manifest_sha256")
+    manifest_path = run_root / "run-manifest.json"
+    manifest_path.write_bytes(canonical_json_bytes(manifest) + b"\n")
+    artifact = {
+        "path": "problem.cnf",
+        "sha256": _sha(run_root / "problem.cnf"),
+        "size": (run_root / "problem.cnf").stat().st_size,
+    }
+    manifest_artifact = {
+        "path": "run-manifest.json",
+        "sha256": _sha(manifest_path),
+        "size": manifest_path.stat().st_size,
+    }
+    receipt: dict[str, Any] = {
+        "schema": f"{schema}/terminal-receipt/v1",
+        "status": "SAT",
+        "source_total": False,
+        "all_emitted_hard_clauses_source_mapped": True,
+        "independent_audit": {"status": "APPROVED"},
+        "run_manifest_sha256": _sha(manifest_path),
+        "result": {},
+        "processes": [],
+        "artifact_inventory": [artifact, manifest_artifact],
+        "no_cegar_successor": True,
+        "theorem_bank_search_run": False,
+        "terminal_receipt_sha256": "",
+    }
+    if schema.endswith(("all-large-caps-v4/run/v1", "overlap-v5/run/v1")):
+        receipt["cross_check_requested"] = False
+        receipt["cross_check_effective"] = False
+    receipt["terminal_receipt_sha256"] = _p97_self_hash(
+        receipt, "terminal_receipt_sha256"
+    )
+    (run_root / "terminal-receipt.json").write_bytes(
+        canonical_json_bytes(receipt) + b"\n"
+    )
+    return root, lane
+
+
+def _rewrite_p97_checkpoint(repo: Path, root: str, mutate: Any) -> None:
+    lane = root.split("/")[2]
+    checkpoint_path = repo / f".codex/worktree-checkpoints/{lane}.json"
+    checkpoint = json.loads(checkpoint_path.read_text(encoding="utf-8"))
+    mutate(checkpoint)
+    checkpoint["manifest_sha256"] = manifest_self_hash(checkpoint)
+    checkpoint_path.write_bytes(canonical_json_bytes(checkpoint) + b"\n")
+    manifest_path = repo / root / "run-manifest.json"
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    manifest["source_hashes"]["checkpoint"] = {
+        "path": checkpoint_path.relative_to(repo).as_posix(),
+        "sha256": _sha(checkpoint_path),
+        "size": checkpoint_path.stat().st_size,
+    }
+    manifest["run_manifest_sha256"] = _p97_self_hash(manifest, "run_manifest_sha256")
+    manifest_path.write_bytes(canonical_json_bytes(manifest) + b"\n")
+    receipt_path = repo / root / "terminal-receipt.json"
+    receipt = json.loads(receipt_path.read_text(encoding="utf-8"))
+    receipt["run_manifest_sha256"] = _sha(manifest_path)
+    receipt["terminal_receipt_sha256"] = _p97_self_hash(
+        receipt, "terminal_receipt_sha256"
+    )
+    receipt_path.write_bytes(canonical_json_bytes(receipt) + b"\n")
 
 
 def _reasons(report: dict[str, Any]) -> set[str]:
@@ -451,6 +592,126 @@ def test_card_head_run_manifest_compatibility_is_explicit(tmp_path: Path) -> Non
 
     assert report["blocking"] is False
     assert "REGISTERED_GENERATED" in _reasons(report)
+
+
+@pytest.mark.parametrize("schema", sorted(P97_RUN_SCHEMAS))
+def test_p97_run_manifest_compatibility_is_explicit(
+    tmp_path: Path, schema: str
+) -> None:
+    repo = _repo(tmp_path)
+    _root, lane = _p97_run(repo, schema)
+
+    report = inspect_worktree(repo, lane=lane)
+
+    assert report["blocking"] is False
+    assert "REGISTERED_GENERATED" in _reasons(report)
+
+
+@pytest.mark.parametrize(
+    "mutate",
+    [
+        lambda checkpoint: checkpoint.__setitem__("owner", "other-owner"),
+        lambda checkpoint: checkpoint.__setitem__("base_head", "0" * 40),
+    ],
+)
+def test_p97_checkpoint_owner_and_base_cannot_be_rewritten_with_rehashed_bindings(
+    tmp_path: Path, mutate: Any
+) -> None:
+    repo = _repo(tmp_path)
+    root, lane = _p97_run(repo, next(iter(sorted(P97_RUN_SCHEMAS))))
+    _rewrite_p97_checkpoint(repo, root, mutate)
+
+    report = inspect_worktree(repo, lane=lane)
+
+    assert report["blocking"] is True
+    assert "DECLARED_SCOPE_INVALID" in _reasons(report)
+
+
+@pytest.mark.parametrize("target", ["manifest-schema", "receipt-status"])
+def test_p97_schema_and_status_type_errors_are_structured(
+    tmp_path: Path, target: str
+) -> None:
+    repo = _repo(tmp_path)
+    root, lane = _p97_run(repo, next(iter(sorted(P97_RUN_SCHEMAS))))
+    if target == "manifest-schema":
+        path = repo / root / "run-manifest.json"
+        value = json.loads(path.read_text(encoding="utf-8"))
+        value["schema"] = []
+        path.write_bytes(canonical_json_bytes(value) + b"\n")
+    else:
+        path = repo / root / "terminal-receipt.json"
+        value = json.loads(path.read_text(encoding="utf-8"))
+        value["status"] = []
+        value["terminal_receipt_sha256"] = _p97_self_hash(
+            value, "terminal_receipt_sha256"
+        )
+        path.write_bytes(canonical_json_bytes(value) + b"\n")
+
+    report = inspect_worktree(repo, lane=lane)
+
+    assert report["blocking"] is True
+    assert "DECLARED_SCOPE_INVALID" in _reasons(report)
+
+
+def test_p97_inventory_open_race_is_reported_as_scope_failure(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    repo = _repo(tmp_path)
+    _root, lane = _p97_run(repo, next(iter(sorted(P97_RUN_SCHEMAS))))
+    original_open = _CHECKER.os.open
+
+    def race_open(path: Any, flags: int, *args: Any, **kwargs: Any) -> int:
+        if path == "problem.cnf" and kwargs.get("dir_fd") is not None:
+            raise OSError("simulated inventory race")
+        return original_open(path, flags, *args, **kwargs)
+
+    monkeypatch.setattr(_CHECKER.os, "open", race_open)
+    report = inspect_worktree(repo, lane=lane)
+
+    assert report["blocking"] is True
+    assert "DECLARED_SCOPE_INVALID" in _reasons(report)
+
+
+@pytest.mark.parametrize(
+    "tamper",
+    ["manifest", "receipt", "inventory", "extra", "symlink"],
+)
+def test_p97_run_compatibility_rejects_tampering_and_unlisted_members(
+    tmp_path: Path, tamper: str
+) -> None:
+    repo = _repo(tmp_path)
+    root, lane = _p97_run(repo, next(iter(sorted(P97_RUN_SCHEMAS))))
+    run_root = repo / root
+    if tamper == "manifest":
+        manifest_path = run_root / "run-manifest.json"
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        manifest["run_root"] = root + "-tampered"
+        manifest_path.write_bytes(canonical_json_bytes(manifest) + b"\n")
+    elif tamper == "receipt":
+        receipt_path = run_root / "terminal-receipt.json"
+        receipt = json.loads(receipt_path.read_text(encoding="utf-8"))
+        receipt["status"] = "BOGUS"
+        receipt["terminal_receipt_sha256"] = _p97_self_hash(
+            receipt, "terminal_receipt_sha256"
+        )
+        receipt_path.write_bytes(canonical_json_bytes(receipt) + b"\n")
+    elif tamper == "inventory":
+        receipt_path = run_root / "terminal-receipt.json"
+        receipt = json.loads(receipt_path.read_text(encoding="utf-8"))
+        receipt["artifact_inventory"][0]["size"] += 1
+        receipt["terminal_receipt_sha256"] = _p97_self_hash(
+            receipt, "terminal_receipt_sha256"
+        )
+        receipt_path.write_bytes(canonical_json_bytes(receipt) + b"\n")
+    elif tamper == "extra":
+        (run_root / "unlisted.out").write_text("extra\n", encoding="utf-8")
+    else:
+        (run_root / "symlink.out").symlink_to(repo / "source.txt")
+
+    report = inspect_worktree(repo, lane=lane)
+
+    assert report["blocking"] is True
+    assert "DECLARED_SCOPE_INVALID" in _reasons(report)
 
 
 def _filesystem_snapshot(repo: Path) -> list[tuple[str, int, int, int, str]]:
