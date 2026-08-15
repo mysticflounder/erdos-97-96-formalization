@@ -213,6 +213,49 @@ theorem metric_orientation_incompatibility
     mul_pos hy (sub_pos.mpr hrgt)
   linarith only [hCDEscalar, hterm1, hterm2]
 
+/-- Reversed-orientation form of `metric_orientation_incompatibility`.
+Reflection preserves the four metric equalities and negates all seven signed
+areas. -/
+theorem metric_orientation_incompatibility_of_pos
+    {A B C D E F : ℝ²}
+    (hAD : A ≠ D)
+    (hBA_BC : dist B A = dist B C)
+    (hBA_BD : dist B A = dist B D)
+    (hFA_FD : dist F A = dist F D)
+    (hFA_FE : dist F A = dist F E)
+    (hABC : 0 < signedArea2 A B C)
+    (hABD : 0 < signedArea2 A B D)
+    (hACD : 0 < signedArea2 A C D)
+    (hADE : 0 < signedArea2 A D E)
+    (hADF : 0 < signedArea2 A D F)
+    (hEFA : 0 < signedArea2 E F A)
+    (hCDE : 0 < signedArea2 C D E) :
+    False := by
+  open Census554.EqualityCore in
+    apply metric_orientation_incompatibility
+      (A := reflectXAxis A) (B := reflectXAxis B)
+      (C := reflectXAxis C) (D := reflectXAxis D)
+      (E := reflectXAxis E) (F := reflectXAxis F)
+  · exact fun h => hAD (reflectXAxis_injective h)
+  · simpa only [dist_reflectXAxis] using hBA_BC
+  · simpa only [dist_reflectXAxis] using hBA_BD
+  · simpa only [dist_reflectXAxis] using hFA_FD
+  · simpa only [dist_reflectXAxis] using hFA_FE
+  · rw [signedArea2_reflectXAxis]
+    linarith
+  · rw [signedArea2_reflectXAxis]
+    linarith
+  · rw [signedArea2_reflectXAxis]
+    linarith
+  · rw [signedArea2_reflectXAxis]
+    linarith
+  · rw [signedArea2_reflectXAxis]
+    linarith
+  · rw [signedArea2_reflectXAxis]
+    linarith
+  · rw [signedArea2_reflectXAxis]
+    linarith
+
 /-- Boundary-order adapter for the two-triple-row six-point CEGAR cut.
 
 The CEGAR schema is indexed by `A < B < C < D < E < F`; the two rows are
@@ -281,6 +324,145 @@ theorem false_of_six_ccw_two_triple_row_equalities
     (hboundary_injective.ne
       (hiab.trans (hibc.trans hicd)).ne)
     hBA_BC hBA_BD hFA_FD hFA_FE hABC hABD hACD hADE hADF hEFA hCDE
+
+private theorem signedArea2_swap12 (a b c : ℝ²) :
+    signedArea2 b a c = -signedArea2 a b c := by
+  simp only [signedArea2]
+  ring
+
+private theorem signedArea2_swap13 (a b c : ℝ²) :
+    signedArea2 c b a = -signedArea2 a b c := by
+  simp only [signedArea2]
+  ring
+
+set_option maxHeartbeats 1200000 in
+-- The reversed boundary adapter expands seven signed-area transports before
+-- specializing the nonlinear metric contradiction.
+/-- Decreasing-index boundary adapter for the two-triple-row obstruction. -/
+theorem false_of_six_ccw_two_triple_row_equalities_of_decreasing
+    {n : ℕ} {boundary : Fin n → ℝ²}
+    (hboundary_injective : Function.Injective boundary)
+    (hboundary_ccw : EuclideanGeometry.IsCcwConvexPolygon boundary)
+    {ia ib ic id ie iff : Fin n}
+    (hbia : ib < ia) (hcib : ic < ib) (hdic : id < ic)
+    (heid : ie < id) (hfie : iff < ie)
+    (hBA_BC :
+      dist (boundary ib) (boundary ia) =
+        dist (boundary ib) (boundary ic))
+    (hBA_BD :
+      dist (boundary ib) (boundary ia) =
+        dist (boundary ib) (boundary id))
+    (hFA_FD :
+      dist (boundary iff) (boundary ia) =
+        dist (boundary iff) (boundary id))
+    (hFA_FE :
+      dist (boundary iff) (boundary ia) =
+        dist (boundary iff) (boundary ie)) :
+    False := by
+  have hABC0 := hneg_of_ccw hboundary_injective hboundary_ccw hcib hbia
+  have hABC : 0 < signedArea2 (boundary ia) (boundary ib) (boundary ic) := by
+    rw [signedArea2_swap13] at hABC0
+    linarith
+  have hABD0 := hneg_of_ccw hboundary_injective hboundary_ccw
+    (hdic.trans hcib) hbia
+  have hABD : 0 < signedArea2 (boundary ia) (boundary ib) (boundary id) := by
+    rw [signedArea2_swap13] at hABD0
+    linarith
+  have hACD0 := hneg_of_ccw hboundary_injective hboundary_ccw hdic
+    (hcib.trans hbia)
+  have hACD : 0 < signedArea2 (boundary ia) (boundary ic) (boundary id) := by
+    rw [signedArea2_swap13] at hACD0
+    linarith
+  have hADE0 := hneg_of_ccw hboundary_injective hboundary_ccw heid
+    (hdic.trans (hcib.trans hbia))
+  have hADE : 0 < signedArea2 (boundary ia) (boundary id) (boundary ie) := by
+    rw [signedArea2_swap13] at hADE0
+    linarith
+  have hADF0 := hneg_of_ccw hboundary_injective hboundary_ccw
+    (hfie.trans heid) (hdic.trans (hcib.trans hbia))
+  have hADF : 0 < signedArea2 (boundary ia) (boundary id) (boundary iff) := by
+    rw [signedArea2_swap13] at hADF0
+    linarith
+  have hEFA0 := hneg_of_ccw hboundary_injective hboundary_ccw hfie
+    (heid.trans (hdic.trans (hcib.trans hbia)))
+  have hEFA : 0 < signedArea2 (boundary ie) (boundary iff) (boundary ia) := by
+    rw [signedArea2_swap12] at hEFA0
+    linarith
+  have hCDE0 := hneg_of_ccw hboundary_injective hboundary_ccw heid hdic
+  have hCDE : 0 < signedArea2 (boundary ic) (boundary id) (boundary ie) := by
+    rw [signedArea2_swap13] at hCDE0
+    linarith
+  exact metric_orientation_incompatibility_of_pos
+    (A := boundary ia) (B := boundary ib) (C := boundary ic)
+    (D := boundary id) (E := boundary ie) (F := boundary iff)
+    (hboundary_injective.ne (hdic.trans (hcib.trans hbia)).ne')
+    hBA_BC hBA_BD hFA_FD hFA_FE hABC hABD hACD hADE hADF hEFA hCDE
+
+/-- Cyclic-shift selected-row form of the increasing two-triple obstruction. -/
+theorem false_of_two_selected_rows_triple_support_cyclicShift
+    {carrier : Finset ℝ²} {boundary : Fin carrier.card → ℝ²}
+    (hboundary_injective : Function.Injective boundary)
+    (hboundary_ccw : EuclideanGeometry.IsCcwConvexPolygon boundary)
+    (cut : Fin carrier.card)
+    {a b c d e f : Fin carrier.card}
+    (hab : a < b) (hbc : b < c) (hcd : c < d)
+    (hde : d < e) (hef : e < f)
+    (BRow : SelectedFourClass carrier (boundary (b + cut)))
+    (FRow : SelectedFourClass carrier (boundary (f + cut)))
+    (ha_mem_BRow : boundary (a + cut) ∈ BRow.support)
+    (hc_mem_BRow : boundary (c + cut) ∈ BRow.support)
+    (hd_mem_BRow : boundary (d + cut) ∈ BRow.support)
+    (ha_mem_FRow : boundary (a + cut) ∈ FRow.support)
+    (hd_mem_FRow : boundary (d + cut) ∈ FRow.support)
+    (he_mem_FRow : boundary (e + cut) ∈ FRow.support) : False := by
+  let shifted : Fin carrier.card → ℝ² := fun i => boundary (i + cut)
+  apply false_of_six_ccw_two_triple_row_equalities
+    (boundary := shifted)
+    (by simpa only [shifted] using injective_cyclicShift hboundary_injective cut)
+    (by simpa only [shifted] using
+      isCcwConvexPolygon_cyclicShift hboundary_injective hboundary_ccw cut)
+    hab hbc hcd hde hef
+  · exact (BRow.support_eq_radius _ ha_mem_BRow).trans
+      (BRow.support_eq_radius _ hc_mem_BRow).symm
+  · exact (BRow.support_eq_radius _ ha_mem_BRow).trans
+      (BRow.support_eq_radius _ hd_mem_BRow).symm
+  · exact (FRow.support_eq_radius _ ha_mem_FRow).trans
+      (FRow.support_eq_radius _ hd_mem_FRow).symm
+  · exact (FRow.support_eq_radius _ ha_mem_FRow).trans
+      (FRow.support_eq_radius _ he_mem_FRow).symm
+
+/-- Cyclic-shift selected-row form of the decreasing two-triple obstruction. -/
+theorem false_of_two_selected_rows_triple_support_cyclicShift_of_decreasing
+    {carrier : Finset ℝ²} {boundary : Fin carrier.card → ℝ²}
+    (hboundary_injective : Function.Injective boundary)
+    (hboundary_ccw : EuclideanGeometry.IsCcwConvexPolygon boundary)
+    (cut : Fin carrier.card)
+    {a b c d e f : Fin carrier.card}
+    (hba : b < a) (hcb : c < b) (hdc : d < c)
+    (hed : e < d) (hfe : f < e)
+    (BRow : SelectedFourClass carrier (boundary (b + cut)))
+    (FRow : SelectedFourClass carrier (boundary (f + cut)))
+    (ha_mem_BRow : boundary (a + cut) ∈ BRow.support)
+    (hc_mem_BRow : boundary (c + cut) ∈ BRow.support)
+    (hd_mem_BRow : boundary (d + cut) ∈ BRow.support)
+    (ha_mem_FRow : boundary (a + cut) ∈ FRow.support)
+    (hd_mem_FRow : boundary (d + cut) ∈ FRow.support)
+    (he_mem_FRow : boundary (e + cut) ∈ FRow.support) : False := by
+  let shifted : Fin carrier.card → ℝ² := fun i => boundary (i + cut)
+  apply false_of_six_ccw_two_triple_row_equalities_of_decreasing
+    (boundary := shifted)
+    (by simpa only [shifted] using injective_cyclicShift hboundary_injective cut)
+    (by simpa only [shifted] using
+      isCcwConvexPolygon_cyclicShift hboundary_injective hboundary_ccw cut)
+    hba hcb hdc hed hfe
+  · exact (BRow.support_eq_radius _ ha_mem_BRow).trans
+      (BRow.support_eq_radius _ hc_mem_BRow).symm
+  · exact (BRow.support_eq_radius _ ha_mem_BRow).trans
+      (BRow.support_eq_radius _ hd_mem_BRow).symm
+  · exact (FRow.support_eq_radius _ ha_mem_FRow).trans
+      (FRow.support_eq_radius _ hd_mem_FRow).symm
+  · exact (FRow.support_eq_radius _ ha_mem_FRow).trans
+      (FRow.support_eq_radius _ he_mem_FRow).symm
 
 end TwoTripleRowSixPointEuclideanObstruction
 end Problem97
