@@ -1,0 +1,5 @@
+{
+  "schema": "p97-exact17-piqd-preflight/v1",
+  "expected": "SAT",
+  "purpose": "raw DIMACS byte-custody and model retrieval preflight"
+}

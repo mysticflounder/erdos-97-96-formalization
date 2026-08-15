@@ -1,0 +1,139 @@
+{
+  "artifacts": {
+    "discovery_cnf": {
+      "bytes": 5924883,
+      "path": "discovery.cnf",
+      "sha256": "76567bd3dd62ed8e64093841e0f6b07e545caa9d7b830026066dd86736c9f1dd"
+    },
+    "journal": {
+      "bytes": 73255,
+      "path": "journal.jsonl",
+      "sha256": "8ae1e7ec67c58746d00626664402288c8d29269f99fab5c8a397f1b2aa7f15d8"
+    },
+    "proof": null,
+    "survivor": null,
+    "terminal_cnf": null
+  },
+  "base_clause_count": 405267,
+  "base_formula_sha256": "76567bd3dd62ed8e64093841e0f6b07e545caa9d7b830026066dd86736c9f1dd",
+  "current_clause_count": 405268,
+  "deleted_label": 2,
+  "detector_contract_sha256": "863b7a85bd33fed4254a1ad41997329ee8cd93b6461861e25ef9bcb8d7b857c8",
+  "detector_source_manifest": [
+    {
+      "bytes": 36657,
+      "path": "census/card_head/exact12_v14_structural_cegar.py",
+      "sha256": "0464afdf471295980b6058a36ab6bad2dfd5c0b34c962fd261d743e09e19c9e5"
+    },
+    {
+      "bytes": 102708,
+      "path": "census/global_confinement/metric_realizability_probe.py",
+      "sha256": "e44f1452b240b8bbe39f2389311312ac02ef9bef8ddbb5b08dc4ffa06adea396"
+    },
+    {
+      "bytes": 49772,
+      "path": "census/global_confinement/cap_selected_nogood_certificate_probe.py",
+      "sha256": "9e21350a4126eb40d09e5fb454c9dee691e6dc1aaccf026a4ca6e238fc96aa13"
+    },
+    {
+      "bytes": 15639,
+      "path": "census/p97_search/phase3_classification_context.py",
+      "sha256": "5fd4f94b536896921c0f88ea860802b212aeb8c97e5c77e0d4445cc7e38e6837"
+    },
+    {
+      "bytes": 8936,
+      "path": "census/p97_search/phase3_order_universe.py",
+      "sha256": "67fe7a6fb086b82925a5f7b365b34c8a7f5307960f790e914ad86c47b84d86b0"
+    }
+  ],
+  "discovery_verdict": "SAT",
+  "error": null,
+  "finite_instance_schema": "p97_rigid221_exact12_source_safe_five_omission.v1",
+  "formula_contract_sha256": "0e6f6a509c7fd4e5545b5a64a3b48f7013871535f1f6bb7802d4b5b292d236ba",
+  "formula_source_manifest": [
+    {
+      "bytes": 9816,
+      "path": "census/card_head/candidate_surface.py",
+      "sha256": "c8d925ae9eede02eb7923762f160d7cc71c21a5ff2cbf7d77c3680f5bcae71fc"
+    },
+    {
+      "bytes": 18569,
+      "path": "census/card_head/sat_encoding.py",
+      "sha256": "6d7a939f1f8fe9e3f3684afee52b79c8f3aa50041dd43f438294e69e182059ae"
+    },
+    {
+      "bytes": 6905,
+      "path": "census/card_head/source_faithful_candidate_surface.py",
+      "sha256": "189980ee52be97cb77181448cb5dac6602cd37284d13ce7574974bc84696d71f"
+    },
+    {
+      "bytes": 6725,
+      "path": "census/card_head/source_faithful_five_omission.py",
+      "sha256": "ae7f7eb2ae23fb8c46a0e4b2e779651d74945c0ddb5ba283499ce53d1c90513a"
+    },
+    {
+      "bytes": 25603,
+      "path": "census/card_head/source_faithful_five_omission_cegar.py",
+      "sha256": "f7f12519f2e8b4be5c783202cb06eab7364eed28cdc099dd29fbcef2b83f032f"
+    }
+  ],
+  "journal_replayed": true,
+  "max_iterations": 1,
+  "n_variables": 42680,
+  "records": 1,
+  "replay": {
+    "exact_cnf": true,
+    "same_labeling_boundary": true
+  },
+  "schema": "p97_rigid221_exact12_five_omission_structural_cegar_run.v1",
+  "scope": "one finite exact-12 deleted-label shard under replayed order-independent structural CEGAR; no all-shard coverage, universal lift, or Lean closure",
+  "selector_variables": {
+    "blocker": [
+      42573,
+      42574,
+      42575,
+      42576,
+      42577,
+      42578,
+      42579,
+      42580,
+      42581,
+      42582,
+      42583,
+      42584
+    ],
+    "centers": [
+      42585,
+      42586,
+      42587,
+      42588,
+      42589,
+      42590,
+      42591,
+      42592,
+      42593,
+      42594,
+      42595,
+      42596
+    ],
+    "deleted": [
+      42561,
+      42562,
+      42563,
+      42564,
+      42565,
+      42566,
+      42567,
+      42568,
+      42569,
+      42570,
+      42571,
+      42572
+    ]
+  },
+  "status": "ITERATION_LIMIT",
+  "terminal_proof_verified": false,
+  "terminal_record_sha256": "84fa1a43eddcd7aa0e4c6c3bb904f116b47f1c8aa04e56fd918a08623288de1d",
+  "terminal_verdict": null,
+  "timeout_seconds": 60
+}

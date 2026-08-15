@@ -1,0 +1,178 @@
+{
+  "analysis_count": 24,
+  "distinct_endpoint_clause_count": 498,
+  "distinct_serialized_core_count": 642,
+  "models": [
+    {
+      "analysis": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v12t-exact-all-cores-44/cadical-portfolio-20260808/seed-1301.analysis.json",
+      "core_count": 30,
+      "endpoint_clause_count": 23,
+      "first_clause_present": true,
+      "first_hit_is_two_kalmanson": true
+    },
+    {
+      "analysis": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v12t-exact-all-cores-44/cadical-portfolio-20260808/seed-1302.analysis.json",
+      "core_count": 65,
+      "endpoint_clause_count": 45,
+      "first_clause_present": true,
+      "first_hit_is_two_kalmanson": true
+    },
+    {
+      "analysis": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v12t-exact-all-cores-44/cadical-portfolio-20260808/seed-1303.analysis.json",
+      "core_count": 45,
+      "endpoint_clause_count": 32,
+      "first_clause_present": true,
+      "first_hit_is_two_kalmanson": true
+    },
+    {
+      "analysis": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v12t-exact-all-cores-44/cadical-portfolio-20260808/seed-1304.analysis.json",
+      "core_count": 8,
+      "endpoint_clause_count": 8,
+      "first_clause_present": true,
+      "first_hit_is_two_kalmanson": true
+    },
+    {
+      "analysis": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v12t-exact-all-cores-44/cadical-portfolio-20260808/seed-1305.analysis.json",
+      "core_count": 50,
+      "endpoint_clause_count": 40,
+      "first_clause_present": true,
+      "first_hit_is_two_kalmanson": true
+    },
+    {
+      "analysis": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v12t-exact-all-cores-44/cadical-portfolio-20260808/seed-1306.analysis.json",
+      "core_count": 20,
+      "endpoint_clause_count": 17,
+      "first_clause_present": true,
+      "first_hit_is_two_kalmanson": true
+    },
+    {
+      "analysis": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v12t-exact-all-cores-44/cadical-portfolio-20260808/seed-1307.analysis.json",
+      "core_count": 20,
+      "endpoint_clause_count": 16,
+      "first_clause_present": true,
+      "first_hit_is_two_kalmanson": true
+    },
+    {
+      "analysis": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v12t-exact-all-cores-44/cadical-portfolio-20260808/seed-1308.analysis.json",
+      "core_count": 24,
+      "endpoint_clause_count": 17,
+      "first_clause_present": true,
+      "first_hit_is_two_kalmanson": true
+    },
+    {
+      "analysis": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v12t-exact-all-cores-44/cadical-portfolio-20260808/seed-1309.analysis.json",
+      "core_count": 38,
+      "endpoint_clause_count": 29,
+      "first_clause_present": true,
+      "first_hit_is_two_kalmanson": true
+    },
+    {
+      "analysis": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v12t-exact-all-cores-44/cadical-portfolio-20260808/seed-1310.analysis.json",
+      "core_count": 32,
+      "endpoint_clause_count": 26,
+      "first_clause_present": true,
+      "first_hit_is_two_kalmanson": true
+    },
+    {
+      "analysis": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v12t-exact-all-cores-44/cadical-portfolio-20260808/seed-1311.analysis.json",
+      "core_count": 19,
+      "endpoint_clause_count": 16,
+      "first_clause_present": true,
+      "first_hit_is_two_kalmanson": true
+    },
+    {
+      "analysis": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v12t-exact-all-cores-44/cadical-portfolio-20260808/seed-1312.analysis.json",
+      "core_count": 52,
+      "endpoint_clause_count": 40,
+      "first_clause_present": true,
+      "first_hit_is_two_kalmanson": true
+    },
+    {
+      "analysis": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v12t-exact-all-cores-44/cadical-portfolio-20260808/seed-1313.analysis.json",
+      "core_count": 11,
+      "endpoint_clause_count": 10,
+      "first_clause_present": true,
+      "first_hit_is_two_kalmanson": true
+    },
+    {
+      "analysis": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v12t-exact-all-cores-44/cadical-portfolio-20260808/seed-1314.analysis.json",
+      "core_count": 6,
+      "endpoint_clause_count": 4,
+      "first_clause_present": true,
+      "first_hit_is_two_kalmanson": true
+    },
+    {
+      "analysis": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v12t-exact-all-cores-44/cadical-portfolio-20260808/seed-1315.analysis.json",
+      "core_count": 22,
+      "endpoint_clause_count": 18,
+      "first_clause_present": true,
+      "first_hit_is_two_kalmanson": true
+    },
+    {
+      "analysis": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v12t-exact-all-cores-44/cadical-portfolio-20260808/seed-1316.analysis.json",
+      "core_count": 5,
+      "endpoint_clause_count": 5,
+      "first_clause_present": true,
+      "first_hit_is_two_kalmanson": true
+    },
+    {
+      "analysis": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v12t-exact-all-cores-44/cadical-portfolio-20260808/seed-1317.analysis.json",
+      "core_count": 37,
+      "endpoint_clause_count": 25,
+      "first_clause_present": true,
+      "first_hit_is_two_kalmanson": true
+    },
+    {
+      "analysis": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v12t-exact-all-cores-44/cadical-portfolio-20260808/seed-1318.analysis.json",
+      "core_count": 27,
+      "endpoint_clause_count": 25,
+      "first_clause_present": true,
+      "first_hit_is_two_kalmanson": true
+    },
+    {
+      "analysis": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v12t-exact-all-cores-44/cadical-portfolio-20260808/seed-1319.analysis.json",
+      "core_count": 2,
+      "endpoint_clause_count": 2,
+      "first_clause_present": true,
+      "first_hit_is_two_kalmanson": true
+    },
+    {
+      "analysis": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v12t-exact-all-cores-44/cadical-portfolio-20260808/seed-1320.analysis.json",
+      "core_count": 21,
+      "endpoint_clause_count": 19,
+      "first_clause_present": true,
+      "first_hit_is_two_kalmanson": true
+    },
+    {
+      "analysis": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v12t-exact-all-cores-44/cadical-portfolio-20260808/seed-1321.analysis.json",
+      "core_count": 20,
+      "endpoint_clause_count": 12,
+      "first_clause_present": true,
+      "first_hit_is_two_kalmanson": true
+    },
+    {
+      "analysis": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v12t-exact-all-cores-44/cadical-portfolio-20260808/seed-1322.analysis.json",
+      "core_count": 24,
+      "endpoint_clause_count": 20,
+      "first_clause_present": true,
+      "first_hit_is_two_kalmanson": true
+    },
+    {
+      "analysis": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v12t-exact-all-cores-44/cadical-portfolio-20260808/seed-1323.analysis.json",
+      "core_count": 26,
+      "endpoint_clause_count": 20,
+      "first_clause_present": true,
+      "first_hit_is_two_kalmanson": true
+    },
+    {
+      "analysis": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v12t-exact-all-cores-44/cadical-portfolio-20260808/seed-1324.analysis.json",
+      "core_count": 38,
+      "endpoint_clause_count": 30,
+      "first_clause_present": true,
+      "first_hit_is_two_kalmanson": true
+    }
+  ],
+  "schema": "rigid221-exact17-v10-all-two-kalmanson-core-audit-v1",
+  "total_model_core_count": 642,
+  "total_model_endpoint_clause_count": 499
+}

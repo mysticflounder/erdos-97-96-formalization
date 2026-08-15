@@ -1,0 +1,11 @@
+{
+  "clauses": 5846088,
+  "convex_five_point_clauses": 4,
+  "convex_five_point_suffix_sha256": "31431355ac817381e90d3be0f5bab4dff50918e508df6715ccd7e812cef1f71c",
+  "motivating_model_cut_clauses": [
+    5846085
+  ],
+  "parent_prefix_byte_identical": true,
+  "schema": "p97-exact17-lean-convex-five-point-third-rows-export-validation/v1",
+  "variables": 308
+}

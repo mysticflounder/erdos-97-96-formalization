@@ -1,0 +1,656 @@
+{
+  "assignment_validation": {
+    "assignment": "generated/structural_assignment.json",
+    "errors": [],
+    "status": "PASS"
+  },
+  "claims": {
+    "euclidean_full_context": false,
+    "full_carrier_pointwise_k4_incidence": true,
+    "general_n_lift": false,
+    "global_k4_euclidean_realization": false,
+    "lean_closure": false
+  },
+  "diagnostic_conclusions": {
+    "evidence": "global_k4_minimality.neither_positive is SAT in both solvers and its assignment independently validates",
+    "global_k4_forces_either_positive": false,
+    "saturation_materially_cuts_models": true,
+    "saturation_yields_smaller_producer": false
+  },
+  "global_assignment_validation": {
+    "assignment": "generated/global_k4_assignment.json",
+    "errors": [],
+    "status": "PASS"
+  },
+  "global_k4_minimality": {
+    "baseline": {
+      "check_sat_count": 1,
+      "cvc5": {
+        "command": [
+          "/Users/adam/bin/cvc5",
+          "--lang=smt2",
+          "--tlimit=20000",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_aligned_mutual_crossed_v1/generated/global_k4_baseline.smt2"
+        ],
+        "detail": "",
+        "status": "SAT"
+      },
+      "query": "generated/global_k4_baseline.smt2",
+      "z3": {
+        "command": [
+          "/Users/adam/.cache/uv/environments-v2/diagnostic-b6b54407286a491f/bin/z3",
+          "-smt2",
+          "-T:20",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_aligned_mutual_crossed_v1/generated/global_k4_baseline.smt2"
+        ],
+        "detail": "",
+        "status": "SAT"
+      }
+    },
+    "force_distinct_cap_two_hit": {
+      "check_sat_count": 1,
+      "cvc5": {
+        "command": [
+          "/Users/adam/bin/cvc5",
+          "--lang=smt2",
+          "--tlimit=20000",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_aligned_mutual_crossed_v1/generated/global_k4_force_distinct_cap_two_hit.smt2"
+        ],
+        "detail": "",
+        "status": "UNSAT"
+      },
+      "query": "generated/global_k4_force_distinct_cap_two_hit.smt2",
+      "z3": {
+        "command": [
+          "/Users/adam/.cache/uv/environments-v2/diagnostic-b6b54407286a491f/bin/z3",
+          "-smt2",
+          "-T:20",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_aligned_mutual_crossed_v1/generated/global_k4_force_distinct_cap_two_hit.smt2"
+        ],
+        "detail": "",
+        "status": "UNSAT"
+      }
+    },
+    "force_either_positive": {
+      "check_sat_count": 1,
+      "cvc5": {
+        "command": [
+          "/Users/adam/bin/cvc5",
+          "--lang=smt2",
+          "--tlimit=20000",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_aligned_mutual_crossed_v1/generated/global_k4_force_either_positive.smt2"
+        ],
+        "detail": "",
+        "status": "UNSAT"
+      },
+      "query": "generated/global_k4_force_either_positive.smt2",
+      "z3": {
+        "command": [
+          "/Users/adam/.cache/uv/environments-v2/diagnostic-b6b54407286a491f/bin/z3",
+          "-smt2",
+          "-T:20",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_aligned_mutual_crossed_v1/generated/global_k4_force_either_positive.smt2"
+        ],
+        "detail": "",
+        "status": "UNSAT"
+      }
+    },
+    "force_explicit_q_overlap_three": {
+      "check_sat_count": 1,
+      "cvc5": {
+        "command": [
+          "/Users/adam/bin/cvc5",
+          "--lang=smt2",
+          "--tlimit=20000",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_aligned_mutual_crossed_v1/generated/global_k4_force_explicit_q_overlap_three.smt2"
+        ],
+        "detail": "",
+        "status": "UNSAT"
+      },
+      "query": "generated/global_k4_force_explicit_q_overlap_three.smt2",
+      "z3": {
+        "command": [
+          "/Users/adam/.cache/uv/environments-v2/diagnostic-b6b54407286a491f/bin/z3",
+          "-smt2",
+          "-T:20",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_aligned_mutual_crossed_v1/generated/global_k4_force_explicit_q_overlap_three.smt2"
+        ],
+        "detail": "",
+        "status": "UNSAT"
+      }
+    },
+    "neither_positive": {
+      "check_sat_count": 1,
+      "cvc5": {
+        "command": [
+          "/Users/adam/bin/cvc5",
+          "--lang=smt2",
+          "--tlimit=20000",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_aligned_mutual_crossed_v1/generated/global_k4_neither_positive.smt2"
+        ],
+        "detail": "",
+        "status": "SAT"
+      },
+      "query": "generated/global_k4_neither_positive.smt2",
+      "z3": {
+        "command": [
+          "/Users/adam/.cache/uv/environments-v2/diagnostic-b6b54407286a491f/bin/z3",
+          "-smt2",
+          "-T:20",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_aligned_mutual_crossed_v1/generated/global_k4_neither_positive.smt2"
+        ],
+        "detail": "",
+        "status": "SAT"
+      }
+    }
+  },
+  "global_stage_contract": {
+    "additional_source_ingress": [
+      "CounterexampleData.K4 at every carrier center",
+      "CriticalShellSystem unique-four actual blockers and support locking",
+      "T.oppApex1_rich",
+      "T.oppApex2_rich",
+      "T.surplusApex_rich"
+    ],
+    "candidate_sources": [
+      "C.firstSource",
+      "C.secondSource",
+      "commonFourth",
+      "oppositeFourth"
+    ],
+    "omitted": [
+      "simultaneous Euclidean realization of all incidence rows",
+      "convex arc geometry beyond the sourced cap consequences",
+      "any Q-to-apex-grid alias",
+      "six-center deleted-row or provenance assertions"
+    ]
+  },
+  "metric": {
+    "equalities": {
+      "check_sat_count": 1,
+      "cvc5": {
+        "command": [
+          "/Users/adam/bin/cvc5",
+          "--lang=smt2",
+          "--tlimit=20000",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_aligned_mutual_crossed_v1/generated/metric_equalities.smt2"
+        ],
+        "detail": "",
+        "status": "SAT"
+      },
+      "ordinary_python_validation": {
+        "errors": [],
+        "status": "PASS"
+      },
+      "query": "generated/metric_equalities.smt2",
+      "z3": {
+        "command": [
+          "/Users/adam/.cache/uv/environments-v2/diagnostic-b6b54407286a491f/bin/z3",
+          "-smt2",
+          "-T:20",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_aligned_mutual_crossed_v1/generated/metric_equalities.smt2"
+        ],
+        "detail": "",
+        "status": "SAT"
+      }
+    },
+    "exact_rows": {
+      "check_sat_count": 1,
+      "cvc5": {
+        "command": [
+          "/Users/adam/bin/cvc5",
+          "--lang=smt2",
+          "--tlimit=20000",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_aligned_mutual_crossed_v1/generated/metric_exact_rows.smt2"
+        ],
+        "detail": "",
+        "status": "SAT"
+      },
+      "ordinary_python_validation": {
+        "errors": [],
+        "status": "PASS"
+      },
+      "query": "generated/metric_exact_rows.smt2",
+      "z3": {
+        "command": [
+          "/Users/adam/.cache/uv/environments-v2/diagnostic-b6b54407286a491f/bin/z3",
+          "-smt2",
+          "-T:20",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_aligned_mutual_crossed_v1/generated/metric_exact_rows.smt2"
+        ],
+        "detail": "",
+        "status": "SAT"
+      }
+    },
+    "extra_common_support": {
+      "check_sat_count": 1,
+      "cvc5": {
+        "command": [
+          "/Users/adam/bin/cvc5",
+          "--lang=smt2",
+          "--tlimit=20000",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_aligned_mutual_crossed_v1/generated/metric_extra_common_support.smt2"
+        ],
+        "detail": "",
+        "status": "UNSAT"
+      },
+      "ordinary_python_validation": {
+        "errors": [],
+        "status": "NOT_APPLICABLE"
+      },
+      "query": "generated/metric_extra_common_support.smt2",
+      "z3": {
+        "command": [
+          "/Users/adam/.cache/uv/environments-v2/diagnostic-b6b54407286a491f/bin/z3",
+          "-smt2",
+          "-T:20",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_aligned_mutual_crossed_v1/generated/metric_extra_common_support.smt2"
+        ],
+        "detail": "",
+        "status": "UNSAT"
+      }
+    },
+    "wrong_common_radius": {
+      "check_sat_count": 1,
+      "cvc5": {
+        "command": [
+          "/Users/adam/bin/cvc5",
+          "--lang=smt2",
+          "--tlimit=20000",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_aligned_mutual_crossed_v1/generated/metric_wrong_common_radius.smt2"
+        ],
+        "detail": "",
+        "status": "UNSAT"
+      },
+      "ordinary_python_validation": {
+        "errors": [],
+        "status": "NOT_APPLICABLE"
+      },
+      "query": "generated/metric_wrong_common_radius.smt2",
+      "z3": {
+        "command": [
+          "/Users/adam/.cache/uv/environments-v2/diagnostic-b6b54407286a491f/bin/z3",
+          "-smt2",
+          "-T:20",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_aligned_mutual_crossed_v1/generated/metric_wrong_common_radius.smt2"
+        ],
+        "detail": "",
+        "status": "UNSAT"
+      }
+    }
+  },
+  "schema_rejections": {
+    "q_other_equals_apex_grid_hit": {
+      "reason": "the first collision shell is blocker-centered; no theorem aliases Q.otherOutsidePoint to an apex-centered adjacent-grid hit",
+      "status": "REJECTED_UNSOURCED"
+    },
+    "q_source_equals_apex_grid_hit": {
+      "reason": "the first collision shell is blocker-centered; no theorem aliases Q.source to an apex-centered adjacent-grid hit",
+      "status": "REJECTED_UNSOURCED"
+    }
+  },
+  "schema_version": 2,
+  "scope": "exact17_direct_crossed_constructor_diagnostic_only",
+  "structural": {
+    "baseline": {
+      "check_sat_count": 1,
+      "cvc5": {
+        "command": [
+          "/Users/adam/bin/cvc5",
+          "--lang=smt2",
+          "--tlimit=20000",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_aligned_mutual_crossed_v1/generated/structural_baseline_satclause.smt2"
+        ],
+        "detail": "",
+        "status": "SAT"
+      },
+      "query": "generated/structural_baseline_satclause.smt2",
+      "z3": {
+        "command": [
+          "/Users/adam/.cache/uv/environments-v2/diagnostic-b6b54407286a491f/bin/z3",
+          "-smt2",
+          "-T:20",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_aligned_mutual_crossed_v1/generated/structural_baseline_satclause.smt2"
+        ],
+        "detail": "",
+        "status": "SAT"
+      }
+    },
+    "collapse_four_named_roles": {
+      "check_sat_count": 1,
+      "cvc5": {
+        "command": [
+          "/Users/adam/bin/cvc5",
+          "--lang=smt2",
+          "--tlimit=20000",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_aligned_mutual_crossed_v1/generated/structural_collapse_four_named_roles_satclause.smt2"
+        ],
+        "detail": "",
+        "status": "UNSAT"
+      },
+      "query": "generated/structural_collapse_four_named_roles_satclause.smt2",
+      "z3": {
+        "command": [
+          "/Users/adam/.cache/uv/environments-v2/diagnostic-b6b54407286a491f/bin/z3",
+          "-smt2",
+          "-T:20",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_aligned_mutual_crossed_v1/generated/structural_collapse_four_named_roles_satclause.smt2"
+        ],
+        "detail": "",
+        "status": "UNSAT"
+      }
+    },
+    "common_fourth_in_first_cap": {
+      "check_sat_count": 1,
+      "cvc5": {
+        "command": [
+          "/Users/adam/bin/cvc5",
+          "--lang=smt2",
+          "--tlimit=20000",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_aligned_mutual_crossed_v1/generated/structural_common_fourth_in_first_cap_satclause.smt2"
+        ],
+        "detail": "",
+        "status": "UNSAT"
+      },
+      "query": "generated/structural_common_fourth_in_first_cap_satclause.smt2",
+      "z3": {
+        "command": [
+          "/Users/adam/.cache/uv/environments-v2/diagnostic-b6b54407286a491f/bin/z3",
+          "-smt2",
+          "-T:20",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_aligned_mutual_crossed_v1/generated/structural_common_fourth_in_first_cap_satclause.smt2"
+        ],
+        "detail": "",
+        "status": "UNSAT"
+      }
+    },
+    "crossed_common_contamination": {
+      "check_sat_count": 1,
+      "cvc5": {
+        "command": [
+          "/Users/adam/bin/cvc5",
+          "--lang=smt2",
+          "--tlimit=20000",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_aligned_mutual_crossed_v1/generated/structural_crossed_common_contamination_satclause.smt2"
+        ],
+        "detail": "",
+        "status": "UNSAT"
+      },
+      "query": "generated/structural_crossed_common_contamination_satclause.smt2",
+      "z3": {
+        "command": [
+          "/Users/adam/.cache/uv/environments-v2/diagnostic-b6b54407286a491f/bin/z3",
+          "-smt2",
+          "-T:20",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_aligned_mutual_crossed_v1/generated/structural_crossed_common_contamination_satclause.smt2"
+        ],
+        "detail": "",
+        "status": "UNSAT"
+      }
+    },
+    "crossed_opposite_contamination": {
+      "check_sat_count": 1,
+      "cvc5": {
+        "command": [
+          "/Users/adam/bin/cvc5",
+          "--lang=smt2",
+          "--tlimit=20000",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_aligned_mutual_crossed_v1/generated/structural_crossed_opposite_contamination_satclause.smt2"
+        ],
+        "detail": "",
+        "status": "UNSAT"
+      },
+      "query": "generated/structural_crossed_opposite_contamination_satclause.smt2",
+      "z3": {
+        "command": [
+          "/Users/adam/.cache/uv/environments-v2/diagnostic-b6b54407286a491f/bin/z3",
+          "-smt2",
+          "-T:20",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_aligned_mutual_crossed_v1/generated/structural_crossed_opposite_contamination_satclause.smt2"
+        ],
+        "detail": "",
+        "status": "UNSAT"
+      }
+    },
+    "equal_c_blockers": {
+      "check_sat_count": 1,
+      "cvc5": {
+        "command": [
+          "/Users/adam/bin/cvc5",
+          "--lang=smt2",
+          "--tlimit=20000",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_aligned_mutual_crossed_v1/generated/structural_equal_c_blockers_satclause.smt2"
+        ],
+        "detail": "",
+        "status": "UNSAT"
+      },
+      "query": "generated/structural_equal_c_blockers_satclause.smt2",
+      "z3": {
+        "command": [
+          "/Users/adam/.cache/uv/environments-v2/diagnostic-b6b54407286a491f/bin/z3",
+          "-smt2",
+          "-T:20",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_aligned_mutual_crossed_v1/generated/structural_equal_c_blockers_satclause.smt2"
+        ],
+        "detail": "",
+        "status": "UNSAT"
+      }
+    },
+    "extra_c_row_intersection": {
+      "check_sat_count": 1,
+      "cvc5": {
+        "command": [
+          "/Users/adam/bin/cvc5",
+          "--lang=smt2",
+          "--tlimit=20000",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_aligned_mutual_crossed_v1/generated/structural_extra_c_row_intersection_satclause.smt2"
+        ],
+        "detail": "",
+        "status": "UNSAT"
+      },
+      "query": "generated/structural_extra_c_row_intersection_satclause.smt2",
+      "z3": {
+        "command": [
+          "/Users/adam/.cache/uv/environments-v2/diagnostic-b6b54407286a491f/bin/z3",
+          "-smt2",
+          "-T:20",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_aligned_mutual_crossed_v1/generated/structural_extra_c_row_intersection_satclause.smt2"
+        ],
+        "detail": "",
+        "status": "UNSAT"
+      }
+    },
+    "extra_first_cap_point_in_matching_row": {
+      "check_sat_count": 1,
+      "cvc5": {
+        "command": [
+          "/Users/adam/bin/cvc5",
+          "--lang=smt2",
+          "--tlimit=20000",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_aligned_mutual_crossed_v1/generated/structural_extra_first_cap_point_in_matching_row_satclause.smt2"
+        ],
+        "detail": "",
+        "status": "UNSAT"
+      },
+      "query": "generated/structural_extra_first_cap_point_in_matching_row_satclause.smt2",
+      "z3": {
+        "command": [
+          "/Users/adam/.cache/uv/environments-v2/diagnostic-b6b54407286a491f/bin/z3",
+          "-smt2",
+          "-T:20",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_aligned_mutual_crossed_v1/generated/structural_extra_first_cap_point_in_matching_row_satclause.smt2"
+        ],
+        "detail": "",
+        "status": "UNSAT"
+      }
+    },
+    "force_distinct_fourths": {
+      "check_sat_count": 1,
+      "cvc5": {
+        "command": [
+          "/Users/adam/bin/cvc5",
+          "--lang=smt2",
+          "--tlimit=20000",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_aligned_mutual_crossed_v1/generated/structural_force_distinct_fourths_satclause.smt2"
+        ],
+        "detail": "",
+        "status": "SAT"
+      },
+      "query": "generated/structural_force_distinct_fourths_satclause.smt2",
+      "z3": {
+        "command": [
+          "/Users/adam/.cache/uv/environments-v2/diagnostic-b6b54407286a491f/bin/z3",
+          "-smt2",
+          "-T:20",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_aligned_mutual_crossed_v1/generated/structural_force_distinct_fourths_satclause.smt2"
+        ],
+        "detail": "",
+        "status": "SAT"
+      }
+    },
+    "force_shared_fourth": {
+      "check_sat_count": 1,
+      "cvc5": {
+        "command": [
+          "/Users/adam/bin/cvc5",
+          "--lang=smt2",
+          "--tlimit=20000",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_aligned_mutual_crossed_v1/generated/structural_force_shared_fourth_satclause.smt2"
+        ],
+        "detail": "",
+        "status": "SAT"
+      },
+      "query": "generated/structural_force_shared_fourth_satclause.smt2",
+      "z3": {
+        "command": [
+          "/Users/adam/.cache/uv/environments-v2/diagnostic-b6b54407286a491f/bin/z3",
+          "-smt2",
+          "-T:20",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_aligned_mutual_crossed_v1/generated/structural_force_shared_fourth_satclause.smt2"
+        ],
+        "detail": "",
+        "status": "SAT"
+      }
+    },
+    "negate_saturation": {
+      "check_sat_count": 1,
+      "cvc5": {
+        "command": [
+          "/Users/adam/bin/cvc5",
+          "--lang=smt2",
+          "--tlimit=20000",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_aligned_mutual_crossed_v1/generated/structural_negate_saturation_satclause.smt2"
+        ],
+        "detail": "",
+        "status": "UNSAT"
+      },
+      "query": "generated/structural_negate_saturation_satclause.smt2",
+      "z3": {
+        "command": [
+          "/Users/adam/.cache/uv/environments-v2/diagnostic-b6b54407286a491f/bin/z3",
+          "-smt2",
+          "-T:20",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_aligned_mutual_crossed_v1/generated/structural_negate_saturation_satclause.smt2"
+        ],
+        "detail": "",
+        "status": "UNSAT"
+      }
+    },
+    "negate_saturation_without_clause": {
+      "check_sat_count": 1,
+      "cvc5": {
+        "command": [
+          "/Users/adam/bin/cvc5",
+          "--lang=smt2",
+          "--tlimit=20000",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_aligned_mutual_crossed_v1/generated/structural_negate_saturation_nosatclause.smt2"
+        ],
+        "detail": "",
+        "status": "SAT"
+      },
+      "query": "generated/structural_negate_saturation_nosatclause.smt2",
+      "z3": {
+        "command": [
+          "/Users/adam/.cache/uv/environments-v2/diagnostic-b6b54407286a491f/bin/z3",
+          "-smt2",
+          "-T:20",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_aligned_mutual_crossed_v1/generated/structural_negate_saturation_nosatclause.smt2"
+        ],
+        "detail": "",
+        "status": "SAT"
+      }
+    },
+    "omit_first_collision_member": {
+      "check_sat_count": 1,
+      "cvc5": {
+        "command": [
+          "/Users/adam/bin/cvc5",
+          "--lang=smt2",
+          "--tlimit=20000",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_aligned_mutual_crossed_v1/generated/structural_omit_first_collision_member_satclause.smt2"
+        ],
+        "detail": "",
+        "status": "UNSAT"
+      },
+      "query": "generated/structural_omit_first_collision_member_satclause.smt2",
+      "z3": {
+        "command": [
+          "/Users/adam/.cache/uv/environments-v2/diagnostic-b6b54407286a491f/bin/z3",
+          "-smt2",
+          "-T:20",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_aligned_mutual_crossed_v1/generated/structural_omit_first_collision_member_satclause.smt2"
+        ],
+        "detail": "",
+        "status": "UNSAT"
+      }
+    },
+    "opposite_fourth_in_first_cap": {
+      "check_sat_count": 1,
+      "cvc5": {
+        "command": [
+          "/Users/adam/bin/cvc5",
+          "--lang=smt2",
+          "--tlimit=20000",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_aligned_mutual_crossed_v1/generated/structural_opposite_fourth_in_first_cap_satclause.smt2"
+        ],
+        "detail": "",
+        "status": "UNSAT"
+      },
+      "query": "generated/structural_opposite_fourth_in_first_cap_satclause.smt2",
+      "z3": {
+        "command": [
+          "/Users/adam/.cache/uv/environments-v2/diagnostic-b6b54407286a491f/bin/z3",
+          "-smt2",
+          "-T:20",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_aligned_mutual_crossed_v1/generated/structural_opposite_fourth_in_first_cap_satclause.smt2"
+        ],
+        "detail": "",
+        "status": "UNSAT"
+      }
+    },
+    "second_blocker_in_first_interior": {
+      "check_sat_count": 1,
+      "cvc5": {
+        "command": [
+          "/Users/adam/bin/cvc5",
+          "--lang=smt2",
+          "--tlimit=20000",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_aligned_mutual_crossed_v1/generated/structural_second_blocker_in_first_interior_satclause.smt2"
+        ],
+        "detail": "",
+        "status": "UNSAT"
+      },
+      "query": "generated/structural_second_blocker_in_first_interior_satclause.smt2",
+      "z3": {
+        "command": [
+          "/Users/adam/.cache/uv/environments-v2/diagnostic-b6b54407286a491f/bin/z3",
+          "-smt2",
+          "-T:20",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_aligned_mutual_crossed_v1/generated/structural_second_blocker_in_first_interior_satclause.smt2"
+        ],
+        "detail": "",
+        "status": "UNSAT"
+      }
+    }
+  }
+}

@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "scope": "exact-17 aligned-retained direct-crossed CEGAR diagnostic",
+  "claims": {
+    "p97_counterexample": "NONE",
+    "universal_closure": "NONE",
+    "lean_closure": "NONE"
+  },
+  "round_status": "CORRECTED_FROZEN_ASSIGNMENT_DUAL_SOLVER_UNSAT",
+  "phases": {
+    "original_frozen_assignment": {
+      "status": "SOURCE_THEORETICALLY_INVALID",
+      "reason": "a canonical aligned source was placed on a first-apex radius containing another strict first-cap point, and the first-apex rich radii were not coupled exactly to the retained P/Pρ radii",
+      "dual_solver_minimal_cores": [
+        [
+          "rich_equal_0_1_0",
+          "rich_equal_0_1_10",
+          "singleton_excludes_c_first_10"
+        ],
+        [
+          "rich_equal_0_0_1",
+          "rich_equal_0_0_13",
+          "singleton_excludes_c_second_13"
+        ]
+      ],
+      "detail": "frozen_assignment_results.json"
+    },
+    "corrected_incidence_assignment": {
+      "status": "SAT",
+      "z3": "SAT",
+      "cvc5": "SAT",
+      "internal_z3": "SAT",
+      "plain_python_validation": "PASS",
+      "first_apex_rich_kind": "D44",
+      "first_apex_strict_cap_slices": [
+        [7, 9],
+        [10, 12]
+      ],
+      "retained_pairs": {
+        "P": [10, 12],
+        "P_rho": [7, 9]
+      },
+      "first_closed_cap": [0, 1, 7, 9, 10, 12, 14, 16],
+      "first_cap_endpoints": [14, 16],
+      "first_strict_cap_exact_composition": "P union P_rho union {c_first,c_second}",
+      "assignment": "generated/refined_global_k4_assignment.json",
+      "detail": "incidence_refinement_results.json"
+    },
+    "corrected_shared_coordinate_assignment": {
+      "status": "UNSAT",
+      "frozen_assignment_only": true,
+      "first_dual_solver_unsat_stage": "named_rows_and_singletons",
+      "z3": "UNSAT",
+      "cvc5": "UNSAT",
+      "cumulative_clause_count": 1083,
+      "minimized_joint_core": "NOT_COMPUTED",
+      "earlier_single_solver_results": {
+        "rich_radius_pattern": {
+          "z3": "UNKNOWN:timeout",
+          "cvc5": "UNSAT"
+        },
+        "full_rich_classes": {
+          "z3": "UNKNOWN:timeout",
+          "cvc5": "UNSAT"
+        },
+        "blocker_exactness": {
+          "z3": "UNKNOWN:timeout",
+          "cvc5": "UNSAT"
+        }
+      },
+      "detail": "refined_metric_results.json"
+    }
+  },
+  "source_contract": {
+    "constructor": "direct crossed only",
+    "consumer": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_capSource_firstFiber_crossedThreeRowExactSupports",
+    "retained_d44_theorem": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.oppApex1_rich_exactRetainedRadii_of_aligned",
+    "single_source_exclusion": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.firstFiberCapSource_not_mem_firstApex_multiPointRadius_of_aligned",
+    "paired_source_exclusion": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.freshThird_alignedRetainedConsumerPacket_sources_not_mem_firstApex_multiPointRadius",
+    "paired_exclusion_htwo_mapping": "each active first-apex D44 strict-cap slice is exactly P or Pρ and therefore has cardinality two",
+    "exact17_first_cap_composition": "strict cap0 = P union P_rho union {c_first,c_second}; closed cap0 additionally contains apex1 and apex2",
+    "k4_scope": "four same-distance witnesses at every carrier center",
+    "exactness_scope": "off-support exactness only at centers in the image of blockers",
+    "unused_center_exactness": "REJECTED_UNSOURCED"
+  },
+  "mandatory_theorem_bank_delta_constraints": [
+    "singleton_positive_c_first",
+    "singleton_excludes_c_first_1",
+    "singleton_excludes_c_first_7",
+    "singleton_excludes_c_first_9",
+    "singleton_excludes_c_first_10",
+    "singleton_excludes_c_first_12",
+    "singleton_positive_c_second",
+    "singleton_excludes_c_second_0",
+    "singleton_excludes_c_second_7",
+    "singleton_excludes_c_second_9",
+    "singleton_excludes_c_second_10",
+    "singleton_excludes_c_second_12",
+    "canonical_source_radii_distinct"
+  ],
+  "malformed_controls": {
+    "refined_malformed_reversed_boundary": "DUAL_SOLVER_UNSAT",
+    "refined_malformed_break_k4_equality": "DUAL_SOLVER_UNSAT",
+    "refined_malformed_equal_rich_radii": "DUAL_SOLVER_UNSAT",
+    "refined_malformed_break_singleton": "DUAL_SOLVER_UNSAT"
+  },
+  "omitted_for_complete_p97_model": [
+    "complete original Problem 97 and CriticalShellSystem ingress",
+    "source-to-encoding proof for every anonymous deletion and minimality fact"
+  ],
+  "omitted_for_universal_closure": [
+    "the two deletion residual constructors",
+    "the reversed crossed constructor",
+    "coverage of all exact-17 assignments",
+    "every carrier cardinality other than 17",
+    "a general-cardinality finite-core lift"
+  ]
+}

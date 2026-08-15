@@ -1,0 +1,286 @@
+{
+  "closure_claim": "NONE",
+  "controls": [
+    {
+      "artifact": "generated/metric/post_exact_off_circle_cut_v4_malformed_reversed_boundary.smt2",
+      "check_sat_count": 1,
+      "clause_count": 706,
+      "cvc5": {
+        "model_checked_by_cvc5": false,
+        "seconds": 0.063,
+        "status": "UNSAT"
+      },
+      "query": "post_exact_off_circle_cut_v4_malformed_reversed_boundary",
+      "z3": {
+        "seconds": 0.016,
+        "status": "UNSAT"
+      },
+      "z3_cli": {
+        "seconds": 0.034,
+        "status": "UNSAT"
+      }
+    },
+    {
+      "artifact": "generated/metric/post_exact_off_circle_cut_v4_malformed_break_k4_equality.smt2",
+      "check_sat_count": 1,
+      "clause_count": 137,
+      "cvc5": {
+        "model_checked_by_cvc5": false,
+        "seconds": 0.016,
+        "status": "UNSAT"
+      },
+      "query": "post_exact_off_circle_cut_v4_malformed_break_k4_equality",
+      "z3": {
+        "seconds": 0.0,
+        "status": "UNSAT"
+      },
+      "z3_cli": {
+        "seconds": 0.01,
+        "status": "UNSAT"
+      }
+    },
+    {
+      "artifact": "generated/metric/post_exact_off_circle_cut_v4_malformed_equal_rich_radii.smt2",
+      "check_sat_count": 1,
+      "clause_count": 30,
+      "cvc5": {
+        "model_checked_by_cvc5": false,
+        "seconds": 0.01,
+        "status": "UNSAT"
+      },
+      "query": "post_exact_off_circle_cut_v4_malformed_equal_rich_radii",
+      "z3": {
+        "seconds": 0.0,
+        "status": "UNSAT"
+      },
+      "z3_cli": {
+        "seconds": 0.009,
+        "status": "UNSAT"
+      }
+    },
+    {
+      "artifact": "generated/metric/post_exact_off_circle_cut_v4_malformed_break_singleton.smt2",
+      "check_sat_count": 1,
+      "clause_count": 14,
+      "cvc5": {
+        "model_checked_by_cvc5": false,
+        "seconds": 0.009,
+        "status": "UNSAT"
+      },
+      "query": "post_exact_off_circle_cut_v4_malformed_break_singleton",
+      "z3": {
+        "seconds": 0.0,
+        "status": "UNSAT"
+      },
+      "z3_cli": {
+        "seconds": 0.008,
+        "status": "UNSAT"
+      }
+    }
+  ],
+  "exact_off_circle_validation": "PASS",
+  "first_joint_unsat_stage": null,
+  "incidence_validation": "PASS",
+  "lean_sorry_closed": false,
+  "omitted_scope": [
+    "reversed crossed constructor",
+    "both deletion residual constructors",
+    "all cardinalities other than 17",
+    "universal finite-core lift",
+    "complete original-P97 ingress"
+  ],
+  "queries": [
+    {
+      "artifact": "generated/metric/post_exact_off_circle_cut_v4_row_equalities_only_preflight.smt2",
+      "check_sat_count": 1,
+      "clause_count": 136,
+      "cvc5": {
+        "seconds": 65.013,
+        "status": "TIMEOUT"
+      },
+      "query": "post_exact_off_circle_cut_v4_row_equalities_only_preflight",
+      "z3": {
+        "seconds": 67.442,
+        "status": "UNKNOWN:timeout"
+      },
+      "z3_cli": {
+        "seconds": 60.037,
+        "status": "TIMEOUT"
+      }
+    },
+    {
+      "artifact": "generated/metric/post_exact_off_circle_cut_v4_geometry_core.smt2",
+      "check_sat_count": 1,
+      "clause_count": 705,
+      "cvc5": {
+        "model_checked_by_cvc5": false,
+        "seconds": 62.16,
+        "status": "UNKNOWN"
+      },
+      "query": "post_exact_off_circle_cut_v4_geometry_core",
+      "stage": "geometry_core",
+      "z3": {
+        "all_model_values_rational": true,
+        "exact_substitution_validation": "PASS",
+        "fraction_validation": "PASS",
+        "fraction_validation_errors": [],
+        "model": "generated/metric/post_exact_off_circle_cut_v4_geometry_core_z3_model.json",
+        "seconds": 0.053,
+        "status": "SAT",
+        "validation_errors": []
+      },
+      "z3_cli": {
+        "seconds": 0.068,
+        "status": "SAT"
+      }
+    },
+    {
+      "artifact": "generated/metric/post_exact_off_circle_cut_v4_cap_classification.smt2",
+      "check_sat_count": 1,
+      "clause_count": 756,
+      "cvc5": {
+        "model_checked_by_cvc5": false,
+        "seconds": 62.614,
+        "status": "UNKNOWN"
+      },
+      "query": "post_exact_off_circle_cut_v4_cap_classification",
+      "stage": "cap_classification",
+      "z3": {
+        "all_model_values_rational": true,
+        "exact_substitution_validation": "PASS",
+        "fraction_validation": "PASS",
+        "fraction_validation_errors": [],
+        "model": "generated/metric/post_exact_off_circle_cut_v4_cap_classification_z3_model.json",
+        "seconds": 0.054,
+        "status": "SAT",
+        "validation_errors": []
+      },
+      "z3_cli": {
+        "seconds": 0.068,
+        "status": "SAT"
+      }
+    },
+    {
+      "artifact": "generated/metric/post_exact_off_circle_cut_v4_k4_witness_equalities.smt2",
+      "check_sat_count": 1,
+      "clause_count": 824,
+      "cvc5": {
+        "seconds": 65.011,
+        "status": "TIMEOUT"
+      },
+      "query": "post_exact_off_circle_cut_v4_k4_witness_equalities",
+      "stage": "k4_witness_equalities",
+      "z3": {
+        "seconds": 62.499,
+        "status": "UNKNOWN:timeout"
+      },
+      "z3_cli": {
+        "seconds": 60.018,
+        "status": "TIMEOUT"
+      }
+    },
+    {
+      "artifact": "generated/metric/post_exact_off_circle_cut_v4_selected_support_equalities.smt2",
+      "check_sat_count": 1,
+      "clause_count": 892,
+      "cvc5": {
+        "seconds": 65.011,
+        "status": "TIMEOUT"
+      },
+      "query": "post_exact_off_circle_cut_v4_selected_support_equalities",
+      "stage": "selected_support_equalities",
+      "z3": {
+        "seconds": 63.23,
+        "status": "UNKNOWN:timeout"
+      },
+      "z3_cli": {
+        "seconds": 60.018,
+        "status": "TIMEOUT"
+      }
+    },
+    {
+      "artifact": "generated/metric/post_exact_off_circle_cut_v4_rich_radius_pattern.smt2",
+      "check_sat_count": 1,
+      "clause_count": 921,
+      "cvc5": {
+        "model_checked_by_cvc5": false,
+        "seconds": 60.501,
+        "status": "UNKNOWN"
+      },
+      "query": "post_exact_off_circle_cut_v4_rich_radius_pattern",
+      "stage": "rich_radius_pattern",
+      "z3": {
+        "seconds": 63.286,
+        "status": "UNKNOWN:timeout"
+      },
+      "z3_cli": {
+        "seconds": 60.048,
+        "status": "TIMEOUT"
+      }
+    },
+    {
+      "artifact": "generated/metric/post_exact_off_circle_cut_v4_full_rich_classes.smt2",
+      "check_sat_count": 1,
+      "clause_count": 927,
+      "cvc5": {
+        "model_checked_by_cvc5": false,
+        "seconds": 60.23,
+        "status": "UNKNOWN"
+      },
+      "query": "post_exact_off_circle_cut_v4_full_rich_classes",
+      "stage": "full_rich_classes",
+      "z3": {
+        "seconds": 62.316,
+        "status": "UNKNOWN:timeout"
+      },
+      "z3_cli": {
+        "seconds": 60.019,
+        "status": "TIMEOUT"
+      }
+    },
+    {
+      "artifact": "generated/metric/post_exact_off_circle_cut_v4_blocker_exactness.smt2",
+      "check_sat_count": 1,
+      "clause_count": 1096,
+      "cvc5": {
+        "model_checked_by_cvc5": false,
+        "seconds": 60.259,
+        "status": "UNKNOWN"
+      },
+      "query": "post_exact_off_circle_cut_v4_blocker_exactness",
+      "stage": "blocker_exactness",
+      "z3": {
+        "seconds": 62.851,
+        "status": "UNKNOWN:timeout"
+      },
+      "z3_cli": {
+        "seconds": 60.015,
+        "status": "TIMEOUT"
+      }
+    },
+    {
+      "artifact": "generated/metric/post_exact_off_circle_cut_v4_named_rows_and_singletons.smt2",
+      "check_sat_count": 1,
+      "clause_count": 1109,
+      "cvc5": {
+        "model_checked_by_cvc5": false,
+        "seconds": 61.303,
+        "status": "UNKNOWN"
+      },
+      "query": "post_exact_off_circle_cut_v4_named_rows_and_singletons",
+      "stage": "named_rows_and_singletons",
+      "z3": {
+        "seconds": 62.782,
+        "status": "UNKNOWN:timeout"
+      },
+      "z3_cli": {
+        "seconds": 60.042,
+        "status": "TIMEOUT"
+      }
+    }
+  ],
+  "scope": "exact-17 direct-crossed staged shared-coordinate replay only",
+  "source_assignment": "generated/post_exact_off_circle_cut_v4_assignment.json",
+  "status_separation": "Z3py, external Z3, cvc5, exact substitution replay, and Fraction replay are reported independently; timeout/unknown is never UNSAT",
+  "universal_lift": false
+}

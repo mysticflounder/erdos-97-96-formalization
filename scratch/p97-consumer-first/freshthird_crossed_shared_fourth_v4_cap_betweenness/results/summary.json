@@ -1,0 +1,35 @@
+{
+  "alias_patterns": 95,
+  "alias_patterns_by_cap_point_count": {
+    "6": 40,
+    "7": 42,
+    "8": 12,
+    "9": 1
+  },
+  "linear_order_survivors_mod_reversal": 18168,
+  "linear_order_survivors_by_cap_point_count": {
+    "6": 336,
+    "7": 3048,
+    "8": 8064,
+    "9": 6720
+  },
+  "cyclic_boundary_candidates_mod_dihedral_boundary_only": 67920,
+  "cyclic_candidates_by_cap_point_count": {
+    "6": 2400,
+    "7": 15120,
+    "8": 30240,
+    "9": 20160
+  },
+  "sign_arms": [
+    "00",
+    "01",
+    "10",
+    "11"
+  ],
+  "sign_arm_interpretation": {
+    "0": "left distance < right distance",
+    "1": "left distance > right distance"
+  },
+  "survivors_remain": true,
+  "closure": "none; combinatorial scratch census only"
+}

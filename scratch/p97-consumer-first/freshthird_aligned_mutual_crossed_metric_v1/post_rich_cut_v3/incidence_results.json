@@ -1,0 +1,165 @@
+{
+  "assignment_validation": {
+    "assignment": "generated/post_rich_cut_v3_assignment.json",
+    "errors": [],
+    "status": "PASS"
+  },
+  "check_sat_count": 1,
+  "closure_claim": "NONE",
+  "controls": {
+    "prior_assignment_rejected": {
+      "errors": [
+        "c_first first-apex K4 singleton violated by [10]",
+        "cap1 exact-six D44 selected-support projection [5] crosses rich arms [5, 6]/[8, 15]"
+      ],
+      "expected": "REJECTED",
+      "input": "generated/refined_global_k4_assignment.json",
+      "status": "PASS"
+    },
+    "smoke_malformed_unsat": {
+      "artifact": "generated/smoke_malformed_unsat.smt2",
+      "expected": "UNSAT",
+      "solvers": {
+        "cvc5": {
+          "seconds": 0.005,
+          "status": "UNSAT"
+        },
+        "z3": {
+          "seconds": 0.007,
+          "status": "UNSAT"
+        }
+      },
+      "status": "PASS"
+    },
+    "smoke_sat": {
+      "artifact": "generated/smoke_sat.smt2",
+      "expected": "SAT",
+      "solvers": {
+        "cvc5": {
+          "seconds": 0.006,
+          "status": "SAT"
+        },
+        "z3": {
+          "seconds": 0.008,
+          "status": "SAT"
+        }
+      },
+      "status": "PASS"
+    },
+    "v2_crossed_rich_assignment_rejected": {
+      "errors": [
+        "cap1 exact-six D44 selected-support projection [16] crosses rich arms [11, 14]/[2, 16]",
+        "cap2 exact-six D44 selected-support projection [3, 4, 7, 9] crosses rich arms [7, 9]/[3, 4]"
+      ],
+      "expected": "REJECTED",
+      "input": "post_core_cut_v2/generated/post_core_cut_v2_assignment.json",
+      "status": "PASS"
+    }
+  },
+  "cut": [
+    {
+      "htwo": "both active first-apex arms have cap-interior card >= 2",
+      "name": "first_apex_retained_branch_is_d44",
+      "source": "oppApex1_rich_exactRetainedRadii_of_aligned (TwoSourceFreshThirdRetainedProducer.lean)"
+    },
+    {
+      "htwo": "each exact retained pair has two distinct endpoints",
+      "name": "first_apex_rich_slices_are_retained_pairs_up_to_swap",
+      "source": "oppApex1_rich_exactRetainedRadii_of_aligned + hfrontierInteriorEq + h\u03c1InteriorEq"
+    },
+    {
+      "htwo": "rich_two_arm[0] and rich_slice[0][0] cardinality >= 2",
+      "name": "aligned_c_first_not_in_first_apex_rich_arm_0",
+      "source": "freshThird_alignedRetainedConsumerPacket_sources_not_mem_firstApex_multiPointRadius"
+    },
+    {
+      "htwo": "rich_two_arm[0] and rich_slice[0][1] cardinality >= 2",
+      "name": "aligned_c_first_not_in_first_apex_rich_arm_1",
+      "source": "freshThird_alignedRetainedConsumerPacket_sources_not_mem_firstApex_multiPointRadius"
+    },
+    {
+      "htwo": "rich_two_arm[0] and rich_slice[0][0] cardinality >= 2",
+      "name": "aligned_c_second_not_in_first_apex_rich_arm_0",
+      "source": "freshThird_alignedRetainedConsumerPacket_sources_not_mem_firstApex_multiPointRadius"
+    },
+    {
+      "htwo": "rich_two_arm[0] and rich_slice[0][1] cardinality >= 2",
+      "name": "aligned_c_second_not_in_first_apex_rich_arm_1",
+      "source": "freshThird_alignedRetainedConsumerPacket_sources_not_mem_firstApex_multiPointRadius"
+    },
+    {
+      "name": "first_apex_k4_support_containing_c_first_is_cap_singleton",
+      "scope": "every chosen first-apex point-K4 support containing this source; every other strict cap0 point",
+      "source": "firstFiberCapSource_firstApexRadius_eq_singleton_of_aligned (TwoSourceFreshThirdRetainedProducer.lean), instantiated at c_first"
+    },
+    {
+      "name": "first_apex_k4_support_containing_c_second_is_cap_singleton",
+      "scope": "every chosen first-apex point-K4 support containing this source; every other strict cap0 point",
+      "source": "firstFiberCapSource_firstApexRadius_eq_singleton_of_aligned (TwoSourceFreshThirdRetainedProducer.lean), instantiated at c_second"
+    },
+    {
+      "antecedent": "rich_two_arm[0] and card(cap[0]) = 6",
+      "name": "exact_six_d44_cap_0_selected_support_projection",
+      "scope": "opposite-apex selected K4 support restricted to the strict cap equals rich_slice arm 0 or arm 1",
+      "source": "selectedFourClass_support_eq_one_of_twoRichClasses_of_cap_card_eq_six (ExactFifteenApexProfile.lean)"
+    },
+    {
+      "antecedent": "not rich_two_arm[0] and card(cap[0]) = 6",
+      "name": "exact_six_s6_cap_0_selected_support_projection",
+      "scope": "opposite-apex selected K4 support restricted to the strict cap is a subset of rich_slice arm 0 and has cardinality at least two; the latter follows because a four-point support lies in a six-point class with at most two points outside the strict cap",
+      "source": "selectedFourClass_support_subset_richSixClass_of_cap_card_eq_six (ExactFifteenApexProfile.lean), plus selectedClass_sdiff_capInteriorByIndex_subset_adjacentCaps and the left/right adjacent-cap intersection bounds"
+    },
+    {
+      "antecedent": "rich_two_arm[1] and card(cap[1]) = 6",
+      "name": "exact_six_d44_cap_1_selected_support_projection",
+      "scope": "opposite-apex selected K4 support restricted to the strict cap equals rich_slice arm 0 or arm 1",
+      "source": "selectedFourClass_support_eq_one_of_twoRichClasses_of_cap_card_eq_six (ExactFifteenApexProfile.lean)"
+    },
+    {
+      "antecedent": "not rich_two_arm[1] and card(cap[1]) = 6",
+      "name": "exact_six_s6_cap_1_selected_support_projection",
+      "scope": "opposite-apex selected K4 support restricted to the strict cap is a subset of rich_slice arm 0 and has cardinality at least two; the latter follows because a four-point support lies in a six-point class with at most two points outside the strict cap",
+      "source": "selectedFourClass_support_subset_richSixClass_of_cap_card_eq_six (ExactFifteenApexProfile.lean), plus selectedClass_sdiff_capInteriorByIndex_subset_adjacentCaps and the left/right adjacent-cap intersection bounds"
+    },
+    {
+      "antecedent": "rich_two_arm[2] and card(cap[2]) = 6",
+      "name": "exact_six_d44_cap_2_selected_support_projection",
+      "scope": "opposite-apex selected K4 support restricted to the strict cap equals rich_slice arm 0 or arm 1",
+      "source": "selectedFourClass_support_eq_one_of_twoRichClasses_of_cap_card_eq_six (ExactFifteenApexProfile.lean)"
+    },
+    {
+      "antecedent": "not rich_two_arm[2] and card(cap[2]) = 6",
+      "name": "exact_six_s6_cap_2_selected_support_projection",
+      "scope": "opposite-apex selected K4 support restricted to the strict cap is a subset of rich_slice arm 0 and has cardinality at least two; the latter follows because a four-point support lies in a six-point class with at most two points outside the strict cap",
+      "source": "selectedFourClass_support_subset_richSixClass_of_cap_card_eq_six (ExactFifteenApexProfile.lean), plus selectedClass_sdiff_capInteriorByIndex_subset_adjacentCaps and the left/right adjacent-cap intersection bounds"
+    }
+  ],
+  "external": {
+    "cvc5": {
+      "seconds": 5.431,
+      "status": "SAT"
+    },
+    "z3": {
+      "seconds": 0.701,
+      "status": "SAT"
+    }
+  },
+  "fidelity": "source-entitled rich exclusion and both generic first-apex source singleton preflights preserved; the exact-six D44 equality and S6 subset-with-cardinality-bound theorems are projected generically onto each strict cap; still not a complete Euclidean or original-P97 model",
+  "first_cap_composition_contract": "strict cap0 = P union P_rho union {c_first,c_second}; closed cap0 additionally contains apex1 and apex2",
+  "internal_z3": {
+    "seconds": 0.5,
+    "status": "SAT"
+  },
+  "nonfirst_rich_branches": [
+    {
+      "branch": "D44",
+      "cap_index": 1
+    },
+    {
+      "branch": "D44",
+      "cap_index": 2
+    }
+  ],
+  "query": "generated/post_rich_cut_v3_incidence.smt2",
+  "scope": "exact-17 direct crossed incidence abstraction only"
+}

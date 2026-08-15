@@ -1,0 +1,168 @@
+{
+  "dihedral_edges": [
+    {
+      "appended_clauses": 34,
+      "certificates": 1,
+      "checked_images": 34,
+      "manifest": "scratch/rigid221-blockerv-exact17-20260806/lazy-global-kalmanson-loop-dihedral-production2-source-frozen-20260809/iteration-0015-seed-4116/derived/o0-p0-1.manifest.json",
+      "manifest_sha256": "cbf0557b73a4544a7668c7e3d1d9e1b460b8d8e358fab21d00cb74055a7e105d",
+      "validation": "scratch/rigid221-blockerv-exact17-20260806/lazy-global-kalmanson-loop-dihedral-production2-source-frozen-20260809/chain-validation-edges/edge-0000.json",
+      "validation_sha256": "c549fad5071cfb05302d3b530fe8a5c90ad85a84a2eeb8c330d6967fa60581d1"
+    },
+    {
+      "appended_clauses": 34,
+      "certificates": 1,
+      "checked_images": 34,
+      "manifest": "scratch/rigid221-blockerv-exact17-20260806/lazy-global-kalmanson-loop-dihedral-production2-source-frozen-20260809/iteration-0014-seed-4115/derived/o0-p0-1.manifest.json",
+      "manifest_sha256": "9385d1b6441d8595725607d46767a498966a919a4535a41dcbc301fbf5ebb783",
+      "validation": "scratch/rigid221-blockerv-exact17-20260806/lazy-global-kalmanson-loop-dihedral-production2-source-frozen-20260809/chain-validation-edges/edge-0001.json",
+      "validation_sha256": "0785284906f57f1c3779a3cf8469c6e9306169e557f74251d59b2162c6699e7d"
+    },
+    {
+      "appended_clauses": 34,
+      "certificates": 1,
+      "checked_images": 34,
+      "manifest": "scratch/rigid221-blockerv-exact17-20260806/lazy-global-kalmanson-loop-dihedral-production2-source-frozen-20260809/iteration-0013-seed-4114/derived/o0-p0-1.manifest.json",
+      "manifest_sha256": "de4442c3eaa75f96f69888f848b817f97584cfc551cdbe5c077759ed2d94ed71",
+      "validation": "scratch/rigid221-blockerv-exact17-20260806/lazy-global-kalmanson-loop-dihedral-production2-source-frozen-20260809/chain-validation-edges/edge-0002.json",
+      "validation_sha256": "a8d22b1ae00d4cb20c89c1e9d18a01de8677099389e301f7c8926af08c12e1ca"
+    },
+    {
+      "appended_clauses": 34,
+      "certificates": 1,
+      "checked_images": 34,
+      "manifest": "scratch/rigid221-blockerv-exact17-20260806/lazy-global-kalmanson-loop-dihedral-production2-source-frozen-20260809/iteration-0012-seed-4113/derived/o0-p0-1.manifest.json",
+      "manifest_sha256": "6c1ddda308a415e78499be757b98b643dafbbae0d1dcfaeabece88648502fc4f",
+      "validation": "scratch/rigid221-blockerv-exact17-20260806/lazy-global-kalmanson-loop-dihedral-production2-source-frozen-20260809/chain-validation-edges/edge-0003.json",
+      "validation_sha256": "ff550e77bff048d1e6f615a52f887f15a6849aca3571c2ec025421d641512f3e"
+    },
+    {
+      "appended_clauses": 34,
+      "certificates": 1,
+      "checked_images": 34,
+      "manifest": "scratch/rigid221-blockerv-exact17-20260806/lazy-global-kalmanson-loop-dihedral-production2-source-frozen-20260809/iteration-0011-seed-4112/derived/o0-p0-1.manifest.json",
+      "manifest_sha256": "974de778b7a85159c7d5a2984153678b95f53143b9b5743a15da867c3d519d64",
+      "validation": "scratch/rigid221-blockerv-exact17-20260806/lazy-global-kalmanson-loop-dihedral-production2-source-frozen-20260809/chain-validation-edges/edge-0004.json",
+      "validation_sha256": "ac916965aa1d2cbc5561b31058219b30bb447c5e98a2e7141271388c3ee42dab"
+    },
+    {
+      "appended_clauses": 34,
+      "certificates": 1,
+      "checked_images": 34,
+      "manifest": "scratch/rigid221-blockerv-exact17-20260806/lazy-global-kalmanson-loop-dihedral-production2-source-frozen-20260809/iteration-0010-seed-4111/derived/o0-p0-1.manifest.json",
+      "manifest_sha256": "7fbe7777821b0aa3b717e16976cb0c4819b2bcc8036092d43b40ada505602a2f",
+      "validation": "scratch/rigid221-blockerv-exact17-20260806/lazy-global-kalmanson-loop-dihedral-production2-source-frozen-20260809/chain-validation-edges/edge-0005.json",
+      "validation_sha256": "0dfe7af852fc4269397f7ab4787590cddf3831cfe4d20fe40c5315f585604aaa"
+    },
+    {
+      "appended_clauses": 34,
+      "certificates": 1,
+      "checked_images": 34,
+      "manifest": "scratch/rigid221-blockerv-exact17-20260806/lazy-global-kalmanson-loop-dihedral-production2-source-frozen-20260809/iteration-0009-seed-4110/derived/o0-p0-1.manifest.json",
+      "manifest_sha256": "85b52339c3e798e83b9db49593032249f29c0091a94cf9982a8972dfcd346348",
+      "validation": "scratch/rigid221-blockerv-exact17-20260806/lazy-global-kalmanson-loop-dihedral-production2-source-frozen-20260809/chain-validation-edges/edge-0006.json",
+      "validation_sha256": "9bd46d8461e1430d6806e76e114151fd4290451e7e8b6106dd458255991f6546"
+    },
+    {
+      "appended_clauses": 34,
+      "certificates": 1,
+      "checked_images": 34,
+      "manifest": "scratch/rigid221-blockerv-exact17-20260806/lazy-global-kalmanson-loop-dihedral-production2-source-frozen-20260809/iteration-0008-seed-4109/derived/o0-p0-1.manifest.json",
+      "manifest_sha256": "91262f2529f7af3108e23484bbfe450897a2ea75608e4d07992694cb0a52efa8",
+      "validation": "scratch/rigid221-blockerv-exact17-20260806/lazy-global-kalmanson-loop-dihedral-production2-source-frozen-20260809/chain-validation-edges/edge-0007.json",
+      "validation_sha256": "f3b087d91ebd6f46d43b94e62cb0fa08b12ca34095dc3d53786c88cf12474995"
+    },
+    {
+      "appended_clauses": 34,
+      "certificates": 1,
+      "checked_images": 34,
+      "manifest": "scratch/rigid221-blockerv-exact17-20260806/lazy-global-kalmanson-loop-dihedral-production2-source-frozen-20260809/iteration-0007-seed-4108/derived/o0-p0-1.manifest.json",
+      "manifest_sha256": "d6463b965a7beabbbb67942720bcd7e757421fd2c570e2a0ade756f5bf3d6d7c",
+      "validation": "scratch/rigid221-blockerv-exact17-20260806/lazy-global-kalmanson-loop-dihedral-production2-source-frozen-20260809/chain-validation-edges/edge-0008.json",
+      "validation_sha256": "40cdd4357a259573cda5b71addfc0bd52f1fb89a3c51dc73ca3880094ee2b910"
+    },
+    {
+      "appended_clauses": 34,
+      "certificates": 1,
+      "checked_images": 34,
+      "manifest": "scratch/rigid221-blockerv-exact17-20260806/lazy-global-kalmanson-loop-dihedral-production2-source-frozen-20260809/iteration-0006-seed-4107/derived/o0-p0-1.manifest.json",
+      "manifest_sha256": "30cbaa22c18ae59985044f93e06ca4cc7333e6d04f730c9fa460f28188f11387",
+      "validation": "scratch/rigid221-blockerv-exact17-20260806/lazy-global-kalmanson-loop-dihedral-production2-source-frozen-20260809/chain-validation-edges/edge-0009.json",
+      "validation_sha256": "d8c5fa83ad7b0a02e270193ed9b93e4d9f8016441638ea78933d7c5c86a0bb56"
+    },
+    {
+      "appended_clauses": 34,
+      "certificates": 1,
+      "checked_images": 34,
+      "manifest": "scratch/rigid221-blockerv-exact17-20260806/lazy-global-kalmanson-loop-dihedral-production2-source-frozen-20260809/iteration-0005-seed-4106/derived/o0-p0-1.manifest.json",
+      "manifest_sha256": "ed8253e9beaf290ef4e29aa6f147dde037135f90e7946bbb1bc004b43d9eea45",
+      "validation": "scratch/rigid221-blockerv-exact17-20260806/lazy-global-kalmanson-loop-dihedral-production2-source-frozen-20260809/chain-validation-edges/edge-0010.json",
+      "validation_sha256": "3236ab137efa24bcd6cb0f1f5a9f42af253312dbabe6d9786a171519d29208b8"
+    },
+    {
+      "appended_clauses": 34,
+      "certificates": 1,
+      "checked_images": 34,
+      "manifest": "scratch/rigid221-blockerv-exact17-20260806/lazy-global-kalmanson-loop-dihedral-production2-source-frozen-20260809/iteration-0004-seed-4105/derived/o0-p0-1.manifest.json",
+      "manifest_sha256": "8d694baf8d9f56c07a3282e161a2cd378c1567a508a7ca162f4fd3a571328d39",
+      "validation": "scratch/rigid221-blockerv-exact17-20260806/lazy-global-kalmanson-loop-dihedral-production2-source-frozen-20260809/chain-validation-edges/edge-0011.json",
+      "validation_sha256": "ab8ba71fe6fbbfecd7cb4d7d54e73857aacab5dd3657b40d9349db92a55f0683"
+    },
+    {
+      "appended_clauses": 34,
+      "certificates": 1,
+      "checked_images": 34,
+      "manifest": "scratch/rigid221-blockerv-exact17-20260806/lazy-global-kalmanson-loop-dihedral-production2-source-frozen-20260809/iteration-0003-seed-4104/derived/o0-p0-1.manifest.json",
+      "manifest_sha256": "af1c8290b196f927acaa4ac5a6bbf117218f63422b21f5ad9ab66f4ae6a51054",
+      "validation": "scratch/rigid221-blockerv-exact17-20260806/lazy-global-kalmanson-loop-dihedral-production2-source-frozen-20260809/chain-validation-edges/edge-0012.json",
+      "validation_sha256": "5aecca43afa3165b91a47479179876b4870cc8415537d1bf6a882f50c3fb81d9"
+    },
+    {
+      "appended_clauses": 34,
+      "certificates": 1,
+      "checked_images": 34,
+      "manifest": "scratch/rigid221-blockerv-exact17-20260806/lazy-global-kalmanson-loop-dihedral-production2-source-frozen-20260809/iteration-0002-seed-4103/derived/o0-p0-1.manifest.json",
+      "manifest_sha256": "adb588052250cf1dd235f80864638394651b477fd76c588fedd38f34fa9f6849",
+      "validation": "scratch/rigid221-blockerv-exact17-20260806/lazy-global-kalmanson-loop-dihedral-production2-source-frozen-20260809/chain-validation-edges/edge-0013.json",
+      "validation_sha256": "03ff004d4eefb091b7f6ca3bc1a8f5990688efc90c336b6fd1fa46434ec8f69e"
+    },
+    {
+      "appended_clauses": 34,
+      "certificates": 1,
+      "checked_images": 34,
+      "manifest": "scratch/rigid221-blockerv-exact17-20260806/lazy-global-kalmanson-loop-dihedral-production2-source-frozen-20260809/iteration-0001-seed-4102/derived/o0-p0-1.manifest.json",
+      "manifest_sha256": "02e910598b77a6feb28e0c799a74eb0af7ad869e6aa073d67cb466faca3e9b0f",
+      "validation": "scratch/rigid221-blockerv-exact17-20260806/lazy-global-kalmanson-loop-dihedral-production2-source-frozen-20260809/chain-validation-edges/edge-0014.json",
+      "validation_sha256": "26f46f2278b37b61d86ee20eda39a0855b80bbf1acf6fc37004412d58c578484"
+    },
+    {
+      "appended_clauses": 34,
+      "certificates": 1,
+      "checked_images": 34,
+      "manifest": "scratch/rigid221-blockerv-exact17-20260806/lazy-global-kalmanson-loop-dihedral-production2-source-frozen-20260809/iteration-0000-seed-4101/derived/o0-p0-1.manifest.json",
+      "manifest_sha256": "5cf23cceab688d80dcb6af6ddb3b3e12ff64b26582d8156ef741aba568b567c7",
+      "validation": "scratch/rigid221-blockerv-exact17-20260806/lazy-global-kalmanson-loop-dihedral-production2-source-frozen-20260809/chain-validation-edges/edge-0015.json",
+      "validation_sha256": "c17f88bbeb7ac758ef395aef2725573982713fe2faf6bd19b5e2ffaaca2127ce"
+    },
+    {
+      "appended_clauses": 2176,
+      "certificates": 64,
+      "checked_images": 2176,
+      "manifest": "scratch/rigid221-blockerv-exact17-20260806/weighted-dihedral-bank-v3-source-frozen-20260809/o0-p0-1.manifest.json",
+      "manifest_sha256": "9c7cfa24cdd8f4777861fc5b900b354bb3bae2de47a95180f2dc72ac2fd129ae",
+      "validation": "scratch/rigid221-blockerv-exact17-20260806/lazy-global-kalmanson-loop-dihedral-production2-source-frozen-20260809/chain-validation-edges/edge-0016.json",
+      "validation_sha256": "8d0d753782caa6386d9dd04129f5ac50ae2a06dc1b44ae4803639f1527ea36b3"
+    }
+  ],
+  "root_cnf_sha256": "7f30e30d713119c50ef8d39b6d8f6be0ff4ebf9911db77560e3b5faaae1678e9",
+  "root_manifest": "scratch/rigid221-blockerv-exact17-20260806/lazy-global-kalmanson-loop-production3-source-frozen-20260809/iteration-0031-seed-3850/derived/o0-p0-1.manifest.json",
+  "root_manifest_sha256": "29d6cc1df0bef47137f93c4053c7660e1c8a49dddb658bd40339683006caae36",
+  "root_validation": "scratch/rigid221-blockerv-exact17-20260806/lazy-global-kalmanson-loop-production3-source-frozen-20260809/chain-validation.json",
+  "root_validation_sha256": "25fb6f13e14acb7c66de81878533fe75f4cf6faa5e0e38219a98e37266f7e3b0",
+  "schema": "p97-rigid221-exact17-weighted-dihedral-chain-validation-v1",
+  "status": "PASS",
+  "terminal_manifest": "scratch/rigid221-blockerv-exact17-20260806/lazy-global-kalmanson-loop-dihedral-production2-source-frozen-20260809/iteration-0015-seed-4116/derived/o0-p0-1.manifest.json",
+  "terminal_manifest_sha256": "cbf0557b73a4544a7668c7e3d1d9e1b460b8d8e358fab21d00cb74055a7e105d",
+  "validated_dihedral_edges": 17,
+  "validator_sha256": "d0cd46eb932a10e5c2e95dacbcbb34fb7fec81aa590916be556a0618b117f854"
+}

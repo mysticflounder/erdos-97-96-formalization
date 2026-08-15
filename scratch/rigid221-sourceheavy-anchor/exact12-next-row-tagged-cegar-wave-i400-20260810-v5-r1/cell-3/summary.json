@@ -1,0 +1,61 @@
+{
+  "artifacts": {
+    "detector_contract": {
+      "bytes": 2131,
+      "path": "detector_contract.json",
+      "sha256": "39d4dc5e89740a7fad4733176bd92014573a5b8ac4d5ed39ea5fc4cbf32aa811"
+    },
+    "discovery_cnf": {
+      "bytes": 5124842,
+      "path": "discovery.cnf",
+      "sha256": "0f29e3ecfe91e516b671d8c515d802c51657ef236cf9b7d461f02a9dd39388bc"
+    },
+    "job": {
+      "bytes": 8558,
+      "path": "job.json",
+      "sha256": "916e36a87763f788625899bb2c4d821f7de4f0a62aff763bff21a1bba7f60c0f"
+    },
+    "journal": {
+      "bytes": 42409153,
+      "path": "journal.jsonl",
+      "sha256": "a4cf0ea296d3a615be4528dbb138aa5b5323d096eff3746937b0b7a9198dfb09"
+    },
+    "proof": null,
+    "survivor": {
+      "bytes": 147126,
+      "path": "survivor.json",
+      "sha256": "12ebbb4a4dcda27509b68db030d767bc5b0fcb2eca964509542dd5ed912aaec4"
+    },
+    "terminal_cnf": null
+  },
+  "cell_index": 3,
+  "detector_contract_sha256": "af373a6601239e97838a73d4573ad6aa643b120e269bacb0fbe8c2e16c150f3d",
+  "discovery_cnf_sha256": null,
+  "discovery_verdict": "SAT",
+  "error": null,
+  "job_id": "5370cc8d7e264d36f1518e88b7f7eddb3ba23d7b595e5ce19d6dd21b191c46cd",
+  "journal_replayed": true,
+  "max_iterations": 400,
+  "reconstructed_cnf_sha256": "0f29e3ecfe91e516b671d8c515d802c51657ef236cf9b7d461f02a9dd39388bc",
+  "records": 267,
+  "replay": {
+    "added_constraints": true,
+    "candidate": true,
+    "exact_cnf": true
+  },
+  "schema": "p97_rigid221_exact12_next_row_tagged_cegar_run.v5",
+  "scope": "one finite next-row-only-hit placement cell; no aggregate coverage, universal lift, terminal bank, or Lean closure",
+  "source_order_bank_sha256": "f5732fc392792362df145b999c4fe739f931d4329c46d8bde7038ac2b85db5d6",
+  "stage_counts": {
+    "equality-duplicate-center": 263,
+    "equality-equilateral-bisector-collision": 1,
+    "equality-perpendicular-bisector-convex": 2,
+    "source-order-positive-coverage": 1
+  },
+  "status": "STRUCTURALLY_UNRESOLVED",
+  "terminal_cnf_sha256": null,
+  "terminal_proof_verified": false,
+  "terminal_record_sha256": "16af1bd5917258dbfe8163b1756cbcd87114af9ff680232422c6d592ba44ae51",
+  "terminal_verdict": null,
+  "timeout_seconds": 60
+}

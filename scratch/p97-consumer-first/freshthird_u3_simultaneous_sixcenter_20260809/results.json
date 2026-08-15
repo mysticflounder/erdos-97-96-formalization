@@ -1,0 +1,685 @@
+{
+  "controls_ok": true,
+  "finite_all_confined_verdict": "semantic-UNSAT",
+  "overall_live_boundary_verdict": "SAT-abstraction",
+  "prefilter_reason_counts": {
+    "equilateralBisector": 18,
+    "equilateralCircumcenterOnPCircle": 12,
+    "equilateralOuterPoint": 6,
+    "nontripleEquilateralOnPCircle": 54,
+    "unitTriangleOnPCircle": 378
+  },
+  "results": [
+    {
+      "case": "smoke_sat",
+      "engines": {
+        "cvc5": {
+          "command": [
+            "cvc5",
+            "--lang=smt2",
+            "--tlimit-per=20000",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_u3_simultaneous_sixcenter_20260809/models/smoke_sat.smt2"
+          ],
+          "exit_code": 0,
+          "model_run": {
+            "command": [
+              "cvc5",
+              "--lang=smt2",
+              "--tlimit-per=20000",
+              "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_u3_simultaneous_sixcenter_20260809/models/smoke_sat.cvc5.model.smt2"
+            ],
+            "exit_code": 0,
+            "seconds": 0.014306,
+            "status": "sat",
+            "timed_out": false
+          },
+          "seconds": 0.082615,
+          "status": "sat",
+          "timed_out": false
+        },
+        "z3": {
+          "command": [
+            "z3",
+            "-T:20",
+            "-smt2",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_u3_simultaneous_sixcenter_20260809/models/smoke_sat.smt2"
+          ],
+          "exit_code": 0,
+          "model_run": {
+            "command": [
+              "z3",
+              "-T:20",
+              "-smt2",
+              "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_u3_simultaneous_sixcenter_20260809/models/smoke_sat.z3.model.smt2"
+            ],
+            "exit_code": 0,
+            "seconds": 0.015196,
+            "status": "sat",
+            "timed_out": false
+          },
+          "seconds": 0.075852,
+          "status": "sat",
+          "timed_out": false
+        }
+      },
+      "family": "control",
+      "omitted_reason": null,
+      "readback_valid": {
+        "cvc5": true,
+        "z3": true
+      },
+      "statuses": {
+        "cvc5": "sat",
+        "z3": "sat"
+      },
+      "verdict": "SAT-abstraction"
+    },
+    {
+      "case": "smoke_unsat",
+      "engines": {
+        "cvc5": {
+          "command": [
+            "cvc5",
+            "--lang=smt2",
+            "--tlimit-per=20000",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_u3_simultaneous_sixcenter_20260809/models/smoke_unsat.smt2"
+          ],
+          "exit_code": 0,
+          "seconds": 0.013421,
+          "status": "unsat",
+          "timed_out": false
+        },
+        "z3": {
+          "command": [
+            "z3",
+            "-T:20",
+            "-smt2",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_u3_simultaneous_sixcenter_20260809/models/smoke_unsat.smt2"
+          ],
+          "exit_code": 0,
+          "seconds": 0.013047,
+          "status": "unsat",
+          "timed_out": false
+        }
+      },
+      "family": "control",
+      "omitted_reason": null,
+      "readback_valid": {},
+      "statuses": {
+        "cvc5": "unsat",
+        "z3": "unsat"
+      },
+      "verdict": "semantic-UNSAT"
+    },
+    {
+      "case": "confined_structural",
+      "engines": {
+        "cvc5": {
+          "command": [
+            "cvc5",
+            "--lang=smt2",
+            "--tlimit-per=20000",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_u3_simultaneous_sixcenter_20260809/models/confined_structural.smt2"
+          ],
+          "exit_code": 0,
+          "model_run": {
+            "command": [
+              "cvc5",
+              "--lang=smt2",
+              "--tlimit-per=20000",
+              "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_u3_simultaneous_sixcenter_20260809/models/confined_structural.cvc5.model.smt2"
+            ],
+            "exit_code": 0,
+            "seconds": 0.034588,
+            "status": "sat",
+            "timed_out": false
+          },
+          "seconds": 0.034201,
+          "status": "sat",
+          "timed_out": false
+        },
+        "z3": {
+          "command": [
+            "z3",
+            "-T:20",
+            "-smt2",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_u3_simultaneous_sixcenter_20260809/models/confined_structural.smt2"
+          ],
+          "exit_code": 0,
+          "model_run": {
+            "command": [
+              "z3",
+              "-T:20",
+              "-smt2",
+              "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_u3_simultaneous_sixcenter_20260809/models/confined_structural.z3.model.smt2"
+            ],
+            "exit_code": 0,
+            "seconds": 0.019457,
+            "status": "sat",
+            "timed_out": false
+          },
+          "seconds": 0.031245,
+          "status": "sat",
+          "timed_out": false
+        }
+      },
+      "family": "all-confined",
+      "omitted_reason": null,
+      "readback_valid": {
+        "cvc5": true,
+        "z3": true
+      },
+      "statuses": {
+        "cvc5": "sat",
+        "z3": "sat"
+      },
+      "verdict": "SAT-abstraction"
+    },
+    {
+      "case": "confined_all_prefilters",
+      "engines": {
+        "cvc5": {
+          "command": [
+            "cvc5",
+            "--lang=smt2",
+            "--tlimit-per=20000",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_u3_simultaneous_sixcenter_20260809/models/confined_all_prefilters.smt2"
+          ],
+          "exit_code": 0,
+          "seconds": 0.383893,
+          "status": "unsat",
+          "timed_out": false
+        },
+        "z3": {
+          "command": [
+            "z3",
+            "-T:20",
+            "-smt2",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_u3_simultaneous_sixcenter_20260809/models/confined_all_prefilters.smt2"
+          ],
+          "exit_code": 0,
+          "seconds": 0.0826,
+          "status": "unsat",
+          "timed_out": false
+        }
+      },
+      "family": "all-confined",
+      "omitted_reason": null,
+      "readback_valid": {},
+      "statuses": {
+        "cvc5": "unsat",
+        "z3": "unsat"
+      },
+      "verdict": "semantic-UNSAT"
+    },
+    {
+      "case": "confined_drop_unitTriangleOnPCircle",
+      "engines": {
+        "cvc5": {
+          "command": [
+            "cvc5",
+            "--lang=smt2",
+            "--tlimit-per=20000",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_u3_simultaneous_sixcenter_20260809/models/confined_drop_unitTriangleOnPCircle.smt2"
+          ],
+          "exit_code": 0,
+          "model_run": {
+            "command": [
+              "cvc5",
+              "--lang=smt2",
+              "--tlimit-per=20000",
+              "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_u3_simultaneous_sixcenter_20260809/models/confined_drop_unitTriangleOnPCircle.cvc5.model.smt2"
+            ],
+            "exit_code": 0,
+            "seconds": 0.049276,
+            "status": "sat",
+            "timed_out": false
+          },
+          "seconds": 0.048324,
+          "status": "sat",
+          "timed_out": false
+        },
+        "z3": {
+          "command": [
+            "z3",
+            "-T:20",
+            "-smt2",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_u3_simultaneous_sixcenter_20260809/models/confined_drop_unitTriangleOnPCircle.smt2"
+          ],
+          "exit_code": 0,
+          "model_run": {
+            "command": [
+              "z3",
+              "-T:20",
+              "-smt2",
+              "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_u3_simultaneous_sixcenter_20260809/models/confined_drop_unitTriangleOnPCircle.z3.model.smt2"
+            ],
+            "exit_code": 0,
+            "seconds": 0.039386,
+            "status": "sat",
+            "timed_out": false
+          },
+          "seconds": 0.026108,
+          "status": "sat",
+          "timed_out": false
+        }
+      },
+      "family": "leave-one-prefilter-out",
+      "omitted_reason": "unitTriangleOnPCircle",
+      "readback_valid": {
+        "cvc5": true,
+        "z3": true
+      },
+      "statuses": {
+        "cvc5": "sat",
+        "z3": "sat"
+      },
+      "verdict": "SAT-abstraction"
+    },
+    {
+      "case": "confined_drop_nontripleEquilateralOnPCircle",
+      "engines": {
+        "cvc5": {
+          "command": [
+            "cvc5",
+            "--lang=smt2",
+            "--tlimit-per=20000",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_u3_simultaneous_sixcenter_20260809/models/confined_drop_nontripleEquilateralOnPCircle.smt2"
+          ],
+          "exit_code": 0,
+          "model_run": {
+            "command": [
+              "cvc5",
+              "--lang=smt2",
+              "--tlimit-per=20000",
+              "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_u3_simultaneous_sixcenter_20260809/models/confined_drop_nontripleEquilateralOnPCircle.cvc5.model.smt2"
+            ],
+            "exit_code": 0,
+            "seconds": 0.077668,
+            "status": "sat",
+            "timed_out": false
+          },
+          "seconds": 0.075806,
+          "status": "sat",
+          "timed_out": false
+        },
+        "z3": {
+          "command": [
+            "z3",
+            "-T:20",
+            "-smt2",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_u3_simultaneous_sixcenter_20260809/models/confined_drop_nontripleEquilateralOnPCircle.smt2"
+          ],
+          "exit_code": 0,
+          "model_run": {
+            "command": [
+              "z3",
+              "-T:20",
+              "-smt2",
+              "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_u3_simultaneous_sixcenter_20260809/models/confined_drop_nontripleEquilateralOnPCircle.z3.model.smt2"
+            ],
+            "exit_code": 0,
+            "seconds": 0.095132,
+            "status": "sat",
+            "timed_out": false
+          },
+          "seconds": 0.046626,
+          "status": "sat",
+          "timed_out": false
+        }
+      },
+      "family": "leave-one-prefilter-out",
+      "omitted_reason": "nontripleEquilateralOnPCircle",
+      "readback_valid": {
+        "cvc5": true,
+        "z3": true
+      },
+      "statuses": {
+        "cvc5": "sat",
+        "z3": "sat"
+      },
+      "verdict": "SAT-abstraction"
+    },
+    {
+      "case": "confined_drop_equilateralOppositePoint",
+      "engines": {
+        "cvc5": {
+          "command": [
+            "cvc5",
+            "--lang=smt2",
+            "--tlimit-per=20000",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_u3_simultaneous_sixcenter_20260809/models/confined_drop_equilateralOppositePoint.smt2"
+          ],
+          "exit_code": 0,
+          "seconds": 0.387569,
+          "status": "unsat",
+          "timed_out": false
+        },
+        "z3": {
+          "command": [
+            "z3",
+            "-T:20",
+            "-smt2",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_u3_simultaneous_sixcenter_20260809/models/confined_drop_equilateralOppositePoint.smt2"
+          ],
+          "exit_code": 0,
+          "seconds": 0.07832,
+          "status": "unsat",
+          "timed_out": false
+        }
+      },
+      "family": "leave-one-prefilter-out",
+      "omitted_reason": "equilateralOppositePoint",
+      "readback_valid": {},
+      "statuses": {
+        "cvc5": "unsat",
+        "z3": "unsat"
+      },
+      "verdict": "relaxation-UNSAT"
+    },
+    {
+      "case": "confined_drop_equilateralBisector",
+      "engines": {
+        "cvc5": {
+          "command": [
+            "cvc5",
+            "--lang=smt2",
+            "--tlimit-per=20000",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_u3_simultaneous_sixcenter_20260809/models/confined_drop_equilateralBisector.smt2"
+          ],
+          "exit_code": 0,
+          "model_run": {
+            "command": [
+              "cvc5",
+              "--lang=smt2",
+              "--tlimit-per=20000",
+              "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_u3_simultaneous_sixcenter_20260809/models/confined_drop_equilateralBisector.cvc5.model.smt2"
+            ],
+            "exit_code": 0,
+            "seconds": 0.095308,
+            "status": "sat",
+            "timed_out": false
+          },
+          "seconds": 0.093258,
+          "status": "sat",
+          "timed_out": false
+        },
+        "z3": {
+          "command": [
+            "z3",
+            "-T:20",
+            "-smt2",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_u3_simultaneous_sixcenter_20260809/models/confined_drop_equilateralBisector.smt2"
+          ],
+          "exit_code": 0,
+          "model_run": {
+            "command": [
+              "z3",
+              "-T:20",
+              "-smt2",
+              "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_u3_simultaneous_sixcenter_20260809/models/confined_drop_equilateralBisector.z3.model.smt2"
+            ],
+            "exit_code": 0,
+            "seconds": 0.098831,
+            "status": "sat",
+            "timed_out": false
+          },
+          "seconds": 0.050155,
+          "status": "sat",
+          "timed_out": false
+        }
+      },
+      "family": "leave-one-prefilter-out",
+      "omitted_reason": "equilateralBisector",
+      "readback_valid": {
+        "cvc5": true,
+        "z3": true
+      },
+      "statuses": {
+        "cvc5": "sat",
+        "z3": "sat"
+      },
+      "verdict": "SAT-abstraction"
+    },
+    {
+      "case": "confined_drop_commonBisectorTriple",
+      "engines": {
+        "cvc5": {
+          "command": [
+            "cvc5",
+            "--lang=smt2",
+            "--tlimit-per=20000",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_u3_simultaneous_sixcenter_20260809/models/confined_drop_commonBisectorTriple.smt2"
+          ],
+          "exit_code": 0,
+          "seconds": 0.390061,
+          "status": "unsat",
+          "timed_out": false
+        },
+        "z3": {
+          "command": [
+            "z3",
+            "-T:20",
+            "-smt2",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_u3_simultaneous_sixcenter_20260809/models/confined_drop_commonBisectorTriple.smt2"
+          ],
+          "exit_code": 0,
+          "seconds": 0.082309,
+          "status": "unsat",
+          "timed_out": false
+        }
+      },
+      "family": "leave-one-prefilter-out",
+      "omitted_reason": "commonBisectorTriple",
+      "readback_valid": {},
+      "statuses": {
+        "cvc5": "unsat",
+        "z3": "unsat"
+      },
+      "verdict": "relaxation-UNSAT"
+    },
+    {
+      "case": "confined_drop_equilateralCircumcenterOnPCircle",
+      "engines": {
+        "cvc5": {
+          "command": [
+            "cvc5",
+            "--lang=smt2",
+            "--tlimit-per=20000",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_u3_simultaneous_sixcenter_20260809/models/confined_drop_equilateralCircumcenterOnPCircle.smt2"
+          ],
+          "exit_code": 0,
+          "model_run": {
+            "command": [
+              "cvc5",
+              "--lang=smt2",
+              "--tlimit-per=20000",
+              "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_u3_simultaneous_sixcenter_20260809/models/confined_drop_equilateralCircumcenterOnPCircle.cvc5.model.smt2"
+            ],
+            "exit_code": 0,
+            "seconds": 0.095815,
+            "status": "sat",
+            "timed_out": false
+          },
+          "seconds": 0.093938,
+          "status": "sat",
+          "timed_out": false
+        },
+        "z3": {
+          "command": [
+            "z3",
+            "-T:20",
+            "-smt2",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_u3_simultaneous_sixcenter_20260809/models/confined_drop_equilateralCircumcenterOnPCircle.smt2"
+          ],
+          "exit_code": 0,
+          "model_run": {
+            "command": [
+              "z3",
+              "-T:20",
+              "-smt2",
+              "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_u3_simultaneous_sixcenter_20260809/models/confined_drop_equilateralCircumcenterOnPCircle.z3.model.smt2"
+            ],
+            "exit_code": 0,
+            "seconds": 0.125118,
+            "status": "sat",
+            "timed_out": false
+          },
+          "seconds": 0.071984,
+          "status": "sat",
+          "timed_out": false
+        }
+      },
+      "family": "leave-one-prefilter-out",
+      "omitted_reason": "equilateralCircumcenterOnPCircle",
+      "readback_valid": {
+        "cvc5": true,
+        "z3": true
+      },
+      "statuses": {
+        "cvc5": "sat",
+        "z3": "sat"
+      },
+      "verdict": "SAT-abstraction"
+    },
+    {
+      "case": "confined_drop_equilateralOuterPoint",
+      "engines": {
+        "cvc5": {
+          "command": [
+            "cvc5",
+            "--lang=smt2",
+            "--tlimit-per=20000",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_u3_simultaneous_sixcenter_20260809/models/confined_drop_equilateralOuterPoint.smt2"
+          ],
+          "exit_code": 0,
+          "model_run": {
+            "command": [
+              "cvc5",
+              "--lang=smt2",
+              "--tlimit-per=20000",
+              "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_u3_simultaneous_sixcenter_20260809/models/confined_drop_equilateralOuterPoint.cvc5.model.smt2"
+            ],
+            "exit_code": 0,
+            "seconds": 0.123176,
+            "status": "sat",
+            "timed_out": false
+          },
+          "seconds": 0.120449,
+          "status": "sat",
+          "timed_out": false
+        },
+        "z3": {
+          "command": [
+            "z3",
+            "-T:20",
+            "-smt2",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_u3_simultaneous_sixcenter_20260809/models/confined_drop_equilateralOuterPoint.smt2"
+          ],
+          "exit_code": 0,
+          "model_run": {
+            "command": [
+              "z3",
+              "-T:20",
+              "-smt2",
+              "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_u3_simultaneous_sixcenter_20260809/models/confined_drop_equilateralOuterPoint.z3.model.smt2"
+            ],
+            "exit_code": 0,
+            "seconds": 0.117452,
+            "status": "sat",
+            "timed_out": false
+          },
+          "seconds": 0.05874,
+          "status": "sat",
+          "timed_out": false
+        }
+      },
+      "family": "leave-one-prefilter-out",
+      "omitted_reason": "equilateralOuterPoint",
+      "readback_valid": {
+        "cvc5": true,
+        "z3": true
+      },
+      "statuses": {
+        "cvc5": "sat",
+        "z3": "sat"
+      },
+      "verdict": "SAT-abstraction"
+    },
+    {
+      "case": "live_escape_or_shell",
+      "engines": {
+        "cvc5": {
+          "command": [
+            "cvc5",
+            "--lang=smt2",
+            "--tlimit-per=20000",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_u3_simultaneous_sixcenter_20260809/models/live_escape_or_shell.smt2"
+          ],
+          "exit_code": 0,
+          "model_run": {
+            "command": [
+              "cvc5",
+              "--lang=smt2",
+              "--tlimit-per=20000",
+              "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_u3_simultaneous_sixcenter_20260809/models/live_escape_or_shell.cvc5.model.smt2"
+            ],
+            "exit_code": 0,
+            "seconds": 0.093037,
+            "status": "sat",
+            "timed_out": false
+          },
+          "seconds": 0.09542,
+          "status": "sat",
+          "timed_out": false
+        },
+        "z3": {
+          "command": [
+            "z3",
+            "-T:20",
+            "-smt2",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_u3_simultaneous_sixcenter_20260809/models/live_escape_or_shell.smt2"
+          ],
+          "exit_code": 0,
+          "model_run": {
+            "command": [
+              "z3",
+              "-T:20",
+              "-smt2",
+              "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_u3_simultaneous_sixcenter_20260809/models/live_escape_or_shell.z3.model.smt2"
+            ],
+            "exit_code": 0,
+            "seconds": 0.06075,
+            "status": "sat",
+            "timed_out": false
+          },
+          "seconds": 0.072161,
+          "status": "sat",
+          "timed_out": false
+        }
+      },
+      "family": "live-abstraction",
+      "omitted_reason": null,
+      "readback_valid": {
+        "cvc5": true,
+        "z3": true
+      },
+      "statuses": {
+        "cvc5": "sat",
+        "z3": "sat"
+      },
+      "verdict": "SAT-abstraction"
+    }
+  ],
+  "scope": {
+    "no_claims": [
+      "counterexample",
+      "universal closure",
+      "Lean proof closure",
+      "Euclidean realization"
+    ],
+    "sat": "finite SAT abstraction only",
+    "unsat": "bounded all-confined finite schema only; not universal or Lean closure"
+  },
+  "structural_pattern_count": 468
+}

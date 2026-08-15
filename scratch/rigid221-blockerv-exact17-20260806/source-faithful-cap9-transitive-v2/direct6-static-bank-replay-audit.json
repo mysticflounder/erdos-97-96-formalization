@@ -1,0 +1,1396 @@
+{
+  "artifacts": [
+    {
+      "classification_counts": {
+        "five_point": 13,
+        "schema_g": 10,
+        "uncovered": 1
+      },
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-transitive-v2/direct6-wave-20260808/pinned-direct6-generic-two-kalmanson-cegar-o0-p0-1-s0.json",
+      "prefix_exact": false,
+      "prefix_length": 524,
+      "prefix_witness_drift_count": 33,
+      "sha256": "e78405c5890ecc838d2b4f2ea04fabe628bbd3ee9776373ec5b67adc7bff4a85",
+      "suffix_length": 24,
+      "terminal": "MODEL_LIMIT"
+    },
+    {
+      "classification_counts": {
+        "five_point": 16,
+        "schema_g": 5,
+        "uncovered": 3
+      },
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-transitive-v2/direct6-wave-20260808/pinned-direct6-generic-two-kalmanson-cegar-o0-p0-1-s11.json",
+      "prefix_exact": false,
+      "prefix_length": 524,
+      "prefix_witness_drift_count": 33,
+      "sha256": "f4b7128b0ccb4b38efa3500253261d2aa315a7785501110b6877dbdaece82b41",
+      "suffix_length": 24,
+      "terminal": "MODEL_LIMIT"
+    },
+    {
+      "classification_counts": {
+        "five_point": 13,
+        "schema_g": 10,
+        "uncovered": 1
+      },
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-transitive-v2/direct6-wave-20260808/pinned-direct6-generic-two-kalmanson-cegar-o0-p0-1-s14.json",
+      "prefix_exact": false,
+      "prefix_length": 524,
+      "prefix_witness_drift_count": 33,
+      "sha256": "69c3af569a1146cb00a2fde84ece23bc26a62dbeea0434016efd4927d999a970",
+      "suffix_length": 24,
+      "terminal": "MODEL_LIMIT"
+    },
+    {
+      "classification_counts": {
+        "five_point": 16,
+        "schema_g": 7,
+        "uncovered": 1
+      },
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-transitive-v2/direct6-wave-20260808/pinned-direct6-generic-two-kalmanson-cegar-o0-p0-1-s20.json",
+      "prefix_exact": false,
+      "prefix_length": 524,
+      "prefix_witness_drift_count": 33,
+      "sha256": "633456ecf664a5dba8f151f5d409c088ffdd362f49851139eca1f5f90e87d03c",
+      "suffix_length": 24,
+      "terminal": "MODEL_LIMIT"
+    },
+    {
+      "classification_counts": {
+        "five_point": 10,
+        "schema_g": 9,
+        "uncovered": 5
+      },
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-transitive-v2/direct6-wave-20260808/pinned-direct6-generic-two-kalmanson-cegar-o0-p0-1-s21.json",
+      "prefix_exact": false,
+      "prefix_length": 524,
+      "prefix_witness_drift_count": 33,
+      "sha256": "23a393c35347f0a680df26b1d700325f103691644da16593d994516e98702ff8",
+      "suffix_length": 24,
+      "terminal": "MODEL_LIMIT"
+    },
+    {
+      "classification_counts": {
+        "five_point": 15,
+        "schema_g": 8,
+        "schema_g+five_point": 1
+      },
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-transitive-v2/direct6-wave-20260808/pinned-direct6-generic-two-kalmanson-cegar-o0-p0-1-s23.json",
+      "prefix_exact": false,
+      "prefix_length": 524,
+      "prefix_witness_drift_count": 33,
+      "sha256": "c5399213e22a4d644b8f6ba311724cb26e1ffef100ac00dfc23d22b3e8db2150",
+      "suffix_length": 24,
+      "terminal": "MODEL_LIMIT"
+    },
+    {
+      "classification_counts": {
+        "five_point": 13,
+        "schema_g": 9,
+        "uncovered": 2
+      },
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-transitive-v2/direct6-wave-20260808/pinned-direct6-generic-two-kalmanson-cegar-o0-p0-1-s3.json",
+      "prefix_exact": false,
+      "prefix_length": 524,
+      "prefix_witness_drift_count": 33,
+      "sha256": "90abe8c6bc6bc3785954e7bd957820a051c728d2b7a75b353ac19ed5642ca6a4",
+      "suffix_length": 24,
+      "terminal": "MODEL_LIMIT"
+    },
+    {
+      "classification_counts": {
+        "five_point": 14,
+        "schema_g": 9,
+        "uncovered": 1
+      },
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-transitive-v2/direct6-wave-20260808/pinned-direct6-generic-two-kalmanson-cegar-o0-p0-1-s4.json",
+      "prefix_exact": false,
+      "prefix_length": 524,
+      "prefix_witness_drift_count": 33,
+      "sha256": "c8920d651ea81f3ebaacd10999f402ce2837031834f7e388f5e88386120f6577",
+      "suffix_length": 24,
+      "terminal": "MODEL_LIMIT"
+    },
+    {
+      "classification_counts": {
+        "five_point": 15,
+        "schema_g": 4,
+        "uncovered": 5
+      },
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-transitive-v2/direct6-wave-20260808/pinned-direct6-generic-two-kalmanson-cegar-o0-p0-1-s6.json",
+      "prefix_exact": false,
+      "prefix_length": 524,
+      "prefix_witness_drift_count": 33,
+      "sha256": "822d69529c53814f76dbe3bfd64bd4c24791fcb36677d567547f993ff84fc2cf",
+      "suffix_length": 24,
+      "terminal": "MODEL_LIMIT"
+    },
+    {
+      "classification_counts": {
+        "five_point": 14,
+        "schema_g": 7,
+        "uncovered": 3
+      },
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-transitive-v2/direct6-wave-20260808/pinned-direct6-generic-two-kalmanson-cegar-o0-p0-1-s7.json",
+      "prefix_exact": false,
+      "prefix_length": 524,
+      "prefix_witness_drift_count": 33,
+      "sha256": "6d211afd29d595df972ce794c13df613d7501ab39a05e070a22ced1f0bb54150",
+      "suffix_length": 24,
+      "terminal": "MODEL_LIMIT"
+    },
+    {
+      "classification_counts": {
+        "five_point": 11,
+        "schema_g": 11,
+        "uncovered": 2
+      },
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-transitive-v2/direct6-wave-20260808/pinned-direct6-generic-two-kalmanson-cegar-o0-p0-1-s8.json",
+      "prefix_exact": false,
+      "prefix_length": 524,
+      "prefix_witness_drift_count": 33,
+      "sha256": "f7a697e15230484a8e5e0cc830a50e53bc41395cf1679c4934149861f7d0a5e3",
+      "suffix_length": 24,
+      "terminal": "MODEL_LIMIT"
+    },
+    {
+      "classification_counts": {
+        "five_point": 15,
+        "schema_g": 6,
+        "uncovered": 3
+      },
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-transitive-v2/direct6-wave-20260808/pinned-direct6-generic-two-kalmanson-cegar-o0-p0-1-s9.json",
+      "prefix_exact": false,
+      "prefix_length": 524,
+      "prefix_witness_drift_count": 33,
+      "sha256": "477b6e38bfe680094cb6f1d0ebf8091443342680f5a8a6b4d39427a05c55437a",
+      "suffix_length": 24,
+      "terminal": "MODEL_LIMIT"
+    }
+  ],
+  "classification_counts": {
+    "five_point": 165,
+    "schema_g": 95,
+    "schema_g+five_point": 1,
+    "uncovered": 27
+  },
+  "completed_artifact_count": 12,
+  "five_point_signature_count": 61880,
+  "parent": {
+    "learned_length": 524,
+    "order": [
+      0,
+      6,
+      8,
+      11,
+      10,
+      9,
+      12,
+      7,
+      2,
+      15,
+      16,
+      3,
+      4,
+      5,
+      1,
+      13,
+      14
+    ],
+    "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-transitive-v2/pinned-direct5-generic-two-kalmanson-cegar-o0-p0-1-s31.json",
+    "sha256": "95c6742056f3fdc9ff1165a8d1fd523e98fcf0ae1ee847e557d62e9ca8e21780"
+  },
+  "schema": "p97-exact17-direct6-static-bank-prototype-v1",
+  "schema_g_signature_count": 148512,
+  "scope": "Completed source-frozen direct6 artifact suffixes only; this is static theorem-bank coverage, not exact-17 or universal closure.",
+  "smoke": {
+    "requested_limit": 0,
+    "status": "SKIPPED"
+  },
+  "stage_counts": {
+    "equality-convex-five-point": 78,
+    "equality-convex-five-point-reverse": 86,
+    "equality-convex-six-point-four-selected-row-kalmanson-g": 40,
+    "equality-convex-six-point-four-selected-row-kalmanson-g-reverse": 56,
+    "equality-convex-six-point-two-circle-arc-overtake-order": 2,
+    "equality-convex-six-point-two-circle-arc-overtake-order-reverse": 1,
+    "equality-convex-six-point-two-circle-order": 1,
+    "equality-convex-six-point-two-circle-order-reverse": 1,
+    "equality-convex-two-kalmanson-cancellation": 22,
+    "equality-equilateral-bisector-collision": 1
+  },
+  "stage_family_counts": {
+    "equality-convex-five-point-reverse::five_point": 86,
+    "equality-convex-five-point::five_point": 78,
+    "equality-convex-six-point-four-selected-row-kalmanson-g-reverse::schema_g": 56,
+    "equality-convex-six-point-four-selected-row-kalmanson-g::schema_g": 39,
+    "equality-convex-six-point-four-selected-row-kalmanson-g::schema_g+five_point": 1,
+    "equality-convex-six-point-two-circle-arc-overtake-order-reverse::uncovered": 1,
+    "equality-convex-six-point-two-circle-arc-overtake-order::uncovered": 2,
+    "equality-convex-six-point-two-circle-order-reverse::uncovered": 1,
+    "equality-convex-six-point-two-circle-order::uncovered": 1,
+    "equality-convex-two-kalmanson-cancellation::uncovered": 22,
+    "equality-equilateral-bisector-collision::five_point": 1
+  },
+  "suffix_record_count": 288,
+  "uncovered_records": [
+    {
+      "artifact": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-transitive-v2/direct6-wave-20260808/pinned-direct6-generic-two-kalmanson-cegar-o0-p0-1-s0.json",
+      "rows": [
+        {
+          "center": 2,
+          "exact": false,
+          "support": [
+            9,
+            11
+          ]
+        },
+        {
+          "center": 3,
+          "exact": false,
+          "support": [
+            2,
+            9
+          ]
+        },
+        {
+          "center": 7,
+          "exact": true,
+          "support": [
+            2,
+            3,
+            4,
+            11
+          ]
+        },
+        {
+          "center": 9,
+          "exact": true,
+          "support": [
+            3,
+            5,
+            6,
+            7
+          ]
+        },
+        {
+          "center": 15,
+          "exact": false,
+          "support": [
+            2,
+            7
+          ]
+        }
+      ],
+      "stage": "equality-convex-two-kalmanson-cancellation"
+    },
+    {
+      "artifact": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-transitive-v2/direct6-wave-20260808/pinned-direct6-generic-two-kalmanson-cegar-o0-p0-1-s11.json",
+      "rows": [
+        {
+          "center": 5,
+          "exact": false,
+          "support": [
+            8,
+            12
+          ]
+        },
+        {
+          "center": 6,
+          "exact": false,
+          "support": [
+            2,
+            5
+          ]
+        },
+        {
+          "center": 7,
+          "exact": true,
+          "support": [
+            5,
+            11,
+            12,
+            16
+          ]
+        },
+        {
+          "center": 12,
+          "exact": false,
+          "support": [
+            2,
+            7
+          ]
+        },
+        {
+          "center": 15,
+          "exact": false,
+          "support": [
+            7,
+            8
+          ]
+        }
+      ],
+      "stage": "equality-convex-two-kalmanson-cancellation"
+    },
+    {
+      "artifact": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-transitive-v2/direct6-wave-20260808/pinned-direct6-generic-two-kalmanson-cegar-o0-p0-1-s11.json",
+      "rows": [
+        {
+          "center": 5,
+          "exact": false,
+          "support": [
+            8,
+            12
+          ]
+        },
+        {
+          "center": 7,
+          "exact": true,
+          "support": [
+            5,
+            11,
+            12,
+            16
+          ]
+        },
+        {
+          "center": 12,
+          "exact": false,
+          "support": [
+            7,
+            16
+          ]
+        },
+        {
+          "center": 15,
+          "exact": false,
+          "support": [
+            7,
+            8
+          ]
+        }
+      ],
+      "stage": "equality-convex-two-kalmanson-cancellation"
+    },
+    {
+      "artifact": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-transitive-v2/direct6-wave-20260808/pinned-direct6-generic-two-kalmanson-cegar-o0-p0-1-s11.json",
+      "rows": [
+        {
+          "center": 1,
+          "exact": false,
+          "support": [
+            3,
+            5
+          ]
+        },
+        {
+          "center": 5,
+          "exact": false,
+          "support": [
+            1,
+            3,
+            12,
+            14
+          ]
+        },
+        {
+          "center": 14,
+          "exact": false,
+          "support": [
+            1,
+            12,
+            16
+          ]
+        }
+      ],
+      "stage": "equality-convex-six-point-two-circle-arc-overtake-order"
+    },
+    {
+      "artifact": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-transitive-v2/direct6-wave-20260808/pinned-direct6-generic-two-kalmanson-cegar-o0-p0-1-s14.json",
+      "rows": [
+        {
+          "center": 1,
+          "exact": false,
+          "support": [
+            3,
+            10
+          ]
+        },
+        {
+          "center": 3,
+          "exact": false,
+          "support": [
+            10,
+            12
+          ]
+        },
+        {
+          "center": 5,
+          "exact": false,
+          "support": [
+            1,
+            12
+          ]
+        },
+        {
+          "center": 9,
+          "exact": true,
+          "support": [
+            1,
+            3,
+            6,
+            7
+          ]
+        }
+      ],
+      "stage": "equality-convex-two-kalmanson-cancellation"
+    },
+    {
+      "artifact": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-transitive-v2/direct6-wave-20260808/pinned-direct6-generic-two-kalmanson-cegar-o0-p0-1-s20.json",
+      "rows": [
+        {
+          "center": 6,
+          "exact": false,
+          "support": [
+            8,
+            14
+          ]
+        },
+        {
+          "center": 8,
+          "exact": true,
+          "support": [
+            4,
+            6,
+            9,
+            14
+          ]
+        },
+        {
+          "center": 11,
+          "exact": true,
+          "support": [
+            1,
+            3,
+            8,
+            10
+          ]
+        },
+        {
+          "center": 16,
+          "exact": false,
+          "support": [
+            1,
+            6
+          ]
+        }
+      ],
+      "stage": "equality-convex-two-kalmanson-cancellation"
+    },
+    {
+      "artifact": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-transitive-v2/direct6-wave-20260808/pinned-direct6-generic-two-kalmanson-cegar-o0-p0-1-s21.json",
+      "rows": [
+        {
+          "center": 4,
+          "exact": false,
+          "support": [
+            7,
+            9
+          ]
+        },
+        {
+          "center": 7,
+          "exact": true,
+          "support": [
+            0,
+            3,
+            11,
+            15
+          ]
+        },
+        {
+          "center": 9,
+          "exact": true,
+          "support": [
+            4,
+            6,
+            7,
+            15
+          ]
+        },
+        {
+          "center": 15,
+          "exact": false,
+          "support": [
+            5,
+            9
+          ]
+        }
+      ],
+      "stage": "equality-convex-six-point-two-circle-order-reverse"
+    },
+    {
+      "artifact": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-transitive-v2/direct6-wave-20260808/pinned-direct6-generic-two-kalmanson-cegar-o0-p0-1-s21.json",
+      "rows": [
+        {
+          "center": 10,
+          "exact": true,
+          "support": [
+            1,
+            4,
+            8,
+            9
+          ]
+        },
+        {
+          "center": 12,
+          "exact": false,
+          "support": [
+            10,
+            15
+          ]
+        },
+        {
+          "center": 14,
+          "exact": false,
+          "support": [
+            1,
+            15
+          ]
+        },
+        {
+          "center": 15,
+          "exact": false,
+          "support": [
+            9,
+            10
+          ]
+        }
+      ],
+      "stage": "equality-convex-two-kalmanson-cancellation"
+    },
+    {
+      "artifact": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-transitive-v2/direct6-wave-20260808/pinned-direct6-generic-two-kalmanson-cegar-o0-p0-1-s21.json",
+      "rows": [
+        {
+          "center": 10,
+          "exact": true,
+          "support": [
+            1,
+            4,
+            8,
+            9
+          ]
+        },
+        {
+          "center": 11,
+          "exact": true,
+          "support": [
+            8,
+            10,
+            14,
+            15
+          ]
+        },
+        {
+          "center": 12,
+          "exact": false,
+          "support": [
+            10,
+            15
+          ]
+        },
+        {
+          "center": 15,
+          "exact": false,
+          "support": [
+            9,
+            10
+          ]
+        }
+      ],
+      "stage": "equality-convex-two-kalmanson-cancellation"
+    },
+    {
+      "artifact": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-transitive-v2/direct6-wave-20260808/pinned-direct6-generic-two-kalmanson-cegar-o0-p0-1-s21.json",
+      "rows": [
+        {
+          "center": 10,
+          "exact": true,
+          "support": [
+            4,
+            8,
+            9,
+            13
+          ]
+        },
+        {
+          "center": 12,
+          "exact": false,
+          "support": [
+            10,
+            15
+          ]
+        },
+        {
+          "center": 14,
+          "exact": false,
+          "support": [
+            4,
+            15
+          ]
+        },
+        {
+          "center": 15,
+          "exact": false,
+          "support": [
+            9,
+            10
+          ]
+        }
+      ],
+      "stage": "equality-convex-two-kalmanson-cancellation"
+    },
+    {
+      "artifact": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-transitive-v2/direct6-wave-20260808/pinned-direct6-generic-two-kalmanson-cegar-o0-p0-1-s21.json",
+      "rows": [
+        {
+          "center": 10,
+          "exact": true,
+          "support": [
+            4,
+            8,
+            9,
+            13
+          ]
+        },
+        {
+          "center": 11,
+          "exact": true,
+          "support": [
+            8,
+            10,
+            14,
+            15
+          ]
+        },
+        {
+          "center": 12,
+          "exact": false,
+          "support": [
+            10,
+            15
+          ]
+        },
+        {
+          "center": 15,
+          "exact": false,
+          "support": [
+            9,
+            10
+          ]
+        }
+      ],
+      "stage": "equality-convex-two-kalmanson-cancellation"
+    },
+    {
+      "artifact": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-transitive-v2/direct6-wave-20260808/pinned-direct6-generic-two-kalmanson-cegar-o0-p0-1-s3.json",
+      "rows": [
+        {
+          "center": 4,
+          "exact": false,
+          "support": [
+            3,
+            16
+          ]
+        },
+        {
+          "center": 6,
+          "exact": true,
+          "support": [
+            9,
+            11,
+            12,
+            13
+          ]
+        },
+        {
+          "center": 8,
+          "exact": true,
+          "support": [
+            6,
+            9,
+            14,
+            16
+          ]
+        },
+        {
+          "center": 11,
+          "exact": true,
+          "support": [
+            3,
+            4,
+            8,
+            10
+          ]
+        },
+        {
+          "center": 16,
+          "exact": false,
+          "support": [
+            8,
+            11
+          ]
+        }
+      ],
+      "stage": "equality-convex-two-kalmanson-cancellation"
+    },
+    {
+      "artifact": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-transitive-v2/direct6-wave-20260808/pinned-direct6-generic-two-kalmanson-cegar-o0-p0-1-s3.json",
+      "rows": [
+        {
+          "center": 6,
+          "exact": false,
+          "support": [
+            3,
+            11
+          ]
+        },
+        {
+          "center": 7,
+          "exact": false,
+          "support": [
+            3,
+            11
+          ]
+        },
+        {
+          "center": 9,
+          "exact": true,
+          "support": [
+            5,
+            6,
+            7,
+            13
+          ]
+        },
+        {
+          "center": 13,
+          "exact": false,
+          "support": [
+            6,
+            7
+          ]
+        }
+      ],
+      "stage": "equality-convex-two-kalmanson-cancellation"
+    },
+    {
+      "artifact": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-transitive-v2/direct6-wave-20260808/pinned-direct6-generic-two-kalmanson-cegar-o0-p0-1-s4.json",
+      "rows": [
+        {
+          "center": 8,
+          "exact": true,
+          "support": [
+            6,
+            9,
+            13,
+            16
+          ]
+        },
+        {
+          "center": 9,
+          "exact": true,
+          "support": [
+            3,
+            6,
+            7,
+            14
+          ]
+        },
+        {
+          "center": 13,
+          "exact": true,
+          "support": [
+            0,
+            2,
+            11,
+            14
+          ]
+        },
+        {
+          "center": 14,
+          "exact": false,
+          "support": [
+            2,
+            13
+          ]
+        }
+      ],
+      "stage": "equality-convex-two-kalmanson-cancellation"
+    },
+    {
+      "artifact": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-transitive-v2/direct6-wave-20260808/pinned-direct6-generic-two-kalmanson-cegar-o0-p0-1-s6.json",
+      "rows": [
+        {
+          "center": 3,
+          "exact": false,
+          "support": [
+            0,
+            13,
+            16
+          ]
+        },
+        {
+          "center": 7,
+          "exact": false,
+          "support": [
+            3,
+            9,
+            13,
+            16
+          ]
+        },
+        {
+          "center": 9,
+          "exact": true,
+          "support": [
+            5,
+            6,
+            7,
+            16
+          ]
+        }
+      ],
+      "stage": "equality-convex-six-point-two-circle-arc-overtake-order"
+    },
+    {
+      "artifact": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-transitive-v2/direct6-wave-20260808/pinned-direct6-generic-two-kalmanson-cegar-o0-p0-1-s6.json",
+      "rows": [
+        {
+          "center": 6,
+          "exact": true,
+          "support": [
+            2,
+            4,
+            11,
+            14
+          ]
+        },
+        {
+          "center": 8,
+          "exact": true,
+          "support": [
+            1,
+            3,
+            6,
+            9
+          ]
+        },
+        {
+          "center": 10,
+          "exact": true,
+          "support": [
+            8,
+            9,
+            14,
+            15
+          ]
+        },
+        {
+          "center": 14,
+          "exact": false,
+          "support": [
+            2,
+            6
+          ]
+        }
+      ],
+      "stage": "equality-convex-two-kalmanson-cancellation"
+    },
+    {
+      "artifact": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-transitive-v2/direct6-wave-20260808/pinned-direct6-generic-two-kalmanson-cegar-o0-p0-1-s6.json",
+      "rows": [
+        {
+          "center": 4,
+          "exact": false,
+          "support": [
+            11,
+            16
+          ]
+        },
+        {
+          "center": 7,
+          "exact": false,
+          "support": [
+            3,
+            4,
+            11,
+            16
+          ]
+        },
+        {
+          "center": 11,
+          "exact": true,
+          "support": [
+            4,
+            8,
+            10,
+            13
+          ]
+        },
+        {
+          "center": 16,
+          "exact": false,
+          "support": [
+            3,
+            10
+          ]
+        }
+      ],
+      "stage": "equality-convex-two-kalmanson-cancellation"
+    },
+    {
+      "artifact": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-transitive-v2/direct6-wave-20260808/pinned-direct6-generic-two-kalmanson-cegar-o0-p0-1-s6.json",
+      "rows": [
+        {
+          "center": 3,
+          "exact": false,
+          "support": [
+            0,
+            16
+          ]
+        },
+        {
+          "center": 7,
+          "exact": false,
+          "support": [
+            3,
+            16
+          ]
+        },
+        {
+          "center": 13,
+          "exact": false,
+          "support": [
+            0,
+            14
+          ]
+        },
+        {
+          "center": 16,
+          "exact": false,
+          "support": [
+            3,
+            14
+          ]
+        }
+      ],
+      "stage": "equality-convex-two-kalmanson-cancellation"
+    },
+    {
+      "artifact": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-transitive-v2/direct6-wave-20260808/pinned-direct6-generic-two-kalmanson-cegar-o0-p0-1-s6.json",
+      "rows": [
+        {
+          "center": 5,
+          "exact": false,
+          "support": [
+            13,
+            16
+          ]
+        },
+        {
+          "center": 6,
+          "exact": false,
+          "support": [
+            3,
+            11
+          ]
+        },
+        {
+          "center": 10,
+          "exact": true,
+          "support": [
+            3,
+            5,
+            8,
+            9
+          ]
+        },
+        {
+          "center": 11,
+          "exact": true,
+          "support": [
+            8,
+            10,
+            13,
+            16
+          ]
+        },
+        {
+          "center": 16,
+          "exact": false,
+          "support": [
+            5,
+            11
+          ]
+        }
+      ],
+      "stage": "equality-convex-two-kalmanson-cancellation"
+    },
+    {
+      "artifact": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-transitive-v2/direct6-wave-20260808/pinned-direct6-generic-two-kalmanson-cegar-o0-p0-1-s7.json",
+      "rows": [
+        {
+          "center": 4,
+          "exact": false,
+          "support": [
+            0,
+            16
+          ]
+        },
+        {
+          "center": 10,
+          "exact": true,
+          "support": [
+            4,
+            8,
+            9,
+            13
+          ]
+        },
+        {
+          "center": 13,
+          "exact": false,
+          "support": [
+            4,
+            10,
+            16
+          ]
+        },
+        {
+          "center": 16,
+          "exact": false,
+          "support": [
+            11,
+            13
+          ]
+        }
+      ],
+      "stage": "equality-convex-six-point-two-circle-order"
+    },
+    {
+      "artifact": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-transitive-v2/direct6-wave-20260808/pinned-direct6-generic-two-kalmanson-cegar-o0-p0-1-s7.json",
+      "rows": [
+        {
+          "center": 0,
+          "exact": false,
+          "support": [
+            6,
+            8
+          ]
+        },
+        {
+          "center": 6,
+          "exact": false,
+          "support": [
+            0,
+            8,
+            12,
+            14
+          ]
+        },
+        {
+          "center": 14,
+          "exact": false,
+          "support": [
+            0,
+            11,
+            12
+          ]
+        }
+      ],
+      "stage": "equality-convex-six-point-two-circle-arc-overtake-order-reverse"
+    },
+    {
+      "artifact": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-transitive-v2/direct6-wave-20260808/pinned-direct6-generic-two-kalmanson-cegar-o0-p0-1-s7.json",
+      "rows": [
+        {
+          "center": 4,
+          "exact": false,
+          "support": [
+            2,
+            15
+          ]
+        },
+        {
+          "center": 7,
+          "exact": false,
+          "support": [
+            2,
+            9
+          ]
+        },
+        {
+          "center": 9,
+          "exact": true,
+          "support": [
+            4,
+            6,
+            7,
+            16
+          ]
+        },
+        {
+          "center": 10,
+          "exact": true,
+          "support": [
+            1,
+            8,
+            9,
+            14
+          ]
+        },
+        {
+          "center": 14,
+          "exact": false,
+          "support": [
+            6,
+            15
+          ]
+        },
+        {
+          "center": 15,
+          "exact": true,
+          "support": [
+            7,
+            11,
+            14,
+            16
+          ]
+        }
+      ],
+      "stage": "equality-convex-two-kalmanson-cancellation"
+    },
+    {
+      "artifact": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-transitive-v2/direct6-wave-20260808/pinned-direct6-generic-two-kalmanson-cegar-o0-p0-1-s8.json",
+      "rows": [
+        {
+          "center": 6,
+          "exact": false,
+          "support": [
+            1,
+            8
+          ]
+        },
+        {
+          "center": 8,
+          "exact": true,
+          "support": [
+            4,
+            5,
+            6,
+            9
+          ]
+        },
+        {
+          "center": 10,
+          "exact": true,
+          "support": [
+            8,
+            9,
+            13,
+            15
+          ]
+        },
+        {
+          "center": 13,
+          "exact": false,
+          "support": [
+            5,
+            6
+          ]
+        },
+        {
+          "center": 14,
+          "exact": false,
+          "support": [
+            1,
+            13
+          ]
+        }
+      ],
+      "stage": "equality-convex-two-kalmanson-cancellation"
+    },
+    {
+      "artifact": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-transitive-v2/direct6-wave-20260808/pinned-direct6-generic-two-kalmanson-cegar-o0-p0-1-s8.json",
+      "rows": [
+        {
+          "center": 5,
+          "exact": false,
+          "support": [
+            11,
+            15
+          ]
+        },
+        {
+          "center": 7,
+          "exact": false,
+          "support": [
+            5,
+            14
+          ]
+        },
+        {
+          "center": 12,
+          "exact": true,
+          "support": [
+            3,
+            7,
+            11,
+            15
+          ]
+        },
+        {
+          "center": 14,
+          "exact": false,
+          "support": [
+            5,
+            12
+          ]
+        },
+        {
+          "center": 15,
+          "exact": false,
+          "support": [
+            12,
+            14
+          ]
+        }
+      ],
+      "stage": "equality-convex-two-kalmanson-cancellation"
+    },
+    {
+      "artifact": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-transitive-v2/direct6-wave-20260808/pinned-direct6-generic-two-kalmanson-cegar-o0-p0-1-s9.json",
+      "rows": [
+        {
+          "center": 4,
+          "exact": false,
+          "support": [
+            9,
+            13
+          ]
+        },
+        {
+          "center": 9,
+          "exact": true,
+          "support": [
+            3,
+            6,
+            7,
+            16
+          ]
+        },
+        {
+          "center": 10,
+          "exact": true,
+          "support": [
+            5,
+            8,
+            9,
+            13
+          ]
+        },
+        {
+          "center": 13,
+          "exact": false,
+          "support": [
+            3,
+            6
+          ]
+        }
+      ],
+      "stage": "equality-convex-two-kalmanson-cancellation"
+    },
+    {
+      "artifact": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-transitive-v2/direct6-wave-20260808/pinned-direct6-generic-two-kalmanson-cegar-o0-p0-1-s9.json",
+      "rows": [
+        {
+          "center": 3,
+          "exact": false,
+          "support": [
+            12,
+            14
+          ]
+        },
+        {
+          "center": 7,
+          "exact": false,
+          "support": [
+            2,
+            14
+          ]
+        },
+        {
+          "center": 14,
+          "exact": false,
+          "support": [
+            2,
+            7
+          ]
+        },
+        {
+          "center": 15,
+          "exact": false,
+          "support": [
+            7,
+            12
+          ]
+        }
+      ],
+      "stage": "equality-convex-two-kalmanson-cancellation"
+    },
+    {
+      "artifact": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-transitive-v2/direct6-wave-20260808/pinned-direct6-generic-two-kalmanson-cegar-o0-p0-1-s9.json",
+      "rows": [
+        {
+          "center": 3,
+          "exact": false,
+          "support": [
+            2,
+            14
+          ]
+        },
+        {
+          "center": 7,
+          "exact": false,
+          "support": [
+            2,
+            14
+          ]
+        },
+        {
+          "center": 9,
+          "exact": true,
+          "support": [
+            3,
+            6,
+            7,
+            16
+          ]
+        },
+        {
+          "center": 15,
+          "exact": false,
+          "support": [
+            3,
+            7
+          ]
+        }
+      ],
+      "stage": "equality-convex-two-kalmanson-cancellation"
+    }
+  ],
+  "wave": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-transitive-v2/direct6-wave-20260808"
+}

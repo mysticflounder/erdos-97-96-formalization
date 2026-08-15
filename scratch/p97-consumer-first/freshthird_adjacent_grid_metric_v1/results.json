@@ -1,0 +1,531 @@
+{
+  "classification": "bounded exact-17 CEGAR diagnostic; not P97 closure",
+  "smoke": [
+    {
+      "case": "smoke_convex_hexagon",
+      "z3": "sat",
+      "cvc5": "sat"
+    },
+    {
+      "case": "control_collinear",
+      "z3": "unsat",
+      "cvc5": "unsat"
+    },
+    {
+      "case": "control_bad_d2",
+      "z3": "unsat",
+      "cvc5": "unsat"
+    },
+    {
+      "case": "control_reversed_turn",
+      "z3": "unsat",
+      "cvc5": "unsat"
+    }
+  ],
+  "signatures": [
+    {
+      "orientation": "direct",
+      "radial_branch": 0,
+      "structural": "sat",
+      "signature": {
+        "orientation": "direct",
+        "radial_branch": 0,
+        "roles": {
+          "rho1": 6,
+          "rho2": 2,
+          "p1": 5,
+          "p2": 13,
+          "q_source": 4,
+          "q_other": 1,
+          "source5": 15
+        },
+        "blockers": [
+          2,
+          6
+        ],
+        "positions": [
+          14,
+          4,
+          12,
+          5,
+          10,
+          0,
+          1,
+          2,
+          3,
+          6,
+          7,
+          8,
+          9,
+          11,
+          13,
+          15,
+          16
+        ],
+        "caps": [
+          [
+            0,
+            2,
+            4,
+            5,
+            13,
+            14,
+            15,
+            16
+          ],
+          [
+            1,
+            3,
+            5,
+            6,
+            7,
+            8
+          ],
+          [
+            3,
+            4,
+            9,
+            10,
+            11,
+            12
+          ]
+        ],
+        "rows": [
+          [
+            0,
+            3,
+            4,
+            15
+          ],
+          [
+            0,
+            3,
+            4,
+            15
+          ]
+        ],
+        "radius_supports": [
+          [
+            1,
+            11,
+            13,
+            14
+          ],
+          [
+            0,
+            2,
+            8,
+            12
+          ]
+        ],
+        "grid_hits": [
+          [
+            1,
+            11
+          ],
+          [
+            8,
+            12
+          ]
+        ]
+      },
+      "stages": [
+        {
+          "stage": "geometry",
+          "z3": "sat",
+          "seconds": 14.138,
+          "independent_validation": "pass"
+        },
+        {
+          "stage": "grid_members",
+          "z3": "unknown:timeout",
+          "seconds": 32.514
+        }
+      ],
+      "terminal_cvc5": "unknown"
+    },
+    {
+      "orientation": "direct",
+      "radial_branch": 1,
+      "structural": "unsat"
+    },
+    {
+      "orientation": "direct",
+      "radial_branch": 2,
+      "structural": "sat",
+      "signature": {
+        "orientation": "direct",
+        "radial_branch": 2,
+        "roles": {
+          "rho1": 14,
+          "rho2": 2,
+          "p1": 12,
+          "p2": 4,
+          "q_source": 3,
+          "q_other": 1,
+          "source5": 16
+        },
+        "blockers": [
+          2,
+          6
+        ],
+        "positions": [
+          14,
+          15,
+          9,
+          5,
+          10,
+          0,
+          3,
+          2,
+          1,
+          7,
+          8,
+          6,
+          4,
+          13,
+          16,
+          12,
+          11
+        ],
+        "caps": [
+          [
+            0,
+            1,
+            4,
+            5,
+            13,
+            14,
+            15,
+            16
+          ],
+          [
+            3,
+            5,
+            6,
+            7,
+            8,
+            12
+          ],
+          [
+            2,
+            3,
+            4,
+            9,
+            10,
+            11
+          ]
+        ],
+        "rows": [
+          [
+            3,
+            4,
+            11,
+            16
+          ],
+          [
+            0,
+            3,
+            15,
+            16
+          ]
+        ],
+        "radius_supports": [
+          [
+            4,
+            5,
+            13,
+            15
+          ],
+          [
+            0,
+            1,
+            2,
+            12
+          ]
+        ],
+        "grid_hits": [
+          [
+            5,
+            4
+          ],
+          [
+            12,
+            2
+          ]
+        ]
+      },
+      "stages": [
+        {
+          "stage": "geometry",
+          "z3": "sat",
+          "seconds": 25.076,
+          "independent_validation": "pass"
+        },
+        {
+          "stage": "grid_members",
+          "z3": "unknown:timeout",
+          "seconds": 31.264
+        }
+      ],
+      "terminal_cvc5": "unknown"
+    },
+    {
+      "orientation": "direct",
+      "radial_branch": 3,
+      "structural": "unsat"
+    },
+    {
+      "orientation": "mirror",
+      "radial_branch": 0,
+      "structural": "unsat"
+    },
+    {
+      "orientation": "mirror",
+      "radial_branch": 1,
+      "structural": "sat",
+      "signature": {
+        "orientation": "mirror",
+        "radial_branch": 1,
+        "roles": {
+          "rho1": 16,
+          "rho2": 2,
+          "p1": 3,
+          "p2": 4,
+          "q_source": 1,
+          "q_other": 12,
+          "source5": 14
+        },
+        "blockers": [
+          2,
+          6
+        ],
+        "positions": [
+          5,
+          13,
+          11,
+          12,
+          7,
+          0,
+          14,
+          10,
+          16,
+          4,
+          2,
+          3,
+          9,
+          15,
+          6,
+          8,
+          1
+        ],
+        "caps": [
+          [
+            0,
+            4,
+            5,
+            9,
+            10,
+            11,
+            14,
+            16
+          ],
+          [
+            1,
+            3,
+            5,
+            6,
+            8,
+            13
+          ],
+          [
+            2,
+            3,
+            4,
+            7,
+            12,
+            15
+          ]
+        ],
+        "rows": [
+          [
+            1,
+            2,
+            4,
+            14
+          ],
+          [
+            1,
+            11,
+            12,
+            14
+          ]
+        ],
+        "radius_supports": [
+          [
+            1,
+            2,
+            10,
+            16
+          ],
+          [
+            4,
+            6,
+            9,
+            14
+          ]
+        ],
+        "grid_hits": [
+          [
+            1,
+            2
+          ],
+          [
+            6,
+            4
+          ]
+        ]
+      },
+      "stages": [
+        {
+          "stage": "geometry",
+          "z3": "sat",
+          "seconds": 25.05,
+          "independent_validation": "pass"
+        },
+        {
+          "stage": "grid_members",
+          "z3": "unknown:timeout",
+          "seconds": 31.265
+        }
+      ],
+      "terminal_cvc5": "unknown"
+    },
+    {
+      "orientation": "mirror",
+      "radial_branch": 2,
+      "structural": "unsat"
+    },
+    {
+      "orientation": "mirror",
+      "radial_branch": 3,
+      "structural": "sat",
+      "signature": {
+        "orientation": "mirror",
+        "radial_branch": 3,
+        "roles": {
+          "rho1": 5,
+          "rho2": 2,
+          "p1": 3,
+          "p2": 1,
+          "q_source": 13,
+          "q_other": 16,
+          "source5": 10
+        },
+        "blockers": [
+          2,
+          6
+        ],
+        "positions": [
+          4,
+          11,
+          6,
+          12,
+          7,
+          0,
+          15,
+          10,
+          8,
+          13,
+          5,
+          3,
+          16,
+          14,
+          1,
+          2,
+          9
+        ],
+        "caps": [
+          [
+            0,
+            2,
+            4,
+            5,
+            10,
+            11,
+            14,
+            15
+          ],
+          [
+            3,
+            5,
+            6,
+            9,
+            12,
+            13
+          ],
+          [
+            1,
+            3,
+            4,
+            7,
+            8,
+            16
+          ]
+        ],
+        "rows": [
+          [
+            4,
+            10,
+            13,
+            14
+          ],
+          [
+            6,
+            9,
+            10,
+            13
+          ]
+        ],
+        "radius_supports": [
+          [
+            0,
+            4,
+            11,
+            12
+          ],
+          [
+            2,
+            6,
+            8,
+            15
+          ]
+        ],
+        "grid_hits": [
+          [
+            12,
+            4
+          ],
+          [
+            6,
+            8
+          ]
+        ]
+      },
+      "stages": [
+        {
+          "stage": "geometry",
+          "z3": "sat",
+          "seconds": 25.113,
+          "independent_validation": "pass"
+        },
+        {
+          "stage": "grid_members",
+          "z3": "unknown:timeout",
+          "seconds": 31.362
+        }
+      ],
+      "terminal_cvc5": "timeout"
+    }
+  ]
+}

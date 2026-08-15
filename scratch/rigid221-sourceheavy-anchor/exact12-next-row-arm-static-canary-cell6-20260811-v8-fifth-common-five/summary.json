@@ -1,0 +1,85 @@
+{
+  "arm_cell_index": 6,
+  "artifacts": {
+    "adjacent_apex_cross_block_family_bank": {
+      "bytes": 511287,
+      "path": "adjacent_apex_cross_block_family_bank.json",
+      "sha256": "34238a3454a949e4125887de310a2499c2f135f0040337e767ea762529fbfa7f"
+    },
+    "arm_suffix": {
+      "bytes": 41404,
+      "path": "arm_suffix.json",
+      "sha256": "7c5dd30f630300de8630370ce97f7b77a75f1509ceee39b0d98a463cacc0fd1b"
+    },
+    "discovery_cnf": {
+      "bytes": 13037284,
+      "path": "discovery.cnf",
+      "sha256": "0f12ab70b208e5fed7457666a8c129cdc2ab5a3ada4dfc9cadf45cc2d92b2455"
+    },
+    "job": {
+      "bytes": 15715,
+      "path": "job.json",
+      "sha256": "2518c21732f41f8150f70a779c44ac0e55ec186a14eb5a4bcd0ea08d25abeb82"
+    },
+    "positive_membership_bank": {
+      "bytes": 164184,
+      "path": "positive_membership_bank.json",
+      "sha256": "c05efdb112c60c426736f1c5d7b15c6d73f60f24cd471e3d77e1587c7c425112"
+    },
+    "proof": null,
+    "second_cap_apex_surplus_family_bank": {
+      "bytes": 717128,
+      "path": "second_cap_apex_surplus_family_bank.json",
+      "sha256": "adab44d3fba9a69a6754afdb59b71d03c55ddc635cdf1b7e35660a269504beae"
+    },
+    "source_order_bank": {
+      "bytes": 6362792,
+      "path": "source_order_bank.json",
+      "sha256": "7a49f90d7d8200f20b27db6abad1ae2109a4100dc41ef6834b16e4660b9ad999"
+    },
+    "source_order_installation": {
+      "bytes": 668,
+      "path": "source_order_installation.json",
+      "sha256": "5cc090d4dc5370af96c549e783dfa6695269f56c4e429dd02798ebc80df3d95a"
+    },
+    "surplus_apex_pair_family_bank": {
+      "bytes": 316156,
+      "path": "surplus_apex_pair_family_bank.json",
+      "sha256": "8744c8edef12c18babc37b2bd26822f594feaf340b6802d4f930452d4758e970"
+    },
+    "surplus_three_triad_family_bank": {
+      "bytes": 830853,
+      "path": "surplus_three_triad_family_bank.json",
+      "sha256": "9bd119ffddc37e557be3270c90c944ff1c739c172192399001272e83fdf08d37"
+    },
+    "survivor": {
+      "bytes": 269714,
+      "path": "survivor.json",
+      "sha256": "4c5649d31d5c180bd1975e65b3a6456c8eb8afc5f300df43e8feb00292252f71"
+    },
+    "terminal_cnf": null
+  },
+  "classification": "STRUCTURALLY_UNRESOLVED",
+  "discovery_stdout_tail": "44862 -44863 -44864 -44865 -44866 -44867 -44868 -44869 -44870 -44871 -44872\nv 44873 44874 44875 44876 -44877 44878 -44879 44880 44881 -44882 44883 -44884\nv 44885 44886 44887 -44888 44889 -44890 44891 44892 44893 -44894 44895 -44896\nv 44897 -44898 44899 44900 44901 44902 44903 44904 -44905 44906 44907 44908\nv -44909 -44910 44911 -44912 -44913 44914 -44915 -44916 44917 -44918 44919\nv 44920 44921 -44922 44923 44924 44925 44926 44927 44928 44929 44930 44931\nv 44932 44933 44934 44935 44936 44937 44938 44939 44940 -44941 -44942 -44943\nv -44944 -44945 -44946 -44947 -44948 -44949 -44950 -44951 -44952 -44953 -44954\nv -44955 -44956 -44957 -44958 -44959 -44960 -44961 -44962 -44963 -44964 44965\nv 44966 44967 44968 44969 44970 44971 44972 -44973 -44974 -44975 -44976 -44977\nv -44978 -44979 -44980 -44981 44982 -44983 -44984 -44985 44986 -44987 -44988\nv -44989 44990 44991 -44992 -44993 -44994 -44995 -44996 -44997 -44998 -44999\nv -45000 45001 45002 -45003 -45004 45005 45006 45007 -45008 45009 45010 0\n\n",
+  "discovery_verdict": "SAT",
+  "error": null,
+  "job_id": "902b38abc7f4bd84946ee6b40e3cdbc97c329a5f34ef60b50df71ee50430a420",
+  "job_sha256": "2518c21732f41f8150f70a779c44ac0e55ec186a14eb5a4bcd0ea08d25abeb82",
+  "lean_terminal_ingress_ready": false,
+  "nice": 10,
+  "replay": {
+    "added_constraints": true,
+    "candidate": true,
+    "canonical_static_extension": true,
+    "exact_cnf": true,
+    "named_deletion_arm": true
+  },
+  "schema": "p97_rigid221_exact12_next_row_arm_static_canary_run.v2",
+  "scope": "one finite exact-12 placement-1 named-arm static canary; no aggregate arm coverage, universal lift, or Lean closure",
+  "status": "SAT_WITNESS_REPLAYED",
+  "terminal_proof_authenticated": false,
+  "terminal_proof_verified": false,
+  "terminal_stdout_tail": null,
+  "terminal_verdict": null,
+  "timeout_seconds": 3600
+}

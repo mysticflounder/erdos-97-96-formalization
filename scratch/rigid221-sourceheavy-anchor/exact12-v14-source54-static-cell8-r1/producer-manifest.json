@@ -1,0 +1,123 @@
+{
+  "artifacts": {
+    "cnf": {
+      "bytes": 17227349,
+      "n_clauses": 732131,
+      "n_variables": 44855,
+      "path": "scratch/rigid221-sourceheavy-anchor/exact12-v14-source54-static-cell8-r1/static-duplicate-center.cnf",
+      "sha256": "47c6275c143c4e99d10d0c73488629e5b9c3046599a7d31d750192ae17c770d4"
+    },
+    "complete_variable_map": {
+      "bytes": 6032523,
+      "canonical_body_sha256": "ec980621a61541fdf63a4097fa654eaa590e0119278ede7b55657b5870c8a18d",
+      "file_sha256": "7e64883e0ace30271f748b3ac9541dc817b70387372764f7ad2765c19349d3dc",
+      "path": "scratch/rigid221-sourceheavy-anchor/exact12-v14-source54-static-cell8-r1/variable-map.json",
+      "variable_count": 44855
+    }
+  },
+  "cell": 8,
+  "claims": {
+    "aggregate_coverage": false,
+    "complete_serialized_variable_map": true,
+    "exact_source54_cnf_bound": true,
+    "proof_verified": false,
+    "sat_result": "not_run",
+    "solver_invoked": false,
+    "strict_manifest_digest": true,
+    "theorem_closure": false,
+    "universal_lift": false
+  },
+  "commit": {
+    "head_matches": false,
+    "live_head": "249983428180783d89b594221caccf1e37f0d923",
+    "requested": "56128312",
+    "resolved": "56128312a2b9b1fed3b9dadccb3e1ecaf7c4cefc"
+  },
+  "detector_contracts": [
+    {
+      "commit": {
+        "bytes": 17004,
+        "path": "census/card_head/exact12_v14_source_order_bank.py",
+        "sha256": "d3f69710eeee5d5b1501b7d1d67d7b6ea0f3f78b2b0512281c21dfeefbb1ff24"
+      },
+      "live": {
+        "bytes": 17004,
+        "path": "census/card_head/exact12_v14_source_order_bank.py",
+        "sha256": "d3f69710eeee5d5b1501b7d1d67d7b6ea0f3f78b2b0512281c21dfeefbb1ff24"
+      },
+      "live_matches_commit": true
+    },
+    {
+      "commit": {
+        "bytes": 149716,
+        "path": "census/card_head/exact12_v14_ordered_coverage.py",
+        "sha256": "e9c2be6c765caa6835014258cccaafe28e2a28a4585853a613f5c43985efe511"
+      },
+      "live": {
+        "bytes": 152256,
+        "path": "census/card_head/exact12_v14_ordered_coverage.py",
+        "sha256": "afb77ee315de6afb1f135e78a5e3193ec05629fce830438b8c906e049147b91f"
+      },
+      "live_matches_commit": false
+    },
+    {
+      "commit": {
+        "bytes": 18569,
+        "path": "census/card_head/sat_encoding.py",
+        "sha256": "6d7a939f1f8fe9e3f3684afee52b79c8f3aa50041dd43f438294e69e182059ae"
+      },
+      "live": {
+        "bytes": 18569,
+        "path": "census/card_head/sat_encoding.py",
+        "sha256": "6d7a939f1f8fe9e3f3684afee52b79c8f3aa50041dd43f438294e69e182059ae"
+      },
+      "live_matches_commit": true
+    }
+  ],
+  "limitations": [
+    "The live source-order bank has one post-56128312 append (source55); source54 is bound by its stable index and exact source/cube/certificate hashes.",
+    "The static extension encoder is an untracked scratch file, so its code is not commit-pinned; the exact CNF bytes/SHA and deterministic relation allocation are pinned here.",
+    "The custody CNF is finite SAT input only; its prior SAT replay is not a proof certificate."
+  ],
+  "manifest_sha256": "3b57c46b415b88c0065fda2685c4ac0303f73226c2d94e9ca00ed79bcac13ec9",
+  "producer": {
+    "api": "census.card_head.exact12_v14_bound_jobs.materialize_cell",
+    "deterministic": true,
+    "source_order_bank_builder": "build_source_order_bank",
+    "static_extension": "add_static_duplicate_center_encoding"
+  },
+  "schema": "p97_exact12_v14_source54_cell8_strict_producer_manifest.v1",
+  "scope": "Strict custody manifest for one finite exact12 v14 cell8/source54 producer; no solver, terminal proof, universal lift, or Lean closure claim.",
+  "semantic_status": "FINITE_SOURCE_BOUND_CUSTODY",
+  "source54_lean": {
+    "binding_reconstructible": true,
+    "commit": {
+      "bytes": 3712,
+      "path": "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactTwelveRigid221MixedV7Cell8TwentyThirdPositiveCut.lean",
+      "sha256": "7ca3e854d038dfb07c6d5b4a3e9c9b676cff19b371d96992166c93a001892750"
+    },
+    "live": {
+      "bytes": 3712,
+      "path": "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactTwelveRigid221MixedV7Cell8TwentyThirdPositiveCut.lean",
+      "sha256": "7ca3e854d038dfb07c6d5b4a3e9c9b676cff19b371d96992166c93a001892750"
+    },
+    "live_matches_commit": true
+  },
+  "source_order_provenance": {
+    "bank_schema": "p97_rigid221_exact12_source_order_positive_bank.v3",
+    "live_append_after_requested_commit": true,
+    "live_bank_entries": 55,
+    "live_bank_sha256": "c2d195a8b2eb32a6d83f3b72ddf54677444b07fdc9dd318daec6f199d1ca5ee7",
+    "live_detector_manifest_sha256": "e4789c7e809b050e80492d6e8b004a8b44ecbe90637f23918f013735ebfa7ed8",
+    "live_lean_source_manifest_count": 57,
+    "requested_commit_bank_entries": 54,
+    "source54_certificate_sha256": "3c245d0087b24b779470e2da7926a6d22fda5815a5f0df8bbcdfc234e4d15315",
+    "source54_entry_index": 53,
+    "source54_learned_clause": [
+      -21,
+      -290,
+      -936
+    ],
+    "source54_witness_cube_sha256": "9e461b6cd53901a1e3ccfab2c667516262ea9ce81b8f4f5ffbdd7ef2791a7b83"
+  }
+}

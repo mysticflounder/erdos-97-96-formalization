@@ -1,0 +1,24 @@
+{
+  "child": {
+    "bytes": 291621156,
+    "clauses": 5847260,
+    "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/exact17-lean-to-sat/.child35-audit-candidate.cnf",
+    "sha256": "0ce510af7c5c653719cb2d1250c8577e9c48d244605182bfe8b91112c538787f",
+    "variables": 308
+  },
+  "duplicate_new_clauses": 0,
+  "new_clauses": 4,
+  "ordered_suffix_exact": true,
+  "ordered_suffix_sha256": "89ba7cfd0a4c88b31176a41ddf3d82240743a0b1f87f3437c8c44c9ca3239520",
+  "parent": {
+    "clauses": 5847256,
+    "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/exact17-lean-to-sat/exact17-thirty-fourth-root-thirty-third-model-refinements.cnf",
+    "sha256": "ea8311540af709cf991c932c38e52f9767227cf55781508f2791b1dc42c4a819"
+  },
+  "publication_state": "PROVISIONED",
+  "schema": "p97-exact17-child35-export-validation/v1",
+  "source_clause_families": [
+    "child34PerpBisectorClauses"
+  ],
+  "status": "PASS"
+}

@@ -1,0 +1,47 @@
+{
+  "source_path": "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactTwelveRigid221SafeBaseSat.lean",
+  "policy": {
+    "max_bytes": 18000,
+    "mode": "ProofBlock",
+    "helper_module_prefix": "Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactTwelveRigid221SafeBaseSatShards",
+    "coordinator_module_path": "Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactTwelveRigid221SafeBaseSat"
+  },
+  "helpers": [
+    {
+      "module_path": "Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactTwelveRigid221SafeBaseSatShards.Step_01",
+      "file_path": "Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactTwelveRigid221SafeBaseSatShards/Step_01.lean",
+      "size_bytes": 17999,
+      "checksum": "5a262aec1238735b206ad366b8787150face9d0427e4080e15aa9ee4c8b00dbc",
+      "block_count": 39,
+      "helper_imports": []
+    },
+    {
+      "module_path": "Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactTwelveRigid221SafeBaseSatShards.Step_02",
+      "file_path": "Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactTwelveRigid221SafeBaseSatShards/Step_02.lean",
+      "size_bytes": 18993,
+      "checksum": "20489c804f5fb722c8bf7b8ab87ee9d34df8bd315e3b9adf179205f4c335e866",
+      "block_count": 14,
+      "helper_imports": []
+    },
+    {
+      "module_path": "Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactTwelveRigid221SafeBaseSatShards.Step_03",
+      "file_path": "Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactTwelveRigid221SafeBaseSatShards/Step_03.lean",
+      "size_bytes": 3705,
+      "checksum": "d8f445392f696dd2baeb5f7ff4dfba094ce2baabedbabea79b66391297009f81",
+      "block_count": 4,
+      "helper_imports": []
+    }
+  ],
+  "coordinator": {
+    "module_path": "Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactTwelveRigid221SafeBaseSat",
+    "file_path": "Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactTwelveRigid221SafeBaseSat.lean",
+    "size_bytes": 1658,
+    "checksum": "3922f7471e87b2c95b4e1abbf1dccc2fa3f77bf3bf36af7a5a1891ac13ec6814",
+    "block_count": 0,
+    "helper_imports": [
+      "Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactTwelveRigid221SafeBaseSatShards.Step_01",
+      "Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactTwelveRigid221SafeBaseSatShards.Step_02",
+      "Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactTwelveRigid221SafeBaseSatShards.Step_03"
+    ]
+  }
+}

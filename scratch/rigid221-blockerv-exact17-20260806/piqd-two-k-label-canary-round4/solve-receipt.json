@@ -1,0 +1,37 @@
+{
+  "model_literals": 74813,
+  "model_log": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/rigid221-blockerv-exact17-20260806/piqd-two-k-label-canary-round4/model.log",
+  "model_log_sha256": "ef957a17acf17468411b43d839cf8b45e72ce3a2b7f57b18a19cbfc36363e1cf",
+  "schema": "p97-piqd-sat-session-model-capture-v1",
+  "session_before": {
+    "clauses": 4120330,
+    "created_at": 1786309726,
+    "id": "428d5a80-5b8d-47a5-add9-6da416cf6831",
+    "journal_path": "/Users/adam/.piqd/sessions/428d5a80-5b8d-47a5-add9-6da416cf6831/journal.cnf",
+    "label": "p97-exact17-two-k-label-canary-20260809",
+    "lane": "sat",
+    "last_status": "SAT",
+    "max_var": 74813,
+    "protocol_version": 1,
+    "solver_name": "piqd-satworker-cadical-3.0.0",
+    "solver_sha256": "0ee355934249f1b3f14a20928877391a87a0dd51326cf8c6135f75cba0b6b965",
+    "solver_signature": "cadical-3.0.0",
+    "solver_stats": {
+      "active": 34593,
+      "clauses_added": 4120330,
+      "irredundant": 2058571,
+      "solve_ms_total": 23481,
+      "solves": 3,
+      "vars": 74813
+    },
+    "solves": 3,
+    "state": "live",
+    "updated_at": 1786312183
+  },
+  "solve_response": {
+    "result_sha256": "0bfce4105cb7dca823468f9cd7fb84675f6e549d8f732dbd9fc60b781b2b46b8",
+    "solve_index": 4,
+    "solve_ms": 12592,
+    "status": "SAT"
+  }
+}

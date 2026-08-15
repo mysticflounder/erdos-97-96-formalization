@@ -1,0 +1,56 @@
+{
+  "schema": "freshthird-firstnonhit-exact3-metric-canary-v1",
+  "worker_state": "TERMINAL",
+  "terminal_verdict": "UNKNOWN",
+  "terminal_reason": "Z3 and cvc5 independently timed out on the byte-identical stage-1 QF_NRA query at their 30-second internal bounds.",
+  "source_commit_at_prelaunch": "880e70f7185e24ead3c96a76ff4aca98b13a9c9c",
+  "fixed_signature_count": 1,
+  "stage1": {
+    "z3": {
+      "verdict": "unknown",
+      "reason": "timeout",
+      "wall_seconds": 30.47510620811954
+    },
+    "cvc5": {
+      "verdict": "unknown",
+      "reason": "cvc5 interrupted by timeout",
+      "wall_seconds": 30.015003124717623
+    },
+    "query_sha256": "62c3f013c1310e2c95e686060f5e1fcbc94019641edd0b1c60b02f7c7f165338",
+    "query_cross_generation": "Z3 and cvc5 query files are byte-identical",
+    "model_returned": false,
+    "model_authentication": "not applicable; no model returned"
+  },
+  "controls": {
+    "known_sat": {
+      "z3": "sat",
+      "cvc5": "sat",
+      "explicit_rational_readback": "authenticated",
+      "query_sha256": "4f30f4b99dacb16e550aed130ae89217e0ff0d88dc762156088ff8281d6ed8d1"
+    },
+    "malformed_unsat": {
+      "z3": "unsat",
+      "cvc5": "unsat",
+      "query_sha256": "24c93760689d5fc38bf969e155460f44758f06bd07149a42a02e231ce7360080"
+    }
+  },
+  "stage2": {
+    "launched": false,
+    "reason": "No exact source-backed boundary/cap-order assumption was supplied; no relaxation cut was admitted."
+  },
+  "timeout_escalation": false,
+  "unsat_minimization": "not run because stage 1 was not UNSAT",
+  "wave_data_only_general_theorem_mine": {
+    "candidate": null,
+    "outcome": "No survivor, core, recurring family, or invariant was produced; the dual timeout supports no theorem candidate."
+  },
+  "claim_boundary": "Fixed finite 13-row metric packet only; no P97 counterexample, universal theorem, Lean closure, coverage theorem, or finite-to-universal lift.",
+  "artifact_hashes": {
+    "input.json": "b0891ba0969d73261bec65cd7debd0fbbe0900deab6b7432d3b75204b4263230",
+    "run_canary.py": "940688056bee2c632a43943f53ccc6db5302e668917d9b4d5875581268b81641",
+    "manifest.prelaunch.json": "8ade3dac4e19f49adc168efc0f9dc7190cc4fff258fcca5e919d1e7692b47929",
+    "results.json": "3130f5f3d55cc0d1c7ae7eb97e7d9db4568a7e09893b6296178d3021d7953601",
+    "RESULTS.md": "238e44e833feebc620826939a43862e1fcb1b66c9baba7940fcf35ef6d47468a",
+    "SOURCE-MAP.md": "4ea20c4363dd093f0b78316fee831799d7a67451d08acfeb2801d387ae137711"
+  }
+}

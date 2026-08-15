@@ -1,0 +1,16 @@
+{
+  "command": [
+    "/Users/adam/bin/nthdegree",
+    "docs",
+    "search",
+    "--corpus",
+    "erdos-97-96-formalization-lean",
+    "--agentic",
+    "selected exact-four row centered at c and selected exact-four shell centered at b share exactly two distinct support points z w; c and b are distinct carrier points in a convex MEC CapTriple, c lies in an indexed row cap with at most two row support points inside and at least two outside, while b lies in a strict blocker cap; the actual blockers of z and w both equal b. Find a general theorem forcing one indexed cap to contain c and b with z and w outside, or forcing blockerCap=rowCap."
+  ],
+  "query": "selected exact-four row centered at c and selected exact-four shell centered at b share exactly two distinct support points z w; c and b are distinct carrier points in a convex MEC CapTriple, c lies in an indexed row cap with at most two row support points inside and at least two outside, while b lies in a strict blocker cap; the actual blockers of z and w both equal b. Find a general theorem forcing one indexed cap to contain c and b with z and w outside, or forcing blockerCap=rowCap.",
+  "returncode": 0,
+  "scope": "one post-wave, wave-derived motif query in the repository Lean corpus",
+  "stderr_lines": 0,
+  "stdout_lines": 8
+}

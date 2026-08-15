@@ -1,0 +1,55 @@
+{
+  "schema": "p97-exact17-lean-eighteenth-model-refinements-piqd-ingress/v1",
+  "dimacs": {
+    "path": "scratch/exact17-lean-to-sat/exact17-nineteenth-root-eighteenth-model-refinements.cnf",
+    "sha256": "534ae4fb643f76f5cdf7cecdd6ee984fb41da3dc76da202e082075d3d82c3db2",
+    "bytes": 291571750,
+    "variables": 308,
+    "clauses": 5846164,
+    "parent_prefix_clauses": 5846160,
+    "checked_new_clauses": 4
+  },
+  "parent_ingress": {
+    "manifest": "scratch/exact17-lean-to-sat/piqd-ingress-manifest-seventeenth-model-refinements.json",
+    "manifest_sha256": "7e9698ecc5ec8635ddb4e1b2e0af4b3637310ec59e711960a8cf5500c8fe7329",
+    "validator": "scripts/validate_exact17_seventeenth_model_refinements_ingress.py",
+    "validator_sha256": "e37277cb6a52ed1439af9e2a4391736b55d228c70b2d681558ae71626372d6b8",
+    "report": "scratch/exact17-lean-to-sat/piqd-ingress-seventeenth-model-refinements-validation.json",
+    "report_sha256": "119d50b3cac0021aca8bf5a0f703a5ad4a02c691bd553c4e7f6be26c07447caa"
+  },
+  "lean": {
+    "toolchain": "leanprover/lean4:v4.27.0",
+    "toolchain_file_sha256": "d55ca0039a5479db5b38919d005b2c427b89b3be4f0184a20f2f4eae931f5bdb",
+    "lake_manifest_sha256": "48adeb0901038a9dc08e0f80a70d5eb5a609058b849afd582c0c2f6ebe0cbfce",
+    "source_files": [
+      {
+        "path": "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenEighteenthModelRefinements.lean",
+        "sha256": "be56c5e3333371a95fa435de5b79ca26aa2b2c34bed7b90c91c7cee7f92be155"
+      },
+      {
+        "path": "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenEighteenthModelRefinementsExport.lean",
+        "sha256": "6503adb7d6d5f79c3beedcd5917023fab1ebef6aa7c8efa0b62bef3dd63743fc"
+      }
+    ]
+  },
+  "validation": {
+    "script": "scripts/validate_exact17_eighteenth_model_refinements_export.py",
+    "script_sha256": "29b10652d238b5d3ea94c6fc9247efa654699264df1503b39a8400cfecac0671",
+    "model": "scratch/exact17-lean-to-sat/piqd-eighteenth-root-model.json",
+    "model_sha256": "7cf7cbdde3316dba1339c91b03d982246e12d16f58c3a0e4377a19d4039472c2",
+    "report": "scratch/exact17-lean-to-sat/exact17-nineteenth-root-eighteenth-model-refinements-validation.json",
+    "report_sha256": "5d49eba9031d5bd6e8a4022ea8426a417398b07c31446ff7442013bd0bd21792",
+    "parent_prefix_byte_identical": true,
+    "all_new_clauses_independently_regenerated": true,
+    "motivating_model_cut_by_cancellation_orbit": true
+  },
+  "piqd": {
+    "daemon_protocol_version": 1,
+    "daemon_sha256": "0cfc9577656fa3aef143a9fe7e5577d938dba9fd39f3b7118ed91735c97fc360",
+    "ingress": "raw-dimacs/v1",
+    "backend": "cadical",
+    "solver_profile": "sat",
+    "immutable_root_only": true,
+    "python_authored_successor_clause_allowed": false
+  }
+}

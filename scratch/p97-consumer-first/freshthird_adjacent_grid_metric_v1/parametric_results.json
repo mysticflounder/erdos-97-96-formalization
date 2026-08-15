@@ -1,0 +1,439 @@
+{
+  "classification": "frozen-signature producer-side diagnostic; not P97 closure",
+  "parameterization": {
+    "unit": "U(t)=((1-t^2)/(1+t^2),2t/(1+t^2))",
+    "selected_point": "P_r,p=(1,0)+rho_r*U(t_r,p)",
+    "selected_squared_radius": "q_r=rho_r^2 (identity, not an asserted equality)"
+  },
+  "smoke": {
+    "case": "rational_circle_identity",
+    "instances": 10,
+    "exact_validation": "pass"
+  },
+  "support_projection": [
+    {
+      "orientation": "direct",
+      "radial_branch": 0,
+      "classification": "exact rational support-subsequence witness",
+      "boundary_subsequence_rotated": [
+        3,
+        11,
+        12,
+        13,
+        2,
+        14,
+        0,
+        8,
+        1
+      ],
+      "radii": [
+        "1000000/1000001",
+        "1"
+      ],
+      "parameters": {
+        "11": "0",
+        "12": "-1/10",
+        "13": "-1/5",
+        "2": "-3/10",
+        "14": "-2/5",
+        "0": "-1/2",
+        "8": "-3/5",
+        "1": "-7/10"
+      },
+      "minimum_negative_area_margin": "40001937/12665012665",
+      "triple_count": 84,
+      "exact_validation": "pass"
+    },
+    {
+      "orientation": "direct",
+      "radial_branch": 2,
+      "classification": "exact rational support-subsequence witness",
+      "boundary_subsequence_rotated": [
+        3,
+        2,
+        4,
+        15,
+        13,
+        0,
+        1,
+        5,
+        12
+      ],
+      "radii": [
+        "1",
+        "1000000/1000001"
+      ],
+      "parameters": {
+        "2": "0",
+        "4": "-1/10",
+        "15": "-1/5",
+        "13": "-3/10",
+        "0": "-2/5",
+        "1": "-1/2",
+        "5": "-3/5",
+        "12": "-7/10"
+      },
+      "minimum_negative_area_margin": "8000742400000/2533005066002533",
+      "triple_count": 84,
+      "exact_validation": "pass"
+    },
+    {
+      "orientation": "mirror",
+      "radial_branch": 1,
+      "classification": "exact rational support-subsequence witness",
+      "boundary_subsequence_rotated": [
+        3,
+        1,
+        6,
+        16,
+        10,
+        9,
+        14,
+        4,
+        2
+      ],
+      "radii": [
+        "1000000/1000001",
+        "1"
+      ],
+      "parameters": {
+        "1": "0",
+        "6": "-1/10",
+        "16": "-1/5",
+        "10": "-3/10",
+        "9": "-2/5",
+        "14": "-1/2",
+        "4": "-3/5",
+        "2": "-7/10"
+      },
+      "minimum_negative_area_margin": "40001937/12665012665",
+      "triple_count": 84,
+      "exact_validation": "pass"
+    },
+    {
+      "orientation": "mirror",
+      "radial_branch": 3,
+      "classification": "exact rational support-subsequence witness",
+      "boundary_subsequence_rotated": [
+        3,
+        6,
+        12,
+        15,
+        11,
+        0,
+        2,
+        4,
+        8
+      ],
+      "radii": [
+        "1",
+        "1000000/1000001"
+      ],
+      "parameters": {
+        "6": "0",
+        "12": "-1/10",
+        "15": "-1/5",
+        "11": "-3/10",
+        "0": "-2/5",
+        "2": "-1/2",
+        "4": "-3/5",
+        "8": "-7/10"
+      },
+      "minimum_negative_area_margin": "8000742400000/2533005066002533",
+      "triple_count": 84,
+      "exact_validation": "pass"
+    }
+  ],
+  "full_geometry_grid_members": {
+    "orientation": "direct",
+    "radial_branch": 0,
+    "classification": "exact rational geometry+grid_exact witness",
+    "parameterization": "U(t)=((1-t^2)/(1+t^2),2t/(1+t^2)); P=(1,0)+rU(t)",
+    "optimizer": {
+      "geometry_seed": {
+        "z3": "sat",
+        "seconds": 14.166,
+        "independent_validation": "pass"
+      },
+      "lbfgsb": {
+        "success": true,
+        "iterations": 39,
+        "penalty": 0.0,
+        "minimum_slack": -0.0
+      },
+      "slsqp": {
+        "success": true,
+        "iterations": 1,
+        "message": "Optimization terminated successfully",
+        "minimum_slack": -0.0
+      }
+    },
+    "readbacks": [
+      {
+        "max_denominator": 1000,
+        "failures": [],
+        "margins": {
+          "minimum_negative_area_margin": "1331932644886797/1378671516342853573984",
+          "minimum_pair_squared_distance": "12108558625494201/27593883747127588630784",
+          "minimum_disk_slack": "15069639/86586593536",
+          "minimum_apex_dot": "48421890/43512808613",
+          "minimum_member_cap_slack": "0",
+          "minimum_nonmember_cap_margin": "23572684668355407421526580093/120479148192308774739119057545",
+          "minimum_grid_nonmember_squared_distance_gap": "14208823072017/10068375682959616",
+          "radius_gap": "1407/540826"
+        }
+      }
+    ],
+    "exact_validation": "pass",
+    "original_formula_replay": {
+      "stages": [
+        {
+          "stage": "grid_members",
+          "formula": "original unparameterized geometry+grid_members QF_NRA",
+          "z3": "sat",
+          "cvc5": "sat",
+          "seconds": 0.012,
+          "independent_semantic_validation": "pass"
+        },
+        {
+          "stage": "grid_exact",
+          "formula": "original unparameterized geometry+grid_exact QF_NRA",
+          "z3": "sat",
+          "cvc5": "sat",
+          "seconds": 0.012,
+          "independent_semantic_validation": "pass"
+        }
+      ]
+    },
+    "exact_witness": {
+      "radii": [
+        "1020/793",
+        "879/682"
+      ],
+      "support_direction_parameters": {
+        "0": "21408/533",
+        "1": "114/53",
+        "2": "-2888/667",
+        "8": "2123/987",
+        "11": "-2107/960",
+        "12": "-1621/738",
+        "13": "-3034/969",
+        "14": "-4865/689"
+      },
+      "apex_unit_circle_parameters": {
+        "4": "-177/197",
+        "5": "829/744"
+      },
+      "free_coordinates": {
+        "6": [
+          "71/993",
+          "995/999"
+        ],
+        "7": [
+          "143/848",
+          "342/347"
+        ],
+        "9": [
+          "16/35",
+          "-475/664"
+        ],
+        "10": [
+          "103/463",
+          "-528/577"
+        ],
+        "15": [
+          "-185/714",
+          "653/839"
+        ],
+        "16": [
+          "-207/890",
+          "931/1000"
+        ]
+      },
+      "derived_coordinates": {
+        "0": [
+          "-89842122479/312756029146",
+          "10029797856/156378014573"
+        ],
+        "1": [
+          "7025/41093",
+          "2465136/2506673"
+        ],
+        "2": [
+          "-948615439/5991665306",
+          "-1693214184/2995832653"
+        ],
+        "3": [
+          "1",
+          "0"
+        ],
+        "4": [
+          "3740/35069",
+          "-34869/35069"
+        ],
+        "5": [
+          "-133705/1240777",
+          "1233552/1240777"
+        ],
+        "6": [
+          "71/993",
+          "995/999"
+        ],
+        "7": [
+          "143/848",
+          "342/347"
+        ],
+        "8": [
+          "158193349/934561309",
+          "167441589/169920238"
+        ],
+        "9": [
+          "16/35",
+          "-475/664"
+        ],
+        "10": [
+          "103/463",
+          "-528/577"
+        ],
+        "11": [
+          "663105877/4251311857",
+          "-4126348800/4251311857"
+        ],
+        "12": [
+          "332544007/2163498370",
+          "-1051545942/1081749185"
+        ],
+        "13": [
+          "-387234119/8044284781",
+          "-5997489840/8044284781"
+        ],
+        "14": [
+          "-2256008951/9572678089",
+          "-263001900/736359853"
+        ],
+        "15": [
+          "-185/714",
+          "653/839"
+        ],
+        "16": [
+          "-207/890",
+          "931/1000"
+        ]
+      }
+    },
+    "signature": {
+      "orientation": "direct",
+      "radial_branch": 0,
+      "roles": {
+        "rho1": 6,
+        "rho2": 2,
+        "p1": 5,
+        "p2": 13,
+        "q_source": 4,
+        "q_other": 1,
+        "source5": 15
+      },
+      "blockers": [
+        2,
+        6
+      ],
+      "positions": [
+        14,
+        4,
+        12,
+        5,
+        10,
+        0,
+        1,
+        2,
+        3,
+        6,
+        7,
+        8,
+        9,
+        11,
+        13,
+        15,
+        16
+      ],
+      "caps": [
+        [
+          0,
+          2,
+          4,
+          5,
+          13,
+          14,
+          15,
+          16
+        ],
+        [
+          1,
+          3,
+          5,
+          6,
+          7,
+          8
+        ],
+        [
+          3,
+          4,
+          9,
+          10,
+          11,
+          12
+        ]
+      ],
+      "rows": [
+        [
+          0,
+          3,
+          4,
+          15
+        ],
+        [
+          0,
+          3,
+          4,
+          15
+        ]
+      ],
+      "radius_supports": [
+        [
+          1,
+          11,
+          13,
+          14
+        ],
+        [
+          0,
+          2,
+          8,
+          12
+        ]
+      ],
+      "grid_hits": [
+        [
+          1,
+          11
+        ],
+        [
+          8,
+          12
+        ]
+      ]
+    }
+  },
+  "encoded": [
+    "frozen exact-17 direct-0 signature",
+    "MEC gauge, disk, apex circle and non-obtuse apex triangle",
+    "all strict boundary triples and exact cap classifications",
+    "eight selected-support memberships, all nonmember exclusions, and supplied strict radius order"
+  ],
+  "omitted": [
+    "source rows",
+    "singleton source slices",
+    "strict Kalmanson conclusion",
+    "unsampled signatures and general-n lift"
+  ]
+}

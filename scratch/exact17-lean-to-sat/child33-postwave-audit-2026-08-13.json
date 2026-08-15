@@ -1,0 +1,153 @@
+{
+  "authentication": {
+    "completion_identity_hash": "031ddc62b4d41ef0cfc1767cc43f4be2d9a9a7d0cf85784d72c9bfa5eb9c367f",
+    "daemon_sha256": "680764249cbeb9ca4b8478ffb26e517c7427adddb1114a2ca6c46a3a88038dec",
+    "recovery_action": null,
+    "run_epoch": 1
+  },
+  "clauses": 5847248,
+  "cnf_sha256": "775eb42db7bdac52eb7e5609a1cf33111c953d26f4cee9c8d95bde3b468563b9",
+  "diagonal_hits": [],
+  "final_sha256": "4941ae6dddef71a9276c6cdbc7cc6026f46b5122bf6848c5620b6538cd745356",
+  "job_id": "6304e936-8ef3-4b92-a153-062263a4aa01",
+  "manifest_sha256": "1f802e69fc382ba262cb54a9b21bee3b62b4c53cf6cbfaff837181cd9444fcfd",
+  "model_sha256": "d625b8df54a163c95a8402e36541d30b6c8218aa869ee90d9507a42557a43710",
+  "named_orders": [
+    1
+  ],
+  "next_centers": [
+    15
+  ],
+  "production_authenticated": true,
+  "replay": {
+    "clauses_checked": 5847248,
+    "satisfies_all": true
+  },
+  "row_sizes": {
+    "0": 4,
+    "1": 4,
+    "10": 4,
+    "11": 4,
+    "12": 4,
+    "13": 4,
+    "14": 4,
+    "15": 4,
+    "16": 4,
+    "2": 4,
+    "3": 4,
+    "4": 4,
+    "5": 4,
+    "6": 4,
+    "7": 4,
+    "8": 4,
+    "9": 4
+  },
+  "rows": {
+    "0": [
+      2,
+      8,
+      9,
+      15
+    ],
+    "1": [
+      0,
+      3,
+      14,
+      15
+    ],
+    "10": [
+      3,
+      8,
+      9,
+      16
+    ],
+    "11": [
+      8,
+      10,
+      13,
+      14
+    ],
+    "12": [
+      4,
+      14,
+      15,
+      16
+    ],
+    "13": [
+      3,
+      4,
+      11,
+      12
+    ],
+    "14": [
+      0,
+      1,
+      6,
+      13
+    ],
+    "15": [
+      1,
+      2,
+      11,
+      16
+    ],
+    "16": [
+      6,
+      7,
+      8,
+      11
+    ],
+    "2": [
+      0,
+      3,
+      9,
+      13
+    ],
+    "3": [
+      4,
+      12,
+      13,
+      16
+    ],
+    "4": [
+      0,
+      2,
+      7,
+      12
+    ],
+    "5": [
+      9,
+      10,
+      12,
+      14
+    ],
+    "6": [
+      2,
+      5,
+      10,
+      16
+    ],
+    "7": [
+      5,
+      10,
+      13,
+      15
+    ],
+    "8": [
+      4,
+      5,
+      6,
+      9
+    ],
+    "9": [
+      1,
+      6,
+      7,
+      15
+    ]
+  },
+  "schema": "p97-exact17-child33-model-analysis/v1",
+  "solver_log_sha256": "eb4ba5f1c9d4170b484cf15de1b3c78c9a5d9b389ce2a888fe0d688bd9764a57",
+  "status": "REPLAY_COMPLETE",
+  "variables": 308
+}

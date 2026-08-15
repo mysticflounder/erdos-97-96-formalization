@@ -1,0 +1,105 @@
+{
+  "arm_cell_index": 6,
+  "artifacts": {
+    "adjacent_apex_cross_block_family_bank": {
+      "bytes": 511287,
+      "path": "adjacent_apex_cross_block_family_bank.json",
+      "sha256": "34238a3454a949e4125887de310a2499c2f135f0040337e767ea762529fbfa7f"
+    },
+    "apex_pair_cross_block_family_bank": {
+      "bytes": 1506993,
+      "path": "apex_pair_cross_block_family_bank.json",
+      "sha256": "15cf4be8c331bf485c13548cf190aae59cf2b0d16c6b162809e8d996bb978669"
+    },
+    "apex_shared_pair_cross_block_family_bank": {
+      "bytes": 1737260,
+      "path": "apex_shared_pair_cross_block_family_bank.json",
+      "sha256": "12ad45fbc4ad14b36ddc059332416d2f126e857dc10e7db59a10238fb081c132"
+    },
+    "apex_zero_cross_block_family_bank": {
+      "bytes": 1320216,
+      "path": "apex_zero_cross_block_family_bank.json",
+      "sha256": "9ef30a2607eab9b9f38dbf4d92c7f8034cfd7679d8cba8419dc92b525e6eff03"
+    },
+    "arm_suffix": {
+      "bytes": 41404,
+      "path": "arm_suffix.json",
+      "sha256": "b34f4dd262f74f1f3c79e1ffe650ccd494fe38ca5056cd0b6c566b3d7088e841"
+    },
+    "discovery_cnf": {
+      "bytes": 13062587,
+      "path": "discovery.cnf",
+      "sha256": "376e67a55551eeb8e6303835c52f8ce8331f7c19af82c95a0906bacaa1d61360"
+    },
+    "job": {
+      "bytes": 19885,
+      "path": "job.json",
+      "sha256": "ecf1f42e58471f45673b2db2573f0eb4be27810f70f7c38f829235d81c519367"
+    },
+    "positive_membership_bank": {
+      "bytes": 164184,
+      "path": "positive_membership_bank.json",
+      "sha256": "c05efdb112c60c426736f1c5d7b15c6d73f60f24cd471e3d77e1587c7c425112"
+    },
+    "proof": null,
+    "second_cap_apex_surplus_family_bank": {
+      "bytes": 717128,
+      "path": "second_cap_apex_surplus_family_bank.json",
+      "sha256": "adab44d3fba9a69a6754afdb59b71d03c55ddc635cdf1b7e35660a269504beae"
+    },
+    "source_order_bank": {
+      "bytes": 6362792,
+      "path": "source_order_bank.json",
+      "sha256": "7a49f90d7d8200f20b27db6abad1ae2109a4100dc41ef6834b16e4660b9ad999"
+    },
+    "source_order_installation": {
+      "bytes": 668,
+      "path": "source_order_installation.json",
+      "sha256": "cf0cf2cc8e393aab373c65461951c0eba0d1df35ae49deb647956f0bcb6bd142"
+    },
+    "surplus_apex_pair_family_bank": {
+      "bytes": 316156,
+      "path": "surplus_apex_pair_family_bank.json",
+      "sha256": "8744c8edef12c18babc37b2bd26822f594feaf340b6802d4f930452d4758e970"
+    },
+    "surplus_three_triad_family_bank": {
+      "bytes": 830853,
+      "path": "surplus_three_triad_family_bank.json",
+      "sha256": "9bd119ffddc37e557be3270c90c944ff1c739c172192399001272e83fdf08d37"
+    },
+    "survivor": {
+      "bytes": 249697,
+      "path": "survivor.json",
+      "sha256": "e146cbdfdbaf1e39c11d451229430df7104c27ce82004da06afac3ca574aa5c6"
+    },
+    "terminal_cnf": null,
+    "zero_center_cross_block_family_bank": {
+      "bytes": 1085387,
+      "path": "zero_center_cross_block_family_bank.json",
+      "sha256": "c64d0e72ed5b737cd9baeb41b0e0bdcca80e66fb930966b4e8f2e340c9e1f1d3"
+    }
+  },
+  "classification": "STRUCTURALLY_UNRESOLVED",
+  "discovery_stdout_tail": "\nv -44977 -44978 -44979 -44980 -44981 44982 -44983 -44984 -44985 44986 -44987\nv -44988 -44989 44990 44991 -44992 -44993 -44994 -44995 -44996 -44997 -44998\nv -44999 -45000 45001 45002 45003 45004 45005 45006 45007 45008 45009 -45010\nv -45011 -45012 -45013 -45014 -45015 -45016 -45017 -45018 -45019 -45020 -45021\nv -45022 -45023 -45024 -45025 -45026 -45027 -45028 -45029 -45030 -45031 -45032\nv -45033 -45034 45035 45036 45037 45038 45039 45040 45041 45042 45043 45044\nv 45045 45046 45047 45048 45049 45050 45051 45052 45053 45054 45055 -45056\nv -45057 -45058 45059 45060 -45061 45062 45063 -45064 45065 45066 -45067 45068\nv 45069 45070 45071 45072 45073 45074 45075 45076 45077 45078 45079 45080\nv 45081 -45082 -45083 -45084 -45085 -45086 -45087 -45088 -45089 -45090 45091\nv 45092 45093 45094 45095 45096 45097 45098 45099 45100 45101 45102 45103\nv 45104 45105 45106 45107 45108 45109 45110 45111 45112 -45113 -45114 -45115\nv -45116 -45117 -45118 -45119 -45120 -45121 45122 45123 -45124 45125 45126 0\n\n",
+  "discovery_verdict": "SAT",
+  "error": null,
+  "job_id": "396afd37943e9b12dddd91b3b4ba47cedb3835fc8c2c0fd0361eb5a3a3e602a0",
+  "job_sha256": "ecf1f42e58471f45673b2db2573f0eb4be27810f70f7c38f829235d81c519367",
+  "lean_terminal_ingress_ready": false,
+  "nice": 10,
+  "replay": {
+    "added_constraints": true,
+    "candidate": true,
+    "canonical_static_extension": true,
+    "exact_cnf": true,
+    "named_deletion_arm": true
+  },
+  "schema": "p97_rigid221_exact12_next_row_arm_static_canary_run.v2",
+  "scope": "one finite exact-12 placement-1 named-arm static canary; no aggregate arm coverage, universal lift, or Lean closure",
+  "status": "SAT_WITNESS_REPLAYED",
+  "terminal_proof_authenticated": false,
+  "terminal_proof_verified": false,
+  "terminal_stdout_tail": null,
+  "terminal_verdict": null,
+  "timeout_seconds": 3600
+}

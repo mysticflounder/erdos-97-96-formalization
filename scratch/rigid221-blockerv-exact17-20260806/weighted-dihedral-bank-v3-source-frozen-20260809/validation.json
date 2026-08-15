@@ -1,0 +1,16 @@
+{
+  "appended_clauses": 2176,
+  "base_prefix_byte_exact": true,
+  "certificates_exactly_replayed": 64,
+  "checked_images": 2176,
+  "clauses": 2878529,
+  "cnf": "scratch/rigid221-blockerv-exact17-20260806/weighted-dihedral-bank-v3-source-frozen-20260809/o0-p0-1.cnf",
+  "cnf_sha256": "27fd450ad5e6f9ec6d86c7c532efd837fc8b5c44c0e6bbe65ae39bace53a37ac",
+  "generation_sources_rechecked": 11,
+  "manifest": "scratch/rigid221-blockerv-exact17-20260806/weighted-dihedral-bank-v3-source-frozen-20260809/o0-p0-1.manifest.json",
+  "manifest_sha256": "9c7cfa24cdd8f4777861fc5b900b354bb3bae2de47a95180f2dc72ac2fd129ae",
+  "schema": "p97-rigid221-exact17-weighted-dihedral-cnf-validation-v1",
+  "status": "PASS",
+  "validator_sha256": "575df1811dec19c102b178eca22436c753c85926f3300974631c8058be656446",
+  "variables": 74813
+}

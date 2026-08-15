@@ -1,0 +1,1582 @@
+{
+  "canonical_clause_count": 1070,
+  "canonical_replay": {
+    "artifact": "generated/canonical_blocker_exactness.smt2",
+    "check_sat_count": 1,
+    "clause_count": 1070,
+    "name": "canonical_blocker_exactness",
+    "solvers": {
+      "cvc5": {
+        "seconds": 0.205184,
+        "status": "UNSAT"
+      },
+      "z3": {
+        "seconds": 0.052845,
+        "status": "UNSAT"
+      }
+    }
+  },
+  "classification": "source-entitled preflight cut for this frozen incidence motif; not a universal FreshThird producer",
+  "clause_core": [
+    {
+      "formula": "(let ((a!1 (+ (^ (+ x_1 (* (- 1.0) x_3)) 2.0) (^ (+ y_1 (* (- 1.0) y_3)) 2.0)))\n      (a!2 (+ (^ (+ x_1 (* (- 1.0) x_2)) 2.0) (^ (+ y_1 (* (- 1.0) y_2)) 2.0))))\n  (= a!1 a!2))",
+      "name": "k4_equal_1_3",
+      "source": "D.K4 four-witness common radius"
+    },
+    {
+      "formula": "(let ((a!1 (+ (^ (+ x_1 (* (- 1.0) x_7)) 2.0) (^ (+ y_1 (* (- 1.0) y_7)) 2.0)))\n      (a!2 (+ (^ (+ x_1 (* (- 1.0) x_2)) 2.0) (^ (+ y_1 (* (- 1.0) y_2)) 2.0))))\n  (= a!1 a!2))",
+      "name": "k4_equal_1_7",
+      "source": "D.K4 four-witness common radius"
+    },
+    {
+      "formula": "(let ((a!1 (+ (^ (+ x_3 (* (- 1.0) x_8)) 2.0) (^ (+ y_3 (* (- 1.0) y_8)) 2.0)))\n      (a!2 (+ (^ (+ x_3 (* (- 1.0) x_1)) 2.0) (^ (+ y_3 (* (- 1.0) y_1)) 2.0))))\n  (= a!1 a!2))",
+      "name": "k4_equal_3_8",
+      "source": "D.K4 four-witness common radius"
+    },
+    {
+      "formula": "(let ((a!1 (+ (^ (+ x_7 (* (- 1.0) x_1)) 2.0) (^ (+ y_7 (* (- 1.0) y_1)) 2.0)))\n      (a!2 (+ (^ (+ x_7 (* (- 1.0) x_0)) 2.0) (^ (+ y_7 (* (- 1.0) y_0)) 2.0))))\n  (= a!1 a!2))",
+      "name": "k4_equal_7_1",
+      "source": "D.K4 four-witness common radius"
+    },
+    {
+      "formula": "(let ((a!1 (+ (^ (+ x_7 (* (- 1.0) x_13)) 2.0) (^ (+ y_7 (* (- 1.0) y_13)) 2.0)))\n      (a!2 (+ (^ (+ x_7 (* (- 1.0) x_0)) 2.0) (^ (+ y_7 (* (- 1.0) y_0)) 2.0))))\n  (= a!1 a!2))",
+      "name": "k4_equal_7_13",
+      "source": "D.K4 four-witness common radius"
+    },
+    {
+      "formula": "(let ((a!1 (+ (^ (+ x_8 (* (- 1.0) x_3)) 2.0) (^ (+ y_8 (* (- 1.0) y_3)) 2.0)))\n      (a!2 (+ (^ (+ x_8 (* (- 1.0) x_0)) 2.0) (^ (+ y_8 (* (- 1.0) y_0)) 2.0))))\n  (= a!1 a!2))",
+      "name": "k4_equal_8_3",
+      "source": "D.K4 four-witness common radius"
+    },
+    {
+      "formula": "(let ((a!1 (+ (^ (+ x_13 (* (- 1.0) x_7)) 2.0) (^ (+ y_13 (* (- 1.0) y_7)) 2.0)))\n      (a!2 (+ (^ (+ x_13 (* (- 1.0) x_3)) 2.0) (^ (+ y_13 (* (- 1.0) y_3)) 2.0))))\n  (= a!1 a!2))",
+      "name": "k4_equal_13_7",
+      "source": "D.K4 four-witness common radius"
+    },
+    {
+      "formula": "(let ((a!1 (+ (^ (+ x_13 (* (- 1.0) x_8)) 2.0) (^ (+ y_13 (* (- 1.0) y_8)) 2.0)))\n      (a!2 (+ (^ (+ x_13 (* (- 1.0) x_3)) 2.0) (^ (+ y_13 (* (- 1.0) y_3)) 2.0))))\n  (= a!1 a!2))",
+      "name": "k4_equal_13_8",
+      "source": "D.K4 four-witness common radius"
+    },
+    {
+      "formula": "(let ((a!1 (+ (^ (+ x_8 (* (- 1.0) x_13)) 2.0) (^ (+ y_8 (* (- 1.0) y_13)) 2.0)))\n      (a!2 (+ (^ (+ x_8 (* (- 1.0) x_0)) 2.0) (^ (+ y_8 (* (- 1.0) y_0)) 2.0))))\n  (not (= a!1 a!2)))",
+      "name": "blocker_exact_8_13",
+      "source": "unique-four at an actual blocker-image center"
+    }
+  ],
+  "clause_core_count": 9,
+  "clause_minimization_trace": [
+    {
+      "action": "KEEP",
+      "candidate_clause_count": 8,
+      "coordinate_field": "Q(sqrt(3))",
+      "dropped": "k4_equal_1_3",
+      "evidence": "exact triangular-lattice witness",
+      "exact_z3_substitution": "PASS",
+      "fraction_replay": "SKIP_ALGEBRAIC",
+      "status": "SAT"
+    },
+    {
+      "action": "KEEP",
+      "candidate_clause_count": 8,
+      "coordinate_field": "Q(sqrt(3))",
+      "dropped": "k4_equal_1_7",
+      "evidence": "exact triangular-lattice witness",
+      "exact_z3_substitution": "PASS",
+      "fraction_replay": "SKIP_ALGEBRAIC",
+      "status": "SAT"
+    },
+    {
+      "action": "KEEP",
+      "candidate_clause_count": 8,
+      "coordinate_field": "Q(sqrt(3))",
+      "dropped": "k4_equal_3_8",
+      "evidence": "exact triangular-lattice witness",
+      "exact_z3_substitution": "PASS",
+      "fraction_replay": "SKIP_ALGEBRAIC",
+      "status": "SAT"
+    },
+    {
+      "action": "KEEP",
+      "candidate_clause_count": 8,
+      "coordinate_field": "Q(sqrt(3))",
+      "dropped": "k4_equal_7_1",
+      "evidence": "exact triangular-lattice witness",
+      "exact_z3_substitution": "PASS",
+      "fraction_replay": "SKIP_ALGEBRAIC",
+      "status": "SAT"
+    },
+    {
+      "action": "KEEP",
+      "candidate_clause_count": 8,
+      "coordinate_field": "Q",
+      "dropped": "k4_equal_7_13",
+      "evidence": "exact triangular-lattice witness",
+      "exact_z3_substitution": "PASS",
+      "fraction_replay": "PASS",
+      "status": "SAT"
+    },
+    {
+      "action": "KEEP",
+      "candidate_clause_count": 8,
+      "coordinate_field": "Q(sqrt(3))",
+      "dropped": "k4_equal_8_3",
+      "evidence": "exact triangular-lattice witness",
+      "exact_z3_substitution": "PASS",
+      "fraction_replay": "SKIP_ALGEBRAIC",
+      "status": "SAT"
+    },
+    {
+      "action": "KEEP",
+      "candidate_clause_count": 8,
+      "coordinate_field": "Q(sqrt(3))",
+      "dropped": "k4_equal_13_7",
+      "evidence": "exact triangular-lattice witness",
+      "exact_z3_substitution": "PASS",
+      "fraction_replay": "SKIP_ALGEBRAIC",
+      "status": "SAT"
+    },
+    {
+      "action": "KEEP",
+      "candidate_clause_count": 8,
+      "coordinate_field": "Q(sqrt(3))",
+      "dropped": "k4_equal_13_8",
+      "evidence": "exact triangular-lattice witness",
+      "exact_z3_substitution": "PASS",
+      "fraction_replay": "SKIP_ALGEBRAIC",
+      "status": "SAT"
+    },
+    {
+      "action": "KEEP",
+      "candidate_clause_count": 8,
+      "coordinate_field": "Q",
+      "dropped": "blocker_exact_8_13",
+      "evidence": "exact triangular-lattice witness",
+      "exact_z3_substitution": "PASS",
+      "fraction_replay": "PASS",
+      "status": "SAT"
+    }
+  ],
+  "core_direct_syntactic_opposites": [],
+  "core_source_groups": [
+    {
+      "clause_names": [
+        "k4_equal_1_3",
+        "k4_equal_1_7",
+        "k4_equal_3_8",
+        "k4_equal_7_1",
+        "k4_equal_7_13",
+        "k4_equal_8_3",
+        "k4_equal_13_7",
+        "k4_equal_13_8"
+      ],
+      "group": "k4_witness_equalities::D.K4 four-witness common radius"
+    },
+    {
+      "clause_names": [
+        "blocker_exact_8_13"
+      ],
+      "group": "blocker_exactness::unique-four at an actual blocker-image center"
+    }
+  ],
+  "derived_distance_chain": {
+    "direct_syntactic_opposite": false,
+    "disequality": "d2(8,13) != d2(8,0)",
+    "disequality_clause": "blocker_exact_8_13",
+    "distance_term_path": [
+      "d2(8,13)",
+      "d2(13,3)",
+      "d2(13,7)",
+      "d2(7,13)",
+      "d2(7,0)",
+      "d2(7,1)",
+      "d2(1,7)",
+      "d2(1,2)",
+      "d2(1,3)",
+      "d2(3,1)",
+      "d2(3,8)",
+      "d2(8,3)",
+      "d2(8,0)"
+    ],
+    "equality_clauses": [
+      "k4_equal_8_3",
+      "k4_equal_3_8",
+      "k4_equal_1_3",
+      "k4_equal_1_7",
+      "k4_equal_7_1",
+      "k4_equal_7_13",
+      "k4_equal_13_7",
+      "k4_equal_13_8"
+    ],
+    "kind": "derived metric contradiction by squared-distance symmetry and transitivity of eight K4 radius equalities",
+    "status": "PASS"
+  },
+  "direct_syntactic_opposites": [],
+  "packet_inventory": [
+    {
+      "clause_count": 2,
+      "packet": "geometry_core::Euclidean similarity gauge"
+    },
+    {
+      "clause_count": 3,
+      "packet": "geometry_core::CircumscribedMECPacket / Moser apices"
+    },
+    {
+      "clause_count": 17,
+      "packet": "geometry_core::minimum enclosing disk containment"
+    },
+    {
+      "clause_count": 3,
+      "packet": "geometry_core::triangleNonObtuse"
+    },
+    {
+      "clause_count": 680,
+      "packet": "geometry_core::BoundaryIndexing.boundary_ccw"
+    },
+    {
+      "clause_count": 51,
+      "packet": "cap_classification::CapTriple.arc_membership / OnArcOpposite"
+    },
+    {
+      "clause_count": 17,
+      "packet": "k4_witness_equalities::D.K4 four-witness positive radius"
+    },
+    {
+      "clause_count": 51,
+      "packet": "k4_witness_equalities::D.K4 four-witness common radius"
+    },
+    {
+      "clause_count": 17,
+      "packet": "selected_support_equalities::selectedAt source / actual blocker"
+    },
+    {
+      "clause_count": 51,
+      "packet": "selected_support_equalities::selected support equality at actual blocker"
+    },
+    {
+      "clause_count": 6,
+      "packet": "rich_radius_pattern::OppositeCapRichClassInteriorPattern positive radius"
+    },
+    {
+      "clause_count": 12,
+      "packet": "rich_radius_pattern::strict-cap rich slice on a common apex radius"
+    },
+    {
+      "clause_count": 8,
+      "packet": "rich_radius_pattern::hfrontierInteriorEq/h\u03c1InteriorEq exact retained first-cap slice"
+    },
+    {
+      "clause_count": 3,
+      "packet": "rich_radius_pattern::D44 distinct radii"
+    },
+    {
+      "clause_count": 6,
+      "packet": "full_rich_classes::ApexRichClassStructure D44/S6 ambient class cardinality"
+    },
+    {
+      "clause_count": 143,
+      "packet": "blocker_exactness::unique-four at an actual blocker-image center"
+    }
+  ],
+  "replays": [
+    {
+      "artifact": "generated/clause_core.smt2",
+      "check_sat_count": 1,
+      "clause_count": 9,
+      "name": "clause_core",
+      "solvers": {
+        "cvc5": {
+          "seconds": 0.008876,
+          "status": "UNSAT"
+        },
+        "z3": {
+          "seconds": 50.142965,
+          "status": "UNSAT"
+        }
+      }
+    },
+    {
+      "artifact": "generated/clause_core_drop_00_k4_equal_1_3.smt2",
+      "base_drop_one_clause_count": 8,
+      "check_sat_count": 1,
+      "clause_count": 8,
+      "dropped": "k4_equal_1_3",
+      "exact_model_validation": {
+        "coordinate_field": "Q(sqrt(3))",
+        "exact_z3_substitution": "PASS",
+        "fraction_replay": "SKIP_ALGEBRAIC",
+        "triangular_lattice_coordinates": {
+          "0": [
+            -1,
+            0
+          ],
+          "1": [
+            -1,
+            1
+          ],
+          "10": [
+            0,
+            0
+          ],
+          "11": [
+            0,
+            0
+          ],
+          "12": [
+            0,
+            0
+          ],
+          "13": [
+            -2,
+            3
+          ],
+          "14": [
+            0,
+            0
+          ],
+          "15": [
+            0,
+            0
+          ],
+          "16": [
+            0,
+            0
+          ],
+          "2": [
+            -4,
+            2
+          ],
+          "3": [
+            -1,
+            0
+          ],
+          "4": [
+            0,
+            0
+          ],
+          "5": [
+            0,
+            0
+          ],
+          "6": [
+            0,
+            0
+          ],
+          "7": [
+            -4,
+            2
+          ],
+          "8": [
+            0,
+            0
+          ],
+          "9": [
+            0,
+            0
+          ]
+        }
+      },
+      "exact_substituted_clause_count": 8,
+      "name": "clause_core_drop_00_k4_equal_1_3",
+      "query_kind": "external replay of the exact Q(sqrt(3)) substitution; the separately verified substitution proves the raw drop-one SAT",
+      "solvers": {
+        "cvc5": {
+          "seconds": 0.00558,
+          "status": "SAT"
+        },
+        "z3": {
+          "seconds": 0.005983,
+          "status": "SAT"
+        }
+      }
+    },
+    {
+      "artifact": "generated/clause_core_drop_01_k4_equal_1_7.smt2",
+      "base_drop_one_clause_count": 8,
+      "check_sat_count": 1,
+      "clause_count": 8,
+      "dropped": "k4_equal_1_7",
+      "exact_model_validation": {
+        "coordinate_field": "Q(sqrt(3))",
+        "exact_z3_substitution": "PASS",
+        "fraction_replay": "SKIP_ALGEBRAIC",
+        "triangular_lattice_coordinates": {
+          "0": [
+            -1,
+            0
+          ],
+          "1": [
+            -1,
+            1
+          ],
+          "10": [
+            0,
+            0
+          ],
+          "11": [
+            0,
+            0
+          ],
+          "12": [
+            0,
+            0
+          ],
+          "13": [
+            -2,
+            3
+          ],
+          "14": [
+            0,
+            0
+          ],
+          "15": [
+            0,
+            0
+          ],
+          "16": [
+            0,
+            0
+          ],
+          "2": [
+            -2,
+            1
+          ],
+          "3": [
+            -1,
+            0
+          ],
+          "4": [
+            0,
+            0
+          ],
+          "5": [
+            0,
+            0
+          ],
+          "6": [
+            0,
+            0
+          ],
+          "7": [
+            -4,
+            2
+          ],
+          "8": [
+            0,
+            0
+          ],
+          "9": [
+            0,
+            0
+          ]
+        }
+      },
+      "exact_substituted_clause_count": 8,
+      "name": "clause_core_drop_01_k4_equal_1_7",
+      "query_kind": "external replay of the exact Q(sqrt(3)) substitution; the separately verified substitution proves the raw drop-one SAT",
+      "solvers": {
+        "cvc5": {
+          "seconds": 0.006207,
+          "status": "SAT"
+        },
+        "z3": {
+          "seconds": 0.006253,
+          "status": "SAT"
+        }
+      }
+    },
+    {
+      "artifact": "generated/clause_core_drop_02_k4_equal_3_8.smt2",
+      "base_drop_one_clause_count": 8,
+      "check_sat_count": 1,
+      "clause_count": 8,
+      "dropped": "k4_equal_3_8",
+      "exact_model_validation": {
+        "coordinate_field": "Q(sqrt(3))",
+        "exact_z3_substitution": "PASS",
+        "fraction_replay": "SKIP_ALGEBRAIC",
+        "triangular_lattice_coordinates": {
+          "0": [
+            -1,
+            0
+          ],
+          "1": [
+            -3,
+            -1
+          ],
+          "10": [
+            0,
+            0
+          ],
+          "11": [
+            0,
+            0
+          ],
+          "12": [
+            0,
+            0
+          ],
+          "13": [
+            -2,
+            3
+          ],
+          "14": [
+            0,
+            0
+          ],
+          "15": [
+            0,
+            0
+          ],
+          "16": [
+            0,
+            0
+          ],
+          "2": [
+            -6,
+            0
+          ],
+          "3": [
+            -1,
+            0
+          ],
+          "4": [
+            0,
+            0
+          ],
+          "5": [
+            0,
+            0
+          ],
+          "6": [
+            0,
+            0
+          ],
+          "7": [
+            -4,
+            2
+          ],
+          "8": [
+            0,
+            0
+          ],
+          "9": [
+            0,
+            0
+          ]
+        }
+      },
+      "exact_substituted_clause_count": 8,
+      "name": "clause_core_drop_02_k4_equal_3_8",
+      "query_kind": "external replay of the exact Q(sqrt(3)) substitution; the separately verified substitution proves the raw drop-one SAT",
+      "solvers": {
+        "cvc5": {
+          "seconds": 0.005429,
+          "status": "SAT"
+        },
+        "z3": {
+          "seconds": 0.006655,
+          "status": "SAT"
+        }
+      }
+    },
+    {
+      "artifact": "generated/clause_core_drop_03_k4_equal_7_1.smt2",
+      "base_drop_one_clause_count": 8,
+      "check_sat_count": 1,
+      "clause_count": 8,
+      "dropped": "k4_equal_7_1",
+      "exact_model_validation": {
+        "coordinate_field": "Q(sqrt(3))",
+        "exact_z3_substitution": "PASS",
+        "fraction_replay": "SKIP_ALGEBRAIC",
+        "triangular_lattice_coordinates": {
+          "0": [
+            -1,
+            1
+          ],
+          "1": [
+            -2,
+            0
+          ],
+          "10": [
+            0,
+            0
+          ],
+          "11": [
+            0,
+            0
+          ],
+          "12": [
+            0,
+            0
+          ],
+          "13": [
+            1,
+            -3
+          ],
+          "14": [
+            0,
+            0
+          ],
+          "15": [
+            0,
+            0
+          ],
+          "16": [
+            0,
+            0
+          ],
+          "2": [
+            -3,
+            0
+          ],
+          "3": [
+            -1,
+            0
+          ],
+          "4": [
+            0,
+            0
+          ],
+          "5": [
+            0,
+            0
+          ],
+          "6": [
+            0,
+            0
+          ],
+          "7": [
+            -2,
+            -1
+          ],
+          "8": [
+            0,
+            0
+          ],
+          "9": [
+            0,
+            0
+          ]
+        }
+      },
+      "exact_substituted_clause_count": 8,
+      "name": "clause_core_drop_03_k4_equal_7_1",
+      "query_kind": "external replay of the exact Q(sqrt(3)) substitution; the separately verified substitution proves the raw drop-one SAT",
+      "solvers": {
+        "cvc5": {
+          "seconds": 0.005433,
+          "status": "SAT"
+        },
+        "z3": {
+          "seconds": 0.006174,
+          "status": "SAT"
+        }
+      }
+    },
+    {
+      "artifact": "generated/clause_core_drop_04_k4_equal_7_13.smt2",
+      "base_drop_one_clause_count": 8,
+      "check_sat_count": 1,
+      "clause_count": 8,
+      "dropped": "k4_equal_7_13",
+      "exact_model_validation": {
+        "coordinate_field": "Q",
+        "exact_z3_substitution": "PASS",
+        "fraction_replay": "PASS",
+        "triangular_lattice_coordinates": {
+          "0": [
+            0,
+            0
+          ],
+          "1": [
+            0,
+            0
+          ],
+          "10": [
+            0,
+            0
+          ],
+          "11": [
+            0,
+            0
+          ],
+          "12": [
+            0,
+            0
+          ],
+          "13": [
+            -3,
+            0
+          ],
+          "14": [
+            0,
+            0
+          ],
+          "15": [
+            0,
+            0
+          ],
+          "16": [
+            0,
+            0
+          ],
+          "2": [
+            0,
+            0
+          ],
+          "3": [
+            0,
+            0
+          ],
+          "4": [
+            0,
+            0
+          ],
+          "5": [
+            0,
+            0
+          ],
+          "6": [
+            0,
+            0
+          ],
+          "7": [
+            0,
+            0
+          ],
+          "8": [
+            0,
+            0
+          ],
+          "9": [
+            0,
+            0
+          ]
+        }
+      },
+      "exact_substituted_clause_count": 8,
+      "name": "clause_core_drop_04_k4_equal_7_13",
+      "query_kind": "external replay of the exact Q(sqrt(3)) substitution; the separately verified substitution proves the raw drop-one SAT",
+      "solvers": {
+        "cvc5": {
+          "seconds": 0.005614,
+          "status": "SAT"
+        },
+        "z3": {
+          "seconds": 0.005972,
+          "status": "SAT"
+        }
+      }
+    },
+    {
+      "artifact": "generated/clause_core_drop_05_k4_equal_8_3.smt2",
+      "base_drop_one_clause_count": 8,
+      "check_sat_count": 1,
+      "clause_count": 8,
+      "dropped": "k4_equal_8_3",
+      "exact_model_validation": {
+        "coordinate_field": "Q(sqrt(3))",
+        "exact_z3_substitution": "PASS",
+        "fraction_replay": "SKIP_ALGEBRAIC",
+        "triangular_lattice_coordinates": {
+          "0": [
+            -1,
+            0
+          ],
+          "1": [
+            -5,
+            0
+          ],
+          "10": [
+            0,
+            0
+          ],
+          "11": [
+            0,
+            0
+          ],
+          "12": [
+            0,
+            0
+          ],
+          "13": [
+            -2,
+            3
+          ],
+          "14": [
+            0,
+            0
+          ],
+          "15": [
+            0,
+            0
+          ],
+          "16": [
+            0,
+            0
+          ],
+          "2": [
+            -6,
+            -2
+          ],
+          "3": [
+            -3,
+            1
+          ],
+          "4": [
+            0,
+            0
+          ],
+          "5": [
+            0,
+            0
+          ],
+          "6": [
+            0,
+            0
+          ],
+          "7": [
+            -4,
+            2
+          ],
+          "8": [
+            0,
+            0
+          ],
+          "9": [
+            0,
+            0
+          ]
+        }
+      },
+      "exact_substituted_clause_count": 8,
+      "name": "clause_core_drop_05_k4_equal_8_3",
+      "query_kind": "external replay of the exact Q(sqrt(3)) substitution; the separately verified substitution proves the raw drop-one SAT",
+      "solvers": {
+        "cvc5": {
+          "seconds": 0.005262,
+          "status": "SAT"
+        },
+        "z3": {
+          "seconds": 0.005972,
+          "status": "SAT"
+        }
+      }
+    },
+    {
+      "artifact": "generated/clause_core_drop_06_k4_equal_13_7.smt2",
+      "base_drop_one_clause_count": 8,
+      "check_sat_count": 1,
+      "clause_count": 8,
+      "dropped": "k4_equal_13_7",
+      "exact_model_validation": {
+        "coordinate_field": "Q(sqrt(3))",
+        "exact_z3_substitution": "PASS",
+        "fraction_replay": "SKIP_ALGEBRAIC",
+        "triangular_lattice_coordinates": {
+          "0": [
+            -1,
+            1
+          ],
+          "1": [
+            -2,
+            1
+          ],
+          "10": [
+            0,
+            0
+          ],
+          "11": [
+            0,
+            0
+          ],
+          "12": [
+            0,
+            0
+          ],
+          "13": [
+            -2,
+            3
+          ],
+          "14": [
+            0,
+            0
+          ],
+          "15": [
+            0,
+            0
+          ],
+          "16": [
+            0,
+            0
+          ],
+          "2": [
+            -3,
+            1
+          ],
+          "3": [
+            -1,
+            0
+          ],
+          "4": [
+            0,
+            0
+          ],
+          "5": [
+            0,
+            0
+          ],
+          "6": [
+            0,
+            0
+          ],
+          "7": [
+            -2,
+            2
+          ],
+          "8": [
+            0,
+            0
+          ],
+          "9": [
+            0,
+            0
+          ]
+        }
+      },
+      "exact_substituted_clause_count": 8,
+      "name": "clause_core_drop_06_k4_equal_13_7",
+      "query_kind": "external replay of the exact Q(sqrt(3)) substitution; the separately verified substitution proves the raw drop-one SAT",
+      "solvers": {
+        "cvc5": {
+          "seconds": 0.005532,
+          "status": "SAT"
+        },
+        "z3": {
+          "seconds": 0.005941,
+          "status": "SAT"
+        }
+      }
+    },
+    {
+      "artifact": "generated/clause_core_drop_07_k4_equal_13_8.smt2",
+      "base_drop_one_clause_count": 8,
+      "check_sat_count": 1,
+      "clause_count": 8,
+      "dropped": "k4_equal_13_8",
+      "exact_model_validation": {
+        "coordinate_field": "Q(sqrt(3))",
+        "exact_z3_substitution": "PASS",
+        "fraction_replay": "SKIP_ALGEBRAIC",
+        "triangular_lattice_coordinates": {
+          "0": [
+            -1,
+            0
+          ],
+          "1": [
+            -2,
+            1
+          ],
+          "10": [
+            0,
+            0
+          ],
+          "11": [
+            0,
+            0
+          ],
+          "12": [
+            0,
+            0
+          ],
+          "13": [
+            -2,
+            1
+          ],
+          "14": [
+            0,
+            0
+          ],
+          "15": [
+            0,
+            0
+          ],
+          "16": [
+            0,
+            0
+          ],
+          "2": [
+            -3,
+            1
+          ],
+          "3": [
+            -1,
+            0
+          ],
+          "4": [
+            0,
+            0
+          ],
+          "5": [
+            0,
+            0
+          ],
+          "6": [
+            0,
+            0
+          ],
+          "7": [
+            -2,
+            0
+          ],
+          "8": [
+            0,
+            0
+          ],
+          "9": [
+            0,
+            0
+          ]
+        }
+      },
+      "exact_substituted_clause_count": 8,
+      "name": "clause_core_drop_07_k4_equal_13_8",
+      "query_kind": "external replay of the exact Q(sqrt(3)) substitution; the separately verified substitution proves the raw drop-one SAT",
+      "solvers": {
+        "cvc5": {
+          "seconds": 0.005716,
+          "status": "SAT"
+        },
+        "z3": {
+          "seconds": 0.005779,
+          "status": "SAT"
+        }
+      }
+    },
+    {
+      "artifact": "generated/clause_core_drop_08_blocker_exact_8_13.smt2",
+      "base_drop_one_clause_count": 8,
+      "check_sat_count": 1,
+      "clause_count": 8,
+      "dropped": "blocker_exact_8_13",
+      "exact_model_validation": {
+        "coordinate_field": "Q",
+        "exact_z3_substitution": "PASS",
+        "fraction_replay": "PASS",
+        "triangular_lattice_coordinates": {
+          "0": [
+            0,
+            0
+          ],
+          "1": [
+            0,
+            0
+          ],
+          "10": [
+            0,
+            0
+          ],
+          "11": [
+            0,
+            0
+          ],
+          "12": [
+            0,
+            0
+          ],
+          "13": [
+            0,
+            0
+          ],
+          "14": [
+            0,
+            0
+          ],
+          "15": [
+            0,
+            0
+          ],
+          "16": [
+            0,
+            0
+          ],
+          "2": [
+            0,
+            0
+          ],
+          "3": [
+            0,
+            0
+          ],
+          "4": [
+            0,
+            0
+          ],
+          "5": [
+            0,
+            0
+          ],
+          "6": [
+            0,
+            0
+          ],
+          "7": [
+            0,
+            0
+          ],
+          "8": [
+            0,
+            0
+          ],
+          "9": [
+            0,
+            0
+          ]
+        }
+      },
+      "exact_substituted_clause_count": 8,
+      "name": "clause_core_drop_08_blocker_exact_8_13",
+      "query_kind": "external replay of the exact Q(sqrt(3)) substitution; the separately verified substitution proves the raw drop-one SAT",
+      "solvers": {
+        "cvc5": {
+          "seconds": 0.005171,
+          "status": "SAT"
+        },
+        "z3": {
+          "seconds": 0.00619,
+          "status": "SAT"
+        }
+      }
+    },
+    {
+      "artifact": "generated/known_sat.smt2",
+      "check_sat_count": 1,
+      "clause_count": 2,
+      "exact_model_validation": {
+        "all_values_rational": true,
+        "exact_z3_substitution": "PASS",
+        "fraction_replay": "PASS",
+        "model": "generated/known_sat_exact_model.json"
+      },
+      "internal_z3": {
+        "seconds": 0.001002,
+        "status": "SAT"
+      },
+      "name": "known_sat",
+      "solvers": {
+        "cvc5": {
+          "seconds": 0.005701,
+          "status": "SAT"
+        },
+        "z3": {
+          "seconds": 0.006222,
+          "status": "SAT"
+        }
+      }
+    },
+    {
+      "artifact": "generated/known_malformed_unsat.smt2",
+      "check_sat_count": 1,
+      "clause_count": 2,
+      "internal_z3": {
+        "seconds": 6.7e-05,
+        "status": "UNSAT"
+      },
+      "name": "known_malformed_unsat",
+      "solvers": {
+        "cvc5": {
+          "seconds": 0.005487,
+          "status": "UNSAT"
+        },
+        "z3": {
+          "seconds": 0.006092,
+          "status": "UNSAT"
+        }
+      }
+    },
+    {
+      "artifact": "generated/parent_malformed_reversed_boundary.smt2",
+      "check_sat_count": 1,
+      "clause_count": 706,
+      "name": "parent_malformed_reversed_boundary",
+      "solvers": {
+        "cvc5": {
+          "seconds": 0.063827,
+          "status": "UNSAT"
+        },
+        "z3": {
+          "seconds": 0.031173,
+          "status": "UNSAT"
+        }
+      }
+    },
+    {
+      "artifact": "generated/parent_malformed_break_k4_equality.smt2",
+      "check_sat_count": 1,
+      "clause_count": 137,
+      "name": "parent_malformed_break_k4_equality",
+      "solvers": {
+        "cvc5": {
+          "seconds": 0.013448,
+          "status": "UNSAT"
+        },
+        "z3": {
+          "seconds": 0.007834,
+          "status": "UNSAT"
+        }
+      }
+    },
+    {
+      "artifact": "generated/parent_malformed_equal_rich_radii.smt2",
+      "check_sat_count": 1,
+      "clause_count": 30,
+      "name": "parent_malformed_equal_rich_radii",
+      "solvers": {
+        "cvc5": {
+          "seconds": 0.007576,
+          "status": "UNSAT"
+        },
+        "z3": {
+          "seconds": 0.006334,
+          "status": "UNSAT"
+        }
+      }
+    },
+    {
+      "artifact": "generated/parent_malformed_break_singleton.smt2",
+      "check_sat_count": 1,
+      "clause_count": 14,
+      "name": "parent_malformed_break_singleton",
+      "solvers": {
+        "cvc5": {
+          "seconds": 0.006639,
+          "status": "UNSAT"
+        },
+        "z3": {
+          "seconds": 0.0061,
+          "status": "UNSAT"
+        }
+      }
+    }
+  ],
+  "scope": "one frozen exact-17 direct-crossed assignment; finite solver diagnostic only; no CE, universal, or Lean closure claim",
+  "selected_row_identity": {
+    "match_count": 17,
+    "mismatch_count": 0,
+    "records": [
+      {
+        "blocker": 7,
+        "blocker_k4_row": [
+          0,
+          1,
+          2,
+          13
+        ],
+        "equal": true,
+        "selected_row": [
+          0,
+          1,
+          2,
+          13
+        ],
+        "source": 0
+      },
+      {
+        "blocker": 8,
+        "blocker_k4_row": [
+          0,
+          1,
+          3,
+          5
+        ],
+        "equal": true,
+        "selected_row": [
+          0,
+          1,
+          3,
+          5
+        ],
+        "source": 1
+      },
+      {
+        "blocker": 1,
+        "blocker_k4_row": [
+          2,
+          3,
+          6,
+          7
+        ],
+        "equal": true,
+        "selected_row": [
+          2,
+          3,
+          6,
+          7
+        ],
+        "source": 2
+      },
+      {
+        "blocker": 11,
+        "blocker_k4_row": [
+          3,
+          4,
+          7,
+          14
+        ],
+        "equal": true,
+        "selected_row": [
+          3,
+          4,
+          7,
+          14
+        ],
+        "source": 3
+      },
+      {
+        "blocker": 15,
+        "blocker_k4_row": [
+          4,
+          7,
+          8,
+          12
+        ],
+        "equal": true,
+        "selected_row": [
+          4,
+          7,
+          8,
+          12
+        ],
+        "source": 4
+      },
+      {
+        "blocker": 6,
+        "blocker_k4_row": [
+          3,
+          4,
+          5,
+          11
+        ],
+        "equal": true,
+        "selected_row": [
+          3,
+          4,
+          5,
+          11
+        ],
+        "source": 5
+      },
+      {
+        "blocker": 1,
+        "blocker_k4_row": [
+          2,
+          3,
+          6,
+          7
+        ],
+        "equal": true,
+        "selected_row": [
+          2,
+          3,
+          6,
+          7
+        ],
+        "source": 6
+      },
+      {
+        "blocker": 15,
+        "blocker_k4_row": [
+          4,
+          7,
+          8,
+          12
+        ],
+        "equal": true,
+        "selected_row": [
+          4,
+          7,
+          8,
+          12
+        ],
+        "source": 7
+      },
+      {
+        "blocker": 13,
+        "blocker_k4_row": [
+          3,
+          7,
+          8,
+          16
+        ],
+        "equal": true,
+        "selected_row": [
+          3,
+          7,
+          8,
+          16
+        ],
+        "source": 8
+      },
+      {
+        "blocker": 12,
+        "blocker_k4_row": [
+          5,
+          8,
+          9,
+          10
+        ],
+        "equal": true,
+        "selected_row": [
+          5,
+          8,
+          9,
+          10
+        ],
+        "source": 9
+      },
+      {
+        "blocker": 12,
+        "blocker_k4_row": [
+          5,
+          8,
+          9,
+          10
+        ],
+        "equal": true,
+        "selected_row": [
+          5,
+          8,
+          9,
+          10
+        ],
+        "source": 10
+      },
+      {
+        "blocker": 0,
+        "blocker_k4_row": [
+          7,
+          11,
+          12,
+          15
+        ],
+        "equal": true,
+        "selected_row": [
+          7,
+          11,
+          12,
+          15
+        ],
+        "source": 11
+      },
+      {
+        "blocker": 15,
+        "blocker_k4_row": [
+          4,
+          7,
+          8,
+          12
+        ],
+        "equal": true,
+        "selected_row": [
+          4,
+          7,
+          8,
+          12
+        ],
+        "source": 12
+      },
+      {
+        "blocker": 7,
+        "blocker_k4_row": [
+          0,
+          1,
+          2,
+          13
+        ],
+        "equal": true,
+        "selected_row": [
+          0,
+          1,
+          2,
+          13
+        ],
+        "source": 13
+      },
+      {
+        "blocker": 9,
+        "blocker_k4_row": [
+          2,
+          11,
+          14,
+          15
+        ],
+        "equal": true,
+        "selected_row": [
+          2,
+          11,
+          14,
+          15
+        ],
+        "source": 14
+      },
+      {
+        "blocker": 9,
+        "blocker_k4_row": [
+          2,
+          11,
+          14,
+          15
+        ],
+        "equal": true,
+        "selected_row": [
+          2,
+          11,
+          14,
+          15
+        ],
+        "source": 15
+      },
+      {
+        "blocker": 2,
+        "blocker_k4_row": [
+          0,
+          6,
+          8,
+          16
+        ],
+        "equal": true,
+        "selected_row": [
+          0,
+          6,
+          8,
+          16
+        ],
+        "source": 16
+      }
+    ],
+    "source_count": 17
+  },
+  "tracked_clause_seed": {
+    "artifact": "generated/tracked_global_seed.smt2",
+    "check_sat_count": 1,
+    "extracted_by": "external Z3 named assertions over the complete canonical universe",
+    "fresh_seed_replay": "UNSAT",
+    "seed_clause_count": 9,
+    "seed_names": [
+      "k4_equal_1_3",
+      "k4_equal_1_7",
+      "k4_equal_3_8",
+      "k4_equal_7_1",
+      "k4_equal_7_13",
+      "k4_equal_8_3",
+      "k4_equal_13_7",
+      "k4_equal_13_8",
+      "blocker_exact_8_13"
+    ],
+    "tracked_check_seconds": 0.039344,
+    "universe_clause_count": 1070,
+    "z3_version": "Z3 version 4.16.0 - 64 bit"
+  }
+}

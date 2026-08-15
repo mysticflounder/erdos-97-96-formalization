@@ -1,0 +1,60 @@
+{
+  "artifacts": {
+    "discovery_cnf": {
+      "bytes": 5128454,
+      "path": "discovery.cnf",
+      "sha256": "cfc268f2915ff31e1af24a66a036e41e81f93aca0967e88c1b4a4158eb67a379"
+    },
+    "job": {
+      "bytes": 8492,
+      "path": "job.json",
+      "sha256": "66478b626b3162faa96fb9621f10a2e691b524a1d4d5a67f03741dc392f260a3"
+    },
+    "journal": {
+      "bytes": 2601,
+      "path": "journal.jsonl",
+      "sha256": "4512404d48ba5107318cf741ad4b0ea83538079998825d21522555cb994dc93d"
+    },
+    "proof": null,
+    "survivor": null,
+    "terminal_cnf": null
+  },
+  "bound_job_schema": "p97_rigid221_exact12_full_v14_bound_job.v1",
+  "cell_index": 0,
+  "detector_contract_manifest": [
+    {
+      "bytes": 24179,
+      "path": "census/card_head/exact12_v14_structural_cegar.py",
+      "sha256": "c7fba9591317e882c89f9f5bc69c5be4547b1999936314f8093769376f3d8a96"
+    },
+    {
+      "bytes": 102708,
+      "path": "census/global_confinement/metric_realizability_probe.py",
+      "sha256": "e44f1452b240b8bbe39f2389311312ac02ef9bef8ddbb5b08dc4ffa06adea396"
+    },
+    {
+      "bytes": 49772,
+      "path": "census/global_confinement/cap_selected_nogood_certificate_probe.py",
+      "sha256": "9e21350a4126eb40d09e5fb454c9dee691e6dc1aaccf026a4ca6e238fc96aa13"
+    }
+  ],
+  "detector_contract_sha256": "18d83f2fd09e876b52716fd32ddfb39c2d3bf8732b61f9ed733a8aea7303ff39",
+  "discovery_verdict": "SAT",
+  "error": null,
+  "job_sha256": "1f76e83fa4c1a1226b3f96dcf0b43089efb265f88e845b50db6e002e1c187362",
+  "journal_replayed": true,
+  "max_iterations": 1,
+  "records": 1,
+  "replay": {
+    "added_constraints": true,
+    "candidate": true,
+    "exact_cnf": true
+  },
+  "schema": "p97_rigid221_exact12_full_v14_structural_cegar_run.v1",
+  "scope": "one finite normalized-v14 cell under order-independent metric CEGAR; no aggregate coverage, universal lift, or Lean closure",
+  "status": "ITERATION_LIMIT",
+  "terminal_proof_verified": false,
+  "terminal_record_sha256": "ace0330dab6f5f5adc1dfd0284678cc382acbe08da7ceb896782e14188aed486",
+  "terminal_verdict": null,
+  "timeout_seconds": 60
+}

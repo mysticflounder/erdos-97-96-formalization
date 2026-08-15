@@ -1,0 +1,53 @@
+{
+  "arm_cell_index": 5,
+  "artifacts": {
+    "clause_delta": {
+      "bytes": 90989,
+      "path": "clause_delta.json",
+      "sha256": "9461e00de151f1b98d48bbaf229628a121009fb61f6ef9b073927ce7fed7e2d4"
+    },
+    "discovery_cnf": {
+      "bytes": 5129085,
+      "path": "discovery.cnf",
+      "sha256": "7f621afaafc4d0293151a56930eab7bd17c463b1e310e13e4a5fc889fedd9717"
+    },
+    "job": {
+      "bytes": 10737,
+      "path": "job.json",
+      "sha256": "4555bc9478f22deb5b5f04600041c1ba53c0a20a8bf47661cd6a6566246c1629"
+    },
+    "model": {
+      "bytes": 338833,
+      "path": "model.json",
+      "sha256": "42059835716188291ff692049f55218c84e53875c6470fe377ae9adde38b89ca"
+    },
+    "proof": null,
+    "terminal_cnf": null
+  },
+  "cell": {
+    "arm": "xu_w",
+    "joint_deletion": 0,
+    "placement_index": 0,
+    "v": 2
+  },
+  "discovery_stdout_tail": "42583 -42584\nv -42585 -42586 -42587 -42588 -42589 42590 -42591 -42592 -42593 -42594 -42595\nv -42596 -42597 -42598 -42599 42600 -42601 -42602 42603 -42604 -42605 -42606\nv -42607 -42608 -42609 -42610 -42611 -42612 42613 42614 42615 42616 42617\nv 42618 42619 42620 -42621 -42622 -42623 -42624 -42625 -42626 -42627 42628\nv -42629 -42630 -42631 -42632 -42633 -42634 -42635 -42636 -42637 42638 42639\nv 42640 -42641 -42642 -42643 -42644 -42645 -42646 42647 -42648 -42649 -42650\nv -42651 -42652 -42653 -42654 -42655 -42656 42657 42658 42659 42660 42661\nv 42662 42663 42664 42665 42666 42667 42668 42669 42670 42671 42672 42673\nv -42674 -42675 42676 42677 42678 42679 42680 42681 42682 42683 42684 42685\nv 42686 42687 -42688 -42689 -42690 -42691 42692 42693 42694 42695 42696 -42697\nv -42698 42699 42700 42701 42702 42703 42704 42705 -42706 42707 42708 42709\nv 42710 -42711 -42712 -42713 -42714 -42715 -42716 -42717 -42718 42719 -42720\nv -42721 -42722 -42723 -42724 -42725 -42726 -42727 -42728 42729 42730 0\n\n",
+  "discovery_verdict": "SAT",
+  "error": null,
+  "job_id": "cbfee232fdd2d89285d0a8dcdec56d364d1b4eb92d49b73d4aa4b07b93f83625",
+  "job_schema": "p97_rigid221_exact12_next_row_named_deletion_arm_bound_job.v1",
+  "job_sha256": "4555bc9478f22deb5b5f04600041c1ba53c0a20a8bf47661cd6a6566246c1629",
+  "nice": 10,
+  "replay": {
+    "added_constraints": true,
+    "candidate": true,
+    "exact_cnf": true,
+    "model": true
+  },
+  "schema": "p97_rigid221_exact12_next_row_named_deletion_arm_cell_run.v1",
+  "scope": "one finite next-row placement by named-deletion-arm cell; no aggregate coverage, universal lift, terminal bank, or Lean-closure claim",
+  "status": "SAT_WITNESS_REPLAYED",
+  "terminal_proof_verified": false,
+  "terminal_stdout_tail": null,
+  "terminal_verdict": null,
+  "timeout_seconds": 600
+}

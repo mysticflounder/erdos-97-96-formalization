@@ -1,0 +1,35 @@
+{
+  "schema": "p97-exact17-lean-twentieth-model-refinements-piqd-fresh-rerun/v1",
+  "dimacs": {
+    "path": "scratch/exact17-lean-to-sat/exact17-twenty-first-root-twentieth-model-refinements.cnf",
+    "sha256": "bc42cd2756d6b3d84c5eb265762bc346a893dbdbc01bbe8ac5dbcb2f53f89720",
+    "bytes": 291573600,
+    "variables": 308,
+    "clauses": 5846200
+  },
+  "validated_ingress": {
+    "manifest": "scratch/exact17-lean-to-sat/piqd-ingress-manifest-twentieth-model-refinements.json",
+    "manifest_sha256": "6ffd148a57458b23929dc933eeb2b35607f860c790b8cda347090311105cbe22",
+    "report": "scratch/exact17-lean-to-sat/piqd-ingress-twentieth-model-refinements-validation.json",
+    "report_sha256": "00d51c817e710d6532a734b75241e6594d889c9119b13676443fbc82e37b4f04",
+    "status": "PASS"
+  },
+  "recovery": {
+    "reason": "The original job was permanently rejected because two simultaneous solver processes wrote two complete assignments into one log.",
+    "supersedes_job_id": "b676c3ab-2084-4ed4-b0b2-94a6aa1dafda",
+    "original_model_admissible": false,
+    "model_policy": "one complete duplicate-free assignment from one solver run",
+    "piqd_repair_commit": "c262aa5",
+    "piqd_repair_daemon_sha256": "82187247e58c7b10773d56e190d795bf8f914150d818691c7d22f96f7264b396",
+    "project_convo_message": 5533
+  },
+  "piqd": {
+    "daemon_protocol_version": 1,
+    "daemon_sha256": "82187247e58c7b10773d56e190d795bf8f914150d818691c7d22f96f7264b396",
+    "ingress": "raw-dimacs/v1",
+    "backend": "cadical",
+    "solver_profile": "sat",
+    "immutable_root_only": true,
+    "python_authored_successor_clause_allowed": false
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "anonymous_positions": [
+    0,
+    1
+  ],
+  "cadical_model_roundtrip": "PASS",
+  "order": [
+    0,
+    6,
+    8,
+    11,
+    10,
+    9,
+    12,
+    7,
+    2,
+    15,
+    16,
+    3,
+    4,
+    5,
+    1,
+    13,
+    14
+  ],
+  "order_index": 0,
+  "schema": "p97-rigid221-exact17-source-cnf-crosscheck-v1",
+  "source_hashes": {
+    "base_exporter": "b97153d3525ae274b33c1de90895111ded4ce9e30b0ea36073a837fb1cfa1162",
+    "direct_exporter": "d1d1e150bb7dbeff317f08f8044c1d3f47cc5aff02e2bf33ed53e0d055395788",
+    "fullcover": "0f6e6a295759f02da6844d0101859f654e413fc2b972dbf4a280b1c44244694e",
+    "source_runner": "3b81e1d27c0952e4e54f08c240a030e8e9afb89e60f0fcd28852fa65bb2dbda9"
+  },
+  "source_z3_models_checked": 3,
+  "static_clause_digests": {
+    "kalmanson_core": {
+      "count": 30940,
+      "square_sum": "44a37af07b9f1219354d3e97ae7c9ea9efad622915ef1c171ac091b398e3dcd9",
+      "sum": "70cf25430d4a840284474dd321d64009731a0e7f42be4e21d51ede558064002b",
+      "xor": "85baa98e8bd5459e58f08bd4d3242ce1d1df2a1a73303bf005a7af19bebf8e67"
+    },
+    "seven_point_schema_c": {
+      "count": 272272,
+      "square_sum": "e7918b9ade9d9f78403798f49ee946a4a226e030c8a52be41de1da950e266e24",
+      "sum": "64e8bf83c682a1e86a0cafc82147ad8d07a37ecfd94abcacb41d73124913a698",
+      "xor": "a91a1c76f9a81cab92bc8ae479f68963ef06f4f6ce9d3e70853ab600b1ab1d28"
+    },
+    "seven_point_schema_f": {
+      "count": 272272,
+      "square_sum": "eb8b818e83b570a06a9d176fd6e420a8fe22077d4346c6042c57f71797adbe0e",
+      "sum": "d31b12c5cc4777a47b63091ac7dbaca3988d81c9f16e11d7954c5f7b711f2476",
+      "xor": "5b6185488e0359ca48c60cfd0b76022af8ed1b8050c9d8e85c4136bab33f4cfc"
+    },
+    "six_point_schema_d": {
+      "count": 148512,
+      "square_sum": "e76e31b6e477a64827b6d55d6b5e0135f13610998cee1129699299fa2ccc97bc",
+      "sum": "8d28fb6677e3f4b2e7fb164dbcf25ca1e1cf64a34da17ece58fe1b69409d3f36",
+      "xor": "57fc2a28e439f9a5d537b7d63ef273d4f0ddb9638512afe04283d02073d438c6"
+    },
+    "six_point_schema_e": {
+      "count": 148512,
+      "square_sum": "2a43f82ac2aa1026c5245a438f7023cb22bf30ce749976e9617c98a428656f6f",
+      "sum": "499ce89460f00bab103fd9cb06a4ecce30f90e64d2f2cffe98339c20c41b457b",
+      "xor": "8bb3765c693fc1f56aaf40df4187bf1a549fa7de1294296b7292d329ef5c7245"
+    },
+    "three_shell_rotation_bank": {
+      "count": 904400,
+      "square_sum": "f1559c49b8b0a6adf46a0d485658eb206834d808bd5463ea6aa7be2286556f6d",
+      "sum": "820515d6750c7da744bb877ab1b5d0f95f7d651d5cc6cb30d67481359adb4f1d",
+      "xor": "80501c412b9db761345b179dba8e758d4c010a7e9dd147d911592d57edf21605"
+    },
+    "two_circle_bisector": {
+      "count": 9520,
+      "square_sum": "70c659ed1b30188a8c13396b113d418278db9ca14c323de8cfa776494834bdb2",
+      "sum": "8cdc5d79dfad6e0bcfa2bfb2a9eb1333c167bc87789b1fc146bf3e6f57201558",
+      "xor": "8cd3cf2d554e1736522a022ec92d787934756c6dc9a75f42daf9c9155c8e1942"
+    }
+  },
+  "status": "PASS",
+  "structural_clauses": 145975,
+  "structural_cnf": "scratch/rigid221-blockerv-exact17-20260806/transitive-two-circle-cnf-validation/baseline-structural.cnf",
+  "structural_cnf_sha256": "884029ff0a06830273a71c650e70e1fa6530a088fabd04d8d83884c56bcdaf98",
+  "truth_table_assignments": {
+    "13_choose_1": 8192,
+    "16_choose_4": 65536,
+    "4_choose_1": 16
+  },
+  "variables": 285
+}

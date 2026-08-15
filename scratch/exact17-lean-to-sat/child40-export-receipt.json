@@ -1,0 +1,92 @@
+{
+  "child": {
+    "bytes": 291633186,
+    "clauses": 5847584,
+    "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/exact17-lean-to-sat/exact17-thirty-fortieth-root-thirty-ninth-model-refinements.cnf",
+    "sha256": "555d1d2facedc1cc3ea7a5bae31649b55e65fc2d14e8ad6e0742a023f9969034",
+    "variables": 308
+  },
+  "immutability": "exclusive-hard-link-and-ledger-last-receipt/v2",
+  "lean": {
+    "export": {
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenThirtyNinthModelRefinementsExport.lean",
+      "sha256": "e5634ee294b4ae348cf553ee186777d48a2e32ff2407ab1caa83547c08c0a632"
+    },
+    "root": {
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenThirtyNinthModelRefinements.lean",
+      "sha256": "76f993c6335f39e913f187be26118307025c58feb22e47f5e8284518625f107e"
+    }
+  },
+  "model": {
+    "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/exact17-lean-to-sat/piqd-child39-core1-custody-model.json",
+    "sha256": "66afb43a0b6f9d686a800239c616d006f0fed5c7d681bf6d2b5cd22dd8a501e1"
+  },
+  "parent": {
+    "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/exact17-lean-to-sat/exact17-thirty-ninth-root-thirty-eighth-model-refinements.cnf",
+    "sha256": "989348e8a0d2288df6a80f36e56ed4e5771ef250dc10f4d4aeeb991a571a8a8a"
+  },
+  "publication_state": "PROVISIONED",
+  "schema": "p97-exact17-child40-immutable-export-receipt/v1",
+  "status": "PASS",
+  "validation": {
+    "child": {
+      "bytes": 291633186,
+      "clauses": 5847584,
+      "sha256": "555d1d2facedc1cc3ea7a5bae31649b55e65fc2d14e8ad6e0742a023f9969034",
+      "variables": 308
+    },
+    "model": {
+      "job_id": "68cfcaf6-1a90-466e-8fc3-d1c3ffc8e377",
+      "parent_replay_exact": true,
+      "sha256": "66afb43a0b6f9d686a800239c616d006f0fed5c7d681bf6d2b5cd22dd8a501e1"
+    },
+    "motivating_model_cut_suffix_indices": [
+      7,
+      23,
+      39,
+      47,
+      67,
+      75,
+      79,
+      83,
+      87,
+      95,
+      99,
+      103,
+      107,
+      115,
+      119,
+      123,
+      127,
+      131,
+      135,
+      139,
+      143,
+      147,
+      151,
+      155,
+      159,
+      163,
+      167,
+      171,
+      175,
+      179,
+      183,
+      187,
+      191,
+      195
+    ],
+    "ordered_suffix_exact": true,
+    "ordered_suffix_sha256": "e34111b179caf00ed0e04c3f28d17fd670d7a2291a9761a09f0d6984bdf19be5",
+    "parent": {
+      "clauses": 5847388,
+      "sha256": "989348e8a0d2288df6a80f36e56ed4e5771ef250dc10f4d4aeeb991a571a8a8a"
+    },
+    "publication_state": "PROVISIONED",
+    "schema": "p97-exact17-child40-export-validation/v1",
+    "source_clause_families": [
+      "thirtyNinthModelRefinementClauses"
+    ],
+    "status": "PASS"
+  }
+}

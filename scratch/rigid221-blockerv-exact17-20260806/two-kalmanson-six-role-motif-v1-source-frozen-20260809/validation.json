@@ -1,0 +1,14 @@
+{
+  "appended_clauses": 148512,
+  "base_prefix_byte_exact": true,
+  "clauses": 4110009,
+  "cnf": "scratch/rigid221-blockerv-exact17-20260806/two-kalmanson-six-role-motif-v1-source-frozen-20260809/o0-p0-1.cnf",
+  "cnf_sha256": "0e37cee6ac101d915f162539a449a03ec5d4966eecbdd3b6b38b0a4126c4aafb",
+  "generation_sources_rechecked": 5,
+  "generic_template_replays": 2,
+  "manifest": "scratch/rigid221-blockerv-exact17-20260806/two-kalmanson-six-role-motif-v1-source-frozen-20260809/o0-p0-1.manifest.json",
+  "manifest_sha256": "f2051abd536e0fb407a03ea6f85c84e9f70a3ef97f8d22132eb2b9dd680629c4",
+  "schema": "p97-rigid221-exact17-two-kalmanson-six-role-motif-cnf-validation-v1",
+  "status": "PASS",
+  "variables": 74813
+}

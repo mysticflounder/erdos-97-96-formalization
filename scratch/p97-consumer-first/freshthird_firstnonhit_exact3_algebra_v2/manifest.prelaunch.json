@@ -1,0 +1,100 @@
+{
+  "schema": "freshthird-firstnonhit-exact3-algebra-v2",
+  "status": "PRELAUNCH",
+  "compatibility_class": {
+    "class": "C",
+    "reason": "The v1 QF_NRA feasibility query is replaced by a pure-equality complex ideal test with distinctness inequalities omitted.",
+    "fresh_output_namespace": "scratch/p97-consumer-first/freshthird_firstnonhit_exact3_algebra_v2"
+  },
+  "source": {
+    "finite_signature_origin": "The exact 13 selected_supports entries in the v1 exact-three metric canary input",
+    "source_packet_path": "scratch/p97-consumer-first/freshthird_firstnonhit_exact3_metric_canary_v1/input.json",
+    "source_packet_sha256": "b0891ba0969d73261bec65cd7debd0fbbe0900deab6b7432d3b75204b4263230",
+    "scope": "One fixed 17-label, 13-selected-row equality packet; no signature or order enumeration"
+  },
+  "hashes": {
+    "input.json": "e418f2f6967efab20289906094e9c167907dc2e84adfc2042e89115303b76498",
+    "run_probe.py": "254b08f05ab2610596e4be0672fd9fcc48e6b88860c3ade9f51fcb8da0b7b250",
+    "canonical_selected_supports": "ce15a82c4dc7d040e32f0abfbce176f82d441195c9ccd2c3b4f1d2414a26a15f"
+  },
+  "launch": {
+    "command": "uv run python scratch/p97-consumer-first/freshthird_firstnonhit_exact3_algebra_v2/run_probe.py",
+    "workers": 1,
+    "global_core_lease": 4,
+    "msolve_threads": 4,
+    "msolve_variable_orders": 2,
+    "target_timeout_seconds_per_msolve_order": 60,
+    "target_timeout_seconds_singular": 60,
+    "control_timeout_seconds_per_engine": 15,
+    "timeout_escalation": false,
+    "solvers": [
+      "msolve 0.10.1 over Q, explicit expanded input, two declaration orders",
+      "Singular 4.4.1 characteristic zero, dp, std/unit-ideal test"
+    ]
+  },
+  "case_matrix": {
+    "arms_total": 1,
+    "arms_covered": 1,
+    "arm": "the byte-equivalent 13 selected-row support table in input.json",
+    "boundary_orders_enumerated": 0,
+    "structural_signatures_enumerated": 1
+  },
+  "algebra": {
+    "coordinate_indeterminates": 34,
+    "gauge_equalities": 4,
+    "selected_row_equalities": 39,
+    "total_equalities": 43,
+    "msolve_parentheses_allowed": false,
+    "field_scope": "complex variety over the algebraic closure of Q",
+    "sound_direction": "UNIT/complex-empty for the gauge equality superset eliminates all real distinct realizations of the fixed packet; NONUNIT is not a real witness"
+  },
+  "encoded_ledger": [
+    "Seventeen labeled point coordinate pairs x0,y0,...,x16,y16 as polynomial indeterminates over Q.",
+    "The sound similarity gauge x0=0, y0=0, x1=1, y1=0.",
+    "For each of the 13 source-listed centers, exactly three expanded quadratic equal-distance equations for its four listed supports, 39 row equations total.",
+    "Two msolve declaration orders share a byte-identical polynomial body.",
+    "An independent Singular characteristic-zero dp/std unit-ideal test checks the same generators."
+  ],
+  "omitted_ledger": [
+    "The v1 delta variable, delta>0, and all 136 pairwise squared-distance lower bounds.",
+    "All point distinctness, radius positivity, off-support, and other disequalities.",
+    "All blocker-map semantics beyond each listed center/support equal-distance atom.",
+    "The LP/MP and LP_rho/MP_rho incidence meanings and omission facts.",
+    "Common-deletion survival, global minimality, anonymous deletion rows, and carrier-wide K4 beyond the 13 selected rows.",
+    "Cap membership/composition, strict convexity, cyclic/boundary order, Kalmanson, angular-midpoint, and all order enumeration.",
+    "No-(m,4,4), Moser-set, exact full physical-class support, universal ingress, coverage of other signatures, overflow semantics, and a general-cardinality lift."
+  ],
+  "cut_admission_records": [
+    {
+      "name": "selected-row-equal-radius",
+      "status": "source-entitled finite-signature atom",
+      "antecedent": "For each listed center c, the four selected_supports[c] labels lie in one selected physical class centered at c.",
+      "schema_arm": "the sole fixed input.json support signature",
+      "consequence": "Three expanded squared-distance equalities per row."
+    },
+    {
+      "name": "similarity-gauge",
+      "status": "semantics-preserving normalization",
+      "antecedent": "The source packet supplies p0 distinct from p1.",
+      "schema_arm": "all",
+      "consequence": "Translate, rotate, and positively scale so p0=(0,0), p1=(1,0)."
+    }
+  ],
+  "relaxation_cuts": [],
+  "controls": {
+    "known_nonempty_ideal": "I=<x-y>; expected NONUNIT in both msolve orders and Singular.",
+    "known_unit_ideal": "I=<x,x-1>; expected UNIT in both msolve orders and Singular."
+  },
+  "fail_closed_policy": [
+    "Any timeout, nonzero return code, missing output, non-unique parse, msolve variable-order disagreement, or msolve/Singular disagreement yields UNKNOWN.",
+    "The target launches only after both controls agree with their exact expected verdicts.",
+    "Row-group minimization launches only after full-target UNIT consensus, uses fresh Singular processes under one 240-second total budget, and independently replays a claimed core in both msolve orders and Singular.",
+    "The permanent RUN_ONCE.guard is created before generated inputs or solver calls; no generated artifact may be overwritten."
+  ],
+  "verdict_vocabulary": {
+    "four_valued": ["semantic-UNSAT", "relaxation-UNSAT", "SAT-abstraction", "UNKNOWN"],
+    "exact_algebra": ["COMPLEX_EMPTY", "NONUNIT", "UNKNOWN"]
+  },
+  "claim_boundary": "A verdict concerns only this fixed finite 13-row gauge equality packet. It is not a P97 counterexample, universal theorem, finite-to-universal lift, Lean theorem, or proof-spine closure.",
+  "post_wave_mine": "At terminal, inspect only this probe's controls, target records, and any minimized row-core records. Do not search prior waves or theorem banks."
+}

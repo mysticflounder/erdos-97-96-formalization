@@ -1,0 +1,68 @@
+{
+  "anonymous_positions": [
+    0,
+    2
+  ],
+  "artifacts": [
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-v1/resume-wave2-fast/o0-p0-2.json",
+      "sha256": "7b3e8b67b836f5f3f9326a26275c3391d78552ef70bc9c72332746ef28e6133a"
+    }
+  ],
+  "clause_blocks": {
+    "exact_four": 83776,
+    "fifth_center_exactly_one": 79,
+    "fifth_row_source_and_one_hit": 135,
+    "initial_learned_patterns": 0,
+    "kalmanson_core": 30940,
+    "learned_nogoods": 1011,
+    "named_row_units": 0,
+    "old_row_cap_units": 32,
+    "old_row_outside_partition": 56,
+    "seven_point_schema_c": 272272,
+    "seven_point_schema_f": 272272,
+    "six_point_schema_d": 148512,
+    "six_point_schema_e": 148512,
+    "source_coverage": 17,
+    "three_shell_rotation_bank": 904400,
+    "two_center_common_hit": 61880,
+    "two_circle_bisector": 9520
+  },
+  "clauses": 1933414,
+  "cnf": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-v1/terminal-cnf-fast-o0-p0-2.cnf",
+  "cnf_sha256": "13dd9848a3a67f0086ceed9ba3c0e9dbe6e77f0c2900d1aee0949e3864b5790f",
+  "learned_record_kinds": {
+    "formalized-bank": 250,
+    "weighted-kalmanson": 761
+  },
+  "order": [
+    0,
+    6,
+    8,
+    11,
+    10,
+    9,
+    12,
+    7,
+    2,
+    15,
+    3,
+    16,
+    4,
+    5,
+    1,
+    13,
+    14
+  ],
+  "order_index": 0,
+  "schema": "p97-rigid221-exact17-source-faithful-boolean-cnf-candidate-v1",
+  "scope": "one normalized cap-nine case; nogood soundness and Lean lift remain separate",
+  "source_hashes": {
+    "base_cnf_exporter": "b97153d3525ae274b33c1de90895111ded4ce9e30b0ea36073a837fb1cfa1162",
+    "fullcover": "0f6e6a295759f02da6844d0101859f654e413fc2b972dbf4a280b1c44244694e",
+    "order_base": "4ec264668923dd6534455313fad47b6e9abb78558c6556c5029f7243edaee1d5",
+    "producer_bank": "faba6bb029067e19f3f5d3cb26b14139d2c01dc933f0c525be65bb76d1081002",
+    "source_runner": "240f3e5809787df5debb1a3b9d13fac921d12c523ebf3d8759d253dbca5adb0c"
+  },
+  "variables": 285
+}

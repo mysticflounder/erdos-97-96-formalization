@@ -1,0 +1,354 @@
+{
+  "compact_replay_package_sha256": "f51b92048e0d2406c3b3e5c039ae97a91b8b2094fb0f47bb283df7978f8995b9",
+  "counts": {
+    "actions": 14,
+    "additions": 7,
+    "compact_ascii85_bytes": 3884793,
+    "compact_binary_bytes": 3107833,
+    "consumed_checkpoints": 2,
+    "deleted_ids": 369300,
+    "deletions": 7,
+    "hints": 116,
+    "lean_sources": 8,
+    "n": 42731,
+    "objects": 4,
+    "payloads": 4,
+    "shard_1_windows": 1,
+    "shard_2_windows": 1,
+    "source_bytes": 7604905,
+    "variable_count": 42730,
+    "windows": 2
+  },
+  "encoding": {
+    "actions_magic": "CPA1",
+    "ascii85_character_range": "!..u",
+    "dense_addition_ids_omitted": true,
+    "envelope": "strict-canonical-raw-ascii85",
+    "formula_magic": "CPF1",
+    "integer": "canonical-u64-leb128",
+    "signed_literal": "zigzag"
+  },
+  "epistemic_status": "STRUCTURALLY VERIFIED COMPACT REPLAY PACKAGE; LEAN BUILD AND AXIOM AUDIT REQUIRED",
+  "generator": {
+    "byte_count": 64288,
+    "path": "emit_compact_windowed_rup_replay_package.py",
+    "sha256": "aff8b381ccb13b45afd259b174745d75128ad6c112089013c8f70ec58a067528"
+  },
+  "lean": {
+    "module_prefix": "CompactWindowedRupReplay",
+    "namespace": "CompactWindowedRupReplay",
+    "source_root": "CompactWindowedRupReplay"
+  },
+  "lean_sources": [
+    {
+      "byte_count": 360,
+      "path": "CompactWindowedRupReplay/Common.lean",
+      "sha256": "667748fb48958a39b6c52055d437effdce1599f8595e5d022edb3d9b599285cb"
+    },
+    {
+      "byte_count": 466,
+      "path": "CompactWindowedRupReplay/Checkpoint/C0000.lean",
+      "sha256": "631bc14fdfd448197cda9212cded675599c15e39d23d391a57e77ab69a8f39fd"
+    },
+    {
+      "byte_count": 466,
+      "path": "CompactWindowedRupReplay/Checkpoint/C0001.lean",
+      "sha256": "c700353a2cc17792f8feb35d309447e217089d3dd99d0edc63f640f789b31dd1"
+    },
+    {
+      "byte_count": 1196,
+      "path": "CompactWindowedRupReplay/Shard1/W0001.lean",
+      "sha256": "dc79fa2122d79105d47d4208cbc0b35481c5ff38eb6e8f3f379b2c2f082d37d0"
+    },
+    {
+      "byte_count": 724,
+      "path": "CompactWindowedRupReplay/Shard1.lean",
+      "sha256": "da298baaf39f8c1140d4c813cf44a53ecb932adba38c36c0d7853d3550533cdd"
+    },
+    {
+      "byte_count": 1050,
+      "path": "CompactWindowedRupReplay/Shard2/W0001.lean",
+      "sha256": "361a258b16252125dffee684f6493a183ca841eefd376a962383a5b726b4cee6"
+    },
+    {
+      "byte_count": 495,
+      "path": "CompactWindowedRupReplay/Shard2.lean",
+      "sha256": "87e35189f6353c8153703d51513765808d2926f438924fbe98b3a6ca9abb6f68"
+    },
+    {
+      "byte_count": 560,
+      "path": "CompactWindowedRupReplay/Compose.lean",
+      "sha256": "a4aba6aa929f66f28765d7c0ac63c56f2387c35f1b4cad0a113cd40de1935153"
+    }
+  ],
+  "objects": [
+    {
+      "counts": {
+        "clauses": 369326,
+        "literals": 760609,
+        "variable_count": 42730
+      },
+      "emitted": {
+        "binary_byte_count": 2015734,
+        "binary_sha256": "b126b4b4927809642f2a1baa00738c39e1439fc3f5194a791982579535c5c336",
+        "byte_count": 2519668,
+        "kind": "formula",
+        "path": "data/formulas/8181b2fce90685be8441f980051080da0d106ece6658c80acd766d8066210083.cpf85",
+        "semantic_sha256": "9004b51823d6b004888cfde81a672606f64b896895cb180ccf0dc864893eeeb6",
+        "sha256": "8181b2fce90685be8441f980051080da0d106ece6658c80acd766d8066210083"
+      },
+      "identity": "checkpoint-0000",
+      "kind": "formula",
+      "semantic_sha256": "9004b51823d6b004888cfde81a672606f64b896895cb180ccf0dc864893eeeb6",
+      "source": {
+        "byte_count": 5129210,
+        "path": "checkpoints/checkpoint-0000.cnf",
+        "sha256": "e3db2d364123de8b946e7643efe08a621087d239ac3b7f4d1893a31f432f25f3"
+      }
+    },
+    {
+      "counts": {
+        "clauses": 65,
+        "literals": 172,
+        "variable_count": 42730
+      },
+      "emitted": {
+        "binary_byte_count": 487,
+        "binary_sha256": "f2fc39095281c821c744e1ed823da05f11660bc1195338d45dfb7da0ccba87b3",
+        "byte_count": 609,
+        "kind": "formula",
+        "path": "data/formulas/c351f501d796e70c455ce4cbfd7be1481c6a6420d7550893f9373317e0daec3a.cpf85",
+        "semantic_sha256": "763d7e6230aa5166435c46a09ecfcbb71b4949095d309aac16333071988c8bad",
+        "sha256": "c351f501d796e70c455ce4cbfd7be1481c6a6420d7550893f9373317e0daec3a"
+      },
+      "identity": "checkpoint-0001",
+      "kind": "formula",
+      "semantic_sha256": "763d7e6230aa5166435c46a09ecfcbb71b4949095d309aac16333071988c8bad",
+      "source": {
+        "byte_count": 1137,
+        "path": "checkpoints/checkpoint-0001.cnf",
+        "sha256": "0969b73fdbb6abe5f19310cf97b0887a0cd8798e147f384888ede7f8bd91cd03"
+      }
+    },
+    {
+      "counts": {
+        "actions": 7,
+        "additions": 3,
+        "deleted_ids": 369264,
+        "deletions": 4,
+        "first_addition_id": 369327,
+        "hints": 49,
+        "next_addition_id": 369330
+      },
+      "emitted": {
+        "binary_byte_count": 1091477,
+        "binary_sha256": "b9b0077dc52f671c9aac342c4d746e71f99e5ec28afcf5bc6efe5d9b856f6fd7",
+        "byte_count": 1364347,
+        "kind": "actions",
+        "path": "data/actions/b961abf7fe14a7da0b14173fdceec45425c9e7bec2326c1d85313de7fbd220ba.cpa85",
+        "semantic_sha256": "60cb55aec8ebd4ad26891111b9c56dac2212de6a1bf21e76d9fadb4b95ca17a8",
+        "sha256": "b961abf7fe14a7da0b14173fdceec45425c9e7bec2326c1d85313de7fbd220ba"
+      },
+      "identity": "shard-1-window-0001",
+      "kind": "actions",
+      "semantic_sha256": "60cb55aec8ebd4ad26891111b9c56dac2212de6a1bf21e76d9fadb4b95ca17a8",
+      "source": {
+        "byte_count": 2474193,
+        "path": "shard-1/window-0001/actions.lrat",
+        "sha256": "989dadb8ef7b86f15dec4405fe9eff6a406a5965777e0338d35176ca28fc3c42"
+      }
+    },
+    {
+      "counts": {
+        "actions": 7,
+        "additions": 4,
+        "deleted_ids": 36,
+        "deletions": 3,
+        "first_addition_id": 66,
+        "hints": 67,
+        "next_addition_id": 70
+      },
+      "emitted": {
+        "binary_byte_count": 135,
+        "binary_sha256": "5e4aafefc65003171a79819d372d3e439deab0286f79fa81b5cc6111fe8c1fdc",
+        "byte_count": 169,
+        "kind": "actions",
+        "path": "data/actions/cd33ac67c9d775ab9c915df793795d5b4439a0d2c50be1f987a0f1aee90ac6c9.cpa85",
+        "semantic_sha256": "e430308be0df343f185b7bde1fd73968b439ea2dacf027ffd2362213411ec238",
+        "sha256": "cd33ac67c9d775ab9c915df793795d5b4439a0d2c50be1f987a0f1aee90ac6c9"
+      },
+      "identity": "shard-2-window-0001",
+      "kind": "actions",
+      "semantic_sha256": "e430308be0df343f185b7bde1fd73968b439ea2dacf027ffd2362213411ec238",
+      "source": {
+        "byte_count": 365,
+        "path": "shard-2/window-0001/actions.lrat",
+        "sha256": "6680e5eb8c4e1491ae0844733507f72eac6249f84e8a866c569d3cfea5be8e48"
+      }
+    }
+  ],
+  "payloads": [
+    {
+      "binary_byte_count": 1091477,
+      "binary_sha256": "b9b0077dc52f671c9aac342c4d746e71f99e5ec28afcf5bc6efe5d9b856f6fd7",
+      "byte_count": 1364347,
+      "kind": "actions",
+      "path": "data/actions/b961abf7fe14a7da0b14173fdceec45425c9e7bec2326c1d85313de7fbd220ba.cpa85",
+      "semantic_sha256": "60cb55aec8ebd4ad26891111b9c56dac2212de6a1bf21e76d9fadb4b95ca17a8",
+      "sha256": "b961abf7fe14a7da0b14173fdceec45425c9e7bec2326c1d85313de7fbd220ba"
+    },
+    {
+      "binary_byte_count": 135,
+      "binary_sha256": "5e4aafefc65003171a79819d372d3e439deab0286f79fa81b5cc6111fe8c1fdc",
+      "byte_count": 169,
+      "kind": "actions",
+      "path": "data/actions/cd33ac67c9d775ab9c915df793795d5b4439a0d2c50be1f987a0f1aee90ac6c9.cpa85",
+      "semantic_sha256": "e430308be0df343f185b7bde1fd73968b439ea2dacf027ffd2362213411ec238",
+      "sha256": "cd33ac67c9d775ab9c915df793795d5b4439a0d2c50be1f987a0f1aee90ac6c9"
+    },
+    {
+      "binary_byte_count": 2015734,
+      "binary_sha256": "b126b4b4927809642f2a1baa00738c39e1439fc3f5194a791982579535c5c336",
+      "byte_count": 2519668,
+      "kind": "formula",
+      "path": "data/formulas/8181b2fce90685be8441f980051080da0d106ece6658c80acd766d8066210083.cpf85",
+      "semantic_sha256": "9004b51823d6b004888cfde81a672606f64b896895cb180ccf0dc864893eeeb6",
+      "sha256": "8181b2fce90685be8441f980051080da0d106ece6658c80acd766d8066210083"
+    },
+    {
+      "binary_byte_count": 487,
+      "binary_sha256": "f2fc39095281c821c744e1ed823da05f11660bc1195338d45dfb7da0ccba87b3",
+      "byte_count": 609,
+      "kind": "formula",
+      "path": "data/formulas/c351f501d796e70c455ce4cbfd7be1481c6a6420d7550893f9373317e0daec3a.cpf85",
+      "semantic_sha256": "763d7e6230aa5166435c46a09ecfcbb71b4949095d309aac16333071988c8bad",
+      "sha256": "c351f501d796e70c455ce4cbfd7be1481c6a6420d7550893f9373317e0daec3a"
+    }
+  ],
+  "replay_layout": {
+    "checkpoints": [
+      {
+        "index": 0,
+        "payload_path": "data/formulas/8181b2fce90685be8441f980051080da0d106ece6658c80acd766d8066210083.cpf85"
+      },
+      {
+        "index": 1,
+        "payload_path": "data/formulas/c351f501d796e70c455ce4cbfd7be1481c6a6420d7550893f9373317e0daec3a.cpf85"
+      }
+    ],
+    "shards": {
+      "shard_1": [
+        {
+          "action_payload_path": "data/actions/b961abf7fe14a7da0b14173fdceec45425c9e7bec2326c1d85313de7fbd220ba.cpa85",
+          "end_checkpoint": 1,
+          "index": 1,
+          "role": "rebase",
+          "start_checkpoint": 0
+        }
+      ],
+      "shard_2": [
+        {
+          "action_payload_path": "data/actions/cd33ac67c9d775ab9c915df793795d5b4439a0d2c50be1f987a0f1aee90ac6c9.cpa85",
+          "end_checkpoint": 2,
+          "index": 1,
+          "role": "terminal",
+          "start_checkpoint": 1
+        }
+      ]
+    }
+  },
+  "schema": "p97-windowed-rup-compact-lean-replay-v2",
+  "source": {
+    "epistemic_status": "STRUCTURALLY VALIDATED WINDOWED PURE-RUP SHARDS; LEAN REPLAY REQUIRED",
+    "package_sha256": "0e1b6777e70e6a447609c339e93e36a3b1e3eb44882ae7f644075de7170acd89",
+    "pure_rup_source": {
+      "cnf": {
+        "byte_count": 5129210,
+        "path": "terminal.cnf",
+        "sha256": "e3db2d364123de8b946e7643efe08a621087d239ac3b7f4d1893a31f432f25f3"
+      },
+      "manifest": {
+        "byte_count": 401,
+        "path": "source-manifest.json",
+        "sha256": "4b9a0f2036d022327d7f7ebb55b14ba10d1e67e719eab5abe91c3577d776eb54"
+      },
+      "manifest_content": {
+        "artifacts": {
+          "cnf": {
+            "byte_count": 5129210,
+            "path": "terminal.cnf",
+            "sha256": "e3db2d364123de8b946e7643efe08a621087d239ac3b7f4d1893a31f432f25f3"
+          },
+          "normalized_lrat": {
+            "byte_count": 2474997,
+            "path": "normalized.lrat",
+            "sha256": "eb249bc4f7032b1255a97abf5d62384021e2028ce18197dbbe3fc73d634f3de1"
+          }
+        },
+        "schema": "p97-pure-rup-source-v1"
+      },
+      "normalized_lrat": {
+        "byte_count": 2474997,
+        "path": "normalized.lrat",
+        "sha256": "eb249bc4f7032b1255a97abf5d62384021e2028ce18197dbbe3fc73d634f3de1"
+      },
+      "schema": "p97-pure-rup-source-v1"
+    },
+    "schema": "p97-windowed-pure-rup-package-v1",
+    "tools": {
+      "lean_checker": {
+        "byte_count": 32211,
+        "sha256": "6c670c24b989f8024f43f6362ffc031c040eba77e68293060aa65cb9cb25a8e8"
+      },
+      "parent_materializer": {
+        "byte_count": 44010,
+        "sha256": "92e001e5b89e98a769ff2f804c97989ada87a5117eee71c29bac84357fcea51d"
+      },
+      "windowed_materializer": {
+        "byte_count": 57475,
+        "sha256": "7c01df27357aa56dd4a760571677098c9c2c0d8c568e6a5386e54ae4f3e3955f"
+      }
+    }
+  },
+  "source_counts": {
+    "checkpoints": 3,
+    "max_checkpoint_bytes": 5129210,
+    "max_checkpoint_clauses": 369326,
+    "shard_1": {
+      "additions": 3,
+      "deleted_ids": 369264,
+      "deletions": 4,
+      "hints": 49,
+      "lines": 7,
+      "max_window_lines": 7,
+      "max_window_lrat_bytes": 2474193,
+      "peak_active_clause_count": 369326,
+      "windows": 1
+    },
+    "shard_2": {
+      "additions": 4,
+      "deleted_ids": 36,
+      "deletions": 3,
+      "hints": 67,
+      "lines": 7,
+      "max_window_lines": 7,
+      "max_window_lrat_bytes": 365,
+      "peak_active_clause_count": 66,
+      "windows": 1
+    },
+    "terminal_window": "shard-2/window-0001",
+    "variable_count": 42730,
+    "windows": 2
+  },
+  "trust_profile": {
+    "allowed_axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound",
+      "Lean.ofReduceBool",
+      "Lean.trustCompiler"
+    ],
+    "audit_status": "NOT_AUDITED",
+    "claim": "Generated window proofs use native_decide and therefore explicitly include Lean.trustCompiler; no compiler-independent trust is claimed."
+  }
+}

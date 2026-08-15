@@ -1,0 +1,121 @@
+{
+  "base": {
+    "cvc5_unpinned_30s": "unknown",
+    "cvc5_z3_model_pinned_30s": "sat",
+    "python_concrete_readback": "verified",
+    "readback_errors": [],
+    "z3": "sat"
+  },
+  "controls": {
+    "B3_contains_both_p_endpoints": {
+      "cvc5": "unsat",
+      "z3": "unsat"
+    },
+    "B4_contains_both_rho_endpoints": {
+      "cvc5": "unsat",
+      "z3": "unsat"
+    },
+    "apex_in_opposite_cap": {
+      "cvc5": "unsat",
+      "z3": "unsat"
+    },
+    "cap_source_outside_first_interior": {
+      "cvc5": "unsat",
+      "z3": "unsat"
+    },
+    "circle_intersection_violation_B0_B1": {
+      "cvc5": "unsat",
+      "z3": "unsat"
+    },
+    "illegal_center_membership": {
+      "cvc5": "unsat",
+      "z3": "unsat"
+    },
+    "nonmoser_bad_cap_multiplicity": {
+      "cvc5": "unsat",
+      "z3": "unsat"
+    },
+    "overfull_B0": {
+      "cvc5": "unsat",
+      "z3": "unsat"
+    },
+    "source_missing_from_own_shell": {
+      "cvc5": "unsat",
+      "z3": "unsat"
+    },
+    "wrong_first_cap_cardinality": {
+      "cvc5": "unsat",
+      "z3": "unsat"
+    }
+  },
+  "forced_clauses": {
+    "at_least_five_blocker_centers_negation": {
+      "cvc5": "unsat",
+      "z3": "unsat"
+    },
+    "first_interior_minus_two_sources_card_eq_four_negation_arithmetic": {
+      "cvc5": "unsat",
+      "z3": "unsat"
+    },
+    "first_interior_minus_two_sources_card_eq_four_negation_full_model": "unsat",
+    "strict_cap_profile_6_4_4_negation_full_model": "unsat"
+  },
+  "model_file": "model.json",
+  "n15_invalid_scope_cap_arithmetic": {
+    "cvc5": "unsat",
+    "z3": "unsat"
+  },
+  "retained_pair_discovery": {
+    "B3_B4_p": {
+      "both_rows_avoid_pair": "sat",
+      "forced_hit_across_rows": "no"
+    },
+    "B3_B4_rho": {
+      "both_rows_avoid_pair": "sat",
+      "forced_hit_across_rows": "no"
+    },
+    "B3_p": {
+      "avoid_pair": "sat",
+      "forced_positive_hit": "no",
+      "hit_exactly_one": "sat"
+    },
+    "B3_rho": {
+      "avoid_pair": "sat",
+      "forced_positive_hit": "no",
+      "hit_exactly_one": "sat"
+    },
+    "B4_p": {
+      "avoid_pair": "sat",
+      "forced_positive_hit": "no",
+      "hit_exactly_one": "sat"
+    },
+    "B4_rho": {
+      "avoid_pair": "sat",
+      "forced_positive_hit": "no",
+      "hit_exactly_one": "sat"
+    }
+  },
+  "row_union_projection": {
+    "candidate_clause": "four exact-four rows with pairwise intersections <=2 have union card >=7",
+    "four_rows_on_seven_points_sharpness_witness": {
+      "cvc5": "sat",
+      "z3": "sat"
+    },
+    "four_rows_union_card_at_most_six": {
+      "cvc5": "unsat",
+      "z3": "unsat"
+    },
+    "minimality": "three rows can have union card 6; four rows already force card >=7",
+    "scope": "pure finite-set projection; candidate general-n Lean lemma, not promoted",
+    "three_rows_on_six_points_minimality_witness": {
+      "cvc5": "sat",
+      "z3": "sat"
+    }
+  },
+  "schema": "freshthird-six-center-global-k4-v2-cap-composition",
+  "scope": "exact n=17 bounded incidence/cap-composition abstraction; no geometry/order/general-n lift",
+  "solvers": {
+    "cvc5": "This is cvc5 version 1.3.3 [git 8ff882e on branch HEAD]",
+    "z3": "4.16.0"
+  }
+}

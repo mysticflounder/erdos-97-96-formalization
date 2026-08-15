@@ -1,0 +1,192 @@
+{
+  "budgets": {
+    "concurrent_solver_processes": 1,
+    "engines": [
+      "z3",
+      "cvc5"
+    ],
+    "execution": "strictly sequential; never more than one solver process",
+    "logical_case_budget": 12,
+    "logical_cases": 12,
+    "timeout_seconds_per_process": 20,
+    "total_host_core_budget": 1
+  },
+  "case_matrix_sha256": "0506a630df4c7339c5596d708da2d72a4553885ac8988c5b3975cf2a8dcfdda0",
+  "created_utc": "2026-08-10T03:03:53Z",
+  "fail_closed": "any timeout, crash, missing status, solver disagreement, or invalid SAT readback => UNKNOWN",
+  "finite_nogoods_sha256": "ddd5531a2648f4b0dfd4fccbe06c4880504e827aaa212178b50ba88b041487a4",
+  "four_values": [
+    "semantic-UNSAT",
+    "relaxation-UNSAT",
+    "SAT-abstraction",
+    "UNKNOWN"
+  ],
+  "namespace": "freshthird_u3_simultaneous_shell_distribution_20260809",
+  "schema": {
+    "actual_blocker_fiber": "not encoded; CriticalShellSystem antecedent unavailable for U3 audit centers",
+    "audit_centers": [
+      "t1",
+      "t2",
+      "t3",
+      "u",
+      "a0",
+      "a1"
+    ],
+    "choice_masks": {
+      "a0": [
+        29,
+        45,
+        141,
+        53,
+        149,
+        165,
+        57,
+        153,
+        169,
+        177,
+        60,
+        156,
+        172,
+        180,
+        184
+      ],
+      "a1": [
+        29,
+        45,
+        77,
+        53,
+        85,
+        101,
+        57,
+        89,
+        105,
+        113,
+        60,
+        92,
+        108,
+        116,
+        120
+      ],
+      "t1": [
+        57,
+        89,
+        153,
+        105,
+        169,
+        201,
+        113,
+        177,
+        209,
+        225,
+        120,
+        184,
+        216,
+        232,
+        240
+      ],
+      "t2": [
+        53,
+        85,
+        149,
+        101,
+        165,
+        197,
+        113,
+        177,
+        209,
+        225,
+        116,
+        180,
+        212,
+        228,
+        240
+      ],
+      "t3": [
+        45,
+        77,
+        141,
+        101,
+        165,
+        197,
+        105,
+        169,
+        201,
+        225,
+        108,
+        172,
+        204,
+        228,
+        232
+      ],
+      "u": [
+        29,
+        77,
+        141,
+        85,
+        149,
+        197,
+        89,
+        153,
+        201,
+        209,
+        92,
+        156,
+        204,
+        212,
+        216
+      ]
+    },
+    "labels": [
+      "p",
+      "q",
+      "t1",
+      "t2",
+      "t3",
+      "u",
+      "a0",
+      "a1"
+    ],
+    "live_modes": {
+      "0": "confined-qdeleted",
+      "1": "escape-qdeleted",
+      "2": "critical-shell"
+    },
+    "namespace": "freshthird_u3_simultaneous_shell_distribution_20260809",
+    "prefilter_reason_priority": [
+      "unitTriangleOnPCircle",
+      "nontripleEquilateralOnPCircle",
+      "equilateralOppositePoint",
+      "equilateralBisector",
+      "commonBisectorTriple",
+      "equilateralCircumcenterOnPCircle",
+      "equilateralOuterPoint"
+    ],
+    "same_center_row_identity": "not encoded; unavailable for arbitrary q-deleted witnesses",
+    "shell_support_labels": {
+      "cardinality": 4,
+      "dangerous_circle": [
+        "q",
+        "t1",
+        "t2",
+        "t3"
+      ],
+      "licensed_by": [
+        "Problem97.CriticalFourShell.inter_dangerous_p_circle_card_le_two",
+        "Problem97.CriticalFourShell.two_le_sdiff_dangerous_p_circle_card",
+        "Problem97.U3FixedTripleAuditFrame.criticalFourShell_dangerousCircle_distribution"
+      ],
+      "outside": "aggregate integer count"
+    }
+  },
+  "schema_sha256": "b2eb6b3172b77d6cedf4108f510180a24d200c174efcccf62e7ca0492aaa7c47",
+  "source_hashes": {
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceClosure.lean": "60ca5be5a4149c2994c864621cf3d164550e58d3fc1dcb2994e1957ecf0131b5",
+    "lean/Erdos9796Proof/P97/ATail/SurvivalCover.lean": "015941fc0b69014bd90a101d3f0b68e5fec4ec8e8b9c0e62b1e0b83c0f05851a",
+    "lean/Erdos9796Proof/P97/U1CarrierInjection.lean": "b70abb2f7972307370212ddf167873f70fb8ef4eb9c27297a79ce7d71f8699d9",
+    "lean/Erdos9796Proof/P97/U3ToU5Terminal.lean": "06b9134b1a335b44a6f6df1321d06748fa1e5456c3d3482e5975f8a223014473",
+    "lean/Erdos9796Proof/P97/U5FiniteAudit.lean": "5822179d3975c8673f9cb1fd8aeb316f4cbc357cb15d03c2588d064ed2344f2f",
+    "lean/Erdos9796Proof/P97/U5FiniteExtraction.lean": "d93c588ba9d1e8305d34c3f940c1cd261aabf0e09027c180da9de420610d5c3e",
+    "lean/Erdos9796Proof/P97/U5GlobalIncidenceBasic.lean": "5e020505827935c99552c13ee10c89ab499804ed226c68700f4f65415995aca4",
+    "lean/Erdos9796Proof/P97/U5GlobalIncidenceSupport.lean": "3689a01a133c9b375bc37638a6cd9599089e62a1fb61d985d4b77a721c0ac508"
+  }
+}

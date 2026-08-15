@@ -1,0 +1,25 @@
+{
+  "artifact_kind": "piqd-large-cnf-capacity-preflight-manifest",
+  "canary": {
+    "bytes": 291567840,
+    "clauses": 5846076,
+    "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/exact17-lean-to-sat/piqd-large-cnf-capacity-preflight.cnf",
+    "sha256": "b795edd93a4a222232e2b8128f6e2596eb153b9fd182788b93e0ef7a4f97e5a5",
+    "variables": 308
+  },
+  "expected_daemon_sha256": "0cfc9577656fa3aef143a9fe7e5577d938dba9fd39f3b7118ed91735c97fc360",
+  "proof_root": {
+    "bytes": 291567840,
+    "clauses": 5846076,
+    "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/exact17-lean-to-sat/extended-cdefg-equal-k4-two-circle-three-row-hijk-interleaved-equality-chain-perp-bisector-chain-two-kalmanson-swapped-de.cnf",
+    "sha256": "759507d020a02253e85b59ce12e344451bbe66889dce221884f1b2a6aa3fac28",
+    "variables": 308
+  },
+  "purpose": "qualify PIQD custody and SAT handoff before exact-17 ninth-root submission",
+  "runner_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scripts/run_piqd_large_cnf_capacity_preflight.py",
+  "runner_sha256": "74786e1e5746fd1a60efe1edc1aca2f7112334c03ae61a70be8ded7eeb952873",
+  "solver_name": "piqd-satworker-cadical-3.0.0",
+  "solver_profile": "sat",
+  "solver_sha256": "0ee355934249f1b3f14a20928877391a87a0dd51326cf8c6135f75cba0b6b965",
+  "solver_signature": "cadical-3.0.0"
+}

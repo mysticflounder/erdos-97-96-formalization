@@ -1,0 +1,59 @@
+{
+  "artifacts": {
+    "detector_contract": {
+      "bytes": 4665,
+      "path": "detector_contract.json",
+      "sha256": "8a3be98345bc8e6bb94937a144c38775326b21276fe994d1c4bff836aec7ad73"
+    },
+    "discovery_cnf": {
+      "bytes": 12986828,
+      "path": "discovery.cnf",
+      "sha256": "0d4ab5fa17a63ef862533615eb534b0fb4be5892052788e2a47477e7bd250ff9"
+    },
+    "job": {
+      "bytes": 15797,
+      "path": "job.json",
+      "sha256": "1fb9733d5c83ee495305e12c6d4c966ab620950d831237d54aefa3a39e7e4a4b"
+    },
+    "journal": {
+      "bytes": 0,
+      "path": "journal.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "proof": null,
+    "survivor": {
+      "bytes": 273851,
+      "path": "survivor.json",
+      "sha256": "8ce2d0cf197b5e5bf5dc117f561f68c11a043b41d337d3797c792fa5972d3c5f"
+    },
+    "terminal_cnf": null
+  },
+  "cell_index": 0,
+  "discovery_cnf_sha256": null,
+  "discovery_verdict": "SAT",
+  "error": null,
+  "job_id": "d16ac5bf1e0078b341389c678b6a54706e584a88c1a1692b074e930fe2937cd4",
+  "journal_replayed": true,
+  "last_replay": {
+    "added_constraints": true,
+    "candidate": true,
+    "canonical_static_extension": true,
+    "exact_cnf": true
+  },
+  "lean_terminal_ingress_ready": false,
+  "max_iterations": 1,
+  "reconstructed_cnf_sha256": "0d4ab5fa17a63ef862533615eb534b0fb4be5892052788e2a47477e7bd250ff9",
+  "records": 0,
+  "schema": "p97_rigid221_exact12_next_row_static_convex_cegar_run.v3",
+  "scope": "one finite exact-12 next-row cell; terminal Lean promotion requires the static auxiliary valuation theorem",
+  "stage_counts": {
+    "source-order-positive-coverage": 0
+  },
+  "status": "STRUCTURALLY_UNRESOLVED",
+  "terminal_cnf_sha256": null,
+  "terminal_promotion_status": "AWAITING_LEAN_STATIC_AUXILIARY_VALUATION",
+  "terminal_proof_verified": false,
+  "terminal_record_sha256": null,
+  "terminal_verdict": null,
+  "timeout_seconds": 120
+}

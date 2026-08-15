@@ -1,0 +1,14 @@
+{
+  "appended_clauses": 141,
+  "base_prefix_byte_exact": true,
+  "clauses": 4110150,
+  "cnf": "scratch/rigid221-blockerv-exact17-20260806/lazy-two-kalmanson-label-probe-v1-source-frozen-20260809/o0-p0-1.cnf",
+  "cnf_sha256": "7c2f4e85e30c83fd275b7437ce88a50ea77fa31c15e3cf2d799798462e0df99d",
+  "generation_sources_rechecked": 7,
+  "manifest": "scratch/rigid221-blockerv-exact17-20260806/lazy-two-kalmanson-label-probe-v1-source-frozen-20260809/o0-p0-1.manifest.json",
+  "manifest_sha256": "0cf18eb23c7c2d23760fc00f61823d5d7040ac18491b99d7e933cbc8e849a1f8",
+  "model_bound_and_replayed": true,
+  "schema": "p97-rigid221-exact17-lazy-two-kalmanson-label-cnf-validation-v1",
+  "status": "PASS",
+  "variables": 74813
+}

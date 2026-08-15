@@ -1,0 +1,13 @@
+{
+  "appended_clauses": 1,
+  "base_prefix_byte_exact": true,
+  "certificates_exactly_replayed": 1,
+  "clauses": 2876336,
+  "cnf": "scratch/rigid221-blockerv-exact17-20260806/lazy-global-kalmanson-loop-production3-source-frozen-20260809/iteration-0014-seed-3833/derived/o0-p0-1.cnf",
+  "cnf_sha256": "20270a9c78dc50a6e84540887f9487dff373fc6e01847adaab18283b4be58444",
+  "manifest": "scratch/rigid221-blockerv-exact17-20260806/lazy-global-kalmanson-loop-production3-source-frozen-20260809/iteration-0014-seed-3833/derived/o0-p0-1.manifest.json",
+  "manifest_sha256": "cbb32e8b4756eeacfe7caab2d59d0f95bf795080d742f49b9c6dc7b80d25e296",
+  "schema": "p97-rigid221-exact17-lazy-weighted-cnf-validation-v1",
+  "status": "PASS",
+  "variables": 74813
+}

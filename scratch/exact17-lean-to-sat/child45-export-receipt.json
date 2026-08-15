@@ -1,0 +1,64 @@
+{
+  "child": {
+    "bytes": 291704992,
+    "clauses": 5848824,
+    "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/exact17-lean-to-sat/exact17-forty-fifth-root-forty-fourth-model-refinements.cnf",
+    "sha256": "3a2552fd7ecf7bce037563fec4d4ab0772cdab72d516b10ab1025d159d9f20e2",
+    "variables": 308
+  },
+  "final": {
+    "job_id": "f717c352-2456-412a-ae45-d910f47d3e94",
+    "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/exact17-lean-to-sat/piqd-child44-core1-custody-final.json",
+    "result": "SAT",
+    "sha256": "b16aa0a0440180dc4187167ba0152c22ff47d68325406aa6664ff3a0e7a26efa"
+  },
+  "immutability": "exclusive-hard-link-and-ledger-last-receipt/v2",
+  "lean": {
+    "export": {
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenFortyFourthModelRefinementsExport.lean",
+      "sha256": "d2eb848ccd9ca3138d3bc97c35dee2f51f7546edfefed54104a21bd84b18ba38"
+    },
+    "root": {
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenFortyFourthModelRefinements.lean",
+      "sha256": "f9238553222414f52c2282ccdda7764506e69aef4eca710263d7bd6930b6d7f2"
+    }
+  },
+  "model": {
+    "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/exact17-lean-to-sat/piqd-child44-core1-custody-model.json",
+    "sha256": "2cac1222fb5f265b91499e6ae075c5b19d600c357f5e3d4ae561c4058d13801a"
+  },
+  "parent": {
+    "bytes": 291704790,
+    "clauses": 5848820,
+    "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/exact17-lean-to-sat/exact17-forty-fourth-root-forty-third-model-refinements.cnf",
+    "sha256": "17f1c9c48e25aa887cbf80d9de31e0d9b0de089c7eca1b3968dbbe1e35494af9"
+  },
+  "publication_state": "PROVISIONED",
+  "schema": "p97-exact17-child45-immutable-export-receipt/v1",
+  "status": "PASS",
+  "validation": {
+    "authenticated_model_rejected_suffix_indices": [
+      3
+    ],
+    "child_bytes": 291704992,
+    "child_clauses": 5848824,
+    "child_sha256": "3a2552fd7ecf7bce037563fec4d4ab0772cdab72d516b10ab1025d159d9f20e2",
+    "final": {
+      "job_id": "f717c352-2456-412a-ae45-d910f47d3e94",
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/exact17-lean-to-sat/piqd-child44-core1-custody-final.json",
+      "result": "SAT",
+      "sha256": "b16aa0a0440180dc4187167ba0152c22ff47d68325406aa6664ff3a0e7a26efa"
+    },
+    "new_clauses": 4,
+    "ordered_suffix_sha256": "7b0518974d2dba962d45a97c193c69b2e970b46979b5471ea8c7b50eca595590",
+    "parent_bytes": 291704790,
+    "parent_clauses": 5848820,
+    "parent_sha256": "17f1c9c48e25aa887cbf80d9de31e0d9b0de089c7eca1b3968dbbe1e35494af9",
+    "parent_subsumed_suffix_indices": [
+      1
+    ],
+    "schema": "p97-exact17-child45-export-validation/v1",
+    "status": "PASS",
+    "variables": 308
+  }
+}

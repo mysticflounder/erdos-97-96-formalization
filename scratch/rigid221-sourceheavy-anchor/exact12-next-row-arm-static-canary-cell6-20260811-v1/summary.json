@@ -1,0 +1,65 @@
+{
+  "arm_cell_index": 6,
+  "artifacts": {
+    "arm_suffix": {
+      "bytes": 41404,
+      "path": "arm_suffix.json",
+      "sha256": "ab4ef7a8d9bf7ba7b22a4716addf5576baf69c28662d498c2c4ef17e90dc5640"
+    },
+    "discovery_cnf": {
+      "bytes": 13009162,
+      "path": "discovery.cnf",
+      "sha256": "979e8dee3a8eba9f0a37b9629e44c2349bb280b398c12e1e082e7fda1abbcb47"
+    },
+    "job": {
+      "bytes": 13089,
+      "path": "job.json",
+      "sha256": "33b607d5611480fdab1d3119bd8ee674cfbc802d16ad923376e668b1c94717f9"
+    },
+    "positive_membership_bank": {
+      "bytes": 164183,
+      "path": "positive_membership_bank.json",
+      "sha256": "891a5e4bc235ee5ea45e15ba0efb3a07d534cc25aebfadf58c952773e4daeeb2"
+    },
+    "proof": null,
+    "source_order_bank": {
+      "bytes": 5996207,
+      "path": "source_order_bank.json",
+      "sha256": "9ca9372f0fdf86ea3a4b579b7451b98017c03ff2dcf9c8cd15f8b366d3870e60"
+    },
+    "source_order_installation": {
+      "bytes": 668,
+      "path": "source_order_installation.json",
+      "sha256": "41d5987373ae6b75175bd5103101810565e02030d4158f68651b517faf54b0cc"
+    },
+    "survivor": {
+      "bytes": 291249,
+      "path": "survivor.json",
+      "sha256": "1e59ce1dd5eb2f53111c10b442b695174983888fc0e3fc52faab605f861f6f3b"
+    },
+    "terminal_cnf": null
+  },
+  "classification": "STRUCTURALLY_UNRESOLVED",
+  "discovery_stdout_tail": "59 -44760 -44761 44762 44763 -44764 -44765 -44766 -44767 -44768\nv -44769 -44770 -44771 -44772 -44773 -44774 44775 -44776 -44777 -44778 -44779\nv -44780 -44781 -44782 -44783 -44784 -44785 -44786 -44787 -44788 -44789 -44790\nv -44791 44792 -44793 -44794 44795 -44796 44797 -44798 -44799 -44800 44801\nv 44802 -44803 -44804 -44805 -44806 -44807 -44808 -44809 -44810 -44811 -44812\nv -44813 -44814 -44815 -44816 -44817 -44818 -44819 -44820 -44821 -44822 -44823\nv -44824 -44825 -44826 -44827 -44828 -44829 -44830 -44831 -44832 -44833 -44834\nv -44835 -44836 -44837 -44838 -44839 44840 -44841 -44842 -44843 -44844 -44845\nv -44846 -44847 -44848 -44849 -44850 -44851 -44852 -44853 -44854 -44855 44856\nv -44857 -44858 44859 -44860 -44861 -44862 44863 -44864 44865 -44866 -44867\nv 44868 -44869 -44870 -44871 -44872 -44873 44874 -44875 44876 -44877 44878\nv -44879 44880 44881 44882 44883 44884 44885 -44886 44887 -44888 44889 -44890\nv 44891 -44892 44893 -44894 44895 -44896 44897 -44898 44899 44900 44901 44902\nv 0\n\n",
+  "discovery_verdict": "SAT",
+  "error": null,
+  "job_id": "07fba022ca8db127de554ef960f970463a6a25f876c0a97bfbc2068ead93a659",
+  "job_sha256": "33b607d5611480fdab1d3119bd8ee674cfbc802d16ad923376e668b1c94717f9",
+  "lean_terminal_ingress_ready": false,
+  "nice": 10,
+  "replay": {
+    "added_constraints": true,
+    "candidate": true,
+    "canonical_static_extension": true,
+    "exact_cnf": true,
+    "named_deletion_arm": true
+  },
+  "schema": "p97_rigid221_exact12_next_row_arm_static_canary_run.v1",
+  "scope": "one finite exact-12 placement-1 named-arm static canary; no aggregate arm coverage, universal lift, or Lean closure",
+  "status": "SAT_WITNESS_REPLAYED",
+  "terminal_proof_authenticated": false,
+  "terminal_proof_verified": false,
+  "terminal_stdout_tail": null,
+  "terminal_verdict": null,
+  "timeout_seconds": 3600
+}

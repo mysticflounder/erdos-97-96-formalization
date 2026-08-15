@@ -1,0 +1,17 @@
+{
+  "status": "diagnostic-finite-sat",
+  "wave": "one",
+  "date": "2026-08-09",
+  "command": "uv run python scratch/p97-consumer-first/freshthird_u3_obstruction_wave_20260809/run_wave.py",
+  "cores": 12,
+  "engines": {
+    "z3": "/Users/adam/bin/z3",
+    "cvc5": "/Users/adam/bin/cvc5"
+  },
+  "source_packet": [
+    "SixSurvivorExactRowsBoundary.exists_u3AuditObstruction",
+    "U3FixedTripleAuditFrame.exists_qDeleted_escape_or_criticalFourShell"
+  ],
+  "universal_closure": false,
+  "global_theorem_search": "deferred-to-parent"
+}

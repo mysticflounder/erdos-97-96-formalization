@@ -1,0 +1,15 @@
+{
+  "clauses": 5847240,
+  "dimacs_bytes": 291620182,
+  "dimacs_sha256": "c325d3eedda8fe81e3d1c1d70645024f5b9ea8c36c20ca5cd1896f0934296a7d",
+  "export_receipt_sha256": "cc3898f54eb91633db63c78c7675173aefdf2f103cea281993ea9b750a96efb4",
+  "manifest_sha256": "3f7f043c81ffbedb34def0621a5ac84b363e6e492a7315b270678568dbd035f8",
+  "new_clauses": 336,
+  "parent_dimacs_sha256": "3c847c1ebcacf85256b65d54563584a8b89eb50f427fe268e2f916d4cdafa204",
+  "piqd_daemon_sha256": "6b115f2cdf37c8bae553d5962faa0f6d6ff169a55670ead500d81f42d3b9566a",
+  "piqd_solver_sha256": "0ee355934249f1b3f14a20928877391a87a0dd51326cf8c6135f75cba0b6b965",
+  "publication_ledger_sha256": "fd1ffabf7d8abf1124d8f5376b82ff1db43226ffe1aa7428d7de41ba5c4f5654",
+  "schema": "p97-exact17-child32-piqd-ingress-validation/v1",
+  "status": "PASS",
+  "variables": 308
+}

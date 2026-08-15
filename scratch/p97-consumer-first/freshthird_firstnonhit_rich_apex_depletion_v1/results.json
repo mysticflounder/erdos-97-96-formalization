@@ -1,0 +1,342 @@
+{
+  "all_exact_checks": true,
+  "all_solver_checks": true,
+  "artifact_sha256": {
+    "control_bad_convexity_unsat.smt2": "1b7fef6bc332b68f7773c4cde65f1286fde2187434d61c8bef03c1e0799abc8a",
+    "control_bad_deleted_class_count_unsat.smt2": "e7d42b58d22051ca8c2e51ce701b28ddd326f1292102606f7ff294d7cbe3cd6d",
+    "control_bad_q_shell_membership_unsat.smt2": "36aa73a992f731ad2e17736924d0f0a36e52804d8e90462a60321d86aa3b5f0a",
+    "control_known_sat.smt2": "3a23420efb5bb65e36a92fc73293bfe47d45aa804f7f9bb48e8ca63b3d1f21c8",
+    "rich_apex_depletion_2plus1_sat.smt2": "fb6702f1101967e883704fbdbe68da528a44018e9810503073c869ef9ab35e27"
+  },
+  "boundary_ccw": [
+    "r2b",
+    "k2",
+    "r2a",
+    "r1b",
+    "q",
+    "r1a",
+    "k3",
+    "k0",
+    "p",
+    "k1"
+  ],
+  "broader_partitions_searched": false,
+  "case_searched": "source-allowed alias-aware 2+1 radius partition only",
+  "classification": "local named-role packet consistency only; not a P97 counterexample or universal result",
+  "exact_fraction_validation": {
+    "V_radius_partition_2_plus_1": {
+      "detail": [
+        2,
+        1
+      ],
+      "ok": true
+    },
+    "V_subset_K_card_three": {
+      "detail": [
+        "k0",
+        "k1",
+        "k2"
+      ],
+      "ok": true
+    },
+    "all_checks": {
+      "detail": 16,
+      "ok": true
+    },
+    "all_named_points_strict_hull_vertices": {
+      "detail": {
+        "k0->p": "9/50",
+        "k1->r2b": "3/170",
+        "k2->r2a": "3/4250",
+        "k3->k0": "9/50",
+        "p->k1": "3/170",
+        "q->r1a": "3/250",
+        "r1a->k3": "3/250",
+        "r1b->q": "3/650",
+        "r2a->r1b": "3/650",
+        "r2b->k2": "3/4250"
+      },
+      "ok": true
+    },
+    "boundary_lists_all_points": {
+      "detail": [
+        "r2b",
+        "k2",
+        "r2a",
+        "r1b",
+        "q",
+        "r1a",
+        "k3",
+        "k0",
+        "p",
+        "k1"
+      ],
+      "ok": true
+    },
+    "deleted_classes_each_card_three": {
+      "detail": [
+        [
+          "q",
+          "r1a",
+          "r1b"
+        ],
+        [
+          "k3",
+          "r2a",
+          "r2b"
+        ]
+      ],
+      "ok": true
+    },
+    "each_single_restoration_has_exact_four": {
+      "detail": {
+        "k0": 4,
+        "k1": 4,
+        "k2": 4
+      },
+      "ok": true
+    },
+    "named_noncenter_points_partitioned_by_two_classes": {
+      "detail": [
+        "k0",
+        "k1",
+        "k2",
+        "k3",
+        "q",
+        "r1a",
+        "r1b",
+        "r2a",
+        "r2b"
+      ],
+      "ok": true
+    },
+    "p_radius1_class_exact": {
+      "detail": [
+        "k0",
+        "k1",
+        "q",
+        "r1a",
+        "r1b"
+      ],
+      "ok": true
+    },
+    "p_radius2_class_exact": {
+      "detail": [
+        "k2",
+        "k3",
+        "r2a",
+        "r2b"
+      ],
+      "ok": true
+    },
+    "pairwise_distinct": {
+      "detail": 10,
+      "ok": true
+    },
+    "positive_distinct_radii": {
+      "detail": [
+        "5/4",
+        "37/20"
+      ],
+      "ok": true
+    },
+    "q_circle_exactly_K": {
+      "detail": [
+        "k0",
+        "k1",
+        "k2",
+        "k3"
+      ],
+      "ok": true
+    },
+    "represented_D44_rich_profile": {
+      "detail": [
+        5,
+        4
+      ],
+      "ok": true
+    },
+    "represented_deletion_blocks_K4": {
+      "detail": [
+        3,
+        3
+      ],
+      "ok": true
+    },
+    "source_allowed_alias_k3": {
+      "detail": [
+        "k3",
+        "r2a",
+        "r2b"
+      ],
+      "ok": true
+    },
+    "source_allowed_alias_q": {
+      "detail": [
+        "q",
+        "r1a",
+        "r1b"
+      ],
+      "ok": true
+    }
+  },
+  "schema": "p97-freshthird-rich-apex-depletion-wave-v1",
+  "search_grid": {
+    "chosen_parameters": {
+      "r1a": "1/7",
+      "r1b": "-1/8",
+      "r2a": "-1",
+      "r2b": "-7/6"
+    },
+    "parameter_abs_numerator_max": 24,
+    "parameter_denominator_max": 16,
+    "radius1_pair_candidates": 233,
+    "radius1_single_candidates": 26,
+    "radius2_pair_candidates": 971,
+    "radius2_single_candidates": 48
+  },
+  "solver_results": {
+    "cvc5": {
+      "control_bad_convexity_unsat.smt2": {
+        "command": [
+          "cvc5",
+          "--lang",
+          "smt2",
+          "--nl-cov",
+          "--tlimit",
+          "30000",
+          "artifacts/control_bad_convexity_unsat.smt2"
+        ],
+        "expected": "unsat",
+        "matches_expected": true,
+        "returncode": 0,
+        "status": "unsat"
+      },
+      "control_bad_deleted_class_count_unsat.smt2": {
+        "command": [
+          "cvc5",
+          "--lang",
+          "smt2",
+          "--nl-cov",
+          "--tlimit",
+          "30000",
+          "artifacts/control_bad_deleted_class_count_unsat.smt2"
+        ],
+        "expected": "unsat",
+        "matches_expected": true,
+        "returncode": 0,
+        "status": "unsat"
+      },
+      "control_bad_q_shell_membership_unsat.smt2": {
+        "command": [
+          "cvc5",
+          "--lang",
+          "smt2",
+          "--nl-cov",
+          "--tlimit",
+          "30000",
+          "artifacts/control_bad_q_shell_membership_unsat.smt2"
+        ],
+        "expected": "unsat",
+        "matches_expected": true,
+        "returncode": 0,
+        "status": "unsat"
+      },
+      "control_known_sat.smt2": {
+        "command": [
+          "cvc5",
+          "--lang",
+          "smt2",
+          "--nl-cov",
+          "--tlimit",
+          "30000",
+          "artifacts/control_known_sat.smt2"
+        ],
+        "expected": "sat",
+        "matches_expected": true,
+        "returncode": 0,
+        "status": "sat"
+      },
+      "rich_apex_depletion_2plus1_sat.smt2": {
+        "command": [
+          "cvc5",
+          "--lang",
+          "smt2",
+          "--nl-cov",
+          "--tlimit",
+          "30000",
+          "artifacts/rich_apex_depletion_2plus1_sat.smt2"
+        ],
+        "expected": "sat",
+        "matches_expected": true,
+        "model_readback_exact": true,
+        "returncode": 0,
+        "status": "sat"
+      }
+    },
+    "z3": {
+      "control_bad_convexity_unsat.smt2": {
+        "command": [
+          "z3",
+          "-smt2",
+          "-T:30",
+          "artifacts/control_bad_convexity_unsat.smt2"
+        ],
+        "expected": "unsat",
+        "matches_expected": true,
+        "returncode": 0,
+        "status": "unsat"
+      },
+      "control_bad_deleted_class_count_unsat.smt2": {
+        "command": [
+          "z3",
+          "-smt2",
+          "-T:30",
+          "artifacts/control_bad_deleted_class_count_unsat.smt2"
+        ],
+        "expected": "unsat",
+        "matches_expected": true,
+        "returncode": 0,
+        "status": "unsat"
+      },
+      "control_bad_q_shell_membership_unsat.smt2": {
+        "command": [
+          "z3",
+          "-smt2",
+          "-T:30",
+          "artifacts/control_bad_q_shell_membership_unsat.smt2"
+        ],
+        "expected": "unsat",
+        "matches_expected": true,
+        "returncode": 0,
+        "status": "unsat"
+      },
+      "control_known_sat.smt2": {
+        "command": [
+          "z3",
+          "-smt2",
+          "-T:30",
+          "artifacts/control_known_sat.smt2"
+        ],
+        "expected": "sat",
+        "matches_expected": true,
+        "returncode": 0,
+        "status": "sat"
+      },
+      "rich_apex_depletion_2plus1_sat.smt2": {
+        "command": [
+          "z3",
+          "-smt2",
+          "-T:30",
+          "artifacts/rich_apex_depletion_2plus1_sat.smt2"
+        ],
+        "expected": "sat",
+        "matches_expected": true,
+        "model_readback_exact": true,
+        "returncode": 0,
+        "status": "sat"
+      }
+    }
+  },
+  "status": "SAT_LOCAL_PACKET"
+}

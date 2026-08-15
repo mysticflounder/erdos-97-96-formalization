@@ -1,0 +1,128 @@
+{
+  "classification": "DUAL_UNSAT_FROZEN_MOTIF_ONLY",
+  "controls": {
+    "incidence_center_in_row_unsat": {
+      "cvc5": {
+        "elapsed_s": 0.054,
+        "status": "unsat"
+      },
+      "z3": {
+        "elapsed_s": 0.042,
+        "status": "unsat"
+      }
+    },
+    "metric_duplicate_unsat": {
+      "cvc5": {
+        "elapsed_s": 0.005,
+        "expected": "unsat",
+        "status": "unsat"
+      },
+      "z3": {
+        "elapsed_s": 0.005,
+        "expected": "unsat",
+        "status": "unsat"
+      }
+    },
+    "metric_known_sat": {
+      "cvc5": {
+        "elapsed_s": 0.006,
+        "expected": "sat",
+        "status": "sat"
+      },
+      "z3": {
+        "elapsed_s": 0.008,
+        "expected": "sat",
+        "status": "sat"
+      }
+    }
+  },
+  "incidence": {
+    "assertions": 305,
+    "sha256": "441695412b0ad621542af9d3531c01df7dbae12f1a5f1a304c4e4956a5c78a3d",
+    "solvers": {
+      "cvc5": {
+        "elapsed_s": 0.15,
+        "status": "sat",
+        "validator": "pass",
+        "validator_failures": []
+      },
+      "z3": {
+        "elapsed_s": 0.039,
+        "status": "sat",
+        "validator": "pass",
+        "validator_failures": []
+      }
+    },
+    "tag": {
+      "b2_choice": "radius",
+      "deleted": "qsource",
+      "orientation": "first"
+    }
+  },
+  "metric": {
+    "assertion_groups": [
+      "gauge",
+      "carrier_distinct",
+      "convex_independent",
+      "mec_boundary",
+      "triangle_nonobtuse",
+      "first_cap_on_arc_opposite",
+      "row_PRow",
+      "row_PRhoRow",
+      "row_S0Row",
+      "row_S1Row",
+      "row_R",
+      "row_Rh",
+      "row_B3",
+      "row_B4",
+      "row_DBRow",
+      "retained_radii_distinct",
+      "exact_offsupport_PRow",
+      "exact_offsupport_PRhoRow",
+      "exact_offsupport_S0Row",
+      "exact_offsupport_S1Row",
+      "exact_offsupport_DBRow"
+    ],
+    "core_witness": {
+      "carrier_slot": 1,
+      "incidence_marks_first_cap": false,
+      "roles_at_slot": [
+        "C3",
+        "Q1"
+      ],
+      "source_reason": "the frozen proposal aliases an outside-Q role with a closed-cap endpoint apex, making the strict nonmembership atom identically false"
+    },
+    "cvc5": {
+      "elapsed_s": 0.016,
+      "status": "unsat"
+    },
+    "minimized_atom_assertions": {
+      "first_cap_on_arc_opposite__point_1": "(> (* (- (* (- x1 x1) (- y0 y1)) (* (- x0 x1) (- y1 y1))) (- (* (- x1 x2) (- y0 y2)) (* (- x0 x2) (- y1 y2)))) 0)"
+    },
+    "minimized_atoms": [
+      "first_cap_on_arc_opposite__point_1"
+    ],
+    "minimized_cvc5_status": "unsat",
+    "minimized_groups": [
+      "first_cap_on_arc_opposite"
+    ],
+    "sha256": "765dfb85052105171f6b497dc7871642bd07a01226e58eb0140139da847a5d1c",
+    "z3": {
+      "elapsed_s": 0.001,
+      "status": "unsat",
+      "unsat_core": []
+    }
+  },
+  "omissions": [
+    "crossed-three-row arms",
+    "anonymous global K4 rows",
+    "FiveRowCircleIntersectionOrderCore role/closure/orientation producer",
+    "general-cardinality ingress and lift"
+  ],
+  "scope": "one frozen exact-17 incidence proposal; no tag coverage or universal lift",
+  "tag": {
+    "b2_choice": "radius",
+    "deleted": "qsource",
+    "orientation": "first"
+  }
+}

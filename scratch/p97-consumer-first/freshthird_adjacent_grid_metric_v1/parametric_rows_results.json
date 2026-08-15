@@ -1,0 +1,167 @@
+{
+  "classification": "bounded exact-17 source-faithful diagnostic; not P97 closure",
+  "signature": {
+    "orientation": "direct",
+    "radial_branch": 0
+  },
+  "stages": [
+    {
+      "stage": "geometry",
+      "z3": "sat",
+      "seconds": 14.157,
+      "cvc5": "timeout",
+      "independent_validation": "pass",
+      "pinned_exact_witness": {
+        "z3": "sat",
+        "cvc5": "sat",
+        "interpretation": "pinned failure is diagnostic only; it is not UNSAT for the stage"
+      }
+    },
+    {
+      "stage": "grid_members",
+      "z3": "unknown:timeout",
+      "seconds": 122.663,
+      "cvc5": "unknown",
+      "independent_validation": "not applicable",
+      "pinned_exact_witness": {
+        "z3": "sat",
+        "cvc5": "sat",
+        "interpretation": "pinned failure is diagnostic only; it is not UNSAT for the stage"
+      }
+    },
+    {
+      "stage": "grid_exact",
+      "z3": "unknown:timeout",
+      "seconds": 125.663,
+      "cvc5": "unknown",
+      "independent_validation": "not applicable",
+      "pinned_exact_witness": {
+        "z3": "sat",
+        "cvc5": "sat",
+        "interpretation": "pinned failure is diagnostic only; it is not UNSAT for the stage"
+      }
+    },
+    {
+      "stage": "rows",
+      "z3": "unknown:timeout",
+      "seconds": 124.437,
+      "cvc5": "unknown",
+      "independent_validation": "not applicable",
+      "pinned_exact_witness": {
+        "z3": "unsat",
+        "cvc5": "unsat",
+        "interpretation": "pinned failure is diagnostic only; it is not UNSAT for the stage"
+      }
+    },
+    {
+      "stage": "source_slices",
+      "z3": "unknown:timeout",
+      "seconds": 122.678,
+      "cvc5": "unknown",
+      "independent_validation": "not applicable",
+      "pinned_exact_witness": {
+        "z3": "unsat",
+        "cvc5": "unsat",
+        "interpretation": "pinned failure is diagnostic only; it is not UNSAT for the stage"
+      }
+    },
+    {
+      "stage": "kalmanson",
+      "z3": "unknown:timeout",
+      "seconds": 127.017,
+      "cvc5": "unknown",
+      "independent_validation": "not applicable",
+      "pinned_exact_witness": {
+        "z3": "unsat",
+        "cvc5": "unsat",
+        "interpretation": "pinned failure is diagnostic only; it is not UNSAT for the stage"
+      }
+    }
+  ],
+  "first_solver_non_sat_or_unknown": "grid_members",
+  "row_signature_cuts": [
+    {
+      "orientation": "direct",
+      "radial_branch": 0,
+      "obstruction": {
+        "common_row_support": [
+          0,
+          3,
+          4,
+          15
+        ],
+        "common_support_card": 4,
+        "three_common_noncollinear_points": true,
+        "distinct_blocker_centers": true,
+        "structural_rows_unsat": true,
+        "reason": "two distinct circles cannot share three non-collinear points"
+      }
+    },
+    {
+      "orientation": "direct",
+      "radial_branch": 2,
+      "obstruction": {
+        "common_row_support": [
+          3,
+          16
+        ],
+        "common_support_card": 2,
+        "three_common_noncollinear_points": false,
+        "distinct_blocker_centers": true,
+        "structural_rows_unsat": false,
+        "reason": "no finite duplicate-three cut"
+      }
+    },
+    {
+      "orientation": "mirror",
+      "radial_branch": 1,
+      "obstruction": {
+        "common_row_support": [
+          1,
+          14
+        ],
+        "common_support_card": 2,
+        "three_common_noncollinear_points": false,
+        "distinct_blocker_centers": true,
+        "structural_rows_unsat": false,
+        "reason": "no finite duplicate-three cut"
+      }
+    },
+    {
+      "orientation": "mirror",
+      "radial_branch": 3,
+      "obstruction": {
+        "common_row_support": [
+          10,
+          13
+        ],
+        "common_support_card": 2,
+        "three_common_noncollinear_points": false,
+        "distinct_blocker_centers": true,
+        "structural_rows_unsat": false,
+        "reason": "no finite duplicate-three cut"
+      }
+    }
+  ],
+  "first_source_faithful_obstruction": [
+    {
+      "orientation": "direct",
+      "radial_branch": 0
+    }
+  ],
+  "malformed_geometry_control": {
+    "z3": "unsat",
+    "cvc5": "unsat"
+  },
+  "encoded": [
+    "frozen direct-0 exact-17 signature",
+    "both exact blocker-centered rows",
+    "both FreshThird singleton own-cap slices",
+    "existing strict Kalmanson inequality"
+  ],
+  "omitted": [
+    "source-level producer/lift",
+    "general-n lift",
+    "P97 headline conclusion"
+  ]
+}

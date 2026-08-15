@@ -1,0 +1,95 @@
+{
+  "arm_cell_index": 6,
+  "artifacts": {
+    "adjacent_apex_cross_block_family_bank": {
+      "bytes": 511287,
+      "path": "adjacent_apex_cross_block_family_bank.json",
+      "sha256": "34238a3454a949e4125887de310a2499c2f135f0040337e767ea762529fbfa7f"
+    },
+    "apex_zero_cross_block_family_bank": {
+      "bytes": 1320216,
+      "path": "apex_zero_cross_block_family_bank.json",
+      "sha256": "9ef30a2607eab9b9f38dbf4d92c7f8034cfd7679d8cba8419dc92b525e6eff03"
+    },
+    "arm_suffix": {
+      "bytes": 41404,
+      "path": "arm_suffix.json",
+      "sha256": "6f0cfea83d084d8e50986fb04cafcad2cf40777db5f272c00f6756d2ee4a13f7"
+    },
+    "discovery_cnf": {
+      "bytes": 13055251,
+      "path": "discovery.cnf",
+      "sha256": "a3e0954a16f25f6d6058f5709226381d4e7a422357e28d95a0e913423e36de0c"
+    },
+    "job": {
+      "bytes": 17789,
+      "path": "job.json",
+      "sha256": "f8a8aeaed6304983f8cc8504f34d5ee30d2cc5ef95cc63935802f1edf442b8b6"
+    },
+    "positive_membership_bank": {
+      "bytes": 164184,
+      "path": "positive_membership_bank.json",
+      "sha256": "c05efdb112c60c426736f1c5d7b15c6d73f60f24cd471e3d77e1587c7c425112"
+    },
+    "proof": null,
+    "second_cap_apex_surplus_family_bank": {
+      "bytes": 717128,
+      "path": "second_cap_apex_surplus_family_bank.json",
+      "sha256": "adab44d3fba9a69a6754afdb59b71d03c55ddc635cdf1b7e35660a269504beae"
+    },
+    "source_order_bank": {
+      "bytes": 6362792,
+      "path": "source_order_bank.json",
+      "sha256": "7a49f90d7d8200f20b27db6abad1ae2109a4100dc41ef6834b16e4660b9ad999"
+    },
+    "source_order_installation": {
+      "bytes": 668,
+      "path": "source_order_installation.json",
+      "sha256": "059001f0446149f95c6d4acab59468e691fbb57afcf8018ad3f5e5096f7d8d6e"
+    },
+    "surplus_apex_pair_family_bank": {
+      "bytes": 316156,
+      "path": "surplus_apex_pair_family_bank.json",
+      "sha256": "8744c8edef12c18babc37b2bd26822f594feaf340b6802d4f930452d4758e970"
+    },
+    "surplus_three_triad_family_bank": {
+      "bytes": 830853,
+      "path": "surplus_three_triad_family_bank.json",
+      "sha256": "9bd119ffddc37e557be3270c90c944ff1c739c172192399001272e83fdf08d37"
+    },
+    "survivor": {
+      "bytes": 252625,
+      "path": "survivor.json",
+      "sha256": "bc2bfa9cad1470ae467b29226572141d8e5ed74d066aa2bbfafb925f6156aaaf"
+    },
+    "terminal_cnf": null,
+    "zero_center_cross_block_family_bank": {
+      "bytes": 1085387,
+      "path": "zero_center_cross_block_family_bank.json",
+      "sha256": "c64d0e72ed5b737cd9baeb41b0e0bdcca80e66fb930966b4e8f2e340c9e1f1d3"
+    }
+  },
+  "classification": "STRUCTURALLY_UNRESOLVED",
+  "discovery_stdout_tail": " 44930 44931 44932 44933 44934 44935 44936 44937\nv 44938 44939 44940 -44941 -44942 -44943 -44944 -44945 -44946 -44947 -44948\nv -44949 -44950 -44951 -44952 -44953 -44954 -44955 -44956 -44957 -44958 -44959\nv -44960 -44961 -44962 -44963 -44964 44965 44966 44967 44968 44969 44970 44971\nv 44972 -44973 -44974 -44975 -44976 -44977 -44978 -44979 -44980 -44981 44982\nv -44983 -44984 -44985 44986 -44987 -44988 -44989 44990 44991 -44992 -44993\nv -44994 -44995 -44996 -44997 -44998 -44999 -45000 45001 -45002 45003 -45004\nv 45005 -45006 45007 45008 45009 45010 -45011 -45012 -45013 -45014 -45015\nv -45016 -45017 -45018 -45019 -45020 -45021 -45022 -45023 -45024 -45025 -45026\nv -45027 -45028 -45029 -45030 -45031 -45032 -45033 -45034 45035 45036 45037\nv 45038 45039 45040 45041 45042 45043 45044 45045 45046 45047 45048 45049\nv 45050 45051 45052 45053 45054 45055 -45056 -45057 45058 45059 45060 -45061\nv 45062 45063 -45064 45065 45066 -45067 45068 45069 -45070 45071 45072 45073\nv -45074 45075 45076 45077 0\n\n",
+  "discovery_verdict": "SAT",
+  "error": null,
+  "job_id": "843c3019f6d8b08f05700895af708242c6c1f520d6903a69a426a5461e2f50e2",
+  "job_sha256": "f8a8aeaed6304983f8cc8504f34d5ee30d2cc5ef95cc63935802f1edf442b8b6",
+  "lean_terminal_ingress_ready": false,
+  "nice": 10,
+  "replay": {
+    "added_constraints": true,
+    "candidate": true,
+    "canonical_static_extension": true,
+    "exact_cnf": true,
+    "named_deletion_arm": true
+  },
+  "schema": "p97_rigid221_exact12_next_row_arm_static_canary_run.v2",
+  "scope": "one finite exact-12 placement-1 named-arm static canary; no aggregate arm coverage, universal lift, or Lean closure",
+  "status": "SAT_WITNESS_REPLAYED",
+  "terminal_proof_authenticated": false,
+  "terminal_proof_verified": false,
+  "terminal_stdout_tail": null,
+  "terminal_verdict": null,
+  "timeout_seconds": 3600
+}

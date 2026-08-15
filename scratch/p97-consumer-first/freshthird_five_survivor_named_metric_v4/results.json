@@ -1,0 +1,2157 @@
+{
+  "controls": {
+    "metric_duplicate_unsat": {
+      "cvc5": {
+        "elapsed_s": 0.005,
+        "expected": "unsat",
+        "status": "unsat"
+      },
+      "z3": {
+        "elapsed_s": 0.005,
+        "expected": "unsat",
+        "status": "unsat"
+      }
+    },
+    "metric_known_sat": {
+      "cvc5": {
+        "elapsed_s": 0.005,
+        "expected": "sat",
+        "status": "sat"
+      },
+      "z3": {
+        "elapsed_s": 0.006,
+        "expected": "sat",
+        "status": "sat"
+      }
+    },
+    "structural_endpoint_outside_alias_unsat": {
+      "cvc5": {
+        "elapsed_s": 0.022,
+        "expected": "unsat",
+        "status": "unsat",
+        "validator": "not_applicable",
+        "validator_failures": []
+      },
+      "z3": {
+        "elapsed_s": 0.013,
+        "expected": "unsat",
+        "status": "unsat",
+        "validator": "not_applicable",
+        "validator_failures": []
+      }
+    },
+    "structural_known_sat": {
+      "cvc5": {
+        "elapsed_s": 0.155,
+        "expected": "sat",
+        "status": "sat",
+        "validator": "pass",
+        "validator_failures": []
+      },
+      "z3": {
+        "elapsed_s": 0.032,
+        "expected": "sat",
+        "status": "sat",
+        "validator": "pass",
+        "validator_failures": []
+      }
+    },
+    "structural_row_contains_center_unsat": {
+      "cvc5": {
+        "elapsed_s": 0.022,
+        "expected": "unsat",
+        "status": "unsat",
+        "validator": "not_applicable",
+        "validator_failures": []
+      },
+      "z3": {
+        "elapsed_s": 0.013,
+        "expected": "unsat",
+        "status": "unsat",
+        "validator": "not_applicable",
+        "validator_failures": []
+      }
+    }
+  },
+  "cvc5_unsat_audits": [
+    {
+      "classification": "DUAL_UNSAT_MINIMIZED_FROZEN_MOTIF_ONLY",
+      "cvc5_atom_core": [
+        "gauge__atom_0",
+        "gauge__atom_1",
+        "gauge__atom_2",
+        "row_S0Row__atom_1",
+        "row_S0Row__atom_3",
+        "row_S1Row__atom_1",
+        "row_S1Row__atom_3",
+        "row_DBRow__atom_1",
+        "row_DBRow__atom_3",
+        "exact_offsupport_DBRow__atom_9"
+      ],
+      "cvc5_group_core": [
+        "gauge",
+        "row_S0Row",
+        "row_S1Row",
+        "row_DBRow",
+        "exact_offsupport_DBRow"
+      ],
+      "dual_minimized": {
+        "atom_assertions": {
+          "exact_offsupport_DBRow__atom_9": "(not (= (+ (* (- x0 x12) (- x0 x12)) (* (- y0 y12) (- y0 y12))) rad_DBRow))",
+          "row_DBRow__atom_3": "(= (+ (* (- x0 x7) (- x0 x7)) (* (- y0 y7) (- y0 y7))) rad_DBRow)",
+          "row_S0Row__atom_1": "(= (+ (* (- x12 x0) (- x12 x0)) (* (- y12 y0) (- y12 y0))) rad_S0Row)",
+          "row_S0Row__atom_3": "(= (+ (* (- x12 x7) (- x12 x7)) (* (- y12 y7) (- y12 y7))) rad_S0Row)",
+          "row_S1Row__atom_1": "(= (+ (* (- x7 x0) (- x7 x0)) (* (- y7 y0) (- y7 y0))) rad_S1Row)",
+          "row_S1Row__atom_3": "(= (+ (* (- x7 x12) (- x7 x12)) (* (- y7 y12) (- y7 y12))) rad_S1Row)"
+        },
+        "cvc5": {
+          "elapsed_s": 0.006,
+          "status": "unsat"
+        },
+        "dual_replay_atoms": [
+          "row_S0Row__atom_1",
+          "row_S0Row__atom_3",
+          "row_S1Row__atom_1",
+          "row_S1Row__atom_3",
+          "row_DBRow__atom_3",
+          "exact_offsupport_DBRow__atom_9"
+        ],
+        "gauge_atoms_added_for_z3": [],
+        "sha256": "c1c26396ac3db69e6e8e88cfd91419bbf73880c8743fcaf5a799839cf2d5b921",
+        "source_minimal_atoms": [
+          "row_S0Row__atom_1",
+          "row_S0Row__atom_3",
+          "row_S1Row__atom_1",
+          "row_S1Row__atom_3",
+          "row_DBRow__atom_3",
+          "exact_offsupport_DBRow__atom_9"
+        ],
+        "source_minimal_irredundance_replay": {
+          "exact_offsupport_DBRow__atom_9": "sat",
+          "row_DBRow__atom_3": "sat",
+          "row_S0Row__atom_1": "sat",
+          "row_S0Row__atom_3": "sat",
+          "row_S1Row__atom_1": "sat",
+          "row_S1Row__atom_3": "sat"
+        },
+        "source_origins": {
+          "exact_offsupport_DBRow__atom_9": "exact support exclusion only for a canonical selected shell or actual blocker-image row",
+          "row_DBRow__atom_3": "named boundary row support has one exact squared distance from its source-mapped center",
+          "row_S0Row__atom_1": "named boundary row support has one exact squared distance from its source-mapped center",
+          "row_S0Row__atom_3": "named boundary row support has one exact squared distance from its source-mapped center",
+          "row_S1Row__atom_1": "named boundary row support has one exact squared distance from its source-mapped center",
+          "row_S1Row__atom_3": "named boundary row support has one exact squared distance from its source-mapped center"
+        },
+        "z3": {
+          "core": [],
+          "elapsed_s": 0.015,
+          "status": "unsat"
+        }
+      },
+      "full_cvc5_replay": {
+        "elapsed_s": 0.065,
+        "status": "unsat"
+      },
+      "guard_audit": {
+        "DBRow_meaning": "actual deleted blocker's canonical unique original four-class",
+        "FiveRowCircleIntersectionOrderCore_used": false,
+        "all_groups_source_mapped": true,
+        "exact_offsupport_groups": [
+          "exact_offsupport_DBRow"
+        ],
+        "exact_offsupport_only_source_entitled": true
+      },
+      "roles": {
+        "C0": 12,
+        "C1": 6,
+        "C2": 5,
+        "C3": 13,
+        "C4": 16,
+        "CP": 4,
+        "CS0": 12,
+        "CS1": 7,
+        "DB": 0,
+        "P1": 12,
+        "P2": 16,
+        "Q0": 15,
+        "Q1": 5,
+        "R1": 3,
+        "R2": 9,
+        "S0": 2,
+        "S1": 0
+      },
+      "rows": {
+        "B0": [
+          0,
+          2,
+          7,
+          14
+        ],
+        "B1": [
+          3,
+          7,
+          9,
+          14
+        ],
+        "B2": [
+          3,
+          6,
+          9,
+          15
+        ],
+        "B3": [
+          6,
+          7,
+          12,
+          15
+        ],
+        "B4": [
+          1,
+          6,
+          14,
+          15
+        ],
+        "Cap": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          6,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          16
+        ],
+        "DBRow": [
+          5,
+          6,
+          7,
+          14
+        ],
+        "PRhoRow": [
+          3,
+          7,
+          9,
+          14
+        ],
+        "PRow": [
+          5,
+          12,
+          15,
+          16
+        ],
+        "R": [
+          7,
+          12,
+          14,
+          16
+        ],
+        "Rh": [
+          3,
+          6,
+          9,
+          15
+        ],
+        "S0Row": [
+          0,
+          2,
+          7,
+          14
+        ],
+        "S1Row": [
+          0,
+          2,
+          12,
+          15
+        ]
+      },
+      "scope": "one frozen exact-17 structural survivor",
+      "stage": "exact_offsupport",
+      "tag": "first_qother_rho"
+    },
+    {
+      "classification": "DUAL_UNSAT_MINIMIZED_FROZEN_MOTIF_ONLY",
+      "cvc5_atom_core": [
+        "gauge__atom_0",
+        "gauge__atom_1",
+        "gauge__atom_2",
+        "row_PRow__atom_1",
+        "row_PRow__atom_2",
+        "row_PRhoRow__atom_1",
+        "row_PRhoRow__atom_2",
+        "row_Rh__atom_1",
+        "row_Rh__atom_2",
+        "row_DBRow__atom_1",
+        "exact_offsupport_DBRow__atom_9"
+      ],
+      "cvc5_group_core": [
+        "gauge",
+        "row_PRow",
+        "row_PRhoRow",
+        "row_Rh",
+        "row_DBRow",
+        "exact_offsupport_DBRow"
+      ],
+      "dual_minimized": {
+        "atom_assertions": {
+          "exact_offsupport_DBRow__atom_9": "(not (= (+ (* (- x0 x11) (- x0 x11)) (* (- y0 y11) (- y0 y11))) rad_DBRow))",
+          "gauge__atom_0": "(= x0 0)",
+          "gauge__atom_1": "(= y0 0)",
+          "gauge__atom_2": "(= y1 0)",
+          "row_DBRow__atom_1": "(= (+ (* (- x0 x4) (- x0 x4)) (* (- y0 y4) (- y0 y4))) rad_DBRow)",
+          "row_PRhoRow__atom_1": "(= (+ (* (- x11 x0) (- x11 x0)) (* (- y11 y0) (- y11 y0))) rad_PRhoRow)",
+          "row_PRhoRow__atom_2": "(= (+ (* (- x11 x2) (- x11 x2)) (* (- y11 y2) (- y11 y2))) rad_PRhoRow)",
+          "row_PRow__atom_1": "(= (+ (* (- x2 x4) (- x2 x4)) (* (- y2 y4) (- y2 y4))) rad_PRow)",
+          "row_PRow__atom_2": "(= (+ (* (- x2 x11) (- x2 x11)) (* (- y2 y11) (- y2 y11))) rad_PRow)",
+          "row_Rh__atom_1": "(= (+ (* (- x4 x0) (- x4 x0)) (* (- y4 y0) (- y4 y0))) rad_Rh)",
+          "row_Rh__atom_2": "(= (+ (* (- x4 x2) (- x4 x2)) (* (- y4 y2) (- y4 y2))) rad_Rh)"
+        },
+        "cvc5": {
+          "elapsed_s": 0.008,
+          "status": "unsat"
+        },
+        "dual_replay_atoms": [
+          "gauge__atom_0",
+          "gauge__atom_1",
+          "gauge__atom_2",
+          "row_PRow__atom_1",
+          "row_PRow__atom_2",
+          "row_PRhoRow__atom_1",
+          "row_PRhoRow__atom_2",
+          "row_Rh__atom_1",
+          "row_Rh__atom_2",
+          "row_DBRow__atom_1",
+          "exact_offsupport_DBRow__atom_9"
+        ],
+        "gauge_atoms_added_for_z3": [
+          "gauge__atom_0",
+          "gauge__atom_1",
+          "gauge__atom_2"
+        ],
+        "sha256": "48257ed137bae4d89137e9bad435f923e1700f3187fe0c6507336c6a261277a1",
+        "source_minimal_atoms": [
+          "row_PRow__atom_1",
+          "row_PRow__atom_2",
+          "row_PRhoRow__atom_1",
+          "row_PRhoRow__atom_2",
+          "row_Rh__atom_1",
+          "row_Rh__atom_2",
+          "row_DBRow__atom_1",
+          "exact_offsupport_DBRow__atom_9"
+        ],
+        "source_minimal_irredundance_replay": {
+          "exact_offsupport_DBRow__atom_9": "sat",
+          "row_DBRow__atom_1": "sat",
+          "row_PRhoRow__atom_1": "sat",
+          "row_PRhoRow__atom_2": "sat",
+          "row_PRow__atom_1": "sat",
+          "row_PRow__atom_2": "sat",
+          "row_Rh__atom_1": "sat",
+          "row_Rh__atom_2": "sat"
+        },
+        "source_origins": {
+          "exact_offsupport_DBRow__atom_9": "exact support exclusion only for a canonical selected shell or actual blocker-image row",
+          "gauge__atom_0": "Euclidean carrier normalization / strict convex position",
+          "gauge__atom_1": "Euclidean carrier normalization / strict convex position",
+          "gauge__atom_2": "Euclidean carrier normalization / strict convex position",
+          "row_DBRow__atom_1": "named boundary row support has one exact squared distance from its source-mapped center",
+          "row_PRhoRow__atom_1": "named boundary row support has one exact squared distance from its source-mapped center",
+          "row_PRhoRow__atom_2": "named boundary row support has one exact squared distance from its source-mapped center",
+          "row_PRow__atom_1": "named boundary row support has one exact squared distance from its source-mapped center",
+          "row_PRow__atom_2": "named boundary row support has one exact squared distance from its source-mapped center",
+          "row_Rh__atom_1": "named boundary row support has one exact squared distance from its source-mapped center",
+          "row_Rh__atom_2": "named boundary row support has one exact squared distance from its source-mapped center"
+        },
+        "z3": {
+          "core": [],
+          "elapsed_s": 0.002,
+          "status": "unsat"
+        }
+      },
+      "full_cvc5_replay": {
+        "elapsed_s": 0.067,
+        "status": "unsat"
+      },
+      "guard_audit": {
+        "DBRow_meaning": "actual deleted blocker's canonical unique original four-class",
+        "FiveRowCircleIntersectionOrderCore_used": false,
+        "all_groups_source_mapped": true,
+        "exact_offsupport_groups": [
+          "exact_offsupport_DBRow"
+        ],
+        "exact_offsupport_only_source_entitled": true
+      },
+      "roles": {
+        "C0": 12,
+        "C1": 11,
+        "C2": 4,
+        "C3": 14,
+        "C4": 16,
+        "CP": 2,
+        "CS0": 13,
+        "CS1": 12,
+        "DB": 0,
+        "P1": 12,
+        "P2": 11,
+        "Q0": 15,
+        "Q1": 4,
+        "R1": 2,
+        "R2": 0,
+        "S0": 14,
+        "S1": 3
+      },
+      "rows": {
+        "B0": [
+          3,
+          10,
+          13,
+          14
+        ],
+        "B1": [
+          0,
+          2,
+          10,
+          13
+        ],
+        "B2": [
+          5,
+          11,
+          12,
+          13
+        ],
+        "B3": [
+          5,
+          12,
+          15,
+          16
+        ],
+        "B4": [
+          2,
+          5,
+          13,
+          15
+        ],
+        "Cap": [
+          0,
+          1,
+          2,
+          3,
+          6,
+          7,
+          8,
+          9,
+          11,
+          12,
+          14,
+          16
+        ],
+        "DBRow": [
+          4,
+          5,
+          13,
+          16
+        ],
+        "PRhoRow": [
+          0,
+          2,
+          10,
+          13
+        ],
+        "PRow": [
+          4,
+          11,
+          12,
+          15
+        ],
+        "R": [
+          5,
+          11,
+          12,
+          13
+        ],
+        "Rh": [
+          0,
+          2,
+          15,
+          16
+        ],
+        "S0Row": [
+          3,
+          12,
+          14,
+          15
+        ],
+        "S1Row": [
+          3,
+          10,
+          13,
+          14
+        ]
+      },
+      "scope": "one frozen exact-17 structural survivor",
+      "stage": "exact_offsupport",
+      "tag": "second_qother_radius"
+    }
+  ],
+  "hard_gate": "FiveRowCircleIntersectionOrderCore absent and never encoded",
+  "omissions": [
+    "FiveRowCircleIntersectionOrderCore and all absent EdgeClosure/orientation premises",
+    "crossed-three-row constructors",
+    "anonymous carrier-wide K4 rows",
+    "coverage of all structural survivors within any tag",
+    "general-cardinality ingress and lift"
+  ],
+  "scope": "finite exact-17 producer discovery only; no CE, universal, or Lean closure claim",
+  "tags": {
+    "first_qother_radius": {
+      "metric_stages": {
+        "baseline": {
+          "active_groups": [
+            "gauge",
+            "carrier_distinct",
+            "convex_independent",
+            "mec_boundary",
+            "triangle_nonobtuse",
+            "first_cap_on_arc_opposite"
+          ],
+          "assertion_count": 470,
+          "classification": "INCONCLUSIVE",
+          "cvc5": {
+            "elapsed_s": 8.017,
+            "status": "timeout"
+          },
+          "minimized": null,
+          "real_variable_count": 97,
+          "sha256": "b9b1bfb5d2ad2b55b1a3df64ca4f71dc1fb7cca192655898b35c1f769cde0746",
+          "z3": {
+            "core": [],
+            "elapsed_s": 9.326,
+            "exact_fraction_validator": "not_applicable",
+            "status": "unknown",
+            "validator_failures": []
+          }
+        },
+        "exact_offsupport": {
+          "active_groups": [
+            "gauge",
+            "carrier_distinct",
+            "convex_independent",
+            "mec_boundary",
+            "triangle_nonobtuse",
+            "first_cap_on_arc_opposite",
+            "row_PRow",
+            "row_PRhoRow",
+            "row_S0Row",
+            "row_S1Row",
+            "row_R",
+            "row_Rh",
+            "row_B3",
+            "row_B4",
+            "row_DBRow",
+            "retained_radii_distinct",
+            "exact_offsupport_PRow",
+            "exact_offsupport_PRhoRow",
+            "exact_offsupport_S0Row",
+            "exact_offsupport_S1Row",
+            "exact_offsupport_DBRow"
+          ],
+          "assertion_count": 581,
+          "classification": "INCONCLUSIVE",
+          "cvc5": {
+            "elapsed_s": 20.009,
+            "status": "timeout"
+          },
+          "minimized": null,
+          "real_variable_count": 97,
+          "sha256": "2ad6ed802d79248d3a119115ee8ff2a6e48083bd4f343a1e5eb1a050a8499744",
+          "z3": {
+            "core": [],
+            "elapsed_s": 21.58,
+            "exact_fraction_validator": "not_applicable",
+            "status": "unknown",
+            "validator_failures": []
+          }
+        },
+        "named_rows": {
+          "active_groups": [
+            "gauge",
+            "carrier_distinct",
+            "convex_independent",
+            "mec_boundary",
+            "triangle_nonobtuse",
+            "first_cap_on_arc_opposite",
+            "row_PRow",
+            "row_PRhoRow",
+            "row_S0Row",
+            "row_S1Row",
+            "row_R",
+            "row_Rh",
+            "row_B3",
+            "row_B4",
+            "row_DBRow",
+            "retained_radii_distinct"
+          ],
+          "assertion_count": 516,
+          "classification": "INCONCLUSIVE",
+          "cvc5": {
+            "elapsed_s": 12.016,
+            "status": "timeout"
+          },
+          "minimized": null,
+          "real_variable_count": 97,
+          "sha256": "3b3e1810e63734ba7dbbc59a6d42ac8fe79437f68f437481d81df95fb166e616",
+          "z3": {
+            "core": [],
+            "elapsed_s": 13.424,
+            "exact_fraction_validator": "not_applicable",
+            "status": "unknown",
+            "validator_failures": []
+          }
+        }
+      },
+      "source_labels": {
+        "carrier_distinct": "Euclidean carrier normalization / strict convex position",
+        "convex_independent": "Euclidean carrier normalization / strict convex position",
+        "exact_offsupport_DBRow": "exact support exclusion only for a canonical selected shell or actual blocker-image row",
+        "exact_offsupport_PRhoRow": "exact support exclusion only for a canonical selected shell or actual blocker-image row",
+        "exact_offsupport_PRow": "exact support exclusion only for a canonical selected shell or actual blocker-image row",
+        "exact_offsupport_S0Row": "exact support exclusion only for a canonical selected shell or actual blocker-image row",
+        "exact_offsupport_S1Row": "exact support exclusion only for a canonical selected shell or actual blocker-image row",
+        "first_cap_on_arc_opposite": "first closed cap is the arc opposite oppApex1; v4 endpoint/outside cut already validated",
+        "gauge": "Euclidean carrier normalization / strict convex position",
+        "mec_boundary": "SurplusCapPacket three boundary apices of the minimum enclosing circle",
+        "retained_radii_distinct": "the retained R/Rrho first-apex rows use distinct radii",
+        "row_B3": "named boundary row support has one exact squared distance from its source-mapped center",
+        "row_B4": "named boundary row support has one exact squared distance from its source-mapped center",
+        "row_DBRow": "named boundary row support has one exact squared distance from its source-mapped center",
+        "row_PRhoRow": "named boundary row support has one exact squared distance from its source-mapped center",
+        "row_PRow": "named boundary row support has one exact squared distance from its source-mapped center",
+        "row_R": "named boundary row support has one exact squared distance from its source-mapped center",
+        "row_Rh": "named boundary row support has one exact squared distance from its source-mapped center",
+        "row_S0Row": "named boundary row support has one exact squared distance from its source-mapped center",
+        "row_S1Row": "named boundary row support has one exact squared distance from its source-mapped center",
+        "triangle_nonobtuse": "SurplusCapPacket three boundary apices of the minimum enclosing circle"
+      },
+      "structural": {
+        "assertion_count": 310,
+        "sha256": "c45f3a63916852a41a38b850b64d2a4a25018342201a9fa005c1625568e5e934",
+        "solvers": {
+          "cvc5": {
+            "elapsed_s": 0.149,
+            "status": "sat",
+            "validator": "pass",
+            "validator_failures": []
+          },
+          "z3": {
+            "elapsed_s": 0.038,
+            "status": "sat",
+            "validator": "pass",
+            "validator_failures": []
+          }
+        }
+      },
+      "tag": {
+        "b2_choice": "radius",
+        "deleted": "qother",
+        "orientation": "first"
+      }
+    },
+    "first_qother_rho": {
+      "metric_stages": {
+        "baseline": {
+          "active_groups": [
+            "gauge",
+            "carrier_distinct",
+            "convex_independent",
+            "mec_boundary",
+            "triangle_nonobtuse",
+            "first_cap_on_arc_opposite"
+          ],
+          "assertion_count": 470,
+          "classification": "INCONCLUSIVE",
+          "cvc5": {
+            "elapsed_s": 8.014,
+            "status": "timeout"
+          },
+          "minimized": null,
+          "real_variable_count": 97,
+          "sha256": "db180a10000dbc024184eceb11785381f4e2913600f42d9dc852759ce1643cf5",
+          "z3": {
+            "core": [],
+            "elapsed_s": 9.318,
+            "exact_fraction_validator": "not_applicable",
+            "status": "unknown",
+            "validator_failures": []
+          }
+        },
+        "exact_offsupport": {
+          "active_groups": [
+            "gauge",
+            "carrier_distinct",
+            "convex_independent",
+            "mec_boundary",
+            "triangle_nonobtuse",
+            "first_cap_on_arc_opposite",
+            "row_PRow",
+            "row_PRhoRow",
+            "row_S0Row",
+            "row_S1Row",
+            "row_R",
+            "row_Rh",
+            "row_B3",
+            "row_B4",
+            "row_DBRow",
+            "retained_radii_distinct",
+            "exact_offsupport_PRow",
+            "exact_offsupport_PRhoRow",
+            "exact_offsupport_S0Row",
+            "exact_offsupport_S1Row",
+            "exact_offsupport_DBRow"
+          ],
+          "assertion_count": 581,
+          "classification": "DUAL_UNSAT_MINIMIZED_FROZEN_MOTIF_ONLY",
+          "cvc5": {
+            "elapsed_s": 0.076,
+            "status": "unsat"
+          },
+          "minimized": null,
+          "real_variable_count": 97,
+          "sha256": "3d042f0f6cfbb198717371d6a0ee507b7b7305f96d0f12c78f2715c3dd342c97",
+          "unsat_audit": {
+            "classification": "DUAL_UNSAT_MINIMIZED_FROZEN_MOTIF_ONLY",
+            "cvc5_atom_core": [
+              "gauge__atom_0",
+              "gauge__atom_1",
+              "gauge__atom_2",
+              "row_S0Row__atom_1",
+              "row_S0Row__atom_3",
+              "row_S1Row__atom_1",
+              "row_S1Row__atom_3",
+              "row_DBRow__atom_1",
+              "row_DBRow__atom_3",
+              "exact_offsupport_DBRow__atom_9"
+            ],
+            "cvc5_group_core": [
+              "gauge",
+              "row_S0Row",
+              "row_S1Row",
+              "row_DBRow",
+              "exact_offsupport_DBRow"
+            ],
+            "dual_minimized": {
+              "atom_assertions": {
+                "exact_offsupport_DBRow__atom_9": "(not (= (+ (* (- x0 x12) (- x0 x12)) (* (- y0 y12) (- y0 y12))) rad_DBRow))",
+                "row_DBRow__atom_3": "(= (+ (* (- x0 x7) (- x0 x7)) (* (- y0 y7) (- y0 y7))) rad_DBRow)",
+                "row_S0Row__atom_1": "(= (+ (* (- x12 x0) (- x12 x0)) (* (- y12 y0) (- y12 y0))) rad_S0Row)",
+                "row_S0Row__atom_3": "(= (+ (* (- x12 x7) (- x12 x7)) (* (- y12 y7) (- y12 y7))) rad_S0Row)",
+                "row_S1Row__atom_1": "(= (+ (* (- x7 x0) (- x7 x0)) (* (- y7 y0) (- y7 y0))) rad_S1Row)",
+                "row_S1Row__atom_3": "(= (+ (* (- x7 x12) (- x7 x12)) (* (- y7 y12) (- y7 y12))) rad_S1Row)"
+              },
+              "cvc5": {
+                "elapsed_s": 0.006,
+                "status": "unsat"
+              },
+              "dual_replay_atoms": [
+                "row_S0Row__atom_1",
+                "row_S0Row__atom_3",
+                "row_S1Row__atom_1",
+                "row_S1Row__atom_3",
+                "row_DBRow__atom_3",
+                "exact_offsupport_DBRow__atom_9"
+              ],
+              "gauge_atoms_added_for_z3": [],
+              "sha256": "c1c26396ac3db69e6e8e88cfd91419bbf73880c8743fcaf5a799839cf2d5b921",
+              "source_minimal_atoms": [
+                "row_S0Row__atom_1",
+                "row_S0Row__atom_3",
+                "row_S1Row__atom_1",
+                "row_S1Row__atom_3",
+                "row_DBRow__atom_3",
+                "exact_offsupport_DBRow__atom_9"
+              ],
+              "source_minimal_irredundance_replay": {
+                "exact_offsupport_DBRow__atom_9": "sat",
+                "row_DBRow__atom_3": "sat",
+                "row_S0Row__atom_1": "sat",
+                "row_S0Row__atom_3": "sat",
+                "row_S1Row__atom_1": "sat",
+                "row_S1Row__atom_3": "sat"
+              },
+              "source_origins": {
+                "exact_offsupport_DBRow__atom_9": "exact support exclusion only for a canonical selected shell or actual blocker-image row",
+                "row_DBRow__atom_3": "named boundary row support has one exact squared distance from its source-mapped center",
+                "row_S0Row__atom_1": "named boundary row support has one exact squared distance from its source-mapped center",
+                "row_S0Row__atom_3": "named boundary row support has one exact squared distance from its source-mapped center",
+                "row_S1Row__atom_1": "named boundary row support has one exact squared distance from its source-mapped center",
+                "row_S1Row__atom_3": "named boundary row support has one exact squared distance from its source-mapped center"
+              },
+              "z3": {
+                "core": [],
+                "elapsed_s": 0.015,
+                "status": "unsat"
+              }
+            },
+            "full_cvc5_replay": {
+              "elapsed_s": 0.065,
+              "status": "unsat"
+            },
+            "guard_audit": {
+              "DBRow_meaning": "actual deleted blocker's canonical unique original four-class",
+              "FiveRowCircleIntersectionOrderCore_used": false,
+              "all_groups_source_mapped": true,
+              "exact_offsupport_groups": [
+                "exact_offsupport_DBRow"
+              ],
+              "exact_offsupport_only_source_entitled": true
+            },
+            "roles": {
+              "C0": 12,
+              "C1": 6,
+              "C2": 5,
+              "C3": 13,
+              "C4": 16,
+              "CP": 4,
+              "CS0": 12,
+              "CS1": 7,
+              "DB": 0,
+              "P1": 12,
+              "P2": 16,
+              "Q0": 15,
+              "Q1": 5,
+              "R1": 3,
+              "R2": 9,
+              "S0": 2,
+              "S1": 0
+            },
+            "rows": {
+              "B0": [
+                0,
+                2,
+                7,
+                14
+              ],
+              "B1": [
+                3,
+                7,
+                9,
+                14
+              ],
+              "B2": [
+                3,
+                6,
+                9,
+                15
+              ],
+              "B3": [
+                6,
+                7,
+                12,
+                15
+              ],
+              "B4": [
+                1,
+                6,
+                14,
+                15
+              ],
+              "Cap": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                6,
+                8,
+                9,
+                10,
+                11,
+                12,
+                13,
+                16
+              ],
+              "DBRow": [
+                5,
+                6,
+                7,
+                14
+              ],
+              "PRhoRow": [
+                3,
+                7,
+                9,
+                14
+              ],
+              "PRow": [
+                5,
+                12,
+                15,
+                16
+              ],
+              "R": [
+                7,
+                12,
+                14,
+                16
+              ],
+              "Rh": [
+                3,
+                6,
+                9,
+                15
+              ],
+              "S0Row": [
+                0,
+                2,
+                7,
+                14
+              ],
+              "S1Row": [
+                0,
+                2,
+                12,
+                15
+              ]
+            },
+            "scope": "one frozen exact-17 structural survivor",
+            "stage": "exact_offsupport",
+            "tag": "first_qother_rho"
+          },
+          "z3": {
+            "core": [],
+            "elapsed_s": 21.512,
+            "exact_fraction_validator": "not_applicable",
+            "status": "unknown",
+            "validator_failures": []
+          }
+        },
+        "named_rows": {
+          "active_groups": [
+            "gauge",
+            "carrier_distinct",
+            "convex_independent",
+            "mec_boundary",
+            "triangle_nonobtuse",
+            "first_cap_on_arc_opposite",
+            "row_PRow",
+            "row_PRhoRow",
+            "row_S0Row",
+            "row_S1Row",
+            "row_R",
+            "row_Rh",
+            "row_B3",
+            "row_B4",
+            "row_DBRow",
+            "retained_radii_distinct"
+          ],
+          "assertion_count": 516,
+          "classification": "INCONCLUSIVE",
+          "cvc5": {
+            "elapsed_s": 12.016,
+            "status": "timeout"
+          },
+          "minimized": null,
+          "real_variable_count": 97,
+          "sha256": "74dd12906abea499682e98739d35a3bed771c4fe0be094f3dea2d6dbf2853337",
+          "z3": {
+            "core": [],
+            "elapsed_s": 13.418,
+            "exact_fraction_validator": "not_applicable",
+            "status": "unknown",
+            "validator_failures": []
+          }
+        }
+      },
+      "source_labels": {
+        "carrier_distinct": "Euclidean carrier normalization / strict convex position",
+        "convex_independent": "Euclidean carrier normalization / strict convex position",
+        "exact_offsupport_DBRow": "exact support exclusion only for a canonical selected shell or actual blocker-image row",
+        "exact_offsupport_PRhoRow": "exact support exclusion only for a canonical selected shell or actual blocker-image row",
+        "exact_offsupport_PRow": "exact support exclusion only for a canonical selected shell or actual blocker-image row",
+        "exact_offsupport_S0Row": "exact support exclusion only for a canonical selected shell or actual blocker-image row",
+        "exact_offsupport_S1Row": "exact support exclusion only for a canonical selected shell or actual blocker-image row",
+        "first_cap_on_arc_opposite": "first closed cap is the arc opposite oppApex1; v4 endpoint/outside cut already validated",
+        "gauge": "Euclidean carrier normalization / strict convex position",
+        "mec_boundary": "SurplusCapPacket three boundary apices of the minimum enclosing circle",
+        "retained_radii_distinct": "the retained R/Rrho first-apex rows use distinct radii",
+        "row_B3": "named boundary row support has one exact squared distance from its source-mapped center",
+        "row_B4": "named boundary row support has one exact squared distance from its source-mapped center",
+        "row_DBRow": "named boundary row support has one exact squared distance from its source-mapped center",
+        "row_PRhoRow": "named boundary row support has one exact squared distance from its source-mapped center",
+        "row_PRow": "named boundary row support has one exact squared distance from its source-mapped center",
+        "row_R": "named boundary row support has one exact squared distance from its source-mapped center",
+        "row_Rh": "named boundary row support has one exact squared distance from its source-mapped center",
+        "row_S0Row": "named boundary row support has one exact squared distance from its source-mapped center",
+        "row_S1Row": "named boundary row support has one exact squared distance from its source-mapped center",
+        "triangle_nonobtuse": "SurplusCapPacket three boundary apices of the minimum enclosing circle"
+      },
+      "structural": {
+        "assertion_count": 310,
+        "sha256": "b07bdbced64bd83affe0b46ecb5a9949caf7a0128ff2d961b0e41834c52ff1dd",
+        "solvers": {
+          "cvc5": {
+            "elapsed_s": 0.15,
+            "status": "sat",
+            "validator": "pass",
+            "validator_failures": []
+          },
+          "z3": {
+            "elapsed_s": 0.038,
+            "status": "sat",
+            "validator": "pass",
+            "validator_failures": []
+          }
+        }
+      },
+      "tag": {
+        "b2_choice": "rho",
+        "deleted": "qother",
+        "orientation": "first"
+      }
+    },
+    "first_qsource_radius": {
+      "metric_stages": {
+        "baseline": {
+          "active_groups": [
+            "gauge",
+            "carrier_distinct",
+            "convex_independent",
+            "mec_boundary",
+            "triangle_nonobtuse",
+            "first_cap_on_arc_opposite"
+          ],
+          "assertion_count": 470,
+          "classification": "INCONCLUSIVE",
+          "cvc5": {
+            "elapsed_s": 8.012,
+            "status": "timeout"
+          },
+          "minimized": null,
+          "real_variable_count": 97,
+          "sha256": "97e108649b999b22f8c502a7137313fda62796bdb760c92e31524f990b4fc2a8",
+          "z3": {
+            "core": [],
+            "elapsed_s": 9.308,
+            "exact_fraction_validator": "not_applicable",
+            "status": "unknown",
+            "validator_failures": []
+          }
+        },
+        "exact_offsupport": {
+          "active_groups": [
+            "gauge",
+            "carrier_distinct",
+            "convex_independent",
+            "mec_boundary",
+            "triangle_nonobtuse",
+            "first_cap_on_arc_opposite",
+            "row_PRow",
+            "row_PRhoRow",
+            "row_S0Row",
+            "row_S1Row",
+            "row_R",
+            "row_Rh",
+            "row_B3",
+            "row_B4",
+            "row_DBRow",
+            "retained_radii_distinct",
+            "exact_offsupport_PRow",
+            "exact_offsupport_PRhoRow",
+            "exact_offsupport_S0Row",
+            "exact_offsupport_S1Row",
+            "exact_offsupport_DBRow"
+          ],
+          "assertion_count": 581,
+          "classification": "INCONCLUSIVE",
+          "cvc5": {
+            "elapsed_s": 20.013,
+            "status": "timeout"
+          },
+          "minimized": null,
+          "real_variable_count": 97,
+          "sha256": "d1c6d4e4c17a9407a2fe8dcab735bb5a3c6f812b6522f4da4d4ceca159ef1996",
+          "z3": {
+            "core": [],
+            "elapsed_s": 21.585,
+            "exact_fraction_validator": "not_applicable",
+            "status": "unknown",
+            "validator_failures": []
+          }
+        },
+        "named_rows": {
+          "active_groups": [
+            "gauge",
+            "carrier_distinct",
+            "convex_independent",
+            "mec_boundary",
+            "triangle_nonobtuse",
+            "first_cap_on_arc_opposite",
+            "row_PRow",
+            "row_PRhoRow",
+            "row_S0Row",
+            "row_S1Row",
+            "row_R",
+            "row_Rh",
+            "row_B3",
+            "row_B4",
+            "row_DBRow",
+            "retained_radii_distinct"
+          ],
+          "assertion_count": 516,
+          "classification": "INCONCLUSIVE",
+          "cvc5": {
+            "elapsed_s": 12.012,
+            "status": "timeout"
+          },
+          "minimized": null,
+          "real_variable_count": 97,
+          "sha256": "4bd84d4d414b2d40159446244cfccfaac12921833a83cdaba0ede4a314c7bd21",
+          "z3": {
+            "core": [],
+            "elapsed_s": 13.626,
+            "exact_fraction_validator": "not_applicable",
+            "status": "unknown",
+            "validator_failures": []
+          }
+        }
+      },
+      "source_labels": {
+        "carrier_distinct": "Euclidean carrier normalization / strict convex position",
+        "convex_independent": "Euclidean carrier normalization / strict convex position",
+        "exact_offsupport_DBRow": "exact support exclusion only for a canonical selected shell or actual blocker-image row",
+        "exact_offsupport_PRhoRow": "exact support exclusion only for a canonical selected shell or actual blocker-image row",
+        "exact_offsupport_PRow": "exact support exclusion only for a canonical selected shell or actual blocker-image row",
+        "exact_offsupport_S0Row": "exact support exclusion only for a canonical selected shell or actual blocker-image row",
+        "exact_offsupport_S1Row": "exact support exclusion only for a canonical selected shell or actual blocker-image row",
+        "first_cap_on_arc_opposite": "first closed cap is the arc opposite oppApex1; v4 endpoint/outside cut already validated",
+        "gauge": "Euclidean carrier normalization / strict convex position",
+        "mec_boundary": "SurplusCapPacket three boundary apices of the minimum enclosing circle",
+        "retained_radii_distinct": "the retained R/Rrho first-apex rows use distinct radii",
+        "row_B3": "named boundary row support has one exact squared distance from its source-mapped center",
+        "row_B4": "named boundary row support has one exact squared distance from its source-mapped center",
+        "row_DBRow": "named boundary row support has one exact squared distance from its source-mapped center",
+        "row_PRhoRow": "named boundary row support has one exact squared distance from its source-mapped center",
+        "row_PRow": "named boundary row support has one exact squared distance from its source-mapped center",
+        "row_R": "named boundary row support has one exact squared distance from its source-mapped center",
+        "row_Rh": "named boundary row support has one exact squared distance from its source-mapped center",
+        "row_S0Row": "named boundary row support has one exact squared distance from its source-mapped center",
+        "row_S1Row": "named boundary row support has one exact squared distance from its source-mapped center",
+        "triangle_nonobtuse": "SurplusCapPacket three boundary apices of the minimum enclosing circle"
+      },
+      "structural": {
+        "assertion_count": 311,
+        "sha256": "48b3dfa8e81a4d5e317cc2b181b66f14a142e42f9485720ae06ff2c8420e1cb4",
+        "solvers": {
+          "cvc5": {
+            "elapsed_s": 0.153,
+            "status": "sat",
+            "validator": "pass",
+            "validator_failures": []
+          },
+          "z3": {
+            "elapsed_s": 0.033,
+            "status": "sat",
+            "validator": "pass",
+            "validator_failures": []
+          }
+        }
+      },
+      "tag": {
+        "b2_choice": "radius",
+        "deleted": "qsource",
+        "orientation": "first"
+      }
+    },
+    "first_qsource_rho": {
+      "metric_stages": {
+        "baseline": {
+          "active_groups": [
+            "gauge",
+            "carrier_distinct",
+            "convex_independent",
+            "mec_boundary",
+            "triangle_nonobtuse",
+            "first_cap_on_arc_opposite"
+          ],
+          "assertion_count": 470,
+          "classification": "INCONCLUSIVE",
+          "cvc5": {
+            "elapsed_s": 8.014,
+            "status": "timeout"
+          },
+          "minimized": null,
+          "real_variable_count": 97,
+          "sha256": "8afbd7625663f8cbf599b111af9e33b8bacd2201f27bee09603c78bb5e936b19",
+          "z3": {
+            "core": [],
+            "elapsed_s": 9.293,
+            "exact_fraction_validator": "not_applicable",
+            "status": "unknown",
+            "validator_failures": []
+          }
+        },
+        "exact_offsupport": {
+          "active_groups": [
+            "gauge",
+            "carrier_distinct",
+            "convex_independent",
+            "mec_boundary",
+            "triangle_nonobtuse",
+            "first_cap_on_arc_opposite",
+            "row_PRow",
+            "row_PRhoRow",
+            "row_S0Row",
+            "row_S1Row",
+            "row_R",
+            "row_Rh",
+            "row_B3",
+            "row_B4",
+            "row_DBRow",
+            "retained_radii_distinct",
+            "exact_offsupport_PRow",
+            "exact_offsupport_PRhoRow",
+            "exact_offsupport_S0Row",
+            "exact_offsupport_S1Row",
+            "exact_offsupport_DBRow"
+          ],
+          "assertion_count": 581,
+          "classification": "INCONCLUSIVE",
+          "cvc5": {
+            "elapsed_s": 20.016,
+            "status": "timeout"
+          },
+          "minimized": null,
+          "real_variable_count": 97,
+          "sha256": "2d2e706fc5dae02469843db51a8b8bf6f8be5251830249cfbd619b3c48554f1f",
+          "z3": {
+            "core": [],
+            "elapsed_s": 21.581,
+            "exact_fraction_validator": "not_applicable",
+            "status": "unknown",
+            "validator_failures": []
+          }
+        },
+        "named_rows": {
+          "active_groups": [
+            "gauge",
+            "carrier_distinct",
+            "convex_independent",
+            "mec_boundary",
+            "triangle_nonobtuse",
+            "first_cap_on_arc_opposite",
+            "row_PRow",
+            "row_PRhoRow",
+            "row_S0Row",
+            "row_S1Row",
+            "row_R",
+            "row_Rh",
+            "row_B3",
+            "row_B4",
+            "row_DBRow",
+            "retained_radii_distinct"
+          ],
+          "assertion_count": 516,
+          "classification": "INCONCLUSIVE",
+          "cvc5": {
+            "elapsed_s": 12.009,
+            "status": "timeout"
+          },
+          "minimized": null,
+          "real_variable_count": 97,
+          "sha256": "2a5655f6523fba0b1ac7761ae007a161ba818e99088615f5ccda0c748d3d74c0",
+          "z3": {
+            "core": [],
+            "elapsed_s": 13.415,
+            "exact_fraction_validator": "not_applicable",
+            "status": "unknown",
+            "validator_failures": []
+          }
+        }
+      },
+      "source_labels": {
+        "carrier_distinct": "Euclidean carrier normalization / strict convex position",
+        "convex_independent": "Euclidean carrier normalization / strict convex position",
+        "exact_offsupport_DBRow": "exact support exclusion only for a canonical selected shell or actual blocker-image row",
+        "exact_offsupport_PRhoRow": "exact support exclusion only for a canonical selected shell or actual blocker-image row",
+        "exact_offsupport_PRow": "exact support exclusion only for a canonical selected shell or actual blocker-image row",
+        "exact_offsupport_S0Row": "exact support exclusion only for a canonical selected shell or actual blocker-image row",
+        "exact_offsupport_S1Row": "exact support exclusion only for a canonical selected shell or actual blocker-image row",
+        "first_cap_on_arc_opposite": "first closed cap is the arc opposite oppApex1; v4 endpoint/outside cut already validated",
+        "gauge": "Euclidean carrier normalization / strict convex position",
+        "mec_boundary": "SurplusCapPacket three boundary apices of the minimum enclosing circle",
+        "retained_radii_distinct": "the retained R/Rrho first-apex rows use distinct radii",
+        "row_B3": "named boundary row support has one exact squared distance from its source-mapped center",
+        "row_B4": "named boundary row support has one exact squared distance from its source-mapped center",
+        "row_DBRow": "named boundary row support has one exact squared distance from its source-mapped center",
+        "row_PRhoRow": "named boundary row support has one exact squared distance from its source-mapped center",
+        "row_PRow": "named boundary row support has one exact squared distance from its source-mapped center",
+        "row_R": "named boundary row support has one exact squared distance from its source-mapped center",
+        "row_Rh": "named boundary row support has one exact squared distance from its source-mapped center",
+        "row_S0Row": "named boundary row support has one exact squared distance from its source-mapped center",
+        "row_S1Row": "named boundary row support has one exact squared distance from its source-mapped center",
+        "triangle_nonobtuse": "SurplusCapPacket three boundary apices of the minimum enclosing circle"
+      },
+      "structural": {
+        "assertion_count": 311,
+        "sha256": "ae14035b74c95a9455f096897111dc9fb047888969d6f09fcd512dcf149b8216",
+        "solvers": {
+          "cvc5": {
+            "elapsed_s": 0.155,
+            "status": "sat",
+            "validator": "pass",
+            "validator_failures": []
+          },
+          "z3": {
+            "elapsed_s": 0.034,
+            "status": "sat",
+            "validator": "pass",
+            "validator_failures": []
+          }
+        }
+      },
+      "tag": {
+        "b2_choice": "rho",
+        "deleted": "qsource",
+        "orientation": "first"
+      }
+    },
+    "second_qother_radius": {
+      "metric_stages": {
+        "baseline": {
+          "active_groups": [
+            "gauge",
+            "carrier_distinct",
+            "convex_independent",
+            "mec_boundary",
+            "triangle_nonobtuse",
+            "first_cap_on_arc_opposite"
+          ],
+          "assertion_count": 470,
+          "classification": "INCONCLUSIVE",
+          "cvc5": {
+            "elapsed_s": 8.017,
+            "status": "timeout"
+          },
+          "minimized": null,
+          "real_variable_count": 97,
+          "sha256": "27a09d9fb22e5be7f1c96c6de607883c0df4e4228f3b204f755de4bb18871b46",
+          "z3": {
+            "core": [],
+            "elapsed_s": 9.274,
+            "exact_fraction_validator": "not_applicable",
+            "status": "unknown",
+            "validator_failures": []
+          }
+        },
+        "exact_offsupport": {
+          "active_groups": [
+            "gauge",
+            "carrier_distinct",
+            "convex_independent",
+            "mec_boundary",
+            "triangle_nonobtuse",
+            "first_cap_on_arc_opposite",
+            "row_PRow",
+            "row_PRhoRow",
+            "row_S0Row",
+            "row_S1Row",
+            "row_R",
+            "row_Rh",
+            "row_B3",
+            "row_B4",
+            "row_DBRow",
+            "retained_radii_distinct",
+            "exact_offsupport_PRow",
+            "exact_offsupport_PRhoRow",
+            "exact_offsupport_S0Row",
+            "exact_offsupport_S1Row",
+            "exact_offsupport_DBRow"
+          ],
+          "assertion_count": 581,
+          "classification": "DUAL_UNSAT_MINIMIZED_FROZEN_MOTIF_ONLY",
+          "cvc5": {
+            "elapsed_s": 0.066,
+            "status": "unsat"
+          },
+          "minimized": null,
+          "real_variable_count": 97,
+          "sha256": "22ada781eed6a171b8dce4513356111b41991baaff676aa0d73aae92d6b93fa1",
+          "unsat_audit": {
+            "classification": "DUAL_UNSAT_MINIMIZED_FROZEN_MOTIF_ONLY",
+            "cvc5_atom_core": [
+              "gauge__atom_0",
+              "gauge__atom_1",
+              "gauge__atom_2",
+              "row_PRow__atom_1",
+              "row_PRow__atom_2",
+              "row_PRhoRow__atom_1",
+              "row_PRhoRow__atom_2",
+              "row_Rh__atom_1",
+              "row_Rh__atom_2",
+              "row_DBRow__atom_1",
+              "exact_offsupport_DBRow__atom_9"
+            ],
+            "cvc5_group_core": [
+              "gauge",
+              "row_PRow",
+              "row_PRhoRow",
+              "row_Rh",
+              "row_DBRow",
+              "exact_offsupport_DBRow"
+            ],
+            "dual_minimized": {
+              "atom_assertions": {
+                "exact_offsupport_DBRow__atom_9": "(not (= (+ (* (- x0 x11) (- x0 x11)) (* (- y0 y11) (- y0 y11))) rad_DBRow))",
+                "gauge__atom_0": "(= x0 0)",
+                "gauge__atom_1": "(= y0 0)",
+                "gauge__atom_2": "(= y1 0)",
+                "row_DBRow__atom_1": "(= (+ (* (- x0 x4) (- x0 x4)) (* (- y0 y4) (- y0 y4))) rad_DBRow)",
+                "row_PRhoRow__atom_1": "(= (+ (* (- x11 x0) (- x11 x0)) (* (- y11 y0) (- y11 y0))) rad_PRhoRow)",
+                "row_PRhoRow__atom_2": "(= (+ (* (- x11 x2) (- x11 x2)) (* (- y11 y2) (- y11 y2))) rad_PRhoRow)",
+                "row_PRow__atom_1": "(= (+ (* (- x2 x4) (- x2 x4)) (* (- y2 y4) (- y2 y4))) rad_PRow)",
+                "row_PRow__atom_2": "(= (+ (* (- x2 x11) (- x2 x11)) (* (- y2 y11) (- y2 y11))) rad_PRow)",
+                "row_Rh__atom_1": "(= (+ (* (- x4 x0) (- x4 x0)) (* (- y4 y0) (- y4 y0))) rad_Rh)",
+                "row_Rh__atom_2": "(= (+ (* (- x4 x2) (- x4 x2)) (* (- y4 y2) (- y4 y2))) rad_Rh)"
+              },
+              "cvc5": {
+                "elapsed_s": 0.008,
+                "status": "unsat"
+              },
+              "dual_replay_atoms": [
+                "gauge__atom_0",
+                "gauge__atom_1",
+                "gauge__atom_2",
+                "row_PRow__atom_1",
+                "row_PRow__atom_2",
+                "row_PRhoRow__atom_1",
+                "row_PRhoRow__atom_2",
+                "row_Rh__atom_1",
+                "row_Rh__atom_2",
+                "row_DBRow__atom_1",
+                "exact_offsupport_DBRow__atom_9"
+              ],
+              "gauge_atoms_added_for_z3": [
+                "gauge__atom_0",
+                "gauge__atom_1",
+                "gauge__atom_2"
+              ],
+              "sha256": "48257ed137bae4d89137e9bad435f923e1700f3187fe0c6507336c6a261277a1",
+              "source_minimal_atoms": [
+                "row_PRow__atom_1",
+                "row_PRow__atom_2",
+                "row_PRhoRow__atom_1",
+                "row_PRhoRow__atom_2",
+                "row_Rh__atom_1",
+                "row_Rh__atom_2",
+                "row_DBRow__atom_1",
+                "exact_offsupport_DBRow__atom_9"
+              ],
+              "source_minimal_irredundance_replay": {
+                "exact_offsupport_DBRow__atom_9": "sat",
+                "row_DBRow__atom_1": "sat",
+                "row_PRhoRow__atom_1": "sat",
+                "row_PRhoRow__atom_2": "sat",
+                "row_PRow__atom_1": "sat",
+                "row_PRow__atom_2": "sat",
+                "row_Rh__atom_1": "sat",
+                "row_Rh__atom_2": "sat"
+              },
+              "source_origins": {
+                "exact_offsupport_DBRow__atom_9": "exact support exclusion only for a canonical selected shell or actual blocker-image row",
+                "gauge__atom_0": "Euclidean carrier normalization / strict convex position",
+                "gauge__atom_1": "Euclidean carrier normalization / strict convex position",
+                "gauge__atom_2": "Euclidean carrier normalization / strict convex position",
+                "row_DBRow__atom_1": "named boundary row support has one exact squared distance from its source-mapped center",
+                "row_PRhoRow__atom_1": "named boundary row support has one exact squared distance from its source-mapped center",
+                "row_PRhoRow__atom_2": "named boundary row support has one exact squared distance from its source-mapped center",
+                "row_PRow__atom_1": "named boundary row support has one exact squared distance from its source-mapped center",
+                "row_PRow__atom_2": "named boundary row support has one exact squared distance from its source-mapped center",
+                "row_Rh__atom_1": "named boundary row support has one exact squared distance from its source-mapped center",
+                "row_Rh__atom_2": "named boundary row support has one exact squared distance from its source-mapped center"
+              },
+              "z3": {
+                "core": [],
+                "elapsed_s": 0.002,
+                "status": "unsat"
+              }
+            },
+            "full_cvc5_replay": {
+              "elapsed_s": 0.067,
+              "status": "unsat"
+            },
+            "guard_audit": {
+              "DBRow_meaning": "actual deleted blocker's canonical unique original four-class",
+              "FiveRowCircleIntersectionOrderCore_used": false,
+              "all_groups_source_mapped": true,
+              "exact_offsupport_groups": [
+                "exact_offsupport_DBRow"
+              ],
+              "exact_offsupport_only_source_entitled": true
+            },
+            "roles": {
+              "C0": 12,
+              "C1": 11,
+              "C2": 4,
+              "C3": 14,
+              "C4": 16,
+              "CP": 2,
+              "CS0": 13,
+              "CS1": 12,
+              "DB": 0,
+              "P1": 12,
+              "P2": 11,
+              "Q0": 15,
+              "Q1": 4,
+              "R1": 2,
+              "R2": 0,
+              "S0": 14,
+              "S1": 3
+            },
+            "rows": {
+              "B0": [
+                3,
+                10,
+                13,
+                14
+              ],
+              "B1": [
+                0,
+                2,
+                10,
+                13
+              ],
+              "B2": [
+                5,
+                11,
+                12,
+                13
+              ],
+              "B3": [
+                5,
+                12,
+                15,
+                16
+              ],
+              "B4": [
+                2,
+                5,
+                13,
+                15
+              ],
+              "Cap": [
+                0,
+                1,
+                2,
+                3,
+                6,
+                7,
+                8,
+                9,
+                11,
+                12,
+                14,
+                16
+              ],
+              "DBRow": [
+                4,
+                5,
+                13,
+                16
+              ],
+              "PRhoRow": [
+                0,
+                2,
+                10,
+                13
+              ],
+              "PRow": [
+                4,
+                11,
+                12,
+                15
+              ],
+              "R": [
+                5,
+                11,
+                12,
+                13
+              ],
+              "Rh": [
+                0,
+                2,
+                15,
+                16
+              ],
+              "S0Row": [
+                3,
+                12,
+                14,
+                15
+              ],
+              "S1Row": [
+                3,
+                10,
+                13,
+                14
+              ]
+            },
+            "scope": "one frozen exact-17 structural survivor",
+            "stage": "exact_offsupport",
+            "tag": "second_qother_radius"
+          },
+          "z3": {
+            "core": [],
+            "elapsed_s": 21.573,
+            "exact_fraction_validator": "not_applicable",
+            "status": "unknown",
+            "validator_failures": []
+          }
+        },
+        "named_rows": {
+          "active_groups": [
+            "gauge",
+            "carrier_distinct",
+            "convex_independent",
+            "mec_boundary",
+            "triangle_nonobtuse",
+            "first_cap_on_arc_opposite",
+            "row_PRow",
+            "row_PRhoRow",
+            "row_S0Row",
+            "row_S1Row",
+            "row_R",
+            "row_Rh",
+            "row_B3",
+            "row_B4",
+            "row_DBRow",
+            "retained_radii_distinct"
+          ],
+          "assertion_count": 516,
+          "classification": "INCONCLUSIVE",
+          "cvc5": {
+            "elapsed_s": 12.019,
+            "status": "timeout"
+          },
+          "minimized": null,
+          "real_variable_count": 97,
+          "sha256": "d3e84dfb0720fd32a0c50b7a08dbe3be88e01b8b5251703fb3ca0774ee040f7f",
+          "z3": {
+            "core": [],
+            "elapsed_s": 13.421,
+            "exact_fraction_validator": "not_applicable",
+            "status": "unknown",
+            "validator_failures": []
+          }
+        }
+      },
+      "source_labels": {
+        "carrier_distinct": "Euclidean carrier normalization / strict convex position",
+        "convex_independent": "Euclidean carrier normalization / strict convex position",
+        "exact_offsupport_DBRow": "exact support exclusion only for a canonical selected shell or actual blocker-image row",
+        "exact_offsupport_PRhoRow": "exact support exclusion only for a canonical selected shell or actual blocker-image row",
+        "exact_offsupport_PRow": "exact support exclusion only for a canonical selected shell or actual blocker-image row",
+        "exact_offsupport_S0Row": "exact support exclusion only for a canonical selected shell or actual blocker-image row",
+        "exact_offsupport_S1Row": "exact support exclusion only for a canonical selected shell or actual blocker-image row",
+        "first_cap_on_arc_opposite": "first closed cap is the arc opposite oppApex1; v4 endpoint/outside cut already validated",
+        "gauge": "Euclidean carrier normalization / strict convex position",
+        "mec_boundary": "SurplusCapPacket three boundary apices of the minimum enclosing circle",
+        "retained_radii_distinct": "the retained R/Rrho first-apex rows use distinct radii",
+        "row_B3": "named boundary row support has one exact squared distance from its source-mapped center",
+        "row_B4": "named boundary row support has one exact squared distance from its source-mapped center",
+        "row_DBRow": "named boundary row support has one exact squared distance from its source-mapped center",
+        "row_PRhoRow": "named boundary row support has one exact squared distance from its source-mapped center",
+        "row_PRow": "named boundary row support has one exact squared distance from its source-mapped center",
+        "row_R": "named boundary row support has one exact squared distance from its source-mapped center",
+        "row_Rh": "named boundary row support has one exact squared distance from its source-mapped center",
+        "row_S0Row": "named boundary row support has one exact squared distance from its source-mapped center",
+        "row_S1Row": "named boundary row support has one exact squared distance from its source-mapped center",
+        "triangle_nonobtuse": "SurplusCapPacket three boundary apices of the minimum enclosing circle"
+      },
+      "structural": {
+        "assertion_count": 310,
+        "sha256": "ac0f826484dde0adb87c723a985f07a882dd0e093c6492d7cbb41f010afe9f03",
+        "solvers": {
+          "cvc5": {
+            "elapsed_s": 0.145,
+            "status": "sat",
+            "validator": "pass",
+            "validator_failures": []
+          },
+          "z3": {
+            "elapsed_s": 0.092,
+            "status": "sat",
+            "validator": "pass",
+            "validator_failures": []
+          }
+        }
+      },
+      "tag": {
+        "b2_choice": "radius",
+        "deleted": "qother",
+        "orientation": "second"
+      }
+    },
+    "second_qother_rho": {
+      "metric_stages": {
+        "baseline": {
+          "active_groups": [
+            "gauge",
+            "carrier_distinct",
+            "convex_independent",
+            "mec_boundary",
+            "triangle_nonobtuse",
+            "first_cap_on_arc_opposite"
+          ],
+          "assertion_count": 470,
+          "classification": "INCONCLUSIVE",
+          "cvc5": {
+            "elapsed_s": 8.02,
+            "status": "timeout"
+          },
+          "minimized": null,
+          "real_variable_count": 97,
+          "sha256": "a1292eb98ad14fed3022845c3fd87ae7e40bc8857b7e6b57c6a371be208386e3",
+          "z3": {
+            "core": [],
+            "elapsed_s": 9.307,
+            "exact_fraction_validator": "not_applicable",
+            "status": "unknown",
+            "validator_failures": []
+          }
+        },
+        "exact_offsupport": {
+          "active_groups": [
+            "gauge",
+            "carrier_distinct",
+            "convex_independent",
+            "mec_boundary",
+            "triangle_nonobtuse",
+            "first_cap_on_arc_opposite",
+            "row_PRow",
+            "row_PRhoRow",
+            "row_S0Row",
+            "row_S1Row",
+            "row_R",
+            "row_Rh",
+            "row_B3",
+            "row_B4",
+            "row_DBRow",
+            "retained_radii_distinct",
+            "exact_offsupport_PRow",
+            "exact_offsupport_PRhoRow",
+            "exact_offsupport_S0Row",
+            "exact_offsupport_S1Row",
+            "exact_offsupport_DBRow"
+          ],
+          "assertion_count": 581,
+          "classification": "INCONCLUSIVE",
+          "cvc5": {
+            "elapsed_s": 20.017,
+            "status": "timeout"
+          },
+          "minimized": null,
+          "real_variable_count": 97,
+          "sha256": "3e8594af21419035ee367e9d6c8e0bd47e3cf0a786c362b8d4d633d1338a767d",
+          "z3": {
+            "core": [],
+            "elapsed_s": 21.576,
+            "exact_fraction_validator": "not_applicable",
+            "status": "unknown",
+            "validator_failures": []
+          }
+        },
+        "named_rows": {
+          "active_groups": [
+            "gauge",
+            "carrier_distinct",
+            "convex_independent",
+            "mec_boundary",
+            "triangle_nonobtuse",
+            "first_cap_on_arc_opposite",
+            "row_PRow",
+            "row_PRhoRow",
+            "row_S0Row",
+            "row_S1Row",
+            "row_R",
+            "row_Rh",
+            "row_B3",
+            "row_B4",
+            "row_DBRow",
+            "retained_radii_distinct"
+          ],
+          "assertion_count": 516,
+          "classification": "INCONCLUSIVE",
+          "cvc5": {
+            "elapsed_s": 12.015,
+            "status": "timeout"
+          },
+          "minimized": null,
+          "real_variable_count": 97,
+          "sha256": "401ee8c3f359f0b8154b34648ceee73a325b3a74c88e47353eadb42baba29dfe",
+          "z3": {
+            "core": [],
+            "elapsed_s": 13.342,
+            "exact_fraction_validator": "not_applicable",
+            "status": "unknown",
+            "validator_failures": []
+          }
+        }
+      },
+      "source_labels": {
+        "carrier_distinct": "Euclidean carrier normalization / strict convex position",
+        "convex_independent": "Euclidean carrier normalization / strict convex position",
+        "exact_offsupport_DBRow": "exact support exclusion only for a canonical selected shell or actual blocker-image row",
+        "exact_offsupport_PRhoRow": "exact support exclusion only for a canonical selected shell or actual blocker-image row",
+        "exact_offsupport_PRow": "exact support exclusion only for a canonical selected shell or actual blocker-image row",
+        "exact_offsupport_S0Row": "exact support exclusion only for a canonical selected shell or actual blocker-image row",
+        "exact_offsupport_S1Row": "exact support exclusion only for a canonical selected shell or actual blocker-image row",
+        "first_cap_on_arc_opposite": "first closed cap is the arc opposite oppApex1; v4 endpoint/outside cut already validated",
+        "gauge": "Euclidean carrier normalization / strict convex position",
+        "mec_boundary": "SurplusCapPacket three boundary apices of the minimum enclosing circle",
+        "retained_radii_distinct": "the retained R/Rrho first-apex rows use distinct radii",
+        "row_B3": "named boundary row support has one exact squared distance from its source-mapped center",
+        "row_B4": "named boundary row support has one exact squared distance from its source-mapped center",
+        "row_DBRow": "named boundary row support has one exact squared distance from its source-mapped center",
+        "row_PRhoRow": "named boundary row support has one exact squared distance from its source-mapped center",
+        "row_PRow": "named boundary row support has one exact squared distance from its source-mapped center",
+        "row_R": "named boundary row support has one exact squared distance from its source-mapped center",
+        "row_Rh": "named boundary row support has one exact squared distance from its source-mapped center",
+        "row_S0Row": "named boundary row support has one exact squared distance from its source-mapped center",
+        "row_S1Row": "named boundary row support has one exact squared distance from its source-mapped center",
+        "triangle_nonobtuse": "SurplusCapPacket three boundary apices of the minimum enclosing circle"
+      },
+      "structural": {
+        "assertion_count": 310,
+        "sha256": "f35ecf7e13632e054c514f3daa94f163b5f9ea50a43617a27d9ca361537d1392",
+        "solvers": {
+          "cvc5": {
+            "elapsed_s": 0.156,
+            "status": "sat",
+            "validator": "pass",
+            "validator_failures": []
+          },
+          "z3": {
+            "elapsed_s": 0.039,
+            "status": "sat",
+            "validator": "pass",
+            "validator_failures": []
+          }
+        }
+      },
+      "tag": {
+        "b2_choice": "rho",
+        "deleted": "qother",
+        "orientation": "second"
+      }
+    },
+    "second_qsource_radius": {
+      "metric_stages": {
+        "baseline": {
+          "active_groups": [
+            "gauge",
+            "carrier_distinct",
+            "convex_independent",
+            "mec_boundary",
+            "triangle_nonobtuse",
+            "first_cap_on_arc_opposite"
+          ],
+          "assertion_count": 470,
+          "classification": "INCONCLUSIVE",
+          "cvc5": {
+            "elapsed_s": 8.016,
+            "status": "timeout"
+          },
+          "minimized": null,
+          "real_variable_count": 97,
+          "sha256": "8e53673739d275316789c4912de1e0a1f2a250fa8dd346ba586bba92631b81e4",
+          "z3": {
+            "core": [],
+            "elapsed_s": 9.245,
+            "exact_fraction_validator": "not_applicable",
+            "status": "unknown",
+            "validator_failures": []
+          }
+        },
+        "exact_offsupport": {
+          "active_groups": [
+            "gauge",
+            "carrier_distinct",
+            "convex_independent",
+            "mec_boundary",
+            "triangle_nonobtuse",
+            "first_cap_on_arc_opposite",
+            "row_PRow",
+            "row_PRhoRow",
+            "row_S0Row",
+            "row_S1Row",
+            "row_R",
+            "row_Rh",
+            "row_B3",
+            "row_B4",
+            "row_DBRow",
+            "retained_radii_distinct",
+            "exact_offsupport_PRow",
+            "exact_offsupport_PRhoRow",
+            "exact_offsupport_S0Row",
+            "exact_offsupport_S1Row",
+            "exact_offsupport_DBRow"
+          ],
+          "assertion_count": 581,
+          "classification": "INCONCLUSIVE",
+          "cvc5": {
+            "elapsed_s": 20.012,
+            "status": "timeout"
+          },
+          "minimized": null,
+          "real_variable_count": 97,
+          "sha256": "6b0ed793420601848bb3ec8b2dc06bf8c07e7328e0ac9eb0a1e9690f4a883d05",
+          "z3": {
+            "core": [],
+            "elapsed_s": 21.577,
+            "exact_fraction_validator": "not_applicable",
+            "status": "unknown",
+            "validator_failures": []
+          }
+        },
+        "named_rows": {
+          "active_groups": [
+            "gauge",
+            "carrier_distinct",
+            "convex_independent",
+            "mec_boundary",
+            "triangle_nonobtuse",
+            "first_cap_on_arc_opposite",
+            "row_PRow",
+            "row_PRhoRow",
+            "row_S0Row",
+            "row_S1Row",
+            "row_R",
+            "row_Rh",
+            "row_B3",
+            "row_B4",
+            "row_DBRow",
+            "retained_radii_distinct"
+          ],
+          "assertion_count": 516,
+          "classification": "INCONCLUSIVE",
+          "cvc5": {
+            "elapsed_s": 12.019,
+            "status": "timeout"
+          },
+          "minimized": null,
+          "real_variable_count": 97,
+          "sha256": "b02d4702efcce27f9279503044674dda76adab67af12a38becb2015f469e1f0a",
+          "z3": {
+            "core": [],
+            "elapsed_s": 13.356,
+            "exact_fraction_validator": "not_applicable",
+            "status": "unknown",
+            "validator_failures": []
+          }
+        }
+      },
+      "source_labels": {
+        "carrier_distinct": "Euclidean carrier normalization / strict convex position",
+        "convex_independent": "Euclidean carrier normalization / strict convex position",
+        "exact_offsupport_DBRow": "exact support exclusion only for a canonical selected shell or actual blocker-image row",
+        "exact_offsupport_PRhoRow": "exact support exclusion only for a canonical selected shell or actual blocker-image row",
+        "exact_offsupport_PRow": "exact support exclusion only for a canonical selected shell or actual blocker-image row",
+        "exact_offsupport_S0Row": "exact support exclusion only for a canonical selected shell or actual blocker-image row",
+        "exact_offsupport_S1Row": "exact support exclusion only for a canonical selected shell or actual blocker-image row",
+        "first_cap_on_arc_opposite": "first closed cap is the arc opposite oppApex1; v4 endpoint/outside cut already validated",
+        "gauge": "Euclidean carrier normalization / strict convex position",
+        "mec_boundary": "SurplusCapPacket three boundary apices of the minimum enclosing circle",
+        "retained_radii_distinct": "the retained R/Rrho first-apex rows use distinct radii",
+        "row_B3": "named boundary row support has one exact squared distance from its source-mapped center",
+        "row_B4": "named boundary row support has one exact squared distance from its source-mapped center",
+        "row_DBRow": "named boundary row support has one exact squared distance from its source-mapped center",
+        "row_PRhoRow": "named boundary row support has one exact squared distance from its source-mapped center",
+        "row_PRow": "named boundary row support has one exact squared distance from its source-mapped center",
+        "row_R": "named boundary row support has one exact squared distance from its source-mapped center",
+        "row_Rh": "named boundary row support has one exact squared distance from its source-mapped center",
+        "row_S0Row": "named boundary row support has one exact squared distance from its source-mapped center",
+        "row_S1Row": "named boundary row support has one exact squared distance from its source-mapped center",
+        "triangle_nonobtuse": "SurplusCapPacket three boundary apices of the minimum enclosing circle"
+      },
+      "structural": {
+        "assertion_count": 311,
+        "sha256": "854d1c807759d80fdd5023578342c19571f928fe7dc673b5568b41881602995f",
+        "solvers": {
+          "cvc5": {
+            "elapsed_s": 0.157,
+            "status": "sat",
+            "validator": "pass",
+            "validator_failures": []
+          },
+          "z3": {
+            "elapsed_s": 0.035,
+            "status": "sat",
+            "validator": "pass",
+            "validator_failures": []
+          }
+        }
+      },
+      "tag": {
+        "b2_choice": "radius",
+        "deleted": "qsource",
+        "orientation": "second"
+      }
+    },
+    "second_qsource_rho": {
+      "metric_stages": {
+        "baseline": {
+          "active_groups": [
+            "gauge",
+            "carrier_distinct",
+            "convex_independent",
+            "mec_boundary",
+            "triangle_nonobtuse",
+            "first_cap_on_arc_opposite"
+          ],
+          "assertion_count": 470,
+          "classification": "INCONCLUSIVE",
+          "cvc5": {
+            "elapsed_s": 8.095,
+            "status": "timeout"
+          },
+          "minimized": null,
+          "real_variable_count": 97,
+          "sha256": "d5d6a971946792d376c43a72d292cde051c17f72af5e5952a647bca3a4cc0994",
+          "z3": {
+            "core": [],
+            "elapsed_s": 9.295,
+            "exact_fraction_validator": "not_applicable",
+            "status": "unknown",
+            "validator_failures": []
+          }
+        },
+        "exact_offsupport": {
+          "active_groups": [
+            "gauge",
+            "carrier_distinct",
+            "convex_independent",
+            "mec_boundary",
+            "triangle_nonobtuse",
+            "first_cap_on_arc_opposite",
+            "row_PRow",
+            "row_PRhoRow",
+            "row_S0Row",
+            "row_S1Row",
+            "row_R",
+            "row_Rh",
+            "row_B3",
+            "row_B4",
+            "row_DBRow",
+            "retained_radii_distinct",
+            "exact_offsupport_PRow",
+            "exact_offsupport_PRhoRow",
+            "exact_offsupport_S0Row",
+            "exact_offsupport_S1Row",
+            "exact_offsupport_DBRow"
+          ],
+          "assertion_count": 581,
+          "classification": "INCONCLUSIVE",
+          "cvc5": {
+            "elapsed_s": 20.018,
+            "status": "timeout"
+          },
+          "minimized": null,
+          "real_variable_count": 97,
+          "sha256": "3a17b24c436e1310c86b14546afd37206bf683865f872b0a67f4fb7b8fe7da70",
+          "z3": {
+            "core": [],
+            "elapsed_s": 21.516,
+            "exact_fraction_validator": "not_applicable",
+            "status": "unknown",
+            "validator_failures": []
+          }
+        },
+        "named_rows": {
+          "active_groups": [
+            "gauge",
+            "carrier_distinct",
+            "convex_independent",
+            "mec_boundary",
+            "triangle_nonobtuse",
+            "first_cap_on_arc_opposite",
+            "row_PRow",
+            "row_PRhoRow",
+            "row_S0Row",
+            "row_S1Row",
+            "row_R",
+            "row_Rh",
+            "row_B3",
+            "row_B4",
+            "row_DBRow",
+            "retained_radii_distinct"
+          ],
+          "assertion_count": 516,
+          "classification": "INCONCLUSIVE",
+          "cvc5": {
+            "elapsed_s": 12.016,
+            "status": "timeout"
+          },
+          "minimized": null,
+          "real_variable_count": 97,
+          "sha256": "6ab1dfaa3f60023631edd9c31fa412e12bc743e6a617019b1260c3243032cc20",
+          "z3": {
+            "core": [],
+            "elapsed_s": 13.355,
+            "exact_fraction_validator": "not_applicable",
+            "status": "unknown",
+            "validator_failures": []
+          }
+        }
+      },
+      "source_labels": {
+        "carrier_distinct": "Euclidean carrier normalization / strict convex position",
+        "convex_independent": "Euclidean carrier normalization / strict convex position",
+        "exact_offsupport_DBRow": "exact support exclusion only for a canonical selected shell or actual blocker-image row",
+        "exact_offsupport_PRhoRow": "exact support exclusion only for a canonical selected shell or actual blocker-image row",
+        "exact_offsupport_PRow": "exact support exclusion only for a canonical selected shell or actual blocker-image row",
+        "exact_offsupport_S0Row": "exact support exclusion only for a canonical selected shell or actual blocker-image row",
+        "exact_offsupport_S1Row": "exact support exclusion only for a canonical selected shell or actual blocker-image row",
+        "first_cap_on_arc_opposite": "first closed cap is the arc opposite oppApex1; v4 endpoint/outside cut already validated",
+        "gauge": "Euclidean carrier normalization / strict convex position",
+        "mec_boundary": "SurplusCapPacket three boundary apices of the minimum enclosing circle",
+        "retained_radii_distinct": "the retained R/Rrho first-apex rows use distinct radii",
+        "row_B3": "named boundary row support has one exact squared distance from its source-mapped center",
+        "row_B4": "named boundary row support has one exact squared distance from its source-mapped center",
+        "row_DBRow": "named boundary row support has one exact squared distance from its source-mapped center",
+        "row_PRhoRow": "named boundary row support has one exact squared distance from its source-mapped center",
+        "row_PRow": "named boundary row support has one exact squared distance from its source-mapped center",
+        "row_R": "named boundary row support has one exact squared distance from its source-mapped center",
+        "row_Rh": "named boundary row support has one exact squared distance from its source-mapped center",
+        "row_S0Row": "named boundary row support has one exact squared distance from its source-mapped center",
+        "row_S1Row": "named boundary row support has one exact squared distance from its source-mapped center",
+        "triangle_nonobtuse": "SurplusCapPacket three boundary apices of the minimum enclosing circle"
+      },
+      "structural": {
+        "assertion_count": 311,
+        "sha256": "bc22a44b6921cb9a5ca60d79c7e3cd98b65732425504badfb3b8ffb768e465b1",
+        "solvers": {
+          "cvc5": {
+            "elapsed_s": 0.159,
+            "status": "sat",
+            "validator": "pass",
+            "validator_failures": []
+          },
+          "z3": {
+            "elapsed_s": 0.095,
+            "status": "sat",
+            "validator": "pass",
+            "validator_failures": []
+          }
+        }
+      },
+      "tag": {
+        "b2_choice": "rho",
+        "deleted": "qsource",
+        "orientation": "second"
+      }
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "appended_clauses": 420784,
+  "base_prefix_byte_exact": true,
+  "by_schema": {
+    "K": 148512,
+    "L": 272272
+  },
+  "clauses": 3300265,
+  "cnf": "scratch/rigid221-blockerv-exact17-20260806/ordered-row-schema-kl-v1-source-frozen-20260809/o0-p0-1.cnf",
+  "cnf_sha256": "3df95f59c637e47d6d02f4853854719b4198acb87474918111ccef46fee72d17",
+  "generation_sources_rechecked": 5,
+  "manifest": "scratch/rigid221-blockerv-exact17-20260806/ordered-row-schema-kl-v1-source-frozen-20260809/o0-p0-1.manifest.json",
+  "manifest_sha256": "b9152b96c3442c3bca1c035c42c31c370e1b878ac97284b03de858e639e4da91",
+  "producer_matcher_checks": 4,
+  "schema": "p97-rigid221-exact17-ordered-row-schema-cnf-validation-v1",
+  "status": "PASS",
+  "variables": 74813
+}

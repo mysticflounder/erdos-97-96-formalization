@@ -1,0 +1,81 @@
+{
+  "artifacts": {
+    "control_core_overlap_unsat.smt2": {
+      "check_sat_count": 1,
+      "cvc5": {
+        "status": "unsat"
+      },
+      "expected": "unsat",
+      "sha256": "c3c3ac9dc195c3d28cab892670678f947203f3d95b7c5e1b950c4fe854fbb8c8",
+      "z3": {
+        "status": "unsat"
+      }
+    },
+    "control_empty_v_unsat.smt2": {
+      "check_sat_count": 1,
+      "cvc5": {
+        "status": "unsat"
+      },
+      "expected": "unsat",
+      "sha256": "c155375f9ee6b229a63b18cde1148b8731ae3fb39c8356adf02e2c336a379234",
+      "z3": {
+        "status": "unsat"
+      }
+    },
+    "control_sameblocker_omission_unsat.smt2": {
+      "check_sat_count": 1,
+      "cvc5": {
+        "status": "unsat"
+      },
+      "expected": "unsat",
+      "sha256": "78a387427c7aa509e78c44061e7220207d44c17edef781857b374e51a733a3d1",
+      "z3": {
+        "status": "unsat"
+      }
+    },
+    "known_sat_baseline.smt2": {
+      "check_sat_count": 1,
+      "cvc5": {
+        "contract_checks": 20,
+        "readback_variables": 54,
+        "status": "sat"
+      },
+      "expected": "sat",
+      "sha256": "9f3c29381ce1c6481d71af38823e2aba4f8bb8972e06ae6c3e33b8a308693059",
+      "z3": {
+        "contract_checks": 20,
+        "readback_variables": 54,
+        "status": "sat"
+      }
+    },
+    "main_named_rows_avoid_overlap3.smt2": {
+      "check_sat_count": 1,
+      "cvc5": {
+        "contract_checks": 20,
+        "readback_variables": 54,
+        "status": "sat"
+      },
+      "expected": "sat",
+      "sha256": "98e28d7d909699c9691364d5f0bec5b88e84fbe1849f0b280d6472d9ff1d6059",
+      "z3": {
+        "contract_checks": 19,
+        "readback_variables": 54,
+        "status": "sat"
+      }
+    }
+  },
+  "independent_control_reasons": {
+    "control_core_overlap_unsat.smt2": "active core shells 0 and 1 both contain q0, contradicting projected pairwise disjointness",
+    "control_empty_v_unsat.smt2": "V is asserted nonempty but all four membership bits are false",
+    "control_sameblocker_omission_unsat.smt2": "same-blocker support equality includes q0 while the malformed fixture excludes q0"
+  },
+  "summary": {
+    "all_passed": true,
+    "artifacts": 5,
+    "hashes_validated": 5,
+    "malformed_unsat_controls": 3,
+    "sat_readbacks_validated": 4,
+    "solver_runs": 10,
+    "zero_exit_empty_stderr_runs": 10
+  }
+}

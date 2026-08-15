@@ -1,0 +1,56 @@
+{
+  "artifacts": {
+    "detector_contract": {
+      "bytes": 1895,
+      "path": "detector_contract.json",
+      "sha256": "c07f3eb3503a3430869fbda9872079f2f380656a539773439ddd568218d9ddef"
+    },
+    "discovery_cnf": {
+      "bytes": 5119369,
+      "path": "discovery.cnf",
+      "sha256": "e1c5af4a57e098802612f1049f98318531277df83631f369951c4eb170a07510"
+    },
+    "job": {
+      "bytes": 8543,
+      "path": "job.json",
+      "sha256": "b5b371e06c25f593c624743e40f2c20b496731e27a5fd0e51a3038a3339c7fca"
+    },
+    "journal": {
+      "bytes": 16092091,
+      "path": "journal.jsonl",
+      "sha256": "9c3b0e177c051caac6b6ad80cb6d8e6d6d8df5958b59b3ab98995d15a3247d5b"
+    },
+    "proof": null,
+    "survivor": null,
+    "terminal_cnf": null
+  },
+  "cell_index": 5,
+  "detector_contract_sha256": "80e76ee7b3d48537a79304b54af70a25b4974d3046a950071af0aef34fcb500f",
+  "discovery_cnf_sha256": null,
+  "discovery_verdict": "SAT",
+  "error": null,
+  "job_id": "85c3dabade57d349ce76747478eab34a1825975b4c0fc9a76bd4317f1943d373",
+  "journal_replayed": true,
+  "max_iterations": 100,
+  "reconstructed_cnf_sha256": "59440f00d7203e463af8e98e9d1148cf5c468451e0d6818c2a561b3096ce4cf3",
+  "records": 100,
+  "replay": {
+    "added_constraints": true,
+    "candidate": true,
+    "exact_cnf": true
+  },
+  "schema": "p97_rigid221_exact12_next_row_tagged_cegar_run.v4",
+  "scope": "one finite next-row-only-hit placement cell; no aggregate coverage, universal lift, terminal bank, or Lean closure",
+  "source_order_bank_sha256": "f3aef3b9b7ad921f3dccff027f1cbb82ca147d3c5369cc92142c65ba5586ab47",
+  "stage_counts": {
+    "equality-duplicate-center": 98,
+    "equality-equilateral-bisector-collision": 1,
+    "equality-three-triad-collision": 1
+  },
+  "status": "ITERATION_LIMIT",
+  "terminal_cnf_sha256": null,
+  "terminal_proof_verified": false,
+  "terminal_record_sha256": "dc47eb4abe58c2a00c71e9cd1c235167125594b9f048fa94860a9a0f46d91e20",
+  "terminal_verdict": null,
+  "timeout_seconds": 60
+}

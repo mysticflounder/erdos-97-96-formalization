@@ -1,0 +1,100 @@
+{
+  "schema": "freshthird-firstnonhit-exact3-metric-canary-v1",
+  "status": "PRELAUNCH",
+  "source": {
+    "repository_commit_at_prelaunch": "880e70f7185e24ead3c96a76ff4aca98b13a9c9c",
+    "finite_signature_origin": "Parent-supplied exact-three FirstNonHit Fin17 survivor table",
+    "scope": "One fixed 17-label blocker/support signature; 13 selected rows only"
+  },
+  "hashes": {
+    "input.json": "b0891ba0969d73261bec65cd7debd0fbbe0900deab6b7432d3b75204b4263230",
+    "run_canary.py": "940688056bee2c632a43943f53ccc6db5302e668917d9b4d5875581268b81641"
+  },
+  "launch": {
+    "command": "env UV_CACHE_DIR=scratch/p97-consumer-first/freshthird_firstnonhit_exact3_metric_canary_v1/.uv-cache uv run --with z3-solver python scratch/p97-consumer-first/freshthird_firstnonhit_exact3_metric_canary_v1/run_canary.py",
+    "workers": 1,
+    "global_core_lease": 1,
+    "internal_timeout_ms_per_solver_call": 30000,
+    "subprocess_cushion_seconds": 5,
+    "timeout_escalation": false,
+    "solvers": [
+      "Z3 SolverFor(QF_NRA)",
+      "cvc5 --lang smt2 --nl-cov --force-logic=QF_NRA"
+    ]
+  },
+  "degrees_of_freedom": {
+    "coordinate_variables": 34,
+    "similarity_gauge_freedoms_removed": 4,
+    "geometric_dof_after_gauge": 30,
+    "selected_row_equalities": 39,
+    "naive_equality_deficit": 9,
+    "qualification": "The 39 equations need not be algebraically independent; this is a diagnostic count, not a rank proof. The auxiliary separation delta does not add a geometric freedom."
+  },
+  "case_matrix": {
+    "arms_total": 1,
+    "arms_covered": 1,
+    "arm": "the exact blocker map and 13-support table in input.json",
+    "boundary_orders_enumerated": 0,
+    "structural_signatures_enumerated": 1
+  },
+  "encoded_ledger": [
+    "Seventeen labeled Euclidean points p0,...,p16, each with two real coordinates.",
+    "Sound similarity gauge p0=(0,0), p1=(1,0), licensed by exact point distinctness.",
+    "Existential delta>0 and all 136 inequalities squaredDistance(pi,pj)>=delta, encoding exact pairwise point distinctness with a sound finite separation floor.",
+    "For each of the 13 listed centers, the four listed support points have equal squared distance from that center: three polynomial equalities per row, 39 total.",
+    "Every center/support and support/support distinctness condition is covered by the global pairwise-distinctness constraints.",
+    "The input ledger records LP_rho.fresh=4, MP_rho.collisionSource=1, LP.fresh=1, MP.collisionSource=4, K0 omits 4, K10 omits 1, and centers 0 and 10 are distinct. Only the center distinctness is also a metric constraint, through global pairwise distinctness; the remaining facts are provenance records, not extra equations."
+  ],
+  "omitted_ledger": [
+    "All blocker-map semantics beyond using each listed image center as the center of its supplied selected support.",
+    "All off-support circle inequalities, including metric interpretations of K0 omitting 4 and K10 omitting 1.",
+    "The LP/MP and LP_rho/MP_rho incidence meanings beyond their recorded Fin17 labels.",
+    "Common-deletion survival at apex 12.",
+    "Global minimality and all anonymous deletion rows.",
+    "Carrier-wide K4 beyond the 13 selected rows.",
+    "Cap membership, cap size/composition, strict convexity, cyclic order, Kalmanson, angular-midpoint, and boundary-order facts.",
+    "FreshThird universal ingress, coverage of other finite signatures, any overflow semantics, and any general-cardinality lift.",
+    "No-(m,4,4), Moser-set, exact full physical-class support, and every other live residual hypothesis not explicitly listed as encoded."
+  ],
+  "cut_admission_records": [
+    {
+      "name": "selected-row-equal-radius",
+      "status": "source-entitled finite-signature atom",
+      "antecedent": "For a listed center c, all four entries of selected_supports[c] lie in one selected physical class whose center is point c.",
+      "schema_arm": "the sole fixed input.json support signature",
+      "consequence": "The four squared distances from c are equal."
+    },
+    {
+      "name": "similarity-gauge",
+      "status": "semantics-preserving normalization",
+      "antecedent": "p0 and p1 are distinct, supplied by exact labeled-point distinctness.",
+      "schema_arm": "all",
+      "consequence": "Translate, rotate, and positively scale so p0=(0,0), p1=(1,0)."
+    },
+    {
+      "name": "positive-separation-floor",
+      "status": "definition-backed finite consequence",
+      "antecedent": "The finite family p0,...,p16 is pairwise distinct.",
+      "schema_arm": "all",
+      "consequence": "There exists delta>0 below every pairwise squared distance."
+    }
+  ],
+  "relaxation_cuts": [],
+  "controls": {
+    "known_sat": "Gauge, all-point distinctness, and K0 only; an explicit rational witness is checked before solver use.",
+    "malformed_unsat": "The known-SAT control plus p1=p2, contradicting delta>0 and squaredDistance(p1,p2)>=delta."
+  },
+  "verdict_vocabulary": [
+    "semantic-UNSAT",
+    "relaxation-UNSAT",
+    "SAT-abstraction",
+    "UNKNOWN"
+  ],
+  "stage2_policy": "Do not launch: no exact source-backed boundary/cap-order assumptions were supplied, so no relaxation boundary is admitted.",
+  "claim_boundary": "A result concerns only this fixed finite 13-row metric packet. It is not a P97 counterexample, universal theorem, Lean closure, or finite-to-universal lift.",
+  "post_wave_mine": "At terminal, inspect only this canary's controls, verdicts, exact readback, and any minimized row core. Do not search prior waves or theorem banks."
+  ,
+  "preflight_failures": [
+    "The initial harness launch stopped before assertions or a solver check because this installed Z3 build rejects the nlsat.randomize option on SolverFor(QF_NRA). The unsupported tuning option was removed; no timeout or semantic constraint changed."
+  ]
+}

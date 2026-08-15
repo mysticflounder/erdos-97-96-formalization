@@ -1,0 +1,264 @@
+{
+  "claim_boundary": "One fixed 13-row gauge equality packet only; no P97 counterexample, universal theorem, finite-to-universal lift, Lean theorem, or spine closure.",
+  "controls": {
+    "control_nonempty": {
+      "consensus": "NONUNIT",
+      "engines": {
+        "msolve_order_a": {
+          "command": [
+            "msolve",
+            "-f",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_algebra_v2/control_nonempty.order_a.ms",
+            "-o",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_algebra_v2/control_nonempty.order_a.msolve.out",
+            "-t",
+            "4"
+          ],
+          "returncode": 0,
+          "verdict": "NONUNIT",
+          "wall_seconds": 0.06755191693082452
+        },
+        "msolve_order_b": {
+          "command": [
+            "msolve",
+            "-f",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_algebra_v2/control_nonempty.order_b.ms",
+            "-o",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_algebra_v2/control_nonempty.order_b.msolve.out",
+            "-t",
+            "4"
+          ],
+          "returncode": 0,
+          "verdict": "NONUNIT",
+          "wall_seconds": 0.008112334180623293
+        },
+        "singular": {
+          "command": [
+            "Singular",
+            "-q",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_algebra_v2/control_nonempty.sing"
+          ],
+          "returncode": 0,
+          "verdict": "NONUNIT",
+          "wall_seconds": 0.09338187472894788
+        }
+      },
+      "expected": "NONUNIT",
+      "passed": true,
+      "reason": "two msolve variable orders and Singular agree"
+    },
+    "control_unit": {
+      "consensus": "UNIT",
+      "engines": {
+        "msolve_order_a": {
+          "command": [
+            "msolve",
+            "-f",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_algebra_v2/control_unit.order_a.ms",
+            "-o",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_algebra_v2/control_unit.order_a.msolve.out",
+            "-t",
+            "4"
+          ],
+          "returncode": 0,
+          "verdict": "UNIT",
+          "wall_seconds": 0.007619500160217285
+        },
+        "msolve_order_b": {
+          "command": [
+            "msolve",
+            "-f",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_algebra_v2/control_unit.order_b.ms",
+            "-o",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_algebra_v2/control_unit.order_b.msolve.out",
+            "-t",
+            "4"
+          ],
+          "returncode": 0,
+          "verdict": "UNIT",
+          "wall_seconds": 0.006653124932199717
+        },
+        "singular": {
+          "command": [
+            "Singular",
+            "-q",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_algebra_v2/control_unit.sing"
+          ],
+          "returncode": 0,
+          "verdict": "UNIT",
+          "wall_seconds": 0.011673042085021734
+        }
+      },
+      "expected": "UNIT",
+      "passed": true,
+      "reason": "two msolve variable orders and Singular agree"
+    }
+  },
+  "controls_passed": true,
+  "ended_unix_ns": 1786742686181609000,
+  "exact_algebra_verdict": "COMPLEX_EMPTY",
+  "exact_algebra_vocabulary": [
+    "COMPLEX_EMPTY",
+    "NONUNIT",
+    "UNKNOWN"
+  ],
+  "four_valued_verdict": "semantic-UNSAT",
+  "four_valued_vocabulary": [
+    "semantic-UNSAT",
+    "relaxation-UNSAT",
+    "SAT-abstraction",
+    "UNKNOWN"
+  ],
+  "msolve_polynomial_body_sha256": "f8a67421edb7a8a33922c7a3bf31daeeaf4092425379a7fc7d7ecb8217110ea0",
+  "packet": {
+    "canonical_polynomial_body_sha256": "ff178937f412ec68935e991f2cdeb5f5cbbeb2d7d8a01d23dadc90a1c56cde7f",
+    "centers": [
+      0,
+      10,
+      6,
+      1,
+      2,
+      3,
+      4,
+      5,
+      7,
+      8,
+      9,
+      15,
+      16
+    ],
+    "gauge_equalities": 4,
+    "row_equalities": 39,
+    "selected_rows": 13,
+    "total_equalities": 43
+  },
+  "row_core_minimization": {
+    "budget_seconds": 240.0,
+    "candidate_centers": [
+      10,
+      6,
+      1,
+      2,
+      3,
+      4,
+      5,
+      7,
+      8,
+      9,
+      15,
+      16
+    ],
+    "candidate_row_count": 12,
+    "independent_replay": null,
+    "status": "UNKNOWN_NO_CORE_CLAIM",
+    "trials": [
+      {
+        "candidate_centers": [
+          10,
+          6,
+          1,
+          2,
+          3,
+          4,
+          5,
+          7,
+          8,
+          9,
+          15,
+          16
+        ],
+        "command": [
+          "Singular",
+          "-q",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_algebra_v2/min_drop_0.sing"
+        ],
+        "dropped_center": 0,
+        "returncode": 0,
+        "verdict": "UNIT",
+        "wall_seconds": 8.477307708002627
+      },
+      {
+        "candidate_centers": [
+          6,
+          1,
+          2,
+          3,
+          4,
+          5,
+          7,
+          8,
+          9,
+          15,
+          16
+        ],
+        "command": [
+          "Singular",
+          "-q",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_algebra_v2/min_drop_10.sing"
+        ],
+        "dropped_center": 10,
+        "reason": "timeout",
+        "timeout_seconds": 15.0,
+        "verdict": "UNKNOWN",
+        "wall_seconds": 15.009539499878883
+      }
+    ]
+  },
+  "schema": "freshthird-firstnonhit-exact3-algebra-v2",
+  "started_unix_ns": 1786742655188147000,
+  "target": {
+    "consensus": "UNIT",
+    "engines": {
+      "msolve_order_a": {
+        "command": [
+          "msolve",
+          "-f",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_algebra_v2/target.order_a.ms",
+          "-o",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_algebra_v2/target.order_a.msolve.out",
+          "-t",
+          "4"
+        ],
+        "returncode": 0,
+        "verdict": "UNIT",
+        "wall_seconds": 0.2073802500963211
+      },
+      "msolve_order_b": {
+        "command": [
+          "msolve",
+          "-f",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_algebra_v2/target.order_b.ms",
+          "-o",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_algebra_v2/target.order_b.msolve.out",
+          "-t",
+          "4"
+        ],
+        "returncode": 0,
+        "verdict": "UNIT",
+        "wall_seconds": 0.14546683290973306
+      },
+      "singular": {
+        "command": [
+          "Singular",
+          "-q",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_algebra_v2/target.sing"
+        ],
+        "returncode": 0,
+        "verdict": "UNIT",
+        "wall_seconds": 6.954905916936696
+      }
+    },
+    "reason": "two msolve variable orders and Singular agree"
+  },
+  "terminal_reason": "two msolve variable orders and independent Singular char-0 std agree that the gauge equality ideal is the unit ideal",
+  "wave_data_only_general_theorem_mine": {
+    "candidate": null,
+    "outcome": "This wave contains one fixed equality packet and no family of independent survivors or cores. No cardinality-independent theorem candidate is justified by the wave data alone; no theorem-bank or prior-wave search was performed.",
+    "records_reviewed": [
+      "control engine records",
+      "target two-order msolve records",
+      "target Singular record",
+      "row-core trials and replay if launched"
+    ]
+  }
+}

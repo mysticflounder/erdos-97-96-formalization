@@ -1,0 +1,57 @@
+{
+  "artifacts": {
+    "detector_contract": {
+      "bytes": 2131,
+      "path": "detector_contract.json",
+      "sha256": "39d4dc5e89740a7fad4733176bd92014573a5b8ac4d5ed39ea5fc4cbf32aa811"
+    },
+    "discovery_cnf": {
+      "bytes": 5127955,
+      "path": "discovery.cnf",
+      "sha256": "5191c7a2f0c7a349595a73ad6fb0039047df3fd3e86ac6c728044a261eae8db2"
+    },
+    "job": {
+      "bytes": 8543,
+      "path": "job.json",
+      "sha256": "32853939efd7de1eb9e45b1f3a070dca98052fe45c7c1aaac8f27e7b54951c43"
+    },
+    "journal": {
+      "bytes": 66406879,
+      "path": "journal.jsonl",
+      "sha256": "7c7c533416dfadc4fc48e7814a28335a4dcf26d6b95e1964bacbe3c447580ac1"
+    },
+    "proof": null,
+    "survivor": null,
+    "terminal_cnf": null
+  },
+  "cell_index": 0,
+  "detector_contract_sha256": "af373a6601239e97838a73d4573ad6aa643b120e269bacb0fbe8c2e16c150f3d",
+  "discovery_cnf_sha256": null,
+  "discovery_verdict": "SAT",
+  "error": null,
+  "job_id": "5a25eeb9e0597f5dcaf3397ed40940a8f86123b13e884f5bf6817249fb460703",
+  "journal_replayed": true,
+  "max_iterations": 400,
+  "reconstructed_cnf_sha256": "e771aab5a90e8a51f8d0c7493fd87cc9f27189301bdf1231fe080b2e83594bde",
+  "records": 400,
+  "replay": {
+    "added_constraints": true,
+    "candidate": true,
+    "exact_cnf": true
+  },
+  "schema": "p97_rigid221_exact12_next_row_tagged_cegar_run.v5",
+  "scope": "one finite next-row-only-hit placement cell; no aggregate coverage, universal lift, terminal bank, or Lean closure",
+  "source_order_bank_sha256": "f5732fc392792362df145b999c4fe739f931d4329c46d8bde7038ac2b85db5d6",
+  "stage_counts": {
+    "equality-duplicate-center": 388,
+    "equality-equilateral-bisector-collision": 6,
+    "equality-perpendicular-bisector-convex": 5,
+    "equality-three-triad-collision": 1
+  },
+  "status": "ITERATION_LIMIT",
+  "terminal_cnf_sha256": null,
+  "terminal_proof_verified": false,
+  "terminal_record_sha256": "d9b519fa6a0707286e8d08e868bd3630fecd6cfcb7b920e65184b5a9da1a7077",
+  "terminal_verdict": null,
+  "timeout_seconds": 60
+}

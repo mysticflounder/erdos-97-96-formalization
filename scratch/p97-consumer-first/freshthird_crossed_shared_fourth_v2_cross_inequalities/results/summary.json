@@ -1,0 +1,358 @@
+{
+  "controls": [
+    {
+      "name": "sat_metric_equalities",
+      "z3": "sat",
+      "cvc5": "sat",
+      "exact_match": true
+    },
+    {
+      "name": "unsat_full_first_order",
+      "z3": "unsat",
+      "cvc5": "unsat",
+      "exact_match": true
+    }
+  ],
+  "alias_admission_counts": {
+    "all_distinct_sign_arms": 240,
+    "blocked_alias_order_rows": 420
+  },
+  "sign_arm_count": 4,
+  "order_count": 60,
+  "z3_unsat": 190,
+  "z3_sat": 50,
+  "exact_replays": 240,
+  "survivor_sign_counts": {
+    "00": 10,
+    "01": 14,
+    "10": 14,
+    "11": 12
+  },
+  "smallest_recurring_survivor_motif": {
+    "kind": "cross_sign",
+    "signs": "00",
+    "count": 10
+  },
+  "survivor_order_counts": {
+    "0": 1,
+    "5": 1,
+    "6": 2,
+    "8": 1,
+    "10": 1,
+    "11": 1,
+    "12": 1,
+    "13": 1,
+    "14": 1,
+    "16": 2,
+    "17": 1,
+    "18": 1,
+    "19": 1,
+    "20": 1,
+    "26": 1,
+    "27": 1,
+    "28": 1,
+    "29": 1,
+    "30": 1,
+    "31": 2,
+    "32": 2,
+    "33": 1,
+    "34": 1,
+    "36": 1,
+    "37": 1,
+    "38": 2,
+    "39": 1,
+    "40": 3,
+    "41": 1,
+    "42": 1,
+    "43": 1,
+    "45": 3,
+    "46": 1,
+    "47": 1,
+    "50": 1,
+    "52": 1,
+    "54": 1,
+    "56": 1,
+    "57": 2,
+    "59": 1
+  },
+  "survivor_positional_motifs": {
+    "firstCenter_adjacent_to_a_selected_center": 30,
+    "commonCenter_adjacent_to_oppositeCenter": 14,
+    "commonOutside_adjacent_to_oppositeOutside": 14
+  },
+  "survivor_order_sign_motifs": [
+    {
+      "order_index": 0,
+      "signs": "10",
+      "count": 1
+    },
+    {
+      "order_index": 5,
+      "signs": "01",
+      "count": 1
+    },
+    {
+      "order_index": 6,
+      "signs": "10",
+      "count": 1
+    },
+    {
+      "order_index": 6,
+      "signs": "11",
+      "count": 1
+    },
+    {
+      "order_index": 8,
+      "signs": "11",
+      "count": 1
+    },
+    {
+      "order_index": 10,
+      "signs": "11",
+      "count": 1
+    },
+    {
+      "order_index": 11,
+      "signs": "11",
+      "count": 1
+    },
+    {
+      "order_index": 12,
+      "signs": "00",
+      "count": 1
+    },
+    {
+      "order_index": 13,
+      "signs": "01",
+      "count": 1
+    },
+    {
+      "order_index": 14,
+      "signs": "00",
+      "count": 1
+    },
+    {
+      "order_index": 16,
+      "signs": "00",
+      "count": 1
+    },
+    {
+      "order_index": 16,
+      "signs": "01",
+      "count": 1
+    },
+    {
+      "order_index": 17,
+      "signs": "00",
+      "count": 1
+    },
+    {
+      "order_index": 18,
+      "signs": "10",
+      "count": 1
+    },
+    {
+      "order_index": 19,
+      "signs": "01",
+      "count": 1
+    },
+    {
+      "order_index": 20,
+      "signs": "10",
+      "count": 1
+    },
+    {
+      "order_index": 26,
+      "signs": "01",
+      "count": 1
+    },
+    {
+      "order_index": 27,
+      "signs": "10",
+      "count": 1
+    },
+    {
+      "order_index": 28,
+      "signs": "00",
+      "count": 1
+    },
+    {
+      "order_index": 29,
+      "signs": "10",
+      "count": 1
+    },
+    {
+      "order_index": 30,
+      "signs": "00",
+      "count": 1
+    },
+    {
+      "order_index": 31,
+      "signs": "00",
+      "count": 1
+    },
+    {
+      "order_index": 31,
+      "signs": "10",
+      "count": 1
+    },
+    {
+      "order_index": 32,
+      "signs": "01",
+      "count": 1
+    },
+    {
+      "order_index": 32,
+      "signs": "11",
+      "count": 1
+    },
+    {
+      "order_index": 33,
+      "signs": "11",
+      "count": 1
+    },
+    {
+      "order_index": 34,
+      "signs": "10",
+      "count": 1
+    },
+    {
+      "order_index": 36,
+      "signs": "11",
+      "count": 1
+    },
+    {
+      "order_index": 37,
+      "signs": "01",
+      "count": 1
+    },
+    {
+      "order_index": 38,
+      "signs": "01",
+      "count": 1
+    },
+    {
+      "order_index": 38,
+      "signs": "11",
+      "count": 1
+    },
+    {
+      "order_index": 39,
+      "signs": "01",
+      "count": 1
+    },
+    {
+      "order_index": 40,
+      "signs": "01",
+      "count": 1
+    },
+    {
+      "order_index": 40,
+      "signs": "10",
+      "count": 1
+    },
+    {
+      "order_index": 40,
+      "signs": "11",
+      "count": 1
+    },
+    {
+      "order_index": 41,
+      "signs": "11",
+      "count": 1
+    },
+    {
+      "order_index": 42,
+      "signs": "00",
+      "count": 1
+    },
+    {
+      "order_index": 43,
+      "signs": "10",
+      "count": 1
+    },
+    {
+      "order_index": 45,
+      "signs": "00",
+      "count": 1
+    },
+    {
+      "order_index": 45,
+      "signs": "01",
+      "count": 1
+    },
+    {
+      "order_index": 45,
+      "signs": "10",
+      "count": 1
+    },
+    {
+      "order_index": 46,
+      "signs": "01",
+      "count": 1
+    },
+    {
+      "order_index": 47,
+      "signs": "01",
+      "count": 1
+    },
+    {
+      "order_index": 50,
+      "signs": "10",
+      "count": 1
+    },
+    {
+      "order_index": 52,
+      "signs": "01",
+      "count": 1
+    },
+    {
+      "order_index": 54,
+      "signs": "00",
+      "count": 1
+    },
+    {
+      "order_index": 56,
+      "signs": "11",
+      "count": 1
+    },
+    {
+      "order_index": 57,
+      "signs": "10",
+      "count": 1
+    },
+    {
+      "order_index": 57,
+      "signs": "11",
+      "count": 1
+    },
+    {
+      "order_index": 59,
+      "signs": "10",
+      "count": 1
+    }
+  ],
+  "contextual_admission_tier": {
+    "excluded_alias": [
+      "commonCenter",
+      "oppositeOutside"
+    ],
+    "remaining_optional_aliases": [
+      [
+        "oppositeCenter",
+        "commonOutside"
+      ],
+      [
+        "firstCenter",
+        "sharedFourth"
+      ]
+    ],
+    "contextually_excluded_alias_order_rows": 240,
+    "remaining_optional_alias_order_rows": 180,
+    "source_basis": [
+      "TwoSourceFirstFiberCollision.lean:1275-1276",
+      "TwoSourceFirstFiberCollision.lean:1162-1170"
+    ],
+    "applied_to_sign_arms": false
+  }
+}

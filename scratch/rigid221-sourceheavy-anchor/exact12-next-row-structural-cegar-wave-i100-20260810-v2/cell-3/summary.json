@@ -1,0 +1,58 @@
+{
+  "artifacts": {
+    "detector_contract": {
+      "bytes": 1146,
+      "path": "detector_contract.json",
+      "sha256": "b85e9e3c2c8f0392c20db4669c2805dbad15cf51740c7e8b1078c09f710d1531"
+    },
+    "discovery_cnf": {
+      "bytes": 5118893,
+      "path": "discovery.cnf",
+      "sha256": "2e94e0f1bbe0d34135a14e954f87c1c3400f35642fe4376e476fc8fb94159628"
+    },
+    "job": {
+      "bytes": 8558,
+      "path": "job.json",
+      "sha256": "ae9ab8f4a680becd0adb154bf488fb84101e5a0bf8f5acb629305730dd22f4ce"
+    },
+    "journal": {
+      "bytes": 12985733,
+      "path": "journal.jsonl",
+      "sha256": "8ead37442e0b19cd8296da3e9e3ba6ea4d3e938e6a45ce8083a3e789a33a3b47"
+    },
+    "proof": null,
+    "survivor": {
+      "bytes": 146636,
+      "path": "survivor.json",
+      "sha256": "d7f8ceb557664887fad7f8920c38bf0a16bc3e0d0ffb3c8491fc9c540d61e1c8"
+    },
+    "terminal_cnf": null
+  },
+  "cell_index": 3,
+  "detector_contract_sha256": "7ee16a83e26f2cc223de5a0e884d5d7eadbab547177d24b48394932f8dc3b8cb",
+  "discovery_cnf_sha256": null,
+  "discovery_verdict": "SAT",
+  "error": null,
+  "job_id": "9c6627de0b173bf0d24ca34da59d64d6b5e00984318da9f762a7f2d214ee8e60",
+  "journal_replayed": true,
+  "max_iterations": 100,
+  "reconstructed_cnf_sha256": "2e94e0f1bbe0d34135a14e954f87c1c3400f35642fe4376e476fc8fb94159628",
+  "records": 82,
+  "replay": {
+    "added_constraints": true,
+    "candidate": true,
+    "exact_cnf": true
+  },
+  "schema": "p97_rigid221_exact12_next_row_structural_cegar_run.v2",
+  "scope": "one finite next-row-only-hit placement cell; no aggregate coverage, universal lift, terminal bank, or Lean closure",
+  "stage_counts": {
+    "equality-duplicate-center": 81,
+    "equality-perpendicular-bisector-convex": 1
+  },
+  "status": "STRUCTURALLY_UNRESOLVED",
+  "terminal_cnf_sha256": null,
+  "terminal_proof_verified": false,
+  "terminal_record_sha256": "0b9a31092b2c5593be5f0b55c91bad9c3fa82214dce4c4c660f566348103c399",
+  "terminal_verdict": null,
+  "timeout_seconds": 180
+}

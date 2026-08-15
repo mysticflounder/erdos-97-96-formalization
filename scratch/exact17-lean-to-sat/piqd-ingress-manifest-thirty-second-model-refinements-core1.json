@@ -1,0 +1,88 @@
+{
+  "dimacs": {
+    "bytes": 291620468,
+    "checked_new_clauses": 8,
+    "clauses": 5847248,
+    "parent_prefix_clauses": 5847240,
+    "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/exact17-lean-to-sat/exact17-thirty-third-root-thirty-second-model-refinements.cnf",
+    "sha256": "775eb42db7bdac52eb7e5609a1cf33111c953d26f4cee9c8d95bde3b468563b9",
+    "variables": 308
+  },
+  "export_receipt": {
+    "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/exact17-lean-to-sat/child33-export-receipt.json",
+    "schema": "p97-exact17-child33-immutable-export-receipt/v1",
+    "sha256": "756b26bc18369004c0166805409bb6c622da66c5b8fd054c6300f945a4b6f0ed"
+  },
+  "lean": {
+    "export": {
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenThirtySecondModelRefinementsExport.lean",
+      "sha256": "54aa51734320a3b424a828e7187bf93f176e655949addbb02892a1a4dce219da"
+    },
+    "root": {
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenThirtySecondModelRefinements.lean",
+      "sha256": "2aa046ed0b6948af9c65795229492f573b5816558352aaa6ccd813ed370f4805"
+    }
+  },
+  "parent_ingress": {
+    "parent_dimacs_sha256": "c325d3eedda8fe81e3d1c1d70645024f5b9ea8c36c20ca5cd1896f0934296a7d",
+    "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/exact17-lean-to-sat/piqd-ingress-manifest-thirty-first-model-refinements-core1.json",
+    "sha256": "3f7f043c81ffbedb34def0621a5ac84b363e6e492a7315b270678568dbd035f8"
+  },
+  "piqd": {
+    "backend": "cadical",
+    "daemon_build_receipt": {
+      "path": "/Users/adam/projects/rustprojects/piqd/build-receipts/6de2ea93b551b85839e2e610c622861461e16adb.txt",
+      "sha256": "3738cf1a97e1f916c0cc7706b0454f3dd8532986b0ec15f4341248fdbd39d73b"
+    },
+    "daemon_protocol_version": 1,
+    "daemon_sha256": "680764249cbeb9ca4b8478ffb26e517c7427adddb1114a2ca6c46a3a88038dec",
+    "daemon_source_commit": "6de2ea93b551b85839e2e610c622861461e16adb",
+    "immutable_root_only": true,
+    "ingress": "raw-dimacs/v1",
+    "python_authored_successor_clause_allowed": false,
+    "solver_name": "piqd-satworker-cadical-3.0.0",
+    "solver_profile": "sat",
+    "solver_sha256": "0ee355934249f1b3f14a20928877391a87a0dd51326cf8c6135f75cba0b6b965",
+    "solver_signature": "cadical-3.0.0",
+    "stale_job_reuse_allowed": false
+  },
+  "schema": "p97-exact17-thirty-second-model-refinements-piqd-ingress/v2",
+  "source_modules": {
+    "kalmanson": {
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenThirtySecondKalmansonRefinement.lean",
+      "sha256": "44e5685bfeb425dd43eecea95aa93a7eb5a638591cbd925a41e914028cbfdd0f"
+    },
+    "two_circle": {
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenThirtySecondTwoCircleRefinement.lean",
+      "sha256": "8f0b6821d34e78b3bb8ff3b9b3d0a72c7c7f4b8c0c3484e3a4456310dc463c63"
+    }
+  },
+  "status": "PASS",
+  "validation": {
+    "child": {
+      "bytes": 291620468,
+      "clauses": 5847248,
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/exact17-lean-to-sat/exact17-thirty-third-root-thirty-second-model-refinements.cnf",
+      "sha256": "775eb42db7bdac52eb7e5609a1cf33111c953d26f4cee9c8d95bde3b468563b9",
+      "variables": 308
+    },
+    "duplicate_clauses": 0,
+    "new_clauses": 8,
+    "ordered_suffix_exact": true,
+    "ordered_suffix_sha256": "46495b1d0bea23e860799f1e0012aa94d50f411536ef8c49f0e032bdbbafff50",
+    "parent": {
+      "clauses": 5847240,
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/exact17-lean-to-sat/exact17-thirty-second-root-thirty-first-model-refinements.cnf",
+      "sha256": "c325d3eedda8fe81e3d1c1d70645024f5b9ea8c36c20ca5cd1896f0934296a7d"
+    },
+    "parent_duplicate_literal_clauses": 21488,
+    "parent_duplicate_semantic_clauses": 178164,
+    "publication_state": "PROVISIONED",
+    "schema": "p97-exact17-thirty-second-model-refinements-export-validation/v1",
+    "source_clause_families": [
+      "child32TwoCircleClauses",
+      "canonicalClauses"
+    ],
+    "status": "PASS"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "clauses": 5846104,
+  "four_row_two_circle_bisector_clauses": 4,
+  "four_row_two_circle_bisector_suffix_sha256": "2835a528206499e09e82f51ae21bc16c5eb132bac2adaeea6ab63f42faf446f0",
+  "motivating_model_cut_clauses": [
+    5846101
+  ],
+  "parent_prefix_byte_identical": true,
+  "schema": "p97-exact17-lean-four-row-two-circle-bisector-export-validation/v1",
+  "variables": 308
+}

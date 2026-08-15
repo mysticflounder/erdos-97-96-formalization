@@ -1,0 +1,19 @@
+{
+  "appended_clauses": 809744,
+  "base_prefix_byte_exact": true,
+  "by_schema": {
+    "K": 148512,
+    "L": 272272,
+    "M": 388960
+  },
+  "clauses": 3689225,
+  "cnf": "scratch/rigid221-blockerv-exact17-20260806/ordered-row-schema-klm-v1-source-frozen-20260809/o0-p0-1.cnf",
+  "cnf_sha256": "71b7fa4ef512cad9098674e3941b73ac3314e69fe0f94794e9df9003b91f45cf",
+  "generation_sources_rechecked": 5,
+  "manifest": "scratch/rigid221-blockerv-exact17-20260806/ordered-row-schema-klm-v1-source-frozen-20260809/o0-p0-1.manifest.json",
+  "manifest_sha256": "c3a2c33aae7adad658a02e750e0da152205269d50f271543d9eb4a8cbaee34b9",
+  "producer_matcher_checks": 6,
+  "schema": "p97-rigid221-exact17-ordered-row-schema-cnf-validation-v1",
+  "status": "PASS",
+  "variables": 74813
+}

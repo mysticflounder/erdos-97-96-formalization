@@ -1,0 +1,77 @@
+{
+  "controls": {
+    "control_known_sat": {
+      "cvc5": {
+        "returncode": 0,
+        "stderr": "",
+        "stdout": "sat\n",
+        "verdict": "sat",
+        "wall_seconds": 0.49546691589057446
+      },
+      "expected": "sat",
+      "passed": true,
+      "z3": {
+        "reason_unknown": null,
+        "verdict": "sat",
+        "wall_seconds": 0.018406291026622057
+      }
+    },
+    "control_malformed_unsat": {
+      "cvc5": {
+        "returncode": 0,
+        "stderr": "",
+        "stdout": "unsat\n",
+        "verdict": "unsat",
+        "wall_seconds": 0.021545541938394308
+      },
+      "expected": "unsat",
+      "passed": true,
+      "z3": {
+        "reason_unknown": null,
+        "verdict": "unsat",
+        "wall_seconds": 0.003374500200152397
+      }
+    }
+  },
+  "four_valued_semantics": [
+    "semantic-UNSAT",
+    "relaxation-UNSAT",
+    "SAT-abstraction",
+    "UNKNOWN"
+  ],
+  "known_sat_witness": {
+    "K0_radius_squared": "1",
+    "authenticated": true,
+    "minimum_distance_squared": "1"
+  },
+  "schema": "freshthird-firstnonhit-exact3-metric-canary-v1",
+  "stage1": {
+    "cvc5": {
+      "returncode": -6,
+      "stderr": "cvc5 interrupted by timeout.\n",
+      "stdout": "",
+      "verdict": "unknown",
+      "wall_seconds": 30.015003124717623
+    },
+    "z3": {
+      "reason_unknown": "timeout",
+      "verdict": "unknown",
+      "wall_seconds": 30.47510620811954
+    }
+  },
+  "stage2": {
+    "launched": false,
+    "reason": "No exact source-backed boundary/cap-order assumption was supplied; no relaxation cut admitted."
+  },
+  "terminal_reason": "engines did not produce an authenticated decisive verdict",
+  "terminal_verdict": "UNKNOWN",
+  "wave_data_only_general_theorem_mine": {
+    "candidate": null,
+    "outcome": "Both engines timed out on the single fixed packet, so the wave produced no survivor, UNSAT core, recurring family, invariant, or candidate general theorem. The only stable observation is computational: the naive 39-equality/30-DOF system was not decided in 30 seconds by either engine. No prior-wave or theorem-bank search was performed.",
+    "records_reviewed": [
+      "stage1 solver verdicts",
+      "exact readback if present",
+      "controls"
+    ]
+  }
+}

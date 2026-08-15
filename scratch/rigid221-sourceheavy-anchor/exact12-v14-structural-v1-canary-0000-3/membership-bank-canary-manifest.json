@@ -1,0 +1,28 @@
+{
+  "coordinator": {
+    "namespace": "Scratch.Exact12V14Cell0MembershipBankCanary",
+    "path": "scratch/rigid221-sourceheavy-anchor/exact12-v14-structural-v1-canary-0000-3/MembershipBankCanary.lean",
+    "sha256": "faca8833063c2cbf9c99f53e03ec86eb9b4691eb381cb548991999d9cf0d6859"
+  },
+  "distinct_core_count": 1,
+  "mode": "membership_core",
+  "records_per_module": 100,
+  "schema": "p97_duplicate_center_membership_bank_export.v1",
+  "scope": "Authenticated generated Lean record-validity bank; not a coverage, UNSAT, or live-leaf closure certificate",
+  "shard_module_prefix": "Scratch.Exact12V14Cell0MembershipBankCanaryShards",
+  "shards": [
+    {
+      "module": "Scratch.Exact12V14Cell0MembershipBankCanaryShards.Part_001",
+      "namespace": "Scratch.Exact12V14Cell0MembershipBankCanaryShards.Part_001",
+      "path": "scratch/rigid221-sourceheavy-anchor/exact12-v14-structural-v1-canary-0000-3/MembershipBankCanaryShards/Part_001.lean",
+      "record_count": 1,
+      "record_start": 0,
+      "sha256": "62ff3cf61e74f605e851f4b37d64c79210c71fde154b8b2495bafe0b93e090db"
+    }
+  ],
+  "source": {
+    "byte_count": 5202,
+    "journal": "scratch/rigid221-sourceheavy-anchor/exact12-v14-structural-v1-canary-0000-3/journal.jsonl",
+    "sha256": "3708cf60f9cce9fb5b04565c9ee783b062cb60b540dfbabefc4b634b3284e264"
+  }
+}

@@ -1,0 +1,531 @@
+{
+  "canonical_input": {
+    "artifact": "generated/refined_named_rows_and_singletons.smt2",
+    "artifact_sha256": "3a9b984997078efebd1993ece2d6309d66571f2716d2cb32e38a04ad87b9e381",
+    "assignment": "generated/refined_global_k4_assignment.json",
+    "assignment_sha256": "3c4cacec277027465bd6ba51e3fd8250a12f96f375e92de2857a89c4deb79e25",
+    "byte_exact_rebuild": "PASS",
+    "clause_count": 1083,
+    "encoder": "unified_metric.py",
+    "encoder_sha256": "6e768d4ef93eff5f0de361e4d9bc7ad022a91b88592844355b0816f4cdc37e78"
+  },
+  "closure_claim": "NONE",
+  "core_extraction": {
+    "deletion_trials": [
+      {
+        "dropped": "k4_equal_13_10",
+        "exact_model_formula_evaluation": "PASS",
+        "fresh_solver": true,
+        "remaining": [
+          "singleton_excludes_c_first_10"
+        ],
+        "status": "SAT"
+      },
+      {
+        "dropped": "singleton_excludes_c_first_10",
+        "exact_model_formula_evaluation": "PASS",
+        "fresh_solver": true,
+        "remaining": [
+          "k4_equal_13_10"
+        ],
+        "status": "SAT"
+      }
+    ],
+    "fresh_solver_per_deletion_trial": true,
+    "initial_core": [
+      "k4_equal_13_10",
+      "singleton_excludes_c_first_10"
+    ],
+    "method": "Z3 assumption core followed by deterministic deletion shrink",
+    "minimized_core": [
+      "k4_equal_13_10",
+      "singleton_excludes_c_first_10"
+    ]
+  },
+  "direct_syntactic_opposite_pairs_in_all_1083_clauses": [
+    [
+      "k4_equal_13_10",
+      "singleton_excludes_c_first_10"
+    ]
+  ],
+  "exact_source_level_conflict": "The same two squared distances are required to be equal by the first-apex K4 witness row and unequal by the aligned c_first singleton slice.",
+  "malformed_integrity_controls": {
+    "duplicate_check_sat": "REJECTED",
+    "missing_check_sat": "REJECTED"
+  },
+  "named_group_core": {
+    "deletion_minimal": true,
+    "groups": [
+      {
+        "clause_count": 4,
+        "clauses": [
+          "k4_positive_13",
+          "k4_equal_13_4",
+          "k4_equal_13_10",
+          "k4_equal_13_15"
+        ],
+        "name": "first_apex_k4_row_packet"
+      },
+      {
+        "clause_count": 6,
+        "clauses": [
+          "singleton_positive_c_first",
+          "singleton_excludes_c_first_1",
+          "singleton_excludes_c_first_7",
+          "singleton_excludes_c_first_9",
+          "singleton_excludes_c_first_10",
+          "singleton_excludes_c_first_12"
+        ],
+        "name": "aligned_c_first_singleton_packet"
+      }
+    ]
+  },
+  "replay": [
+    {
+      "artifact": "generated/minimized_clause_core.smt2",
+      "check_sat_count": 1,
+      "classification": "genuine deletion-minimal clause core",
+      "clause_count": 2,
+      "clauses": [
+        "k4_equal_13_10",
+        "singleton_excludes_c_first_10"
+      ],
+      "cvc5_cli": {
+        "command": [
+          "cvc5",
+          "--lang",
+          "smt2",
+          "--nl-cov",
+          "--tlimit",
+          "60000",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_aligned_mutual_crossed_metric_v1/core_minimization/generated/minimized_clause_core.smt2"
+        ],
+        "returncode": 0,
+        "status": "UNSAT"
+      },
+      "expected": "UNSAT",
+      "name": "minimized_clause_core",
+      "python_z3": {
+        "exact_model_formula_evaluation": "NOT_APPLICABLE",
+        "status": "UNSAT"
+      },
+      "sha256": "533bfc978a9433743667cf86ce86c1976392fe8cc75da35b9502d8b01d2e3a7f",
+      "z3_cli": {
+        "command": [
+          "z3",
+          "-smt2",
+          "-T:60",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_aligned_mutual_crossed_metric_v1/core_minimization/generated/minimized_clause_core.smt2"
+        ],
+        "returncode": 0,
+        "status": "UNSAT"
+      }
+    },
+    {
+      "artifact": "generated/drop_k4_equal_13_10.smt2",
+      "check_sat_count": 1,
+      "classification": "clause-minimality witness",
+      "clause_count": 1,
+      "clauses": [
+        "singleton_excludes_c_first_10"
+      ],
+      "cvc5_cli": {
+        "command": [
+          "cvc5",
+          "--lang",
+          "smt2",
+          "--nl-cov",
+          "--tlimit",
+          "60000",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_aligned_mutual_crossed_metric_v1/core_minimization/generated/drop_k4_equal_13_10.smt2"
+        ],
+        "returncode": 0,
+        "status": "SAT"
+      },
+      "expected": "SAT",
+      "name": "drop_k4_equal_13_10",
+      "python_z3": {
+        "exact_model_formula_evaluation": "PASS",
+        "status": "SAT"
+      },
+      "sha256": "2df8a005c6b46c1336f871cc1ba7d1f24049a90c207d4704dcaa697456ce40d6",
+      "z3_cli": {
+        "command": [
+          "z3",
+          "-smt2",
+          "-T:60",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_aligned_mutual_crossed_metric_v1/core_minimization/generated/drop_k4_equal_13_10.smt2"
+        ],
+        "returncode": 0,
+        "status": "SAT"
+      }
+    },
+    {
+      "artifact": "generated/drop_singleton_excludes_c_first_10.smt2",
+      "check_sat_count": 1,
+      "classification": "clause-minimality witness",
+      "clause_count": 1,
+      "clauses": [
+        "k4_equal_13_10"
+      ],
+      "cvc5_cli": {
+        "command": [
+          "cvc5",
+          "--lang",
+          "smt2",
+          "--nl-cov",
+          "--tlimit",
+          "60000",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_aligned_mutual_crossed_metric_v1/core_minimization/generated/drop_singleton_excludes_c_first_10.smt2"
+        ],
+        "returncode": 0,
+        "status": "SAT"
+      },
+      "expected": "SAT",
+      "name": "drop_singleton_excludes_c_first_10",
+      "python_z3": {
+        "exact_model_formula_evaluation": "PASS",
+        "status": "SAT"
+      },
+      "sha256": "0134c73efcc728a401f3fb4e3fa5db3818c787b6658b36fe8d78a779d6d30f0c",
+      "z3_cli": {
+        "command": [
+          "z3",
+          "-smt2",
+          "-T:60",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_aligned_mutual_crossed_metric_v1/core_minimization/generated/drop_singleton_excludes_c_first_10.smt2"
+        ],
+        "returncode": 0,
+        "status": "SAT"
+      }
+    },
+    {
+      "artifact": "generated/named_group_core.smt2",
+      "check_sat_count": 1,
+      "classification": "deletion-minimal source-local named-packet core",
+      "clause_count": 10,
+      "clauses": [
+        "k4_positive_13",
+        "k4_equal_13_4",
+        "k4_equal_13_10",
+        "k4_equal_13_15",
+        "singleton_positive_c_first",
+        "singleton_excludes_c_first_1",
+        "singleton_excludes_c_first_7",
+        "singleton_excludes_c_first_9",
+        "singleton_excludes_c_first_10",
+        "singleton_excludes_c_first_12"
+      ],
+      "cvc5_cli": {
+        "command": [
+          "cvc5",
+          "--lang",
+          "smt2",
+          "--nl-cov",
+          "--tlimit",
+          "60000",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_aligned_mutual_crossed_metric_v1/core_minimization/generated/named_group_core.smt2"
+        ],
+        "returncode": 0,
+        "status": "UNSAT"
+      },
+      "expected": "UNSAT",
+      "name": "named_group_core",
+      "python_z3": {
+        "exact_model_formula_evaluation": "NOT_APPLICABLE",
+        "status": "UNSAT"
+      },
+      "sha256": "3c7d14c956a9b40227fe4933c3c29db5ef99aa2fc8579e96b866f4d87c354262",
+      "z3_cli": {
+        "command": [
+          "z3",
+          "-smt2",
+          "-T:60",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_aligned_mutual_crossed_metric_v1/core_minimization/generated/named_group_core.smt2"
+        ],
+        "returncode": 0,
+        "status": "UNSAT"
+      }
+    },
+    {
+      "artifact": "generated/named_group_drop_k4.smt2",
+      "check_sat_count": 1,
+      "classification": "group-minimality witness",
+      "clause_count": 6,
+      "clauses": [
+        "singleton_positive_c_first",
+        "singleton_excludes_c_first_1",
+        "singleton_excludes_c_first_7",
+        "singleton_excludes_c_first_9",
+        "singleton_excludes_c_first_10",
+        "singleton_excludes_c_first_12"
+      ],
+      "cvc5_cli": {
+        "command": [
+          "cvc5",
+          "--lang",
+          "smt2",
+          "--nl-cov",
+          "--tlimit",
+          "60000",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_aligned_mutual_crossed_metric_v1/core_minimization/generated/named_group_drop_k4.smt2"
+        ],
+        "returncode": 0,
+        "status": "SAT"
+      },
+      "expected": "SAT",
+      "name": "named_group_drop_k4",
+      "python_z3": {
+        "exact_model_formula_evaluation": "PASS",
+        "status": "SAT"
+      },
+      "sha256": "bdd34ce5c25a7f930b2a2ee3badbaf662826c3f04fe6903cb1b94a063065b321",
+      "z3_cli": {
+        "command": [
+          "z3",
+          "-smt2",
+          "-T:60",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_aligned_mutual_crossed_metric_v1/core_minimization/generated/named_group_drop_k4.smt2"
+        ],
+        "returncode": 0,
+        "status": "SAT"
+      }
+    },
+    {
+      "artifact": "generated/named_group_drop_singletons.smt2",
+      "check_sat_count": 1,
+      "classification": "group-minimality witness",
+      "clause_count": 4,
+      "clauses": [
+        "k4_positive_13",
+        "k4_equal_13_4",
+        "k4_equal_13_10",
+        "k4_equal_13_15"
+      ],
+      "cvc5_cli": {
+        "command": [
+          "cvc5",
+          "--lang",
+          "smt2",
+          "--nl-cov",
+          "--tlimit",
+          "60000",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_aligned_mutual_crossed_metric_v1/core_minimization/generated/named_group_drop_singletons.smt2"
+        ],
+        "returncode": 0,
+        "status": "SAT"
+      },
+      "expected": "SAT",
+      "name": "named_group_drop_singletons",
+      "python_z3": {
+        "exact_model_formula_evaluation": "PASS",
+        "status": "SAT"
+      },
+      "sha256": "0497e35d4fb8d9e2b8b84ce605365f651a938592617545f872ec63005d41b6c5",
+      "z3_cli": {
+        "command": [
+          "z3",
+          "-smt2",
+          "-T:60",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_aligned_mutual_crossed_metric_v1/core_minimization/generated/named_group_drop_singletons.smt2"
+        ],
+        "returncode": 0,
+        "status": "SAT"
+      }
+    },
+    {
+      "artifact": "generated/malformed_flip_k4.smt2",
+      "check_sat_count": 1,
+      "classification": "malformed source-control: replace licensed K4 equality by its negation",
+      "clause_count": 2,
+      "clauses": [
+        "malformed_not_k4_equal_13_10",
+        "singleton_excludes_c_first_10"
+      ],
+      "cvc5_cli": {
+        "command": [
+          "cvc5",
+          "--lang",
+          "smt2",
+          "--nl-cov",
+          "--tlimit",
+          "60000",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_aligned_mutual_crossed_metric_v1/core_minimization/generated/malformed_flip_k4.smt2"
+        ],
+        "returncode": 0,
+        "status": "SAT"
+      },
+      "expected": "SAT",
+      "name": "malformed_flip_k4",
+      "python_z3": {
+        "exact_model_formula_evaluation": "PASS",
+        "status": "SAT"
+      },
+      "sha256": "b250f5ed202e632025247d94568f31b29bd3f433abb3a4ccab5531728f27a586",
+      "z3_cli": {
+        "command": [
+          "z3",
+          "-smt2",
+          "-T:60",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_aligned_mutual_crossed_metric_v1/core_minimization/generated/malformed_flip_k4.smt2"
+        ],
+        "returncode": 0,
+        "status": "SAT"
+      }
+    },
+    {
+      "artifact": "generated/malformed_flip_singleton.smt2",
+      "check_sat_count": 1,
+      "classification": "malformed source-control: replace licensed singleton exclusion by its negation",
+      "clause_count": 2,
+      "clauses": [
+        "k4_equal_13_10",
+        "malformed_not_singleton_excludes_c_first_10"
+      ],
+      "cvc5_cli": {
+        "command": [
+          "cvc5",
+          "--lang",
+          "smt2",
+          "--nl-cov",
+          "--tlimit",
+          "60000",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_aligned_mutual_crossed_metric_v1/core_minimization/generated/malformed_flip_singleton.smt2"
+        ],
+        "returncode": 0,
+        "status": "SAT"
+      },
+      "expected": "SAT",
+      "name": "malformed_flip_singleton",
+      "python_z3": {
+        "exact_model_formula_evaluation": "PASS",
+        "status": "SAT"
+      },
+      "sha256": "57ff9957967b6536e2d8df3e63904f1b1245801b697cc0d4012198900898d280",
+      "z3_cli": {
+        "command": [
+          "z3",
+          "-smt2",
+          "-T:60",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_aligned_mutual_crossed_metric_v1/core_minimization/generated/malformed_flip_singleton.smt2"
+        ],
+        "returncode": 0,
+        "status": "SAT"
+      }
+    },
+    {
+      "artifact": "generated/smoke_known_sat.smt2",
+      "check_sat_count": 1,
+      "classification": "known satisfiable smoke control",
+      "clause_count": 1,
+      "clauses": [
+        "smoke_x_eq_zero"
+      ],
+      "cvc5_cli": {
+        "command": [
+          "cvc5",
+          "--lang",
+          "smt2",
+          "--nl-cov",
+          "--tlimit",
+          "60000",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_aligned_mutual_crossed_metric_v1/core_minimization/generated/smoke_known_sat.smt2"
+        ],
+        "returncode": 0,
+        "status": "SAT"
+      },
+      "expected": "SAT",
+      "name": "smoke_known_sat",
+      "python_z3": {
+        "exact_model_formula_evaluation": "PASS",
+        "status": "SAT"
+      },
+      "sha256": "ea353291a4cb0bc546d0d3665514d32217d30b31441a952727f2f786a06bbb08",
+      "z3_cli": {
+        "command": [
+          "z3",
+          "-smt2",
+          "-T:60",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_aligned_mutual_crossed_metric_v1/core_minimization/generated/smoke_known_sat.smt2"
+        ],
+        "returncode": 0,
+        "status": "SAT"
+      }
+    },
+    {
+      "artifact": "generated/smoke_known_unsat.smt2",
+      "check_sat_count": 1,
+      "classification": "known unsatisfiable smoke control",
+      "clause_count": 2,
+      "clauses": [
+        "smoke_x_eq_zero",
+        "smoke_x_eq_one"
+      ],
+      "cvc5_cli": {
+        "command": [
+          "cvc5",
+          "--lang",
+          "smt2",
+          "--nl-cov",
+          "--tlimit",
+          "60000",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_aligned_mutual_crossed_metric_v1/core_minimization/generated/smoke_known_unsat.smt2"
+        ],
+        "returncode": 0,
+        "status": "UNSAT"
+      },
+      "expected": "UNSAT",
+      "name": "smoke_known_unsat",
+      "python_z3": {
+        "exact_model_formula_evaluation": "NOT_APPLICABLE",
+        "status": "UNSAT"
+      },
+      "sha256": "a4c0ee1e6b478bf075f4df582af468e6ca3c0f10fc4d5e1598ab4f2d73882533",
+      "z3_cli": {
+        "command": [
+          "z3",
+          "-smt2",
+          "-T:60",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_aligned_mutual_crossed_metric_v1/core_minimization/generated/smoke_known_unsat.smt2"
+        ],
+        "returncode": 0,
+        "status": "UNSAT"
+      }
+    }
+  ],
+  "scope": "one frozen corrected exact-17 FreshThird assignment only",
+  "solver_versions": {
+    "cvc5_cli": "This is cvc5 version 1.3.3 [git 8ff882e on branch HEAD]",
+    "python_z3": "4.16.0",
+    "z3_cli": "Z3 version 4.16.0 - 64 bit"
+  },
+  "stage_delta_distinction": {
+    "core_uses_final_stage_clauses": [
+      "singleton_excludes_c_first_10"
+    ],
+    "core_uses_prior_stage_clauses": [
+      "k4_equal_13_10"
+    ],
+    "final_stage_clause_count": 13,
+    "final_stage_is_not_the_core": true,
+    "source_local_singleton_packet_clause_count": 6
+  },
+  "status": "DUAL_SOLVER_VERIFIED_DELETION_MINIMAL_CLAUSE_CORE",
+  "surviving_source_map": [
+    {
+      "clause": "k4_equal_13_10",
+      "formula": "(x_13 - x_10)**2 + (y_13 - y_10)**2 ==\n(x_13 - x_0)**2 + (y_13 - y_0)**2",
+      "meaning": "D.K4 at first apex 13 has support {0,4,10,15}; with base c_first=0, point 10 has the same first-apex squared radius as c_first",
+      "source": "D.K4 four-witness common radius",
+      "stage": "k4_witness_equalities"
+    },
+    {
+      "clause": "singleton_excludes_c_first_10",
+      "formula": "(x_13 - x_10)**2 + (y_13 - y_10)**2 !=\n(x_13 - x_0)**2 + (y_13 - y_0)**2",
+      "meaning": "aligned first-apex singleton slice for c_first=0 excludes the distinct strict-first-cap point 10 from that radius",
+      "source": "firstApexRadius_eq_singleton_of_aligned",
+      "stage": "named_rows_and_singletons"
+    }
+  ],
+  "trust_rung": "computational theorem-discovery evidence; no Lean or universal closure claim"
+}

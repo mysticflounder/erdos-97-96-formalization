@@ -1,0 +1,160 @@
+{
+  "classification": "bounded exact-17 corrected source-faithful diagnostic; not universal closure",
+  "signature": {
+    "orientation": "direct",
+    "radial_branch": 0,
+    "roles": {
+      "rho1": 6,
+      "rho2": 2,
+      "p1": 5,
+      "p2": 13,
+      "q_source": 4,
+      "q_other": 1,
+      "source5": 15
+    }
+  },
+  "source_rows": {
+    "roles": {
+      "rho1": 6,
+      "rho2": 2,
+      "p1": 5,
+      "p2": 13,
+      "q_source": 4,
+      "q_other": 1,
+      "source5": 15
+    },
+    "blockers": {
+      "deleted": 7,
+      "source5": 6,
+      "q_source": 2
+    },
+    "rows": {
+      "Q.B1": {
+        "center": 2,
+        "support": [
+          1,
+          4,
+          5,
+          13
+        ]
+      },
+      "C.firstSource_deleted0": {
+        "center": 7,
+        "support": [
+          0,
+          10,
+          15,
+          16
+        ]
+      },
+      "C.secondSource_source5": {
+        "center": 6,
+        "support": [
+          11,
+          12,
+          15,
+          16
+        ]
+      }
+    },
+    "source_center_audit": {
+      "deleted_label": 0,
+      "source5_label": 15,
+      "deleted_is_circle_center": false,
+      "actual_deleted_blocker": 7,
+      "actual_source5_blocker": 6,
+      "q_b1_center": 2,
+      "conclusion": "source labels are members on their blocker-centered rows; they are not row centers"
+    }
+  },
+  "stages": [
+    {
+      "stage": "geometry",
+      "z3": "unknown:timeout",
+      "seconds": 14.55,
+      "cvc5": "unknown",
+      "pinned_exact_witness": {
+        "z3": "sat",
+        "cvc5": "sat",
+        "meaning": "diagnostic only; pinned failure is not unpinned UNSAT"
+      },
+      "exact_fraction_validation": "not-applicable (no SAT model)"
+    },
+    {
+      "stage": "grid_members",
+      "z3": "unknown:timeout",
+      "seconds": 14.574,
+      "cvc5": "unknown",
+      "pinned_exact_witness": {
+        "z3": "sat",
+        "cvc5": "sat",
+        "meaning": "diagnostic only; pinned failure is not unpinned UNSAT"
+      },
+      "exact_fraction_validation": "not-applicable (no SAT model)"
+    },
+    {
+      "stage": "grid_exact",
+      "z3": "unknown:timeout",
+      "seconds": 14.727,
+      "cvc5": "unknown",
+      "pinned_exact_witness": {
+        "z3": "sat",
+        "cvc5": "sat",
+        "meaning": "diagnostic only; pinned failure is not unpinned UNSAT"
+      },
+      "exact_fraction_validation": "not-applicable (no SAT model)"
+    },
+    {
+      "stage": "rows",
+      "z3": "unknown:timeout",
+      "seconds": 14.799,
+      "cvc5": "unknown",
+      "pinned_exact_witness": {
+        "z3": "unsat",
+        "cvc5": "unsat",
+        "meaning": "diagnostic only; pinned failure is not unpinned UNSAT"
+      },
+      "exact_fraction_validation": "not-applicable (no SAT model)"
+    },
+    {
+      "stage": "source_slices",
+      "z3": "unknown:timeout",
+      "seconds": 14.844,
+      "cvc5": "timeout",
+      "pinned_exact_witness": {
+        "z3": "unsat",
+        "cvc5": "unsat",
+        "meaning": "diagnostic only; pinned failure is not unpinned UNSAT"
+      },
+      "exact_fraction_validation": "not-applicable (no SAT model)"
+    },
+    {
+      "stage": "kalmanson",
+      "z3": "unknown:timeout",
+      "seconds": 14.862,
+      "cvc5": "unknown",
+      "pinned_exact_witness": {
+        "z3": "unsat",
+        "cvc5": "unsat",
+        "meaning": "diagnostic only; pinned failure is not unpinned UNSAT"
+      },
+      "exact_fraction_validation": "not-applicable (no SAT model)"
+    }
+  ],
+  "malformed_geometry_control": {
+    "z3": "unsat",
+    "cvc5": "unsat"
+  },
+  "encoded": [
+    "Q.B1={p1,p2,q_source,q_other}",
+    "C first source=deleted point 0 with center b_at(0)",
+    "C second source=source5 with center b_at(source5)",
+    "all member and nonmember circle equalities",
+    "existing grid, singleton-slice, and strict Kalmanson stages"
+  ],
+  "omitted": [
+    "source-level producer/lift",
+    "general-n lift",
+    "P97 universal conclusion"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "canonical_hit_replayed": true,
+  "clauses": 5846232,
+  "dimacs_bytes": 291574986,
+  "dimacs_sha256": "588dffabc01a84dd3990045b87995d9679b158b77f41bf7f8ee2499d091fe1eb",
+  "manifest_sha256": "8fb781e79e6a2a4acb43aa139b2f7bdfa9260b7675e88e7a4712133602c8323f",
+  "motivating_model_cut_clauses": {
+    "cancellation": [
+      5846232
+    ]
+  },
+  "new_clauses": 4,
+  "parent_ingress_status": "PASS",
+  "piqd_daemon_sha256": "82187247e58c7b10773d56e190d795bf8f914150d818691c7d22f96f7264b396",
+  "schema": "p97-exact17-twenty-third-model-refinements-piqd-ingress-validation/v1",
+  "status": "PASS",
+  "variables": 308
+}

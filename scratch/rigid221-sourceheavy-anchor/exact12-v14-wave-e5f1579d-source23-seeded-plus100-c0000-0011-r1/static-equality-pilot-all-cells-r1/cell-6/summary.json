@@ -1,0 +1,21 @@
+{
+  "cell": 6,
+  "encoding": {
+    "added_clauses": 163440,
+    "added_variables": 2145,
+    "edge_count": 66,
+    "final_clauses": 532710,
+    "final_variables": 44855,
+    "obstruction_clauses": 7920,
+    "relation_variables": 2145,
+    "row_implication_clauses": 18240,
+    "transitivity_clauses": 137280
+  },
+  "scope": "finite discovery accelerator only; no authenticated production compiler, terminal proof ingress, universal lift, or Lean closure",
+  "solver": {
+    "detector_stage_on_sat_cube": "equality-equilateral-bisector-collision",
+    "proof_verified": false,
+    "returncode": 10,
+    "verdict": "SAT"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "authenticated_model_rejected_suffix_indices": [
+    3
+  ],
+  "child_bytes": 291704992,
+  "child_clauses": 5848824,
+  "child_sha256": "3a2552fd7ecf7bce037563fec4d4ab0772cdab72d516b10ab1025d159d9f20e2",
+  "final": {
+    "job_id": "f717c352-2456-412a-ae45-d910f47d3e94",
+    "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/exact17-lean-to-sat/piqd-child44-core1-custody-final.json",
+    "result": "SAT",
+    "sha256": "b16aa0a0440180dc4187167ba0152c22ff47d68325406aa6664ff3a0e7a26efa"
+  },
+  "new_clauses": 4,
+  "ordered_suffix_sha256": "7b0518974d2dba962d45a97c193c69b2e970b46979b5471ea8c7b50eca595590",
+  "parent_bytes": 291704790,
+  "parent_clauses": 5848820,
+  "parent_sha256": "17f1c9c48e25aa887cbf80d9de31e0d9b0de089c7eca1b3968dbbe1e35494af9",
+  "parent_subsumed_suffix_indices": [
+    1
+  ],
+  "schema": "p97-exact17-child45-export-validation/v1",
+  "status": "PASS",
+  "variables": 308
+}

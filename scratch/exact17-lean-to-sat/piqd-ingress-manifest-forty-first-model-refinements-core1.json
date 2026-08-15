@@ -1,0 +1,166 @@
+{
+  "dimacs": {
+    "bytes": 291654272,
+    "checked_new_clauses": 336,
+    "clauses": 5847920,
+    "parent_prefix_clauses": 5847584,
+    "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/exact17-lean-to-sat/exact17-forty-first-root-fortieth-model-refinements.cnf",
+    "sha256": "fc19386fdd9703f5313e1bf49b164d87c5905c56c727cfea6408dc7d01e78d24",
+    "variables": 308
+  },
+  "export_receipt": {
+    "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/exact17-lean-to-sat/child41-export-receipt.json",
+    "schema": "p97-exact17-child41-immutable-export-receipt/v1",
+    "sha256": "f6895b0856c04532e251ab357da610825263c7baa805d708fcc2cf5dc6d4bb9a"
+  },
+  "lean": {
+    "export": {
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenFortiethModelRefinementsExport.lean",
+      "sha256": "dabab73edb301d7adfa965ba8d1260c8907474ac940d7d21df5fb5859156a3e6"
+    },
+    "root": {
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenFortiethModelRefinements.lean",
+      "sha256": "a102a5181bf5b671fda6d63508c3e0a1f06b73ee03aa32223371a2c40004a762"
+    }
+  },
+  "model": {
+    "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/exact17-lean-to-sat/piqd-child40-core1-custody-model.json",
+    "sha256": "4691c0e416186c830f41e549f79076e1738fd83952d11371b4dc23ad8f7d3df7"
+  },
+  "parent_ingress": {
+    "parent_dimacs_sha256": "555d1d2facedc1cc3ea7a5bae31649b55e65fc2d14e8ad6e0742a023f9969034",
+    "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/exact17-lean-to-sat/piqd-ingress-manifest-thirty-ninth-model-refinements-core1.json",
+    "sha256": "df1c180056ee4c47e1d5ddc645ebda10a0129c9abcb6a41cace6749627469cd8"
+  },
+  "piqd": {
+    "backend": "cadical",
+    "daemon_build_receipt": {
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/exact17-lean-to-sat/piqd-child35-daemon-build-receipt.txt",
+      "sha256": "6e9c1d5c203d59ac2b29f800d73f4dbb0395b97865433f412ff4aa44c8e1b0a9"
+    },
+    "daemon_protocol_version": 1,
+    "daemon_sha256": "f89994bc10fcad69a264d8efbd7d76b8203c94c08f22b4536d3b473a12cee089",
+    "daemon_source_commit": "acefb4aba14765d45e38ac4193373f0aa210f22d",
+    "immutable_root_only": true,
+    "ingress": "raw-dimacs/v1",
+    "python_authored_successor_clause_allowed": false,
+    "solver_name": "piqd-satworker-cadical-3.0.0",
+    "solver_profile": "sat",
+    "solver_sha256": "0ee355934249f1b3f14a20928877391a87a0dd51326cf8c6135f75cba0b6b965",
+    "solver_signature": "cadical-3.0.0",
+    "stale_job_reuse_allowed": false
+  },
+  "schema": "p97-exact17-forty-first-model-refinements-piqd-ingress/v1",
+  "status": "PASS",
+  "validation": {
+    "child": {
+      "bytes": 291654272,
+      "clauses": 5847920,
+      "sha256": "fc19386fdd9703f5313e1bf49b164d87c5905c56c727cfea6408dc7d01e78d24",
+      "variables": 308
+    },
+    "model": {
+      "job_id": "3d2779d0-4962-417d-b62a-a482b20e2772",
+      "parent_replay_exact": true,
+      "sha256": "4691c0e416186c830f41e549f79076e1738fd83952d11371b4dc23ad8f7d3df7"
+    },
+    "motivating_model_cut_suffix_indices": [
+      3,
+      7,
+      11,
+      15,
+      19,
+      23,
+      27,
+      31,
+      35,
+      39,
+      43,
+      47,
+      51,
+      55,
+      59,
+      63,
+      67,
+      71,
+      75,
+      79,
+      83,
+      87,
+      91,
+      95,
+      99,
+      103,
+      107,
+      111,
+      115,
+      119,
+      123,
+      127,
+      131,
+      135,
+      139,
+      143,
+      147,
+      151,
+      155,
+      159,
+      163,
+      167,
+      171,
+      175,
+      179,
+      183,
+      187,
+      191,
+      195,
+      199,
+      203,
+      207,
+      211,
+      215,
+      219,
+      223,
+      227,
+      231,
+      235,
+      239,
+      243,
+      247,
+      251,
+      255,
+      259,
+      263,
+      267,
+      271,
+      275,
+      279,
+      283,
+      287,
+      291,
+      295,
+      299,
+      303,
+      307,
+      311,
+      315,
+      319,
+      323,
+      327,
+      331,
+      335
+    ],
+    "ordered_suffix_exact": true,
+    "ordered_suffix_sha256": "7699ee0e5dc4a3d9627b69c5246ec6ec0041450e00a562d60147dca607fc3bfa",
+    "parent": {
+      "clauses": 5847584,
+      "sha256": "555d1d2facedc1cc3ea7a5bae31649b55e65fc2d14e8ad6e0742a023f9969034"
+    },
+    "publication_state": "PROVISIONED",
+    "schema": "p97-exact17-child41-export-validation/v1",
+    "source_clause_families": [
+      "fortiethModelRefinementClauses"
+    ],
+    "status": "PASS"
+  }
+}

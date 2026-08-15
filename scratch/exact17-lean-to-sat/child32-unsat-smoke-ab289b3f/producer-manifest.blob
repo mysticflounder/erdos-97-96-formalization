@@ -1,0 +1,9 @@
+{
+  "backend": "cadical",
+  "daemon_sha256": "bb1c0283b3358219559f42bc2685c58d4728858ef5bf7a893b3a854f9958bad9",
+  "expected_result": "UNSAT",
+  "purpose": "exact17-child32-live-known-result-smoke",
+  "schema": "p97-exact17-child32-piqd-smoke/v1",
+  "solver_profile": "sat",
+  "solver_sha256": "0ee355934249f1b3f14a20928877391a87a0dd51326cf8c6135f75cba0b6b965"
+}

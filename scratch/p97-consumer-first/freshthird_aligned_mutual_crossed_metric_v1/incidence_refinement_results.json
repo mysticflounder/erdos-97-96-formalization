@@ -1,0 +1,59 @@
+{
+  "assignment_validation": {
+    "assignment": "generated/refined_global_k4_assignment.json",
+    "errors": [],
+    "status": "PASS"
+  },
+  "check_sat_count": 1,
+  "closure_claim": "NONE",
+  "cut": [
+    {
+      "htwo": "both active first-apex arms have cap-interior card >= 2",
+      "name": "first_apex_retained_branch_is_d44",
+      "source": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.oppApex1_rich_exactRetainedRadii_of_aligned (TwoSourceFreshThirdRetainedProducer.lean)"
+    },
+    {
+      "htwo": "each exact retained pair has two distinct endpoints",
+      "name": "first_apex_rich_slices_are_retained_pairs_up_to_swap",
+      "source": "oppApex1_rich_exactRetainedRadii_of_aligned + hfrontierInteriorEq + h\u03c1InteriorEq"
+    },
+    {
+      "htwo": "rich_two_arm[0] and rich_slice[0][0] cardinality >= 2",
+      "name": "aligned_c_first_not_in_first_apex_rich_arm_0",
+      "source": "freshThird_alignedRetainedConsumerPacket_sources_not_mem_firstApex_multiPointRadius"
+    },
+    {
+      "htwo": "rich_two_arm[0] and rich_slice[0][1] cardinality >= 2",
+      "name": "aligned_c_first_not_in_first_apex_rich_arm_1",
+      "source": "freshThird_alignedRetainedConsumerPacket_sources_not_mem_firstApex_multiPointRadius"
+    },
+    {
+      "htwo": "rich_two_arm[0] and rich_slice[0][0] cardinality >= 2",
+      "name": "aligned_c_second_not_in_first_apex_rich_arm_0",
+      "source": "freshThird_alignedRetainedConsumerPacket_sources_not_mem_firstApex_multiPointRadius"
+    },
+    {
+      "htwo": "rich_two_arm[0] and rich_slice[0][1] cardinality >= 2",
+      "name": "aligned_c_second_not_in_first_apex_rich_arm_1",
+      "source": "freshThird_alignedRetainedConsumerPacket_sources_not_mem_firstApex_multiPointRadius"
+    }
+  ],
+  "external": {
+    "cvc5": {
+      "seconds": 4.673,
+      "status": "SAT"
+    },
+    "z3": {
+      "seconds": 0.594,
+      "status": "SAT"
+    }
+  },
+  "fidelity": "source-entitled singleton/rich exclusion added; still not a complete Euclidean or original-P97 model",
+  "first_cap_composition_contract": "strict cap0 = P union P_rho union {c_first,c_second}; closed cap0 additionally contains apex1 and apex2",
+  "internal_z3": {
+    "seconds": 0.423,
+    "status": "SAT"
+  },
+  "query": "generated/refined_global_k4_neither_positive.smt2",
+  "scope": "exact-17 direct crossed incidence abstraction only"
+}

@@ -1,0 +1,34 @@
+{
+  "analysis_sha256": "9239f8e8ea5fb62f2464337777f8421b1f03fb23ec02ba84ef211bc3d18d9b68",
+  "canonical_records": [
+    "equality-convex-four-point-two-circle-bisector-order-reverse",
+    "equality-convex-four-point-two-circle-bisector-order",
+    "equality-convex-five-point",
+    "equality-convex-two-kalmanson-cancellation",
+    "equality-perpendicular-bisector-convex"
+  ],
+  "canonical_records_rejected": {
+    "equality-convex-five-point": true,
+    "equality-convex-four-point-two-circle-bisector-order": true,
+    "equality-convex-four-point-two-circle-bisector-order-reverse": true,
+    "equality-convex-two-kalmanson-cancellation": true,
+    "equality-perpendicular-bisector-convex": true
+  },
+  "clauses": 5846208,
+  "motivating_model_cut_clauses": {
+    "bisector": [
+      5846201
+    ],
+    "convex_five": [
+      5846205
+    ]
+  },
+  "new_clauses": 8,
+  "orbit_clauses": 4,
+  "parent_prefix_byte_identical": true,
+  "parent_sha256": "bc42cd2756d6b3d84c5eb265762bc346a893dbdbc01bbe8ac5dbcb2f53f89720",
+  "schema": "p97-exact17-twenty-first-model-refinements-export-validation/v1",
+  "suffix_sha256": "4844ca307319cd17e741e914125a3846ea0a7eba4e5dbabaae9bd7169ce74342",
+  "theorem_bank_sha256": "d33edb10672b492527bf5e57ec5ee0d0a4428649bbfefa39acf7b8aa214b0de0",
+  "variables": 308
+}

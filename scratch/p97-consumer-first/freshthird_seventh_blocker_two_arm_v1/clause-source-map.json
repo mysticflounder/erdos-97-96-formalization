@@ -1,0 +1,86 @@
+{
+  "equal_center": {
+    "source": {
+      "theorem": "FirstFiberCrossedSeventhBlockerBoundary.escapeRow_support_eq_actualBlockerRow_of_center_eq",
+      "lines": "1216-1239",
+      "clauses": [
+        "exact4(E7)",
+        "exact4(AB7)",
+        "escapePoint=0 and escapePoint\u2208E7\u2229AB7",
+        "centerE7=centerAB7",
+        "\u2200i, E7_i\u2194AB7_i"
+      ]
+    },
+    "assertion_count": 26,
+    "explicit_control": false,
+    "omissions": [
+      "metric",
+      "universal_lift",
+      "frozen_survivor"
+    ]
+  },
+  "first_apex": {
+    "source": {
+      "theorem": "FirstFiberCrossedSeventhBlockerBoundary.exists_mutualCrossDeletionRows_of_escapeCenter_eq_oppApex1",
+      "lines": "1296-1334",
+      "clauses": [
+        "exact4(E7)",
+        "z,w\u2208E7",
+        "z\u2260w",
+        "exact4(Kz), exact4(Kw)",
+        "w\u2209Kz and z\u2209Kw",
+        "escapeCenter=oppApex1",
+        "centerZ\u2260centerW"
+      ]
+    },
+    "assertion_count": 14,
+    "explicit_control": false,
+    "omissions": [
+      "metric",
+      "universal_lift",
+      "frozen_survivor"
+    ]
+  },
+  "equal_center_support_mismatch": {
+    "source": {
+      "theorem": "FirstFiberCrossedSeventhBlockerBoundary.escapeRow_support_eq_actualBlockerRow_of_center_eq",
+      "lines": "1216-1239",
+      "clauses": [
+        "exact4(E7)",
+        "exact4(AB7)",
+        "escapePoint=0 and escapePoint\u2208E7\u2229AB7",
+        "centerE7=centerAB7",
+        "\u2200i, E7_i\u2194AB7_i"
+      ]
+    },
+    "assertion_count": 28,
+    "explicit_control": true,
+    "omissions": [
+      "metric",
+      "universal_lift",
+      "frozen_survivor"
+    ]
+  },
+  "first_apex_center_collapse": {
+    "source": {
+      "theorem": "FirstFiberCrossedSeventhBlockerBoundary.exists_mutualCrossDeletionRows_of_escapeCenter_eq_oppApex1",
+      "lines": "1296-1334",
+      "clauses": [
+        "exact4(E7)",
+        "z,w\u2208E7",
+        "z\u2260w",
+        "exact4(Kz), exact4(Kw)",
+        "w\u2209Kz and z\u2209Kw",
+        "escapeCenter=oppApex1",
+        "centerZ\u2260centerW"
+      ]
+    },
+    "assertion_count": 15,
+    "explicit_control": true,
+    "omissions": [
+      "metric",
+      "universal_lift",
+      "frozen_survivor"
+    ]
+  }
+}

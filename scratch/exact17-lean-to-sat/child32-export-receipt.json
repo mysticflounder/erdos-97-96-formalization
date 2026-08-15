@@ -1,0 +1,63 @@
+{
+  "child": {
+    "bytes": 291620182,
+    "clauses": 5847240,
+    "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/exact17-lean-to-sat/exact17-thirty-second-root-thirty-first-model-refinements.cnf",
+    "sha256": "c325d3eedda8fe81e3d1c1d70645024f5b9ea8c36c20ca5cd1896f0934296a7d",
+    "variables": 308
+  },
+  "immutability": "exclusive-hard-link-and-exclusive-receipt/v1",
+  "lean": {
+    "export": {
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenThirtyFirstModelRefinementsExport.lean",
+      "sha256": "f44d959942dbc5e5418f3d660a9abaf01b6282fc9461d49bd997d3705d2dc410"
+    },
+    "root": {
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenThirtyFirstModelRefinements.lean",
+      "sha256": "d10a16a2f0c0339517f5132b5fcf4ff6a45d2d88015ded510584a796f774a973"
+    }
+  },
+  "parent": {
+    "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/exact17-lean-to-sat/exact17-thirty-first-root-thirtieth-model-refinements.cnf",
+    "sha256": "3c847c1ebcacf85256b65d54563584a8b89eb50f427fe268e2f916d4cdafa204"
+  },
+  "publication_ledger": {
+    "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/exact17-lean-to-sat/piqd-thirty-first-root-all-cancellation-family.json",
+    "sha256": "fd1ffabf7d8abf1124d8f5376b82ff1db43226ffe1aa7428d7de41ba5c4f5654"
+  },
+  "publication_sources": {
+    "analysis": {
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/exact17-lean-to-sat/audit-thirty-first-model-analysis-hardened.json",
+      "sha256": "f57ee5bd41a144ce749f6fe95015624f4659fdfd83b4914863d222ccf5c1c8eb"
+    },
+    "parent_ledger": {
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/exact17-lean-to-sat/piqd-thirtieth-root-all-cancellation-family.json",
+      "sha256": "4ef564d2091cd629d59945ac6af74a665383f5886b23655a2ffb05e144f7c2c1"
+    }
+  },
+  "publication_state": "PROVISIONED",
+  "schema": "p97-exact17-child32-immutable-export-receipt/v1",
+  "status": "PASS",
+  "validation": {
+    "child_bytes": 291620182,
+    "child_sha256": "c325d3eedda8fe81e3d1c1d70645024f5b9ea8c36c20ca5cd1896f0934296a7d",
+    "clauses": 5847240,
+    "duplicate_clauses": 0,
+    "duplicate_policy": "authenticated-parent-semantic-normalization+canonical-suffix/v2",
+    "extra_clauses": 0,
+    "minimal_occurrences": 84,
+    "missing_clauses": 0,
+    "new_clauses": 336,
+    "ordered_suffix_exact": true,
+    "ordered_suffix_sha256": "a899867813adb3ae77db1589dca06b14704de45bdf807382ad79b5bb09387ba2",
+    "parent_duplicate_literal_clauses": 21488,
+    "parent_prefix_byte_identical": true,
+    "parent_sha256": "3c847c1ebcacf85256b65d54563584a8b89eb50f427fe268e2f916d4cdafa204",
+    "publication_ledger_sha256": "fd1ffabf7d8abf1124d8f5376b82ff1db43226ffe1aa7428d7de41ba5c4f5654",
+    "publication_state": "PROVISIONED",
+    "publication_validator_called_twice": true,
+    "schema": "p97-exact17-thirty-first-model-refinements-export-validation/v1",
+    "status": "PASS",
+    "variables": 308
+  }
+}

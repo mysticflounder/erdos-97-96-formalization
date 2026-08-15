@@ -1,0 +1,34 @@
+{
+  "all_six_canonical_hits_replayed": true,
+  "analysis_sha256": "40b65b1b85af1f6a04bff9769a813d99b218d6ec3ba3a6edca36f68843f1de0a",
+  "child_sha256": "e88c12f36d113e8bbbe1484b27cbfa6f997a679f46d8b22e356f79d339f08827",
+  "clauses": 5846228,
+  "evidence_cnf_sha256": "dc44614e28c907d5c61b29e58cc6f6188e52a2504e119efa37157a81a56f7edb",
+  "hit_count": 6,
+  "model_sha256": "42eac9fddcdb4a5fa4edddcd3f92b4b3841b36ac40e06eaf8023c424cb222e86",
+  "motivating_model_cut_clauses": {
+    "bisector": [
+      5846211
+    ],
+    "cancellation": [
+      5846224
+    ],
+    "convex_five": [
+      5846215
+    ],
+    "duplicate_center": [
+      5846227
+    ],
+    "kalmanson_l": [
+      5846220
+    ]
+  },
+  "new_clauses": 20,
+  "orbit_clauses": 4,
+  "parent_prefix_byte_identical": true,
+  "parent_sha256": "dc44614e28c907d5c61b29e58cc6f6188e52a2504e119efa37157a81a56f7edb",
+  "schema": "p97-exact17-twenty-second-model-refinements-export-validation/v1",
+  "suffix_sha256": "c48839e07dcfbf58125114450d35d1fa57f42f2d333931a0d933924ed5916b98",
+  "theorem_bank_sha256": "4b21bde7d23b3a458a15b050cc5b6e867c5ac41660f42f27c1231d6b85248263",
+  "variables": 308
+}

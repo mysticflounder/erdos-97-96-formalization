@@ -1,0 +1,9 @@
+{
+  "wave": "freshthird_firstnonhit_global_blocker_quotient_v1",
+  "cases": ["retained", "common", "common_sameblocker"],
+  "logic": "QF_LIA",
+  "ambient_cardinality_bound": null,
+  "z3": "4.17.0",
+  "cvc5": "1.3.3",
+  "result": {"cases": "sat", "contradiction_control": "unsat", "malformed_control": "rejected", "semantic_survivor": "validated"}
+}

@@ -1,0 +1,657 @@
+{
+  "canonical_clause_count": 921,
+  "canonical_z3_status": "UNSAT",
+  "clause_core": [
+    {
+      "formula": "(let ((a!1 (+ (^ (+ x_12 (* (- 1.0) x_7)) 2.0) (^ (+ y_12 (* (- 1.0) y_7)) 2.0)))\n      (a!2 (+ (^ (+ x_12 (* (- 1.0) x_3)) 2.0) (^ (+ y_12 (* (- 1.0) y_3)) 2.0))))\n  (= a!1 a!2))",
+      "name": "k4_equal_12_7",
+      "source": "D.K4 four-witness common radius"
+    },
+    {
+      "formula": "(let ((a!1 (+ (^ (+ x_12 (* (- 1.0) x_7)) 2.0) (^ (+ y_12 (* (- 1.0) y_7)) 2.0))))\n  (= a!1 rich_r_2_0))",
+      "name": "rich_equal_2_0_7",
+      "source": "strict-cap rich slice on a common apex radius"
+    },
+    {
+      "formula": "(let ((a!1 (+ (^ (+ x_12 (* (- 1.0) x_3)) 2.0) (^ (+ y_12 (* (- 1.0) y_3)) 2.0))))\n  (= a!1 rich_r_2_1))",
+      "name": "rich_equal_2_1_3",
+      "source": "strict-cap rich slice on a common apex radius"
+    },
+    {
+      "formula": "(not (= rich_r_2_0 rich_r_2_1))",
+      "name": "rich_distinct_2",
+      "source": "D44 distinct radii"
+    }
+  ],
+  "clause_core_count": 4,
+  "clause_minimization_trace": [
+    {
+      "action": "KEEP",
+      "all_values_rational": true,
+      "candidate_clause_count": 3,
+      "dropped": "k4_equal_12_7",
+      "exact_z3_substitution": "PASS",
+      "fraction_replay": "PASS",
+      "seconds": 0.000906,
+      "status": "SAT",
+      "trial": 0
+    },
+    {
+      "action": "KEEP",
+      "all_values_rational": true,
+      "candidate_clause_count": 3,
+      "dropped": "rich_equal_2_0_7",
+      "exact_z3_substitution": "PASS",
+      "fraction_replay": "PASS",
+      "seconds": 0.000974,
+      "status": "SAT",
+      "trial": 1
+    },
+    {
+      "action": "KEEP",
+      "all_values_rational": true,
+      "candidate_clause_count": 3,
+      "dropped": "rich_equal_2_1_3",
+      "exact_z3_substitution": "PASS",
+      "fraction_replay": "PASS",
+      "seconds": 0.000851,
+      "status": "SAT",
+      "trial": 2
+    },
+    {
+      "action": "KEEP",
+      "all_values_rational": true,
+      "candidate_clause_count": 3,
+      "dropped": "rich_distinct_2",
+      "exact_z3_substitution": "PASS",
+      "fraction_replay": "PASS",
+      "seconds": 0.000822,
+      "status": "SAT",
+      "trial": 3
+    }
+  ],
+  "direct_syntactic_opposites": [],
+  "packet_core": [
+    {
+      "clause_count": 51,
+      "packet": "k4_witness_equalities::D.K4 four-witness common radius"
+    },
+    {
+      "clause_count": 12,
+      "packet": "rich_radius_pattern::strict-cap rich slice on a common apex radius"
+    },
+    {
+      "clause_count": 3,
+      "packet": "rich_radius_pattern::D44 distinct radii"
+    }
+  ],
+  "packet_core_clause_count": 66,
+  "packet_inventory": [
+    {
+      "clause_count": 2,
+      "packet": "geometry_core::Euclidean similarity gauge"
+    },
+    {
+      "clause_count": 3,
+      "packet": "geometry_core::CircumscribedMECPacket / Moser apices"
+    },
+    {
+      "clause_count": 17,
+      "packet": "geometry_core::minimum enclosing disk containment"
+    },
+    {
+      "clause_count": 3,
+      "packet": "geometry_core::triangleNonObtuse"
+    },
+    {
+      "clause_count": 680,
+      "packet": "geometry_core::BoundaryIndexing.boundary_ccw"
+    },
+    {
+      "clause_count": 51,
+      "packet": "cap_classification::CapTriple.arc_membership / OnArcOpposite"
+    },
+    {
+      "clause_count": 17,
+      "packet": "k4_witness_equalities::D.K4 four-witness positive radius"
+    },
+    {
+      "clause_count": 51,
+      "packet": "k4_witness_equalities::D.K4 four-witness common radius"
+    },
+    {
+      "clause_count": 17,
+      "packet": "selected_support_equalities::selectedAt source / actual blocker"
+    },
+    {
+      "clause_count": 51,
+      "packet": "selected_support_equalities::selected support equality at actual blocker"
+    },
+    {
+      "clause_count": 6,
+      "packet": "rich_radius_pattern::OppositeCapRichClassInteriorPattern positive radius"
+    },
+    {
+      "clause_count": 12,
+      "packet": "rich_radius_pattern::strict-cap rich slice on a common apex radius"
+    },
+    {
+      "clause_count": 8,
+      "packet": "rich_radius_pattern::hfrontierInteriorEq/h\u03c1InteriorEq exact retained first-cap slice"
+    },
+    {
+      "clause_count": 3,
+      "packet": "rich_radius_pattern::D44 distinct radii"
+    }
+  ],
+  "packet_minimization_trace": [
+    {
+      "action": "DROP",
+      "candidate_clause_count": 66,
+      "candidate_packet_count": 3,
+      "packet": "geometry_core::Euclidean similarity gauge",
+      "packet_clause_count": 2,
+      "seconds": 0.001058,
+      "status": "UNSAT"
+    },
+    {
+      "action": "DROP",
+      "candidate_clause_count": 66,
+      "candidate_packet_count": 3,
+      "packet": "geometry_core::CircumscribedMECPacket / Moser apices",
+      "packet_clause_count": 3,
+      "seconds": 0.001076,
+      "status": "UNSAT"
+    },
+    {
+      "action": "DROP",
+      "candidate_clause_count": 66,
+      "candidate_packet_count": 3,
+      "packet": "geometry_core::minimum enclosing disk containment",
+      "packet_clause_count": 17,
+      "seconds": 0.00102,
+      "status": "UNSAT"
+    },
+    {
+      "action": "DROP",
+      "candidate_clause_count": 66,
+      "candidate_packet_count": 3,
+      "packet": "geometry_core::triangleNonObtuse",
+      "packet_clause_count": 3,
+      "seconds": 0.001057,
+      "status": "UNSAT"
+    },
+    {
+      "action": "DROP",
+      "candidate_clause_count": 66,
+      "candidate_packet_count": 3,
+      "packet": "geometry_core::BoundaryIndexing.boundary_ccw",
+      "packet_clause_count": 680,
+      "seconds": 0.001008,
+      "status": "UNSAT"
+    },
+    {
+      "action": "DROP",
+      "candidate_clause_count": 66,
+      "candidate_packet_count": 3,
+      "packet": "cap_classification::CapTriple.arc_membership / OnArcOpposite",
+      "packet_clause_count": 51,
+      "seconds": 0.00107,
+      "status": "UNSAT"
+    },
+    {
+      "action": "DROP",
+      "candidate_clause_count": 66,
+      "candidate_packet_count": 3,
+      "packet": "k4_witness_equalities::D.K4 four-witness positive radius",
+      "packet_clause_count": 17,
+      "seconds": 0.001131,
+      "status": "UNSAT"
+    },
+    {
+      "action": "KEEP",
+      "candidate_clause_count": 15,
+      "candidate_packet_count": 2,
+      "exact_z3_substitution": "PASS",
+      "fraction_replay": "PASS",
+      "packet": "k4_witness_equalities::D.K4 four-witness common radius",
+      "packet_clause_count": 51,
+      "seconds": 0.001108,
+      "status": "SAT"
+    },
+    {
+      "action": "DROP",
+      "candidate_clause_count": 66,
+      "candidate_packet_count": 3,
+      "packet": "selected_support_equalities::selectedAt source / actual blocker",
+      "packet_clause_count": 17,
+      "seconds": 0.001087,
+      "status": "UNSAT"
+    },
+    {
+      "action": "DROP",
+      "candidate_clause_count": 66,
+      "candidate_packet_count": 3,
+      "packet": "selected_support_equalities::selected support equality at actual blocker",
+      "packet_clause_count": 51,
+      "seconds": 0.001059,
+      "status": "UNSAT"
+    },
+    {
+      "action": "DROP",
+      "candidate_clause_count": 66,
+      "candidate_packet_count": 3,
+      "packet": "rich_radius_pattern::OppositeCapRichClassInteriorPattern positive radius",
+      "packet_clause_count": 6,
+      "seconds": 0.001073,
+      "status": "UNSAT"
+    },
+    {
+      "action": "KEEP",
+      "candidate_clause_count": 54,
+      "candidate_packet_count": 2,
+      "exact_z3_substitution": "PASS",
+      "fraction_replay": "PASS",
+      "packet": "rich_radius_pattern::strict-cap rich slice on a common apex radius",
+      "packet_clause_count": 12,
+      "seconds": 0.002068,
+      "status": "SAT"
+    },
+    {
+      "action": "DROP",
+      "candidate_clause_count": 66,
+      "candidate_packet_count": 3,
+      "packet": "rich_radius_pattern::hfrontierInteriorEq/h\u03c1InteriorEq exact retained first-cap slice",
+      "packet_clause_count": 8,
+      "seconds": 0.0011,
+      "status": "UNSAT"
+    },
+    {
+      "action": "KEEP",
+      "candidate_clause_count": 63,
+      "candidate_packet_count": 2,
+      "exact_z3_substitution": "PASS",
+      "fraction_replay": "PASS",
+      "packet": "rich_radius_pattern::D44 distinct radii",
+      "packet_clause_count": 3,
+      "seconds": 0.002079,
+      "status": "SAT"
+    }
+  ],
+  "replays": [
+    {
+      "artifact": "generated/clause_core.smt2",
+      "check_sat_count": 1,
+      "clause_count": 4,
+      "internal_z3": {
+        "seconds": 0.000918,
+        "status": "UNSAT"
+      },
+      "name": "clause_core",
+      "solvers": {
+        "cvc5": {
+          "seconds": 0.006204,
+          "status": "UNSAT"
+        },
+        "z3": {
+          "seconds": 0.007652,
+          "status": "UNSAT"
+        }
+      }
+    },
+    {
+      "artifact": "generated/clause_core_drop_00_k4_equal_12_7.smt2",
+      "check_sat_count": 1,
+      "clause_count": 3,
+      "exact_model_validation": {
+        "all_values_rational": true,
+        "exact_z3_substitution": "PASS",
+        "fraction_replay": "PASS",
+        "model": "generated/clause_core_drop_00_k4_equal_12_7_exact_model.json"
+      },
+      "internal_z3": {
+        "seconds": 0.001098,
+        "status": "SAT"
+      },
+      "name": "clause_core_drop_00_k4_equal_12_7",
+      "solvers": {
+        "cvc5": {
+          "seconds": 0.006135,
+          "status": "SAT"
+        },
+        "z3": {
+          "seconds": 0.006912,
+          "status": "SAT"
+        }
+      }
+    },
+    {
+      "artifact": "generated/clause_core_drop_01_rich_equal_2_0_7.smt2",
+      "check_sat_count": 1,
+      "clause_count": 3,
+      "exact_model_validation": {
+        "all_values_rational": true,
+        "exact_z3_substitution": "PASS",
+        "fraction_replay": "PASS",
+        "model": "generated/clause_core_drop_01_rich_equal_2_0_7_exact_model.json"
+      },
+      "internal_z3": {
+        "seconds": 0.001116,
+        "status": "SAT"
+      },
+      "name": "clause_core_drop_01_rich_equal_2_0_7",
+      "solvers": {
+        "cvc5": {
+          "seconds": 0.005994,
+          "status": "SAT"
+        },
+        "z3": {
+          "seconds": 0.006744,
+          "status": "SAT"
+        }
+      }
+    },
+    {
+      "artifact": "generated/clause_core_drop_02_rich_equal_2_1_3.smt2",
+      "check_sat_count": 1,
+      "clause_count": 3,
+      "exact_model_validation": {
+        "all_values_rational": true,
+        "exact_z3_substitution": "PASS",
+        "fraction_replay": "PASS",
+        "model": "generated/clause_core_drop_02_rich_equal_2_1_3_exact_model.json"
+      },
+      "internal_z3": {
+        "seconds": 0.001138,
+        "status": "SAT"
+      },
+      "name": "clause_core_drop_02_rich_equal_2_1_3",
+      "solvers": {
+        "cvc5": {
+          "seconds": 0.005945,
+          "status": "SAT"
+        },
+        "z3": {
+          "seconds": 0.006594,
+          "status": "SAT"
+        }
+      }
+    },
+    {
+      "artifact": "generated/clause_core_drop_03_rich_distinct_2.smt2",
+      "check_sat_count": 1,
+      "clause_count": 3,
+      "exact_model_validation": {
+        "all_values_rational": true,
+        "exact_z3_substitution": "PASS",
+        "fraction_replay": "PASS",
+        "model": "generated/clause_core_drop_03_rich_distinct_2_exact_model.json"
+      },
+      "internal_z3": {
+        "seconds": 0.001104,
+        "status": "SAT"
+      },
+      "name": "clause_core_drop_03_rich_distinct_2",
+      "solvers": {
+        "cvc5": {
+          "seconds": 0.005929,
+          "status": "SAT"
+        },
+        "z3": {
+          "seconds": 0.006669,
+          "status": "SAT"
+        }
+      }
+    },
+    {
+      "artifact": "generated/packet_core.smt2",
+      "check_sat_count": 1,
+      "clause_count": 66,
+      "internal_z3": {
+        "seconds": 0.001448,
+        "status": "UNSAT"
+      },
+      "name": "packet_core",
+      "solvers": {
+        "cvc5": {
+          "seconds": 0.015528,
+          "status": "UNSAT"
+        },
+        "z3": {
+          "seconds": 0.007828,
+          "status": "UNSAT"
+        }
+      }
+    },
+    {
+      "artifact": "generated/packet_core_drop_00.smt2",
+      "check_sat_count": 1,
+      "clause_count": 15,
+      "exact_model_validation": {
+        "all_values_rational": true,
+        "exact_z3_substitution": "PASS",
+        "fraction_replay": "PASS",
+        "model": "generated/packet_core_drop_00_exact_model.json"
+      },
+      "internal_z3": {
+        "seconds": 0.001508,
+        "status": "SAT"
+      },
+      "name": "packet_core_drop_00",
+      "solvers": {
+        "cvc5": {
+          "seconds": 0.026485,
+          "status": "SAT"
+        },
+        "z3": {
+          "seconds": 0.007309,
+          "status": "SAT"
+        }
+      }
+    },
+    {
+      "artifact": "generated/packet_core_drop_01.smt2",
+      "check_sat_count": 1,
+      "clause_count": 54,
+      "exact_model_validation": {
+        "all_values_rational": true,
+        "exact_z3_substitution": "PASS",
+        "fraction_replay": "PASS",
+        "model": "generated/packet_core_drop_01_exact_model.json"
+      },
+      "internal_z3": {
+        "seconds": 0.00245,
+        "status": "SAT"
+      },
+      "name": "packet_core_drop_01",
+      "solvers": {
+        "cvc5": {
+          "seconds": 0.017615,
+          "status": "SAT"
+        },
+        "z3": {
+          "seconds": 0.008665,
+          "status": "SAT"
+        }
+      }
+    },
+    {
+      "artifact": "generated/packet_core_drop_02.smt2",
+      "check_sat_count": 1,
+      "clause_count": 63,
+      "exact_model_validation": {
+        "all_values_rational": true,
+        "exact_z3_substitution": "PASS",
+        "fraction_replay": "PASS",
+        "model": "generated/packet_core_drop_02_exact_model.json"
+      },
+      "internal_z3": {
+        "seconds": 0.002544,
+        "status": "SAT"
+      },
+      "name": "packet_core_drop_02",
+      "solvers": {
+        "cvc5": {
+          "seconds": 0.019248,
+          "status": "SAT"
+        },
+        "z3": {
+          "seconds": 0.008912,
+          "status": "SAT"
+        }
+      }
+    },
+    {
+      "artifact": "generated/known_sat.smt2",
+      "check_sat_count": 1,
+      "clause_count": 2,
+      "exact_model_validation": {
+        "all_values_rational": true,
+        "exact_z3_substitution": "PASS",
+        "fraction_replay": "PASS",
+        "model": "generated/known_sat_exact_model.json"
+      },
+      "internal_z3": {
+        "seconds": 0.000817,
+        "status": "SAT"
+      },
+      "name": "known_sat",
+      "solvers": {
+        "cvc5": {
+          "seconds": 0.005075,
+          "status": "SAT"
+        },
+        "z3": {
+          "seconds": 0.006006,
+          "status": "SAT"
+        }
+      }
+    },
+    {
+      "artifact": "generated/known_malformed_unsat.smt2",
+      "check_sat_count": 1,
+      "clause_count": 2,
+      "internal_z3": {
+        "seconds": 5.6e-05,
+        "status": "UNSAT"
+      },
+      "name": "known_malformed_unsat",
+      "solvers": {
+        "cvc5": {
+          "seconds": 0.004688,
+          "status": "UNSAT"
+        },
+        "z3": {
+          "seconds": 0.005522,
+          "status": "UNSAT"
+        }
+      }
+    },
+    {
+      "artifact": "generated/parent_malformed_reversed_boundary.smt2",
+      "check_sat_count": 1,
+      "clause_count": 706,
+      "internal_z3": {
+        "seconds": 0.015425,
+        "status": "UNSAT"
+      },
+      "name": "parent_malformed_reversed_boundary",
+      "solvers": {
+        "cvc5": {
+          "seconds": 0.059943,
+          "status": "UNSAT"
+        },
+        "z3": {
+          "seconds": 0.030995,
+          "status": "UNSAT"
+        }
+      }
+    },
+    {
+      "artifact": "generated/parent_malformed_break_k4_equality.smt2",
+      "check_sat_count": 1,
+      "clause_count": 137,
+      "internal_z3": {
+        "seconds": 0.00036,
+        "status": "UNSAT"
+      },
+      "name": "parent_malformed_break_k4_equality",
+      "solvers": {
+        "cvc5": {
+          "seconds": 0.012464,
+          "status": "UNSAT"
+        },
+        "z3": {
+          "seconds": 0.007273,
+          "status": "UNSAT"
+        }
+      }
+    },
+    {
+      "artifact": "generated/parent_malformed_equal_rich_radii.smt2",
+      "check_sat_count": 1,
+      "clause_count": 30,
+      "internal_z3": {
+        "seconds": 0.000143,
+        "status": "UNSAT"
+      },
+      "name": "parent_malformed_equal_rich_radii",
+      "solvers": {
+        "cvc5": {
+          "seconds": 0.006673,
+          "status": "UNSAT"
+        },
+        "z3": {
+          "seconds": 0.005826,
+          "status": "UNSAT"
+        }
+      }
+    },
+    {
+      "artifact": "generated/parent_malformed_break_singleton.smt2",
+      "check_sat_count": 1,
+      "clause_count": 14,
+      "internal_z3": {
+        "seconds": 9.9e-05,
+        "status": "UNSAT"
+      },
+      "name": "parent_malformed_break_singleton",
+      "solvers": {
+        "cvc5": {
+          "seconds": 0.005854,
+          "status": "UNSAT"
+        },
+        "z3": {
+          "seconds": 0.005577,
+          "status": "UNSAT"
+        }
+      }
+    }
+  ],
+  "scope": "one frozen exact-17 direct-crossed assignment; finite solver diagnostic only; no CE, universal, or Lean closure claim",
+  "tracked_clause_seed": {
+    "extracted_by": "Z3 assert_and_track over the complete canonical universe",
+    "fresh_seed_replay": "UNSAT",
+    "seed_clause_count": 4,
+    "seed_names": [
+      "k4_equal_12_7",
+      "rich_equal_2_0_7",
+      "rich_equal_2_1_3",
+      "rich_distinct_2"
+    ],
+    "tracked_check_seconds": 0.010671,
+    "universe_clause_count": 921
+  },
+  "tracked_packet_seed": {
+    "extracted_by": "Z3 assert_and_track over complete semantic packet universe",
+    "fresh_seed_replay": "UNSAT",
+    "seed_packet_count": 3,
+    "seed_packets": [
+      "k4_witness_equalities::D.K4 four-witness common radius",
+      "rich_radius_pattern::strict-cap rich slice on a common apex radius",
+      "rich_radius_pattern::D44 distinct radii"
+    ],
+    "tracked_check_seconds": 0.009675,
+    "universe_packet_count": 14
+  }
+}

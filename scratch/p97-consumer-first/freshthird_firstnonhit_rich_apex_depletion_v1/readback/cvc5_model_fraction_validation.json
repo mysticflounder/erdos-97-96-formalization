@@ -1,0 +1,157 @@
+{
+  "V_radius_partition_2_plus_1": {
+    "detail": [
+      2,
+      1
+    ],
+    "ok": true
+  },
+  "V_subset_K_card_three": {
+    "detail": [
+      "k0",
+      "k1",
+      "k2"
+    ],
+    "ok": true
+  },
+  "all_checks": {
+    "detail": 16,
+    "ok": true
+  },
+  "all_named_points_strict_hull_vertices": {
+    "detail": {
+      "k0->p": "9/50",
+      "k1->r2b": "3/170",
+      "k2->r2a": "3/4250",
+      "k3->k0": "9/50",
+      "p->k1": "3/170",
+      "q->r1a": "3/250",
+      "r1a->k3": "3/250",
+      "r1b->q": "3/650",
+      "r2a->r1b": "3/650",
+      "r2b->k2": "3/4250"
+    },
+    "ok": true
+  },
+  "boundary_lists_all_points": {
+    "detail": [
+      "r2b",
+      "k2",
+      "r2a",
+      "r1b",
+      "q",
+      "r1a",
+      "k3",
+      "k0",
+      "p",
+      "k1"
+    ],
+    "ok": true
+  },
+  "deleted_classes_each_card_three": {
+    "detail": [
+      [
+        "q",
+        "r1a",
+        "r1b"
+      ],
+      [
+        "k3",
+        "r2a",
+        "r2b"
+      ]
+    ],
+    "ok": true
+  },
+  "each_single_restoration_has_exact_four": {
+    "detail": {
+      "k0": 4,
+      "k1": 4,
+      "k2": 4
+    },
+    "ok": true
+  },
+  "named_noncenter_points_partitioned_by_two_classes": {
+    "detail": [
+      "k0",
+      "k1",
+      "k2",
+      "k3",
+      "q",
+      "r1a",
+      "r1b",
+      "r2a",
+      "r2b"
+    ],
+    "ok": true
+  },
+  "p_radius1_class_exact": {
+    "detail": [
+      "k0",
+      "k1",
+      "q",
+      "r1a",
+      "r1b"
+    ],
+    "ok": true
+  },
+  "p_radius2_class_exact": {
+    "detail": [
+      "k2",
+      "k3",
+      "r2a",
+      "r2b"
+    ],
+    "ok": true
+  },
+  "pairwise_distinct": {
+    "detail": 10,
+    "ok": true
+  },
+  "positive_distinct_radii": {
+    "detail": [
+      "5/4",
+      "37/20"
+    ],
+    "ok": true
+  },
+  "q_circle_exactly_K": {
+    "detail": [
+      "k0",
+      "k1",
+      "k2",
+      "k3"
+    ],
+    "ok": true
+  },
+  "represented_D44_rich_profile": {
+    "detail": [
+      5,
+      4
+    ],
+    "ok": true
+  },
+  "represented_deletion_blocks_K4": {
+    "detail": [
+      3,
+      3
+    ],
+    "ok": true
+  },
+  "source_allowed_alias_k3": {
+    "detail": [
+      "k3",
+      "r2a",
+      "r2b"
+    ],
+    "ok": true
+  },
+  "source_allowed_alias_q": {
+    "detail": [
+      "q",
+      "r1a",
+      "r1b"
+    ],
+    "ok": true
+  }
+}

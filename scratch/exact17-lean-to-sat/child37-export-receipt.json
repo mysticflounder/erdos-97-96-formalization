@@ -1,0 +1,59 @@
+{
+  "child": {
+    "bytes": 291621474,
+    "clauses": 5847268,
+    "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/exact17-lean-to-sat/exact17-thirty-seventh-root-thirty-sixth-model-refinements.cnf",
+    "sha256": "98f58d8cf71feb1201f30956e762f3a5b22acfe09f350070dfa7f83bed8640b3",
+    "variables": 308
+  },
+  "immutability": "exclusive-hard-link-and-exclusive-receipt/v1",
+  "lean": {
+    "export": {
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenThirtySixthModelRefinementsExport.lean",
+      "sha256": "64fcdd40d2b8ba0edf75117971564581ab3cd7e0380ba10f9f8bee083fe22a52"
+    },
+    "root": {
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenThirtySixthModelRefinements.lean",
+      "sha256": "f92dc54ba64350a004bd8fa9a60aa9fe645bbc01c96b2655b21cf1735830c1b7"
+    }
+  },
+  "model": {
+    "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/exact17-lean-to-sat/piqd-child36-core1-custody-model.json",
+    "sha256": "1a6aacbd6a0d9049af1ad578efd69d23f3e71be982624cb418488785366e7dd0"
+  },
+  "parent": {
+    "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/exact17-lean-to-sat/exact17-thirty-sixth-root-thirty-fifth-model-refinements.cnf",
+    "sha256": "e2236eaa12b10117c0540b2ea545f177e5070b6d96a0ac96668a733fe501eae5"
+  },
+  "publication_state": "PROVISIONED",
+  "schema": "p97-exact17-child37-immutable-export-receipt/v1",
+  "status": "PASS",
+  "validation": {
+    "child": {
+      "bytes": 291621474,
+      "clauses": 5847268,
+      "sha256": "98f58d8cf71feb1201f30956e762f3a5b22acfe09f350070dfa7f83bed8640b3",
+      "variables": 308
+    },
+    "model": {
+      "job_id": "acc2df0f-b219-46d7-9d3b-a926fc2465a3",
+      "parent_replay_exact": true,
+      "sha256": "1a6aacbd6a0d9049af1ad578efd69d23f3e71be982624cb418488785366e7dd0"
+    },
+    "motivating_model_cut_suffix_indices": [
+      3
+    ],
+    "ordered_suffix_exact": true,
+    "ordered_suffix_sha256": "120a3f292c6ffcc912a8d69ae7e496303592356c28e1dfef1f1f2732b383cd47",
+    "parent": {
+      "clauses": 5847264,
+      "sha256": "e2236eaa12b10117c0540b2ea545f177e5070b6d96a0ac96668a733fe501eae5"
+    },
+    "publication_state": "PROVISIONED",
+    "schema": "p97-exact17-child37-export-validation/v1",
+    "source_clause_families": [
+      "child36SixHitCancellationClauses"
+    ],
+    "status": "PASS"
+  }
+}

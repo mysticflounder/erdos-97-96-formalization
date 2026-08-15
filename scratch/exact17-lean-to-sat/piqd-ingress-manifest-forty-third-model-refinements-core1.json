@@ -1,0 +1,117 @@
+{
+  "dimacs": {
+    "bytes": 291694814,
+    "checked_new_clauses": 140,
+    "clauses": 5848592,
+    "parent_prefix_clauses": 5848452,
+    "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/exact17-lean-to-sat/exact17-forty-third-root-forty-second-model-refinements.cnf",
+    "sha256": "dbfbd84473cfe86a0e596322c0c0af8a077fc830ab5a9976c5efa7ea80a96c76",
+    "variables": 308
+  },
+  "export_receipt": {
+    "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/exact17-lean-to-sat/child43-export-receipt.json",
+    "schema": "p97-exact17-child43-immutable-export-receipt/v1",
+    "sha256": "32e0f8a48e02447d1ffee02986a3fcfdeba1c18b079ed5d7cd6de5e73aa59ae3"
+  },
+  "lean": {
+    "export": {
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenFortySecondModelRefinementsExport.lean",
+      "sha256": "467cd65cd426e1be21759aedf87602150d5573aa9201e7dfe5fc810b898fd414"
+    },
+    "root": {
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenFortySecondModelRefinements.lean",
+      "sha256": "702928b75a8e5574a7f5f1ef8943c6a4c56f6bd5aaa6690f48307ec4ca9bed49"
+    }
+  },
+  "model": {
+    "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/exact17-lean-to-sat/piqd-child42-core1-custody-model.json",
+    "sha256": "9df868b2160c2e3b1f37cee35212c4cc405f63b3ad2f8671eacd2b6b52419bad"
+  },
+  "parent_ingress": {
+    "parent_dimacs_sha256": "375b7bc42381175119545627ab55c6bacb285fa35e4486f0b11193300620921f",
+    "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/exact17-lean-to-sat/piqd-ingress-manifest-forty-second-model-refinements-core1.json",
+    "sha256": "8df92c533959f8717b2d897756d5c668e95f6adf9bb7bdca6eb5d8ee7ef758e4"
+  },
+  "piqd": {
+    "backend": "cadical",
+    "daemon_build_receipt": {
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/exact17-lean-to-sat/piqd-child35-daemon-build-receipt.txt",
+      "sha256": "6e9c1d5c203d59ac2b29f800d73f4dbb0395b97865433f412ff4aa44c8e1b0a9"
+    },
+    "daemon_protocol_version": 1,
+    "daemon_sha256": "f89994bc10fcad69a264d8efbd7d76b8203c94c08f22b4536d3b473a12cee089",
+    "daemon_source_commit": "acefb4aba14765d45e38ac4193373f0aa210f22d",
+    "immutable_root_only": true,
+    "ingress": "raw-dimacs/v1",
+    "python_authored_successor_clause_allowed": false,
+    "solver_name": "piqd-satworker-cadical-3.0.0",
+    "solver_profile": "sat",
+    "solver_sha256": "0ee355934249f1b3f14a20928877391a87a0dd51326cf8c6135f75cba0b6b965",
+    "solver_signature": "cadical-3.0.0",
+    "stale_job_reuse_allowed": false
+  },
+  "schema": "p97-exact17-forty-third-model-refinements-piqd-ingress/v1",
+  "status": "PASS",
+  "validation": {
+    "child": {
+      "bytes": 291694814,
+      "clauses": 5848592,
+      "sha256": "dbfbd84473cfe86a0e596322c0c0af8a077fc830ab5a9976c5efa7ea80a96c76",
+      "variables": 308
+    },
+    "model": {
+      "job_id": "283f5c21-de62-4318-8a11-bcb4632a5f76",
+      "parent_replay_exact": true,
+      "sha256": "9df868b2160c2e3b1f37cee35212c4cc405f63b3ad2f8671eacd2b6b52419bad"
+    },
+    "motivating_model_cut_suffix_indices": [
+      3,
+      7,
+      11,
+      15,
+      19,
+      23,
+      27,
+      31,
+      35,
+      39,
+      43,
+      47,
+      51,
+      55,
+      59,
+      63,
+      67,
+      71,
+      75,
+      79,
+      83,
+      87,
+      91,
+      95,
+      99,
+      103,
+      107,
+      111,
+      115,
+      119,
+      123,
+      127,
+      131,
+      135,
+      139
+    ],
+    "ordered_suffix_exact": true,
+    "ordered_suffix_sha256": "0c8d881cd40e7ae523961d8a93fa8df8ab598791d03b2b5cef40aa1ed5781775",
+    "parent": {
+      "clauses": 5848452,
+      "sha256": "375b7bc42381175119545627ab55c6bacb285fa35e4486f0b11193300620921f"
+    },
+    "publication_state": "PROVISIONED",
+    "schema": "p97-exact17-child43-export-validation/v1",
+    "source_clause_families": [
+      "forty-secondModelRefinementClauses"
+    ],
+    "status": "PASS"
+  }
+}

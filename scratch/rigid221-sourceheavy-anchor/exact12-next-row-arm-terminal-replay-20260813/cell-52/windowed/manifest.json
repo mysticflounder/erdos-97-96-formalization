@@ -1,0 +1,255 @@
+{
+  "caps": {
+    "max_actions": 4000,
+    "max_lrat_bytes": 4194304
+  },
+  "checkpoints": [
+    {
+      "byte_count": 5129210,
+      "clause_count": 369326,
+      "index": 0,
+      "path": "checkpoints/checkpoint-0000.cnf",
+      "sha256": "e3db2d364123de8b946e7643efe08a621087d239ac3b7f4d1893a31f432f25f3"
+    },
+    {
+      "byte_count": 1137,
+      "clause_count": 65,
+      "index": 1,
+      "path": "checkpoints/checkpoint-0001.cnf",
+      "sha256": "0969b73fdbb6abe5f19310cf97b0887a0cd8798e147f384888ede7f8bd91cd03"
+    },
+    {
+      "byte_count": 535,
+      "clause_count": 33,
+      "index": 2,
+      "path": "checkpoints/checkpoint-0002.cnf",
+      "sha256": "41b9080b397a81c6fa6c9860386269524d007c4c19bf206a6e0073d78362d20a"
+    }
+  ],
+  "claim_scope": "This package is a deterministic bounded-window re-encoding of one hash-verified two-shard pure-RUP package. It is not itself a RUP proof check, a source-to-CNF bridge, or a production theorem.",
+  "counts": {
+    "checkpoints": 3,
+    "max_checkpoint_bytes": 5129210,
+    "max_checkpoint_clauses": 369326,
+    "shard_1": {
+      "additions": 3,
+      "deleted_ids": 369264,
+      "deletions": 4,
+      "hints": 49,
+      "lines": 7,
+      "max_window_lines": 7,
+      "max_window_lrat_bytes": 2474193,
+      "peak_active_clause_count": 369326,
+      "windows": 1
+    },
+    "shard_2": {
+      "additions": 4,
+      "deleted_ids": 36,
+      "deletions": 3,
+      "hints": 67,
+      "lines": 7,
+      "max_window_lines": 7,
+      "max_window_lrat_bytes": 365,
+      "peak_active_clause_count": 66,
+      "windows": 1
+    },
+    "terminal_window": "shard-2/window-0001",
+    "variable_count": 42730,
+    "windows": 2
+  },
+  "epistemic_status": "STRUCTURALLY VALIDATED WINDOWED PURE-RUP SHARDS; LEAN REPLAY REQUIRED",
+  "invariants": [
+    "The parent two-shard package fully verifies against its manifest hashes before any windowing starts.",
+    "Windows never split an LRAT line; a window closes before the action that would exceed the action or byte cap, and a single action larger than the byte cap fails closed.",
+    "Adjacent windows reference one shared canonical checkpoint artifact by index; no boundary CNF is materialized twice.",
+    "Checkpoint 0 is byte-identical to the parent start CNF and the shard-boundary checkpoint is byte-identical to the parent checkpoint CNF, so the two logical shards are preserved.",
+    "Every checkpoint lists the active clauses in increasing shard-local id order with dense window-local ids.",
+    "Every window map is total on the window's local ids and injective into shard-local and global ids.",
+    "Every hint and deletion references an active clause and translates through the window map; unseen, inactive, or unmapped references fail closed.",
+    "Addition ids are dense per shard and every action line must round-trip to its canonical spelling.",
+    "The terminal window derives exactly one empty clause and no action follows it."
+  ],
+  "numbering": {
+    "checkpoint_order": "increasing_shard_local_clause_id",
+    "deletion_action_id": 1,
+    "map_columns": [
+      "window_local_id",
+      "shard_local_id",
+      "global_id"
+    ],
+    "parent": {
+      "base_clause_count": 369326,
+      "checkpoint_active_clause_count": 65,
+      "second_shard_first_global_addition": 369330,
+      "second_shard_first_local_addition": 66
+    },
+    "shard_1_global_ids": "shard-local ids equal parent global ids",
+    "shard_2_global_ids": "checkpoint rows translate through the parent checkpoint map; additions are offset into parent global addition ids",
+    "shard_boundary_checkpoint": 1
+  },
+  "package_sha256": "0e1b6777e70e6a447609c339e93e36a3b1e3eb44882ae7f644075de7170acd89",
+  "schema": "p97-windowed-pure-rup-package-v1",
+  "source": {
+    "parent_package": {
+      "artifacts": {
+        "checkpoint_cnf": {
+          "byte_count": 1137,
+          "sha256": "0969b73fdbb6abe5f19310cf97b0887a0cd8798e147f384888ede7f8bd91cd03"
+        },
+        "checkpoint_map": {
+          "byte_count": 660,
+          "sha256": "9792c1a30b534a46ce6fad0e7216741bcb35950c20fed8a198e4daf7b1cc4955"
+        },
+        "shard_1_lrat": {
+          "byte_count": 2474193,
+          "sha256": "989dadb8ef7b86f15dec4405fe9eff6a406a5965777e0338d35176ca28fc3c42"
+        },
+        "shard_2_lrat": {
+          "byte_count": 365,
+          "sha256": "6680e5eb8c4e1491ae0844733507f72eac6249f84e8a866c569d3cfea5be8e48"
+        },
+        "start_cnf": {
+          "byte_count": 5129210,
+          "sha256": "e3db2d364123de8b946e7643efe08a621087d239ac3b7f4d1893a31f432f25f3"
+        }
+      },
+      "package_sha256": "c71911b2f02cf234135879ecbf93511b1980e641e0927f07b7f284472df28168",
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/rigid221-sourceheavy-anchor/exact12-next-row-arm-terminal-replay-20260813/cell-52/checkpointed",
+      "schema": "p97-checkpointed-pure-rup-package-v1"
+    },
+    "pure_rup_source": {
+      "cnf": {
+        "byte_count": 5129210,
+        "path": "terminal.cnf",
+        "sha256": "e3db2d364123de8b946e7643efe08a621087d239ac3b7f4d1893a31f432f25f3"
+      },
+      "manifest": {
+        "byte_count": 401,
+        "path": "source-manifest.json",
+        "sha256": "4b9a0f2036d022327d7f7ebb55b14ba10d1e67e719eab5abe91c3577d776eb54"
+      },
+      "manifest_content": {
+        "artifacts": {
+          "cnf": {
+            "byte_count": 5129210,
+            "path": "terminal.cnf",
+            "sha256": "e3db2d364123de8b946e7643efe08a621087d239ac3b7f4d1893a31f432f25f3"
+          },
+          "normalized_lrat": {
+            "byte_count": 2474997,
+            "path": "normalized.lrat",
+            "sha256": "eb249bc4f7032b1255a97abf5d62384021e2028ce18197dbbe3fc73d634f3de1"
+          }
+        },
+        "schema": "p97-pure-rup-source-v1"
+      },
+      "normalized_lrat": {
+        "byte_count": 2474997,
+        "path": "normalized.lrat",
+        "sha256": "eb249bc4f7032b1255a97abf5d62384021e2028ce18197dbbe3fc73d634f3de1"
+      },
+      "schema": "p97-pure-rup-source-v1"
+    }
+  },
+  "tools": {
+    "lean_checker": {
+      "byte_count": 32211,
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/Certificate/CheckpointedRup.lean",
+      "sha256": "6c670c24b989f8024f43f6362ffc031c040eba77e68293060aa65cb9cb25a8e8"
+    },
+    "parent_materializer": {
+      "byte_count": 44010,
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scripts/materialize_checkpointed_rup.py",
+      "sha256": "92e001e5b89e98a769ff2f804c97989ada87a5117eee71c29bac84357fcea51d"
+    },
+    "windowed_materializer": {
+      "byte_count": 57475,
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scripts/materialize_windowed_rup.py",
+      "sha256": "7c01df27357aa56dd4a760571677098c9c2c0d8c568e6a5386e54ae4f3e3955f"
+    }
+  },
+  "windows": {
+    "shard_1": [
+      {
+        "artifacts": {
+          "actions_lrat": {
+            "byte_count": 2474193,
+            "path": "shard-1/window-0001/actions.lrat",
+            "sha256": "989dadb8ef7b86f15dec4405fe9eff6a406a5965777e0338d35176ca28fc3c42"
+          },
+          "map": {
+            "byte_count": 7422635,
+            "path": "shard-1/window-0001/map.tsv",
+            "sha256": "6d5d981f17c506f3d799aeeace79b1b68de5caec7d4e78e5949888a99b8de94a"
+          }
+        },
+        "counts": {
+          "additions": 3,
+          "deleted_ids": 369264,
+          "deletions": 4,
+          "hints": 49,
+          "lines": 7
+        },
+        "directory": "shard-1/window-0001",
+        "end_checkpoint": 1,
+        "index": 1,
+        "numbering": {
+          "addition_shard_ids": [
+            369327,
+            369329
+          ],
+          "end_clause_count": 65,
+          "first_local_addition_id": 369327,
+          "source_lines": [
+            1,
+            7
+          ],
+          "start_clause_count": 369326
+        },
+        "role": "rebase",
+        "start_checkpoint": 0
+      }
+    ],
+    "shard_2": [
+      {
+        "artifacts": {
+          "actions_lrat": {
+            "byte_count": 365,
+            "path": "shard-2/window-0001/actions.lrat",
+            "sha256": "6680e5eb8c4e1491ae0844733507f72eac6249f84e8a866c569d3cfea5be8e48"
+          },
+          "map": {
+            "byte_count": 920,
+            "path": "shard-2/window-0001/map.tsv",
+            "sha256": "006cd96c1e8dbb51d3f6bfb71eff675ec4a9ad38e8dfafc384d4fbdf4dd8e98e"
+          }
+        },
+        "counts": {
+          "additions": 4,
+          "deleted_ids": 36,
+          "deletions": 3,
+          "hints": 67,
+          "lines": 7
+        },
+        "directory": "shard-2/window-0001",
+        "end_checkpoint": 2,
+        "index": 1,
+        "numbering": {
+          "addition_shard_ids": [
+            66,
+            69
+          ],
+          "end_clause_count": 33,
+          "first_local_addition_id": 66,
+          "source_lines": [
+            1,
+            7
+          ],
+          "start_clause_count": 65
+        },
+        "role": "terminal",
+        "start_checkpoint": 1
+      }
+    ]
+  }
+}

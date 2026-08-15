@@ -1,0 +1,57 @@
+{
+  "arm_cell_index": 65,
+  "artifacts": {
+    "clause_delta": {
+      "bytes": 91324,
+      "path": "clause_delta.json",
+      "sha256": "3e2b20687d6daf7dc3d3fa259c02f14fd80cf8d0e5e2546c5f4ebffc372d0ad3"
+    },
+    "discovery_cnf": {
+      "bytes": 5129210,
+      "path": "discovery.cnf",
+      "sha256": "fdded598b3d227320cccb00ef566279f88db87796a9a24d2582f31a82b3fe63c"
+    },
+    "job": {
+      "bytes": 10755,
+      "path": "job.json",
+      "sha256": "4c093ec98f02a807e459010dcf25a8e8a075fc843cb4fabe7dfe3bb96d08bae7"
+    },
+    "model": null,
+    "proof": {
+      "bytes": 5480278,
+      "path": "terminal.drat",
+      "sha256": "1a1d5ca9095c3901ad0453e85ed989faa1df932a1e864496c92f73c7c8d7f42b"
+    },
+    "terminal_cnf": {
+      "bytes": 5129210,
+      "path": "terminal.cnf",
+      "sha256": "fdded598b3d227320cccb00ef566279f88db87796a9a24d2582f31a82b3fe63c"
+    }
+  },
+  "cell": {
+    "arm": "xu_w",
+    "joint_deletion": 11,
+    "placement_index": 10,
+    "v": 2
+  },
+  "discovery_stdout_tail": "s UNSATISFIABLE\n\n",
+  "discovery_verdict": "UNSAT",
+  "error": null,
+  "job_id": "ba3415133cacb2c4d203424bb05aee760df852576733d306f8929332ff54ed90",
+  "job_schema": "p97_rigid221_exact12_next_row_named_deletion_arm_bound_job.v1",
+  "job_sha256": "4c093ec98f02a807e459010dcf25a8e8a075fc843cb4fabe7dfe3bb96d08bae7",
+  "nice": 10,
+  "replay": {
+    "added_constraints": false,
+    "candidate": false,
+    "exact_cnf": false,
+    "model": false
+  },
+  "schema": "p97_rigid221_exact12_next_row_named_deletion_arm_cell_run.v1",
+  "scope": "one finite next-row placement by named-deletion-arm cell; no aggregate coverage, universal lift, terminal bank, or Lean-closure claim",
+  "status": "UNSAT_DRAT_VERIFIED",
+  "terminal_proof_verified": true,
+  "terminal_stdout_tail": "s UNSATISFIABLE\n\n",
+  "terminal_verdict": "UNSAT",
+  "timeout_seconds": 600
+}

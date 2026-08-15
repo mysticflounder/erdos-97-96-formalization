@@ -1,0 +1,64 @@
+{
+  "child": {
+    "bytes": 291620468,
+    "clauses": 5847248,
+    "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/exact17-lean-to-sat/exact17-thirty-third-root-thirty-second-model-refinements.cnf",
+    "sha256": "775eb42db7bdac52eb7e5609a1cf33111c953d26f4cee9c8d95bde3b468563b9",
+    "variables": 308
+  },
+  "immutability": "exclusive-hard-link-and-exclusive-receipt/v1",
+  "lean": {
+    "export": {
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenThirtySecondModelRefinementsExport.lean",
+      "sha256": "54aa51734320a3b424a828e7187bf93f176e655949addbb02892a1a4dce219da"
+    },
+    "root": {
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenThirtySecondModelRefinements.lean",
+      "sha256": "2aa046ed0b6948af9c65795229492f573b5816558352aaa6ccd813ed370f4805"
+    }
+  },
+  "parent": {
+    "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/exact17-lean-to-sat/exact17-thirty-second-root-thirty-first-model-refinements.cnf",
+    "sha256": "c325d3eedda8fe81e3d1c1d70645024f5b9ea8c36c20ca5cd1896f0934296a7d"
+  },
+  "publication_state": "PROVISIONED",
+  "schema": "p97-exact17-child33-immutable-export-receipt/v1",
+  "source_modules": {
+    "kalmanson": {
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenThirtySecondKalmansonRefinement.lean",
+      "sha256": "44e5685bfeb425dd43eecea95aa93a7eb5a638591cbd925a41e914028cbfdd0f"
+    },
+    "two_circle": {
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenThirtySecondTwoCircleRefinement.lean",
+      "sha256": "8f0b6821d34e78b3bb8ff3b9b3d0a72c7c7f4b8c0c3484e3a4456310dc463c63"
+    }
+  },
+  "status": "PASS",
+  "validation": {
+    "child": {
+      "bytes": 291620468,
+      "clauses": 5847248,
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/exact17-lean-to-sat/exact17-thirty-third-root-thirty-second-model-refinements.cnf",
+      "sha256": "775eb42db7bdac52eb7e5609a1cf33111c953d26f4cee9c8d95bde3b468563b9",
+      "variables": 308
+    },
+    "duplicate_clauses": 0,
+    "new_clauses": 8,
+    "ordered_suffix_exact": true,
+    "ordered_suffix_sha256": "46495b1d0bea23e860799f1e0012aa94d50f411536ef8c49f0e032bdbbafff50",
+    "parent": {
+      "clauses": 5847240,
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/exact17-lean-to-sat/exact17-thirty-second-root-thirty-first-model-refinements.cnf",
+      "sha256": "c325d3eedda8fe81e3d1c1d70645024f5b9ea8c36c20ca5cd1896f0934296a7d"
+    },
+    "parent_duplicate_literal_clauses": 21488,
+    "parent_duplicate_semantic_clauses": 178164,
+    "publication_state": "PROVISIONED",
+    "schema": "p97-exact17-thirty-second-model-refinements-export-validation/v1",
+    "source_clause_families": [
+      "child32TwoCircleClauses",
+      "canonicalClauses"
+    ],
+    "status": "PASS"
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "dimacs": {
+    "bytes": 291621334,
+    "checked_new_clauses": 4,
+    "clauses": 5847264,
+    "parent_prefix_clauses": 5847260,
+    "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/exact17-lean-to-sat/exact17-thirty-sixth-root-thirty-fifth-model-refinements.cnf",
+    "sha256": "e2236eaa12b10117c0540b2ea545f177e5070b6d96a0ac96668a733fe501eae5",
+    "variables": 308
+  },
+  "export_receipt": {
+    "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/exact17-lean-to-sat/child36-export-receipt.json",
+    "schema": "p97-exact17-child36-immutable-export-receipt/v1",
+    "sha256": "fe6a1456c7ca467c9e76db4f94079bec39b2291f7d388425e324b4e30221b7b8"
+  },
+  "lean": {
+    "export": {
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenThirtyFifthModelRefinementsExport.lean",
+      "sha256": "e2a8ace13ba96883b7c515aa2831dd723d383af602a1f017a2440911ca845a20"
+    },
+    "refinement": {
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenThirtyFifthCanonicalizedPerpendicularBisectorRefinement.lean",
+      "sha256": "73547ec8929e39c3bbd578d397a933ce399c7cafd9e328a318d0a758be02ebdb"
+    },
+    "root": {
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenThirtyFifthModelRefinements.lean",
+      "sha256": "df5b934e4ee00c952996decd72f61b8f032415e0620d1044922c50b05c771c0c"
+    }
+  },
+  "model": {
+    "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/exact17-lean-to-sat/piqd-child35-core1-custody-model.json",
+    "sha256": "e9d1f74d246225353bbb503c480f44ca2376674a1a6f99b19651b8e7ae5637b3"
+  },
+  "parent_ingress": {
+    "parent_dimacs_sha256": "0ce510af7c5c653719cb2d1250c8577e9c48d244605182bfe8b91112c538787f",
+    "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/exact17-lean-to-sat/piqd-ingress-manifest-thirty-fourth-model-refinements-core1.json",
+    "sha256": "3241c3f22d0bb4a1635430ad35a395a0c46cd8b3a06423e05a682999533a72ae"
+  },
+  "piqd": {
+    "backend": "cadical",
+    "daemon_build_receipt": {
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/exact17-lean-to-sat/piqd-child35-daemon-build-receipt.txt",
+      "sha256": "6e9c1d5c203d59ac2b29f800d73f4dbb0395b97865433f412ff4aa44c8e1b0a9"
+    },
+    "daemon_protocol_version": 1,
+    "daemon_sha256": "f89994bc10fcad69a264d8efbd7d76b8203c94c08f22b4536d3b473a12cee089",
+    "daemon_source_commit": "acefb4aba14765d45e38ac4193373f0aa210f22d",
+    "immutable_root_only": true,
+    "ingress": "raw-dimacs/v1",
+    "python_authored_successor_clause_allowed": false,
+    "solver_name": "piqd-satworker-cadical-3.0.0",
+    "solver_profile": "sat",
+    "solver_sha256": "0ee355934249f1b3f14a20928877391a87a0dd51326cf8c6135f75cba0b6b965",
+    "solver_signature": "cadical-3.0.0",
+    "stale_job_reuse_allowed": false
+  },
+  "schema": "p97-exact17-thirty-fifth-model-refinements-piqd-ingress/v1",
+  "status": "PASS",
+  "validation": {
+    "child": {
+      "bytes": 291621334,
+      "clauses": 5847264,
+      "sha256": "e2236eaa12b10117c0540b2ea545f177e5070b6d96a0ac96668a733fe501eae5",
+      "variables": 308
+    },
+    "model": {
+      "job_id": "4fa2037f-d0da-42b9-862d-6e78cc3a9498",
+      "parent_replay_exact": true,
+      "sha256": "e9d1f74d246225353bbb503c480f44ca2376674a1a6f99b19651b8e7ae5637b3"
+    },
+    "motivating_model_cut_suffix_indices": [
+      3
+    ],
+    "ordered_suffix_exact": true,
+    "ordered_suffix_sha256": "bdcc34ed94e6aae217fe3baa4a3e12713e5743e2df5d3c5596134ee08a59d3f9",
+    "parent": {
+      "clauses": 5847260,
+      "sha256": "0ce510af7c5c653719cb2d1250c8577e9c48d244605182bfe8b91112c538787f"
+    },
+    "publication_state": "PROVISIONED",
+    "schema": "p97-exact17-child36-export-validation/v1",
+    "source_clause_families": [
+      "child35CanonicalPerpBisectorClauses"
+    ],
+    "status": "PASS"
+  }
+}

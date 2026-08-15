@@ -1,0 +1,169 @@
+{
+  "arm_cell_index": 58,
+  "artifacts": {
+    "cadical_plain_output": {
+      "byte_count": 6933,
+      "path": "cadical-plain-output.txt",
+      "sha256": "3454fe7d9c0ba770257d5b8583bb9cd3ca2f2bfbd15cdd49ef8325f2488d6d05"
+    },
+    "clause_delta": {
+      "byte_count": 91593,
+      "path": "clause_delta.json",
+      "sha256": "815ef4b0799fd608b49ae51e5a28f698849f227efdfc266f239707d325440480"
+    },
+    "discovery_cnf": {
+      "byte_count": 5129255,
+      "path": "discovery.cnf",
+      "sha256": "32420c13f77ef6341b83e30e25d8a5c3c92d4fdd79323104c2ad564764655455"
+    },
+    "drat_trim_original_output": {
+      "byte_count": 450,
+      "path": "drat-trim-original-output.txt",
+      "sha256": "27d7311b066253fb533c8312e903dcd62631cc542c85392b5df5941588e2190a"
+    },
+    "drat_trim_output": {
+      "byte_count": 437,
+      "path": "drat-trim-output.txt",
+      "sha256": "0ba83f7f9174547a242a7ea6049a7b370d7e5f9134006c20e5ab476dacf036fc"
+    },
+    "job": {
+      "byte_count": 11186,
+      "path": "job.json",
+      "sha256": "e93969d9362cb51b9904e6e6dbdc217e8ed9d8a1c95acf4680450b6960f16bc4"
+    },
+    "normalized_lrat": {
+      "byte_count": 2475025,
+      "path": "normalized.lrat",
+      "sha256": "693ea61ced2f3b0aeb8532746fd2523ebb9e9680762cb56f47048be9b9618a2a"
+    },
+    "original_drat": {
+      "byte_count": 5487527,
+      "path": "terminal.drat",
+      "sha256": "cad65f64bfedfeae5922578bf2b78c406aabf768677e801cc6ca9e9bbec9f45b"
+    },
+    "plain_drat": {
+      "byte_count": 13609,
+      "path": "plain.drat",
+      "sha256": "e007d7dba413c3df1679c88a06137b403223a3e2e1d366155a0aeddf608537aa"
+    },
+    "raw_lrat": {
+      "byte_count": 2475060,
+      "path": "drat-trim.lrat",
+      "sha256": "005ddcbf278f723130ab2b6594c22ba73171218b877cd59c11a07574c1794f4c"
+    },
+    "source_manifest": {
+      "byte_count": 401,
+      "path": "source-manifest.json",
+      "sha256": "7892f2eb55686364587ca2a3be190950bcf7544a930c405dfd8355010d9fa46c"
+    },
+    "summary": {
+      "byte_count": 1894,
+      "path": "summary.json",
+      "sha256": "57c1fe96d2dc2406796d8217fff15db5e5262c69dff924b4d6842276fc17e359"
+    },
+    "terminal_cnf": {
+      "byte_count": 5129255,
+      "path": "terminal.cnf",
+      "sha256": "32420c13f77ef6341b83e30e25d8a5c3c92d4fdd79323104c2ad564764655455"
+    }
+  },
+  "cell": {
+    "arm": "xu_q",
+    "joint_deletion": 10,
+    "placement_index": 9,
+    "v": 3
+  },
+  "drat_trim_precheck": {
+    "command": "drat-trim",
+    "epistemic_status": "UNTRUSTED_PRECHECK_ONLY; LEAN COMPACT-RUP REPLAY REQUIRED",
+    "exit_code": 0,
+    "reported_verdict": "s VERIFIED"
+  },
+  "fresh_proof": {
+    "command": "cadical --plain",
+    "exit_code": 20,
+    "provenance": "fresh plain-mode rerun by this postprocessor on the staged identical CNF; not the wave's original proof",
+    "reported_verdict": "UNSAT"
+  },
+  "job_id": "4dc43d228a60daf9e2f5434598265fcc05fc5e3cb91544dc13c9794a92fb0470",
+  "job_sha256": "e93969d9362cb51b9904e6e6dbdc217e8ed9d8a1c95acf4680450b6960f16bc4",
+  "normalization": {
+    "additions": 7,
+    "base_clauses": 369326,
+    "deleted_ids": 369300,
+    "deletions": 7,
+    "hints": 120
+  },
+  "original_proof_precheck": {
+    "command": "drat-trim",
+    "epistemic_status": "UNTRUSTED_PRECHECK_ONLY",
+    "exit_code": 0,
+    "reported_verdict": "s VERIFIED"
+  },
+  "receipt_sha256": "dfb9208d3e5b698000d937ec425fcbbc77e69173a5ecd15ade3589f7eb801440",
+  "rematerialization": {
+    "clause_delta_identical": true,
+    "cnf_bytes_identical": true,
+    "compiler_manifest_identical": true,
+    "semantics": "current-source",
+    "source_drift": [
+      {
+        "current_sha256": "189980ee52be97cb77181448cb5dac6602cd37284d13ce7574974bc84696d71f",
+        "identical": true,
+        "path": "census/card_head/source_faithful_candidate_surface.py",
+        "pinned_sha256": "189980ee52be97cb77181448cb5dac6602cd37284d13ce7574974bc84696d71f"
+      },
+      {
+        "current_sha256": "7855b30481b3356311420be823c31f29d5abe8ee16bbfa56b6dcabe2a6c3a5c1",
+        "identical": true,
+        "path": "census/card_head/exact12_v14_schedule.py",
+        "pinned_sha256": "7855b30481b3356311420be823c31f29d5abe8ee16bbfa56b6dcabe2a6c3a5c1"
+      },
+      {
+        "current_sha256": "af5ecc98b54708c4219a1c6fc8d29c9aab0bf4309ca3254a0f26b75d1d3a6018",
+        "identical": true,
+        "path": "census/card_head/exact12_next_row_valuation.py",
+        "pinned_sha256": "af5ecc98b54708c4219a1c6fc8d29c9aab0bf4309ca3254a0f26b75d1d3a6018"
+      },
+      {
+        "current_sha256": "e7e150ce95db405c3b754782e19068cef54fffaa1d57f0e0de659c3a6cecfa30",
+        "identical": false,
+        "path": "census/card_head/exact12_next_row_cell_run.py",
+        "pinned_sha256": "5d139b81c4c840faee83222379e4e0f7743f821470ec54988ce3d6365f9e3ed5"
+      },
+      {
+        "current_sha256": "adab26919e5cb2b841051cf32b5a7bf23819a0ef26ccffd47a24384d048795e8",
+        "identical": true,
+        "path": "census/card_head/exact12_next_row_arm_cell_run.py",
+        "pinned_sha256": "adab26919e5cb2b841051cf32b5a7bf23819a0ef26ccffd47a24384d048795e8"
+      },
+      {
+        "current_sha256": "7abacffbfd8ca8bbd5fb204f48150a4517a314e7ae995b83d1276aab42b5a026",
+        "identical": false,
+        "path": "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactTwelveRigid221NextRowJobSemantics.lean",
+        "pinned_sha256": "fc3aff7607c6c605fdb6465cd274a32a8c56652975ee61db7fce110ac4551864"
+      },
+      {
+        "current_sha256": "bddc7b3e97a7a19b8fc63e9a35e593649d0d72776ea9d3647e71b39f9d929642",
+        "identical": true,
+        "path": "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactTwelveRigid221NormalizedNextRowOnlyHitIngress.lean",
+        "pinned_sha256": "bddc7b3e97a7a19b8fc63e9a35e593649d0d72776ea9d3647e71b39f9d929642"
+      },
+      {
+        "current_sha256": "5f38359938042d8f111dc1cf43e7527ca2a1f4e6b1639cb9d48280dbf43aaeef",
+        "identical": true,
+        "path": "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactTwelveRigid221PhysicalCycleIngress.lean",
+        "pinned_sha256": "5f38359938042d8f111dc1cf43e7527ca2a1f4e6b1639cb9d48280dbf43aaeef"
+      },
+      {
+        "current_sha256": "ccd0df58aeccf1894a9b83faf9ab05bc8c78344ddd022a6a0f48794d855f6dde",
+        "identical": true,
+        "path": "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactTwelveRigid221V14SourceJobBridge.lean",
+        "pinned_sha256": "ccd0df58aeccf1894a9b83faf9ab05bc8c78344ddd022a6a0f48794d855f6dde"
+      }
+    ]
+  },
+  "run_schema": "p97_rigid221_exact12_next_row_named_deletion_arm_cell_run.v1",
+  "schema": "p97_rigid221_exact12_next_row_arm_terminal_rup_source.v1",
+  "scope": "one finite next-row named-deletion-arm cell; the closure plan records these terminals as direct consequences of the compiled physical-cycle row; certificate preparation only, not aggregate coverage, a universal lift, a terminal bank, or Lean closure"
+}

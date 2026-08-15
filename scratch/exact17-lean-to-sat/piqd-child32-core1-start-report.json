@@ -1,0 +1,291 @@
+{
+  "binding": {
+    "backend": "cadical",
+    "cnf_sha256": "c325d3eedda8fe81e3d1c1d70645024f5b9ea8c36c20ca5cd1896f0934296a7d",
+    "identity_hash": "ae97ed382276fc089b92594e6415761eb2f0954370811da100664cf79d3a3a22",
+    "manifest_sha256": "3f7f043c81ffbedb34def0621a5ac84b363e6e492a7315b270678568dbd035f8",
+    "project": "erdos-97-96-exact17-child32",
+    "requested_core_limit": 1,
+    "solver_profile": "sat"
+  },
+  "confirmation": {
+    "method": "direct",
+    "response": {
+      "blob_hash": "c325d3eedda8fe81e3d1c1d70645024f5b9ea8c36c20ca5cd1896f0934296a7d",
+      "job_id": "547cca82-e479-468c-abe1-fb318d7004e6",
+      "status": "confirmed"
+    }
+  },
+  "daemon": {
+    "daemon": {
+      "name": "piqd",
+      "protocol_version": 1,
+      "sha256": "6b115f2cdf37c8bae553d5962faa0f6d6ff169a55670ead500d81f42d3b9566a",
+      "version": "0.1.0"
+    },
+    "limits": {
+      "max_var": 1000000
+    }
+  },
+  "intent_sha256": "f4d34cd8c2c09734d218042f05f2ec599dec6a4076cf912ac517e02e4d70469f",
+  "job_id": "547cca82-e479-468c-abe1-fb318d7004e6",
+  "phase": "confirmed",
+  "post_confirm_status": {
+    "attestation_basis": null,
+    "attested_solver_processes": null,
+    "backend": "cadical",
+    "cnf_blob_hash": "c325d3eedda8fe81e3d1c1d70645024f5b9ea8c36c20ca5cd1896f0934296a7d",
+    "completed_at": null,
+    "confirmed_at": 1786605559,
+    "created_at": 1786605556,
+    "daemon_sha256": null,
+    "id": "547cca82-e479-468c-abe1-fb318d7004e6",
+    "identity_hash": "ae97ed382276fc089b92594e6415761eb2f0954370811da100664cf79d3a3a22",
+    "kept_cnf_blob_hash": null,
+    "march_timeout_s": 900,
+    "model_blob_hash": null,
+    "producer_manifest_blob_hash": "3f7f043c81ffbedb34def0621a5ac84b363e6e492a7315b270678568dbd035f8",
+    "producer_manifest_hash": "3f7f043c81ffbedb34def0621a5ac84b363e6e492a7315b270678568dbd035f8",
+    "project": "erdos-97-96-exact17-child32",
+    "requested_core_limit": 1,
+    "result": null,
+    "running_for_s": null,
+    "solver_profile": "sat",
+    "started_at": null,
+    "status": "confirmed",
+    "timeout_s": 3600,
+    "wall_human": null,
+    "wall_ms": null
+  },
+  "prepared_record": {
+    "binding": {
+      "backend": "cadical",
+      "cnf_sha256": "c325d3eedda8fe81e3d1c1d70645024f5b9ea8c36c20ca5cd1896f0934296a7d",
+      "identity_hash": "ae97ed382276fc089b92594e6415761eb2f0954370811da100664cf79d3a3a22",
+      "manifest_sha256": "3f7f043c81ffbedb34def0621a5ac84b363e6e492a7315b270678568dbd035f8",
+      "project": "erdos-97-96-exact17-child32",
+      "requested_core_limit": 1,
+      "solver_profile": "sat"
+    },
+    "daemon": {
+      "daemon": {
+        "name": "piqd",
+        "protocol_version": 1,
+        "sha256": "6b115f2cdf37c8bae553d5962faa0f6d6ff169a55670ead500d81f42d3b9566a",
+        "version": "0.1.0"
+      },
+      "limits": {
+        "max_var": 1000000
+      }
+    },
+    "intent": {
+      "attempt_id": "118f0dd8c51ece791a2d69d75e795550b0fd6dd12daeeadab6a6d5e5b1275698",
+      "binding": {
+        "backend": "cadical",
+        "cnf_sha256": "c325d3eedda8fe81e3d1c1d70645024f5b9ea8c36c20ca5cd1896f0934296a7d",
+        "identity_hash": "ae97ed382276fc089b92594e6415761eb2f0954370811da100664cf79d3a3a22",
+        "manifest_sha256": "3f7f043c81ffbedb34def0621a5ac84b363e6e492a7315b270678568dbd035f8",
+        "project": "erdos-97-96-exact17-child32",
+        "requested_core_limit": 1,
+        "solver_profile": "sat"
+      },
+      "daemon": {
+        "daemon": {
+          "name": "piqd",
+          "protocol_version": 1,
+          "sha256": "6b115f2cdf37c8bae553d5962faa0f6d6ff169a55670ead500d81f42d3b9566a",
+          "version": "0.1.0"
+        },
+        "limits": {
+          "max_var": 1000000
+        }
+      },
+      "manifest_base64": "ewogICJkaW1hY3MiOiB7CiAgICAiYnl0ZXMiOiAyOTE2MjAxODIsCiAgICAiY2hlY2tlZF9uZXdfY2xhdXNlcyI6IDMzNiwKICAgICJjbGF1c2VzIjogNTg0NzI0MCwKICAgICJwYXJlbnRfcHJlZml4X2NsYXVzZXMiOiA1ODQ2OTA0LAogICAgInBhdGgiOiAiL1VzZXJzL2FkYW0vcHJvamVjdHMvbWF0aC1wcm9qZWN0cy9lcmRvcy05Ny05Ni1mb3JtYWxpemF0aW9uL3NjcmF0Y2gvZXhhY3QxNy1sZWFuLXRvLXNhdC9leGFjdDE3LXRoaXJ0eS1zZWNvbmQtcm9vdC10aGlydHktZmlyc3QtbW9kZWwtcmVmaW5lbWVudHMuY25mIiwKICAgICJzaGEyNTYiOiAiYzMyNWQzZWVkZGE4ZmU4MWUzZDFjMWQ3MDY0NTAyNGY1YjllYThjMzZjMjBjYTVjZDE4OTZmMDkzNDI5NmE3ZCIsCiAgICAidmFyaWFibGVzIjogMzA4CiAgfSwKICAiZXhwb3J0X3JlY2VpcHQiOiB7CiAgICAicGF0aCI6ICIvVXNlcnMvYWRhbS9wcm9qZWN0cy9tYXRoLXByb2plY3RzL2VyZG9zLTk3LTk2LWZvcm1hbGl6YXRpb24vc2NyYXRjaC9leGFjdDE3LWxlYW4tdG8tc2F0L2NoaWxkMzItZXhwb3J0LXJlY2VpcHQuanNvbiIsCiAgICAic2NoZW1hIjogInA5Ny1leGFjdDE3LWNoaWxkMzItaW1tdXRhYmxlLWV4cG9ydC1yZWNlaXB0L3YxIiwKICAgICJzaGEyNTYiOiAiY2MzODk4ZjU0ZWI5MTYzM2RiNjNjNzhjNzY3NTE3M2FlZmRmMmYxMDNjZWEyODE5OTNlYTliNzUwYTk2ZWZiNCIKICB9LAogICJsZWFuIjogewogICAgImV4cG9ydCI6IHsKICAgICAgInBhdGgiOiAiL1VzZXJzL2FkYW0vcHJvamVjdHMvbWF0aC1wcm9qZWN0cy9lcmRvcy05Ny05Ni1mb3JtYWxpemF0aW9uL2xlYW4vRXJkb3M5Nzk2UHJvb2YvUDk3L0FUYWlsL0Jsb2NrZXJWRXhhY3RTZXZlbnRlZW5UaGlydHlGaXJzdE1vZGVsUmVmaW5lbWVudHNFeHBvcnQubGVhbiIsCiAgICAgICJzaGEyNTYiOiAiZjQ0ZDk1OTk0MmRiYzVlNTQxOGYzZDY2MGE5YWJhZjAxYjYyODJmYzk0NjFkNDliZDk5N2QzNzA1ZDJkYzQxMCIKICAgIH0sCiAgICAicm9vdCI6IHsKICAgICAgInBhdGgiOiAiL1VzZXJzL2FkYW0vcHJvamVjdHMvbWF0aC1wcm9qZWN0cy9lcmRvcy05Ny05Ni1mb3JtYWxpemF0aW9uL2xlYW4vRXJkb3M5Nzk2UHJvb2YvUDk3L0FUYWlsL0Jsb2NrZXJWRXhhY3RTZXZlbnRlZW5UaGlydHlGaXJzdE1vZGVsUmVmaW5lbWVudHMubGVhbiIsCiAgICAgICJzaGEyNTYiOiAiZDEwYTE2YTJmMGMwMzM5NTE3ZjUxMzJiNWZjZjRmZjZhNDVkMmQ4ODAxNWRlZDUxMDU4NGE3OTZmNzc0YTk3MyIKICAgIH0KICB9LAogICJwYXJlbnRfaW5ncmVzcyI6IHsKICAgICJwYXJlbnRfZGltYWNzX3NoYTI1NiI6ICIzYzg0N2MxZWJjYWNmODUyNTZiNjVkNTQ1NjM1ODRhOGI4OWViNTBmNDI3ZmUyNjhlMmY5MTZkNGNkYWZhMjA0IiwKICAgICJwYXRoIjogIi9Vc2Vycy9hZGFtL3Byb2plY3RzL21hdGgtcHJvamVjdHMvZXJkb3MtOTctOTYtZm9ybWFsaXphdGlvbi9zY3JhdGNoL2V4YWN0MTctbGVhbi10by1zYXQvcGlxZC1pbmdyZXNzLW1hbmlmZXN0LXRoaXJ0aWV0aC1tb2RlbC1yZWZpbmVtZW50cy5qc29uIiwKICAgICJzaGEyNTYiOiAiZjBhM2I2MzA0ZWQ1OTUyNGI0OGUzY2M3YzYzMzZkMTViNDRiOGI2ZWVmMDJiMWQyZjk1YmUwY2M2N2RkMGM0ZiIKICB9LAogICJwaXFkIjogewogICAgImJhY2tlbmQiOiAiY2FkaWNhbCIsCiAgICAiZGFlbW9uX3Byb3RvY29sX3ZlcnNpb24iOiAxLAogICAgImRhZW1vbl9zaGEyNTYiOiAiNmIxMTVmMmNkZjM3YzhiYWU1NTNkNTk2MmZhYTBmNmQ2ZmYxNjlhNTU2NzBlYWQ1MDBkODFmNDJkM2I5NTY2YSIsCiAgICAiaW1tdXRhYmxlX3Jvb3Rfb25seSI6IHRydWUsCiAgICAiaW5ncmVzcyI6ICJyYXctZGltYWNzL3YxIiwKICAgICJweXRob25fYXV0aG9yZWRfc3VjY2Vzc29yX2NsYXVzZV9hbGxvd2VkIjogZmFsc2UsCiAgICAic29sdmVyX25hbWUiOiAicGlxZC1zYXR3b3JrZXItY2FkaWNhbC0zLjAuMCIsCiAgICAic29sdmVyX3Byb2ZpbGUiOiAic2F0IiwKICAgICJzb2x2ZXJfc2hhMjU2IjogIjBlZTM1NTkzNDI0OWYxYjNmMTRhMjA5Mjg4NzczOTFhODdhMGRkNTEzMjZjZjhjNjEzNWY3NWNiYTBiNmI5NjUiLAogICAgInNvbHZlcl9zaWduYXR1cmUiOiAiY2FkaWNhbC0zLjAuMCIsCiAgICAic3RhbGVfam9iX3JldXNlX2FsbG93ZWQiOiBmYWxzZQogIH0sCiAgInB1YmxpY2F0aW9uIjogewogICAgInBhdGgiOiAiL1VzZXJzL2FkYW0vcHJvamVjdHMvbWF0aC1wcm9qZWN0cy9lcmRvcy05Ny05Ni1mb3JtYWxpemF0aW9uL3NjcmF0Y2gvZXhhY3QxNy1sZWFuLXRvLXNhdC9waXFkLXRoaXJ0eS1maXJzdC1yb290LWFsbC1jYW5jZWxsYXRpb24tZmFtaWx5Lmpzb24iLAogICAgInNoYTI1NiI6ICJmZDFmZmFiZjdkOGFiZjExMjRkOGY1Mzc2YjgyZmYxZGI0MzIyNmZmZTFhYTc0MjhkN2RlNDFiYTVjNGY1NjU0IiwKICAgICJzdGF0ZSI6ICJQUk9WSVNJT05FRCIKICB9LAogICJzY2hlbWEiOiAicDk3LWV4YWN0MTctdGhpcnR5LWZpcnN0LW1vZGVsLXJlZmluZW1lbnRzLXBpcWQtaW5ncmVzcy92MiIsCiAgInN0YXR1cyI6ICJQQVNTIiwKICAidmFsaWRhdGlvbiI6IHsKICAgICJjaGlsZF9ieXRlcyI6IDI5MTYyMDE4MiwKICAgICJjaGlsZF9zaGEyNTYiOiAiYzMyNWQzZWVkZGE4ZmU4MWUzZDFjMWQ3MDY0NTAyNGY1YjllYThjMzZjMjBjYTVjZDE4OTZmMDkzNDI5NmE3ZCIsCiAgICAiY2xhdXNlcyI6IDU4NDcyNDAsCiAgICAiZHVwbGljYXRlX2NsYXVzZXMiOiAwLAogICAgImR1cGxpY2F0ZV9wb2xpY3kiOiAiYXV0aGVudGljYXRlZC1wYXJlbnQtc2VtYW50aWMtbm9ybWFsaXphdGlvbitjYW5vbmljYWwtc3VmZml4L3YyIiwKICAgICJleHRyYV9jbGF1c2VzIjogMCwKICAgICJtaW5pbWFsX29jY3VycmVuY2VzIjogODQsCiAgICAibWlzc2luZ19jbGF1c2VzIjogMCwKICAgICJuZXdfY2xhdXNlcyI6IDMzNiwKICAgICJvcmRlcmVkX3N1ZmZpeF9leGFjdCI6IHRydWUsCiAgICAib3JkZXJlZF9zdWZmaXhfc2hhMjU2IjogImE4OTk4Njc4MTNhZGIzYWU3N2RiMTU4OWRjYTA2YjE0NzA0ZGU0NWJkZjgwNzM4MmFkNzliNWJiMDkzODdiYTIiLAogICAgInBhcmVudF9kdXBsaWNhdGVfbGl0ZXJhbF9jbGF1c2VzIjogMjE0ODgsCiAgICAicGFyZW50X3ByZWZpeF9ieXRlX2lkZW50aWNhbCI6IHRydWUsCiAgICAicGFyZW50X3NoYTI1NiI6ICIzYzg0N2MxZWJjYWNmODUyNTZiNjVkNTQ1NjM1ODRhOGI4OWViNTBmNDI3ZmUyNjhlMmY5MTZkNGNkYWZhMjA0IiwKICAgICJwdWJsaWNhdGlvbl9sZWRnZXJfc2hhMjU2IjogImZkMWZmYWJmN2Q4YWJmMTEyNGQ4ZjUzNzZiODJmZjFkYjQzMjI2ZmZlMWFhNzQyOGQ3ZGU0MWJhNWM0ZjU2NTQiLAogICAgInB1YmxpY2F0aW9uX3N0YXRlIjogIlBST1ZJU0lPTkVEIiwKICAgICJwdWJsaWNhdGlvbl92YWxpZGF0b3JfY2FsbGVkX3R3aWNlIjogdHJ1ZSwKICAgICJzY2hlbWEiOiAicDk3LWV4YWN0MTctdGhpcnR5LWZpcnN0LW1vZGVsLXJlZmluZW1lbnRzLWV4cG9ydC12YWxpZGF0aW9uL3YxIiwKICAgICJzdGF0dXMiOiAiUEFTUyIsCiAgICAidmFyaWFibGVzIjogMzA4CiAgfQp9Cg==",
+      "manifest_bytes": 3562,
+      "phase": "submission_intent",
+      "root": {
+        "clauses": 5847240,
+        "ingress_validation": {
+          "clauses": 5847240,
+          "dimacs_bytes": 291620182,
+          "dimacs_sha256": "c325d3eedda8fe81e3d1c1d70645024f5b9ea8c36c20ca5cd1896f0934296a7d",
+          "export_receipt_sha256": "cc3898f54eb91633db63c78c7675173aefdf2f103cea281993ea9b750a96efb4",
+          "manifest_sha256": "3f7f043c81ffbedb34def0621a5ac84b363e6e492a7315b270678568dbd035f8",
+          "new_clauses": 336,
+          "parent_dimacs_sha256": "3c847c1ebcacf85256b65d54563584a8b89eb50f427fe268e2f916d4cdafa204",
+          "piqd_daemon_sha256": "6b115f2cdf37c8bae553d5962faa0f6d6ff169a55670ead500d81f42d3b9566a",
+          "piqd_solver_sha256": "0ee355934249f1b3f14a20928877391a87a0dd51326cf8c6135f75cba0b6b965",
+          "publication_ledger_sha256": "fd1ffabf7d8abf1124d8f5376b82ff1db43226ffe1aa7428d7de41ba5c4f5654",
+          "schema": "p97-exact17-child32-piqd-ingress-validation/v1",
+          "status": "PASS",
+          "variables": 308
+        },
+        "manifest_bytes": 3562,
+        "manifest_sha256": "3f7f043c81ffbedb34def0621a5ac84b363e6e492a7315b270678568dbd035f8",
+        "root_bytes": 291620182,
+        "root_sha256": "c325d3eedda8fe81e3d1c1d70645024f5b9ea8c36c20ca5cd1896f0934296a7d",
+        "status": "PASS",
+        "variables": 308
+      },
+      "schema": "p97-exact17-child32-piqd-intent/v1",
+      "solver": {
+        "lane": "sat",
+        "name": "piqd-satworker-cadical-3.0.0",
+        "path": "/Users/adam/.piqd/solvers/piqd-satworker-cadical-3.0.0",
+        "protocol_version": 1,
+        "sha256": "0ee355934249f1b3f14a20928877391a87a0dd51326cf8c6135f75cba0b6b965",
+        "solver": "cadical",
+        "solver_signature": "cadical-3.0.0",
+        "solver_source": "/Users/adam/projects/rustprojects/piqd-satworker/vendor/cadical",
+        "solver_version": "3.0.0",
+        "usable": true,
+        "worker": "piqd-satworker",
+        "worker_version": "0.1.0"
+      }
+    },
+    "intent_sha256": "f4d34cd8c2c09734d218042f05f2ec599dec6a4076cf912ac517e02e4d70469f",
+    "job_id": "547cca82-e479-468c-abe1-fb318d7004e6",
+    "phase": "prepared",
+    "prepared_status": {
+      "attestation_basis": null,
+      "attested_solver_processes": null,
+      "backend": "cadical",
+      "cnf_blob_hash": "c325d3eedda8fe81e3d1c1d70645024f5b9ea8c36c20ca5cd1896f0934296a7d",
+      "completed_at": null,
+      "confirmed_at": null,
+      "created_at": 1786605556,
+      "daemon_sha256": null,
+      "id": "547cca82-e479-468c-abe1-fb318d7004e6",
+      "identity_hash": "ae97ed382276fc089b92594e6415761eb2f0954370811da100664cf79d3a3a22",
+      "kept_cnf_blob_hash": null,
+      "march_timeout_s": 900,
+      "model_blob_hash": null,
+      "producer_manifest_blob_hash": "3f7f043c81ffbedb34def0621a5ac84b363e6e492a7315b270678568dbd035f8",
+      "producer_manifest_hash": "3f7f043c81ffbedb34def0621a5ac84b363e6e492a7315b270678568dbd035f8",
+      "project": "erdos-97-96-exact17-child32",
+      "requested_core_limit": 1,
+      "result": null,
+      "running_for_s": null,
+      "solver_profile": "sat",
+      "started_at": null,
+      "status": "prepared",
+      "timeout_s": 3600,
+      "wall_human": null,
+      "wall_ms": null
+    },
+    "root": {
+      "clauses": 5847240,
+      "ingress_validation": {
+        "clauses": 5847240,
+        "dimacs_bytes": 291620182,
+        "dimacs_sha256": "c325d3eedda8fe81e3d1c1d70645024f5b9ea8c36c20ca5cd1896f0934296a7d",
+        "export_receipt_sha256": "cc3898f54eb91633db63c78c7675173aefdf2f103cea281993ea9b750a96efb4",
+        "manifest_sha256": "3f7f043c81ffbedb34def0621a5ac84b363e6e492a7315b270678568dbd035f8",
+        "new_clauses": 336,
+        "parent_dimacs_sha256": "3c847c1ebcacf85256b65d54563584a8b89eb50f427fe268e2f916d4cdafa204",
+        "piqd_daemon_sha256": "6b115f2cdf37c8bae553d5962faa0f6d6ff169a55670ead500d81f42d3b9566a",
+        "piqd_solver_sha256": "0ee355934249f1b3f14a20928877391a87a0dd51326cf8c6135f75cba0b6b965",
+        "publication_ledger_sha256": "fd1ffabf7d8abf1124d8f5376b82ff1db43226ffe1aa7428d7de41ba5c4f5654",
+        "schema": "p97-exact17-child32-piqd-ingress-validation/v1",
+        "status": "PASS",
+        "variables": 308
+      },
+      "manifest_bytes": 3562,
+      "manifest_sha256": "3f7f043c81ffbedb34def0621a5ac84b363e6e492a7315b270678568dbd035f8",
+      "root_bytes": 291620182,
+      "root_sha256": "c325d3eedda8fe81e3d1c1d70645024f5b9ea8c36c20ca5cd1896f0934296a7d",
+      "status": "PASS",
+      "variables": 308
+    },
+    "schema": "p97-exact17-child32-piqd-prepared/v3",
+    "solver": {
+      "lane": "sat",
+      "name": "piqd-satworker-cadical-3.0.0",
+      "path": "/Users/adam/.piqd/solvers/piqd-satworker-cadical-3.0.0",
+      "protocol_version": 1,
+      "sha256": "0ee355934249f1b3f14a20928877391a87a0dd51326cf8c6135f75cba0b6b965",
+      "solver": "cadical",
+      "solver_signature": "cadical-3.0.0",
+      "solver_source": "/Users/adam/projects/rustprojects/piqd-satworker/vendor/cadical",
+      "solver_version": "3.0.0",
+      "usable": true,
+      "worker": "piqd-satworker",
+      "worker_version": "0.1.0"
+    },
+    "stored_preconfirm": {
+      "cnf": {
+        "bytes": 291620182,
+        "sha256": "c325d3eedda8fe81e3d1c1d70645024f5b9ea8c36c20ca5cd1896f0934296a7d"
+      },
+      "producer_manifest": {
+        "bytes": 3562,
+        "sha256": "3f7f043c81ffbedb34def0621a5ac84b363e6e492a7315b270678568dbd035f8"
+      }
+    },
+    "submission_mode": "created",
+    "submitted": {
+      "backend": "cadical",
+      "cnf_blob_hash": "c325d3eedda8fe81e3d1c1d70645024f5b9ea8c36c20ca5cd1896f0934296a7d",
+      "existing": false,
+      "identity_hash": "ae97ed382276fc089b92594e6415761eb2f0954370811da100664cf79d3a3a22",
+      "job_id": "547cca82-e479-468c-abe1-fb318d7004e6",
+      "num_clauses": 5847240,
+      "num_vars": 308,
+      "preview": "p cnf 308 5847240\n-13 -14 -15 -16 -17 0\n-12 -14 -15 -16 -17 0\n-12 -13 -15 -16 -17 0\n-12 -13 -14 -16 -17 0\n-12 -13 -14 -15 -17 0\n-12 -13 -14 -15 -16 0\n-11 -14 -15 -16 -17 0\n-11 -13 -15 -16 -17 0\n-11 -13 -14 -16 -17 0\n-11 -13 -14 -15 -17 0\n-11 -13 -14 -15 -16 0\n-11 -12 -15 -16 -17 0\n-11 -12 -14 -16 -17 0\n-11 -12 -14 -15 -17 0\n-11 -12 -14 -15 -16 0\n-11 -12 -13 -16 -17 0\n-11 -12 -13 -15 -17 0\n-11 -12 -13 -15 -16 0\n-11 -12 -13 -14 -17 0\n-11 -12 -13 -14 -16 0\n-11 -12 -13 -14 -15 0\n-10 -14 -15 -16 -17 0\n-10 -13 -1",
+      "producer_manifest_blob_hash": "3f7f043c81ffbedb34def0621a5ac84b363e6e492a7315b270678568dbd035f8",
+      "producer_manifest_hash": "3f7f043c81ffbedb34def0621a5ac84b363e6e492a7315b270678568dbd035f8",
+      "requested_core_limit": 1,
+      "solver_profile": "sat"
+    }
+  },
+  "prepared_sha256": "91980b8c233905ea5ce5da72dff5b9105e8086dbee358ec50f9876e79119d1a2",
+  "root": {
+    "clauses": 5847240,
+    "ingress_validation": {
+      "clauses": 5847240,
+      "dimacs_bytes": 291620182,
+      "dimacs_sha256": "c325d3eedda8fe81e3d1c1d70645024f5b9ea8c36c20ca5cd1896f0934296a7d",
+      "export_receipt_sha256": "cc3898f54eb91633db63c78c7675173aefdf2f103cea281993ea9b750a96efb4",
+      "manifest_sha256": "3f7f043c81ffbedb34def0621a5ac84b363e6e492a7315b270678568dbd035f8",
+      "new_clauses": 336,
+      "parent_dimacs_sha256": "3c847c1ebcacf85256b65d54563584a8b89eb50f427fe268e2f916d4cdafa204",
+      "piqd_daemon_sha256": "6b115f2cdf37c8bae553d5962faa0f6d6ff169a55670ead500d81f42d3b9566a",
+      "piqd_solver_sha256": "0ee355934249f1b3f14a20928877391a87a0dd51326cf8c6135f75cba0b6b965",
+      "publication_ledger_sha256": "fd1ffabf7d8abf1124d8f5376b82ff1db43226ffe1aa7428d7de41ba5c4f5654",
+      "schema": "p97-exact17-child32-piqd-ingress-validation/v1",
+      "status": "PASS",
+      "variables": 308
+    },
+    "manifest_bytes": 3562,
+    "manifest_sha256": "3f7f043c81ffbedb34def0621a5ac84b363e6e492a7315b270678568dbd035f8",
+    "root_bytes": 291620182,
+    "root_sha256": "c325d3eedda8fe81e3d1c1d70645024f5b9ea8c36c20ca5cd1896f0934296a7d",
+    "status": "PASS",
+    "variables": 308
+  },
+  "schema": "p97-exact17-child32-piqd-state/v3",
+  "solver": {
+    "lane": "sat",
+    "name": "piqd-satworker-cadical-3.0.0",
+    "path": "/Users/adam/.piqd/solvers/piqd-satworker-cadical-3.0.0",
+    "protocol_version": 1,
+    "sha256": "0ee355934249f1b3f14a20928877391a87a0dd51326cf8c6135f75cba0b6b965",
+    "solver": "cadical",
+    "solver_signature": "cadical-3.0.0",
+    "solver_source": "/Users/adam/projects/rustprojects/piqd-satworker/vendor/cadical",
+    "solver_version": "3.0.0",
+    "usable": true,
+    "worker": "piqd-satworker",
+    "worker_version": "0.1.0"
+  },
+  "stored_recovery": {
+    "cnf": {
+      "bytes": 291620182,
+      "sha256": "c325d3eedda8fe81e3d1c1d70645024f5b9ea8c36c20ca5cd1896f0934296a7d"
+    },
+    "producer_manifest": {
+      "bytes": 3562,
+      "sha256": "3f7f043c81ffbedb34def0621a5ac84b363e6e492a7315b270678568dbd035f8"
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "clauses": 5846112,
+  "combined_suffix_sha256": "12ebf115ce159aaaca646b440a797b7e76aa0846a9f65dc5ec3479a89a044064",
+  "convex_five_point_clauses": 4,
+  "generic_cancellation_clauses": 4,
+  "motivating_model_cut_clauses": {
+    "cancellation": [
+      5846105
+    ],
+    "convex_five": [
+      5846109
+    ]
+  },
+  "parent_prefix_byte_identical": true,
+  "schema": "p97-exact17-lean-fifth-convex-five-point-export-validation/v1",
+  "variables": 308
+}

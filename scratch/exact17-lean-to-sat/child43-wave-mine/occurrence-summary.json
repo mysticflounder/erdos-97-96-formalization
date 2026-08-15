@@ -1,0 +1,2609 @@
+{
+  "keys": [
+    "bank_exact_count",
+    "bank_strict_subsumed_count",
+    "candidates",
+    "distinct_support_count",
+    "new_occurrence_count",
+    "order",
+    "order_index",
+    "producer_record_count",
+    "subset_minimal_count",
+    "subset_minimal_size_counts"
+  ],
+  "count": 57,
+  "candidate_summaries": [
+    {
+      "classification": "SOURCE-VALID; new finite occurrence of the existing generic two-Kalmanson family",
+      "bank_relation": "new-occurrence-existing-family",
+      "occurrence_clause_count": 4,
+      "support": [
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          9,
+          3
+        ],
+        [
+          9,
+          8
+        ],
+        [
+          12,
+          5
+        ],
+        [
+          12,
+          8
+        ]
+      ],
+      "orientation": null,
+      "reflected_support": null,
+      "reflected_orientation": null,
+      "lean_consumer": null,
+      "source_bridge": "sourceAssign_cancellationOccurrenceClause after checked TwoKalmansonCancellationData and selected-hit antecedents",
+      "producer_stage": "equality-convex-two-kalmanson-cancellation"
+    },
+    {
+      "classification": "SOURCE-VALID; new finite occurrence of the existing generic two-Kalmanson family",
+      "bank_relation": "new-occurrence-existing-family",
+      "occurrence_clause_count": 4,
+      "support": [
+        [
+          0,
+          5
+        ],
+        [
+          0,
+          10
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          10
+        ],
+        [
+          13,
+          4
+        ],
+        [
+          13,
+          5
+        ]
+      ],
+      "orientation": null,
+      "reflected_support": null,
+      "reflected_orientation": null,
+      "lean_consumer": null,
+      "source_bridge": "sourceAssign_cancellationOccurrenceClause after checked TwoKalmansonCancellationData and selected-hit antecedents",
+      "producer_stage": "equality-convex-two-kalmanson-cancellation"
+    },
+    {
+      "classification": "SOURCE-VALID; new finite occurrence of the existing generic two-Kalmanson family",
+      "bank_relation": "new-occurrence-existing-family",
+      "occurrence_clause_count": 4,
+      "support": [
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          8
+        ],
+        [
+          11,
+          4
+        ],
+        [
+          11,
+          9
+        ],
+        [
+          12,
+          8
+        ],
+        [
+          12,
+          9
+        ]
+      ],
+      "orientation": null,
+      "reflected_support": null,
+      "reflected_orientation": null,
+      "lean_consumer": null,
+      "source_bridge": "sourceAssign_cancellationOccurrenceClause after checked TwoKalmansonCancellationData and selected-hit antecedents",
+      "producer_stage": "equality-convex-two-kalmanson-cancellation"
+    },
+    {
+      "classification": "SOURCE-VALID; new finite occurrence of the existing generic two-Kalmanson family",
+      "bank_relation": "new-occurrence-existing-family",
+      "occurrence_clause_count": 4,
+      "support": [
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          8
+        ],
+        [
+          12,
+          5
+        ],
+        [
+          12,
+          8
+        ],
+        [
+          13,
+          4
+        ],
+        [
+          13,
+          5
+        ]
+      ],
+      "orientation": null,
+      "reflected_support": null,
+      "reflected_orientation": null,
+      "lean_consumer": null,
+      "source_bridge": "sourceAssign_cancellationOccurrenceClause after checked TwoKalmansonCancellationData and selected-hit antecedents",
+      "producer_stage": "equality-convex-two-kalmanson-cancellation"
+    },
+    {
+      "classification": "SOURCE-VALID; new finite occurrence of the existing generic two-Kalmanson family",
+      "bank_relation": "new-occurrence-existing-family",
+      "occurrence_clause_count": 4,
+      "support": [
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          8
+        ],
+        [
+          13,
+          4
+        ],
+        [
+          13,
+          6
+        ],
+        [
+          14,
+          6
+        ],
+        [
+          14,
+          8
+        ]
+      ],
+      "orientation": null,
+      "reflected_support": null,
+      "reflected_orientation": null,
+      "lean_consumer": null,
+      "source_bridge": "sourceAssign_cancellationOccurrenceClause after checked TwoKalmansonCancellationData and selected-hit antecedents",
+      "producer_stage": "equality-convex-two-kalmanson-cancellation"
+    },
+    {
+      "classification": "SOURCE-VALID; new finite occurrence of the existing generic two-Kalmanson family",
+      "bank_relation": "new-occurrence-existing-family",
+      "occurrence_clause_count": 4,
+      "support": [
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          10
+        ],
+        [
+          4,
+          10
+        ],
+        [
+          4,
+          12
+        ],
+        [
+          11,
+          4
+        ],
+        [
+          11,
+          12
+        ]
+      ],
+      "orientation": null,
+      "reflected_support": null,
+      "reflected_orientation": null,
+      "lean_consumer": null,
+      "source_bridge": "sourceAssign_cancellationOccurrenceClause after checked TwoKalmansonCancellationData and selected-hit antecedents",
+      "producer_stage": "equality-convex-two-kalmanson-cancellation"
+    },
+    {
+      "classification": "SOURCE-VALID; new finite occurrence of the existing generic two-Kalmanson family",
+      "bank_relation": "new-occurrence-existing-family",
+      "occurrence_clause_count": 4,
+      "support": [
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          13
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          13
+        ],
+        [
+          13,
+          1
+        ],
+        [
+          13,
+          4
+        ]
+      ],
+      "orientation": null,
+      "reflected_support": null,
+      "reflected_orientation": null,
+      "lean_consumer": null,
+      "source_bridge": "sourceAssign_cancellationOccurrenceClause after checked TwoKalmansonCancellationData and selected-hit antecedents",
+      "producer_stage": "equality-convex-two-kalmanson-cancellation"
+    },
+    {
+      "classification": "SOURCE-VALID; new finite occurrence of the existing generic two-Kalmanson family",
+      "bank_relation": "new-occurrence-existing-family",
+      "occurrence_clause_count": 4,
+      "support": [
+        [
+          1,
+          8
+        ],
+        [
+          1,
+          10
+        ],
+        [
+          4,
+          6
+        ],
+        [
+          4,
+          10
+        ],
+        [
+          14,
+          6
+        ],
+        [
+          14,
+          8
+        ]
+      ],
+      "orientation": null,
+      "reflected_support": null,
+      "reflected_orientation": null,
+      "lean_consumer": null,
+      "source_bridge": "sourceAssign_cancellationOccurrenceClause after checked TwoKalmansonCancellationData and selected-hit antecedents",
+      "producer_stage": "equality-convex-two-kalmanson-cancellation"
+    },
+    {
+      "classification": "SOURCE-VALID; new finite occurrence of the existing generic two-Kalmanson family",
+      "bank_relation": "new-occurrence-existing-family",
+      "occurrence_clause_count": 4,
+      "support": [
+        [
+          1,
+          8
+        ],
+        [
+          1,
+          10
+        ],
+        [
+          4,
+          10
+        ],
+        [
+          4,
+          12
+        ],
+        [
+          5,
+          8
+        ],
+        [
+          5,
+          12
+        ]
+      ],
+      "orientation": null,
+      "reflected_support": null,
+      "reflected_orientation": null,
+      "lean_consumer": null,
+      "source_bridge": "sourceAssign_cancellationOccurrenceClause after checked TwoKalmansonCancellationData and selected-hit antecedents",
+      "producer_stage": "equality-convex-two-kalmanson-cancellation"
+    },
+    {
+      "classification": "SOURCE-VALID; new finite occurrence of the existing generic two-Kalmanson family",
+      "bank_relation": "new-occurrence-existing-family",
+      "occurrence_clause_count": 4,
+      "support": [
+        [
+          1,
+          8
+        ],
+        [
+          1,
+          13
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          2,
+          13
+        ],
+        [
+          14,
+          6
+        ],
+        [
+          14,
+          8
+        ]
+      ],
+      "orientation": null,
+      "reflected_support": null,
+      "reflected_orientation": null,
+      "lean_consumer": null,
+      "source_bridge": "sourceAssign_cancellationOccurrenceClause after checked TwoKalmansonCancellationData and selected-hit antecedents",
+      "producer_stage": "equality-convex-two-kalmanson-cancellation"
+    },
+    {
+      "classification": "SOURCE-VALID; new finite occurrence of the existing generic two-Kalmanson family",
+      "bank_relation": "new-occurrence-existing-family",
+      "occurrence_clause_count": 4,
+      "support": [
+        [
+          1,
+          8
+        ],
+        [
+          1,
+          13
+        ],
+        [
+          8,
+          5
+        ],
+        [
+          8,
+          13
+        ],
+        [
+          12,
+          5
+        ],
+        [
+          12,
+          8
+        ]
+      ],
+      "orientation": null,
+      "reflected_support": null,
+      "reflected_orientation": null,
+      "lean_consumer": null,
+      "source_bridge": "sourceAssign_cancellationOccurrenceClause after checked TwoKalmansonCancellationData and selected-hit antecedents",
+      "producer_stage": "equality-convex-two-kalmanson-cancellation"
+    },
+    {
+      "classification": "SOURCE-VALID; new finite occurrence of the existing generic two-Kalmanson family",
+      "bank_relation": "new-occurrence-existing-family",
+      "occurrence_clause_count": 4,
+      "support": [
+        [
+          2,
+          11
+        ],
+        [
+          2,
+          13
+        ],
+        [
+          7,
+          13
+        ],
+        [
+          7,
+          15
+        ],
+        [
+          16,
+          11
+        ],
+        [
+          16,
+          15
+        ]
+      ],
+      "orientation": null,
+      "reflected_support": null,
+      "reflected_orientation": null,
+      "lean_consumer": null,
+      "source_bridge": "sourceAssign_cancellationOccurrenceClause after checked TwoKalmansonCancellationData and selected-hit antecedents",
+      "producer_stage": "equality-convex-two-kalmanson-cancellation"
+    },
+    {
+      "classification": "SOURCE-VALID; new finite occurrence of the existing generic two-Kalmanson family",
+      "bank_relation": "new-occurrence-existing-family",
+      "occurrence_clause_count": 4,
+      "support": [
+        [
+          3,
+          15
+        ],
+        [
+          3,
+          16
+        ],
+        [
+          5,
+          12
+        ],
+        [
+          5,
+          15
+        ],
+        [
+          11,
+          12
+        ],
+        [
+          11,
+          16
+        ]
+      ],
+      "orientation": null,
+      "reflected_support": null,
+      "reflected_orientation": null,
+      "lean_consumer": null,
+      "source_bridge": "sourceAssign_cancellationOccurrenceClause after checked TwoKalmansonCancellationData and selected-hit antecedents",
+      "producer_stage": "equality-convex-two-kalmanson-cancellation"
+    },
+    {
+      "classification": "SOURCE-VALID; new finite occurrence of the existing generic two-Kalmanson family",
+      "bank_relation": "new-occurrence-existing-family",
+      "occurrence_clause_count": 4,
+      "support": [
+        [
+          3,
+          15
+        ],
+        [
+          3,
+          16
+        ],
+        [
+          7,
+          13
+        ],
+        [
+          7,
+          15
+        ],
+        [
+          8,
+          13
+        ],
+        [
+          8,
+          16
+        ]
+      ],
+      "orientation": null,
+      "reflected_support": null,
+      "reflected_orientation": null,
+      "lean_consumer": null,
+      "source_bridge": "sourceAssign_cancellationOccurrenceClause after checked TwoKalmansonCancellationData and selected-hit antecedents",
+      "producer_stage": "equality-convex-two-kalmanson-cancellation"
+    },
+    {
+      "classification": "SOURCE-VALID; new finite occurrence of the existing generic two-Kalmanson family",
+      "bank_relation": "new-occurrence-existing-family",
+      "occurrence_clause_count": 4,
+      "support": [
+        [
+          4,
+          6
+        ],
+        [
+          4,
+          12
+        ],
+        [
+          11,
+          4
+        ],
+        [
+          11,
+          12
+        ],
+        [
+          13,
+          4
+        ],
+        [
+          13,
+          6
+        ]
+      ],
+      "orientation": null,
+      "reflected_support": null,
+      "reflected_orientation": null,
+      "lean_consumer": null,
+      "source_bridge": "sourceAssign_cancellationOccurrenceClause after checked TwoKalmansonCancellationData and selected-hit antecedents",
+      "producer_stage": "equality-convex-two-kalmanson-cancellation"
+    },
+    {
+      "classification": "SOURCE-VALID; new finite occurrence of the existing generic two-Kalmanson family",
+      "bank_relation": "new-occurrence-existing-family",
+      "occurrence_clause_count": 4,
+      "support": [
+        [
+          4,
+          10
+        ],
+        [
+          4,
+          12
+        ],
+        [
+          5,
+          3
+        ],
+        [
+          5,
+          12
+        ],
+        [
+          9,
+          3
+        ],
+        [
+          9,
+          10
+        ]
+      ],
+      "orientation": null,
+      "reflected_support": null,
+      "reflected_orientation": null,
+      "lean_consumer": null,
+      "source_bridge": "sourceAssign_cancellationOccurrenceClause after checked TwoKalmansonCancellationData and selected-hit antecedents",
+      "producer_stage": "equality-convex-two-kalmanson-cancellation"
+    },
+    {
+      "classification": "SOURCE-VALID; new finite occurrence of the existing generic two-Kalmanson family",
+      "bank_relation": "new-occurrence-existing-family",
+      "occurrence_clause_count": 4,
+      "support": [
+        [
+          4,
+          10
+        ],
+        [
+          4,
+          12
+        ],
+        [
+          9,
+          10
+        ],
+        [
+          9,
+          14
+        ],
+        [
+          15,
+          12
+        ],
+        [
+          15,
+          14
+        ]
+      ],
+      "orientation": null,
+      "reflected_support": null,
+      "reflected_orientation": null,
+      "lean_consumer": null,
+      "source_bridge": "sourceAssign_cancellationOccurrenceClause after checked TwoKalmansonCancellationData and selected-hit antecedents",
+      "producer_stage": "equality-convex-two-kalmanson-cancellation"
+    },
+    {
+      "classification": "SOURCE-VALID; new finite occurrence of the existing generic two-Kalmanson family",
+      "bank_relation": "new-occurrence-existing-family",
+      "occurrence_clause_count": 4,
+      "support": [
+        [
+          5,
+          12
+        ],
+        [
+          5,
+          15
+        ],
+        [
+          7,
+          4
+        ],
+        [
+          7,
+          15
+        ],
+        [
+          11,
+          4
+        ],
+        [
+          11,
+          12
+        ]
+      ],
+      "orientation": null,
+      "reflected_support": null,
+      "reflected_orientation": null,
+      "lean_consumer": null,
+      "source_bridge": "sourceAssign_cancellationOccurrenceClause after checked TwoKalmansonCancellationData and selected-hit antecedents",
+      "producer_stage": "equality-convex-two-kalmanson-cancellation"
+    },
+    {
+      "classification": "SOURCE-VALID; new finite occurrence of the existing generic two-Kalmanson family",
+      "bank_relation": "new-occurrence-existing-family",
+      "occurrence_clause_count": 4,
+      "support": [
+        [
+          6,
+          7
+        ],
+        [
+          6,
+          9
+        ],
+        [
+          12,
+          8
+        ],
+        [
+          12,
+          9
+        ],
+        [
+          14,
+          7
+        ],
+        [
+          14,
+          8
+        ]
+      ],
+      "orientation": null,
+      "reflected_support": null,
+      "reflected_orientation": null,
+      "lean_consumer": null,
+      "source_bridge": "sourceAssign_cancellationOccurrenceClause after checked TwoKalmansonCancellationData and selected-hit antecedents",
+      "producer_stage": "equality-convex-two-kalmanson-cancellation"
+    },
+    {
+      "classification": "SOURCE-VALID; new finite occurrence of the existing generic two-Kalmanson family",
+      "bank_relation": "new-occurrence-existing-family",
+      "occurrence_clause_count": 4,
+      "support": [
+        [
+          6,
+          9
+        ],
+        [
+          6,
+          14
+        ],
+        [
+          9,
+          8
+        ],
+        [
+          9,
+          14
+        ],
+        [
+          12,
+          8
+        ],
+        [
+          12,
+          9
+        ]
+      ],
+      "orientation": null,
+      "reflected_support": null,
+      "reflected_orientation": null,
+      "lean_consumer": null,
+      "source_bridge": "sourceAssign_cancellationOccurrenceClause after checked TwoKalmansonCancellationData and selected-hit antecedents",
+      "producer_stage": "equality-convex-two-kalmanson-cancellation"
+    },
+    {
+      "classification": "SOURCE-VALID; new finite occurrence of the existing generic two-Kalmanson family",
+      "bank_relation": "new-occurrence-existing-family",
+      "occurrence_clause_count": 4,
+      "support": [
+        [
+          7,
+          4
+        ],
+        [
+          7,
+          13
+        ],
+        [
+          8,
+          13
+        ],
+        [
+          8,
+          16
+        ],
+        [
+          11,
+          4
+        ],
+        [
+          11,
+          16
+        ]
+      ],
+      "orientation": null,
+      "reflected_support": null,
+      "reflected_orientation": null,
+      "lean_consumer": null,
+      "source_bridge": "sourceAssign_cancellationOccurrenceClause after checked TwoKalmansonCancellationData and selected-hit antecedents",
+      "producer_stage": "equality-convex-two-kalmanson-cancellation"
+    },
+    {
+      "classification": "SOURCE-VALID; new finite occurrence of the existing generic two-Kalmanson family",
+      "bank_relation": "new-occurrence-existing-family",
+      "occurrence_clause_count": 4,
+      "support": [
+        [
+          8,
+          5
+        ],
+        [
+          8,
+          7
+        ],
+        [
+          13,
+          5
+        ],
+        [
+          13,
+          6
+        ],
+        [
+          14,
+          6
+        ],
+        [
+          14,
+          7
+        ]
+      ],
+      "orientation": null,
+      "reflected_support": null,
+      "reflected_orientation": null,
+      "lean_consumer": null,
+      "source_bridge": "sourceAssign_cancellationOccurrenceClause after checked TwoKalmansonCancellationData and selected-hit antecedents",
+      "producer_stage": "equality-convex-two-kalmanson-cancellation"
+    },
+    {
+      "classification": "SOURCE-VALID; new finite occurrence of the existing generic two-Kalmanson family",
+      "bank_relation": "new-occurrence-existing-family",
+      "occurrence_clause_count": 4,
+      "support": [
+        [
+          8,
+          5
+        ],
+        [
+          8,
+          16
+        ],
+        [
+          11,
+          4
+        ],
+        [
+          11,
+          16
+        ],
+        [
+          13,
+          4
+        ],
+        [
+          13,
+          5
+        ]
+      ],
+      "orientation": null,
+      "reflected_support": null,
+      "reflected_orientation": null,
+      "lean_consumer": null,
+      "source_bridge": "sourceAssign_cancellationOccurrenceClause after checked TwoKalmansonCancellationData and selected-hit antecedents",
+      "producer_stage": "equality-convex-two-kalmanson-cancellation"
+    },
+    {
+      "classification": "SOURCE-VALID; new finite occurrence of the existing generic two-Kalmanson family",
+      "bank_relation": "new-occurrence-existing-family",
+      "occurrence_clause_count": 4,
+      "support": [
+        [
+          9,
+          3
+        ],
+        [
+          9,
+          8
+        ],
+        [
+          10,
+          2
+        ],
+        [
+          10,
+          3
+        ],
+        [
+          12,
+          2
+        ],
+        [
+          12,
+          8
+        ]
+      ],
+      "orientation": null,
+      "reflected_support": null,
+      "reflected_orientation": null,
+      "lean_consumer": null,
+      "source_bridge": "sourceAssign_cancellationOccurrenceClause after checked TwoKalmansonCancellationData and selected-hit antecedents",
+      "producer_stage": "equality-convex-two-kalmanson-cancellation"
+    },
+    {
+      "classification": "SOURCE-VALID; new finite occurrence of the existing generic two-Kalmanson family",
+      "bank_relation": "new-occurrence-existing-family",
+      "occurrence_clause_count": 4,
+      "support": [
+        [
+          9,
+          3
+        ],
+        [
+          9,
+          8
+        ],
+        [
+          10,
+          3
+        ],
+        [
+          10,
+          7
+        ],
+        [
+          14,
+          7
+        ],
+        [
+          14,
+          8
+        ]
+      ],
+      "orientation": null,
+      "reflected_support": null,
+      "reflected_orientation": null,
+      "lean_consumer": null,
+      "source_bridge": "sourceAssign_cancellationOccurrenceClause after checked TwoKalmansonCancellationData and selected-hit antecedents",
+      "producer_stage": "equality-convex-two-kalmanson-cancellation"
+    },
+    {
+      "classification": "SOURCE-VALID; new finite occurrence of the existing generic two-Kalmanson family",
+      "bank_relation": "new-occurrence-existing-family",
+      "occurrence_clause_count": 4,
+      "support": [
+        [
+          10,
+          1
+        ],
+        [
+          10,
+          2
+        ],
+        [
+          12,
+          2
+        ],
+        [
+          12,
+          5
+        ],
+        [
+          13,
+          1
+        ],
+        [
+          13,
+          5
+        ]
+      ],
+      "orientation": null,
+      "reflected_support": null,
+      "reflected_orientation": null,
+      "lean_consumer": null,
+      "source_bridge": "sourceAssign_cancellationOccurrenceClause after checked TwoKalmansonCancellationData and selected-hit antecedents",
+      "producer_stage": "equality-convex-two-kalmanson-cancellation"
+    },
+    {
+      "classification": "SOURCE-VALID; new finite occurrence of the existing generic two-Kalmanson family",
+      "bank_relation": "new-occurrence-existing-family",
+      "occurrence_clause_count": 4,
+      "support": [
+        [
+          10,
+          1
+        ],
+        [
+          10,
+          7
+        ],
+        [
+          13,
+          1
+        ],
+        [
+          13,
+          6
+        ],
+        [
+          14,
+          6
+        ],
+        [
+          14,
+          7
+        ]
+      ],
+      "orientation": null,
+      "reflected_support": null,
+      "reflected_orientation": null,
+      "lean_consumer": null,
+      "source_bridge": "sourceAssign_cancellationOccurrenceClause after checked TwoKalmansonCancellationData and selected-hit antecedents",
+      "producer_stage": "equality-convex-two-kalmanson-cancellation"
+    },
+    {
+      "classification": "SOURCE-VALID; new finite occurrence of the existing generic two-Kalmanson family",
+      "bank_relation": "new-occurrence-existing-family",
+      "occurrence_clause_count": 4,
+      "support": [
+        [
+          11,
+          4
+        ],
+        [
+          11,
+          9
+        ],
+        [
+          12,
+          5
+        ],
+        [
+          12,
+          9
+        ],
+        [
+          13,
+          4
+        ],
+        [
+          13,
+          5
+        ]
+      ],
+      "orientation": null,
+      "reflected_support": null,
+      "reflected_orientation": null,
+      "lean_consumer": null,
+      "source_bridge": "sourceAssign_cancellationOccurrenceClause after checked TwoKalmansonCancellationData and selected-hit antecedents",
+      "producer_stage": "equality-convex-two-kalmanson-cancellation"
+    },
+    {
+      "classification": "SOURCE-VALID; new finite occurrence of the existing generic two-Kalmanson family",
+      "bank_relation": "new-occurrence-existing-family",
+      "occurrence_clause_count": 4,
+      "support": [
+        [
+          12,
+          5
+        ],
+        [
+          12,
+          8
+        ],
+        [
+          13,
+          5
+        ],
+        [
+          13,
+          6
+        ],
+        [
+          14,
+          6
+        ],
+        [
+          14,
+          8
+        ]
+      ],
+      "orientation": null,
+      "reflected_support": null,
+      "reflected_orientation": null,
+      "lean_consumer": null,
+      "source_bridge": "sourceAssign_cancellationOccurrenceClause after checked TwoKalmansonCancellationData and selected-hit antecedents",
+      "producer_stage": "equality-convex-two-kalmanson-cancellation"
+    },
+    {
+      "classification": "SOURCE-VALID; new finite occurrence of the existing generic two-Kalmanson family",
+      "bank_relation": "new-occurrence-existing-family",
+      "occurrence_clause_count": 4,
+      "support": [
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          15
+        ],
+        [
+          5,
+          3
+        ],
+        [
+          5,
+          15
+        ],
+        [
+          13,
+          4
+        ],
+        [
+          13,
+          5
+        ]
+      ],
+      "orientation": null,
+      "reflected_support": null,
+      "reflected_orientation": null,
+      "lean_consumer": null,
+      "source_bridge": "sourceAssign_cancellationOccurrenceClause after checked TwoKalmansonCancellationData and selected-hit antecedents",
+      "producer_stage": "equality-convex-two-kalmanson-cancellation"
+    },
+    {
+      "classification": "SOURCE-VALID; new finite occurrence of the existing generic two-Kalmanson family",
+      "bank_relation": "new-occurrence-existing-family",
+      "occurrence_clause_count": 4,
+      "support": [
+        [
+          0,
+          5
+        ],
+        [
+          0,
+          10
+        ],
+        [
+          1,
+          10
+        ],
+        [
+          1,
+          13
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          13
+        ],
+        [
+          13,
+          1
+        ],
+        [
+          13,
+          5
+        ]
+      ],
+      "orientation": null,
+      "reflected_support": null,
+      "reflected_orientation": null,
+      "lean_consumer": null,
+      "source_bridge": "sourceAssign_cancellationOccurrenceClause after checked TwoKalmansonCancellationData and selected-hit antecedents",
+      "producer_stage": "equality-convex-two-kalmanson-cancellation"
+    },
+    {
+      "classification": "SOURCE-VALID; new finite occurrence of the existing generic two-Kalmanson family",
+      "bank_relation": "new-occurrence-existing-family",
+      "occurrence_clause_count": 4,
+      "support": [
+        [
+          1,
+          8
+        ],
+        [
+          1,
+          13
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          13
+        ],
+        [
+          10,
+          1
+        ],
+        [
+          10,
+          2
+        ],
+        [
+          12,
+          2
+        ],
+        [
+          12,
+          8
+        ]
+      ],
+      "orientation": null,
+      "reflected_support": null,
+      "reflected_orientation": null,
+      "lean_consumer": null,
+      "source_bridge": "sourceAssign_cancellationOccurrenceClause after checked TwoKalmansonCancellationData and selected-hit antecedents",
+      "producer_stage": "equality-convex-two-kalmanson-cancellation"
+    },
+    {
+      "classification": "SOURCE-VALID; new finite occurrence of the existing generic two-Kalmanson family",
+      "bank_relation": "new-occurrence-existing-family",
+      "occurrence_clause_count": 4,
+      "support": [
+        [
+          1,
+          8
+        ],
+        [
+          1,
+          13
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          13
+        ],
+        [
+          12,
+          5
+        ],
+        [
+          12,
+          8
+        ],
+        [
+          13,
+          1
+        ],
+        [
+          13,
+          5
+        ]
+      ],
+      "orientation": null,
+      "reflected_support": null,
+      "reflected_orientation": null,
+      "lean_consumer": null,
+      "source_bridge": "sourceAssign_cancellationOccurrenceClause after checked TwoKalmansonCancellationData and selected-hit antecedents",
+      "producer_stage": "equality-convex-two-kalmanson-cancellation"
+    },
+    {
+      "classification": "SOURCE-VALID; new finite occurrence of the existing generic two-Kalmanson family",
+      "bank_relation": "new-occurrence-existing-family",
+      "occurrence_clause_count": 4,
+      "support": [
+        [
+          1,
+          8
+        ],
+        [
+          1,
+          13
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          13
+        ],
+        [
+          13,
+          1
+        ],
+        [
+          13,
+          6
+        ],
+        [
+          14,
+          6
+        ],
+        [
+          14,
+          8
+        ]
+      ],
+      "orientation": null,
+      "reflected_support": null,
+      "reflected_orientation": null,
+      "lean_consumer": null,
+      "source_bridge": "sourceAssign_cancellationOccurrenceClause after checked TwoKalmansonCancellationData and selected-hit antecedents",
+      "producer_stage": "equality-convex-two-kalmanson-cancellation"
+    },
+    {
+      "classification": "SOURCE-VALID; new finite occurrence of the existing generic two-Kalmanson family",
+      "bank_relation": "new-occurrence-existing-family",
+      "occurrence_clause_count": 4,
+      "support": [
+        [
+          3,
+          15
+        ],
+        [
+          3,
+          16
+        ],
+        [
+          5,
+          8
+        ],
+        [
+          5,
+          15
+        ],
+        [
+          8,
+          5
+        ],
+        [
+          8,
+          16
+        ],
+        [
+          12,
+          5
+        ],
+        [
+          12,
+          8
+        ]
+      ],
+      "orientation": null,
+      "reflected_support": null,
+      "reflected_orientation": null,
+      "lean_consumer": null,
+      "source_bridge": "sourceAssign_cancellationOccurrenceClause after checked TwoKalmansonCancellationData and selected-hit antecedents",
+      "producer_stage": "equality-convex-two-kalmanson-cancellation"
+    },
+    {
+      "classification": "SOURCE-VALID; new finite occurrence of the existing generic two-Kalmanson family",
+      "bank_relation": "new-occurrence-existing-family",
+      "occurrence_clause_count": 4,
+      "support": [
+        [
+          5,
+          8
+        ],
+        [
+          5,
+          12
+        ],
+        [
+          8,
+          5
+        ],
+        [
+          8,
+          16
+        ],
+        [
+          11,
+          12
+        ],
+        [
+          11,
+          16
+        ],
+        [
+          12,
+          5
+        ],
+        [
+          12,
+          8
+        ]
+      ],
+      "orientation": null,
+      "reflected_support": null,
+      "reflected_orientation": null,
+      "lean_consumer": null,
+      "source_bridge": "sourceAssign_cancellationOccurrenceClause after checked TwoKalmansonCancellationData and selected-hit antecedents",
+      "producer_stage": "equality-convex-two-kalmanson-cancellation"
+    },
+    {
+      "classification": "SOURCE-VALID; new finite occurrence of the existing generic two-Kalmanson family",
+      "bank_relation": "new-occurrence-existing-family",
+      "occurrence_clause_count": 4,
+      "support": [
+        [
+          5,
+          8
+        ],
+        [
+          5,
+          12
+        ],
+        [
+          11,
+          4
+        ],
+        [
+          11,
+          12
+        ],
+        [
+          12,
+          5
+        ],
+        [
+          12,
+          8
+        ],
+        [
+          13,
+          4
+        ],
+        [
+          13,
+          5
+        ]
+      ],
+      "orientation": null,
+      "reflected_support": null,
+      "reflected_orientation": null,
+      "lean_consumer": null,
+      "source_bridge": "sourceAssign_cancellationOccurrenceClause after checked TwoKalmansonCancellationData and selected-hit antecedents",
+      "producer_stage": "equality-convex-two-kalmanson-cancellation"
+    },
+    {
+      "classification": "SOURCE-VALID; new finite occurrence of the existing generic two-Kalmanson family",
+      "bank_relation": "new-occurrence-existing-family",
+      "occurrence_clause_count": 4,
+      "support": [
+        [
+          5,
+          8
+        ],
+        [
+          5,
+          15
+        ],
+        [
+          7,
+          13
+        ],
+        [
+          7,
+          15
+        ],
+        [
+          8,
+          5
+        ],
+        [
+          8,
+          13
+        ],
+        [
+          12,
+          5
+        ],
+        [
+          12,
+          8
+        ]
+      ],
+      "orientation": null,
+      "reflected_support": null,
+      "reflected_orientation": null,
+      "lean_consumer": null,
+      "source_bridge": "sourceAssign_cancellationOccurrenceClause after checked TwoKalmansonCancellationData and selected-hit antecedents",
+      "producer_stage": "equality-convex-two-kalmanson-cancellation"
+    },
+    {
+      "classification": "SOURCE-VALID; new finite occurrence of the existing generic two-Kalmanson family",
+      "bank_relation": "new-occurrence-existing-family",
+      "occurrence_clause_count": 4,
+      "support": [
+        [
+          6,
+          7
+        ],
+        [
+          6,
+          9
+        ],
+        [
+          7,
+          4
+        ],
+        [
+          7,
+          9
+        ],
+        [
+          13,
+          4
+        ],
+        [
+          13,
+          6
+        ],
+        [
+          14,
+          6
+        ],
+        [
+          14,
+          7
+        ]
+      ],
+      "orientation": null,
+      "reflected_support": null,
+      "reflected_orientation": null,
+      "lean_consumer": null,
+      "source_bridge": "sourceAssign_cancellationOccurrenceClause after checked TwoKalmansonCancellationData and selected-hit antecedents",
+      "producer_stage": "equality-convex-two-kalmanson-cancellation"
+    },
+    {
+      "classification": "SOURCE-VALID; new finite occurrence of the existing generic two-Kalmanson family",
+      "bank_relation": "new-occurrence-existing-family",
+      "occurrence_clause_count": 4,
+      "support": [
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          3,
+          15
+        ],
+        [
+          3,
+          16
+        ],
+        [
+          5,
+          8
+        ],
+        [
+          5,
+          15
+        ],
+        [
+          8,
+          5
+        ],
+        [
+          8,
+          16
+        ],
+        [
+          9,
+          3
+        ],
+        [
+          9,
+          8
+        ]
+      ],
+      "orientation": null,
+      "reflected_support": null,
+      "reflected_orientation": null,
+      "lean_consumer": null,
+      "source_bridge": "sourceAssign_cancellationOccurrenceClause after checked TwoKalmansonCancellationData and selected-hit antecedents",
+      "producer_stage": "equality-convex-two-kalmanson-cancellation"
+    },
+    {
+      "classification": "SOURCE-VALID; new finite occurrence of the existing generic two-Kalmanson family",
+      "bank_relation": "new-occurrence-existing-family",
+      "occurrence_clause_count": 4,
+      "support": [
+        [
+          0,
+          10
+        ],
+        [
+          0,
+          11
+        ],
+        [
+          1,
+          8
+        ],
+        [
+          1,
+          10
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          11
+        ],
+        [
+          10,
+          1
+        ],
+        [
+          10,
+          2
+        ],
+        [
+          12,
+          2
+        ],
+        [
+          12,
+          8
+        ]
+      ],
+      "orientation": null,
+      "reflected_support": null,
+      "reflected_orientation": null,
+      "lean_consumer": null,
+      "source_bridge": "sourceAssign_cancellationOccurrenceClause after checked TwoKalmansonCancellationData and selected-hit antecedents",
+      "producer_stage": "equality-convex-two-kalmanson-cancellation"
+    },
+    {
+      "classification": "SOURCE-VALID; new finite occurrence of the existing generic two-Kalmanson family",
+      "bank_relation": "new-occurrence-existing-family",
+      "occurrence_clause_count": 4,
+      "support": [
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          13
+        ],
+        [
+          6,
+          1
+        ],
+        [
+          6,
+          7
+        ],
+        [
+          7,
+          4
+        ],
+        [
+          7,
+          13
+        ],
+        [
+          13,
+          1
+        ],
+        [
+          13,
+          6
+        ],
+        [
+          14,
+          6
+        ],
+        [
+          14,
+          7
+        ]
+      ],
+      "orientation": null,
+      "reflected_support": null,
+      "reflected_orientation": null,
+      "lean_consumer": null,
+      "source_bridge": "sourceAssign_cancellationOccurrenceClause after checked TwoKalmansonCancellationData and selected-hit antecedents",
+      "producer_stage": "equality-convex-two-kalmanson-cancellation"
+    },
+    {
+      "classification": "SOURCE-VALID; new finite occurrence of the existing generic two-Kalmanson family",
+      "bank_relation": "new-occurrence-existing-family",
+      "occurrence_clause_count": 4,
+      "support": [
+        [
+          1,
+          8
+        ],
+        [
+          1,
+          10
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          4,
+          6
+        ],
+        [
+          4,
+          10
+        ],
+        [
+          10,
+          1
+        ],
+        [
+          10,
+          2
+        ],
+        [
+          12,
+          2
+        ],
+        [
+          12,
+          8
+        ]
+      ],
+      "orientation": null,
+      "reflected_support": null,
+      "reflected_orientation": null,
+      "lean_consumer": null,
+      "source_bridge": "sourceAssign_cancellationOccurrenceClause after checked TwoKalmansonCancellationData and selected-hit antecedents",
+      "producer_stage": "equality-convex-two-kalmanson-cancellation"
+    },
+    {
+      "classification": "SOURCE-VALID; new finite occurrence of the existing generic two-Kalmanson family",
+      "bank_relation": "new-occurrence-existing-family",
+      "occurrence_clause_count": 4,
+      "support": [
+        [
+          1,
+          8
+        ],
+        [
+          1,
+          13
+        ],
+        [
+          6,
+          1
+        ],
+        [
+          6,
+          9
+        ],
+        [
+          7,
+          9
+        ],
+        [
+          7,
+          13
+        ],
+        [
+          13,
+          1
+        ],
+        [
+          13,
+          6
+        ],
+        [
+          14,
+          6
+        ],
+        [
+          14,
+          8
+        ]
+      ],
+      "orientation": null,
+      "reflected_support": null,
+      "reflected_orientation": null,
+      "lean_consumer": null,
+      "source_bridge": "sourceAssign_cancellationOccurrenceClause after checked TwoKalmansonCancellationData and selected-hit antecedents",
+      "producer_stage": "equality-convex-two-kalmanson-cancellation"
+    },
+    {
+      "classification": "SOURCE-VALID; new finite occurrence of the existing generic two-Kalmanson family",
+      "bank_relation": "new-occurrence-existing-family",
+      "occurrence_clause_count": 4,
+      "support": [
+        [
+          1,
+          8
+        ],
+        [
+          1,
+          13
+        ],
+        [
+          8,
+          7
+        ],
+        [
+          8,
+          13
+        ],
+        [
+          10,
+          1
+        ],
+        [
+          10,
+          7
+        ],
+        [
+          12,
+          5
+        ],
+        [
+          12,
+          8
+        ],
+        [
+          13,
+          1
+        ],
+        [
+          13,
+          5
+        ]
+      ],
+      "orientation": null,
+      "reflected_support": null,
+      "reflected_orientation": null,
+      "lean_consumer": null,
+      "source_bridge": "sourceAssign_cancellationOccurrenceClause after checked TwoKalmansonCancellationData and selected-hit antecedents",
+      "producer_stage": "equality-convex-two-kalmanson-cancellation"
+    },
+    {
+      "classification": "SOURCE-VALID; new finite occurrence of the existing generic two-Kalmanson family",
+      "bank_relation": "new-occurrence-existing-family",
+      "occurrence_clause_count": 4,
+      "support": [
+        [
+          1,
+          10
+        ],
+        [
+          1,
+          13
+        ],
+        [
+          4,
+          10
+        ],
+        [
+          4,
+          12
+        ],
+        [
+          5,
+          8
+        ],
+        [
+          5,
+          12
+        ],
+        [
+          8,
+          5
+        ],
+        [
+          8,
+          13
+        ],
+        [
+          12,
+          5
+        ],
+        [
+          12,
+          8
+        ]
+      ],
+      "orientation": null,
+      "reflected_support": null,
+      "reflected_orientation": null,
+      "lean_consumer": null,
+      "source_bridge": "sourceAssign_cancellationOccurrenceClause after checked TwoKalmansonCancellationData and selected-hit antecedents",
+      "producer_stage": "equality-convex-two-kalmanson-cancellation"
+    },
+    {
+      "classification": "SOURCE-VALID; new finite occurrence of the existing generic two-Kalmanson family",
+      "bank_relation": "new-occurrence-existing-family",
+      "occurrence_clause_count": 4,
+      "support": [
+        [
+          2,
+          6
+        ],
+        [
+          2,
+          13
+        ],
+        [
+          4,
+          6
+        ],
+        [
+          4,
+          12
+        ],
+        [
+          5,
+          8
+        ],
+        [
+          5,
+          12
+        ],
+        [
+          8,
+          5
+        ],
+        [
+          8,
+          13
+        ],
+        [
+          12,
+          5
+        ],
+        [
+          12,
+          8
+        ]
+      ],
+      "orientation": null,
+      "reflected_support": null,
+      "reflected_orientation": null,
+      "lean_consumer": null,
+      "source_bridge": "sourceAssign_cancellationOccurrenceClause after checked TwoKalmansonCancellationData and selected-hit antecedents",
+      "producer_stage": "equality-convex-two-kalmanson-cancellation"
+    },
+    {
+      "classification": "SOURCE-VALID; new finite occurrence of the existing generic two-Kalmanson family",
+      "bank_relation": "new-occurrence-existing-family",
+      "occurrence_clause_count": 4,
+      "support": [
+        [
+          4,
+          6
+        ],
+        [
+          4,
+          10
+        ],
+        [
+          6,
+          1
+        ],
+        [
+          6,
+          14
+        ],
+        [
+          9,
+          10
+        ],
+        [
+          9,
+          14
+        ],
+        [
+          10,
+          1
+        ],
+        [
+          10,
+          7
+        ],
+        [
+          14,
+          6
+        ],
+        [
+          14,
+          7
+        ]
+      ],
+      "orientation": null,
+      "reflected_support": null,
+      "reflected_orientation": null,
+      "lean_consumer": null,
+      "source_bridge": "sourceAssign_cancellationOccurrenceClause after checked TwoKalmansonCancellationData and selected-hit antecedents",
+      "producer_stage": "equality-convex-two-kalmanson-cancellation"
+    },
+    {
+      "classification": "SOURCE-VALID; new finite occurrence of the existing generic two-Kalmanson family",
+      "bank_relation": "new-occurrence-existing-family",
+      "occurrence_clause_count": 4,
+      "support": [
+        [
+          5,
+          3
+        ],
+        [
+          5,
+          8
+        ],
+        [
+          7,
+          9
+        ],
+        [
+          7,
+          13
+        ],
+        [
+          8,
+          5
+        ],
+        [
+          8,
+          13
+        ],
+        [
+          9,
+          3
+        ],
+        [
+          9,
+          8
+        ],
+        [
+          12,
+          5
+        ],
+        [
+          12,
+          9
+        ]
+      ],
+      "orientation": null,
+      "reflected_support": null,
+      "reflected_orientation": null,
+      "lean_consumer": null,
+      "source_bridge": "sourceAssign_cancellationOccurrenceClause after checked TwoKalmansonCancellationData and selected-hit antecedents",
+      "producer_stage": "equality-convex-two-kalmanson-cancellation"
+    },
+    {
+      "classification": "SOURCE-VALID; new finite occurrence of the existing generic two-Kalmanson family",
+      "bank_relation": "new-occurrence-existing-family",
+      "occurrence_clause_count": 4,
+      "support": [
+        [
+          5,
+          8
+        ],
+        [
+          5,
+          12
+        ],
+        [
+          7,
+          4
+        ],
+        [
+          7,
+          13
+        ],
+        [
+          8,
+          5
+        ],
+        [
+          8,
+          13
+        ],
+        [
+          11,
+          4
+        ],
+        [
+          11,
+          12
+        ],
+        [
+          12,
+          5
+        ],
+        [
+          12,
+          8
+        ]
+      ],
+      "orientation": null,
+      "reflected_support": null,
+      "reflected_orientation": null,
+      "lean_consumer": null,
+      "source_bridge": "sourceAssign_cancellationOccurrenceClause after checked TwoKalmansonCancellationData and selected-hit antecedents",
+      "producer_stage": "equality-convex-two-kalmanson-cancellation"
+    },
+    {
+      "classification": "SOURCE-VALID; new finite occurrence of the existing generic two-Kalmanson family",
+      "bank_relation": "new-occurrence-existing-family",
+      "occurrence_clause_count": 4,
+      "support": [
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          10
+        ],
+        [
+          6,
+          1
+        ],
+        [
+          6,
+          14
+        ],
+        [
+          9,
+          10
+        ],
+        [
+          9,
+          14
+        ],
+        [
+          10,
+          1
+        ],
+        [
+          10,
+          7
+        ],
+        [
+          13,
+          4
+        ],
+        [
+          13,
+          6
+        ],
+        [
+          14,
+          6
+        ],
+        [
+          14,
+          7
+        ]
+      ],
+      "orientation": null,
+      "reflected_support": null,
+      "reflected_orientation": null,
+      "lean_consumer": null,
+      "source_bridge": "sourceAssign_cancellationOccurrenceClause after checked TwoKalmansonCancellationData and selected-hit antecedents",
+      "producer_stage": "equality-convex-two-kalmanson-cancellation"
+    },
+    {
+      "classification": "SOURCE-VALID; new finite occurrence of the existing generic two-Kalmanson family",
+      "bank_relation": "new-occurrence-existing-family",
+      "occurrence_clause_count": 4,
+      "support": [
+        [
+          1,
+          10
+        ],
+        [
+          1,
+          13
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          2,
+          13
+        ],
+        [
+          6,
+          1
+        ],
+        [
+          6,
+          14
+        ],
+        [
+          9,
+          10
+        ],
+        [
+          9,
+          14
+        ],
+        [
+          10,
+          1
+        ],
+        [
+          10,
+          7
+        ],
+        [
+          14,
+          6
+        ],
+        [
+          14,
+          7
+        ]
+      ],
+      "orientation": null,
+      "reflected_support": null,
+      "reflected_orientation": null,
+      "lean_consumer": null,
+      "source_bridge": "sourceAssign_cancellationOccurrenceClause after checked TwoKalmansonCancellationData and selected-hit antecedents",
+      "producer_stage": "equality-convex-two-kalmanson-cancellation"
+    },
+    {
+      "classification": "SOURCE-VALID; new finite occurrence of the existing generic two-Kalmanson family",
+      "bank_relation": "new-occurrence-existing-family",
+      "occurrence_clause_count": 4,
+      "support": [
+        [
+          4,
+          6
+        ],
+        [
+          4,
+          12
+        ],
+        [
+          5,
+          8
+        ],
+        [
+          5,
+          12
+        ],
+        [
+          7,
+          4
+        ],
+        [
+          7,
+          13
+        ],
+        [
+          8,
+          5
+        ],
+        [
+          8,
+          13
+        ],
+        [
+          12,
+          5
+        ],
+        [
+          12,
+          8
+        ],
+        [
+          13,
+          4
+        ],
+        [
+          13,
+          6
+        ]
+      ],
+      "orientation": null,
+      "reflected_support": null,
+      "reflected_orientation": null,
+      "lean_consumer": null,
+      "source_bridge": "sourceAssign_cancellationOccurrenceClause after checked TwoKalmansonCancellationData and selected-hit antecedents",
+      "producer_stage": "equality-convex-two-kalmanson-cancellation"
+    },
+    {
+      "classification": "SOURCE-VALID; new finite occurrence of the existing generic two-Kalmanson family",
+      "bank_relation": "new-occurrence-existing-family",
+      "occurrence_clause_count": 4,
+      "support": [
+        [
+          5,
+          8
+        ],
+        [
+          5,
+          12
+        ],
+        [
+          7,
+          9
+        ],
+        [
+          7,
+          13
+        ],
+        [
+          8,
+          5
+        ],
+        [
+          8,
+          13
+        ],
+        [
+          9,
+          8
+        ],
+        [
+          9,
+          14
+        ],
+        [
+          12,
+          5
+        ],
+        [
+          12,
+          9
+        ],
+        [
+          15,
+          12
+        ],
+        [
+          15,
+          14
+        ]
+      ],
+      "orientation": null,
+      "reflected_support": null,
+      "reflected_orientation": null,
+      "lean_consumer": null,
+      "source_bridge": "sourceAssign_cancellationOccurrenceClause after checked TwoKalmansonCancellationData and selected-hit antecedents",
+      "producer_stage": "equality-convex-two-kalmanson-cancellation"
+    },
+    {
+      "classification": "SOURCE-VALID; new finite occurrence of the existing generic two-Kalmanson family",
+      "bank_relation": "new-occurrence-existing-family",
+      "occurrence_clause_count": 4,
+      "support": [
+        [
+          0,
+          5
+        ],
+        [
+          0,
+          10
+        ],
+        [
+          1,
+          10
+        ],
+        [
+          1,
+          13
+        ],
+        [
+          5,
+          3
+        ],
+        [
+          5,
+          8
+        ],
+        [
+          8,
+          5
+        ],
+        [
+          8,
+          13
+        ],
+        [
+          10,
+          1
+        ],
+        [
+          10,
+          3
+        ],
+        [
+          12,
+          5
+        ],
+        [
+          12,
+          8
+        ],
+        [
+          13,
+          1
+        ],
+        [
+          13,
+          5
+        ]
+      ],
+      "orientation": null,
+      "reflected_support": null,
+      "reflected_orientation": null,
+      "lean_consumer": null,
+      "source_bridge": "sourceAssign_cancellationOccurrenceClause after checked TwoKalmansonCancellationData and selected-hit antecedents",
+      "producer_stage": "equality-convex-two-kalmanson-cancellation"
+    },
+    {
+      "classification": "SOURCE-VALID; new finite occurrence of the existing generic two-Kalmanson family",
+      "bank_relation": "new-occurrence-existing-family",
+      "occurrence_clause_count": 4,
+      "support": [
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          13
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          4,
+          6
+        ],
+        [
+          4,
+          12
+        ],
+        [
+          5,
+          8
+        ],
+        [
+          5,
+          12
+        ],
+        [
+          8,
+          5
+        ],
+        [
+          8,
+          13
+        ],
+        [
+          12,
+          5
+        ],
+        [
+          12,
+          8
+        ],
+        [
+          13,
+          1
+        ],
+        [
+          13,
+          4
+        ]
+      ],
+      "orientation": null,
+      "reflected_support": null,
+      "reflected_orientation": null,
+      "lean_consumer": null,
+      "source_bridge": "sourceAssign_cancellationOccurrenceClause after checked TwoKalmansonCancellationData and selected-hit antecedents",
+      "producer_stage": "equality-convex-two-kalmanson-cancellation"
+    },
+    {
+      "classification": "SOURCE-VALID; new finite occurrence of the existing generic two-Kalmanson family",
+      "bank_relation": "new-occurrence-existing-family",
+      "occurrence_clause_count": 4,
+      "support": [
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          13
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          4,
+          12
+        ],
+        [
+          5,
+          8
+        ],
+        [
+          5,
+          12
+        ],
+        [
+          8,
+          5
+        ],
+        [
+          8,
+          13
+        ],
+        [
+          10,
+          1
+        ],
+        [
+          10,
+          2
+        ],
+        [
+          12,
+          5
+        ],
+        [
+          12,
+          8
+        ],
+        [
+          13,
+          1
+        ],
+        [
+          13,
+          4
+        ]
+      ],
+      "orientation": null,
+      "reflected_support": null,
+      "reflected_orientation": null,
+      "lean_consumer": null,
+      "source_bridge": "sourceAssign_cancellationOccurrenceClause after checked TwoKalmansonCancellationData and selected-hit antecedents",
+      "producer_stage": "equality-convex-two-kalmanson-cancellation"
+    }
+  ],
+  "summary": {
+    "bank_exact_count": 0,
+    "bank_strict_subsumed_count": 0,
+    "distinct_support_count": 100,
+    "new_occurrence_count": 57,
+    "order": [
+      0,
+      6,
+      8,
+      11,
+      10,
+      12,
+      9,
+      7,
+      2,
+      15,
+      16,
+      3,
+      4,
+      5,
+      1,
+      13,
+      14
+    ],
+    "order_index": 1,
+    "producer_record_count": 155,
+    "subset_minimal_count": 57,
+    "subset_minimal_size_counts": {
+      "10": 11,
+      "12": 4,
+      "14": 3,
+      "6": 29,
+      "8": 10
+    }
+  }
+}

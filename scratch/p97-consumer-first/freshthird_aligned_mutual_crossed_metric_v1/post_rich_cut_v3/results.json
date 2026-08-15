@@ -1,0 +1,27 @@
+{
+  "claims": {
+    "lean_closure": "NONE",
+    "p97_counterexample": "NONE",
+    "universal_closure": "NONE"
+  },
+  "incidence": {
+    "cvc5": "SAT",
+    "internal_z3": "SAT",
+    "nonfirst_branch_counts": {
+      "D44": 2,
+      "S6": 0
+    },
+    "survivors_extracted": 1,
+    "survivors_passing_independent_validation": 1,
+    "validation": "PASS",
+    "z3": "SAT"
+  },
+  "metric": {
+    "clause_count": 1070,
+    "cvc5": "UNSAT",
+    "first_joint_unsat_stage": "blocker_exactness",
+    "z3_cli": "UNSAT",
+    "z3py": "UNKNOWN:timeout"
+  },
+  "scope": "bounded exact-17 direct-crossed frozen-assignment evidence only"
+}

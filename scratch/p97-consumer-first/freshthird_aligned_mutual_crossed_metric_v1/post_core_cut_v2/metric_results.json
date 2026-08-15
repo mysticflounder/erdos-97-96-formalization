@@ -1,0 +1,223 @@
+{
+  "blocker_image_centers": [
+    1,
+    2,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    14,
+    16
+  ],
+  "closure_claim": "NONE",
+  "controls": [
+    {
+      "artifact": "generated/post_core_cut_v2_malformed_reversed_boundary.smt2",
+      "check_sat_count": 1,
+      "clause_count": 706,
+      "cvc5": {
+        "model_checked_by_cvc5": false,
+        "seconds": 0.072,
+        "status": "UNSAT"
+      },
+      "query": "post_core_cut_v2_malformed_reversed_boundary",
+      "z3": {
+        "seconds": 0.016,
+        "status": "UNSAT"
+      }
+    },
+    {
+      "artifact": "generated/post_core_cut_v2_malformed_break_k4_equality.smt2",
+      "check_sat_count": 1,
+      "clause_count": 137,
+      "cvc5": {
+        "model_checked_by_cvc5": false,
+        "seconds": 0.023,
+        "status": "UNSAT"
+      },
+      "query": "post_core_cut_v2_malformed_break_k4_equality",
+      "z3": {
+        "seconds": 0.0,
+        "status": "UNSAT"
+      }
+    },
+    {
+      "artifact": "generated/post_core_cut_v2_malformed_equal_rich_radii.smt2",
+      "check_sat_count": 1,
+      "clause_count": 30,
+      "cvc5": {
+        "model_checked_by_cvc5": false,
+        "seconds": 0.015,
+        "status": "UNSAT"
+      },
+      "query": "post_core_cut_v2_malformed_equal_rich_radii",
+      "z3": {
+        "seconds": 0.0,
+        "status": "UNSAT"
+      }
+    },
+    {
+      "artifact": "generated/post_core_cut_v2_malformed_break_singleton.smt2",
+      "check_sat_count": 1,
+      "clause_count": 14,
+      "cvc5": {
+        "model_checked_by_cvc5": false,
+        "seconds": 0.014,
+        "status": "UNSAT"
+      },
+      "query": "post_core_cut_v2_malformed_break_singleton",
+      "z3": {
+        "seconds": 0.0,
+        "status": "UNSAT"
+      }
+    }
+  ],
+  "counterexample_interpretation": "a SAT result here is still not a P97 counterexample because complete source ingress is not encoded",
+  "fidelity": "source-entitled shared-coordinate assignment test after both generic first-apex source-singleton incidence preflights; incomplete as an original-P97 model",
+  "first_joint_unsat_stage": "rich_radius_pattern",
+  "incidence_validation": "PASS",
+  "omitted_scope": [
+    "complete original P97 and CriticalShellSystem ingress",
+    "the two deletion residual constructors",
+    "the reversed crossed constructor",
+    "coverage of all exact-17 assignments",
+    "all cardinalities other than 17",
+    "a universal finite-core lift"
+  ],
+  "queries": [
+    {
+      "artifact": "generated/post_core_cut_v2_row_equalities_only_preflight.smt2",
+      "check_sat_count": 1,
+      "clause_count": 136,
+      "cvc5": {
+        "model_checked_by_cvc5": false,
+        "seconds": 30.98,
+        "status": "UNKNOWN"
+      },
+      "query": "post_core_cut_v2_row_equalities_only_preflight",
+      "z3": {
+        "seconds": 30.228,
+        "status": "UNKNOWN:timeout"
+      }
+    },
+    {
+      "artifact": "generated/post_core_cut_v2_geometry_core.smt2",
+      "check_sat_count": 1,
+      "clause_count": 705,
+      "cvc5": {
+        "model_checked_by_cvc5": false,
+        "seconds": 31.725,
+        "status": "UNKNOWN"
+      },
+      "query": "post_core_cut_v2_geometry_core",
+      "stage": "geometry_core",
+      "z3": {
+        "all_model_values_rational": true,
+        "exact_substitution_validation": "PASS",
+        "fraction_validation": "PASS",
+        "fraction_validation_errors": [],
+        "model": "generated/post_core_cut_v2_geometry_core_z3_model.json",
+        "seconds": 14.136,
+        "status": "SAT",
+        "validation_errors": []
+      }
+    },
+    {
+      "artifact": "generated/post_core_cut_v2_cap_classification.smt2",
+      "check_sat_count": 1,
+      "clause_count": 756,
+      "cvc5": {
+        "model_checked_by_cvc5": false,
+        "seconds": 31.408,
+        "status": "UNKNOWN"
+      },
+      "query": "post_core_cut_v2_cap_classification",
+      "stage": "cap_classification",
+      "z3": {
+        "all_model_values_rational": true,
+        "exact_substitution_validation": "PASS",
+        "fraction_validation": "PASS",
+        "fraction_validation_errors": [],
+        "model": "generated/post_core_cut_v2_cap_classification_z3_model.json",
+        "seconds": 14.17,
+        "status": "SAT",
+        "validation_errors": []
+      }
+    },
+    {
+      "artifact": "generated/post_core_cut_v2_k4_witness_equalities.smt2",
+      "check_sat_count": 1,
+      "clause_count": 824,
+      "cvc5": {
+        "model_checked_by_cvc5": false,
+        "seconds": 30.447,
+        "status": "UNKNOWN"
+      },
+      "query": "post_core_cut_v2_k4_witness_equalities",
+      "stage": "k4_witness_equalities",
+      "z3": {
+        "seconds": 32.272,
+        "status": "UNKNOWN:timeout"
+      }
+    },
+    {
+      "artifact": "generated/post_core_cut_v2_selected_support_equalities.smt2",
+      "check_sat_count": 1,
+      "clause_count": 892,
+      "cvc5": {
+        "model_checked_by_cvc5": false,
+        "seconds": 30.133,
+        "status": "UNKNOWN"
+      },
+      "query": "post_core_cut_v2_selected_support_equalities",
+      "stage": "selected_support_equalities",
+      "z3": {
+        "seconds": 32.281,
+        "status": "UNKNOWN:timeout"
+      }
+    },
+    {
+      "artifact": "generated/post_core_cut_v2_rich_radius_pattern.smt2",
+      "check_sat_count": 1,
+      "clause_count": 921,
+      "cvc5": {
+        "model_checked_by_cvc5": false,
+        "seconds": 0.155,
+        "status": "UNSAT"
+      },
+      "query": "post_core_cut_v2_rich_radius_pattern",
+      "stage": "rich_radius_pattern",
+      "z3": {
+        "seconds": 0.009,
+        "status": "UNSAT"
+      }
+    }
+  ],
+  "rejected_unsourced_controls": [
+    {
+      "centers": [
+        0,
+        3,
+        11,
+        12,
+        13,
+        15
+      ],
+      "name": "exactness_at_unused_k4_center",
+      "status": "REJECTED_UNSOURCED"
+    }
+  ],
+  "scope": "exact-17 direct crossed constructor only",
+  "source_assignment": "generated/post_core_cut_v2_assignment.json",
+  "unused_k4_centers_without_exactness": [
+    0,
+    3,
+    11,
+    12,
+    13,
+    15
+  ]
+}

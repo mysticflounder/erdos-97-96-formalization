@@ -1,0 +1,12 @@
+{
+  "clauses": 5846164,
+  "motivating_model_cut_clauses": [
+    5846161
+  ],
+  "new_clauses": 4,
+  "orbit_clauses": 4,
+  "parent_prefix_byte_identical": true,
+  "schema": "p97-exact17-eighteenth-model-refinements-export-validation/v1",
+  "suffix_sha256": "f630b7f7b66db596c63219a44c1935ab12068116879b140d75ee402675826b61",
+  "variables": 308
+}

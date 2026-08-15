@@ -1,0 +1,22 @@
+{
+  "analysis_sha256": "816e1651ad06cfa025445d3a00c32f32257ea87566618b7f45227e63b4405486",
+  "canonical_hit_replayed": true,
+  "child_sha256": "588dffabc01a84dd3990045b87995d9679b158b77f41bf7f8ee2499d091fe1eb",
+  "clauses": 5846232,
+  "evidence_cnf_sha256": "e88c12f36d113e8bbbe1484b27cbfa6f997a679f46d8b22e356f79d339f08827",
+  "hit_count": 1,
+  "model_sha256": "f1e6a27683a7c68b6d34e64890ca20c8a3202afff4bc0d1136a890214b5489c9",
+  "motivating_model_cut_clauses": {
+    "cancellation": [
+      5846232
+    ]
+  },
+  "new_clauses": 4,
+  "orbit_clauses": 4,
+  "parent_prefix_byte_identical": true,
+  "parent_sha256": "e88c12f36d113e8bbbe1484b27cbfa6f997a679f46d8b22e356f79d339f08827",
+  "schema": "p97-exact17-twenty-third-model-refinements-export-validation/v1",
+  "suffix_sha256": "6870919130b3053d8ed4f90acb83474a41e3902ce33a2e8dd62503becc70f8e2",
+  "theorem_bank_sha256": "9ef818410868a86385efcf512e2f25845b01b5509c5ba219340c7f6182c5e18a",
+  "variables": 308
+}

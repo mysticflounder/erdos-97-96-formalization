@@ -1,0 +1,11 @@
+{
+  "child_sha256": "3c847c1ebcacf85256b65d54563584a8b89eb50f427fe268e2f916d4cdafa204",
+  "clauses_checked": 5846904,
+  "model_complete_unique_in_range": true,
+  "model_entries": 308,
+  "model_satisfies_all_clauses": true,
+  "parent_clause_body_byte_prefix": true,
+  "parent_clauses": 5846744,
+  "suffix_clauses": 160,
+  "variables": 308
+}

@@ -1,0 +1,84 @@
+{
+  "anonymous_positions": [
+    0,
+    1
+  ],
+  "artifacts": [
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-transitive-v2/pinned-refine2-reauth-current-o0-p0-1.json",
+      "sha256": "1d890abd357ef9c70175cb045fe658a1390c8356111bcb93c920d232fb38c8b5"
+    }
+  ],
+  "clause_blocks": {
+    "exact_four": 83776,
+    "fifth_center_exactly_one": 79,
+    "fifth_row_source_and_one_hit": 135,
+    "initial_learned_patterns": 0,
+    "kalmanson_core": 30940,
+    "learned_nogoods": 424,
+    "named_row_units": 0,
+    "old_row_cap_units": 32,
+    "old_row_outside_partition": 56,
+    "seven_point_schema_c": 272272,
+    "seven_point_schema_f": 272272,
+    "six_point_schema_d": 148512,
+    "six_point_schema_e": 148512,
+    "six_point_schema_g": 148512,
+    "source_coverage": 17,
+    "three_shell_rotation_bank": 904400,
+    "transitive_convex_five_point": 61880,
+    "transitive_label_selected_equality": 32640,
+    "transitive_label_xor_definition": 65280,
+    "transitive_two_circle_bisector": 9520,
+    "two_center_common_hit": 61880,
+    "two_circle_bisector": 9520
+  },
+  "clauses": 2250659,
+  "cnf": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-transitive-v2/pinned-refine2-static-g-fivepoint-proposal-o0-p0-1.cnf",
+  "cnf_sha256": "4510677f18463b721c1493d6ded0a52b9c3d7127628fcd7735b2e804f68117b8",
+  "learned_record_kinds": {
+    "formalized-bank": 251,
+    "weighted-kalmanson": 173
+  },
+  "learned_replay": "skipped_proposal_only",
+  "order": [
+    0,
+    6,
+    8,
+    11,
+    10,
+    9,
+    12,
+    7,
+    2,
+    15,
+    16,
+    3,
+    4,
+    5,
+    1,
+    13,
+    14
+  ],
+  "order_index": 0,
+  "schema": "p97-rigid221-exact17-source-faithful-boolean-cnf-transitive-two-circle-candidate-v2",
+  "scope": "one normalized cap-nine case; nogood soundness and Lean lift remain separate",
+  "source_hashes": {
+    "base_cnf_exporter": "8082ce7f850a698b97ae8e59b44157581c25f46a3c0fc5a876c969ff1ee75036",
+    "direct_exporter": "30beb1d232e98f94cee2b78c8c1a151caa49dc7cc3b88217037bfffac81183a5",
+    "fullcover": "b8cbdae751221fd313b0627b7b18ef734b604c6847a49d9ad11d6fc2e99f159e",
+    "order_base": "4ec264668923dd6534455313fad47b6e9abb78558c6556c5029f7243edaee1d5",
+    "producer_bank": "faba6bb029067e19f3f5d3cb26b14139d2c01dc933f0c525be65bb76d1081002",
+    "source_runner": "9bb7ae8193b6c427273802b850bf8628a6a6a6762a6798afb30b9c138eee55a2"
+  },
+  "transitive_two_circle": true,
+  "transitive_two_circle_metadata": {
+    "centered_comparisons": 2040,
+    "comparison_xor_variables": 16320,
+    "distance_label_bits": 8,
+    "distance_label_variables": 1088,
+    "five_point_forbidden_cores": 61880,
+    "forbidden_cores": 9520
+  },
+  "variables": 17693
+}

@@ -1,0 +1,311 @@
+{
+  "assignment": "generated/post_exact_off_circle_cut_v4_assignment.json",
+  "check_sat_count": 1,
+  "classification": "CLOSURE_CLEAN_SAT",
+  "closure_claim": "NONE",
+  "controls": {
+    "known_v3_assignment": {
+      "expected": "REJECTED",
+      "first_witness": {
+        "all_sources_at_center": [
+          11
+        ],
+        "center": 0,
+        "off_support_point": 8,
+        "path": [
+          {
+            "left": [
+              0,
+              7
+            ],
+            "right": [
+              1,
+              7
+            ],
+            "row_center": 7,
+            "row_members": [
+              0,
+              1
+            ]
+          },
+          {
+            "left": [
+              1,
+              2
+            ],
+            "right": [
+              1,
+              7
+            ],
+            "row_center": 1,
+            "row_members": [
+              2,
+              7
+            ]
+          },
+          {
+            "left": [
+              1,
+              2
+            ],
+            "right": [
+              1,
+              3
+            ],
+            "row_center": 1,
+            "row_members": [
+              2,
+              3
+            ]
+          },
+          {
+            "left": [
+              1,
+              3
+            ],
+            "right": [
+              3,
+              8
+            ],
+            "row_center": 3,
+            "row_members": [
+              1,
+              8
+            ]
+          },
+          {
+            "left": [
+              0,
+              8
+            ],
+            "right": [
+              3,
+              8
+            ],
+            "row_center": 8,
+            "row_members": [
+              0,
+              3
+            ]
+          }
+        ],
+        "path_length": 5,
+        "source": 11,
+        "start_node": [
+          0,
+          7
+        ],
+        "support_point": 7,
+        "target_node": [
+          0,
+          8
+        ]
+      },
+      "status": "PASS",
+      "validation_errors": [],
+      "witness_count": 3
+    },
+    "one_check_sat_control": {
+      "prior_assignment_rejected": {
+        "errors": [
+          "c_first first-apex K4 singleton violated by [10]",
+          "cap1 exact-six D44 selected-support projection [5] crosses rich arms [5, 6]/[8, 15]"
+        ],
+        "expected": "REJECTED",
+        "input": "generated/refined_global_k4_assignment.json",
+        "status": "PASS"
+      },
+      "smoke_malformed_unsat": {
+        "artifact": "generated/smoke_malformed_unsat.smt2",
+        "expected": "UNSAT",
+        "solvers": {
+          "cvc5": {
+            "seconds": 0.007,
+            "status": "UNSAT"
+          },
+          "z3": {
+            "seconds": 0.009,
+            "status": "UNSAT"
+          }
+        },
+        "status": "PASS"
+      },
+      "smoke_sat": {
+        "artifact": "generated/smoke_sat.smt2",
+        "expected": "SAT",
+        "solvers": {
+          "cvc5": {
+            "seconds": 0.009,
+            "status": "SAT"
+          },
+          "z3": {
+            "seconds": 0.014,
+            "status": "SAT"
+          }
+        },
+        "status": "PASS"
+      },
+      "v2_crossed_rich_assignment_rejected": {
+        "errors": [
+          "cap1 exact-six D44 selected-support projection [16] crosses rich arms [11, 14]/[2, 16]",
+          "cap2 exact-six D44 selected-support projection [3, 4, 7, 9] crosses rich arms [7, 9]/[3, 4]"
+        ],
+        "expected": "REJECTED",
+        "input": "post_core_cut_v2/generated/post_core_cut_v2_assignment.json",
+        "status": "PASS"
+      }
+    }
+  },
+  "cut_count": 9,
+  "cuts": "generated/cuts.jsonl",
+  "dual_check": "PASS",
+  "external": {
+    "cvc5": {
+      "seconds": 5.428,
+      "status": "SAT"
+    },
+    "z3": {
+      "seconds": 0.66,
+      "status": "SAT"
+    }
+  },
+  "iterations_this_run": [
+    {
+      "assignment": "generated/iteration_0000_assignment.json",
+      "iteration": 0,
+      "seconds": 0.519,
+      "status": "SAT",
+      "witness_count": 3
+    },
+    {
+      "assignment": "generated/iteration_0001_assignment.json",
+      "iteration": 1,
+      "seconds": 5.005,
+      "status": "SAT",
+      "witness_count": 2
+    },
+    {
+      "assignment": "generated/iteration_0002_assignment.json",
+      "iteration": 2,
+      "seconds": 0.063,
+      "status": "SAT",
+      "witness_count": 1
+    },
+    {
+      "assignment": "generated/iteration_0003_assignment.json",
+      "iteration": 3,
+      "seconds": 0.052,
+      "status": "SAT",
+      "witness_count": 1
+    },
+    {
+      "assignment": "generated/iteration_0004_assignment.json",
+      "iteration": 4,
+      "seconds": 0.053,
+      "status": "SAT",
+      "witness_count": 2
+    },
+    {
+      "assignment": "generated/iteration_0005_assignment.json",
+      "iteration": 5,
+      "seconds": 1.169,
+      "status": "SAT",
+      "witness_count": 0
+    }
+  ],
+  "lean_sorry_closed": false,
+  "omitted_scope": [
+    "reversed crossed constructor",
+    "both deletion residual constructors",
+    "all cardinalities other than 17",
+    "universal finite-core lift",
+    "complete original-P97 ingress"
+  ],
+  "query": "generated/post_exact_off_circle_cut_v4_incidence.smt2",
+  "resumable_state": "generated/state.json",
+  "scope": "exact-17 direct-crossed incidence abstraction only",
+  "source_audit": [
+    {
+      "htwo": "both active first-apex arms have cap-interior card >= 2",
+      "name": "first_apex_retained_branch_is_d44",
+      "source": "oppApex1_rich_exactRetainedRadii_of_aligned (TwoSourceFreshThirdRetainedProducer.lean)"
+    },
+    {
+      "htwo": "each exact retained pair has two distinct endpoints",
+      "name": "first_apex_rich_slices_are_retained_pairs_up_to_swap",
+      "source": "oppApex1_rich_exactRetainedRadii_of_aligned + hfrontierInteriorEq + h\u03c1InteriorEq"
+    },
+    {
+      "htwo": "rich_two_arm[0] and rich_slice[0][0] cardinality >= 2",
+      "name": "aligned_c_first_not_in_first_apex_rich_arm_0",
+      "source": "freshThird_alignedRetainedConsumerPacket_sources_not_mem_firstApex_multiPointRadius"
+    },
+    {
+      "htwo": "rich_two_arm[0] and rich_slice[0][1] cardinality >= 2",
+      "name": "aligned_c_first_not_in_first_apex_rich_arm_1",
+      "source": "freshThird_alignedRetainedConsumerPacket_sources_not_mem_firstApex_multiPointRadius"
+    },
+    {
+      "htwo": "rich_two_arm[0] and rich_slice[0][0] cardinality >= 2",
+      "name": "aligned_c_second_not_in_first_apex_rich_arm_0",
+      "source": "freshThird_alignedRetainedConsumerPacket_sources_not_mem_firstApex_multiPointRadius"
+    },
+    {
+      "htwo": "rich_two_arm[0] and rich_slice[0][1] cardinality >= 2",
+      "name": "aligned_c_second_not_in_first_apex_rich_arm_1",
+      "source": "freshThird_alignedRetainedConsumerPacket_sources_not_mem_firstApex_multiPointRadius"
+    },
+    {
+      "name": "first_apex_k4_support_containing_c_first_is_cap_singleton",
+      "scope": "every chosen first-apex point-K4 support containing this source; every other strict cap0 point",
+      "source": "firstFiberCapSource_firstApexRadius_eq_singleton_of_aligned (TwoSourceFreshThirdRetainedProducer.lean), instantiated at c_first"
+    },
+    {
+      "name": "first_apex_k4_support_containing_c_second_is_cap_singleton",
+      "scope": "every chosen first-apex point-K4 support containing this source; every other strict cap0 point",
+      "source": "firstFiberCapSource_firstApexRadius_eq_singleton_of_aligned (TwoSourceFreshThirdRetainedProducer.lean), instantiated at c_second"
+    },
+    {
+      "antecedent": "rich_two_arm[0] and card(cap[0]) = 6",
+      "name": "exact_six_d44_cap_0_selected_support_projection",
+      "scope": "opposite-apex selected K4 support restricted to the strict cap equals rich_slice arm 0 or arm 1",
+      "source": "selectedFourClass_support_eq_one_of_twoRichClasses_of_cap_card_eq_six (ExactFifteenApexProfile.lean)"
+    },
+    {
+      "antecedent": "not rich_two_arm[0] and card(cap[0]) = 6",
+      "name": "exact_six_s6_cap_0_selected_support_projection",
+      "scope": "opposite-apex selected K4 support restricted to the strict cap is a subset of rich_slice arm 0 and has cardinality at least two; the latter follows because a four-point support lies in a six-point class with at most two points outside the strict cap",
+      "source": "selectedFourClass_support_subset_richSixClass_of_cap_card_eq_six (ExactFifteenApexProfile.lean), plus selectedClass_sdiff_capInteriorByIndex_subset_adjacentCaps and the left/right adjacent-cap intersection bounds"
+    },
+    {
+      "antecedent": "rich_two_arm[1] and card(cap[1]) = 6",
+      "name": "exact_six_d44_cap_1_selected_support_projection",
+      "scope": "opposite-apex selected K4 support restricted to the strict cap equals rich_slice arm 0 or arm 1",
+      "source": "selectedFourClass_support_eq_one_of_twoRichClasses_of_cap_card_eq_six (ExactFifteenApexProfile.lean)"
+    },
+    {
+      "antecedent": "not rich_two_arm[1] and card(cap[1]) = 6",
+      "name": "exact_six_s6_cap_1_selected_support_projection",
+      "scope": "opposite-apex selected K4 support restricted to the strict cap is a subset of rich_slice arm 0 and has cardinality at least two; the latter follows because a four-point support lies in a six-point class with at most two points outside the strict cap",
+      "source": "selectedFourClass_support_subset_richSixClass_of_cap_card_eq_six (ExactFifteenApexProfile.lean), plus selectedClass_sdiff_capInteriorByIndex_subset_adjacentCaps and the left/right adjacent-cap intersection bounds"
+    },
+    {
+      "antecedent": "rich_two_arm[2] and card(cap[2]) = 6",
+      "name": "exact_six_d44_cap_2_selected_support_projection",
+      "scope": "opposite-apex selected K4 support restricted to the strict cap equals rich_slice arm 0 or arm 1",
+      "source": "selectedFourClass_support_eq_one_of_twoRichClasses_of_cap_card_eq_six (ExactFifteenApexProfile.lean)"
+    },
+    {
+      "antecedent": "not rich_two_arm[2] and card(cap[2]) = 6",
+      "name": "exact_six_s6_cap_2_selected_support_projection",
+      "scope": "opposite-apex selected K4 support restricted to the strict cap is a subset of rich_slice arm 0 and has cardinality at least two; the latter follows because a four-point support lies in a six-point class with at most two points outside the strict cap",
+      "source": "selectedFourClass_support_subset_richSixClass_of_cap_card_eq_six (ExactFifteenApexProfile.lean), plus selectedClass_sdiff_capInteriorByIndex_subset_adjacentCaps and the left/right adjacent-cap intersection bounds"
+    }
+  ],
+  "source_contract": [
+    "EqualityCore.ExactOffCircleCore",
+    "EqualityCore.false_of_exactAt_of_exactOffCircleCore",
+    "GeneralCarrierBridge.exactAt_blocker"
+  ],
+  "universal_lift": false
+}

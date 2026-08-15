@@ -1,0 +1,83 @@
+{
+  "dimacs": {
+    "bytes": 291621758,
+    "checked_new_clauses": 8,
+    "clauses": 5847276,
+    "parent_prefix_clauses": 5847268,
+    "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/exact17-lean-to-sat/exact17-thirty-eighth-root-thirty-seventh-model-refinements.cnf",
+    "sha256": "07b139089f2f9e11c03c8edfcdba58609a6f4c5be439e701888d975c182fe8d7",
+    "variables": 308
+  },
+  "export_receipt": {
+    "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/exact17-lean-to-sat/child38-export-receipt.json",
+    "schema": "p97-exact17-child38-immutable-export-receipt/v1",
+    "sha256": "62b40115c0b5f4f7af1968d93fc880df48effa66c7a352c346dd0bbeb213faa6"
+  },
+  "lean": {
+    "export": {
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenThirtySeventhModelRefinementsExport.lean",
+      "sha256": "d373daaee4ee5091a3d83c2f0bb3cf068b6de138e324401612a2db8772b8a6d6"
+    },
+    "root": {
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenThirtySeventhModelRefinements.lean",
+      "sha256": "433032b3bf5e6dfbab2b3ec284155ca66214561afe4f060ea492601e32c97cb8"
+    }
+  },
+  "model": {
+    "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/exact17-lean-to-sat/piqd-child37-core1-custody-model.json",
+    "sha256": "edfe8658f5b7a9aabd03a1bb834ff99e5fba51c52823461fab0403bc69befc7a"
+  },
+  "parent_ingress": {
+    "parent_dimacs_sha256": "98f58d8cf71feb1201f30956e762f3a5b22acfe09f350070dfa7f83bed8640b3",
+    "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/exact17-lean-to-sat/piqd-ingress-manifest-thirty-sixth-model-refinements-core1.json",
+    "sha256": "3d02b8e2a18ba75b08020e8275ca7e7aadb8e0556762a062dbca3ae546026f18"
+  },
+  "piqd": {
+    "backend": "cadical",
+    "daemon_build_receipt": {
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/exact17-lean-to-sat/piqd-child35-daemon-build-receipt.txt",
+      "sha256": "6e9c1d5c203d59ac2b29f800d73f4dbb0395b97865433f412ff4aa44c8e1b0a9"
+    },
+    "daemon_protocol_version": 1,
+    "daemon_sha256": "f89994bc10fcad69a264d8efbd7d76b8203c94c08f22b4536d3b473a12cee089",
+    "daemon_source_commit": "acefb4aba14765d45e38ac4193373f0aa210f22d",
+    "immutable_root_only": true,
+    "ingress": "raw-dimacs/v1",
+    "python_authored_successor_clause_allowed": false,
+    "solver_name": "piqd-satworker-cadical-3.0.0",
+    "solver_profile": "sat",
+    "solver_sha256": "0ee355934249f1b3f14a20928877391a87a0dd51326cf8c6135f75cba0b6b965",
+    "solver_signature": "cadical-3.0.0",
+    "stale_job_reuse_allowed": false
+  },
+  "schema": "p97-exact17-thirty-seventh-model-refinements-piqd-ingress/v1",
+  "status": "PASS",
+  "validation": {
+    "child": {
+      "bytes": 291621758,
+      "clauses": 5847276,
+      "sha256": "07b139089f2f9e11c03c8edfcdba58609a6f4c5be439e701888d975c182fe8d7",
+      "variables": 308
+    },
+    "model": {
+      "job_id": "ba0b8d07-328d-4e43-873e-b99d005b1578",
+      "parent_replay_exact": true,
+      "sha256": "edfe8658f5b7a9aabd03a1bb834ff99e5fba51c52823461fab0403bc69befc7a"
+    },
+    "motivating_model_cut_suffix_indices": [
+      7
+    ],
+    "ordered_suffix_exact": true,
+    "ordered_suffix_sha256": "4404737d09ffe08084f649b9ef1b28af94371aae154694ca4248332b75189b2d",
+    "parent": {
+      "clauses": 5847268,
+      "sha256": "98f58d8cf71feb1201f30956e762f3a5b22acfe09f350070dfa7f83bed8640b3"
+    },
+    "publication_state": "PROVISIONED",
+    "schema": "p97-exact17-child38-export-validation/v1",
+    "source_clause_families": [
+      "child37SixHitCancellationClauses"
+    ],
+    "status": "PASS"
+  }
+}

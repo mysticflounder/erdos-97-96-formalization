@@ -1,0 +1,128 @@
+{
+  "all_solver_expectations_met": true,
+  "classification": "REFUTED_PROJECTED_ALIGNMENT_IMPLICATION",
+  "exact_solver_readbacks": [
+    "geometry_z3.json",
+    "geometry_cvc5.json"
+  ],
+  "exact_validator": "PASS",
+  "qualification": "exact source-faithful local Euclidean model of the projected endpoint/equal-blocker branch; not a model of all global CounterexampleData hypotheses",
+  "solver_runs": [
+    {
+      "command": [
+        "/Users/adam/projects/math-projects/erdos-97-96-formalization/.venv/bin/z3",
+        "-T:30",
+        "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_endpoint_equal_blocker_alignment_metric_v1/artifacts/abstraction_sat.smt2"
+      ],
+      "expected": "sat",
+      "matches_expected": true,
+      "returncode": 0,
+      "solver": "z3",
+      "status": "sat",
+      "stderr_lines": 0,
+      "stdout_lines": 17
+    },
+    {
+      "command": [
+        "/Users/adam/bin/cvc5",
+        "--lang=smt2",
+        "--tlimit-per=30000",
+        "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_endpoint_equal_blocker_alignment_metric_v1/artifacts/abstraction_sat.smt2"
+      ],
+      "expected": "sat",
+      "matches_expected": true,
+      "returncode": 0,
+      "solver": "cvc5",
+      "status": "sat",
+      "stderr_lines": 0,
+      "stdout_lines": 2
+    },
+    {
+      "command": [
+        "/Users/adam/projects/math-projects/erdos-97-96-formalization/.venv/bin/z3",
+        "-T:30",
+        "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_endpoint_equal_blocker_alignment_metric_v1/artifacts/geometry_sat.smt2"
+      ],
+      "expected": "sat",
+      "matches_expected": true,
+      "returncode": 0,
+      "solver": "z3",
+      "status": "sat",
+      "stderr_lines": 0,
+      "stdout_lines": 31
+    },
+    {
+      "command": [
+        "/Users/adam/bin/cvc5",
+        "--lang=smt2",
+        "--tlimit-per=30000",
+        "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_endpoint_equal_blocker_alignment_metric_v1/artifacts/geometry_sat.smt2"
+      ],
+      "expected": "sat",
+      "matches_expected": true,
+      "returncode": 0,
+      "solver": "cvc5",
+      "status": "sat",
+      "stderr_lines": 0,
+      "stdout_lines": 2
+    },
+    {
+      "command": [
+        "/Users/adam/projects/math-projects/erdos-97-96-formalization/.venv/bin/z3",
+        "-T:30",
+        "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_endpoint_equal_blocker_alignment_metric_v1/artifacts/control_forced_alignment_unsat.smt2"
+      ],
+      "expected": "unsat",
+      "matches_expected": true,
+      "returncode": 0,
+      "solver": "z3",
+      "status": "unsat",
+      "stderr_lines": 0,
+      "stdout_lines": 1
+    },
+    {
+      "command": [
+        "/Users/adam/bin/cvc5",
+        "--lang=smt2",
+        "--tlimit-per=30000",
+        "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_endpoint_equal_blocker_alignment_metric_v1/artifacts/control_forced_alignment_unsat.smt2"
+      ],
+      "expected": "unsat",
+      "matches_expected": true,
+      "returncode": 0,
+      "solver": "cvc5",
+      "status": "unsat",
+      "stderr_lines": 0,
+      "stdout_lines": 1
+    },
+    {
+      "command": [
+        "/Users/adam/projects/math-projects/erdos-97-96-formalization/.venv/bin/z3",
+        "-T:30",
+        "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_endpoint_equal_blocker_alignment_metric_v1/artifacts/control_bad_row_radius_unsat.smt2"
+      ],
+      "expected": "unsat",
+      "matches_expected": true,
+      "returncode": 0,
+      "solver": "z3",
+      "status": "unsat",
+      "stderr_lines": 0,
+      "stdout_lines": 1
+    },
+    {
+      "command": [
+        "/Users/adam/bin/cvc5",
+        "--lang=smt2",
+        "--tlimit-per=30000",
+        "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_endpoint_equal_blocker_alignment_metric_v1/artifacts/control_bad_row_radius_unsat.smt2"
+      ],
+      "expected": "unsat",
+      "matches_expected": true,
+      "returncode": 0,
+      "solver": "cvc5",
+      "status": "unsat",
+      "stderr_lines": 0,
+      "stdout_lines": 1
+    }
+  ]
+}

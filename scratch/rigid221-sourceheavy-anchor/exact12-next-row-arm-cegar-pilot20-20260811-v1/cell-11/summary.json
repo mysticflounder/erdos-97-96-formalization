@@ -1,0 +1,55 @@
+{
+  "arm_cell_index": 11,
+  "artifacts": {
+    "detector_contract": {
+      "bytes": 2908,
+      "path": "detector_contract.json",
+      "sha256": "8401a14c804caf6af9f225cc6a7f2b9b2075097cbcc7a93d9653607a79850a07"
+    },
+    "discovery_cnf": {
+      "bytes": 5129591,
+      "path": "discovery.cnf",
+      "sha256": "b3e5f5a8987dbf0d30e3cb1321f413baa7ebb8ca72cf2d5eef7f62b7ed4af8f8"
+    },
+    "job": {
+      "bytes": 11170,
+      "path": "job.json",
+      "sha256": "1d64ccd7a94cb36e58d416e27924aae608417d4a133bfe210b48d8839674169e"
+    },
+    "journal": {
+      "bytes": 3701939,
+      "path": "journal.jsonl",
+      "sha256": "e75ee78ae0c1935af87cb024927473cc4c1221695aa1af23554793423e11a7fb"
+    },
+    "proof": null,
+    "survivor": null,
+    "terminal_cnf": null
+  },
+  "detector_contract_sha256": "abbca168122a7118dd4038eb3002a3258527fb4a4646331126035551a5d8c020",
+  "discovery_cnf_sha256": null,
+  "discovery_verdict": "SAT",
+  "error": null,
+  "job_id": "7f197b6af4fe16e28c775fd9ba259bb48ca88bbf70cc3ca4a89ff93b198c30f7",
+  "journal_replayed": true,
+  "max_iterations": 20,
+  "reconstructed_cnf_sha256": "be02ced59433c156e947f685b1a432b9103645f5b962211a899b90d457a39071",
+  "records": 20,
+  "replay": {
+    "base_added_constraints": true,
+    "candidate": true,
+    "exact_cnf": true,
+    "named_deletion_arm": true
+  },
+  "schema": "p97_rigid221_exact12_next_row_named_deletion_arm_structural_cegar_run.v1",
+  "scope": "one finite next-row placement-by-named-deletion-arm cell; no aggregate arm coverage, universal lift, terminal bank, or Lean closure",
+  "source_order_bank_sha256": "74c42451f6b2e2a2f14c511027b5c37057f1e457db310debbf0b8059b788ce5b",
+  "stage_counts": {
+    "equality-duplicate-center": 20
+  },
+  "status": "ITERATION_LIMIT",
+  "terminal_cnf_sha256": null,
+  "terminal_proof_verified": false,
+  "terminal_record_sha256": "41e31004508d3bcebd0eaf794d536d3b920db042bdc23427e0940dde7a5b9949",
+  "terminal_verdict": null,
+  "timeout_seconds": 60
+}

@@ -1,0 +1,35 @@
+{
+  "clauses": 5846144,
+  "motivating_model_cut_clauses": {
+    "bisector_one": [
+      5846113
+    ],
+    "bisector_two": [
+      5846117
+    ],
+    "convex_five_one": [
+      5846129
+    ],
+    "convex_five_two": [
+      5846133
+    ],
+    "equilateral_collision": [
+      5846125
+    ],
+    "generic_cancellation": [
+      5846137
+    ],
+    "kalmanson_l": [
+      5846121
+    ],
+    "perpendicular_bisector": [
+      5846141
+    ]
+  },
+  "new_clauses": 32,
+  "orbit_clauses": 4,
+  "parent_prefix_byte_identical": true,
+  "schema": "p97-exact17-sixteenth-model-refinements-export-validation/v1",
+  "suffix_sha256": "d565efa765c1eee71415d43b1d0a582e68da74f5b0d3e32c9891aa7e00d56c24",
+  "variables": 308
+}

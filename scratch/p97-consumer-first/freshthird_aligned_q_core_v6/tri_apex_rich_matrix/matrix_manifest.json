@@ -1,0 +1,55 @@
+{
+  "schema": "freshthird_aligned_q_core_v6_tri_apex_rich_deletion",
+  "source_basis": [
+    "ApexRichClassStructure (S6: positive radius and class card >= 6)",
+    "ApexRichClassStructure (D44: two distinct positive radii, each class card >= 4)",
+    "apexRichDeletionPattern_of_apexRichClassStructure",
+    "criticalShell_inter_selectedClass_card_le_two_of_apexRich"
+  ],
+  "apexes": [
+    "oppApex1",
+    "oppApex2",
+    "surplusApex"
+  ],
+  "point_universe": [
+    "source0",
+    "source1",
+    "x0",
+    "x1",
+    "y0",
+    "y1",
+    "qFresh",
+    "qOther",
+    "shellOverlap",
+    "fill0",
+    "fill1",
+    "fill2",
+    "fill3"
+  ],
+  "fixed_v6_arm": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "blocker_modes": [
+    "distinct",
+    "equal"
+  ],
+  "rich_modes": [
+    "S6",
+    "D44"
+  ],
+  "clauses": [
+    "one deleted vertex per apex",
+    "S6: radius > 0, class cardinality >= 6, survivor = class minus deleted, survivor cardinality >= 5",
+    "D44: radii > 0 and distinct, disjoint class1/class2 cardinalities >= 4, at least one survivor cardinality >= 4",
+    "each rich selected class intersects every synchronized x/y shell in at most 2",
+    "each rich selected class at one apex intersects each rich selected class at another apex in at most 2",
+    "all v6 shell synchronization, endpoint, source absence, row/Q shell bounds, and blocker controls retained"
+  ],
+  "matrix_query_count": 16,
+  "control_query_count": 4,
+  "generated_smt2": 20,
+  "status": "PASS"
+}

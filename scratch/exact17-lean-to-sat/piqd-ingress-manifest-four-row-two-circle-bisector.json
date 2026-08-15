@@ -1,0 +1,55 @@
+{
+  "schema": "p97-exact17-lean-four-row-two-circle-bisector-piqd-ingress/v1",
+  "dimacs": {
+    "path": "scratch/exact17-lean-to-sat/exact17-fifteenth-root-four-row-two-circle-bisector.cnf",
+    "sha256": "394b93e9e79fc36cdfbcb943832e46898da3944e6f24f6a0d777802e761238fd",
+    "bytes": 291569030,
+    "variables": 308,
+    "clauses": 5846104,
+    "parent_prefix_clauses": 5846100,
+    "checked_four_row_two_circle_bisector_clauses": 4
+  },
+  "parent_ingress": {
+    "manifest": "scratch/exact17-lean-to-sat/piqd-ingress-manifest-four-point-two-circle-bisector-rows.json",
+    "manifest_sha256": "d067a854f6691bd55cca49eb67954dd917b47a0cddecf93ba43366a24c428499",
+    "validator": "scripts/validate_exact17_four_point_two_circle_bisector_rows_ingress.py",
+    "validator_sha256": "8ce33b23c0def53190569ec8bfd1d8f0d54cf05f82249d2bcfb841addea9acf5",
+    "report": "scratch/exact17-lean-to-sat/piqd-ingress-four-point-two-circle-bisector-rows-validation.json",
+    "report_sha256": "441c7b569b90078a0b4cad5e9bc7de2871e15b14e2c6164647300539c130c54a"
+  },
+  "lean": {
+    "toolchain": "leanprover/lean4:v4.27.0",
+    "toolchain_file_sha256": "d55ca0039a5479db5b38919d005b2c427b89b3be4f0184a20f2f4eae931f5bdb",
+    "lake_manifest_sha256": "48adeb0901038a9dc08e0f80a70d5eb5a609058b849afd582c0c2f6ebe0cbfce",
+    "source_files": [
+      {
+        "path": "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenFourRowTwoCircleBisector.lean",
+        "sha256": "ba65404ab7b940174a7c68915c77ebf55e14719acc5072d5a5fe056362b907de"
+      },
+      {
+        "path": "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenFourRowTwoCircleBisectorExport.lean",
+        "sha256": "d801d34074319d65889235a27b83fe039500ee3ba207ea1aec1ecc0ea17e4ea3"
+      }
+    ]
+  },
+  "validation": {
+    "script": "scripts/validate_exact17_four_row_two_circle_bisector_export.py",
+    "script_sha256": "1bca6c0f3fa2e925c0cbf62e9dca9a979bf00929b48c93b2be1f7f10fa520cb2",
+    "model": "scratch/exact17-lean-to-sat/piqd-fourteenth-root-model.json",
+    "model_sha256": "66f6d913879f5b68e5ca1573d8dc0283d091e2e71d5a1089ebe79f1259c303bd",
+    "report": "scratch/exact17-lean-to-sat/exact17-fifteenth-root-four-row-two-circle-bisector-validation.json",
+    "report_sha256": "0a62f8b94003bd427dd6550204410c36ca2b3ae8595414f8c09630eb58356b65",
+    "parent_prefix_byte_identical": true,
+    "all_four_row_two_circle_bisector_clauses_independently_regenerated": true,
+    "motivating_model_cut": true
+  },
+  "piqd": {
+    "daemon_protocol_version": 1,
+    "daemon_sha256": "0cfc9577656fa3aef143a9fe7e5577d938dba9fd39f3b7118ed91735c97fc360",
+    "ingress": "raw-dimacs/v1",
+    "backend": "cadical",
+    "solver_profile": "sat",
+    "immutable_root_only": true,
+    "python_authored_successor_clause_allowed": false
+  }
+}

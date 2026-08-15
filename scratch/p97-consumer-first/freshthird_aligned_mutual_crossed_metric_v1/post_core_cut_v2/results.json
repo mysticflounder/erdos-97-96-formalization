@@ -1,0 +1,56 @@
+{
+  "claims": {
+    "lean_closure": "NONE",
+    "p97_counterexample": "NONE",
+    "universal_closure": "NONE"
+  },
+  "incidence": {
+    "assignment": "generated/post_core_cut_v2_assignment.json",
+    "assignment_validation": "PASS",
+    "cvc5": "SAT",
+    "first_apex": 13,
+    "first_apex_k4_support": [
+      1,
+      11,
+      15,
+      16
+    ],
+    "first_apex_k4_strict_cap_intersection": [
+      1
+    ],
+    "internal_z3": "SAT",
+    "prior_assignment_control": "REJECTED_AS_EXPECTED",
+    "z3": "SAT"
+  },
+  "metric": {
+    "cap_classification": {
+      "cvc5": "UNKNOWN",
+      "z3": "SAT_EXACT_SUBSTITUTION_AND_FRACTION_PASS"
+    },
+    "first_joint_unsat_stage": "rich_radius_pattern",
+    "geometry_core": {
+      "cvc5": "UNKNOWN",
+      "z3": "SAT_EXACT_SUBSTITUTION_AND_FRACTION_PASS"
+    },
+    "rich_radius_pattern": {
+      "clause_count": 921,
+      "cvc5": "UNSAT",
+      "z3": "UNSAT"
+    },
+    "status": "FIXED_ASSIGNMENT_REJECTED"
+  },
+  "new_cut": {
+    "c_first": "first-apex K4 support containing c_first meets strict cap0 only at c_first",
+    "c_second": "first-apex K4 support containing c_second meets strict cap0 only at c_second",
+    "source": "firstFiberCapSource_firstApexRadius_eq_singleton_of_aligned"
+  },
+  "omitted_scope": [
+    "complete original P97 and CriticalShellSystem ingress",
+    "the two deletion residual constructors",
+    "the reversed crossed constructor",
+    "coverage of all exact-17 assignments",
+    "all cardinalities other than 17",
+    "a universal finite-core lift"
+  ],
+  "scope": "one exact-17 aligned mutual direct-crossed CEGAR round"
+}

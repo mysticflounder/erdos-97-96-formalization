@@ -1,0 +1,15 @@
+{
+  "artifacts": {
+    "cnf": {
+      "byte_count": 5129210,
+      "path": "terminal.cnf",
+      "sha256": "fdded598b3d227320cccb00ef566279f88db87796a9a24d2582f31a82b3fe63c"
+    },
+    "normalized_lrat": {
+      "byte_count": 2474997,
+      "path": "normalized.lrat",
+      "sha256": "f70c539d9f2748a475d7c6cffaa97e2a740a695e8533f6b2d61a02e72493eedf"
+    }
+  },
+  "schema": "p97-pure-rup-source-v1"
+}

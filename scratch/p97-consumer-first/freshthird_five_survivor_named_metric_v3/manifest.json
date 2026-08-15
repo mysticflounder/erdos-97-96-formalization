@@ -1,0 +1,19 @@
+{
+  "commands": [
+    "uv run python scratch/p97-consumer-first/freshthird_five_survivor_named_metric_v3/run_named_metric.py",
+    "uv run python -m unittest discover -s scratch/p97-consumer-first/freshthird_five_survivor_named_metric_v3 -p 'test_*.py'"
+  ],
+  "deterministic_tag": {
+    "b2_choice": "radius",
+    "deleted": "qsource",
+    "orientation": "first"
+  },
+  "metric_sha256": "765dfb85052105171f6b497dc7871642bd07a01226e58eb0140139da847a5d1c",
+  "runner": "scratch/p97-consumer-first/freshthird_five_survivor_named_metric_v3/run_named_metric.py",
+  "solvers": {
+    "cvc5": "This is cvc5 version 1.3.3 [git 8ff882e on branch HEAD]",
+    "z3_binary": "Z3 version 4.16.0 - 64 bit",
+    "z3_python": "4.16.0"
+  },
+  "v2_ingress": "scratch/p97-consumer-first/freshthird_five_survivor_alias_aware_v2/run_query.py"
+}

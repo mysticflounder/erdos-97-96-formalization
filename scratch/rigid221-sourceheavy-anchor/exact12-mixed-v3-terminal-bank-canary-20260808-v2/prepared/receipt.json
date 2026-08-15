@@ -1,0 +1,132 @@
+{
+  "artifacts": {
+    "discovery_cnf": {
+      "byte_count": 5128538,
+      "path": "discovery.cnf",
+      "sha256": "b1ad505a24ae14534517a99fd2afa802af7796931544f430fd3f3d93beff62ee"
+    },
+    "drat_trim_output": {
+      "byte_count": 11,
+      "path": "drat-trim-output.txt",
+      "sha256": "1e8bafb97a28121f5a0665b1012ec69992f7ca8dd2256d5577d9c2d0e90bc9af"
+    },
+    "job": {
+      "byte_count": 77186,
+      "path": "job.json",
+      "sha256": "0b7961cc93989611e1185feecb9773f0705d79c6602c316af96e046e6821b4d7"
+    },
+    "journal": {
+      "byte_count": 33255,
+      "path": "journal.jsonl",
+      "sha256": "69abc95a9128bc5b94689175d776b5cdc6d59f4b9b43ac7496cef57e23aaae77"
+    },
+    "normalized_lrat": {
+      "byte_count": 13,
+      "path": "normalized.lrat",
+      "sha256": "31362f5b3c7dd15f98f66209d72fc1d44c9ea7d026b7268761c26366f8780f72"
+    },
+    "raw_lrat": {
+      "byte_count": 13,
+      "path": "drat-trim.lrat",
+      "sha256": "31362f5b3c7dd15f98f66209d72fc1d44c9ea7d026b7268761c26366f8780f72"
+    },
+    "source_manifest": {
+      "byte_count": 396,
+      "path": "source-manifest.json",
+      "sha256": "53028cc97511a0a4780428d60bd0501a7abe546113132b4f87460edddc0de603"
+    },
+    "summary": {
+      "byte_count": 3084,
+      "path": "summary.json",
+      "sha256": "8a02ef7bacc82c59543207e36349dcd0319996b3dd938839b20f21a158c41a54"
+    },
+    "terminal_bank_manifest": {
+      "byte_count": 5696,
+      "path": "terminal-bank-manifest.json",
+      "sha256": "4323dfaecb7771243452d987e547036f91e8c5ab5750d9b23eb1b9272230de08"
+    },
+    "terminal_cnf": {
+      "byte_count": 5128538,
+      "path": "terminal.cnf",
+      "sha256": "b1ad505a24ae14534517a99fd2afa802af7796931544f430fd3f3d93beff62ee"
+    },
+    "terminal_drat": {
+      "byte_count": 6,
+      "path": "terminal.drat",
+      "sha256": "f6ed42a9d765eeb230a069bbc3d5dc346b2669594bb0b83cc6d14d5d967b8961"
+    }
+  },
+  "cell_index": 0,
+  "detector_contract_files": [
+    {
+      "byte_count": 33158,
+      "path": "detector-contract/census/card_head/exact12_v14_structural_cegar.py",
+      "sha256": "ef0a9b52c0a436a01b7a70133dbb78b0470aae198a028096b75a536b66518963"
+    },
+    {
+      "byte_count": 6953,
+      "path": "detector-contract/census/card_head/exact12_v14_ordered_cut_adapter.py",
+      "sha256": "4a6e10fd7bb98e215c05d7b2e084d34311a31837b8844c625325f05ec10c09f4"
+    },
+    {
+      "byte_count": 21187,
+      "path": "detector-contract/census/card_head/exact12_v14_ordered_coverage.py",
+      "sha256": "4cfe3aa78920b6c7f8d233c52c4c58ca871705c7b7c72eb1e576e82b671685bc"
+    },
+    {
+      "byte_count": 8812,
+      "path": "detector-contract/census/card_head/exact12_v14_source_order_bank.py",
+      "sha256": "fd2e951ed9e9ef933b365a659cae93986e1ad3d02a9162e7fe88cde9bdf26d6c"
+    },
+    {
+      "byte_count": 18569,
+      "path": "detector-contract/census/card_head/sat_encoding.py",
+      "sha256": "6d7a939f1f8fe9e3f3684afee52b79c8f3aa50041dd43f438294e69e182059ae"
+    },
+    {
+      "byte_count": 102708,
+      "path": "detector-contract/census/global_confinement/metric_realizability_probe.py",
+      "sha256": "e44f1452b240b8bbe39f2389311312ac02ef9bef8ddbb5b08dc4ffa06adea396"
+    },
+    {
+      "byte_count": 49772,
+      "path": "detector-contract/census/global_confinement/cap_selected_nogood_certificate_probe.py",
+      "sha256": "9e21350a4126eb40d09e5fb454c9dee691e6dc1aaccf026a4ca6e238fc96aa13"
+    },
+    {
+      "byte_count": 15639,
+      "path": "detector-contract/census/p97_search/phase3_classification_context.py",
+      "sha256": "5fd4f94b536896921c0f88ea860802b212aeb8c97e5c77e0d4445cc7e38e6837"
+    },
+    {
+      "byte_count": 8936,
+      "path": "detector-contract/census/p97_search/phase3_order_universe.py",
+      "sha256": "67fe7a6fb086b82925a5f7b365b34c8a7f5307960f790e914ad86c47b84d86b0"
+    }
+  ],
+  "drat_trim_precheck": {
+    "command": "drat-trim",
+    "epistemic_status": "UNTRUSTED_PRECHECK_ONLY; LEAN COMPACT-RUP REPLAY REQUIRED",
+    "exit_code": 0,
+    "reported_verdict": "s VERIFIED"
+  },
+  "job_sha256": "8b597e1cc2092cdbf2c4b4dc06b5dc5e3ae9f57e21cf7107e14259c1e81d1191",
+  "normalization": {
+    "additions": 1,
+    "base_clauses": 369357,
+    "deleted_ids": 0,
+    "deletions": 0,
+    "hints": 1
+  },
+  "receipt_sha256": "91721ce408df784abf6f16f97e804bd26935fbea897ad6aca0aa4fa482feff7a",
+  "run_schema": "p97_rigid221_exact12_full_v14_structural_cegar_run.v3",
+  "schema": "p97_rigid221_exact12_terminal_rup_source.v1",
+  "scope": "one finite exact-12 cell only; certificate preparation, not aggregate coverage, universal lift, or Lean closure",
+  "terminal_bank": {
+    "entries": 2,
+    "lean_terminal_consumer": "Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress.false_of_checkedCompactSourceOrderTerminal",
+    "manifest_sha256": "47762d545ff1a841473ec2565b6686c5cdcf15c92ed6ee5f42005f50a36cc61a",
+    "schema": "p97_rigid221_exact12_source_order_terminal_bank_manifest.v1"
+  },
+  "terminal_record_sha256": "313e61a046978bf2c6634be301bfad8b31825aa8c9d86f4357064e5c02d52675"
+}

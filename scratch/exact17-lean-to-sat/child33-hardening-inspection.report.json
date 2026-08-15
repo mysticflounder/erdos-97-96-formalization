@@ -1,0 +1,27 @@
+{
+  "child": {
+    "bytes": 291620468,
+    "clauses": 5847248,
+    "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/exact17-lean-to-sat/child33-hardening-inspection.candidate.cnf",
+    "sha256": "775eb42db7bdac52eb7e5609a1cf33111c953d26f4cee9c8d95bde3b468563b9",
+    "variables": 308
+  },
+  "duplicate_clauses": 0,
+  "new_clauses": 8,
+  "ordered_suffix_exact": true,
+  "ordered_suffix_sha256": "46495b1d0bea23e860799f1e0012aa94d50f411536ef8c49f0e032bdbbafff50",
+  "parent": {
+    "clauses": 5847240,
+    "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/exact17-lean-to-sat/exact17-thirty-second-root-thirty-first-model-refinements.cnf",
+    "sha256": "c325d3eedda8fe81e3d1c1d70645024f5b9ea8c36c20ca5cd1896f0934296a7d"
+  },
+  "parent_duplicate_literal_clauses": 21488,
+  "parent_duplicate_semantic_clauses": 178164,
+  "publication_state": "UNPROVISIONED",
+  "schema": "p97-exact17-thirty-second-model-refinements-export-validation/v1",
+  "source_clause_families": [
+    "child32TwoCircleClauses",
+    "canonicalClauses"
+  ],
+  "status": "UNPROVISIONED"
+}

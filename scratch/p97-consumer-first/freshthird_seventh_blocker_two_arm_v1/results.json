@@ -1,0 +1,46 @@
+[
+  {
+    "case": "equal_center",
+    "packet": "equal_center",
+    "z3": "sat",
+    "cvc5": "sat",
+    "expected": "sat",
+    "exact_match": true,
+    "readback": true,
+    "assertions": 26,
+    "variables": 5
+  },
+  {
+    "case": "first_apex",
+    "packet": "first_apex",
+    "z3": "sat",
+    "cvc5": "sat",
+    "expected": "sat",
+    "exact_match": true,
+    "readback": true,
+    "assertions": 14,
+    "variables": 8
+  },
+  {
+    "case": "equal_center_support_mismatch",
+    "packet": "equal_center",
+    "z3": "unsat",
+    "cvc5": "unsat",
+    "expected": "unsat",
+    "exact_match": true,
+    "readback": true,
+    "assertions": 28,
+    "variables": 5
+  },
+  {
+    "case": "first_apex_center_collapse",
+    "packet": "first_apex",
+    "z3": "unsat",
+    "cvc5": "unsat",
+    "expected": "unsat",
+    "exact_match": true,
+    "readback": true,
+    "assertions": 15,
+    "variables": 8
+  }
+]

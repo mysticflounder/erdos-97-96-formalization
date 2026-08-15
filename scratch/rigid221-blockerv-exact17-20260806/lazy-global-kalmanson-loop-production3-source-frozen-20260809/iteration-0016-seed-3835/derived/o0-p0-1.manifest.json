@@ -1,0 +1,580 @@
+{
+  "analyses": [
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v10-proposal-all24-analysis48/cadical-portfolio-20260808/seed-1009.analysis.json",
+      "sha256": "19a86bac2500704111d0eb0c06ca17c4385f0d3aa079e8e25bbcff3cf71cf65a"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v10-proposal-all24-analysis48/cadical-portfolio-20260808/seed-1013.analysis.json",
+      "sha256": "46309434e14e0e8b6369a8cfca12a55e000993acff08129aff9295ff64ebae15"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v10-proposal-all24-analysis48/cadical-portfolio-20260808/seed-1019.analysis.json",
+      "sha256": "f6f449857a7b9c83c3d473558ccb688116666380b14a07c7559b20206355e346"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v10-proposal-all24-analysis48/cadical-portfolio-20260808/seed-1021.analysis.json",
+      "sha256": "36add1e945753972efbed5c6540b31af65b877998c3321d1d90b03e11d2d69c3"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v10-proposal-all24-analysis48/cadical-portfolio-20260808/seed-1031.analysis.json",
+      "sha256": "d3a4c515db876b8fd9c034c6d68c1b0caedbc3b6717cd4607eda661a523df4c5"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v10-proposal-all24-analysis48/cadical-portfolio-20260808/seed-1039.analysis.json",
+      "sha256": "a0fc302af7c0c10fa3a8c714db8279f9df86559dc525396c545e62da85ea1921"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v10-proposal-all24-analysis48/cadical-portfolio-20260808/seed-1049.analysis.json",
+      "sha256": "998e04c6c60fe147ad4bcd729dfd4097b784431852ae96b0692c5de4cb204fb5"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v10-proposal-all24-analysis48/cadical-portfolio-20260808/seed-1051.analysis.json",
+      "sha256": "5b932ef676df84fe4a36985edaf4c52e44b9a96f78d9d4f431c4cded246f3934"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v10-proposal-all24-analysis48/cadical-portfolio-20260808/seed-1061.analysis.json",
+      "sha256": "700415e23def67f15befcb566ba1d5024b835a75e3b48f6c1024fdbb3672a5a8"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v10-proposal-all24-analysis48/cadical-portfolio-20260808/seed-1069.analysis.json",
+      "sha256": "5d144a8f9bec5ee24e6510881b9bb421271fedcb7a7f4a261379ef9bdf17d397"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v10-proposal-all24-analysis48/cadical-portfolio-20260808/seed-1087.analysis.json",
+      "sha256": "842a179e857437634e30bed7183707768c61442397a23d2614233af4aef07ab4"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v10-proposal-all24-analysis48/cadical-portfolio-20260808/seed-1091.analysis.json",
+      "sha256": "26d253dbbf12dd96bfe30bce9aeedd0b069cabb9173e4ac4c1b3614ca1dd1952"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v10-proposal-all24-analysis48/cadical-portfolio-20260808/seed-1097.analysis.json",
+      "sha256": "27b636edd91bbe9a1d5070c5ebb6800155a0cb3ddaddc2dc478d3ee826d705f7"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v10-proposal-all24-analysis48/cadical-portfolio-20260808/seed-1103.analysis.json",
+      "sha256": "68f3b1d2a0c7a509483c6eb594c5acae5f9fdcc62e3738bcb0e7830323310f58"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v10-proposal-all24-analysis48/cadical-portfolio-20260808/seed-1109.analysis.json",
+      "sha256": "cae08fae799d0efa9f251a2b44afc1e16448690aa39c0af1061ce8f4090639af"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v10-proposal-all24-analysis48/cadical-portfolio-20260808/seed-1117.analysis.json",
+      "sha256": "1f218fddcac37d33bf6176532ffaa334e7fb0c7331bdbcd98631906d010b1573"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v10-proposal-all24-analysis48/cadical-portfolio-20260808/seed-1123.analysis.json",
+      "sha256": "4d89fc307893c2487dedb48135cd56db6e2da97e2f3bd7ab912420d66d855bbf"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v10-proposal-all24-analysis48/cadical-portfolio-20260808/seed-1129.analysis.json",
+      "sha256": "6509b6fcc1a426da3eb3ab8ebf11c191932819508e193baa9277368258ebbea8"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v10-proposal-all24-analysis48/cadical-portfolio-20260808/seed-1151.analysis.json",
+      "sha256": "0ae537663884139fda03eb69548f335cff91dd41f628d9c0a0fdec9d76324629"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v10-proposal-all24-analysis48/cadical-portfolio-20260808/seed-1153.analysis.json",
+      "sha256": "9aa5a933814a965d3e6c486bf8e159db68c68744bbb2a007c74d4e7a50a5fb52"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v11-exact-all-cores/cadical-portfolio-20260808/seed-1201.analysis.json",
+      "sha256": "e915031f4e8f7b88aff2f0d3b85dde10b2725f908a40a24d27caefbf7574bbfe"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v11-exact-all-cores/cadical-portfolio-20260808/seed-1202.analysis.json",
+      "sha256": "43f7a7b7320ecc3d3ee9434729d4d6a70e40d05aafef17967b858d0b3e0a6cb3"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v11-exact-all-cores/cadical-portfolio-20260808/seed-1203.analysis.json",
+      "sha256": "4e6ae094232557f6c8015c7858111ee85e2157a5a4ed3e8de384ee86c4a046b7"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v11-exact-all-cores/cadical-portfolio-20260808/seed-1204.analysis.json",
+      "sha256": "5bbf74ce0f6dbc42b369e56853f09171bbab6c9b0c2046f126f8e2396cc7b4e9"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v11-exact-all-cores/cadical-portfolio-20260808/seed-1205.analysis.json",
+      "sha256": "c538b16cb434e8cfda00ec52846c0478ec7b286bcad5f0c71608bd4980228937"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v11-exact-all-cores/cadical-portfolio-20260808/seed-1206.analysis.json",
+      "sha256": "991c8450af7e76dc70be3d3d6e004c8bc1874e2cb13fb564a42d61afcbbd55dd"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v11-exact-all-cores/cadical-portfolio-20260808/seed-1207.analysis.json",
+      "sha256": "f2c1e0c8497fe5786c832bdbb037071db4f7c5972706bc57189523430df133d1"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v11-exact-all-cores/cadical-portfolio-20260808/seed-1208.analysis.json",
+      "sha256": "cd88db18cebace9db3a1ee7a133cc85a0595ae929562f400783469095cf23c05"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v11-exact-all-cores/cadical-portfolio-20260808/seed-1209.analysis.json",
+      "sha256": "d264077ba4ff9ab8d3c11a5a25fe518887b4558c7ba82e5d3bd0978e713df143"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v11-exact-all-cores/cadical-portfolio-20260808/seed-1210.analysis.json",
+      "sha256": "2f9a0b0fb16b083cdd3bb01649454880078c46a18910bbfd549faa57cf5197f1"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v11-exact-all-cores/cadical-portfolio-20260808/seed-1211.analysis.json",
+      "sha256": "e7570ace532dbf05cebf0ac4c5be220b9a37c542c35dd455a9ef6124b8193620"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v11-exact-all-cores/cadical-portfolio-20260808/seed-1212.analysis.json",
+      "sha256": "71867e99fb6c186ebc5300418d3a5e5b5399002a6414f0159da4a4ac13113e81"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v11-exact-all-cores/cadical-portfolio-20260808/seed-1213.analysis.json",
+      "sha256": "84e5a3490d3dea385f82164429f35992d86e53bd7597f92d07e7a316b49fc20b"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v11-exact-all-cores/cadical-portfolio-20260808/seed-1214.analysis.json",
+      "sha256": "337fc983bd5dce9fb4375388d07080e2a75839ac96c2fbab69e807ca6657703c"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v11-exact-all-cores/cadical-portfolio-20260808/seed-1215.analysis.json",
+      "sha256": "e7fbcaf0c68518bc9b72a9d5d8ee144abaf7bd6579a6d88c520177606c33f952"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v11-exact-all-cores/cadical-portfolio-20260808/seed-1216.analysis.json",
+      "sha256": "6825ea2fdecffc479195e05281f9bcea7b5b5c7816ba41829587a7193dcc0756"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v11-exact-all-cores/cadical-portfolio-20260808/seed-1217.analysis.json",
+      "sha256": "350003237e0030336fd677d1ec3b4991864a1c71a4059d9d780b25d144fd28c8"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v11-exact-all-cores/cadical-portfolio-20260808/seed-1218.analysis.json",
+      "sha256": "1b558eb5b477587dddea6971aba9fb38826a3b1fed8a93371e112ebab88c1b74"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v11-exact-all-cores/cadical-portfolio-20260808/seed-1219.analysis.json",
+      "sha256": "aab0aca8d084b3b3a00892c93a0f7446cf93719e5a6e9f5f87482d65622c36c3"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v11-exact-all-cores/cadical-portfolio-20260808/seed-1220.analysis.json",
+      "sha256": "b5c4bcdc96e850840cad196c5cd5df08e393cd00876b9e885865f2cfacd58311"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v11-exact-all-cores/cadical-portfolio-20260808/seed-1221.analysis.json",
+      "sha256": "364e5687577bb4b92e53f6d4f916ed3cab765b9a065161f9ef4df4a2e9e0b5fc"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v11-exact-all-cores/cadical-portfolio-20260808/seed-1222.analysis.json",
+      "sha256": "32d4f535e03b4bac4d4d9b7b425c140368e26b0ae3b5eaca4d8db0a86beed8de"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v11-exact-all-cores/cadical-portfolio-20260808/seed-1223.analysis.json",
+      "sha256": "3e9295d3d6feec8d2be29fdf382cd9bbc91406b3f287fbfce6a296f66c140984"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v11-exact-all-cores/cadical-portfolio-20260808/seed-1224.analysis.json",
+      "sha256": "ac305dc71da8a9ffcd21136117af25d5688bbb891642b553de14fdf3d0547452"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v12t-exact-all-cores-44/cadical-portfolio-20260808/seed-1301.analysis.json",
+      "sha256": "b718fcd84493fd1eaedf60251807bc805ebfeaa7c493b5489071f6fa3b1f08a9"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v12t-exact-all-cores-44/cadical-portfolio-20260808/seed-1302.analysis.json",
+      "sha256": "4afd4dabc8b81a1a27b579bf254905d78bc3e874013db04b21476dff1d4a99bc"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v12t-exact-all-cores-44/cadical-portfolio-20260808/seed-1303.analysis.json",
+      "sha256": "f7e4482a671a9ead2f9d8d0bf819686148d7451b10b236f24e41ae290dcd883c"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v12t-exact-all-cores-44/cadical-portfolio-20260808/seed-1304.analysis.json",
+      "sha256": "6cdf62b00177d078a7d5cc9395c6c0f386ffc14dd24350dabb309613c0762de6"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v12t-exact-all-cores-44/cadical-portfolio-20260808/seed-1305.analysis.json",
+      "sha256": "d7f737b849950a5d6e111ee463608abf18a6f7109cbf7d3f8a0c1e07f069bad6"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v12t-exact-all-cores-44/cadical-portfolio-20260808/seed-1306.analysis.json",
+      "sha256": "f1c88100457b9bc9c5592a46d061f5b5b1eab867803a309584999480e13ab4ed"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v12t-exact-all-cores-44/cadical-portfolio-20260808/seed-1307.analysis.json",
+      "sha256": "27be32bee9df3c7f0d6611948b64f72d9fb1691d88e674ebb9cc91c0922962a6"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v12t-exact-all-cores-44/cadical-portfolio-20260808/seed-1308.analysis.json",
+      "sha256": "c0c03fe97152ff2e2bfb01faa81f8748dff6c9e18f0c14ccf21ebac28ec0159c"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v12t-exact-all-cores-44/cadical-portfolio-20260808/seed-1309.analysis.json",
+      "sha256": "86d63ed6ebd0b4cb250cc2088299f22c717f04c6e3d3eb0c902da288f6adceea"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v12t-exact-all-cores-44/cadical-portfolio-20260808/seed-1310.analysis.json",
+      "sha256": "0b4e3c72e5894d1bb1779875550e71484c94c7f5a4ca53e7f1924c74ba08908c"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v12t-exact-all-cores-44/cadical-portfolio-20260808/seed-1311.analysis.json",
+      "sha256": "d28fa4bd89fc22cd8028e274fbf388f8eda846c63f06be94372eb5fa373e0ce0"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v12t-exact-all-cores-44/cadical-portfolio-20260808/seed-1312.analysis.json",
+      "sha256": "5af444f706c64b93d75019b55416530fa5eecc04999eecdc235082a9a7883eef"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v12t-exact-all-cores-44/cadical-portfolio-20260808/seed-1313.analysis.json",
+      "sha256": "cdc941aa24b837d7376dcf6c04e055749e33a4119054aabdefaa139bbf6d0174"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v12t-exact-all-cores-44/cadical-portfolio-20260808/seed-1314.analysis.json",
+      "sha256": "beb7eaf77280aecd772333aee66031a9fd7d71707db1c1f700b23cf32b9fe099"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v12t-exact-all-cores-44/cadical-portfolio-20260808/seed-1315.analysis.json",
+      "sha256": "85b866d46820f244a325f31ea3751b49f41fa898769b5981647b5f77325fe77b"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v12t-exact-all-cores-44/cadical-portfolio-20260808/seed-1316.analysis.json",
+      "sha256": "f658db4251c057457d10a114cc09699c585e46e345928630dcb0ac7d13c0b0cd"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v12t-exact-all-cores-44/cadical-portfolio-20260808/seed-1317.analysis.json",
+      "sha256": "8ac99bdae23dfb8457f355b3fd55aa062d42eb3691e184dcffcac7ee101598f1"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v12t-exact-all-cores-44/cadical-portfolio-20260808/seed-1318.analysis.json",
+      "sha256": "a20241f0708d358e9d740c6c3ee01d422cbd19282b99be9a8f5fd4d4f45bef0c"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v12t-exact-all-cores-44/cadical-portfolio-20260808/seed-1319.analysis.json",
+      "sha256": "e71dc3c5358957688e6fabaa603bd70fc16ba3f93517dce3f026a2d1d0a12448"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v12t-exact-all-cores-44/cadical-portfolio-20260808/seed-1320.analysis.json",
+      "sha256": "84d4acdc86cdb88278defc24cc51bb0beb6aaca6221a4a612e0cc6c09f21fc79"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v12t-exact-all-cores-44/cadical-portfolio-20260808/seed-1321.analysis.json",
+      "sha256": "562b077b1f1476d8841938976274024c0206ee6b165b5ef49f32c865b20e253d"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v12t-exact-all-cores-44/cadical-portfolio-20260808/seed-1322.analysis.json",
+      "sha256": "2ef6e316e77973eeead8edd77f2c000e74181ef89fac4d8b9b0b126220734908"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v12t-exact-all-cores-44/cadical-portfolio-20260808/seed-1323.analysis.json",
+      "sha256": "e50b48c8a4e0584fbace109b2f855ad6426b243186e5b44cf18d0bc28c71471e"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v12t-exact-all-cores-44/cadical-portfolio-20260808/seed-1324.analysis.json",
+      "sha256": "0dfff995f0d7156ff6502b0d54e29753f13d2078f6eb19f11c19cb6c3d78b28f"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v13-schema-h-canary/cadical-canary-20260809/seed-2101.analysis.json",
+      "sha256": "ce60b47ff7bcb98893beb97c6c1b1e3492f6111b3d5cf941dd5dd7c804df655b"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v13-schema-h-canary/cadical-canary-20260809/seed-2102.analysis.json",
+      "sha256": "484df2f4eadc87bb1a40ccc672502863df6fc0ebe6526f30508430fde0973342"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v13-schema-h-canary/cadical-canary-20260809/seed-2103.analysis.json",
+      "sha256": "a6487bf8ccd5a65f2808d5cfd0b727073b23409595ae0888307036440d2538a7"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v13-schema-h-canary/cadical-canary-20260809/seed-2104.analysis.json",
+      "sha256": "0930b6dd7f8fd931807578931c1fa7a335916c8b760bc90b4132e478d2c5d4a5"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v15-schema-i-all72/cadical-canary-20260809/seed-2301.analysis.json",
+      "sha256": "2034f78821efedb64f03cab9bff0e4f39bba53f8625254ddad0fa88c55fe00b6"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v15-schema-i-all72/cadical-canary-20260809/seed-2302.analysis.json",
+      "sha256": "d7df0365d52d0beb1547dc7bb0bc46d531bd9c019251885e7ed885f3350934ba"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v15-schema-i-all72/cadical-canary-20260809/seed-2303.analysis.json",
+      "sha256": "6868d31358108316df594aa0afef756e94f625341d3094e83722ad48d884879a"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v15-schema-i-all72/cadical-canary-20260809/seed-2304.analysis.json",
+      "sha256": "c8f4680b2738b1d5f8055f06c1f6e569619c322065dc72d63de048d358a183ae"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v16-schema-j-all76/cadical-canary-20260809/seed-2401.analysis.json",
+      "sha256": "78ecbd5f9e382d1fc7b8869b75ea08c2e3d0ae6bb1ed5ae3d4ecfc9dc67844b1"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v16-schema-j-all76/cadical-canary-20260809/seed-2402.analysis.json",
+      "sha256": "faf6133fb04e06b24c0c02e427af89fe292dc9c03d1fd7cd892176f2c2663704"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v16-schema-j-all76/cadical-canary-20260809/seed-2403.analysis.json",
+      "sha256": "598dc81e8331896f3fbd7a6a423a29c714a66613d85af329d4fb1568d29e1906"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v16-schema-j-all76/cadical-canary-20260809/seed-2404.analysis.json",
+      "sha256": "5f78c99945646578c06a70721b5bc6b7f20c7cb075c784eb653f1c37c9f935ab"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v17-existing-bank-all80/cadical-canary-20260809/seed-2501.analysis.json",
+      "sha256": "3dcc1195278b65bb65b6e91eb394a1f9bd61643b1f504c7a31bf8c667f0fd369"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v17-existing-bank-all80/cadical-canary-20260809/seed-2502.analysis.json",
+      "sha256": "ece58c6f629c38db569a5615dc04466541c112ddd7f71bf4e3062ec347a6f508"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v17-existing-bank-all80/cadical-canary-20260809/seed-2503.analysis.json",
+      "sha256": "ef4dd631274c0b379d9915ca1380cede611b859214fbfa6fb7657279cfc115f6"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v17-existing-bank-all80/cadical-canary-20260809/seed-2504.analysis.json",
+      "sha256": "71ead90820e8cc69ba06195243fcccc0983debaed178c84f109efd7269747f23"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v18b-existing-bank-all84/cadical-canary-20260809/seed-2601.all-bank.analysis.json",
+      "sha256": "94f2bcf5bcbd8c08e3da547193859e8d583f831a1e4b4a951f8d975cd1622b7a"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v19-bulk-bank-all85/cadical-canary-20260809/seed-2701.all-bank.analysis.json",
+      "sha256": "8abc598b606bee08579844dcda4d1e6de54ab5de41ca8bbd2bf21702b4a96884"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v20-bulk-bank-all86/cadical-canary-20260809/seed-2801.all-bank.analysis.json",
+      "sha256": "6bc58b006d81f9a41136a455a3ca0a868fd33b099b084717302c6aa0eb25278d"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v21-bulk-bank-all87/cadical-canary-20260809/seed-3001.all-bank.analysis.json",
+      "sha256": "995f206140413cc82a4fb3a56ed6519f02cf2db246df741339e80ea4eb4d0445"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v22-bulk-bank-all88/cadical-canary-20260809/seed-3201.all-bank.analysis.json",
+      "sha256": "e8e99cf0b3435df6ffe1e48370acaa28c8568422586bd5f4ea6f8d0ee97ce276"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v23t-all89/cadical-canary-20260809/seed-3601.analysis.json",
+      "sha256": "fb4968e2675eae880a15f07059c7a36196776e94a280a1048207e42182b001e4"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v23t-all89/cadical-canary-20260809/seed-3602.analysis.json",
+      "sha256": "8ea154c8043e72fa079664c6b88e21976cb871099285730d0f55de5160eafdd4"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v23t-all89/cadical-canary-20260809/seed-3603.analysis.json",
+      "sha256": "691b7b8485a5f9e2b4a9b1cf2da9a1ec4094c4581196792ffa96478576bfdc7f"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v23t-all89/cadical-canary-20260809/seed-3604.analysis.json",
+      "sha256": "163a51ce1b007ca72e6acca0b2011a28a8a4f0dc843a181272335d9d448c8d19"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v23t-all89/cadical-canary-20260809/seed-3605.analysis.json",
+      "sha256": "2cdc4234d58af5139de3322865a7d1ac16ed6b172bbf09d01c595f56a8cb7eac"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v23t-all89/cadical-canary-20260809/seed-3606.analysis.json",
+      "sha256": "b3f1a86a9323f8499acb0ebc4a11a6ec47ba442e0afe64e195837a16e4e6a75e"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v23t-all89/cadical-canary-20260809/seed-3607.analysis.json",
+      "sha256": "1d56ced9bc7f05684b2c515ef9adf1d65293c436142fcf90ea98a2e63d90b12d"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v23t-all89/cadical-canary-20260809/seed-3608.analysis.json",
+      "sha256": "9f9b64a1698f90865218067d41d78429b8a196621623c49389c982f8427e9833"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v23t-all89/cadical-canary-20260809/seed-3609.analysis.json",
+      "sha256": "59f883a8ebb984b0b86d863456b0f02babda1a0ec61903811859f9b815fa8bc5"
+    }
+  ],
+  "anonymous_positions": [
+    0,
+    1
+  ],
+  "artifacts": [
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v13-schema-h-canary/reauthenticated-direct6-bank.json",
+      "sha256": "04287020c143514c76eba9983d3f6e2a12f30001ea60edfaaf4c8e05441a2805"
+    }
+  ],
+  "clause_blocks": {
+    "direct_five_ccw_three_rows": 6188,
+    "direct_shared_middle_endpoint_pair": 2380,
+    "direct_six_ccw_two_k2_three_rows": 12376,
+    "exact_four": 83776,
+    "fifth_center_exactly_one": 79,
+    "fifth_row_source_and_one_hit": 135,
+    "initial_learned_patterns": 0,
+    "kalmanson_core": 30940,
+    "lazy_weighted_kalmanson": 1,
+    "learned_nogoods": 1256,
+    "named_row_units": 0,
+    "old_row_cap_units": 32,
+    "old_row_outside_partition": 56,
+    "proposal_two_kalmanson_equality_label": 1763,
+    "seven_point_schema_c": 272272,
+    "seven_point_schema_f": 272272,
+    "six_point_schema_d": 148512,
+    "six_point_schema_e": 148512,
+    "six_point_schema_g": 148512,
+    "six_point_schema_h": 148512,
+    "six_point_schema_i": 74256,
+    "six_point_schema_j": 148512,
+    "source_coverage": 17,
+    "three_shell_rotation_bank": 904400,
+    "transitive_convex_five_point": 61880,
+    "transitive_label_selected_equality": 32640,
+    "transitive_label_xor_definition": 293760,
+    "transitive_two_circle_bisector": 9520,
+    "two_center_common_hit": 61880,
+    "two_circle_bisector": 9520,
+    "two_rows_shared_late_pair": 2380
+  },
+  "clauses": 2876338,
+  "cnf": "scratch/rigid221-blockerv-exact17-20260806/lazy-global-kalmanson-loop-production3-source-frozen-20260809/iteration-0016-seed-3835/derived/o0-p0-1.cnf",
+  "cnf_sha256": "46a955eac2fc2b097a561fb03bc78211b1c1dcd92016eeea53f324f5784286de",
+  "cut_admission": {
+    "direct_five_ccw_three_rows": {
+      "clauses": 6188,
+      "lean_consumer": "Problem97.CapCrossingKalmansonBridge.false_of_selected_rows_in_five_ccw_order",
+      "orientation_scope": "increasing_in_frozen_order_only"
+    },
+    "direct_shared_middle_endpoint_pair": {
+      "clauses": 2380,
+      "lean_consumer": "Problem97.CapCrossingKalmansonBridge.false_of_two_selected_middle_rows_shared_endpoint_pair",
+      "orientation_scope": "increasing_in_frozen_order_only"
+    },
+    "direct_six_ccw_two_k2_three_rows": {
+      "clauses": 12376,
+      "lean_consumer": "Problem97.CapCrossingKalmansonBridge.false_of_six_ccw_two_k2_three_selected_rows",
+      "orientation_scope": "increasing_in_frozen_order_only"
+    },
+    "six_point_schema_g": {
+      "clauses": 148512,
+      "lean_consumers": [
+        "Problem97.CapCrossingKalmansonBridge.false_of_four_selected_rows_in_six_ccw_order_G",
+        "Problem97.CapCrossingKalmansonBridge.false_of_four_selected_rows_in_six_ccw_order_G_of_decreasing",
+        "Problem97.CapCrossingKalmansonBridge.false_of_four_selected_rows_in_six_ccw_order_G_cyclicShift",
+        "Problem97.CapCrossingKalmansonBridge.false_of_four_selected_rows_in_six_ccw_order_G_cyclicShift_of_decreasing"
+      ],
+      "orientation_scope": "both_cyclic_orientations_and_all_cyclic_shifts"
+    },
+    "six_point_schema_h": {
+      "clauses": 148512,
+      "lean_consumers": [
+        "Problem97.CapCrossingKalmansonBridge.false_of_four_selected_rows_in_six_ccw_order_H",
+        "Problem97.CapCrossingKalmansonBridge.false_of_four_selected_rows_in_six_ccw_order_H_of_decreasing",
+        "Problem97.CapCrossingKalmansonBridge.false_of_four_selected_rows_in_six_ccw_order_H_cyclicShift",
+        "Problem97.CapCrossingKalmansonBridge.false_of_four_selected_rows_in_six_ccw_order_H_cyclicShift_of_decreasing"
+      ],
+      "orientation_scope": "both_cyclic_orientations_and_all_cyclic_shifts"
+    },
+    "six_point_schema_i": {
+      "clauses": 74256,
+      "lean_consumers": [
+        "Problem97.CapCrossingKalmansonBridge.false_of_four_selected_rows_in_six_ccw_order_I",
+        "Problem97.CapCrossingKalmansonBridge.false_of_four_selected_rows_in_six_ccw_order_I_of_decreasing",
+        "Problem97.CapCrossingKalmansonBridge.false_of_four_selected_rows_in_six_ccw_order_I_cyclicShift",
+        "Problem97.CapCrossingKalmansonBridge.false_of_four_selected_rows_in_six_ccw_order_I_cyclicShift_of_decreasing"
+      ],
+      "orientation_scope": "both_cyclic_orientations_and_all_cyclic_shifts"
+    },
+    "six_point_schema_j": {
+      "clauses": 148512,
+      "lean_consumers": [
+        "Problem97.CapCrossingKalmansonBridge.false_of_four_selected_rows_in_six_ccw_order_J",
+        "Problem97.CapCrossingKalmansonBridge.false_of_four_selected_rows_in_six_ccw_order_J_of_decreasing",
+        "Problem97.CapCrossingKalmansonBridge.false_of_four_selected_rows_in_six_ccw_order_J_cyclicShift",
+        "Problem97.CapCrossingKalmansonBridge.false_of_four_selected_rows_in_six_ccw_order_J_cyclicShift_of_decreasing"
+      ],
+      "orientation_scope": "both_cyclic_orientations_and_all_cyclic_shifts"
+    },
+    "two_rows_shared_late_pair": {
+      "antecedent": "selected[a,c] and selected[a,d] and selected[b,c] and selected[b,d]",
+      "clauses": 2380,
+      "lean_consumer": "Problem97.CapCrossingKalmansonBridge.false_of_two_selected_rows_shared_late_pair",
+      "orientation_scope": "increasing_in_frozen_order_only"
+    }
+  },
+  "lazy_weighted_base": {
+    "clauses": 2876337,
+    "cnf": "scratch/rigid221-blockerv-exact17-20260806/lazy-global-kalmanson-loop-production3-source-frozen-20260809/iteration-0015-seed-3834/derived/o0-p0-1.cnf",
+    "cnf_sha256": "90f498d3be7c73fcdc3b6705004cb01ad383f64e7dba4b564c35bfc31d391130",
+    "manifest": "scratch/rigid221-blockerv-exact17-20260806/lazy-global-kalmanson-loop-production3-source-frozen-20260809/iteration-0015-seed-3834/derived/o0-p0-1.manifest.json",
+    "manifest_sha256": "e407d9d59e623ad04bbfb85016518499975ce7efb5c57fd78a4870f86c507a8a"
+  },
+  "lazy_weighted_certificates": [
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/lazy-global-kalmanson-loop-production3-source-frozen-20260809/iteration-0016-seed-3835/certificate.json",
+      "sha256": "43ad3b9ff83ea3c295c205ec37b8c9e350963a97b51173f23da673af5ef65afa"
+    }
+  ],
+  "lazy_weighted_clauses": [
+    [
+      -95,
+      -85,
+      -57,
+      -50,
+      -41,
+      -33,
+      -20,
+      -17,
+      -15,
+      -1
+    ]
+  ],
+  "learned_record_kinds": {
+    "formalized-bank": 3199,
+    "weighted-kalmanson": 217
+  },
+  "learned_replay": "verified",
+  "order": [
+    0,
+    6,
+    8,
+    11,
+    10,
+    9,
+    12,
+    7,
+    2,
+    15,
+    16,
+    3,
+    4,
+    5,
+    1,
+    13,
+    14
+  ],
+  "order_index": 0,
+  "schema": "p97-rigid221-exact17-lazy-weighted-cnf-v1",
+  "scope": "one normalized cap-nine case; nogood soundness and Lean lift remain separate",
+  "source_hashes": {
+    "base_cnf_exporter": "5a544227ac4f3e71f58f2dae716b4861c7b5dde3023e45878fef92229f553f45",
+    "direct_exporter": "6a48086258763a63347320deebbb149a2820c573150c808b5e53b78a66cea39c",
+    "direct_row_consumers": "cf4c1cdf49ed9745ee5cf8e1c80773ad2785fef15b97f19b5d8f805297c97338",
+    "fullcover": "ffdf8dc763ff796163ef7aff4aeaaa705be0568ed2e46837c36047ab161512c3",
+    "order_base": "4ec264668923dd6534455313fad47b6e9abb78558c6556c5029f7243edaee1d5",
+    "producer_bank": "e2c63a11e53c8db9d3b0a70e8ed51cce3aa6471f3989a3e1b2b95cbc46173484",
+    "shared_late_pair": "31985fd32b71c543e546b7363e7d5595418eecf9e90e4cf17a1ad42e18d81249",
+    "source_runner": "9bb7ae8193b6c427273802b850bf8628a6a6a6762a6798afb30b9c138eee55a2",
+    "static_schema_lean_consumers": "e1b0d3bf263260e51b43659d76afcfcc958785e74c2a72975e5ed7dc6f9096dc"
+  },
+  "transitive_two_circle": true,
+  "transitive_two_circle_metadata": {
+    "comparison_xor_variables": 73440,
+    "distance_label_bits": 8,
+    "distance_label_variables": 1088,
+    "edge_pair_comparisons": 9180,
+    "five_point_forbidden_cores": 61880,
+    "forbidden_cores": 9520
+  },
+  "variables": 74813
+}

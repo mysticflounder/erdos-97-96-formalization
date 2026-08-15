@@ -1,0 +1,26 @@
+{
+  "output": {
+    "bytes": 380222,
+    "path": "scratch/rigid221-sourceheavy-anchor/five-omission-v2-hardened-bisector-repro-20260810/Bank.lean",
+    "sha256": "9b994be7f466f1ec449ba029036a7cf792631d8f6d5dff4ad05e879b6b833aad"
+  },
+  "schema": "p97_source_faithful_five_omission_typed_bank.v1",
+  "scope": "typed cut validity only; no terminal UNSAT or coverage",
+  "source": {
+    "authenticated_record_count": 202,
+    "deleted_label": 0,
+    "detector_contract_sha256": "375994a3cc65d0113e5b8f6f51c3e52dd04631ee28f43dc1274f104d4af54c49",
+    "emitted_record_count": 202,
+    "formula_contract_sha256": "d5b768db9bc8c2ea3d0b6eb468d58955be416aa71af47095bb8ae34742bef1c9",
+    "journal": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/rigid221-sourceheavy-anchor/five-omission-v2-hardened-bisector-repro-20260810/deleted-0/journal.jsonl",
+    "journal_bytes": 15058311,
+    "journal_sha256": "c3ed917674a0cfa88def0f63e04a85fba04e4f307b5b249d967b03507ca39aef",
+    "run_summary": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/rigid221-sourceheavy-anchor/five-omission-v2-hardened-bisector-repro-20260810/deleted-0/summary.json",
+    "run_summary_sha256": "a29a6fed139eb769e11bd5a5caf1518af8b7fb93df31e09bf96ac54bf65d1263",
+    "terminal_record_sha256": "62f41dc17a3511a24dbdc9fbcf8a61b5abb507b7f68a6906e7ac0cc96e4866af"
+  },
+  "stage_counts": {
+    "equality-duplicate-center": 201,
+    "equality-equilateral-bisector-collision": 1
+  }
+}

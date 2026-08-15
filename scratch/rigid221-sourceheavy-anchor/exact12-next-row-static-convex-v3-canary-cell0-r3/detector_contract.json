@@ -1,0 +1,116 @@
+{
+  "contract": "source-order-bank-only dynamic admission over static duplicate-center equilateral-bisector, and perpendicular-bisector equality closure; all other structural stages fail closed",
+  "sha256": "196c741d649e7a9e75c9ed0e186c45de876b5559da67a2ed4d65de195c1f7d74",
+  "sources": [
+    {
+      "bytes": 49884,
+      "path": "census/card_head/exact12_next_row_static_cegar.py",
+      "sha256": "dcb1ba0d27d0318182c1a5e2086846638a1ddf4d0dba199b0b5b627a90d7e3b1"
+    },
+    {
+      "bytes": 13113,
+      "path": "census/card_head/exact12_next_row_static_equality.py",
+      "sha256": "571b4d1776b6be31e8f769790a6dc41337c18955f04111e3dfc6b8b2aa571574"
+    },
+    {
+      "bytes": 7568,
+      "path": "census/card_head/exact12_next_row_static_geometry.py",
+      "sha256": "3e689ef89982fe25891511ca2974ccf23734762794353b345576909d7c2bbb93"
+    },
+    {
+      "bytes": 9424,
+      "path": "census/card_head/exact12_next_row_static_convex.py",
+      "sha256": "013786e6378f132feab1c5cbb6f9b62523a79c4a2ef86d63164d9005782bddb0"
+    },
+    {
+      "bytes": 18385,
+      "path": "census/card_head/exact12_next_row_valuation.py",
+      "sha256": "2b7e411a277ca1805302353233903148fb8bac8922f404e7e6fa6cfc38c56a18"
+    },
+    {
+      "bytes": 10006,
+      "path": "census/card_head/exact12_v14_ordered_cut_adapter.py",
+      "sha256": "67c9d32fc088272cbc150f102d1c671be9ad36eb752380a912a6addda350d9f7"
+    },
+    {
+      "bytes": 159785,
+      "path": "census/card_head/exact12_v14_ordered_coverage.py",
+      "sha256": "92fe0fc6aba116bb69c995a82a2219532f6a1d8baeae4b002f304a21230bba0c"
+    },
+    {
+      "bytes": 17825,
+      "path": "census/card_head/exact12_v14_source_order_bank.py",
+      "sha256": "84ec9d79beefe6368a4b7c7b714458e65d52033ed6438f23bcf9584066b32f42"
+    },
+    {
+      "bytes": 6905,
+      "path": "census/card_head/source_faithful_candidate_surface.py",
+      "sha256": "189980ee52be97cb77181448cb5dac6602cd37284d13ce7574974bc84696d71f"
+    },
+    {
+      "bytes": 18569,
+      "path": "census/card_head/sat_encoding.py",
+      "sha256": "6d7a939f1f8fe9e3f3684afee52b79c8f3aa50041dd43f438294e69e182059ae"
+    },
+    {
+      "bytes": 49774,
+      "path": "census/global_confinement/cap_selected_nogood_certificate_probe.py",
+      "sha256": "3b5258a71f97ed6cac88613ef4943b133351d687c636d8b04a33d9fb7cca2839"
+    },
+    {
+      "bytes": 102708,
+      "path": "census/global_confinement/metric_realizability_probe.py",
+      "sha256": "e44f1452b240b8bbe39f2389311312ac02ef9bef8ddbb5b08dc4ffa06adea396"
+    },
+    {
+      "bytes": 15639,
+      "path": "census/p97_search/phase3_classification_context.py",
+      "sha256": "5fd4f94b536896921c0f88ea860802b212aeb8c97e5c77e0d4445cc7e38e6837"
+    },
+    {
+      "bytes": 8936,
+      "path": "census/p97_search/phase3_order_universe.py",
+      "sha256": "67fe7a6fb086b82925a5f7b365b34c8a7f5307960f790e914ad86c47b84d86b0"
+    },
+    {
+      "bytes": 6499,
+      "path": "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactTwelveRigid221NextRowTerminalBankConsumer.lean",
+      "sha256": "1951a8e4dec3a6030da713c92fb1d7ff603f5b2e07d4a2a636b7a15cdb17110b"
+    },
+    {
+      "bytes": 3429,
+      "path": "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/GenericEquilateralBisectorNogoodCertificate.lean",
+      "sha256": "6e5e630d06ab3ce1933dead605dadb3daf063bd01ca7c30a75a5ee7c38f61714"
+    },
+    {
+      "bytes": 2757,
+      "path": "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/GenericPerpBisectorNogoodCertificate.lean",
+      "sha256": "e555bd6513c7fcdc54d9334957ba78f7c3da4a9b0a77d0f5f87e095d305fe21a"
+    },
+    {
+      "bytes": 42287,
+      "path": "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/GenericRowNogoodCertificate.lean",
+      "sha256": "7abfcb6e3d0982dc504a29b3771cb634873d995724fd8c87f4811e412b39e84d"
+    },
+    {
+      "bytes": 6885,
+      "path": "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactTwelveRigid221SourceOrderTerminalBankConsumer.lean",
+      "sha256": "74d8689d33b912e85f71714d33eed843b58c4fdbd59251b934c3adb8832f0250"
+    },
+    {
+      "bytes": 2186,
+      "path": "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactTwelveRigid221StaticConvexSourceOrderConsumer.lean",
+      "sha256": "8d4e9dbb13b713afe06395557f18298325a49e08b2495ee4a395d9ccf1015431"
+    },
+    {
+      "bytes": 15758,
+      "path": "lean/Erdos9796Proof/P97/Census554/EqualityCore.lean",
+      "sha256": "be6fd1fb7fa204966ed21bcb9ad4af783d2176d94e5f53b6a8ca23b7a668d187"
+    },
+    {
+      "bytes": 8957,
+      "path": "lean/Erdos9796Proof/P97/Census554/FivePointCollision.lean",
+      "sha256": "9832635e985bd8b265aedb549bec60a39f76106ab871d691350a6f9ec9546eae"
+    }
+  ]
+}

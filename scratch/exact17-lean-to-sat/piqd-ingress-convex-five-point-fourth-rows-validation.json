@@ -1,0 +1,16 @@
+{
+  "clauses": 5846096,
+  "convex_five_point_clauses": 8,
+  "dimacs_bytes": 291568704,
+  "dimacs_sha256": "82a0fe73b57b3c28e9b622eacde46b9ed4f789846231db912014624c46b31ae8",
+  "manifest_sha256": "a5f95e63b7d30916805ccc66b680224fe1e768fbfb9c43ea8d09f74cac4eda8a",
+  "motivating_model_cut_clauses": [
+    5846089,
+    5846093
+  ],
+  "parent_ingress_status": "PASS",
+  "piqd_daemon_sha256": "0cfc9577656fa3aef143a9fe7e5577d938dba9fd39f3b7118ed91735c97fc360",
+  "schema": "p97-exact17-lean-convex-five-point-fourth-rows-piqd-ingress-validation/v1",
+  "status": "PASS",
+  "variables": 308
+}

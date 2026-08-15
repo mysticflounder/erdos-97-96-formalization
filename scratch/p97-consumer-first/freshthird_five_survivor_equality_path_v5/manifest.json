@@ -1,0 +1,102 @@
+{
+  "exact_rows": {
+    "DBRow": "DB",
+    "PRhoRow": "C1",
+    "PRow": "CP",
+    "S0Row": "CS0",
+    "S1Row": "CS1"
+  },
+  "limits": {
+    "cores": 1,
+    "max_iterations_per_tag": 128,
+    "solver_timeout_seconds": 45
+  },
+  "named_row_centers": {
+    "B3": "C3",
+    "B4": "C4",
+    "DBRow": "DB",
+    "PRhoRow": "C1",
+    "PRow": "CP",
+    "R": "C2",
+    "Rh": "C2",
+    "S0Row": "CS0",
+    "S1Row": "CS1"
+  },
+  "schema": "freshthird-five-survivor-equality-path-v5",
+  "scope": "finite exact-17 structural support model only",
+  "solvers": {
+    "cvc5": "/Users/adam/bin/cvc5",
+    "z3": "/Users/adam/projects/math-projects/erdos-97-96-formalization/.venv/bin/z3"
+  },
+  "source_files": {
+    "scratch/p97-consumer-first/freshthird_five_survivor_alias_aware_v2/run_query.py": "8c418813226e2ad71ccea2e35223461c2dea370cc643341f4a2448e7510bed8b",
+    "scratch/p97-consumer-first/freshthird_five_survivor_named_metric_v3/run_named_metric.py": "e0cbd4ad032d193a7c5c38d437ffd9cd4ef63e5d1d02efb0657098eef0284edd",
+    "scratch/p97-consumer-first/freshthird_five_survivor_named_metric_v4/SOURCE-MAP.md": "addb61aa8cd0f51955774217efd024560b9908fb66720cc783155528e019b094"
+  },
+  "source_labels": {
+    "exact_center_alias": "exact rows at an aliased center have identical supports",
+    "exact_offsupport": "exact support is available only for PRow, PRhoRow, S0Row, S1Row, DBRow",
+    "named_row_equality": "a named row equates center-to-support distances",
+    "row_center_omission": "named positive-radius row omits its center",
+    "v2": "corrected exact-17 alias-aware FreshThird structural ingress",
+    "v4_endpoint": "first-cap endpoints C3/C4 lie in Cap and cannot alias Q0/Q1"
+  },
+  "structural_cuts": [
+    "(or (and (= C3 0) Cap_0) (and (= C3 1) Cap_1) (and (= C3 2) Cap_2) (and (= C3 3) Cap_3) (and (= C3 4) Cap_4) (and (= C3 5) Cap_5) (and (= C3 6) Cap_6) (and (= C3 7) Cap_7) (and (= C3 8) Cap_8) (and (= C3 9) Cap_9) (and (= C3 10) Cap_10) (and (= C3 11) Cap_11) (and (= C3 12) Cap_12) (and (= C3 13) Cap_13) (and (= C3 14) Cap_14) (and (= C3 15) Cap_15) (and (= C3 16) Cap_16))",
+    "(or (and (= C4 0) Cap_0) (and (= C4 1) Cap_1) (and (= C4 2) Cap_2) (and (= C4 3) Cap_3) (and (= C4 4) Cap_4) (and (= C4 5) Cap_5) (and (= C4 6) Cap_6) (and (= C4 7) Cap_7) (and (= C4 8) Cap_8) (and (= C4 9) Cap_9) (and (= C4 10) Cap_10) (and (= C4 11) Cap_11) (and (= C4 12) Cap_12) (and (= C4 13) Cap_13) (and (= C4 14) Cap_14) (and (= C4 15) Cap_15) (and (= C4 16) Cap_16))",
+    "(not (= C3 Q0))",
+    "(not (= C3 Q1))",
+    "(not (= C4 Q0))",
+    "(not (= C4 Q1))"
+  ],
+  "tags": [
+    {
+      "b2_choice": "radius",
+      "deleted": "qsource",
+      "name": "first_qsource_radius",
+      "orientation": "first"
+    },
+    {
+      "b2_choice": "rho",
+      "deleted": "qsource",
+      "name": "first_qsource_rho",
+      "orientation": "first"
+    },
+    {
+      "b2_choice": "radius",
+      "deleted": "qother",
+      "name": "first_qother_radius",
+      "orientation": "first"
+    },
+    {
+      "b2_choice": "rho",
+      "deleted": "qother",
+      "name": "first_qother_rho",
+      "orientation": "first"
+    },
+    {
+      "b2_choice": "radius",
+      "deleted": "qsource",
+      "name": "second_qsource_radius",
+      "orientation": "second"
+    },
+    {
+      "b2_choice": "rho",
+      "deleted": "qsource",
+      "name": "second_qsource_rho",
+      "orientation": "second"
+    },
+    {
+      "b2_choice": "radius",
+      "deleted": "qother",
+      "name": "second_qother_radius",
+      "orientation": "second"
+    },
+    {
+      "b2_choice": "rho",
+      "deleted": "qother",
+      "name": "second_qother_rho",
+      "orientation": "second"
+    }
+  ]
+}

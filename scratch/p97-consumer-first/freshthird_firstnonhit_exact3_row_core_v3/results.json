@@ -1,0 +1,2663 @@
+{
+  "claim_boundary": "One fixed 13-row gauge equality packet; trusted cross-engine computation without an exact certificate; no universal or Lean closure claim.",
+  "controls": {
+    "control_nonunit": {
+      "consensus": "NONUNIT",
+      "expected": "NONUNIT",
+      "msolve": {
+        "consensus": "NONUNIT",
+        "engines": {
+          "order_a": {
+            "command": [
+              "msolve",
+              "-f",
+              "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/control_nonunit.order_a.ms",
+              "-o",
+              "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/control_nonunit.order_a.msolve.out",
+              "-t",
+              "4"
+            ],
+            "returncode": 0,
+            "verdict": "NONUNIT",
+            "wall_seconds": 0.05548770911991596
+          },
+          "order_b": {
+            "command": [
+              "msolve",
+              "-f",
+              "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/control_nonunit.order_b.ms",
+              "-o",
+              "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/control_nonunit.order_b.msolve.out",
+              "-t",
+              "4"
+            ],
+            "returncode": 0,
+            "verdict": "NONUNIT",
+            "wall_seconds": 0.00553887477144599
+          }
+        },
+        "reason": "two fresh msolve declaration orders agree"
+      },
+      "passed": true,
+      "reason": "two msolve orders and independent Singular agree",
+      "singular": {
+        "command": [
+          "Singular",
+          "-q",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/control_nonunit.sing"
+        ],
+        "returncode": 0,
+        "verdict": "NONUNIT",
+        "wall_seconds": 0.06713820900768042
+      }
+    },
+    "control_unit": {
+      "consensus": "UNIT",
+      "expected": "UNIT",
+      "msolve": {
+        "consensus": "UNIT",
+        "engines": {
+          "order_a": {
+            "command": [
+              "msolve",
+              "-f",
+              "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/control_unit.order_a.ms",
+              "-o",
+              "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/control_unit.order_a.msolve.out",
+              "-t",
+              "4"
+            ],
+            "returncode": 0,
+            "verdict": "UNIT",
+            "wall_seconds": 0.0058862920850515366
+          },
+          "order_b": {
+            "command": [
+              "msolve",
+              "-f",
+              "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/control_unit.order_b.ms",
+              "-o",
+              "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/control_unit.order_b.msolve.out",
+              "-t",
+              "4"
+            ],
+            "returncode": 0,
+            "verdict": "UNIT",
+            "wall_seconds": 0.004962082952260971
+          }
+        },
+        "reason": "two fresh msolve declaration orders agree"
+      },
+      "passed": true,
+      "reason": "two msolve orders and independent Singular agree",
+      "singular": {
+        "command": [
+          "Singular",
+          "-q",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/control_unit.sing"
+        ],
+        "returncode": 0,
+        "verdict": "UNIT",
+        "wall_seconds": 0.008218541741371155
+      }
+    }
+  },
+  "ended_unix_ns": 1786744282188829000,
+  "greedy_discovery": {
+    "candidate_centers": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      8,
+      9
+    ],
+    "fixed_order": [
+      0,
+      10,
+      6,
+      1,
+      2,
+      3,
+      4,
+      5,
+      7,
+      8,
+      9,
+      15,
+      16
+    ],
+    "trials": [
+      {
+        "candidate_centers": [
+          10,
+          6,
+          1,
+          2,
+          3,
+          4,
+          5,
+          7,
+          8,
+          9,
+          15,
+          16
+        ],
+        "consensus": "UNIT",
+        "deletion_accepted": true,
+        "dropped_center": 0,
+        "engines": {
+          "order_a": {
+            "command": [
+              "msolve",
+              "-f",
+              "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/discovery_drop_0.order_a.ms",
+              "-o",
+              "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/discovery_drop_0.order_a.msolve.out",
+              "-t",
+              "4"
+            ],
+            "returncode": 0,
+            "verdict": "UNIT",
+            "wall_seconds": 0.1295337500050664
+          },
+          "order_b": {
+            "command": [
+              "msolve",
+              "-f",
+              "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/discovery_drop_0.order_b.ms",
+              "-o",
+              "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/discovery_drop_0.order_b.msolve.out",
+              "-t",
+              "4"
+            ],
+            "returncode": 0,
+            "verdict": "UNIT",
+            "wall_seconds": 0.07900283299386501
+          }
+        },
+        "reason": "two fresh msolve declaration orders agree"
+      },
+      {
+        "candidate_centers": [
+          6,
+          1,
+          2,
+          3,
+          4,
+          5,
+          7,
+          8,
+          9,
+          15,
+          16
+        ],
+        "consensus": "UNIT",
+        "deletion_accepted": true,
+        "dropped_center": 10,
+        "engines": {
+          "order_a": {
+            "command": [
+              "msolve",
+              "-f",
+              "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/discovery_drop_10.order_a.ms",
+              "-o",
+              "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/discovery_drop_10.order_a.msolve.out",
+              "-t",
+              "4"
+            ],
+            "returncode": 0,
+            "verdict": "UNIT",
+            "wall_seconds": 0.108236915897578
+          },
+          "order_b": {
+            "command": [
+              "msolve",
+              "-f",
+              "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/discovery_drop_10.order_b.ms",
+              "-o",
+              "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/discovery_drop_10.order_b.msolve.out",
+              "-t",
+              "4"
+            ],
+            "returncode": 0,
+            "verdict": "UNIT",
+            "wall_seconds": 0.05691045895218849
+          }
+        },
+        "reason": "two fresh msolve declaration orders agree"
+      },
+      {
+        "candidate_centers": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          7,
+          8,
+          9,
+          15,
+          16
+        ],
+        "consensus": "UNIT",
+        "deletion_accepted": true,
+        "dropped_center": 6,
+        "engines": {
+          "order_a": {
+            "command": [
+              "msolve",
+              "-f",
+              "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/discovery_drop_6.order_a.ms",
+              "-o",
+              "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/discovery_drop_6.order_a.msolve.out",
+              "-t",
+              "4"
+            ],
+            "returncode": 0,
+            "verdict": "UNIT",
+            "wall_seconds": 1.0232185418717563
+          },
+          "order_b": {
+            "command": [
+              "msolve",
+              "-f",
+              "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/discovery_drop_6.order_b.ms",
+              "-o",
+              "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/discovery_drop_6.order_b.msolve.out",
+              "-t",
+              "4"
+            ],
+            "returncode": 0,
+            "verdict": "UNIT",
+            "wall_seconds": 0.47220479091629386
+          }
+        },
+        "reason": "two fresh msolve declaration orders agree"
+      },
+      {
+        "candidate_centers": [
+          2,
+          3,
+          4,
+          5,
+          7,
+          8,
+          9,
+          15,
+          16
+        ],
+        "consensus": "UNKNOWN",
+        "deletion_accepted": false,
+        "dropped_center": 1,
+        "engines": {
+          "order_a": {
+            "command": [
+              "msolve",
+              "-f",
+              "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/discovery_drop_1.order_a.ms",
+              "-o",
+              "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/discovery_drop_1.order_a.msolve.out",
+              "-t",
+              "4"
+            ],
+            "reason": "timeout",
+            "timeout_seconds": 20.0,
+            "verdict": "UNKNOWN",
+            "wall_seconds": 20.019513042178005
+          },
+          "order_b": {
+            "command": [
+              "msolve",
+              "-f",
+              "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/discovery_drop_1.order_b.ms",
+              "-o",
+              "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/discovery_drop_1.order_b.msolve.out",
+              "-t",
+              "4"
+            ],
+            "reason": "timeout",
+            "timeout_seconds": 20.0,
+            "verdict": "UNKNOWN",
+            "wall_seconds": 20.021178209222853
+          }
+        },
+        "reason": "an msolve order timed out, failed, or did not parse"
+      },
+      {
+        "candidate_centers": [
+          1,
+          3,
+          4,
+          5,
+          7,
+          8,
+          9,
+          15,
+          16
+        ],
+        "consensus": "UNKNOWN",
+        "deletion_accepted": false,
+        "dropped_center": 2,
+        "engines": {
+          "order_a": {
+            "command": [
+              "msolve",
+              "-f",
+              "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/discovery_drop_2.order_a.ms",
+              "-o",
+              "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/discovery_drop_2.order_a.msolve.out",
+              "-t",
+              "4"
+            ],
+            "reason": "timeout",
+            "timeout_seconds": 20.0,
+            "verdict": "UNKNOWN",
+            "wall_seconds": 20.017898582853377
+          },
+          "order_b": {
+            "command": [
+              "msolve",
+              "-f",
+              "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/discovery_drop_2.order_b.ms",
+              "-o",
+              "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/discovery_drop_2.order_b.msolve.out",
+              "-t",
+              "4"
+            ],
+            "reason": "timeout",
+            "timeout_seconds": 20.0,
+            "verdict": "UNKNOWN",
+            "wall_seconds": 20.018313332926482
+          }
+        },
+        "reason": "an msolve order timed out, failed, or did not parse"
+      },
+      {
+        "candidate_centers": [
+          1,
+          2,
+          4,
+          5,
+          7,
+          8,
+          9,
+          15,
+          16
+        ],
+        "consensus": "UNKNOWN",
+        "deletion_accepted": false,
+        "dropped_center": 3,
+        "engines": {
+          "order_a": {
+            "command": [
+              "msolve",
+              "-f",
+              "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/discovery_drop_3.order_a.ms",
+              "-o",
+              "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/discovery_drop_3.order_a.msolve.out",
+              "-t",
+              "4"
+            ],
+            "reason": "timeout",
+            "timeout_seconds": 20.0,
+            "verdict": "UNKNOWN",
+            "wall_seconds": 20.016069374978542
+          },
+          "order_b": {
+            "command": [
+              "msolve",
+              "-f",
+              "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/discovery_drop_3.order_b.ms",
+              "-o",
+              "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/discovery_drop_3.order_b.msolve.out",
+              "-t",
+              "4"
+            ],
+            "reason": "timeout",
+            "timeout_seconds": 20.0,
+            "verdict": "UNKNOWN",
+            "wall_seconds": 20.024491582997143
+          }
+        },
+        "reason": "an msolve order timed out, failed, or did not parse"
+      },
+      {
+        "candidate_centers": [
+          1,
+          2,
+          3,
+          5,
+          7,
+          8,
+          9,
+          15,
+          16
+        ],
+        "consensus": "UNKNOWN",
+        "deletion_accepted": false,
+        "dropped_center": 4,
+        "engines": {
+          "order_a": {
+            "command": [
+              "msolve",
+              "-f",
+              "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/discovery_drop_4.order_a.ms",
+              "-o",
+              "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/discovery_drop_4.order_a.msolve.out",
+              "-t",
+              "4"
+            ],
+            "reason": "timeout",
+            "timeout_seconds": 20.0,
+            "verdict": "UNKNOWN",
+            "wall_seconds": 20.0391504582949
+          },
+          "order_b": {
+            "command": [
+              "msolve",
+              "-f",
+              "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/discovery_drop_4.order_b.ms",
+              "-o",
+              "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/discovery_drop_4.order_b.msolve.out",
+              "-t",
+              "4"
+            ],
+            "reason": "timeout",
+            "timeout_seconds": 20.0,
+            "verdict": "UNKNOWN",
+            "wall_seconds": 20.04018837492913
+          }
+        },
+        "reason": "an msolve order timed out, failed, or did not parse"
+      },
+      {
+        "candidate_centers": [
+          1,
+          2,
+          3,
+          4,
+          7,
+          8,
+          9,
+          15,
+          16
+        ],
+        "consensus": "UNKNOWN",
+        "deletion_accepted": false,
+        "dropped_center": 5,
+        "engines": {
+          "order_a": {
+            "command": [
+              "msolve",
+              "-f",
+              "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/discovery_drop_5.order_a.ms",
+              "-o",
+              "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/discovery_drop_5.order_a.msolve.out",
+              "-t",
+              "4"
+            ],
+            "reason": "timeout",
+            "timeout_seconds": 20.0,
+            "verdict": "UNKNOWN",
+            "wall_seconds": 20.024408583994955
+          },
+          "order_b": {
+            "command": [
+              "msolve",
+              "-f",
+              "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/discovery_drop_5.order_b.ms",
+              "-o",
+              "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/discovery_drop_5.order_b.msolve.out",
+              "-t",
+              "4"
+            ],
+            "returncode": 0,
+            "verdict": "NONUNIT",
+            "wall_seconds": 1.9848694582469761
+          }
+        },
+        "reason": "an msolve order timed out, failed, or did not parse"
+      },
+      {
+        "candidate_centers": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          8,
+          9,
+          15,
+          16
+        ],
+        "consensus": "UNIT",
+        "deletion_accepted": true,
+        "dropped_center": 7,
+        "engines": {
+          "order_a": {
+            "command": [
+              "msolve",
+              "-f",
+              "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/discovery_drop_7.order_a.ms",
+              "-o",
+              "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/discovery_drop_7.order_a.msolve.out",
+              "-t",
+              "4"
+            ],
+            "returncode": 0,
+            "verdict": "UNIT",
+            "wall_seconds": 0.45694749988615513
+          },
+          "order_b": {
+            "command": [
+              "msolve",
+              "-f",
+              "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/discovery_drop_7.order_b.ms",
+              "-o",
+              "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/discovery_drop_7.order_b.msolve.out",
+              "-t",
+              "4"
+            ],
+            "returncode": 0,
+            "verdict": "UNIT",
+            "wall_seconds": 0.21159279206767678
+          }
+        },
+        "reason": "two fresh msolve declaration orders agree"
+      },
+      {
+        "candidate_centers": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          9,
+          15,
+          16
+        ],
+        "consensus": "UNKNOWN",
+        "deletion_accepted": false,
+        "dropped_center": 8,
+        "engines": {
+          "order_a": {
+            "command": [
+              "msolve",
+              "-f",
+              "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/discovery_drop_8.order_a.ms",
+              "-o",
+              "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/discovery_drop_8.order_a.msolve.out",
+              "-t",
+              "4"
+            ],
+            "reason": "timeout",
+            "timeout_seconds": 20.0,
+            "verdict": "UNKNOWN",
+            "wall_seconds": 20.02423374960199
+          },
+          "order_b": {
+            "command": [
+              "msolve",
+              "-f",
+              "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/discovery_drop_8.order_b.ms",
+              "-o",
+              "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/discovery_drop_8.order_b.msolve.out",
+              "-t",
+              "4"
+            ],
+            "reason": "timeout",
+            "timeout_seconds": 20.0,
+            "verdict": "UNKNOWN",
+            "wall_seconds": 20.027901542373
+          }
+        },
+        "reason": "an msolve order timed out, failed, or did not parse"
+      },
+      {
+        "candidate_centers": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          8,
+          15,
+          16
+        ],
+        "consensus": "UNKNOWN",
+        "deletion_accepted": false,
+        "dropped_center": 9,
+        "engines": {
+          "order_a": {
+            "command": [
+              "msolve",
+              "-f",
+              "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/discovery_drop_9.order_a.ms",
+              "-o",
+              "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/discovery_drop_9.order_a.msolve.out",
+              "-t",
+              "4"
+            ],
+            "reason": "timeout",
+            "timeout_seconds": 20.0,
+            "verdict": "UNKNOWN",
+            "wall_seconds": 20.020167542155832
+          },
+          "order_b": {
+            "command": [
+              "msolve",
+              "-f",
+              "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/discovery_drop_9.order_b.ms",
+              "-o",
+              "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/discovery_drop_9.order_b.msolve.out",
+              "-t",
+              "4"
+            ],
+            "reason": "timeout",
+            "timeout_seconds": 20.0,
+            "verdict": "UNKNOWN",
+            "wall_seconds": 20.02698841691017
+          }
+        },
+        "reason": "an msolve order timed out, failed, or did not parse"
+      },
+      {
+        "candidate_centers": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          8,
+          9,
+          16
+        ],
+        "consensus": "UNIT",
+        "deletion_accepted": true,
+        "dropped_center": 15,
+        "engines": {
+          "order_a": {
+            "command": [
+              "msolve",
+              "-f",
+              "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/discovery_drop_15.order_a.ms",
+              "-o",
+              "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/discovery_drop_15.order_a.msolve.out",
+              "-t",
+              "4"
+            ],
+            "returncode": 0,
+            "verdict": "UNIT",
+            "wall_seconds": 0.41639470821246505
+          },
+          "order_b": {
+            "command": [
+              "msolve",
+              "-f",
+              "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/discovery_drop_15.order_b.ms",
+              "-o",
+              "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/discovery_drop_15.order_b.msolve.out",
+              "-t",
+              "4"
+            ],
+            "returncode": 0,
+            "verdict": "UNIT",
+            "wall_seconds": 0.18583279196172953
+          }
+        },
+        "reason": "two fresh msolve declaration orders agree"
+      },
+      {
+        "candidate_centers": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          8,
+          9
+        ],
+        "consensus": "UNIT",
+        "deletion_accepted": true,
+        "dropped_center": 16,
+        "engines": {
+          "order_a": {
+            "command": [
+              "msolve",
+              "-f",
+              "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/discovery_drop_16.order_a.ms",
+              "-o",
+              "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/discovery_drop_16.order_a.msolve.out",
+              "-t",
+              "4"
+            ],
+            "returncode": 0,
+            "verdict": "UNIT",
+            "wall_seconds": 0.25687870802357793
+          },
+          "order_b": {
+            "command": [
+              "msolve",
+              "-f",
+              "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/discovery_drop_16.order_b.ms",
+              "-o",
+              "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/discovery_drop_16.order_b.msolve.out",
+              "-t",
+              "4"
+            ],
+            "returncode": 0,
+            "verdict": "UNIT",
+            "wall_seconds": 0.11539241718128324
+          }
+        },
+        "reason": "two fresh msolve declaration orders agree"
+      }
+    ]
+  },
+  "initial_full_msolve": {
+    "consensus": "UNIT",
+    "engines": {
+      "order_a": {
+        "command": [
+          "msolve",
+          "-f",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/discovery_full.order_a.ms",
+          "-o",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/discovery_full.order_a.msolve.out",
+          "-t",
+          "4"
+        ],
+        "returncode": 0,
+        "verdict": "UNIT",
+        "wall_seconds": 0.16946349991485476
+      },
+      "order_b": {
+        "command": [
+          "msolve",
+          "-f",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/discovery_full.order_b.ms",
+          "-o",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/discovery_full.order_b.msolve.out",
+          "-t",
+          "4"
+        ],
+        "returncode": 0,
+        "verdict": "UNIT",
+        "wall_seconds": 0.12474883301183581
+      }
+    },
+    "reason": "two fresh msolve declaration orders agree"
+  },
+  "row_core": {
+    "best_authenticated_unit_centers": [
+      0,
+      10,
+      6,
+      1,
+      2,
+      3,
+      4,
+      5,
+      7,
+      8,
+      9,
+      15,
+      16
+    ],
+    "best_authenticated_unit_supports": {
+      "0": [
+        1,
+        2,
+        7,
+        11
+      ],
+      "1": [
+        0,
+        3,
+        6,
+        9
+      ],
+      "10": [
+        4,
+        5,
+        8,
+        11
+      ],
+      "15": [
+        16,
+        0,
+        7,
+        13
+      ],
+      "16": [
+        15,
+        4,
+        8,
+        10
+      ],
+      "2": [
+        3,
+        0,
+        8,
+        11
+      ],
+      "3": [
+        6,
+        1,
+        5,
+        9
+      ],
+      "4": [
+        11,
+        2,
+        6,
+        8
+      ],
+      "5": [
+        10,
+        3,
+        11,
+        9
+      ],
+      "6": [
+        7,
+        8,
+        9,
+        10
+      ],
+      "7": [
+        12,
+        0,
+        4,
+        8
+      ],
+      "8": [
+        13,
+        1,
+        3,
+        10
+      ],
+      "9": [
+        14,
+        2,
+        3,
+        8
+      ]
+    },
+    "candidate_centers": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      8,
+      9
+    ],
+    "candidate_supports": {
+      "1": [
+        0,
+        3,
+        6,
+        9
+      ],
+      "2": [
+        3,
+        0,
+        8,
+        11
+      ],
+      "3": [
+        6,
+        1,
+        5,
+        9
+      ],
+      "4": [
+        11,
+        2,
+        6,
+        8
+      ],
+      "5": [
+        10,
+        3,
+        11,
+        9
+      ],
+      "8": [
+        13,
+        1,
+        3,
+        10
+      ],
+      "9": [
+        14,
+        2,
+        3,
+        8
+      ]
+    },
+    "fallback": {
+      "source": {
+        "path": "scratch/p97-consumer-first/freshthird_firstnonhit_exact3_algebra_v2/results.json",
+        "sha256": "b8fc61a3dc85ad7589b5dae2282ce5f165cbbe9e1ff67098328e85cf3a625961"
+      },
+      "v2_target_consensus": "UNIT"
+    },
+    "final_core_replay": {
+      "consensus": "UNKNOWN",
+      "msolve": {
+        "consensus": "UNIT",
+        "engines": {
+          "order_a": {
+            "command": [
+              "msolve",
+              "-f",
+              "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/terminal_core.order_a.ms",
+              "-o",
+              "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/terminal_core.order_a.msolve.out",
+              "-t",
+              "4"
+            ],
+            "returncode": 0,
+            "verdict": "UNIT",
+            "wall_seconds": 0.24233700009062886
+          },
+          "order_b": {
+            "command": [
+              "msolve",
+              "-f",
+              "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/terminal_core.order_b.ms",
+              "-o",
+              "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/terminal_core.order_b.msolve.out",
+              "-t",
+              "4"
+            ],
+            "returncode": 0,
+            "verdict": "UNIT",
+            "wall_seconds": 0.1155860829167068
+          }
+        },
+        "reason": "two fresh msolve declaration orders agree"
+      },
+      "reason": "at least one engine timed out, failed, or disagreed",
+      "singular": {
+        "command": [
+          "Singular",
+          "-q",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/terminal_core.sing"
+        ],
+        "reason": "timeout",
+        "timeout_seconds": 30.0,
+        "verdict": "UNKNOWN",
+        "wall_seconds": 30.014726624824107
+      }
+    },
+    "final_drop_one_replays": [
+      {
+        "candidate_centers": [
+          2,
+          3,
+          4,
+          5,
+          8,
+          9
+        ],
+        "consensus": "UNKNOWN",
+        "dropped_center": 1,
+        "msolve": {
+          "consensus": "UNKNOWN",
+          "engines": {
+            "order_a": {
+              "command": [
+                "msolve",
+                "-f",
+                "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/terminal_drop_1.order_a.ms",
+                "-o",
+                "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/terminal_drop_1.order_a.msolve.out",
+                "-t",
+                "4"
+              ],
+              "reason": "timeout",
+              "timeout_seconds": 20.0,
+              "verdict": "UNKNOWN",
+              "wall_seconds": 20.024306958075613
+            },
+            "order_b": {
+              "command": [
+                "msolve",
+                "-f",
+                "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/terminal_drop_1.order_b.ms",
+                "-o",
+                "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/terminal_drop_1.order_b.msolve.out",
+                "-t",
+                "4"
+              ],
+              "reason": "timeout",
+              "timeout_seconds": 20.0,
+              "verdict": "UNKNOWN",
+              "wall_seconds": 20.02046325011179
+            }
+          },
+          "reason": "an msolve order timed out, failed, or did not parse"
+        },
+        "reason": "at least one engine timed out, failed, or disagreed",
+        "singular": {
+          "command": [
+            "Singular",
+            "-q",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/terminal_drop_1.sing"
+          ],
+          "reason": "timeout",
+          "timeout_seconds": 30.0,
+          "verdict": "UNKNOWN",
+          "wall_seconds": 30.01075516687706
+        }
+      },
+      {
+        "candidate_centers": [
+          1,
+          3,
+          4,
+          5,
+          8,
+          9
+        ],
+        "consensus": "UNKNOWN",
+        "dropped_center": 2,
+        "msolve": {
+          "consensus": "UNKNOWN",
+          "engines": {
+            "order_a": {
+              "command": [
+                "msolve",
+                "-f",
+                "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/terminal_drop_2.order_a.ms",
+                "-o",
+                "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/terminal_drop_2.order_a.msolve.out",
+                "-t",
+                "4"
+              ],
+              "reason": "timeout",
+              "timeout_seconds": 20.0,
+              "verdict": "UNKNOWN",
+              "wall_seconds": 20.03218883415684
+            },
+            "order_b": {
+              "command": [
+                "msolve",
+                "-f",
+                "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/terminal_drop_2.order_b.ms",
+                "-o",
+                "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/terminal_drop_2.order_b.msolve.out",
+                "-t",
+                "4"
+              ],
+              "reason": "timeout",
+              "timeout_seconds": 20.0,
+              "verdict": "UNKNOWN",
+              "wall_seconds": 20.020371458027512
+            }
+          },
+          "reason": "an msolve order timed out, failed, or did not parse"
+        },
+        "reason": "at least one engine timed out, failed, or disagreed",
+        "singular": {
+          "command": [
+            "Singular",
+            "-q",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/terminal_drop_2.sing"
+          ],
+          "reason": "timeout",
+          "timeout_seconds": 30.0,
+          "verdict": "UNKNOWN",
+          "wall_seconds": 30.015511666890234
+        }
+      },
+      {
+        "candidate_centers": [
+          1,
+          2,
+          4,
+          5,
+          8,
+          9
+        ],
+        "consensus": "UNKNOWN",
+        "dropped_center": 3,
+        "msolve": {
+          "consensus": "UNKNOWN",
+          "engines": {
+            "order_a": {
+              "command": [
+                "msolve",
+                "-f",
+                "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/terminal_drop_3.order_a.ms",
+                "-o",
+                "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/terminal_drop_3.order_a.msolve.out",
+                "-t",
+                "4"
+              ],
+              "reason": "timeout",
+              "timeout_seconds": 20.0,
+              "verdict": "UNKNOWN",
+              "wall_seconds": 20.026929499581456
+            },
+            "order_b": {
+              "command": [
+                "msolve",
+                "-f",
+                "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/terminal_drop_3.order_b.ms",
+                "-o",
+                "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/terminal_drop_3.order_b.msolve.out",
+                "-t",
+                "4"
+              ],
+              "reason": "timeout",
+              "timeout_seconds": 20.0,
+              "verdict": "UNKNOWN",
+              "wall_seconds": 20.028183083049953
+            }
+          },
+          "reason": "an msolve order timed out, failed, or did not parse"
+        },
+        "reason": "at least one engine timed out, failed, or disagreed",
+        "singular": {
+          "command": [
+            "Singular",
+            "-q",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/terminal_drop_3.sing"
+          ],
+          "reason": "timeout",
+          "timeout_seconds": 30.0,
+          "verdict": "UNKNOWN",
+          "wall_seconds": 30.011843916028738
+        }
+      },
+      {
+        "candidate_centers": [
+          1,
+          2,
+          3,
+          5,
+          8,
+          9
+        ],
+        "consensus": "UNKNOWN",
+        "dropped_center": 4,
+        "msolve": {
+          "consensus": "NONUNIT",
+          "engines": {
+            "order_a": {
+              "command": [
+                "msolve",
+                "-f",
+                "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/terminal_drop_4.order_a.ms",
+                "-o",
+                "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/terminal_drop_4.order_a.msolve.out",
+                "-t",
+                "4"
+              ],
+              "returncode": 0,
+              "verdict": "NONUNIT",
+              "wall_seconds": 0.5740840001963079
+            },
+            "order_b": {
+              "command": [
+                "msolve",
+                "-f",
+                "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/terminal_drop_4.order_b.ms",
+                "-o",
+                "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/terminal_drop_4.order_b.msolve.out",
+                "-t",
+                "4"
+              ],
+              "returncode": 0,
+              "verdict": "NONUNIT",
+              "wall_seconds": 0.08539374964311719
+            }
+          },
+          "reason": "two fresh msolve declaration orders agree"
+        },
+        "reason": "at least one engine timed out, failed, or disagreed",
+        "singular": {
+          "command": [
+            "Singular",
+            "-q",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/terminal_drop_4.sing"
+          ],
+          "reason": "timeout",
+          "timeout_seconds": 30.0,
+          "verdict": "UNKNOWN",
+          "wall_seconds": 30.012688499875367
+        }
+      },
+      {
+        "candidate_centers": [
+          1,
+          2,
+          3,
+          4,
+          8,
+          9
+        ],
+        "consensus": "UNKNOWN",
+        "dropped_center": 5,
+        "msolve": {
+          "consensus": "NONUNIT",
+          "engines": {
+            "order_a": {
+              "command": [
+                "msolve",
+                "-f",
+                "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/terminal_drop_5.order_a.ms",
+                "-o",
+                "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/terminal_drop_5.order_a.msolve.out",
+                "-t",
+                "4"
+              ],
+              "returncode": 0,
+              "verdict": "NONUNIT",
+              "wall_seconds": 0.3011399172246456
+            },
+            "order_b": {
+              "command": [
+                "msolve",
+                "-f",
+                "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/terminal_drop_5.order_b.ms",
+                "-o",
+                "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/terminal_drop_5.order_b.msolve.out",
+                "-t",
+                "4"
+              ],
+              "returncode": 0,
+              "verdict": "NONUNIT",
+              "wall_seconds": 0.0338358748704195
+            }
+          },
+          "reason": "two fresh msolve declaration orders agree"
+        },
+        "reason": "at least one engine timed out, failed, or disagreed",
+        "singular": {
+          "command": [
+            "Singular",
+            "-q",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/terminal_drop_5.sing"
+          ],
+          "reason": "timeout",
+          "timeout_seconds": 30.0,
+          "verdict": "UNKNOWN",
+          "wall_seconds": 30.013034999836236
+        }
+      },
+      {
+        "candidate_centers": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          9
+        ],
+        "consensus": "UNKNOWN",
+        "dropped_center": 8,
+        "msolve": {
+          "consensus": "UNKNOWN",
+          "engines": {
+            "order_a": {
+              "command": [
+                "msolve",
+                "-f",
+                "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/terminal_drop_8.order_a.ms",
+                "-o",
+                "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/terminal_drop_8.order_a.msolve.out",
+                "-t",
+                "4"
+              ],
+              "reason": "timeout",
+              "timeout_seconds": 20.0,
+              "verdict": "UNKNOWN",
+              "wall_seconds": 20.017171334009618
+            },
+            "order_b": {
+              "command": [
+                "msolve",
+                "-f",
+                "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/terminal_drop_8.order_b.ms",
+                "-o",
+                "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/terminal_drop_8.order_b.msolve.out",
+                "-t",
+                "4"
+              ],
+              "returncode": 0,
+              "verdict": "NONUNIT",
+              "wall_seconds": 1.2492950828745961
+            }
+          },
+          "reason": "an msolve order timed out, failed, or did not parse"
+        },
+        "reason": "at least one engine timed out, failed, or disagreed",
+        "singular": {
+          "command": [
+            "Singular",
+            "-q",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/terminal_drop_8.sing"
+          ],
+          "reason": "timeout",
+          "timeout_seconds": 30.0,
+          "verdict": "UNKNOWN",
+          "wall_seconds": 30.01044783415273
+        }
+      },
+      {
+        "candidate_centers": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          8
+        ],
+        "consensus": "UNKNOWN",
+        "dropped_center": 9,
+        "msolve": {
+          "consensus": "UNKNOWN",
+          "engines": {
+            "order_a": {
+              "command": [
+                "msolve",
+                "-f",
+                "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/terminal_drop_9.order_a.ms",
+                "-o",
+                "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/terminal_drop_9.order_a.msolve.out",
+                "-t",
+                "4"
+              ],
+              "reason": "timeout",
+              "timeout_seconds": 20.0,
+              "verdict": "UNKNOWN",
+              "wall_seconds": 20.0199392917566
+            },
+            "order_b": {
+              "command": [
+                "msolve",
+                "-f",
+                "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/terminal_drop_9.order_b.ms",
+                "-o",
+                "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/terminal_drop_9.order_b.msolve.out",
+                "-t",
+                "4"
+              ],
+              "reason": "timeout",
+              "timeout_seconds": 20.0,
+              "verdict": "UNKNOWN",
+              "wall_seconds": 20.015654833056033
+            }
+          },
+          "reason": "an msolve order timed out, failed, or did not parse"
+        },
+        "reason": "at least one engine timed out, failed, or disagreed",
+        "singular": {
+          "command": [
+            "Singular",
+            "-q",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/terminal_drop_9.sing"
+          ],
+          "reason": "timeout",
+          "timeout_seconds": 30.0,
+          "verdict": "UNKNOWN",
+          "wall_seconds": 30.008410333190113
+        }
+      }
+    ],
+    "minimal_core_claim": false,
+    "unknown_seen": true
+  },
+  "schema": "freshthird-firstnonhit-exact3-row-core-v3",
+  "singular_budget": {
+    "calls": 10,
+    "limit_seconds": 300.0,
+    "per_call_limit_seconds": 30.0,
+    "strict_budget_respected": true,
+    "wall_seconds": 240.17277579242364
+  },
+  "started_unix_ns": 1786743592998351000,
+  "status": "UNKNOWN_FALLBACK_TO_PINNED_V2_UNIT",
+  "wave_data_only_generalization": {
+    "candidate_universal_theorem": null,
+    "nonempty_intersection_graph": {
+      "bridges": [],
+      "components": [
+        [
+          0,
+          10,
+          6,
+          1,
+          2,
+          3,
+          4,
+          5,
+          7,
+          8,
+          9,
+          15,
+          16
+        ]
+      ],
+      "cycle_rank": 47,
+      "degree_by_row": {
+        "0": 9,
+        "1": 9,
+        "10": 9,
+        "15": 6,
+        "16": 8,
+        "2": 11,
+        "3": 7,
+        "4": 10,
+        "5": 10,
+        "6": 12,
+        "7": 8,
+        "8": 9,
+        "9": 10
+      },
+      "degree_sequence_descending": [
+        12,
+        11,
+        10,
+        10,
+        10,
+        9,
+        9,
+        9,
+        9,
+        8,
+        8,
+        7,
+        6
+      ],
+      "edge_count": 59,
+      "fundamental_cycle_basis": [
+        [
+          10,
+          0,
+          6,
+          10
+        ],
+        [
+          10,
+          0,
+          2,
+          10
+        ],
+        [
+          10,
+          0,
+          3,
+          10
+        ],
+        [
+          10,
+          0,
+          4,
+          10
+        ],
+        [
+          10,
+          0,
+          5,
+          10
+        ],
+        [
+          10,
+          0,
+          9,
+          10
+        ],
+        [
+          6,
+          0,
+          10,
+          7,
+          1,
+          6
+        ],
+        [
+          6,
+          0,
+          2,
+          6
+        ],
+        [
+          6,
+          0,
+          3,
+          6
+        ],
+        [
+          6,
+          0,
+          4,
+          6
+        ],
+        [
+          6,
+          0,
+          5,
+          6
+        ],
+        [
+          6,
+          0,
+          10,
+          7,
+          6
+        ],
+        [
+          6,
+          0,
+          8,
+          6
+        ],
+        [
+          6,
+          0,
+          9,
+          6
+        ],
+        [
+          6,
+          0,
+          15,
+          6
+        ],
+        [
+          6,
+          0,
+          10,
+          16,
+          6
+        ],
+        [
+          1,
+          7,
+          10,
+          0,
+          2,
+          1
+        ],
+        [
+          1,
+          7,
+          10,
+          0,
+          3,
+          1
+        ],
+        [
+          1,
+          7,
+          10,
+          0,
+          4,
+          1
+        ],
+        [
+          1,
+          7,
+          10,
+          0,
+          5,
+          1
+        ],
+        [
+          1,
+          7,
+          10,
+          0,
+          8,
+          1
+        ],
+        [
+          1,
+          7,
+          10,
+          0,
+          9,
+          1
+        ],
+        [
+          1,
+          7,
+          10,
+          0,
+          15,
+          1
+        ],
+        [
+          2,
+          0,
+          4,
+          2
+        ],
+        [
+          2,
+          0,
+          5,
+          2
+        ],
+        [
+          2,
+          0,
+          10,
+          7,
+          2
+        ],
+        [
+          2,
+          0,
+          8,
+          2
+        ],
+        [
+          2,
+          0,
+          9,
+          2
+        ],
+        [
+          2,
+          0,
+          15,
+          2
+        ],
+        [
+          2,
+          0,
+          10,
+          16,
+          2
+        ],
+        [
+          3,
+          0,
+          4,
+          3
+        ],
+        [
+          3,
+          0,
+          5,
+          3
+        ],
+        [
+          3,
+          0,
+          8,
+          3
+        ],
+        [
+          4,
+          0,
+          5,
+          4
+        ],
+        [
+          4,
+          0,
+          10,
+          7,
+          4
+        ],
+        [
+          4,
+          0,
+          9,
+          4
+        ],
+        [
+          4,
+          0,
+          10,
+          16,
+          4
+        ],
+        [
+          5,
+          0,
+          8,
+          5
+        ],
+        [
+          5,
+          0,
+          9,
+          5
+        ],
+        [
+          5,
+          0,
+          10,
+          16,
+          5
+        ],
+        [
+          7,
+          10,
+          0,
+          9,
+          7
+        ],
+        [
+          7,
+          10,
+          0,
+          15,
+          7
+        ],
+        [
+          7,
+          10,
+          16,
+          7
+        ],
+        [
+          8,
+          0,
+          9,
+          8
+        ],
+        [
+          8,
+          0,
+          15,
+          8
+        ],
+        [
+          8,
+          0,
+          10,
+          16,
+          8
+        ],
+        [
+          9,
+          0,
+          10,
+          16,
+          9
+        ]
+      ],
+      "labeled_edges": [
+        {
+          "rows": [
+            0,
+            10
+          ],
+          "shared_supports": [
+            11
+          ]
+        },
+        {
+          "rows": [
+            0,
+            6
+          ],
+          "shared_supports": [
+            7
+          ]
+        },
+        {
+          "rows": [
+            0,
+            2
+          ],
+          "shared_supports": [
+            11
+          ]
+        },
+        {
+          "rows": [
+            0,
+            3
+          ],
+          "shared_supports": [
+            1
+          ]
+        },
+        {
+          "rows": [
+            0,
+            4
+          ],
+          "shared_supports": [
+            2,
+            11
+          ]
+        },
+        {
+          "rows": [
+            0,
+            5
+          ],
+          "shared_supports": [
+            11
+          ]
+        },
+        {
+          "rows": [
+            0,
+            8
+          ],
+          "shared_supports": [
+            1
+          ]
+        },
+        {
+          "rows": [
+            0,
+            9
+          ],
+          "shared_supports": [
+            2
+          ]
+        },
+        {
+          "rows": [
+            0,
+            15
+          ],
+          "shared_supports": [
+            7
+          ]
+        },
+        {
+          "rows": [
+            10,
+            6
+          ],
+          "shared_supports": [
+            8
+          ]
+        },
+        {
+          "rows": [
+            10,
+            2
+          ],
+          "shared_supports": [
+            8,
+            11
+          ]
+        },
+        {
+          "rows": [
+            10,
+            3
+          ],
+          "shared_supports": [
+            5
+          ]
+        },
+        {
+          "rows": [
+            10,
+            4
+          ],
+          "shared_supports": [
+            8,
+            11
+          ]
+        },
+        {
+          "rows": [
+            10,
+            5
+          ],
+          "shared_supports": [
+            11
+          ]
+        },
+        {
+          "rows": [
+            10,
+            7
+          ],
+          "shared_supports": [
+            4,
+            8
+          ]
+        },
+        {
+          "rows": [
+            10,
+            9
+          ],
+          "shared_supports": [
+            8
+          ]
+        },
+        {
+          "rows": [
+            10,
+            16
+          ],
+          "shared_supports": [
+            4,
+            8
+          ]
+        },
+        {
+          "rows": [
+            6,
+            1
+          ],
+          "shared_supports": [
+            9
+          ]
+        },
+        {
+          "rows": [
+            6,
+            2
+          ],
+          "shared_supports": [
+            8
+          ]
+        },
+        {
+          "rows": [
+            6,
+            3
+          ],
+          "shared_supports": [
+            9
+          ]
+        },
+        {
+          "rows": [
+            6,
+            4
+          ],
+          "shared_supports": [
+            8
+          ]
+        },
+        {
+          "rows": [
+            6,
+            5
+          ],
+          "shared_supports": [
+            9,
+            10
+          ]
+        },
+        {
+          "rows": [
+            6,
+            7
+          ],
+          "shared_supports": [
+            8
+          ]
+        },
+        {
+          "rows": [
+            6,
+            8
+          ],
+          "shared_supports": [
+            10
+          ]
+        },
+        {
+          "rows": [
+            6,
+            9
+          ],
+          "shared_supports": [
+            8
+          ]
+        },
+        {
+          "rows": [
+            6,
+            15
+          ],
+          "shared_supports": [
+            7
+          ]
+        },
+        {
+          "rows": [
+            6,
+            16
+          ],
+          "shared_supports": [
+            8,
+            10
+          ]
+        },
+        {
+          "rows": [
+            1,
+            2
+          ],
+          "shared_supports": [
+            0,
+            3
+          ]
+        },
+        {
+          "rows": [
+            1,
+            3
+          ],
+          "shared_supports": [
+            6,
+            9
+          ]
+        },
+        {
+          "rows": [
+            1,
+            4
+          ],
+          "shared_supports": [
+            6
+          ]
+        },
+        {
+          "rows": [
+            1,
+            5
+          ],
+          "shared_supports": [
+            3,
+            9
+          ]
+        },
+        {
+          "rows": [
+            1,
+            7
+          ],
+          "shared_supports": [
+            0
+          ]
+        },
+        {
+          "rows": [
+            1,
+            8
+          ],
+          "shared_supports": [
+            3
+          ]
+        },
+        {
+          "rows": [
+            1,
+            9
+          ],
+          "shared_supports": [
+            3
+          ]
+        },
+        {
+          "rows": [
+            1,
+            15
+          ],
+          "shared_supports": [
+            0
+          ]
+        },
+        {
+          "rows": [
+            2,
+            4
+          ],
+          "shared_supports": [
+            8,
+            11
+          ]
+        },
+        {
+          "rows": [
+            2,
+            5
+          ],
+          "shared_supports": [
+            3,
+            11
+          ]
+        },
+        {
+          "rows": [
+            2,
+            7
+          ],
+          "shared_supports": [
+            0,
+            8
+          ]
+        },
+        {
+          "rows": [
+            2,
+            8
+          ],
+          "shared_supports": [
+            3
+          ]
+        },
+        {
+          "rows": [
+            2,
+            9
+          ],
+          "shared_supports": [
+            3,
+            8
+          ]
+        },
+        {
+          "rows": [
+            2,
+            15
+          ],
+          "shared_supports": [
+            0
+          ]
+        },
+        {
+          "rows": [
+            2,
+            16
+          ],
+          "shared_supports": [
+            8
+          ]
+        },
+        {
+          "rows": [
+            3,
+            4
+          ],
+          "shared_supports": [
+            6
+          ]
+        },
+        {
+          "rows": [
+            3,
+            5
+          ],
+          "shared_supports": [
+            9
+          ]
+        },
+        {
+          "rows": [
+            3,
+            8
+          ],
+          "shared_supports": [
+            1
+          ]
+        },
+        {
+          "rows": [
+            4,
+            5
+          ],
+          "shared_supports": [
+            11
+          ]
+        },
+        {
+          "rows": [
+            4,
+            7
+          ],
+          "shared_supports": [
+            8
+          ]
+        },
+        {
+          "rows": [
+            4,
+            9
+          ],
+          "shared_supports": [
+            2,
+            8
+          ]
+        },
+        {
+          "rows": [
+            4,
+            16
+          ],
+          "shared_supports": [
+            8
+          ]
+        },
+        {
+          "rows": [
+            5,
+            8
+          ],
+          "shared_supports": [
+            3,
+            10
+          ]
+        },
+        {
+          "rows": [
+            5,
+            9
+          ],
+          "shared_supports": [
+            3
+          ]
+        },
+        {
+          "rows": [
+            5,
+            16
+          ],
+          "shared_supports": [
+            10
+          ]
+        },
+        {
+          "rows": [
+            7,
+            9
+          ],
+          "shared_supports": [
+            8
+          ]
+        },
+        {
+          "rows": [
+            7,
+            15
+          ],
+          "shared_supports": [
+            0
+          ]
+        },
+        {
+          "rows": [
+            7,
+            16
+          ],
+          "shared_supports": [
+            4,
+            8
+          ]
+        },
+        {
+          "rows": [
+            8,
+            9
+          ],
+          "shared_supports": [
+            3
+          ]
+        },
+        {
+          "rows": [
+            8,
+            15
+          ],
+          "shared_supports": [
+            13
+          ]
+        },
+        {
+          "rows": [
+            8,
+            16
+          ],
+          "shared_supports": [
+            10
+          ]
+        },
+        {
+          "rows": [
+            9,
+            16
+          ],
+          "shared_supports": [
+            8
+          ]
+        }
+      ],
+      "minimum_shared_supports": 1,
+      "vertices": [
+        0,
+        10,
+        6,
+        1,
+        2,
+        3,
+        4,
+        5,
+        7,
+        8,
+        9,
+        15,
+        16
+      ]
+    },
+    "outcome": "The exact row-intersection and cycle shape is recorded as a finite motif only. No Lean, theorem-bank, prior-wave, or literature search was performed, and no universal theorem is claimed.",
+    "pair_overlap_graph": {
+      "bridges": [
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          5,
+          8
+        ]
+      ],
+      "components": [
+        [
+          0,
+          10,
+          6,
+          1,
+          2,
+          3,
+          4,
+          5,
+          7,
+          8,
+          9,
+          16
+        ],
+        [
+          15
+        ]
+      ],
+      "cycle_rank": 6,
+      "degree_by_row": {
+        "0": 1,
+        "1": 3,
+        "10": 4,
+        "15": 0,
+        "16": 3,
+        "2": 6,
+        "3": 1,
+        "4": 4,
+        "5": 4,
+        "6": 2,
+        "7": 3,
+        "8": 1,
+        "9": 2
+      },
+      "degree_sequence_descending": [
+        6,
+        4,
+        4,
+        4,
+        3,
+        3,
+        3,
+        2,
+        2,
+        1,
+        1,
+        1,
+        0
+      ],
+      "edge_count": 17,
+      "fundamental_cycle_basis": [
+        [
+          10,
+          4,
+          2,
+          10
+        ],
+        [
+          1,
+          5,
+          6,
+          16,
+          10,
+          4,
+          2,
+          1
+        ],
+        [
+          2,
+          4,
+          10,
+          16,
+          6,
+          5,
+          2
+        ],
+        [
+          2,
+          4,
+          10,
+          7,
+          2
+        ],
+        [
+          2,
+          4,
+          9,
+          2
+        ],
+        [
+          7,
+          10,
+          16,
+          7
+        ]
+      ],
+      "labeled_edges": [
+        {
+          "rows": [
+            0,
+            4
+          ],
+          "shared_supports": [
+            2,
+            11
+          ]
+        },
+        {
+          "rows": [
+            10,
+            2
+          ],
+          "shared_supports": [
+            8,
+            11
+          ]
+        },
+        {
+          "rows": [
+            10,
+            4
+          ],
+          "shared_supports": [
+            8,
+            11
+          ]
+        },
+        {
+          "rows": [
+            10,
+            7
+          ],
+          "shared_supports": [
+            4,
+            8
+          ]
+        },
+        {
+          "rows": [
+            10,
+            16
+          ],
+          "shared_supports": [
+            4,
+            8
+          ]
+        },
+        {
+          "rows": [
+            6,
+            5
+          ],
+          "shared_supports": [
+            9,
+            10
+          ]
+        },
+        {
+          "rows": [
+            6,
+            16
+          ],
+          "shared_supports": [
+            8,
+            10
+          ]
+        },
+        {
+          "rows": [
+            1,
+            2
+          ],
+          "shared_supports": [
+            0,
+            3
+          ]
+        },
+        {
+          "rows": [
+            1,
+            3
+          ],
+          "shared_supports": [
+            6,
+            9
+          ]
+        },
+        {
+          "rows": [
+            1,
+            5
+          ],
+          "shared_supports": [
+            3,
+            9
+          ]
+        },
+        {
+          "rows": [
+            2,
+            4
+          ],
+          "shared_supports": [
+            8,
+            11
+          ]
+        },
+        {
+          "rows": [
+            2,
+            5
+          ],
+          "shared_supports": [
+            3,
+            11
+          ]
+        },
+        {
+          "rows": [
+            2,
+            7
+          ],
+          "shared_supports": [
+            0,
+            8
+          ]
+        },
+        {
+          "rows": [
+            2,
+            9
+          ],
+          "shared_supports": [
+            3,
+            8
+          ]
+        },
+        {
+          "rows": [
+            4,
+            9
+          ],
+          "shared_supports": [
+            2,
+            8
+          ]
+        },
+        {
+          "rows": [
+            5,
+            8
+          ],
+          "shared_supports": [
+            3,
+            10
+          ]
+        },
+        {
+          "rows": [
+            7,
+            16
+          ],
+          "shared_supports": [
+            4,
+            8
+          ]
+        }
+      ],
+      "minimum_shared_supports": 2,
+      "vertices": [
+        0,
+        10,
+        6,
+        1,
+        2,
+        3,
+        4,
+        5,
+        7,
+        8,
+        9,
+        15,
+        16
+      ]
+    },
+    "scope": "only the retained row groups in this v3 wave"
+  }
+}

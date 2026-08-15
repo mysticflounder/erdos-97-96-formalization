@@ -1,0 +1,56 @@
+{
+  "artifacts": {
+    "detector_contract": {
+      "bytes": 2131,
+      "path": "detector_contract.json",
+      "sha256": "39d4dc5e89740a7fad4733176bd92014573a5b8ac4d5ed39ea5fc4cbf32aa811"
+    },
+    "discovery_cnf": {
+      "bytes": 5127494,
+      "path": "discovery.cnf",
+      "sha256": "9bc11ef080b7f38fb2878cf2501f30496097d4b1441129a8fdde54c36daf8df1"
+    },
+    "job": {
+      "bytes": 8559,
+      "path": "job.json",
+      "sha256": "7a17ba4456eb3bd71be55b12a55a1bd89649d1e109259706ba8d84a936cc80e5"
+    },
+    "journal": {
+      "bytes": 66239150,
+      "path": "journal.jsonl",
+      "sha256": "859a8e87089081ad0bb7ee7f2abc0f84cbc8325b50cb5d67566fb6f7936e6b36"
+    },
+    "proof": null,
+    "survivor": null,
+    "terminal_cnf": null
+  },
+  "cell_index": 11,
+  "detector_contract_sha256": "af373a6601239e97838a73d4573ad6aa643b120e269bacb0fbe8c2e16c150f3d",
+  "discovery_cnf_sha256": null,
+  "discovery_verdict": "SAT",
+  "error": null,
+  "job_id": "688d3f957c362e0f23433d338df52f67a55c012d5724b6ac3571b744c81c6038",
+  "journal_replayed": true,
+  "max_iterations": 400,
+  "reconstructed_cnf_sha256": "8ad211204c6c9a7cfb85e84ab93abd6f197f457799c0558d5ec4cf0a82522724",
+  "records": 400,
+  "replay": {
+    "added_constraints": true,
+    "candidate": true,
+    "exact_cnf": true
+  },
+  "schema": "p97_rigid221_exact12_next_row_tagged_cegar_run.v5",
+  "scope": "one finite next-row-only-hit placement cell; no aggregate coverage, universal lift, terminal bank, or Lean closure",
+  "source_order_bank_sha256": "f5732fc392792362df145b999c4fe739f931d4329c46d8bde7038ac2b85db5d6",
+  "stage_counts": {
+    "equality-duplicate-center": 389,
+    "equality-equilateral-bisector-collision": 9,
+    "equality-perpendicular-bisector-convex": 2
+  },
+  "status": "ITERATION_LIMIT",
+  "terminal_cnf_sha256": null,
+  "terminal_proof_verified": false,
+  "terminal_record_sha256": "6ec0e6b5a4569a378ba14014ecfb93c9a78326652d2d51242b5f3a2b7c54f1e4",
+  "terminal_verdict": null,
+  "timeout_seconds": 60
+}

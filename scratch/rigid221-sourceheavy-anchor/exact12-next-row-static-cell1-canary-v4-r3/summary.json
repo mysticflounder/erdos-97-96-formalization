@@ -1,0 +1,59 @@
+{
+  "artifacts": {
+    "detector_contract": {
+      "bytes": 5388,
+      "path": "detector_contract.json",
+      "sha256": "a22d81df68ab099398fc84dec8d2661900f8aece45df9ab84ca70ce15b836d06"
+    },
+    "discovery_cnf": {
+      "bytes": 12987045,
+      "path": "discovery.cnf",
+      "sha256": "42fbb4938b553cbef9069bd87ccb30cf626fae58be1f300b64ed8635ea1e08a3"
+    },
+    "job": {
+      "bytes": 16654,
+      "path": "job.json",
+      "sha256": "003de4bdbe26acc9578670e6337ec2d4e7881567c831260a2da67531150cec7f"
+    },
+    "journal": {
+      "bytes": 647047,
+      "path": "journal.jsonl",
+      "sha256": "46c21aa052c64b605ade1ed674789f4654719585ec901acca2a57d2b69c2e923"
+    },
+    "proof": null,
+    "survivor": {
+      "bytes": 338684,
+      "path": "survivor.json",
+      "sha256": "e1539dd217a9768e2668801ac2fc11308f40217356c68e1578422639ca1b9fbe"
+    },
+    "terminal_cnf": null
+  },
+  "cell_index": 1,
+  "discovery_cnf_sha256": null,
+  "discovery_verdict": "SAT",
+  "error": null,
+  "job_id": "1d8d1677dc8e9000ec70aafa4e4e3152d5ab8df388d95e7babef016cdfb6cf70",
+  "journal_replayed": true,
+  "last_replay": {
+    "added_constraints": true,
+    "candidate": true,
+    "canonical_static_extension": true,
+    "exact_cnf": true
+  },
+  "lean_terminal_ingress_ready": true,
+  "max_iterations": 50,
+  "reconstructed_cnf_sha256": "42fbb4938b553cbef9069bd87ccb30cf626fae58be1f300b64ed8635ea1e08a3",
+  "records": 3,
+  "schema": "p97_rigid221_exact12_next_row_static_convex_cegar_run.v4",
+  "scope": "one finite exact-12 next-row cell; static parent Lean ingress is ready, but the terminal DRAT has not been converted into a Lean DimacsUnsatisfiable theorem; no aggregate coverage, universal lift, or live closure",
+  "stage_counts": {
+    "source-order-positive-coverage": 3
+  },
+  "status": "UNADMITTED_STRUCTURAL_SURVIVOR",
+  "terminal_cnf_sha256": null,
+  "terminal_promotion_status": "UNSAT_DRAT_VERIFIED_AWAITING_LEAN_TERMINAL_CERTIFICATE",
+  "terminal_proof_verified": false,
+  "terminal_record_sha256": "0fab264b447d687a628b5441bac47502f43520fb23c788b76c7a7b43fc557334",
+  "terminal_verdict": null,
+  "timeout_seconds": 60
+}

@@ -1,0 +1,59 @@
+{
+  "schema": "p97-exact17-lean-fifth-convex-five-point-piqd-ingress/v1",
+  "dimacs": {
+    "path": "scratch/exact17-lean-to-sat/exact17-sixteenth-root-fifth-convex-five-point.cnf",
+    "sha256": "c8e6011fce2f0373fffa23b45285d38e95224a60778623bdb5c53e323b951d38",
+    "bytes": 291569428,
+    "variables": 308,
+    "clauses": 5846112,
+    "parent_prefix_clauses": 5846104,
+    "checked_new_clauses": 8
+  },
+  "parent_ingress": {
+    "manifest": "scratch/exact17-lean-to-sat/piqd-ingress-manifest-four-row-two-circle-bisector.json",
+    "manifest_sha256": "d0fad08e38973a0c574c5f38d24b37f3b44f6638825d828cfa8a4921cc34e8d7",
+    "validator": "scripts/validate_exact17_four_row_two_circle_bisector_ingress.py",
+    "validator_sha256": "314da1a025a17fc5da498884efc55ed6c32c87d182109940d564136a8e6cb1a8",
+    "report": "scratch/exact17-lean-to-sat/piqd-ingress-four-row-two-circle-bisector-validation.json",
+    "report_sha256": "3dac6d268669a67cb1c63ddb2d50b5b2f8f454504024014eabd11a3d09124a4e"
+  },
+  "lean": {
+    "toolchain": "leanprover/lean4:v4.27.0",
+    "toolchain_file_sha256": "d55ca0039a5479db5b38919d005b2c427b89b3be4f0184a20f2f4eae931f5bdb",
+    "lake_manifest_sha256": "48adeb0901038a9dc08e0f80a70d5eb5a609058b849afd582c0c2f6ebe0cbfce",
+    "source_files": [
+      {
+        "path": "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenGenericCancellationThird.lean",
+        "sha256": "b91f3f29e1652b67ef0a1fc7e6457112f2b1491d627ba2518a8ca16733208cab"
+      },
+      {
+        "path": "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenConvexFivePointFifthRows.lean",
+        "sha256": "1548a10be43a100a3d26637bb5e4ea7f99ba34446ddaf3a4e92c7ace5657cfb8"
+      },
+      {
+        "path": "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenConvexFivePointFifthRowsExport.lean",
+        "sha256": "21e4bbad77752447b1fb14b06b41985411638f9c8c334789a9b54fb776b40d07"
+      }
+    ]
+  },
+  "validation": {
+    "script": "scripts/validate_exact17_fifth_convex_five_point_export.py",
+    "script_sha256": "78e7f190d652130e6970d3a8eccea71f097377d04621e746f3cdd3456f6b8695",
+    "model": "scratch/exact17-lean-to-sat/piqd-fifteenth-root-model.json",
+    "model_sha256": "0bb97852c9ed8e4c8a10382323a5ffc9a6c3a285c30ce1a5b3c8ab45e0b772b1",
+    "report": "scratch/exact17-lean-to-sat/exact17-sixteenth-root-fifth-convex-five-point-validation.json",
+    "report_sha256": "2e514b4201f6e4d8562f373395731000126e34bf4e9c2e5cbd90e27afca1f236",
+    "parent_prefix_byte_identical": true,
+    "all_new_clauses_independently_regenerated": true,
+    "motivating_model_cut_by_both_orbits": true
+  },
+  "piqd": {
+    "daemon_protocol_version": 1,
+    "daemon_sha256": "0cfc9577656fa3aef143a9fe7e5577d938dba9fd39f3b7118ed91735c97fc360",
+    "ingress": "raw-dimacs/v1",
+    "backend": "cadical",
+    "solver_profile": "sat",
+    "immutable_root_only": true,
+    "python_authored_successor_clause_allowed": false
+  }
+}

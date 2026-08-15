@@ -1,0 +1,145 @@
+{
+  "artifacts": {
+    "checkpoint_cnf": {
+      "byte_count": 1105,
+      "path": "checkpoint.cnf",
+      "sha256": "e86a651075b0e36c25fd2ca5681b315805c163647e681779fe1803edc545c64c"
+    },
+    "checkpoint_map": {
+      "byte_count": 640,
+      "path": "checkpoint-map.tsv",
+      "sha256": "e7dad1c30e3a728ea6aaf24eb614b1e8d8d42bc363e3eca25650dade50ba0e57"
+    },
+    "shard_1_lrat": {
+      "byte_count": 2474249,
+      "path": "shard-1.lrat",
+      "sha256": "c027a4978bb4181174871657ff56c359290bff093f8256939469685bb913b441"
+    },
+    "shard_2_lrat": {
+      "byte_count": 353,
+      "path": "shard-2.lrat",
+      "sha256": "ba4cca686fbc2d49fcf2ffa1ef00dc77abc1c8afa53eb54173509234b0fca322"
+    },
+    "start_cnf": {
+      "byte_count": 5129255,
+      "path": "start.cnf",
+      "sha256": "32420c13f77ef6341b83e30e25d8a5c3c92d4fdd79323104c2ad564764655455"
+    }
+  },
+  "bindings": {
+    "checkpoint": "cf2744df691b35ff16d87ec008b821f0e38a58621cbdb3d73f3169a8d8c5916d",
+    "construction": "Each binding is SHA-256(label NUL predecessor/content digests as raw 32-byte values).",
+    "shard_1": "450cc700b5be0752186ec8b1a0739fb591a51e089c2ca8b0a46747bcf6545344",
+    "shard_2": "1b0aa52d8c80c71fbf80f9af1244c3ce602c65b71e5f95cb0a52208422c6ac9e"
+  },
+  "claim_scope": "This package is a deterministic re-encoding of one hashed normalized pure-RUP proof. It is not itself a RUP proof check, a source-to-CNF bridge, or a production theorem.",
+  "counts": {
+    "additions": 7,
+    "base_clause_count": 369326,
+    "checkpoint_active_clause_count": 63,
+    "deleted_ids": 369300,
+    "deletions": 7,
+    "final_active_clause_count": 33,
+    "hints": 120,
+    "peak_active_clause_count": 369326,
+    "shard_1": {
+      "additions": 3,
+      "deleted_ids": 369266,
+      "deletions": 4,
+      "hints": 55,
+      "lines": 7
+    },
+    "shard_2": {
+      "additions": 4,
+      "deleted_ids": 34,
+      "deletions": 3,
+      "hints": 65,
+      "lines": 7
+    },
+    "source_lines": 14,
+    "terminal_empty_global_ids": [
+      369333
+    ],
+    "variable_count": 42730
+  },
+  "epistemic_status": "STRUCTURALLY VALIDATED PURE-RUP SHARDS; LEAN REPLAY REQUIRED",
+  "lean_replay": null,
+  "materializer_invariants": [
+    "The strict generic source manifest and its CNF/LRAT artifact hashes match.",
+    "Base ids are 1..N and addition ids are dense append ids.",
+    "Every addition has exactly two zero terminators.",
+    "Every source and added clause has distinct variables and is non-tautological.",
+    "Every hint is positive, earlier than its addition, and active.",
+    "Every deletion names an active clause and repeated deletions are rejected.",
+    "The checkpoint is the active clause list ordered by global id.",
+    "The second shard translates every deletion and hint through one injective local-id map; missing mappings are rejected.",
+    "The final active formula contains an empty clause."
+  ],
+  "numbering": {
+    "base_clause_ids": [
+      1,
+      369326
+    ],
+    "checkpoint_local_ids": [
+      1,
+      63
+    ],
+    "checkpoint_order": "increasing_active_global_clause_id",
+    "deletion_action_id": 1,
+    "global_addition_ids": [
+      369327,
+      369333
+    ],
+    "second_shard_first_global_addition": 369330,
+    "second_shard_first_local_addition": 64,
+    "split_source_byte_offset": 2474249,
+    "split_source_line": 8
+  },
+  "package_sha256": "d38fb50cd472087f1048e600d703d04bf925c7ba8f0da747f54ad4c2e1c3cdab",
+  "schema": "p97-checkpointed-pure-rup-package-v1",
+  "source": {
+    "cnf": {
+      "byte_count": 5129255,
+      "path": "terminal.cnf",
+      "sha256": "32420c13f77ef6341b83e30e25d8a5c3c92d4fdd79323104c2ad564764655455"
+    },
+    "manifest": {
+      "byte_count": 401,
+      "path": "source-manifest.json",
+      "sha256": "7892f2eb55686364587ca2a3be190950bcf7544a930c405dfd8355010d9fa46c"
+    },
+    "manifest_content": {
+      "artifacts": {
+        "cnf": {
+          "byte_count": 5129255,
+          "path": "terminal.cnf",
+          "sha256": "32420c13f77ef6341b83e30e25d8a5c3c92d4fdd79323104c2ad564764655455"
+        },
+        "normalized_lrat": {
+          "byte_count": 2475025,
+          "path": "normalized.lrat",
+          "sha256": "693ea61ced2f3b0aeb8532746fd2523ebb9e9680762cb56f47048be9b9618a2a"
+        }
+      },
+      "schema": "p97-pure-rup-source-v1"
+    },
+    "normalized_lrat": {
+      "byte_count": 2475025,
+      "path": "normalized.lrat",
+      "sha256": "693ea61ced2f3b0aeb8532746fd2523ebb9e9680762cb56f47048be9b9618a2a"
+    },
+    "schema": "p97-pure-rup-source-v1"
+  },
+  "tools": {
+    "lean_checker": {
+      "byte_count": 32211,
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/Certificate/CheckpointedRup.lean",
+      "sha256": "6c670c24b989f8024f43f6362ffc031c040eba77e68293060aa65cb9cb25a8e8"
+    },
+    "materializer": {
+      "byte_count": 44010,
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scripts/materialize_checkpointed_rup.py",
+      "sha256": "92e001e5b89e98a769ff2f804c97989ada87a5117eee71c29bac84357fcea51d"
+    }
+  }
+}

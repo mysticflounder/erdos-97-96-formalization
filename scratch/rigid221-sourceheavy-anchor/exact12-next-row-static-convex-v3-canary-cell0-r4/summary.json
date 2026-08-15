@@ -1,0 +1,59 @@
+{
+  "artifacts": {
+    "detector_contract": {
+      "bytes": 4665,
+      "path": "detector_contract.json",
+      "sha256": "9d1ad781749a34ca171043d9d0ee483411fa227d895d23feb7570de9801266ff"
+    },
+    "discovery_cnf": {
+      "bytes": 12986904,
+      "path": "discovery.cnf",
+      "sha256": "d81cdac462d3de55f37abb70d9907ba120dd452acd05b12d6baa866b77480c93"
+    },
+    "job": {
+      "bytes": 15797,
+      "path": "job.json",
+      "sha256": "2a381addc1e22bf4c2da11a2f24b524ec6f8b9ce4b3e826013b741518ff3282e"
+    },
+    "journal": {
+      "bytes": 373098,
+      "path": "journal.jsonl",
+      "sha256": "b1b085dcc9744d3250bc7a03bb3ae7234aaa0ede08b436edb8aa2a44e6ffcaf2"
+    },
+    "proof": null,
+    "survivor": {
+      "bytes": 254373,
+      "path": "survivor.json",
+      "sha256": "3fae6427f4941153ee377b270fd1d7bbcbd4eb8952f24ffa2a47b650feba9bb3"
+    },
+    "terminal_cnf": null
+  },
+  "cell_index": 0,
+  "discovery_cnf_sha256": null,
+  "discovery_verdict": "SAT",
+  "error": null,
+  "job_id": "9799c7f2772b7321664a3da1d1ed529f6cb19234a8e1ff36f29fdc4ddecadf28",
+  "journal_replayed": true,
+  "last_replay": {
+    "added_constraints": true,
+    "candidate": true,
+    "canonical_static_extension": true,
+    "exact_cnf": true
+  },
+  "lean_terminal_ingress_ready": false,
+  "max_iterations": 10,
+  "reconstructed_cnf_sha256": "d81cdac462d3de55f37abb70d9907ba120dd452acd05b12d6baa866b77480c93",
+  "records": 2,
+  "schema": "p97_rigid221_exact12_next_row_static_convex_cegar_run.v3",
+  "scope": "one finite exact-12 next-row cell; terminal Lean promotion requires the static auxiliary valuation theorem",
+  "stage_counts": {
+    "source-order-positive-coverage": 2
+  },
+  "status": "STRUCTURALLY_UNRESOLVED",
+  "terminal_cnf_sha256": null,
+  "terminal_promotion_status": "AWAITING_LEAN_STATIC_AUXILIARY_VALUATION",
+  "terminal_proof_verified": false,
+  "terminal_record_sha256": "38fcbce175c44be41a370d3ec1d1fb6781773f07ca29306568d11787e77f2765",
+  "terminal_verdict": null,
+  "timeout_seconds": 120
+}

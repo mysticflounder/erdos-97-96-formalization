@@ -1,0 +1,90 @@
+{
+  "artifacts": {
+    "discovery_cnf": {
+      "bytes": 5157965,
+      "path": "discovery.cnf",
+      "sha256": "f2afb68f5a22daf7e756133f21641a4075f01884c72b4400000aba66f4adfee5"
+    },
+    "job": {
+      "bytes": 74544,
+      "path": "job.json",
+      "sha256": "fe1b9cebff9a812b4a52bf1dae9c1f3c3cb046b02045de2a96049294dfa44499"
+    },
+    "journal": {
+      "bytes": 146549636,
+      "path": "journal.jsonl",
+      "sha256": "779f1ec7686705e4b344dfcc008f09528f3ff6b882a77e8f2acce38b46d7c934"
+    },
+    "proof": null,
+    "survivor": null,
+    "terminal_cnf": null
+  },
+  "bound_job_schema": "p97_rigid221_exact12_full_v14_bound_job.v1",
+  "cell_index": 4,
+  "detector_contract_manifest": [
+    {
+      "bytes": 36657,
+      "path": "census/card_head/exact12_v14_structural_cegar.py",
+      "sha256": "0464afdf471295980b6058a36ab6bad2dfd5c0b34c962fd261d743e09e19c9e5"
+    },
+    {
+      "bytes": 10006,
+      "path": "census/card_head/exact12_v14_ordered_cut_adapter.py",
+      "sha256": "67c9d32fc088272cbc150f102d1c671be9ad36eb752380a912a6addda350d9f7"
+    },
+    {
+      "bytes": 52694,
+      "path": "census/card_head/exact12_v14_ordered_coverage.py",
+      "sha256": "b8dccba1d6a7a6c86b016f863328a78ba59b00592165a00d1843338361eb5623"
+    },
+    {
+      "bytes": 17004,
+      "path": "census/card_head/exact12_v14_source_order_bank.py",
+      "sha256": "d3f69710eeee5d5b1501b7d1d67d7b6ea0f3f78b2b0512281c21dfeefbb1ff24"
+    },
+    {
+      "bytes": 18569,
+      "path": "census/card_head/sat_encoding.py",
+      "sha256": "6d7a939f1f8fe9e3f3684afee52b79c8f3aa50041dd43f438294e69e182059ae"
+    },
+    {
+      "bytes": 102708,
+      "path": "census/global_confinement/metric_realizability_probe.py",
+      "sha256": "e44f1452b240b8bbe39f2389311312ac02ef9bef8ddbb5b08dc4ffa06adea396"
+    },
+    {
+      "bytes": 49772,
+      "path": "census/global_confinement/cap_selected_nogood_certificate_probe.py",
+      "sha256": "9e21350a4126eb40d09e5fb454c9dee691e6dc1aaccf026a4ca6e238fc96aa13"
+    },
+    {
+      "bytes": 15639,
+      "path": "census/p97_search/phase3_classification_context.py",
+      "sha256": "5fd4f94b536896921c0f88ea860802b212aeb8c97e5c77e0d4445cc7e38e6837"
+    },
+    {
+      "bytes": 8936,
+      "path": "census/p97_search/phase3_order_universe.py",
+      "sha256": "67fe7a6fb086b82925a5f7b365b34c8a7f5307960f790e914ad86c47b84d86b0"
+    }
+  ],
+  "detector_contract_sha256": "f36e86b20ff359d853367b9102710e6ee03fdd5a93f76e8ba5013c68cb425868",
+  "discovery_verdict": "SAT",
+  "error": null,
+  "job_sha256": "4c30c2f38c711ebc9ea6d9e1d78fac591dad9934aa8270d80de57d2e593f6a41",
+  "journal_replayed": true,
+  "max_iterations": 100,
+  "records": 1000,
+  "replay": {
+    "added_constraints": true,
+    "candidate": true,
+    "exact_cnf": true
+  },
+  "schema": "p97_rigid221_exact12_full_v14_structural_cegar_run.v4",
+  "scope": "one finite normalized-v14 cell under tagged structural and proof-backed source-order CEGAR; no aggregate coverage, universal lift, or Lean closure",
+  "status": "ITERATION_LIMIT",
+  "terminal_proof_verified": false,
+  "terminal_record_sha256": "7cf6617e419a3b892e2d11aca14346511a89207c02d0f9f0e2fd04deded534f4",
+  "terminal_verdict": null,
+  "timeout_seconds": 60
+}

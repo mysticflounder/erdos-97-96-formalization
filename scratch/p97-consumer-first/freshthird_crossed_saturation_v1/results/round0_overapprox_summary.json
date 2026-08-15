@@ -1,0 +1,25 @@
+{
+  "campaign": "freshthird_crossed_saturation_v1_round0_overapprox",
+  "cases": 240,
+  "counts": {
+    "sat": 240
+  },
+  "negative_controls": [
+    {
+      "label": "negative_overfull",
+      "z3": "unsat",
+      "cvc5": "unsat"
+    },
+    {
+      "label": "negative_equal_source_blockers",
+      "z3": "unsat",
+      "cvc5": "unsat"
+    }
+  ],
+  "classification": "sound but deliberately weak over-approximation",
+  "omitted_source_clauses": [
+    "disjointness of the two source endpoint pairs",
+    "first-cap-interior membership of all four source endpoints"
+  ],
+  "closure": "none"
+}

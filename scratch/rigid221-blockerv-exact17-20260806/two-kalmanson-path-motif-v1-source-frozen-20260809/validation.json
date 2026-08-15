@@ -1,0 +1,14 @@
+{
+  "appended_clauses": 272272,
+  "base_prefix_byte_exact": true,
+  "clauses": 3961497,
+  "cnf": "scratch/rigid221-blockerv-exact17-20260806/two-kalmanson-path-motif-v1-source-frozen-20260809/o0-p0-1.cnf",
+  "cnf_sha256": "713ed65ca18a3abd2d65b25db75fff88101f362c2a78fd0b0b0bf6765cf4791f",
+  "generation_sources_rechecked": 5,
+  "generic_template_replays": 2,
+  "manifest": "scratch/rigid221-blockerv-exact17-20260806/two-kalmanson-path-motif-v1-source-frozen-20260809/o0-p0-1.manifest.json",
+  "manifest_sha256": "a089f03b427f90d6b63873ffcd31ced0ad2103337993f5efe189dfb78b330b45",
+  "schema": "p97-rigid221-exact17-two-kalmanson-path-motif-cnf-validation-v1",
+  "status": "PASS",
+  "variables": 74813
+}

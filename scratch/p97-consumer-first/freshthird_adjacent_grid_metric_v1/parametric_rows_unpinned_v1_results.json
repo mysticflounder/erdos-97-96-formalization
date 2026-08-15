@@ -1,0 +1,1033 @@
+{
+  "cegar_refinements": [
+    {
+      "cut": "post-deletion B5 omits 0 and cannot instantiate mutual C cross-membership",
+      "kind": "source_fidelity"
+    },
+    {
+      "cut": "if a grid support contains a C source, it contains no other own-strict-cap point",
+      "justification": "otherwise exact grid radius equality contradicts the singleton first-apex slice",
+      "kind": "source_slice_structural"
+    }
+  ],
+  "controls": [
+    {
+      "cvc5": "sat",
+      "expected": "sat",
+      "name": "sat_rational_circle",
+      "pass": true,
+      "z3": "sat"
+    },
+    {
+      "cvc5": "unsat",
+      "expected": "unsat",
+      "name": "stale_row15_missing_cross_source",
+      "pass": true,
+      "z3": "unsat"
+    },
+    {
+      "cvc5": "unsat",
+      "expected": "unsat",
+      "name": "positive_row_contains_its_center",
+      "pass": true,
+      "z3": "unsat"
+    },
+    {
+      "cvc5": "unsat",
+      "expected": "unsat",
+      "name": "ordered_grid_supports_overlap",
+      "pass": true,
+      "z3": "unsat"
+    }
+  ],
+  "coordinate_mode": "unpinned exact Real variables",
+  "protocol_controls": [
+    {
+      "expected_prefix": "error:protocol:expected_one_check_sat_got_2",
+      "name": "duplicate_check_sat",
+      "pass": true,
+      "status": "error:protocol:expected_one_check_sat_got_2"
+    },
+    {
+      "expected_prefix": "error:exit:1",
+      "name": "nonzero_exit_with_sat_stdout",
+      "pass": true,
+      "status": "error:exit:1:(error \"bad query\")"
+    },
+    {
+      "expected_prefix": "error:cvc5:",
+      "name": "cvc5_error_with_sat_stdout",
+      "pass": true,
+      "status": "error:cvc5:cvc5 error: bad query"
+    }
+  ],
+  "role_contract": {
+    "C.firstSource": 0,
+    "C.secondSource": "source5",
+    "Q.otherOutsidePoint": "q_other",
+    "Q.source": "q_source"
+  },
+  "scope": "exact-17 frozen direct-0 structural leaf; not universal",
+  "selected_candidate_index": 2,
+  "selected_signature": {
+    "blocker_caps": [
+      2,
+      0
+    ],
+    "c_blockers": [
+      7,
+      6
+    ],
+    "c_rows": [
+      [
+        0,
+        4,
+        6,
+        15
+      ],
+      [
+        0,
+        2,
+        9,
+        15
+      ]
+    ],
+    "c_sources": [
+      0,
+      15
+    ],
+    "caps": [
+      [
+        0,
+        1,
+        4,
+        5,
+        6,
+        10,
+        14,
+        15
+      ],
+      [
+        3,
+        5,
+        8,
+        9,
+        11,
+        13
+      ],
+      [
+        2,
+        3,
+        4,
+        7,
+        12,
+        16
+      ]
+    ],
+    "grid_hits": [
+      [
+        11,
+        7
+      ],
+      [
+        8,
+        4
+      ]
+    ],
+    "orientation": "direct",
+    "positions": [
+      12,
+      11,
+      9,
+      5,
+      10,
+      0,
+      13,
+      6,
+      3,
+      1,
+      14,
+      4,
+      7,
+      2,
+      15,
+      16,
+      8
+    ],
+    "q_blocker": 2,
+    "q_row": [
+      1,
+      4,
+      5,
+      13
+    ],
+    "radial_branch": 0,
+    "radius_supports": [
+      [
+        1,
+        7,
+        11,
+        14
+      ],
+      [
+        4,
+        6,
+        8,
+        10
+      ]
+    ],
+    "roles": {
+      "p1": 5,
+      "p2": 13,
+      "q_other": 1,
+      "q_source": 4,
+      "rho1": 6,
+      "rho2": 2,
+      "source5": 15
+    },
+    "validation": "pass"
+  },
+  "stages": [
+    {
+      "assertions": 938,
+      "common_exact_witness": {
+        "claimed": true,
+        "coordinates": {
+          "0": [
+            "-1",
+            "0"
+          ],
+          "1": [
+            "-1/2",
+            "-3/4"
+          ],
+          "2": [
+            "1/2",
+            "-3/4"
+          ],
+          "3": [
+            "1",
+            "0"
+          ],
+          "4": [
+            "0",
+            "-1"
+          ],
+          "5": [
+            "0",
+            "1"
+          ],
+          "6": [
+            "-1/2",
+            "3/4"
+          ],
+          "7": [
+            "3/4",
+            "-1/2"
+          ],
+          "8": [
+            "1/2",
+            "3/4"
+          ],
+          "9": [
+            "1/4",
+            "15/16"
+          ],
+          "10": [
+            "-1/4",
+            "15/16"
+          ],
+          "11": [
+            "3/4",
+            "1/2"
+          ],
+          "12": [
+            "5/8",
+            "-21/32"
+          ],
+          "13": [
+            "3/8",
+            "55/64"
+          ],
+          "14": [
+            "-1/8",
+            "63/64"
+          ],
+          "15": [
+            "-1/16",
+            "255/256"
+          ],
+          "16": [
+            "9/16",
+            "-91/128"
+          ]
+        },
+        "cvc5_replay": "sat",
+        "z3_replay": "sat"
+      },
+      "cvc5": "error:exit:-6:cvc5 interrupted by timeout.",
+      "seconds": 30.017,
+      "smt2": "parametric_rows_unpinned_v1_geometry.smt2",
+      "stage": "geometry",
+      "z3": "sat",
+      "z3_exact_model_validation": "pass"
+    },
+    {
+      "assertions": 967,
+      "cvc5": "error:exit:-6:cvc5 interrupted by timeout.",
+      "seconds": 32.589,
+      "smt2": "parametric_rows_unpinned_v1_grid_members.smt2",
+      "stage": "grid_members",
+      "z3": "unknown:timeout"
+    },
+    {
+      "assertions": 993,
+      "cvc5": "error:exit:-6:cvc5 interrupted by timeout.",
+      "seconds": 32.656,
+      "smt2": "parametric_rows_unpinned_v1_grid_exact.smt2",
+      "stage": "grid_exact",
+      "z3": "unknown:timeout"
+    },
+    {
+      "assertions": 1047,
+      "cvc5": "error:exit:-6:cvc5 interrupted by timeout.",
+      "seconds": 32.79,
+      "smt2": "parametric_rows_unpinned_v1_rows.smt2",
+      "stage": "rows",
+      "z3": "unknown:timeout"
+    },
+    {
+      "assertions": 1057,
+      "cvc5": "error:exit:-6:cvc5 interrupted by timeout.",
+      "seconds": 32.829,
+      "smt2": "parametric_rows_unpinned_v1_source_slices.smt2",
+      "stage": "source_slices",
+      "z3": "unknown:timeout"
+    },
+    {
+      "assertions": 1066,
+      "cvc5": "error:exit:-6:cvc5 interrupted by timeout.",
+      "seconds": 32.833,
+      "smt2": "parametric_rows_unpinned_v1_kalmanson.smt2",
+      "stage": "kalmanson",
+      "z3": "unknown:timeout"
+    }
+  ],
+  "structural": {
+    "candidates": [
+      {
+        "blocker_caps": [
+          2,
+          0
+        ],
+        "c_blockers": [
+          7,
+          6
+        ],
+        "c_rows": [
+          [
+            0,
+            5,
+            8,
+            15
+          ],
+          [
+            0,
+            10,
+            15,
+            16
+          ]
+        ],
+        "c_sources": [
+          0,
+          15
+        ],
+        "caps": [
+          [
+            0,
+            4,
+            5,
+            6,
+            9,
+            10,
+            15,
+            16
+          ],
+          [
+            3,
+            5,
+            11,
+            12,
+            13,
+            14
+          ],
+          [
+            1,
+            2,
+            3,
+            4,
+            7,
+            8
+          ]
+        ],
+        "grid_hits": [
+          [
+            11,
+            7
+          ],
+          [
+            5,
+            8
+          ]
+        ],
+        "orientation": "direct",
+        "positions": [
+          11,
+          6,
+          7,
+          5,
+          10,
+          0,
+          12,
+          8,
+          9,
+          13,
+          14,
+          1,
+          2,
+          3,
+          4,
+          15,
+          16
+        ],
+        "q_blocker": 2,
+        "q_row": [
+          1,
+          4,
+          5,
+          13
+        ],
+        "radial_branch": 0,
+        "radius_supports": [
+          [
+            6,
+            7,
+            9,
+            11
+          ],
+          [
+            5,
+            8,
+            10,
+            16
+          ]
+        ],
+        "roles": {
+          "p1": 5,
+          "p2": 13,
+          "q_other": 1,
+          "q_source": 4,
+          "rho1": 6,
+          "rho2": 2,
+          "source5": 15
+        },
+        "validation": "pass"
+      },
+      {
+        "blocker_caps": [
+          2,
+          0
+        ],
+        "c_blockers": [
+          7,
+          6
+        ],
+        "c_rows": [
+          [
+            0,
+            4,
+            8,
+            15
+          ],
+          [
+            0,
+            2,
+            9,
+            15
+          ]
+        ],
+        "c_sources": [
+          0,
+          15
+        ],
+        "caps": [
+          [
+            0,
+            1,
+            4,
+            5,
+            6,
+            10,
+            14,
+            15
+          ],
+          [
+            3,
+            5,
+            8,
+            9,
+            11,
+            13
+          ],
+          [
+            2,
+            3,
+            4,
+            7,
+            12,
+            16
+          ]
+        ],
+        "grid_hits": [
+          [
+            11,
+            7
+          ],
+          [
+            8,
+            4
+          ]
+        ],
+        "orientation": "direct",
+        "positions": [
+          12,
+          11,
+          9,
+          5,
+          10,
+          0,
+          13,
+          6,
+          3,
+          1,
+          14,
+          4,
+          7,
+          2,
+          15,
+          16,
+          8
+        ],
+        "q_blocker": 2,
+        "q_row": [
+          1,
+          4,
+          5,
+          13
+        ],
+        "radial_branch": 0,
+        "radius_supports": [
+          [
+            1,
+            7,
+            11,
+            14
+          ],
+          [
+            4,
+            6,
+            8,
+            10
+          ]
+        ],
+        "roles": {
+          "p1": 5,
+          "p2": 13,
+          "q_other": 1,
+          "q_source": 4,
+          "rho1": 6,
+          "rho2": 2,
+          "source5": 15
+        },
+        "validation": "pass"
+      },
+      {
+        "blocker_caps": [
+          2,
+          0
+        ],
+        "c_blockers": [
+          7,
+          6
+        ],
+        "c_rows": [
+          [
+            0,
+            4,
+            6,
+            15
+          ],
+          [
+            0,
+            2,
+            9,
+            15
+          ]
+        ],
+        "c_sources": [
+          0,
+          15
+        ],
+        "caps": [
+          [
+            0,
+            1,
+            4,
+            5,
+            6,
+            10,
+            14,
+            15
+          ],
+          [
+            3,
+            5,
+            8,
+            9,
+            11,
+            13
+          ],
+          [
+            2,
+            3,
+            4,
+            7,
+            12,
+            16
+          ]
+        ],
+        "grid_hits": [
+          [
+            11,
+            7
+          ],
+          [
+            8,
+            4
+          ]
+        ],
+        "orientation": "direct",
+        "positions": [
+          12,
+          11,
+          9,
+          5,
+          10,
+          0,
+          13,
+          6,
+          3,
+          1,
+          14,
+          4,
+          7,
+          2,
+          15,
+          16,
+          8
+        ],
+        "q_blocker": 2,
+        "q_row": [
+          1,
+          4,
+          5,
+          13
+        ],
+        "radial_branch": 0,
+        "radius_supports": [
+          [
+            1,
+            7,
+            11,
+            14
+          ],
+          [
+            4,
+            6,
+            8,
+            10
+          ]
+        ],
+        "roles": {
+          "p1": 5,
+          "p2": 13,
+          "q_other": 1,
+          "q_source": 4,
+          "rho1": 6,
+          "rho2": 2,
+          "source5": 15
+        },
+        "validation": "pass"
+      },
+      {
+        "blocker_caps": [
+          2,
+          0
+        ],
+        "c_blockers": [
+          7,
+          6
+        ],
+        "c_rows": [
+          [
+            0,
+            4,
+            6,
+            15
+          ],
+          [
+            0,
+            2,
+            8,
+            15
+          ]
+        ],
+        "c_sources": [
+          0,
+          15
+        ],
+        "caps": [
+          [
+            0,
+            1,
+            4,
+            5,
+            6,
+            10,
+            14,
+            15
+          ],
+          [
+            3,
+            5,
+            8,
+            9,
+            11,
+            13
+          ],
+          [
+            2,
+            3,
+            4,
+            7,
+            12,
+            16
+          ]
+        ],
+        "grid_hits": [
+          [
+            11,
+            7
+          ],
+          [
+            8,
+            4
+          ]
+        ],
+        "orientation": "direct",
+        "positions": [
+          12,
+          11,
+          9,
+          5,
+          10,
+          0,
+          13,
+          6,
+          3,
+          1,
+          14,
+          4,
+          7,
+          2,
+          15,
+          16,
+          8
+        ],
+        "q_blocker": 2,
+        "q_row": [
+          1,
+          4,
+          5,
+          13
+        ],
+        "radial_branch": 0,
+        "radius_supports": [
+          [
+            1,
+            7,
+            11,
+            14
+          ],
+          [
+            4,
+            6,
+            8,
+            10
+          ]
+        ],
+        "roles": {
+          "p1": 5,
+          "p2": 13,
+          "q_other": 1,
+          "q_source": 4,
+          "rho1": 6,
+          "rho2": 2,
+          "source5": 15
+        },
+        "validation": "pass"
+      },
+      {
+        "blocker_caps": [
+          2,
+          0
+        ],
+        "c_blockers": [
+          7,
+          6
+        ],
+        "c_rows": [
+          [
+            0,
+            4,
+            6,
+            15
+          ],
+          [
+            0,
+            8,
+            9,
+            15
+          ]
+        ],
+        "c_sources": [
+          0,
+          15
+        ],
+        "caps": [
+          [
+            0,
+            1,
+            4,
+            5,
+            6,
+            10,
+            14,
+            15
+          ],
+          [
+            3,
+            5,
+            8,
+            9,
+            11,
+            13
+          ],
+          [
+            2,
+            3,
+            4,
+            7,
+            12,
+            16
+          ]
+        ],
+        "grid_hits": [
+          [
+            11,
+            7
+          ],
+          [
+            8,
+            4
+          ]
+        ],
+        "orientation": "direct",
+        "positions": [
+          12,
+          11,
+          9,
+          5,
+          10,
+          0,
+          13,
+          6,
+          3,
+          1,
+          14,
+          4,
+          7,
+          2,
+          15,
+          16,
+          8
+        ],
+        "q_blocker": 2,
+        "q_row": [
+          1,
+          4,
+          5,
+          13
+        ],
+        "radial_branch": 0,
+        "radius_supports": [
+          [
+            1,
+            7,
+            11,
+            14
+          ],
+          [
+            4,
+            6,
+            8,
+            10
+          ]
+        ],
+        "roles": {
+          "p1": 5,
+          "p2": 13,
+          "q_other": 1,
+          "q_source": 4,
+          "rho1": 6,
+          "rho2": 2,
+          "source5": 15
+        },
+        "validation": "pass"
+      },
+      {
+        "blocker_caps": [
+          2,
+          0
+        ],
+        "c_blockers": [
+          7,
+          6
+        ],
+        "c_rows": [
+          [
+            0,
+            4,
+            6,
+            15
+          ],
+          [
+            0,
+            9,
+            13,
+            15
+          ]
+        ],
+        "c_sources": [
+          0,
+          15
+        ],
+        "caps": [
+          [
+            0,
+            1,
+            4,
+            5,
+            6,
+            10,
+            14,
+            15
+          ],
+          [
+            3,
+            5,
+            8,
+            9,
+            11,
+            13
+          ],
+          [
+            2,
+            3,
+            4,
+            7,
+            12,
+            16
+          ]
+        ],
+        "grid_hits": [
+          [
+            11,
+            7
+          ],
+          [
+            8,
+            4
+          ]
+        ],
+        "orientation": "direct",
+        "positions": [
+          12,
+          11,
+          9,
+          5,
+          10,
+          0,
+          13,
+          6,
+          3,
+          1,
+          14,
+          4,
+          7,
+          2,
+          15,
+          16,
+          8
+        ],
+        "q_blocker": 2,
+        "q_row": [
+          1,
+          4,
+          5,
+          13
+        ],
+        "radial_branch": 0,
+        "radius_supports": [
+          [
+            1,
+            7,
+            11,
+            14
+          ],
+          [
+            4,
+            6,
+            8,
+            10
+          ]
+        ],
+        "roles": {
+          "p1": 5,
+          "p2": 13,
+          "q_other": 1,
+          "q_source": 4,
+          "rho1": 6,
+          "rho2": 2,
+          "source5": 15
+        },
+        "validation": "pass"
+      }
+    ],
+    "cvc5": "sat",
+    "enumeration_complete": false,
+    "z3_terminal": "sat"
+  },
+  "terminal": "incremental run complete",
+  "timeout_ms_per_engine": 30000
+}

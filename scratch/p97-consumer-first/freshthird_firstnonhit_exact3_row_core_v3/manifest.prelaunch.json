@@ -1,0 +1,79 @@
+{
+  "schema": "freshthird-firstnonhit-exact3-row-core-v3",
+  "status": "PRELAUNCH",
+  "compatibility_class": {
+    "class": "C",
+    "reason": "The v2 full-packet unit-ideal query becomes a monotone 13-row-group deletion surface with a fresh output namespace.",
+    "fresh_output_namespace": "scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3"
+  },
+  "source": {
+    "v2_input": {
+      "path": "scratch/p97-consumer-first/freshthird_firstnonhit_exact3_algebra_v2/input.json",
+      "sha256": "e418f2f6967efab20289906094e9c167907dc2e84adfc2042e89115303b76498"
+    },
+    "v2_results": {
+      "path": "scratch/p97-consumer-first/freshthird_firstnonhit_exact3_algebra_v2/results.json",
+      "sha256": "b8fc61a3dc85ad7589b5dae2282ce5f165cbbe9e1ff67098328e85cf3a625961",
+      "required_verdict": "COMPLEX_EMPTY with three-engine UNIT target consensus"
+    },
+    "v1_input": {
+      "path": "scratch/p97-consumer-first/freshthird_firstnonhit_exact3_metric_canary_v1/input.json",
+      "sha256": "b0891ba0969d73261bec65cd7debd0fbbe0900deab6b7432d3b75204b4263230"
+    },
+    "scope": "The exact fixed 17-label, 13-selected-row packet only"
+  },
+  "hashes": {
+    "input.json": "6b5a888489edfb19ad98a24ee358b522621acee2a0f6ccb4fdc25b741a3ea4a2",
+    "run_core.py": "6a2cf277fe305b5fd4bdb7112af69fcb9ba433606f639927c09ad662dd890691",
+    "README.md": "e6debaf52ba059953eb25c14192b979b6f5be2793030ca2dd1091a84526e36ec",
+    "SOURCE-MAP.md": "0592e4c37d31739eeec26df7a0ce8dfa19e93b7da6d0b12afb80398b4b10ef42",
+    "canonical_selected_supports": "ce15a82c4dc7d040e32f0abfbce176f82d441195c9ccd2c3b4f1d2414a26a15f"
+  },
+  "launch": {
+    "command": "uv run python scratch/p97-consumer-first/freshthird_firstnonhit_exact3_row_core_v3/run_core.py",
+    "workers": 1,
+    "global_core_lease": 4,
+    "msolve_threads": 4,
+    "msolve_variable_orders": 2,
+    "msolve_timeout_seconds_per_order": 20,
+    "singular_timeout_seconds_per_call": 30,
+    "singular_strict_total_solver_wall_budget_seconds": 300,
+    "timeout_escalation": false,
+    "solvers": [
+      "msolve over Q, explicit expanded input without parentheses, two declaration orders",
+      "Singular characteristic zero, dp, std/unit-ideal test"
+    ]
+  },
+  "case_matrix": {
+    "row_groups_total": 13,
+    "fixed_greedy_order": [0, 10, 6, 1, 2, 3, 4, 5, 7, 8, 9, 15, 16],
+    "group_size_equalities": 3,
+    "permanent_gauge_equalities": 4,
+    "monotonicity": "UNIT is preserved by adding row-group equations"
+  },
+  "algorithm": [
+    "Require both smoke controls to match on two msolve orders and Singular.",
+    "Replay the full packet in two fresh msolve processes.",
+    "Greedily try each row group once in fixed order, rebuilding two fresh msolve processes per trial; accept a deletion only on dual UNIT.",
+    "Replay the final candidate and every final drop-one in two fresh msolve processes and one fresh Singular process.",
+    "Claim inclusion-minimality only if the final candidate is three-way UNIT, every final drop-one is three-way NONUNIT, and no UNKNOWN occurred.",
+    "On UNKNOWN, retain the best independently authenticated UNIT subset, falling back to the exactly pinned v2 full set when necessary."
+  ],
+  "controls": {
+    "known_nonunit": "I=<x-y>; expected NONUNIT under all three runs.",
+    "known_unit": "I=<x,x-1>; expected UNIT under all three runs."
+  },
+  "fail_closed_policy": [
+    "Any timeout, nonzero return code, missing output, parse failure, variable-order disagreement, or cross-engine disagreement is UNKNOWN.",
+    "An UNKNOWN never licenses a deletion or a minimal-core claim.",
+    "The Singular budget is shared by controls and all publication replays and cannot exceed 300 seconds of measured solver wall time.",
+    "The permanent RUN_ONCE.guard is written before generated inputs or solver calls; generated files use exclusive creation."
+  ],
+  "post_wave_mine": {
+    "scope": "Only this wave's best authenticated retained-row table",
+    "outputs": "Nonempty-support and at-least-two-support row-intersection graphs, including exact labels, components, degrees, bridges, cycle ranks, and deterministic fundamental cycle bases",
+    "forbidden": "No Lean, theorem-bank, prior-wave, or literature search and no universal-theorem claim"
+  },
+  "trust_cost": "Cross-engine exact computation only. No checkable Groebner certificate is emitted; msolve/Singular agreement remains trusted computation.",
+  "claim_boundary": "No P97 counterexample, universal theorem, finite-to-universal lift, Lean theorem, or proof-spine closure."
+}

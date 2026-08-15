@@ -1,0 +1,129 @@
+{
+  "artifacts": {
+    "control_core_overlap_unsat.smt2": {
+      "cvc5": {
+        "command": [
+          "cvc5",
+          "--lang",
+          "smt2",
+          "--tlimit",
+          "30000",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_bounded_packet_v1/artifacts/control_core_overlap_unsat.smt2"
+        ],
+        "exit_code": 0,
+        "status": "unsat"
+      },
+      "z3": {
+        "command": [
+          "z3",
+          "-smt2",
+          "-T:30",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_bounded_packet_v1/artifacts/control_core_overlap_unsat.smt2"
+        ],
+        "exit_code": 0,
+        "status": "unsat"
+      }
+    },
+    "control_empty_v_unsat.smt2": {
+      "cvc5": {
+        "command": [
+          "cvc5",
+          "--lang",
+          "smt2",
+          "--tlimit",
+          "30000",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_bounded_packet_v1/artifacts/control_empty_v_unsat.smt2"
+        ],
+        "exit_code": 0,
+        "status": "unsat"
+      },
+      "z3": {
+        "command": [
+          "z3",
+          "-smt2",
+          "-T:30",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_bounded_packet_v1/artifacts/control_empty_v_unsat.smt2"
+        ],
+        "exit_code": 0,
+        "status": "unsat"
+      }
+    },
+    "control_sameblocker_omission_unsat.smt2": {
+      "cvc5": {
+        "command": [
+          "cvc5",
+          "--lang",
+          "smt2",
+          "--tlimit",
+          "30000",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_bounded_packet_v1/artifacts/control_sameblocker_omission_unsat.smt2"
+        ],
+        "exit_code": 0,
+        "status": "unsat"
+      },
+      "z3": {
+        "command": [
+          "z3",
+          "-smt2",
+          "-T:30",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_bounded_packet_v1/artifacts/control_sameblocker_omission_unsat.smt2"
+        ],
+        "exit_code": 0,
+        "status": "unsat"
+      }
+    },
+    "known_sat_baseline.smt2": {
+      "cvc5": {
+        "command": [
+          "cvc5",
+          "--lang",
+          "smt2",
+          "--tlimit",
+          "30000",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_bounded_packet_v1/artifacts/known_sat_baseline.smt2"
+        ],
+        "exit_code": 0,
+        "status": "sat"
+      },
+      "z3": {
+        "command": [
+          "z3",
+          "-smt2",
+          "-T:30",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_bounded_packet_v1/artifacts/known_sat_baseline.smt2"
+        ],
+        "exit_code": 0,
+        "status": "sat"
+      }
+    },
+    "main_named_rows_avoid_overlap3.smt2": {
+      "cvc5": {
+        "command": [
+          "cvc5",
+          "--lang",
+          "smt2",
+          "--tlimit",
+          "30000",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_bounded_packet_v1/artifacts/main_named_rows_avoid_overlap3.smt2"
+        ],
+        "exit_code": 0,
+        "status": "sat"
+      },
+      "z3": {
+        "command": [
+          "z3",
+          "-smt2",
+          "-T:30",
+          "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_bounded_packet_v1/artifacts/main_named_rows_avoid_overlap3.smt2"
+        ],
+        "exit_code": 0,
+        "status": "sat"
+      }
+    }
+  },
+  "solvers": {
+    "cvc5": "This is cvc5 version 1.3.3 [git 8ff882e on branch HEAD]\ncompiled with GCC version Apple LLVM 17.0.0 (clang-1700.0.13.5)\non Feb 26 2026 01:24:24\n\nCopyright (c) 2009-2025 by the authors and their institutional\naffiliations listed at https://cvc5.github.io/people.html\n\ncvc5 is open-source and is covered by the BSD license (modified).\n\nTHIS SOFTWARE IS PROVIDED AS-IS, WITHOUT ANY WARRANTIES.\nUSE AT YOUR OWN RISK.\n\nThis version of cvc5 is linked against the following non-(L)GPL'ed\nthird party libraries.\n\n  CaDiCaL - Simplified Satisfiability Solver\n  See https://github.com/arminbiere/cadical for copyright information.\n\n  Editline Library\n  See https://thrysoee.dk/editline\n  for copyright information.\n\n  SymFPU - The Symbolic Floating Point Unit\n  See https://github.com/martin-cs/symfpu/tree/CVC4 for copyright information.\n\nThis version of cvc5 is linked against the following third party\nlibraries covered by the LGPLv3 license.\nSee licenses/lgpl-3.0.txt for more information.\n\n  GMP - Gnu Multi Precision Arithmetic Library\n  See http://gmplib.org for copyright information.\n\n  LibPoly polynomial library\n  See https://github.com/SRI-CSL/libpoly for copyright and\n  licensing information.\n\ncvc5 is statically linked against these libraries. To recompile\nthis version of cvc5 with different versions of these libraries\nfollow the instructions on https://github.com/cvc5/cvc5/blob/main/INSTALL.md\n\nSee the file COPYING (distributed with the source code, and with\nall binaries) for the full cvc5 copyright, licensing, and (lack of)\nwarranty information.",
+    "z3": "Z3 version 4.16.0 - 64 bit"
+  },
+  "source_commit": "604b7d4b2089068920fd5afdcef3dd1cca4b4dbd"
+}

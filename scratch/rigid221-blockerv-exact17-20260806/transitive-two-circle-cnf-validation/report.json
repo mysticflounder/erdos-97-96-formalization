@@ -1,0 +1,119 @@
+{
+  "cases": {
+    "direct_core": {
+      "cadical": "unsat",
+      "cnf_sha256": "4db2294ddfdcd35e82f2ca902f594fe4932993f412a78b44b5a6f2ea7ea05f31",
+      "selected_atoms": [
+        [
+          0,
+          6
+        ],
+        [
+          0,
+          8
+        ],
+        [
+          11,
+          6
+        ],
+        [
+          11,
+          8
+        ]
+      ],
+      "z3": "unsat"
+    },
+    "empty": {
+      "cadical": "sat",
+      "cnf_sha256": "8f3cc6ccb18894013e291cf360f633392c836772253114682c851da2479c979d",
+      "selected_atoms": [],
+      "z3": "sat"
+    },
+    "one_row": {
+      "cadical": "sat",
+      "cnf_sha256": "851788169c9d059b03886dcdfb5d31624537a29255ec7c27f264782cc409c4aa",
+      "selected_atoms": [
+        [
+          5,
+          6
+        ],
+        [
+          5,
+          12
+        ]
+      ],
+      "z3": "sat"
+    },
+    "transitive_core": {
+      "cadical": "unsat",
+      "cnf_sha256": "d29e6803a095fe548b0820eb1dddf7401b5f037df974a08cf34b662bde16cfe7",
+      "selected_atoms": [
+        [
+          5,
+          6
+        ],
+        [
+          5,
+          12
+        ],
+        [
+          6,
+          3
+        ],
+        [
+          6,
+          12
+        ],
+        [
+          12,
+          3
+        ],
+        [
+          12,
+          6
+        ]
+      ],
+      "z3": "unsat"
+    }
+  },
+  "clause_blocks": {
+    "obstructions": 9520,
+    "selected_equalities": 32640,
+    "xor_definitions": 65280
+  },
+  "clauses_before_pins": 107440,
+  "metadata": {
+    "centered_comparisons": 2040,
+    "comparison_xor_variables": 16320,
+    "distance_label_bits": 8,
+    "distance_label_variables": 1088,
+    "forbidden_cores": 9520
+  },
+  "order": [
+    0,
+    6,
+    8,
+    11,
+    10,
+    9,
+    12,
+    7,
+    2,
+    15,
+    16,
+    3,
+    4,
+    5,
+    1,
+    13,
+    14
+  ],
+  "schema": "p97-transitive-two-circle-direct-cnf-crosscheck-v1",
+  "source_hashes": {
+    "direct_exporter": "d1d1e150bb7dbeff317f08f8044c1d3f47cc5aff02e2bf33ed53e0d055395788",
+    "source_runner": "3b81e1d27c0952e4e54f08c240a030e8e9afb89e60f0fcd28852fa65bb2dbda9",
+    "validator": "49fb65c6a7a99ec20828d3967564c9874475c7b5290151aab10116069b7f898c"
+  },
+  "status": "PASS",
+  "variables": 17680
+}

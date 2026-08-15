@@ -1,0 +1,51 @@
+{
+  "contract": "structural-first exact=False metric replay, then exact Lean-backed source-order positive-coverage replay",
+  "sha256": "80e76ee7b3d48537a79304b54af70a25b4974d3046a950071af0aef34fcb500f",
+  "sources": [
+    {
+      "bytes": 43941,
+      "path": "census/card_head/exact12_next_row_structural_cegar.py",
+      "sha256": "231a3a18b9ad5072be46fcd4ddd29ffa0e2c1b092f87caa5254f5a665628081a"
+    },
+    {
+      "bytes": 10006,
+      "path": "census/card_head/exact12_v14_ordered_cut_adapter.py",
+      "sha256": "67c9d32fc088272cbc150f102d1c671be9ad36eb752380a912a6addda350d9f7"
+    },
+    {
+      "bytes": 157069,
+      "path": "census/card_head/exact12_v14_ordered_coverage.py",
+      "sha256": "ad1475f9c94a2b1e98a3a74848a51c7f959d2164dd66af5a1778444e482fa485"
+    },
+    {
+      "bytes": 17825,
+      "path": "census/card_head/exact12_v14_source_order_bank.py",
+      "sha256": "84ec9d79beefe6368a4b7c7b714458e65d52033ed6438f23bcf9584066b32f42"
+    },
+    {
+      "bytes": 18569,
+      "path": "census/card_head/sat_encoding.py",
+      "sha256": "6d7a939f1f8fe9e3f3684afee52b79c8f3aa50041dd43f438294e69e182059ae"
+    },
+    {
+      "bytes": 102708,
+      "path": "census/global_confinement/metric_realizability_probe.py",
+      "sha256": "e44f1452b240b8bbe39f2389311312ac02ef9bef8ddbb5b08dc4ffa06adea396"
+    },
+    {
+      "bytes": 49774,
+      "path": "census/global_confinement/cap_selected_nogood_certificate_probe.py",
+      "sha256": "3b5258a71f97ed6cac88613ef4943b133351d687c636d8b04a33d9fb7cca2839"
+    },
+    {
+      "bytes": 15639,
+      "path": "census/p97_search/phase3_classification_context.py",
+      "sha256": "5fd4f94b536896921c0f88ea860802b212aeb8c97e5c77e0d4445cc7e38e6837"
+    },
+    {
+      "bytes": 8936,
+      "path": "census/p97_search/phase3_order_universe.py",
+      "sha256": "67fe7a6fb086b82925a5f7b365b34c8a7f5307960f790e914ad86c47b84d86b0"
+    }
+  ]
+}

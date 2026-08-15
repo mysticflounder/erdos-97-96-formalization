@@ -1,0 +1,41 @@
+{
+  "artifacts": {
+    "discovery_cnf": {
+      "bytes": 5128454,
+      "path": "discovery.cnf",
+      "sha256": "cfc268f2915ff31e1af24a66a036e41e81f93aca0967e88c1b4a4158eb67a379"
+    },
+    "job": {
+      "bytes": 8492,
+      "path": "job.json",
+      "sha256": "66478b626b3162faa96fb9621f10a2e691b524a1d4d5a67f03741dc392f260a3"
+    },
+    "journal": {
+      "bytes": 2507,
+      "path": "journal.jsonl",
+      "sha256": "390bfae0b2ff120f9b73f875aebb2f18f96c29fc4ad8aa9ab0e8f83d141eb0b8"
+    },
+    "proof": null,
+    "survivor": null,
+    "terminal_cnf": null
+  },
+  "bound_job_schema": "p97_rigid221_exact12_full_v14_bound_job.v1",
+  "cell_index": 0,
+  "discovery_verdict": "SAT",
+  "error": null,
+  "job_sha256": "1f76e83fa4c1a1226b3f96dcf0b43089efb265f88e845b50db6e002e1c187362",
+  "max_iterations": 1,
+  "records": 1,
+  "replay": {
+    "added_constraints": true,
+    "candidate": true,
+    "exact_cnf": true
+  },
+  "schema": "p97_rigid221_exact12_full_v14_structural_cegar_run.v1",
+  "scope": "one finite normalized-v14 cell under order-independent metric CEGAR; no aggregate coverage, universal lift, or Lean closure",
+  "status": "ITERATION_LIMIT",
+  "terminal_proof_verified": false,
+  "terminal_record_sha256": "72d799f9cfb917a66e583f5e7457650f76469447461774650cce3f4700fee68e",
+  "terminal_verdict": null,
+  "timeout_seconds": 60
+}

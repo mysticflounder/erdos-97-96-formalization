@@ -1,0 +1,2659 @@
+{
+  "core": [
+    {
+      "form": "innerOuter",
+      "kind": "kalmanson",
+      "quad": [
+        0,
+        6,
+        8,
+        11
+      ]
+    },
+    {
+      "form": "innerOuter",
+      "kind": "kalmanson",
+      "quad": [
+        0,
+        6,
+        11,
+        10
+      ]
+    },
+    {
+      "form": "innerOuter",
+      "kind": "kalmanson",
+      "quad": [
+        0,
+        6,
+        10,
+        9
+      ]
+    },
+    {
+      "form": "innerOuter",
+      "kind": "kalmanson",
+      "quad": [
+        0,
+        6,
+        9,
+        12
+      ]
+    },
+    {
+      "form": "adjacentSides",
+      "kind": "kalmanson",
+      "quad": [
+        0,
+        8,
+        11,
+        14
+      ]
+    },
+    {
+      "form": "adjacentSides",
+      "kind": "kalmanson",
+      "quad": [
+        0,
+        11,
+        10,
+        14
+      ]
+    },
+    {
+      "form": "adjacentSides",
+      "kind": "kalmanson",
+      "quad": [
+        0,
+        10,
+        9,
+        14
+      ]
+    },
+    {
+      "form": "adjacentSides",
+      "kind": "kalmanson",
+      "quad": [
+        0,
+        9,
+        12,
+        14
+      ]
+    },
+    {
+      "form": "innerOuter",
+      "kind": "kalmanson",
+      "quad": [
+        8,
+        11,
+        1,
+        13
+      ]
+    },
+    {
+      "form": "innerOuter",
+      "kind": "kalmanson",
+      "quad": [
+        8,
+        11,
+        13,
+        14
+      ]
+    },
+    {
+      "form": "innerOuter",
+      "kind": "kalmanson",
+      "quad": [
+        11,
+        10,
+        1,
+        13
+      ]
+    },
+    {
+      "form": "innerOuter",
+      "kind": "kalmanson",
+      "quad": [
+        11,
+        10,
+        13,
+        14
+      ]
+    },
+    {
+      "form": "innerOuter",
+      "kind": "kalmanson",
+      "quad": [
+        10,
+        9,
+        2,
+        15
+      ]
+    },
+    {
+      "form": "innerOuter",
+      "kind": "kalmanson",
+      "quad": [
+        10,
+        9,
+        15,
+        16
+      ]
+    },
+    {
+      "form": "innerOuter",
+      "kind": "kalmanson",
+      "quad": [
+        10,
+        9,
+        16,
+        3
+      ]
+    },
+    {
+      "form": "innerOuter",
+      "kind": "kalmanson",
+      "quad": [
+        10,
+        9,
+        3,
+        4
+      ]
+    },
+    {
+      "form": "innerOuter",
+      "kind": "kalmanson",
+      "quad": [
+        10,
+        9,
+        4,
+        5
+      ]
+    },
+    {
+      "form": "innerOuter",
+      "kind": "kalmanson",
+      "quad": [
+        10,
+        9,
+        5,
+        1
+      ]
+    },
+    {
+      "form": "innerOuter",
+      "kind": "kalmanson",
+      "quad": [
+        10,
+        9,
+        1,
+        13
+      ]
+    },
+    {
+      "form": "innerOuter",
+      "kind": "kalmanson",
+      "quad": [
+        10,
+        9,
+        13,
+        14
+      ]
+    },
+    {
+      "form": "innerOuter",
+      "kind": "kalmanson",
+      "quad": [
+        9,
+        12,
+        2,
+        15
+      ]
+    },
+    {
+      "form": "innerOuter",
+      "kind": "kalmanson",
+      "quad": [
+        9,
+        12,
+        15,
+        16
+      ]
+    },
+    {
+      "form": "innerOuter",
+      "kind": "kalmanson",
+      "quad": [
+        9,
+        12,
+        16,
+        3
+      ]
+    },
+    {
+      "form": "innerOuter",
+      "kind": "kalmanson",
+      "quad": [
+        9,
+        12,
+        3,
+        4
+      ]
+    },
+    {
+      "form": "innerOuter",
+      "kind": "kalmanson",
+      "quad": [
+        9,
+        12,
+        4,
+        5
+      ]
+    },
+    {
+      "form": "innerOuter",
+      "kind": "kalmanson",
+      "quad": [
+        9,
+        12,
+        5,
+        1
+      ]
+    },
+    {
+      "form": "innerOuter",
+      "kind": "kalmanson",
+      "quad": [
+        9,
+        12,
+        1,
+        13
+      ]
+    },
+    {
+      "form": "innerOuter",
+      "kind": "kalmanson",
+      "quad": [
+        9,
+        12,
+        13,
+        14
+      ]
+    },
+    {
+      "form": "innerOuter",
+      "kind": "kalmanson",
+      "quad": [
+        12,
+        7,
+        2,
+        15
+      ]
+    },
+    {
+      "form": "innerOuter",
+      "kind": "kalmanson",
+      "quad": [
+        12,
+        7,
+        15,
+        16
+      ]
+    },
+    {
+      "form": "innerOuter",
+      "kind": "kalmanson",
+      "quad": [
+        12,
+        7,
+        16,
+        3
+      ]
+    },
+    {
+      "anchor": 5,
+      "center": 1,
+      "kind": "row-equality",
+      "point": 8,
+      "row_index": 0
+    },
+    {
+      "anchor": 5,
+      "center": 1,
+      "kind": "row-equality",
+      "point": 10,
+      "row_index": 0
+    },
+    {
+      "anchor": 7,
+      "center": 2,
+      "kind": "row-equality",
+      "point": 10,
+      "row_index": 1
+    },
+    {
+      "anchor": 1,
+      "center": 3,
+      "kind": "row-equality",
+      "point": 7,
+      "row_index": 2
+    },
+    {
+      "anchor": 1,
+      "center": 3,
+      "kind": "row-equality",
+      "point": 12,
+      "row_index": 2
+    },
+    {
+      "anchor": 0,
+      "center": 6,
+      "kind": "row-equality",
+      "point": 8,
+      "row_index": 3
+    },
+    {
+      "anchor": 0,
+      "center": 6,
+      "kind": "row-equality",
+      "point": 12,
+      "row_index": 3
+    }
+  ],
+  "minimal_assumption_count": 38,
+  "order": [
+    0,
+    6,
+    8,
+    11,
+    10,
+    9,
+    12,
+    7,
+    2,
+    15,
+    16,
+    3,
+    4,
+    5,
+    1,
+    13,
+    14
+  ],
+  "rows": [
+    {
+      "center": 1,
+      "exact": false,
+      "support": [
+        5,
+        8,
+        10
+      ]
+    },
+    {
+      "center": 2,
+      "exact": false,
+      "support": [
+        7,
+        10
+      ]
+    },
+    {
+      "center": 3,
+      "exact": false,
+      "support": [
+        1,
+        7,
+        12
+      ]
+    },
+    {
+      "center": 6,
+      "exact": false,
+      "support": [
+        0,
+        8,
+        12
+      ]
+    }
+  ],
+  "schema": "p97-exact17-strict-linear-certificate-v1",
+  "source_report": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/rigid221-blockerv-exact17-20260806/lazy-global-kalmanson-loop-production2-20260809/iteration-0006-seed-3809/analysis.json",
+  "verdict": "unsat",
+  "weighted_certificate": {
+    "core": {
+      "boundary_labels": [
+        0,
+        6,
+        8,
+        11,
+        10,
+        9,
+        12,
+        7,
+        2,
+        15,
+        16,
+        3,
+        4,
+        5,
+        1,
+        13,
+        14
+      ],
+      "pairings": [
+        {
+          "left": [
+            1,
+            2
+          ],
+          "path": {
+            "first": [
+              1,
+              2
+            ],
+            "last": [
+              1,
+              6
+            ],
+            "steps": [
+              {
+                "center": 1,
+                "first": 2,
+                "kind": "row",
+                "second": 6
+              }
+            ]
+          },
+          "right": [
+            1,
+            6
+          ]
+        },
+        {
+          "left": [
+            0,
+            3
+          ],
+          "path": {
+            "first": [
+              0,
+              3
+            ],
+            "last": [
+              0,
+              3
+            ],
+            "steps": []
+          },
+          "right": [
+            0,
+            3
+          ]
+        },
+        {
+          "left": [
+            1,
+            3
+          ],
+          "path": {
+            "first": [
+              1,
+              3
+            ],
+            "last": [
+              1,
+              3
+            ],
+            "steps": []
+          },
+          "right": [
+            1,
+            3
+          ]
+        },
+        {
+          "left": [
+            0,
+            4
+          ],
+          "path": {
+            "first": [
+              0,
+              4
+            ],
+            "last": [
+              0,
+              4
+            ],
+            "steps": []
+          },
+          "right": [
+            0,
+            4
+          ]
+        },
+        {
+          "left": [
+            1,
+            4
+          ],
+          "path": {
+            "first": [
+              1,
+              4
+            ],
+            "last": [
+              1,
+              4
+            ],
+            "steps": []
+          },
+          "right": [
+            1,
+            4
+          ]
+        },
+        {
+          "left": [
+            0,
+            5
+          ],
+          "path": {
+            "first": [
+              0,
+              5
+            ],
+            "last": [
+              0,
+              5
+            ],
+            "steps": []
+          },
+          "right": [
+            0,
+            5
+          ]
+        },
+        {
+          "left": [
+            1,
+            5
+          ],
+          "path": {
+            "first": [
+              1,
+              5
+            ],
+            "last": [
+              1,
+              5
+            ],
+            "steps": []
+          },
+          "right": [
+            1,
+            5
+          ]
+        },
+        {
+          "left": [
+            0,
+            6
+          ],
+          "path": {
+            "first": [
+              0,
+              6
+            ],
+            "last": [
+              0,
+              6
+            ],
+            "steps": []
+          },
+          "right": [
+            0,
+            6
+          ]
+        },
+        {
+          "left": [
+            0,
+            2
+          ],
+          "path": {
+            "first": [
+              0,
+              2
+            ],
+            "last": [
+              0,
+              2
+            ],
+            "steps": []
+          },
+          "right": [
+            0,
+            2
+          ]
+        },
+        {
+          "left": [
+            3,
+            16
+          ],
+          "path": {
+            "first": [
+              3,
+              16
+            ],
+            "last": [
+              3,
+              16
+            ],
+            "steps": []
+          },
+          "right": [
+            3,
+            16
+          ]
+        },
+        {
+          "left": [
+            0,
+            3
+          ],
+          "path": {
+            "first": [
+              0,
+              3
+            ],
+            "last": [
+              0,
+              3
+            ],
+            "steps": []
+          },
+          "right": [
+            0,
+            3
+          ]
+        },
+        {
+          "left": [
+            4,
+            16
+          ],
+          "path": {
+            "first": [
+              4,
+              16
+            ],
+            "last": [
+              4,
+              16
+            ],
+            "steps": []
+          },
+          "right": [
+            4,
+            16
+          ]
+        },
+        {
+          "left": [
+            0,
+            4
+          ],
+          "path": {
+            "first": [
+              0,
+              4
+            ],
+            "last": [
+              0,
+              4
+            ],
+            "steps": []
+          },
+          "right": [
+            0,
+            4
+          ]
+        },
+        {
+          "left": [
+            5,
+            16
+          ],
+          "path": {
+            "first": [
+              5,
+              16
+            ],
+            "last": [
+              5,
+              16
+            ],
+            "steps": []
+          },
+          "right": [
+            5,
+            16
+          ]
+        },
+        {
+          "left": [
+            0,
+            5
+          ],
+          "path": {
+            "first": [
+              0,
+              5
+            ],
+            "last": [
+              0,
+              5
+            ],
+            "steps": []
+          },
+          "right": [
+            0,
+            5
+          ]
+        },
+        {
+          "left": [
+            6,
+            16
+          ],
+          "path": {
+            "first": [
+              6,
+              16
+            ],
+            "last": [
+              6,
+              16
+            ],
+            "steps": []
+          },
+          "right": [
+            6,
+            16
+          ]
+        },
+        {
+          "left": [
+            3,
+            14
+          ],
+          "path": {
+            "first": [
+              3,
+              14
+            ],
+            "last": [
+              3,
+              14
+            ],
+            "steps": []
+          },
+          "right": [
+            3,
+            14
+          ]
+        },
+        {
+          "left": [
+            2,
+            15
+          ],
+          "path": {
+            "first": [
+              2,
+              15
+            ],
+            "last": [
+              2,
+              15
+            ],
+            "steps": []
+          },
+          "right": [
+            2,
+            15
+          ]
+        },
+        {
+          "left": [
+            3,
+            15
+          ],
+          "path": {
+            "first": [
+              3,
+              15
+            ],
+            "last": [
+              3,
+              15
+            ],
+            "steps": []
+          },
+          "right": [
+            3,
+            15
+          ]
+        },
+        {
+          "left": [
+            2,
+            16
+          ],
+          "path": {
+            "first": [
+              2,
+              16
+            ],
+            "last": [
+              2,
+              16
+            ],
+            "steps": []
+          },
+          "right": [
+            2,
+            16
+          ]
+        },
+        {
+          "left": [
+            4,
+            14
+          ],
+          "path": {
+            "first": [
+              4,
+              14
+            ],
+            "last": [
+              2,
+              14
+            ],
+            "steps": [
+              {
+                "first": 4,
+                "kind": "flip",
+                "second": 14
+              },
+              {
+                "center": 14,
+                "first": 4,
+                "kind": "row",
+                "second": 2
+              },
+              {
+                "first": 14,
+                "kind": "flip",
+                "second": 2
+              }
+            ]
+          },
+          "right": [
+            2,
+            14
+          ]
+        },
+        {
+          "left": [
+            3,
+            15
+          ],
+          "path": {
+            "first": [
+              3,
+              15
+            ],
+            "last": [
+              3,
+              15
+            ],
+            "steps": []
+          },
+          "right": [
+            3,
+            15
+          ]
+        },
+        {
+          "left": [
+            4,
+            15
+          ],
+          "path": {
+            "first": [
+              4,
+              15
+            ],
+            "last": [
+              4,
+              15
+            ],
+            "steps": []
+          },
+          "right": [
+            4,
+            15
+          ]
+        },
+        {
+          "left": [
+            3,
+            16
+          ],
+          "path": {
+            "first": [
+              3,
+              16
+            ],
+            "last": [
+              3,
+              16
+            ],
+            "steps": []
+          },
+          "right": [
+            3,
+            16
+          ]
+        },
+        {
+          "left": [
+            5,
+            8
+          ],
+          "path": {
+            "first": [
+              5,
+              8
+            ],
+            "last": [
+              5,
+              8
+            ],
+            "steps": []
+          },
+          "right": [
+            5,
+            8
+          ]
+        },
+        {
+          "left": [
+            4,
+            9
+          ],
+          "path": {
+            "first": [
+              4,
+              9
+            ],
+            "last": [
+              4,
+              9
+            ],
+            "steps": []
+          },
+          "right": [
+            4,
+            9
+          ]
+        },
+        {
+          "left": [
+            5,
+            9
+          ],
+          "path": {
+            "first": [
+              5,
+              9
+            ],
+            "last": [
+              5,
+              9
+            ],
+            "steps": []
+          },
+          "right": [
+            5,
+            9
+          ]
+        },
+        {
+          "left": [
+            4,
+            10
+          ],
+          "path": {
+            "first": [
+              4,
+              10
+            ],
+            "last": [
+              4,
+              10
+            ],
+            "steps": []
+          },
+          "right": [
+            4,
+            10
+          ]
+        },
+        {
+          "left": [
+            5,
+            10
+          ],
+          "path": {
+            "first": [
+              5,
+              10
+            ],
+            "last": [
+              5,
+              10
+            ],
+            "steps": []
+          },
+          "right": [
+            5,
+            10
+          ]
+        },
+        {
+          "left": [
+            4,
+            11
+          ],
+          "path": {
+            "first": [
+              4,
+              11
+            ],
+            "last": [
+              4,
+              11
+            ],
+            "steps": []
+          },
+          "right": [
+            4,
+            11
+          ]
+        },
+        {
+          "left": [
+            5,
+            11
+          ],
+          "path": {
+            "first": [
+              5,
+              11
+            ],
+            "last": [
+              5,
+              11
+            ],
+            "steps": []
+          },
+          "right": [
+            5,
+            11
+          ]
+        },
+        {
+          "left": [
+            4,
+            12
+          ],
+          "path": {
+            "first": [
+              4,
+              12
+            ],
+            "last": [
+              4,
+              12
+            ],
+            "steps": []
+          },
+          "right": [
+            4,
+            12
+          ]
+        },
+        {
+          "left": [
+            5,
+            12
+          ],
+          "path": {
+            "first": [
+              5,
+              12
+            ],
+            "last": [
+              5,
+              12
+            ],
+            "steps": []
+          },
+          "right": [
+            5,
+            12
+          ]
+        },
+        {
+          "left": [
+            4,
+            13
+          ],
+          "path": {
+            "first": [
+              4,
+              13
+            ],
+            "last": [
+              4,
+              13
+            ],
+            "steps": []
+          },
+          "right": [
+            4,
+            13
+          ]
+        },
+        {
+          "left": [
+            5,
+            13
+          ],
+          "path": {
+            "first": [
+              5,
+              13
+            ],
+            "last": [
+              5,
+              13
+            ],
+            "steps": []
+          },
+          "right": [
+            5,
+            13
+          ]
+        },
+        {
+          "left": [
+            4,
+            14
+          ],
+          "path": {
+            "first": [
+              4,
+              14
+            ],
+            "last": [
+              4,
+              14
+            ],
+            "steps": []
+          },
+          "right": [
+            4,
+            14
+          ]
+        },
+        {
+          "left": [
+            5,
+            14
+          ],
+          "path": {
+            "first": [
+              5,
+              14
+            ],
+            "last": [
+              5,
+              14
+            ],
+            "steps": []
+          },
+          "right": [
+            5,
+            14
+          ]
+        },
+        {
+          "left": [
+            4,
+            15
+          ],
+          "path": {
+            "first": [
+              4,
+              15
+            ],
+            "last": [
+              4,
+              15
+            ],
+            "steps": []
+          },
+          "right": [
+            4,
+            15
+          ]
+        },
+        {
+          "left": [
+            5,
+            15
+          ],
+          "path": {
+            "first": [
+              5,
+              15
+            ],
+            "last": [
+              5,
+              15
+            ],
+            "steps": []
+          },
+          "right": [
+            5,
+            15
+          ]
+        },
+        {
+          "left": [
+            4,
+            16
+          ],
+          "path": {
+            "first": [
+              4,
+              16
+            ],
+            "last": [
+              4,
+              16
+            ],
+            "steps": []
+          },
+          "right": [
+            4,
+            16
+          ]
+        },
+        {
+          "left": [
+            6,
+            8
+          ],
+          "path": {
+            "first": [
+              6,
+              8
+            ],
+            "last": [
+              6,
+              8
+            ],
+            "steps": []
+          },
+          "right": [
+            6,
+            8
+          ]
+        },
+        {
+          "left": [
+            5,
+            9
+          ],
+          "path": {
+            "first": [
+              5,
+              9
+            ],
+            "last": [
+              5,
+              9
+            ],
+            "steps": []
+          },
+          "right": [
+            5,
+            9
+          ]
+        },
+        {
+          "left": [
+            6,
+            9
+          ],
+          "path": {
+            "first": [
+              6,
+              9
+            ],
+            "last": [
+              6,
+              9
+            ],
+            "steps": []
+          },
+          "right": [
+            6,
+            9
+          ]
+        },
+        {
+          "left": [
+            5,
+            10
+          ],
+          "path": {
+            "first": [
+              5,
+              10
+            ],
+            "last": [
+              5,
+              10
+            ],
+            "steps": []
+          },
+          "right": [
+            5,
+            10
+          ]
+        },
+        {
+          "left": [
+            6,
+            10
+          ],
+          "path": {
+            "first": [
+              6,
+              10
+            ],
+            "last": [
+              6,
+              10
+            ],
+            "steps": []
+          },
+          "right": [
+            6,
+            10
+          ]
+        },
+        {
+          "left": [
+            5,
+            11
+          ],
+          "path": {
+            "first": [
+              5,
+              11
+            ],
+            "last": [
+              5,
+              11
+            ],
+            "steps": []
+          },
+          "right": [
+            5,
+            11
+          ]
+        },
+        {
+          "left": [
+            6,
+            11
+          ],
+          "path": {
+            "first": [
+              6,
+              11
+            ],
+            "last": [
+              6,
+              11
+            ],
+            "steps": []
+          },
+          "right": [
+            6,
+            11
+          ]
+        },
+        {
+          "left": [
+            5,
+            12
+          ],
+          "path": {
+            "first": [
+              5,
+              12
+            ],
+            "last": [
+              5,
+              12
+            ],
+            "steps": []
+          },
+          "right": [
+            5,
+            12
+          ]
+        },
+        {
+          "left": [
+            6,
+            12
+          ],
+          "path": {
+            "first": [
+              6,
+              12
+            ],
+            "last": [
+              6,
+              12
+            ],
+            "steps": []
+          },
+          "right": [
+            6,
+            12
+          ]
+        },
+        {
+          "left": [
+            5,
+            13
+          ],
+          "path": {
+            "first": [
+              5,
+              13
+            ],
+            "last": [
+              5,
+              13
+            ],
+            "steps": []
+          },
+          "right": [
+            5,
+            13
+          ]
+        },
+        {
+          "left": [
+            6,
+            13
+          ],
+          "path": {
+            "first": [
+              6,
+              13
+            ],
+            "last": [
+              6,
+              13
+            ],
+            "steps": []
+          },
+          "right": [
+            6,
+            13
+          ]
+        },
+        {
+          "left": [
+            5,
+            14
+          ],
+          "path": {
+            "first": [
+              5,
+              14
+            ],
+            "last": [
+              5,
+              14
+            ],
+            "steps": []
+          },
+          "right": [
+            5,
+            14
+          ]
+        },
+        {
+          "left": [
+            6,
+            14
+          ],
+          "path": {
+            "first": [
+              6,
+              14
+            ],
+            "last": [
+              6,
+              14
+            ],
+            "steps": []
+          },
+          "right": [
+            6,
+            14
+          ]
+        },
+        {
+          "left": [
+            5,
+            15
+          ],
+          "path": {
+            "first": [
+              5,
+              15
+            ],
+            "last": [
+              5,
+              15
+            ],
+            "steps": []
+          },
+          "right": [
+            5,
+            15
+          ]
+        },
+        {
+          "left": [
+            6,
+            15
+          ],
+          "path": {
+            "first": [
+              6,
+              15
+            ],
+            "last": [
+              6,
+              15
+            ],
+            "steps": []
+          },
+          "right": [
+            6,
+            15
+          ]
+        },
+        {
+          "left": [
+            5,
+            16
+          ],
+          "path": {
+            "first": [
+              5,
+              16
+            ],
+            "last": [
+              5,
+              16
+            ],
+            "steps": []
+          },
+          "right": [
+            5,
+            16
+          ]
+        },
+        {
+          "left": [
+            7,
+            8
+          ],
+          "path": {
+            "first": [
+              7,
+              8
+            ],
+            "last": [
+              4,
+              8
+            ],
+            "steps": [
+              {
+                "first": 7,
+                "kind": "flip",
+                "second": 8
+              },
+              {
+                "center": 8,
+                "first": 7,
+                "kind": "row",
+                "second": 4
+              },
+              {
+                "first": 8,
+                "kind": "flip",
+                "second": 4
+              }
+            ]
+          },
+          "right": [
+            4,
+            8
+          ]
+        },
+        {
+          "left": [
+            6,
+            9
+          ],
+          "path": {
+            "first": [
+              6,
+              9
+            ],
+            "last": [
+              6,
+              9
+            ],
+            "steps": []
+          },
+          "right": [
+            6,
+            9
+          ]
+        },
+        {
+          "left": [
+            7,
+            9
+          ],
+          "path": {
+            "first": [
+              7,
+              9
+            ],
+            "last": [
+              7,
+              9
+            ],
+            "steps": []
+          },
+          "right": [
+            7,
+            9
+          ]
+        },
+        {
+          "left": [
+            6,
+            10
+          ],
+          "path": {
+            "first": [
+              6,
+              10
+            ],
+            "last": [
+              6,
+              10
+            ],
+            "steps": []
+          },
+          "right": [
+            6,
+            10
+          ]
+        },
+        {
+          "left": [
+            7,
+            10
+          ],
+          "path": {
+            "first": [
+              7,
+              10
+            ],
+            "last": [
+              7,
+              10
+            ],
+            "steps": []
+          },
+          "right": [
+            7,
+            10
+          ]
+        },
+        {
+          "left": [
+            6,
+            11
+          ],
+          "path": {
+            "first": [
+              6,
+              11
+            ],
+            "last": [
+              7,
+              11
+            ],
+            "steps": [
+              {
+                "first": 6,
+                "kind": "flip",
+                "second": 11
+              },
+              {
+                "center": 11,
+                "first": 6,
+                "kind": "row",
+                "second": 7
+              },
+              {
+                "first": 11,
+                "kind": "flip",
+                "second": 7
+              }
+            ]
+          },
+          "right": [
+            7,
+            11
+          ]
+        }
+      ],
+      "row_choices": [
+        {
+          "center": 1,
+          "support": [
+            0,
+            2,
+            6
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            4,
+            7
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            6,
+            7,
+            14
+          ]
+        },
+        {
+          "center": 14,
+          "support": [
+            2,
+            4,
+            13
+          ]
+        }
+      ],
+      "terms": [
+        {
+          "form": "innerOuter",
+          "quad": {
+            "a": 0,
+            "b": 1,
+            "c": 2,
+            "d": 3
+          },
+          "quad_labels": [
+            0,
+            6,
+            8,
+            11
+          ],
+          "weight": 1
+        },
+        {
+          "form": "innerOuter",
+          "quad": {
+            "a": 0,
+            "b": 1,
+            "c": 3,
+            "d": 4
+          },
+          "quad_labels": [
+            0,
+            6,
+            11,
+            10
+          ],
+          "weight": 1
+        },
+        {
+          "form": "innerOuter",
+          "quad": {
+            "a": 0,
+            "b": 1,
+            "c": 4,
+            "d": 5
+          },
+          "quad_labels": [
+            0,
+            6,
+            10,
+            9
+          ],
+          "weight": 1
+        },
+        {
+          "form": "innerOuter",
+          "quad": {
+            "a": 0,
+            "b": 1,
+            "c": 5,
+            "d": 6
+          },
+          "quad_labels": [
+            0,
+            6,
+            9,
+            12
+          ],
+          "weight": 1
+        },
+        {
+          "form": "adjacentSides",
+          "quad": {
+            "a": 0,
+            "b": 2,
+            "c": 3,
+            "d": 16
+          },
+          "quad_labels": [
+            0,
+            8,
+            11,
+            14
+          ],
+          "weight": 1
+        },
+        {
+          "form": "adjacentSides",
+          "quad": {
+            "a": 0,
+            "b": 3,
+            "c": 4,
+            "d": 16
+          },
+          "quad_labels": [
+            0,
+            11,
+            10,
+            14
+          ],
+          "weight": 1
+        },
+        {
+          "form": "adjacentSides",
+          "quad": {
+            "a": 0,
+            "b": 4,
+            "c": 5,
+            "d": 16
+          },
+          "quad_labels": [
+            0,
+            10,
+            9,
+            14
+          ],
+          "weight": 1
+        },
+        {
+          "form": "adjacentSides",
+          "quad": {
+            "a": 0,
+            "b": 5,
+            "c": 6,
+            "d": 16
+          },
+          "quad_labels": [
+            0,
+            9,
+            12,
+            14
+          ],
+          "weight": 1
+        },
+        {
+          "form": "innerOuter",
+          "quad": {
+            "a": 2,
+            "b": 3,
+            "c": 14,
+            "d": 15
+          },
+          "quad_labels": [
+            8,
+            11,
+            1,
+            13
+          ],
+          "weight": 1
+        },
+        {
+          "form": "innerOuter",
+          "quad": {
+            "a": 2,
+            "b": 3,
+            "c": 15,
+            "d": 16
+          },
+          "quad_labels": [
+            8,
+            11,
+            13,
+            14
+          ],
+          "weight": 1
+        },
+        {
+          "form": "innerOuter",
+          "quad": {
+            "a": 3,
+            "b": 4,
+            "c": 14,
+            "d": 15
+          },
+          "quad_labels": [
+            11,
+            10,
+            1,
+            13
+          ],
+          "weight": 1
+        },
+        {
+          "form": "innerOuter",
+          "quad": {
+            "a": 3,
+            "b": 4,
+            "c": 15,
+            "d": 16
+          },
+          "quad_labels": [
+            11,
+            10,
+            13,
+            14
+          ],
+          "weight": 1
+        },
+        {
+          "form": "innerOuter",
+          "quad": {
+            "a": 4,
+            "b": 5,
+            "c": 8,
+            "d": 9
+          },
+          "quad_labels": [
+            10,
+            9,
+            2,
+            15
+          ],
+          "weight": 1
+        },
+        {
+          "form": "innerOuter",
+          "quad": {
+            "a": 4,
+            "b": 5,
+            "c": 9,
+            "d": 10
+          },
+          "quad_labels": [
+            10,
+            9,
+            15,
+            16
+          ],
+          "weight": 1
+        },
+        {
+          "form": "innerOuter",
+          "quad": {
+            "a": 4,
+            "b": 5,
+            "c": 10,
+            "d": 11
+          },
+          "quad_labels": [
+            10,
+            9,
+            16,
+            3
+          ],
+          "weight": 1
+        },
+        {
+          "form": "innerOuter",
+          "quad": {
+            "a": 4,
+            "b": 5,
+            "c": 11,
+            "d": 12
+          },
+          "quad_labels": [
+            10,
+            9,
+            3,
+            4
+          ],
+          "weight": 1
+        },
+        {
+          "form": "innerOuter",
+          "quad": {
+            "a": 4,
+            "b": 5,
+            "c": 12,
+            "d": 13
+          },
+          "quad_labels": [
+            10,
+            9,
+            4,
+            5
+          ],
+          "weight": 1
+        },
+        {
+          "form": "innerOuter",
+          "quad": {
+            "a": 4,
+            "b": 5,
+            "c": 13,
+            "d": 14
+          },
+          "quad_labels": [
+            10,
+            9,
+            5,
+            1
+          ],
+          "weight": 1
+        },
+        {
+          "form": "innerOuter",
+          "quad": {
+            "a": 4,
+            "b": 5,
+            "c": 14,
+            "d": 15
+          },
+          "quad_labels": [
+            10,
+            9,
+            1,
+            13
+          ],
+          "weight": 1
+        },
+        {
+          "form": "innerOuter",
+          "quad": {
+            "a": 4,
+            "b": 5,
+            "c": 15,
+            "d": 16
+          },
+          "quad_labels": [
+            10,
+            9,
+            13,
+            14
+          ],
+          "weight": 1
+        },
+        {
+          "form": "innerOuter",
+          "quad": {
+            "a": 5,
+            "b": 6,
+            "c": 8,
+            "d": 9
+          },
+          "quad_labels": [
+            9,
+            12,
+            2,
+            15
+          ],
+          "weight": 1
+        },
+        {
+          "form": "innerOuter",
+          "quad": {
+            "a": 5,
+            "b": 6,
+            "c": 9,
+            "d": 10
+          },
+          "quad_labels": [
+            9,
+            12,
+            15,
+            16
+          ],
+          "weight": 1
+        },
+        {
+          "form": "innerOuter",
+          "quad": {
+            "a": 5,
+            "b": 6,
+            "c": 10,
+            "d": 11
+          },
+          "quad_labels": [
+            9,
+            12,
+            16,
+            3
+          ],
+          "weight": 1
+        },
+        {
+          "form": "innerOuter",
+          "quad": {
+            "a": 5,
+            "b": 6,
+            "c": 11,
+            "d": 12
+          },
+          "quad_labels": [
+            9,
+            12,
+            3,
+            4
+          ],
+          "weight": 1
+        },
+        {
+          "form": "innerOuter",
+          "quad": {
+            "a": 5,
+            "b": 6,
+            "c": 12,
+            "d": 13
+          },
+          "quad_labels": [
+            9,
+            12,
+            4,
+            5
+          ],
+          "weight": 1
+        },
+        {
+          "form": "innerOuter",
+          "quad": {
+            "a": 5,
+            "b": 6,
+            "c": 13,
+            "d": 14
+          },
+          "quad_labels": [
+            9,
+            12,
+            5,
+            1
+          ],
+          "weight": 1
+        },
+        {
+          "form": "innerOuter",
+          "quad": {
+            "a": 5,
+            "b": 6,
+            "c": 14,
+            "d": 15
+          },
+          "quad_labels": [
+            9,
+            12,
+            1,
+            13
+          ],
+          "weight": 1
+        },
+        {
+          "form": "innerOuter",
+          "quad": {
+            "a": 5,
+            "b": 6,
+            "c": 15,
+            "d": 16
+          },
+          "quad_labels": [
+            9,
+            12,
+            13,
+            14
+          ],
+          "weight": 1
+        },
+        {
+          "form": "innerOuter",
+          "quad": {
+            "a": 6,
+            "b": 7,
+            "c": 8,
+            "d": 9
+          },
+          "quad_labels": [
+            12,
+            7,
+            2,
+            15
+          ],
+          "weight": 1
+        },
+        {
+          "form": "innerOuter",
+          "quad": {
+            "a": 6,
+            "b": 7,
+            "c": 9,
+            "d": 10
+          },
+          "quad_labels": [
+            12,
+            7,
+            15,
+            16
+          ],
+          "weight": 1
+        },
+        {
+          "form": "innerOuter",
+          "quad": {
+            "a": 6,
+            "b": 7,
+            "c": 10,
+            "d": 11
+          },
+          "quad_labels": [
+            12,
+            7,
+            16,
+            3
+          ],
+          "weight": 1
+        }
+      ]
+    },
+    "cyclic_orientation": "forward",
+    "lean_consumer": "Problem97.ATailFrontierLiveClosure.GenericRowNogoodCertificate.false_of_weightedKalmansonCancellationData_of_check",
+    "metadata": {
+      "lean_module": "Erdos9796Proof.P97.ATail.FrontierLiveClosure.GenericRowNogoodCertificate"
+    },
+    "orientation": "forward",
+    "source": "metric-bank-proposed-exact-linear-certificate",
+    "stage": "equality-convex-weighted-kalmanson-cancellation"
+  },
+  "weighted_terms": [
+    {
+      "form": "innerOuter",
+      "quad": [
+        0,
+        6,
+        8,
+        11
+      ],
+      "weight": 1
+    },
+    {
+      "form": "innerOuter",
+      "quad": [
+        0,
+        6,
+        11,
+        10
+      ],
+      "weight": 1
+    },
+    {
+      "form": "innerOuter",
+      "quad": [
+        0,
+        6,
+        10,
+        9
+      ],
+      "weight": 1
+    },
+    {
+      "form": "innerOuter",
+      "quad": [
+        0,
+        6,
+        9,
+        12
+      ],
+      "weight": 1
+    },
+    {
+      "form": "adjacentSides",
+      "quad": [
+        0,
+        8,
+        11,
+        14
+      ],
+      "weight": 1
+    },
+    {
+      "form": "adjacentSides",
+      "quad": [
+        0,
+        11,
+        10,
+        14
+      ],
+      "weight": 1
+    },
+    {
+      "form": "adjacentSides",
+      "quad": [
+        0,
+        10,
+        9,
+        14
+      ],
+      "weight": 1
+    },
+    {
+      "form": "adjacentSides",
+      "quad": [
+        0,
+        9,
+        12,
+        14
+      ],
+      "weight": 1
+    },
+    {
+      "form": "innerOuter",
+      "quad": [
+        8,
+        11,
+        1,
+        13
+      ],
+      "weight": 1
+    },
+    {
+      "form": "innerOuter",
+      "quad": [
+        8,
+        11,
+        13,
+        14
+      ],
+      "weight": 1
+    },
+    {
+      "form": "innerOuter",
+      "quad": [
+        11,
+        10,
+        1,
+        13
+      ],
+      "weight": 1
+    },
+    {
+      "form": "innerOuter",
+      "quad": [
+        11,
+        10,
+        13,
+        14
+      ],
+      "weight": 1
+    },
+    {
+      "form": "innerOuter",
+      "quad": [
+        10,
+        9,
+        2,
+        15
+      ],
+      "weight": 1
+    },
+    {
+      "form": "innerOuter",
+      "quad": [
+        10,
+        9,
+        15,
+        16
+      ],
+      "weight": 1
+    },
+    {
+      "form": "innerOuter",
+      "quad": [
+        10,
+        9,
+        16,
+        3
+      ],
+      "weight": 1
+    },
+    {
+      "form": "innerOuter",
+      "quad": [
+        10,
+        9,
+        3,
+        4
+      ],
+      "weight": 1
+    },
+    {
+      "form": "innerOuter",
+      "quad": [
+        10,
+        9,
+        4,
+        5
+      ],
+      "weight": 1
+    },
+    {
+      "form": "innerOuter",
+      "quad": [
+        10,
+        9,
+        5,
+        1
+      ],
+      "weight": 1
+    },
+    {
+      "form": "innerOuter",
+      "quad": [
+        10,
+        9,
+        1,
+        13
+      ],
+      "weight": 1
+    },
+    {
+      "form": "innerOuter",
+      "quad": [
+        10,
+        9,
+        13,
+        14
+      ],
+      "weight": 1
+    },
+    {
+      "form": "innerOuter",
+      "quad": [
+        9,
+        12,
+        2,
+        15
+      ],
+      "weight": 1
+    },
+    {
+      "form": "innerOuter",
+      "quad": [
+        9,
+        12,
+        15,
+        16
+      ],
+      "weight": 1
+    },
+    {
+      "form": "innerOuter",
+      "quad": [
+        9,
+        12,
+        16,
+        3
+      ],
+      "weight": 1
+    },
+    {
+      "form": "innerOuter",
+      "quad": [
+        9,
+        12,
+        3,
+        4
+      ],
+      "weight": 1
+    },
+    {
+      "form": "innerOuter",
+      "quad": [
+        9,
+        12,
+        4,
+        5
+      ],
+      "weight": 1
+    },
+    {
+      "form": "innerOuter",
+      "quad": [
+        9,
+        12,
+        5,
+        1
+      ],
+      "weight": 1
+    },
+    {
+      "form": "innerOuter",
+      "quad": [
+        9,
+        12,
+        1,
+        13
+      ],
+      "weight": 1
+    },
+    {
+      "form": "innerOuter",
+      "quad": [
+        9,
+        12,
+        13,
+        14
+      ],
+      "weight": 1
+    },
+    {
+      "form": "innerOuter",
+      "quad": [
+        12,
+        7,
+        2,
+        15
+      ],
+      "weight": 1
+    },
+    {
+      "form": "innerOuter",
+      "quad": [
+        12,
+        7,
+        15,
+        16
+      ],
+      "weight": 1
+    },
+    {
+      "form": "innerOuter",
+      "quad": [
+        12,
+        7,
+        16,
+        3
+      ],
+      "weight": 1
+    }
+  ]
+}

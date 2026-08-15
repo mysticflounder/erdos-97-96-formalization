@@ -1,0 +1,32 @@
+{
+  "cell": 11,
+  "encoding": {
+    "added_clauses": 361935,
+    "added_variables": 2145,
+    "duplicate_center_clauses": 7920,
+    "edge_count": 66,
+    "equal_k4_clauses": 495,
+    "equilateral_bisector_clauses": 95040,
+    "final_clauses": 732004,
+    "final_variables": 44855,
+    "perpendicular_bisector_clauses": 7920,
+    "relation_variables": 2145,
+    "row_implication_clauses": 18240,
+    "three_triad_clauses": 95040,
+    "transitivity_clauses": 137280
+  },
+  "proof_backed_source_order_clauses_installed": 25,
+  "scope": "finite discovery accelerator only; no authenticated production compiler, terminal proof ingress, universal lift, or Lean closure",
+  "seed_journal": {
+    "path": "scratch/rigid221-sourceheavy-anchor/exact12-v14-source25-other-cells-r1/cell-0011/journal.jsonl",
+    "record_count": 773,
+    "terminal_record_sha256": "6f55dcbf1e5a2e0db4c42881af75bbb4e2a0ce6e27963c14bdc24ac4bf0b7fbb"
+  },
+  "solver": {
+    "admitted_cut_stage_on_sat_cube": null,
+    "detector_stage_on_sat_cube": null,
+    "proof_verified": false,
+    "returncode": 10,
+    "verdict": "SAT"
+  }
+}

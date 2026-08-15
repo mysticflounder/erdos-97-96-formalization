@@ -1,0 +1,74 @@
+{
+  "metric_duplicate_unsat": {
+    "cvc5": {
+      "elapsed_s": 0.006,
+      "expected": "unsat",
+      "status": "unsat"
+    },
+    "z3": {
+      "elapsed_s": 0.006,
+      "expected": "unsat",
+      "status": "unsat"
+    }
+  },
+  "metric_known_sat": {
+    "cvc5": {
+      "elapsed_s": 0.005,
+      "expected": "sat",
+      "status": "sat"
+    },
+    "z3": {
+      "elapsed_s": 0.007,
+      "expected": "sat",
+      "status": "sat"
+    }
+  },
+  "structural_endpoint_outside_alias_unsat": {
+    "cvc5": {
+      "elapsed_s": 0.023,
+      "expected": "unsat",
+      "status": "unsat",
+      "validator": "not_applicable",
+      "validator_failures": []
+    },
+    "z3": {
+      "elapsed_s": 0.014,
+      "expected": "unsat",
+      "status": "unsat",
+      "validator": "not_applicable",
+      "validator_failures": []
+    }
+  },
+  "structural_known_sat": {
+    "cvc5": {
+      "elapsed_s": 0.167,
+      "expected": "sat",
+      "status": "sat",
+      "validator": "pass",
+      "validator_failures": []
+    },
+    "z3": {
+      "elapsed_s": 0.061,
+      "expected": "sat",
+      "status": "sat",
+      "validator": "pass",
+      "validator_failures": []
+    }
+  },
+  "structural_row_contains_center_unsat": {
+    "cvc5": {
+      "elapsed_s": 0.022,
+      "expected": "unsat",
+      "status": "unsat",
+      "validator": "not_applicable",
+      "validator_failures": []
+    },
+    "z3": {
+      "elapsed_s": 0.014,
+      "expected": "unsat",
+      "status": "unsat",
+      "validator": "not_applicable",
+      "validator_failures": []
+    }
+  }
+}

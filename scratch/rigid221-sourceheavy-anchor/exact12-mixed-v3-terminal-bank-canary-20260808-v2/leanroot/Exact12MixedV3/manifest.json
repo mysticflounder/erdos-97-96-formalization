@@ -1,0 +1,45 @@
+{
+  "claims": {
+    "aggregate_cell_coverage": false,
+    "live_theorem_closure": false,
+    "terminal_rup_replayed_in_lean": false,
+    "typed_bank_materialized": true,
+    "universal_lift": false
+  },
+  "coordinator": {
+    "byte_count": 1373,
+    "module": "Exact12MixedV3.TerminalBank",
+    "path": "TerminalBank.lean",
+    "sha256": "db9ccc12939e4acba0eb3ed9e1256d85706694a1c65105014e9a209e5b11f190"
+  },
+  "export_sha256": "6f76488584d5bf8981ed5f526777137ec024d6aa1479d4b5b1c92110569be1f7",
+  "module_prefix": "Exact12MixedV3.TerminalBank",
+  "namespace": "Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress.GeneratedTerminalBank",
+  "records_per_shard": 1,
+  "schema": "p97_rigid221_exact12_typed_terminal_bank_lean.v1",
+  "scope": "authenticated finite typed Lean bank materialization only; not terminal RUP replay, aggregate coverage, universal lift, or closure",
+  "shards": [
+    {
+      "byte_count": 2465,
+      "module": "Exact12MixedV3.TerminalBankShards.Part_001",
+      "namespace": "Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress.GeneratedTerminalBankShards.Part_001",
+      "path": "TerminalBankShards/Part_001.lean",
+      "sha256": "4f980fd642bee84e50bb246c89aa6f24ab66949200023d3af6911e2fec8ab818"
+    },
+    {
+      "byte_count": 1660,
+      "module": "Exact12MixedV3.TerminalBankShards.Part_002",
+      "namespace": "Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress.GeneratedTerminalBankShards.Part_002",
+      "path": "TerminalBankShards/Part_002.lean",
+      "sha256": "5befa36e1caa2ca7a8419838e7bb47e5e45fa1984e23e379c5b40cfe11c7bd58"
+    }
+  ],
+  "source": {
+    "cell_index": 0,
+    "journal_sha256": "69abc95a9128bc5b94689175d776b5cdc6d59f4b9b43ac7496cef57e23aaae77",
+    "packet": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/rigid221-sourceheavy-anchor/exact12-mixed-v3-terminal-bank-canary-20260808-v2/prepared",
+    "receipt_sha256": "91721ce408df784abf6f16f97e804bd26935fbea897ad6aca0aa4fa482feff7a",
+    "records": 2,
+    "terminal_bank_manifest_sha256": "47762d545ff1a841473ec2565b6686c5cdcf15c92ed6ee5f42005f50a36cc61a"
+  }
+}

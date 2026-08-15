@@ -1,0 +1,61 @@
+{
+  "schema": "freshthird_aligned_q_core_v6_tri_apex_rich_deletion_interior",
+  "tier": "interior",
+  "source_basis": [
+    "ApexRichClassStructure (S6: positive radius and class card >= 6)",
+    "ApexRichClassStructure (D44: two distinct positive radii, each class card >= 4)",
+    "apexRichDeletionPattern_of_apexRichClassStructure",
+    "TriApexRichDeletionPattern (one common deletion)",
+    "criticalShell_inter_selectedClass_card_le_two_of_apexRich",
+    "OppositeCapRichDeletionCoupledPattern (off-first-cap apexes)"
+  ],
+  "apexes": [
+    "oppApex1",
+    "oppApex2",
+    "surplusApex"
+  ],
+  "point_universe": [
+    "source0",
+    "source1",
+    "x0",
+    "x1",
+    "y0",
+    "y1",
+    "qFresh",
+    "qOther",
+    "shellOverlap",
+    "fill0",
+    "fill1",
+    "fill2",
+    "fill3"
+  ],
+  "fixed_v6_arm": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "blocker_modes": [
+    "distinct",
+    "equal"
+  ],
+  "rich_modes": [
+    "S6",
+    "D44"
+  ],
+  "cap_interior_pattern": true,
+  "cap_interior_cardinality_assumption": "none",
+  "clauses": [
+    "one shared common_deleted vertex for all three apex witnesses",
+    "S6: radius > 0, class cardinality >= 6, survivor = class minus common_deleted, survivor cardinality >= 5",
+    "D44: radii > 0 and distinct, disjoint class1/class2 cardinalities >= 4, at least one survivor cardinality >= 4",
+    "each rich selected class intersects every synchronized x/y shell in at most 2",
+    "each rich selected class at one apex intersects each rich selected class at another apex in at most 2",
+    "common deletion outside cap2/cap3 interiors; off-first-cap S6 survivor\u2229capInterior >= 4 and D44 survivor\u2229capInterior >= 2 per radius; full S6/D44 survivor clauses are coupled",
+    "all v6 shell synchronization, endpoint, source absence, row/Q shell bounds, and blocker controls retained"
+  ],
+  "matrix_query_count": 16,
+  "control_query_count": 7,
+  "generated_smt2": 23,
+  "status": "PASS"
+}

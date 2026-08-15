@@ -1,0 +1,63 @@
+{
+  "child": {
+    "bytes": 291621334,
+    "clauses": 5847264,
+    "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/exact17-lean-to-sat/exact17-thirty-sixth-root-thirty-fifth-model-refinements.cnf",
+    "sha256": "e2236eaa12b10117c0540b2ea545f177e5070b6d96a0ac96668a733fe501eae5",
+    "variables": 308
+  },
+  "immutability": "exclusive-hard-link-and-exclusive-receipt/v1",
+  "lean": {
+    "export": {
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenThirtyFifthModelRefinementsExport.lean",
+      "sha256": "e2a8ace13ba96883b7c515aa2831dd723d383af602a1f017a2440911ca845a20"
+    },
+    "refinement": {
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenThirtyFifthCanonicalizedPerpendicularBisectorRefinement.lean",
+      "sha256": "73547ec8929e39c3bbd578d397a933ce399c7cafd9e328a318d0a758be02ebdb"
+    },
+    "root": {
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenThirtyFifthModelRefinements.lean",
+      "sha256": "df5b934e4ee00c952996decd72f61b8f032415e0620d1044922c50b05c771c0c"
+    }
+  },
+  "model": {
+    "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/exact17-lean-to-sat/piqd-child35-core1-custody-model.json",
+    "sha256": "e9d1f74d246225353bbb503c480f44ca2376674a1a6f99b19651b8e7ae5637b3"
+  },
+  "parent": {
+    "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/exact17-lean-to-sat/exact17-thirty-fifth-root-thirty-fourth-model-refinements.cnf",
+    "sha256": "0ce510af7c5c653719cb2d1250c8577e9c48d244605182bfe8b91112c538787f"
+  },
+  "publication_state": "PROVISIONED",
+  "schema": "p97-exact17-child36-immutable-export-receipt/v1",
+  "status": "PASS",
+  "validation": {
+    "child": {
+      "bytes": 291621334,
+      "clauses": 5847264,
+      "sha256": "e2236eaa12b10117c0540b2ea545f177e5070b6d96a0ac96668a733fe501eae5",
+      "variables": 308
+    },
+    "model": {
+      "job_id": "4fa2037f-d0da-42b9-862d-6e78cc3a9498",
+      "parent_replay_exact": true,
+      "sha256": "e9d1f74d246225353bbb503c480f44ca2376674a1a6f99b19651b8e7ae5637b3"
+    },
+    "motivating_model_cut_suffix_indices": [
+      3
+    ],
+    "ordered_suffix_exact": true,
+    "ordered_suffix_sha256": "bdcc34ed94e6aae217fe3baa4a3e12713e5743e2df5d3c5596134ee08a59d3f9",
+    "parent": {
+      "clauses": 5847260,
+      "sha256": "0ce510af7c5c653719cb2d1250c8577e9c48d244605182bfe8b91112c538787f"
+    },
+    "publication_state": "PROVISIONED",
+    "schema": "p97-exact17-child36-export-validation/v1",
+    "source_clause_families": [
+      "child35CanonicalPerpBisectorClauses"
+    ],
+    "status": "PASS"
+  }
+}

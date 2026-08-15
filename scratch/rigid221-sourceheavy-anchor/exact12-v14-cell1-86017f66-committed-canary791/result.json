@@ -1,0 +1,15 @@
+{
+  "candidate_retired": true,
+  "current_source_replayed": true,
+  "new_detector_contract_sha256": "9575c214c6380f3b3143668ca0e55146018211b01e4449a16c046a22fb46002f",
+  "new_terminal_record_sha256": "211b23a0ef538a8f125ddd6ae9baefbd9034069307a75b5d40a1520a834bccbc",
+  "old_detector_contract_sha256": "e05ba34be64be984f02a5ec59da6c89f62fcba30ae76fec084ea89d3c037ec03",
+  "old_terminal_record_sha256": "cf76307d4a460e3ffb25d3619c07be5d047678814df12e02526c605aa7f7e8fe",
+  "output": "scratch/rigid221-sourceheavy-anchor/exact12-v14-cell1-86017f66-committed-canary791/journal.jsonl",
+  "output_bytes": 133536048,
+  "output_parent_verified_at_publication": true,
+  "output_sha256": "e3e93d49378e856baa0cd4aa6b8848b524f1a0f2bef36a6a7280689eb6edee03",
+  "records": 791,
+  "replay_inputs_in_memory": true,
+  "source_snapshot_replayed": true
+}

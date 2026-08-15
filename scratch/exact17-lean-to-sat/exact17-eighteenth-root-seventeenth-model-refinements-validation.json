@@ -1,0 +1,23 @@
+{
+  "clauses": 5846160,
+  "motivating_model_cut_clauses": {
+    "bisector": [
+      5846145
+    ],
+    "convex_five_one": [
+      5846149
+    ],
+    "convex_five_two": [
+      5846153
+    ],
+    "generic_cancellation": [
+      5846157
+    ]
+  },
+  "new_clauses": 16,
+  "orbit_clauses": 4,
+  "parent_prefix_byte_identical": true,
+  "schema": "p97-exact17-seventeenth-model-refinements-export-validation/v1",
+  "suffix_sha256": "a850923caef662d9d50fb7877d68f1140a7a6d32a955fdf9a130bef6270f4178",
+  "variables": 308
+}

@@ -1,0 +1,38 @@
+{
+  "clauses": 5846144,
+  "dimacs_bytes": 291570878,
+  "dimacs_sha256": "f02af969370d424cc45059e6f7996dce60b5efdabe0f9d8a34d89d42da40448c",
+  "manifest_sha256": "38dcebf8796f8e822cf45d58fe1bd4b5a7d810c9184631460a1e3d5dcad9b9c7",
+  "motivating_model_cut_clauses": {
+    "bisector_one": [
+      5846113
+    ],
+    "bisector_two": [
+      5846117
+    ],
+    "convex_five_one": [
+      5846129
+    ],
+    "convex_five_two": [
+      5846133
+    ],
+    "equilateral_collision": [
+      5846125
+    ],
+    "generic_cancellation": [
+      5846137
+    ],
+    "kalmanson_l": [
+      5846121
+    ],
+    "perpendicular_bisector": [
+      5846141
+    ]
+  },
+  "new_clauses": 32,
+  "parent_ingress_status": "PASS",
+  "piqd_daemon_sha256": "0cfc9577656fa3aef143a9fe7e5577d938dba9fd39f3b7118ed91735c97fc360",
+  "schema": "p97-exact17-lean-sixteenth-model-refinements-piqd-ingress-validation/v1",
+  "status": "PASS",
+  "variables": 308
+}

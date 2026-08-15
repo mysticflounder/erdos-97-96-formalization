@@ -1,0 +1,14 @@
+{
+  "appended_clauses": 34,
+  "base_prefix_byte_exact": true,
+  "certificates_exactly_replayed": 1,
+  "checked_images": 34,
+  "clauses": 2876355,
+  "cnf": "scratch/rigid221-blockerv-exact17-20260806/weighted-dihedral-appender-smoke-seed3819/o0-p0-1.cnf",
+  "cnf_sha256": "58dd95d11f4120e3acd4398597f09dd5b5225a96fdd4ec80adadd67ebdcb6284",
+  "manifest": "scratch/rigid221-blockerv-exact17-20260806/weighted-dihedral-appender-smoke-seed3819/o0-p0-1.manifest.json",
+  "manifest_sha256": "3e1bfe90dffcbcf9476d15e09e5f026dcba7779ef0d1840bfa081f39fe0477ff",
+  "schema": "p97-rigid221-exact17-weighted-dihedral-cnf-validation-v1",
+  "status": "PASS",
+  "variables": 74813
+}

@@ -1,0 +1,29 @@
+{
+  "output": {
+    "bytes": 4966,
+    "path": "scratch/rigid221-sourceheavy-anchor/five-omission-shared-v3-smoke-label0-20260810/SeededBankSmoke.lean",
+    "sha256": "24a1fe252546773a24cdbaeec645335a5801a81a8246de85ae66d491e146bd4a"
+  },
+  "schema": "p97_source_faithful_five_omission_typed_bank.v2",
+  "scope": "typed cut validity only; no terminal UNSAT or coverage",
+  "source": {
+    "authenticated_bootstrap_record_count": 441,
+    "authenticated_local_record_count": 1,
+    "authenticated_record_count": 442,
+    "deleted_label": 0,
+    "detector_contract_sha256": "375994a3cc65d0113e5b8f6f51c3e52dd04631ee28f43dc1274f104d4af54c49",
+    "emitted_record_count": 2,
+    "formula_contract_sha256": "2e04171ca2599709856bb9ff3b12df0a1ac72efa9bc14d076d563382a8e395d9",
+    "journal": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/rigid221-sourceheavy-anchor/five-omission-shared-v3-smoke-label0-20260810/journal.jsonl",
+    "journal_bytes": 185609,
+    "journal_sha256": "6239daa9816d7ed5768b09b27e86e15aadbfdffe42f4fbaab47614e88dc28f9e",
+    "run_summary": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/rigid221-sourceheavy-anchor/five-omission-shared-v3-smoke-label0-20260810/summary.json",
+    "run_summary_sha256": "532007a455bf6426a62d930f05d2b4f6d0ba86ce469a17ef1a2a623126eb4629",
+    "shared_bank_clause_list_sha256": "904c5cf0bb4f38e97a04a34d49f8241fa6b2509c77951f5f7b2618fc7e5fccc2",
+    "shared_bank_document_sha256": "560765255fd5c52d552d84e5bf3ee108d7f50d27dc5c81913cfdeb93f5a9b4d6",
+    "terminal_record_sha256": "e9dcbb638dac700463b6046321fec8d2f24183c67cb978994949df951b84d5b5"
+  },
+  "stage_counts": {
+    "equality-duplicate-center": 2
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "schema": "p97-exact17-lean-convex-five-point-third-rows-piqd-ingress/v1",
+  "dimacs": {
+    "path": "scratch/exact17-lean-to-sat/extended-cdefg-equal-k4-two-circle-three-row-hijk-interleaved-equality-chain-perp-bisector-chain-two-kalmanson-swapped-de-generic-cancellation-second-convex-five-point.cnf",
+    "sha256": "f3b2abfd20baf6fbd61a2d31cf7635b946fe69f4cd383b1cdf97233d624e38bd",
+    "bytes": 291568386,
+    "variables": 308,
+    "clauses": 5846088,
+    "parent_prefix_clauses": 5846084,
+    "checked_convex_five_point_clauses": 4
+  },
+  "parent_ingress": {
+    "manifest": "scratch/exact17-lean-to-sat/piqd-ingress-manifest-second-generic-cancellation.json",
+    "manifest_sha256": "8413f6e58c5b9f6c18f785cb06be313e38a324854b49f7c4787dba5ea98087de",
+    "validator": "scripts/validate_exact17_second_generic_cancellation_ingress.py",
+    "validator_sha256": "cf14325403743a0eac6720cfda9175bde116ddebf5fbfc149a7e3705933211f5",
+    "report": "scratch/exact17-lean-to-sat/piqd-ingress-second-generic-cancellation-validation.json",
+    "report_sha256": "836b74eb3b8912c6ef4829ff84fde7127e6e898ef4819d96a0d6b4d74e19fa1f"
+  },
+  "lean": {
+    "toolchain": "leanprover/lean4:v4.27.0",
+    "toolchain_file_sha256": "d55ca0039a5479db5b38919d005b2c427b89b3be4f0184a20f2f4eae931f5bdb",
+    "lake_manifest_sha256": "48adeb0901038a9dc08e0f80a70d5eb5a609058b849afd582c0c2f6ebe0cbfce",
+    "source_files": [
+      {
+        "path": "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenConvexFivePointThirdRows.lean",
+        "sha256": "e3a98a253a576cbd5358d5b77548ac2006682bd5598f75bda300954d1a223ac2"
+      },
+      {
+        "path": "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenConvexFivePointThirdRowsExport.lean",
+        "sha256": "ccbf80bd768b8e3b471a9b2a1bc4c5c7dadaacac1c08a7ed2624ccaf6f559df9"
+      }
+    ]
+  },
+  "validation": {
+    "script": "scripts/validate_exact17_convex_five_point_third_rows_export.py",
+    "script_sha256": "b4baa416bf819b54230aeb47c0bef66ee867aae425096af0c7d16e481230974c",
+    "model": "scratch/exact17-lean-to-sat/piqd-eleventh-root-model.json",
+    "model_sha256": "e6ee4180e345856212b1b6539abe5d38b6ab5cd2f9af14fa576fbd77820f3314",
+    "report": "scratch/exact17-lean-to-sat/extended-cdefg-equal-k4-two-circle-three-row-hijk-interleaved-equality-chain-perp-bisector-chain-two-kalmanson-swapped-de-generic-cancellation-second-convex-five-point-validation.json",
+    "report_sha256": "5e2f12600790994cda65d32ae3df033db74702402d2b16d264f4b1cf2523b0f4",
+    "parent_prefix_byte_identical": true,
+    "all_convex_five_point_clauses_independently_regenerated": true,
+    "motivating_model_cut": true
+  },
+  "piqd": {
+    "daemon_protocol_version": 1,
+    "daemon_sha256": "0cfc9577656fa3aef143a9fe7e5577d938dba9fd39f3b7118ed91735c97fc360",
+    "ingress": "raw-dimacs/v1",
+    "backend": "cadical",
+    "solver_profile": "sat",
+    "immutable_root_only": true,
+    "python_authored_successor_clause_allowed": false
+  }
+}

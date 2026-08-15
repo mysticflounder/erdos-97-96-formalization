@@ -1,0 +1,92 @@
+{
+  "campaign": "freshthird_crossed_saturation_v1_kalmanson_two_four_row_branch_survival",
+  "claim_scope": "bounded structural CEGAR diagnostic; no universal Lean closure",
+  "domain_semantics": "27-slot compression of named points plus at most eight selected-row fillers; not an ambient-cardinality bound",
+  "cases": 20,
+  "logical_case_space": 240,
+  "enumeration_mode": "first SAT witness per orientation/branch",
+  "jobs": 4,
+  "counts": {
+    "sat": 20
+  },
+  "branch_counts": {
+    "XY:equal_source_blocker__equal_source_blocker": {
+      "sat": 1
+    },
+    "XY:equal_source_blocker__omit_s0": {
+      "sat": 1
+    },
+    "XY:equal_source_blocker__omit_s1": {
+      "sat": 1
+    },
+    "XY:omit_s0__equal_source_blocker": {
+      "sat": 1
+    },
+    "XY:omit_s0__omit_s0": {
+      "sat": 1
+    },
+    "XY:omit_s0__omit_s1": {
+      "sat": 1
+    },
+    "XY:omit_s1__equal_source_blocker": {
+      "sat": 1
+    },
+    "XY:omit_s1__omit_s0": {
+      "sat": 1
+    },
+    "XY:omit_s1__omit_s1": {
+      "sat": 1
+    },
+    "XY:shared": {
+      "sat": 1
+    },
+    "YX:equal_source_blocker__equal_source_blocker": {
+      "sat": 1
+    },
+    "YX:equal_source_blocker__omit_s0": {
+      "sat": 1
+    },
+    "YX:equal_source_blocker__omit_s1": {
+      "sat": 1
+    },
+    "YX:omit_s0__equal_source_blocker": {
+      "sat": 1
+    },
+    "YX:omit_s0__omit_s0": {
+      "sat": 1
+    },
+    "YX:omit_s0__omit_s1": {
+      "sat": 1
+    },
+    "YX:omit_s1__equal_source_blocker": {
+      "sat": 1
+    },
+    "YX:omit_s1__omit_s0": {
+      "sat": 1
+    },
+    "YX:omit_s1__omit_s1": {
+      "sat": 1
+    },
+    "YX:shared": {
+      "sat": 1
+    }
+  },
+  "negative_controls": [
+    {
+      "label": "negative_overfull",
+      "z3": "unsat",
+      "cvc5": "unsat"
+    },
+    {
+      "label": "negative_equal_source_blockers",
+      "z3": "unsat",
+      "cvc5": "unsat"
+    }
+  ],
+  "unknown_policy": "fail closed",
+  "admitted_global_cuts": [
+    "false_of_two_selected_rows_shared_late_pair",
+    "false_of_four_selected_rows_chained_late_pair"
+  ],
+  "closure": "none"
+}

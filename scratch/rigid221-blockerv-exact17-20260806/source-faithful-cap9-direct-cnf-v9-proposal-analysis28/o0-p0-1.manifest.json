@@ -1,0 +1,284 @@
+{
+  "analyses": [
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v5-live14/cadical-portfolio-20260808/seed-11.analysis.json",
+      "sha256": "808893f9754c53a589359b189a88937b04c3867e7df7c9b528293f51c8fb8b25"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v5-live14/cadical-portfolio-20260808/seed-29.analysis.json",
+      "sha256": "f83fb5fc008fa0fa801b9a7fb99992b8cb4da21da02f440d9c2f32688db8a4a6"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v5-live14/cadical-portfolio-20260808/seed-47.analysis.json",
+      "sha256": "2d2c7c96e784c12e74c9221547897d03ffc8b2e6860ffdff7664b015dcfc0f34"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v5-live14/cadical-portfolio-20260808/seed-83.analysis.json",
+      "sha256": "95ef489a5d8f85947ef398c5bfec442ffcca607e226ec7692397cd9eca8779f5"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v6-analysis4/cadical-portfolio-20260808/seed-101.analysis.json",
+      "sha256": "ae3aad6ecfef5f77704219c8df086084d18b4dc6a2d3ca1d61320202f220fc37"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v6-analysis4/cadical-portfolio-20260808/seed-131.analysis.json",
+      "sha256": "cfe84618cdfcca3465a42dc6d27991af581ac10d42f0a13d6e175f38904f6a9e"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v6-analysis4/cadical-portfolio-20260808/seed-167.analysis.json",
+      "sha256": "b654bf5c40955fadeacf9afb62643fa8daad52f8ba7f917dd5823e0c19db8fd1"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v6-analysis4/cadical-portfolio-20260808/seed-193.analysis.json",
+      "sha256": "af26cbcbbf21ecdd65d09d62f227a52dda6fb4097115b03ee428660bafad9854"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v7-analysis8/cadical-portfolio-20260808/seed-211.analysis.json",
+      "sha256": "0f86e38afec237c2b995c09b8757859608d7460393e4bc10ba5ad015e5873729"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v7-analysis8/cadical-portfolio-20260808/seed-251.analysis.json",
+      "sha256": "5ca8e0c5c85ea06862701ae1294165263d1b09a0e900755c631403ab40b24ece"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v7-analysis8/cadical-portfolio-20260808/seed-277.analysis.json",
+      "sha256": "1454e2dbe310f6879c917a808bebcb90fc0f1c7f9183d96b06efaa96600b1036"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v7-analysis8/cadical-portfolio-20260808/seed-307.analysis.json",
+      "sha256": "4887c6c054259757dbbba1387e05a6fc1c6c2d41872901db142ca958700a519a"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v8-proposal-analysis12/cadical-portfolio-20260808/seed-401.analysis.json",
+      "sha256": "eec9fb2057edbb9d0c93cdfd9286e16c0885a1e592e9781169d170ec0ddfd34d"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v8-proposal-analysis12/cadical-portfolio-20260808/seed-409.analysis.json",
+      "sha256": "f81d5a2e03ccaa00702ec6d52bf04e98f99c02b2e96a91dcb286caa9916cbb2b"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v8-proposal-analysis12/cadical-portfolio-20260808/seed-419.analysis.json",
+      "sha256": "5d9d3582e11cf96d67c1ae6d095057db3e03663a0f451f104116206e2f7e63e9"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v8-proposal-analysis12/cadical-portfolio-20260808/seed-431.analysis.json",
+      "sha256": "684287c50a682ceffe7811fa5e1d748310ccd1cb4bee69f08d87d1d1ae31d51f"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v8-proposal-analysis12/cadical-portfolio-20260808/seed-443.analysis.json",
+      "sha256": "fa553a0f2e9e449ac872036c57de6257023c44554fe833bef72608cdce072478"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v8-proposal-analysis12/cadical-portfolio-20260808/seed-457.analysis.json",
+      "sha256": "ee62c34a0d879720a99f9e9fdd87405568b8e419629e95186bf153cb7e17bed6"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v8-proposal-analysis12/cadical-portfolio-20260808/seed-467.analysis.json",
+      "sha256": "40a8809735aef2135c4e820bc681359ac22581779b2399a70c8f217dbdd4ea2c"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v8-proposal-analysis12/cadical-portfolio-20260808/seed-479.analysis.json",
+      "sha256": "326aff5d24496ec80508dc2a8dd007d294a5fc3b8a9e38edd34284e20b5da932"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v8-proposal-analysis12/cadical-portfolio-20260808/seed-491.analysis.json",
+      "sha256": "30bd9ce81c881bd54bfee7774ce59c351460b5d9c6a776d412a1d8bc2541ba24"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v8-proposal-analysis12/cadical-portfolio-20260808/seed-503.analysis.json",
+      "sha256": "6734fe6a7994130d26fafe7e73e6221c8bbc9012e29f565ff3983b40e2275ed9"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v8-proposal-analysis12/cadical-portfolio-20260808/seed-521.analysis.json",
+      "sha256": "5517dc670395cb9e861309cc7b78b51264f428511d40b3b475ec7270542ece2f"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v8-proposal-analysis12/cadical-portfolio-20260808/seed-541.analysis.json",
+      "sha256": "89dd7d8218c3ab49b0e554a726e97fe95281f860c9be20b831693dcbfff11180"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v8-proposal-analysis12/cadical-portfolio-20260808/seed-557.analysis.json",
+      "sha256": "2f020f9d03d098b77a7f49f745c785664ebc4ae3f654d30cf9f3e155b3335815"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v8-proposal-analysis12/cadical-portfolio-20260808/seed-571.analysis.json",
+      "sha256": "83cd5179c7680ba5c08a5cf7cdbd440a0385149cd7670087bc9cf9e666e22134"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v8-proposal-analysis12/cadical-portfolio-20260808/seed-587.analysis.json",
+      "sha256": "36e45f4edfa6414f8745ea449ee600b22dbb74d3ddbc03f018d0b8da8a290799"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v8-proposal-analysis12/cadical-portfolio-20260808/seed-601.analysis.json",
+      "sha256": "50f22a2fb2f82b35f19932aae48fbea188f3907ba28e52ea44830c17b9558abe"
+    }
+  ],
+  "anonymous_positions": [
+    0,
+    1
+  ],
+  "artifacts": [
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-transitive-v2/direct6-wave-20260808/pinned-direct6-generic-two-kalmanson-cegar-o0-p0-1-s0.json",
+      "sha256": "e78405c5890ecc838d2b4f2ea04fabe628bbd3ee9776373ec5b67adc7bff4a85"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-transitive-v2/direct6-wave-20260808/pinned-direct6-generic-two-kalmanson-cegar-o0-p0-1-s11.json",
+      "sha256": "f4b7128b0ccb4b38efa3500253261d2aa315a7785501110b6877dbdaece82b41"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-transitive-v2/direct6-wave-20260808/pinned-direct6-generic-two-kalmanson-cegar-o0-p0-1-s13.json",
+      "sha256": "1d0999d1e96890631328e011f0569fa99fe768281dc137731f14ad2645ec0508"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-transitive-v2/direct6-wave-20260808/pinned-direct6-generic-two-kalmanson-cegar-o0-p0-1-s14.json",
+      "sha256": "69c3af569a1146cb00a2fde84ece23bc26a62dbeea0434016efd4927d999a970"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-transitive-v2/direct6-wave-20260808/pinned-direct6-generic-two-kalmanson-cegar-o0-p0-1-s17.json",
+      "sha256": "87da9fad6537b4351151256ad52a2835e114c65ab7caa3c1b7fd86fb36a0ac12"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-transitive-v2/direct6-wave-20260808/pinned-direct6-generic-two-kalmanson-cegar-o0-p0-1-s18.json",
+      "sha256": "a219b05e860e267255fdcf90af21e13be7a75573c8c43c979a7781ef9f97cf7a"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-transitive-v2/direct6-wave-20260808/pinned-direct6-generic-two-kalmanson-cegar-o0-p0-1-s20.json",
+      "sha256": "633456ecf664a5dba8f151f5d409c088ffdd362f49851139eca1f5f90e87d03c"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-transitive-v2/direct6-wave-20260808/pinned-direct6-generic-two-kalmanson-cegar-o0-p0-1-s21.json",
+      "sha256": "23a393c35347f0a680df26b1d700325f103691644da16593d994516e98702ff8"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-transitive-v2/direct6-wave-20260808/pinned-direct6-generic-two-kalmanson-cegar-o0-p0-1-s23.json",
+      "sha256": "c5399213e22a4d644b8f6ba311724cb26e1ffef100ac00dfc23d22b3e8db2150"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-transitive-v2/direct6-wave-20260808/pinned-direct6-generic-two-kalmanson-cegar-o0-p0-1-s3.json",
+      "sha256": "90abe8c6bc6bc3785954e7bd957820a051c728d2b7a75b353ac19ed5642ca6a4"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-transitive-v2/direct6-wave-20260808/pinned-direct6-generic-two-kalmanson-cegar-o0-p0-1-s4.json",
+      "sha256": "c8920d651ea81f3ebaacd10999f402ce2837031834f7e388f5e88386120f6577"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-transitive-v2/direct6-wave-20260808/pinned-direct6-generic-two-kalmanson-cegar-o0-p0-1-s6.json",
+      "sha256": "822d69529c53814f76dbe3bfd64bd4c24791fcb36677d567547f993ff84fc2cf"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-transitive-v2/direct6-wave-20260808/pinned-direct6-generic-two-kalmanson-cegar-o0-p0-1-s7.json",
+      "sha256": "6d211afd29d595df972ce794c13df613d7501ab39a05e070a22ced1f0bb54150"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-transitive-v2/direct6-wave-20260808/pinned-direct6-generic-two-kalmanson-cegar-o0-p0-1-s8.json",
+      "sha256": "f7a697e15230484a8e5e0cc830a50e53bc41395cf1679c4934149861f7d0a5e3"
+    },
+    {
+      "path": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-transitive-v2/direct6-wave-20260808/pinned-direct6-generic-two-kalmanson-cegar-o0-p0-1-s9.json",
+      "sha256": "477b6e38bfe680094cb6f1d0ebf8091443342680f5a8a6b4d39427a05c55437a"
+    }
+  ],
+  "clause_blocks": {
+    "direct_five_ccw_three_rows": 6188,
+    "direct_shared_middle_endpoint_pair": 2380,
+    "direct_six_ccw_two_k2_three_rows": 12376,
+    "exact_four": 83776,
+    "fifth_center_exactly_one": 79,
+    "fifth_row_source_and_one_hit": 135,
+    "initial_learned_patterns": 0,
+    "kalmanson_core": 30940,
+    "learned_nogoods": 905,
+    "named_row_units": 0,
+    "old_row_cap_units": 32,
+    "old_row_outside_partition": 56,
+    "proposal_two_kalmanson_equality_label": 54,
+    "seven_point_schema_c": 272272,
+    "seven_point_schema_f": 272272,
+    "six_point_schema_d": 148512,
+    "six_point_schema_e": 148512,
+    "six_point_schema_g": 148512,
+    "source_coverage": 17,
+    "three_shell_rotation_bank": 904400,
+    "transitive_convex_five_point": 61880,
+    "transitive_label_selected_equality": 32640,
+    "transitive_label_xor_definition": 293760,
+    "transitive_two_circle_bisector": 9520,
+    "two_center_common_hit": 61880,
+    "two_circle_bisector": 9520,
+    "two_rows_shared_late_pair": 2380
+  },
+  "clauses": 2502998,
+  "cnf": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v9-proposal-analysis28/o0-p0-1.cnf",
+  "cnf_sha256": "fb100037cb9a64fd21ed58900870066b35d7be6d4eae56ca7b59b20d484b1ccd",
+  "cut_admission": {
+    "direct_five_ccw_three_rows": {
+      "clauses": 6188,
+      "lean_consumer": "Problem97.CapCrossingKalmansonBridge.false_of_selected_rows_in_five_ccw_order",
+      "orientation_scope": "increasing_in_frozen_order_only"
+    },
+    "direct_shared_middle_endpoint_pair": {
+      "clauses": 2380,
+      "lean_consumer": "Problem97.CapCrossingKalmansonBridge.false_of_two_selected_middle_rows_shared_endpoint_pair",
+      "orientation_scope": "increasing_in_frozen_order_only"
+    },
+    "direct_six_ccw_two_k2_three_rows": {
+      "clauses": 12376,
+      "lean_consumer": "Problem97.CapCrossingKalmansonBridge.false_of_six_ccw_two_k2_three_selected_rows",
+      "orientation_scope": "increasing_in_frozen_order_only"
+    },
+    "two_rows_shared_late_pair": {
+      "antecedent": "selected[a,c] and selected[a,d] and selected[b,c] and selected[b,d]",
+      "clauses": 2380,
+      "lean_consumer": "Problem97.CapCrossingKalmansonBridge.false_of_two_selected_rows_shared_late_pair",
+      "orientation_scope": "increasing_in_frozen_order_only"
+    }
+  },
+  "learned_record_kinds": {
+    "formalized-bank": 735,
+    "weighted-kalmanson": 173
+  },
+  "learned_replay": "skipped_proposal_only",
+  "order": [
+    0,
+    6,
+    8,
+    11,
+    10,
+    9,
+    12,
+    7,
+    2,
+    15,
+    16,
+    3,
+    4,
+    5,
+    1,
+    13,
+    14
+  ],
+  "order_index": 0,
+  "schema": "p97-rigid221-exact17-source-faithful-boolean-cnf-transitive-two-circle-candidate-v4",
+  "scope": "one normalized cap-nine case; nogood soundness and Lean lift remain separate",
+  "source_hashes": {
+    "base_cnf_exporter": "8082ce7f850a698b97ae8e59b44157581c25f46a3c0fc5a876c969ff1ee75036",
+    "direct_exporter": "a4075eefb07f15a4f853945fb8133fc147ce0d3f87076f96a5c3d9949a9db5a8",
+    "direct_row_consumers": "cf4c1cdf49ed9745ee5cf8e1c80773ad2785fef15b97f19b5d8f805297c97338",
+    "fullcover": "b8cbdae751221fd313b0627b7b18ef734b604c6847a49d9ad11d6fc2e99f159e",
+    "order_base": "4ec264668923dd6534455313fad47b6e9abb78558c6556c5029f7243edaee1d5",
+    "producer_bank": "faba6bb029067e19f3f5d3cb26b14139d2c01dc933f0c525be65bb76d1081002",
+    "shared_late_pair": "31985fd32b71c543e546b7363e7d5595418eecf9e90e4cf17a1ad42e18d81249",
+    "source_runner": "9bb7ae8193b6c427273802b850bf8628a6a6a6762a6798afb30b9c138eee55a2"
+  },
+  "transitive_two_circle": true,
+  "transitive_two_circle_metadata": {
+    "comparison_xor_variables": 73440,
+    "distance_label_bits": 8,
+    "distance_label_variables": 1088,
+    "edge_pair_comparisons": 9180,
+    "five_point_forbidden_cores": 61880,
+    "forbidden_cores": 9520
+  },
+  "variables": 74813
+}

@@ -1,0 +1,60 @@
+{
+  "dihedral_edges": [
+    {
+      "appended_clauses": 34,
+      "certificates": 1,
+      "checked_images": 34,
+      "manifest": "scratch/rigid221-blockerv-exact17-20260806/lazy-global-kalmanson-loop-dihedral-parallel-b-source-frozen-20260809/iteration-0003-seed-4304/derived/o0-p0-1.manifest.json",
+      "manifest_sha256": "ec3d75447d92ecc6143ad74586e97f5017c3528091c99c977372d824939506fc",
+      "validation": "scratch/rigid221-blockerv-exact17-20260806/lazy-global-kalmanson-loop-dihedral-parallel-b-source-frozen-20260809/chain-validation-edges/edge-0000.json",
+      "validation_sha256": "f48028d3a933929b21ebcfd10c6e07e5fb6de826fe80661d00b7fd81f6b85a6f"
+    },
+    {
+      "appended_clauses": 34,
+      "certificates": 1,
+      "checked_images": 34,
+      "manifest": "scratch/rigid221-blockerv-exact17-20260806/lazy-global-kalmanson-loop-dihedral-parallel-b-source-frozen-20260809/iteration-0002-seed-4303/derived/o0-p0-1.manifest.json",
+      "manifest_sha256": "e03b53523803b5d973144a0569dd2ee9ff7ee02b2c6e2e87ce9fb04577592309",
+      "validation": "scratch/rigid221-blockerv-exact17-20260806/lazy-global-kalmanson-loop-dihedral-parallel-b-source-frozen-20260809/chain-validation-edges/edge-0001.json",
+      "validation_sha256": "75e306831127ccecc1da91586bb8702e3728475c9a3ac28841ffe0a35ef92d88"
+    },
+    {
+      "appended_clauses": 34,
+      "certificates": 1,
+      "checked_images": 34,
+      "manifest": "scratch/rigid221-blockerv-exact17-20260806/lazy-global-kalmanson-loop-dihedral-parallel-b-source-frozen-20260809/iteration-0001-seed-4302/derived/o0-p0-1.manifest.json",
+      "manifest_sha256": "fb6a8acb98cadb2f07759f586a173483c69a0b9e2a29f341378b881d16f493f1",
+      "validation": "scratch/rigid221-blockerv-exact17-20260806/lazy-global-kalmanson-loop-dihedral-parallel-b-source-frozen-20260809/chain-validation-edges/edge-0002.json",
+      "validation_sha256": "174e5a2614be018894dbe911fdcd02398b3bd6996af917d0b92c33c1f8d750d4"
+    },
+    {
+      "appended_clauses": 34,
+      "certificates": 1,
+      "checked_images": 34,
+      "manifest": "scratch/rigid221-blockerv-exact17-20260806/lazy-global-kalmanson-loop-dihedral-parallel-b-source-frozen-20260809/iteration-0000-seed-4301/derived/o0-p0-1.manifest.json",
+      "manifest_sha256": "8ef9d7d3971351dfa2ccb7a52858daf35513c5b01d7ebaaf55f6fe001ea14622",
+      "validation": "scratch/rigid221-blockerv-exact17-20260806/lazy-global-kalmanson-loop-dihedral-parallel-b-source-frozen-20260809/chain-validation-edges/edge-0003.json",
+      "validation_sha256": "38ace14730703e9d7e4e19b981ad64f1ed03ec175353fa278fd9ca6821637df1"
+    },
+    {
+      "appended_clauses": 2176,
+      "certificates": 64,
+      "checked_images": 2176,
+      "manifest": "scratch/rigid221-blockerv-exact17-20260806/weighted-dihedral-bank-v3-source-frozen-20260809/o0-p0-1.manifest.json",
+      "manifest_sha256": "9c7cfa24cdd8f4777861fc5b900b354bb3bae2de47a95180f2dc72ac2fd129ae",
+      "validation": "scratch/rigid221-blockerv-exact17-20260806/lazy-global-kalmanson-loop-dihedral-parallel-b-source-frozen-20260809/chain-validation-edges/edge-0004.json",
+      "validation_sha256": "8d0d753782caa6386d9dd04129f5ac50ae2a06dc1b44ae4803639f1527ea36b3"
+    }
+  ],
+  "root_cnf_sha256": "7f30e30d713119c50ef8d39b6d8f6be0ff4ebf9911db77560e3b5faaae1678e9",
+  "root_manifest": "scratch/rigid221-blockerv-exact17-20260806/lazy-global-kalmanson-loop-production3-source-frozen-20260809/iteration-0031-seed-3850/derived/o0-p0-1.manifest.json",
+  "root_manifest_sha256": "29d6cc1df0bef47137f93c4053c7660e1c8a49dddb658bd40339683006caae36",
+  "root_validation": "scratch/rigid221-blockerv-exact17-20260806/lazy-global-kalmanson-loop-production3-source-frozen-20260809/chain-validation.json",
+  "root_validation_sha256": "25fb6f13e14acb7c66de81878533fe75f4cf6faa5e0e38219a98e37266f7e3b0",
+  "schema": "p97-rigid221-exact17-weighted-dihedral-chain-validation-v1",
+  "status": "PASS",
+  "terminal_manifest": "scratch/rigid221-blockerv-exact17-20260806/lazy-global-kalmanson-loop-dihedral-parallel-b-source-frozen-20260809/iteration-0003-seed-4304/derived/o0-p0-1.manifest.json",
+  "terminal_manifest_sha256": "ec3d75447d92ecc6143ad74586e97f5017c3528091c99c977372d824939506fc",
+  "validated_dihedral_edges": 5,
+  "validator_sha256": "d0cd46eb932a10e5c2e95dacbcbb34fb7fec81aa590916be556a0618b117f854"
+}

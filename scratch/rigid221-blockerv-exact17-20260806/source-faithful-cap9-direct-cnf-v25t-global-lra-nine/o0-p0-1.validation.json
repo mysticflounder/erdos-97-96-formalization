@@ -1,0 +1,13 @@
+{
+  "appended_clauses": 9,
+  "base_prefix_byte_exact": true,
+  "certificates_exactly_replayed": 9,
+  "clauses": 2876303,
+  "cnf": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v25t-global-lra-nine/o0-p0-1.cnf",
+  "cnf_sha256": "42ae4aae703e0637f68f678a0b6839274d41fe20d2dcfb61eca0b4b60c9cf513",
+  "manifest": "scratch/rigid221-blockerv-exact17-20260806/source-faithful-cap9-direct-cnf-v25t-global-lra-nine/o0-p0-1.manifest.json",
+  "manifest_sha256": "c025f534b53b666fea2ea58774bda4eceb3a0fd25b606c6878a11c6827b3ac24",
+  "schema": "p97-rigid221-exact17-lazy-weighted-cnf-validation-v1",
+  "status": "PASS",
+  "variables": 74813
+}

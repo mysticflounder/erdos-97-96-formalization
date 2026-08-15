@@ -1,0 +1,56 @@
+{
+  "artifacts": {
+    "detector_contract": {
+      "bytes": 2131,
+      "path": "detector_contract.json",
+      "sha256": "39d4dc5e89740a7fad4733176bd92014573a5b8ac4d5ed39ea5fc4cbf32aa811"
+    },
+    "discovery_cnf": {
+      "bytes": 5129346,
+      "path": "discovery.cnf",
+      "sha256": "e18ccd34e1b92fa83b7b1d7a9ac071279028c48b01a16c93a7dda343f8e49b62"
+    },
+    "job": {
+      "bytes": 8558,
+      "path": "job.json",
+      "sha256": "cf5455652601199b37cde640e15185dbcf893abb5235d9b4ecd5225c5a28d3ea"
+    },
+    "journal": {
+      "bytes": 65305620,
+      "path": "journal.jsonl",
+      "sha256": "9512873ddb9998f485d7959794f84d2d7b97988cd7a92877131c305fb57e26a4"
+    },
+    "proof": null,
+    "survivor": null,
+    "terminal_cnf": null
+  },
+  "cell_index": 4,
+  "detector_contract_sha256": "af373a6601239e97838a73d4573ad6aa643b120e269bacb0fbe8c2e16c150f3d",
+  "discovery_cnf_sha256": null,
+  "discovery_verdict": "SAT",
+  "error": null,
+  "job_id": "c4b7af8edf8bf11237abcc0c8096cd848751c147829d792a65c462061763e522",
+  "journal_replayed": true,
+  "max_iterations": 400,
+  "reconstructed_cnf_sha256": "c48f230f930a8b27e1e82e7210d52ea15f0fc842f8badb5d1ddef8de8e01b089",
+  "records": 400,
+  "replay": {
+    "added_constraints": true,
+    "candidate": true,
+    "exact_cnf": true
+  },
+  "schema": "p97_rigid221_exact12_next_row_tagged_cegar_run.v5",
+  "scope": "one finite next-row-only-hit placement cell; no aggregate coverage, universal lift, terminal bank, or Lean closure",
+  "source_order_bank_sha256": "f5732fc392792362df145b999c4fe739f931d4329c46d8bde7038ac2b85db5d6",
+  "stage_counts": {
+    "equality-duplicate-center": 393,
+    "equality-equilateral-bisector-collision": 4,
+    "equality-perpendicular-bisector-convex": 3
+  },
+  "status": "ITERATION_LIMIT",
+  "terminal_cnf_sha256": null,
+  "terminal_proof_verified": false,
+  "terminal_record_sha256": "911a26aaa08ab56bac0f4c9013f401e233464d6b326b4804b9bb2dcab5d3da8f",
+  "terminal_verdict": null,
+  "timeout_seconds": 60
+}

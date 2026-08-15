@@ -1,0 +1,3308 @@
+{
+  "certificate_scope": "dual-solver status replay plus independently checked finite assignments and source-provenance paths; no proof certificate and no universal coverage",
+  "claims_not_made": [
+    "P97 counterexample",
+    "universal-cardinality lift",
+    "Lean theorem closure",
+    "sorry closure",
+    "Euclidean realizability"
+  ],
+  "controls": {
+    "drop_exact_offsupport_sat": {
+      "expected": "sat",
+      "smt2": "artifacts/controls/drop_exact_offsupport_sat.smt2",
+      "solvers": {
+        "cvc5": {
+          "argv": [
+            "/Users/adam/bin/cvc5",
+            "--lang=smt2",
+            "--produce-models",
+            "--tlimit=15000",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_five_survivor_equality_path_v5/artifacts/controls/drop_exact_offsupport_sat.smt2"
+          ],
+          "log": "artifacts/controls/drop_exact_offsupport_sat.cvc5.log",
+          "log_sha256": "d9dbf94b05b8314af9ca7f2034e92685c33447917605a7243b1099c693a12e5e",
+          "returncode": 0,
+          "solver": "cvc5",
+          "status": "sat"
+        },
+        "z3": {
+          "argv": [
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/.venv/bin/z3",
+            "-T:15",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_five_survivor_equality_path_v5/artifacts/controls/drop_exact_offsupport_sat.smt2"
+          ],
+          "log": "artifacts/controls/drop_exact_offsupport_sat.z3.log",
+          "log_sha256": "d9dbf94b05b8314af9ca7f2034e92685c33447917605a7243b1099c693a12e5e",
+          "returncode": 0,
+          "solver": "z3",
+          "status": "sat"
+        }
+      }
+    },
+    "drop_first_equality_sat": {
+      "expected": "sat",
+      "smt2": "artifacts/controls/drop_first_equality_sat.smt2",
+      "solvers": {
+        "cvc5": {
+          "argv": [
+            "/Users/adam/bin/cvc5",
+            "--lang=smt2",
+            "--produce-models",
+            "--tlimit=15000",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_five_survivor_equality_path_v5/artifacts/controls/drop_first_equality_sat.smt2"
+          ],
+          "log": "artifacts/controls/drop_first_equality_sat.cvc5.log",
+          "log_sha256": "d9dbf94b05b8314af9ca7f2034e92685c33447917605a7243b1099c693a12e5e",
+          "returncode": 0,
+          "solver": "cvc5",
+          "status": "sat"
+        },
+        "z3": {
+          "argv": [
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/.venv/bin/z3",
+            "-T:15",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_five_survivor_equality_path_v5/artifacts/controls/drop_first_equality_sat.smt2"
+          ],
+          "log": "artifacts/controls/drop_first_equality_sat.z3.log",
+          "log_sha256": "d9dbf94b05b8314af9ca7f2034e92685c33447917605a7243b1099c693a12e5e",
+          "returncode": 0,
+          "solver": "z3",
+          "status": "sat"
+        }
+      }
+    },
+    "drop_second_equality_sat": {
+      "expected": "sat",
+      "smt2": "artifacts/controls/drop_second_equality_sat.smt2",
+      "solvers": {
+        "cvc5": {
+          "argv": [
+            "/Users/adam/bin/cvc5",
+            "--lang=smt2",
+            "--produce-models",
+            "--tlimit=15000",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_five_survivor_equality_path_v5/artifacts/controls/drop_second_equality_sat.smt2"
+          ],
+          "log": "artifacts/controls/drop_second_equality_sat.cvc5.log",
+          "log_sha256": "d9dbf94b05b8314af9ca7f2034e92685c33447917605a7243b1099c693a12e5e",
+          "returncode": 0,
+          "solver": "cvc5",
+          "status": "sat"
+        },
+        "z3": {
+          "argv": [
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/.venv/bin/z3",
+            "-T:15",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_five_survivor_equality_path_v5/artifacts/controls/drop_second_equality_sat.smt2"
+          ],
+          "log": "artifacts/controls/drop_second_equality_sat.z3.log",
+          "log_sha256": "d9dbf94b05b8314af9ca7f2034e92685c33447917605a7243b1099c693a12e5e",
+          "returncode": 0,
+          "solver": "z3",
+          "status": "sat"
+        }
+      }
+    },
+    "known_sat": {
+      "expected": "sat",
+      "smt2": "artifacts/controls/known_sat.smt2",
+      "solvers": {
+        "cvc5": {
+          "argv": [
+            "/Users/adam/bin/cvc5",
+            "--lang=smt2",
+            "--produce-models",
+            "--tlimit=15000",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_five_survivor_equality_path_v5/artifacts/controls/known_sat.smt2"
+          ],
+          "log": "artifacts/controls/known_sat.cvc5.log",
+          "log_sha256": "d9dbf94b05b8314af9ca7f2034e92685c33447917605a7243b1099c693a12e5e",
+          "returncode": 0,
+          "solver": "cvc5",
+          "status": "sat"
+        },
+        "z3": {
+          "argv": [
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/.venv/bin/z3",
+            "-T:15",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_five_survivor_equality_path_v5/artifacts/controls/known_sat.smt2"
+          ],
+          "log": "artifacts/controls/known_sat.z3.log",
+          "log_sha256": "d9dbf94b05b8314af9ca7f2034e92685c33447917605a7243b1099c693a12e5e",
+          "returncode": 0,
+          "solver": "z3",
+          "status": "sat"
+        }
+      }
+    },
+    "member_offmember_cycle_unsat": {
+      "expected": "unsat",
+      "smt2": "artifacts/controls/member_offmember_cycle_unsat.smt2",
+      "solvers": {
+        "cvc5": {
+          "argv": [
+            "/Users/adam/bin/cvc5",
+            "--lang=smt2",
+            "--produce-models",
+            "--tlimit=15000",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_five_survivor_equality_path_v5/artifacts/controls/member_offmember_cycle_unsat.smt2"
+          ],
+          "log": "artifacts/controls/member_offmember_cycle_unsat.cvc5.log",
+          "log_sha256": "5c17dfcc2a8f1f30d9e96df6a9825a5030ade046d560332c19de74d93d591a18",
+          "returncode": 0,
+          "solver": "cvc5",
+          "status": "unsat"
+        },
+        "z3": {
+          "argv": [
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/.venv/bin/z3",
+            "-T:15",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_five_survivor_equality_path_v5/artifacts/controls/member_offmember_cycle_unsat.smt2"
+          ],
+          "log": "artifacts/controls/member_offmember_cycle_unsat.z3.log",
+          "log_sha256": "5c17dfcc2a8f1f30d9e96df6a9825a5030ade046d560332c19de74d93d591a18",
+          "returncode": 0,
+          "solver": "z3",
+          "status": "unsat"
+        }
+      }
+    },
+    "nonexact_offsupport_not_disequality_sat": {
+      "expected": "sat",
+      "smt2": "artifacts/controls/nonexact_offsupport_not_disequality_sat.smt2",
+      "solvers": {
+        "cvc5": {
+          "argv": [
+            "/Users/adam/bin/cvc5",
+            "--lang=smt2",
+            "--produce-models",
+            "--tlimit=15000",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_five_survivor_equality_path_v5/artifacts/controls/nonexact_offsupport_not_disequality_sat.smt2"
+          ],
+          "log": "artifacts/controls/nonexact_offsupport_not_disequality_sat.cvc5.log",
+          "log_sha256": "d9dbf94b05b8314af9ca7f2034e92685c33447917605a7243b1099c693a12e5e",
+          "returncode": 0,
+          "solver": "cvc5",
+          "status": "sat"
+        },
+        "z3": {
+          "argv": [
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/.venv/bin/z3",
+            "-T:15",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_five_survivor_equality_path_v5/artifacts/controls/nonexact_offsupport_not_disequality_sat.smt2"
+          ],
+          "log": "artifacts/controls/nonexact_offsupport_not_disequality_sat.z3.log",
+          "log_sha256": "d9dbf94b05b8314af9ca7f2034e92685c33447917605a7243b1099c693a12e5e",
+          "returncode": 0,
+          "solver": "z3",
+          "status": "sat"
+        }
+      }
+    }
+  },
+  "schema": "freshthird-five-survivor-equality-path-v5",
+  "scope": "finite exact-17 structural support model only",
+  "source_labels": {
+    "exact_center_alias": "exact rows at an aliased center have identical supports",
+    "exact_offsupport": "exact support is available only for PRow, PRhoRow, S0Row, S1Row, DBRow",
+    "named_row_equality": "a named row equates center-to-support distances",
+    "row_center_omission": "named positive-radius row omits its center",
+    "v2": "corrected exact-17 alias-aware FreshThird structural ingress",
+    "v4_endpoint": "first-cap endpoints C3/C4 lie in Cap and cannot alias Q0/Q1"
+  },
+  "summary": {
+    "DUAL_SAT_VALIDATED_EQUALITY_CLEAN": 8
+  },
+  "tags": [
+    {
+      "assertion_count": 311,
+      "classification": "DUAL_SAT_VALIDATED_EQUALITY_CLEAN",
+      "cuts": [],
+      "cvc5_model": {
+        "roles": {
+          "C0": 16,
+          "C1": 1,
+          "C2": 3,
+          "C3": 6,
+          "C4": 10,
+          "CP": 4,
+          "CS0": 16,
+          "CS1": 2,
+          "DB": 4,
+          "P1": 15,
+          "P2": 16,
+          "Q0": 3,
+          "Q1": 14,
+          "R1": 10,
+          "R2": 13,
+          "S0": 12,
+          "S1": 1
+        },
+        "rows": {
+          "B0": [
+            0,
+            1,
+            2,
+            12
+          ],
+          "B1": [
+            5,
+            10,
+            11,
+            13
+          ],
+          "B2": [
+            5,
+            6,
+            15,
+            16
+          ],
+          "B3": [
+            0,
+            2,
+            4,
+            15
+          ],
+          "B4": [
+            0,
+            1,
+            15,
+            16
+          ],
+          "Cap": [
+            1,
+            4,
+            6,
+            10,
+            12,
+            13,
+            15,
+            16
+          ],
+          "DBRow": [
+            3,
+            14,
+            15,
+            16
+          ],
+          "PRhoRow": [
+            5,
+            10,
+            11,
+            13
+          ],
+          "PRow": [
+            3,
+            14,
+            15,
+            16
+          ],
+          "R": [
+            5,
+            6,
+            15,
+            16
+          ],
+          "Rh": [
+            8,
+            9,
+            10,
+            13
+          ],
+          "S0Row": [
+            0,
+            1,
+            2,
+            12
+          ],
+          "S1Row": [
+            1,
+            3,
+            12,
+            16
+          ]
+        }
+      },
+      "iteration": 0,
+      "tag": "first_qsource_radius",
+      "terminal_query": "artifacts/first_qsource_radius/candidate_000.smt2",
+      "z3_model": {
+        "roles": {
+          "C0": 5,
+          "C1": 4,
+          "C2": 9,
+          "C3": 13,
+          "C4": 16,
+          "CP": 6,
+          "CS0": 5,
+          "CS1": 2,
+          "DB": 6,
+          "P1": 12,
+          "P2": 13,
+          "Q0": 11,
+          "Q1": 1,
+          "R1": 0,
+          "R2": 3,
+          "S0": 15,
+          "S1": 10
+        },
+        "rows": {
+          "B0": [
+            7,
+            10,
+            14,
+            15
+          ],
+          "B1": [
+            0,
+            1,
+            3,
+            8
+          ],
+          "B2": [
+            8,
+            12,
+            13,
+            14
+          ],
+          "B3": [
+            3,
+            10,
+            12,
+            15
+          ],
+          "B4": [
+            1,
+            3,
+            14,
+            15
+          ],
+          "Cap": [
+            0,
+            3,
+            4,
+            5,
+            6,
+            10,
+            12,
+            13,
+            15,
+            16
+          ],
+          "DBRow": [
+            1,
+            11,
+            12,
+            13
+          ],
+          "PRhoRow": [
+            0,
+            1,
+            3,
+            8
+          ],
+          "PRow": [
+            1,
+            11,
+            12,
+            13
+          ],
+          "R": [
+            8,
+            12,
+            13,
+            14
+          ],
+          "Rh": [
+            0,
+            2,
+            3,
+            7
+          ],
+          "S0Row": [
+            7,
+            10,
+            14,
+            15
+          ],
+          "S1Row": [
+            0,
+            1,
+            10,
+            15
+          ]
+        }
+      }
+    },
+    {
+      "assertion_count": 311,
+      "classification": "DUAL_SAT_VALIDATED_EQUALITY_CLEAN",
+      "cuts": [],
+      "cvc5_model": {
+        "roles": {
+          "C0": 3,
+          "C1": 16,
+          "C2": 2,
+          "C3": 7,
+          "C4": 4,
+          "CP": 0,
+          "CS0": 3,
+          "CS1": 1,
+          "DB": 0,
+          "P1": 15,
+          "P2": 16,
+          "Q0": 9,
+          "Q1": 14,
+          "R1": 11,
+          "R2": 10,
+          "S0": 7,
+          "S1": 0
+        },
+        "rows": {
+          "B0": [
+            0,
+            1,
+            2,
+            7
+          ],
+          "B1": [
+            5,
+            6,
+            10,
+            11
+          ],
+          "B2": [
+            10,
+            11,
+            12,
+            13
+          ],
+          "B3": [
+            2,
+            3,
+            4,
+            15
+          ],
+          "B4": [
+            0,
+            1,
+            15,
+            16
+          ],
+          "Cap": [
+            0,
+            3,
+            4,
+            7,
+            10,
+            11,
+            15,
+            16
+          ],
+          "DBRow": [
+            9,
+            14,
+            15,
+            16
+          ],
+          "PRhoRow": [
+            5,
+            6,
+            10,
+            11
+          ],
+          "PRow": [
+            9,
+            14,
+            15,
+            16
+          ],
+          "R": [
+            4,
+            8,
+            15,
+            16
+          ],
+          "Rh": [
+            10,
+            11,
+            12,
+            13
+          ],
+          "S0Row": [
+            0,
+            1,
+            2,
+            7
+          ],
+          "S1Row": [
+            0,
+            3,
+            7,
+            16
+          ]
+        }
+      },
+      "iteration": 0,
+      "tag": "first_qsource_rho",
+      "terminal_query": "artifacts/first_qsource_rho/candidate_000.smt2",
+      "z3_model": {
+        "roles": {
+          "C0": 5,
+          "C1": 7,
+          "C2": 9,
+          "C3": 13,
+          "C4": 16,
+          "CP": 10,
+          "CS0": 5,
+          "CS1": 1,
+          "DB": 10,
+          "P1": 3,
+          "P2": 16,
+          "Q0": 4,
+          "Q1": 1,
+          "R1": 14,
+          "R2": 2,
+          "S0": 6,
+          "S1": 11
+        },
+        "rows": {
+          "B0": [
+            6,
+            11,
+            12,
+            15
+          ],
+          "B1": [
+            1,
+            2,
+            12,
+            14
+          ],
+          "B2": [
+            2,
+            10,
+            14,
+            15
+          ],
+          "B3": [
+            6,
+            10,
+            15,
+            16
+          ],
+          "B4": [
+            3,
+            10,
+            12,
+            14
+          ],
+          "Cap": [
+            0,
+            2,
+            3,
+            5,
+            6,
+            7,
+            8,
+            10,
+            11,
+            13,
+            14,
+            16
+          ],
+          "DBRow": [
+            1,
+            3,
+            4,
+            16
+          ],
+          "PRhoRow": [
+            1,
+            2,
+            12,
+            14
+          ],
+          "PRow": [
+            1,
+            3,
+            4,
+            16
+          ],
+          "R": [
+            3,
+            12,
+            13,
+            16
+          ],
+          "Rh": [
+            2,
+            10,
+            14,
+            15
+          ],
+          "S0Row": [
+            6,
+            11,
+            12,
+            15
+          ],
+          "S1Row": [
+            0,
+            3,
+            6,
+            11
+          ]
+        }
+      }
+    },
+    {
+      "assertion_count": 312,
+      "classification": "DUAL_SAT_VALIDATED_EQUALITY_CLEAN",
+      "cuts": [
+        {
+          "candidate_iteration": 0,
+          "clause": "(or (not (= C4 16)) (not (= CP 0)) (not (= CS0 1)) (not B4_0) (not B4_1) (not PRow_1) PRow_16 (not S0Row_0) (not S0Row_16))",
+          "cut_id": "first_qother_radius-cut-000",
+          "discovery_solver": "cvc5",
+          "exact_center_role": "CP",
+          "exact_center_slot": 0,
+          "exact_row": "PRow",
+          "excluded_slot": 16,
+          "member_slot": 1,
+          "minimality": {
+            "merged_duplicate_boolean_facts": true,
+            "shortest_path_in_model_graph": true,
+            "simple_path": true
+          },
+          "path_nodes": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              16
+            ],
+            [
+              0,
+              16
+            ]
+          ],
+          "source_atoms": [
+            {
+              "kind": "role",
+              "name": "C4",
+              "slot": 16,
+              "source": "named_row_equality",
+              "value": true
+            },
+            {
+              "kind": "role",
+              "name": "CP",
+              "slot": 0,
+              "source": "named_row_equality",
+              "value": true
+            },
+            {
+              "kind": "role",
+              "name": "CS0",
+              "slot": 1,
+              "source": "named_row_equality",
+              "value": true
+            },
+            {
+              "kind": "support",
+              "name": "B4",
+              "slot": 0,
+              "source": "named_row_equality",
+              "value": true
+            },
+            {
+              "kind": "support",
+              "name": "B4",
+              "slot": 1,
+              "source": "named_row_equality",
+              "value": true
+            },
+            {
+              "kind": "support",
+              "name": "PRow",
+              "slot": 1,
+              "source": "exact_offsupport",
+              "value": true
+            },
+            {
+              "kind": "support",
+              "name": "PRow",
+              "slot": 16,
+              "source": "exact_offsupport",
+              "value": false
+            },
+            {
+              "kind": "support",
+              "name": "S0Row",
+              "slot": 0,
+              "source": "named_row_equality",
+              "value": true
+            },
+            {
+              "kind": "support",
+              "name": "S0Row",
+              "slot": 16,
+              "source": "named_row_equality",
+              "value": true
+            }
+          ],
+          "source_contract": [
+            "named_row_equality",
+            "exact_offsupport"
+          ],
+          "steps": [
+            {
+              "center_role": "CS0",
+              "center_slot": 1,
+              "from": [
+                0,
+                1
+              ],
+              "left": [
+                0,
+                1
+              ],
+              "right": [
+                1,
+                16
+              ],
+              "row": "S0Row",
+              "support_slots": [
+                0,
+                16
+              ],
+              "to": [
+                1,
+                16
+              ]
+            },
+            {
+              "center_role": "C4",
+              "center_slot": 16,
+              "from": [
+                1,
+                16
+              ],
+              "left": [
+                0,
+                16
+              ],
+              "right": [
+                1,
+                16
+              ],
+              "row": "B4",
+              "support_slots": [
+                0,
+                1
+              ],
+              "to": [
+                0,
+                16
+              ]
+            }
+          ]
+        },
+        {
+          "candidate_iteration": 1,
+          "clause": "(or (not (= C4 16)) (not (= CS1 4)) (not (= DB 0)) (not B4_0) (not B4_4) (not DBRow_4) DBRow_16 (not S1Row_0) (not S1Row_16))",
+          "cut_id": "first_qother_radius-cut-001",
+          "discovery_solver": "z3",
+          "exact_center_role": "DB",
+          "exact_center_slot": 0,
+          "exact_row": "DBRow",
+          "excluded_slot": 16,
+          "member_slot": 4,
+          "minimality": {
+            "merged_duplicate_boolean_facts": true,
+            "shortest_path_in_model_graph": true,
+            "simple_path": true
+          },
+          "path_nodes": [
+            [
+              0,
+              4
+            ],
+            [
+              4,
+              16
+            ],
+            [
+              0,
+              16
+            ]
+          ],
+          "source_atoms": [
+            {
+              "kind": "role",
+              "name": "C4",
+              "slot": 16,
+              "source": "named_row_equality",
+              "value": true
+            },
+            {
+              "kind": "role",
+              "name": "CS1",
+              "slot": 4,
+              "source": "named_row_equality",
+              "value": true
+            },
+            {
+              "kind": "role",
+              "name": "DB",
+              "slot": 0,
+              "source": "named_row_equality",
+              "value": true
+            },
+            {
+              "kind": "support",
+              "name": "B4",
+              "slot": 0,
+              "source": "named_row_equality",
+              "value": true
+            },
+            {
+              "kind": "support",
+              "name": "B4",
+              "slot": 4,
+              "source": "named_row_equality",
+              "value": true
+            },
+            {
+              "kind": "support",
+              "name": "DBRow",
+              "slot": 4,
+              "source": "exact_offsupport",
+              "value": true
+            },
+            {
+              "kind": "support",
+              "name": "DBRow",
+              "slot": 16,
+              "source": "exact_offsupport",
+              "value": false
+            },
+            {
+              "kind": "support",
+              "name": "S1Row",
+              "slot": 0,
+              "source": "named_row_equality",
+              "value": true
+            },
+            {
+              "kind": "support",
+              "name": "S1Row",
+              "slot": 16,
+              "source": "named_row_equality",
+              "value": true
+            }
+          ],
+          "source_contract": [
+            "named_row_equality",
+            "exact_offsupport"
+          ],
+          "steps": [
+            {
+              "center_role": "CS1",
+              "center_slot": 4,
+              "from": [
+                0,
+                4
+              ],
+              "left": [
+                0,
+                4
+              ],
+              "right": [
+                4,
+                16
+              ],
+              "row": "S1Row",
+              "support_slots": [
+                0,
+                16
+              ],
+              "to": [
+                4,
+                16
+              ]
+            },
+            {
+              "center_role": "C4",
+              "center_slot": 16,
+              "from": [
+                4,
+                16
+              ],
+              "left": [
+                0,
+                16
+              ],
+              "right": [
+                4,
+                16
+              ],
+              "row": "B4",
+              "support_slots": [
+                0,
+                4
+              ],
+              "to": [
+                0,
+                16
+              ]
+            }
+          ]
+        }
+      ],
+      "cvc5_model": {
+        "roles": {
+          "C0": 8,
+          "C1": 9,
+          "C2": 2,
+          "C3": 5,
+          "C4": 11,
+          "CP": 3,
+          "CS0": 8,
+          "CS1": 6,
+          "DB": 6,
+          "P1": 15,
+          "P2": 11,
+          "Q0": 1,
+          "Q1": 2,
+          "R1": 8,
+          "R2": 3,
+          "S0": 9,
+          "S1": 0
+        },
+        "rows": {
+          "B0": [
+            0,
+            9,
+            10,
+            16
+          ],
+          "B1": [
+            3,
+            4,
+            7,
+            8
+          ],
+          "B2": [
+            4,
+            6,
+            11,
+            15
+          ],
+          "B3": [
+            0,
+            1,
+            3,
+            13
+          ],
+          "B4": [
+            0,
+            1,
+            5,
+            14
+          ],
+          "Cap": [
+            0,
+            3,
+            5,
+            8,
+            9,
+            11,
+            14,
+            15
+          ],
+          "DBRow": [
+            0,
+            1,
+            2,
+            9
+          ],
+          "PRhoRow": [
+            3,
+            4,
+            7,
+            8
+          ],
+          "PRow": [
+            1,
+            2,
+            11,
+            15
+          ],
+          "R": [
+            4,
+            6,
+            11,
+            15
+          ],
+          "Rh": [
+            1,
+            3,
+            8,
+            12
+          ],
+          "S0Row": [
+            0,
+            9,
+            10,
+            16
+          ],
+          "S1Row": [
+            0,
+            1,
+            2,
+            9
+          ]
+        }
+      },
+      "iteration": 2,
+      "tag": "first_qother_radius",
+      "terminal_query": "artifacts/first_qother_radius/candidate_002.smt2",
+      "z3_model": {
+        "roles": {
+          "C0": 11,
+          "C1": 1,
+          "C2": 2,
+          "C3": 10,
+          "C4": 12,
+          "CP": 13,
+          "CS0": 11,
+          "CS1": 15,
+          "DB": 0,
+          "P1": 14,
+          "P2": 10,
+          "Q0": 16,
+          "Q1": 4,
+          "R1": 13,
+          "R2": 8,
+          "S0": 9,
+          "S1": 5
+        },
+        "rows": {
+          "B0": [
+            5,
+            7,
+            9,
+            15
+          ],
+          "B1": [
+            2,
+            3,
+            8,
+            13
+          ],
+          "B2": [
+            7,
+            10,
+            11,
+            14
+          ],
+          "B3": [
+            7,
+            11,
+            15,
+            16
+          ],
+          "B4": [
+            7,
+            8,
+            11,
+            13
+          ],
+          "Cap": [
+            0,
+            1,
+            5,
+            6,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14
+          ],
+          "DBRow": [
+            4,
+            7,
+            8,
+            15
+          ],
+          "PRhoRow": [
+            2,
+            3,
+            8,
+            13
+          ],
+          "PRow": [
+            4,
+            10,
+            14,
+            16
+          ],
+          "R": [
+            7,
+            10,
+            11,
+            14
+          ],
+          "Rh": [
+            8,
+            13,
+            15,
+            16
+          ],
+          "S0Row": [
+            5,
+            7,
+            9,
+            15
+          ],
+          "S1Row": [
+            5,
+            9,
+            14,
+            16
+          ]
+        }
+      }
+    },
+    {
+      "assertion_count": 311,
+      "classification": "DUAL_SAT_VALIDATED_EQUALITY_CLEAN",
+      "cuts": [
+        {
+          "candidate_iteration": 0,
+          "clause": "(or (not (= CS0 12)) (not (= CS1 7)) (not (= DB 0)) (not DBRow_7) DBRow_12 (not S0Row_0) (not S0Row_7) (not S1Row_0) (not S1Row_12))",
+          "cut_id": "first_qother_rho-cut-000",
+          "discovery_solver": "z3",
+          "exact_center_role": "DB",
+          "exact_center_slot": 0,
+          "exact_row": "DBRow",
+          "excluded_slot": 12,
+          "member_slot": 7,
+          "minimality": {
+            "merged_duplicate_boolean_facts": true,
+            "shortest_path_in_model_graph": true,
+            "simple_path": true
+          },
+          "path_nodes": [
+            [
+              0,
+              7
+            ],
+            [
+              7,
+              12
+            ],
+            [
+              0,
+              12
+            ]
+          ],
+          "source_atoms": [
+            {
+              "kind": "role",
+              "name": "CS0",
+              "slot": 12,
+              "source": "named_row_equality",
+              "value": true
+            },
+            {
+              "kind": "role",
+              "name": "CS1",
+              "slot": 7,
+              "source": "named_row_equality",
+              "value": true
+            },
+            {
+              "kind": "role",
+              "name": "DB",
+              "slot": 0,
+              "source": "named_row_equality",
+              "value": true
+            },
+            {
+              "kind": "support",
+              "name": "DBRow",
+              "slot": 7,
+              "source": "exact_offsupport",
+              "value": true
+            },
+            {
+              "kind": "support",
+              "name": "DBRow",
+              "slot": 12,
+              "source": "exact_offsupport",
+              "value": false
+            },
+            {
+              "kind": "support",
+              "name": "S0Row",
+              "slot": 0,
+              "source": "named_row_equality",
+              "value": true
+            },
+            {
+              "kind": "support",
+              "name": "S0Row",
+              "slot": 7,
+              "source": "named_row_equality",
+              "value": true
+            },
+            {
+              "kind": "support",
+              "name": "S1Row",
+              "slot": 0,
+              "source": "named_row_equality",
+              "value": true
+            },
+            {
+              "kind": "support",
+              "name": "S1Row",
+              "slot": 12,
+              "source": "named_row_equality",
+              "value": true
+            }
+          ],
+          "source_contract": [
+            "named_row_equality",
+            "exact_offsupport"
+          ],
+          "steps": [
+            {
+              "center_role": "CS1",
+              "center_slot": 7,
+              "from": [
+                0,
+                7
+              ],
+              "left": [
+                0,
+                7
+              ],
+              "right": [
+                7,
+                12
+              ],
+              "row": "S1Row",
+              "support_slots": [
+                0,
+                12
+              ],
+              "to": [
+                7,
+                12
+              ]
+            },
+            {
+              "center_role": "CS0",
+              "center_slot": 12,
+              "from": [
+                7,
+                12
+              ],
+              "left": [
+                0,
+                12
+              ],
+              "right": [
+                7,
+                12
+              ],
+              "row": "S0Row",
+              "support_slots": [
+                0,
+                7
+              ],
+              "to": [
+                0,
+                12
+              ]
+            }
+          ]
+        }
+      ],
+      "cvc5_model": {
+        "roles": {
+          "C0": 3,
+          "C1": 1,
+          "C2": 7,
+          "C3": 16,
+          "C4": 11,
+          "CP": 0,
+          "CS0": 3,
+          "CS1": 5,
+          "DB": 12,
+          "P1": 8,
+          "P2": 3,
+          "Q0": 7,
+          "Q1": 9,
+          "R1": 14,
+          "R2": 2,
+          "S0": 0,
+          "S1": 1
+        },
+        "rows": {
+          "B0": [
+            0,
+            1,
+            4,
+            10
+          ],
+          "B1": [
+            2,
+            7,
+            12,
+            14
+          ],
+          "B2": [
+            2,
+            6,
+            13,
+            14
+          ],
+          "B3": [
+            0,
+            1,
+            5,
+            11
+          ],
+          "B4": [
+            0,
+            1,
+            13,
+            16
+          ],
+          "Cap": [
+            0,
+            1,
+            2,
+            3,
+            8,
+            11,
+            14,
+            15,
+            16
+          ],
+          "DBRow": [
+            0,
+            2,
+            9,
+            16
+          ],
+          "PRhoRow": [
+            2,
+            7,
+            12,
+            14
+          ],
+          "PRow": [
+            3,
+            7,
+            8,
+            9
+          ],
+          "R": [
+            3,
+            8,
+            15,
+            16
+          ],
+          "Rh": [
+            2,
+            6,
+            13,
+            14
+          ],
+          "S0Row": [
+            0,
+            1,
+            4,
+            10
+          ],
+          "S1Row": [
+            0,
+            1,
+            14,
+            15
+          ]
+        }
+      },
+      "iteration": 1,
+      "tag": "first_qother_rho",
+      "terminal_query": "artifacts/first_qother_rho/candidate_001.smt2",
+      "z3_model": {
+        "roles": {
+          "C0": 11,
+          "C1": 1,
+          "C2": 2,
+          "C3": 10,
+          "C4": 12,
+          "CP": 13,
+          "CS0": 11,
+          "CS1": 15,
+          "DB": 0,
+          "P1": 14,
+          "P2": 10,
+          "Q0": 16,
+          "Q1": 4,
+          "R1": 13,
+          "R2": 8,
+          "S0": 9,
+          "S1": 5
+        },
+        "rows": {
+          "B0": [
+            5,
+            7,
+            9,
+            15
+          ],
+          "B1": [
+            2,
+            3,
+            8,
+            13
+          ],
+          "B2": [
+            8,
+            13,
+            15,
+            16
+          ],
+          "B3": [
+            7,
+            11,
+            15,
+            16
+          ],
+          "B4": [
+            7,
+            8,
+            11,
+            13
+          ],
+          "Cap": [
+            0,
+            1,
+            5,
+            6,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14
+          ],
+          "DBRow": [
+            4,
+            7,
+            8,
+            15
+          ],
+          "PRhoRow": [
+            2,
+            3,
+            8,
+            13
+          ],
+          "PRow": [
+            4,
+            10,
+            14,
+            16
+          ],
+          "R": [
+            7,
+            10,
+            11,
+            14
+          ],
+          "Rh": [
+            8,
+            13,
+            15,
+            16
+          ],
+          "S0Row": [
+            5,
+            7,
+            9,
+            15
+          ],
+          "S1Row": [
+            5,
+            9,
+            14,
+            16
+          ]
+        }
+      }
+    },
+    {
+      "assertion_count": 311,
+      "classification": "DUAL_SAT_VALIDATED_EQUALITY_CLEAN",
+      "cuts": [],
+      "cvc5_model": {
+        "roles": {
+          "C0": 0,
+          "C1": 2,
+          "C2": 3,
+          "C3": 9,
+          "C4": 8,
+          "CP": 11,
+          "CS0": 1,
+          "CS1": 0,
+          "DB": 11,
+          "P1": 8,
+          "P2": 16,
+          "Q0": 7,
+          "Q1": 15,
+          "R1": 14,
+          "R2": 13,
+          "S0": 9,
+          "S1": 11
+        },
+        "rows": {
+          "B0": [
+            9,
+            10,
+            11,
+            12
+          ],
+          "B1": [
+            1,
+            3,
+            13,
+            14
+          ],
+          "B2": [
+            2,
+            8,
+            10,
+            16
+          ],
+          "B3": [
+            0,
+            4,
+            5,
+            15
+          ],
+          "B4": [
+            0,
+            2,
+            15,
+            16
+          ],
+          "Cap": [
+            0,
+            2,
+            4,
+            5,
+            8,
+            9,
+            11,
+            13,
+            14,
+            16
+          ],
+          "DBRow": [
+            7,
+            8,
+            15,
+            16
+          ],
+          "PRhoRow": [
+            1,
+            3,
+            13,
+            14
+          ],
+          "PRow": [
+            7,
+            8,
+            15,
+            16
+          ],
+          "R": [
+            2,
+            8,
+            10,
+            16
+          ],
+          "Rh": [
+            12,
+            13,
+            14,
+            15
+          ],
+          "S0Row": [
+            8,
+            9,
+            11,
+            15
+          ],
+          "S1Row": [
+            9,
+            10,
+            11,
+            12
+          ]
+        }
+      },
+      "iteration": 0,
+      "tag": "second_qsource_radius",
+      "terminal_query": "artifacts/second_qsource_radius/candidate_000.smt2",
+      "z3_model": {
+        "roles": {
+          "C0": 5,
+          "C1": 15,
+          "C2": 6,
+          "C3": 13,
+          "C4": 16,
+          "CP": 4,
+          "CS0": 0,
+          "CS1": 5,
+          "DB": 4,
+          "P1": 15,
+          "P2": 16,
+          "Q0": 3,
+          "Q1": 1,
+          "R1": 4,
+          "R2": 8,
+          "S0": 7,
+          "S1": 13
+        },
+        "rows": {
+          "B0": [
+            1,
+            7,
+            13,
+            14
+          ],
+          "B1": [
+            0,
+            4,
+            8,
+            12
+          ],
+          "B2": [
+            2,
+            12,
+            15,
+            16
+          ],
+          "B3": [
+            4,
+            12,
+            14,
+            15
+          ],
+          "B4": [
+            10,
+            13,
+            14,
+            15
+          ],
+          "Cap": [
+            2,
+            4,
+            5,
+            7,
+            8,
+            9,
+            10,
+            11,
+            13,
+            15,
+            16
+          ],
+          "DBRow": [
+            1,
+            3,
+            15,
+            16
+          ],
+          "PRhoRow": [
+            0,
+            4,
+            8,
+            12
+          ],
+          "PRow": [
+            1,
+            3,
+            15,
+            16
+          ],
+          "R": [
+            2,
+            12,
+            15,
+            16
+          ],
+          "Rh": [
+            1,
+            4,
+            8,
+            14
+          ],
+          "S0Row": [
+            2,
+            7,
+            8,
+            13
+          ],
+          "S1Row": [
+            1,
+            7,
+            13,
+            14
+          ]
+        }
+      }
+    },
+    {
+      "assertion_count": 311,
+      "classification": "DUAL_SAT_VALIDATED_EQUALITY_CLEAN",
+      "cuts": [],
+      "cvc5_model": {
+        "roles": {
+          "C0": 2,
+          "C1": 1,
+          "C2": 6,
+          "C3": 8,
+          "C4": 11,
+          "CP": 9,
+          "CS0": 0,
+          "CS1": 2,
+          "DB": 9,
+          "P1": 8,
+          "P2": 16,
+          "Q0": 7,
+          "Q1": 15,
+          "R1": 13,
+          "R2": 14,
+          "S0": 9,
+          "S1": 11
+        },
+        "rows": {
+          "B0": [
+            9,
+            10,
+            11,
+            12
+          ],
+          "B1": [
+            6,
+            10,
+            13,
+            14
+          ],
+          "B2": [
+            12,
+            13,
+            14,
+            15
+          ],
+          "B3": [
+            3,
+            4,
+            5,
+            15
+          ],
+          "B4": [
+            1,
+            2,
+            15,
+            16
+          ],
+          "Cap": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            8,
+            9,
+            11,
+            13,
+            14,
+            16
+          ],
+          "DBRow": [
+            7,
+            8,
+            15,
+            16
+          ],
+          "PRhoRow": [
+            6,
+            10,
+            13,
+            14
+          ],
+          "PRow": [
+            7,
+            8,
+            15,
+            16
+          ],
+          "R": [
+            0,
+            8,
+            10,
+            16
+          ],
+          "Rh": [
+            12,
+            13,
+            14,
+            15
+          ],
+          "S0Row": [
+            8,
+            9,
+            11,
+            15
+          ],
+          "S1Row": [
+            9,
+            10,
+            11,
+            12
+          ]
+        }
+      },
+      "iteration": 0,
+      "tag": "second_qsource_rho",
+      "terminal_query": "artifacts/second_qsource_rho/candidate_000.smt2",
+      "z3_model": {
+        "roles": {
+          "C0": 0,
+          "C1": 12,
+          "C2": 2,
+          "C3": 13,
+          "C4": 16,
+          "CP": 10,
+          "CS0": 1,
+          "CS1": 0,
+          "DB": 10,
+          "P1": 6,
+          "P2": 13,
+          "Q0": 3,
+          "Q1": 1,
+          "R1": 15,
+          "R2": 0,
+          "S0": 12,
+          "S1": 11
+        },
+        "rows": {
+          "B0": [
+            2,
+            4,
+            11,
+            12
+          ],
+          "B1": [
+            0,
+            5,
+            14,
+            15
+          ],
+          "B2": [
+            0,
+            1,
+            9,
+            15
+          ],
+          "B3": [
+            6,
+            14,
+            15,
+            16
+          ],
+          "B4": [
+            2,
+            4,
+            14,
+            15
+          ],
+          "Cap": [
+            0,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            15,
+            16
+          ],
+          "DBRow": [
+            1,
+            3,
+            6,
+            13
+          ],
+          "PRhoRow": [
+            0,
+            5,
+            14,
+            15
+          ],
+          "PRow": [
+            1,
+            3,
+            6,
+            13
+          ],
+          "R": [
+            6,
+            8,
+            13,
+            16
+          ],
+          "Rh": [
+            0,
+            1,
+            9,
+            15
+          ],
+          "S0Row": [
+            6,
+            11,
+            12,
+            14
+          ],
+          "S1Row": [
+            2,
+            4,
+            11,
+            12
+          ]
+        }
+      }
+    },
+    {
+      "assertion_count": 315,
+      "classification": "DUAL_SAT_VALIDATED_EQUALITY_CLEAN",
+      "cuts": [
+        {
+          "candidate_iteration": 0,
+          "clause": "(or (not (= C1 11)) (not (= C2 4)) (not (= CP 2)) (not (= DB 0)) (not DBRow_4) DBRow_11 (not PRhoRow_0) (not PRhoRow_2) (not PRow_4) (not PRow_11) (not Rh_0) (not Rh_2))",
+          "cut_id": "second_qother_radius-cut-000",
+          "discovery_solver": "z3",
+          "exact_center_role": "DB",
+          "exact_center_slot": 0,
+          "exact_row": "DBRow",
+          "excluded_slot": 11,
+          "member_slot": 4,
+          "minimality": {
+            "merged_duplicate_boolean_facts": true,
+            "shortest_path_in_model_graph": true,
+            "simple_path": true
+          },
+          "path_nodes": [
+            [
+              0,
+              4
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              2,
+              11
+            ],
+            [
+              0,
+              11
+            ]
+          ],
+          "source_atoms": [
+            {
+              "kind": "role",
+              "name": "C1",
+              "slot": 11,
+              "source": "named_row_equality",
+              "value": true
+            },
+            {
+              "kind": "role",
+              "name": "C2",
+              "slot": 4,
+              "source": "named_row_equality",
+              "value": true
+            },
+            {
+              "kind": "role",
+              "name": "CP",
+              "slot": 2,
+              "source": "named_row_equality",
+              "value": true
+            },
+            {
+              "kind": "role",
+              "name": "DB",
+              "slot": 0,
+              "source": "named_row_equality",
+              "value": true
+            },
+            {
+              "kind": "support",
+              "name": "DBRow",
+              "slot": 4,
+              "source": "exact_offsupport",
+              "value": true
+            },
+            {
+              "kind": "support",
+              "name": "DBRow",
+              "slot": 11,
+              "source": "exact_offsupport",
+              "value": false
+            },
+            {
+              "kind": "support",
+              "name": "PRhoRow",
+              "slot": 0,
+              "source": "named_row_equality",
+              "value": true
+            },
+            {
+              "kind": "support",
+              "name": "PRhoRow",
+              "slot": 2,
+              "source": "named_row_equality",
+              "value": true
+            },
+            {
+              "kind": "support",
+              "name": "PRow",
+              "slot": 4,
+              "source": "named_row_equality",
+              "value": true
+            },
+            {
+              "kind": "support",
+              "name": "PRow",
+              "slot": 11,
+              "source": "named_row_equality",
+              "value": true
+            },
+            {
+              "kind": "support",
+              "name": "Rh",
+              "slot": 0,
+              "source": "named_row_equality",
+              "value": true
+            },
+            {
+              "kind": "support",
+              "name": "Rh",
+              "slot": 2,
+              "source": "named_row_equality",
+              "value": true
+            }
+          ],
+          "source_contract": [
+            "named_row_equality",
+            "exact_offsupport"
+          ],
+          "steps": [
+            {
+              "center_role": "C2",
+              "center_slot": 4,
+              "from": [
+                0,
+                4
+              ],
+              "left": [
+                0,
+                4
+              ],
+              "right": [
+                2,
+                4
+              ],
+              "row": "Rh",
+              "support_slots": [
+                0,
+                2
+              ],
+              "to": [
+                2,
+                4
+              ]
+            },
+            {
+              "center_role": "CP",
+              "center_slot": 2,
+              "from": [
+                2,
+                4
+              ],
+              "left": [
+                2,
+                4
+              ],
+              "right": [
+                2,
+                11
+              ],
+              "row": "PRow",
+              "support_slots": [
+                4,
+                11
+              ],
+              "to": [
+                2,
+                11
+              ]
+            },
+            {
+              "center_role": "C1",
+              "center_slot": 11,
+              "from": [
+                2,
+                11
+              ],
+              "left": [
+                0,
+                11
+              ],
+              "right": [
+                2,
+                11
+              ],
+              "row": "PRhoRow",
+              "support_slots": [
+                0,
+                2
+              ],
+              "to": [
+                0,
+                11
+              ]
+            }
+          ]
+        },
+        {
+          "candidate_iteration": 1,
+          "clause": "(or (not (= C3 16)) (not (= CS1 0)) (not (= DB 5)) (not B3_0) (not B3_5) DBRow_0 (not DBRow_16) (not S1Row_5) (not S1Row_16))",
+          "cut_id": "second_qother_radius-cut-001",
+          "discovery_solver": "cvc5",
+          "exact_center_role": "DB",
+          "exact_center_slot": 5,
+          "exact_row": "DBRow",
+          "excluded_slot": 0,
+          "member_slot": 16,
+          "minimality": {
+            "merged_duplicate_boolean_facts": true,
+            "shortest_path_in_model_graph": true,
+            "simple_path": true
+          },
+          "path_nodes": [
+            [
+              5,
+              16
+            ],
+            [
+              0,
+              16
+            ],
+            [
+              0,
+              5
+            ]
+          ],
+          "source_atoms": [
+            {
+              "kind": "role",
+              "name": "C3",
+              "slot": 16,
+              "source": "named_row_equality",
+              "value": true
+            },
+            {
+              "kind": "role",
+              "name": "CS1",
+              "slot": 0,
+              "source": "named_row_equality",
+              "value": true
+            },
+            {
+              "kind": "role",
+              "name": "DB",
+              "slot": 5,
+              "source": "named_row_equality",
+              "value": true
+            },
+            {
+              "kind": "support",
+              "name": "B3",
+              "slot": 0,
+              "source": "named_row_equality",
+              "value": true
+            },
+            {
+              "kind": "support",
+              "name": "B3",
+              "slot": 5,
+              "source": "named_row_equality",
+              "value": true
+            },
+            {
+              "kind": "support",
+              "name": "DBRow",
+              "slot": 0,
+              "source": "exact_offsupport",
+              "value": false
+            },
+            {
+              "kind": "support",
+              "name": "DBRow",
+              "slot": 16,
+              "source": "exact_offsupport",
+              "value": true
+            },
+            {
+              "kind": "support",
+              "name": "S1Row",
+              "slot": 5,
+              "source": "named_row_equality",
+              "value": true
+            },
+            {
+              "kind": "support",
+              "name": "S1Row",
+              "slot": 16,
+              "source": "named_row_equality",
+              "value": true
+            }
+          ],
+          "source_contract": [
+            "named_row_equality",
+            "exact_offsupport"
+          ],
+          "steps": [
+            {
+              "center_role": "C3",
+              "center_slot": 16,
+              "from": [
+                5,
+                16
+              ],
+              "left": [
+                0,
+                16
+              ],
+              "right": [
+                5,
+                16
+              ],
+              "row": "B3",
+              "support_slots": [
+                0,
+                5
+              ],
+              "to": [
+                0,
+                16
+              ]
+            },
+            {
+              "center_role": "CS1",
+              "center_slot": 0,
+              "from": [
+                0,
+                16
+              ],
+              "left": [
+                0,
+                5
+              ],
+              "right": [
+                0,
+                16
+              ],
+              "row": "S1Row",
+              "support_slots": [
+                5,
+                16
+              ],
+              "to": [
+                0,
+                5
+              ]
+            }
+          ]
+        },
+        {
+          "candidate_iteration": 2,
+          "clause": "(or (not (= C4 16)) (not (= CP 3)) (not (= DB 15)) (not B4_3) (not B4_15) (not DBRow_3) DBRow_16 (not PRow_15) (not PRow_16))",
+          "cut_id": "second_qother_radius-cut-002",
+          "discovery_solver": "z3",
+          "exact_center_role": "DB",
+          "exact_center_slot": 15,
+          "exact_row": "DBRow",
+          "excluded_slot": 16,
+          "member_slot": 3,
+          "minimality": {
+            "merged_duplicate_boolean_facts": true,
+            "shortest_path_in_model_graph": true,
+            "simple_path": true
+          },
+          "path_nodes": [
+            [
+              3,
+              15
+            ],
+            [
+              3,
+              16
+            ],
+            [
+              15,
+              16
+            ]
+          ],
+          "source_atoms": [
+            {
+              "kind": "role",
+              "name": "C4",
+              "slot": 16,
+              "source": "named_row_equality",
+              "value": true
+            },
+            {
+              "kind": "role",
+              "name": "CP",
+              "slot": 3,
+              "source": "named_row_equality",
+              "value": true
+            },
+            {
+              "kind": "role",
+              "name": "DB",
+              "slot": 15,
+              "source": "named_row_equality",
+              "value": true
+            },
+            {
+              "kind": "support",
+              "name": "B4",
+              "slot": 3,
+              "source": "named_row_equality",
+              "value": true
+            },
+            {
+              "kind": "support",
+              "name": "B4",
+              "slot": 15,
+              "source": "named_row_equality",
+              "value": true
+            },
+            {
+              "kind": "support",
+              "name": "DBRow",
+              "slot": 3,
+              "source": "exact_offsupport",
+              "value": true
+            },
+            {
+              "kind": "support",
+              "name": "DBRow",
+              "slot": 16,
+              "source": "exact_offsupport",
+              "value": false
+            },
+            {
+              "kind": "support",
+              "name": "PRow",
+              "slot": 15,
+              "source": "named_row_equality",
+              "value": true
+            },
+            {
+              "kind": "support",
+              "name": "PRow",
+              "slot": 16,
+              "source": "named_row_equality",
+              "value": true
+            }
+          ],
+          "source_contract": [
+            "named_row_equality",
+            "exact_offsupport"
+          ],
+          "steps": [
+            {
+              "center_role": "CP",
+              "center_slot": 3,
+              "from": [
+                3,
+                15
+              ],
+              "left": [
+                3,
+                15
+              ],
+              "right": [
+                3,
+                16
+              ],
+              "row": "PRow",
+              "support_slots": [
+                15,
+                16
+              ],
+              "to": [
+                3,
+                16
+              ]
+            },
+            {
+              "center_role": "C4",
+              "center_slot": 16,
+              "from": [
+                3,
+                16
+              ],
+              "left": [
+                3,
+                16
+              ],
+              "right": [
+                15,
+                16
+              ],
+              "row": "B4",
+              "support_slots": [
+                3,
+                15
+              ],
+              "to": [
+                15,
+                16
+              ]
+            }
+          ]
+        },
+        {
+          "candidate_iteration": 3,
+          "clause": "(or (not (= C3 13)) (not (= CS0 14)) (not (= DB 15)) (not B3_14) (not B3_15) DBRow_13 (not DBRow_14) (not S0Row_13) (not S0Row_15))",
+          "cut_id": "second_qother_radius-cut-003",
+          "discovery_solver": "z3",
+          "exact_center_role": "DB",
+          "exact_center_slot": 15,
+          "exact_row": "DBRow",
+          "excluded_slot": 13,
+          "member_slot": 14,
+          "minimality": {
+            "merged_duplicate_boolean_facts": true,
+            "shortest_path_in_model_graph": true,
+            "simple_path": true
+          },
+          "path_nodes": [
+            [
+              14,
+              15
+            ],
+            [
+              13,
+              14
+            ],
+            [
+              13,
+              15
+            ]
+          ],
+          "source_atoms": [
+            {
+              "kind": "role",
+              "name": "C3",
+              "slot": 13,
+              "source": "named_row_equality",
+              "value": true
+            },
+            {
+              "kind": "role",
+              "name": "CS0",
+              "slot": 14,
+              "source": "named_row_equality",
+              "value": true
+            },
+            {
+              "kind": "role",
+              "name": "DB",
+              "slot": 15,
+              "source": "named_row_equality",
+              "value": true
+            },
+            {
+              "kind": "support",
+              "name": "B3",
+              "slot": 14,
+              "source": "named_row_equality",
+              "value": true
+            },
+            {
+              "kind": "support",
+              "name": "B3",
+              "slot": 15,
+              "source": "named_row_equality",
+              "value": true
+            },
+            {
+              "kind": "support",
+              "name": "DBRow",
+              "slot": 13,
+              "source": "exact_offsupport",
+              "value": false
+            },
+            {
+              "kind": "support",
+              "name": "DBRow",
+              "slot": 14,
+              "source": "exact_offsupport",
+              "value": true
+            },
+            {
+              "kind": "support",
+              "name": "S0Row",
+              "slot": 13,
+              "source": "named_row_equality",
+              "value": true
+            },
+            {
+              "kind": "support",
+              "name": "S0Row",
+              "slot": 15,
+              "source": "named_row_equality",
+              "value": true
+            }
+          ],
+          "source_contract": [
+            "named_row_equality",
+            "exact_offsupport"
+          ],
+          "steps": [
+            {
+              "center_role": "CS0",
+              "center_slot": 14,
+              "from": [
+                14,
+                15
+              ],
+              "left": [
+                13,
+                14
+              ],
+              "right": [
+                14,
+                15
+              ],
+              "row": "S0Row",
+              "support_slots": [
+                13,
+                15
+              ],
+              "to": [
+                13,
+                14
+              ]
+            },
+            {
+              "center_role": "C3",
+              "center_slot": 13,
+              "from": [
+                13,
+                14
+              ],
+              "left": [
+                13,
+                14
+              ],
+              "right": [
+                13,
+                15
+              ],
+              "row": "B3",
+              "support_slots": [
+                14,
+                15
+              ],
+              "to": [
+                13,
+                15
+              ]
+            }
+          ]
+        },
+        {
+          "candidate_iteration": 4,
+          "clause": "(or (not (= C1 10)) (not (= C2 6)) (not (= CP 0)) (not (= DB 11)) (not DBRow_0) DBRow_6 (not PRhoRow_0) (not PRhoRow_6) (not PRow_10) (not PRow_11) (not R_10) (not R_11))",
+          "cut_id": "second_qother_radius-cut-004",
+          "discovery_solver": "cvc5",
+          "exact_center_role": "DB",
+          "exact_center_slot": 11,
+          "exact_row": "DBRow",
+          "excluded_slot": 6,
+          "member_slot": 0,
+          "minimality": {
+            "merged_duplicate_boolean_facts": true,
+            "shortest_path_in_model_graph": true,
+            "simple_path": true
+          },
+          "path_nodes": [
+            [
+              0,
+              11
+            ],
+            [
+              0,
+              10
+            ],
+            [
+              6,
+              10
+            ],
+            [
+              6,
+              11
+            ]
+          ],
+          "source_atoms": [
+            {
+              "kind": "role",
+              "name": "C1",
+              "slot": 10,
+              "source": "named_row_equality",
+              "value": true
+            },
+            {
+              "kind": "role",
+              "name": "C2",
+              "slot": 6,
+              "source": "named_row_equality",
+              "value": true
+            },
+            {
+              "kind": "role",
+              "name": "CP",
+              "slot": 0,
+              "source": "named_row_equality",
+              "value": true
+            },
+            {
+              "kind": "role",
+              "name": "DB",
+              "slot": 11,
+              "source": "named_row_equality",
+              "value": true
+            },
+            {
+              "kind": "support",
+              "name": "DBRow",
+              "slot": 0,
+              "source": "exact_offsupport",
+              "value": true
+            },
+            {
+              "kind": "support",
+              "name": "DBRow",
+              "slot": 6,
+              "source": "exact_offsupport",
+              "value": false
+            },
+            {
+              "kind": "support",
+              "name": "PRhoRow",
+              "slot": 0,
+              "source": "named_row_equality",
+              "value": true
+            },
+            {
+              "kind": "support",
+              "name": "PRhoRow",
+              "slot": 6,
+              "source": "named_row_equality",
+              "value": true
+            },
+            {
+              "kind": "support",
+              "name": "PRow",
+              "slot": 10,
+              "source": "named_row_equality",
+              "value": true
+            },
+            {
+              "kind": "support",
+              "name": "PRow",
+              "slot": 11,
+              "source": "named_row_equality",
+              "value": true
+            },
+            {
+              "kind": "support",
+              "name": "R",
+              "slot": 10,
+              "source": "named_row_equality",
+              "value": true
+            },
+            {
+              "kind": "support",
+              "name": "R",
+              "slot": 11,
+              "source": "named_row_equality",
+              "value": true
+            }
+          ],
+          "source_contract": [
+            "named_row_equality",
+            "exact_offsupport"
+          ],
+          "steps": [
+            {
+              "center_role": "CP",
+              "center_slot": 0,
+              "from": [
+                0,
+                11
+              ],
+              "left": [
+                0,
+                10
+              ],
+              "right": [
+                0,
+                11
+              ],
+              "row": "PRow",
+              "support_slots": [
+                10,
+                11
+              ],
+              "to": [
+                0,
+                10
+              ]
+            },
+            {
+              "center_role": "C1",
+              "center_slot": 10,
+              "from": [
+                0,
+                10
+              ],
+              "left": [
+                0,
+                10
+              ],
+              "right": [
+                6,
+                10
+              ],
+              "row": "PRhoRow",
+              "support_slots": [
+                0,
+                6
+              ],
+              "to": [
+                6,
+                10
+              ]
+            },
+            {
+              "center_role": "C2",
+              "center_slot": 6,
+              "from": [
+                6,
+                10
+              ],
+              "left": [
+                6,
+                10
+              ],
+              "right": [
+                6,
+                11
+              ],
+              "row": "R",
+              "support_slots": [
+                10,
+                11
+              ],
+              "to": [
+                6,
+                11
+              ]
+            }
+          ]
+        }
+      ],
+      "cvc5_model": {
+        "roles": {
+          "C0": 9,
+          "C1": 8,
+          "C2": 13,
+          "C3": 14,
+          "C4": 15,
+          "CP": 1,
+          "CS0": 4,
+          "CS1": 9,
+          "DB": 3,
+          "P1": 10,
+          "P2": 11,
+          "Q0": 13,
+          "Q1": 2,
+          "R1": 1,
+          "R2": 0,
+          "S0": 15,
+          "S1": 16
+        },
+        "rows": {
+          "B0": [
+            7,
+            13,
+            15,
+            16
+          ],
+          "B1": [
+            0,
+            1,
+            7,
+            13
+          ],
+          "B2": [
+            3,
+            10,
+            11,
+            12
+          ],
+          "B3": [
+            0,
+            1,
+            5,
+            9
+          ],
+          "B4": [
+            0,
+            1,
+            8,
+            14
+          ],
+          "Cap": [
+            0,
+            1,
+            8,
+            9,
+            10,
+            11,
+            14,
+            15,
+            16
+          ],
+          "DBRow": [
+            0,
+            1,
+            2,
+            16
+          ],
+          "PRhoRow": [
+            0,
+            1,
+            7,
+            13
+          ],
+          "PRow": [
+            2,
+            10,
+            11,
+            13
+          ],
+          "R": [
+            3,
+            10,
+            11,
+            12
+          ],
+          "Rh": [
+            0,
+            1,
+            4,
+            6
+          ],
+          "S0Row": [
+            1,
+            14,
+            15,
+            16
+          ],
+          "S1Row": [
+            7,
+            13,
+            15,
+            16
+          ]
+        }
+      },
+      "iteration": 5,
+      "tag": "second_qother_radius",
+      "terminal_query": "artifacts/second_qother_radius/candidate_005.smt2",
+      "z3_model": {
+        "roles": {
+          "C0": 12,
+          "C1": 2,
+          "C2": 9,
+          "C3": 8,
+          "C4": 16,
+          "CP": 4,
+          "CS0": 5,
+          "CS1": 12,
+          "DB": 0,
+          "P1": 15,
+          "P2": 16,
+          "Q0": 14,
+          "Q1": 6,
+          "R1": 12,
+          "R2": 8,
+          "S0": 4,
+          "S1": 2
+        },
+        "rows": {
+          "B0": [
+            2,
+            4,
+            9,
+            10
+          ],
+          "B1": [
+            8,
+            10,
+            12,
+            13
+          ],
+          "B2": [
+            0,
+            10,
+            15,
+            16
+          ],
+          "B3": [
+            3,
+            9,
+            10,
+            13
+          ],
+          "B4": [
+            8,
+            9,
+            12,
+            15
+          ],
+          "Cap": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            7,
+            8,
+            11,
+            12,
+            15,
+            16
+          ],
+          "DBRow": [
+            6,
+            8,
+            9,
+            10
+          ],
+          "PRhoRow": [
+            8,
+            10,
+            12,
+            13
+          ],
+          "PRow": [
+            6,
+            14,
+            15,
+            16
+          ],
+          "R": [
+            0,
+            10,
+            15,
+            16
+          ],
+          "Rh": [
+            3,
+            6,
+            8,
+            12
+          ],
+          "S0Row": [
+            2,
+            4,
+            14,
+            16
+          ],
+          "S1Row": [
+            2,
+            4,
+            9,
+            10
+          ]
+        }
+      }
+    },
+    {
+      "assertion_count": 310,
+      "classification": "DUAL_SAT_VALIDATED_EQUALITY_CLEAN",
+      "cuts": [],
+      "cvc5_model": {
+        "roles": {
+          "C0": 9,
+          "C1": 7,
+          "C2": 5,
+          "C3": 12,
+          "C4": 2,
+          "CP": 0,
+          "CS0": 3,
+          "CS1": 9,
+          "DB": 8,
+          "P1": 2,
+          "P2": 9,
+          "Q0": 11,
+          "Q1": 10,
+          "R1": 4,
+          "R2": 15,
+          "S0": 14,
+          "S1": 12
+        },
+        "rows": {
+          "B0": [
+            6,
+            12,
+            14,
+            16
+          ],
+          "B1": [
+            4,
+            5,
+            6,
+            15
+          ],
+          "B2": [
+            4,
+            13,
+            15,
+            16
+          ],
+          "B3": [
+            0,
+            5,
+            11,
+            14
+          ],
+          "B4": [
+            0,
+            7,
+            14,
+            15
+          ],
+          "Cap": [
+            0,
+            2,
+            4,
+            7,
+            8,
+            9,
+            12,
+            14,
+            15
+          ],
+          "DBRow": [
+            2,
+            3,
+            10,
+            16
+          ],
+          "PRhoRow": [
+            4,
+            5,
+            6,
+            15
+          ],
+          "PRow": [
+            2,
+            9,
+            10,
+            11
+          ],
+          "R": [
+            1,
+            2,
+            8,
+            9
+          ],
+          "Rh": [
+            4,
+            13,
+            15,
+            16
+          ],
+          "S0Row": [
+            0,
+            2,
+            12,
+            14
+          ],
+          "S1Row": [
+            6,
+            12,
+            14,
+            16
+          ]
+        }
+      },
+      "iteration": 0,
+      "tag": "second_qother_rho",
+      "terminal_query": "artifacts/second_qother_rho/candidate_000.smt2",
+      "z3_model": {
+        "roles": {
+          "C0": 11,
+          "C1": 14,
+          "C2": 4,
+          "C3": 13,
+          "C4": 16,
+          "CP": 9,
+          "CS0": 5,
+          "CS1": 11,
+          "DB": 0,
+          "P1": 11,
+          "P2": 15,
+          "Q0": 12,
+          "Q1": 4,
+          "R1": 13,
+          "R2": 0,
+          "S0": 3,
+          "S1": 14
+        },
+        "rows": {
+          "B0": [
+            3,
+            5,
+            10,
+            14
+          ],
+          "B1": [
+            0,
+            5,
+            10,
+            13
+          ],
+          "B2": [
+            0,
+            1,
+            13,
+            16
+          ],
+          "B3": [
+            5,
+            10,
+            15,
+            16
+          ],
+          "B4": [
+            5,
+            13,
+            14,
+            15
+          ],
+          "Cap": [
+            0,
+            1,
+            2,
+            3,
+            6,
+            7,
+            8,
+            9,
+            11,
+            13,
+            14,
+            15,
+            16
+          ],
+          "DBRow": [
+            4,
+            5,
+            13,
+            16
+          ],
+          "PRhoRow": [
+            0,
+            5,
+            10,
+            13
+          ],
+          "PRow": [
+            4,
+            11,
+            12,
+            15
+          ],
+          "R": [
+            2,
+            5,
+            11,
+            15
+          ],
+          "Rh": [
+            0,
+            1,
+            13,
+            16
+          ],
+          "S0Row": [
+            3,
+            12,
+            14,
+            15
+          ],
+          "S1Row": [
+            3,
+            5,
+            10,
+            14
+          ]
+        }
+      }
+    }
+  ]
+}

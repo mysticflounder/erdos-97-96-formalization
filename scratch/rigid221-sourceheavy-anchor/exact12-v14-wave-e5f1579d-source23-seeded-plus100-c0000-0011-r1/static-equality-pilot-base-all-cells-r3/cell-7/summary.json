@@ -1,0 +1,25 @@
+{
+  "cell": 7,
+  "encoding": {
+    "added_clauses": 361935,
+    "added_variables": 2145,
+    "duplicate_center_clauses": 7920,
+    "edge_count": 66,
+    "equal_k4_clauses": 495,
+    "equilateral_bisector_clauses": 95040,
+    "final_clauses": 731206,
+    "final_variables": 44855,
+    "perpendicular_bisector_clauses": 7920,
+    "relation_variables": 2145,
+    "row_implication_clauses": 18240,
+    "three_triad_clauses": 95040,
+    "transitivity_clauses": 137280
+  },
+  "scope": "finite discovery accelerator only; no authenticated production compiler, terminal proof ingress, universal lift, or Lean closure",
+  "solver": {
+    "detector_stage_on_sat_cube": null,
+    "proof_verified": false,
+    "returncode": 10,
+    "verdict": "SAT"
+  }
+}

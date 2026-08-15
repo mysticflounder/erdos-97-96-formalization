@@ -1,0 +1,81 @@
+{
+  "scope": "exact-17 direct-crossed FreshThird incidence abstraction only",
+  "lean_contract": [
+    {
+      "declaration": "Problem97.FaithfulCarrierPattern",
+      "file": "lean/Erdos9796Proof/P97/U1CarrierInjection.lean",
+      "lines": "1492-1503",
+      "encoded_consequence": "point_k4[c] is one selected four-class at every carrier center c"
+    },
+    {
+      "declaration": "Problem97.Census554.GeneralCarrierBridge.rowPattern",
+      "file": "lean/Erdos9796Proof/P97/Census554/GeneralCarrierBridge.lean",
+      "lines": "108-120",
+      "encoded_consequence": "point_k4 membership is rowPattern membership"
+    },
+    {
+      "declaration": "Problem97.Census554.GeneralCarrierBridge.realizes",
+      "file": "lean/Erdos9796Proof/P97/Census554/GeneralCarrierBridge.lean",
+      "lines": "123-137",
+      "encoded_consequence": "two members of any chosen point_k4 row induce equal center-edge distances"
+    },
+    {
+      "declaration": "Problem97.Census554.EqualityCore.EdgeClosure",
+      "file": "lean/Erdos9796Proof/P97/Census554/EqualityCore.lean",
+      "lines": "104-128",
+      "encoded_consequence": "row equalities, edge reversal, symmetry, and transitivity justify canonical-edge components and path witnesses"
+    },
+    {
+      "declaration": "Problem97.Census554.EqualityCore.ExactOffCircleCore",
+      "file": "lean/Erdos9796Proof/P97/Census554/EqualityCore.lean",
+      "lines": "153-161",
+      "encoded_consequence": "a support edge connected to an off-support edge at the same center is an obstruction core"
+    },
+    {
+      "declaration": "Problem97.Census554.EqualityCore.false_of_exactAt_of_exactOffCircleCore",
+      "file": "lean/Erdos9796Proof/P97/Census554/EqualityCore.lean",
+      "lines": "163-173",
+      "encoded_consequence": "the obstruction contradicts realization when the center row is exact"
+    },
+    {
+      "declaration": "Problem97.Census554.GeneralCarrierBridge.blocker_row_support_eq_shell",
+      "file": "lean/Erdos9796Proof/P97/Census554/GeneralCarrierBridge.lean",
+      "lines": "177-185",
+      "encoded_consequence": "point_k4 at an actual blocker is locked to the source selected shell"
+    },
+    {
+      "declaration": "Problem97.Census554.GeneralCarrierBridge.exactAt_blocker",
+      "file": "lean/Erdos9796Proof/P97/Census554/GeneralCarrierBridge.lean",
+      "lines": "196-225",
+      "encoded_consequence": "exactness guards are enabled only when blocker[source] equals the candidate center"
+    }
+  ],
+  "inherited_encoder": {
+    "file": "scratch/p97-consumer-first/freshthird_aligned_mutual_crossed_v1/diagnostic.py",
+    "constructor": "build_global_k4",
+    "validator": "verify_global_assignment"
+  },
+  "inherited_v3": {
+    "directory": "scratch/p97-consumer-first/freshthird_aligned_mutual_crossed_metric_v1/post_rich_cut_v3",
+    "preserved_constraints": [
+      "add_singleton_rich_exclusion",
+      "add_first_apex_source_singleton_k4_preflight",
+      "add_exact_six_rich_selected_support_preflight"
+    ],
+    "known_assignment_sha256": "a8f18b069b1015b4999e3726ad640d947699e0f003309815ac748c92b2f87997"
+  },
+  "guard_schema": {
+    "identity": "blocker[source] = center",
+    "support": "point_k4[center][support_point]",
+    "off_support": "not point_k4[center][off_support_point]",
+    "path": "both point_k4 memberships inducing every equality step",
+    "clause": "not (identity and support and off_support and every path membership)"
+  },
+  "scope_exclusions": [
+    "reversed crossed constructor",
+    "both deletion residual constructors",
+    "all cardinalities other than 17",
+    "universal finite-core lift",
+    "complete original-P97 ingress"
+  ]
+}

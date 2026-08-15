@@ -1,0 +1,85 @@
+{
+  "dimacs": {
+    "bytes": 291621156,
+    "checked_new_clauses": 4,
+    "clauses": 5847260,
+    "parent_prefix_clauses": 5847256,
+    "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/exact17-lean-to-sat/exact17-thirty-fifth-root-thirty-fourth-model-refinements.cnf",
+    "sha256": "0ce510af7c5c653719cb2d1250c8577e9c48d244605182bfe8b91112c538787f",
+    "variables": 308
+  },
+  "export_receipt": {
+    "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/exact17-lean-to-sat/child35-export-receipt.json",
+    "schema": "p97-exact17-child35-immutable-export-receipt/v1",
+    "sha256": "5c1ad79eedbe7a12619478015c90706662bc52b33e703569d1ae415bbc24476b"
+  },
+  "lean": {
+    "export": {
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenThirtyFourthModelRefinementsExport.lean",
+      "sha256": "ef97f6190632b2f90113da403e0a6971d8d14be894f5c33eafa3d0d7228b69db"
+    },
+    "root": {
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenThirtyFourthModelRefinements.lean",
+      "sha256": "461a58e852d49849b3c4e8c1616e07307b95bb1b294dec5776ea85d8e5094ca5"
+    }
+  },
+  "parent_ingress": {
+    "parent_dimacs_sha256": "ea8311540af709cf991c932c38e52f9767227cf55781508f2791b1dc42c4a819",
+    "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/exact17-lean-to-sat/piqd-ingress-manifest-thirty-third-model-refinements-core1.json",
+    "sha256": "01a53c3772486002cbb7a54fb1db24a21027c38bd9670ab2814eb26fe3ef62a2"
+  },
+  "piqd": {
+    "backend": "cadical",
+    "daemon_build_receipt": {
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/exact17-lean-to-sat/piqd-child35-daemon-build-receipt.txt",
+      "sha256": "6e9c1d5c203d59ac2b29f800d73f4dbb0395b97865433f412ff4aa44c8e1b0a9"
+    },
+    "daemon_protocol_version": 1,
+    "daemon_sha256": "f89994bc10fcad69a264d8efbd7d76b8203c94c08f22b4536d3b473a12cee089",
+    "daemon_source_commit": "acefb4aba14765d45e38ac4193373f0aa210f22d",
+    "immutable_root_only": true,
+    "ingress": "raw-dimacs/v1",
+    "python_authored_successor_clause_allowed": false,
+    "solver_name": "piqd-satworker-cadical-3.0.0",
+    "solver_profile": "sat",
+    "solver_sha256": "0ee355934249f1b3f14a20928877391a87a0dd51326cf8c6135f75cba0b6b965",
+    "solver_signature": "cadical-3.0.0",
+    "stale_job_reuse_allowed": false
+  },
+  "schema": "p97-exact17-thirty-fourth-model-refinements-piqd-ingress/v1",
+  "source_modules": {
+    "kalmanson": {
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenThirtyThirdKalmansonRefinement.lean",
+      "sha256": "67b30f9a4718b1749229ef223482d43f130dc85264b062b29d8d35d2ebfba03d"
+    },
+    "perpendicular_bisector": {
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenThirtyFourthPerpendicularBisectorRefinement.lean",
+      "sha256": "dfc440da5753ecb0051cc4a9245ae27366a1dce55577c9e8171d692cd0966052"
+    }
+  },
+  "status": "PASS",
+  "validation": {
+    "child": {
+      "bytes": 291621156,
+      "clauses": 5847260,
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/exact17-lean-to-sat/exact17-thirty-fifth-root-thirty-fourth-model-refinements.cnf",
+      "sha256": "0ce510af7c5c653719cb2d1250c8577e9c48d244605182bfe8b91112c538787f",
+      "variables": 308
+    },
+    "duplicate_new_clauses": 0,
+    "new_clauses": 4,
+    "ordered_suffix_exact": true,
+    "ordered_suffix_sha256": "89ba7cfd0a4c88b31176a41ddf3d82240743a0b1f87f3437c8c44c9ca3239520",
+    "parent": {
+      "clauses": 5847256,
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/exact17-lean-to-sat/exact17-thirty-fourth-root-thirty-third-model-refinements.cnf",
+      "sha256": "ea8311540af709cf991c932c38e52f9767227cf55781508f2791b1dc42c4a819"
+    },
+    "publication_state": "PROVISIONED",
+    "schema": "p97-exact17-child35-export-validation/v1",
+    "source_clause_families": [
+      "child34PerpBisectorClauses"
+    ],
+    "status": "PASS"
+  }
+}

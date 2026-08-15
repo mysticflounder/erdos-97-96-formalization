@@ -1,0 +1,438 @@
+{
+  "blocker_image_centers": [
+    1,
+    2,
+    5,
+    6,
+    7,
+    8,
+    10,
+    11,
+    12,
+    13,
+    15
+  ],
+  "candidate_universal_theorem": "LANDED: Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.freshThird_alignedRetainedConsumerPacket_sources_not_mem_firstApex_multiPointRadius",
+  "closure_claim": "NONE",
+  "controls": [
+    {
+      "artifact": "generated/malformed_reversed_boundary.smt2",
+      "check_sat_count": 1,
+      "clause_count": 706,
+      "cvc5": {
+        "model_checked_by_cvc5": false,
+        "seconds": 0.069,
+        "status": "UNSAT"
+      },
+      "query": "malformed_reversed_boundary",
+      "z3": {
+        "seconds": 0.017,
+        "status": "UNSAT"
+      }
+    },
+    {
+      "artifact": "generated/malformed_break_k4_equality.smt2",
+      "check_sat_count": 1,
+      "clause_count": 137,
+      "cvc5": {
+        "model_checked_by_cvc5": false,
+        "seconds": 0.016,
+        "status": "UNSAT"
+      },
+      "query": "malformed_break_k4_equality",
+      "z3": {
+        "seconds": 0.0,
+        "status": "UNSAT"
+      }
+    },
+    {
+      "artifact": "generated/malformed_equal_rich_radii.smt2",
+      "check_sat_count": 1,
+      "clause_count": 23,
+      "cvc5": {
+        "model_checked_by_cvc5": false,
+        "seconds": 0.009,
+        "status": "UNSAT"
+      },
+      "query": "malformed_equal_rich_radii",
+      "z3": {
+        "seconds": 0.0,
+        "status": "UNSAT"
+      }
+    },
+    {
+      "artifact": "generated/malformed_break_singleton.smt2",
+      "check_sat_count": 1,
+      "clause_count": 14,
+      "cvc5": {
+        "model_checked_by_cvc5": false,
+        "seconds": 0.008,
+        "status": "UNSAT"
+      },
+      "query": "malformed_break_singleton",
+      "z3": {
+        "seconds": 0.0,
+        "status": "UNSAT"
+      }
+    }
+  ],
+  "fidelity": "SOURCE_INCOMPLETE_EXACT_17_DIRECT_CROSSED_ASSIGNMENT_REJECTION",
+  "first_joint_unsat_stage": "named_rows_and_singletons",
+  "incidence_validation": "PASS",
+  "minimality_controls": [
+    {
+      "artifact": "generated/core_c_first_rich_arm_drop_0.smt2",
+      "check_sat_count": 1,
+      "clause_count": 2,
+      "cvc5": {
+        "model_checked_by_cvc5": true,
+        "seconds": 0.034,
+        "status": "SAT"
+      },
+      "query": "core_c_first_rich_arm_drop_0",
+      "z3": {
+        "all_model_values_rational": true,
+        "exact_substitution_validation": "PASS",
+        "fraction_validation": "PASS",
+        "fraction_validation_errors": [],
+        "model": "generated/core_c_first_rich_arm_drop_0_z3_model.json",
+        "seconds": 0.001,
+        "status": "SAT",
+        "validation_errors": []
+      }
+    },
+    {
+      "artifact": "generated/core_c_first_rich_arm_drop_1.smt2",
+      "check_sat_count": 1,
+      "clause_count": 2,
+      "cvc5": {
+        "model_checked_by_cvc5": true,
+        "seconds": 0.032,
+        "status": "SAT"
+      },
+      "query": "core_c_first_rich_arm_drop_1",
+      "z3": {
+        "all_model_values_rational": true,
+        "exact_substitution_validation": "PASS",
+        "fraction_validation": "PASS",
+        "fraction_validation_errors": [],
+        "model": "generated/core_c_first_rich_arm_drop_1_z3_model.json",
+        "seconds": 0.001,
+        "status": "SAT",
+        "validation_errors": []
+      }
+    },
+    {
+      "artifact": "generated/core_c_first_rich_arm_drop_2.smt2",
+      "check_sat_count": 1,
+      "clause_count": 2,
+      "cvc5": {
+        "model_checked_by_cvc5": true,
+        "seconds": 0.006,
+        "status": "SAT"
+      },
+      "query": "core_c_first_rich_arm_drop_2",
+      "z3": {
+        "all_model_values_rational": true,
+        "exact_substitution_validation": "PASS",
+        "fraction_validation": "PASS",
+        "fraction_validation_errors": [],
+        "model": "generated/core_c_first_rich_arm_drop_2_z3_model.json",
+        "seconds": 0.001,
+        "status": "SAT",
+        "validation_errors": []
+      }
+    },
+    {
+      "artifact": "generated/core_c_second_rich_arm_drop_0.smt2",
+      "check_sat_count": 1,
+      "clause_count": 2,
+      "cvc5": {
+        "model_checked_by_cvc5": true,
+        "seconds": 0.032,
+        "status": "SAT"
+      },
+      "query": "core_c_second_rich_arm_drop_0",
+      "z3": {
+        "all_model_values_rational": true,
+        "exact_substitution_validation": "PASS",
+        "fraction_validation": "PASS",
+        "fraction_validation_errors": [],
+        "model": "generated/core_c_second_rich_arm_drop_0_z3_model.json",
+        "seconds": 0.001,
+        "status": "SAT",
+        "validation_errors": []
+      }
+    },
+    {
+      "artifact": "generated/core_c_second_rich_arm_drop_1.smt2",
+      "check_sat_count": 1,
+      "clause_count": 2,
+      "cvc5": {
+        "model_checked_by_cvc5": true,
+        "seconds": 0.032,
+        "status": "SAT"
+      },
+      "query": "core_c_second_rich_arm_drop_1",
+      "z3": {
+        "all_model_values_rational": true,
+        "exact_substitution_validation": "PASS",
+        "fraction_validation": "PASS",
+        "fraction_validation_errors": [],
+        "model": "generated/core_c_second_rich_arm_drop_1_z3_model.json",
+        "seconds": 0.001,
+        "status": "SAT",
+        "validation_errors": []
+      }
+    },
+    {
+      "artifact": "generated/core_c_second_rich_arm_drop_2.smt2",
+      "check_sat_count": 1,
+      "clause_count": 2,
+      "cvc5": {
+        "model_checked_by_cvc5": true,
+        "seconds": 0.006,
+        "status": "SAT"
+      },
+      "query": "core_c_second_rich_arm_drop_2",
+      "z3": {
+        "all_model_values_rational": true,
+        "exact_substitution_validation": "PASS",
+        "fraction_validation": "PASS",
+        "fraction_validation_errors": [],
+        "model": "generated/core_c_second_rich_arm_drop_2_z3_model.json",
+        "seconds": 0.001,
+        "status": "SAT",
+        "validation_errors": []
+      }
+    }
+  ],
+  "minimized_cores": [
+    {
+      "artifact": "generated/core_c_first_rich_arm.smt2",
+      "check_sat_count": 1,
+      "clause_count": 3,
+      "cvc5": {
+        "model_checked_by_cvc5": false,
+        "seconds": 0.007,
+        "status": "UNSAT"
+      },
+      "query": "core_c_first_rich_arm",
+      "source_audit": [
+        {
+          "clause": "rich_equal_0_1_0",
+          "source": "strict-cap rich slice on a common apex radius"
+        },
+        {
+          "clause": "rich_equal_0_1_10",
+          "source": "strict-cap rich slice on a common apex radius"
+        },
+        {
+          "clause": "singleton_excludes_c_first_10",
+          "source": "firstApexRadius_eq_singleton_of_aligned"
+        }
+      ],
+      "z3": {
+        "seconds": 0.001,
+        "status": "UNSAT"
+      }
+    },
+    {
+      "artifact": "generated/core_c_second_rich_arm.smt2",
+      "check_sat_count": 1,
+      "clause_count": 3,
+      "cvc5": {
+        "model_checked_by_cvc5": false,
+        "seconds": 0.006,
+        "status": "UNSAT"
+      },
+      "query": "core_c_second_rich_arm",
+      "source_audit": [
+        {
+          "clause": "rich_equal_0_0_1",
+          "source": "strict-cap rich slice on a common apex radius"
+        },
+        {
+          "clause": "rich_equal_0_0_13",
+          "source": "strict-cap rich slice on a common apex radius"
+        },
+        {
+          "clause": "singleton_excludes_c_second_13",
+          "source": "firstApexRadius_eq_singleton_of_aligned"
+        }
+      ],
+      "z3": {
+        "seconds": 0.001,
+        "status": "UNSAT"
+      }
+    }
+  ],
+  "omitted_scope": [
+    "the two deletion residual constructors",
+    "the reversed crossed constructor",
+    "coverage of all exact-17 incidence assignments",
+    "every cardinality other than 17",
+    "a general-cardinality finite-core lift"
+  ],
+  "queries": [
+    {
+      "artifact": "generated/row_equalities_only_preflight.smt2",
+      "check_sat_count": 1,
+      "clause_count": 136,
+      "cvc5": {
+        "seconds": 15.008,
+        "status": "TIMEOUT"
+      },
+      "query": "row_equalities_only_preflight",
+      "z3": {
+        "seconds": 10.215,
+        "status": "UNKNOWN:timeout"
+      }
+    },
+    {
+      "artifact": "generated/geometry_core.smt2",
+      "check_sat_count": 1,
+      "clause_count": 705,
+      "cvc5": {
+        "model_checked_by_cvc5": false,
+        "seconds": 10.106,
+        "status": "UNKNOWN"
+      },
+      "query": "geometry_core",
+      "z3": {
+        "seconds": 11.818,
+        "status": "UNKNOWN:timeout"
+      }
+    },
+    {
+      "artifact": "generated/cap_classification.smt2",
+      "check_sat_count": 1,
+      "clause_count": 756,
+      "cvc5": {
+        "model_checked_by_cvc5": false,
+        "seconds": 10.957,
+        "status": "UNKNOWN"
+      },
+      "query": "cap_classification",
+      "z3": {
+        "seconds": 11.994,
+        "status": "UNKNOWN:timeout"
+      }
+    },
+    {
+      "artifact": "generated/k4_witness_equalities.smt2",
+      "check_sat_count": 1,
+      "clause_count": 824,
+      "cvc5": {
+        "seconds": 15.01,
+        "status": "TIMEOUT"
+      },
+      "query": "k4_witness_equalities",
+      "z3": {
+        "seconds": 12.343,
+        "status": "UNKNOWN:timeout"
+      }
+    },
+    {
+      "artifact": "generated/selected_support_equalities.smt2",
+      "check_sat_count": 1,
+      "clause_count": 892,
+      "cvc5": {
+        "model_checked_by_cvc5": false,
+        "seconds": 14.1,
+        "status": "UNKNOWN"
+      },
+      "query": "selected_support_equalities",
+      "z3": {
+        "seconds": 12.256,
+        "status": "UNKNOWN:timeout"
+      }
+    },
+    {
+      "artifact": "generated/rich_radius_pattern.smt2",
+      "check_sat_count": 1,
+      "clause_count": 914,
+      "cvc5": {
+        "model_checked_by_cvc5": false,
+        "seconds": 0.131,
+        "status": "UNSAT"
+      },
+      "query": "rich_radius_pattern",
+      "z3": {
+        "seconds": 12.158,
+        "status": "UNKNOWN:timeout"
+      }
+    },
+    {
+      "artifact": "generated/full_rich_classes.smt2",
+      "check_sat_count": 1,
+      "clause_count": 920,
+      "cvc5": {
+        "model_checked_by_cvc5": false,
+        "seconds": 0.149,
+        "status": "UNSAT"
+      },
+      "query": "full_rich_classes",
+      "z3": {
+        "seconds": 12.183,
+        "status": "UNKNOWN:timeout"
+      }
+    },
+    {
+      "artifact": "generated/blocker_exactness.smt2",
+      "check_sat_count": 1,
+      "clause_count": 1063,
+      "cvc5": {
+        "model_checked_by_cvc5": false,
+        "seconds": 0.222,
+        "status": "UNSAT"
+      },
+      "query": "blocker_exactness",
+      "z3": {
+        "seconds": 13.024,
+        "status": "UNKNOWN:timeout"
+      }
+    },
+    {
+      "artifact": "generated/named_rows_and_singletons.smt2",
+      "check_sat_count": 1,
+      "clause_count": 1076,
+      "cvc5": {
+        "model_checked_by_cvc5": false,
+        "seconds": 0.204,
+        "status": "UNSAT"
+      },
+      "query": "named_rows_and_singletons",
+      "z3": {
+        "seconds": 0.01,
+        "status": "UNSAT"
+      }
+    }
+  ],
+  "rejected_unsourced_controls": [
+    {
+      "centers": [
+        0,
+        3,
+        4,
+        9,
+        14,
+        16
+      ],
+      "name": "exactness_at_unused_k4_center",
+      "reason": "D.K4 gives only a four-witness subset there; unique-four exactness is unavailable",
+      "status": "REJECTED_UNSOURCED"
+    }
+  ],
+  "scope": "exact-17 direct crossed constructor only; no universal lift",
+  "source_assignment": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_aligned_mutual_crossed_v1/generated/global_k4_assignment.json",
+  "target_positive_negations": "already structural in the frozen incidence proposal; no extra metric clause",
+  "unused_k4_centers_without_exactness": [
+    0,
+    3,
+    4,
+    9,
+    14,
+    16
+  ]
+}

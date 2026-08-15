@@ -1,0 +1,68 @@
+{
+  "schema": "p97-exact17-lean-twenty-first-model-refinements-piqd-ingress/v1",
+  "dimacs": {
+    "path": "scratch/exact17-lean-to-sat/exact17-twenty-second-root-twenty-first-model-refinements.cnf",
+    "sha256": "dc44614e28c907d5c61b29e58cc6f6188e52a2504e119efa37157a81a56f7edb",
+    "bytes": 291573930,
+    "variables": 308,
+    "clauses": 5846208,
+    "parent_prefix_clauses": 5846200,
+    "checked_new_clauses": 8
+  },
+  "parent_ingress": {
+    "manifest": "scratch/exact17-lean-to-sat/piqd-ingress-manifest-twentieth-model-refinements.json",
+    "manifest_sha256": "6ffd148a57458b23929dc933eeb2b35607f860c790b8cda347090311105cbe22",
+    "validator": "scripts/validate_exact17_twentieth_model_refinements_ingress.py",
+    "validator_sha256": "65325d0b635faeb0e9a4dcbef35134b86e79de9ab49260ca430719836af79059",
+    "report": "scratch/exact17-lean-to-sat/piqd-ingress-twentieth-model-refinements-validation.json",
+    "report_sha256": "00d51c817e710d6532a734b75241e6594d889c9119b13676443fbc82e37b4f04"
+  },
+  "lean": {
+    "toolchain": "leanprover/lean4:v4.27.0",
+    "toolchain_file_sha256": "d55ca0039a5479db5b38919d005b2c427b89b3be4f0184a20f2f4eae931f5bdb",
+    "lake_manifest_sha256": "48adeb0901038a9dc08e0f80a70d5eb5a609058b849afd582c0c2f6ebe0cbfce",
+    "source_files": [
+      {
+        "path": "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenTwentyFirstModelRefinements.lean",
+        "sha256": "503dd6d4dda0768d10aef4f5f44752e18fe1bf88244d473fec6c70b60362ec6f"
+      },
+      {
+        "path": "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenTwentyFirstModelRefinementsExport.lean",
+        "sha256": "c27bbd490a22877856eceae16fcd890d33895120922127603344b2bbc3201ba7"
+      }
+    ]
+  },
+  "model_provenance": {
+    "recovery_manifest": "scratch/exact17-lean-to-sat/piqd-ingress-manifest-twentieth-model-refinements-fresh-rerun.json",
+    "recovery_manifest_sha256": "dc92856c15ca520ecec614ca47e4b56a83888143244ff20160d5b52847e9ec08",
+    "final": "scratch/exact17-lean-to-sat/piqd-twenty-first-root-fresh-rerun-final.json",
+    "final_sha256": "337398fba1249449e691c1c425e8a3dec1ec84a4df03cb7e83c039546e8af0db",
+    "job_id": "f3053110-f26e-4166-83f0-b8db5a04651e",
+    "model_sha256": "bb1617d726a80cec5d2e6985e2a5c6c0f095073122001bd94f611d512ca334dc"
+  },
+  "validation": {
+    "script": "scripts/validate_exact17_twenty_first_model_refinements_export.py",
+    "script_sha256": "1b9654c72eb495abe33dbbf40694ab7e62b7c23ae91cbf850a5dc4256ca6fc4e",
+    "model": "scratch/exact17-lean-to-sat/piqd-twenty-first-root-fresh-rerun-model.json",
+    "model_sha256": "bb1617d726a80cec5d2e6985e2a5c6c0f095073122001bd94f611d512ca334dc",
+    "analysis": "scratch/exact17-lean-to-sat/piqd-twenty-first-root-fresh-rerun-model-analysis.json",
+    "analysis_sha256": "9239f8e8ea5fb62f2464337777f8421b1f03fb23ec02ba84ef211bc3d18d9b68",
+    "theorem_bank": "scratch/exact17-lean-to-sat/piqd-twenty-first-root-fresh-rerun-model-theorem-bank.json",
+    "theorem_bank_sha256": "d33edb10672b492527bf5e57ec5ee0d0a4428649bbfefa39acf7b8aa214b0de0",
+    "report": "scratch/exact17-lean-to-sat/piqd-twenty-first-model-refinements-export-validation.json",
+    "report_sha256": "c62c7024f8b02e50eb7afa7c2524b1f7f73fb45a8c028f31226459e72a1c04eb",
+    "parent_prefix_byte_identical": true,
+    "all_new_clauses_independently_regenerated": true,
+    "motivating_model_cut_by_both_orbits": true,
+    "all_five_canonical_records_rejected": true
+  },
+  "piqd": {
+    "daemon_protocol_version": 1,
+    "daemon_sha256": "82187247e58c7b10773d56e190d795bf8f914150d818691c7d22f96f7264b396",
+    "ingress": "raw-dimacs/v1",
+    "backend": "cadical",
+    "solver_profile": "sat",
+    "immutable_root_only": true,
+    "python_authored_successor_clause_allowed": false
+  }
+}

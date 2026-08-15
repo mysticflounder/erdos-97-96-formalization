@@ -1,0 +1,110 @@
+{
+  "dimacs": {
+    "bytes": 291625610,
+    "checked_new_clauses": 112,
+    "clauses": 5847388,
+    "parent_prefix_clauses": 5847276,
+    "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/exact17-lean-to-sat/exact17-thirty-ninth-root-thirty-eighth-model-refinements.cnf",
+    "sha256": "989348e8a0d2288df6a80f36e56ed4e5771ef250dc10f4d4aeeb991a571a8a8a",
+    "variables": 308
+  },
+  "export_receipt": {
+    "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/exact17-lean-to-sat/child39-export-receipt.json",
+    "schema": "p97-exact17-child39-immutable-export-receipt/v1",
+    "sha256": "2dc3c78fb19ee4cef8b7fe45c9f49f0f0bd75201f9c0bed57891215bae565ecc"
+  },
+  "lean": {
+    "export": {
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenThirtyEighthModelRefinementsExport.lean",
+      "sha256": "b2f1552f4eb88677dffac24d60cab66556f86492cf8a4c6d085c48398759ffb7"
+    },
+    "root": {
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenThirtyEighthModelRefinements.lean",
+      "sha256": "61ed3d01276160838cc1047735eae35c8d69d022f6f9a4c84905a3781ccd7cd0"
+    }
+  },
+  "model": {
+    "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/exact17-lean-to-sat/piqd-child38-core1-custody-model.json",
+    "sha256": "6011d637ce337aacd0fe315b6e697333fb9a2b392083fd623a41b324c8f45ab6"
+  },
+  "parent_ingress": {
+    "parent_dimacs_sha256": "07b139089f2f9e11c03c8edfcdba58609a6f4c5be439e701888d975c182fe8d7",
+    "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/exact17-lean-to-sat/piqd-ingress-manifest-thirty-seventh-model-refinements-core1.json",
+    "sha256": "6b74b75871940761fa346469b04c0ad17064a36b56766c5413c2ff6e048ad815"
+  },
+  "piqd": {
+    "backend": "cadical",
+    "daemon_build_receipt": {
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/exact17-lean-to-sat/piqd-child35-daemon-build-receipt.txt",
+      "sha256": "6e9c1d5c203d59ac2b29f800d73f4dbb0395b97865433f412ff4aa44c8e1b0a9"
+    },
+    "daemon_protocol_version": 1,
+    "daemon_sha256": "f89994bc10fcad69a264d8efbd7d76b8203c94c08f22b4536d3b473a12cee089",
+    "daemon_source_commit": "acefb4aba14765d45e38ac4193373f0aa210f22d",
+    "immutable_root_only": true,
+    "ingress": "raw-dimacs/v1",
+    "python_authored_successor_clause_allowed": false,
+    "solver_name": "piqd-satworker-cadical-3.0.0",
+    "solver_profile": "sat",
+    "solver_sha256": "0ee355934249f1b3f14a20928877391a87a0dd51326cf8c6135f75cba0b6b965",
+    "solver_signature": "cadical-3.0.0",
+    "stale_job_reuse_allowed": false
+  },
+  "schema": "p97-exact17-thirty-eighth-model-refinements-piqd-ingress/v1",
+  "status": "PASS",
+  "validation": {
+    "child": {
+      "bytes": 291625610,
+      "clauses": 5847388,
+      "sha256": "989348e8a0d2288df6a80f36e56ed4e5771ef250dc10f4d4aeeb991a571a8a8a",
+      "variables": 308
+    },
+    "model": {
+      "job_id": "aeaefb24-0f57-4b1f-9c62-644208e65977",
+      "parent_replay_exact": true,
+      "sha256": "6011d637ce337aacd0fe315b6e697333fb9a2b392083fd623a41b324c8f45ab6"
+    },
+    "motivating_model_cut_suffix_indices": [
+      3,
+      7,
+      11,
+      15,
+      19,
+      23,
+      27,
+      31,
+      35,
+      39,
+      43,
+      47,
+      51,
+      55,
+      59,
+      63,
+      67,
+      71,
+      75,
+      79,
+      83,
+      87,
+      91,
+      95,
+      99,
+      103,
+      107,
+      111
+    ],
+    "ordered_suffix_exact": true,
+    "ordered_suffix_sha256": "4cc66a1b3f4af46d60ed0a2c59f4fb6b0cb016f3ab1b111989ffe015f5b33925",
+    "parent": {
+      "clauses": 5847276,
+      "sha256": "07b139089f2f9e11c03c8edfcdba58609a6f4c5be439e701888d975c182fe8d7"
+    },
+    "publication_state": "PROVISIONED",
+    "schema": "p97-exact17-child39-export-validation/v1",
+    "source_clause_families": [
+      "thirtyEighthModelRefinementClauses"
+    ],
+    "status": "PASS"
+  }
+}

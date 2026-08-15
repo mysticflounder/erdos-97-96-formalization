@@ -1,0 +1,171 @@
+{
+  "entries": [
+    {
+      "certificate_kind": "structural_metric_core",
+      "certificate_schema": "p97_phase3_structural_certificate_payload.v1",
+      "certificate_sha256": "202acebee1d1d043f7c081ac042482a317aa1f603d8ea0f0f4465accd3683ca0",
+      "detector_stage": "equality-duplicate-center",
+      "index": 0,
+      "journal_record_sha256": "42aec8db821915acbd72b637a0e1f4152ee6a4e331e3869de6a0833d31475435",
+      "lean_ingress": {
+        "adapter_declaration": "Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress.SourceOrderTerminalBankConsumer.SourceOrderPositiveNogood.ofDuplicateCenter",
+        "kind": "checked_duplicate_center_adapter"
+      },
+      "learned_clause": [
+        -6,
+        -55,
+        -155,
+        -175,
+        -525
+      ],
+      "learned_clause_sha256": "bb125edf6a907f5c3bced543fae35a672810d61f58f6b32ef209a88fbfc128a4"
+    },
+    {
+      "certificate_kind": "source_order_positive_coverage",
+      "certificate_schema": "p97_rigid221_exact12_source_order_positive_coverage.v3",
+      "certificate_sha256": "e7ba64e0ca9d5593fe212f4b4b519212e16692f3c1ed9d01b3c3ed91a9f0976f",
+      "detector_stage": "source-order-positive-coverage",
+      "index": 1,
+      "journal_record_sha256": "313e61a046978bf2c6634be301bfad8b31825aa8c9d86f4357064e5c02d52675",
+      "lean_ingress": {
+        "binding": {
+          "choices": [
+            {
+              "center": 0,
+              "support": [
+                3,
+                5,
+                8,
+                10
+              ]
+            },
+            {
+              "center": 1,
+              "support": [
+                0,
+                2,
+                6,
+                8
+              ]
+            },
+            {
+              "center": 2,
+              "support": [
+                4,
+                8,
+                10,
+                11
+              ]
+            },
+            {
+              "center": 3,
+              "support": [
+                1,
+                2,
+                9,
+                10
+              ]
+            },
+            {
+              "center": 4,
+              "support": [
+                0,
+                1,
+                3,
+                9
+              ]
+            },
+            {
+              "center": 5,
+              "support": [
+                0,
+                2,
+                7,
+                11
+              ]
+            },
+            {
+              "center": 7,
+              "support": [
+                1,
+                3,
+                6,
+                8
+              ]
+            },
+            {
+              "center": 8,
+              "support": [
+                3,
+                4,
+                6,
+                9
+              ]
+            },
+            {
+              "center": 9,
+              "support": [
+                2,
+                5,
+                7,
+                8
+              ]
+            },
+            {
+              "center": 10,
+              "support": [
+                1,
+                5,
+                6,
+                7
+              ]
+            },
+            {
+              "center": 11,
+              "support": [
+                1,
+                4,
+                5,
+                10
+              ]
+            }
+          ],
+          "consumer_source_bytes": 6885,
+          "consumer_source_path": "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactTwelveRigid221SourceOrderTerminalBankConsumer.lean",
+          "consumer_source_sha256": "74d8689d33b912e85f71714d33eed843b58c4fdbd59251b934c3adb8832f0250",
+          "coverage_declaration": "Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress.FrozenBoundaryOrder.sourceOrderCoverage_frozenV8",
+          "coverage_source_bytes": 6545,
+          "coverage_source_path": "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactTwelveRigid221SourceOrderCoverage.lean",
+          "coverage_source_sha256": "3353d47ab72e2fa044b6c168900e2ce55933cd65bb1b47278c19b7d6646a5d26",
+          "cube_sha256": "696ff9e370402633845f2aa799f77bbd9d498cea19eb68e6a4389b6dd34018e9",
+          "nogood_declaration": "Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress.frozenV8PositiveNogood",
+          "source_bytes": 10405,
+          "source_path": "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactTwelveRigid221FrozenV8PositiveCut.lean",
+          "source_sha256": "09a0034bbfc50c188abd4355a458e7b78222fdc923ea84b7f9c21d7a9b94459a",
+          "terminal_consumer_declaration": "Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress.SourceOrderTerminalBankConsumer.false_of_terminalSourceOrderPositiveBank"
+        },
+        "binding_sha256": "f2878d63af67afaf1e1cabcf0b21dfaae545c556f318aca70ac50072221bb691",
+        "kind": "named_source_order_positive_nogood"
+      },
+      "learned_clause": [
+        -42,
+        -55,
+        -169,
+        -312,
+        -501,
+        -868,
+        -1605,
+        -2024,
+        -2317,
+        -2573,
+        -2884
+      ],
+      "learned_clause_sha256": "4c39c3273632e9b1b4f0900c3429cc1dfa3d786c5ce5837a47ac2d506edb07f5"
+    }
+  ],
+  "lean_bank_type": "Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress.SourceOrderTerminalBankConsumer.SourceOrderPositiveNogood",
+  "lean_terminal_consumer": "Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress.false_of_checkedCompactSourceOrderTerminal",
+  "manifest_sha256": "47762d545ff1a841473ec2565b6686c5cdcf15c92ed6ee5f42005f50a36cc61a",
+  "schema": "p97_rigid221_exact12_source_order_terminal_bank_manifest.v1",
+  "scope": "typed finite exact-12 cell bank ingress only; not aggregate coverage, a universal lift, or live theorem closure"
+}

@@ -1,0 +1,129 @@
+{
+  "scope": "six strict-Kalmanson survivors with one contiguous three-center cap block",
+  "trust": "diagnostic only; UNSAT is uncertified",
+  "rows": [
+    {
+      "order_index": 0,
+      "order": [
+        "firstCenter",
+        "commonCenter",
+        "oppositeCenter",
+        "commonOutside",
+        "oppositeOutside",
+        "sharedFourth"
+      ],
+      "signs": "10",
+      "z3": "sat",
+      "exact_rational": false,
+      "model": "[x_oppositeOutside = -1/2,\n x_sharedFourth = -0.1110243021?,\n x_oppositeCenter = 0.5380495465?,\n y_oppositeCenter = 15/16,\n y_oppositeOutside = 1,\n x_commonOutside = 1/2,\n y_sharedFourth = 1/8,\n y_commonOutside = 1,\n y_firstCenter = 0,\n x_commonCenter = 1,\n y_commonCenter = 0,\n x_firstCenter = 0]"
+    },
+    {
+      "order_index": 5,
+      "order": [
+        "firstCenter",
+        "commonCenter",
+        "oppositeCenter",
+        "sharedFourth",
+        "oppositeOutside",
+        "commonOutside"
+      ],
+      "signs": "01",
+      "z3": "sat",
+      "exact_rational": false,
+      "model": "[x_oppositeOutside = 1,\n x_sharedFourth = 3.1794494717?,\n x_oppositeCenter = 1.9463399022?,\n y_oppositeCenter = 1/8,\n y_oppositeOutside = 1,\n x_commonOutside = -1,\n y_sharedFourth = 1/2,\n y_commonOutside = 1,\n y_firstCenter = 0,\n x_commonCenter = 1,\n y_commonCenter = 0,\n x_firstCenter = 0]"
+    },
+    {
+      "order_index": 11,
+      "order": [
+        "firstCenter",
+        "commonCenter",
+        "commonOutside",
+        "sharedFourth",
+        "oppositeOutside",
+        "oppositeCenter"
+      ],
+      "signs": "11",
+      "z3": "sat",
+      "exact_rational": false,
+      "model": "[x_oppositeOutside = -99,\n x_sharedFourth = -96.9846926820?,\n x_oppositeCenter = -97.4961441037?,\n y_oppositeCenter = 1/2,\n y_oppositeOutside = 1,\n x_commonOutside = 99,\n y_sharedFourth = 2,\n y_commonOutside = 1,\n y_firstCenter = 0,\n x_commonCenter = 1,\n y_commonCenter = 0,\n x_firstCenter = 0]"
+    },
+    {
+      "order_index": 17,
+      "order": [
+        "firstCenter",
+        "commonCenter",
+        "oppositeOutside",
+        "sharedFourth",
+        "commonOutside",
+        "oppositeCenter"
+      ],
+      "signs": "00",
+      "z3": "sat",
+      "exact_rational": true,
+      "exact_checks": 25,
+      "coordinates": {
+        "firstCenter": [
+          "0",
+          "0"
+        ],
+        "commonCenter": [
+          "1",
+          "0"
+        ],
+        "oppositeCenter": [
+          "-3/4",
+          "1/4"
+        ],
+        "commonOutside": [
+          "-1",
+          "1"
+        ],
+        "oppositeOutside": [
+          "1",
+          "1"
+        ],
+        "sharedFourth": [
+          "0",
+          "2"
+        ]
+      }
+    },
+    {
+      "order_index": 26,
+      "order": [
+        "firstCenter",
+        "oppositeCenter",
+        "commonCenter",
+        "oppositeOutside",
+        "commonOutside",
+        "sharedFourth"
+      ],
+      "signs": "01",
+      "z3": "sat",
+      "exact_rational": false,
+      "model": "[y_sharedFourth = 1/8,\n x_oppositeOutside = 1/2,\n y_commonCenter = 15/16,\n x_sharedFourth = -0.1110243021?,\n y_oppositeOutside = 1,\n x_commonOutside = -1/2,\n x_commonCenter = 0.5380495465?,\n y_commonOutside = 1,\n y_firstCenter = 0,\n x_oppositeCenter = 1,\n y_oppositeCenter = 0,\n x_firstCenter = 0]"
+    },
+    {
+      "order_index": 27,
+      "order": [
+        "firstCenter",
+        "oppositeCenter",
+        "commonCenter",
+        "sharedFourth",
+        "commonOutside",
+        "oppositeOutside"
+      ],
+      "signs": "10",
+      "z3": "sat",
+      "exact_rational": false,
+      "model": "[y_sharedFourth = 1/2,\n x_oppositeOutside = -97,\n y_commonCenter = 1/4,\n x_sharedFourth = 99.0038264559?,\n y_oppositeOutside = 1,\n x_commonOutside = 97,\n x_commonCenter = 97.8771519247?,\n y_commonOutside = 1,\n y_firstCenter = 0,\n x_oppositeCenter = 1,\n y_oppositeCenter = 0,\n x_firstCenter = 0]"
+    }
+  ],
+  "counts": {
+    "total": 6,
+    "sat": 6,
+    "unsat": 0,
+    "unknown": 0,
+    "exact_rational": 1
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "contract": "order-independent formalized metric core over selected supports with exact=False",
+  "sha256": "79ea6ec2ef2d614d91420f22725a33e4120ee91b17b56548de9a2b1c159eeb36",
+  "sources": [
+    {
+      "bytes": 30795,
+      "path": "census/card_head/exact12_next_row_structural_cegar.py",
+      "sha256": "fb6ff355b57c52ee30771de3457baca8d54a5e6241317b727ea75683b00902a7"
+    },
+    {
+      "bytes": 102708,
+      "path": "census/global_confinement/metric_realizability_probe.py",
+      "sha256": "e44f1452b240b8bbe39f2389311312ac02ef9bef8ddbb5b08dc4ffa06adea396"
+    },
+    {
+      "bytes": 49774,
+      "path": "census/global_confinement/cap_selected_nogood_certificate_probe.py",
+      "sha256": "3b5258a71f97ed6cac88613ef4943b133351d687c636d8b04a33d9fb7cca2839"
+    },
+    {
+      "bytes": 15639,
+      "path": "census/p97_search/phase3_classification_context.py",
+      "sha256": "5fd4f94b536896921c0f88ea860802b212aeb8c97e5c77e0d4445cc7e38e6837"
+    },
+    {
+      "bytes": 8936,
+      "path": "census/p97_search/phase3_order_universe.py",
+      "sha256": "67fe7a6fb086b82925a5f7b365b34c8a7f5307960f790e914ad86c47b84d86b0"
+    }
+  ]
+}

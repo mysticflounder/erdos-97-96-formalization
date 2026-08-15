@@ -1,0 +1,55 @@
+{
+  "artifacts": {
+    "detector_contract": {
+      "bytes": 1895,
+      "path": "detector_contract.json",
+      "sha256": "c07f3eb3503a3430869fbda9872079f2f380656a539773439ddd568218d9ddef"
+    },
+    "discovery_cnf": {
+      "bytes": 5118830,
+      "path": "discovery.cnf",
+      "sha256": "49d26c319895e019040e24c9018e80eee893571f5a81194433ece8f6185cde07"
+    },
+    "job": {
+      "bytes": 8543,
+      "path": "job.json",
+      "sha256": "cc40677f302e85913af4dad68f10b60ea5e72020dd1deb8f2440c7cca4ceb4ef"
+    },
+    "journal": {
+      "bytes": 18440587,
+      "path": "journal.jsonl",
+      "sha256": "8b2cd6e09611b9251d12ac5712ef93f472babd8555c4f1bc2bef14cea2a174aa"
+    },
+    "proof": null,
+    "survivor": null,
+    "terminal_cnf": null
+  },
+  "cell_index": 1,
+  "detector_contract_sha256": "80e76ee7b3d48537a79304b54af70a25b4974d3046a950071af0aef34fcb500f",
+  "discovery_cnf_sha256": null,
+  "discovery_verdict": "SAT",
+  "error": null,
+  "job_id": "834b130409d10e59d969846d9051fad8375759a32c921f1c1d2c31296958f690",
+  "journal_replayed": true,
+  "max_iterations": 100,
+  "reconstructed_cnf_sha256": "c003b6204e55a0a7dd51d1c84adbe4b5ed13633f123e46242223d9832a1db3db",
+  "records": 100,
+  "replay": {
+    "added_constraints": true,
+    "candidate": true,
+    "exact_cnf": true
+  },
+  "schema": "p97_rigid221_exact12_next_row_tagged_cegar_run.v4",
+  "scope": "one finite next-row-only-hit placement cell; no aggregate coverage, universal lift, terminal bank, or Lean closure",
+  "source_order_bank_sha256": "f3aef3b9b7ad921f3dccff027f1cbb82ca147d3c5369cc92142c65ba5586ab47",
+  "stage_counts": {
+    "equality-duplicate-center": 93,
+    "equality-equilateral-bisector-collision": 7
+  },
+  "status": "ITERATION_LIMIT",
+  "terminal_cnf_sha256": null,
+  "terminal_proof_verified": false,
+  "terminal_record_sha256": "91c19640cfccf4c80bb3422e0331e40c261326d32f311bc6e07351c4cce3b016",
+  "terminal_verdict": null,
+  "timeout_seconds": 60
+}
