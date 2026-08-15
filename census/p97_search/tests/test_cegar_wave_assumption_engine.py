@@ -1193,6 +1193,9 @@ def test_strict_output_validation_replays_and_binds_sat_hashes(
     }
     envelope = {"cells": [record] + [{"state": engine.NOT_RUN}] * 12}
     monkeypatch.setattr(engine, "validate_assumption_cnf_engine_output", lambda *_: envelope)
+    output = tmp_path / "output.json"
+    output.write_bytes(b"{}\n")
+    output.chmod(0o600)
     monkeypatch.setattr(engine, "bind_assumption_cnf", lambda *_: binding)
     recaptured: list[Path] = []
 
@@ -1208,7 +1211,7 @@ def test_strict_output_validation_replays_and_binds_sat_hashes(
     )
     monkeypatch.setattr(engine, "replay_sat", lambda *_args, **_kwargs: semantic)
     assert engine.validate_assumption_cnf_engine_output_strict(
-        control, tmp_path, tmp_path / "output.json"
+        control, tmp_path, output
     ) == envelope
     assert recaptured == [binding.parent_path, binding.parent_path]
 
@@ -1219,7 +1222,7 @@ def test_strict_output_validation_replays_and_binds_sat_hashes(
     monkeypatch.setattr(engine, "validate_assumption_cnf_engine_output", lambda *_: tampered)
     with pytest.raises(AssumptionCnfEngineError, match="differs"):
         engine.validate_assumption_cnf_engine_output_strict(
-            control, tmp_path, tmp_path / "output.json"
+            control, tmp_path, output
         )
 
 
@@ -1228,7 +1231,10 @@ def test_strict_replay_lock_is_exclusive_persistent_and_reusable(
 ) -> None:
     control, _binding = _fixture(tmp_path)
     output = tmp_path / "terminal-output.json"
-    lock_path = output.with_name(f".{output.name}.validate-replay.lock")
+    output.write_bytes(b"{}\n")
+    output.chmod(0o600)
+    lock_dir = tmp_path / engine._STRICT_REPLAY_LOCK_DIRECTORY
+    lock_path = lock_dir / f"{engine._strict_replay_lock_key(control, output)}.lock"
 
     with engine._strict_replay_lock(control, output):
         assert lock_path.is_file()
@@ -1254,7 +1260,11 @@ def test_strict_replay_lock_rejects_hardlink(
 ) -> None:
     control, _binding = _fixture(tmp_path)
     output = tmp_path / "terminal-output.json"
-    lock_path = output.with_name(f".{output.name}.validate-replay.lock")
+    output.write_bytes(b"{}\n")
+    output.chmod(0o600)
+    lock_dir = tmp_path / engine._STRICT_REPLAY_LOCK_DIRECTORY
+    lock_dir.mkdir(mode=0o700)
+    lock_path = lock_dir / f"{engine._strict_replay_lock_key(control, output)}.lock"
     lock_path.write_text("stale", encoding="utf-8")
     lock_path.chmod(0o600)
     (tmp_path / "crossed-lock").hardlink_to(lock_path)
@@ -1270,7 +1280,10 @@ def test_strict_replay_lock_rejects_live_mode_change(
 ) -> None:
     control, _binding = _fixture(tmp_path)
     output = tmp_path / "terminal-output.json"
-    lock_path = output.with_name(f".{output.name}.validate-replay.lock")
+    output.write_bytes(b"{}\n")
+    output.chmod(0o600)
+    lock_dir = tmp_path / engine._STRICT_REPLAY_LOCK_DIRECTORY
+    lock_path = lock_dir / f"{engine._strict_replay_lock_key(control, output)}.lock"
     with (
         pytest.raises(AssumptionCnfEngineError, match="changed during validation"),
         engine._strict_replay_lock(control, output),
@@ -1278,11 +1291,75 @@ def test_strict_replay_lock_rejects_live_mode_change(
         lock_path.chmod(0o644)
 
 
+def test_strict_replay_lock_is_keyed_by_control_and_output(
+    tmp_path: Path,
+) -> None:
+    control, _binding = _fixture(tmp_path)
+    crossed_control = replace(
+        control, canonical_bytes=control.canonical_bytes + b"crossed"
+    )
+    output = tmp_path / "terminal-output.json"
+    output.write_bytes(b"{}\n")
+    output.chmod(0o600)
+    with engine._strict_replay_lock(control, output), engine._strict_replay_lock(
+        crossed_control, output
+    ):
+        pass
+
+
+def test_strict_replay_lock_rejects_unlink_during_validation(
+    tmp_path: Path,
+) -> None:
+    control, _binding = _fixture(tmp_path)
+    output = tmp_path / "terminal-output.json"
+    output.write_bytes(b"{}\n")
+    output.chmod(0o600)
+    lock_dir = tmp_path / engine._STRICT_REPLAY_LOCK_DIRECTORY
+    lock_path = lock_dir / f"{engine._strict_replay_lock_key(control, output)}.lock"
+    with pytest.raises(AssumptionCnfEngineError, match="lockfile"), engine._strict_replay_lock(
+        control, output
+    ):
+        lock_path.unlink()
+
+
+def test_strict_replay_lock_rejects_replacement_during_validation(
+    tmp_path: Path,
+) -> None:
+    control, _binding = _fixture(tmp_path)
+    output = tmp_path / "terminal-output.json"
+    output.write_bytes(b"{}\n")
+    output.chmod(0o600)
+    lock_dir = tmp_path / engine._STRICT_REPLAY_LOCK_DIRECTORY
+    lock_path = lock_dir / f"{engine._strict_replay_lock_key(control, output)}.lock"
+    replacement = lock_dir / "replacement"
+    with pytest.raises(
+        AssumptionCnfEngineError, match="changed during validation"
+    ), engine._strict_replay_lock(control, output):
+        lock_path.unlink()
+        replacement.write_bytes(b"replacement")
+        replacement.chmod(0o600)
+        replacement.rename(lock_path)
+
+
+def test_strict_replay_lock_does_not_create_state_for_missing_output(
+    tmp_path: Path,
+) -> None:
+    control, _binding = _fixture(tmp_path)
+    output = tmp_path / "missing-output.json"
+    with pytest.raises(
+        AssumptionCnfEngineError, match="cannot capture"
+    ), engine._strict_replay_lock(control, output):
+        pass
+    assert not (tmp_path / engine._STRICT_REPLAY_LOCK_DIRECTORY).exists()
+
+
 def test_strict_replay_lock_rejects_group_writable_parent(
     tmp_path: Path,
 ) -> None:
     control, _binding = _fixture(tmp_path)
     output = tmp_path / "terminal-output.json"
+    output.write_bytes(b"{}\n")
+    output.chmod(0o600)
     original_mode = stat.S_IMODE(tmp_path.stat().st_mode)
     tmp_path.chmod(original_mode | 0o020)
     try:

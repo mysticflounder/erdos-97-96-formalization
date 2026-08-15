@@ -12160,3 +12160,45 @@ the old standalone validation entry point now fails closed, while registered
 execution and `validate-output` rebind the control, package, semantic profile,
 and retained artifacts before reporting acceptance.
 No Child46 PIQD job has yet been submitted at this checkpoint.
+
+### 13.28.16 Child46 terminal and uniform three-row-cycle bank — 2026-08-14
+
+Child46 was subsequently submitted exactly once as PIQD job
+`6f031597-70aa-4c22-bb3b-b222dbb7871f` and terminated `SAT`.  Independent
+source replay verifies the complete 5,848,864-clause root under the returned
+308-literal assignment.  The reconstructed named order is
+`[0,6,8,11,10,12,9,7,2,15,16,3,4,5,1,13,14]`; the complete strict-Kalmanson
+system is exactly infeasible with a two-term rational certificate.  This is a
+Boolean-abstraction survivor, not a Euclidean counterexample.
+
+The required post-Wave-43 synthesis compared Child39--43, Child45, and
+Child46.  It found 433 normalized source-valid supports with no exact
+cross-wave recurrence or proper-subset relation.  The recurring object is
+instead a three-row, six-incidence cycle family.  Three cardinality-independent
+Kalmanson theorems now rule out its direct six-distinct-point order types:
+adjacent/adjacent and the two adjacent/inner-outer orientations.  Each theorem
+has increasing and decreasing cyclic-order consumers and has axiom closure
+exactly `propext`, `Classical.choice`, and `Quot.sound`.
+
+The exact-17 `SourceRealization` adapter enumerates those three theorems over
+both named orders, both cyclic directions, all seventeen cuts, and all 4,368
+increasing five-offset choices.  It contributes 891,072 source-valid clauses
+to Child46.  The complete Lean-owned successor has 308 variables, 6,739,936
+clauses, 322,685,712 bytes, and SHA-256
+`2870fa87246292872ef0668471b2dab8a708a7c1815e2223a385c2ecb8a8f869`.
+An independent renderer audit proves that its clause body is the exact
+authenticated Child46 body followed by the independently regenerated suffix;
+the suffix rejects the authenticated Child46 source model in twenty clause
+placements.  The source evaluator and terminal conditional-UNSAT adapter have
+no `sorryAx`; they inherit the already accepted `native_decide` trust boundary
+from the exact-17 bank.
+
+This bank is deliberately not claimed to subsume every Child46 certificate.
+Among the 25 minimal six-hit producer supports, five reuse a point as center
+and endpoint, while some disjoint records use auxiliary Kalmanson vertices
+outside their six hit endpoints.  Those remain outside the direct theorem's
+scope.  The next authorized action is immutable publication and exactly one
+PIQD successor after the replay-lock hardening gate.  `SAT` returns to a
+wave-only mine; `UNSAT` must be independently replayed and composed through
+the existing exact-cover and `SourceRealization` bridges before exact 17 or
+the production `sorry` is declared closed.

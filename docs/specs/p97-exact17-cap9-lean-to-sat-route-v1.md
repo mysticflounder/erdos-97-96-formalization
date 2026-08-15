@@ -1083,3 +1083,49 @@ therefore bind both the raw parent identity and the session journal identity,
 and terminal `UNSAT` must still pass through static handoff.  The timeout also
 rules out launching all cells under one short serial session; use deterministic
 conflict budgets and parallel cell sessions for the next canary.
+
+## Child46 terminal and post-Wave-43 uniform successor
+
+The source-total campaign and subsequent FortySixth promotion have now moved
+the production root past Child44.  Child46, SHA-256
+`106a8f682212cb76281b01fb834f6244e6013767a1edad207c77179a187e75b2`
+with 5,848,864 clauses, was submitted exactly once as PIQD job
+`6f031597-70aa-4c22-bb3b-b222dbb7871f` and returned `SAT`.  Independent replay
+checks every root clause and reconstructs a source model whose full
+strict-Kalmanson system is rationally infeasible.  It is therefore a new CEGAR
+input, not a Euclidean counterexample candidate.
+
+The periodic cross-wave theorem search after Wave43 found no recurring ground
+support among Child39--43, Child45, and Child46.  It did find one recurring
+mathematical shape: three selected rows forming a six-incidence cycle on six
+cyclically ordered points.  `KalmansonThreeRowCycleSchemas.lean` proves the
+three direct order types (adjacent/adjacent and the two
+adjacent/inner-outer orientations), including both increasing and decreasing
+cyclic consumers.  The metric declarations use only the ordinary core axioms.
+
+`BlockerVExactSeventeenThreeRowCycleRefinements.lean` is the finite ingress
+contract.  It instantiates all three source theorems over both named orders,
+both directions, seventeen cuts, and all 4,368 five-offset choices; proves all
+891,072 resulting clauses from `SourceRealization`; appends them to Child46;
+and supplies the terminal conditional-UNSAT adapter.  The Lean-owned export is:
+
+```text
+variables: 308
+clauses:   6,739,936
+bytes:     322,685,712
+sha256:    2870fa87246292872ef0668471b2dab8a708a7c1815e2223a385c2ecb8a8f869
+```
+
+Independent byte-level regeneration verifies the exact Child46 body prefix,
+the complete suffix order and contents, and twenty falsified suffix clauses
+under the authenticated Child46 assignment.  The theorem is uniform in
+carrier cardinality, but its finite clause consumer is scoped to the exact-17
+normal form.  It does not claim coverage of the five overlap cycles or of
+producer certificates whose Kalmanson proof uses auxiliary vertices outside
+the six incidence endpoints.
+
+The next route step remains unchanged in trust shape: publish this exact root
+immutably, validate the registered ingress and replay lock adversarially, and
+submit exactly one successor.  A `SAT` terminal triggers only a wave-local
+theorem mine; an `UNSAT` terminal requires independent certificate replay and
+composition through `exists_exactSeventeenSourceRealization_of_exactCover`.

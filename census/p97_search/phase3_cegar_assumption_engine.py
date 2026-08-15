@@ -66,6 +66,7 @@ _MAX_OUTPUT_BYTES = 16 << 20
 _DIRECTORY_FLAGS = (
     os.O_RDONLY | os.O_DIRECTORY | getattr(os, "O_CLOEXEC", 0) | os.O_NOFOLLOW
 )
+_STRICT_REPLAY_LOCK_DIRECTORY = ".exact17-strict-replay-locks"
 _REQUEST_NAMESPACE = uuid.UUID("2f112583-c8af-4a7f-8e12-3128b0a0a97d")
 _HEX = frozenset("0123456789abcdef")
 _CLAIMS = (
@@ -633,6 +634,82 @@ def _visible_directory(path: Path, fd: int) -> None:
         _fail("output parent changed during publication")
 
 
+def _strict_replay_lock_key(control: WaveControl, path: Path) -> str:
+    return _sha_value(
+        {
+            "control_sha256": _sha(control.canonical_bytes),
+            "output": str(path),
+        }
+    )
+
+
+def _open_private_replay_lock_directory(
+    parent_fd: int, parent_path: Path
+) -> tuple[int, tuple[int, int]]:
+    try:
+        try:
+            os.mkdir(
+                _STRICT_REPLAY_LOCK_DIRECTORY,
+                0o700,
+                dir_fd=parent_fd,
+            )
+        except FileExistsError:
+            pass
+        lock_dir_fd = os.open(
+            _STRICT_REPLAY_LOCK_DIRECTORY,
+            _DIRECTORY_FLAGS,
+            dir_fd=parent_fd,
+        )
+        held = os.fstat(lock_dir_fd)
+        visible = os.stat(
+            _STRICT_REPLAY_LOCK_DIRECTORY,
+            dir_fd=parent_fd,
+            follow_symlinks=False,
+        )
+        if (
+            not stat.S_ISDIR(held.st_mode)
+            or held.st_uid != os.getuid()
+            or stat.S_IMODE(held.st_mode) != 0o700
+            or (visible.st_dev, visible.st_ino) != (held.st_dev, held.st_ino)
+            or not stat.S_ISDIR(visible.st_mode)
+            or visible.st_uid != os.getuid()
+            or stat.S_IMODE(visible.st_mode) != 0o700
+        ):
+            os.close(lock_dir_fd)
+            _fail("strict replay lock directory is not private and trusted")
+        return lock_dir_fd, (held.st_dev, held.st_ino)
+    except OSError as exc:
+        raise AssumptionCnfEngineError(
+            "strict replay lock directory failed"
+        ) from exc
+
+
+def _check_private_replay_lock_directory(
+    parent_fd: int,
+    parent_path: Path,
+    lock_dir_fd: int,
+    identity: tuple[int, int],
+) -> None:
+    _visible_directory(parent_path, parent_fd)
+    held = os.fstat(lock_dir_fd)
+    visible = os.stat(
+        _STRICT_REPLAY_LOCK_DIRECTORY,
+        dir_fd=parent_fd,
+        follow_symlinks=False,
+    )
+    if (
+        not stat.S_ISDIR(held.st_mode)
+        or held.st_uid != os.getuid()
+        or stat.S_IMODE(held.st_mode) != 0o700
+        or (held.st_dev, held.st_ino) != identity
+        or not stat.S_ISDIR(visible.st_mode)
+        or visible.st_uid != os.getuid()
+        or stat.S_IMODE(visible.st_mode) != 0o700
+        or (visible.st_dev, visible.st_ino) != identity
+    ):
+        _fail("strict replay lock directory changed during validation")
+
+
 @contextmanager
 def _strict_replay_lock(control: WaveControl, path: Path) -> Iterator[None]:
     """Fail fast when the same expensive strict replay is already active."""
@@ -643,6 +720,7 @@ def _strict_replay_lock(control: WaveControl, path: Path) -> Iterator[None]:
         or Path(os.path.normpath(os.fspath(path))) != path
     ):
         _fail("strict replay output must be an absolute normalized native Path")
+    _capture_output(path)
     parent_fd = _open_directory_chain(path.parent, "strict replay output parent")
     parent_metadata = os.fstat(parent_fd)
     if (
@@ -651,10 +729,14 @@ def _strict_replay_lock(control: WaveControl, path: Path) -> Iterator[None]:
     ):
         os.close(parent_fd)
         _fail("strict replay output parent is not private to the current user")
-    lock_name = f".{path.name}.validate-replay.lock"
+    lock_dir_fd: int | None = None
     lock_fd: int | None = None
     acquired = False
     try:
+        lock_dir_fd, lock_dir_identity = _open_private_replay_lock_directory(
+            parent_fd, path.parent
+        )
+        lock_name = f"{_strict_replay_lock_key(control, path)}.lock"
         lock_fd = os.open(
             lock_name,
             os.O_RDWR
@@ -662,7 +744,7 @@ def _strict_replay_lock(control: WaveControl, path: Path) -> Iterator[None]:
             | os.O_NOFOLLOW
             | getattr(os, "O_CLOEXEC", 0),
             0o600,
-            dir_fd=parent_fd,
+            dir_fd=lock_dir_fd,
         )
         metadata = os.fstat(lock_fd)
         if (
@@ -690,8 +772,10 @@ def _strict_replay_lock(control: WaveControl, path: Path) -> Iterator[None]:
         os.ftruncate(lock_fd, 0)
         os.write(lock_fd, owner)
         os.fsync(lock_fd)
-        _visible_directory(path.parent, parent_fd)
-        visible = os.stat(lock_name, dir_fd=parent_fd, follow_symlinks=False)
+        _check_private_replay_lock_directory(
+            parent_fd, path.parent, lock_dir_fd, lock_dir_identity
+        )
+        visible = os.stat(lock_name, dir_fd=lock_dir_fd, follow_symlinks=False)
         if (
             (visible.st_dev, visible.st_ino) != (metadata.st_dev, metadata.st_ino)
             or not stat.S_ISREG(visible.st_mode)
@@ -700,8 +784,10 @@ def _strict_replay_lock(control: WaveControl, path: Path) -> Iterator[None]:
         ):
             _fail("strict replay lockfile was rebound")
         yield
-        _visible_directory(path.parent, parent_fd)
-        visible = os.stat(lock_name, dir_fd=parent_fd, follow_symlinks=False)
+        _check_private_replay_lock_directory(
+            parent_fd, path.parent, lock_dir_fd, lock_dir_identity
+        )
+        visible = os.stat(lock_name, dir_fd=lock_dir_fd, follow_symlinks=False)
         if (
             (visible.st_dev, visible.st_ino) != (metadata.st_dev, metadata.st_ino)
             or not stat.S_ISREG(visible.st_mode)
@@ -718,6 +804,8 @@ def _strict_replay_lock(control: WaveControl, path: Path) -> Iterator[None]:
                     fcntl.flock(lock_fd, fcntl.LOCK_UN)
             finally:
                 os.close(lock_fd)
+        if lock_dir_fd is not None:
+            os.close(lock_dir_fd)
         os.close(parent_fd)
 
 

@@ -1,0 +1,1056 @@
+{
+  "all_six_hit": [
+    {
+      "centers": [
+        [
+          0,
+          8,
+          14
+        ]
+      ],
+      "kind": "disjoint",
+      "reflection_templates": [
+        "adjacentInnerOuterLeft"
+      ],
+      "support": [
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          8,
+          3
+        ],
+        [
+          8,
+          7
+        ],
+        [
+          14,
+          5
+        ],
+        [
+          14,
+          7
+        ]
+      ],
+      "templates": [
+        "adjacentInnerOuterLeft"
+      ]
+    },
+    {
+      "centers": [
+        [
+          0,
+          9,
+          14
+        ]
+      ],
+      "kind": "disjoint",
+      "reflection_templates": [
+        "adjacentInnerOuterRight"
+      ],
+      "support": [
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          9,
+          3
+        ],
+        [
+          9,
+          8
+        ],
+        [
+          14,
+          5
+        ],
+        [
+          14,
+          8
+        ]
+      ],
+      "templates": []
+    },
+    {
+      "centers": [
+        [
+          0,
+          5,
+          13
+        ]
+      ],
+      "kind": "one-overlap",
+      "reflection_templates": [],
+      "support": [
+        [
+          0,
+          5
+        ],
+        [
+          0,
+          14
+        ],
+        [
+          5,
+          4
+        ],
+        [
+          5,
+          14
+        ],
+        [
+          13,
+          4
+        ],
+        [
+          13,
+          5
+        ]
+      ],
+      "templates": []
+    },
+    {
+      "centers": [
+        [
+          0,
+          4,
+          9
+        ]
+      ],
+      "kind": "disjoint",
+      "reflection_templates": [],
+      "support": [
+        [
+          0,
+          11
+        ],
+        [
+          0,
+          14
+        ],
+        [
+          4,
+          10
+        ],
+        [
+          4,
+          11
+        ],
+        [
+          9,
+          10
+        ],
+        [
+          9,
+          14
+        ]
+      ],
+      "templates": []
+    },
+    {
+      "centers": [
+        [
+          1,
+          13,
+          14
+        ]
+      ],
+      "kind": "disjoint",
+      "reflection_templates": [
+        "adjacentInnerOuterRight"
+      ],
+      "support": [
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          8
+        ],
+        [
+          13,
+          4
+        ],
+        [
+          13,
+          5
+        ],
+        [
+          14,
+          5
+        ],
+        [
+          14,
+          8
+        ]
+      ],
+      "templates": [
+        "adjacentInnerOuterRight"
+      ]
+    },
+    {
+      "centers": [
+        [
+          1,
+          13,
+          16
+        ]
+      ],
+      "kind": "disjoint",
+      "reflection_templates": [
+        "adjacentInnerOuterLeft"
+      ],
+      "support": [
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          10
+        ],
+        [
+          13,
+          4
+        ],
+        [
+          13,
+          5
+        ],
+        [
+          16,
+          5
+        ],
+        [
+          16,
+          10
+        ]
+      ],
+      "templates": []
+    },
+    {
+      "centers": [
+        [
+          1,
+          12,
+          14
+        ]
+      ],
+      "kind": "disjoint",
+      "reflection_templates": [
+        "adjacentInnerOuterLeft"
+      ],
+      "support": [
+        [
+          1,
+          8
+        ],
+        [
+          1,
+          10
+        ],
+        [
+          12,
+          7
+        ],
+        [
+          12,
+          10
+        ],
+        [
+          14,
+          7
+        ],
+        [
+          14,
+          8
+        ]
+      ],
+      "templates": []
+    },
+    {
+      "centers": [
+        [
+          2,
+          5,
+          10
+        ]
+      ],
+      "kind": "disjoint",
+      "reflection_templates": [
+        "adjacentInnerOuterRight"
+      ],
+      "support": [
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          12
+        ],
+        [
+          5,
+          0
+        ],
+        [
+          5,
+          12
+        ],
+        [
+          10,
+          0
+        ],
+        [
+          10,
+          1
+        ]
+      ],
+      "templates": []
+    },
+    {
+      "centers": [
+        [
+          2,
+          5,
+          6
+        ]
+      ],
+      "kind": "disjoint",
+      "reflection_templates": [],
+      "support": [
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          12
+        ],
+        [
+          5,
+          12
+        ],
+        [
+          5,
+          14
+        ],
+        [
+          6,
+          1
+        ],
+        [
+          6,
+          14
+        ]
+      ],
+      "templates": []
+    },
+    {
+      "centers": [
+        [
+          2,
+          10,
+          12
+        ]
+      ],
+      "kind": "disjoint",
+      "reflection_templates": [
+        "adjacentInnerOuterLeft"
+      ],
+      "support": [
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          13
+        ],
+        [
+          10,
+          0
+        ],
+        [
+          10,
+          1
+        ],
+        [
+          12,
+          0
+        ],
+        [
+          12,
+          13
+        ]
+      ],
+      "templates": [
+        "adjacentInnerOuterLeft"
+      ]
+    },
+    {
+      "centers": [
+        [
+          2,
+          12,
+          15
+        ]
+      ],
+      "kind": "one-overlap",
+      "reflection_templates": [],
+      "support": [
+        [
+          2,
+          12
+        ],
+        [
+          2,
+          13
+        ],
+        [
+          12,
+          0
+        ],
+        [
+          12,
+          13
+        ],
+        [
+          15,
+          0
+        ],
+        [
+          15,
+          12
+        ]
+      ],
+      "templates": []
+    },
+    {
+      "centers": [
+        [
+          3,
+          10,
+          15
+        ]
+      ],
+      "kind": "disjoint",
+      "reflection_templates": [],
+      "support": [
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          16
+        ],
+        [
+          10,
+          0
+        ],
+        [
+          10,
+          2
+        ],
+        [
+          15,
+          0
+        ],
+        [
+          15,
+          16
+        ]
+      ],
+      "templates": []
+    },
+    {
+      "centers": [
+        [
+          4,
+          8,
+          9
+        ]
+      ],
+      "kind": "disjoint",
+      "reflection_templates": [],
+      "support": [
+        [
+          4,
+          10
+        ],
+        [
+          4,
+          11
+        ],
+        [
+          8,
+          3
+        ],
+        [
+          8,
+          11
+        ],
+        [
+          9,
+          3
+        ],
+        [
+          9,
+          10
+        ]
+      ],
+      "templates": []
+    },
+    {
+      "centers": [
+        [
+          5,
+          12,
+          16
+        ]
+      ],
+      "kind": "one-overlap",
+      "reflection_templates": [],
+      "support": [
+        [
+          5,
+          0
+        ],
+        [
+          5,
+          12
+        ],
+        [
+          12,
+          0
+        ],
+        [
+          12,
+          10
+        ],
+        [
+          16,
+          10
+        ],
+        [
+          16,
+          12
+        ]
+      ],
+      "templates": []
+    },
+    {
+      "centers": [
+        [
+          5,
+          9,
+          16
+        ]
+      ],
+      "kind": "disjoint",
+      "reflection_templates": [
+        "adjacentInnerOuterRight"
+      ],
+      "support": [
+        [
+          5,
+          12
+        ],
+        [
+          5,
+          14
+        ],
+        [
+          9,
+          10
+        ],
+        [
+          9,
+          14
+        ],
+        [
+          16,
+          10
+        ],
+        [
+          16,
+          12
+        ]
+      ],
+      "templates": [
+        "adjacentInnerOuterRight"
+      ]
+    },
+    {
+      "centers": [
+        [
+          6,
+          7,
+          14
+        ]
+      ],
+      "kind": "one-overlap",
+      "reflection_templates": [],
+      "support": [
+        [
+          6,
+          7
+        ],
+        [
+          6,
+          9
+        ],
+        [
+          7,
+          5
+        ],
+        [
+          7,
+          9
+        ],
+        [
+          14,
+          5
+        ],
+        [
+          14,
+          7
+        ]
+      ],
+      "templates": []
+    },
+    {
+      "centers": [
+        [
+          6,
+          7,
+          12
+        ]
+      ],
+      "kind": "one-overlap",
+      "reflection_templates": [],
+      "support": [
+        [
+          6,
+          7
+        ],
+        [
+          6,
+          9
+        ],
+        [
+          7,
+          9
+        ],
+        [
+          7,
+          13
+        ],
+        [
+          12,
+          7
+        ],
+        [
+          12,
+          13
+        ]
+      ],
+      "templates": []
+    },
+    {
+      "centers": [
+        [
+          8,
+          10,
+          12
+        ]
+      ],
+      "kind": "disjoint",
+      "reflection_templates": [
+        "adjacentAdjacent",
+        "adjacentInnerOuterRight"
+      ],
+      "support": [
+        [
+          8,
+          3
+        ],
+        [
+          8,
+          7
+        ],
+        [
+          10,
+          0
+        ],
+        [
+          10,
+          3
+        ],
+        [
+          12,
+          0
+        ],
+        [
+          12,
+          7
+        ]
+      ],
+      "templates": [
+        "adjacentInnerOuterRight"
+      ]
+    },
+    {
+      "centers": [
+        [
+          8,
+          10,
+          14
+        ]
+      ],
+      "kind": "disjoint",
+      "reflection_templates": [],
+      "support": [
+        [
+          8,
+          3
+        ],
+        [
+          8,
+          7
+        ],
+        [
+          10,
+          2
+        ],
+        [
+          10,
+          3
+        ],
+        [
+          14,
+          2
+        ],
+        [
+          14,
+          7
+        ]
+      ],
+      "templates": []
+    },
+    {
+      "centers": [
+        [
+          8,
+          10,
+          15
+        ]
+      ],
+      "kind": "disjoint",
+      "reflection_templates": [
+        "adjacentInnerOuterRight"
+      ],
+      "support": [
+        [
+          8,
+          3
+        ],
+        [
+          8,
+          16
+        ],
+        [
+          10,
+          0
+        ],
+        [
+          10,
+          3
+        ],
+        [
+          15,
+          0
+        ],
+        [
+          15,
+          16
+        ]
+      ],
+      "templates": [
+        "adjacentInnerOuterRight"
+      ]
+    },
+    {
+      "centers": [
+        [
+          8,
+          12,
+          15
+        ]
+      ],
+      "kind": "disjoint",
+      "reflection_templates": [],
+      "support": [
+        [
+          8,
+          7
+        ],
+        [
+          8,
+          16
+        ],
+        [
+          12,
+          0
+        ],
+        [
+          12,
+          7
+        ],
+        [
+          15,
+          0
+        ],
+        [
+          15,
+          16
+        ]
+      ],
+      "templates": []
+    },
+    {
+      "centers": [
+        [
+          8,
+          13,
+          14
+        ]
+      ],
+      "kind": "disjoint",
+      "reflection_templates": [],
+      "support": [
+        [
+          8,
+          7
+        ],
+        [
+          8,
+          16
+        ],
+        [
+          13,
+          5
+        ],
+        [
+          13,
+          16
+        ],
+        [
+          14,
+          5
+        ],
+        [
+          14,
+          7
+        ]
+      ],
+      "templates": []
+    },
+    {
+      "centers": [
+        [
+          9,
+          10,
+          14
+        ]
+      ],
+      "kind": "disjoint",
+      "reflection_templates": [],
+      "support": [
+        [
+          9,
+          3
+        ],
+        [
+          9,
+          8
+        ],
+        [
+          10,
+          2
+        ],
+        [
+          10,
+          3
+        ],
+        [
+          14,
+          2
+        ],
+        [
+          14,
+          8
+        ]
+      ],
+      "templates": []
+    },
+    {
+      "centers": [
+        [
+          10,
+          14,
+          16
+        ]
+      ],
+      "kind": "disjoint",
+      "reflection_templates": [],
+      "support": [
+        [
+          10,
+          1
+        ],
+        [
+          10,
+          2
+        ],
+        [
+          14,
+          2
+        ],
+        [
+          14,
+          5
+        ],
+        [
+          16,
+          1
+        ],
+        [
+          16,
+          5
+        ]
+      ],
+      "templates": []
+    },
+    {
+      "centers": [
+        [
+          12,
+          14,
+          16
+        ]
+      ],
+      "kind": "disjoint",
+      "reflection_templates": [],
+      "support": [
+        [
+          12,
+          7
+        ],
+        [
+          12,
+          10
+        ],
+        [
+          14,
+          5
+        ],
+        [
+          14,
+          7
+        ],
+        [
+          16,
+          5
+        ],
+        [
+          16,
+          10
+        ]
+      ],
+      "templates": []
+    }
+  ],
+  "covered_disjoint": 6,
+  "covered_one_overlap": 0,
+  "covered_six_hit": 6,
+  "generated_template_intersections": {
+    "adjacentAdjacent\u2229adjacentInnerOuterLeft": 0,
+    "adjacentAdjacent\u2229adjacentInnerOuterRight": 0,
+    "adjacentInnerOuterLeft\u2229adjacentInnerOuterRight": 0
+  },
+  "generated_unique_per_template": {
+    "adjacentAdjacent": 148512,
+    "adjacentInnerOuterLeft": 148512,
+    "adjacentInnerOuterRight": 148512
+  },
+  "hits_per_template": {
+    "adjacentAdjacent": 0,
+    "adjacentInnerOuterLeft": 2,
+    "adjacentInnerOuterRight": 4
+  },
+  "producer_distinct_supports": 69,
+  "producer_minimal_six_hit": 25,
+  "producer_minimal_supports": 50,
+  "producer_records": 120,
+  "raw_placements_per_template": {
+    "adjacentAdjacent": 148512,
+    "adjacentInnerOuterLeft": 148512,
+    "adjacentInnerOuterRight": 148512
+  },
+  "reflection_covered_disjoint": 10,
+  "reflection_covered_one_overlap": 0,
+  "reflection_covered_six_hit": 10,
+  "reflection_hits_per_template": {
+    "adjacentAdjacent": 1,
+    "adjacentInnerOuterLeft": 4,
+    "adjacentInnerOuterRight": 6
+  },
+  "reflection_target_template_intersections": {
+    "adjacentAdjacent\u2229adjacentInnerOuterLeft": 0,
+    "adjacentAdjacent\u2229adjacentInnerOuterRight": 1,
+    "adjacentInnerOuterLeft\u2229adjacentInnerOuterRight": 0
+  },
+  "replay": "scratch/exact17-child46-production-8205802e/source-semantic-replay.json",
+  "selected_order": [
+    0,
+    6,
+    8,
+    11,
+    10,
+    12,
+    9,
+    7,
+    2,
+    15,
+    16,
+    3,
+    4,
+    5,
+    1,
+    13,
+    14
+  ],
+  "target_counts": {
+    "disjoint": 20,
+    "one-overlap": 5
+  },
+  "target_template_intersections": {
+    "adjacentAdjacent\u2229adjacentInnerOuterLeft": 0,
+    "adjacentAdjacent\u2229adjacentInnerOuterRight": 0,
+    "adjacentInnerOuterLeft\u2229adjacentInnerOuterRight": 0
+  }
+}
