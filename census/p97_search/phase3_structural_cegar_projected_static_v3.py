@@ -52,36 +52,24 @@ screen = importlib.import_module("census.p97_search.structural_screen")
 certificates = importlib.import_module(
     "census.global_confinement.cap_selected_nogood_certificate_probe"
 )
-metric = importlib.import_module(
-    "census.global_confinement.metric_realizability_probe"
-)
+metric = importlib.import_module("census.global_confinement.metric_realizability_probe")
 equality_probe = importlib.import_module(
     "census.global_confinement.equality_ideal_probe"
 )
-ordered_rules = importlib.import_module(
-    "census.p97_search.phase3_ordered_metric_rules"
-)
+ordered_rules = importlib.import_module("census.p97_search.phase3_ordered_metric_rules")
 shared_pair_separation = importlib.import_module(
     "census.p97_search.phase3_shared_pair_separation"
 )
-three_rhombus = importlib.import_module(
-    "census.p97_search.phase3_three_rhombus"
-)
+three_rhombus = importlib.import_module("census.p97_search.phase3_three_rhombus")
 three_rhombus_prefix_bank = importlib.import_module(
     "census.p97_search.phase3_three_rhombus_prefix_bank"
 )
 pinned_multiplicity = importlib.import_module(
     "census.p97_search.phase3_pinned_multiplicity"
 )
-cegar_runtime = importlib.import_module(
-    "census.p97_search.phase3_cegar_runtime"
-)
-productivity = importlib.import_module(
-    "census.p97_search.phase3_productivity"
-)
-loader_cache = importlib.import_module(
-    "census.p97_search.phase3_loader_cache"
-)
+cegar_runtime = importlib.import_module("census.p97_search.phase3_cegar_runtime")
+productivity = importlib.import_module("census.p97_search.phase3_productivity")
+loader_cache = importlib.import_module("census.p97_search.phase3_loader_cache")
 prefix_bank_cache = importlib.import_module(
     "census.p97_search.phase3_prefix_bank_cache"
 )
@@ -94,9 +82,7 @@ classification_context = importlib.import_module(
 shard_optimization = importlib.import_module(
     "census.p97_search.phase3_shard_optimization"
 )
-adaptive_cubing = importlib.import_module(
-    "census.p97_search.phase3_adaptive_cubing"
-)
+adaptive_cubing = importlib.import_module("census.p97_search.phase3_adaptive_cubing")
 incremental_cadical = importlib.import_module(
     "census.p97_search.phase3_incremental_cadical"
 )
@@ -105,16 +91,10 @@ incremental_cadical = importlib.import_module(
 SCHEMA = "p97-phase3-structural-cegar-v1"
 PROJECTED_STATIC_SCHEMA = "p97-phase3-structural-cegar-projected-static-v3"
 LEARNED_SCHEMA = "p97-phase3-structural-cegar-learned-v1"
-PROJECTED_LEARNED_SCHEMA = (
-    "p97-phase3-structural-cegar-learned-projected-static-v3"
-)
+PROJECTED_LEARNED_SCHEMA = "p97-phase3-structural-cegar-learned-projected-static-v3"
 SURVIVOR_SCHEMA = "p97-phase3-structural-cegar-survivor-v1"
-PROJECTED_SURVIVOR_SCHEMA = (
-    "p97-phase3-structural-cegar-survivor-projected-static-v3"
-)
-PROJECTED_STATIC_SAT_SCHEMA = (
-    "p97-phase3-structural-cegar-sat-projected-static-v3"
-)
+PROJECTED_SURVIVOR_SCHEMA = "p97-phase3-structural-cegar-survivor-projected-static-v3"
+PROJECTED_STATIC_SAT_SCHEMA = "p97-phase3-structural-cegar-sat-projected-static-v3"
 PROJECTED_STATIC_JOURNAL_SCHEMA = (
     "p97-phase3-structural-cegar-journal-projected-static-v3"
 )
@@ -125,9 +105,9 @@ PROJECTED_STATIC_CONFIG_SCHEMA = (
     "p97-phase3-structural-cegar-configuration-projected-static-v3"
 )
 _PHASE3_ORDER_BITSETS_ENABLED = True
-PROJECTED_STATIC_V3_UNSHARDED_PROFILE: Literal[
+PROJECTED_STATIC_V3_UNSHARDED_PROFILE: Literal["phase3-v0.2-projected-static"] = (
     "phase3-v0.2-projected-static"
-] = "phase3-v0.2-projected-static"
+)
 LOG_SCHEMA = "p97-phase3-structural-cegar-projected-static-v3-solver-log-v1"
 CUBE_PLAN_SCHEMA = "p97-phase3-structural-cegar-projected-static-v3-cube-plan-v1"
 CUBE_RESULT_SCHEMA = "p97-phase3-structural-cegar-projected-static-v3-cube-result-v1"
@@ -141,31 +121,19 @@ FAILURE_SCHEMA = "p97-phase3-structural-cegar-projected-static-v3-failure-v1"
 MANIFEST_GENERATION_SCHEMA = (
     "p97-phase3-structural-cegar-projected-static-v3-manifest-generation-v1"
 )
-ALGEBRAIC_CERTIFICATE_SCHEMA = (
-    "p97-phase3-survivor-qq-nullstellensatz-certificate-v1"
-)
-ALGEBRAIC_SYSTEM_SCHEMA = (
-    "p97-phase3-survivor-singular-equality-system-v1"
-)
-ALGEBRAIC_MANIFEST_SCHEMA = (
-    "p97-phase3-survivor-qq-nullstellensatz-run-v1"
-)
+ALGEBRAIC_CERTIFICATE_SCHEMA = "p97-phase3-survivor-qq-nullstellensatz-certificate-v1"
+ALGEBRAIC_SYSTEM_SCHEMA = "p97-phase3-survivor-singular-equality-system-v1"
+ALGEBRAIC_MANIFEST_SCHEMA = "p97-phase3-survivor-qq-nullstellensatz-run-v1"
 ALGEBRAIC_ORIGIN = "bootstrap-p97-euclidean-gauge-nullstellensatz"
 ALGEBRAIC_STAGE = "p97-euclidean-gauge-nullstellensatz"
 UNIT_CONTRADICTION_KIND = "UNIT_EQUALITY_INFEASIBILITY"
-REAL_DISTINCTNESS_CERTIFICATE_SCHEMA = (
-    "p97-phase3-real-distinctness-qq-certificate-v1"
-)
+REAL_DISTINCTNESS_CERTIFICATE_SCHEMA = "p97-phase3-real-distinctness-qq-certificate-v1"
 REAL_DISTINCTNESS_MANIFEST_SCHEMA = (
     "p97-phase3-real-distinctness-certificate-manifest-v1"
 )
-REAL_DISTINCTNESS_ORIGIN = (
-    "bootstrap-p97-real-distinctness-ideal-membership"
-)
+REAL_DISTINCTNESS_ORIGIN = "bootstrap-p97-real-distinctness-ideal-membership"
 REAL_DISTINCTNESS_STAGE = "p97-real-distinctness-ideal-membership"
-REAL_DISTINCTNESS_CONTRADICTION_KIND = (
-    "REAL_DISTINCTNESS_CONTRADICTION"
-)
+REAL_DISTINCTNESS_CONTRADICTION_KIND = "REAL_DISTINCTNESS_CONTRADICTION"
 REAL_DISTINCTNESS_TARGET = "x9x^2+x9y^2"
 REAL_DISTINCTNESS_SOURCE_SHA256 = (
     "66fcf278cc2141220951219180d43c95f1ea063d46fcb7fc0156c690fdd5c929"
@@ -197,27 +165,19 @@ REAL_DISTINCTNESS_NONZERO_INDICES = (
     28,
     29,
 )
-EQUILATERAL_SHELL_STATUS_SCHEMA = (
-    "p97-projected-v2-shell-exact-algebra-final-v1"
-)
+EQUILATERAL_SHELL_STATUS_SCHEMA = "p97-projected-v2-shell-exact-algebra-final-v1"
 EQUILATERAL_SHELL_BRANCH_SYSTEM_SCHEMA = (
     "p97-projected-v2-shell-equilateral-branches-v1"
 )
 EQUILATERAL_SHELL_BRANCH_RESULTS_SCHEMA = (
     "p97-projected-v2-shell-equilateral-branch-results-v1"
 )
-EQUILATERAL_SHELL_BANK_SCHEMA = (
-    "p97-equilateral-shell-nullstellensatz-bank-v1"
-)
-EQUILATERAL_SHELL_CERTIFICATE_SCHEMA = (
-    "p97-equilateral-branch-nullstellensatz-v1"
-)
+EQUILATERAL_SHELL_BANK_SCHEMA = "p97-equilateral-shell-nullstellensatz-bank-v1"
+EQUILATERAL_SHELL_CERTIFICATE_SCHEMA = "p97-equilateral-branch-nullstellensatz-v1"
 EQUILATERAL_SHELL_ORIGIN = (
     "bootstrap-p97-equilateral-shell-real-distinctness-nullstellensatz"
 )
-EQUILATERAL_SHELL_STAGE = (
-    "p97-equilateral-shell-real-distinctness-32-branch"
-)
+EQUILATERAL_SHELL_STAGE = "p97-equilateral-shell-real-distinctness-32-branch"
 EQUILATERAL_SHELL_CONTRADICTION_KIND = (
     "EQUILATERAL_SHELL_REAL_DISTINCTNESS_CONTRADICTION"
 )
@@ -286,9 +246,7 @@ EQUILATERAL_SHELL_CENTER_TREE = (
     (2, 3),
     (4, 6),
 )
-CAP_ORDER_CERTIFICATE_SCHEMA = (
-    "p97-phase3-cap-order-convex-five-point-certificate-v1"
-)
+CAP_ORDER_CERTIFICATE_SCHEMA = "p97-phase3-cap-order-convex-five-point-certificate-v1"
 CAP_ORDER_ORIGIN = "solver-cap-order-convex-five-point"
 BOOTSTRAP_CAP_ORDER_ORIGIN = "bootstrap-cap-order-convex-five-point"
 CAP_ORDER_STAGE = "cap-order-convex-five-point-exhaustive"
@@ -298,9 +256,7 @@ CAP_ORDER_LEAN_CONSUMERS = (
     {
         "orientation": "forward",
         "signed_area_case": "negative",
-        "theorem": (
-            "Problem97.Census554.ConvexFivePointCore.false_of_core_of_neg"
-        ),
+        "theorem": ("Problem97.Census554.ConvexFivePointCore.false_of_core_of_neg"),
     },
     {
         "orientation": "reverse",
@@ -312,9 +268,7 @@ RHOMBUS_CAP_ORDER_CERTIFICATE_SCHEMA = (
     "p97-phase3-cap-order-convex-rhombus-certificate-v1"
 )
 RHOMBUS_CAP_ORDER_ORIGIN = "solver-cap-order-convex-rhombus"
-BOOTSTRAP_RHOMBUS_CAP_ORDER_ORIGIN = (
-    "bootstrap-cap-order-convex-rhombus"
-)
+BOOTSTRAP_RHOMBUS_CAP_ORDER_ORIGIN = "bootstrap-cap-order-convex-rhombus"
 RHOMBUS_CAP_ORDER_STAGE = "cap-order-convex-rhombus-exhaustive"
 RHOMBUS_INGRESS_TRUST_BOUNDARY = (
     "generic ConvexRhombusCore Lean theorem names are metadata only; this "
@@ -324,9 +278,7 @@ KALMANSON_CAP_ORDER_CERTIFICATE_SCHEMA = (
     "p97-phase3-cap-order-five-point-three-selected-row-kalmanson-certificate-v1"
 )
 KALMANSON_CAP_ORDER_ORIGIN = "solver-cap-order-selected-row-kalmanson"
-BOOTSTRAP_KALMANSON_CAP_ORDER_ORIGIN = (
-    "bootstrap-cap-order-selected-row-kalmanson"
-)
+BOOTSTRAP_KALMANSON_CAP_ORDER_ORIGIN = "bootstrap-cap-order-selected-row-kalmanson"
 KALMANSON_CAP_ORDER_STAGE = (
     "cap-order-five-point-three-selected-row-kalmanson-exhaustive"
 )
@@ -338,9 +290,7 @@ SHARED_PAIR_SEPARATION_CERTIFICATE_SCHEMA = (
     "p97-phase3-shared-pair-cyclic-separation-learned-certificate-v1"
 )
 SHARED_PAIR_SEPARATION_ORIGIN = "solver-shared-pair-cyclic-separation"
-BOOTSTRAP_SHARED_PAIR_SEPARATION_ORIGIN = (
-    "bootstrap-shared-pair-cyclic-separation"
-)
+BOOTSTRAP_SHARED_PAIR_SEPARATION_ORIGIN = "bootstrap-shared-pair-cyclic-separation"
 SHARED_PAIR_SEPARATION_STAGE = "shared-pair-cyclic-separation-exhaustive"
 SHARED_PAIR_SEPARATION_INGRESS_TRUST_BOUNDARY = (
     "The finite cap-annotation and cyclic-order coverage replay is "
@@ -353,9 +303,7 @@ DUPLICATE_CENTER_LEAN_CONSUMER = (
     "DuplicateCenterCertificate.not_realizes_of_check"
 )
 STRUCTURAL_PATH_ORIGIN = "solver-structural-path-memberships"
-BOOTSTRAP_STRUCTURAL_PATH_ORIGIN = (
-    "bootstrap-structural-path-memberships"
-)
+BOOTSTRAP_STRUCTURAL_PATH_ORIGIN = "bootstrap-structural-path-memberships"
 THREE_RHOMBUS_CERTIFICATE_SCHEMA = three_rhombus.CERTIFICATE_SCHEMA
 THREE_RHOMBUS_ORIGIN = "solver-seven-point-three-rhombus-equality-closure"
 BOOTSTRAP_THREE_RHOMBUS_PREFIX_ORIGIN = (
@@ -366,8 +314,7 @@ THREE_RHOMBUS_PREFIX_INGRESS_SCHEMA = (
     "p97-phase3-three-rhombus-prefix-ingress-projected-static-v3"
 )
 THREE_RHOMBUS_LEAN_CONSUMER = (
-    "Problem97.Phase3ThreeRhombusRowAdapter."
-    "false_of_thirteen_row_memberships"
+    "Problem97.Phase3ThreeRhombusRowAdapter.false_of_thirteen_row_memberships"
 )
 THREE_RHOMBUS_INGRESS_TRUST_BOUNDARY = (
     "the generic equality-closure certificate and exact membership clause "
@@ -849,11 +796,7 @@ def _learned_schema(encoding: Any) -> str:
 
 
 def _survivor_schema(encoding: Any) -> str:
-    return (
-        PROJECTED_SURVIVOR_SCHEMA
-        if encoding.projected_static
-        else SURVIVOR_SCHEMA
-    )
+    return PROJECTED_SURVIVOR_SCHEMA if encoding.projected_static else SURVIVOR_SCHEMA
 
 
 def _phase3_encoding(*, projected_static_v3: bool) -> Any:
@@ -863,14 +806,10 @@ def _phase3_encoding(*, projected_static_v3: bool) -> Any:
         cap=True,
         project_blockers=projected_static_v3,
         static_dual2=projected_static_v3,
-        mincut_scope=(
-            sat.MINCUT_SCOPE_CARD_GE_TEN if projected_static_v3 else None
-        ),
+        mincut_scope=(sat.MINCUT_SCOPE_CARD_GE_TEN if projected_static_v3 else None),
     )
     if projected_static_v3:
-        encoding.pinned_multiplicity_descriptor = pinned_multiplicity.install(
-            encoding
-        )
+        encoding.pinned_multiplicity_descriptor = pinned_multiplicity.install(encoding)
     _validate_three_rhombus_literal_namespace(encoding)
     return encoding
 
@@ -904,13 +843,9 @@ def _validate_three_rhombus_literal_namespace(
             if center == point:
                 continue
             live_variable = encoding.var("s", center, point)
-            standalone_variable = three_rhombus.dense_membership_var(
-                center, point
-            )
+            standalone_variable = three_rhombus.dense_membership_var(center, point)
             live_mapping.append([center, point, live_variable])
-            standalone_mapping.append(
-                [center, point, standalone_variable]
-            )
+            standalone_mapping.append([center, point, standalone_variable])
     if live_mapping != standalone_mapping:
         mismatch = next(
             (
@@ -923,8 +858,7 @@ def _validate_three_rhombus_literal_namespace(
             None,
         )
         raise StructuralCegarError(
-            "three-rhombus row-major DIMACS namespace mismatch: "
-            f"{mismatch!r}"
+            f"three-rhombus row-major DIMACS namespace mismatch: {mismatch!r}"
         )
     mapping_sha256 = _sha256_value(live_mapping)
     descriptor = dict(three_rhombus_prefix_bank.LITERAL_NAMESPACE)
@@ -932,10 +866,7 @@ def _validate_three_rhombus_literal_namespace(
         "schema": "p97-phase3-row-major-s-dimacs-v1",
         "n": CELL.n,
         "variable_count": CELL.n * (CELL.n - 1),
-        "formula": (
-            "1 + (n-1)*center + "
-            "(point if point<center else point-1)"
-        ),
+        "formula": ("1 + (n-1)*center + (point if point<center else point-1)"),
         "mapping_sha256": mapping_sha256,
     }
     if descriptor != expected_descriptor:
@@ -943,10 +874,7 @@ def _validate_three_rhombus_literal_namespace(
             "three-rhombus literal-namespace descriptor mismatch"
         )
     descriptor_sha256 = _sha256_value(descriptor)
-    if (
-        three_rhombus_prefix_bank.LITERAL_NAMESPACE_SHA256
-        != descriptor_sha256
-    ):
+    if three_rhombus_prefix_bank.LITERAL_NAMESPACE_SHA256 != descriptor_sha256:
         raise StructuralCegarError(
             "three-rhombus literal-namespace descriptor hash mismatch"
         )
@@ -1031,9 +959,7 @@ def _validate_three_rhombus_prefix_descriptor(
     chain_head = descriptor.get("entry_chain_head_sha256")
     if entry_count == 0:
         if chain_head is not None:
-            raise StructuralCegarError(
-                f"{where}: empty prefix bank has a chain head"
-            )
+            raise StructuralCegarError(f"{where}: empty prefix bank has a chain head")
     else:
         _require_sha256(chain_head, where=f"{where}: entry chain head")
     clause_hashes = descriptor.get("ordered_clause_sha256")
@@ -1042,9 +968,7 @@ def _validate_three_rhombus_prefix_descriptor(
         or len(clause_hashes) != entry_count
         or len(set(clause_hashes)) != entry_count
     ):
-        raise StructuralCegarError(
-            f"{where}: ordered prefix clause hashes are invalid"
-        )
+        raise StructuralCegarError(f"{where}: ordered prefix clause hashes are invalid")
     for index, digest in enumerate(clause_hashes):
         _require_sha256(digest, where=f"{where}: clause hash {index}")
 
@@ -1115,9 +1039,7 @@ def _load_authenticated_three_rhombus_prefix_bank(
     )
     output = path.resolve()
     try:
-        sums_raw = three_rhombus_prefix_bank._read_artifact_bytes(
-            output / "SHA256SUMS"
-        )
+        sums_raw = three_rhombus_prefix_bank._read_artifact_bytes(output / "SHA256SUMS")
         if _sha256_bytes(sums_raw) != expected_root_sha256:
             raise three_rhombus_prefix_bank.PrefixBankError(
                 "bank-root SHA-256 mismatch"
@@ -1178,9 +1100,7 @@ def _load_authenticated_three_rhombus_prefix_bank(
         "entry_chain_head_sha256": (
             entries[-1].get("record_sha256") if entries else None
         ),
-        "ordered_clause_sha256": [
-            entry.get("clause_sha256") for entry in entries
-        ],
+        "ordered_clause_sha256": [entry.get("clause_sha256") for entry in entries],
     }
     descriptor = _validate_three_rhombus_prefix_descriptor(
         descriptor, where="authenticated prefix bank"
@@ -1234,21 +1154,16 @@ def _validate_bootstrap_mode(encoding: Any, source: Path) -> None:
     for index, record in enumerate(_strict_json_lines(source)):
         where = f"bootstrap record {index}"
         if record.get("schema") != expected_schema:
-            raise StructuralCegarError(
-                f"{where}: learned schema/mode mismatch"
-            )
+            raise StructuralCegarError(f"{where}: learned schema/mode mismatch")
         semantic = record.get("semantic_assignment")
         if (
             encoding.project_blockers
             and isinstance(semantic, Mapping)
             and any(
-                isinstance(name, str) and name.startswith("b[")
-                for name in semantic
+                isinstance(name, str) and name.startswith("b[") for name in semantic
             )
         ):
-            raise StructuralCegarError(
-                f"{where}: projected bootstrap contains b atoms"
-            )
+            raise StructuralCegarError(f"{where}: projected bootstrap contains b atoms")
 
 
 def _canonical_bytes(value: Any) -> bytes:
@@ -1396,9 +1311,7 @@ def _iter_strict_json_lines(
                 scan.observe(raw)
             payload = raw[:-1]
             if not payload.strip():
-                raise StructuralCegarError(
-                    f"{path}:{line_number}: blank JSONL line"
-                )
+                raise StructuralCegarError(f"{path}:{line_number}: blank JSONL line")
             try:
                 value = json.loads(
                     payload,
@@ -1412,9 +1325,7 @@ def _iter_strict_json_lines(
                     f"{path}:{line_number}: invalid JSON: {exc}"
                 ) from exc
             if not isinstance(value, dict):
-                raise StructuralCegarError(
-                    f"{path}:{line_number}: expected object"
-                )
+                raise StructuralCegarError(f"{path}:{line_number}: expected object")
             yield value
 
 
@@ -1442,6 +1353,17 @@ def _strict_json(path: Path) -> dict[str, Any]:
     if not isinstance(value, dict):
         raise StructuralCegarError(f"{path}: expected object")
     return value
+
+
+def _load_ingress_contract(path: Path) -> dict[str, Any]:
+    contract = _strict_json(path)
+    try:
+        productivity.validate_ingress_contract(contract)
+    except productivity.ProductivityError as exc:
+        raise StructuralCegarError(
+            f"{path}: invalid productivity ingress contract: {exc}"
+        ) from exc
+    return contract
 
 
 def _object_without_duplicate_keys(
@@ -1477,9 +1399,7 @@ def _stable_semantic_variables(
     encoding: Any, depth: int
 ) -> tuple[tuple[str, int, tuple[Any, ...]], ...]:
     if not 1 <= depth <= MAX_CUBE_DEPTH:
-        raise StructuralCegarError(
-            f"cube_depth must be in 1..{MAX_CUBE_DEPTH}"
-        )
+        raise StructuralCegarError(f"cube_depth must be in 1..{MAX_CUBE_DEPTH}")
     ordered = tuple(
         sorted(
             (
@@ -1498,33 +1418,23 @@ def _stable_semantic_variables(
     return selected
 
 
-def _cube_partition(
-    encoding: Any, depth: int
-) -> tuple[tuple[int, ...], ...]:
+def _cube_partition(encoding: Any, depth: int) -> tuple[tuple[int, ...], ...]:
     variables = tuple(
         variable
-        for _name, variable, _key in _stable_semantic_variables(
-            encoding, depth
-        )
+        for _name, variable, _key in _stable_semantic_variables(encoding, depth)
     )
     cubes = tuple(
         tuple(
-            variable
-            if (cube_index >> (depth - position - 1)) & 1
-            else -variable
+            variable if (cube_index >> (depth - position - 1)) & 1 else -variable
             for position, variable in enumerate(variables)
         )
         for cube_index in range(1 << depth)
     )
     expected_patterns = set(itertools.product((False, True), repeat=depth))
-    observed_patterns = {
-        tuple(literal > 0 for literal in cube) for cube in cubes
-    }
+    observed_patterns = {tuple(literal > 0 for literal in cube) for cube in cubes}
     if observed_patterns != expected_patterns:
         raise StructuralCegarError("cube partition is not exhaustive")
-    if any(
-        tuple(abs(literal) for literal in cube) != variables for cube in cubes
-    ):
+    if any(tuple(abs(literal) for literal in cube) != variables for cube in cubes):
         raise StructuralCegarError("cube partition variable order drift")
     return cubes
 
@@ -1537,13 +1447,9 @@ def _shard_spec(
     global_base_cnf_sha256: str | None = None,
 ) -> dict[str, Any]:
     if type(depth) is not int or not 1 <= depth <= MAX_CUBE_DEPTH:
-        raise StructuralCegarError(
-            f"shard_depth must be in 1..{MAX_CUBE_DEPTH}"
-        )
+        raise StructuralCegarError(f"shard_depth must be in 1..{MAX_CUBE_DEPTH}")
     if type(index) is not int or not 0 <= index < 1 << depth:
-        raise StructuralCegarError(
-            f"shard_index must be in 0..{(1 << depth) - 1}"
-        )
+        raise StructuralCegarError(f"shard_index must be in 0..{(1 << depth) - 1}")
     variables = _stable_semantic_variables(encoding, depth)
     partition = _cube_partition(encoding, depth)
     literals = partition[index]
@@ -1565,9 +1471,7 @@ def _shard_spec(
         ],
         "literals": list(literals),
         "cube_sha256": _sha256_value(list(literals)),
-        "partition_sha256": _sha256_value(
-            [list(cube) for cube in partition]
-        ),
+        "partition_sha256": _sha256_value([list(cube) for cube in partition]),
         "shard_base_cnf_sha256": shard_base_cnf_sha256,
         "global_base_cnf_sha256": (
             _sha256_bytes(encoding.cnf_bytes())
@@ -1614,9 +1518,7 @@ def _shard_local_formula(
             source, tuple(int(literal) for literal in shard_literals)
         )
     except shard_optimization.SimplificationError as exc:
-        raise StructuralCegarError(
-            f"shard-local simplification failed: {exc}"
-        ) from exc
+        raise StructuralCegarError(f"shard-local simplification failed: {exc}") from exc
     return (
         _render_cnf_clauses(encoding, simplified.residual_clauses),
         simplified.as_dict(),
@@ -1820,13 +1722,9 @@ def _cube_snapshot(
             [list(clause) for clause in extra_clauses]
         ),
         "learned_count": len(learned),
-        "learned_head_sha256": (
-            learned[-1]["record_sha256"] if learned else None
-        ),
+        "learned_head_sha256": (learned[-1]["record_sha256"] if learned else None),
         "survivor_count": len(survivors),
-        "survivor_head_sha256": (
-            survivors[-1]["record_sha256"] if survivors else None
-        ),
+        "survivor_head_sha256": (survivors[-1]["record_sha256"] if survivors else None),
         "solver_log_count": len(logs),
         "solver_log_head_sha256": logs[-1]["record_sha256"] if logs else None,
     }
@@ -1858,14 +1756,10 @@ def _live_cube_snapshot_counts(
             or count != len(records)
             or expected_head != actual_head
         ):
-            raise StructuralCegarError(
-                f"live cube plan {name} snapshot mismatch"
-            )
+            raise StructuralCegarError(f"live cube plan {name} snapshot mismatch")
         counts[name] = count
     if len(survivors) != len(survivor_clauses):
-        raise StructuralCegarError(
-            "live cube survivor record/clause count mismatch"
-        )
+        raise StructuralCegarError("live cube survivor record/clause count mismatch")
     return counts["learned"], counts["survivor"]
 
 
@@ -1891,15 +1785,11 @@ def _validate_cube_plan(
 def _literal_true(literal: int, assignment: Mapping[int, bool]) -> bool:
     variable = abs(literal)
     if variable not in assignment:
-        raise StructuralCegarError(
-            f"assignment omits clause variable {variable}"
-        )
+        raise StructuralCegarError(f"assignment omits clause variable {variable}")
     return assignment[variable] if literal > 0 else not assignment[variable]
 
 
-def _clause_satisfied(
-    clause: Sequence[int], assignment: Mapping[int, bool]
-) -> bool:
+def _clause_satisfied(clause: Sequence[int], assignment: Mapping[int, bool]) -> bool:
     return any(_literal_true(literal, assignment) for literal in clause)
 
 
@@ -1941,7 +1831,9 @@ def _detection(rows: Sequence[Any]) -> dict[str, Any] | None:
             include_ordered=False,
         )
     except Exception as exc:
-        raise StructuralCegarError(f"formalized metric-core detector failed: {exc}") from exc
+        raise StructuralCegarError(
+            f"formalized metric-core detector failed: {exc}"
+        ) from exc
     if found is None:
         return None
     if (
@@ -1962,6 +1854,7 @@ def _three_rhombus_detection(
 
     def var_lookup(center: int, point: int) -> int:
         return encoding.var("s", center, point)
+
     try:
         found = three_rhombus.detect_three_rhombus(
             rows,
@@ -1979,9 +1872,7 @@ def _three_rhombus_detection(
             f"three-rhombus detector/replay failed: {exc}"
         ) from exc
     if tuple(found.get("clause", ())) != tuple(replayed_clause):
-        raise StructuralCegarError(
-            "three-rhombus detector/replay clause mismatch"
-        )
+        raise StructuralCegarError("three-rhombus detector/replay clause mismatch")
     if not replayed_clause or any(literal >= 0 for literal in replayed_clause):
         raise StructuralCegarError(
             "three-rhombus replay did not return a negative membership clause"
@@ -2023,8 +1914,7 @@ def _certificate(
         raise StructuralCegarError("certificate validator did not return True")
     key = certificates._key_from_rows_json(certificate["rows"])
     selected = tuple(
-        metric.MetricRow(center, support, exact)
-        for center, support, exact in key
+        metric.MetricRow(center, support, exact) for center, support, exact in key
     )
     if not selected:
         raise StructuralCegarError("certificate contains no rows")
@@ -2046,14 +1936,11 @@ def _replay_certificate_json(
         replayed = certificates._validate_certificate(value, n=CELL.n)
         key = certificates._key_from_rows_json(value["rows"])
     except Exception as exc:
-        raise StructuralCegarError(
-            f"stored certificate replay failed: {exc}"
-        ) from exc
+        raise StructuralCegarError(f"stored certificate replay failed: {exc}") from exc
     if replayed is not True:
         raise StructuralCegarError("stored certificate validator did not return True")
     selected = tuple(
-        metric.MetricRow(center, support, exact)
-        for center, support, exact in key
+        metric.MetricRow(center, support, exact) for center, support, exact in key
     )
     if not selected:
         raise StructuralCegarError("stored certificate contains no rows")
@@ -2095,19 +1982,13 @@ def _duplicate_center_path_memberships(
         or len(set(triple)) != 3
         or len(set(centers)) != 2
     ):
-        raise StructuralCegarError(
-            "duplicate-center core side conditions mismatch"
-        )
-    if certificate.get("side_conditions") != [
-        {"kind": "injective-realization"}
-    ]:
+        raise StructuralCegarError("duplicate-center core side conditions mismatch")
+    if certificate.get("side_conditions") != [{"kind": "injective-realization"}]:
         raise StructuralCegarError(
             "duplicate-center injective-realization side condition mismatch"
         )
     try:
-        obligations = certificates._core_obligations(
-            DUPLICATE_CENTER_STAGE, core
-        )
+        obligations = certificates._core_obligations(DUPLICATE_CENTER_STAGE, core)
     except Exception as exc:
         raise StructuralCegarError(
             f"duplicate-center obligations are malformed: {exc}"
@@ -2124,9 +2005,7 @@ def _duplicate_center_path_memberships(
             or path.get("last") != list(last)
             or not isinstance(path.get("steps"), list)
         ):
-            raise StructuralCegarError(
-                "duplicate-center closure-path linkage mismatch"
-            )
+            raise StructuralCegarError("duplicate-center closure-path linkage mismatch")
         for step in path["steps"]:
             if not isinstance(step, dict):
                 raise StructuralCegarError(
@@ -2144,9 +2023,7 @@ def _duplicate_center_path_memberships(
                 "first",
                 "second",
             }:
-                raise StructuralCegarError(
-                    "duplicate-center row-step fields mismatch"
-                )
+                raise StructuralCegarError("duplicate-center row-step fields mismatch")
             center = step["center"]
             first_point = step["first"]
             second_point = step["second"]
@@ -2161,9 +2038,7 @@ def _duplicate_center_path_memberships(
                     for label in (center, first_point, second_point)
                 )
             ):
-                raise StructuralCegarError(
-                    "duplicate-center row-step labels mismatch"
-                )
+                raise StructuralCegarError("duplicate-center row-step labels mismatch")
             memberships.add((center, first_point))
             memberships.add((center, second_point))
     normalized = tuple(sorted(memberships))
@@ -2204,12 +2079,13 @@ def _cap_orders_from_facts(
         )
         or normalized != tuple(sorted(set(normalized)))
         or tuple(label for label, _cap in normalized) != tuple(range(3, CELL.n))
-        or any(type(cap) is not int or cap not in (0, 1, 2) for _label, cap in normalized)
+        or any(
+            type(cap) is not int or cap not in (0, 1, 2) for _label, cap in normalized
+        )
     ):
         raise StructuralCegarError("stored cap facts are invalid or incomplete")
     fibers = tuple(
-        tuple(label for label, cap in normalized if cap == index)
-        for index in range(3)
+        tuple(label for label, cap in normalized if cap == index) for index in range(3)
     )
     if sorted(map(len, fibers)) != [2, 2, 3]:
         raise StructuralCegarError("stored cap facts do not have fiber sizes (2,2,3)")
@@ -2228,9 +2104,7 @@ def _cap_orders_from_facts(
     return tuple((f"order-{index:02d}", order) for index, order in enumerate(raw))
 
 
-def _cyclic_subsequence(
-    order: Sequence[int], roles: Sequence[int]
-) -> bool:
+def _cyclic_subsequence(order: Sequence[int], roles: Sequence[int]) -> bool:
     if (
         sorted(order) != list(range(CELL.n))
         or len(set(roles)) != len(roles)
@@ -2342,9 +2216,7 @@ def _compatible_cap_coverage(
         universe = phase3_order_universe.phase3_order_universe()
         try:
             sound, compatible_annotation_count, _compatible_order_count = (
-                universe.compatible_orders_are_covered(
-                    retained, covered_order_mask
-                )
+                universe.compatible_orders_are_covered(retained, covered_order_mask)
             )
         except phase3_order_universe.Phase3OrderUniverseError as exc:
             raise StructuralCegarError(str(exc)) from exc
@@ -2471,9 +2343,7 @@ def _cap_order_certificate(
                 break
         if detection is None:
             return None
-        closure_certificate, _selected = _certificate(
-            rows, detection, context=context
-        )
+        closure_certificate, _selected = _certificate(rows, detection, context=context)
         proof_sha256 = closure_certificate.get("proof_sha256")
         if not isinstance(proof_sha256, str):
             raise StructuralCegarError("closure certificate has no proof hash")
@@ -2501,9 +2371,7 @@ def _cap_order_certificate(
         closure_by_hash[proof_sha256] for proof_sha256 in sorted(closure_by_hash)
     ]
     selected = _cap_order_selected_rows(closure_certificates)
-    retained_facts, minimization = _minimize_cap_facts(
-        facts, closure_certificates
-    )
+    retained_facts, minimization = _minimize_cap_facts(facts, closure_certificates)
     antecedent = {
         "rows": [row.as_dict() for row in selected],
         "cap_memberships": [list(fact) for fact in retained_facts],
@@ -2540,9 +2408,7 @@ def _cap_order_certificate(
         **unsigned,
         "certificate_payload_sha256": _sha256_value(unsigned),
     }
-    replayed, replayed_rows, replayed_facts = _replay_cap_order_certificate(
-        certificate
-    )
+    replayed, replayed_rows, replayed_facts = _replay_cap_order_certificate(certificate)
     if (
         replayed != certificate
         or replayed_rows != selected
@@ -2698,9 +2564,7 @@ def _replay_cap_order_certificate(
         raise StructuralCegarError("cap-order certificate contains unused closures")
 
     ordered_closures = [entry[0] for entry in closure_by_hash.values()]
-    retained_facts, expected_minimization = _minimize_cap_facts(
-        facts, ordered_closures
-    )
+    retained_facts, expected_minimization = _minimize_cap_facts(facts, ordered_closures)
     if value["cap_minimization"] != expected_minimization:
         raise StructuralCegarError("cap-order minimization claim mismatch")
     selected = _cap_order_selected_rows(ordered_closures)
@@ -2747,9 +2611,7 @@ def _rhombus_cap_order_certificate(
             f"rhombus cap-order construction failed: {exc}"
         ) from exc
     if realized_orders != replay_orders:
-        raise StructuralCegarError(
-            "independent rhombus cap-order construction drift"
-        )
+        raise StructuralCegarError("independent rhombus cap-order construction drift")
     try:
         closure_builder = None
         if context is not None:
@@ -2820,17 +2682,15 @@ def _rhombus_cap_order_certificate(
         **unsigned,
         "certificate_payload_sha256": _sha256_value(unsigned),
     }
-    replayed, replayed_rows, replayed_facts = (
-        _replay_rhombus_cap_order_certificate(certificate)
+    replayed, replayed_rows, replayed_facts = _replay_rhombus_cap_order_certificate(
+        certificate
     )
     if (
         replayed != certificate
         or replayed_rows != selected
         or replayed_facts != retained_facts
     ):
-        raise StructuralCegarError(
-            "rhombus cap-order certificate self-replay drift"
-        )
+        raise StructuralCegarError("rhombus cap-order certificate self-replay drift")
     return certificate, selected, retained_facts
 
 
@@ -2838,9 +2698,7 @@ def _replay_rhombus_cap_order_certificate(
     value: Any,
 ) -> tuple[dict[str, Any], tuple[Any, ...], tuple[tuple[int, int], ...]]:
     if not isinstance(value, dict):
-        raise StructuralCegarError(
-            "rhombus cap-order certificate is not an object"
-        )
+        raise StructuralCegarError("rhombus cap-order certificate is not an object")
     expected_keys = {
         "schema",
         "n",
@@ -2855,35 +2713,28 @@ def _replay_rhombus_cap_order_certificate(
         "certificate_payload_sha256",
     }
     if set(value) != expected_keys:
-        raise StructuralCegarError(
-            "rhombus cap-order certificate fields mismatch"
-        )
+        raise StructuralCegarError("rhombus cap-order certificate fields mismatch")
     if (
         value["schema"] != RHOMBUS_CAP_ORDER_CERTIFICATE_SCHEMA
         or value["n"] != CELL.n
         or value["stage"] != RHOMBUS_CAP_ORDER_STAGE
         or value["generic_lean_consumers"]
         != [dict(consumer) for consumer in ordered_rules.LEAN_CONSUMERS]
-        or value["concrete_ingress_trust_boundary"]
-        != RHOMBUS_INGRESS_TRUST_BOUNDARY
+        or value["concrete_ingress_trust_boundary"] != RHOMBUS_INGRESS_TRUST_BOUNDARY
         or value["cap_semantics"]
         != (
             "M={0,1,2}; cap_orders has no reflection quotient; minimization "
             "ranges over every Phase-3 f completion with fiber sizes (2,2,3)"
         )
     ):
-        raise StructuralCegarError(
-            "rhombus cap-order certificate identity mismatch"
-        )
+        raise StructuralCegarError("rhombus cap-order certificate identity mismatch")
     cap_annotation = value["cap_annotation"]
     if not isinstance(cap_annotation, dict) or set(cap_annotation) != {
         "M",
         "f",
         "closed_profile",
     }:
-        raise StructuralCegarError(
-            "rhombus cap-order annotation fields mismatch"
-        )
+        raise StructuralCegarError("rhombus cap-order annotation fields mismatch")
     try:
         facts = tuple(
             (pair[0], pair[1])
@@ -2891,9 +2742,7 @@ def _replay_rhombus_cap_order_certificate(
             if isinstance(pair, list) and len(pair) == 2
         )
     except (TypeError, IndexError) as exc:
-        raise StructuralCegarError(
-            "rhombus cap-order facts are malformed"
-        ) from exc
+        raise StructuralCegarError("rhombus cap-order facts are malformed") from exc
     if (
         len(facts) != len(cap_annotation["f"])
         or cap_annotation["M"] != [0, 1, 2]
@@ -2906,9 +2755,7 @@ def _replay_rhombus_cap_order_certificate(
         raise StructuralCegarError("rhombus ordered-rule record is malformed")
     closure_certificates = ordered_rule.get("closure_certificates")
     if not isinstance(closure_certificates, list):
-        raise StructuralCegarError(
-            "rhombus ordered-rule closure list is malformed"
-        )
+        raise StructuralCegarError("rhombus ordered-rule closure list is malformed")
     selected = _cap_order_selected_rows(closure_certificates)
     try:
         ordered_rules.replay_convex_rhombus_order_record(
@@ -2924,9 +2771,7 @@ def _replay_rhombus_cap_order_certificate(
         core_roles=ordered_rules.CORE_ROLES,
     )
     if value["cap_minimization"] != expected_minimization:
-        raise StructuralCegarError(
-            "rhombus cap-order minimization claim mismatch"
-        )
+        raise StructuralCegarError("rhombus cap-order minimization claim mismatch")
     expected_antecedent = {
         "rows": [row.as_dict() for row in selected],
         "cap_memberships": [list(fact) for fact in retained_facts],
@@ -2958,9 +2803,7 @@ def _kalmanson_rows_from_json(value: Any) -> tuple[Any, ...]:
         }:
             raise StructuralCegarError("Kalmanson row descriptor is malformed")
         try:
-            row = metric.MetricRow(
-                raw["center"], tuple(raw["support"]), raw["exact"]
-            )
+            row = metric.MetricRow(raw["center"], tuple(raw["support"]), raw["exact"])
         except Exception as exc:
             raise StructuralCegarError(
                 f"could not decode Kalmanson row: {exc}"
@@ -3036,9 +2879,7 @@ def _compatible_kalmanson_cap_coverage(
                     "f": [list(fact) for fact in facts],
                     "order_id": order_id,
                     "core": detected["core"],
-                    "boundary_rotation_start": detected[
-                        "boundary_rotation_start"
-                    ],
+                    "boundary_rotation_start": detected["boundary_rotation_start"],
                     "row_centers": detected["row_centers"],
                 }
             )
@@ -3109,19 +2950,13 @@ def _kalmanson_cap_order_certificate(
             f"Kalmanson cap-order construction failed: {exc}"
         ) from exc
     if realized_orders != replay_orders:
-        raise StructuralCegarError(
-            "independent Kalmanson cap-order construction drift"
-        )
+        raise StructuralCegarError("independent Kalmanson cap-order construction drift")
     try:
         minimized = ordered_rules.minimize_selected_row_kalmanson_rows(
             rows,
             CELL.n,
             realized_orders,
-            detector=(
-                None
-                if context is None
-                else context.kalmanson_detection
-            ),
+            detector=(None if context is None else context.kalmanson_detection),
         )
     except ordered_rules.OrderedMetricRuleError as exc:
         raise StructuralCegarError(
@@ -3135,11 +2970,7 @@ def _kalmanson_cap_order_certificate(
             selected,
             CELL.n,
             realized_orders,
-            detector=(
-                None
-                if context is None
-                else context.kalmanson_detection
-            ),
+            detector=(None if context is None else context.kalmanson_detection),
         )
     except ordered_rules.OrderedMetricRuleError as exc:
         raise StructuralCegarError(
@@ -3171,9 +3002,7 @@ def _kalmanson_cap_order_certificate(
         "selected_row_roles": list(ordered_rules.KALMANSON_ROW_ROLES),
         "direct_support_role_pairs": {
             role: list(pair)
-            for role, pair in (
-                ordered_rules.KALMANSON_DIRECT_SUPPORT_ROLES.items()
-            )
+            for role, pair in (ordered_rules.KALMANSON_DIRECT_SUPPORT_ROLES.items())
         },
     }
     unsigned = {
@@ -3201,17 +3030,15 @@ def _kalmanson_cap_order_certificate(
         **unsigned,
         "certificate_payload_sha256": _sha256_value(unsigned),
     }
-    replayed, replayed_rows, replayed_facts = (
-        _replay_kalmanson_cap_order_certificate(certificate)
+    replayed, replayed_rows, replayed_facts = _replay_kalmanson_cap_order_certificate(
+        certificate
     )
     if (
         replayed != certificate
         or replayed_rows != selected
         or replayed_facts != retained_facts
     ):
-        raise StructuralCegarError(
-            "Kalmanson cap-order certificate self-replay drift"
-        )
+        raise StructuralCegarError("Kalmanson cap-order certificate self-replay drift")
     return certificate, selected, retained_facts
 
 
@@ -3219,9 +3046,7 @@ def _replay_kalmanson_cap_order_certificate(
     value: Any,
 ) -> tuple[dict[str, Any], tuple[Any, ...], tuple[tuple[int, int], ...]]:
     if not isinstance(value, dict):
-        raise StructuralCegarError(
-            "Kalmanson cap-order certificate is not an object"
-        )
+        raise StructuralCegarError("Kalmanson cap-order certificate is not an object")
     expected_keys = {
         "schema",
         "n",
@@ -3237,9 +3062,7 @@ def _replay_kalmanson_cap_order_certificate(
         "certificate_payload_sha256",
     }
     if set(value) != expected_keys:
-        raise StructuralCegarError(
-            "Kalmanson cap-order certificate fields mismatch"
-        )
+        raise StructuralCegarError("Kalmanson cap-order certificate fields mismatch")
     expected_consumer = {
         "module": ordered_rules.KALMANSON_LEAN_MODULE,
         "source": ordered_rules.KALMANSON_LEAN_SOURCE,
@@ -3248,9 +3071,7 @@ def _replay_kalmanson_cap_order_certificate(
         "selected_row_roles": list(ordered_rules.KALMANSON_ROW_ROLES),
         "direct_support_role_pairs": {
             role: list(pair)
-            for role, pair in (
-                ordered_rules.KALMANSON_DIRECT_SUPPORT_ROLES.items()
-            )
+            for role, pair in (ordered_rules.KALMANSON_DIRECT_SUPPORT_ROLES.items())
         },
     }
     if (
@@ -3258,8 +3079,7 @@ def _replay_kalmanson_cap_order_certificate(
         or value["n"] != CELL.n
         or value["stage"] != KALMANSON_CAP_ORDER_STAGE
         or value["lean_consumer"] != expected_consumer
-        or value["concrete_ingress_trust_boundary"]
-        != KALMANSON_INGRESS_TRUST_BOUNDARY
+        or value["concrete_ingress_trust_boundary"] != KALMANSON_INGRESS_TRUST_BOUNDARY
         or value["cap_semantics"]
         != (
             "M={0,1,2}; cap_orders has no reflection quotient; one bound "
@@ -3267,18 +3087,14 @@ def _replay_kalmanson_cap_order_certificate(
             "every retained-fact-compatible Phase-3 annotation"
         )
     ):
-        raise StructuralCegarError(
-            "Kalmanson cap-order certificate identity mismatch"
-        )
+        raise StructuralCegarError("Kalmanson cap-order certificate identity mismatch")
     cap_annotation = value["cap_annotation"]
     if not isinstance(cap_annotation, dict) or set(cap_annotation) != {
         "M",
         "f",
         "closed_profile",
     }:
-        raise StructuralCegarError(
-            "Kalmanson cap-order annotation fields mismatch"
-        )
+        raise StructuralCegarError("Kalmanson cap-order annotation fields mismatch")
     try:
         facts = tuple(
             (pair[0], pair[1])
@@ -3286,9 +3102,7 @@ def _replay_kalmanson_cap_order_certificate(
             if isinstance(pair, list) and len(pair) == 2
         )
     except (TypeError, IndexError) as exc:
-        raise StructuralCegarError(
-            "Kalmanson cap-order facts are malformed"
-        ) from exc
+        raise StructuralCegarError("Kalmanson cap-order facts are malformed") from exc
     if (
         len(facts) != len(cap_annotation["f"])
         or cap_annotation["M"] != [0, 1, 2]
@@ -3298,12 +3112,8 @@ def _replay_kalmanson_cap_order_certificate(
     replay_orders = _cap_orders_from_facts(facts)
     row_minimization = value["row_minimization"]
     if not isinstance(row_minimization, dict):
-        raise StructuralCegarError(
-            "Kalmanson row-minimization record is malformed"
-        )
-    source_rows = _kalmanson_rows_from_json(
-        row_minimization.get("source_rows")
-    )
+        raise StructuralCegarError("Kalmanson row-minimization record is malformed")
+    source_rows = _kalmanson_rows_from_json(row_minimization.get("source_rows"))
     if len(source_rows) != CELL.n:
         raise StructuralCegarError(
             "Kalmanson row-minimization source must contain ten rows"
@@ -3326,18 +3136,12 @@ def _replay_kalmanson_cap_order_certificate(
         "source_rows": [row.as_dict() for row in source_rows],
     }
     if row_minimization != expected_row_minimization:
-        raise StructuralCegarError(
-            "Kalmanson row-minimization claim mismatch"
-        )
+        raise StructuralCegarError("Kalmanson row-minimization claim mismatch")
     ordered_rule = value["ordered_rule"]
     if not isinstance(ordered_rule, dict):
         raise StructuralCegarError("Kalmanson ordered-rule record is malformed")
-    if ordered_rule.get("selected_rows") != [
-        row.as_dict() for row in selected
-    ]:
-        raise StructuralCegarError(
-            "Kalmanson ordered-rule selected rows mismatch"
-        )
+    if ordered_rule.get("selected_rows") != [row.as_dict() for row in selected]:
+        raise StructuralCegarError("Kalmanson ordered-rule selected rows mismatch")
     try:
         ordered_rules.replay_selected_row_kalmanson_order_record(
             selected, CELL.n, replay_orders, ordered_rule
@@ -3346,13 +3150,11 @@ def _replay_kalmanson_cap_order_certificate(
         raise StructuralCegarError(
             f"Kalmanson ordered-rule replay failed: {exc}"
         ) from exc
-    retained_facts, expected_cap_minimization = (
-        _minimize_kalmanson_cap_facts(facts, selected)
+    retained_facts, expected_cap_minimization = _minimize_kalmanson_cap_facts(
+        facts, selected
     )
     if value["cap_minimization"] != expected_cap_minimization:
-        raise StructuralCegarError(
-            "Kalmanson cap-order minimization claim mismatch"
-        )
+        raise StructuralCegarError("Kalmanson cap-order minimization claim mismatch")
     expected_antecedent = {
         "rows": [row.as_dict() for row in selected],
         "cap_memberships": [list(fact) for fact in retained_facts],
@@ -3377,9 +3179,7 @@ def _clause_for_rows(
     assignment: Mapping[int, bool] | None = None,
 ) -> tuple[int, ...]:
     clause = tuple(
-        -encoding.var("s", row.center, point)
-        for row in rows
-        for point in row.support
+        -encoding.var("s", row.center, point) for row in rows for point in row.support
     )
     if len(clause) != CELL.k * len(rows) or len(set(clause)) != len(clause):
         raise StructuralCegarError("certificate clause has duplicate/missing literals")
@@ -3502,9 +3302,7 @@ def _shared_pair_coverage(
                 {
                     "f": [list(fact) for fact in facts],
                     "order_id": order_id,
-                    "order_sha256": shared_pair_separation.sha256_value(
-                        list(order)
-                    ),
+                    "order_sha256": shared_pair_separation.sha256_value(list(order)),
                     "violating_core_sha256": violating["core_sha256"],
                 }
             )
@@ -3525,15 +3323,16 @@ def _minimize_shared_pair_antecedent(
     *,
     context: Any | None = None,
 ) -> tuple[
-    tuple[Any, ...], tuple[dict[str, Any], ...], tuple[tuple[int, int], ...], dict[str, Any]
+    tuple[Any, ...],
+    tuple[dict[str, Any], ...],
+    tuple[tuple[int, int], ...],
+    dict[str, Any],
 ]:
     """Exact literal-count minimization over row centers and positive cap facts."""
 
     source = tuple(source_facts)
     if context is None:
-        context = classification_context.ClassificationContext.from_rows(
-            rows, CELL.n
-        )
+        context = classification_context.ClassificationContext.from_rows(rows, CELL.n)
     _cap_orders_from_facts(source)
     rows_by_center = {row.center: row for row in rows}
     if tuple(sorted(rows_by_center)) != tuple(range(CELL.n)):
@@ -3562,23 +3361,28 @@ def _minimize_shared_pair_antecedent(
                     if coverage is None:
                         continue
                     selected_rows = tuple(rows_by_center[center] for center in centers)
-                    return selected_rows, selected_cores, tuple(retained), {
-                        "method": (
-                            "exact-literal-count-then-lexicographic-center-and-"
-                            "positive-cap-subset-enumeration"
-                        ),
-                        "source_fact_count": len(source),
-                        "selected_row_count": len(selected_rows),
-                        "selected_centers": list(centers),
-                        "selected_core_count": len(selected_cores),
-                        "selected_core_sha256": [
-                            core["core_sha256"] for core in selected_cores
-                        ],
-                        "retained_fact_count": len(retained),
-                        "retained_facts": [list(fact) for fact in retained],
-                        "literal_count": literal_count,
-                        **coverage,
-                    }
+                    return (
+                        selected_rows,
+                        selected_cores,
+                        tuple(retained),
+                        {
+                            "method": (
+                                "exact-literal-count-then-lexicographic-center-and-"
+                                "positive-cap-subset-enumeration"
+                            ),
+                            "source_fact_count": len(source),
+                            "selected_row_count": len(selected_rows),
+                            "selected_centers": list(centers),
+                            "selected_core_count": len(selected_cores),
+                            "selected_core_sha256": [
+                                core["core_sha256"] for core in selected_cores
+                            ],
+                            "retained_fact_count": len(retained),
+                            "retained_facts": [list(fact) for fact in retained],
+                            "literal_count": literal_count,
+                            **coverage,
+                        },
+                    )
     raise StructuralCegarError("no shared-pair cyclic-separation antecedent exists")
 
 
@@ -3600,8 +3404,8 @@ def _shared_pair_separation_certificate(
         nested = shared_pair_separation.build_certificate(source, None)
     except shared_pair_separation.SharedPairSeparationError:
         return None
-    selected, selected_cores, retained, minimization = (
-        _minimize_shared_pair_antecedent(facts, rows, context=context)
+    selected, selected_cores, retained, minimization = _minimize_shared_pair_antecedent(
+        facts, rows, context=context
     )
     antecedent = {
         "rows": [row.as_dict() for row in selected],
@@ -3630,8 +3434,15 @@ def _replay_shared_pair_separation_certificate(
     value: Any,
 ) -> tuple[dict[str, Any], tuple[Any, ...], tuple[tuple[int, int], ...]]:
     if not isinstance(value, dict) or set(value) != {
-        "schema", "n", "profile", "stage", "concrete_ingress_trust_boundary",
-        "source_certificate", "minimization", "antecedent", "selected_cores",
+        "schema",
+        "n",
+        "profile",
+        "stage",
+        "concrete_ingress_trust_boundary",
+        "source_certificate",
+        "minimization",
+        "antecedent",
+        "selected_cores",
         "certificate_payload_sha256",
     }:
         raise StructuralCegarError("shared-pair certificate fields mismatch")
@@ -3640,7 +3451,8 @@ def _replay_shared_pair_separation_certificate(
         or value["n"] != CELL.n
         or value["profile"] != list(CELL.profile)
         or value["stage"] != SHARED_PAIR_SEPARATION_STAGE
-        or value["concrete_ingress_trust_boundary"] != SHARED_PAIR_SEPARATION_INGRESS_TRUST_BOUNDARY
+        or value["concrete_ingress_trust_boundary"]
+        != SHARED_PAIR_SEPARATION_INGRESS_TRUST_BOUNDARY
     ):
         raise StructuralCegarError("shared-pair certificate identity mismatch")
     try:
@@ -3678,9 +3490,10 @@ def _clause_for_shared_pair_separation_certificate(
     assignment: Mapping[int, bool] | None = None,
 ) -> tuple[int, ...]:
     _replayed, selected, facts = _replay_shared_pair_separation_certificate(certificate)
-    clause = (*_clause_for_rows(encoding, selected), *(
-        -encoding.var("f", label, cap) for label, cap in facts
-    ))
+    clause = (
+        *_clause_for_rows(encoding, selected),
+        *(-encoding.var("f", label, cap) for label, cap in facts),
+    )
     if len(clause) != len(set(clause)):
         raise StructuralCegarError("shared-pair clause has duplicate literals")
     if assignment is not None:
@@ -3732,28 +3545,21 @@ def _clause_for_rhombus_cap_order_certificate(
     certificate: Mapping[str, Any],
     assignment: Mapping[int, bool] | None = None,
 ) -> tuple[int, ...]:
-    _replayed, selected, facts = _replay_rhombus_cap_order_certificate(
-        certificate
-    )
+    _replayed, selected, facts = _replay_rhombus_cap_order_certificate(certificate)
     row_clause = _clause_for_rows(encoding, selected)
     cap_clause = tuple(-encoding.var("f", label, cap) for label, cap in facts)
     clause = (*row_clause, *cap_clause)
     if len(clause) != len(set(clause)):
-        raise StructuralCegarError(
-            "rhombus cap-order clause has duplicate literals"
-        )
+        raise StructuralCegarError("rhombus cap-order clause has duplicate literals")
     if assignment is not None:
-        missing = [
-            abs(literal) for literal in clause if abs(literal) not in assignment
-        ]
+        missing = [abs(literal) for literal in clause if abs(literal) not in assignment]
         if missing:
             raise StructuralCegarError(
                 "rhombus cap-order clause assignment is incomplete"
             )
         if any(not assignment[abs(literal)] for literal in clause):
             raise StructuralCegarError(
-                "rhombus cap-order antecedent is not selected in the "
-                "current assignment"
+                "rhombus cap-order antecedent is not selected in the current assignment"
             )
         _clause_false(clause, assignment)
     return clause
@@ -3764,20 +3570,14 @@ def _clause_for_kalmanson_cap_order_certificate(
     certificate: Mapping[str, Any],
     assignment: Mapping[int, bool] | None = None,
 ) -> tuple[int, ...]:
-    _replayed, selected, facts = _replay_kalmanson_cap_order_certificate(
-        certificate
-    )
+    _replayed, selected, facts = _replay_kalmanson_cap_order_certificate(certificate)
     row_clause = _clause_for_rows(encoding, selected)
     cap_clause = tuple(-encoding.var("f", label, cap) for label, cap in facts)
     clause = (*row_clause, *cap_clause)
     if len(clause) != len(set(clause)):
-        raise StructuralCegarError(
-            "Kalmanson cap-order clause has duplicate literals"
-        )
+        raise StructuralCegarError("Kalmanson cap-order clause has duplicate literals")
     if assignment is not None:
-        missing = [
-            abs(literal) for literal in clause if abs(literal) not in assignment
-        ]
+        missing = [abs(literal) for literal in clause if abs(literal) not in assignment]
         if missing:
             raise StructuralCegarError(
                 "Kalmanson cap-order clause assignment is incomplete"
@@ -3850,9 +3650,7 @@ def _rows_from_algebraic_system(system: Mapping[str, Any]) -> tuple[Any, ...]:
     }
     for field, expected in expected_flags.items():
         if system.get(field) != expected:
-            raise StructuralCegarError(
-                f"algebraic source system has invalid {field!r}"
-            )
+            raise StructuralCegarError(f"algebraic source system has invalid {field!r}")
     raw_rows = system.get("rows")
     if not isinstance(raw_rows, list) or len(raw_rows) != CELL.n:
         raise StructuralCegarError("algebraic source system must contain ten rows")
@@ -3861,9 +3659,7 @@ def _rows_from_algebraic_system(system: Mapping[str, Any]) -> tuple[Any, ...]:
         if not isinstance(raw, dict) or set(raw) != {"center", "support", "exact"}:
             raise StructuralCegarError("algebraic source row has invalid shape")
         try:
-            row = metric.MetricRow(
-                raw["center"], tuple(raw["support"]), raw["exact"]
-            )
+            row = metric.MetricRow(raw["center"], tuple(raw["support"]), raw["exact"])
         except Exception as exc:
             raise StructuralCegarError(
                 f"could not decode algebraic source row {center}: {exc}"
@@ -3930,7 +3726,9 @@ def _parse_qq_poly(
             raise ValueError("expression contains an undeclared symbol")
         return sp.Poly(parsed, *symbols, domain=sp.QQ)
     except Exception as exc:
-        raise StructuralCegarError(f"{where} is not an exact QQ polynomial: {exc}") from exc
+        raise StructuralCegarError(
+            f"{where} is not an exact QQ polynomial: {exc}"
+        ) from exc
 
 
 def _replay_algebraic_certificate(
@@ -3942,9 +3740,7 @@ def _replay_algebraic_certificate(
     rows = _rows_from_algebraic_system(system)
     fixed = {
         "schema": ALGEBRAIC_CERTIFICATE_SCHEMA,
-        "source_system_sha256": _sha256_bytes(
-            _canonical_bytes(system) + b"\n"
-        ),
+        "source_system_sha256": _sha256_bytes(_canonical_bytes(system) + b"\n"),
         "source_metric_rows_sha256": system.get("metric_rows_sha256"),
         "scope": (
             "one gauge-fixed equality-only finite polynomial system; "
@@ -3959,12 +3755,8 @@ def _replay_algebraic_certificate(
     }
     for field, expected in fixed.items():
         if certificate.get(field) != expected:
-            raise StructuralCegarError(
-                f"algebraic certificate has invalid {field!r}"
-            )
-    if certificate.get("source_metric_rows_sha256") != system.get(
-        "metric_rows_sha256"
-    ):
+            raise StructuralCegarError(f"algebraic certificate has invalid {field!r}")
+    if certificate.get("source_metric_rows_sha256") != system.get("metric_rows_sha256"):
         raise StructuralCegarError(
             "algebraic certificate/source row hash mapping mismatch"
         )
@@ -4037,16 +3829,20 @@ def _replay_algebraic_certificate(
     antecedent = tuple(sorted(memberships))
     if not antecedent:
         raise StructuralCegarError("algebraic certificate has no used antecedent")
-    return rows, antecedent, {
-        "certificate_kind": UNIT_CONTRADICTION_KIND,
-        "identity_replayed": True,
-        "generator_count": len(entries),
-        "nonzero_cofactor_count": nonzero_count,
-        "antecedent_literal_count": len(antecedent),
-        "used_row_indices": sorted(used_rows),
-        "coordinate_gauge": GAUGE,
-        "gauge_precondition": "P0 != P1 from P97 distinct points",
-    }
+    return (
+        rows,
+        antecedent,
+        {
+            "certificate_kind": UNIT_CONTRADICTION_KIND,
+            "identity_replayed": True,
+            "generator_count": len(entries),
+            "nonzero_cofactor_count": nonzero_count,
+            "antecedent_literal_count": len(antecedent),
+            "used_row_indices": sorted(used_rows),
+            "coordinate_gauge": GAUGE,
+            "gauge_precondition": "P0 != P1 from P97 distinct points",
+        },
+    )
 
 
 def _replay_real_distinctness_certificate(
@@ -4076,8 +3872,7 @@ def _replay_real_distinctness_certificate(
         "source_system": source_descriptor,
         "target": REAL_DISTINCTNESS_TARGET,
         "exact_identity": (
-            "sum_i cofactor_i * generator_i = "
-            f"{REAL_DISTINCTNESS_TARGET} over QQ"
+            f"sum_i cofactor_i * generator_i = {REAL_DISTINCTNESS_TARGET} over QQ"
         ),
     }
     for field, expected in fixed.items():
@@ -4088,8 +3883,7 @@ def _replay_real_distinctness_certificate(
     if (
         _sha256_bytes(_canonical_bytes(system) + b"\n")
         != REAL_DISTINCTNESS_SOURCE_SHA256
-        or system.get("metric_rows_sha256")
-        != REAL_DISTINCTNESS_ROWS_SHA256
+        or system.get("metric_rows_sha256") != REAL_DISTINCTNESS_ROWS_SHA256
         or system.get("inequalities_used") is not False
         or system.get("coordinate_gauge") != GAUGE
     ):
@@ -4168,50 +3962,50 @@ def _replay_real_distinctness_certificate(
             "independent exact QQ replay did not obtain the pinned target"
         )
     antecedent = tuple(sorted(memberships))
-    return rows, antecedent, {
-        "certificate_kind": REAL_DISTINCTNESS_CONTRADICTION_KIND,
-        "identity_replayed": True,
-        "coefficient_field": "QQ",
-        "generator_count": 30,
-        "nonzero_cofactor_count": len(nonzero_indices),
-        "nonzero_cofactor_indices": nonzero_indices,
-        "antecedent_literal_count": len(antecedent),
-        "used_row_indices": sorted(used_rows),
-        "target": REAL_DISTINCTNESS_TARGET,
-        "coordinate_gauge": GAUGE,
-        "inequalities_used": False,
-        "external_hypothesis": "P97 point pairwise-distinctness",
-        "real_deduction": (
-            "over R, x9x^2+x9y^2=0 forces P9=P0=P0_gauge, "
-            "contradicting pairwise distinctness"
-        ),
-    }
+    return (
+        rows,
+        antecedent,
+        {
+            "certificate_kind": REAL_DISTINCTNESS_CONTRADICTION_KIND,
+            "identity_replayed": True,
+            "coefficient_field": "QQ",
+            "generator_count": 30,
+            "nonzero_cofactor_count": len(nonzero_indices),
+            "nonzero_cofactor_indices": nonzero_indices,
+            "antecedent_literal_count": len(antecedent),
+            "used_row_indices": sorted(used_rows),
+            "target": REAL_DISTINCTNESS_TARGET,
+            "coordinate_gauge": GAUGE,
+            "inequalities_used": False,
+            "external_hypothesis": "P97 point pairwise-distinctness",
+            "real_deduction": (
+                "over R, x9x^2+x9y^2=0 forces P9=P0=P0_gauge, "
+                "contradicting pairwise distinctness"
+            ),
+        },
+    )
 
 
-def _saved_artifact_path(
-    directory: Path, declared: Any, artifact_prefix: str
-) -> Path:
+def _saved_artifact_path(directory: Path, declared: Any, artifact_prefix: str) -> Path:
     if not isinstance(declared, str):
         raise StructuralCegarError("saved artifact path is not text")
     prefix = artifact_prefix + "/"
     if not declared.startswith(prefix):
-        raise StructuralCegarError(f"saved artifact path leaves pinned prefix: {declared}")
+        raise StructuralCegarError(
+            f"saved artifact path leaves pinned prefix: {declared}"
+        )
     relative = Path(declared[len(prefix) :])
     if not relative.parts or relative.is_absolute() or ".." in relative.parts:
         raise StructuralCegarError(f"unsafe saved artifact path: {declared}")
     return directory / relative
 
 
-def _verify_saved_hashes(
-    directory: Path, artifact_prefix: str
-) -> dict[str, str]:
+def _verify_saved_hashes(directory: Path, artifact_prefix: str) -> dict[str, str]:
     checksum_path = directory / "SHA256SUMS"
     if not checksum_path.is_file():
         raise StructuralCegarError("algebraic bootstrap lacks SHA256SUMS")
     hashes: dict[str, str] = {}
-    for line_number, raw in enumerate(
-        checksum_path.read_text().splitlines(), start=1
-    ):
+    for line_number, raw in enumerate(checksum_path.read_text().splitlines(), start=1):
         if len(raw) < 67 or raw[64:66] != "  ":
             raise StructuralCegarError(
                 f"SHA256SUMS:{line_number}: invalid checksum line"
@@ -4240,47 +4034,32 @@ def _load_real_distinctness_template_bank(
     manifest_path = directory / "manifest.json"
     certificate_path = directory / "certificate.json"
     if _sha256_file(manifest_path) != REAL_DISTINCTNESS_MANIFEST_SHA256:
-        raise StructuralCegarError(
-            "real-distinctness manifest hash mismatch"
-        )
+        raise StructuralCegarError("real-distinctness manifest hash mismatch")
     if _sha256_file(certificate_path) != REAL_DISTINCTNESS_CERTIFICATE_SHA256:
-        raise StructuralCegarError(
-            "real-distinctness certificate hash mismatch"
-        )
+        raise StructuralCegarError("real-distinctness certificate hash mismatch")
     manifest = _strict_json(manifest_path)
     if (
         manifest.get("schema") != REAL_DISTINCTNESS_MANIFEST_SCHEMA
-        or manifest.get("status")
-        != "CERTIFIED_REAL_DISTINCTNESS_CONTRADICTION"
-        or manifest.get("source_system_sha256")
-        != REAL_DISTINCTNESS_SOURCE_SHA256
-        or manifest.get("metric_rows_sha256")
-        != REAL_DISTINCTNESS_ROWS_SHA256
+        or manifest.get("status") != "CERTIFIED_REAL_DISTINCTNESS_CONTRADICTION"
+        or manifest.get("source_system_sha256") != REAL_DISTINCTNESS_SOURCE_SHA256
+        or manifest.get("metric_rows_sha256") != REAL_DISTINCTNESS_ROWS_SHA256
         or manifest.get("target") != REAL_DISTINCTNESS_TARGET
         or manifest.get("generator_count") != 30
     ):
-        raise StructuralCegarError(
-            "real-distinctness manifest invariant mismatch"
-        )
+        raise StructuralCegarError("real-distinctness manifest invariant mismatch")
     certificate = _strict_json(certificate_path)
     source_descriptor = certificate.get("source_system")
     if not isinstance(source_descriptor, dict):
-        raise StructuralCegarError(
-            "real-distinctness source descriptor is missing"
-        )
+        raise StructuralCegarError("real-distinctness source descriptor is missing")
     source_relative = source_descriptor.get("relative_path")
     if not isinstance(source_relative, str):
-        raise StructuralCegarError(
-            "real-distinctness source path is missing"
-        )
+        raise StructuralCegarError("real-distinctness source path is missing")
     source_path = ROOT / source_relative
     if (
         not source_path.is_file()
         or _sha256_file(source_path) != REAL_DISTINCTNESS_SOURCE_SHA256
     ):
-        raise StructuralCegarError(
-            "real-distinctness source system hash mismatch"
-        )
+        raise StructuralCegarError("real-distinctness source system hash mismatch")
     system = _strict_json(source_path)
     _rows, antecedent, replay = _replay_real_distinctness_certificate(
         certificate, system
@@ -4310,9 +4089,7 @@ def _load_real_distinctness_template_bank(
                 "name": template["name"],
                 "source_system_sha256": REAL_DISTINCTNESS_SOURCE_SHA256,
                 "source_metric_rows_sha256": REAL_DISTINCTNESS_ROWS_SHA256,
-                "certificate_file_sha256": (
-                    REAL_DISTINCTNESS_CERTIFICATE_SHA256
-                ),
+                "certificate_file_sha256": (REAL_DISTINCTNESS_CERTIFICATE_SHA256),
                 **replay,
             }
         ],
@@ -4351,13 +4128,9 @@ def _verify_equilateral_shell_hashes(directory: Path) -> dict[str, str]:
         not sums_path.is_file()
         or _sha256_file(sums_path) != EQUILATERAL_SHELL_SHA256SUMS_SHA256
     ):
-        raise StructuralCegarError(
-            "equilateral-shell SHA256SUMS hash mismatch"
-        )
+        raise StructuralCegarError("equilateral-shell SHA256SUMS hash mismatch")
     hashes: dict[str, str] = {}
-    for line_number, raw in enumerate(
-        sums_path.read_text().splitlines(), start=1
-    ):
+    for line_number, raw in enumerate(sums_path.read_text().splitlines(), start=1):
         fields = raw.split("  ", 1)
         if (
             len(fields) != 2
@@ -4398,13 +4171,9 @@ def _cycle_edges(vertices: Sequence[int]) -> set[tuple[int, int]]:
     }
 
 
-def _cycle_step_edges(
-    vertices: Sequence[int], step: int
-) -> set[tuple[int, int]]:
+def _cycle_step_edges(vertices: Sequence[int], step: int) -> set[tuple[int, int]]:
     return {
-        tuple(
-            sorted((vertices[index], vertices[(index + step) % len(vertices)]))
-        )
+        tuple(sorted((vertices[index], vertices[(index + step) % len(vertices)])))
         for index in range(len(vertices))
     }
 
@@ -4440,27 +4209,19 @@ def _equilateral_shell_antecedent() -> tuple[
         or not tree <= edges
         or any(not set(edge) <= cover for edge in tree)
     ):
-        raise StructuralCegarError(
-            "equilateral-shell center tree invariant mismatch"
-        )
+        raise StructuralCegarError("equilateral-shell center tree invariant mismatch")
     reached = {min(cover)}
     while True:
-        expanded = reached | {
-            right
-            for left, right in tree
-            if left in reached
-        } | {
-            left
-            for left, right in tree
-            if right in reached
-        }
+        expanded = (
+            reached
+            | {right for left, right in tree if left in reached}
+            | {left for left, right in tree if right in reached}
+        )
         if expanded == reached:
             break
         reached = expanded
     if reached != cover:
-        raise StructuralCegarError(
-            "equilateral-shell center tree is disconnected"
-        )
+        raise StructuralCegarError("equilateral-shell center tree is disconnected")
 
     memberships: set[tuple[int, int]] = set()
     for left, right in EQUILATERAL_SHELL_EDGES:
@@ -4469,9 +4230,7 @@ def _equilateral_shell_antecedent() -> tuple[
         memberships.update(((left, right), (right, left)))
     antecedent = tuple(sorted(memberships))
     if len(antecedent) != 26:
-        raise StructuralCegarError(
-            "equilateral-shell antecedent cardinality drift"
-        )
+        raise StructuralCegarError("equilateral-shell antecedent cardinality drift")
 
     incidence: dict[tuple[Any, ...], set[tuple[Any, ...]]] = defaultdict(set)
     edge_nodes = {("edge", left, right) for left, right in edges}
@@ -4488,9 +4247,7 @@ def _equilateral_shell_antecedent() -> tuple[
     reached_nodes = {next(iter(edge_nodes))}
     while True:
         expanded_nodes = reached_nodes | {
-            neighbor
-            for node in reached_nodes
-            for neighbor in incidence[node]
+            neighbor for node in reached_nodes for neighbor in incidence[node]
         }
         if expanded_nodes == reached_nodes:
             break
@@ -4530,9 +4287,9 @@ def _replay_equilateral_shell_identity(
     symbols["a"] = sqrt_three
     total = sp.Integer(0)
     for generator, coefficient in zip(generators, coefficients, strict=True):
-        total += sp.sympify(
-            generator.replace("^", "**"), locals=symbols
-        ) * sp.sympify(coefficient.replace("^", "**"), locals=symbols)
+        total += sp.sympify(generator.replace("^", "**"), locals=symbols) * sp.sympify(
+            coefficient.replace("^", "**"), locals=symbols
+        )
     expanded = sp.expand(total - 1)
     reduced = sp.rem(
         sp.Poly(expanded, sqrt_three),
@@ -4555,18 +4312,12 @@ def _load_equilateral_shell_template_bank(
     pinned_hashes = {
         "exact-status.json": EQUILATERAL_SHELL_STATUS_SHA256,
         "graph-audit.json": EQUILATERAL_SHELL_GRAPH_SHA256,
-        "equilateral-branch-system.json": (
-            EQUILATERAL_SHELL_BRANCH_SYSTEM_SHA256
-        ),
-        "equilateral-branch-results.json": (
-            EQUILATERAL_SHELL_BRANCH_RESULTS_SHA256
-        ),
+        "equilateral-branch-system.json": (EQUILATERAL_SHELL_BRANCH_SYSTEM_SHA256),
+        "equilateral-branch-results.json": (EQUILATERAL_SHELL_BRANCH_RESULTS_SHA256),
         "equilateral-nullstellensatz-bank.json": EQUILATERAL_SHELL_BANK_SHA256,
     }
     if any(hashes.get(path) != digest for path, digest in pinned_hashes.items()):
-        raise StructuralCegarError(
-            "equilateral-shell pinned artifact hash mismatch"
-        )
+        raise StructuralCegarError("equilateral-shell pinned artifact hash mismatch")
 
     status = _strict_json(directory / "exact-status.json")
     status_hashes = status.get("artifact_hashes")
@@ -4574,16 +4325,12 @@ def _load_equilateral_shell_template_bank(
     expected_status_hashes.pop("exact-status.json")
     if (
         status.get("schema") != EQUILATERAL_SHELL_STATUS_SCHEMA
-        or status.get("source_record_sha256")
-        != EQUILATERAL_SHELL_SOURCE_RECORD_SHA256
-        or status.get("source_metric_rows_sha256")
-        != EQUILATERAL_SHELL_ROWS_SHA256
+        or status.get("source_record_sha256") != EQUILATERAL_SHELL_SOURCE_RECORD_SHA256
+        or status.get("source_metric_rows_sha256") != EQUILATERAL_SHELL_ROWS_SHA256
         or status_hashes != expected_status_hashes
         or status.get("no_lean_changes") is not True
     ):
-        raise StructuralCegarError(
-            "equilateral-shell exact-status invariant mismatch"
-        )
+        raise StructuralCegarError("equilateral-shell exact-status invariant mismatch")
     full_ideal = status.get("full_gauged_qq_ideal")
     real_status = status.get("real_distinct_realizability")
     if (
@@ -4610,9 +4357,7 @@ def _load_equilateral_shell_template_bank(
         or edges != EQUILATERAL_SHELL_EDGES
         or triangles != EQUILATERAL_SHELL_TRIANGLES
     ):
-        raise StructuralCegarError(
-            "equilateral-shell graph invariant mismatch"
-        )
+        raise StructuralCegarError("equilateral-shell graph invariant mismatch")
     triangle_edges = {
         tuple(sorted(edge))
         for triangle in triangles
@@ -4645,22 +4390,16 @@ def _load_equilateral_shell_template_bank(
         for center in range(CELL.n)
     ]
     if rows != expected_rows or _sha256_value(rows) != EQUILATERAL_SHELL_ROWS_SHA256:
-        raise StructuralCegarError(
-            "equilateral-shell metric row invariant mismatch"
-        )
+        raise StructuralCegarError("equilateral-shell metric row invariant mismatch")
     source_record = _strict_json(directory / "record-000.json")
     _validate_record_hash(source_record, None, where="equilateral-shell source")
     if (
-        source_record.get("record_sha256")
-        != EQUILATERAL_SHELL_SOURCE_RECORD_SHA256
-        or source_record.get("metric_rows_sha256")
-        != EQUILATERAL_SHELL_ROWS_SHA256
+        source_record.get("record_sha256") != EQUILATERAL_SHELL_SOURCE_RECORD_SHA256
+        or source_record.get("metric_rows_sha256") != EQUILATERAL_SHELL_ROWS_SHA256
         or source_record.get("metric_rows") != rows
         or source_record.get("classification") != "STRUCTURALLY_UNRESOLVED"
     ):
-        raise StructuralCegarError(
-            "equilateral-shell source record invariant mismatch"
-        )
+        raise StructuralCegarError("equilateral-shell source record invariant mismatch")
 
     branch_system = _strict_json(directory / "equilateral-branch-system.json")
     precheck = branch_system.get("graph_precheck")
@@ -4669,34 +4408,27 @@ def _load_equilateral_shell_template_bank(
     if (
         branch_system.get("schema") != EQUILATERAL_SHELL_BRANCH_SYSTEM_SCHEMA
         or branch_system.get("coefficient_field") != EQUILATERAL_SHELL_FIELD
-        or branch_system.get("unknowns")
-        != ["z1x", "z1y", "z2x", "z2y", "z3x", "z3y"]
+        or branch_system.get("unknowns") != ["z1x", "z1y", "z2x", "z2y", "z3x", "z3y"]
         or branch_system.get("branch_count") != 32
         or not isinstance(cases, list)
         or len(cases) != 32
         or not isinstance(precheck, dict)
         or precheck.get("checked_exact_edge_partition") is not True
-        or precheck.get("graph_audit_sha256")
-        != EQUILATERAL_SHELL_GRAPH_SHA256
-        or precheck.get("inner_cycle")
-        != list(EQUILATERAL_SHELL_INNER_CYCLE)
-        or precheck.get("outer_cycle_step_two")
-        != list(EQUILATERAL_SHELL_OUTER_CYCLE)
+        or precheck.get("graph_audit_sha256") != EQUILATERAL_SHELL_GRAPH_SHA256
+        or precheck.get("inner_cycle") != list(EQUILATERAL_SHELL_INNER_CYCLE)
+        or precheck.get("outer_cycle_step_two") != list(EQUILATERAL_SHELL_OUTER_CYCLE)
         or precheck.get("equilateral_triangles")
         != [list(triangle) for triangle in EQUILATERAL_SHELL_TRIANGLES]
         or [case.get("signs") for case in cases]
         != [list(signs) for signs in expected_signs]
     ):
-        raise StructuralCegarError(
-            "equilateral-shell branch-system invariant mismatch"
-        )
+        raise StructuralCegarError("equilateral-shell branch-system invariant mismatch")
 
     results = _strict_json(directory / "equilateral-branch-results.json")
     branch_results = results.get("results")
     if (
         results.get("schema") != EQUILATERAL_SHELL_BRANCH_RESULTS_SCHEMA
-        or results.get("system_sha256")
-        != EQUILATERAL_SHELL_BRANCH_SYSTEM_SHA256
+        or results.get("system_sha256") != EQUILATERAL_SHELL_BRANCH_SYSTEM_SHA256
         or results.get("status_counts") != {"UNIT": 32}
         or not isinstance(branch_results, list)
         or len(branch_results) != 32
@@ -4710,16 +4442,13 @@ def _load_equilateral_shell_template_bank(
             for result in branch_results
         )
     ):
-        raise StructuralCegarError(
-            "equilateral-shell branch-result invariant mismatch"
-        )
+        raise StructuralCegarError("equilateral-shell branch-result invariant mismatch")
 
     bank = _strict_json(directory / "equilateral-nullstellensatz-bank.json")
     certificate_meta = bank.get("certificates")
     if (
         bank.get("schema") != EQUILATERAL_SHELL_BANK_SCHEMA
-        or bank.get("branch_system_sha256")
-        != EQUILATERAL_SHELL_BRANCH_SYSTEM_SHA256
+        or bank.get("branch_system_sha256") != EQUILATERAL_SHELL_BRANCH_SYSTEM_SHA256
         or bank.get("certificate_count") != 32
         or bank.get("all_sympy_exact_replay") is not True
         or bank.get("all_singular_explicit_replay") is not True
@@ -4739,9 +4468,7 @@ def _load_equilateral_shell_template_bank(
             or result.get("branch") != branch
             or meta.get("branch") != branch
         ):
-            raise StructuralCegarError(
-                "equilateral-shell branch join mismatch"
-            )
+            raise StructuralCegarError("equilateral-shell branch join mismatch")
         certificate_path = meta.get("certificate")
         replay_path = meta.get("replay_script")
         if (
@@ -4761,8 +4488,7 @@ def _load_equilateral_shell_template_bank(
             or certificate.get("branch") != branch
             or certificate.get("signs") != list(signs)
             or certificate.get("coefficient_field") != EQUILATERAL_SHELL_FIELD
-            or certificate.get("identity")
-            != "sum(coefficients[i] * generators[i]) = 1"
+            or certificate.get("identity") != "sum(coefficients[i] * generators[i]) = 1"
             or certificate.get("liftstd_transform_residual") != "0"
             or certificate.get("sympy_exact_replay") is not True
             or certificate.get("singular_explicit_replay") is not True
@@ -4908,15 +4634,11 @@ def _load_algebraic_template_bank(
 
     audit = spec["audit"]
     audit_path = ROOT / str(audit["path"])
-    if (
-        not audit_path.is_file()
-        or _sha256_file(audit_path) != audit.get("sha256")
-    ):
+    if not audit_path.is_file() or _sha256_file(audit_path) != audit.get("sha256"):
         raise StructuralCegarError("algebraic bootstrap source audit hash mismatch")
     audit_manifest = _strict_json(audit_path)
     if (
-        audit_manifest.get("schema")
-        != "p97-phase3-survivor-singular-equality-run-v1"
+        audit_manifest.get("schema") != "p97-phase3-survivor-singular-equality-run-v1"
         or audit_manifest.get("summary") != spec["audit_summary"]
     ):
         raise StructuralCegarError(
@@ -4924,19 +4646,22 @@ def _load_algebraic_template_bank(
         )
     audit_systems = audit_manifest.get("systems")
     expected_audit_systems = spec["audit_systems"]
-    if (
-        not isinstance(audit_systems, list)
-        or len(audit_systems) != len(expected_audit_systems)
+    if not isinstance(audit_systems, list) or len(audit_systems) != len(
+        expected_audit_systems
     ):
         raise StructuralCegarError("source unit audit system set mismatch")
     for actual, expected in zip(audit_systems, expected_audit_systems, strict=True):
-        if not isinstance(actual, dict) or (
-            actual.get("name"),
-            actual.get("classification"),
-            actual.get("system_artifact_sha256"),
-            actual.get("metric_rows_sha256"),
-            actual.get("survivor_count"),
-        ) != expected:
+        if (
+            not isinstance(actual, dict)
+            or (
+                actual.get("name"),
+                actual.get("classification"),
+                actual.get("system_artifact_sha256"),
+                actual.get("metric_rows_sha256"),
+                actual.get("survivor_count"),
+            )
+            != expected
+        ):
             raise StructuralCegarError(
                 "algebraic bootstrap source audit system mismatch"
             )
@@ -4989,15 +4714,12 @@ def _load_algebraic_template_bank(
                     f"target/source-audit {target_field} mapping mismatch"
                 )
         source_path = ROOT / str(target.get("source_system"))
-        if (
-            not source_path.is_file()
-            or _sha256_file(source_path) != target.get("source_system_sha256")
+        if not source_path.is_file() or _sha256_file(source_path) != target.get(
+            "source_system_sha256"
         ):
             raise StructuralCegarError("algebraic source system hash mismatch")
         system = _strict_json(source_path)
-        if system.get("metric_rows_sha256") != target.get(
-            "source_metric_rows_sha256"
-        ):
+        if system.get("metric_rows_sha256") != target.get("source_metric_rows_sha256"):
             raise StructuralCegarError("target/source-system row hash mismatch")
 
         certificate_meta = target.get("certificate")
@@ -5042,9 +4764,7 @@ def _load_algebraic_template_bank(
                     f"saved replay {path_field} hash mapping mismatch"
                 )
 
-        _rows, antecedent, replay = _replay_algebraic_certificate(
-            certificate, system
-        )
+        _rows, antecedent, replay = _replay_algebraic_certificate(certificate, system)
         expected_projection = expected_targets[name][2]
         if (
             replay["nonzero_cofactor_count"],
@@ -5074,9 +4794,7 @@ def _load_algebraic_template_bank(
             {
                 "name": name,
                 "source_system_sha256": target["source_system_sha256"],
-                "source_metric_rows_sha256": target[
-                    "source_metric_rows_sha256"
-                ],
+                "source_metric_rows_sha256": target["source_metric_rows_sha256"],
                 "certificate_file_sha256": certificate_meta["file_sha256"],
                 "certificate_payload_sha256": certificate_meta["payload_sha256"],
                 **replay,
@@ -5086,9 +4804,7 @@ def _load_algebraic_template_bank(
         raise StructuralCegarError("algebraic bootstrap target set mismatch")
     summary = {
         "schema": ALGEBRAIC_MANIFEST_SCHEMA,
-        "manifest_sha256": hashes[
-            f"{artifact_prefix}/manifest.json"
-        ],
+        "manifest_sha256": hashes[f"{artifact_prefix}/manifest.json"],
         "sha256s_sha256": _sha256_file(directory / "SHA256SUMS"),
         "certificate_count": len(templates),
         "systems": summaries,
@@ -5102,9 +4818,7 @@ def _load_algebraic_template_bank(
     }
     return templates, {
         **summary,
-        "template_sha256": [
-            template["template_sha256"] for template in templates
-        ],
+        "template_sha256": [template["template_sha256"] for template in templates],
     }
 
 
@@ -5152,19 +4866,12 @@ def _load_algebraic_templates(
         "certificate_kind_histogram": dict(
             sorted(
                 Counter(
-                    str(template["certificate_kind"])
-                    for template in templates
+                    str(template["certificate_kind"]) for template in templates
                 ).items()
             )
         ),
-        "template_sha256": [
-            template["template_sha256"] for template in templates
-        ],
-        "systems": [
-            system
-            for bank in banks
-            for system in bank["systems"]
-        ],
+        "template_sha256": [template["template_sha256"] for template in templates],
+        "systems": [system for bank in banks for system in bank["systems"]],
         "banks": banks,
         "semantics": (
             "typed P97 Euclidean/distinct-point nogoods: QQ unit equality "
@@ -5202,9 +4909,7 @@ def _mapped_memberships(
         len(source) != len(set(source))
         or tuple(sorted(source)) != source
         or any(
-            center == point
-            or not 0 <= center < CELL.n
-            or not 0 <= point < CELL.n
+            center == point or not 0 <= center < CELL.n or not 0 <= point < CELL.n
             for center, point in source
         )
     ):
@@ -5224,12 +4929,9 @@ def _find_template_permutation(
 ) -> tuple[int, ...] | None:
     """Deterministically find a non-induced directed spanning-subgraph match."""
 
-    source_edges = {
-        tuple(pair) for pair in template.get("antecedent_memberships", [])
-    }
+    source_edges = {tuple(pair) for pair in template.get("antecedent_memberships", [])}
     if not source_edges or any(
-        len(edge) != 2
-        or any(type(point) is not int for point in edge)
+        len(edge) != 2 or any(type(point) is not int for point in edge)
         for edge in source_edges
     ):
         raise StructuralCegarError("invalid algebraic template edge set")
@@ -5237,8 +4939,7 @@ def _find_template_permutation(
         (center, point)
         for center in range(CELL.n)
         for point in range(CELL.n)
-        if center != point
-        and assignment.get(encoding.var("s", center, point)) is True
+        if center != point and assignment.get(encoding.var("s", center, point)) is True
     }
     source_out = Counter(left for left, _right in source_edges)
     source_in = Counter(right for _left, right in source_edges)
@@ -5279,11 +4980,7 @@ def _find_template_permutation(
         for source in range(CELL.n):
             if source in mapping:
                 continue
-            candidates = [
-                target
-                for target in range(CELL.n)
-                if viable(source, target)
-            ]
+            candidates = [target for target in range(CELL.n) if viable(source, target)]
             if not candidates:
                 return None
             # Most-constrained first; higher directed degree breaks equal domain
@@ -5325,9 +5022,7 @@ def _find_algebraic_match(
     return None
 
 
-def _assignment_hash(
-    encoding: Any, assignment: Mapping[int, bool]
-) -> str:
+def _assignment_hash(encoding: Any, assignment: Mapping[int, bool]) -> str:
     return _sha256_value(encoding.semantic_record(assignment))
 
 
@@ -5357,8 +5052,7 @@ def _run_smoke_gates() -> dict[str, Any]:
     dead_certificate, _ = _certificate(dead_rows, dead_detection)
 
     unresolved_rows = tuple(
-        metric.MetricRow(center, ((center + 1) % 4,), False)
-        for center in range(4)
+        metric.MetricRow(center, ((center + 1) % 4,), False) for center in range(4)
     )
     unresolved = metric._formalized_metric_core(
         unresolved_rows,
@@ -5368,7 +5062,9 @@ def _run_smoke_gates() -> dict[str, Any]:
         include_ordered=False,
     )
     if unresolved is not None:
-        raise StructuralCegarError("synthetic non-detected smoke candidate was detected")
+        raise StructuralCegarError(
+            "synthetic non-detected smoke candidate was detected"
+        )
     unsigned = {
         "schema": SMOKE_SCHEMA,
         "known_dead": {
@@ -5404,18 +5100,14 @@ def _dependency_hashes() -> dict[str, str]:
         Path(loader_cache.__file__).resolve(),
         Path(phase3_order_universe.__file__).resolve(),
         Path(shard_optimization.__file__).resolve(),
-        ROOT
-        / "lean/Erdos9796Proof/P97/Census554/ConvexFivePointCore.lean",
-        ROOT
-        / "lean/Erdos9796Proof/P97/Census554/ConvexRhombusCore.lean",
-        ROOT
-        / "lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean",
+        ROOT / "lean/Erdos9796Proof/P97/Census554/ConvexFivePointCore.lean",
+        ROOT / "lean/Erdos9796Proof/P97/Census554/ConvexRhombusCore.lean",
+        ROOT / "lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean",
         ROOT / "lean/Erdos9796Proof/P97/Phase3SharedPairSeparation.lean",
         ROOT / "lean/Erdos9796Proof/P97/SevenPointThreeRhombus.lean",
         ROOT / "lean/Erdos9796Proof/P97/Phase3ThreeRhombusRowAdapter.lean",
         ROOT / "lean/Erdos9796Proof/P97/Phase3MetricCertificateBank.lean",
-        ROOT
-        / "lean/Erdos9796Proof/P97/EndpointCertificate/OrderedCoreSigns.lean",
+        ROOT / "lean/Erdos9796Proof/P97/EndpointCertificate/OrderedCoreSigns.lean",
     )
     return {str(path.relative_to(ROOT)): _sha256_file(path) for path in paths}
 
@@ -5436,8 +5128,7 @@ class ProjectedStaticV3UnshardedInputs:
     encoding_configuration: bytes
 
 
-def build_projected_static_v3_unsharded_inputs(
-) -> ProjectedStaticV3UnshardedInputs:
+def build_projected_static_v3_unsharded_inputs() -> ProjectedStaticV3UnshardedInputs:
     """Build the current unsharded base without running CEGAR or a solver."""
 
     encoding = _phase3_encoding(projected_static_v3=True)
@@ -5453,9 +5144,7 @@ def build_projected_static_v3_unsharded_inputs(
         if center != point
     ]
     variable_map_bytes = _canonical_bytes(variable_map)
-    if _sha256_bytes(variable_map_bytes) != namespace["descriptor"][
-        "mapping_sha256"
-    ]:
+    if _sha256_bytes(variable_map_bytes) != namespace["descriptor"]["mapping_sha256"]:
         raise StructuralCegarError(
             "projected-static-v3 canonical variable-map bytes disagree"
         )
@@ -5542,6 +5231,7 @@ def _base_configuration(
     persistent_discovery: bool = False,
     piqd_incremental_discovery: bool = False,
     productivity_telemetry: bool = False,
+    ingress_contract: Mapping[str, Any] | None = None,
 ) -> dict[str, Any]:
     cube_variables = (
         []
@@ -5624,9 +5314,7 @@ def _base_configuration(
                     )
                 ),
             },
-            "global_pinned_multiplicity": _pinned_multiplicity_descriptor(
-                encoding
-            ),
+            "global_pinned_multiplicity": _pinned_multiplicity_descriptor(encoding),
             "dynamic_perpendicular_bisector_detector": {
                 "enabled": True,
                 "reason": (
@@ -5661,9 +5349,7 @@ def _base_configuration(
                 "projected-static-v3 cube schemas are hash-bound; v1/v2 cube "
                 "journals intentionally fail closed"
             ),
-            "cube_count": (
-                0 if parallel_mode == "sequential" else 1 << cube_depth
-            ),
+            "cube_count": (0 if parallel_mode == "sequential" else 1 << cube_depth),
             "semantic_variables": cube_variables,
             "coordinator_commit_order": (
                 "ascending cube index; worker completion order is ignored"
@@ -5707,9 +5393,7 @@ def _base_configuration(
             },
         },
         "manifest_publication": {
-            "mode": (
-                "prospective-v1" if manifest_fast_path else "recount-v1"
-            ),
+            "mode": ("prospective-v1" if manifest_fast_path else "recount-v1"),
             "hot_path": (
                 "prospective aggregate state and authenticated stream ledgers"
                 if manifest_fast_path
@@ -5744,6 +5428,11 @@ def _base_configuration(
             ),
             "promotion": "PARKED-SPEC until a replayable finite or kernel consumer",
         },
+        **(
+            {}
+            if ingress_contract is None
+            else {"productivity_ingress_contract": dict(ingress_contract)}
+        ),
         "shard_local_simplification": {
             "enabled": shard_local_simplification,
             "schema": SHARD_LOCAL_SIMPLIFICATION_SCHEMA,
@@ -5801,15 +5490,11 @@ def _base_configuration(
         "algebraic_bootstraps": [
             {
                 "path": str(algebraic_bootstrap.resolve()),
-                "descriptor": _algebraic_bank_descriptor(
-                    algebraic_bootstrap
-                ).name,
+                "descriptor": _algebraic_bank_descriptor(algebraic_bootstrap).name,
                 "descriptor_sha256": _sha256_file(
                     _algebraic_bank_descriptor(algebraic_bootstrap)
                 ),
-                "sha256s_sha256": _sha256_file(
-                    algebraic_bootstrap / "SHA256SUMS"
-                ),
+                "sha256s_sha256": _sha256_file(algebraic_bootstrap / "SHA256SUMS"),
                 "certificate_kind": _algebraic_bank_certificate_kind(
                     algebraic_bootstrap
                 ),
@@ -5817,9 +5502,7 @@ def _base_configuration(
                     "deterministic non-induced directed spanning-subgraph "
                     "bijection over Fin10"
                 ),
-                "semantics": (
-                    _algebraic_bank_semantics(algebraic_bootstrap)
-                ),
+                "semantics": (_algebraic_bank_semantics(algebraic_bootstrap)),
             }
             for algebraic_bootstrap in algebraic_bootstraps
         ],
@@ -5851,8 +5534,7 @@ def _clause_subsumption_minimize(
             existing
             for literal in clause
             for existing in by_anchor.get(literal, ())
-            if len(existing) <= len(clause)
-            and clause_sets[existing] <= clause_set
+            if len(existing) <= len(clause) and clause_sets[existing] <= clause_set
         }
         matched = (
             min(
@@ -5893,9 +5575,7 @@ def _bootstrap_certificates(
         "record_sha256",
     }
     structural_by_key: dict[Any, dict[str, Any]] = {}
-    cap_order_by_schema: dict[
-        str, dict[tuple[int, ...], dict[str, Any]]
-    ] = {
+    cap_order_by_schema: dict[str, dict[tuple[int, ...], dict[str, Any]]] = {
         CAP_ORDER_CERTIFICATE_SCHEMA: {},
         RHOMBUS_CAP_ORDER_CERTIFICATE_SCHEMA: {},
         KALMANSON_CAP_ORDER_CERTIFICATE_SCHEMA: {},
@@ -5914,23 +5594,17 @@ def _bootstrap_certificates(
     for index, record in enumerate(raw):
         where = f"bootstrap record {index}"
         if set(record) != source_fields:
-            raise StructuralCegarError(
-                f"{where} learned-record fields mismatch"
-            )
+            raise StructuralCegarError(f"{where} learned-record fields mismatch")
         _validate_record_hash(record, previous, where=where)
         previous = record["record_sha256"]
         if (
             record.get("schema") != _learned_schema(encoding)
             or record.get("index") != index
         ):
-            raise StructuralCegarError(
-                f"{where} learned-record identity mismatch"
-            )
+            raise StructuralCegarError(f"{where} learned-record identity mismatch")
         certificate = record.get("certificate")
         if not isinstance(certificate, dict):
-            raise StructuralCegarError(
-                f"{where} lacks a certificate"
-            )
+            raise StructuralCegarError(f"{where} lacks a certificate")
         try:
             if "schema" not in certificate:
                 replayed, selected = _replay_certificate_json(certificate)
@@ -5939,28 +5613,21 @@ def _bootstrap_certificates(
                     encoding, replayed, selected
                 )
                 key = certificates._rows_key(selected)
-                _matched, superseded, added = source_structural_bank.add(
-                    key, replayed
-                )
+                _matched, superseded, added = source_structural_bank.add(key, replayed)
                 if not added:
                     raise StructuralCegarError(
                         "source learned certificate was redundant"
                     )
                 expected_superseded = sorted(
-                    certificates._nogood_sha256(old)
-                    for old in superseded
+                    certificates._nogood_sha256(old) for old in superseded
                 )
-                if (
-                    record.get("superseded_nogood_sha256")
-                    != expected_superseded
-                ):
+                if record.get("superseded_nogood_sha256") != expected_superseded:
                     raise StructuralCegarError(
                         "source learned supersession list mismatch"
                     )
                 current = structural_by_key.get(key)
-                if (
-                    current is None
-                    or _canonical_bytes(replayed) < _canonical_bytes(current)
+                if current is None or _canonical_bytes(replayed) < _canonical_bytes(
+                    current
                 ):
                     structural_by_key[key] = replayed
                 schema = "structural-row-certificate"
@@ -5976,9 +5643,7 @@ def _bootstrap_certificates(
                 }:
                     clause = current_clause
                 else:
-                    raise StructuralCegarError(
-                        "structural source origin mismatch"
-                    )
+                    raise StructuralCegarError("structural source origin mismatch")
                 dynamic_origins = {"solver", STRUCTURAL_PATH_ORIGIN}
                 bootstrap_origins = {
                     "bootstrap-structural-prefix",
@@ -5986,20 +5651,13 @@ def _bootstrap_certificates(
                 }
                 expected_stage = replayed["stage"]
             elif certificate["schema"] == CAP_ORDER_CERTIFICATE_SCHEMA:
-                replayed, _selected, _facts = _replay_cap_order_certificate(
-                    certificate
-                )
+                replayed, _selected, _facts = _replay_cap_order_certificate(certificate)
                 clause = _clause_for_cap_order_certificate(encoding, replayed)
-                current = cap_order_by_schema[
-                    CAP_ORDER_CERTIFICATE_SCHEMA
-                ].get(clause)
-                if (
-                    current is None
-                    or _canonical_bytes(replayed) < _canonical_bytes(current)
+                current = cap_order_by_schema[CAP_ORDER_CERTIFICATE_SCHEMA].get(clause)
+                if current is None or _canonical_bytes(replayed) < _canonical_bytes(
+                    current
                 ):
-                    cap_order_by_schema[CAP_ORDER_CERTIFICATE_SCHEMA][
-                        clause
-                    ] = replayed
+                    cap_order_by_schema[CAP_ORDER_CERTIFICATE_SCHEMA][clause] = replayed
                 schema = CAP_ORDER_CERTIFICATE_SCHEMA
                 dynamic_origin = CAP_ORDER_ORIGIN
                 bootstrap_origin = BOOTSTRAP_CAP_ORDER_ORIGIN
@@ -6007,18 +5665,15 @@ def _bootstrap_certificates(
                 bootstrap_origins = {bootstrap_origin}
                 expected_stage = CAP_ORDER_STAGE
             elif certificate["schema"] == RHOMBUS_CAP_ORDER_CERTIFICATE_SCHEMA:
-                replayed, _selected, _facts = (
-                    _replay_rhombus_cap_order_certificate(certificate)
+                replayed, _selected, _facts = _replay_rhombus_cap_order_certificate(
+                    certificate
                 )
-                clause = _clause_for_rhombus_cap_order_certificate(
-                    encoding, replayed
+                clause = _clause_for_rhombus_cap_order_certificate(encoding, replayed)
+                current = cap_order_by_schema[RHOMBUS_CAP_ORDER_CERTIFICATE_SCHEMA].get(
+                    clause
                 )
-                current = cap_order_by_schema[
-                    RHOMBUS_CAP_ORDER_CERTIFICATE_SCHEMA
-                ].get(clause)
-                if (
-                    current is None
-                    or _canonical_bytes(replayed) < _canonical_bytes(current)
+                if current is None or _canonical_bytes(replayed) < _canonical_bytes(
+                    current
                 ):
                     cap_order_by_schema[RHOMBUS_CAP_ORDER_CERTIFICATE_SCHEMA][
                         clause
@@ -6030,22 +5685,19 @@ def _bootstrap_certificates(
                 bootstrap_origins = {bootstrap_origin}
                 expected_stage = RHOMBUS_CAP_ORDER_STAGE
             elif certificate["schema"] == KALMANSON_CAP_ORDER_CERTIFICATE_SCHEMA:
-                replayed, _selected, _facts = (
-                    _replay_kalmanson_cap_order_certificate(certificate)
+                replayed, _selected, _facts = _replay_kalmanson_cap_order_certificate(
+                    certificate
                 )
-                clause = _clause_for_kalmanson_cap_order_certificate(
-                    encoding, replayed
-                )
+                clause = _clause_for_kalmanson_cap_order_certificate(encoding, replayed)
                 current = cap_order_by_schema[
                     KALMANSON_CAP_ORDER_CERTIFICATE_SCHEMA
                 ].get(clause)
-                if (
-                    current is None
-                    or _canonical_bytes(replayed) < _canonical_bytes(current)
+                if current is None or _canonical_bytes(replayed) < _canonical_bytes(
+                    current
                 ):
-                    cap_order_by_schema[
-                        KALMANSON_CAP_ORDER_CERTIFICATE_SCHEMA
-                    ][clause] = replayed
+                    cap_order_by_schema[KALMANSON_CAP_ORDER_CERTIFICATE_SCHEMA][
+                        clause
+                    ] = replayed
                 schema = KALMANSON_CAP_ORDER_CERTIFICATE_SCHEMA
                 dynamic_origin = KALMANSON_CAP_ORDER_ORIGIN
                 bootstrap_origin = BOOTSTRAP_KALMANSON_CAP_ORDER_ORIGIN
@@ -6062,13 +5714,12 @@ def _bootstrap_certificates(
                 current = cap_order_by_schema[
                     SHARED_PAIR_SEPARATION_CERTIFICATE_SCHEMA
                 ].get(clause)
-                if (
-                    current is None
-                    or _canonical_bytes(replayed) < _canonical_bytes(current)
+                if current is None or _canonical_bytes(replayed) < _canonical_bytes(
+                    current
                 ):
-                    cap_order_by_schema[
-                        SHARED_PAIR_SEPARATION_CERTIFICATE_SCHEMA
-                    ][clause] = replayed
+                    cap_order_by_schema[SHARED_PAIR_SEPARATION_CERTIFICATE_SCHEMA][
+                        clause
+                    ] = replayed
                 schema = SHARED_PAIR_SEPARATION_CERTIFICATE_SCHEMA
                 dynamic_origin = SHARED_PAIR_SEPARATION_ORIGIN
                 bootstrap_origin = BOOTSTRAP_SHARED_PAIR_SEPARATION_ORIGIN
@@ -6090,12 +5741,10 @@ def _bootstrap_certificates(
                         "cap-order source supersession list mismatch"
                     )
             if (
-                record.get("origin")
-                not in dynamic_origins | bootstrap_origins
+                record.get("origin") not in dynamic_origins | bootstrap_origins
                 or record.get("stage") != expected_stage
                 or record.get("clause") != list(clause)
-                or record.get("clause_sha256")
-                != _sha256_value(list(clause))
+                or record.get("clause_sha256") != _sha256_value(list(clause))
             ):
                 raise StructuralCegarError(
                     "learned-record certificate linkage mismatch"
@@ -6131,32 +5780,18 @@ def _bootstrap_certificates(
                         )
                     regenerated, regenerated_rows = _certificate(rows, found)
                     if regenerated != replayed or regenerated_rows != selected:
-                        raise StructuralCegarError(
-                            "solver certificate replay drift"
-                        )
+                        raise StructuralCegarError("solver certificate replay drift")
                     _clause_for_structural_certificate(
                         encoding, replayed, selected, assignment
                     )
                 elif schema == CAP_ORDER_CERTIFICATE_SCHEMA:
                     regenerated_result = _cap_order_certificate(obj, rows)
-                    if (
-                        regenerated_result is None
-                        or regenerated_result[0] != replayed
-                    ):
-                        raise StructuralCegarError(
-                            "cap-order certificate replay drift"
-                        )
-                    _clause_for_cap_order_certificate(
-                        encoding, replayed, assignment
-                    )
+                    if regenerated_result is None or regenerated_result[0] != replayed:
+                        raise StructuralCegarError("cap-order certificate replay drift")
+                    _clause_for_cap_order_certificate(encoding, replayed, assignment)
                 elif schema == RHOMBUS_CAP_ORDER_CERTIFICATE_SCHEMA:
-                    regenerated_result = _rhombus_cap_order_certificate(
-                        obj, rows
-                    )
-                    if (
-                        regenerated_result is None
-                        or regenerated_result[0] != replayed
-                    ):
+                    regenerated_result = _rhombus_cap_order_certificate(obj, rows)
+                    if regenerated_result is None or regenerated_result[0] != replayed:
                         raise StructuralCegarError(
                             "rhombus cap-order certificate replay drift"
                         )
@@ -6167,10 +5802,7 @@ def _bootstrap_certificates(
                     regenerated_result = _shared_pair_separation_certificate(
                         encoding, assignment, obj, rows
                     )
-                    if (
-                        regenerated_result is None
-                        or regenerated_result[0] != replayed
-                    ):
+                    if regenerated_result is None or regenerated_result[0] != replayed:
                         raise StructuralCegarError(
                             "shared-pair certificate replay drift"
                         )
@@ -6178,13 +5810,8 @@ def _bootstrap_certificates(
                         encoding, replayed, assignment
                     )
                 else:
-                    regenerated_result = _kalmanson_cap_order_certificate(
-                        obj, rows
-                    )
-                    if (
-                        regenerated_result is None
-                        or regenerated_result[0] != replayed
-                    ):
+                    regenerated_result = _kalmanson_cap_order_certificate(obj, rows)
+                    if regenerated_result is None or regenerated_result[0] != replayed:
                         raise StructuralCegarError(
                             "Kalmanson cap-order certificate replay drift"
                         )
@@ -6203,21 +5830,16 @@ def _bootstrap_certificates(
             ) from exc
         stages[str(certificate["stage"])] += 1
         schemas[schema] += 1
-    structural_row_kept, structural_row_cover = (
-        certificates._subsumption_minimize(structural_by_key)
+    structural_row_kept, structural_row_cover = certificates._subsumption_minimize(
+        structural_by_key
     )
-    structural_by_clause: dict[
-        tuple[int, ...], tuple[Any, dict[str, Any]]
-    ] = {}
+    structural_by_clause: dict[tuple[int, ...], tuple[Any, dict[str, Any]]] = {}
     for key in structural_row_kept:
         certificate = structural_by_key[key]
         selected = tuple(
-            metric.MetricRow(center, support, exact)
-            for center, support, exact in key
+            metric.MetricRow(center, support, exact) for center, support, exact in key
         )
-        clause = _clause_for_structural_certificate(
-            encoding, certificate, selected
-        )
+        clause = _clause_for_structural_certificate(encoding, certificate, selected)
         candidate = (key, certificate)
         current = structural_by_clause.get(clause)
         if current is None or (
@@ -6228,24 +5850,18 @@ def _bootstrap_certificates(
             current[0],
         ):
             structural_by_clause[clause] = candidate
-    structural_clause_kept, _structural_clause_cover = (
-        _clause_subsumption_minimize(structural_by_clause)
+    structural_clause_kept, _structural_clause_cover = _clause_subsumption_minimize(
+        structural_by_clause
     )
     cap_order_kept: dict[str, list[tuple[int, ...]]] = {}
-    cap_order_cover: dict[
-        str, dict[tuple[int, ...], tuple[int, ...]]
-    ] = {}
+    cap_order_cover: dict[str, dict[tuple[int, ...], tuple[int, ...]]] = {}
     for schema, by_clause in cap_order_by_schema.items():
         kept: list[tuple[int, ...]] = []
         cover: dict[tuple[int, ...], tuple[int, ...]] = {}
         for clause in sorted(by_clause, key=lambda item: (len(item), item)):
             clause_set = frozenset(clause)
             matched = next(
-                (
-                    existing
-                    for existing in kept
-                    if frozenset(existing) <= clause_set
-                ),
+                (existing for existing in kept if frozenset(existing) <= clause_set),
                 None,
             )
             if matched is None:
@@ -6322,9 +5938,7 @@ def _bootstrap_certificates(
             )
             previous = record["record_sha256"]
             learned.append(record)
-    five_point_source_count = len(
-        cap_order_by_schema[CAP_ORDER_CERTIFICATE_SCHEMA]
-    )
+    five_point_source_count = len(cap_order_by_schema[CAP_ORDER_CERTIFICATE_SCHEMA])
     rhombus_source_count = len(
         cap_order_by_schema[RHOMBUS_CAP_ORDER_CERTIFICATE_SCHEMA]
     )
@@ -6340,15 +5954,9 @@ def _bootstrap_certificates(
         + kalmanson_source_count
         + shared_pair_separation_source_count
     )
-    five_point_kept_count = len(
-        cap_order_kept[CAP_ORDER_CERTIFICATE_SCHEMA]
-    )
-    rhombus_kept_count = len(
-        cap_order_kept[RHOMBUS_CAP_ORDER_CERTIFICATE_SCHEMA]
-    )
-    kalmanson_kept_count = len(
-        cap_order_kept[KALMANSON_CAP_ORDER_CERTIFICATE_SCHEMA]
-    )
+    five_point_kept_count = len(cap_order_kept[CAP_ORDER_CERTIFICATE_SCHEMA])
+    rhombus_kept_count = len(cap_order_kept[RHOMBUS_CAP_ORDER_CERTIFICATE_SCHEMA])
+    kalmanson_kept_count = len(cap_order_kept[KALMANSON_CAP_ORDER_CERTIFICATE_SCHEMA])
     shared_pair_separation_kept_count = len(
         cap_order_kept[SHARED_PAIR_SEPARATION_CERTIFICATE_SCHEMA]
     )
@@ -6358,9 +5966,7 @@ def _bootstrap_certificates(
         + kalmanson_kept_count
         + shared_pair_separation_kept_count
     )
-    cap_order_covered_count = sum(
-        len(cover) for cover in cap_order_cover.values()
-    )
+    cap_order_covered_count = sum(len(cover) for cover in cap_order_cover.values())
     source_unique_count = len(structural_by_key) + cap_order_source_count
     kept_count = len(structural_clause_kept) + cap_order_kept_count
     summary = {
@@ -6373,12 +5979,8 @@ def _bootstrap_certificates(
         "source_five_point_cap_order_unique_certificate_count": (
             five_point_source_count
         ),
-        "source_rhombus_cap_order_unique_certificate_count": (
-            rhombus_source_count
-        ),
-        "source_kalmanson_cap_order_unique_certificate_count": (
-            kalmanson_source_count
-        ),
+        "source_rhombus_cap_order_unique_certificate_count": (rhombus_source_count),
+        "source_kalmanson_cap_order_unique_certificate_count": (kalmanson_source_count),
         "source_shared_pair_separation_unique_certificate_count": (
             shared_pair_separation_source_count
         ),
@@ -6416,9 +6018,7 @@ def _three_rhombus_prefix_record_unsigned(
     descriptor: Mapping[str, Any],
 ) -> dict[str, Any]:
     if entry.get("index") != entry_index:
-        raise StructuralCegarError(
-            "three-rhombus prefix entry index mismatch"
-        )
+        raise StructuralCegarError("three-rhombus prefix entry index mismatch")
     positives = entry.get("positive_memberships")
     certificate = entry.get("certificate")
     if not isinstance(positives, list) or not isinstance(certificate, Mapping):
@@ -6429,9 +6029,7 @@ def _three_rhombus_prefix_record_unsigned(
         clause = three_rhombus.replay_closure(
             certificate,
             positives,
-            var_lookup=lambda center, point: encoding.var(
-                "s", center, point
-            ),
+            var_lookup=lambda center, point: encoding.var("s", center, point),
         )
     except Exception as exc:
         raise StructuralCegarError(
@@ -6443,9 +6041,7 @@ def _three_rhombus_prefix_record_unsigned(
         or entry.get("clause_sha256") != _sha256_value(list(clause))
         or entry.get("terminal_claim") is not False
     ):
-        raise StructuralCegarError(
-            "three-rhombus prefix entry linkage mismatch"
-        )
+        raise StructuralCegarError("three-rhombus prefix entry linkage mismatch")
     return {
         "schema": _learned_schema(encoding),
         "index": record_index,
@@ -6461,14 +6057,10 @@ def _three_rhombus_prefix_record_unsigned(
         "clause_sha256": _sha256_value(list(clause)),
         "superseded_nogood_sha256": [],
         "lean_direct_pattern_consumer": THREE_RHOMBUS_LEAN_CONSUMER,
-        "ingress_trust_boundary": (
-            THREE_RHOMBUS_PREFIX_INGRESS_TRUST_BOUNDARY
-        ),
+        "ingress_trust_boundary": (THREE_RHOMBUS_PREFIX_INGRESS_TRUST_BOUNDARY),
         "terminal_claim": False,
         "prefix_bank_root_sha256": descriptor["bank_root_sha256"],
-        "prefix_source_prefix_sha256": descriptor[
-            "source_prefix_sha256"
-        ],
+        "prefix_source_prefix_sha256": descriptor["source_prefix_sha256"],
         "prefix_bank_manifest_sha256": descriptor["manifest_sha256"],
         "prefix_bank_entry_index": entry_index,
         "prefix_bank_entry": dict(entry),
@@ -6498,9 +6090,7 @@ def _append_three_rhombus_prefix_records(
     previous = learned[-1]["record_sha256"] if learned else None
     for entry_index, entry in enumerate(entries):
         if not isinstance(entry, Mapping):
-            raise StructuralCegarError(
-                "three-rhombus prefix entry is not an object"
-            )
+            raise StructuralCegarError("three-rhombus prefix entry is not an object")
         unsigned = _three_rhombus_prefix_record_unsigned(
             encoding,
             record_index=len(learned),
@@ -6557,9 +6147,7 @@ def _load_learned(
     prefix_record_count = 0
     prefix_records_started = False
     previous: str | None = None
-    for index, record in enumerate(
-        _iter_strict_json_lines(path, scan=stream_scan)
-    ):
+    for index, record in enumerate(_iter_strict_json_lines(path, scan=stream_scan)):
         records.append(record)
         where = f"{path}:{index + 1}"
         _validate_record_hash(record, previous, where=where)
@@ -6620,9 +6208,7 @@ def _load_learned(
             )
         if origin == THREE_RHOMBUS_ORIGIN:
             assignment = encoding.assignment_from_record(record)
-            _validate_shard_assignment(
-                assignment, shard_literals, where=where
-            )
+            _validate_shard_assignment(assignment, shard_literals, where=where)
             obj = encoding.decode(assignment)
             encoding.validate(obj, assignment)
             rows = _metric_rows(obj)
@@ -6643,11 +6229,9 @@ def _load_learned(
                 )
             if (
                 record.get("stage") != THREE_RHOMBUS_STAGE
-                or record.get("certificate_schema")
-                != THREE_RHOMBUS_CERTIFICATE_SCHEMA
+                or record.get("certificate_schema") != THREE_RHOMBUS_CERTIFICATE_SCHEMA
                 or record.get("clause") != list(clause)
-                or record.get("clause_sha256")
-                != _sha256_value(list(clause))
+                or record.get("clause_sha256") != _sha256_value(list(clause))
                 or record.get("superseded_nogood_sha256") != []
                 or record.get("lean_direct_pattern_consumer")
                 != THREE_RHOMBUS_LEAN_CONSUMER
@@ -6711,9 +6295,7 @@ def _load_learned(
                 schema = KALMANSON_CAP_ORDER_CERTIFICATE_SCHEMA
                 stage = KALMANSON_CAP_ORDER_STAGE
                 certificate, _selected, _facts = (
-                    _replay_kalmanson_cap_order_certificate(
-                        record.get("certificate")
-                    )
+                    _replay_kalmanson_cap_order_certificate(record.get("certificate"))
                 )
                 clause = _clause_for_kalmanson_cap_order_certificate(
                     encoding, certificate
@@ -6721,10 +6303,8 @@ def _load_learned(
             elif is_rhombus:
                 schema = RHOMBUS_CAP_ORDER_CERTIFICATE_SCHEMA
                 stage = RHOMBUS_CAP_ORDER_STAGE
-                certificate, _selected, _facts = (
-                    _replay_rhombus_cap_order_certificate(
-                        record.get("certificate")
-                    )
+                certificate, _selected, _facts = _replay_rhombus_cap_order_certificate(
+                    record.get("certificate")
                 )
                 clause = _clause_for_rhombus_cap_order_certificate(
                     encoding, certificate
@@ -6732,12 +6312,10 @@ def _load_learned(
             else:
                 schema = CAP_ORDER_CERTIFICATE_SCHEMA
                 stage = CAP_ORDER_STAGE
-                certificate, _selected, _facts = (
-                    _replay_cap_order_certificate(record.get("certificate"))
+                certificate, _selected, _facts = _replay_cap_order_certificate(
+                    record.get("certificate")
                 )
-                clause = _clause_for_cap_order_certificate(
-                    encoding, certificate
-                )
+                clause = _clause_for_cap_order_certificate(encoding, certificate)
             if clause in cap_order_clauses[schema]:
                 raise StructuralCegarError(
                     f"{where}: duplicate cap-order learned clause"
@@ -6764,9 +6342,7 @@ def _load_learned(
                 clauses.append(clause)
                 continue
             assignment = encoding.assignment_from_record(record)
-            _validate_shard_assignment(
-                assignment, shard_literals, where=where
-            )
+            _validate_shard_assignment(assignment, shard_literals, where=where)
             obj = encoding.decode(assignment)
             encoding.validate(obj, assignment)
             rows = _metric_rows(obj)
@@ -6797,9 +6373,7 @@ def _load_learned(
                     encoding, certificate, assignment
                 )
             else:
-                _clause_for_cap_order_certificate(
-                    encoding, certificate, assignment
-                )
+                _clause_for_cap_order_certificate(encoding, certificate, assignment)
             if record.get("assignment_sha256") != _assignment_hash(
                 encoding, assignment
             ):
@@ -6826,8 +6400,7 @@ def _load_learned(
             if (
                 record.get("origin") != template.get("origin")
                 or record.get("stage") != template.get("stage")
-                or record.get("certificate_kind")
-                != template.get("certificate_kind")
+                or record.get("certificate_kind") != template.get("certificate_kind")
                 or record.get("certificate") is not None
                 or record.get("algebraic_template_name") != template.get("name")
                 or record.get("superseded_nogood_sha256") != []
@@ -6837,24 +6410,19 @@ def _load_learned(
                 )
             permutation = _validate_permutation(record.get("permutation"))
             mapped = _mapped_memberships(template, permutation)
-            if record.get("antecedent_memberships") != [
-                list(pair) for pair in mapped
-            ]:
+            if record.get("antecedent_memberships") != [list(pair) for pair in mapped]:
                 raise StructuralCegarError(
                     f"{where}: algebraic mapped antecedent mismatch"
                 )
             clause = _clause_for_memberships(encoding, mapped)
-            if (
-                record.get("clause") != list(clause)
-                or record.get("clause_sha256") != _sha256_value(list(clause))
-            ):
+            if record.get("clause") != list(clause) or record.get(
+                "clause_sha256"
+            ) != _sha256_value(list(clause)):
                 raise StructuralCegarError(
                     f"{where}: algebraic learned clause mismatch"
                 )
             assignment = encoding.assignment_from_record(record)
-            _validate_shard_assignment(
-                assignment, shard_literals, where=where
-            )
+            _validate_shard_assignment(assignment, shard_literals, where=where)
             obj = encoding.decode(assignment)
             encoding.validate(obj, assignment)
             replayed_match = _find_algebraic_match(
@@ -6883,9 +6451,7 @@ def _load_learned(
                 )
             clauses.append(clause)
             continue
-        certificate, selected = _replay_certificate_json(
-            record.get("certificate")
-        )
+        certificate, selected = _replay_certificate_json(record.get("certificate"))
         origin = record.get("origin")
         if origin in {"solver", "bootstrap-structural-prefix"}:
             clause = _clause_for_rows(encoding, selected)
@@ -6893,23 +6459,18 @@ def _load_learned(
             STRUCTURAL_PATH_ORIGIN,
             BOOTSTRAP_STRUCTURAL_PATH_ORIGIN,
         }:
-            clause = _clause_for_structural_certificate(
-                encoding, certificate, selected
-            )
+            clause = _clause_for_structural_certificate(encoding, certificate, selected)
         else:
             raise StructuralCegarError(f"{where}: invalid learned origin")
         if (
             record.get("stage") != certificate["stage"]
             or record.get("clause") != list(clause)
-            or record.get("clause_sha256")
-            != _sha256_value(list(clause))
+            or record.get("clause_sha256") != _sha256_value(list(clause))
         ):
             raise StructuralCegarError(f"{where}: learned clause mismatch")
         if origin in {"solver", STRUCTURAL_PATH_ORIGIN}:
             assignment = encoding.assignment_from_record(record)
-            _validate_shard_assignment(
-                assignment, shard_literals, where=where
-            )
+            _validate_shard_assignment(assignment, shard_literals, where=where)
             obj = encoding.decode(assignment)
             encoding.validate(obj, assignment)
             rows = _metric_rows(obj)
@@ -6985,9 +6546,7 @@ def _load_survivors(
         block = encoding.blocking_clause(assignment)
         if record.get("blocking_clause") != list(block):
             raise StructuralCegarError(f"{where}: survivor block mismatch")
-        if record.get("assignment_sha256") != _assignment_hash(
-            encoding, assignment
-        ):
+        if record.get("assignment_sha256") != _assignment_hash(encoding, assignment):
             raise StructuralCegarError(f"{where}: survivor assignment hash mismatch")
         clauses.append(block)
     return records, clauses
@@ -7181,9 +6740,7 @@ def _load_cube_batches(
             raise StructuralCegarError(f"{results_path}: incomplete cube results")
         for cube_index, result in enumerate(results):
             result_where = f"{results_path}:{cube_index + 1}"
-            _validate_record_hash(
-                result, result_previous, where=result_where
-            )
+            _validate_record_hash(result, result_previous, where=result_where)
             result_previous = result["record_sha256"]
             cube = cubes[cube_index]
             cube_spec = plan["cubes"][cube_index]
@@ -7201,9 +6758,7 @@ def _load_cube_batches(
                 )
             disposition = result.get("disposition")
             if disposition not in allowed_dispositions:
-                raise StructuralCegarError(
-                    f"{result_where}: invalid cube disposition"
-                )
+                raise StructuralCegarError(f"{result_where}: invalid cube disposition")
             dispositions[str(disposition)] += 1
             cube_cnf_chunks = _cube_cnf_chunks(
                 encoding, common_clause_body, common_clause_count, cube
@@ -7211,9 +6766,7 @@ def _load_cube_batches(
             cube_cnf_sha256 = _sha256_chunks(cube_cnf_chunks)
             cube_path = directory / f"cube-{cube_index:06d}.cnf"
             if result.get("cnf_sha256") != cube_cnf_sha256:
-                raise StructuralCegarError(
-                    f"{result_where}: cube CNF replay mismatch"
-                )
+                raise StructuralCegarError(f"{result_where}: cube CNF replay mismatch")
             if artifact_mode == "full":
                 expected_files.add(cube_path.name)
                 if (
@@ -7238,8 +6791,7 @@ def _load_cube_batches(
                 )
             log = logs[attempt]
             if (
-                result.get("solver_log_record_sha256")
-                != log["record_sha256"]
+                result.get("solver_log_record_sha256") != log["record_sha256"]
                 or log.get("cube_batch_index") != batch_index
                 or log.get("cube_index") != cube_index
                 or log.get("cube_plan_sha256") != plan["plan_sha256"]
@@ -7338,8 +6890,7 @@ def _load_cube_batches(
                         f"{result_where}: commit is not the next live record"
                     )
                 if (
-                    committed_record["raw_sat_index"]
-                    != expected_raw_sat_index
+                    committed_record["raw_sat_index"] != expected_raw_sat_index
                     or committed_record["assignment_sha256"]
                     != result["assignment_sha256"]
                 ):
@@ -7363,9 +6914,7 @@ def _load_cube_batches(
                     assignment,
                     stale_evidence,
                     learned=learned[:expected_learned_count],
-                    survivor_clauses=survivor_clauses[
-                        :expected_survivor_count
-                    ],
+                    survivor_clauses=survivor_clauses[:expected_survivor_count],
                 )
             elif stale_evidence is not None:
                 raise StructuralCegarError(
@@ -7374,14 +6923,8 @@ def _load_cube_batches(
             verdict = log["verdict"]
             if (
                 (disposition == "committed" and verdict != "SAT")
-                or (
-                    disposition == "stale-current-antichain"
-                    and verdict != "SAT"
-                )
-                or (
-                    disposition == "cube-unsat-unverified"
-                    and verdict != "UNSAT"
-                )
+                or (disposition == "stale-current-antichain" and verdict != "SAT")
+                or (disposition == "cube-unsat-unverified" and verdict != "UNSAT")
                 or (disposition == "solver-exception" and verdict != "EXCEPTION")
                 or (
                     disposition == "coordinator-certificate-failure"
@@ -7396,8 +6939,7 @@ def _load_cube_batches(
             or record.get("results_sha256") != _sha256_file(results_path)
             or record.get("result_chain_head_sha256")
             != (results[-1]["record_sha256"] if results else None)
-            or record.get("disposition_histogram")
-            != dict(sorted(dispositions.items()))
+            or record.get("disposition_histogram") != dict(sorted(dispositions.items()))
             or record.get("committed_record_sha256") != committed
         ):
             raise StructuralCegarError(f"{where}: cube result summary mismatch")
@@ -7433,9 +6975,7 @@ def _cube_batch_counts(
 
 
 def _active_counts(bank: Any) -> Counter[str]:
-    return Counter(
-        str(certificate["stage"]) for certificate in bank.active.values()
-    )
+    return Counter(str(certificate["stage"]) for certificate in bank.active.values())
 
 
 def _artifact_hashes(out: Path) -> dict[str, str]:
@@ -7453,11 +6993,7 @@ def _artifact_hashes(out: Path) -> dict[str, str]:
         "terminal.drat",
         "terminal.drat.check",
     )
-    return {
-        name: _sha256_file(out / name)
-        for name in names
-        if (out / name).is_file()
-    }
+    return {name: _sha256_file(out / name) for name in names if (out / name).is_file()}
 
 
 COMPILED_LOADER_CACHE_NAME = "compiled-loader-cache.json"
@@ -7588,9 +7124,7 @@ class ManifestProspectiveState:
         self.cube_counts: Counter[str] = Counter()
         self.shard_simplification_attempts: list[dict[str, Any]] = []
         self.active_stage_by_nogood: dict[str, str] = {
-            str(certificates._nogood_sha256(certificate)): str(
-                certificate["stage"]
-            )
+            str(certificates._nogood_sha256(certificate)): str(certificate["stage"])
             for certificate in bank.active.values()
         }
         self.artifact_hashes = dict(artifact_hashes)
@@ -7707,8 +7241,11 @@ class ManifestProspectiveState:
         if is_dynamic:
             self.dynamic_stages[stage] += 1
             self.observed_stages[stage] += 1
-        if origin in {ALGEBRAIC_ORIGIN, REAL_DISTINCTNESS_ORIGIN,
-                      EQUILATERAL_SHELL_ORIGIN}:
+        if origin in {
+            ALGEBRAIC_ORIGIN,
+            REAL_DISTINCTNESS_ORIGIN,
+            EQUILATERAL_SHELL_ORIGIN,
+        }:
             self.observed_stages[stage] += 0
 
         if origin in DYNAMIC_CLASSIFIED_ORIGINS:
@@ -7936,9 +7473,7 @@ class ManifestProspectiveState:
                 self.bootstrap_shared_pair_separation_count
             ),
             "dynamic_learned_core_count": self.dynamic_learned_count,
-            "dynamic_three_rhombus_nogood_count": (
-                self.three_rhombus_dynamic_count
-            ),
+            "dynamic_three_rhombus_nogood_count": (self.three_rhombus_dynamic_count),
             "dynamic_cap_order_nogood_count": cap_order_count,
             "dynamic_five_point_cap_order_nogood_count": (
                 self.five_point_cap_order_dynamic_count
@@ -7977,9 +7512,7 @@ class ManifestProspectiveState:
                 if disposition != "batches"
             ),
             "cube_committed_result_count": self.cube_counts["committed"],
-            "cube_stale_result_count": self.cube_counts[
-                "stale-current-antichain"
-            ],
+            "cube_stale_result_count": self.cube_counts["stale-current-antichain"],
             "cube_local_unsat_unverified_count": self.cube_counts[
                 "cube-unsat-unverified"
             ],
@@ -8002,9 +7535,7 @@ def _build_learned_run_ledger(
     scan: cegar_runtime.JournalScan,
 ) -> cegar_runtime.LearnedRunLedger:
     try:
-        return cegar_runtime.LearnedRunLedger.from_authenticated_records(
-            learned, scan
-        )
+        return cegar_runtime.LearnedRunLedger.from_authenticated_records(learned, scan)
     except cegar_runtime.RunLedgerError as exc:
         raise StructuralCegarError(
             f"shadow learned RunLedger initialization failed: {exc}"
@@ -8034,9 +7565,7 @@ def _recount_jsonl_stream(
     return cegar_runtime.StreamSnapshot(
         record_count=len(records),
         byte_count=len(data),
-        terminal_record_sha256=(
-            str(records[-1]["record_sha256"]) if records else None
-        ),
+        terminal_record_sha256=(str(records[-1]["record_sha256"]) if records else None),
         file_sha256=_sha256_bytes(data),
     )
 
@@ -8091,9 +7620,10 @@ def _assert_productivity_ledger(
         raise StructuralCegarError("shadow productivity ledger/recount mismatch")
     if manifest.get("productivity_stream") != shadow:
         raise StructuralCegarError("shadow productivity ledger/manifest mismatch")
-    if manifest.get("artifact_hashes", {}).get("productivity.jsonl") != shadow[
-        "file_sha256"
-    ]:
+    if (
+        manifest.get("artifact_hashes", {}).get("productivity.jsonl")
+        != shadow["file_sha256"]
+    ):
         raise StructuralCegarError("shadow productivity ledger/artifact mismatch")
 
 
@@ -8134,9 +7664,7 @@ def _recount_learned_stream(
     return cegar_runtime.LearnedStreamSnapshot(
         record_count=len(learned),
         byte_count=len(data),
-        terminal_record_sha256=(
-            str(learned[-1]["record_sha256"]) if learned else None
-        ),
+        terminal_record_sha256=(str(learned[-1]["record_sha256"]) if learned else None),
         file_sha256=_sha256_bytes(data),
         origin_counts=tuple(
             sorted(Counter(str(record["origin"]) for record in learned).items())
@@ -8163,8 +7691,7 @@ def _assert_learned_run_ledger(
             if getattr(shadow, name) != getattr(recount, name)
         ]
         raise StructuralCegarError(
-            "shadow learned RunLedger/recount mismatch: "
-            + ", ".join(mismatches)
+            "shadow learned RunLedger/recount mismatch: " + ", ".join(mismatches)
         )
     if (
         manifest["counts"]["learned_core_count"] != shadow.record_count
@@ -8172,9 +7699,7 @@ def _assert_learned_run_ledger(
         or manifest["artifact_hashes"].get("learned-certificates.jsonl")
         != shadow.file_sha256
     ):
-        raise StructuralCegarError(
-            "shadow learned RunLedger/manifest mismatch"
-        )
+        raise StructuralCegarError("shadow learned RunLedger/manifest mismatch")
     stream_ledgers = manifest.get("stream_ledgers")
     expected_learned = {
         "record_count": shadow.record_count,
@@ -8182,9 +7707,10 @@ def _assert_learned_run_ledger(
         "terminal_record_sha256": shadow.terminal_record_sha256,
         "file_sha256": shadow.file_sha256,
     }
-    if not isinstance(stream_ledgers, Mapping) or stream_ledgers.get(
-        "learned"
-    ) != expected_learned:
+    if (
+        not isinstance(stream_ledgers, Mapping)
+        or stream_ledgers.get("learned") != expected_learned
+    ):
         raise StructuralCegarError(
             "shadow learned RunLedger/all-stream manifest mismatch"
         )
@@ -8283,19 +7809,16 @@ def _manifest(
         for record in learned
     )
     bootstrap_three_rhombus_prefix_count = sum(
-        record["origin"] == BOOTSTRAP_THREE_RHOMBUS_PREFIX_ORIGIN
-        for record in learned
+        record["origin"] == BOOTSTRAP_THREE_RHOMBUS_PREFIX_ORIGIN for record in learned
     )
     bootstrap_five_point_cap_order_count = sum(
         record["origin"] == BOOTSTRAP_CAP_ORDER_ORIGIN for record in learned
     )
     bootstrap_rhombus_cap_order_count = sum(
-        record["origin"] == BOOTSTRAP_RHOMBUS_CAP_ORDER_ORIGIN
-        for record in learned
+        record["origin"] == BOOTSTRAP_RHOMBUS_CAP_ORDER_ORIGIN for record in learned
     )
     bootstrap_kalmanson_cap_order_count = sum(
-        record["origin"] == BOOTSTRAP_KALMANSON_CAP_ORDER_ORIGIN
-        for record in learned
+        record["origin"] == BOOTSTRAP_KALMANSON_CAP_ORDER_ORIGIN for record in learned
     )
     bootstrap_shared_pair_separation_count = sum(
         record["origin"] == BOOTSTRAP_SHARED_PAIR_SEPARATION_ORIGIN
@@ -8313,22 +7836,16 @@ def _manifest(
         if record["origin"] in {"solver", STRUCTURAL_PATH_ORIGIN}
     ]
     three_rhombus_dynamic = [
-        record
-        for record in learned
-        if record["origin"] == THREE_RHOMBUS_ORIGIN
+        record for record in learned if record["origin"] == THREE_RHOMBUS_ORIGIN
     ]
     five_point_cap_order_dynamic = [
         record for record in learned if record["origin"] == CAP_ORDER_ORIGIN
     ]
     rhombus_cap_order_dynamic = [
-        record
-        for record in learned
-        if record["origin"] == RHOMBUS_CAP_ORDER_ORIGIN
+        record for record in learned if record["origin"] == RHOMBUS_CAP_ORDER_ORIGIN
     ]
     kalmanson_cap_order_dynamic = [
-        record
-        for record in learned
-        if record["origin"] == KALMANSON_CAP_ORDER_ORIGIN
+        record for record in learned if record["origin"] == KALMANSON_CAP_ORDER_ORIGIN
     ]
     shared_pair_separation_dynamic = [
         record
@@ -8352,13 +7869,10 @@ def _manifest(
     real_distinctness_dynamic = [
         record
         for record in learned
-        if record["origin"]
-        in {REAL_DISTINCTNESS_ORIGIN, EQUILATERAL_SHELL_ORIGIN}
+        if record["origin"] in {REAL_DISTINCTNESS_ORIGIN, EQUILATERAL_SHELL_ORIGIN}
     ]
     equilateral_shell_dynamic = [
-        record
-        for record in learned
-        if record["origin"] == EQUILATERAL_SHELL_ORIGIN
+        record for record in learned if record["origin"] == EQUILATERAL_SHELL_ORIGIN
     ]
     classified_learned = [
         *dynamic,
@@ -8479,16 +7993,12 @@ def _manifest(
                 bootstrap_shared_pair_separation_count
             ),
             "dynamic_learned_core_count": len(dynamic),
-            "dynamic_three_rhombus_nogood_count": len(
-                three_rhombus_dynamic
-            ),
+            "dynamic_three_rhombus_nogood_count": len(three_rhombus_dynamic),
             "dynamic_cap_order_nogood_count": len(cap_order_dynamic),
             "dynamic_five_point_cap_order_nogood_count": len(
                 five_point_cap_order_dynamic
             ),
-            "dynamic_rhombus_cap_order_nogood_count": len(
-                rhombus_cap_order_dynamic
-            ),
+            "dynamic_rhombus_cap_order_nogood_count": len(rhombus_cap_order_dynamic),
             "dynamic_kalmanson_cap_order_nogood_count": len(
                 kalmanson_cap_order_dynamic
             ),
@@ -8496,12 +8006,8 @@ def _manifest(
                 shared_pair_separation_dynamic
             ),
             "dynamic_algebraic_nogood_count": len(algebraic_dynamic),
-            "dynamic_real_distinctness_nogood_count": len(
-                real_distinctness_dynamic
-            ),
-            "dynamic_equilateral_shell_nogood_count": len(
-                equilateral_shell_dynamic
-            ),
+            "dynamic_real_distinctness_nogood_count": len(real_distinctness_dynamic),
+            "dynamic_equilateral_shell_nogood_count": len(equilateral_shell_dynamic),
             "dynamic_certificate_kind_histogram": dict(
                 sorted(
                     Counter(
@@ -8525,12 +8031,8 @@ def _manifest(
                 if disposition != "batches"
             ),
             "cube_committed_result_count": cube_counts["committed"],
-            "cube_stale_result_count": cube_counts[
-                "stale-current-antichain"
-            ],
-            "cube_local_unsat_unverified_count": cube_counts[
-                "cube-unsat-unverified"
-            ],
+            "cube_stale_result_count": cube_counts["stale-current-antichain"],
+            "cube_local_unsat_unverified_count": cube_counts["cube-unsat-unverified"],
         },
         "stage_histogram": dict(sorted(stages.items())),
         "dynamic_stage_histogram": dict(sorted(dynamic_stages.items())),
@@ -8697,9 +8199,7 @@ def _solver_manifest_metadata(backend: Any) -> dict[str, Any] | None:
         return None
     value = metadata()
     if not isinstance(value, Mapping):
-        raise StructuralCegarError(
-            "incremental solver metadata must be a JSON object"
-        )
+        raise StructuralCegarError("incremental solver metadata must be a JSON object")
     return {str(key): value[key] for key in value}
 
 
@@ -8716,9 +8216,7 @@ def _classification_count_cache(
     for record in (*dynamic, *survivors):
         raw_sat_index = record.get("raw_sat_index")
         if type(raw_sat_index) is not int or raw_sat_index < 0:
-            raise StructuralCegarError(
-                "cached classification raw SAT index is invalid"
-            )
+            raise StructuralCegarError("cached classification raw SAT index is invalid")
         raw_indices.append(raw_sat_index)
     if sorted(raw_indices) != list(range(len(raw_indices))):
         raise StructuralCegarError(
@@ -8854,6 +8352,7 @@ def _commit_sat_classification(
     productivity_path: Path | None = None,
     productivity_ledger: productivity.ProductivityLedger | None = None,
     productivity_records: list[dict[str, Any]] | None = None,
+    ingress_contract: Mapping[str, Any] | None = None,
 ) -> dict[str, Any]:
     if (productivity_ledger is None) != (productivity_path is None):
         raise StructuralCegarError(
@@ -8864,9 +8363,7 @@ def _commit_sat_classification(
             "enabled productivity classification requires a mutable record list"
         )
     telemetry = (
-        None
-        if productivity_ledger is None
-        else productivity.ClassificationTelemetry()
+        None if productivity_ledger is None else productivity.ClassificationTelemetry()
     )
     started_ns = time.perf_counter_ns() if telemetry is not None else 0
 
@@ -8906,25 +8403,20 @@ def _commit_sat_classification(
                 "scope": "exact lower bound; no extrapolation",
             },
             previous_record_sha256=productivity_ledger.terminal_record_sha256,
+            ingress_contract=ingress_contract,
         )
         serialized = _append_record(productivity_path, diagnostic_record)
         try:
-            productivity_ledger.observe_durable_append(
-                diagnostic_record, serialized
-            )
+            productivity_ledger.observe_durable_append(diagnostic_record, serialized)
         except productivity.ProductivityError as exc:
             raise StructuralCegarError(
                 f"shadow productivity ledger append failed: {exc}"
             ) from exc
         productivity_records.append(diagnostic_record)
-        result["productivity_record_sha256"] = diagnostic_record[
-            "record_sha256"
-        ]
+        result["productivity_record_sha256"] = diagnostic_record["record_sha256"]
         return result
 
-    _validate_shard_assignment(
-        assignment, shard_literals, where="live solver result"
-    )
+    _validate_shard_assignment(assignment, shard_literals, where="live solver result")
     if telemetry is None:
         obj = encoding.decode(assignment)
         encoding.validate(obj, assignment)
@@ -8941,15 +8433,11 @@ def _commit_sat_classification(
         }
     )
     rows = _metric_rows(obj)
-    context = classification_context.ClassificationContext.from_rows(
-        rows, CELL.n
-    )
+    context = classification_context.ClassificationContext.from_rows(rows, CELL.n)
     rows_json = [row.as_dict() for row in rows]
     failure_detail["metric_rows_sha256"] = _sha256_value(rows_json)
     found = timed("metric_detector", _detection, rows)
-    failure_detail["detection_stage"] = (
-        None if found is None else found["stage"]
-    )
+    failure_detail["detection_stage"] = None if found is None else found["stage"]
     if found is None:
         three_rhombus_match = timed(
             "three_rhombus_detector", _three_rhombus_detection, encoding, rows
@@ -8981,12 +8469,8 @@ def _commit_sat_classification(
                     "clause": list(clause),
                     "clause_sha256": _sha256_value(list(clause)),
                     "superseded_nogood_sha256": [],
-                    "lean_direct_pattern_consumer": (
-                        THREE_RHOMBUS_LEAN_CONSUMER
-                    ),
-                    "ingress_trust_boundary": (
-                        THREE_RHOMBUS_INGRESS_TRUST_BOUNDARY
-                    ),
+                    "lean_direct_pattern_consumer": (THREE_RHOMBUS_LEAN_CONSUMER),
+                    "ingress_trust_boundary": (THREE_RHOMBUS_INGRESS_TRUST_BOUNDARY),
                     "terminal_claim": False,
                 },
                 learned[-1]["record_sha256"] if learned else None,
@@ -9064,9 +8548,7 @@ def _commit_sat_classification(
         failure_detail["rhombus_cap_order_match"] = (
             None
             if rhombus_cap_order_match is None
-            else rhombus_cap_order_match[0][
-                "certificate_payload_sha256"
-            ]
+            else rhombus_cap_order_match[0]["certificate_payload_sha256"]
         )
         if rhombus_cap_order_match is not None:
             certificate, _selected, _facts = rhombus_cap_order_match
@@ -9171,9 +8653,7 @@ def _commit_sat_classification(
         failure_detail["kalmanson_cap_order_match"] = (
             None
             if kalmanson_cap_order_match is None
-            else kalmanson_cap_order_match[0][
-                "certificate_payload_sha256"
-            ]
+            else kalmanson_cap_order_match[0]["certificate_payload_sha256"]
         )
         if kalmanson_cap_order_match is not None:
             certificate, _selected, _facts = kalmanson_cap_order_match
@@ -9182,8 +8662,7 @@ def _commit_sat_classification(
             )
             if clause in learned_clauses:
                 raise StructuralCegarError(
-                    "SAT assignment survived an existing Kalmanson "
-                    "cap-order cut"
+                    "SAT assignment survived an existing Kalmanson cap-order cut"
                 )
             record = _with_record_hash(
                 {
@@ -9222,9 +8701,7 @@ def _commit_sat_classification(
             algebraic_templates,
         )
         failure_detail["algebraic_match"] = (
-            None
-            if algebraic_match is None
-            else algebraic_match[0]["template_sha256"]
+            None if algebraic_match is None else algebraic_match[0]["template_sha256"]
         )
         if algebraic_match is None:
             block = encoding.blocking_clause(assignment)
@@ -9431,9 +8908,7 @@ def _launch_cube_batch(
 
     def solve(job: Mapping[str, Any]) -> dict[str, Any]:
         try:
-            result = solver_runner(
-                job["cnf_path"], timeout_s, None
-            )
+            result = solver_runner(job["cnf_path"], timeout_s, None)
             return {"result": result, "exception": None}
         except Exception as exc:  # noqa: BLE001
             return {
@@ -9485,9 +8960,7 @@ def _finalize_cube_batch(
         "plan_sha256": plan["plan_sha256"],
         "result_count": len(results),
         "results_sha256": _sha256_file(results_path),
-        "result_chain_head_sha256": (
-            results[-1]["record_sha256"] if results else None
-        ),
+        "result_chain_head_sha256": (results[-1]["record_sha256"] if results else None),
         "disposition_histogram": dict(sorted(dispositions.items())),
         "committed_record_sha256": committed,
     }
@@ -9534,6 +9007,7 @@ def run_driver(
     shard_local_simplification: bool = False,
     persistent_discovery: bool = False,
     productivity_telemetry: bool = False,
+    ingress_contract: Mapping[str, Any] | None = None,
     incremental_solver_factory: Any | None = None,
     piqd_incremental_config: _IncrementalPiqdCallerConfig | None = None,
     resume: bool = False,
@@ -9553,13 +9027,10 @@ def run_driver(
         )
     if cube_artifact_mode not in CUBE_ARTIFACT_MODES:
         raise StructuralCegarError(
-            "cube_artifact_mode must be one of "
-            f"{', '.join(CUBE_ARTIFACT_MODES)}"
+            f"cube_artifact_mode must be one of {', '.join(CUBE_ARTIFACT_MODES)}"
         )
     if not 1 <= cube_depth <= MAX_CUBE_DEPTH:
-        raise StructuralCegarError(
-            f"cube_depth must be in 1..{MAX_CUBE_DEPTH}"
-        )
+        raise StructuralCegarError(f"cube_depth must be in 1..{MAX_CUBE_DEPTH}")
     if max_new_raw is not None and max_new_raw <= 0:
         raise StructuralCegarError("max_new_raw must be positive")
     if type(manifest_fast_path) is not bool:
@@ -9567,13 +9038,20 @@ def run_driver(
     if type(compiled_loader_cache) is not bool:
         raise StructuralCegarError("compiled_loader_cache must be a bool")
     if type(shard_local_simplification) is not bool:
-        raise StructuralCegarError(
-            "shard_local_simplification must be a bool"
-        )
+        raise StructuralCegarError("shard_local_simplification must be a bool")
     if type(persistent_discovery) is not bool:
         raise StructuralCegarError("persistent_discovery must be a bool")
     if type(productivity_telemetry) is not bool:
         raise StructuralCegarError("productivity_telemetry must be a bool")
+    if ingress_contract is not None:
+        if not productivity_telemetry:
+            raise StructuralCegarError(
+                "ingress_contract requires productivity_telemetry=True"
+            )
+        try:
+            productivity.validate_ingress_contract(ingress_contract)
+        except productivity.ProductivityError as exc:
+            raise StructuralCegarError(f"invalid ingress_contract: {exc}") from exc
     if incremental_solver_factory is not None and not persistent_discovery:
         raise StructuralCegarError(
             "incremental_solver_factory requires persistent_discovery=True"
@@ -9582,10 +9060,7 @@ def run_driver(
         raise StructuralCegarError(
             "piqd_incremental_config requires persistent_discovery=True"
         )
-    if (
-        piqd_incremental_config is not None
-        and incremental_solver_factory is not None
-    ):
+    if piqd_incremental_config is not None and incremental_solver_factory is not None:
         raise StructuralCegarError(
             "PIQD incremental discovery cannot use incremental_solver_factory"
         )
@@ -9602,9 +9077,7 @@ def run_driver(
             "persistent discovery is currently limited to sequential mode"
         )
     if persistent_discovery and workers != 1:
-        raise StructuralCegarError(
-            "persistent discovery requires workers=1"
-        )
+        raise StructuralCegarError("persistent discovery requires workers=1")
     if persistent_discovery and shard_local_simplification:
         raise StructuralCegarError(
             "persistent discovery currently requires the unsimplified append-only CNF"
@@ -9625,13 +9098,8 @@ def run_driver(
         )
     if shard_depth is not None:
         if type(shard_depth) is not int or not 1 <= shard_depth <= MAX_CUBE_DEPTH:
-            raise StructuralCegarError(
-                f"shard_depth must be in 1..{MAX_CUBE_DEPTH}"
-            )
-        if (
-            type(shard_index) is not int
-            or not 0 <= shard_index < 1 << shard_depth
-        ):
+            raise StructuralCegarError(f"shard_depth must be in 1..{MAX_CUBE_DEPTH}")
+        if type(shard_index) is not int or not 0 <= shard_index < 1 << shard_depth:
             raise StructuralCegarError(
                 f"shard_index must be in 0..{(1 << shard_depth) - 1}"
             )
@@ -9639,9 +9107,7 @@ def run_driver(
             raise StructuralCegarError(
                 "fixed top-level shards require parallel_mode='sequential'"
             )
-    if shard_local_simplification and (
-        shard_depth is None or shard_index is None
-    ):
+    if shard_local_simplification and (shard_depth is None or shard_index is None):
         raise StructuralCegarError(
             "shard-local simplification requires fixed top-level shard options"
         )
@@ -9666,10 +9132,7 @@ def run_driver(
         raise StructuralCegarError(
             "three-rhombus prefix-bank ingestion requires projected-static-v3"
         )
-    if (
-        three_rhombus_prefix_cache is not None
-        and three_rhombus_prefix_bank is None
-    ):
+    if three_rhombus_prefix_cache is not None and three_rhombus_prefix_bank is None:
         raise StructuralCegarError(
             "three-rhombus prefix cache requires an authenticated prefix bank"
         )
@@ -9731,9 +9194,7 @@ def run_driver(
         prefix_root_sha256 = str(three_rhombus_prefix_root_sha256)
         prefix_source_sha256 = str(three_rhombus_prefix_source_sha256)
         prefix_cache_source_sha256 = (
-            None
-            if prefix_cache_path is None
-            else _prefix_bank_cache_source_sha256()
+            None if prefix_cache_path is None else _prefix_bank_cache_source_sha256()
         )
         if prefix_cache_path is not None:
             assert prefix_cache_source_sha256 is not None
@@ -9823,14 +9284,12 @@ def run_driver(
         persistent_discovery=persistent_discovery,
         piqd_incremental_discovery=piqd_incremental_config is not None,
         productivity_telemetry=productivity_telemetry,
+        ingress_contract=ingress_contract,
     )
     shard_literals = (
         ()
         if shard_depth is None or shard_index is None
-        else tuple(
-            int(literal)
-            for literal in configuration["shard"]["literals"]
-        )
+        else tuple(int(literal) for literal in configuration["shard"]["literals"])
     )
     shard_clauses = tuple((literal,) for literal in shard_literals)
     base_cnf_bytes, base_simplification = _shard_local_formula(
@@ -9839,9 +9298,7 @@ def run_driver(
         shard_literals,
         enabled=shard_local_simplification,
     )
-    configuration["shard_local_simplification"][
-        "base_snapshot"
-    ] = base_simplification
+    configuration["shard_local_simplification"]["base_snapshot"] = base_simplification
     base_cnf_sha256 = _sha256_bytes(base_cnf_bytes)
     learned_path = out / "learned-certificates.jsonl"
     survivors_path = out / "survivors.jsonl"
@@ -9883,12 +9340,8 @@ def run_driver(
             None
             if prefix_bank_data is None
             else {
-                "configuration": configuration[
-                    "three_rhombus_prefix_bank"
-                ],
-                "translated_learned_record_count": len(
-                    prefix_bank_data["entries"]
-                ),
+                "configuration": configuration["three_rhombus_prefix_bank"],
+                "translated_learned_record_count": len(prefix_bank_data["entries"]),
                 "origin": BOOTSTRAP_THREE_RHOMBUS_PREFIX_ORIGIN,
                 "terminal_claim": False,
             }
@@ -9898,9 +9351,7 @@ def run_driver(
             or bootstrap_summary.get("three_rhombus_prefix_bank")
             != expected_prefix_summary
         ):
-            raise StructuralCegarError(
-                "resume bootstrap replay/configuration mismatch"
-            )
+            raise StructuralCegarError("resume bootstrap replay/configuration mismatch")
         loader_stream_scan: cegar_runtime.JournalScan | None = learned_scan
         if compiled_loader_cache:
             try:
@@ -10012,9 +9463,7 @@ def run_driver(
                 "subsumed_certificate_count": 0,
             }
         else:
-            learned, structural_summary = _bootstrap_certificates(
-                encoding, bootstrap
-            )
+            learned, structural_summary = _bootstrap_certificates(encoding, bootstrap)
         prefix_record_count = _append_three_rhombus_prefix_records(
             learned, encoding, prefix_bank_data
         )
@@ -10028,9 +9477,7 @@ def run_driver(
                 None
                 if prefix_bank_data is None
                 else {
-                    "configuration": configuration[
-                        "three_rhombus_prefix_bank"
-                    ],
+                    "configuration": configuration["three_rhombus_prefix_bank"],
                     "translated_learned_record_count": prefix_record_count,
                     "origin": BOOTSTRAP_THREE_RHOMBUS_PREFIX_ORIGIN,
                     "terminal_claim": False,
@@ -10064,17 +9511,17 @@ def run_driver(
             )
 
     learned_ledger = _build_learned_run_ledger(learned, learned_scan)
-    survivor_ledger = _build_stream_run_ledger(
-        "survivors", survivors, survivor_scan
-    )
+    survivor_ledger = _build_stream_run_ledger("survivors", survivors, survivor_scan)
     logs_ledger = _build_stream_run_ledger("solver-logs", logs, logs_scan)
     cube_batches_ledger = _build_stream_run_ledger(
         "cube-batches", cube_batches, cube_batches_scan
     )
     if productivity_telemetry:
         try:
-            productivity_ledger = productivity.ProductivityLedger.from_authenticated_records(
-                productivity_records, productivity_scan
+            productivity_ledger = (
+                productivity.ProductivityLedger.from_authenticated_records(
+                    productivity_records, productivity_scan
+                )
             )
         except productivity.ProductivityError as exc:
             raise StructuralCegarError(
@@ -10106,27 +9553,19 @@ def run_driver(
     status = "RUNNING"
     diagnostic: str | None = None
     terminal_clause_count: int | None = (
-        None
-        if prior_manifest is None
-        else prior_manifest.get("terminal_clause_count")
+        None if prior_manifest is None else prior_manifest.get("terminal_clause_count")
     )
     unsat_verified = bool(
         prior_manifest is not None
         and prior_manifest.get("terminal_drat_verified") is True
     )
-    dynamic_learned_count, raw_count = _classification_count_cache(
-        learned, survivors
-    )
+    dynamic_learned_count, raw_count = _classification_count_cache(learned, survivors)
     initial_raw_count = raw_count
     next_manifest_generation = (
-        1
-        if prior_manifest is None
-        else int(prior_manifest["manifest_generation"]) + 1
+        1 if prior_manifest is None else int(prior_manifest["manifest_generation"]) + 1
     )
     previous_manifest_sha256 = (
-        None
-        if prior_manifest is None
-        else str(prior_manifest["manifest_sha256"])
+        None if prior_manifest is None else str(prior_manifest["manifest_sha256"])
     )
     published_manifest: dict[str, Any] | None = None
     running_publication_count = 0
@@ -10177,9 +9616,7 @@ def run_driver(
         replayed = _load_authenticated_three_rhombus_prefix_bank(
             Path(three_rhombus_prefix_bank),
             expected_root_sha256=str(three_rhombus_prefix_root_sha256),
-            expected_source_prefix_sha256=str(
-                three_rhombus_prefix_source_sha256
-            ),
+            expected_source_prefix_sha256=str(three_rhombus_prefix_source_sha256),
         )
         if replayed != prefix_bank_data:
             raise StructuralCegarError(
@@ -10244,8 +9681,7 @@ def run_driver(
                 cube_batches_ledger=cube_batches_ledger,
             )
             if (
-                prospective_state.classified_learned_count
-                != dynamic_learned_count
+                prospective_state.classified_learned_count != dynamic_learned_count
                 or len(prospective_state.classified_raw_indices) != raw_count
             ):
                 raise StructuralCegarError(
@@ -10295,9 +9731,7 @@ def run_driver(
             raw_count=raw_count,
         )
         if not use_prospective:
-            _assert_learned_run_ledger(
-                learned_ledger, learned_path, learned, manifest
-            )
+            _assert_learned_run_ledger(learned_ledger, learned_path, learned, manifest)
             _assert_jsonl_run_ledger(
                 survivor_ledger, survivors_path, survivors, manifest
             )
@@ -10321,8 +9755,9 @@ def run_driver(
                 raise StructuralCegarError(
                     "prospective productivity ledger/manifest mismatch"
                 )
-            if manifest.get("artifact_hashes", {}).get("productivity.jsonl") != (
-                expected_productivity["file_sha256"]
+            if (
+                manifest.get("artifact_hashes", {}).get("productivity.jsonl")
+                != (expected_productivity["file_sha256"])
             ):
                 raise StructuralCegarError(
                     "prospective productivity ledger/artifact mismatch"
@@ -10371,9 +9806,7 @@ def run_driver(
             unsat_verified=unsat_verified,
             stream_ledgers=stream_ledger_state,
             manifest_generation=int(prior_manifest["manifest_generation"]),
-            previous_manifest_sha256=prior_manifest.get(
-                "previous_manifest_sha256"
-            ),
+            previous_manifest_sha256=prior_manifest.get("previous_manifest_sha256"),
             solver_metadata=_solver_manifest_metadata(solver_backend),
             productivity_stream=(
                 None
@@ -10395,9 +9828,7 @@ def run_driver(
             survivors,
             replayed_manifest,
         )
-        _assert_jsonl_run_ledger(
-            logs_ledger, logs_path, logs, replayed_manifest
-        )
+        _assert_jsonl_run_ledger(logs_ledger, logs_path, logs, replayed_manifest)
         _assert_jsonl_run_ledger(
             cube_batches_ledger,
             cube_batches_path,
@@ -10497,9 +9928,7 @@ def run_driver(
                         "attempt": attempt,
                         "cnf_sha256": job["cnf_sha256"],
                         "clause_count": (
-                            len(encoding.clauses)
-                            + len(extra_clauses)
-                            + len(cube)
+                            len(encoding.clauses) + len(extra_clauses) + len(cube)
                         ),
                         "verdict": verdict,
                         "returncode": returncode,
@@ -10540,16 +9969,13 @@ def run_driver(
                                 "SAT assignment violates the batch snapshot"
                             )
                         if any(
-                            not _literal_true(literal, assignment)
-                            for literal in cube
+                            not _literal_true(literal, assignment) for literal in cube
                         ):
                             raise StructuralCegarError(
                                 "SAT assignment violates its cube"
                             )
                         semantic = encoding.semantic_record(assignment)
-                        assignment_sha256 = _assignment_hash(
-                            encoding, assignment
-                        )
+                        assignment_sha256 = _assignment_hash(encoding, assignment)
                     except Exception as exc:  # noqa: BLE001
                         assignment_error = f"{type(exc).__name__}: {exc}"
 
@@ -10599,8 +10025,7 @@ def run_driver(
                     first_failure = {
                         "kind": "SAT_CERTIFICATE_FAILURE",
                         "diagnostic": (
-                            "cube SAT decode/recheck failure: "
-                            f"{assignment_error}"
+                            f"cube SAT decode/recheck failure: {assignment_error}"
                         ),
                         "attempt": attempt,
                         "raw_sat_index": raw_count,
@@ -10654,11 +10079,10 @@ def run_driver(
                                 ),
                                 productivity_ledger=productivity_ledger,
                                 productivity_records=productivity_records,
+                                ingress_contract=ingress_contract,
                             )
                             classification = str(committed["classification"])
-                            committed_record_sha256 = str(
-                                committed["record_sha256"]
-                            )
+                            committed_record_sha256 = str(committed["record_sha256"])
                             observe_classification_delta(
                                 learned_before, survivors_before
                             )
@@ -10680,8 +10104,7 @@ def run_driver(
                             first_failure = {
                                 "kind": "SAT_CERTIFICATE_FAILURE",
                                 "diagnostic": (
-                                    "cube SAT decode/detect/certificate failure: "
-                                    f"{exc}"
+                                    f"cube SAT decode/detect/certificate failure: {exc}"
                                 ),
                                 "attempt": attempt,
                                 "raw_sat_index": raw_count,
@@ -10738,11 +10161,7 @@ def run_driver(
                 batch_results.append(
                     _with_record_hash(
                         unsigned_result,
-                        (
-                            batch_results[-1]["record_sha256"]
-                            if batch_results
-                            else None
-                        ),
+                        (batch_results[-1]["record_sha256"] if batch_results else None),
                     )
                 )
             _finalize_cube_batch(
@@ -10828,9 +10247,7 @@ def run_driver(
             "stderr": result.stderr,
         }
         if simplification_metadata is not None:
-            log_unsigned["shard_local_simplification"] = (
-                simplification_metadata
-            )
+            log_unsigned["shard_local_simplification"] = simplification_metadata
         log = _with_record_hash(
             log_unsigned,
             logs[-1]["record_sha256"] if logs else None,
@@ -10878,6 +10295,7 @@ def run_driver(
                     ),
                     productivity_ledger=productivity_ledger,
                     productivity_records=productivity_records,
+                    ingress_contract=ingress_contract,
                 )
                 observe_classification_delta(learned_before, survivors_before)
                 dynamic_delta, raw_delta = _committed_classification_delta(
@@ -11038,9 +10456,7 @@ def verify_shard_coverage(
         unsigned = dict(manifest)
         claimed_hash = unsigned.pop("manifest_sha256", None)
         if claimed_hash != _sha256_value(unsigned):
-            raise StructuralCegarError(
-                f"{manifest_path}: manifest hash mismatch"
-            )
+            raise StructuralCegarError(f"{manifest_path}: manifest hash mismatch")
         configuration = manifest.get("configuration")
         if not isinstance(configuration, Mapping):
             raise StructuralCegarError(
@@ -11056,23 +10472,15 @@ def verify_shard_coverage(
             raise StructuralCegarError(
                 f"{manifest_path}: shard coverage mode/schema mismatch"
             )
-        encoding = _phase3_encoding(
-            projected_static_v3=projected_static_v3
-        )
+        encoding = _phase3_encoding(projected_static_v3=projected_static_v3)
         shard = configuration.get("shard")
         if not isinstance(shard, Mapping):
-            raise StructuralCegarError(
-                f"{manifest_path}: not a fixed-shard manifest"
-            )
+            raise StructuralCegarError(f"{manifest_path}: not a fixed-shard manifest")
         depth = shard.get("depth")
         index = shard.get("index")
         if type(depth) is not int or type(index) is not int:
-            raise StructuralCegarError(
-                f"{manifest_path}: invalid shard depth/index"
-            )
-        expected_shard = _shard_spec(
-            encoding, depth=depth, index=index
-        )
+            raise StructuralCegarError(f"{manifest_path}: invalid shard depth/index")
+        expected_shard = _shard_spec(encoding, depth=depth, index=index)
         if dict(shard) != expected_shard:
             raise StructuralCegarError(
                 f"{manifest_path}: canonical shard provenance mismatch"
@@ -11093,9 +10501,7 @@ def verify_shard_coverage(
                 f"{manifest_path}: algebraic bootstrap provenance is not a list"
             )
         bootstrap_path = (
-            None
-            if bootstrap_config is None
-            else Path(str(bootstrap_config["path"]))
+            None if bootstrap_config is None else Path(str(bootstrap_config["path"]))
         )
         algebraic_paths = tuple(
             Path(str(algebraic_config["path"]))
@@ -11106,34 +10512,35 @@ def verify_shard_coverage(
             where=str(manifest_path),
         )
         cache_config = configuration.get("compiled_loader_cache")
-        if not isinstance(cache_config, Mapping) or type(
-            cache_config.get("enabled")
-        ) is not bool:
+        if (
+            not isinstance(cache_config, Mapping)
+            or type(cache_config.get("enabled")) is not bool
+        ):
             raise StructuralCegarError(
                 f"{manifest_path}: invalid compiled-loader-cache configuration"
             )
-        simplification_config = configuration.get(
-            "shard_local_simplification"
-        )
-        if not isinstance(simplification_config, Mapping) or type(
-            simplification_config.get("enabled")
-        ) is not bool:
+        simplification_config = configuration.get("shard_local_simplification")
+        if (
+            not isinstance(simplification_config, Mapping)
+            or type(simplification_config.get("enabled")) is not bool
+        ):
             raise StructuralCegarError(
                 f"{manifest_path}: invalid shard-local simplification configuration"
+            )
+        ingress_contract = configuration.get("productivity_ingress_contract")
+        if ingress_contract is not None and not isinstance(ingress_contract, Mapping):
+            raise StructuralCegarError(
+                f"{manifest_path}: productivity ingress contract is not an object"
             )
         replay_manifest = run_driver(
             directory,
             timeout_s=int(configuration["timeout_seconds"]),
-            learned_core_limit=int(
-                configuration["dynamic_learned_core_limit"]
-            ),
+            learned_core_limit=int(configuration["dynamic_learned_core_limit"]),
             survivor_limit=int(configuration["survivor_limit"]),
             workers=int(configuration["workers"]),
             parallel_mode=str(configuration["parallel"]["mode"]),
             cube_depth=int(configuration["parallel"]["cube_depth"]),
-            cube_artifact_mode=str(
-                configuration["parallel"]["artifact_mode"]
-            ),
+            cube_artifact_mode=str(configuration["parallel"]["artifact_mode"]),
             shard_depth=depth,
             shard_index=index,
             bootstrap_results=bootstrap_path,
@@ -11142,26 +10549,19 @@ def verify_shard_coverage(
             compiled_loader_cache=cache_config["enabled"],
             shard_local_simplification=simplification_config["enabled"],
             three_rhombus_prefix_bank=(
-                None
-                if prefix_config is None
-                else Path(prefix_config["path"])
+                None if prefix_config is None else Path(prefix_config["path"])
             ),
             three_rhombus_prefix_root_sha256=(
-                None
-                if prefix_config is None
-                else prefix_config["bank_root_sha256"]
+                None if prefix_config is None else prefix_config["bank_root_sha256"]
             ),
             three_rhombus_prefix_source_sha256=(
-                None
-                if prefix_config is None
-                else prefix_config["source_prefix_sha256"]
+                None if prefix_config is None else prefix_config["source_prefix_sha256"]
             ),
+            ingress_contract=ingress_contract,
             resume=True,
         )
         if replay_manifest != manifest:
-            raise StructuralCegarError(
-                f"{manifest_path}: replayed manifest mismatch"
-            )
+            raise StructuralCegarError(f"{manifest_path}: replayed manifest mismatch")
         terminal_cnf = directory / "terminal.cnf"
         terminal_drat = directory / "terminal.drat"
         checked = checker_runner(
@@ -11170,9 +10570,7 @@ def verify_shard_coverage(
             int(configuration["timeout_seconds"]),
         )
         if checked.verified is not True:
-            raise StructuralCegarError(
-                f"{manifest_path}: terminal DRAT recheck failed"
-            )
+            raise StructuralCegarError(f"{manifest_path}: terminal DRAT recheck failed")
         replayed.append((directory.resolve(), manifest))
 
     first_configuration = replayed[0][1]["configuration"]
@@ -11224,8 +10622,7 @@ def verify_shard_coverage(
         )
 
     conditional = any(
-        manifest["status"]
-        == "SHARD_P97_EUCLIDEAN_GAUGE_UNSAT_VERIFIED"
+        manifest["status"] == "SHARD_P97_EUCLIDEAN_GAUGE_UNSAT_VERIFIED"
         for _, manifest in replayed
     )
     status = (
@@ -11247,12 +10644,8 @@ def verify_shard_coverage(
                 "status": manifest["status"],
                 "manifest_sha256": manifest["manifest_sha256"],
                 "base_cnf_sha256": manifest["artifact_hashes"]["base.cnf"],
-                "terminal_cnf_sha256": manifest["artifact_hashes"][
-                    "terminal.cnf"
-                ],
-                "terminal_drat_sha256": manifest["artifact_hashes"][
-                    "terminal.drat"
-                ],
+                "terminal_cnf_sha256": manifest["artifact_hashes"]["terminal.cnf"],
+                "terminal_drat_sha256": manifest["artifact_hashes"]["terminal.drat"],
             }
             for index, (directory, manifest) in sorted(by_index.items())
         ],
@@ -11271,9 +10664,7 @@ def verify_shard_coverage(
     }
 
 
-def _clause_false(
-    clause: Sequence[int], assignment: Mapping[int, bool]
-) -> None:
+def _clause_false(clause: Sequence[int], assignment: Mapping[int, bool]) -> None:
     if any(
         assignment[literal] if literal > 0 else not assignment[-literal]
         for literal in clause
@@ -11396,6 +10787,14 @@ def _parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
         ),
     )
     parser.add_argument(
+        "--ingress-contract",
+        type=Path,
+        help=(
+            "JSON productivity ingress contract to bind into this run; "
+            "requires --productivity-telemetry"
+        ),
+    )
+    parser.add_argument(
         "--projected-static-v3",
         action="store_true",
         help=(
@@ -11440,6 +10839,8 @@ def _parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
         parser.error("--shard-depth and --shard-index must be provided together")
     if args.verify_shards is not None and args.shard_depth is not None:
         parser.error("--verify-shards cannot be combined with shard run options")
+    if args.verify_shards is not None and args.ingress_contract is not None:
+        parser.error("--ingress-contract cannot be combined with --verify-shards")
     prefix_inputs = (
         args.three_rhombus_prefix_bank,
         args.three_rhombus_prefix_root_sha256,
@@ -11460,8 +10861,7 @@ def _parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
         and args.three_rhombus_prefix_bank is None
     ):
         parser.error(
-            "--three-rhombus-prefix-cache requires "
-            "--three-rhombus-prefix-bank"
+            "--three-rhombus-prefix-cache requires --three-rhombus-prefix-bank"
         )
     return args
 
@@ -11472,6 +10872,13 @@ def main(argv: Sequence[str] | None = None) -> int:
         coverage = verify_shard_coverage(args.verify_shards)
         print(json.dumps(coverage, indent=2, sort_keys=True))
         return 0
+    ingress_contract = None
+    if args.ingress_contract is not None:
+        if not args.productivity_telemetry:
+            raise StructuralCegarError(
+                "--ingress-contract requires --productivity-telemetry"
+            )
+        ingress_contract = _load_ingress_contract(args.ingress_contract)
     solver_runner = _solver_runner_from_cli_args(args)
     piqd_incremental_config = _incremental_piqd_caller_config(args)
     manifest = run_driver(
@@ -11485,9 +10892,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         cube_artifact_mode=args.cube_artifact_mode,
         shard_depth=args.shard_depth,
         shard_index=args.shard_index,
-        bootstrap_results=(
-            None if args.no_bootstrap else args.bootstrap_results
-        ),
+        bootstrap_results=(None if args.no_bootstrap else args.bootstrap_results),
         algebraic_bootstrap=(
             ()
             if args.no_algebraic_bootstrap
@@ -11502,15 +10907,12 @@ def main(argv: Sequence[str] | None = None) -> int:
         shard_local_simplification=args.shard_local_simplification,
         persistent_discovery=args.persistent_discovery,
         productivity_telemetry=args.productivity_telemetry,
+        ingress_contract=ingress_contract,
         piqd_incremental_config=piqd_incremental_config,
         three_rhombus_prefix_bank=args.three_rhombus_prefix_bank,
         three_rhombus_prefix_cache=args.three_rhombus_prefix_cache,
-        three_rhombus_prefix_root_sha256=(
-            args.three_rhombus_prefix_root_sha256
-        ),
-        three_rhombus_prefix_source_sha256=(
-            args.three_rhombus_prefix_source_sha256
-        ),
+        three_rhombus_prefix_root_sha256=(args.three_rhombus_prefix_root_sha256),
+        three_rhombus_prefix_source_sha256=(args.three_rhombus_prefix_source_sha256),
         resume=args.resume,
         max_new_raw=args.max_new_raw,
         solver_runner=solver_runner,

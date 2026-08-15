@@ -342,6 +342,82 @@ def test_cli_exposes_exact_running_snapshot_scope() -> None:
     assert args.expected_count == 3
 
 
+def test_cli_exposes_bounded_case_order_selector() -> None:
+    args = driver._parse_args(
+        ["--case-index", "0", "--order-id", "order-00", "--workers", "1"]
+    )
+
+    assert args.case_index == 0
+    assert args.order_id == "order-00"
+    assert args.workers == 1
+
+
+def test_bounded_selector_authenticates_full_source_but_publishes_one_order(
+    tmp_path: Path, authenticated_source_dir: Path
+) -> None:
+    out = tmp_path / "screen-selected"
+    manifest = driver.run_driver(
+        source_dir=authenticated_source_dir,
+        out_dir=out,
+        workers=1,
+        timeout_s=0.25,
+        case_index=0,
+        order_id="order-00",
+        exact_runner=_mock_exact,
+        convex_runner=_mock_convex,
+    )
+
+    assert manifest["source"]["survivor_count"] == 100
+    assert manifest["counts"]["source_survivor_count"] == 100
+    assert manifest["counts"]["published_survivor_count"] == 1
+    assert manifest["counts"]["cap_order_leaf_count"] == 1
+    assert manifest["result_claim"] == (
+        "bounded canary screening of exactly one selected survivor and order "
+        "order-00 from an authenticated source of 100 survivors; selected "
+        "order only, not exhaustive and not SURVIVOR_LIMIT"
+    )
+    assert manifest["configuration"]["selection"] == {
+        "case_index": 0,
+        "order_id": "order-00",
+        "authenticated_source_survivor_count": 100,
+        "published_survivor_count": 1,
+    }
+    records = driver._strict_jsonl(out / "results.jsonl")
+    assert len(records) == 1
+    assert records[0]["index"] == 0
+    assert records[0]["convexity_order"]["order_count"] == 1
+    assert (out / "source-manifest.json").read_bytes() == (
+        authenticated_source_dir / "manifest.json"
+    ).read_bytes()
+
+
+@pytest.mark.parametrize(
+    "kwargs, message",
+    [
+        ({"case_index": 0}, "case_index and order_id"),
+        ({"order_id": "order-00"}, "case_index and order_id"),
+        ({"case_index": -1, "order_id": "order-00"}, "nonnegative"),
+        ({"case_index": 0, "order_id": "missing"}, "not an authenticated"),
+    ],
+)
+def test_bounded_selector_fails_closed(
+    tmp_path: Path,
+    authenticated_source_dir: Path,
+    kwargs: dict[str, object],
+    message: str,
+) -> None:
+    with pytest.raises((ValueError, driver.SurvivorMetricError), match=message):
+        driver.run_driver(
+            source_dir=authenticated_source_dir,
+            out_dir=tmp_path / "screen-invalid-selection",
+            workers=1,
+            timeout_s=0.25,
+            exact_runner=_mock_exact,
+            convex_runner=_mock_convex,
+            **kwargs,
+        )
+
+
 @pytest.mark.parametrize("timeout", [float("nan"), float("inf"), 0, True])
 def test_invalid_timeout_is_rejected(
     tmp_path: Path, timeout: float, authenticated_source_dir: Path

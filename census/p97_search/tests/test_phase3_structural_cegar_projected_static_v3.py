@@ -11,18 +11,14 @@ from typing import Any
 
 import pytest
 
-v2 = importlib.import_module(
-    "census.p97_search.phase3_structural_cegar"
-)
+v2 = importlib.import_module("census.p97_search.phase3_structural_cegar")
 v3 = importlib.import_module(
     "census.p97_search.phase3_structural_cegar_projected_static_v3"
 )
 prefix_bank = importlib.import_module(
     "census.p97_search.phase3_three_rhombus_prefix_bank"
 )
-prefix_cache = importlib.import_module(
-    "census.p97_search.phase3_prefix_bank_cache"
-)
+prefix_cache = importlib.import_module("census.p97_search.phase3_prefix_bank_cache")
 
 PROJECTED_STATIC_V3_SEMANTIC_ASSIGNMENT_FIXTURE = (
     v3.ROOT
@@ -96,37 +92,25 @@ class DummyEncoding:
         assert kind == "s"
         return v3.three_rhombus.dense_membership_var(center, point)
 
-    def semantic_record(
-        self, assignment: dict[int, bool]
-    ) -> dict[str, Any]:
+    def semantic_record(self, assignment: dict[int, bool]) -> dict[str, Any]:
         return {
             "schema": v3.PROJECTED_STATIC_SEMANTIC_SCHEMA,
             "truth": [
-                [variable, value]
-                for variable, value in sorted(assignment.items())
+                [variable, value] for variable, value in sorted(assignment.items())
             ],
         }
 
-    def assignment_from_record(
-        self, record: dict[str, Any]
-    ) -> dict[int, bool]:
+    def assignment_from_record(self, record: dict[str, Any]) -> dict[int, bool]:
         semantic = record["semantic_assignment"]
-        return {
-            int(variable): bool(value)
-            for variable, value in semantic["truth"]
-        }
+        return {int(variable): bool(value) for variable, value in semantic["truth"]}
 
     def decode(self, _assignment: dict[int, bool]) -> object:
         return object()
 
-    def validate(
-        self, _obj: object, _assignment: dict[int, bool]
-    ) -> None:
+    def validate(self, _obj: object, _assignment: dict[int, bool]) -> None:
         return None
 
-    def blocking_clause(
-        self, assignment: dict[int, bool]
-    ) -> tuple[int, ...]:
+    def blocking_clause(self, assignment: dict[int, bool]) -> tuple[int, ...]:
         return tuple(
             -variable if value else variable
             for variable, value in sorted(assignment.items())
@@ -240,12 +224,8 @@ def _first_projected_survivor_assignment() -> dict[int, bool]:
 
 
 def _sat_runner(assignment: dict[int, bool]):
-    def run(
-        _cnf: Path, _timeout: int, _proof: Path | None
-    ) -> Any:
-        return v3.sat.SolverResult(
-            "SAT", assignment, 10, "s SATISFIABLE\n", ""
-        )
+    def run(_cnf: Path, _timeout: int, _proof: Path | None) -> Any:
+        return v3.sat.SolverResult("SAT", assignment, 10, "s SATISFIABLE\n", "")
 
     return run
 
@@ -303,13 +283,14 @@ def test_three_rhombus_clause_uses_live_s_dimacs_and_replays() -> None:
     assignment = _assignment()
     assert all(assignment[abs(literal)] for literal in EXPECTED_CLAUSE)
     v3._clause_false(EXPECTED_CLAUSE, assignment)
-    assert v3.three_rhombus.replay_closure(
-        certificate,
-        ROWS,
-        var_lookup=lambda center, point: encoding.var(
-            "s", center, point
-        ),
-    ) == EXPECTED_CLAUSE
+    assert (
+        v3.three_rhombus.replay_closure(
+            certificate,
+            ROWS,
+            var_lookup=lambda center, point: encoding.var("s", center, point),
+        )
+        == EXPECTED_CLAUSE
+    )
 
 
 def test_commit_precedes_cap_detectors_and_journal_replays(
@@ -347,9 +328,7 @@ def test_commit_precedes_cap_detectors_and_journal_replays(
         failure_detail={},
     )
 
-    assert disposition["classification"] == (
-        "learned-seven-point-three-rhombus"
-    )
+    assert disposition["classification"] == ("learned-seven-point-three-rhombus")
     assert tuple(learned[0]["clause"]) == EXPECTED_CLAUSE
     assert learned[0]["terminal_claim"] is False
     assert "not a terminal" in learned[0]["ingress_trust_boundary"]
@@ -373,9 +352,7 @@ def test_commit_precedes_cap_detectors_and_journal_replays(
         unsat_verified=False,
     )
     assert manifest["counts"]["dynamic_three_rhombus_nogood_count"] == 1
-    assert manifest["dynamic_stage_histogram"] == {
-        v3.THREE_RHOMBUS_STAGE: 1
-    }
+    assert manifest["dynamic_stage_histogram"] == {v3.THREE_RHOMBUS_STAGE: 1}
 
 
 def test_strict_json_lines_streams_and_tracks_exact_bytes(
@@ -705,9 +682,10 @@ def test_v3_configuration_and_bootstrap_reject_v2_schemas(
         "pinned_multiplicity": v3._pinned_multiplicity_descriptor(encoding),
         "sat_encoding": encoding.configuration(),
     }
-    assert v3._projected_static_v3_from_configuration(
-        configuration, where="v3 fixture"
-    ) is True
+    assert (
+        v3._projected_static_v3_from_configuration(configuration, where="v3 fixture")
+        is True
+    )
 
     v2_tokens = {
         "artifact_schema": v2.PROJECTED_STATIC_SCHEMA,
@@ -730,9 +708,9 @@ def test_v3_configuration_and_bootstrap_reject_v2_schemas(
             )
 
     mapping_drift = json.loads(json.dumps(configuration))
-    mapping_drift["three_rhombus_literal_namespace"]["descriptor"][
-        "mapping_sha256"
-    ] = "0" * 64
+    mapping_drift["three_rhombus_literal_namespace"]["descriptor"]["mapping_sha256"] = (
+        "0" * 64
+    )
     with pytest.raises(
         v3.StructuralCegarError,
         match="unsupported or mixed",
@@ -742,9 +720,7 @@ def test_v3_configuration_and_bootstrap_reject_v2_schemas(
         )
 
     source = tmp_path / "v2-learned.jsonl"
-    source.write_text(
-        json.dumps({"schema": v2.PROJECTED_LEARNED_SCHEMA}) + "\n"
-    )
+    source.write_text(json.dumps({"schema": v2.PROJECTED_LEARNED_SCHEMA}) + "\n")
     with pytest.raises(
         v3.StructuralCegarError,
         match="learned schema/mode mismatch",
@@ -842,14 +818,10 @@ def test_terminal_publication_closes_before_qualification_finalization(
     class QualifiedBackend:
         closed = False
 
-        def __call__(
-            self, _cnf: Path, _timeout: int, proof: Path | None
-        ) -> Any:
+        def __call__(self, _cnf: Path, _timeout: int, proof: Path | None) -> Any:
             if proof is not None:
                 proof.write_bytes(b"0\n")
-            return v3.sat.SolverResult(
-                "UNSAT", {}, 20, "s UNSATISFIABLE\n", ""
-            )
+            return v3.sat.SolverResult("UNSAT", {}, 20, "s UNSATISFIABLE\n", "")
 
         def close(self) -> None:
             self.closed = True
@@ -871,9 +843,7 @@ def test_terminal_publication_closes_before_qualification_finalization(
         algebraic_bootstrap=None,
         projected_static_v3=True,
         solver_runner=QualifiedBackend(),
-        checker_runner=lambda *_args: v3.sat.CheckerResult(
-            True, 0, "s VERIFIED\n", ""
-        ),
+        checker_runner=lambda *_args: v3.sat.CheckerResult(True, 0, "s VERIFIED\n", ""),
     )
 
     assert result["status"] == "STRUCTURAL_UNSAT_VERIFIED"
@@ -1036,9 +1006,7 @@ def _verified_unsat_transcript() -> tuple[Any, Any]:
         if proof is not None:
             assert cnf.name == "terminal.cnf"
             proof.write_bytes(b"0\n")
-        return v3.sat.SolverResult(
-            "UNSAT", {}, 20, "s UNSATISFIABLE\n", ""
-        )
+        return v3.sat.SolverResult("UNSAT", {}, 20, "s UNSATISFIABLE\n", "")
 
     def checker(_cnf: Path, _proof: Path, _timeout: int) -> Any:
         return v3.sat.CheckerResult(True, 0, "s VERIFIED\n", "")
@@ -1062,9 +1030,7 @@ def test_terminal_proof_rerun_failure_matrix(
 ) -> None:
     def solver(_cnf: Path, _timeout: int, proof: Path | None) -> Any:
         if proof is None:
-            return v3.sat.SolverResult(
-                "UNSAT", {}, 20, "s UNSATISFIABLE\n", ""
-            )
+            return v3.sat.SolverResult("UNSAT", {}, 20, "s UNSATISFIABLE\n", "")
         if terminal_mode in {"SAT", "UNKNOWN"}:
             return v3.sat.SolverResult(
                 terminal_mode, {}, 10 if terminal_mode == "SAT" else 0, "", ""
@@ -1073,9 +1039,7 @@ def test_terminal_proof_rerun_failure_matrix(
             proof.write_bytes(b"")
         elif terminal_mode != "missing":
             proof.write_bytes(b"0\n")
-        return v3.sat.SolverResult(
-            "UNSAT", {}, 20, "s UNSATISFIABLE\n", ""
-        )
+        return v3.sat.SolverResult("UNSAT", {}, 20, "s UNSATISFIABLE\n", "")
 
     result = v3.run_driver(
         tmp_path / terminal_mode,
@@ -1110,9 +1074,7 @@ def test_terminal_proof_rerun_rejects_changed_cnf(
         nonlocal proof_calls
         if proof is not None:
             proof_calls += 1
-        return v3.sat.SolverResult(
-            "UNSAT", {}, 20, "s UNSATISFIABLE\n", ""
-        )
+        return v3.sat.SolverResult("UNSAT", {}, 20, "s UNSATISFIABLE\n", "")
 
     result = v3.run_driver(
         tmp_path / "cnf-drift",
@@ -1141,18 +1103,12 @@ def test_sat_discovery_then_unsat_terminal_rerun_is_proof_free_until_terminal(
         calls.append((cnf, proof))
         if proof is None and len(calls) == 1:
             assert proof is None
-            return v3.sat.SolverResult(
-                "SAT", assignment, 10, "s SATISFIABLE\n", ""
-            )
+            return v3.sat.SolverResult("SAT", assignment, 10, "s SATISFIABLE\n", "")
         if proof is None:
-            return v3.sat.SolverResult(
-                "UNSAT", {}, 20, "s UNSATISFIABLE\n", ""
-            )
+            return v3.sat.SolverResult("UNSAT", {}, 20, "s UNSATISFIABLE\n", "")
         assert proof is not None
         proof.write_bytes(b"0\n")
-        return v3.sat.SolverResult(
-            "UNSAT", {}, 20, "s UNSATISFIABLE\n", ""
-        )
+        return v3.sat.SolverResult("UNSAT", {}, 20, "s UNSATISFIABLE\n", "")
 
     result = v3.run_driver(
         tmp_path / "sat-then-unsat",
@@ -1163,9 +1119,7 @@ def test_sat_discovery_then_unsat_terminal_rerun_is_proof_free_until_terminal(
         algebraic_bootstrap=None,
         projected_static_v3=True,
         solver_runner=solver,
-        checker_runner=lambda *_args: v3.sat.CheckerResult(
-            True, 0, "s VERIFIED\n", ""
-        ),
+        checker_runner=lambda *_args: v3.sat.CheckerResult(True, 0, "s VERIFIED\n", ""),
     )
 
     assert result["status"] in {
@@ -1329,20 +1283,16 @@ def test_manifest_fast_path_matches_checkpoint_replay_and_skips_hot_recount(
 
     assert result["status"] == "CHECKPOINT"
     assert (
-        result["configuration"]["manifest_publication"]
-        ["audit_every_running_publications"]
+        result["configuration"]["manifest_publication"][
+            "audit_every_running_publications"
+        ]
         == 1000
     )
     assert result["counts"]["raw_sat_count"] == 1
     # The initial and checkpoint publications are audited by _manifest.  The
     # intervening RUNNING publication must come from prospective state.
     assert manifest_calls == 2
-    fast_generation = json.loads(
-        (
-            out
-            / "manifest.g00000002.json"
-        ).read_text()
-    )
+    fast_generation = json.loads((out / "manifest.g00000002.json").read_text())
     for key in (
         "configuration",
         "counts",
@@ -1476,8 +1426,8 @@ def test_legacy_manifest_without_generation_is_not_repaired_in_place(
 def test_authenticated_prefix_bank_translates_exact_entries_and_reloads(
     tmp_path: Path,
 ) -> None:
-    output, root_sha256, source_sha256, manifest = (
-        _build_authenticated_prefix_fixture(tmp_path)
+    output, root_sha256, source_sha256, manifest = _build_authenticated_prefix_fixture(
+        tmp_path
     )
     authenticated = v3._load_authenticated_three_rhombus_prefix_bank(
         output,
@@ -1490,17 +1440,15 @@ def test_authenticated_prefix_bank_translates_exact_entries_and_reloads(
     assert descriptor["bank_root_sha256"] == root_sha256
     assert descriptor["source_prefix_sha256"] == source_sha256
     assert descriptor["entry_count"] == len(entries) == 1
-    assert descriptor["entry_count"] == manifest["counts"][
-        "kept_antichain_clauses"
-    ]
+    assert descriptor["entry_count"] == manifest["counts"]["kept_antichain_clauses"]
     assert descriptor["replay"]["full_source_scan"] is True
     assert descriptor["replay"]["coverage_complete_verified"] is True
 
     encoding = v3._phase3_encoding(projected_static_v3=True)
     learned: list[dict[str, Any]] = []
-    assert v3._append_three_rhombus_prefix_records(
-        learned, encoding, authenticated
-    ) == 1
+    assert (
+        v3._append_three_rhombus_prefix_records(learned, encoding, authenticated) == 1
+    )
     record = learned[0]
     entry = entries[0]
     assert record["schema"] == v3.PROJECTED_LEARNED_SCHEMA
@@ -1525,8 +1473,8 @@ def test_authenticated_prefix_bank_translates_exact_entries_and_reloads(
 def test_authenticated_prefix_bank_cache_round_trip_and_binding(
     tmp_path: Path,
 ) -> None:
-    output, root_sha256, source_sha256, _manifest = (
-        _build_authenticated_prefix_fixture(tmp_path)
+    output, root_sha256, source_sha256, _manifest = _build_authenticated_prefix_fixture(
+        tmp_path
     )
     authenticated = v3._load_authenticated_three_rhombus_prefix_bank(
         output,
@@ -1569,8 +1517,8 @@ def test_authenticated_prefix_bank_cache_round_trip_and_binding(
 def test_prefix_bank_wrong_missing_pins_and_v2_record_fail_closed(
     tmp_path: Path,
 ) -> None:
-    output, root_sha256, source_sha256, _manifest = (
-        _build_authenticated_prefix_fixture(tmp_path)
+    output, root_sha256, source_sha256, _manifest = _build_authenticated_prefix_fixture(
+        tmp_path
     )
     for expected_root, expected_source in (
         ("0" * 64, source_sha256),
@@ -1618,9 +1566,7 @@ def test_prefix_bank_wrong_missing_pins_and_v2_record_fail_closed(
     )
     encoding = v3._phase3_encoding(projected_static_v3=True)
     learned: list[dict[str, Any]] = []
-    v3._append_three_rhombus_prefix_records(
-        learned, encoding, authenticated
-    )
+    v3._append_three_rhombus_prefix_records(learned, encoding, authenticated)
     unsigned = {
         key: value
         for key, value in learned[0].items()
@@ -1937,13 +1883,26 @@ def test_local_persistent_cli_path_is_preserved_without_piqd_inputs() -> None:
     assert v3._solver_runner_from_cli_args(args) is v3.sat.run_cadical
 
 
+def test_ingress_contract_cli_input_is_recorded(
+    tmp_path: Path,
+) -> None:
+    args = v3._parse_args(
+        [
+            "--productivity-telemetry",
+            "--ingress-contract",
+            str(tmp_path / "b1.json"),
+        ]
+    )
+    assert args.ingress_contract == tmp_path / "b1.json"
+
+
 def test_prefix_bank_one_worker_one_raw_smoke_and_resume_pin_binding(
     tmp_path: Path,
 ) -> None:
     fixture = tmp_path / "fixture"
     fixture.mkdir()
-    output, root_sha256, source_sha256, manifest = (
-        _build_authenticated_prefix_fixture(fixture)
+    output, root_sha256, source_sha256, manifest = _build_authenticated_prefix_fixture(
+        fixture
     )
     out = tmp_path / "driver"
     result = v3.run_driver(
@@ -1965,23 +1924,28 @@ def test_prefix_bank_one_worker_one_raw_smoke_and_resume_pin_binding(
     expected_count = manifest["counts"]["kept_antichain_clauses"]
     assert result["status"] == "CHECKPOINT"
     assert result["counts"]["raw_sat_count"] == 1
-    assert result["counts"][
-        "bootstrap_three_rhombus_prefix_nogood_count"
-    ] == expected_count == 1
-    assert result["configuration"]["three_rhombus_prefix_bank"][
-        "bank_root_sha256"
-    ] == root_sha256
-    assert result["configuration"]["three_rhombus_prefix_bank"][
-        "source_prefix_sha256"
-    ] == source_sha256
-    assert result["bootstrap"]["three_rhombus_prefix_bank"][
-        "translated_learned_record_count"
-    ] == expected_count
+    assert (
+        result["counts"]["bootstrap_three_rhombus_prefix_nogood_count"]
+        == expected_count
+        == 1
+    )
+    assert (
+        result["configuration"]["three_rhombus_prefix_bank"]["bank_root_sha256"]
+        == root_sha256
+    )
+    assert (
+        result["configuration"]["three_rhombus_prefix_bank"]["source_prefix_sha256"]
+        == source_sha256
+    )
+    assert (
+        result["bootstrap"]["three_rhombus_prefix_bank"][
+            "translated_learned_record_count"
+        ]
+        == expected_count
+    )
     records = [
         json.loads(line)
-        for line in (out / "learned-certificates.jsonl")
-        .read_text()
-        .splitlines()
+        for line in (out / "learned-certificates.jsonl").read_text().splitlines()
     ]
     assert len(records) >= expected_count
     assert all(

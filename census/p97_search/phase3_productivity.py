@@ -13,15 +13,20 @@ import copy
 import hashlib
 import json
 from collections import Counter, defaultdict
+from collections.abc import Callable, Iterator, Mapping, Sequence
 from contextlib import contextmanager
 from dataclasses import dataclass, field
-from typing import Any, Callable, Iterator, Mapping, Sequence
-
+from typing import Any
 
 SCHEMA = "p97-phase3-lemma-productivity-v1"
 RECORD_SCHEMA = "p97-phase3-lemma-productivity-record-v1"
 MINER_SCHEMA = "p97-phase3-proof-core-miner-v1"
 PARKED_SPEC = "PARKED-SPEC"
+INGRESS_CONTRACT_SCHEMA = "p97-phase3-ingress-contract-v1"
+LOCAL_CERTIFICATE = "LOCAL_CERTIFICATE"
+UNIFORM_PRODUCER = "UNIFORM_PRODUCER"
+LIFTED_CONSUMER = "LIFTED_CONSUMER"
+EVIDENCE_CLASSES = frozenset({LOCAL_CERTIFICATE, UNIFORM_PRODUCER, LIFTED_CONSUMER})
 
 
 class ProductivityError(ValueError):
@@ -126,6 +131,9 @@ def _validate_record(
         raise ProductivityError("productivity record hash chain drift")
     if not isinstance(record.get("classification"), str):
         raise ProductivityError("productivity classification is missing")
+    contract = record.get("ingress_contract")
+    if contract is not None:
+        validate_ingress_contract(contract)
     claimed = record.get("record_sha256")
     if not isinstance(claimed, str):
         raise ProductivityError("productivity record hash is missing")
@@ -164,6 +172,141 @@ def validate_authenticated_chain(
     return previous
 
 
+_PROMOTED_CONTRACT_FIELDS = (
+    "live_leaf",
+    "ingress_hypotheses_sha256",
+    "finite_schema",
+    "cardinality_scope",
+    "source_theorem",
+    "producer_theorem",
+    "consumer_theorem",
+)
+
+
+def validate_ingress_contract(contract: Mapping[str, Any]) -> None:
+    """Validate the Lean-facing contract attached to productivity data.
+
+    A local certificate is intentionally admissible without a producer or a
+    lift, but it is explicitly non-promotable.  The two promoted classes must
+    name the live leaf, source theorem, producer, and consumer; a lifted
+    consumer must also name its general-cardinality (or bounded-obstruction)
+    lift.  This keeps finite SAT output useful while preventing it from being
+    mistaken for universal closure.
+    """
+
+    if not isinstance(contract, Mapping):
+        raise ProductivityError("ingress contract is not an object")
+    if contract.get("schema") != INGRESS_CONTRACT_SCHEMA:
+        raise ProductivityError("ingress contract schema mismatch")
+    evidence_class = contract.get("evidence_classification")
+    if evidence_class not in EVIDENCE_CLASSES:
+        raise ProductivityError("unknown ingress evidence classification")
+    missing = contract.get("missing_fields")
+    if not isinstance(missing, list) or not all(
+        isinstance(field, str) for field in missing
+    ):
+        raise ProductivityError("ingress contract missing_fields is invalid")
+    eligible = contract.get("promotion_eligible")
+    if not isinstance(eligible, bool):
+        raise ProductivityError("ingress contract promotion_eligible is invalid")
+    if evidence_class == LOCAL_CERTIFICATE:
+        if eligible:
+            raise ProductivityError("local certificate cannot be promotable")
+        return
+
+    for required_field in _PROMOTED_CONTRACT_FIELDS:
+        value = contract.get(required_field)
+        if not isinstance(value, str) or not value:
+            raise ProductivityError(
+                f"promoted ingress contract is missing {required_field}"
+            )
+    hypotheses_hash = contract["ingress_hypotheses_sha256"]
+    if len(hypotheses_hash) != 64 or any(
+        character not in "0123456789abcdef" for character in hypotheses_hash
+    ):
+        raise ProductivityError(
+            "promoted ingress contract has an invalid ingress hypothesis hash"
+        )
+    if evidence_class == LIFTED_CONSUMER:
+        lift = contract.get("lift_theorem")
+        if not isinstance(lift, str) or not lift:
+            raise ProductivityError(
+                "lifted consumer ingress contract is missing lift_theorem"
+            )
+    if missing or not eligible:
+        raise ProductivityError("promoted ingress contract has unresolved fields")
+
+
+def default_ingress_contract(source_record: Mapping[str, Any]) -> dict[str, Any]:
+    """Create an honest diagnostic contract when a run supplies no ingress.
+
+    The default is deliberately ``LOCAL_CERTIFICATE``.  It records the exact
+    gap instead of fabricating a leaf or theorem name, so old callers remain
+    runnable while their new records cannot be promoted accidentally.
+    """
+
+    source_contract = source_record.get("ingress_contract")
+    if isinstance(source_contract, Mapping):
+        contract = dict(source_contract)
+        validate_ingress_contract(contract)
+        return contract
+    contract = {
+        "schema": INGRESS_CONTRACT_SCHEMA,
+        "evidence_classification": LOCAL_CERTIFICATE,
+        "promotion_eligible": False,
+        "live_leaf": "UNDECLARED",
+        "ingress_hypotheses_sha256": None,
+        "finite_schema": "UNDECLARED",
+        "cardinality_scope": "exact source assignment only",
+        "source_theorem": None,
+        "producer_theorem": None,
+        "lift_theorem": None,
+        "consumer_theorem": None,
+        "missing_fields": list(_PROMOTED_CONTRACT_FIELDS),
+        "missing_field_reason": (
+            "run supplied no source-level universal ingress contract"
+        ),
+    }
+    validate_ingress_contract(contract)
+    return contract
+
+
+def ingress_summary(records: Sequence[Mapping[str, Any]]) -> dict[str, Any]:
+    """Summarize which records can actually feed a universal proof.
+
+    This is intentionally a report-only view.  It does not upgrade a local
+    certificate, and it validates every attached contract before counting it.
+    The summary is useful at the end of a bounded run because it exposes the
+    smallest repeated ingress gap instead of only reporting SAT/model counts.
+    """
+
+    evidence_counts: Counter[str] = Counter()
+    leaf_counts: Counter[str] = Counter()
+    missing_counts: Counter[str] = Counter()
+    targeted_count = 0
+    promotable_count = 0
+    for record in records:
+        contract = default_ingress_contract(record)
+        evidence = str(contract["evidence_classification"])
+        leaf = str(contract["live_leaf"])
+        evidence_counts[evidence] += 1
+        leaf_counts[leaf] += 1
+        if leaf != "UNDECLARED":
+            targeted_count += 1
+        if contract["promotion_eligible"]:
+            promotable_count += 1
+        for missing_field in contract["missing_fields"]:
+            missing_counts[str(missing_field)] += 1
+    return {
+        "record_count": len(records),
+        "targeted_record_count": targeted_count,
+        "promotion_eligible_count": promotable_count,
+        "evidence_classification_counts": dict(sorted(evidence_counts.items())),
+        "live_leaf_counts": dict(sorted(leaf_counts.items())),
+        "missing_field_counts": dict(sorted(missing_counts.items())),
+    }
+
+
 @dataclass
 class ClassificationTelemetry:
     """Optional inclusive nanosecond timings for one classification."""
@@ -192,7 +335,9 @@ class ClassificationTelemetry:
         return dict(sorted(result.items()))
 
 
-def _walk(value: Any, path: tuple[str, ...] = ()) -> Iterator[tuple[tuple[str, ...], Any]]:
+def _walk(
+    value: Any, path: tuple[str, ...] = ()
+) -> Iterator[tuple[tuple[str, ...], Any]]:
     yield path, value
     if isinstance(value, Mapping):
         for key in sorted(value, key=str):
@@ -226,9 +371,7 @@ def _normal(value: Any) -> Any:
 def _flatten_count(values: Sequence[Any]) -> int:
     total = 0
     for value in values:
-        if isinstance(value, Mapping):
-            total += len(value)
-        elif isinstance(value, (list, tuple, set, frozenset)):
+        if isinstance(value, (Mapping, list, tuple, set, frozenset)):
             total += len(value)
         elif value is not None:
             total += 1
@@ -287,12 +430,19 @@ def make_record(
     antichain: Mapping[str, Any],
     bounded_elimination: Mapping[str, Any],
     previous_record_sha256: str | None,
+    ingress_contract: Mapping[str, Any] | None = None,
 ) -> dict[str, Any]:
     producer = {
         "origin": source_record.get("origin"),
         "stage": source_record.get("stage"),
         "certificate_kind": source_record.get("certificate_kind"),
     }
+    contract_source = (
+        {**source_record, "ingress_contract": ingress_contract}
+        if ingress_contract is not None
+        else source_record
+    )
+    contract = default_ingress_contract(contract_source)
     unsigned = {
         "schema": RECORD_SCHEMA,
         "index": index,
@@ -304,6 +454,7 @@ def make_record(
             "record_sha256": source_record.get("record_sha256"),
             "certificate_ids": certificate_identifiers(source_record),
         },
+        "ingress_contract": contract,
         "core": core_summary(source_record),
         "cost_ns": {str(key): int(value) for key, value in sorted(timings_ns.items())},
         "antichain": _normal(dict(antichain)),
@@ -350,11 +501,13 @@ def _negative_control(
         mutated = copy.deepcopy(certificate)
         mutated["rows"] = [item for i, item in enumerate(rows) if i != position]
         attempted += 1
+        rejected = False
         try:
             replay_certificate(mutated)
         except Exception:  # noqa: BLE001 - rejection is the expected result
-            continue
-        replayed += 1
+            rejected = True
+        if not rejected:
+            replayed += 1
     return {
         "status": "PASS" if replayed == 0 else "FAIL_UNUSED_CORE_ITEM",
         "removed_items": attempted,
@@ -389,9 +542,7 @@ def mine_records(
             controls.append(
                 {
                     "record_sha256": record.get("record_sha256"),
-                    "negative_control": _negative_control(
-                        record, replay_certificate
-                    ),
+                    "negative_control": _negative_control(record, replay_certificate),
                 }
             )
     repeated = [
@@ -408,6 +559,7 @@ def mine_records(
     report_unsigned = {
         "schema": MINER_SCHEMA,
         "status": PARKED_SPEC,
+        "ingress": ingress_summary(records),
         "source": {
             "record_count": len(records),
             "source_file_sha256": source_file_sha256,
@@ -420,7 +572,14 @@ def mine_records(
         },
         "normalization": {
             "schema": "p97-phase3-proof-core-normalization-v1",
-            "fields": ["producer", "rows", "facts", "orders", "incidences", "relations"],
+            "fields": [
+                "producer",
+                "rows",
+                "facts",
+                "orders",
+                "incidences",
+                "relations",
+            ],
             "label_erasure": False,
         },
         "repeated_core_groups": repeated,

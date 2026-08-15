@@ -23,9 +23,7 @@ def _object_without_duplicate_keys(
     result: dict[str, Any] = {}
     for key, value in pairs:
         if key in result:
-            raise productivity.ProductivityError(
-                f"duplicate JSON key {key!r}"
-            )
+            raise productivity.ProductivityError(f"duplicate JSON key {key!r}")
         result[key] = value
     return result
 
@@ -131,10 +129,9 @@ def main(argv: list[str] | None = None) -> int:
             {
                 "schema": report["schema"],
                 "status": report["status"],
+                "ingress": report["ingress"],
                 "source": report["source"],
-                "repeated_core_group_count": len(
-                    report["repeated_core_groups"]
-                ),
+                "repeated_core_group_count": len(report["repeated_core_groups"]),
                 "report_sha256": report["report_sha256"],
                 "out": str(args.out),
             },
