@@ -1,0 +1,35 @@
+{
+  "known_sat_returncode": 10,
+  "known_unsat_returncode": 20,
+  "negative_source_order_contract_rejected": true,
+  "schema": "p97_pentagon_offclass_exact12_v2.selftest.v1",
+  "source_order_contract": {
+    "allowed_chains": [
+      [
+        6,
+        7,
+        8,
+        9
+      ],
+      [
+        9,
+        8,
+        7,
+        6
+      ]
+    ],
+    "boundary_order_count": 24,
+    "cnf_effect": "none: boundary_orders already enforced this restriction",
+    "frozen_roles": {
+      "c": 7,
+      "u": 6,
+      "xu": 9,
+      "xv": 8
+    },
+    "lean_theorem": "Problem97.ATailFrontierLiveClosure.pentagonOffClassBlocker_exists_forced_secondCap_order",
+    "replay_status": "Python fail-closed contract; source-to-CNF adapter is not kernel checked",
+    "schema": "p97_pentagon_offclass_exact12_v2.source_order_contract.v1"
+  },
+  "status": "PASS",
+  "unsat_certificate_verified": true
+}

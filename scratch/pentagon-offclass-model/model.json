@@ -1,0 +1,40 @@
+{
+  "universe": ["u", "xu", "deleted", "v", "xv", "c", "a", "b", "e", "f", "g", "h"],
+  "class": ["u", "xu", "deleted", "v", "xv"],
+  "named": {
+    "u": "u",
+    "xu": "xu",
+    "deleted": "deleted",
+    "v": "v",
+    "xv": "xv",
+    "xv_blocker": "c"
+  },
+  "rows": {
+    "u":       ["u", "xv", "e", "f"],
+    "xu":      ["xu", "deleted", "e", "f"],
+    "deleted": ["deleted", "v", "g", "h"],
+    "v":       ["v", "deleted", "a", "e"],
+    "xv":      ["xv", "u", "a", "b"],
+    "c":       ["c", "xu", "e", "g"],
+    "a":       ["a", "v", "c", "f"],
+    "b":       ["b", "xv", "e", "g"],
+    "e":       ["e", "xu", "c", "h"],
+    "f":       ["f", "deleted", "a", "g"],
+    "g":       ["g", "v", "b", "e"],
+    "h":       ["h", "xv", "c", "f"]
+  },
+  "blocker": {
+    "u": "xu",
+    "xu": "u",
+    "deleted": "xv",
+    "v": "g",
+    "xv": "c",
+    "c": "v",
+    "a": "deleted",
+    "b": "a",
+    "e": "b",
+    "f": "h",
+    "g": "f",
+    "h": "e"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "returncode": 0,
+  "schema": "p97_pentagon_offclass_exact12_v2.second_solver.v1",
+  "solver": "z3 -dimacs",
+  "status": "SAT"
+}

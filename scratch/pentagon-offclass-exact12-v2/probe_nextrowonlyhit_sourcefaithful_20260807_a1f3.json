@@ -1,0 +1,746 @@
+{
+  "cardinality": 12,
+  "cases": [
+    {
+      "forced_row_1": [
+        0,
+        2,
+        6,
+        8
+      ],
+      "jd": 0,
+      "matching_next_centers": [
+        3
+      ],
+      "returncode": 10,
+      "v": 2,
+      "verdict": "SAT"
+    },
+    {
+      "forced_row_1": [
+        0,
+        3,
+        6,
+        8
+      ],
+      "jd": 0,
+      "matching_next_centers": [
+        3
+      ],
+      "returncode": 10,
+      "v": 3,
+      "verdict": "SAT"
+    },
+    {
+      "forced_row_1": [
+        0,
+        4,
+        6,
+        8
+      ],
+      "jd": 0,
+      "matching_next_centers": [
+        3
+      ],
+      "returncode": 10,
+      "v": 4,
+      "verdict": "SAT"
+    },
+    {
+      "forced_row_1": [
+        0,
+        5,
+        6,
+        8
+      ],
+      "jd": 0,
+      "matching_next_centers": [
+        3
+      ],
+      "returncode": 10,
+      "v": 5,
+      "verdict": "SAT"
+    },
+    {
+      "forced_row_1": [
+        0,
+        6,
+        8,
+        10
+      ],
+      "jd": 0,
+      "reason": "forced_row_not_in_source_faithful_surface",
+      "v": 10,
+      "verdict": "UNSAT"
+    },
+    {
+      "forced_row_1": [
+        0,
+        6,
+        8,
+        11
+      ],
+      "jd": 0,
+      "reason": "forced_row_not_in_source_faithful_surface",
+      "v": 11,
+      "verdict": "UNSAT"
+    },
+    {
+      "forced_row_1": [
+        0,
+        2,
+        6,
+        8
+      ],
+      "jd": 2,
+      "matching_next_centers": [
+        3
+      ],
+      "returncode": 10,
+      "v": 0,
+      "verdict": "SAT"
+    },
+    {
+      "forced_row_1": [
+        2,
+        3,
+        6,
+        8
+      ],
+      "jd": 2,
+      "reason": "forced_row_not_in_source_faithful_surface",
+      "v": 3,
+      "verdict": "UNSAT"
+    },
+    {
+      "forced_row_1": [
+        2,
+        4,
+        6,
+        8
+      ],
+      "jd": 2,
+      "reason": "forced_row_not_in_source_faithful_surface",
+      "v": 4,
+      "verdict": "UNSAT"
+    },
+    {
+      "forced_row_1": [
+        2,
+        5,
+        6,
+        8
+      ],
+      "jd": 2,
+      "reason": "forced_row_not_in_source_faithful_surface",
+      "v": 5,
+      "verdict": "UNSAT"
+    },
+    {
+      "forced_row_1": [
+        2,
+        6,
+        8,
+        10
+      ],
+      "jd": 2,
+      "matching_next_centers": [
+        3
+      ],
+      "returncode": 10,
+      "v": 10,
+      "verdict": "SAT"
+    },
+    {
+      "forced_row_1": [
+        2,
+        6,
+        8,
+        11
+      ],
+      "jd": 2,
+      "matching_next_centers": [
+        3
+      ],
+      "returncode": 10,
+      "v": 11,
+      "verdict": "SAT"
+    },
+    {
+      "forced_row_1": [
+        0,
+        3,
+        6,
+        8
+      ],
+      "jd": 3,
+      "matching_next_centers": [
+        3
+      ],
+      "returncode": 10,
+      "v": 0,
+      "verdict": "SAT"
+    },
+    {
+      "forced_row_1": [
+        2,
+        3,
+        6,
+        8
+      ],
+      "jd": 3,
+      "reason": "forced_row_not_in_source_faithful_surface",
+      "v": 2,
+      "verdict": "UNSAT"
+    },
+    {
+      "forced_row_1": [
+        3,
+        4,
+        6,
+        8
+      ],
+      "jd": 3,
+      "reason": "forced_row_not_in_source_faithful_surface",
+      "v": 4,
+      "verdict": "UNSAT"
+    },
+    {
+      "forced_row_1": [
+        3,
+        5,
+        6,
+        8
+      ],
+      "jd": 3,
+      "reason": "forced_row_not_in_source_faithful_surface",
+      "v": 5,
+      "verdict": "UNSAT"
+    },
+    {
+      "forced_row_1": [
+        3,
+        6,
+        8,
+        10
+      ],
+      "jd": 3,
+      "matching_next_centers": [
+        3
+      ],
+      "returncode": 10,
+      "v": 10,
+      "verdict": "SAT"
+    },
+    {
+      "forced_row_1": [
+        3,
+        6,
+        8,
+        11
+      ],
+      "jd": 3,
+      "matching_next_centers": [
+        3
+      ],
+      "returncode": 10,
+      "v": 11,
+      "verdict": "SAT"
+    },
+    {
+      "forced_row_1": [
+        0,
+        4,
+        6,
+        8
+      ],
+      "jd": 4,
+      "matching_next_centers": [
+        3
+      ],
+      "returncode": 10,
+      "v": 0,
+      "verdict": "SAT"
+    },
+    {
+      "forced_row_1": [
+        2,
+        4,
+        6,
+        8
+      ],
+      "jd": 4,
+      "reason": "forced_row_not_in_source_faithful_surface",
+      "v": 2,
+      "verdict": "UNSAT"
+    },
+    {
+      "forced_row_1": [
+        3,
+        4,
+        6,
+        8
+      ],
+      "jd": 4,
+      "reason": "forced_row_not_in_source_faithful_surface",
+      "v": 3,
+      "verdict": "UNSAT"
+    },
+    {
+      "forced_row_1": [
+        4,
+        5,
+        6,
+        8
+      ],
+      "jd": 4,
+      "reason": "forced_row_not_in_source_faithful_surface",
+      "v": 5,
+      "verdict": "UNSAT"
+    },
+    {
+      "forced_row_1": [
+        4,
+        6,
+        8,
+        10
+      ],
+      "jd": 4,
+      "matching_next_centers": [
+        3
+      ],
+      "returncode": 10,
+      "v": 10,
+      "verdict": "SAT"
+    },
+    {
+      "forced_row_1": [
+        4,
+        6,
+        8,
+        11
+      ],
+      "jd": 4,
+      "matching_next_centers": [
+        3
+      ],
+      "returncode": 10,
+      "v": 11,
+      "verdict": "SAT"
+    },
+    {
+      "forced_row_1": [
+        0,
+        5,
+        6,
+        8
+      ],
+      "jd": 5,
+      "matching_next_centers": [
+        3
+      ],
+      "returncode": 10,
+      "v": 0,
+      "verdict": "SAT"
+    },
+    {
+      "forced_row_1": [
+        2,
+        5,
+        6,
+        8
+      ],
+      "jd": 5,
+      "reason": "forced_row_not_in_source_faithful_surface",
+      "v": 2,
+      "verdict": "UNSAT"
+    },
+    {
+      "forced_row_1": [
+        3,
+        5,
+        6,
+        8
+      ],
+      "jd": 5,
+      "reason": "forced_row_not_in_source_faithful_surface",
+      "v": 3,
+      "verdict": "UNSAT"
+    },
+    {
+      "forced_row_1": [
+        4,
+        5,
+        6,
+        8
+      ],
+      "jd": 5,
+      "reason": "forced_row_not_in_source_faithful_surface",
+      "v": 4,
+      "verdict": "UNSAT"
+    },
+    {
+      "forced_row_1": [
+        5,
+        6,
+        8,
+        10
+      ],
+      "jd": 5,
+      "matching_next_centers": [
+        8
+      ],
+      "returncode": 10,
+      "v": 10,
+      "verdict": "SAT"
+    },
+    {
+      "forced_row_1": [
+        5,
+        6,
+        8,
+        11
+      ],
+      "jd": 5,
+      "matching_next_centers": [
+        3
+      ],
+      "returncode": 10,
+      "v": 11,
+      "verdict": "SAT"
+    },
+    {
+      "forced_row_1": [
+        0,
+        6,
+        8,
+        10
+      ],
+      "jd": 10,
+      "reason": "forced_row_not_in_source_faithful_surface",
+      "v": 0,
+      "verdict": "UNSAT"
+    },
+    {
+      "forced_row_1": [
+        2,
+        6,
+        8,
+        10
+      ],
+      "jd": 10,
+      "matching_next_centers": [
+        3
+      ],
+      "returncode": 10,
+      "v": 2,
+      "verdict": "SAT"
+    },
+    {
+      "forced_row_1": [
+        3,
+        6,
+        8,
+        10
+      ],
+      "jd": 10,
+      "matching_next_centers": [
+        3
+      ],
+      "returncode": 10,
+      "v": 3,
+      "verdict": "SAT"
+    },
+    {
+      "forced_row_1": [
+        4,
+        6,
+        8,
+        10
+      ],
+      "jd": 10,
+      "matching_next_centers": [
+        3
+      ],
+      "returncode": 10,
+      "v": 4,
+      "verdict": "SAT"
+    },
+    {
+      "forced_row_1": [
+        5,
+        6,
+        8,
+        10
+      ],
+      "jd": 10,
+      "matching_next_centers": [
+        8
+      ],
+      "returncode": 10,
+      "v": 5,
+      "verdict": "SAT"
+    },
+    {
+      "forced_row_1": [
+        6,
+        8,
+        10,
+        11
+      ],
+      "jd": 10,
+      "reason": "forced_row_not_in_source_faithful_surface",
+      "v": 11,
+      "verdict": "UNSAT"
+    },
+    {
+      "forced_row_1": [
+        0,
+        6,
+        8,
+        11
+      ],
+      "jd": 11,
+      "reason": "forced_row_not_in_source_faithful_surface",
+      "v": 0,
+      "verdict": "UNSAT"
+    },
+    {
+      "forced_row_1": [
+        2,
+        6,
+        8,
+        11
+      ],
+      "jd": 11,
+      "matching_next_centers": [
+        3
+      ],
+      "returncode": 10,
+      "v": 2,
+      "verdict": "SAT"
+    },
+    {
+      "forced_row_1": [
+        3,
+        6,
+        8,
+        11
+      ],
+      "jd": 11,
+      "matching_next_centers": [
+        3
+      ],
+      "returncode": 10,
+      "v": 3,
+      "verdict": "SAT"
+    },
+    {
+      "forced_row_1": [
+        4,
+        6,
+        8,
+        11
+      ],
+      "jd": 11,
+      "matching_next_centers": [
+        3
+      ],
+      "returncode": 10,
+      "v": 4,
+      "verdict": "SAT"
+    },
+    {
+      "forced_row_1": [
+        5,
+        6,
+        8,
+        11
+      ],
+      "jd": 11,
+      "matching_next_centers": [
+        3
+      ],
+      "returncode": 10,
+      "v": 5,
+      "verdict": "SAT"
+    },
+    {
+      "forced_row_1": [
+        6,
+        8,
+        10,
+        11
+      ],
+      "jd": 11,
+      "reason": "forced_row_not_in_source_faithful_surface",
+      "v": 10,
+      "verdict": "UNSAT"
+    }
+  ],
+  "classification": "EMPIRICAL FINITE RESULT; NOT CLOSURE",
+  "counts": {
+    "SAT": 24,
+    "UNKNOWN_or_TIMEOUT": 0,
+    "UNSAT": 18
+  },
+  "first_sat_witness": {
+    "cube": {
+      "0": [
+        4,
+        5,
+        9,
+        11
+      ],
+      "1": [
+        0,
+        2,
+        6,
+        8
+      ],
+      "10": [
+        2,
+        6,
+        7,
+        9
+      ],
+      "11": [
+        2,
+        3,
+        7,
+        8
+      ],
+      "2": [
+        5,
+        8,
+        10,
+        11
+      ],
+      "3": [
+        7,
+        9,
+        10,
+        11
+      ],
+      "4": [
+        6,
+        8,
+        9,
+        10
+      ],
+      "5": [
+        4,
+        7,
+        8,
+        11
+      ],
+      "6": [
+        4,
+        5,
+        7,
+        10
+      ],
+      "7": [
+        3,
+        5,
+        8,
+        9
+      ],
+      "8": [
+        3,
+        5,
+        6,
+        7
+      ],
+      "9": [
+        3,
+        4,
+        6,
+        10
+      ]
+    },
+    "forced_row_1": [
+      0,
+      2,
+      6,
+      8
+    ],
+    "jd": 0,
+    "matching_next_centers": [
+      3
+    ],
+    "v": 2
+  },
+  "next_center_domain": [
+    0,
+    2,
+    3,
+    4,
+    5,
+    6,
+    8,
+    9,
+    10,
+    11
+  ],
+  "next_row_condition": {
+    "contains": [
+      7,
+      9
+    ],
+    "excludes": [
+      6,
+      8
+    ],
+    "next_candidate_counts_by_center": {
+      "0": 0,
+      "2": 0,
+      "3": 21,
+      "4": 21,
+      "5": 21,
+      "6": 28,
+      "8": 28,
+      "9": 0,
+      "10": 21,
+      "11": 21
+    }
+  },
+  "ordered_placements": [
+    0,
+    2,
+    3,
+    4,
+    5,
+    10,
+    11
+  ],
+  "placement_case_count": 42,
+  "python_profile": [
+    5,
+    6,
+    4
+  ],
+  "roles": {
+    "O": 1,
+    "c": 7,
+    "u": 6,
+    "xu": 9,
+    "xv": 8
+  },
+  "schema": "p97_exact12_nextrowonlyhit_sourcefaithful_sidecar.v1",
+  "source_excluded_constraints": [
+    "historical mixed Moser/same-cap cut",
+    "probe physical apex/circle/pair/blocker constraints"
+  ],
+  "source_proved_constraints": [
+    "row_cardinality_eq_4",
+    "center_omission",
+    "six_moser_one_hit_inequalities",
+    "non_moser_moser_count_le_2",
+    "non_moser_own_cap_same_count_le_2",
+    "C2_pairwise_row_intersection_le_2",
+    "C4_pair_multiplicity_le_2"
+  ],
+  "surface": "SourceFaithfulCoverInstance",
+  "timeout_seconds_per_solver_case": 30
+}

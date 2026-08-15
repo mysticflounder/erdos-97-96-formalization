@@ -1,0 +1,1461 @@
+{
+  "base_sidecar_assumptions": {
+    "original_nextRowOnlyHit": "exists t != 1,7 with {7,9} subset row[t] and row[t] \u2229 {6,8} = empty",
+    "row_1_exact": [
+      6,
+      "jd",
+      "v",
+      8
+    ],
+    "row_7_trace": "row[7] \u2229 {6,9,jd,v,8} = {6,8}"
+  },
+  "classification": "EMPIRICAL FINITE EVIDENCE; NOT CLOSURE",
+  "cross_cap_case_count": 24,
+  "cross_cap_placements_after_apex_cut": [
+    [
+      0,
+      2
+    ],
+    [
+      0,
+      3
+    ],
+    [
+      0,
+      4
+    ],
+    [
+      0,
+      5
+    ],
+    [
+      2,
+      0
+    ],
+    [
+      2,
+      10
+    ],
+    [
+      2,
+      11
+    ],
+    [
+      3,
+      0
+    ],
+    [
+      3,
+      10
+    ],
+    [
+      3,
+      11
+    ],
+    [
+      4,
+      0
+    ],
+    [
+      4,
+      10
+    ],
+    [
+      4,
+      11
+    ],
+    [
+      5,
+      0
+    ],
+    [
+      5,
+      10
+    ],
+    [
+      5,
+      11
+    ],
+    [
+      10,
+      2
+    ],
+    [
+      10,
+      3
+    ],
+    [
+      10,
+      4
+    ],
+    [
+      10,
+      5
+    ],
+    [
+      11,
+      2
+    ],
+    [
+      11,
+      3
+    ],
+    [
+      11,
+      4
+    ],
+    [
+      11,
+      5
+    ]
+  ],
+  "frozen_b7c9_preserved": true,
+  "not_tested_as_non_discriminating": {
+    "reason": "its |physicalClass \\ row[7]| >= 3 consequence is already met by the retained exact two-point row-7 trace",
+    "source_location": "Rigid221SourceHeavy.lean:8186-8205",
+    "theorem": "pentagonOffClassBlocker_physicalClass_commonDeletionFan"
+  },
+  "roles": {
+    "O": 1,
+    "c": 7,
+    "u": 6,
+    "xu": 9,
+    "xv": 8
+  },
+  "schema": "p97_exact12_nextrowonlyhit_missing_geometry_sidecar.v1",
+  "source_proved_base_constraints": [
+    "row_cardinality_eq_4",
+    "center_omission",
+    "six_moser_one_hit_inequalities",
+    "non_moser_moser_count_le_2",
+    "non_moser_own_cap_same_count_le_2",
+    "C2_pairwise_row_intersection_le_2",
+    "C4_pair_multiplicity_le_2"
+  ],
+  "surface": "SourceFaithfulCoverInstance",
+  "timeout_seconds_per_case": 30,
+  "variants": {
+    "localized_live_hnextRowOnlyHit": {
+      "case_count": 24,
+      "cases": [
+        {
+          "jd": 0,
+          "metadata": {
+            "added_predicate_clause_width": 55,
+            "arbitrary_next_row_clause_width": 161,
+            "row_1": [
+              0,
+              2,
+              6,
+              8
+            ],
+            "row_7_exact_trace": [
+              6,
+              8
+            ],
+            "row_7_physical_class": [
+              0,
+              2,
+              6,
+              8,
+              9
+            ],
+            "row_7_trace_clause_width": 15
+          },
+          "v": 2,
+          "verdict": "UNSAT"
+        },
+        {
+          "jd": 0,
+          "metadata": {
+            "added_predicate_clause_width": 55,
+            "arbitrary_next_row_clause_width": 161,
+            "row_1": [
+              0,
+              3,
+              6,
+              8
+            ],
+            "row_7_exact_trace": [
+              6,
+              8
+            ],
+            "row_7_physical_class": [
+              0,
+              3,
+              6,
+              8,
+              9
+            ],
+            "row_7_trace_clause_width": 15
+          },
+          "v": 3,
+          "verdict": "UNSAT"
+        },
+        {
+          "jd": 0,
+          "metadata": {
+            "added_predicate_clause_width": 55,
+            "arbitrary_next_row_clause_width": 161,
+            "row_1": [
+              0,
+              4,
+              6,
+              8
+            ],
+            "row_7_exact_trace": [
+              6,
+              8
+            ],
+            "row_7_physical_class": [
+              0,
+              4,
+              6,
+              8,
+              9
+            ],
+            "row_7_trace_clause_width": 15
+          },
+          "v": 4,
+          "verdict": "UNSAT"
+        },
+        {
+          "jd": 0,
+          "metadata": {
+            "added_predicate_clause_width": 55,
+            "arbitrary_next_row_clause_width": 161,
+            "row_1": [
+              0,
+              5,
+              6,
+              8
+            ],
+            "row_7_exact_trace": [
+              6,
+              8
+            ],
+            "row_7_physical_class": [
+              0,
+              5,
+              6,
+              8,
+              9
+            ],
+            "row_7_trace_clause_width": 15
+          },
+          "v": 5,
+          "verdict": "UNSAT"
+        },
+        {
+          "jd": 2,
+          "metadata": {
+            "added_predicate_clause_width": 55,
+            "arbitrary_next_row_clause_width": 161,
+            "row_1": [
+              0,
+              2,
+              6,
+              8
+            ],
+            "row_7_exact_trace": [
+              6,
+              8
+            ],
+            "row_7_physical_class": [
+              0,
+              2,
+              6,
+              8,
+              9
+            ],
+            "row_7_trace_clause_width": 15
+          },
+          "v": 0,
+          "verdict": "UNSAT"
+        },
+        {
+          "jd": 2,
+          "metadata": {
+            "added_predicate_clause_width": 55,
+            "arbitrary_next_row_clause_width": 161,
+            "row_1": [
+              2,
+              6,
+              8,
+              10
+            ],
+            "row_7_exact_trace": [
+              6,
+              8
+            ],
+            "row_7_physical_class": [
+              2,
+              6,
+              8,
+              9,
+              10
+            ],
+            "row_7_trace_clause_width": 15
+          },
+          "v": 10,
+          "verdict": "UNSAT"
+        },
+        {
+          "jd": 2,
+          "metadata": {
+            "added_predicate_clause_width": 55,
+            "arbitrary_next_row_clause_width": 161,
+            "row_1": [
+              2,
+              6,
+              8,
+              11
+            ],
+            "row_7_exact_trace": [
+              6,
+              8
+            ],
+            "row_7_physical_class": [
+              2,
+              6,
+              8,
+              9,
+              11
+            ],
+            "row_7_trace_clause_width": 15
+          },
+          "v": 11,
+          "verdict": "UNSAT"
+        },
+        {
+          "jd": 3,
+          "metadata": {
+            "added_predicate_clause_width": 55,
+            "arbitrary_next_row_clause_width": 161,
+            "row_1": [
+              0,
+              3,
+              6,
+              8
+            ],
+            "row_7_exact_trace": [
+              6,
+              8
+            ],
+            "row_7_physical_class": [
+              0,
+              3,
+              6,
+              8,
+              9
+            ],
+            "row_7_trace_clause_width": 15
+          },
+          "v": 0,
+          "verdict": "UNSAT"
+        },
+        {
+          "jd": 3,
+          "metadata": {
+            "added_predicate_clause_width": 55,
+            "arbitrary_next_row_clause_width": 161,
+            "row_1": [
+              3,
+              6,
+              8,
+              10
+            ],
+            "row_7_exact_trace": [
+              6,
+              8
+            ],
+            "row_7_physical_class": [
+              3,
+              6,
+              8,
+              9,
+              10
+            ],
+            "row_7_trace_clause_width": 15
+          },
+          "v": 10,
+          "verdict": "UNSAT"
+        },
+        {
+          "jd": 3,
+          "metadata": {
+            "added_predicate_clause_width": 55,
+            "arbitrary_next_row_clause_width": 161,
+            "row_1": [
+              3,
+              6,
+              8,
+              11
+            ],
+            "row_7_exact_trace": [
+              6,
+              8
+            ],
+            "row_7_physical_class": [
+              3,
+              6,
+              8,
+              9,
+              11
+            ],
+            "row_7_trace_clause_width": 15
+          },
+          "v": 11,
+          "verdict": "UNSAT"
+        },
+        {
+          "jd": 4,
+          "metadata": {
+            "added_predicate_clause_width": 55,
+            "arbitrary_next_row_clause_width": 161,
+            "row_1": [
+              0,
+              4,
+              6,
+              8
+            ],
+            "row_7_exact_trace": [
+              6,
+              8
+            ],
+            "row_7_physical_class": [
+              0,
+              4,
+              6,
+              8,
+              9
+            ],
+            "row_7_trace_clause_width": 15
+          },
+          "v": 0,
+          "verdict": "UNSAT"
+        },
+        {
+          "jd": 4,
+          "metadata": {
+            "added_predicate_clause_width": 55,
+            "arbitrary_next_row_clause_width": 161,
+            "row_1": [
+              4,
+              6,
+              8,
+              10
+            ],
+            "row_7_exact_trace": [
+              6,
+              8
+            ],
+            "row_7_physical_class": [
+              4,
+              6,
+              8,
+              9,
+              10
+            ],
+            "row_7_trace_clause_width": 15
+          },
+          "v": 10,
+          "verdict": "UNSAT"
+        },
+        {
+          "jd": 4,
+          "metadata": {
+            "added_predicate_clause_width": 55,
+            "arbitrary_next_row_clause_width": 161,
+            "row_1": [
+              4,
+              6,
+              8,
+              11
+            ],
+            "row_7_exact_trace": [
+              6,
+              8
+            ],
+            "row_7_physical_class": [
+              4,
+              6,
+              8,
+              9,
+              11
+            ],
+            "row_7_trace_clause_width": 15
+          },
+          "v": 11,
+          "verdict": "UNSAT"
+        },
+        {
+          "jd": 5,
+          "metadata": {
+            "added_predicate_clause_width": 55,
+            "arbitrary_next_row_clause_width": 161,
+            "row_1": [
+              0,
+              5,
+              6,
+              8
+            ],
+            "row_7_exact_trace": [
+              6,
+              8
+            ],
+            "row_7_physical_class": [
+              0,
+              5,
+              6,
+              8,
+              9
+            ],
+            "row_7_trace_clause_width": 15
+          },
+          "v": 0,
+          "verdict": "UNSAT"
+        },
+        {
+          "jd": 5,
+          "metadata": {
+            "added_predicate_clause_width": 55,
+            "arbitrary_next_row_clause_width": 161,
+            "row_1": [
+              5,
+              6,
+              8,
+              10
+            ],
+            "row_7_exact_trace": [
+              6,
+              8
+            ],
+            "row_7_physical_class": [
+              5,
+              6,
+              8,
+              9,
+              10
+            ],
+            "row_7_trace_clause_width": 15
+          },
+          "v": 10,
+          "verdict": "UNSAT"
+        },
+        {
+          "jd": 5,
+          "metadata": {
+            "added_predicate_clause_width": 55,
+            "arbitrary_next_row_clause_width": 161,
+            "row_1": [
+              5,
+              6,
+              8,
+              11
+            ],
+            "row_7_exact_trace": [
+              6,
+              8
+            ],
+            "row_7_physical_class": [
+              5,
+              6,
+              8,
+              9,
+              11
+            ],
+            "row_7_trace_clause_width": 15
+          },
+          "v": 11,
+          "verdict": "UNSAT"
+        },
+        {
+          "jd": 10,
+          "metadata": {
+            "added_predicate_clause_width": 55,
+            "arbitrary_next_row_clause_width": 161,
+            "row_1": [
+              2,
+              6,
+              8,
+              10
+            ],
+            "row_7_exact_trace": [
+              6,
+              8
+            ],
+            "row_7_physical_class": [
+              2,
+              6,
+              8,
+              9,
+              10
+            ],
+            "row_7_trace_clause_width": 15
+          },
+          "v": 2,
+          "verdict": "UNSAT"
+        },
+        {
+          "jd": 10,
+          "metadata": {
+            "added_predicate_clause_width": 55,
+            "arbitrary_next_row_clause_width": 161,
+            "row_1": [
+              3,
+              6,
+              8,
+              10
+            ],
+            "row_7_exact_trace": [
+              6,
+              8
+            ],
+            "row_7_physical_class": [
+              3,
+              6,
+              8,
+              9,
+              10
+            ],
+            "row_7_trace_clause_width": 15
+          },
+          "v": 3,
+          "verdict": "UNSAT"
+        },
+        {
+          "jd": 10,
+          "metadata": {
+            "added_predicate_clause_width": 55,
+            "arbitrary_next_row_clause_width": 161,
+            "row_1": [
+              4,
+              6,
+              8,
+              10
+            ],
+            "row_7_exact_trace": [
+              6,
+              8
+            ],
+            "row_7_physical_class": [
+              4,
+              6,
+              8,
+              9,
+              10
+            ],
+            "row_7_trace_clause_width": 15
+          },
+          "v": 4,
+          "verdict": "UNSAT"
+        },
+        {
+          "jd": 10,
+          "metadata": {
+            "added_predicate_clause_width": 55,
+            "arbitrary_next_row_clause_width": 161,
+            "row_1": [
+              5,
+              6,
+              8,
+              10
+            ],
+            "row_7_exact_trace": [
+              6,
+              8
+            ],
+            "row_7_physical_class": [
+              5,
+              6,
+              8,
+              9,
+              10
+            ],
+            "row_7_trace_clause_width": 15
+          },
+          "v": 5,
+          "verdict": "UNSAT"
+        },
+        {
+          "jd": 11,
+          "metadata": {
+            "added_predicate_clause_width": 55,
+            "arbitrary_next_row_clause_width": 161,
+            "row_1": [
+              2,
+              6,
+              8,
+              11
+            ],
+            "row_7_exact_trace": [
+              6,
+              8
+            ],
+            "row_7_physical_class": [
+              2,
+              6,
+              8,
+              9,
+              11
+            ],
+            "row_7_trace_clause_width": 15
+          },
+          "v": 2,
+          "verdict": "UNSAT"
+        },
+        {
+          "jd": 11,
+          "metadata": {
+            "added_predicate_clause_width": 55,
+            "arbitrary_next_row_clause_width": 161,
+            "row_1": [
+              3,
+              6,
+              8,
+              11
+            ],
+            "row_7_exact_trace": [
+              6,
+              8
+            ],
+            "row_7_physical_class": [
+              3,
+              6,
+              8,
+              9,
+              11
+            ],
+            "row_7_trace_clause_width": 15
+          },
+          "v": 3,
+          "verdict": "UNSAT"
+        },
+        {
+          "jd": 11,
+          "metadata": {
+            "added_predicate_clause_width": 55,
+            "arbitrary_next_row_clause_width": 161,
+            "row_1": [
+              4,
+              6,
+              8,
+              11
+            ],
+            "row_7_exact_trace": [
+              6,
+              8
+            ],
+            "row_7_physical_class": [
+              4,
+              6,
+              8,
+              9,
+              11
+            ],
+            "row_7_trace_clause_width": 15
+          },
+          "v": 4,
+          "verdict": "UNSAT"
+        },
+        {
+          "jd": 11,
+          "metadata": {
+            "added_predicate_clause_width": 55,
+            "arbitrary_next_row_clause_width": 161,
+            "row_1": [
+              5,
+              6,
+              8,
+              11
+            ],
+            "row_7_exact_trace": [
+              6,
+              8
+            ],
+            "row_7_physical_class": [
+              5,
+              6,
+              8,
+              9,
+              11
+            ],
+            "row_7_trace_clause_width": 15
+          },
+          "v": 5,
+          "verdict": "UNSAT"
+        }
+      ],
+      "counts": {
+        "SAT": 0,
+        "UNKNOWN": 0,
+        "UNSAT": 24
+      },
+      "predicate": "row[7] contains xu=9 and excludes u=6,xv=8; this identifies the arbitrary next-row witness with Kc",
+      "source_location": "Rigid221SourceHeavy.lean:8251-8271",
+      "theorem": "pentagonOffClassBlocker_xu_commonDeletionFans_or_nextRow_onlyHit"
+    },
+    "strict_triple_card_le_one": {
+      "case_count": 24,
+      "cases": [
+        {
+          "jd": 0,
+          "metadata": {
+            "added_predicate_clause_width": 230,
+            "arbitrary_next_row_clause_width": 161,
+            "row_1": [
+              0,
+              2,
+              6,
+              8
+            ],
+            "row_7_exact_trace": [
+              6,
+              8
+            ],
+            "row_7_physical_class": [
+              0,
+              2,
+              6,
+              8,
+              9
+            ],
+            "row_7_trace_clause_width": 15
+          },
+          "v": 2,
+          "verdict": "UNSAT"
+        },
+        {
+          "jd": 0,
+          "metadata": {
+            "added_predicate_clause_width": 230,
+            "arbitrary_next_row_clause_width": 161,
+            "row_1": [
+              0,
+              3,
+              6,
+              8
+            ],
+            "row_7_exact_trace": [
+              6,
+              8
+            ],
+            "row_7_physical_class": [
+              0,
+              3,
+              6,
+              8,
+              9
+            ],
+            "row_7_trace_clause_width": 15
+          },
+          "v": 3,
+          "verdict": "UNSAT"
+        },
+        {
+          "jd": 0,
+          "metadata": {
+            "added_predicate_clause_width": 230,
+            "arbitrary_next_row_clause_width": 161,
+            "row_1": [
+              0,
+              4,
+              6,
+              8
+            ],
+            "row_7_exact_trace": [
+              6,
+              8
+            ],
+            "row_7_physical_class": [
+              0,
+              4,
+              6,
+              8,
+              9
+            ],
+            "row_7_trace_clause_width": 15
+          },
+          "v": 4,
+          "verdict": "UNSAT"
+        },
+        {
+          "jd": 0,
+          "metadata": {
+            "added_predicate_clause_width": 230,
+            "arbitrary_next_row_clause_width": 161,
+            "row_1": [
+              0,
+              5,
+              6,
+              8
+            ],
+            "row_7_exact_trace": [
+              6,
+              8
+            ],
+            "row_7_physical_class": [
+              0,
+              5,
+              6,
+              8,
+              9
+            ],
+            "row_7_trace_clause_width": 15
+          },
+          "v": 5,
+          "verdict": "UNSAT"
+        },
+        {
+          "jd": 2,
+          "metadata": {
+            "added_predicate_clause_width": 230,
+            "arbitrary_next_row_clause_width": 161,
+            "row_1": [
+              0,
+              2,
+              6,
+              8
+            ],
+            "row_7_exact_trace": [
+              6,
+              8
+            ],
+            "row_7_physical_class": [
+              0,
+              2,
+              6,
+              8,
+              9
+            ],
+            "row_7_trace_clause_width": 15
+          },
+          "v": 0,
+          "verdict": "UNSAT"
+        },
+        {
+          "jd": 2,
+          "metadata": {
+            "added_predicate_clause_width": 230,
+            "arbitrary_next_row_clause_width": 161,
+            "row_1": [
+              2,
+              6,
+              8,
+              10
+            ],
+            "row_7_exact_trace": [
+              6,
+              8
+            ],
+            "row_7_physical_class": [
+              2,
+              6,
+              8,
+              9,
+              10
+            ],
+            "row_7_trace_clause_width": 15
+          },
+          "v": 10,
+          "verdict": "UNSAT"
+        },
+        {
+          "jd": 2,
+          "metadata": {
+            "added_predicate_clause_width": 230,
+            "arbitrary_next_row_clause_width": 161,
+            "row_1": [
+              2,
+              6,
+              8,
+              11
+            ],
+            "row_7_exact_trace": [
+              6,
+              8
+            ],
+            "row_7_physical_class": [
+              2,
+              6,
+              8,
+              9,
+              11
+            ],
+            "row_7_trace_clause_width": 15
+          },
+          "v": 11,
+          "verdict": "UNSAT"
+        },
+        {
+          "jd": 3,
+          "metadata": {
+            "added_predicate_clause_width": 230,
+            "arbitrary_next_row_clause_width": 161,
+            "row_1": [
+              0,
+              3,
+              6,
+              8
+            ],
+            "row_7_exact_trace": [
+              6,
+              8
+            ],
+            "row_7_physical_class": [
+              0,
+              3,
+              6,
+              8,
+              9
+            ],
+            "row_7_trace_clause_width": 15
+          },
+          "v": 0,
+          "verdict": "UNSAT"
+        },
+        {
+          "jd": 3,
+          "metadata": {
+            "added_predicate_clause_width": 230,
+            "arbitrary_next_row_clause_width": 161,
+            "row_1": [
+              3,
+              6,
+              8,
+              10
+            ],
+            "row_7_exact_trace": [
+              6,
+              8
+            ],
+            "row_7_physical_class": [
+              3,
+              6,
+              8,
+              9,
+              10
+            ],
+            "row_7_trace_clause_width": 15
+          },
+          "v": 10,
+          "verdict": "UNSAT"
+        },
+        {
+          "jd": 3,
+          "metadata": {
+            "added_predicate_clause_width": 230,
+            "arbitrary_next_row_clause_width": 161,
+            "row_1": [
+              3,
+              6,
+              8,
+              11
+            ],
+            "row_7_exact_trace": [
+              6,
+              8
+            ],
+            "row_7_physical_class": [
+              3,
+              6,
+              8,
+              9,
+              11
+            ],
+            "row_7_trace_clause_width": 15
+          },
+          "v": 11,
+          "verdict": "UNSAT"
+        },
+        {
+          "jd": 4,
+          "metadata": {
+            "added_predicate_clause_width": 230,
+            "arbitrary_next_row_clause_width": 161,
+            "row_1": [
+              0,
+              4,
+              6,
+              8
+            ],
+            "row_7_exact_trace": [
+              6,
+              8
+            ],
+            "row_7_physical_class": [
+              0,
+              4,
+              6,
+              8,
+              9
+            ],
+            "row_7_trace_clause_width": 15
+          },
+          "v": 0,
+          "verdict": "UNSAT"
+        },
+        {
+          "jd": 4,
+          "metadata": {
+            "added_predicate_clause_width": 230,
+            "arbitrary_next_row_clause_width": 161,
+            "row_1": [
+              4,
+              6,
+              8,
+              10
+            ],
+            "row_7_exact_trace": [
+              6,
+              8
+            ],
+            "row_7_physical_class": [
+              4,
+              6,
+              8,
+              9,
+              10
+            ],
+            "row_7_trace_clause_width": 15
+          },
+          "v": 10,
+          "verdict": "UNSAT"
+        },
+        {
+          "jd": 4,
+          "metadata": {
+            "added_predicate_clause_width": 230,
+            "arbitrary_next_row_clause_width": 161,
+            "row_1": [
+              4,
+              6,
+              8,
+              11
+            ],
+            "row_7_exact_trace": [
+              6,
+              8
+            ],
+            "row_7_physical_class": [
+              4,
+              6,
+              8,
+              9,
+              11
+            ],
+            "row_7_trace_clause_width": 15
+          },
+          "v": 11,
+          "verdict": "UNSAT"
+        },
+        {
+          "jd": 5,
+          "metadata": {
+            "added_predicate_clause_width": 230,
+            "arbitrary_next_row_clause_width": 161,
+            "row_1": [
+              0,
+              5,
+              6,
+              8
+            ],
+            "row_7_exact_trace": [
+              6,
+              8
+            ],
+            "row_7_physical_class": [
+              0,
+              5,
+              6,
+              8,
+              9
+            ],
+            "row_7_trace_clause_width": 15
+          },
+          "v": 0,
+          "verdict": "UNSAT"
+        },
+        {
+          "jd": 5,
+          "metadata": {
+            "added_predicate_clause_width": 230,
+            "arbitrary_next_row_clause_width": 161,
+            "row_1": [
+              5,
+              6,
+              8,
+              10
+            ],
+            "row_7_exact_trace": [
+              6,
+              8
+            ],
+            "row_7_physical_class": [
+              5,
+              6,
+              8,
+              9,
+              10
+            ],
+            "row_7_trace_clause_width": 15
+          },
+          "v": 10,
+          "verdict": "UNSAT"
+        },
+        {
+          "jd": 5,
+          "metadata": {
+            "added_predicate_clause_width": 230,
+            "arbitrary_next_row_clause_width": 161,
+            "row_1": [
+              5,
+              6,
+              8,
+              11
+            ],
+            "row_7_exact_trace": [
+              6,
+              8
+            ],
+            "row_7_physical_class": [
+              5,
+              6,
+              8,
+              9,
+              11
+            ],
+            "row_7_trace_clause_width": 15
+          },
+          "v": 11,
+          "verdict": "UNSAT"
+        },
+        {
+          "jd": 10,
+          "metadata": {
+            "added_predicate_clause_width": 230,
+            "arbitrary_next_row_clause_width": 161,
+            "row_1": [
+              2,
+              6,
+              8,
+              10
+            ],
+            "row_7_exact_trace": [
+              6,
+              8
+            ],
+            "row_7_physical_class": [
+              2,
+              6,
+              8,
+              9,
+              10
+            ],
+            "row_7_trace_clause_width": 15
+          },
+          "v": 2,
+          "verdict": "UNSAT"
+        },
+        {
+          "jd": 10,
+          "metadata": {
+            "added_predicate_clause_width": 230,
+            "arbitrary_next_row_clause_width": 161,
+            "row_1": [
+              3,
+              6,
+              8,
+              10
+            ],
+            "row_7_exact_trace": [
+              6,
+              8
+            ],
+            "row_7_physical_class": [
+              3,
+              6,
+              8,
+              9,
+              10
+            ],
+            "row_7_trace_clause_width": 15
+          },
+          "v": 3,
+          "verdict": "UNSAT"
+        },
+        {
+          "jd": 10,
+          "metadata": {
+            "added_predicate_clause_width": 230,
+            "arbitrary_next_row_clause_width": 161,
+            "row_1": [
+              4,
+              6,
+              8,
+              10
+            ],
+            "row_7_exact_trace": [
+              6,
+              8
+            ],
+            "row_7_physical_class": [
+              4,
+              6,
+              8,
+              9,
+              10
+            ],
+            "row_7_trace_clause_width": 15
+          },
+          "v": 4,
+          "verdict": "UNSAT"
+        },
+        {
+          "jd": 10,
+          "metadata": {
+            "added_predicate_clause_width": 230,
+            "arbitrary_next_row_clause_width": 161,
+            "row_1": [
+              5,
+              6,
+              8,
+              10
+            ],
+            "row_7_exact_trace": [
+              6,
+              8
+            ],
+            "row_7_physical_class": [
+              5,
+              6,
+              8,
+              9,
+              10
+            ],
+            "row_7_trace_clause_width": 15
+          },
+          "v": 5,
+          "verdict": "UNSAT"
+        },
+        {
+          "jd": 11,
+          "metadata": {
+            "added_predicate_clause_width": 230,
+            "arbitrary_next_row_clause_width": 161,
+            "row_1": [
+              2,
+              6,
+              8,
+              11
+            ],
+            "row_7_exact_trace": [
+              6,
+              8
+            ],
+            "row_7_physical_class": [
+              2,
+              6,
+              8,
+              9,
+              11
+            ],
+            "row_7_trace_clause_width": 15
+          },
+          "v": 2,
+          "verdict": "UNSAT"
+        },
+        {
+          "jd": 11,
+          "metadata": {
+            "added_predicate_clause_width": 230,
+            "arbitrary_next_row_clause_width": 161,
+            "row_1": [
+              3,
+              6,
+              8,
+              11
+            ],
+            "row_7_exact_trace": [
+              6,
+              8
+            ],
+            "row_7_physical_class": [
+              3,
+              6,
+              8,
+              9,
+              11
+            ],
+            "row_7_trace_clause_width": 15
+          },
+          "v": 3,
+          "verdict": "UNSAT"
+        },
+        {
+          "jd": 11,
+          "metadata": {
+            "added_predicate_clause_width": 230,
+            "arbitrary_next_row_clause_width": 161,
+            "row_1": [
+              4,
+              6,
+              8,
+              11
+            ],
+            "row_7_exact_trace": [
+              6,
+              8
+            ],
+            "row_7_physical_class": [
+              4,
+              6,
+              8,
+              9,
+              11
+            ],
+            "row_7_trace_clause_width": 15
+          },
+          "v": 4,
+          "verdict": "UNSAT"
+        },
+        {
+          "jd": 11,
+          "metadata": {
+            "added_predicate_clause_width": 230,
+            "arbitrary_next_row_clause_width": 161,
+            "row_1": [
+              5,
+              6,
+              8,
+              11
+            ],
+            "row_7_exact_trace": [
+              6,
+              8
+            ],
+            "row_7_physical_class": [
+              5,
+              6,
+              8,
+              9,
+              11
+            ],
+            "row_7_trace_clause_width": 15
+          },
+          "v": 5,
+          "verdict": "UNSAT"
+        }
+      ],
+      "counts": {
+        "SAT": 0,
+        "UNKNOWN": 0,
+        "UNSAT": 24
+      },
+      "predicate": "|row[7] \u2229 {u=6,xu=9,xv=8}| \u2264 1",
+      "source_location": "Rigid221SourceHeavy.lean:8082-8096",
+      "theorem": "pentagonOffClassBlocker_nextRow_strictTriple_card_le_one"
+    }
+  }
+}
