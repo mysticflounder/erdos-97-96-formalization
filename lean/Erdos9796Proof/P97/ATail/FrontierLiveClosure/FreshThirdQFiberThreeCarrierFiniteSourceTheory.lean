@@ -188,12 +188,44 @@ structure PinnedBridge
   nonrobust : ∀ center,
     A.Nonrobust (.inl center) ↔ Pinned.Nonrobust center
 
+/-- Equality and predicate congruence over the complete old/new role
+vocabulary.  These laws prevent a solver from assigning incompatible atoms to
+roles that the source theory identifies as the same carrier point. -/
+structure RelationalTheory
+    (A : FreshThirdQFiberThreeCarrierFiniteAssignment) : Prop where
+  same_refl : ∀ point, A.Same point point
+  same_symm : ∀ {left right}, A.Same left right → A.Same right left
+  same_trans : ∀ {left middle right},
+    A.Same left middle → A.Same middle right → A.Same left right
+  incident_congr : ∀ {left right row}, A.Same left right →
+    (A.Incident left row ↔ A.Incident right row)
+  inCap_congr : ∀ {left right cap}, A.Same left right →
+    (A.InCap left cap ↔ A.InCap right cap)
+  inCapInterior_congr : ∀ {left right cap}, A.Same left right →
+    (A.InCapInterior left cap ↔ A.InCapInterior right cap)
+  before_congr : ∀ {left left' right right'},
+    A.Same left left' → A.Same right right' →
+      (A.Before left right ↔ A.Before left' right')
+  sameDistanceFrom_congr : ∀
+      {center center' left left' right right'},
+    A.Same center center' → A.Same left left' → A.Same right right' →
+      (A.SameDistanceFrom center left right ↔
+        A.SameDistanceFrom center' left' right')
+  hasFourAfterDeleting_congr : ∀
+      {deleted deleted' atCenter atCenter'},
+    A.Same deleted deleted' → A.Same atCenter atCenter' →
+      (A.HasFourAfterDeleting deleted atCenter ↔
+        A.HasFourAfterDeleting deleted' atCenter')
+  nonrobust_congr : ∀ {left right}, A.Same left right →
+    (A.Nonrobust left ↔ A.Nonrobust right)
+
 /-- Full query ingress: the complete old pinned theory, the new carrier-fan
 clauses, and their shared-role bridge. -/
 structure CompleteSourceTheory (Config : Configuration) : Prop where
   pinned : FreshThirdPinnedEndpointOutsideSeedFiniteSourceTheory Config.pinned
   carrier : SourceTheory Config.assignment Config.boundaryIndex
   bridge : PinnedBridge Config.assignment Config.pinned.assignment
+  relational : RelationalTheory Config.assignment
 
 attribute [local instance] Classical.propDecidable
 
@@ -381,6 +413,98 @@ theorem sourceTheory_ofView
           (FreshThirdQFiberThreeCarrierFiniteAssignment.incident_ofView_iff
             (P := P) (Pρ := Pρ) View _ _).1 (hall k)
 
+/-- The exact combined assignment satisfies equality congruence for every
+solver-visible predicate. -/
+theorem relationalTheory_ofView
+    {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
+    {Q : FreshThirdBlockerFiber P Pρ}
+    {B : BoundaryIndexing D.A} {qOutside qBetween : Fin B.n}
+    {center : ℝ²} {id : Fin B.n}
+    {DRow : SelectedFourClass D.A (B.boundary id)}
+    {freshCap rowCap : Fin 3}
+    {Packet : FreshThirdPinnedEndpointOutsideSeedQueryPacket
+      P Pρ C Q B qOutside qBetween center id DRow freshCap rowCap}
+    {G : TriApexAllLargeContext D S}
+    {Boundary : FreshThirdQFiberThreeBoundary P Pρ Q}
+    (View : FreshThirdQFiberThreeCarrierFiniteView P Pρ Packet G Boundary) :
+    RelationalTheory
+      (FreshThirdQFiberThreeCarrierFiniteAssignment.ofView P Pρ View) := by
+  refine {
+    same_refl := ?_
+    same_symm := ?_
+    same_trans := ?_
+    incident_congr := ?_
+    inCap_congr := ?_
+    inCapInterior_congr := ?_
+    before_congr := ?_
+    sameDistanceFrom_congr := ?_
+    hasFourAfterDeleting_congr := ?_
+    nonrobust_congr := ?_ }
+  · intro point
+    rw [FreshThirdQFiberThreeCarrierFiniteAssignment.same_ofView_iff]
+  · intro left right hsame
+    rw [FreshThirdQFiberThreeCarrierFiniteAssignment.same_ofView_iff] at hsame ⊢
+    exact hsame.symm
+  · intro left middle right hleft hright
+    rw [FreshThirdQFiberThreeCarrierFiniteAssignment.same_ofView_iff] at hleft hright ⊢
+    exact hleft.trans hright
+  · intro left right row hsame
+    rw [FreshThirdQFiberThreeCarrierFiniteAssignment.same_ofView_iff] at hsame
+    rw [FreshThirdQFiberThreeCarrierFiniteAssignment.incident_ofView_iff,
+      FreshThirdQFiberThreeCarrierFiniteAssignment.incident_ofView_iff]
+    rw [hsame]
+  · intro left right cap hsame
+    rw [FreshThirdQFiberThreeCarrierFiniteAssignment.same_ofView_iff] at hsame
+    rw [FreshThirdQFiberThreeCarrierFiniteAssignment.inCap_ofView_iff,
+      FreshThirdQFiberThreeCarrierFiniteAssignment.inCap_ofView_iff]
+    rw [hsame]
+  · intro left right cap hsame
+    rw [FreshThirdQFiberThreeCarrierFiniteAssignment.same_ofView_iff] at hsame
+    rw [FreshThirdQFiberThreeCarrierFiniteAssignment.inCapInterior_ofView_iff,
+      FreshThirdQFiberThreeCarrierFiniteAssignment.inCapInterior_ofView_iff]
+    rw [hsame]
+  · intro left left' right right' hleft hright
+    rw [FreshThirdQFiberThreeCarrierFiniteAssignment.same_ofView_iff] at hleft hright
+    rw [FreshThirdQFiberThreeCarrierFiniteAssignment.before_ofView_iff,
+      FreshThirdQFiberThreeCarrierFiniteAssignment.before_ofView_iff]
+    have hleftIndex :
+        B.indexOf
+            ⟨FreshThirdQFiberThreeCarrierFiniteView.point P Pρ View left,
+              FreshThirdQFiberThreeCarrierFiniteView.point_mem_carrier
+                P Pρ View left⟩ =
+          B.indexOf
+            ⟨FreshThirdQFiberThreeCarrierFiniteView.point P Pρ View left',
+              FreshThirdQFiberThreeCarrierFiniteView.point_mem_carrier
+                P Pρ View left'⟩ :=
+      congrArg B.indexOf (Subtype.ext hleft)
+    have hrightIndex :
+        B.indexOf
+            ⟨FreshThirdQFiberThreeCarrierFiniteView.point P Pρ View right,
+              FreshThirdQFiberThreeCarrierFiniteView.point_mem_carrier
+                P Pρ View right⟩ =
+          B.indexOf
+            ⟨FreshThirdQFiberThreeCarrierFiniteView.point P Pρ View right',
+              FreshThirdQFiberThreeCarrierFiniteView.point_mem_carrier
+                P Pρ View right'⟩ :=
+      congrArg B.indexOf (Subtype.ext hright)
+    rw [hleftIndex, hrightIndex]
+  · intro centerRole centerRole' left left' right right'
+      hcenter hleft hright
+    rw [FreshThirdQFiberThreeCarrierFiniteAssignment.same_ofView_iff] at hcenter hleft hright
+    rw [FreshThirdQFiberThreeCarrierFiniteAssignment.sameDistanceFrom_ofView_iff,
+      FreshThirdQFiberThreeCarrierFiniteAssignment.sameDistanceFrom_ofView_iff]
+    rw [hcenter, hleft, hright]
+  · intro deleted deleted' atCenter atCenter' hdeleted hcenter
+    rw [FreshThirdQFiberThreeCarrierFiniteAssignment.same_ofView_iff] at hdeleted hcenter
+    rw [FreshThirdQFiberThreeCarrierFiniteAssignment.hasFourAfterDeleting_ofView_iff,
+      FreshThirdQFiberThreeCarrierFiniteAssignment.hasFourAfterDeleting_ofView_iff]
+    rw [hdeleted, hcenter]
+  · intro left right hsame
+    rw [FreshThirdQFiberThreeCarrierFiniteAssignment.same_ofView_iff] at hsame
+    rw [FreshThirdQFiberThreeCarrierFiniteAssignment.nonrobust_ofView_iff,
+      FreshThirdQFiberThreeCarrierFiniteAssignment.nonrobust_ofView_iff]
+    rw [hsame]
+
 /-- The complete combined query has an arbitrary-cardinality ingress from
 every exact live packet and exact-three boundary witness. -/
 theorem completeSourceTheory_ofView
@@ -396,7 +520,7 @@ theorem completeSourceTheory_ofView
     {Boundary : FreshThirdQFiberThreeBoundary P Pρ Q}
     (View : FreshThirdQFiberThreeCarrierFiniteView P Pρ Packet G Boundary) :
     CompleteSourceTheory (Configuration.ofView P Pρ View) := by
-  refine ⟨?_, sourceTheory_ofView P Pρ View, ?_⟩
+  refine ⟨?_, sourceTheory_ofView P Pρ View, ?_, relationalTheory_ofView P Pρ View⟩
   · exact FreshThirdPinnedEndpointOutsideSeedFiniteSourceTheory.ofView
       (P := P) (Pρ := Pρ) View.pinned
   · refine {

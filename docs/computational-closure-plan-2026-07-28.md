@@ -11094,7 +11094,8 @@ explicit.
 `FreshThirdQFiberThreeCarrierFiniteSourceTheory` proves the complete finite
 theory from every arbitrary-cardinality packet and exact-three boundary.  It
 retains the old pinned source theory through an explicit propositional bridge,
-adds exact `Q`-row coverage, fresh-remainder and named-source aliases, blocked
+proves alias congruence for every solver-visible predicate, and adds exact
+`Q`-row coverage, fresh-remainder and named-source aliases, blocked
 deletions, cap witnesses, overlap-at-most-two clauses, and every second-order
 fan packet, and exposes the packet-independent `QueryContract` replay adapter.
 No pinned-fan/`Q` synchronization is assumed.  The next computational target
