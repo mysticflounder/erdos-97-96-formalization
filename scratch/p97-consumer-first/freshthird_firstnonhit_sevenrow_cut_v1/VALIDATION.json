@@ -1,0 +1,14 @@
+{
+  "contradiction_controls": {
+    "cvc5": "unsat",
+    "z3": "unsat"
+  },
+  "detector_smoke": {
+    "empty_graph": "PASS",
+    "positive_motif": "PASS"
+  },
+  "independent_iteration_readbacks": 3,
+  "status": "VALID",
+  "terminal_models_motif_free": true,
+  "terminal_solver_readbacks": 6
+}

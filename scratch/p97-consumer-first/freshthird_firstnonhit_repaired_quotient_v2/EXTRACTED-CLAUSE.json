@@ -1,0 +1,10 @@
+{
+  "atom_count": 1,
+  "clause": "C.firstSource.1 \u2208 S.capInteriorByIndex S.oppIndex1",
+  "count": 0,
+  "effect": "recorded only; no equality/NRA/Lean-search follow-up launched",
+  "selection": "smallest source-entitled clause absent from the survivor signature",
+  "source": "CapSourceThirdCanonicalRowWitness; C.firstSource_data.2.1",
+  "source_file": "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceCanonicalSurface.lean",
+  "status": "RETRACTED: no authenticated SAT survivor; historical proposal retained only to explain the invalid pre-validation branch"
+}

@@ -1,0 +1,12 @@
+{
+  "authenticated_nogoods": 0,
+  "errors": [],
+  "records": [],
+  "smoke": {
+    "negative_corrupted_row": true,
+    "pass": true,
+    "positive_exact_pattern": true
+  },
+  "status": "PASS",
+  "validator": "independent clause validator; imports no schema/wave module"
+}

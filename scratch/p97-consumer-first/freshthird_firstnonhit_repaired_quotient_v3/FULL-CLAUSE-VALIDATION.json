@@ -1,0 +1,28 @@
+{
+  "errors": [],
+  "records": [
+    {
+      "case": "retained",
+      "failures": [],
+      "named_labels": 197,
+      "parsed_assertions": 197,
+      "status": "PASS"
+    },
+    {
+      "case": "common",
+      "failures": [],
+      "named_labels": 98,
+      "parsed_assertions": 98,
+      "status": "PASS"
+    },
+    {
+      "case": "common_sameblocker",
+      "failures": [],
+      "named_labels": 457,
+      "parsed_assertions": 457,
+      "status": "PASS"
+    }
+  ],
+  "status": "PASS",
+  "validator": "independent parsed-clause evaluator; imports no wave/schema module"
+}

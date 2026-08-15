@@ -1,0 +1,45 @@
+{
+  "cases": [
+    {
+      "authenticated_nogoods": 0,
+      "case": "retained",
+      "cvc5_pinned_replay": "sat",
+      "four_valued_verdict": "SAT-abstraction",
+      "iterations": 1,
+      "status": "SAT",
+      "terminal_readback": "iterations/retained-00.json",
+      "terminal_smt_sha256": "eff13f7c35b8b19220065568bfc6a3db31b6d40c5e5e168266230c51f8693ef7"
+    },
+    {
+      "authenticated_nogoods": 0,
+      "case": "common",
+      "cvc5_pinned_replay": "sat",
+      "four_valued_verdict": "SAT-abstraction",
+      "iterations": 1,
+      "status": "SAT",
+      "terminal_readback": "iterations/common-00.json",
+      "terminal_smt_sha256": "bb51843ba0ffa4f9858c8a4a563f6f78c66bca4f5e59c0606ccdb25c04a8c117"
+    },
+    {
+      "authenticated_nogoods": 0,
+      "case": "common_sameblocker",
+      "cvc5_pinned_replay": "sat",
+      "four_valued_verdict": "SAT-abstraction",
+      "iterations": 1,
+      "status": "SAT",
+      "terminal_readback": "iterations/common_sameblocker-00.json",
+      "terminal_smt_sha256": "d8629cef13a6574697a0c6f01748f2b060ce9e7ef174d948882a3e5d2076418a"
+    }
+  ],
+  "followups_launched": [],
+  "four_valued_verdict": "SAT-abstraction",
+  "max_authenticated_nogoods": 12,
+  "scope": "unbounded named-role quotient; no ambient carrier enumeration or coverage lift",
+  "state": "TERMINAL",
+  "status": "SAT_MOTIF_FREE_SURVIVOR",
+  "timeouts_escalated": false,
+  "total_authenticated_nogoods": 0,
+  "universal_claim": false,
+  "wave": "freshthird_firstnonhit_repaired_quotient_v3",
+  "workers": 1
+}

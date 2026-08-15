@@ -1,0 +1,7 @@
+{
+  "status": "RETIRED_BEFORE_AUTHENTICATED_REPLAY",
+  "observation": "A preliminary execution used fresh z3.Bool(name) labels and produced SAT readbacks rejected by cvc5; those artifacts are retained only under attempt0-invalid-driver.",
+  "cause": "Z3 4.16 parse_smt2_string creates implication antecedent declarations distinct from newly recreated declarations with the same printed names.",
+  "repair": "The authenticated replay passes each parsed implication antecedent directly to Solver.check(*labels), after adding every parsed assertion.",
+  "not_solver_evidence": true
+}

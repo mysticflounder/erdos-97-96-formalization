@@ -1,0 +1,37 @@
+{
+  "cases": [
+    {
+      "authenticated_nogoods": 0,
+      "case": "retained",
+      "iterations": 1,
+      "oracle_verdict": "SAT-abstraction",
+      "readback": "iterations/retained-00.json",
+      "status": "SAT",
+      "terminal": "motif-free survivor"
+    },
+    {
+      "authenticated_nogoods": 0,
+      "case": "common",
+      "iterations": 1,
+      "oracle_verdict": "SAT-abstraction",
+      "readback": "iterations/common-00.json",
+      "status": "SAT",
+      "terminal": "motif-free survivor"
+    },
+    {
+      "authenticated_nogoods": 0,
+      "case": "common_sameblocker",
+      "iterations": 1,
+      "oracle_verdict": "SAT-abstraction",
+      "readback": "iterations/common_sameblocker-00.json",
+      "status": "SAT",
+      "terminal": "motif-free survivor"
+    }
+  ],
+  "four_valued_verdict": "SAT-abstraction",
+  "max_authenticated_nogoods": 12,
+  "scope": "unbounded named-role quotient; no MAXN; no universal/Lean closure",
+  "status": "SAT_MOTIF_FREE_SURVIVOR",
+  "total_authenticated_nogoods": 0,
+  "wave": "freshthird_firstnonhit_sevenrow_cut_v1"
+}

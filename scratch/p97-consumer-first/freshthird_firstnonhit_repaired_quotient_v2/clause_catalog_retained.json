@@ -1,0 +1,987 @@
+[
+  {
+    "group": "support4",
+    "name": "a0000_support4",
+    "source": "CriticalFourShell.support_card"
+  },
+  {
+    "group": "source_mem",
+    "name": "a0001_source_mem",
+    "source": "CriticalFourShell.q_mem_support"
+  },
+  {
+    "group": "center_off_support",
+    "name": "a0002_center_off_support",
+    "source": "CriticalFourShell.center_not_mem_support"
+  },
+  {
+    "group": "support4",
+    "name": "a0003_support4",
+    "source": "CriticalFourShell.support_card"
+  },
+  {
+    "group": "source_mem",
+    "name": "a0004_source_mem",
+    "source": "CriticalFourShell.q_mem_support"
+  },
+  {
+    "group": "center_off_support",
+    "name": "a0005_center_off_support",
+    "source": "CriticalFourShell.center_not_mem_support"
+  },
+  {
+    "group": "support4",
+    "name": "a0006_support4",
+    "source": "CriticalFourShell.support_card"
+  },
+  {
+    "group": "source_mem",
+    "name": "a0007_source_mem",
+    "source": "CriticalFourShell.q_mem_support"
+  },
+  {
+    "group": "center_off_support",
+    "name": "a0008_center_off_support",
+    "source": "CriticalFourShell.center_not_mem_support"
+  },
+  {
+    "group": "support4",
+    "name": "a0009_support4",
+    "source": "CriticalFourShell.support_card"
+  },
+  {
+    "group": "source_mem",
+    "name": "a0010_source_mem",
+    "source": "CriticalFourShell.q_mem_support"
+  },
+  {
+    "group": "center_off_support",
+    "name": "a0011_center_off_support",
+    "source": "CriticalFourShell.center_not_mem_support"
+  },
+  {
+    "group": "support4",
+    "name": "a0012_support4",
+    "source": "CriticalFourShell.support_card"
+  },
+  {
+    "group": "source_mem",
+    "name": "a0013_source_mem",
+    "source": "CriticalFourShell.q_mem_support"
+  },
+  {
+    "group": "center_off_support",
+    "name": "a0014_center_off_support",
+    "source": "CriticalFourShell.center_not_mem_support"
+  },
+  {
+    "group": "support4",
+    "name": "a0015_support4",
+    "source": "CriticalFourShell.support_card"
+  },
+  {
+    "group": "source_mem",
+    "name": "a0016_source_mem",
+    "source": "CriticalFourShell.q_mem_support"
+  },
+  {
+    "group": "center_off_support",
+    "name": "a0017_center_off_support",
+    "source": "CriticalFourShell.center_not_mem_support"
+  },
+  {
+    "group": "support4",
+    "name": "a0018_support4",
+    "source": "CriticalFourShell.support_card"
+  },
+  {
+    "group": "source_mem",
+    "name": "a0019_source_mem",
+    "source": "CriticalFourShell.q_mem_support"
+  },
+  {
+    "group": "center_off_support",
+    "name": "a0020_center_off_support",
+    "source": "CriticalFourShell.center_not_mem_support"
+  },
+  {
+    "group": "support4",
+    "name": "a0021_support4",
+    "source": "CriticalFourShell.support_card"
+  },
+  {
+    "group": "source_mem",
+    "name": "a0022_source_mem",
+    "source": "CriticalFourShell.q_mem_support"
+  },
+  {
+    "group": "center_off_support",
+    "name": "a0023_center_off_support",
+    "source": "CriticalFourShell.center_not_mem_support"
+  },
+  {
+    "group": "alias_functional",
+    "name": "a0024_alias_functional",
+    "source": "CriticalShellSystem.centerAt proof irrelevance"
+  },
+  {
+    "group": "same_blocker_support",
+    "name": "a0025_same_blocker_support",
+    "source": "selectedSupports_eq_of_actualBlockers_eq"
+  },
+  {
+    "group": "distinct_center_overlap",
+    "name": "a0026_distinct_center_overlap",
+    "source": "SelectedFourClass.inter_card_le_two"
+  },
+  {
+    "group": "alias_functional",
+    "name": "a0027_alias_functional",
+    "source": "CriticalShellSystem.centerAt proof irrelevance"
+  },
+  {
+    "group": "same_blocker_support",
+    "name": "a0028_same_blocker_support",
+    "source": "selectedSupports_eq_of_actualBlockers_eq"
+  },
+  {
+    "group": "distinct_center_overlap",
+    "name": "a0029_distinct_center_overlap",
+    "source": "SelectedFourClass.inter_card_le_two"
+  },
+  {
+    "group": "alias_functional",
+    "name": "a0030_alias_functional",
+    "source": "CriticalShellSystem.centerAt proof irrelevance"
+  },
+  {
+    "group": "same_blocker_support",
+    "name": "a0031_same_blocker_support",
+    "source": "selectedSupports_eq_of_actualBlockers_eq"
+  },
+  {
+    "group": "distinct_center_overlap",
+    "name": "a0032_distinct_center_overlap",
+    "source": "SelectedFourClass.inter_card_le_two"
+  },
+  {
+    "group": "alias_functional",
+    "name": "a0033_alias_functional",
+    "source": "CriticalShellSystem.centerAt proof irrelevance"
+  },
+  {
+    "group": "same_blocker_support",
+    "name": "a0034_same_blocker_support",
+    "source": "selectedSupports_eq_of_actualBlockers_eq"
+  },
+  {
+    "group": "distinct_center_overlap",
+    "name": "a0035_distinct_center_overlap",
+    "source": "SelectedFourClass.inter_card_le_two"
+  },
+  {
+    "group": "alias_functional",
+    "name": "a0036_alias_functional",
+    "source": "CriticalShellSystem.centerAt proof irrelevance"
+  },
+  {
+    "group": "same_blocker_support",
+    "name": "a0037_same_blocker_support",
+    "source": "selectedSupports_eq_of_actualBlockers_eq"
+  },
+  {
+    "group": "distinct_center_overlap",
+    "name": "a0038_distinct_center_overlap",
+    "source": "SelectedFourClass.inter_card_le_two"
+  },
+  {
+    "group": "alias_functional",
+    "name": "a0039_alias_functional",
+    "source": "CriticalShellSystem.centerAt proof irrelevance"
+  },
+  {
+    "group": "same_blocker_support",
+    "name": "a0040_same_blocker_support",
+    "source": "selectedSupports_eq_of_actualBlockers_eq"
+  },
+  {
+    "group": "distinct_center_overlap",
+    "name": "a0041_distinct_center_overlap",
+    "source": "SelectedFourClass.inter_card_le_two"
+  },
+  {
+    "group": "alias_functional",
+    "name": "a0042_alias_functional",
+    "source": "CriticalShellSystem.centerAt proof irrelevance"
+  },
+  {
+    "group": "same_blocker_support",
+    "name": "a0043_same_blocker_support",
+    "source": "selectedSupports_eq_of_actualBlockers_eq"
+  },
+  {
+    "group": "distinct_center_overlap",
+    "name": "a0044_distinct_center_overlap",
+    "source": "SelectedFourClass.inter_card_le_two"
+  },
+  {
+    "group": "alias_functional",
+    "name": "a0045_alias_functional",
+    "source": "CriticalShellSystem.centerAt proof irrelevance"
+  },
+  {
+    "group": "same_blocker_support",
+    "name": "a0046_same_blocker_support",
+    "source": "selectedSupports_eq_of_actualBlockers_eq"
+  },
+  {
+    "group": "distinct_center_overlap",
+    "name": "a0047_distinct_center_overlap",
+    "source": "SelectedFourClass.inter_card_le_two"
+  },
+  {
+    "group": "alias_functional",
+    "name": "a0048_alias_functional",
+    "source": "CriticalShellSystem.centerAt proof irrelevance"
+  },
+  {
+    "group": "same_blocker_support",
+    "name": "a0049_same_blocker_support",
+    "source": "selectedSupports_eq_of_actualBlockers_eq"
+  },
+  {
+    "group": "distinct_center_overlap",
+    "name": "a0050_distinct_center_overlap",
+    "source": "SelectedFourClass.inter_card_le_two"
+  },
+  {
+    "group": "alias_functional",
+    "name": "a0051_alias_functional",
+    "source": "CriticalShellSystem.centerAt proof irrelevance"
+  },
+  {
+    "group": "same_blocker_support",
+    "name": "a0052_same_blocker_support",
+    "source": "selectedSupports_eq_of_actualBlockers_eq"
+  },
+  {
+    "group": "distinct_center_overlap",
+    "name": "a0053_distinct_center_overlap",
+    "source": "SelectedFourClass.inter_card_le_two"
+  },
+  {
+    "group": "alias_functional",
+    "name": "a0054_alias_functional",
+    "source": "CriticalShellSystem.centerAt proof irrelevance"
+  },
+  {
+    "group": "same_blocker_support",
+    "name": "a0055_same_blocker_support",
+    "source": "selectedSupports_eq_of_actualBlockers_eq"
+  },
+  {
+    "group": "distinct_center_overlap",
+    "name": "a0056_distinct_center_overlap",
+    "source": "SelectedFourClass.inter_card_le_two"
+  },
+  {
+    "group": "alias_functional",
+    "name": "a0057_alias_functional",
+    "source": "CriticalShellSystem.centerAt proof irrelevance"
+  },
+  {
+    "group": "same_blocker_support",
+    "name": "a0058_same_blocker_support",
+    "source": "selectedSupports_eq_of_actualBlockers_eq"
+  },
+  {
+    "group": "distinct_center_overlap",
+    "name": "a0059_distinct_center_overlap",
+    "source": "SelectedFourClass.inter_card_le_two"
+  },
+  {
+    "group": "alias_functional",
+    "name": "a0060_alias_functional",
+    "source": "CriticalShellSystem.centerAt proof irrelevance"
+  },
+  {
+    "group": "same_blocker_support",
+    "name": "a0061_same_blocker_support",
+    "source": "selectedSupports_eq_of_actualBlockers_eq"
+  },
+  {
+    "group": "distinct_center_overlap",
+    "name": "a0062_distinct_center_overlap",
+    "source": "SelectedFourClass.inter_card_le_two"
+  },
+  {
+    "group": "alias_functional",
+    "name": "a0063_alias_functional",
+    "source": "CriticalShellSystem.centerAt proof irrelevance"
+  },
+  {
+    "group": "same_blocker_support",
+    "name": "a0064_same_blocker_support",
+    "source": "selectedSupports_eq_of_actualBlockers_eq"
+  },
+  {
+    "group": "distinct_center_overlap",
+    "name": "a0065_distinct_center_overlap",
+    "source": "SelectedFourClass.inter_card_le_two"
+  },
+  {
+    "group": "alias_functional",
+    "name": "a0066_alias_functional",
+    "source": "CriticalShellSystem.centerAt proof irrelevance"
+  },
+  {
+    "group": "same_blocker_support",
+    "name": "a0067_same_blocker_support",
+    "source": "selectedSupports_eq_of_actualBlockers_eq"
+  },
+  {
+    "group": "distinct_center_overlap",
+    "name": "a0068_distinct_center_overlap",
+    "source": "SelectedFourClass.inter_card_le_two"
+  },
+  {
+    "group": "alias_functional",
+    "name": "a0069_alias_functional",
+    "source": "CriticalShellSystem.centerAt proof irrelevance"
+  },
+  {
+    "group": "same_blocker_support",
+    "name": "a0070_same_blocker_support",
+    "source": "selectedSupports_eq_of_actualBlockers_eq"
+  },
+  {
+    "group": "distinct_center_overlap",
+    "name": "a0071_distinct_center_overlap",
+    "source": "SelectedFourClass.inter_card_le_two"
+  },
+  {
+    "group": "alias_functional",
+    "name": "a0072_alias_functional",
+    "source": "CriticalShellSystem.centerAt proof irrelevance"
+  },
+  {
+    "group": "same_blocker_support",
+    "name": "a0073_same_blocker_support",
+    "source": "selectedSupports_eq_of_actualBlockers_eq"
+  },
+  {
+    "group": "distinct_center_overlap",
+    "name": "a0074_distinct_center_overlap",
+    "source": "SelectedFourClass.inter_card_le_two"
+  },
+  {
+    "group": "alias_functional",
+    "name": "a0075_alias_functional",
+    "source": "CriticalShellSystem.centerAt proof irrelevance"
+  },
+  {
+    "group": "same_blocker_support",
+    "name": "a0076_same_blocker_support",
+    "source": "selectedSupports_eq_of_actualBlockers_eq"
+  },
+  {
+    "group": "distinct_center_overlap",
+    "name": "a0077_distinct_center_overlap",
+    "source": "SelectedFourClass.inter_card_le_two"
+  },
+  {
+    "group": "alias_functional",
+    "name": "a0078_alias_functional",
+    "source": "CriticalShellSystem.centerAt proof irrelevance"
+  },
+  {
+    "group": "same_blocker_support",
+    "name": "a0079_same_blocker_support",
+    "source": "selectedSupports_eq_of_actualBlockers_eq"
+  },
+  {
+    "group": "distinct_center_overlap",
+    "name": "a0080_distinct_center_overlap",
+    "source": "SelectedFourClass.inter_card_le_two"
+  },
+  {
+    "group": "alias_functional",
+    "name": "a0081_alias_functional",
+    "source": "CriticalShellSystem.centerAt proof irrelevance"
+  },
+  {
+    "group": "same_blocker_support",
+    "name": "a0082_same_blocker_support",
+    "source": "selectedSupports_eq_of_actualBlockers_eq"
+  },
+  {
+    "group": "distinct_center_overlap",
+    "name": "a0083_distinct_center_overlap",
+    "source": "SelectedFourClass.inter_card_le_two"
+  },
+  {
+    "group": "alias_functional",
+    "name": "a0084_alias_functional",
+    "source": "CriticalShellSystem.centerAt proof irrelevance"
+  },
+  {
+    "group": "same_blocker_support",
+    "name": "a0085_same_blocker_support",
+    "source": "selectedSupports_eq_of_actualBlockers_eq"
+  },
+  {
+    "group": "distinct_center_overlap",
+    "name": "a0086_distinct_center_overlap",
+    "source": "SelectedFourClass.inter_card_le_two"
+  },
+  {
+    "group": "alias_functional",
+    "name": "a0087_alias_functional",
+    "source": "CriticalShellSystem.centerAt proof irrelevance"
+  },
+  {
+    "group": "same_blocker_support",
+    "name": "a0088_same_blocker_support",
+    "source": "selectedSupports_eq_of_actualBlockers_eq"
+  },
+  {
+    "group": "distinct_center_overlap",
+    "name": "a0089_distinct_center_overlap",
+    "source": "SelectedFourClass.inter_card_le_two"
+  },
+  {
+    "group": "alias_functional",
+    "name": "a0090_alias_functional",
+    "source": "CriticalShellSystem.centerAt proof irrelevance"
+  },
+  {
+    "group": "same_blocker_support",
+    "name": "a0091_same_blocker_support",
+    "source": "selectedSupports_eq_of_actualBlockers_eq"
+  },
+  {
+    "group": "distinct_center_overlap",
+    "name": "a0092_distinct_center_overlap",
+    "source": "SelectedFourClass.inter_card_le_two"
+  },
+  {
+    "group": "alias_functional",
+    "name": "a0093_alias_functional",
+    "source": "CriticalShellSystem.centerAt proof irrelevance"
+  },
+  {
+    "group": "same_blocker_support",
+    "name": "a0094_same_blocker_support",
+    "source": "selectedSupports_eq_of_actualBlockers_eq"
+  },
+  {
+    "group": "distinct_center_overlap",
+    "name": "a0095_distinct_center_overlap",
+    "source": "SelectedFourClass.inter_card_le_two"
+  },
+  {
+    "group": "alias_functional",
+    "name": "a0096_alias_functional",
+    "source": "CriticalShellSystem.centerAt proof irrelevance"
+  },
+  {
+    "group": "same_blocker_support",
+    "name": "a0097_same_blocker_support",
+    "source": "selectedSupports_eq_of_actualBlockers_eq"
+  },
+  {
+    "group": "distinct_center_overlap",
+    "name": "a0098_distinct_center_overlap",
+    "source": "SelectedFourClass.inter_card_le_two"
+  },
+  {
+    "group": "alias_functional",
+    "name": "a0099_alias_functional",
+    "source": "CriticalShellSystem.centerAt proof irrelevance"
+  },
+  {
+    "group": "same_blocker_support",
+    "name": "a0100_same_blocker_support",
+    "source": "selectedSupports_eq_of_actualBlockers_eq"
+  },
+  {
+    "group": "distinct_center_overlap",
+    "name": "a0101_distinct_center_overlap",
+    "source": "SelectedFourClass.inter_card_le_two"
+  },
+  {
+    "group": "alias_functional",
+    "name": "a0102_alias_functional",
+    "source": "CriticalShellSystem.centerAt proof irrelevance"
+  },
+  {
+    "group": "same_blocker_support",
+    "name": "a0103_same_blocker_support",
+    "source": "selectedSupports_eq_of_actualBlockers_eq"
+  },
+  {
+    "group": "distinct_center_overlap",
+    "name": "a0104_distinct_center_overlap",
+    "source": "SelectedFourClass.inter_card_le_two"
+  },
+  {
+    "group": "alias_functional",
+    "name": "a0105_alias_functional",
+    "source": "CriticalShellSystem.centerAt proof irrelevance"
+  },
+  {
+    "group": "same_blocker_support",
+    "name": "a0106_same_blocker_support",
+    "source": "selectedSupports_eq_of_actualBlockers_eq"
+  },
+  {
+    "group": "distinct_center_overlap",
+    "name": "a0107_distinct_center_overlap",
+    "source": "SelectedFourClass.inter_card_le_two"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0108_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0109_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0110_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0111_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0112_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0113_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0114_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0115_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0116_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0117_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0118_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0119_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0120_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0121_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0122_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0123_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0124_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0125_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0126_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0127_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0128_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0129_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0130_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0131_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0132_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0133_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0134_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0135_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0136_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0137_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0138_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0139_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0140_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0141_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0142_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0143_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0144_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0145_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0146_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0147_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0148_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0149_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0150_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0151_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0152_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0153_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0154_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0155_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0156_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0157_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0158_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0159_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0160_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0161_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0162_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0163_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "q_support4",
+    "name": "a0164_q_support4",
+    "source": "CriticalFourShell.support_card + support_subset_A"
+  },
+  {
+    "group": "q_support4",
+    "name": "a0165_q_support4",
+    "source": "Q row exact four-support enumeration"
+  },
+  {
+    "group": "q_support4",
+    "name": "a0166_q_support4",
+    "source": "Q row exact four-support enumeration"
+  },
+  {
+    "group": "q_support4",
+    "name": "a0167_q_support4",
+    "source": "Q row exact four-support enumeration"
+  },
+  {
+    "group": "q_support4",
+    "name": "a0168_q_support4",
+    "source": "Q row exact four-support enumeration"
+  },
+  {
+    "group": "q_pair_blocker",
+    "name": "a0169_q_pair_blocker",
+    "source": "FreshThirdBlockerFiber.blockers_eq"
+  },
+  {
+    "group": "c_sources_ne",
+    "name": "a0170_c_sources_ne",
+    "source": "TwoCapSourceThirdCanonicalRowSurface.sources_ne"
+  },
+  {
+    "group": "q_deletion_fan",
+    "name": "a0171_q_deletion_fan",
+    "source": "SourceFaithfulSelectedFourDeletionFan"
+  },
+  {
+    "group": "q_deletion_fan",
+    "name": "a0172_q_deletion_fan",
+    "source": "SourceFaithfulSelectedFourDeletionFan same-center arm"
+  },
+  {
+    "group": "q_deletion_fan",
+    "name": "a0173_q_deletion_fan",
+    "source": "SourceFaithfulSelectedFourDeletionFan"
+  },
+  {
+    "group": "q_deletion_fan",
+    "name": "a0174_q_deletion_fan",
+    "source": "SourceFaithfulSelectedFourDeletionFan same-center arm"
+  },
+  {
+    "group": "q_deletion_fan",
+    "name": "a0175_q_deletion_fan",
+    "source": "SourceFaithfulSelectedFourDeletionFan"
+  },
+  {
+    "group": "q_deletion_fan",
+    "name": "a0176_q_deletion_fan",
+    "source": "SourceFaithfulSelectedFourDeletionFan same-center arm"
+  },
+  {
+    "group": "q_deletion_fan",
+    "name": "a0177_q_deletion_fan",
+    "source": "SourceFaithfulSelectedFourDeletionFan"
+  },
+  {
+    "group": "q_deletion_fan",
+    "name": "a0178_q_deletion_fan",
+    "source": "SourceFaithfulSelectedFourDeletionFan same-center arm"
+  },
+  {
+    "group": "q_boundary",
+    "name": "a0179_q_boundary",
+    "source": "freshThird_qRow_exact_blocker_boundary"
+  },
+  {
+    "group": "repeat_pair",
+    "name": "a0180_repeat_pair",
+    "source": "exists_repeatedBlockerCap_pair_outcome"
+  },
+  {
+    "group": "repeat_pair",
+    "name": "a0181_repeat_pair",
+    "source": "exists_repeatedBlockerCap_pair_outcome"
+  },
+  {
+    "group": "first_nonhit",
+    "name": "a0182_first_nonhit",
+    "source": "FreshThirdCapSourceNonHit"
+  },
+  {
+    "group": "first_nonhit",
+    "name": "a0183_first_nonhit",
+    "source": "FreshThirdCapSourceNonHit.deleted_eq"
+  },
+  {
+    "group": "first_nonhit",
+    "name": "a0184_first_nonhit",
+    "source": "FreshThirdCapSourceNonHit.sameBlocker"
+  },
+  {
+    "group": "first_nonhit",
+    "name": "a0185_first_nonhit",
+    "source": "FreshThirdCapSourceNonHit.sourceRowOmission + center_ne theorem"
+  },
+  {
+    "group": "second_interaction",
+    "name": "a0186_second_interaction",
+    "source": "FreshThirdCapSourceInteraction"
+  },
+  {
+    "group": "second_interaction",
+    "name": "a0187_second_interaction",
+    "source": "FreshThirdCapSourceInteraction.deleted_eq"
+  },
+  {
+    "group": "second_interaction",
+    "name": "a0188_second_interaction",
+    "source": "FreshThirdCapSourceInteraction cap indices"
+  },
+  {
+    "group": "second_interaction",
+    "name": "a0189_second_interaction",
+    "source": "FreshThirdCapSourceInteraction.sameBlocker"
+  },
+  {
+    "group": "second_interaction",
+    "name": "a0190_second_interaction",
+    "source": "FreshThirdCapSourceInteraction.sourceRowOmission + center_ne theorem"
+  },
+  {
+    "group": "second_interaction",
+    "name": "a0191_second_interaction",
+    "source": "FreshThirdCapSourceInteraction.distinctBlockersDifferentCaps"
+  },
+  {
+    "group": "second_interaction",
+    "name": "a0192_second_interaction",
+    "source": "FreshThirdCapSourceInteraction.sameCapWithInternalFiberSource"
+  },
+  {
+    "group": "retained",
+    "name": "a0193_retained",
+    "source": "exists_retainedFirstApex_mutualDeletionPair_threeLocationCases.z_ne_w"
+  },
+  {
+    "group": "retained",
+    "name": "a0194_retained",
+    "source": "exists_retainedFirstApex_mutualDeletionPair_threeLocationCases.centers_ne"
+  },
+  {
+    "group": "retained",
+    "name": "a0195_retained",
+    "source": "mutual deletion survival + cross_deletion_survives_iff_not_mem_selected_support"
+  },
+  {
+    "group": "retained",
+    "name": "a0196_retained",
+    "source": "mutual deletion survival + cross_deletion_survives_iff_not_mem_selected_support"
+  }
+]

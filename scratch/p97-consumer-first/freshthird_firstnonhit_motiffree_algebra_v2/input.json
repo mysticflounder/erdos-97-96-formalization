@@ -1,0 +1,4909 @@
+{
+  "claim_boundary": "UNIT is complex emptiness after a real-sound nondegenerate similarity gauge; NONUNIT is complex nonemptiness only and is not a real/Euclidean witness",
+  "omitted_p97_hypotheses": [
+    "all false membership cells as geometric off-circle disequalities",
+    "support exhaustion and exact critical-four-shell support cardinality",
+    "unnamed carrier points, unnamed selected-support points, and ambient carrier coverage",
+    "all pairwise-distinctness and blockerVertex_ne inequalities except the q0/q1 gauge premise",
+    "positive radii, nonzero squared distances, and real-feasibility conditions",
+    "boundary/cyclic order, convexity, orientation, and Kalmanson/order inequalities",
+    "the predecessor metric matrix and every unselected distance relation",
+    "FirstNonHit constructor tags, deletion-fan, blocker-fiber, repeated-cap, retained, and common-helper clauses",
+    "q_boundary, q_nonrobust, cap-location data, and motif non-embedding as algebraic constraints",
+    "universal ingress, coverage, general-cardinality lift, and any Lean consumer"
+  ],
+  "packets": [
+    {
+      "active_rows": [
+        "q0",
+        "q1",
+        "q2",
+        "q3",
+        "first",
+        "second"
+      ],
+      "case": "common",
+      "gauge": {
+        "equalities": [
+          "x(q0)=0",
+          "y(q0)=0",
+          "x(q1)=1",
+          "y(q1)=0"
+        ],
+        "kind": "real Euclidean nondegenerate similarity gauge",
+        "origin_class_id": "p3",
+        "origin_label": "S_q0",
+        "source_fact": "v_q0 and v_q1 are distinct Q-support carrier roles",
+        "unit_class_id": "p2",
+        "unit_label": "S_q1"
+      },
+      "membership_cells": [
+        {
+          "atom": "M_q0__S_q0",
+          "point_class_value": 7,
+          "point_kind": "source",
+          "point_label": "S_q0",
+          "point_term": "v_q0",
+          "row": "q0",
+          "selected": true
+        },
+        {
+          "atom": "M_q0__S_q1",
+          "point_class_value": 6,
+          "point_kind": "source",
+          "point_label": "S_q1",
+          "point_term": "v_q1",
+          "row": "q0",
+          "selected": true
+        },
+        {
+          "atom": "M_q0__S_q2",
+          "point_class_value": 9,
+          "point_kind": "source",
+          "point_label": "S_q2",
+          "point_term": "v_q2",
+          "row": "q0",
+          "selected": true
+        },
+        {
+          "atom": "M_q0__S_q3",
+          "point_class_value": 8,
+          "point_kind": "source",
+          "point_label": "S_q3",
+          "point_term": "v_q3",
+          "row": "q0",
+          "selected": true
+        },
+        {
+          "atom": "M_q0__S_first",
+          "point_class_value": 19,
+          "point_kind": "source",
+          "point_label": "S_first",
+          "point_term": "v_first",
+          "row": "q0",
+          "selected": false
+        },
+        {
+          "atom": "M_q0__S_second",
+          "point_class_value": 20,
+          "point_kind": "source",
+          "point_label": "S_second",
+          "point_term": "v_second",
+          "row": "q0",
+          "selected": false
+        },
+        {
+          "atom": "M_q0__B_q0",
+          "point_class_value": 0,
+          "point_kind": "blocker",
+          "point_label": "B_q0",
+          "point_term": "b0",
+          "row": "q0",
+          "selected": false
+        },
+        {
+          "atom": "M_q0__B_q1",
+          "point_class_value": 0,
+          "point_kind": "blocker",
+          "point_label": "B_q1",
+          "point_term": "b1",
+          "row": "q0",
+          "selected": false
+        },
+        {
+          "atom": "M_q0__B_q2",
+          "point_class_value": 13,
+          "point_kind": "blocker",
+          "point_label": "B_q2",
+          "point_term": "b2",
+          "row": "q0",
+          "selected": false
+        },
+        {
+          "atom": "M_q0__B_q3",
+          "point_class_value": 14,
+          "point_kind": "blocker",
+          "point_label": "B_q3",
+          "point_term": "b3",
+          "row": "q0",
+          "selected": false
+        },
+        {
+          "atom": "M_q0__B_first",
+          "point_class_value": 5,
+          "point_kind": "blocker",
+          "point_label": "B_first",
+          "point_term": "blk_first",
+          "row": "q0",
+          "selected": false
+        },
+        {
+          "atom": "M_q0__B_second",
+          "point_class_value": 10,
+          "point_kind": "blocker",
+          "point_label": "B_second",
+          "point_term": "blk_second",
+          "row": "q0",
+          "selected": false
+        },
+        {
+          "atom": "M_q1__S_q0",
+          "point_class_value": 7,
+          "point_kind": "source",
+          "point_label": "S_q0",
+          "point_term": "v_q0",
+          "row": "q1",
+          "selected": true
+        },
+        {
+          "atom": "M_q1__S_q1",
+          "point_class_value": 6,
+          "point_kind": "source",
+          "point_label": "S_q1",
+          "point_term": "v_q1",
+          "row": "q1",
+          "selected": true
+        },
+        {
+          "atom": "M_q1__S_q2",
+          "point_class_value": 9,
+          "point_kind": "source",
+          "point_label": "S_q2",
+          "point_term": "v_q2",
+          "row": "q1",
+          "selected": true
+        },
+        {
+          "atom": "M_q1__S_q3",
+          "point_class_value": 8,
+          "point_kind": "source",
+          "point_label": "S_q3",
+          "point_term": "v_q3",
+          "row": "q1",
+          "selected": true
+        },
+        {
+          "atom": "M_q1__S_first",
+          "point_class_value": 19,
+          "point_kind": "source",
+          "point_label": "S_first",
+          "point_term": "v_first",
+          "row": "q1",
+          "selected": false
+        },
+        {
+          "atom": "M_q1__S_second",
+          "point_class_value": 20,
+          "point_kind": "source",
+          "point_label": "S_second",
+          "point_term": "v_second",
+          "row": "q1",
+          "selected": false
+        },
+        {
+          "atom": "M_q1__B_q0",
+          "point_class_value": 0,
+          "point_kind": "blocker",
+          "point_label": "B_q0",
+          "point_term": "b0",
+          "row": "q1",
+          "selected": false
+        },
+        {
+          "atom": "M_q1__B_q1",
+          "point_class_value": 0,
+          "point_kind": "blocker",
+          "point_label": "B_q1",
+          "point_term": "b1",
+          "row": "q1",
+          "selected": false
+        },
+        {
+          "atom": "M_q1__B_q2",
+          "point_class_value": 13,
+          "point_kind": "blocker",
+          "point_label": "B_q2",
+          "point_term": "b2",
+          "row": "q1",
+          "selected": false
+        },
+        {
+          "atom": "M_q1__B_q3",
+          "point_class_value": 14,
+          "point_kind": "blocker",
+          "point_label": "B_q3",
+          "point_term": "b3",
+          "row": "q1",
+          "selected": false
+        },
+        {
+          "atom": "M_q1__B_first",
+          "point_class_value": 5,
+          "point_kind": "blocker",
+          "point_label": "B_first",
+          "point_term": "blk_first",
+          "row": "q1",
+          "selected": false
+        },
+        {
+          "atom": "M_q1__B_second",
+          "point_class_value": 10,
+          "point_kind": "blocker",
+          "point_label": "B_second",
+          "point_term": "blk_second",
+          "row": "q1",
+          "selected": false
+        },
+        {
+          "atom": "M_q2__S_q0",
+          "point_class_value": 7,
+          "point_kind": "source",
+          "point_label": "S_q0",
+          "point_term": "v_q0",
+          "row": "q2",
+          "selected": true
+        },
+        {
+          "atom": "M_q2__S_q1",
+          "point_class_value": 6,
+          "point_kind": "source",
+          "point_label": "S_q1",
+          "point_term": "v_q1",
+          "row": "q2",
+          "selected": false
+        },
+        {
+          "atom": "M_q2__S_q2",
+          "point_class_value": 9,
+          "point_kind": "source",
+          "point_label": "S_q2",
+          "point_term": "v_q2",
+          "row": "q2",
+          "selected": true
+        },
+        {
+          "atom": "M_q2__S_q3",
+          "point_class_value": 8,
+          "point_kind": "source",
+          "point_label": "S_q3",
+          "point_term": "v_q3",
+          "row": "q2",
+          "selected": false
+        },
+        {
+          "atom": "M_q2__S_first",
+          "point_class_value": 19,
+          "point_kind": "source",
+          "point_label": "S_first",
+          "point_term": "v_first",
+          "row": "q2",
+          "selected": false
+        },
+        {
+          "atom": "M_q2__S_second",
+          "point_class_value": 20,
+          "point_kind": "source",
+          "point_label": "S_second",
+          "point_term": "v_second",
+          "row": "q2",
+          "selected": false
+        },
+        {
+          "atom": "M_q2__B_q0",
+          "point_class_value": 0,
+          "point_kind": "blocker",
+          "point_label": "B_q0",
+          "point_term": "b0",
+          "row": "q2",
+          "selected": false
+        },
+        {
+          "atom": "M_q2__B_q1",
+          "point_class_value": 0,
+          "point_kind": "blocker",
+          "point_label": "B_q1",
+          "point_term": "b1",
+          "row": "q2",
+          "selected": false
+        },
+        {
+          "atom": "M_q2__B_q2",
+          "point_class_value": 13,
+          "point_kind": "blocker",
+          "point_label": "B_q2",
+          "point_term": "b2",
+          "row": "q2",
+          "selected": false
+        },
+        {
+          "atom": "M_q2__B_q3",
+          "point_class_value": 14,
+          "point_kind": "blocker",
+          "point_label": "B_q3",
+          "point_term": "b3",
+          "row": "q2",
+          "selected": false
+        },
+        {
+          "atom": "M_q2__B_first",
+          "point_class_value": 5,
+          "point_kind": "blocker",
+          "point_label": "B_first",
+          "point_term": "blk_first",
+          "row": "q2",
+          "selected": false
+        },
+        {
+          "atom": "M_q2__B_second",
+          "point_class_value": 10,
+          "point_kind": "blocker",
+          "point_label": "B_second",
+          "point_term": "blk_second",
+          "row": "q2",
+          "selected": false
+        },
+        {
+          "atom": "M_q3__S_q0",
+          "point_class_value": 7,
+          "point_kind": "source",
+          "point_label": "S_q0",
+          "point_term": "v_q0",
+          "row": "q3",
+          "selected": false
+        },
+        {
+          "atom": "M_q3__S_q1",
+          "point_class_value": 6,
+          "point_kind": "source",
+          "point_label": "S_q1",
+          "point_term": "v_q1",
+          "row": "q3",
+          "selected": true
+        },
+        {
+          "atom": "M_q3__S_q2",
+          "point_class_value": 9,
+          "point_kind": "source",
+          "point_label": "S_q2",
+          "point_term": "v_q2",
+          "row": "q3",
+          "selected": false
+        },
+        {
+          "atom": "M_q3__S_q3",
+          "point_class_value": 8,
+          "point_kind": "source",
+          "point_label": "S_q3",
+          "point_term": "v_q3",
+          "row": "q3",
+          "selected": true
+        },
+        {
+          "atom": "M_q3__S_first",
+          "point_class_value": 19,
+          "point_kind": "source",
+          "point_label": "S_first",
+          "point_term": "v_first",
+          "row": "q3",
+          "selected": false
+        },
+        {
+          "atom": "M_q3__S_second",
+          "point_class_value": 20,
+          "point_kind": "source",
+          "point_label": "S_second",
+          "point_term": "v_second",
+          "row": "q3",
+          "selected": false
+        },
+        {
+          "atom": "M_q3__B_q0",
+          "point_class_value": 0,
+          "point_kind": "blocker",
+          "point_label": "B_q0",
+          "point_term": "b0",
+          "row": "q3",
+          "selected": false
+        },
+        {
+          "atom": "M_q3__B_q1",
+          "point_class_value": 0,
+          "point_kind": "blocker",
+          "point_label": "B_q1",
+          "point_term": "b1",
+          "row": "q3",
+          "selected": false
+        },
+        {
+          "atom": "M_q3__B_q2",
+          "point_class_value": 13,
+          "point_kind": "blocker",
+          "point_label": "B_q2",
+          "point_term": "b2",
+          "row": "q3",
+          "selected": false
+        },
+        {
+          "atom": "M_q3__B_q3",
+          "point_class_value": 14,
+          "point_kind": "blocker",
+          "point_label": "B_q3",
+          "point_term": "b3",
+          "row": "q3",
+          "selected": false
+        },
+        {
+          "atom": "M_q3__B_first",
+          "point_class_value": 5,
+          "point_kind": "blocker",
+          "point_label": "B_first",
+          "point_term": "blk_first",
+          "row": "q3",
+          "selected": false
+        },
+        {
+          "atom": "M_q3__B_second",
+          "point_class_value": 10,
+          "point_kind": "blocker",
+          "point_label": "B_second",
+          "point_term": "blk_second",
+          "row": "q3",
+          "selected": false
+        },
+        {
+          "atom": "M_first__S_q0",
+          "point_class_value": 7,
+          "point_kind": "source",
+          "point_label": "S_q0",
+          "point_term": "v_q0",
+          "row": "first",
+          "selected": false
+        },
+        {
+          "atom": "M_first__S_q1",
+          "point_class_value": 6,
+          "point_kind": "source",
+          "point_label": "S_q1",
+          "point_term": "v_q1",
+          "row": "first",
+          "selected": false
+        },
+        {
+          "atom": "M_first__S_q2",
+          "point_class_value": 9,
+          "point_kind": "source",
+          "point_label": "S_q2",
+          "point_term": "v_q2",
+          "row": "first",
+          "selected": false
+        },
+        {
+          "atom": "M_first__S_q3",
+          "point_class_value": 8,
+          "point_kind": "source",
+          "point_label": "S_q3",
+          "point_term": "v_q3",
+          "row": "first",
+          "selected": true
+        },
+        {
+          "atom": "M_first__S_first",
+          "point_class_value": 19,
+          "point_kind": "source",
+          "point_label": "S_first",
+          "point_term": "v_first",
+          "row": "first",
+          "selected": true
+        },
+        {
+          "atom": "M_first__S_second",
+          "point_class_value": 20,
+          "point_kind": "source",
+          "point_label": "S_second",
+          "point_term": "v_second",
+          "row": "first",
+          "selected": false
+        },
+        {
+          "atom": "M_first__B_q0",
+          "point_class_value": 0,
+          "point_kind": "blocker",
+          "point_label": "B_q0",
+          "point_term": "b0",
+          "row": "first",
+          "selected": false
+        },
+        {
+          "atom": "M_first__B_q1",
+          "point_class_value": 0,
+          "point_kind": "blocker",
+          "point_label": "B_q1",
+          "point_term": "b1",
+          "row": "first",
+          "selected": false
+        },
+        {
+          "atom": "M_first__B_q2",
+          "point_class_value": 13,
+          "point_kind": "blocker",
+          "point_label": "B_q2",
+          "point_term": "b2",
+          "row": "first",
+          "selected": false
+        },
+        {
+          "atom": "M_first__B_q3",
+          "point_class_value": 14,
+          "point_kind": "blocker",
+          "point_label": "B_q3",
+          "point_term": "b3",
+          "row": "first",
+          "selected": false
+        },
+        {
+          "atom": "M_first__B_first",
+          "point_class_value": 5,
+          "point_kind": "blocker",
+          "point_label": "B_first",
+          "point_term": "blk_first",
+          "row": "first",
+          "selected": false
+        },
+        {
+          "atom": "M_first__B_second",
+          "point_class_value": 10,
+          "point_kind": "blocker",
+          "point_label": "B_second",
+          "point_term": "blk_second",
+          "row": "first",
+          "selected": false
+        },
+        {
+          "atom": "M_second__S_q0",
+          "point_class_value": 7,
+          "point_kind": "source",
+          "point_label": "S_q0",
+          "point_term": "v_q0",
+          "row": "second",
+          "selected": false
+        },
+        {
+          "atom": "M_second__S_q1",
+          "point_class_value": 6,
+          "point_kind": "source",
+          "point_label": "S_q1",
+          "point_term": "v_q1",
+          "row": "second",
+          "selected": true
+        },
+        {
+          "atom": "M_second__S_q2",
+          "point_class_value": 9,
+          "point_kind": "source",
+          "point_label": "S_q2",
+          "point_term": "v_q2",
+          "row": "second",
+          "selected": false
+        },
+        {
+          "atom": "M_second__S_q3",
+          "point_class_value": 8,
+          "point_kind": "source",
+          "point_label": "S_q3",
+          "point_term": "v_q3",
+          "row": "second",
+          "selected": false
+        },
+        {
+          "atom": "M_second__S_first",
+          "point_class_value": 19,
+          "point_kind": "source",
+          "point_label": "S_first",
+          "point_term": "v_first",
+          "row": "second",
+          "selected": false
+        },
+        {
+          "atom": "M_second__S_second",
+          "point_class_value": 20,
+          "point_kind": "source",
+          "point_label": "S_second",
+          "point_term": "v_second",
+          "row": "second",
+          "selected": true
+        },
+        {
+          "atom": "M_second__B_q0",
+          "point_class_value": 0,
+          "point_kind": "blocker",
+          "point_label": "B_q0",
+          "point_term": "b0",
+          "row": "second",
+          "selected": false
+        },
+        {
+          "atom": "M_second__B_q1",
+          "point_class_value": 0,
+          "point_kind": "blocker",
+          "point_label": "B_q1",
+          "point_term": "b1",
+          "row": "second",
+          "selected": false
+        },
+        {
+          "atom": "M_second__B_q2",
+          "point_class_value": 13,
+          "point_kind": "blocker",
+          "point_label": "B_q2",
+          "point_term": "b2",
+          "row": "second",
+          "selected": false
+        },
+        {
+          "atom": "M_second__B_q3",
+          "point_class_value": 14,
+          "point_kind": "blocker",
+          "point_label": "B_q3",
+          "point_term": "b3",
+          "row": "second",
+          "selected": false
+        },
+        {
+          "atom": "M_second__B_first",
+          "point_class_value": 5,
+          "point_kind": "blocker",
+          "point_label": "B_first",
+          "point_term": "blk_first",
+          "row": "second",
+          "selected": false
+        },
+        {
+          "atom": "M_second__B_second",
+          "point_class_value": 10,
+          "point_kind": "blocker",
+          "point_label": "B_second",
+          "point_term": "blk_second",
+          "row": "second",
+          "selected": false
+        }
+      ],
+      "point_classes": [
+        {
+          "aliases": [
+            {
+              "kind": "blocker",
+              "label": "B_q0",
+              "term": "b0"
+            },
+            {
+              "kind": "blocker",
+              "label": "B_q1",
+              "term": "b1"
+            }
+          ],
+          "id": "p0",
+          "terminal_equality_class_value": 0
+        },
+        {
+          "aliases": [
+            {
+              "kind": "blocker",
+              "label": "B_first",
+              "term": "blk_first"
+            }
+          ],
+          "id": "p1",
+          "terminal_equality_class_value": 5
+        },
+        {
+          "aliases": [
+            {
+              "kind": "source",
+              "label": "S_q1",
+              "term": "v_q1"
+            }
+          ],
+          "id": "p2",
+          "terminal_equality_class_value": 6
+        },
+        {
+          "aliases": [
+            {
+              "kind": "source",
+              "label": "S_q0",
+              "term": "v_q0"
+            }
+          ],
+          "id": "p3",
+          "terminal_equality_class_value": 7
+        },
+        {
+          "aliases": [
+            {
+              "kind": "source",
+              "label": "S_q3",
+              "term": "v_q3"
+            }
+          ],
+          "id": "p4",
+          "terminal_equality_class_value": 8
+        },
+        {
+          "aliases": [
+            {
+              "kind": "source",
+              "label": "S_q2",
+              "term": "v_q2"
+            }
+          ],
+          "id": "p5",
+          "terminal_equality_class_value": 9
+        },
+        {
+          "aliases": [
+            {
+              "kind": "blocker",
+              "label": "B_second",
+              "term": "blk_second"
+            }
+          ],
+          "id": "p6",
+          "terminal_equality_class_value": 10
+        },
+        {
+          "aliases": [
+            {
+              "kind": "blocker",
+              "label": "B_q2",
+              "term": "b2"
+            }
+          ],
+          "id": "p7",
+          "terminal_equality_class_value": 13
+        },
+        {
+          "aliases": [
+            {
+              "kind": "blocker",
+              "label": "B_q3",
+              "term": "b3"
+            }
+          ],
+          "id": "p8",
+          "terminal_equality_class_value": 14
+        },
+        {
+          "aliases": [
+            {
+              "kind": "source",
+              "label": "S_first",
+              "term": "v_first"
+            }
+          ],
+          "id": "p9",
+          "terminal_equality_class_value": 19
+        },
+        {
+          "aliases": [
+            {
+              "kind": "source",
+              "label": "S_second",
+              "term": "v_second"
+            }
+          ],
+          "id": "p10",
+          "terminal_equality_class_value": 20
+        }
+      ],
+      "rows": [
+        {
+          "center_class_id": "p0",
+          "center_class_value": 0,
+          "center_term": "b0",
+          "row_equality_count": 3,
+          "row_label": "q0",
+          "selected_class_ids": [
+            "p2",
+            "p3",
+            "p4",
+            "p5"
+          ],
+          "selected_class_values": [
+            6,
+            7,
+            8,
+            9
+          ],
+          "selected_point_labels": [
+            "S_q0",
+            "S_q1",
+            "S_q2",
+            "S_q3"
+          ],
+          "selected_unique_count": 4,
+          "source_class_id": "p3",
+          "source_class_value": 7,
+          "source_term": "v_q0"
+        },
+        {
+          "center_class_id": "p0",
+          "center_class_value": 0,
+          "center_term": "b1",
+          "row_equality_count": 3,
+          "row_label": "q1",
+          "selected_class_ids": [
+            "p2",
+            "p3",
+            "p4",
+            "p5"
+          ],
+          "selected_class_values": [
+            6,
+            7,
+            8,
+            9
+          ],
+          "selected_point_labels": [
+            "S_q0",
+            "S_q1",
+            "S_q2",
+            "S_q3"
+          ],
+          "selected_unique_count": 4,
+          "source_class_id": "p2",
+          "source_class_value": 6,
+          "source_term": "v_q1"
+        },
+        {
+          "center_class_id": "p7",
+          "center_class_value": 13,
+          "center_term": "b2",
+          "row_equality_count": 1,
+          "row_label": "q2",
+          "selected_class_ids": [
+            "p3",
+            "p5"
+          ],
+          "selected_class_values": [
+            7,
+            9
+          ],
+          "selected_point_labels": [
+            "S_q0",
+            "S_q2"
+          ],
+          "selected_unique_count": 2,
+          "source_class_id": "p5",
+          "source_class_value": 9,
+          "source_term": "v_q2"
+        },
+        {
+          "center_class_id": "p8",
+          "center_class_value": 14,
+          "center_term": "b3",
+          "row_equality_count": 1,
+          "row_label": "q3",
+          "selected_class_ids": [
+            "p2",
+            "p4"
+          ],
+          "selected_class_values": [
+            6,
+            8
+          ],
+          "selected_point_labels": [
+            "S_q1",
+            "S_q3"
+          ],
+          "selected_unique_count": 2,
+          "source_class_id": "p4",
+          "source_class_value": 8,
+          "source_term": "v_q3"
+        },
+        {
+          "center_class_id": "p1",
+          "center_class_value": 5,
+          "center_term": "blk_first",
+          "row_equality_count": 1,
+          "row_label": "first",
+          "selected_class_ids": [
+            "p4",
+            "p9"
+          ],
+          "selected_class_values": [
+            8,
+            19
+          ],
+          "selected_point_labels": [
+            "S_q3",
+            "S_first"
+          ],
+          "selected_unique_count": 2,
+          "source_class_id": "p9",
+          "source_class_value": 19,
+          "source_term": "v_first"
+        },
+        {
+          "center_class_id": "p6",
+          "center_class_value": 10,
+          "center_term": "blk_second",
+          "row_equality_count": 1,
+          "row_label": "second",
+          "selected_class_ids": [
+            "p2",
+            "p10"
+          ],
+          "selected_class_values": [
+            6,
+            20
+          ],
+          "selected_point_labels": [
+            "S_q1",
+            "S_second"
+          ],
+          "selected_unique_count": 2,
+          "source_class_id": "p10",
+          "source_class_value": 20,
+          "source_term": "v_second"
+        }
+      ],
+      "source_packet": {
+        "motif_embedding": null,
+        "path": "scratch/p97-consumer-first/freshthird_firstnonhit_sevenrow_cut_v1/iterations/common-00.json",
+        "sha256": "7af568fb086c0974cae93ac6f0ad425c9964258c6fa5661f08f9766504610dfa",
+        "terminal_status": "sat"
+      },
+      "table_validation": {
+        "cartesian_cell_count": 72,
+        "expected_cartesian_cell_count": 72,
+        "extensional_center_point_pairs": 55,
+        "own_blocker_unselected_all_rows": true,
+        "own_source_selected_all_rows": true
+      }
+    },
+    {
+      "active_rows": [
+        "q0",
+        "q1",
+        "q2",
+        "q3",
+        "first",
+        "second",
+        "w0",
+        "w1",
+        "w2",
+        "w3"
+      ],
+      "case": "common_sameblocker",
+      "gauge": {
+        "equalities": [
+          "x(q0)=0",
+          "y(q0)=0",
+          "x(q1)=1",
+          "y(q1)=0"
+        ],
+        "kind": "real Euclidean nondegenerate similarity gauge",
+        "origin_class_id": "p3",
+        "origin_label": "S_q0",
+        "source_fact": "v_q0 and v_q1 are distinct Q-support carrier roles",
+        "unit_class_id": "p4",
+        "unit_label": "S_q1"
+      },
+      "membership_cells": [
+        {
+          "atom": "M_q0__S_q0",
+          "point_class_value": 7,
+          "point_kind": "source",
+          "point_label": "S_q0",
+          "point_term": "v_q0",
+          "row": "q0",
+          "selected": true
+        },
+        {
+          "atom": "M_q0__S_q1",
+          "point_class_value": 8,
+          "point_kind": "source",
+          "point_label": "S_q1",
+          "point_term": "v_q1",
+          "row": "q0",
+          "selected": true
+        },
+        {
+          "atom": "M_q0__S_q2",
+          "point_class_value": 6,
+          "point_kind": "source",
+          "point_label": "S_q2",
+          "point_term": "v_q2",
+          "row": "q0",
+          "selected": true
+        },
+        {
+          "atom": "M_q0__S_q3",
+          "point_class_value": 5,
+          "point_kind": "source",
+          "point_label": "S_q3",
+          "point_term": "v_q3",
+          "row": "q0",
+          "selected": true
+        },
+        {
+          "atom": "M_q0__S_first",
+          "point_class_value": 23,
+          "point_kind": "source",
+          "point_label": "S_first",
+          "point_term": "v_first",
+          "row": "q0",
+          "selected": true
+        },
+        {
+          "atom": "M_q0__S_second",
+          "point_class_value": 24,
+          "point_kind": "source",
+          "point_label": "S_second",
+          "point_term": "v_second",
+          "row": "q0",
+          "selected": true
+        },
+        {
+          "atom": "M_q0__S_w0",
+          "point_class_value": 19,
+          "point_kind": "source",
+          "point_label": "S_w0",
+          "point_term": "v_w0",
+          "row": "q0",
+          "selected": false
+        },
+        {
+          "atom": "M_q0__S_w1",
+          "point_class_value": 20,
+          "point_kind": "source",
+          "point_label": "S_w1",
+          "point_term": "v_w1",
+          "row": "q0",
+          "selected": false
+        },
+        {
+          "atom": "M_q0__S_w2",
+          "point_class_value": 21,
+          "point_kind": "source",
+          "point_label": "S_w2",
+          "point_term": "v_w2",
+          "row": "q0",
+          "selected": false
+        },
+        {
+          "atom": "M_q0__S_w3",
+          "point_class_value": 22,
+          "point_kind": "source",
+          "point_label": "S_w3",
+          "point_term": "v_w3",
+          "row": "q0",
+          "selected": false
+        },
+        {
+          "atom": "M_q0__B_q0",
+          "point_class_value": 0,
+          "point_kind": "blocker",
+          "point_label": "B_q0",
+          "point_term": "b0",
+          "row": "q0",
+          "selected": false
+        },
+        {
+          "atom": "M_q0__B_q1",
+          "point_class_value": 0,
+          "point_kind": "blocker",
+          "point_label": "B_q1",
+          "point_term": "b1",
+          "row": "q0",
+          "selected": false
+        },
+        {
+          "atom": "M_q0__B_q2",
+          "point_class_value": 0,
+          "point_kind": "blocker",
+          "point_label": "B_q2",
+          "point_term": "b2",
+          "row": "q0",
+          "selected": false
+        },
+        {
+          "atom": "M_q0__B_q3",
+          "point_class_value": 9,
+          "point_kind": "blocker",
+          "point_label": "B_q3",
+          "point_term": "b3",
+          "row": "q0",
+          "selected": false
+        },
+        {
+          "atom": "M_q0__B_first",
+          "point_class_value": 0,
+          "point_kind": "blocker",
+          "point_label": "B_first",
+          "point_term": "blk_first",
+          "row": "q0",
+          "selected": false
+        },
+        {
+          "atom": "M_q0__B_second",
+          "point_class_value": 0,
+          "point_kind": "blocker",
+          "point_label": "B_second",
+          "point_term": "blk_second",
+          "row": "q0",
+          "selected": false
+        },
+        {
+          "atom": "M_q0__B_w0",
+          "point_class_value": 15,
+          "point_kind": "blocker",
+          "point_label": "B_w0",
+          "point_term": "blk_w0",
+          "row": "q0",
+          "selected": false
+        },
+        {
+          "atom": "M_q0__B_w1",
+          "point_class_value": 16,
+          "point_kind": "blocker",
+          "point_label": "B_w1",
+          "point_term": "blk_w1",
+          "row": "q0",
+          "selected": false
+        },
+        {
+          "atom": "M_q0__B_w2",
+          "point_class_value": 17,
+          "point_kind": "blocker",
+          "point_label": "B_w2",
+          "point_term": "blk_w2",
+          "row": "q0",
+          "selected": false
+        },
+        {
+          "atom": "M_q0__B_w3",
+          "point_class_value": 18,
+          "point_kind": "blocker",
+          "point_label": "B_w3",
+          "point_term": "blk_w3",
+          "row": "q0",
+          "selected": false
+        },
+        {
+          "atom": "M_q1__S_q0",
+          "point_class_value": 7,
+          "point_kind": "source",
+          "point_label": "S_q0",
+          "point_term": "v_q0",
+          "row": "q1",
+          "selected": true
+        },
+        {
+          "atom": "M_q1__S_q1",
+          "point_class_value": 8,
+          "point_kind": "source",
+          "point_label": "S_q1",
+          "point_term": "v_q1",
+          "row": "q1",
+          "selected": true
+        },
+        {
+          "atom": "M_q1__S_q2",
+          "point_class_value": 6,
+          "point_kind": "source",
+          "point_label": "S_q2",
+          "point_term": "v_q2",
+          "row": "q1",
+          "selected": true
+        },
+        {
+          "atom": "M_q1__S_q3",
+          "point_class_value": 5,
+          "point_kind": "source",
+          "point_label": "S_q3",
+          "point_term": "v_q3",
+          "row": "q1",
+          "selected": true
+        },
+        {
+          "atom": "M_q1__S_first",
+          "point_class_value": 23,
+          "point_kind": "source",
+          "point_label": "S_first",
+          "point_term": "v_first",
+          "row": "q1",
+          "selected": true
+        },
+        {
+          "atom": "M_q1__S_second",
+          "point_class_value": 24,
+          "point_kind": "source",
+          "point_label": "S_second",
+          "point_term": "v_second",
+          "row": "q1",
+          "selected": true
+        },
+        {
+          "atom": "M_q1__S_w0",
+          "point_class_value": 19,
+          "point_kind": "source",
+          "point_label": "S_w0",
+          "point_term": "v_w0",
+          "row": "q1",
+          "selected": false
+        },
+        {
+          "atom": "M_q1__S_w1",
+          "point_class_value": 20,
+          "point_kind": "source",
+          "point_label": "S_w1",
+          "point_term": "v_w1",
+          "row": "q1",
+          "selected": false
+        },
+        {
+          "atom": "M_q1__S_w2",
+          "point_class_value": 21,
+          "point_kind": "source",
+          "point_label": "S_w2",
+          "point_term": "v_w2",
+          "row": "q1",
+          "selected": false
+        },
+        {
+          "atom": "M_q1__S_w3",
+          "point_class_value": 22,
+          "point_kind": "source",
+          "point_label": "S_w3",
+          "point_term": "v_w3",
+          "row": "q1",
+          "selected": false
+        },
+        {
+          "atom": "M_q1__B_q0",
+          "point_class_value": 0,
+          "point_kind": "blocker",
+          "point_label": "B_q0",
+          "point_term": "b0",
+          "row": "q1",
+          "selected": false
+        },
+        {
+          "atom": "M_q1__B_q1",
+          "point_class_value": 0,
+          "point_kind": "blocker",
+          "point_label": "B_q1",
+          "point_term": "b1",
+          "row": "q1",
+          "selected": false
+        },
+        {
+          "atom": "M_q1__B_q2",
+          "point_class_value": 0,
+          "point_kind": "blocker",
+          "point_label": "B_q2",
+          "point_term": "b2",
+          "row": "q1",
+          "selected": false
+        },
+        {
+          "atom": "M_q1__B_q3",
+          "point_class_value": 9,
+          "point_kind": "blocker",
+          "point_label": "B_q3",
+          "point_term": "b3",
+          "row": "q1",
+          "selected": false
+        },
+        {
+          "atom": "M_q1__B_first",
+          "point_class_value": 0,
+          "point_kind": "blocker",
+          "point_label": "B_first",
+          "point_term": "blk_first",
+          "row": "q1",
+          "selected": false
+        },
+        {
+          "atom": "M_q1__B_second",
+          "point_class_value": 0,
+          "point_kind": "blocker",
+          "point_label": "B_second",
+          "point_term": "blk_second",
+          "row": "q1",
+          "selected": false
+        },
+        {
+          "atom": "M_q1__B_w0",
+          "point_class_value": 15,
+          "point_kind": "blocker",
+          "point_label": "B_w0",
+          "point_term": "blk_w0",
+          "row": "q1",
+          "selected": false
+        },
+        {
+          "atom": "M_q1__B_w1",
+          "point_class_value": 16,
+          "point_kind": "blocker",
+          "point_label": "B_w1",
+          "point_term": "blk_w1",
+          "row": "q1",
+          "selected": false
+        },
+        {
+          "atom": "M_q1__B_w2",
+          "point_class_value": 17,
+          "point_kind": "blocker",
+          "point_label": "B_w2",
+          "point_term": "blk_w2",
+          "row": "q1",
+          "selected": false
+        },
+        {
+          "atom": "M_q1__B_w3",
+          "point_class_value": 18,
+          "point_kind": "blocker",
+          "point_label": "B_w3",
+          "point_term": "blk_w3",
+          "row": "q1",
+          "selected": false
+        },
+        {
+          "atom": "M_q2__S_q0",
+          "point_class_value": 7,
+          "point_kind": "source",
+          "point_label": "S_q0",
+          "point_term": "v_q0",
+          "row": "q2",
+          "selected": true
+        },
+        {
+          "atom": "M_q2__S_q1",
+          "point_class_value": 8,
+          "point_kind": "source",
+          "point_label": "S_q1",
+          "point_term": "v_q1",
+          "row": "q2",
+          "selected": true
+        },
+        {
+          "atom": "M_q2__S_q2",
+          "point_class_value": 6,
+          "point_kind": "source",
+          "point_label": "S_q2",
+          "point_term": "v_q2",
+          "row": "q2",
+          "selected": true
+        },
+        {
+          "atom": "M_q2__S_q3",
+          "point_class_value": 5,
+          "point_kind": "source",
+          "point_label": "S_q3",
+          "point_term": "v_q3",
+          "row": "q2",
+          "selected": true
+        },
+        {
+          "atom": "M_q2__S_first",
+          "point_class_value": 23,
+          "point_kind": "source",
+          "point_label": "S_first",
+          "point_term": "v_first",
+          "row": "q2",
+          "selected": true
+        },
+        {
+          "atom": "M_q2__S_second",
+          "point_class_value": 24,
+          "point_kind": "source",
+          "point_label": "S_second",
+          "point_term": "v_second",
+          "row": "q2",
+          "selected": true
+        },
+        {
+          "atom": "M_q2__S_w0",
+          "point_class_value": 19,
+          "point_kind": "source",
+          "point_label": "S_w0",
+          "point_term": "v_w0",
+          "row": "q2",
+          "selected": false
+        },
+        {
+          "atom": "M_q2__S_w1",
+          "point_class_value": 20,
+          "point_kind": "source",
+          "point_label": "S_w1",
+          "point_term": "v_w1",
+          "row": "q2",
+          "selected": false
+        },
+        {
+          "atom": "M_q2__S_w2",
+          "point_class_value": 21,
+          "point_kind": "source",
+          "point_label": "S_w2",
+          "point_term": "v_w2",
+          "row": "q2",
+          "selected": false
+        },
+        {
+          "atom": "M_q2__S_w3",
+          "point_class_value": 22,
+          "point_kind": "source",
+          "point_label": "S_w3",
+          "point_term": "v_w3",
+          "row": "q2",
+          "selected": false
+        },
+        {
+          "atom": "M_q2__B_q0",
+          "point_class_value": 0,
+          "point_kind": "blocker",
+          "point_label": "B_q0",
+          "point_term": "b0",
+          "row": "q2",
+          "selected": false
+        },
+        {
+          "atom": "M_q2__B_q1",
+          "point_class_value": 0,
+          "point_kind": "blocker",
+          "point_label": "B_q1",
+          "point_term": "b1",
+          "row": "q2",
+          "selected": false
+        },
+        {
+          "atom": "M_q2__B_q2",
+          "point_class_value": 0,
+          "point_kind": "blocker",
+          "point_label": "B_q2",
+          "point_term": "b2",
+          "row": "q2",
+          "selected": false
+        },
+        {
+          "atom": "M_q2__B_q3",
+          "point_class_value": 9,
+          "point_kind": "blocker",
+          "point_label": "B_q3",
+          "point_term": "b3",
+          "row": "q2",
+          "selected": false
+        },
+        {
+          "atom": "M_q2__B_first",
+          "point_class_value": 0,
+          "point_kind": "blocker",
+          "point_label": "B_first",
+          "point_term": "blk_first",
+          "row": "q2",
+          "selected": false
+        },
+        {
+          "atom": "M_q2__B_second",
+          "point_class_value": 0,
+          "point_kind": "blocker",
+          "point_label": "B_second",
+          "point_term": "blk_second",
+          "row": "q2",
+          "selected": false
+        },
+        {
+          "atom": "M_q2__B_w0",
+          "point_class_value": 15,
+          "point_kind": "blocker",
+          "point_label": "B_w0",
+          "point_term": "blk_w0",
+          "row": "q2",
+          "selected": false
+        },
+        {
+          "atom": "M_q2__B_w1",
+          "point_class_value": 16,
+          "point_kind": "blocker",
+          "point_label": "B_w1",
+          "point_term": "blk_w1",
+          "row": "q2",
+          "selected": false
+        },
+        {
+          "atom": "M_q2__B_w2",
+          "point_class_value": 17,
+          "point_kind": "blocker",
+          "point_label": "B_w2",
+          "point_term": "blk_w2",
+          "row": "q2",
+          "selected": false
+        },
+        {
+          "atom": "M_q2__B_w3",
+          "point_class_value": 18,
+          "point_kind": "blocker",
+          "point_label": "B_w3",
+          "point_term": "blk_w3",
+          "row": "q2",
+          "selected": false
+        },
+        {
+          "atom": "M_q3__S_q0",
+          "point_class_value": 7,
+          "point_kind": "source",
+          "point_label": "S_q0",
+          "point_term": "v_q0",
+          "row": "q3",
+          "selected": false
+        },
+        {
+          "atom": "M_q3__S_q1",
+          "point_class_value": 8,
+          "point_kind": "source",
+          "point_label": "S_q1",
+          "point_term": "v_q1",
+          "row": "q3",
+          "selected": false
+        },
+        {
+          "atom": "M_q3__S_q2",
+          "point_class_value": 6,
+          "point_kind": "source",
+          "point_label": "S_q2",
+          "point_term": "v_q2",
+          "row": "q3",
+          "selected": false
+        },
+        {
+          "atom": "M_q3__S_q3",
+          "point_class_value": 5,
+          "point_kind": "source",
+          "point_label": "S_q3",
+          "point_term": "v_q3",
+          "row": "q3",
+          "selected": true
+        },
+        {
+          "atom": "M_q3__S_first",
+          "point_class_value": 23,
+          "point_kind": "source",
+          "point_label": "S_first",
+          "point_term": "v_first",
+          "row": "q3",
+          "selected": false
+        },
+        {
+          "atom": "M_q3__S_second",
+          "point_class_value": 24,
+          "point_kind": "source",
+          "point_label": "S_second",
+          "point_term": "v_second",
+          "row": "q3",
+          "selected": false
+        },
+        {
+          "atom": "M_q3__S_w0",
+          "point_class_value": 19,
+          "point_kind": "source",
+          "point_label": "S_w0",
+          "point_term": "v_w0",
+          "row": "q3",
+          "selected": false
+        },
+        {
+          "atom": "M_q3__S_w1",
+          "point_class_value": 20,
+          "point_kind": "source",
+          "point_label": "S_w1",
+          "point_term": "v_w1",
+          "row": "q3",
+          "selected": false
+        },
+        {
+          "atom": "M_q3__S_w2",
+          "point_class_value": 21,
+          "point_kind": "source",
+          "point_label": "S_w2",
+          "point_term": "v_w2",
+          "row": "q3",
+          "selected": false
+        },
+        {
+          "atom": "M_q3__S_w3",
+          "point_class_value": 22,
+          "point_kind": "source",
+          "point_label": "S_w3",
+          "point_term": "v_w3",
+          "row": "q3",
+          "selected": false
+        },
+        {
+          "atom": "M_q3__B_q0",
+          "point_class_value": 0,
+          "point_kind": "blocker",
+          "point_label": "B_q0",
+          "point_term": "b0",
+          "row": "q3",
+          "selected": false
+        },
+        {
+          "atom": "M_q3__B_q1",
+          "point_class_value": 0,
+          "point_kind": "blocker",
+          "point_label": "B_q1",
+          "point_term": "b1",
+          "row": "q3",
+          "selected": false
+        },
+        {
+          "atom": "M_q3__B_q2",
+          "point_class_value": 0,
+          "point_kind": "blocker",
+          "point_label": "B_q2",
+          "point_term": "b2",
+          "row": "q3",
+          "selected": false
+        },
+        {
+          "atom": "M_q3__B_q3",
+          "point_class_value": 9,
+          "point_kind": "blocker",
+          "point_label": "B_q3",
+          "point_term": "b3",
+          "row": "q3",
+          "selected": false
+        },
+        {
+          "atom": "M_q3__B_first",
+          "point_class_value": 0,
+          "point_kind": "blocker",
+          "point_label": "B_first",
+          "point_term": "blk_first",
+          "row": "q3",
+          "selected": false
+        },
+        {
+          "atom": "M_q3__B_second",
+          "point_class_value": 0,
+          "point_kind": "blocker",
+          "point_label": "B_second",
+          "point_term": "blk_second",
+          "row": "q3",
+          "selected": false
+        },
+        {
+          "atom": "M_q3__B_w0",
+          "point_class_value": 15,
+          "point_kind": "blocker",
+          "point_label": "B_w0",
+          "point_term": "blk_w0",
+          "row": "q3",
+          "selected": false
+        },
+        {
+          "atom": "M_q3__B_w1",
+          "point_class_value": 16,
+          "point_kind": "blocker",
+          "point_label": "B_w1",
+          "point_term": "blk_w1",
+          "row": "q3",
+          "selected": false
+        },
+        {
+          "atom": "M_q3__B_w2",
+          "point_class_value": 17,
+          "point_kind": "blocker",
+          "point_label": "B_w2",
+          "point_term": "blk_w2",
+          "row": "q3",
+          "selected": false
+        },
+        {
+          "atom": "M_q3__B_w3",
+          "point_class_value": 18,
+          "point_kind": "blocker",
+          "point_label": "B_w3",
+          "point_term": "blk_w3",
+          "row": "q3",
+          "selected": false
+        },
+        {
+          "atom": "M_first__S_q0",
+          "point_class_value": 7,
+          "point_kind": "source",
+          "point_label": "S_q0",
+          "point_term": "v_q0",
+          "row": "first",
+          "selected": true
+        },
+        {
+          "atom": "M_first__S_q1",
+          "point_class_value": 8,
+          "point_kind": "source",
+          "point_label": "S_q1",
+          "point_term": "v_q1",
+          "row": "first",
+          "selected": true
+        },
+        {
+          "atom": "M_first__S_q2",
+          "point_class_value": 6,
+          "point_kind": "source",
+          "point_label": "S_q2",
+          "point_term": "v_q2",
+          "row": "first",
+          "selected": true
+        },
+        {
+          "atom": "M_first__S_q3",
+          "point_class_value": 5,
+          "point_kind": "source",
+          "point_label": "S_q3",
+          "point_term": "v_q3",
+          "row": "first",
+          "selected": true
+        },
+        {
+          "atom": "M_first__S_first",
+          "point_class_value": 23,
+          "point_kind": "source",
+          "point_label": "S_first",
+          "point_term": "v_first",
+          "row": "first",
+          "selected": true
+        },
+        {
+          "atom": "M_first__S_second",
+          "point_class_value": 24,
+          "point_kind": "source",
+          "point_label": "S_second",
+          "point_term": "v_second",
+          "row": "first",
+          "selected": true
+        },
+        {
+          "atom": "M_first__S_w0",
+          "point_class_value": 19,
+          "point_kind": "source",
+          "point_label": "S_w0",
+          "point_term": "v_w0",
+          "row": "first",
+          "selected": false
+        },
+        {
+          "atom": "M_first__S_w1",
+          "point_class_value": 20,
+          "point_kind": "source",
+          "point_label": "S_w1",
+          "point_term": "v_w1",
+          "row": "first",
+          "selected": false
+        },
+        {
+          "atom": "M_first__S_w2",
+          "point_class_value": 21,
+          "point_kind": "source",
+          "point_label": "S_w2",
+          "point_term": "v_w2",
+          "row": "first",
+          "selected": false
+        },
+        {
+          "atom": "M_first__S_w3",
+          "point_class_value": 22,
+          "point_kind": "source",
+          "point_label": "S_w3",
+          "point_term": "v_w3",
+          "row": "first",
+          "selected": false
+        },
+        {
+          "atom": "M_first__B_q0",
+          "point_class_value": 0,
+          "point_kind": "blocker",
+          "point_label": "B_q0",
+          "point_term": "b0",
+          "row": "first",
+          "selected": false
+        },
+        {
+          "atom": "M_first__B_q1",
+          "point_class_value": 0,
+          "point_kind": "blocker",
+          "point_label": "B_q1",
+          "point_term": "b1",
+          "row": "first",
+          "selected": false
+        },
+        {
+          "atom": "M_first__B_q2",
+          "point_class_value": 0,
+          "point_kind": "blocker",
+          "point_label": "B_q2",
+          "point_term": "b2",
+          "row": "first",
+          "selected": false
+        },
+        {
+          "atom": "M_first__B_q3",
+          "point_class_value": 9,
+          "point_kind": "blocker",
+          "point_label": "B_q3",
+          "point_term": "b3",
+          "row": "first",
+          "selected": false
+        },
+        {
+          "atom": "M_first__B_first",
+          "point_class_value": 0,
+          "point_kind": "blocker",
+          "point_label": "B_first",
+          "point_term": "blk_first",
+          "row": "first",
+          "selected": false
+        },
+        {
+          "atom": "M_first__B_second",
+          "point_class_value": 0,
+          "point_kind": "blocker",
+          "point_label": "B_second",
+          "point_term": "blk_second",
+          "row": "first",
+          "selected": false
+        },
+        {
+          "atom": "M_first__B_w0",
+          "point_class_value": 15,
+          "point_kind": "blocker",
+          "point_label": "B_w0",
+          "point_term": "blk_w0",
+          "row": "first",
+          "selected": false
+        },
+        {
+          "atom": "M_first__B_w1",
+          "point_class_value": 16,
+          "point_kind": "blocker",
+          "point_label": "B_w1",
+          "point_term": "blk_w1",
+          "row": "first",
+          "selected": false
+        },
+        {
+          "atom": "M_first__B_w2",
+          "point_class_value": 17,
+          "point_kind": "blocker",
+          "point_label": "B_w2",
+          "point_term": "blk_w2",
+          "row": "first",
+          "selected": false
+        },
+        {
+          "atom": "M_first__B_w3",
+          "point_class_value": 18,
+          "point_kind": "blocker",
+          "point_label": "B_w3",
+          "point_term": "blk_w3",
+          "row": "first",
+          "selected": false
+        },
+        {
+          "atom": "M_second__S_q0",
+          "point_class_value": 7,
+          "point_kind": "source",
+          "point_label": "S_q0",
+          "point_term": "v_q0",
+          "row": "second",
+          "selected": true
+        },
+        {
+          "atom": "M_second__S_q1",
+          "point_class_value": 8,
+          "point_kind": "source",
+          "point_label": "S_q1",
+          "point_term": "v_q1",
+          "row": "second",
+          "selected": true
+        },
+        {
+          "atom": "M_second__S_q2",
+          "point_class_value": 6,
+          "point_kind": "source",
+          "point_label": "S_q2",
+          "point_term": "v_q2",
+          "row": "second",
+          "selected": true
+        },
+        {
+          "atom": "M_second__S_q3",
+          "point_class_value": 5,
+          "point_kind": "source",
+          "point_label": "S_q3",
+          "point_term": "v_q3",
+          "row": "second",
+          "selected": true
+        },
+        {
+          "atom": "M_second__S_first",
+          "point_class_value": 23,
+          "point_kind": "source",
+          "point_label": "S_first",
+          "point_term": "v_first",
+          "row": "second",
+          "selected": true
+        },
+        {
+          "atom": "M_second__S_second",
+          "point_class_value": 24,
+          "point_kind": "source",
+          "point_label": "S_second",
+          "point_term": "v_second",
+          "row": "second",
+          "selected": true
+        },
+        {
+          "atom": "M_second__S_w0",
+          "point_class_value": 19,
+          "point_kind": "source",
+          "point_label": "S_w0",
+          "point_term": "v_w0",
+          "row": "second",
+          "selected": false
+        },
+        {
+          "atom": "M_second__S_w1",
+          "point_class_value": 20,
+          "point_kind": "source",
+          "point_label": "S_w1",
+          "point_term": "v_w1",
+          "row": "second",
+          "selected": false
+        },
+        {
+          "atom": "M_second__S_w2",
+          "point_class_value": 21,
+          "point_kind": "source",
+          "point_label": "S_w2",
+          "point_term": "v_w2",
+          "row": "second",
+          "selected": false
+        },
+        {
+          "atom": "M_second__S_w3",
+          "point_class_value": 22,
+          "point_kind": "source",
+          "point_label": "S_w3",
+          "point_term": "v_w3",
+          "row": "second",
+          "selected": false
+        },
+        {
+          "atom": "M_second__B_q0",
+          "point_class_value": 0,
+          "point_kind": "blocker",
+          "point_label": "B_q0",
+          "point_term": "b0",
+          "row": "second",
+          "selected": false
+        },
+        {
+          "atom": "M_second__B_q1",
+          "point_class_value": 0,
+          "point_kind": "blocker",
+          "point_label": "B_q1",
+          "point_term": "b1",
+          "row": "second",
+          "selected": false
+        },
+        {
+          "atom": "M_second__B_q2",
+          "point_class_value": 0,
+          "point_kind": "blocker",
+          "point_label": "B_q2",
+          "point_term": "b2",
+          "row": "second",
+          "selected": false
+        },
+        {
+          "atom": "M_second__B_q3",
+          "point_class_value": 9,
+          "point_kind": "blocker",
+          "point_label": "B_q3",
+          "point_term": "b3",
+          "row": "second",
+          "selected": false
+        },
+        {
+          "atom": "M_second__B_first",
+          "point_class_value": 0,
+          "point_kind": "blocker",
+          "point_label": "B_first",
+          "point_term": "blk_first",
+          "row": "second",
+          "selected": false
+        },
+        {
+          "atom": "M_second__B_second",
+          "point_class_value": 0,
+          "point_kind": "blocker",
+          "point_label": "B_second",
+          "point_term": "blk_second",
+          "row": "second",
+          "selected": false
+        },
+        {
+          "atom": "M_second__B_w0",
+          "point_class_value": 15,
+          "point_kind": "blocker",
+          "point_label": "B_w0",
+          "point_term": "blk_w0",
+          "row": "second",
+          "selected": false
+        },
+        {
+          "atom": "M_second__B_w1",
+          "point_class_value": 16,
+          "point_kind": "blocker",
+          "point_label": "B_w1",
+          "point_term": "blk_w1",
+          "row": "second",
+          "selected": false
+        },
+        {
+          "atom": "M_second__B_w2",
+          "point_class_value": 17,
+          "point_kind": "blocker",
+          "point_label": "B_w2",
+          "point_term": "blk_w2",
+          "row": "second",
+          "selected": false
+        },
+        {
+          "atom": "M_second__B_w3",
+          "point_class_value": 18,
+          "point_kind": "blocker",
+          "point_label": "B_w3",
+          "point_term": "blk_w3",
+          "row": "second",
+          "selected": false
+        },
+        {
+          "atom": "M_w0__S_q0",
+          "point_class_value": 7,
+          "point_kind": "source",
+          "point_label": "S_q0",
+          "point_term": "v_q0",
+          "row": "w0",
+          "selected": false
+        },
+        {
+          "atom": "M_w0__S_q1",
+          "point_class_value": 8,
+          "point_kind": "source",
+          "point_label": "S_q1",
+          "point_term": "v_q1",
+          "row": "w0",
+          "selected": false
+        },
+        {
+          "atom": "M_w0__S_q2",
+          "point_class_value": 6,
+          "point_kind": "source",
+          "point_label": "S_q2",
+          "point_term": "v_q2",
+          "row": "w0",
+          "selected": true
+        },
+        {
+          "atom": "M_w0__S_q3",
+          "point_class_value": 5,
+          "point_kind": "source",
+          "point_label": "S_q3",
+          "point_term": "v_q3",
+          "row": "w0",
+          "selected": true
+        },
+        {
+          "atom": "M_w0__S_first",
+          "point_class_value": 23,
+          "point_kind": "source",
+          "point_label": "S_first",
+          "point_term": "v_first",
+          "row": "w0",
+          "selected": false
+        },
+        {
+          "atom": "M_w0__S_second",
+          "point_class_value": 24,
+          "point_kind": "source",
+          "point_label": "S_second",
+          "point_term": "v_second",
+          "row": "w0",
+          "selected": false
+        },
+        {
+          "atom": "M_w0__S_w0",
+          "point_class_value": 19,
+          "point_kind": "source",
+          "point_label": "S_w0",
+          "point_term": "v_w0",
+          "row": "w0",
+          "selected": true
+        },
+        {
+          "atom": "M_w0__S_w1",
+          "point_class_value": 20,
+          "point_kind": "source",
+          "point_label": "S_w1",
+          "point_term": "v_w1",
+          "row": "w0",
+          "selected": false
+        },
+        {
+          "atom": "M_w0__S_w2",
+          "point_class_value": 21,
+          "point_kind": "source",
+          "point_label": "S_w2",
+          "point_term": "v_w2",
+          "row": "w0",
+          "selected": false
+        },
+        {
+          "atom": "M_w0__S_w3",
+          "point_class_value": 22,
+          "point_kind": "source",
+          "point_label": "S_w3",
+          "point_term": "v_w3",
+          "row": "w0",
+          "selected": false
+        },
+        {
+          "atom": "M_w0__B_q0",
+          "point_class_value": 0,
+          "point_kind": "blocker",
+          "point_label": "B_q0",
+          "point_term": "b0",
+          "row": "w0",
+          "selected": false
+        },
+        {
+          "atom": "M_w0__B_q1",
+          "point_class_value": 0,
+          "point_kind": "blocker",
+          "point_label": "B_q1",
+          "point_term": "b1",
+          "row": "w0",
+          "selected": false
+        },
+        {
+          "atom": "M_w0__B_q2",
+          "point_class_value": 0,
+          "point_kind": "blocker",
+          "point_label": "B_q2",
+          "point_term": "b2",
+          "row": "w0",
+          "selected": false
+        },
+        {
+          "atom": "M_w0__B_q3",
+          "point_class_value": 9,
+          "point_kind": "blocker",
+          "point_label": "B_q3",
+          "point_term": "b3",
+          "row": "w0",
+          "selected": false
+        },
+        {
+          "atom": "M_w0__B_first",
+          "point_class_value": 0,
+          "point_kind": "blocker",
+          "point_label": "B_first",
+          "point_term": "blk_first",
+          "row": "w0",
+          "selected": false
+        },
+        {
+          "atom": "M_w0__B_second",
+          "point_class_value": 0,
+          "point_kind": "blocker",
+          "point_label": "B_second",
+          "point_term": "blk_second",
+          "row": "w0",
+          "selected": false
+        },
+        {
+          "atom": "M_w0__B_w0",
+          "point_class_value": 15,
+          "point_kind": "blocker",
+          "point_label": "B_w0",
+          "point_term": "blk_w0",
+          "row": "w0",
+          "selected": false
+        },
+        {
+          "atom": "M_w0__B_w1",
+          "point_class_value": 16,
+          "point_kind": "blocker",
+          "point_label": "B_w1",
+          "point_term": "blk_w1",
+          "row": "w0",
+          "selected": false
+        },
+        {
+          "atom": "M_w0__B_w2",
+          "point_class_value": 17,
+          "point_kind": "blocker",
+          "point_label": "B_w2",
+          "point_term": "blk_w2",
+          "row": "w0",
+          "selected": false
+        },
+        {
+          "atom": "M_w0__B_w3",
+          "point_class_value": 18,
+          "point_kind": "blocker",
+          "point_label": "B_w3",
+          "point_term": "blk_w3",
+          "row": "w0",
+          "selected": false
+        },
+        {
+          "atom": "M_w1__S_q0",
+          "point_class_value": 7,
+          "point_kind": "source",
+          "point_label": "S_q0",
+          "point_term": "v_q0",
+          "row": "w1",
+          "selected": true
+        },
+        {
+          "atom": "M_w1__S_q1",
+          "point_class_value": 8,
+          "point_kind": "source",
+          "point_label": "S_q1",
+          "point_term": "v_q1",
+          "row": "w1",
+          "selected": true
+        },
+        {
+          "atom": "M_w1__S_q2",
+          "point_class_value": 6,
+          "point_kind": "source",
+          "point_label": "S_q2",
+          "point_term": "v_q2",
+          "row": "w1",
+          "selected": false
+        },
+        {
+          "atom": "M_w1__S_q3",
+          "point_class_value": 5,
+          "point_kind": "source",
+          "point_label": "S_q3",
+          "point_term": "v_q3",
+          "row": "w1",
+          "selected": false
+        },
+        {
+          "atom": "M_w1__S_first",
+          "point_class_value": 23,
+          "point_kind": "source",
+          "point_label": "S_first",
+          "point_term": "v_first",
+          "row": "w1",
+          "selected": false
+        },
+        {
+          "atom": "M_w1__S_second",
+          "point_class_value": 24,
+          "point_kind": "source",
+          "point_label": "S_second",
+          "point_term": "v_second",
+          "row": "w1",
+          "selected": false
+        },
+        {
+          "atom": "M_w1__S_w0",
+          "point_class_value": 19,
+          "point_kind": "source",
+          "point_label": "S_w0",
+          "point_term": "v_w0",
+          "row": "w1",
+          "selected": false
+        },
+        {
+          "atom": "M_w1__S_w1",
+          "point_class_value": 20,
+          "point_kind": "source",
+          "point_label": "S_w1",
+          "point_term": "v_w1",
+          "row": "w1",
+          "selected": true
+        },
+        {
+          "atom": "M_w1__S_w2",
+          "point_class_value": 21,
+          "point_kind": "source",
+          "point_label": "S_w2",
+          "point_term": "v_w2",
+          "row": "w1",
+          "selected": false
+        },
+        {
+          "atom": "M_w1__S_w3",
+          "point_class_value": 22,
+          "point_kind": "source",
+          "point_label": "S_w3",
+          "point_term": "v_w3",
+          "row": "w1",
+          "selected": false
+        },
+        {
+          "atom": "M_w1__B_q0",
+          "point_class_value": 0,
+          "point_kind": "blocker",
+          "point_label": "B_q0",
+          "point_term": "b0",
+          "row": "w1",
+          "selected": false
+        },
+        {
+          "atom": "M_w1__B_q1",
+          "point_class_value": 0,
+          "point_kind": "blocker",
+          "point_label": "B_q1",
+          "point_term": "b1",
+          "row": "w1",
+          "selected": false
+        },
+        {
+          "atom": "M_w1__B_q2",
+          "point_class_value": 0,
+          "point_kind": "blocker",
+          "point_label": "B_q2",
+          "point_term": "b2",
+          "row": "w1",
+          "selected": false
+        },
+        {
+          "atom": "M_w1__B_q3",
+          "point_class_value": 9,
+          "point_kind": "blocker",
+          "point_label": "B_q3",
+          "point_term": "b3",
+          "row": "w1",
+          "selected": false
+        },
+        {
+          "atom": "M_w1__B_first",
+          "point_class_value": 0,
+          "point_kind": "blocker",
+          "point_label": "B_first",
+          "point_term": "blk_first",
+          "row": "w1",
+          "selected": false
+        },
+        {
+          "atom": "M_w1__B_second",
+          "point_class_value": 0,
+          "point_kind": "blocker",
+          "point_label": "B_second",
+          "point_term": "blk_second",
+          "row": "w1",
+          "selected": false
+        },
+        {
+          "atom": "M_w1__B_w0",
+          "point_class_value": 15,
+          "point_kind": "blocker",
+          "point_label": "B_w0",
+          "point_term": "blk_w0",
+          "row": "w1",
+          "selected": false
+        },
+        {
+          "atom": "M_w1__B_w1",
+          "point_class_value": 16,
+          "point_kind": "blocker",
+          "point_label": "B_w1",
+          "point_term": "blk_w1",
+          "row": "w1",
+          "selected": false
+        },
+        {
+          "atom": "M_w1__B_w2",
+          "point_class_value": 17,
+          "point_kind": "blocker",
+          "point_label": "B_w2",
+          "point_term": "blk_w2",
+          "row": "w1",
+          "selected": false
+        },
+        {
+          "atom": "M_w1__B_w3",
+          "point_class_value": 18,
+          "point_kind": "blocker",
+          "point_label": "B_w3",
+          "point_term": "blk_w3",
+          "row": "w1",
+          "selected": false
+        },
+        {
+          "atom": "M_w2__S_q0",
+          "point_class_value": 7,
+          "point_kind": "source",
+          "point_label": "S_q0",
+          "point_term": "v_q0",
+          "row": "w2",
+          "selected": true
+        },
+        {
+          "atom": "M_w2__S_q1",
+          "point_class_value": 8,
+          "point_kind": "source",
+          "point_label": "S_q1",
+          "point_term": "v_q1",
+          "row": "w2",
+          "selected": false
+        },
+        {
+          "atom": "M_w2__S_q2",
+          "point_class_value": 6,
+          "point_kind": "source",
+          "point_label": "S_q2",
+          "point_term": "v_q2",
+          "row": "w2",
+          "selected": false
+        },
+        {
+          "atom": "M_w2__S_q3",
+          "point_class_value": 5,
+          "point_kind": "source",
+          "point_label": "S_q3",
+          "point_term": "v_q3",
+          "row": "w2",
+          "selected": true
+        },
+        {
+          "atom": "M_w2__S_first",
+          "point_class_value": 23,
+          "point_kind": "source",
+          "point_label": "S_first",
+          "point_term": "v_first",
+          "row": "w2",
+          "selected": false
+        },
+        {
+          "atom": "M_w2__S_second",
+          "point_class_value": 24,
+          "point_kind": "source",
+          "point_label": "S_second",
+          "point_term": "v_second",
+          "row": "w2",
+          "selected": false
+        },
+        {
+          "atom": "M_w2__S_w0",
+          "point_class_value": 19,
+          "point_kind": "source",
+          "point_label": "S_w0",
+          "point_term": "v_w0",
+          "row": "w2",
+          "selected": false
+        },
+        {
+          "atom": "M_w2__S_w1",
+          "point_class_value": 20,
+          "point_kind": "source",
+          "point_label": "S_w1",
+          "point_term": "v_w1",
+          "row": "w2",
+          "selected": false
+        },
+        {
+          "atom": "M_w2__S_w2",
+          "point_class_value": 21,
+          "point_kind": "source",
+          "point_label": "S_w2",
+          "point_term": "v_w2",
+          "row": "w2",
+          "selected": true
+        },
+        {
+          "atom": "M_w2__S_w3",
+          "point_class_value": 22,
+          "point_kind": "source",
+          "point_label": "S_w3",
+          "point_term": "v_w3",
+          "row": "w2",
+          "selected": false
+        },
+        {
+          "atom": "M_w2__B_q0",
+          "point_class_value": 0,
+          "point_kind": "blocker",
+          "point_label": "B_q0",
+          "point_term": "b0",
+          "row": "w2",
+          "selected": false
+        },
+        {
+          "atom": "M_w2__B_q1",
+          "point_class_value": 0,
+          "point_kind": "blocker",
+          "point_label": "B_q1",
+          "point_term": "b1",
+          "row": "w2",
+          "selected": false
+        },
+        {
+          "atom": "M_w2__B_q2",
+          "point_class_value": 0,
+          "point_kind": "blocker",
+          "point_label": "B_q2",
+          "point_term": "b2",
+          "row": "w2",
+          "selected": false
+        },
+        {
+          "atom": "M_w2__B_q3",
+          "point_class_value": 9,
+          "point_kind": "blocker",
+          "point_label": "B_q3",
+          "point_term": "b3",
+          "row": "w2",
+          "selected": false
+        },
+        {
+          "atom": "M_w2__B_first",
+          "point_class_value": 0,
+          "point_kind": "blocker",
+          "point_label": "B_first",
+          "point_term": "blk_first",
+          "row": "w2",
+          "selected": false
+        },
+        {
+          "atom": "M_w2__B_second",
+          "point_class_value": 0,
+          "point_kind": "blocker",
+          "point_label": "B_second",
+          "point_term": "blk_second",
+          "row": "w2",
+          "selected": false
+        },
+        {
+          "atom": "M_w2__B_w0",
+          "point_class_value": 15,
+          "point_kind": "blocker",
+          "point_label": "B_w0",
+          "point_term": "blk_w0",
+          "row": "w2",
+          "selected": false
+        },
+        {
+          "atom": "M_w2__B_w1",
+          "point_class_value": 16,
+          "point_kind": "blocker",
+          "point_label": "B_w1",
+          "point_term": "blk_w1",
+          "row": "w2",
+          "selected": false
+        },
+        {
+          "atom": "M_w2__B_w2",
+          "point_class_value": 17,
+          "point_kind": "blocker",
+          "point_label": "B_w2",
+          "point_term": "blk_w2",
+          "row": "w2",
+          "selected": false
+        },
+        {
+          "atom": "M_w2__B_w3",
+          "point_class_value": 18,
+          "point_kind": "blocker",
+          "point_label": "B_w3",
+          "point_term": "blk_w3",
+          "row": "w2",
+          "selected": false
+        },
+        {
+          "atom": "M_w3__S_q0",
+          "point_class_value": 7,
+          "point_kind": "source",
+          "point_label": "S_q0",
+          "point_term": "v_q0",
+          "row": "w3",
+          "selected": true
+        },
+        {
+          "atom": "M_w3__S_q1",
+          "point_class_value": 8,
+          "point_kind": "source",
+          "point_label": "S_q1",
+          "point_term": "v_q1",
+          "row": "w3",
+          "selected": true
+        },
+        {
+          "atom": "M_w3__S_q2",
+          "point_class_value": 6,
+          "point_kind": "source",
+          "point_label": "S_q2",
+          "point_term": "v_q2",
+          "row": "w3",
+          "selected": false
+        },
+        {
+          "atom": "M_w3__S_q3",
+          "point_class_value": 5,
+          "point_kind": "source",
+          "point_label": "S_q3",
+          "point_term": "v_q3",
+          "row": "w3",
+          "selected": false
+        },
+        {
+          "atom": "M_w3__S_first",
+          "point_class_value": 23,
+          "point_kind": "source",
+          "point_label": "S_first",
+          "point_term": "v_first",
+          "row": "w3",
+          "selected": false
+        },
+        {
+          "atom": "M_w3__S_second",
+          "point_class_value": 24,
+          "point_kind": "source",
+          "point_label": "S_second",
+          "point_term": "v_second",
+          "row": "w3",
+          "selected": false
+        },
+        {
+          "atom": "M_w3__S_w0",
+          "point_class_value": 19,
+          "point_kind": "source",
+          "point_label": "S_w0",
+          "point_term": "v_w0",
+          "row": "w3",
+          "selected": false
+        },
+        {
+          "atom": "M_w3__S_w1",
+          "point_class_value": 20,
+          "point_kind": "source",
+          "point_label": "S_w1",
+          "point_term": "v_w1",
+          "row": "w3",
+          "selected": false
+        },
+        {
+          "atom": "M_w3__S_w2",
+          "point_class_value": 21,
+          "point_kind": "source",
+          "point_label": "S_w2",
+          "point_term": "v_w2",
+          "row": "w3",
+          "selected": false
+        },
+        {
+          "atom": "M_w3__S_w3",
+          "point_class_value": 22,
+          "point_kind": "source",
+          "point_label": "S_w3",
+          "point_term": "v_w3",
+          "row": "w3",
+          "selected": true
+        },
+        {
+          "atom": "M_w3__B_q0",
+          "point_class_value": 0,
+          "point_kind": "blocker",
+          "point_label": "B_q0",
+          "point_term": "b0",
+          "row": "w3",
+          "selected": false
+        },
+        {
+          "atom": "M_w3__B_q1",
+          "point_class_value": 0,
+          "point_kind": "blocker",
+          "point_label": "B_q1",
+          "point_term": "b1",
+          "row": "w3",
+          "selected": false
+        },
+        {
+          "atom": "M_w3__B_q2",
+          "point_class_value": 0,
+          "point_kind": "blocker",
+          "point_label": "B_q2",
+          "point_term": "b2",
+          "row": "w3",
+          "selected": false
+        },
+        {
+          "atom": "M_w3__B_q3",
+          "point_class_value": 9,
+          "point_kind": "blocker",
+          "point_label": "B_q3",
+          "point_term": "b3",
+          "row": "w3",
+          "selected": false
+        },
+        {
+          "atom": "M_w3__B_first",
+          "point_class_value": 0,
+          "point_kind": "blocker",
+          "point_label": "B_first",
+          "point_term": "blk_first",
+          "row": "w3",
+          "selected": false
+        },
+        {
+          "atom": "M_w3__B_second",
+          "point_class_value": 0,
+          "point_kind": "blocker",
+          "point_label": "B_second",
+          "point_term": "blk_second",
+          "row": "w3",
+          "selected": false
+        },
+        {
+          "atom": "M_w3__B_w0",
+          "point_class_value": 15,
+          "point_kind": "blocker",
+          "point_label": "B_w0",
+          "point_term": "blk_w0",
+          "row": "w3",
+          "selected": false
+        },
+        {
+          "atom": "M_w3__B_w1",
+          "point_class_value": 16,
+          "point_kind": "blocker",
+          "point_label": "B_w1",
+          "point_term": "blk_w1",
+          "row": "w3",
+          "selected": false
+        },
+        {
+          "atom": "M_w3__B_w2",
+          "point_class_value": 17,
+          "point_kind": "blocker",
+          "point_label": "B_w2",
+          "point_term": "blk_w2",
+          "row": "w3",
+          "selected": false
+        },
+        {
+          "atom": "M_w3__B_w3",
+          "point_class_value": 18,
+          "point_kind": "blocker",
+          "point_label": "B_w3",
+          "point_term": "blk_w3",
+          "row": "w3",
+          "selected": false
+        }
+      ],
+      "point_classes": [
+        {
+          "aliases": [
+            {
+              "kind": "blocker",
+              "label": "B_q0",
+              "term": "b0"
+            },
+            {
+              "kind": "blocker",
+              "label": "B_q1",
+              "term": "b1"
+            },
+            {
+              "kind": "blocker",
+              "label": "B_q2",
+              "term": "b2"
+            },
+            {
+              "kind": "blocker",
+              "label": "B_first",
+              "term": "blk_first"
+            },
+            {
+              "kind": "blocker",
+              "label": "B_second",
+              "term": "blk_second"
+            }
+          ],
+          "id": "p0",
+          "terminal_equality_class_value": 0
+        },
+        {
+          "aliases": [
+            {
+              "kind": "source",
+              "label": "S_q3",
+              "term": "v_q3"
+            }
+          ],
+          "id": "p1",
+          "terminal_equality_class_value": 5
+        },
+        {
+          "aliases": [
+            {
+              "kind": "source",
+              "label": "S_q2",
+              "term": "v_q2"
+            }
+          ],
+          "id": "p2",
+          "terminal_equality_class_value": 6
+        },
+        {
+          "aliases": [
+            {
+              "kind": "source",
+              "label": "S_q0",
+              "term": "v_q0"
+            }
+          ],
+          "id": "p3",
+          "terminal_equality_class_value": 7
+        },
+        {
+          "aliases": [
+            {
+              "kind": "source",
+              "label": "S_q1",
+              "term": "v_q1"
+            }
+          ],
+          "id": "p4",
+          "terminal_equality_class_value": 8
+        },
+        {
+          "aliases": [
+            {
+              "kind": "blocker",
+              "label": "B_q3",
+              "term": "b3"
+            }
+          ],
+          "id": "p5",
+          "terminal_equality_class_value": 9
+        },
+        {
+          "aliases": [
+            {
+              "kind": "blocker",
+              "label": "B_w0",
+              "term": "blk_w0"
+            }
+          ],
+          "id": "p6",
+          "terminal_equality_class_value": 15
+        },
+        {
+          "aliases": [
+            {
+              "kind": "blocker",
+              "label": "B_w1",
+              "term": "blk_w1"
+            }
+          ],
+          "id": "p7",
+          "terminal_equality_class_value": 16
+        },
+        {
+          "aliases": [
+            {
+              "kind": "blocker",
+              "label": "B_w2",
+              "term": "blk_w2"
+            }
+          ],
+          "id": "p8",
+          "terminal_equality_class_value": 17
+        },
+        {
+          "aliases": [
+            {
+              "kind": "blocker",
+              "label": "B_w3",
+              "term": "blk_w3"
+            }
+          ],
+          "id": "p9",
+          "terminal_equality_class_value": 18
+        },
+        {
+          "aliases": [
+            {
+              "kind": "source",
+              "label": "S_w0",
+              "term": "v_w0"
+            }
+          ],
+          "id": "p10",
+          "terminal_equality_class_value": 19
+        },
+        {
+          "aliases": [
+            {
+              "kind": "source",
+              "label": "S_w1",
+              "term": "v_w1"
+            }
+          ],
+          "id": "p11",
+          "terminal_equality_class_value": 20
+        },
+        {
+          "aliases": [
+            {
+              "kind": "source",
+              "label": "S_w2",
+              "term": "v_w2"
+            }
+          ],
+          "id": "p12",
+          "terminal_equality_class_value": 21
+        },
+        {
+          "aliases": [
+            {
+              "kind": "source",
+              "label": "S_w3",
+              "term": "v_w3"
+            }
+          ],
+          "id": "p13",
+          "terminal_equality_class_value": 22
+        },
+        {
+          "aliases": [
+            {
+              "kind": "source",
+              "label": "S_first",
+              "term": "v_first"
+            }
+          ],
+          "id": "p14",
+          "terminal_equality_class_value": 23
+        },
+        {
+          "aliases": [
+            {
+              "kind": "source",
+              "label": "S_second",
+              "term": "v_second"
+            }
+          ],
+          "id": "p15",
+          "terminal_equality_class_value": 24
+        }
+      ],
+      "rows": [
+        {
+          "center_class_id": "p0",
+          "center_class_value": 0,
+          "center_term": "b0",
+          "row_equality_count": 5,
+          "row_label": "q0",
+          "selected_class_ids": [
+            "p1",
+            "p2",
+            "p3",
+            "p4",
+            "p14",
+            "p15"
+          ],
+          "selected_class_values": [
+            5,
+            6,
+            7,
+            8,
+            23,
+            24
+          ],
+          "selected_point_labels": [
+            "S_q0",
+            "S_q1",
+            "S_q2",
+            "S_q3",
+            "S_first",
+            "S_second"
+          ],
+          "selected_unique_count": 6,
+          "source_class_id": "p3",
+          "source_class_value": 7,
+          "source_term": "v_q0"
+        },
+        {
+          "center_class_id": "p0",
+          "center_class_value": 0,
+          "center_term": "b1",
+          "row_equality_count": 5,
+          "row_label": "q1",
+          "selected_class_ids": [
+            "p1",
+            "p2",
+            "p3",
+            "p4",
+            "p14",
+            "p15"
+          ],
+          "selected_class_values": [
+            5,
+            6,
+            7,
+            8,
+            23,
+            24
+          ],
+          "selected_point_labels": [
+            "S_q0",
+            "S_q1",
+            "S_q2",
+            "S_q3",
+            "S_first",
+            "S_second"
+          ],
+          "selected_unique_count": 6,
+          "source_class_id": "p4",
+          "source_class_value": 8,
+          "source_term": "v_q1"
+        },
+        {
+          "center_class_id": "p0",
+          "center_class_value": 0,
+          "center_term": "b2",
+          "row_equality_count": 5,
+          "row_label": "q2",
+          "selected_class_ids": [
+            "p1",
+            "p2",
+            "p3",
+            "p4",
+            "p14",
+            "p15"
+          ],
+          "selected_class_values": [
+            5,
+            6,
+            7,
+            8,
+            23,
+            24
+          ],
+          "selected_point_labels": [
+            "S_q0",
+            "S_q1",
+            "S_q2",
+            "S_q3",
+            "S_first",
+            "S_second"
+          ],
+          "selected_unique_count": 6,
+          "source_class_id": "p2",
+          "source_class_value": 6,
+          "source_term": "v_q2"
+        },
+        {
+          "center_class_id": "p5",
+          "center_class_value": 9,
+          "center_term": "b3",
+          "row_equality_count": 0,
+          "row_label": "q3",
+          "selected_class_ids": [
+            "p1"
+          ],
+          "selected_class_values": [
+            5
+          ],
+          "selected_point_labels": [
+            "S_q3"
+          ],
+          "selected_unique_count": 1,
+          "source_class_id": "p1",
+          "source_class_value": 5,
+          "source_term": "v_q3"
+        },
+        {
+          "center_class_id": "p0",
+          "center_class_value": 0,
+          "center_term": "blk_first",
+          "row_equality_count": 5,
+          "row_label": "first",
+          "selected_class_ids": [
+            "p1",
+            "p2",
+            "p3",
+            "p4",
+            "p14",
+            "p15"
+          ],
+          "selected_class_values": [
+            5,
+            6,
+            7,
+            8,
+            23,
+            24
+          ],
+          "selected_point_labels": [
+            "S_q0",
+            "S_q1",
+            "S_q2",
+            "S_q3",
+            "S_first",
+            "S_second"
+          ],
+          "selected_unique_count": 6,
+          "source_class_id": "p14",
+          "source_class_value": 23,
+          "source_term": "v_first"
+        },
+        {
+          "center_class_id": "p0",
+          "center_class_value": 0,
+          "center_term": "blk_second",
+          "row_equality_count": 5,
+          "row_label": "second",
+          "selected_class_ids": [
+            "p1",
+            "p2",
+            "p3",
+            "p4",
+            "p14",
+            "p15"
+          ],
+          "selected_class_values": [
+            5,
+            6,
+            7,
+            8,
+            23,
+            24
+          ],
+          "selected_point_labels": [
+            "S_q0",
+            "S_q1",
+            "S_q2",
+            "S_q3",
+            "S_first",
+            "S_second"
+          ],
+          "selected_unique_count": 6,
+          "source_class_id": "p15",
+          "source_class_value": 24,
+          "source_term": "v_second"
+        },
+        {
+          "center_class_id": "p6",
+          "center_class_value": 15,
+          "center_term": "blk_w0",
+          "row_equality_count": 2,
+          "row_label": "w0",
+          "selected_class_ids": [
+            "p1",
+            "p2",
+            "p10"
+          ],
+          "selected_class_values": [
+            5,
+            6,
+            19
+          ],
+          "selected_point_labels": [
+            "S_q2",
+            "S_q3",
+            "S_w0"
+          ],
+          "selected_unique_count": 3,
+          "source_class_id": "p10",
+          "source_class_value": 19,
+          "source_term": "v_w0"
+        },
+        {
+          "center_class_id": "p7",
+          "center_class_value": 16,
+          "center_term": "blk_w1",
+          "row_equality_count": 2,
+          "row_label": "w1",
+          "selected_class_ids": [
+            "p3",
+            "p4",
+            "p11"
+          ],
+          "selected_class_values": [
+            7,
+            8,
+            20
+          ],
+          "selected_point_labels": [
+            "S_q0",
+            "S_q1",
+            "S_w1"
+          ],
+          "selected_unique_count": 3,
+          "source_class_id": "p11",
+          "source_class_value": 20,
+          "source_term": "v_w1"
+        },
+        {
+          "center_class_id": "p8",
+          "center_class_value": 17,
+          "center_term": "blk_w2",
+          "row_equality_count": 2,
+          "row_label": "w2",
+          "selected_class_ids": [
+            "p1",
+            "p3",
+            "p12"
+          ],
+          "selected_class_values": [
+            5,
+            7,
+            21
+          ],
+          "selected_point_labels": [
+            "S_q0",
+            "S_q3",
+            "S_w2"
+          ],
+          "selected_unique_count": 3,
+          "source_class_id": "p12",
+          "source_class_value": 21,
+          "source_term": "v_w2"
+        },
+        {
+          "center_class_id": "p9",
+          "center_class_value": 18,
+          "center_term": "blk_w3",
+          "row_equality_count": 2,
+          "row_label": "w3",
+          "selected_class_ids": [
+            "p3",
+            "p4",
+            "p13"
+          ],
+          "selected_class_values": [
+            7,
+            8,
+            22
+          ],
+          "selected_point_labels": [
+            "S_q0",
+            "S_q1",
+            "S_w3"
+          ],
+          "selected_unique_count": 3,
+          "source_class_id": "p13",
+          "source_class_value": 22,
+          "source_term": "v_w3"
+        }
+      ],
+      "source_packet": {
+        "motif_embedding": null,
+        "path": "scratch/p97-consumer-first/freshthird_firstnonhit_sevenrow_cut_v1/iterations/common_sameblocker-00.json",
+        "sha256": "f8b729a8c3ef4328e27c543a308049bb8ede3c8a6024fa227500f6980b1888c4",
+        "terminal_status": "sat"
+      },
+      "table_validation": {
+        "cartesian_cell_count": 200,
+        "expected_cartesian_cell_count": 200,
+        "extensional_center_point_pairs": 96,
+        "own_blocker_unselected_all_rows": true,
+        "own_source_selected_all_rows": true
+      }
+    },
+    {
+      "active_rows": [
+        "q0",
+        "q1",
+        "q2",
+        "q3",
+        "first",
+        "second",
+        "retz",
+        "retw"
+      ],
+      "case": "retained",
+      "gauge": {
+        "equalities": [
+          "x(q0)=0",
+          "y(q0)=0",
+          "x(q1)=1",
+          "y(q1)=0"
+        ],
+        "kind": "real Euclidean nondegenerate similarity gauge",
+        "origin_class_id": "p3",
+        "origin_label": "S_q0",
+        "source_fact": "v_q0 and v_q1 are distinct Q-support carrier roles",
+        "unit_class_id": "p4",
+        "unit_label": "S_q1"
+      },
+      "membership_cells": [
+        {
+          "atom": "M_q0__S_q0",
+          "point_class_value": 7,
+          "point_kind": "source",
+          "point_label": "S_q0",
+          "point_term": "v_q0",
+          "row": "q0",
+          "selected": true
+        },
+        {
+          "atom": "M_q0__S_q1",
+          "point_class_value": 8,
+          "point_kind": "source",
+          "point_label": "S_q1",
+          "point_term": "v_q1",
+          "row": "q0",
+          "selected": true
+        },
+        {
+          "atom": "M_q0__S_q2",
+          "point_class_value": 9,
+          "point_kind": "source",
+          "point_label": "S_q2",
+          "point_term": "v_q2",
+          "row": "q0",
+          "selected": true
+        },
+        {
+          "atom": "M_q0__S_q3",
+          "point_class_value": 6,
+          "point_kind": "source",
+          "point_label": "S_q3",
+          "point_term": "v_q3",
+          "row": "q0",
+          "selected": true
+        },
+        {
+          "atom": "M_q0__S_first",
+          "point_class_value": 21,
+          "point_kind": "source",
+          "point_label": "S_first",
+          "point_term": "v_first",
+          "row": "q0",
+          "selected": false
+        },
+        {
+          "atom": "M_q0__S_second",
+          "point_class_value": 22,
+          "point_kind": "source",
+          "point_label": "S_second",
+          "point_term": "v_second",
+          "row": "q0",
+          "selected": false
+        },
+        {
+          "atom": "M_q0__S_retz",
+          "point_class_value": 23,
+          "point_kind": "source",
+          "point_label": "S_retz",
+          "point_term": "v_retz",
+          "row": "q0",
+          "selected": false
+        },
+        {
+          "atom": "M_q0__S_retw",
+          "point_class_value": 24,
+          "point_kind": "source",
+          "point_label": "S_retw",
+          "point_term": "v_retw",
+          "row": "q0",
+          "selected": false
+        },
+        {
+          "atom": "M_q0__B_q0",
+          "point_class_value": 0,
+          "point_kind": "blocker",
+          "point_label": "B_q0",
+          "point_term": "b0",
+          "row": "q0",
+          "selected": false
+        },
+        {
+          "atom": "M_q0__B_q1",
+          "point_class_value": 0,
+          "point_kind": "blocker",
+          "point_label": "B_q1",
+          "point_term": "b1",
+          "row": "q0",
+          "selected": false
+        },
+        {
+          "atom": "M_q0__B_q2",
+          "point_class_value": 13,
+          "point_kind": "blocker",
+          "point_label": "B_q2",
+          "point_term": "b2",
+          "row": "q0",
+          "selected": false
+        },
+        {
+          "atom": "M_q0__B_q3",
+          "point_class_value": 14,
+          "point_kind": "blocker",
+          "point_label": "B_q3",
+          "point_term": "b3",
+          "row": "q0",
+          "selected": false
+        },
+        {
+          "atom": "M_q0__B_first",
+          "point_class_value": 5,
+          "point_kind": "blocker",
+          "point_label": "B_first",
+          "point_term": "blk_first",
+          "row": "q0",
+          "selected": false
+        },
+        {
+          "atom": "M_q0__B_second",
+          "point_class_value": 10,
+          "point_kind": "blocker",
+          "point_label": "B_second",
+          "point_term": "blk_second",
+          "row": "q0",
+          "selected": false
+        },
+        {
+          "atom": "M_q0__B_retz",
+          "point_class_value": 19,
+          "point_kind": "blocker",
+          "point_label": "B_retz",
+          "point_term": "blk_retz",
+          "row": "q0",
+          "selected": false
+        },
+        {
+          "atom": "M_q0__B_retw",
+          "point_class_value": 20,
+          "point_kind": "blocker",
+          "point_label": "B_retw",
+          "point_term": "blk_retw",
+          "row": "q0",
+          "selected": false
+        },
+        {
+          "atom": "M_q1__S_q0",
+          "point_class_value": 7,
+          "point_kind": "source",
+          "point_label": "S_q0",
+          "point_term": "v_q0",
+          "row": "q1",
+          "selected": true
+        },
+        {
+          "atom": "M_q1__S_q1",
+          "point_class_value": 8,
+          "point_kind": "source",
+          "point_label": "S_q1",
+          "point_term": "v_q1",
+          "row": "q1",
+          "selected": true
+        },
+        {
+          "atom": "M_q1__S_q2",
+          "point_class_value": 9,
+          "point_kind": "source",
+          "point_label": "S_q2",
+          "point_term": "v_q2",
+          "row": "q1",
+          "selected": true
+        },
+        {
+          "atom": "M_q1__S_q3",
+          "point_class_value": 6,
+          "point_kind": "source",
+          "point_label": "S_q3",
+          "point_term": "v_q3",
+          "row": "q1",
+          "selected": true
+        },
+        {
+          "atom": "M_q1__S_first",
+          "point_class_value": 21,
+          "point_kind": "source",
+          "point_label": "S_first",
+          "point_term": "v_first",
+          "row": "q1",
+          "selected": false
+        },
+        {
+          "atom": "M_q1__S_second",
+          "point_class_value": 22,
+          "point_kind": "source",
+          "point_label": "S_second",
+          "point_term": "v_second",
+          "row": "q1",
+          "selected": false
+        },
+        {
+          "atom": "M_q1__S_retz",
+          "point_class_value": 23,
+          "point_kind": "source",
+          "point_label": "S_retz",
+          "point_term": "v_retz",
+          "row": "q1",
+          "selected": false
+        },
+        {
+          "atom": "M_q1__S_retw",
+          "point_class_value": 24,
+          "point_kind": "source",
+          "point_label": "S_retw",
+          "point_term": "v_retw",
+          "row": "q1",
+          "selected": false
+        },
+        {
+          "atom": "M_q1__B_q0",
+          "point_class_value": 0,
+          "point_kind": "blocker",
+          "point_label": "B_q0",
+          "point_term": "b0",
+          "row": "q1",
+          "selected": false
+        },
+        {
+          "atom": "M_q1__B_q1",
+          "point_class_value": 0,
+          "point_kind": "blocker",
+          "point_label": "B_q1",
+          "point_term": "b1",
+          "row": "q1",
+          "selected": false
+        },
+        {
+          "atom": "M_q1__B_q2",
+          "point_class_value": 13,
+          "point_kind": "blocker",
+          "point_label": "B_q2",
+          "point_term": "b2",
+          "row": "q1",
+          "selected": false
+        },
+        {
+          "atom": "M_q1__B_q3",
+          "point_class_value": 14,
+          "point_kind": "blocker",
+          "point_label": "B_q3",
+          "point_term": "b3",
+          "row": "q1",
+          "selected": false
+        },
+        {
+          "atom": "M_q1__B_first",
+          "point_class_value": 5,
+          "point_kind": "blocker",
+          "point_label": "B_first",
+          "point_term": "blk_first",
+          "row": "q1",
+          "selected": false
+        },
+        {
+          "atom": "M_q1__B_second",
+          "point_class_value": 10,
+          "point_kind": "blocker",
+          "point_label": "B_second",
+          "point_term": "blk_second",
+          "row": "q1",
+          "selected": false
+        },
+        {
+          "atom": "M_q1__B_retz",
+          "point_class_value": 19,
+          "point_kind": "blocker",
+          "point_label": "B_retz",
+          "point_term": "blk_retz",
+          "row": "q1",
+          "selected": false
+        },
+        {
+          "atom": "M_q1__B_retw",
+          "point_class_value": 20,
+          "point_kind": "blocker",
+          "point_label": "B_retw",
+          "point_term": "blk_retw",
+          "row": "q1",
+          "selected": false
+        },
+        {
+          "atom": "M_q2__S_q0",
+          "point_class_value": 7,
+          "point_kind": "source",
+          "point_label": "S_q0",
+          "point_term": "v_q0",
+          "row": "q2",
+          "selected": false
+        },
+        {
+          "atom": "M_q2__S_q1",
+          "point_class_value": 8,
+          "point_kind": "source",
+          "point_label": "S_q1",
+          "point_term": "v_q1",
+          "row": "q2",
+          "selected": true
+        },
+        {
+          "atom": "M_q2__S_q2",
+          "point_class_value": 9,
+          "point_kind": "source",
+          "point_label": "S_q2",
+          "point_term": "v_q2",
+          "row": "q2",
+          "selected": true
+        },
+        {
+          "atom": "M_q2__S_q3",
+          "point_class_value": 6,
+          "point_kind": "source",
+          "point_label": "S_q3",
+          "point_term": "v_q3",
+          "row": "q2",
+          "selected": false
+        },
+        {
+          "atom": "M_q2__S_first",
+          "point_class_value": 21,
+          "point_kind": "source",
+          "point_label": "S_first",
+          "point_term": "v_first",
+          "row": "q2",
+          "selected": false
+        },
+        {
+          "atom": "M_q2__S_second",
+          "point_class_value": 22,
+          "point_kind": "source",
+          "point_label": "S_second",
+          "point_term": "v_second",
+          "row": "q2",
+          "selected": false
+        },
+        {
+          "atom": "M_q2__S_retz",
+          "point_class_value": 23,
+          "point_kind": "source",
+          "point_label": "S_retz",
+          "point_term": "v_retz",
+          "row": "q2",
+          "selected": false
+        },
+        {
+          "atom": "M_q2__S_retw",
+          "point_class_value": 24,
+          "point_kind": "source",
+          "point_label": "S_retw",
+          "point_term": "v_retw",
+          "row": "q2",
+          "selected": false
+        },
+        {
+          "atom": "M_q2__B_q0",
+          "point_class_value": 0,
+          "point_kind": "blocker",
+          "point_label": "B_q0",
+          "point_term": "b0",
+          "row": "q2",
+          "selected": false
+        },
+        {
+          "atom": "M_q2__B_q1",
+          "point_class_value": 0,
+          "point_kind": "blocker",
+          "point_label": "B_q1",
+          "point_term": "b1",
+          "row": "q2",
+          "selected": false
+        },
+        {
+          "atom": "M_q2__B_q2",
+          "point_class_value": 13,
+          "point_kind": "blocker",
+          "point_label": "B_q2",
+          "point_term": "b2",
+          "row": "q2",
+          "selected": false
+        },
+        {
+          "atom": "M_q2__B_q3",
+          "point_class_value": 14,
+          "point_kind": "blocker",
+          "point_label": "B_q3",
+          "point_term": "b3",
+          "row": "q2",
+          "selected": false
+        },
+        {
+          "atom": "M_q2__B_first",
+          "point_class_value": 5,
+          "point_kind": "blocker",
+          "point_label": "B_first",
+          "point_term": "blk_first",
+          "row": "q2",
+          "selected": false
+        },
+        {
+          "atom": "M_q2__B_second",
+          "point_class_value": 10,
+          "point_kind": "blocker",
+          "point_label": "B_second",
+          "point_term": "blk_second",
+          "row": "q2",
+          "selected": false
+        },
+        {
+          "atom": "M_q2__B_retz",
+          "point_class_value": 19,
+          "point_kind": "blocker",
+          "point_label": "B_retz",
+          "point_term": "blk_retz",
+          "row": "q2",
+          "selected": false
+        },
+        {
+          "atom": "M_q2__B_retw",
+          "point_class_value": 20,
+          "point_kind": "blocker",
+          "point_label": "B_retw",
+          "point_term": "blk_retw",
+          "row": "q2",
+          "selected": false
+        },
+        {
+          "atom": "M_q3__S_q0",
+          "point_class_value": 7,
+          "point_kind": "source",
+          "point_label": "S_q0",
+          "point_term": "v_q0",
+          "row": "q3",
+          "selected": true
+        },
+        {
+          "atom": "M_q3__S_q1",
+          "point_class_value": 8,
+          "point_kind": "source",
+          "point_label": "S_q1",
+          "point_term": "v_q1",
+          "row": "q3",
+          "selected": false
+        },
+        {
+          "atom": "M_q3__S_q2",
+          "point_class_value": 9,
+          "point_kind": "source",
+          "point_label": "S_q2",
+          "point_term": "v_q2",
+          "row": "q3",
+          "selected": false
+        },
+        {
+          "atom": "M_q3__S_q3",
+          "point_class_value": 6,
+          "point_kind": "source",
+          "point_label": "S_q3",
+          "point_term": "v_q3",
+          "row": "q3",
+          "selected": true
+        },
+        {
+          "atom": "M_q3__S_first",
+          "point_class_value": 21,
+          "point_kind": "source",
+          "point_label": "S_first",
+          "point_term": "v_first",
+          "row": "q3",
+          "selected": false
+        },
+        {
+          "atom": "M_q3__S_second",
+          "point_class_value": 22,
+          "point_kind": "source",
+          "point_label": "S_second",
+          "point_term": "v_second",
+          "row": "q3",
+          "selected": false
+        },
+        {
+          "atom": "M_q3__S_retz",
+          "point_class_value": 23,
+          "point_kind": "source",
+          "point_label": "S_retz",
+          "point_term": "v_retz",
+          "row": "q3",
+          "selected": false
+        },
+        {
+          "atom": "M_q3__S_retw",
+          "point_class_value": 24,
+          "point_kind": "source",
+          "point_label": "S_retw",
+          "point_term": "v_retw",
+          "row": "q3",
+          "selected": false
+        },
+        {
+          "atom": "M_q3__B_q0",
+          "point_class_value": 0,
+          "point_kind": "blocker",
+          "point_label": "B_q0",
+          "point_term": "b0",
+          "row": "q3",
+          "selected": false
+        },
+        {
+          "atom": "M_q3__B_q1",
+          "point_class_value": 0,
+          "point_kind": "blocker",
+          "point_label": "B_q1",
+          "point_term": "b1",
+          "row": "q3",
+          "selected": false
+        },
+        {
+          "atom": "M_q3__B_q2",
+          "point_class_value": 13,
+          "point_kind": "blocker",
+          "point_label": "B_q2",
+          "point_term": "b2",
+          "row": "q3",
+          "selected": false
+        },
+        {
+          "atom": "M_q3__B_q3",
+          "point_class_value": 14,
+          "point_kind": "blocker",
+          "point_label": "B_q3",
+          "point_term": "b3",
+          "row": "q3",
+          "selected": false
+        },
+        {
+          "atom": "M_q3__B_first",
+          "point_class_value": 5,
+          "point_kind": "blocker",
+          "point_label": "B_first",
+          "point_term": "blk_first",
+          "row": "q3",
+          "selected": false
+        },
+        {
+          "atom": "M_q3__B_second",
+          "point_class_value": 10,
+          "point_kind": "blocker",
+          "point_label": "B_second",
+          "point_term": "blk_second",
+          "row": "q3",
+          "selected": false
+        },
+        {
+          "atom": "M_q3__B_retz",
+          "point_class_value": 19,
+          "point_kind": "blocker",
+          "point_label": "B_retz",
+          "point_term": "blk_retz",
+          "row": "q3",
+          "selected": false
+        },
+        {
+          "atom": "M_q3__B_retw",
+          "point_class_value": 20,
+          "point_kind": "blocker",
+          "point_label": "B_retw",
+          "point_term": "blk_retw",
+          "row": "q3",
+          "selected": false
+        },
+        {
+          "atom": "M_first__S_q0",
+          "point_class_value": 7,
+          "point_kind": "source",
+          "point_label": "S_q0",
+          "point_term": "v_q0",
+          "row": "first",
+          "selected": false
+        },
+        {
+          "atom": "M_first__S_q1",
+          "point_class_value": 8,
+          "point_kind": "source",
+          "point_label": "S_q1",
+          "point_term": "v_q1",
+          "row": "first",
+          "selected": false
+        },
+        {
+          "atom": "M_first__S_q2",
+          "point_class_value": 9,
+          "point_kind": "source",
+          "point_label": "S_q2",
+          "point_term": "v_q2",
+          "row": "first",
+          "selected": false
+        },
+        {
+          "atom": "M_first__S_q3",
+          "point_class_value": 6,
+          "point_kind": "source",
+          "point_label": "S_q3",
+          "point_term": "v_q3",
+          "row": "first",
+          "selected": false
+        },
+        {
+          "atom": "M_first__S_first",
+          "point_class_value": 21,
+          "point_kind": "source",
+          "point_label": "S_first",
+          "point_term": "v_first",
+          "row": "first",
+          "selected": true
+        },
+        {
+          "atom": "M_first__S_second",
+          "point_class_value": 22,
+          "point_kind": "source",
+          "point_label": "S_second",
+          "point_term": "v_second",
+          "row": "first",
+          "selected": false
+        },
+        {
+          "atom": "M_first__S_retz",
+          "point_class_value": 23,
+          "point_kind": "source",
+          "point_label": "S_retz",
+          "point_term": "v_retz",
+          "row": "first",
+          "selected": false
+        },
+        {
+          "atom": "M_first__S_retw",
+          "point_class_value": 24,
+          "point_kind": "source",
+          "point_label": "S_retw",
+          "point_term": "v_retw",
+          "row": "first",
+          "selected": false
+        },
+        {
+          "atom": "M_first__B_q0",
+          "point_class_value": 0,
+          "point_kind": "blocker",
+          "point_label": "B_q0",
+          "point_term": "b0",
+          "row": "first",
+          "selected": false
+        },
+        {
+          "atom": "M_first__B_q1",
+          "point_class_value": 0,
+          "point_kind": "blocker",
+          "point_label": "B_q1",
+          "point_term": "b1",
+          "row": "first",
+          "selected": false
+        },
+        {
+          "atom": "M_first__B_q2",
+          "point_class_value": 13,
+          "point_kind": "blocker",
+          "point_label": "B_q2",
+          "point_term": "b2",
+          "row": "first",
+          "selected": false
+        },
+        {
+          "atom": "M_first__B_q3",
+          "point_class_value": 14,
+          "point_kind": "blocker",
+          "point_label": "B_q3",
+          "point_term": "b3",
+          "row": "first",
+          "selected": false
+        },
+        {
+          "atom": "M_first__B_first",
+          "point_class_value": 5,
+          "point_kind": "blocker",
+          "point_label": "B_first",
+          "point_term": "blk_first",
+          "row": "first",
+          "selected": false
+        },
+        {
+          "atom": "M_first__B_second",
+          "point_class_value": 10,
+          "point_kind": "blocker",
+          "point_label": "B_second",
+          "point_term": "blk_second",
+          "row": "first",
+          "selected": false
+        },
+        {
+          "atom": "M_first__B_retz",
+          "point_class_value": 19,
+          "point_kind": "blocker",
+          "point_label": "B_retz",
+          "point_term": "blk_retz",
+          "row": "first",
+          "selected": false
+        },
+        {
+          "atom": "M_first__B_retw",
+          "point_class_value": 20,
+          "point_kind": "blocker",
+          "point_label": "B_retw",
+          "point_term": "blk_retw",
+          "row": "first",
+          "selected": false
+        },
+        {
+          "atom": "M_second__S_q0",
+          "point_class_value": 7,
+          "point_kind": "source",
+          "point_label": "S_q0",
+          "point_term": "v_q0",
+          "row": "second",
+          "selected": false
+        },
+        {
+          "atom": "M_second__S_q1",
+          "point_class_value": 8,
+          "point_kind": "source",
+          "point_label": "S_q1",
+          "point_term": "v_q1",
+          "row": "second",
+          "selected": false
+        },
+        {
+          "atom": "M_second__S_q2",
+          "point_class_value": 9,
+          "point_kind": "source",
+          "point_label": "S_q2",
+          "point_term": "v_q2",
+          "row": "second",
+          "selected": true
+        },
+        {
+          "atom": "M_second__S_q3",
+          "point_class_value": 6,
+          "point_kind": "source",
+          "point_label": "S_q3",
+          "point_term": "v_q3",
+          "row": "second",
+          "selected": true
+        },
+        {
+          "atom": "M_second__S_first",
+          "point_class_value": 21,
+          "point_kind": "source",
+          "point_label": "S_first",
+          "point_term": "v_first",
+          "row": "second",
+          "selected": false
+        },
+        {
+          "atom": "M_second__S_second",
+          "point_class_value": 22,
+          "point_kind": "source",
+          "point_label": "S_second",
+          "point_term": "v_second",
+          "row": "second",
+          "selected": true
+        },
+        {
+          "atom": "M_second__S_retz",
+          "point_class_value": 23,
+          "point_kind": "source",
+          "point_label": "S_retz",
+          "point_term": "v_retz",
+          "row": "second",
+          "selected": false
+        },
+        {
+          "atom": "M_second__S_retw",
+          "point_class_value": 24,
+          "point_kind": "source",
+          "point_label": "S_retw",
+          "point_term": "v_retw",
+          "row": "second",
+          "selected": false
+        },
+        {
+          "atom": "M_second__B_q0",
+          "point_class_value": 0,
+          "point_kind": "blocker",
+          "point_label": "B_q0",
+          "point_term": "b0",
+          "row": "second",
+          "selected": false
+        },
+        {
+          "atom": "M_second__B_q1",
+          "point_class_value": 0,
+          "point_kind": "blocker",
+          "point_label": "B_q1",
+          "point_term": "b1",
+          "row": "second",
+          "selected": false
+        },
+        {
+          "atom": "M_second__B_q2",
+          "point_class_value": 13,
+          "point_kind": "blocker",
+          "point_label": "B_q2",
+          "point_term": "b2",
+          "row": "second",
+          "selected": false
+        },
+        {
+          "atom": "M_second__B_q3",
+          "point_class_value": 14,
+          "point_kind": "blocker",
+          "point_label": "B_q3",
+          "point_term": "b3",
+          "row": "second",
+          "selected": false
+        },
+        {
+          "atom": "M_second__B_first",
+          "point_class_value": 5,
+          "point_kind": "blocker",
+          "point_label": "B_first",
+          "point_term": "blk_first",
+          "row": "second",
+          "selected": false
+        },
+        {
+          "atom": "M_second__B_second",
+          "point_class_value": 10,
+          "point_kind": "blocker",
+          "point_label": "B_second",
+          "point_term": "blk_second",
+          "row": "second",
+          "selected": false
+        },
+        {
+          "atom": "M_second__B_retz",
+          "point_class_value": 19,
+          "point_kind": "blocker",
+          "point_label": "B_retz",
+          "point_term": "blk_retz",
+          "row": "second",
+          "selected": false
+        },
+        {
+          "atom": "M_second__B_retw",
+          "point_class_value": 20,
+          "point_kind": "blocker",
+          "point_label": "B_retw",
+          "point_term": "blk_retw",
+          "row": "second",
+          "selected": false
+        },
+        {
+          "atom": "M_retz__S_q0",
+          "point_class_value": 7,
+          "point_kind": "source",
+          "point_label": "S_q0",
+          "point_term": "v_q0",
+          "row": "retz",
+          "selected": true
+        },
+        {
+          "atom": "M_retz__S_q1",
+          "point_class_value": 8,
+          "point_kind": "source",
+          "point_label": "S_q1",
+          "point_term": "v_q1",
+          "row": "retz",
+          "selected": false
+        },
+        {
+          "atom": "M_retz__S_q2",
+          "point_class_value": 9,
+          "point_kind": "source",
+          "point_label": "S_q2",
+          "point_term": "v_q2",
+          "row": "retz",
+          "selected": false
+        },
+        {
+          "atom": "M_retz__S_q3",
+          "point_class_value": 6,
+          "point_kind": "source",
+          "point_label": "S_q3",
+          "point_term": "v_q3",
+          "row": "retz",
+          "selected": true
+        },
+        {
+          "atom": "M_retz__S_first",
+          "point_class_value": 21,
+          "point_kind": "source",
+          "point_label": "S_first",
+          "point_term": "v_first",
+          "row": "retz",
+          "selected": false
+        },
+        {
+          "atom": "M_retz__S_second",
+          "point_class_value": 22,
+          "point_kind": "source",
+          "point_label": "S_second",
+          "point_term": "v_second",
+          "row": "retz",
+          "selected": false
+        },
+        {
+          "atom": "M_retz__S_retz",
+          "point_class_value": 23,
+          "point_kind": "source",
+          "point_label": "S_retz",
+          "point_term": "v_retz",
+          "row": "retz",
+          "selected": true
+        },
+        {
+          "atom": "M_retz__S_retw",
+          "point_class_value": 24,
+          "point_kind": "source",
+          "point_label": "S_retw",
+          "point_term": "v_retw",
+          "row": "retz",
+          "selected": false
+        },
+        {
+          "atom": "M_retz__B_q0",
+          "point_class_value": 0,
+          "point_kind": "blocker",
+          "point_label": "B_q0",
+          "point_term": "b0",
+          "row": "retz",
+          "selected": false
+        },
+        {
+          "atom": "M_retz__B_q1",
+          "point_class_value": 0,
+          "point_kind": "blocker",
+          "point_label": "B_q1",
+          "point_term": "b1",
+          "row": "retz",
+          "selected": false
+        },
+        {
+          "atom": "M_retz__B_q2",
+          "point_class_value": 13,
+          "point_kind": "blocker",
+          "point_label": "B_q2",
+          "point_term": "b2",
+          "row": "retz",
+          "selected": false
+        },
+        {
+          "atom": "M_retz__B_q3",
+          "point_class_value": 14,
+          "point_kind": "blocker",
+          "point_label": "B_q3",
+          "point_term": "b3",
+          "row": "retz",
+          "selected": false
+        },
+        {
+          "atom": "M_retz__B_first",
+          "point_class_value": 5,
+          "point_kind": "blocker",
+          "point_label": "B_first",
+          "point_term": "blk_first",
+          "row": "retz",
+          "selected": false
+        },
+        {
+          "atom": "M_retz__B_second",
+          "point_class_value": 10,
+          "point_kind": "blocker",
+          "point_label": "B_second",
+          "point_term": "blk_second",
+          "row": "retz",
+          "selected": false
+        },
+        {
+          "atom": "M_retz__B_retz",
+          "point_class_value": 19,
+          "point_kind": "blocker",
+          "point_label": "B_retz",
+          "point_term": "blk_retz",
+          "row": "retz",
+          "selected": false
+        },
+        {
+          "atom": "M_retz__B_retw",
+          "point_class_value": 20,
+          "point_kind": "blocker",
+          "point_label": "B_retw",
+          "point_term": "blk_retw",
+          "row": "retz",
+          "selected": false
+        },
+        {
+          "atom": "M_retw__S_q0",
+          "point_class_value": 7,
+          "point_kind": "source",
+          "point_label": "S_q0",
+          "point_term": "v_q0",
+          "row": "retw",
+          "selected": false
+        },
+        {
+          "atom": "M_retw__S_q1",
+          "point_class_value": 8,
+          "point_kind": "source",
+          "point_label": "S_q1",
+          "point_term": "v_q1",
+          "row": "retw",
+          "selected": true
+        },
+        {
+          "atom": "M_retw__S_q2",
+          "point_class_value": 9,
+          "point_kind": "source",
+          "point_label": "S_q2",
+          "point_term": "v_q2",
+          "row": "retw",
+          "selected": false
+        },
+        {
+          "atom": "M_retw__S_q3",
+          "point_class_value": 6,
+          "point_kind": "source",
+          "point_label": "S_q3",
+          "point_term": "v_q3",
+          "row": "retw",
+          "selected": true
+        },
+        {
+          "atom": "M_retw__S_first",
+          "point_class_value": 21,
+          "point_kind": "source",
+          "point_label": "S_first",
+          "point_term": "v_first",
+          "row": "retw",
+          "selected": false
+        },
+        {
+          "atom": "M_retw__S_second",
+          "point_class_value": 22,
+          "point_kind": "source",
+          "point_label": "S_second",
+          "point_term": "v_second",
+          "row": "retw",
+          "selected": false
+        },
+        {
+          "atom": "M_retw__S_retz",
+          "point_class_value": 23,
+          "point_kind": "source",
+          "point_label": "S_retz",
+          "point_term": "v_retz",
+          "row": "retw",
+          "selected": false
+        },
+        {
+          "atom": "M_retw__S_retw",
+          "point_class_value": 24,
+          "point_kind": "source",
+          "point_label": "S_retw",
+          "point_term": "v_retw",
+          "row": "retw",
+          "selected": true
+        },
+        {
+          "atom": "M_retw__B_q0",
+          "point_class_value": 0,
+          "point_kind": "blocker",
+          "point_label": "B_q0",
+          "point_term": "b0",
+          "row": "retw",
+          "selected": false
+        },
+        {
+          "atom": "M_retw__B_q1",
+          "point_class_value": 0,
+          "point_kind": "blocker",
+          "point_label": "B_q1",
+          "point_term": "b1",
+          "row": "retw",
+          "selected": false
+        },
+        {
+          "atom": "M_retw__B_q2",
+          "point_class_value": 13,
+          "point_kind": "blocker",
+          "point_label": "B_q2",
+          "point_term": "b2",
+          "row": "retw",
+          "selected": false
+        },
+        {
+          "atom": "M_retw__B_q3",
+          "point_class_value": 14,
+          "point_kind": "blocker",
+          "point_label": "B_q3",
+          "point_term": "b3",
+          "row": "retw",
+          "selected": false
+        },
+        {
+          "atom": "M_retw__B_first",
+          "point_class_value": 5,
+          "point_kind": "blocker",
+          "point_label": "B_first",
+          "point_term": "blk_first",
+          "row": "retw",
+          "selected": false
+        },
+        {
+          "atom": "M_retw__B_second",
+          "point_class_value": 10,
+          "point_kind": "blocker",
+          "point_label": "B_second",
+          "point_term": "blk_second",
+          "row": "retw",
+          "selected": false
+        },
+        {
+          "atom": "M_retw__B_retz",
+          "point_class_value": 19,
+          "point_kind": "blocker",
+          "point_label": "B_retz",
+          "point_term": "blk_retz",
+          "row": "retw",
+          "selected": false
+        },
+        {
+          "atom": "M_retw__B_retw",
+          "point_class_value": 20,
+          "point_kind": "blocker",
+          "point_label": "B_retw",
+          "point_term": "blk_retw",
+          "row": "retw",
+          "selected": false
+        }
+      ],
+      "point_classes": [
+        {
+          "aliases": [
+            {
+              "kind": "blocker",
+              "label": "B_q0",
+              "term": "b0"
+            },
+            {
+              "kind": "blocker",
+              "label": "B_q1",
+              "term": "b1"
+            }
+          ],
+          "id": "p0",
+          "terminal_equality_class_value": 0
+        },
+        {
+          "aliases": [
+            {
+              "kind": "blocker",
+              "label": "B_first",
+              "term": "blk_first"
+            }
+          ],
+          "id": "p1",
+          "terminal_equality_class_value": 5
+        },
+        {
+          "aliases": [
+            {
+              "kind": "source",
+              "label": "S_q3",
+              "term": "v_q3"
+            }
+          ],
+          "id": "p2",
+          "terminal_equality_class_value": 6
+        },
+        {
+          "aliases": [
+            {
+              "kind": "source",
+              "label": "S_q0",
+              "term": "v_q0"
+            }
+          ],
+          "id": "p3",
+          "terminal_equality_class_value": 7
+        },
+        {
+          "aliases": [
+            {
+              "kind": "source",
+              "label": "S_q1",
+              "term": "v_q1"
+            }
+          ],
+          "id": "p4",
+          "terminal_equality_class_value": 8
+        },
+        {
+          "aliases": [
+            {
+              "kind": "source",
+              "label": "S_q2",
+              "term": "v_q2"
+            }
+          ],
+          "id": "p5",
+          "terminal_equality_class_value": 9
+        },
+        {
+          "aliases": [
+            {
+              "kind": "blocker",
+              "label": "B_second",
+              "term": "blk_second"
+            }
+          ],
+          "id": "p6",
+          "terminal_equality_class_value": 10
+        },
+        {
+          "aliases": [
+            {
+              "kind": "blocker",
+              "label": "B_q2",
+              "term": "b2"
+            }
+          ],
+          "id": "p7",
+          "terminal_equality_class_value": 13
+        },
+        {
+          "aliases": [
+            {
+              "kind": "blocker",
+              "label": "B_q3",
+              "term": "b3"
+            }
+          ],
+          "id": "p8",
+          "terminal_equality_class_value": 14
+        },
+        {
+          "aliases": [
+            {
+              "kind": "blocker",
+              "label": "B_retz",
+              "term": "blk_retz"
+            }
+          ],
+          "id": "p9",
+          "terminal_equality_class_value": 19
+        },
+        {
+          "aliases": [
+            {
+              "kind": "blocker",
+              "label": "B_retw",
+              "term": "blk_retw"
+            }
+          ],
+          "id": "p10",
+          "terminal_equality_class_value": 20
+        },
+        {
+          "aliases": [
+            {
+              "kind": "source",
+              "label": "S_first",
+              "term": "v_first"
+            }
+          ],
+          "id": "p11",
+          "terminal_equality_class_value": 21
+        },
+        {
+          "aliases": [
+            {
+              "kind": "source",
+              "label": "S_second",
+              "term": "v_second"
+            }
+          ],
+          "id": "p12",
+          "terminal_equality_class_value": 22
+        },
+        {
+          "aliases": [
+            {
+              "kind": "source",
+              "label": "S_retz",
+              "term": "v_retz"
+            }
+          ],
+          "id": "p13",
+          "terminal_equality_class_value": 23
+        },
+        {
+          "aliases": [
+            {
+              "kind": "source",
+              "label": "S_retw",
+              "term": "v_retw"
+            }
+          ],
+          "id": "p14",
+          "terminal_equality_class_value": 24
+        }
+      ],
+      "rows": [
+        {
+          "center_class_id": "p0",
+          "center_class_value": 0,
+          "center_term": "b0",
+          "row_equality_count": 3,
+          "row_label": "q0",
+          "selected_class_ids": [
+            "p2",
+            "p3",
+            "p4",
+            "p5"
+          ],
+          "selected_class_values": [
+            6,
+            7,
+            8,
+            9
+          ],
+          "selected_point_labels": [
+            "S_q0",
+            "S_q1",
+            "S_q2",
+            "S_q3"
+          ],
+          "selected_unique_count": 4,
+          "source_class_id": "p3",
+          "source_class_value": 7,
+          "source_term": "v_q0"
+        },
+        {
+          "center_class_id": "p0",
+          "center_class_value": 0,
+          "center_term": "b1",
+          "row_equality_count": 3,
+          "row_label": "q1",
+          "selected_class_ids": [
+            "p2",
+            "p3",
+            "p4",
+            "p5"
+          ],
+          "selected_class_values": [
+            6,
+            7,
+            8,
+            9
+          ],
+          "selected_point_labels": [
+            "S_q0",
+            "S_q1",
+            "S_q2",
+            "S_q3"
+          ],
+          "selected_unique_count": 4,
+          "source_class_id": "p4",
+          "source_class_value": 8,
+          "source_term": "v_q1"
+        },
+        {
+          "center_class_id": "p7",
+          "center_class_value": 13,
+          "center_term": "b2",
+          "row_equality_count": 1,
+          "row_label": "q2",
+          "selected_class_ids": [
+            "p4",
+            "p5"
+          ],
+          "selected_class_values": [
+            8,
+            9
+          ],
+          "selected_point_labels": [
+            "S_q1",
+            "S_q2"
+          ],
+          "selected_unique_count": 2,
+          "source_class_id": "p5",
+          "source_class_value": 9,
+          "source_term": "v_q2"
+        },
+        {
+          "center_class_id": "p8",
+          "center_class_value": 14,
+          "center_term": "b3",
+          "row_equality_count": 1,
+          "row_label": "q3",
+          "selected_class_ids": [
+            "p2",
+            "p3"
+          ],
+          "selected_class_values": [
+            6,
+            7
+          ],
+          "selected_point_labels": [
+            "S_q0",
+            "S_q3"
+          ],
+          "selected_unique_count": 2,
+          "source_class_id": "p2",
+          "source_class_value": 6,
+          "source_term": "v_q3"
+        },
+        {
+          "center_class_id": "p1",
+          "center_class_value": 5,
+          "center_term": "blk_first",
+          "row_equality_count": 0,
+          "row_label": "first",
+          "selected_class_ids": [
+            "p11"
+          ],
+          "selected_class_values": [
+            21
+          ],
+          "selected_point_labels": [
+            "S_first"
+          ],
+          "selected_unique_count": 1,
+          "source_class_id": "p11",
+          "source_class_value": 21,
+          "source_term": "v_first"
+        },
+        {
+          "center_class_id": "p6",
+          "center_class_value": 10,
+          "center_term": "blk_second",
+          "row_equality_count": 2,
+          "row_label": "second",
+          "selected_class_ids": [
+            "p2",
+            "p5",
+            "p12"
+          ],
+          "selected_class_values": [
+            6,
+            9,
+            22
+          ],
+          "selected_point_labels": [
+            "S_q2",
+            "S_q3",
+            "S_second"
+          ],
+          "selected_unique_count": 3,
+          "source_class_id": "p12",
+          "source_class_value": 22,
+          "source_term": "v_second"
+        },
+        {
+          "center_class_id": "p9",
+          "center_class_value": 19,
+          "center_term": "blk_retz",
+          "row_equality_count": 2,
+          "row_label": "retz",
+          "selected_class_ids": [
+            "p2",
+            "p3",
+            "p13"
+          ],
+          "selected_class_values": [
+            6,
+            7,
+            23
+          ],
+          "selected_point_labels": [
+            "S_q0",
+            "S_q3",
+            "S_retz"
+          ],
+          "selected_unique_count": 3,
+          "source_class_id": "p13",
+          "source_class_value": 23,
+          "source_term": "v_retz"
+        },
+        {
+          "center_class_id": "p10",
+          "center_class_value": 20,
+          "center_term": "blk_retw",
+          "row_equality_count": 2,
+          "row_label": "retw",
+          "selected_class_ids": [
+            "p2",
+            "p4",
+            "p14"
+          ],
+          "selected_class_values": [
+            6,
+            8,
+            24
+          ],
+          "selected_point_labels": [
+            "S_q1",
+            "S_q3",
+            "S_retw"
+          ],
+          "selected_unique_count": 3,
+          "source_class_id": "p14",
+          "source_class_value": 24,
+          "source_term": "v_retw"
+        }
+      ],
+      "source_packet": {
+        "motif_embedding": null,
+        "path": "scratch/p97-consumer-first/freshthird_firstnonhit_sevenrow_cut_v1/iterations/retained-00.json",
+        "sha256": "16172b01d7e4316583dc1cdd829c018dff83b45b973b2b4f5f0354cbab70d723",
+        "terminal_status": "sat"
+      },
+      "table_validation": {
+        "cartesian_cell_count": 128,
+        "expected_cartesian_cell_count": 128,
+        "extensional_center_point_pairs": 105,
+        "own_blocker_unselected_all_rows": true,
+        "own_source_selected_all_rows": true
+      }
+    }
+  ],
+  "schema": "freshthird-firstnonhit-motiffree-algebra-v2",
+  "scope": "three fixed terminal named-role quotient readbacks",
+  "source_authentication": {
+    "source_map_sha256": "ab85c0e7cc15f88c40dcbcd3c18f5cd25df285b1b9e2767ac9bda4b6c2a8ddd7",
+    "source_root": "scratch/p97-consumer-first/freshthird_firstnonhit_sevenrow_cut_v1",
+    "source_sha256sums_sha256": "d919d8ad22ec482fe00e7bf6b0597a130a8a4e1a382869176a9ae04a0c35953e",
+    "terminal_sha256": "7295e57c86b81b64b6ecc993613bb7ace1d91968aa092ade22a21accb6c090bb",
+    "validation_sha256": "03da5aaffffdd566362fd2f7d85c8c32d14549faaaaa4c1b7acba2de153fc638",
+    "verified_source_entry_count": 49
+  },
+  "translation": "positive selected-row cells to exact squared-equidistance equalities"
+}

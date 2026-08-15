@@ -1,0 +1,20 @@
+{
+  "gauge_polynomials": [],
+  "point_count": 1,
+  "polynomials": [
+    "x",
+    "x-1"
+  ],
+  "row_count": 0,
+  "row_equality_count": 2,
+  "row_groups": [],
+  "total_equality_count": 2,
+  "variables_order_a": [
+    "x",
+    "y"
+  ],
+  "variables_order_b": [
+    "y",
+    "x"
+  ]
+}

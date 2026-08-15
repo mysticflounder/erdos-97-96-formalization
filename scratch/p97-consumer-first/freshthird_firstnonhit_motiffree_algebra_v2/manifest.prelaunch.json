@@ -1,0 +1,32 @@
+{
+  "case_matrix": [
+    "common",
+    "common_sameblocker",
+    "retained"
+  ],
+  "compatibility_class": "C: fresh equality semantics and fresh output namespace",
+  "hashes": {
+    "SOURCE-MAP.md": "9e8156b2ac0df5cf75b289b3f128e2b3f98cf798bffa19db59e2b16889dc5f99",
+    "canonical_packets": "85d7a9a883915ba0da2314091e5140f9ed850c1ee837e27cc8fb5d92c2b6a16d",
+    "input.json": "a06a631f9d5ac16f74b18fdaf7fdaa7dbd9d2d7b31df1eba85b04d09f5af5805",
+    "run_wave.py": "6b3f45d25247e302c954433e5da1aa85e5a7dc21888f85f460507cbc2cd85168"
+  },
+  "intended_command": "uv run python scratch/p97-consumer-first/freshthird_firstnonhit_motiffree_algebra_v2/run_wave.py --run",
+  "schema": "freshthird-firstnonhit-motiffree-algebra-v2",
+  "solver_limits": {
+    "control_timeout_seconds": 10.0,
+    "core_auth_timeout_seconds": 12.0,
+    "core_greedy_timeout_seconds": 6.0,
+    "execution": "sequential subprocesses; at most one solver child",
+    "maximum_cores": 4,
+    "target_timeout_seconds": 40.0,
+    "timeout_escalation": false,
+    "total_solver_wall_seconds": 290.0
+  },
+  "source_packet_hashes": {
+    "common": "7af568fb086c0974cae93ac6f0ad425c9964258c6fa5661f08f9766504610dfa",
+    "common_sameblocker": "f8b729a8c3ef4328e27c543a308049bb8ede3c8a6024fa227500f6980b1888c4",
+    "retained": "16172b01d7e4316583dc1cdd829c018dff83b45b973b2b4f5f0354cbab70d723"
+  },
+  "state": "PREPARED"
+}

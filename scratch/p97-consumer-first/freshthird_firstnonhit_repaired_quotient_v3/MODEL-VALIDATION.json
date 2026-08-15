@@ -1,0 +1,23 @@
+{
+  "detected_invalid_readbacks": 0,
+  "errors": [],
+  "records": [
+    {
+      "case": "retained",
+      "errors": [],
+      "status": "PASS"
+    },
+    {
+      "case": "common",
+      "errors": [],
+      "status": "PASS"
+    },
+    {
+      "case": "common_sameblocker",
+      "errors": [],
+      "status": "PASS"
+    }
+  ],
+  "status": "PASS",
+  "validator": "independent pure-Python model validator; imports no schema/wave module"
+}

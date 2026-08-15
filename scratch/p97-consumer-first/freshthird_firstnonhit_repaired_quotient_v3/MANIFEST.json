@@ -1,0 +1,16 @@
+{
+  "wave": "freshthird_firstnonhit_repaired_quotient_v3",
+  "classification": "SAT-abstraction",
+  "status": "SAT_MOTIF_FREE_SURVIVOR",
+  "cases": ["retained", "common", "common_sameblocker"],
+  "solvers": ["Python-Z3 4.16.0", "cvc5 1.3.3"],
+  "workers": 1,
+  "cores": 12,
+  "timeout_ms_per_solver": 30000,
+  "timeout_escalation": false,
+  "cegar_waves": 1,
+  "authenticated_nogoods": 0,
+  "universal_claim": false,
+  "v2_evidence_imported": false,
+  "validators": ["FULL-CLAUSE-VALIDATION.json", "MODEL-VALIDATION.json", "CLAUSE-VALIDATION.json", "SOURCE-VALIDATION.json"]
+}

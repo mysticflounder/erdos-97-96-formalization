@@ -1,0 +1,7 @@
+ring R=0,(x,y),dp;
+ideal I =
+  x,
+  x-1;
+ideal G=std(I);
+if (size(G)==1 and G[1]==1) { print("ALGEBRA_VERDICT=UNIT"); } else { print("ALGEBRA_VERDICT=NONUNIT"); print("ALGEBRA_DIM="); print(dim(G)); }
+quit;

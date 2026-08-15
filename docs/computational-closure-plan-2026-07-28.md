@@ -1,4 +1,4 @@
-# Computational closure plan — remaining frontier (updated 2026-08-12)
+# Computational closure plan — remaining frontier (updated 2026-08-14)
 
 Evidence-status terms in this plan follow the
 [closure evidence status ledger](closure-evidence-status-ledger-2026-08-05.md).
@@ -11054,6 +11054,116 @@ deletion terminal.  A finite query may search for those indices only after all
 of those source-proved alternatives are represented; cap labels or raw cyclic
 orders alone are insufficient.  This checkpoint sharpens the CEGAR predicate
 and consumer but closes no load-bearing `sorry`.
+
+#### 13.24.1.35 FirstNonHit seven-row theorem and repaired execution contract (2026-08-14)
+
+The FirstNonHit exact-three incidence survivor supplied one fixed thirteen-row
+equality packet.  Its equality superset is complex-empty: two independent
+`msolve` declaration orders and a characteristic-zero Singular computation
+all returned the unit ideal.  A bounded row deletion pass did not authenticate
+a solver-minimal core, but its seven-row candidate was subsequently proved
+directly in Lean.  The new theorem-bank module
+`P97/Census554/ThirteenPointSevenCircleCollision.lean` proves that the fixed
+thirteen-label pattern has no injective planar realization.  The proof uses
+all seven selected rows, normalizes by a Euclidean similarity, and ends in the
+root-free identity
+
+`(L^2 - R^2) * (3 * epsilon * t + 2) = 23`.
+
+The direct incompatibility theorem, its generic `RowPattern`/`EdgeClosure`
+adapter, and the fixed-pattern consumer all build with exactly `propext`,
+`Classical.choice`, and `Quot.sound`.  The discovery packet and row-subset
+artifacts are hash-bound in the module documentation, but they are not trusted
+by the Lean proof.
+
+This theorem is a reusable cardinality-independent CEGAR cut, not the missing
+FirstNonHit producer.  A source-mapped successor searched each of the
+`retained`, `common`, and `common_sameblocker` abstractions for an injective
+occurrence of the seven-row motif.  Every first readback was motif-free and
+was replayed as `SAT` by Z3 and cvc5.  Thus the cut admits zero learned
+instances and does not establish finite coverage.
+
+The follow-up equality-only algebra wave also fails to supply a new geometric
+obstruction.  The `common` survivor is non-unit in both `msolve` orders and
+Singular, which proves only complex nonemptiness of that positive equality
+table.  The `retained` survivor is `UNKNOWN` because one `msolve` order found a
+non-unit ideal while the independent bounded runs timed out.  No real,
+convex, or P97 realization follows from either result.
+
+That audit also exposed a source-fidelity defect in the raw
+`common_sameblocker` readback.  It placed five pairwise-distinct carrier
+sources in one actual-blocker fiber and six pairwise-distinct points in one
+selected support, contradicting the existing source theorems
+`actualBlockerFiber_card_le_four` and `CriticalFourShell.support_card = 4`.
+The quotient had also omitted `firstSource != secondSource` while failing to
+allow all source-legal aliases between those sources and the `Q` roles.  A
+minimal repaired replay with the two cardinality cuts and correct aliasing is
+again `SAT` in both Z3 and cvc5: it aliases the source roles legally and moves
+the extra `Q` role off the common blocker.  The malformed packet's CAS result
+has no P97 meaning and must not be cited as a survivor.
+
+Accordingly the active FirstNonHit goal remains the direct, source-clean proof
+of
+`TwoSourceExactCollisionRowsTerminal.false_of_freshThird_firstNonHit`, but its
+immediate execution contract is now narrower:
+
+1. repair the complete FirstNonHit quotient in every ingress arm with the
+   actual-blocker-fiber bound, exact selected-support cardinality, distinct
+   canonical sources, and all source-legal aliases;
+2. replay exactly one bounded wave with the proved seven-row cut and
+   independent exact readback validation;
+3. if that repaired abstraction is `SAT`, stop equality-only CEGAR and extract
+   one genuinely source-entitled FirstNonHit clause absent from the survivor;
+4. if it is `UNSAT`, do not promote the result until a source-total finite
+   coverage theorem and a general-cardinality lift have been proved.
+
+The first all-arm repaired replay (`repaired_quotient_v2`) is an authenticated
+infrastructure `UNKNOWN`, not solver evidence.  Its Python Z3 driver parsed
+each `:named` assertion as a label implication but called `solver.check()`
+without enabling the label assumptions.  The resulting raw `SAT` assignments
+violated hard clauses, and cvc5 rejected all exact pins.  The source gate,
+input hashes, and static label catalogs passed, but no model or verdict from
+that run is admissible.  The next executable step is therefore one
+fresh-namespace replay that calls `solver.check(*labels)` and first proves a
+named-false smoke query `UNSAT` in both Z3 and cvc5.  It must not import any v2
+readback or terminal evidence, and it retains the same one-wave, bounded,
+no-escalation contract above.
+
+The corrected fresh-namespace v3 replay then passed the named-false smoke in
+both solvers and returned independently validated `SAT` models for all three
+ingress abstractions, with zero seven-row occurrences.  Its smallest missing
+source clause was
+
+`C.firstSource.1 ∈ S.capInteriorByIndex S.oppIndex1`.
+
+This is not a conjectural producer: it is already the second field of
+`C.firstSource_data : CapSourceThirdCanonicalRowWitness ...`.  A complete
+field audit then showed that it was only the first recorded missing atom, not
+a complete ingress diagnosis.  The quotient represents the two source
+identities, their own exact-four supports, and their distinctness, but omits
+the cap-cardinality margin, both canonical-cap memberships, exclusion from
+the four retained endpoints, separation from the retained blocker centers and
+two named apices, and both `CrossPairDeletionView` packets.  Therefore v3 is a
+valid SAT result for the encoded abstraction but not a source-total
+FirstNonHit survivor.
+
+In accordance with the contract above, there must be no v4 equality-only
+replay.  The next lane must import the complete
+`CapSourceThirdCanonicalRowWitness` ingress and use those cap, deletion, and
+center-separation fields in a consumer-shaped cap-order or metric refinement;
+merely adding the first omitted bit and resolving the same incidence quotient
+would repeat the exhausted CEGAR pattern.  A direct source trace found no
+currently import-reachable terminal that consumes the full packet: the
+cap-wide-alignment closer still lacks the alignment producer, while the new
+seven-row theorem still lacks a source-proved thirteen-role/seven-row
+incidence occurrence.  The immediate mathematical work is therefore a new
+uniform incidence/order producer, not another finite equality table.
+
+The exact-three pinned-fan synchronization work in Section 13.24.1.34 is a
+parallel attack on the pinned-endpoint residual.  It is not an ingress theorem
+for `false_of_freshThird_firstNonHit` and must not be counted as progress on
+this anchor unless an explicit acyclic source bridge is later proved.  This
+checkpoint closes no load-bearing `sorry`.
 
 ## 13.25 Exact-17 cap-nine all-core replay correction (2026-08-08)
 

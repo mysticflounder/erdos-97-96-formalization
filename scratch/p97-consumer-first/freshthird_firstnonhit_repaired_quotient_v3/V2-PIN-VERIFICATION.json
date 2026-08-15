@@ -1,0 +1,127 @@
+{
+  "checks": [
+    {
+      "actual": "342721ee2fd4af92124ea7915deb1cb4a657505f23efb8b6777ef14390eee740",
+      "expected": "342721ee2fd4af92124ea7915deb1cb4a657505f23efb8b6777ef14390eee740",
+      "pass": true,
+      "path": "p97-consumer-first/freshthird_firstnonhit_repaired_quotient_v2/schema.py"
+    },
+    {
+      "actual": "32883096a411a4bb3fa82fd24285d0ecaa5e42a264897b8084d7f0c23e2f19a8",
+      "expected": "32883096a411a4bb3fa82fd24285d0ecaa5e42a264897b8084d7f0c23e2f19a8",
+      "pass": true,
+      "path": "p97-consumer-first/freshthird_firstnonhit_repaired_quotient_v2/SOURCE-VALIDATION.json"
+    },
+    {
+      "actual": "7ca4a48d22b71ea1029f7d775d7c8eac17d302bb2966e6c2c569c9acd447e5a6",
+      "expected": "7ca4a48d22b71ea1029f7d775d7c8eac17d302bb2966e6c2c569c9acd447e5a6",
+      "pass": true,
+      "path": "p97-consumer-first/freshthird_firstnonhit_repaired_quotient_v2/base_retained.smt2"
+    },
+    {
+      "actual": "b88a712d2d94f7bd4cbc96856a3d71eee1223fb6627d9dfef445045ea83ea050",
+      "expected": "b88a712d2d94f7bd4cbc96856a3d71eee1223fb6627d9dfef445045ea83ea050",
+      "pass": true,
+      "path": "p97-consumer-first/freshthird_firstnonhit_repaired_quotient_v2/base_common.smt2"
+    },
+    {
+      "actual": "ca1a4c808660a95ba7f0f3300d448473d384343f79beb8e959ec91d49cd9fdc4",
+      "expected": "ca1a4c808660a95ba7f0f3300d448473d384343f79beb8e959ec91d49cd9fdc4",
+      "pass": true,
+      "path": "p97-consumer-first/freshthird_firstnonhit_repaired_quotient_v2/base_common_sameblocker.smt2"
+    },
+    {
+      "actual": "2bc7a64b1fa1f7f6f07d79a32801877c89e9b3253d468b2677629c81dccae68b",
+      "expected": "2bc7a64b1fa1f7f6f07d79a32801877c89e9b3253d468b2677629c81dccae68b",
+      "pass": true,
+      "path": "lean/Erdos9796Proof/P97/ATail/BlockerMultiplicityGeometry.lean"
+    },
+    {
+      "actual": "2b2b381d0833292df28a1fd9d0316999a221623a23ed0cdb5f97c7f98547b959",
+      "expected": "2b2b381d0833292df28a1fd9d0316999a221623a23ed0cdb5f97c7f98547b959",
+      "pass": true,
+      "path": "lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean"
+    },
+    {
+      "actual": "5fabe2bf3df9d67f146d90e5ee25238b478799e8d22cc21e62010af5d4602a54",
+      "expected": "5fabe2bf3df9d67f146d90e5ee25238b478799e8d22cc21e62010af5d4602a54",
+      "pass": true,
+      "path": "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TriApexEndpointRetainedOmission.lean"
+    },
+    {
+      "actual": "0994b416753dc480849066f2d17ce2912b4b46072e8651413dd04b2c5ab9bbf8",
+      "expected": "0994b416753dc480849066f2d17ce2912b4b46072e8651413dd04b2c5ab9bbf8",
+      "pass": true,
+      "path": "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceCanonicalSurface.lean"
+    },
+    {
+      "actual": "d38b8471b89caa7a73fd4b7bfc4395f55ad28f6ba57b43ecc4b2774543f2a81d",
+      "expected": "d38b8471b89caa7a73fd4b7bfc4395f55ad28f6ba57b43ecc4b2774543f2a81d",
+      "pass": true,
+      "path": "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdFiber.lean"
+    },
+    {
+      "actual": "1c16b513f8b923185b9944bb4f85d3e019fa3fbca522b7e8e8edbba16e0888bd",
+      "expected": "1c16b513f8b923185b9944bb4f85d3e019fa3fbca522b7e8e8edbba16e0888bd",
+      "pass": true,
+      "path": "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean"
+    },
+    {
+      "actual": "015941fc0b69014bd90a101d3f0b68e5fec4ec8e8b9c0e62b1e0b83c0f05851a",
+      "expected": "015941fc0b69014bd90a101d3f0b68e5fec4ec8e8b9c0e62b1e0b83c0f05851a",
+      "pass": true,
+      "path": "lean/Erdos9796Proof/P97/ATail/SurvivalCover.lean"
+    },
+    {
+      "actual": "2da65d72c0e5762d7340943d1c89c256d3eec94272de84c4553a02b04f1aa865",
+      "expected": "2da65d72c0e5762d7340943d1c89c256d3eec94272de84c4553a02b04f1aa865",
+      "pass": true,
+      "path": "lean/Erdos9796Proof/P97/Census554/ThirteenPointSevenCircleCollision.lean"
+    },
+    {
+      "actual": "0763edd41bef51f9b5ca0c7d98d3178efdbe45f7ad130c723e672f6671379fc2",
+      "expected": "0763edd41bef51f9b5ca0c7d98d3178efdbe45f7ad130c723e672f6671379fc2",
+      "pass": true,
+      "path": "lean/Erdos9796Proof/P97/U1CarrierInjection.lean"
+    },
+    {
+      "actual": "02dfcecd2744401df3cfb0846aec9e5caf66a057b523619f6b1dee20c7c31865",
+      "expected": "02dfcecd2744401df3cfb0846aec9e5caf66a057b523619f6b1dee20c7c31865",
+      "pass": true,
+      "path": "scratch/p97-consumer-first/freshthird_firstnonhit_global_blocker_quotient_v1/RESULTS.md"
+    },
+    {
+      "actual": "d725b013847a749a2d9af12c996bd6ea23046bb7baa549e7464b9d3d3d7bd342",
+      "expected": "d725b013847a749a2d9af12c996bd6ea23046bb7baa549e7464b9d3d3d7bd342",
+      "pass": true,
+      "path": "scratch/p97-consumer-first/freshthird_firstnonhit_global_blocker_quotient_v1/SHA256SUMS"
+    },
+    {
+      "actual": "293dbcf375478247be6c6ca067fab98d210967188c12456a0796440cb1b80bb5",
+      "expected": "293dbcf375478247be6c6ca067fab98d210967188c12456a0796440cb1b80bb5",
+      "pass": true,
+      "path": "scratch/p97-consumer-first/freshthird_firstnonhit_global_blocker_quotient_v1/SOURCE-MAP.md"
+    },
+    {
+      "actual": "63ac4c60ac01cd875e187f4a3630eb44cbcfe42e7912850025b26aa2a815f6f9",
+      "expected": "63ac4c60ac01cd875e187f4a3630eb44cbcfe42e7912850025b26aa2a815f6f9",
+      "pass": true,
+      "path": "scratch/p97-consumer-first/freshthird_firstnonhit_sevenrow_cut_v1/RESULTS.md"
+    },
+    {
+      "actual": "d919d8ad22ec482fe00e7bf6b0597a130a8a4e1a382869176a9ae04a0c35953e",
+      "expected": "d919d8ad22ec482fe00e7bf6b0597a130a8a4e1a382869176a9ae04a0c35953e",
+      "pass": true,
+      "path": "scratch/p97-consumer-first/freshthird_firstnonhit_sevenrow_cut_v1/SHA256SUMS"
+    },
+    {
+      "actual": "ab85c0e7cc15f88c40dcbcd3c18f5cd25df285b1b9e2767ac9bda4b6c2a8ddd7",
+      "expected": "ab85c0e7cc15f88c40dcbcd3c18f5cd25df285b1b9e2767ac9bda4b6c2a8ddd7",
+      "pass": true,
+      "path": "scratch/p97-consumer-first/freshthird_firstnonhit_sevenrow_cut_v1/SOURCE-MAP.md"
+    }
+  ],
+  "failures": [],
+  "status": "PASS",
+  "v2_namespace": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_repaired_quotient_v2"
+}

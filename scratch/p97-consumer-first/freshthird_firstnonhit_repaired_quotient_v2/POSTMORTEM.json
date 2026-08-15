@@ -1,0 +1,27 @@
+{
+  "classification": "UNKNOWN",
+  "executed_driver_sha256": "5c3068bbd98e22cc3a83ae535ebcefa1b2ffcdfabd83f9047128e684bfb56706",
+  "failure": "z3.parse_smt2_string converted each named assertion into label-implies-formula; the executed solver.check omitted all label assumptions",
+  "independent_detection": {
+    "cvc5_exact_pinned_replays": "UNSAT in retained, common, and common_sameblocker",
+    "model_validator": "FAIL: each saved Z3 readback violates elementary hard support clauses"
+  },
+  "preserved_inputs": {
+    "base_common.smt2": "b88a712d2d94f7bd4cbc96856a3d71eee1223fb6627d9dfef445045ea83ea050",
+    "base_common_sameblocker.smt2": "ca1a4c808660a95ba7f0f3300d448473d384343f79beb8e959ec91d49cd9fdc4",
+    "base_retained.smt2": "7ca4a48d22b71ea1029f7d775d7c8eac17d302bb2966e6c2c569c9acd447e5a6"
+  },
+  "preserved_readbacks": {
+    "iterations/common-00.json": "4e0cf1dc73320890301036bfe1adbd49292b850362fdfffab0c1cdb5401d89ec",
+    "iterations/common_sameblocker-00.json": "2e88f8641a18085b6eee03d302adc3c0d420f22bc35af5cd9e8efcc4499628a7",
+    "iterations/retained-00.json": "0d2c5d234687d5317ed3364296446e8a4f5337729ab5c0ad45226b5dfd3168c9"
+  },
+  "rerun": false,
+  "repaired_but_unexecuted_driver": "wave.py now passes all parsed named labels as Z3 assumptions; terminal idempotence prevents a second wave",
+  "claims": {
+    "sat_survivor": false,
+    "unsat": false,
+    "universal": false,
+    "clause_extracted": false
+  }
+}

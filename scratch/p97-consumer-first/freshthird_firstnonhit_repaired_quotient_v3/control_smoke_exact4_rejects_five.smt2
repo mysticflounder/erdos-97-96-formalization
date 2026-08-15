@@ -1,0 +1,12 @@
+(set-logic QF_LIA)
+(declare-const s0 Int)(declare-const s1 Int)(declare-const s2 Int)(declare-const s3 Int)
+(declare-const p0 Int)(declare-const p1 Int)(declare-const p2 Int)(declare-const p3 Int)(declare-const p4 Int)
+(assert (distinct s0 s1 s2 s3))
+(assert (distinct p0 p1 p2 p3 p4))
+(assert (and
+  (or (= p0 s0)(= p0 s1)(= p0 s2)(= p0 s3))
+  (or (= p1 s0)(= p1 s1)(= p1 s2)(= p1 s3))
+  (or (= p2 s0)(= p2 s1)(= p2 s2)(= p2 s3))
+  (or (= p3 s0)(= p3 s1)(= p3 s2)(= p3 s3))
+  (or (= p4 s0)(= p4 s1)(= p4 s2)(= p4 s3))))
+(check-sat)

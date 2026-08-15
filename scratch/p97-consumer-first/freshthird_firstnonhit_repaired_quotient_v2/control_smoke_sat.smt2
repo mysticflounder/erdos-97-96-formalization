@@ -1,0 +1,6 @@
+(set-logic QF_LIA)
+(declare-const s0 Int)(declare-const s1 Int)(declare-const s2 Int)(declare-const s3 Int)
+(declare-const q Int)
+(assert (distinct s0 s1 s2 s3))
+(assert (or (= q s0) (= q s1) (= q s2) (= q s3)))
+(check-sat)

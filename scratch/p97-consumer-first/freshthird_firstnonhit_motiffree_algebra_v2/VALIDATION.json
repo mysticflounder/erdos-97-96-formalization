@@ -1,0 +1,15 @@
+{
+  "controls_passed": true,
+  "independent_singular_each_target": true,
+  "maximum_solver_cores": 4,
+  "msolve_polynomial_bodies_byte_identical_across_orders": true,
+  "no_boundary_order_or_inequality_constraints": true,
+  "sequential_solver_children": true,
+  "solver_wall_cap_seconds": 290.0,
+  "solver_wall_seconds": 94.06671549845487,
+  "solver_wall_within_cap": true,
+  "source_hashes_revalidated": true,
+  "status": "FAIL_CLOSED",
+  "two_msolve_orders_each_target": true,
+  "unit_core_claims": {}
+}

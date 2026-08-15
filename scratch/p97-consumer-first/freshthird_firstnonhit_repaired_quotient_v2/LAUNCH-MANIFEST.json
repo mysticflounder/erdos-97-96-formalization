@@ -1,0 +1,36 @@
+{
+  "ambient_carrier_bound": null,
+  "case_matrix": [
+    "retained",
+    "common",
+    "common_sameblocker"
+  ],
+  "commands": [
+    "uv run python wave.py --prepare",
+    "uv run python wave.py --run",
+    "uv run python validate_model.py",
+    "uv run python validate_clauses.py"
+  ],
+  "compatibility_class": "C: repaired exact supports/fibers and production 13-label cut",
+  "core_lease": {
+    "max_authenticated_nogoods": 12,
+    "workers": 1
+  },
+  "distinction": "FirstNonHit named-role quotient; no pinned endpoints, endpoint distance variables, or Twelvefold pinned-endpoint producer is encoded",
+  "finite_interface": "named sources/blockers and anonymous exact-support fillers",
+  "logic": "QF_LIA",
+  "predecessors": [
+    "freshthird_firstnonhit_global_blocker_quotient_v1",
+    "freshthird_firstnonhit_sevenrow_cut_v1"
+  ],
+  "solvers": {
+    "cvc5": "This is cvc5 version 1.3.3 [git 8ff882e on branch HEAD]",
+    "z3": "Z3 version 4.16.0 - 64 bit"
+  },
+  "source_gate": "PASS",
+  "source_validation_sha256": "32883096a411a4bb3fa82fd24285d0ecaa5e42a264897b8084d7f0c23e2f19a8",
+  "state": "RUNNING",
+  "timeout_escalation": false,
+  "timeout_ms_per_solver_call": 30000,
+  "wave": "freshthird_firstnonhit_repaired_quotient_v2"
+}

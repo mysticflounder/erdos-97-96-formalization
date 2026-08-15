@@ -1,0 +1,47 @@
+{
+  "cases": [
+    {
+      "authenticated_nogoods": 0,
+      "case": "retained",
+      "cvc5_pinned_replay": "unsat",
+      "four_valued_verdict": "UNKNOWN",
+      "iterations": 1,
+      "status": "SOLVER_DISAGREEMENT",
+      "terminal_readback": "iterations/retained-00.json",
+      "terminal_smt_sha256": "c42684075c55767e9be6ef85afb496fc24d734100c61383433ffc94e8eda98fd"
+    },
+    {
+      "authenticated_nogoods": 0,
+      "case": "common",
+      "cvc5_pinned_replay": "unsat",
+      "four_valued_verdict": "UNKNOWN",
+      "iterations": 1,
+      "status": "SOLVER_DISAGREEMENT",
+      "terminal_readback": "iterations/common-00.json",
+      "terminal_smt_sha256": "be05de90a6189d3b370c104639dbb234194afa12ee593a176763260d7072b6db"
+    },
+    {
+      "authenticated_nogoods": 0,
+      "case": "common_sameblocker",
+      "cvc5_pinned_replay": "unsat",
+      "four_valued_verdict": "UNKNOWN",
+      "iterations": 1,
+      "status": "SOLVER_DISAGREEMENT",
+      "terminal_readback": "iterations/common_sameblocker-00.json",
+      "terminal_smt_sha256": "b8973f2939f01a176e2d7f6ec83169f45d79cfe2165e2040fc5b73afdb107503"
+    }
+  ],
+  "followups_launched": [],
+  "failure": "Python Z3 parsed every :named assertion as label -> formula, but the executed driver omitted the labels from check assumptions. Saved readbacks violate hard clauses; cvc5 correctly rejects all three exact pins.",
+  "four_valued_verdict": "UNKNOWN",
+  "max_authenticated_nogoods": 12,
+  "scope": "unbounded named-role quotient; no ambient carrier enumeration or coverage lift",
+  "state": "TERMINAL",
+  "status": "UNKNOWN_SOLVER_DISAGREEMENT",
+  "timeouts_escalated": false,
+  "total_authenticated_nogoods": 0,
+  "universal_claim": false,
+  "wave_rerun": false,
+  "wave": "freshthird_firstnonhit_repaired_quotient_v2",
+  "workers": 1
+}

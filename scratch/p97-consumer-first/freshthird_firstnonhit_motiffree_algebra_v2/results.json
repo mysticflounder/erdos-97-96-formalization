@@ -1,0 +1,366 @@
+{
+  "claim_boundary": "UNIT is complex emptiness after a real-sound nondegenerate similarity gauge; NONUNIT is complex nonemptiness only and is not a real/Euclidean witness",
+  "controls": {
+    "control_nonunit": {
+      "consensus": "NONUNIT",
+      "engines": {
+        "msolve_order_a": {
+          "command": [
+            "msolve",
+            "-f",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_motiffree_algebra_v2/control_nonunit.order_a.ms",
+            "-o",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_motiffree_algebra_v2/control_nonunit.order_a.msolve.out",
+            "-t",
+            "4"
+          ],
+          "returncode": 0,
+          "timeout_seconds": 10.0,
+          "verdict": "NONUNIT",
+          "wall_seconds": 0.08660191716626287
+        },
+        "msolve_order_b": {
+          "command": [
+            "msolve",
+            "-f",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_motiffree_algebra_v2/control_nonunit.order_b.ms",
+            "-o",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_motiffree_algebra_v2/control_nonunit.order_b.msolve.out",
+            "-t",
+            "4"
+          ],
+          "returncode": 0,
+          "timeout_seconds": 10.0,
+          "verdict": "NONUNIT",
+          "wall_seconds": 0.02180854184553027
+        },
+        "singular": {
+          "command": [
+            "Singular",
+            "-q",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_motiffree_algebra_v2/control_nonunit.sing"
+          ],
+          "returncode": 0,
+          "timeout_seconds": 10.0,
+          "verdict": "NONUNIT",
+          "wall_seconds": 0.10814979206770658
+        }
+      },
+      "expected": "NONUNIT",
+      "passed": true,
+      "reason": "two msolve variable orders and Singular agree"
+    },
+    "control_unit": {
+      "consensus": "UNIT",
+      "engines": {
+        "msolve_order_a": {
+          "command": [
+            "msolve",
+            "-f",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_motiffree_algebra_v2/control_unit.order_a.ms",
+            "-o",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_motiffree_algebra_v2/control_unit.order_a.msolve.out",
+            "-t",
+            "4"
+          ],
+          "returncode": 0,
+          "timeout_seconds": 10.0,
+          "verdict": "UNIT",
+          "wall_seconds": 0.01661579217761755
+        },
+        "msolve_order_b": {
+          "command": [
+            "msolve",
+            "-f",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_motiffree_algebra_v2/control_unit.order_b.ms",
+            "-o",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_motiffree_algebra_v2/control_unit.order_b.msolve.out",
+            "-t",
+            "4"
+          ],
+          "returncode": 0,
+          "timeout_seconds": 10.0,
+          "verdict": "UNIT",
+          "wall_seconds": 0.03814562503248453
+        },
+        "singular": {
+          "command": [
+            "Singular",
+            "-q",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_motiffree_algebra_v2/control_unit.sing"
+          ],
+          "returncode": 0,
+          "timeout_seconds": 10.0,
+          "verdict": "UNIT",
+          "wall_seconds": 0.036709040869027376
+        }
+      },
+      "expected": "UNIT",
+      "passed": true,
+      "reason": "two msolve variable orders and Singular agree"
+    }
+  },
+  "controls_passed": true,
+  "ended_unix_ns": 1786748693868815000,
+  "packets": {
+    "common": {
+      "consensus": "NONUNIT",
+      "engines": {
+        "msolve_order_a": {
+          "command": [
+            "msolve",
+            "-f",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_motiffree_algebra_v2/packet_common.order_a.ms",
+            "-o",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_motiffree_algebra_v2/packet_common.order_a.msolve.out",
+            "-t",
+            "4"
+          ],
+          "returncode": 0,
+          "timeout_seconds": 40.0,
+          "verdict": "NONUNIT",
+          "wall_seconds": 0.024563875049352646
+        },
+        "msolve_order_b": {
+          "command": [
+            "msolve",
+            "-f",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_motiffree_algebra_v2/packet_common.order_b.ms",
+            "-o",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_motiffree_algebra_v2/packet_common.order_b.msolve.out",
+            "-t",
+            "4"
+          ],
+          "returncode": 0,
+          "timeout_seconds": 40.0,
+          "verdict": "NONUNIT",
+          "wall_seconds": 0.007229624781757593
+        },
+        "singular": {
+          "command": [
+            "Singular",
+            "-q",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_motiffree_algebra_v2/packet_common.sing"
+          ],
+          "returncode": 0,
+          "timeout_seconds": 40.0,
+          "verdict": "NONUNIT",
+          "wall_seconds": 0.0496282079257071
+        }
+      },
+      "exact_classification": "COMPLEX_NONEMPTY",
+      "exact_meaning": "complex nonempty only; not a real/Euclidean witness",
+      "four_valued_verdict": "SAT-abstraction",
+      "point_count": 11,
+      "polynomial_body_sha256": "aa6178457065e4a7d73a7a039e2c1030e506dc22788b66edef1c39b82b9463d3",
+      "reason": "two msolve variable orders and Singular agree",
+      "row_count": 6,
+      "row_equality_count": 10,
+      "total_equality_count": 14
+    },
+    "common_sameblocker": {
+      "consensus": "NONUNIT",
+      "engines": {
+        "msolve_order_a": {
+          "command": [
+            "msolve",
+            "-f",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_motiffree_algebra_v2/packet_common_sameblocker.order_a.ms",
+            "-o",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_motiffree_algebra_v2/packet_common_sameblocker.order_a.msolve.out",
+            "-t",
+            "4"
+          ],
+          "returncode": 0,
+          "timeout_seconds": 40.0,
+          "verdict": "NONUNIT",
+          "wall_seconds": 0.02658054092898965
+        },
+        "msolve_order_b": {
+          "command": [
+            "msolve",
+            "-f",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_motiffree_algebra_v2/packet_common_sameblocker.order_b.ms",
+            "-o",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_motiffree_algebra_v2/packet_common_sameblocker.order_b.msolve.out",
+            "-t",
+            "4"
+          ],
+          "returncode": 0,
+          "timeout_seconds": 40.0,
+          "verdict": "NONUNIT",
+          "wall_seconds": 0.007978208363056183
+        },
+        "singular": {
+          "command": [
+            "Singular",
+            "-q",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_motiffree_algebra_v2/packet_common_sameblocker.sing"
+          ],
+          "returncode": 0,
+          "timeout_seconds": 40.0,
+          "verdict": "NONUNIT",
+          "wall_seconds": 0.021499791648238897
+        }
+      },
+      "exact_classification": "COMPLEX_NONEMPTY",
+      "exact_meaning": "complex nonempty only; not a real/Euclidean witness",
+      "four_valued_verdict": "SAT-abstraction",
+      "point_count": 16,
+      "polynomial_body_sha256": "19fbed4be2fba1115fab5712e8132d7d5902dfa9fa8bbfea9a78cca6de9bb2ef",
+      "reason": "two msolve variable orders and Singular agree",
+      "row_count": 10,
+      "row_equality_count": 33,
+      "total_equality_count": 37
+    },
+    "retained": {
+      "consensus": "UNKNOWN",
+      "engines": {
+        "msolve_order_a": {
+          "command": [
+            "msolve",
+            "-f",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_motiffree_algebra_v2/packet_retained.order_a.ms",
+            "-o",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_motiffree_algebra_v2/packet_retained.order_a.msolve.out",
+            "-t",
+            "4"
+          ],
+          "reason": "timeout",
+          "timeout_seconds": 40.0,
+          "verdict": "UNKNOWN",
+          "wall_seconds": 40.02723812498152
+        },
+        "msolve_order_b": {
+          "command": [
+            "msolve",
+            "-f",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_motiffree_algebra_v2/packet_retained.order_b.ms",
+            "-o",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_motiffree_algebra_v2/packet_retained.order_b.msolve.out",
+            "-t",
+            "4"
+          ],
+          "returncode": 0,
+          "timeout_seconds": 40.0,
+          "verdict": "NONUNIT",
+          "wall_seconds": 13.566760040819645
+        },
+        "singular": {
+          "command": [
+            "Singular",
+            "-q",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_motiffree_algebra_v2/packet_retained.sing"
+          ],
+          "reason": "timeout",
+          "timeout_seconds": 40.0,
+          "verdict": "UNKNOWN",
+          "wall_seconds": 40.02720637479797
+        }
+      },
+      "exact_classification": "UNKNOWN",
+      "exact_meaning": "fail-closed engine/order uncertainty",
+      "four_valued_verdict": "UNKNOWN",
+      "point_count": 15,
+      "polynomial_body_sha256": "f0a197a497f51a44824fbad9d1c5f0993bcab038314369b3f79f56d00f303011",
+      "reason": "at least one engine did not return an authenticated verdict",
+      "row_count": 8,
+      "row_equality_count": 14,
+      "total_equality_count": 18
+    }
+  },
+  "polynomial_body_validation": true,
+  "prelaunch_manifest_sha256": "d0fbc9ffbd9999e0347aa99d2d59807b6e0de86b92f7375cb5738e527e0fc2f5",
+  "schema": "freshthird-firstnonhit-motiffree-algebra-v2",
+  "solver_budget": {
+    "calls": 15,
+    "limit_seconds": 290.0,
+    "remaining_seconds": 195.93328450154513,
+    "used_seconds": 94.06671549845487
+  },
+  "started_unix_ns": 1786748599347719000,
+  "theorem_mine": {
+    "candidate": {
+      "immediate_consumer": "deduplicate co-centered row groups before exact-algebra classification",
+      "name": "co-centered selected-row contraction",
+      "statement": "On any finite named point set T, two selected rows represented by the same extensional membership predicate mem(c,p) at the same blocker center c have identical positive supports on T; therefore their row equidistance generator groups are identical and either row may be deleted without changing the equality ideal.",
+      "status": "reusable but not materially new"
+    },
+    "external_or_lean_search": "NOT_RUN",
+    "records_reviewed": [
+      "common positive row table and classified equality packet",
+      "common_sameblocker positive row table and classified equality packet",
+      "retained positive row table and classified equality packet"
+    ],
+    "search_reason": "The candidate is a direct extensionality consequence already named in the pinned source map by selectedSupports_eq_of_actualBlockers_eq; it is not a materially new theorem candidate.",
+    "supporting_groups": [
+      {
+        "case": "common",
+        "center_class_id": "p0",
+        "rows": [
+          "q0",
+          "q1"
+        ],
+        "selected_class_ids": [
+          "p2",
+          "p3",
+          "p4",
+          "p5"
+        ]
+      },
+      {
+        "case": "common_sameblocker",
+        "center_class_id": "p0",
+        "rows": [
+          "q0",
+          "q1",
+          "q2",
+          "first",
+          "second"
+        ],
+        "selected_class_ids": [
+          "p1",
+          "p2",
+          "p3",
+          "p4",
+          "p14",
+          "p15"
+        ]
+      },
+      {
+        "case": "retained",
+        "center_class_id": "p0",
+        "rows": [
+          "q0",
+          "q1"
+        ],
+        "selected_class_ids": [
+          "p2",
+          "p3",
+          "p4",
+          "p5"
+        ]
+      }
+    ]
+  },
+  "tool_versions": {
+    "Singular": {
+      "command": [
+        "Singular",
+        "--version"
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "Singular for arm64-Darwin version 4.4.1 (44105, 64 bit) Nov 11 2025 16:12:34\nwith\n\tGMP(6.3.0),NTL(11.6.0),FLINT(3.6.0),\n\tomalloc,static readline(8),Plural,DBM,\n\tdynamic modules,OM_NDEBUG,SING_NDEBUG,\n\tCC:OPTIMIZE,CC:OPTIMIZE_SIZE,AvoidBranching,GenericMult,invTable,\n\teigenvalues,Gauss-Manin system,random=1786748599\nbuilt-in modules: {}\nAC_CONFIGURE_ARGS =  '--disable-silent-rules' '--with-python=/opt/homebrew/opt/python@3.14/bin/python3.14' 'CXXFLAGS=-std=c++11' '--disable-debug' '--disable-dependency-tracking' '--prefix=/opt/homebrew/Cellar/singular/4.4.1p5_3' '--libdir=/opt/homebrew/Cellar/singular/4.4.1p5_3/lib' 'CC=clang' 'CXX=clang++' --enable-omalloc  OMALLOC_LIBS='/private/tmp/singular-20260629-49667-5wkvyv/singular-4.4.1/omalloc/libomalloc.la' OMALLOC_INCLUDES='-I/private/tmp/singular-20260629-49667-5wkvyv/singular-4.4.1' --htmldir=${prefix}/share/doc/singular --with-Singular RESOURCES_LIBS='/private/tmp/singular-20260629-49667-5wkvyv/singular-4.4.1/resources/libsingular_resources.la' RESOURCES_INCLUDES='-I/private/tmp/singular-20260629-49667-5wkvyv/singular-4.4.1 ' FACTORY_LIBS='/private/tmp/singular-20260629-49667-5wkvyv/singular-4.4.1/factory/libfactory.la' FACTORY_INCLUDES='-I/private/tmp/singular-20260629-49667-5wkvyv/singular-4.4.1 -I/private/tmp/singular-20260629-49667-5wkvyv/singular-4.4.1/factory -I/private/tmp/singular-20260629-49667-5wkvyv/singular-4.4.1/factory/include',\nCC = clang,FLAGS :  -g  -pipe -fno-common -g0 -O3 -Wno-unused-function -Wno-trigraphs -Wno-unused-parameter -Wunknown-pragmas -Wno-unused-variable -fomit-frame-pointer -fwrapv -fvisibility=default -finline-functions -fno-exceptions -fno-threadsafe-statics -funroll-loops -Qunused-arguments -pthread -pthread,\nCXX = clang++,FLAGS :  -std=c++11 -pipe -fno-common -g0 -O3 -Wno-unused-function -Wno-trigraphs -Wno-unused-parameter -Wunknown-pragmas -Wno-unused-variable -fomit-frame-pointer -fwrapv -fvisibility=default -finline-functions -fno-exceptions -fno-threadsafe-statics -funroll-loops -fno-rtti -Qunused-arguments -fno-delete-null-pointer-checks -pthread,\nDEFS : ,CPPFLAGS : ,\nLDFLAGS :  -pipe -fno-common -g0 -O3 -Wno-unused-function -Wno-trigraphs -Wno-unused-parameter -Wunknown-pragmas -Wno-unused-variable -fomit-frame-pointer -fwrapv -fvisibility=default -finline-functions -fno-exceptions -fno-threadsafe-statics -funroll-loops -Qunused-arguments  -rdynamic -flat_namespace -Wl,-bind_at_load -Wl,-undefined,dynamic_lookup,LIBS : -lreadline -lncurses  -lgmp   (ver: Apple LLVM 21.0.0 (clang-2100.0.123.102))\nargv[0]   :\tSingular\nSearchPath:\t/opt/homebrew/bin/../Cellar/singular/4.4.1p5_3/bin/../share/singular/LIB:/opt/homebrew/bin/../Cellar/singular/4.4.1p5_3/bin/../share/factory:/opt/homebrew/bin/../Cellar/singular/4.4.1p5_3/bin/../LIB:/opt/homebrew/bin/../Cellar/singular/4.4.1p5_3/bin/../lib/singular/MOD:/opt/homebrew/Cellar/singular/4.4.1p5_3/lib/singular/MOD:/opt/homebrew/bin/../Cellar/singular/4.4.1p5_3/bin:/opt/homebrew/bin/../Cellar/singular/4.4.1p5_3/bin/..\nSingular  :\t/opt/homebrew/bin/../Cellar/singular/4.4.1p5_3/bin/Singular\nBinDir    :\t/opt/homebrew/bin/../Cellar/singular/4.4.1p5_3/bin\nProcDir   :\t/opt/homebrew/bin/../Cellar/singular/4.4.1p5_3/bin/..:/opt/homebrew/bin/../Cellar/singular/4.4.1p5_3/bin/../lib/singular/MOD:/opt/homebrew/Cellar/singular/4.4.1p5_3/lib/singular/MOD\nRootDir   :\t/opt/homebrew/bin/../Cellar/singular/4.4.1p5_3/bin/..\nDataDir   :\t/opt/homebrew/bin/../Cellar/singular/4.4.1p5_3/bin/../share\nDefaultDir:\t/opt/homebrew/Cellar/singular/4.4.1p5_3\nInfoFile  :\t/opt/homebrew/bin/../Cellar/singular/4.4.1p5_3/bin/../share/info/singular.info\nIdxFile   :\t/opt/homebrew/bin/../Cellar/singular/4.4.1p5_3/bin/../share/singular/singular.idx\nHtmlDir   :\t/opt/homebrew/bin/../Cellar/singular/4.4.1p5_3/bin/../share/doc/singular\nManualUrl :\thttps://www.singular.uni-kl.de/Manual/\nExDir     :\t\nPath      :\t/opt/homebrew/bin/../Cellar/singular/4.4.1p5_3/bin:/opt/homebrew/bin/../Cellar/singular/4.4.1p5_3/bin/..:/opt/homebrew/bin/../Cellar/singular/4.4.1p5_3/bin/../lib/singular/MOD:/opt/homebrew/Cellar/singular/4.4.1p5_3/lib/singular/MOD:/Users/adam/projects/math-projects/erdos-97-96-formalization/.venv/bin:/opt/homebrew/lib/node_modules/@openai/codex/node_modules/@openai/codex-darwin-arm64/vendor/aarch64-apple-darwin/codex-path:/opt/homebrew/bin:/opt/homebrew/sbin:/Users/adam/.nvm/versions/node/v24.15.0/bin:/Users/adam/bin:/Users/adam/.local/bin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/TeX/texbin:/Users/adam/.codex/tmp/arg0/codex-arg0lsnZym:/Users/adam/.cargo/bin\nemacs     :\t\nxemacs    :\t\nSingularEmacs:\t/opt/homebrew/bin/../Cellar/singular/4.4.1p5_3/bin/Singular\nEmacsLoad :\t/opt/homebrew/bin/../Cellar/singular/4.4.1p5_3/bin/../share/singular/emacs/.emacs-singular\nEmacsDir  :\t/opt/homebrew/bin/../Cellar/singular/4.4.1p5_3/bin/../share/singular/emacs\nSingularXterm:\t/opt/homebrew/bin/../Cellar/singular/4.4.1p5_3/bin/Singular\nxterm     :\t\nEmacsDir  :\t/opt/homebrew/bin/../Cellar/singular/4.4.1p5_3/bin/../share/singular/emacs\nAvailable HelpBrowsers: safari, safari-www-idx, safari-www, builtin, dummy, emacs, \nCurrent HelpBrowser: safari \n                     SINGULAR                                 /  Development\n A Computer Algebra System for Polynomial Computations       /   version 4.4.1\n                                                           0<\n by: W. Decker, G.-M. Greuel, G. Pfister, H. Schoenemann     \\   Jan 2025\nFB Mathematik der Universitaet, D-67653 Kaiserslautern        \\\nAuf Wiedersehen.\n"
+    },
+    "msolve": {
+      "command": [
+        "msolve",
+        "--version"
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "0.10.1\n"
+    }
+  }
+}

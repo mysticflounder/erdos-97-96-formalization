@@ -1,0 +1,52 @@
+{
+  "status": "READY_FOR_ONE_SHOT_V3_WITH_FRESH_NAMESPACE",
+  "v2_rerun_allowed": false,
+  "driver_fix_present": true,
+  "driver_fix_executed": false,
+  "corrected_python_z3_semantics": [
+    "assertions = z3.parse_smt2_string(text)",
+    "solver.add(assertions)",
+    "labels = [z3.Bool(name) for every :named name in the exact text]",
+    "result = solver.check(*labels)"
+  ],
+  "why_labels_are_required": "Python Z3 4.16.0 parses each named assertion as label -> formula; passing every label true as a check assumption restores the SMT-LIB hard-assertion semantics and makes unsat_core refer to those labels.",
+  "static_driver_audit": {
+    "retained": {
+      "named_labels": 197,
+      "parsed_implications": 197,
+      "catalog_entries": 197,
+      "status": "PASS"
+    },
+    "common": {
+      "named_labels": 98,
+      "parsed_implications": 98,
+      "catalog_entries": 98,
+      "status": "PASS"
+    },
+    "common_sameblocker": {
+      "named_labels": 457,
+      "parsed_implications": 457,
+      "catalog_entries": 457,
+      "status": "PASS"
+    }
+  },
+  "stable_pins": {
+    "source_hashes": "PASS: all 9 SOURCE-HASHES.txt entries rechecked",
+    "predecessor_hashes": "PASS: all 6 PREDECESSOR-HASHES.txt entries rechecked",
+    "source_validation_json_sha256": "32883096a411a4bb3fa82fd24285d0ecaa5e42a264897b8084d7f0c23e2f19a8",
+    "schema_py_sha256": "342721ee2fd4af92124ea7915deb1cb4a657505f23efb8b6777ef14390eee740",
+    "base_retained_smt2_sha256": "7ca4a48d22b71ea1029f7d775d7c8eac17d302bb2966e6c2c569c9acd447e5a6",
+    "base_common_smt2_sha256": "b88a712d2d94f7bd4cbc96856a3d71eee1223fb6627d9dfef445045ea83ea050",
+    "base_common_sameblocker_smt2_sha256": "ca1a4c808660a95ba7f0f3300d448473d384343f79beb8e959ec91d49cd9fdc4"
+  },
+  "v3_conditions": [
+    "use a fresh v3 output namespace and never mutate or resume v2",
+    "pin the listed schema, base formulas, source files, and predecessors",
+    "recheck every pin immediately before launch",
+    "add a pre-solve control proving a named false assertion is UNSAT only when its label is passed",
+    "do not import v2 readbacks, terminal status, or empty cut files as solver evidence",
+    "retain the one-wave, 12-no-good, one-worker, 30000 ms, no-escalation limits",
+    "run the independent source, model, and clause validators before interpreting a verdict"
+  ],
+  "claim": "The formula/source inputs are stable enough for one fresh v3 replay. The repaired driver path is only statically verified, so no SAT/UNSAT expectation is asserted."
+}

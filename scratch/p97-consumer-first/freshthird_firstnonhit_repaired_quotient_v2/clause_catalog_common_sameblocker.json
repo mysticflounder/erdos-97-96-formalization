@@ -1,0 +1,2287 @@
+[
+  {
+    "group": "support4",
+    "name": "a0000_support4",
+    "source": "CriticalFourShell.support_card"
+  },
+  {
+    "group": "source_mem",
+    "name": "a0001_source_mem",
+    "source": "CriticalFourShell.q_mem_support"
+  },
+  {
+    "group": "center_off_support",
+    "name": "a0002_center_off_support",
+    "source": "CriticalFourShell.center_not_mem_support"
+  },
+  {
+    "group": "support4",
+    "name": "a0003_support4",
+    "source": "CriticalFourShell.support_card"
+  },
+  {
+    "group": "source_mem",
+    "name": "a0004_source_mem",
+    "source": "CriticalFourShell.q_mem_support"
+  },
+  {
+    "group": "center_off_support",
+    "name": "a0005_center_off_support",
+    "source": "CriticalFourShell.center_not_mem_support"
+  },
+  {
+    "group": "support4",
+    "name": "a0006_support4",
+    "source": "CriticalFourShell.support_card"
+  },
+  {
+    "group": "source_mem",
+    "name": "a0007_source_mem",
+    "source": "CriticalFourShell.q_mem_support"
+  },
+  {
+    "group": "center_off_support",
+    "name": "a0008_center_off_support",
+    "source": "CriticalFourShell.center_not_mem_support"
+  },
+  {
+    "group": "support4",
+    "name": "a0009_support4",
+    "source": "CriticalFourShell.support_card"
+  },
+  {
+    "group": "source_mem",
+    "name": "a0010_source_mem",
+    "source": "CriticalFourShell.q_mem_support"
+  },
+  {
+    "group": "center_off_support",
+    "name": "a0011_center_off_support",
+    "source": "CriticalFourShell.center_not_mem_support"
+  },
+  {
+    "group": "support4",
+    "name": "a0012_support4",
+    "source": "CriticalFourShell.support_card"
+  },
+  {
+    "group": "source_mem",
+    "name": "a0013_source_mem",
+    "source": "CriticalFourShell.q_mem_support"
+  },
+  {
+    "group": "center_off_support",
+    "name": "a0014_center_off_support",
+    "source": "CriticalFourShell.center_not_mem_support"
+  },
+  {
+    "group": "support4",
+    "name": "a0015_support4",
+    "source": "CriticalFourShell.support_card"
+  },
+  {
+    "group": "source_mem",
+    "name": "a0016_source_mem",
+    "source": "CriticalFourShell.q_mem_support"
+  },
+  {
+    "group": "center_off_support",
+    "name": "a0017_center_off_support",
+    "source": "CriticalFourShell.center_not_mem_support"
+  },
+  {
+    "group": "support4",
+    "name": "a0018_support4",
+    "source": "CriticalFourShell.support_card"
+  },
+  {
+    "group": "source_mem",
+    "name": "a0019_source_mem",
+    "source": "CriticalFourShell.q_mem_support"
+  },
+  {
+    "group": "center_off_support",
+    "name": "a0020_center_off_support",
+    "source": "CriticalFourShell.center_not_mem_support"
+  },
+  {
+    "group": "support4",
+    "name": "a0021_support4",
+    "source": "CriticalFourShell.support_card"
+  },
+  {
+    "group": "source_mem",
+    "name": "a0022_source_mem",
+    "source": "CriticalFourShell.q_mem_support"
+  },
+  {
+    "group": "center_off_support",
+    "name": "a0023_center_off_support",
+    "source": "CriticalFourShell.center_not_mem_support"
+  },
+  {
+    "group": "support4",
+    "name": "a0024_support4",
+    "source": "CriticalFourShell.support_card"
+  },
+  {
+    "group": "source_mem",
+    "name": "a0025_source_mem",
+    "source": "CriticalFourShell.q_mem_support"
+  },
+  {
+    "group": "center_off_support",
+    "name": "a0026_center_off_support",
+    "source": "CriticalFourShell.center_not_mem_support"
+  },
+  {
+    "group": "support4",
+    "name": "a0027_support4",
+    "source": "CriticalFourShell.support_card"
+  },
+  {
+    "group": "source_mem",
+    "name": "a0028_source_mem",
+    "source": "CriticalFourShell.q_mem_support"
+  },
+  {
+    "group": "center_off_support",
+    "name": "a0029_center_off_support",
+    "source": "CriticalFourShell.center_not_mem_support"
+  },
+  {
+    "group": "alias_functional",
+    "name": "a0030_alias_functional",
+    "source": "CriticalShellSystem.centerAt proof irrelevance"
+  },
+  {
+    "group": "same_blocker_support",
+    "name": "a0031_same_blocker_support",
+    "source": "selectedSupports_eq_of_actualBlockers_eq"
+  },
+  {
+    "group": "distinct_center_overlap",
+    "name": "a0032_distinct_center_overlap",
+    "source": "SelectedFourClass.inter_card_le_two"
+  },
+  {
+    "group": "alias_functional",
+    "name": "a0033_alias_functional",
+    "source": "CriticalShellSystem.centerAt proof irrelevance"
+  },
+  {
+    "group": "same_blocker_support",
+    "name": "a0034_same_blocker_support",
+    "source": "selectedSupports_eq_of_actualBlockers_eq"
+  },
+  {
+    "group": "distinct_center_overlap",
+    "name": "a0035_distinct_center_overlap",
+    "source": "SelectedFourClass.inter_card_le_two"
+  },
+  {
+    "group": "alias_functional",
+    "name": "a0036_alias_functional",
+    "source": "CriticalShellSystem.centerAt proof irrelevance"
+  },
+  {
+    "group": "same_blocker_support",
+    "name": "a0037_same_blocker_support",
+    "source": "selectedSupports_eq_of_actualBlockers_eq"
+  },
+  {
+    "group": "distinct_center_overlap",
+    "name": "a0038_distinct_center_overlap",
+    "source": "SelectedFourClass.inter_card_le_two"
+  },
+  {
+    "group": "alias_functional",
+    "name": "a0039_alias_functional",
+    "source": "CriticalShellSystem.centerAt proof irrelevance"
+  },
+  {
+    "group": "same_blocker_support",
+    "name": "a0040_same_blocker_support",
+    "source": "selectedSupports_eq_of_actualBlockers_eq"
+  },
+  {
+    "group": "distinct_center_overlap",
+    "name": "a0041_distinct_center_overlap",
+    "source": "SelectedFourClass.inter_card_le_two"
+  },
+  {
+    "group": "alias_functional",
+    "name": "a0042_alias_functional",
+    "source": "CriticalShellSystem.centerAt proof irrelevance"
+  },
+  {
+    "group": "same_blocker_support",
+    "name": "a0043_same_blocker_support",
+    "source": "selectedSupports_eq_of_actualBlockers_eq"
+  },
+  {
+    "group": "distinct_center_overlap",
+    "name": "a0044_distinct_center_overlap",
+    "source": "SelectedFourClass.inter_card_le_two"
+  },
+  {
+    "group": "alias_functional",
+    "name": "a0045_alias_functional",
+    "source": "CriticalShellSystem.centerAt proof irrelevance"
+  },
+  {
+    "group": "same_blocker_support",
+    "name": "a0046_same_blocker_support",
+    "source": "selectedSupports_eq_of_actualBlockers_eq"
+  },
+  {
+    "group": "distinct_center_overlap",
+    "name": "a0047_distinct_center_overlap",
+    "source": "SelectedFourClass.inter_card_le_two"
+  },
+  {
+    "group": "alias_functional",
+    "name": "a0048_alias_functional",
+    "source": "CriticalShellSystem.centerAt proof irrelevance"
+  },
+  {
+    "group": "same_blocker_support",
+    "name": "a0049_same_blocker_support",
+    "source": "selectedSupports_eq_of_actualBlockers_eq"
+  },
+  {
+    "group": "distinct_center_overlap",
+    "name": "a0050_distinct_center_overlap",
+    "source": "SelectedFourClass.inter_card_le_two"
+  },
+  {
+    "group": "alias_functional",
+    "name": "a0051_alias_functional",
+    "source": "CriticalShellSystem.centerAt proof irrelevance"
+  },
+  {
+    "group": "same_blocker_support",
+    "name": "a0052_same_blocker_support",
+    "source": "selectedSupports_eq_of_actualBlockers_eq"
+  },
+  {
+    "group": "distinct_center_overlap",
+    "name": "a0053_distinct_center_overlap",
+    "source": "SelectedFourClass.inter_card_le_two"
+  },
+  {
+    "group": "alias_functional",
+    "name": "a0054_alias_functional",
+    "source": "CriticalShellSystem.centerAt proof irrelevance"
+  },
+  {
+    "group": "same_blocker_support",
+    "name": "a0055_same_blocker_support",
+    "source": "selectedSupports_eq_of_actualBlockers_eq"
+  },
+  {
+    "group": "distinct_center_overlap",
+    "name": "a0056_distinct_center_overlap",
+    "source": "SelectedFourClass.inter_card_le_two"
+  },
+  {
+    "group": "alias_functional",
+    "name": "a0057_alias_functional",
+    "source": "CriticalShellSystem.centerAt proof irrelevance"
+  },
+  {
+    "group": "same_blocker_support",
+    "name": "a0058_same_blocker_support",
+    "source": "selectedSupports_eq_of_actualBlockers_eq"
+  },
+  {
+    "group": "distinct_center_overlap",
+    "name": "a0059_distinct_center_overlap",
+    "source": "SelectedFourClass.inter_card_le_two"
+  },
+  {
+    "group": "alias_functional",
+    "name": "a0060_alias_functional",
+    "source": "CriticalShellSystem.centerAt proof irrelevance"
+  },
+  {
+    "group": "same_blocker_support",
+    "name": "a0061_same_blocker_support",
+    "source": "selectedSupports_eq_of_actualBlockers_eq"
+  },
+  {
+    "group": "distinct_center_overlap",
+    "name": "a0062_distinct_center_overlap",
+    "source": "SelectedFourClass.inter_card_le_two"
+  },
+  {
+    "group": "alias_functional",
+    "name": "a0063_alias_functional",
+    "source": "CriticalShellSystem.centerAt proof irrelevance"
+  },
+  {
+    "group": "same_blocker_support",
+    "name": "a0064_same_blocker_support",
+    "source": "selectedSupports_eq_of_actualBlockers_eq"
+  },
+  {
+    "group": "distinct_center_overlap",
+    "name": "a0065_distinct_center_overlap",
+    "source": "SelectedFourClass.inter_card_le_two"
+  },
+  {
+    "group": "alias_functional",
+    "name": "a0066_alias_functional",
+    "source": "CriticalShellSystem.centerAt proof irrelevance"
+  },
+  {
+    "group": "same_blocker_support",
+    "name": "a0067_same_blocker_support",
+    "source": "selectedSupports_eq_of_actualBlockers_eq"
+  },
+  {
+    "group": "distinct_center_overlap",
+    "name": "a0068_distinct_center_overlap",
+    "source": "SelectedFourClass.inter_card_le_two"
+  },
+  {
+    "group": "alias_functional",
+    "name": "a0069_alias_functional",
+    "source": "CriticalShellSystem.centerAt proof irrelevance"
+  },
+  {
+    "group": "same_blocker_support",
+    "name": "a0070_same_blocker_support",
+    "source": "selectedSupports_eq_of_actualBlockers_eq"
+  },
+  {
+    "group": "distinct_center_overlap",
+    "name": "a0071_distinct_center_overlap",
+    "source": "SelectedFourClass.inter_card_le_two"
+  },
+  {
+    "group": "alias_functional",
+    "name": "a0072_alias_functional",
+    "source": "CriticalShellSystem.centerAt proof irrelevance"
+  },
+  {
+    "group": "same_blocker_support",
+    "name": "a0073_same_blocker_support",
+    "source": "selectedSupports_eq_of_actualBlockers_eq"
+  },
+  {
+    "group": "distinct_center_overlap",
+    "name": "a0074_distinct_center_overlap",
+    "source": "SelectedFourClass.inter_card_le_two"
+  },
+  {
+    "group": "alias_functional",
+    "name": "a0075_alias_functional",
+    "source": "CriticalShellSystem.centerAt proof irrelevance"
+  },
+  {
+    "group": "same_blocker_support",
+    "name": "a0076_same_blocker_support",
+    "source": "selectedSupports_eq_of_actualBlockers_eq"
+  },
+  {
+    "group": "distinct_center_overlap",
+    "name": "a0077_distinct_center_overlap",
+    "source": "SelectedFourClass.inter_card_le_two"
+  },
+  {
+    "group": "alias_functional",
+    "name": "a0078_alias_functional",
+    "source": "CriticalShellSystem.centerAt proof irrelevance"
+  },
+  {
+    "group": "same_blocker_support",
+    "name": "a0079_same_blocker_support",
+    "source": "selectedSupports_eq_of_actualBlockers_eq"
+  },
+  {
+    "group": "distinct_center_overlap",
+    "name": "a0080_distinct_center_overlap",
+    "source": "SelectedFourClass.inter_card_le_two"
+  },
+  {
+    "group": "alias_functional",
+    "name": "a0081_alias_functional",
+    "source": "CriticalShellSystem.centerAt proof irrelevance"
+  },
+  {
+    "group": "same_blocker_support",
+    "name": "a0082_same_blocker_support",
+    "source": "selectedSupports_eq_of_actualBlockers_eq"
+  },
+  {
+    "group": "distinct_center_overlap",
+    "name": "a0083_distinct_center_overlap",
+    "source": "SelectedFourClass.inter_card_le_two"
+  },
+  {
+    "group": "alias_functional",
+    "name": "a0084_alias_functional",
+    "source": "CriticalShellSystem.centerAt proof irrelevance"
+  },
+  {
+    "group": "same_blocker_support",
+    "name": "a0085_same_blocker_support",
+    "source": "selectedSupports_eq_of_actualBlockers_eq"
+  },
+  {
+    "group": "distinct_center_overlap",
+    "name": "a0086_distinct_center_overlap",
+    "source": "SelectedFourClass.inter_card_le_two"
+  },
+  {
+    "group": "alias_functional",
+    "name": "a0087_alias_functional",
+    "source": "CriticalShellSystem.centerAt proof irrelevance"
+  },
+  {
+    "group": "same_blocker_support",
+    "name": "a0088_same_blocker_support",
+    "source": "selectedSupports_eq_of_actualBlockers_eq"
+  },
+  {
+    "group": "distinct_center_overlap",
+    "name": "a0089_distinct_center_overlap",
+    "source": "SelectedFourClass.inter_card_le_two"
+  },
+  {
+    "group": "alias_functional",
+    "name": "a0090_alias_functional",
+    "source": "CriticalShellSystem.centerAt proof irrelevance"
+  },
+  {
+    "group": "same_blocker_support",
+    "name": "a0091_same_blocker_support",
+    "source": "selectedSupports_eq_of_actualBlockers_eq"
+  },
+  {
+    "group": "distinct_center_overlap",
+    "name": "a0092_distinct_center_overlap",
+    "source": "SelectedFourClass.inter_card_le_two"
+  },
+  {
+    "group": "alias_functional",
+    "name": "a0093_alias_functional",
+    "source": "CriticalShellSystem.centerAt proof irrelevance"
+  },
+  {
+    "group": "same_blocker_support",
+    "name": "a0094_same_blocker_support",
+    "source": "selectedSupports_eq_of_actualBlockers_eq"
+  },
+  {
+    "group": "distinct_center_overlap",
+    "name": "a0095_distinct_center_overlap",
+    "source": "SelectedFourClass.inter_card_le_two"
+  },
+  {
+    "group": "alias_functional",
+    "name": "a0096_alias_functional",
+    "source": "CriticalShellSystem.centerAt proof irrelevance"
+  },
+  {
+    "group": "same_blocker_support",
+    "name": "a0097_same_blocker_support",
+    "source": "selectedSupports_eq_of_actualBlockers_eq"
+  },
+  {
+    "group": "distinct_center_overlap",
+    "name": "a0098_distinct_center_overlap",
+    "source": "SelectedFourClass.inter_card_le_two"
+  },
+  {
+    "group": "alias_functional",
+    "name": "a0099_alias_functional",
+    "source": "CriticalShellSystem.centerAt proof irrelevance"
+  },
+  {
+    "group": "same_blocker_support",
+    "name": "a0100_same_blocker_support",
+    "source": "selectedSupports_eq_of_actualBlockers_eq"
+  },
+  {
+    "group": "distinct_center_overlap",
+    "name": "a0101_distinct_center_overlap",
+    "source": "SelectedFourClass.inter_card_le_two"
+  },
+  {
+    "group": "alias_functional",
+    "name": "a0102_alias_functional",
+    "source": "CriticalShellSystem.centerAt proof irrelevance"
+  },
+  {
+    "group": "same_blocker_support",
+    "name": "a0103_same_blocker_support",
+    "source": "selectedSupports_eq_of_actualBlockers_eq"
+  },
+  {
+    "group": "distinct_center_overlap",
+    "name": "a0104_distinct_center_overlap",
+    "source": "SelectedFourClass.inter_card_le_two"
+  },
+  {
+    "group": "alias_functional",
+    "name": "a0105_alias_functional",
+    "source": "CriticalShellSystem.centerAt proof irrelevance"
+  },
+  {
+    "group": "same_blocker_support",
+    "name": "a0106_same_blocker_support",
+    "source": "selectedSupports_eq_of_actualBlockers_eq"
+  },
+  {
+    "group": "distinct_center_overlap",
+    "name": "a0107_distinct_center_overlap",
+    "source": "SelectedFourClass.inter_card_le_two"
+  },
+  {
+    "group": "alias_functional",
+    "name": "a0108_alias_functional",
+    "source": "CriticalShellSystem.centerAt proof irrelevance"
+  },
+  {
+    "group": "same_blocker_support",
+    "name": "a0109_same_blocker_support",
+    "source": "selectedSupports_eq_of_actualBlockers_eq"
+  },
+  {
+    "group": "distinct_center_overlap",
+    "name": "a0110_distinct_center_overlap",
+    "source": "SelectedFourClass.inter_card_le_two"
+  },
+  {
+    "group": "alias_functional",
+    "name": "a0111_alias_functional",
+    "source": "CriticalShellSystem.centerAt proof irrelevance"
+  },
+  {
+    "group": "same_blocker_support",
+    "name": "a0112_same_blocker_support",
+    "source": "selectedSupports_eq_of_actualBlockers_eq"
+  },
+  {
+    "group": "distinct_center_overlap",
+    "name": "a0113_distinct_center_overlap",
+    "source": "SelectedFourClass.inter_card_le_two"
+  },
+  {
+    "group": "alias_functional",
+    "name": "a0114_alias_functional",
+    "source": "CriticalShellSystem.centerAt proof irrelevance"
+  },
+  {
+    "group": "same_blocker_support",
+    "name": "a0115_same_blocker_support",
+    "source": "selectedSupports_eq_of_actualBlockers_eq"
+  },
+  {
+    "group": "distinct_center_overlap",
+    "name": "a0116_distinct_center_overlap",
+    "source": "SelectedFourClass.inter_card_le_two"
+  },
+  {
+    "group": "alias_functional",
+    "name": "a0117_alias_functional",
+    "source": "CriticalShellSystem.centerAt proof irrelevance"
+  },
+  {
+    "group": "same_blocker_support",
+    "name": "a0118_same_blocker_support",
+    "source": "selectedSupports_eq_of_actualBlockers_eq"
+  },
+  {
+    "group": "distinct_center_overlap",
+    "name": "a0119_distinct_center_overlap",
+    "source": "SelectedFourClass.inter_card_le_two"
+  },
+  {
+    "group": "alias_functional",
+    "name": "a0120_alias_functional",
+    "source": "CriticalShellSystem.centerAt proof irrelevance"
+  },
+  {
+    "group": "same_blocker_support",
+    "name": "a0121_same_blocker_support",
+    "source": "selectedSupports_eq_of_actualBlockers_eq"
+  },
+  {
+    "group": "distinct_center_overlap",
+    "name": "a0122_distinct_center_overlap",
+    "source": "SelectedFourClass.inter_card_le_two"
+  },
+  {
+    "group": "alias_functional",
+    "name": "a0123_alias_functional",
+    "source": "CriticalShellSystem.centerAt proof irrelevance"
+  },
+  {
+    "group": "same_blocker_support",
+    "name": "a0124_same_blocker_support",
+    "source": "selectedSupports_eq_of_actualBlockers_eq"
+  },
+  {
+    "group": "distinct_center_overlap",
+    "name": "a0125_distinct_center_overlap",
+    "source": "SelectedFourClass.inter_card_le_two"
+  },
+  {
+    "group": "alias_functional",
+    "name": "a0126_alias_functional",
+    "source": "CriticalShellSystem.centerAt proof irrelevance"
+  },
+  {
+    "group": "same_blocker_support",
+    "name": "a0127_same_blocker_support",
+    "source": "selectedSupports_eq_of_actualBlockers_eq"
+  },
+  {
+    "group": "distinct_center_overlap",
+    "name": "a0128_distinct_center_overlap",
+    "source": "SelectedFourClass.inter_card_le_two"
+  },
+  {
+    "group": "alias_functional",
+    "name": "a0129_alias_functional",
+    "source": "CriticalShellSystem.centerAt proof irrelevance"
+  },
+  {
+    "group": "same_blocker_support",
+    "name": "a0130_same_blocker_support",
+    "source": "selectedSupports_eq_of_actualBlockers_eq"
+  },
+  {
+    "group": "distinct_center_overlap",
+    "name": "a0131_distinct_center_overlap",
+    "source": "SelectedFourClass.inter_card_le_two"
+  },
+  {
+    "group": "alias_functional",
+    "name": "a0132_alias_functional",
+    "source": "CriticalShellSystem.centerAt proof irrelevance"
+  },
+  {
+    "group": "same_blocker_support",
+    "name": "a0133_same_blocker_support",
+    "source": "selectedSupports_eq_of_actualBlockers_eq"
+  },
+  {
+    "group": "distinct_center_overlap",
+    "name": "a0134_distinct_center_overlap",
+    "source": "SelectedFourClass.inter_card_le_two"
+  },
+  {
+    "group": "alias_functional",
+    "name": "a0135_alias_functional",
+    "source": "CriticalShellSystem.centerAt proof irrelevance"
+  },
+  {
+    "group": "same_blocker_support",
+    "name": "a0136_same_blocker_support",
+    "source": "selectedSupports_eq_of_actualBlockers_eq"
+  },
+  {
+    "group": "distinct_center_overlap",
+    "name": "a0137_distinct_center_overlap",
+    "source": "SelectedFourClass.inter_card_le_two"
+  },
+  {
+    "group": "alias_functional",
+    "name": "a0138_alias_functional",
+    "source": "CriticalShellSystem.centerAt proof irrelevance"
+  },
+  {
+    "group": "same_blocker_support",
+    "name": "a0139_same_blocker_support",
+    "source": "selectedSupports_eq_of_actualBlockers_eq"
+  },
+  {
+    "group": "distinct_center_overlap",
+    "name": "a0140_distinct_center_overlap",
+    "source": "SelectedFourClass.inter_card_le_two"
+  },
+  {
+    "group": "alias_functional",
+    "name": "a0141_alias_functional",
+    "source": "CriticalShellSystem.centerAt proof irrelevance"
+  },
+  {
+    "group": "same_blocker_support",
+    "name": "a0142_same_blocker_support",
+    "source": "selectedSupports_eq_of_actualBlockers_eq"
+  },
+  {
+    "group": "distinct_center_overlap",
+    "name": "a0143_distinct_center_overlap",
+    "source": "SelectedFourClass.inter_card_le_two"
+  },
+  {
+    "group": "alias_functional",
+    "name": "a0144_alias_functional",
+    "source": "CriticalShellSystem.centerAt proof irrelevance"
+  },
+  {
+    "group": "same_blocker_support",
+    "name": "a0145_same_blocker_support",
+    "source": "selectedSupports_eq_of_actualBlockers_eq"
+  },
+  {
+    "group": "distinct_center_overlap",
+    "name": "a0146_distinct_center_overlap",
+    "source": "SelectedFourClass.inter_card_le_two"
+  },
+  {
+    "group": "alias_functional",
+    "name": "a0147_alias_functional",
+    "source": "CriticalShellSystem.centerAt proof irrelevance"
+  },
+  {
+    "group": "same_blocker_support",
+    "name": "a0148_same_blocker_support",
+    "source": "selectedSupports_eq_of_actualBlockers_eq"
+  },
+  {
+    "group": "distinct_center_overlap",
+    "name": "a0149_distinct_center_overlap",
+    "source": "SelectedFourClass.inter_card_le_two"
+  },
+  {
+    "group": "alias_functional",
+    "name": "a0150_alias_functional",
+    "source": "CriticalShellSystem.centerAt proof irrelevance"
+  },
+  {
+    "group": "same_blocker_support",
+    "name": "a0151_same_blocker_support",
+    "source": "selectedSupports_eq_of_actualBlockers_eq"
+  },
+  {
+    "group": "distinct_center_overlap",
+    "name": "a0152_distinct_center_overlap",
+    "source": "SelectedFourClass.inter_card_le_two"
+  },
+  {
+    "group": "alias_functional",
+    "name": "a0153_alias_functional",
+    "source": "CriticalShellSystem.centerAt proof irrelevance"
+  },
+  {
+    "group": "same_blocker_support",
+    "name": "a0154_same_blocker_support",
+    "source": "selectedSupports_eq_of_actualBlockers_eq"
+  },
+  {
+    "group": "distinct_center_overlap",
+    "name": "a0155_distinct_center_overlap",
+    "source": "SelectedFourClass.inter_card_le_two"
+  },
+  {
+    "group": "alias_functional",
+    "name": "a0156_alias_functional",
+    "source": "CriticalShellSystem.centerAt proof irrelevance"
+  },
+  {
+    "group": "same_blocker_support",
+    "name": "a0157_same_blocker_support",
+    "source": "selectedSupports_eq_of_actualBlockers_eq"
+  },
+  {
+    "group": "distinct_center_overlap",
+    "name": "a0158_distinct_center_overlap",
+    "source": "SelectedFourClass.inter_card_le_two"
+  },
+  {
+    "group": "alias_functional",
+    "name": "a0159_alias_functional",
+    "source": "CriticalShellSystem.centerAt proof irrelevance"
+  },
+  {
+    "group": "same_blocker_support",
+    "name": "a0160_same_blocker_support",
+    "source": "selectedSupports_eq_of_actualBlockers_eq"
+  },
+  {
+    "group": "distinct_center_overlap",
+    "name": "a0161_distinct_center_overlap",
+    "source": "SelectedFourClass.inter_card_le_two"
+  },
+  {
+    "group": "alias_functional",
+    "name": "a0162_alias_functional",
+    "source": "CriticalShellSystem.centerAt proof irrelevance"
+  },
+  {
+    "group": "same_blocker_support",
+    "name": "a0163_same_blocker_support",
+    "source": "selectedSupports_eq_of_actualBlockers_eq"
+  },
+  {
+    "group": "distinct_center_overlap",
+    "name": "a0164_distinct_center_overlap",
+    "source": "SelectedFourClass.inter_card_le_two"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0165_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0166_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0167_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0168_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0169_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0170_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0171_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0172_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0173_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0174_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0175_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0176_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0177_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0178_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0179_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0180_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0181_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0182_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0183_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0184_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0185_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0186_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0187_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0188_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0189_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0190_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0191_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0192_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0193_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0194_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0195_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0196_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0197_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0198_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0199_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0200_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0201_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0202_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0203_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0204_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0205_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0206_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0207_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0208_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0209_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0210_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0211_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0212_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0213_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0214_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0215_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0216_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0217_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0218_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0219_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0220_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0221_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0222_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0223_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0224_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0225_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0226_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0227_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0228_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0229_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0230_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0231_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0232_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0233_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0234_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0235_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0236_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0237_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0238_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0239_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0240_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0241_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0242_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0243_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0244_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0245_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0246_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0247_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0248_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0249_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0250_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0251_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0252_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0253_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0254_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0255_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0256_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0257_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0258_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0259_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0260_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0261_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0262_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0263_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0264_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0265_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0266_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0267_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0268_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0269_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0270_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0271_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0272_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0273_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0274_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0275_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0276_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0277_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0278_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0279_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0280_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0281_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0282_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0283_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0284_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0285_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0286_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0287_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0288_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0289_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0290_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0291_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0292_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0293_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0294_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0295_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0296_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0297_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0298_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0299_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0300_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0301_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0302_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0303_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0304_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0305_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0306_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0307_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0308_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0309_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0310_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0311_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0312_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0313_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0314_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0315_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0316_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0317_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0318_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0319_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0320_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0321_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0322_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0323_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0324_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0325_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0326_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0327_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0328_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0329_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0330_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0331_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0332_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0333_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0334_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0335_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0336_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0337_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0338_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0339_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0340_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0341_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0342_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0343_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0344_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0345_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0346_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0347_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0348_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0349_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0350_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0351_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0352_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0353_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0354_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0355_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0356_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0357_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0358_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0359_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0360_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0361_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0362_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0363_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0364_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0365_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0366_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0367_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0368_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0369_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0370_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0371_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0372_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0373_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0374_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0375_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0376_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0377_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0378_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0379_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0380_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0381_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0382_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0383_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0384_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0385_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0386_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0387_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0388_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0389_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0390_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0391_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0392_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0393_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0394_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0395_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0396_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0397_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0398_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0399_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0400_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0401_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0402_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0403_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0404_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0405_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0406_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0407_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0408_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0409_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0410_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0411_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0412_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0413_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0414_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0415_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "fiber_le4",
+    "name": "a0416_fiber_le4",
+    "source": "actualBlockerFiber_card_le_four"
+  },
+  {
+    "group": "q_support4",
+    "name": "a0417_q_support4",
+    "source": "CriticalFourShell.support_card + support_subset_A"
+  },
+  {
+    "group": "q_support4",
+    "name": "a0418_q_support4",
+    "source": "Q row exact four-support enumeration"
+  },
+  {
+    "group": "q_support4",
+    "name": "a0419_q_support4",
+    "source": "Q row exact four-support enumeration"
+  },
+  {
+    "group": "q_support4",
+    "name": "a0420_q_support4",
+    "source": "Q row exact four-support enumeration"
+  },
+  {
+    "group": "q_support4",
+    "name": "a0421_q_support4",
+    "source": "Q row exact four-support enumeration"
+  },
+  {
+    "group": "q_pair_blocker",
+    "name": "a0422_q_pair_blocker",
+    "source": "FreshThirdBlockerFiber.blockers_eq"
+  },
+  {
+    "group": "c_sources_ne",
+    "name": "a0423_c_sources_ne",
+    "source": "TwoCapSourceThirdCanonicalRowSurface.sources_ne"
+  },
+  {
+    "group": "q_deletion_fan",
+    "name": "a0424_q_deletion_fan",
+    "source": "SourceFaithfulSelectedFourDeletionFan"
+  },
+  {
+    "group": "q_deletion_fan",
+    "name": "a0425_q_deletion_fan",
+    "source": "SourceFaithfulSelectedFourDeletionFan same-center arm"
+  },
+  {
+    "group": "q_deletion_fan",
+    "name": "a0426_q_deletion_fan",
+    "source": "SourceFaithfulSelectedFourDeletionFan"
+  },
+  {
+    "group": "q_deletion_fan",
+    "name": "a0427_q_deletion_fan",
+    "source": "SourceFaithfulSelectedFourDeletionFan same-center arm"
+  },
+  {
+    "group": "q_deletion_fan",
+    "name": "a0428_q_deletion_fan",
+    "source": "SourceFaithfulSelectedFourDeletionFan"
+  },
+  {
+    "group": "q_deletion_fan",
+    "name": "a0429_q_deletion_fan",
+    "source": "SourceFaithfulSelectedFourDeletionFan same-center arm"
+  },
+  {
+    "group": "q_deletion_fan",
+    "name": "a0430_q_deletion_fan",
+    "source": "SourceFaithfulSelectedFourDeletionFan"
+  },
+  {
+    "group": "q_deletion_fan",
+    "name": "a0431_q_deletion_fan",
+    "source": "SourceFaithfulSelectedFourDeletionFan same-center arm"
+  },
+  {
+    "group": "q_boundary",
+    "name": "a0432_q_boundary",
+    "source": "freshThird_qRow_exact_blocker_boundary"
+  },
+  {
+    "group": "repeat_pair",
+    "name": "a0433_repeat_pair",
+    "source": "exists_repeatedBlockerCap_pair_outcome"
+  },
+  {
+    "group": "repeat_pair",
+    "name": "a0434_repeat_pair",
+    "source": "exists_repeatedBlockerCap_pair_outcome"
+  },
+  {
+    "group": "first_nonhit",
+    "name": "a0435_first_nonhit",
+    "source": "FreshThirdCapSourceNonHit"
+  },
+  {
+    "group": "first_nonhit",
+    "name": "a0436_first_nonhit",
+    "source": "FreshThirdCapSourceNonHit.deleted_eq"
+  },
+  {
+    "group": "first_nonhit",
+    "name": "a0437_first_nonhit",
+    "source": "FreshThirdCapSourceNonHit.sameBlocker"
+  },
+  {
+    "group": "first_nonhit",
+    "name": "a0438_first_nonhit",
+    "source": "FreshThirdCapSourceNonHit.sourceRowOmission + center_ne theorem"
+  },
+  {
+    "group": "second_interaction",
+    "name": "a0439_second_interaction",
+    "source": "FreshThirdCapSourceInteraction"
+  },
+  {
+    "group": "second_interaction",
+    "name": "a0440_second_interaction",
+    "source": "FreshThirdCapSourceInteraction.deleted_eq"
+  },
+  {
+    "group": "second_interaction",
+    "name": "a0441_second_interaction",
+    "source": "FreshThirdCapSourceInteraction cap indices"
+  },
+  {
+    "group": "second_interaction",
+    "name": "a0442_second_interaction",
+    "source": "FreshThirdCapSourceInteraction.sameBlocker"
+  },
+  {
+    "group": "second_interaction",
+    "name": "a0443_second_interaction",
+    "source": "FreshThirdCapSourceInteraction.sourceRowOmission + center_ne theorem"
+  },
+  {
+    "group": "second_interaction",
+    "name": "a0444_second_interaction",
+    "source": "FreshThirdCapSourceInteraction.distinctBlockersDifferentCaps"
+  },
+  {
+    "group": "second_interaction",
+    "name": "a0445_second_interaction",
+    "source": "FreshThirdCapSourceInteraction.sameCapWithInternalFiberSource"
+  },
+  {
+    "group": "common_sameblocker",
+    "name": "a0446_common_sameblocker",
+    "source": "first sameBlocker constructor"
+  },
+  {
+    "group": "common_sameblocker",
+    "name": "a0447_common_sameblocker",
+    "source": "second sameBlocker constructor"
+  },
+  {
+    "group": "common_w4",
+    "name": "a0448_common_w4",
+    "source": "freshThird_commonRadius_sameBlocker_exists_four... W.card=4"
+  },
+  {
+    "group": "common_w4",
+    "name": "a0449_common_w4",
+    "source": "freshThird_commonRadius_sameBlocker_exists_four... off selected shell"
+  },
+  {
+    "group": "common_w4",
+    "name": "a0450_common_w4",
+    "source": "freshThird_commonRadius_sameBlocker_exists_four... blocker center distinct"
+  },
+  {
+    "group": "common_w4",
+    "name": "a0451_common_w4",
+    "source": "freshThird_commonRadius_sameBlocker_exists_four... off selected shell"
+  },
+  {
+    "group": "common_w4",
+    "name": "a0452_common_w4",
+    "source": "freshThird_commonRadius_sameBlocker_exists_four... blocker center distinct"
+  },
+  {
+    "group": "common_w4",
+    "name": "a0453_common_w4",
+    "source": "freshThird_commonRadius_sameBlocker_exists_four... off selected shell"
+  },
+  {
+    "group": "common_w4",
+    "name": "a0454_common_w4",
+    "source": "freshThird_commonRadius_sameBlocker_exists_four... blocker center distinct"
+  },
+  {
+    "group": "common_w4",
+    "name": "a0455_common_w4",
+    "source": "freshThird_commonRadius_sameBlocker_exists_four... off selected shell"
+  },
+  {
+    "group": "common_w4",
+    "name": "a0456_common_w4",
+    "source": "freshThird_commonRadius_sameBlocker_exists_four... blocker center distinct"
+  }
+]

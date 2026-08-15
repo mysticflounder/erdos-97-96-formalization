@@ -1,0 +1,30 @@
+{
+  "ambient_cardinality_bound": null,
+  "case_matrix_covered": [
+    "retained",
+    "common",
+    "common_sameblocker"
+  ],
+  "cases": [
+    "retained",
+    "common",
+    "common_sameblocker"
+  ],
+  "commands": [
+    "uv run python wave.py --prepare",
+    "uv run python wave.py --run",
+    "bash run.sh"
+  ],
+  "compatibility_class": "C",
+  "core_lease": {
+    "global_max_authenticated_nogoods": 12,
+    "workers": 1
+  },
+  "cut_status": "relaxation; independently audited geometry, normalized Lean core, full adapter pending",
+  "logic": "QF_UFLIA",
+  "source_gate": "PASS",
+  "state": "RUNNING",
+  "timeout_escalation": false,
+  "timeout_ms_per_solver_call": 30000,
+  "wave": "freshthird_firstnonhit_sevenrow_cut_v1"
+}

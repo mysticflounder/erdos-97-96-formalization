@@ -1,0 +1,28 @@
+{
+  "status": "SAT_MOTIF_FREE_SURVIVOR",
+  "scope": "unbounded named-role quotient",
+  "ambient_cardinality_bound": null,
+  "cases": {
+    "retained": {
+      "readback": "iterations/retained-00.json",
+      "q_boundary": 1,
+      "constructor_tags": [1, 3],
+      "injective_seven_row_motif": false
+    },
+    "common": {
+      "readback": "iterations/common-00.json",
+      "q_boundary": 1,
+      "constructor_tags": [1, 1],
+      "injective_seven_row_motif": false
+    },
+    "common_sameblocker": {
+      "readback": "iterations/common_sameblocker-00.json",
+      "q_boundary": 1,
+      "constructor_tags": [0, 0],
+      "injective_seven_row_motif": false
+    }
+  },
+  "authenticated_nogoods": 0,
+  "four_valued_verdict": "SAT-abstraction",
+  "universal_or_lean_closure": false
+}

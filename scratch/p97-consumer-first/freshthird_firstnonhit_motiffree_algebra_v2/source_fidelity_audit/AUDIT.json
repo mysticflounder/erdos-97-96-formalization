@@ -1,0 +1,123 @@
+{
+  "classification": "The original common_sameblocker terminal readback is source-malformed. Its algebra NONUNIT output is retained only as a computation on that malformed packet.",
+  "cut_ledger": [
+    "firstSource != secondSource",
+    "five named actual sources with one blocker imply a source alias (fiber card <= 4)",
+    "each five-subset of the six selected q0-row labels implies a point alias (support card = 4)"
+  ],
+  "records": {
+    "control_alias": {
+      "consensus": "sat",
+      "engines": {
+        "cvc5": {
+          "command": [
+            "cvc5",
+            "--lang",
+            "smt2",
+            "--produce-models",
+            "--tlimit",
+            "10000",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_motiffree_algebra_v2/source_fidelity_audit/control_alias.smt2"
+          ],
+          "returncode": 0,
+          "verdict": "sat",
+          "wall_seconds": 0.008295499719679356
+        },
+        "z3": {
+          "command": [
+            "z3",
+            "-smt2",
+            "-T:10",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_motiffree_algebra_v2/source_fidelity_audit/control_alias.smt2"
+          ],
+          "returncode": 0,
+          "verdict": "sat",
+          "wall_seconds": 0.01725108316168189
+        }
+      },
+      "expected": "sat",
+      "passed": true
+    },
+    "control_impossible": {
+      "consensus": "unsat",
+      "engines": {
+        "cvc5": {
+          "command": [
+            "cvc5",
+            "--lang",
+            "smt2",
+            "--produce-models",
+            "--tlimit",
+            "10000",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_motiffree_algebra_v2/source_fidelity_audit/control_impossible.smt2"
+          ],
+          "returncode": 0,
+          "verdict": "unsat",
+          "wall_seconds": 0.09237108286470175
+        },
+        "z3": {
+          "command": [
+            "z3",
+            "-smt2",
+            "-T:10",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_motiffree_algebra_v2/source_fidelity_audit/control_impossible.smt2"
+          ],
+          "returncode": 0,
+          "verdict": "unsat",
+          "wall_seconds": 0.05190745834261179
+        }
+      },
+      "expected": "unsat",
+      "passed": true
+    },
+    "corrected_common_sameblocker": {
+      "consensus": "sat",
+      "engines": {
+        "cvc5": {
+          "command": [
+            "cvc5",
+            "--lang",
+            "smt2",
+            "--produce-models",
+            "--tlimit",
+            "10000",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_motiffree_algebra_v2/source_fidelity_audit/corrected_common_sameblocker.smt2"
+          ],
+          "returncode": 0,
+          "verdict": "sat",
+          "wall_seconds": 0.019733875058591366
+        },
+        "z3": {
+          "command": [
+            "z3",
+            "-smt2",
+            "-T:10",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/p97-consumer-first/freshthird_firstnonhit_motiffree_algebra_v2/source_fidelity_audit/corrected_common_sameblocker.smt2"
+          ],
+          "returncode": 0,
+          "verdict": "sat",
+          "wall_seconds": 0.01427412498742342
+        }
+      },
+      "expected": null,
+      "passed": true
+    }
+  },
+  "schema": "freshthird-firstnonhit-common-sameblocker-source-fidelity-audit-v1",
+  "solver_budget": {
+    "aggregate_wall_seconds": 94.27054862258956,
+    "audit_wall_seconds": 0.20383312413468957,
+    "calls": 6,
+    "prior_algebra_wall_seconds": 94.06671549845487,
+    "timeout_escalation": false,
+    "total_wave_cap_seconds": 290.0
+  },
+  "source_base": "scratch/p97-consumer-first/freshthird_firstnonhit_sevenrow_cut_v1/base_common_sameblocker.smt2",
+  "source_base_sha256": "3d53f64c4863fd2e4a793fa4ef69f276e50881be513f0e2db901812cf72e4d03",
+  "source_theorems": {
+    "CriticalFourShell.support_card": "0763edd41bef51f9b5ca0c7d98d3178efdbe45f7ad130c723e672f6671379fc2",
+    "TwoCapSourceThirdCanonicalRowSurface.sources_ne": "0994b416753dc480849066f2d17ce2912b4b46072e8651413dd04b2c5ab9bbf8",
+    "actualBlockerFiber_card_le_four": "015941fc0b69014bd90a101d3f0b68e5fec4ec8e8b9c0e62b1e0b83c0f05851a"
+  },
+  "status": "PASS"
+}

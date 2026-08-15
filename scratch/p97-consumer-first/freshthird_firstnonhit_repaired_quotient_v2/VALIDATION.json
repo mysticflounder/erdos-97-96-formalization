@@ -1,0 +1,30 @@
+{
+  "status": "PASS_FAIL_CLOSED_UNKNOWN",
+  "source_validator": {
+    "status": "PASS",
+    "artifact": "SOURCE-VALIDATION.json",
+    "files": 9,
+    "tokens": 32
+  },
+  "controls": {
+    "status": "PASS",
+    "artifact": "CONTROL-RESULTS.json",
+    "z3_and_cvc5": ["known SAT", "exact-four rejects five", "contradiction UNSAT", "malformed rejected"]
+  },
+  "model_validator": {
+    "status": "PASS_DETECTED_ALL_INVALID_READBACKS",
+    "artifact": "MODEL-VALIDATION.json",
+    "invalid_readbacks": 3
+  },
+  "clause_validator": {
+    "status": "PASS",
+    "artifact": "CLAUSE-VALIDATION.json",
+    "authenticated_nogoods": 0,
+    "positive_and_negative_smoke": true
+  },
+  "solver_agreement": "FAIL",
+  "four_valued_verdict": "UNKNOWN",
+  "rerun": false,
+  "process_closeout": "PASS: escalated ps check found no wave, Z3, or cvc5 process beyond the check command itself",
+  "universal_claim": false
+}

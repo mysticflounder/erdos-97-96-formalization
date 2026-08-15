@@ -1,0 +1,10 @@
+wave execution date: 2026-08-14 America/Los_Angeles
+Python Z3 used by uv environment: 4.16.0
+Z3 CLI visible inside uv environment: 4.16.0
+cvc5: 1.3.3 [git 8ff882e]
+uv: 0.11.7
+workers: 1
+timeout per solver call: 30000 ms
+timeout escalation: none
+executed wave.py SHA-256: 5c3068bbd98e22cc3a83ae535ebcefa1b2ffcdfabd83f9047128e684bfb56706
+current wave.py includes an unexecuted assumption fix; see POSTMORTEM.json

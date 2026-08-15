@@ -1,0 +1,19 @@
+{
+  "wave": "freshthird_firstnonhit_sevenrow_cut_v1",
+  "state": "TERMINAL",
+  "source_gate": "PASS",
+  "compatibility_class": "C",
+  "cases": ["retained", "common", "common_sameblocker"],
+  "logic": "QF_UFLIA",
+  "ambient_cardinality_bound": null,
+  "timeout_ms_per_solver_call": 30000,
+  "timeout_escalation": false,
+  "authenticated_nogoods": 0,
+  "authenticated_nogood_cap": 12,
+  "result": "SAT_MOTIF_FREE_SURVIVOR",
+  "four_valued_verdict": "SAT-abstraction",
+  "z3": "4.17.0",
+  "cvc5": "1.3.3",
+  "independent_validator": "PASS",
+  "promotion": false
+}

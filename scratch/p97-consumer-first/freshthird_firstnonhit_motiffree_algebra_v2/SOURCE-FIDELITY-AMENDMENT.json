@@ -1,0 +1,31 @@
+{
+  "amendment": "common_sameblocker source-fidelity correction",
+  "classification": {
+    "common": "NONUNIT_COMPLEX_NONEMPTY_ONLY",
+    "common_sameblocker": "SOURCE_MALFORMED_RAW_CAS_NONUNIT_ONLY",
+    "retained": "UNKNOWN"
+  },
+  "corrected_structural_query": {
+    "cvc5": "sat",
+    "meaning": "legal source aliases remain structurally satisfiable; no algebraic or Euclidean witness claim",
+    "z3": "sat"
+  },
+  "hashes": {
+    "RESULTS.md": "e24a34f20e0b4854affbd66f15563e8579c67b6a1846302647d0f2295d3bd721",
+    "SOURCE-MAP.md": "c186e818be560d92203962bdb20d922b7f1f79f7df1f973e086c3919c8ad3010",
+    "historical_SHA256SUMS": "afa785d5b2510ae6be56d70b01c02934157dfda6667a63b58f6f92c42c3291d7",
+    "historical_manifest.terminal.json": "d7a8438a0ad209a08be1516cec3809c67734f3a01ca07049b736bb2aaa5e7d0f",
+    "source_fidelity_audit.py": "3634b2fa63919dd4aa98b18a0e120073b3818ade0b7e1ea991e4670d580c0e7e",
+    "source_fidelity_audit/AUDIT.json": "e3b29bb3fd29e59bc47172c7bbf5dbf8a0ab6231b34fa6dac841ab7b4e37a790",
+    "source_fidelity_audit/SHA256SUMS": "3a69e6aa4b9b99445357050ab33d6c484f40592b744d246d6008c57945f99c2a"
+  },
+  "historical_ledger_note": "The original SHA256SUMS and terminal manifest authenticate the frozen algebra run. Their old RESULTS.md and SOURCE-MAP.md entries are superseded by this amendment; raw solver artifacts were not changed.",
+  "solver_budget": {
+    "aggregate_wall_seconds": 94.27054862258956,
+    "audit_wall_seconds": 0.20383312413468957,
+    "maximum_cores": 4,
+    "timeout_escalation": false,
+    "total_wave_cap_seconds": 290.0
+  },
+  "status": "TERMINAL_SOURCE_FIDELITY_AMENDED"
+}

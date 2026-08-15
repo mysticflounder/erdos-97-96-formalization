@@ -1,0 +1,50 @@
+{
+  "records": [
+    {
+      "cvc5": "sat",
+      "cvc5_exit_code": 0,
+      "expected": "sat",
+      "file": "control_smoke_sat.smt2",
+      "pass": true,
+      "z3": "sat",
+      "z3_reason": null
+    },
+    {
+      "cvc5": "unsat",
+      "cvc5_exit_code": 0,
+      "expected": "unsat",
+      "file": "control_smoke_exact4_rejects_five.smt2",
+      "pass": true,
+      "z3": "unsat",
+      "z3_reason": null
+    },
+    {
+      "cvc5": "unsat",
+      "cvc5_exit_code": 0,
+      "expected": "unsat",
+      "file": "control_unsat.smt2",
+      "pass": true,
+      "z3": "unsat",
+      "z3_reason": null
+    },
+    {
+      "cvc5": "parse-error",
+      "cvc5_exit_code": 1,
+      "expected": "parse-error",
+      "file": "control_malformed.smt2",
+      "pass": true,
+      "z3": "parse-error",
+      "z3_reason": "b'(error \"line 3 column 0: invalid assert command, \\')\\' expected\")\\n'"
+    },
+    {
+      "cvc5": "unsat",
+      "cvc5_exit_code": 0,
+      "expected": "unsat",
+      "file": "control_named_false.smt2",
+      "pass": true,
+      "z3": "unsat",
+      "z3_reason": null
+    }
+  ],
+  "status": "PASS"
+}

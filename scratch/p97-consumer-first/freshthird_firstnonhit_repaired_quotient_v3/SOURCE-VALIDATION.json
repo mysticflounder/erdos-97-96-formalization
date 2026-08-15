@@ -1,0 +1,27 @@
+{
+  "checked_source_files": 9,
+  "checked_tokens": 32,
+  "exact_encoding_decision": "possible: four explicit support slots plus anonymous carrier-point semantics; only source-proved inequalities; aliases quotient by source value",
+  "failures": [],
+  "predecessor_hashes": {
+    "scratch/p97-consumer-first/freshthird_firstnonhit_global_blocker_quotient_v1/RESULTS.md": "02dfcecd2744401df3cfb0846aec9e5caf66a057b523619f6b1dee20c7c31865",
+    "scratch/p97-consumer-first/freshthird_firstnonhit_global_blocker_quotient_v1/SHA256SUMS": "d725b013847a749a2d9af12c996bd6ea23046bb7baa549e7464b9d3d3d7bd342",
+    "scratch/p97-consumer-first/freshthird_firstnonhit_global_blocker_quotient_v1/SOURCE-MAP.md": "293dbcf375478247be6c6ca067fab98d210967188c12456a0796440cb1b80bb5",
+    "scratch/p97-consumer-first/freshthird_firstnonhit_sevenrow_cut_v1/RESULTS.md": "63ac4c60ac01cd875e187f4a3630eb44cbcfe42e7912850025b26aa2a815f6f9",
+    "scratch/p97-consumer-first/freshthird_firstnonhit_sevenrow_cut_v1/SHA256SUMS": "d919d8ad22ec482fe00e7bf6b0597a130a8a4e1a382869176a9ae04a0c35953e",
+    "scratch/p97-consumer-first/freshthird_firstnonhit_sevenrow_cut_v1/SOURCE-MAP.md": "ab85c0e7cc15f88c40dcbcd3c18f5cd25df285b1b9e2767ac9bda4b6c2a8ddd7"
+  },
+  "source_hashes": {
+    "lean/Erdos9796Proof/P97/ATail/BlockerMultiplicityGeometry.lean": "2bc7a64b1fa1f7f6f07d79a32801877c89e9b3253d468b2677629c81dccae68b",
+    "lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean": "2b2b381d0833292df28a1fd9d0316999a221623a23ed0cdb5f97c7f98547b959",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TriApexEndpointRetainedOmission.lean": "5fabe2bf3df9d67f146d90e5ee25238b478799e8d22cc21e62010af5d4602a54",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceCanonicalSurface.lean": "0994b416753dc480849066f2d17ce2912b4b46072e8651413dd04b2c5ab9bbf8",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdFiber.lean": "d38b8471b89caa7a73fd4b7bfc4395f55ad28f6ba57b43ecc4b2774543f2a81d",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean": "1c16b513f8b923185b9944bb4f85d3e019fa3fbca522b7e8e8edbba16e0888bd",
+    "lean/Erdos9796Proof/P97/ATail/SurvivalCover.lean": "015941fc0b69014bd90a101d3f0b68e5fec4ec8e8b9c0e62b1e0b83c0f05851a",
+    "lean/Erdos9796Proof/P97/Census554/ThirteenPointSevenCircleCollision.lean": "2da65d72c0e5762d7340943d1c89c256d3eec94272de84c4553a02b04f1aa865",
+    "lean/Erdos9796Proof/P97/U1CarrierInjection.lean": "0763edd41bef51f9b5ca0c7d98d3178efdbe45f7ad130c723e672f6671379fc2"
+  },
+  "status": "PASS",
+  "validator": "independent source_validate.py; exact token and full-file SHA-256 audit"
+}

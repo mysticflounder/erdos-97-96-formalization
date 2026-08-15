@@ -1,0 +1,7 @@
+Python: uv-managed Python 3.14
+Z3 Python: 4.16.0
+Z3 CLI: Z3 version 4.16.0 - 64 bit
+cvc5: This is cvc5 version 1.3.3 [git 8ff882e on branch HEAD]
+Timeout per solver/case: 30000 ms
+Workers: 1
+Core/no-good budget: 12 maximum authenticated no-goods; 0 used
