@@ -2,12 +2,14 @@
 
 from __future__ import annotations
 
+import fcntl
 import hashlib
 import json
 import os
 import stat
 import uuid
-from collections.abc import Callable, Mapping
+from collections.abc import Callable, Iterator, Mapping
+from contextlib import contextmanager
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Final
@@ -17,6 +19,10 @@ from .cegar_wave_assumption_profiles import (
     AssumptionCampaignProfile,
     assumption_campaign_metadata,
     replay_sat,
+)
+from .exact17_source_model_replay import (
+    canonical_assignment_from_source_model,
+    canonical_assignment_sha256,
 )
 from .phase3_cegar_runtime import capture_exact_regular_file
 from .phase3_cegar_wave import canonical_json_bytes, wave_manifest_sha256
@@ -41,6 +47,10 @@ from .phase3_piqd_assumption_campaign import (
     CampaignReceipt,
     CnfStreamIdentity,
     stream_parent_identity,
+)
+from .phase3_piqd_incremental_discovery import (
+    _result_digest,
+    _solve_request_digest,
 )
 
 ENGINE_SCHEMA: Final = "p97-cegar-assumption-cnf-engine/v1"
@@ -421,6 +431,10 @@ def _check_result(
                 or abs(literal) > binding.campaign.variables
                 for literal in value.assignment
             )
+            or any(
+                abs(literal) != index + 1
+                for index, literal in enumerate(value.assignment)
+            )
             or {abs(literal) for literal in value.assignment}
             != set(range(1, binding.campaign.variables + 1))
         ):
@@ -617,6 +631,94 @@ def _visible_directory(path: Path, fd: int) -> None:
         or (held.st_dev, held.st_ino) != (visible.st_dev, visible.st_ino)
     ):
         _fail("output parent changed during publication")
+
+
+@contextmanager
+def _strict_replay_lock(control: WaveControl, path: Path) -> Iterator[None]:
+    """Fail fast when the same expensive strict replay is already active."""
+
+    if (
+        type(path) is not _NATIVE_PATH
+        or not path.is_absolute()
+        or Path(os.path.normpath(os.fspath(path))) != path
+    ):
+        _fail("strict replay output must be an absolute normalized native Path")
+    parent_fd = _open_directory_chain(path.parent, "strict replay output parent")
+    parent_metadata = os.fstat(parent_fd)
+    if (
+        parent_metadata.st_uid != os.getuid()
+        or stat.S_IMODE(parent_metadata.st_mode) & 0o022
+    ):
+        os.close(parent_fd)
+        _fail("strict replay output parent is not private to the current user")
+    lock_name = f".{path.name}.validate-replay.lock"
+    lock_fd: int | None = None
+    acquired = False
+    try:
+        lock_fd = os.open(
+            lock_name,
+            os.O_RDWR
+            | os.O_CREAT
+            | os.O_NOFOLLOW
+            | getattr(os, "O_CLOEXEC", 0),
+            0o600,
+            dir_fd=parent_fd,
+        )
+        metadata = os.fstat(lock_fd)
+        if (
+            not stat.S_ISREG(metadata.st_mode)
+            or metadata.st_nlink != 1
+            or stat.S_IMODE(metadata.st_mode) != 0o600
+        ):
+            _fail("strict replay lockfile identity/mode is invalid")
+        try:
+            fcntl.flock(lock_fd, fcntl.LOCK_EX | fcntl.LOCK_NB)
+            acquired = True
+        except BlockingIOError as exc:
+            os.lseek(lock_fd, 0, os.SEEK_SET)
+            owner = os.read(lock_fd, 512).decode("utf-8", errors="replace").strip()
+            raise AssumptionCnfEngineError(
+                f"strict replay already active for {path} ({owner or 'owner unknown'})"
+            ) from exc
+        owner = canonical_json_bytes(
+            {
+                "control_sha256": _sha(control.canonical_bytes),
+                "output": str(path),
+                "pid": os.getpid(),
+            }
+        )
+        os.ftruncate(lock_fd, 0)
+        os.write(lock_fd, owner)
+        os.fsync(lock_fd)
+        _visible_directory(path.parent, parent_fd)
+        visible = os.stat(lock_name, dir_fd=parent_fd, follow_symlinks=False)
+        if (
+            (visible.st_dev, visible.st_ino) != (metadata.st_dev, metadata.st_ino)
+            or not stat.S_ISREG(visible.st_mode)
+            or visible.st_nlink != 1
+            or stat.S_IMODE(visible.st_mode) != 0o600
+        ):
+            _fail("strict replay lockfile was rebound")
+        yield
+        _visible_directory(path.parent, parent_fd)
+        visible = os.stat(lock_name, dir_fd=parent_fd, follow_symlinks=False)
+        if (
+            (visible.st_dev, visible.st_ino) != (metadata.st_dev, metadata.st_ino)
+            or not stat.S_ISREG(visible.st_mode)
+            or visible.st_nlink != 1
+            or stat.S_IMODE(visible.st_mode) != 0o600
+        ):
+            _fail("strict replay lockfile changed during validation")
+    except OSError as exc:
+        raise AssumptionCnfEngineError("strict replay lockfile failed") from exc
+    finally:
+        if lock_fd is not None:
+            try:
+                if acquired:
+                    fcntl.flock(lock_fd, fcntl.LOCK_UN)
+            finally:
+                os.close(lock_fd)
+        os.close(parent_fd)
 
 
 def _capture_at(
@@ -1412,6 +1514,83 @@ def validate_assumption_cnf_engine_output(
     return envelope
 
 
+def _validate_assumption_cnf_engine_output_strict_unlocked(
+    control: WaveControl, package_root: Path, path: Path
+) -> dict[str, Any]:
+    """Validate SAT witnesses by reconstructing and replaying their exact model.
+
+    The ordinary validator above is intentionally cheap and structural.  This
+    entry point is the post-terminal, solver-free semantic gate: it derives the
+    canonical 308-literal assignment from each serialized source model, binds
+    both PIQD and replay digests, then reruns the registered Child44/45 replay.
+    """
+
+    envelope = validate_assumption_cnf_engine_output(control, package_root, path)
+    try:
+        binding = bind_assumption_cnf(control, package_root)
+    except Exception as exc:
+        raise AssumptionCnfEngineError("strict assumption-CNF rebind failed") from exc
+    profile: AssumptionCampaignProfile = binding.campaign
+    _recapture_parent(binding)
+    for record, cell in zip(envelope["cells"], profile.cells, strict=True):
+        if record.get("state") != ATTEMPTED or record.get("status") != "SAT":
+            continue
+        try:
+            semantic = record["semantic_replay"]
+            result = semantic["result"]
+            assignment = canonical_assignment_from_source_model(result["source_model"])
+            if result["assignment_sha256"] != canonical_assignment_sha256(assignment):
+                _fail("strict semantic assignment hash is not source-model-bound")
+            receipt = record["receipt"]
+            expected_result_sha256 = _result_digest("SAT", None, None, assignment)
+            if (
+                record["result_sha256"] != expected_result_sha256
+                or receipt["result_sha256"] != expected_result_sha256
+            ):
+                _fail("strict PIQD result digest is not source-model-bound")
+            expected_request_sha256 = _solve_request_digest(
+                base_clauses=receipt["base_clauses"],
+                base_bytes=receipt["base_bytes"],
+                base_sha256=receipt["base_sha256"],
+                assumptions=cell.assumptions,
+                conflict_limit=receipt["conflict_limit"],
+                timeout_ms=receipt["timeout_ms"],
+            )
+            if (
+                record["request_sha256"] != expected_request_sha256
+                or receipt["request_sha256"] != expected_request_sha256
+            ):
+                _fail("strict request digest is not source-bound")
+            regenerated = replay_sat(
+                profile,
+                parent_cnf_path=binding.parent_path,
+                source_parent_cnf_path=binding.source_parent_path,
+                assignment=assignment,
+                cell=cell,
+            )
+            if regenerated != semantic:
+                _fail("strict semantic replay differs from the authenticated result")
+        except AssumptionCnfEngineError:
+            raise
+        except Exception as exc:
+            raise AssumptionCnfEngineError(
+                f"strict semantic replay failed for {cell.id}"
+            ) from exc
+    _recapture_parent(binding)
+    return envelope
+
+
+def validate_assumption_cnf_engine_output_strict(
+    control: WaveControl, package_root: Path, path: Path
+) -> dict[str, Any]:
+    """Run the strict semantic replay under an output-scoped operation lock."""
+
+    with _strict_replay_lock(control, path):
+        return _validate_assumption_cnf_engine_output_strict_unlocked(
+            control, package_root, path
+        )
+
+
 __all__ = [
     "ENGINE_SCHEMA",
     "AssumptionCnfEngineError",
@@ -1419,4 +1598,5 @@ __all__ = [
     "AssumptionCnfWaveEngine",
     "inspect_assumption_cnf_engine_output",
     "validate_assumption_cnf_engine_output",
+    "validate_assumption_cnf_engine_output_strict",
 ]

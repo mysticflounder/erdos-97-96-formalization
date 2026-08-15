@@ -510,6 +510,18 @@ only a bank family and orientation is not sufficient.  The frozen Wave63
 chain remains diagnostic evidence and must not be resumed as the production
 source of truth.
 
+Exact-17 implementation status (2026-08-14): the shared declarative
+`ASSUMPTION_CNF` engine now has a distinct strict `validate-replay` promotion
+gate.  It reconstructs a canonical dense assignment from the serialized
+source model, binds the PIQD request/result digests, streams the complete
+registered roots, and requires byte-exact regeneration of the semantic and
+metric evidence.  The thirteen-cell Child45 production envelope passed this
+gate in 706.18 seconds; all thirteen Boolean models satisfy the submitted CNF
+and all thirteen are exact Kalmanson-infeasible.  This closes the immediate G7
+SAT-origin and semantic-replay gap for this registered campaign.  It does not
+close G7 for other producer families, and it does not address the separate
+terminal-UNSAT proof transport requirement.
+
 The throwaway artifact is now available at
 `scratch/exact17-lean-to-sat/piqd-large-cnf-capacity-preflight.cnf`: 308
 variables, 5,846,076 clauses, 291,567,840 bytes, SHA-256

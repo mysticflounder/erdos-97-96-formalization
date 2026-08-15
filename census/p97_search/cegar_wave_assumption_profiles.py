@@ -784,8 +784,15 @@ def replay_sat(
         )
         or {abs(literal) for literal in assignment}
         != set(range(1, profile.variables + 1))
+        or any(
+            abs(literal) != index + 1
+            for index, literal in enumerate(assignment)
+        )
     ):
-        _fail("SAT assignment must be a canonical total signed-literal tuple")
+        _fail(
+            "SAT assignment must be a canonical total signed-literal tuple "
+            "ordered by variable number"
+        )
     replay_code = _PROFILE_REGISTRY[profile.schema][2]
     callback = _REPLAY_REGISTRY.get(replay_code)
     if callback is None:

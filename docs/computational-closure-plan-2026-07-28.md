@@ -12042,3 +12042,48 @@ production adapter must bind both identities and use static handoff for proof-
 producing `UNSAT`.  The next canary should use parallel sessions with
 deterministic conflict budgets; a serial short-timeout sweep is not a credible
 coverage test.
+
+### 13.28.15 Child45 source-total terminal and FortySixth promotion — 2026-08-14
+
+The generic `ASSUMPTION_CNF` campaign against the immutable Child45 root is
+terminal.  One PIQD session visited all thirteen legal next-center assumptions
+in the reviewed order `0`--`7`, `12`--`16`.  All thirteen cells returned `SAT`
+in the Boolean abstraction.  Every returned assignment reconstructs to the
+canonical dense 308-literal source assignment, satisfies the complete
+5,848,824-clause Child45 root, and yields an exact two-term Kalmanson
+infeasibility certificate.  There is no Kalmanson-feasible survivor and no
+Euclidean counterexample candidate in this wave.
+
+Promotion no longer relies on the shallow structural output validator.  The
+shared CLI now has a distinct `validate-replay` gate.  It reconstructs the
+canonical assignment solely from the serialized source model, recomputes the
+PIQD request and result digests, streams the immutable Child44 source parent
+and Child45 root, verifies every clause under the assignment, and regenerates
+the complete source and exact Kalmanson result byte-for-byte.  Assignment
+ingress rejects reordered total models, and the replay rejects symlink,
+hardlink, or ancestor rebinding.  A persistent nonblocking operation lock
+prevents duplicate long replays.  Focused adversarial validation passes with
+152 tests and one intentional skip.
+
+The production replay completed in 706.18 seconds with classification
+`SAT_SEMANTIC_REPLAYED`.  It cross-binds envelope SHA-256
+`bc388ef9ccc39508f4be786131f04a0139a9bdd3c494933a7d886ad97e6cc85f`;
+the compact replay receipt has SHA-256
+`4aad001c679627fa2797cbe4f207c3ff574dfa363f00cab223a5e73bee7f6160`.
+This result authorizes theorem banking, not a closure claim.
+
+The wave-only mine contains eleven distinct full certificate records but only
+nine distinct guarded hit supports.  The support groups represented by cells
+`06` and `13` each cover three cells; the remaining representatives are
+`00`, `01`, `02`, `03`, `04`, `05`, and `16`.  None of the nine supports is
+equal to, contained in, or contains any support inherited through
+FortyFifth.  The FortySixth bank therefore adds exactly nine checked weighted
+occurrences and 36 source-valid clauses while retaining all eleven full
+certificates and all thirteen cell mappings in its authenticated ledger.
+
+After the FortySixth Lean evaluator, exporter, and publication checks pass,
+submit exactly one immutable successor.  `SAT` returns to wave-only theorem
+mining; `UNSAT` must be retrieved and independently replayed, then composed
+through `exists_exactSeventeenSourceRealization_of_exactCover`.  Exact 17 and
+the cap-nine production `sorry` remain open until that terminal composition is
+kernel-checked.

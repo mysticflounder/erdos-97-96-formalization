@@ -128,6 +128,20 @@ def test_source_model_inverse_is_full_and_digest_bound() -> None:
         )
 
 
+def test_serialized_source_model_reconstructs_only_canonical_assignment() -> None:
+    source = _source()
+    serialized = dataclasses.asdict(source)
+    serialized["rows"] = [list(row) for row in source.rows]
+    serialized["selected_order"] = list(source.selected_order)
+    assert replay.canonical_assignment_from_source_model(serialized) == _assignment()
+    with pytest.raises(replay.Child44ReplayError, match="ordered by variable"):
+        replay._parse_assignment(tuple(reversed(_assignment())))
+    mutated = dict(serialized)
+    mutated["digest"] = "0" * 64
+    with pytest.raises(replay.Child44ReplayError, match="digest"):
+        replay.canonical_assignment_from_source_model(mutated)
+
+
 @pytest.mark.parametrize(
     ("row_changes", "message"),
     [
@@ -189,6 +203,10 @@ def test_tiny_streaming_dimacs_replay_checks_custody_and_clauses(tmp_path: Path)
     symlink.symlink_to(path)
     with pytest.raises(replay.Child44ReplayError, match="symlink"):
         replay._stream_dimacs_replay(symlink, truth, contract)
+    hardlink = tmp_path / "tiny-hardlink.cnf"
+    hardlink.hardlink_to(path)
+    with pytest.raises(replay.Child44ReplayError, match="regular file"):
+        replay._stream_dimacs_replay(hardlink, truth, contract)
 
     real_parent = tmp_path / "real-parent"
     real_parent.mkdir()

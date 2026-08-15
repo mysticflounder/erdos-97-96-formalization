@@ -101,6 +101,35 @@ def test_status_and_validation_accept_assumption_engine_summary(
     assert _json_stdout(capsys)["classification"] == "CELLS_UNSAT_DISCOVERY_ONLY"
 
 
+def test_validate_replay_is_distinct_strict_command(
+    tmp_path: Path,
+    capsys: pytest.CaptureFixture[str],
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    control_path, package_root = _control_file(tmp_path)
+    output = tmp_path / "assumption-result.json"
+    monkeypatch.setattr(
+        cli,
+        "validate_registered_replay",
+        lambda *args: _assumption_validated_output(),
+    )
+    assert (
+        cli.main(
+            [
+                "validate-replay",
+                str(control_path),
+                str(output),
+                "--package-root",
+                str(package_root),
+            ]
+        )
+        == 0
+    )
+    payload = _json_stdout(capsys)
+    assert payload["command"] == "validate-replay"
+    assert payload["custody_status"] == "OFFLINE_CROSS_BOUND"
+
+
 def test_plan_reports_registered_execution(
     tmp_path: Path, capsys: pytest.CaptureFixture[str]
 ) -> None:

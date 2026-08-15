@@ -27,6 +27,7 @@ from census.p97_search.phase3_cegar_assumption_engine import (
     AssumptionCnfWaveEngine,
     inspect_assumption_cnf_engine_output,
     validate_assumption_cnf_engine_output,
+    validate_assumption_cnf_engine_output_strict,
 )
 from census.p97_search.phase3_cegar_wave import sha256_bytes, wave_manifest_sha256
 from census.p97_search.phase3_cegar_wave_control import (
@@ -607,6 +608,28 @@ def validate_registered_output(
     return envelope
 
 
+def validate_registered_replay(
+    control: WaveControl, package_root: Path, path: Path
+) -> dict[str, Any]:
+    """Run the strict solver-free semantic replay validator for ASSUMPTION_CNF."""
+
+    validated = _validated_control(control)
+    registration = resolve_execution_registration(validated)
+    if registration is not ASSUMPTION_CNF_EXECUTION_V1:
+        raise WaveRegistryError(
+            "strict replay validation is available only for ASSUMPTION_CNF"
+        )
+    try:
+        envelope = validate_assumption_cnf_engine_output_strict(
+            validated, package_root, path
+        )
+    except AssumptionCnfEngineError as error:
+        raise WaveRegistryError("assumption output failed strict replay validation") from error
+    if envelope["execution_registration"] != _registration_envelope(registration):
+        raise WaveRegistryError("output registration is crossed with its control")
+    return envelope
+
+
 def check_registered_output(
     control: WaveControl, package_root: Path, path: Path
 ) -> dict[str, Any]:
@@ -664,4 +687,5 @@ __all__ = [
     "resolve_execution_registration_envelope",
     "validate_registered_ingress",
     "validate_registered_output",
+    "validate_registered_replay",
 ]

@@ -317,9 +317,70 @@ def _parse_assignment(assignment: tuple[int, ...]) -> tuple[bool, ...]:
             raise Child44ReplayError("assignment repeats a variable")
         seen.add(variable)
         truth[variable] = literal > 0
+    if any(abs(literal) != index + 1 for index, literal in enumerate(assignment)):
+        raise Child44ReplayError(
+            "assignment literals must be ordered by variable number"
+        )
     if seen != set(range(1, VARIABLE_COUNT + 1)):
         raise Child44ReplayError("assignment is not total over variables 1..308")
     return tuple(truth)
+
+
+def canonical_assignment_from_source_model(value: object) -> tuple[int, ...]:
+    """Reconstruct the canonical 308-literal assignment from serialized source data."""
+
+    expected_keys = {"rows", "next_center", "named_order", "selected_order", "digest"}
+    if type(value) is not dict or set(value) != expected_keys:
+        raise Child44ReplayError("serialized source model has an inexact schema")
+    raw_rows = value["rows"]
+    raw_selected_order = value["selected_order"]
+    if (
+        type(raw_rows) is not list
+        or len(raw_rows) != POINT_COUNT
+        or type(raw_selected_order) is not list
+        or any(type(row) is not list for row in raw_rows)
+    ):
+        raise Child44ReplayError("serialized source model rows are not canonical lists")
+    rows = tuple(
+        tuple(point for point in row)
+        for row in raw_rows
+    )
+    if type(value["next_center"]) is not int or type(value["named_order"]) is not int:
+        raise Child44ReplayError("serialized source model selectors are not builtin ints")
+    if any(type(point) is not int for row in rows for point in row):
+        raise Child44ReplayError("serialized source model rows contain a non-int point")
+    if any(type(point) is not int for point in raw_selected_order):
+        raise Child44ReplayError("serialized source model order contains a non-int point")
+    source = DecodedSourceModel(
+        rows=rows,
+        next_center=value["next_center"],
+        named_order=value["named_order"],
+        selected_order=tuple(raw_selected_order),
+        digest=value["digest"],
+    )
+    _validate_decoded_source_model(source)
+    assignment: list[int] = []
+    for center, row in enumerate(source.rows):
+        selected = set(row)
+        for point in range(POINT_COUNT):
+            variable = _hit_var(center, point)
+            assignment.append(variable if point in selected else -variable)
+    for center in range(POINT_COUNT):
+        variable = 290 + center
+        assignment.append(variable if center == source.next_center else -variable)
+    for order in range(2):
+        variable = 307 + order
+        assignment.append(variable if order == source.named_order else -variable)
+    result = tuple(assignment)
+    _parse_assignment(result)
+    return result
+
+
+def canonical_assignment_sha256(assignment: tuple[int, ...]) -> str:
+    """Hash a canonical assignment in the exact replay tuple representation."""
+
+    _parse_assignment(assignment)
+    return _sha256(" ".join(map(str, assignment)).encode("ascii"))
 
 
 def _require_cell(
@@ -457,11 +518,14 @@ def _validate_decoded_source_model(source: DecodedSourceModel) -> None:
         raise Child44ReplayError("decoded source digest is not exact")
 
 
-def _require_absolute_native_path(path: Path) -> None:
+def _require_absolute_native_path(
+    path: Path,
+) -> tuple[tuple[int, int, int, int], ...]:
     if type(path) is not _NATIVE_PATH or not path.is_absolute():
         raise Child44ReplayError("parent_cnf_path must be an exact native absolute Path")
     if Path(os.path.normpath(os.fspath(path))) != path:
         raise Child44ReplayError("parent_cnf_path is not normalized")
+    chain: list[tuple[int, int, int, int]] = []
     for ancestor in (path, *path.parents):
         try:
             metadata = ancestor.lstat()
@@ -471,6 +535,10 @@ def _require_absolute_native_path(path: Path) -> None:
             raise Child44ReplayError("parent CNF path contains a symlink component")
         if ancestor != path and not stat.S_ISDIR(metadata.st_mode):
             raise Child44ReplayError("parent CNF ancestor is not a directory")
+        chain.append(
+            (metadata.st_dev, metadata.st_ino, metadata.st_mode, metadata.st_nlink)
+        )
+    return tuple(chain)
 
 
 def _stream_dimacs_replay(
@@ -478,9 +546,13 @@ def _stream_dimacs_replay(
     truth: tuple[bool, ...],
     contract: _RootContract,
 ) -> _RootReplay:
-    _require_absolute_native_path(path)
+    before_chain = _require_absolute_native_path(path)
     before = path.lstat()
-    if stat.S_ISLNK(before.st_mode) or not stat.S_ISREG(before.st_mode):
+    if (
+        stat.S_ISLNK(before.st_mode)
+        or not stat.S_ISREG(before.st_mode)
+        or before.st_nlink != 1
+    ):
         raise Child44ReplayError("parent CNF must be a nonsymlink regular file")
 
     digest = hashlib.sha256()
@@ -547,6 +619,7 @@ def _stream_dimacs_replay(
                 )
         after_open = os.fstat(stream.fileno())
     after = path.lstat()
+    after_chain = _require_absolute_native_path(path)
     if pending:
         raise Child44ReplayError("parent CNF ends inside an unterminated clause")
     if (
@@ -554,6 +627,8 @@ def _stream_dimacs_replay(
         != (after_open.st_dev, after_open.st_ino, after_open.st_size, after_open.st_mtime_ns)
         or (before.st_dev, before.st_ino, before.st_size, before.st_mtime_ns)
         != (after.st_dev, after.st_ino, after.st_size, after.st_mtime_ns)
+        or before.st_nlink != after.st_nlink
+        or before_chain != after_chain
     ):
         raise Child44ReplayError("parent CNF changed during streaming replay")
     actual_sha256 = digest.hexdigest()
@@ -593,15 +668,23 @@ def _stream_child45_parent_relation(
     """Authenticate a Child45 file as the exact parent plus four suffix lines."""
 
     try:
-        _require_absolute_native_path(parent_path)
-        _require_absolute_native_path(child_path)
+        parent_before_chain = _require_absolute_native_path(parent_path)
+        child_before_chain = _require_absolute_native_path(child_path)
     except Child44ReplayError as error:
         raise Child45ReplayError(str(error)) from error
     parent_before = parent_path.lstat()
     child_before = child_path.lstat()
-    if stat.S_ISLNK(parent_before.st_mode) or not stat.S_ISREG(parent_before.st_mode):
+    if (
+        stat.S_ISLNK(parent_before.st_mode)
+        or not stat.S_ISREG(parent_before.st_mode)
+        or parent_before.st_nlink != 1
+    ):
         raise Child45ReplayError("Child44 parent CNF must be a nonsymlink regular file")
-    if stat.S_ISLNK(child_before.st_mode) or not stat.S_ISREG(child_before.st_mode):
+    if (
+        stat.S_ISLNK(child_before.st_mode)
+        or not stat.S_ISREG(child_before.st_mode)
+        or child_before.st_nlink != 1
+    ):
         raise Child45ReplayError("Child45 root CNF must be a nonsymlink regular file")
     expected_suffix = tuple(
         (" ".join(map(str, clause)) + " 0\n").encode("ascii")
@@ -667,6 +750,8 @@ def _stream_child45_parent_relation(
         child_after_open = os.fstat(child_stream.fileno())
     parent_after = parent_path.lstat()
     child_after = child_path.lstat()
+    parent_after_chain = _require_absolute_native_path(parent_path)
+    child_after_chain = _require_absolute_native_path(child_path)
     if (
         (parent_before.st_dev, parent_before.st_ino, parent_before.st_size, parent_before.st_mtime_ns)
         != (parent_after_open.st_dev, parent_after_open.st_ino, parent_after_open.st_size, parent_after_open.st_mtime_ns)
@@ -676,6 +761,10 @@ def _stream_child45_parent_relation(
         != (child_after_open.st_dev, child_after_open.st_ino, child_after_open.st_size, child_after_open.st_mtime_ns)
         or (child_before.st_dev, child_before.st_ino, child_before.st_size, child_before.st_mtime_ns)
         != (child_after.st_dev, child_after.st_ino, child_after.st_size, child_after.st_mtime_ns)
+        or parent_before.st_nlink != parent_after.st_nlink
+        or child_before.st_nlink != child_after.st_nlink
+        or parent_before_chain != parent_after_chain
+        or child_before_chain != child_after_chain
     ):
         raise Child45ReplayError("Child44 parent or Child45 root changed during relation replay")
     parent_sha256 = parent_digest.hexdigest()
@@ -1189,7 +1278,7 @@ def replay_child44_assumption_sat(
         ),
     )
     kalmanson = _classify_kalmanson(source)
-    assignment_sha256 = _sha256(" ".join(map(str, assignment)).encode("ascii"))
+    assignment_sha256 = canonical_assignment_sha256(assignment)
     replay_payload = {
         "assignment_sha256": assignment_sha256,
         "assumptions": list(assumptions),
@@ -1300,7 +1389,7 @@ def replay_child45_assumption_sat(
             raise Child45ReplayError("Child45 replay did not cover all 4,760 Kalmanson atoms")
     except Child44ReplayError as error:
         raise Child45ReplayError(str(error)) from error
-    assignment_sha256 = _sha256(" ".join(map(str, assignment)).encode("ascii"))
+    assignment_sha256 = canonical_assignment_sha256(assignment)
     replay_payload = {
         "assignment_sha256": assignment_sha256,
         "assumptions": list(assumptions),
@@ -1375,6 +1464,8 @@ __all__ = [
     "KalmansonProposal",
     "ProposalProvenance",
     "WeightedTerm",
+    "canonical_assignment_from_source_model",
+    "canonical_assignment_sha256",
     "replay_child44_assumption_sat",
     "replay_child45_assumption_sat",
     "verify_exact17_kalmanson_proposal",

@@ -1144,3 +1144,152 @@ def test_recapture_fails_closed_when_source_parent_disappears(
         AssumptionCnfEngineError, match="source-parent CNF recapture failed"
     ):
         engine._recapture_parent(crossed)
+
+
+def test_strict_output_validation_replays_and_binds_sat_hashes(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    control, binding = _fixture(tmp_path)
+    cell = binding.campaign.cells[0]
+    assignment = tuple(range(1, 309))
+    result_sha256 = engine._result_digest("SAT", None, None, assignment)
+    request_sha256 = engine._solve_request_digest(
+        base_clauses=binding.parent_identity.num_clauses,
+        base_bytes=binding.parent_identity.journal_bytes,
+        base_sha256=binding.parent_identity.journal_sha256,
+        assumptions=cell.assumptions,
+        conflict_limit=binding.campaign.conflict_limit,
+        timeout_ms=binding.campaign.timeout_ms,
+    )
+    semantic = {
+        "schema": "p97-assumption-cnf-sat-result/v1",
+        "profile_sha256": binding.campaign.raw_sha256,
+        "result": {
+            "assignment_sha256": engine.canonical_assignment_sha256(assignment),
+            "kalmanson": {
+                "status": "LINEARLY_INFEASIBLE",
+                "weighted_terms": [{"atom_index": 61, "weight": 1}],
+                "exact_evidence": {"base64": "", "sha256": "0" * 64},
+            },
+            "source_model": {"fixture": True},
+        },
+    }
+    receipt = {
+        "base_clauses": binding.parent_identity.num_clauses,
+        "base_bytes": binding.parent_identity.journal_bytes,
+        "base_sha256": binding.parent_identity.journal_sha256,
+        "conflict_limit": binding.campaign.conflict_limit,
+        "timeout_ms": binding.campaign.timeout_ms,
+        "result_sha256": result_sha256,
+        "request_sha256": request_sha256,
+    }
+    record = {
+        "state": engine.ATTEMPTED,
+        "status": "SAT",
+        "result_sha256": result_sha256,
+        "request_sha256": request_sha256,
+        "receipt": receipt,
+        "semantic_replay": semantic,
+    }
+    envelope = {"cells": [record] + [{"state": engine.NOT_RUN}] * 12}
+    monkeypatch.setattr(engine, "validate_assumption_cnf_engine_output", lambda *_: envelope)
+    monkeypatch.setattr(engine, "bind_assumption_cnf", lambda *_: binding)
+    recaptured: list[Path] = []
+
+    def recapture(path: Path, *_args: object, **_kwargs: object) -> object:
+        recaptured.append(path)
+        return binding.parent_identity
+
+    monkeypatch.setattr(engine, "stream_parent_identity", recapture)
+    monkeypatch.setattr(
+        engine,
+        "canonical_assignment_from_source_model",
+        lambda _source_model: assignment,
+    )
+    monkeypatch.setattr(engine, "replay_sat", lambda *_args, **_kwargs: semantic)
+    assert engine.validate_assumption_cnf_engine_output_strict(
+        control, tmp_path, tmp_path / "output.json"
+    ) == envelope
+    assert recaptured == [binding.parent_path, binding.parent_path]
+
+    tampered = json.loads(json.dumps(envelope))
+    tampered["cells"][0]["semantic_replay"]["result"]["kalmanson"][
+        "weighted_terms"
+    ][0]["weight"] = 2
+    monkeypatch.setattr(engine, "validate_assumption_cnf_engine_output", lambda *_: tampered)
+    with pytest.raises(AssumptionCnfEngineError, match="differs"):
+        engine.validate_assumption_cnf_engine_output_strict(
+            control, tmp_path, tmp_path / "output.json"
+        )
+
+
+def test_strict_replay_lock_is_exclusive_persistent_and_reusable(
+    tmp_path: Path,
+) -> None:
+    control, _binding = _fixture(tmp_path)
+    output = tmp_path / "terminal-output.json"
+    lock_path = output.with_name(f".{output.name}.validate-replay.lock")
+
+    with engine._strict_replay_lock(control, output):
+        assert lock_path.is_file()
+        assert stat.S_IMODE(lock_path.stat().st_mode) == 0o600
+        with (
+            pytest.raises(AssumptionCnfEngineError, match="already active"),
+            engine._strict_replay_lock(control, output),
+        ):
+            pass
+
+    assert lock_path.is_file()
+    with (
+        pytest.raises(RuntimeError, match="sentinel"),
+        engine._strict_replay_lock(control, output),
+    ):
+        raise RuntimeError("sentinel")
+    with engine._strict_replay_lock(control, output):
+        pass
+
+
+def test_strict_replay_lock_rejects_hardlink(
+    tmp_path: Path,
+) -> None:
+    control, _binding = _fixture(tmp_path)
+    output = tmp_path / "terminal-output.json"
+    lock_path = output.with_name(f".{output.name}.validate-replay.lock")
+    lock_path.write_text("stale", encoding="utf-8")
+    lock_path.chmod(0o600)
+    (tmp_path / "crossed-lock").hardlink_to(lock_path)
+    with (
+        pytest.raises(AssumptionCnfEngineError, match="identity/mode"),
+        engine._strict_replay_lock(control, output),
+    ):
+        pass
+
+
+def test_strict_replay_lock_rejects_live_mode_change(
+    tmp_path: Path,
+) -> None:
+    control, _binding = _fixture(tmp_path)
+    output = tmp_path / "terminal-output.json"
+    lock_path = output.with_name(f".{output.name}.validate-replay.lock")
+    with (
+        pytest.raises(AssumptionCnfEngineError, match="changed during validation"),
+        engine._strict_replay_lock(control, output),
+    ):
+        lock_path.chmod(0o644)
+
+
+def test_strict_replay_lock_rejects_group_writable_parent(
+    tmp_path: Path,
+) -> None:
+    control, _binding = _fixture(tmp_path)
+    output = tmp_path / "terminal-output.json"
+    original_mode = stat.S_IMODE(tmp_path.stat().st_mode)
+    tmp_path.chmod(original_mode | 0o020)
+    try:
+        with (
+            pytest.raises(AssumptionCnfEngineError, match="not private"),
+            engine._strict_replay_lock(control, output),
+        ):
+            pass
+    finally:
+        tmp_path.chmod(original_mode)

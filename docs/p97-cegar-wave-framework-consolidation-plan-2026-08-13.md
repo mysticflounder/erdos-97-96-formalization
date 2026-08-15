@@ -568,6 +568,39 @@ UNSAT discovery, not a checked terminal proof. Cleanup remains the last,
 separately reviewed move-only quarantine phase; this checkpoint does not move,
 delete, or authorize retirement of any legacy wave file.
 
+### Strict assumption-result replay checkpoint — 2026-08-14
+
+`validate-output` remains the cheap, structural, zero-network cross-binding
+gate.  The generic CLI now exposes a separate `validate-replay` operation for
+post-terminal promotion.  It is registered only for `ASSUMPTION_CNF` and
+performs no PIQD or solver calls.
+
+For each recorded `SAT` cell, strict replay reconstructs the canonical dense
+signed-literal assignment from the serialized source model, rejects any
+non-variable-ordered assignment, recomputes the PIQD request and result
+digests, replays the complete registered parent formula, and requires exact
+equality with the regenerated semantic envelope.  The replay includes the
+source-model digest, source predicates, root/source-parent relationship,
+complete Kalmanson system, exact evidence bytes, weighted terms, and all
+result hashes.  Parent and source-parent custody is recaptured before and
+after the batch; each individual replay independently authenticates and
+checks the complete formula it consumes.
+
+Long strict replays are guarded by a persistent, nonblocking sibling lock.
+The lock parent must be owned by the current user and not group- or
+world-writable; the lock itself must remain a unique mode-0600 regular file
+with stable directory and inode identity.  Contention fails immediately and
+does not launch a duplicate replay.  The lock is retained after release so an
+unlocked stale file is harmless and reusable.
+
+The first production use is the Child45 thirteen-cell terminal envelope.  It
+completed in 706.18 seconds with `SAT_SEMANTIC_REPLAYED`, binding envelope
+SHA-256
+`bc388ef9ccc39508f4be786131f04a0139a9bdd3c494933a7d886ad97e6cc85f`.
+All thirteen Boolean models replay exactly and all thirteen are exact
+Kalmanson-infeasible.  This gate authorizes source-valid refinement mining; it
+does not itself prove UNSAT or close a Lean theorem.
+
 ### Phase 0: first implementation tranche — freeze, inventory, and cleanup plan
 
 The first implementation tranche is a dry run for cleanup plan generation only.

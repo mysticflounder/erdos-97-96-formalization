@@ -18,6 +18,7 @@ from census.p97_search.cegar_wave_registry import (
     plan_execution,
     validate_registered_ingress,
     validate_registered_output,
+    validate_registered_replay,
 )
 from census.p97_search.phase3_cegar_assumption_engine import (
     AssumptionCnfEngineError,
@@ -106,6 +107,11 @@ def _parser() -> argparse.ArgumentParser:
     validate_output.add_argument("output")
     validate_output.add_argument("--package-root", required=True)
 
+    validate_replay = commands.add_parser("validate-replay")
+    validate_replay.add_argument("control")
+    validate_replay.add_argument("output")
+    validate_replay.add_argument("--package-root", required=True)
+
     check = commands.add_parser("check")
     check.add_argument("control")
     check.add_argument("output")
@@ -177,10 +183,15 @@ def _run(args: argparse.Namespace) -> dict[str, Any]:
 
     control_path = _absolute_path(args.control, "control")
     control = _load_control(control_path)
-    if args.command in {"check", "validate-output"}:
+    if args.command in {"check", "validate-output", "validate-replay"}:
         package_root = _absolute_path(args.package_root, "package_root")
         output = _absolute_path(args.output, "output")
-        envelope = validate_registered_output(control, package_root, output)
+        validator = (
+            validate_registered_replay
+            if args.command == "validate-replay"
+            else validate_registered_output
+        )
+        envelope = validator(control, package_root, output)
         return {
             "schema": CLI_SCHEMA,
             "command": args.command,
