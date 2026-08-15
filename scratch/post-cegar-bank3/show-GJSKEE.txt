@@ -1,0 +1,6 @@
+theorem secondBlocker_dist_ne_of_freshOutsideFirstBlockerFiber
+
+The second collision blocker cannot bisect the two explicit points outside
+the first cap.  The distinct first collision blocker already bisects them, so
+ordered-cap uniqueness forces the inequality without using the cap-source or
+five-center deletion data.
