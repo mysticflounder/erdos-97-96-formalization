@@ -44,8 +44,16 @@ equal-center exact row, whereas the live theorem carries raw
    points.
 4. `MinimalDeletionCore.shellAt_support_eq_selectedClass_of_dist_eq`
    (`29a3e6bb`) identifies a core shell with a named retained-radius class.
-   Consequently the retained core rows should reuse the P/Pρ row roles in a
-   finite model; they are not anonymous extra rows.
+   These retained-radius rows share the two source endpoints with the actual
+   P/Pρ blocker rows, but they generally have different centers and are not
+   the same rows.  The finite model must represent both roles and link each
+   blocker/radius pair by its exact two-point source overlap.
+5. `exists_q_tripleShellEscape_qRow_overlap_card_le_two`, promoted into
+   `TwoSourceTripleShellEscape.lean` at `8e4867ca`, shows that every supplied
+   global escape row overlaps the Q row in at most two points.
+   This makes the escape row an anti-landing for the desired three-overlap
+   terminal; the discovery objective is therefore a new producer predicate,
+   not direct reuse of the escaping row as the terminal witness.
 
 ## Minimal live finite packet
 
@@ -53,25 +61,35 @@ Use independent cell dimensions rather than one product clause:
 
 - first NonHit constructor: 2 arms;
 - second Interaction constructor: 4 arms;
-- global escaping-row origin: 3 arms;
+- global escaping-row origin: 3 arms, on the P, Pρ, or Q row;
 - retained endpoint choices for each live source: 4 arms per source, encoded
   by witnesses rather than multiplied into the static cell count.
 
 The finite vocabulary needs the exact P row, Pρ row, both live C rows, the
-exact Q row, and one global escaping row.  It must include:
+exact Q row, and one global escaping row.  Its triple-shell seed and third
+origin arm are the Q row, not the retained first C row.  It must include:
 
 - raw center equality/support equality or source-row omission for NonHit;
 - all four positive Interaction constructors, including exact two-point
-  overlaps and cap witnesses;
+  overlaps and one-hot cap-index witnesses (encoded by implication into cap
+  membership, without asserting nonmembership in unchosen caps);
 - retained endpoint omissions and double-deletion survival at both C centers;
 - first-apex double-deletion blockage;
 - the two named retained-radius rows, their disjointness, and their strict-cap
   incidence from the minimal-core API;
 - the global row's three-way origin, escaped point, overlap-at-most-two, and
-  two-points-outside-origin constraints.
+  two-points-outside-origin constraints;
+- the global row's theorem-backed Q-row overlap-at-most-two constraint.
 
 SAT remains abstraction data.  An UNSAT result is promotable only after the
 Lean packet-to-assignment coverage theorem and certificate replay are wired.
+
+The static discovery runner must archive every source/encoder/test file in the
+snapshot, bind clean files to their blob at the captured Git commit, require
+current bytes for replay, and verify the source-content digest before and after
+the wave.  Its self-hashes are integrity links rather than signatures, and the
+manifest must keep `promotion_ready`, theorem, Lean, source-entitlement, and
+universal claims false.
 
 ## Immediate implementation target
 

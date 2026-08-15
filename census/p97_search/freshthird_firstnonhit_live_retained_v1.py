@@ -29,14 +29,17 @@ INTERACTION_BRANCHES = (
     "distinctBlockersDifferentCaps",
     "sameCapWithInternalFiberSource",
 )
-ORIGIN_BRANCHES = ("P", "P_rho", "first")
+ORIGIN_BRANCHES = ("P", "P_rho", "Q")
 
 FALSE_CLAIMS = {
     "source_entitlement": False,
+    "constructor_realization": False,
+    "coverage": False,
     "theorem": False,
     "universal": False,
     "lean": False,
     "euclidean_realizability": False,
+    "terminal_unsat": False,
 }
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
@@ -68,6 +71,10 @@ SOURCE_THEOREMS = (
     "MinimalDeletionCore.shellAt_selectedClass_eq",
     "MinimalDeletionCore.shellAt_capInteriorByIndex_card_ge_two",
     "MinimalDeletionCore.shellAt_support_eq_selectedClass_of_dist_eq",
+    (
+        "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal."
+        "exists_q_tripleShellEscape_qRow_overlap_card_le_two"
+    ),
 )
 
 P_SUPPORT = ("p0", "p1", "pb2", "pb3")
@@ -97,9 +104,10 @@ ROWS: dict[str, tuple[str, tuple[str, ...]]] = {
     "first": ("firstCenter", FIRST_SUPPORT),
     "second": ("secondCenter", SECOND_SUPPORT),
     "Q": ("qCenter", Q_SUPPORT),
+    "Q_second": ("qCenter", Q_SUPPORT),
     "candidate": ("gCenter", CANDIDATE_SUPPORT),
 }
-TRIPLE_SEED = (*P_SUPPORT, *P_RHO_SUPPORT, *FIRST_SUPPORT)
+TRIPLE_SEED = (*P_SUPPORT, *P_RHO_SUPPORT, *Q_SUPPORT)
 CENTERS = tuple(dict.fromkeys(center for center, _support in ROWS.values()))
 ROLES = tuple(
     dict.fromkeys(
@@ -159,8 +167,13 @@ def manifest() -> dict[str, object]:
         "source_theorems": list(SOURCE_THEOREMS),
         "source_files": source_hashes,
         "false_claims": FALSE_CLAIMS,
+        "abstraction_notes": [
+            "SAT assignments are finite abstract valuations, not Lean constructor witnesses",
+            "deletion-survival and opposite-blockage atoms remain source-owned opaque predicates",
+            "opposite-radius labels preserve equality only and do not assert Euclidean realizability",
+            "self-hashes provide integrity binding, not an external signature",
+        ],
         "omitted_relaxations": [
-            "ambient cap cardinality at least eight",
             "anonymous carrier points outside the named projection",
             "complete cyclic order and metric realization",
             "common-radius right ingress arm",
@@ -198,7 +211,9 @@ class LiveRetainedPacket:
             for role in ROLES
             for cap in range(3)
         }
-        self.opp_radius = {role: z3.Int(f"oppRadius_{role}") for role in ROLES}
+        self.opp_radius_label = {
+            role: z3.Int(f"oppRadiusLabel_{role}") for role in ROLES
+        }
         self.source_cap = [z3.Bool(f"sourceCap_{cap}") for cap in range(3)]
         self.fresh_cap = [z3.Bool(f"freshCap_{cap}") for cap in range(3)]
         self.nonhit_deleted = [z3.Bool(f"nonhitDeleted_q{i}") for i in range(2)]
@@ -308,7 +323,7 @@ class LiveRetainedPacket:
                 f"alias.radius.{left}.{right}",
                 z3.Implies(
                     self.same(left, right),
-                    self.opp_radius[left] == self.opp_radius[right],
+                    self.opp_radius_label[left] == self.opp_radius_label[right],
                 ),
                 "physical equality preserves first-apex distance",
             )
@@ -332,23 +347,28 @@ class LiveRetainedPacket:
             )
 
     def _emit_surface_packet(self) -> None:
-        self.add(
-            "surface.cap_card_ge_eight",
-            self.cap_card_ge_eight,
-            "TwoCapSourceThirdCanonicalRowSurface.cap_card_ge_eight",
-        )
+        cap_eight_constraints: list[z3.BoolRef] = []
         for left, right in itertools.combinations(CAP_EIGHT, 2):
+            distinct = z3.Not(self.same(left, right))
+            cap_eight_constraints.append(distinct)
             self.add(
                 f"surface.cap_eight.distinct.{left}.{right}",
-                z3.Not(self.same(left, right)),
-                "cap_card_ge_eight with six named strict-cap points",
+                distinct,
+                "cap_card_ge_eight materialized by eight closed-cap witnesses",
             )
         for role in CAP_EIGHT:
+            member = self.in_cap[role, 0]
+            cap_eight_constraints.append(member)
             self.add(
                 f"surface.cap_eight.member.{role}",
-                self.in_cap[role, 0],
+                member,
                 "TwoCapSourceThirdCanonicalRowSurface.cap_card_ge_eight",
             )
+        self.add(
+            "surface.cap_card_ge_eight_link",
+            self.cap_card_ge_eight == z3.And(*cap_eight_constraints),
+            "cap_card_ge_eight iff the finite projection carries eight distinct cap witnesses",
+        )
         self.add(
             "surface.named_blockers_ne",
             z3.Not(self.same("pBlockerCenter", "rhoBlockerCenter")),
@@ -394,6 +414,21 @@ class LiveRetainedPacket:
             z3.Not(self.same("qCenter", "rhoBlockerCenter")),
             "FreshThirdBlockerFiber.blocker_ne_second",
         )
+        self.add(
+            "fresh.blockers_eq_support_eq",
+            self._support_equal("Q", "Q_second"),
+            "FreshThirdBlockerFiber.blockers_eq and selectedSupports_eq",
+        )
+        self.add(
+            "fresh.source1_mem_source2_shell",
+            self.member("q0", "Q_second"),
+            "FreshThirdBlockerFiber.source₁_mem_source₂_shell",
+        )
+        self.add(
+            "fresh.source2_mem_source1_shell",
+            self.member("q1", "Q"),
+            "FreshThirdBlockerFiber.source₂_mem_source₁_shell",
+        )
         for source in Q_SUPPORT[:2]:
             for endpoint in ("p0", "p1", "r0", "r1"):
                 self.add(
@@ -410,6 +445,16 @@ class LiveRetainedPacket:
                     z3.Not(self.same(left, right)),
                     "hρne and SelectedClass radius separation",
                 )
+        self.add(
+            "retained.P_blocker_radius_overlap",
+            self.row_intersection_count("P", "P_radius") == 2,
+            "shared P sources plus distinct-circle intersection bound",
+        )
+        self.add(
+            "retained.P_rho_blocker_radius_overlap",
+            self.row_intersection_count("P_rho", "P_rho_radius") == 2,
+            "shared Pρ sources plus distinct-circle intersection bound",
+        )
         first_cap_roles = (
             "p0",
             "p1",
@@ -444,7 +489,8 @@ class LiveRetainedPacket:
                 )
         self.add(
             "retained.source_radii_ne",
-            self.opp_radius["firstSource"] != self.opp_radius["secondSource"],
+            self.opp_radius_label["firstSource"]
+            != self.opp_radius_label["secondSource"],
             "FreshThirdAlignedRetainedConsumerPacket first field",
         )
         for source in ("firstSource", "secondSource"):
@@ -454,7 +500,8 @@ class LiveRetainedPacket:
                     z3.Implies(
                         z3.And(
                             self.interior[role, 0],
-                            self.opp_radius[role] == self.opp_radius[source],
+                            self.opp_radius_label[role]
+                            == self.opp_radius_label[source],
                         ),
                         self.same(role, source),
                     ),
@@ -595,12 +642,12 @@ class LiveRetainedPacket:
         for cap in range(3):
             self.add(
                 f"interaction.source_cap.interior.{cap}",
-                self.source_cap[cap] == self.interior["secondCenter", cap],
+                z3.Implies(self.source_cap[cap], self.interior["secondCenter", cap]),
                 "FreshThirdCapSourceInteraction sourceCenter_mem",
             )
             self.add(
                 f"interaction.fresh_cap.interior.{cap}",
-                self.fresh_cap[cap] == self.interior["qCenter", cap],
+                z3.Implies(self.fresh_cap[cap], self.interior["qCenter", cap]),
                 "FreshThirdCapSourceInteraction freshCenter_mem",
             )
         if self.interaction == "distinctBlockersDifferentCaps":
@@ -661,6 +708,15 @@ class LiveRetainedPacket:
             self.row_outside_count("candidate", self.origin) >= 2,
             "originIncidenceCases outside bound",
         )
+        self.add(
+            "global.q_row.overlap_le_two",
+            self.row_intersection_count("candidate", "Q") <= 2,
+            (
+                "Problem97.ATailFrontierLiveClosure."
+                "TwoSourceExactCollisionRowsTerminal."
+                "exists_q_tripleShellEscape_qRow_overlap_card_le_two"
+            ),
+        )
 
     def _emit(self) -> None:
         self._emit_relational_base()
@@ -685,9 +741,17 @@ def build_packet(
         packet.solver.add(packet.same("g0", P_SUPPORT[0]))
     elif malformed == "origin_overlap_three":
         packet.solver.add(packet.row_intersection_count("candidate", origin) >= 3)
+    elif malformed == "q_overlap_three":
+        packet.solver.add(packet.row_intersection_count("candidate", "Q") >= 3)
     elif malformed == "retained_endpoint_not_omitted":
         packet.solver.add(packet.retained_x["first"][0])
         packet.solver.add(packet.member(P_RADIUS_SUPPORT[0], "first"))
+    elif malformed == "fresh_alias_retained_endpoint":
+        packet.solver.add(packet.same("q0", "p0"))
+    elif malformed == "cap_witness_alias":
+        packet.solver.add(packet.same("capExtra0", "capExtra1"))
+    elif malformed == "blocker_alias":
+        packet.solver.add(packet.same("pBlockerCenter", "rhoBlockerCenter"))
     elif malformed is not None:
         raise LiveRetainedEncodingError(f"unknown malformed control: {malformed}")
     return packet.solver, packet
@@ -724,10 +788,31 @@ def validate_model(model: z3.ModelRef, packet: LiveRetainedPacket) -> dict[str, 
     if ranks["gCenter"] not in origin_ranks:
         raise LiveRetainedEncodingError("candidate center misses origin support")
     candidate_ranks = {ranks[role] for role in CANDIDATE_SUPPORT}
+    if len({ranks[role] for role in Q_SUPPORT}) != 4:
+        raise LiveRetainedEncodingError("FreshThird Q row is not exact four")
+    if (
+        len(
+            {ranks[role] for role in P_SUPPORT}
+            & {ranks[role] for role in P_RADIUS_SUPPORT}
+        )
+        != 2
+    ):
+        raise LiveRetainedEncodingError("P blocker/radius rows do not overlap in two")
+    if (
+        len(
+            {ranks[role] for role in P_RHO_SUPPORT}
+            & {ranks[role] for role in P_RHO_RADIUS_SUPPORT}
+        )
+        != 2
+    ):
+        raise LiveRetainedEncodingError("Pρ blocker/radius rows do not overlap in two")
     overlap = len(candidate_ranks & origin_ranks)
     outside = len(candidate_ranks - origin_ranks)
     if overlap > 2 or outside < 2:
         raise LiveRetainedEncodingError("candidate/origin incidence failed")
+    q_overlap = len(candidate_ranks & {ranks[role] for role in Q_SUPPORT})
+    if q_overlap > 2:
+        raise LiveRetainedEncodingError("candidate/Q-row overlap exceeds two")
     retained_choices: dict[str, dict[str, int]] = {}
     for row in ("first", "second"):
         x_selected = [
@@ -748,7 +833,7 @@ def validate_model(model: z3.ModelRef, packet: LiveRetainedPacket) -> dict[str, 
         if ranks[x_role] in row_ranks or ranks[y_role] in row_ranks:
             raise LiveRetainedEncodingError("chosen retained endpoint was not omitted")
         retained_choices[row] = {"x": x_selected[0], "y": y_selected[0]}
-    semantic_assignment = {
+    abstract_assignment = {
         "rank": ranks,
         "in_cap": {
             role: [_truth(model, packet.in_cap[role, cap]) for cap in range(3)]
@@ -758,8 +843,10 @@ def validate_model(model: z3.ModelRef, packet: LiveRetainedPacket) -> dict[str, 
             role: [_truth(model, packet.interior[role, cap]) for cap in range(3)]
             for role in ROLES
         },
-        "opp_radius": {
-            role: model.eval(packet.opp_radius[role], model_completion=True).as_long()
+        "opp_radius_label": {
+            role: model.eval(
+                packet.opp_radius_label[role], model_completion=True
+            ).as_long()
             for role in ROLES
         },
         "source_cap": [_truth(model, atom) for atom in packet.source_cap],
@@ -798,8 +885,9 @@ def validate_model(model: z3.ModelRef, packet: LiveRetainedPacket) -> dict[str, 
         "triple_seed_classes": sorted(seed_ranks),
         "candidate_origin_overlap": overlap,
         "candidate_origin_outside": outside,
+        "candidate_q_overlap": q_overlap,
         "retained_choices": retained_choices,
-        "semantic_assignment": semantic_assignment,
+        "abstract_assignment": abstract_assignment,
         "clause_count": len(packet.provenance),
         "false_claims": FALSE_CLAIMS,
     }
@@ -810,16 +898,16 @@ def validate_model(model: z3.ModelRef, packet: LiveRetainedPacket) -> dict[str, 
 
 
 def replay_signature(signature: Mapping[str, object]) -> dict[str, object]:
-    """Rebuild a fresh solver, bind every semantic atom, and replay a model."""
+    """Rebuild a fresh solver, bind every abstract atom, and replay a model."""
     try:
         nonhit = str(signature["nonhit"])
         interaction = str(signature["interaction"])
         origin = str(signature["origin"])
-        assignment = signature["semantic_assignment"]
+        assignment = signature["abstract_assignment"]
     except KeyError as exc:
         raise LiveRetainedEncodingError("signature is missing replay fields") from exc
     if not isinstance(assignment, Mapping):
-        raise LiveRetainedEncodingError("semantic_assignment must be an object")
+        raise LiveRetainedEncodingError("abstract_assignment must be an object")
     solver, packet = build_packet(nonhit, interaction, origin)
 
     def mapping_field(name: str) -> Mapping[str, object]:
@@ -829,14 +917,14 @@ def replay_signature(signature: Mapping[str, object]) -> dict[str, object]:
         return value
 
     ranks = mapping_field("rank")
-    radii = mapping_field("opp_radius")
+    radii = mapping_field("opp_radius_label")
     in_cap = mapping_field("in_cap")
     interior = mapping_field("interior")
     for role in ROLES:
         if role not in ranks or role not in radii:
             raise LiveRetainedEncodingError(f"missing scalar assignment for {role}")
         solver.add(packet.rank[role] == int(ranks[role]))
-        solver.add(packet.opp_radius[role] == int(radii[role]))
+        solver.add(packet.opp_radius_label[role] == int(radii[role]))
         for field_name, field, atoms in (
             ("in_cap", in_cap, packet.in_cap),
             ("interior", interior, packet.interior),
@@ -898,7 +986,7 @@ def replay_signature(signature: Mapping[str, object]) -> dict[str, object]:
         raise LiveRetainedEncodingError("cap_card_ge_eight is not Boolean")
     solver.add(packet.cap_card_ge_eight == cap_card)
     if solver.check() != z3.sat:
-        raise LiveRetainedEncodingError("bound semantic assignment is not SAT")
+        raise LiveRetainedEncodingError("bound abstract assignment is not SAT")
     replayed = validate_model(solver.model(), packet)
     if replayed != signature:
         raise LiveRetainedEncodingError("replayed signature differs from source")

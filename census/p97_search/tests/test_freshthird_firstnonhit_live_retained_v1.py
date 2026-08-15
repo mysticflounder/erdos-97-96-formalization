@@ -25,11 +25,12 @@ EXPECTED_INTERACTION = (
     "distinctBlockersDifferentCaps",
     "sameCapWithInternalFiberSource",
 )
-EXPECTED_ORIGIN = ("P", "P_rho", "first")
+EXPECTED_ORIGIN = ("P", "P_rho", "Q")
 MALFORMED = (
     "duplicate_q_support",
     "escaped_point_in_seed",
     "origin_overlap_three",
+    "q_overlap_three",
     "retained_endpoint_not_omitted",
 )
 
@@ -65,6 +66,7 @@ def test_every_live_constructor_cell_is_sat_and_model_is_valid() -> None:
         assert report["point_classes"]["g0"] not in report["triple_seed_classes"]
         assert report["candidate_origin_overlap"] <= 2
         assert report["candidate_origin_outside"] >= 2
+        assert report["candidate_q_overlap"] <= 2
 
 
 def test_malformed_controls_are_unsat_in_every_live_cell() -> None:
@@ -89,6 +91,11 @@ def test_manifest_binds_live_theorems_and_keeps_discovery_claims_false() -> None
         "FreshThirdCapSourceInteraction",
         "FreshThirdAlignedRetainedConsumerPacket",
         "exists_freshThird_selectedRow_escape_tripleShellSeed_originIncidenceCases",
+        (
+            "Problem97.ATailFrontierLiveClosure."
+            "TwoSourceExactCollisionRowsTerminal."
+            "exists_q_tripleShellEscape_qRow_overlap_card_le_two"
+        ),
     } <= set(manifest["source_theorems"])
 
     claims = manifest["false_claims"]
@@ -96,7 +103,7 @@ def test_manifest_binds_live_theorems_and_keeps_discovery_claims_false() -> None
     assert all(value is False for value in claims.values())
 
 
-def test_full_semantic_signature_replays_and_tampering_fails_closed() -> None:
+def test_full_abstract_signature_replays_and_tampering_fails_closed() -> None:
     solver, context = packet.build_packet(
         "sourceRowOmission", "distinctBlockersDifferentCaps", "P"
     )
@@ -105,7 +112,21 @@ def test_full_semantic_signature_replays_and_tampering_fails_closed() -> None:
     assert packet.replay_signature(signature) == signature
 
     tampered = copy.deepcopy(signature)
-    ranks = tampered["semantic_assignment"]["rank"]
+    ranks = tampered["abstract_assignment"]["rank"]
     ranks["q1"] = ranks["q0"]
     with pytest.raises(packet.LiveRetainedEncodingError):
         packet.replay_signature(tampered)
+
+
+@pytest.mark.parametrize(
+    "malformed",
+    ("fresh_alias_retained_endpoint", "cap_witness_alias", "blocker_alias"),
+)
+def test_source_forbidden_cross_role_aliases_are_unsat(malformed: str) -> None:
+    solver, _ = packet.build_packet(
+        "sourceRowOmission",
+        "distinctBlockersDifferentCaps",
+        "P",
+        malformed=malformed,
+    )
+    assert solver.check() == unsat
