@@ -31,6 +31,9 @@ from census.p97_search.freshthird_qfiber_three_carrier_query_v1 import (
     replay_sat_result,
     source_manifest,
 )
+from census.p97_search.freshthird_qfiber_three_carrier_query_v1 import (
+    CONSTRAINT_GROUPS as SOURCE_CONSTRAINT_GROUPS,
+)
 
 CNF_SCHEMA = "p97-freshthird-qfiber-three-carrier-cnf/v1"
 CNF_CONSTRAINT_GROUPS = ("freshthird_structural_cnf_relaxation",)
@@ -705,7 +708,9 @@ class FreshThirdCarrierCnfEncoding:
 
         try:
             self._validate_result_metadata(result)
-            replay_sat_result(dict(result), timeout_ms=timeout_ms)
+            source_result = dict(result)
+            source_result["constraint_groups"] = list(SOURCE_CONSTRAINT_GROUPS)
+            replay_sat_result(source_result, timeout_ms=timeout_ms)
         except (FreshThirdCarrierCnfError, ValueError) as exc:
             return SemanticReplay(False, str(exc))
         return SemanticReplay(True, "fresh-session model signature replay accepted")

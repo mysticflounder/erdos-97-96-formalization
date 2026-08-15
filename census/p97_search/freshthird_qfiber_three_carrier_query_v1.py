@@ -161,6 +161,15 @@ MODEL_SIGNATURE_KEYS = frozenset(
 CAP_WITNESS_KEYS = frozenset(
     {"first", "fresh", "row", "boundary", "blocker", "boundary_fan"}
 )
+CONSTRAINT_GROUPS = (
+    "same_equivalence_canonical",
+    "complete_exact_row_theory",
+    "complete_relational_theory",
+    "cap_cyclic_interval_theory",
+    "cap_skolem_ranges",
+    "pinned_source_theory",
+    "carrier_source_theory",
+)
 
 
 def _sha256_file(path: Path) -> str:
@@ -810,6 +819,7 @@ def build_query(boundary_index: int, *, timeout_ms: int = 60_000) -> CarrierQuer
 
     # Keep this explicit: it is a schema sanity check, not a source clause.
     assert role_index[ROLES[-1]] == 66
+    assert tuple(b.groups) == CONSTRAINT_GROUPS
     return b.q()
 
 
@@ -1005,7 +1015,12 @@ def replay_sat_result(result: dict[str, object], *, timeout_ms: int = 60_000) ->
 
     checked = query.solver.check()
     if checked != z3.sat:
-        raise ValueError(f"model signature replay failed: {checked}")
+        core = (
+            sorted(str(atom) for atom in query.solver.unsat_core())
+            if checked == z3.unsat
+            else []
+        )
+        raise ValueError(f"model signature replay failed: {checked}; core={core}")
 
 
 def source_manifest() -> dict[str, object]:

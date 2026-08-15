@@ -11,6 +11,7 @@ from census.p97_search.freshthird_qfiber_three_carrier_cegar_v1 import (
 )
 from census.p97_search.freshthird_qfiber_three_carrier_mine_v1 import focal_metrics
 from census.p97_search.freshthird_qfiber_three_carrier_query_v1 import (
+    CONSTRAINT_GROUPS,
     EXTRA_ROLES,
     FALSE_CLAIMS,
     OLD_ROLES,
@@ -30,15 +31,7 @@ from census.p97_search.freshthird_qfiber_three_carrier_query_v1 import (
     source_manifest,
 )
 
-EXPECTED_GROUPS = [
-    "same_equivalence_canonical",
-    "complete_exact_row_theory",
-    "complete_relational_theory",
-    "cap_cyclic_interval_theory",
-    "cap_skolem_ranges",
-    "pinned_source_theory",
-    "carrier_source_theory",
-]
+EXPECTED_GROUPS = list(CONSTRAINT_GROUPS)
 
 
 def _structurally_complete_result() -> dict[str, object]:

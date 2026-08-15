@@ -106,8 +106,18 @@ def test_semantic_replay_rejection_stays_rejected(
 ) -> None:
     monkeypatch.setattr(encoding, "_validate_result_metadata", lambda _result: None)
 
-    def reject(_result: object, *, timeout_ms: int) -> None:
+    def reject(source_result: object, *, timeout_ms: int) -> None:
         del timeout_ms
+        assert isinstance(source_result, dict)
+        assert source_result["constraint_groups"] == [
+            "same_equivalence_canonical",
+            "complete_exact_row_theory",
+            "complete_relational_theory",
+            "cap_cyclic_interval_theory",
+            "cap_skolem_ranges",
+            "pinned_source_theory",
+            "carrier_source_theory",
+        ]
         raise ValueError("independent replay rejected")
 
     monkeypatch.setattr(cnf_module, "replay_sat_result", reject)

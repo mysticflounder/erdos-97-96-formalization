@@ -43,6 +43,12 @@ literal outside the encoder's variable range.  Result replay authenticates the
 complete encoding manifest and conservative claim metadata before delegating
 to the source-query replay checker.
 
+The adapter authenticates its structural-CNF constraint-group label first,
+then constructs a separate source-query replay envelope carrying the exact
+seven source constraint groups. This keeps orchestration provenance distinct
+while ensuring replay rejection is a semantic source-query result rather than
+a metadata-schema mismatch.
+
 Terminal UNSAT certification, local DRAT/LRAT replay, four-cell aggregation,
 and Lean ingress are deliberately outside v1 and outside this implementation
 tranche.
