@@ -1,0 +1,10 @@
+`false_of_twoCapSources_freshOutsideFirstBlockerFiber_acyclicHardResidual` is a contradiction lemma (`False`) in the `TwoSourceClosure` context.  
+The docs describe it as the **last remaining first-fiber universal obligation** after the acyclic-ingress normalization has been done and the common-radius mutual-incidence arm has already been discharged.
+
+It sits in a small chain of closely related reductions:
+- `..._acyclicIngress` (main residual split),
+- `..._viaAcyclicIngress` (adapter to the live surface),
+- then the `..._acyclicHardResidual` theorem closes the final hard residual.
+  handles: DN13W9 NPC457 420NPA PSXJVV  (read with `nthdegree docs show <handle>`)
+searched: cd /Users/adam/projects/math-projects/erdos-97-96-formalization && nthdegree docs search --corpus erdos-97-96-formalizat…, cd /Users/adam/projects/math-projects/erdos-97-96-formalization && nthdegree docs show DN13W9 --corpus erdos-97-96-forma…, cd /Users/adam/projects/math-projects/erdos-97-96-formalization && nthdegree docs search --corpus erdos-97-96-formalizat…, cd /Users/adam/projects/math-projects/erdos-97-96-formalization && nthdegree docs search --corpus erdos-97-96-formalizat…, cd /Users/adam/projects/math-projects/erdos-97-96-formalization && nthdegree docs search --corpus erdos-97-96-formalizat…, cd /Users/adam/projects/math-projects/erdos-97-96-formalization && nthdegree docs search --corpus erdos-97-96-formalizat…, cd /Users/adam/projects/math-projects/erdos-97-96-formalization && nthdegree docs show NPC457 --corpus erdos-97-96-forma…, cd /Users/adam/projects/math-projects/erdos-97-96-formalization && nthdegree docs show 420NPA --corpus erdos-97-96-forma…, cd /Users/adam/projects/math-projects/erdos-97-96-formalization && nthdegree docs show PSXJVV --corpus erdos-97-96-forma…
+reminder: agent-written answer — apply rigor standards to all claims.  Verify against the cited chunks (`nthdegree docs show <handle> [--lean|--corpus <slug>]`).  treat uncited claims as unverified.
