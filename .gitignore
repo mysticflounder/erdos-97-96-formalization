@@ -424,3 +424,27 @@ docs/live-blueprint.md.tmp
 /scratch/exact17-lean-to-sat/**/*.model
 /scratch/exact17-lean-to-sat/**/*.dimacs
 /scratch/exact17-lean-to-sat/**/journal.jsonl
+
+# Generated payload subdirectories inside mixed research scratch trees. Source,
+# reports, manifests, and curated summaries outside these names stay visible.
+/scratch/rigid221-sourceheavy-anchor/**/generated/
+/scratch/rigid221-sourceheavy-anchor/**/artifacts/
+/scratch/rigid221-sourceheavy-anchor/**/models/
+/scratch/rigid221-sourceheavy-anchor/**/logs/
+/scratch/p97-consumer-first/**/generated/
+/scratch/p97-consumer-first/**/artifacts/
+/scratch/p97-consumer-first/**/models/
+/scratch/p97-consumer-first/**/logs/
+
+# Lean scratch build/audit duplicates and accidental command spill.
+/lean/--help
+/lean/scratch_cell4_compile.log
+/lean/scratch_freshthird_producers.txt
+/lean/scratch/U3MixedModeExhaustionProbe.errors
+/lean/scratch/U3Production.errors
+/lean/scratch/exact17-child32-audit-v4/
+/lean/scratch/exact17-child32-audit-v5/
+/lean/scratch/rigid221-sourceheavy-anchor/exact17-cap9-spine.txt
+
+# One-shot cleanup inventories are local diagnostics.
+/scratch/worktree-cleanup-*/
