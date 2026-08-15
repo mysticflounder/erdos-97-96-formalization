@@ -1512,3 +1512,49 @@ def test_result_digest_uses_utf8_byte_lengths() -> None:
             + b"\nvalues=8:((x \xc3\xa9))"
         ).hexdigest()
     )
+
+
+def test_public_single_solver_loader_authenticates_exact_descriptor_root(
+    tmp_path: Path,
+) -> None:
+    descriptor_path, _ = _packet(tmp_path / "single")
+    descriptor = json.loads(descriptor_path.read_bytes())
+    descriptor["schema"] = "test-authenticated-single-solver-query/v1"
+    descriptor["solver_profile"] = {
+        "schema": "test-authenticated-single-solver-profile/v1",
+        "solvers": ["z3"],
+        "timeout_ms": 17_000,
+    }
+    descriptor_path.write_bytes(_canonical(descriptor) + b"\n")
+    query = subject.load_authenticated_single_solver_query(
+        descriptor_path.parent,
+        descriptor_path.name,
+        solver="z3",
+        descriptor_schema="test-authenticated-single-solver-query/v1",
+        solver_profile_schema="test-authenticated-single-solver-profile/v1",
+    )
+    assert query.descriptor == descriptor
+    assert query.descriptor["solver_profile"]["solvers"] == ["z3"]
+    with pytest.raises(subject.SmtSourceAdapterError, match="must run cvc5"):
+        subject.load_authenticated_single_solver_query(
+            descriptor_path.parent,
+            descriptor_path.name,
+            solver="cvc5",
+            descriptor_schema="test-authenticated-single-solver-query/v1",
+            solver_profile_schema="test-authenticated-single-solver-profile/v1",
+        )
+
+
+def test_public_output_transaction_is_create_once_and_atomic(tmp_path: Path) -> None:
+    output = tmp_path / "published"
+    with subject.SmtOutputTransaction(output) as transaction:
+        metadata = transaction.write_bytes("artifact.bin", b"exact bytes")
+        transaction.publish()
+    assert metadata == {
+        "path": "artifact.bin",
+        "bytes": 11,
+        "sha256": hashlib.sha256(b"exact bytes").hexdigest(),
+    }
+    assert (output / "artifact.bin").read_bytes() == b"exact bytes"
+    with pytest.raises(subject.SmtSourceAdapterError, match="already exists"):
+        subject.SmtOutputTransaction(output)

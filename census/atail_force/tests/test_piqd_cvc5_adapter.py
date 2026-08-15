@@ -17,6 +17,7 @@ import sympy as sp
 from census.atail_force import piqd_cvc5_adapter as subject
 from census.atail_force import producer_geometry as geometry
 from census.p97_search import phase3_piqd_smt_source_adapter as neutral
+from census.p97_search import phase3_smt_oneshot_engine as shared_oneshot
 
 
 def _sha(payload: bytes) -> str:
@@ -379,6 +380,25 @@ def test_deterministic_packet_is_cvc5_state_only_and_fully_bound() -> None:
         == subject.REQUIRED_SOURCE_PATHS
     )
     subject.validate_prepared_query(left)
+    assert subject.SMT_ONESHOT_PROFILE_IDENTITY == (
+        "atail-exact-rational-atom-replay",
+        "v1",
+    )
+    assert subject.validate_smt_oneshot_query(left.query) == left.query
+    profile = shared_oneshot.resolve_smt_oneshot_semantic_profile(
+        subject.SMT_ONESHOT_PROFILE_IDENTITY
+    )
+    assert profile.descriptor_schema == subject.DESCRIPTOR_SCHEMA
+    assert profile.solver_profile_schema == subject.PROFILE_SCHEMA
+    assert profile.solver == "cvc5"
+    assert profile.query_validator(left.query) == left.query
+    replay = profile.semantic_verifier(
+        left.query,
+        "cvc5",
+        "(model (define-fun |x| () Real 1) (define-fun |y| () Real 0))",
+        "((|x| 1) (|y| 0))",
+    )
+    assert replay.accepted is True
 
 
 def test_sat_replays_all_relations_exactly_and_retains_false_claims(

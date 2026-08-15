@@ -39,6 +39,13 @@ from census.p97_search.phase3_cegar_wave_control import (
     ASSUMPTION_CNF_SEMANTIC_VALIDATOR_V1,
     ASSUMPTION_CNF_V1_REGISTRY_REVISION,
     EXECUTION_REGISTRY_SCHEMA,
+    SMT_ONESHOT,
+    SMT_ONESHOT_EXECUTION_CAPABILITIES,
+    SMT_ONESHOT_EXECUTION_MODE,
+    SMT_ONESHOT_PIQD_ADAPTER,
+    SMT_ONESHOT_PIQD_ADAPTER_SCHEMA_V1,
+    SMT_ONESHOT_SEMANTIC_VALIDATOR_V1,
+    SMT_ONESHOT_V1_REGISTRY_REVISION,
     STATIC_CNF,
     STATIC_CNF_DATA_ONLY_EXECUTION_CAPABILITIES,
     STATIC_CNF_DATA_ONLY_EXECUTION_MODE,
@@ -52,6 +59,7 @@ from census.p97_search.phase3_cegar_wave_control import (
     STATIC_CNF_SEMANTIC_VALIDATOR,
     STATIC_CNF_SEMANTIC_VALIDATOR_V2,
     STATIC_CNF_V2_REGISTRY_REVISION,
+    SmtOneshotControl,
     WaveControl,
     WaveControlError,
     bind_assumption_cnf,
@@ -66,6 +74,18 @@ from census.p97_search.phase3_cegar_wave_engine import (
     StaticCnfWaveEngine,
     inspect_static_cnf_engine_output_structure,
 )
+from census.p97_search.phase3_smt_oneshot_engine import (
+    ENGINE_SCHEMA as SMT_ONESHOT_ENGINE_SCHEMA,
+)
+from census.p97_search.phase3_smt_oneshot_engine import (
+    SmtOneshotEngineError,
+    SmtOneshotEngineResult,
+    SmtOneshotWaveEngine,
+    authenticate_smt_oneshot_query,
+    inspect_smt_oneshot_engine_output_structure,
+    resolve_smt_oneshot_semantic_profile,
+    validate_smt_oneshot_engine_output,
+)
 
 REGISTRY_SCHEMA = EXECUTION_REGISTRY_SCHEMA
 REGISTRY_REVISION = "2026-08-13.1"
@@ -73,6 +93,7 @@ REGISTRY_REVISION_V1 = REGISTRY_REVISION
 REGISTRY_REVISION_V2 = STATIC_CNF_V2_REGISTRY_REVISION
 REGISTRY_REVISION_DATA_ONLY = STATIC_CNF_DATA_ONLY_REGISTRY_REVISION
 REGISTRY_REVISION_ASSUMPTION_V1 = ASSUMPTION_CNF_V1_REGISTRY_REVISION
+REGISTRY_REVISION_SMT_ONESHOT_V1 = SMT_ONESHOT_V1_REGISTRY_REVISION
 STATIC_CNF_PIQD_ADAPTER_V2 = STATIC_CNF_PIQD_ADAPTER
 STATIC_CNF_ENGINE_SCHEMA_V2 = ENGINE_SCHEMA_V2
 STATIC_CNF_SEMANTIC_PROFILE = STATIC_CNF_SEMANTIC_VALIDATOR_V2
@@ -186,6 +207,21 @@ ASSUMPTION_CNF_EXECUTION_V1 = ExecutionRegistration(
     permits_terminal_proof=False,
 )
 
+SMT_ONESHOT_EXECUTION_V1 = ExecutionRegistration(
+    wave_kind=SMT_ONESHOT,
+    adapter_id=SMT_ONESHOT_PIQD_ADAPTER,
+    adapter_schema=SMT_ONESHOT_PIQD_ADAPTER_SCHEMA_V1,
+    registry_revision=REGISTRY_REVISION_SMT_ONESHOT_V1,
+    engine_schema=SMT_ONESHOT_ENGINE_SCHEMA,
+    semantic_validator=SMT_ONESHOT_SEMANTIC_VALIDATOR_V1,
+    execution_mode=SMT_ONESHOT_EXECUTION_MODE,
+    capabilities=SMT_ONESHOT_EXECUTION_CAPABILITIES,
+    permits_campaign=False,
+    permits_export=False,
+    permits_diagnostic_mining=False,
+    permits_terminal_proof=False,
+)
+
 EXECUTION_REGISTRY = MappingProxyType(
     {
         (
@@ -214,13 +250,22 @@ EXECUTION_REGISTRY_ALL = MappingProxyType(
             STATIC_CNF_DATA_ONLY_V1.adapter_id,
             STATIC_CNF_DATA_ONLY_V1.adapter_schema,
         ): STATIC_CNF_DATA_ONLY_V1,
+        (
+            SMT_ONESHOT_EXECUTION_V1.wave_kind,
+            SMT_ONESHOT_EXECUTION_V1.adapter_id,
+            SMT_ONESHOT_EXECUTION_V1.adapter_schema,
+        ): SMT_ONESHOT_EXECUTION_V1,
     }
 )
 
 
-def _validated_control(control: WaveControl) -> WaveControl:
-    if type(control) is not WaveControl:
-        raise WaveRegistryError("control must be an exact WaveControl")
+def _validated_control(
+    control: WaveControl | SmtOneshotControl,
+) -> WaveControl | SmtOneshotControl:
+    if type(control) not in {WaveControl, SmtOneshotControl}:
+        raise WaveRegistryError(
+            "control must be an exact WaveControl or SmtOneshotControl"
+        )
     try:
         validated = load_wave_control(control.canonical_bytes)
     except (AttributeError, WaveControlError) as error:
@@ -230,7 +275,9 @@ def _validated_control(control: WaveControl) -> WaveControl:
     return validated
 
 
-def resolve_execution_registration(control: WaveControl) -> ExecutionRegistration:
+def resolve_execution_registration(
+    control: WaveControl | SmtOneshotControl,
+) -> ExecutionRegistration:
     """Resolve one validated control through the closed code registry."""
 
     validated = _validated_control(control)
@@ -290,7 +337,7 @@ def _registration_envelope(
     }
 
 
-def describe_execution(control: WaveControl) -> dict[str, Any]:
+def describe_execution(control: WaveControl | SmtOneshotControl) -> dict[str, Any]:
     validated = _validated_control(control)
     registration = resolve_execution_registration(validated)
     return {
@@ -299,7 +346,9 @@ def describe_execution(control: WaveControl) -> dict[str, Any]:
     }
 
 
-def plan_execution(control: WaveControl, package_root: Path) -> dict[str, Any]:
+def plan_execution(
+    control: WaveControl | SmtOneshotControl, package_root: Path
+) -> dict[str, Any]:
     """Validate ingress and return the exact deterministic execution plan."""
 
     ingress = validate_registered_ingress(control, package_root)
@@ -312,6 +361,18 @@ def plan_execution(control: WaveControl, package_root: Path) -> dict[str, Any]:
             "stop-without-execution",
         ]
         if registration is STATIC_CNF_DATA_ONLY_V1
+        else [
+            "authenticate-control-and-smt-source-packet",
+            "run-code-defined-query-validator",
+            "open-one-fresh-piqd-session",
+            "assert-exact-normalized-journal",
+            "solve-exactly-once",
+            "reconcile-durable-receipt-without-resubmit",
+            "replay-sat-source-semantics",
+            "close-once",
+            "publish-create-once-envelope",
+        ]
+        if registration is SMT_ONESHOT_EXECUTION_V1
         else [
             "authenticate-control",
             "authenticate-streaming-parent-and-campaign",
@@ -344,13 +405,37 @@ def plan_execution(control: WaveControl, package_root: Path) -> dict[str, Any]:
 
 
 def validate_registered_ingress(
-    control: WaveControl, package_root: Path
+    control: WaveControl | SmtOneshotControl, package_root: Path
 ) -> dict[str, Any]:
     """Validate one registered package without transport or publication."""
 
     if type(package_root) is not _NATIVE_PATH_TYPE or not package_root.is_absolute():
         raise WaveRegistryError("package_root must be an absolute native Path")
     registration = resolve_execution_registration(control)
+    if registration is SMT_ONESHOT_EXECUTION_V1:
+        if type(control) is not SmtOneshotControl:
+            raise WaveRegistryError("SMT_ONESHOT control type is crossed")
+        try:
+            profile = resolve_smt_oneshot_semantic_profile(control.semantic_profile)
+            query = authenticate_smt_oneshot_query(control, package_root, profile)
+        except SmtOneshotEngineError as error:
+            raise WaveRegistryError("SMT_ONESHOT ingress failed closed") from error
+        return {
+            "descriptor_sha256": sha256_bytes(query.descriptor_bytes),
+            "semantic_profile": profile.as_dict(),
+            "semantic_sha256": query.descriptor["semantic_sha256"],
+            "original_smt2_sha256": sha256_bytes(query.original_smt2),
+            "journal_sha256": sha256_bytes(query.journal_smt2),
+            "journal_commands": len(query.journal_commands),
+            "sources": [
+                {
+                    "path": source.path,
+                    "sha256": sha256_bytes(source.payload),
+                    "bytes": len(source.payload),
+                }
+                for source in query.source_files
+            ],
+        }
     if registration is ASSUMPTION_CNF_EXECUTION_V1:
         binding = bind_assumption_cnf(control, package_root)
         parent = binding.parent_identity
@@ -432,7 +517,7 @@ def validate_registered_ingress(
 
 
 def execute_registered_wave(
-    control: WaveControl,
+    control: WaveControl | SmtOneshotControl,
     package_root: Path,
     *,
     output_path: Path,
@@ -446,12 +531,45 @@ def execute_registered_wave(
     job_blob_digest: Any = None,
     session_factory: Callable[..., Any] | None = None,
     resume_session: str | None = None,
-) -> StaticCnfEngineResult | AssumptionCnfEngineResult:
+) -> StaticCnfEngineResult | AssumptionCnfEngineResult | SmtOneshotEngineResult:
     """Execute exactly the adapter selected by the closed registration."""
 
     registration = resolve_execution_registration(control)
     if RUN not in registration.capabilities:
         raise WaveRegistryError("registered data-only wave cannot execute")
+    if registration is SMT_ONESHOT_EXECUTION_V1:
+        if type(control) is not SmtOneshotControl:
+            raise WaveRegistryError("SMT_ONESHOT control type is crossed")
+        if any(
+            value is not None
+            for value in (
+                journal_root,
+                timeout_s,
+                sleep,
+                solver_signature,
+                export_digest,
+                job_blob_digest,
+                session_factory,
+                resume_session,
+            )
+        ):
+            raise WaveRegistryError(
+                "SMT_ONESHOT rejects static and assumption runner arguments"
+            )
+        try:
+            profile = resolve_smt_oneshot_semantic_profile(control.semantic_profile)
+            engine = SmtOneshotWaveEngine(
+                control=control,
+                package_root=package_root,
+                output_path=output_path,
+                base_url=base_url,
+                semantic_profile=profile,
+                transport=transport,
+                execution_registration=_registration_envelope(registration),
+            )
+            return engine.run()
+        except SmtOneshotEngineError as error:
+            raise WaveRegistryError("SMT_ONESHOT execution failed closed") from error
     if registration is ASSUMPTION_CNF_EXECUTION_V1:
         if journal_root is not None or timeout_s is not None or sleep is not None:
             raise WaveRegistryError(
@@ -505,6 +623,38 @@ def execute_registered_wave(
     )
 
 
+def recover_registered_static_output(
+    control: WaveControl,
+    package_root: Path,
+    *,
+    output_path: Path,
+    receipt_path: Path,
+) -> StaticCnfEngineResult:
+    """Publish a registered STATIC_CNF result from sealed local custody only."""
+
+    registration = resolve_execution_registration(control)
+    if (
+        control.registration.wave_kind != STATIC_CNF
+        or RUN not in registration.capabilities
+    ):
+        raise WaveRegistryError("only executable STATIC_CNF waves support recovery")
+    engine = StaticCnfWaveEngine(
+        control=control,
+        package_root=package_root,
+        output_path=output_path,
+        base_url="offline://sealed-receipt",
+        journal_root=receipt_path.parent.parent,
+        execution_registration=_registration_envelope(registration),
+    )
+    result = engine.recover_from_receipt(receipt_path=receipt_path)
+    accepted = validate_registered_output(control, package_root, result.envelope_path)
+    return StaticCnfEngineResult(
+        result.classification,
+        result.envelope_path,
+        accepted,
+    )
+
+
 def inspect_registered_output_structure(path: Path) -> dict[str, Any]:
     """Inspect self-consistency only; this does not authenticate package identity."""
 
@@ -515,12 +665,16 @@ def inspect_registered_output_structure(path: Path) -> dict[str, Any]:
         registration_key = "execution_registry"
     except StaticCnfEngineError:
         try:
-            envelope = inspect_assumption_cnf_engine_output(path)
+            envelope = inspect_smt_oneshot_engine_output_structure(path)
             registration_key = "execution_registration"
-        except AssumptionCnfEngineError as assumption_error:
-            raise WaveRegistryError(
-                "output matches no registered engine schema"
-            ) from assumption_error
+        except SmtOneshotEngineError:
+            try:
+                envelope = inspect_assumption_cnf_engine_output(path)
+                registration_key = "execution_registration"
+            except AssumptionCnfEngineError as assumption_error:
+                raise WaveRegistryError(
+                    "output matches no registered engine schema"
+                ) from assumption_error
     try:
         registration = resolve_execution_registration_envelope(
             envelope[registration_key]
@@ -535,7 +689,7 @@ def inspect_registered_output_structure(path: Path) -> dict[str, Any]:
 
 
 def validate_registered_output(
-    control: WaveControl, package_root: Path, path: Path
+    control: WaveControl | SmtOneshotControl, package_root: Path, path: Path
 ) -> dict[str, Any]:
     """Cross-bind a registered output to its control and static package offline."""
 
@@ -543,6 +697,22 @@ def validate_registered_output(
     registration = resolve_execution_registration(validated)
     if VALIDATE_OUTPUT not in registration.capabilities:
         raise WaveRegistryError("registered data-only wave has no execution output")
+    if registration is SMT_ONESHOT_EXECUTION_V1:
+        if type(validated) is not SmtOneshotControl:
+            raise WaveRegistryError("SMT_ONESHOT control type is crossed")
+        try:
+            profile = resolve_smt_oneshot_semantic_profile(validated.semantic_profile)
+            return validate_smt_oneshot_engine_output(
+                validated,
+                package_root,
+                path,
+                semantic_profile=profile,
+                execution_registration=_registration_envelope(registration),
+            )
+        except SmtOneshotEngineError as error:
+            raise WaveRegistryError(
+                "SMT_ONESHOT output failed registered validation"
+            ) from error
     if registration is ASSUMPTION_CNF_EXECUTION_V1:
         try:
             envelope = validate_assumption_cnf_engine_output(
@@ -667,10 +837,13 @@ __all__ = [
     "REGISTRY_REVISION",
     "REGISTRY_REVISION_ASSUMPTION_V1",
     "REGISTRY_REVISION_DATA_ONLY",
+    "REGISTRY_REVISION_SMT_ONESHOT_V1",
     "REGISTRY_REVISION_V1",
     "REGISTRY_REVISION_V2",
     "REGISTRY_SCHEMA",
     "RUN",
+    "SMT_ONESHOT_ENGINE_SCHEMA",
+    "SMT_ONESHOT_EXECUTION_V1",
     "STATIC_CNF_DATA_ONLY_ENGINE_SCHEMA",
     "STATIC_CNF_DATA_ONLY_V1",
     "STATIC_CNF_ENGINE_SCHEMA_V2",

@@ -27,7 +27,7 @@ import uuid
 from collections.abc import Callable, Mapping
 from dataclasses import dataclass
 from pathlib import Path, PurePosixPath
-from typing import Any, Protocol
+from typing import Any, Protocol, Self
 
 QUERY_SCHEMA = "p97-piqd-source-semantic-query/v1"
 MANIFEST_SCHEMA = "p97-piqd-smt-source-manifest/v1"
@@ -422,6 +422,52 @@ class _OutputStaging:
     final_name: str
     parent_path: Path
     installed: bool = False
+
+
+class SmtOutputTransaction:
+    """Public create-once transaction for one authenticated SMT output tree.
+
+    The held directory descriptors, cleanup quarantine, immutable writes, and
+    atomic no-replace publication remain implemented by this module.  Engines
+    can compose additional custody artifacts without importing those private
+    primitives or gaining a path-based overwrite operation.
+    """
+
+    def __init__(self, output_directory: Path) -> None:
+        _fail(
+            type(output_directory) is type(Path()) and output_directory.is_absolute(),
+            "output directory must be an absolute native Path",
+        )
+        self._staging = _reserve_output_staging(output_directory)
+        self._closed = False
+
+    @property
+    def file_descriptor(self) -> int:
+        _fail(not self._closed, "output transaction is closed")
+        return self._staging.staging_fd
+
+    def write_bytes(self, name: str, payload: bytes) -> dict[str, object]:
+        _fail(not self._closed, "output transaction is closed")
+        _fail(type(name) is str and type(payload) is bytes, "invalid output artifact")
+        return _write_immutable(self._staging.staging_fd, name, payload)
+
+    def publish(self) -> None:
+        _fail(not self._closed, "output transaction is closed")
+        _fail(not self._staging.installed, "output transaction is already published")
+        _publish_output(self._staging)
+
+    def close(self) -> None:
+        if self._closed:
+            return
+        self._closed = True
+        _close_output_staging(self._staging, keep=self._staging.installed)
+
+    def __enter__(self) -> Self:
+        _fail(not self._closed, "output transaction is closed")
+        return self
+
+    def __exit__(self, exc_type: object, exc: object, traceback: object) -> None:
+        self.close()
 
 
 def _reserve_output_staging(path: Path) -> _OutputStaging:
@@ -1040,6 +1086,80 @@ def load_source_semantic_query(
                 entry["path"],
                 MAX_SOURCE_BYTES,
                 f"source[{index}]",
+            )
+            total += len(payload)
+            _fail(
+                total <= MAX_SOURCE_TOTAL_BYTES, "source packet exceeds total byte cap"
+            )
+            _fail(
+                len(payload) == entry["bytes"] and _sha256(payload) == entry["sha256"],
+                f"source hash mismatch for {entry['path']}",
+            )
+            sources.append(SourceSnapshot(path=entry["path"], payload=payload))
+        commands, journal = normalize_state_journal(original_smt2)
+        return SourceSemanticQuery(
+            descriptor=descriptor,
+            descriptor_bytes=descriptor_bytes,
+            original_smt2=original_smt2,
+            journal_commands=commands,
+            journal_smt2=journal,
+            source_files=tuple(sources),
+        )
+    finally:
+        os.close(root_fd)
+
+
+def load_authenticated_single_solver_query(
+    descriptor_root: Path,
+    descriptor_path: str,
+    *,
+    solver: str,
+    descriptor_schema: str,
+    solver_profile_schema: str,
+) -> SourceSemanticQuery:
+    """Load one exact descriptor-root packet for a registered one-shot solver.
+
+    Unlike :func:`load_source_semantic_query`, this public loader does not
+    assume the maintained z3-then-cvc5 profile.  The caller supplies only
+    code-defined contract constants; descriptor JSON still cannot select an
+    import, callback, executable, argument vector, credential, or transport.
+    """
+
+    _fail(type(solver) is str and solver in SOLVERS, "unsupported one-shot solver")
+    for schema, where in (
+        (descriptor_schema, "descriptor schema"),
+        (solver_profile_schema, "solver profile schema"),
+    ):
+        _fail(
+            type(schema) is str and bool(schema) and len(schema.encode("utf-8")) <= 256,
+            f"authenticated {where} is invalid",
+        )
+    descriptor_name = _safe_relative_path(descriptor_path, "descriptor_path")
+    root_fd = _open_directory_nofollow(descriptor_root)
+    try:
+        descriptor_bytes = _read_relative(
+            root_fd, descriptor_name, MAX_DESCRIPTOR_BYTES, "descriptor"
+        )
+        descriptor = _validate_descriptor_for_solver_profile(
+            _strict_json(descriptor_bytes, "descriptor"),
+            descriptor_schema=descriptor_schema,
+            solver_profile_schema=solver_profile_schema,
+            solvers=(solver,),
+        )
+        original_entry = descriptor["original_smt2"]
+        original_smt2 = _read_relative(
+            root_fd, original_entry["path"], MAX_SMT2_BYTES, "original SMT2"
+        )
+        _fail(
+            len(original_smt2) == original_entry["bytes"]
+            and _sha256(original_smt2) == original_entry["sha256"],
+            "original SMT2 custody mismatch",
+        )
+        total = len(original_smt2) + len(descriptor_bytes)
+        sources: list[SourceSnapshot] = []
+        for index, entry in enumerate(descriptor["sources"]):
+            payload = _read_relative(
+                root_fd, entry["path"], MAX_SOURCE_BYTES, f"source[{index}]"
             )
             total += len(payload)
             _fail(

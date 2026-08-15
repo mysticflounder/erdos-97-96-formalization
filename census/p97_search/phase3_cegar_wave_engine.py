@@ -581,6 +581,36 @@ def _validate_serialized_result(
     expected_keys = {str(variable) for variable in range(1, variable_count + 1)}
     if set(assignment) != expected_keys:
         raise StaticCnfEngineError("SAT engine result assignment is not total")
+    model_assignment = _parse_archived_model_assignment(
+        receipt=receipt,
+        model_response=model_response,
+        variable_count=variable_count,
+    )
+    if {
+        str(variable): truth for variable, truth in model_assignment.items()
+    } != assignment:
+        raise StaticCnfEngineError("engine assignment crosses its model response")
+    signed_assignment = [
+        variable if model_assignment[variable] else -variable
+        for variable in range(1, variable_count + 1)
+    ]
+    try:
+        replay_dimensions = scan_dimacs(cnf, signed_assignment)
+    except PiqdOracleError as exc:
+        raise StaticCnfEngineError(
+            "SAT engine result does not satisfy the authenticated CNF"
+        ) from exc
+    if replay_dimensions != expected_dimensions:
+        raise StaticCnfEngineError("SAT replay dimensions changed")
+
+
+def _parse_archived_model_assignment(
+    *,
+    receipt: Mapping[str, Any],
+    model_response: bytes | None,
+    variable_count: int,
+) -> dict[int, bool]:
+    """Recover the exact total SAT assignment from a sealed PIQD response."""
     _sha256_text(
         receipt.get("model_response_sha256"), label="receipt.model_response_sha256"
     )
@@ -601,15 +631,21 @@ def _validate_serialized_result(
     if type(model_payload) is not dict or set(model_payload) != {
         "job_id",
         "result",
+        "backend",
+        "solver_profile",
         "num_assigned",
         "assignment",
     }:
         raise StaticCnfEngineError("archived model response schema mismatch")
     signed_assignment = model_payload["assignment"]
+    job_identity = receipt.get("job_identity")
     if (
         type(receipt.get("job_id")) is not str
         or model_payload["job_id"] != receipt["job_id"]
         or model_payload["result"] != "SAT"
+        or type(job_identity) is not dict
+        or model_payload["backend"] != job_identity.get("backend")
+        or model_payload["solver_profile"] != job_identity.get("solver_profile")
         or type(model_payload["num_assigned"]) is not int
         or model_payload["num_assigned"] != variable_count
         or type(signed_assignment) is not list
@@ -617,17 +653,12 @@ def _validate_serialized_result(
         or any(type(literal) is not int for literal in signed_assignment)
     ):
         raise StaticCnfEngineError("archived model response fields are invalid")
-    model_assignment = {str(abs(literal)): literal > 0 for literal in signed_assignment}
-    if model_assignment != assignment:
-        raise StaticCnfEngineError("engine assignment crosses its model response")
-    try:
-        replay_dimensions = scan_dimacs(cnf, signed_assignment)
-    except PiqdOracleError as exc:
-        raise StaticCnfEngineError(
-            "SAT engine result does not satisfy the authenticated CNF"
-        ) from exc
-    if replay_dimensions != expected_dimensions:
-        raise StaticCnfEngineError("SAT replay dimensions changed")
+    model_assignment = {abs(literal): literal > 0 for literal in signed_assignment}
+    if any(literal == 0 for literal in signed_assignment) or set(
+        model_assignment
+    ) != set(range(1, variable_count + 1)):
+        raise StaticCnfEngineError("archived model response is not a total assignment")
+    return model_assignment
 
 
 def _result_type_check(result: StaticSolverResult) -> None:
@@ -1104,74 +1135,138 @@ class StaticCnfWaveEngine:
             receipt = _strict_json(
                 result.stdout.encode("utf-8"), label="runner receipt"
             )
-            if (
-                type(receipt) is not dict
-                or set(receipt) != _RECEIPT_KEYS
-                or receipt.get("schema") != RECEIPT_SCHEMA
-                or type(receipt.get("attempt")) is not int
-                or receipt["attempt"] < 0
-            ):
-                raise StaticCnfEngineError("runner receipt is not an object")
-            manifest = _reconstruct_runner_manifest(
-                binding, attempt=receipt.get("attempt")
-            )
-            custody, seal, inventory, records, model_response = _receipt_bundle(
+            self._validate_receipt(receipt)
+            return self._publish_bound_receipt(
+                parent_fd=parent_fd,
                 binding=binding,
+                source_manifest=source_manifest,
                 receipt=receipt,
-                manifest=manifest,
-                expected_source_sha256=sha256_bytes(source_manifest),
+                result=result,
             )
-            classification = _classification(result, receipt)
-            _validate_serialized_result(
-                {
-                    "classification": classification,
-                    "verdict": result.verdict,
-                    "assignment": _normalize_result_assignment(result.assignment),
-                    "returncode": result.returncode,
-                },
-                receipt=receipt,
-                cnf=binding.cnf,
-                model_response=model_response,
-            )
-            unsigned = _unsigned_envelope(
-                binding,
-                manifest,
-                result,
-                receipt,
-                custody,
-                seal,
-                inventory,
-                records,
-                classification,
-                self.execution_registration,
-                engine_schema=self.engine_schema,
-                adapter_schema=self.adapter_schema,
-            )
-            envelope = {**unsigned, "envelope_sha256": sha256_json(unsigned)}
-            output_identity = _write_once_at(
-                parent_fd, self.output_path.name, canonical_json_bytes(envelope) + b"\n"
-            )
-            parent_info = os.fstat(parent_fd)
-            try:
-                visible_parent = os.stat(self.output_path.parent, follow_symlinks=False)
-            except OSError as exc:
-                raise StaticCnfEngineError(
-                    "output parent changed during publication"
-                ) from exc
-            if (visible_parent.st_dev, visible_parent.st_ino) != (
-                parent_info.st_dev,
-                parent_info.st_ino,
-            ):
-                raise StaticCnfEngineError("output parent changed during publication")
-            accepted = _validate_static_cnf_engine_output(
-                self.output_path,
-                held_parent_fd=parent_fd,
-                held_name=self.output_path.name,
-                expected_output_identity=output_identity,
-            )
-            return StaticCnfEngineResult(classification, self.output_path, accepted)
         finally:
             os.close(parent_fd)
+
+    def recover_from_receipt(self, *, receipt_path: Path) -> StaticCnfEngineResult:
+        """Publish one envelope from an already sealed runner receipt, offline."""
+        if (
+            type(receipt_path) is not _NATIVE_PATH_TYPE
+            or not receipt_path.is_absolute()
+        ):
+            raise StaticCnfEngineError("receipt_path must be an absolute native Path")
+        raw, _identity = _capture(receipt_path, maximum=1 << 20, label="runner receipt")
+        receipt = _strict_json(raw, label="runner receipt")
+        self._validate_receipt(receipt)
+        if Path(receipt["receipt_path"]) != receipt_path:
+            raise StaticCnfEngineError("recovery receipt path crosses its payload")
+        parent_fd = _open_directory_chain(self.output_path.parent, label="output")
+        try:
+            binding = bind_static_cnf(self.control, self.package_root)
+            source_manifest = canonical_json_bytes(
+                json.loads(binding.producer_manifest.decode("utf-8"))["source_manifest"]
+            )
+            return self._publish_bound_receipt(
+                parent_fd=parent_fd,
+                binding=binding,
+                source_manifest=source_manifest,
+                receipt=receipt,
+                result=None,
+            )
+        finally:
+            os.close(parent_fd)
+
+    @staticmethod
+    def _validate_receipt(receipt: object) -> None:
+        if (
+            type(receipt) is not dict
+            or set(receipt) != _RECEIPT_KEYS
+            or receipt.get("schema") != RECEIPT_SCHEMA
+            or type(receipt.get("attempt")) is not int
+            or receipt["attempt"] < 0
+        ):
+            raise StaticCnfEngineError("runner receipt is not an object")
+
+    def _publish_bound_receipt(
+        self,
+        *,
+        parent_fd: int,
+        binding: StaticCnfBinding,
+        source_manifest: bytes,
+        receipt: Mapping[str, Any],
+        result: StaticSolverResult | None,
+    ) -> StaticCnfEngineResult:
+        manifest = _reconstruct_runner_manifest(binding, attempt=receipt.get("attempt"))
+        custody, seal, inventory, records, model_response = _receipt_bundle(
+            binding=binding,
+            receipt=receipt,
+            manifest=manifest,
+            expected_source_sha256=sha256_bytes(source_manifest),
+        )
+        if result is None:
+            verdict = receipt["adapter_verdict"]
+            assignment = (
+                _parse_archived_model_assignment(
+                    receipt=receipt,
+                    model_response=model_response,
+                    variable_count=receipt["num_variables"],
+                )
+                if verdict == "SAT"
+                else {}
+            )
+            result = StaticSolverResult(
+                verdict=verdict,
+                assignment=assignment,
+                returncode=receipt["adapter_returncode"],
+            )
+        _result_type_check(result)
+        classification = _classification(result, receipt)
+        _validate_serialized_result(
+            {
+                "classification": classification,
+                "verdict": result.verdict,
+                "assignment": _normalize_result_assignment(result.assignment),
+                "returncode": result.returncode,
+            },
+            receipt=receipt,
+            cnf=binding.cnf,
+            model_response=model_response,
+        )
+        unsigned = _unsigned_envelope(
+            binding,
+            manifest,
+            result,
+            receipt,
+            custody,
+            seal,
+            inventory,
+            records,
+            classification,
+            self.execution_registration,
+            engine_schema=self.engine_schema,
+            adapter_schema=self.adapter_schema,
+        )
+        envelope = {**unsigned, "envelope_sha256": sha256_json(unsigned)}
+        output_identity = _write_once_at(
+            parent_fd, self.output_path.name, canonical_json_bytes(envelope) + b"\n"
+        )
+        parent_info = os.fstat(parent_fd)
+        try:
+            visible_parent = os.stat(self.output_path.parent, follow_symlinks=False)
+        except OSError as exc:
+            raise StaticCnfEngineError(
+                "output parent changed during publication"
+            ) from exc
+        if (visible_parent.st_dev, visible_parent.st_ino) != (
+            parent_info.st_dev,
+            parent_info.st_ino,
+        ):
+            raise StaticCnfEngineError("output parent changed during publication")
+        accepted = _validate_static_cnf_engine_output(
+            self.output_path,
+            held_parent_fd=parent_fd,
+            held_name=self.output_path.name,
+            expected_output_identity=output_identity,
+        )
+        return StaticCnfEngineResult(classification, self.output_path, accepted)
 
 
 def _validate_static_cnf_engine_output(

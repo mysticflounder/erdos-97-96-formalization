@@ -12,6 +12,9 @@ from census.p97_search.tests.test_cegar_wave_registry import (
     _fixture_data_only_control,
 )
 from census.p97_search.tests.test_phase3_cegar_wave_engine import _fixture_control
+from census.p97_search.tests.test_phase3_smt_oneshot_engine import (
+    _packet as _smt_packet,
+)
 
 
 def _control_file(tmp_path: Path) -> tuple[Path, Path]:
@@ -24,6 +27,13 @@ def _control_file(tmp_path: Path) -> tuple[Path, Path]:
 def _data_only_control_file(tmp_path: Path) -> tuple[Path, Path]:
     control, package_root, _receipt = _fixture_data_only_control(tmp_path)
     path = tmp_path / "data-only-control.json"
+    path.write_bytes(control.canonical_bytes)
+    return path, package_root
+
+
+def _smt_control_file(tmp_path: Path) -> tuple[Path, Path]:
+    control, package_root = _smt_packet(tmp_path / "smt-packet")
+    path = tmp_path / "smt-control.json"
     path.write_bytes(control.canonical_bytes)
     return path, package_root
 
@@ -272,6 +282,47 @@ def test_run_delegates_once_and_never_exposes_proof_path(
         "timeout_s": 17,
     }
     assert "proof_path" not in kwargs
+
+
+def test_recover_static_delegates_offline_to_sealed_receipt(
+    tmp_path: Path,
+    capsys: pytest.CaptureFixture[str],
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    control_path, package_root = _control_file(tmp_path)
+    output = tmp_path / "result.json"
+    receipt = tmp_path / "solver-receipt.json"
+    receipt.write_text("{}")
+    seen: list[tuple[object, ...]] = []
+
+    def fake_recover(control: object, root: object, **kwargs: object) -> object:
+        seen.append((control, root, kwargs))
+        return SimpleNamespace(
+            classification="SAT_OBSERVED",
+            envelope={"envelope_sha256": "e" * 64},
+            envelope_path=output,
+        )
+
+    monkeypatch.setattr(cli, "recover_registered_static_output", fake_recover)
+    assert (
+        cli.main(
+            [
+                "recover-static",
+                str(control_path),
+                str(receipt),
+                "--package-root",
+                str(package_root),
+                "--output",
+                str(output),
+            ]
+        )
+        == 0
+    )
+    payload = _json_stdout(capsys)
+    assert payload["classification"] == "SAT_OBSERVED"
+    assert payload["custody_status"] == "OFFLINE_CROSS_BOUND"
+    assert len(seen) == 1
+    assert seen[0][2] == {"output_path": output, "receipt_path": receipt}
 
 
 def test_run_forwards_only_assumption_specific_solver_signature(
@@ -715,3 +766,42 @@ def test_lifecycle_unexpected_and_process_control_exceptions_propagate(
     monkeypatch.setattr(cli.exact17_lifecycle, "validate_local", explode)
     with pytest.raises(type(error)):
         cli.main(["lifecycle-validate-local", "--profile", "exact17-child38"])
+
+
+@pytest.mark.parametrize(
+    "foreign_args",
+    [
+        ["--journal-root", "/tmp/journal"],
+        ["--timeout-s", "3"],
+        ["--solver-signature", "foreign"],
+        ["--existing-session-id", "00000000-0000-4000-8000-000000000001"],
+    ],
+)
+def test_smt_run_rejects_static_and_assumption_options_before_dispatch(
+    tmp_path: Path,
+    capsys: pytest.CaptureFixture[str],
+    monkeypatch: pytest.MonkeyPatch,
+    foreign_args: list[str],
+) -> None:
+    control_path, package_root = _smt_control_file(tmp_path)
+    dispatched = False
+
+    def forbidden(*args: object, **kwargs: object) -> object:
+        nonlocal dispatched
+        dispatched = True
+        raise AssertionError("dispatch reached")
+
+    monkeypatch.setattr(cli, "execute_registered_wave", forbidden)
+    argv = [
+        "run",
+        str(control_path),
+        "--package-root",
+        str(package_root),
+        "--output",
+        str(tmp_path / "output"),
+        *foreign_args,
+    ]
+    assert cli.main(argv) == 2
+    captured = capsys.readouterr()
+    assert "SMT_ONESHOT run rejects" in captured.err
+    assert dispatched is False

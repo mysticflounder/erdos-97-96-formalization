@@ -115,7 +115,7 @@ remaining deliberately separate execution kinds, one trust boundary at a time:
 | `STATIC_CNF` | raw-DIMACS PIQD driver | replayed SAT or discovery UNSAT |
 | `ASSUMPTION_CNF` | one-session sequential PIQD assumptions over one authenticated parent | replayed SAT or discovery UNSAT |
 | `INCREMENTAL_CNF` | later append-capable incremental PIQD session adapter | replayed SAT or discovery UNSAT |
-| `SMT_ONESHOT` | future generic authenticated single-solver SMT boundary; existing FreshThird remains specialized until then | exact-replayed SAT or diagnostic UNSAT/UNKNOWN |
+| `SMT_ONESHOT` | generic authenticated single-solver SMT boundary under active implementation; existing FreshThird remains specialized | exact-replayed SAT or diagnostic UNSAT/UNKNOWN |
 | `TERMINAL_PROOF` | local terminal-proof runner and publisher, separate from PIQD proof replay | certified local UNSAT only after proof replay |
 | `EXTERNAL_PROCESS` | authenticated process-custody adapter such as Singular | process outcome only |
 
@@ -126,6 +126,31 @@ version, domain-validator identity, and applicable solver/checker binary
 identities. A manifest selects a stable identifier; it never dynamically
 imports code. Adding an executor requires a code review because it changes a
 trust boundary. Adding a wave that uses an existing executor does not.
+
+#### SMT one-shot implementation tranche (2026-08-14)
+
+The first SMT consolidation tranche uses the maintained public
+`phase3_piqd_smt_source_adapter` one-solver boundary. The shared engine owns
+control binding, one fresh session and one solve, response-loss receipt
+reconciliation, immutable publication, structural inspection, and offline
+package cross-binding. A manifest selects only a fixed semantic-profile ID;
+the corresponding exact SAT replay callback and offline validator remain in a
+closed code registry. Manifests cannot name Python callables or import paths.
+
+The compatibility pilot is ATAIL named-polynomial geometry. It is the smallest
+active representative: one cvc5 query, a five-file source-custody set,
+exact-rational replay of every enabled polynomial relation, diagnostic
+proofless UNSAT, and an existing standalone validator. Its pre-migration
+fake-only compatibility gate passes 50 tests. The pilot must shadow-validate
+SAT, diagnostic UNSAT, UNKNOWN, committed-response reconciliation, source
+replacement, semantic rejection, and complete offline inventory before its
+bespoke execution/publication wrapper becomes a retirement candidate.
+
+This tranche does not absorb staged endpoint metric campaigns, survivor waves,
+core deletion/mining, pinned-generalm's 45-query campaign, Rigid221, or
+FreshThird's two-solver source-semantic protocol. Those callers may reuse the
+one-shot engine internally later, but their campaign or cross-solver control
+remains a separate code-defined boundary.
 
 The common engine performs, in order:
 

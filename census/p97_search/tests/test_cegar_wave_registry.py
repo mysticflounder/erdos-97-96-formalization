@@ -5,11 +5,12 @@ import os
 from copy import deepcopy
 from dataclasses import replace
 from pathlib import Path
-from types import SimpleNamespace
+from types import MappingProxyType, SimpleNamespace
 
 import pytest
 
 import census.p97_search.cegar_wave_registry as registry
+import census.p97_search.phase3_smt_oneshot_engine as smt_engine
 from census.p97_search.phase3_cegar_wave import (
     canonical_json_bytes,
     sha256_bytes,
@@ -34,6 +35,15 @@ from census.p97_search.tests.test_phase3_cegar_wave_engine import (
     _fixture_control,
     _fixture_v2_control,
     _make_v2_engine,
+)
+from census.p97_search.tests.test_phase3_smt_oneshot_engine import (
+    PROFILE_IDENTITY,
+)
+from census.p97_search.tests.test_phase3_smt_oneshot_engine import (
+    _packet as _smt_packet,
+)
+from census.p97_search.tests.test_phase3_smt_oneshot_engine import (
+    _profile as _smt_profile,
 )
 
 
@@ -764,4 +774,31 @@ def test_v2_validators_reject_rehashed_package_and_artifact_crossing(
     with pytest.raises(registry.WaveRegistryError, match="crossed"):
         registry.validate_registered_output(
             wave_engine.control, wave_engine.package_root, output
+        )
+
+
+def test_smt_oneshot_registration_plans_ingress_and_rejects_foreign_args(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    control, package_root = _smt_packet(tmp_path / "smt-packet")
+    profile = _smt_profile()
+    monkeypatch.setattr(
+        smt_engine,
+        "SMT_ONESHOT_SEMANTIC_PROFILES",
+        MappingProxyType({PROFILE_IDENTITY: profile}),
+    )
+    registration = registry.resolve_execution_registration(control)
+    assert registration is registry.SMT_ONESHOT_EXECUTION_V1
+    ingress = registry.validate_registered_ingress(control, package_root)
+    assert ingress["semantic_profile"] == profile.as_dict()
+    assert registry.plan_execution(control, package_root)["plan"]["steps"][1] == (
+        "run-code-defined-query-validator"
+    )
+    with pytest.raises(registry.WaveRegistryError, match="rejects static"):
+        registry.execute_registered_wave(
+            control,
+            package_root,
+            output_path=tmp_path / "output",
+            base_url="http://unused.invalid",
+            journal_root=tmp_path,
         )

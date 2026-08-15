@@ -364,6 +364,8 @@ class _FakePiqd:
     def __init__(self, cnf: bytes, producer: bytes, result: str) -> None:
         self.cnf, self.producer, self.result = cnf, producer, result
         self.job_id = "engine-fixture-job"
+        self.model_backend = "cadical"
+        self.model_solver_profile = "sat"
         self.calls: list[tuple[str, str]] = []
         self.fail_first = False
 
@@ -436,6 +438,8 @@ class _FakePiqd:
                 {
                     "job_id": self.job_id,
                     "result": "SAT",
+                    "backend": self.model_backend,
+                    "solver_profile": self.model_solver_profile,
                     "num_assigned": 3,
                     "assignment": [1, 2, 3],
                 }
@@ -850,6 +854,61 @@ def test_output_accepts_valid_total_sat_model(
         "2": True,
         "3": True,
     }
+
+
+def test_recover_from_receipt_publishes_offline_without_second_solver_call(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    wave_engine, output, api, _factories, _profile = _make_v2_engine(
+        tmp_path, monkeypatch, "SAT"
+    )
+    first = wave_engine.run(proof_path=None)
+    receipt_path = Path(first.envelope["receipt"]["receipt_path"])
+    call_count = len(api.calls)
+    output.unlink()
+
+    recovered = wave_engine.recover_from_receipt(receipt_path=receipt_path)
+
+    assert recovered.classification == engine.SAT_OBSERVED
+    assert recovered.envelope == first.envelope
+    assert len(api.calls) == call_count
+
+
+def test_recover_from_receipt_rejects_copied_receipt_path(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    wave_engine, output, _api, _factories, _profile = _make_v2_engine(
+        tmp_path, monkeypatch, "SAT"
+    )
+    first = wave_engine.run(proof_path=None)
+    receipt_path = Path(first.envelope["receipt"]["receipt_path"])
+    copied = tmp_path / "copied-receipt.json"
+    copied.write_bytes(receipt_path.read_bytes())
+    output.unlink()
+
+    with pytest.raises(engine.StaticCnfEngineError, match="crosses its payload"):
+        wave_engine.recover_from_receipt(receipt_path=copied)
+    assert not output.exists()
+
+
+@pytest.mark.parametrize(
+    ("attribute", "value"),
+    [("model_backend", "kissat"), ("model_solver_profile", "plain")],
+)
+def test_run_rejects_model_response_crossed_with_job_identity(
+    attribute: str,
+    value: str,
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    wave_engine, output, api, _factories, _profile = _make_v2_engine(
+        tmp_path, monkeypatch, "SAT"
+    )
+    setattr(api, attribute, value)
+
+    with pytest.raises(engine.StaticCnfEngineError, match="fields are invalid"):
+        wave_engine.run(proof_path=None)
+    assert not output.exists()
 
 
 def test_custody_inventory_rejects_missing_expected_model_response(

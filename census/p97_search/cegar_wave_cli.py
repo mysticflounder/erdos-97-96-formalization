@@ -16,6 +16,7 @@ from census.p97_search.cegar_wave_registry import (
     execute_registered_wave,
     inspect_registered_output_structure,
     plan_execution,
+    recover_registered_static_output,
     validate_registered_ingress,
     validate_registered_output,
     validate_registered_replay,
@@ -30,11 +31,14 @@ from census.p97_search.phase3_cegar_runtime import (
 from census.p97_search.phase3_cegar_wave_control import (
     ASSUMPTION_CNF,
     MAX_CONTROL_BYTES,
+    SMT_ONESHOT,
+    SmtOneshotControl,
     WaveControl,
     WaveControlError,
     load_wave_control,
 )
 from census.p97_search.phase3_cegar_wave_engine import StaticCnfEngineError
+from census.p97_search.phase3_smt_oneshot_engine import SmtOneshotEngineError
 
 CLI_SCHEMA = "p97-cegar-wave-cli/v1"
 _NATIVE_PATH_TYPE = type(Path())
@@ -61,7 +65,7 @@ def _canonical_existing_session_id(raw: object) -> str:
     return raw
 
 
-def _load_control(path: Path) -> WaveControl:
+def _load_control(path: Path) -> WaveControl | SmtOneshotControl:
     captured = capture_exact_regular_file(
         path,
         max_bytes=MAX_CONTROL_BYTES,
@@ -101,6 +105,12 @@ def _parser() -> argparse.ArgumentParser:
     run.add_argument("--timeout-s", type=int)
     run.add_argument("--solver-signature")
     run.add_argument("--existing-session-id")
+
+    recover = commands.add_parser("recover-static")
+    recover.add_argument("control")
+    recover.add_argument("receipt")
+    recover.add_argument("--package-root", required=True)
+    recover.add_argument("--output", required=True)
 
     validate_output = commands.add_parser("validate-output")
     validate_output.add_argument("control")
@@ -217,8 +227,36 @@ def _run(args: argparse.Namespace) -> dict[str, Any]:
             "status": "PASS",
             "ingress": validate_registered_ingress(control, package_root),
         }
+    if args.command == "recover-static":
+        result = recover_registered_static_output(
+            control,
+            package_root,
+            output_path=_absolute_path(args.output, "output"),
+            receipt_path=_absolute_path(args.receipt, "receipt"),
+        )
+        return {
+            "schema": CLI_SCHEMA,
+            "command": args.command,
+            "status": "PASS",
+            "classification": result.classification,
+            "envelope_sha256": result.envelope["envelope_sha256"],
+            "output": str(_result_path(result)),
+            "custody_status": "OFFLINE_CROSS_BOUND",
+        }
     if args.command != "run":
         raise WaveRegistryError("unsupported command")
+    if control.registration.wave_kind == SMT_ONESHOT and any(
+        value is not None
+        for value in (
+            args.journal_root,
+            args.timeout_s,
+            args.solver_signature,
+            args.existing_session_id,
+        )
+    ):
+        raise WaveRegistryError(
+            "SMT_ONESHOT run rejects static and assumption runner arguments"
+        )
     existing_session_id = None
     if args.existing_session_id is not None:
         if control.registration.wave_kind != ASSUMPTION_CNF:
@@ -288,6 +326,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         AssumptionCnfEngineError,
         OSError,
         StaticCnfEngineError,
+        SmtOneshotEngineError,
         WaveControlError,
         WaveRegistryError,
     ) as error:

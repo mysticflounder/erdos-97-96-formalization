@@ -29,6 +29,12 @@ PROFILE_SCHEMA = "atail-piqd-cvc5/v1"
 SEMANTIC_SCHEMA = "atail-piqd-cvc5-geometry-semantic-input/v1"
 RESULT_SCHEMA = "atail-piqd-cvc5-geometry-result/v1"
 SYSTEM_SCHEMA = "atail-named-polynomial-system/v1"
+SEMANTIC_VERIFIER_ID = "atail-exact-rational-atom-replay"
+SEMANTIC_VERIFIER_VERSION = "v1"
+SMT_ONESHOT_PROFILE_IDENTITY = (
+    SEMANTIC_VERIFIER_ID,
+    SEMANTIC_VERIFIER_VERSION,
+)
 NL_COV_COMMAND = "(set-option :nl-cov true)"
 MAX_SOURCE_BYTES = 32 * 1024 * 1024
 MAX_MODEL_BYTES = 4 * 1024 * 1024
@@ -733,8 +739,8 @@ def prepare_geometry_query(
         "schema": DESCRIPTOR_SCHEMA,
         "producer": {"id": "atail-named-polynomial-geometry", "version": "v1"},
         "semantic_verifier": {
-            "id": "atail-exact-rational-atom-replay",
-            "version": "v1",
+            "id": SEMANTIC_VERIFIER_ID,
+            "version": SEMANTIC_VERIFIER_VERSION,
         },
         "stage_id": "atail-geometry",
         "query_id": system.blueprint.case_id,
@@ -946,7 +952,10 @@ def validate_prepared_query(
         query.descriptor["producer"]
         == {"id": "atail-named-polynomial-geometry", "version": "v1"}
         and query.descriptor["semantic_verifier"]
-        == {"id": "atail-exact-rational-atom-replay", "version": "v1"}
+        == {
+            "id": SEMANTIC_VERIFIER_ID,
+            "version": SEMANTIC_VERIFIER_VERSION,
+        }
         and query.descriptor["stage_id"] == "atail-geometry"
         and query.descriptor["query_id"] == blueprint["case_id"],
         "descriptor identity is not bound to the ATAIL blueprint",
@@ -1016,6 +1025,14 @@ def validate_prepared_query(
         "query contains a forbidden command",
     )
     return query
+
+
+def validate_smt_oneshot_query(
+    query: neutral.SourceSemanticQuery,
+) -> neutral.SourceSemanticQuery:
+    """Code-defined registry gate for the shared SMT one-shot engine."""
+
+    return validate_prepared_query(PreparedGeometryQuery(query))
 
 
 def _tokenize(raw: str) -> list[str]:

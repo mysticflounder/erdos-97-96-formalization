@@ -48,6 +48,12 @@ from census.p97_search.phase3_piqd_assumption_campaign import (
     stream_parent_identity,
 )
 from census.p97_search.phase3_piqd_driver import DriverPolicy, PiqdDriverError
+from census.p97_search.phase3_piqd_smt_source_adapter import (
+    MAX_DESCRIPTOR_BYTES,
+    SmtSourceAdapterError,
+    SourceSemanticQuery,
+    load_authenticated_single_solver_query,
+)
 from census.p97_search.phase3_piqd_static_solver_runner import (
     StaticPiqdRunnerError,
     authenticate_static_manifests,
@@ -57,6 +63,7 @@ CONTROL_SCHEMA_V1 = "p97-cegar-wave-control/v1"
 CONTROL_SCHEMA_V2 = "p97-cegar-wave-control/v2"
 CONTROL_SCHEMA_V3 = "p97-cegar-wave-control/v3"
 CONTROL_SCHEMA_V4 = "p97-cegar-wave-control/v4"
+CONTROL_SCHEMA_V5 = "p97-cegar-wave-control/v5"
 CONTROL_SCHEMA = CONTROL_SCHEMA_V1
 INVENTORY_SCHEMA = "p97-cegar-wave-entrypoint-inventory/v1"
 CLEANUP_PLAN_SCHEMA = "p97-cegar-wave-cleanup-plan/v1"
@@ -97,6 +104,14 @@ ASSUMPTION_CNF_SEMANTIC_VALIDATOR_V1 = "p97-assumption-cnf-semantic-replay/v1"
 ASSUMPTION_CNF_EXECUTION_MODE = "one-session-sequential-assumption-cnf"
 ASSUMPTION_CNF_EXECUTION_CAPABILITIES = STATIC_CNF_EXECUTION_CAPABILITIES
 ASSUMPTION_CNF_V1_REGISTRY_REVISION = "2026-08-14.1"
+
+SMT_ONESHOT = "SMT_ONESHOT"
+SMT_ONESHOT_PIQD_ADAPTER = "smt-oneshot-piqd"
+SMT_ONESHOT_PIQD_ADAPTER_SCHEMA_V1 = "v1"
+SMT_ONESHOT_SEMANTIC_VALIDATOR_V1 = "p97-smt-oneshot-semantic-profile/v1"
+SMT_ONESHOT_EXECUTION_MODE = "one-fresh-session-one-shot-smt"
+SMT_ONESHOT_EXECUTION_CAPABILITIES = STATIC_CNF_EXECUTION_CAPABILITIES
+SMT_ONESHOT_V1_REGISTRY_REVISION = "2026-08-14.1-smt-oneshot"
 
 ACTIVE = "ACTIVE"
 FROZEN_REPRODUCTION = "FROZEN_REPRODUCTION"
@@ -153,8 +168,21 @@ _CONTROL_KEYS_V2 = _CONTROL_KEYS_V1 | {
 }
 _CONTROL_KEYS_V3 = _CONTROL_KEYS_V1 | {"campaign"}
 _CONTROL_KEYS_V4 = _CONTROL_KEYS_V2 | {"retained_hardlink_counts"}
+_CONTROL_KEYS_V5 = frozenset(
+    {
+        "schema",
+        "wave_kind",
+        "adapter_id",
+        "adapter_schema",
+        "package",
+        "semantic_validator",
+        "smt_semantic_profile",
+    }
+)
 _REF_KEYS = frozenset({"path", "sha256", "max_bytes"})
 _PACKAGE_KEYS = frozenset({"cnf", "producer_manifest", "variable_map"})
+_SMT_PACKAGE_KEYS = frozenset({"descriptor"})
+_SMT_PROFILE_KEYS = frozenset({"id", "version"})
 _RETAINED_LEGACY_HARDLINK_COUNTS = {"daemon_build_receipt": 3}
 _POLICY_KEYS = frozenset(
     {
@@ -309,6 +337,32 @@ class AssumptionCnfBinding:
     source_parent_identity: CnfStreamIdentity | None = None
 
 
+@dataclass(frozen=True)
+class SmtSemanticProfileIdentity:
+    id: str
+    version: str
+
+    def as_dict(self) -> dict[str, str]:
+        return {"id": self.id, "version": self.version}
+
+
+@dataclass(frozen=True)
+class SmtOneshotControl:
+    """A v5 control whose package is one exact SMT descriptor-root packet."""
+
+    value: dict[str, Any]
+    descriptor: ArtifactReference
+    semantic_profile: SmtSemanticProfileIdentity
+    registration: AdapterRegistration
+    canonical_bytes: bytes
+
+
+@dataclass(frozen=True)
+class SmtOneshotBinding:
+    control: SmtOneshotControl
+    query: SourceSemanticQuery
+
+
 STATIC_REGISTRY = MappingProxyType(
     {
         (STATIC_CNF, STATIC_CNF_PIQD_ADAPTER, STATIC_CNF_PIQD_ADAPTER_SCHEMA_V1): (
@@ -350,6 +404,18 @@ STATIC_REGISTRY = MappingProxyType(
                 schema_version=ASSUMPTION_CNF_PIQD_ADAPTER_SCHEMA_V1,
                 semantic_validator=ASSUMPTION_CNF_SEMANTIC_VALIDATOR_V1,
                 permits_campaign=True,
+            )
+        ),
+        (
+            SMT_ONESHOT,
+            SMT_ONESHOT_PIQD_ADAPTER,
+            SMT_ONESHOT_PIQD_ADAPTER_SCHEMA_V1,
+        ): (
+            AdapterRegistration(
+                wave_kind=SMT_ONESHOT,
+                adapter_id=SMT_ONESHOT_PIQD_ADAPTER,
+                schema_version=SMT_ONESHOT_PIQD_ADAPTER_SCHEMA_V1,
+                semantic_validator=SMT_ONESHOT_SEMANTIC_VALIDATOR_V1,
             )
         ),
     }
@@ -452,6 +518,19 @@ def _reference(value: Any, label: str, *, maximum_bytes: int) -> ArtifactReferen
     )
 
 
+def _smt_profile_identity(value: Any) -> SmtSemanticProfileIdentity:
+    if type(value) is not dict:
+        raise WaveControlError(
+            "wave control.smt_semantic_profile must be an exact object"
+        )
+    _exact_keys(value, _SMT_PROFILE_KEYS, "wave control.smt_semantic_profile")
+    profile_id = _string(value["id"], "wave control.smt_semantic_profile.id")
+    version = _string(value["version"], "wave control.smt_semantic_profile.version")
+    if any(len(item.encode("utf-8")) > 256 for item in (profile_id, version)):
+        raise WaveControlError("SMT semantic profile identity is too long")
+    return SmtSemanticProfileIdentity(profile_id, version)
+
+
 def _semantic_artifact_references(
     value: Any,
 ) -> tuple[tuple[str, ArtifactReference], ...]:
@@ -548,7 +627,7 @@ def _policy(value: Any) -> DriverPolicy:
     return policy
 
 
-def load_wave_control(raw: bytes) -> WaveControl:
+def load_wave_control(raw: bytes) -> WaveControl | SmtOneshotControl:
     """Parse one canonical control record against the closed adapter registry."""
 
     value = _strict_json(raw, label="wave control", max_bytes=MAX_CONTROL_BYTES)
@@ -561,6 +640,8 @@ def load_wave_control(raw: bytes) -> WaveControl:
         _exact_keys(value, _CONTROL_KEYS_V3, "wave control")
     elif schema == CONTROL_SCHEMA_V4:
         _exact_keys(value, _CONTROL_KEYS_V4, "wave control")
+    elif schema == CONTROL_SCHEMA_V5:
+        _exact_keys(value, _CONTROL_KEYS_V5, "wave control")
     else:
         raise WaveControlError("wave control.schema is not registered")
     key = (
@@ -592,6 +673,11 @@ def load_wave_control(raw: bytes) -> WaveControl:
             STATIC_CNF_PIQD_ADAPTER,
             STATIC_CNF_PIQD_ADAPTER_SCHEMA_V3_DATA_ONLY,
         ): CONTROL_SCHEMA_V4,
+        (
+            SMT_ONESHOT,
+            SMT_ONESHOT_PIQD_ADAPTER,
+            SMT_ONESHOT_PIQD_ADAPTER_SCHEMA_V1,
+        ): CONTROL_SCHEMA_V5,
     }[key]
     if schema != expected_control_schema:
         raise WaveControlError("wave control schema is crossed with its adapter")
@@ -600,6 +686,19 @@ def load_wave_control(raw: bytes) -> WaveControl:
     package = value["package"]
     if type(package) is not dict:
         raise WaveControlError("wave control.package must be an exact object")
+    if schema == CONTROL_SCHEMA_V5:
+        _exact_keys(package, _SMT_PACKAGE_KEYS, "wave control.package")
+        return SmtOneshotControl(
+            value=value,
+            descriptor=_reference(
+                package["descriptor"],
+                "wave control.package.descriptor",
+                maximum_bytes=MAX_DESCRIPTOR_BYTES,
+            ),
+            semantic_profile=_smt_profile_identity(value["smt_semantic_profile"]),
+            registration=registration,
+            canonical_bytes=raw,
+        )
     _exact_keys(package, _PACKAGE_KEYS, "wave control.package")
     return WaveControl(
         value=value,
@@ -1103,6 +1202,50 @@ def bind_assumption_cnf(
         source_parent_path=source_parent_path,
         source_parent_identity=source_parent,
     )
+
+
+def bind_smt_oneshot(
+    control: SmtOneshotControl,
+    package_root: Path,
+    *,
+    solver: str,
+    descriptor_schema: str,
+    solver_profile_schema: str,
+) -> SmtOneshotBinding:
+    """Bind one registered one-shot SMT descriptor and its exact source packet."""
+
+    if type(control) is not SmtOneshotControl:
+        raise WaveControlError("SMT_ONESHOT control has the wrong exact type")
+    if type(package_root) is not _NATIVE_PATH_TYPE or not package_root.is_absolute():
+        raise WaveControlError("package_root must be an absolute native Path")
+    validated = load_wave_control(control.canonical_bytes)
+    if type(validated) is not SmtOneshotControl or validated != control:
+        raise WaveControlError("SMT_ONESHOT control differs from its canonical bytes")
+    if (
+        control.registration.wave_kind != SMT_ONESHOT
+        or control.registration.adapter_id != SMT_ONESHOT_PIQD_ADAPTER
+        or control.registration.schema_version != SMT_ONESHOT_PIQD_ADAPTER_SCHEMA_V1
+        or control.registration.semantic_validator != SMT_ONESHOT_SEMANTIC_VALIDATOR_V1
+    ):
+        raise WaveControlError("SMT_ONESHOT binding requires the closed v1 adapter")
+    try:
+        query = load_authenticated_single_solver_query(
+            package_root,
+            control.descriptor.path,
+            solver=solver,
+            descriptor_schema=descriptor_schema,
+            solver_profile_schema=solver_profile_schema,
+        )
+    except SmtSourceAdapterError as error:
+        raise WaveControlError("SMT_ONESHOT descriptor packet failed closed") from error
+    if (
+        len(query.descriptor_bytes) > control.descriptor.max_bytes
+        or sha256_bytes(query.descriptor_bytes) != control.descriptor.sha256
+    ):
+        raise WaveControlError("SMT_ONESHOT descriptor reference is crossed")
+    if query.descriptor["semantic_verifier"] != control.semantic_profile.as_dict():
+        raise WaveControlError("SMT_ONESHOT semantic profile identity is crossed")
+    return SmtOneshotBinding(control=control, query=query)
 
 
 def _string_list(value: Any, label: str) -> list[str]:

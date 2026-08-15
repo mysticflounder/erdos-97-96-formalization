@@ -941,3 +941,29 @@ def test_inventory_rejects_noncanonical_duplicate_bool_and_missing_pass_receipt(
     crossed["shadow_replay"]["receipt"] = None  # type: ignore[index]
     with pytest.raises(WaveControlError, match="required for PASS"):
         load_entrypoint_inventory(_inventory(crossed))
+
+
+def test_v5_smt_control_has_a_distinct_descriptor_only_package() -> None:
+    value = {
+        "schema": wave_control.CONTROL_SCHEMA_V5,
+        "wave_kind": wave_control.SMT_ONESHOT,
+        "adapter_id": wave_control.SMT_ONESHOT_PIQD_ADAPTER,
+        "adapter_schema": wave_control.SMT_ONESHOT_PIQD_ADAPTER_SCHEMA_V1,
+        "package": {
+            "descriptor": {
+                "path": "packet/descriptor.json",
+                "sha256": "a" * 64,
+                "max_bytes": 4096,
+            }
+        },
+        "semantic_validator": wave_control.SMT_ONESHOT_SEMANTIC_VALIDATOR_V1,
+        "smt_semantic_profile": {"id": "test-profile", "version": "1"},
+    }
+    control = load_wave_control(canonical_json_bytes(value))
+    assert type(control) is wave_control.SmtOneshotControl
+    assert control.descriptor.path == "packet/descriptor.json"
+    assert control.semantic_profile.as_dict() == {"id": "test-profile", "version": "1"}
+    crossed = deepcopy(value)
+    crossed["package"]["cnf"] = crossed["package"]["descriptor"]
+    with pytest.raises(WaveControlError, match="inexact keys"):
+        load_wave_control(canonical_json_bytes(crossed))
