@@ -1,0 +1,80 @@
+{
+  "ingress": {
+    "dimacs": {
+      "bytes": 333016856,
+      "clauses": 7036960,
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/exact17-two-triple-row-package-v2/exact17-two-triple-row.cnf",
+      "sha256": "e9cc97f4e0c6d954902717ecb98e25a772bd54c1199a3bff0190ae2941e5ed51",
+      "variables": 308
+    },
+    "export_receipt": {
+      "bytes": 3813,
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/exact17-two-triple-row-package-v2/export-receipt.json",
+      "schema": "p97-exact17-two-triple-row-immutable-export-receipt/v2",
+      "sha256": "9648231742a13939a16d0211889625ec5b2a445cc3960716d3844f3ca4c0be71"
+    },
+    "lean": {
+      "export": {
+        "bytes": 1273,
+        "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenTwoTripleRowRefinementsExport.lean",
+        "sha256": "4e73d420e09047481b97c87ed420e030638316c80fb2f1aa7576ffc10e9ade5e"
+      },
+      "root": {
+        "bytes": 8330,
+        "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenTwoTripleRowRefinements.lean",
+        "sha256": "fcb9d23650ae8941cbc8d8d43ec42cd8785488d8fe5213ed24abdad90821d5cd"
+      }
+    },
+    "piqd": {
+      "backend": "cadical",
+      "confirm_attempts": 1,
+      "daemon_build_receipt": {
+        "bytes": 6895,
+        "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/exact17-lean-to-sat/piqd-child35-daemon-build-receipt.txt",
+        "sha256": "6e9c1d5c203d59ac2b29f800d73f4dbb0395b97865433f412ff4aa44c8e1b0a9"
+      },
+      "daemon_protocol_version": 1,
+      "daemon_sha256": "f89994bc10fcad69a264d8efbd7d76b8203c94c08f22b4536d3b473a12cee089",
+      "daemon_source_commit": "acefb4aba14765d45e38ac4193373f0aa210f22d",
+      "ingress": "raw-dimacs/v1",
+      "maximum_requested_core_limit": 12,
+      "prepare_attempts": 1,
+      "requested_core_limit": 1,
+      "sat_requires_independent_model_replay": true,
+      "solver_name": "piqd-satworker-cadical-3.0.0",
+      "solver_profile": "sat",
+      "solver_sha256": "0ee355934249f1b3f14a20928877391a87a0dd51326cf8c6135f75cba0b6b965",
+      "solver_signature": "cadical-3.0.0",
+      "timeout_s": 3600,
+      "unsat_certified_without_proof_replay": false
+    },
+    "publisher": {
+      "bytes": 12040,
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scripts/publish_exact17_two_triple_row_root.py",
+      "sha256": "c9abf7183e07e42042c38e854c66160c31a8e56cb234184e022b4ae79e58d748"
+    },
+    "schema": "p97-exact17-two-triple-row-piqd-ingress/v1",
+    "source": {
+      "baseline_sha256": "fcb9d23650ae8941cbc8d8d43ec42cd8785488d8fe5213ed24abdad90821d5cd",
+      "commit": "ace544b63df7b7b928d1d063da3099ab55be7dc0",
+      "theorem": "Problem97.ATailBlockerVExactSeventeenTwoTripleRowRefinements.sourceAssign_extendedTwoTripleRowCnf"
+    },
+    "status": "PASS",
+    "validator": {
+      "bytes": 9851,
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scripts/validate_exact17_two_triple_row_export.py",
+      "sha256": "a149334e8377de3d1d92e90a0ba9d1d99c2f6a1d11ef6cf0a14c72ee6269f171"
+    },
+    "variable_map": {
+      "bytes": 23341,
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/census/p97_search/waves/exact17/child40/variable-map.json",
+      "sha256": "78df650209311154e9a5fb6fdb88b6e532acaa624b7789d3028434c05e38e63f"
+    }
+  },
+  "maximum_requested_core_limit": 12,
+  "producer_manifest_sha256": "dece7db8d5eb37f21b3020b6a45431a7ddeac271ed3ddd0ed76e7d2744bfdca4",
+  "requested_core_limit": 1,
+  "source_manifest_sha256": "41c1ee03c5b290b978883bb941090931893afaf9cb208c40c3d567d1d869cb42",
+  "status": "PASS",
+  "timeout_s": 3600
+}
