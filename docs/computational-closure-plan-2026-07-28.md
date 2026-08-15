@@ -2101,6 +2101,33 @@ installs no Python family bank, pins, successor formula, or wave; the
 family serves as the concrete oracle and fallback for the label-general
 route above.
 
+Obligations O1 and O2 of the label-general route are banked.  The new
+module `ExactTwelveRigid221CanonicalBoundaryOrderBridge.lean`
+enumerates the forty-eight canonical zero-cut boundary orders as
+explicit lists mirroring `source_boundary_orders()` (length and
+pairwise distinctness kernel-`decide` proved), defines the decidable
+all-orders check `orientedAll48` with its soundness lemma, and proves
+the transfer bridge: every injective position map satisfying the
+frozen direct-or-mirror block hypotheses plus the forced second-cap
+order inherits each orientation fact checked on all forty-eight
+canonical maps.  One deliberate strengthening against the probe's
+draft: the bridge requires position injectivity, which is necessary
+(the frozen hypotheses do not separate positions inside the surplus
+and first-opposite blocks) and is supplied by the packaged
+`FrozenBoundaryOrder`, so the producer interface is unchanged.  Axiom
+closure was verified independently of the authoring worker: the bridge
+and its packaged corollary close over exactly `propext`,
+`Classical.choice`, `Quot.sound`, with no `native_decide`, no `sorry`,
+and no heartbeat overrides.  Three differential oracles tie the Lean
+check to the independently cross-validated Python orbit enumeration
+(dominant core and a second concrete-family member oriented; a
+non-between control rejected).  The orbit figures in the routing
+paragraph above were also re-derived by an independent enumerator with
+exact agreement (25,032 / 15,588 / 2,585; crosscheck preserved in
+`scratch/rigid221-sourceheavy-anchor/cross-wave-audit-20260814/`).
+Obligations O3-O6 remain open.  No successor formula, canary, or
+solver wave is authorized by this banking.
+
 The card-at-least-13 adapter audit also rules out a tempting shortcut.  The
 pentagon residual does not supply a
 `LargeCapUniqueFiveSecondApexRadius`: in particular it has no
