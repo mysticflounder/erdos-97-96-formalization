@@ -515,3 +515,11 @@ def test_symlink_output_root_is_rejected(
 
     with pytest.raises(runner.StaticRunnerError):
         runner.run_wave(output, allow_test_output=True)
+
+
+def test_regular_file_output_root_is_rejected(tmp_path: Path) -> None:
+    output = tmp_path / "output-file"
+    output.write_text("not a run directory\n", encoding="utf-8")
+
+    with pytest.raises(runner.StaticRunnerError, match="existing output root"):
+        runner.run_wave(output, allow_test_output=True)

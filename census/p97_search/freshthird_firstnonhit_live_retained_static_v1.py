@@ -920,6 +920,9 @@ def _validate_complete_topology(output_dir: Path) -> None:
 
 def _terminal_reentry(output_dir: Path) -> dict[str, object]:
     """Authenticate a completed run without launching any solver session."""
+    _reject_symlink_ancestors(output_dir)
+    if output_dir.is_symlink() or not output_dir.is_dir():
+        raise StaticRunnerError("terminal run root is not a regular directory")
     _validate_complete_topology(output_dir)
     state = _validate_run_state(output_dir, "COMPLETE")
     manifest = _read_canonical_json(output_dir / "run_manifest.json", "run manifest")
@@ -1121,7 +1124,9 @@ def _run_wave_locked(
 ) -> dict[str, object]:
     """Execute exactly one authenticated 24-cell discovery wave."""
     output_dir = Path(output_dir)
-    if output_dir.exists() and not output_dir.is_symlink():
+    if output_dir.exists() or output_dir.is_symlink():
+        if output_dir.is_symlink() or not output_dir.is_dir():
+            raise StaticRunnerError("existing output root is not a regular directory")
         return _terminal_reentry(output_dir)
     output_dir = _validate_output_root(output_dir, allow_test_output)
     source_snapshot = _source_snapshot()
