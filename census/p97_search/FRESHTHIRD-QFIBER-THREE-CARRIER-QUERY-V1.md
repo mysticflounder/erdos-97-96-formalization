@@ -22,9 +22,13 @@ four values of the intrinsic `boundaryIndex : Fin 4`.
   source-proved interior inclusion and cross-cap exclusion;
 - boundary order is a strict total order on `Same` classes;
 - distance equality is represented by finite equality classes;
-- `HasFourAfterDeleting` and `Nonrobust` remain opaque ambient semantic atoms;
-  they are not reconstructed from the named roles;
+- `HasFourAfterDeleting` and `Nonrobust` remain ambient semantic atoms, but at
+  every named selected-row center their exact source law is enforced:
+  deletion survives exactly when the center is fully deletion-robust or the
+  deleted role is outside that row;
 - every failed named deletion implies source-proved nonrobustness;
+- every pair of named selected rows at distinct centers has overlap at most
+  two, by the source-level two-circle theorem;
 - all row-support and overlap counts are computed through `Same` classes.
 
 The Q row is explicitly identified with the inherited fresh row. The Q row,
@@ -32,6 +36,13 @@ the unique boundary blocker's row, and all four second-order blocker rows have
 source-proved exact-row semantics. Nonboundary Q blockers are normalized to
 the existing `freshCenter` and Q row, so no duplicate synthetic rows are
 introduced.
+
+The four second-order deletions are also retained collectively. Applying
+`IndexedSourceFaithfulSelectedFourFan.centerBlocker_or_noCenterBlockerWitness`
+to the boundary blocker's row gives either a center-blocker/support-equality
+arm, or universal center separation together with both a repeated-cap pair
+and a mutual cross-deletion pair. The query encodes this complete disjunction,
+not just the four pointwise deletion packets.
 
 ## Constraint groups
 
@@ -56,11 +67,14 @@ modules, all row origins, role and row counts, and explicit false claims.
 No result from this module alone claims source entitlement, a theorem,
 universal closure, Lean closure, or Euclidean realizability.
 
-## First-wave objective
+## Current wave objective
 
-Run all four boundary-index cells, freeze their canonical signatures, and
-mine only the new wave for a uniform clause. Productive candidates must either
-force positive pinned-fan/Q incidence, route every disjoint survivor to an
-existing cross-deletion/geometric terminal, or expose a source theorem absent
-from the current finite contract. No learned clause is admitted until its
-source producer and Lean consumer are named.
+The first two authenticated waves demonstrated a disjoint pinned-fan/Q
+survivor and exposed missing source ingress. They are discovery history, not
+evidence for the strengthened contract. The current clean wave is
+`wave-boundary-fan-normalized-0001`; it includes complete row deletion
+semantics, all named two-circle overlap cuts, and the collective second-order
+fan normalization. Its theorem-mining target is a distinct-center blocked
+triple of Q-row points, or the smallest cap/order statement preventing the
+remaining repeated-cap/mutual-cross graph. No learned clause is admitted until
+its source producer and Lean consumer are named.

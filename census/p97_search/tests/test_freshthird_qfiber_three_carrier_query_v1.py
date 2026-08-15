@@ -34,6 +34,8 @@ def test_schema_is_intrinsic_and_source_hashed() -> None:
     assert len(ROWS) == 14
     assert manifest["ambient_carrier_enumerated"] is False
     assert manifest["claims"] == FALSE_CLAIMS
+    assert "robust-or-outside-row" in manifest["row_deletion_semantics"]
+    assert "at most two" in manifest["row_intersection_semantics"]
     hashes = manifest["source_files"]
     assert any(path.endswith(QUERY_LEAN.name) for path in hashes)
     assert any(path.endswith(SOURCE_THEORY_LEAN.name) for path in hashes)
@@ -90,6 +92,65 @@ def test_no_three_q_sources_in_boundary_blocker_tamper_is_unsat() -> None:
 def test_cap_witness_range_tamper_is_unsat() -> None:
     query = build_query(0, timeout_ms=20_000)
     query.solver.add(query.variables.boundary_cap == 3)
+    assert query.solver.check() == z3.unsat
+
+
+def test_complete_row_deletion_semantics_tamper_is_unsat() -> None:
+    query = build_query(0, timeout_ms=20_000)
+    query.solver.add(
+        query.is_nonrobust("sourceCenter"),
+        query.incident("canonicalSource", "source"),
+        query.has4("canonicalSource", "sourceCenter"),
+    )
+    assert query.solver.check() == z3.unsat
+
+
+def test_complete_row_deletion_semantics_covers_new_roles() -> None:
+    query = build_query(0, timeout_ms=20_000)
+    query.solver.add(
+        query.is_nonrobust("boundaryBlockerCenter"),
+        z3.Not(query.incident("qSource1", "boundaryBlocker")),
+        z3.Not(query.has4("qSource1", "boundaryBlockerCenter")),
+    )
+    assert query.solver.check() == z3.unsat
+
+
+def test_distinct_center_rows_cannot_share_three_slots() -> None:
+    query = build_query(0, timeout_ms=20_000)
+    query.solver.add(
+        z3.Not(query.same("pinnedCenter", "boundaryBlockerCenter")),
+        query.incident("fanSource0", "boundaryBlocker"),
+        query.incident("fanSource1", "boundaryBlocker"),
+        query.incident("fanSource2", "boundaryBlocker"),
+    )
+    assert query.solver.check() == z3.unsat
+
+
+def test_boundary_fan_collective_normalization_is_not_optional() -> None:
+    query = build_query(0, timeout_ms=20_000)
+    for i in range(4):
+        query.solver.add(
+            z3.Not(
+                query.same(
+                    "boundaryBlockerCenter", f"boundaryFanBlockerCenter{i}"
+                )
+            )
+        )
+    for i in range(4):
+        for j in range(4):
+            if i == j:
+                continue
+            ci = f"boundaryFanBlockerCenter{i}"
+            cj = f"boundaryFanBlockerCenter{j}"
+            si = f"boundaryRowSource{i}"
+            sj = f"boundaryRowSource{j}"
+            query.solver.add(
+                z3.Or(
+                    z3.Not(query.has4(sj, ci)),
+                    z3.Not(query.has4(si, cj)),
+                    query.same(ci, cj),
+                )
+            )
     assert query.solver.check() == z3.unsat
 
 

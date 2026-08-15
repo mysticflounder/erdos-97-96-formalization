@@ -692,8 +692,82 @@ structure FreshThirdQFiberThreeCarrierFiniteRowTheory
       (freshThirdQFiberThreeCarrierRowCenter row)
       (freshThirdQFiberThreeCarrierRowSlot row i)
       (freshThirdQFiberThreeCarrierRowSlot row j)
+  deletion_survives_iff_robust_or_not_incident : ∀ deleted row,
+    A.HasFourAfterDeleting deleted
+        (freshThirdQFiberThreeCarrierRowCenter row) ↔
+      ¬ A.Nonrobust (freshThirdQFiberThreeCarrierRowCenter row) ∨
+        ¬ A.Incident deleted row
+  row_no_three_of_centers_ne : ∀ sourceRow targetRow,
+    ¬ A.Same
+        (freshThirdQFiberThreeCarrierRowCenter sourceRow)
+        (freshThirdQFiberThreeCarrierRowCenter targetRow) →
+      A.NoThreeSourcesInRow
+        (freshThirdQFiberThreeCarrierRowSlot sourceRow) targetRow
 
 namespace FreshThirdQFiberThreeCarrierFiniteRowTheory
+
+/-- Convert the geometric two-circle overlap bound into the indexed no-three
+predicate used by the finite query. -/
+private theorem noThreeSlots_of_inter_card_le_two
+    {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
+    {Q : FreshThirdBlockerFiber P Pρ}
+    {B : BoundaryIndexing D.A} {qOutside qBetween : Fin B.n}
+    {center : ℝ²} {id : Fin B.n}
+    {DRow : SelectedFourClass D.A (B.boundary id)}
+    {freshCap rowCap : Fin 3}
+    {Packet : FreshThirdPinnedEndpointOutsideSeedQueryPacket
+      P Pρ C Q B qOutside qBetween center id DRow freshCap rowCap}
+    {G : TriApexAllLargeContext D S}
+    {Boundary : FreshThirdQFiberThreeBoundary P Pρ Q}
+    (View : FreshThirdQFiberThreeCarrierFiniteView P Pρ Packet G Boundary)
+    (sourceRow targetRow : FreshThirdQFiberThreeCarrierRowRole)
+    (hoverlap :
+      ((FreshThirdQFiberThreeCarrierFiniteView.rowClass P Pρ View sourceRow).support ∩
+        (FreshThirdQFiberThreeCarrierFiniteView.rowClass P Pρ View targetRow).support).card ≤ 2) :
+    (FreshThirdQFiberThreeCarrierFiniteAssignment.ofView P Pρ View).NoThreeSourcesInRow
+      (freshThirdQFiberThreeCarrierRowSlot sourceRow) targetRow := by
+  intro e hall
+  let slotPoint : Fin 4 → ℝ² := fun i ↦
+    FreshThirdQFiberThreeCarrierFiniteView.point P Pρ View
+      (freshThirdQFiberThreeCarrierRowSlot sourceRow i)
+  have hslotInjective : Function.Injective slotPoint := by
+    have hcardImage :
+        (Finset.univ.image slotPoint).card =
+          (Finset.univ : Finset (Fin 4)).card := by
+      rw [← FreshThirdQFiberThreeCarrierFiniteView.rowSupport_eq_slot_image
+        (P := P) (Pρ := Pρ) View sourceRow]
+      rw [FreshThirdQFiberThreeCarrierFiniteView.rowSupport_card_eq_four
+        (P := P) (Pρ := Pρ) View sourceRow]
+      simp
+    have hinj : Set.InjOn slotPoint (Finset.univ : Finset (Fin 4)) :=
+      Finset.card_image_iff.mp hcardImage
+    intro i j hij
+    exact hinj (Finset.mem_univ i) (Finset.mem_univ j) hij
+  let chosen : Finset ℝ² :=
+    Finset.univ.image (fun k : Fin 3 ↦ slotPoint (e k))
+  have hchosenInjective :
+      Function.Injective (fun k : Fin 3 ↦ slotPoint (e k)) :=
+    hslotInjective.comp e.injective
+  have hcard : chosen.card = 3 := by
+    simp [chosen, Finset.card_image_of_injective _ hchosenInjective]
+  have hsubset :
+      chosen ⊆
+        (FreshThirdQFiberThreeCarrierFiniteView.rowClass P Pρ View sourceRow).support ∩
+          (FreshThirdQFiberThreeCarrierFiniteView.rowClass P Pρ View targetRow).support := by
+    intro point hpoint
+    rcases Finset.mem_image.mp hpoint with ⟨k, _, rfl⟩
+    apply Finset.mem_inter.mpr
+    constructor
+    · rw [FreshThirdQFiberThreeCarrierFiniteView.rowClass_support_eq_rowSupport,
+        FreshThirdQFiberThreeCarrierFiniteView.rowSupport_eq_slot_image]
+      exact Finset.mem_image.mpr ⟨e k, Finset.mem_univ _, rfl⟩
+    · rw [FreshThirdQFiberThreeCarrierFiniteView.rowClass_support_eq_rowSupport]
+      exact
+        (FreshThirdQFiberThreeCarrierFiniteAssignment.incident_ofView_iff
+          (P := P) (Pρ := Pρ) View _ _).1 (hall k)
+  have hle := Finset.card_le_card hsubset
+  rw [hcard] at hle
+  omega
 
 /-- Every exact carrier view satisfies the complete row theory. -/
 theorem ofView
@@ -720,6 +794,8 @@ theorem ofView
     incident_iff_slot := ?_
     row_center_not_incident := ?_
     row_slots_same_distance := ?_
+    deletion_survives_iff_robust_or_not_incident := ?_
+    row_no_three_of_centers_ne := ?_
   }
   · intro point
     exact (FreshThirdQFiberThreeCarrierFiniteAssignment.same_ofView_iff
@@ -796,6 +872,28 @@ theorem ofView
         FreshThirdQFiberThreeCarrierFiniteView.rowSupport_eq_slot_image]
       exact Finset.mem_image.mpr ⟨j, Finset.mem_univ j, rfl⟩
     exact (K.support_eq_radius _ hi).trans (K.support_eq_radius _ hj).symm
+  · intro deleted row
+    rw [FreshThirdQFiberThreeCarrierFiniteAssignment.hasFourAfterDeleting_ofView_iff
+      (P := P) (Pρ := Pρ)]
+    rw [FreshThirdQFiberThreeCarrierFiniteAssignment.nonrobust_ofView_iff
+      (P := P) (Pρ := Pρ)]
+    rw [FreshThirdQFiberThreeCarrierFiniteAssignment.incident_ofView_iff
+      (P := P) (Pρ := Pρ)]
+    rw [selectedFourClass_survives_erase_iff_robust_or_not_mem
+      (FreshThirdQFiberThreeCarrierFiniteView.point_mem_carrier
+        (P := P) (Pρ := Pρ) View
+        (freshThirdQFiberThreeCarrierRowCenter row))
+      (FreshThirdQFiberThreeCarrierFiniteView.rowClass P Pρ View row)]
+    rw [FreshThirdQFiberThreeCarrierFiniteView.rowClass_support_eq_rowSupport]
+    simp
+  · intro sourceRow targetRow hcenters
+    apply noThreeSlots_of_inter_card_le_two
+    apply SelectedFourClass.inter_card_le_two
+    intro hcenterEq
+    apply hcenters
+    exact
+      (FreshThirdQFiberThreeCarrierFiniteAssignment.same_ofView_iff
+        (P := P) (Pρ := Pρ) View _ _).2 hcenterEq
 
 end FreshThirdQFiberThreeCarrierFiniteRowTheory
 

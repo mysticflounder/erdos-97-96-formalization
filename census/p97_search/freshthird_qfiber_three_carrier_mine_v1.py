@@ -61,6 +61,57 @@ def _overlap(classes: dict[str, int], left: str, right: str) -> int:
     return sum(_incident(classes, role, right) for role in ROWS[left][1])
 
 
+def _has_four(signature: dict[str, Any], deleted: str, center: str) -> bool:
+    values = signature["has_four_after_deleting"][center]
+    return values[ROLES.index(deleted)]
+
+
+def _boundary_fan_normalized_witnesses(
+    signature: dict[str, Any], classes: dict[str, int]
+) -> dict[str, object]:
+    interiors = signature["in_cap_interior"]
+    base_center = "boundaryBlockerCenter"
+    center_indices = [
+        i
+        for i in range(4)
+        if classes[f"boundaryFanBlockerCenter{i}"] == classes[base_center]
+    ]
+    repeated = []
+    mutual = []
+    for i in range(4):
+        for j in range(i + 1, 4):
+            ci = f"boundaryFanBlockerCenter{i}"
+            cj = f"boundaryFanBlockerCenter{j}"
+            si = f"boundaryRowSource{i}"
+            sj = f"boundaryRowSource{j}"
+            same_center = classes[ci] == classes[cj]
+            survives_ji = _has_four(signature, sj, ci)
+            survives_ij = _has_four(signature, si, cj)
+            for cap in range(3):
+                if (
+                    interiors[ci][cap]
+                    and interiors[cj][cap]
+                    and (same_center or survives_ji or survives_ij)
+                ):
+                    repeated.append(
+                        {
+                            "i": i,
+                            "j": j,
+                            "cap": cap,
+                            "same_center": same_center,
+                            "j_survives_at_i": survives_ji,
+                            "i_survives_at_j": survives_ij,
+                        }
+                    )
+            if not same_center and survives_ji and survives_ij:
+                mutual.append({"i": i, "j": j})
+    return {
+        "center_blocker_indices": center_indices,
+        "repeated_cap_pairs": repeated,
+        "mutual_cross_pairs": mutual,
+    }
+
+
 def focal_metrics(result: dict[str, Any]) -> dict[str, object]:
     signature = result["model_signature"]
     classes = _classes(signature)
@@ -87,6 +138,9 @@ def focal_metrics(result: dict[str, Any]) -> dict[str, object]:
             classes[f"boundaryFanBlockerCenter{i}"]
             == classes["boundaryBlockerCenter"]
             for i in range(4)
+        ),
+        "boundary_fan_normalized": _boundary_fan_normalized_witnesses(
+            signature, classes
         ),
         "row_overlap_matrix": {
             f"{left}|{right}": _overlap(classes, left, right)

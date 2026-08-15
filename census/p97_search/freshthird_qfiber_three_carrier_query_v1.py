@@ -17,6 +17,7 @@ Verdicts are deliberately scoped:
 from __future__ import annotations
 
 import argparse
+import concurrent.futures
 import hashlib
 import itertools
 import json
@@ -390,6 +391,23 @@ def build_query(boundary_index: int, *, timeout_ms: int = 60_000) -> CarrierQuer
         row_constraints.extend(q.point(left) != q.point(right) for left, right in itertools.combinations(slots, 2))
         row_constraints.append(z3.Not(q.incident(center, _row)))
         row_constraints.extend(q.same_distance(center, slots[0], slot) for slot in slots)
+        row_constraints.extend(
+            q.has4(role, center)
+            == z3.Or(
+                z3.Not(q.is_nonrobust(center)),
+                z3.Not(q.incident(role, _row)),
+            )
+            for role in ROLES
+        )
+    for left, right in itertools.combinations(ROWS, 2):
+        left_center = ROWS[left][2]
+        right_center = ROWS[right][2]
+        row_constraints.append(
+            z3.Implies(
+                z3.Not(q.same(left_center, right_center)),
+                _row_overlap_count(q, left, right) <= 2,
+            )
+        )
     b.add_group("complete_exact_row_theory", row_constraints)
 
     # Full finite relational semantics inherited from the exact view.
@@ -612,6 +630,66 @@ def build_query(boundary_index: int, *, timeout_ms: int = 60_000) -> CarrierQuer
                 ),
             )
         )
+
+    boundary_center_outcomes = []
+    for i in range(4):
+        center = f"boundaryFanBlockerCenter{i}"
+        source = f"boundaryRowSource{i}"
+        row = f"boundaryFanBlocker{i}"
+        for cap in range(3):
+            boundary_center_outcomes.append(
+                z3.And(
+                    q.same("boundaryBlockerCenter", center),
+                    q.interior(center, cap),
+                    z3.Not(q.has4(source, center)),
+                    _row_support_eq(q, "boundaryBlocker", row),
+                    q.is_nonrobust("boundaryBlockerCenter"),
+                )
+            )
+
+    boundary_repeated_cap = []
+    boundary_mutual_cross = []
+    for i in range(4):
+        for j in range(4):
+            if i == j:
+                continue
+            ci = f"boundaryFanBlockerCenter{i}"
+            cj = f"boundaryFanBlockerCenter{j}"
+            si = f"boundaryRowSource{i}"
+            sj = f"boundaryRowSource{j}"
+            for cap in range(3):
+                boundary_repeated_cap.append(
+                    z3.And(
+                        q.interior(ci, cap),
+                        q.interior(cj, cap),
+                        z3.Or(q.same(ci, cj), q.has4(sj, ci), q.has4(si, cj)),
+                    )
+                )
+            boundary_mutual_cross.append(
+                z3.And(
+                    q.has4(sj, ci),
+                    q.has4(si, cj),
+                    z3.Not(q.same(ci, cj)),
+                )
+            )
+    carrier.append(
+        z3.Or(
+            z3.Or(*boundary_center_outcomes),
+            z3.And(
+                *(
+                    z3.Not(
+                        q.same(
+                            "boundaryBlockerCenter",
+                            f"boundaryFanBlockerCenter{i}",
+                        )
+                    )
+                    for i in range(4)
+                ),
+                z3.Or(*boundary_repeated_cap),
+                z3.Or(*boundary_mutual_cross),
+            ),
+        )
+    )
     b.add_group("carrier_source_theory", carrier)
 
     # Keep this explicit: it is a schema sanity check, not a source clause.
@@ -817,6 +895,12 @@ def source_manifest() -> dict[str, object]:
         "ambient_carrier_enumerated": False,
         "distance_projection": "finite equality classes; no Euclidean realizability claim",
         "deletion_projection": "opaque ambient predicate constrained by source laws",
+        "row_deletion_semantics": (
+            "complete robust-or-outside-row equivalence at every named row center"
+        ),
+        "row_intersection_semantics": (
+            "distinct-center named selected rows share at most two points"
+        ),
         "row_origins": {
             row: {"origin": origin, "slots": list(slots), "center": center}
             for row, (origin, slots, center) in sorted(ROWS.items())
@@ -869,14 +953,28 @@ def solve_cell(boundary_index: int, *, timeout_ms: int) -> dict[str, object]:
     return common
 
 
-def run_wave(out_dir: Path, *, timeout_ms: int) -> dict[str, object]:
+def _solve_boundary(arguments: tuple[int, int]) -> dict[str, object]:
+    boundary_index, timeout_ms = arguments
+    return solve_cell(boundary_index, timeout_ms=timeout_ms)
+
+
+def run_wave(
+    out_dir: Path, *, timeout_ms: int, workers: int = 1
+) -> dict[str, object]:
+    if workers not in range(1, 5):
+        raise ValueError("workers must be in range(1, 5)")
     manifest = source_manifest()
     _atomic_json(out_dir / "manifest.json", manifest)
-    results = []
-    for boundary_index in range(4):
-        result = solve_cell(boundary_index, timeout_ms=timeout_ms)
+    arguments = tuple((boundary_index, timeout_ms) for boundary_index in range(4))
+    if workers == 1:
+        results = [_solve_boundary(argument) for argument in arguments]
+    else:
+        with concurrent.futures.ProcessPoolExecutor(max_workers=workers) as pool:
+            results = list(pool.map(_solve_boundary, arguments))
+    results.sort(key=lambda item: item["boundary_index"])
+    for result in results:
+        boundary_index = result["boundary_index"]
         _atomic_json(out_dir / f"cell-{boundary_index}.json", result)
-        results.append(result)
     summary = {
         "schema": "p97-freshthird-qfiber-three-carrier-wave/v1",
         "query_schema": SCHEMA,
@@ -892,10 +990,11 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--out-dir", type=Path, required=True)
     parser.add_argument("--timeout-ms", type=int, default=60_000)
+    parser.add_argument("--workers", type=int, choices=range(1, 5), default=1)
     args = parser.parse_args(argv)
     if args.timeout_ms <= 0:
         parser.error("--timeout-ms must be positive")
-    summary = run_wave(args.out_dir, timeout_ms=args.timeout_ms)
+    summary = run_wave(args.out_dir, timeout_ms=args.timeout_ms, workers=args.workers)
     print(json.dumps(summary, sort_keys=True))
     return 0 if all(status != "UNKNOWN" for status in summary["statuses"].values()) else 2
 

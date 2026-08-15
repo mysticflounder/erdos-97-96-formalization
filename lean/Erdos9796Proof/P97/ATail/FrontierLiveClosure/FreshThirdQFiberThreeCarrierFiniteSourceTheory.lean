@@ -73,6 +73,57 @@ private theorem noThreeSourcesInRow_of_overlap_card_le_two
   rw [hcard] at hle
   omega
 
+/-- Exact center-blocker arm for the second-order fan on the boundary
+blocker's selected row. -/
+def BoundaryFanCenterBlockerOutcome
+    (A : FreshThirdQFiberThreeCarrierFiniteAssignment) : Prop :=
+  ∃ i : Fin 4, ∃ cap : Fin 3,
+    A.Same (.inr .boundaryBlockerCenter)
+        (.inr (.boundaryFanBlockerCenter i)) ∧
+      A.InCapInterior (.inr (.boundaryFanBlockerCenter i)) cap ∧
+      ¬ A.HasFourAfterDeleting
+        (.inr (.boundaryRowSource i))
+        (.inr (.boundaryFanBlockerCenter i)) ∧
+      (∀ point,
+        A.Incident point (.inr .boundaryBlocker) ↔
+          A.Incident point (.inr (.boundaryFanBlocker i))) ∧
+      A.Nonrobust (.inr .boundaryBlockerCenter)
+
+/-- Complete no-center witness graph for the second-order boundary fan. -/
+def BoundaryFanNoCenterOutcome
+    (A : FreshThirdQFiberThreeCarrierFiniteAssignment) : Prop :=
+  (∀ i : Fin 4,
+      ¬ A.Same (.inr .boundaryBlockerCenter)
+        (.inr (.boundaryFanBlockerCenter i))) ∧
+    (∃ i j : Fin 4, i ≠ j ∧
+      ∃ cap : Fin 3,
+        A.InCapInterior (.inr (.boundaryFanBlockerCenter i)) cap ∧
+        A.InCapInterior (.inr (.boundaryFanBlockerCenter j)) cap ∧
+        (A.Same
+            (.inr (.boundaryFanBlockerCenter i))
+            (.inr (.boundaryFanBlockerCenter j)) ∨
+          A.HasFourAfterDeleting
+            (.inr (.boundaryRowSource j))
+            (.inr (.boundaryFanBlockerCenter i)) ∨
+          A.HasFourAfterDeleting
+            (.inr (.boundaryRowSource i))
+            (.inr (.boundaryFanBlockerCenter j)))) ∧
+    (∃ i j : Fin 4, i ≠ j ∧
+      A.HasFourAfterDeleting
+        (.inr (.boundaryRowSource j))
+        (.inr (.boundaryFanBlockerCenter i)) ∧
+      A.HasFourAfterDeleting
+        (.inr (.boundaryRowSource i))
+        (.inr (.boundaryFanBlockerCenter j)) ∧
+      ¬ A.Same
+        (.inr (.boundaryFanBlockerCenter i))
+        (.inr (.boundaryFanBlockerCenter j)))
+
+/-- Source-faithful collective normalization of the second-order fan. -/
+def BoundaryFanNormalizedOutcome
+    (A : FreshThirdQFiberThreeCarrierFiniteAssignment) : Prop :=
+  BoundaryFanCenterBlockerOutcome A ∨ BoundaryFanNoCenterOutcome A
+
 /-- Complete source-proved finite theory contributed by the carrier fans.
 
 This extends, rather than replaces, the pinned finite source theory.  It
@@ -134,6 +185,7 @@ structure SourceTheory
           A.NoThreeSourcesInRow
             (fun j ↦ .inr (.boundaryRowSource j))
             (.inr (.boundaryFanBlocker i))))
+  normalizedBoundaryFan : BoundaryFanNormalizedOutcome A
 
 /-- Packet-independent complete finite configuration for the exact-three
 carrier query. -/
@@ -281,7 +333,8 @@ theorem sourceTheory_ofView
     boundaryRowExact := ?_
     boundarySourceInBoundaryRow := ?_
     boundaryFanRowsExact := ?_
-    boundaryFanPackets := ?_ }
+    boundaryFanPackets := ?_
+    normalizedBoundaryFan := ?_ }
   · intro i j
     rw [FreshThirdQFiberThreeCarrierFiniteAssignment.same_ofView_iff]
     constructor
@@ -440,6 +493,62 @@ theorem sourceTheory_ofView
         exact
           (FreshThirdQFiberThreeCarrierFiniteAssignment.incident_ofView_iff
             (P := P) (Pρ := Pρ) View _ _).1 (hall k)
+  · rcases
+        IndexedSourceFaithfulSelectedFourFan.centerBlocker_or_noCenterBlockerWitness
+          View.carrier.boundaryBlockerRowFan with hcenter | hnoCenter
+    · rcases hcenter with ⟨W⟩
+      refine Or.inl ⟨W.sourceIndex, W.blockerCap, ?_, ?_, ?_, ?_, ?_⟩
+      · rw [FreshThirdQFiberThreeCarrierFiniteAssignment.same_ofView_iff]
+        exact W.center_eq
+      · rw [FreshThirdQFiberThreeCarrierFiniteAssignment.inCapInterior_ofView_iff]
+        exact W.blocker_mem_cap
+      · rw [FreshThirdQFiberThreeCarrierFiniteAssignment.hasFourAfterDeleting_ofView_iff]
+        simpa [FreshThirdQFiberThreeCarrierFiniteView.point] using W.deletion_blocked
+      · intro point
+        simp only [FreshThirdQFiberThreeCarrierFiniteAssignment.incident_ofView_iff]
+        rw [FreshThirdQFiberThreeCarrierFiniteView.rowSupport,
+          FreshThirdQFiberThreeCarrierFiniteView.rowSupport]
+        exact Iff.of_eq (congrArg (fun support : Finset ℝ² ↦
+          FreshThirdQFiberThreeCarrierFiniteView.point P Pρ View point ∈ support)
+            W.support_eq)
+      · rw [FreshThirdQFiberThreeCarrierFiniteAssignment.nonrobust_ofView_iff]
+        exact W.nonrobust
+    · refine Or.inr ⟨?_, ?_, ?_⟩
+      · intro i
+        rw [FreshThirdQFiberThreeCarrierFiniteAssignment.same_ofView_iff]
+        exact hnoCenter.center_ne_actualBlocker i
+      · rcases hnoCenter.repeatedCapPair with
+          ⟨i, j, hij, cap, hiCap, hjCap, hsame | hijFour | hjiFour⟩
+        · refine ⟨i, j, hij, cap, ?_, ?_, Or.inl ?_⟩
+          · rw [FreshThirdQFiberThreeCarrierFiniteAssignment.inCapInterior_ofView_iff]
+            exact hiCap
+          · rw [FreshThirdQFiberThreeCarrierFiniteAssignment.inCapInterior_ofView_iff]
+            exact hjCap
+          · rw [FreshThirdQFiberThreeCarrierFiniteAssignment.same_ofView_iff]
+            exact hsame
+        · refine ⟨i, j, hij, cap, ?_, ?_, Or.inr (Or.inl ?_)⟩
+          · rw [FreshThirdQFiberThreeCarrierFiniteAssignment.inCapInterior_ofView_iff]
+            exact hiCap
+          · rw [FreshThirdQFiberThreeCarrierFiniteAssignment.inCapInterior_ofView_iff]
+            exact hjCap
+          · rw [FreshThirdQFiberThreeCarrierFiniteAssignment.hasFourAfterDeleting_ofView_iff]
+            simpa [FreshThirdQFiberThreeCarrierFiniteView.point] using hijFour
+        · refine ⟨i, j, hij, cap, ?_, ?_, Or.inr (Or.inr ?_)⟩
+          · rw [FreshThirdQFiberThreeCarrierFiniteAssignment.inCapInterior_ofView_iff]
+            exact hiCap
+          · rw [FreshThirdQFiberThreeCarrierFiniteAssignment.inCapInterior_ofView_iff]
+            exact hjCap
+          · rw [FreshThirdQFiberThreeCarrierFiniteAssignment.hasFourAfterDeleting_ofView_iff]
+            simpa [FreshThirdQFiberThreeCarrierFiniteView.point] using hjiFour
+      · rcases hnoCenter.mutualCrossRows with
+          ⟨i, j, hij, hijFour, hjiFour, hne⟩
+        refine ⟨i, j, hij, ?_, ?_, ?_⟩
+        · rw [FreshThirdQFiberThreeCarrierFiniteAssignment.hasFourAfterDeleting_ofView_iff]
+          simpa [FreshThirdQFiberThreeCarrierFiniteView.point] using hijFour
+        · rw [FreshThirdQFiberThreeCarrierFiniteAssignment.hasFourAfterDeleting_ofView_iff]
+          simpa [FreshThirdQFiberThreeCarrierFiniteView.point] using hjiFour
+        · rw [FreshThirdQFiberThreeCarrierFiniteAssignment.same_ofView_iff]
+          exact hne
 
 /-- The exact combined assignment satisfies equality congruence for every
 solver-visible predicate. -/
