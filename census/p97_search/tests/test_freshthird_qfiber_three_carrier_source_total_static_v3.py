@@ -310,7 +310,9 @@ def test_malformed_sat_model_fails_closed_after_one_solver_call(custody) -> None
         )
     assert calls == 1
     assert (
-        runner._read_canonical_json(output / "manifest.json", "manifest")["run_state"]
+        runner._read_canonical_json(
+            output / runner.ROOT_MANIFEST_NAME, "manifest"
+        )["run_state"]
         == "RUNNING"
     )
 

@@ -61,6 +61,7 @@ STATUSES = frozenset(
 )
 CLAIM = "source-total finite discovery only; no universal or Lean closure"
 LANE_ID = "freshthird-source-total-static-v3"
+ROOT_MANIFEST_NAME = "run_manifest.json"
 
 QUERY_PATH = "census/p97_search/freshthird_qfiber_three_carrier_query_v1.py"
 SOURCE_THEOREM_MODULE = (
@@ -571,7 +572,7 @@ def _artifact_inventory(out_dir: Path) -> list[dict[str, object]]:
     for path in sorted(out_dir.rglob("*")):
         if path.is_symlink():
             raise SourceTotalStaticError(f"unsupported output artifact: {path}")
-        if path == out_dir / "manifest.json" or path.is_dir():
+        if path == out_dir / ROOT_MANIFEST_NAME or path.is_dir():
             continue
         if not path.is_file():
             raise SourceTotalStaticError(f"unsupported output artifact: {path}")
@@ -720,7 +721,7 @@ def _validate_terminal_manifest(
     timeout_seconds: int,
     solver_identity: Mapping[str, object],
 ) -> None:
-    manifest_path = out_dir / "manifest.json"
+    manifest_path = out_dir / ROOT_MANIFEST_NAME
     if not manifest_path.is_file() or manifest_path.read_bytes() != _canonical_json(
         manifest
     ):
@@ -830,7 +831,7 @@ def run_wave(
     if output.exists():
         if not output.is_dir():
             raise SourceTotalStaticError("output root exists and is not a directory")
-        manifest_path = output / "manifest.json"
+        manifest_path = output / ROOT_MANIFEST_NAME
         if not manifest_path.is_file():
             raise SourceTotalStaticError("refusing any pre-existing nonterminal root")
         existing = _read_canonical_json(manifest_path, "existing manifest")
@@ -877,7 +878,7 @@ def run_wave(
         )
     except Exception as exc:
         raise SourceTotalStaticError(f"source archive failed: {exc}") from exc
-    _atomic_write_json(output / "manifest.json", manifest)
+    _atomic_write_json(output / ROOT_MANIFEST_NAME, manifest)
 
     runner = _run_solver if solver_runner is None else solver_runner
     results: dict[str, dict[str, object]] = {}
@@ -929,7 +930,7 @@ def run_wave(
         results[str(boundary_index)] = result
         manifest["solver_calls"] = boundary_index + 1
         manifest["statuses"] = {key: value["status"] for key, value in results.items()}
-        _atomic_write_json(output / "manifest.json", manifest)
+        _atomic_write_json(output / ROOT_MANIFEST_NAME, manifest)
 
     try:
         postflight = verify_snapshot(repo, source_snapshot)
@@ -948,7 +949,7 @@ def run_wave(
     manifest["statuses"] = {key: value["status"] for key, value in results.items()}
     manifest["status"] = _aggregate_status(tuple(manifest["statuses"].values()))
     manifest["artifact_inventory"] = _artifact_inventory(output)
-    _atomic_write_json(output / "manifest.json", manifest)
+    _atomic_write_json(output / ROOT_MANIFEST_NAME, manifest)
     return manifest
 
 
