@@ -232,6 +232,17 @@ theorem MinimalDeletionCore.shellAt_selectedClass_eq
   simpa only [SelectedClass] using
     (K.shellAt s).toCriticalFourShell.support_eq.symm
 
+/-- Identify a core shell with a previously named ambient radius class once
+the source radius has been computed. -/
+theorem MinimalDeletionCore.shellAt_support_eq_selectedClass_of_dist_eq
+    {A U : Finset ℝ²} {center : ℝ²}
+    (K : MinimalDeletionCore A U center)
+    (s : {x : ℝ² // x ∈ U}) {radius : ℝ}
+    (hradius : dist center s.1 = radius) :
+    (K.shellAt s).toCriticalFourShell.support =
+      SelectedClass A center radius := by
+  rw [← K.shellAt_selectedClass_eq s, K.shellAt_radius_eq s, hradius]
+
 /-- Every shell in a minimal deletion core centered at an indexed Moser
 opposite vertex contributes at least two points to the corresponding strict
 cap interior. -/
