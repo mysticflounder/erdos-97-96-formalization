@@ -70,12 +70,13 @@ PIQD native assumption cores are checked only for membership in the exact
 requested assumption set and are archived as diagnostics. They are not used by
 the deletion algorithm and are never source-promoted by this lane.
 
-Source-promotable named cores remain blocked on the caller-owned opaque
-assumption-binding commitment requested in nthdegree conversation item `#5400`.
-The smallest generic PIQD addition is a request field whose exact bytes are
-durably echoed/bound into both the receipt and the result digest. No such field
-is required for this status-only deletion lane, so no generic PIQD change is
-needed here.
+The generic `#5400` PIQD transport contract is shipped: callers may submit
+`assumption_labels`, and the daemon returns `core_labels` while binding both
+lists into the durable receipt and result digest. This status-only deletion
+lane does not use that contract to promote a core. Source promotion remains
+blocked on the caller-owned binding of every returned label to exact P97
+source-statement bytes and independent replay of that interpretation. No
+additional generic PIQD change is needed here.
 
 ## Output and offline validation
 
@@ -135,8 +136,8 @@ the manifest SHA-256 is
 
 The public standalone validator and an independent seven-artifact custody
 audit both passed. This qualifies the PIQD transport, lifecycle, receipt,
-publication, and offline-replay boundary for this finite diagnostic run. It
-does not promote the native core to named source statements: maintainer
-contract `#5400` is still required. All source-entitlement, named-core,
-proof, theorem, global, universal, Lean, and `sorry`-closure claims remain
-false.
+publication, and offline-replay boundary for this finite diagnostic run. The
+generic `#5400` label/digest transport is shipped, but this producer has not
+bound a named core to exact P97 source statements or independently replayed
+that binding. All source-entitlement, named-core, proof, theorem, global,
+universal, Lean, and `sorry`-closure claims remain false.
