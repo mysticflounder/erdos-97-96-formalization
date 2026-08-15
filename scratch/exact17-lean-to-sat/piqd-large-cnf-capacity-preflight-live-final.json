@@ -18,8 +18,8 @@
       "max_var": 1000000
     }
   },
-  "finalized_at_utc": "2026-08-11T18:33:00.830417+00:00",
-  "job_id": "d458b002-dbfe-409b-94d3-15b784f11c99",
+  "finalized_at_utc": "2026-08-11T15:48:56.286086+00:00",
+  "job_id": "0e28e34e-385d-4b66-b2f9-9ae90c12b1fb",
   "model": {
     "assignment": [
       1,
@@ -331,7 +331,7 @@
       -307,
       -308
     ],
-    "job_id": "d458b002-dbfe-409b-94d3-15b784f11c99",
+    "job_id": "0e28e34e-385d-4b66-b2f9-9ae90c12b1fb",
     "num_assigned": 308,
     "result": "SAT"
   },
@@ -361,15 +361,15 @@
     "attested_solver_processes": 1,
     "backend": "cadical",
     "cnf_blob_hash": "b795edd93a4a222232e2b8128f6e2596eb153b9fd182788b93e0ef7a4f97e5a5",
-    "completed_at": 1786473169,
-    "confirmed_at": 1786473165,
-    "created_at": 1786473155,
-    "id": "d458b002-dbfe-409b-94d3-15b784f11c99",
-    "identity_hash": "16699c4633032ed9e00c7ab8ef40994ffef5af4a692be4bd3bc2d89f19978964",
+    "completed_at": 1786463313,
+    "confirmed_at": 1786463310,
+    "created_at": 1786463299,
+    "id": "0e28e34e-385d-4b66-b2f9-9ae90c12b1fb",
+    "identity_hash": "34cbc0d77647d93919659b88b37cb3634bd72245b0cc136c249dd5b63b637bef",
     "log_size_bytes": 5556,
     "march_timeout_s": 900,
     "model_blob_hash": null,
-    "producer_manifest_hash": "e5a987ccf149951d5d108c766e0fbb027edc77f519ebefd28a0c4bd773943238",
+    "producer_manifest_hash": "976778c6e4bf245a87d39f87f714dbb1a55b7fd019d15064ffdc05cd5bd6bd1b",
     "progress": {
       "backend": "cadical",
       "conflicts": null,
@@ -390,11 +390,11 @@
     "requested_core_limit": null,
     "result": "SAT",
     "running_for_s": null,
-    "started_at": 1786473167,
+    "started_at": 1786463311,
     "status": "completed",
     "timeout_s": 300,
-    "wall_human": "2.1s",
-    "wall_ms": 2197
+    "wall_human": "2.2s",
+    "wall_ms": 2216
   },
   "stored_final": {
     "bytes": 291567840,
@@ -404,11 +404,11 @@
     "variables": 308
   },
   "timings": {
-    "live_identity_seconds": 0.23894549999386072,
-    "model_seconds": 0.010254959110170603,
-    "static_check_seconds": 1.0158861670643091,
-    "status_seconds": 0.00979691743850708,
-    "stored_reread_and_hash_seconds": 1.0552775422111154
+    "live_identity_seconds": 0.2321959170512855,
+    "model_seconds": 0.009970999788492918,
+    "static_check_seconds": 1.0175434998236597,
+    "status_seconds": 0.009426832664757967,
+    "stored_reread_and_hash_seconds": 0.9278070409782231
   },
   "valid": true
 }

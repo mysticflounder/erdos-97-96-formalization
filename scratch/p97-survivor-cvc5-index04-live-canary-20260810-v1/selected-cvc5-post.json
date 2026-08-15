@@ -1,1 +1,0 @@
-{"lane":"smt","name":"cvc5","path":"/Users/adam/.piqd/solvers/cvc5","protocol_version":1,"sha256":"fae4cef47a4e82e3b37f8928b5cb275c8a86d138a33e49d54a9933a157b57f74","solver":"cvc5","solver_signature":"cvc5-1.3.3","solver_source":"1.3.3","solver_version":"1.3.3","usable":true,"worker":"piqd-smt","worker_version":"0.1.0"}

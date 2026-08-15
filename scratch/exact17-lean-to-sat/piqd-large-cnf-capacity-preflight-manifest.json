@@ -15,10 +15,9 @@
     "sha256": "759507d020a02253e85b59ce12e344451bbe66889dce221884f1b2a6aa3fac28",
     "variables": 308
   },
-  "purpose": "qualify PIQD custody and SAT handoff before an exact-17 immutable-root submission",
-  "run_label": "post-restart-20260811-a",
+  "purpose": "qualify PIQD custody and SAT handoff before exact-17 ninth-root submission",
   "runner_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scripts/run_piqd_large_cnf_capacity_preflight.py",
-  "runner_sha256": "7a684bd6ce7061271ee08dad045463688ba8b9a3c118e5628c4e115a585191f3",
+  "runner_sha256": "74786e1e5746fd1a60efe1edc1aca2f7112334c03ae61a70be8ded7eeb952873",
   "solver_name": "piqd-satworker-cadical-3.0.0",
   "solver_profile": "sat",
   "solver_sha256": "0ee355934249f1b3f14a20928877391a87a0dd51326cf8c6135f75cba0b6b965",

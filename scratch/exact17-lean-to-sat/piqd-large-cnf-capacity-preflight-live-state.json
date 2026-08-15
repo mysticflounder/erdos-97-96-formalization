@@ -9,7 +9,7 @@
   },
   "confirmed": {
     "blob_hash": "b795edd93a4a222232e2b8128f6e2596eb153b9fd182788b93e0ef7a4f97e5a5",
-    "job_id": "d458b002-dbfe-409b-94d3-15b784f11c99",
+    "job_id": "0e28e34e-385d-4b66-b2f9-9ae90c12b1fb",
     "status": "confirmed"
   },
   "daemon": {
@@ -23,14 +23,14 @@
       "max_var": 1000000
     }
   },
-  "job_id": "d458b002-dbfe-409b-94d3-15b784f11c99",
+  "job_id": "0e28e34e-385d-4b66-b2f9-9ae90c12b1fb",
   "manifest_path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/exact17-lean-to-sat/piqd-large-cnf-capacity-preflight-manifest.json",
-  "manifest_sha256": "e5a987ccf149951d5d108c766e0fbb027edc77f519ebefd28a0c4bd773943238",
+  "manifest_sha256": "976778c6e4bf245a87d39f87f714dbb1a55b7fd019d15064ffdc05cd5bd6bd1b",
   "prepare": {
     "cnf_blob_hash": "b795edd93a4a222232e2b8128f6e2596eb153b9fd182788b93e0ef7a4f97e5a5",
     "existing": false,
-    "identity_hash": "16699c4633032ed9e00c7ab8ef40994ffef5af4a692be4bd3bc2d89f19978964",
-    "job_id": "d458b002-dbfe-409b-94d3-15b784f11c99",
+    "identity_hash": "34cbc0d77647d93919659b88b37cb3634bd72245b0cc136c249dd5b63b637bef",
+    "job_id": "0e28e34e-385d-4b66-b2f9-9ae90c12b1fb",
     "num_clauses": 5846076,
     "num_vars": 308,
     "preview": "p cnf 308 5846076\n1 0\n1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0\n1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0\n1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0\n1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0\n1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0\n1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0\n1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0\n1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0\n1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0\n1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0\n1 1 1 1 1 "
@@ -45,10 +45,10 @@
   "session_gate": {
     "created": {
       "clauses": 5846076,
-      "created_at": 1786473156,
+      "created_at": 1786463300,
       "declared_num_vars": 308,
-      "id": "991e1dfe-aadc-4b93-8ac8-ff3d6ca67c40",
-      "journal_path": "/Users/adam/.piqd/sessions/991e1dfe-aadc-4b93-8ac8-ff3d6ca67c40/journal.cnf",
+      "id": "a73a56e9-2eb1-43eb-8334-f433a2696e58",
+      "journal_path": "/Users/adam/.piqd/sessions/a73a56e9-2eb1-43eb-8334-f433a2696e58/journal.cnf",
       "label": "p97-exact17-large-cnf-capacity-preflight",
       "lane": "sat",
       "last_assumption_free": null,
@@ -62,7 +62,7 @@
       "solver_signature": "cadical-3.0.0",
       "solves": 0,
       "state": "live",
-      "updated_at": 1786473156
+      "updated_at": 1786463300
     },
     "exported": {
       "bytes": 291567840,
@@ -73,12 +73,12 @@
     },
     "receipts": {
       "count": 1,
-      "journal_path": "/Users/adam/.piqd/sessions/991e1dfe-aadc-4b93-8ac8-ff3d6ca67c40/journal.cnf",
+      "journal_path": "/Users/adam/.piqd/sessions/a73a56e9-2eb1-43eb-8334-f433a2696e58/journal.cnf",
       "lane": "sat",
       "receipts": [
         {
           "assumptions": [],
-          "at": 1786473165,
+          "at": 1786463310,
           "base_bytes": 291567822,
           "base_clauses": 5846076,
           "base_sha256": "987877f951d579cb6d1b1174c6d52ac670ce9cd40ed9855a46687e56b253c3e5",
@@ -89,8 +89,8 @@
           "timeout_ms": 300000
         }
       ],
-      "receipts_path": "/Users/adam/.piqd/sessions/991e1dfe-aadc-4b93-8ac8-ff3d6ca67c40/receipts.jsonl",
-      "session_id": "991e1dfe-aadc-4b93-8ac8-ff3d6ca67c40"
+      "receipts_path": "/Users/adam/.piqd/sessions/a73a56e9-2eb1-43eb-8334-f433a2696e58/receipts.jsonl",
+      "session_id": "a73a56e9-2eb1-43eb-8334-f433a2696e58"
     },
     "solve": {
       "model": [
@@ -410,11 +410,11 @@
       "status": "SAT"
     },
     "timings": {
-      "close_seconds": 0.015373291913419962,
-      "create_seconds": 9.105707666836679,
-      "export_and_hash_seconds": 0.39328800002112985,
-      "receipts_seconds": 0.008664334192872047,
-      "solve_seconds": 0.021968415938317776
+      "close_seconds": 0.01621220912784338,
+      "create_seconds": 9.12823854200542,
+      "export_and_hash_seconds": 0.3221470001153648,
+      "receipts_seconds": 0.008489333093166351,
+      "solve_seconds": 0.017746875062584877
     }
   },
   "solver": {
@@ -431,7 +431,7 @@
     "worker": "piqd-satworker",
     "worker_version": "0.1.0"
   },
-  "started_at_utc": "2026-08-11T18:32:45.975834+00:00",
+  "started_at_utc": "2026-08-11T15:48:30.408774+00:00",
   "stored_preconfirm": {
     "bytes": 291567840,
     "clauses": 5846076,
@@ -440,11 +440,11 @@
     "variables": 308
   },
   "timings": {
-    "confirm_seconds": 0.009071792010217905,
-    "live_identity_seconds": 0.23660016618669033,
-    "prepare_seconds": 2.2537302090786397,
-    "session_gate_seconds": 9.548049333970994,
-    "static_check_seconds": 1.0216159168630838,
-    "stored_reread_and_hash_seconds": 1.029043042100966
+    "confirm_seconds": 0.009947916958481073,
+    "live_identity_seconds": 0.3429482080973685,
+    "prepare_seconds": 2.249902374576777,
+    "session_gate_seconds": 9.494481292087585,
+    "static_check_seconds": 1.0172992502339184,
+    "stored_reread_and_hash_seconds": 1.0024932911619544
   }
 }
