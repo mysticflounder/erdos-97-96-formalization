@@ -15,10 +15,11 @@ This module packages the kernel-derived finite facts that the source-total
 solver encoding may use.  It is a sound relaxation of the live leaf, not a
 finite-to-universal reduction and not a contradiction theorem.
 
-The projection deliberately does not encode the tri-apex rich-class packet,
-the aligned two-point-deletion minimal cores, or an identification of the
-independent common-radius witness with the named canonical surface.  Those
-boundaries are recorded by `FirstNonHitFiniteProjectionGap` below.
+The projection includes the live all-large-caps margin for all three closed
+caps.  It deliberately does not encode the tri-apex rich-class packet, the
+aligned two-point-deletion minimal cores, or an identification of the independent
+common-radius witness with the named canonical surface.  Those boundaries are
+recorded by `FirstNonHitFiniteProjectionGap` below.
 -/
 
 open scoped EuclideanGeometry
@@ -31,6 +32,7 @@ open ATailCriticalPairFrontier
 open ATailLargeOppositeCapsBiApexSurface
 open ATailLocalizedCollisionMutualOmissionCycle
 open ATailOrientedPhysicalApexIngress
+open ATailPhysicalSecondApexCommonDeletion
 open ATailRetainedStrictInteriorPairSelector
 open Census554.GeneralCarrierBridge
 
@@ -125,6 +127,42 @@ theorem firstNonHitFiniteCapIndices_card_eq
           A.boundary.boundary).card :=
       (Finset.card_image_of_injective _ A.boundary.boundary_injective).symm
     _ = (S.capByIndex cap).card := congrArg Finset.card himage
+
+/-- The finite pullbacks of all three live caps have cardinality at least six. -/
+structure FirstNonHitFiniteAllLargeCaps
+    (A : FirstNonHitSourceTotalFiniteAssignment P Pρ C Q) : Prop where
+  surplusCap_card_ge_six :
+    6 ≤ (firstNonHitFiniteCapIndices P Pρ C Q A S.surplusIdx).card
+  firstOppCap_card_ge_six :
+    6 ≤ (firstNonHitFiniteCapIndices P Pρ C Q A S.oppIndex1).card
+  secondOppCap_card_ge_six :
+    6 ≤ (firstNonHitFiniteCapIndices P Pρ C Q A S.oppIndex2).card
+
+/-- Pull the live all-large-caps residual back to the complete finite carrier. -/
+theorem firstNonHitFiniteAllLargeCaps_of_source
+    {B : FrontierBiApexRobustResidual R}
+    (L : FrontierLargeOppositeCapsBiApexRobustResidual B)
+    (N : FrontierAllLargeCapsBiApexRobustResidual L)
+    (A : FirstNonHitSourceTotalFiniteAssignment P Pρ C Q) :
+    FirstNonHitFiniteAllLargeCaps P Pρ C Q A := by
+  constructor
+  · rw [firstNonHitFiniteCapIndices_card_eq P Pρ C Q A]
+    rcases hi : S.surplusIdx with ⟨j, hj⟩
+    interval_cases j <;>
+      simpa [SurplusCapPacket.capByIndex, SurplusCapPacket.surplusCap, hi] using
+        FrontierAllLargeCapsBiApexRobustResidual.surplusCap_card_ge_six N
+  · rw [firstNonHitFiniteCapIndices_card_eq P Pρ C Q A]
+    rcases hi : S.surplusIdx with ⟨j, hj⟩
+    interval_cases j <;>
+      simpa [SurplusCapPacket.capByIndex, SurplusCapPacket.oppCap1,
+        SurplusCapPacket.oppIndex1, hi] using
+        FrontierLargeOppositeCapsBiApexRobustResidual.firstOppCap_card_ge_six L
+  · rw [firstNonHitFiniteCapIndices_card_eq P Pρ C Q A]
+    rcases hi : S.surplusIdx with ⟨j, hj⟩
+    interval_cases j <;>
+      simpa [SurplusCapPacket.capByIndex, SurplusCapPacket.oppCap2,
+        SurplusCapPacket.oppIndex2, hi] using
+        FrontierLargeOppositeCapsBiApexRobustResidual.secondOppCap_card_ge_six L
 
 /-- The three finite closed caps satisfy the exact source cap-sum identity. -/
 theorem firstNonHitFiniteCapIndices_sum
@@ -412,6 +450,7 @@ structure FirstNonHitCompleteFiniteSourceTheory
   capCard : ∀ cap,
     (firstNonHitFiniteCapIndices P Pρ C Q A cap).card =
       (S.capByIndex cap).card
+  allLargeCaps : FirstNonHitFiniteAllLargeCaps P Pρ C Q A
   capSum :
     (firstNonHitFiniteCapIndices P Pρ C Q A S.surplusIdx).card +
         (firstNonHitFiniteCapIndices P Pρ C Q A S.oppIndex1).card +
@@ -429,6 +468,9 @@ namespace FirstNonHitCompleteFiniteSourceTheory
 
 /-- Assemble the declared finite source theory from the live FirstNonHit packet. -/
 noncomputable def ofSource
+    {B : FrontierBiApexRobustResidual R}
+    (L : FrontierLargeOppositeCapsBiApexRobustResidual B)
+    (N : FrontierAllLargeCapsBiApexRobustResidual L)
     (A : FirstNonHitSourceTotalFiniteAssignment P Pρ C Q)
     (hρne : ρ ≠ radius)
     (hfrontierFour : (SelectedClass D.A S.oppApex1 radius).card = 4)
@@ -455,6 +497,7 @@ noncomputable def ofSource
   blockerMap_exact source := ⟨A.blockerMap source, rfl, fun _ h ↦ h.symm⟩
   capBlocks := A.finite_capBlocks
   capCard := firstNonHitFiniteCapIndices_card_eq P Pρ C Q A
+  allLargeCaps := firstNonHitFiniteAllLargeCaps_of_source P Pρ C Q L N A
   capSum := firstNonHitFiniteCapIndices_sum P Pρ C Q A
   apexCrossCapMemberships :=
     firstNonHitFiniteApexCrossCapMemberships_of_assignment P Pρ C Q A
