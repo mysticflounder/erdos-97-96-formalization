@@ -151,11 +151,18 @@ def publish(
         published.append((paths.child, *identity))
         _base._close_reservation(reservation)
         final_validation = _validation(paths, paths.child)
-        if candidate_validation["child"] != final_validation["child"]:
+        candidate_child = candidate_validation.get("child")
+        final_child = final_validation.get("child")
+        if not isinstance(candidate_child, dict) or not isinstance(final_child, dict):
+            raise TypeError("validator returned a malformed child identity")
+        identity_keys = ("sha256", "bytes", "clauses")
+        if any(candidate_child[key] != final_child[key] for key in identity_keys):
             raise ValueError(
                 "published child identity differs from validated candidate"
             )
         child_artifact = _base._artifact(paths.child)
+        if any(child_artifact[key] != final_child[key] for key in identity_keys):
+            raise ValueError("published child changed after final validation")
         audit = {
             "schema": AUDIT_SCHEMA,
             "status": "PASS",
