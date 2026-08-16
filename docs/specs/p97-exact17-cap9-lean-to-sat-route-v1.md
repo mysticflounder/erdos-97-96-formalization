@@ -1171,14 +1171,24 @@ five-role clauses:          2 * 2 * 17 * C(16,4) = 123,760
 four-role base triples:     C(16,3)               =     560 per cut
 four-role gapless triples:                            14 per cut
 four-role admitted clauses: 2 * 2 * 17 * 546      =  37,128
-complete new bank:                                   160,888
+source-complete bank:                                160,888
 cumulative root:                                   7,198,388
 ```
 
 Independent enumeration found all 160,888 guarded clauses distinct and found
-no overlap between the two families.  The exact source adapters select the
-correct increasing or decreasing theorem from the source orientation, using
-the canonical auxiliary position `1` in the first gap or `c+1` in the second.
+no overlap between the two families.  Relative to the cumulative parent,
+64,097 of them are already implied by a shorter or equal parent clause and
+96,791 are genuinely nonredundant.  The exact authenticated redundancy census
+has 62,537 unit, 1,416 binary, and 144 length-seven shortest witnesses; it also
+records 204 exact parent duplicates.  The parent SAT model falsifies exactly
+seven of the nonredundant clauses, so this successor makes a real refinement
+despite the large source-generated redundant orbit.  Publication must
+recompute and match this complete census rather than silently weakening the
+parent-subsumption gate.
+
+The exact source adapters select the correct increasing or decreasing theorem
+from the source orientation, using the canonical auxiliary position `1` in the
+first gap or `c+1` in the second.
 A targeted build and independent source audit pass.  The finite ingress and
 terminal adapter inherit the project's accepted native-reduction boundary
 (`Lean.ofReduceBool` and `Lean.trustCompiler`) and contain no `sorryAx`.
