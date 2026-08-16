@@ -19,7 +19,7 @@ from typing import Any
 import validate_exact17_small_role_cycle_export as validator
 
 ROOT = Path(__file__).resolve().parents[1]
-PACKAGE_ROOT = ROOT / "scratch/exact17-small-role-cycle-package-v1"
+PACKAGE_ROOT = ROOT / "scratch/exact17-small-role-cycle-package-v2"
 CHILD_PATH = PACKAGE_ROOT / "exact17-small-role-cycle.cnf"
 RECEIPT_PATH = PACKAGE_ROOT / "export-receipt.json"
 AUDIT_REPORT_PATH = PACKAGE_ROOT / "independent-audit-report.json"

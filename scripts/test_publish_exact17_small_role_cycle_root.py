@@ -110,6 +110,19 @@ def test_production_validator_pin_is_the_committed_handoff() -> None:
     assert publisher.VALIDATOR_BYTES == 36_158
 
 
+def test_production_defaults_are_pinned_to_governed_v2_package() -> None:
+    expected = publisher.ROOT / "scratch/exact17-small-role-cycle-package-v2"
+    assert publisher.PACKAGE_ROOT == expected
+    assert publisher.PRODUCTION_PATHS == publisher.PublicationPaths()
+    assert {
+        publisher.PRODUCTION_PATHS.child.parent,
+        publisher.PRODUCTION_PATHS.receipt.parent,
+        publisher.PRODUCTION_PATHS.audit_report.parent,
+        publisher.PRODUCTION_PATHS.coverage_ledger.parent,
+    } == {expected}
+    assert "exact17-small-role-cycle-package-v1" not in str(publisher.PRODUCTION_PATHS)
+
+
 def test_lean_export_command_has_required_memory_limit(
     tmp_path: Path, monkeypatch: pytest.MonkeyPatch
 ) -> None:
