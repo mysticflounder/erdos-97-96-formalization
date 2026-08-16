@@ -58,6 +58,7 @@ Results (2026-08-16, seed 7, 60 restarts, SEP 0.3):
 | 3 | 5 (15) | 1e-5 | near |
 | 4 | 3..6 (9..18) | 2e-3 .. 5e-3 | no K4 candidate; best spreads 1e-2 .. 4e-2 |
 | 4 | 7, 8 (21, 24) | 2e-2, 2e-1 | separation binds inside the disc |
+| 4 | 6, 7, 8 (SEP 0.15, seed 11, 100 restarts) | 1.5e-4, 4.4e-4, 8.5e-4 | spread-out near misses, class spreads 0.1..0.9 percent, least squares plateaus |
 
 With `SEP` 0.08 the K4 search collapses to three tight clusters at the
 vertices of an equilateral triangle (all cross-cluster distances close to
