@@ -45,7 +45,8 @@ SOURCE_BRIDGE_PATH = (
 )
 
 SOURCE_COMMIT = "d08c0f31c8b10b5869a960d0afd40990f5cc47e6"
-PARENT_SOURCE_COMMIT = "ed21c25f8c9780d702a19cc7a604e445d594c4f8"
+PARENT_SOURCE_COMMIT = "f05c5699b50e64c559f58a9fea62192f1a51983d"
+SOURCE_BRIDGE_COMMIT = "f78cade13a875a2c6b4fdd9482c0d2c89c14624f"
 LEAN_ROOT_SHA256 = "aac1d391be1c3ce9e3ec5acf93e1492620d414e3e943cc98ed451e534a755789"
 LEAN_EXPORT_SHA256 = "5e861d23ca6f77fd7245b68d1bcf8cb6135930fd1eb98a0aa44e4c6fae4f8da6"
 SOURCE_BASELINE_SHA256 = LEAN_ROOT_SHA256
@@ -328,7 +329,7 @@ def _validate_export(
         )
         _require_committed_source(
             SOURCE_BRIDGE_PATH,
-            SOURCE_COMMIT,
+            SOURCE_BRIDGE_COMMIT,
             SOURCE_BRIDGE_SHA256,
             "weighted-Kalmanson source bridge",
         )
