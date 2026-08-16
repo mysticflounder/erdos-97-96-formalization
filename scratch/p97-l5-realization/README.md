@@ -42,6 +42,12 @@ See `docs/audits/2026-08-16-firstnonhit-l5-named-fragment-realization.md`.
   `uv run python c3_symmetric_search.py K M RESTARTS SEED SEP` (n = 3M).
 - `verify_multiplicity.py` — independent check of a point list: strict
   convex position, minimum separation, per-vertex maximum multiplicity.
+- `dihedral_alternating_scan.py` — exact scan of two-orbit dihedral 2k-gons
+  (orbit A at radius 1 on even rays, orbit B at radius rho on odd rays,
+  k = 3..60): every rho at which some A-vertex has an equal-distance
+  coincidence is solved in closed form and both orbits are checked exactly.
+  Result: no convex 2k-gon of this family has multiplicity at least 4 at
+  every vertex (`done; found 0`).
 
 Results (2026-08-16, seed 7, 60 restarts, SEP 0.3):
 
