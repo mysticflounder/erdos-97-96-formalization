@@ -3,7 +3,7 @@ Copyright (c) 2026 Adam McKenna. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 -/
 
-import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenFortySixthModelRefinements
+import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenSmallRoleCycleRefinements
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenWeightedKalmansonSourceBridge
 
 /-! Eight source-validated weighted Kalmanson occurrences for the exact-seventeen successor.
@@ -22,7 +22,7 @@ namespace ATailBlockerVExactSeventeenFortySeventhModelRefinements
 open ATailBlockerVExactSeventeenSourceNormalForm
 open ATailBlockerVExactSeventeenSourceCnf
 open ATailBlockerVExactSeventeenSourceCnfCdefg
-open ATailBlockerVExactSeventeenFortySixthModelRefinements
+open ATailBlockerVExactSeventeenSmallRoleCycleRefinements
 open ATailBlockerVExactSeventeenWeightedKalmansonSourceBridge
 open ATailFrontierLiveClosure.GenericRowNogoodCertificate
 
@@ -261,12 +261,12 @@ theorem sourceAssign_fortySeventhModelRefinementClauses
     (fortySeventhWeightedOccurrences_check occurrence hoccur) order direction
 
 def extendedFortySeventhModelRefinementsCnf : Std.Sat.CNF Atom :=
-  extendedFortySixthModelRefinementsCnf ++ fortySeventhModelRefinementClauses
+  extendedSmallRoleCycleCnf ++ fortySeventhModelRefinementClauses
 
 theorem extendedFortySeventhModelRefinementsCnf_length :
-    extendedFortySeventhModelRefinementsCnf.length = 5848896 := by
+    extendedFortySeventhModelRefinementsCnf.length = 7198420 := by
   simp only [extendedFortySeventhModelRefinementsCnf, List.length_append,
-    extendedFortySixthModelRefinementsCnf_length,
+    extendedSmallRoleCycleCnf_length,
     fortySeventhModelRefinementClauses_length]
 
 theorem sourceAssign_extendedFortySeventhModelRefinementsCnf
@@ -277,7 +277,7 @@ theorem sourceAssign_extendedFortySeventhModelRefinementsCnf
   intro clause hclause
   simp only [extendedFortySeventhModelRefinementsCnf, List.mem_append] at hclause
   rcases hclause with hparent | hsuffix
-  · have h := sourceAssign_extendedFortySixthModelRefinementsCnf source
+  · have h := sourceAssign_extendedSmallRoleCycleCnf source
     rw [Std.Sat.CNF.eval, List.all_eq_true] at h
     exact h clause hparent
   · exact sourceAssign_fortySeventhModelRefinementClauses source clause hsuffix
