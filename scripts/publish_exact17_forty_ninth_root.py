@@ -22,9 +22,9 @@ PUBLISHER_PATH = Path(__file__).resolve()
 
 # These bindings authenticate the validator bytes used by the publisher.  The
 # validator source commit is supplied as a separate publication provenance pin.
-VALIDATOR_SOURCE_COMMIT = "78a1a5ec1742af97fafb68f269918bf4c50b3077"
-VALIDATOR_SHA256 = "4eae46475bb0e4efa16eeeb8c029a380f8dab35ceadc7963a82fa41843e2559a"
-VALIDATOR_BYTES = 10_504
+VALIDATOR_SOURCE_COMMIT = "1a517947b5a96c926a1d7bb55fa0763ecabfd041"
+VALIDATOR_SHA256 = "fa251edd61234d222f89f345d770159bb1307ca2bb632a904b33051da5032c8d"
+VALIDATOR_BYTES = 10_869
 
 RECEIPT_SCHEMA = "p97-exact17-forty-ninth-immutable-export-receipt/v1"
 COVERAGE_SCHEMA = "p97-exact17-forty-ninth-coverage-ledger/v1"
