@@ -27,9 +27,9 @@ COVERAGE_LEDGER_PATH = PACKAGE_ROOT / "coverage-ledger.json"
 VALIDATOR_PATH = Path(validator.__file__).resolve()
 PUBLISHER_PATH = Path(__file__).resolve()
 
-VALIDATOR_SOURCE_COMMIT = "260e0908cf8f4712c6ae289023e8fe8be6d30be6"
-VALIDATOR_SHA256 = "7d85a86b1bfc26c8f7449542b9a3fb909f8bab183022db95dcd6726a95b1126b"
-VALIDATOR_BYTES = 14_485
+VALIDATOR_SOURCE_COMMIT = "f86218469c3258c6e8ca78cbc115b3d84d6b6509"
+VALIDATOR_SHA256 = "ca40c9c5e20a22b9c97a6fc011ce362ee9321862fc92a8133bef8ebc272bb547"
+VALIDATOR_BYTES = 14_558
 
 RECEIPT_SCHEMA = "p97-exact17-weighted-kalmanson-successor-immutable-export-receipt/v1"
 COVERAGE_SCHEMA = "p97-exact17-weighted-kalmanson-successor-coverage-ledger/v1"
@@ -191,7 +191,7 @@ def _require_source_commit(paths: PublicationPaths) -> None:
             "parent Lean source",
         ),
         (
-            validator.SOURCE_COMMIT,
+            validator.SOURCE_BRIDGE_COMMIT,
             (paths.source_bridge,),
             "weighted-Kalmanson source bridge",
         ),
