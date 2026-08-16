@@ -1129,3 +1129,65 @@ immutably, validate the registered ingress and replay lock adversarially, and
 submit exactly one successor.  A `SAT` terminal triggers only a wave-local
 theorem mine; an `UNSAT` terminal requires independent certificate replay and
 composition through `exists_exactSeventeenSourceRealization_of_exactCover`.
+
+## Current-root small-role cycle successor — 2026-08-16
+
+The fully cumulative current root has 308 variables and 7,037,500 clauses.  Its
+immutable SHA-256 is
+`c2d5a4472eea783152919078da45083ad31835a407a75e22150bf2eae63cd3e8`.
+PIQD job `89aef52c-023d-4b9e-9e84-78ac487ea152` returned `SAT` in one
+solver epoch, and an independent local replay checked all clauses under the
+reported 308-variable assignment.
+
+The mandatory wave-local mine found no new metric family beyond the existing
+generic two-Kalmanson cancellation theorem.  The cross-wave compression then
+exposed and corrected a coordinate error in the first motif classification:
+mined support indices were already boundary-position indices, so applying the
+model boundary permutation a second time was invalid.  In the correct induced
+cyclic order, all thirteen size-six minimal occurrences from the two latest
+models reduce to two directed incidence patterns:
+
+1. five cyclic roles with incidences
+   `a:{b,c}`, `b:{c,e}`, and `d:{b,e}`;
+2. four cyclic roles with incidences
+   `a:{b,c}`, `b:{a,c}`, and `d:{a,b}`.
+
+The five-role pattern is unconditionally excluded by two strict Kalmanson
+inequalities.  The four-role pattern is excluded when either open alternating
+gap `(a,b)` or `(c,d)` contains another carrier point.  An exhaustive symbolic
+check shows that the four-role incidence pattern alone has no such certificate
+when both gaps are empty; those placements are therefore not admitted.
+
+`KalmansonSmallRoleCycleSchemas.lean` proves increasing and decreasing
+selected-class consumers for the five-role pattern and both four-role gap
+placements.  Its six public declarations have only `propext`,
+`Classical.choice`, and `Quot.sound` in their axiom closures.
+
+`BlockerVExactSeventeenSmallRoleCycleRefinements.lean` instantiates those
+theorems over the complete exact-seventeen source surface:
+
+```text
+five-role clauses:          2 * 2 * 17 * C(16,4) = 123,760
+four-role base triples:     C(16,3)               =     560 per cut
+four-role gapless triples:                            14 per cut
+four-role admitted clauses: 2 * 2 * 17 * 546      =  37,128
+complete new bank:                                   160,888
+cumulative root:                                   7,198,388
+```
+
+Independent enumeration found all 160,888 guarded clauses distinct and found
+no overlap between the two families.  The exact source adapters select the
+correct increasing or decreasing theorem from the source orientation, using
+the canonical auxiliary position `1` in the first gap or `c+1` in the second.
+A targeted build and independent source audit pass.  The finite ingress and
+terminal adapter inherit the project's accepted native-reduction boundary
+(`Lean.ofReduceBool` and `Lean.trustCompiler`) and contain no `sorryAx`.
+
+This bank is a uniform family theorem, not an exact-seventeen closure result by
+itself.  The next production action is to export and immutably publish the
+7,198,388-clause Lean-owned root, validate its ingress, and submit exactly one
+authenticated PIQD solve with the existing 3,600-second timeout and a hard
+limit of at most twelve cores.  A `SAT` result receives one wave-local theorem
+mine; an independently replayed `UNSAT` result composes through
+`exists_exactSeventeenSourceRealization_of_exactCover` to close the exact-17
+cap-nine branch.
