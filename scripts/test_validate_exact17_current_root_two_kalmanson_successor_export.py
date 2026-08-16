@@ -118,6 +118,10 @@ def test_source_pin_failure_precedes_cnf_open(
         validator._validate_export(parent, child, check_support=True, spec=spec)
 
 
+def test_production_source_pin_is_full_length() -> None:
+    assert len(validator.SOURCE_COMMIT) == 40
+
+
 @pytest.mark.parametrize("target", ["parent", "suffix", "trailing"])
 def test_tiny_export_rejects_byte_tampering(tmp_path: Path, target: str) -> None:
     parent, child, spec = _tiny_export(tmp_path)
@@ -156,12 +160,13 @@ def test_missing_committed_source_is_rejected(
         )
 
 
-def test_fake_commit_pin_is_rejected(tmp_path: Path) -> None:
+@pytest.mark.parametrize("commit", ["not-a-commit", "f" * 39])
+def test_fake_or_truncated_commit_pin_is_rejected(tmp_path: Path, commit: str) -> None:
     target = tmp_path / "source"
     target.write_bytes(b"live")
     with pytest.raises(ValueError, match="commit pin is malformed"):
         validator._require_committed_source(
-            target, "not-a-commit", hashlib.sha256(b"live").hexdigest(), "source"
+            target, commit, hashlib.sha256(b"live").hexdigest(), "source"
         )
 
 
