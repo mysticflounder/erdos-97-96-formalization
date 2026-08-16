@@ -122,6 +122,52 @@ def test_production_source_pin_is_full_length() -> None:
     assert len(validator.SOURCE_COMMIT) == 40
 
 
+def test_production_child_identity_is_derived_from_parent_and_suffix() -> None:
+    parent_digest = hashlib.sha256()
+    child_digest = hashlib.sha256()
+    suffix_digest = hashlib.sha256()
+    byte_count = 0
+    suffix_bytes = 0
+    with validator._open_regular_nofollow(validator.PARENT_PATH) as parent:
+        before = os.fstat(parent.fileno())
+        parent_header = parent.readline()
+        child_header = (
+            f"p cnf {validator.VARIABLES} {validator.CHILD_CLAUSES}\n".encode()
+        )
+        assert parent_header == (
+            f"p cnf {validator.VARIABLES} {validator.PARENT_CLAUSES}\n".encode()
+        )
+        parent_digest.update(parent_header)
+        child_digest.update(child_header)
+        byte_count += len(child_header)
+        while block := parent.read(1 << 20):
+            parent_digest.update(block)
+            child_digest.update(block)
+            byte_count += len(block)
+        for line in validator.expected_suffix_lines():
+            suffix_digest.update(line)
+            child_digest.update(line)
+            suffix_bytes += len(line)
+            byte_count += len(line)
+        after = os.fstat(parent.fileno())
+    identity_fields = ("st_dev", "st_ino", "st_size", "st_mtime_ns", "st_nlink")
+    assert tuple(getattr(before, field) for field in identity_fields) == tuple(
+        getattr(after, field) for field in identity_fields
+    )
+    assert (parent_digest.hexdigest(), before.st_size) == (
+        validator.PARENT_SHA256,
+        validator.PARENT_BYTES,
+    )
+    assert (suffix_digest.hexdigest(), suffix_bytes) == (
+        validator.SUFFIX_SHA256,
+        validator.SUFFIX_BYTES,
+    )
+    assert (child_digest.hexdigest(), byte_count) == (
+        validator.CHILD_SHA256,
+        validator.CHILD_BYTES,
+    )
+
+
 @pytest.mark.parametrize("target", ["parent", "suffix", "trailing"])
 def test_tiny_export_rejects_byte_tampering(tmp_path: Path, target: str) -> None:
     parent, child, spec = _tiny_export(tmp_path)
