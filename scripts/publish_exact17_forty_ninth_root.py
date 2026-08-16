@@ -20,13 +20,11 @@ COVERAGE_LEDGER_PATH = PACKAGE_ROOT / "coverage-ledger.json"
 VALIDATOR_PATH = Path(validator.__file__).resolve()
 PUBLISHER_PATH = Path(__file__).resolve()
 
-# These bindings intentionally point at the committed Lean root.  The new
-# validator/publisher themselves are uncommitted in this no-commit lane, so
-# source provenance must reject production publication until independently
-# committed.
-VALIDATOR_SOURCE_COMMIT = validator.SOURCE_COMMIT
-VALIDATOR_SHA256 = ""
-VALIDATOR_BYTES = 0
+# These bindings authenticate the validator bytes used by the publisher.  The
+# validator source commit is supplied as a separate publication provenance pin.
+VALIDATOR_SOURCE_COMMIT = "78a1a5ec1742af97fafb68f269918bf4c50b3077"
+VALIDATOR_SHA256 = "4eae46475bb0e4efa16eeeb8c029a380f8dab35ceadc7963a82fa41843e2559a"
+VALIDATOR_BYTES = 10_504
 
 RECEIPT_SCHEMA = "p97-exact17-forty-ninth-immutable-export-receipt/v1"
 COVERAGE_SCHEMA = "p97-exact17-forty-ninth-coverage-ledger/v1"
