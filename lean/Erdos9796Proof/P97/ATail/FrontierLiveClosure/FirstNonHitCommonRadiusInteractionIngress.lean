@@ -4,7 +4,7 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Adam McKenna
 -/
 
-import Erdos9796Proof.P97.ATail.FrontierLiveClosure.TwoSourceFreshThirdFiber
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure.FirstFiberAcyclicFaithfulIngress
 
 /-!
 # Source-clean interaction ingress for the FirstNonHit common-radius arm
@@ -353,6 +353,61 @@ theorem freshThird_commonRadius_mutual_fiveCenterDoubleNonHit_of_secondNonHit
         (P := P) (Pρ := Pρ) G Q htrace firstInteraction data,
       data⟩
 
+/-- Strongest source-clean form of the mutual non-hit arm.  In addition to
+the exact trace and both non-hits, it installs the raw deletion packet as six
+distinct faithful carrier centers without importing the live residual. -/
+abbrev FreshThirdCommonRadiusMutualSixCenterDoubleNonHitIngress
+    (G : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ)
+    (Q : FreshThirdBlockerFiber P Pρ) : Prop :=
+  FreshThirdCommonRadiusMutualFiveCenterDoubleNonHitIngress P Pρ G Q ∧
+    FirstFiberCollisionSixCenterAcyclicFaithfulResidual
+      P Pρ G.surface.firstSource S.oppApex2 S.surplusApex
+
+include T LPρ hLPρ MPρ in
+/-- Build the faithful six-center double-non-hit packet from a first-source
+non-hit. -/
+theorem freshThird_commonRadius_mutual_sixCenterDoubleNonHit_of_firstNonHit
+    (G : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ)
+    (Q : FreshThirdBlockerFiber P Pρ)
+    (htrace : FreshThirdCommonRadiusMutualExactTrace P Pρ G)
+    (data : FreshThirdCapSourceNonHit P Pρ G.surface.firstSource Q)
+    (secondInteraction :
+      FreshThirdCapSourceInteraction P Pρ G.surface.secondSource Q) :
+    FreshThirdCommonRadiusMutualSixCenterDoubleNonHitIngress P Pρ G Q := by
+  let packet :=
+    freshThird_commonRadius_mutual_fiveCenterDoubleNonHit_of_firstNonHit
+      (P := P) (Pρ := Pρ) (T := T)
+      (LPρ := LPρ) (hLPρ := hLPρ) (MPρ := MPρ)
+      G Q htrace data secondInteraction
+  refine ⟨packet, ?_⟩
+  exact
+    collisionFiveCenterDeletion_to_sixCenterAcyclicFaithfulResidual
+      (P := P) (Pρ := Pρ) (T := T)
+      G.surface.firstSource G.surface.firstSource_data
+      htrace.2.2.1 packet.2.1
+
+include T LPρ hLPρ MPρ in
+/-- Symmetric faithful construction from a second-source non-hit. -/
+theorem freshThird_commonRadius_mutual_sixCenterDoubleNonHit_of_secondNonHit
+    (G : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ)
+    (Q : FreshThirdBlockerFiber P Pρ)
+    (htrace : FreshThirdCommonRadiusMutualExactTrace P Pρ G)
+    (firstInteraction :
+      FreshThirdCapSourceInteraction P Pρ G.surface.firstSource Q)
+    (data : FreshThirdCapSourceNonHit P Pρ G.surface.secondSource Q) :
+    FreshThirdCommonRadiusMutualSixCenterDoubleNonHitIngress P Pρ G Q := by
+  let packet :=
+    freshThird_commonRadius_mutual_fiveCenterDoubleNonHit_of_secondNonHit
+      (P := P) (Pρ := Pρ) (T := T)
+      (LPρ := LPρ) (hLPρ := hLPρ) (MPρ := MPρ)
+      G Q htrace firstInteraction data
+  refine ⟨packet, ?_⟩
+  exact
+    collisionFiveCenterDeletion_to_sixCenterAcyclicFaithfulResidual
+      (P := P) (Pρ := Pρ) (T := T)
+      G.surface.firstSource G.surface.firstSource_data
+      htrace.2.2.1 packet.2.1
+
 /-- Positive source packet obtained by classifying the independent
 common-radius surface against the fresh blocker fiber. -/
 abbrev FreshThirdCommonRadiusQInteractionIngress
@@ -456,14 +511,14 @@ theorem freshThird_commonRadius_qResidual_exactTrace_or_oneSided
 
 /-- Strict mutual-incidence reduction after both `G`–`Q` interactions have
 been reconstructed.  Either one non-hit transports across the common blocker
-row and produces the five-center double-non-hit packet, or both rows hit the
-fresh pair and their blocker centers agree. -/
+row and produces the faithful six-center double-non-hit packet, or both rows
+hit the fresh pair and their blocker centers agree. -/
 inductive FreshThirdCommonRadiusMutualQReducedIngress
     (G : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ)
     (Q : FreshThirdBlockerFiber P Pρ) : Prop where
   | doubleNonHit
       (packet :
-        FreshThirdCommonRadiusMutualFiveCenterDoubleNonHitIngress
+        FreshThirdCommonRadiusMutualSixCenterDoubleNonHitIngress
           P Pρ G Q)
   | equalCrossRowCenters
       (firstHit :
@@ -492,13 +547,13 @@ theorem freshThird_commonRadius_mutual_qReducedIngress
   cases hresidual with
   | firstNonHit data =>
       exact .doubleNonHit <|
-        freshThird_commonRadius_mutual_fiveCenterDoubleNonHit_of_firstNonHit
+        freshThird_commonRadius_mutual_sixCenterDoubleNonHit_of_firstNonHit
           (P := P) (Pρ := Pρ) (T := T)
           (LPρ := LPρ) (hLPρ := hLPρ) (MPρ := MPρ)
           G Q htrace data secondInteraction
   | secondNonHit data =>
       exact .doubleNonHit <|
-        freshThird_commonRadius_mutual_fiveCenterDoubleNonHit_of_secondNonHit
+        freshThird_commonRadius_mutual_sixCenterDoubleNonHit_of_secondNonHit
           (P := P) (Pρ := Pρ) (T := T)
           (LPρ := LPρ) (hLPρ := hLPρ) (MPρ := MPρ)
           G Q htrace firstInteraction data
@@ -508,7 +563,7 @@ theorem freshThird_commonRadius_mutual_qReducedIngress
 
 /-- Final acyclic source ingress for the common-radius branch.  The former
 unclassified witness is reduced to exactly three consumer shapes:
-five-center double non-hit, equal-center double hit, or one-sided deletion
+faithful six-center double non-hit, equal-center double hit, or one-sided deletion
 survival with the complete interaction packet retained. -/
 abbrev FreshThirdCommonRadiusQReducedIngress
     (G : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ)
@@ -544,6 +599,8 @@ theorem freshThird_commonRadius_qReducedIngress
 #print axioms freshThird_commonRadius_mutual_fiveCenterDeletion
 #print axioms freshThird_commonRadius_mutual_fiveCenterDoubleNonHit_of_firstNonHit
 #print axioms freshThird_commonRadius_mutual_fiveCenterDoubleNonHit_of_secondNonHit
+#print axioms freshThird_commonRadius_mutual_sixCenterDoubleNonHit_of_firstNonHit
+#print axioms freshThird_commonRadius_mutual_sixCenterDoubleNonHit_of_secondNonHit
 #print axioms freshThird_commonRadius_qInteractionIngress
 #print axioms freshThird_commonRadius_qResidual_exactTrace_or_oneSided
 #print axioms freshThird_commonRadius_mutual_qReducedIngress
