@@ -42,6 +42,14 @@ See `docs/audits/2026-08-16-firstnonhit-l5-named-fragment-realization.md`.
   `uv run python c3_symmetric_search.py K M RESTARTS SEED SEP` (n = 3M).
 - `verify_multiplicity.py` — independent check of a point list: strict
   convex position, minimum separation, per-vertex maximum multiplicity.
+- `dk_symmetric_search.py` — the same alternating scheme for dihedral
+  symmetry `D_k` with `A` generic orbits (size 2k) and `B` axis orbits
+  (size k), using the free rotation pairs `dist(p, w^i p) = dist(p, w^-i p)`
+  and, for axis points, free mirror pairs.  For K4 this ansatz is only one
+  equation overdetermined (`2A + B` equations, `2A + B - 1` unknowns);
+  for K3 it is underdetermined.  `uv run python dk_symmetric_search.py K k A B RESTARTS SEED SEP`.
+- `c3_k3_15gon.json` — verified C3 K3 15-gon in the route-B tail shape
+  (Moser triangle on the MEC, all closed caps of size 6).
 - `dihedral_alternating_scan.py` — exact scan of two-orbit dihedral 2k-gons
   (orbit A at radius 1 on even rays, orbit B at radius rho on odd rays,
   k = 3..60): every rho at which some A-vertex has an equal-distance
@@ -59,6 +67,19 @@ Results (2026-08-16, seed 7, 60 restarts, SEP 0.3):
 | 4 | 3..6 (9..18) | 2e-3 .. 5e-3 | no K4 candidate; best spreads 1e-2 .. 4e-2 |
 | 4 | 7, 8 (21, 24) | 2e-2, 2e-1 | separation binds inside the disc |
 | 4 | 6, 7, 8 (SEP 0.15, seed 11, 100 restarts) | 1.5e-4, 4.4e-4, 8.5e-4 | spread-out near misses, class spreads 0.1..0.9 percent, least squares plateaus |
+
+`D_k` results (seed 5, 40 to 60 restarts, SEP 0.15; `n = 2kA + kB`):
+
+| K | k | (A,B) : n | best squared residual |
+|---|---|-----------|-----------------------|
+| 3 | 3 | (2,1) : 15 | 6e-18 exact |
+| 3 | 5 | (2,0) : 20 | 6e-29 exact |
+| 4 | 3 | (2,1) 15, (3,0) 18, (3,1) 21, (4,0) 24, (4,1) 27, (5,0) 30 | 1.6e-4, 3.4e-4, 1.8e-4, 1.7e-4, 2.1e-4, 1.5e-3 |
+| 4 | 3 | (2,2) 18, (3,2) 24, (3,3) 27, (4,2) 30 | 1.4e-2, 1.3e-2, 5.5e-2, 1.2e-2 (axis orbits conflict with convexity/separation) |
+| 4 | 4 | (1,1) 12 .. (3,1) 28 | 5e-3 .. 3e-1 |
+| 4 | 5 | (1,1) 15, (2,0) 20, (2,1) 25, (3,0) 30 | 4.3e-3, 2.7e-3, 3.5e-4, 4.2e-4 |
+| 4 | 6 | (1,1) 18, (2,0) 24, (2,1) 30 | 1.4e-2, 1.8e-2, 8.0e-3 |
+| 4 | 8 | (1,1) 24, (2,0) 32 | 8.2e-3, 1.1e-2 |
 
 With `SEP` 0.08 the K4 search collapses to three tight clusters at the
 vertices of an equilateral triangle (all cross-cluster distances close to

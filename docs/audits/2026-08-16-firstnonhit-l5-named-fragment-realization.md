@@ -110,13 +110,34 @@ adds the rich apexes and the source witness.
   is the only part a realizer can test.  Level 5's hypotheses are a subset
   of the leaf's (nthdegree fact `JGK5T7`), so a proof of level 5 is
   required and sufficient.
-- Equation count (not a proof): with coordinates and one radius per center
-  there are `3n - 4` unknowns modulo similarity and `4n` incidence
-  equations, so any K4-everywhere configuration needs at least `n + 4`
-  algebraic dependencies among its incidences.  Dependencies come from
-  shared radii between centers (mutual membership) or symmetry.  In the
-  realizations here all six named class radii are pairwise distinct, so the
-  named fragment forces no radius sharing.
+- Equation count (heuristic, not a proof): with coordinates and one radius
+  per center there are `3n - 4` unknowns modulo similarity and `4n`
+  incidence equations, so a K4-everywhere configuration without symmetry
+  needs at least `n + 4` algebraic dependencies among its incidences.
+  Dependencies from mutual membership form cycles of the mutual-incidence
+  graph (a mutual pair gives none, a mutual cycle gives one), and even the
+  fully mutual case splits into same-distance components each
+  overdetermined by three.  Under a rotational symmetry every point has the
+  free pair `dist(p, w p) = dist(p, w^-1 p)`, which changes the count
+  substantially: `C_k` with `m` orbits needs `2m` equations for `2m - 2`
+  unknowns (excess 2), and `D_k` with `a` generic and `b` axis orbits needs
+  `2a + b` equations for `2a + b - 1` unknowns (excess 1), while `K3` under
+  the same ansatz is underdetermined (`C_k`: excess `2 - m`; `D_k`: excess
+  `1 - a`), which is why K3 examples are abundant.  In the realizations here
+  all six named class radii are pairwise distinct, so the named fragment
+  forces no radius sharing.
+- K3 calibration relevant to the branch: the C3 search finds exact
+  K3-everywhere convex polygons at n = 9, 12, 15 (`c3_k3_15gon.json`,
+  verified: three apexes on the MEC, all other points strictly inside, each
+  closed cap has 6 points) and a numerically near-exact one at n = 18
+  (residual 4e-11).  So the route-B tail shape (Moser triangle, all caps at
+  least 6) contains K3-everywhere configurations; any closure of level 5
+  must use the fourth class point essentially, and a candidate global lemma
+  should first be checked to fail on these K3 examples.
+- `D_k` probe (`dk_symmetric_search.py`, k = 3, 4, 5, 6, 8, up to 32
+  vertices, separation 0.15): K3 controls exact at k = 3 (n = 15) and
+  k = 5 (n = 20); K4 finds nothing, best squared residuals 1.5e-4 (k = 3),
+  3.5e-4 (k = 5), worse for k = 4, 6, 8.  Heuristic only.
 - Symmetric probe: `c3_symmetric_search.py` searches three-fold symmetric
   convex polygons (outer orbit = Moser triangle, the branch's natural
   symmetric ansatz).  Controls: it finds an exact Danzer-type K3 nonagon and
