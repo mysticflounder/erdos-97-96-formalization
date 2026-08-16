@@ -27,6 +27,7 @@ CHECKPOINT_SCHEMA = "worktree-lane-checkpoint/v1"
 RUN_MANIFEST_SCHEMA = "worktree-run-manifest/v1"
 REPORT_SCHEMA = "worktree-hygiene-report/v1"
 CARD_HEAD_SCHEMA = "p97_ahead_head_run_manifest.v1"
+P97_COMMON_ONLY_V7_SCHEMA = "p97-freshthird-firstnonhit-common-only-v7/run/v1"
 P97_RUN_SCHEMAS = frozenset(
     {
         "p97-freshthird-firstnonhit-complete-finite-v2/run/v1",
@@ -34,6 +35,7 @@ P97_RUN_SCHEMAS = frozenset(
         "p97-freshthird-firstnonhit-all-large-caps-v4/run/v1",
         "p97-freshthird-firstnonhit-overlap-v5/run/v1",
         "p97-freshthird-firstnonhit-common-payload-v6/run/v1",
+        P97_COMMON_ONLY_V7_SCHEMA,
     }
 )
 PUBLICATION_LIMIT_BYTES = 100 * 1024 * 1024
@@ -131,6 +133,49 @@ _P97_SCHEMA_LANES = {
     "p97-freshthird-firstnonhit-all-large-caps-v4/run/v1": "firstnonhit-all-large-caps-v4",
     "p97-freshthird-firstnonhit-overlap-v5/run/v1": "firstnonhit-overlap-v5",
     "p97-freshthird-firstnonhit-common-payload-v6/run/v1": "firstnonhit-common-payload-v6",
+    P97_COMMON_ONLY_V7_SCHEMA: "firstnonhit-common-only-v7",
+}
+_P97_V7_AUTHENTICATED_SOURCES = {
+    "encoder_v6": {
+        "path": "census/p97_search/freshthird_firstnonhit_common_payload_v6.py",
+        "sha256": "317967139dfdca861a0e7c2eb28d572a98eab34ac44abe7818a42385613c7d76",
+    },
+    "encoder_v7": {
+        "path": "census/p97_search/freshthird_firstnonhit_common_only_v7.py",
+        "sha256": "822d10cf65afd7d0d3c8d23fb50cd063f37890226a64e4a39736a761b82aea42",
+    },
+    "frozen_runner_v6": {
+        "path": "census/p97_search/freshthird_firstnonhit_common_payload_v6_run.py",
+        "sha256": "4a49ee7de5a8627168df9db65e145089719974d7b085a819af4054c3eb09d864",
+    },
+}
+_P97_V7_ENCODING = {
+    "clauses": 638735,
+    "cnf_sha256": "81765f225d38b8433ee7704e2f8e2c19566d78842f37eeff08ed055a2a1794cd",
+    "manifest_sha256": (
+        "00a014c819584481416949a21cf7668eb589006076736eb55e63964a26ae1cab"
+    ),
+    "map_sha256": "74029a4502245f3fa80a6a71ad241d796f987fd073b084c4fb0016a9c1094ed3",
+    "schema": "p97-freshthird-firstnonhit-common-only-v7/cnf/v1/manifest/v1",
+    "sources_sha256": (
+        "68171f149e887e6ec94358703ea2e1b83e66eee15d2f3d235ea6f8c01fbedfd7"
+    ),
+    "variables": 93342,
+}
+_P97_V7_SOURCE_REVISION = {
+    "repository_head_claimed_as_source_revision": False,
+    "source_projection_commit": "b03d793000eb85bda3f1bd6c4496510aeec3b42f",
+    "target_file_revisions": {
+        (
+            "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/"
+            "FirstNonHitCommonRadiusInteractionIngress.lean"
+        ): "c5d9861d991aae1e267c40f0c8daedfa2b9739d5",
+        (
+            "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/"
+            "FirstNonHitCommonRadiusReducedFinitePayload.lean"
+        ): "b03d793000eb85bda3f1bd6c4496510aeec3b42f",
+    },
+    "target_files_authenticated_unchanged": True,
 }
 _P97_MANIFEST_KEYS = {
     schema: {
@@ -175,6 +220,22 @@ _P97_MANIFEST_KEYS["p97-freshthird-firstnonhit-overlap-v5/run/v1"].update(
 _P97_MANIFEST_KEYS["p97-freshthird-firstnonhit-common-payload-v6/run/v1"].update(
     {"lean_ingress", "production_path"}
 )
+_P97_MANIFEST_KEYS[P97_COMMON_ONLY_V7_SCHEMA] = {
+    "authenticated_sources",
+    "binary_discovery_deferred_until_after_manifest",
+    "cross_check_requested",
+    "encoding",
+    "launch_enabled",
+    "manifest_first",
+    "n",
+    "run_manifest_sha256",
+    "run_root",
+    "schema",
+    "source_revision",
+    "source_total",
+    "status",
+    "timeout_seconds",
+}
 for _schema in ("p97-freshthird-firstnonhit-common-payload-v6/run/v1",):
     _P97_MANIFEST_KEYS[_schema].update(
         {"predecessor_model_control", "cross_check_effective"}
@@ -204,6 +265,20 @@ for _schema in (
     _P97_RECEIPT_KEYS[_schema].update(
         {"cross_check_effective", "cross_check_requested"}
     )
+_P97_RECEIPT_KEYS[P97_COMMON_ONLY_V7_SCHEMA] = {
+    "all_emitted_hard_clauses_source_mapped",
+    "artifact_inventory",
+    "launch_enabled_at_creation",
+    "no_cegar_successor",
+    "processes",
+    "result",
+    "run_manifest_sha256",
+    "schema",
+    "source_total",
+    "status",
+    "terminal_receipt_sha256",
+    "theorem_bank_search_run",
+}
 
 
 class HygieneError(ValueError):
@@ -745,6 +820,42 @@ def _validate_p97_source_hashes(
     return tuple(sorted(paths))
 
 
+def _validate_p97_authenticated_sources(repo: Path, value: Any) -> tuple[str, ...]:
+    if type(value) is not dict or not value:
+        raise HygieneError("P97 authenticated_sources must be a nonempty JSON object")
+    if set(value) != set(_P97_V7_AUTHENTICATED_SOURCES):
+        raise HygieneError("P97 authenticated_sources labels differ from v7 custody")
+    paths: list[str] = []
+    for label, expected in _P97_V7_AUTHENTICATED_SOURCES.items():
+        row = value[label]
+        _validate_id(label, "P97 authenticated_sources label")
+        if type(row) is not dict or set(row) != {"path", "sha256", "size"}:
+            raise HygieneError("P97 authenticated source row has an inexact schema")
+        path = validate_relative_path(row["path"], "P97 authenticated source path")
+        digest = row["sha256"]
+        size = row["size"]
+        if path != expected["path"] or digest != expected["sha256"]:
+            raise HygieneError(
+                f"P97 authenticated source identity differs from v7 custody: {label}"
+            )
+        if not isinstance(digest, str) or _HEX64.fullmatch(digest) is None:
+            raise HygieneError(f"P97 authenticated source hash is invalid: {path}")
+        if isinstance(size, bool) or not isinstance(size, int) or size < 0:
+            raise HygieneError(f"P97 authenticated source size is invalid: {path}")
+        kind, info = _path_kind(repo, path)
+        if kind != "file" or info is None or info.st_nlink != 1:
+            raise HygieneError(
+                f"P97 authenticated source is not a unique regular file: {path}"
+            )
+        actual, actual_size = _file_digest_size(repo, path)
+        if actual != digest or actual_size != size:
+            raise HygieneError(
+                f"P97 authenticated source digest/size mismatch: {path}"
+            )
+        paths.append(path)
+    return tuple(sorted(paths))
+
+
 def _validate_p97_run_manifest(
     repo: Path, root: str, checkpoint: Checkpoint, raw: bytes
 ) -> tuple[dict[str, Any], tuple[str, ...]]:
@@ -772,27 +883,61 @@ def _validate_p97_run_manifest(
         raise HygieneError("P97 run manifest root is not exactly checkpoint-owned")
     run_id = run_root.removeprefix(expected_root)
     _validate_id(run_id, "P97 run_id")
-    if value["status"] != "RUNNING":
+    v7 = schema == P97_COMMON_ONLY_V7_SCHEMA
+    expected_status = "IN_PROGRESS" if v7 else "RUNNING"
+    if value["status"] != expected_status:
         raise HygieneError("P97 run manifest status is malformed")
-    for field, expected in (
-        ("n", 17),
-        ("source_total", False),
-        ("all_emitted_hard_clauses_source_mapped", True),
-        ("exactly_one_production_wave", True),
-        ("no_cegar_successor", True),
-        ("query_is_separate_assumption", True),
-        ("theorem_bank_search_planned", False),
-    ):
+    expected_fields = (
+        (
+            ("n", 17),
+            ("source_total", False),
+            ("cross_check_requested", False),
+            ("launch_enabled", True),
+            ("manifest_first", True),
+            ("binary_discovery_deferred_until_after_manifest", True),
+        )
+        if v7
+        else (
+            ("n", 17),
+            ("source_total", False),
+            ("all_emitted_hard_clauses_source_mapped", True),
+            ("exactly_one_production_wave", True),
+            ("no_cegar_successor", True),
+            ("query_is_separate_assumption", True),
+            ("theorem_bank_search_planned", False),
+        )
+    )
+    for field, expected in expected_fields:
         if value[field] != expected or type(value[field]) is not type(expected):
             raise HygieneError(f"P97 run manifest {field} is malformed")
-    if not isinstance(value["scope_label"], str) or not value["scope_label"]:
+    if not v7 and (
+        not isinstance(value["scope_label"], str) or not value["scope_label"]
+    ):
         raise HygieneError("P97 run manifest scope_label is malformed")
+    if v7 and (
+        isinstance(value["timeout_seconds"], bool)
+        or not isinstance(value["timeout_seconds"], int)
+        or value["timeout_seconds"] <= 0
+    ):
+        raise HygieneError("P97 v7 manifest custody fields are malformed")
+    if v7 and canonical_json_bytes(value["encoding"]) != canonical_json_bytes(
+        _P97_V7_ENCODING
+    ):
+        raise HygieneError("P97 v7 encoding custody differs")
+    if v7 and canonical_json_bytes(value["source_revision"]) != canonical_json_bytes(
+        _P97_V7_SOURCE_REVISION
+    ):
+        raise HygieneError("P97 v7 source_revision custody differs")
     digest = value["run_manifest_sha256"]
     if not isinstance(digest, str) or _HEX64.fullmatch(digest) is None:
         raise HygieneError("P97 run manifest self-hash is malformed")
     if digest != _p97_self_hash(value, "run_manifest_sha256"):
         raise HygieneError("P97 run manifest self-hash mismatch")
-    sources = _validate_p97_source_hashes(repo, value["source_hashes"], checkpoint)
+    sources = (
+        _validate_p97_authenticated_sources(repo, value["authenticated_sources"])
+        if v7
+        else _validate_p97_source_hashes(repo, value["source_hashes"], checkpoint)
+    )
     return value, sources
 
 
@@ -886,6 +1031,12 @@ def _validate_p97_generated_root(
         or receipt["all_emitted_hard_clauses_source_mapped"] is not True
     ):
         raise HygieneError("P97 terminal receipt boundary flags are malformed")
+    if schema == P97_COMMON_ONLY_V7_SCHEMA and (
+        receipt["launch_enabled_at_creation"] is not True
+        or receipt["no_cegar_successor"] is not True
+        or receipt["theorem_bank_search_run"] is not False
+    ):
+        raise HygieneError("P97 v7 terminal receipt boundary flags are malformed")
     inventory = _p97_artifact_inventory(repo, root)
     declared_inventory = receipt["artifact_inventory"]
     if type(declared_inventory) is not list or tuple(declared_inventory) != inventory:

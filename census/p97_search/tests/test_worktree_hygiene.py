@@ -173,6 +173,10 @@ def _card_head_run(repo: Path, run_id: str = "compat-1") -> str:
 
 P97_LANES = {schema: _CHECKER._P97_SCHEMA_LANES[schema] for schema in P97_RUN_SCHEMAS}
 P97_V6_SCHEMA = "p97-freshthird-firstnonhit-common-payload-v6/run/v1"
+P97_V7_SCHEMA = _CHECKER.P97_COMMON_ONLY_V7_SCHEMA
+P97_V7_AUTHENTICATED_SOURCES = _CHECKER._P97_V7_AUTHENTICATED_SOURCES
+P97_V7_ENCODING = _CHECKER._P97_V7_ENCODING
+P97_V7_SOURCE_REVISION = _CHECKER._P97_V7_SOURCE_REVISION
 
 
 def _p97_self_hash(value: dict[str, Any], field: str) -> str:
@@ -184,6 +188,20 @@ def _p97_run(repo: Path, schema: str) -> tuple[str, str]:
     lane = P97_LANES[schema]
     checkpoint_rel = f".codex/worktree-checkpoints/{lane}.json"
     root = f"scratch/runs/{lane}/n17-one-shot-audit-approved"
+    authenticated_sources = {}
+    if schema == P97_V7_SCHEMA:
+        source_repo = SCRIPT.parents[1]
+        for label, expected in P97_V7_AUTHENTICATED_SOURCES.items():
+            path = expected["path"]
+            target = repo / path
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_bytes((source_repo / path).read_bytes())
+            authenticated_sources[label] = {
+                **expected,
+                "size": target.stat().st_size,
+            }
+        _git(repo, "add", "--", *(row["path"] for row in authenticated_sources.values()))
+        _git(repo, "commit", "-qm", "install v7 authenticated sources")
     checkpoint = {
         "schema": CHECKPOINT_SCHEMA,
         "lane_id": lane,
@@ -214,27 +232,45 @@ def _p97_run(repo: Path, schema: str) -> tuple[str, str]:
             "size": (repo / "source.txt").stat().st_size,
         },
     }
-    manifest: dict[str, Any] = {
-        "schema": schema,
-        "status": "RUNNING",
-        "run_root": root,
-        "n": 17,
-        "source_total": False,
-        "scope_label": "sound finite relaxation",
-        "all_emitted_hard_clauses_source_mapped": True,
-        "independent_audit": {"status": "APPROVED"},
-        "encoding": {"variables": 1, "clauses": 0},
-        "source_hashes": source_rows,
-        "binaries": {},
-        "commands": {},
-        "timeout_seconds": 1,
-        "cross_check_requested": False,
-        "query_is_separate_assumption": True,
-        "exactly_one_production_wave": True,
-        "no_cegar_successor": True,
-        "theorem_bank_search_planned": False,
-        "run_manifest_sha256": "",
-    }
+    if schema == P97_V7_SCHEMA:
+        manifest = {
+            "schema": schema,
+            "status": "IN_PROGRESS",
+            "run_root": root,
+            "n": 17,
+            "source_total": False,
+            "launch_enabled": True,
+            "timeout_seconds": 1,
+            "cross_check_requested": False,
+            "manifest_first": True,
+            "authenticated_sources": authenticated_sources,
+            "source_revision": json.loads(json.dumps(P97_V7_SOURCE_REVISION)),
+            "encoding": dict(P97_V7_ENCODING),
+            "binary_discovery_deferred_until_after_manifest": True,
+            "run_manifest_sha256": "",
+        }
+    else:
+        manifest = {
+            "schema": schema,
+            "status": "RUNNING",
+            "run_root": root,
+            "n": 17,
+            "source_total": False,
+            "scope_label": "sound finite relaxation",
+            "all_emitted_hard_clauses_source_mapped": True,
+            "independent_audit": {"status": "APPROVED"},
+            "encoding": {"variables": 1, "clauses": 0},
+            "source_hashes": source_rows,
+            "binaries": {},
+            "commands": {},
+            "timeout_seconds": 1,
+            "cross_check_requested": False,
+            "query_is_separate_assumption": True,
+            "exactly_one_production_wave": True,
+            "no_cegar_successor": True,
+            "theorem_bank_search_planned": False,
+            "run_manifest_sha256": "",
+        }
     if schema.endswith(
         (
             "cap-endpoint-v3/run/v1",
@@ -268,7 +304,7 @@ def _p97_run(repo: Path, schema: str) -> tuple[str, str]:
         "sha256": _sha(manifest_path),
         "size": manifest_path.stat().st_size,
     }
-    receipt: dict[str, Any] = {
+    receipt = {
         "schema": f"{schema}/terminal-receipt/v1",
         "status": "SAT",
         "source_total": False,
@@ -282,6 +318,9 @@ def _p97_run(repo: Path, schema: str) -> tuple[str, str]:
         "theorem_bank_search_run": False,
         "terminal_receipt_sha256": "",
     }
+    if schema == P97_V7_SCHEMA:
+        del receipt["independent_audit"]
+        receipt["launch_enabled_at_creation"] = True
     if schema.endswith(
         (
             "all-large-caps-v4/run/v1",
@@ -309,16 +348,40 @@ def _rewrite_p97_checkpoint(repo: Path, root: str, mutate: Any) -> None:
     checkpoint_path.write_bytes(canonical_json_bytes(checkpoint) + b"\n")
     manifest_path = repo / root / "run-manifest.json"
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
-    manifest["source_hashes"]["checkpoint"] = {
-        "path": checkpoint_path.relative_to(repo).as_posix(),
-        "sha256": _sha(checkpoint_path),
-        "size": checkpoint_path.stat().st_size,
-    }
+    if manifest["schema"] != P97_V7_SCHEMA:
+        manifest["source_hashes"]["checkpoint"] = {
+            "path": checkpoint_path.relative_to(repo).as_posix(),
+            "sha256": _sha(checkpoint_path),
+            "size": checkpoint_path.stat().st_size,
+        }
     manifest["run_manifest_sha256"] = _p97_self_hash(manifest, "run_manifest_sha256")
     manifest_path.write_bytes(canonical_json_bytes(manifest) + b"\n")
     receipt_path = repo / root / "terminal-receipt.json"
     receipt = json.loads(receipt_path.read_text(encoding="utf-8"))
     receipt["run_manifest_sha256"] = _sha(manifest_path)
+    receipt["terminal_receipt_sha256"] = _p97_self_hash(
+        receipt, "terminal_receipt_sha256"
+    )
+    receipt_path.write_bytes(canonical_json_bytes(receipt) + b"\n")
+
+
+def _rewrite_p97_manifest(repo: Path, root: str, mutate: Any) -> None:
+    manifest_path = repo / root / "run-manifest.json"
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    mutate(manifest)
+    manifest["run_manifest_sha256"] = _p97_self_hash(
+        manifest, "run_manifest_sha256"
+    )
+    manifest_path.write_bytes(canonical_json_bytes(manifest) + b"\n")
+    receipt_path = repo / root / "terminal-receipt.json"
+    receipt = json.loads(receipt_path.read_text(encoding="utf-8"))
+    receipt["run_manifest_sha256"] = _sha(manifest_path)
+    manifest_row = next(
+        row for row in receipt["artifact_inventory"] if row["path"] == "run-manifest.json"
+    )
+    manifest_row.update(
+        {"sha256": _sha(manifest_path), "size": manifest_path.stat().st_size}
+    )
     receipt["terminal_receipt_sha256"] = _p97_self_hash(
         receipt, "terminal_receipt_sha256"
     )
@@ -619,6 +682,137 @@ def test_p97_run_manifest_compatibility_is_explicit(
 
     assert report["blocking"] is False
     assert "REGISTERED_GENERATED" in _reasons(report)
+
+
+def test_p97_v7_manifest_first_root_is_registered(tmp_path: Path) -> None:
+    repo = _repo(tmp_path)
+    root, lane = _p97_run(repo, P97_V7_SCHEMA)
+
+    report = inspect_worktree(repo, lane=lane)
+
+    assert report["blocking"] is False
+    assert any(
+        row["path"].startswith(root) and row["reason"] == "REGISTERED_GENERATED"
+        for row in report["entries"]
+    )
+
+
+@pytest.mark.parametrize(
+    ("tamper", "detail"),
+    [
+        ("owner", "checkpoint owner does not match its schema"),
+        ("manifest-key", "P97 run manifest keys differ"),
+        ("manifest-path", "P97 run manifest root is not exactly checkpoint-owned"),
+        ("source-path", "P97 authenticated source path"),
+        ("source-extra", "P97 authenticated_sources labels differ"),
+        ("source-missing", "P97 authenticated_sources labels differ"),
+        ("source-renamed", "P97 authenticated_sources labels differ"),
+        ("source-unrelated", "P97 authenticated source identity differs"),
+        ("encoding", "P97 v7 encoding custody differs"),
+        ("encoding-type", "P97 v7 encoding custody differs"),
+        ("source-revision", "P97 v7 source_revision custody differs"),
+        ("source-revision-type", "P97 v7 source_revision custody differs"),
+        ("receipt-key", "P97 terminal receipt keys differ"),
+        ("terminal-boundary", "P97 v7 terminal receipt boundary flags are malformed"),
+    ],
+)
+def test_p97_v7_rejects_owner_manifest_path_and_terminal_drift(
+    tmp_path: Path, tamper: str, detail: str
+) -> None:
+    repo = _repo(tmp_path)
+    root, lane = _p97_run(repo, P97_V7_SCHEMA)
+    if tamper == "owner":
+        _rewrite_p97_checkpoint(
+            repo, root, lambda checkpoint: checkpoint.__setitem__("owner", "other-owner")
+        )
+    elif tamper == "manifest-key":
+        _rewrite_p97_manifest(
+            repo, root, lambda manifest: manifest.__setitem__("unexpected", True)
+        )
+    elif tamper == "manifest-path":
+        _rewrite_p97_manifest(
+            repo,
+            root,
+            lambda manifest: manifest.__setitem__("run_root", root + "-tampered"),
+        )
+    elif tamper == "source-path":
+        _rewrite_p97_manifest(
+            repo,
+            root,
+            lambda manifest: manifest["authenticated_sources"][
+                "encoder_v6"
+            ].__setitem__("path", "../source.txt"),
+        )
+    elif tamper == "source-extra":
+        _rewrite_p97_manifest(
+            repo,
+            root,
+            lambda manifest: manifest["authenticated_sources"].__setitem__(
+                "extra", dict(manifest["authenticated_sources"]["encoder_v6"])
+            ),
+        )
+    elif tamper == "source-missing":
+        _rewrite_p97_manifest(
+            repo,
+            root,
+            lambda manifest: manifest["authenticated_sources"].pop("encoder_v6"),
+        )
+    elif tamper == "source-renamed":
+        def rename_source(manifest: dict[str, Any]) -> None:
+            row = manifest["authenticated_sources"].pop("encoder_v6")
+            manifest["authenticated_sources"]["renamed"] = row
+
+        _rewrite_p97_manifest(repo, root, rename_source)
+    elif tamper == "source-unrelated":
+        def point_to_unrelated_file(manifest: dict[str, Any]) -> None:
+            unrelated = repo / "foreign.py"
+            manifest["authenticated_sources"]["encoder_v6"] = {
+                "path": "foreign.py",
+                "sha256": _sha(unrelated),
+                "size": unrelated.stat().st_size,
+            }
+
+        _rewrite_p97_manifest(repo, root, point_to_unrelated_file)
+    elif tamper == "encoding":
+        _rewrite_p97_manifest(
+            repo, root, lambda manifest: manifest.__setitem__("encoding", {"evil": 1})
+        )
+    elif tamper == "encoding-type":
+        _rewrite_p97_manifest(
+            repo,
+            root,
+            lambda manifest: manifest["encoding"].__setitem__("clauses", 638735.0),
+        )
+    elif tamper == "source-revision":
+        _rewrite_p97_manifest(
+            repo,
+            root,
+            lambda manifest: manifest.__setitem__("source_revision", {"evil": 1}),
+        )
+    elif tamper == "source-revision-type":
+        _rewrite_p97_manifest(
+            repo,
+            root,
+            lambda manifest: manifest["source_revision"].__setitem__(
+                "target_files_authenticated_unchanged", 1
+            ),
+        )
+    else:
+        receipt_path = repo / root / "terminal-receipt.json"
+        receipt = json.loads(receipt_path.read_text(encoding="utf-8"))
+        if tamper == "receipt-key":
+            receipt["unexpected"] = True
+        else:
+            receipt["launch_enabled_at_creation"] = False
+        receipt["terminal_receipt_sha256"] = _p97_self_hash(
+            receipt, "terminal_receipt_sha256"
+        )
+        receipt_path.write_bytes(canonical_json_bytes(receipt) + b"\n")
+
+    report = inspect_worktree(repo, lane=lane)
+
+    assert report["blocking"] is True
+    assert any(detail in issue["detail"] for issue in report["issues"])
 
 
 @pytest.mark.parametrize(
