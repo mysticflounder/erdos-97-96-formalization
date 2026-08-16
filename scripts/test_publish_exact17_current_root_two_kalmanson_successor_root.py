@@ -165,6 +165,24 @@ def test_ledger_v2_pins_sources_validator_and_publisher(
     )
 
 
+def test_validator_provenance_pins_match_committed_and_live_source() -> None:
+    assert publisher._latest_commit((publisher.VALIDATOR_PATH,)) == (
+        publisher.VALIDATOR_SOURCE_COMMIT
+    )
+    committed = publisher._git_show(
+        publisher.VALIDATOR_SOURCE_COMMIT, publisher.VALIDATOR_PATH
+    )
+    assert (hashlib.sha256(committed).hexdigest(), len(committed)) == (
+        publisher.VALIDATOR_SHA256,
+        publisher.VALIDATOR_BYTES,
+    )
+    live = publisher._artifact(publisher.VALIDATOR_PATH)
+    assert (live["sha256"], live["bytes"]) == (
+        publisher.VALIDATOR_SHA256,
+        publisher.VALIDATOR_BYTES,
+    )
+
+
 def test_source_binding_fails_before_export(
     tmp_path: Path, monkeypatch: pytest.MonkeyPatch
 ) -> None:
