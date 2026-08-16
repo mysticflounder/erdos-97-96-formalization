@@ -33,6 +33,33 @@ See `docs/audits/2026-08-16-firstnonhit-l5-named-fragment-realization.md`.
   configuration extended by critical blockers through bP, bR, v1 and all eight
   outer class points of v1 and of the two blocker shells (81 points).
 
+- `c3_symmetric_search.py` — heuristic search for convex polygons with
+  three-fold rotational symmetry (the branch's natural symmetric ansatz: the
+  outer orbit is the Moser triangle) in which every vertex has `K` other
+  vertices at one common distance.  Alternates greedy class choice (best
+  window of `K` nearly equal distances) with least squares; hinge penalties
+  for strict convexity, minimum separation `SEP`, and the unit disc.
+  `uv run python c3_symmetric_search.py K M RESTARTS SEED SEP` (n = 3M).
+- `verify_multiplicity.py` — independent check of a point list: strict
+  convex position, minimum separation, per-vertex maximum multiplicity.
+
+Results (2026-08-16, seed 7, 60 restarts, SEP 0.3):
+
+| K | M (n) | best squared residual | note |
+|---|-------|-----------------------|------|
+| 3 | 3 (9) | 1e-19 | exact; Danzer-type nonagon (control) |
+| 3 | 4 (12) | 4e-26 | exact; C3 K3 12-gon, verified convex, min sep 0.32, all multiplicities 3 |
+| 3 | 5 (15) | 1e-5 | near |
+| 4 | 3..6 (9..18) | 2e-3 .. 5e-3 | no K4 candidate; best spreads 1e-2 .. 4e-2 |
+| 4 | 7, 8 (21, 24) | 2e-2, 2e-1 | separation binds inside the disc |
+
+With `SEP` 0.08 the K4 search collapses to three tight clusters at the
+vertices of an equilateral triangle (all cross-cluster distances close to
+the side), which is a spurious near-K4 attractor, not a candidate.  This is a
+heuristic probe only: it shows the machinery finds genuine K3 solutions and
+finds no K4 solution among C3-symmetric polygons up to 24 vertices; it is
+not evidence about non-symmetric configurations.
+
 ## Reproduce
 
 ```bash

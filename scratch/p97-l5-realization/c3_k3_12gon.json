@@ -1,0 +1,6 @@
+{
+  "description": "C3-symmetric convex 12-gon in which every vertex has exactly three other vertices at one common distance (K3 everywhere, radius depends on the vertex). Found by c3_symmetric_search.py (K=3, M=4, seed 7, SEP 0.3); coordinates rounded to 5 decimals; verify_multiplicity.py with tolerance 1e-4 reports min_cross 2.18e-3, min_sep 0.3199, all multiplicities 3.",
+  "orbit_representatives": [[0.80778, 0.58949], [0.7151, 0.26112], [0.49421, 0.69383], [-0.27212, 0.5612]],
+  "points": [[0.80778, 0.58949], [0.7151, 0.26112], [0.49421, 0.69383], [-0.27212, 0.5612], [-0.9144, 0.40481], [-0.58369, 0.48873], [-0.84798, 0.08109], [-0.34995, -0.51626], [0.10662, -0.9943], [-0.13141, -0.74986], [0.35377, -0.77491], [0.62207, -0.04494]],
+  "class_radii_by_representative": [1.73205, 1.31859, 1.47544, 1.08027]
+}

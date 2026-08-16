@@ -100,6 +100,31 @@ adds the rich apexes and the source witness.
    theorem.  Candidate lemmas for this leaf should be filtered through it
    before Lean work.
 
+## 4a. Addendum (2026-08-16, later): formal content of the leaf and a symmetric probe
+
+- Verified from source: the leaf carries `D : CounterexampleData` with
+  `D.K4 : HasNEquidistantProperty 4 D.A` and `D.convex`, and
+  `H : CriticalShellSystem D.A` with `shellAt` (a full exact-four radius
+  class through every point of `A`) and `no_qfree`.  So the leaf is the
+  general K4 problem restricted to the level-5 branch; the named fragment
+  is the only part a realizer can test.  Level 5's hypotheses are a subset
+  of the leaf's (nthdegree fact `JGK5T7`), so a proof of level 5 is
+  required and sufficient.
+- Equation count (not a proof): with coordinates and one radius per center
+  there are `3n - 4` unknowns modulo similarity and `4n` incidence
+  equations, so any K4-everywhere configuration needs at least `n + 4`
+  algebraic dependencies among its incidences.  Dependencies come from
+  shared radii between centers (mutual membership) or symmetry.  In the
+  realizations here all six named class radii are pairwise distinct, so the
+  named fragment forces no radius sharing.
+- Symmetric probe: `c3_symmetric_search.py` searches three-fold symmetric
+  convex polygons (outer orbit = Moser triangle, the branch's natural
+  symmetric ansatz).  Controls: it finds an exact Danzer-type K3 nonagon and
+  an exact C3 K3 12-gon (`c3_k3_12gon.json`, verified independently).  For
+  K4 it finds nothing up to 24 vertices (best squared residuals
+  `2e-3 .. 5e-3` at separation 0.3; a spurious three-cluster attractor at
+  small separation).  Heuristic only.
+
 ## 5. Status
 
 This checkpoint closes no `sorry`.  It records a negative result about the
