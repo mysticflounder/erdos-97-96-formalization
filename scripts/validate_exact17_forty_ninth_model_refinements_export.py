@@ -271,6 +271,18 @@ EXPECTED_PARENT_SUBSUMPTION_WITNESS_COUNTS = (
 )
 
 _ORDERS = _base._ORDERS
+ExportSpec = _base.ExportSpec
+_open_regular_nofollow = _base._open_regular_nofollow
+sha256_file = _base.sha256_file
+PRODUCTION_SPEC = ExportSpec(
+    parent_sha256=PARENT_SHA256,
+    parent_bytes=PARENT_BYTES,
+    parent_clauses=PARENT_CLAUSES,
+    child_sha256=CHILD_SHA256,
+    child_bytes=CHILD_BYTES,
+    child_clauses=CHILD_CLAUSES,
+    variables=VARIABLES,
+)
 
 
 def _mine() -> dict[str, object]:
