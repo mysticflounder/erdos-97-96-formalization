@@ -2210,6 +2210,37 @@ focused canary, PIQD-adapter, and bank tests are green.  No canary
 launch, PIQD run, v24 outcome validator, or solver wave is authorized
 by this checkpoint.
 
+Exact-12 v24 canary checkpoint (2026-08-15, user-authorized full
+pipeline): the rebased immutable exact-SHA gate (frozen-identity
+reconstruction plus fail-closed job/artifact binding) passed in a
+detached worktree at `5fc7ade0` (2 passed in 1,876 s), and exactly one
+immutable cell-6 v24 canary was launched from that worktree via PIQD
+using the reusable launcher `scripts/launch_exact12_arm_canary.sh`.
+The daemon `/version` SHA-256
+`f89994bc10fcad69a264d8efbd7d76b8203c94c08f22b4536d3b473a12cee089`
+(identical to the v23 submission) was recorded at submission and is
+not treated as certification.  Job
+`481226e14c38e396583b24bac85c1d6d8e138d6ece7ba01e0f69afbd2580d6c0`
+returned `SAT_WITNESS_REPLAYED` under the v12 run schema with every
+replay flag true; the workdir is preserved at
+`scratch/arm-static-cell6-v24-live-5fc7ade0-20260815/`.  The v24
+formula therefore still admits a cell-6 model: no terminal UNSAT, no
+all-cell coverage, no universal lift, no closed live `sorry`.  Unlike
+v23, the survivor is classified `UNADMITTED_STRUCTURAL_SURVIVOR`: the
+structural detector matched stage `equality-three-triad-collision`
+with five-point core (a, b, c, d, e) = (6, 9, 7, 11, 8), a
+12-literal cube, 28,788 positive variables, and an exhaustively
+minimized subset of 7 of its 12 recorded rows — a detected structural
+stage that has no admitted generated Lean cut.  The frozen v24
+outcome validator (`exact12_next_row_arm_static_v24_validator.py`,
+derived from the v23 validator with the v24 identity pins and
+`MAX_JSON_NODES` raised to 4,000,000 for the 2,101,169-node twentieth
+bank artifact; 15 adversarial tests green) authenticates the workdir:
+valid, finite-diagnostic-only.  The mandatory all-order
+theorem-mining stop is in force; the v4 all-order mine over exactly
+this run's data is in progress.  No successor formula, additional
+canary, or solver wave is authorized by this result.
+
 The card-at-least-13 adapter audit also rules out a tempting shortcut.  The
 pentagon residual does not supply a
 `LargeCapUniqueFiveSecondApexRadius`: in particular it has no
