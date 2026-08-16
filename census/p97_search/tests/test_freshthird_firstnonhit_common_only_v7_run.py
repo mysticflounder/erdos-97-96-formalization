@@ -4,6 +4,7 @@
 
 from __future__ import annotations
 
+import os
 from pathlib import Path
 
 import pytest
@@ -113,6 +114,36 @@ def test_unregistered_direct_gate_precedes_root_creation_or_process(
     assert not root.exists()
 
 
+@pytest.mark.parametrize(
+    ("key", "wrong_display_name"),
+    (("cadical", "drat-trim"), ("drat_trim", "drat_trim")),
+)
+def test_binary_inventory_rejects_key_display_name_mismatch(
+    tmp_path: Path, key: str, wrong_display_name: str
+) -> None:
+    rows = {
+        "cadical": {
+            "name": "cadical",
+            "path": "/synthetic/cadical",
+            "sha256": "a" * 64,
+            "size": 1,
+        },
+        "drat_trim": {
+            "name": "drat-trim",
+            "path": "/synthetic/drat-trim",
+            "sha256": "b" * 64,
+            "size": 1,
+        },
+        "kissat": None,
+        "schema": runner.BINARY_SCHEMA,
+    }
+    rows[key]["name"] = wrong_display_name
+    inventory = runner._self_hashed(rows, "binaries_sha256")
+    runner._write_new(tmp_path / "binaries.json", runner._canonical_json(inventory))
+    with pytest.raises(runner.RunnerError, match="binary identity is missing"):
+        runner._validate_binaries(tmp_path, required=True, cross_check=False)
+
+
 def test_native_unsat_terminal_replay_is_zero_call_and_checks_certificate(
     monkeypatch: pytest.MonkeyPatch, tmp_path: Path
 ) -> None:
@@ -135,7 +166,7 @@ def test_native_unsat_terminal_replay_is_zero_call_and_checks_certificate(
         "size": 1,
     }
     drat = {
-        "name": "drat_trim",
+        "name": "drat-trim",
         "path": "/synthetic/drat-trim",
         "sha256": "b" * 64,
         "size": 1,
@@ -230,3 +261,45 @@ def test_complete_model_parser_rejects_partial_or_conflicting_assignments() -> N
         runner.parse_complete_model(b"s SATISFIABLE\nv 1 0\n", 2)
     with pytest.raises(runner.RunnerError, match="more than once"):
         runner.parse_complete_model(b"s SATISFIABLE\nv 1 -1 0\n", 1)
+
+
+@pytest.mark.skipif(
+    os.environ.get("P97_V7_REAL_ROOT_REENTRY_TEST") != "1",
+    reason="opt-in read-only regression for the retained production root",
+)
+def test_real_sat_terminal_reentry_is_zero_call_and_preserves_mtimes(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    root = runner._repo_root() / runner.PROPOSED_RUN_ROOT
+    assert root.is_dir() and not root.is_symlink()
+    before = {
+        path.relative_to(root).as_posix(): (
+            path.stat().st_mtime_ns,
+            path.stat().st_size,
+        )
+        for path in sorted(root.rglob("*"))
+        if path.is_file()
+    }
+
+    def forbidden(*_args: object, **_kwargs: object) -> object:
+        raise AssertionError("terminal reentry invoked a process or artifact writer")
+
+    monkeypatch.setattr(runner, "_run_process", forbidden)
+    monkeypatch.setattr(runner, "_binary_identity", forbidden)
+    monkeypatch.setattr(runner.subprocess, "run", forbidden)
+    monkeypatch.setattr(runner, "_write_new", forbidden)
+    monkeypatch.setattr(runner, "_fsync_directory", forbidden)
+    monkeypatch.setattr(runner.os, "replace", forbidden)
+    replay = runner.terminal_reentry(root)
+    after = {
+        path.relative_to(root).as_posix(): (
+            path.stat().st_mtime_ns,
+            path.stat().st_size,
+        )
+        for path in sorted(root.rglob("*"))
+        if path.is_file()
+    }
+    assert replay["status"] == "SAT"
+    assert replay["solver_calls"] == 0
+    assert replay["result"]["model_readback"]["reduced_payload_validated"] is True
+    assert after == before

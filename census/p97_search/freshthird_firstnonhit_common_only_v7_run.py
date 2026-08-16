@@ -1053,11 +1053,12 @@ def _validate_binaries(
     if binaries.get("schema") != BINARY_SCHEMA:
         raise RunnerError("binary inventory schema mismatch")
     _validate_self_hash(binaries, "binaries_sha256")
-    for name in ("cadical", "drat_trim"):
-        row = binaries.get(name)
+    display_names = {"cadical": "cadical", "drat_trim": "drat-trim"}
+    for key, display_name in display_names.items():
+        row = binaries.get(key)
         if not required and row == {}:
             continue
-        if type(row) is not dict or row.get("name") != name:
+        if type(row) is not dict or row.get("name") != display_name:
             raise RunnerError("required binary identity is missing")
         if not all(
             type(row.get(key)) is expected
