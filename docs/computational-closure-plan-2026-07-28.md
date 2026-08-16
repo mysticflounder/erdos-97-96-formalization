@@ -2241,6 +2241,52 @@ theorem-mining stop is in force; the v4 all-order mine over exactly
 this run's data is in progress.  No successor formula, additional
 canary, or solver wave is authorized by this result.
 
+The mandatory all-order theorem mine over exactly this run's data is
+complete.  The v24 miner
+(`scratch/rigid221-sourceheavy-anchor/mine_exact12_static_canary_all_orders_v24.py`,
+derived from the v23 miner with the v24 validator import, the
+twentieth-bank provenance and live-source attestation block, and the
+survivor-classification pin `UNADMITTED_STRUCTURAL_SURVIVOR`)
+authenticated the preserved workdir through the frozen v24 validator
+(`SAT_WITNESS_REPLAYED`, 47,136 variables / 677,095 clauses) and
+replayed the survivor across all 48 source orders.  Because the v24
+validator postdates commit `5fc7ade0`, census modules resolved from
+the main repository; byte-equivalence with the exact-SHA worktree was
+verified first (equal `job.json` source manifests and SHA-256-identical
+bytes for all 2,892 attested bank source paths), so every hash the
+miner authenticated equals the worktree bytes.  Every order is covered
+by the `convex-five-point-common-orientation` rule (24 forward, 24
+reverse; 24 direct, 24 mirror).  The coverage certificate uses one
+unordered five-point core {5, 6, 7, 8, 11} in two role orientations
+(`a=5, b=11, c=7` with `(x, y) = (6, 8)` and `(8, 6)`, 24 orders
+each); its positive memberships are: centers 6 and 8 each require
+{5, 11}, and center 7 requires {6, 8, 11} — the same anonymous shape
+`(c,{b,x,y}) (x,{a,b}) (y,{a,b})` on new labels.  Exactly one
+order-independent core replays in all 48 orders:
+`a=9, x=11, b=6, c=7, y=8`, whose point set {6, 7, 8, 9, 11} equals
+the survivor's structural-certificate core, with a seven-membership
+closure reaching off-core centers 0, 1, and 3.  The dominant
+placement is structurally new against every banked family: the
+twentieth bank's 11,052 placements contain neither the concrete
+pattern nor any role entry with `c=7`, `{a,b} = {5, 11}`,
+`{x,y} = {6, 8}`, and pair-support label 11 lies outside the older
+role-window banks.  The mining summary (SHA-256
+`1b6ecc46fae2092da8b98e0863dedf4be32caa562445082d4f6bda7d8193b031`)
+and diagnostic certificate (SHA-256
+`959b160d82cbf43063774be932366411018d67e86799a902f1fdbdbdbc9fd891`)
+are preserved in the canary workdir under the v4 mining schema.  The
+certificate has no generated Lean nogood: this is an authenticated
+finite diagnostic, not a proof-backed cut, coverage, or closure.  The
+result strengthens the cross-wave audit's observation — the survivor
+evades every compiled concrete-label placement while exhibiting the
+shared anonymous shape again — so the next admissible production step
+on this lane is a source-proved membership producer for the dominant
+placement (concrete, or label-general per the audit's shape) or an
+admitted generated Lean cut for the matched
+`equality-three-triad-collision` stage; only after that family is
+proved, banked, and pinned may a successor formula be compiled.  No
+successor formula, canary, or wave is authorized by this mine.
+
 The card-at-least-13 adapter audit also rules out a tempting shortcut.  The
 pentagon residual does not supply a
 `LargeCapUniqueFiveSecondApexRadius`: in particular it has no
