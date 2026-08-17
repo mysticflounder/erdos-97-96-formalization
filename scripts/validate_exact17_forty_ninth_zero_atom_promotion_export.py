@@ -71,6 +71,7 @@ VALIDATION_SCHEMA = "p97-exact17-forty-ninth-zero-atom-promotion-export-validati
 _ORDERS = _base._ORDERS
 ExportSpec = _base.ExportSpec
 _open_regular_nofollow = _base._open_regular_nofollow
+sha256_file = _base.sha256_file
 
 _SUPPORTS = (
     (
