@@ -1249,5 +1249,5 @@ The solve was SAT after 779.47 seconds.  Independent replay checked all
 failures.  The wave-only exact Kalmanson scan found five source-valid
 two-atom cancellation records, but only four distinct hit supports: two of
 the eight-hit records have the same support.  The next promotion therefore
-starts with the three distinct eight-hit supports (12 guarded clauses), while
+starts with the two distinct eight-hit supports (8 guarded clauses), while
 the two ten-hit supports remain queued behind that child.
