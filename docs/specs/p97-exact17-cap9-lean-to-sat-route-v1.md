@@ -1243,3 +1243,11 @@ gate is one authenticated solve of the published child using the existing
 3,600-second timeout and one core.  A SAT result is mined only for the next
 minimal source-valid subset; an independently replayed UNSAT result composes
 through the child terminal adapter.
+
+The solve was SAT after 779.47 seconds.  Independent replay checked all
+7,198,692 clauses against the complete 308-variable assignment with no
+failures.  The wave-only exact Kalmanson scan found five source-valid
+two-atom cancellation records, but only four distinct hit supports: two of
+the eight-hit records have the same support.  The next promotion therefore
+starts with the three distinct eight-hit supports (12 guarded clauses), while
+the two ten-hit supports remain queued behind that child.
