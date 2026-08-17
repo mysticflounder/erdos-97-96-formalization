@@ -85,7 +85,19 @@ model.
    machinery: count realizable placements admissible up to the full
    48-order deck action (a↔b flip, surplus S₃) but outside every
    installed rule.  Zero kills the prediction cleanly; nonzero names the
-   next gap classes before the solver finds them.  {{NEEDS_RESEARCH}}
+   next gap classes before the solver finds them.
+   **MEASURED 2026-08-16** (Klein widening {id, x↔y, a↔b, both};
+   `scratch/rigid221-sourceheavy-anchor/center-exchange/measure_deck_closure_gap.py`,
+   harness validated against the frozen 19,612/15,588/2,546 pins):
+   because a↔b moves the triple row at c from {b, x, y} to {a, x, y} and
+   the fired branch is order-dependent, a Klein certificate soundly blocks
+   only the union pattern supp(x) ⊇ {a, b}, supp(y) ⊇ {a, b},
+   supp(c) = {a, b, x, y}.  Result: 8,926 raw gap patterns, 6,991 with
+   realizable union rows, 0 instances in the v24 survivor cube.  The
+   predicted a↔b class is real and uncovered; every gap pattern genuinely
+   mixes both branches (pure branches are already banked).  Surplus-S₃
+   triple cycling is a different shape and remains unmeasured.
+   {{NEEDS_RESEARCH}} (S₃ shape only)
 2. **Preview-solve the v25 CNF** as unauthenticated scratch diagnostics
    the moment the chaining lands, before the canary: a SAT preview model
    gets mined immediately for the uncovered exchanges; UNSAT predicts
