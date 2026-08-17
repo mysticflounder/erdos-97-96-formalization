@@ -6,6 +6,20 @@ import publish_exact17_forty_ninth_root as publisher
 import pytest
 
 
+def test_shared_publisher_adapter_surface() -> None:
+    publisher._configure_base()
+    assert publisher.validator._open_regular_nofollow is not None
+    assert (
+        publisher.validator.sha256_file(publisher.VALIDATOR_PATH)
+        == publisher.VALIDATOR_SHA256
+    )
+    assert publisher.validator.PRODUCTION_SPEC.child_clauses == 7_198_668
+    assert publisher.validator.PRODUCTION_SPEC.child_bytes == 338_661_334
+    artifact = publisher._base._artifact(publisher.VALIDATOR_PATH)
+    assert artifact["sha256"] == publisher.VALIDATOR_SHA256
+    assert artifact["bytes"] == publisher.VALIDATOR_BYTES
+
+
 def test_publication_requires_publisher_commit_before_export(
     tmp_path: Path, monkeypatch: pytest.MonkeyPatch
 ) -> None:

@@ -161,7 +161,10 @@ def publish(
                 "published child identity differs from validated candidate"
             )
         child_artifact = _base._artifact(paths.child)
-        if any(child_artifact[key] != final_child[key] for key in identity_keys):
+        artifact_identity_keys = ("sha256", "bytes")
+        if any(
+            child_artifact[key] != final_child[key] for key in artifact_identity_keys
+        ):
             raise ValueError("published child changed after final validation")
         audit = {
             "schema": AUDIT_SCHEMA,
