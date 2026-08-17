@@ -1,0 +1,44 @@
+{
+  "schema": "exact17-v49-v8-mine-provenance/v1",
+  "status": "PASS",
+  "child": {
+    "sha256": "46b91a6e7013f75838109312604a45c244190bb2998f18f69e0dac4c36602d52",
+    "bytes": 338669476,
+    "clauses": 7198836
+  },
+  "bank_source": {
+    "role": "validator_suffix_enumeration_source_bank",
+    "path": "scratch/runs/exact17-forty-ninth-wave-v7-two-size8-20260817/export-v1/events/v7-wave-mine.json",
+    "schema": "exact17-v49-v7-wave-mine/v1",
+    "sha256": "1a51f916ed4f6afdf7486865db2089fcab2c00e35a1ef5f8a180b6f5ce708c5e",
+    "bytes": 832649,
+    "model_sha256": "192ceeba6c2366cbd49128da3ed4028dfd6f842b60b293f69e4140bb413fa299",
+    "size8_occurrences": 17,
+    "enumerated_suffix_clauses": 68,
+    "ordered_suffix_sha256": "a0f9f92e6b07d0650f285114a437dc0659cddf65350a67081d9cbc88d62f0c9f"
+  },
+  "postsolve_mine": {
+    "role": "postsolve_sat_mine_evidence_only",
+    "path": "scratch/runs/exact17-forty-ninth-wave-v8-seventeen-size8-publication-20260817/export-v1/events/v8-wave-mine.json",
+    "schema": "exact17-v49-v8-wave-mine/v1",
+    "sha256": "94ab9e52cc5702406fb0079b37c625fd6b53c65cdad6a63a9bd3edd14a2a5c93",
+    "bytes": 186959,
+    "status": "SAT_WAVE_ONLY",
+    "model_sha256": "68610579bfd15f87df1789292184a04065224847896df114fb52863b431781b6",
+    "cnf_sha256": "46b91a6e7013f75838109312604a45c244190bb2998f18f69e0dac4c36602d52",
+    "inclusion_minimal_occurrences": 16,
+    "unique_supports": 20,
+    "size_distribution": {
+      "8": 4,
+      "10": 9,
+      "12": 2,
+      "14": 1
+    },
+    "validator_enumeration_binding": "bank_source"
+  },
+  "policy": {
+    "validator_mine_path_is_bank_source": true,
+    "postsolve_mine_does_not_change_enumeration": true,
+    "solver_rerun": false
+  }
+}
