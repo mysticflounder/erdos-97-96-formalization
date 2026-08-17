@@ -66,7 +66,9 @@ SUFFIX_CLAUSES = 8
 EXPECTED_SUFFIX_SHA256 = (
     "0458b926c07cf65cf63add8e63f8923acdfd7af9a7cc2cd051913a50dc68290b"
 )
-VALIDATION_SCHEMA = "p97-exact17-forty-ninth-next-zero-atom-promotion-export-validation/v1"
+VALIDATION_SCHEMA = (
+    "p97-exact17-forty-ninth-next-zero-atom-promotion-export-validation/v1"
+)
 
 _ORDERS = _base._ORDERS
 ExportSpec = _base.ExportSpec
@@ -75,18 +77,36 @@ sha256_file = _base.sha256_file
 
 _SUPPORTS = (
     (
-        (6, 5), (6, 7), (7, 6), (7, 9), (9, 7),
-        (9, 12), (12, 5), (12, 9), (15, 6), (15, 12),
+        (6, 5),
+        (6, 7),
+        (7, 6),
+        (7, 9),
+        (9, 7),
+        (9, 12),
+        (12, 5),
+        (12, 9),
+        (15, 6),
+        (15, 12),
     ),
     (
-        (5, 9), (5, 12), (8, 5), (8, 7), (9, 7),
-        (9, 12), (12, 5), (12, 9),
+        (5, 9),
+        (5, 12),
+        (8, 5),
+        (8, 7),
+        (9, 7),
+        (9, 12),
+        (12, 5),
+        (12, 9),
     ),
 )
 
 
 def _mine() -> dict[str, object]:
-    return {"schema": "next-zero-atom-adapter-bank/v1", "status": "PASS", "occurrences": 2}
+    return {
+        "schema": "next-zero-atom-adapter-bank/v1",
+        "status": "PASS",
+        "occurrences": 2,
+    }
 
 
 def _clause_line(support, order: int, reverse: bool) -> bytes:
