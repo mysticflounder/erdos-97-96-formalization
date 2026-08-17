@@ -20,7 +20,9 @@ def extendedFortyNinthWaveV7TwoSize8PromotionDimacsString : String :=
     s!"p cnf {baseNumVars} {dimacs.length}" ::
       dimacs.map fun clause =>
         String.intercalate " " (clause.map toString) ++ " 0"
-  String.intercalate "\\n" lines ++ "\\n"
+  String.intercalate "
+" lines ++ "
+"
 
 def run (args : List String) : IO UInt32 := do
   match args with
