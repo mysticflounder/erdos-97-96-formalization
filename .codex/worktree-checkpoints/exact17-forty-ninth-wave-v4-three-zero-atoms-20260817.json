@@ -17,9 +17,8 @@
     "scratch/runs/exact17-forty-ninth-wave-v4-three-zero-atoms-20260817/export-v1/independent-audit-report.json"
   ],
   "generated_roots": [
-    "scratch/runs/exact17-forty-ninth-wave-v4-three-zero-atoms-20260817/export-v1",
-    "scratch/runs/exact17-forty-ninth-wave-v4-three-zero-atoms-20260817/mine-v1"
+    "scratch/runs/exact17-forty-ninth-wave-v4-three-zero-atoms-20260817/export-v1"
   ],
   "created_utc": "2026-08-17T01:00:00Z",
-  "manifest_sha256": "f0db2ae5a4221e6ca60e44b818ac6c8302d240a899197b145fc20aa665ffef3d"
+  "manifest_sha256": "11d3f8b5da5c406fdca1383355b734d952afe57ed102229e0536769b6024cb3e"
 }
