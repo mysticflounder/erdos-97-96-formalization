@@ -2456,6 +2456,47 @@ times the 21st bank, so the generation cost is measured before any
 freeze.  No 22nd bank, successor formula, canary, or wave is
 authorized by this producer and measurement.
 
+The 22nd-bank Python module and its adversarial test are built
+(`census/card_head/exact12_core_pair_all_order_common_five_membership_family_bank.py`
+and its test): family id
+`core-pair-all-order-common-five-label-general-abcxy.v1`, 23,802
+patterns, 2,168 logical requirements (596 pairs, 1,572 triples), row
+arities `(2, 3, 3, 3)`, and a live-chain compile that reaches the
+frozen v25 prefix identity exactly (47,174 variables, 679,351 clauses,
+DIMACS `ef94a6d4…`) before adding 37 fresh variables (47,175–47,211)
+and 24,182 clauses, for 47,211 variables and 703,533 clauses.  28
+tests pass and `ruff` is clean.  Validated independently of the
+producer: for all 23,802 roles the bank's four emitted rows equal the
+union of the certificate's eight primitive steps exactly, both cores
+satisfy the certificate's side conditions, no role is already admitted
+by the installed single-core rule, and every pair orients all 48
+orders — 0 failures in each of the four checks.  `EXPECTED_BANK_SHA256`
+is deliberately left unpinned, because the bank hash covers the Lean
+source manifest and the generated CNF module does not exist yet.
+
+That validation uncovered a repository-wide break that is not this
+lane's doing and blocks the wave.  A bank body embeds a
+`source_manifest` carrying a SHA-256 per file over the bank's whole
+Lean import closure — 2,881 files for the second-opposite ancestor —
+so a content change to ANY file in that closure drifts every
+downstream `EXPECTED_BANK_SHA256` / `EXPECTED_PARENT_BANK_SHA256` pin.
+Commit `5169fa2b` (2026-08-17, the pentagon OffClass `{xu, deleted}`
+bisector census) added 186 lines to
+`lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221SourceHeavy.lean`,
+which is inside that closure, with no import change.  Measured
+consequence at HEAD: the second-opposite ancestor's
+`EXPECTED_PARENT_BANK_SHA256` expects `f5c04504…` while a live rebuild
+gives `7a483d0d…`, its CNF identity still matching exactly (45,176
+variables, 640,828 clauses, DIMACS `1c5e5128…`), so the drift is
+manifest-only.  The 21st-bank suite therefore reports 2 passed and 5
+errors at HEAD, reproduced on a pristine `git archive HEAD` export, so
+it is committed state and not worktree dirt.  The two new core-pair
+Lean files are NOT in the hashed closure and are not the cause.
+Repairing this means refreezing roughly 37 manifest-only pins across
+the ancestor bank chain, which re-attests another lane's proof state;
+that is a chain-wide trust decision and is left for authorization
+rather than taken here.  No wave may run until it is resolved.
+
 The card-at-least-13 adapter audit also rules out a tempting shortcut.  The
 pentagon residual does not supply a
 `LargeCapUniqueFiveSecondApexRadius`: in particular it has no
