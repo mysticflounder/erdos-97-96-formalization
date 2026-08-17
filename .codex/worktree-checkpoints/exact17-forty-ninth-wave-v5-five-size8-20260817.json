@@ -1,0 +1,16 @@
+{
+ "schema": "worktree-lane-checkpoint/v1",
+ "lane_id": "exact17-forty-ninth-wave-v5-five-size8-20260817",
+ "owner": "exact17-forty-ninth-wave-v5-five-size8",
+ "base_head": "bb30bf999965588aa30d21c98c98efeb3968a383",
+ "owned_paths": [
+  "scripts/publish_exact17_forty_ninth_wave_v5_five_size8_promotion_root.py",
+  "scripts/validate_exact17_forty_ninth_wave_v5_five_size8_promotion_export.py"
+ ],
+ "generated_roots": [
+  "scratch/runs/exact17-forty-ninth-wave-v5-five-size8-20260817/export-v1"
+ ],
+ "durable_paths": [],
+ "created_utc": "2026-08-17T00:00:00Z",
+ "manifest_sha256": "efc2fbe4063c74ad989d737498996f030c138590de8b7b8c93010577788fa3b7"
+}
