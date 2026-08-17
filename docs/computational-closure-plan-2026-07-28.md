@@ -13700,6 +13700,18 @@ six-center boundary to an existing live terminal. If no such bridge follows
 from the current ingress, record the exact missing cap-wide theorem and stop;
 do not create another unconsumed helper or launch a new local CEGAR wave.
 
+### 13.28.19 FirstFiber outside-pair adapter candidate — 2026-08-17
+
+The first consumer bridge to test is now concrete. The live sorry
+`false_of_capSource_firstFiber_outsidePairDeletionExactRows` receives an
+`outsideExactRows` witness, while the existing source-clean theorem
+`false_of_capSource_firstFiber_collisionFiveCenterDeletion` receives a
+four-way `FirstFiberOutsidePairExactRowsOrCrossedThreeRowsResidual`. The
+outside-row witness is exactly its first constructor, so the proposed adapter
+is `Or.inl ⟨outsideExactRows⟩`; all other hypotheses are forwarded unchanged.
+This is a proof-level bridge, not a new SAT clause. It must be tested in the
+owner's `TwoSourceFirstFiberCollision.lean` before any additional computation.
+
 ## 2026-08-16 operator set (from scratch output-pattern audit) — WITHDRAWN
 
 Source: `docs/audits/2026-08-16-scratch-computational-output-pattern-audit.md`,

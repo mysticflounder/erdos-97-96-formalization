@@ -104,3 +104,17 @@ converts its faithful boundary into a live terminal. No new helper has been
 promoted merely for being compilable. The target is now explicitly
 consumer-first: preserve `FirstFiberCapSourceWitness`, blocker-in-cap
 membership, and role identity while attempting that terminal bridge.
+
+## Candidate direct bridge discovered
+
+The live sorry
+`false_of_capSource_firstFiber_outsidePairDeletionExactRows` already has all
+the inputs needed by the source-clean theorem
+`false_of_capSource_firstFiber_collisionFiveCenterDeletion`, except for its
+four-way outside-pair residual. The supplied
+`outsideExactRows` is exactly the first constructor of that residual, so the
+candidate proof is the direct adapter
+`houtsidePair := Or.inl ⟨outsideExactRows⟩`, followed by the existing terminal
+call with the unchanged source, omission, and `hexactRows` hypotheses. This
+must be tested by the owner of the foreign-dirty
+`TwoSourceFirstFiberCollision.lean`; no shared-file edit is being made here.

@@ -3128,3 +3128,12 @@ is now a consumer bridge from that boundary to a live terminal, preserving
 `FirstFiberCapSourceWitness`, blocker-in-cap membership, and role identity.
 The cardinality producer is background context, not the missing theorem; no
 new pair-cover helper or local V49 wave is authorized without a consumer.
+
+**Candidate consumer (2026-08-17):** the live outside-pair sorry may be an
+adapter gap only. Its `outsideExactRows` argument can form the first
+constructor `Or.inl ⟨outsideExactRows⟩` of
+`FirstFiberOutsidePairExactRowsOrCrossedThreeRowsResidual`, after which the
+existing source-clean
+`false_of_capSource_firstFiber_collisionFiveCenterDeletion` appears to
+discharge the branch. Owner validation is pending; no shared-file edit has
+been made.
