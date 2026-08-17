@@ -1,0 +1,16 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "exact17-forty-ninth-wave-v9-four-size8-20260817",
+  "owner": "exact17-weighted-bank-impl",
+  "base_head": "570a16e4e636057402a1daa26081d970dabd1bbb",
+  "created_utc": "2026-08-17T05:00:00Z",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exact17-forty-ninth-wave-v9-four-size8-20260817.json",
+    "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenFortyNinthWaveV9FourSize8Promotion.lean",
+    "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenFortyNinthWaveV9FourSize8PromotionExport.lean",
+    "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenFortyNinthWaveV9FourSize8Schemas.lean"
+  ],
+  "durable_paths": [],
+  "generated_roots": [],
+  "manifest_sha256": "95a11b161411aa13aac16ed7a80e5434777d4463b99ecab35fb9e205d12c38d2"
+}
