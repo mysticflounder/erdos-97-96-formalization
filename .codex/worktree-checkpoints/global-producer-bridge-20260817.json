@@ -1,0 +1,16 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "global-producer-bridge-20260817",
+  "owner": "global-producer-bridge",
+  "base_head": "515feade7b55986a792cd4c41c9408297cd146fd",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/global-producer-bridge-20260817.json",
+    "docs/audits/2026-08-17-global-producer-closure-plan.md",
+    "docs/closure-matrix-2026-07-09.md",
+    "docs/computational-closure-plan-2026-07-28.md"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-08-17T22:00:00Z",
+  "manifest_sha256": "886d9d27b1bcff4e69bae3d92fe34cfdf11a4083c341da8b6926899a6486803f"
+}

@@ -13649,6 +13649,39 @@ wave-only mine; `UNSAT` must be independently replayed and composed through
 the existing exact-cover and `SourceRealization` bridges before exact 17 or
 the production `sorry` is declared closed.
 
+### 13.28.17 V49 closure-route supersession — 2026-08-17
+
+The V49 V6--V9 sequence is complete as finite regression evidence. V9
+terminated `SAT` and was replayed. V8 deliberately has two counts that must
+not be conflated: seventeen source-bank occurrences were published, while the
+post-solve mine found sixteen inclusion-minimal occurrences. None of V6--V9
+closes exact 17, supplies a universal lift, or closes a production `sorry`.
+
+This supersedes the instruction to launch another local motif successor. No
+further local successor is authorized unless it has an import-reachable Lean
+consumer already identified and a measured live-frontier reduction. The finite
+artifacts remain authenticated regression inputs only.
+
+The next production target is the global pair-cover/B3--B4 coupling. The
+cardinality estimate
+`Problem97.ATailMinimalUniqueFourCover.card_le_four_mul_notRobustCenters` is
+already source-proved and on the proof spine; the off-spine scratch theorem
+`card_le_four_mul_card_blockerImage` is not a new closure result. The missing
+source theorem must couple retained-pair exclusions to that estimate and force
+one of `P ⊆ B₃`, `P ⊆ B₄`, `Pρ ⊆ B₃`, or `Pρ ⊆ B₄`, or an equivalent direct
+five-center/blocker-fiber lift. The existing
+`physicalRows_inter_retainedPairs_card_le_one` lemma is a source-clean `≤ 1`
+cut, but is not itself a producer and is not yet spine-reachable.
+
+Do not promote the n=17 global overlap-two census as a production clause: its
+capacity is vacuous at this profile. The proposed three-pin quadratic
+constraints are likewise not present in the Boolean `SourceModel` and must not
+be described as encoded until a numeric atom and consumer exist. Bank-dependent
+compute is paused while the repository-wide bank attestation is refrozen;
+source-level bridge work may proceed. A future `UNSAT` result is
+closure-relevant only after its ingress, coverage, and terminal composition
+theorems are kernel-checked and import-reachable.
+
 ## 2026-08-16 operator set (from scratch output-pattern audit) — WITHDRAWN
 
 Source: `docs/audits/2026-08-16-scratch-computational-output-pattern-audit.md`,
