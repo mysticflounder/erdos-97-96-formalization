@@ -1,0 +1,53 @@
+--- a/census/card_head/exact12_apex_first_opposite_shared_pair_second_opposite_common_five_membership_family_bank.py
++++ b/census/card_head/exact12_apex_first_opposite_shared_pair_second_opposite_common_five_membership_family_bank.py
+@@ -60,7 +60,7 @@
+     "1c5e5128225ad7d3878a2e1580f3628ca8955172982b0803d599ed2ad94c2d59"
+ )
+ EXPECTED_PARENT_BANK_SHA256 = (
+-    "e431fcbcd1e1861e64d51740f1bdbe300ac4b86046da162908f584d20cd1cd57"
++    "ce89f4ea11ac2d8e03aa7502da5f45693452fa0f435f07d993f74e82b8f51ee0"
+ )
+ EXPECTED_FINAL_VARIABLES = 45_224
+ EXPECTED_FINAL_CLAUSES = 641_980
+@@ -277,7 +277,16 @@
+         )
+     ):
+         raise Exact12ApexFirstOppositeSharedPairSecondOppositeCommonFiveMembershipFamilyBankError(
+-            "instance is not the frozen post-first-opposite shared-pair parent"
++            "instance is not the frozen post-first-opposite shared-pair parent: "
++            f"schema={parent_bank.get('schema')!r}/{PARENT_BANK_SCHEMA!r}; "
++            f"family={parent_bank.get('family_id')!r}/{PARENT_FAMILY_ID!r}; "
++            f"bank={bank_sha256!r}/{EXPECTED_PARENT_BANK_SHA256!r}; "
++            f"body={_sha256_json(bank_body)!r}; "
++            f"vars={instance.cnf.n_variables}/{EXPECTED_PARENT_VARIABLES}; "
++            f"clauses={len(instance.cnf.clauses)}/{EXPECTED_PARENT_CLAUSES}; "
++            f"dimacs={dimacs_sha256!r}/{EXPECTED_PARENT_DIMACS_SHA256!r}; "
++            f"parent_installed={getattr(instance, '_apex_first_opposite_shared_pair_common_five_membership_family_bank_installed', False)!r}; "
++            f"self_installed={getattr(instance, '_apex_first_opposite_shared_pair_second_opposite_common_five_membership_family_bank_installed', False)!r}"
+         )
+     return {
+         "schema": PARENT_BANK_SCHEMA,
+--- a/census/card_head/exact12_apex_triple_surplus_second_opposite_common_five_membership_family_bank.py
++++ b/census/card_head/exact12_apex_triple_surplus_second_opposite_common_five_membership_family_bank.py
+@@ -69,7 +69,7 @@
+     "ffbfbff4b327943b0a889bb16b99b75ae934ec72027d829e0f332f24a98f5f9d"
+ )
+ EXPECTED_PARENT_BANK_SHA256 = (
+-    "8f7005479eb9cf440468ac55b5cc3d5d3a869674934b69c786e90e49531e3e25"
++    "56ca9fa0c2d7c89ab41f5385526ce816db7ea7932d90ceeed2eaf78578949a1b"
+ )
+ EXPECTED_FINAL_VARIABLES = 45_241
+ EXPECTED_FINAL_CLAUSES = 642_191
+@@ -206,7 +206,11 @@
+         )
+     ):
+         raise Exact12ApexTripleSurplusSecondOppositeCommonFiveMembershipFamilyBankError(
+-            "instance is not the frozen post-first-opposite/second-opposite common-five parent"
++            "instance is not the frozen post-first-opposite/second-opposite common-five parent: "
++            f"bank={bank_sha256!r}/{EXPECTED_PARENT_BANK_SHA256!r}; "
++            f"body={_sha256_json(bank_body)!r}; vars={instance.cnf.n_variables}/{EXPECTED_PARENT_VARIABLES}; "
++            f"clauses={len(instance.cnf.clauses)}/{EXPECTED_PARENT_CLAUSES}; "
++            f"dimacs={dimacs_sha256!r}/{EXPECTED_PARENT_DIMACS_SHA256!r}"
+         )
+     return {
+         "schema": PARENT_BANK_SCHEMA,
