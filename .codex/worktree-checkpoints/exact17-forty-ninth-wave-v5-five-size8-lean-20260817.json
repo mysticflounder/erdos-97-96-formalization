@@ -1,0 +1,17 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "exact17-forty-ninth-wave-v5-five-size8-lean-20260817",
+  "owner": "root",
+  "base_head": "dbe1b4df9a67be60a6ec0c1585cbf4460210cef9",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exact17-forty-ninth-wave-v5-five-size8-lean-20260817.json",
+    "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenFortyNinthWaveV5FiveSize8Promotion.lean",
+    "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenFortyNinthWaveV5FiveSize8PromotionExport.lean",
+    "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenFortyNinthWaveV5FiveSize8Schemas.lean",
+    "scripts/generate_exact17_forty_ninth_wave_v5_five_size8_bank.py"
+  ],
+  "durable_paths": [],
+  "generated_roots": [],
+  "created_utc": "2026-08-17T16:00:00Z",
+  "manifest_sha256": "3adcb5b9713812476488678ce1964be902737276ee49881fba6f0679cb47f0b8"
+}
