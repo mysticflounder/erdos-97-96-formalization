@@ -11,10 +11,10 @@
   "generated_roots": [],
   "durable_paths": [
     "scratch/exact17-forty-ninth-v8-validation.json",
-    "scratch/runs/exact17-forty-ninth-wave-v7-two-size8-20260817/export-v1/events/v7-wave-mine.json",
     "scratch/runs/exact17-forty-ninth-wave-v7-two-size8-20260817/export-v1/artifacts/exact17-forty-ninth-wave-v7-two-size8-promotion.cnf",
+    "scratch/runs/exact17-forty-ninth-wave-v7-two-size8-20260817/export-v1/events/v7-wave-mine.json",
     "scratch/runs/exact17-forty-ninth-wave-v8-seventeen-size8-publication-20260817/export-v1/artifacts/exact17-forty-ninth-wave-v8-seventeen-size8-promotion.cnf"
   ],
   "created_utc": "2026-08-17T00:00:00Z",
-  "manifest_sha256": "150a341e0fbbb14cce2c95a736832afbc8e526f6d4251a1549339d07949ff8f4"
+  "manifest_sha256": "907168c0340cbcb69c150ea3be2e95a5c5617364977445692353f55ca1b4522c"
 }
