@@ -1267,3 +1267,10 @@ until this child has been independently solved and replayed.
 This is still theorem-bank refinement, not exact-17 closure.  The direct-zero
 occurrence is source-checked through the existing weighted Kalmanson bridge,
 and the Lean source/coordinator/export are audited before publication.
+
+The wave-v2 child solved SAT after 766.76 seconds.  Independent replay checked
+all 7,198,704 clauses with zero failures.  Its next wave-only mine found two
+new source-valid direct-zero atoms, indices 1105 and 1347 (both
+`innerOuter`), and no opposite-pair records.  The next promotion again takes
+the smallest one-atom subset first; the second atom remains queued behind that
+child.
