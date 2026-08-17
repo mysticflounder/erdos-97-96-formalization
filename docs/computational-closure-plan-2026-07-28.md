@@ -13708,7 +13708,9 @@ The first consumer bridge to test is now concrete. The live sorry
 `false_of_capSource_firstFiber_collisionFiveCenterDeletion` receives a
 four-way `FirstFiberOutsidePairExactRowsOrCrossedThreeRowsResidual`. The
 outside-row witness is exactly its first constructor, so the proposed adapter
-is `Or.inl ⟨outsideExactRows⟩`; all other hypotheses are forwarded unchanged.
+is `Or.inl ⟨outsideExactRows⟩` when `deleted = Q.source.1`, and
+`Or.inr (Or.inl ⟨outsideExactRows⟩)` when
+`deleted = Q.otherOutsidePoint`; all other hypotheses are forwarded unchanged.
 This is a proof-level bridge, not a new SAT clause. It must be tested in the
 owner's `TwoSourceFirstFiberCollision.lean` before any additional computation.
 

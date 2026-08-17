@@ -111,10 +111,11 @@ The live sorry
 `false_of_capSource_firstFiber_outsidePairDeletionExactRows` already has all
 the inputs needed by the source-clean theorem
 `false_of_capSource_firstFiber_collisionFiveCenterDeletion`, except for its
-four-way outside-pair residual. The supplied
-`outsideExactRows` is exactly the first constructor of that residual, so the
-candidate proof is the direct adapter
-`houtsidePair := Or.inl ⟨outsideExactRows⟩`, followed by the existing terminal
-call with the unchanged source, omission, and `hexactRows` hypotheses. This
-must be tested by the owner of the foreign-dirty
+four-way outside-pair residual. After splitting
+`deleted_eq_outsidePoint`, the supplied `outsideExactRows` is exactly the
+first constructor: use `Or.inl ⟨outsideExactRows⟩` for `deleted = Q.source.1`,
+and `Or.inr (Or.inl ⟨outsideExactRows⟩)` for
+`deleted = Q.otherOutsidePoint`. Then call the existing terminal with the
+unchanged source, omission, and `hexactRows` hypotheses. This must be tested
+by the owner of the foreign-dirty
 `TwoSourceFirstFiberCollision.lean`; no shared-file edit is being made here.

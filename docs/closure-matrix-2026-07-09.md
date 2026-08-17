@@ -3130,9 +3130,11 @@ The cardinality producer is background context, not the missing theorem; no
 new pair-cover helper or local V49 wave is authorized without a consumer.
 
 **Candidate consumer (2026-08-17):** the live outside-pair sorry may be an
-adapter gap only. Its `outsideExactRows` argument can form the first
-constructor `Or.inl ⟨outsideExactRows⟩` of
-`FirstFiberOutsidePairExactRowsOrCrossedThreeRowsResidual`, after which the
+adapter gap only. After splitting `deleted_eq_outsidePoint`, its
+`outsideExactRows` argument forms `Or.inl ⟨outsideExactRows⟩` when
+`deleted = Q.source.1`, or `Or.inr (Or.inl ⟨outsideExactRows⟩)` when
+`deleted = Q.otherOutsidePoint`, in
+`FirstFiberOutsidePairExactRowsOrCrossedThreeRowsResidual`; after that the
 existing source-clean
 `false_of_capSource_firstFiber_collisionFiveCenterDeletion` appears to
 discharge the branch. Owner validation is pending; no shared-file edit has
