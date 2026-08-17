@@ -1274,3 +1274,10 @@ new source-valid direct-zero atoms, indices 1105 and 1347 (both
 `innerOuter`), and no opposite-pair records.  The next promotion again takes
 the smallest one-atom subset first; the second atom remains queued behind that
 child.
+
+The atom-1105 child then solved SAT after 772.72 seconds, with a zero-failure
+replay of all 7,198,708 clauses.  Its next mine found three source-valid
+direct-zero atoms, indices 200, 1347, and 1480, and no paired cancellations.
+The next promotion groups those three four-clause adapters as a compact
+12-clause successor; this remains a theorem-bank refinement, not a closure
+claim.
