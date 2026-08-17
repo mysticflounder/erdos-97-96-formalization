@@ -13,8 +13,16 @@
     "scratch/exact17-forty-ninth-v8-validation.json",
     "scratch/runs/exact17-forty-ninth-wave-v7-two-size8-20260817/export-v1/artifacts/exact17-forty-ninth-wave-v7-two-size8-promotion.cnf",
     "scratch/runs/exact17-forty-ninth-wave-v7-two-size8-20260817/export-v1/events/v7-wave-mine.json",
-    "scratch/runs/exact17-forty-ninth-wave-v8-seventeen-size8-publication-20260817/export-v1/artifacts/exact17-forty-ninth-wave-v8-seventeen-size8-promotion.cnf"
+    "scratch/runs/exact17-forty-ninth-wave-v8-seventeen-size8-publication-20260817/export-v1/artifacts/exact17-forty-ninth-wave-v8-seventeen-size8-promotion.cnf",
+    "scratch/runs/exact17-forty-ninth-wave-v8-seventeen-size8-publication-20260817/export-v1/coverage-ledger.json",
+    "scratch/runs/exact17-forty-ninth-wave-v8-seventeen-size8-publication-20260817/export-v1/events/cadical.log",
+    "scratch/runs/exact17-forty-ninth-wave-v8-seventeen-size8-publication-20260817/export-v1/events/decoded-model.json",
+    "scratch/runs/exact17-forty-ninth-wave-v8-seventeen-size8-publication-20260817/export-v1/events/model.json",
+    "scratch/runs/exact17-forty-ninth-wave-v8-seventeen-size8-publication-20260817/export-v1/events/solver-replay.json",
+    "scratch/runs/exact17-forty-ninth-wave-v8-seventeen-size8-publication-20260817/export-v1/events/v8-wave-mine.json",
+    "scratch/runs/exact17-forty-ninth-wave-v8-seventeen-size8-publication-20260817/export-v1/export-receipt.json",
+    "scratch/runs/exact17-forty-ninth-wave-v8-seventeen-size8-publication-20260817/export-v1/independent-audit-report.json"
   ],
   "created_utc": "2026-08-17T00:00:00Z",
-  "manifest_sha256": "907168c0340cbcb69c150ea3be2e95a5c5617364977445692353f55ca1b4522c"
+  "manifest_sha256": "f047f829d87f601b732387bf4661bc5a7b2cc79b50162a1955c1d2104fa324e7"
 }
