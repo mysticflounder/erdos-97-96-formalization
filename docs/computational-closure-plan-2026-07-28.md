@@ -2287,6 +2287,175 @@ admitted generated Lean cut for the matched
 proved, banked, and pinned may a successor formula be compiled.  No
 successor formula, canary, or wave is authorized by this mine.
 
+The center-exchange producer for that step is proved (user-directed
+route: widen the label-general rule rather than bank the one concrete
+placement).  The strict all-orders check `orientedAll48` admits a role
+`(a, x, b, c, y)` only when that fixed assignment is oriented in all
+48 canonical orders; the v24 survivor's core is oriented in every
+order but exchanges its two pair-centers between the direct and
+reflected orders (24/24), so the strict rule excluded it by design.
+Two new Lean files close the gap without touching any attested frozen
+source: `ExactTwelveRigid221CenterExchangeBoundaryOrderBridge.lean`
+(the order-isomorphism extraction
+`exists_orderIso_canonicalBoundaryOrder_of_frozenBlocks`, re-derived
+because the frozen bridge keeps its chain machinery private, plus the
+widened decidable check `centerExchangeOrientedAll48` and the
+disjunctive transfer) and
+`ExactTwelveRigid221CenterExchangeAllOrderCommonFiveCertificate.lean`
+(the widened role domain and the proof-carrying producer
+`SourceOrderPositiveNogood.ofCenterExchangeAllOrderCommonFive`, which
+case-splits on the transferred disjunction and consumes the checked
+`ConvexFivePointCore` with the roles as given or center-exchanged —
+both branches refute the same four membership steps).  Kernel-checked
+examples pin the v24 core `(a, x, b, c, y) = (5, 6, 11, 7, 8)` inside
+the widened domain and outside the strict domain.  Both files build
+green with no new warnings; the axiom closure of the producer and the
+position-level bridge is exactly `propext`, `Classical.choice`,
+`Quot.sound` — no `sorryAx`, no native-reduction trust.  Measured
+against the live 20th-bank enumeration: the widened orbit has 19,612
+unordered patterns, the strict orbit 15,588 (all widened), the true
+center-exchange delta 4,024, of which 2,546 pass the pattern-level
+realizability precheck; the mined core is in the delta.  The 21st
+bank (center-exchange delta family, parented on the 20th) is in
+preparation; the compiled bank's own realizability filtering remains
+authoritative for installed counts.  This checkpoint proves a
+learned-cut family producer only: no successor formula, canary, or
+wave is compiled or authorized by it.
+
+The 21st membership family bank is compiled and green
+(`exact12_center_exchange_all_order_common_five_membership_family_bank.py`,
+family `center-exchange-all-order-common-five-label-general-abcxy.v1`,
+parented on the 20th bank `cae4357f…a945e` at the v24 membership
+prefix 47,136 variables / 676,147 clauses).  The installed family is
+the center-exchange delta only — a widened pattern is dropped when
+the strict rule admits either ordering, since that sub-orbit is
+already installed by the parent — restricted to realizable rows:
+2,546 patterns over 1,373 requirements (557 pair + 816 triple; 1,335
+reused bindings, 38 fresh variables 47,137–47,174), appending 3,204
+clauses for a final identity of 47,174 variables / 679,351 clauses
+(DIMACS `ef94a6d4…ce4d759`, bank `f7dc77c5…c28fd8`).  The v24 mined
+core `(a, b, c, x, y) = (5, 11, 7, 6, 8)` is installed, and a
+dedicated test verifies no installed pattern passes the strict rule
+under either ordering with the parent module's rule as the
+independent oracle.  The bank attests the two center-exchange Lean
+sources by byte hash (certificate `c501ed5b…`, bridge `226efa4b…`,
+committed `fd94b0f9`) and their resolved import closure; there is no
+generated `MembershipFamilyCnf` Lean module yet — that is the v25
+chaining step.  Seven adversarial tests green (independently re-run
+before commit); ruff clean.  No successor formula, canary, or wave is
+compiled or authorized by this bank alone.
+
+The v25 wave completed the cycle (commits `53b48d10`, `898fbd78`,
+`a901407d`, `5d7970e7`).  The generated
+`…CenterExchangeAllOrderCommonFiveMembershipFamilyCnf` module (5,719
+lines, byte-stable regeneration, differential green) joined the 21st
+bank's `LEAN_ROOT_MODULES` (refrozen bank sha `701f3f76…b362`); the
+hand-written terminal consumer gained its 23rd layer (dispatcher tail
+routes v > 47,136 to the center-exchange family; axiom closure
+propext / choice / ofReduceBool / trustCompiler / quot); the arm
+canary bumped to v13 with the v25 identity (prefix 47,174 / 679,351 /
+`ef94a6d4…`, post-arm 680,218 / `4f15259e…`, final 680,299 /
+`81b4e2e2…`).  One immutable cell-6 canary ran from exact-SHA
+worktree `898fbd78`: SAT, `UNADMITTED_STRUCTURAL_SURVIVOR`, witness
+replayed (job `36f80e0b…`), survivor a minimal perturbation of v24
+(8 of 12 rows identical).  The frozen v25 validator (`a901407d`, 15
+adversarial tests) authenticates the workdir, and the v5 all-order
+mine (summary `d9f7557b…`, certificate `0dfd2863…`) found all 48
+orders covered by `convex-five-point-common-orientation` through
+exactly TWO cores on the single label set {5, 7, 8, 10, 11} —
+`(a, x, b, c, y) = (10, 11, 8, 5, 7)` and `(7, 5, 8, 10, 11)` — each
+covering a complementary 24-order half-deck, with no single core
+oriented in all 48.  Every per-core widening therefore misses this
+survivor (the mine's rule-shape classifier reports its 7 realized
+row-instances as 0 strict / 0 center-exchange / 0 Klein / 7
+unoriented), and the next certificate family is a per-order two-core
+disjunction whose union rows are all realized in the cube.  A
+Klein-widening measurement (committed `a32fb989`) and an
+unauthenticated preview solve (`d25317ac`) are recorded in
+`docs/exact12-v24-survivor-structural-analysis-2026-08-16.md`.  No
+22nd bank, successor formula, or wave is authorized by the mine
+alone.
+
+The two-core producer for that family is now proved.  Two new Lean
+files carry it, again without touching attested frozen source:
+`ExactTwelveRigid221CorePairBoundaryOrderBridge.lean` (the decidable
+check `corePairOrientedAll48`, its soundness `iff`, and the four-way
+transfer `commonFiveOrientationAt_corePair_of_frozenBlocks`, with the
+two private position-transfer helpers re-derived because the frozen
+center-exchange bridge keeps them file-private) and
+`ExactTwelveRigid221CorePairAllOrderCommonFiveCertificate.lean`
+(`CorePairCommonFiveData`, the role domain `rolesValid`, the
+eight-step `check` over the union of both cores' rows, and the
+producer `SourceOrderPositiveNogood.ofCorePairAllOrderCommonFive`,
+which case-splits the four-way disjunction and refutes with the
+matching `ConvexFivePointCore`).  Soundness is the center-exchange
+argument again: the realized configuration induces one canonical
+order, one of the four orientations holds there, and the union rows
+contain that core's own four rows, so every branch has the membership
+it consumes.  The center-exchange family is the degenerate case in
+which the two cores coincide.  PROVEN, kernel-checked: the target
+builds clean and the producer depends on axioms `[propext,
+Classical.choice, Quot.sound]` only — no `sorryAx` and no native
+trust, the checks being `decide` rather than `native_decide`.  Three
+`decide` examples in the certificate confirm in the kernel that the
+v25 mined pair is admissible over all 48 orders and that neither of
+its cores is admissible under the installed center-exchange rule.
+
+The orbit measurement then ruled out the obvious bank and found a
+tighter one (scripts under
+`scratch/rigid221-sourceheavy-anchor/center-exchange/`, reports under
+`scratch/runs/exact12-rigid221-all-order-common-five/two-core-orbit-20260817/`;
+each script re-derives the frozen 19,612 / 15,588 / 2,546 pins from
+the live bank primitives before reporting anything new).  Over
+arbitrary core pairs the 53,460 side-condition cores carry only 92
+distinct coverage masks (popcounts 0, 24, 32, 36) and 585
+complementary mask pairs, giving 50,158,725 candidate pairs; that
+enumeration was deliberately left unfinished, because restricting to
+pairs on one shared five-label set already yields 425,605 distinct
+clauses, 415,522 of them not dominated by the installed 21st bank,
+and exactly ONE of those realized in the authenticated v25 cube.  A
+415k-clause bank is not installable against a 680,299-clause
+formula.  The realized clause supplies the restriction: the two mined
+cores are a fixed role rotation of each other.  Writing a core as
+`(a, b, c, x, y)`, the partner is `(x, b, a, c, y)` — the labels in
+the `a`, `x` and `c` slots rotate while `b` and `y` stay fixed — and
+`partner(10, 8, 5, 7, 11) = (7, 8, 10, 5, 11)` is exactly the mined
+pair.  (The earlier 24-order half-deck figure describes the strict
+single orientation; with the free center exchange each mined core
+covers 36 of the 48 orders and the pair covers all 48.)  The family
+is then parametrized by ONE five-label assignment, like every
+installed bank, and its union rows are `(x, {a, b})`,
+`(y, {a, b, x})`, `(c, {b, x, y})`, `(a, {b, c, y})`: four distinct
+centers, one pair and three triples, no arity above three, so the
+installed membership-requirement machinery needs no new arity — the
+partner's own side conditions force `a ≠ c`, which is what holds
+every arity down.  Measured orbit: 95,040 assignments pass both
+side-condition sets, 59,336 are already admitted by the installed
+single-core rule, leaving 35,704 delta assignments, of which 23,802
+have every union row realizable on the frozen candidate surface;
+those give 23,802 distinct clauses over 2,168 rows (596 pairs, 1,572
+triples), none dominated by the installed 21st bank, and exactly one
+realized in the v25 cube — the mined pair `(10, 8, 5, 7, 11)`.
+
+One structural fact fell out of that measurement and needs its label.
+Every one of the 95,040 side-condition assignments is pair-admissible:
+the rotated pair orients all 48 canonical orders, so the family's
+admissibility is the side conditions alone.
+`CommonFiveOrientationAt` unfolds to an equality of two cyclic-triple
+orientations, and a cyclic triple on five labels depends only on the
+cyclic order the position map induces on them, so the claim reduces
+to the 24 cyclic orders of five distinct points.  EMPIRICALLY
+VERIFIED, exhaustive within that abstraction: all 24 cyclic orders
+against all 120 role assignments (2,880 cases) leave none uncovered,
+an independent concrete pass over 980 sampled assignments against the
+48 live canonical orders agrees, and the kernel `decide` on the mined
+witness agrees.  It is not yet a Lean theorem, and the banked route
+does not need it to be: the per-pattern decidable check stays, exactly
+as in the installed banks.  A 23,802-pattern bank is roughly nine
+times the 21st bank, so the generation cost is measured before any
+freeze.  No 22nd bank, successor formula, canary, or wave is
+authorized by this producer and measurement.
+
 The card-at-least-13 adapter audit also rules out a tempting shortcut.  The
 pentagon residual does not supply a
 `LargeCapUniqueFiveSecondApexRadius`: in particular it has no
@@ -2792,6 +2961,31 @@ theorem forcing a third `{u,xv}`-bisector point, a three-point overlap between
 one fixed row and another exact four-class, or a saturated blocker-fiber
 consequence.  Adding more arbitrary common-deletion packets does not address
 this boundary.
+
+Bisector-lever update (2026-08-16).  The first of those three levers now has
+its `{xu,deleted}` instance.  The `{xu,deleted}` bisector census is proved
+(`Rigid221SourceHeavy.lean`, commit `5169fa2b`, axiom closure exactly
+`propext`, `Classical.choice`, `Quot.sound`): the carrier points bisecting
+`{xu,deleted}` are exactly the `xu`-row blocker and the physical apex, and the
+bisector meets the physical class in at most one point.  The census is exact
+because `Dumitrescu.perpBisector_apex_bound` caps that filter at two.
+Composed with the audited — but not yet formalized — identification of
+incidence I1 with `centerAt xu = v`, tetrahedron incidence I1 reduces to the
+single equality `dist v xu = dist v deleted`, and I1 then implies I5.  Only the
+census half of that reduction is a Lean theorem; the `I1 ↔ centerAt xu = v`
+half is marked {{NEEDS_PROOF}}.  The reduction closes no leaf.  The
+missing-incidence residual
+`false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_uDeletion_fixedPhysicalPair_missingIncidence`
+(`Rigid221SourceHeavy.lean:16207`) is unchanged, the four new theorems have no
+on-spine consumer, and whether `dist v xu = dist v deleted` holds is undecided:
+no lemma in the tree forces or excludes `centerAt xu = v`, and nothing marks
+`v` robust.  Do not restate the leaf from five conjuncts to four on the
+strength of I1 ⟹ I5; that is an equivalent reformulation, not progress.  Cap
+counting is separately ruled out for I2 and I4, because
+`selectedFourClass_inter_capByIndex_card_le_two` needs the row centre inside
+`capByIndex oppIndex2` while `oppApex2` is the vertex each such cap excludes
+(`Cap/Structure.lean:173`, `:181`, `:189`).  Full detail is in
+`docs/specs/p97-pentagon-xu-deleted-bisector-census-v1.md`.
 
 The separate `metric-order-mining.json` report of `24/24` UNSAT orders is not
 a universal obstruction.  It analyzes one completed incidence SAT survivor
@@ -8581,6 +8775,31 @@ replaces one live leaf by two narrower live leaves, immediate constructor
 fan-out changes from one to two even though the ten- and eleven-cap strata are
 closed.
 
+The second child, `18 ≤ |A|`, received a coverage record on 2026-08-16.  It has
+no route.
+
+**card-≥18 BlockerV residual.** The unbounded continuation
+`false_of_…_deletedRowBlockerOffClass_card_ge_eighteen`
+(`Rigid221SourceHeavy.lean:11878`) has no route. The exact-17 apparatus cannot
+reach it: `SourceRealization` carries `boundary : Fin 17 → ℝ²` and proves
+`A.card = 17`, so every CNF, PIQD job and certificate in that chain speaks only
+about exact seventeen. Extending the cardinality ladder rung by rung does not
+terminate — the cap bound is `9 ≤ |oppCap2| ≤ |A| − 6`, so the case count grows
+linearly and the recorded measure does not strictly decrease. Descent via
+`R.minimal` is refuted for this surface by the 2026-07-25 audit (`f41f0e34`):
+the minimality machinery here yields cap lower bounds, not carrier descent.
+This carries down to the ≥18 child the general-cardinality-lift requirement
+already stated for the parent `17 ≤ |A|` residual in §13.18 ("a
+cardinality-independent producer/lift that bypasses exact-17") and §13.21
+("universal closure … additionally needs a cardinality-independent producer or
+lift"). The one working template is the cardinality-independent terminal — the
+tetrahedron-incidence family at `Rigid221SourceHeavy.lean:15592` and `:13175`
+takes no cardinality hypothesis and is core-axiom-clean — and its producer is
+unbuilt. Full coverage, context, dead ends and the two admissible producer
+shapes are in `docs/specs/p97-card-ge-eighteen-coverage-route-v1.md`. Status:
+OPEN, no route. `RemovableVertexOfLarge` must not be cited against this leaf —
+the leaf is interior to that statement's own proof.
+
 ## 13.24 FreshThird acyclic hard-residual reduction (2026-08-08)
 
 The outside-first FreshThird ingress has now been normalized all the way to a
@@ -10261,11 +10480,17 @@ run.
 
 #### 13.24.1.2 First-non-hit retained-core audit (2026-08-10)
 
-The 128 source-labelled QF_LIA slices remain only a structural diagnostic:
-all 128 are `SAT` in Z3 and cvc5, while the malformed controls are `UNSAT`.
-They establish no Euclidean model, counterexample, finite coverage theorem,
-general-cardinality lift, Lean theorem, proof of the new overlap producer, or
-unconditional closure of `false_of_freshThird_firstNonHit`.
+The 128 source-labelled QF_LIA slices remain only a diagnostic for an
+explicitly weakened quotient: all 128 are `SAT` in Z3 and cvc5, while the
+malformed controls are `UNSAT`.  This is **not** an exhaustive encoding of the
+live Lean constructor product.  The endpoint choices are metadata rather than
+linked row-choice variables, and the quotient omits constructor equalities,
+deletion-survival facts, cap membership/order, and the exact support-overlap
+fields.  It therefore does not establish that the live constructors are
+consistent or insufficient.  It also establishes no Euclidean model,
+counterexample, finite coverage theorem, general-cardinality lift, Lean
+theorem, proof of the new overlap producer, or unconditional closure of
+`false_of_freshThird_firstNonHit`.
 
 The retained/common packet does not entail the previously proposed
 boundary/order bridge.  For the first source, the two non-hit constructors
@@ -10349,12 +10574,14 @@ packet.  The geometric interaction constructors already expose exactly two
 common row points, so they do not reach the three-overlap terminal either.
 
 The common-radius same-blocker/same-blocker arm gives the strongest local
-normal form: the common exact-four row is precisely the two canonical sources
-and the two Q endpoints, while the canonical-source pair lies on one
-`oppApex1` radius.  Existing cap localization forces the common row center
-into the canonical cap; it does not contradict the configuration.  The named
-data still provide only two perpendicular-bisector centers, `oppApex1` and the
-common blocker, while the clean metric terminal needs a third.
+normal form: the common exact-four row contains the two canonical sources and
+the two Q endpoints, while the canonical-source pair lies on one `oppApex1`
+radius.  The live source data do not exclude C/Q aliases, so those named
+incidences do not identify four distinct support points.  Existing cap
+localization forces the common row center into the canonical cap; it does not
+contradict the configuration.  The named data still provide only two
+perpendicular-bisector centers, `oppApex1` and the common blocker, while the
+clean metric terminal needs a third.
 
 Therefore the remaining work is genuinely global.  The next admissible
 producer must use carrier-wide K4/minimality, cap order, or metric geometry to
@@ -10540,6 +10767,94 @@ same landing.  The remaining mathematical risk is that the weakened packet is
 still satisfiable, in which case the next step must be a new uniform source
 clause rather than another fixed-cardinality or frozen-assignment wave.
 
+#### 13.24.1.8 First-non-hit bounded packet v1 result (2026-08-12)
+
+The one wave licensed by the preceding ingress is complete in
+`scratch/p97-consumer-first/freshthird_firstnonhit_bounded_packet_v1/`.
+The source-mapped main query is SAT in both Z3 4.16.0 and cvc5 1.3.3.  Both
+complete 54-variable assignments pass independent exact readback.  A known-SAT
+baseline is accepted by both solvers, while three malformed controls (empty
+blocking set, overlapping minimal-core shells, and a same-blocker omission)
+are rejected by both.  Every artifact contains exactly one `check-sat`, all
+ten solver processes exit successfully, and the exact inputs are fixed by the
+recorded hashes.
+
+The two main models expose independent losses in the weak projection:
+
+1. Z3 selects the shared-radius arm with a two-point blocking set, but that arm
+   names no actual selected row at the blocking center.  The second canonical
+   row may therefore avoid every named Q-support point.
+2. cvc5 selects a singleton minimal core whose center is the Q-row center and
+   whose one restoration shell is the Q row itself.  The live ingress permits
+   this: it says that the center lies outside the positive-radius Q support,
+   not that it differs from the Q-row center or is an actual blocker center of
+   another source.
+
+Consequently this wave is **diagnostic SAT only**.  It is not a finite P97
+counterexample, an induced finite carrier, a negation of the live existential,
+or a Lean closure.  No successor CEGAR wave is authorized from this packet.
+
+The mandatory post-wave theorem-bank search found the sharpest existing
+cardinality-independent refinement.  For each carrier source in the exact
+four-point Q support,
+`freshThird_qRow_member_sameBlocker_or_omissionSuccessor` gives either the Q
+blocker itself or a surviving deletion at that source's distinct blocker;
+`freshThird_qRow_distinctBlocker_has_two_omissionSuccessors` strengthens the
+latter to two Q-support omissions.  The generic
+`actualBlockerFiber_image_eq_selectedSupport_of_card_eq_four` identifies the
+whole support only after the Q blocker fiber is already known to have card
+four.  This boundary is now formalized as the cardinality-independent theorem
+`freshThird_qRow_exact_blocker_boundary` in
+`TwoSourceFreshThirdResidual.lean`.  Its Lean 4.27 target build passes, and its
+axiom audit contains only `propext`, `Classical.choice`, and `Quot.sound`.
+Thus the exact source-clean boundary is:
+
+```text
+Q blocker fiber has card four and its carrier image is the Q support
+or
+some Q-support source has a distinct blocker and at least two
+Q-support deletion-survival successors.
+```
+
+Neither arm reaches a clean terminal.  The saturated fiber is realized by the
+local four-points-on-one-circle configuration, while two omission successors
+give no third positive Q-row incidence and no strictly decreasing measure.
+The next admissible theorem must therefore add genuinely global structure: it
+must either contradict the saturated four-source fiber, turn the
+distinct-blocker omission graph into a terminating descent/collision, or
+directly produce a distinct-center selected row meeting the Q row in at least
+three points.  Further computation requires that new source theorem (or a
+formally proved bounded-obstruction/general-cardinality lift) before encoding
+another wave.
+
+#### 13.24.1.9 First-non-hit cardinality-independent FOL v2 preflight (2026-08-11)
+
+The source-mapped FOL v2 packet in
+`scratch/p97-consumer-first/freshthird_firstnonhit_fol_v2/` has no
+carrier-cardinality or finite-domain axiom. Mace4 found a finite model of the
+weakened incidence abstraction (first model at domain size 7). Vampire refuted
+the two synthetic landing controls: distinct-center three-point overlap and
+the equivalent three-blocked-deletions packet. These results validate the
+existing clean Lean consumer only. They do not produce the live witness, a
+Euclidean P97 model, a universal contradiction, or Lean closure. Prover9's
+timeout is incomplete search, not contrary evidence.
+
+This preflight strengthens the negative diagnosis: the current local
+same-blocker/non-hit incidence packet does not imply the required positive
+incidence. The next admissible step remains a source-clean carrier-wide
+row-relocation, cap-order/metric, terminating-deletion, or direct contradiction
+theorem. No solver result from this abstraction may be promoted without a
+source extraction theorem, exact replay, and a universal lift.
+
+The later
+`scratch/p97-consumer-first/freshthird_firstnonhit_commonradius_capfiber_v2/`
+run is a separate bounded named-role diagnostic, not a cardinality-independent
+preflight. It uses 16 identity atoms, leaves `hingress` opaque, does not
+quantify over unmentioned rows, and has no universal extraction/lift. Its SAT
+models and malformed-control UNSAT results are empirical regression evidence
+only; they add no source cut and do not reopen authorization for another
+FirstNonHit wave.
+
 #### 13.24.1.10 Corrected FirstNonHit incidence projection (2026-08-12)
 
 The later corrected packet in
@@ -10585,6 +10900,61 @@ safe six-anchor-plus-nine-fresh symmetry reduction recorded in
 does not change this status and need not be run: the explicit model already
 settles the corrected incidence projection as satisfiable.
 
+#### 13.24.1.11 First-non-hit global blocker quotient v1 (2026-08-12)
+
+One materially different cardinality-independent discovery wave was run after
+the corrected incidence stop.  Its authenticated artifacts are under
+`scratch/p97-consumer-first/freshthird_firstnonhit_global_blocker_quotient_v1/`.
+Unlike the earlier pure incidence packet, this quotient activates the
+source-faithful four-row deletion fan, the exact five-way repeated-cap outcome,
+the retained mutual-deletion/location packet, and, in the
+`common_sameblocker` case only, the source-clean common-radius cap-localization
+helpers.  It has no finite carrier ceiling or `MAXN`, does not enumerate
+anonymous carrier points, and does not identify source-cap membership with
+blocker-center cap membership.
+
+Z3 4.17.0 and cvc5 1.3.3 independently returned `sat` for all three explicit
+ingress cases: `retained`, `common`, and `common_sameblocker`.  All six exact
+readbacks passed the independent semantic validator.  Both solvers returned
+`unsat` on the contradiction control and rejected the malformed SMT-LIB
+control.  The minimized survivor uses the common-radius ingress with both
+named interactions in their `sameBlocker` constructors.  Its Q blocker fiber
+has cardinality four and image exactly the Q support, so all four Q-support
+sources have blocker `qCenter` and selected row equal to the Q row.  The
+repeated-cap pair exits through an allowed blocker collision.  Independently,
+the retained mutual-deletion pair has zero Q incidence, and the common-radius
+helper supplies four pairwise-distinct strict-cap carrier sources outside the
+Q row whose blocker centers differ from `qCenter`; all four of their actual
+selected rows may still have zero Q overlap.
+
+This is a **SAT obstruction for the named producer quotient**, not a Euclidean
+realization, P97 counterexample, finite-to-universal lift, Lean theorem, or
+closure.  It shows that adding the currently proved deletion-fan, cap-location,
+and blocker-collision consequences still does not force three Q-support
+incidences at one distinct actual blocker center.
+
+The mandatory post-wave generalization pass used only this wave's manifests,
+readbacks, validators, and minimized survivor.  It found no stable new theorem
+schema.  The Q-fiber boundary is the already formalized
+`freshThird_qRow_exact_blocker_boundary`; validated models realize several
+different arms of the existing five-way repeated-cap theorem; and the stronger
+cap facts occur only when the conditional common/same-blocker helper is active.
+In particular, neither Q-fiber saturation, one fixed repeated-cap outcome, nor
+source-cap membership can be generalized into the missing row-incidence
+producer.
+
+The remaining FirstNonHit contract is therefore unchanged and now constitutes
+the hard gate for further computation: from the live antecedents, produce an
+actual carrier source `s` whose blocker center differs from `qCenter` together
+with at least three Q-support points whose deletions are blocked at that same
+actual center.  The clean blocked-deletion adapter then places those points in
+`selectedAt s`, and the existing two-circle consumer gives the contradiction.
+Before another FirstNonHit solver wave, a source-clean cap/cyclic-order or
+metric theorem must connect one of the four off-Q cap sources (or another
+actual source) to those three Q incidences.  Merely enlarging the present
+blocker quotient, fixing a repeated-cap arm, or adding more named roles is not
+authorized by this result.
+
 #### 13.24.1.12 FirstNonHit cap-fan route hard stop (2026-08-13)
 
 A source-level audit has now exhausted the proposed endpoint cap-fan route
@@ -10617,6 +10987,48 @@ The live gate remains
 must either prove a genuinely carrier-wide source theorem producing three
 Q-support incidences at one distinct actual center, or first prove a formal
 bounded-obstruction/general-cardinality lift before resuming finite search.
+
+#### 13.24.1.13 FirstNonHit finite-lift audit (2026-08-13)
+
+The completed finite-lift audit finds that the only finite source-entitled
+universe is Q's exact four-point selected support.  The deletion and K4
+predicates still quantify over arbitrary `D.A` and are not downward-hereditary.
+The current live source provides no bounded-core theorem, `MAXN`,
+exact-cardinality cap, or induced-subcarrier preservation.  Therefore any
+fixed-n or finite-carrier UNSAT result is diagnostic only and is not authorized
+for universal closure.
+
+The exact missing packet remains an actual carrier source `s` with
+`centerAt(s) ≠ qCenter`, together with a three-point blocked subset of Q's
+support, with all three deletions blocked at `centerAt(s)`.  This packet is
+equivalent to the active ≥3-overlap theorem via
+`exists_blockedDeletionTriple_iff_exists_selectedRow_overlap_card_ge_three`.
+The authorized next computational route is an unbounded symbolic quotient by
+four-bit blocked-deletion patterns with symbolic multiplicities, contingent on
+a source-clean ingress theorem.  Without that ingress, prove the direct
+unbounded producer instead.  This audit claims no closure.
+
+#### 13.24.1.14 FirstNonHit four-bit unbounded quotient duplicate gate (2026-08-13)
+
+The proposed unbounded quotient has a source-sound signature only if each
+symbolic multiplicity is mapped back to an actual carrier source, its four-bit
+blocked-deletion pattern records deletions blocked at that source's actual
+center, and the distinct-center condition is retained.  This is a semantic
+ingress requirement, not a finite-carrier assumption.
+
+The route is currently **NO-RUN**.  With source-sound selected-four rows at
+distinct centers, the queried three-overlap is already generically impossible
+by `SelectedFourClass.inter_card_le_two`.  Forcing the `≥3` query therefore
+only replays the existing terminal
+`false_of_centerAt_selectedFourClass_inter_card_ge_three`; omitting that query
+repeats the prior satisfiable abstraction and supplies no new producer.
+
+No solver wave was launched, so no post-wave theorem mine is due.  This
+subsection supersedes the authorization in §13.24.1.13: do not run the
+four-bit quotient without a genuinely new source theorem or the targeted
+pro-model opinion at
+`docs/solve-prompts/2026-08-13-freshthird-firstnonhit-direct-closure-pro-model.md`.
+Otherwise prove the direct unbounded producer.  No closure is claimed.
 
 #### 13.24.1.15 FirstNonHit six-named-point order audit (2026-08-13)
 
@@ -10905,6 +11317,55 @@ production query.  This checkpoint closes no FirstNonHit branch and no
 load-bearing `sorry`; it removes an impossible producer target and sharply
 narrows the next theorem/CEGAR contract.
 
+#### 13.24.1.20 Pinned-fan three-arm audit and bounded-query contract (2026-08-13)
+
+The equal-actual-blocker arm now has a source-clean, `sorryAx`-free consumer.
+Equal actual blockers identify the two exact selected-four supports; the common
+row/blocker witnesses are then cyclically separated.  Thus a same-arc theorem
+for those same witnesses would close that arm.  This is a consumer, not a
+closure: the current pinned-endpoint packet does not place arbitrary fan
+witnesses on a common boundary arc.
+
+A source audit of all three normalized fan outcomes found the remaining gaps:
+
+* center nonrobustness produces a critical selected-four class and a unique-four
+  center, but no current theorem turns that witness into a contradiction;
+* equal-blocker collision lacks a source theorem aligning the row witnesses
+  with the named endpoint/boundary order; and
+* mutual cross-deletion rows lack both localization to the escaping row and a
+  cap/order fact connecting their distinct blocker centers to the named packet.
+
+In particular, the exposed incidence/order predicates admit an abstract
+same-cap collision survivor with opposite-arc witnesses.  Therefore a
+cap-only, fan-Boolean, incidence-only, raw-W4, or fixed-cardinality search is
+not a production route for this residual.
+
+The smallest admissible finite campaign is instead intrinsic to the universally
+produced packet.  Its role universe contains the six seed points, the four
+points of the escaping fan row, the four points of the separate endpoint row
+when that row differs, the four actual blocker centers, and up to three
+additional support points in each exact blocker row.  Before quotienting
+coincident roles this is at most thirty points (at most twenty-six in the
+endpoint arm).  The query must retain endpoint/off-endpoint identity, every
+`hrowAt` arm, exact row omissions and cap counts, cyclic boundary order, exact
+metric equalities and inequalities, the fan's blocked-deletion conditions,
+and the finite seed-multiplicity constraints.
+
+Promotion requires three independently checked layers:
+
+1. a Lean extraction theorem from the arbitrary-cardinality live packet to
+   this bounded role structure, providing the general-cardinality lift;
+2. CEGAR cuts expressed as replayable instances of proved theorem families,
+   with exact geometry present from the first production encoding; and
+3. kernel-checked Boolean coverage of every quotient/order case accepted by
+   the extraction theorem.
+
+The immediate milestone is the bounded packet and its source extractor,
+followed by separate endpoint/off-endpoint exporters and a SAT smoke test.
+Terminal UNSAT, finite coverage, or a new source theorem may then close the
+residual.  Until one of those lands, the pinned-endpoint FirstNonHit `sorry`
+remains open.
+
 #### 13.24.1.21 W4 repeated-omission synchronization maximum (2026-08-13)
 
 The cardinality-independent W4 audit has now extracted the strongest generic
@@ -10941,13 +11402,410 @@ deletion triple.  No further W4-only case split or solver wave is admissible
 without a materially new source theorem.  In particular, this checkpoint does
 not close a FirstNonHit branch or any load-bearing `sorry`.
 
-The next production route therefore remains §13.24.1.20: extract the full
-universally produced pinned-endpoint fan packet, including its endpoint,
-outside-seed, exact-row, cap, metric, and cyclic-order fields, to a bounded role
-structure with a formal arbitrary-cardinality lift.  A structurally different
-source theorem that closes one of that packet's row-valued outcomes is an
-equally valid successor.  Raw W4, cap-only, incidence-only, and fixed-cardinality
-projections remain diagnostic rather than closure campaigns.
+The pinned-endpoint fan route described in §13.24.1.20 has now also reached an
+interface survivor; §13.24.1.23 records the correction.  The next production
+route is a formal source-to-bounded-obstruction theorem together with its
+arbitrary-cardinality lift, or a structurally different source theorem that
+synchronizes an actual selected row, its blocker center, and three points of
+the Q row.  Raw W4, cap-only, incidence-only, fixed-cardinality, and
+unsynchronized fan projections remain diagnostic rather than closure
+campaigns.
+
+#### 13.24.1.22 Literature follow-up and source-entitlement correction (2026-08-13)
+
+The intrinsic Lean type `FreshThirdPinnedEndpointOutsideSeedQueryPacket` and
+its `ofSource` constructor now package a bounded image of the already-
+strengthened pinned residual.  They index exact four-point supports and retain
+the endpoint names, selected boundary row, pinned-center location in the
+six-point seed, seed multiplicity, first/fresh cap placements, row-cap
+inside/outside counts, and endpoint/off-endpoint deletion-fan branch.  This is
+a source-clean constructor relative to those explicit strong hypotheses, but
+it is **not** an ingress theorem from the active FirstNonHit interface.  Section
+13.24.1.23 records the upstream synchronization and arbitrary-cardinality lift
+that remain missing.
+
+The follow-up literature search does not supply the missing producer.  Its
+most relevant published consumers are strict convex-boundary distance
+inequalities (the Nivasch--Pach--Pinchasi--Zerbib/Kominers cap-witness method,
+Aggarwal anti-Monge inequalities, Ptolemy, and perpendicular-bisector
+uniqueness).  The project already has source-clean strict Kalmanson consumers,
+including `dist_add_dist_lt_diagonal_sum_of_ccw` and its complementary form.
+Adding another generic Ptolemy wrapper is therefore supporting infrastructure,
+not the current bottleneck.
+
+The missing source statement is narrower: it must turn the pinned-endpoint
+fan into a genuine cap-ordered metric-witness packet.  In particular, neither
+same-cap blocker centers nor mutual deletion omission determines that a
+selected-row support pair lies in a required cap interval, and omission proves
+only distance disequality, not whether the omitted point is inside or outside
+the selected circle.  No finite exporter may serialize either a support-pair
+cap placement or a strict distance sign as source data until Lean proves it.
+
+Once the live interface reaches this packet, the next downstream theorem-or-
+countermodel target is `capWitnessPacket_of_pinnedEndpoint_sourceFaithfulFan`:
+either prove center nonrobustness or produce one actual row-support pair with
+its genuine cap interval, non-separation/side information, and cyclic boundary
+order.  The current 40-order six-point audit shows why this would require new
+global placement: twelve orders reach existing lower-level kernel schemas,
+while twenty-eight have exact rational local witnesses.  This audit is not a
+substitute for the missing live ingress.
+
+The computational sequence is revised accordingly:
+
+1. first prove a source-clean map from the active FirstNonHit interface to a
+   bounded provenance packet, together with its descent or recurrence lift;
+2. retain the current conditional packet as the exact downstream consumer
+   contract and fail closed on every unsupported cap or distance-sign field;
+3. only after that ingress exists, use a small exact query to prove or refute
+   the cap-witness producer while retaining all endpoint and `hrowAt`
+   provenance;
+4. feed a proved order packet to the existing Kalmanson consumers first,
+   adding Ptolemy or algebraic certificates only for surviving order types;
+   and
+5. promote only after replayable total coverage and a `sorryAx`-free Lean
+   consumer reach a published-spine residual.
+
+No literature result, packet extraction, Python smoke fixture, exact rational
+survivor, or conditional cap-witness consumer closes a FirstNonHit branch at
+this checkpoint.
+
+The first exact **conditional** source-to-literature adapter is now explicit.
+Within `FreshThirdPinnedEndpointOutsideSeedQueryPacket`, if
+`2 ≤ (DRow.support ∩ S.capByIndex S.oppIndex1).card`, then the pinned
+endpoint center is outside the first cap and two selected-row witnesses in that
+cap form a genuine `Dumitrescu.IsCapWitnessPair`.  The generic extraction is
+packaged by `SelectedFourCapWitnessPacket`; the pinned-packet specialization is
+`FreshThirdPinnedEndpointOutsideSeedQueryPacket.firstCapWitnessPacket`.
+Consequently that packet has the exhaustive dichotomy
+`firstCapWitnessPacket_or_card_le_one`: either the cap-witness consumer has a
+real pair, or the endpoint row meets the first cap in at most one selected
+witness.  This does not produce the packet from FirstNonHit, and its second arm
+is not itself a source-authorized CEGAR campaign.
+
+The generic `SelectedFourClass.cospherical_of_mem` and conditional
+`ptolemy_of_opposite_angles` adapters are supporting consumers only.  A
+selected row supplies cosphericity, but Mathlib's Ptolemy equality still needs
+an independently produced crossing point and two opposite-angle hypotheses.
+Likewise, the literature's strict anti-Monge and opposite-chain uniqueness
+claims are not interchangeable with the project's existing Kalmanson theorem
+bank and must not be used until their exact source hypotheses have been
+formalized.
+
+One part of the order ingress is now source-clean rather than conjectural.
+`BoundaryIndexing.selectedFourSupportOrder` sorts the four points of any
+`SelectedFourClass` by their actual carrier-boundary indices, and
+`image_boundary_selectedFourSupportOrder` proves that those four positions
+enumerate the row support exactly.  Thus any selected four-row has a canonical
+cyclic order for its support without any finite search.  This still does not select
+a prescribed literature pairing, prove that two of the ordered points lie in
+the first cap, or supply Ptolemy's crossing point; those remain producer data.
+The conditional packet constructor and generic literature adapters are
+targeted-build green, and their focused axiom audit contains no `sorryAx`.
+
+The first bounded Python fixture was rejected before any solver wave because
+it fabricated cap assignments and a two-plus-two cap split not derivable from
+the Lean extractor.  Its replacement must encode the new witness-versus-≤1
+dichotomy and retain the existential blocker-cap choices and all ordered-row
+arms.  No output from the rejected fixture is production evidence.
+
+The corrected Python packet/replay scaffold is also not yet that replacement.
+An independent source-entitlement audit found that its hard-coded endpoint
+roles, blocker relations, `hrowAt` arm, cap counts, and escape slots are
+schema-shaped synthetic data rather than a serialization of an `ofSource`
+packet.  It is now fail-closed under status
+`SYNTHETIC_SCHEMA_FIXTURE_NOT_SOURCE_EXPORTED`, with an empty
+`field_provenance.source_entitled` list.  Its five focused tests and Ruff check
+validate only deterministic schema/replay behavior.  Producer CEGAR remains
+blocked until a Lean-backed exporter (or theorem-backed durable serialization)
+and source-field coverage map replace those synthetic assignments.
+
+At the current compiled proof graph,
+`false_of_freshThird_pinnedEndpoint_outsideSeedResidual` is off the kernel spine
+of `Problem97.erdos97_rhs`.  Work in this subsection is therefore a prospective
+direct-closure reduction for the FirstNonHit route, not a reduction of the
+current on-spine `sorryAx` count.  Promotion requires both a source-clean
+consumer and fresh proof-blueprint evidence that the resulting declaration is
+actually used by the published spine.
+
+#### 13.24.1.23 Pinned-fan interface survivor and bounded-lift pivot (2026-08-13)
+
+This subsection supersedes the claim in §13.24.1.22 that the pinned-endpoint
+packet is already a source extractor from the complete live FirstNonHit
+residual.  At this checkpoint the packet and its fan adapter exist only in the
+current worktree, with `FreshThirdPinnedFanPacket.lean` still untracked; they
+are not declarations in the recorded `HEAD`.  More importantly, the adapter
+does not accept the active FirstNonHit hypotheses.  It additionally assumes a
+common-radius surface, an equal-center exact-four row, overlap data, boundary
+order data, and the strong terminal packet that the route was meant to
+produce.  It is therefore a conditional consumer interface, not a live
+source-to-packet lift.
+
+The two robust fan outcomes are individually source-clean but do not
+synchronize their witnesses.  The repeated-blocker-cap outcome may choose one
+pair of points from the exact four-row, while the mutual-cross-deletion outcome
+may choose a disjoint pair.  The exported interfaces contain no equality, swap
+relation, shared cap, or common boundary-order packet relating those choices.
+Consequently neither the cap-overlap consumer nor the Kalmanson consumers can
+be instantiated.  A four-point interface survivor with disjoint witness pairs
+satisfies both packets.  The nonrobust arm also survives: it yields an exact
+unique-four row and blocked deletion data, but is compatible with a row
+containing three seed points and one escaping point and does not produce a
+distinct-center three-point overlap.
+
+The conditional cap-witness-versus-cardinality-at-most-one dichotomy remains a
+valid downstream API, but it does not repair this missing ingress.  The prior
+six-point order audit likewise remains diagnostic: twelve orders instantiate
+lower-level schemas, while twenty-eight have exact rational local witnesses.
+No additional local order split, 128-case wave, or fan-only solver campaign is
+admissible from this interface.
+
+The next production deliverable for FirstNonHit is therefore one of the
+following, in order:
+
+1. a source-clean theorem mapping every live FirstNonHit instance to a bounded,
+   provenance-preserving obstruction packet, together with a strict descent or
+   recurrence theorem showing that arbitrary carrier size reduces to that
+   packet;
+2. a cardinality-independent synchronization theorem producing an actual
+   selected-row center distinct from the Q-row center and three Q-support
+   points blocked at that center; or
+3. a source-clean cycle contradiction for the provenance-preserving escape
+   relation, which would supply the missing arbitrary-cardinality lift.
+
+Any bounded packet must retain the actual row center, actual blocker map,
+support membership, deletion polarity, cap labels, and cyclic-order provenance.
+It may not serialize a cap placement, pair synchronization, or metric sign that
+the Lean ingress does not prove.  Computation resumes only after such an ingress
+and lift are formalized.  This checkpoint closes no FirstNonHit branch and no
+load-bearing `sorry`.
+
+#### 13.24.1.24 Retained-packet handoff audit (2026-08-13)
+
+The early coordinator's discarded `FreshThirdRetainedDeletionCorePacket` is not
+the missing FirstNonHit ingress.  It is a one-source packet containing endpoint
+witnesses, source-center double-deletion data, and one opposite-apex minimal
+deletion core.  The normalized residual later reconstructs the strictly
+stronger, cycle-safe `FreshThirdAlignedRetainedConsumerPacket` through
+`freshThird_acyclic_canonical_consumerPacket`.  That packet retains deletion
+cores for both canonical sources, their distinct first-apex radii and singleton
+first-cap slices, and the retained-radii hypothesis.  Therefore threading the
+weaker downstream packet back through `on_surface` would preserve no new
+provenance and would create the wrong import direction.
+
+FirstNonHit should destruct the retained arm of its existing `hingress`
+directly.  The remaining gap is not deletion-core retention: it is a
+cardinality-independent synchronization theorem connecting those cores and the
+NonHit/interaction data to an actual selected row at a center distinct from the
+Q-row center with three Q-support incidences.  An alternative bounded route
+must retain equivalent actual-row/blocker provenance and prove strict descent,
+recurrence, or a cycle contradiction.  Refactoring is justified only if it
+preserves such genuinely new synchronized provenance before normalization; a
+compatibility projection to the weaker retained packet is wiring only and does
+not count as closure.
+
+#### 13.24.1.25 Bounded-carrier lift correction and named-role ingress (2026-08-13)
+
+The proposed fallback through a uniformly bounded subcounterexample is not
+available from the current source interface.  `CounterexampleData.Minimal`
+compares carrier cardinalities but does not construct `CounterexampleData` on a
+restricted carrier.  More fundamentally, the pointwise K4 hypothesis is not
+hereditary under restriction: deleting an arbitrary collection of carrier
+points can remove the four equidistant witnesses at a surviving center.
+`CriticalShellSystem` likewise has no restriction or transport constructor that
+repairs this loss.  The existing minimal-blocking-subdeletion theorems minimize
+a prescribed deletion set; they do not bound the ambient carrier or preserve a
+counterexample on the selected vertices.  Consequently no fixed-`n` UNSAT
+result can be promoted to this universal FirstNonHit leaf through a currently
+proved bounded-core theorem.
+
+This correction does **not** rule out finite computation.  The sound finite
+object must instead be a bounded set of named roles extracted from the
+arbitrary carrier while the ambient `CounterexampleData` remains unchanged.
+Its ingress theorem must retain, for every encoded role, the actual carrier
+membership, actual blocker center, exact selected-row support, required
+deletion-survival or blocking polarity, cap placement, boundary order, metric
+equalities, and every permitted alias.  The finite solver then reasons about
+that named quotient; it does not claim that the carrier itself has bounded
+cardinality.  Promotion still requires kernel-checked coverage of every packet
+accepted by this source extractor.
+
+For the common-radius same-blocker W4 branch, the current source-clean packet
+does not yet provide such a closing extractor.  It gives four strict-canonical-
+cap sources outside the Q row, with blockers different from the Q-row center,
+and deletion of each source preserves the Q row.  `CrossPairDeletionView`
+contributes only deletion-survival disjunctions.  It gives no positive
+cross-incidence, blocker equality, or localization of those four actual
+blockers.  Hence a model in which the four sources have four distinct private
+blockers remains compatible with the exported packet.  The clean cap-filtered
+fiber bound closes only after at least three strict-cap sources are synchronized
+to one actual blocker whose center lies in that cap.
+
+The next admissible production milestone is therefore one of:
+
+1. prove a source-clean synchronization theorem producing three distinct
+   strict-canonical-cap W4 sources in one actual-blocker fiber whose blocker
+   center is in the canonical cap, then consume
+   `actualBlockerFiber_filter_capByIndex_card_le_two`;
+2. prove a different source-clean actual-row theorem producing a center
+   distinct from the Q-row center and at least three Q-support incidences, then
+   consume the existing FirstNonHit three-overlap terminal; or
+3. construct and prove the arbitrary-carrier-to-named-role ingress described
+   above, validate it with known-SAT and malformed controls, and run one bounded
+   solver wave over exactly that packet.
+
+Do not launch a fixed-cardinality carrier census, another W4-only incidence
+matrix, or a solver encoding whose named roles lack this Lean ingress.  This
+checkpoint retires the unsound bounded-carrier interpretation; it closes no
+FirstNonHit branch and no load-bearing `sorry`.
+
+#### 13.24.1.26 Conditional pinned-fan canonical-row extractor (2026-08-13)
+
+The downstream pinned packet now has a source-clean, arbitrary-cardinality
+normalization of the complete selected-four deletion fan.  The primitive
+theorem
+`IndexedSourceFaithfulSelectedFourFan.centerBlocker_or_noCenterBlockerWitness`
+splits into an actual center-blocker witness or a no-center witness retaining
+both the repeated-blocker-cap outcome and the mutual-cross-deletion outcome.
+The downstream adapter
+`centerBlocker_or_sourceFaithfulFanNoCenterBlockerRowWitness` rewrites every
+deletion survival as omission from the corresponding canonical
+`H.selectedAt` exact four-row.  It introduces no arbitrary selected-row
+witness and no bound on the ambient carrier.
+
+This establishes a conditional named-role representation for the already
+supplied pinned packet, not the active FirstNonHit ingress:
+the six seed points, four fan-row points, four endpoint-row points, four actual
+blocker centers, and at most twelve non-source canonical-row points give at
+most thirty named roles before quotienting aliases.  The same-cap outcome
+retains equal blockers or one canonical cross omission; the mutual outcome
+retains both canonical cross omissions and distinct blockers.  The two
+outcomes are simultaneous, not alternative projections.  The extractor and
+adapter elaborate directly in Lean.  The encompassing package build is
+temporarily blocked by unrelated edits in `BiApexBlockerMultiplicity.lean`, so
+no fresh package-wide proof-graph claim is made here.
+
+This checkpoint does not supply the missing incompatibility.  The
+center-blocker arm still needs a contradiction from nonrobustness; the equal-
+blocker arm still lacks a theorem placing its arbitrary source pair in the
+named endpoint order and establishing the required robustness; and the mutual
+pair still lacks retained-class/cap alignment.  The bounded theorem-bank
+preflight found only existing named-point Kalmanson/order consumers, none of
+which accepts these arbitrary fan witnesses.  Most importantly, the packet
+still is not extracted from the active FirstNonHit interface.  Therefore no
+synthetic query, fixed-cardinality census, or CEGAR wave is authorized from
+this checkpoint, and no FirstNonHit branch or load-bearing `sorry` is closed.
+
+#### 13.24.1.27 Four-omission multiplicity reduction (2026-08-13)
+
+The finite-map part of the next synchronization step is now kernel checked.
+The theorem
+`ATailBiApexBlockerMultiplicity.fourth_fiber_or_larger_known_fiber_of_four_omissions`
+says that a finite self-map which omits four pairwise distinct values and has
+three known collision fibers at pairwise distinct image values must have either
+a fourth collision fiber or a third source in one of the three known fibers.
+It builds under Lean 4.27, and its transitive axiom set is exactly `propext`,
+`Classical.choice`, and `Quot.sound`.  This is a source-clean producer, not a
+closure theorem.
+
+The live adapter
+`TwoSourceExactCollisionRowsTerminal.freshThird_fourOmissionBlockerMultiplicityIngress`
+now instantiates this finite theorem on the actual blocker map.  It uses the
+three rich apices as the first three omitted blocker values, a fully robust
+carrier center as the fourth, and the `P`, `Pρ`, and `Q` collision fibers as
+the three known double fibers.  Besides the supplied `Q` packet, carrier
+membership, and full-robustness hypotheses, it additionally requires the three
+inequalities separating that robust center from the rich apices.  The adapter
+passes a full Lean 4.27 source check and introduces no new `sorry`.
+
+A minimal blocking subdeletion of the `Q` row can produce the required fully
+robust center, but the current API does not prove its separation from all three
+rich apices.  `ApexRichClassStructure` permits a surviving D44 depletion pattern:
+an apex may have rich radius classes of sizes five and four while a three-point
+minimal deletion core meets them in a `2+1` pattern.  Deleting the core leaves
+both classes below four, while restoring any one core point restores a K4.
+
+The exact missing antecedent is therefore either:
+
+- direct distinctness of the minimal-deletion center from all three rich
+  apices; or
+- multi-deletion K4 survival at each rich apex,
+  `HasNEquidistantPointsAt 4 (D.A \ V) apex`, which excludes equality because
+  the same deletion blocks K4 at the new center.
+
+Once that antecedent is proved, the live adapter yields a fourth collision
+fiber or enlargement of one of the three known fibers.  A further
+consumer must still turn those multiplicity arms into an actual selected row
+with three `Q`-row incidences, or into another source-clean terminal.  Thus this
+checkpoint strictly reduces the finite-map part but closes no FirstNonHit arm
+and no load-bearing `sorry`.
+
+The bounded-carrier alternative is excluded more strongly than a missing
+encoder contract: if a subcarrier `B ⊆ D.A` preserves enough structure to form
+a new `CounterexampleData`, minimality gives `D.A.card ≤ B.card`, while
+inclusion gives `B.card ≤ D.A.card`; hence `B = D.A`.  There is no proper
+bounded K4 subcounterexample lift available from the current hypotheses.
+Further computation must therefore remain a named-role quotient inside the
+arbitrary carrier unless a genuinely new lift theorem is proved.
+
+Next work for this route is:
+
+1. split the robust-center branch into separation from all three apices versus
+   the rigid D44 `5+4` / `2+1` depletion packet;
+2. eliminate or normalize that D44 equality arm using cap-order or metric data;
+   and
+3. consume the adapter's multiplicity arms into actual-row incidence before
+   launching any further solver wave.
+
+#### 13.24.1.28 Robust-separated pinned-fan synchronization (2026-08-13)
+
+The conditional pinned packet now has an exhaustive source split.  The theorem
+`FreshThirdPinnedEndpointOutsideSeedQueryPacket.nonrobust_or_richApexCenter_or_robustSeparatedOutcome`
+proves that the pinned center is either nonrobust, equals one of the three rich
+apices, or enters a robust-separated outcome.  In the last arm,
+`FreshThirdPinnedEndpointOutsideSeedQueryPacket.robustSeparatedOutcome`
+simultaneously supplies:
+
+- the intrinsic `Fin 4` canonical-row no-center-blocker fan witness; and
+- the source-clean four-omission blocker-multiplicity alternative: a fourth
+  collision fiber, or a third source in the `P`, `Pρ`, or `Q` fiber.
+
+The synchronization uses the actual pinned center's seed membership to recover
+carrier membership, excludes the center-blocker fan arm by full deletion
+robustness, and applies the arbitrary-carrier multiplicity theorem.  It adds no
+cardinality bound.  Direct Lean elaboration is green.  Both new theorems were
+audited transitively and depend only on `propext`, `Classical.choice`,
+`Lean.ofReduceBool`, `Lean.trustCompiler`, and `Quot.sound`; neither depends on
+`sorryAx`.
+
+This is a strict frontier reduction, not closure.  The theorem
+`false_of_freshThird_pinnedEndpoint_outsideSeedResidual` still contains its
+original `sorry`, remains off the current published kernel spine, and now names
+the exhaustive packet outcome only as the next proof input.  The active
+FirstNonHit interface still does not produce this conditional packet.
+
+The next mathematical consumers are therefore explicit:
+
+1. turn each robust-separated multiplicity arm into actual selected-row
+   incidence or another existing terminal while retaining the simultaneous fan
+   data;
+2. prove a source consumer for genuine center nonrobustness; and
+3. normalize or eliminate equality with one of the three rich apices through
+   the D44 depletion/cap-order packet.
+
+The synthetic Python fixtures remain fail-closed.  No finite query or CEGAR
+wave is authorized until a Lean-owned serializable exporter and the missing
+active-ingress/arbitrary-cardinality contract exist.
+
+The first consumer normalization is now also checked.  The theorem
+`FreshThirdPinnedRobustSeparatedOutcome.geometricMultiplicity_or_qFiberThirdSource`
+maps the fourth-fiber and the `P`/`Pρ` enlargement arms into the pre-existing
+source-clean geometric multiplicity interface.  Consequently the robust arm
+has only three geometric outputs: a named `P`/`Pρ` cross hit, an existing
+`GeometricMultiplicityResidual P Pρ`, or a genuinely new third source in the
+current `Q` blocker fiber.  The theorem depends only on `propext`,
+`Classical.choice`, and `Quot.sound`; it is `sorryAx`-free and invokes no
+FreshThird closer.  This normalization still does not prove that any arm is
+impossible.
 
 #### 13.24.1.29 Exact pinned-row deletion semantics and repaired finite survivor (2026-08-14)
 
@@ -11053,6 +11911,98 @@ A merely nonempty overlap would eliminate the current diagnostic but would not
 close the live leaf; promotion requires either the three-point fan overlap or a
 new source-clean consumer of the weaker overlap together with the retained
 endpoint order and cap data.
+
+#### 13.24.1.30 Rich-apex depletion normal form and exact local survivor (2026-08-14)
+
+The rich-apex equality arm has now been reduced to a finite radius normal
+form.  Let `V` be a collectively blocking subdeletion of the exact FreshThird
+`Q` row, and suppose two members of `V` have the same radius about one of the
+three rich apices.  A rich-apex selected class loses at most two points to
+`V`; collective blocking therefore bounds every positive-radius ambient class
+by five points and eliminates the six-point rich arm.  Minimal one-point
+restoration then gives:
+
+- `V.card = 3` or `V.card = 4`;
+- every represented radius block in `V` has cardinality one or two;
+- every affected post-deletion class has cardinality exactly three; and
+- every affected ambient class has cardinality `3 + block-cardinality`.
+
+Thus the only radius multiplicity profiles are `5+4`, `5+5`, and `5+4+4`.
+This is collective-deletion information only.  It does not say that the rich
+apex is an actual blocker center, nor that three members of `V` occur in one
+selected row at a center distinct from the `Q` center.
+
+The bounded artifact
+`scratch/p97-consumer-first/freshthird_firstnonhit_rich_apex_depletion_v1/`
+tests the first source-permitted `2+1` / `5+4` arm.  It has an exact rational
+ten-point witness with an exact four-point `Q` circle, exact five- and
+four-point classes about the rich apex, exact post-deletion triples,
+memberwise restorations to four points, and all ten named points in strict
+convex position.  Z3 and cvc5 both return `SAT`; both returned rational models
+pass an independent `Fraction` replay.  A known-SAT control and three
+malformed-UNSAT controls behave as expected, and the deterministic artifact
+manifest verifies.
+
+This is a local named-role consistency result, not a P97 counterexample, a
+finite-to-universal lift, or a Lean closure.  The wave omits the rest of the
+carrier and the global blocker, row, cap, boundary-order, and minimality
+synchronization data.  Its mandatory wave-only theorem mine produced no new
+positive Lean candidate.  In particular, exact-five/D44 metric geometry is
+not by itself the equality-arm contradiction, so the other radius partitions
+must not be enumerated merely to repeat the same local test.
+
+The next admissible FirstNonHit theorem is now precise and global: derive an
+actual selected row at a center distinct from the `Q` center containing at
+least three points of the exact `Q` row (equivalently, three `Q`-row deletions
+blocked at one distinct actual center).  The arm-independent clean terminal
+already consumes exactly that statement.  Any further solver campaign must
+first encode a source-proved blocker/row synchronization clause or a formal
+bounded-obstruction/general-cardinality lift; another local radius or boundary
+case wave is not authorized.  This checkpoint closes no FirstNonHit branch and
+no load-bearing `sorry`.
+
+#### 13.24.1.31 Minimal blocking sets normalize to singleton or robust center (2026-08-14)
+
+The global-minimal-deletion route has a stronger source-clean normalization
+than the earlier robust-center/minimal-core split suggested.  If a nonempty
+cardinality-minimal simultaneous blocking set `V` has at least two points,
+then its blocking center is fully deletion robust.  The proof is exhaustive:
+a co-radial pair forces an ambient five-point class, while pairwise-distinct
+radii produce two support-disjoint exact four-classes through the generic
+minimal-core theorem.  Either configuration survives every one-point
+deletion.  Therefore every nonempty minimal blocking set is either a singleton
+or has a fully deletion-robust center.
+
+The scratch theorem
+`FreshThirdFirstNonHitSyncV2.card_eq_one_or_fullyDeletionRobustAt_of_cardMinimalBlockingSubdeletion`
+is Lean 4.27 clean and depends only on `propext`, `Classical.choice`, and
+`Quot.sound`.  This eliminates the proposed multi-point anonymous
+minimal-core row as a FirstNonHit producer: a robust center is outside the
+actual blocker-map image, so it cannot directly supply the required actual
+selected row.  The remaining mathematical branches are now:
+
+1. a singleton blocking set, which gives only one `Q`-row incidence;
+2. a robust center distinct from the three rich apices, which feeds the
+   existing four-omission blocker-multiplicity split; or
+3. a robust center equal to a rich apex, whose exact D44 depletion packet is
+   locally realizable by Section 13.24.1.30.
+
+The singleton branch is not a remote degeneracy.  Every chosen critical row
+has a canonical singleton witness: delete its own source at its chosen blocker
+center, use `no_qfree_at` for blocking, and restore the exact critical
+four-class.  The scratch theorem
+`FirstNonHitRichApexScratch.exists_canonicalSingletonBlockingSubdeletion`
+formalizes this witness and is Lean 4.27 clean with only the three standard
+axioms.  Thus the existential global-minimal-deletion API can always select a
+trivial singleton at the `Q` center; it cannot force either a new center or a
+multi-point set without a new nontriviality/exclusion theorem.
+
+This is a real simplification of the source boundary, not a closure.  It also
+retires global minimal subdeletion as the immediate synchronization producer.
+The required next theorem must instead synchronize three `Q`-row points at one
+distinct actual blocker row from genuinely global cap/order/blocker data, or
+derive a direct contradiction without that existential.  It does not
+authorize another finite local wave and closes no load-bearing `sorry`.
 
 #### 13.24.1.32 Exact cap-eight alias cycle and polar-order checkpoint (2026-08-14)
 
@@ -11289,6 +12239,169 @@ is now exact: encode this complete source theory, enumerate the remaining
 disjoint survivors, and mine the first uniform row/cap/cross-deletion clause
 that is both absent from the current theory and provable at source.  This
 implementation checkpoint still closes no load-bearing `sorry`.
+
+The solver preflight then found two omissions in that first contract, and they
+were repaired before any wave was launched.  Commit `708734d7` identifies the
+new actual `Q` row with the inherited fresh row and proves complete exact-row
+semantics for all fourteen combined rows: four distinct slots, exact
+incidence, center exclusion, and common row radius.  Commit `42f12154` extends
+the combined relational theory with cap-interior inclusion and exclusion,
+strict total boundary order, distance reflexivity/symmetry/transitivity, and
+the global failed-deletion-to-nonrobustness implication.  Both strengthened
+ingress theorems build and use only `propext`, `Classical.choice`, and
+`Quot.sound`.  These repairs prevent a solver from inventing an unrelated
+fourth `Q` source, collapsing a new row, or assigning nonsemantic order,
+distance, cap, or deletion atoms to newly introduced aliases.
+
+The first structural producer is now
+`census/p97_search/freshthird_qfiber_three_carrier_query_v1.py`, with its
+contract in `FRESHTHIRD-QFIBER-THREE-CARRIER-QUERY-V1.md`.  It has 67 named
+point roles, fourteen exact rows, and four intrinsic boundary-index cells.
+`Same` is a canonical finite quotient; incidence is derived from exact row
+slots; cap, order, distance-class, deletion, and nonrobust atoms follow the
+strengthened source laws.  In particular, deletion and robustness remain
+opaque ambient predicates rather than a closed-world reconstruction from the
+67 names.  The manifest hashes the producer and Lean ingress sources and
+records every row origin.  `SAT_ABSTRACTION` remains theorem-mining data,
+`UNSAT_RELAXATION` is nonpromotable without independent replay into the Lean
+`QueryContract`, and `UNKNOWN` fails closed.  The next action is the bounded
+four-cell wave followed immediately by a cross-cell general-theorem mine; no
+second wave is authorized until one survivor distinction is translated into
+a source theorem candidate and named Lean consumer.
+
+Wave `scratch/p97-freshthird-qfiber-three-carrier-v1/wave-0001` has now run
+all four boundary-index cells and freshly replayed every captured model.  All
+four cells are `SAT_ABSTRACTION`.  In the first canonical survivor from each
+cell the pinned fan and actual `Q` row are disjoint, the boundary source and
+all three `Q`-fiber sources avoid the pinned fan, the pinned fan also avoids
+the boundary blocker's row, and the `Q` row meets that blocker row in exactly
+the one source forced by ingress.  These are cross-model regularities, not
+source theorems: the authenticated mine labels them
+`HEURISTIC_ALL_BOUNDARY_MODEL_INVARIANT`, and none is promotion-ready.  The
+result confirms that the complete first-order and second-order fan packet
+still permits the exact disjoint survivor family.  The next bounded action is
+therefore one more signature in every cell, blocked modulo the complete
+source-relevant finite projection, followed by another cross-cell mine.  The
+desired output is not another exact blocker but a source-level theorem
+explaining why the disjoint row pattern must route into an existing
+cross-deletion or geometric terminal.
+
+The clean blocked-signature successor wave `wave-0002-r1` has now also
+completed, with all four cells again `SAT_ABSTRACTION` and every successor
+freshly replayed.  The four successors block 32,239 source-relevant atoms per
+parent and disprove two tempting overgeneralizations: the `Q`/boundary-blocker
+overlap can be two rather than one, and the pinned fan can meet the boundary
+blocker row.  The disjoint pinned-fan/`Q` pattern persists, but it is still only
+an empirical survivor regularity.  The strongest source-entitled route is a
+distinct-center blocked triple: three points of the `Q` row whose deletions
+all fail at one center different from the `Q` center.  Existing checked
+consumers turn that packet into a selected-row overlap of at least three and
+close by the two-circle bound.
+
+The cross-wave audit exposed one missing source law before attempting that
+producer.  Every named row is an actual arbitrary-cardinality selected
+four-class, so for every carrier role its deletion semantics satisfy
+`HasFourAfterDeleting deleted rowCenter` exactly when the row center is fully
+deletion-robust or the deleted point is outside the row.  The finite row theory
+now proves this equivalence from
+`selectedFourClass_survives_erase_iff_robust_or_not_mem`, and the Python query
+enforces it for all 67 roles at all fourteen row centers.  The targeted Lean
+build is green.  A new four-cell wave under this stronger source hash is the
+current gate.  If it remains satisfiable, the next admissible refinement is a
+source-proved cap/order or cross-deletion clause for the repeated-cap pair in
+the second-order boundary fan; sparse aliases from the old waves are not
+eligible refinements.
+
+That collective clause is now source-proved and exported.  The boundary
+blocker's selected row carries its own complete indexed source-faithful fan,
+so the general theorem
+`IndexedSourceFaithfulSelectedFourFan.centerBlocker_or_noCenterBlockerWitness`
+applies a second time.  `BoundaryFanNormalizedOutcome` transports the full
+result into the combined role vocabulary: either the boundary-row center is
+one of the four second-order actual blockers with the same selected support,
+or it differs from all four and supplies both a repeated-cap pair and a
+mutual cross-deletion pair.  This is stronger than the four individual
+deletion packets previously encoded and is the first genuinely collective
+carrier-wide clause in this query.
+
+The finite row theory now also exports the universal two-circle consequence
+that two named selected rows at distinct centers cannot share three indexed
+support points.  The Lean proof is a direct adapter from
+`SelectedFourClass.inter_card_le_two`; the solver receives the corresponding
+pairwise overlap bounds for all fourteen rows.  The current clean wave is
+`wave-boundary-fan-normalized-0001`.  Any earlier wave started while these
+source files changed is marked invalid and is not replay or promotion
+evidence.  The next gate is whether the collective repeated-cap/mutual-cross
+graph plus exact deletion semantics forces a blocked `Q`-triple, or instead
+isolates the precise cap/order lemma still absent from the source theory.
+
+The normalized wave remains satisfiable in all four cells.  Every cell takes
+the no-center arm, all distinct-center named row intersections have
+cardinality at most two, and no cell produces a blocked `Q`-triple.  A
+post-wave source audit corrected the first interpretation of the remaining
+witness graph: `NoCenterBlockerWitness` and `BoundaryFanNoCenterOutcome` carry
+two independent existential pairs.  One pair has both blockers in a common
+strict cap and supplies equality or one surviving cross-deletion; a possibly
+different pair has distinct blockers and both cross-deletions surviving.
+The Python encoder likewise uses two separate disjunctions.  The fact that
+the two witnesses overlap in every sampled model is empirical and is not a
+source theorem.  A four-index counterassignment separates them, so no
+same-pair synchronization lemma may be promoted from this wave.
+
+The mandatory wave-only theorem-bank preflight produced one apparent match,
+`blocker_centers_eq_of_first_apex_deletion_survives_of_mutual_cross_membership`,
+but its antecedents have the opposite polarity.  It requires mutual selected-
+row membership and deletion survival at `S.oppApex1`; the carrier packet gives
+reciprocal row omission, expressed as survival after deleting each source at
+the other source's actual blocker center.  The candidate is therefore
+inapplicable.  The live missing producer must either synchronize the two
+existential pairs using an additional source-level cap/order or descent law,
+or consume the unsynchronized four-index packet directly.
+
+Two additional existing ordered-cap laws are now being lifted into the full
+finite row theory before proposing a new theorem.  A selected four-row has at
+most two support points in any indexed cap containing its center, and two
+selected rows with distinct centers in one indexed cap share at most one
+support point outside that cap.  These are direct adapters from
+`selectedFourClass_inter_capByIndex_card_le_two` and
+`selectedFourClass_outside_overlap_card_le_one`.  The resulting wave is the
+last existing-theorem saturation step.  If the separated witness graph still
+survives, the next theorem must provide a monotone cap-order descent, a new
+shared outside pair, or a proved synchronizer; another unconstrained alias
+wave is not useful.
+
+That last existing-theorem saturation is now complete.  Commit `1ad7df2d`
+adds both cap-row laws to the Lean finite theory and Python query.  The clean
+`wave-ordered-cap-saturated-0001` freshly replays as `SAT_ABSTRACTION` in all
+four boundary cells.  The two independent fan witnesses still happen to
+overlap in those canonical models, but this remains empirical.  More
+importantly, every model assigns each indexed cap a highly noncontiguous word:
+the three cap words have respectively 10--26 cyclic membership transitions
+among the distinct named point classes.  A genuine cap has at most two.
+
+The next refinement is therefore source restoration, not a learned
+synchronizer.  `NoAlternatingCap` states that four named roles in increasing
+ambient boundary order cannot have cap-membership word `1010` or `0101`.
+`noAlternatingCap_ofView` is proved for the arbitrary-cardinality carrier by
+the four existing interval/complement forms of
+`capByIndex_*_of_global_indices`; it is included in the complete finite row
+theory and has a green targeted build.  The Python projection uses an
+existential empty/ordinary/wrapping/full interval mode for each cap, which is
+equivalent to the no-alternation restriction on the 67 represented roles and
+does not enumerate ambient points.  The bounded
+`wave-cap-cyclic-interval-0001` returned fail-closed `UNKNOWN` in all four
+cells after 180 seconds.  It produced neither a model nor an UNSAT claim.  The
+next gate is a bounded QF_UFLIA/cvc5 portfolio on the identical source hash;
+both independently time out on cell zero after 240 seconds.  Compressing the
+internal boundary ranks to a dense permutation removes all gap symmetry
+without changing the semantic `Before` relation, but its clean four-cell wave
+is again `UNKNOWN` after 180 seconds.  Monolithic SMT is therefore retired for
+this layer.  The source contract now moves to the structural CEGAR/CaDiCaL
+architecture rather than receiving a larger timeout.  Any SAT survivor must
+finally respect global cap order and can support a new monotone descent or
+same-pair producer.  Any UNSAT result still requires an independently
+replayable finite certificate and the existing `QueryContract` landing;
+solver UNSAT alone closes no `sorry`.
 
 The first structural-CNF successor is now complete under the strengthened
 execution contract. Commit `08a48e01` adds a transitive source snapshot,
@@ -11894,18 +13007,33 @@ conditional terminal adapter in
 axiom audit show no `sorryAx` (with the accepted `native_decide` trust boundary).
 The exporter and independent ingress validators passed.
 
-The authorized twentieth root is SHA-256
+The twentieth root, SHA-256
 `e719b8c17edf85e089d859fbc1ab8aaa43d8a6e9514f32eb4a76842a665dd3ce`,
-with 308 variables and 5,846,188 clauses. Immutable PIQD job
-`51cdf518-1150-47f5-ac2f-94a98159eb82` is running. This remains a finite
-exact-17 cap-nine campaign, not full P97 closure. The next admissible step is
-determined by the authenticated terminal result: replay and mine another
-`SAT` model, or independently replay an `UNSAT` certificate and compose its
-banked theorem into the exact-17 source leaf.
+returned authenticated `SAT` as immutable PIQD job
+`51cdf518-1150-47f5-ac2f-94a98159eb82`; all 5,846,188 clauses replayed. Its
+mandatory scan produced three nonredundant source-clean occurrence families,
+now banked in Lean with their complete 12-clause orbit and source evaluator.
+
+The resulting child 21 has 308 variables and 5,846,200 clauses, with SHA-256
+`bc42cd2756d6b3d84c5eb265762bc346a893dbdbc01bbe8ac5dbcb2f53f89720`.
+Immutable PIQD job `b676c3ab-2084-4ed4-b0b2-94a6aa1dafda` reported `SAT`, but
+its model endpoint concatenated two complete 308-literal assignments from
+separate solver runs after daemon recovery. The response is rejected and
+quarantined; child 21 is **not authenticated**, and no theorem mining or
+successor root is authorized from it. The child-specific finalizer now accepts
+only one occurrence of each variable `1,\ldots,308`, no duplicate or
+out-of-range variable, a matching assigned count, and a total replay of all
+5,846,200 clauses. PIQD's model-reader repair is in progress.
+
+This remains a finite exact-17 cap-nine campaign, not full P97 closure. The
+next admissible step is a provenance-clean single-run response for this exact
+job. A valid `SAT` model resumes mandatory theorem mining and Lean-first
+refinement; `UNSAT` still requires independent certificate replay and
+composition of its banked theorem into the exact-17 source leaf.
 
 ### 13.28.2 Twenty-eighth-root production checkpoint — 2026-08-12
 
-Superseding the preceding running checkpoint, the production chain has now
+The single-model PIQD repair restored the production chain, which has now
 advanced through authenticated child 27. Immutable job
 `b0f49ec3-89ea-4c18-a86f-c9c6ad5dcf7f` returned `SAT`; its complete assignment
 replayed all 5,846,284 clauses of root
@@ -11914,11 +13042,11 @@ The mandatory complete theorem-bank scan found exactly one source-backed hit
 and no unreplayed proposal: a new occurrence of the already general
 two-Kalmanson cancellation consumer.
 
-That occurrence is banked in Lean with independently checked forward and
+That occurrence is now banked in Lean with independently checked forward and
 reverse witnesses, its `SourceRealization` clause bridge, the complete
 four-clause finite orbit, an extended-CNF evaluator, and the conditional
 terminal adapter in
-`BlockerVExactSeventeenTwentySeventhModelRefinements.lean`. A targeted build
+`BlockerVExactSeventeenTwentySeventhModelRefinements.lean`.  A targeted build
 and axiom audit pass with no `sorryAx`; the finite evaluator uses the accepted
 `native_decide` trust boundary.
 
@@ -11930,12 +13058,12 @@ cuts the motivating child-27 model. The fail-closed ingress is pinned to PIQD
 daemon SHA-256
 `aa47e2ff3000890d11da79296721f0f51c3a228d4ef8446af3c3d2a73d969107`.
 
-This checkpoint does not close exact 17 or a production `sorry`. The next
-admissible step is one immutable PIQD run of these exact child-28 bytes. `SAT`
-again requires total replay, the mandatory general-theorem scan, and Lean-first
-banking before any successor; `UNSAT` requires independently replayed proof
-evidence and composition through the existing exact-cover extractor and
-terminal adapter.
+This checkpoint still does not close exact 17 or a production `sorry`. The
+next admissible step is one immutable PIQD run of these exact child-28 bytes.
+`SAT` again requires total replay, the mandatory general-theorem scan, and
+Lean-first banking before any successor; `UNSAT` requires independently
+replayed proof evidence and composition through the existing exact-cover
+extractor and terminal adapter.
 
 ### 13.28.3 Twenty-ninth-root production checkpoint — 2026-08-12
 
@@ -12108,31 +13236,6 @@ exported but not yet submitted. Next emit and validate one immutable PIQD
 ingress, launch one job, and follow the existing SAT-refine / UNSAT-replay
 contract. Exact 17 and the cap-nine production leaf remain open.
 
-### 13.28.8 Child-37 six-hit cancellation checkpoint — 2026-08-13
-
-Child 36 terminated authenticated `SAT` at epoch one as PIQD job
-`acc2df0f-b219-46d7-9d3b-a926fc2465a3` after 591.435 seconds. Its exact root
-had 308 variables, 5,847,264 clauses, and SHA-256
-`e2236eaa12b10117c0540b2ea545f177e5070b6d96a0ac96668a733fe501eae5`;
-the retrieved assignment passed independent full-CNF replay.
-
-The wave-only mine was exhaustive and produced two records. The convex-five
-record remains diagnostic because its signed forward/reverse source bridge is
-not proved. The source-valid six-hit, two-Kalmanson cancellation is banked in
-both cyclic orientations as a four-clause Lean-owned suffix, with source
-evaluation and a conditional terminal adapter. Targeted Lean builds and axiom
-checks pass without `sorryAx`; the accepted finite evaluator uses
-`native_decide`. Suffix clause 3 rejects the authenticated Child36 model.
-
-Child 37 is the exact Child36 prefix plus those four clauses. It has 308
-variables, 5,847,268 clauses, 291,621,474 bytes, and SHA-256
-`98f58d8cf71feb1201f30956e762f3a5b22acfe09f350070dfa7f83bed8640b3`.
-Its immutable ingress manifest has SHA-256
-`3d02b8e2a18ba75b08020e8275ca7e7aadb8e0556762a062dbca3ae546026f18`.
-The publication tests, ingress validation, and live PIQD identity gate pass.
-No Child37 job exists yet. Submit exactly one job after this checkpoint, then
-apply the established SAT replay-and-mine or UNSAT certificate-and-compose
-contract. Exact 17 and the cap-nine production leaf remain open.
 ### 13.28.9 Child-38 second cancellation checkpoint — 2026-08-13
 
 Child 37 terminated authenticated `SAT` at epoch one as PIQD job
@@ -12161,6 +13264,32 @@ before admitting any source-proved successor clause. On `UNSAT`, retrieve and
 independently replay the certificate, bank the child-specific theorem, and
 compose through `exists_exactSeventeenSourceRealization_of_exactCover` and the
 landing contract. Exact 17 and the cap-nine production leaf remain open.
+
+### 13.28.8 Child-37 six-hit cancellation checkpoint — 2026-08-13
+
+Child 36 terminated authenticated `SAT` at epoch one as PIQD job
+`acc2df0f-b219-46d7-9d3b-a926fc2465a3` after 591.435 seconds. Its exact root
+had 308 variables, 5,847,264 clauses, and SHA-256
+`e2236eaa12b10117c0540b2ea545f177e5070b6d96a0ac96668a733fe501eae5`;
+the retrieved assignment passed independent full-CNF replay.
+
+The wave-only mine was exhaustive and produced two records. The convex-five
+record remains diagnostic because its signed forward/reverse source bridge is
+not proved. The source-valid six-hit, two-Kalmanson cancellation is banked in
+both cyclic orientations as a four-clause Lean-owned suffix, with source
+evaluation and a conditional terminal adapter. Targeted Lean builds and axiom
+checks pass without `sorryAx`; the accepted finite evaluator uses
+`native_decide`. Suffix clause 3 rejects the authenticated Child36 model.
+
+Child 37 is the exact Child36 prefix plus those four clauses. It has 308
+variables, 5,847,268 clauses, 291,621,474 bytes, and SHA-256
+`98f58d8cf71feb1201f30956e762f3a5b22acfe09f350070dfa7f83bed8640b3`.
+Its immutable ingress manifest has SHA-256
+`3d02b8e2a18ba75b08020e8275ca7e7aadb8e0556762a062dbca3ae546026f18`.
+The publication tests, ingress validation, and live PIQD identity gate pass.
+No Child37 job exists yet. Submit exactly one job after this checkpoint, then
+apply the established SAT replay-and-mine or UNSAT certificate-and-compose
+contract. Exact 17 and the cap-nine production leaf remain open.
 
 ### 13.28.10 Child-39 exhaustive six-hit cancellation bank — 2026-08-13
 
@@ -12478,3 +13607,64 @@ PIQD successor after the replay-lock hardening gate.  `SAT` returns to a
 wave-only mine; `UNSAT` must be independently replayed and composed through
 the existing exact-cover and `SourceRealization` bridges before exact 17 or
 the production `sorry` is declared closed.
+
+## 2026-08-16 operator set (from scratch output-pattern audit) — WITHDRAWN
+
+Source: `docs/audits/2026-08-16-scratch-computational-output-pattern-audit.md`,
+**verified and largely refuted** by
+`docs/audits/2026-08-16-scratch-pattern-audit-verification.md`.
+
+The audit's three operators were folded into this plan before verification.
+They are withdrawn here. The audit's counts were raw and undeduplicated: the
+corpus holds 83 `*_bank.json` (62 content-distinct), not 159, and 830
+`summary.json`, not ~340 pairs. `scratch/` contains whole repository copies
+under `exact-sha-worktrees/` and `*-source/scratch/` which must be excluded
+before any count is used.
+
+1. **Terminal-promotion sweeper — WITHDRAWN, premise refuted.** The
+   population was keyed on `terminal_promotion_status`, which is a
+   module-level string constant written unconditionally
+   (`census/card_head/exact12_next_row_arm_static_canary.py:242`, emitted at
+   `:1166` and `:1925` beside a hardcoded `"lean_terminal_ingress_ready":
+   True`). All 36 primary runs carrying it have `terminal_verdict = null`,
+   `terminal_proof_verified = false`, and a discovery verdict of `SAT` (31) or
+   `UNKNOWN` (5). None holds an UNSAT. A sweeper over that population would
+   promote nothing. The genuine UNSAT population is identified by
+   `discovery_verdict = UNSAT`: 16 runs, all under
+   `scratch/rigid221-sourceheavy-anchor`, of which the four cells 52/58/65/71
+   are already promoted. The unpromoted remainder is a handful.
+2. **Global image/pigeonhole producer — RETAINED, and narrower than stated.**
+   The pigeonhole half already exists, kernel-checked and `sorry`-free:
+   `lean/scratch/md-blocker-closed-bank/MDBlockerClosed.lean:381`,
+   `card_le_four_mul_card_blockerImage : V.card ≤ 4 * (V.image (blockerMap H)).card`,
+   with an `#print axioms` gate at `:390`; at `V.card = 17` it yields the
+   "≥ 5 distinct blocker centers" fact. It is not import-reachable —
+   `lean/scratch/` is not a `lean_lib` root and nothing imports it — so the
+   action is **porting, not proving**. Only the B3/B4 coupling, the second
+   conjunct of `scratch/post-cegar-bank3/shared-result.md`, is genuinely
+   absent. Porting alone closes nothing and remains **PROVEN-PRODUCER** at
+   best. The claim that this gap explains the all-false family-bank `claims`
+   vectors is withdrawn: those fields are hardcoded literals, and
+   `census/card_head/exact12_next_row_arm_static_v24_validator.py:107,293`
+   *requires* them to be `False`.
+3. **Closure-path census / cross-family join / first-hit enforcement —
+   WITHDRAWN on all three counts.** The closure-path edge-fields are a
+   hardcoded stage dispatch tuple
+   (`census/global_confinement/cap_selected_nogood_certificate_probe.py:168`)
+   for stage `equality-three-triad-collision`, not a pentagon; the shape class
+   is already computed (`:619`), validated by two checkers, and present in
+   Lean as `EdgeClosure.row`/`.flip`; and `length` is a BFS shortest-path
+   distance, so it varies with graph construction order and is unsound as an
+   invariant. The cross-family join is not missing — it is the construction:
+   each bank's `initial_n_clauses` equals its predecessor's `final_n_clauses`
+   (635405 → 676147), and
+   `ExactTwelveRigid221FullMembershipPrefixTerminalConsumer.lean` (1627 lines,
+   no `sorry`) already composes the families. First-hit enforcement was
+   repaired 2026-08-08, is regression-tested, and its lane was superseded
+   2026-08-10.
+
+**The finding that replaces them.** The composed membership prefix has been
+computed and does not force a terminal; that module's own header disclaims
+terminal UNSAT, all-arm coverage, an arbitrary-cardinality lift, and closure
+of a live theorem. The open problem is a terminal UNSAT on the composed
+prefix, which is operator 2 above — not a join, and not a sweeper.

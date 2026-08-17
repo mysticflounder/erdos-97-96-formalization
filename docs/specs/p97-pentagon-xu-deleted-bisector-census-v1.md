@@ -114,20 +114,18 @@ either.
 
 These four theorems are producers. No open obligation consumes them yet.
 
-## Required closure-plan insertion
+## Closure-plan insertion — LANDED
 
-`docs/computational-closure-plan-2026-07-28.md` is held by another lane. A plan
-owner should record, in the pentagon OffClass section:
+Ownership of `docs/computational-closure-plan-2026-07-28.md` was transferred to
+this lane on 2026-08-17 after the holding lane went inactive. The paragraph is
+landed as "Bisector-lever update (2026-08-16)", immediately after the
+"next mathematical target" paragraph of the pentagon `fixedPhysicalPair`
+discussion, which names forcing a third bisector point as the first of three
+admissible levers.
 
-> The `{xu,deleted}` bisector census is now proved
-> (`Rigid221SourceHeavy.lean`, commit `5169fa2b`, core axioms): the carrier
-> points bisecting `{xu,deleted}` are exactly the `xu`-row blocker and the
-> physical apex, and the bisector meets the physical class in at most one
-> point. Consequently tetrahedron incidence I1 reduces to the single equality
-> `dist v xu = dist v deleted`, and I1 implies I5. The reduction closes no
-> leaf; whether that equality holds is undecided, and cap counting is ruled out
-> for I2/I4 because `oppApex2 ∉ capByIndex oppIndex2`. See
-> `docs/specs/p97-pentagon-xu-deleted-bisector-census-v1.md`.
+The landed text adds one qualifier the draft omitted: only the census half of
+the I1 reduction is a Lean theorem, and the `I1 ↔ centerAt xu = v` half is
+marked {{NEEDS_PROOF}} there as it is here.
 
 ## Verification log
 

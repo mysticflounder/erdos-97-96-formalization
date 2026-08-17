@@ -285,16 +285,20 @@ audit, not merely cite the availability of `R.minimal`.
 The closure plan already states this requirement one rung lower, for the parent
 `17 ≤ |A|` residual, and never carries it down to the ≥18 child:
 
-- `docs/computational-closure-plan-2026-07-28.md:8450` lists the three
+Cited by section rather than by line, because the plan is a living 13k-line
+document whose line numbers move under every lane. All four quotations were
+re-located by text on 2026-08-17.
+
+- `docs/computational-closure-plan-2026-07-28.md` §13.18 lists the three
   admissible next results, the third being "a cardinality-independent
   producer/lift that bypasses exact-17";
-- `:8605` — "Universal closure of the `17 ≤ |A|` residual additionally needs a
+- §13.21 — "Universal closure of the `17 ≤ |A|` residual additionally needs a
   cardinality-independent producer or lift";
-- `:6040` (workstream table) — "reject any claimed uniform closure lacking the
-  general-cardinality lift";
-- `:2414` — "A finite exact-cardinality certificate is likewise only an
-  exact-cardinality theorem until a deletion/minimality or bounded-core lift is
-  proved."
+- §5 (workstream table, row 3) — "reject any claimed uniform closure lacking
+  the general-cardinality lift";
+- §0 (universal-ingress contract) — "A finite exact-cardinality certificate is
+  likewise only an exact-cardinality theorem until a deletion/minimality or
+  bounded-core lift is proved."
 
 This record carries that requirement down to the child it now governs, and adds
 the evidence in §3 and §5 that fixes which lifts are already refuted.
@@ -347,28 +351,40 @@ Checked directly against the tree at `d25317ac` plus the working tree of
   `BlockerVExactSeventeenSourceNormalForm.lean:269`, `:290`;
 - the open `hexactCover` arm — `Rigid221SourceHeavy.lean:11874`;
 - `D.Minimal`, `R.minimal`, `not_isRemovableVertex_of_minimal`;
-- three-colour theorem body extent `:13328`–`:13426`, its two `Q.` projections,
+- three-colour theorem body extent `:13514`–`:13612`, its two `Q.` projections,
   the matching BlockerV fields at `:3527`/`:3528`, and its **zero** consumers;
-- prior-coverage mentions at plan `:12715` and spec `:98`.
+- the plan's only prior `card_ge_eighteen` mention, in §13.28 ("closes only the
+  exact-17 cap-nine leaf, not the `card_ge_eighteen` sibling"), and spec `:98`.
+
+Line numbers in this document were re-verified against the working tree on
+2026-08-17, after commit `5169fa2b` shifted `Rigid221SourceHeavy.lean` by 186
+lines below `:12458`. Plan citations were converted from line numbers to section
+numbers in the same pass; every line number originally supplied by the delegated
+audit for `docs/computational-closure-plan-2026-07-28.md` was stale.
 
 Established by delegated read-only audit and reproduced here with citations, but
 **not** re-checked line by line by the author of this document: the axiom
 measurements in §5 and the precedent table behind §5 and §7 (including the
 `f41f0e34`, `c8b65fba`, `ed6d932f` commit findings, the `dead-ends.md:422`
-monovariant result, the plan quotations at `:2414`, `:6040`, `:8450`, `:8605`,
-and the git-history sweeps). Treat these as sourced claims to verify before
-relying on them in a proof, per the standing reuse preflight.
+monovariant result, the four plan quotations listed above, and the git-history
+sweeps). Treat these as sourced claims to verify before relying on them in a
+proof, per the standing reuse preflight.
 
 **No Lean build was run for this document.** It edits no Lean source and asserts
 no build state. The `#print axioms` results quoted in §5 were measured by the
 delegated audit, not by this lane.
 
-## 11. Required closure-plan insertion
+## 11. Closure-plan insertion — LANDED
 
-The rigor gate is satisfied by the active closure plan pointing at this record.
-`docs/computational-closure-plan-2026-07-28.md` is currently carrying a large
-volume of another lane's uncommitted work, so this lane does not edit it. A plan
-owner should land the following paragraph verbatim:
+The rigor gate is satisfied: the active closure plan now points at this record.
+Ownership of `docs/computational-closure-plan-2026-07-28.md` was transferred to
+this lane on 2026-08-17 after the holding lane went inactive, and the paragraph
+below is landed at the end of §13.23, directly under the two-child split that
+creates the `18 ≤ |A|` leaf. The landed copy differs from this draft in one
+respect: the two parent-residual citations were converted from the stale line
+numbers `:8450`/`:8605` to §13.18/§13.21, and the two Lean citations were
+corrected from `:15406`/`:12989` to `:15592`/`:13175` for the post-`5169fa2b`
+line numbering. The draft is retained here as written:
 
 > **card-≥18 BlockerV residual.** The unbounded continuation
 > `false_of_…_deletedRowBlockerOffClass_card_ge_eighteen`
