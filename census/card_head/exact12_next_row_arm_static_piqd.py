@@ -52,7 +52,7 @@ from .exact12_next_row_cell_run import _json_sha256, cnf_assignment_satisfies
 from .sat_encoding import CadicalResult, solve_cadical
 
 DESCRIPTOR_SCHEMA = "p97_rigid221_exact12_next_row_arm_static_piqd_descriptor.v2"
-PIQD_PROJECT = "p97-exact12-next-row-arm-static-cell6-v12-r1"
+PIQD_PROJECT = "p97-exact12-next-row-arm-static-cell6-v13-r1"
 MAX_CNF_BYTES = 256 * 1024 * 1024
 MAX_DESCRIPTOR_BYTES = 1024 * 1024
 

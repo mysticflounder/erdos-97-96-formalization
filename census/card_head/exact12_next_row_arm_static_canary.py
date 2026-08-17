@@ -96,6 +96,14 @@ from .exact12_apex_zero_cross_block_membership_family_bank import (
     attest_apex_zero_cross_block_membership_family_bank_live_sources,
     install_apex_zero_cross_block_membership_family_bank,
 )
+from .exact12_center_exchange_all_order_common_five_membership_family_bank import (
+    Exact12CenterExchangeAllOrderCommonFiveMembershipFamilyBankError,
+    attest_center_exchange_all_order_common_five_membership_family_bank_live_sources,
+    install_center_exchange_all_order_common_five_membership_family_bank,
+)
+from .exact12_center_exchange_all_order_common_five_membership_family_bank import (
+    _source_paths as center_exchange_all_order_common_five_source_paths,
+)
 from .exact12_first_opposite_pair_surplus_second_opposite_common_five_membership_family_bank import (
     Exact12FirstOppositePairSurplusSecondOppositeCommonFiveMembershipFamilyBankError,
     attest_first_opposite_pair_surplus_second_opposite_common_five_membership_family_bank_live_sources,
@@ -203,28 +211,28 @@ from .source_faithful_candidate_surface import (
     SourceFaithfulCoverInstance,
 )
 
-RUN_SCHEMA = "p97_rigid221_exact12_next_row_arm_static_canary_run.v12"
-JOB_SCHEMA = "p97_rigid221_exact12_next_row_arm_static_canary_job.v12"
+RUN_SCHEMA = "p97_rigid221_exact12_next_row_arm_static_canary_run.v13"
+JOB_SCHEMA = "p97_rigid221_exact12_next_row_arm_static_canary_job.v13"
 ARM_SUFFIX_SCHEMA = "p97_rigid221_exact12_next_row_arm_static_named_deletion_suffix.v1"
 SUPPORTED_ARM_CELL_INDEX = 6
 SUPPORTED_PLACEMENT_INDEX = 1
-EXPECTED_PREFIX_VARIABLES = 47_136
-EXPECTED_PREFIX_CLAUSES = 676_147
+EXPECTED_PREFIX_VARIABLES = 47_174
+EXPECTED_PREFIX_CLAUSES = 679_351
 EXPECTED_PREFIX_DIMACS_SHA256 = (
-    "f6109195cea858ae0e0a179a9ccd4118118bb3e786d1169e40a94e399435166b"
+    "ef94a6d4624b242a77195455d312a8e7f880e3fe547882b23c67d0359ce4d759"
 )
 EXPECTED_ARM_SUFFIX_CLAUSES = 867
-EXPECTED_POST_ARM_CLAUSES = 677_014
+EXPECTED_POST_ARM_CLAUSES = 680_218
 EXPECTED_POST_ARM_DIMACS_SHA256 = (
-    "d5e2d4e0ae8ff750b0f4d1ce2d49721e095a9fb61ec7ca29ed1999f24f1c8947"
+    "4f15259e8d8494e4ebb741b52328cef4049049fe027159cd6ba0b19c4e50702d"
 )
 EXPECTED_SOURCE_ORDER_CLAUSES = 81
 EXPECTED_SOURCE_ORDER_BANK_SHA256 = (
     "cedf416274a28e0aaee1fe148986610fe7e0f81ca510cae5a69b43af3aa4348c"
 )
-EXPECTED_FINAL_CLAUSES = 677_095
+EXPECTED_FINAL_CLAUSES = 680_299
 EXPECTED_FINAL_DIMACS_SHA256 = (
-    "695f71b45a7157132e3eb61e0d4bf4c553c2d3655cbf421de8130a516611d8be"
+    "81b4e2e2fb6b39340253d0407a891d2d6b925cb444c56964e8dafdfb4597ae11"
 )
 LEAN_INGRESS_THEOREM = (
     "Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress."
@@ -278,6 +286,10 @@ SOURCE_PATHS = (
     (
         "census/card_head/"
         "exact12_all_order_common_five_membership_family_bank.py"
+    ),
+    (
+        "census/card_head/"
+        "exact12_center_exchange_all_order_common_five_membership_family_bank.py"
     ),
     (
         "census/card_head/"
@@ -405,6 +417,14 @@ SOURCE_PATHS = (
     ),
     (
         "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/"
+        "ExactTwelveRigid221CenterExchangeAllOrderCommonFiveCertificate.lean"
+    ),
+    (
+        "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/"
+        "ExactTwelveRigid221CenterExchangeAllOrderCommonFiveMembershipFamilyCnf.lean"
+    ),
+    (
+        "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/"
         "ExactTwelveRigid221FullMembershipPrefixTerminalConsumer.lean"
     ),
 )
@@ -445,6 +465,7 @@ class MaterializedArmStaticCanary:
         str, Any
     ]
     all_order_common_five_family_bank: dict[str, Any]
+    center_exchange_all_order_common_five_family_bank: dict[str, Any]
     apex_triple_surplus_second_opposite_common_five_family_bank: dict[str, Any]
     surplus_pair_second_opposite_apex_pair_common_five_family_bank: dict[str, Any]
     apex_first_surplus_second_common_five_family_bank: dict[str, Any]
@@ -811,6 +832,18 @@ def materialize_arm_static_canary(
         attest_all_order_common_five_membership_family_bank_live_sources(
             repo_root, all_order_common_five_family_bank
         )
+        center_exchange_all_order_common_five_family_bank = (
+            install_center_exchange_all_order_common_five_membership_family_bank(
+                repo_root,
+                instance,
+                layout,
+                all_order_common_five_family_bank,
+                cell_index=SUPPORTED_ARM_CELL_INDEX,
+            )
+        )
+        attest_center_exchange_all_order_common_five_membership_family_bank_live_sources(
+            repo_root, center_exchange_all_order_common_five_family_bank
+        )
     except Exact12SurplusApexPairMembershipFamilyBankError as exc:
         raise Exact12NextRowArmStaticCanaryError(str(exc)) from exc
     except Exact12AdjacentApexCrossBlockMembershipFamilyBankError as exc:
@@ -848,6 +881,10 @@ def materialize_arm_static_canary(
     ) as exc:
         raise Exact12NextRowArmStaticCanaryError(str(exc)) from exc
     except Exact12AllOrderCommonFiveMembershipFamilyBankError as exc:
+        raise Exact12NextRowArmStaticCanaryError(str(exc)) from exc
+    except (
+        Exact12CenterExchangeAllOrderCommonFiveMembershipFamilyBankError
+    ) as exc:
         raise Exact12NextRowArmStaticCanaryError(str(exc)) from exc
     except (
         Exact12ApexTripleSurplusSecondOppositeCommonFiveMembershipFamilyBankError
@@ -955,6 +992,9 @@ def materialize_arm_static_canary(
             second_opposite_triple_surplus_first_opposite_three_triad_family_bank
         ),
         all_order_common_five_family_bank=all_order_common_five_family_bank,
+        center_exchange_all_order_common_five_family_bank=(
+            center_exchange_all_order_common_five_family_bank
+        ),
         apex_triple_surplus_second_opposite_common_five_family_bank=(
             apex_triple_surplus_second_opposite_common_five_family_bank
         ),
@@ -1032,6 +1072,9 @@ def _source_manifest(repo_root: Path) -> list[dict[str, Any]]:
         )
         source_paths.update(all_order_common_five_source_paths(repo_root))
         source_paths.update(
+            center_exchange_all_order_common_five_source_paths(repo_root)
+        )
+        source_paths.update(
             apex_triple_surplus_second_opposite_common_five_source_paths(repo_root)
         )
         source_paths.update(
@@ -1091,6 +1134,9 @@ def _build_job(
         materialized.second_opposite_triple_surplus_first_opposite_three_triad_family_bank
     )
     all_order_common_five_family_bank = materialized.all_order_common_five_family_bank
+    center_exchange_all_order_common_five_family_bank = (
+        materialized.center_exchange_all_order_common_five_family_bank
+    )
     apex_triple_surplus_second_opposite_common_five_family_bank = (
         materialized.apex_triple_surplus_second_opposite_common_five_family_bank
     )
@@ -1260,6 +1306,16 @@ def _build_job(
             "family_id": all_order_common_five_family_bank.get("family_id"),
             "lean_terminal_ingress_ready": False,
         },
+        "center_exchange_all_order_common_five_membership_family_bank": {
+            "schema": center_exchange_all_order_common_five_family_bank.get("schema"),
+            "sha256": center_exchange_all_order_common_five_family_bank.get(
+                "bank_sha256"
+            ),
+            "family_id": center_exchange_all_order_common_five_family_bank.get(
+                "family_id"
+            ),
+            "lean_terminal_ingress_ready": False,
+        },
         "apex_triple_surplus_second_opposite_common_five_membership_family_bank": {
             "schema": apex_triple_surplus_second_opposite_common_five_family_bank.get(
                 "schema"
@@ -1388,6 +1444,9 @@ def _required_artifact_hashes(
         ),
         "all_order_common_five_family_bank": _json_sha256(
             materialized.all_order_common_five_family_bank
+        ),
+        "center_exchange_all_order_common_five_family_bank": _json_sha256(
+            materialized.center_exchange_all_order_common_five_family_bank
         ),
         "apex_triple_surplus_second_opposite_common_five_family_bank": _json_sha256(
             materialized.apex_triple_surplus_second_opposite_common_five_family_bank
@@ -1540,6 +1599,9 @@ def run_arm_static_canary(
         all_order_common_five_family_bank_path = (
             workdir / "all_order_common_five_family_bank.json"
         )
+        center_exchange_all_order_common_five_family_bank_path = (
+            workdir / "center_exchange_all_order_common_five_family_bank.json"
+        )
         apex_triple_surplus_second_opposite_common_five_family_bank_path = (
             workdir / "apex_triple_surplus_second_opposite_common_five_family_bank.json"
         )
@@ -1626,6 +1688,10 @@ def run_arm_static_canary(
         _write_json(
             all_order_common_five_family_bank_path,
             materialized.all_order_common_five_family_bank,
+        )
+        _write_json(
+            center_exchange_all_order_common_five_family_bank_path,
+            materialized.center_exchange_all_order_common_five_family_bank,
         )
         _write_json(
             apex_triple_surplus_second_opposite_common_five_family_bank_path,
@@ -1807,6 +1873,9 @@ def run_arm_static_canary(
             ),
             "all_order_common_five_family_bank": _artifact(
                 all_order_common_five_family_bank_path
+            ),
+            "center_exchange_all_order_common_five_family_bank": _artifact(
+                center_exchange_all_order_common_five_family_bank_path
             ),
             "apex_triple_surplus_second_opposite_common_five_family_bank": _artifact(
                 apex_triple_surplus_second_opposite_common_five_family_bank_path

@@ -56,6 +56,12 @@ from census.card_head.exact12_apex_triple_surplus_second_opposite_common_five_me
 from census.card_head.exact12_apex_zero_cross_block_membership_family_bank import (
     install_apex_zero_cross_block_membership_family_bank,
 )
+from census.card_head.exact12_center_exchange_all_order_common_five_membership_family_bank import (
+    _source_paths as center_exchange_all_order_common_five_source_paths,
+)
+from census.card_head.exact12_center_exchange_all_order_common_five_membership_family_bank import (
+    install_center_exchange_all_order_common_five_membership_family_bank,
+)
 from census.card_head.exact12_first_opposite_pair_surplus_second_opposite_common_five_membership_family_bank import (
     _source_paths as first_opposite_pair_surplus_second_opposite_common_five_source_paths,
 )
@@ -159,10 +165,10 @@ class Exact12NextRowArmStaticCanaryTests(unittest.TestCase):
             run_arm_static_canary(REPO_ROOT, REPO_ROOT / "unused", 5)
 
     def test_authenticated_arm_suffix_has_frozen_identity(self) -> None:
-        self.assertEqual(EXPECTED_PREFIX_VARIABLES, 47_136)
-        self.assertEqual(EXPECTED_PREFIX_CLAUSES, 676_147)
-        self.assertEqual(EXPECTED_POST_ARM_CLAUSES, 677_014)
-        self.assertEqual(EXPECTED_FINAL_CLAUSES, 677_095)
+        self.assertEqual(EXPECTED_PREFIX_VARIABLES, 47_174)
+        self.assertEqual(EXPECTED_PREFIX_CLAUSES, 679_351)
+        self.assertEqual(EXPECTED_POST_ARM_CLAUSES, 680_218)
+        self.assertEqual(EXPECTED_FINAL_CLAUSES, 680_299)
         instance, compiled, layout, membership_bank = (
             materialize_positive_membership_static_cell(REPO_ROOT, 1)
         )
@@ -401,6 +407,19 @@ class Exact12NextRowArmStaticCanaryTests(unittest.TestCase):
             all_order_common_five_family_bank["family_id"],
             "all-order-common-five-label-general-abcxy.v1",
         )
+        center_exchange_all_order_common_five_family_bank = (
+            install_center_exchange_all_order_common_five_membership_family_bank(
+                REPO_ROOT,
+                instance,
+                layout,
+                all_order_common_five_family_bank,
+                cell_index=6,
+            )
+        )
+        self.assertEqual(
+            center_exchange_all_order_common_five_family_bank["family_id"],
+            "center-exchange-all-order-common-five-label-general-abcxy.v1",
+        )
         self.assertEqual(instance.cnf.n_variables, EXPECTED_PREFIX_VARIABLES)
         self.assertEqual(len(instance.cnf.clauses), EXPECTED_PREFIX_CLAUSES)
         self.assertEqual(_cnf_sha256(instance), EXPECTED_PREFIX_DIMACS_SHA256)
@@ -427,11 +446,11 @@ class Exact12NextRowArmStaticCanaryTests(unittest.TestCase):
         self.assertEqual(job["schema"], JOB_SCHEMA)
         self.assertEqual(
             RUN_SCHEMA,
-            "p97_rigid221_exact12_next_row_arm_static_canary_run.v12",
+            "p97_rigid221_exact12_next_row_arm_static_canary_run.v13",
         )
         self.assertEqual(
             JOB_SCHEMA,
-            "p97_rigid221_exact12_next_row_arm_static_canary_job.v12",
+            "p97_rigid221_exact12_next_row_arm_static_canary_job.v13",
         )
         self.assertEqual(job["lean_ingress_theorem"], LEAN_INGRESS_THEOREM)
         self.assertIs(job["lean_terminal_ingress_ready"], True)
@@ -539,6 +558,20 @@ class Exact12NextRowArmStaticCanaryTests(unittest.TestCase):
             all_order_common_five_binding["family_id"],
             all_order_common_five_bank["family_id"],
         )
+        center_exchange_all_order_common_five_bank = (
+            materialized.center_exchange_all_order_common_five_family_bank
+        )
+        center_exchange_all_order_common_five_binding = job[
+            "center_exchange_all_order_common_five_membership_family_bank"
+        ]
+        self.assertEqual(
+            center_exchange_all_order_common_five_binding["sha256"],
+            center_exchange_all_order_common_five_bank["bank_sha256"],
+        )
+        self.assertEqual(
+            center_exchange_all_order_common_five_binding["family_id"],
+            center_exchange_all_order_common_five_bank["family_id"],
+        )
         expected_source_paths = set(SOURCE_PATHS)
         expected_source_paths.update(
             apex_first_opposite_shared_pair_common_five_source_paths(REPO_ROOT)
@@ -579,6 +612,9 @@ class Exact12NextRowArmStaticCanaryTests(unittest.TestCase):
             )
         )
         expected_source_paths.update(all_order_common_five_source_paths(REPO_ROOT))
+        expected_source_paths.update(
+            center_exchange_all_order_common_five_source_paths(REPO_ROOT)
+        )
         self.assertEqual(
             {record["path"] for record in job["sources"]}, expected_source_paths
         )
@@ -709,6 +745,17 @@ class Exact12NextRowArmStaticCanaryTests(unittest.TestCase):
         artifacts["all_order_common_five_family_bank"] = {"sha256": "0" * 64}
         self.assertFalse(_required_artifacts_authenticated(artifacts, required))
         artifacts.pop("all_order_common_five_family_bank")
+        self.assertFalse(_required_artifacts_authenticated(artifacts, required))
+
+        artifacts = {
+            name: {"sha256": expected_sha256}
+            for name, expected_sha256 in required.items()
+        }
+        artifacts["center_exchange_all_order_common_five_family_bank"] = {
+            "sha256": "0" * 64
+        }
+        self.assertFalse(_required_artifacts_authenticated(artifacts, required))
+        artifacts.pop("center_exchange_all_order_common_five_family_bank")
         self.assertFalse(_required_artifacts_authenticated(artifacts, required))
 
         self.assertEqual(

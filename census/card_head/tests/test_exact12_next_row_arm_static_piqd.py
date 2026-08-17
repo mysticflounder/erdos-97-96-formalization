@@ -362,7 +362,7 @@ def test_fresh_production_namespace_and_sequential_request(
     discovery = _discovery(tmp_path, repo_root, materialized, job, api)
     producer = json.loads(discovery.producer_manifest)
 
-    assert PIQD_PROJECT == "p97-exact12-next-row-arm-static-cell6-v12-r1"
+    assert PIQD_PROJECT == "p97-exact12-next-row-arm-static-cell6-v13-r1"
     assert producer["producer_id"].startswith(f"{PIQD_PROJECT}:")
     assert producer["claims"]["one_process"] is False
     assert producer["claims"]["one_core"] is False
