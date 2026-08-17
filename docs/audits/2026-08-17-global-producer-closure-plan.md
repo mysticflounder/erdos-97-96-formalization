@@ -81,3 +81,14 @@ The first meaningful checkpoint is a kernel-checked, import-reachable theorem
 whose hypotheses are supplied by the live residual and whose conclusion is
 accepted by one of the adjacent live consumers. Until that theorem exists, the V49
 banks remain regression assets and exact-17 is still open.
+
+## Execution checkpoint (2026-08-17)
+
+The documentation checkpoint was committed and pushed as `2c7b88a1`. The
+targeted `TwoSourceClosure` build completed successfully; its only relevant
+diagnostic is the expected `sorry` at
+`false_of_twoCapSources_freshOutsideFirstBlockerFiber_acyclicHardResidual`.
+The proof-blueprint search confirms that
+`card_le_four_mul_notRobustCenters` is on-spine while that terminal remains a
+live sorry. No source bridge currently supplies the required full-pair
+inclusion, so no new helper has been promoted merely for being compilable.
