@@ -109,11 +109,11 @@ EXPECTED_COMPILED_SHA256 = (
 )
 # The bank hash covers the source manifest: the checked certificate's Lean
 # import closure (which pulls the center-exchange bridge and the frozen
-# ancestors) and the frozen Python compiler, helper, surface, and order
-# sources.  No generated MembershipFamilyCnf module exists for this family
-# yet, so LEAN_ROOT_MODULES lists the certificate only.
+# ancestors), the generated MembershipFamilyCnf module in
+# LEAN_ROOT_MODULES, and the frozen Python compiler, helper, surface, and
+# order sources.
 EXPECTED_BANK_SHA256 = (
-    "f7dc77c5d00bf2a82af0095829ed4c9c4ae390f25d3a1461af9163e077c28fd8"
+    "701f3f768ed6d65fe1419561d36ef275f8dc188eded83e44b8b4add56ab7e362"
 )
 EXPECTED_ROLES_SHA256 = (
     "3c0b4d11dde446726aab949c61c1f5663229ddd079976f275e70158bbbcacec6"
@@ -1504,6 +1504,11 @@ LEAN_ROOT_MODULES = (
     (
         "Erdos9796Proof.P97.ATail.FrontierLiveClosure."
         "ExactTwelveRigid221CenterExchangeAllOrderCommonFiveCertificate"
+    ),
+    (
+        "Erdos9796Proof.P97.ATail.FrontierLiveClosure."
+        "ExactTwelveRigid221CenterExchangeAllOrderCommonFive"
+        "MembershipFamilyCnf"
     ),
 )
 
