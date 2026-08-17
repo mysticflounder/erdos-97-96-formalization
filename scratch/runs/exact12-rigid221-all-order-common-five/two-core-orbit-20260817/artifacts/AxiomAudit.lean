@@ -1,0 +1,8 @@
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactTwelveRigid221CorePairAllOrderCommonFiveCertificate
+
+open Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress
+
+#print axioms SourceOrderPositiveNogood.ofCorePairAllOrderCommonFive
+#print axioms commonFiveOrientationAt_corePair_of_frozenBlocks
+#print axioms FrozenBoundaryOrder.commonFiveOrientationAt_corePair
+#print axioms corePairOrientedAll48_eq_true_iff

@@ -1,0 +1,57 @@
+{
+  "harness": {
+    "installed_realizable_roles": 2546,
+    "strict_orbit_roles": 15588,
+    "widened_orbit_roles": 19612
+  },
+  "rotated_partner": {
+    "already_admitted_single_core": 59336,
+    "both_side_condition_cores": 95040,
+    "clause_width_histogram": {
+      "4": 23802
+    },
+    "clauses_dominated_by_installed_bank": 0,
+    "delta_cores": 35704,
+    "distinct_clauses": 23802,
+    "distinct_rows": 2168,
+    "fresh_clauses": 23802,
+    "fresh_clauses_realized_in_v25_survivor": 1,
+    "realizable_delta_cores": 23802,
+    "realized_cores": [
+      [
+        10,
+        8,
+        5,
+        7,
+        11
+      ]
+    ],
+    "row_size_histogram": {
+      "2": 596,
+      "3": 1572
+    },
+    "v25_clause_fresh": true,
+    "v25_clause_present": true,
+    "v25_union_rows": {
+      "10": [
+        5,
+        8,
+        11
+      ],
+      "11": [
+        7,
+        8,
+        10
+      ],
+      "5": [
+        7,
+        8,
+        11
+      ],
+      "7": [
+        8,
+        10
+      ]
+    }
+  }
+}

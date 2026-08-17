@@ -1,0 +1,106 @@
+{
+  "cores": {
+    "complementary_mask_pairs": 585,
+    "distinct_partial_masks": 92,
+    "full_coverage_cores": 19612,
+    "potential_core_pairs": 50158725,
+    "realizable_full_cores": 13598,
+    "realizable_partial_cores": 26831,
+    "row_realizable_cores": 40429,
+    "side_condition_cores": 53460
+  },
+  "harness": {
+    "installed_realizable_roles": 2546,
+    "strict_orbit_roles": 15588,
+    "widened_orbit_roles": 19612
+  },
+  "pairs": {
+    "enumerated": false,
+    "reason": "potential pairs 50158725 exceeds cap 40000000"
+  },
+  "v25_witness": {
+    "core_a": {
+      "core_abcxy": [
+        10,
+        8,
+        5,
+        7,
+        11
+      ],
+      "orders_covered": 36,
+      "rows": {
+        "11": [
+          8,
+          10
+        ],
+        "5": [
+          7,
+          8,
+          11
+        ],
+        "7": [
+          8,
+          10
+        ]
+      },
+      "rows_realizable": true,
+      "side_conditions": true,
+      "single_core_admissible": false
+    },
+    "core_b": {
+      "core_abcxy": [
+        7,
+        8,
+        10,
+        5,
+        11
+      ],
+      "orders_covered": 36,
+      "rows": {
+        "10": [
+          5,
+          8,
+          11
+        ],
+        "11": [
+          7,
+          8
+        ],
+        "5": [
+          7,
+          8
+        ]
+      },
+      "rows_realizable": true,
+      "side_conditions": true,
+      "single_core_admissible": false
+    },
+    "pair": {
+      "orders_covered": 48,
+      "present_in_v25_survivor": false,
+      "two_core_admissible": true,
+      "union_rows": {
+        "10": [
+          5,
+          8,
+          11
+        ],
+        "11": [
+          7,
+          8,
+          10
+        ],
+        "5": [
+          7,
+          8,
+          11
+        ],
+        "7": [
+          8,
+          10
+        ]
+      },
+      "union_rows_realizable": true
+    }
+  }
+}

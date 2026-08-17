@@ -1,0 +1,25 @@
+{
+  "base_head": "9eb55acf56ed659650807fb1fa9190a586276df2",
+  "created_utc": "2026-08-17T16:30:41Z",
+  "input_digests": {
+    "census/card_head/exact12_center_exchange_all_order_common_five_membership_family_bank.py": "3c072d334d9b87bcfb7e645b3456c83cfcba78cf664da64e943955df6b86cd26",
+    "scratch/arm-static-cell6-v25-live-898fbd78-20260816/survivor.json": "fac5426c504ebf9847911da7891a5795a21486fb6371e62d1d5a302d657914bd"
+  },
+  "lane_id": "exact12-rigid221-all-order-common-five",
+  "manifest_sha256": "85b6ad6306bfa603e84d6ca3552ae86d506e0417ad3730cbcd066d53af767fb4",
+  "output_classes": [
+    "artifacts",
+    "events",
+    "tmp"
+  ],
+  "owner": "terminal-custodian",
+  "root": "scratch/runs/exact12-rigid221-all-order-common-five/two-core-orbit-20260817",
+  "run_id": "two-core-orbit-20260817",
+  "schema": "worktree-run-manifest/v1",
+  "source_digests": {
+    "scratch/rigid221-sourceheavy-anchor/center-exchange/measure_rotated_partner_core_pair_orbit.py": "c4007017abdd41f61c4e1b621cc400c259c27c6827b7bcde0c112963dae6c636",
+    "scratch/rigid221-sourceheavy-anchor/center-exchange/measure_shared_five_core_pair_orbit.py": "c595061e525f8a75009c7c38df910f3421f40c77d724a1d4533b04570cae69d5",
+    "scratch/rigid221-sourceheavy-anchor/center-exchange/measure_two_core_disjunction_orbit.py": "9d33719d6310cb42bb8cd0f11f2b3a2dde67fdcc13bfea0fc9c68ef3b21c1f88",
+    "scratch/rigid221-sourceheavy-anchor/center-exchange/verify_rotated_partner_universality.py": "55cac1b8999778ff7fec551c94b6326ea14a29b28959c9b73477098082aa56f2"
+  }
+}
