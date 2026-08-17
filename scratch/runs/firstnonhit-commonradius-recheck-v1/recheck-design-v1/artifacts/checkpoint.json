@@ -1,0 +1,18 @@
+{
+ "schema": "worktree-lane-checkpoint/v1",
+ "lane_id": "firstnonhit-commonradius-recheck-v1",
+ "owner": "firstnonhit-commonradius-recheck-v1",
+ "base_head": "17a43fd83e013805e70023c73bec735b45760668",
+ "owned_paths": [
+  ".codex/worktree-checkpoints/firstnonhit-commonradius-recheck-v1.json",
+  "census/p97_search/freshthird_firstnonhit_commonradius_recheck_v1.py",
+  "census/p97_search/tests/test_freshthird_firstnonhit_commonradius_recheck_v1.py",
+  "docs/solve-prompts/2026-08-16-freshthird-firstnonhit-recheck-D-design.md"
+ ],
+ "generated_roots": [
+  "scratch/runs/firstnonhit-commonradius-recheck-v1/recheck-design-v1"
+ ],
+ "durable_paths": [],
+ "created_utc": "2026-08-16T09:00:20Z",
+ "manifest_sha256": "78794590b5d58bfca6007382489226543cf3aa5ca0e3f36fb74267cb7a364919"
+}
