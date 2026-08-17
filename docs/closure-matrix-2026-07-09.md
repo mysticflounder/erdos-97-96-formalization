@@ -3120,3 +3120,11 @@ unchanged.
 | target | status | next checked action | scope / guard |
 | --- | --- | --- | --- |
 | `ATail-GLOBAL-PAIR-COVER` | ACTIVE PLAN; no production `sorry` closed | Couple the existing on-spine `ATailMinimalUniqueFourCover.card_le_four_mul_notRobustCenters` producer to `false_of_capSource_firstFiber_outsidePairDeletionExactRows` or `false_of_twoCapSources_freshOutsideFirstBlockerFiber_acyclicHardResidual`; force one of the four retained-pair inclusions (`P ⊆ B3`, `P ⊆ B4`, `Pρ ⊆ B3`, `Pρ ⊆ B4`) or an equivalent direct five-center lift | V49 V6--V9 are finite SAT/replay regression assets only. The V8 17-support source-bank count and 16-support postsolve count are separate artifacts. The existing `physicalRows_inter_retainedPairs_card_le_one` is source-clean but off-spine and only a ≤1 cut. Do not launch another local motif wave without a new source-valid consumer. The proposed exact-17 global overlap census is vacuous at `n = 17`, and three-pin quadratic constraints are not represented in the current Boolean source model. |
+
+**Correction (2026-08-17):** the generic five-to-six-center adapters and
+`collisionFiveCenterDeletion_to_sixCenterAcyclicFaithfulResidual` already
+provide the positive faithful lift, but remain off-spine. The immediate target
+is now a consumer bridge from that boundary to a live terminal, preserving
+`FirstFiberCapSourceWitness`, blocker-in-cap membership, and role identity.
+The cardinality producer is background context, not the missing theorem; no
+new pair-cover helper or local V49 wave is authorized without a consumer.

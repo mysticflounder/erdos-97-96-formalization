@@ -26,23 +26,30 @@ reduction in the live obligation frontier.
 
 ## Target
 
-Produce an import-reachable, general-cardinality pair-cover producer that
+Produce an import-reachable, general-cardinality consumer bridge that
 feeds one of the adjacent live terminals
 `false_of_capSource_firstFiber_outsidePairDeletionExactRows` or
 `false_of_twoCapSources_freshOutsideFirstBlockerFiber_acyclicHardResidual`.
 The B3/B4 terminology names the four retained-pair cuts, not four currently
-named spine declarations. The first candidate is the blocker-image
-cardinality route:
+named spine declarations. The blocker-image cardinality route is not the
+immediate target:
 
 * `Problem97.ATailMinimalUniqueFourCover.card_le_four_mul_notRobustCenters`
   is already source-proved and on the proof spine. It is the import-reachable
   form of the older scratch theorem
   `Problem97.MDBlockerClosed.card_le_four_mul_card_blockerImage`.
-* The missing work is not reproving the cardinality estimate. It is the
-  source-level coupling from that estimate and the pinned/mutual-omission
-  hypotheses to one of the live terminal interfaces. The existing
-  `physicalRows_inter_retainedPairs_card_le_one` specialization is source-clean
-  but off-spine and is only a ≤1 cut; it does not force a full pair inclusion.
+* The existing `FiveSurvivorExactRowsBoundary.toFaithfulCarrierBoundary` and
+  `FiveSurvivorFaithfulCarrierBoundary.toActualBlockerSixCenterBoundary`
+  adapters already supply the generic five-to-six-center lift. The
+  source-clean `collisionFiveCenterDeletion_to_sixCenterAcyclicFaithfulResidual`
+  packages the first-fiber version, but it is off-spine and has no contradiction
+  consumer.
+* The missing work is therefore a source-level consumer bridge: preserve the
+  first-fiber source witness, blocker-in-cap membership, and role identification
+  while converting the faithful six-center boundary into one of the two live
+  terminal interfaces. The existing
+  `physicalRows_inter_retainedPairs_card_le_one` specialization remains only a
+  diagnostic ≤1 cut; it is not the missing producer.
 * The proposed global overlap-two census and three-pin quadratic constraints
   are not yet usable: at exact `n = 17` the former is vacuous, and the current
   Boolean `SourceModel` has no numeric atoms for the latter. They remain
@@ -56,11 +63,12 @@ cardinality route:
    antecedent. The current audit identifies the missing theorem as forcing one
    of `P ⊆ B3`, `P ⊆ B4`, `Pρ ⊆ B3`, or `Pρ ⊆ B4`, or an equivalent direct
    lift of the five-center bound.
-2. **Producer bridge.** Build a small import-reachable P97 module that
-   packages the existing cardinality producer with the B3/B4 source data. Do
-   not introduce a `sorry` or a local axiom. If the coupling is not derivable
-   from the live hypotheses, stop with that precise contract failure rather
-   than weakening the theorem.
+2. **Consumer bridge.** Build a small import-reachable P97 module that
+   consumes the existing faithful six-center adapter and supplies the missing
+   first-fiber role/source data to one live terminal. Do not introduce a
+   `sorry` or a local axiom. If the terminal requires a genuinely new
+   cap-wide theorem, stop with that precise contract failure rather than
+   weakening the theorem or creating an orphan producer.
 3. **Consumer check.** Elaborate the bridge and its intended terminal in a
    targeted build. Verify import reachability, the fresh blueprint edge, and
    transitive axioms. A green helper module without a spine edge is not proof
@@ -90,5 +98,9 @@ diagnostic is the expected `sorry` at
 `false_of_twoCapSources_freshOutsideFirstBlockerFiber_acyclicHardResidual`.
 The proof-blueprint search confirms that
 `card_le_four_mul_notRobustCenters` is on-spine while that terminal remains a
-live sorry. No source bridge currently supplies the required full-pair
-inclusion, so no new helper has been promoted merely for being compilable.
+live sorry. The read-only bridge search also confirmed that the existing
+five-to-six-center adapter is source-clean but off-spine; no consumer currently
+converts its faithful boundary into a live terminal. No new helper has been
+promoted merely for being compilable. The target is now explicitly
+consumer-first: preserve `FirstFiberCapSourceWitness`, blocker-in-cap
+membership, and role identity while attempting that terminal bridge.

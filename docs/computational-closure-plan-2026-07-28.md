@@ -13682,6 +13682,24 @@ source-level bridge work may proceed. A future `UNSAT` result is
 closure-relevant only after its ingress, coverage, and terminal composition
 theorems are kernel-checked and import-reachable.
 
+### 13.28.18 Consumer-first correction — 2026-08-17
+
+The source audit after 13.28.17 changes the immediate theorem target. The
+generic adapters
+`FiveSurvivorExactRowsBoundary.toFaithfulCarrierBoundary` and
+`FiveSurvivorFaithfulCarrierBoundary.toActualBlockerSixCenterBoundary` already
+provide the five-to-six-center lift, and
+`collisionFiveCenterDeletion_to_sixCenterAcyclicFaithfulResidual` packages the
+first-fiber form. These declarations are source-clean but off-spine and do not
+close a terminal.
+
+The next source task is therefore a **consumer bridge**, not a new
+cardinality/pair-cover producer: preserve the `FirstFiberCapSourceWitness`,
+blocker-in-cap membership, and role identification while feeding that faithful
+six-center boundary to an existing live terminal. If no such bridge follows
+from the current ingress, record the exact missing cap-wide theorem and stop;
+do not create another unconsumed helper or launch a new local CEGAR wave.
+
 ## 2026-08-16 operator set (from scratch output-pattern audit) — WITHDRAWN
 
 Source: `docs/audits/2026-08-16-scratch-computational-output-pattern-audit.md`,
