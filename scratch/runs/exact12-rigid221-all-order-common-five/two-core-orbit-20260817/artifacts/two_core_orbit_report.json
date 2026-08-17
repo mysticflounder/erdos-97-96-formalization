@@ -18,6 +18,7 @@
     "enumerated": false,
     "reason": "potential pairs 50158725 exceeds cap 40000000"
   },
+  "partial_classes": 26831,
   "v25_witness": {
     "core_a": {
       "core_abcxy": [
@@ -77,7 +78,7 @@
     },
     "pair": {
       "orders_covered": 48,
-      "present_in_v25_survivor": false,
+      "present_in_v25_survivor": true,
       "two_core_admissible": true,
       "union_rows": {
         "10": [
