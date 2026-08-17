@@ -12,11 +12,15 @@
     "scripts/publish_exact17_forty_ninth_three_cancellation_promotion_root.py",
     "scripts/validate_exact17_forty_ninth_three_cancellation_promotion_export.py"
   ],
-  "durable_paths": [],
+  "durable_paths": [
+    "scratch/runs/exact17-forty-ninth-three-cancellations-20260817/export-v1/coverage-ledger.json",
+    "scratch/runs/exact17-forty-ninth-three-cancellations-20260817/export-v1/export-receipt.json",
+    "scratch/runs/exact17-forty-ninth-three-cancellations-20260817/export-v1/independent-audit-report.json"
+  ],
   "generated_roots": [
     "scratch/runs/exact17-forty-ninth-three-cancellations-20260817/export-v1",
     "scratch/runs/exact17-forty-ninth-three-cancellations-20260817/mine-v1"
   ],
   "created_utc": "2026-08-17T05:25:00Z",
-  "manifest_sha256": "f161982c8710a2d5cee3c88cc0ac43803e59d44a720fe88352a49c8d4c9d388a"
+  "manifest_sha256": "f90366c92c8c9bb2f111bb8e6713fc101a8e6ee6c1419c0451ede266ec2bf782"
 }
