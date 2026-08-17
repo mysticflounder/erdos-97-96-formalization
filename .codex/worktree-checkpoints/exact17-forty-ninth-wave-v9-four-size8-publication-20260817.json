@@ -9,7 +9,17 @@
     "scripts/validate_exact17_forty_ninth_wave_v9_four_size8_promotion_export.py"
   ],
   "generated_roots": [],
-  "durable_paths": [],
+  "durable_paths": [
+    "scratch/exact17-forty-ninth-v9-publish-output.json",
+    "scratch/exact17-forty-ninth-v9-validation.json",
+    "scratch/runs/exact17-forty-ninth-wave-v8-seventeen-size8-publication-20260817/export-v1/artifacts/exact17-forty-ninth-wave-v8-seventeen-size8-promotion.cnf",
+    "scratch/runs/exact17-forty-ninth-wave-v8-seventeen-size8-publication-20260817/export-v1/events/v8-wave-mine.json",
+    "scratch/runs/exact17-forty-ninth-wave-v9-four-size8-publication-20260817/export-v1/artifacts/exact17-forty-ninth-wave-v9-four-size8-promotion.cnf",
+    "scratch/runs/exact17-forty-ninth-wave-v9-four-size8-publication-20260817/export-v1/coverage-ledger.json",
+    "scratch/runs/exact17-forty-ninth-wave-v9-four-size8-publication-20260817/export-v1/events/prepublication-export.cnf",
+    "scratch/runs/exact17-forty-ninth-wave-v9-four-size8-publication-20260817/export-v1/export-receipt.json",
+    "scratch/runs/exact17-forty-ninth-wave-v9-four-size8-publication-20260817/export-v1/independent-audit-report.json"
+  ],
   "created_utc": "2026-08-17T00:00:00Z",
-  "manifest_sha256": "0642d790046b402e51ead015b5fd3ee49e8a657c0dafbb8e85394ac1f64dc271"
+  "manifest_sha256": "923422283975c66a3dbcbbacb6ab852d66288f7521a7ace307ba7e6ac535561a"
 }
