@@ -5,13 +5,13 @@
  "base_head": "ac37cfe3ee807cdd72559ecad425ed02cce11d2e",
  "owned_paths": [
   ".codex/worktree-checkpoints/exact17-forty-ninth-wave-v6-five-size8-20260817.json",
-  "scripts/generate_exact17_forty_ninth_wave_v6_five_size8_bank.py",
-  "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenFortyNinthWaveV6FiveSize8Schemas.lean",
   "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenFortyNinthWaveV6FiveSize8Promotion.lean",
-  "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenFortyNinthWaveV6FiveSize8PromotionExport.lean"
+  "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenFortyNinthWaveV6FiveSize8PromotionExport.lean",
+  "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenFortyNinthWaveV6FiveSize8Schemas.lean",
+  "scripts/generate_exact17_forty_ninth_wave_v6_five_size8_bank.py"
  ],
  "generated_roots": [],
  "durable_paths": [],
  "created_utc": "2026-08-17T00:00:00Z",
- "manifest_sha256": "b1f2939c5204438a8fe780b2eed545c45cb3ef7a2a310c94d97492b551e19794"
+ "manifest_sha256": "908ee659d0e2081a95d4e371d21dc57a14d527d1e414ecc9787e9171e79e8fec"
 }
