@@ -1201,3 +1201,30 @@ limit of at most twelve cores.  A `SAT` result receives one wave-local theorem
 mine; an independently replayed `UNSAT` result composes through
 `exists_exactSeventeenSourceRealization_of_exactCover` to close the exact-17
 cap-nine branch.
+
+## FortyNinth weighted successor and pinned-multiplicity gate — 2026-08-17
+
+The FortyNinth Lean-owned root is now provisioned and authenticated at 308
+variables and 7,198,668 clauses.  Its publication is a source-pinned,
+create-once export; the next computational action is exactly one authenticated
+PIQD solve with the existing 3,600-second timeout and one core (hard limit
+twelve).
+
+The pinned-multiplicity proposal is a conditional successor refinement, not a
+retroactive change to this root.  Pairwise row-overlap capacity at most two is
+already present.  The global overlap-count bound is vacuous at `n = 17`, and
+normal-incidence is not yet a source-proved lemma, so neither is admitted as a
+Boolean clause.
+
+If FortyNinth is SAT, first formalize source-safe same-shell semicircle/order
+constraints and three-pin squared-distance compatibility, then add them to a
+new cumulative successor and rerun the authenticated validation pipeline.
+Normal-incidence remains blocked until its vertex/edge-normal alternatives are
+proved in Lean.  Independently, construct the anti-coverage query that
+conjoins the exact-seventeen source CNF with the negation of every banked
+weighted-occurrence hit pattern: UNSAT is a finite coverage certificate;
+SAT models are mined only for genuinely new source-valid occurrences.
+
+The intended Lean endpoint is a structural coverage theorem over
+order/orientation/next-center cases, not an assertion that the current finite
+occurrence catalog is exhaustive.
