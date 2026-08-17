@@ -1251,3 +1251,19 @@ two-atom cancellation records, but only four distinct hit supports: two of
 the eight-hit records have the same support.  The next promotion therefore
 starts with the two distinct eight-hit supports (8 guarded clauses), while
 the two ten-hit supports remain queued behind that child.
+
+## FortyNinth wave-v2 minimal-subset promotion — 2026-08-17
+
+The cumulative two-support child was SAT after 803.15 seconds.  Independent
+replay checked all 7,198,700 clauses against its complete 308-variable model
+with no failures.  The mandatory wave-only scan then found thirteen
+source-valid records: one direct zero atom (index 3108, `adjacentSides`) and
+twelve opposite-pair cancellations.  The smallest source-valid subset is the
+single direct zero atom, whose eight-hit support yields four guarded clauses
+(two named orders and two orientations).  It is promoted first as the
+7,198,704-clause cumulative child; the twelve paired records remain queued
+until this child has been independently solved and replayed.
+
+This is still theorem-bank refinement, not exact-17 closure.  The direct-zero
+occurrence is source-checked through the existing weighted Kalmanson bridge,
+and the Lean source/coordinator/export are audited before publication.

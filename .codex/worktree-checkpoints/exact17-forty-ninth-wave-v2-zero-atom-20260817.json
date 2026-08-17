@@ -1,0 +1,26 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "exact17-forty-ninth-wave-v2-zero-atom-20260817",
+  "owner": "root",
+  "base_head": "7497fd860deed1af8facbd7003e8654384bb6371",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exact17-forty-ninth-wave-v2-zero-atom-20260817.json",
+    "docs/specs/p97-exact17-cap9-lean-to-sat-route-v1.md",
+    "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenFortyNinthWaveV2ZeroAtomPromotion.lean",
+    "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenFortyNinthWaveV2ZeroAtomPromotionExport.lean",
+    "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenFortyNinthWaveV2ZeroAtomSchemas.lean",
+    "scripts/publish_exact17_forty_ninth_wave_v2_zero_atom_promotion_root.py",
+    "scripts/validate_exact17_forty_ninth_wave_v2_zero_atom_promotion_export.py"
+  ],
+  "durable_paths": [
+    "scratch/runs/exact17-forty-ninth-wave-v2-zero-atom-20260817/export-v1/coverage-ledger.json",
+    "scratch/runs/exact17-forty-ninth-wave-v2-zero-atom-20260817/export-v1/export-receipt.json",
+    "scratch/runs/exact17-forty-ninth-wave-v2-zero-atom-20260817/export-v1/independent-audit-report.json"
+  ],
+  "generated_roots": [
+    "scratch/runs/exact17-forty-ninth-wave-v2-zero-atom-20260817/export-v1",
+    "scratch/runs/exact17-forty-ninth-wave-v2-zero-atom-20260817/mine-v1"
+  ],
+  "created_utc": "2026-08-17T00:00:00Z",
+  "manifest_sha256": "9567858b7ffb1ee58062bcc858982fc7d8a74637e931786957107492eb08c0fe"
+}
