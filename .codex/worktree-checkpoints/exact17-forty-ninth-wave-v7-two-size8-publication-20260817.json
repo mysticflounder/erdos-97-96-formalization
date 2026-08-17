@@ -2,7 +2,7 @@
   "schema": "worktree-lane-checkpoint/v1",
   "lane_id": "exact17-forty-ninth-wave-v7-two-size8-publication-20260817",
   "owner": "exact17-forty-ninth-wave-v7-two-size8-publication",
-  "base_head": "a24547572cee6f762907816065bd927de06f9c96",
+  "base_head": "7f99cf04a1c06ec2d4003e6b42dfe5d2bdf3806a",
   "owned_paths": [
     ".codex/worktree-checkpoints/exact17-forty-ninth-wave-v7-two-size8-publication-20260817.json",
     "scripts/publish_exact17_forty_ninth_wave_v7_two_size8_promotion_root.py",
@@ -13,5 +13,5 @@
   ],
   "durable_paths": [],
   "created_utc": "2026-08-17T00:00:00Z",
-  "manifest_sha256": "e34f54c2ca63efb49c77a0f41f126881381f3307ff1670809b5b92f6304bb4f0"
+  "manifest_sha256": "240567b4223077d3b00903b40dc9e773ecf293a2c2370e9b5e1cf80759290c4f"
 }
