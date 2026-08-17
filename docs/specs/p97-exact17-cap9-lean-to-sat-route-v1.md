@@ -1228,3 +1228,18 @@ SAT models are mined only for genuinely new source-valid occurrences.
 The intended Lean endpoint is a structural coverage theorem over
 order/orientation/next-center cases, not an assertion that the current finite
 occurrence catalog is exhaustive.
+
+## FortyNinth next-zero-atom promotion — 2026-08-17
+
+The first authenticated FortyNinth solve was SAT.  Its replayed assignment
+contains two additional direct zero atoms, indices 3844 (`adjacentSides`) and
+3861 (`innerOuter`).  Both have source-valid weighted-Kalmanson adapters, so
+they are promoted as a separate eight-clause child: two occurrences times two
+named orders times two orientations.  This child is cumulative over the
+published 7,198,684-clause zero-atom root and therefore has 7,198,692 clauses.
+
+This is a source-adapter promotion, not an exact-17 closure claim.  The next
+gate is one authenticated solve of the published child using the existing
+3,600-second timeout and one core.  A SAT result is mined only for the next
+minimal source-valid subset; an independently replayed UNSAT result composes
+through the child terminal adapter.

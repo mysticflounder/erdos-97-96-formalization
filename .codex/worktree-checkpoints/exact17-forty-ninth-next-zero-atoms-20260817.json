@@ -1,0 +1,20 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "owner": "root",
+  "base_head": "d25317ac59f5e707ab38dafd68b0fc40373c5a65",
+  "created_utc": "2026-08-17T04:45:00Z",
+  "lane_id": "exact17-forty-ninth-next-zero-atoms-20260817",
+  "owned_paths": [
+    "docs/specs/p97-exact17-cap9-lean-to-sat-route-v1.md",
+    "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenFortyNinthNextZeroAtomPromotion.lean",
+    "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenFortyNinthNextZeroAtomPromotionExport.lean",
+    "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenFortyNinthNextZeroAtomSchemas.lean",
+    "scripts/publish_exact17_forty_ninth_next_zero_atom_promotion_root.py",
+    "scripts/validate_exact17_forty_ninth_next_zero_atom_promotion_export.py"
+  ],
+  "durable_paths": [],
+  "generated_roots": [
+    "scratch/runs/exact17-forty-ninth-next-zero-atoms-20260817/mine-v1"
+  ],
+  "manifest_sha256": "8b4b4d418fa6cdd3510d834cb5de6c8e8df648d6508665df84484628af7e098d"
+}
