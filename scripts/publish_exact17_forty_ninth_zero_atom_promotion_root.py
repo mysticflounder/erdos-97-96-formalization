@@ -21,9 +21,9 @@ COVERAGE_LEDGER_PATH = PACKAGE_ROOT / "coverage-ledger.json"
 VALIDATOR_PATH = Path(validator.__file__).resolve()
 PUBLISHER_PATH = Path(__file__).resolve()
 
-VALIDATOR_SOURCE_COMMIT = "23df512a68e7e023f6dc5e354a4d00c360c4904b"
-VALIDATOR_SHA256 = "abb4a5c493dccd007bc12a3ec1e19e243e85be5aff0aff295d9a2860a3121987"
-VALIDATOR_BYTES = 5808
+VALIDATOR_SOURCE_COMMIT = "4ca622de05cf8d38ebbab0d7216c12eb017bbd24"
+VALIDATOR_SHA256 = "82da7a3ee3051ee04750d90f86bb2aa25c6ca18f448090134e75c332e0a46240"
+VALIDATOR_BYTES = 5840
 RECEIPT_SCHEMA = "p97-exact17-forty-ninth-zero-atom-promotion-receipt/v1"
 COVERAGE_SCHEMA = "p97-exact17-forty-ninth-zero-atom-promotion-coverage/v1"
 AUDIT_SCHEMA = "p97-exact17-forty-ninth-zero-atom-promotion-audit/v1"
