@@ -103,6 +103,21 @@ model.
    gets mined immediately for the uncovered exchanges; UNSAT predicts
    the canary outcome.  Authentication still flows only through the
    proved pipeline.
+   **DONE 2026-08-16** (cadical on the v25 final CNF `81b4e2e2…`,
+   680,299 clauses; SAT in 1.17 s; scripts and cube in
+   `scratch/rigid221-sourceheavy-anchor/center-exchange/`): the decoded
+   cube passes independent cube-ok, contains 0 installed strict and 0
+   installed center-exchange instances (the new clauses bind), and 0
+   Klein a↔b union instances — the model does NOT escape through the
+   measured Klein gap class.  It realizes exactly 4 common-five
+   row-instances, (8,5,9,0,7), (6,3,5,1,4), (9,7,4,3,10), (3,2,7,5,6)
+   as (a,b,c,x,y), and every one is unorientable by every Klein variant
+   at some canonical order.  EMPIRICAL, one unauthenticated model.
+   Consequence for the prediction: the a↔b branch is refuted for this
+   model; the surplus-S₃ / new-shape branch stands.  Consequence for
+   action 3: the miner extensions are load-bearing for the v25 mine —
+   the common-five orientation family (any widening) cannot refute this
+   witness.
 3. **Miner extensions for the next mine**: a reciprocal-triad detector
    (observation 2 is invisible to the current rule shape) and deck-aware
    core reporting (name the reversible-block positions a core occupies —
