@@ -37,6 +37,11 @@ four collision-row choices, it selects the supplied arm and constructs the
 corresponding paired packet with explicit center-cardinality, order, and
 profile hypotheses.  The theorem returns packet data only; the live residual
 still has no finite-cardinality lift or metric consumer at this point.
+The bridge now also derives the actual convex `BoundaryIndexing` and identity
+order in `4218b49e`, returning an existentially indexed packet.  This removes
+an arbitrary-order input from the computational interface, while retaining
+the explicit five-center cardinality premises that the source has not yet
+proved uniformly.
 
 ## Objective
 
