@@ -263,6 +263,50 @@ noncomputable def firstFiberOutsidePairExactRows_to_roleCombinationPacket
           combinedPacket := outsidePacket.combine collisionPacket
           combinedPacket_eq := by rfl }⟩
 
+include Pρ in
+/-- Source-safe wrapper that obtains the boundary indexing from the convex
+carrier itself and uses the identity order.  The outside and collision
+disjunctions and all five-center cardinality premises remain caller inputs;
+this wrapper adds no carrier-size, metric, or contradiction conclusion. -/
+noncomputable def firstFiberOutsidePairExactRows_to_roleCombinationPacket_existsIndexing
+    (Q : FreshOutsideFirstBlockerFiber P Pρ)
+    (source : CriticalShellSystem.CarrierVertex D.A)
+    (houtside : FirstFiberOutsidePairExactRowsResidual P Pρ Q source)
+    (hcollision :
+      FirstFiberCollisionFiveCenterExactRowsResidual
+        P Pρ source S.oppApex2 S.surplusApex)
+    (houtsideCenters :
+      ({H.centerAt source.1 source.2,
+        H.centerAt Pρ.source₁ Pρ.source₁_mem_A,
+        S.oppApex1, S.oppApex2, S.surplusApex} : Finset ℝ²).card = 5)
+    (hfirstCenters :
+      ({H.centerAt source.1 source.2, S.oppApex1,
+        H.centerAt Pρ.source₁ Pρ.source₁_mem_A,
+        S.oppApex2, S.surplusApex} : Finset ℝ²).card = 5)
+    (hsecondCenters :
+      ({H.centerAt source.1 source.2, S.oppApex1,
+        H.centerAt P.source₁ P.source₁_mem_A,
+        S.oppApex2, S.surplusApex} : Finset ℝ²).card = 5)
+    (hthirdCenters :
+      ({H.centerAt source.1 source.2, S.oppApex1,
+        H.centerAt Pρ.source₁ Pρ.source₁_mem_A,
+        S.oppApex2, S.surplusApex} : Finset ℝ²).card = 5)
+    (hfourthCenters :
+      ({H.centerAt source.1 source.2, S.oppApex1,
+        H.centerAt P.source₁ P.source₁_mem_A,
+        S.oppApex2, S.surplusApex} : Finset ℝ²).card = 5) :
+    ∃ I : BoundaryIndexing D.A, Nonempty (RoleCombinationPacket I.n) := by
+  have hncol : ¬ Collinear ℝ (D.A : Set ℝ²) :=
+    D.convex.not_collinear_of_card_ge_three (by
+      have hcard := D.card_gt_four
+      omega)
+  rcases exists_boundaryIndexing D.convex hncol with ⟨I⟩
+  refine ⟨I, ?_⟩
+  exact firstFiberOutsidePairExactRows_to_roleCombinationPacket
+    (P := P) (Pρ := Pρ) Q source houtside hcollision I id Function.bijective_id
+    [I.n] (by simp) houtsideCenters hfirstCenters hsecondCenters hthirdCenters
+    hfourthCenters
+
 end
 end FirstFiberRoleCoverage
 end ATailFrontierLiveClosure
