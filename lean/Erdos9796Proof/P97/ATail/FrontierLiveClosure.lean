@@ -23,6 +23,7 @@ import Erdos9796Proof.P97.ATail.FrontierLiveClosure.TwoSourceFirstFiberCollision
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.FirstFiberFinitePacketIngress
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.FirstFiberRoleCoverage
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.FirstFiberBoundedEncoding
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure.FirstFiberMetricCoreConsumer
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.TwoSourceClosure
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.TwoSourceRetainedMinimalCore
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.TwoSourceAlignedLowHits
