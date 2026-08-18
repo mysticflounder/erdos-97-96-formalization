@@ -380,6 +380,23 @@ theorem exists_roleCombinationPacket_replayRows {n : ℕ}
   · exact mapIndexedPacketRows_length encoding role.collisionPacket
       (roleCombinationPacket_collision_namedReplayContract role)
 
+theorem exists_indexed_roleCombinationPacket_diagnosticReplayIngress
+    {D : CounterexampleData}
+    (hpackets : ∃ I : BoundaryIndexing D.A, Nonempty (RoleCombinationPacket I.n)) :
+    ∃ I : BoundaryIndexing D.A, ∃ packet : RoleCombinationPacket I.n,
+      ∃ encoding : BoundedNamedSlotEncoding packet.combinedPacket,
+        ∃ outsideRows collisionRows : List MappedNamedExactRow,
+          outsideRows = (mapRoleCombinationPacketRows packet encoding).1 ∧
+          collisionRows = (mapRoleCombinationPacketRows packet encoding).2 ∧
+          outsideRows.length = 5 ∧ collisionRows.length = 5 := by
+  rcases hpackets with ⟨I, hI⟩
+  rcases hI with ⟨packet⟩
+  rcases exists_boundedNamedSlotEncoding packet.combinedPacket with ⟨encoding⟩
+  rcases exists_roleCombinationPacket_replayRows packet encoding with
+    ⟨outsideRows, collisionRows, houtside_eq, hcollision_eq, houtside, hcollision⟩
+  exact ⟨I, packet, encoding, outsideRows, collisionRows,
+    houtside_eq, hcollision_eq, houtside, hcollision⟩
+
 end FirstFiberBoundedEncoding
 end ATailFrontierLiveClosure
 end Problem97
