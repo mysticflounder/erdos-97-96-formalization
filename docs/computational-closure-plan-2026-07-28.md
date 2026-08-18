@@ -2523,9 +2523,10 @@ measured against the 21st bank's module, decomposing all 5,719 of its lines
 by generated section and scaling each by its own driver, projects the
 core-pair module at 37,584 lines rather than the 53,466 a flat
 lines-per-pattern rate predicts: patterns grow by 9.35 but requirements only
-by 1.60, and the implication section shrinks from 658 to 380.  No bank
-freeze, canary, successor formula, or wave is authorized by this payload and
-measurement.
+by 1.60, and the implication section shrinks from 658 to 380.  That payload
+and measurement authorized no bank freeze on their own; the freeze recorded
+below came only after the generated module was built and validated.  They
+still authorize no canary, successor formula, or wave.
 
 The generated Lean CNF module for the 22nd bank now exists:
 `lean/.../ExactTwelveRigid221CorePairAllOrderCommonFiveMembershipFamilyCnf.lean`,
