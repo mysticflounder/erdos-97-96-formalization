@@ -70,6 +70,12 @@ points are replayed as omitted named labels only when the source proves that
 they are not in the selected support; the maps never infer nonmembership from
 the overflow complement.  This closes the serialization gap for row replay,
 but it is still not a coverage theorem or a `MetricCoreAlternative` producer.
+The packet-level replay contract is now landed in `782054f1`.  It requires
+namedness of every row center and support explicitly, maps the five rows with
+`List.pmap`, and replays output length, support cardinality, and center
+exclusion.  The explicit row-center premise is intentional: the generic
+`IndexedPacket` record does not identify each row with a corresponding entry
+in its center list, so the replay layer must not infer that alignment.
 
 ## Objective
 
