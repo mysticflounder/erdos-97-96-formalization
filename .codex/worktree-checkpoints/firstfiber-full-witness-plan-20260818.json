@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "firstfiber-full-witness-plan-20260818",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/firstfiber-full-witness-plan-20260818.json",
+    "docs/plans/2026-08-18-firstfiber-full-witness-search-plan.md"
+  ],
+  "durable_paths": [],
+  "generated_roots": [],
+  "owner": "codex-firstfiber-plan",
+  "base_head": "aedabe5c7119f4562ae3aa513de0764883320a10",
+  "created_utc": "2026-08-18T00:00:00Z",
+  "manifest_sha256": "a5cc1511f109dc7ceb43ac947be32c8a6e4ab10029ee92a15386d293cac4e992"
+}

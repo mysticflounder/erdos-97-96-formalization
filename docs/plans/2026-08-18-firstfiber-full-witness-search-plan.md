@@ -1,0 +1,171 @@
+# FirstFiber source-faithful witness and closure plan
+
+Status: executable planning document; this is not a closure claim.
+
+## Objective
+
+Resolve the live FirstFiber outside-pair obligation
+
+`false_of_capSource_firstFiber_outsidePairDeletionExactRows`
+
+in `lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFirstFiberCollision.lean`.
+
+There are two acceptable terminal outcomes:
+
+1. produce a finite, source-faithful Euclidean witness that survives exact replay; or
+2. produce a finite obstruction whose coverage and arbitrary-cardinality lift are proved in Lean and which consumes the named live theorem.
+
+An abstract fixed-cardinality SAT result is neither outcome. It is discovery evidence until its source ingress, coverage, and replay contract are complete.
+
+## Current diagnosis
+
+The existing `FirstFiberFinitePacket` extractor is source-clean and reindexes the whole carrier, but it does not provide a concrete `CounterexampleData` instance or a finite upper bound on `D.A.card`. The live residual has two outside-point deletion arms and four five-center exact-row arms. Choosing one from each gives a bounded named projection:
+
+- ten exact-row supports, each of size four;
+- at most two deleted points;
+- at most six named centers;
+- at most 48 named slots before deduplication.
+
+This is a projection of the source data, not a claim that the full carrier has at most 48 points. The solver must retain an overflow/anonymous remainder state and must never infer nonmembership from omission from the projection.
+
+## Phase 0 — Freeze the proof contract
+
+Before generating a new CNF, record:
+
+- the source revision and declaration hash for the live theorem;
+- the eight role combinations: two outside deletions times four exact-row arms;
+- the exact hypotheses available at each role combination;
+- which rows are full carrier circle classes and which are only selected four-subsets;
+- the intended Lean consumer, or a new consumer name if no existing theorem accepts the obstruction;
+- the cardinality scope of every finite encoding.
+
+The contract must state that a solver model is a candidate until independently replayed. An UNSAT result is scoped to the encoded quotient unless a Lean coverage theorem maps every live instance into that quotient.
+
+The production ingress must be import-reachable from the proof tree; the existing scratch extractor is evidence, not a landed bridge. The validator must cross-check each arm against its deleted-point identity, hash the declared Lean source bytes and compare the digest rather than merely checking its shape, verify profile/cardinality consistency, and check deleted-point/center distinctness. It must also state whether every named object belongs to the full carrier or only to the bounded projection.
+
+## Phase 1 — Build the bounded named-support ingress
+
+Add a source-side adapter for each of the eight role combinations. It should:
+
+1. call the existing indexed-packet extractors;
+2. assign stable role IDs to centers, supports, deleted points, and the two outside points;
+3. deduplicate names while retaining an injective map from every named source object;
+4. retain the active/overflow distinction for all unnamed carrier points;
+5. preserve cyclic order restricted to named points;
+6. preserve center exclusion, support cardinality four, deleted omission, center distinctness, and every exactness fact proved at the source;
+7. expose provenance identifying the live arm and the Lean declaration.
+
+The adapter must not assert that an omitted point is outside a circle unless the source supplies that nonmembership. It must not turn an arbitrary four-subset from a deletion certificate into a full shell class.
+
+The adapter must transport the actual cyclic boundary order, rather than installing an arbitrary local order, and must expose the relation between the profile and `n` whenever a profile assumption is used. The eight-arm coverage theorem must be checked by a finite exhaustive adapter test and by a Lean theorem, not inferred from the Python role count.
+
+The first Lean milestone is a theorem saying that every live instance yields one of these eight packets, with an explicit role map and overflow set. This is the ingress theorem required before a production UNSAT claim.
+
+## Phase 2 — Encode only source-entitled constraints
+
+The first solver should be a cardinality-independent role quotient, not an exact-17 census. Its state should include:
+
+- equality and inequality facts for named squared distances;
+- row-center incidence and center exclusion;
+- the two deletion identities and outside-pair roles;
+- exact four-support constraints where the source proves a full class;
+- three-valued membership facts for unknown circle incidences;
+- cyclic order and convexity constraints on named points;
+- pinned multiplicity constraints already admitted by the source;
+- cap/source roles and all universal side conditions that feed the target.
+
+Every relaxation must be tagged. A relaxed clause may generate a conjecture but cannot be used for Lean promotion.
+
+Use raw DIMACS through the governed piqd boundary. Pin the encoder source, role-map schema, variable map, clause count, and manifest. Before a large run, validate:
+
+- hand-built positive and negative source packets;
+- role permutations and reversed cyclic order;
+- overflow points;
+- duplicate-center rejection;
+- full-class versus selected-subset semantics;
+- model decoding and clause replay.
+
+## Phase 3 — Add a geometry-realization lane
+
+Run a separate exact-realization model for the active named roles. Its variables should include coordinates, squared distances, convex orientation, and all source-required equalities/inequalities. For a genuine full counterexample search, include a complete finite carrier and every global K4/minimality condition for the selected cardinality.
+
+The realization lane must:
+
+- use exact rational or algebraic replay after proposal generation;
+- cross-check any SAT/SMT model with an independent solver where practical;
+- reject floating-point-only witnesses;
+- verify every circle row, deletion condition, cap condition, and convex-independence condition;
+- emit a complete source object that Lean can consume, or explicitly mark the result diagnostic.
+
+This lane answers the user's witness question directly: a full coordinate model can return a genuine witness. The current weak incidence models cannot, because they omit coordinates and source-wide conditions.
+
+## Phase 4 — CEGAR and theorem mining
+
+For each wave:
+
+1. validate every SAT model independently;
+2. classify it as full source-faithful, source-mapped quotient, or diagnostic-only;
+3. mine only minimal cuts whose premises are source-proved;
+4. attach each candidate theorem to a named Lean consumer before banking it;
+5. reject cuts that depend on an exact cardinality with no lift;
+6. run a cross-wave motif check after the wave completes, but search the Lean corpus only for concrete candidates;
+7. publish a successor CNF only after the Lean theorem, source adapter, and replay validator agree on the same variable map.
+
+Prioritize motifs that already have consumers: two-triple row obstructions, Kalmanson cancellations, metric-core alternatives, radial/power-pattern contradictions, and pinned-multiplicity consequences. A new producer with no consumer is discovery output, not closure progress.
+
+For UNSAT, require an authenticated DRAT/LRAT or other exact proof artifact, independent clause replay, and a written scope statement. For SAT, require complete model replay and source reconstruction. For UNKNOWN, preserve the run and add no theorem.
+
+## Phase 5 — Consumer-first Lean promotion
+
+Select the smallest consumer that can absorb the first stable obstruction. If an existing theorem such as `GeneralCarrierBridge.false_of_metricCoreAlternative` fits, prove the adapter into that theorem. Otherwise introduce one local combined-row consumer rather than adding another terminal leaf.
+
+The promotion bundle must contain:
+
+- the source ingress theorem;
+- the role-quotient coverage theorem for all eight arms;
+- the overflow/cardinality argument;
+- the exact obstruction theorem;
+- certificate replay in Lean;
+- the consumer invocation;
+- proof-blueprint spine wiring;
+- an axiom and `sorryAx` audit.
+
+The final theorem must quantify over arbitrary carrier size. Exact-17, exact-18, or any other fixed census may remain as regression coverage, but cannot be presented as the universal closure.
+
+## Phase 6 — Compute schedule and stop rules
+
+1. Run a small source-mapped smoke packet for each of the eight arms.
+2. Run the bounded role quotient with at most 12 solver cores per job and a fixed, recorded timeout.
+3. Run the exact-realization lane only on decoded SAT candidates or on a deliberately scoped exact-cardinality diagnostic.
+4. After the first authenticated wave, mine motifs and promote the best consumer before widening the wave.
+5. Do not launch another broad fixed-n wave when the previous wave produced only SAT shadows, UNKNOWN results, or producers without consumers.
+6. Stop and revise the encoder if a model violates the source replay, if a clause depends on omitted nonmembership, or if a finite UNSAT claim has no coverage theorem.
+
+## Milestones
+
+**M1 — Source ingress:** eight role packets, overflow semantics, and Lean coverage theorem.
+
+**M2 — Encoder validation:** source-mapped smoke tests, exact variable-map audit, and authenticated piqd package.
+
+**M3 — First wave:** one bounded quotient wave with complete SAT/UNSAT/UNKNOWN custody.
+
+**M4 — Geometry replay:** at least one decoded SAT candidate either becomes a complete Euclidean witness or is rejected by an exact source condition.
+
+**M5 — Consumer promotion:** one source-proved obstruction is replayed in Lean and consumes an existing live branch without a new unconnected `sorry`.
+
+**M6 — Closure decision:** either the universal theorem is closed, or the project has a formally documented genuine witness/remaining obstruction and a revised target.
+
+## Deliverables
+
+- this plan and an updated closure-plan entry;
+- one source ingress module and tests;
+- one encoder manifest, role-map schema, and validator;
+- piqd receipts, solver proof/model artifacts, and exact replay reports;
+- one Lean producer/consumer bridge with trust audit;
+- a wave report separating universal proof progress from diagnostic finite computation.
+
+The governing principle is:
+
+`source ingress -> bounded quotient -> exact replay -> Lean consumer -> arbitrary-cardinality lift`.
+
+Skipping any arrow yields useful research data but not a closed proof.
