@@ -32,6 +32,12 @@ _DELETED_IDENTITIES = {
     "source": "Q.source.1",
     "other": "Q.otherOutsidePoint",
 }
+_COLLISION_ARMS = {
+    "P.source₁",
+    "Pρ.source₁",
+    "P.source₂",
+    "Pρ.source₂",
+}
 
 
 class SourceAdapterError(ValueError):
@@ -159,6 +165,7 @@ def _validate_packet(raw: object) -> dict[str, Any]:
         packet["provenance"],
         {
             "arm",
+            "collision_arm",
             "deleted_identity",
             "lean_declaration",
             "centers_distinct",
@@ -179,6 +186,10 @@ def _validate_packet(raw: object) -> dict[str, Any]:
     if provenance["deleted_identity"] != _DELETED_IDENTITIES[provenance["arm"]]:
         raise SourceAdapterError(
             "provenance.deleted_identity disagrees with provenance.arm"
+        )
+    if provenance["collision_arm"] not in _COLLISION_ARMS:
+        raise SourceAdapterError(
+            "provenance.collision_arm is not one of the four row arms"
         )
     if (
         provenance["lean_declaration"]

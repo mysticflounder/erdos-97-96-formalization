@@ -48,6 +48,7 @@ def _source() -> dict:
                 ],
                 "provenance": {
                     "arm": "source",
+                    "collision_arm": "P.source₁",
                     "deleted_identity": "Q.source.1",
                     "lean_declaration": "false_of_capSource_firstFiber_outsidePairDeletionExactRows",
                     "centers_distinct": True,
@@ -109,6 +110,13 @@ def test_rejects_crossed_arm_declaration() -> None:
 def test_rejects_arm_deleted_identity_mismatch(field: str, value: str) -> None:
     source = copy.deepcopy(_source())
     source["packets"][0]["provenance"][field] = value
+    with pytest.raises(SourceAdapterError):
+        normalize_source(source)
+
+
+def test_rejects_unknown_collision_arm() -> None:
+    source = copy.deepcopy(_source())
+    source["packets"][0]["provenance"]["collision_arm"] = "unknown"
     with pytest.raises(SourceAdapterError):
         normalize_source(source)
 
