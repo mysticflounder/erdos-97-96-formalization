@@ -76,6 +76,12 @@ namedness of every row center and support explicitly, maps the five rows with
 exclusion.  The explicit row-center premise is intentional: the generic
 `IndexedPacket` record does not identify each row with a corresponding entry
 in its center list, so the replay layer must not infer that alignment.
+The role-packet adapters are now landed in `d85543cc`.  The left and right
+packets of every `RoleCombinationPacket` inherit named row centers and
+supports from `combinedPacket.namedSlots_eq`; the adapter therefore returns
+both mapped five-row lists with no caller-supplied hidden alignment premise.
+This completes the source-to-bounded-row replay bridge, while leaving the
+metric obstruction and arbitrary-cardinality coverage obligations open.
 
 ## Objective
 
