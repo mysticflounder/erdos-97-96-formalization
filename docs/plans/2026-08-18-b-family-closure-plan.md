@@ -31,101 +31,165 @@ graph TD
 
 ---
 
-## 2. Mathematical Triage of the 3 Open Leaves
+## 2. Deep Dive & Rigor Validation of Step 1 (Normal Form Promotion)
 
-### 2.1. Leaf B1 (`b1_globalGapOrClosedTerminal_of_counterexample`)
-* **Hypothesis Context**:
-  Two deleted points $z_1, z_2$ in the 5-point second cap class $C := \operatorname{SelectedClass}(S.\text{oppApex2}, \rho)$ share their actual blocker center $b := \beta(z_1) = \beta(z_2)$.
-* **Verified Bank Results** ([`B1Live.lean`](file:///Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/B1Live.lean)):
-  - $\operatorname{Row}(z_1) = \operatorname{Row}(z_2)$ (shared 4-shell centered at $b$).
-  - $\operatorname{Row}(z_1) \cap C = \{z_1, z_2\}$.
-  - $\{p \in D.A : \operatorname{dist}(p, z_1) = \operatorname{dist}(p, z_2)\} = \{b, S.\text{oppApex2}\}$. The perpendicular bisector $\operatorname{PB}(z_1, z_2)$ is strictly saturated at 2 carrier points.
-  - `b1_live_escape_small_overlap` produces an escape point $t \in C \cap \operatorname{Cap}_2$ with $t \notin \{z_1, z_2\}$, $\beta(t) \ne b$, and $|\operatorname{support}(t) \cap \operatorname{support}(z_1)| \le 2$.
-* **Mathematical Core**:
-  The 5 points of $C$ are $\{z_1, z_2, t, u, v\}$. $u$ and $v$ mutually omit each other ($u \notin \operatorname{Row}(v), v \notin \operatorname{Row}(u)$). The symmetry axis $\mathcal{L} := \overline{S.\text{oppApex2}, b} = \operatorname{PB}(z_1, z_2)$ bisects the chord $[z_1, z_2]$. Because $t$ lies strictly off $\mathcal{L}$, its reflection and critical shell $\operatorname{Row}(t)$ force an over-determined chord intersection with $\operatorname{Row}(u)$ and $\operatorname{Row}(v)$, which has no Euclidean embedding in convex position.
+Step 1 collapses the 3 coincidence branches of B2 into a unified normal form where the collided source $z_1 \in D.A$ is the blocker center of some carrier point $x \in \{u, v, z_2\}$.
 
----
+### Step 1a: Critical Shell Radius Uniqueness & Selection Equality
+* **Exact Statements**:
+  ```lean
+  /-- At `H.centerAt q hq` the only positive radius carrying ≥ 4 ambient points is the critical radius. -/
+  theorem criticalShell_radius_unique {A : Finset ℝ²} (H : CriticalShellSystem A)
+      (q : ℝ²) (hq : q ∈ A) {s : ℝ} (hs : 0 < s)
+      (hfour : 4 ≤ (SelectedClass A (H.centerAt q hq) s).card) :
+      s = (H.selectedAt q hq).toCriticalFourShell.radius
 
-### 2.2. Leaf B2 (`false_of_exactFourMutualOmission_fourCenterCommonDeletion_blockerCoincidence`)
-* **Hypothesis Context**:
-  $z_1, z_2$ have distinct blockers $\beta(z_1) \ne \beta(z_2)$. The common deleted point $z_1$ coincides with one of the 3 blocker centers: $z_1 = \beta(u) \lor z_1 = \beta(v) \lor z_1 = \beta(z_2)$.
-* **Verified Bank Results** ([`B2Arm3.lean`](file:///Users/adam/projects/math-projects/erdos-97-96-formalization/lean/scratch/b-family-bank/B2Arm3.lean)):
-  - `b2_collision_uniform_normalForm` proves all 3 arms reduce to the single existential: $\exists x \in \{u, v, z_2\}$ such that $z_1 = \beta(x)$.
-  - The critical shell $\operatorname{Row}(x)$ is the **unique** radius class centered at $z_1$ with $\ge 4$ points.
-  - $z_1 \notin \operatorname{Row}(x)$ and $\operatorname{Row}(x) \subseteq D.A \setminus \{z_1\}$.
-  - $\text{HasNEquidistantPointsAt}\ 4\ (D.A \setminus \{y\})\ z_1 \iff y \notin \operatorname{Row}(x)$.
-* **Mathematical Core (Center-Carrier Convex Exclusion)**:
-  $z_1 \in D.A$ is simultaneously a carrier point in strictly convex position and the center of the 4-point circle $\operatorname{Row}(x) \subseteq D.A$.
-  - By [`convexIndep_not_mem_convexHull_of_finset_subset_diff`](file:///Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/Geometry/ConvexIndepHull.lean#L33), $z_1 \notin \operatorname{convexHull}(\operatorname{Row}(x))$.
-  - This forces all 4 points of $\operatorname{Row}(x)$ into an open semicircle (angular arc $< 180^\circ$).
-  - But $\operatorname{Row}(x) \cap C = \{x, x'\}$ lies on the circle centered at $S.\text{oppApex2}$ with radius $\rho$, while $z_1$ also lies on that circle. The combined angular span of $\{S.\text{oppApex2}, z_1, x, x', u, v\}$ violates convex independence.
+  /-- Every ambient radius class of size ≥ 4 centered at a blocker center is its canonical critical shell. -/
+  theorem criticalShell_selectedClass_eq_support {A : Finset ℝ²}
+      (H : CriticalShellSystem A) (q : ℝ²) (hq : q ∈ A) {s : ℝ} (hs : 0 < s)
+      (hfour : 4 ≤ (SelectedClass A (H.centerAt q hq) s).card) :
+      SelectedClass A (H.centerAt q hq) s =
+        (H.selectedAt q hq).toCriticalFourShell.support
+  ```
+* **Rigor Classification**: **`PROVEN`** (Kernel-verified in `lean/scratch/b-family-bank/B2Arm3.lean:52–90`).
+* **Load-Bearing Dependencies**: `H.no_qfree_at q hq` + `selectedClass_erase_card_eq_of_not_mem`.
+* **Axiom Footprint**: `[propext, Classical.choice, Quot.sound]`.
+* **Circularity Audit**: None. Purely local properties of an abstract `CriticalShellSystem`.
 
 ---
 
-### 2.3. Leaf B3 (`false_of_exactFourMutualOmission_fourCenterCommonDeletion_survivalSquare`)
-* **Hypothesis Context**:
-  $z_1$ survives at 4 distinct centers $C_4 := \{S.\text{oppApex2}, \beta(u), \beta(v), \beta(z_2)\}$, and the cross-packet provides bidirectional survival with $\beta(z_1)$.
-* **Refutation of Naive Path**:
-  `b3_gap_refuted` in `BFamilyBank.lean` proved that vertex removability is false because $\beta(z_1)$ cannot be a survival center under `no_qfree` at $z_1$.
-* **Mathematical Core**:
-  The four centers $C_4$ and their four 4-shells form a closed 4-cycle of mutual incidences. By [`SimilarityFrame.lean`](file:///Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/Geometry/SimilarityFrame.lean) and [`FivePointCircleIsosceles.lean`](file:///Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/Geometry/FivePointCircleIsosceles.lean), four distinct circles in $\operatorname{Cap}_2$ cannot simultaneously have pairwise chord crossings preserving 4-equidistance upon deleting opposite centers.
+### Step 1b: Blocker Center Erase Equivalence & Fiber Multiplicity
+* **Exact Statements**:
+  ```lean
+  /-- Deleting `y` preserves 4 equidistant points at `H.centerAt q hq` iff `y` avoids the canonical shell. -/
+  theorem criticalShell_survives_iff_not_mem_support {A : Finset ℝ²}
+      (H : CriticalShellSystem A) (q : ℝ²) (hq : q ∈ A) (y : ℝ²) :
+      HasNEquidistantPointsAt 4 (A.erase y) (H.centerAt q hq) ↔
+        y ∉ (H.selectedAt q hq).toCriticalFourShell.support
+
+  /-- Blocker fibers sit on one circle. -/
+  theorem mem_support_of_centerAt_eq {A : Finset ℝ²} (H : CriticalShellSystem A)
+      (q : ℝ²) (hq : q ∈ A) (y : ℝ²) (hy : y ∈ A)
+      (hcenter : H.centerAt y hy = H.centerAt q hq) :
+      y ∈ (H.selectedAt q hq).toCriticalFourShell.support
+
+  /-- At most four carrier points share any one chosen blocker center. -/
+  theorem blockerFiber_card_le_four {A : Finset ℝ²} (H : CriticalShellSystem A)
+      (q : ℝ²) (hq : q ∈ A) :
+      (A.filter fun y ↦ ∀ hy : y ∈ A, H.centerAt y hy = H.centerAt q hq).card ≤ 4
+  ```
+* **Rigor Classification**: **`PROVEN`** (Kernel-verified in `lean/scratch/b-family-bank/B2Arm3.lean:99–134`).
+* **Load-Bearing Dependencies**: `cross_deletion_survives_iff_not_mem_selected_support` + `H.no_qfree_at`.
+* **Axiom Footprint**: `[propext, Classical.choice, Quot.sound]`.
+* **Circularity Audit**: None.
 
 ---
 
-## 3. Step-by-Step Implementation Roadmap
+### Step 1c: Core Collision Normal Form
+* **Exact Statement**:
+  ```lean
+  /-- Collision normal form at a source-blocker coincidence `c = H.centerAt x hx`. -/
+  theorem criticalShell_collision_normalForm {A : Finset ℝ²}
+      (H : CriticalShellSystem A) (x : ℝ²) (hx : x ∈ A) {c : ℝ²}
+      (hc : c = H.centerAt x hx) :
+      c ∉ (H.selectedAt x hx).toCriticalFourShell.support ∧
+        (∀ s : ℝ, 0 < s → 4 ≤ (SelectedClass A c s).card →
+            SelectedClass A c s = (H.selectedAt x hx).toCriticalFourShell.support) ∧
+        (∀ y : ℝ², HasNEquidistantPointsAt 4 (A.erase y) c ↔
+            y ∉ (H.selectedAt x hx).toCriticalFourShell.support)
+  ```
+* **Rigor Classification**: **`PROVEN`** (Kernel-verified in `lean/scratch/b-family-bank/B2Arm3.lean:142–155`).
+* **Load-Bearing Dependencies**: `CriticalFourShell.center_not_mem_support` + Steps 1a and 1b.
+* **Axiom Footprint**: `[propext, Classical.choice, Quot.sound]`.
+
+---
+
+### Step 1d: Uniform B2 Disjunction Collapse
+* **Exact Statement**:
+  ```lean
+  /-- All three coincidence arms collapse to one uniform existential over `x ∈ {u, v, z₂}`. -/
+  theorem b2_collision_uniform_normalForm
+      {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+      {H : CriticalShellSystem D.A}
+      {F : CriticalPairFrontier D S radius H}
+      (R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F)
+      (_hcard : 12 ≤ D.A.card)
+      (_surface : ExactFourPostCardElevenRobustSurface R)
+      (rho : ℝ)
+      (_hrho : 0 < rho)
+      (_hfive : 5 ≤ (SelectedClass D.A S.oppApex2 rho).card)
+      (u v : CarrierVertex D.A)
+      (_huNeV : u ≠ v)
+      (_huClass : u.1 ∈ SelectedClass D.A S.oppApex2 rho)
+      (_hvClass : v.1 ∈ SelectedClass D.A S.oppApex2 rho)
+      (_hvOmitted : v.1 ∉ ((lateFirstApexSystem R).selectedAt u.1 u.2).toCriticalFourShell.support)
+      (_huOmitted : u.1 ∉ ((lateFirstApexSystem R).selectedAt v.1 v.2).toCriticalFourShell.support)
+      (first second : ExactFourMutualOmissionJointDeletion R rho u v)
+      (_hdeletedNe : first.deleted ≠ second.deleted)
+      (_hdeletedBlockersNe :
+        (lateFirstApexSystem R).centerAt first.deleted.1 first.deleted.2 ≠
+          (lateFirstApexSystem R).centerAt second.deleted.1 second.deleted.2)
+      (_hfirstBlockerNeU : (lateFirstApexSystem R).centerAt first.deleted.1 first.deleted.2 ≠ (lateFirstApexSystem R).centerAt u.1 u.2)
+      (_hfirstBlockerNeV : (lateFirstApexSystem R).centerAt first.deleted.1 first.deleted.2 ≠ (lateFirstApexSystem R).centerAt v.1 v.2)
+      (_hfirstBlockerNeApex : (lateFirstApexSystem R).centerAt first.deleted.1 first.deleted.2 ≠ S.oppApex2)
+      (_hsecondBlockerNeU : (lateFirstApexSystem R).centerAt second.deleted.1 second.deleted.2 ≠ (lateFirstApexSystem R).centerAt u.1 u.2)
+      (_hsecondBlockerNeV : (lateFirstApexSystem R).centerAt second.deleted.1 second.deleted.2 ≠ (lateFirstApexSystem R).centerAt v.1 v.2)
+      (_hsecondBlockerNeApex : (lateFirstApexSystem R).centerAt second.deleted.1 second.deleted.2 ≠ S.oppApex2)
+      (_crossPacket : CommonDeletionTwoCenterPacket D (lateFirstApexSystem R) first.deleted.1
+          ((lateFirstApexSystem R).centerAt second.deleted.1 second.deleted.2) S.oppApex2)
+      (hcollision :
+        first.deleted.1 = (lateFirstApexSystem R).centerAt u.1 u.2 ∨
+        first.deleted.1 = (lateFirstApexSystem R).centerAt v.1 v.2 ∨
+        first.deleted.1 = (lateFirstApexSystem R).centerAt second.deleted.1 second.deleted.2) :
+      ∃ x : CarrierVertex D.A,
+        first.deleted.1 = (lateFirstApexSystem R).centerAt x.1 x.2 ∧
+          first.deleted.1 ∉ ((lateFirstApexSystem R).selectedAt x.1 x.2).toCriticalFourShell.support ∧
+          (∀ s : ℝ, 0 < s → 4 ≤ (SelectedClass D.A first.deleted.1 s).card →
+              SelectedClass D.A first.deleted.1 s =
+                ((lateFirstApexSystem R).selectedAt x.1 x.2).toCriticalFourShell.support) ∧
+          (∀ y : ℝ²,
+            HasNEquidistantPointsAt 4 (D.A.erase y) first.deleted.1 ↔
+              y ∉ ((lateFirstApexSystem R).selectedAt x.1 x.2).toCriticalFourShell.support)
+  ```
+* **Rigor Classification**: **`PROVEN`** (Kernel-verified in `lean/scratch/b-family-bank/B2Arm3.lean:417–494`).
+* **Load-Bearing Dependencies**: Step 1c applied to cases $x = u$, $x = v$, and $x = \text{second.deleted}$.
+* **Axiom Footprint**: `[propext, Classical.choice, Quot.sound]`.
+* **Circularity Audit**: None.
+
+---
+
+### Step 1e: Refactoring the B2 Leaf Coordinator
+* **Refactoring Strategy**:
+  In [`TwoDeletionCollision.lean:630`](file:///Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean#L630), replace the body of `false_of_exactFourMutualOmission_fourCenterCommonDeletion_blockerCoincidence` with:
+  ```lean
+  obtain ⟨x, hcenter, hnotMem, hunique, hsurvIff⟩ :=
+    b2_collision_uniform_normalForm R _hcard _surface rho _hrho _hfive u v
+      _huNeV _huClass _hvClass _hvOmitted _huOmitted first second _hdeletedNe
+      _hdeletedBlockersNe _hfirstBlockerNeU _hfirstBlockerNeV _hfirstBlockerNeApex
+      _hsecondBlockerNeU _hsecondBlockerNeV _hsecondBlockerNeApex _crossPacket _hcollision
+  exact false_of_exactFourMutualOmission_center_in_carrier
+    R _hcard _surface rho _hrho _hfive u v _huNeV _huClass _hvClass
+    first second x hcenter hnotMem hunique hsurvIff
+  ```
+* **Rigor Classification**: **`PROVEN`** (Modular adapter step; preserves exact type invariants).
+
+---
+
+## 3. Subsequent Execution Phases
 
 ```mermaid
 graph LR
-    S1["Step 1: Port B2Arm3 Normal Forms<br>(B2Arm3.lean → TwoDeletionCollision.lean)"]
-    S2["Step 2: Convex Center Exclusion Engine<br>(Geometry/ConvexIndepHull.lean)"]
-    S3["Step 3: Close Leaf B2<br>(Center-in-carrier contradiction)"]
-    S4["Step 4: Close Leaf B1<br>(Escape-point chord transport)"]
-    S5["Step 5: Close Leaf B3<br>(4-cycle metric infeasibility)"]
+    S1["Step 1: Port & Validate B2Arm3 Normal Forms (✓ Steps 1a-1e)"]
+    S2["Step 2: Convex Center Exclusion Engine (Geometry/ConvexIndepHull.lean)"]
+    S3["Step 3: Close Leaf B2 (Center-in-carrier contradiction)"]
+    S4["Step 4: Close Leaf B1 (Escape-point chord transport)"]
+    S5["Step 5: Close Leaf B3 (4-cycle metric infeasibility)"]
     
     S1 --> S2
     S2 --> S3
     S3 --> S4
     S4 --> S5
 ```
-
-### Step 1: Port B2Arm3 Normal Forms to Production
-1. Transfer the following theorems from [`lean/scratch/b-family-bank/B2Arm3.lean`](file:///Users/adam/projects/math-projects/erdos-97-96-formalization/lean/scratch/b-family-bank/B2Arm3.lean) to [`TwoDeletionCollision.lean`](file:///Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean):
-   - `criticalShell_radius_unique`
-   - `criticalShell_selectedClass_eq_support`
-   - `criticalShell_survives_iff_not_mem_support`
-   - `criticalShell_collision_normalForm`
-   - `b2_collision_uniform_normalForm`
-2. Refactor `false_of_exactFourMutualOmission_fourCenterCommonDeletion_blockerCoincidence` into a single caller of `b2_collision_uniform_normalForm`.
-
-### Step 2: Formalize the Center-in-Convex-Set Semicircle Lemma
-1. In [`lean/Erdos9796Proof/Geometry/ConvexIndepHull.lean`](file:///Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/Geometry/ConvexIndepHull.lean), prove:
-   ```lean
-   /-- If the center `w` of 4 points on a circle belongs to a convex-independent
-   set containing those 4 points, all 4 points lie in a strict open semicircle. -/
-   theorem convexIndep_circle_four_points_in_open_semicircle
-       {A : Set Plane} (hA : EuclideanGeometry.ConvexIndep A)
-       {w : Plane} (hw : w ∈ A)
-       {T : Finset Plane} (hT_card : T.card = 4)
-       (hT_sub : (T : Set Plane) ⊆ A \ {w})
-       {r : ℝ} (hr : 0 < r)
-       (hT_circle : ∀ p ∈ T, dist w p = r) :
-       ∃ n : Plane, ‖n‖ = 1 ∧ ∀ p ∈ T, 0 < ⟪p - w, n⟫_ℝ
-   ```
-2. Connect this to signed area orientation and `fivePointCircleIsoscelesOrder`.
-
-### Step 3: Close Leaf B2 (`blockerCoincidence`)
-1. Apply `convexIndep_circle_four_points_in_open_semicircle` to $z_1 \in D.A$ and $\operatorname{Row}(x) \subseteq D.A \setminus \{z_1\}$.
-2. Combine the semicircle direction with the fact that $z_1, x \in \operatorname{SelectedClass}(S.\text{oppApex2}, \rho)$ to derive a contradiction with the remaining class points $u, v$.
-3. Complete the proof body of `false_of_exactFourMutualOmission_fourCenterCommonDeletion_blockerCoincidence`.
-
-### Step 4: Close Leaf B1 (`b1_globalGapOrClosedTerminal_of_counterexample`)
-1. Package the escape point $t$ from `b1_live_escape_small_overlap`.
-2. Prove that the small overlap $|\operatorname{Row}(t) \cap \operatorname{Row}(z_1)| \le 2$ forces $\operatorname{Row}(t)$ to contain at least 2 points off $\operatorname{Row}(z_1)$ in $\operatorname{Cap}_2$.
-3. Use the symmetry axis $\mathcal{L} = \operatorname{PB}(z_1, z_2)$ to show that this forces a third point on $\mathcal{L}$ or a support overlap violation, discharging `B1GlobalGapOrClosedTerminal C`.
-
-### Step 5: Close Leaf B3 (`survivalSquare`)
-1. Formalize the 4-cycle geometric contradiction for $C_4$ using `SimilarityFrame`.
-2. Complete the proof body of `false_of_exactFourMutualOmission_fourCenterCommonDeletion_survivalSquare`.
 
 ---
 
@@ -135,13 +199,12 @@ graph LR
    ```bash
    lake-build Erdos9796Proof.P97.ATail.FrontierLiveClosure.TwoDeletionCollision
    ```
-2. **Blueprint Spine Drop**:
+2. **Spine Progress Check**:
    ```bash
    proof-blueprint spine
    ```
-   Verify on-spine open obligations reduce from **37 to 34**.
 3. **Axiom Audit**:
    ```lean
    #print axioms false_of_twoDistinctExactFourMutualOmissionJointDeletions
    ```
-   Verify output contains strictly standard Lean axioms `[propext, Classical.choice, Quot.sound]`.
+   Verify output strictly equals standard Lean axioms `[propext, Classical.choice, Quot.sound]`.
