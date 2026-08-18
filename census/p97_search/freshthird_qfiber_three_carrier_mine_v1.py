@@ -44,6 +44,31 @@ def _load_json(path: Path) -> dict[str, Any]:
     return value
 
 
+def _load_wave_manifest(wave_root: Path) -> dict[str, Any]:
+    candidates = ["manifest.json", "wave_manifest.json", "run_manifest.json"]
+    for filename in candidates:
+        path = wave_root / filename
+        if path.exists():
+            return _load_json(path)
+    raise FileNotFoundError(f"no manifest found under {wave_root}")
+
+
+def _as_wave_root(wave_dir: Path) -> Path:
+    wave_root = wave_dir
+    if (wave_root / "manifest.json").exists():
+        return wave_root
+    if (wave_root / "artifacts").exists() and (wave_root / "artifacts").is_dir():
+        wave_root = wave_root / "artifacts"
+    if (
+        not (wave_root / "wave_manifest.json").exists()
+        and not (wave_root / "manifest.json").exists()
+        and not (wave_root / "run_manifest.json").exists()
+    ):
+        raise FileNotFoundError(f"no wave manifest found in {wave_root}")
+    _load_wave_manifest(wave_root)
+    return wave_root
+
+
 def _classes(signature: dict[str, Any]) -> dict[str, int]:
     classes = signature.get("point_classes")
     if type(classes) is not dict or set(classes) != set(ROLES):
@@ -173,6 +198,34 @@ def focal_metrics(result: dict[str, Any]) -> dict[str, object]:
     }
 
 
+def _cell_model_record(raw: dict[str, Any], *, boundary_index: int) -> dict[str, Any]:
+    """Extract the actual model record to replay/fingerprint from heterogeneous payloads."""
+    raw_status = raw.get("status")
+    raw_boundary = raw.get("boundary_index")
+    if raw_boundary not in {boundary_index, str(boundary_index)}:
+        raise ValueError(f"cell {boundary_index} index mismatch")
+
+    if raw.get("schema") == RESULT_SCHEMA:
+        if raw_status != "SAT_ABSTRACTION":
+            raise ValueError(f"cell {boundary_index} has unexpected status")
+        if raw.get("boundary_index") != boundary_index:
+            raise ValueError(f"cell {boundary_index} index mismatch")
+        return raw
+
+    model = raw.get("model_result")
+    if type(model) is not dict:
+        raise ValueError(f"cell {boundary_index} result schema mismatch")
+    if model.get("schema") != RESULT_SCHEMA:
+        raise ValueError(f"cell {boundary_index} result schema mismatch")
+    model_status = model.get("status")
+    if model_status != "SAT_ABSTRACTION":
+        raise ValueError(f"cell {boundary_index} has unexpected model status")
+    model_boundary = model.get("boundary_index")
+    if model_boundary != boundary_index:
+        raise ValueError(f"cell {boundary_index} model boundary mismatch")
+    return model
+
+
 def _flatten(prefix: str, value: object, out: dict[str, object]) -> None:
     if type(value) is dict:
         for key in sorted(value):
@@ -181,23 +234,36 @@ def _flatten(prefix: str, value: object, out: dict[str, object]) -> None:
         out[prefix] = value
 
 
-def mine_wave(wave_dir: Path, *, replay_timeout_ms: int = 60_000) -> dict[str, object]:
-    manifest = _load_json(wave_dir / "manifest.json")
-    if manifest != source_manifest():
+def mine_wave(
+    wave_dir: Path,
+    *,
+    replay_timeout_ms: int = 60_000,
+    skip_replay: bool = False,
+    skip_manifest_check: bool = False,
+) -> dict[str, object]:
+    wave_root = _as_wave_root(wave_dir)
+    manifest = _load_wave_manifest(wave_root)
+    if not skip_manifest_check and manifest != source_manifest():
         raise ValueError("wave manifest does not match current source")
 
     results = []
     for boundary_index in range(4):
-        result = _load_json(wave_dir / f"cell-{boundary_index}.json")
-        if result.get("schema") != RESULT_SCHEMA:
-            raise ValueError(f"cell {boundary_index} result schema mismatch")
-        if result.get("boundary_index") != boundary_index:
-            raise ValueError(f"cell {boundary_index} index mismatch")
+        cell_file = wave_root / f"cell-{boundary_index}.json"
+        if not cell_file.exists():
+            cell_file = wave_root / f"cell-{boundary_index}" / "result.json"
+        if not cell_file.exists():
+            raise ValueError(f"missing result file for cell {boundary_index}")
+        result = _load_json(cell_file)
+        model = _cell_model_record(result, boundary_index=boundary_index)
         if result.get("status") == "SAT_ABSTRACTION":
-            replay_sat_result(result, timeout_ms=replay_timeout_ms)
-        results.append(result)
+            sat_status = model
+        else:
+            sat_status = None
+        if result.get("status") == "SAT_ABSTRACTION" and not skip_replay:
+            replay_sat_result(model, timeout_ms=replay_timeout_ms)
+        results.append((result, sat_status))
 
-    sat_results = [item for item in results if item.get("status") == "SAT_ABSTRACTION"]
+    sat_results = [item[1] for item in results if item[1] is not None]
     metrics_by_cell = {
         str(item["boundary_index"]): focal_metrics(item) for item in sat_results
     }
@@ -247,9 +313,9 @@ def mine_wave(wave_dir: Path, *, replay_timeout_ms: int = 60_000) -> dict[str, o
 
     return {
         "schema": MINE_SCHEMA,
-        "wave": str(wave_dir),
+        "wave": str(wave_root),
         "cell_statuses": {
-            str(item["boundary_index"]): item["status"] for item in results
+            str(raw["boundary_index"]): raw["status"] for raw, _ in results
         },
         "sat_cells_replayed": sorted(metrics_by_cell),
         "all_boundary_cells_sat_replayed": complete,
@@ -270,8 +336,15 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument("--wave-dir", type=Path, required=True)
     parser.add_argument("--out", type=Path)
     parser.add_argument("--replay-timeout-ms", type=int, default=60_000)
+    parser.add_argument("--skip-replay", action="store_true")
+    parser.add_argument("--skip-manifest-check", action="store_true")
     args = parser.parse_args(argv)
-    report = mine_wave(args.wave_dir, replay_timeout_ms=args.replay_timeout_ms)
+    report = mine_wave(
+        args.wave_dir,
+        replay_timeout_ms=args.replay_timeout_ms,
+        skip_replay=args.skip_replay,
+        skip_manifest_check=args.skip_manifest_check,
+    )
     if args.out is not None:
         _atomic_json(args.out, report)
     print(json.dumps(report, sort_keys=True))
