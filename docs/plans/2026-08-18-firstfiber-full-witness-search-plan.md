@@ -42,6 +42,11 @@ order in `4218b49e`, returning an existentially indexed packet.  This removes
 an arbitrary-order input from the computational interface, while retaining
 the explicit five-center cardinality premises that the source has not yet
 proved uniformly.
+The raw-boundary wrapper in `c582b7c9` now consumes the live deleted-point
+equality directly and reuses the two existing `hcentersP`/`hcentersPρ`
+cardinality facts.  Thus the remaining source ingress is no longer a role or
+serialization mismatch; it is the missing finite obstruction/metric consumer
+that would use the resulting overflow-safe packet.
 
 ## Objective
 
