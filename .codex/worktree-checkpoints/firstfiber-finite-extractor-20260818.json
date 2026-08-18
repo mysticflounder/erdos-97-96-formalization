@@ -1,0 +1,16 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "firstfiber-finite-extractor-20260818",
+  "owner": "firstfiber-finite-extractor",
+  "base_head": "b5d69aec68619f9628cbf89f6b951fe4350ad327",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/firstfiber-finite-extractor-20260818.json",
+    "scratch/atail-force/firstfiber-finite-packet/FirstFiberFinitePacket.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [
+    "docs/audits/2026-08-18-firstfiber-finite-extractor.md"
+  ],
+  "created_utc": "2026-08-18T05:15:00Z",
+  "manifest_sha256": "8625ab9aae74d2af5c942bcc9f8f255e1793e391bf908d0f886e51c9f5b5195d"
+}
