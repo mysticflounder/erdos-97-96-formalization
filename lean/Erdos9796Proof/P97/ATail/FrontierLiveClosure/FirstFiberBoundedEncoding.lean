@@ -298,6 +298,69 @@ theorem mapIndexedPacketRows_center_not_mem {n : ℕ} {packet : CombinedIndexedP
     (contract.row_support_named row hrow)
     (contract.row_center_named row hrow)).center_not_mem
 
+theorem combine_left_namedReplayContract {n : ℕ}
+    (left right : IndexedPacket n) :
+    IndexedPacketNamedReplayContract (left.combine right) left := by
+  refine
+    { row_center_named := ?_
+      row_support_named := ?_ }
+  · intro row hrow
+    rw [(left.combine right).namedSlots_eq]
+    exact Finset.mem_union_left _ (left.rows_center_subset_namedSlots row hrow)
+  · intro row hrow
+    rw [(left.combine right).namedSlots_eq]
+    exact Finset.Subset.trans (left.rows_support_subset_namedSlots row hrow)
+      (Finset.subset_union_left)
+
+theorem combine_right_namedReplayContract {n : ℕ}
+    (left right : IndexedPacket n) :
+    IndexedPacketNamedReplayContract (left.combine right) right := by
+  refine
+    { row_center_named := ?_
+      row_support_named := ?_ }
+  · intro row hrow
+    rw [(left.combine right).namedSlots_eq]
+    exact Finset.mem_union_right _ (right.rows_center_subset_namedSlots row hrow)
+  · intro row hrow
+    rw [(left.combine right).namedSlots_eq]
+    exact Finset.Subset.trans (right.rows_support_subset_namedSlots row hrow)
+      (Finset.subset_union_right)
+
+theorem roleCombinationPacket_outside_namedReplayContract {n : ℕ}
+    (role : RoleCombinationPacket n) :
+    IndexedPacketNamedReplayContract role.combinedPacket role.outsidePacket := by
+  rw [role.combinedPacket_eq]
+  exact combine_left_namedReplayContract role.outsidePacket role.collisionPacket
+
+theorem roleCombinationPacket_collision_namedReplayContract {n : ℕ}
+    (role : RoleCombinationPacket n) :
+    IndexedPacketNamedReplayContract role.combinedPacket role.collisionPacket := by
+  rw [role.combinedPacket_eq]
+  exact combine_right_namedReplayContract role.outsidePacket role.collisionPacket
+
+noncomputable def mapRoleCombinationPacketRows {n : ℕ}
+    (role : RoleCombinationPacket n)
+    (encoding : BoundedNamedSlotEncoding role.combinedPacket) :
+    List MappedNamedExactRow × List MappedNamedExactRow :=
+  ( mapIndexedPacketRows encoding role.outsidePacket
+      (roleCombinationPacket_outside_namedReplayContract role)
+    , mapIndexedPacketRows encoding role.collisionPacket
+      (roleCombinationPacket_collision_namedReplayContract role) )
+
+theorem exists_roleCombinationPacket_replayRows {n : ℕ}
+    (role : RoleCombinationPacket n)
+    (encoding : BoundedNamedSlotEncoding role.combinedPacket) :
+    ∃ outsideRows collisionRows : List MappedNamedExactRow,
+      outsideRows = (mapRoleCombinationPacketRows role encoding).1 ∧
+      collisionRows = (mapRoleCombinationPacketRows role encoding).2 ∧
+      outsideRows.length = 5 ∧ collisionRows.length = 5 := by
+  refine ⟨(mapRoleCombinationPacketRows role encoding).1,
+    (mapRoleCombinationPacketRows role encoding).2, rfl, rfl, ?_, ?_⟩
+  · exact mapIndexedPacketRows_length encoding role.outsidePacket
+      (roleCombinationPacket_outside_namedReplayContract role)
+  · exact mapIndexedPacketRows_length encoding role.collisionPacket
+      (roleCombinationPacket_collision_namedReplayContract role)
+
 end FirstFiberBoundedEncoding
 end ATailFrontierLiveClosure
 end Problem97
