@@ -207,7 +207,18 @@ noncomputable def FiveSurvivorExactRowsBoundary.toIndexedPacket
   · simpa [r₃, indexedRow] using mapSupport_deleted_not_mem I hq R.K₃
   · simpa [r₄, indexedRow] using mapSupport_deleted_not_mem I hq R.K₄
 
+noncomputable def FiveSurvivorFaithfulCarrierBoundary.toIndexedPacket
+    {D : CounterexampleData} {H : CriticalShellSystem D.A}
+    {q : ℝ²} {hq : q ∈ D.A} {c₀ c₁ c₂ c₃ c₄ : ℝ²}
+    (B : FiveSurvivorFaithfulCarrierBoundary D H q hq c₀ c₁ c₂ c₃ c₄)
+    (I : BoundaryIndexing D.A) (profile : List ℕ) (hprofile : profile ≠ []) :
+    IndexedPacket I.n :=
+  Problem97.FirstFiberFinitePacketScratch.FiveSurvivorExactRowsBoundary.toIndexedPacket
+    B.rows I B.c₀_mem B.c₁_mem B.c₂_mem B.c₃_mem B.c₄_mem B.centers_card
+    profile hprofile
+
 #print axioms FiveSurvivorExactRowsBoundary.toIndexedPacket
+#print axioms FiveSurvivorFaithfulCarrierBoundary.toIndexedPacket
 
 end FirstFiberFinitePacketScratch
 end Problem97

@@ -15,6 +15,10 @@ finite packet containing:
 - proofs of center distinctness, support cardinality, center exclusion, and
   deleted-point omission.
 
+The companion `FiveSurvivorFaithfulCarrierBoundary.toIndexedPacket` consumes
+the existing faithful-carrier producer and supplies its five center
+memberships and distinctness proof automatically.
+
 The focused Lean check succeeds.  The extractor's transitive axioms are
 `propext`, `Classical.choice`, and `Quot.sound`; it introduces no `sorry` or
 custom axiom.
