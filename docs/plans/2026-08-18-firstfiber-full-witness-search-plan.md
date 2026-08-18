@@ -47,6 +47,11 @@ equality directly and reuses the two existing `hcentersP`/`hcentersPρ`
 cardinality facts.  Thus the remaining source ingress is no longer a role or
 serialization mismatch; it is the missing finite obstruction/metric consumer
 that would use the resulting overflow-safe packet.
+The same lane now exposes a source-safe faithful-boundary adapter and the
+conditional consumer `false_of_firstFiberOutsideFaithfulCarrierBoundary_metricCore`
+in `62de534d`.  The metric-core premise remains explicit: this is a real
+Lean landing for a future exact solver result, not a claim that the current
+packet already contains a core.
 
 ## Objective
 
