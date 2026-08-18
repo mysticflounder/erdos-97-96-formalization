@@ -236,6 +236,7 @@ it does not infer row-center namedness from the packet's other fields.
 
 structure IndexedPacketNamedReplayContract {n : ℕ}
     (packet : CombinedIndexedPacket n) (source : IndexedPacket n) where
+  deleted_named : source.deleted ∈ packet.namedSlots
   row_center_named : ∀ row ∈ source.rows, row.center ∈ packet.namedSlots
   row_support_named : ∀ row ∈ source.rows, row.support ⊆ packet.namedSlots
 
@@ -298,12 +299,27 @@ theorem mapIndexedPacketRows_center_not_mem {n : ℕ} {packet : CombinedIndexedP
     (contract.row_support_named row hrow)
     (contract.row_center_named row hrow)).center_not_mem
 
+theorem mapIndexedPacketRows_deleted_not_mem {n : ℕ} {packet : CombinedIndexedPacket n}
+    (encoding : BoundedNamedSlotEncoding packet) (source : IndexedPacket n)
+    (contract : IndexedPacketNamedReplayContract packet source)
+    {mapped : MappedNamedExactRow}
+    (hmapped : mapped ∈ mapIndexedPacketRows encoding source contract) :
+    namedSlotValue encoding source.deleted ∉ mapped.support := by
+  rcases (List.mem_pmap.mp hmapped) with ⟨row, hrow, hmap⟩
+  rw [← hmap]
+  exact named_deleted_not_mem encoding row.support
+    (contract.row_support_named row hrow) contract.deleted_named
+    (source.deleted_not_mem row hrow)
+
 theorem combine_left_namedReplayContract {n : ℕ}
     (left right : IndexedPacket n) :
     IndexedPacketNamedReplayContract (left.combine right) left := by
   refine
-    { row_center_named := ?_
+    { deleted_named := ?_
+      row_center_named := ?_
       row_support_named := ?_ }
+  · rw [(left.combine right).namedSlots_eq]
+    exact Finset.mem_union_left _ left.deleted_mem_namedSlots
   · intro row hrow
     rw [(left.combine right).namedSlots_eq]
     exact Finset.mem_union_left _ (left.rows_center_subset_namedSlots row hrow)
@@ -316,8 +332,11 @@ theorem combine_right_namedReplayContract {n : ℕ}
     (left right : IndexedPacket n) :
     IndexedPacketNamedReplayContract (left.combine right) right := by
   refine
-    { row_center_named := ?_
+    { deleted_named := ?_
+      row_center_named := ?_
       row_support_named := ?_ }
+  · rw [(left.combine right).namedSlots_eq]
+    exact Finset.mem_union_right _ right.deleted_mem_namedSlots
   · intro row hrow
     rw [(left.combine right).namedSlots_eq]
     exact Finset.mem_union_right _ (right.rows_center_subset_namedSlots row hrow)
