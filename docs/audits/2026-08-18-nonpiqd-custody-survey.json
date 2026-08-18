@@ -1,0 +1,184 @@
+{
+  "by_route_class": {
+    "NON_SOLVER": {
+      "distinct_contents": 20206,
+      "distinct_paths": 21526,
+      "files": 21526
+    },
+    "PIQD_BACKED": {
+      "distinct_contents": 784,
+      "distinct_paths": 814,
+      "files": 814
+    }
+  },
+  "defects": {
+    "JSON_INVALID": 18,
+    "REFERENCE_HASH_MISMATCH": 2300,
+    "REFERENCE_SIZE_MISMATCH": 2022
+  },
+  "distinct_record_schemas": 998,
+  "json_records": {
+    "distinct_contents": 6732,
+    "distinct_paths": 6965,
+    "files": 6965
+  },
+  "json_unprovenanced": 4241,
+  "json_with_piqd_marker": 814,
+  "lean_reverse_link_detail": [
+    {
+      "named_by": [
+        "lean/scratch/md-blocker-closed-bank/MDBlockerClosed.lean"
+      ],
+      "off_spine_only": true,
+      "token": "scratch/b-family-bank/B2Arm3.lean"
+    },
+    {
+      "named_by": [
+        "lean/scratch/md-blocker-closed-bank/MDBlockerClosed.lean"
+      ],
+      "off_spine_only": true,
+      "token": "scratch/d-package-bank/D1GlobalSurvival.lean"
+    },
+    {
+      "named_by": [
+        "lean/scratch/e-package-bank/FidelityCheck.lean"
+      ],
+      "off_spine_only": true,
+      "token": "scratch/e-package-bank/EPackageBank.lean"
+    },
+    {
+      "named_by": [
+        "lean/scratch/e-package-bank/FidelityCheck.lean"
+      ],
+      "off_spine_only": true,
+      "token": "scratch/e-package-bank/EPackageBank.olean"
+    },
+    {
+      "named_by": [
+        "lean/scratch/e-package-bank/FidelityCheck.lean"
+      ],
+      "off_spine_only": true,
+      "token": "scratch/e-package-bank/FidelityCheck.lean"
+    }
+  ],
+  "lean_reverse_links": {
+    "missing": 5,
+    "missing_off_spine_only": 5,
+    "present": 302,
+    "tokens_named": 307
+  },
+  "reference_resolution": {
+    "abs_missing": 101,
+    "absolute_external": 102,
+    "absolute_internal": 3543,
+    "ancestor_rel_1": 9,
+    "ancestor_rel_2": 7,
+    "ancestor_rel_3": 3,
+    "manifest_rel": 1434,
+    "root_rel": 29387,
+    "unresolved": 1753,
+    "unsafe_relative": 27
+  },
+  "reference_verdicts": {
+    "ABS_MISSING": 101,
+    "MATCH": 32083,
+    "MISMATCH": 2300,
+    "UNRESOLVED": 1753,
+    "UNSAFE_RELATIVE": 27,
+    "external": 102
+  },
+  "schema": "nonpiqd-custody-summary/v1",
+  "scope": {
+    "distinct_contents": 20990,
+    "distinct_paths": 22340,
+    "files": 22340
+  },
+  "top_record_schemas": [
+    [
+      "p97-exact5-card13-distinct-recube-child-v1",
+      575
+    ],
+    [
+      "p97-source-indexed-saved-pattern-exact-probe-v1",
+      455
+    ],
+    [
+      "p97_rigid221_exact12_next_row_named_deletion_arm_cell_run.v1",
+      149
+    ],
+    [
+      "p97-exact5-card13-cube-source-core-leaf-v1",
+      144
+    ],
+    [
+      "pinned_surplus_relaxed_split_certificate.v1",
+      135
+    ],
+    [
+      "endpoint_certificate.v1",
+      117
+    ],
+    [
+      "census554_pattern_certificate.v1",
+      108
+    ],
+    [
+      "p97-exact17-strict-linear-certificate-v1",
+      96
+    ],
+    [
+      "p97_rigid221_exact12_full_v14_structural_cegar_run.v4",
+      94
+    ],
+    [
+      "p97-exact6-integrated-cegar-independent-audit-v1",
+      91
+    ],
+    [
+      "p97-fixed-row-full-lra-check-v1",
+      80
+    ],
+    [
+      "p97-fixed-row-farkas-core-verification-v1",
+      79
+    ],
+    [
+      "p97-exact5-card13-distinct-recube-parent-v1",
+      73
+    ],
+    [
+      "p97-general-n-u5-signed-row-schema-match-v1",
+      71
+    ],
+    [
+      "p97-card-five-source-indexed-target-probe-v2",
+      70
+    ],
+    [
+      "p97-late-choice-exact-four-full-partition-semantic-replay-v1",
+      68
+    ],
+    [
+      "p97-piqd-sat-session-model-capture-v1",
+      68
+    ],
+    [
+      "p97-rigid221-exact17-lazy-weighted-cnf-v1",
+      55
+    ],
+    [
+      "p97-rigid221-exact17-lazy-weighted-cnf-validation-v1",
+      55
+    ],
+    [
+      "p97_rigid221_exact12_five_omission_structural_cegar_run.v2",
+      54
+    ]
+  ],
+  "writer_attribution": {
+    "ambiguous": 2744,
+    "schema_literal": 5104,
+    "sidecar": 10,
+    "unattributed": 1851
+  }
+}
