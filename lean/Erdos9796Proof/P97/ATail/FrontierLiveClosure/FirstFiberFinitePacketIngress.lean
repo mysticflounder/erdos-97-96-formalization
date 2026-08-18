@@ -79,6 +79,48 @@ structure IndexedPacket (n : ℕ) where
   centers_subset_namedSlots : ∀ center ∈ centers, center ∈ namedSlots
   rows_support_subset_namedSlots : ∀ row ∈ rows, row.support ⊆ namedSlots
 
+/--
+The source-faithful union of two finite packets.  The `left` and `right`
+fields retain each packet's order, deleted label, profile, centers, and exact
+rows.  `overflow` is the explicit complement of the named-slot union; this is
+only a bounded named-support packet, not a claim about a full carrier
+alternative.
+-/
+structure CombinedIndexedPacket (n : ℕ) where
+  left : IndexedPacket n
+  right : IndexedPacket n
+  namedSlots : Finset (Fin n)
+  namedSlots_eq : namedSlots = left.namedSlots ∪ right.namedSlots
+  namedSlots_card_le : namedSlots.card ≤ 52
+  overflow : Finset (Fin n)
+  overflow_eq : overflow = Finset.univ \ namedSlots
+  overflow_disjoint : Disjoint overflow namedSlots
+  overflow_complete : ∀ x, x ∈ overflow ↔ x ∉ namedSlots
+
+noncomputable def IndexedPacket.combine {n : ℕ}
+    (left right : IndexedPacket n) : CombinedIndexedPacket n := by
+  let namedSlots : Finset (Fin n) := left.namedSlots ∪ right.namedSlots
+  let overflow : Finset (Fin n) := Finset.univ \ namedSlots
+  have hcard : namedSlots.card ≤ 52 := by
+    calc
+      namedSlots.card ≤ left.namedSlots.card + right.namedSlots.card := by
+        exact Finset.card_union_le _ _
+      _ ≤ 26 + 26 := Nat.add_le_add left.namedSlots_card_le right.namedSlots_card_le
+      _ = 52 := by norm_num
+  refine
+    { left := left
+      right := right
+      namedSlots := namedSlots
+      namedSlots_eq := by rfl
+      namedSlots_card_le := hcard
+      overflow := overflow
+      overflow_eq := by rfl
+      overflow_disjoint := by
+        exact Finset.sdiff_disjoint
+      overflow_complete := by
+        intro x
+        simp [overflow] }
+
 private def pointIndex {A : Finset ℝ²} (B : BoundaryIndexing A)
     {x : ℝ²} (hx : x ∈ A) : Fin B.n :=
   B.indexOf ⟨x, hx⟩
