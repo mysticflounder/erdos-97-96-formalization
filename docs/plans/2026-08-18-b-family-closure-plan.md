@@ -4,7 +4,9 @@
 **Coordinator Theorem**: [`Problem97.ATailFrontierLiveClosure.false_of_twoDistinctExactFourMutualOmissionJointDeletions`](file:///Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean#L1103)  
 **Target Files**:
 - [`lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean`](file:///Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean)
+- [`lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/B1Live.lean`](file:///Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/B1Live.lean)
 - [`lean/Erdos9796Proof/Geometry/ConvexIndepHull.lean`](file:///Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/Geometry/ConvexIndepHull.lean)
+- [`docs/audits/2026-08-18-b-family-adversarial-audit.md`](file:///Users/adam/projects/math-projects/erdos-97-96-formalization/docs/audits/2026-08-18-b-family-adversarial-audit.md)
 
 **Open Leaves on Spine**:
 1. **B1**: [`Problem97.ATailFrontierLiveClosure.b1_globalGapOrClosedTerminal_of_counterexample`](file:///Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean#L142)
@@ -20,8 +22,7 @@ graph TD
     Coordinator["false_of_twoDistinctExactFourMutualOmissionJointDeletions (L1103)"]
     
     Coordinator -->|β(z₁) = β(z₂)| B1_Coord["false_of_..._blockerCollision (L155)"]
-    B1_Coord --> B1_Consumer["false_of_b1_global_gap_or_closed_terminal (B1Live.lean ✓)"]
-    B1_Coord --> B1_Producer["b1_globalGapOrClosedTerminal_of_counterexample (L142 💧)"]
+    B1_Coord --> B1_Escape["false_of_b1_escape_point_transport (B1Live.lean)"]
     
     Coordinator -->|β(z₁) ≠ β(z₂)| FiveCenters["false_of_..._fiveCenters (L1024)"]
     FiveCenters --> OneWay["false_of_..._oneWayCrossOmission (L930)"]
@@ -33,7 +34,20 @@ graph TD
 
 ---
 
-## 2. Low-Level Step-by-Step Execution Plan
+## 2. Adversarial Red-Team Audit Summary
+
+The adversarial audit in [`docs/audits/2026-08-18-b-family-adversarial-audit.md`](file:///Users/adam/projects/math-projects/erdos-97-96-formalization/docs/audits/2026-08-18-b-family-adversarial-audit.md) identified the following core constraints:
+
+1. **B2 Cannot Rely on "Center in Convex Set" Alone**:
+   A circle center $w$ and 4 points on its circumference lying on an open arc $< 180^\circ$ form a strictly convex pentagon in $\mathbb{R}^2$. The contradiction requires the **2-circle intersection** between $\operatorname{Row}(x)$ (centered at $z_1$) and $\operatorname{SelectedClass}(S.\text{oppApex2}, \rho)$ (centered at $S.\text{oppApex2}$), which contains $z_1, x, u, v$.
+2. **B1 Inductive Wrapper Must Be Bypassed**:
+   `B1GlobalGapOrClosedTerminal` is an unsatisfiable disjunction (Branches 1 & 2 are empty by `b1_live_bisectorSet_eq_pair`, and Branch 3 contradicts `b1_live_escape_small_overlap`). `false_of_twoDistinctExactFourMutualOmissionJointDeletions_blockerCollision` must directly consume the escape point $t$ with overlap $\le 2$.
+3. **B3 Requires a 4-Center Circle Infeasibility Lemma**:
+   The naive vertex removability route is refuted (`b3_gap_refuted`). A geometric lemma for 4 pairwise equidistant circles in convex position must be added to `Geometry/`.
+
+---
+
+## 3. Low-Level Step-by-Step Execution Plan
 
 ### STEP 1: Port & Validate B2Arm3 Normal Forms into Production
 **Target File**: [`lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean`](file:///Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean)  
@@ -217,32 +231,47 @@ In [`TwoDeletionCollision.lean:630`](file:///Users/adam/projects/math-projects/e
 
 ---
 
-### STEP 2: Center-in-Convex-Set Semicircle Exclusion Engine
-**Target File**: [`lean/Erdos9796Proof/Geometry/ConvexIndepHull.lean`](file:///Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/Geometry/ConvexIndepHull.lean)  
-**Location**: Append to end of file.
+### STEP 2: Formalize Cap Circle Intersection and Angular Bounds
+**Target File**: [`lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean`](file:///Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean)
 
 ```lean
-/-- A point `w` of a convex-independent set `A` cannot lie in the convex hull
-of any subset of `A \ {w}`. In particular, the center of a circle containing 4
-points of `A \ {w}` cannot belong to their convex hull. -/
-theorem center_not_mem_convexHull_of_four_points_on_circle
-    {A : Set Plane} (hA : EuclideanGeometry.ConvexIndep A)
-    {w : Plane} (hw : w ∈ A)
-    {T : Finset Plane} (hT_sub : (T : Set Plane) ⊆ A \ {w}) :
-    w ∉ convexHull ℝ (T : Set Plane) :=
-  convexIndep_not_mem_convexHull_of_finset_subset_diff hA hw hT_sub
+/-- When `z₁` is the blocker center of `x ∈ SelectedClass(S.oppApex2, ρ)`,
+its 4-shell `Row(x)` intersects the class in at most 2 points, forcing the
+remaining points of `SelectedClass` to be outside `Row(x)`. -/
+theorem b2_class_outside_row_card
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F)
+    (surface : ExactFourPostCardElevenRobustSurface R)
+    (rho : ℝ) (hfive : 5 ≤ (SelectedClass D.A S.oppApex2 rho).card)
+    (x : CarrierVertex D.A) :
+    3 ≤ (SelectedClass D.A S.oppApex2 rho \
+          ((lateFirstApexSystem R).selectedAt x.1 x.2).toCriticalFourShell.support).card := by
+  classical
+  set C := SelectedClass D.A S.oppApex2 rho
+  set Row := ((lateFirstApexSystem R).selectedAt x.1 x.2).toCriticalFourShell.support
+  have hinter : (Row ∩ C).card ≤ 2 :=
+    actualLateRow_secondClass_card_le_two R surface x
+  have hinter' : (C ∩ Row).card ≤ 2 := by rwa [Finset.inter_comm] at hinter
+  have hcover : C ⊆ (C ∩ Row) ∪ (C \ Row) := by
+    intro p hp
+    by_cases hpRow : p ∈ Row
+    · exact Finset.mem_union_left _ (Finset.mem_inter.mpr ⟨hp, hpRow⟩)
+    · exact Finset.mem_union_right _ (Finset.mem_sdiff.mpr ⟨hp, hpRow⟩)
+  have hle : C.card ≤ (C ∩ Row).card + (C \ Row).card :=
+    le_trans (Finset.card_le_card hcover) (Finset.card_union_le (C ∩ Row) (C \ Row))
+  omega
 ```
 
 ---
 
-### STEP 3: Close Leaf B2 (`blockerCoincidence`)
-**Target File**: [`lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean`](file:///Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean)  
-**Location**: Insert right above `false_of_exactFourMutualOmission_fourCenterCommonDeletion_blockerCoincidence`.
+### STEP 3: Close Leaf B2 (`false_of_exactFourMutualOmission_center_in_carrier`)
+**Target File**: [`lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean`](file:///Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean)
 
 ```lean
-/-- A circle center `z₁ ∈ D.A` whose critical 4-shell `Row(x) ⊆ D.A \ {z₁}`
-meets `SelectedClass(S.oppApex2, ρ)` at `x` contradicts convex independence
-with the remaining class points `u, v`. -/
+/-- A carrier center `z₁ = β(x)` in `SelectedClass(S.oppApex2, ρ)` is incompatible
+with the 3 class survivors given by `b2_class_outside_row_card` and mutual omission. -/
 theorem false_of_exactFourMutualOmission_center_in_carrier
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -272,46 +301,21 @@ theorem false_of_exactFourMutualOmission_center_in_carrier
 
 ---
 
-### STEP 4: Close Leaf B1 (`b1_globalGapOrClosedTerminal_of_counterexample`)
-**Target File**: [`lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean:142`](file:///Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean#L142)
+### STEP 4: Close Leaf B1 via Direct Escape-Point Transport
+**Target File**: [`lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean:155`](file:///Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean#L155)
 
-Package the escape point $t$ from `b1_live_escape_small_overlap` and connect it to `B1GlobalGapOrClosedTerminal C`:
-```lean
-theorem b1_globalGapOrClosedTerminal_of_counterexample
-    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
-    {H : CriticalShellSystem D.A}
-    {F : CriticalPairFrontier D S radius H}
-    (C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
-      (H := H) (F := F)) :
-    B1GlobalGapOrClosedTerminal C := by
-  classical
-  sorry
-```
+Directly wire `b1_live_escape_small_overlap` from [`B1Live.lean`](file:///Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/B1Live.lean) to discharge `false_of_twoDistinctExactFourMutualOmissionJointDeletions_blockerCollision` without routing through the refuted `B1GlobalGapOrClosedTerminal`.
 
 ---
 
 ### STEP 5: Close Leaf B3 (`survivalSquare`)
 **Target File**: [`lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean:704`](file:///Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean#L704)
 
-```lean
-theorem false_of_exactFourMutualOmission_fourCenterCommonDeletion_survivalSquare
-    ...
-    (_crossPacket : CommonDeletionTwoCenterPacket D (lateFirstApexSystem R) first.deleted.1
-        ((lateFirstApexSystem R).centerAt second.deleted.1 second.deleted.2) S.oppApex2)
-    (hsquare :
-      first.deleted.1 ∈ S.capInteriorByIndex S.oppIndex2 ∧
-      (first.deleted.1 = S.oppApex2 ∨
-       first.deleted.1 = (lateFirstApexSystem R).centerAt u.1 u.2 ∨
-       first.deleted.1 = (lateFirstApexSystem R).centerAt v.1 v.2 ∨
-       first.deleted.1 = (lateFirstApexSystem R).centerAt second.deleted.1 second.deleted.2)) :
-    False := by
-  classical
-  sorry
-```
+Formalize the 4-center deletion-survival square infeasibility and complete the proof body.
 
 ---
 
-## 3. Verification Commands for the Executing Agent
+## 4. Verification Commands for the Executing Agent
 
 After completing each step:
 
