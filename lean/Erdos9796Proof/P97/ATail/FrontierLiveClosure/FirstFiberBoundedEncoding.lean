@@ -226,6 +226,78 @@ theorem named_deleted_not_mem {n : ℕ} {packet : CombinedIndexedPacket n}
     namedSlotValue encoding deleted ∉ namedSetMap encoding s hs :=
   namedSetMap_center_not_mem encoding s hs hdeleted hdeleted_not_mem
 
+/-
+## Packet-level row replay
+
+The contract below is deliberately a source-side premise: it records namedness
+of every row center and support before any replay map is formed.  In particular,
+it does not infer row-center namedness from the packet's other fields.
+-/
+
+structure IndexedPacketNamedReplayContract {n : ℕ}
+    (packet : CombinedIndexedPacket n) (source : IndexedPacket n) where
+  row_center_named : ∀ row ∈ source.rows, row.center ∈ packet.namedSlots
+  row_support_named : ∀ row ∈ source.rows, row.support ⊆ packet.namedSlots
+
+structure MappedNamedExactRow where
+  center : Fin 52
+  support : Finset (Fin 52)
+  support_card : support.card = 4
+  center_not_mem : center ∉ support
+
+noncomputable def mapNamedExactRow {n : ℕ} {packet : CombinedIndexedPacket n}
+    (encoding : BoundedNamedSlotEncoding packet) (row : IndexedExactRow n)
+    (hsupport : row.support ⊆ packet.namedSlots)
+    (hcenter : row.center ∈ packet.namedSlots) : MappedNamedExactRow :=
+  { center := namedSlotValue encoding row.center
+    support := namedSetMap encoding row.support hsupport
+    support_card := by
+      rw [namedSetMap_card encoding row.support hsupport, row.support_card]
+    center_not_mem := namedSetMap_center_not_mem encoding row.support hsupport hcenter
+      row.center_not_mem }
+
+noncomputable def mapIndexedPacketRows {n : ℕ} {packet : CombinedIndexedPacket n}
+    (encoding : BoundedNamedSlotEncoding packet) (source : IndexedPacket n)
+    (contract : IndexedPacketNamedReplayContract packet source) :
+    List MappedNamedExactRow := by
+  let hrows : ∀ row ∈ source.rows,
+      row.center ∈ packet.namedSlots ∧ row.support ⊆ packet.namedSlots :=
+    fun row hrow =>
+      ⟨contract.row_center_named row hrow, contract.row_support_named row hrow⟩
+  exact List.pmap
+    (fun row hrow => mapNamedExactRow encoding row hrow.2 hrow.1)
+    source.rows hrows
+
+theorem mapIndexedPacketRows_length {n : ℕ} {packet : CombinedIndexedPacket n}
+    (encoding : BoundedNamedSlotEncoding packet) (source : IndexedPacket n)
+    (contract : IndexedPacketNamedReplayContract packet source) :
+    (mapIndexedPacketRows encoding source contract).length = 5 := by
+  simpa [mapIndexedPacketRows] using source.rows_length
+
+theorem mapIndexedPacketRows_support_card {n : ℕ} {packet : CombinedIndexedPacket n}
+    (encoding : BoundedNamedSlotEncoding packet) (source : IndexedPacket n)
+    (contract : IndexedPacketNamedReplayContract packet source)
+    {mapped : MappedNamedExactRow}
+    (hmapped : mapped ∈ mapIndexedPacketRows encoding source contract) :
+    mapped.support.card = 4 := by
+  rcases (List.mem_pmap.mp hmapped) with ⟨row, hrow, hmap⟩
+  rw [← hmap]
+  exact (mapNamedExactRow encoding row
+    (contract.row_support_named row hrow)
+    (contract.row_center_named row hrow)).support_card
+
+theorem mapIndexedPacketRows_center_not_mem {n : ℕ} {packet : CombinedIndexedPacket n}
+    (encoding : BoundedNamedSlotEncoding packet) (source : IndexedPacket n)
+    (contract : IndexedPacketNamedReplayContract packet source)
+    {mapped : MappedNamedExactRow}
+    (hmapped : mapped ∈ mapIndexedPacketRows encoding source contract) :
+    mapped.center ∉ mapped.support := by
+  rcases (List.mem_pmap.mp hmapped) with ⟨row, hrow, hmap⟩
+  rw [← hmap]
+  exact (mapNamedExactRow encoding row
+    (contract.row_support_named row hrow)
+    (contract.row_center_named row hrow)).center_not_mem
+
 end FirstFiberBoundedEncoding
 end ATailFrontierLiveClosure
 end Problem97
