@@ -98,6 +98,11 @@ spine-reachable: `TwoSourceFirstFiberCollision.lean` still contains a
 foreign-dirty, unverified replacement for the live `sorry` and does not import
 the bounded module.  The next integration step is owner-owned consumer wiring,
 not another solver wave.
+The import-safe consumer itself is now banked in `437bfff8` as
+`FirstFiberMetricCoreConsumer.false_of_firstFiberFaithfulCarrierBoundary_metricCore`.
+It has no FirstFiber-target import and no trust additions; once the target owner
+imports it, a source-produced faithful boundary plus a `MetricCoreAlternative`
+has a direct kernel consumer.
 
 ## Objective
 
