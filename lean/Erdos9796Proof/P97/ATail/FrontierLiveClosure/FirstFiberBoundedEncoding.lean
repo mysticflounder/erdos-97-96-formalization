@@ -23,6 +23,7 @@ namespace ATailFrontierLiveClosure
 namespace FirstFiberBoundedEncoding
 
 open FirstFiberFinitePacketIngress
+open Census554.GeneralCarrierBridge
 
 abbrev NamedSlot {n : ℕ} (packet : CombinedIndexedPacket n) :=
   {x : Fin n // x ∈ packet.namedSlots}
@@ -115,6 +116,22 @@ theorem boundedNamedSlotEncoding_none_iff_overflow {n : ℕ}
     (packet : CombinedIndexedPacket n) (x : Fin n) :
     (boundedNamedSlotEncoding packet).slot x = none ↔ x ∈ packet.overflow :=
   (boundedNamedSlotEncoding packet).slot_none_iff_overflow x
+
+theorem exists_roleCombinationPacket_with_boundedNamedSlotEncoding {n : ℕ}
+    (hpackets : Nonempty (RoleCombinationPacket n)) :
+    ∃ packet : RoleCombinationPacket n,
+      Nonempty (BoundedNamedSlotEncoding packet.combinedPacket) := by
+  rcases hpackets with ⟨packet⟩
+  exact ⟨packet, exists_boundedNamedSlotEncoding packet.combinedPacket⟩
+
+theorem exists_indexed_roleCombinationPacket_with_boundedNamedSlotEncoding
+    {D : CounterexampleData}
+    (hpackets : ∃ I : BoundaryIndexing D.A, Nonempty (RoleCombinationPacket I.n)) :
+    ∃ I : BoundaryIndexing D.A, ∃ packet : RoleCombinationPacket I.n,
+      Nonempty (BoundedNamedSlotEncoding packet.combinedPacket) := by
+  rcases hpackets with ⟨I, hI⟩
+  rcases exists_roleCombinationPacket_with_boundedNamedSlotEncoding hI with ⟨packet, hpacket⟩
+  exact ⟨I, packet, hpacket⟩
 
 end FirstFiberBoundedEncoding
 end ATailFrontierLiveClosure
