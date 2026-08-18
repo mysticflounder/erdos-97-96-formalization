@@ -108,6 +108,10 @@ consumer available from the aggregate tree.  The aggregate targeted build is
 currently blocked by pre-existing errors in the foreign-dirty
 `TwoSourceFreshThirdResidual.lean`; the new consumer itself remains direct-file
 clean.  This is an infrastructure/build blocker, not a metric-core closure.
+The exact-row consumer was tightened in `6e5014af`: its metric-core witness
+must contain a faithful boundary whose `rows` field is exactly the supplied
+outside-row packet.  This prevents a solver artifact for an unrelated faithful
+boundary from being accepted as the consumer's core.
 
 ## Objective
 
