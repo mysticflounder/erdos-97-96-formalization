@@ -2527,6 +2527,49 @@ by 1.60, and the implication section shrinks from 658 to 380.  No bank
 freeze, canary, successor formula, or wave is authorized by this payload and
 measurement.
 
+The generated Lean CNF module for the 22nd bank now exists:
+`lean/.../ExactTwelveRigid221CorePairAllOrderCommonFiveMembershipFamilyCnf.lean`,
+37,483 lines and 3,637,331 bytes, no `sorry`, emitted by
+`scratch/rigid221-sourceheavy-anchor/core-pair/generate_lean_bridge.py` and
+byte-reproducible from it (sha256 `246c1e91…`).  The size pilot was accurate
+to 0.3 per cent.  `lake-build` exits 0 with six `linter.style.nativeDecide`
+warnings, the same class and count the 21st-bank module emits, and the six
+`native_decide` anchors — `implicationDimacs_eq`, `definition_compiler_valid`,
+`blockingClauses_eq`, `family_shape`, `entry_valid` and
+`reused_definition_le_cutoff` — all elaborate.  `#print axioms` on
+`false_of_blockingClause_false`, `blockingClauses_eq`, `family_shape` and
+`implicationDimacs_sat` reports `propext`, `Classical.choice`,
+`Lean.ofReduceBool`, `Lean.trustCompiler` and `Quot.sound` for each — no
+`sorryAx` and no custom axiom, and byte-identical to the closure the 21st
+bank's `false_of_blockingClause_false` reports, measured in the same run.
+The trust boundary is therefore unchanged: native reduction, not kernel
+reduction, carries the six executable anchors.
+
+The module's payload was validated independently of the generator.  The four
+union rows were re-derived from the certificate's own eight primitive steps
+(the four steps of `left` merged with the four of `right`), not read from
+`_union_rows` or from the generator, and three-way agreement was required:
+all 23,802 blocks equal both the probe payload and the Lean table; the 37
+fresh definitions are contiguous 47,175--47,211 and the 2,131 reused sit
+inside 44,876--47,174; the 2,168 requirements are distinct; the 380
+implications agree in order; and every `right` record is the rotated partner
+`(x, b, a, c, y)` of its `left`.  `checkPrimitiveStep` accepts a row choice
+whose support is a superset of the step's pair, so a single union row
+supports the corresponding step of both cores; the union block is therefore
+weaker than blocking each core separately, which is the intended widening.
+
+One new element in this module has no precedent in the sibling banks: the
+consumer theorem `false_of_blockingClause_false` needs a declaration-scoped
+`set_option maxHeartbeats`.  `ofCorePairAllOrderCommonFive` carries a
+four-way orientation case split, so whnf of its nogood record overruns the
+default 200,000.  The budget bounds elaboration work only and changes no
+trust assumption, and the axiom closure above was measured with it in force.
+The measured bracket is 200,000 fails and 1,000,000 elaborates, so
+`CONSUMER_MAX_HEARTBEATS` in the generator is 1,000,000.  That is a bracket,
+not a minimum: no value between the two was tried, because each probe costs a
+full module elaboration and a tighter budget would change no result.  Tighten
+it if the consumer theorem is ever restructured.
+
 The card-at-least-13 adapter audit also rules out a tempting shortcut.  The
 pentagon residual does not supply a
 `LargeCapUniqueFiveSecondApexRadius`: in particular it has no

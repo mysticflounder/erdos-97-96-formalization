@@ -48,9 +48,9 @@ from census.card_head.exact12_core_pair_all_order_common_five_membership_family_
     EXPECTED_SINGLE_CORE_ADMITTED_ROLE_COUNT,
     EXPECTED_TRIPLE_REQUIREMENT_COUNT,
     FAMILY_ID,
+    LEAN_CNF_MODULE,
     LEAN_ROOT_MODULES,
     PARENT_VARIABLE_CUTOFF,
-    PENDING_LEAN_CNF_MODULE,
     REQUIRED_PIN_NAMES,
     Exact12CorePairAllOrderCommonFiveMembershipFamilyBankError,
     _admissible_core_pair,
@@ -78,7 +78,7 @@ BRIDGE_PATH = (
     "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/"
     "ExactTwelveRigid221CorePairBoundaryOrderBridge.lean"
 )
-PENDING_CNF_PATH = (
+CNF_PATH = (
     "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/"
     "ExactTwelveRigid221CorePairAllOrderCommonFiveMembershipFamilyCnf.lean"
 )
@@ -356,17 +356,18 @@ def test_lean_and_python_source_manifest_paths() -> None:
     assert BRIDGE_PATH in source_paths
     assert source_paths == tuple(sorted(set(source_paths)))
     assert all((REPO_ROOT / path).is_file() for path in source_paths)
-    # The generated CNF module is not materialized yet, so it is deliberately
-    # outside the manifest and outside LEAN_ROOT_MODULES.
+    # The generated CNF module is materialized, so it is a root module and its
+    # whole import closure is inside the authenticated manifest.
     assert LEAN_ROOT_MODULES == (
         (
             "Erdos9796Proof.P97.ATail.FrontierLiveClosure."
             "ExactTwelveRigid221CorePairAllOrderCommonFiveCertificate"
         ),
+        LEAN_CNF_MODULE,
     )
-    assert PENDING_LEAN_CNF_MODULE not in LEAN_ROOT_MODULES
-    assert PENDING_CNF_PATH not in source_paths
-    assert not (REPO_ROOT / PENDING_CNF_PATH).exists()
+    assert LEAN_CNF_MODULE in LEAN_ROOT_MODULES
+    assert CNF_PATH in source_paths
+    assert (REPO_ROOT / CNF_PATH).is_file()
     paths = _source_paths(REPO_ROOT)
     assert paths == tuple(sorted(set(paths)))
     for python_path in (

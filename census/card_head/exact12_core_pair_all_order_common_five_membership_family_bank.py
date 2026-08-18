@@ -249,18 +249,19 @@ EXPECTED_BANK_SHA256: str | None = None
 # the parent module rather than restated: COMPILER_SOURCE_PATH,
 # HELPER_SOURCE_PATH, SURFACE_SOURCE_PATH and ORDER_SOURCE_PATH are imported
 # above and stay byte-identical to the parent's manifest entries.
+# The generated CNF module this family emits.  It joined LEAN_ROOT_MODULES
+# once it was materialized; ``_lean_source_paths`` fails closed on an
+# unreadable repository-local import, so listing it also asserts it exists.
+LEAN_CNF_MODULE = (
+    "Erdos9796Proof.P97.ATail.FrontierLiveClosure."
+    "ExactTwelveRigid221CorePairAllOrderCommonFiveMembershipFamilyCnf"
+)
 LEAN_ROOT_MODULES = (
     (
         "Erdos9796Proof.P97.ATail.FrontierLiveClosure."
         "ExactTwelveRigid221CorePairAllOrderCommonFiveCertificate"
     ),
-)
-# The generated CNF module this family will emit.  It is deliberately absent
-# from LEAN_ROOT_MODULES until it is materialized: ``_lean_source_paths``
-# fails closed on an unreadable repository-local import.
-PENDING_LEAN_CNF_MODULE = (
-    "Erdos9796Proof.P97.ATail.FrontierLiveClosure."
-    "ExactTwelveRigid221CorePairAllOrderCommonFiveMembershipFamilyCnf"
+    LEAN_CNF_MODULE,
 )
 
 
@@ -1095,9 +1096,9 @@ __all__ = [
     "EXPECTED_SINGLE_CORE_ADMITTED_ROLE_COUNT",
     "EXPECTED_TRIPLE_REQUIREMENT_COUNT",
     "FAMILY_ID",
+    "LEAN_CNF_MODULE",
     "LEAN_ROOT_MODULES",
     "PARENT_VARIABLE_CUTOFF",
-    "PENDING_LEAN_CNF_MODULE",
     "REQUIRED_PIN_NAMES",
     "Exact12CorePairAllOrderCommonFiveMembershipFamilyBankError",
     "attest_core_pair_all_order_common_five_membership_family_bank_live_sources",
