@@ -93,6 +93,11 @@ five-row lists, with their lengths and replay equalities.  This is the first
 complete source-to-bounded-replay theorem in the lane.  Its scope is still
 diagnostic: it supplies no finite upper bound on `D.A.card`, no coverage of
 unnamed points, and no metric-core alternative.
+The proof-blueprint index confirms this declaration is indexed but not yet
+spine-reachable: `TwoSourceFirstFiberCollision.lean` still contains a
+foreign-dirty, unverified replacement for the live `sorry` and does not import
+the bounded module.  The next integration step is owner-owned consumer wiring,
+not another solver wave.
 
 ## Objective
 
