@@ -121,6 +121,69 @@ noncomputable def IndexedPacket.combine {n : ℕ}
         intro x
         simp [overflow] }
 
+inductive OutsideDeletionArm
+  | source
+  | other
+deriving DecidableEq, Fintype
+
+inductive CollisionRowsArm
+  | first
+  | second
+  | third
+  | fourth
+deriving DecidableEq, Fintype
+
+structure RolePair where
+  outside : OutsideDeletionArm
+  collision : CollisionRowsArm
+deriving DecidableEq, Fintype
+
+/-- A role-labelled packet; the labels carry no source-coverage claim. -/
+structure RolePacket (n : ℕ) where
+  role : RolePair
+  packet : IndexedPacket n
+
+def outsideDeletionArms : Finset OutsideDeletionArm := Finset.univ
+
+def collisionRowsArms : Finset CollisionRowsArm := Finset.univ
+
+def rolePairs : Finset RolePair := Finset.univ
+
+def cartesianRolePairs : Finset RolePair :=
+  (outsideDeletionArms.product collisionRowsArms).image
+    (fun pair => { outside := pair.1, collision := pair.2 })
+
+theorem outsideDeletionArm_card : Fintype.card OutsideDeletionArm = 2 := by
+  decide
+
+theorem collisionRowsArm_card : Fintype.card CollisionRowsArm = 4 := by
+  decide
+
+theorem rolePair_card : Fintype.card RolePair = 8 := by
+  decide
+
+theorem outsideDeletionArm_unique (x : OutsideDeletionArm) :
+    x = .source ∨ x = .other := by
+  cases x <;> simp
+
+theorem collisionRowsArm_unique (x : CollisionRowsArm) :
+    x = .first ∨ x = .second ∨ x = .third ∨ x = .fourth := by
+  cases x <;> simp
+
+theorem rolePair_ext {a b : RolePair}
+    (houtside : a.outside = b.outside)
+    (hcollision : a.collision = b.collision) :
+    a = b := by
+  cases a
+  cases b
+  simp_all
+
+theorem rolePairs_eq_cartesian : rolePairs = cartesianRolePairs := by
+  decide
+
+theorem rolePairs_card : rolePairs.card = 8 := by
+  decide
+
 private def pointIndex {A : Finset ℝ²} (B : BoundaryIndexing A)
     {x : ℝ²} (hx : x ∈ A) : Fin B.n :=
   B.indexOf ⟨x, hx⟩
