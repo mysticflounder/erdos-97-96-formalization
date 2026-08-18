@@ -2,6 +2,16 @@
 
 Status: executable planning document; this is not a closure claim.
 
+Execution checkpoint (2026-08-18): the source-adapter gate is landed in
+commits `08c84181` and `325ac8a3`. It checks the cap-cardinality identity,
+deleted/center separation, arm/deletion consistency, all four collision-arm
+labels, declared Lean-source bytes, and optional coverage of all eight role
+pairs. Its focused tests pass, including an eight-packet smoke artifact bound
+to the current Lean source hash. No source-faithful packet producer or solver
+job has been promoted yet. A concurrent direct Lean proof attempt remains
+unverified and currently fails type checking; it also supplies collision
+endpoints where the downstream consumer requires a genuinely escaping point.
+
 ## Objective
 
 Resolve the live FirstFiber outside-pair obligation
