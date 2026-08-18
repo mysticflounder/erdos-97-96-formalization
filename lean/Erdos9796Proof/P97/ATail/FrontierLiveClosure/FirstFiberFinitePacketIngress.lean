@@ -184,6 +184,67 @@ theorem rolePairs_eq_cartesian : rolePairs = cartesianRolePairs := by
 theorem rolePairs_card : rolePairs.card = 8 := by
   decide
 
+theorem rolePair_decompose (role : RolePair) :
+    role = { outside := .source, collision := .first } ∨
+    role = { outside := .source, collision := .second } ∨
+    role = { outside := .source, collision := .third } ∨
+    role = { outside := .source, collision := .fourth } ∨
+    role = { outside := .other, collision := .first } ∨
+    role = { outside := .other, collision := .second } ∨
+    role = { outside := .other, collision := .third } ∨
+    role = { outside := .other, collision := .fourth } := by
+  cases role with
+  | mk outside collision =>
+    cases outside <;> cases collision <;> simp
+
+/--
+A source-neutral packet pair for one role combination.  The arm labels are
+metadata only; no field asserts that either packet has been source-realized.
+-/
+structure RoleCombinationPacket (n : ℕ) where
+  outsideArm : OutsideDeletionArm
+  collisionArm : CollisionRowsArm
+  outsidePacket : IndexedPacket n
+  collisionPacket : IndexedPacket n
+  combinedPacket : CombinedIndexedPacket n
+  combinedPacket_eq : combinedPacket = outsidePacket.combine collisionPacket
+
+noncomputable def RoleCombinationPacket.fromFamilies {n : ℕ}
+    (outsidePackets : OutsideDeletionArm → IndexedPacket n)
+    (collisionPackets : CollisionRowsArm → IndexedPacket n) :
+    RolePair → RoleCombinationPacket n := by
+  intro role
+  let outsidePacket := outsidePackets role.outside
+  let collisionPacket := collisionPackets role.collision
+  exact
+    { outsideArm := role.outside
+      collisionArm := role.collision
+      outsidePacket := outsidePacket
+      collisionPacket := collisionPacket
+      combinedPacket := outsidePacket.combine collisionPacket
+      combinedPacket_eq := by rfl }
+
+@[simp] theorem RoleCombinationPacket.fromFamilies_outsideArm
+    {n : ℕ} (outsidePackets : OutsideDeletionArm → IndexedPacket n)
+    (collisionPackets : CollisionRowsArm → IndexedPacket n) (role : RolePair) :
+    (RoleCombinationPacket.fromFamilies outsidePackets collisionPackets role).outsideArm =
+      role.outside := by
+  rfl
+
+@[simp] theorem RoleCombinationPacket.fromFamilies_collisionArm
+    {n : ℕ} (outsidePackets : OutsideDeletionArm → IndexedPacket n)
+    (collisionPackets : CollisionRowsArm → IndexedPacket n) (role : RolePair) :
+    (RoleCombinationPacket.fromFamilies outsidePackets collisionPackets role).collisionArm =
+      role.collision := by
+  rfl
+
+theorem RoleCombinationPacket.fromFamilies_combinedPacket
+    {n : ℕ} (outsidePackets : OutsideDeletionArm → IndexedPacket n)
+    (collisionPackets : CollisionRowsArm → IndexedPacket n) (role : RolePair) :
+    (RoleCombinationPacket.fromFamilies outsidePackets collisionPackets role).combinedPacket =
+      (outsidePackets role.outside).combine (collisionPackets role.collision) := by
+  rfl
+
 private def pointIndex {A : Finset ℝ²} (B : BoundaryIndexing A)
     {x : ℝ²} (hx : x ∈ A) : Fin B.n :=
   B.indexOf ⟨x, hx⟩
