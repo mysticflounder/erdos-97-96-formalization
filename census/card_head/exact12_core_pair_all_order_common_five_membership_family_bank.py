@@ -228,22 +228,23 @@ REQUIRED_PIN_NAMES = (
     "EXPECTED_FINAL_DIMACS_SHA256",
 )
 
-# The bank hash covers the source manifest: the checked certificate's Lean
-# import closure (which pulls the core-pair bridge and the frozen ancestors)
-# and the frozen Python compiler, helper, surface, and order sources.  It is
-# NOT pinned yet.  Two live inputs still move it: the generated
-# MembershipFamilyCnf module for this family does not exist, so it cannot join
-# LEAN_ROOT_MODULES, and the ancestor bank chain is not currently refrozen
-# against the repository head.  Once both land, discover the value the way the
-# twenty-first bank was refrozen and freeze it here; while it is ``None`` the
-# manifest is still authenticated file-by-file by
-# ``attest_core_pair_all_order_common_five_membership_family_bank_live_sources``.
-# For provenance: against the tree that produced the CNF pins above the bank
-# hashed to
-# c8a942f07bb768047ab64c6cd3fa6e18d239a3a00e414dc512a2bff2ef90c7df over
-# 51,765,131 canonical JSON bytes.  That value is a measurement of a moving
-# manifest, not a pin.
-EXPECTED_BANK_SHA256: str | None = None
+# The bank hash covers the source manifest: the Lean import closure of
+# LEAN_ROOT_MODULES -- the checked certificate, which pulls the core-pair
+# bridge and the frozen ancestors, together with the generated
+# MembershipFamilyCnf module -- plus the frozen Python compiler, helper,
+# surface, and order sources.  2,879 files in all.  Frozen on 2026-08-18 by
+# ``scratch/rigid221-sourceheavy-anchor/core-pair/refreeze_bank_sha.py``,
+# against the tree carrying the generated CNF module at sha256
+# 246c1e9191781b0cdd65d29fe3fcf8e5c62436266654177fa8e271e8f4f54fe2.
+#
+# The manifest hashes every file of that closure, so a content change to any
+# one of them drifts this pin and every pin downstream of it.  The parent
+# chain was broken and repaired that way once already (revert 5fe42600).
+# Narrowing the manifest to the files a bank actually depends on is the
+# durable repair and is not done.
+EXPECTED_BANK_SHA256: str | None = (
+    "f2c4851d9dc38ff55f8533d80ce0219fa2515c4f948a7e3bb5efec784eb73ee4"
+)
 
 # The frozen Python source paths of the authenticated manifest are reused from
 # the parent module rather than restated: COMPILER_SOURCE_PATH,

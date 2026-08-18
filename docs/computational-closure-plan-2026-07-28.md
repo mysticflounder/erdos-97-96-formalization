@@ -2570,6 +2570,44 @@ not a minimum: no value between the two was tried, because each probe costs a
 full module elaboration and a tighter budget would change no result.  Tighten
 it if the consumer theorem is ever restructured.
 
+`EXPECTED_BANK_SHA256` for the 22nd bank is frozen at
+`f2c4851d…`, discovered by
+`scratch/rigid221-sourceheavy-anchor/core-pair/refreeze_bank_sha.py` with
+build and validate green and the generated CNF module confirmed inside the
+authenticated manifest.  The manifest is 2,879 files, of which 2,875 are the
+Lean import closure of `LEAN_ROOT_MODULES` — which now lists the CNF module
+alongside the certificate — and the rest the frozen Python compiler, helper,
+surface, and order sources.  At freeze time no file of that manifest was
+dirty or untracked, which was checked rather than assumed; the parallel
+lanes' live Lean edits fall outside this closure.  The same fragility as
+before applies unchanged: a content change to any one of those 2,879 files
+drifts this pin and every pin downstream of it.
+
+`ExactTwelveRigid221FullMembershipPrefixTerminalConsumer` now consumes the
+22nd bank as its final layer.  The edit is the 21st bank's treatment moved one
+link along: `globalRequirementAt` gains an `else if v ≤ 47174` branch before
+falling through to the core-pair `requirementAt`, and the file gains
+`corePairAllOrderCommonFiveLayerDimacs`, the two `native_decide +revert`
+requirement lemmas at cutoffs 47,174 and the global base 44,875, the layer
+`_sat` theorem, the new last entry in `fullMembershipPrefixDimacs`, and one
+more `rcases` in the prefix proof.  The 47,174 boundary is exact and was
+checked against the source rather than assumed: the center-exchange module's
+fresh definitions run 47,137--47,174 and the core-pair module's run
+47,175--47,211, so the two branches partition the range with no gap and no
+overlap.  70 inserted lines, 4 deleted, one file, zero `sorry`, and the
+statement of `false_of_terminalFullMembershipNamedDeletionArmBank` is
+unchanged — only the formula it consumes gained a layer.  The module
+docstring's variable ceiling moved from 47,174 to 47,211 to match.  The two
+new lemmas carry the file's established `set_option maxHeartbeats 0` for a
+reverted `native_decide` over a generated payload, each with the explanatory
+comment the style linter asks for, so the file's warning count returns to its
+34-warning baseline and the change introduces none.  `#print axioms` on
+`false_of_terminalFullMembershipNamedDeletionArmBank` reports `propext`,
+`Classical.choice`, `Lean.ofReduceBool`, `Lean.trustCompiler` and
+`Quot.sound` — unchanged, with no `sorryAx` and no new axiom.  This widens
+the authenticated membership prefix; it does not by itself establish terminal
+UNSAT for any successor formula.
+
 The card-at-least-13 adapter audit also rules out a tempting shortcut.  The
 pentagon residual does not supply a
 `LargeCapUniqueFiveSecondApexRadius`: in particular it has no

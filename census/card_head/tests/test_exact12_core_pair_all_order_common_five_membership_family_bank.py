@@ -428,8 +428,13 @@ def test_requirement_schedule_split_against_the_parent_cutoff() -> None:
         assert digest == digest.lower()
     # Every pin the family needs before it may be built is frozen.
     assert pending_pin_names() == ()
-    # The bank manifest hash is deliberately not pinned yet.
-    assert family_bank_module.EXPECTED_BANK_SHA256 is None
+    # The bank manifest hash is frozen now that the CNF module is a root
+    # module, but it stays outside REQUIRED_PIN_NAMES: the manifest is
+    # authenticated file-by-file regardless, and the freeze run itself has to
+    # be able to build while the pin is still unset.
+    assert family_bank_module.EXPECTED_BANK_SHA256 == (
+        "f2c4851d9dc38ff55f8533d80ce0219fa2515c4f948a7e3bb5efec784eb73ee4"
+    )
     assert "EXPECTED_BANK_SHA256" not in REQUIRED_PIN_NAMES
 
 
