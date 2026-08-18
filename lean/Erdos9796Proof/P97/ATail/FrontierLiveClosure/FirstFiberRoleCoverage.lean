@@ -92,6 +92,30 @@ abbrev FirstFiberOutsidePairExactRowsResidual
         (H.centerAt Pρ.source₁ Pρ.source₁_mem_A)
         S.oppApex1 S.oppApex2 S.surplusApex)
 
+/-- Normalize a raw deleted-point boundary into the two live outside-pair
+exact-row arms.  The equality disjunction is the only source-role choice
+performed here. -/
+theorem firstFiberOutsidePairExactRowsResidual_of_deleted_boundary
+    (Q : FreshOutsideFirstBlockerFiber P Pρ)
+    (source : CriticalShellSystem.CarrierVertex D.A)
+    {deleted : ℝ²} (deleted_mem : deleted ∈ D.A)
+    (deleted_eq_outsidePoint :
+      deleted = Q.source.1 ∨ deleted = Q.otherOutsidePoint)
+    (outsideBoundary :
+      FiveSurvivorExactRowsBoundary
+        D H deleted deleted_mem
+        (H.centerAt source.1 source.2)
+        (H.centerAt Pρ.source₁ Pρ.source₁_mem_A)
+        S.oppApex1 S.oppApex2 S.surplusApex) :
+    FirstFiberOutsidePairExactRowsResidual P Pρ Q source := by
+  rcases deleted_eq_outsidePoint with hsource | hother
+  · left
+    subst deleted
+    exact ⟨outsideBoundary⟩
+  · right
+    subst deleted
+    exact ⟨outsideBoundary⟩
+
 include Pρ in
 /-- Select the genuine outside deletion and one collision-row deletion.
 
@@ -306,6 +330,58 @@ noncomputable def firstFiberOutsidePairExactRows_to_roleCombinationPacket_exists
     (P := P) (Pρ := Pρ) Q source houtside hcollision I id Function.bijective_id
     [I.n] (by simp) houtsideCenters hfirstCenters hsecondCenters hthirdCenters
     hfourthCenters
+
+include Pρ in
+/-- High-level raw-boundary adapter for the live outside pair.  The two
+center-cardinality premises are the existing `hcentersP` and `hcentersPρ`
+shapes; the four collision arms reuse the corresponding one, and the outside
+arms use the `Pρ` shape already present in the live outside boundary. -/
+noncomputable def firstFiberOutsidePairRawBoundary_to_roleCombinationPacket_existsIndexing
+    (Q : FreshOutsideFirstBlockerFiber P Pρ)
+    (source : CriticalShellSystem.CarrierVertex D.A)
+    {deleted : ℝ²} (deleted_mem : deleted ∈ D.A)
+    (deleted_eq_outsidePoint :
+      deleted = Q.source.1 ∨ deleted = Q.otherOutsidePoint)
+    (outsideBoundary :
+      FiveSurvivorExactRowsBoundary
+        D H deleted deleted_mem
+        (H.centerAt source.1 source.2)
+        (H.centerAt Pρ.source₁ Pρ.source₁_mem_A)
+        S.oppApex1 S.oppApex2 S.surplusApex)
+    (hcollision :
+      FirstFiberCollisionFiveCenterExactRowsResidual
+        P Pρ source S.oppApex2 S.surplusApex)
+    (hcentersP :
+      ({H.centerAt source.1 source.2, S.oppApex1,
+        H.centerAt P.source₁ P.source₁_mem_A,
+        S.oppApex2, S.surplusApex} : Finset ℝ²).card = 5)
+    (hcentersPρ :
+      ({H.centerAt source.1 source.2, S.oppApex1,
+        H.centerAt Pρ.source₁ Pρ.source₁_mem_A,
+        S.oppApex2, S.surplusApex} : Finset ℝ²).card = 5) :
+    ∃ I : BoundaryIndexing D.A, Nonempty (RoleCombinationPacket I.n) := by
+  have houtside :=
+    firstFiberOutsidePairExactRowsResidual_of_deleted_boundary
+      (P := P) (Pρ := Pρ) Q source deleted_mem deleted_eq_outsidePoint
+      outsideBoundary
+  have houtsideCenters :
+      ({H.centerAt source.1 source.2,
+        H.centerAt Pρ.source₁ Pρ.source₁_mem_A,
+        S.oppApex1, S.oppApex2, S.surplusApex} : Finset ℝ²).card = 5 := by
+    have hsets :
+        ({H.centerAt source.1 source.2,
+          H.centerAt Pρ.source₁ Pρ.source₁_mem_A,
+          S.oppApex1, S.oppApex2, S.surplusApex} : Finset ℝ²) =
+          {H.centerAt source.1 source.2, S.oppApex1,
+            H.centerAt Pρ.source₁ Pρ.source₁_mem_A,
+            S.oppApex2, S.surplusApex} := by
+      ext x
+      simp [or_assoc, or_left_comm, or_comm]
+    rw [hsets]
+    exact hcentersPρ
+  exact firstFiberOutsidePairExactRows_to_roleCombinationPacket_existsIndexing
+    (P := P) (Pρ := Pρ) Q source houtside hcollision
+    houtsideCenters hcentersPρ hcentersP hcentersPρ hcentersP
 
 end
 end FirstFiberRoleCoverage
