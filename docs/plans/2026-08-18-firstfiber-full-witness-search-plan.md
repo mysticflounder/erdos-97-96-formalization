@@ -22,6 +22,10 @@ The follow-up union constructor is also landed in `53708cdf`: it retains both
 packets and exposes the anonymous complement explicitly, with a conservative
 named-slot bound of 52. This is an overflow-safe source packet, not a
 cardinality reduction.
+The ingress now also carries explicit `OutsideDeletionArm`,
+`CollisionRowsArm`, and eight-pair bookkeeping, landed in `ce2803ef`; these
+labels are metadata only until a source theorem supplies the corresponding
+packet for every role pair.
 
 ## Objective
 
