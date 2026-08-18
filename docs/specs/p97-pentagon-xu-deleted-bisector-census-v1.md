@@ -4,9 +4,18 @@ Records four kernel-checked theorems added to
 `lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221SourceHeavy.lean`
 in commit `5169fa2b`, and the open metric question they isolate.
 
-**Status: PROVEN producers. No leaf closed, nothing promoted.** Spine open count
-is unchanged at `126/36264`, and the module still carries the same eight
-sorry-bearing declarations as before the change.
+**Status: REVERTED 2026-08-17. The four theorems are not in the tree.** They are
+recoverable verbatim from commit `5169fa2b`, and nothing consumed them. The
+revert was forced by bank attestation, not by any defect in the proofs: a
+card-head bank body embeds a `source_manifest` carrying a SHA-256 per file over
+the bank's whole Lean import closure, this module is inside that closure, and
+the 186 added lines drifted all 32 downstream bank pins while changing no CNF.
+Reverting restored the closure byte-exactly and repaired every pin with no
+refreeze. The analysis below stands as a route note.
+
+While they were in the tree they were PROVEN producers that closed no leaf and
+promoted nothing. Spine open count was unchanged at `126/36264`, and the module
+carried the same eight sorry-bearing declarations as before the change.
 
 Lane: `pentagon-xu-deleted-bisector-20260817`.
 
@@ -112,7 +121,8 @@ Dead for I2/I4: cap counting cannot reach them.
 deletion point for a fixed blocker; the tree has no producer and no refuter for
 either.
 
-These four theorems are producers. No open obligation consumes them yet.
+These four theorems were producers. No open obligation consumed them, which is
+why removing them cost nothing on the spine.
 
 ## Closure-plan insertion — LANDED
 
@@ -123,14 +133,25 @@ landed as "Bisector-lever update (2026-08-16)", immediately after the
 discussion, which names forcing a third bisector point as the first of three
 admissible levers.
 
-The landed text adds one qualifier the draft omitted: only the census half of
-the I1 reduction is a Lean theorem, and the `I1 ↔ centerAt xu = v` half is
-marked {{NEEDS_PROOF}} there as it is here.
+The landed text was amended on 2026-08-17 to record the revert. It keeps the
+census as a route note and keeps the qualifier the draft omitted: only the
+census half of the I1 reduction was a Lean theorem, and the
+`I1 ↔ centerAt xu = v` half is marked {{NEEDS_PROOF}} there as it is here.
 
-## Verification log
+## Verification log at `5169fa2b`
 
 - `lake-build Erdos9796Proof.P97.ATail.FrontierLiveClosure.Rigid221SourceHeavy`
   — exit 0, zero errors.
 - `proof-blueprint axioms` on each of the four declarations — core only.
 - Sorry-bearing declarations in the module: eight before, eight after.
 - `proof-blueprint spine` — `open: 126/36264`, unchanged.
+
+## Verification log for the revert (2026-08-17)
+
+- Frozen bank `source_manifest` compared against HEAD across all 2,883 files:
+  0 missing, exactly 1 drifted, and that one is this module.
+- Module sha256 after the revert is `0e779abc…`, byte-identical to the digest
+  the banks were frozen against.
+- `lake-build` — exit 0, whole project.
+- `census/card_head/tests/test_exact12_center_exchange_all_order_common_five_membership_family_bank.py`
+  — 2 passed / 5 errors before the revert, 7 passed after.

@@ -3003,10 +3003,20 @@ one fixed row and another exact four-class, or a saturated blocker-fiber
 consequence.  Adding more arbitrary common-deletion packets does not address
 this boundary.
 
-Bisector-lever update (2026-08-16).  The first of those three levers now has
-its `{xu,deleted}` instance.  The `{xu,deleted}` bisector census is proved
-(`Rigid221SourceHeavy.lean`, commit `5169fa2b`, axiom closure exactly
-`propext`, `Classical.choice`, `Quot.sound`): the carrier points bisecting
+Bisector-lever update (2026-08-16; Lean reverted 2026-08-17).  The first of
+those three levers had its `{xu,deleted}` instance proved in commit
+`5169fa2b` — axiom closure exactly `propext`, `Classical.choice`,
+`Quot.sound` — and that commit was reverted on 2026-08-17.  The four theorems
+are recoverable from `5169fa2b`, and nothing consumed them.  The revert was
+forced by bank attestation, not by any defect in the proofs: a card-head bank
+body embeds a `source_manifest` carrying a SHA-256 per file over the bank's
+whole Lean import closure, `Rigid221SourceHeavy.lean` is inside that closure,
+and the 186 added lines drifted all 32 downstream bank pins while changing no
+CNF.  Reverting restored the closure byte-exactly and repaired every pin with
+no refreeze.  Until a bank manifest hashes only the files its own bank
+depends on, additive Lean work anywhere in that closure carries this cost.
+
+As a route note the census stands.  The carrier points bisecting
 `{xu,deleted}` are exactly the `xu`-row blocker and the physical apex, and the
 bisector meets the physical class in at most one point.  The census is exact
 because `Dumitrescu.perpBisector_apex_bound` caps that filter at two.
@@ -3017,7 +3027,7 @@ census half of that reduction is a Lean theorem; the `I1 ↔ centerAt xu = v`
 half is marked {{NEEDS_PROOF}}.  The reduction closes no leaf.  The
 missing-incidence residual
 `false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_uDeletion_fixedPhysicalPair_missingIncidence`
-(`Rigid221SourceHeavy.lean:16207`) is unchanged, the four new theorems have no
+(`Rigid221SourceHeavy.lean:16207`) is unchanged, the reverted theorems had no
 on-spine consumer, and whether `dist v xu = dist v deleted` holds is undecided:
 no lemma in the tree forces or excludes `centerAt xu = v`, and nothing marks
 `v` robust.  Do not restate the leaf from five conjuncts to four on the
