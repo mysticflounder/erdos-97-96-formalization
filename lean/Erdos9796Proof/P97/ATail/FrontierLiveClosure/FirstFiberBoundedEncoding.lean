@@ -133,6 +133,99 @@ theorem exists_indexed_roleCombinationPacket_with_boundedNamedSlotEncoding
   rcases exists_roleCombinationPacket_with_boundedNamedSlotEncoding hI with ⟨packet, hpacket⟩
   exact ⟨I, packet, hpacket⟩
 
+/-
+## Replay-facing named subsets
+
+The following maps accept a subset only together with a proof that it lies in
+the packet's named support.  Thus the default value used by `namedSlotValue`
+is never used to interpret an overflow label in a mapped named set.
+-/
+
+noncomputable def namedSlotValue {n : ℕ} {packet : CombinedIndexedPacket n}
+    (encoding : BoundedNamedSlotEncoding packet) (x : Fin n) : Fin 52 :=
+  (encoding.slot x).getD 0
+
+theorem namedSlotValue_spec {n : ℕ} {packet : CombinedIndexedPacket n}
+    (encoding : BoundedNamedSlotEncoding packet) {x : Fin n}
+    (hx : x ∈ packet.namedSlots) :
+    encoding.slot x = some (namedSlotValue encoding x) := by
+  rcases (encoding.slot_named_iff_some x).mp hx with ⟨j, hj⟩
+  simp [namedSlotValue, hj]
+
+noncomputable def namedSetMap {n : ℕ} {packet : CombinedIndexedPacket n}
+    (encoding : BoundedNamedSlotEncoding packet) (s : Finset (Fin n))
+    (_hs : s ⊆ packet.namedSlots) : Finset (Fin 52) :=
+  s.image (namedSlotValue encoding)
+
+theorem namedSetMap_card {n : ℕ} {packet : CombinedIndexedPacket n}
+    (encoding : BoundedNamedSlotEncoding packet) (s : Finset (Fin n))
+    (hs : s ⊆ packet.namedSlots) :
+    (namedSetMap encoding s hs).card = s.card := by
+  classical
+  rw [namedSetMap, Finset.card_image_iff.mpr]
+  intro a ha b hb hab
+  apply encoding.slot_injective_on_named (hs ha) (hs hb)
+  calc
+    encoding.slot a = some (namedSlotValue encoding a) := namedSlotValue_spec encoding (hs ha)
+    _ = some (namedSlotValue encoding b) := congrArg some hab
+    _ = encoding.slot b := (namedSlotValue_spec encoding (hs hb)).symm
+
+theorem namedSetMap_center_not_mem {n : ℕ} {packet : CombinedIndexedPacket n}
+    (encoding : BoundedNamedSlotEncoding packet) (s : Finset (Fin n))
+    (hs : s ⊆ packet.namedSlots) {center : Fin n}
+    (hcenter : center ∈ packet.namedSlots) (hcenter_not_mem : center ∉ s) :
+    namedSlotValue encoding center ∉ namedSetMap encoding s hs := by
+  intro hmem
+  rcases Finset.mem_image.mp hmem with ⟨x, hx, hvalue⟩
+  have hslot : encoding.slot center = encoding.slot x := by
+    calc
+      encoding.slot center = some (namedSlotValue encoding center) :=
+        namedSlotValue_spec encoding hcenter
+      _ = some (namedSlotValue encoding x) := congrArg some hvalue.symm
+      _ = encoding.slot x := (namedSlotValue_spec encoding (hs hx)).symm
+  have hcenter_eq : center = x :=
+    encoding.slot_injective_on_named hcenter (hs hx) hslot
+  exact hcenter_not_mem (hcenter_eq.symm ▸ hx)
+
+structure MappedIndexedExactRow {n : ℕ} (row : IndexedExactRow n) where
+  center : Fin 52
+  support : Finset (Fin 52)
+  support_card : support.card = 4
+  center_not_mem : center ∉ support
+
+noncomputable def mapIndexedExactRow {n : ℕ} {packet : CombinedIndexedPacket n}
+    (encoding : BoundedNamedSlotEncoding packet) (row : IndexedExactRow n)
+    (hsupport : row.support ⊆ packet.namedSlots)
+    (hcenter : row.center ∈ packet.namedSlots) : MappedIndexedExactRow row :=
+  { center := namedSlotValue encoding row.center
+    support := namedSetMap encoding row.support hsupport
+    support_card := by
+      rw [namedSetMap_card encoding row.support hsupport, row.support_card]
+    center_not_mem := namedSetMap_center_not_mem encoding row.support hsupport hcenter
+      row.center_not_mem }
+
+theorem mapIndexedExactRow_support_card {n : ℕ} {packet : CombinedIndexedPacket n}
+    (encoding : BoundedNamedSlotEncoding packet) (row : IndexedExactRow n)
+    (hsupport : row.support ⊆ packet.namedSlots)
+    (hcenter : row.center ∈ packet.namedSlots) :
+    (mapIndexedExactRow encoding row hsupport hcenter).support.card = 4 :=
+  (mapIndexedExactRow encoding row hsupport hcenter).support_card
+
+theorem mapIndexedExactRow_center_not_mem {n : ℕ} {packet : CombinedIndexedPacket n}
+    (encoding : BoundedNamedSlotEncoding packet) (row : IndexedExactRow n)
+    (hsupport : row.support ⊆ packet.namedSlots)
+    (hcenter : row.center ∈ packet.namedSlots) :
+    (mapIndexedExactRow encoding row hsupport hcenter).center ∉
+      (mapIndexedExactRow encoding row hsupport hcenter).support :=
+  (mapIndexedExactRow encoding row hsupport hcenter).center_not_mem
+
+theorem named_deleted_not_mem {n : ℕ} {packet : CombinedIndexedPacket n}
+    (encoding : BoundedNamedSlotEncoding packet) (s : Finset (Fin n))
+    (hs : s ⊆ packet.namedSlots) {deleted : Fin n}
+    (hdeleted : deleted ∈ packet.namedSlots) (hdeleted_not_mem : deleted ∉ s) :
+    namedSlotValue encoding deleted ∉ namedSetMap encoding s hs :=
+  namedSetMap_center_not_mem encoding s hs hdeleted hdeleted_not_mem
+
 end FirstFiberBoundedEncoding
 end ATailFrontierLiveClosure
 end Problem97
