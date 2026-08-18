@@ -77,6 +77,7 @@ structure IndexedPacket (n : ℕ) where
   namedSlots_card_le : namedSlots.card ≤ 26
   deleted_mem_namedSlots : deleted ∈ namedSlots
   centers_subset_namedSlots : ∀ center ∈ centers, center ∈ namedSlots
+  rows_center_subset_namedSlots : ∀ row ∈ rows, row.center ∈ namedSlots
   rows_support_subset_namedSlots : ∀ row ∈ rows, row.support ⊆ namedSlots
 
 /--
@@ -429,6 +430,11 @@ noncomputable def FiveSurvivorExactRowsBoundary.toIndexedPacket
         simp only [centers, List.mem_cons, List.not_mem_nil, or_false] at hcenter
         rcases hcenter with rfl | rfl | rfl | rfl | rfl <;>
           simp [namedSlots, centerSlots, centers]
+      rows_center_subset_namedSlots := by
+        intro row hrow
+        simp only [rows, List.mem_cons, List.not_mem_nil, or_false] at hrow
+        rcases hrow with rfl | rfl | rfl | rfl | rfl <;>
+          simp [r₀, r₁, r₂, r₃, r₄, indexedRow, namedSlots, centerSlots, centers]
       rows_support_subset_namedSlots := hrow_support_subset }
   intro row hrow
   simp only [rows, List.mem_cons, List.not_mem_nil, or_false] at hrow
