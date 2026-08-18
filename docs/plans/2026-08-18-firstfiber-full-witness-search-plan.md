@@ -18,6 +18,10 @@ deletion boundary, requires an explicit bijective order, and proves a named
 slot bound of 26 for that packet. Combining the two outside-deletion packets
 and the four collision-row arms still needs a local-core coverage theorem; the
 module intentionally makes no full-carrier or `MetricCoreAlternative` claim.
+The follow-up union constructor is also landed in `53708cdf`: it retains both
+packets and exposes the anonymous complement explicitly, with a conservative
+named-slot bound of 52. This is an overflow-safe source packet, not a
+cardinality reduction.
 
 ## Objective
 
