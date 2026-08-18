@@ -103,6 +103,11 @@ The import-safe consumer itself is now banked in `437bfff8` as
 It has no FirstFiber-target import and no trust additions; once the target owner
 imports it, a source-produced faithful boundary plus a `MetricCoreAlternative`
 has a direct kernel consumer.
+The frontier coordinator now imports that module in `f808b178`, making the
+consumer available from the aggregate tree.  The aggregate targeted build is
+currently blocked by pre-existing errors in the foreign-dirty
+`TwoSourceFreshThirdResidual.lean`; the new consumer itself remains direct-file
+clean.  This is an infrastructure/build blocker, not a metric-core closure.
 
 ## Objective
 
