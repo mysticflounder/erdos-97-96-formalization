@@ -44,10 +44,10 @@ The existing `FirstFiberFinitePacket` extractor is source-clean and reindexes th
 
 - ten exact-row supports, each of size four;
 - at most two deleted points;
-- at most six named centers;
-- at most 48 named slots before deduplication.
+- at most ten row centers before source-side deduplication;
+- at most 52 named slots in the conservative combined packet.
 
-This is a projection of the source data, not a claim that the full carrier has at most 48 points. The solver must retain an overflow/anonymous remainder state and must never infer nonmembership from omission from the projection.
+This is a projection of the source data, not a claim that the full carrier has at most 52 points. A later role-specific theorem may lower the bound after proving center sharing, but the solver must retain an overflow/anonymous remainder state and must never infer nonmembership from omission from the projection.
 
 ## Phase 0 — Freeze the proof contract
 
