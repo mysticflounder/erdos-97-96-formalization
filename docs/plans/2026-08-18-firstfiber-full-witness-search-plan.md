@@ -63,6 +63,13 @@ with its bounded named-slot encoding.  This is the formal ingress contract for
 a diagnostic solver: a model may reason over the 52 named slots plus explicit
 overflow, but any UNSAT result remains scoped until a replay theorem connects
 its certificate to a full source consumer.
+The replay-facing maps are now landed in `37609ba9`.  For an explicitly named
+support, `namedSetMap` preserves support cardinality and `mapIndexedExactRow`
+preserves the four-row support and center exclusion after projection.  Deleted
+points are replayed as omitted named labels only when the source proves that
+they are not in the selected support; the maps never infer nonmembership from
+the overflow complement.  This closes the serialization gap for row replay,
+but it is still not a coverage theorem or a `MetricCoreAlternative` producer.
 
 ## Objective
 
