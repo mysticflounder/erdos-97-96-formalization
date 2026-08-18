@@ -6,6 +6,7 @@ Authors: Adam McKenna
 
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.TwoSourceFirstFiberCollision
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.FirstFiberFinitePacketIngress
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactTwelveRigid221SourceSafeIngress
 
 /-!
 # Role-labelled ingress for the FirstFiber outside pair
@@ -382,6 +383,65 @@ noncomputable def firstFiberOutsidePairRawBoundary_to_roleCombinationPacket_exis
   exact firstFiberOutsidePairExactRows_to_roleCombinationPacket_existsIndexing
     (P := P) (Pρ := Pρ) Q source houtside hcollision
     houtsideCenters hcentersPρ hcentersP hcentersPρ hcentersP
+
+include Pρ in
+/-- Install a raw outside exact-row boundary in the faithful carrier
+boundary consumed by the metric-core interface. -/
+theorem firstFiberOutsideExactRows_to_faithfulCarrierBoundary
+    (source : CriticalShellSystem.CarrierVertex D.A)
+    {deleted : ℝ²} (deleted_mem : deleted ∈ D.A)
+    (outsideBoundary :
+      FiveSurvivorExactRowsBoundary
+        D H deleted deleted_mem
+        (H.centerAt source.1 source.2)
+        (H.centerAt Pρ.source₁ Pρ.source₁_mem_A)
+        S.oppApex1 S.oppApex2 S.surplusApex)
+    (hcentersPρ :
+      ({H.centerAt source.1 source.2, S.oppApex1,
+        H.centerAt Pρ.source₁ Pρ.source₁_mem_A,
+        S.oppApex2, S.surplusApex} : Finset ℝ²).card = 5) :
+    Nonempty
+      (FiveSurvivorFaithfulCarrierBoundary
+        D H deleted deleted_mem
+        (H.centerAt source.1 source.2)
+        (H.centerAt Pρ.source₁ Pρ.source₁_mem_A)
+        S.oppApex1 S.oppApex2 S.surplusApex) := by
+  have hcenter_source : H.centerAt source.1 source.2 ∈ D.A :=
+    by simpa [CriticalShellSystem.blockerVertex] using (H.blockerVertex source).2
+  have hcenter_Pρ : H.centerAt Pρ.source₁ Pρ.source₁_mem_A ∈ D.A :=
+    by
+      simpa [CriticalShellSystem.blockerVertex] using
+        (H.blockerVertex ⟨Pρ.source₁, Pρ.source₁_mem_A⟩).2
+  have hApex₁ : S.oppApex1 ∈ D.A := firstFiberRole_oppApex1_mem_A
+  have hApex₂ : S.oppApex2 ∈ D.A := firstFiberRole_oppApex2_mem_A
+  have hApex₃ : S.surplusApex ∈ D.A := firstFiberRole_surplusApex_mem_A
+  have hcentersOutside :
+      ({H.centerAt source.1 source.2,
+        H.centerAt Pρ.source₁ Pρ.source₁_mem_A,
+        S.oppApex1, S.oppApex2, S.surplusApex} : Finset ℝ²).card = 5 := by
+    have hsets :
+        ({H.centerAt source.1 source.2,
+          H.centerAt Pρ.source₁ Pρ.source₁_mem_A,
+          S.oppApex1, S.oppApex2, S.surplusApex} : Finset ℝ²) =
+          {H.centerAt source.1 source.2, S.oppApex1,
+            H.centerAt Pρ.source₁ Pρ.source₁_mem_A,
+            S.oppApex2, S.surplusApex} := by
+      ext x
+      simp [or_assoc, or_left_comm, or_comm]
+    rw [hsets]
+    exact hcentersPρ
+  exact outsideBoundary.toFaithfulCarrierBoundary
+    hcenter_source hcenter_Pρ hApex₁ hApex₂ hApex₃ hcentersOutside
+
+/-- Conditional metric-core consumer for the faithful outside boundary.  The
+metric core remains an explicit premise supplied by a future solver or
+geometric producer; this theorem itself does not assert its existence. -/
+theorem false_of_firstFiberOutsideFaithfulCarrierBoundary_metricCore
+    {q : ℝ²} {hq : q ∈ D.A} {c₀ c₁ c₂ c₃ c₄ : ℝ²}
+    (B : FiveSurvivorFaithfulCarrierBoundary D H q hq c₀ c₁ c₂ c₃ c₄)
+    (hcore : MetricCoreAlternative B.carrierPattern) : False :=
+  ExactTwelveRigid221Ingress.false_of_fiveSurvivorFaithfulCarrierBoundary_metricCore
+    B hcore
 
 end
 end FirstFiberRoleCoverage
