@@ -52,6 +52,12 @@ conditional consumer `false_of_firstFiberOutsideFaithfulCarrierBoundary_metricCo
 in `62de534d`.  The metric-core premise remains explicit: this is a real
 Lean landing for a future exact solver result, not a claim that the current
 packet already contains a core.
+The finite-scope theorem is now import-reachable through `de53d132`.  Its
+`BoundedNamedSlotEncoding` injects the combined packet's named support into
+`Fin 52`, uses `none` exactly for the explicit overflow complement, and proves
+the membership and injectivity replay facts.  This is the theorem needed to
+define a bounded diagnostic quotient; it still says nothing about omitted
+full-row incidences or metric-core existence.
 
 ## Objective
 
