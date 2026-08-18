@@ -112,6 +112,13 @@ The exact-row consumer was tightened in `6e5014af`: its metric-core witness
 must contain a faithful boundary whose `rows` field is exactly the supplied
 outside-row packet.  This prevents a solver artifact for an unrelated faithful
 boundary from being accepted as the consumer's core.
+The consumer-first contract was made explicit in the source-safe module after
+the target audit: `false_of_firstFiberExactRows_metricCoreCoverage` constructs
+the faithful carrier directly from the exact-row packet and reduces closure to
+one universal coverage premise, namely that every faithful carrier with those
+five rows has a `MetricCoreAlternative`.  This is the theorem to give the
+finite miner; it is deliberately not a closure claim, because no source
+hypothesis currently supplies that coverage premise.
 
 ## Objective
 
