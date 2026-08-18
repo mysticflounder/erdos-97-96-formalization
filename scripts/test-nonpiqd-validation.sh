@@ -23,11 +23,14 @@ export UV_THREADPOOL_SIZE=1
 
 PYTHON_FILES=(
   scripts/audit_nonpiqd_custody.py
+  scripts/classify_writer_fields.py
   scripts/test_audit_nonpiqd_custody.py
+  scripts/test_classify_writer_fields.py
 )
 
 uv run --with pytest pytest -q \
-  scripts/test_audit_nonpiqd_custody.py
+  scripts/test_audit_nonpiqd_custody.py \
+  scripts/test_classify_writer_fields.py
 
 uv run --with ruff ruff check "${PYTHON_FILES[@]}"
 uv run --with ruff ruff format --check "${PYTHON_FILES[@]}"

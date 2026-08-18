@@ -1,0 +1,1431 @@
+{
+  "aggregate_by_class": {
+    "COMPUTED": 56505,
+    "FLAG_ECHO": 2348,
+    "GUARDED": 555,
+    "LITERAL": 29484,
+    "UNKNOWN": 10612
+  },
+  "claims_vectors": {
+    "census/card_head/exact12_next_row_arm_static_v22_validator.py::_DESCRIPTOR_FALSE_CLAIMS": [
+      "lean_closure",
+      "source_entitlement",
+      "theorem_coverage",
+      "universal_lift"
+    ],
+    "census/card_head/exact12_next_row_arm_static_v22_validator.py::_FALSE_CLAIMS": [
+      "lean_closure",
+      "one_core",
+      "one_process",
+      "source_entitlement",
+      "theorem_coverage",
+      "universal_lift"
+    ],
+    "census/card_head/exact12_next_row_arm_static_v23_validator.py::_DESCRIPTOR_FALSE_CLAIMS": [
+      "lean_closure",
+      "source_entitlement",
+      "theorem_coverage",
+      "universal_lift"
+    ],
+    "census/card_head/exact12_next_row_arm_static_v23_validator.py::_FALSE_CLAIMS": [
+      "lean_closure",
+      "one_core",
+      "one_process",
+      "source_entitlement",
+      "theorem_coverage",
+      "universal_lift"
+    ],
+    "census/card_head/exact12_next_row_arm_static_v24_validator.py::_DESCRIPTOR_FALSE_CLAIMS": [
+      "lean_closure",
+      "source_entitlement",
+      "theorem_coverage",
+      "universal_lift"
+    ],
+    "census/card_head/exact12_next_row_arm_static_v24_validator.py::_FALSE_CLAIMS": [
+      "lean_closure",
+      "one_core",
+      "one_process",
+      "source_entitlement",
+      "theorem_coverage",
+      "universal_lift"
+    ],
+    "census/card_head/exact12_next_row_arm_static_v25_validator.py::_DESCRIPTOR_FALSE_CLAIMS": [
+      "lean_closure",
+      "source_entitlement",
+      "theorem_coverage",
+      "universal_lift"
+    ],
+    "census/card_head/exact12_next_row_arm_static_v25_validator.py::_FALSE_CLAIMS": [
+      "lean_closure",
+      "one_core",
+      "one_process",
+      "source_entitlement",
+      "theorem_coverage",
+      "universal_lift"
+    ],
+    "census/p97_search/critical_distance_profile.py::FORBIDDEN_CLAIMS": [
+      "EUCLIDEAN_INFEASIBLE",
+      "EUCLIDEAN_REALIZABLE",
+      "LEAN_CLOSED",
+      "PHASE3_EXHAUSTIVE"
+    ],
+    "census/p97_search/freshthird_qfiber_three_carrier_cap_alternation_replay_v1.py::CAP_ALTERNATION_CERTIFICATE_CLAIMS": [
+      "exact-seven-literal-semantic-projection",
+      "lean-ingress-source-hash-bound",
+      "live-closure-not-claimed",
+      "source-sat-not-claimed",
+      "terminal-unsat-not-claimed"
+    ],
+    "census/p97_search/phase3_cegar_assumption_engine.py::_CLAIMS": [
+      "cleanup",
+      "closure",
+      "lean",
+      "proof",
+      "source_entitlement",
+      "theorem",
+      "universal_lift"
+    ]
+  },
+  "fields": 99504,
+  "known_non_result_fields": [
+    {
+      "aggregate": "LITERAL",
+      "field": "lean_terminal_ingress_ready",
+      "module": "census/card_head/exact12_adjacent_apex_cross_block_membership_family_bank.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "lean_terminal_ingress_ready",
+      "module": "census/card_head/exact12_all_order_common_five_membership_family_bank.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "lean_terminal_ingress_ready",
+      "module": "census/card_head/exact12_apex_first_opposite_shared_pair_common_five_membership_family_bank.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "lean_terminal_ingress_ready",
+      "module": "census/card_head/exact12_apex_first_opposite_shared_pair_second_opposite_common_five_membership_family_bank.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "lean_terminal_ingress_ready",
+      "module": "census/card_head/exact12_apex_first_opposite_shared_pair_surplus_common_five_membership_family_bank.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "lean_terminal_ingress_ready",
+      "module": "census/card_head/exact12_apex_first_surplus_second_common_five_membership_family_bank.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "lean_terminal_ingress_ready",
+      "module": "census/card_head/exact12_apex_internal_shared_pair_common_five_membership_family_bank.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "lean_terminal_ingress_ready",
+      "module": "census/card_head/exact12_apex_pair_cross_block_membership_family_bank.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "lean_terminal_ingress_ready",
+      "module": "census/card_head/exact12_apex_shared_pair_cross_block_membership_family_bank.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "lean_terminal_ingress_ready",
+      "module": "census/card_head/exact12_apex_triple_surplus_second_opposite_common_five_membership_family_bank.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "lean_terminal_ingress_ready",
+      "module": "census/card_head/exact12_apex_zero_cross_block_membership_family_bank.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "lean_terminal_ingress_ready",
+      "module": "census/card_head/exact12_center_exchange_all_order_common_five_membership_family_bank.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "lean_terminal_ingress_ready",
+      "module": "census/card_head/exact12_core_pair_all_order_common_five_membership_family_bank.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "lean_terminal_ingress_ready",
+      "module": "census/card_head/exact12_first_opposite_pair_surplus_second_opposite_common_five_membership_family_bank.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "lean_terminal_ingress_ready",
+      "module": "census/card_head/exact12_next_row_arm_static_canary.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "lean_terminal_ingress_ready",
+      "module": "census/card_head/exact12_next_row_arm_static_piqd.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "lean_terminal_ingress_ready",
+      "module": "census/card_head/exact12_next_row_static_cegar.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "lean_terminal_ingress_ready",
+      "module": "census/card_head/exact12_reciprocal_first_opposite_surplus_second_opposite_common_five_membership_family_bank.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "lean_terminal_ingress_ready",
+      "module": "census/card_head/exact12_second_apex_surplus_second_first_common_five_membership_family_bank.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "lean_terminal_ingress_ready",
+      "module": "census/card_head/exact12_second_cap_apex_surplus_membership_family_bank.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "lean_terminal_ingress_ready",
+      "module": "census/card_head/exact12_second_opposite_triple_surplus_first_opposite_three_triad_membership_family_bank.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "lean_terminal_ingress_ready",
+      "module": "census/card_head/exact12_surplus_apex_pair_membership_family_bank.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "lean_terminal_ingress_ready",
+      "module": "census/card_head/exact12_surplus_pair_second_opposite_apex_pair_common_five_membership_family_bank.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "lean_terminal_ingress_ready",
+      "module": "census/card_head/exact12_surplus_three_triad_membership_family_bank.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "lean_terminal_ingress_ready",
+      "module": "census/card_head/exact12_zero_center_cross_block_membership_family_bank.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "lean_terminal_ingress_ready",
+      "module": "census/card_head/tests/test_exact12_adjacent_apex_cross_block_membership_family_bank.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "lean_terminal_ingress_ready",
+      "module": "census/card_head/tests/test_exact12_all_order_common_five_membership_family_bank.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "lean_terminal_ingress_ready",
+      "module": "census/card_head/tests/test_exact12_apex_first_opposite_shared_pair_common_five_membership_family_bank.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "lean_terminal_ingress_ready",
+      "module": "census/card_head/tests/test_exact12_apex_pair_cross_block_membership_family_bank.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "lean_terminal_ingress_ready",
+      "module": "census/card_head/tests/test_exact12_apex_shared_pair_cross_block_membership_family_bank.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "lean_terminal_ingress_ready",
+      "module": "census/card_head/tests/test_exact12_apex_zero_cross_block_membership_family_bank.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "lean_terminal_ingress_ready",
+      "module": "census/card_head/tests/test_exact12_center_exchange_all_order_common_five_membership_family_bank.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "lean_terminal_ingress_ready",
+      "module": "census/card_head/tests/test_exact12_first_opposite_pair_surplus_second_opposite_common_five_membership_family_bank.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "lean_terminal_ingress_ready",
+      "module": "census/card_head/tests/test_exact12_next_row_arm_static_canary.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "lean_terminal_ingress_ready",
+      "module": "census/card_head/tests/test_exact12_next_row_arm_static_piqd.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "lean_terminal_ingress_ready",
+      "module": "census/card_head/tests/test_exact12_next_row_static_piqd.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "lean_terminal_ingress_ready",
+      "module": "census/card_head/tests/test_exact12_reciprocal_first_opposite_surplus_second_opposite_common_five_membership_family_bank.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "lean_terminal_ingress_ready",
+      "module": "census/card_head/tests/test_exact12_second_cap_apex_surplus_membership_family_bank.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "lean_terminal_ingress_ready",
+      "module": "census/card_head/tests/test_exact12_second_opposite_triple_surplus_first_opposite_three_triad_membership_family_bank.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "lean_terminal_ingress_ready",
+      "module": "census/card_head/tests/test_exact12_surplus_apex_pair_membership_family_bank.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "lean_terminal_ingress_ready",
+      "module": "census/card_head/tests/test_exact12_surplus_three_triad_membership_family_bank.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "lean_terminal_ingress_ready",
+      "module": "census/card_head/tests/test_exact12_zero_center_cross_block_membership_family_bank.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "lean_terminal_ingress_ready",
+      "module": "scratch/rigid221-sourceheavy-anchor/derive_v21_reciprocal_bank_hashes.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "lean_terminal_ingress_ready",
+      "module": "scratch/rigid221-sourceheavy-anchor/mine_exact12_static_canary_all_orders.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "lean_terminal_ingress_ready",
+      "module": "scratch/rigid221-sourceheavy-anchor/mine_exact12_static_canary_all_orders_v23.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "lean_terminal_ingress_ready",
+      "module": "scratch/rigid221-sourceheavy-anchor/mine_exact12_static_canary_all_orders_v24.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "lean_terminal_ingress_ready",
+      "module": "scratch/rigid221-sourceheavy-anchor/mine_exact12_static_canary_all_orders_v25.py"
+    },
+    {
+      "aggregate": "FLAG_ECHO",
+      "field": "python_exact_polynomial",
+      "module": "scripts/endpoint-certificate.py"
+    },
+    {
+      "aggregate": "FLAG_ECHO",
+      "field": "python_exact_polynomial",
+      "module": "scripts/pinned-surplus-certificate.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "semantic_status",
+      "module": "census/card_head/exact12_adjacent_apex_cross_block_membership_family_bank.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "semantic_status",
+      "module": "census/card_head/exact12_all_order_common_five_membership_family_bank.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "semantic_status",
+      "module": "census/card_head/exact12_apex_first_opposite_shared_pair_common_five_membership_family_bank.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "semantic_status",
+      "module": "census/card_head/exact12_apex_first_opposite_shared_pair_second_opposite_common_five_membership_family_bank.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "semantic_status",
+      "module": "census/card_head/exact12_apex_first_opposite_shared_pair_surplus_common_five_membership_family_bank.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "semantic_status",
+      "module": "census/card_head/exact12_apex_first_surplus_second_common_five_membership_family_bank.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "semantic_status",
+      "module": "census/card_head/exact12_apex_internal_shared_pair_common_five_membership_family_bank.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "semantic_status",
+      "module": "census/card_head/exact12_apex_pair_cross_block_membership_family_bank.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "semantic_status",
+      "module": "census/card_head/exact12_apex_shared_pair_cross_block_membership_family_bank.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "semantic_status",
+      "module": "census/card_head/exact12_apex_triple_surplus_second_opposite_common_five_membership_family_bank.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "semantic_status",
+      "module": "census/card_head/exact12_apex_zero_cross_block_membership_family_bank.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "semantic_status",
+      "module": "census/card_head/exact12_block_spanning_membership_family_bank.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "semantic_status",
+      "module": "census/card_head/exact12_center_exchange_all_order_common_five_membership_family_bank.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "semantic_status",
+      "module": "census/card_head/exact12_core_pair_all_order_common_five_membership_family_bank.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "semantic_status",
+      "module": "census/card_head/exact12_first_opposite_pair_surplus_second_opposite_common_five_membership_family_bank.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "semantic_status",
+      "module": "census/card_head/exact12_next_row_static_convex.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "semantic_status",
+      "module": "census/card_head/exact12_next_row_static_equality.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "semantic_status",
+      "module": "census/card_head/exact12_next_row_static_geometry.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "semantic_status",
+      "module": "census/card_head/exact12_next_row_valuation.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "semantic_status",
+      "module": "census/card_head/exact12_positive_membership_source_order_bank.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "semantic_status",
+      "module": "census/card_head/exact12_reciprocal_first_opposite_surplus_second_opposite_common_five_membership_family_bank.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "semantic_status",
+      "module": "census/card_head/exact12_second_apex_surplus_second_first_common_five_membership_family_bank.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "semantic_status",
+      "module": "census/card_head/exact12_second_cap_apex_surplus_membership_family_bank.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "semantic_status",
+      "module": "census/card_head/exact12_second_opposite_triple_surplus_first_opposite_three_triad_membership_family_bank.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "semantic_status",
+      "module": "census/card_head/exact12_surplus_apex_pair_membership_family_bank.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "semantic_status",
+      "module": "census/card_head/exact12_surplus_pair_second_opposite_apex_pair_common_five_membership_family_bank.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "semantic_status",
+      "module": "census/card_head/exact12_surplus_three_triad_membership_family_bank.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "semantic_status",
+      "module": "census/card_head/exact12_three_triad_membership_bank.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "semantic_status",
+      "module": "census/card_head/exact12_v14_bound_jobs.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "semantic_status",
+      "module": "census/card_head/exact12_v14_jobs.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "semantic_status",
+      "module": "census/card_head/exact12_v14_schedule.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "semantic_status",
+      "module": "census/card_head/exact12_v14_valuation.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "semantic_status",
+      "module": "census/card_head/exact12_zero_center_cross_block_membership_family_bank.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "semantic_status",
+      "module": "census/card_head/generate_exact12_next_row_clause_delta_lean.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "semantic_status",
+      "module": "census/card_head/piqd_frontier_package.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "semantic_status",
+      "module": "census/card_head/tests/test_piqd_certified_solver.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "semantic_status",
+      "module": "census/p97_search/phase3_piqd_card_head_adapter.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "semantic_status",
+      "module": "census/p97_search/phase3_piqd_exact12_replay.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "semantic_status",
+      "module": "census/p97_search/phase3_piqd_exact12_source54_package.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "semantic_status",
+      "module": "census/p97_search/phase3_piqd_exact17_package.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "semantic_status",
+      "module": "census/p97_search/phase3_piqd_package.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "semantic_status",
+      "module": "census/p97_search/tests/test_phase3_piqd_campaign.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "semantic_status",
+      "module": "census/p97_search/tests/test_phase3_piqd_card_head_adapter.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "semantic_status",
+      "module": "census/p97_search/tests/test_phase3_piqd_exact17_runner.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "semantic_status",
+      "module": "census/p97_search/tests/test_phase3_piqd_package.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "semantic_status",
+      "module": "scratch/p97-piqd-five-omission-canary-2026-08-10-6087acb8-label0-v1-piqd/input-custody/bundle-5d7a1e4b53a9cc4d9869e1b38f31d13950cb589c78a8cd60aa6d2abdf3fca3a1/source-25-bound-jobs.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "semantic_status",
+      "module": "scratch/p97-piqd-five-omission-canary-2026-08-10-6087acb8-label0-v1-piqd/input-custody/bundle-5d7a1e4b53a9cc4d9869e1b38f31d13950cb589c78a8cd60aa6d2abdf3fca3a1/source-27-jobs.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "semantic_status",
+      "module": "scratch/p97-piqd-five-omission-canary-2026-08-10-6087acb8-label0-v1-piqd/input-custody/bundle-5d7a1e4b53a9cc4d9869e1b38f31d13950cb589c78a8cd60aa6d2abdf3fca3a1/source-30-schedule.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "semantic_status",
+      "module": "scratch/p97-piqd-five-omission-canary-2026-08-10-6087acb8-label0-v1-piqd/input-custody/bundle-5d7a1e4b53a9cc4d9869e1b38f31d13950cb589c78a8cd60aa6d2abdf3fca3a1/source-32-valuation.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "semantic_status",
+      "module": "scratch/replay-head.py"
+    },
+    {
+      "aggregate": "UNKNOWN",
+      "field": "semantic_status",
+      "module": "scratch/rigid221-sourceheavy-anchor/derive_v21_reciprocal_bank_hashes.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "terminal_promotion_status",
+      "module": "census/card_head/exact12_next_row_arm_static_canary.py"
+    },
+    {
+      "aggregate": "UNKNOWN",
+      "field": "terminal_promotion_status",
+      "module": "census/card_head/exact12_next_row_static_cegar.py"
+    },
+    {
+      "aggregate": "UNKNOWN",
+      "field": "terminal_promotion_status",
+      "module": "census/card_head/tests/test_exact12_next_row_arm_static_piqd.py"
+    },
+    {
+      "aggregate": "LITERAL",
+      "field": "terminal_promotion_status",
+      "module": "census/card_head/tests/test_exact12_next_row_static_piqd.py"
+    }
+  ],
+  "modules": 3277,
+  "schema": "nonpiqd-field-provenance-summary/v1",
+  "sites_by_class": {
+    "COMPUTED": 82752,
+    "FLAG_ECHO": 2826,
+    "GUARDED": 1242,
+    "LITERAL": 49178,
+    "UNKNOWN": 17275
+  },
+  "trust_capped_fields": [
+    {
+      "field": "terminal_promotion_status",
+      "module": "census/card_head/exact12_next_row_static_cegar.py",
+      "raw_aggregate": "GUARDED"
+    }
+  ],
+  "unknown_field_count": 10612,
+  "unknown_fields_sample": [
+    {
+      "field": "aggregate_interior_points_by_cap",
+      "module": "census/atail_force/checkpoint.py"
+    },
+    {
+      "field": "class_id",
+      "module": "census/atail_force/checkpoint.py"
+    },
+    {
+      "field": "constraint_counts",
+      "module": "census/atail_force/cvc5_pilot.py"
+    },
+    {
+      "field": "effective_nice",
+      "module": "census/atail_force/cvc5_pilot.py"
+    },
+    {
+      "field": "normalization_evidence",
+      "module": "census/atail_force/cvc5_pilot_checkpoint.py"
+    },
+    {
+      "field": "normalized_verdict",
+      "module": "census/atail_force/cvc5_pilot_checkpoint.py"
+    },
+    {
+      "field": "raw_skeleton_id",
+      "module": "census/atail_force/distinct_equality_checkpoint.py"
+    },
+    {
+      "field": "R2",
+      "module": "census/atail_force/distinct_equality_witness.py"
+    },
+    {
+      "field": "oy",
+      "module": "census/atail_force/distinct_equality_witness.py"
+    },
+    {
+      "field": "case_id",
+      "module": "census/atail_force/inequality_pilot.py"
+    },
+    {
+      "field": "index",
+      "module": "census/atail_force/inequality_pilot.py"
+    },
+    {
+      "field": "atom_id",
+      "module": "census/atail_force/piqd_cvc5_adapter.py"
+    },
+    {
+      "field": "atom_order",
+      "module": "census/atail_force/piqd_cvc5_adapter.py"
+    },
+    {
+      "field": "atoms",
+      "module": "census/atail_force/piqd_cvc5_adapter.py"
+    },
+    {
+      "field": "timeout_ms",
+      "module": "census/atail_force/piqd_cvc5_adapter.py"
+    },
+    {
+      "field": "A",
+      "module": "census/atail_force/producer_bank.py"
+    },
+    {
+      "field": "C",
+      "module": "census/atail_force/producer_bank.py"
+    },
+    {
+      "field": "E",
+      "module": "census/atail_force/producer_bank.py"
+    },
+    {
+      "field": "Y",
+      "module": "census/atail_force/producer_bank.py"
+    },
+    {
+      "field": "a",
+      "module": "census/atail_force/producer_bank.py"
+    },
+    {
+      "field": "b",
+      "module": "census/atail_force/producer_bank.py"
+    },
+    {
+      "field": "boundary_rotation_start",
+      "module": "census/atail_force/producer_bank.py"
+    },
+    {
+      "field": "c",
+      "module": "census/atail_force/producer_bank.py"
+    },
+    {
+      "field": "core",
+      "module": "census/atail_force/producer_bank.py"
+    },
+    {
+      "field": "cyclic_orientation",
+      "module": "census/atail_force/producer_bank.py"
+    },
+    {
+      "field": "f",
+      "module": "census/atail_force/producer_bank.py"
+    },
+    {
+      "field": "first",
+      "module": "census/atail_force/producer_bank.py"
+    },
+    {
+      "field": "h",
+      "module": "census/atail_force/producer_bank.py"
+    },
+    {
+      "field": "lean_consumer",
+      "module": "census/atail_force/producer_bank.py"
+    },
+    {
+      "field": "orientation",
+      "module": "census/atail_force/producer_bank.py"
+    },
+    {
+      "field": "row_choices",
+      "module": "census/atail_force/producer_bank.py"
+    },
+    {
+      "field": "second",
+      "module": "census/atail_force/producer_bank.py"
+    },
+    {
+      "field": "source",
+      "module": "census/atail_force/producer_bank.py"
+    },
+    {
+      "field": "steps",
+      "module": "census/atail_force/producer_bank.py"
+    },
+    {
+      "field": "terms",
+      "module": "census/atail_force/producer_bank.py"
+    },
+    {
+      "field": "raw_full_exact_class_pairs",
+      "module": "census/atail_force/producer_coverage_census.py"
+    },
+    {
+      "field": "representatives",
+      "module": "census/atail_force/producer_coverage_census.py"
+    },
+    {
+      "field": "target_negating_pairs",
+      "module": "census/atail_force/producer_coverage_census.py"
+    },
+    {
+      "field": "timeout_ms",
+      "module": "census/atail_force/producer_geometry.py"
+    },
+    {
+      "field": "timeout_seconds",
+      "module": "census/atail_force/producer_geometry.py"
+    },
+    {
+      "field": "assignments",
+      "module": "census/atail_force/producer_pattern_census.py"
+    },
+    {
+      "field": "query_count",
+      "module": "census/atail_force/producer_pattern_census.py"
+    },
+    {
+      "field": "results",
+      "module": "census/atail_force/producer_pattern_census.py"
+    },
+    {
+      "field": "assignments",
+      "module": "census/atail_force/producer_pattern_census_round2.py"
+    },
+    {
+      "field": "query_count",
+      "module": "census/atail_force/producer_pattern_census_round2.py"
+    },
+    {
+      "field": "results",
+      "module": "census/atail_force/producer_pattern_census_round2.py"
+    },
+    {
+      "field": "opp_apex1",
+      "module": "census/atail_force/producer_surface.py"
+    },
+    {
+      "field": "opp_apex2",
+      "module": "census/atail_force/producer_surface.py"
+    },
+    {
+      "field": "case_id",
+      "module": "census/atail_force/separator_pilot.py"
+    },
+    {
+      "field": "equality_orbit_id",
+      "module": "census/atail_force/separator_pilot.py"
+    },
+    {
+      "field": "stderr_prefix",
+      "module": "census/atail_force/separator_pilot.py"
+    },
+    {
+      "field": "clauses",
+      "module": "census/atail_force/tests/test_piqd_cvc5_adapter.py"
+    },
+    {
+      "field": "id",
+      "module": "census/atail_force/tests/test_piqd_cvc5_adapter.py"
+    },
+    {
+      "field": "journal_path",
+      "module": "census/atail_force/tests/test_piqd_cvc5_adapter.py"
+    },
+    {
+      "field": "label",
+      "module": "census/atail_force/tests/test_piqd_cvc5_adapter.py"
+    },
+    {
+      "field": "last_status",
+      "module": "census/atail_force/tests/test_piqd_cvc5_adapter.py"
+    },
+    {
+      "field": "receipts_path",
+      "module": "census/atail_force/tests/test_piqd_cvc5_adapter.py"
+    },
+    {
+      "field": "solves",
+      "module": "census/atail_force/tests/test_piqd_cvc5_adapter.py"
+    },
+    {
+      "field": "state",
+      "module": "census/atail_force/tests/test_piqd_cvc5_adapter.py"
+    },
+    {
+      "field": "boundary",
+      "module": "census/atail_force/tests/test_producer_bank.py"
+    },
+    {
+      "field": "path",
+      "module": "census/atail_force/tests/test_producer_bank.py"
+    },
+    {
+      "field": "permutation",
+      "module": "census/atail_force/tests/test_producer_bank.py"
+    },
+    {
+      "field": "row_choice",
+      "module": "census/atail_force/tests/test_producer_bank.py"
+    },
+    {
+      "field": "unsat_core",
+      "module": "census/atail_force/tests/test_producer_pattern_census_round2.py"
+    },
+    {
+      "field": "stdout",
+      "module": "census/atail_force/tests/test_producer_probe.py"
+    },
+    {
+      "field": "index",
+      "module": "census/atail_force/three_center_surface.py"
+    },
+    {
+      "field": "cases",
+      "module": "census/candidate_d_probe/encoder.py"
+    },
+    {
+      "field": "exact_eval",
+      "module": "census/candidate_d_probe/encoder.py"
+    },
+    {
+      "field": "g1",
+      "module": "census/candidate_d_probe/encoder.py"
+    },
+    {
+      "field": "g2",
+      "module": "census/candidate_d_probe/encoder.py"
+    },
+    {
+      "field": "g3",
+      "module": "census/candidate_d_probe/encoder.py"
+    },
+    {
+      "field": "hand_witness_exact",
+      "module": "census/candidate_d_probe/encoder.py"
+    },
+    {
+      "field": "hand_witness_failures",
+      "module": "census/candidate_d_probe/encoder.py"
+    },
+    {
+      "field": "k",
+      "module": "census/candidate_d_probe/encoder.py"
+    },
+    {
+      "field": "model",
+      "module": "census/candidate_d_probe/encoder.py"
+    },
+    {
+      "field": "q1",
+      "module": "census/candidate_d_probe/encoder.py"
+    },
+    {
+      "field": "sub2",
+      "module": "census/candidate_d_probe/encoder.py"
+    },
+    {
+      "field": "nodes",
+      "module": "census/candidate_d_probe/q2_token.py"
+    },
+    {
+      "field": "profile",
+      "module": "census/candidate_d_probe/q2_token.py"
+    },
+    {
+      "field": "R2",
+      "module": "census/candidate_d_probe/witness_factory.py"
+    },
+    {
+      "field": "k",
+      "module": "census/candidate_d_probe/witness_factory.py"
+    },
+    {
+      "field": "oy",
+      "module": "census/candidate_d_probe/witness_factory.py"
+    },
+    {
+      "field": "v1",
+      "module": "census/candidate_d_probe/witness_factory.py"
+    },
+    {
+      "field": "v2",
+      "module": "census/candidate_d_probe/witness_factory.py"
+    },
+    {
+      "field": "v3",
+      "module": "census/candidate_d_probe/witness_factory.py"
+    },
+    {
+      "field": "certificate",
+      "module": "census/card_head/bank_store.py"
+    },
+    {
+      "field": "pid",
+      "module": "census/card_head/bank_store.py"
+    },
+    {
+      "field": "cut_contract",
+      "module": "census/card_head/candidate_surface.py"
+    },
+    {
+      "field": "proof_tier",
+      "module": "census/card_head/candidate_surface.py"
+    },
+    {
+      "field": "b",
+      "module": "census/card_head/exact12_adjacent_apex_cross_block_membership_family_bank.py"
+    },
+    {
+      "field": "c",
+      "module": "census/card_head/exact12_adjacent_apex_cross_block_membership_family_bank.py"
+    },
+    {
+      "field": "cell_index",
+      "module": "census/card_head/exact12_adjacent_apex_cross_block_membership_family_bank.py"
+    },
+    {
+      "field": "family_id",
+      "module": "census/card_head/exact12_adjacent_apex_cross_block_membership_family_bank.py"
+    },
+    {
+      "field": "y",
+      "module": "census/card_head/exact12_adjacent_apex_cross_block_membership_family_bank.py"
+    },
+    {
+      "field": "a",
+      "module": "census/card_head/exact12_all_order_common_five_membership_family_bank.py"
+    },
+    {
+      "field": "b",
+      "module": "census/card_head/exact12_all_order_common_five_membership_family_bank.py"
+    },
+    {
+      "field": "c",
+      "module": "census/card_head/exact12_all_order_common_five_membership_family_bank.py"
+    },
+    {
+      "field": "cell_index",
+      "module": "census/card_head/exact12_all_order_common_five_membership_family_bank.py"
+    },
+    {
+      "field": "center",
+      "module": "census/card_head/exact12_all_order_common_five_membership_family_bank.py"
+    },
+    {
+      "field": "entries",
+      "module": "census/card_head/exact12_all_order_common_five_membership_family_bank.py"
+    },
+    {
+      "field": "family_id",
+      "module": "census/card_head/exact12_all_order_common_five_membership_family_bank.py"
+    },
+    {
+      "field": "index",
+      "module": "census/card_head/exact12_all_order_common_five_membership_family_bank.py"
+    },
+    {
+      "field": "pattern_definitions",
+      "module": "census/card_head/exact12_all_order_common_five_membership_family_bank.py"
+    },
+    {
+      "field": "reused",
+      "module": "census/card_head/exact12_all_order_common_five_membership_family_bank.py"
+    },
+    {
+      "field": "x",
+      "module": "census/card_head/exact12_all_order_common_five_membership_family_bank.py"
+    },
+    {
+      "field": "y",
+      "module": "census/card_head/exact12_all_order_common_five_membership_family_bank.py"
+    },
+    {
+      "field": "cell_index",
+      "module": "census/card_head/exact12_apex_first_opposite_shared_pair_common_five_membership_family_bank.py"
+    },
+    {
+      "field": "entries",
+      "module": "census/card_head/exact12_apex_first_opposite_shared_pair_common_five_membership_family_bank.py"
+    },
+    {
+      "field": "family_id",
+      "module": "census/card_head/exact12_apex_first_opposite_shared_pair_common_five_membership_family_bank.py"
+    },
+    {
+      "field": "index",
+      "module": "census/card_head/exact12_apex_first_opposite_shared_pair_common_five_membership_family_bank.py"
+    },
+    {
+      "field": "pattern_definitions",
+      "module": "census/card_head/exact12_apex_first_opposite_shared_pair_common_five_membership_family_bank.py"
+    },
+    {
+      "field": "cell_index",
+      "module": "census/card_head/exact12_apex_first_opposite_shared_pair_second_opposite_common_five_membership_family_bank.py"
+    },
+    {
+      "field": "entries",
+      "module": "census/card_head/exact12_apex_first_opposite_shared_pair_second_opposite_common_five_membership_family_bank.py"
+    },
+    {
+      "field": "family_id",
+      "module": "census/card_head/exact12_apex_first_opposite_shared_pair_second_opposite_common_five_membership_family_bank.py"
+    },
+    {
+      "field": "index",
+      "module": "census/card_head/exact12_apex_first_opposite_shared_pair_second_opposite_common_five_membership_family_bank.py"
+    },
+    {
+      "field": "pattern_definitions",
+      "module": "census/card_head/exact12_apex_first_opposite_shared_pair_second_opposite_common_five_membership_family_bank.py"
+    },
+    {
+      "field": "schema",
+      "module": "census/card_head/exact12_apex_first_opposite_shared_pair_second_opposite_common_five_membership_family_bank.py"
+    },
+    {
+      "field": "b",
+      "module": "census/card_head/exact12_apex_first_opposite_shared_pair_surplus_common_five_membership_family_bank.py"
+    },
+    {
+      "field": "cell_index",
+      "module": "census/card_head/exact12_apex_first_opposite_shared_pair_surplus_common_five_membership_family_bank.py"
+    },
+    {
+      "field": "entries",
+      "module": "census/card_head/exact12_apex_first_opposite_shared_pair_surplus_common_five_membership_family_bank.py"
+    },
+    {
+      "field": "family_id",
+      "module": "census/card_head/exact12_apex_first_opposite_shared_pair_surplus_common_five_membership_family_bank.py"
+    },
+    {
+      "field": "index",
+      "module": "census/card_head/exact12_apex_first_opposite_shared_pair_surplus_common_five_membership_family_bank.py"
+    },
+    {
+      "field": "pattern_definitions",
+      "module": "census/card_head/exact12_apex_first_opposite_shared_pair_surplus_common_five_membership_family_bank.py"
+    },
+    {
+      "field": "x",
+      "module": "census/card_head/exact12_apex_first_opposite_shared_pair_surplus_common_five_membership_family_bank.py"
+    },
+    {
+      "field": "y",
+      "module": "census/card_head/exact12_apex_first_opposite_shared_pair_surplus_common_five_membership_family_bank.py"
+    },
+    {
+      "field": "a",
+      "module": "census/card_head/exact12_apex_first_surplus_second_common_five_membership_family_bank.py"
+    },
+    {
+      "field": "b",
+      "module": "census/card_head/exact12_apex_first_surplus_second_common_five_membership_family_bank.py"
+    },
+    {
+      "field": "cell_index",
+      "module": "census/card_head/exact12_apex_first_surplus_second_common_five_membership_family_bank.py"
+    },
+    {
+      "field": "entries",
+      "module": "census/card_head/exact12_apex_first_surplus_second_common_five_membership_family_bank.py"
+    },
+    {
+      "field": "family_id",
+      "module": "census/card_head/exact12_apex_first_surplus_second_common_five_membership_family_bank.py"
+    },
+    {
+      "field": "index",
+      "module": "census/card_head/exact12_apex_first_surplus_second_common_five_membership_family_bank.py"
+    },
+    {
+      "field": "pattern_definitions",
+      "module": "census/card_head/exact12_apex_first_surplus_second_common_five_membership_family_bank.py"
+    },
+    {
+      "field": "y",
+      "module": "census/card_head/exact12_apex_first_surplus_second_common_five_membership_family_bank.py"
+    },
+    {
+      "field": "cell_index",
+      "module": "census/card_head/exact12_apex_internal_shared_pair_common_five_membership_family_bank.py"
+    },
+    {
+      "field": "center",
+      "module": "census/card_head/exact12_apex_internal_shared_pair_common_five_membership_family_bank.py"
+    },
+    {
+      "field": "entries",
+      "module": "census/card_head/exact12_apex_internal_shared_pair_common_five_membership_family_bank.py"
+    },
+    {
+      "field": "family_id",
+      "module": "census/card_head/exact12_apex_internal_shared_pair_common_five_membership_family_bank.py"
+    },
+    {
+      "field": "index",
+      "module": "census/card_head/exact12_apex_internal_shared_pair_common_five_membership_family_bank.py"
+    },
+    {
+      "field": "pattern_definitions",
+      "module": "census/card_head/exact12_apex_internal_shared_pair_common_five_membership_family_bank.py"
+    },
+    {
+      "field": "cell_index",
+      "module": "census/card_head/exact12_apex_pair_cross_block_membership_family_bank.py"
+    },
+    {
+      "field": "family_id",
+      "module": "census/card_head/exact12_apex_pair_cross_block_membership_family_bank.py"
+    },
+    {
+      "field": "x",
+      "module": "census/card_head/exact12_apex_pair_cross_block_membership_family_bank.py"
+    },
+    {
+      "field": "y",
+      "module": "census/card_head/exact12_apex_pair_cross_block_membership_family_bank.py"
+    },
+    {
+      "field": "cell_index",
+      "module": "census/card_head/exact12_apex_shared_pair_cross_block_membership_family_bank.py"
+    },
+    {
+      "field": "family_id",
+      "module": "census/card_head/exact12_apex_shared_pair_cross_block_membership_family_bank.py"
+    },
+    {
+      "field": "c",
+      "module": "census/card_head/exact12_apex_triple_surplus_second_opposite_common_five_membership_family_bank.py"
+    },
+    {
+      "field": "cell_index",
+      "module": "census/card_head/exact12_apex_triple_surplus_second_opposite_common_five_membership_family_bank.py"
+    },
+    {
+      "field": "family_id",
+      "module": "census/card_head/exact12_apex_triple_surplus_second_opposite_common_five_membership_family_bank.py"
+    },
+    {
+      "field": "y",
+      "module": "census/card_head/exact12_apex_triple_surplus_second_opposite_common_five_membership_family_bank.py"
+    },
+    {
+      "field": "a",
+      "module": "census/card_head/exact12_apex_zero_cross_block_membership_family_bank.py"
+    },
+    {
+      "field": "c",
+      "module": "census/card_head/exact12_apex_zero_cross_block_membership_family_bank.py"
+    },
+    {
+      "field": "cell_index",
+      "module": "census/card_head/exact12_apex_zero_cross_block_membership_family_bank.py"
+    },
+    {
+      "field": "family_id",
+      "module": "census/card_head/exact12_apex_zero_cross_block_membership_family_bank.py"
+    },
+    {
+      "field": "x",
+      "module": "census/card_head/exact12_apex_zero_cross_block_membership_family_bank.py"
+    },
+    {
+      "field": "a",
+      "module": "census/card_head/exact12_block_spanning_membership_family_bank.py"
+    },
+    {
+      "field": "c",
+      "module": "census/card_head/exact12_block_spanning_membership_family_bank.py"
+    },
+    {
+      "field": "cell_index",
+      "module": "census/card_head/exact12_block_spanning_membership_family_bank.py"
+    },
+    {
+      "field": "x",
+      "module": "census/card_head/exact12_block_spanning_membership_family_bank.py"
+    },
+    {
+      "field": "a",
+      "module": "census/card_head/exact12_center_exchange_all_order_common_five_membership_family_bank.py"
+    },
+    {
+      "field": "b",
+      "module": "census/card_head/exact12_center_exchange_all_order_common_five_membership_family_bank.py"
+    },
+    {
+      "field": "c",
+      "module": "census/card_head/exact12_center_exchange_all_order_common_five_membership_family_bank.py"
+    },
+    {
+      "field": "cell_index",
+      "module": "census/card_head/exact12_center_exchange_all_order_common_five_membership_family_bank.py"
+    },
+    {
+      "field": "center",
+      "module": "census/card_head/exact12_center_exchange_all_order_common_five_membership_family_bank.py"
+    },
+    {
+      "field": "entries",
+      "module": "census/card_head/exact12_center_exchange_all_order_common_five_membership_family_bank.py"
+    },
+    {
+      "field": "family_id",
+      "module": "census/card_head/exact12_center_exchange_all_order_common_five_membership_family_bank.py"
+    },
+    {
+      "field": "index",
+      "module": "census/card_head/exact12_center_exchange_all_order_common_five_membership_family_bank.py"
+    },
+    {
+      "field": "pattern_definitions",
+      "module": "census/card_head/exact12_center_exchange_all_order_common_five_membership_family_bank.py"
+    },
+    {
+      "field": "reused",
+      "module": "census/card_head/exact12_center_exchange_all_order_common_five_membership_family_bank.py"
+    },
+    {
+      "field": "x",
+      "module": "census/card_head/exact12_center_exchange_all_order_common_five_membership_family_bank.py"
+    },
+    {
+      "field": "y",
+      "module": "census/card_head/exact12_center_exchange_all_order_common_five_membership_family_bank.py"
+    },
+    {
+      "field": "a",
+      "module": "census/card_head/exact12_core_pair_all_order_common_five_membership_family_bank.py"
+    },
+    {
+      "field": "b",
+      "module": "census/card_head/exact12_core_pair_all_order_common_five_membership_family_bank.py"
+    },
+    {
+      "field": "c",
+      "module": "census/card_head/exact12_core_pair_all_order_common_five_membership_family_bank.py"
+    },
+    {
+      "field": "cell_index",
+      "module": "census/card_head/exact12_core_pair_all_order_common_five_membership_family_bank.py"
+    },
+    {
+      "field": "center",
+      "module": "census/card_head/exact12_core_pair_all_order_common_five_membership_family_bank.py"
+    },
+    {
+      "field": "entries",
+      "module": "census/card_head/exact12_core_pair_all_order_common_five_membership_family_bank.py"
+    },
+    {
+      "field": "family_id",
+      "module": "census/card_head/exact12_core_pair_all_order_common_five_membership_family_bank.py"
+    },
+    {
+      "field": "index",
+      "module": "census/card_head/exact12_core_pair_all_order_common_five_membership_family_bank.py"
+    },
+    {
+      "field": "parent_variable_cutoff",
+      "module": "census/card_head/exact12_core_pair_all_order_common_five_membership_family_bank.py"
+    },
+    {
+      "field": "pattern_definitions",
+      "module": "census/card_head/exact12_core_pair_all_order_common_five_membership_family_bank.py"
+    },
+    {
+      "field": "x",
+      "module": "census/card_head/exact12_core_pair_all_order_common_five_membership_family_bank.py"
+    },
+    {
+      "field": "y",
+      "module": "census/card_head/exact12_core_pair_all_order_common_five_membership_family_bank.py"
+    },
+    {
+      "field": "a",
+      "module": "census/card_head/exact12_first_opposite_pair_surplus_second_opposite_common_five_membership_family_bank.py"
+    },
+    {
+      "field": "b",
+      "module": "census/card_head/exact12_first_opposite_pair_surplus_second_opposite_common_five_membership_family_bank.py"
+    },
+    {
+      "field": "c",
+      "module": "census/card_head/exact12_first_opposite_pair_surplus_second_opposite_common_five_membership_family_bank.py"
+    },
+    {
+      "field": "cell_index",
+      "module": "census/card_head/exact12_first_opposite_pair_surplus_second_opposite_common_five_membership_family_bank.py"
+    },
+    {
+      "field": "entries",
+      "module": "census/card_head/exact12_first_opposite_pair_surplus_second_opposite_common_five_membership_family_bank.py"
+    },
+    {
+      "field": "family_id",
+      "module": "census/card_head/exact12_first_opposite_pair_surplus_second_opposite_common_five_membership_family_bank.py"
+    },
+    {
+      "field": "index",
+      "module": "census/card_head/exact12_first_opposite_pair_surplus_second_opposite_common_five_membership_family_bank.py"
+    },
+    {
+      "field": "pattern_definitions",
+      "module": "census/card_head/exact12_first_opposite_pair_surplus_second_opposite_common_five_membership_family_bank.py"
+    },
+    {
+      "field": "reused",
+      "module": "census/card_head/exact12_first_opposite_pair_surplus_second_opposite_common_five_membership_family_bank.py"
+    },
+    {
+      "field": "base_added_constraints",
+      "module": "census/card_head/exact12_next_row_arm_cell_run.py"
+    },
+    {
+      "field": "candidate",
+      "module": "census/card_head/exact12_next_row_arm_cell_run.py"
+    },
+    {
+      "field": "candidate_schema",
+      "module": "census/card_head/exact12_next_row_arm_cell_run.py"
+    },
+    {
+      "field": "compiler_schema",
+      "module": "census/card_head/exact12_next_row_arm_cell_run.py"
+    },
+    {
+      "field": "error",
+      "module": "census/card_head/exact12_next_row_arm_cell_run.py"
+    },
+    {
+      "field": "exact_cnf",
+      "module": "census/card_head/exact12_next_row_arm_cell_run.py"
+    },
+    {
+      "field": "lean_ingress_theorem",
+      "module": "census/card_head/exact12_next_row_arm_cell_run.py"
+    },
+    {
+      "field": "model",
+      "module": "census/card_head/exact12_next_row_arm_cell_run.py"
+    },
+    {
+      "field": "named_deletion_arm",
+      "module": "census/card_head/exact12_next_row_arm_cell_run.py"
+    }
+  ]
+}
