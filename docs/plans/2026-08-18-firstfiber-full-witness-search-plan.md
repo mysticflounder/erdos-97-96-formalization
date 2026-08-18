@@ -82,6 +82,11 @@ supports from `combinedPacket.namedSlots_eq`; the adapter therefore returns
 both mapped five-row lists with no caller-supplied hidden alignment premise.
 This completes the source-to-bounded-row replay bridge, while leaving the
 metric obstruction and arbitrary-cardinality coverage obligations open.
+The deletion replay check is now included in `f08bf1a7`: the role contract
+requires the deleted label itself to be named, and every mapped row is proved
+to omit its mapped deleted label.  This closes the packet-level omission
+invariant needed by a DIMACS model decoder; it still does not assert any
+nonmembership for anonymous overflow points.
 
 ## Objective
 
