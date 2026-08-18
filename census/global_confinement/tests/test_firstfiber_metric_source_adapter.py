@@ -15,6 +15,7 @@ from census.global_confinement.firstfiber_metric_source_adapter import (
     as_metric_system,
     load_source,
     normalize_source,
+    validate_eight_arm_coverage,
 )
 
 
@@ -119,6 +120,28 @@ def test_rejects_unknown_collision_arm() -> None:
     source["packets"][0]["provenance"]["collision_arm"] = "unknown"
     with pytest.raises(SourceAdapterError):
         normalize_source(source)
+
+
+def test_requires_all_eight_role_pairs() -> None:
+    source = _source()
+    base = source["packets"][0]
+    collisions = ["P.source₁", "Pρ.source₁", "P.source₂", "Pρ.source₂"]
+    packets = []
+    for index, arm in enumerate(("source", "other")):
+        for offset, collision in enumerate(collisions):
+            packet = copy.deepcopy(base)
+            packet["packet_id"] = f"{index * 4 + offset:020x}"
+            packet["provenance"]["arm"] = arm
+            packet["provenance"]["collision_arm"] = collision
+            packet["provenance"]["deleted_identity"] = (
+                "Q.source.1" if arm == "source" else "Q.otherOutsidePoint"
+            )
+            packets.append(packet)
+    source["packets"] = packets
+    assert len(validate_eight_arm_coverage(source)["packets"]) == 8
+    source["packets"].pop()
+    with pytest.raises(SourceAdapterError):
+        validate_eight_arm_coverage(source)
 
 
 def test_rejects_profile_cardinality_mismatch() -> None:

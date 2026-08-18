@@ -38,6 +38,9 @@ _COLLISION_ARMS = {
     "P.source₂",
     "Pρ.source₂",
 }
+_EXPECTED_ROLE_PAIRS = {
+    (outside, collision) for outside in _ARMS for collision in _COLLISION_ARMS
+}
 
 
 class SourceAdapterError(ValueError):
@@ -253,6 +256,23 @@ def normalize_source(raw: object) -> dict[str, Any]:
     }
 
 
+def validate_eight_arm_coverage(raw: object) -> dict[str, Any]:
+    """Require one validated packet for every outside/collision arm pair."""
+
+    source = normalize_source(raw)
+    pairs = {
+        (packet["provenance"]["arm"], packet["provenance"]["collision_arm"])
+        for packet in source["packets"]
+    }
+    if pairs != _EXPECTED_ROLE_PAIRS:
+        missing = sorted(_EXPECTED_ROLE_PAIRS - pairs)
+        extra = sorted(pairs - _EXPECTED_ROLE_PAIRS)
+        raise SourceAdapterError(
+            f"source does not cover all eight FirstFiber arms; missing={missing}, extra={extra}"
+        )
+    return source
+
+
 def as_metric_system(packet: Mapping[str, Any]) -> dict[str, Any]:
     """Project one validated packet to the explicit-order metric system shape."""
 
@@ -293,11 +313,12 @@ def as_metric_payload(source: Mapping[str, Any]) -> dict[str, Any]:
     }
 
 
-def load_source(path: Path) -> dict[str, Any]:
+def load_source(path: Path, *, require_all_arms: bool = False) -> dict[str, Any]:
     """Read and validate one immutable JSON source artifact."""
 
     raw = path.read_bytes()
-    source = normalize_source(json.loads(raw))
+    normalizer = validate_eight_arm_coverage if require_all_arms else normalize_source
+    source = normalizer(json.loads(raw))
     revision_path = PurePosixPath(source["source_revision"]["lean_path"])
     if revision_path.is_absolute() or ".." in revision_path.parts:
         raise SourceAdapterError(
