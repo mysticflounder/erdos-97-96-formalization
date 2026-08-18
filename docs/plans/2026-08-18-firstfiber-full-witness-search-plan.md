@@ -12,6 +12,13 @@ job has been promoted yet. A concurrent direct Lean proof attempt remains
 unverified and currently fails type checking; it also supplies collision
 endpoints where the downstream consumer requires a genuinely escaping point.
 
+The first Lean ingress slice is now landed as `49e03929` in
+`FirstFiberFinitePacketIngress.lean`. It reindexes one genuine five-row
+deletion boundary, requires an explicit bijective order, and proves a named
+slot bound of 26 for that packet. Combining the two outside-deletion packets
+and the four collision-row arms still needs a local-core coverage theorem; the
+module intentionally makes no full-carrier or `MetricCoreAlternative` claim.
+
 ## Objective
 
 Resolve the live FirstFiber outside-pair obligation
