@@ -2497,6 +2497,36 @@ the ancestor bank chain, which re-attests another lane's proof state;
 that is a chain-wide trust decision and is left for authorization
 rather than taken here.  No wave may run until it is resolved.
 
+Resolved (2026-08-17, commit `5fe42600`), and without a refreeze.  Comparing
+the frozen manifest against HEAD across all 2,883 files found 0 missing and
+exactly 1 drifted, that one file, so reverting `5169fa2b` restored the
+closure byte-exactly: the module returns to sha256 `0e779abc…`, every pin
+matches again with zero pin edits, and no bank rebuild, CNF regeneration, or
+re-solve was needed.  `lake-build` exits 0, the spine is unchanged at
+`126/36264`, and the 21st-bank suite goes from 2 passed with 5 errors to 7
+passed.  The four reverted theorems closed no leaf and had no consumer.  The
+mechanism is not fixed: any content change to any file in that 2,883-file
+closure will break every downstream pin again, and the next such change may
+be work nobody wants to revert.  Narrowing a bank manifest to the files that
+bank actually depends on is the durable repair and is not yet done.
+
+The generator payload for the 22nd bank is built and authenticated
+(`scratch/rigid221-sourceheavy-anchor/core-pair/verify_frozen.py`, commit
+`a701dc5c`; probe `probe_sha256` `636490d1…`, 39,444,785 bytes).  The run
+reports 47,211 variables and 703,533 clauses, delta 24,182 as 380
+implications plus 23,802 blocking clauses, 23,802 roles and patterns, 2,168
+requirements, 37 fresh definitions in contiguous 47,175--47,211, and 2,131
+reused inside the parent envelope 44,876--47,174.  29 of 30 `EXPECTED_*`
+pins were asserted and matched; only `EXPECTED_BANK_SHA256` is skipped,
+because it stays unpinned until the Lean CNF module exists.  A size pilot
+measured against the 21st bank's module, decomposing all 5,719 of its lines
+by generated section and scaling each by its own driver, projects the
+core-pair module at 37,584 lines rather than the 53,466 a flat
+lines-per-pattern rate predicts: patterns grow by 9.35 but requirements only
+by 1.60, and the implication section shrinks from 658 to 380.  No bank
+freeze, canary, successor formula, or wave is authorized by this payload and
+measurement.
+
 The card-at-least-13 adapter audit also rules out a tempting shortcut.  The
 pentagon residual does not supply a
 `LargeCapUniqueFiveSecondApexRadius`: in particular it has no
