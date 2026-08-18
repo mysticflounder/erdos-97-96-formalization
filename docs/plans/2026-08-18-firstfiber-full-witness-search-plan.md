@@ -58,6 +58,11 @@ The finite-scope theorem is now import-reachable through `de53d132`.  Its
 the membership and injectivity replay facts.  This is the theorem needed to
 define a bounded diagnostic quotient; it still says nothing about omitted
 full-row incidences or metric-core existence.
+The composition lemmas in `66e14aef` now package the source role existential
+with its bounded named-slot encoding.  This is the formal ingress contract for
+a diagnostic solver: a model may reason over the 52 named slots plus explicit
+overflow, but any UNSAT result remains scoped until a replay theorem connects
+its certificate to a full source consumer.
 
 ## Objective
 
