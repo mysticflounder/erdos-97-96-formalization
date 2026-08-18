@@ -87,6 +87,12 @@ requires the deleted label itself to be named, and every mapped row is proved
 to omit its mapped deleted label.  This closes the packet-level omission
 invariant needed by a DIMACS model decoder; it still does not assert any
 nonmembership for anonymous overflow points.
+The composed diagnostic ingress is now landed in `f963cf11`: from indexed role
+packet existence it produces an explicit bounded encoding and both mapped
+five-row lists, with their lengths and replay equalities.  This is the first
+complete source-to-bounded-replay theorem in the lane.  Its scope is still
+diagnostic: it supplies no finite upper bound on `D.A.card`, no coverage of
+unnamed points, and no metric-core alternative.
 
 ## Objective
 
