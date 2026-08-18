@@ -3464,6 +3464,62 @@ theorem false_of_freshThird_canonicalDifferentCap_of_endpointDeletionObstruction
         ⟨h.1, h.2.1, lt_trans h.2.2.1 h.2.2.2,
           hsourceFirst, hsecondEndpoint.symm⟩))
 
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- Equal source centers force the cap labels in a coherent distinct-cap
+ interaction pair to agree.  This is the label-normalization step needed
+ before any finite obstruction search; it uses only disjoint strict-cap
+ interiors and does not identify the two source rows. -/
+theorem freshThirdEqualCenter_distinctCaps_sharedLabels
+     (C : TwoCapSourceThirdCanonicalRowSurface P Pρ)
+     (Q : FreshThirdBlockerFiber P Pρ)
+     (hcenters :
+       H.centerAt C.firstSource.1 C.firstSource.2 =
+         H.centerAt C.secondSource.1 C.secondSource.2)
+     (sourceCap freshCap sourceCap' freshCap' : Fin 3)
+     (sourceCenter_mem :
+       H.centerAt C.firstSource.1 C.firstSource.2 ∈
+         S.capInteriorByIndex sourceCap)
+     (freshCenter_mem :
+       H.centerAt Q.source₁.1 Q.source₁.2 ∈
+         S.capInteriorByIndex freshCap)
+     (sourceCenter_mem' :
+       H.centerAt C.secondSource.1 C.secondSource.2 ∈
+         S.capInteriorByIndex sourceCap')
+     (freshCenter_mem' :
+       H.centerAt Q.source₁.1 Q.source₁.2 ∈
+         S.capInteriorByIndex freshCap') :
+     sourceCap = sourceCap' ∧ freshCap = freshCap' := by
+  constructor
+  · by_contra hne
+    exact
+      (S.capInteriorByIndex_ne_of_mem_of_mem_ne sourceCenter_mem
+        (by simpa [hcenters] using sourceCenter_mem') hne) rfl
+  · by_contra hne
+    exact
+      (S.capInteriorByIndex_ne_of_mem_of_mem_ne freshCenter_mem
+        freshCenter_mem' hne) rfl
+
+/-- Equal source centers force the cap labels in a coherent same-cap
+ interaction pair to agree.  The fiber endpoint witnesses remain separate;
+ this theorem only removes a spurious second cap index from the residual. -/
+theorem freshThirdEqualCenter_sameCap_sharedLabel
+     (C : TwoCapSourceThirdCanonicalRowSurface P Pρ)
+     (hcenters :
+       H.centerAt C.firstSource.1 C.firstSource.2 =
+         H.centerAt C.secondSource.1 C.secondSource.2)
+     (capIndex capIndex' : Fin 3)
+     (sourceCenter_mem :
+       H.centerAt C.firstSource.1 C.firstSource.2 ∈
+         S.capInteriorByIndex capIndex)
+     (sourceCenter_mem' :
+       H.centerAt C.secondSource.1 C.secondSource.2 ∈
+         S.capInteriorByIndex capIndex') :
+     capIndex = capIndex' := by
+  by_contra hne
+  exact
+    (S.capInteriorByIndex_ne_of_mem_of_mem_ne sourceCenter_mem
+      (by simpa [hcenters] using sourceCenter_mem') hne) rfl
 end
 end TwoSourceExactCollisionRowsTerminal
 end ATailFrontierLiveClosure
