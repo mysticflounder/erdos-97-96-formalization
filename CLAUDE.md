@@ -41,6 +41,30 @@ For the dated sibling-bank census and its trust/reachability qualifications, see
 `docs/general-n-certificate-bank-mining-2026-07-09.md`. Treat its counts as a
 snapshot and verify candidate statements, imports, and trust state before reuse.
 
+## Bank source manifests
+
+A `census/card_head` bank authenticates the Lean source its proof-carrying
+claim rests on through a `source_manifest` of per-file SHA-256 digests, and
+pins the result in `EXPECTED_BANK_SHA256`.  That file set is the frozen
+`LEAN_DEPENDENCY_MODULES` tuple: the repository-local modules supplying a
+declaration the bank's root modules transitively depend on, mined from the
+Lean kernel.  It is deliberately NOT the transitive import closure, which was
+about a hundred times larger and made unrelated commits break every
+downstream pin.
+
+Editing a Lean file no bank theorem reaches therefore breaks nothing.  If you
+change a module that IS in a bank's set, re-mine and refreeze:
+
+```bash
+uv run python scripts/mine_bank_lean_dependencies.py <bank module> --compare
+uv run python scratch/rigid221-sourceheavy-anchor/refreeze_narrowed_chain.py
+uv run python scratch/rigid221-sourceheavy-anchor/refreeze_narrowed_chain.py --verify
+```
+
+Mining needs a built `.olean` tree.  The `--verify` walk runs the whole chain
+with every frozen pin in force and overrides nothing; treat a checkpoint as
+unverified until it reports `CHAIN VERIFY COMPLETE`.
+
 ## Communication with parallel agents
 You can send messages to parallel agents via the erdos-97-96-formalization nthdegree convo. (`nthdegree convo`)
 
