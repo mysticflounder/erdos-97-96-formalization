@@ -1,0 +1,15 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "firstfiber-source-ingress-20260818",
+  "owner": "codex-firstfiber-ingress",
+  "base_head": "51f9f229ba6b6e08f3b3a2abd3f0c2d8e0213696",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/firstfiber-source-ingress-20260818.json",
+    "census/global_confinement/firstfiber_metric_source_adapter.py",
+    "census/global_confinement/tests/test_firstfiber_metric_source_adapter.py"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-08-18T07:00:00Z",
+  "manifest_sha256": "4a6245af3ded46fca8c1d52c6313f36104323e01f21a3273c1f683f895a90682"
+}

@@ -13,7 +13,7 @@ import hashlib
 import json
 import re
 from collections.abc import Mapping
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 from typing import Any
 
 SCHEMA = "p97-firstfiber-outside-pair-metric-source/v1"
@@ -28,6 +28,10 @@ _ROLES = (
     "surplus_apex",
 )
 _ARMS = {"source", "other"}
+_DELETED_IDENTITIES = {
+    "source": "Q.source.1",
+    "other": "Q.otherOutsidePoint",
+}
 
 
 class SourceAdapterError(ValueError):
@@ -103,6 +107,10 @@ def _validate_packet(raw: object) -> dict[str, Any]:
         or any(type(x) is not int or x < 0 for x in profile)
     ):
         raise SourceAdapterError("packet.profile must be a nonnegative integer list")
+    if sum(profile) - 3 != n:
+        raise SourceAdapterError(
+            "packet.profile must satisfy the cap-cardinality identity sum(profile)-3=n"
+        )
     order = _permutation(packet["order"], n, "packet.order")
     deleted = _int(packet["deleted"], "packet.deleted")
     if not 0 <= deleted < n:
@@ -117,6 +125,8 @@ def _validate_packet(raw: object) -> dict[str, Any]:
         parsed_centers[role] = center
     if len(set(parsed_centers.values())) != len(_ROLES):
         raise SourceAdapterError("the five source centers are not distinct")
+    if deleted in parsed_centers.values():
+        raise SourceAdapterError("deleted point must differ from every named center")
 
     rows = packet["rows"]
     if type(rows) is not list or len(rows) != len(_ROLES):
@@ -166,6 +176,10 @@ def _validate_packet(raw: object) -> dict[str, Any]:
         or not provenance["deleted_identity"]
     ):
         raise SourceAdapterError("provenance.deleted_identity is required")
+    if provenance["deleted_identity"] != _DELETED_IDENTITIES[provenance["arm"]]:
+        raise SourceAdapterError(
+            "provenance.deleted_identity disagrees with provenance.arm"
+        )
     if (
         provenance["lean_declaration"]
         != "false_of_capSource_firstFiber_outsidePairDeletionExactRows"
@@ -273,6 +287,18 @@ def load_source(path: Path) -> dict[str, Any]:
 
     raw = path.read_bytes()
     source = normalize_source(json.loads(raw))
+    revision_path = PurePosixPath(source["source_revision"]["lean_path"])
+    if revision_path.is_absolute() or ".." in revision_path.parts:
+        raise SourceAdapterError(
+            "source_revision.lean_path must stay within the repository"
+        )
+    lean_path = Path.cwd().joinpath(*revision_path.parts)
+    try:
+        lean_raw = lean_path.read_bytes()
+    except OSError as exc:
+        raise SourceAdapterError("declared Lean source cannot be read") from exc
+    if _sha256(lean_raw) != source["source_revision"]["lean_sha256"]:
+        raise SourceAdapterError("declared Lean source digest does not match its bytes")
     if _sha256(path.read_bytes()) != _sha256(raw):
         raise SourceAdapterError("source changed during capture")
     return source

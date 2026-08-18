@@ -1,6 +1,9 @@
 from __future__ import annotations
 
 import copy
+import hashlib
+import json
+from pathlib import Path
 
 import pytest
 
@@ -10,6 +13,7 @@ from census.global_confinement.firstfiber_metric_source_adapter import (
     SourceAdapterError,
     as_metric_payload,
     as_metric_system,
+    load_source,
     normalize_source,
 )
 
@@ -93,3 +97,49 @@ def test_rejects_crossed_arm_declaration() -> None:
     source["packets"][0]["provenance"]["lean_declaration"] = "other"
     with pytest.raises(SourceAdapterError):
         normalize_source(source)
+
+
+@pytest.mark.parametrize(
+    ("field", "value"),
+    [
+        ("deleted_identity", "Q.otherOutsidePoint"),
+        ("arm", "other"),
+    ],
+)
+def test_rejects_arm_deleted_identity_mismatch(field: str, value: str) -> None:
+    source = copy.deepcopy(_source())
+    source["packets"][0]["provenance"][field] = value
+    with pytest.raises(SourceAdapterError):
+        normalize_source(source)
+
+
+def test_rejects_profile_cardinality_mismatch() -> None:
+    source = copy.deepcopy(_source())
+    source["packets"][0]["profile"] = [7, 4, 4]
+    with pytest.raises(SourceAdapterError):
+        normalize_source(source)
+
+
+def test_rejects_deleted_named_center() -> None:
+    source = copy.deepcopy(_source())
+    source["packets"][0]["deleted"] = 3
+    with pytest.raises(SourceAdapterError):
+        normalize_source(source)
+
+
+def test_load_source_binds_declared_lean_bytes(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    source = _source()
+    lean_path = tmp_path / "decl.lean"
+    lean_bytes = b"theorem source_contract : True := by trivial\n"
+    lean_path.write_bytes(lean_bytes)
+    source["source_revision"]["lean_path"] = "decl.lean"
+    source["source_revision"]["lean_sha256"] = hashlib.sha256(lean_bytes).hexdigest()
+    artifact = tmp_path / "source.json"
+    artifact.write_text(json.dumps(source), encoding="utf-8")
+    monkeypatch.chdir(tmp_path)
+    assert load_source(artifact)["source_revision"]["lean_path"] == "decl.lean"
+    lean_path.write_bytes(b"mutated\n")
+    with pytest.raises(SourceAdapterError):
+        load_source(artifact)
