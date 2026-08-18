@@ -26,6 +26,11 @@ The ingress now also carries explicit `OutsideDeletionArm`,
 `CollisionRowsArm`, and eight-pair bookkeeping, landed in `ce2803ef`; these
 labels are metadata only until a source theorem supplies the corresponding
 packet for every role pair.
+The role API is now consumer-ready in `295306f9`: `rolePair_decompose`
+enumerates all eight arm pairs, and `RoleCombinationPacket` bundles the two
+arm packets with their overflow-preserving union.  This is still a
+source-neutral constructor; it does not assert that the live residual supplies
+all eight packets, nor does it provide a finite carrier bound.
 
 ## Objective
 
