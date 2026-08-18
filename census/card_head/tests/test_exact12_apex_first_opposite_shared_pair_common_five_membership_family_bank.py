@@ -82,7 +82,15 @@ EXPECTED_ROLES = (
     (9, 10, 11),
     (9, 11, 10),
 )
-REQUIRED_RECURSIVE_SOURCE_PATHS = {
+# Sources the manifest must reach.  The manifest is the frozen KERNEL
+# dependency set, not the transitive import closure, so a file belongs here
+# only when it supplies a declaration this bank's root modules actually use.
+# ExactTwelveRigid221LearnedClauseBridge and
+# ExactTwelveRigid221SecondCapApexSurplusMembershipFamilyCnf were required
+# while the manifest walked imports; neither supplies a reached declaration --
+# the first serves the downstream consumer layer and the second is a sibling
+# family's generated CNF -- so both left the manifest with the narrowing.
+REQUIRED_SOURCE_PATHS = {
     "census/card_head/exact12_positive_membership_cnf.py",
     "census/card_head/exact12_positive_membership_source_order_bank.py",
     (
@@ -92,10 +100,6 @@ REQUIRED_RECURSIVE_SOURCE_PATHS = {
     (
         "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/"
         "ExactTwelveRigid221SameBoundaryOrderIngress.lean"
-    ),
-    (
-        "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/"
-        "ExactTwelveRigid221LearnedClauseBridge.lean"
     ),
     (
         "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/"
@@ -112,10 +116,6 @@ REQUIRED_RECURSIVE_SOURCE_PATHS = {
     (
         "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/"
         "ExactTwelveRigid221ApexFirstOppositeSharedPairCommonFiveMembershipFamilyCnf.lean"
-    ),
-    (
-        "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/"
-        "ExactTwelveRigid221SecondCapApexSurplusMembershipFamilyCnf.lean"
     ),
 }
 
@@ -259,7 +259,7 @@ def test_full_build_validation_and_frozen_hashes(bank_and_parent) -> None:
     }
     manifest_paths = tuple(record["path"] for record in bank["source_manifest"])
     assert manifest_paths == _source_paths(REPO_ROOT)
-    assert REQUIRED_RECURSIVE_SOURCE_PATHS <= set(manifest_paths)
+    assert REQUIRED_SOURCE_PATHS <= set(manifest_paths)
     assert tuple(path for path in manifest_paths if path.endswith(".lean")) == (
         _lean_source_paths(REPO_ROOT)
     )

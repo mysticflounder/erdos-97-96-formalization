@@ -61,7 +61,7 @@ EXPECTED_PARENT_CLAUSES = 643_379
 EXPECTED_PARENT_DIMACS_SHA256 = (
     "18f09d0b8a854cfbe0783c6f84130366dc90011b25ce816eaeb8cdd5b8000ea8"
 )
-EXPECTED_PARENT_BANK_SHA256 = "29fede14180b54677ed4e3a3516b5c2e433f59589ac5c5743b801735cf534102"
+EXPECTED_PARENT_BANK_SHA256 = "a1cab579a6329058ffe47a6bb3eca265ae9456188e1b11a1c6cc50877ecfbd4a"
 EXPECTED_FINAL_VARIABLES = 45_307
 EXPECTED_FINAL_CLAUSES = 643_805
 EXPECTED_FINAL_DIMACS_SHA256 = (
@@ -74,7 +74,7 @@ EXPECTED_COMPILED_SHA256 = (
     "6212b4d6eda2c42e2eeac1166d70630eec570bcc39eaca94eb8d8cfbbcc965e6"
 )
 EXPECTED_BANK_SHA256 = (
-    "b3f3414c3747c0be41d44d75f5c111d73aa9428ea080adfcf66df0a30eb75408"
+    "17355abd7f6daee5a60097ee3a6c0410238d1b784e326d5ab1f6da0620bf3d1c"
 )
 EXPECTED_ROLES_SHA256 = (
     "2642abc7fd08eb33a1d02b49e3eadd493bfea095d0b27a837d26f141e6291729"
@@ -113,6 +113,50 @@ LEAN_ROOT_MODULES = (
     ),
 )
 
+# The repository-local Lean modules that supply a declaration the root
+# modules transitively depend on, mined from the Lean kernel by
+# ``scripts/mine_bank_lean_dependencies.py`` and frozen here.  This is the
+# source set the bank manifest authenticates.
+#
+# It is deliberately NOT the transitive import closure.  Hashing that closure
+# made every unrelated commit inside it break this pin and every pin below it,
+# which already cost one repair (5fe42600); only these 26 modules carry a
+# declaration the root modules use.
+#
+# Freezing the set rather than recomputing it is safe because the set is closed
+# under change detection: a new dependency can only be introduced by editing a
+# declaration that already lies inside the set, and every module in the set is
+# hashed, so no edit can add a dependency without breaking the pin first.
+# Re-mine with ``--compare`` after any change to a listed module.
+LEAN_DEPENDENCY_MODULES = (
+    "Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactTwelveCarrierIngress",
+    "Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactTwelveRigid221BoundaryOrderIngress",
+    "Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactTwelveRigid221Ingress",
+    "Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactTwelveRigid221OrderedCoreConsumer",
+    "Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactTwelveRigid221PositiveMembershipCnfBridge",
+    "Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactTwelveRigid221SafeBaseSatShards.Step_01",
+    "Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactTwelveRigid221SafeCandidate",
+    "Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactTwelveRigid221SafeCoverCnf",
+    "Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactTwelveRigid221SafeCoverIndexBridge",
+    "Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactTwelveRigid221SameBoundaryOrderIngress",
+    "Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactTwelveRigid221SecondApexSurplusSecondFirstCommonFiveCertificate",
+    "Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactTwelveRigid221SecondApexSurplusSecondFirstCommonFiveMembershipFamilyCnf",
+    "Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactTwelveRigid221SourceOrderPositiveNogood",
+    "Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactTwelveRigid221SurplusApexPairMembershipFamilyCnf",
+    "Erdos9796Proof.P97.ATail.FrontierLiveClosure.GenericRowNogoodCertificate",
+    "Erdos9796Proof.P97.Census554.ConvexFivePointCore",
+    "Erdos9796Proof.P97.Census554.CoverCnf",
+    "Erdos9796Proof.P97.Census554.EqualityCore",
+    "Erdos9796Proof.P97.Census554.SinzSat",
+    "Erdos9796Proof.P97.ConvexCyclicOrder.Basic",
+    "Erdos9796Proof.P97.Foundation",
+    "Erdos9796Proof.P97.Q3SharedInterior",
+    "Erdos9796Proof.P97.SignedAreaOangle",
+    "Erdos9796Proof.P97.SurplusCOMPGBankSep",
+    "Erdos9796Proof.P97.U2.OneHitMonotone",
+    "Erdos9796Proof.P97.U2.SimilarityNormalization",
+)
+
 
 class Exact12SecondApexSurplusSecondFirstCommonFiveMembershipFamilyBankError(
     ValueError
@@ -121,31 +165,32 @@ class Exact12SecondApexSurplusSecondFirstCommonFiveMembershipFamilyBankError(
 
 
 def _lean_source_paths(repo_root: Path) -> tuple[str, ...]:
+    """The frozen kernel dependency set, resolved to repository-local paths.
+
+    Fails closed on a module that is not repository-local, on an unreadable
+    source file, and on a root module missing from the frozen set.
+    """
+
     root = repo_root.resolve()
-    pending = list(LEAN_ROOT_MODULES)
-    seen_modules: set[str] = set()
     source_paths: set[str] = set()
-    while pending:
-        module = pending.pop()
-        if module in seen_modules:
-            continue
-        seen_modules.add(module)
+    for module in LEAN_DEPENDENCY_MODULES:
         relative_path = _project_lean_source_path(module)
         if relative_path is None:
-            continue
-        source_path = root / relative_path
-        try:
-            source = source_path.read_text(encoding="utf-8")
-        except (OSError, UnicodeError) as exc:
             raise Exact12SecondApexSurplusSecondFirstCommonFiveMembershipFamilyBankError(
-                f"repository-local Lean import is unreadable: {relative_path}"
+                f"frozen Lean dependency is not repository-local: {module}"
+            )
+        try:
+            (root / relative_path).read_bytes()
+        except OSError as exc:
+            raise Exact12SecondApexSurplusSecondFirstCommonFiveMembershipFamilyBankError(
+                f"frozen Lean dependency is unreadable: {relative_path}"
             ) from exc
         source_paths.add(relative_path)
-        for imported_module in _lean_import_modules(
-            source, relative_path=relative_path
-        ):
-            if _project_lean_source_path(imported_module) is not None:
-                pending.append(imported_module)
+    for module in LEAN_ROOT_MODULES:
+        if module not in LEAN_DEPENDENCY_MODULES:
+            raise Exact12SecondApexSurplusSecondFirstCommonFiveMembershipFamilyBankError(
+                f"root module absent from the frozen dependency set: {module}"
+            )
     return tuple(sorted(source_paths))
 
 

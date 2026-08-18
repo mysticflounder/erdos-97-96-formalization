@@ -2508,7 +2508,64 @@ passed.  The four reverted theorems closed no leaf and had no consumer.  The
 mechanism is not fixed: any content change to any file in that 2,883-file
 closure will break every downstream pin again, and the next such change may
 be work nobody wants to revert.  Narrowing a bank manifest to the files that
-bank actually depends on is the durable repair and is not yet done.
+bank actually depends on is the durable repair, and it is now done
+(2026-08-18); the paragraph below records it.
+
+### Narrowing the bank source manifests (2026-08-18)
+
+The manifest was deriving its file set from the transitive *import* closure of
+`LEAN_ROOT_MODULES`.  That is the wrong set.  The right one is the transitive
+*kernel* closure: the modules that actually supply a declaration the bank's
+theorems use.  For the core-pair bank the import closure is 2,875 repository
+files and the kernel closure is 29 -- a 99.0 per cent narrowing, and a strict
+subset, so nothing new enters.  The 29 are the certificate, the generated CNF
+module, the boundary-order bridges, and the geometry cores.
+`Rigid221SourceHeavy`, whose four unused theorems broke every pin on
+2026-08-17, is not among them.
+
+`scripts/mine_bank_lean_dependencies.py` computes the set from the Lean kernel:
+it walks the transitive constant dependencies of every type and value, maps
+each reached declaration back to the module supplying it, and keeps the
+repository-local ones.  Its roots are every declaration the root modules
+themselves supply, not a curated list, so no per-bank curation exists to drift.
+Both definitions were measured and give the identical 29 modules.
+
+The mined set is FROZEN into each bank as `LEAN_DEPENDENCY_MODULES` rather than
+recomputed, because mining needs a built `.olean` tree and bank builds must stay
+pure Python.  Freezing is safe because the set is closed under change
+detection: a new dependency can only be introduced by editing a declaration
+that already lies inside the set, and every module in the set is hashed, so no
+edit can add a dependency without breaking the pin first.  The one way to evade
+that argument is repository-local metaprogramming, whose elaboration output can
+change while its source stays unhashed; the repository contains none, which was
+checked rather than assumed.
+
+All thirteen banks that carry a Lean manifest now resolve paths from their
+frozen set and fail closed on a module that is not repository-local, on an
+unreadable file, and on a root module missing from the set.  Manifests fell
+from about 2,880 files to between 25 and 33.  The diff across all thirteen
+modules touches exactly two regions per file -- the constant block and
+`_lean_source_paths` -- so no orbit pin, count, or digest moved.  Every
+`EXPECTED_BANK_SHA256` and every downstream `EXPECTED_PARENT_BANK_SHA256`
+literal changed as a result and was rediscovered by
+`scratch/rigid221-sourceheavy-anchor/refreeze_narrowed_chain.py`, which walks
+the chain in order, sets each bank's parent pin to the sha its parent actually
+produced, and accepts an own-sha only when the bank rebuilds green under it.
+
+This narrows what the manifest authenticates.  It does not weaken what the
+banks prove: the Lean modules carrying the proofs are all inside the frozen
+set, and the build still has to elaborate the whole import closure.
+
+One record had to be restamped.  The `two-core-orbit-20260817` run manifest
+pinned the center-exchange bank module as an input digest, and the narrowing
+edits that module, so the pin went stale.  The digest was moved from
+`3c072d33...` to `56f50dd1...` rather than the run being re-executed, on the
+ground that the edit is provably irrelevant to what the run measured: the diff
+across all thirteen bank modules touches only the constant block and
+`_lean_source_paths`, so every orbit primitive and every pinned count the
+measurement consumed is byte-identical.  The restamp is recorded here because
+a run manifest has no field in which to say that its input moved after the
+run.
 
 The generator payload for the 22nd bank is built and authenticated
 (`scratch/rigid221-sourceheavy-anchor/core-pair/verify_frozen.py`, commit

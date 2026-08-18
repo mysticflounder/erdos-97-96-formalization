@@ -433,7 +433,7 @@ def test_requirement_schedule_split_against_the_parent_cutoff() -> None:
     # authenticated file-by-file regardless, and the freeze run itself has to
     # be able to build while the pin is still unset.
     assert family_bank_module.EXPECTED_BANK_SHA256 == (
-        "f2c4851d9dc38ff55f8533d80ce0219fa2515c4f948a7e3bb5efec784eb73ee4"
+        "e219ea20abdf35389401b4498da09833d1f4aa145c7e804a4998fd4f1b7061dc"
     )
     assert "EXPECTED_BANK_SHA256" not in REQUIRED_PIN_NAMES
 

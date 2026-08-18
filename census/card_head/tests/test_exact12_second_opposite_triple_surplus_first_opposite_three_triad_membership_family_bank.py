@@ -159,7 +159,7 @@ def test_roles_and_frozen_payload(bank_and_parent) -> None:
         "51980848a4ebe7e419b73d79e6a88c3ff4c4fd1497e5cfe5f3de753243eabfec"
     )
     assert bank["bank_sha256"] == EXPECTED_BANK_SHA256 == (
-        "a4627f3cb7b6d1ffb85333f13d89497b1e0c8370aef4d8a52de637f745387d07"
+        "1ea39d53e65b98ff568e7740e575f0e0e8c65ec7e277d77b0e1306fdf7b140d5"
     )
     assert parent["bank_sha256"] == family_bank_module.EXPECTED_PARENT_BANK_SHA256
     assert bank["claims"] == {

@@ -2,11 +2,11 @@
   "base_head": "9eb55acf56ed659650807fb1fa9190a586276df2",
   "created_utc": "2026-08-17T16:30:41Z",
   "input_digests": {
-    "census/card_head/exact12_center_exchange_all_order_common_five_membership_family_bank.py": "3c072d334d9b87bcfb7e645b3456c83cfcba78cf664da64e943955df6b86cd26",
+    "census/card_head/exact12_center_exchange_all_order_common_five_membership_family_bank.py": "56f50dd1d3aa2c35641641c967ec96174a9eb1a5bf11dd864f9306c74e6ee223",
     "scratch/arm-static-cell6-v25-live-898fbd78-20260816/survivor.json": "fac5426c504ebf9847911da7891a5795a21486fb6371e62d1d5a302d657914bd"
   },
   "lane_id": "exact12-rigid221-all-order-common-five",
-  "manifest_sha256": "85b6ad6306bfa603e84d6ca3552ae86d506e0417ad3730cbcd066d53af767fb4",
+  "manifest_sha256": "5a23b7f9587a3b2014d88a8eaf5330de23a148302ef0b143c4e9be29c97a1627",
   "output_classes": [
     "artifacts",
     "events",
