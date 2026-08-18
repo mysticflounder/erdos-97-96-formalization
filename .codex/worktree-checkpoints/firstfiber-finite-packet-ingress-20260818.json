@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "firstfiber-finite-packet-ingress-20260818",
+  "owner": "finite_packet_inventory",
+  "base_head": "b5d69aec68619f9628cbf89f6b951fe4350ad327",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/firstfiber-finite-packet-ingress-20260818.json",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/FirstFiberFinitePacketIngress.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-08-18T00:00:00Z",
+  "manifest_sha256": "d7e080a9ed10b8d7c6c4a418249c00ffeb89bf21290c3a25141dbd2fc8616941"
+}
