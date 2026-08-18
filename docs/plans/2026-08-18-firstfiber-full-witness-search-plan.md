@@ -31,6 +31,12 @@ enumerates all eight arm pairs, and `RoleCombinationPacket` bundles the two
 arm packets with their overflow-preserving union.  This is still a
 source-neutral constructor; it does not assert that the live residual supplies
 all eight packets, nor does it provide a finite carrier bound.
+The first source-specific bridge is now landed in `dcd238d7` and made
+import-reachable by `38faf73a`.  Given the two outside-row choices and the
+four collision-row choices, it selects the supplied arm and constructs the
+corresponding paired packet with explicit center-cardinality, order, and
+profile hypotheses.  The theorem returns packet data only; the live residual
+still has no finite-cardinality lift or metric consumer at this point.
 
 ## Objective
 
