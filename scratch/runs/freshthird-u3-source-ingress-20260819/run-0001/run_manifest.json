@@ -1,0 +1,18 @@
+{
+  "schema": "worktree-run-manifest/v1",
+  "lane_id": "freshthird-u3-source-ingress-20260819",
+  "run_id": "run-0001",
+  "root": "scratch/runs/freshthird-u3-source-ingress-20260819/run-0001",
+  "owner": "codex",
+  "base_head": "97efba032abe8066d349ab6a7f3cd6f18a916c30",
+  "output_classes": ["artifacts", "events", "tmp"],
+  "source_digests": {
+    "lean/scratch/U3LeanSatSourceIngress.lean": "f4289a051044e019109d721e0b62f2926440a660dead22020141101f6fa8df06"
+  },
+  "input_digests": {
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceClosure.lean": "3198614783e0e2036e1378bdb93df33968a6f6e8d8a8f23c41b836fb6bdd22fc",
+    "lean/Erdos9796Proof/P97/U3ToU5Terminal.lean": "6f0968585fc2e6d7a17eaf36638cc928c2d210a748649bba3f7063185046eaef"
+  },
+  "created_utc": "2026-08-19T22:35:00Z",
+  "manifest_sha256": "2805400630bcea69ed161fdb07088aba42b0e67f1f3a524bc98a490e7c51cf3b"
+}

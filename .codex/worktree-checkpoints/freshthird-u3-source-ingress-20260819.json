@@ -1,0 +1,19 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "freshthird-u3-source-ingress-20260819",
+  "owner": "codex",
+  "base_head": "97efba032abe8066d349ab6a7f3cd6f18a916c30",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/freshthird-u3-source-ingress-20260819.json",
+    "lean/scratch/U3LeanSatSourceIngress.lean"
+  ],
+  "durable_paths": [
+    "scratch/runs/freshthird-u3-source-ingress-20260819/report.md",
+    "scratch/runs/freshthird-u3-source-ingress-20260819/run-0001/run_manifest.json"
+  ],
+  "generated_roots": [
+    "scratch/runs/freshthird-u3-source-ingress-20260819/run-0001"
+  ],
+  "created_utc": "2026-08-19T22:35:00Z",
+  "manifest_sha256": "a6ef0a502055bfc4be1ec5eab40c18e15df452467757a5d48b1c7c8342634ef5"
+}
