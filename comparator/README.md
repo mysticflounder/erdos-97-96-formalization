@@ -44,7 +44,7 @@ self-consistent gate. The two tiers list disjoint theorem sets, and
 | 4 | Native-tier config + axiom audit | [`config-native.json`](config-native.json) + [`axiom-audit-native.lean`](axiom-audit-native.lean) |
 | 5 | Offline pre-flight (both tiers) | [`check-conformance.sh`](check-conformance.sh) |
 
-Both modules declare all 27 results in a shared `Headline` namespace, so the
+Both modules declare all 30 results in a shared `Headline` namespace, so the
 manifests list `Headline.counterexample_card_ge_ten`, … The comparator looks
 each name up in *both* exports, so they must agree on the fully-qualified name;
 the namespace also keeps Solution's restatements from colliding with the
@@ -105,7 +105,7 @@ extended 2026-08-01 with the three exact-eleven results. What has been checked:
   steps were re-run over all six on 2026-08-01 and pass: each tier's
   `theorem_names` matches its audit file's `#print axioms` lines (24 core, 6
   native) and the two tiers are disjoint. The build and axiom-audit steps over
-  all six are still pending — see "Queued" below.
+  all six first ran on 2026-08-18 and pass — see "Scripted gate" below.
 * All six theorems' `#print axioms` closures measured directly as exactly
   `{propext, Classical.choice, Lean.ofReduceBool, Lean.trustCompiler,
   Quot.sound}` — no `sorryAx`, no custom axioms. The exact-eleven three were
@@ -131,10 +131,36 @@ extended 2026-08-01 with the three exact-eleven results. What has been checked:
 * The library itself builds: `lake build Erdos9796Proof.P97.FiniteN11` completed
   2026-08-01 at `[11957/11957]`, exit 0, from a clean-vs-`HEAD` certificate tree.
 
-Queued as of 2026-08-02: `check-conformance.sh`'s build and axiom-audit steps
-over all six. The import cycle that blocked these on 2026-08-01 was **fixed in
-commit `b075da44`**; the run is in flight and its result is not recorded here
-yet. For the record, the blocker was: a concurrent lane added
+Scripted gate — ran 2026-08-18, **passes**. `./check-conformance.sh` over both
+tiers:
+
+```
+Build completed successfully (12011 jobs).
+== axiom audit [core] ==
+OK [core]: 24 theorems, axioms ⊆ {Classical.choice, propext, Quot.sound}
+== axiom audit [native] ==
+OK [native]: 6 theorems, axioms ⊆ {Classical.choice, Lean.ofReduceBool,
+                                   Lean.trustCompiler, propext, Quot.sound}
+
+OK: all comparator theorems build and respect their tier's axiom budget.
+```
+
+Exit code 0. `Solution` rebuilt in 7.9s once the project compiled.
+
+This was queued from 2026-08-02 and took until 2026-08-18 to record, for two
+reasons beyond the original import cycle. First, `Solution.olean` went stale on
+2026-08-01 and nothing rebuilt it. Second, the `FrontierLiveClosure` package
+carried three separate breakages that each hid the next: an uncommitted `aesop`
+where a `sorry` belonged in `TwoSourceCanonicalSurface.lean`, a non-compiling
+`TwoSourceFreshThirdResidual.lean` committed to `main`, and an uncommitted
+invalid proof body in `TwoSourceFirstFiberCollision.lean`. All three were
+reverted; `f69f2cb0` carries the one that had reached `main`. Note that
+`lake build <single module>` stops at the first failing module in its import
+chain, so clearing one error does not tell you the package builds — only
+`lake build Erdos9796Proof` does.
+
+The original import cycle was **fixed in commit `b075da44`**. For the record,
+that blocker was: a concurrent lane added
 `import Erdos9796Proof.P97.PinnedMultiplicity` to `P97/WitnessPacketInterface.lean`
 to support a new `selectedClass_card_le_pinnedMultiplicity`, closing the loop
 

@@ -467,13 +467,20 @@ alone with all 30 stubs, and that all 30 source signatures match between
 `Challenge.lean` and `Solution.lean`. The manifest cross-check and
 tier-disjointness steps of the pre-flight are reproducible offline and pass.
 
-**Still outstanding for this tier, unchanged since 2026-08-02:** the *scripted*
-gate — `check-conformance.sh`'s build and axiom-audit steps — over all six, and a real
-`leanprover/comparator` run against `config-native.json`. The import cycle that
-blocked the former was fixed in `b075da44`; neither result has ever been
-recorded. Treat the exact-eleven half of this tier as carrying a dated
-measurement rather than a current one. See `comparator/README.md`,
-"Native-tier status".
+The *scripted* gate — `check-conformance.sh`'s build and axiom-audit steps over
+all six — first ran on 2026-08-18 and passes: `Solution` builds
+(`Build completed successfully (12011 jobs)`), and both tiers report only
+permitted axioms (`OK [core]: 24 theorems`, `OK [native]: 6 theorems`). It had
+been queued since 2026-08-02. The import cycle that first blocked it was fixed
+in `b075da44`; what kept it unrecorded afterwards was a stale `Solution.olean`
+plus three separate breakages in the `FrontierLiveClosure` package, cleared in
+`f69f2cb0`.
+
+**Still outstanding for this tier:** a real `leanprover/comparator` run against
+`config-native.json` — the export-level statement identity and dual-kernel
+replay. That has never been recorded, so the exact-eleven half of this tier is
+gated only by the offline pre-flight, not by the two independent kernels the
+core tier has passed. See `comparator/README.md`, "Native-tier status".
 
 ### Erdős 97 — unconditional partial results
 
