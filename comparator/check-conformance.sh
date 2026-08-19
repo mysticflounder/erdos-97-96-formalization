@@ -10,27 +10,27 @@
 #                    alone; it does not import the project at all)
 #        Solution  — project proofs discharging each stub, under the SAME
 #                    `Headline.`-qualified names the manifests list
-#   2. For each tier, run its axiom audit and check every reported axiom is in
-#      that tier's `permitted_axioms`.
-#   3. Cross-check that each tier's config theorem_names and its audit file's
+#   2. Run the axiom audit and check every reported axiom is in
+#      `permitted_axioms`.
+#   3. Cross-check that config.json's theorem_names and axiom-audit.lean's
 #      #print axioms lines are the same set, so a theorem cannot be added to
 #      one and silently skipped by the other.
-#   4. Check the two tiers list disjoint theorem sets.
 #
-# The tiers:
-#   core   — config.json / axiom-audit.lean
-#            permitted: {propext, Classical.choice, Quot.sound}
-#   native — config-native.json / axiom-audit-native.lean
-#            permitted: those three plus {Lean.ofReduceBool, Lean.trustCompiler}
-#            for proofs that discharge the exact-ten certificate bank by
-#            `native_decide`, under the project's bv_decide standard.
+# One manifest, config.json / axiom-audit.lean, permitting exactly
+# {propext, Classical.choice, Quot.sound}.
 #
-# Permitted sets are read from the config files, not hardcoded here, so the
-# manifests stay the single source of truth.
+# The loop below is still written over a `tier` list. It ran two manifests
+# until 2026-08-18, when the compiler-trusted tier was retired: it gated six
+# off-spine finite endpoints that `erdos97_rhs` cannot reach, so it added a
+# published claim without gating any part of the proof. Keeping the loop shape
+# means restoring a second manifest is a one-line change.
+#
+# Permitted sets are read from the config file, not hardcoded here, so the
+# manifest stays the single source of truth.
 #
 # Statement identity between Challenge and Solution is checked by the real
 # comparator run, not here. Exits 0 iff every listed theorem builds, reports
-# only axioms its tier permits, and appears in both of its tier's manifests.
+# only permitted axioms, and appears in both manifests.
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
@@ -64,10 +64,9 @@ reported_axioms() {
 }
 
 echo "== manifest cross-check =="
-for tier in core native; do
+for tier in core; do
   case "$tier" in
     core)   cfg=comparator/config.json;        aud=comparator/axiom-audit.lean ;;
-    native) cfg=comparator/config-native.json; aud=comparator/axiom-audit-native.lean ;;
   esac
   jq -r '.theorem_names[]' "$cfg" | sort >"$TMP/$tier.names"
   audit_names "$aud" >"$TMP/$tier.audit"
@@ -78,24 +77,13 @@ for tier in core native; do
   echo "OK [$tier]: $(wc -l <"$TMP/$tier.names" | tr -d ' ') names in both manifests"
 done
 
-comm -12 "$TMP/core.names" "$TMP/native.names" >"$TMP/overlap"
-if [[ -s "$TMP/overlap" ]]; then
-  echo "FAIL: a theorem is listed in both tiers:" >&2
-  cat "$TMP/overlap" >&2
-  echo "      Each theorem belongs to exactly one tier — the weakest that" >&2
-  echo "      admits its axiom closure." >&2
-  exit 1
-fi
-echo "OK: tiers are disjoint"
-
 echo "== building Challenge / Solution =="
 ./scripts/lake-build.sh Challenge Solution
 
 fail=0
-for tier in core native; do
+for tier in core; do
   case "$tier" in
     core)   cfg=comparator/config.json;        aud=comparator/axiom-audit.lean ;;
-    native) cfg=comparator/config-native.json; aud=comparator/axiom-audit-native.lean ;;
   esac
   names="$TMP/$tier.names"
   out="$TMP/$tier.out"
@@ -116,11 +104,12 @@ for tier in core native; do
     fail=1; tier_fail=1
   fi
 
-  # Every reported axiom must appear in this tier's permitted_axioms. This
-  # subsumes the sorryAx check (sorryAx is in no tier's permitted set) and
-  # catches custom axioms and cross-tier leakage — e.g. a core-tier theorem
-  # that starts using `native_decide` reports Lean.ofReduceBool, which core
-  # does not permit.
+  # Every reported axiom must appear in permitted_axioms. This subsumes the
+  # sorryAx check (sorryAx is not in the permitted set) and catches custom
+  # axioms — and, since the compiler-trusted tier was retired, it is also what
+  # keeps `native_decide` out of the gated set: a listed theorem that starts
+  # using it reports Lean.ofReduceBool, which config.json does not permit, and
+  # there is no longer a second manifest to move it into.
   jq -r '.permitted_axioms[]' "$cfg" | sort -u >"$TMP/$tier.permitted"
   reported_axioms "$out" >"$TMP/$tier.reported"
   comm -23 "$TMP/$tier.reported" "$TMP/$tier.permitted" >"$TMP/$tier.extra"
@@ -152,6 +141,6 @@ if [[ "$fail" -ne 0 ]]; then
 fi
 
 echo
-echo "OK: all comparator theorems build and respect their tier's axiom budget."
-echo "    Statement identity (Challenge ≡ Solution) is verified by the"
-echo "    leanprover/comparator run, once per tier config."
+echo "OK: all comparator theorems build and respect the axiom budget."
+echo "    Statement identity (Challenge vs Solution) is verified by the"
+echo "    leanprover/comparator run against config.json."

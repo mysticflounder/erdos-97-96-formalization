@@ -50,7 +50,7 @@ bound that avoids compiler trust is `n ≥ 10`. A minimum enclosing circle
 development, absent from mathlib, is built from scratch and includes the
 classical boundary dichotomy for the problem Sylvester posed in 1857. Erdős 97 ⟹
 Erdős 96 with constant 3 is proved outright — the implication itself is not new,
-but the formal proof is. Thirty of these results are independently gated in
+but the formal proof is. Twenty-four of these results are independently gated in
 [`comparator/`](comparator/), which
 restates each one in mathlib vocabulary alone and checks that this repository's
 proofs discharge the restatement — so a reviewer can see exactly what is claimed
@@ -407,8 +407,7 @@ Both publish targets are open, but a substantial body of results below them is
 not. Everything in this section is **unconditionally proved** — axiom closure
 exactly `{propext, Classical.choice, Quot.sound}`, no `sorryAx`, no custom
 axioms, no `native_decide` — except the two rows in *Erdős 97 ⟹ Erdős 96*, which
-are conditional on a hypothesis appearing explicitly in their statements, and
-the compiler-trusted tier, which is called out as such.
+are conditional on a hypothesis appearing explicitly in their statements.
 
 Every theorem listed here is independently gated in [`comparator/`](comparator/),
 which restates it using **mathlib vocabulary alone** — no definition from this
@@ -425,62 +424,22 @@ export replayed through **both** the `nanoda` kernel and the Lean default kernel
 [`comparator/README.md`](comparator/README.md) documents the exact invocation,
 including a non-obvious `lean4export` version pin needed at Lean v4.27.0.
 `./comparator/check-conformance.sh` is the cheap offline pre-flight (manifest
-cross-check, tier disjointness, build, axiom audit — no external toolchain).
+cross-check, build, axiom audit — no external toolchain).
 
-A **second, compiler-trusted tier** (`comparator/config-native.json`, added
-2026-07-30) gates 6 further results whose proofs run the finite certificate banks
-through `native_decide`. These are sorry-free but additionally depend on
-`Lean.ofReduceBool` and `Lean.trustCompiler`, so they are held in a separate
-manifest rather than diluting the three-axiom set — the project's
-`native_decide` policy requires compiler trust to be explicit and reported.
+A second, compiler-trusted manifest (`comparator/config-native.json`) existed
+from 2026-07-30 to 2026-08-18. It gated 6 further results — the exact-ten and
+exact-eleven finite endpoints — whose proofs run their certificate banks through
+`native_decide`, and which therefore also depend on `Lean.ofReduceBool` and
+`Lean.trustCompiler`. It was removed because those six are off-spine: nothing in
+the proof library imports `P97/FiniteN10.lean` or `P97/FiniteN11.lean`, so
+`erdos97_rhs` cannot reach them and the tier published claims without gating any
+part of the proof. Both endpoints remain proved in Lean and still build; only
+their comparator packaging is gone. See `comparator/README.md`, "The retired
+compiler-trusted tier".
 
-### Erdős 97 — compiler-trusted finite endpoints
-
-| Theorem | Statement |
-|---|---|
-| [`Problem97.FiniteN10Closure`](lean/Erdos9796Proof/P97/FiniteN10.lean#L182) | there is no 10-point counterexample |
-| `Headline.counterexample_card_ge_eleven` | every counterexample has at least 11 points |
-| `Headline.erdos97_of_card_le_ten` | Erdős 97 holds for every point set of at most 10 points |
-| [`Problem97.FiniteN11Closure`](lean/Erdos9796Proof/P97/FiniteN11.lean#L44) | there is no 11-point counterexample |
-| `Headline.counterexample_card_ge_twelve` | every counterexample has at least 12 points |
-| `Headline.erdos97_of_card_le_eleven` | Erdős 97 holds for every point set of at most 11 points |
-
-The three `Headline.` rows are composed in
-[`comparator/Solution.lean`](comparator/Solution.lean) from the endpoint below
-them and the bound above them; they have no single project namesake. The
-exact-eleven endpoint closed on 2026-08-01: its card-eleven exact-five
-common-obstruction-center leaf is discharged by the authenticated G3 and
-retained-`s2_o0` certificate banks.
-
-Every entry in this tier genuinely requires the compiler axioms; none is a
-three-axiom result filed here by mistake. The three exact-ten rows measure
-directly at `{propext, Classical.choice, Lean.ofReduceBool, Lean.trustCompiler,
-Quot.sound}` with no `sorryAx`. The three exact-eleven rows inherit both
-compiler axioms structurally: `FiniteN11Closure` discharges its smaller-carrier
-hypothesis through `FiniteN10Closure`, and the bound and its contrapositive are
-composed from `FiniteN11Closure`.
-
-`comparator/README.md` additionally records, dated 2026-08-01, that all six were
-measured ad hoc per theorem at exactly those five axioms, that the `pp.explicit` statement-identity
-diff passes with 0 differences, that `Challenge.lean` elaborates against mathlib
-alone with all 30 stubs, and that all 30 source signatures match between
-`Challenge.lean` and `Solution.lean`. The manifest cross-check and
-tier-disjointness steps of the pre-flight are reproducible offline and pass.
-
-The *scripted* gate — `check-conformance.sh`'s build and axiom-audit steps over
-all six — first ran on 2026-08-18 and passes: `Solution` builds
-(`Build completed successfully (12011 jobs)`), and both tiers report only
-permitted axioms (`OK [core]: 24 theorems`, `OK [native]: 6 theorems`). It had
-been queued since 2026-08-02. The import cycle that first blocked it was fixed
-in `b075da44`; what kept it unrecorded afterwards was a stale `Solution.olean`
-plus three separate breakages in the `FrontierLiveClosure` package, cleared in
-`f69f2cb0`.
-
-**Still outstanding for this tier:** a real `leanprover/comparator` run against
-`config-native.json` — the export-level statement identity and dual-kernel
-replay. That has never been recorded, so the exact-eleven half of this tier is
-gated only by the offline pre-flight, not by the two independent kernels the
-core tier has passed. See `comparator/README.md`, "Native-tier status".
+Removing it does not change the trust boundary of the publish targets.
+`erdos97_rhs` still carries both compiler axioms, from the certificate banks on
+the spine, as recorded under **Proof status** above.
 
 ### Erdős 97 — unconditional partial results
 
@@ -492,8 +451,11 @@ core tier has passed. See `comparator/README.md`, "Native-tier status".
 | [`Problem97.not_hasNEquidistantProperty_four_of_card_le_nine`](lean/Erdos9796Proof/P97/SmallCardinality.lean#L43) | Erdős 97 holds for every point set of at most 9 points |
 | [`Problem97.UniversalProblem97_of_reduction`](lean/Erdos9796Proof/P97/UniversalProblem97.lean#L60) | a counting obstruction plus a descent step above 9 yield Erdős 97 in full |
 
-The three-core-axiom results here give `n ≥ 10`; the compiler-trusted endpoints
-above strengthen the project bound to `n ≥ 12`. As far as we are aware, even the
+The three-core-axiom results here give `n ≥ 10`. The exact-ten and exact-eleven
+endpoints in `P97/FiniteN10.lean` and `P97/FiniteN11.lean` strengthen the
+project bound to `n ≥ 12`, at the cost of compiler trust; they are proved and
+sorry-free, but off-spine and no longer gated by `comparator/`. As far as we are
+aware, even the
 former is the best published bound on the size of a hypothetical counterexample.
 {{UNVALIDATED}} — the literature check found only an unrefereed argument for
 `n ≥ 7` on the erdosproblems.com discussion page; treat the record claim as
@@ -580,9 +542,9 @@ the whole P96 branch's openness to exactly one gateway.
 
 mathlib has no minimum enclosing circle; this development builds one. See
 [`comparator/README.md`](comparator/README.md) for the full gated list (24
-core-tier theorems, including the Welzl invariant, the Moser non-obtuse triple,
-the Dumitrescu/Fox–Pach double count, and the planar metric kernels, plus 6 in
-the compiler-trusted tier), for how each project definition is inlined into
+theorems, including the Welzl invariant, the Moser non-obtuse triple,
+the Dumitrescu/Fox–Pach double count, and the planar metric kernels), for how
+each project definition is inlined into
 mathlib terms, and for the audit boundary — what is deliberately *not* gated,
 and why.
 
@@ -704,10 +666,9 @@ lean/
 comparator/                   -- mathlib-only auditability gate (see its README)
   Challenge.lean              -- headline claims as sorry stubs, `import Mathlib`
   Solution.lean               -- same statements, discharged from the project
-  config.json                 -- core tier: 3 core axioms only (24 theorems)
-  config-native.json          -- native tier: + ofReduceBool/trustCompiler (6)
-  axiom-audit.lean / axiom-audit-native.lean
-  check-conformance.sh        -- offline pre-flight, both tiers
+  config.json                 -- 3 core axioms only (24 theorems)
+  axiom-audit.lean            -- `#print axioms` for each gated theorem
+  check-conformance.sh        -- offline pre-flight
 
 census/                       -- solver-lane census data
   card_head/                  -- the 22 exact-12 membership bank compilers + tests

@@ -11,28 +11,40 @@ no definition from this repository.
 is unconditionally proved, or is an explicitly conditional theorem whose
 hypothesis is visible in its statement.
 
-## Two tiers
+## One manifest
 
-The gate is split by **axiom budget**, into two manifests over the same pair of
-modules:
+| Manifest | Permitted axioms | Count |
+|---|---|---|
+| [`config.json`](config.json) | `propext`, `Classical.choice`, `Quot.sound` | 24 |
 
-| Tier | Manifest | Permitted axioms | Count |
-|---|---|---|---|
-| **core** | [`config.json`](config.json) | `propext`, `Classical.choice`, `Quot.sound` | 24 |
-| **native** | [`config-native.json`](config-native.json) | those three **+** `Lean.ofReduceBool`, `Lean.trustCompiler` | 6 |
+Three axioms, no exceptions. A reviewer who declines to trust the Lean compiler
+can read this gate in full and get a complete, self-consistent result.
 
-The native tier exists because the exact-ten and exact-eleven finite endpoints
-discharge their certificate banks with `native_decide`. Those proofs are
-sorry-free, but they
-ask you to trust the Lean compiler as well as the kernel. Project policy permits
-that under the `bv_decide` standard (see the repository README), on the
-condition that the cost is **explicit and reported, never silent** — which is
-exactly what a separate manifest makes it.
+### The retired compiler-trusted tier
 
-The split is what keeps the core tier meaningful: a reviewer who declines
-compiler trust reads `config.json` alone and still gets a complete,
-self-consistent gate. The two tiers list disjoint theorem sets, and
-`check-conformance.sh` enforces that.
+Until 2026-08-18 a second manifest, `config-native.json`, gated 6 further
+results — the exact-ten and exact-eleven finite endpoints, whose proofs run
+their certificate banks through `native_decide` and so additionally depend on
+`Lean.ofReduceBool` and `Lean.trustCompiler`.
+
+It was removed because those six are **off-spine**. Nothing in the proof library
+imports `Erdos9796Proof.P97.FiniteN10` or `.FiniteN11`; only `Solution.lean` did.
+`Problem97.erdos97_rhs` cannot reach them, so the tier published six extra
+claims without gating any part of the proof. What it did gate — the finite floor
+— the core tier already covers to `counterexample_card_ge_ten`; the retired six
+raised that to twelve, which the descent engine makes unnecessary.
+
+The Lean modules `P97/FiniteN10.lean` and `P97/FiniteN11.lean` are untouched and
+still build. Only their comparator packaging is gone. Recover it from history if
+the claims are ever wanted again:
+
+```bash
+git show bd33f739 -- comparator/config-native.json comparator/axiom-audit-native.lean
+```
+
+Note that removing the tier does **not** make the publish targets three-axiom.
+`erdos97_rhs` still carries both compiler axioms, from the certificate banks on
+the spine — a separate trust boundary that this directory never gated.
 
 ## The artifacts
 
@@ -40,11 +52,10 @@ self-consistent gate. The two tiers list disjoint theorem sets, and
 |---|-------------|------|
 | 1 | `Challenge.lean` — **mathlib-only**, headline claims as `sorry` stubs | [`Challenge.lean`](Challenge.lean) (module `Challenge`, `import Mathlib`) |
 | 2 | `Solution.lean` — imports the project, discharges the stubs | [`Solution.lean`](Solution.lean) (module `Solution`, `import Erdos9796Proof`) |
-| 3 | Core-tier config + axiom audit | [`config.json`](config.json) + [`axiom-audit.lean`](axiom-audit.lean) |
-| 4 | Native-tier config + axiom audit | [`config-native.json`](config-native.json) + [`axiom-audit-native.lean`](axiom-audit-native.lean) |
-| 5 | Offline pre-flight (both tiers) | [`check-conformance.sh`](check-conformance.sh) |
+| 3 | Config + axiom audit | [`config.json`](config.json) + [`axiom-audit.lean`](axiom-audit.lean) |
+| 4 | Offline pre-flight | [`check-conformance.sh`](check-conformance.sh) |
 
-Both modules declare all 30 results in a shared `Headline` namespace, so the
+Both modules declare all 24 results in a shared `Headline` namespace, so the
 manifests list `Headline.counterexample_card_ge_ten`, … The comparator looks
 each name up in *both* exports, so they must agree on the fully-qualified name;
 the namespace also keeps Solution's restatements from colliding with the
@@ -62,26 +73,26 @@ Offline pre-flight — manifest cross-check, build, axiom audit:
 ./comparator/check-conformance.sh
 ```
 
-It exits 0 iff, **for each tier**, the config and its audit file list the same
-names, and every listed theorem's `#print axioms` closure is a subset of that
-tier's `permitted_axioms` — plus both modules build and the two tiers list
-disjoint theorem sets. Permitted sets are read from the config files, so the
-manifests are the single source of truth and the script needs no edit when a
-tier's budget changes.
+It exits 0 iff the config and its audit file list the same names, every listed
+theorem's `#print axioms` closure is a subset of `permitted_axioms`, and both
+modules build. The permitted set is read from the config file, so the manifest
+is the single source of truth and the script needs no edit when the budget
+changes.
 
 The membership check subsumes the old grep-based `sorryAx` and `native_decide`
-guards: `sorryAx` is in no tier's permitted set, and a core-tier theorem that
-starts using `native_decide` reports `Lean.ofReduceBool`, which core does not
-permit.
+guards: `sorryAx` is not permitted, and a listed theorem that starts using
+`native_decide` reports `Lean.ofReduceBool`, which `config.json` does not
+permit. Since the compiler-trusted tier was retired there is no second manifest
+to move such a theorem into — the check now rejects it outright.
 
 The authoritative check is the real
 [leanprover/comparator](https://github.com/leanprover/comparator) run: it
 re-exports both modules through `lean4export`, checks statement identity and
 axiom compliance, then re-runs both the `nanoda` kernel and the Lean default
-kernel. It takes one config, so a full audit is **two runs** — one per tier
-manifest, against the same `Challenge`/`Solution` pair.
+kernel. It takes one config, and there is now exactly one — a full audit is a
+single run against `config.json`.
 
-**Core-tier status: passing** (verified 2026-07-26, Lean v4.27.0, macOS). Final
+**Status: passing** (verified 2026-07-26, Lean v4.27.0, macOS). Final
 output:
 
 ```
@@ -96,58 +107,21 @@ Your solution is okay!
 Exit code 0, against this directory's `config.json` unmodified — that is, with
 `enable_nanoda: true`, so both independent kernels replayed the export.
 
-**Native-tier status: offline-verified, not yet run against the real
-comparator.** The tier was added 2026-07-30 with the three exact-ten results and
-extended 2026-08-01 with the three exact-eleven results. What has been checked:
-
-* `check-conformance.sh` passes for the exact-ten three (2026-07-30) — manifest
-  cross-check, build, axiom-budget audit, tier disjointness. Its two build-free
-  steps were re-run over all six on 2026-08-01 and pass: each tier's
-  `theorem_names` matches its audit file's `#print axioms` lines (24 core, 6
-  native) and the two tiers are disjoint. The build and axiom-audit steps over
-  all six first ran on 2026-08-18 and pass — see "Scripted gate" below.
-* All six theorems' `#print axioms` closures measured directly as exactly
-  `{propext, Classical.choice, Lean.ofReduceBool, Lean.trustCompiler,
-  Quot.sound}` — no `sorryAx`, no custom axioms. The exact-eleven three were
-  measured on 2026-08-01 by elaborating their `Solution.lean` statements and
-  proof terms against the project.
-* `Challenge.lean` elaborates against mathlib alone (`lake env lean`, exit 0,
-  2026-08-01) with the six native-tier stubs present, reporting exactly 30
-  `declaration uses 'sorry'` warnings — one per stub, 24 core + 6 native. It
-  imports `Mathlib` and nothing from the project.
-* Every gated theorem's *source* signature is byte-identical between
-  `Challenge.lean` and `Solution.lean` — all 30 checked mechanically on
-  2026-08-01 by extracting each declaration header up to its `:=` and diffing.
-  This is weaker than the `pp.explicit` diff below (it compares source text, not
-  elaborated terms) and weaker still than the comparator's export-level check;
-  it exists to catch a stub and its proof drifting apart at edit time.
-* Statement identity by the `pp.explicit` diff described below, now run for
-  **all six** (2026-08-01): every one agrees between `Challenge` and `Solution`
-  with **0 differences** — 151 lines each for `finiteN10Closure`,
-  `counterexample_card_ge_eleven`, `finiteN11Closure` and
-  `counterexample_card_ge_twelve`; 153 each for `erdos97_of_card_le_ten` and
-  `erdos97_of_card_le_eleven`; 910 lines compared in total. The exact-ten three
-  were previously checked the same way on 2026-07-30.
-* The library itself builds: `lake build Erdos9796Proof.P97.FiniteN11` completed
-  2026-08-01 at `[11957/11957]`, exit 0, from a clean-vs-`HEAD` certificate tree.
-
-Scripted gate — ran 2026-08-18, **passes**. `./check-conformance.sh` over both
-tiers:
+Scripted gate — ran 2026-08-18, **passes**:
 
 ```
-Build completed successfully (12011 jobs).
+Build completed successfully (12008 jobs).
 == axiom audit [core] ==
 OK [core]: 24 theorems, axioms ⊆ {Classical.choice, propext, Quot.sound}
-== axiom audit [native] ==
-OK [native]: 6 theorems, axioms ⊆ {Classical.choice, Lean.ofReduceBool,
-                                   Lean.trustCompiler, propext, Quot.sound}
 
-OK: all comparator theorems build and respect their tier's axiom budget.
+OK: all comparator theorems build and respect the axiom budget.
 ```
 
-Exit code 0. `Solution` rebuilt in 7.9s once the project compiled.
+Exit code 0. Run against the single manifest, after the compiler-trusted tier
+was retired the same day. The two-manifest run recorded earlier that day also
+passed, at `OK [native]: 6 theorems` over five axioms.
 
-This was queued from 2026-08-02 and took until 2026-08-18 to record, for two
+The gate was queued from 2026-08-02 and took until 2026-08-18 to record, for two
 reasons beyond the original import cycle. First, `Solution.olean` went stale on
 2026-08-01 and nothing rebuilt it. Second, the `FrontierLiveClosure` package
 carried three separate breakages that each hid the next: an uncommitted `aesop`
@@ -188,10 +162,6 @@ module, or factor the shared content into a new leaf.
 
 If you re-derive this, trust `lake`'s cycle listing — it names every edge on the
 loop. A hand-rolled DFS over `^import` lines got this wrong once.
-
-What has **not** been checked: the export-level identity and dual-kernel replay,
-i.e. a real [leanprover/comparator](https://github.com/leanprover/comparator) run
-against `config-native.json`. Record it here when it happens.
 
 ### Running the real comparator at Lean v4.27.0
 
@@ -283,11 +253,9 @@ Statement identity between `Challenge` and `Solution` is checked by the
 comparator run above at the export level. It was independently cross-checked
 before that run succeeded: every gated theorem elaborated from each module
 separately under `set_option pp.explicit true`, and the two outputs diffed. All
-24 core-tier theorems agree with **0 differences**; the first 3 native-tier
-theorems were checked the same way on 2026-07-30 and also agree with 0
-differences. The 3 exact-eleven theorems added 2026-08-01 were checked the same
-way that day and also agree with **0 differences** (151, 151 and 153
-pretty-printed lines). That
+24 gated theorems agree with **0 differences**. The 6 results of the retired
+compiler-trusted tier were checked the same way while it existed — 3 on
+2026-07-30 and 3 on 2026-08-01 — and also agreed with 0 differences. That
 check is weaker than the comparator's — it compares pretty-printed terms rather
 than exported expressions — and is kept only because it needs no external
 toolchain.
@@ -300,7 +268,7 @@ unless those oleans are already built, so the practical recipe is to append the
 `set_option pp.explicit true` and `#check` lines to a *copy* of each module,
 after its `end Headline`, and elaborate the copy.
 
-## What is in the core tier (24)
+## What is gated (24)
 
 All 24 are axiom-clean: `#print axioms` ⊆ `{propext, Classical.choice,
 Quot.sound}` — no `sorryAx`, no custom axioms, no `native_decide`. Project
@@ -391,51 +359,15 @@ mentions no project symbol:
 | `Problem97.UniversalReductionHypotheses` | its two fields, as hypotheses |
 | `Problem97.IsRemovableVertex` | its body |
 
-## What is in the native tier (6)
-
-Sorry-free, but each descends into the exact-ten or exact-eleven certificate
-bank, which is discharged by `native_decide`. Measured closure for all six is
-exactly `{propext, Classical.choice, Lean.ofReduceBool, Lean.trustCompiler,
-Quot.sound}`.
-
-| Name (under `Headline`) | Project theorem | Claim |
-|---|---|---|
-| `finiteN10Closure` | `Problem97.FiniteN10Closure` | no 10-point counterexample |
-| `counterexample_card_ge_eleven` | *(composed in `Solution.lean`)* | every counterexample has ≥ 11 points |
-| `erdos97_of_card_le_ten` | *(composed in `Solution.lean`)* | Erdős 97 holds for \|A\| ≤ 10 |
-| `finiteN11Closure` | `Problem97.FiniteN11Closure` | no 11-point counterexample |
-| `counterexample_card_ge_twelve` | *(composed in `Solution.lean`)* | every counterexample has ≥ 12 points |
-| `erdos97_of_card_le_eleven` | *(composed in `Solution.lean`)* | Erdős 97 holds for \|A\| ≤ 11 |
-
-The four composed rows have no single project namesake, and each is the same
-one-step composition: `counterexample_card_ge_eleven` is
-`Problem97.counterexample_card_ge_ten` (which gives `10 ≤ |A|`) with equality
-ruled out by `Problem97.FiniteN10Closure`, and `counterexample_card_ge_twelve`
-is that bound with equality ruled out by `Problem97.FiniteN11Closure`. It is
-the same composition `Problem97.counterexample_card_ge_ten` itself uses one
-level down, where `FiniteN9Closure` kills `|A| = 9`. `erdos97_of_card_le_ten`
-and `erdos97_of_card_le_eleven` are the contrapositives.
-
-The endpoints stack rather than subsume: `FiniteN11Closure` states only the
-`|A| = 11` case, and its own proof consumes `FiniteN10Closure` and the
-core-axiom `not_hasNEquidistantProperty_four_of_card_le_nine` as the base of
-its descent.
-
-`Solution.lean` imports `Erdos9796Proof.P97.FiniteN10` and
-`Erdos9796Proof.P97.FiniteN11` explicitly: the project
-root imports only the two upstream-vocabulary bridges, and their descent route
-does not pass through the fixed-card exact-ten or exact-eleven endpoints, so
-neither `Problem97.FiniteN10Closure` nor `Problem97.FiniteN11Closure` is in the
-root's import closure.
-
 ## The audit boundary: what is NOT gated
 
 * **The two publish targets.** `Problem97.erdos97_rhs` and
   `Problem96.erdos96_rhs` are open and reach `sorryAx`. They are excluded on
   purpose: the gate certifies proved results only.
-* **The general A-tail residuals above card eleven.** The exact-eleven endpoint
-  is gated (native tier), but only as the fixed-`|A| = 11` statement. The
-  arbitrary-cardinality obligations it was carved out of — including
+* **The exact-ten and exact-eleven finite endpoints, and the general A-tail
+  residuals above card eleven.** The endpoints are proved but no longer gated
+  here — see "The retired compiler-trusted tier" above. The
+  arbitrary-cardinality obligations they were carved out of — including
   `ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFiveCommonObstructionCenterResidual`
   — are still open and still reach `sorryAx` on the publish spine. No `n ≥ 13`
   statement is claimed anywhere.
