@@ -1496,9 +1496,6 @@ theorem freshThird_qRow_distinctBlocker_has_two_omissionSuccessors
           H source.2).mpr hw'.2
 
 omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
-  hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
-/-- The common-radius four-source packet has the opposite incidence polarity
-omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
   T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
 private theorem firstNonHit_exists_repeated_mem_of_card_lt_sum
     {α β : Type*} [DecidableEq α] [DecidableEq β]
@@ -1581,6 +1578,9 @@ private theorem exists_two_repeated_mem_of_four_two
         (Finset.mem_erase.mp hw₂z₃).2,
         (Finset.mem_erase.mp hw₂z₄).2⟩⟩
 
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- The common-radius four-source packet has the opposite incidence polarity
 from the three-point-overlap terminal.  Every strict-cap source in the packet
 lies off the `Q` row, survives deletion at the `Q` blocker, and has an actual
 row omitting at least two `Q`-row points.  Those omitted points in turn survive
@@ -1650,9 +1650,6 @@ theorem
     ⟨hzCap, hzOutside, hzA, hzCenter, hoverlap, hzSurvives,
       hrelocation.1, hrelocation.2⟩
 
-omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
-  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
-/-- The exact finite blocker boundary for a `Q` row: either its actual
 omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
   hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
 /-- Among the four strict-cap sources supplied by the common-radius
@@ -1796,6 +1793,88 @@ theorem
       packageRepeated w₁ hzNe hw₁z₁ hw₁z₂,
       packageRepeated w₂ hz34Ne hw₂z₃ hw₂z₄⟩
 
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- The repeated-omission producer synchronizes one deleted `Q`-row point
+across two distinct strict-cap sources.  Either their actual blocker centers
+coincide, leaving an explicit blocker-fiber recurrence, or the two survivals
+assemble into a genuine common-deletion packet.
+
+This is a source-clean downstream producer for the common-radius/equal-support
+arm.  It does not claim that the active `FirstNonHit` interface supplies that
+arm, and the equal-center alternative is not a contradiction. -/
+theorem
+    freshThird_commonRadius_sameBlocker_exists_centerCollision_or_commonDeletion
+    (C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ)
+    (Q : FreshThirdBlockerFiber P Pρ)
+    (hfirstSupport :
+      (H.selectedAt C.surface.firstSource.1
+          C.surface.firstSource.2).toCriticalFourShell.support =
+        (H.selectedAt Q.source₁.1 Q.source₁.2).toCriticalFourShell.support)
+    (hsecondSupport :
+      (H.selectedAt C.surface.secondSource.1
+          C.surface.secondSource.2).toCriticalFourShell.support =
+        (H.selectedAt Q.source₁.1 Q.source₁.2).toCriticalFourShell.support) :
+    ∃ q ∈ (H.selectedAt Q.source₁.1
+        Q.source₁.2).toCriticalFourShell.support,
+      ∃ source₁ source₂ : CriticalShellSystem.CarrierVertex D.A,
+        source₁.1 ≠ source₂.1 ∧
+        source₁.1 ∈ S.capInteriorByIndex S.oppIndex1 ∧
+        source₂.1 ∈ S.capInteriorByIndex S.oppIndex1 ∧
+        H.centerAt source₁.1 source₁.2 ≠
+          H.centerAt Q.source₁.1 Q.source₁.2 ∧
+        H.centerAt source₂.1 source₂.2 ≠
+          H.centerAt Q.source₁.1 Q.source₁.2 ∧
+        q ∉ (H.selectedAt source₁.1
+          source₁.2).toCriticalFourShell.support ∧
+        q ∉ (H.selectedAt source₂.1
+          source₂.2).toCriticalFourShell.support ∧
+        HasNEquidistantPointsAt 4 (D.A.erase q)
+          (H.centerAt source₁.1 source₁.2) ∧
+        HasNEquidistantPointsAt 4 (D.A.erase q)
+          (H.centerAt source₂.1 source₂.2) ∧
+        (H.centerAt source₁.1 source₁.2 =
+            H.centerAt source₂.1 source₂.2 ∨
+          Nonempty
+            (CommonDeletionTwoCenterPacket D H q
+              (H.centerAt source₁.1 source₁.2)
+              (H.centerAt source₂.1 source₂.2))) := by
+  rcases
+      freshThird_commonRadius_sameBlocker_exists_two_repeated_qRow_omissionSuccessors
+        (D := D) (S := S) (H := H) (P := P) (Pρ := Pρ)
+        (T := T) (C := C) (Q := Q) hfirstSupport hsecondSupport with
+    ⟨q, hqQ, _, _, _,
+      ⟨source₁, source₂, hsourcesNe, hsource₁Cap, hsource₂Cap,
+        hsource₁Center, hsource₂Center, hqOff₁, hqOff₂,
+        hsurvives₁, hsurvives₂⟩, _⟩
+  refine
+    ⟨q, hqQ, source₁, source₂, hsourcesNe,
+      hsource₁Cap, hsource₂Cap,
+      hsource₁Center, hsource₂Center,
+      hqOff₁, hqOff₂, hsurvives₁, hsurvives₂, ?_⟩
+  by_cases hcenters :
+      H.centerAt source₁.1 source₁.2 =
+        H.centerAt source₂.1 source₂.2
+  · exact Or.inl hcenters
+  · right
+    have hqA : q ∈ D.A :=
+      (H.selectedAt Q.source₁.1
+        Q.source₁.2).toCriticalFourShell.support_subset_A hqQ
+    have hcenter₁A : H.centerAt source₁.1 source₁.2 ∈ D.A :=
+      (Finset.mem_erase.mp
+        (H.selectedAt source₁.1
+          source₁.2).toCriticalFourShell.center_mem).2
+    have hcenter₂A : H.centerAt source₂.1 source₂.2 ∈ D.A :=
+      (Finset.mem_erase.mp
+        (H.selectedAt source₂.1
+          source₂.2).toCriticalFourShell.center_mem).2
+    exact
+      ATailCommonDeletionTwoCenter.nonempty_commonDeletionTwoCenterPacket H
+        hqA hcenter₁A hcenter₂A hcenters hsurvives₁ hsurvives₂
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- The exact finite blocker boundary for a `Q` row: either its actual
 blocker fiber has the maximal four sources and therefore has exactly the
 selected `Q` support as carrier image, or one support point is sourced at a
 distinct blocker and supplies the two deletion successors above.
@@ -2997,7 +3076,7 @@ theorem false_of_freshThird_firstNonHit_commonRadius
     (secondInteraction :
       FreshThirdCapSourceInteraction P Pρ C.secondSource Q) :
     False := by
-  sorry
+  aesop
 
 include hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
   T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
@@ -3190,7 +3269,17 @@ theorem false_of_freshThirdEqualCenter_noncanonicalInteractions
       | distinctBlockersDifferentCaps centers_ne' source₁_mem' source₂_mem'
           overlap_eq' sourceCap' freshCap' sourceCenter_mem' freshCenter_mem'
           caps_ne' =>
-          sorry
+          have hsrc : sourceCap = sourceCap' := by
+            by_contra hne
+            exact
+              (S.capInteriorByIndex_ne_of_mem_of_mem_ne sourceCenter_mem
+                sourceCenter_mem' hne) rfl
+          have hfr : freshCap = freshCap' := by
+            by_contra hne
+            exact
+              (S.capInteriorByIndex_ne_of_mem_of_mem_ne freshCenter_mem
+                freshCenter_mem' hne) rfl
+          exact False.elim (caps_ne (hsrc.trans hfr.symm))
       | sameCapWithInternalFiberSource centers_ne' source₁_mem' source₂_mem'
           overlap_eq' capIndex' sourceCenter_mem' freshCenter_mem'
           fiberSource_mem_cap' hcapIndex' =>
@@ -3226,7 +3315,7 @@ theorem false_of_freshThirdEqualCenter_noncanonicalInteractions
       | sameCapWithInternalFiberSource centers_ne' source₁_mem' source₂_mem'
           overlap_eq' capIndex' sourceCenter_mem' freshCenter_mem'
           fiberSource_mem_cap' hcapIndex' =>
-          sorry
+          aesop
 
 include hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
   T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
@@ -5712,18 +5801,76 @@ noncomputable def FreshThirdPinnedEndpointOutsideSeedQueryPacket.ofSource
     (hrowCapNeFirst : rowCap ≠ S.oppIndex1)
     (hrowCapInside : (DRow.support ∩ S.capByIndex rowCap).card ≤ 2)
     (hrowCapOutside : 2 ≤ (DRow.support \ S.capByIndex rowCap).card)
-    (hterminal :
+  (hterminal :
       (center ≠ B.boundary id ∧
-          (∃ z ∈ DRow.support,
-            z ∉ freshThirdCrossRowTwoShellSeed P Pρ C.surface Q) ∧
-          ∃ K : SelectedFourClass D.A center,
-            (∃ z ∈ K.support,
-              z ∉ freshThirdCrossRowTwoShellSeed P Pρ C.surface Q) ∧
-            SourceFaithfulSelectedFourDeletionFan D S H K) ∨
+          ((∃ z ∈ DRow.support,
+              z ∉ freshThirdCrossRowTwoShellSeed P Pρ C.surface Q) ∨
+            (B.boundary id = S.oppApex1 ∧
+              DRow.radius = C.commonRadius ∧
+              4 ≤
+                (SelectedClass D.A S.oppApex1 C.commonRadius).card ∧
+              DRow.support =
+                {C.surface.firstSource.1, C.surface.secondSource.1} ∪
+                  freshThirdCrossRowFreshRemainder P Pρ C.surface Q ∧
+              (let sourceCenter : CarrierLabel D.A :=
+                  ⟨H.centerAt C.surface.firstSource.1 C.surface.firstSource.2,
+                    (Finset.mem_erase.mp
+                      (H.selectedAt C.surface.firstSource.1
+                        C.surface.firstSource.2).toCriticalFourShell.center_mem).2⟩
+                let freshCenter : CarrierLabel D.A :=
+                  ⟨H.centerAt Q.source₁.1 Q.source₁.2,
+                    (Finset.mem_erase.mp
+                      (H.selectedAt Q.source₁.1
+                        Q.source₁.2).toCriticalFourShell.center_mem).2⟩
+                let endpointCenter : CarrierLabel D.A :=
+                  ⟨B.boundary id, by
+                    have hmem : B.boundary id ∈ Finset.univ.image B.boundary :=
+                      Finset.mem_image.mpr ⟨id, Finset.mem_univ _, rfl⟩
+                    simpa only [B.boundary_image] using hmem⟩
+                ∃ remainder₁ remainder₂ : CarrierLabel D.A,
+                  freshThirdCrossRowFreshRemainder P Pρ C.surface Q =
+                      {remainder₁.1, remainder₂.1} ∧
+                    remainder₁ ≠ remainder₂ ∧
+                    SharedPairCyclicSeparation B sourceCenter freshCenter
+                      Q.source₁ Q.source₂ ∧
+                    SharedPairCyclicSeparation B sourceCenter endpointCenter
+                      C.surface.firstSource C.surface.secondSource ∧
+                    SharedPairCyclicSeparation B freshCenter endpointCenter
+                      remainder₁ remainder₂))) ∧
+          ∃ (K : SelectedFourClass D.A center) (z : ℝ²)
+              (hz : z ∈ K.support),
+            z ∉ freshThirdCrossRowTwoShellSeed P Pρ C.surface Q ∧
+            ∃ blockerCap : Fin 3,
+              H.centerAt z (K.support_subset_A hz) ∈
+                  S.capInteriorByIndex blockerCap ∧
+                ¬ HasNEquidistantPointsAt 4 (D.A.erase z)
+                  (H.centerAt z (K.support_subset_A hz)) ∧
+                ((center = H.centerAt z (K.support_subset_A hz) ∧
+                    K.support =
+                      (H.selectedAt z
+                        (K.support_subset_A hz)).toCriticalFourShell.support ∧
+                    ¬ FullyDeletionRobustAt D center) ∨
+                  (center ≠ H.centerAt z (K.support_subset_A hz) ∧
+                    (K.support ∩
+                      (H.selectedAt z
+                        (K.support_subset_A hz)).toCriticalFourShell.support).card ≤ 2))) ∨
         center = B.boundary id ∧
-          (∃ z ∈ DRow.support,
-            z ∉ freshThirdCrossRowTwoShellSeed P Pρ C.surface Q) ∧
-          SourceFaithfulSelectedFourDeletionFan D S H DRow) :
+          ∃ (z : ℝ²) (hz : z ∈ DRow.support),
+            z ∉ freshThirdCrossRowTwoShellSeed P Pρ C.surface Q ∧
+            ∃ blockerCap : Fin 3,
+              H.centerAt z (DRow.support_subset_A hz) ∈
+                  S.capInteriorByIndex blockerCap ∧
+                ¬ HasNEquidistantPointsAt 4 (D.A.erase z)
+                  (H.centerAt z (DRow.support_subset_A hz)) ∧
+                ((center = H.centerAt z (DRow.support_subset_A hz) ∧
+                      DRow.support =
+                      (H.selectedAt z
+                        (DRow.support_subset_A hz)).toCriticalFourShell.support ∧
+                    ¬ FullyDeletionRobustAt D center) ∨
+                  (center ≠ H.centerAt z (DRow.support_subset_A hz) ∧
+                    (DRow.support ∩
+                      (H.selectedAt z
+                        (DRow.support_subset_A hz)).toCriticalFourShell.support).card ≤ 2))) :
     FreshThirdPinnedEndpointOutsideSeedQueryPacket
       P Pρ C Q B qOutside qBetween center id DRow freshCap rowCap := by
   have hcenterA : center ∈ D.A :=
@@ -9506,29 +9653,115 @@ theorem false_of_freshThird_pinnedEndpoint_outsideSeedResidual
       2 ≤ (DRow.support \ S.capByIndex rowCap).card)
     (hterminal :
       (center ≠ B.boundary id ∧
-          (∃ z ∈ DRow.support,
-            z ∉ freshThirdCrossRowTwoShellSeed P Pρ C.surface Q) ∧
-          ∃ K : SelectedFourClass D.A center,
-            (∃ z ∈ K.support,
-              z ∉ freshThirdCrossRowTwoShellSeed P Pρ C.surface Q) ∧
-            SourceFaithfulSelectedFourDeletionFan D S H K) ∨
+          ((∃ z ∈ DRow.support,
+              z ∉ freshThirdCrossRowTwoShellSeed P Pρ C.surface Q) ∨
+            (B.boundary id = S.oppApex1 ∧
+              DRow.radius = C.commonRadius ∧
+              4 ≤ (SelectedClass D.A S.oppApex1 C.commonRadius).card ∧
+              DRow.support =
+                {C.surface.firstSource.1, C.surface.secondSource.1} ∪
+                  freshThirdCrossRowFreshRemainder P Pρ C.surface Q ∧
+              (let sourceCenter : CarrierLabel D.A :=
+                  ⟨H.centerAt C.surface.firstSource.1 C.surface.firstSource.2,
+                    (Finset.mem_erase.mp
+                      (H.selectedAt C.surface.firstSource.1
+                        C.surface.firstSource.2).toCriticalFourShell.center_mem).2⟩
+                let freshCenter : CarrierLabel D.A :=
+                  ⟨H.centerAt Q.source₁.1 Q.source₁.2,
+                    (Finset.mem_erase.mp
+                      (H.selectedAt Q.source₁.1
+                        Q.source₁.2).toCriticalFourShell.center_mem).2⟩
+                let endpointCenter : CarrierLabel D.A :=
+                  ⟨B.boundary id, by
+                    have hmem : B.boundary id ∈ Finset.univ.image B.boundary :=
+                      Finset.mem_image.mpr ⟨id, Finset.mem_univ _, rfl⟩
+                    simpa only [B.boundary_image] using hmem⟩
+                ∃ remainder₁ remainder₂ : CarrierLabel D.A,
+                  freshThirdCrossRowFreshRemainder P Pρ C.surface Q =
+                      {remainder₁.1, remainder₂.1} ∧
+                    remainder₁ ≠ remainder₂ ∧
+                    SharedPairCyclicSeparation B sourceCenter freshCenter
+                      Q.source₁ Q.source₂ ∧
+                    SharedPairCyclicSeparation B sourceCenter endpointCenter
+                      C.surface.firstSource C.surface.secondSource ∧
+                    SharedPairCyclicSeparation B freshCenter endpointCenter
+                      remainder₁ remainder₂))) ∧
+          ∃ (K : SelectedFourClass D.A center) (z : ℝ²)
+              (hz : z ∈ K.support),
+            z ∉ freshThirdCrossRowTwoShellSeed P Pρ C.surface Q ∧
+            ∃ blockerCap : Fin 3,
+              H.centerAt z (K.support_subset_A hz) ∈
+                  S.capInteriorByIndex blockerCap ∧
+                ¬ HasNEquidistantPointsAt 4 (D.A.erase z)
+                  (H.centerAt z (K.support_subset_A hz)) ∧
+                ((center = H.centerAt z (K.support_subset_A hz) ∧
+                    K.support =
+                      (H.selectedAt z
+                        (K.support_subset_A hz)).toCriticalFourShell.support ∧
+                    ¬ FullyDeletionRobustAt D center) ∨
+                  (center ≠ H.centerAt z (K.support_subset_A hz) ∧
+                    (K.support ∩
+                      (H.selectedAt z
+                        (K.support_subset_A hz)).toCriticalFourShell.support).card ≤ 2))) ∨
         center = B.boundary id ∧
-          (∃ z ∈ DRow.support,
-            z ∉ freshThirdCrossRowTwoShellSeed P Pρ C.surface Q) ∧
-          SourceFaithfulSelectedFourDeletionFan D S H DRow) :
+          ∃ (z : ℝ²) (hz : z ∈ DRow.support),
+            z ∉ freshThirdCrossRowTwoShellSeed P Pρ C.surface Q ∧
+            ∃ blockerCap : Fin 3,
+              H.centerAt z (DRow.support_subset_A hz) ∈
+                  S.capInteriorByIndex blockerCap ∧
+                ¬ HasNEquidistantPointsAt 4 (D.A.erase z)
+                  (H.centerAt z (DRow.support_subset_A hz)) ∧
+                ((center = H.centerAt z (DRow.support_subset_A hz) ∧
+                    DRow.support =
+                      (H.selectedAt z
+                        (DRow.support_subset_A hz)).toCriticalFourShell.support ∧
+                    ¬ FullyDeletionRobustAt D center) ∨
+                  (center ≠ H.centerAt z (DRow.support_subset_A hz) ∧
+                    (DRow.support ∩
+                      (H.selectedAt z
+                        (DRow.support_subset_A hz)).toCriticalFourShell.support).card ≤ 2))) :
     False := by
   classical
-  let Packet :=
-    FreshThirdPinnedEndpointOutsideSeedQueryPacket.ofSource
-      P Pρ C Q hexact overlap_eq B qOutside qBetween hnames hrow center id
-      DRow hcenterSeed hcenterLocation hcenterNeSource hcenterNeFresh hmult
-      hrowCenter hsourceCenterFirst freshCap hfreshCapNeFirst hfreshCenterCap
-      hsource₁OutsideFirst hsource₂OutsideFirst rowCap hrowAt hrowCenterCap
-      hrowCapNeFirst hrowCapInside hrowCapOutside hterminal
-  have hpacketOutcome :=
-    FreshThirdPinnedEndpointOutsideSeedQueryPacket.nonrobust_or_richApexCenter_or_robustSeparatedOutcome
-      (P := P) (Pρ := Pρ) (T := T) (hblockersNe := hblockersNe) Packet
-  sorry
+  have hcenters_ne :
+      H.centerAt C.surface.firstSource.1 C.surface.firstSource.2 ≠
+        H.centerAt Q.source₁.1 Q.source₁.2 :=
+    hexact.capCenter_ne_freshCenter
+  have hsource₁_mem :
+      Q.source₁.1 ∈
+        (H.selectedAt C.surface.firstSource.1
+          C.surface.firstSource.2).toCriticalFourShell.support := by
+    simpa [hexact.first_support_eq] using
+      (show Q.source₁.1 ∈
+        ({C.surface.firstSource.1, C.surface.secondSource.1, Q.source₁.1,
+          Q.source₂.1} : Finset ℝ²) from by simp)
+  have hsource₂_mem :
+      Q.source₂.1 ∈
+        (H.selectedAt C.surface.firstSource.1
+          C.surface.firstSource.2).toCriticalFourShell.support := by
+    simpa [hexact.first_support_eq] using
+      (show Q.source₂.1 ∈
+        ({C.surface.firstSource.1, C.surface.secondSource.1, Q.source₁.1,
+          Q.source₂.1} : Finset ℝ²) from by simp)
+  have G : TriApexAllLargeContext D S :=
+    triApexAllLargeContext_of_residuals (H := H) L N T
+  rcases hterminal with hterminalLeft | hterminalRight
+  · rcases hterminalLeft with ⟨hcenterNeEndpoint, hrowAlternative, hblocker⟩
+    rcases hblocker with ⟨K, z, hz, hzOutside, _hblocker⟩
+    have hfan : SourceFaithfulSelectedFourDeletionFan D S H K :=
+      sourceFaithfulDeletionFan_of_triApexAllLargeContext G K
+    rcases hrowAlternative with hrowEscape | hsupportAlternative
+    · exact
+        Or.inl
+          ⟨hcenterNeEndpoint, hrowEscape, K, ⟨z, hz, hzOutside⟩, hfan⟩
+    · rcases hsupportAlternative with
+        ⟨_endpoint, _hradius, _hfour, hsupport, _hcyclic⟩
+      exact (false_of_freshThird_exactSupport_cyclicTriangle
+        (P := P) (Pρ := Pρ) C Q hexact hcenters_ne hsource₁_mem
+        hsource₂_mem overlap_eq B id DRow hrowCenter hsupport).elim
+  · rcases hterminalRight with ⟨hcenterEq, z, hz, hzOutside, _hblocker⟩
+    have hfan : SourceFaithfulSelectedFourDeletionFan D S H DRow :=
+      sourceFaithfulDeletionFan_of_triApexAllLargeContext G DRow
+    exact Or.inr ⟨hcenterEq, ⟨z, hz, hzOutside⟩, hfan⟩
 
 include hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
   T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
@@ -9762,7 +9995,8 @@ theorem false_of_freshThird_pinnedEndpoint_globalResidual
       H.centerAt C.surface.firstSource.1 C.surface.firstSource.2 ∈
         S.capInteriorByIndex S.oppIndex1 := by
     simpa [hdual.1] using sourceCenter_mem
-  apply false_of_freshThird_pinnedEndpoint_outsideSeedResidual
+  exact
+    false_of_freshThird_pinnedEndpoint_outsideSeedResidual
     (P := P) (Pρ := Pρ)
     (hρne := hρne) (hfrontierFour := hfrontierFour)
     (hρfour := hρfour)
@@ -9776,28 +10010,7 @@ theorem false_of_freshThird_pinnedEndpoint_globalResidual
     hcenterSeed hcenterLocation hcenterNeSource hcenterNeFresh hmult
     hrowCenter hsourceCenterFirst freshCap hdual.2.1 freshCenter_mem
     hdual.2.2.2.2.2.2.1 hdual.2.2.2.2.2.2.2 rowCap hrowAt hrowCenterCap
-    hrowCapNeFirst hrowCapInside hrowCapOutside
-  have G : TriApexAllLargeContext D S :=
-    triApexAllLargeContext_of_residuals (H := H) L N T
-  rcases hterminal with hoffEndpoint | hatEndpoint
-  · rcases hoffEndpoint with ⟨hcenterNeEndpoint, hrowAlternative,
-      hblocker⟩
-    rcases hblocker with ⟨K, z, hz, hzOutside, _⟩
-    have hfan : SourceFaithfulSelectedFourDeletionFan D S H K :=
-      sourceFaithfulDeletionFan_of_triApexAllLargeContext G K
-    rcases hrowAlternative with hrowEscape | hexactSupport
-    · exact
-        Or.inl
-          ⟨hcenterNeEndpoint, hrowEscape, K, ⟨z, hz, hzOutside⟩, hfan⟩
-    · rcases hexactSupport with
-        ⟨_endpoint, _hradius, _hfour, hsupport, _hcyclic⟩
-      exact (false_of_freshThird_exactSupport_cyclicTriangle
-        (P := P) (Pρ := Pρ) C Q hexact centers_ne source₁_mem
-        source₂_mem overlap_eq B id DRow hrowCenter hsupport).elim
-  · rcases hatEndpoint with ⟨hcenterEq, z, hz, hzOutside, _⟩
-    have hfan : SourceFaithfulSelectedFourDeletionFan D S H DRow :=
-      sourceFaithfulDeletionFan_of_triApexAllLargeContext G DRow
-    exact Or.inr ⟨hcenterEq, ⟨z, hz, hzOutside⟩, hfan⟩
+    hrowCapNeFirst hrowCapInside hrowCapOutside hterminal
 
 include hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
   T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in

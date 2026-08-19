@@ -254,30 +254,64 @@ former Front-B obligations `isM44EndpointResidualsExcluded`,
 `isM44NonSurplusContainmentErasedPinTripleResidualsExcluded` are source-clean
 and kernel-connected.
 
-### The Rigid221 cardinality checkpoint
+### The 17-point checkpoint
 
-Within the `pentagonBlockerV_vRowBlockerDeleted_deletedRowBlockerOffClass`
-sub-branch of the source-heavy BlockerV residual, exact cardinalities **12
-through 16 are closed** and that sub-branch's lower frontier is `17 ≤ |A|`. This
-does **not** extend to the source-heavy residual as a whole: the sibling
-`pentagonOffClassBlocker` sub-branch still carries two open leaves at exact 12
-(`…_interiorDeletion_physicalRadius_commonDeletion_missingIncidence` and
-`…_nextRowOnlyHit`, both hypothesising `D.A.card = 12`). At exact 17 the
-second-cap-11 and second-cap-10 profiles embed into the checked exact-15 and
-exact-16 four-row banks respectively, and both are source-clean. The
-second-cap-9 profile has since been split further: the *unused-outside* arm is
-kernel-proved, so what remains is only the **exact-cover arm**, where the four
-selected rows exactly partition the eight outside points.
+The largest cluster in the table above (the `Rigid221*` modules) is also the
+deepest developed, and it is worth stating in ordinary terms.
 
-The unbounded `|A| ≥ 18` continuation is open and, as of 2026-08-17, has **no
-route**: see
-[`docs/specs/p97-card-ge-eighteen-coverage-route-v1.md`](docs/specs/p97-card-ge-eighteen-coverage-route-v1.md),
-whose own header reads "Status: NO ROUTE EXISTS." The exact-17 apparatus does
-not transfer, because `SourceRealization` pins `A.card = 17` throughout.
+Fix a hypothetical counterexample `A`. Because no vertex of `A` is removable,
+every point `x` has a **blocker**: another point whose four equidistant partners
+drop to three when `x` is deleted. Write the **row** of `x` for the four points
+of `A` on the circle centred at that blocker through `x`. A row is always a full
+circle's worth of points, never a partial one, and rows are the basic
+combinatorial object here.
 
-All of this is **branch-local narrowing. It is not an exclusion of all 17-point
-P97 counterexamples**, and `RemovableVertexOfLarge` must not be cited against
-these leaves — they are interior to that statement's own proof.
+Now take the minimum enclosing circle and the Moser triangle inscribed in it.
+One of the three caps carries more than four points; call the other two the
+first and second cap, and let `a` be the triangle vertex opposite the second
+cap. This branch treats the case where exactly five points of `A` lie on one
+circle centred at `a`, and those five split as **2 + 2 + 1**: two on the row of
+a point `u`, two on the row of a point `v`, the two pairs disjoint, and a fifth
+point on neither row. The branch narrows once more to the case where both of
+`u`'s two points lie strictly inside the second cap.
+
+At `|A| = 17` the second cap holds 9, 10, or 11 points.
+
+**The 10- and 11-point cases are settled.** The branch names seven specific
+points inside the cap, and each of the four rows in play already has its full
+quota of two points among them, because a four-point circle centred inside a
+cap meets that cap at most twice. So a cap of 10 or 11 carries one or two
+*spare* interior points lying on no row at all. Dropping the spares from the
+cyclic labelling leaves the four rows intact on 16 or 15 points, and two finite
+exhaustive checks rule those out: over every assignment consistent with convex
+position, each one forces a contradictory set of equal-distance relations. Both
+checks run through `native_decide`, which is why this branch carries compiler
+trust.
+
+**The 9-point case is where the work stops.** It leaves 8 points outside the
+cap, and each of the four rows meets that outside set in exactly two points.
+Since 4 × 2 = 8, either some outside point lies on no row, or the four rows
+partition the eight exactly. The first alternative is proved — drop the unused
+point and replay the 16-point check. The second, the exact partition, is the
+open leaf.
+
+The two spare-point arguments are not the same argument: the 10- and 11-point
+cases skip unused points *inside* the cap, while the 9-point dichotomy turns on
+a point *outside* it.
+
+Two limits are worth stating plainly. First, sizes 12 through 16 are ruled out
+for this sub-branch only. A sibling sub-branch — the one where the relevant
+blocker lies off the five-point circle instead of on it — still has two open
+cases at 12 points. Second, `|A| ≥ 18` has no route at all: every step above
+labels `A` by seventeen indices around its convex boundary, so `|A| = 17` is
+derived rather than assumed, and nothing transfers upward. The coverage spec
+[`docs/specs/p97-card-ge-eighteen-coverage-route-v1.md`](docs/specs/p97-card-ge-eighteen-coverage-route-v1.md)
+says so in its own header: "Status: NO ROUTE EXISTS."
+
+All of this is narrowing inside one branch of the descent argument. It does
+**not** exclude 17-point counterexamples to Problem 97 in general, and the
+removable-vertex lemma must not be cited against these leaves — they sit inside
+that lemma's own proof.
 
 ### The computational lanes
 
