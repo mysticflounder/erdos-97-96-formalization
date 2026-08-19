@@ -128,6 +128,24 @@ adapter; it should be promoted only if a source packet supplies all fifteen
 support memberships and the ordered spine.  Otherwise the bounded miner must
 search for a new core schema with an explicit replay theorem.
 
+### Order and metric-ingress audit (2026-08-19)
+
+`FirstFiberOrderProjection.lean` is now landed in `f0e04de1`.  Its named-slot
+projection uses the increasing boundary order of the named support, proves
+injectivity, and provides the strict-order replay facts needed by any bounded
+cyclic consumer.  This is an ingress theorem only: it does not identify the
+bounded quotient with the full carrier or supply a metric core.
+
+The metric route is currently blocked by a source-contract defect found before
+any new solve.  The Python adapter projects each exact five-row packet without
+carrying its deleted label, while the cvc5 encoder applies exact off-circle
+constraints to every carrier index.  For a q-deleted exact row, the deleted
+point is only absent from the selected four-set; its nonmembership in the full
+circle is not proved.  The adapter and encoder must therefore carry the deleted
+label and exempt it from exact exclusions (or use selected-subset semantics),
+with a regression test, before a FirstFiber metric result can be considered
+source-faithful.
+
 ### Diagnostic normalization probe (2026-08-19)
 
 A standalone Lean probe (`lean/scratch/FirstFiberOutsidePairProofProbe.lean`)
