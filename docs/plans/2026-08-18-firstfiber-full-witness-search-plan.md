@@ -119,6 +119,14 @@ one universal coverage premise, namely that every faithful carrier with those
 five rows has a `MetricCoreAlternative`.  This is the theorem to give the
 finite miner; it is deliberately not a closure claim, because no source
 hypothesis currently supplies that coverage premise.
+The follow-up source search checked the existing six-point two-pair,
+perpendicular-bisector, and five-row circle-order cores.  The outside packet
+does not provide their required cross-row memberships or cyclic inequalities,
+so none can be instantiated solver-free.  The only immediately reusable
+candidate is the generic five-row cyclic consumer in the round-19 scratch
+adapter; it should be promoted only if a source packet supplies all fifteen
+support memberships and the ordered spine.  Otherwise the bounded miner must
+search for a new core schema with an explicit replay theorem.
 
 ## Objective
 
