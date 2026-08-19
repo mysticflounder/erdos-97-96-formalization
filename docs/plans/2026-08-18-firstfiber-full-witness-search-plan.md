@@ -128,6 +128,31 @@ adapter; it should be promoted only if a source packet supplies all fifteen
 support memberships and the ordered spine.  Otherwise the bounded miner must
 search for a new core schema with an explicit replay theorem.
 
+### Source closure bridge found (2026-08-19)
+
+The outside-pair terminal does not need the metric-core route or a solver.  A
+standalone Lean probe (`lean/scratch/FirstFiberOutsidePairProofProbe.lean`)
+typechecks the following source-only composition:
+
+1. derive the cap placement of the source blocker from
+   `blocker_mem_capInterior`;
+2. derive its distinctness from the first-blocker center using
+   `source_witness.2.2.2.1`;
+3. use `deleted_eq_outsidePoint` to inject `outsideExactRows` into the two-arm
+   `FirstFiberOutsidePairFiveCenterExactRowsOrCrossedResidual` packet;
+4. normalize that packet with
+   `firstFiberOutsidePair_exactRows_or_crossedThreeRows`;
+5. consume the result with
+   `false_of_capSource_firstFiber_collisionFiveCenterDeletion`, together with
+   `hexactRows`.
+
+This is a source-faithful proof of the target theorem once transplanted by the
+owner of `TwoSourceFirstFiberCollision.lean`; the target file is currently
+foreign-dirty, so the probe is intentionally not a direct edit of that file.
+It supersedes the earlier plan to search for a new metric producer for this
+leaf.  The metric-core coverage lane remains relevant only to other residuals
+that do not enter the checked collision-deletion coordinator.
+
 ## Objective
 
 Resolve the live FirstFiber outside-pair obligation
