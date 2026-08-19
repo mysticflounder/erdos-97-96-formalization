@@ -1,0 +1,63 @@
+{
+  "schema": "nonpiqd-solver-verdict-recheck-summary/v1",
+  "run_root": "scratch/runs/nonpiqd-custody-tier0-20260818/run-20260819T025541Z",
+  "arm_cells": {
+    "command": "arm-cells",
+    "mutation_control": {
+      "controls_owed": 0,
+      "n_mutants": 0,
+      "n_rejected": 0,
+      "uncontrolled_terminal_proofs": []
+    },
+    "n_records": 4,
+    "record_schema": "nonpiqd-solver-verdict-recheck/v1",
+    "schema": "nonpiqd-solver-verdict-recheck-summary/v1",
+    "verdicts": {
+      "AGREES": 4
+    },
+    "write_guard": {
+      "after": "023f95a8ffdfa0f24c0a6a6ea2f7f8d587b95a932063db35298c16dcd1dc0b46",
+      "before": "023f95a8ffdfa0f24c0a6a6ea2f7f8d587b95a932063db35298c16dcd1dc0b46",
+      "trees": [
+        "lean",
+        "certificates",
+        "census",
+        "scripts",
+        "docs"
+      ],
+      "unchanged": true
+    }
+  },
+  "pairs": {
+    "command": "pairs",
+    "mutation_control": {
+      "controls_owed": 5,
+      "n_mutants": 5,
+      "n_rejected": 5,
+      "uncontrolled_terminal_proofs": []
+    },
+    "n_records": 7,
+    "record_schema": "nonpiqd-solver-verdict-recheck/v1",
+    "schema": "nonpiqd-solver-verdict-recheck-summary/v1",
+    "verdicts": {
+      "AGREES": 7
+    },
+    "write_guard": {
+      "after": "023f95a8ffdfa0f24c0a6a6ea2f7f8d587b95a932063db35298c16dcd1dc0b46",
+      "before": "023f95a8ffdfa0f24c0a6a6ea2f7f8d587b95a932063db35298c16dcd1dc0b46",
+      "trees": [
+        "lean",
+        "certificates",
+        "census",
+        "scripts",
+        "docs"
+      ],
+      "unchanged": true
+    }
+  },
+  "candidates": {
+    "n_pairs": 7,
+    "n_ambiguous_records": 19,
+    "carriers_scanned": 22340
+  }
+}

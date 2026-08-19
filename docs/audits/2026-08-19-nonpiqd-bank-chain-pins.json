@@ -1,0 +1,692 @@
+{
+  "chain": {
+    "banner_is_not_evidence": "refreeze_narrowed_chain.py:100-117 is not gated on VERIFY_ONLY and prints nothing on the recovery path, so the banner also appears after a silently re-accepted drift",
+    "elapsed_seconds": 103.057,
+    "exit_code": 0,
+    "length": 13,
+    "refrozen_header_present": true,
+    "source": "scratch/rigid221-sourceheavy-anchor/refreeze_narrowed_chain.py",
+    "tail_module": "exact12_core_pair_all_order_common_five_membership_family_bank",
+    "verify_banner_present": true
+  },
+  "clause_chain": {
+    "banks_declaring_a_clause_chain": 24,
+    "carriers_scanned": 86,
+    "chain_heads": [
+      "exact12_block_spanning_membership_family_bank"
+    ],
+    "contiguous": true,
+    "rows": [
+      {
+        "final_clauses": 636630,
+        "module": "exact12_adjacent_apex_cross_block_membership_family_bank",
+        "parent_by_import_alias": false,
+        "parent_clauses": 635961,
+        "predecessors": [
+          "exact12_surplus_apex_pair_membership_family_bank"
+        ],
+        "verdict": "MATCH"
+      },
+      {
+        "final_clauses": 676147,
+        "module": "exact12_all_order_common_five_membership_family_bank",
+        "parent_by_import_alias": false,
+        "parent_clauses": 646103,
+        "predecessors": [
+          "exact12_second_opposite_triple_surplus_first_opposite_three_triad_membership_family_bank"
+        ],
+        "verdict": "MATCH"
+      },
+      {
+        "final_clauses": 640828,
+        "module": "exact12_apex_first_opposite_shared_pair_common_five_membership_family_bank",
+        "parent_by_import_alias": false,
+        "parent_clauses": 640454,
+        "predecessors": [
+          "exact12_apex_internal_shared_pair_common_five_membership_family_bank"
+        ],
+        "verdict": "MATCH"
+      },
+      {
+        "final_clauses": 641980,
+        "module": "exact12_apex_first_opposite_shared_pair_second_opposite_common_five_membership_family_bank",
+        "parent_by_import_alias": false,
+        "parent_clauses": 640828,
+        "predecessors": [
+          "exact12_apex_first_opposite_shared_pair_common_five_membership_family_bank"
+        ],
+        "verdict": "MATCH"
+      },
+      {
+        "final_clauses": 644063,
+        "module": "exact12_apex_first_opposite_shared_pair_surplus_common_five_membership_family_bank",
+        "parent_by_import_alias": false,
+        "parent_clauses": 643805,
+        "predecessors": [
+          "exact12_second_apex_surplus_second_first_common_five_membership_family_bank"
+        ],
+        "verdict": "MATCH"
+      },
+      {
+        "final_clauses": 643379,
+        "module": "exact12_apex_first_surplus_second_common_five_membership_family_bank",
+        "parent_by_import_alias": false,
+        "parent_clauses": 642425,
+        "predecessors": [
+          "exact12_surplus_pair_second_opposite_apex_pair_common_five_membership_family_bank"
+        ],
+        "verdict": "MATCH"
+      },
+      {
+        "final_clauses": 640454,
+        "module": "exact12_apex_internal_shared_pair_common_five_membership_family_bank",
+        "parent_by_import_alias": false,
+        "parent_clauses": 639242,
+        "predecessors": [
+          "exact12_apex_shared_pair_cross_block_membership_family_bank"
+        ],
+        "verdict": "MATCH"
+      },
+      {
+        "final_clauses": 638948,
+        "module": "exact12_apex_pair_cross_block_membership_family_bank",
+        "parent_by_import_alias": false,
+        "parent_clauses": 638704,
+        "predecessors": [
+          "exact12_apex_zero_cross_block_membership_family_bank"
+        ],
+        "verdict": "MATCH"
+      },
+      {
+        "final_clauses": 639242,
+        "module": "exact12_apex_shared_pair_cross_block_membership_family_bank",
+        "parent_by_import_alias": false,
+        "parent_clauses": 638948,
+        "predecessors": [
+          "exact12_apex_pair_cross_block_membership_family_bank"
+        ],
+        "verdict": "MATCH"
+      },
+      {
+        "final_clauses": 642191,
+        "module": "exact12_apex_triple_surplus_second_opposite_common_five_membership_family_bank",
+        "parent_by_import_alias": false,
+        "parent_clauses": 641980,
+        "predecessors": [
+          "exact12_apex_first_opposite_shared_pair_second_opposite_common_five_membership_family_bank"
+        ],
+        "verdict": "MATCH"
+      },
+      {
+        "final_clauses": 638704,
+        "module": "exact12_apex_zero_cross_block_membership_family_bank",
+        "parent_by_import_alias": false,
+        "parent_clauses": 638186,
+        "predecessors": [
+          "exact12_zero_center_cross_block_membership_family_bank"
+        ],
+        "verdict": "MATCH"
+      },
+      {
+        "final_clauses": 635405,
+        "module": "exact12_block_spanning_membership_family_bank",
+        "parent_by_import_alias": false,
+        "parent_clauses": 634859,
+        "predecessors": [],
+        "verdict": "CHAIN_HEAD"
+      },
+      {
+        "final_clauses": 679351,
+        "module": "exact12_center_exchange_all_order_common_five_membership_family_bank",
+        "parent_by_import_alias": false,
+        "parent_clauses": 676147,
+        "predecessors": [
+          "exact12_all_order_common_five_membership_family_bank"
+        ],
+        "verdict": "MATCH"
+      },
+      {
+        "final_clauses": 703533,
+        "module": "exact12_core_pair_all_order_common_five_membership_family_bank",
+        "parent_by_import_alias": true,
+        "parent_clauses": 679351,
+        "predecessors": [
+          "exact12_center_exchange_all_order_common_five_membership_family_bank"
+        ],
+        "verdict": "IMPORT_ALIAS"
+      },
+      {
+        "final_clauses": 644351,
+        "module": "exact12_first_opposite_pair_surplus_second_opposite_common_five_membership_family_bank",
+        "parent_by_import_alias": false,
+        "parent_clauses": 644207,
+        "predecessors": [
+          "exact12_reciprocal_first_opposite_surplus_second_opposite_common_five_membership_family_bank"
+        ],
+        "verdict": "MATCH"
+      },
+      {
+        "final_clauses": 644207,
+        "module": "exact12_reciprocal_first_opposite_surplus_second_opposite_common_five_membership_family_bank",
+        "parent_by_import_alias": false,
+        "parent_clauses": 644063,
+        "predecessors": [
+          "exact12_apex_first_opposite_shared_pair_surplus_common_five_membership_family_bank"
+        ],
+        "verdict": "MATCH"
+      },
+      {
+        "final_clauses": 643805,
+        "module": "exact12_second_apex_surplus_second_first_common_five_membership_family_bank",
+        "parent_by_import_alias": false,
+        "parent_clauses": 643379,
+        "predecessors": [
+          "exact12_apex_first_surplus_second_common_five_membership_family_bank"
+        ],
+        "verdict": "MATCH"
+      },
+      {
+        "final_clauses": 637236,
+        "module": "exact12_second_cap_apex_surplus_membership_family_bank",
+        "parent_by_import_alias": false,
+        "parent_clauses": 636630,
+        "predecessors": [
+          "exact12_adjacent_apex_cross_block_membership_family_bank"
+        ],
+        "verdict": "MATCH"
+      },
+      {
+        "final_clauses": 646103,
+        "module": "exact12_second_opposite_triple_surplus_first_opposite_three_triad_membership_family_bank",
+        "parent_by_import_alias": false,
+        "parent_clauses": 644351,
+        "predecessors": [
+          "exact12_first_opposite_pair_surplus_second_opposite_common_five_membership_family_bank"
+        ],
+        "verdict": "MATCH"
+      },
+      {
+        "final_clauses": 635961,
+        "module": "exact12_surplus_apex_pair_membership_family_bank",
+        "parent_by_import_alias": false,
+        "parent_clauses": 635440,
+        "predecessors": [
+          "exact12_three_triad_membership_bank"
+        ],
+        "verdict": "MATCH"
+      },
+      {
+        "final_clauses": 642425,
+        "module": "exact12_surplus_pair_second_opposite_apex_pair_common_five_membership_family_bank",
+        "parent_by_import_alias": false,
+        "parent_clauses": 642191,
+        "predecessors": [
+          "exact12_apex_triple_surplus_second_opposite_common_five_membership_family_bank"
+        ],
+        "verdict": "MATCH"
+      },
+      {
+        "final_clauses": 637414,
+        "module": "exact12_surplus_three_triad_membership_family_bank",
+        "parent_by_import_alias": false,
+        "parent_clauses": 637236,
+        "predecessors": [
+          "exact12_second_cap_apex_surplus_membership_family_bank"
+        ],
+        "verdict": "MATCH"
+      },
+      {
+        "final_clauses": 635440,
+        "module": "exact12_three_triad_membership_bank",
+        "parent_by_import_alias": true,
+        "parent_clauses": 635405,
+        "predecessors": [
+          "exact12_block_spanning_membership_family_bank"
+        ],
+        "verdict": "IMPORT_ALIAS"
+      },
+      {
+        "final_clauses": 638186,
+        "module": "exact12_zero_center_cross_block_membership_family_bank",
+        "parent_by_import_alias": false,
+        "parent_clauses": 637414,
+        "predecessors": [
+          "exact12_surplus_three_triad_membership_family_bank"
+        ],
+        "verdict": "MATCH"
+      }
+    ],
+    "verdicts": {
+      "CHAIN_HEAD": 1,
+      "IMPORT_ALIAS": 2,
+      "MATCH": 21
+    }
+  },
+  "dependency_set": [
+    {
+      "added": [],
+      "elapsed_seconds": 8.029,
+      "exit_code": 0,
+      "module": "exact12_apex_first_opposite_shared_pair_common_five_membership_family_bank",
+      "n_modules": 25,
+      "removed": [],
+      "unchanged_line": "UNCHANGED 25 modules",
+      "verdict": "MATCH"
+    },
+    {
+      "added": [],
+      "elapsed_seconds": 6.273,
+      "exit_code": 0,
+      "module": "exact12_apex_first_opposite_shared_pair_second_opposite_common_five_membership_family_bank",
+      "n_modules": 26,
+      "removed": [],
+      "unchanged_line": "UNCHANGED 26 modules",
+      "verdict": "MATCH"
+    },
+    {
+      "added": [],
+      "elapsed_seconds": 6.471,
+      "exit_code": 0,
+      "module": "exact12_apex_triple_surplus_second_opposite_common_five_membership_family_bank",
+      "n_modules": 25,
+      "removed": [],
+      "unchanged_line": "UNCHANGED 25 modules",
+      "verdict": "MATCH"
+    },
+    {
+      "added": [],
+      "elapsed_seconds": 6.273,
+      "exit_code": 0,
+      "module": "exact12_surplus_pair_second_opposite_apex_pair_common_five_membership_family_bank",
+      "n_modules": 27,
+      "removed": [],
+      "unchanged_line": "UNCHANGED 27 modules",
+      "verdict": "MATCH"
+    },
+    {
+      "added": [],
+      "elapsed_seconds": 6.418,
+      "exit_code": 0,
+      "module": "exact12_apex_first_surplus_second_common_five_membership_family_bank",
+      "n_modules": 26,
+      "removed": [],
+      "unchanged_line": "UNCHANGED 26 modules",
+      "verdict": "MATCH"
+    },
+    {
+      "added": [],
+      "elapsed_seconds": 6.361,
+      "exit_code": 0,
+      "module": "exact12_second_apex_surplus_second_first_common_five_membership_family_bank",
+      "n_modules": 26,
+      "removed": [],
+      "unchanged_line": "UNCHANGED 26 modules",
+      "verdict": "MATCH"
+    },
+    {
+      "added": [],
+      "elapsed_seconds": 6.321,
+      "exit_code": 0,
+      "module": "exact12_apex_first_opposite_shared_pair_surplus_common_five_membership_family_bank",
+      "n_modules": 26,
+      "removed": [],
+      "unchanged_line": "UNCHANGED 26 modules",
+      "verdict": "MATCH"
+    },
+    {
+      "added": [],
+      "elapsed_seconds": 6.448,
+      "exit_code": 0,
+      "module": "exact12_reciprocal_first_opposite_surplus_second_opposite_common_five_membership_family_bank",
+      "n_modules": 26,
+      "removed": [],
+      "unchanged_line": "UNCHANGED 26 modules",
+      "verdict": "MATCH"
+    },
+    {
+      "added": [],
+      "elapsed_seconds": 6.211,
+      "exit_code": 0,
+      "module": "exact12_first_opposite_pair_surplus_second_opposite_common_five_membership_family_bank",
+      "n_modules": 26,
+      "removed": [],
+      "unchanged_line": "UNCHANGED 26 modules",
+      "verdict": "MATCH"
+    },
+    {
+      "added": [],
+      "elapsed_seconds": 6.033,
+      "exit_code": 0,
+      "module": "exact12_second_opposite_triple_surplus_first_opposite_three_triad_membership_family_bank",
+      "n_modules": 22,
+      "removed": [],
+      "unchanged_line": "UNCHANGED 22 modules",
+      "verdict": "MATCH"
+    },
+    {
+      "added": [],
+      "elapsed_seconds": 6.41,
+      "exit_code": 0,
+      "module": "exact12_all_order_common_five_membership_family_bank",
+      "n_modules": 26,
+      "removed": [],
+      "unchanged_line": "UNCHANGED 26 modules",
+      "verdict": "MATCH"
+    },
+    {
+      "added": [],
+      "elapsed_seconds": 6.37,
+      "exit_code": 0,
+      "module": "exact12_center_exchange_all_order_common_five_membership_family_bank",
+      "n_modules": 28,
+      "removed": [],
+      "unchanged_line": "UNCHANGED 28 modules",
+      "verdict": "MATCH"
+    },
+    {
+      "added": [],
+      "elapsed_seconds": 6.506,
+      "exit_code": 0,
+      "module": "exact12_core_pair_all_order_common_five_membership_family_bank",
+      "n_modules": 29,
+      "removed": [],
+      "unchanged_line": "UNCHANGED 29 modules",
+      "verdict": "MATCH"
+    }
+  ],
+  "mutation_control": {
+    "chain_position": 6,
+    "clean_build": "OK",
+    "clean_manifest_entries": 29,
+    "clean_sha256": "17355abd7f6daee5a60097ee3a6c0410238d1b784e326d5ab1f6da0620bf3d1c",
+    "elapsed_seconds": 42.467,
+    "exit_code": 0,
+    "mutant_message": "second-apex/surplus/second/first bank hash drifted: expected 17355abd7f6daee5a60097ee3a6c0410238d1b784e326d5ab1f6da0620bf3d1c, got 05da17849ad43086d9410e881d0a773270016d5a26a6a0f0158a26a624c0a097",
+    "mutant_message_reports_drift": true,
+    "mutant_raised": "Exact12SecondApexSurplusSecondFirstCommonFiveMembershipFamilyBankError",
+    "n_mutants": 1,
+    "n_rejected": 1,
+    "perturbed_entry": "census/card_head/exact12_positive_membership_cnf.py",
+    "pinned_sha256": "17355abd7f6daee5a60097ee3a6c0410238d1b784e326d5ab1f6da0620bf3d1c",
+    "target_module": "exact12_second_apex_surplus_second_first_common_five_membership_family_bank"
+  },
+  "parent_link_consistency": [
+    {
+      "predecessor": "exact12_apex_first_opposite_shared_pair_common_five_membership_family_bank",
+      "successor": "exact12_apex_first_opposite_shared_pair_second_opposite_common_five_membership_family_bank",
+      "verdict": "PREDECESSOR_UNPINNED"
+    },
+    {
+      "predecessor": "exact12_apex_first_opposite_shared_pair_second_opposite_common_five_membership_family_bank",
+      "successor": "exact12_apex_triple_surplus_second_opposite_common_five_membership_family_bank",
+      "verdict": "PREDECESSOR_UNPINNED"
+    },
+    {
+      "predecessor": "exact12_apex_triple_surplus_second_opposite_common_five_membership_family_bank",
+      "successor": "exact12_surplus_pair_second_opposite_apex_pair_common_five_membership_family_bank",
+      "verdict": "PREDECESSOR_UNPINNED"
+    },
+    {
+      "predecessor": "exact12_surplus_pair_second_opposite_apex_pair_common_five_membership_family_bank",
+      "successor": "exact12_apex_first_surplus_second_common_five_membership_family_bank",
+      "verdict": "PREDECESSOR_UNPINNED"
+    },
+    {
+      "predecessor": "exact12_apex_first_surplus_second_common_five_membership_family_bank",
+      "successor": "exact12_second_apex_surplus_second_first_common_five_membership_family_bank",
+      "verdict": "PREDECESSOR_UNPINNED"
+    },
+    {
+      "predecessor": "exact12_second_apex_surplus_second_first_common_five_membership_family_bank",
+      "successor": "exact12_apex_first_opposite_shared_pair_surplus_common_five_membership_family_bank",
+      "verdict": "MATCH"
+    },
+    {
+      "predecessor": "exact12_apex_first_opposite_shared_pair_surplus_common_five_membership_family_bank",
+      "successor": "exact12_reciprocal_first_opposite_surplus_second_opposite_common_five_membership_family_bank",
+      "verdict": "MATCH"
+    },
+    {
+      "predecessor": "exact12_reciprocal_first_opposite_surplus_second_opposite_common_five_membership_family_bank",
+      "successor": "exact12_first_opposite_pair_surplus_second_opposite_common_five_membership_family_bank",
+      "verdict": "MATCH"
+    },
+    {
+      "predecessor": "exact12_first_opposite_pair_surplus_second_opposite_common_five_membership_family_bank",
+      "successor": "exact12_second_opposite_triple_surplus_first_opposite_three_triad_membership_family_bank",
+      "verdict": "MATCH"
+    },
+    {
+      "predecessor": "exact12_second_opposite_triple_surplus_first_opposite_three_triad_membership_family_bank",
+      "successor": "exact12_all_order_common_five_membership_family_bank",
+      "verdict": "MATCH"
+    },
+    {
+      "predecessor": "exact12_all_order_common_five_membership_family_bank",
+      "successor": "exact12_center_exchange_all_order_common_five_membership_family_bank",
+      "verdict": "MATCH"
+    },
+    {
+      "predecessor": "exact12_center_exchange_all_order_common_five_membership_family_bank",
+      "successor": "exact12_core_pair_all_order_common_five_membership_family_bank",
+      "verdict": "IMPORT_ALIAS"
+    }
+  ],
+  "pin_comparison": {
+    "all_pinned_shas_match": true,
+    "rows": [
+      {
+        "expected_sha256": "4e34157395835bc9381a184584b1a625b87ddc5e0de15672fe9f37504242514f",
+        "module": "exact12_apex_first_opposite_shared_pair_common_five_membership_family_bank",
+        "observed_sha256": "4e34157395835bc9381a184584b1a625b87ddc5e0de15672fe9f37504242514f",
+        "pinned_by": "successor_parent_literal",
+        "pinned_in": "exact12_apex_first_opposite_shared_pair_second_opposite_common_five_membership_family_bank",
+        "position": 1,
+        "verdict": "MATCH"
+      },
+      {
+        "expected_sha256": "93e5d51e8d9cd9ba05dc9d211e380cefe72cb116f1d882cf3bad0921d2b24f93",
+        "module": "exact12_apex_first_opposite_shared_pair_second_opposite_common_five_membership_family_bank",
+        "observed_sha256": "93e5d51e8d9cd9ba05dc9d211e380cefe72cb116f1d882cf3bad0921d2b24f93",
+        "pinned_by": "successor_parent_literal",
+        "pinned_in": "exact12_apex_triple_surplus_second_opposite_common_five_membership_family_bank",
+        "position": 2,
+        "verdict": "MATCH"
+      },
+      {
+        "expected_sha256": "f533e7dc2fa5dffc4c59aaa976106db94889ca73362f11fbd91007662074d2dc",
+        "module": "exact12_apex_triple_surplus_second_opposite_common_five_membership_family_bank",
+        "observed_sha256": "f533e7dc2fa5dffc4c59aaa976106db94889ca73362f11fbd91007662074d2dc",
+        "pinned_by": "successor_parent_literal",
+        "pinned_in": "exact12_surplus_pair_second_opposite_apex_pair_common_five_membership_family_bank",
+        "position": 3,
+        "verdict": "MATCH"
+      },
+      {
+        "expected_sha256": "ffb662356d79ec00f2e54617517c35730bc8212f4b4de47372cc94a398ca5647",
+        "module": "exact12_surplus_pair_second_opposite_apex_pair_common_five_membership_family_bank",
+        "observed_sha256": "ffb662356d79ec00f2e54617517c35730bc8212f4b4de47372cc94a398ca5647",
+        "pinned_by": "successor_parent_literal",
+        "pinned_in": "exact12_apex_first_surplus_second_common_five_membership_family_bank",
+        "position": 4,
+        "verdict": "MATCH"
+      },
+      {
+        "expected_sha256": "a1cab579a6329058ffe47a6bb3eca265ae9456188e1b11a1c6cc50877ecfbd4a",
+        "module": "exact12_apex_first_surplus_second_common_five_membership_family_bank",
+        "observed_sha256": "a1cab579a6329058ffe47a6bb3eca265ae9456188e1b11a1c6cc50877ecfbd4a",
+        "pinned_by": "successor_parent_literal",
+        "pinned_in": "exact12_second_apex_surplus_second_first_common_five_membership_family_bank",
+        "position": 5,
+        "verdict": "MATCH"
+      },
+      {
+        "expected_sha256": "17355abd7f6daee5a60097ee3a6c0410238d1b784e326d5ab1f6da0620bf3d1c",
+        "module": "exact12_second_apex_surplus_second_first_common_five_membership_family_bank",
+        "observed_sha256": "17355abd7f6daee5a60097ee3a6c0410238d1b784e326d5ab1f6da0620bf3d1c",
+        "pinned_by": "own_literal",
+        "position": 6,
+        "verdict": "MATCH"
+      },
+      {
+        "expected_sha256": "67f75e7df08e87b0b40755699222b683d1968ddfa990ae9fe8bd3a8113a1c31d",
+        "module": "exact12_apex_first_opposite_shared_pair_surplus_common_five_membership_family_bank",
+        "observed_sha256": "67f75e7df08e87b0b40755699222b683d1968ddfa990ae9fe8bd3a8113a1c31d",
+        "pinned_by": "own_literal",
+        "position": 7,
+        "verdict": "MATCH"
+      },
+      {
+        "expected_sha256": "6c4a395f72449abf60813ab1212164768614e2d220b94a8c136d51c4407b0bb0",
+        "module": "exact12_reciprocal_first_opposite_surplus_second_opposite_common_five_membership_family_bank",
+        "observed_sha256": "6c4a395f72449abf60813ab1212164768614e2d220b94a8c136d51c4407b0bb0",
+        "pinned_by": "own_literal",
+        "position": 8,
+        "verdict": "MATCH"
+      },
+      {
+        "expected_sha256": "1f7f4fe0792f8d7ff2bd41d9aebcc571c484705d1c4eff1dee35fb7a1e010108",
+        "module": "exact12_first_opposite_pair_surplus_second_opposite_common_five_membership_family_bank",
+        "observed_sha256": "1f7f4fe0792f8d7ff2bd41d9aebcc571c484705d1c4eff1dee35fb7a1e010108",
+        "pinned_by": "own_literal",
+        "position": 9,
+        "verdict": "MATCH"
+      },
+      {
+        "expected_sha256": "1ea39d53e65b98ff568e7740e575f0e0e8c65ec7e277d77b0e1306fdf7b140d5",
+        "module": "exact12_second_opposite_triple_surplus_first_opposite_three_triad_membership_family_bank",
+        "observed_sha256": "1ea39d53e65b98ff568e7740e575f0e0e8c65ec7e277d77b0e1306fdf7b140d5",
+        "pinned_by": "own_literal",
+        "position": 10,
+        "verdict": "MATCH"
+      },
+      {
+        "expected_sha256": "249fc7633e167d916e3383bb8d978bd290b816c4eb92143146888dad09a6b7a3",
+        "module": "exact12_all_order_common_five_membership_family_bank",
+        "observed_sha256": "249fc7633e167d916e3383bb8d978bd290b816c4eb92143146888dad09a6b7a3",
+        "pinned_by": "own_literal",
+        "position": 11,
+        "verdict": "MATCH"
+      },
+      {
+        "expected_sha256": "ef03d843e977c24f0fb82a38c356b03c166bc9378e8b82e7d2fd79630fd5d9b7",
+        "module": "exact12_center_exchange_all_order_common_five_membership_family_bank",
+        "observed_sha256": "ef03d843e977c24f0fb82a38c356b03c166bc9378e8b82e7d2fd79630fd5d9b7",
+        "pinned_by": "own_literal",
+        "position": 12,
+        "verdict": "MATCH"
+      },
+      {
+        "expected_sha256": "e219ea20abdf35389401b4498da09833d1f4aa145c7e804a4998fd4f1b7061dc",
+        "module": "exact12_core_pair_all_order_common_five_membership_family_bank",
+        "observed_sha256": "e219ea20abdf35389401b4498da09833d1f4aa145c7e804a4998fd4f1b7061dc",
+        "pinned_by": "own_literal",
+        "position": 13,
+        "verdict": "MATCH"
+      }
+    ],
+    "unexpected_modules": [],
+    "verdicts": {
+      "MATCH": 13
+    }
+  },
+  "runtime_coverage": {
+    "built_at_runtime": [
+      "exact12_block_spanning_membership_family_bank",
+      "exact12_three_triad_membership_bank",
+      "exact12_surplus_apex_pair_membership_family_bank",
+      "exact12_adjacent_apex_cross_block_membership_family_bank",
+      "exact12_second_cap_apex_surplus_membership_family_bank",
+      "exact12_surplus_three_triad_membership_family_bank",
+      "exact12_zero_center_cross_block_membership_family_bank",
+      "exact12_apex_zero_cross_block_membership_family_bank",
+      "exact12_apex_pair_cross_block_membership_family_bank",
+      "exact12_apex_shared_pair_cross_block_membership_family_bank",
+      "exact12_apex_internal_shared_pair_common_five_membership_family_bank",
+      "exact12_apex_first_opposite_shared_pair_common_five_membership_family_bank",
+      "exact12_apex_first_opposite_shared_pair_second_opposite_common_five_membership_family_bank",
+      "exact12_apex_triple_surplus_second_opposite_common_five_membership_family_bank",
+      "exact12_surplus_pair_second_opposite_apex_pair_common_five_membership_family_bank",
+      "exact12_apex_first_surplus_second_common_five_membership_family_bank",
+      "exact12_second_apex_surplus_second_first_common_five_membership_family_bank",
+      "exact12_apex_first_opposite_shared_pair_surplus_common_five_membership_family_bank",
+      "exact12_reciprocal_first_opposite_surplus_second_opposite_common_five_membership_family_bank",
+      "exact12_first_opposite_pair_surplus_second_opposite_common_five_membership_family_bank",
+      "exact12_second_opposite_triple_surplus_first_opposite_three_triad_membership_family_bank",
+      "exact12_all_order_common_five_membership_family_bank",
+      "exact12_center_exchange_all_order_common_five_membership_family_bank",
+      "exact12_core_pair_all_order_common_five_membership_family_bank"
+    ],
+    "declared_banks": [
+      "exact12_adjacent_apex_cross_block_membership_family_bank",
+      "exact12_all_order_common_five_membership_family_bank",
+      "exact12_apex_first_opposite_shared_pair_common_five_membership_family_bank",
+      "exact12_apex_first_opposite_shared_pair_second_opposite_common_five_membership_family_bank",
+      "exact12_apex_first_opposite_shared_pair_surplus_common_five_membership_family_bank",
+      "exact12_apex_first_surplus_second_common_five_membership_family_bank",
+      "exact12_apex_internal_shared_pair_common_five_membership_family_bank",
+      "exact12_apex_pair_cross_block_membership_family_bank",
+      "exact12_apex_shared_pair_cross_block_membership_family_bank",
+      "exact12_apex_triple_surplus_second_opposite_common_five_membership_family_bank",
+      "exact12_apex_zero_cross_block_membership_family_bank",
+      "exact12_block_spanning_membership_family_bank",
+      "exact12_center_exchange_all_order_common_five_membership_family_bank",
+      "exact12_core_pair_all_order_common_five_membership_family_bank",
+      "exact12_first_opposite_pair_surplus_second_opposite_common_five_membership_family_bank",
+      "exact12_reciprocal_first_opposite_surplus_second_opposite_common_five_membership_family_bank",
+      "exact12_second_apex_surplus_second_first_common_five_membership_family_bank",
+      "exact12_second_cap_apex_surplus_membership_family_bank",
+      "exact12_second_opposite_triple_surplus_first_opposite_three_triad_membership_family_bank",
+      "exact12_surplus_apex_pair_membership_family_bank",
+      "exact12_surplus_pair_second_opposite_apex_pair_common_five_membership_family_bank",
+      "exact12_surplus_three_triad_membership_family_bank",
+      "exact12_three_triad_membership_bank",
+      "exact12_zero_center_cross_block_membership_family_bank"
+    ],
+    "every_declared_bank_built": true,
+    "not_built": [],
+    "via_cell_materializer": [
+      "exact12_block_spanning_membership_family_bank",
+      "exact12_three_triad_membership_bank"
+    ],
+    "via_chain_head_parent": [
+      "exact12_surplus_apex_pair_membership_family_bank",
+      "exact12_adjacent_apex_cross_block_membership_family_bank",
+      "exact12_second_cap_apex_surplus_membership_family_bank",
+      "exact12_surplus_three_triad_membership_family_bank",
+      "exact12_zero_center_cross_block_membership_family_bank",
+      "exact12_apex_zero_cross_block_membership_family_bank",
+      "exact12_apex_pair_cross_block_membership_family_bank",
+      "exact12_apex_shared_pair_cross_block_membership_family_bank",
+      "exact12_apex_internal_shared_pair_common_five_membership_family_bank"
+    ],
+    "via_chain_loop": [
+      "exact12_apex_first_opposite_shared_pair_common_five_membership_family_bank",
+      "exact12_apex_first_opposite_shared_pair_second_opposite_common_five_membership_family_bank",
+      "exact12_apex_triple_surplus_second_opposite_common_five_membership_family_bank",
+      "exact12_surplus_pair_second_opposite_apex_pair_common_five_membership_family_bank",
+      "exact12_apex_first_surplus_second_common_five_membership_family_bank",
+      "exact12_second_apex_surplus_second_first_common_five_membership_family_bank",
+      "exact12_apex_first_opposite_shared_pair_surplus_common_five_membership_family_bank",
+      "exact12_reciprocal_first_opposite_surplus_second_opposite_common_five_membership_family_bank",
+      "exact12_first_opposite_pair_surplus_second_opposite_common_five_membership_family_bank",
+      "exact12_second_opposite_triple_surplus_first_opposite_three_triad_membership_family_bank",
+      "exact12_all_order_common_five_membership_family_bank",
+      "exact12_center_exchange_all_order_common_five_membership_family_bank",
+      "exact12_core_pair_all_order_common_five_membership_family_bank"
+    ]
+  },
+  "schema": "nonpiqd-bank-chain-pins/v1",
+  "write_guard": {
+    "after": "023f95a8ffdfa0f24c0a6a6ea2f7f8d587b95a932063db35298c16dcd1dc0b46",
+    "before": "023f95a8ffdfa0f24c0a6a6ea2f7f8d587b95a932063db35298c16dcd1dc0b46",
+    "trees": [
+      "lean",
+      "certificates",
+      "census",
+      "scripts",
+      "docs"
+    ],
+    "unchanged": true
+  }
+}

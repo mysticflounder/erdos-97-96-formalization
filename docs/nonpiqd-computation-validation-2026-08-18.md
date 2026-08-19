@@ -1,6 +1,6 @@
 # Non-piqd computation validation campaign (2026-08-18)
 
-Status: Stages 1, 2 and 3 complete. This document makes no mathematical
+Status: Stages 1 to 4 complete. This document makes no mathematical
 closure claim.
 
 Almost all solver and census work now routes through the piqd daemon, which
@@ -140,10 +140,55 @@ emitted byte.
 
 Durable output: `docs/audits/2026-08-18-nonpiqd-lean-transcription.json`.
 
+### `scripts/recheck_solver_verdicts.py` — Tier 2c, solver verdicts
+
+```bash
+uv run python scripts/recheck_solver_verdicts.py \
+  --output-dir <run-root>/artifacts --scratch-dir <run-root>/tmp \
+  arm-cells --cells <workdir> ...
+uv run python scripts/recheck_solver_verdicts.py \
+  --output-dir <run-root>/artifacts --scratch-dir <run-root>/tmp \
+  pairs --survey <run-root>/artifacts/custody-survey.jsonl
+```
+
+Two routes. `arm-cells` runs
+`scripts/prepare_exact12_next_row_arm_terminal_rup_source.py` unchanged on each
+retained terminal cell and then byte-compares every artifact it produced
+against the committed one. `pairs` covers the remaining `(cnf, proof)` pairs
+Tier 0 found present and hash-matching, taking the pairing from the record
+rather than from filenames: a pair is declared only when one record names
+exactly one matching CNF and exactly one matching proof, and the 19 records
+that name more are reported as ambiguous rather than resolved by guesswork.
+
+The verdict authority is `_verify_drat` imported from
+`census/card_head/exact12_next_row_arm_static_v24_validator.py:377`, not a local
+copy. That function hardcodes a 600 s timeout and collapses timeout, missing
+binary and genuine failure into one `False`, so a `False` is always re-run here
+with a longer timeout and a captured transcript to tell the three apart.
+
+Durable output: `docs/audits/2026-08-19-nonpiqd-solver-verdicts.json`.
+
+### `scripts/verify_bank_chain_pins.py` — Tier 2d and 2e, bank chain
+
+```bash
+uv run python scripts/verify_bank_chain_pins.py --output-dir <run-root>/artifacts
+```
+
+Runs `refreeze_narrowed_chain.py --verify`, parses the `REFROZEN` block, and
+diffs all 13 shas against the literals frozen in source — eight against the
+module's own `EXPECTED_BANK_SHA256`, five against the successor's
+`EXPECTED_PARENT_BANK_SHA256`, which pins the same value. It then runs
+`scripts/mine_bank_lean_dependencies.py --compare` over the 13, checks the
+24-bank clause chain statically, and reports which banks the walk built at
+runtime. The negative control lives in `scripts/_bank_chain_pin_control.py`,
+which runs as a subprocess so its monkeypatched builders cannot leak back.
+
+Durable output: `docs/audits/2026-08-19-nonpiqd-bank-chain-pins.json`.
+
 ### `scripts/test-nonpiqd-validation.sh` — lane runner
 
 Pinned environment, explicit file list, `uv run pytest -q`, then `ruff check`
-and `ruff format --check`. 97 tests.
+and `ruff format --check`. 161 tests.
 
 ## Corrections this campaign establishes
 
@@ -162,6 +207,33 @@ and `ruff format --check`. 97 tests.
   `--no-python-check` (`scripts/endpoint-certificate.py:732,2370`), so `false`
   means the check never ran. All 135 records carrying `false` do satisfy their
   identity exactly (Stage 3 below).
+- **A `status: UNKNOWN` solver record is not a failed proof.** Two records in
+  `scratch/atail-force/exact5-card13-distinct-radius-aggregate/artifacts/`
+  report `UNKNOWN` with `cadical_returncode: 0` and `timeout_seconds: 60`. They
+  hold a partial proof by construction and never claimed UNSAT, so `drat-trim`
+  answering `s NOT VERIFIED` on them is the correct outcome. A recheck that
+  assumes every stored proof was meant to be terminal manufactures a failure
+  out of a correctly labelled artifact.
+- **`CHAIN VERIFY COMPLETE` is not evidence.** `--verify` gates only
+  `refreeze_narrowed_chain.py:79` and the closing word at `:132`. The
+  hash-drift recovery loop at `:100-117` is *not* gated on it, and `:107`
+  reassigns `EXPECTED_BANK_SHA256` to a digest the module just computed. The
+  recovery path holds no `print` or `log`, so stdout and the exit code look
+  identical after a silently re-accepted drift. A drift at chain position N is
+  still re-caught at N+1 through the frozen parent pin, and positions 1-5 hold
+  no own pin for `:107` to overwrite — but position 13 is the tail and has no
+  downstream pin, so only the sha diff catches it.
+- **Every DRAT proof in this corpus is binary.** `drat-trim` announces
+  `c turning on binary mode checking`. A mutation control written for text
+  lines finds no lemma, perturbs nothing, and reports a clean run having
+  established nothing. The first Tier 2c run did exactly that.
+- **A single literal flip need not break a proof, and near the end it never
+  did.** `drat-trim` checks backwards from the empty clause and never examines
+  a lemma outside the core. On an 11 MB proof, eight consecutive single-literal
+  flips at the tail all still verified. A control must be aimed at the core
+  that `-l` emits, and the core must be verified unperturbed first — a control
+  that only runs the broken case cannot tell a working checker from one that
+  rejects everything.
 - **The surplus term-sharded Lean emitter is broken at HEAD.** Commit
   `7c3fa141` removed `add_poly_many` and `singleton_poly` from
   `scripts/endpoint-certificate.py`; `scripts/pinned-surplus-certificate.py`
@@ -258,9 +330,70 @@ not shown right. Their identities were rechecked exactly at the JSON layer, so
 what is open is the JSON-to-Lean step alone. Repairing the emitter is outside
 this campaign's scope, which changes no generator.
 
+### Tier 2c — solver verdicts
+
+Four retained terminal arm cells
+(`scratch/rigid221-sourceheavy-anchor/exact12-next-row-arm-terminal-rup-sources-20260813/cell-{52,58,65,71}`)
+were rerun through the preparer unchanged. All four **agree**. In each cell 10
+of 13 artifacts are byte identical, including `terminal.cnf`, `discovery.cnf`,
+`clause_delta.json`, `job.json`, the fresh `plain.drat`, `drat-trim.lrat`,
+`normalized.lrat` and `source-manifest.json`. The current source rematerializes
+the CNF byte for byte, `cadical --plain` reproduces the identical proof bytes,
+and `drat-trim` reproduces the identical LRAT.
+
+The three that differ are the solver and checker transcripts, which embed
+wall-clock and memory figures. `receipt.json` differs only because it records
+those three digests and then hashes itself; with exactly four fields redacted —
+`artifacts.cadical_plain_output`, `artifacts.drat_trim_original_output`,
+`artifacts.drat_trim_output`, `receipt_sha256` — the receipts are identical, so
+the normalization counts, verdicts and proof digests all still compare exactly.
+
+The other 68 cells of the two 20260811 waves retain only `summary.json`; their
+CNFs and proofs were not kept, so they are outside a re-execution check and are
+named here rather than counted as covered.
+
+Seven further `(cnf, proof)` pairs were declared by records Tier 0 found
+present and hash-matching. Five declare a terminal refutation and all five
+reproduce `s VERIFIED`, with an independent `cadical --plain` returning UNSAT
+on the same CNF and that fresh proof verifying too. Two declare `UNKNOWN` from
+a 60 s timeout and correctly do **not** verify.
+
+### Tier 2d — bank chain
+
+`refreeze_narrowed_chain.py --verify` walks 13 narrowed banks with every frozen
+pin in force. All 13 observed shas match the literals frozen in source, so the
+drift the un-gated recovery loop could otherwise absorb did not occur — the
+success banner was not taken as evidence for any of them.
+`mine_bank_lean_dependencies.py --compare` reports `UNCHANGED` for all 13,
+between 22 and 29 modules each. The 12 parent links hold: six restated literals
+agree with their predecessor's own literal, one is an import alias that cannot
+drift, and five sit above a position that carries no own literal, where the
+successor's parent pin *is* the pin.
+
+The negative control perturbs one digest in one `source_manifest` entry in
+memory — `census/card_head/exact12_positive_membership_cnf.py` in the position-6
+bank — after a clean build of the same bank has succeeded. The build raises
+`Exact12SecondApexSurplusSecondFirstCommonFiveMembershipFamilyBankError` and
+names the drifted digest.
+
+### Tier 2e — generator reruns
+
+The 24 banks that declare a clause chain have no command line at all: no
+`__main__`, no `argparse`, and no write of any kind. Rerunning one therefore
+means building it under its frozen pins, which is what the chain walk does, and
+every `install_*` calls its own `build_*` and `validate_*` first. All 24 are
+built at runtime — two by the cell materializer, nine by the chain head's
+`_parent`, and thirteen by the CHAIN loop.
+
+Statically, the clause chain is contiguous from 634,859 to 703,533 with one
+head (`exact12_block_spanning_membership_family_bank`), no fork and no
+unresolved link. Twenty-one links restate the count as a literal; two are held
+by import aliasing and cannot drift apart. Reading only integer literals misses
+`EXPECTED_PARENT_CLAUSES = FAMILY_FINAL_CLAUSES` in
+`exact12_three_triad_membership_bank` and reports two heads where there is one.
+
 ## Remaining stages
 
-4. DRAT/LRAT recheck, bank chain re-verification, generator reruns.
 5. Lean build and axiom-budget confirmation, then ledger assembly.
 
 ## What this campaign does not establish
@@ -270,6 +403,14 @@ moves no spine anchor.
 
 A Tier 2a pass confirms the identity a certificate states; it does not
 establish that the identity is the correct obligation for its Lean consumer.
+A Tier 2c pass confirms that a stored refutation checks and that a fresh solver
+run reaches the same verdict on the same CNF; it does not establish that the
+CNF encodes the intended combinatorial claim. `drat-trim` is a precheck, not a
+kernel: the Lean-side fact still needs the compact-RUP replay. There is no
+`lrat-check` or `cake_lpr` on this machine, so LRAT is checked by `drat-trim`
+and by Lean's kernel through the RUP ingress, not by a second LRAT checker.
+A Tier 2d pass confirms that the banks rebuild to their frozen digests from
+current source; it does not establish that those digests are the right ones.
 Lean admits each certificate by `native_decide`, so the Lean-side fact rests on
 the approved `Lean.trustCompiler` axiom, not on the kernel. And 34 surplus Lean
 modules remain outside the transcription check while the term-sharded emitter

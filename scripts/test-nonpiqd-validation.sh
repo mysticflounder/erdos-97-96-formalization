@@ -26,11 +26,16 @@ PYTHON_FILES=(
   scripts/classify_writer_fields.py
   scripts/recheck_algebraic_certificates.py
   scripts/recheck_inventory_certificates.py
+  scripts/recheck_solver_verdicts.py
+  scripts/verify_bank_chain_pins.py
   scripts/verify_lean_transcription.py
+  scripts/_bank_chain_pin_control.py
   scripts/test_audit_nonpiqd_custody.py
   scripts/test_classify_writer_fields.py
   scripts/test_recheck_algebraic_certificates.py
   scripts/test_recheck_inventory_certificates.py
+  scripts/test_recheck_solver_verdicts.py
+  scripts/test_verify_bank_chain_pins.py
   scripts/test_verify_lean_transcription.py
 )
 
@@ -39,6 +44,8 @@ uv run --with pytest --with sympy pytest -q \
   scripts/test_classify_writer_fields.py \
   scripts/test_recheck_algebraic_certificates.py \
   scripts/test_recheck_inventory_certificates.py \
+  scripts/test_recheck_solver_verdicts.py \
+  scripts/test_verify_bank_chain_pins.py \
   scripts/test_verify_lean_transcription.py
 
 uv run --with ruff ruff check "${PYTHON_FILES[@]}"
