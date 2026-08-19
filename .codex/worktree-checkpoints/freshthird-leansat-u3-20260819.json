@@ -1,0 +1,19 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "freshthird-leansat-u3-20260819",
+  "owner": "u3-irsat-differential",
+  "base_head": "7f9f4774fa52908095ee53ec548595bae7bed02e",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/freshthird-leansat-u3-20260819.json",
+    "scratch/runs/freshthird-leansat-u3-20260819/lean_sat_ir_u3.py",
+    "scratch/runs/freshthird-leansat-u3-20260819/test_lean_sat_ir_u3.py"
+  ],
+  "durable_paths": [
+    "scratch/runs/freshthird-leansat-u3-20260819/report.md"
+  ],
+  "generated_roots": [
+    "scratch/runs/freshthird-leansat-u3-20260819/run-0001"
+  ],
+  "created_utc": "2026-08-19T20:20:00Z",
+  "manifest_sha256": "abcf1126e409493bb4108e09d4279fb5e76dd02b5d36e925a5322d7157b0a772"
+}
