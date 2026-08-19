@@ -2666,6 +2666,58 @@ comment the style linter asks for, so the file's warning count returns to its
 the authenticated membership prefix; it does not by itself establish terminal
 UNSAT for any successor formula.
 
+### Arm canary v14 and the v26 formula identity (2026-08-18)
+
+The 22nd bank is now chained into the exact-12 arm static canary.  The edit is
+the 21st bank's treatment (`898fbd78`) moved one link along: the core-pair
+family installs after the center-exchange family at arm cell 6 with the
+center-exchange bank as its parent, and the module's run and job schemas move
+to `…canary_run.v14` / `…canary_job.v14`.  Fourteen insertion sites and the
+PIQD project name (`p97-exact12-next-row-arm-static-cell6-v14-r1`) carry the
+change; the transform and its identity stamping are recorded as replayable
+scripts with `--verify` modes
+(`scratch/rigid221-sourceheavy-anchor/core-pair/chain_canary_v14.py` and
+`pin_v26_identity.py`).
+
+The v26 identity was measured, not assumed.  A discovery harness
+(`discover_v26_identity.py`) replaced each pinned constant with a sentinel that
+compares equal to anything, recorded what the canary actually computes, and
+wrote nothing.  The result:
+
+| stage | variables | clauses | DIMACS sha256 |
+|---|---|---|---|
+| membership prefix | 47,211 | 703,533 | `415be05f…` |
+| post-arm | 47,211 | 704,400 | `8f072d08…` |
+| final | 47,211 | 704,481 | `82be5127…` |
+
+Two invariants survive the bank: the named-arm suffix still adds exactly 867
+clauses and the source-order bank exactly 81, both byte-identical to v25.  The
+prefix figures are also an independent cross-check.  47,211 variables and
+703,533 clauses were predicted by the bank's own live-chain compile, which
+composes the formula by a different path from the canary's materialization, and
+the two agree exactly.
+
+Validation: 34 focused tests green across the canary, PIQD-adapter, and frozen
+v25-validator suites, against a 10-test canary baseline taken after the
+manifest narrowing.  Two separate processes materialized the formula and agreed
+on all three digests.  The frozen v25 validator keeps its v13 schemas and its
+`ef94a6d4` prefix pin, and the 21st bank keeps the same prefix pin, because both
+attest the run that already happened.  `ruff` is clean on all four changed
+production files.
+
+Extending the canary's test suite surfaced one fact about the narrowed
+manifests worth recording.  The canary's job binds every source each installed
+bank reaches, and the core-pair bank reaches
+`ExactTwelveRigid221CorePairBoundaryOrderBridge.lean`, which is not one of its
+two `LEAN_ROOT_MODULES`.  The kernel mine found it because a root-module
+declaration uses a declaration it supplies.  The hand-maintained `SOURCE_PATHS`
+tuple in the canary still lists only the two root modules, exactly as the 21st
+bank's treatment does; the reached set arrives through the bank's own
+`_source_paths`.
+
+This is preparation only.  No canary launch, outcome validator, or solver wave
+is authorized by this commit.
+
 The card-at-least-13 adapter audit also rules out a tempting shortcut.  The
 pentagon residual does not supply a
 `LargeCapUniqueFiveSecondApexRadius`: in particular it has no
