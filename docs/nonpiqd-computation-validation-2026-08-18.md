@@ -1,6 +1,6 @@
 # Non-piqd computation validation campaign (2026-08-18)
 
-Status: Stages 1 to 4 complete. This document makes no mathematical
+Status: complete; all five stages are done. This document makes no mathematical
 closure claim.
 
 Almost all solver and census work now routes through the piqd daemon, which
@@ -185,10 +185,39 @@ which runs as a subprocess so its monkeypatched builders cannot leak back.
 
 Durable output: `docs/audits/2026-08-19-nonpiqd-bank-chain-pins.json`.
 
+### `scripts/build_computation_validation_ledger.py` — the ledger
+
+```bash
+uv run python scripts/build_computation_validation_ledger.py \
+  --custody <run1>/artifacts/custody-survey.jsonl \
+  --provenance <run1>/artifacts/field-provenance.jsonl \
+  --algebraic docs/audits/2026-08-18-nonpiqd-algebraic-recheck.jsonl \
+  --inventory docs/audits/2026-08-18-nonpiqd-inventory-recheck.json \
+  --transcription docs/audits/2026-08-18-nonpiqd-lean-transcription.json \
+  --solver-verdicts docs/audits/2026-08-19-nonpiqd-solver-verdicts.jsonl \
+  --bank-chain docs/audits/2026-08-19-nonpiqd-bank-chain-pins.json \
+  --lean-build <run4>/events/lake-build.log \
+  --conformance <run4>/events/conformance.log \
+  --out-json certificates/reports/nonpiqd_validation_ledger.json \
+  --out-md docs/audits/2026-08-18-nonpiqd-computation-validation-ledger.md
+```
+
+The only writer of both ledger files; neither is hand-edited, so no conclusion
+can be written in and then cited back. Three invariants abort the build rather
+than shipping an overstated row: a row with no Tier 2 result may not exceed
+`DIAGNOSTIC-ONLY`; `PROVEN-PRODUCER` needs a passing Tier 2 re-derivation *and*
+a named Lean consumer, and `CLOSED-TO-RESIDUAL` needs a named residual; no row
+may be `KERNEL-CLOSED`. A Tier 2 failure becomes `DIAGNOSTIC-ONLY` with a
+`reexecution_failure` residual — never a quarantine, never a deletion.
+
+Tier 2c evidence is filed against the tracked records that declare a proof and
+against each cell's tracked artifacts, not against the CNFs and proofs
+themselves, which are untracked and named by hash.
+
 ### `scripts/test-nonpiqd-validation.sh` — lane runner
 
 Pinned environment, explicit file list, `uv run pytest -q`, then `ruff check`
-and `ruff format --check`. 161 tests.
+and `ruff format --check`. 183 tests.
 
 ## Corrections this campaign establishes
 
@@ -392,9 +421,33 @@ by import aliasing and cannot drift apart. Reading only integer literals misses
 `EXPECTED_PARENT_CLAUSES = FAMILY_FINAL_CLAUSES` in
 `exact12_three_triad_membership_bank` and reports two heads where there is one.
 
-## Remaining stages
+### Tier 2f — the Lean side
 
-5. Lean build and axiom-budget confirmation, then ledger assembly.
+`./scripts/lake-build.sh` completes successfully over 12,007 jobs with no
+`sorryAx` in the log. `comparator/check-conformance.sh` reports
+`OK [core]: 24 theorems, axioms ⊆ {Classical.choice, propext, Quot.sound}` and
+`OK [native]: 6 theorems, axioms ⊆ {Classical.choice, Lean.ofReduceBool,
+Lean.trustCompiler, propext, Quot.sound}`, then the closing
+`OK: all comparator theorems build and respect their tier's axiom budget.`
+
+The assembler matches those three lines rather than scanning for the word
+"fail": a clean conformance run emits a Lean linter message reading "The `ring`
+tactic failed to close the goal", and a negative scan reads that as a failure.
+
+### The ledger
+
+22,340 rows. 304 carry a Tier 2 result — 254 at 2a, 3 at 2b, 23 at 2c, 13 at
+2d, 11 at 2e. 254 rows reach `PROVEN-PRODUCER`, every one of them a Lean-named
+algebraic certificate whose identity was re-derived independently; all 22,086
+others are `DIAGNOSTIC-ONLY`. No row is `KERNEL-CLOSED`. 199 rows carry the
+`CERT001_TERMINAL_LOCAL` boundary flag and the gap census excludes them by
+construction.
+
+The residual on every `PROVEN-PRODUCER` row is the same and is stated in full
+in the JSON: the identity is confirmed as written, that it is the correct
+obligation for its Lean consumer is not established, and Lean admits it by
+`native_decide` under the approved `Lean.trustCompiler` axiom rather than the
+kernel.
 
 ## What this campaign does not establish
 

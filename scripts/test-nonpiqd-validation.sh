@@ -23,6 +23,7 @@ export UV_THREADPOOL_SIZE=1
 
 PYTHON_FILES=(
   scripts/audit_nonpiqd_custody.py
+  scripts/build_computation_validation_ledger.py
   scripts/classify_writer_fields.py
   scripts/recheck_algebraic_certificates.py
   scripts/recheck_inventory_certificates.py
@@ -31,6 +32,7 @@ PYTHON_FILES=(
   scripts/verify_lean_transcription.py
   scripts/_bank_chain_pin_control.py
   scripts/test_audit_nonpiqd_custody.py
+  scripts/test_build_computation_validation_ledger.py
   scripts/test_classify_writer_fields.py
   scripts/test_recheck_algebraic_certificates.py
   scripts/test_recheck_inventory_certificates.py
@@ -41,6 +43,7 @@ PYTHON_FILES=(
 
 uv run --with pytest --with sympy pytest -q \
   scripts/test_audit_nonpiqd_custody.py \
+  scripts/test_build_computation_validation_ledger.py \
   scripts/test_classify_writer_fields.py \
   scripts/test_recheck_algebraic_certificates.py \
   scripts/test_recheck_inventory_certificates.py \
