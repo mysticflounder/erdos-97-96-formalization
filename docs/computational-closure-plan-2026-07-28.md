@@ -12974,6 +12974,52 @@ common-only query remains `source_total = false` and can only diagnose the
 common-radius leaf; it cannot by itself close FirstNonHit or provide a
 finite-to-universal lift.
 
+#### 13.24.1.37 Current-source producer wave and synchronization falsification (2026-08-19)
+
+The current source-complete exact-three carrier wave was rerun from the
+authenticated phase-ingress receipt.  All four intrinsic boundary-index cells
+returned `SAT_ABSTRACTION`; the static runner validated every complete DIMACS
+assignment and accepted every assignment through its independent source-total
+replay.  The standalone historical miner could not replay the v4 result
+because its constraint-group contract predates the source-complete group, so
+its replay check was skipped only after the runner's complete-model and
+source-semantic checks had passed.
+
+A second model was then enumerated in every cell by blocking the complete
+first Boolean assignment.  All four second models were SAT, had different
+model signatures, passed the source-complete clause validator, and were
+accepted by sequential fresh-session source replay.  Across the eight
+replayed models, boundary-source membership in the pinned fan was always
+false, but pinned-fan/Q overlap varied between zero and one and the number of
+Q-fiber sources in the fan varied between zero and one.  The only stable
+Q-row overlap was one point with the boundary source's own blocker row.  That
+point is already forced by the source packet and the distinct-center
+two-circle bound, so it is not a new producer.
+
+Two bounded synchronization probes sharpened the route.  Forcing boundary
+source/fan incidence was SAT in all four cells.  Forcing that incidence
+together with two distinct Q-fiber sources in the fan was UNSAT in all four
+source-complete cells.  The second probe used selectorized finite choices and
+has no DRAT certificate or universal lift; it is discovery evidence only.
+It shows that the existing positive synchronization consumer is not itself a
+producer route for the current source theory.  Repeating the same positive
+synchronization or same-cap wave is therefore not authorized.
+
+The next exact Lean-facing target is not another G–Q bridge.  The source-clean
+bridge already exists: `freshThird_commonRadius_qReducedIngress` produces the
+reduced interaction packet, and
+`FirstNonHitCommonRadiusReducedFinitePayload.ofSource` packages the independent
+`G` witness into the complete finite payload while keeping it distinct from
+the named canonical surface.  Both adapters build with the standard three
+axioms.  The missing target is the universal finite impossibility contract
+`FirstNonHitCommonRadiusFinitePayloadImpossible` consumed by
+`false_of_freshThird_firstNonHit_commonRadius_of_finitePayloadImpossible`.
+Its source-faithful finite producer must expose one of a named-endpoint
+one-sided omission transfer, a distinct-cap third-incidence configuration, or
+a cyclic-order/Kalmanson configuration.  No finite signature, bounded
+SAT/UNSAT result, or anonymous escape producer is a universal producer, and
+this checkpoint closes no load-bearing `sorry`.
+
 ## 13.25 Exact-17 cap-nine all-core replay correction (2026-08-08)
 
 The source-faithful exact-17 cap-nine Rigid221 exporter previously admitted an
