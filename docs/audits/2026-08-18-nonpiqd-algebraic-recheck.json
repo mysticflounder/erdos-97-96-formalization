@@ -1,0 +1,61 @@
+{
+  "arms_length": [
+    {
+      "command": [
+        "/Users/adam/projects/math-projects/erdos-97-96-formalization/.venv/bin/python3",
+        "/Users/adam/projects/math-projects/erdos-97-96-formalization/scripts/endpoint-certificate.py",
+        "--check",
+        "/Users/adam/projects/math-projects/erdos-97-96-formalization/certificates/endpoint",
+        "--quiet"
+      ],
+      "returncode": 0,
+      "root": "certificates/endpoint",
+      "seconds": 10.442,
+      "stderr_tail": "",
+      "stdout_tail": "checked 117 certificate files",
+      "timed_out": false
+    },
+    {
+      "root": "certificates/surplus/relaxed_split_singleton",
+      "skipped": "endpoint-certificate.py --check rejects schema 'pinned_surplus_relaxed_split_certificate.v1'"
+    }
+  ],
+  "certificates": {
+    "by_record_schema": {
+      "endpoint_certificate.v1": 117,
+      "pinned_surplus_relaxed_split_certificate.v1": 135
+    },
+    "lean_named": 252,
+    "total": 252
+  },
+  "declared_false_but_holds": 135,
+  "declared_python_exact_polynomial": {
+    "False": 135,
+    "True": 117
+  },
+  "failures": [],
+  "independent_leg": {
+    "engine": "sympy-poly-QQ",
+    "verdicts": {
+      "HOLDS": 252
+    }
+  },
+  "jobs": 8,
+  "lean_named_certificate_tokens": 254,
+  "leg_disagreements": [],
+  "mutation_control_rejects": {
+    "n_mutants": 504,
+    "n_rejected": 504
+  },
+  "mutation_control_skipped": [],
+  "mutation_control_valid": true,
+  "producer_leg": {
+    "engine": "endpoint_certificate_tool.check_identity",
+    "verdicts": {
+      "HOLDS": 252
+    }
+  },
+  "repo_head": "d5c8956da46fc2e47f41d0bad1bec1e906f3817f",
+  "schema": "nonpiqd-algebraic-recheck-summary/v1",
+  "total_seconds": 2331.817
+}

@@ -1,0 +1,452 @@
+{
+  "broken_families": [
+    "surplus_relaxed_split_singleton"
+  ],
+  "byte_identical_families": [
+    "endpoint"
+  ],
+  "families": [
+    {
+      "all_steps_succeeded": true,
+      "committed_lean_dir": "lean/Erdos9796Proof/P97/EndpointCertificate/Patterns",
+      "diff": {
+        "byte_identical": true,
+        "committed_files": 219,
+        "differing": [],
+        "differing_count": 0,
+        "emitted_files": 219,
+        "identical": 219,
+        "ignored_committed": [],
+        "only_committed": [],
+        "only_committed_count": 0,
+        "only_emitted": [],
+        "only_emitted_count": 0
+      },
+      "family": "endpoint",
+      "json_dir": "certificates/endpoint",
+      "steps": [
+        {
+          "command": [
+            "scripts/endpoint-certificate.py",
+            "--emit-lean-dir",
+            "certificates/endpoint",
+            "--lean-out-dir",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/runs/nonpiqd-custody-tier0-20260818/run-20260819T014500Z/tmp/lean-emit/endpoint",
+            "--lean-aggregate-out",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/runs/nonpiqd-custody-tier0-20260818/run-20260819T014500Z/tmp/lean-emit/endpoint/All.lean",
+            "--lean-module-root",
+            "Erdos9796Proof.P97.EndpointCertificate.Patterns",
+            "--quiet"
+          ],
+          "returncode": 0,
+          "seconds": 28.589,
+          "stderr_tail": "",
+          "timed_out": false
+        },
+        {
+          "command": [
+            "scripts/endpoint-certificate.py",
+            "--emit-lean-term-sharded",
+            "certificates/endpoint/ep_Q1_008.json",
+            "--lean-out",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/runs/nonpiqd-custody-tier0-20260818/run-20260819T014500Z/tmp/lean-emit/endpoint/EpQ1008.lean",
+            "--lean-shard-out-dir",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/runs/nonpiqd-custody-tier0-20260818/run-20260819T014500Z/tmp/lean-emit/endpoint/EpQ1008TermShards",
+            "--block-size",
+            "100",
+            "--quiet"
+          ],
+          "returncode": 0,
+          "seconds": 3.525,
+          "stderr_tail": "",
+          "timed_out": false
+        },
+        {
+          "command": [
+            "scripts/endpoint-certificate.py",
+            "--emit-lean-term-sharded",
+            "certificates/endpoint/ep_Q1_009.json",
+            "--lean-out",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/runs/nonpiqd-custody-tier0-20260818/run-20260819T014500Z/tmp/lean-emit/endpoint/EpQ1009.lean",
+            "--lean-shard-out-dir",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/runs/nonpiqd-custody-tier0-20260818/run-20260819T014500Z/tmp/lean-emit/endpoint/EpQ1009TermShards",
+            "--block-size",
+            "100",
+            "--quiet"
+          ],
+          "returncode": 0,
+          "seconds": 2.221,
+          "stderr_tail": "",
+          "timed_out": false
+        },
+        {
+          "command": [
+            "scripts/endpoint-certificate.py",
+            "--emit-lean-term-sharded",
+            "certificates/endpoint/ep_Q1_028.json",
+            "--lean-out",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/runs/nonpiqd-custody-tier0-20260818/run-20260819T014500Z/tmp/lean-emit/endpoint/EpQ1028.lean",
+            "--lean-shard-out-dir",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/runs/nonpiqd-custody-tier0-20260818/run-20260819T014500Z/tmp/lean-emit/endpoint/EpQ1028TermShards",
+            "--block-size",
+            "100",
+            "--quiet"
+          ],
+          "returncode": 0,
+          "seconds": 0.399,
+          "stderr_tail": "",
+          "timed_out": false
+        },
+        {
+          "command": [
+            "scripts/endpoint-certificate.py",
+            "--emit-lean-term-sharded",
+            "certificates/endpoint/ep_Q2_002.json",
+            "--lean-out",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/runs/nonpiqd-custody-tier0-20260818/run-20260819T014500Z/tmp/lean-emit/endpoint/EpQ2002.lean",
+            "--lean-shard-out-dir",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/runs/nonpiqd-custody-tier0-20260818/run-20260819T014500Z/tmp/lean-emit/endpoint/EpQ2002TermShards",
+            "--block-size",
+            "100",
+            "--quiet"
+          ],
+          "returncode": 0,
+          "seconds": 0.996,
+          "stderr_tail": "",
+          "timed_out": false
+        },
+        {
+          "command": [
+            "scripts/endpoint-certificate.py",
+            "--emit-lean-term-sharded",
+            "certificates/endpoint/ep_Q2_008.json",
+            "--lean-out",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/runs/nonpiqd-custody-tier0-20260818/run-20260819T014500Z/tmp/lean-emit/endpoint/EpQ2008.lean",
+            "--lean-shard-out-dir",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/runs/nonpiqd-custody-tier0-20260818/run-20260819T014500Z/tmp/lean-emit/endpoint/EpQ2008TermShards",
+            "--block-size",
+            "100",
+            "--quiet"
+          ],
+          "returncode": 0,
+          "seconds": 2.183,
+          "stderr_tail": "",
+          "timed_out": false
+        },
+        {
+          "command": [
+            "scripts/endpoint-certificate.py",
+            "--emit-lean-term-sharded",
+            "certificates/endpoint/ep_Q2_019.json",
+            "--lean-out",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/runs/nonpiqd-custody-tier0-20260818/run-20260819T014500Z/tmp/lean-emit/endpoint/EpQ2019.lean",
+            "--lean-shard-out-dir",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/runs/nonpiqd-custody-tier0-20260818/run-20260819T014500Z/tmp/lean-emit/endpoint/EpQ2019TermShards",
+            "--block-size",
+            "100",
+            "--quiet"
+          ],
+          "returncode": 0,
+          "seconds": 0.544,
+          "stderr_tail": "",
+          "timed_out": false
+        },
+        {
+          "command": [
+            "scripts/endpoint-certificate.py",
+            "--emit-lean-term-sharded",
+            "certificates/endpoint/ep_Q2_020.json",
+            "--lean-out",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/runs/nonpiqd-custody-tier0-20260818/run-20260819T014500Z/tmp/lean-emit/endpoint/EpQ2020.lean",
+            "--lean-shard-out-dir",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/runs/nonpiqd-custody-tier0-20260818/run-20260819T014500Z/tmp/lean-emit/endpoint/EpQ2020TermShards",
+            "--block-size",
+            "100",
+            "--quiet"
+          ],
+          "returncode": 0,
+          "seconds": 0.441,
+          "stderr_tail": "",
+          "timed_out": false
+        },
+        {
+          "command": [
+            "scripts/endpoint-certificate.py",
+            "--emit-lean-term-sharded",
+            "certificates/endpoint/ep_Q2_024.json",
+            "--lean-out",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/runs/nonpiqd-custody-tier0-20260818/run-20260819T014500Z/tmp/lean-emit/endpoint/EpQ2024.lean",
+            "--lean-shard-out-dir",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/runs/nonpiqd-custody-tier0-20260818/run-20260819T014500Z/tmp/lean-emit/endpoint/EpQ2024TermShards",
+            "--block-size",
+            "100",
+            "--quiet"
+          ],
+          "returncode": 0,
+          "seconds": 1.774,
+          "stderr_tail": "",
+          "timed_out": false
+        },
+        {
+          "command": [
+            "scripts/endpoint-certificate.py",
+            "--emit-lean-term-sharded",
+            "certificates/endpoint/ep_Q2_041.json",
+            "--lean-out",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/runs/nonpiqd-custody-tier0-20260818/run-20260819T014500Z/tmp/lean-emit/endpoint/EpQ2041.lean",
+            "--lean-shard-out-dir",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/runs/nonpiqd-custody-tier0-20260818/run-20260819T014500Z/tmp/lean-emit/endpoint/EpQ2041TermShards",
+            "--block-size",
+            "100",
+            "--quiet"
+          ],
+          "returncode": 0,
+          "seconds": 2.961,
+          "stderr_tail": "",
+          "timed_out": false
+        },
+        {
+          "command": [
+            "scripts/endpoint-certificate.py",
+            "--emit-lean-term-sharded",
+            "certificates/endpoint/ep_Q2_054.json",
+            "--lean-out",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/runs/nonpiqd-custody-tier0-20260818/run-20260819T014500Z/tmp/lean-emit/endpoint/EpQ2054.lean",
+            "--lean-shard-out-dir",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/runs/nonpiqd-custody-tier0-20260818/run-20260819T014500Z/tmp/lean-emit/endpoint/EpQ2054TermShards",
+            "--block-size",
+            "100",
+            "--quiet"
+          ],
+          "returncode": 0,
+          "seconds": 0.826,
+          "stderr_tail": "",
+          "timed_out": false
+        },
+        {
+          "command": [
+            "scripts/endpoint-certificate.py",
+            "--emit-lean-term-sharded",
+            "certificates/endpoint/ep_Q2_064.json",
+            "--lean-out",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/runs/nonpiqd-custody-tier0-20260818/run-20260819T014500Z/tmp/lean-emit/endpoint/EpQ2064.lean",
+            "--lean-shard-out-dir",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/runs/nonpiqd-custody-tier0-20260818/run-20260819T014500Z/tmp/lean-emit/endpoint/EpQ2064TermShards",
+            "--block-size",
+            "100",
+            "--quiet"
+          ],
+          "returncode": 0,
+          "seconds": 0.387,
+          "stderr_tail": "",
+          "timed_out": false
+        },
+        {
+          "command": [
+            "scripts/endpoint-certificate.py",
+            "--emit-lean-term-sharded",
+            "certificates/endpoint/ep_Q2_074.json",
+            "--lean-out",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/runs/nonpiqd-custody-tier0-20260818/run-20260819T014500Z/tmp/lean-emit/endpoint/EpQ2074.lean",
+            "--lean-shard-out-dir",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/runs/nonpiqd-custody-tier0-20260818/run-20260819T014500Z/tmp/lean-emit/endpoint/EpQ2074TermShards",
+            "--block-size",
+            "100",
+            "--quiet"
+          ],
+          "returncode": 0,
+          "seconds": 0.399,
+          "stderr_tail": "",
+          "timed_out": false
+        }
+      ],
+      "term_sharded_ids": [
+        "ep_Q1_008",
+        "ep_Q1_009",
+        "ep_Q1_028",
+        "ep_Q2_002",
+        "ep_Q2_008",
+        "ep_Q2_019",
+        "ep_Q2_020",
+        "ep_Q2_024",
+        "ep_Q2_041",
+        "ep_Q2_054",
+        "ep_Q2_064",
+        "ep_Q2_074"
+      ]
+    },
+    {
+      "all_steps_succeeded": false,
+      "blocked": {
+        "missing_producer_symbols": [
+          {
+            "call_site_line": 228,
+            "guarded_by_attributeerror": true,
+            "symbol": "run_singular_script"
+          },
+          {
+            "call_site_line": 1549,
+            "guarded_by_attributeerror": false,
+            "symbol": "add_poly_many"
+          },
+          {
+            "call_site_line": 1551,
+            "guarded_by_attributeerror": false,
+            "symbol": "singleton_poly"
+          }
+        ],
+        "stderr_tail": "\n    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^\n        args.emit_relaxed_split_lean_dir,\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    ...<4 lines>...\n        args.lean_shard_threshold,\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\n  File \"/Users/adam/projects/math-projects/erdos-97-96-formalization/scripts/pinned-surplus-certificate.py\", line 1799, in emit_relaxed_split_lean_dir\n    emit_relaxed_split_lean_term_sharded_certificate(\n    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^\n        cert_path,\n        ^^^^^^^^^^\n    ...<4 lines>...\n        lean_name,\n        ^^^^^^^^^^\n    )\n    ^\n  File \"/Users/adam/projects/math-projects/erdos-97-96-formalization/scripts/pinned-surplus-certificate.py\", line 1573, in emit_relaxed_split_lean_term_sharded_certificate\n    collect_block_range(gen_index, terms, start, stop)\n    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/adam/projects/math-projects/erdos-97-96-formalization/scripts/pinned-surplus-certificate.py\", line 1549, in collect_block_range\n    coefficient_block = endpoint_tool.add_poly_many(\n                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: module 'endpoint_certificate_tool' has no attribute 'add_poly_many'",
+        "unguarded_missing_symbols": [
+          {
+            "call_site_line": 1549,
+            "guarded_by_attributeerror": false,
+            "symbol": "add_poly_many"
+          },
+          {
+            "call_site_line": 1551,
+            "guarded_by_attributeerror": false,
+            "symbol": "singleton_poly"
+          }
+        ]
+      },
+      "committed_lean_dir": "lean/Erdos9796Proof/P97/SurplusCertificate/RelaxedSplit",
+      "diff": {
+        "byte_identical": false,
+        "committed_files": 390,
+        "differing": [],
+        "differing_count": 0,
+        "emitted_files": 11,
+        "identical": 11,
+        "ignored_committed": [
+          "Bank.lean",
+          "Payload.lean"
+        ],
+        "only_committed": [
+          "All.lean",
+          "R002UeqvR002YNYN.lean",
+          "R002UeqvR002YNYNTermShards/R002UeqvR002YNYNBlockShard000.lean",
+          "R002UeqvR002YNYNTermShards/R002UeqvR002YNYNBlockShard001.lean",
+          "R002UeqvR002YNYY.lean",
+          "R002UeqvR002YYN.lean",
+          "R002UeqvR002YYY.lean",
+          "R003UeqvR003NN.lean",
+          "R003UeqvR003NNGenerators.lean",
+          "R003UeqvR003NNTermShards/R003UeqvR003NNBlockShard000.lean",
+          "R003UeqvR003NNTermShards/R003UeqvR003NNBlockShard001.lean",
+          "R003UeqvR003NNTermShards/R003UeqvR003NNBlockShard002.lean",
+          "R003UeqvR003NY.lean",
+          "R003UeqvR003NYGenerators.lean",
+          "R003UeqvR003NYTermShards/R003UeqvR003NYBlockShard000.lean",
+          "R003UeqvR003NYTermShards/R003UeqvR003NYBlockShard001.lean",
+          "R003UeqvR003NYTermShards/R003UeqvR003NYBlockShard002.lean",
+          "R003UeqvR003YN.lean",
+          "R003UeqvR003YY.lean",
+          "R003UeqvR003YYGenerators.lean",
+          "R003UeqvR003YYTermShards/R003UeqvR003YYBlockShard000.lean",
+          "R003UeqvR003YYTermShards/R003UeqvR003YYBlockShard001.lean",
+          "R003UeqvR003YYTermShards/R003UeqvR003YYBlockShard002.lean",
+          "R003UeqvR003YYTermShards/R003UeqvR003YYBlockShard003.lean",
+          "R003UeqvR003YYTermShards/R003UeqvR003YYBlockShard004.lean",
+          "R004UeqvR004NNN.lean",
+          "R004UeqvR004NNY.lean",
+          "R004UeqvR004NYN.lean",
+          "R004UeqvR004NYY.lean",
+          "R004UeqvR004YNN.lean",
+          "R004UeqvR004YNY.lean",
+          "R004UeqvR004YYN.lean",
+          "R004UeqvR004YYY.lean",
+          "R005UeqvR005NNNN.lean",
+          "R005UeqvR005NNNNGenerators.lean",
+          "R005UeqvR005NNNNTermShards/R005UeqvR005NNNNBlockShard000.lean",
+          "R005UeqvR005NNNNTermShards/R005UeqvR005NNNNBlockShard001.lean",
+          "R005UeqvR005NNNNTermShards/R005UeqvR005NNNNBlockShard002.lean",
+          "R005UeqvR005NNNY.lean",
+          "R005UeqvR005NNY.lean"
+        ],
+        "only_committed_count": 379,
+        "only_emitted": [],
+        "only_emitted_count": 0
+      },
+      "family": "surplus_relaxed_split_singleton",
+      "json_dir": "certificates/surplus/relaxed_split_singleton",
+      "row_replay": {
+        "absent_from_committed_tree": [],
+        "blocked_stems": [
+          "R002UeqvR002YNYN",
+          "R003UeqvR003NN",
+          "R003UeqvR003NY",
+          "R003UeqvR003YY",
+          "R005UeqvR005NNNN",
+          "R005UeqvR005NNY",
+          "R005UeqvR005NYN",
+          "R005UeqvR005YNY",
+          "R006UeqvR006",
+          "R007UeqvR007NY",
+          "R009UeqvR009NNNNN",
+          "R009UeqvR009NNNNY",
+          "R009UeqvR009NNNYN",
+          "R009UeqvR009NYNYN",
+          "R009UeqvR009NYYNY",
+          "R009UeqvR009NYYYY",
+          "R009UeqvR009YNNNN",
+          "R009UeqvR009YYYNN",
+          "R010UeqvR010NYN",
+          "R010UeqvR010NYY",
+          "R010UeqvR010YNN",
+          "R010UeqvR010YY",
+          "R011UeqvR011NNNN",
+          "R011UeqvR011NNNY",
+          "R011UeqvR011YYY",
+          "R013UeqvR013NNYN",
+          "R013UeqvR013NNYY",
+          "R013UeqvR013NYYN",
+          "R013UeqvR013YNNN",
+          "R013UeqvR013YNNY",
+          "R013UeqvR013YYNYN",
+          "R013UeqvR013YYYN",
+          "R013UeqvR013YYYY",
+          "R014UeqvR014YY"
+        ],
+        "blocked_term_sharded": 34,
+        "byte_identical": 101,
+        "differing": [],
+        "note": "direct-branch replay, bypassing the CLI, to bound how much of the bank is still reproducible from its JSON",
+        "rows_total": 135,
+        "shard_threshold": 40000
+      },
+      "steps": [
+        {
+          "command": [
+            "scripts/pinned-surplus-certificate.py",
+            "--emit-relaxed-split-lean-dir",
+            "certificates/surplus/relaxed_split_singleton",
+            "--lean-out-dir",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/runs/nonpiqd-custody-tier0-20260818/run-20260819T014500Z/tmp/lean-emit/surplus",
+            "--lean-aggregate-out",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/runs/nonpiqd-custody-tier0-20260818/run-20260819T014500Z/tmp/lean-emit/surplus/All.lean",
+            "--block-size",
+            "100",
+            "--lean-shard-threshold",
+            "40000"
+          ],
+          "returncode": 1,
+          "seconds": 0.21,
+          "stderr_tail": "\n    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^\n        args.emit_relaxed_split_lean_dir,\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    ...<4 lines>...\n        args.lean_shard_threshold,\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\n  File \"/Users/adam/projects/math-projects/erdos-97-96-formalization/scripts/pinned-surplus-certificate.py\", line 1799, in emit_relaxed_split_lean_dir\n    emit_relaxed_split_lean_term_sharded_certificate(\n    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^\n        cert_path,\n        ^^^^^^^^^^\n    ...<4 lines>...\n        lean_name,\n        ^^^^^^^^^^\n    )\n    ^\n  File \"/Users/adam/projects/math-projects/erdos-97-96-formalization/scripts/pinned-surplus-certificate.py\", line 1573, in emit_relaxed_split_lean_term_sharded_certificate\n    collect_block_range(gen_index, terms, start, stop)\n    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/adam/projects/math-projects/erdos-97-96-formalization/scripts/pinned-surplus-certificate.py\", line 1549, in collect_block_range\n    coefficient_block = endpoint_tool.add_poly_many(\n                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: module 'endpoint_certificate_tool' has no attribute 'add_poly_many'",
+          "timed_out": false
+        }
+      ]
+    }
+  ],
+  "out_root": "scratch/runs/nonpiqd-custody-tier0-20260818/run-20260819T014500Z/tmp/lean-emit",
+  "repo_head": "d5c8956da46fc2e47f41d0bad1bec1e906f3817f",
+  "schema": "nonpiqd-lean-transcription/v1",
+  "write_guard": {
+    "after": "02b45354435f73dff88c5f9d2a6484550a2974348d3d489a3066009169fd2632",
+    "before": "02b45354435f73dff88c5f9d2a6484550a2974348d3d489a3066009169fd2632",
+    "paths": [
+      "lean",
+      "certificates"
+    ],
+    "unchanged": true
+  }
+}

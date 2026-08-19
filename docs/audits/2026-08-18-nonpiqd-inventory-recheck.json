@@ -1,0 +1,89 @@
+{
+  "certificates": [
+    "certificates/multi_center/reports/l2_class_inventory_certificate.json",
+    "certificates/multi_center/reports/l2_profile_class_incidence_certificate.json"
+  ],
+  "mutation_control_detail": [
+    {
+      "expected_failures": [
+        "class_key_sha256_recomputes",
+        "class_key_length_matches",
+        "full_inventory_sha256_recomputes"
+      ],
+      "name": "class_key_tampered",
+      "observed_failures": [
+        "class_key_length_matches",
+        "class_key_sha256_recomputes",
+        "full_inventory_sha256_recomputes",
+        "terminal_inventory_sha256_recomputes"
+      ],
+      "rejected": true,
+      "target": "certificates/multi_center/reports/l2_class_inventory_certificate.json"
+    },
+    {
+      "expected_failures": [
+        "total_incidence_pairs_matches_sum"
+      ],
+      "name": "total_incidence_pairs_tampered",
+      "observed_failures": [
+        "total_incidence_pairs_matches_sum"
+      ],
+      "rejected": true,
+      "target": "certificates/multi_center/reports/l2_profile_class_incidence_certificate.json"
+    },
+    {
+      "expected_failures": [
+        "incidence_sha256_recomputes",
+        "class_ids_sha256_recomputes",
+        "class_count_matches_class_ids"
+      ],
+      "name": "incidence_class_ids_truncated",
+      "observed_failures": [
+        "class_count_matches_class_ids",
+        "class_ids_sha256_recomputes",
+        "incidence_sha256_recomputes",
+        "ranges_expand_to_class_ids"
+      ],
+      "rejected": true,
+      "target": "certificates/multi_center/reports/l2_profile_class_incidence_certificate.json"
+    },
+    {
+      "expected_failures": [
+        "byte_identical"
+      ],
+      "name": "replay_class_count_tampered",
+      "observed_failures": [
+        "byte_identical"
+      ],
+      "rejected": true,
+      "target": "certificates/multi_center/reports/l2_class_inventory_certificate.json"
+    }
+  ],
+  "mutation_control_rejects": {
+    "n_mutants": 4,
+    "n_rejected": 4
+  },
+  "mutation_control_valid": true,
+  "producer_replay": {
+    "byte_identical": [
+      "certificates/multi_center/reports/l2_class_inventory_certificate.json",
+      "certificates/multi_center/reports/l2_profile_class_incidence_certificate.json"
+    ],
+    "differing": [],
+    "note": null,
+    "ran": true,
+    "seconds": 2.84,
+    "sweep_dir": "census/multi_center/sweeps"
+  },
+  "relation_failures": [],
+  "relations": {
+    "by_scope": {
+      "internal": 36,
+      "source": 2
+    },
+    "holding": 38,
+    "total": 38
+  },
+  "repo_head": "d5c8956da46fc2e47f41d0bad1bec1e906f3817f",
+  "schema": "nonpiqd-inventory-recheck-summary/v1"
+}
