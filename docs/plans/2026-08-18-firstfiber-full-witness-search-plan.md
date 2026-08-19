@@ -93,6 +93,12 @@ five-row lists, with their lengths and replay equalities.  This is the first
 complete source-to-bounded-replay theorem in the lane.  Its scope is still
 diagnostic: it supplies no finite upper bound on `D.A.card`, no coverage of
 unnamed points, and no metric-core alternative.
+The row-center namedness contract was then made explicit in `dc137462`:
+`rows_center_subset_namedSlots` is proved by the five source-row cases rather
+than inferred from the center list.  This removes the last row-center replay
+precondition from the packet encoding.  It does not change the main scope:
+there is still no full-carrier coverage theorem and no `MetricCoreAlternative`
+producer.
 The proof-blueprint index confirms this declaration is indexed but not yet
 spine-reachable: `TwoSourceFirstFiberCollision.lean` still contains a
 foreign-dirty, unverified replacement for the live `sorry` and does not import
