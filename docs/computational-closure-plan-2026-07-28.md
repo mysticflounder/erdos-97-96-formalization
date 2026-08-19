@@ -13020,6 +13020,78 @@ a cyclic-order/Kalmanson configuration.  No finite signature, bounded
 SAT/UNSAT result, or anonymous escape producer is a universal producer, and
 this checkpoint closes no load-bearing `sorry`.
 
+#### 13.24.1.38 Common-radius six-center packet and provenance wave (2026-08-19)
+
+The next source-faithful refinement was built from the existing
+`TwoSourceClosure.sixCenterDeletionSurvivalPacket_of_oneSided` producer.  It
+forced the source-pair one-sided arm and added the six `hasFourAfterDeleting`
+survivors plus pairwise distinctness of the six center indices.  The corrected
+v8 query has 93,342 variables and 642,714 clauses and returned `SAT` in 1.50
+seconds.  Its model selected `delete_two_keep_one`; the six-center packet
+survives, so this packet is not yet a contradiction.
+
+An initial v8 draft incorrectly encoded pairwise distinctness as disjointness
+of the two one-hot domains.  That draft returned a DRAT-verified `UNSAT`, but
+the proof was discarded because the CNF was over-constrained.  The corrected
+encoding forbids only equal index pairs and is the authoritative result.
+
+The v9 refinement added the source-clean collision-row provenance supplied by
+`SixSurvivorExactRowsBoundary.collisionRows_sourceProvenance`: both
+second-radius sources occur in the first collision row, the first-fiber row is
+the exact four-point set `{P₁, P₂, fresh₁, fresh₂}`, and the deleted point is
+absent from the two collision rows and surviving common-source row.  V9 has
+648,494 clauses and returned `SAT` in 1.43 seconds.  Its replayed model has
+deleted source 13, surviving common source 12, first-fiber row
+`[0,12,14,15]`, and second-radius row `[11,12,14,16]`.
+
+These results rule out the six-center packet and collision-row provenance as
+the missing producer.  The next source-produced object is
+`SixSurvivorU3ExactRadiusAuditObstruction`, which adds a fixed triple, an exact
+dangerous-radius class of cardinality three, and an escape-or-critical-shell
+witness.  Those fields are absent from `FirstNonHitSourceTotalFiniteAssignment`;
+they must be added through a dedicated U3 finite ingress or a Lean adapter
+before another SAT query can be called source-faithful.  V8/v9 are finite
+diagnostic results only and close no universal theorem or load-bearing
+`sorry`.
+
+#### 13.24.1.39 U3 exact-radius finite ingress (2026-08-19)
+
+The dedicated v10 ingress is now materialized under
+`scratch/runs/freshthird-common-sixpacket-v8-20260819/wave-0001/u3/`.
+It layers a finite projection of
+`SixSurvivorU3ExactRadiusAuditObstruction` over the corrected v9 packet.  The
+projection source-links `q` to the selected common source and `p` to that
+source's common blocker; selects eight distinct carrier points for
+`q,p,t1,t2,t3,u,a0,a1`; forces exactly three dangerous-radius points
+`t1,t2,t3`; and gives each of the six bounded audit centers an exact-four
+q-deleted or critical-shell row with the source-proved dangerous-circle
+distribution.  The existential obstruction selector records either an
+escaping q-deleted row or a critical-shell arm.
+
+The corrected instance has 93,751 variables and 728,527 clauses.  CaDiCaL and
+Z3 both return `SAT`.  One replayed model has `q=12`, `p=16`, dangerous triple
+`{1,2,3}`, frame points `u=9`, `a0=10`, `a1=4`, all six rows in the
+q-deleted mode, and an escaping row at center `u` with support `{0,1,2,4}`;
+point `0` is outside the bounded support `{1,2,3,4,9,10,12,16}`.  The model
+therefore confirms that the exact-radius obstruction survives this ingress;
+it does not produce a contradiction or a universal producer.
+
+Two earlier diagnostic drafts are discarded: one incorrectly paired unrelated
+support/base triples in the dangerous-circle clause, and one used the wrong
+polarity for the outside-support witness.  The SAT result reported here is
+from the corrected pointwise encoding.  The explicit omissions remain
+Euclidean equal-distance realization, critical-shell full-radius exactness,
+and dangerous-triple non-collinearity.  The next mathematical target is still
+a source-level canonical-row incidence, escape return/collision, or strict
+descent theorem; another Boolean expansion of the same U3 packet is not
+authorized by this result.
+
+The mandatory post-wave theorem mine is recorded in
+`u3/u3-theorem-mine.md`.  It found only the existing mixed-frame,
+escape-shift, and escape-cycle APIs; it found no new canonical-row incidence,
+blocker-fiber, return/collision, or strict-descent producer.  This is a
+negative mining result and closes no sorry.
+
 ## 13.25 Exact-17 cap-nine all-core replay correction (2026-08-08)
 
 The source-faithful exact-17 cap-nine Rigid221 exporter previously admitted an
