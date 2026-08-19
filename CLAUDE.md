@@ -78,6 +78,12 @@ in `generated_roots`.  Generated trees must use the registered layout
 `scratch/runs/<lane-id>/<run-id>/` (or the governed card-head run layout), never
 the repository root, `lean/`, or an ad hoc sibling of source files.
 
+Every declared `generated_roots` entry needs its own
+`run_manifest.json` (`worktree-run-manifest/v1`) before the report will pass,
+and that manifest's `base_head` must repeat the LANE CHECKPOINT's `base_head`,
+not the current `HEAD`.  The field records the lane base; the commit a run
+actually executed from belongs in the run's own record and in the closure plan.
+
 Run the read-only hygiene report at a natural checkpoint and before asking
 another agent to take over:
 
