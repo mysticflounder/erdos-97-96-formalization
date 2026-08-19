@@ -2718,6 +2718,54 @@ bank's treatment does; the reached set arrives through the bank's own
 This is preparation only.  No canary launch, outcome validator, or solver wave
 is authorized by this commit.
 
+### Immutable cell-6 v26 canary run (2026-08-18, user-authorized)
+
+One immutable cell-6 canary ran from exact-SHA detached worktree `553e033a`
+against PIQD project `p97-exact12-next-row-arm-static-cell6-v14-r1`, with
+output under the registered generated root
+`scratch/runs/exact12-rigid221-all-order-common-five/canary-v14-20260818/`.
+Discovery verdict SAT in 1.4 s over 32,990 decisions; classification
+`UNADMITTED_STRUCTURAL_SURVIVOR`; job `7f45a3e4…`, job record `fd5a31d2…`.
+The witness replayed on all five checks the canary makes — exact CNF,
+candidate, canonical static extension, added constraints, and named-deletion
+arm.  The solved `discovery.cnf` hashes to `82be5127…`, byte-identical to the
+pinned `EXPECTED_FINAL_DIMACS_SHA256`, so the formula the solver saw is the
+frozen v26 identity and not a drifted rebuild.  Evidence digests: survivor
+`eb6d9ad8…`, summary `d3e4f039…`.  As with v24 and v25, the workdir stays
+untracked; these digests are the durable record.
+
+The 22nd bank removed the v25 survivor.  The replacement is a genuinely
+different assignment (`334b1d58…`), not a minimal perturbation:
+
+| pair | rows identical |
+|---|---|
+| v24 vs v25 | 8 of 12 |
+| v24 vs v26 | 6 of 12 |
+| v25 vs v26 | 6 of 12 |
+
+That is the expected CEGAR outcome for this bank.  The v25 survivor was covered
+by exactly two cores on one label set and by no single core across all 48
+orders, which is the shape the core-pair family encodes, so the solver could no
+longer use that configuration and moved six of the twelve rows.
+
+The new survivor's structural certificate returns to stage
+`equality-three-triad-collision`, the v24 stage rather than the v25
+`equality-six-row-anchor-collision`, but on a different five-label core:
+`{a: 8, b: 10, c: 7, d: 5, e: 6}` against v24's `{a: 6, b: 9, c: 7, d: 11,
+e: 8}`.  Its minimal core is 4 whole row choices out of 12, a unique optimal
+subset found by exhaustive search in increasing cardinality over 794 subsets,
+with one side condition and maximum closure-path length 2.  Nogood
+`19170653…`.
+
+PROVEN by this run: the v26 formula is satisfiable, and the specific v25
+survivor no longer satisfies it.  NOT established: any terminal UNSAT for the
+arm, any aggregate arm coverage, or any Lean closure.  `terminal_proof_verified`
+is false; the `terminal_promotion_status` string in the summary is a carried
+field, not a claim about this run.  No 23rd bank, successor formula, canary, or
+solver wave is authorized by this run.  The next analysis step is the v26
+all-order mine on the new survivor, which is what would tell us the covering
+family and whether a 23rd bank is worth building.
+
 The card-at-least-13 adapter audit also rules out a tempting shortcut.  The
 pentagon residual does not supply a
 `LargeCapUniqueFiveSecondApexRadius`: in particular it has no
