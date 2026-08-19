@@ -1,48 +1,122 @@
-# Erdős Problems 97 & 96 - Lean 4 formalization
+# Erdős Problems 97 & 96 — Lean 4 formalization
 
-A Lean 4 formalization of the resolutions of two Erdős problems on convex
-point sets in the plane, checked against the canonical problem statements
-in [`formal-conjectures`](https://github.com/google-deepmind/formal-conjectures).
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/p97-architecture-dark.svg">
+  <img alt="Three panels showing the architecture of the Problem 97 proof: a vertex with four equidistant points and the isosceles primitive behind the counting engine; twelve points in convex position with three on the minimum enclosing circle, the Moser triangle they span, and the three caps its sides cut off; and a convex polygon with one vertex marked removable." src="docs/assets/p97-architecture-light.svg">
+</picture>
 
-The remaining direct production proof surface is **21 `sorry`-carrying leaf
-theorems**, all in the A-tail frontier below the route-B tail of the
-removable-vertex core (`P97/ATail/FrontierLiveClosure.lean`, four of them in
-its nested `TwoSourceExactCollisionRowsTerminal` namespace). The frontier's
-former two parent obligations are source-clean checked coordinators that now
-fan out, through several further case splits, into nine named computational
-case packages tracked in `census/frontier-packages/` (B1, B2, B3, A, C, D-R,
-D-E, E, F-Γ) plus the still-open collision/blocker terminal branches. Each
-package has a finite named-local incidence abstraction that is SAT-audited
-(satisfiable, with DRAT-checked negative probes) but this is explicitly **not**
-a closure of the corresponding Lean leaf — see **Proof status** below and
-`census/frontier-packages/SESSION3-TRIAGE-2026-07-28.md` for the leaf-by-leaf
-computational status and what each still needs. The endpoint, pinned-surplus,
-and erased-pin
-Front-B branches are closed; the ERASE card-{10,11} classifier closure is
-committed at `652fdfcb`. **This is the main repo where the proof is being
-closed.** The former companion repo
-`p97-rvol` is historical as of 2026-07-06: its U-lane route-B tail was
-imported here on 2026-07-05, and its status docs are superseded by this
-repo. See **Proof status** below for the kernel-reported state.
+This repository is an attempt to prove two Erdős problems about convex point
+sets in the plane, in Lean 4, against the canonical statements in
+[`formal-conjectures`](https://github.com/google-deepmind/formal-conjectures).
+**Neither problem is proved yet.** What follows is an honest account of how far
+the argument has been carried, what is machine-checked, and what is still open.
 
-Current Rigid221 checkpoint: exact cardinalities 12 through 16 are closed for
-the source-heavy BlockerV residual.  At exact 17, the second-cap-10 and
-second-cap-11 profiles reduce respectively to the checked exact-16 and
-exact-15 banks; only the exact-17/second-cap-9 profile remains, alongside the
-unbounded `|A| ≥ 18` continuation.  This is branch-local narrowing, not an
-exclusion of all 17-point P97 counterexamples.
+Problem 97 asks whether a finite set of points in strictly convex position can
+have the property that every point of the set has four others at a common
+distance from it. Erdős conjectured it cannot. Problem 96 asks how many unit
+distances `n` points in convex position can determine; the conjectured answer is
+`O(n)`. The two are connected: a proof of 97 yields 96 with the explicit
+constant 3, and that implication is one of the things fully proved here.
+
+The proof strategy is a single strong induction on the size of a hypothetical
+counterexample `A`, and the figure above is its skeleton. A counting engine —
+a double count of isosceles configurations, in the style of Dumitrescu — shows
+that any counterexample needs at least 9 points. A descent engine shows that any
+counterexample with more than 9 points contains a *removable* vertex, whose
+deletion leaves a strictly smaller counterexample and so contradicts
+minimality. A finite base case rules out exactly 9 points by an explicit
+geometric case analysis. Together those three would leave no room for a
+counterexample at all.
+
+Two of the three are finished and kernel-checked. The counting engine and the
+`n = 9` base case are unconditionally proved, with axiom closure measured on
+2026-08-18 as exactly `{propext, Classical.choice, Quot.sound}`. The descent
+engine is where the work remains. Its hard core is the removable-vertex lemma,
+which is assembled from a three-way split; two of the three branches are closed, and the third fans out
+through a long sequence of case splits into an open frontier of **36
+`sorry`-carrying leaf theorems** reachable from the publish target, all of them
+in the `ATailFrontierLiveClosure` namespace under
+[`P97/ATail/FrontierLiveClosure/`](lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure).
+Every one of those leaves is a statement of the form "this particular
+combinatorial-geometric configuration is impossible". No leaf has been found to
+be a restatement of the theorem or to be false, but no systematic per-leaf
+non-vacuity audit has been recorded, so treat that as an absence of findings
+rather than an established property. They are grouped in **Proof status** below.
+
+A substantial amount of mathematics *is* finished here, and it is worth
+separating from the open part. The best machine-checked lower bound on the size
+of a hypothetical Problem 97 counterexample is `n ≥ 12`; the strongest such
+bound that avoids compiler trust is `n ≥ 10`. A minimum enclosing circle
+development, absent from mathlib, is built from scratch and includes the
+classical boundary dichotomy for the problem Sylvester posed in 1857. Erdős 97 ⟹
+Erdős 96 with constant 3 is proved outright — the implication itself is not new,
+but the formal proof is. Thirty of these results are independently gated in
+[`comparator/`](comparator/), which
+restates each one in mathlib vocabulary alone and checks that this repository's
+proofs discharge the restatement — so a reviewer can see exactly what is claimed
+without trusting anything in this tree.
+
+The frontier has grown rather than shrunk since the last README revision, which
+on 2026-08-07 reported 21 open leaves against the 36 measured today. That is the
+expected shape of this kind of work — case splitting converts one coarse
+obligation into several sharp ones — but it should not be read as progress
+toward zero. The solver-assisted lanes — SAT, CEGAR, PIQD, and the off-spine
+bank chain — have produced a large body of finite checked artifacts, and **none
+of that work has closed a Lean leaf**. (Certificate banks that *are* on the
+published import spine have closed branches; the distinction matters and is
+drawn under **The computational lanes** below.)
+
+**This is the main repository where the proof is being closed.** The former
+companion repository `p97-rvol` is historical as of 2026-07-06; its U-lane
+route-B tail was imported here on 2026-07-05 and its status documents are
+superseded by this one.
+
+---
+
+## Known `k = 3` witnesses
+
+Problem 97 is the `k = 4` instance of "every point has `k` others equidistant
+from it, in convex position". For `k = 3` the property **is** realizable, which
+is what makes the `k = 4` case delicate rather than routine: any proof must use
+something that separates 4 from 3. The counterexample-search lane
+([`docs/p97-counterexample-search-design-2026-07-28.md`](docs/p97-counterexample-search-design-2026-07-28.md))
+carries the two known witnesses as positive controls. In both figures each
+dashed circle is centred at a vertex and passes through that vertex's three
+equidistant witnesses.
+
+![9-point k=3 witness](docs/assets/danzer-9gon-k3.png)
+
+Nine points with exact ℚ(√3) coordinates, threefold symmetry, and a witness
+distance that **varies per vertex** (Danzer-style). The coordinates were
+verified twice by independent exact arithmetic
+(`scratch/p97-search-lane/verify_k3_control.py`; a second, independent check
+was run outside the repository and is not committed). Note that `n = 9` is
+exactly the counting engine's unconditional bound for a `k = 4` counterexample,
+before the base case pushes the floor to 10.
+
+![Fishburn–Reeds 20-gon](docs/assets/fr-20gon-k3.png)
+
+The Fishburn–Reeds 1992 20-gon: a **single common distance** 1, every vertex's
+three witnesses lying across a convex cut `{L, R}`, and `n = 20` proven minimal
+for the cut-restricted version. Table-1 coordinates were transcribed and
+numerically verified in `scratch/p97-search-lane/fishburn-reeds-notes.md`; exact
+certification of the configuration is the realization arm's validation target
+(`scratch/p97-search-lane/fr-certify/`). Plots:
+`scratch/p97-search-lane/plot_k3_witnesses.py`.
+
+---
 
 ## What is formalized
 
 Two upstream-vocabulary theorems are exported. Each is *definitionally* the
-right-hand side of the corresponding `formal-conjectures` statement, so
-building this repository checks the proofs against the upstream definitions
+right-hand side of the corresponding `formal-conjectures` statement, so building
+this repository checks the proofs against the upstream definitions
 (`Erdos97.*` / `Erdos96.*`), not a private restatement.
 
-### Problem 97 - [`Problem97.erdos97_rhs`](lean/Erdos9796Proof/P97/UpstreamBridge.lean#L30)
+### Problem 97 — [`Problem97.erdos97_rhs`](lean/Erdos9796Proof/P97/UpstreamBridge.lean#L30)
 
-> A convex-independent set of points in the plane cannot have the property
-> that every point has 4 others equidistant from it.
+> A convex-independent set of points in the plane cannot have the property that
+> every point has 4 others equidistant from it.
 
 ```lean
 theorem erdos97_rhs :
@@ -56,10 +130,10 @@ This is the RHS of upstream
 The bridge [`Problem97.upstream_iff`](lean/Erdos9796Proof/P97/UpstreamBridge.lean#L22)
 is `Iff.rfl`.
 
-### Problem 96 - [`Problem96.erdos96_rhs`](lean/Erdos9796Proof/P96/UpstreamBridge.lean#L96)
+### Problem 96 — [`Problem96.erdos96_rhs`](lean/Erdos9796Proof/P96/UpstreamBridge.lean#L96)
 
 > The maximum number of unit distances determined by `n` points in convex
-> position is `O(n)` - here with explicit constant `3`.
+> position is `O(n)` — here with explicit constant `3`.
 
 ```lean
 theorem erdos96_rhs :
@@ -70,73 +144,216 @@ theorem erdos96_rhs :
 This is the RHS of upstream
 [`Erdos96.erdos_96`](https://github.com/google-deepmind/formal-conjectures/blob/89a67be506fbae633d02941ccbd9f3737bbd5457/FormalConjectures/ErdosProblems/96.lean#L69),
 obtained from the per-set bound `unitDistancePairsCount A ≤ 3 * A.card` for
-convex `A` ([`unit_distance_pairs_bound`](lean/Erdos9796Proof/P96/EuclideanPeeling.lean#L289)).
+convex `A`
+([`unit_distance_pairs_bound`](lean/Erdos9796Proof/P96/EuclideanPeeling.lean#L289)).
+
+---
 
 ## Proof status
 
-**Both published claims still reach `sorryAx` through twenty-one direct A-tail
-leaf theorems** (`proof-blueprint spine`, current as of this checkout). The
-hard core of the descent step —
-[`RemovableVertexOfLarge`](lean/Erdos9796Proof/P97/RemovableVertexAxiom/Continuation.lean#L811)
-(*every nonempty convex `HasNEquidistantProperty 4` set with `9 < |A|` that is
-minimal under the strong-induction hypothesis contains a removable vertex*) —
-is assembled from a three-way split (surplus-cap packet extraction, the
-`IsM44` pinned-surplus branch, the non-`IsM44` descent branch). The
-current direct source obligations are all in
-`P97/ATail/FrontierLiveClosure.lean` (four of them in its nested
-`TwoSourceExactCollisionRowsTerminal` namespace), grouped below by the named
-computational case package each belongs to
-(`census/frontier-packages/SESSION3-TRIAGE-2026-07-28.md` has the full
-leaf-by-leaf computational status and first-missing-bridge description):
+**Both published claims still reach `sorryAx`.** Measured directly against a
+built tree on 2026-08-18:
 
-| Package | Leaves open | What each package's SAT audit has (and has not) established |
-|---|---:|---|
-| B1 | 1 | Direct-shadow SAT only; not yet an official package verdict (prerequisite ingress missing) |
-| B2, B3 | 2 | Named-local canonical-row / mutual-omission projection SAT; needs a global/metric consequence beyond it |
-| A | 6 | All eight v1.3 runs SAT, all negative probes DRAT-verified; needs exact metric/global geometry beyond the current clause set |
-| C | 2 | Base/C1/C2 SAT, all probe UNSATs DRAT-verified; needs a metric/global realization obstruction beyond the placement projection |
-| D-R | 2 | SAT with 25/25 negative probes DRAT-verified; needs a finite consequence of universal no-five/no-M44 or exact real-radius content |
-| D-E | 2 | Open-carrier named-witness projection SAT; needs a proved finite cutoff or cardinality-free symbolic certificate |
-| E | 1 | Counting/incidence abstraction SAT; needs the unencoded all-low-hit family plus remaining survival/minimality geometry |
-| F-Γ | 4 | No finite completeness reduction; v17 local metric search leaves an 18-class survivor, while the exact full probe and 205 six-class cases remain fail-closed `UNKNOWN` |
-| **Total** | **20** | |
+```
+'Problem97.erdos97_rhs' depends on axioms:
+  [propext, sorryAx, Classical.choice, Lean.ofReduceBool, Lean.trustCompiler, Quot.sound]
+'Problem96.erdos96_rhs' depends on axioms:
+  [propext, sorryAx, Classical.choice, Lean.ofReduceBool, Lean.trustCompiler, Quot.sound]
+```
 
-Every SAT verdict above is a finite named-local incidence abstraction, not a
-Euclidean realization, and does **not** refute or close the corresponding
-Lean leaf; every DRAT-checked UNSAT is a smoke/probe result, not a verdict for
-a live leaf. The census/SAT lane's own accounting (SESSION3-TRIAGE, dated
-2026-07-28) states this explicitly: "the Session-3 result is therefore zero
-computational closures." The checked parent coordinators
-`false_of_originalFrontierUniqueRadiusArm` and
-`false_of_twoLargeCaps_commonCriticalMap` (among others in the chain) are
-source-clean and dispatch exhaustively down to these leaves, with the
-exact-four card-11 branch closed by the promoted certificate ingress.
-Refreshing `proof-blueprint` after the production build confirms publish-spine
-reachability. The former shared-radius and LIVE-Q/C declarations were bypassed
-and retired when the caller moved to `CriticalPairFrontier`; they were not
-individually proved.
-The former Front-B obligations `isM44EndpointResidualsExcluded`,
+`sorryAx` traces to the 36 leaves below. The kernel mine backing that
+statement has a declared boundary — `.blueprint.toml`'s `[mining].skip` excludes
+the generated `EndpointCertificate` / `SurplusCertificate` / `*Export` subtrees,
+which is what the "20 trusted leaves" line below counts. Those subtrees contain
+no bare `sorry`, and `#print axioms` on the targets covers them regardless.
+
+`Lean.ofReduceBool` and
+`Lean.trustCompiler` come from `native_decide` in the generated finite
+certificate banks, allowed under the project's `native_decide` policy (the
+closure is kernel-checked and the evaluated checkers are plain verified Lean,
+with no `unsafe`, `@[implemented_by]`, or `@[extern]`). Once the 36 leaves are
+proved, `sorryAx` drops out and both closures become the core axioms plus those
+two compiler axioms — the declared trust boundary of the certificate
+infrastructure.
+
+`proof-blueprint spine`, run against this checkout, reports:
+
+```
+open: 126/36264 node(s)
+trusted leaves: 20 🔒 (certs excluded from mine by [mining].skip; covered by `#print axioms`)
+spine source: 291224 line(s) of lean across 36264 decl(s)
+open obligations (37):   -- 36 sorry-carrying leaves + the sorryAx node itself
+```
+
+Three status terms recur below and are worth pinning down, since they are what
+separates "proved" from "not proved" in this document. **Source-clean** means the
+declaration's own file contains no `sorry`; it may still reach `sorryAx` through
+what it calls. **Kernel-connected** means the declaration is reachable from the
+publish target in the kernel-mined dependency graph. **Kernel-clean** means the
+measured axiom closure contains no `sorryAx` and no unapproved axiom — that is
+the one that means proved.
+
+### The open frontier
+
+All 36 leaves live in the `Problem97.ATailFrontierLiveClosure` namespace, spread
+over nine modules. They group into four clusters, each a separate line of
+attack — though not fully independent: the roadmap notes that closing the
+TwoSource cluster would terminate the Level-5 and FreshThird branches together
+(see
+[`docs/audits/2026-08-17-spine-leverage-analysis-and-roadmap.md`](docs/audits/2026-08-17-spine-leverage-analysis-and-roadmap.md)
+for the cluster split and sequencing; note that audit is a 2026-08-17 snapshot
+reporting 34, superseded by the count below — `proof-blueprint spine` is the
+roster authority):
+
+| Cluster | Module | Open | What the cluster is about |
+|---|---|---:|---|
+| **Rigid221** | `Rigid221SourceHeavy.lean` | 8 | The source-heavy BlockerV residual — exact-cardinality strata, `native_decide` coverage banks, and the exact-12/exact-17 CEGAR lane |
+| | `Rigid221Placement.lean` | 5 | |
+| | `Rigid221Closure.lean` | 5 | |
+| **TriApex** | `TriApexEndpointRetainedOmission.lean` | 9 | Retained-omission configurations with all three apex caps large |
+| **TwoSource** | `TwoSourceFreshThirdResidual.lean` | 3 | Two cap sources plus a fresh third centre; the FreshThird and FirstFiber lanes |
+| | `TwoSourceFirstFiberCollision.lean` | 1 | |
+| | `TwoSourceClosure.lean` | 1 | |
+| | `TwoSourceCanonicalSurface.lean` | 1 | |
+| **Two-deletion** | `TwoDeletionCollision.lean` | 3 | The B-family (formerly packages B1/B2/B3): mutual-omission and four-centre common-deletion collisions |
+| **Total** | | **36** | |
+
+[`FrontierLiveClosure.lean`](lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean)
+is now a 46-line import-only coordinator; the obligations live in the
+[`FrontierLiveClosure/`](lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure)
+package beside it (349 modules, ~196k lines, most of it generated CNF and
+replay material). Six of the 36 sit in the nested
+`TwoSourceExactCollisionRowsTerminal` namespace.
+
+The table counts **obligations reachable from the publish target**, as reported
+by `proof-blueprint` against the built tree — not raw `sorry` tokens. Regenerate
+the spine after any build before quoting these counts; they move as leaves split
+and close.
+
+Three further `sorry`s exist off that spine, and the blueprint flags them as a
+policy violation ("placeholder sorries are no longer allowed; all live work must
+be wired into the spine"):
+
+- `Rigid221Closure.lean` → `false_of_exactFiveDistinct_biApexRobust_postCardEleven`
+- `TwoSourceFreshThirdFiber.lean` → `TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_firstFiberDescentResidual`
+- `P97/U1LargeCapRouteBTail.lean:2446` → `DoubleApexOffSurplusSharedRadiusPair`
+
+They do not affect either published claim's axiom closure, because nothing on
+the spine reaches them. The blueprint additionally reports 1,279 files (11,114
+symbols, 3 `sorry`) that no lake import chain reaches at all.
+
+The checked parent coordinators — `false_of_criticalPairFrontier`,
+`false_of_originalFrontierUniqueRadiusArm`,
+`false_of_twoLargeCaps_commonCriticalMap`, and the others in the chain — are
+source-clean and dispatch exhaustively down to these leaves. The card-11
+exact-four branch is closed by the promoted certificate ingress. The former
+shared-radius and LIVE-Q/C declarations were bypassed and retired when the
+caller moved to `CriticalPairFrontier`; they were not individually proved. The
+former Front-B obligations `isM44EndpointResidualsExcluded`,
 `isM44PinnedSurplusResidualsExcluded`, and
 `isM44NonSurplusContainmentErasedPinTripleResidualsExcluded` are source-clean
-and kernel-connected. The downstream exact-pin ERASE target is 0/1376 open
-and passes target-specific `proof-blueprint verify-publish` under the approved
-axiom set.
+and kernel-connected.
 
-The Lean kernel reports the axiom closure of both published claims as the
-Lean core axioms plus:
+### The Rigid221 cardinality checkpoint
 
-- `sorryAx` — traces exactly to the twenty A-tail leaves above;
-- `Lean.ofReduceBool` and `Lean.trustCompiler` — from `native_decide` in the
-  generated finite-bank certificate shards (`SurplusCOMPGBank*`,
-  `EndpointCertificate/*`), allowed under the project's `native_decide`
-  policy (kernel-checked closure + the evaluated checkers are plain verified
-  Lean with no `unsafe` / `@[implemented_by]` / `@[extern]`).
+Within the `pentagonBlockerV_vRowBlockerDeleted_deletedRowBlockerOffClass`
+sub-branch of the source-heavy BlockerV residual, exact cardinalities **12
+through 16 are closed** and that sub-branch's lower frontier is `17 ≤ |A|`. This
+does **not** extend to the source-heavy residual as a whole: the sibling
+`pentagonOffClassBlocker` sub-branch still carries two open leaves at exact 12
+(`…_interiorDeletion_physicalRadius_commonDeletion_missingIncidence` and
+`…_nextRowOnlyHit`, both hypothesising `D.A.card = 12`). At exact 17 the
+second-cap-11 and second-cap-10 profiles embed into the checked exact-15 and
+exact-16 four-row banks respectively, and both are source-clean. The
+second-cap-9 profile has since been split further: the *unused-outside* arm is
+kernel-proved, so what remains is only the **exact-cover arm**, where the four
+selected rows exactly partition the eight outside points.
 
-Once those twenty leaves are proven, `sorryAx` drops out and both closures
-become the core axioms plus the two compiler axioms — the declared trust
-boundary of the certificate infrastructure.
+The unbounded `|A| ≥ 18` continuation is open and, as of 2026-08-17, has **no
+route**: see
+[`docs/specs/p97-card-ge-eighteen-coverage-route-v1.md`](docs/specs/p97-card-ge-eighteen-coverage-route-v1.md),
+whose own header reads "Status: NO ROUTE EXISTS." The exact-17 apparatus does
+not transfer, because `SourceRealization` pins `A.card = 17` throughout.
 
-You can reproduce this check after building (see below):
+All of this is **branch-local narrowing. It is not an exclusion of all 17-point
+P97 counterexamples**, and `RemovableVertexOfLarge` must not be cited against
+these leaves — they are interior to that statement's own proof.
+
+### The computational lanes
+
+A large solver-assisted apparatus sits behind the frontier: SAT and CEGAR waves,
+PIQD refinement chains, incidence abstractions, and the off-spine exact-12 bank
+chain. Its results are real and checked, and **none of it has closed a Lean
+leaf**. This is a claim about that population specifically — certificate banks
+that *are* on the published import spine have closed branches, as the card-11
+exact-four ingress and the exact-15/exact-16 coverage banks below show. The
+distinction is the two-population split described under **Certificate banks and
+attestation**. The directly on-point statements:
+
+> "The V49 V6–V9 exact-17 waves are source-valid finite banks and SAT/replay-checked
+> artifacts. They did not close a production `sorry`: their Lean declarations remain
+> private successor-chain nodes, and their receipts explicitly record
+> `exact17_closure = false`, `lean_closure = false`, and `universal_lift = false`."
+> — [`docs/audits/2026-08-17-global-producer-closure-plan.md`](docs/audits/2026-08-17-global-producer-closure-plan.md)
+
+> "It validates computation. It closes no proof obligation, promotes no leaf, and
+> moves no spine anchor."
+> — [`docs/nonpiqd-computation-validation-2026-08-18.md`](docs/nonpiqd-computation-validation-2026-08-18.md)
+
+A corpus-wide census of the family banks
+([`docs/audits/2026-08-16-scratch-computational-output-pattern-audit.md`](docs/audits/2026-08-16-scratch-computational-output-pattern-audit.md))
+surveyed 159 of them. Of the 73 that record the full five-verdict vector, 61
+answer "no" to all five: no terminal UNSAT, no universal lift, no live-theorem
+closure, no Lean terminal ingress, no aggregate placement coverage.
+
+Every SAT verdict in these lanes is a finite named-local incidence abstraction,
+not a Euclidean realization; a satisfiable abstraction does not refute the
+corresponding Lean leaf, and every DRAT-checked UNSAT so far is a smoke or probe
+result rather than a verdict for a live leaf.
+
+The earlier nine-package taxonomy (B1, B2, B3, A, C, D-R, D-E, E, F-Γ) tracked
+in [`census/frontier-packages/`](census/frontier-packages) is **historical**.
+The live closure plan marks its table superseded — "the current closure gate is
+declaration- and spine-based, not a raw token count" — and the directory's
+`SESSION3-TRIAGE-2026-07-28.md` has not been updated since. The B-family label
+survives as the two-deletion cluster above; the other package labels are no
+longer live organizing units.
+
+### Certificate banks and attestation
+
+Two distinct bank populations exist, and they should not be conflated.
+
+**The promoted card-eleven certificate graph** is on the published import spine
+and closes the card-11 exact-four branch. Its promotion manifest
+(`lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/promotion-manifest.json`)
+covers 2,061 modules (1,700 generated, 359 support, 2 root). Of those, 1,664
+are the two replay trees — 922 compact and 742 windowed — and a further 1,656
+non-module replay assets are promoted alongside them. All are committed under
+the main `Erdos9796Proof` library, so a clean checkout needs no historical-tree path,
+vendor package, or separately distributed replay bundle. The directory on disk
+now holds 2,442 `.lean` files; the extra 381 are a later replay tree outside the
+manifest's scope. The promoted graph has no `sorryAx`; its generated
+`native_decide` proofs contribute `Lean.ofReduceBool` and `Lean.trustCompiler`.
+
+**The exact-12 Rigid221 membership chain** is 22 banks, hash-chained: each bank
+pins its parent's body digest in `EXPECTED_PARENT_BANK_SHA256`, and 8 of the 22
+additionally pin their own in `EXPECTED_BANK_SHA256`. Thirteen authenticate the
+Lean source their proof-carrying claim rests on, through a `source_manifest` of
+per-file digests. That manifest used to hash the transitive *import* closure —
+about 2,875 files for the core-pair bank — so an unrelated commit anywhere
+inside it broke every downstream pin. On 2026-08-18 it was replaced by the
+transitive *kernel* closure: `scripts/mine_bank_lean_dependencies.py` walks the
+constant dependencies of every declaration the bank's root modules supply and
+keeps the repository-local ones, narrowing the core-pair manifest from 2,875
+files to 29. By construction the mined set sits inside the old import closure,
+and the design intent is that editing a Lean file no bank theorem reaches no
+longer breaks a pin; neither property is backed by a recorded containment
+check. Note that this chain is **not** on the `erdos97_rhs` import
+spine: its terminal consumer is imported by nothing, and the closure plan is
+explicit that it "does not by itself establish terminal UNSAT for any successor
+formula."
+
+Reproduce the axiom measurement after building (see **Building from a clean checkout** below):
 
 ```bash
 mkdir -p scratch/checks
@@ -148,37 +365,39 @@ cd lean
 lake env lean ../scratch/checks/ax_check.lean
 ```
 
+---
+
 ## Headline theorems
 
 Both publish targets are open, but a substantial body of results below them is
 not. Everything in this section is **unconditionally proved** — axiom closure
 exactly `{propext, Classical.choice, Quot.sound}`, no `sorryAx`, no custom
-axioms, and no `native_decide` — except the two rows in *Erdős 97 ⟹ Erdős 96*,
-which are conditional on a hypothesis that appears explicitly in their
-statements.
+axioms, no `native_decide` — except the two rows in *Erdős 97 ⟹ Erdős 96*, which
+are conditional on a hypothesis appearing explicitly in their statements, and
+the compiler-trusted tier, which is called out as such.
 
 Every theorem listed here is independently gated in [`comparator/`](comparator/),
 which restates it using **mathlib vocabulary alone** — no definition from this
-repository — and checks that the project's proof discharges that restatement.
-A reviewer can read [`comparator/Challenge.lean`](comparator/Challenge.lean),
+repository — and checks that the project's proof discharges that restatement. A
+reviewer can read [`comparator/Challenge.lean`](comparator/Challenge.lean),
 which imports only `Mathlib`, and see exactly what is being claimed without
 trusting anything here.
 
 The real [leanprover/comparator](https://github.com/leanprover/comparator) run
-**passes** (verified 2026-07-26): all 24 statements compared identical at the
-export level, axioms confined to the three core axioms, and the export replayed
-through **both** the `nanoda` kernel and the Lean default kernel — 41239
-declarations, no errors, `Your solution is okay!`.
+**passes** for the core tier (verified 2026-07-26): all 24 statements compared
+identical at the export level, axioms confined to the three core axioms, and the
+export replayed through **both** the `nanoda` kernel and the Lean default kernel
+— 41239 declarations, no errors, `Your solution is okay!`.
 [`comparator/README.md`](comparator/README.md) documents the exact invocation,
 including a non-obvious `lean4export` version pin needed at Lean v4.27.0.
-`./comparator/check-conformance.sh` is the cheap offline pre-flight (build +
-axiom audit, no external toolchain).
+`./comparator/check-conformance.sh` is the cheap offline pre-flight (manifest
+cross-check, tier disjointness, build, axiom audit — no external toolchain).
 
 A **second, compiler-trusted tier** (`comparator/config-native.json`, added
-2026-07-30) gates 6 further results whose proofs run the finite certificate
-banks through `native_decide`. These are sorry-free but additionally depend on
+2026-07-30) gates 6 further results whose proofs run the finite certificate banks
+through `native_decide`. These are sorry-free but additionally depend on
 `Lean.ofReduceBool` and `Lean.trustCompiler`, so they are held in a separate
-manifest rather than diluting the three-axiom set above — the project's
+manifest rather than diluting the three-axiom set — the project's
 `native_decide` policy requires compiler trust to be explicit and reported.
 
 ### Erdős 97 — compiler-trusted finite endpoints
@@ -188,30 +407,39 @@ manifest rather than diluting the three-axiom set above — the project's
 | [`Problem97.FiniteN10Closure`](lean/Erdos9796Proof/P97/FiniteN10.lean#L182) | there is no 10-point counterexample |
 | `Headline.counterexample_card_ge_eleven` | every counterexample has at least 11 points |
 | `Headline.erdos97_of_card_le_ten` | Erdős 97 holds for every point set of at most 10 points |
-| [`Problem97.FiniteN11Closure`](lean/Erdos9796Proof/P97/FiniteN11.lean#L44) | **there is no 11-point counterexample** |
-| `Headline.counterexample_card_ge_twelve` | **every counterexample has at least 12 points** |
-| `Headline.erdos97_of_card_le_eleven` | **Erdős 97 holds for every point set of at most 11 points** |
+| [`Problem97.FiniteN11Closure`](lean/Erdos9796Proof/P97/FiniteN11.lean#L44) | there is no 11-point counterexample |
+| `Headline.counterexample_card_ge_twelve` | every counterexample has at least 12 points |
+| `Headline.erdos97_of_card_le_eleven` | Erdős 97 holds for every point set of at most 11 points |
 
 The three `Headline.` rows are composed in
 [`comparator/Solution.lean`](comparator/Solution.lean) from the endpoint below
 them and the bound above them; they have no single project namesake. The
 exact-eleven endpoint closed on 2026-08-01: its card-eleven exact-five
 common-obstruction-center leaf is discharged by the authenticated G3 and
-retained-`s2_o0` certificate banks, and `#print axioms
-Problem97.FiniteN11Closure` measures exactly `{propext, Classical.choice,
-Lean.ofReduceBool, Lean.trustCompiler, Quot.sound}` with no `sorryAx`.
+retained-`s2_o0` certificate banks.
 
-Each of the six has been measured directly at `{propext, Classical.choice,
-Lean.ofReduceBool, Lean.trustCompiler, Quot.sound}` with no `sorryAx`. The
-offline pre-flight (`comparator/check-conformance.sh`) and the `pp.explicit`
-statement-identity diff have been run in full for the three exact-ten results.
-For the three exact-eleven results the `pp.explicit` diff now also passes with 0
-differences, as do the pre-flight's manifest cross-check and tier-disjointness
-steps; `Challenge.lean` elaborates against mathlib alone with all 30 stubs, and
-all 30 source signatures match between `Challenge.lean` and `Solution.lean`.
-Outstanding: the pre-flight's build and axiom-audit steps, and a real comparator
-run. The import cycle that blocked the former was fixed in `b075da44`. See
-`comparator/README.md`, "Native-tier status", for the exact split.
+Every entry in this tier genuinely requires the compiler axioms; none is a
+three-axiom result filed here by mistake. The three exact-ten rows measure
+directly at `{propext, Classical.choice, Lean.ofReduceBool, Lean.trustCompiler,
+Quot.sound}` with no `sorryAx`. The three exact-eleven rows inherit both
+compiler axioms structurally: `FiniteN11Closure` discharges its smaller-carrier
+hypothesis through `FiniteN10Closure`, and the bound and its contrapositive are
+composed from `FiniteN11Closure`.
+
+`comparator/README.md` additionally records, dated 2026-08-01, that all six were
+measured ad hoc per theorem at exactly those five axioms, that the `pp.explicit` statement-identity
+diff passes with 0 differences, that `Challenge.lean` elaborates against mathlib
+alone with all 30 stubs, and that all 30 source signatures match between
+`Challenge.lean` and `Solution.lean`. The manifest cross-check and
+tier-disjointness steps of the pre-flight are reproducible offline and pass.
+
+**Still outstanding for this tier, unchanged since 2026-08-02:** the *scripted*
+gate — `check-conformance.sh`'s build and axiom-audit steps — over all six, and a real
+`leanprover/comparator` run against `config-native.json`. The import cycle that
+blocked the former was fixed in `b075da44`; neither result has ever been
+recorded. Treat the exact-eleven half of this tier as carrying a dated
+measurement rather than a current one. See `comparator/README.md`,
+"Native-tier status".
 
 ### Erdős 97 — unconditional partial results
 
@@ -219,43 +447,46 @@ run. The import cycle that blocked the former was fixed in `b075da44`. See
 |---|---|
 | [`Problem97.counterexample_card_ge_nine`](lean/Erdos9796Proof/P97/Counting.lean#L95) | every counterexample has at least 9 points |
 | [`Problem97.FiniteN9Closure`](lean/Erdos9796Proof/P97/N9Endpoint/Closure.lean#L56) | there is no 9-point counterexample |
-| [`Problem97.counterexample_card_ge_ten`](lean/Erdos9796Proof/P97/SmallCardinality.lean#L31) | **every counterexample has at least 10 points** |
-| [`Problem97.not_hasNEquidistantProperty_four_of_card_le_nine`](lean/Erdos9796Proof/P97/SmallCardinality.lean#L43) | **Erdős 97 holds for every point set of at most 9 points** |
+| [`Problem97.counterexample_card_ge_ten`](lean/Erdos9796Proof/P97/SmallCardinality.lean#L31) | every counterexample has at least 10 points |
+| [`Problem97.not_hasNEquidistantProperty_four_of_card_le_nine`](lean/Erdos9796Proof/P97/SmallCardinality.lean#L43) | Erdős 97 holds for every point set of at most 9 points |
 | [`Problem97.UniversalProblem97_of_reduction`](lean/Erdos9796Proof/P97/UniversalProblem97.lean#L60) | a counting obstruction plus a descent step above 9 yield Erdős 97 in full |
 
-The three-core-axiom result in this table gives `n ≥ 10`; the compiler-trusted
-finite endpoints in the table above strengthen the project bound to `n ≥ 12`.
-As far as we are aware, even the former is the best published
-bound on the size of a hypothetical counterexample. {{UNVALIDATED}} — the
-literature check found only an unrefereed argument for `n ≥ 7` on the
-erdosproblems.com discussion page; treat the record claim as unconfirmed, not
-the machine-checked bounds.
+The three-core-axiom results here give `n ≥ 10`; the compiler-trusted endpoints
+above strengthen the project bound to `n ≥ 12`. As far as we are aware, even the
+former is the best published bound on the size of a hypothetical counterexample.
+{{UNVALIDATED}} — the literature check found only an unrefereed argument for
+`n ≥ 7` on the erdosproblems.com discussion page; treat the record claim as
+unconfirmed, not the machine-checked bounds themselves.
 
 ### The pinned-multiplicity reformulation
 
 For `p ∈ A` write μ(p, A) for the largest number of points of `A` on a single
 circle of positive radius centred at `p`. Then
 
-> Erdős 97 ⟺ every finite `A ⊆ ℝ²` in strictly convex position has a point `p`
-> with μ(p, A) ≤ 3.
+> From a proof of Erdős 97 one obtains, for every finite `A ⊆ ℝ²` in strictly
+> convex position, a point `p` with μ(p, A) ≤ 3 — and from a proof of that
+> pinned statement one obtains Erdős 97. Both directions are formalized.
 
 | Theorem | Statement |
 |---|---|
-| [`Problem97.universalProblem97Statement_iff_pinnedMultiplicity`](lean/Erdos9796Proof/P97/PinnedMultiplicity.lean#L233) | the equivalence above |
-| [`Problem97.exists_pinnedMultiplicity_le_three_of_card_le_nine`](lean/Erdos9796Proof/P97/UniversalLocal.lean#L93) | its unconditional `\|A\| ≤ 9` instance |
+| [`Problem97.universalProblem97Statement_iff_pinnedMultiplicity`](lean/Erdos9796Proof/P97/PinnedMultiplicity.lean#L251) | the two directions above, as one `Iff` |
+| [`Problem97.exists_pinnedMultiplicity_le_three_of_card_le_nine`](lean/Erdos9796Proof/P97/UniversalLocal.lean#L60) | its unconditional `\|A\| ≤ 9` instance |
 
-This is a **reformulation, not a proof**: the equivalence is kernel-clean, both
+This is a **reformulation, not a proof**: the `↔` is kernel-clean, and both
 sides remain open.
 
 The framing is Erdős's own, not a modern restatement. *On sets of distances of n
 points*, Amer. Math. Monthly 53 (1946), 248–250, §2, p. 248 states the `k = 3`
 version — "In every convex polygon there is at least one vertex with the
 property that no three vertices of the polygon are equally distant from it" —
-and then immediately the multiplicity form itself: "A still stronger conjecture
-is that on every convex curve there exists a point `P` such that every circle
-with center `P` intersects the curve in at most 2 points." The `k = 4` version
-targeted here is Erdős, *Some combinatorial and metric problems in geometry*,
-Colloq. Math. Soc. J. Bolyai 48 (1987), **p. 176**, alongside Danzer's nonagon.
+— now refuted, by the witnesses shown above — and then a pinned form for convex
+*curves*: "A still stronger conjecture is that on every convex curve there exists
+a point `P` such that every circle with center `P` intersects the curve in at
+most 2 points." Note the scope: that is μ ≤ 2 over a continuum, not the μ ≤ 3
+over a finite set stated above. The finite `k = 4` version targeted here is
+Erdős, *Some combinatorial and metric problems in geometry*, in *Intuitive
+Geometry* (Siófok 1985), Colloq. Math. Soc. J. Bolyai 48 (1987), 167–177,
+**p. 176**, alongside Danzer's nonagon.
 
 Three neighbouring conjectures are easily conflated, and only the third is this
 target: **#93**, a convex `n`-gon determines ≥ `⌊n/2⌋` distinct distances
@@ -267,10 +498,10 @@ Brass–Moser–Pach, *Research Problems in Discrete Geometry* (2005), §5.6, p.
 is the standard reference. It poses the problem in the pinned form ("*any circle
 around it passes through at most k other points*") and states the target as
 Conjecture 3 ("*no four other vertices at the same distance*") in the same
-paragraph, with no remark on the equivalence — which is the best evidence that
-it is treated as immediate rather than as a step worth recording. **Note their
-indexing:** BMP's `k` counts *other* points, so BMP's "`k = 2` refuted by Danzer,
-open at `k = 3`" is this repository's "`k = 3` refuted, `k = 4` open".
+paragraph, supplying no argument connecting the two forms. **Note their
+indexing:** BMP's `k` counts *other* points, so BMP's
+"`k = 2` refuted by Danzer, open at `k = 3`" is this repository's "`k = 3`
+refuted, `k = 4` open".
 
 The module docstring in
 [`PinnedMultiplicity.lean`](lean/Erdos9796Proof/P97/PinnedMultiplicity.lean)
@@ -292,356 +523,389 @@ implication is **not new** — Pach and Agarwal state it with the constant in
 *Combinatorial Geometry* (1995), p. 206, without proof, and Erdős asserts it
 himself in *Eureka* 51 (1992), 44–48, p. 45: "I conjectured that in every convex
 n-gon there is a vertex which does not have four vertices equidistant from it.
-If true this is very much stronger than (4)", where (4) is `max sᵢ < cn`, the
-Erdős 96 bound. (He offers £100 there — the first prize attached to this
-conjecture.) What is complete here is the formal proof, and it is what makes the
-whole P96 branch's openness enter through exactly one gateway.
+If true this is very much stronger than (4)", where his (4) is `max sᵢ < cn` —
+`sᵢ` the number of times the `i`-th distance occurs, `c` an absolute constant —
+the Erdős 96 bound. (He offers £100 there.) What is complete here is the formal proof, and it is what confines
+the whole P96 branch's openness to exactly one gateway.
 
 ### The counting engine
 
 | Theorem | Statement |
 |---|---|
-| [`Problem97.CGN8_circumscribed_iCount_upper_bound`](lean/Erdos9796Proof/P97/CGN/CGN8.lean#L31) | isosceles count `iCount A ≤ (11n² − 18n)/12` for circumscribed convex-independent `A` |
+| [`Problem97.CGN8_circumscribed_iCount_upper_bound`](lean/Erdos9796Proof/P97/CGN/CGN8.lean#L31) | isosceles count `iCount A ≤ (11n² − 18n)/12`, where `n = \|A\|`, for circumscribed convex-independent `A` |
 | [`Problem97.six_mul_card_le_iCount_of_K4`](lean/Erdos9796Proof/P97/IsoscelesCount.lean#L153) | the 4-equidistant property forces `6n ≤ iCount A` |
 | [`Problem97.MEC.exists_unique_minimum_enclosing_circle`](lean/Erdos9796Proof/P97/MEC/Basic.lean#L255) | existence and uniqueness of the minimum enclosing circle |
-| [`Problem97.MEC.sylvester_dichotomy`](lean/Erdos9796Proof/P97/MEC/Boundary.lean#L557) | Sylvester (1857): the MEC is a diameter, or at least 3 points lie on it |
+| [`Problem97.MEC.sylvester_dichotomy`](lean/Erdos9796Proof/P97/MEC/Boundary.lean#L556) | the classical dichotomy for the problem Sylvester posed in 1857: the MEC is a diameter, or at least 3 points lie on it |
 
 mathlib has no minimum enclosing circle; this development builds one. See
 [`comparator/README.md`](comparator/README.md) for the full gated list (24
 core-tier theorems, including the Welzl invariant, the Moser non-obtuse triple,
-the Dumitrescu/Fox–Pach double count, and the planar metric kernels, plus 3 in
+the Dumitrescu/Fox–Pach double count, and the planar metric kernels, plus 6 in
 the compiler-trusted tier), for how each project definition is inlined into
 mathlib terms, and for the audit boundary — what is deliberately *not* gated,
 and why.
 
+---
+
 ## Building from a clean checkout
 
 Requires [`elan`](https://leanprover-community.github.io/install/) (the Lean
-toolchain manager) and `uv`; the pinned toolchain is
-`leanprover/lean4:v4.27.0` and is fetched automatically.
+toolchain manager) and `uv`. The pinned toolchain is `leanprover/lean4:v4.27.0`
+and is fetched automatically.
 
 ```bash
 git clone <this-repo>
 cd <this-repo>
 
-cd lean
+# Fetch the prebuilt mathlib cache.  This also materializes the pinned
+# dependencies from lake-manifest.json: mathlib v4.27.0 and formal-conjectures.
+cd lean && lake exe cache get && cd ..
 
-# Fetch the prebuilt mathlib cache (also materializes the pinned dependencies
-# from lake-manifest.json: mathlib v4.27.0 and formal-conjectures).
-lake exe cache get
-
-# Return to the repository root and use the serialized build wrapper.
-cd ..
+# Build through the serialized wrapper, which holds a lock so that concurrent
+# invocations queue rather than corrupt each other's output.
 ./scripts/lake-build.sh
 ```
 
-Or use the convenience wrapper from the repository root, which holds a build
-lock so concurrent invocations serialize:
+`scripts/lake-build.sh` resolves the repository root, takes a PID lockfile at
+`lean/.lake/lake-build.lock` (reaping stale locks, refusing to run while another
+build's process is live), and then runs `lake build` with the default targets
+`Erdos9796` and `Erdos9796Proof`. The memory and stack flags live in
+`lean/lakefile.toml` as `moreLeanArgs = ["-M16384", "-s2097152"]`. Do not
+confuse this script with the `lake-build` command that the `lean-usage` plugin
+installs on `PATH`; they are different programs.
 
-```bash
-./scripts/lake-build.sh
-```
-
-A successful build prints `declaration uses 'sorry'` warnings for the twenty
-leaf theorems in `P97/ATail/FrontierLiveClosure.lean` and nothing else of
-substance.
-(Lean's mathlib-style linters emit a handful of cosmetic
-style/`simp` hints; these are not errors.)
+A successful build prints `declaration uses 'sorry'` warnings for the open leaf
+theorems, plus the off-spine ones listed under **Proof status**, and nothing else
+of substance. Lean's mathlib-style linters emit a
+handful of cosmetic style and `simp` hints; these are not errors.
 
 **Note on dependencies.** `lake-manifest.json` is committed and pins exact
-dependency revisions, so the build is reproducible. Do **not** run
-`lake update` - it would re-resolve `formal-conjectures` to the latest `main`
-and break the pin.
+dependency revisions, so the build is reproducible. Do **not** run `lake update`
+— it would re-resolve `formal-conjectures` to the latest `main` and break the
+pin.
 
-The promoted card-eleven certificate source graph is on the published import
-spine and closes the card-11 exact-four branch. Its 922 compact and 742
-windowed replay modules, together with their 1,656 directly referenced source
-assets, are committed under the main `Erdos9796Proof` library, so a clean
-checkout needs no historical-tree path, vendor package, or separately
-distributed replay bundle. The promotion manifest supports a self-contained
-`--check`; scratch provenance is consulted only by the explicit
-`--check-source` regeneration audit. The promoted graph has no `sorryAx`;
-generated `native_decide` proofs contribute
-`Lean.ofReduceBool` and `Lean.trustCompiler`, both included in the project's
-approved trust boundary.
+**Note on scale.** `lean/Erdos9796Proof/` is 5,213 `.lean` files and about 1.46M
+lines, most of it generated certificate and replay material; the published spine
+is 291,224 lines across 36,264 declarations. A cold build is correspondingly
+long, and `lake exe cache get` is not optional in practice.
+
+### Python and repository hygiene
+
+Python tooling is managed with `uv` (`pyproject.toml`, `uv.lock`; pytest and
+ruff are in the `dev` group). Run things as `uv run python scripts/<name>.py`.
+There is no single `test.sh`; the convention is per-lane entrypoints under
+`scripts/test-*.sh` plus `uv run pytest`.
+
+Two scripts matter before you commit anything:
+
+```bash
+# Worktree ownership and artifact-hygiene report / gate.
+python scripts/check_worktree_hygiene.py report --lane <lane-id>
+python scripts/check_worktree_hygiene.py check  --lane <lane-id> --staged
+
+# Re-mine and refreeze a bank's Lean source manifest after editing a module
+# that bank actually depends on.  Needs a built .olean tree.
+uv run python scripts/mine_bank_lean_dependencies.py <bank module> --compare
+```
+
+See [`CLAUDE.md`](CLAUDE.md) for the lane-ownership protocol these enforce.
+
+---
 
 ## Repository layout
 
 ```
-lean-toolchain                -- root commands use leanprover/lean4:v4.27.0
+lean-toolchain                -- leanprover/lean4:v4.27.0
+pyproject.toml / uv.lock      -- uv-managed Python tooling
+.blueprint.toml               -- proof-blueprint config (publish target, axiom policy)
+CLAUDE.md / AGENTS.md         -- contributor + agent protocol (AGENTS.md is a symlink)
+
 lean/
   Erdos9796.lean              -- root: re-exports upstream statements + the proofs
   Erdos9796Proof.lean         -- root: the two upstream-vocabulary bridge theorems
   Erdos9796Proof/
+    Geometry/                 -- small shared geometry library
+    P96/                      -- Problem 96 proof library (2 files)
+      UpstreamBridge.lean       -- erdos96_rhs
+      EuclideanPeeling.lean     -- the <= 3n unit-distance bound
     P97/                      -- Problem 97 proof library
       UpstreamBridge.lean       -- erdos97_rhs (the published theorem)
       UniversalProblem97.lean   -- the strong-induction wrapper
-      UniversalLocal.lean       -- instantiated statement + the |A| ≤ 9 closure
-      PinnedMultiplicity.lean   -- the μ(p,A) ≤ 3 reformulation
-      Counting.lean             -- counting engine (forces |A| ≥ 9)
+      UniversalLocal.lean       -- instantiated statement + the |A| <= 9 closure
+      PinnedMultiplicity.lean   -- the mu(p,A) <= 3 reformulation
+      Counting.lean             -- counting engine (forces |A| >= 9)
       Descent.lean              -- descent engine (kills |A| > 9)
-      RemovableVertexAxiom.lean -- removable-vertex assembly; A-tail leaves downstream
-      U1LargeCapRouteBTail.lean -- imported U-lane route-B tail; source-clean coordinator
-      ATail/
-        FrontierLiveClosure.lean -- twenty load-bearing production leaf obligations
-        CardElevenUniqueFourCertificateIngress.lean -- closed card-11 exact-four branch
+      RemovableVertexAxiom.lean -- removable-vertex assembly (+ dir of the same name)
       Foundation.lean           -- shared vocabulary + signed-area primitives
-      Dumitrescu/               -- isosceles-counting lemma chain (L1 … Lc3)
-      CGN/                      -- cap-witness counting bridge (CGN … CGN8)
+      ATail/                    -- the A-tail frontier and its certificate ingress
+        FrontierLiveClosure.lean          -- 46-line import-only coordinator
+        FrontierLiveClosure/              -- the 36 open leaves + generated CNF/replay
+        CardElevenUniqueFourCertificate/  -- promoted card-11 certificate graph
+      Dumitrescu/               -- isosceles-counting lemma chain (L1 ... Lc3)
+      CGN/                      -- cap-witness counting bridge (CGN ... CGN8)
       N4d/                      -- n=9 form-exclusion case analysis (20 files)
       N9Endpoint/  N8/          -- n=9 base-case assembly
       Cap/  MEC/  Moser/        -- cap structures, min-enclosing circle, Moser triangle
       U2/                       -- similarity-normalization lane
-      SurplusM44Packet.lean     -- (m,4,4) surplus-cap packet vocabulary
-      SurplusCOMPGBank*.lean    -- generated finite COMP-G bank + DFS bridge
+      Bridge/                   -- spine wiring for the row-layer context producers
+      Census554/                -- census-554 lane + its finite banks
+      MultiCenter/              -- multi-centre certificate lane
+      Certificate/  ErasedCertificate/  SurplusCertificate/
       EndpointCertificate/      -- generated polynomial-certificate corpus
-                                --   (Checker.lean + Patterns/*, native_decide)
+      SurplusCOMPGBank*.lean    -- generated finite COMP-G bank + DFS bridge
+      SurplusM44Packet.lean     -- (m,4,4) surplus-cap packet vocabulary
       U1*/U3*/U5*.lean          -- imported U-lane modules (2026-07-05)
       ConvexCyclicOrder/        -- convex cyclic-order construction
       ...                       -- other shared geometry kernels in the root
-    P96/                      -- Problem 96 proof library (2 files)
-      UpstreamBridge.lean     -- erdos96_rhs
-      EuclideanPeeling.lean   -- the ≤ 3·n unit-distance bound
-  lakefile.toml               -- build config + dependency requires
-                              --   (also wires the comparator/ libs below)
+  lakefile.toml               -- build config, dependency requires, comparator libs
   lake-manifest.json          -- pinned dependency revisions
-  lean-toolchain              -- same Lean v4.27.0 pin for commands under lean/
+
 comparator/                   -- mathlib-only auditability gate (see its README)
   Challenge.lean              -- headline claims as sorry stubs, `import Mathlib`
   Solution.lean               -- same statements, discharged from the project
   config.json                 -- core tier: 3 core axioms only (24 theorems)
-  axiom-audit.lean            -- #print axioms for every core-tier theorem
   config-native.json          -- native tier: + ofReduceBool/trustCompiler (6)
-  axiom-audit-native.lean     -- #print axioms for every native-tier theorem
+  axiom-audit.lean / axiom-audit-native.lean
   check-conformance.sh        -- offline pre-flight, both tiers
+
+census/                       -- solver-lane census data
+  card_head/                  -- the 22 exact-12 membership bank compilers + tests
+  frontier-packages/          -- historical nine-package taxonomy
 certificates/                 -- JSON certificate banks (endpoint/, surplus/)
-scripts/
-  lake-build.sh               -- locked build wrapper
-  endpoint-certificate.py     -- polynomial-certificate generator/emitter
-  escape-census.py            -- escape-census enumeration
-  surplus-compg-shadow.py     -- COMP-G shadow/bank generator
-docs/                         -- working plans, dead-ends log, audits
+data/                         -- proof-blueprint and pattern-bank SQLite state
+attic/                        -- retired off-spine work
+scratch/                      -- runtime lanes, solver output, generated artifacts
+
+scripts/                      -- 361 scripts; the ones a newcomer needs:
+  lake-build.sh                    -- locked build wrapper
+  check_worktree_hygiene.py        -- lane ownership + artifact hygiene gate
+  mine_bank_lean_dependencies.py   -- kernel-mined bank source manifests
+  render-readme-figure.py          -- regenerates the header figure above
+  endpoint-certificate.py          -- polynomial-certificate generator/emitter
+  escape-census.py                 -- escape-census enumeration (compat wrapper)
+  surplus-compg-shadow.py          -- COMP-G shadow/bank generator
+
+docs/
+  audits/                     -- dated analysis snapshots (the live status record)
+  plans/  specs/              -- active closure plans and lane specifications
+  archive/                    -- superseded plans and ledgers
+  references/                 -- mirrored papers
+  solve-prompts/  census/  multi-center/
+  live-blueprint.md           -- GENERATED spine snapshot; do not edit
+  dead-ends.md                -- don't-repeat log for closed proof routes
 ```
 
 The default `lake build` compiles the full import closure of the two published
-theorems. That closure now includes the 2,061-module promoted card-eleven
-certificate graph described above. The generated corpus under
-`EndpointCertificate/Patterns/` is also transitively imported on the published
-spine and supports the already-closed endpoint branch; it is no longer
-explicit-target-only input for a pending endpoint residual.
+theorems, which includes the promoted card-eleven certificate graph and the
+generated corpus under `EndpointCertificate/Patterns/`.
 
-## Proof architecture - where to look
+---
 
-This section is a map for someone who has never seen the proof. Every name
-below links to the exact declaration. (Links resolve on GitHub against the
-current `main`; line numbers track this commit.)
+## Proof architecture — where to look
 
-The Problem 97 proof is a single **strong induction on the cardinality `|A|`**
-of a hypothetical convex-independent counterexample, driven by two engines and
-bottoming out in a finite base case:
-
-- a **counting engine** that forces any counterexample to have `|A| ≥ 9`;
-- a **descent engine** that, for `|A| > 9`, produces a strictly smaller
-  counterexample - contradicting minimality;
-- a **base case** that rules out `|A| = 9` directly by a large geometric
-  case analysis.
-
-So `|A| < 9` is impossible (counting), `|A| > 9` is impossible (descent), and
-`|A| = 9` is impossible (base case) - no counterexample exists.
+This section is a map for someone who has never seen the proof. Every name below
+links to the exact declaration. (Relative links resolve against whichever ref you
+are viewing; line numbers were checked against this commit and drift with edits
+to the target files.)
 
 ### Start here: the spine
 
 Read these in order; each line is the load-bearing declaration of its step.
 
-1. [`erdos97_rhs`](lean/Erdos9796Proof/P97/UpstreamBridge.lean#L30) - the
+1. [`erdos97_rhs`](lean/Erdos9796Proof/P97/UpstreamBridge.lean#L30) — the
    published theorem, definitionally the upstream RHS (the rest of the file is
    the `Iff.rfl` bridge).
-2. [`UniversalProblem97`](lean/Erdos9796Proof/P97/UniversalLocal.lean#L44) -
-   instantiates the induction wrapper with the two engines (below) discharged.
+2. [`UniversalProblem97`](lean/Erdos9796Proof/P97/UniversalLocal.lean#L44) —
+   instantiates the induction wrapper with the two engines discharged.
 3. [`UniversalProblem97_of_reduction`](lean/Erdos9796Proof/P97/UniversalProblem97.lean#L60)
-   - the strong-induction wrapper itself. It takes the two engines bundled in
+   — the strong-induction wrapper itself. It takes the two engines bundled in
    [`UniversalReductionHypotheses`](lean/Erdos9796Proof/P97/UniversalProblem97.lean#L37)
    (the `counting` bound and the `descent` step) and calls the base case
    directly for `|A| = 9`.
 4. **Base case** `|A| = 9`:
-   [`FiniteN9Closure`](lean/Erdos9796Proof/P97/N9Endpoint/Closure.lean#L71).
+   [`FiniteN9Closure`](lean/Erdos9796Proof/P97/N9Endpoint/Closure.lean#L56).
 5. **Counting engine** (`|A| ≥ 9`):
    [`counterexample_card_ge_nine`](lean/Erdos9796Proof/P97/Counting.lean#L95).
 6. **Descent engine** (`|A| > 9`):
    [`descent_contradicts_minimality`](lean/Erdos9796Proof/P97/Descent.lean#L27),
    which consumes
-   [`RemovableVertexOfLarge`](lean/Erdos9796Proof/P97/RemovableVertexAxiom/Continuation.lean#L811)
-   (assembled; carries the five residual obligations) plus the glue
+   [`RemovableVertexOfLarge`](lean/Erdos9796Proof/P97/RemovableVertexAxiom/RemovableVertexOfLarge.lean#L50)
+   plus the glue
    [`smaller_counterexample_of_removable`](lean/Erdos9796Proof/P97/SmallerCounterexample.lean#L30).
 
 ### Shared foundations
 
 The vocabulary and core geometric objects every cluster builds on:
 
-- [`Foundation.lean`](lean/Erdos9796Proof/P97/Foundation.lean) - re-exports the
+- [`Foundation.lean`](lean/Erdos9796Proof/P97/Foundation.lean) — re-exports the
   upstream predicates and defines the signed-area primitives:
-  [`ConvexIndep`](lean/Erdos9796Proof/P97/Foundation.lean#L28),
-  [`signedArea2`](lean/Erdos9796Proof/P97/Foundation.lean#L49),
-  [`OnArcOpposite`](lean/Erdos9796Proof/P97/Foundation.lean#L57).
+  [`ConvexIndep`](lean/Erdos9796Proof/P97/Foundation.lean#L44),
+  [`signedArea2`](lean/Erdos9796Proof/P97/Foundation.lean#L75),
+  [`OnArcOpposite`](lean/Erdos9796Proof/P97/Foundation.lean#L83).
 - [`MinEnclosingCircle`](lean/Erdos9796Proof/P97/MEC/Basic.lean#L66) (existence +
-  uniqueness) and the [`MoserTriangle`](lean/Erdos9796Proof/P97/Moser/Triangle.lean#L59)
-  it determines - the three boundary vertices the whole analysis is framed
-  around.
-- [`CapTriple`](lean/Erdos9796Proof/P97/Cap/Structure.lean#L161) - the
-  decomposition of the point set into the three circular "caps" cut off by the
+  uniqueness) and the
+  [`MoserTriangle`](lean/Erdos9796Proof/P97/Moser/Triangle.lean#L59) it
+  determines — the three boundary vertices the whole analysis is framed around
+  (middle panel of the figure at the top).
+- [`CapTriple`](lean/Erdos9796Proof/P97/Cap/Structure.lean#L161) — the
+  decomposition of the point set into the three circular caps cut off by the
   Moser triangle.
 - [`IsRemovableVertex`](lean/Erdos9796Proof/P97/SmallerCounterexample.lean#L25)
-  - the predicate the descent step is built to produce.
+  — the predicate the descent step is built to produce.
 
 ### The counting engine (forces `|A| ≥ 9`)
 
 A Dumitrescu-style double count of isosceles configurations: a lower bound
 `6·|A| ≤ iCount(A)` against a cap-local upper bound forces `|A| ≥ 9`.
 
-- [`iCount`](lean/Erdos9796Proof/P97/IsoscelesCount.lean#L39) - the isosceles
+- [`iCount`](lean/Erdos9796Proof/P97/IsoscelesCount.lean#L39) — the isosceles
   count, defined in `IsoscelesCount.lean`.
-- the [`Dumitrescu/`](lean/Erdos9796Proof/P97/Dumitrescu) dir (`L1.lean …
-  Lc3.lean`) - the lemma chain establishing the lower bound
+- the [`Dumitrescu/`](lean/Erdos9796Proof/P97/Dumitrescu) directory (`L1.lean …
+  Lc3.lean`) — the lemma chain establishing the lower bound
   (perpendicular-bisector, double-count, three-cap, Cauchy–Schwarz,
   Thales-angle, …).
 - [`CGN8_circumscribed_iCount_upper_bound`](lean/Erdos9796Proof/P97/CGN/CGN8.lean#L31)
-  - the matching cap-local upper bound (top of the
+  — the matching cap-local upper bound (top of the
   [`CGN/`](lean/Erdos9796Proof/P97/CGN) counting-bridge stack).
 - [`Counting.lean`](lean/Erdos9796Proof/P97/Counting.lean) combines the two with
   the arithmetic in `CountingArithmetic.lean`.
 
-### The `n = 9` base case (the bulk of the files)
+### The `n = 9` base case (the bulk of the hand-written files)
 
 Most of the hand-written P97 files implement the finite case analysis behind
 `FiniteN9Closure`. It threads a fixed 9-point shell through form exclusions and
 a final single-apex exhaustion:
 
-- [`FiniteEndpointShell`](lean/Erdos9796Proof/P97/N9Endpoint/Shell.lean#L39) - the
-  structure packaging the fixed 9-point setup (`N9Endpoint/Shell.lean`); the
-  closure is assembled in `N9Endpoint/Closure.lean`, with `N9Endpoint/N4e.lean`
-  (cap containment) and `N9Endpoint/N67.lean` (rigid common-radius packet).
-- **`N4d/` form exclusions** - three geometric "forms" excluded at each of three
+- [`FiniteEndpointShell`](lean/Erdos9796Proof/P97/N9Endpoint/Shell.lean#L39) —
+  the structure packaging the fixed 9-point setup; the closure is assembled in
+  `N9Endpoint/Closure.lean`, with `N9Endpoint/N4e.lean` (cap containment) and
+  `N9Endpoint/N67.lean` (rigid common-radius packet).
+- **`N4d/` form exclusions** — three geometric "forms" excluded at each of three
   apex relabellings:
-  [`N4dExcludesFormA_v1_proof`](lean/Erdos9796Proof/P97/N4d/ExcludesFormAv1.lean#L645),
-  [`…FormB…`](lean/Erdos9796Proof/P97/N4d/ExcludesFormBv1.lean#L742),
+  [`N4dExcludesFormA_v1_proof`](lean/Erdos9796Proof/P97/N4d/ExcludesFormAv1.lean#L646),
+  [`…FormB…`](lean/Erdos9796Proof/P97/N4d/ExcludesFormBv1.lean#L725),
   [`…FormC…`](lean/Erdos9796Proof/P97/N4d/ExcludesFormCv1.lean#L766), with the
-  `v₂`/`v₃` variants produced by `N4d/CyclicTransport.lean` and the many other
-  [`N4d/`](lean/Erdos9796Proof/P97/N4d) files supplying form-specific geometry.
-- **`N8` single-apex exhaustion** - the final contradiction, routed by
-  [`N8k_single_apex_false`](lean/Erdos9796Proof/P97/N8/N8kDistribution.lean#L1110)
-  through the two-circle / endpoint-pair / reflection primitives in the
+  `v₂`/`v₃` variants produced by `N4d/CyclicTransport.lean`.
+- **`N8` single-apex exhaustion** — the final contradiction, routed by
+  [`N8k_single_apex_false`](lean/Erdos9796Proof/P97/N8/N8kDistribution.lean#L1106)
+  through the two-circle, endpoint-pair, and reflection primitives in the
   [`N8/`](lean/Erdos9796Proof/P97/N8) subdirectory.
 
 ### The descent step and the removable-vertex lemma
 
 - [`RemovableVertexAxiom.lean`](lean/Erdos9796Proof/P97/RemovableVertexAxiom.lean)
-  - assembles `RemovableVertexOfLarge` (every minimal counterexample with
-  `|A| > 9` has a removable vertex) from the three-way split. Its three former
-  slot-2 residual branches are now closed.
+  — assembles `RemovableVertexOfLarge` (every minimal counterexample with
+  `|A| > 9` has a removable vertex) from the three-way split: surplus-cap packet
+  extraction, the `IsM44` pinned-surplus branch, and the non-`IsM44` descent
+  branch.
 - [`SmallerCounterexample.lean`](lean/Erdos9796Proof/P97/SmallerCounterexample.lean)
-  - turns a removable vertex into a strictly smaller counterexample.
-- [`Descent.lean`](lean/Erdos9796Proof/P97/Descent.lean) - packages the two into
+  — turns a removable vertex into a strictly smaller counterexample.
+- [`Descent.lean`](lean/Erdos9796Proof/P97/Descent.lean) — packages the two into
   the contradiction-with-minimality shape the induction wrapper consumes.
 
-### Status of the removable-vertex lemma: current residuals
-
-The twenty A-tail leaves in the **Proof status** table are the open frontier;
-everything else on the descent path is closed and kernel-audited: the base
-case `FiniteN9Closure` (axiom closure: `propext, Classical.choice,
-Quot.sound`), the cap-sum bridge (`|A| > 9 ⇒ some opposite cap is surplus`),
-the counting bound `counterexample_card_ge_nine` (`|A| ≥ 9`), the surplus-cap
+Everything on the descent path outside the 36 frontier leaves is closed and
+kernel-audited: the base case `FiniteN9Closure` (axiom closure `propext,
+Classical.choice, Quot.sound`), the cap-sum bridge (`|A| > 9 ⇒ some opposite cap
+is surplus`), the counting bound `counterexample_card_ge_nine`, the surplus-cap
 packet extraction (`largeK4SurplusCapPacket`), the pinned-surplus finite-bank
 handoff (`pinnedSurplusCOMPGBankBridge`), and the non-`IsM44` descent adapter
 (`removableVertexOfLarge_of_nonIsM44`).
-
-**Active work happens in this repo.**
-[`docs/closure-plan-full-spec-2026-07-09.md`](docs/closure-plan-full-spec-2026-07-09.md)
-is the single current closure plan (cross-cutting strategy, gates, dispatch
-specs, uncertainty register), and
-[`docs/closure-matrix-2026-07-09.md`](docs/closure-matrix-2026-07-09.md) is its
-executable task register.
-[`docs/97-rvol-full-prose-proof-2026-07-13.md`](docs/97-rvol-full-prose-proof-2026-07-13.md)
-is the dated full prose proof of the Problem 97 target — the self-contained
-end-to-end mathematical narrative with per-component proved/open status,
-kernel axiom closures, and a completion matrix stating each obligation.
-[`docs/notes/sms-ccl-application-recommendation-2026-07-13.md`](docs/notes/sms-ccl-application-recommendation-2026-07-13.md)
-is a research recommendation mapping SAT-modulo-symmetries and co-certificate
-learning onto the census/mining lanes (papers mirrored in `docs/references/`).
-The former July 6 master plan, the dated sorry-level ledger, and the two
-slot-3/slot-2 U-lane execution logs (both now-closed lanes) are historical
-records under
-[`docs/archive/2026-07-10-closure-plan-consolidation/`](docs/archive/2026-07-10-closure-plan-consolidation/)
-and
-[`docs/archive/2026-07-16-doc-sweep/`](docs/archive/2026-07-16-doc-sweep/).
-Analysis snapshots live under [`docs/audits/`](docs/audits).
-[`docs/dead-ends.md`](docs/dead-ends.md) is the don't-repeat log for closed
-proof routes.
-
-**Historical note.** The U-lane route-B tail was developed in the companion
-repo `p97-rvol` and imported here on 2026-07-05 (58 modules,
-`RVOL.P97.*` → `Erdos9796Proof.P97.*`). As of 2026-07-06, `p97-rvol` and the
-other companion repos are historical — frozen references, not live work
-targets; their status docs are superseded by this repo.
-
-The former off-spine `U2OppCap2Escape.lean` work is archived under `attic/`.
-All current production proof `sorry`s are in
-`P97/ATail/FrontierLiveClosure.lean`.
 
 ### Problem 96
 
 Self-contained in the [`P96/`](lean/Erdos9796Proof/P96) directory and much
 smaller: a vertex-peeling argument gives the per-set bound
 [`unit_distance_pairs_bound`](lean/Erdos9796Proof/P96/EuclideanPeeling.lean#L289)
-(`≤ 3·|A|`), which [`UpstreamBridge.lean`](lean/Erdos9796Proof/P96/UpstreamBridge.lean#L69)
-lifts to the asymptotic `O(n)` statement. Each of those steps also has an
-explicitly conditional variant taking `Problem97.UniversalProblem97Statement` as
-a hypothesis
+(`≤ 3·|A|`), which
+[`UpstreamBridge.lean`](lean/Erdos9796Proof/P96/UpstreamBridge.lean#L69) lifts to
+the asymptotic `O(n)` statement. Each of those steps also has an explicitly
+conditional variant taking `Problem97.UniversalProblem97Statement` as a
+hypothesis
 ([`unit_distance_pairs_bound_of_erdos97`](lean/Erdos9796Proof/P96/EuclideanPeeling.lean#L273),
 [`erdos96_rhs_of_erdos97`](lean/Erdos9796Proof/P96/UpstreamBridge.lean#L82));
-those are unconditionally proved and are what isolate the P96 branch's openness
-to a single gateway.
+those conditional variants are unconditionally proved, and they are what confine
+the P96 branch's openness to a single gateway.
 
 ### Supporting clusters
 
-These provide reusable geometric machinery imported throughout the above:
+Reusable geometric machinery imported throughout the above:
 
-- **[`Cap/`](lean/Erdos9796Proof/P97/Cap)** - cap partition, structure, and
+- **[`Cap/`](lean/Erdos9796Proof/P97/Cap)** — cap partition, structure, and
   cone/arc containment (plus `ArcPartitionCount.lean` in the root).
 - **[`ConvexCyclicOrder/`](lean/Erdos9796Proof/P97/ConvexCyclicOrder) /
-  `SignedAreaOangle.lean` / `OangleBridge.lean`** - cyclic-order construction and
-  the bridge between the algebraic `signedArea2` and Mathlib's oriented angle
+  `SignedAreaOangle.lean` / `OangleBridge.lean`** — cyclic-order construction and
+  the bridge between the algebraic `signedArea2` and mathlib's oriented angle
   `oangle`.
-- **[`U2/`](lean/Erdos9796Proof/P97/U2)** - similarity normalization and one-hit
+- **[`U2/`](lean/Erdos9796Proof/P97/U2)** — similarity normalization and one-hit
   witness bounds.
-- **`A1*`** (incl. [`Bridge/A1SpineWiring.lean`](lean/Erdos9796Proof/P97/Bridge/A1SpineWiring.lean))
-  - the row-layer context producers wiring shell facts into the endpoint forms.
-- **Geometry kernels** - `TwoCircleCrossing.lean`, `NoDiameterUnderK4.lean`,
+- **`A1*`** (including
+  [`Bridge/A1SpineWiring.lean`](lean/Erdos9796Proof/P97/Bridge/A1SpineWiring.lean))
+  — the row-layer context producers wiring shell facts into the endpoint forms.
+- **Geometry kernels** — `TwoCircleCrossing.lean`, `NoDiameterUnderK4.lean`,
   `CircumcenterSide.lean`, `MidpointInequality.lean`,
   `CircumscribedMECPacket.lean`.
 
-## Known k = 3 witnesses (counterexample-search lane)
+---
 
-Problem 97 is the k = 4 instance of "every point has k others equidistant
-from it, in convex position." For k = 3 the property **is** realizable; the
-search lane (`docs/p97-counterexample-search-design-2026-07-28.md`) carries
-the two known witnesses as positive controls. In both figures, each dashed
-circle is centered at a vertex and passes through that vertex's 3
-equidistant witnesses.
+## Where the work happens
 
-![9-point k=3 witness](docs/assets/danzer-9gon-k3.png)
+Plans and status live in `docs/`, in two layers.
 
-Nine points with exact ℚ(√3) coordinates, threefold symmetry, and a witness
-distance that **varies per vertex** (Danzer-style). Coordinates verified
-twice by independent exact arithmetic
-(`scratch/p97-search-lane/verify_k3_control.py`); note n = 9 is exactly the
-unconditional floor for a k = 4 counterexample.
+- [`docs/closure-plan-full-spec-2026-07-09.md`](docs/closure-plan-full-spec-2026-07-09.md)
+  is the declared route plan to `proof-blueprint verify-publish` green —
+  cross-cutting strategy, gates, dispatch specs, and the uncertainty register.
+  [`docs/closure-matrix-2026-07-09.md`](docs/closure-matrix-2026-07-09.md) is its
+  executable task register.
+- [`docs/computational-closure-plan-2026-07-28.md`](docs/computational-closure-plan-2026-07-28.md)
+  (updated 2026-08-14) governs the live frontier work and is the doc to read
+  first for anything touching the solver lanes.
+  [`docs/closure-evidence-status-ledger-2026-08-05.md`](docs/closure-evidence-status-ledger-2026-08-05.md)
+  defines the evidence-status vocabulary it uses.
 
-![Fishburn–Reeds 20-gon](docs/assets/fr-20gon-k3.png)
+For current truth about what is open, regenerate rather than trust a snapshot:
 
-The Fishburn–Reeds 1992 20-gon: a **single common distance** 1, every
-vertex's 3 witnesses lying across a convex cut {A, B}, and n = 20 proven
-minimal for the cut-restricted version. Table-1 coordinates transcribed and
-numerically verified in `scratch/p97-search-lane/fishburn-reeds-notes.md`;
-exact certification of the configuration is the realization arm's
-validation target (`scratch/p97-search-lane/fr-certify/`). Plots:
-`scratch/p97-search-lane/plot_k3_witnesses.py`.
+```bash
+proof-blueprint spine
+```
+
+[`docs/live-blueprint.md`](docs/live-blueprint.md) is the generated snapshot of
+that command and is marked do-not-edit.
+
+Other durable entry points:
+
+- [`docs/97-rvol-full-prose-proof-2026-07-13.md`](docs/97-rvol-full-prose-proof-2026-07-13.md)
+  — the dated end-to-end prose proof of the Problem 97 target, with per-component
+  proved/open status, kernel axiom closures, and a completion matrix. Still the
+  only end-to-end prose narrative; its content is dated 2026-07-13.
+- [`docs/audits/`](docs/audits) — dated analysis snapshots. This is where the
+  live per-lane status actually lives; the 2026-08-16 through 2026-08-18 audits
+  are the current record.
+- [`docs/dead-ends.md`](docs/dead-ends.md) — the don't-repeat log for closed
+  proof routes.
+- [`docs/notes/sms-ccl-application-recommendation-2026-07-13.md`](docs/notes/sms-ccl-application-recommendation-2026-07-13.md)
+  — a research recommendation mapping SAT-modulo-symmetries and co-certificate
+  learning onto the census and mining lanes (papers mirrored in
+  `docs/references/`).
+- Superseded plans and ledgers are under
+  [`docs/archive/`](docs/archive).
+
+**Historical note.** The U-lane route-B tail was developed in the companion
+repository `p97-rvol` and imported here on 2026-07-05 (58 modules, `RVOL.P97.*`
+→ `Erdos9796Proof.P97.*`). As of 2026-07-06, `p97-rvol` and the other companion
+repositories are historical — frozen references, not live work targets. The
+former off-spine `U2OppCap2Escape.lean` work is archived under `attic/`.
+
+---
+
+## Regenerating the header figure
+
+```bash
+uv run python scripts/render-readme-figure.py
+```
+
+This writes `docs/assets/p97-architecture-{light,dark}.svg`. The script computes
+all coordinates rather than hard-coding them, and asserts the properties the
+figure claims — that the five points in the first panel are in convex position,
+that exactly three of the twelve points in the second lie on the minimum
+enclosing circle while the rest lie strictly inside it, and that deleting the
+marked vertex in the third leaves a convex polygon.
