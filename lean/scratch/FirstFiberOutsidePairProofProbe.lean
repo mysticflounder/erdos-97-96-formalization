@@ -74,7 +74,9 @@ variable
     (hLP : LP.fresh = P.source₁)
     (MP : LocalizedCollisionMutualOmissionCycle Pρ LP)
 
-example {commonRadius : ℝ}
+include hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
+  hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+theorem firstFiberOutsidePairDeletionExactRows_probe {commonRadius : ℝ}
     (Q : FreshOutsideFirstBlockerFiber P Pρ)
     (source source' : CriticalShellSystem.CarrierVertex D.A)
     (sources_ne : source.1 ≠ source'.1)
