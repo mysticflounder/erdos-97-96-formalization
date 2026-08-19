@@ -76,7 +76,9 @@ variable
 
 include hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
   hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
-theorem firstFiberOutsidePairDeletionExactRows_probe {commonRadius : ℝ}
+/-! Diagnostic only: the final coordinator below calls the live target back.
+This file records ingress normalization, not a promoted closure proof. -/
+theorem firstFiberOutsidePairDeletionExactRows_circularProbe {commonRadius : ℝ}
     (Q : FreshOutsideFirstBlockerFiber P Pρ)
     (source source' : CriticalShellSystem.CarrierVertex D.A)
     (sources_ne : source.1 ≠ source'.1)
@@ -143,3 +145,8 @@ theorem firstFiberOutsidePairDeletionExactRows_probe {commonRadius : ℝ}
 end TwoSourceExactCollisionRowsTerminal
 end ATailFrontierLiveClosure
 end Problem97
+
+#print axioms
+  Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.firstFiberOutsidePairDeletionExactRows_circularProbe
+#print axioms
+  Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_capSource_firstFiber_collisionFiveCenterDeletion
