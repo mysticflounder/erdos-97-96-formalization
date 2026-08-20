@@ -1677,11 +1677,1111 @@ Afterward, `#print axioms Problem97.erdos97_rhs` must contain no `sorryAx`.
 
 **Status:** [CERTIFIED]
 
-### 16.5 Open theorem
+### 16.5 The open theorem decomposed into its reachable leaves
 
-- general non-`IsM44` contradiction above nine, outside the exact-cardinality-eleven branch.
+The single prose statement `GlobalNonM44Contradiction` is not a single unstructured gap in the current Lean development. In the last built dependency-spine snapshot it reaches thirty-six declarations containing `sorry`, distributed over nine modules. This subsection records every one of those declarations as a separate mathematical obligation. The purpose is to prevent a source-clean coordinator, an exhaustive case split, or a stronger-looking packet type from being mistaken for a proof of its unresolved terminal.
 
-**Status:** [OPEN; currently 36 reachable leaf theorems]
+#### 16.5.0 Roster authority, snapshot discipline, and counting rule
+
+The numbered roster below follows the repository README's last built `proof-blueprint spine` measurement: thirty-six reachable leaves below `Problem97.erdos97_rhs`. This is the reachability authority for this manuscript. A raw grep for `sorry` is not equivalent to a dependency-spine measurement: raw `main` may contain newly added placeholders not yet present in the last built report, old placeholders that have become unreachable, and explicitly parked off-spine declarations.
+
+Three declarations are expressly excluded from the thirty-six-leaf count because the README marks them off-spine: `false_of_exactFiveDistinct_biApexRobust_postCardEleven`, `TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_firstFiberDescentResidual`, and `DoubleApexOffSurplusSharedRadiusPair`. Current raw source also contains later fresh-third edits whose built-spine reachability has not yet been regenerated. Those declarations must be reassessed after a clean build, but they are not silently promoted into this numbered roster.
+
+For each numbered leaf, five distinctions are maintained. The *contract* is what the theorem actually assumes and concludes. The *available data* are facts already produced by callers. The *missing implication* is the smallest presently unproved mathematical step. The *candidate closure program* is a research route, not a claim of proof. The *rejection tests* identify shortcuts that would be unsound or contradicted by known realizable local models.
+
+**Status.** [OPEN-ROSTER; 36 built-spine leaves]
+
+#### 16.5.A `Rigid221SourceHeavy.lean` - eight reachable leaves
+
+These leaves refine the source-heavy side of an exact `2+2+1` decomposition of a five-point physical radius class. They retain unusually rich provenance: named row companions, exact physical-class traces, cap-interior placement, actual blocker identities, and prescribed deletions. The main opportunity is to replace repeated local case trees by one or two order-sensitive lemmas on points lying on a common physical circle.
+
+##### 16.5.A1 - The pentagon blocker is the distinguished deleted point
+
+**Declaration.** `false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerDeleted`
+
+**Source and role.** `Rigid221SourceHeavy.lean`, approximately lines 3379-3457. This is the first terminal after the source-heavy pentagon is normalized and the blocker of the `xv` row is identified with the joint-deletion point.
+
+**Atomic contract.** From the complete source-heavy pentagon packet, the exact five-point physical class, the full row-membership and omission trace, strict second-cap locations, and the equality `centerAt(xv)=deleted`, derive `False`.
+
+**Data already proved upstream.** The physical class is exactly the five named points `u`, `xu`, `deleted`, `v`, and `xv`. The source row and opposite row meet that class in exact two-point blocks. The blocker of the source row is `xv`; `xv` lies in the strict second-cap interior. The blocker of the `xv` row is the deleted point, and that blocker is also localized to the same strict interior. The row at `xv` contains `xv` and `u`, while the blocker center itself is not in that row. The theorem also receives the carried five-cycle support traces rather than anonymous existential circles.
+
+**Exact missing implication.** The missing statement is not merely that several points are concyclic or equidistant. One must show that the complete named blocker cycle and the strict cap order cannot be realized simultaneously by a convexly independent carrier.
+
+**Candidate closure program.**
+
+1. Introduce an angular-coordinate lemma for a fixed physical circle: if three distinct points `a,b,c` lie in one open cap arc and `b` is equidistant from `a` and `c`, then `b` is the unique arc midpoint between `a` and `c` in that arc. State this without trigonometric branch ambiguity by using oriented cyclic order and equal-chord lemmas.
+
+2. Translate each carried row equality whose center also lies on the physical circle into an arc-midpoint equation. In particular, `centerAt(u)=xv` and the two physical members of the source row give one midpoint relation; `centerAt(xv)=deleted` and the pinned pair `{xv,u}` give a second.
+
+3. Enumerate every additional relation contained in the five-cycle trace and prove that they form either a strict cyclic chain of arc midpoints or a closed affine equation in angular coordinates. A closed chain of strict midpoints forces equality of two named distinct points.
+
+4. Package the result as a generic `false_of_commonCircle_strictArc_blockerMidpointCycle` theorem, then discharge this leaf by a source-faithful adapter.
+
+
+**Known limits and rejection tests.** Two midpoint equations alone are geometrically realizable, so the proof must consume the complete cycle trace. It may not assume that cap membership automatically gives a common semicircle until the cap-to-open-arc lemma is proved. It also may not use `center = deleted` as an immediate contradiction: a center need not belong to the erased support.
+
+**Immediate consumer.** The source-heavy second-opposite-large pentagon coordinator. Closing it removes one of the two named pentagon continuations and supplies a reusable common-circle cycle theorem for several later Rigid221 leaves.
+
+**Status.** [OPEN]
+
+##### 16.5.A2 - Exact seventeen, second-cap nine, and the four-row exact cover
+
+**Declaration.** `false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV_vRowBlockerDeleted_deletedRowBlockerOffClass_card_eq_seventeen_secondCapNine`
+
+**Source and role.** `Rigid221SourceHeavy.lean`, approximately lines 11710-11757. The theorem has already split the exact-cardinality-seventeen branch into an unused-outside-point arm and an exact-cover arm; the first arm is proved and only the exact-cover arm reaches `sorry`.
+
+**Atomic contract.** Assume `|A|=17`, the indexed second cap has cardinality nine, the next blocker is strict-cap interior but outside the physical five-class, and its next row has at most one physical-class hit. The checked splitter says four named exact rows cover all eight carrier points outside the second cap. Prove that this exact cover is impossible.
+
+**Data already proved upstream.** All four rows have cardinality four and retain their centers and source identities. The cap has an exact cyclic boundary model. Every point outside the cap is assigned to at least one of the four rows, and the complementary unused-point alternative has already been closed. The source file already contains certified boundary-order infrastructure for the seventeen-point normalization.
+
+**Exact missing implication.** The unresolved implication is a finite cyclic-order obstruction: no assignment of the eight outside-cap points to the four named rows can satisfy all exact support memberships, center-not-in-support conditions, circle-intersection bounds, and the inherited physical-class omissions.
+
+**Candidate closure program.**
+
+1. Extract a minimal finite packet containing the seventeen boundary labels, the nine cap labels, the four row centers, the four exact support sets, and every forced membership and nonmembership. Do not encode arbitrary K4 witnesses not used by the terminal.
+
+2. Normalize reflection and rotation symmetries of the boundary order so the certificate searches one representative per dihedral orbit.
+
+3. For every candidate support assignment, derive exact orientation or circle-incidence constraints. Reject assignments by a small library of kernel lemmas: distinct-center circles meet in at most two carrier points; a row omits its own center; three collinear carrier points are impossible; and interlacing equal-chord pairs force a convex-hull crossing.
+
+4. If the remaining state space is finite, emit a replayable certificate bank keyed by the normalized support assignment. A project-approved `native_decide` endpoint is acceptable here only after the geometric reduction to finite predicates is explicit and audited.
+
+
+**Known limits and rejection tests.** A cardinality count alone cannot reject the exact cover: four four-point rows can cover eight points abstractly. The finite checker must encode the branch's exact provenance and geometric predicates, not just an incidence hypergraph. The existing exact rational B2 stress model warns that local two-circle counting plus strict convexity is insufficient.
+
+**Immediate consumer.** The exact-seventeen deleted-row off-class coordinator. This is a bounded endpoint and is one of the best candidates for certificate closure without discovering a new unbounded theorem.
+
+**Status.** [OPEN]
+
+##### 16.5.A3 - The unbounded deleted-row off-class continuation
+
+**Declaration.** `false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV_vRowBlockerDeleted_deletedRowBlockerOffClass_card_ge_eighteen`
+
+**Source and role.** `Rigid221SourceHeavy.lean`, approximately lines 11760-11791. The source comment explicitly identifies this as the unbounded continuation after the exact-seventeen stratum is isolated.
+
+**Atomic contract.** Under the same rigid pentagon and deleted-row off-class hypotheses, but with `18 <= |A|`, prove `False`.
+
+**Data already proved upstream.** The physical five-class, prescribed deletion, interior next blocker, off-class condition, and next-row physical-intersection bound are all available. Exact-cardinality fifteen, sixteen, and the cap-ten/cap-eleven portions of seventeen have separate finite closures. No upper bound on the carrier is available here.
+
+**Exact missing implication.** A cardinality-independent contradiction is missing. No finite label enumeration can prove this theorem unless one first establishes a bounded-obstruction reduction that preserves every hypothesis needed by the endpoint certificate.
+
+**Candidate closure program.**
+
+1. Attempt a cap-weighted all-blockers inequality. Count incidences from sources outside the physical second cap into canonical four-rows, but weight a row by the number of its support points forced outside that cap. The current branch supplies a row with at most one physical-class hit and should force at least three supports elsewhere.
+
+2. Combine this lower bound with an order-sensitive upper bound: for centers in a fixed cap interval, canonical rows should not be able to use too many separated outside-cap pairs without producing interlacing chords or a repeated source pair. Pure pair-codegree at most two is too weak; the upper bound must use boundary intervals.
+
+3. As an alternative, prove a genuine bounded-obstruction theorem: from any realization of the unbounded residual, select a bounded set of named centers and supports that itself violates a generic Euclidean lemma. This must not delete arbitrary carrier points or assume K4 is hereditary under taking subsets.
+
+4. Only after one of those global reductions is proved should the exact-seventeen certificate be considered as a terminal for the unbounded branch.
+
+
+**Known limits and rejection tests.** The tempting statement 'four rows have at most sixteen points, so an eighteenth point is unused' is invalid: the relevant rows need not cover the whole carrier, and an unused point can still be blocked by another canonical center. Deleting that point is not justified. This leaf is the clearest evidence that the current route needs a scalable invariant rather than more finite splitting.
+
+**Immediate consumer.** The `card_ge_seventeen` coordinator and, transitively, the source-heavy pentagon route. This is the highest-risk single leaf in the current Rigid221 cluster.
+
+**Status.** [OPEN]
+
+##### 16.5.A4 - The blocker centered at `v` lies off the physical class
+
+**Declaration.** `false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV_vRowBlockerOffClass`
+
+**Source and role.** `Rigid221SourceHeavy.lean`, approximately lines 12004-12019. All named physical-class placements of the next blocker have already been split; center-not-in-row, equilateral, and ordered-betweenness arguments close the other physical alternatives.
+
+**Atomic contract.** Given the complete pentagon residual and the fact that the blocker selected at `v` is not in the exact physical five-class, derive `False`.
+
+**Data already proved upstream.** The preceding packet identifies the physical five-class and its `2+2+1` row decomposition, the blocker chain through `u` and `xv`, cap-interior positions for the first two fresh blockers, and all row omissions. The only new center is the blocker of `v`, known to be a carrier point and the center of a canonical four-row.
+
+**Exact missing implication.** The missing theorem must localize an off-circle blocker strongly enough to force either a previously closed physical placement, a forbidden row intersection, or a convex-order violation.
+
+**Candidate closure program.**
+
+1. Use each pair of physical-class support points in the `v` row to place the new blocker on a named perpendicular bisector. Derive a second independent bisector from another forced pair in its row or from a common-deletion support; one bisector alone leaves a one-dimensional family.
+
+2. Prove a cap-localization lemma for the intersection of two such bisectors relative to the strict second-cap arc. The desired conclusion is that the intersection is either one of the named physical points, outside the convex hull, or in a cap region incompatible with the inherited blocker localization.
+
+3. If only one physical pair is currently retained, strengthen the upstream packet additively with the exact second pair before restating the terminal. Do not guess it from an existential K4 witness.
+
+4. Share the resulting `offPhysicalCircle_twoPinnedPairs` lemma with the nonphysical-collision and generic source-ne-`u` leaves.
+
+
+**Known limits and rejection tests.** An off-class blocker is not impossible by itself; a point off one circle can be the center of a circle through two points on it. The proof needs two independent pair constraints or a global order condition. It must also preserve the independent radii of different selected rows unless equality is separately derived.
+
+**Immediate consumer.** The `BlockerV` pentagon coordinator. A successful two-bisector localization theorem could also reduce leaves C1 and C2.
+
+**Status.** [OPEN]
+
+##### 16.5.A5 - Exact-twelve common-deletion residue with one missing tetrahedron incidence
+
+**Declaration.** `false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_exactTwelve_interiorDeletion_physicalRadius_commonDeletion_missingIncidence`
+
+**Source and role.** `Rigid221SourceHeavy.lean`, approximately lines 15438-15505. The source comment identifies the final negated conjunction as the exact producer gap left after a checked common-arm CEGAR lane.
+
+**Atomic contract.** In the exact-twelve cap profile `(5,4,6)`, with the four named second-cap interior points, a named physical-radius source, survival after one of two first-apex deletions, and two nested common-deletion packets, prove `False` when at least one of five required tetrahedron incidences is absent.
+
+**Data already proved upstream.** Let `c=centerAt(xv)`, `d=centerAt(c)`, `Kxv` be the canonical row at source `xv`, `Kc` the row at source `c`, and `BO` the physical-radius class at the second apex after deleting `xu`. The complete-incidence consumer already closes the conjunction `d in BO`, `O in Kc`, `u in Kc`, `O in Kxv`, and `d in Kxv`. Six source/deletion predicates have been checked. Two source-faithful common-deletion packets are available.
+
+**Exact missing implication.** The missing implication is an incidence-completion theorem: the global exact-twelve and common-deletion hypotheses must force all five positive incidences, or each possible missing incidence must itself yield a contradiction.
+
+**Candidate closure program.**
+
+1. Rewrite the negated five-way conjunction as five explicit branches. Give each branch its own short theorem so no proof accidentally establishes only a different incidence.
+
+2. For every common-deletion packet, canonicalize the surviving four-support at each nonrobust center. Prove a dichotomy: either the support is the pre-existing canonical row because the deleted point is omitted, or the center is deletion-robust via a second heavy radius. Route the robust alternative to the existing cap-growth bounds.
+
+3. Use support equality, not radius equality, as the default transport. Derive radius equality only from a named shared support point and positive radii.
+
+4. After canonicalization, attempt to force the five incidences one at a time. If one remains genuinely independent, encode the exact twelve-point residual as a finite certificate rather than adding it as an axiom.
+
+
+**Known limits and rejection tests.** The finite CEGAR result described in the source is diagnostic until its predicates, terminal coverage, certificate replay, and placement transport are all kernel-connected. A `not (a and b and c and d and e)` hypothesis cannot be consumed by proving some unrelated disjunction. No incidence may be inferred merely because two existential K4 witnesses happen to have the same center.
+
+**Immediate consumer.** The exact-twelve interior-deletion physical-radius coordinator. Its incidence-completion adapter should be designed to serve A7 and A8 as well.
+
+**Status.** [OPEN]
+
+##### 16.5.A6 - Exact-twelve next row has only the named `xu` hit
+
+**Declaration.** `false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_exactTwelve_interiorDeletion_physicalRadius_nextRowOnlyHit`
+
+**Source and role.** `Rigid221SourceHeavy.lean`, approximately lines 15506-15554. This is the complement of A5 after the common-deletion arm is absent.
+
+**Atomic contract.** Under the same exact-twelve `(5,4,6)` cap profile, prove impossibility when the next canonical row contains `xu` but omits `u` and `xv`.
+
+**Data already proved upstream.** The strict second-cap interior is exactly the four named points `u`, `centerAt(xv)`, `xv`, and `xu`. The next row has its source `centerAt(xv)` automatically, contains `xu`, and omits the other two named physical points. Its remaining two support points must therefore be outside that four-point interior set. The full twelve-point cap partition and the source-survival alternative are retained.
+
+**Exact missing implication.** The unresolved step is to show that no exact four-row with precisely those two named interior hits can be placed among the remaining cap and boundary points while satisfying the other canonical rows and deletion semantics.
+
+**Candidate closure program.**
+
+1. Derive an exact support-location table for the two unnamed members of the next row. The `(5,4,6)` cap sizes determine the cardinalities of the three cap interiors and the shared Moser vertices; use these identities to replace broad carrier membership with a short list of cap regions.
+
+2. For each region pair, use a circle-versus-convex-order lemma: two strict-cap points and two points in specified adjacent caps lie on a common circle centered at the named blocker only in certain noninterlacing orders.
+
+3. Exploit the source-survival disjunction to eliminate the region assignments that place a deleted first-apex point in the canonical row.
+
+4. Because the carrier has exactly twelve points, certify any residual finite order cases after all metric conditions have been reduced to exact orientation and equal-distance predicates.
+
+
+**Known limits and rejection tests.** A same-cap row may contain two points without contradiction, and two additional points can lie outside the cap. The proof cannot stop at the observation that the row has only two physical-class hits. A finite endpoint must encode the full cap partition and all inherited rows.
+
+**Immediate consumer.** The exact-twelve physical-radius split. Together with A5, this exhausts that endpoint.
+
+**Status.** [OPEN]
+
+##### 16.5.A7 - Deletion of `u` with a fixed physical source pair and a missing incidence
+
+**Declaration.** `false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_uDeletion_fixedPhysicalPair_missingIncidence`
+
+**Source and role.** `Rigid221SourceHeavy.lean`, approximately lines 15826-15856. This leaf replaces an older arbitrary-source interface with the source-clean fixed pair `xu` and the distinguished deleted point.
+
+**Atomic contract.** Assume `13 <= |A|`. After deleting `u`, the relevant source centers and the physical apex survive. The complete five-incidence tetrahedron packet has a checked contradiction consumer. Prove `False` from the complementary assertion that at least one required incidence is missing.
+
+**Data already proved upstream.** Let `Kxu` and `Kdeleted` be the canonical rows at sources `xu` and `deleted`; let their blockers be `cxu` and `cd`; and let `BO` be the physical-radius class after deleting `u`. The five desired incidences are `cxu in BO`, `O in Kxu`, `cd in Kxu`, `O in Kdeleted`, and `cxu in Kdeleted`. All source identities, carrier memberships, survival statements, and the rigid physical packet are retained.
+
+**Exact missing implication.** As in A5, the mathematical gap is positive incidence production. Existing code proves that a complete tetrahedron is contradictory; it does not prove that the tetrahedron must be complete.
+
+**Candidate closure program.**
+
+1. Factor a general `fiveIncidences_or_robustAlternative` theorem for two source-faithful canonical rows under a common deletion. Its conclusion should be the complete incidence packet or a precise robustness/second-radius alternative at one of the two blockers.
+
+2. Use the multiplicity-blocker equivalence: failure after deleting a source identifies exactly the canonical four-row containing that source, while survival under the prescribed deletion proves that the deleted point is outside that row unless the center is robust.
+
+3. Thread the rigid cap placement into every robustness alternative. A robust blocker in this branch should trigger an existing all-large-cap or two-radius route rather than a new opaque terminal.
+
+4. Split any remaining missing incidence into five atomic sublemmas before attempting a finite or geometric proof.
+
+
+**Known limits and rejection tests.** The complete-incidence consumer cannot be used contrapositively to manufacture the complete packet. Support equality must be justified by uniqueness at a nonrobust center. Since the theorem is unbounded above, a raw finite enumeration is not a complete route unless the missing-incidence obstruction is proved bounded.
+
+**Immediate consumer.** The `threeCenterDeletion_u` coordinator. This is a prime target for a reusable incidence-completion theorem shared with A5 and A8.
+
+**Status.** [OPEN]
+
+##### 16.5.A8 - Deletion of `xv` with two failing-then-surviving blockers and a missing incidence
+
+**Declaration.** `false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_threeCenterDeletion_xv_missingIncidence`
+
+**Source and role.** `Rigid221SourceHeavy.lean`, approximately lines 15917-15973. This is the `xv`-deletion endpoint after the complete tetrahedron-incidence packet is eliminated.
+
+**Atomic contract.** For two outside sources with distinct nonphysical blockers, deletion of `u` destroys K4 at both blockers, while deletion of `xv` preserves K4 at both blockers and at the physical apex. Prove `False` when at least one of the five incidences required by the checked consumer fails.
+
+**Data already proved upstream.** The two failed `u` deletions are especially strong: by the canonical blocker equivalence, `u` belongs to each blocker's unique four-row and each blocker has pinned multiplicity exactly four. The surviving `xv` deletion proves `xv` is absent from those rows, unless an independently proved robustness alternative applies. The blockers are distinct and not equal to the physical apex.
+
+**Exact missing implication.** The missing implication is to convert this failure/survival asymmetry into the exact cross-incidences of the two canonical rows and the surviving physical-apex class.
+
+**Candidate closure program.**
+
+1. Immediately rewrite both failed `u`-deletion hypotheses into canonical-row memberships `u in K1` and `u in K2`, with exact multiplicity drop `4 -> 3`.
+
+2. Rewrite both surviving `xv` deletions into `xv notin K1` and `xv notin K2` after discharging nonrobustness from the failed `u` deletions. This removes the existential K4 witnesses entirely.
+
+3. Use the fact that two distinct canonical rows share `u`. They may share at most one additional point. Determine which of the required tetrahedron incidences would force that second point, and show that every missing-incidence branch either creates a forbidden third intersection or leaves a blocker unblocked under deletion `u`.
+
+4. If the intersection argument still has a realizable branch, add the cap locations of both blockers and use the perpendicular-bisector line through the shared pair to force a forbidden collinearity of three carrier centers.
+
+
+**Known limits and rejection tests.** Two distinct circles may share exactly two points, so the common source `u` alone is not terminal. The proof must identify a second shared point or use cap order. Do not synchronize the radii of the two rows merely because both contain `u`.
+
+**Immediate consumer.** The `threeCenterDeletion_xv` coordinator. This leaf has the strongest direct connection to the all-blockers and multiplicity formulation and may be the cleanest place to test it.
+
+**Status.** [OPEN]
+
+#### 16.5.B `Rigid221Placement.lean` - five reachable leaves
+
+These are the stable placement terminals immediately below the contextual rigid `2+2+1` decomposition. They are smaller than the source-heavy continuations but often lack the later named companions. Where necessary, the correct repair is to enrich the terminal with data already available to its caller rather than to invent a local geometric axiom.
+
+##### 16.5.B1 - Pairwise-distinct-radius minimal deletion core
+
+**Declaration.** `false_of_exactFourMutualOmissionRigid221_minimalCore`
+
+**Source and role.** `Rigid221Placement.lean`, approximately lines 531-574. This is the minimal-core geometry arm of `ExactFourMutualOmissionRigid221GlobalDeletion` when the global deletion center is not the physical apex.
+
+**Atomic contract.** From a minimal counterexample, a positive physical class of exact size five, mutual omission of two source rows, a rigid `2+2+1` decomposition, and a `MinimalDeletionCore` at a nonphysical center, derive `False`.
+
+**Data already proved upstream.** The deleted set is nonempty, contained in the physical five-class, and has cardinality at most five. K4 fails at the global center after deleting the whole set but is restored when any one deleted point is put back. The core supplies a critical four-shell for each restored point and pairwise-disjoint shell supports. The rigid packet records how the physical class meets the two principal rows.
+
+**Exact missing implication.** The missing theorem is a cap-sensitive bound on a family of pairwise-disjoint exact four-shells centered at one point and indexed by a small subset of one physical circle.
+
+**Candidate closure program.**
+
+1. Expand the minimal-core semantics into exact multiplicity statements. For each deleted source `s`, identify the unique radius at the common center whose four-class in the partially restored carrier contains `s` and fails when `s` is removed.
+
+2. Prove that the core radii are pairwise distinct and their supports are disjoint in the original carrier, with each support containing exactly one deleted point. Make all cardinality consequences explicit.
+
+3. Intersect every support with the three Moser caps. A circle centered at one fixed nonphysical carrier point should have a uniform upper bound on points in the physical strict cap or on repeated boundary intervals. Sum that bound over the disjoint shells.
+
+4. If the resulting inequality is not contradictory, use the rigid `2+2+1` row traces to show that at least two core shells must share a named physical or boundary point, contradicting disjointness.
+
+
+**Known limits and rejection tests.** Pure counting gives only `4 * |deleted|` support incidences and is compatible with sufficiently large carriers. The contradiction must use cap location or forced shared points. The theorem cannot be closed by asserting that distinct radii at one center are impossible; concentric circles are entirely possible.
+
+**Immediate consumer.** The nonphysical branch of the Rigid221 placement dispatcher. A successful common-center/disjoint-shell cap bound would also inform the two-radius and unbounded leaves.
+
+**Status.** [OPEN]
+
+##### 16.5.B2 - The source blocker is the rigid singleton deletion
+
+**Declaration.** `false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerDeleted`
+
+**Source and role.** `Rigid221Placement.lean`, approximately lines 734-746. The physical apex is the global-deletion center, `u` is the retained source, and the actual blocker of `u` is the distinguished singleton omitted from the two rigid two-point blocks.
+
+**Atomic contract.** Prove impossibility of the exact placement `centerAt(u)=deleted` inside the rigid physical five-class context.
+
+**Data already proved upstream.** The blocker and the source-row physical companion lie on the same physical circle centered at the second apex. The source row contains `u` and its companion but omits its own center. The deleted point is the fifth physical-class point outside the two disjoint row blocks. Mutual omission, exact class size five, cap-growth data, and the joint-deletion packet remain available through `P`.
+
+**Exact missing implication.** One must turn the equal-chord relation at the deleted point and the known cap positions of the two-point blocks into a contradiction with the singleton's placement.
+
+**Candidate closure program.**
+
+1. Name the second physical member `xu` of the source row. From `centerAt(u)=deleted`, derive `dist(deleted,u)=dist(deleted,xu)`.
+
+2. Use the common physical circle to convert that equality into an arc-midpoint alternative for `deleted` relative to `u` and `xu`.
+
+3. Prove where the rigid singleton deletion lies in the cap partition. If it lies outside the open arc containing the source block, the midpoint alternative should place it at the opposite arc midpoint; compare that location with the two other physical-block points and convex order.
+
+4. Close the remaining reflected orientation by one generic equal-chord/cap-separation lemma rather than two ad hoc coordinate calculations.
+
+
+**Known limits and rejection tests.** The equality of two chord lengths is not itself contradictory. The proof needs an explicit theorem connecting the geometric cap to a unique open arc of the physical circle. It must not assume the singleton lies outside that arc without deriving its cap membership from the rigid packet.
+
+**Immediate consumer.** The physical-apex source-equals-`u` placement dispatcher. The same common-circle arc lemma is expected to support A1 and B3.
+
+**Status.** [OPEN]
+
+##### 16.5.B3 - Blocker `v` and a source-row-heavy cap shape
+
+**Declaration.** `false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerV_sourceRowHeavy`
+
+**Source and role.** `Rigid221Placement.lean`, approximately lines 882-897. The checked normalization already proves that `v` lies in the strict physical second-cap interior.
+
+**Atomic contract.** Assume `centerAt(u)=v`, both physical members of the source row are strict second-cap interior, and `v` is also strict interior. Prove `False`.
+
+**Data already proved upstream.** The source row meets the physical five-class in an exact two-point block containing `u`; call the companion `xu`. Thus `u`, `xu`, and the center `v` are distinct points on the same physical circle and in the same strict cap, with `dist(v,u)=dist(v,xu)`. The opposite row is mutually omitted from the source row and contributes the other rigid two-point block.
+
+**Exact missing implication.** The immediate geometry yields a strict-arc midpoint relation, but a single midpoint is realizable. The missing step is to connect that midpoint to the opposite row or to the next blocker so that a closed order cycle is formed.
+
+**Candidate closure program.**
+
+1. Prove the arc-midpoint identity for `v` between `u` and `xu`.
+
+2. Extract the exact cap locations of the opposite block `{v,xv}`. Because `v` is itself one member of that block, identify whether `xv` lies in the same strict arc or an adjacent cap.
+
+3. Use mutual omission (`v` omitted from the `u` row and `u` omitted from the `v` row`) together with canonical blocker semantics to constrain the next blocker of `v`. Split it into the already named physical placements and an off-class center.
+
+4. In the physical placements, derive a second arc-midpoint relation and close a strict cycle. In the off-class placement, invoke the two-pinned-pair localization proposed for A4.
+
+
+**Known limits and rejection tests.** Three same-circle strict-cap points with one midpoint relation are feasible. Any proof stopping at that fact is incomplete. This leaf may need to be weakened into a source-clean producer for the later source-heavy pentagon rather than proved directly at the present information boundary.
+
+**Immediate consumer.** The `blockerV` cap-shape splitter. It can be bypassed if the richer source-heavy continuation is made the primary terminal and this theorem becomes an adapter.
+
+**Status.** [OPEN]
+
+##### 16.5.B4 - A blocker in the opposite rigid row and an opposite-row-heavy shape
+
+**Declaration.** `false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRow_oppositeRowHeavy`
+
+**Source and role.** `Rigid221Placement.lean`, approximately lines 907-921. This terminal is deliberately blocker-identity independent: it records membership in the opposite row and the physical class rather than a particular named point.
+
+**Atomic contract.** The actual source blocker lies in the opposite row's physical two-point block; the source row is not heavy, while both opposite-row physical points lie in the strict cap. Prove `False`.
+
+**Data already proved upstream.** The rigid class is exactly `2+2+1`. The blocker is one of the two opposite-block points and is a carrier center. The source itself is strict interior. The opposite row has exactly two physical strict-cap hits, while the source row has fewer than two. Mutual omissions and all exact row cardinalities are available.
+
+**Exact missing implication.** The missing theorem must show that a canonical center chosen from the heavy opposite block cannot support the source row under the inherited cap order.
+
+**Candidate closure program.**
+
+1. Name the two opposite-block points and split the blocker membership into the source `v` and its companion. Keep both branches symmetric through a typed packet.
+
+2. For each branch, derive the equal-chord relation from the blocker to the two physical members of the source row. Determine the source row's one or zero strict-cap physical hits from the `not heavy` hypothesis and the rigid `2+2+1` count.
+
+3. Apply a common-circle separation lemma: a center on the heavy interior block cannot be equidistant to a source-block pair separated across the adjacent-cap boundary without forcing the center or one source onto the wrong arc.
+
+4. If the row has only one physical-class member, retain the two nonphysical support points and use their cap regions; otherwise the equal-chord argument is underdetermined.
+
+
+**Known limits and rejection tests.** The heavy count refers to an intersection cardinality, not automatically to a named pair until the exact two-point block is unpacked. A generic same-cap-circle bound of at most two points gives equality here, not a contradiction. The proof needs order, not another cardinality estimate.
+
+**Immediate consumer.** The shared blocker-in-opposite-row dispatcher, used by both blocker-equality and blocker-other parents.
+
+**Status.** [OPEN]
+
+##### 16.5.B5 - The exceptional sparse `1+1+1` row pattern
+
+**Declaration.** `false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRow_sparseRows`
+
+**Source and role.** `Rigid221Placement.lean`, approximately lines 930-944. Both row-heavy alternatives have been excluded; the rigid class and the three-interior-point bound normalize the remaining case to one interior point from each two-point block plus the singleton.
+
+**Atomic contract.** Prove that the normalized sparse placement is impossible when the source blocker lies in the opposite row's physical block.
+
+**Data already proved upstream.** There are exactly three strict physical-cap interior points. The source row contributes exactly one, the opposite row contributes exactly one, and the singleton physical-class point is the third. The two unused members of the rigid blocks lie outside the strict interior. The actual blocker is in the opposite block and in the physical class.
+
+**Exact missing implication.** The missing step is an exact cyclic-order exclusion of this `1+1+1` placement together with the equal-distance relations from the two canonical rows.
+
+**Candidate closure program.**
+
+1. Introduce names for all five physical-class points and derive the two possible cyclic orders of the `1+1+1` cap split, modulo reflection.
+
+2. Translate each row's exact two-point physical intersection into a chord. Determine whether the two chords cross, nest, or are separated on the physical circle.
+
+3. Use the fact that each row center is itself a carrier point, one center lies in the opposite block, and centers are omitted from their own supports. Derive either an interlacing equal-chord configuration or a point lying in the convex hull of two neighbors.
+
+4. Certify the finitely many residual orientation cases if the generic chord lemma leaves endpoint equalities.
+
+
+**Known limits and rejection tests.** The abstract `1+1+1` distribution is realizable on a circle. The contradiction, if true, comes from the row centers and mutual omissions, not from the cap count alone. The proof must enumerate endpoint coincidences rather than silently assuming all five named roles are distinct.
+
+**Immediate consumer.** The final sparse child of the physical-apex source-equals-`u` dispatcher.
+
+**Status.** [OPEN]
+
+#### 16.5.C `Rigid221Closure.lean` - five reachable leaves
+
+These leaves coordinate the placement modules and the post-card-eleven continuation. One raw theorem in this module, `false_of_exactFiveDistinct_biApexRobust_postCardEleven`, is excluded here because the built status report marks it off-spine.
+
+##### 16.5.C1 - The physical-apex branch with a genuine third source
+
+**Declaration.** `false_of_exactFourMutualOmissionRigid221_physicalApex_sourceNeU`
+
+**Source and role.** `Rigid221Closure.lean`, approximately lines 45-97. Here the contextual source is not `u`, so its selected row is genuinely distinct from the two rigid principal rows.
+
+**Atomic contract.** Close the physical-apex rigid branch when the actual source blocker is localized to one of three placements: the distinguished deletion, `u`, or the opposite-row physical block.
+
+**Data already proved upstream.** The source row retains its source identity and physical-class membership. The placement theorem has already reduced the blocker to a finite union. The complete Rigid221 context, mutual omissions, cap-growth surface, and joint-deletion data are still available.
+
+**Exact missing implication.** Each placement requires a source-faithful contradiction. Existing source-equals-`u` leaves cannot simply be applied because the third source row has different support and omission facts.
+
+**Candidate closure program.**
+
+1. Split the theorem into three named child packets, one per placement, and carry the source row's exact physical-class intersection into each child.
+
+2. For `blocker=deleted` and `blocker=u`, derive common-circle arc relations using the third source and its physical companion. Compare them with the already fixed principal-row chords.
+
+3. For blocker membership in the opposite block, reuse B4/B5 only after proving an adapter that replaces their source-equals-`u` assumptions with the exact third-row traces they actually consume.
+
+4. If the third row carries strictly more information than the stable B4/B5 interface, move the terminal downstream rather than discarding that information.
+
+
+**Known limits and rejection tests.** Equality of the source with `u` is not cosmetic; it changes which canonical row is being discussed. Rewriting a third-row support as the `u` row would be unsound. The blocker-placement disjunction alone is not contradictory.
+
+**Immediate consumer.** The physical-apex side of the top-level Rigid221 closure.
+
+**Status.** [OPEN]
+
+##### 16.5.C2 - Nonphysical global center with an equal-distance deleted pair
+
+**Declaration.** `false_of_exactFourMutualOmissionRigid221_nonphysicalCollision`
+
+**Source and role.** `Rigid221Closure.lean`, approximately lines 215-260. This is the collision geometry arm when the rigid global-deletion center is not the physical apex.
+
+**Atomic contract.** Given two distinct deleted physical-class points at equal distance from a nonphysical center, together with the rigid `2+2+1` decomposition and global-deletion minimality, prove `False`.
+
+**Data already proved upstream.** The nonphysical center is a carrier point outside the deleted set. The deleted points lie on the physical circle and on one circle centered at the global center. The minimal deletion packet records failure after deleting the full set and restoration when individual points return. The rigid rows specify which physical points belong to which principal supports.
+
+**Exact missing implication.** The missing implication is to show that the equal-distance pair cannot be accommodated by the minimal-core shells and rigid physical-class partition.
+
+**Candidate closure program.**
+
+1. Intersect the global center's relevant radius circle with the physical circle. Distinct centers imply at most two common points, so the named deleted pair exhausts that intersection.
+
+2. Use restoration for each deleted point to identify which minimal-core shell uses that point. Prove that any shell requiring another physical-class point at the same global-center radius would exceed the two-circle intersection bound.
+
+3. Show that the rigid `2+2+1` partition or mutual omission forces such a third physical point, or else forces two core shells to share a nonphysical support, contradicting pairwise disjointness.
+
+4. If neither follows from the present contract, enrich this terminal with the exact core-shell-to-rigid-row incidence already available at the caller.
+
+
+**Known limits and rejection tests.** Two circles with distinct centers can meet in exactly two points, so the named collision is locally realizable. The proof must use the minimal-core restoration or a forced third intersection. It may not assert that the equal-distance pair makes the two centers equal.
+
+**Immediate consumer.** The nonphysical side of the Rigid221 closure, immediately above the minimal-core and collision split.
+
+**Status.** [OPEN]
+
+##### 16.5.C3 - Two disjoint exact-four classes at two radii of one apex
+
+**Declaration.** `false_of_exactFourPostCardElevenTwoRadiusBranch`
+
+**Source and role.** `Rigid221Closure.lean`, approximately lines 694-714. This is the post-card-eleven branch when no positive radius class has size five but two distinct rich radii each give an exact four-class at the second apex.
+
+**Atomic contract.** Prove that two disjoint four-point classes on concentric circles centered at the same apex cannot occur with the robust post-card-eleven surface and the inherited cap constraints.
+
+**Data already proved upstream.** Both radii are positive and distinct. Each selected support has exactly four carrier points, the supports are disjoint, and their cap-interior slices are retained by the producer. The absence of any five-point class rules out a simple robustness escape. The carrier is convexly independent and the second apex is a Moser vertex.
+
+**Exact missing implication.** Concentric exact-four classes are geometrically possible in isolation. The missing theorem must use the precise angular/cap placement to show that all eight points cannot simultaneously be exposed vertices of the carrier.
+
+**Candidate closure program.**
+
+1. Develop a polar exposed-point criterion. For an inner-circle point to be a convex-hull vertex in the presence of outer-circle points, its angular coordinate must lie in a sufficiently large gap between adjacent outer points; formulate this using supporting lines rather than analytic trigonometry where possible.
+
+2. Apply the criterion to all four inner points. The four required outer angular gaps are disjoint. Combine their lower bounds with the known cap angular span or with reflected-pair identities supplied by the downstream two-radius grid route.
+
+3. If the radius ratio is unconstrained, derive the additional equal-distance equations from the two canonical rows before expecting a contradiction. A purely concentric theorem with arbitrary close radii is likely false.
+
+4. Share the strengthened result with D2, where the reflected-pair grid provides exactly the extra algebraic constraints missing here.
+
+
+**Known limits and rejection tests.** Do not state that points on the smaller concentric circle are automatically inside the convex hull of the larger four points; that is false when the outer points leave large angular gaps. A valid theorem must include enough angular coverage or row equations to control those gaps.
+
+**Immediate consumer.** The post-card-eleven robust-surface dispatcher. It is a likely beneficiary of a single two-radius convex-order theorem shared with the TriApex grid leaf.
+
+**Status.** [OPEN]
+
+##### 16.5.C4 - The swapped protected exact-four outcome
+
+**Declaration.** `false_of_exactFourPhysicalConsumerSwappedUniqueFourOutcome`
+
+**Source and role.** `Rigid221Closure.lean`, approximately lines 756-770. The theorem receives the original residual, a physical common-deletion ingress, and a swapped protected exact-four frontier.
+
+**Atomic contract.** Show that the swapped exact-four outcome is impossible or strictly decreases a well-founded measure, so the physical consumer cannot recurse symmetrically without progress.
+
+**Data already proved upstream.** The swap retains source and deletion provenance and exchanges protected roles. The surrounding coordinator already handles the nonswapped outcome. The original surplus index, cap labels, and ordered source pair remain available outside the flattened swapped packet.
+
+**Exact missing implication.** A symmetric packet is not contradictory by itself. The missing proof must identify an asymmetry that is preserved by construction and changes strictly under the swap, or bypass the swap with a direct geometric argument.
+
+**Candidate closure program.**
+
+1. List every field changed by the swap and every field fixed. Candidate measures include the ordered pair of cap indices, boundary positions of protected sources, and lexicographically ordered cap sizes.
+
+2. Prove that the producer's choice rule is extremal with respect to one candidate measure. Then show the swapped outcome yields a strictly smaller admissible choice, contradicting extremality.
+
+3. If no such measure is present, strengthen the producer to select the protected pair canonically before performing the split. Do not add an arbitrary orientation field after the fact.
+
+4. As a fallback, unfold both protected frontiers simultaneously and prove a direct two-orientation contradiction, making clear which original asymmetry distinguishes them.
+
+
+**Known limits and rejection tests.** A theorem whose hypotheses are invariant under the role swap cannot prove `False` solely because the roles are swapped. Any recursive call without a decreasing measure risks circularity. This leaf should be treated first as a well-foundedness audit, not as a metric endpoint.
+
+**Immediate consumer.** The exact-four physical consumer and its protected-outcome dispatcher.
+
+**Status.** [OPEN]
+
+##### 16.5.C5 - Exact-five first-apex residual with a common obstruction center
+
+**Declaration.** `false_of_firstApexUniqueRadiusExactFiveCommonObstructionCenterResidual`
+
+**Source and role.** `Rigid221Closure.lean`, approximately lines 1107-1116. Both obstruction sources select the same canonical blocker in the exact-five first-apex residual.
+
+**Atomic contract.** From the exact-five first-apex class and the equality of the two obstruction blockers, derive `False`.
+
+**Data already proved upstream.** The common blocker has one canonical four-row containing both obstruction sources. The exact-five apex class, omission data, robust surface, and source identities are retained. Equal blockers imply equality of canonical rows without any support-choice ambiguity.
+
+**Exact missing implication.** Two sources in one canonical row are allowed. The missing step is to force either a third point of the exact-five apex class into that row, a forbidden center/support coincidence, or a cap-order obstruction.
+
+**Candidate closure program.**
+
+1. Compute the intersection of the common canonical row with the exact-five apex class. It already contains the two obstruction sources and has cardinality at most two if its center differs from the apex. Therefore those two points exhaust the intersection in the distinct-center case.
+
+2. Use every other member of the exact-five class as a deletion source. The obstruction definition should say why it cannot use the same blocker; translate that into survival or omission statements for the common row.
+
+3. Apply a blocker-fiber pigeonhole or all-blockers selection theorem to force one additional class source to the same blocker, yielding a third circle intersection. If the common blocker equals the apex, use center-not-in-support because the apex's selected class cannot contain its center at positive radius.
+
+4. If current obstruction data mention only two sources, move this leaf to the earliest caller where the remaining three exact-five points and their blockers are still available.
+
+
+**Known limits and rejection tests.** The equality of two blockers is not enough for a contradiction: a four-row can contain two prescribed sources. The required third incidence must be positively produced, not inferred from the class having five points. This route is promising only if the global cover supplies blocker information for the other class members.
+
+**Immediate consumer.** `false_of_originalFrontierUniqueRadiusArm`. This leaf has a compact contract and may be a high-leverage test of the all-blockers formulation.
+
+**Status.** [OPEN]
+
+#### 16.5.D `TriApexEndpointRetainedOmission.lean` - nine reachable leaves
+
+The TriApex cluster retains three large cap/apex systems, paired common-deletion data, and endpoint omissions. Its local shells are known to be partly realizable, so every terminal must use the all-large context or a genuinely global order invariant.
+
+##### 16.5.D1 - A joint deletion on the apex class with a fourth distinct blocker
+
+**Declaration.** `false_of_pairedCommonDeletion_apexClassJointDeletion_triApexAllLarge_core`
+
+**Source and role.** `TriApexEndpointRetainedOmission.lean`, approximately lines 2014-2035. A third source `J` lies on the first-apex class, is omitted by both retained shells, and has its own blocker distinct from the first apex and the two retained blockers.
+
+**Atomic contract.** Given survival after deleting `J` at the first apex and both retained blockers, plus a fourth distinct blocker selected for `J`, derive `False` under `TriApexAllLargeContext`.
+
+**Data already proved upstream.** Four named centers are distinct. The deletion of `J` preserves K4 at three of them, while `J` lies in its own blocker's canonical row. All three relevant cap systems are large, and the paired common-deletion packets retain source identities and shell omissions.
+
+**Exact missing implication.** The missing theorem is a four-center global common-deletion obstruction that uses the tri-apex cap order; the local survival statements alone are realizable.
+
+**Candidate closure program.**
+
+1. Canonicalize all three post-`J` survival witnesses and retain their independent supports. At each nonrobust center, survival says `J` is absent from its canonical row; at a robust center, record the second-heavy-radius alternative explicitly.
+
+2. Place the fourth blocker and the three surviving centers into the tri-apex cap regions. Choose an extremal center in cyclic order and orient every canonical row relative to that choice.
+
+3. Prove that the three `J`-omitting rows separate the carrier around `J` while the fourth row must contain `J`; use Jordan/chord crossing or signed orientation to force one row to cross the convex boundary improperly.
+
+4. Route any robust alternative to a cap-growth count instead of adding another survival-square terminal.
+
+
+**Known limits and rejection tests.** Four distinct centers and one common deletion do not synchronize radii or supports. No proof may treat the three surviving K4 witnesses as a single circle arrangement without canonicalization. The known partial shell witness rules out a theorem based only on two retained shells and omissions.
+
+**Immediate consumer.** The paired-common-deletion tri-apex all-large dispatcher.
+
+**Status.** [OPEN]
+
+##### 16.5.D2 - The two-radius reflected grid in one strict first cap
+
+**Declaration.** `false_of_pairedCommonDeletion_twoRadiusGrid_triApexAllLarge_core`
+
+**Source and role.** `TriApexEndpointRetainedOmission.lean`, approximately lines 2036-2061. This is the richest explicit metric terminal in the TriApex cluster.
+
+**Atomic contract.** Two distinct positive radii at the first apex produce two disjoint exact four-classes. Two retained shells partition those eight points, and four reflected-pair identities form a two-radius grid. All eight grid points lie in the strict first-cap interior. Prove `False`.
+
+**Data already proved upstream.** The two circles are concentric and their radii are independently named. Each class has exactly four points. The shell partition and reflected-pair equalities remove much of the support-choice ambiguity. The carrier is strictly convex and the entire grid lies in one ordered cap interval.
+
+**Exact missing implication.** The unresolved statement is an order-sensitive metric fact: the reflected two-radius grid cannot place all eight points as vertices in one strict cap.
+
+**Candidate closure program.**
+
+1. Choose an oriented axis through the first apex determined by one reflected pair. Express each pair as equal angular offsets on its radius circle; this is a consequence of equal chords, not an assumed symmetry.
+
+2. Derive the cyclic order forced by the four pair identities. The grid should alternate inner- and outer-radius points in a repeated reflected pattern.
+
+3. Use supporting-line inequalities for convex-hull vertices on two concentric circles. Sum the four inequalities for inner points; the reflection equations should cancel angular terms and yield an impossible inequality in the two radii.
+
+4. Formalize a coordinate-free version after validating the algebra in exact real coordinates. The final Lean theorem can choose an orthonormal frame because Euclidean isometries preserve all hypotheses.
+
+
+**Known limits and rejection tests.** Two arbitrary concentric four-sets can be convexly independent, especially when the radii are close and angular gaps are large. The proof must consume the reflected-pair grid and common strict-cap placement. A generic 'inner circle points are inside the outer hull' lemma would be false.
+
+**Immediate consumer.** The two-radius TriApex core. A successful theorem is likely to close or sharply reduce C3 as well.
+
+**Status.** [OPEN]
+
+##### 16.5.D3 - Endpoint cross-hit with first center equal to the fresh source
+
+**Declaration.** `false_of_retainedOmission_reverseHitFresh_endpointCrossHit_firstCenterEqFreshSource_triApexAllLarge_core`
+
+**Source and role.** `TriApexEndpointRetainedOmission.lean`, approximately lines 3445-3461. This is the role-collision branch `A=J` after a reverse hit and a fresh endpoint cross hit.
+
+**Atomic contract.** Derive `False` when the first endpoint blocker equals the fresh first-apex row source in the retained-omission all-large context.
+
+**Data already proved upstream.** The cross hit places one endpoint in a named fresh row, the reverse hit places the fresh source in a retained shell, and the equality identifies a center role with that source. All source and blocker inequalities not collapsed by `A=J` remain available.
+
+**Exact missing implication.** The missing implication is to show that the role equality forces a center into its own positive-radius support or creates a forbidden two-row intersection.
+
+**Candidate closure program.**
+
+1. Rewrite every row and center occurrence by `A=J` and build an exact membership table.
+
+2. Apply center-not-in-own-support to any row now having `J` as both center and listed support. If no direct self-membership appears, identify the two rows that now share both endpoint and fresh source.
+
+3. Use the cross-hit and reverse-hit distance equations to determine whether those rows have distinct centers. If distinct, a third inherited shared point would contradict the two-circle intersection bound; if equal, canonical row equality should contradict an omission.
+
+4. Keep the all-large cap context only for residual cases not closed by the role equality; do not obscure a simple support contradiction behind a global theorem.
+
+
+**Known limits and rejection tests.** Role equality must be propagated through dependent packet fields carefully; the source point, blocker center, and support source are different typed roles before rewriting. A visual diagram is not a proof of self-membership.
+
+**Immediate consumer.** The endpoint-cross-hit equality splitter.
+
+**Status.** [OPEN]
+
+##### 16.5.D4 - Shared blocker with the fresh source in the left adjacent cap
+
+**Declaration.** `false_of_retainedOmission_reverseHitFresh_endpointCrossHit_sharedBlocker_JInLeftAdjacentCap_triApexAllLarge_core`
+
+**Source and role.** `TriApexEndpointRetainedOmission.lean`, approximately lines 3462-3483. The endpoint centers coincide, and the fresh source lies in the left adjacent cap relative to the first-apex cap.
+
+**Atomic contract.** Use the shared blocker, reverse hit, cross hit, and left-adjacent-cap placement to derive `False`.
+
+**Data already proved upstream.** Two source rows have the same blocker and therefore the same canonical four-row. The row contains the two corresponding sources and inherited endpoint hits. The fresh source is outside the first strict cap and lies in the named left adjacent cap. All three apex caps are large.
+
+**Exact missing implication.** The missing theorem is a one-sided cyclic-order contradiction for the common row and the retained shell endpoints.
+
+**Candidate closure program.**
+
+1. Canonicalize the equal-blocker rows to one exact support and list all forced members. If four distinct members are already identified, the row is completely determined.
+
+2. Locate those four members in the three cap intervals and derive their boundary order. A circle centered at the shared blocker through an interlacing left-cap/first-cap pair should force a chord crossing or put the blocker on a forbidden side of a support line.
+
+3. Prove the orientation lemma for an abstract ordered triangle cap with a `left` parameter. Derive D5 by reflection from the same theorem rather than duplicating metric algebra.
+
+4. Use all-large cardinality only to choose a fresh point when the four support members do not yet exhaust the row.
+
+
+**Known limits and rejection tests.** Equal blockers give equal canonical rows, not automatically equal arbitrary survival supports. The left/right reflection is valid only after proving that all oriented definitions transform as claimed. Local two-shell geometry alone is known to be realizable.
+
+**Immediate consumer.** The shared-blocker branch of the endpoint-cross-hit splitter.
+
+**Status.** [OPEN]
+
+##### 16.5.D5 - Shared blocker with the fresh source in the right adjacent cap
+
+**Declaration.** `false_of_retainedOmission_reverseHitFresh_endpointCrossHit_sharedBlocker_JInRightAdjacentCap_triApexAllLarge_core`
+
+**Source and role.** `TriApexEndpointRetainedOmission.lean`, approximately lines 3484-3504. This is the reflected companion of D4.
+
+**Atomic contract.** Derive `False` from the same shared-row and endpoint incidences when the fresh source lies in the right adjacent cap.
+
+**Data already proved upstream.** The packet is the orientation-reversed analogue of D4, with all source identities and cap indices retained.
+
+**Exact missing implication.** The exact missing step is the right-oriented version of the common-row cyclic-order contradiction.
+
+**Candidate closure program.**
+
+1. Construct an explicit reflection adapter on the Moser-triangle cap indexing, row supports, and signed orientations.
+
+2. Map the right-adjacent packet to the left-adjacent theorem proposed for D4.
+
+3. Check that source order and the labels of reverse and cross hits are transformed, not silently exchanged.
+
+4. Retain a direct proof only if the reflection adapter would require more machinery than the orientation lemma itself.
+
+
+**Known limits and rejection tests.** Do not close this theorem by citing informal symmetry. Lean needs an isometry or a previously proved index-permutation theorem transporting every dependent field. If D4 remains open, this theorem remains open too.
+
+**Immediate consumer.** The reflected shared-blocker branch.
+
+**Status.** [OPEN]
+
+##### 16.5.D6 - Endpoint cross-hit with the second center equal to the first source
+
+**Declaration.** `false_of_retainedOmission_reverseHitFresh_endpointCrossHit_secondCenterEqFirstSource_triApexAllLarge_core`
+
+**Source and role.** `TriApexEndpointRetainedOmission.lean`, approximately lines 3562-3578. This is the role collision `X=C` in the second-center equality arm.
+
+**Atomic contract.** Derive `False` when the blocker selected at the fresh source equals the first fiber source.
+
+**Data already proved upstream.** The reverse-hit and endpoint-cross-hit packet identifies several exact row memberships. After `X=C`, one source becomes a center for a row connected back to its own retained endpoint. The other role inequalities remain.
+
+**Exact missing implication.** The missing step is to turn the role collision into self-support, a forbidden two-cycle, or a third intersection of two distinct canonical rows.
+
+**Candidate closure program.**
+
+1. Substitute `X=C` through all dependent row fields and produce a membership matrix with rows as centers and columns as named sources.
+
+2. Search first for an immediate center-in-own-row contradiction. If absent, isolate the directed two-cycle `C blocks J` and `J` or its endpoint blocks `C`.
+
+3. For a two-cycle, both canonical radii equal the distance between centers. Use the cross-hit to find a second shared support; then use any retained endpoint as a third shared support or derive row equality and contradict an omission.
+
+4. Only invoke cap order if the exact incidence matrix leaves a realizable equal-radius two-circle configuration.
+
+
+**Known limits and rejection tests.** A blocker two-cycle is geometrically possible by itself. The proof needs the extra endpoint hit or omission. Equality substitution across carrier subtypes must preserve membership proofs.
+
+**Immediate consumer.** The endpoint-cross-hit equality splitter.
+
+**Status.** [OPEN]
+
+##### 16.5.D7 - The generic six-role endpoint cross-hit configuration
+
+**Declaration.** `false_of_retainedOmission_reverseHitFresh_endpointCrossHit_genericRoles_triApexAllLarge_core`
+
+**Source and role.** `TriApexEndpointRetainedOmission.lean`, approximately lines 3579-3600. All six roles `O,A,X,J,C,K` are pairwise distinct after the three equality leaves are removed.
+
+**Atomic contract.** Prove impossibility of the fully generic reverse-hit and endpoint-cross-hit configuration under the tri-apex all-large context.
+
+**Data already proved upstream.** There are three source-blocker rows, two retained omission cycles, named reverse and cross hits, and six distinct carrier roles. Cap locations and source provenance are retained. The branch has no remaining easy equality collapse.
+
+**Exact missing implication.** The missing theorem is a genuine global orientation-cycle obstruction.
+
+**Candidate closure program.**
+
+1. Encode the three canonical rows as oriented chords between their two named hits. Use the convex boundary order to assign each chord an interval or a signed separation relative to the three apex sides.
+
+2. Prove that every directed blocker edge in this packet strictly advances one cyclic potential: for example, the boundary interval containing the row's second named hit. The three hits form a closed directed cycle, contradicting strict advance.
+
+3. If one edge does not advance, show that equality of potential forces one of the already excluded role equalities or shared-blocker cases.
+
+4. Test the proposed potential against the repository's exact partial eleven-point shell witness. The witness must fail an explicit all-large or third-row premise, not the lemma's conclusion.
+
+
+**Known limits and rejection tests.** Pure incidence counts, pairwise circle intersections, and the mere existence of a blocker cycle are insufficient. A strict potential must be defined and proved monotone on every edge. The six-role distinctness does not synchronize row radii.
+
+**Immediate consumer.** The generic branch of the endpoint-cross-hit splitter and one of the central global geometry obligations.
+
+**Status.** [OPEN]
+
+##### 16.5.D8 - The endpoint common-deletion packet when the cross hit is absent
+
+**Declaration.** `false_of_retainedOmission_reverseHitFresh_endpointCommonDeletion_triApexAllLarge_core`
+
+**Source and role.** `TriApexEndpointRetainedOmission.lean`, approximately lines 3635-3653. Failure of the cross hit has already been converted into a source-exact `CommonDeletionTwoCenterPacket` based at the opposite endpoint.
+
+**Atomic contract.** Consume the common-deletion packet together with the reverse-hit and all-large context to derive `False`.
+
+**Data already proved upstream.** The packet supplies two centers that both retain K4 after one named deletion, with exact source identities. The retained shells and reverse hit give pre-deletion canonical rows and omissions. The deleted endpoint and opposite endpoint are named carrier points with cap locations.
+
+**Exact missing implication.** The missing implication is a robust-versus-critical common-deletion dichotomy whose every arm closes in the tri-apex geometry.
+
+**Candidate closure program.**
+
+1. At each of the two surviving centers, split into deletion-robust and unique-four critical cases using the proved survival semantics.
+
+2. In a critical case, canonicalize the post-deletion support to the pre-deletion row and derive that the deleted endpoint is omitted. Reorient the retained omission cycle using that exact omission.
+
+3. In a robust case, extract either a five-point class or two heavy radii and feed it into the all-large cap bounds; avoid creating a new existential survival terminal.
+
+4. Prove a four-arm dispatcher whose children are existing geometric terminals or the generic orientation theorem D7.
+
+
+**Known limits and rejection tests.** A common-deletion packet is a normalization, not a contradiction. Its two K4 witnesses may use different radii and supports. The proof must explicitly split robustness and canonicalize nonrobust centers.
+
+**Immediate consumer.** The no-cross-hit side of the reverse-hit fresh endpoint dispatcher.
+
+**Status.** [OPEN]
+
+##### 16.5.D9 - Three consecutive distinct blockers in the retained-omission route
+
+**Declaration.** `false_of_retainedOmission_reverseHitFresh_threeDistinctBlockers_triApexAllLarge_core`
+
+**Source and role.** `TriApexEndpointRetainedOmission.lean`, approximately lines 3679-3692. Three actual blockers in the reverse-shell/fresh-packet chain are pairwise distinct.
+
+**Atomic contract.** Under the tri-apex all-large context, prove that the three-distinct-blocker path cannot occur.
+
+**Data already proved upstream.** The path retains the exact sources blocked at each step, reverse-hit support memberships, endpoint omissions, and cap placements. Equality and shared-blocker alternatives are handled elsewhere.
+
+**Exact missing implication.** The missing step is to rule out a length-three blocker path by a strict cap-order potential or by forcing an additional collision.
+
+**Candidate closure program.**
+
+1. Define the potential on a source-blocker edge using the oriented cap interval of the blocker relative to the source's retained shell.
+
+2. Prove a local advance lemma for each of the three packet constructors. The proof should use the named reverse/fresh hit, not a generic blocker edge.
+
+3. Compose the three advances. If the path returns to the starting interval, obtain an impossible strict cycle; if it exits, use the all-large third cap to produce the endpoint cross hit and route to D3-D7.
+
+4. Make every equality case explicit so the strictness proof does not assume pairwise distinctness beyond what the theorem supplies.
+
+
+**Known limits and rejection tests.** A finite map with distinct successive values need not contradict anything. The potential must be global and strictly monotone. Different canonical radii prevent using radius as the potential without an independent comparison theorem.
+
+**Immediate consumer.** The reverse-hit fresh endpoint dispatcher immediately above the equality and common-deletion splits.
+
+**Status.** [OPEN]
+
+#### 16.5.E `TwoSourceFreshThirdResidual.lean` - three reachable leaves
+
+The built snapshot counts three leaves in this module. Raw `main` contains later pinned-endpoint edits whose reachability has not yet been regenerated; they are tracked separately rather than inserted into the built roster.
+
+##### 16.5.E1 - Fresh third source, first non-hit, and aligned retained data
+
+**Declaration.** `false_of_freshThird_firstNonHit_alignedRetained`
+
+**Source and role.** `TwoSourceFreshThirdResidual.lean`, approximately lines 2883-2897 in the built-snapshot source lineage. The packet combines a two-source canonical surface, a fresh-third fiber, and an aligned retained packet.
+
+**Atomic contract.** Prove `False` when the fresh-third configuration has the first-source non-hit and the aligned retained interaction.
+
+**Data already proved upstream.** The two original cap sources have canonical exact rows and a common-radius surface. A fresh third source and blocker fiber are named. The first source is omitted from a specified fresh row; the second-source interaction and aligned retained shell preserve deletion provenance. The source comments note that local named-row alternatives alone do not produce the needed third row.
+
+**Exact missing implication.** The missing theorem is a carrier-wide consequence of the aligned packet: either a third canonical row with prescribed incidences must exist, or the existing rows violate cap order.
+
+**Candidate closure program.**
+
+1. Translate the first non-hit into exact survival-under-deletion semantics at the relevant blocker, eliminating arbitrary witness supports.
+
+2. Use the all-blockers relation for the omitted source to select every alternative blocker rather than the early chosen one. Choose an extremal blocker relative to the cap boundary and prove it cannot remain outside the named rows.
+
+3. Derive a third row or a repeated blocker fiber. Feed the repeated fiber into the common-obstruction or cross-blocker modules; feed the third row into the six-center orientation packet.
+
+4. Keep the aligned retained packet intact through the dispatcher so row provenance is not lost at the final theorem.
+
+
+**Known limits and rejection tests.** The local two-row incidence packet is known to be realizable. A theorem that concludes `False` from only the first non-hit and alignment would be overstrong. The proof must consume global minimality, an all-blockers choice, or the cap order.
+
+**Immediate consumer.** The fresh-third first-non-hit coordinator.
+
+**Status.** [OPEN]
+
+##### 16.5.E2 - Fresh third source with an independent common-radius surface
+
+**Declaration.** `false_of_freshThird_firstNonHit_commonRadius`
+
+**Source and role.** `TwoSourceFreshThirdResidual.lean`, approximately lines 2900-2912. This branch retains an independent common-radius surface rather than the aligned retained packet of E1.
+
+**Atomic contract.** Prove `False` from the first-source non-hit together with the independent common-radius surface and fresh-third fiber.
+
+**Data already proved upstream.** Two canonical source rows share a separately produced common-radius structure. The fresh row and non-hit are named. The radii and supports of the common-radius surface are not definitionally identical to those of the earlier canonical surface.
+
+**Exact missing implication.** The missing implication is to connect the independent common-radius provenance to the fresh-third non-hit without silently identifying existential radii or supports.
+
+**Candidate closure program.**
+
+1. Normalize both common-radius constructions into typed records containing centers, positive radii, exact supports, and one named shared support point.
+
+2. Prove support or radius equality only from explicit uniqueness and shared-point hypotheses. If they remain independent, carry both surfaces into the geometry theorem.
+
+3. Use the no-five-class or only-rich-radii information to show that two independent common-radius surfaces at the same source force either canonical support equality or deletion robustness.
+
+4. Route equality to E1's aligned theorem; route robustness to an all-large or two-radius cap contradiction.
+
+
+**Known limits and rejection tests.** Existential K4 witnesses at the same center may choose different radii. The proof cannot replace the independent surface by the aligned one without a uniqueness theorem. The local B2 stress model demonstrates how easily two-circle data can coexist in strict convex position.
+
+**Immediate consumer.** The independent common-radius arm of the fresh-third first-non-hit dispatcher.
+
+**Status.** [OPEN]
+
+##### 16.5.E3 - Equal fresh-third center with two coherent noncanonical interactions
+
+**Declaration.** `false_of_freshThirdEqualCenter_noncanonicalInteractions`
+
+**Source and role.** `TwoSourceFreshThirdResidual.lean`, approximately lines 3064-3134. Both canonical sources cross-hit the fresh row, their selected blockers are equal, and both interactions are noncanonical. Mixed products are already closed; two coherent products remain.
+
+**Atomic contract.** Exclude the two remaining coherent products: both interactions choose distinct blockers in different caps, or both remain in the same cap with an internal fiber source.
+
+**Data already proved upstream.** Equal blockers give one canonical row containing both original sources. Both sources also cross-hit the fresh row. The six-way ingress records exact cap-interaction alternatives, and the mixed cases have source-clean consumers. Only the two globally coherent alternatives reach `sorry`.
+
+**Exact missing implication.** The missing theorem is a joint cap-index incompatibility for the two interactions, not an independent contradiction for either interaction alone.
+
+**Candidate closure program.**
+
+1. Split the theorem into two named children corresponding exactly to the coherent products.
+
+2. For the different-caps child, use the common canonical row to show its two source chords would have to cross two separated cap intervals. Derive an impossible cyclic order or a third row intersection.
+
+3. For the same-cap/internal-source child, select the internal fiber source extremally and show that its blocker must leave the cap, contradicting coherence, or coincide with the common blocker, producing a three-source canonical row.
+
+4. Abstract the shared conclusion as a cap-index parity or orientation invariant so the two children use one theorem with opposite hypotheses.
+
+
+**Known limits and rejection tests.** Each coherent product may be locally realizable; the contradiction must compare both interactions. Equal blockers identify canonical rows only after unique-four canonicalization. Do not count the fresh row as simultaneous with an unrelated survival support unless source equality is proved.
+
+**Immediate consumer.** The fresh-third equal-center coordinator.
+
+**Status.** [OPEN]
+
+#### 16.5.F `TwoSourceFirstFiberCollision.lean` - one reachable leaf
+
+##### 16.5.F1 - Exact rows after an outside-pair deletion in the first blocker fiber
+
+**Declaration.** `false_of_capSource_firstFiber_outsidePairDeletionExactRows`
+
+**Source and role.** `TwoSourceFirstFiberCollision.lean`, approximately lines 2575-2614. This is a highly enriched five-center deletion boundary after the first blocker-fiber collision has been normalized.
+
+**Atomic contract.** From two common-radius cap sources with mutual cross-membership, equal blockers, an exact two-point cap intersection for the common shell, a deletion equal to one of two named outside points, and a packet of exact surviving rows at five centers, derive `False`.
+
+**Data already proved upstream.** The common blocker yields a canonical row shared by both sources. Collision endpoints are omitted as specified. The blocker lies in a strict cap, and its shell meets that cap exactly in the two sources. The outside pair and the deleted member are named. Five post-deletion centers have exact rows rather than anonymous K4 witnesses.
+
+**Exact missing implication.** The missing theorem is a bounded exact-row collision obstruction preserving all five source identities and the cap order.
+
+**Candidate closure program.**
+
+1. Build a single `FiveCenterExactDeletionRows` normal form listing each center, source, radius, support, and all pairwise role inequalities. Canonicalize rows at nonrobust centers.
+
+2. Construct the row-intersection graph. Equal blockers collapse two source rows; every remaining edge should carry a named shared support. Identify a forced cycle whose total distinct support demand exceeds the available outside pair and cap points.
+
+3. For graph assignments surviving incidence counting, use cyclic order: convert each two-row shared pair into a chord and reject interlacing cycles by orientation.
+
+4. If all roles lie in a bounded label set independent of `|A|`, create a replayable finite certificate. Otherwise prove a bounded-obstruction lemma before certificate use.
+
+
+**Known limits and rejection tests.** Five exact rows do not automatically form five simultaneous circles with related radii. A finite certificate must encode the complete row provenance. Equal blockers alone supply one row equality, not equality of the other post-deletion supports.
+
+**Immediate consumer.** The first-fiber collision dispatcher and a likely source for the common six-center theorem needed by G1 and H1.
+
+**Status.** [OPEN]
+
+#### 16.5.G `TwoSourceClosure.lean` - one reachable leaf
+
+##### 16.5.G1 - The acyclic hard residual for a fresh point outside the first blocker fiber
+
+**Declaration.** `false_of_twoCapSources_freshOutsideFirstBlockerFiber_acyclicHardResidual`
+
+**Source and role.** `TwoSourceClosure.lean`, approximately lines 3100-3131. Its input `FreshThirdAcyclicHardResidual` is a three-way disjunction of provenance-rich constructors.
+
+**Atomic contract.** Prove `False` for each of: an aligned retained packet with mutual first-fiber residual, an aligned retained packet with a one-sided six-center fixed-triple boundary, or an independent common-radius surface with the same six-center audit boundary.
+
+**Data already proved upstream.** The common-radius mutual-incidence arm is already closed. Each remaining constructor retains exact sources, prescribed deletions, aligned or independent radius surfaces, and a six-center boundary. The disjunction is exhaustive for the acyclic path.
+
+**Exact missing implication.** The missing implication is not one monolithic local lemma; it is a common global certificate that can consume all three source-provenance constructors without flattening them.
+
+**Candidate closure program.**
+
+1. Split `FreshThirdAcyclicHardResidual` into three theorem declarations with no nested disjunctions.
+
+2. Normalize each constructor to a shared `SixCenterDeletionOrderPacket` containing the exact rows common to all three and an indexed field for the constructor-specific surface.
+
+3. Prove a single global theorem on that packet: either a cross-blocker coincidence, a complete exact-row collision packet, or a strict orientation cycle occurs.
+
+4. Route those terminals to H1, F1, or the TriApex generic orientation theorem. Ensure the dispatcher has no fallback to this original open theorem.
+
+
+**Known limits and rejection tests.** Flattening the three constructors to only their common local incidences would recreate the information-loss problem identified in the B-family audit. The word 'acyclic' is a branch label, not a proof that a graph-theoretic acyclicity contradiction is available.
+
+**Immediate consumer.** The top-level two-source fresh-outside-first-fiber closure. A well-designed six-center packet here could collapse several leaves at once.
+
+**Status.** [OPEN]
+
+#### 16.5.H `TwoSourceCanonicalSurface.lean` - one reachable leaf
+
+##### 16.5.H1 - Cross-blocker coincidence against a geometric multiplicity residual
+
+**Declaration.** `TwoSourceExactCollisionRowsTerminal.false_of_crossBlockerCoincidence`
+
+**Source and role.** `TwoSourceCanonicalSurface.lean`, approximately lines 92-102. The theorem combines one of four cross-blocker equalities with one of three geometric-multiplicity residuals, for twelve atomic products.
+
+**Atomic contract.** From `CrossBlockerCoincidence P P_rho` and `GeometricMultiplicityResidual P P_rho`, together with the inherited minimal non-`IsM44` and tri-apex context, derive `False`.
+
+**Data already proved upstream.** The packet retains two localized omission cycles, exact source/blocker identities, cap positions, and the multiplicity alternative. A cross-blocker equality is stronger than an anonymous blocker collision but often points away from the desired cross hit rather than directly creating it.
+
+**Exact missing implication.** The missing theorem is a global exclusion of the twelve equality-by-multiplicity combinations.
+
+**Candidate closure program.**
+
+1. Expand the product into twelve named branch packets and generate a fact table for each: row equalities, forced support members, cap positions, and known omissions.
+
+2. Search for a common invariant. The strongest candidates are a three-source common canonical row, a blocker center forced onto a source-pair perpendicular bisector already containing two carrier centers, or an orientation cycle across the two localized omission systems.
+
+3. Prove the invariant as one theorem on an indexed branch type, with separate adapters for the twelve products. This keeps the exhaustive split mechanical while concentrating the mathematics.
+
+4. When a branch produces a six-center exact-row packet rather than an immediate contradiction, forward it to the shared theorem proposed for F1/G1 instead of adding another leaf.
+
+
+**Known limits and rejection tests.** Cross-blocker equality does not imply cross membership. Pairwise circle intersection bounds alone allow the documented partial shell configurations. Every branch must use the geometric-multiplicity alternative and the global cap/order context.
+
+**Immediate consumer.** The nested `TwoSourceExactCollisionRowsTerminal` closure and one of six leaves in that namespace reported by the built spine.
+
+**Status.** [OPEN]
+
+#### 16.5.I `TwoDeletionCollision.lean` - three reachable leaves
+
+These are the current descendants of the historical B1/B2/B3 family. They are best understood as one missing positive producer and two branch-specific global contradictions. Earlier proposed local proofs were rejected because they either reversed an implication or assumed circle data not present in the contract.
+
+##### 16.5.I1 - B1 global transport must produce a terminal
+
+**Declaration.** `b1_globalGapOrClosedTerminal_of_counterexample`
+
+**Source and role.** `TwoDeletionCollision.lean`, approximately lines 133-143 in the current source lineage. The theorem has the form `B1GlobalTransportContext -> B1GlobalGapOrClosedTerminal`.
+
+**Atomic contract.** From the full B1 counterexample transport context, positively produce at least one of three terminal arms: a third bisector carrier, a blocker fiber of cardinality at least three, or an admissible escape whose overlap has cardinality at least three.
+
+**Data already proved upstream.** Every terminal arm already has a source-clean contradiction consumer. The context retains the relevant two-deletion sources, canonical rows, escape data, and global minimality/cap structure. Existing local escape analysis proves an overlap upper bound of two in a particular small-overlap branch.
+
+**Exact missing implication.** The missing theorem is the producer `Context -> Terminal`. Proving `Terminal -> False` again, or proving a terminal's negation in one subcase, does not fill this gap.
+
+**Candidate closure program.**
+
+1. Express the negation of all three terminal arms as exact upper bounds and absence statements on the all-blockers incidence structure.
+
+2. Under those negations, construct an injective transport from every eligible source or escape to a blocker/row slot. Use the global cover and cap partition to show the target has too few slots; this is the intended Hall-defect or pigeonhole step.
+
+3. If cardinality alone is insufficient, refine slots by boundary intervals and prove that two sources assigned to the same interval create a third bisector carrier or a large blocker fiber.
+
+4. State the result directly as `Terminal` or `False`; do not route through a fictitious overlap lower bound unless that bound is actually derived from the global context.
+
+
+**Known limits and rejection tests.** The available theorem `overlap <= 2` cannot supply `overlap >= 3`. Contraposing an existing terminal consumer is invalid constructively and classically unless the exact logical hypotheses match, and even then yields only the negation of its premises. The B1 local packet alone has not been shown contradictory.
+
+**Immediate consumer.** The B1 two-deletion coordinator. This is a producer gap and should be attacked with a global transport/counting theorem, not another local geometry consumer.
+
+**Status.** [OPEN]
+
+##### 16.5.I2 - Four-center common deletion with a blocker collision
+
+**Declaration.** `false_of_exactFourMutualOmission_fourCenterCommonDeletion_blockerCoincidence`
+
+**Source and role.** `TwoDeletionCollision.lean`, approximately lines 637-684. The collision is a disjunction identifying the first prescribed deletion with the blocker of `u`, the blocker of `v`, or the blocker of the second deleted source.
+
+**Atomic contract.** Under the original unique-four residual, card at least twelve, robust surface, positive physical class of size at least five, mutual omission, two distinct prescribed deletions, blocker distinctness, and a four-center common-deletion packet, derive `False` in each blocker-collision branch.
+
+**Data already proved upstream.** All centers and deletions are named. The common-deletion packet retains exact survival data at four roles. The mutual-omission rows and the source identities are available upstream, although the current flat terminal does not normalize each collision branch into its exact row and cap facts.
+
+**Exact missing implication.** The missing theorem is three branch-specific global contradictions. The equality `deleted=center` is not itself impossible because a center need not belong to the support in the erased carrier.
+
+**Candidate closure program.**
+
+1. Replace the collision disjunction with three typed branches `U`, `V`, and `S`, and preserve the branch's exact mutual-omission orientation.
+
+2. For each branch, normalize the forward canonical row already present in the source packet. Identify which deletion-survival statements imply omission of the colliding point from which rows.
+
+3. Derive every shared support point explicitly. Use a common-deletion canonicalization theorem to obtain either a forbidden third intersection, a center-in-own-row event, or a robust/second-radius alternative.
+
+4. Feed robust alternatives into the all-large/two-radius machinery and geometric alternatives into the shared six-center orientation theorem.
+
+
+**Known limits and rejection tests.** The rejected four-point-intersection story contradicts live omission hypotheses and an existing intersection upper bound. Canonicalization yields support equality only under a uniqueness argument. Radius equality requires a shared point. No branch may treat the deleted center as a support member without proof.
+
+**Immediate consumer.** The two-deletion collision coordinator. Closing it requires exactly three normalized branch certificates, not a generic local circle slogan.
+
+**Status.** [OPEN]
+
+##### 16.5.I3 - Four-center common deletion with one survival-square alternative
+
+**Declaration.** `false_of_exactFourMutualOmission_fourCenterCommonDeletion_survivalSquare`
+
+**Source and role.** `TwoDeletionCollision.lean`, approximately lines 688-782. The `hsquare` input is a disjunction of four alternatives; each alternative contains a pair of K4-survival assertions for one selected role.
+
+**Atomic contract.** For each selected role - physical apex, blocker of `u`, blocker of `v`, or blocker of the second deleted source - use the pair of deletion survivals and the full mutual-omission/common-deletion context to derive `False`.
+
+**Data already proved upstream.** The base packet supplies the same global context as I2. In a chosen arm, K4 survives at one role after deleting the common source and also survives at the paired blocker after deleting the role center. The radii and supports of those two survivals are existential and independent until normalized.
+
+**Exact missing implication.** The missing theorem is four branch-specific survival-pair contradictions. There is no simultaneous four-circle square in the hypothesis.
+
+**Candidate closure program.**
+
+1. Split the four alternatives into typed `NormalizedSurvivalSquareArm` packets. For each of the two survival statements in an arm, name the center, deleted point, positive radius, exact four-support, carrier inclusion, and source provenance.
+
+2. At nonrobust centers, identify the support with the canonical unique-four row and turn survival into a precise omission. At robust centers, record the five-class or second-heavy-radius certificate.
+
+3. Within each arm, combine the two omissions with the mutual-omission rows and common-deletion packet. Seek either a directed blocker 2-cycle with an extra shared support, a forbidden third row intersection, or a strict cap-order cycle.
+
+4. Keep four metric certificates if their hypotheses genuinely differ. A common dispatcher is useful only after the branch-specific facts have been proved.
+
+
+**Known limits and rejection tests.** The four roles are alternatives, not simultaneous assumptions. The two survivals in one arm may use different radii and supports. The repository's partial shell witness rules out contradictions based only on two local K4 survivals and strict convexity. Every final certificate must use global provenance or cap order.
+
+**Immediate consumer.** The survival side of the two-deletion collision coordinator and the current B3 terminal.
+
+**Status.** [OPEN]
+
+#### 16.5.37 Shared closure lemmas suggested by the leaf ledger
+
+The thirty-six leaves do not appear to require thirty-six unrelated discoveries. The ledger exposes five reusable theorem families. These are research targets, not established results.
+
+1. **Common-circle strict-arc blocker-cycle theorem.** Convert equal-distance rows whose centers and support pairs lie on one physical circle into oriented arc-midpoint relations. A closed strict midpoint cycle would discharge A1 and parts of B2-B5, and would provide the physical-placement side of C1.
+
+2. **Canonical common-deletion incidence-completion theorem.** Under failed deletion at one source and survival under another, identify the unique four-row, force omissions, and produce either the complete five-incidence tetrahedron or a robust/second-radius alternative. This is the intended common engine for A5, A7, A8, D8, I2, and I3.
+
+3. **Two-radius convex-order theorem.** Combine concentric exact-four classes with reflected-pair or cap-span data to prove an exposed-vertex obstruction. D2 supplies the strongest contract; C3 should be reduced to it only after the missing grid identities are produced.
+
+4. **Source-faithful six-center orientation theorem.** Normalize the F1, G1, H1, and fresh-third packets into exact rows with branch tags, then prove a cross-blocker, row-collision, or strict cyclic-potential terminal. This theorem must retain source and prescribed-deletion provenance.
+
+5. **Unbounded cap-weighted blocker inequality or bounded-obstruction theorem.** A3 cannot be closed by finite endpoint enumeration alone. A scalable theorem must either contradict the all-blockers cover using convex boundary intervals or prove that every unbounded residual contains a bounded forbidden packet without deleting arbitrary carrier points.
+
+A sensible proof-discovery order is: first formalize the canonical common-deletion adapters, because they are largely consequences of already proved deletion semantics; second attack the exact finite A2/A5/A6 endpoints to validate packet quality; third prove the D2 two-radius metric theorem; fourth consolidate the six-center source-rich leaves; and only then return to the unbounded A3 route.
+
+**Status:** [DERIVED research decomposition; no closing theorem claimed]
 
 ### 16.6 New prose-derived adapters
 
@@ -1713,8 +2813,17 @@ Afterward, `#print axioms Problem97.erdos97_rhs` must contain no `sorryAx`.
 - **M0-M15** — `P97/CapBridgeFromK4.lean` and `P97/Cap/PartitionFromMEC.lean`
 - **Q0-Q17** — `P97/RemovableVertexAxiom/Continuation.lean`, plus pinned-surplus and certificate imports
 - **N0-N9** — `P97/RemovableVertexAxiom/Continuation.lean`, `P97/ATail/FiniteN11Frontier.lean`, and `P97/ATail/FrontierLiveClosure/`
+- **16.5.A1-A8** — `P97/ATail/FrontierLiveClosure/Rigid221SourceHeavy.lean`
+- **16.5.B1-B5** — `P97/ATail/FrontierLiveClosure/Rigid221Placement.lean`
+- **16.5.C1-C5** — `P97/ATail/FrontierLiveClosure/Rigid221Closure.lean`
+- **16.5.D1-D9** — `P97/ATail/FrontierLiveClosure/TriApexEndpointRetainedOmission.lean`
+- **16.5.E1-E3** — `P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean`
+- **16.5.F1** — `P97/ATail/FrontierLiveClosure/TwoSourceFirstFiberCollision.lean`
+- **16.5.G1** — `P97/ATail/FrontierLiveClosure/TwoSourceClosure.lean`
+- **16.5.H1** — `P97/ATail/FrontierLiveClosure/TwoSourceCanonicalSurface.lean`
+- **16.5.I1-I3** — `P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean`
 - **Final composition** — `P97/RemovableVertexAxiom/RemovableVertexOfLarge.lean`
-- **Current frontier measurement** — repository `README.md`, proof-status section
+- **Current frontier measurement and off-spine exclusions** — repository `README.md`, proof-status section
 
 ---
 
