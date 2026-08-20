@@ -14313,3 +14313,19 @@ comparison test before a four-cell canary. Adding bare order literals or
 reusing the v1 artifact namespace is forbidden. A canary result remains
 theorem-mining evidence; no current FreshThird `sorry` is closed by this
 diagnosis.
+
+### 13.28.22 FreshThird order-refined CNF v2 canary — 2026-08-19
+
+The fresh-namespaced v2 canary now encodes the complete
+`fresh_row_ordered` survivor packet with 48 auxiliary choices and 577 clauses.
+All four cells satisfy that predicate after the 6,006-clause alternation
+refinement, so the source-formula mapping is exercised on new SAT models.
+They remain SAT in the CNF abstraction and remain source-rejected.
+
+The same fresh-solver diagnostic identifies `fan_local_0` as the next isolated
+source family in every cell. This is a 46-conjunct local blocker packet, not a
+new general theorem. The next exact target is its source-order partition and
+isolated shrink. More v2 solver volume is paused until that result is known.
+The v2 run record is
+`scratch/freshthird-order-refined-cnf-v2-20260819.md`; it adds no proof or
+closure claim.
