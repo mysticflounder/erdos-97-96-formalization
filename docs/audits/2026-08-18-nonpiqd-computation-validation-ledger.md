@@ -337,7 +337,6 @@ Every row with a Tier 2 result. A passing re-derivation of a Lean-consumed artif
 
 ## Not re-executed
 
-- 0 surplus Lean modules whose transcription is blocked while the term-sharded emitter is broken; their identities were rechecked exactly at the JSON layer, so what is open is the JSON-to-Lean step alone
 - the 68 arm cells of the two 20260811 waves that retain only summary.json; their CNFs and proofs were not kept, so they are outside re-execution
 - the full 2.8 M-clause CEGAR wave rebuilds, spot-checked only
 
@@ -354,6 +353,6 @@ Every row with a Tier 2 result. A passing re-derivation of a Lean-consumed artif
 - `scratch/runs/nonpiqd-custody-tier0-20260818/run-20260818T213100Z/artifacts/field-provenance.jsonl` — `405602b710070f6b`
 - `docs/audits/2026-08-18-nonpiqd-algebraic-recheck.jsonl` — `7e397c12cd6383bc`
 - `docs/audits/2026-08-18-nonpiqd-inventory-recheck.json` — `a715e76aacff0cfd`
-- `docs/audits/2026-08-18-nonpiqd-lean-transcription.json` — `769114b3d9388f9f`
+- `docs/audits/2026-08-20-nonpiqd-lean-transcription.json` — `67887dd3b52dfcd6`
 - `docs/audits/2026-08-19-nonpiqd-solver-verdicts.jsonl` — `c5dcbc6835670027`
 - `docs/audits/2026-08-19-nonpiqd-bank-chain-pins.json` — `ca1589bbdc552e74`

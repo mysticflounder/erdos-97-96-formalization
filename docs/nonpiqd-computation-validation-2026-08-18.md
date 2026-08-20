@@ -1,7 +1,9 @@
 # Non-piqd computation validation campaign (2026-08-18)
 
-Status: complete; all five stages are done. This document makes no mathematical
-closure claim.
+Status: complete; all five stages are done. One authorized follow-on repair
+landed on 2026-08-20 — the term-sharded surplus Lean emitter — and Tier 2b was
+re-run on it; see "Tier 2b — JSON to Lean transcription". This document makes no
+mathematical closure claim.
 
 Almost all solver and census work now routes through the piqd daemon, which
 gives a result a content-addressed CNF blob, a recorded solver invocation, an
@@ -138,7 +140,11 @@ were handed in a `Source certificate:` comment, so the input must be passed
 repository-relative from the repository root. An absolute path changes every
 emitted byte.
 
-Durable output: `docs/audits/2026-08-18-nonpiqd-lean-transcription.json`.
+Durable outputs: `docs/audits/2026-08-18-nonpiqd-lean-transcription.json` — the
+run where the surplus emitter aborted — and
+`docs/audits/2026-08-20-nonpiqd-lean-transcription.json`, the run after the
+repair. The first is kept, not overwritten: it is the evidence of the break and
+the fixture the classifier regression test reads.
 
 ### `scripts/recheck_solver_verdicts.py` — Tier 2c, solver verdicts
 
@@ -193,7 +199,7 @@ uv run python scripts/build_computation_validation_ledger.py \
   --provenance <run1>/artifacts/field-provenance.jsonl \
   --algebraic docs/audits/2026-08-18-nonpiqd-algebraic-recheck.jsonl \
   --inventory docs/audits/2026-08-18-nonpiqd-inventory-recheck.json \
-  --transcription docs/audits/2026-08-18-nonpiqd-lean-transcription.json \
+  --transcription docs/audits/2026-08-20-nonpiqd-lean-transcription.json \
   --solver-verdicts docs/audits/2026-08-19-nonpiqd-solver-verdicts.jsonl \
   --bank-chain docs/audits/2026-08-19-nonpiqd-bank-chain-pins.json \
   --lean-build <run4>/events/lake-build.log \
@@ -217,7 +223,7 @@ themselves, which are untracked and named by hash.
 ### `scripts/test-nonpiqd-validation.sh` — lane runner
 
 Pinned environment, explicit file list, `uv run pytest -q`, then `ruff check`
-and `ruff format --check`. 183 tests.
+and `ruff format --check`. 186 tests.
 
 ## Corrections this campaign establishes
 
@@ -263,13 +269,26 @@ and `ruff format --check`. 183 tests.
   that `-l` emits, and the core must be verified unperturbed first — a control
   that only runs the broken case cannot tell a working checker from one that
   rejects everything.
-- **The surplus term-sharded Lean emitter is broken at HEAD.** Commit
-  `7c3fa141` removed `add_poly_many` and `singleton_poly` from
-  `scripts/endpoint-certificate.py`; `scripts/pinned-surplus-certificate.py`
-  still calls both at `:1549,1551` through the dynamically loaded endpoint
-  tool. The neighbouring `run_singular_script` call at `:228` is *not* a
+- **The surplus term-sharded Lean emitter was broken at HEAD; it is repaired.**
+  Commit `7c3fa141` removed `add_poly_many` and `singleton_poly` from
+  `scripts/endpoint-certificate.py` while retiring the legacy per-range term
+  shards; `scripts/pinned-surplus-certificate.py` still called both through the
+  dynamically loaded endpoint tool, so every certificate above the shard
+  threshold aborted. Both helpers are restored verbatim in
+  `scripts/pinned-surplus-certificate.py`, their only caller, and `add_poly`
+  is still taken from the endpoint tool so the addition stays the producer's
+  own. The neighbouring `run_singular_script` call at `:228` was never a
   regression: it sits under `except AttributeError` with a documented local
   fallback.
+- **A ledger that counts nothing prints a zero, not a warning.** The assembler
+  read `row_replay["blocked"]`, but `verify_lean_transcription.py:388` writes
+  `blocked_term_sharded`. The count was therefore always 0, the aborted family
+  came out `FAIL` rather than `BLOCKED`, and the shipped ledger's own caveat
+  read "**0** surplus Lean modules ... blocked" while 34 in fact were. The
+  prose sections of the campaign carried the right number throughout, so the
+  defect was in the machine-readable ledger alone. A caveat generated from a
+  count needs a test that the count is ever nonzero; the regression test now
+  replays the broken report and requires `BLOCKED` and 34.
 
 ## Findings so far
 
@@ -336,28 +355,41 @@ be read the same way.
 
 ### Tier 2b — JSON to Lean transcription
 
+Result after the 2026-08-20 emitter repair
+(`docs/audits/2026-08-20-nonpiqd-lean-transcription.json`):
+
 | Bank | Result |
 |---|---|
 | `EndpointCertificate/Patterns` | 219 emitted, 219 committed, **byte identical** |
-| `SurplusCertificate/RelaxedSplit` | emitter aborts; see below |
+| `SurplusCertificate/RelaxedSplit` | 390 emitted, 390 committed, **byte identical** |
 
-The surplus directory emit dies on the 11th certificate in sorted order with
-`AttributeError: module 'endpoint_certificate_tool' has no attribute
-'add_poly_many'`. The 11 modules written before the abort are byte identical to
-the committed ones. Bounding the break by calling the working direct branch
-per certificate: of 135 rows, **101 reproduce byte for byte, 0 differ, and 34
-are blocked** — exactly the rows whose content size passes the 40,000
-shard threshold and so route to the broken term-sharded emitter. `Bank.lean`
-and `Payload.lean` are excluded from the diff because neither emitter produces
-them; a test pins that neither name is the module of any certificate, so the
-exclusion cannot mask a missing row.
+`broken_families` is empty and the `git status` write guard over `lean/` and
+`certificates/` reports `unchanged` on both sides of the run. `Bank.lean` and
+`Payload.lean` are excluded from the surplus diff because neither emitter
+produces them; a test pins that neither name is the module of any certificate,
+so the exclusion cannot mask a missing row.
 
-So 101 of the 135 committed surplus modules, and all 219 endpoint modules, are
-demonstrably the transcription of their committed JSON. For the other 34 the
-transcription is currently **unverifiable from the JSON** — not shown wrong,
-not shown right. Their identities were rechecked exactly at the JSON layer, so
-what is open is the JSON-to-Lean step alone. Repairing the emitter is outside
-this campaign's scope, which changes no generator.
+All 135 committed surplus certificates and all 219 endpoint certificates are
+therefore demonstrably the transcription of their committed JSON. The 34
+certificates that route through the term-sharded branch — content size above
+the 40,000 threshold — contribute the coordinator, a `Generators` module and
+their `BlockShard` modules, which is why the surplus tree is 390 files against
+135 certificates. Each of the 34 coordinators was also compared individually
+against its committed module: 34 identical, 0 differing, 0 missing.
+
+That byte identity is the evidence the repair is faithful. Restoring a helper
+with different arithmetic would still emit valid Lean; only reproducing the
+committed bytes shows the restored `add_poly_many` and `singleton_poly` compute
+what the originals computed.
+
+Before the repair, the run recorded in
+`docs/audits/2026-08-18-nonpiqd-lean-transcription.json` died on the 11th
+certificate in sorted order with `AttributeError: module
+'endpoint_certificate_tool' has no attribute 'add_poly_many'`. The 11 modules
+written before the abort were byte identical. Bounding the break by calling the
+working direct branch per certificate gave 101 reproduced, 0 differing, 34
+blocked. That report is retained rather than overwritten, both as the record of
+the break and as the fixture the ledger classifier's regression test replays.
 
 ### Tier 2c — solver verdicts
 
@@ -465,6 +497,15 @@ and by Lean's kernel through the RUP ingress, not by a second LRAT checker.
 A Tier 2d pass confirms that the banks rebuild to their frozen digests from
 current source; it does not establish that those digests are the right ones.
 Lean admits each certificate by `native_decide`, so the Lean-side fact rests on
-the approved `Lean.trustCompiler` axiom, not on the kernel. And 34 surplus Lean
-modules remain outside the transcription check while the term-sharded emitter
-is broken.
+the approved `Lean.trustCompiler` axiom, not on the kernel.
+
+A Tier 2b pass confirms that the committed Lean module is the emitter's output
+for the committed JSON. It does not establish that the emitter maps the JSON to
+the Lean the consumer needs — the same emitter produces both sides of the
+comparison, so a systematic mistranslation would reproduce itself. What it
+rules out is drift: a hand edit to a committed module, or an emitter change
+never re-run over the bank.
+
+The Tier 2f build and axiom budget were run at `6dd160c9`. The 2026-08-20
+transcription re-run was made at `27a0fa73`, and it writes nothing under
+`lean/`; the Lean side was not rebuilt for it.

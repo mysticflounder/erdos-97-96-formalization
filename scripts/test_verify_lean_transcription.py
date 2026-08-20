@@ -8,6 +8,7 @@ rest on.
 
 from __future__ import annotations
 
+import os
 import sys
 from pathlib import Path
 
@@ -16,6 +17,10 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import verify_lean_transcription as mod
 
 REPO = Path(__file__).resolve().parents[1]
+
+# The surplus emit runs without --lean-module-root, so the committed modules
+# carry the argparse default (scripts/pinned-surplus-certificate.py:4928).
+SURPLUS_MODULE_ROOT = "Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit"
 
 
 def write_tree(root: Path, files: dict[str, str]) -> Path:
@@ -85,16 +90,20 @@ def test_an_absent_emitted_tree_is_not_a_pass(tmp_path):
 # --------------------------------------------------------------------------
 
 
-def test_the_broken_surplus_shard_path_is_reported():
-    """Ground truth: the term-sharded surplus emitter calls two removed helpers.
+def test_the_surplus_emitter_reaches_no_missing_producer_symbol():
+    """Regression: the term-sharded surplus emitter no longer calls a dead name.
 
     Commit 7c3fa141 removed ``add_poly_many`` and ``singleton_poly`` from
-    ``scripts/endpoint-certificate.py``.  The surplus caller was not updated, so
-    every certificate above the shard threshold aborts the emit.
+    ``scripts/endpoint-certificate.py`` while retiring the legacy per-range term
+    shards.  The surplus caller was not updated, so every certificate above the
+    shard threshold aborted the emit and 34 committed modules could not be
+    diffed against their JSON.  Both helpers are now defined in
+    ``scripts/pinned-surplus-certificate.py``, their only caller, so no
+    unguarded ``endpoint_tool.<name>`` site resolves to a missing attribute.
     """
     found = mod.classify_surplus_failure(REPO, {"stderr_tail": ""})
     unguarded = {item["symbol"] for item in found["unguarded_missing_symbols"]}
-    assert {"add_poly_many", "singleton_poly"} <= unguarded
+    assert unguarded == set()
 
 
 def test_a_guarded_call_site_is_not_counted_as_a_break():
@@ -110,6 +119,59 @@ def test_a_guarded_call_site_is_not_counted_as_a_break():
     unguarded = {item["symbol"] for item in found["unguarded_missing_symbols"]}
     assert "run_singular_script" in guarded
     assert "run_singular_script" not in unguarded
+
+
+def test_a_previously_blocked_certificate_re_emits_byte_for_byte(tmp_path):
+    """The restored helpers reproduce the committed bytes, not merely some bytes.
+
+    ``R002_ueqv_R002YNYN`` is the smallest of the 34 certificates that the dead
+    ``add_poly_many``/``singleton_poly`` calls used to block: source size 45,120
+    against the 40,000 threshold.  Re-emitting it must give back the committed
+    coordinator, its Generators module and both BlockShard modules unchanged.
+    A helper restored with different arithmetic would still emit valid Lean, so
+    the byte comparison -- not the absence of a traceback -- is the test.
+
+    The emitter writes the certificate path it is handed into a
+    ``Source certificate:`` comment, so it has to be handed the repository-
+    relative path from the repository root, exactly as ``surplus_row_replay``
+    does.
+    """
+    producer = mod.load_module(
+        REPO / "scripts" / "pinned-surplus-certificate.py",
+        "pinned_surplus_certificate_tool",
+    )
+    stem = "R002UeqvR002YNYN"
+    cert_path = Path(mod.SURPLUS_JSON_DIR) / "R002_ueqv_R002YNYN.json"
+    committed = REPO / mod.SURPLUS_LEAN_DIR
+
+    previous = Path.cwd()
+    os.chdir(REPO)
+    try:
+        assert producer.relaxed_certificate_source_size(cert_path) > (
+            mod.SURPLUS_SHARD_THRESHOLD
+        )
+        producer.emit_relaxed_split_lean_term_sharded_certificate(
+            cert_path,
+            tmp_path / f"{stem}.lean",
+            tmp_path / f"{stem}TermShards",
+            SURPLUS_MODULE_ROOT,
+            mod.BLOCK_SIZE,
+            None,
+        )
+    finally:
+        os.chdir(previous)
+
+    emitted = mod.tree_digests(tmp_path)
+    expected = {
+        name: mod.sha256_file(committed / name)
+        for name in (
+            f"{stem}.lean",
+            f"{stem}Generators.lean",
+            f"{stem}TermShards/{stem}BlockShard000.lean",
+            f"{stem}TermShards/{stem}BlockShard001.lean",
+        )
+    }
+    assert emitted == expected
 
 
 # --------------------------------------------------------------------------

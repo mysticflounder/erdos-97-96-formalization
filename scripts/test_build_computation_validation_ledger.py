@@ -131,6 +131,37 @@ def test_a_pass_without_a_consumer_stays_diagnostic():
     assert residual == mod.NO_CONSUMER_RESIDUAL
 
 
+def test_a_blocked_transcription_report_is_read_as_blocked():
+    """Real-data regression on the key name that silently zeroed the count.
+
+    `docs/audits/2026-08-18-nonpiqd-lean-transcription.json` is the report from
+    the run where the term-sharded emitter aborted: 34 surplus modules blocked.
+    The classifier read `row_replay["blocked"]`, which that report does not
+    carry -- the key is `blocked_term_sharded` -- so the family came out FAIL
+    instead of BLOCKED and the shipped ledger's own caveat read "0 surplus Lean
+    modules ... blocked". Keeping the broken report in the tree makes this a
+    test against real bytes rather than against a fixture I shaped myself.
+    """
+    broken = json.loads(
+        (REPO / "docs/audits/2026-08-18-nonpiqd-lean-transcription.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    evidence = mod.transcription_evidence(broken)
+    surplus = next(
+        value
+        for value in evidence.values()
+        if value["family"] == "surplus_relaxed_split_singleton"
+    )
+    assert surplus["outcome"] == mod.BLOCKED
+    assert surplus["row_replay_blocked"] == 34
+
+    endpoint = next(
+        value for value in evidence.values() if value["family"] == "endpoint"
+    )
+    assert endpoint["outcome"] == mod.PASS
+
+
 def test_a_pass_with_a_consumer_reaches_proven_producer_and_no_further():
     status, residual = mod.assign_status({"outcome": mod.PASS}, ["lean/A.lean"])
     assert status == mod.PROVEN_PRODUCER
@@ -221,9 +252,43 @@ def test_the_prose_ledger_is_generated_from_the_json(ledger):
 
 def test_the_ledger_names_what_was_not_reexecuted(ledger):
     joined = " ".join(ledger["not_reexecuted"])
-    assert "surplus Lean modules" in joined
     assert "summary.json" in joined
     assert "CEGAR" in joined
+
+
+def test_the_repaired_surplus_emitter_leaves_no_blocked_caveat(ledger):
+    """The blocked-transcription caveat is gone because nothing is blocked.
+
+    While the term-sharded emitter was broken, 34 surplus modules could not be
+    diffed against their JSON and the ledger said so.  The emitter is repaired,
+    the count is zero, and a zero-count caveat would read as a standing
+    limitation that no longer exists.
+
+    The surplus Tier 2b verdict is checked in the consumed report rather than on
+    a ledger row: every certificate in that directory carries direct Tier 2a
+    evidence, so none falls through to the directory-level Tier 2b fallback, and
+    the Lean modules the check diffs are outside the custody scope.
+    """
+    joined = " ".join(ledger["not_reexecuted"])
+    assert "term-sharded emitter" not in joined
+
+    name = next(
+        key
+        for key in ledger["inputs"]
+        if key.endswith("nonpiqd-lean-transcription.json")
+    )
+    report = json.loads((REPO / name).read_text(encoding="utf-8"))
+    assert report["broken_families"] == []
+    surplus = next(
+        family
+        for family in report["families"]
+        if family["family"] == "surplus_relaxed_split_singleton"
+    )
+    assert surplus["all_steps_succeeded"] is True
+    assert surplus["diff"]["byte_identical"] is True
+    assert surplus["diff"]["emitted_files"] == surplus["diff"]["committed_files"]
+    # row_replay is the bounded fallback the checker runs only on an abort.
+    assert "row_replay" not in surplus
 
 
 def test_the_tier2f_block_records_the_lean_side(ledger):

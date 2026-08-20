@@ -1510,6 +1510,32 @@ end Problem97
     return out_path.stem
 
 
+def singleton_poly(monom: Any, coeff: Any) -> dict[Any, Any]:
+    """One-term polynomial, dropping a zero coefficient.
+
+    Restored verbatim from `scripts/endpoint-certificate.py` as it stood at
+    7c3fa141^:1795.  That commit retired the legacy per-range term shards and
+    dropped this helper with them, but the term-sharded relaxed-split emitter
+    below still called it through the loaded endpoint tool, so every
+    certificate above the shard threshold aborted with `AttributeError`.  It
+    lives here now because this file is its only caller.
+    """
+    return {monom: coeff} if coeff else {}
+
+
+def add_poly_many(endpoint_tool: Any, polys: list[dict[Any, Any]]) -> dict[Any, Any]:
+    """Sum a list of polynomials.
+
+    Restored verbatim from `scripts/endpoint-certificate.py` at 7c3fa141^:1799,
+    with `add_poly` -- which is still exported -- taken from the loaded tool
+    rather than re-implemented, so the addition stays the producer's own.
+    """
+    out: dict[Any, Any] = {}
+    for poly in polys:
+        out = endpoint_tool.add_poly(out, poly)
+    return out
+
+
 def emit_relaxed_split_lean_term_sharded_certificate(
     cert_path: Path,
     coordinator_out: Path,
@@ -1546,11 +1572,9 @@ def emit_relaxed_split_lean_term_sharded_certificate(
         start: int,
         stop: int,
     ) -> None:
-        coefficient_block = endpoint_tool.add_poly_many(
-            [
-                endpoint_tool.singleton_poly(monom, coeff)
-                for monom, coeff in terms[start:stop]
-            ]
+        coefficient_block = add_poly_many(
+            endpoint_tool,
+            [singleton_poly(monom, coeff) for monom, coeff in terms[start:stop]],
         )
         coefficient_lean = endpoint_tool.lean_poly(coefficient_block)
         payload_bytes = len(coefficient_lean.encode())

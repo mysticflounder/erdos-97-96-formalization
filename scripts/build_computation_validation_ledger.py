@@ -227,7 +227,11 @@ def transcription_evidence(report: dict[str, Any]) -> dict[str, dict[str, Any]]:
     for family in report.get("families", []):
         diff = family.get("diff") or {}
         replay = family.get("row_replay") or {}
-        blocked = replay.get("blocked")
+        # The key is blocked_term_sharded (verify_lean_transcription.py:388).
+        # Reading a bare "blocked" gave None on every report, so an aborted emit
+        # was labelled FAIL instead of BLOCKED and the ledger's own caveat said
+        # "0 surplus Lean modules ... blocked" while 34 in fact were.
+        blocked = replay.get("blocked_term_sharded")
         if family.get("all_steps_succeeded") and diff.get("byte_identical"):
             outcome = PASS
         elif blocked:
@@ -619,7 +623,7 @@ def main(argv: list[str] | None = None) -> int:
     transcription = load_json(args.transcription)
     blocked = 0
     for family in transcription.get("families", []):
-        blocked += (family.get("row_replay") or {}).get("blocked") or 0
+        blocked += (family.get("row_replay") or {}).get("blocked_term_sharded") or 0
 
     document = {
         "schema": SCHEMA,
@@ -663,13 +667,22 @@ def main(argv: list[str] | None = None) -> int:
             ],
             "sorryAx_in_build_log": "sorryAx" in build_log,
         },
-        "not_reexecuted": [
-            (
-                f"{blocked} surplus Lean modules whose transcription is blocked "
-                "while the term-sharded emitter is broken; their identities were "
-                "rechecked exactly at the JSON layer, so what is open is the "
-                "JSON-to-Lean step alone"
-            ),
+        # The surplus line is emitted only while something is actually blocked.
+        # Printing it with a zero count read as a standing caveat after the
+        # term-sharded emitter was repaired and the count went to nothing.
+        "not_reexecuted": (
+            [
+                (
+                    f"{blocked} surplus Lean modules whose transcription is "
+                    "blocked while the term-sharded emitter is broken; their "
+                    "identities were rechecked exactly at the JSON layer, so "
+                    "what is open is the JSON-to-Lean step alone"
+                )
+            ]
+            if blocked
+            else []
+        )
+        + [
             (
                 "the 68 arm cells of the two 20260811 waves that retain only "
                 "summary.json; their CNFs and proofs were not kept, so they are "
