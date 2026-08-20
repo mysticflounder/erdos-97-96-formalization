@@ -2723,7 +2723,8 @@ is authorized by this commit.
 One immutable cell-6 canary ran from exact-SHA detached worktree `553e033a`
 against PIQD project `p97-exact12-next-row-arm-static-cell6-v14-r1`, with
 output under the registered generated root
-`scratch/runs/exact12-rigid221-all-order-common-five/canary-v14-20260818/`.
+`scratch/runs/exact12-rigid221-all-order-common-five/canary-v14-20260818/`,
+whose payload sits under that root's `artifacts/` output class.
 Discovery verdict SAT in 1.4 s over 32,990 decisions; classification
 `UNADMITTED_STRUCTURAL_SURVIVOR`; job `7f45a3e4…`, job record `fd5a31d2…`.
 The witness replayed on all five checks the canary makes — exact CNF,
@@ -2733,6 +2734,47 @@ pinned `EXPECTED_FINAL_DIMACS_SHA256`, so the formula the solver saw is the
 frozen v26 identity and not a drifted rebuild.  Evidence digests: survivor
 `eb6d9ad8…`, summary `d3e4f039…`.  As with v24 and v25, the workdir stays
 untracked; these digests are the durable record.
+
+### Frozen v26 outcome validator (2026-08-18)
+
+`census/card_head/exact12_next_row_arm_static_v26_validator.py` is the
+independent, fail-closed reader for that run.  It is derived from the frozen
+v25 validator by counted exact-string replacement
+(`scratch/rigid221-sourceheavy-anchor/core-pair/freeze_v26_validator.py`,
+`--verify` re-derives and diffs), so every byte that is not a deliberate
+identity change is carried over unchanged.  The v25 pair is untouched: it
+attests the run that already happened.
+
+Deliberate v26 changes: run/job schema `.v13` → `.v14`; PIQD project
+`…cell6-v13-r1` → `…cell6-v14-r1`; prefix 47,174/679,351/`ef94a6d4…` →
+47,211/703,533/`415be05f…`; post-arm 680,218/`4f15259e…` →
+704,400/`8f072d08…`; final 47,174/680,299/`81b4e2e2…` →
+47,211/704,481/`82be5127…`; the 23rd bank key
+`core_pair_all_order_common_five_family_bank`; and two parse bounds.  The
+source-order bank is unchanged at 81 clauses / `cedf4162…`, and the arm suffix
+is unchanged at 867 clauses.
+
+The parse bounds moved because the 22nd bank artifact is 121,948,722 bytes
+over 4,794,571 JSON nodes, above the v25 limits of 64 MiB and 4,000,000 nodes.
+`MAX_JSON_BYTES` is now 192 MiB and `MAX_JSON_NODES` is 8,000,000.  Both stay
+finite and strictly below `MAX_FILE_BYTES`, so they still bind; a test asserts
+that and that an oversize payload is still refused.
+
+Result, EMPIRICALLY VERIFIED against live bytes: the validator returns
+`{"valid": true, "status": "SAT_WITNESS_REPLAYED", "cnf": {"variables":
+47211, "clauses": 704481}}` on the run workdir with `--repo-root` set to the
+`553e033a` exact-SHA worktree.  That pass re-parsed the DIMACS, replayed the
+survivor assignment against all 704,481 clauses, re-hashed every declared
+artifact, walked the descriptor/receipt/custody/journal chain, and re-read the
+live source bytes named in the job manifest.
+
+Negative controls, both fail-closed at the first identity gate: the v26
+validator refuses the v25 workdir, and the v25 validator refuses the v26
+workdir.  16 adversarial unit tests pass; the 15 v25 tests still pass
+unchanged.
+
+This authorizes no further solver wave.  The run remains finite discovery
+evidence: no terminal UNSAT, no aggregate arm coverage, no Lean closure.
 
 The 22nd bank removed the v25 survivor.  The replacement is a genuinely
 different assignment (`334b1d58…`), not a minimal perturbation:
