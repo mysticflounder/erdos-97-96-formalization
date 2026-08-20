@@ -1014,3 +1014,77 @@ closer-side propagation on both boundary arcs. Its vacuity-free wrappers take
 an explicit anchor carrier on the arc; bisector exhaustion by itself does not
 produce such an anchor. This records the exact ingress still needed before the
 comparison family from Theorem C can be promoted.
+
+## 2026-08-20 next-center coverage execution
+
+The cumulative cocircular-order, cyclic convex-five, and sparse six-point
+families still leave the unsplit exact-17 root solver-`UNKNOWN`. The current
+production route is therefore the complete source-proved split on the next
+selected-row center, not another unscoped motif append.
+
+`BlockerVExactSeventeenSparseSixPointNextCenterCoverage.lean` proves that the
+thirteen legal center labels are exhaustive and that an order-zero source
+assignment satisfies its matching parent-plus-unit cell. Its coverage
+coordinator needs one checked UNSAT theorem per cell. The direct cell exporter
+and the preparation script agree byte for byte on the checked center-zero
+package; all other packages share the same parent body and vary only in that
+unit. The prepared campaign manifest is
+`99cbff60f0276dee96bc458e6d2421a8b839eddddd20585d0a47586f7719df95`.
+
+The thirteen PIQD jobs run with at most twelve one-core solvers in parallel.
+The outcomes decide the next step without overstating closure: certified
+UNSAT for every cell feeds the existing Lean coverage consumer; any replayed
+SAT cell becomes the sole input to the next source-valid theorem mine;
+timeouts require a finer source-covered split. The on-spine leaf is unchanged
+until one of those routes supplies a complete checked argument.
+
+The first twelve center jobs reached their 3,600-second limits and returned
+solver `UNKNOWN`; center `16` is the queued final job. Those outcomes do not
+close any center cell. The active successor is therefore the source-total
+physical-hit split proved in
+`BlockerVExactSeventeenSparseSixPointNextCenterPhysicalSliceCoverage.lean`:
+for each fixed center, the next row has either no hit in `{6,7,8,9,10}` or one
+unique non-self hit there. This gives 76 cells. The coverage coordinator,
+direct exporter, and focused preparer tests are green, and an independent live
+preflight authenticated all thirteen parent packages. The refined CNFs are
+being prepared for a PIQD campaign with the same twelve-core aggregate cap.
+
+Before submission, the unique-hit arm was strengthened from a lone positive
+unit to the complete source-proved physical slice: the selected physical point
+is positive and all four other physical points are negative. The no-hit arm
+already contains five negative units. The weaker prepared package is
+superseded and will not be submitted; the full-multiplicity package is the
+production root.
+
+The first batch also found and repaired a shared-driver bottleneck: journal
+sealing authenticated a repeated content-addressed CNF once per poll record.
+The audit now hashes each unique referenced artifact once under the preexisting
+immutable-store contract. This changes no recorded solver outcome and reduces
+terminal sealing from repeated 333 MB reads to one read per unique artifact.
+
+The production package has now passed its complete 76-cell audit. Its
+campaign manifest SHA-256 is
+`8563223a41c85ebb8979038f4a1b39183f751b1bc96ea60f10d159faac78bb8e`,
+and a direct Lean export of center zero with unique physical hit six matched
+the prepared bytes at SHA-256
+`55ee9d0cad927d88c730920988f93931459c340f1ebc5629af88ba193b0561e9`.
+The 70 children of the twelve timed-out centers are running through PIQD with
+twelve one-core jobs at a time and 3,600-second solver/replay limits. Center
+16 has now also returned sealed solver `UNKNOWN`; all thirteen parent cells
+therefore require the physical refinement. Its six children are prepared and
+queued behind the active batch so the campaign remains within the twelve-core
+aggregate cap.
+
+For promotion, each terminal UNSAT cell must yield a checked theorem for its
+exact DIMACS bytes. A 76-case finite coordinator supplies the abstract cell
+contradiction required by
+`false_of_all_sparseSixPointNextCenterPhysicalSliceCells`. The live cap-nine
+branch already constructs the matching source realization and has already
+proved its named order is zero, so that coordinator is the final finite
+consumer needed to replace the current exact-17 placeholder.
+
+The certificate ingress module is now implemented and target-built. It fixes
+the LRAT relabelling once for the whole 76-cell family and exposes a single
+all-certificate theorem with the exact hypothesis required by the source
+coverage consumer. Thus terminal solver work no longer has an unimplemented
+Lean representation bridge behind it.

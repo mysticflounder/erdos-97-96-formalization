@@ -361,6 +361,13 @@ class DurableAttemptJournal:
     def _validate_archived_artifacts(self) -> None:
         if not self.records:
             return
+
+        references: dict[str, str] = {}
+
+        def register(digest: Any, *, source: str) -> None:
+            value = self._validate_digest(digest, source=source)
+            references.setdefault(value, source)
+
         for source, digest in (
             ("manifest CNF", self.manifest["encoding"]["cnf_sha256"]),
             (
@@ -368,13 +375,14 @@ class DurableAttemptJournal:
                 self.manifest["encoding"]["producer_manifest_sha256"],
             ),
         ):
-            self._require_artifact(digest, source=source)
+            register(digest, source=source)
         for index, record in enumerate(self.records):
             for key, digest in record["artifacts"].items():
                 if digest is not None:
-                    self._require_artifact(
-                        digest, source=f"attempt {index} artifact {key}"
-                    )
+                    register(digest, source=f"attempt {index} artifact {key}")
+
+        for digest, source in references.items():
+            self._require_artifact(digest, source=source)
 
     def _load_existing_seal(self) -> dict[str, Any] | None:
         if not self.seal_path.exists():

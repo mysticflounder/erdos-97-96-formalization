@@ -850,6 +850,32 @@ def test_reopen_rehashes_referenced_artifacts(tmp_path: Path) -> None:
         DurableAttemptJournal(journal.path, manifest=wave_manifest())
 
 
+def test_seal_hashes_each_referenced_artifact_digest_once(tmp_path: Path) -> None:
+    class CountingJournal(DurableAttemptJournal):
+        def __init__(self, *args: Any, **kwargs: Any) -> None:
+            self.required_digests: list[str] = []
+            super().__init__(*args, **kwargs)
+
+        def _require_artifact(self, digest: Any, *, source: str) -> str:
+            value = super()._require_artifact(digest, source=source)
+            self.required_digests.append(value)
+            return value
+
+    client = FakeClient(
+        statuses=[
+            {"id": "job-1", "status": "running", "result": None},
+            {"id": "job-1", "status": "running", "result": None},
+            {"id": "job-1", "status": "completed", "result": "UNKNOWN"},
+        ]
+    )
+    runner, journal = driver(tmp_path, client, journal_type=CountingJournal)
+    runner.run(wave_manifest=wave_manifest(), cnf=CNF, producer_manifest=PRODUCER)
+
+    assert isinstance(journal, CountingJournal)
+    assert journal.required_digests.count(sha256_bytes(CNF)) == 1
+    assert journal.required_digests.count(sha256_bytes(PRODUCER)) == 1
+
+
 def test_reopen_rejects_missing_manifest_input_artifact(tmp_path: Path) -> None:
     client = FakeClient()
     runner, journal = driver(tmp_path, client)

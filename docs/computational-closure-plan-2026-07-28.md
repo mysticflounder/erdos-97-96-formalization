@@ -14573,3 +14573,142 @@ root plus its one Lean-defined unit.  SAT cells are replayed and mined; UNSAT
 cells require PIQD proof retrieval and independent replay.  Only thirteen
 certified UNSAT cells, composed through the finite Lean coverage theorem, can
 close exact-17.
+
+### 13.28.29 Exact-17 next-center exhaustive split — 2026-08-20
+
+The source-side coverage bridge is now explicit in
+`BlockerVExactSeventeenSparseSixPointNextCenterCoverage.lean`. Every
+order-zero `SourceRealization` has its `nextCenter` in the proved,
+duplicate-free thirteen-label table
+
+```text
+0, 1, 2, 3, 4, 5, 6, 7, 12, 13, 14, 15, 16.
+```
+
+For each label, the cell CNF is definitionally the complete 7,409,253-clause
+sparse-six root followed by the positive `nextCenter` unit. The resulting
+cell length is 7,409,254. The theorem
+`false_of_all_sparseSixPointNextCenterCells` composes UNSAT for all legal
+cells into contradiction of any order-zero source realization; it makes no
+solver claim itself.
+
+The thirteen immutable local packages are prepared under
+`scratch/runs/exact17-sparse-six-nextcenter-split-20260820/cell-campaign-v1`.
+Campaign manifest SHA-256 is
+`99cbff60f0276dee96bc458e6d2421a8b839eddddd20585d0a47586f7719df95`.
+The center-zero package has SHA-256
+`41b5c7c9e81b30e97b70d49f11d661b87a524e12a1975c03ac8fda7e1051367f`;
+an independent direct Lean export matched it byte for byte. The remaining
+packages use the same authenticated parent body and differ only in the proved
+singleton unit.
+
+The PIQD campaign uses at most twelve concurrent one-core CaDiCaL jobs, with
+the thirteenth queued. Each job has a 3,600-second solver budget and a
+3,600-second proof-replay budget. SAT must be independently replayed and
+wave-mined; UNSAT is usable only after certificate retrieval and Lean replay.
+Until all thirteen cells have proof-bearing UNSAT results and the live leaf is
+rewired through the coverage theorem, exact-17 remains open.
+
+An adversarial preparation audit found that the version which created this
+campaign recorded, but did not itself re-hash, the parent producer, Lean
+source, and variable-map files, and did not re-hash the exact parent bytes
+consumed by each copy. The current campaign remains usable only because those
+inputs and all thirteen cells were independently re-hashed, every cell was
+checked as the exact parent body plus its unit, and the center-zero cell was
+matched against a direct Lean export. The preparer is now fail-closed on all
+three external identities and on a same-header parent mutation during either
+creation or replay; thirteen focused tests pass. The pre-fix preparer SHA-256
+`299f2f5ffed9431e538f1625642fcd4c964b0951532f4799256518946038bf3a`
+is retained here as historical provenance. The active run manifest pins the
+Lean coverage source rather than falsely claiming execution by the hardened
+preparer revision.
+
+If any center cell times out, the next split is already source-covered and
+does not depend on model-frequency heuristics. The next row always contains
+label `11`, never contains its own center, and contains at most one physical
+label from `{6,7,8,9,10}`. Therefore each fixed-center cell partitions into
+the six mutually exclusive categories "no physical hit" or "the unique
+physical hit is `p`" for `p = 6,...,10`; centers `6` and `7` have only five
+categories because self-membership is forbidden. This gives 76 total
+center/physical-category cells. The generic source/evaluation/coverage theorem
+is now banked in
+`BlockerVExactSeventeenSparseSixPointNextCenterPhysicalSliceCoverage.lean`;
+no refined CNFs are materialized or launched unless a current center cell
+times out. The twenty available replayed historical models are too sparse and
+uneven to justify promoting any empirically chosen hit atom instead.
+
+The first twelve center cells (`0` through `15`, excluding labels `8`--`11`)
+all exhausted their 3,600-second CaDiCaL budgets with solver result `UNKNOWN`.
+Their terminal journals are sealed; these runs provide neither models nor
+UNSAT certificates. Center `16` was queued behind that batch and is running
+under the same one-core budget.
+
+Terminal sealing exposed a performance defect in the shared PIQD CEGAR driver:
+the custody audit re-hashed the same 333 MB content-addressed CNF once per poll
+record, about 1,800 times per timed-out cell. The corrected audit first collects
+all referenced digests, then authenticates each unique artifact once. It
+preserves missing/corrupt-artifact rejection under the existing immutable
+artifact-store contract, passes the 38-test focused driver suite, and was
+independently audited. The twelve already-terminal journals were then sealed
+offline without changing their recorded outcomes.
+
+Because the first batch did not decide any center cell, the 76-cell physical-hit
+partition is now the active computational refinement. Its preparer passed an
+independent live preflight against all thirteen parent packages, including the
+actual producer schema, parent campaign/run identities, source and variable-map
+pins, consumed-parent re-hashing, and exact input provenance. The direct Lean
+exporter and coverage module build successfully; the refined cells are being
+materialized under the registered physical-slice run root before PIQD launch.
+
+The first prepared physical package encoded a unique-hit category using only
+its positive hit literal. That was source-sound but left the four source-proved
+non-hits implicit, so it was rejected before solver submission. The production
+category CNF now contains all five physical-slice units: five negatives in the
+no-hit arm, or one positive and four negatives in a unique-hit arm. The Lean
+source proof of this full multiplicity encoding is LSP-clean and its targeted
+exporter build has the approved `native_decide` trust footprint with no
+`sorryAx`. The weak package remains a superseded diagnostic artifact only.
+
+The production full-multiplicity package is now materialized at
+`scratch/runs/exact17-sparse-six-nextcenter-split-20260820/physical-slice-full-campaign-v1`.
+Its campaign manifest SHA-256 is
+`8563223a41c85ebb8979038f4a1b39183f751b1bc96ea60f10d159faac78bb8e`;
+its run-file SHA-256 is
+`e75f4dc4d77cceaab03857f268acd7049259b7f95ecdf87892934ddd01ea4db5`.
+An independent audit checked all 76 category packages, their parent-body
+bindings, full unit sets, source pins, and campaign metadata. A direct Lean
+export of the nontrivial center-zero/unique-six cell matched the prepared CNF
+byte for byte at SHA-256
+`55ee9d0cad927d88c730920988f93931459c340f1ebc5629af88ba193b0561e9`.
+
+The 70 physical cells above the twelve timed-out center branches are now
+submitted to PIQD, with at most twelve concurrent one-core CaDiCaL jobs and
+the same 3,600-second solver and replay budgets. Center 16 subsequently also
+reached its 3,600-second limit with solver result `UNKNOWN`; its terminal
+journal is sealed at SHA-256
+`1cf08ac0197b14253d050229c20e603e7ab756583d7ccb946964f1b19be32ed0`.
+Thus all thirteen parent cells are now terminal `UNKNOWN`. The six center-16
+children are prepared and remain queued behind the active 70-cell batch to
+preserve the twelve-core aggregate cap. This is a production coverage
+campaign, not a closure claim: only checked UNSAT for every source category,
+followed by the existing Lean coverage composition and live-leaf wiring,
+closes the exact-17 branch.
+
+The promotion boundary is already fixed. Each accepted UNSAT cell must first
+become a checked `DimacsUnsatisfiable` theorem for the exact serialized cell.
+A finite coordinator then transports those 76 theorems to the `hcell`
+argument of
+`false_of_all_sparseSixPointNextCenterPhysicalSliceCells`. In the exact-cover
+arm of the live cap-nine leaf, the existing construction supplies the
+`SourceRealization` and the cocircular pentagon theorem supplies order zero;
+the coverage theorem then replaces the leaf's remaining SAT-unsatisfiability
+placeholder directly. No new geometric consumer or cardinality lift is
+missing on this route.
+
+`BlockerVExactSeventeenSparseSixPointNextCenterPhysicalSliceCertificateIngress.lean`
+now implements that representation seam. It relabels every typed cell with
+the exact zero-based injective variable map consumed by reflective LRAT,
+transports checked `CNF Nat` unsatisfiability back to the typed cell, and
+provides the all-certificate finite coordinator. The targeted Lean build and
+axiom scan pass; its only non-core trust is the already accepted
+`native_decide` proof that zero-basing preserves injectivity.
