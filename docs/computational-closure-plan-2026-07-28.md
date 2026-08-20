@@ -14448,3 +14448,128 @@ The generic source bridge is already sufficient; only a new concrete schema
 instance is needed. No automatic successor solve was launched. Exact-17,
 certificate replay, the live branch rewrite, and the proof blueprint all
 remain open.
+
+### 13.28.26 Exact-17 full direct convex-five bank — 2026-08-20
+
+The next convex-five step is promoted as a uniform finite theorem bank rather
+than another single-model occurrence.  For every five boundary positions
+
+```text
+y < c < b < x < a
+```
+
+the source-clean theorem records the seven positive incidences
+`x:{a,b}`, `y:{a,b}`, and `c:{b,x,y}`.  The two required signed-area facts
+follow directly from the source CCW enumeration; reflection gives the reverse
+orientation.  The existing `ConvexFivePointCore` consumer therefore proves
+the guarded nogood without a new geometric axiom or an assumed completeness
+statement.
+
+`BlockerVExactSeventeenDirectConvexFiveFullBank.lean` enumerates all
+`choose(17,5) = 6,188` positional data relative to the fixed linear cut and
+both orientations.  It appends 12,376 order-zero guarded clauses to the
+preceding 7,198,861-clause root.  The
+promoted Lean CNF has 308 variables and 7,211,237 clauses, SHA-256
+`1cc4b011230254cefe6aec56a7257a4481747d883e7d192e49b25f7aa4f78a13`.
+The suffix has SHA-256
+`010afed64deae461a9bc494e043be21eadb64736dfe06677ef810d3e1c020a83`.
+The parent body is clause-for-clause identical after the DIMACS header.
+
+Independent replay of the `886314a...` parent model against the new root
+found exactly one false clause, at zero-based clause index 7,200,443:
+
+```text
+[-307,-50,-42,-169,-161,-212,-207,-214]
+```
+
+Thus the bank passes the mandatory motivating-model gate.  The promotion and
+terminal adapter elaborate with no `sorryAx`; their trust footprint is the
+previously accepted `native_decide` compiler boundary used for finite counts.
+Authenticated PIQD job `db723e90-3df7-4803-8c03-a803d7487659` returned
+`STRUCTURAL_SAT`.  The shared driver replayed the complete 308-variable model
+against all 7,211,237 clauses before accepting it; the model SHA-256 is
+`c4b271cb1a2e1a9ac2397190961add7cc08a1f215d1df1e7b108e04f43276353`.
+Thus the full direct convex-five family is not a coverage theorem for this
+root.  The mandatory wave-only theorem mine is the next gate: a successor is
+allowed only for a new source-valid motif outside this complete family.
+Exact-17 and the live Lean leaf remain open.
+
+### 13.28.27 Exact-17 cyclic convex-five completion — 2026-08-20
+
+The mandatory mine of the direct-bank SAT model exposed a coverage defect in
+the *finite bank*, not a new geometric theorem.  Boundary indices in the
+source packet are cyclic.  The direct bank had chosen five increasing labels
+relative to the single cut at zero, so it omitted occurrences whose ordered
+five-tuple crosses that cut.  The SAT model contained two such occurrences.
+This does not invalidate the direct clauses or their source theorem; it means
+that “full” in §13.28.26 covered only the fixed-cut subfamily.
+
+`BlockerVExactSeventeenCyclicConvexFiveFullBank.lean` repairs the coverage by
+cutting the cyclic order at `y`, choosing positive offsets
+
+```text
+0 < c < b < x < a,
+```
+
+and proving both orientations after cyclic translation.  There are
+`17 * choose(16,4) = 30,940` cyclic positional data and 61,880 guarded
+clauses in the complete family.  Of these, the fixed-cut parent already
+contains 12,376.  The successor therefore appends exactly 49,504 missing
+clauses.  Its promoted root has 308 variables and 7,260,741 clauses,
+SHA-256
+`f4b94e454967b6912be24c10490fc49201510e40aded58a45b72850922d607fc`;
+the suffix SHA-256 is
+`8ecd05d6b878be2d3c9fd1d50da8cce79d26fcf444312b1849747a114935322f`.
+The parent body is clause-for-clause identical.
+
+Independent replay of the direct-bank SAT model found exactly two false
+successor clauses, at suffix indices 2,182 and 34,853.  These are the two
+cyclic occurrences found by the wave-only mine.  The source theorem and
+terminal adapter elaborate with no `sorryAx`; their trust footprint remains
+the accepted finite `native_decide` boundary.  Authenticated PIQD job
+`1627d026-10d5-4960-af8d-28427071101c` returned `STRUCTURAL_SAT`; independent
+replay checked the complete 308-variable model against all 7,260,741 clauses.
+The model SHA-256 is
+`0d0b630b785cd1c86bf142e669f72609606318a453c945df3c62f31d19d67ba3`.
+Thus the complete cyclic convex-five family is not coverage for exact-17.
+
+### 13.28.28 Exact-17 sparse six-point Euclidean bank — 2026-08-20
+
+The mandatory wave-only mine of the cyclic-bank SAT model found a smaller
+existing cardinality-generic obstruction.  In six cyclic positions
+`i0 < i1 < i2 < i3 < i4 < i5`, one selected row centered at `i0` cannot
+contain `i1,i3,i5` while another centered at `i2` contains `i1,i3,i4`.
+`SixPointSparseEuclideanObstruction.false_of_six_ccw_two_selected_rows`
+already proves this from exact Euclidean geometry.  New increasing and
+decreasing cyclic-shift wrappers supply the exact source consumer; no new
+geometric theorem is assumed.
+
+`BlockerVExactSeventeenSparseSixPointFullBank.lean` enumerates every cyclic
+cut, all five positive offsets, and both directions under named order zero.
+This gives 148,512 source-clean clauses.  The Lean-owned cumulative root has
+308 variables and 7,409,253 clauses, SHA-256
+`ff41a77a3e6376583b52d378efc268203ad6bb400ed049d05488d6bdf3aef2ac`;
+the suffix SHA-256 is
+`2dc7ab8658344df9a7c1821cb7ce9d9fbf98b22c0a968de7532261ee2cb83b05`.
+Its parent body is clause-for-clause identical.  Independent replay of the
+cyclic-bank SAT model found eleven distinct false successor clauses.  The
+targeted aggregate build and axiom audit pass with no `sorryAx`; the module is
+finite-bank infrastructure and is not yet imported by the publish-spine leaf.
+
+Authenticated PIQD job `38cd372e-bd52-4d85-877f-2a69892f96ff` exhausted its
+3,600-second one-core CaDiCaL budget and returned solver `UNKNOWN`.  The solver
+log SHA-256 is
+`25df7b79e6fdb0684bc1ff322fb0016ce580c3358632280357db87ccae5c0f1f`;
+the terminal journal record SHA-256 is
+`ca2cf20c6795b6b5325c36f0641ef601d6f52223dc960553a9bab42271a9c426`.
+This supplies neither a model nor an UNSAT certificate, so exact-17 and the
+live Lean leaf remain open.
+
+The next execution step is the already source-covered thirteen-cell partition
+by `SourceModel.nextCenter`.  The legal centers are exactly
+`0,1,2,3,4,5,6,7,12,13,14,15,16`, represented by unit variables
+`290`--`297` and `302`--`306`.  Each cell must use the byte-identical sparse-six
+root plus its one Lean-defined unit.  SAT cells are replayed and mined; UNSAT
+cells require PIQD proof retrieval and independent replay.  Only thirteen
+certified UNSAT cells, composed through the finite Lean coverage theorem, can
+close exact-17.

@@ -465,6 +465,155 @@ theorem false_of_six_ccw_two_selected_rows
       (P2Row.support_eq_radius _ h1_mem_P2Row).trans
         (P2Row.support_eq_radius _ h4_mem_P2Row).symm
 
+private theorem signedArea2_swap13 (a b c : ℝ²) :
+    signedArea2 c b a = -signedArea2 a b c := by
+  simp only [signedArea2]
+  ring
+
+private theorem false_of_six_ccw_row_equalities_of_decreasing
+    {n : ℕ}
+    {boundary : Fin n → ℝ²}
+    (hboundary_injective : Function.Injective boundary)
+    (hboundary_ccw : EuclideanGeometry.IsCcwConvexPolygon boundary)
+    {i0 i1 i2 i3 i4 i5 : Fin n}
+    (h10 : i1 < i0) (h21 : i2 < i1) (h32 : i3 < i2)
+    (h43 : i4 < i3) (h54 : i5 < i4)
+    (h01_03 :
+      dist (boundary i0) (boundary i1) =
+        dist (boundary i0) (boundary i3))
+    (h01_05 :
+      dist (boundary i0) (boundary i1) =
+        dist (boundary i0) (boundary i5))
+    (h21_23 :
+      dist (boundary i2) (boundary i1) =
+        dist (boundary i2) (boundary i3))
+    (h21_24 :
+      dist (boundary i2) (boundary i1) =
+        dist (boundary i2) (boundary i4)) :
+    False := by
+  have h0130 := hneg_of_ccw hboundary_injective hboundary_ccw
+    (h32.trans h21) h10
+  have h013 : 0 < signedArea2 (boundary i0) (boundary i1) (boundary i3) := by
+    rw [signedArea2_swap13] at h0130
+    linarith
+  have h0150 := hneg_of_ccw hboundary_injective hboundary_ccw
+    (h54.trans (h43.trans (h32.trans h21))) h10
+  have h015 : 0 < signedArea2 (boundary i0) (boundary i1) (boundary i5) := by
+    rw [signedArea2_swap13] at h0150
+    linarith
+  have h0350 := hneg_of_ccw hboundary_injective hboundary_ccw
+    (h54.trans h43) (h32.trans (h21.trans h10))
+  have h035 : 0 < signedArea2 (boundary i0) (boundary i3) (boundary i5) := by
+    rw [signedArea2_swap13] at h0350
+    linarith
+  have h1230 := hneg_of_ccw hboundary_injective hboundary_ccw h32 h21
+  have h123 : 0 < signedArea2 (boundary i1) (boundary i2) (boundary i3) := by
+    rw [signedArea2_swap13] at h1230
+    linarith
+  have h1340 := hneg_of_ccw hboundary_injective hboundary_ccw
+    h43 (h32.trans h21)
+  have h134 : 0 < signedArea2 (boundary i1) (boundary i3) (boundary i4) := by
+    rw [signedArea2_swap13] at h1340
+    linarith
+  have h3450 := hneg_of_ccw hboundary_injective hboundary_ccw h54 h43
+  have h345 : 0 < signedArea2 (boundary i3) (boundary i4) (boundary i5) := by
+    rw [signedArea2_swap13] at h3450
+    linarith
+  apply metric_orientation_incompatibility_of_neg
+      (P0 := reflectXAxis (boundary i0))
+      (P1 := reflectXAxis (boundary i1))
+      (P2 := reflectXAxis (boundary i2))
+      (P3 := reflectXAxis (boundary i3))
+      (P4 := reflectXAxis (boundary i4))
+      (P5 := reflectXAxis (boundary i5))
+  · exact fun h => hboundary_injective.ne h10.ne' (reflectXAxis_injective h)
+  · simpa only [dist_reflectXAxis] using h01_03
+  · simpa only [dist_reflectXAxis] using h01_05
+  · simpa only [dist_reflectXAxis] using h21_23
+  · simpa only [dist_reflectXAxis] using h21_24
+  · rw [signedArea2_reflectXAxis]
+    linarith
+  · rw [signedArea2_reflectXAxis]
+    linarith
+  · rw [signedArea2_reflectXAxis]
+    linarith
+  · rw [signedArea2_reflectXAxis]
+    linarith
+  · rw [signedArea2_reflectXAxis]
+    linarith
+  · rw [signedArea2_reflectXAxis]
+    linarith
+
+/-- Cyclic-shift selected-row form of the increasing sparse six-point
+obstruction. -/
+theorem false_of_six_ccw_two_selected_rows_cyclicShift
+    {carrier : Finset ℝ²}
+    {boundary : Fin carrier.card → ℝ²}
+    (hboundary_injective : Function.Injective boundary)
+    (hboundary_ccw : EuclideanGeometry.IsCcwConvexPolygon boundary)
+    (cut : Fin carrier.card)
+    {i0 i1 i2 i3 i4 i5 : Fin carrier.card}
+    (h01 : i0 < i1) (h12 : i1 < i2) (h23 : i2 < i3)
+    (h34 : i3 < i4) (h45 : i4 < i5)
+    (P0Row : SelectedFourClass carrier (boundary (i0 + cut)))
+    (P2Row : SelectedFourClass carrier (boundary (i2 + cut)))
+    (h1_mem_P0Row : boundary (i1 + cut) ∈ P0Row.support)
+    (h3_mem_P0Row : boundary (i3 + cut) ∈ P0Row.support)
+    (h5_mem_P0Row : boundary (i5 + cut) ∈ P0Row.support)
+    (h1_mem_P2Row : boundary (i1 + cut) ∈ P2Row.support)
+    (h3_mem_P2Row : boundary (i3 + cut) ∈ P2Row.support)
+    (h4_mem_P2Row : boundary (i4 + cut) ∈ P2Row.support) :
+    False := by
+  let shifted : Fin carrier.card → ℝ² := fun i => boundary (i + cut)
+  exact false_of_six_ccw_two_selected_rows
+    (boundary := shifted)
+    (by simpa only [shifted] using injective_cyclicShift hboundary_injective cut)
+    (by simpa only [shifted] using
+      isCcwConvexPolygon_cyclicShift hboundary_injective hboundary_ccw cut)
+    h01 h12 h23 h34 h45 P0Row P2Row
+    h1_mem_P0Row h3_mem_P0Row h5_mem_P0Row
+    h1_mem_P2Row h3_mem_P2Row h4_mem_P2Row
+
+/-- Cyclic-shift selected-row form of the decreasing sparse six-point
+obstruction. -/
+theorem false_of_six_ccw_two_selected_rows_cyclicShift_of_decreasing
+    {carrier : Finset ℝ²}
+    {boundary : Fin carrier.card → ℝ²}
+    (hboundary_injective : Function.Injective boundary)
+    (hboundary_ccw : EuclideanGeometry.IsCcwConvexPolygon boundary)
+    (cut : Fin carrier.card)
+    {i0 i1 i2 i3 i4 i5 : Fin carrier.card}
+    (h10 : i1 < i0) (h21 : i2 < i1) (h32 : i3 < i2)
+    (h43 : i4 < i3) (h54 : i5 < i4)
+    (P0Row : SelectedFourClass carrier (boundary (i0 + cut)))
+    (P2Row : SelectedFourClass carrier (boundary (i2 + cut)))
+    (h1_mem_P0Row : boundary (i1 + cut) ∈ P0Row.support)
+    (h3_mem_P0Row : boundary (i3 + cut) ∈ P0Row.support)
+    (h5_mem_P0Row : boundary (i5 + cut) ∈ P0Row.support)
+    (h1_mem_P2Row : boundary (i1 + cut) ∈ P2Row.support)
+    (h3_mem_P2Row : boundary (i3 + cut) ∈ P2Row.support)
+    (h4_mem_P2Row : boundary (i4 + cut) ∈ P2Row.support) :
+    False := by
+  let shifted : Fin carrier.card → ℝ² := fun i => boundary (i + cut)
+  apply false_of_six_ccw_row_equalities_of_decreasing
+    (boundary := shifted)
+    (by simpa only [shifted] using injective_cyclicShift hboundary_injective cut)
+    (by simpa only [shifted] using
+      isCcwConvexPolygon_cyclicShift hboundary_injective hboundary_ccw cut)
+    h10 h21 h32 h43 h54
+  · exact
+      (P0Row.support_eq_radius _ h1_mem_P0Row).trans
+        (P0Row.support_eq_radius _ h3_mem_P0Row).symm
+  · exact
+      (P0Row.support_eq_radius _ h1_mem_P0Row).trans
+        (P0Row.support_eq_radius _ h5_mem_P0Row).symm
+  · exact
+      (P2Row.support_eq_radius _ h1_mem_P2Row).trans
+        (P2Row.support_eq_radius _ h3_mem_P2Row).symm
+  · exact
+      (P2Row.support_eq_radius _ h1_mem_P2Row).trans
+        (P2Row.support_eq_radius _ h4_mem_P2Row).symm
+
 #print axioms normalized_sparse_six_point_incompatible
 #print axioms metric_orientation_incompatibility
 #print axioms metric_orientation_incompatibility_of_neg

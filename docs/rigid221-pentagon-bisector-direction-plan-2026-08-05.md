@@ -970,9 +970,37 @@ single one-core run was again `STRUCTURAL_SAT`, job
 Its source mine found a second seven-hit reverse convex-five occurrence with
 core `(15,7,12,2,9)` and guarded order-zero clause
 `[-307,-50,-42,-169,-161,-212,-207,-214]`. The reusable bridge already covers
-it, but the concrete schema and a later bounded solve are deliberately left to
-the next checkpoint. This is still finite CEGAR progress, not a terminal
-certificate or a proof-spine closure.
+it. That occurrence was first generalized to every five-tuple increasing
+relative to the fixed cut at zero. The resulting 12,376-clause bank was
+source-clean and cut the motivating model, but PIQD returned another replayed
+SAT model. Its mandatory mine exposed two wrapping occurrences of the same
+convex-five theorem. Thus the fixed-cut bank was valid but not cyclically
+complete.
+
+The corrected bank cuts the boundary order at `y` and enumerates all positive
+offsets `0 < c < b < x < a`, in both orientations. It contains 61,880 clauses
+in total, of which 49,504 were absent from the fixed-cut root. The Lean-owned
+successor has 7,260,741 clauses and SHA-256
+`f4b94e454967b6912be24c10490fc49201510e40aded58a45b72850922d607fc`.
+The prior SAT model falsifies exactly two new clauses. Authenticated PIQD job
+`1627d026-10d5-4960-af8d-28427071101c` nevertheless returned another replayed
+SAT model. The complete cyclic convex-five family therefore does not cover
+the exact-17 source root.
+
+The new model contains eleven distinct cyclic occurrences of the already
+proved sparse six-point Euclidean obstruction. The complete source-clean bank
+for that family adds 148,512 clauses. Its 7,409,253-clause Lean-owned root has
+SHA-256
+`ff41a77a3e6376583b52d378efc268203ad6bb400ed049d05488d6bdf3aef2ac`;
+the motivating model falsifies all eleven mined clauses. Its authenticated
+PIQD job `38cd372e-bd52-4d85-877f-2a69892f96ff` timed out after its 3,600-second
+CaDiCaL budget and returned `UNKNOWN`. It supplied neither a model nor an UNSAT
+certificate. The current execution route is therefore the source-covered
+thirteen-cell split by the next-row center, with one Lean-defined unit per
+cell. This remains finite CEGAR work until every cell has a checked terminal
+result and the Lean coverage coordinator consumes them. The bank modules are
+not imported by the current publish-spine leaf; they become load-bearing only
+when that checked finite result is wired into the leaf.
 
 The bisector-exhaustion kernel is separately banked in
 `ConvexPerpendicularBisectorSides.lean`, with a parameterized exact-17 source
