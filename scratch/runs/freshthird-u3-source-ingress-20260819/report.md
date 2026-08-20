@@ -59,9 +59,11 @@ f4289a051044e019109d721e0b62f2926440a660dead22020141101f6fa8df06
 ## Scope and next target
 
 This is an ingress contract, not a universal closure and not a SAT result.
-The next implementation target is a serializer/consumer that turns one
-concrete finite packet into the compact `LeanSatIr` selector vocabulary, with
-the packet's source proof hash and arm tag recorded in the run manifest.  A
-piqd UNSAT result must not be promoted until that serializer has a Lean
-replay theorem and an explicit coverage theorem back to the corresponding
-packet arm.
+The serializer target is now implemented in
+`scratch/runs/freshthird-u3-serializer-20260819/packet_to_lean_sat_ir.py`.
+For the validated q-deleted packet it records the packet SHA, arm, and the
+SHA-256 of this compiling ingress source in
+`scratch/runs/freshthird-u3-cegar-packet-20260819/run-0001/artifacts/validated-u3-ir-source-bound.json`.
+The focused serializer tests and combined packet tests pass.  This still does
+not supply the Lean replay theorem or universal coverage theorem required for
+promoting a piqd UNSAT result, and the current packet is SAT finite evidence.

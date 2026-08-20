@@ -28,9 +28,12 @@ The output pins every zero-argument role function and every `S3`, `S4`, and
 `S8` table entry to the packet. The formula also replays the finite selector
 constraints and the no-three-point dangerous-row overlap condition. Its
 `source` object records the arm, canonical packet SHA-256, packet fields,
-common checks, and arm-specific checks. This is the coverage contract for a
-later decoded model: the model must reproduce the packet hash and the listed
-checks before it can be treated as a source-ingress replay.
+common checks, arm-specific checks, and the SHA-256 of the compiling Lean
+ingress source containing
+`SixSurvivorU3ExactRadiusAuditObstruction.toFiniteIngress`. Missing or
+unrelated ingress source is rejected before IR emission. This is the coverage
+contract for a later decoded model: the model must reproduce the packet hash
+and the listed checks before it can be treated as a source-ingress replay.
 
 ## Validation
 
@@ -39,11 +42,11 @@ The source contract correction is load-bearing: the Lean packet type stores
 cardinality of `exact_radius`. The serializer no longer adds either stronger
 condition.
 
-The five-test suite passes:
+The six-test suite passes:
 
 ```text
 uv run --no-sync python -m pytest -q scratch/runs/freshthird-u3-serializer-20260819/test_packet_to_lean_sat_ir.py
-5 passed in 0.19s
+6 passed in 0.19s
 ```
 
 Both arm fixtures serialize and pass piqd's encoder preparation without an
@@ -72,3 +75,12 @@ whose decoded model is checked against the recorded packet hash and arm.
 - `run-0001/artifacts/critical-shell-piqc-prepare.json`
 
 All generated artifacts and source digests are recorded in the run manifest.
+
+The source-backed CEGAR packet replay is
+`../freshthird-u3-cegar-packet-20260819/run-0001/artifacts/validated-u3-ir-source-bound.json`.
+It records arm `qDeleted`, packet SHA
+`3b9123bf55ffb2565bccac50e3fc55e3bdd25203493c4e90bf587839fd50c7e7`, and
+ingress SHA
+`f4289a051044e019109d721e0b62f2926440a660dead22020141101f6fa8df06`.
+This remains finite replay evidence only: no universal FreshThird coverage or
+sorry closure is claimed.

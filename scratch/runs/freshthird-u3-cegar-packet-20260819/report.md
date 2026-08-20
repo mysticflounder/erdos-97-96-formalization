@@ -77,4 +77,20 @@ uv run --no-sync python -m pytest -q ...
 8 passed
 ruff check: clean
 piqd model-check: SATISFIED
+
+## Source-backed serializer follow-up — 2026-08-20
+
+The finite serializer now fails closed unless the repository contains the
+compiling Lean ingress declaration
+`SixSurvivorU3ExactRadiusAuditObstruction.toFiniteIngress`.  Each emitted IR
+records the ingress path and SHA-256 alongside the packet SHA and source arm.
+The source-bound replay artifact is
+`run-0001/artifacts/validated-u3-ir-source-bound.json`; its ingress SHA is
+`f4289a051044e019109d721e0b62f2926440a660dead22020141101f6fa8df06`.
+
+The focused serializer suite now has 6 tests; the combined packet and
+serializer suites have 9 tests, all passing, and Ruff is clean.  This binds
+finite replay provenance but does not add the missing FreshThird two-shell
+seed, endpoint naming, fan, or universal coverage theorem.  No sorry closure
+is claimed.
 ```

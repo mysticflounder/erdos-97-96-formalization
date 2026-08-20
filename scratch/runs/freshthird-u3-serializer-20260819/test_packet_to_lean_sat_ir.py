@@ -91,6 +91,9 @@ def assert_pinned_formula_accepts(p):
     assert eval_expr(exported["formula"], env, domains)
     assert exported["source"]["source_arm"] == p["arm"]
     assert exported["source"]["packet_sha256"] == module.packet_sha256(p)
+    assert exported["source"]["source_ingress"]["path"] == module.SOURCE_INGRESS_RELATIVE
+    assert exported["source"]["source_ingress"]["declaration"] == module.SOURCE_INGRESS_DECL
+    assert len(exported["source"]["source_ingress"]["sha256"]) == 64
     assert exported["source"]["coverage"]["required_packet_fields"][-1] == "row"
     assert p["arm"] in exported["source"]["coverage"]["arm_checks"]
 
@@ -140,3 +143,15 @@ def test_row_dangerous_bound_is_checked_before_serialization():
 def test_output_is_deterministic():
     p = packet("qDeleted")
     assert module.packet_to_ir(p) == module.packet_to_ir(dict(p))
+
+
+def test_missing_ingress_declaration_fails_closed(tmp_path):
+    p = packet("qDeleted")
+    source = tmp_path / "not-an-ingress.lean"
+    source.write_text("theorem unrelated : True := by trivial\n")
+    try:
+        module.packet_to_ir(p, source)
+    except ValueError as error:
+        assert module.SOURCE_INGRESS_DECL in str(error)
+    else:
+        raise AssertionError("serializer accepted an unrelated Lean source")

@@ -22,6 +22,8 @@ from typing import Any
 PACKET_SCHEMA = "freshthird-u3-finite-packet/v1"
 ARMS = ("qDeleted", "criticalShell")
 FRAME_ROLES = ("q", "p", "t1", "t2", "t3", "u", "a0", "a1")
+SOURCE_INGRESS_RELATIVE = "lean/scratch/U3LeanSatSourceIngress.lean"
+SOURCE_INGRESS_DECL = "SixSurvivorU3ExactRadiusAuditObstruction.toFiniteIngress"
 
 
 def _load_ir_base() -> Any:
@@ -44,6 +46,35 @@ def _canonical_json(value: Any) -> bytes:
 
 def packet_sha256(packet: Mapping[str, Any]) -> str:
     return hashlib.sha256(_canonical_json(packet)).hexdigest()
+
+
+def _source_ingress_path(path: Path | None) -> Path:
+    if path is not None:
+        return path
+    return Path(__file__).parents[3] / SOURCE_INGRESS_RELATIVE
+
+
+def source_ingress_metadata(path: Path | None = None) -> dict[str, str]:
+    """Bind the finite replay to the compiling Lean ingress declaration."""
+    source_path = _source_ingress_path(path)
+    try:
+        source_bytes = source_path.read_bytes()
+    except OSError as exc:
+        raise ValueError(f"source ingress: cannot read {source_path}: {exc}") from exc
+    source_text = source_bytes.decode("utf-8")
+    if SOURCE_INGRESS_DECL not in source_text:
+        raise ValueError(
+            f"source ingress: missing declaration {SOURCE_INGRESS_DECL!r}"
+        )
+    try:
+        relative = source_path.resolve().relative_to(Path(__file__).parents[3].resolve())
+    except ValueError as exc:
+        raise ValueError("source ingress: path must lie in the repository") from exc
+    return {
+        "path": relative.as_posix(),
+        "sha256": hashlib.sha256(source_bytes).hexdigest(),
+        "declaration": SOURCE_INGRESS_DECL,
+    }
 
 
 def _bad(path: str, message: str) -> ValueError:
@@ -135,8 +166,11 @@ def _pin_selector(function: str, domain: str, slot_count: int, values: list[int]
     ]
 
 
-def packet_to_ir(raw: Mapping[str, Any]) -> dict[str, Any]:
+def packet_to_ir(
+    raw: Mapping[str, Any], source_ingress: Path | None = None
+) -> dict[str, Any]:
     packet = validate_packet(raw)
+    ingress = source_ingress_metadata(source_ingress)
     n = packet["carrier_card"]
     roles = packet["roles"]
     point_terms = {
@@ -212,6 +246,7 @@ def packet_to_ir(raw: Mapping[str, Any]) -> dict[str, Any]:
         "packet_schema": PACKET_SCHEMA,
         "source_arm": packet["arm"],
         "packet_sha256": packet_sha256(packet),
+        "source_ingress": ingress,
         "replay": "pinned-finite-packet",
         "coverage": {
             "required_packet_fields": [
@@ -251,9 +286,10 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("packet", type=Path)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--source-ingress", type=Path)
     args = parser.parse_args()
     packet = json.loads(args.packet.read_text())
-    exported = packet_to_ir(packet)
+    exported = packet_to_ir(packet, args.source_ingress)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_bytes(_canonical_json(exported))
 
