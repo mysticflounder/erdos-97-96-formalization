@@ -14285,3 +14285,31 @@ remains a fan-to-consumer theorem problem; the next computational work, if
 needed, must either split the monolithic source group for diagnostics or use a
 compact automaton-style encoding. More one-model alternation cuts are not a
 new search target.
+
+### 13.28.21 FreshThird source-family diagnostic — 2026-08-19
+
+The bounded diagnostic requested in 13.28.20 is complete. It partitions the
+612 conjuncts of `source__pinned_source_theory` directly from the tracked Z3
+payload, keeps the complete CNF signature fixed, and shrinks every trial in a
+fresh solver. All four 14-role no-alternating-cap models have the same
+isolated source rejection:
+
+`canonical_packet` → `fresh_row_ordered`.
+
+Here `fresh_row_ordered` is the full four-arm order-selected endpoint survivor
+packet, including its endpoint-deletion cap split; it is not merely an order
+comparison. The source entitlement is
+`freshThird_canonicalDifferentCap_exists_orderSelectedEndpointSurvivingRow`,
+with the cap-split form from
+`freshThird_orderSelectedEndpointSurvivingRow_capSplit`. The diagnostic report
+and authenticated run manifest are
+`scratch/freshthird-source-family-diagnostic-20260819.md` and
+`scratch/runs/freshthird-source-family-diagnostic-20260819/source-family-0001/`.
+
+The next computational target is a **fresh-namespaced** CNF refinement that
+uses auxiliaries to encode that complete predicate over the existing `before`,
+`same`, `incident`, cap, and row-cap literals. It needs a direct source-formula
+comparison test before a four-cell canary. Adding bare order literals or
+reusing the v1 artifact namespace is forbidden. A canary result remains
+theorem-mining evidence; no current FreshThird `sorry` is closed by this
+diagnosis.

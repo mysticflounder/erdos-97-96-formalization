@@ -24,6 +24,7 @@ from census.p97_search.freshthird_qfiber_three_carrier_query_v1 import (
     _Builder,
     _canonical_json,
     _cap_cyclic_interval_constraints,
+    add_model_signature_constraints,
     build_query,
     model_signature,
     replay_sat_result,
@@ -261,6 +262,18 @@ def test_signature_match_replays_a_complete_readback() -> None:
     match, atom_count = signature_match(replay_query, signature)
     assert atom_count > 20_000
     replay_query.solver.add(match)
+    assert replay_query.solver.check() == z3.sat
+
+
+def test_source_signature_helper_replays_the_existing_integer_projection() -> None:
+    builder = _Builder(0, timeout_ms=5_000)
+    source = builder.q()
+    assert source.solver.check() == z3.sat
+    signature = model_signature(source, source.solver.model())
+
+    replay_builder = _Builder(0, timeout_ms=5_000)
+    replay_query = replay_builder.q()
+    add_model_signature_constraints(replay_query, signature)
     assert replay_query.solver.check() == z3.sat
 
 

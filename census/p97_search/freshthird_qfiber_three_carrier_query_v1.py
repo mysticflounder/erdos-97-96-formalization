@@ -22,7 +22,7 @@ import hashlib
 import itertools
 import json
 import os
-from collections.abc import Iterable, Sequence
+from collections.abc import Iterable, Mapping, Sequence
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
@@ -885,40 +885,17 @@ def model_signature(query: CarrierQuery, model: z3.ModelRef) -> dict[str, object
     }
 
 
-def replay_sat_result(result: dict[str, object], *, timeout_ms: int = 60_000) -> None:
-    """Fail-closed fresh-session replay of one complete SAT readback.
+def add_model_signature_constraints(
+    query: CarrierQuery, signature: Mapping[str, object]
+) -> None:
+    """Validate and constrain one complete finite source signature.
 
-    This authenticates and rechecks the finite relational packet only.  It is
-    not an independent Euclidean verifier and intentionally does not promote
-    ``SAT_ABSTRACTION`` to a theorem-bearing status.
+    The shared helper is used by the ordinary fresh-session replay and by
+    diagnostic solvers that retain the source formulas but change only their
+    tracking granularity.  It deliberately pins the same integer order and
+    radius labels that ``replay_sat_result`` historically pinned.
     """
 
-    if result.get("schema") != RESULT_SCHEMA:
-        raise ValueError("result schema mismatch")
-    if result.get("query_schema") != SCHEMA:
-        raise ValueError("query schema mismatch")
-    if result.get("status") != "SAT_ABSTRACTION":
-        raise ValueError("only SAT_ABSTRACTION results have model replay")
-    if result.get("claims") != FALSE_CLAIMS:
-        raise ValueError("claims mismatch")
-    boundary_index = result.get("boundary_index")
-    if type(boundary_index) is not int or boundary_index not in range(4):
-        raise ValueError("invalid boundary index")
-    expected_manifest = hashlib.sha256(_canonical_json(source_manifest())).hexdigest()
-    if result.get("source_manifest_sha256") != expected_manifest:
-        raise ValueError("source manifest hash mismatch")
-    signature = result.get("model_signature")
-    if type(signature) is not dict:
-        raise ValueError("missing model signature")
-    expected_signature = hashlib.sha256(_canonical_json(signature)).hexdigest()
-    if result.get("model_signature_sha256") != expected_signature:
-        raise ValueError("model signature hash mismatch")
-    if set(signature) != MODEL_SIGNATURE_KEYS:
-        raise ValueError("model signature key mismatch")
-
-    query = build_query(boundary_index, timeout_ms=timeout_ms)
-    if result.get("constraint_groups") != list(query.groups):
-        raise ValueError("constraint groups mismatch")
     v = query.variables
     point_classes = signature.get("point_classes")
     cap_witnesses = signature.get("cap_witnesses")
@@ -928,7 +905,16 @@ def replay_sat_result(result: dict[str, object], *, timeout_ms: int = 60_000) ->
     radius = signature.get("radius_classes")
     has_four = signature.get("has_four_after_deleting")
     nonrobust = signature.get("nonrobust")
-    mappings = (point_classes, cap_witnesses, in_cap, interiors, order, radius, has_four, nonrobust)
+    mappings = (
+        point_classes,
+        cap_witnesses,
+        in_cap,
+        interiors,
+        order,
+        radius,
+        has_four,
+        nonrobust,
+    )
     if any(type(item) is not dict for item in mappings):
         raise ValueError("malformed model signature")
     expected_roles = set(ROLES)
@@ -987,7 +973,11 @@ def replay_sat_result(result: dict[str, object], *, timeout_ms: int = 60_000) ->
         ("boundary_fan", v.boundary_fan_cap),
     ):
         values = cap_witnesses.get(name)
-        if not (type(values) is list and len(values) == 4 and all(type(item) is int for item in values)):
+        if not (
+            type(values) is list
+            and len(values) == 4
+            and all(type(item) is int for item in values)
+        ):
             raise ValueError(f"malformed cap witness vector: {name}")
         for variable, value in zip(variables, values, strict=True):
             query.solver.add(variable == value)
@@ -1012,6 +1002,43 @@ def replay_sat_result(result: dict[str, object], *, timeout_ms: int = 60_000) ->
             raise ValueError(f"malformed deletion readback: {center}")
         for role, value in zip(ROLES, values, strict=True):
             query.solver.add(query.has4(role, center) == value)
+
+
+def replay_sat_result(result: dict[str, object], *, timeout_ms: int = 60_000) -> None:
+    """Fail-closed fresh-session replay of one complete SAT readback.
+
+    This authenticates and rechecks the finite relational packet only.  It is
+    not an independent Euclidean verifier and intentionally does not promote
+    ``SAT_ABSTRACTION`` to a theorem-bearing status.
+    """
+
+    if result.get("schema") != RESULT_SCHEMA:
+        raise ValueError("result schema mismatch")
+    if result.get("query_schema") != SCHEMA:
+        raise ValueError("query schema mismatch")
+    if result.get("status") != "SAT_ABSTRACTION":
+        raise ValueError("only SAT_ABSTRACTION results have model replay")
+    if result.get("claims") != FALSE_CLAIMS:
+        raise ValueError("claims mismatch")
+    boundary_index = result.get("boundary_index")
+    if type(boundary_index) is not int or boundary_index not in range(4):
+        raise ValueError("invalid boundary index")
+    expected_manifest = hashlib.sha256(_canonical_json(source_manifest())).hexdigest()
+    if result.get("source_manifest_sha256") != expected_manifest:
+        raise ValueError("source manifest hash mismatch")
+    signature = result.get("model_signature")
+    if type(signature) is not dict:
+        raise ValueError("missing model signature")
+    expected_signature = hashlib.sha256(_canonical_json(signature)).hexdigest()
+    if result.get("model_signature_sha256") != expected_signature:
+        raise ValueError("model signature hash mismatch")
+    if set(signature) != MODEL_SIGNATURE_KEYS:
+        raise ValueError("model signature key mismatch")
+
+    query = build_query(boundary_index, timeout_ms=timeout_ms)
+    if result.get("constraint_groups") != list(query.groups):
+        raise ValueError("constraint groups mismatch")
+    add_model_signature_constraints(query, signature)
 
     checked = query.solver.check()
     if checked != z3.sat:
