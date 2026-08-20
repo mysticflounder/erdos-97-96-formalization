@@ -2776,6 +2776,62 @@ unchanged.
 This authorizes no further solver wave.  The run remains finite discovery
 evidence: no terminal UNSAT, no aggregate arm coverage, no Lean closure.
 
+### v26 all-order mine (2026-08-18)
+
+`scratch/rigid221-sourceheavy-anchor/mine_exact12_static_canary_all_orders_v26.py`
+is derived from the v25 mine by counted exact-string replacement
+(`scratch/rigid221-sourceheavy-anchor/core-pair/derive_v26_mine.py`, `--verify`
+re-derives and diffs).  Deliberate changes: mining schema `.v5` → `.v6`, the
+validator gate moves to `validate_v26_workdir`, and the 22nd (core-pair) bank
+gains its own provenance gate, live-source attestation, and `source` entry.
+It gates on the v26 validator first, so every number below rests on a workdir
+that passed the independent fail-closed read.
+
+Measured, EMPIRICALLY VERIFIED, on the v26 survivor.  All 48 source orders are
+covered, every one by rule `convex-five-point-common-orientation`, through
+exactly two cores at 24 orders each, each core 12 forward / 12 reverse and 12
+direct / 12 mirror.  This is the same coverage shape v25 had.
+
+What changed is which labels carry it:
+
+| | v25 | v26 |
+|---|---|---|
+| covering cores | 2 | 2 |
+| distinct 5-label sets | 1 — `{5,7,8,10,11}` | 2 — `{4,6,7,8,11}` and `{4,6,8,10,11}` |
+| shared labels | (single set) | `{4,6,8,11}` |
+| `all_order_common_five_cores` | 0 | 0 |
+| rule shapes strict / center-exchange / klein-union | 0 / 0 / 0 | 0 / 0 / 0 |
+| unoriented instances | 7 | 8 |
+| unoriented c-row kinds | all `single` | all `single` |
+| mutual containment pairs | 9 | 12 |
+| mutual containment triangles | none | `{4,5,10}` |
+
+In both waves each covering core appears verbatim in the unoriented instance
+list under the classifier's `x < y` serialization: v25 `(7,8,10,5,11)` and
+`(10,8,5,7,11)`; v26 `(4,6,7,8,11)` and `(10,6,8,4,11)`.
+
+Reading, and the limit on it.  The 22nd bank did real structural work: it
+forced the two covering cores off a single five-label set onto two sets that
+share only four labels, and it raised the containment structure from nine
+mutual pairs and no triangle to twelve pairs and the triangle `{4,5,10}`.
+
+`rule_shape_classification` must not be used to decide whether a 23rd bank is
+worth building.  It read identically before the 22nd bank — zero strict, zero
+center-exchange, zero klein-union, every instance unoriented with a single
+c-row — and the 22nd bank removed that survivor anyway.  A diagnostic that
+reads the same on both sides of an intervention that worked has no
+discriminating power here.  The `klein_union` predicate additionally needs a
+union c-row, and no instance in either wave has one.
+
+The discriminating delta is the label-set split, so that is where a 23rd bank
+would have to aim: a core-pair family spanning two five-label sets that share
+four labels, rather than another single-set shape.  Whether that is worth the
+build is a goal decision, not something this mine settles.
+
+CONJECTURED, not established: that the split is stable rather than an artifact
+of this one survivor.  The mine is diagnostic only — not a proof-backed
+nogood, universal lift, terminal UNSAT result, or Lean closure.
+
 The 22nd bank removed the v25 survivor.  The replacement is a genuinely
 different assignment (`334b1d58…`), not a minimal perturbation:
 
