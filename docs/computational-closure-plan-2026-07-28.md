@@ -14269,3 +14269,19 @@ computed and does not force a terminal; that module's own header disclaims
 terminal UNSAT, all-arm coverage, an arbitrary-cardinality lift, and closure
 of a live theorem. The open problem is a terminal UNSAT on the composed
 prefix, which is operator 2 above — not a join, and not a sweeper.
+
+### 13.28.20 FreshThird batched cap-alternation probe — 2026-08-19
+
+The repeated structural-CEGAR cuts for `noAlternatingCap` were tested as a
+bounded source-theorem projection before pursuing another fan refinement. A
+naive projection over all 67 finite roles would create 4,598,880 clauses and
+was rejected. The restricted projection over the 14 roles recurring in the
+authenticated cut history creates 6,006 clauses per boundary cell.
+
+All four cells remain SAT at the CNF level, and independent source replay
+rejects every model with the existing `source__pinned_source_theory` core.
+This adds no producer or closure evidence. The FreshThird route therefore
+remains a fan-to-consumer theorem problem; the next computational work, if
+needed, must either split the monolithic source group for diagnostics or use a
+compact automaton-style encoding. More one-model alternation cuts are not a
+new search target.
