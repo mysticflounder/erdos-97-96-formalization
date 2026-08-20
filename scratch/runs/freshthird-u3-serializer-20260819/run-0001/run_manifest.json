@@ -1,0 +1,21 @@
+{
+  "schema": "worktree-run-manifest/v1",
+  "lane_id": "freshthird-u3-serializer-20260819",
+  "run_id": "run-0001",
+  "root": "scratch/runs/freshthird-u3-serializer-20260819/run-0001",
+  "owner": "codex",
+  "base_head": "f573405e8254f3d6381746ff922bf4403b9ca76a",
+  "output_classes": ["artifacts", "events", "tmp"],
+  "source_digests": {
+    "scratch/runs/freshthird-u3-serializer-20260819/packet_to_lean_sat_ir.py": "11300b3eceab5b733df068bfa7882c5e6708502883192dc9dd26bac550e177f0",
+    "scratch/runs/freshthird-u3-serializer-20260819/test_packet_to_lean_sat_ir.py": "93f1a61cc04dd315d2734c378f8bfb27b1a565233462e5da17c4dc6f7750b8b0",
+    "scratch/runs/freshthird-leansat-u3-20260819/lean_sat_ir_u3.py": "e454990534ad3f5be35b73f2dd025dbca29febb3520f0bc4033865e6efe98843",
+    "lean/scratch/U3LeanSatSourceIngress.lean": "f4289a051044e019109d721e0b62f2926440a660dead22020141101f6fa8df06"
+  },
+  "input_digests": {
+    "scratch/runs/freshthird-u3-serializer-20260819/run-0001/artifacts/qdeleted-packet.json": "12d4d51757800f4e1821aebe753a00e834a4382aa7b1d881b9da6e3e7d064957",
+    "scratch/runs/freshthird-u3-serializer-20260819/run-0001/artifacts/critical-shell-packet.json": "c40ba73d17c7690a5cd926ed501cbfc373a19356870b90ba6d985d59cd6980b6"
+  },
+  "created_utc": "2026-08-19T23:00:00Z",
+  "manifest_sha256": "7e9342b309c0735fa1d1ec11611d69e7cd0ba42285097bb6842e67bd1bdf8c3f"
+}

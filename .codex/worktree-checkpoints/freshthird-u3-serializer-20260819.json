@@ -1,0 +1,20 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "freshthird-u3-serializer-20260819",
+  "owner": "codex",
+  "base_head": "f573405e8254f3d6381746ff922bf4403b9ca76a",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/freshthird-u3-serializer-20260819.json",
+    "scratch/runs/freshthird-u3-serializer-20260819/packet_to_lean_sat_ir.py",
+    "scratch/runs/freshthird-u3-serializer-20260819/test_packet_to_lean_sat_ir.py"
+  ],
+  "durable_paths": [
+    "scratch/runs/freshthird-u3-serializer-20260819/report.md",
+    "scratch/runs/freshthird-u3-serializer-20260819/run-0001/run_manifest.json"
+  ],
+  "generated_roots": [
+    "scratch/runs/freshthird-u3-serializer-20260819/run-0001"
+  ],
+  "created_utc": "2026-08-19T23:00:00Z",
+  "manifest_sha256": "e2325a6af69356e8b49e2e39994148bf941c7b05629d4022dbe47ec52b07e504"
+}
