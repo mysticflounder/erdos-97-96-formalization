@@ -63,6 +63,12 @@ CANONICAL_PACKET_ATOMS = (
     "some_fan_source_outside_seed",
     "endpoint_branch_split",
 )
+FAN_LOCAL_HEAD_ATOMS = (
+    "blocker_center_interior",
+    "fan_source_deletion_blocked",
+    "pinned_blocker_relation",
+    "fan_source_incident_blocker_row",
+)
 
 
 @dataclass(frozen=True)
@@ -75,6 +81,8 @@ class FamilyReplay:
     drop_status: dict[str, str]
     canonical_atom_core: tuple[str, ...]
     canonical_atom_minimized: tuple[str, ...]
+    fan_local_atom_core: tuple[str, ...]
+    fan_local_atom_minimized: tuple[str, ...]
 
 
 def _status_name(status: z3.CheckSatResult) -> str:
@@ -219,6 +227,48 @@ def _canonical_atom_query(
     return query
 
 
+def _fan_local_atom_names(index: int) -> tuple[str, ...]:
+    if index not in range(4):
+        raise ValueError("fan-local index must be in range(4)")
+    return (
+        *FAN_LOCAL_HEAD_ATOMS,
+        *(f"deletion_incidence__{role}" for role in OLD_ROLES),
+        *(f"blocker_row_source_deletion__{j}" for j in range(4)),
+    )
+
+
+def _fan_local_atom_query(
+    boundary_index: int,
+    signature: Mapping[str, object],
+    index: int,
+    active_atoms: Iterable[str],
+    *,
+    timeout_ms: int,
+    track_atoms: bool,
+) -> CarrierQuery:
+    source = build_query(boundary_index, timeout_ms=timeout_ms)
+    atoms = pinned_source_families(source)[f"fan_local_{index}"]
+    names = _fan_local_atom_names(index)
+    if len(atoms) != len(names):
+        raise ValueError("fan-local atom count drift")
+    atom_by_name = dict(zip(names, atoms, strict=True))
+    active = tuple(active_atoms)
+    if len(set(active)) != len(active) or any(name not in atom_by_name for name in active):
+        raise ValueError("invalid active fan-local atom set")
+    solver = z3.Solver()
+    solver.set(timeout=timeout_ms)
+    for name in active:
+        if track_atoms:
+            solver.assert_and_track(
+                atom_by_name[name], z3.Bool(f"source__fan_local_{index}__{name}")
+            )
+        else:
+            solver.add(atom_by_name[name])
+    query = CarrierQuery(boundary_index, solver, source.variables, tuple(active))
+    add_model_signature_constraints(query, signature)
+    return query
+
+
 def _monolithic_status(
     boundary_index: int, signature: Mapping[str, object], *, timeout_ms: int
 ) -> str:
@@ -246,7 +296,7 @@ def diagnose_signature(
     if monolithic_status != split_status:
         raise ValueError("monolithic and split source replay disagree")
     if split_checked != z3.unsat:
-        return FamilyReplay(boundary_index, monolithic_status, split_status, (), (), {}, (), ())
+        return FamilyReplay(boundary_index, monolithic_status, split_status, (), (), {}, (), (), (), ())
 
     prefix = "source__pinned__"
     split_core = tuple(
@@ -297,6 +347,8 @@ def diagnose_signature(
 
     canonical_core: tuple[str, ...] = ()
     canonical_minimized: tuple[str, ...] = ()
+    fan_local_core: tuple[str, ...] = ()
+    fan_local_minimized: tuple[str, ...] = ()
     if "canonical_packet" in minimized:
         atom_query = _canonical_atom_query(
             boundary_index,
@@ -338,6 +390,40 @@ def diagnose_signature(
         if final_atoms.solver.check() != z3.unsat:
             raise ValueError("canonical packet atom core failed isolated replay")
 
+    for index in range(4):
+        family = f"fan_local_{index}"
+        if family not in minimized:
+            continue
+        names = _fan_local_atom_names(index)
+        atom_query = _fan_local_atom_query(
+            boundary_index, signature, index, names, timeout_ms=timeout_ms, track_atoms=True
+        )
+        if atom_query.solver.check() != z3.unsat:
+            raise ValueError("fan-local atom replay failed")
+        prefix = f"source__fan_local_{index}__"
+        fan_local_core = tuple(
+            label.removeprefix(prefix)
+            for label in sorted(str(atom) for atom in atom_query.solver.unsat_core())
+            if label.startswith(prefix)
+        )
+        if not fan_local_core:
+            raise ValueError("fan-local atom core is empty")
+        atom_minimized = list(fan_local_core)
+        for atom in tuple(fan_local_core):
+            candidate = tuple(name for name in atom_minimized if name != atom)
+            trial = _fan_local_atom_query(
+                boundary_index, signature, index, candidate, timeout_ms=timeout_ms, track_atoms=False
+            )
+            if trial.solver.check() == z3.unsat:
+                atom_minimized.remove(atom)
+        fan_local_minimized = tuple(atom_minimized)
+        final_atoms = _fan_local_atom_query(
+            boundary_index, signature, index, fan_local_minimized, timeout_ms=timeout_ms, track_atoms=False
+        )
+        if final_atoms.solver.check() != z3.unsat:
+            raise ValueError("fan-local atom core failed isolated replay")
+        break
+
     return FamilyReplay(
         boundary_index,
         monolithic_status,
@@ -347,6 +433,8 @@ def diagnose_signature(
         drop_status,
         canonical_core,
         canonical_minimized,
+        fan_local_core,
+        fan_local_minimized,
     )
 
 
@@ -399,6 +487,8 @@ def _run_cell(
                 "drop_status": replay.drop_status,
                 "canonical_atom_core": list(replay.canonical_atom_core),
                 "canonical_atom_minimized": list(replay.canonical_atom_minimized),
+                "fan_local_atom_core": list(replay.fan_local_atom_core),
+                "fan_local_atom_minimized": list(replay.fan_local_atom_minimized),
             },
         }
     )

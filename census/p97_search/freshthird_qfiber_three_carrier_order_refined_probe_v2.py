@@ -66,6 +66,7 @@ def _run_cell(
             "split_core": list(diagnosis.split_core),
             "minimized_core": list(diagnosis.minimized_core),
             "canonical_atom_minimized": list(diagnosis.canonical_atom_minimized),
+            "fan_local_atom_minimized": list(diagnosis.fan_local_atom_minimized),
         }
     result.update(
         {
