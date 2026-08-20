@@ -14329,3 +14329,25 @@ isolated shrink. More v2 solver volume is paused until that result is known.
 The v2 run record is
 `scratch/freshthird-order-refined-cnf-v2-20260819.md`; it adds no proof or
 closure claim.
+
+### 13.28.23 Exact-17 cocircular-pentagon source cut — 2026-08-19
+
+The exact-17 BlockerV cap-nine route now has a source-proved order reduction.
+The five physical-class points lie in one strict half-plane about their common
+apex, and the four relevant equal-distance relations give positive
+perpendicular-bisector sum directions. An angle-free signed-area calculation
+contradicts the second named boundary order in both cyclic orientations.
+
+The source constructor therefore returns a realization together with
+`source.model.order = 0`. The finite promotion is one unit clause,
+`[pos (.namedOrder 0)]`, appended to
+`extendedFortyNinthWaveV9FourSize8PromotionCnf`. Its extended length is
+7,198,853 clauses. The live exact-17 branch now consumes this strengthened
+source packet and leaves only the UNSAT proof for the extended root as its
+remaining finite obligation.
+
+This is a source theorem, not a model-derived cut. Future exact-17 waves must
+start from the promoted root and must not regenerate or mine the retired
+order-one branch. The separate bisector-exhaustion bank remains conditional on
+explicit row memberships; it is not included in this root without those
+source premises.

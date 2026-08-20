@@ -3,10 +3,10 @@
 Evidence-status terms in this plan follow the
 [closure evidence status ledger](closure-evidence-status-ledger-2026-08-05.md).
 
-Status: PLAN. The configuration facts in §1 are proved in
+Status: IMPLEMENTED UPDATE IN §13. The configuration facts in §1 are proved in
 `lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221SourceHeavy.lean`
-at commit `32719ca9`. Everything in §3 is {{NEEDS_PROOF}} — it is the
-proposed next lane, not a result.
+at commit `32719ca9`. The `{{NEEDS_PROOF}}` labels in §3 record the state of
+the original 2026-08-05 proposal; §13 records the 2026-08-19 Lean landings.
 
 ## 1. What is pinned (proved)
 
@@ -903,3 +903,54 @@ validation was then run and consists of four spot-checks, all passing:
 The exhaustive negative in §12.1 is therefore spot-checked, not independently
 re-derived. Exhaustive-absence claims are the kind most likely to be wrong, and
 this one has been verified at four points rather than end to end.
+
+## 13. Cocircular-fan formalization and exact-17 order cut — 2026-08-19
+
+The vector route is now banked without angle coordinates.
+
+- `ConvexCocircularHalfPlane.lean` proves the strict separating vector for a
+  finite cocircular class in a convex-independent carrier, excludes antipodal
+  class pairs, and records open-half-plane membership. This discharges the
+  geometric content of §§3.1 and 3.3.
+- `CocircularPerpendicularBisector.lean` proves that an equidistant witness is
+  a scalar multiple of the sum direction, that a non-apex witness has nonzero
+  parameter, and that opposite signed sides of the chord force the parameter
+  past one half. This discharges the reusable content of §§3.2 and the
+  off-arc placement step.
+- `CocircularPentagonOrder.lean` proves the angle-free fan identity used by the
+  terminal consumer: the three nested positive sum directions preserve the
+  signed-area side from the first class chord to the final blocker direction.
+- `CocircularPentagonDistanceLadder.lean` proves the strongest unconditional
+  coordinate-free coefficient ladder available from these hypotheses:
+  `0 < tv < 1`, `0 < td < 1`, and `0 < td * tv < tv`. It deliberately does
+  not claim `tx < 1`; a class pair can span an obtuse angle while remaining in
+  one open half-plane.
+- `BlockerVExactSeventeenCocircularPentagonOrder.lean` packages the increasing
+  and decreasing boundary forms as source-clean contradiction theorems.
+
+The exact-17 ingress is also complete. Inside
+`exists_exactSeventeenSourceRealization_of_exactCover`, the exact nine-point
+cap pullback identifies the physical apex with an outside label. The order-one
+position table then supplies the six strict boundary comparisons needed by the
+fan consumer, in either orientation. Consequently the constructor now returns
+
+    ∃ source, source.model.order = 0.
+
+`BlockerVExactSeventeenCocircularPentagonOrderPromotion.lean` promotes this as
+the single unit `[pos (.namedOrder 0)]` on top of the current cumulative root.
+The remaining exact-17 obligation after this source reduction is the UNSAT
+claim for that extended CNF; the order-one half of the finite search is no
+longer a source-valid branch.
+
+The bisector-exhaustion kernel is separately banked in
+`ConvexPerpendicularBisectorSides.lean`, with a parameterized exact-17 source
+adapter in `BlockerVExactSeventeenPerpendicularBisectorExhaustion.lean`.
+It is not counted as an unconditional clause family: the current finite source
+interface must first supply the concrete cross-row memberships and
+distinctness premises for a chosen edge.
+
+`ConvexPerpendicularBisectorArcSides.lean` supplies the generic strict
+closer-side propagation on both boundary arcs. Its vacuity-free wrappers take
+an explicit anchor carrier on the arc; bisector exhaustion by itself does not
+produce such an anchor. This records the exact ingress still needed before the
+comparison family from Theorem C can be promoted.

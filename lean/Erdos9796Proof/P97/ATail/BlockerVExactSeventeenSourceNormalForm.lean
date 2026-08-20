@@ -481,7 +481,7 @@ theorem exists_sourceRealization_of_faithfulPattern
     (hnextPhysical :
       (selectedOfPattern pattern boundary hboundaryImage labelIndex nextCenter ∩
         physicalLabels).card ≤ 1) :
-    Nonempty (SourceRealization A) := by
+    ∃ realization : SourceRealization A, realization.model.order = order := by
   classical
   let point : Label → ℝ² := fun label => boundary (labelIndex label)
   have hlabelInjective : Function.Injective labelIndex :=
@@ -620,7 +620,7 @@ theorem exists_sourceRealization_of_faithfulPattern
       nextCenter_not_old := hnextNotOld
       next_source_mem := hnextSource
       next_physical_hits := by simpa only [selected] using hnextPhysical }
-  exact ⟨
+  refine ⟨
     { pattern := pattern
       carrier_convexIndep := hconv
       model := model
@@ -632,7 +632,8 @@ theorem exists_sourceRealization_of_faithfulPattern
       labelIndex := labelIndex
       labelIndex_eq := by simpa only [model] using hlabelIndex
       position_embedding := by simpa only [model] using hposition
-      row_eq := by intro center; rfl }⟩
+      row_eq := by intro center; rfl }, ?_⟩
+  rfl
 
 /-- A four-point row with two distinct certified cap hits and at most two cap
 hits has exactly two points outside the cap. -/
@@ -771,7 +772,7 @@ theorem exists_sourceRealization_of_geometricExactCover
       ((pattern.classAt (boundary (labelIndex nextCenter))
           (boundaryLabel_mem boundary hboundaryImage labelIndex nextCenter)).support ∩
         physical).card ≤ 1) :
-    Nonempty (SourceRealization A) := by
+    ∃ realization : SourceRealization A, realization.model.order = order := by
   classical
   let point : Label → ℝ² := fun label => boundary (labelIndex label)
   have hlabelInjective : Function.Injective labelIndex :=
