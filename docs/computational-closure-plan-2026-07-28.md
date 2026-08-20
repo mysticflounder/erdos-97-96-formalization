@@ -14412,3 +14412,39 @@ source-occurrence adapter, instantiate this seven-hit core, and replay the
 current model against its four-clause orbit before any further solve. The
 source-clean terminal certificate, on-spine rewrite, and theorem-closure claim
 all remain open.
+
+### 13.28.25 Exact-17 checked convex-five refinement — 2026-08-20
+
+The reusable source adapter is now factored in
+`BlockerVExactSeventeenConvexFiveSourceBridge.lean`. It turns four checked
+source-closure paths, seven checked incidences, and kernel-proved orientation
+signs into the existing `ConvexFivePointCore` contradiction. The first
+concrete occurrence and its reflected/order orbit are kernel-checked in
+`BlockerVExactSeventeenCocircularPentagonOrderConvexFiveRefinementSchemas.lean`.
+No new convex-geometric theorem was needed.
+
+The resulting Lean export has 308 variables and 7,198,861 clauses, SHA-256
+`8f6b60e8715d00e5bbc24e2ad30db6c62f95d9b44aafa3bc8b58184644130516`.
+Its first 7,198,857 clauses are byte-identical to the preceding checked root;
+the four-line suffix has SHA-256
+`bb63a5ab375d97e3b39ed942654b1709802a45973b5b3b44c267e82620ae9ee6`.
+Independent replay showed that the motivating `e520c77...` model falsified
+exactly the first new clause.
+
+One one-core shared-driver run, job
+`4cd6adc1-e4b1-4016-bfbd-b273ff27fa7b`, returned `STRUCTURAL_SAT` with model
+SHA-256
+`886314a18665085f28a2ea52e219f3547bdd434762de181edd5afdaa2e0cf201`.
+Independent replay checked all 7,198,861 clauses. The model has named order
+zero, next center seven, and no diagonal hits. The prior convex-five
+occurrence is absent, so the refinement was effective.
+
+The mandatory new-wave mine found another seven-hit reverse convex-five core,
+now with `(a,b,c,x,y) = (15,7,12,2,9)` and physical hits
+`(2,15),(2,7),(9,15),(9,7),(12,7),(12,2),(12,9)`. Its guarded order-zero
+clause is
+`[-307,-50,-42,-169,-161,-212,-207,-214]`, which the new model falsifies.
+The generic source bridge is already sufficient; only a new concrete schema
+instance is needed. No automatic successor solve was launched. Exact-17,
+certificate replay, the live branch rewrite, and the proof blueprint all
+remain open.

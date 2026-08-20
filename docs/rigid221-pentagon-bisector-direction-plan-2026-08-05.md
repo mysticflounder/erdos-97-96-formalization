@@ -960,6 +960,20 @@ The next model contains a smaller unbanked seven-hit reverse convex-five core;
 the next proof task is a reusable checked exact-17 convex-five occurrence
 adapter, not another circumfan lemma or an unreviewed solver launch.
 
+That adapter and the first concrete occurrence are now banked. Their
+four-clause orbit produces the exact 7,198,861-clause Lean root with SHA-256
+`8f6b60e8715d00e5bbc24e2ad30db6c62f95d9b44aafa3bc8b58184644130516`;
+the prior `e520c77...` model falsifies exactly its first suffix clause. The
+single one-core run was again `STRUCTURAL_SAT`, job
+`4cd6adc1-e4b1-4016-bfbd-b273ff27fa7b`, model SHA-256
+`886314a18665085f28a2ea52e219f3547bdd434762de181edd5afdaa2e0cf201`.
+Its source mine found a second seven-hit reverse convex-five occurrence with
+core `(15,7,12,2,9)` and guarded order-zero clause
+`[-307,-50,-42,-169,-161,-212,-207,-214]`. The reusable bridge already covers
+it, but the concrete schema and a later bounded solve are deliberately left to
+the next checkpoint. This is still finite CEGAR progress, not a terminal
+certificate or a proof-spine closure.
+
 The bisector-exhaustion kernel is separately banked in
 `ConvexPerpendicularBisectorSides.lean`, with a parameterized exact-17 source
 adapter in `BlockerVExactSeventeenPerpendicularBisectorExhaustion.lean`.

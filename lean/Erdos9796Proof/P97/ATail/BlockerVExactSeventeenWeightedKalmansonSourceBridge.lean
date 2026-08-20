@@ -64,7 +64,9 @@ private theorem sourceIndexEquiv_symm_eq_reflected_of_ne
   cases actual <;> cases direction <;>
     simp_all [sourceIndexEquiv, orientedLabelAtPosition]
 
-private theorem positiveRowsMatch_of_same
+/-- Convert a source occurrence's forward positional choices into positive
+row incidences when the requested and actual boundary orientations agree. -/
+theorem positiveRowsMatch_of_same
     {A : Finset (EuclideanSpace ℝ (Fin 2))}
     (source : SourceRealization A) (order : NamedOrder)
     (direction : Orientation) (horder : order = source.model.order)
@@ -92,7 +94,9 @@ private theorem positiveRowsMatch_of_same
         List.mem_map]
       exact ⟨(choice.center, point), hcover choice hchoice point hpoint, rfl⟩)
 
-private theorem positiveRowsMatch_of_ne
+/-- Convert a source occurrence's reflected positional choices into positive
+row incidences when the requested and actual boundary orientations differ. -/
+theorem positiveRowsMatch_of_ne
     {A : Finset (EuclideanSpace ℝ (Fin 2))}
     (source : SourceRealization A) (order : NamedOrder)
     (direction : Orientation) (horder : order = source.model.order)
