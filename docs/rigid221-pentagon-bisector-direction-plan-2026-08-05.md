@@ -942,6 +942,24 @@ The remaining exact-17 obligation after this source reduction is the UNSAT
 claim for that extended CNF; the order-one half of the finite search is no
 longer a source-valid branch.
 
+The on-spine `hunsat` placeholder stays OPEN. The exact 7,198,853-clause Lean
+export was authenticated and run, but PIQD returned a replayed `SAT` model,
+not a proof-bearing `UNSAT`. Therefore the currently written premise for that
+root is false and cannot be discharged; after CEGAR reaches a later
+source-valid terminal child, `Rigid221SourceHeavy` must be rewired to that
+child's source adapter and independently replayed certificate.
+
+The terminal preflight also exposed a process error: the authenticated V9
+parent model already selected order zero, so the order-zero unit could not cut
+it. Future unit/split runs must first replay the exact parent model and require
+a falsified suffix clause. Mining the returned model produced a new checked
+eight-hit two-Kalmanson occurrence, now promoted as four clauses in
+`BlockerVExactSeventeenCocircularPentagonOrderSatRefinementSchemas.lean`.
+That cut passed the new preflight but its 7,198,857-clause child was also SAT.
+The next model contains a smaller unbanked seven-hit reverse convex-five core;
+the next proof task is a reusable checked exact-17 convex-five occurrence
+adapter, not another circumfan lemma or an unreviewed solver launch.
+
 The bisector-exhaustion kernel is separately banked in
 `ConvexPerpendicularBisectorSides.lean`, with a parameterized exact-17 source
 adapter in `BlockerVExactSeventeenPerpendicularBisectorExhaustion.lean`.

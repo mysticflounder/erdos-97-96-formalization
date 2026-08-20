@@ -14351,3 +14351,64 @@ start from the promoted root and must not regenerate or mine the retired
 order-one branch. The separate bisector-exhaustion bank remains conditional on
 explicit row memberships; it is not included in this root without those
 source premises.
+
+**OPEN proof-spine gate.** The remaining `sorry` in
+`Problem97.ATailFrontierLiveClosure.card_eq_seventeen_secondCapNine` is
+currently written as the premise
+`¬ ∃ assignment, Std.Sat.CNF.eval assignment
+  extendedCocircularPentagonOrderCnf = true` passed to
+`false_of_sourceRealization_of_extendedCocircularPentagonOrderCnf_unsat`.
+The live result below proves that this exact premise is false, so it must not
+be filled by a certificate or an axiom. The spine stays open until CEGAR
+reaches a later source-valid `UNSAT` child; only then should the branch be
+rewired to that child's source adapter and independently replayed certificate.
+Use the shared proof-producing PIQD driver rather than adding a wave-specific
+launcher. After certificate composition, rerun the targeted
+`Rigid221SourceHeavy` build, proof-blueprint index/refs/spine checks, and the
+transitive axiom audit before claiming closure.
+
+### 13.28.24 Exact-17 order-root terminal correction and first checked refinement — 2026-08-20
+
+The authenticated V9 parent witness already had `named_orders = [0]`.
+Consequently the new unit `[pos (.namedOrder 0)]` did not cut that witness and
+could not make the current root unsatisfiable. This should have been rejected
+by a parent-model suffix replay before launch. That replay is now a mandatory
+gate for every future unit or split: the exact latest parent model must falsify
+at least one proposed suffix clause.
+
+The one-core shared-driver run nevertheless supplied a new authenticated
+model. Job `01b1bff0-941a-4ab3-8d7b-a1e8d4394e9c` returned
+`STRUCTURAL_SAT` on the exact 308-variable, 7,198,853-clause Lean export
+`d93bb6f5ef136a5c86078a30f6385dc428ada74d8bfbc922ab2ca8237fe6e2f6`.
+The independently replayed model
+`37fa76ba175f66d8213f879559f683778c0d258267b94d04b9e7d76957ba994a`
+has order zero, next center one, and seventeen four-element rows. It is a
+Boolean survivor, not a source realization and not evidence against the
+cocircular order theorem.
+
+The mandatory new-wave mine found a new minimum-width checked
+two-Kalmanson occurrence with physical hits
+`(0,6),(0,14),(4,13),(4,14),(6,0),(6,13),(14,0),(14,6)`.
+The cardinality-generic Lean consumer already exists, so no new geometry
+theorem was needed. The concrete forward/reflected data are kernel-checked by
+`decide` in
+`BlockerVExactSeventeenCocircularPentagonOrderSatRefinementSchemas.lean`.
+The promotion appends its four named-order/orientation clauses, producing a
+7,198,857-clause Lean root. Exact parent-prefix and motivating-model checks
+passed: suffix clause zero rejects the `37fa76...` witness.
+
+The second one-core run, job `c526f36d-af4f-420f-8fac-c37312b47494`, also
+returned `STRUCTURAL_SAT`. Its independently replayed model
+`e520c77b7a2cb3e0d8f84173d2a6f1555df6468b824bf424e68b025cf81a8025`
+has order zero, next center two, and no diagonal hits; the first checked
+occurrence is absent, so the cut was effective. The new-wave mine contains
+only two formalized cores. The smallest is a seven-hit reverse convex-five
+occurrence with hits
+`(11,1),(11,8),(0,1),(0,8),(6,8),(6,11),(6,0)` and existing consumer
+`ConvexFivePointCore.false_of_core_of_neg`. It is not in the current root.
+
+The next bounded task is to factor one reusable exact-17 checked convex-five
+source-occurrence adapter, instantiate this seven-hit core, and replay the
+current model against its four-clause orbit before any further solve. The
+source-clean terminal certificate, on-spine rewrite, and theorem-closure claim
+all remain open.
