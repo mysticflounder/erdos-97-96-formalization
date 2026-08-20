@@ -14,9 +14,10 @@ arm and not a closed FreshThird leaf.
 `freshthird-u3-finite-packet/v1` packets with carrier index domain `0..n-1`.
 It checks:
 
-- eight distinct frame roles and a source row containing `x`;
+- eight distinct frame roles and an independent source center `x`;
 - dangerous support exactly `{q,t1,t2,t3}`;
-- exact radius exactly `{t1,t2,t3}`;
+- exact radius cardinality three, without identifying its points with the
+  dangerous triple;
 - bounded support containing all eight frame roles;
 - row cardinality four, dangerous intersection at most two, and at least two
   row points outside dangerous;
@@ -32,6 +33,11 @@ later decoded model: the model must reproduce the packet hash and the listed
 checks before it can be treated as a source-ingress replay.
 
 ## Validation
+
+The source contract correction is load-bearing: the Lean packet type stores
+`x` as an audit center but does not put it in the row, and it stores only the
+cardinality of `exact_radius`. The serializer no longer adds either stronger
+condition.
 
 The five-test suite passes:
 

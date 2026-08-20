@@ -93,12 +93,8 @@ def validate_packet(raw: Mapping[str, Any]) -> dict[str, Any]:
     row = _as_index_list(raw.get("row"), "row", n, 4)
     if set(dangerous) != {normalized_roles[name] for name in ("q", "t1", "t2", "t3")}:
         raise _bad("dangerous", "must be exactly q, t1, t2, and t3")
-    if set(exact_radius) != {normalized_roles[name] for name in ("t1", "t2", "t3")}:
-        raise _bad("exact_radius", "must be exactly t1, t2, and t3")
     if not {normalized_roles[name] for name in FRAME_ROLES}.issubset(set(bounded)):
         raise _bad("bounded", "must contain all eight frame roles")
-    if normalized_roles["x"] not in row:
-        raise _bad("row", "must contain x")
     if len(set(row) & set(dangerous)) > 2:
         raise _bad("row", "may meet dangerous in at most two points")
     if len(set(row) - set(dangerous)) < 2:
@@ -176,12 +172,11 @@ def packet_to_ir(raw: Mapping[str, Any]) -> dict[str, Any]:
         )
     )
     clauses.extend(BASE.selector_constraints("exact_radius", "S3", 3,
-                                             [point_terms[name] for name in ("t1", "t2", "t3")]))
+                                             [BASE.literal(index) for index in range(n)]))
     clauses.extend(BASE.selector_constraints("bounded_support", "S8", 8,
                                              [BASE.literal(index) for index in range(n)]))
     clauses.extend(BASE.selector_constraints("source_row", "S4", 4,
                                              [BASE.literal(index) for index in range(n)]))
-    clauses.append(BASE.member("source_row", "S4", 4, point_terms["x"]))
     if packet["arm"] == "qDeleted":
         clauses.append(BASE.neg(BASE.member("source_row", "S4", 4, point_terms["q"])))
         functions.append({"name": "source_z", "args": [], "codomain": DOMAIN})
@@ -225,7 +220,7 @@ def packet_to_ir(raw: Mapping[str, Any]) -> dict[str, Any]:
             ],
             "common_checks": [
                 "frame_roles_distinct", "dangerous_exact_q_t1_t2_t3",
-                "exact_radius_exact_t1_t2_t3", "bounded_contains_frame",
+                "exact_radius_card_three", "bounded_contains_frame",
                 "row_card_four", "row_dangerous_intersection_at_most_two",
                 "row_dangerous_difference_at_least_two",
             ],

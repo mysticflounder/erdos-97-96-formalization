@@ -1,0 +1,23 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "freshthird-u3-cegar-packet-20260819",
+  "owner": "codex",
+  "base_head": "909fca9e4f178c7d5701908959dada201a3f3480",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/freshthird-u3-cegar-packet-20260819.json",
+    "scratch/runs/freshthird-u3-cegar-packet-20260819/cegar_model_to_packet.py",
+    "scratch/runs/freshthird-u3-cegar-packet-20260819/test_cegar_model_to_packet.py",
+    "scratch/runs/freshthird-u3-serializer-20260819/packet_to_lean_sat_ir.py",
+    "scratch/runs/freshthird-u3-serializer-20260819/report.md",
+    "scratch/runs/freshthird-u3-serializer-20260819/test_packet_to_lean_sat_ir.py"
+  ],
+  "durable_paths": [
+    "scratch/runs/freshthird-u3-cegar-packet-20260819/report.md",
+    "scratch/runs/freshthird-u3-cegar-packet-20260819/run-0001/run_manifest.json"
+  ],
+  "generated_roots": [
+    "scratch/runs/freshthird-u3-cegar-packet-20260819/run-0001"
+  ],
+  "created_utc": "2026-08-19T23:50:00Z",
+  "manifest_sha256": "882d29a3d012a03b8eea38902cde33e688a68d216fb8f156181258bd50248285"
+}

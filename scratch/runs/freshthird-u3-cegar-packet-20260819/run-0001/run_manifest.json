@@ -1,0 +1,25 @@
+{
+  "schema": "worktree-run-manifest/v1",
+  "lane_id": "freshthird-u3-cegar-packet-20260819",
+  "run_id": "run-0001",
+  "root": "scratch/runs/freshthird-u3-cegar-packet-20260819/run-0001",
+  "owner": "codex",
+  "base_head": "909fca9e4f178c7d5701908959dada201a3f3480",
+  "output_classes": ["artifacts", "events", "tmp"],
+  "source_digests": {
+    "scratch/runs/freshthird-u3-cegar-packet-20260819/cegar_model_to_packet.py": "28e1b4a3d04b08e61cc222ab0d7cf06b26f2d8ace9651b6b02453627e21f0fb8",
+    "scratch/runs/freshthird-u3-cegar-packet-20260819/test_cegar_model_to_packet.py": "6753e072820b6da58e66d8753dba9a673d3592f4b572c9e8500714cc506e33a3",
+    "scratch/runs/freshthird-u3-serializer-20260819/packet_to_lean_sat_ir.py": "4b9e4e7519853f64cea40ab95fa63e9744e09ae03425707a284b46112d8c847e",
+    "scratch/runs/freshthird-u3-serializer-20260819/test_packet_to_lean_sat_ir.py": "b95d493eeb5eea5ac9a766e8d511f5be8b6642ed8c2ae452fbc42ec35b813872",
+    "scratch/runs/freshthird-leansat-u3-20260819/lean_sat_ir_u3.py": "e454990534ad3f5be35b73f2dd025dbca29febb3520f0bc4033865e6efe98843",
+    "lean/scratch/U3LeanSatSourceIngress.lean": "f4289a051044e019109d721e0b62f2926440a660dead22020141101f6fa8df06"
+  },
+  "input_digests": {
+    "scratch/runs/freshthird-common-sixpacket-v8-20260819/wave-0001/u3/candidate.cnf": "1d98bbe99487a079b528dbde96fd91ba11ef74b19266e583ece9d686359b9e2e",
+    "scratch/runs/freshthird-common-sixpacket-v8-20260819/wave-0001/u3/candidate.map.json": "f183e9d720bd1c820ac2958cf0e8355c3ad3b7c8d484f8c5a57577dfebceff12",
+    "scratch/runs/freshthird-common-sixpacket-v8-20260819/wave-0001/u3/candidate.manifest.json": "54720308acb552bf35e17bc2a667b23829784c80c182071b8c8a4865f5283c81",
+    "scratch/runs/freshthird-common-sixpacket-v8-20260819/wave-0001/events/u3-v10-r2.stdout": "e93c504756f8bf488dedec0b990b15915e1d168b848dce6f75c2b00593441ac9"
+  },
+  "created_utc": "2026-08-19T23:50:00Z",
+  "manifest_sha256": "4b9e676ef2443a99c8379b05ec4f67e94d5fa6d8f1a8af6f3c86fb67b0eab31a"
+}

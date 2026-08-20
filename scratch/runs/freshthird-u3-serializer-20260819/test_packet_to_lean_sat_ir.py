@@ -15,7 +15,7 @@ spec.loader.exec_module(module)
 def packet(arm: str) -> dict:
     roles = {
         "q": 0, "p": 1, "t1": 2, "t2": 3, "t3": 4,
-        "u": 5, "a0": 6, "a1": 7, "x": 8,
+        "u": 5, "a0": 6, "a1": 7, "x": 9,
     }
     row = [1, 5, 6, 8]
     if arm == "qDeleted":
@@ -28,7 +28,7 @@ def packet(arm: str) -> dict:
         "carrier_card": 17,
         "roles": roles,
         "dangerous": [0, 2, 3, 4],
-        "exact_radius": [2, 3, 4],
+        "exact_radius": [8, 9, 10],
         "bounded": list(range(8)),
         "row": row,
     }
