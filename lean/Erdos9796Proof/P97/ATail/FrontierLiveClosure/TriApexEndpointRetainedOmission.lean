@@ -3757,6 +3757,160 @@ theorem false_of_retainedOmission_reverseHitFresh_endpointCrossHit_triApexAllLar
         false_of_retainedOmission_reverseHitFresh_endpointCrossHit_genericRoles_triApexAllLarge_core
           R O C E Q K_mem_J_shell hAJ hAX hXC
 
+/-- The source-faithful three-step omission cycle forced by distinct secondary
+blockers in the endpoint common-deletion branch.
+
+The three packet fields are the directed edges
+`O.deleted → Q.J → Q.K → O.deleted`.  The structure retains the original
+endpoint caller rather than projecting to three bare survival statements. -/
+structure EndpointDistinctBlockerThreeStepDeletionCycle
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : FrontierCommonDeletionParentResidual F)
+    {P : RetainedInteriorDirectedOmission R}
+    (O : OrientedRetainedCommonDeletion P)
+    (C : ReverseHitFreshEndpointContext R O)
+    (E : RetainedMatchingEndpointCriticalFiber C.walk)
+    (Q : EndpointFreshFirstApexRowSource E) : Type where
+  J_not_mem_deletedShell :
+    Q.J ∉
+      (H.selectedAt O.deleted O.deleted_mem_A).toCriticalFourShell.support
+  deletedToJPacket :
+    CommonDeletionTwoCenterPacket D H Q.J S.oppApex1
+      (H.centerAt O.deleted O.deleted_mem_A)
+  K_not_mem_JShell :
+    Q.K ∉ (H.selectedAt Q.J Q.J_mem_A).toCriticalFourShell.support
+  JToKPacket :
+    CommonDeletionTwoCenterPacket D H Q.K S.oppApex1
+      (H.centerAt Q.J Q.J_mem_A)
+  deleted_not_mem_KShell :
+    O.deleted ∉
+      (H.selectedAt Q.K Q.fiber_orientation.right_mem_A).toCriticalFourShell.support
+  KToDeletedPacket :
+    CommonDeletionTwoCenterPacket D H O.deleted S.oppApex1
+      (H.centerAt Q.K Q.fiber_orientation.right_mem_A)
+  deletedBlocker_ne_JBlocker :
+    H.centerAt O.deleted O.deleted_mem_A ≠
+      H.centerAt Q.J Q.J_mem_A
+
+/-- Distinct secondary blockers force the missing third edge of the endpoint
+omission cycle.  The only counting input is the already-proved bound of two
+points where one actual critical shell meets the retained first-apex class. -/
+theorem nonempty_endpointDistinctBlockerThreeStepDeletionCycle
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : FrontierCommonDeletionParentResidual F)
+    {P : RetainedInteriorDirectedOmission R}
+    (O : OrientedRetainedCommonDeletion P)
+    (C : ReverseHitFreshEndpointContext R O)
+    (E : RetainedMatchingEndpointCriticalFiber C.walk)
+    (Q : EndpointFreshFirstApexRowSource E)
+    (K_not_mem_J_shell :
+      Q.K ∉ (H.selectedAt Q.J Q.J_mem_A).toCriticalFourShell.support)
+    (packet : CommonDeletionTwoCenterPacket D H Q.K S.oppApex1
+      (H.centerAt Q.J Q.J_mem_A))
+    (hbx :
+      H.centerAt O.deleted O.deleted_mem_A ≠
+        H.centerAt Q.J Q.J_mem_A) :
+    Nonempty (EndpointDistinctBlockerThreeStepDeletionCycle R O C E Q) := by
+  classical
+  have hCeq : Q.C = O.kept :=
+    Q.C_eq_fiber_source₁.trans
+      (E.fiber_source₁_eq_first.trans C.walk_first_eq)
+  have hCneDeleted : Q.C ≠ O.deleted := by
+    simpa only [hCeq] using O.sources_ne
+  have hJneDeleted : Q.J ≠ O.deleted := by
+    simpa only [C.walk_second_eq] using Q.J_ne_middle
+  have hJNotReverse :
+      Q.J ∉
+        (H.selectedAt O.deleted O.deleted_mem_A).toCriticalFourShell.support := by
+    intro hJReverse
+    have htripleSubset :
+        ({Q.C, O.deleted, Q.J} : Finset ℝ²) ⊆
+          (H.selectedAt O.deleted O.deleted_mem_A).toCriticalFourShell.support ∩
+            SelectedClass D.A S.oppApex1 radius := by
+      intro z hz
+      simp only [Finset.mem_insert, Finset.mem_singleton] at hz
+      rcases hz with rfl | rfl | rfl
+      · exact Finset.mem_inter.mpr
+          ⟨by simpa only [hCeq] using C.reverse_mem, Q.C_mem_radius⟩
+      · exact Finset.mem_inter.mpr
+          ⟨(H.selectedAt O.deleted O.deleted_mem_A).toCriticalFourShell.q_mem_support,
+            O.deleted_mem_radius⟩
+      · exact Finset.mem_inter.mpr ⟨hJReverse, Q.J_mem_radius⟩
+    have htripleCard : ({Q.C, O.deleted, Q.J} : Finset ℝ²).card = 3 := by
+      simp [hCneDeleted, Q.J_ne_C.symm, hJneDeleted.symm]
+    have hthree :
+        3 ≤
+          ((H.selectedAt O.deleted O.deleted_mem_A).toCriticalFourShell.support ∩
+            SelectedClass D.A S.oppApex1 radius).card := by
+      calc
+        3 = ({Q.C, O.deleted, Q.J} : Finset ℝ²).card := htripleCard.symm
+        _ ≤
+            ((H.selectedAt O.deleted O.deleted_mem_A).toCriticalFourShell.support ∩
+              SelectedClass D.A S.oppApex1 radius).card :=
+          Finset.card_le_card htripleSubset
+    have htwo :
+        ((H.selectedAt O.deleted O.deleted_mem_A).toCriticalFourShell.support ∩
+          SelectedClass D.A S.oppApex1 radius).card ≤ 2 :=
+      ATailFirstApexCriticalFiberRow.criticalShell_inter_frontierRadiusClass_card_le_two
+        (R := R) O.deleted O.deleted_mem_A
+    omega
+  have hJSurvivesDeletedBlocker :
+      HasNEquidistantPointsAt 4 (D.A.erase Q.J)
+        (H.centerAt O.deleted O.deleted_mem_A) :=
+    (cross_deletion_survives_iff_not_mem_selected_support
+      H O.deleted_mem_A).mpr hJNotReverse
+  rcases nonempty_commonDeletionTwoCenterPacket H
+      Q.J_mem_A (oppApex1_mem_A_for_reverseHit S)
+      C.freshPacket.center₂_mem_A
+      C.freshPacket.centers_ne
+      (R.firstApexFullyDeletionRobust.survives Q.J Q.J_mem_A)
+      hJSurvivesDeletedBlocker with
+    ⟨deletedToJPacket⟩
+  have hKBlockerEq :
+      H.centerAt Q.K Q.fiber_orientation.right_mem_A =
+        H.centerAt O.kept O.kept_mem_A := by
+    have hKNext : Q.K = C.walk.next :=
+      Q.K_eq_fiber_source₂.trans E.fiber_source₂_eq_next
+    simpa only [hKNext, C.walk_first_eq] using E.endpoint_blockers_eq
+  have KToDeletedPacket :
+      CommonDeletionTwoCenterPacket D H O.deleted S.oppApex1
+        (H.centerAt Q.K Q.fiber_orientation.right_mem_A) := by
+    simpa only [hKBlockerEq] using O.packet
+  have hDeletedNotKShell :
+      O.deleted ∉
+        (H.selectedAt Q.K Q.fiber_orientation.right_mem_A).toCriticalFourShell.support :=
+    (cross_deletion_survives_iff_not_mem_selected_support
+      H Q.fiber_orientation.right_mem_A).mp KToDeletedPacket.survives₂
+  exact ⟨{
+    J_not_mem_deletedShell := hJNotReverse
+    deletedToJPacket := deletedToJPacket
+    K_not_mem_JShell := K_not_mem_J_shell
+    JToKPacket := packet
+    deleted_not_mem_KShell := hDeletedNotKShell
+    KToDeletedPacket := KToDeletedPacket
+    deletedBlocker_ne_JBlocker := hbx }⟩
+
+/-- Exact geometric terminal left by the distinct-secondary-blocker branch.
+The producer above has already completed the source-faithful three-edge cycle;
+what remains is a strict cap/order obstruction for that caller-tagged cycle. -/
+theorem false_of_endpointDistinctBlockerThreeStepDeletionCycle_triApexAllLarge_core
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    {P : RetainedInteriorDirectedOmission R}
+    {O : OrientedRetainedCommonDeletion P}
+    {C : ReverseHitFreshEndpointContext R O}
+    {E : RetainedMatchingEndpointCriticalFiber C.walk}
+    {Q : EndpointFreshFirstApexRowSource E}
+    (_cycle : EndpointDistinctBlockerThreeStepDeletionCycle R O C E Q) :
+    False := by
+  sorry
+
 /-- Omission child of the endpoint-collision leaf.  The missing cross hit is
 not discarded: it gives a new source-exact common-deletion packet based at the
 opposite fiber endpoint. -/
@@ -3830,7 +3984,11 @@ theorem false_of_retainedOmission_reverseHitFresh_endpointCommonDeletion_triApex
         ATailFirstApexCriticalFiberRow.criticalShell_inter_frontierRadiusClass_card_le_two
           (R := R) O.deleted O.deleted_mem_A
     omega
-  · sorry
+  · rcases nonempty_endpointDistinctBlockerThreeStepDeletionCycle
+        R O C E Q K_not_mem_J_shell packet hbx with ⟨cycle⟩
+    exact
+      false_of_endpointDistinctBlockerThreeStepDeletionCycle_triApexAllLarge_core
+        cycle
 
 /-- Endpoint-collision child of the fresh reverse-hit leaf.  This checked
 coordinator chooses a genuinely new first-apex row source and dispatches on

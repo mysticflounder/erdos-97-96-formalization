@@ -3212,32 +3212,77 @@ contradicts
 This argument uses the frontier-specific bound directly; it does not assume a
 new selected four-class at the first apex.
 
-**D8.b, distinct secondary blockers — OPEN.** Assume `b ≠ x`.  The two
-same-source packets now preserve K4 after deleting `Q.K` at the three distinct
-centers `S.oppApex1`, `b`, and `x`.  A valid continuation must retain the
-caller data: the reverse shell through `Q.C,O.deleted`, its omission of `Q.K`,
-the fresh row through `Q.C,Q.J`, the actual-blocker identity of `x`, the first
-cap locations, and the reverse-blocker order.  Projecting only the two packets
-would discard hypotheses needed by any boundary-order or finite-state
-argument.
+**D8.b, distinct secondary blockers — THREE-EDGE NORMALIZATION PROVEN;
+GEOMETRIC TERMINAL OPEN.** Assume `b ≠ x`.  First, `Q.J` cannot lie in the
+critical shell selected at `O.deleted`.  Otherwise that shell meets
+`SelectedClass D.A S.oppApex1 radius` in the three pairwise-distinct points
+`Q.C`, `O.deleted`, and `Q.J`, contradicting
+`criticalShell_inter_frontierRadiusClass_card_le_two`.  This is the same
+frontier-specific count used in D8.a, but no equality or transport of supports
+is needed.
 
-**Measured frontier change.** Before this checkpoint, the theorem body left
-both blocker-coincidence arms unchecked.  The source now proves the `b = x`
-arm and leaves one explicit `sorry` only under `b ≠ x`.  The outer on-spine
-declaration remains open; the internal caller-tagged residual has decreased
-from `{b = x, b ≠ x}` to `{b ≠ x}`.
+The resulting omission produces a third source-exact packet, now deleting
+`Q.J` at the first apex and at `b`.  Together with the packet deleting `Q.K`
+at the first apex and at `x`, and `O.packet` transported across the endpoint
+blocker equality, the branch contains the directed omission cycle
+
+```text
+O.deleted  ->  Q.J  ->  Q.K  ->  O.deleted
+     b             x             a
+```
+
+where `a` is the common actual blocker of `Q.C` and `Q.K`.  The blocker labels
+are pairwise distinct: `b ≠ x` is the branch hypothesis, while the two packet
+interfaces exclude `a = b` and `a = x`.  The Lean structure
+`EndpointDistinctBlockerThreeStepDeletionCycle` retains `R,O,C,E,Q`, all three
+omissions, and all three source-exact packets.  Its proved producer is
+`nonempty_endpointDistinctBlockerThreeStepDeletionCycle`.
+
+The remaining declaration
+`false_of_endpointDistinctBlockerThreeStepDeletionCycle_triApexAllLarge_core`
+is the caller-tagged cap/order terminal.  No existing theorem closes this
+cycle: three-center common-deletion results use one deleted source at three
+centers, whereas this packet has three successive deleted sources; the
+positive-incidence Kalmanson kernels also cannot consume omission edges
+without an additional order argument.
+
+**Reuse preflight.** At source revision `8b902b92`, the in-project theorem
+index was searched for `CommonDeletionTwoCenterPacket`, three-center deletion,
+joint deletion, cross deletion, and three-distinct-blocker consumers.  The
+nearest reusable producer is `ThreeCenterCommonDeletionExactRows`, but its
+three rows share one deleted source and it has no contradiction consumer.
+`ExactFourMutualOmissionJointDeletion` is specialized to the original
+unique-four residual and cannot be constructed from this caller.  The
+outside-cap fan helper returns blocker-cap escapes or a cross-deletion
+disjunction and does not consume this cycle.  The first missing antecedent is
+therefore not another packet constructor but a strict cap/order terminal for
+the exact three-source cycle above; no import-cycle-free existing declaration
+supplies it.
+
+**Measured frontier change.** D8.a previously reduced the internal residual
+from `{b = x, b ≠ x}` to `{b ≠ x}`.  This checkpoint closes the missing-edge
+construction inside the distinct branch: the cycle-edge deficit decreases
+from one to zero, constructor fan-out remains one, and the original D8
+coordinator is proved by dispatch to the exact cycle terminal.  The kernel
+frontier still has one `sorry`-bearing declaration in this subtree, now the
+cycle terminal above.  At revision `8b902b92` the rooted subtree reported
+`open: 1/59` with the coordinator itself as the open obligation.  After the
+focused build and graph refresh (`da6dee711651`), it reports `open: 2/73` with
+one open obligation, the new terminal.  The extra open node is the proved
+coordinator reaching that terminal; raw node count is not the chosen measure.
 
 **Immediate consumer.**
 `false_of_retainedOmission_reverseHitFresh_endpointCriticalFiber_triApexAllLarge_core`,
 and transitively `Problem97.erdos97_rhs`.
 
-**Known limits and rejection tests.** The distinct-center packets are
-realizable local data.  D8.b still needs a caller-tagged termination theorem;
-it cannot be closed by a bare statement that three centers survive one
-deletion, and it must not route through a cycle whose decrease has not been
-proved.
+**Known limits and rejection tests.** The exact omission cycle is realizable
+as local incidence data and is not itself a contradiction.  D8.b still needs
+a strict cap-order potential or another global terminal.  It must not be
+routed through a generic cycle theorem unless that theorem retains the three
+source tags and proves a well-founded decrease.
 
-**Status.** [PARTIAL LEAN CHECKPOINT: D8.a FOCUSED BUILD PASSED; D8.b OPEN]
+**Status.** [PARTIAL LEAN CHECKPOINT: D8.a PROVEN; D8.b THREE-EDGE PRODUCER
+PROVEN; FOCUSED BUILD PASSED; CALLER-TAGGED CYCLE TERMINAL OPEN; NOT PROMOTED]
 
 ##### 16.5.D9 - Three consecutive distinct blockers in the retained-omission route
 
@@ -3823,7 +3868,11 @@ These are smaller than the original leaves and preserve the exact source and row
 
 The shared theorem originally proposed for A5, A7, A8, D8, I2, and I3 was too broad.
 
-- **D8** has one two-row common-deletion packet and no third row, so CD6 cannot be instantiated.
+- **D8** does not directly instantiate CD6.  Its frontier-radius intersection
+  bound nevertheless forces `Q.J` out of the reverse shell and hence produces
+  a third source-exact packet.  The resulting object is a directed
+  three-source omission cycle, not CD6's three-row positive-incidence seed;
+  it therefore still needs its own cap/order terminal.
 - **I2** begins with blocker equalities, not missing tetrahedron incidences. A three-row seed must first be derived branch by branch.
 - **I3** supplies one of four pairs of survival assertions. The rows, radii, and supports are not simultaneous or synchronized.
 
