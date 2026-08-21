@@ -123,3 +123,71 @@ space 300 → 7.  Building it as a bank requires the A5.17 metric
 provenance chain (class membership, apex identity, and the class-order
 disjunction as certificate data).  That is a new-kind bank and a goal
 decision.
+
+## Physically-bridged cut interface (2026-08-20, follow-up)
+
+New module
+`lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactTwelveRigid221PhysicalClassWitnessBridge.lean`:
+the Lean prerequisites of the S1+S2 physically-bridged membership family,
+formalized against the frozen exact-twelve label vocabulary.
+
+Contents:
+
+- `physicalClassLabels dLabel vLabel` — the five class labels
+  `{6, 8, 9, d, v}` at one `(d, v)` placement (the labels are
+  placement-dependent; the measured cell uses `d = 0`, `v = 3`).
+- `PhysicalClassRadius pointOf dLabel vLabel ρ` — the bridged class
+  hypothesis: the five class labels lie at one positive radius from the
+  second-apex label `1`.  This hypothesis is genuinely additional
+  certificate provenance: `Realizes` alone never yields the label-9 class
+  membership, because `xu` is erased from the pinned apex row.
+- `witnessSameSideAll48` + `FrozenBoundaryOrder.witnessSameSideAt` — the
+  decidable all-48-orders check that a class witness never strictly
+  separates a class pair about the apex, with the canonical-order transfer
+  bridge (reusing
+  `exists_orderIso_canonicalBoundaryOrder_of_frozenBlocks`).
+- `false_of_hostedClassPair_of_witnessSameSide` — the S1 refutation
+  kernel: `Realizes` gives the witness equidistance,
+  `areaForm_sign_split_of_equidistant_witness` gives opposite signed
+  areas about the apex, and the same-side order fact gives equal strict
+  signs via `signedArea2_eq_stdOrientation_areaForm` — contradiction.
+  No angle coordinates and no explicit class-order object are needed;
+  the two-class-order disjunction of the replay is subsumed by the
+  triple-orientation transfer.
+- `false_of_classPair_two_hosts` — the S2 refutation kernel: the apex and
+  two hosting centers are three distinct carrier points equidistant from
+  one class pair, contradicting `Dumitrescu.perpBisector_apex_bound`.
+- `FrozenRoleLabeling.physicalClassRadius` — the leaf-level producer:
+  under a frozen role labeling of the pentagon-off-class residual, the
+  five class labels satisfy `PhysicalClassRadius` at radius `P.rho`
+  (memberships from `packet.physical_class`, `P.huClass`, `P.hvClass`).
+  This is the exact bridge from cube rows to `SelectedClass` radius rows
+  the empirical S1/S2 replays were conditional on.
+- `PhysicalClassPositiveNogood dLabel vLabel` with
+  `PhysicalClassCutData` (`witness`/`budget`) and the checked constructor
+  `PhysicalClassPositiveNogood.ofCut` — the proof-carrying certificate
+  interface extending `SourceOrderPositiveNogood` by the class-radius
+  hypothesis.
+
+Not yet built here: the terminal CNF assembly (a
+`terminal…Dimacs`-style formula variant whose consumer discharges the
+class hypothesis via `FrozenRoleLabeling.physicalClassRadius`) and the
+generated bank family over the admissible cuts.  Those are the remaining
+"bank family + CNF clauses" steps.
+
+Validation of the checkpoint (2026-08-20):
+
+- module builds green with zero warnings; axiom closure of the two
+  kernels, the leaf producer, the order bridge, and `ofCut` is exactly
+  `[propext, Classical.choice, Quot.sound]`;
+- EMPIRICALLY VERIFIED, exhaustive over the stated sets: the decidable
+  `witnessSameSideAll48` agrees with an independent Python oracle over
+  the deck (`source_boundary_orders()`) on all 60 ordered class triples
+  of `{0, 3, 6, 8, 9}` (28 admissible / 32 not).  The landmark triples
+  behave as the replay predicts: `(z, p, q) = (3, 0, 9)` is admissible
+  (the cut that removes the authenticated v26 survivor), while
+  `(8, 6, 9)` is rejected (xv is a legitimate mid-angle host between u
+  and xu);
+- the placement identity is pinned: arm cell 6 is
+  `placement_index = 1`, `(d, v) = (0, 3)`, arm `u_q`
+  (`arm_cells()[6]` of `census/card_head/exact12_next_row_arm_cell_run.py`).
