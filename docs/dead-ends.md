@@ -6,41 +6,45 @@ Author: Adam McKenna <adam@mysticflounder.ai>
 
 # Dead Ends — Erdős 97 don't-repeat registry
 
-> **Scope and provenance (updated 2026-08-19).** This document is a historical
-> registry of precise propositions, encodings, and proof routes that were
-> refuted, closed, found insufficient, or retired during development of the
+> **Scope and provenance (correctness pass completed 2026-08-19).** This is a
+> historical registry of precise propositions, encodings, and proof routes that
+> were refuted, proved, found insufficient, or retired while developing the
 > removable-vertex and U-lane arguments. It was imported from the historical
-> `p97-rvol` repository on 2026-07-05. References to `RVOL.P97.*` should now be
-> read as historical names for declarations usually imported under
-> `Erdos9796Proof.P97.*`.
+> `p97-rvol` repository on 2026-07-05. Historical `RVOL.P97.*` names usually map
+> to declarations imported under `Erdos9796Proof.P97.*`.
 >
-> **This is not a live-status document.** Do not infer the current frontier,
-> current leaf count, or current consumer graph from any historical entry below.
-> For live truth, run `proof-blueprint spine`; `docs/live-blueprint.md` is only a
-> generated snapshot. Current strategy and evidence status live in the dated
-> plans and audits referenced from `README.md`.
+> **Audited baseline.** This revision was checked against repository commit
+> `97efba032abe8066d349ab6a7f3cd6f18a916c30`. At that baseline the README's
+> recorded `proof-blueprint spine` output reported 36 publish-spine leaves. That
+> number is provenance, not a durable status assertion; regenerate the spine
+> before quoting a live roster.
 >
-> **Audit boundary.** This revision corrects source-level mathematics, logical
-> scope, and status terminology. It does not independently replay every
-> historical solver job. Several cited `p97-rvol` audits, postmortems, and scratch
-> artifacts were never copied into this repository. An entry supported only by
-> such material is marked as historical evidence rather than silently promoted
-> to a repository-reproducible theorem.
+> **This is not a live-status document.** Run `proof-blueprint spine` for the
+> current consumer graph and open obligations. `docs/live-blueprint.md` is a
+> generated snapshot, not an authority independent of the build.
+>
+> **Audit boundary.** The final pass checked source definitions, current route
+> documentation, and the logical force of the recorded arguments. It did not
+> replay every historical solver job or every certificate bank. Several cited
+> `p97-rvol` scratch directories were never copied into this repository. Such
+> claims are retained only as unverified reports and must not be used as permanent
+> bans until their exact witness or certificate is restored and replayed.
 
 ## 1. How to read this registry
 
 A route is barred only to the extent stated in its **Exact scope** field. In
 particular:
 
-- a counterexample to one lemma does not refute stronger lemmas with additional
-  hypotheses;
+- a counterexample to one proposition does not refute a stronger proposition
+  with additional hypotheses;
 - a timeout is not a mathematical verdict;
-- failure of a bare combinatorial encoding does not refute metric or rank-lifted
-  versions;
-- an off-spine theorem can still be mathematically useful or even prove the
-  headline result directly;
-- a route equivalent to solving Erdős 97 is not a shortcut, but it is not a
-  mathematical dead end.
+- an UNSAT result proves only the formula actually encoded;
+- failure of a bare combinatorial abstraction does not refute metric- or
+  rank-lifted variants;
+- an off-spine theorem can still be useful or can prove the headline theorem by
+  a different architecture;
+- constructing a genuine all-vertex-K4 configuration or proving that none exists
+  is a direct full-problem route, not a mathematical dead end.
 
 The phrase **do not retry** means:
 
@@ -51,73 +55,90 @@ The phrase **do not retry** means:
 It never means that an undefined family such as “all topology,” “all counting,”
 “all stress methods,” or “all algebraic methods” has been ruled out.
 
-### 1.1 Verdict vocabulary
+### 1.1 Mathematical-assessment vocabulary
 
-| Verdict | Meaning |
+| Assessment | Meaning |
 |---|---|
-| `FALSE_EXACT` | An exact counterexample refutes the stated proposition. |
-| `FORMALLY_CLOSED` | A Lean theorem closes the exact target, including the stated transport. |
-| `FORMAL_CORE_ONLY` | A coordinate, algebraic, or analytic core is formalized; transport from the project packet remains prose or conditional. |
+| `FALSE_EXACT` | An exact, checked counterexample refutes the stated proposition. |
+| `PROVED_EXACT` | The exact proposition and its required transport have been checked with the stated trust boundary. |
+| `FORMAL_DECLARATION_PRESENT` | A named Lean declaration is present, but this audit did not independently establish the required axiom closure and all surrounding transport. |
+| `FORMAL_CORE_ONLY` | A coordinate, algebraic, analytic, or finite core is formalized; transport from the project packet remains conditional, prose, or separately open. |
+| `REPORTED_RESULT_UNVERIFIED` | Historical prose or an unreplayed repository artifact reports a precise result. It is not a durable ban until replayed. |
 | `CIRCULAR` | A required hypothesis or invoked equality is equivalent to, or already implies, the target in the stated setting. |
-| `HYPOTHESIS_MISMATCH` | The proposed theorem does not apply to the objects supplied by the packet. |
-| `CERTIFICATE_CONE_IMPOSSIBLE` | A target-negative point in the closure rules out certificates in the exact recorded closed cone or quadratic module. |
-| `SOLVER_UNSAT_EXACT_ENCODING` | An exact branch encoding was reported UNSAT; replay and certificate status must be stated separately. |
-| `ENCODING_TIMEOUT` | The exact encoding timed out at the recorded budget. No mathematical conclusion follows. |
-| `ENCODING_UNSOUND` | The solver model omits or relaxes a load-bearing source hypothesis. |
-| `NUMERICAL_EVIDENCE_ONLY` | Sampling or floating-point computation suggests a conclusion but does not prove it. |
-| `INSUFFICIENT_ALONE` | The tested count, invariant, or packet has models or slack and cannot close the target by itself. |
-| `FALSE_IN_RECORDED_RELAXATION` | An exact witness refutes a relaxation that omits specified hypotheses, often convexity coupling. |
-| `REDUCED_TO_GLOBAL_CLOSURE` | The route is not locally closed; it becomes a global closure or synchronization problem. |
-| `OFF_CURRENT_SPINE` | No verified current consumer is recorded. This is an engineering status, not a mathematical refutation. |
-| `EQUIVALENT_TO_FULL_PROBLEM` | The route would solve Erdős 97 directly rather than provide a local shortcut. |
-| `BLOCKED_BY_SPEC_MISMATCH` | The prose packet, row ledger, or coordinate dictionary is inconsistent or incomplete. |
-| `STALE` | The status statement or target has been superseded by the current source. |
-| `CONJECTURED` | A negative strategic assessment has not been proved. |
-| `REOPEN_WITH_NEW_COUPLING` | The bare route failed, while a specified enriched version remains outside the no-go. |
+| `HYPOTHESIS_MISMATCH` | The proposed theorem does not apply to the objects or hypotheses supplied by the source packet. |
+| `CERTIFICATE_CLASS_IMPOSSIBLE` | A checked target-negative closure point rules out certificates in the exact stated closed cone, module, or other certificate class. |
+| `ENCODING_TIMEOUT` | The exact encoding timed out at the stated budget. No mathematical conclusion follows. |
+| `ENCODING_UNSOUND` | The encoded formula omits, weakens, or misrepresents a load-bearing source hypothesis. |
+| `NUMERICAL_EVIDENCE_ONLY` | Floating-point sampling or numerical optimization suggests a result but does not prove it. |
+| `INSUFFICIENT_ALONE` | The tested count, invariant, or local packet has slack or models and cannot close the target by itself. |
+| `FALSE_IN_RECORDED_RELAXATION` | A checked witness refutes the exact relaxation, while omitted source hypotheses remain available. |
+| `REDUCED_TO_GLOBAL_CLOSURE` | The local proposal is not closed; its validity becomes a global closure or synchronization problem. |
+| `DIRECT_FULL_PROBLEM_ROUTE` | Success would settle Erdős 97 directly rather than supply the intended local shortcut. |
+| `BLOCKED_BY_SPEC_MISMATCH` | The prose packet, row ledger, coordinate dictionary, or polarity is inconsistent or incomplete. |
+| `UNRESOLVED` | No sound positive or negative conclusion has been established. |
+
+Live engineering status is recorded separately:
+
+| Project relevance | Meaning |
+|---|---|
+| `CURRENT_CONSUMERS_VERIFIED` | Current source consumers were checked at the audited baseline. |
+| `CURRENT_CONSUMERS_UNVERIFIED` | No fresh consumer audit was completed for this entry. |
+| `OFF_SPINE_AT_BASELINE` | The entry had no publish-spine consumer at the audited baseline. This is not a mathematical verdict. |
+| `STALE_STATUS` | A former leaf, priority, or route label was superseded or retired. |
 
 ### 1.2 Evidence vocabulary
 
-Each durable verdict should identify its strongest evidence tier.
-
-| Tier | Evidence |
+| Evidence | Meaning |
 |---|---|
-| `LEAN` | Lean theorem with the relevant axiom closure recorded. |
-| `EXACT_CERT` | Independently replayable exact certificate. |
-| `EXACT_WITNESS` | Exact rational or algebraic counterexample. |
-| `EXACT_SOLVER` | Exact solver result without a separately replayed certificate. |
-| `PROSE` | Hand proof or source-level logical argument. |
-| `NUMERICAL` | Sampling or floating-point evidence only. |
-| `HISTORICAL` | Evidence is cited in an unavailable or unimported historical artifact. |
+| `VERIFIED_INLINE` | The document gives a complete exact argument or witness that was rechecked in this pass. |
+| `SOURCE_CHECKED` | The claim was checked directly against the audited source revision. |
+| `LEAN_KERNEL_CLEAN` | `#print axioms` or an equivalent kernel audit establishes the approved axiom closure. |
+| `LEAN_DECLARATION_PRESENT` | The declaration or module is present, but this pass did not rerun its axiom audit. |
+| `EXACT_ARTIFACT_REPLAYED` | An exact witness or certificate was independently replayed. |
+| `REPOSITORY_ARTIFACT_UNREPLAYED` | The exact-looking artifact exists in the repository but was not replayed in this pass. |
+| `SOLVER_RESULT_UNREPLAYED` | A solver result is reported, but no independently checked certificate was replayed. |
+| `NUMERICAL_ONLY` | The support is sampling or floating-point computation. |
+| `HISTORICAL_ONLY` | The cited evidence is absent from the audited repository or exists only in old prose. |
+| `PROSE_CHECKED` | A hand argument was checked, but no kernel or certificate replay is claimed. |
 
-A numerical observation must not be labeled `FALSE_EXACT`. A solver timeout must
-not be labeled `PROVEN`. A formal core must not be labeled `FORMALLY_CLOSED` when
-the packet-to-core transport is still prose.
+`FALSE_EXACT`, `PROVED_EXACT`, `CERTIFICATE_CLASS_IMPOSSIBLE`, and
+`FALSE_IN_RECORDED_RELAXATION` require `VERIFIED_INLINE`,
+`LEAN_KERNEL_CLEAN`, or `EXACT_ARTIFACT_REPLAYED`. A result supported only by
+`HISTORICAL_ONLY`, `SOLVER_RESULT_UNREPLAYED`, or
+`REPOSITORY_ARTIFACT_UNREPLAYED` must instead be recorded as
+`REPORTED_RESULT_UNVERIFIED` or another nonfinal assessment.
 
-### 1.3 Required fields for future entries
+A Lean declaration being source-clean is not enough: it may still reach
+`sorryAx` transitively. “Proved” means the relevant declaration is kernel-clean
+under the stated trust policy.
 
-Every new entry should record:
+### 1.3 Required fields
+
+Every new or materially revised entry should record:
 
 1. **Exact target** — a quantified proposition or named Lean declaration;
-2. **Verdict** — one of the statuses above;
-3. **Evidence** — theorem, witness, command, artifact path, and trust tier;
-4. **Exact scope** — the hypotheses and proof language actually ruled out;
-5. **Not ruled out** — nearby stronger or differently coupled formulations;
-6. **Current consumers** — exact declarations, or `none`, checked against a
-   stated source revision or fresh `proof-blueprint` run;
+2. **Assessment** — one of the mathematical assessments above;
+3. **Evidence** — the strongest evidence tier, with theorem, artifact, command,
+   version, and digest where applicable;
+4. **Project relevance** — current consumers or an explicit unverified/off-spine
+   marker;
+5. **Exact scope** — the hypotheses and proof language actually ruled out;
+6. **Not ruled out** — nearby stronger or differently coupled formulations;
 7. **Reopen condition** — the specific new ingredient that escapes the recorded
    failure.
 
-The imported historical entries below do not assert a fresh per-entry consumer
-audit. Unless a declaration is explicitly named as current, read their
-**Current consumers** field as `unverified; consult the current dependency graph`.
+For legacy entries lacking an explicit evidence or relevance line, read
+**Evidence** as `HISTORICAL_ONLY` and **Project relevance** as
+`CURRENT_CONSUMERS_UNVERIFIED`. Such an entry is a search-memory prompt, not a
+permanent ban.
 
 ## 2. Global conventions
 
 ### 2.1 Historical surplus-cap escape notation
 
 Several historical routes were grouped under the label `(Q)`. That label is
-retained only as a historical cross-reference; it is not the current frontier and
-must not be used as an unproved equivalence between different declarations.
+retained only as a cross-reference; it is not the current frontier and must not be
+used as an unproved equivalence between different declarations.
 
 For a finite carrier `A`, center `p`, and radius `r > 0`, write
 
@@ -131,298 +152,434 @@ For a specified cap `C_i`, the historical **escape event** is
 |T_A(p,r)|\ge 4 \quad\text{and}\quad T_A(p,r)\nsubseteq C_i.
 \]
 
-Thus an escape asserts that the radius class has at least four members and that
-**at least one** member lies outside `C_i`. It does not assert that four points
-individually escape the cap.
+Thus an escape says that the radius class has at least four members and that
+**at least one** member lies outside `C_i`. It does not say that four members lie
+outside the cap.
 
 Historical targets such as U1.3, U2.B, c5d3b, U5 support confinement, and the
-unit-distance specializations were connected by one-way reductions with
-additional hypotheses. Unless the repository contains an explicit `Iff`, do not
-write `U2.B ≡ U5-t1`, “all the same object,” or an equivalent universal slogan.
-Record the exact implication and all hypotheses instead.
+unit-distance specializations were connected by one-way reductions carrying
+additional hypotheses. Unless source contains an explicit `Iff`, record the exact
+implication instead of writing `U2.B ≡ U5-t1` or “all the same object.”
 
 The unit-distance target has a stronger antecedent than the variable-radius
-same-distance target and is therefore logically weaker as a theorem target. This
-document does not claim a strict separation unless an explicit witness is given.
+same-distance target and is therefore logically weaker as a theorem target. No
+strict separation is claimed here without an explicit witness.
 
 No `∃ℝ`-hardness or `∃ℝ`-completeness theorem for the relevant P97 decision
-problem is established here. The coordinate systems are nonlinear existential
-real systems and can have positive-dimensional or component-sensitive solution
-sets; that observation is not a complexity classification and does not rule out
-structural proofs on the project instances.
+problem has been established in this registry. The coordinate formulations are
+nonlinear existential-real systems; that observation is not a complexity
+classification and does not rule out structural proofs for the project packets.
 
 ### 2.2 Caps are chord-separation sets, not circle classes
 
-`OnArcOpposite` is a signed-area half-plane test. Cap membership does not supply
-an apex-centered circle equation.
-
-The Moser packet proves that the three selected Moser vertices lie on the minimum
-enclosing circle. It does **not** prove that they are the only carrier points on
-the MEC boundary. A regular hexagon with alternating selected Moser vertices is a
-counterexample to that stronger claim.
-
-Likewise, `capInteriorByIndex` means that the two cap endpoints have been erased
-from the closed cap. It does not by definition imply
+`OnArcOpposite vi vj vk x` is the signed-area condition
 
 \[
-\operatorname{dist}(x,O)<R_{\mathrm{MEC}}.
+\operatorname{signedArea2}(x,v_j,v_k)\,
+\operatorname{signedArea2}(v_i,v_j,v_k)\le 0.
 \]
 
-All carrier points lie in the closed MEC disk, so the generally available bound
-is weak unless a separate theorem proves strictness. Consequently:
+It is a closed chord-side test. It does not assert that `x` lies on any circle,
+and it supplies no apex-centered distance equality.
 
-- do not treat a cap as an “adjacent-cap circle”;
-- do not infer strict MEC-disk membership merely from endpoint-erased cap
-  membership;
-- two-circle, radical-axis, or vesica arguments require two genuine circle
-  equations supplied independently by the packet;
-- a specialized theorem may still show that a point lying on both the MEC and a
-  named apex circle is one of two intersections. That is different from saying
-  that every non-endpoint cap point is strictly inside the MEC.
+Two exact planar families prevent the two common radial misreadings. Let
+
+\[
+w_k=(\cos(k\pi/6),\sin(k\pi/6)),\qquad 0\le k<12,
+\]
+
+with `O=(0,0)`, and choose `v1=w0`, `v2=w4`, `v3=w8`. These selected
+vertices form an equilateral, non-obtuse triangle on the unit MEC. The MEC claim
+is exact: since `v1+v2+v3=0` and every `vi` has norm one, every candidate center
+`c` satisfies
+
+\[
+\frac{1}{3}\sum_{i=1}^{3}\lVert v_i-c\rVert^2=1+\lVert c\rVert^2\ge1.
+\]
+
+Thus any enclosing disk has radius at least one, while the unit disk centered at
+`O` contains the configuration. Each closed chord-side cap has its two selected
+endpoints and the three intervening dodecagon vertices, hence cardinality five.
+
+1. **Endpoint-erased cap data can occur on the MEC boundary.** In the regular
+   dodecagon, every nonselected `wk` has norm one. The three intervening vertices
+   of each cap survive endpoint erasure and remain on the MEC boundary.
+2. **The same chord-side and endpoint-erasure data can occur strictly inside the
+   MEC.** Replace `w1` by `x=(9/10)w1` and leave the other eleven vertices
+   fixed. The unit disk remains minimum because the equilateral triangle
+   `v1,v2,v3` already has circumradius one. The cap sets remain
+   `C1={w4,w5,w6,w7,w8}`, `C2={w8,w9,w10,w11,w0}`, and
+   `C3={w0,x,w2,w3,w4}`. With the vertices kept in their displayed cyclic
+   order, strict convexity is exact: the only altered consecutive turn
+   determinants reduce to `9/10-√3/2` and `(19-9√3)/20`, both positive; the
+   unchanged value is `1-√3/2>0`. Yet `dist x O=9/10<1`.
+
+These are exact geometric witnesses for the **bare** chord-side-plus-endpoint-
+erasure data. This audit did not build the corresponding Lean
+`SurplusCapPacket` terms, so a theorem exploiting additional packet fields must
+still be assessed separately.
+
+Therefore unfolding `capInteriorByIndex` supplies endpoint-erased cap membership,
+not a radial equality or strict inequality. Neither
+
+\[
+\operatorname{dist}(x,O)<R_{\mathrm{MEC}}
+\]
+
+nor equality with `R_MEC` follows from that definitional data alone. The generally
+available MEC fact is the weak disk bound `dist x O ≤ R_MEC`; additional packet
+hypotheses may support a stronger theorem and must be stated explicitly.
+Consequently:
+
+- do not treat a cap as an adjacent-cap circle;
+- two-circle, radical-axis, vesica, or inscribed-angle arguments require genuine
+  circle equations supplied independently by the packet;
+- a specialized theorem may identify the intersections of the MEC with another
+  named circle, but that is not a property of cap membership alone.
 
 ### 2.3 Solver and algebra semantics
 
-- For historical `msolve` output, `[-1]` means complex emptiness;
-  `[1,n,-1,[]]` reports positive dimension; `[0,…]` reports zero dimension.
-  Read the complete tuple.
-- Complex Gröbner bases do not detect real infeasibility caused only by order or
-  sign inequalities.
-- A square-slack variable does not repair that limitation over an algebraically
-  closed field: every complex value has a square root.
+- Store the exact solver version, command, complete input, complete output,
+  timeout, and encoding contract. Do not attach permanent meanings to abbreviated
+  output tuples from an unpinned historical `msolve` version.
+- Complex Gröbner bases do not detect real infeasibility caused only by sign or
+  order inequalities.
+- A square-slack equation over an algebraically closed field does not encode a
+  real sign restriction: every complex number has a square root.
+- An UNSAT result is useful only after the encoded formula has been shown
+  equivalent to the source packet. UNSAT for a stronger consumer-side refinement
+  or a relaxed proxy does not prove the producer.
 - Monolithic Boolean-selector nonlinear-real encodings timed out at the recorded
-  budgets. That verdict is encoding-specific.
-- Explicit-class, per-branch QF_NRA resolved many historical branches and remains
-  a legitimate finite-branch method. Unresolved branches are `ENCODING_TIMEOUT`,
-  not mathematical survivors or impossibilities.
-- Partial-K4 and fixed-frame SAT models are not counterexamples to the global
-  theorem unless the omitted hypotheses are restored.
-- Use exact rational or symbolic literals. Floating-point “SAT” at residuals near
-  machine precision is not evidence of realizability.
+  historical budgets. That is encoding-specific.
+- Explicit-class per-branch QF_NRA remains a legitimate method. A resolved branch
+  is still only an unreplayed solver result unless a certificate is independently
+  checked; an unresolved branch is `ENCODING_TIMEOUT`.
+- A SAT model for partial K4, a fixed frame, or a nonconvex relaxation is not a
+  counterexample to the global source theorem unless every omitted hypothesis is
+  restored.
+- Use exact rational or algebraic literals. A floating-point model with small
+  residuals is not an exact realization.
 
-### 2.4 Source and consumer discipline
+### 2.4 Source, axiom, and consumer discipline
 
-Lean symbol names are more stable than historical file paths and line numbers.
-When an entry cites an unavailable `p97-rvol` artifact, mark the evidence
-`HISTORICAL` and copy the minimum exact witness or certificate into this
-repository before using it as a permanent ban.
+Lean symbol names and full commit hashes are more durable than line numbers or
+mutable branch URLs. When an entry cites absent `p97-rvol` material, copy the
+minimum exact witness or certificate into this repository before upgrading it to
+an exact ban.
 
-Before acting on any claim that a theorem is live, closed, or off-spine:
+Before acting on a live/closed/off-spine claim, regenerate the current spine:
 
 ```bash
 proof-blueprint spine
-proof-blueprint axioms <symbol>
 ```
 
-or inspect the current import graph directly. A status in this registry is not a
-substitute for that check.
+To audit a theorem's actual trust closure, create a small Lean file importing the
+defining module and run `#print axioms`, for example:
+
+```lean
+import Erdos9796Proof.P97.UpstreamBridge
+#print axioms Problem97.erdos97_rhs
+```
+
+Then run it with the pinned repository toolchain. `proof-blueprint spine` reports
+reachability and open obligations; it is not a substitute for `#print axioms` on
+an individual theorem. Conversely, source-clean does not imply kernel-clean.
+
+A status in this registry never substitutes for a current import-graph or axiom
+check.
 
 ---
 
 ## 3. Historical U1.3 / U2.B surplus-cap family
 
-**Cluster status:** `STALE` as live-frontier text; retained as a historical route
+**Project relevance:** `STALE_STATUS` as live-frontier text; retained as a historical route
 family. The old three-leaf U-lane frontier and the slogan “U1.3/U2.B = (Q)” must
 not be used as current source truth.
 
 ### 3.1 Banked one-way reductions
 
-**Verdict:** `FORMALLY_CLOSED` for the named implications; no blanket
-biconditional.
+**Exact target:** The exact implications named by
+`u1EquilateralTransfer_proof`, `u2FullDistanceClasses_of_capContainment`, and
+`U5DangerousTriple.candidate_of_not_mem_boundedSupport`.
 
-- `u1EquilateralTransfer_proof` records a one-way implication from the stated
-  `IsM44` and U1.3 hypotheses to an equilateral conclusion. Its contrapositive is
-  available only with the same hypotheses.
-- `u2FullDistanceClasses_of_capContainment` records that a K4 radius class
-  contained in a size-four cap equals that cap. This is a cardinality squeeze
-  from cap containment to the historical U2 conclusion; it does not produce cap
-  containment.
-- `U5DangerousTriple.candidate_of_not_mem_boundedSupport` is a separate
-  escape-promotion bridge with its own hypotheses. It is not, without an explicit
-  reverse implication, an equivalence with U2.B.
+**Assessment:** `REPORTED_RESULT_UNVERIFIED`; no blanket biconditional.
 
-**Exact scope:** Preserve these implications and cite their hypotheses. Do not
-collapse them into a single unnamed proposition.
+**Evidence:** `HISTORICAL_ONLY`. The current registry names these declarations,
+but this pass did not independently locate each defining module or rerun
+`#print axioms`.
+
+- `u1EquilateralTransfer_proof` is a one-way implication from its stated `IsM44`
+  and U1.3 hypotheses to an equilateral conclusion. Its contrapositive carries
+  the same hypotheses.
+- `u2FullDistanceClasses_of_capContainment` is a cardinality squeeze: a K4 radius
+  class contained in a cap of cardinality four equals that cap. It does not
+  produce the containment premise.
+- `U5DangerousTriple.candidate_of_not_mem_boundedSupport` is a distinct
+  escape-promotion bridge with its own hypotheses. No reverse implication is
+  established here.
+
+**Project relevance:** `CURRENT_CONSUMERS_UNVERIFIED`.
+
+**Exact scope:** Preserve the individual implications and cite every hypothesis.
+Do not collapse them into `(Q)` or an unnamed `Iff`.
+
+**Reopen condition:** A claimed equivalence requires explicit Lean implications
+in both directions with the same objects and hypotheses.
 
 ### 3.2 Midpoint/docstring route
 
-**Verdict:** `FALSE_EXACT` for the implication from the listed one-sided midpoint
-inequalities and an unpinned K4 witness to cap equidistance.
+**Exact target:** Derive cap equidistance from the listed one-sided midpoint
+inequalities plus an existential, unpinned K4 witness.
 
-**Evidence:** The historical `scratch/u13_equidist/` record reports an exact
-non-equilateral unit-MEC model satisfying the named disk, cap-side, and midpoint
-facts while violating the intended equidistance conclusion. The midpoint lemmas
-themselves are one-sided inner-product inequalities; K4 supplies an existential
-radius class somewhere in `A`, not an identification of that class with the cap.
+**Assessment:** `REPORTED_RESULT_UNVERIFIED`.
 
-**Exact scope:** Those hypotheses alone do not pin the K4 witness set to the cap.
+**Evidence:** `HISTORICAL_ONLY`. The cited `scratch/u13_equidist/` directory is
+absent at the audited baseline, so the reported exact non-equilateral unit-MEC
+model was not replayed.
 
-**Not ruled out:** A theorem with an explicit class-to-cap incidence, a full row
-identity, or a new metric-rank coupling.
+The logical diagnosis remains sound: the midpoint lemmas provide one-sided
+inner-product inequalities, while K4 supplies a radius class somewhere in `A`.
+Nothing in that packet identifies the existential class with the cap.
+
+**Project relevance:** `STALE_STATUS` / `CURRENT_CONSUMERS_UNVERIFIED`.
+
+**Exact scope:** The current repository does not contain enough evidence to use
+this as a permanent counterexample bank. It identifies an unproved producer
+step: an explicit class-to-cap incidence, or an indirect theorem deriving one,
+is still needed.
+
+**Not ruled out:** A full row identity, explicit selected-class containment, or a
+metric-rank coupling.
+
+**Reopen condition:** Restore the exact coordinates and an exact checker for all
+source hypotheses and the failed conclusion.
 
 ### 3.3 Apex-distance monotonicity, Build B
 
-**Verdict:** `FALSE_EXACT` for the local apex-centered one-hit/strict-monotonicity
-statement represented by `N8a3AdjacentCapDistanceStrict`.
+Two different propositions were conflated in the historical log and must remain
+separate.
 
-**Evidence:** The historical Frame-I witness in `scratch/u13_buildB/` places
-four strict-convex, cap-side, closed-disk points at common squared distance
-`49/16` from the apex.
+#### Weak local Build-B proposition
 
-**Exact scope:** No theorem may assert the same local monotonicity from only the
-recorded frame, cap-side, disk, distinctness, and convexity hypotheses.
+**Exact target:** Strict apex-distance monotonicity from only the historical
+frame, cap-side, closed-disk, distinctness, and local convexity hypotheses.
 
-**Not ruled out:** Endpoint-centered monotonicity, additional global K4 rows,
-exact blocker-row hypotheses, or a stronger order-sensitive metric packet.
+**Assessment:** `REPORTED_RESULT_UNVERIFIED`.
+
+**Evidence:** `HISTORICAL_ONLY`. The reported Frame-I witness at squared radius
+`49/16` lived under `scratch/u13_buildB/`, which is absent at the audited
+baseline.
+
+**Exact scope:** Do not call the weak proposition exactly false until the witness
+is restored and checked. The old report is nevertheless a warning not to infer
+monotonicity from those weak local hypotheses without a new proof.
+
+#### Current normalized N8a3 Route-A proposition
+
+**Exact target:** `N8a3AdjacentCapDistanceStrict` for chains represented by the
+normalized `capU2`/`capU3` coordinate models and the stated monotone angle maps.
+
+**Assessment:** `FORMAL_CORE_ONLY`, not false.
+
+**Evidence:** `SOURCE_CHECKED` and `LEAN_DECLARATION_PRESENT` in
+`P97/U2/OneHitMonotone.lean`. That module proves strict monotonicity in the
+normalized frame and exports `n8a3_of_capCoordChain` and
+`n8a3_of_capCoordChainRev`; the general packet-to-coordinate-chain bridge remains
+separate.
+
+**Project relevance:** `CURRENT_CONSUMERS_UNVERIFIED`.
+
+**Not ruled out:** Completion of the vocabulary/similarity bridge from a general
+`CapTriple` or `SelectedClass` packet to the normalized chains.
 
 ### 3.4 Endpoint monotonicity, Build A
 
-**Verdict:** `INSUFFICIENT_ALONE`.
+**Assessment:** `INSUFFICIENT_ALONE`.
 
-**Evidence:** The endpoint injectivity/subsingleton machinery is formal and
-size-agnostic, but the historical Form-A counting tail uses the exact two-point
-cap-interior and nine-point partition. That arithmetic does not automatically
-lift to a surplus cap with at least three interior points.
+**Evidence:** `HISTORICAL_ONLY` for the named endpoint machinery;
+`PROSE_CHECKED` for the arithmetic limitation.
 
-**Exact scope:** The old endpoint engine plus the old nine-point cover budget does
-not produce the desired containment in the surplus-cap regime.
+The endpoint machinery is size-agnostic, but the historical Form-A tail uses the
+exact two-point cap interior and the nine-point cover budget. That arithmetic does
+not automatically extend to a surplus cap with at least three interior points.
 
-**Not ruled out:** A different counting invariant, a multi-center overlap theorem,
-Hall deficiency, a power-rank obstruction, or a larger packet that controls the
-surplus points. The stronger slogan “no sieve repair” is not established.
+**Project relevance:** `CURRENT_CONSUMERS_UNVERIFIED`.
+
+**Exact scope:** The old endpoint engine plus the old nine-point scalar cover does
+not prove surplus-cap containment.
+
+**Not ruled out:** A different counting invariant, multi-center overlap, Hall
+deficiency, a power-rank obstruction, or a larger packet controlling the surplus
+points. No general “no sieve repair” theorem is established.
 
 ### 3.5 QF_NRA experiments
 
-**Verdict:** Mixed:
+**Assessment:** Mixed and entirely encoding-specific:
 
 - monolithic Boolean-selector formulations — `ENCODING_TIMEOUT`;
-- individually resolved exact-class branches — `SOLVER_UNSAT_EXACT_ENCODING`;
+- branches reported UNSAT — `REPORTED_RESULT_UNVERIFIED`;
 - unresolved explicit-class branches — `ENCODING_TIMEOUT`;
-- partial-K4 or fixed-frame SATs used as global models — `ENCODING_UNSOUND`.
+- partial-K4 or fixed-frame SAT models promoted to global models —
+  `ENCODING_UNSOUND`.
 
-**Evidence:** Historical runs in `scratch/u13_global/` and
-`scratch/u13_combo/` reported 91 exact-class UNSAT branches and 35 timeouts in
-one `(5,4,4)` gate, while selector-based encodings timed out at the recorded
-budgets. Consult the exact scripts and formulas before relying on any number.
+**Evidence:** `HISTORICAL_ONLY` / `SOLVER_RESULT_UNREPLAYED`. The old log reports
+91 UNSAT branches and 35 timeouts in one `(5,4,4)` gate, but the cited
+`scratch/u13_global/` and `scratch/u13_combo/` material was not replayed in this
+pass.
+
+**Project relevance:** `STALE_STATUS` / `CURRENT_CONSUMERS_UNVERIFIED`.
 
 **Exact scope:** Do not repeat the same selector encoding merely with a larger
-budget unless the branching or algebra changes.
+budget and call a timeout evidence. Do not use the branch counts until the exact
+formula, solver version, and result files are pinned.
 
-**Not ruled out:** Explicit-class branch decomposition, exact EDM/rank filters,
-CAD or QE on bounded residuals, certified resultants, or solver calls after
-stronger source-level reductions.
+**Not ruled out:** Explicit-class decomposition, exact EDM/rank filters, CAD or
+QE on reduced residuals, certified resultants, or solver calls after stronger
+source-level reductions.
 
 ### 3.6 Global isosceles first-moment counting
 
-**Verdict:** `INSUFFICIENT_ALONE`.
+**Assessment:** `INSUFFICIENT_ALONE`.
 
-**Evidence:** The available upper and lower bounds leave slack in the relevant
-cardinality range. The escape event by itself does not supply the extra pair or
-five-member class needed by the stronger local lower-bound lemmas.
+**Evidence:** `PROSE_CHECKED` for the recorded scalar comparison; historical
+numerical bounds should still be recopied with their exact hypotheses before
+reuse.
 
-**Exact scope:** The recorded scalar first-moment comparison does not yield a
-strict contradiction.
+The available first-moment upper and lower bounds leave slack in the historical
+cardinality regime. The escape event alone does not provide the extra pair or
+five-member class required by the stronger local lower-bound lemmas.
+
+**Project relevance:** `CURRENT_CONSUMERS_UNVERIFIED`.
+
+**Exact scope:** The recorded scalar comparison does not yield a strict
+contradiction.
 
 **Not ruled out:** Overlap-sensitive counts, second moments, row synchronization,
-or a direct unit-distance/firewall theorem. A firewall proving that no convex
-`PerVertexK4` configuration exists would prove Erdős 97 directly; it is not
-mathematically irrelevant merely because it bypasses removable-vertex descent.
+or a direct unit-distance/firewall theorem.
 
 ### 3.7 Bare order type and decorated chirotope
 
-**Verdict:** `REOPEN_WITH_NEW_COUPLING`.
+**Assessment:** `INSUFFICIENT_ALONE` for bare order type and the exact tested
+decorations.
 
-**Evidence:** A planar chirotope alone does not determine equal distances. The
-historical same-order-type example with a shifted data point separates orientation
-data from a data-point-centered equidistance relation.
+**Evidence:** `VERIFIED_INLINE` for metric blindness. For example, the labelled
+square `(0,0),(1,0),(1,1),(0,1)` and the labelled rectangle
+`(0,0),(1,0),(1,2),(0,2)` have the same uniform rank-three chirotope, but from the
+first labelled point the distances to the second and fourth points are equal only
+in the square. `SOURCE_CHECKED` and `LEAN_DECLARATION_PRESENT` for the separate
+circle-power-matrix mechanism.
 
-**Exact scope:** Bare order type and the exact tested decorations are insufficient
-to decide the metric incidence.
+A planar chirotope does not determine equal distances. That does not imply that
+every finite combinatorial lift is powerless. The current source contains a
+four-dimensional factorization of the circle-point power matrix, rank at most
+four, vanishing `5 × 5` minors, and a unique-possible-matching determinant
+criterion that distinguishes certified zero, certified nonzero, and unknown
+entries.
+
+**Project relevance:** `CURRENT_CONSUMERS_UNVERIFIED`.
+
+**Exact scope:** Bare orientation data and the specifically tested decorations do
+not decide the metric incidence.
 
 **Not ruled out:** Circle-power matrices, Euclidean-distance-matrix rank/PSD,
 perpendicular-bisector rank, Kalmanson inequalities, paraboloid lifts,
-metric-labeled oriented matroids, or support patterns coupled to proved nonzero
-entries. In particular,
-`lean/Erdos9796Proof/P97/Census554/CirclePowerMatrix.lean` contains a
-rank-at-most-four mechanism whose unique-possible-matching criterion is a genuine
-finite combinatorial/algebraic coupling, not a bare chirotope. Such a determinant
-certificate is sound only when every nonmatching term contains an entry proved
-zero and every entry in the unique surviving matching is proved nonzero. A point
-outside a chosen four-subset is not automatically off the underlying full circle;
-that nonzero fact requires exact-class or equivalent source evidence.
+metric-labelled oriented matroids, or support patterns with separately proved
+nonzero entries. A point outside a selected four-subset is not automatically off
+the full circle; nonzero power requires exact source evidence.
 
 ### 3.8 Equilateral subcase
 
-**Verdict:** `CIRCULAR` when an equilateral Moser frame is assumed solely to prove
-a theorem whose hypotheses are pre-equilateral and from which equilateralness is
-only obtained downstream.
+**Assessment:** `CIRCULAR` when equilateralness is assumed solely to prove a
+pre-equilateral producer from which equilateralness is obtained downstream.
 
-**Exact scope:** The historical U2.B producer cannot assume the downstream
+**Evidence:** `PROSE_CHECKED` at the implication-graph level.
+
+**Project relevance:** `CURRENT_CONSUMERS_UNVERIFIED`.
+
+**Exact scope:** A historical U2.B producer cannot import its downstream
 conclusion as an input.
 
-**Not ruled out:** Equilateral-conditional lemmas once equilateralness is produced
-independently in another branch.
+**Not ruled out:** Equilateral-conditional lemmas after another branch has
+established the equilateral frame independently.
 
 ### 3.9 Minimality and essential-center coverage
 
-**Verdict:** `INSUFFICIENT_ALONE` for the crude member-coverage count.
+**Assessment:** `INSUFFICIENT_ALONE` for the crude member-coverage count.
 
-**Evidence:** At the historical eleven-point scale, covering the carrier by
-four-member critical classes forces only three centers by the scalar estimate.
-That does not by itself force a repeated-circle incidence.
+**Evidence:** `VERIFIED_INLINE`. If the selected critical rows cover `A` and
+each has four members, then `|A| ≤ 4|N|`; at `|A|=11` this yields only
+`|N|≥3`. The total membership count then forces some repeated membership, but it
+does not identify a useful pair of rows, a center, a repeated circle, or any
+particular geometric overlap.
 
-**Exact scope:** Minimality used only through `|A| ≤ 4|N|` has insufficient
-structure.
+**Project relevance:** `CURRENT_CONSUMERS_UNVERIFIED`.
+
+**Exact scope:** Minimality used only through the scalar coverage inequality has
+insufficient structure.
 
 **Not ruled out:** Exact unique-four rows, deletion survival, common-deletion
 collisions, five- or six-center synchronization, Hall/Dulmage–Mendelsohn
-structure, or power-support rank. Minimality may have substantial producer force
-when coupled to those data.
+structure, or power-support rank.
 
 ### 3.10 Finite-endpoint and spine discipline
 
-**Verdict:** `OFF_CURRENT_SPINE`, not mathematically dead.
+**Assessment:** Finite endpoint theorems are genuine mathematical results; their
+current usefulness is a separate consumer question.
 
-`FiniteN9Closure` and related finite-cardinality theorems are genuine results.
-They do not automatically reduce a generic large-cardinality leaf. The current
-project also has sorry-free exact-ten and exact-eleven endpoints, giving a
-compiler-trusted project bound `n ≥ 12`; the strongest bound avoiding compiler
-trust is `n ≥ 10`.
+**Evidence:** `SOURCE_CHECKED`. At the audited baseline the repository reports a
+machine-checked lower bound `n ≥ 12` using the approved compiler-trusted
+certificate tier, and `n ≥ 10` when compiler trust is excluded.
 
-**Rule:** Check the current consumer graph before assigning work. Do not infer
-that a theorem is worthless merely because it is off the present descent spine.
+**Project relevance:** `CURRENT_CONSUMERS_UNVERIFIED`; do not automatically mark
+the endpoints off-spine.
 
----
+`FiniteN9Closure` and the exact-ten/exact-eleven endpoints do not automatically
+reduce a generic larger-cardinality leaf. Conversely, lack of a current consumer
+does not make their statements false or worthless.
+
+**Rule:** Regenerate the current consumer graph before assigning or retiring
+work, and state the trust tier whenever quoting a finite bound.
 
 ## 4. b1a1M cap-subchain monotonicity and the ★ inequality
 
-**Cluster status:** Historical. The angular core contains useful formal lemmas,
-but the former universal bans on SOS, case splits, and arc-angle methods were too
-broad.
+**Cluster status:** Historical. The current source contains the normalized
+N8a3 Route-A core and reports it axiom-clean, while other b1a1M formal claims
+remain historical in this audit. The former universal bans on SOS, case splits, and arc-angle methods were
+too broad.
 
 ### 4.1 Arc-angle transport
 
-**Exact target:** Derive strict monotonicity of distances from an arbitrary cap
-vertex `p` by applying `arcAngle_chord_length_strict_mono` to the compared points.
+**Exact target:** Derive strict distance monotonicity from an arbitrary cap
+vertex by composing the b1a1M packet with the on-sphere chord/arc lemmas.
 
-**Verdict:** `HYPOTHESIS_MISMATCH`; in the historical use, also circular at the
-load-bearing step.
+**Assessment:** `HYPOTHESIS_MISMATCH`, not circular merely from cosphericity.
 
-**Reason:** The arc-angle theorem requires the compared points to lie on one
-circle centered at `p`. In b1a1M, proving that the relevant points do not have the
-same `p`-distance is the target. Supplying the needed cospherical hypothesis
-therefore assumes the disputed metric relation rather than deriving it from cap
-membership.
+**Evidence:** `SOURCE_CHECKED`. `ArcInscribedAngle.lean` requires the angle vertex
+`c` and the chord endpoints `x,y` to lie on a common sphere centered at a separate
+point `O`, together with a chord-side inner-product condition. The historical
+b1a1M packet supplied cap order, disk membership, and signed-area data, but not
+that common-sphere packet. `U2/OneHitMonotone.lean` independently records both the
+missing common sphere and failure of the required turn inequality for this route.
+
+The prior replacement incorrectly said that the common circle was centered at
+`p`. That was impossible for a strict comparison of `p`-distances and is removed
+here. Common-sphere membership itself does not assume equality of the two chords,
+so the route is not labelled circular without a more specific equivalence.
 
 The historical claim that a broader “Thales with one chord endpoint in the disk”
-statement is false was supported in the old text by sampling counts only. Retain
-that as `NUMERICAL_EVIDENCE_ONLY` until an exact witness is copied into this
-repository.
+statement is false was supported only by sampling.
 
-**Exact scope:** Do not apply the cospherical theorem when the packet supplies
-only cap order, disk membership, and signed-area inequalities.
+**Assessment of that broader claim:** `NUMERICAL_EVIDENCE_ONLY`.
 
-**Not ruled out:** A genuine circle supplied by an independent row, a coordinate
-proof in a normalized frame, or an arc theorem whose hypotheses match the open
+**Evidence:** `NUMERICAL_ONLY` until an exact witness is copied and checked.
+
+**Project relevance:** `STALE_STATUS` / `CURRENT_CONSUMERS_UNVERIFIED`.
+
+**Exact scope:** Do not apply the on-sphere theorem when the packet provides no
+common-sphere equations or no required turn/half-plane hypothesis.
+
+**Not ruled out:** A genuine common circle supplied by an independent row, a
+normalized coordinate proof, or an arc theorem whose hypotheses match the open
 cap geometry.
 
 ### 4.2 Closed-cone SOS / Putinar search for ★
@@ -436,69 +593,85 @@ G=\langle E_{\mathrm{right}}-x,\,x-p\rangle.
 The formal metric identity relates the desired distance comparison to the sign of
 `G`.
 
-**Verdict:** `CERTIFICATE_CONE_IMPOSSIBLE` for the exact unsaturated closed
-quadratic module generated by the recorded weak signed-area and disk-slack
+**General assessment:** `CERTIFICATE_CLASS_IMPOSSIBLE` provided an exact closure
+point satisfying every generator and `G<0` has been checked.
+
+**Evidence for the general implication:** `VERIFIED_INLINE`. Any identity placing
+`G` in a quadratic module generated by polynomials nonnegative at a point `z`
+would imply `G(z)≥0`. Thus a checked `z` with all generators nonnegative and
+`G(z)<0` rules out that exact module at every degree.
+
+**Assessment of the recorded b1a1M collapse:** `REPORTED_RESULT_UNVERIFIED`.
+
+**Evidence:** `HISTORICAL_ONLY`. The old collapse
+`E_left = p = f`, `x = -f` and the complete generator list were not replayed from
+a current artifact in this pass.
+
+**Project relevance:** `CURRENT_CONSUMERS_UNVERIFIED`.
+
+**Exact scope:** Once the closure point is restored and checked, it rules out only
+the exact unsaturated closed quadratic module generated by those weak
 constraints.
-
-**Evidence:** The closure of that weak hypothesis set contains a degenerate point,
-for example the recorded collapse `E_left = p = f`, `x = -f`, at which every
-listed weak generator is nonnegative or zero while `G < 0`. Any identity in that
-closed quadratic module would imply `G ≥ 0` at the same point, a contradiction.
-
-**Exact scope:** This rules out certificates in that exact closed cone at every
-degree.
 
 **Not ruled out:**
 
 - a strict Positivstellensatz using the genuine open hypotheses;
-- saturation by nonzero factors, for example adjoining `t g - 1 = 0` when
-  geometry proves `g ≠ 0`;
+- saturation by a proved nonzero factor, for example adjoining `t g - 1 = 0`;
 - a Stengle preordering;
 - component decomposition;
 - exact real quantifier elimination;
 - a hand or Lean analytic proof.
 
-The old sentence “no finite polynomial case split removes the collapsed point” is
-false as a universal statement. It applies only to the tested splits whose closed
-branches both retain the collapse. A saturation or a split carrying an explicit
-nonvanishing certificate can remove that boundary component.
+The old universal sentence “no finite polynomial case split removes the
+collapsed point” is false. It applies only to tested closed branches retaining the
+collapse; saturation or a branch with a certified nonvanishing condition can
+remove that component.
 
 ### 4.3 Formal angular core
 
-**Verdict:** `FORMAL_CORE_ONLY` for the retained b1a1M metric/angular lemmas;
-`OFF_CURRENT_SPINE` unless a fresh consumer audit says otherwise.
+**Assessment:** `REPORTED_RESULT_UNVERIFIED` for the claimed angular core.
 
-`b1a1M_metric` and `b1a1m_G_nonneg_angular` preserve useful exact reductions and
-an angular nonnegativity theorem in the genuine strict/open regime. The old
-Cartesian-to-angular extraction bridge was not built because the historical
-consumer needed only distance inequality `≠`, already supplied by
-`CGN6c_oneSidedDistanceInjective`, rather than a strict order.
+**Evidence:** `HISTORICAL_ONLY` for the named declarations; this pass did not
+independently locate their defining modules, rerun their axiom closures, or audit
+the full packet-to-angular transport.
 
-**Maintenance rule:** The “no consumer” finding was source-verified historically,
-not permanently. Recheck the current dependency graph before deleting or reviving
+The retained lemmas give useful exact metric reductions and an angular
+nonnegativity theorem in their strict/open regime. The historical
+Cartesian-to-angular extraction bridge was not completed because the then-current
+consumer needed only distance inequality `≠`, supplied elsewhere, rather than a
+strict order.
+
+**Project relevance:** `CURRENT_CONSUMERS_UNVERIFIED`.
+
+**Maintenance rule:** Recheck the dependency graph before deleting or reviving
 the bridge.
 
 ### 4.4 Related N8a3 routes
 
-**Verdict:**
+**Assessment:**
 
-- composition through the off-center b1a1M circle argument —
+- composition through the off-center b1a1M on-sphere argument —
   `HYPOTHESIS_MISMATCH`;
-- reuse of a theorem whose center/order roles do not match —
+- reuse of endpoint machinery with incompatible center/order roles —
   `HYPOTHESIS_MISMATCH`;
-- normalized rigid-frame coordinate analysis — `FORMAL_CORE_ONLY` through the
-  named `U2OneHitMonotone.lean` result unless its source packet is fully wired.
+- normalized rigid-frame Route A in `U2/OneHitMonotone.lean` —
+  `FORMAL_CORE_ONLY`, with both adjacent-cap branches implemented;
+- general packet-to-normalized-chain bridge — `UNRESOLVED` unless closed by a
+  later source change.
 
-Do not generalize the failure of the first two transports into a ban on all
-one-hit theorems.
+**Evidence:** `SOURCE_CHECKED` and `LEAN_DECLARATION_PRESENT` for Route A; the
+module itself identifies the vocabulary bridge as the remaining scoped gap.
 
----
+**Project relevance:** `CURRENT_CONSUMERS_UNVERIFIED`.
+
+**Exact scope:** The two failed transports do not support a ban on all one-hit or
+adjacent-cap monotonicity theorems.
 
 ## 5. Historical c5d adjacent-cap kernels
 
-**Cluster status:** Historical and generally off the current publish spine. The
-entries remain useful because they separate exact local falsehoods from formal
-coordinate cores whose abstract transport was never completed.
+**Cluster status:** Historical. No fresh per-entry consumer audit was completed
+for this section. The entries remain useful because they separate reported local
+falsehoods from coordinate cores whose abstract transport was never completed.
 
 ### 5.1 c5d0 q-star outside-disk core
 
@@ -518,43 +691,50 @@ the recorded second intersection `q*` satisfies
 \]
 
 With the c5d0-specific center-`v3` isosceles equality and the non-obtuse Moser
-condition, the coordinate packet forces `h ≥ π/4`, hence `q*` lies outside the
-unit disk.
+condition, the coordinate packet is reported to force `h ≥ π/4`, placing `q*`
+outside the unit disk.
 
-**Verdict:** `FORMAL_CORE_ONLY`.
+**Assessment:** `REPORTED_RESULT_UNVERIFIED` for the claimed formal core.
 
-**Evidence:** The coordinate implications are formalized by
-`c5d0_qstar_outside_disk` and `c5d0_contradiction`. The old document explicitly
-states that the abstract-packet-to-coordinate-frame transport remained prose.
+**Evidence:** `HISTORICAL_ONLY`. The named declarations and formula are
+reported by the imported log; their defining modules, packet transport, and axiom
+closure were not independently checked in this pass.
 
-**Exact scope:** The core closes only packets that genuinely provide the
-center-`v3` equality and every normalization hypothesis.
+**Project relevance:** `CURRENT_CONSUMERS_UNVERIFIED`.
 
-**Not ruled out:** Other c5d rows lacking that equality. Do not cite the formal
-coordinate theorem as a completed abstract closure until the transport is a Lean
-theorem.
+**Exact scope:** The coordinate core applies only when the source packet supplies
+the center-`v3` equality, nondegeneracy, and every normalization hypothesis.
+
+**Not ruled out:** Other c5d rows lacking that equality. Do not cite the
+coordinate theorem as a completed abstract closure until the transport is a
+checked Lean theorem.
 
 ### 5.2 c5d1c0 obtuse-angle core
 
-**Verdict:** `FORMAL_CORE_ONLY` for the named coordinate/angle theorems and
-`BLOCKED_BY_SPEC_MISMATCH` for the unresolved prose transport.
+**Assessment:** `REPORTED_RESULT_UNVERIFIED` for the claimed coordinate/angle
+core; `BLOCKED_BY_SPEC_MISMATCH` for the unresolved prose transport.
 
-The inscribed-angle reduction and the named coordinate rows
+**Evidence:** `HISTORICAL_ONLY`. The imported log names
 `c5d1c0_angle_v2_obtuse`, `c5c4a2_qstar_on_O_side`,
-`c5c4b3_angle_v2_obtuse`, and `c5c3c_angle_v2_obtuse` are retained. For the rows
-whose step-1 cap bridge remained prose, the route is not fully closed.
+`c5c4b3_angle_v2_obtuse`, and `c5c3c_angle_v2_obtuse`, but this pass did not
+independently locate and axiom-audit them.
 
-The historical row prose also disagrees with the row ledger about the center-`q`
-class: one description includes `v3`, while the ledger gives a class such as
-`{v1,v2,u,y}`. Until that mismatch is resolved, no verdict depending on the prose
-class identity may be marked `FORMALLY_CLOSED`.
+The historical row prose disagrees with its row ledger about the center-`q`
+class: one description includes `v3`, while another gives a class such as
+`{v1,v2,u,y}`. A conclusion depending on one of those identities cannot be
+promoted while the source packet is ambiguous.
 
-**Reopen condition:** State the exact row in one canonical structure and prove the
+**Project relevance:** `CURRENT_CONSUMERS_UNVERIFIED`.
+
+**Exact scope:** Preserve the coordinate lemmas conditionally. Do not call the
+abstract row closed.
+
+**Reopen condition:** State the row once in a canonical structure and prove the
 packet-to-coordinate transport.
 
 ### 5.3 Framing-2 local distance monotonicity
 
-**Verdict:** `FALSE_EXACT` for the specific inequality
+**Exact target:** The inequality
 
 \[
 \langle u-v_1,\,v_1-q\rangle\ge0
@@ -562,231 +742,304 @@ packet-to-coordinate transport.
 
 under the recorded local Framing-2 hypotheses.
 
-**Evidence:** The exact point
+**Assessment:** `REPORTED_RESULT_UNVERIFIED`.
+
+**Evidence:** `HISTORICAL_ONLY`. The old log gives
 
 \[
 u_0=(\tau_0,0),\qquad
 \tau_0=\cos h+(2-\sqrt3)\sin h,
 \]
 
-lies in the required interior cap position and on the disputed circle, while the
-claimed sign has margin `(√3-2) sin h < 0`.
+and the algebraic margin `(√3-2) sin h < 0`. That sign calculation is exact when
+`0<h<π`, but this pass did not recover an artifact checking that `u0` satisfies
+every source-packet hypothesis.
 
-**Exact scope:** Do not reuse this inequality or any theorem that specializes to
-it under the same packet.
+**Project relevance:** `CURRENT_CONSUMERS_UNVERIFIED`.
 
-**Not ruled out:** A different center, a stronger global row system, or a metric
-comparison not implying the refuted inequality.
+**Exact scope:** Treat the old point as a candidate regression witness, not a
+permanent ban, until its full packet is restored.
+
+**Not ruled out:** A different center, stronger global rows, or a comparison not
+specializing to this inequality.
+
+**Reopen condition:** Copy the exact parameter interval and all source checks into
+an independently replayable artifact.
 
 ### 5.4 Vesica local model
 
-**Verdict:** `FALSE_EXACT` for the claim that the **listed local vesica packet
-alone** is inconsistent.
+**Exact target:** The claim that the listed local two-circle/vesica packet is
+inconsistent.
 
-**Evidence:** The historical open-condition model constructs nearby points `u_e`
-and `w_e` on the two named equal-radius circles, satisfying the specified local
-cap-side, distinctness, and center-`q` K4 conditions.
+**Assessment:** `REPORTED_RESULT_UNVERIFIED`.
 
-**Exact scope:** No contradiction follows from that exact local packet alone.
+**Evidence:** `HISTORICAL_ONLY`. The old record reports nearby points `u_ε` and
+`w_ε` on two named equal-radius circles satisfying the local cap-side,
+distinctness, and center-`q` K4 conditions, but the model and checker were not
+recovered in this pass.
 
-**Not ruled out:** Additional K4 rows at other centers, full carrier convexity,
-minimality, deletion synchronization, exact blocker rows, or a rank condition
-omitted from the model. The old slogan “no local lever closes it” was too broad.
+**Project relevance:** `CURRENT_CONSUMERS_UNVERIFIED`.
+
+**Exact scope:** The report concerns only the listed local packet. It does not
+establish a model of the global theorem.
+
+**Not ruled out:** Additional K4 rows, full carrier convexity, minimality,
+deletion synchronization, exact blocker rows, or a rank condition omitted from
+the local model.
+
+**Reopen condition:** Restore the exact model and verify every open inequality
+symbolically or by an exact certificate.
 
 ### 5.5 Radical-axis and middle-slot transports
 
-**Radical-axis verdict:** `HYPOTHESIS_MISMATCH` for the recorded packet. The point
-`u` has only one supplied circle equation, and the three named shared points on
-`B(q,r)` make the proposed transport identity vacuous. This does not rule out a
-radical-axis argument in a packet with a genuine second circle or a proved
-off-circle endpoint.
+**Radical-axis assessment:** `HYPOTHESIS_MISMATCH` for the recorded packet.
 
-**Middle-slot verdict:** `HYPOTHESIS_MISMATCH`. The historical R-star theorem
-concerns SED-pin interior points in a global unit-distance regime, whereas the
-c5d witnesses are strict hull vertices in a variable-radius per-vertex-K4
-packet. A theorem with different hypotheses is not refuted; it is simply
-inapplicable here.
+**Evidence:** `PROSE_CHECKED`. A radical-axis transfer needs two independently
+supplied circle equations. The historical point `u` had only one, and the named
+shared points on `B(q,r)` made the proposed identity vacuous rather than a
+producer of the missing incidence.
+
+**Middle-slot assessment:** `HYPOTHESIS_MISMATCH`.
+
+**Evidence:** `PROSE_CHECKED`. The historical R-star theorem concerns SED-pin
+interior points in a global unit-distance regime; the c5d objects are strict hull
+vertices in a variable-radius per-vertex-K4 packet.
+
+**Project relevance:** `CURRENT_CONSUMERS_UNVERIFIED`.
+
+**Exact scope:** These theorems are inapplicable to the recorded packet; they are
+not refuted as mathematical statements.
+
+**Not ruled out:** A packet with a genuine second circle, a proved off-circle
+endpoint, or a new middle-slot theorem matching the current object types.
 
 ### 5.6 Incompatible-walk monovariants
 
-**Verdict:** `INSUFFICIENT_ALONE` for the four recorded candidates and
-`REOPEN_WITH_NEW_COUPLING` for the family.
+**Assessment:** `INSUFFICIENT_ALONE` for the four recorded candidates;
+`UNRESOLVED` for the unrestricted family of descent states.
 
-The historical tests show that cap rank, hull depth, the selected surplus-cap
-label, and one tunable metric scalar do not furnish the required strict decrease
-on the recorded walk. Abstract 4-star and local vesica cycles are satisfiable.
+**Evidence:** `HISTORICAL_ONLY` for the experiments. No representation theorem was
+found that reduces every scalar or well-founded state to those examples.
 
-**Exact scope:** Those four measures, and the precise additive first-moment forms
-tested, do not prove well-foundedness.
+The old tests report failure of cap rank, hull depth, the selected surplus-cap
+label, and one tunable metric scalar to decrease strictly on the recorded walk.
+Local vesica cycles were also reported satisfiable.
 
-**Not ruled out:** Lexicographic states, nonadditive potentials, finite-state
-closure, metric-labeled cycles, rank defects, or deletion-closed subsets. No
-representation theorem was given that reduces every scalar or every descent state
-to the four failed examples.
+**Project relevance:** `STALE_STATUS` / `CURRENT_CONSUMERS_UNVERIFIED`.
 
----
+**Exact scope:** Those four measures and the exact additive first-moment forms
+tested do not supply the desired descent.
+
+**Not ruled out:** Lexicographic states, multiset orders, nonadditive potentials,
+finite-state closure, metric-labelled cycles, rank defects, or deletion-closed
+subsets.
 
 ## 6. Global incidence and full-problem route tests
 
 ### 6.1 Ptolemy equality
 
-**Verdict:** `CIRCULAR` after the required nondegeneracy and ordering assumptions
-are stated.
+**Assessment:** `CIRCULAR` for the exact use, after all nondegeneracy and ordering
+hypotheses are stated.
 
-For four distinct points in the correct cyclic order, with the known triple
-noncollinear, Ptolemy equality characterizes membership of the fourth point on
-the triple's circumcircle. Therefore using that equality to prove that the fourth
-point lies on the already identified circle assumes the target in equivalent
-form.
+**Evidence:** `VERIFIED_INLINE`.
 
-**Required caveat:** Without noncollinearity and correct label order, the bare
-statement “Ptolemy equality iff concyclic” is false or ambiguous. Collinear
-quadruples can also attain equality.
+For four distinct points labelled in the appropriate cyclic order, with a known
+noncollinear triple, Ptolemy equality characterizes membership of the fourth
+point on that triple's circumcircle. Invoking that equality solely to prove the
+same circle membership therefore assumes an equivalent form of the target.
 
-**Exact scope:** The circularity applies to invoking the equality itself without
-an independent reason for it.
+The qualifications are load-bearing. A bare statement “Ptolemy equality iff
+concyclic” is false or ambiguous: collinear quadruples can attain equality, and
+the displayed equality depends on the diagonal/side labelling. For example,
+`0,1,2,3` on a line satisfy
 
-**Not ruled out:** A strict Ptolemy inequality, a comparison obtained from convex
-order, or a different four-point identity whose hypotheses are independently
-available.
+\[
+|0-2|\,|1-3|=|0-1|\,|2-3|+|1-2|\,|3-0|=4.
+\]
+
+**Project relevance:** `CURRENT_CONSUMERS_UNVERIFIED`.
+
+**Exact scope:** The circularity concerns using the equality itself without an
+independent derivation.
+
+**Not ruled out:** A strict Ptolemy inequality, a comparison derived from convex
+order, or a different four-point identity with independently available
+hypotheses.
 
 ### 6.2 Topological and crossing-count traps
 
-**Verdict:** `INSUFFICIENT_ALONE` for the recorded arms.
+**Assessment:** `INSUFFICIENT_ALONE` for the recorded graph definitions and
+inequalities.
 
-The historical experiments found that:
+**Evidence:** `HISTORICAL_ONLY` for the computations and graph instances;
+`PROSE_CHECKED` for the warning that generic chord crossings are not geometric
+contradictions.
 
-- one symmetrized graph contains a forced `K_{2,3}` and hence is not outerplanar;
-- assuming ordinary planarity yields only a weak cardinality bound;
-- the tested Melchior regime does not cover the relevant radii;
-- generic chord crossings are not contradictions.
+The old experiments report that one symmetrized graph contains a forced
+`K_{2,3}` and is not outerplanar, ordinary planarity gives only a weak bound, the
+tested Melchior regime misses the relevant radii, and generic chord crossings do
+not violate convexity.
 
-**Exact scope:** Those graph definitions and those numerical inequalities do not
-force the disputed circle incidence.
+**Project relevance:** `STALE_STATUS` / `CURRENT_CONSUMERS_UNVERIFIED`.
 
-**Not ruled out:** A different graph, a topological obstruction carrying metric
-labels, pseudoline arrangements with additional incidence restrictions, or a
-special-family theorem. No complexity-theoretic conclusion follows.
+**Exact scope:** Those graph constructions and scalar inequalities do not force
+the disputed circle incidence.
+
+**Not ruled out:** A different graph, metric-labelled topology, pseudoline
+arrangements with additional incidence restrictions, or a theorem for a special
+family. No complexity conclusion follows.
 
 ### 6.3 Self-stress and sign-mix route
 
-**Verdict:** `INSUFFICIENT_ALONE` for the recorded linearized stress model.
+**Assessment:** `INSUFFICIENT_ALONE` for the recorded linearized stress model.
 
-The source-level experiments did not force the desired incidence into the tested
-Jacobian row space, and the sampled sign region was large. Those facts may refute
-a particular stress ansatz.
+**Evidence:** `HISTORICAL_ONLY` for the Jacobian, sampling, and Gröbner
+experiments; `VERIFIED_INLINE` for the two logical corrections below.
 
-The old rationale was incorrect in two ways:
+The old rationale contained two invalid universal claims:
 
-1. convex-position sign conditions are determinant-sign inequalities in point
+1. convex-position conditions are determinant-sign inequalities in point
    coordinates, not globally an intersection of linear half-spaces there;
-2. even open inequalities can select a component of an algebraic set on which an
-   equality holds. For example, on `xy = 0`, the condition `x > 0` forces `y = 0`.
+2. open inequalities can select an algebraic component on which an equality
+   holds. On the variety `xy=0`, the condition `x>0` forces `y=0`.
 
-**Exact scope:** The recorded stress dimension, sign pattern, and Gröbner
-reduction do not force the target.
+Thus stress dimension and a large sampled sign region may defeat a particular
+ansatz, but they do not prove that no stress or polyhedral-lift argument can force
+the incidence.
 
-**Not ruled out:** Metric-labeled stresses, component-sensitive arguments,
-prestress stability, rank defects, or a polyhedral lift with additional
-planarity/incidence hypotheses.
+**Project relevance:** `STALE_STATUS` / `CURRENT_CONSUMERS_UNVERIFIED`.
+
+**Exact scope:** The recorded row-space, sign pattern, and reduction do not force
+the target.
+
+**Not ruled out:** Metric-labelled stresses, component-sensitive arguments,
+prestress stability, rank defects, or a lift carrying additional incidence
+hypotheses.
 
 ### 6.4 Faithful all-vertex construction
 
-**Verdict:** `EQUIVALENT_TO_FULL_PROBLEM`, not dead.
+**Assessment:** `DIRECT_FULL_PROBLEM_ROUTE`, not dead.
+
+**Evidence:** `SOURCE_CHECKED` against the pinned-multiplicity formulation and
+`VERIFIED_INLINE` for the logical classification.
 
 A strict-convex finite set satisfying the full per-vertex K4 property is an Erdős
-97 counterexample. Constructing one solves the problem negatively. It is not a
-shortcut to a local historical producer, but it remains a complete and valid
-research lane.
+97 counterexample. Constructing one settles the problem negatively. Proving that
+no such set exists settles the pinned-multiplicity formulation positively. Either
+is substantive full-problem progress, even though neither is a shortcut to a
+historical local producer.
 
 The naïve variable-minus-equation count `-n-3` is only an expected-dimension
-heuristic. Without an independence or transversality theorem it does not prove
-inconsistency, point collapse, or zero-dimensionality. Exact computations at
-selected small sizes establish only the encoded cases actually checked.
+heuristic. Without an independence, regularity, or transversality theorem it does
+not prove inconsistency, point collapse, or zero-dimensionality. Exact
+computations at selected small sizes establish only the encoded cases checked.
 
-The current project bounds should be stated with their trust tiers:
+At the audited baseline the project reports:
 
-- avoiding compiler trust, every counterexample has at least `10` points;
-- the sorry-free exact-ten and exact-eleven certificate endpoints strengthen the
-  project bound to `12`, using `Lean.ofReduceBool` and `Lean.trustCompiler`.
+- every counterexample has at least `10` points without compiler trust;
+- the exact-ten and exact-eleven certificate endpoints strengthen the bound to
+  `12` under the project's approved compiler-trust policy.
 
-**Reopen condition:** Any exact full configuration or a certified nonexistence
-argument is substantive progress. Do not present either outcome as prohibited by
-this registry.
+**Project relevance:** A direct research lane; current publish-spine consumers
+are a separate question.
 
----
+**Reopen condition:** Any exact construction, certified nonexistence theorem, or
+new structural reduction is valid progress and must not be rejected by this
+registry.
 
 ## 7. Historical N4d `q' = E` sign-block routes
 
-**Cluster status:** Historical. The finite nine-point endpoint was closed by a
-different pin-clash route. These entries record exact failed formulations, not a
-live frontier.
+**Cluster status:** Historical. The imported log reports that the finite
+nine-point endpoint was closed by a different pin-clash route. These entries are
+not a live frontier.
 
 ### 7.1 Closed-cone sign block for `0 ≤ f1 f2`
 
-**Verdict:** `CERTIFICATE_CONE_IMPOSSIBLE` for the exact recorded Putinar-style
-closed cone; the actual analytic crux is `FORMALLY_CLOSED` by a different proof.
+**General assessment:** `CERTIFICATE_CLASS_IMPOSSIBLE` if a target-negative point
+satisfying every weak closed generator is checked.
 
-The weak closed hypothesis set contains degenerate boundary strata incompatible
-with the target sign. Consequently no sum-of-squares identity in that exact cone
-can certify the target at any degree. The eventual theorem
-`qEqE_oneCosine_crux` uses an analytic order argument instead.
+**Evidence for the general implication:** `VERIFIED_INLINE`, by the same
+quadratic-module evaluation argument as §4.2.
 
-**Exact scope:** Do not rerun `nlinarith`, SDP, or SOS on the same weak generators
-and target polynomial.
+**Assessment of the historical boundary strata:**
+`REPORTED_RESULT_UNVERIFIED`.
 
-**Not ruled out:** A strict or saturated certificate with genuine nonvanishing
-hypotheses. In practice the target is already closed, so such work has no known
-consumer.
+**Evidence:** `HISTORICAL_ONLY`; the complete generators and boundary witness were
+not replayed in this pass.
+
+**Assessment of the eventual analytic crux:** `REPORTED_RESULT_UNVERIFIED`.
+
+**Evidence:** `HISTORICAL_ONLY`; the imported log names `qEqE_oneCosine_crux`,
+but this pass did not independently locate or axiom-audit it.
+
+**Project relevance:** `STALE_STATUS` / `CURRENT_CONSUMERS_UNVERIFIED`.
+
+**Exact scope:** After replay, the boundary witness would rule out only the exact
+weak unsaturated cone. It would not rule out a strict or saturated certificate.
+The analytic route is the recorded replacement.
 
 ### 7.2 `reflPt v2 v3 q` as an upper witness
 
-**Verdict:** `FALSE_EXACT` for the historical orientation claim.
+**Assessment:** `REPORTED_RESULT_UNVERIFIED`.
 
-The recorded source refutation shows that this reflection selects the lower
-partner rather than the required upper cap point in the relevant packet. The
-reflection across a different line may produce an upper point, but it is not the
-same construction.
+**Evidence:** `HISTORICAL_ONLY`. The old source report says this reflection selects
+the lower partner rather than the required upper cap point, but the exact packet
+and orientation computation were not replayed here.
 
-**Exact scope:** Do not substitute `reflPt v2 v3 q` for the named cap vertex whose
-side relation is actually available.
+**Project relevance:** `STALE_STATUS` / `CURRENT_CONSUMERS_UNVERIFIED`.
+
+**Exact scope:** Do not treat the historical report as a permanent exact witness
+until restored. Do not substitute this reflection for a cap vertex unless its
+side relation is proved in the current orientation convention.
+
+**Not ruled out:** Reflection across a different line or a separately proved
+upper-point construction.
 
 ### 7.3 The `hAElt` and Φ sign routes
 
-**Verdict:** `FALSE_EXACT` for the proposed `hAElt` implication and
-`INSUFFICIENT_ALONE` for the attempted Φ clash.
+**Assessment:** `REPORTED_RESULT_UNVERIFIED` for the proposed `hAElt`
+implication; `INSUFFICIENT_ALONE` for the attempted Φ clash.
 
-Membership `b2 ∈ I2` supplies the bound against the appropriate cap endpoint; it
-does not supply the stronger comparison with `v2` required by `hAElt`. The
-historical counterexample separates those statements. For a genuine distinct I3
-pair, the available cap-order theorem gives the opposite Φ sign, so the desired
-nonnegative sign cannot be imported from the false keystone.
+**Evidence:** `HISTORICAL_ONLY`. The reported counterexample and exact cap-order
+sign calculations were not restored in this pass.
 
-**Exact scope:** Do not derive `hAElt` from bare I2 membership or use its impossible
-sign as a producer.
+The structural issue is clear: membership `b2 ∈ I2` supplies a comparison with
+the relevant cap endpoint, not automatically the stronger comparison with `v2`
+required by `hAElt`. A downstream sign cannot be imported from an unproved
+keystone.
+
+**Project relevance:** `STALE_STATUS` / `CURRENT_CONSUMERS_UNVERIFIED`.
+
+**Exact scope:** Do not derive `hAElt` from bare I2 membership.
+
+**Reopen condition:** Restore the exact witness or prove the stronger comparison
+from additional source hypotheses.
 
 ### 7.4 Shared-circle transfer and the small-s claim
 
-**Shared-circle verdict:** `HYPOTHESIS_MISMATCH`. The theorem
-`SharedCirclePointForcesV3` uses a unit-radius equilateral coincidence absent from
-the b2 rows. It cannot be transferred merely because another point lies on one
-of the circles.
+**Shared-circle assessment:** `HYPOTHESIS_MISMATCH`.
 
-The historical finite endpoint shell also has no generic “no five concyclic”
-field. A contradiction must terminate in an actual packet hypothesis such as
+**Evidence:** `PROSE_CHECKED`. `SharedCirclePointForcesV3` uses a unit-radius
+equilateral coincidence absent from the historical b2 rows. Another point lying
+on one of the circles does not supply the missing hypotheses.
+
+The historical finite endpoint shell also had no generic “no five concyclic”
+hypothesis; any contradiction must terminate in an actual packet field such as
 disk exit, cardinality, distinctness, or convex position.
 
-**Small-s verdict:** `FALSE_EXACT` for the stated uniform convex-position-only
-closure. The historical exact strict-convex in-disk completion at
-`v3 = (1,3/4)`, `s = 3/4` satisfies the recorded b2 pins.
+**Small-s assessment:** `REPORTED_RESULT_UNVERIFIED`.
 
-**Exact scope:** The witness refutes the exact uniform claim and the sampled
-threshold that produced the earlier false UNSAT impression.
+**Evidence:** `HISTORICAL_ONLY`. The old log reports an exact strict-convex
+in-disk completion at `v3=(1,3/4)`, `s=3/4`, but the full model was not replayed.
 
-**Not ruled out:** Stronger packets with additional row incidence or a
-machine-checked continuum argument for a differently stated threshold.
+**Project relevance:** `STALE_STATUS` / `CURRENT_CONSUMERS_UNVERIFIED`.
 
----
+**Exact scope:** The shared-circle theorem is inapplicable as recorded. The
+small-s uniform claim should be treated as unresolved until the witness is
+restored.
+
+**Not ruled out:** Stronger row incidence or an independently checked continuum
+argument for a different threshold.
 
 ## 8. U-series assembly and retired local architectures
 
@@ -797,241 +1050,311 @@ corrected below.
 
 ### 8.1 U4c bridge through MEC-boundary cap points
 
-**Verdict:** `FALSE_EXACT` for the bridge asserting that the relevant cap points
-are automatically on the MEC boundary; `HYPOTHESIS_MISMATCH` for any downstream
-use requiring that bridge.
+Two levels must be distinguished.
 
-The corrected cap convention in §2.2 applies. The normalized
-`ApexApolloniusArc` framework may retain valid formal content, but it does not
-turn an endpoint-erased cap into a subset of the MEC circle.
+**Bare target:** Chord-side cap membership together with distinctness from the
+two cap endpoints implies MEC-boundary membership.
 
-**Exact scope:** The specific c4b/c4c/c4d transport through that false boundary
-bridge is blocked.
+**Assessment:** `FALSE_EXACT`.
 
-**Not ruled out:** U4 arguments using genuine apex-circle equations, Apollonius
-arcs, or separately proved boundary membership.
+**Evidence:** `VERIFIED_INLINE`, using the perturbed dodecagon in §2.2. The moved
+point has the same cap-side and endpoint-erasure data as before, remains a strict
+convex-hull vertex, and has norm `9/10` in a unit minimum enclosing disk.
+
+**Historical U4 transport target:** Derive MEC-boundary membership for the
+named cap points from the full U4 packet and its additional hypotheses.
+
+**Assessment of the recorded bridge:** `HYPOTHESIS_MISMATCH`.
+
+**Assessment of the full target:** `UNRESOLVED`, not `FALSE_EXACT` absent a
+witness satisfying the full U4 packet.
+
+**Evidence:** `SOURCE_CHECKED` for the definitions: `OnArcOpposite` is only a
+chord-side predicate and `capInteriorByIndex` only erases endpoints. The material
+audited here did not supply or cite a separately checked boundary theorem for the
+recorded transport.
+
+**Project relevance:** `STALE_STATUS` / `CURRENT_CONSUMERS_UNVERIFIED`.
+
+**Exact scope:** The bare chord-side-plus-endpoint-distinctness implication to
+MEC-boundary membership is refuted. A theorem over the full U4 or
+`SurplusCapPacket` structure is not refuted
+unless every additional field is included in the proof analysis or a checked
+structure-level counterexample.
+
+**Not ruled out:** U4 arguments using genuine apex-circle equations,
+Apollonius arcs, or separately proved MEC-boundary membership.
 
 ### 8.2 U3d affine-form dictionary
 
-**Verdict:** `BLOCKED_BY_SPEC_MISMATCH`.
+**Assessment:** `BLOCKED_BY_SPEC_MISMATCH`.
 
-The named affine-form reductions may be formal once a coordinate dictionary is
-assumed, but the historical prose did not fully recover the `q`-coupling shift or
-state consistent coordinates for all named points.
+**Evidence:** `HISTORICAL_ONLY` for the old dictionary audit.
 
-**Exact scope:** Do not cite the source identities as project theorems until the
-packet-to-dictionary theorem is written and checked.
+The affine-form identities may be valid once a coordinate dictionary is fixed,
+but the historical prose did not fully recover the `q`-coupling shift or state
+consistent coordinates for all named points.
+
+**Project relevance:** `STALE_STATUS` / `CURRENT_CONSUMERS_UNVERIFIED`.
+
+**Exact scope:** Do not cite the coordinate identities as project theorems until a
+single packet-to-dictionary statement is checked.
 
 **Reopen condition:** Pin the coordinates and squared-distance dictionary in one
-canonical statement, then prove that the project packet supplies it.
+canonical theorem and prove the source packet supplies it.
 
 ### 8.3 U5 Mode-A finite certificate proposal
 
-**Verdict:** `OFF_CURRENT_SPINE` / `HYPOTHESIS_MISMATCH` for the historical
-certificate proposal, not a mathematical impossibility theorem.
+**Assessment:** `HYPOTHESIS_MISMATCH` for the historical certificate proposition;
+no impossibility theorem for certificate methods.
+
+**Evidence:** `HISTORICAL_ONLY` for the old consumer audit.
 
 The proposed AP≥3 certificate had the wrong polarity for the desired positive
 removability disjunct and no verified consumer. Cyclotomic-algebraic coordinates
-also made a direct finite `decide` replay unsuitable in the proposed form.
+also made the proposed direct finite `decide` replay unsuitable in that form.
 
-**Exact scope:** Do not build that exact certificate bank merely because it
-proves a negative statement that the consumer does not use.
+**Project relevance:** `STALE_STATUS` / `CURRENT_CONSUMERS_UNVERIFIED`.
 
-**Not ruled out:** A certificate whose proposition matches a current consumer,
-or a geometric proof of the inline `hExist` target.
+**Exact scope:** Do not build that exact bank merely because it proves a negative
+statement unused by the consumer.
+
+**Not ruled out:** A certificate whose proposition matches a current consumer or
+a geometric proof of the actual inline existence target.
 
 ### 8.4 U5d wall-crack and U3d redirect
 
-**Verdict:** `INSUFFICIENT_ALONE` for the destroyed-class fifth-member route.
+**Assessment:** `INSUFFICIENT_ALONE` for the destroyed-class fifth-member route.
 
-If the relevant class has been proved to have cardinality exactly four, a route
-that requires a fifth member of that same class is impossible under those
-hypotheses. That observation does not show that every redirect is impossible.
+**Evidence:** `VERIFIED_INLINE`. If a named distance class has been proved to have
+cardinality exactly four, no fifth distinct member can be drawn from that same
+class under the same hypotheses.
 
-**Exact scope:** Do not draw the new witness from the exact-four class whose
-membership is already saturated.
+**Project relevance:** `STALE_STATUS` / `CURRENT_CONSUMERS_UNVERIFIED`.
 
-**Not ruled out:** A surviving class, a different center, a common-deletion row,
-or a new global incidence theorem.
+**Exact scope:** Do not source a new witness from the already saturated exact-four
+class.
+
+**Not ruled out:** A surviving class, different center, common-deletion row, or a
+new global incidence theorem.
 
 ### 8.5 U5dd NEW-2, NEW-3, and NEW-1
 
-- **NEW-2:** `CIRCULAR` where “saturation” is merely a restatement of the desired
-  equality or class membership.
-- **NEW-3:** `CONJECTURED`, not closed. The old proof used the invalid inference
+- **NEW-2 — Assessment:** `CIRCULAR` where “saturation” is merely a restatement
+  of the desired equality or class membership. **Evidence:** `PROSE_CHECKED`.
+- **NEW-3 — Assessment:** `UNRESOLVED`. The old closure used the invalid inference
   that a positive-dimensional order stratum cannot lie in an equality locus.
-  Positive dimension alone does not prevent an equality from holding identically
-  on a component. NEW-3 requires an explicit admissible point with `Δ ≠ 0`, a
-  component/density argument, or an exact elimination certificate before it can
-  be called dead.
-- **NEW-1:** Historical global incidence target. The naïve first-moment incidence
-  count is `INSUFFICIENT_ALONE`; stronger metric-rank or multi-center formulations
-  remain outside that verdict.
+  **Evidence:** `VERIFIED_INLINE` for the defect: the positive-dimensional set
+  `{(x,y): x>0, y=0}` lies entirely in the equality locus `y=0`. NEW-3 requires an
+  admissible point with `Δ≠0`, a component/density proof, or exact elimination.
+- **NEW-1 — Assessment:** `INSUFFICIENT_ALONE` for the naïve first-moment
+  incidence count. **Evidence:** `HISTORICAL_ONLY` for the particular numeric
+  ledger. Metric-rank and multi-center formulations remain outside the result.
+
+**Project relevance:** `STALE_STATUS` / `CURRENT_CONSUMERS_UNVERIFIED`.
 
 ### 8.6 U1m two-circle producer
 
-**Verdict:** `FORMALLY_CLOSED` for the named sink theorem if its exact hypotheses
-are supplied; `INSUFFICIENT_ALONE` for the opposed-row data as a feeder.
+**Sink assessment:** `REPORTED_RESULT_UNVERIFIED` when its exact two-circle
+hypotheses are supplied.
 
+**Evidence:** `HISTORICAL_ONLY`; the named sink was not independently located or
+axiom-audited in this pass.
+
+**Feeder assessment:** `INSUFFICIENT_ALONE` for the historical opposed-row data.
 Cap membership alone does not produce the second circle incidence required by
-the sink. The historical “cross-blocking coincidence is likely false” is only
-`CONJECTURED` unless an exact counterexample is attached.
+the sink.
+
+The statement “cross-blocking coincidence is likely false” remains
+`UNRESOLVED`; no exact current witness was attached.
+
+**Project relevance:** `STALE_STATUS` / `CURRENT_CONSUMERS_UNVERIFIED`.
 
 **Not ruled out:** A producer carrying a genuine second circle, radical-axis data,
 or power-rank support.
 
 ### 8.7 U3 placeholder saturation object
 
-**Verdict:** `STALE` and source-level `INSUFFICIENT_ALONE`.
+**Assessment:** `BLOCKED_BY_SPEC_MISMATCH` and `INSUFFICIENT_ALONE` for the
+historical placeholder definitions.
 
-The historical `U3ShortCapSaturation` placeholder used definitions that collapsed
-to trivial values because their arguments were ignored. Under those definitions,
-the node was definitionally equivalent to its parent goal rather than a genuine
-reduction.
+**Evidence:** `HISTORICAL_ONLY` unless the old definitions are restored in a
+current source file.
 
-**Durable lesson:** Unfold every placeholder structure before treating it as a
-smaller theorem. A renamed parent goal is not progress.
+The reported `U3ShortCapSaturation` object ignored load-bearing arguments and
+unfolded to a trivial or parent-equivalent proposition. Renaming the parent goal
+is not a reduction.
+
+**Project relevance:** `STALE_STATUS`.
+
+**Durable lesson:** Unfold every placeholder structure and compare the resulting
+proposition with its parent before assigning proof work.
 
 ### 8.8 Order-residual SAT mining
 
-**Verdict:** Mixed:
+**Assessment:** Mixed:
 
 - consumer-only UNSAT on an unproducible refinement — `INSUFFICIENT_ALONE`;
-- UNSAT whose core relies on the relaxed circumcenter proxy —
-  `ENCODING_UNSOUND`;
-- the unresolved full producer system — `ENCODING_TIMEOUT`.
+- UNSAT whose core uses a relaxed circumcenter proxy — `ENCODING_UNSOUND`;
+- unresolved full producer formula — `ENCODING_TIMEOUT`.
 
-A refinement of a `True` placeholder must be both strong enough to contradict the
-consumer and derivable from the source packet. Strengthening only the consumer
-side can make UNSAT easier while making the producer false.
+**Evidence:** `HISTORICAL_ONLY` / `SOLVER_RESULT_UNREPLAYED`.
 
-**Exact scope:** Reject any mined clause whose leave-one-out core depends on a
-proxy not implied by the project hypotheses. Respect the target cardinality and
-mode; a model at the wrong size may belong to a different branch.
+A mined refinement must be both strong enough to contradict the consumer and
+derivable from the source packet. Strengthening only the consumer side can make
+UNSAT easier while making the producer false. A model at the wrong cardinality or
+mode may belong to another branch.
 
----
+**Project relevance:** `STALE_STATUS` / `CURRENT_CONSUMERS_UNVERIFIED`.
+
+**Exact scope:** Reject clauses whose UNSAT core depends on an unproved proxy or
+wrong-size model. No general ban on SAT mining follows.
 
 ## 9. Historical U1k counting kernels
 
 ### 9.1 Cap-restricted `card = 4`
 
-**Verdict:** `STALE` / `HYPOTHESIS_MISMATCH`.
+**Assessment:** `HYPOTHESIS_MISMATCH`.
+
+**Evidence:** `HISTORICAL_ONLY` for the old rescoping audit.
 
 The exact-four statement belongs to the A-indexed distance class, not to a
-cap-restricted class already known to have at most two points. The historical
-rescoping to `exactClassA` is the correct repair.
+cap-restricted object already known to have at most two points. The historical
+repair was to state it on `exactClassA`.
 
-**Exact scope:** Do not reintroduce `card = 4` on the cap-restricted object.
+**Project relevance:** `STALE_STATUS`.
+
+**Exact scope:** Do not reintroduce `card=4` on the cap-restricted class.
 
 ### 9.2 U1K4 second-cross-edge route
 
-**Verdict:** `INSUFFICIENT_ALONE` for the historical survivor-counting argument;
-`STALE` for the claim that U1K4 is an independent unconditional obligation.
+**Assessment:** `INSUFFICIENT_ALONE` for the historical survivor count;
+`BLOCKED_BY_SPEC_MISMATCH` for the measureless self-descent.
 
-The old bucket counts and cover inequalities did not force a second cross edge,
-and the proposed self-similar descent lacked a well-founded measure and base
-case. That does not prove that no survivor bound exists under a stronger packet.
+**Evidence:** `HISTORICAL_ONLY` for the bucket ledger; `PROSE_CHECKED` for the
+need for a well-founded measure and base case.
 
-**Exact scope:** Do not assert unconditional a4c/a4d existence from the old U1a–U1d
-counts or repeat the measureless self-reference.
+The old cover inequalities did not force a second cross edge, and the proposed
+self-reference did not establish strict descent.
+
+**Project relevance:** `STALE_STATUS` / `CURRENT_CONSUMERS_UNVERIFIED`.
+
+**Exact scope:** Do not assert unconditional a4c/a4d existence from the old
+U1a–U1d counts or repeat the same self-reference.
+
+**Not ruled out:** A stronger source packet, a new survivor bound, or a genuine
+well-founded descent.
 
 ### 9.3 U1K3 usable-continuation route
 
-**Verdict:** Historical mixed status; do not preserve the old “three open
+**Assessment:** `REPORTED_RESULT_UNVERIFIED` for the historical one-hit screen
+UNSAT; `INSUFFICIENT_ALONE` for the old scalar pigeonhole argument.
+
+**Evidence:** `HISTORICAL_ONLY` / `SOLVER_RESULT_UNREPLAYED`. The cited
+`scripts/u1k3-metric-certs/` path is absent at the audited baseline, so neither
+the exact formula nor a certificate was replayed.
+
+**Project relevance:** `STALE_STATUS`; do not preserve the old “three open
 obligations” roster.
 
-The historical exact-real encoding under `scripts/u1k3-metric-certs/` reportedly
-forced a one-hit screen bound. Unless an independently replayed certificate is
-attached, record that result as
-`SOLVER_UNSAT_EXACT_ENCODING`, not as a permanent theorem-family ban. It refutes
-the particular scalar pigeonhole proposal only if the encoding exactly matches
-the source packet.
+**Exact scope:** The “three candidates beat two slots” count does not close a
+packet in which the relevant screen intersection is at most one. The reported
+solver result cannot be a permanent family ban until restored.
 
-**Exact scope:** The old “three candidates beat two slots” count cannot close a
-model in which the screen intersection is at most one for the stated reason.
-
-**Not ruled out:** A different screen object, a source theorem proving stronger
-availability, an order-sensitive continuation, or a current descendant with
-additional rows. Check current status rather than carrying forward the old `(e)`
-and `(s)` priority labels.
-
----
+**Not ruled out:** A different screen object, a stronger source theorem,
+order-sensitive continuation, or a current descendant with additional rows.
 
 ## 10. Re-architecture, deletion, algebra, and blocker-graph routes
 
 ### 10.1 Historical U-lane re-architecture grading
 
-**Verdict:** `STALE` for the blanket grading of routes (a), (c), (d), (e), and
-(g) as dead.
+**Assessment:** `UNRESOLVED`; the blanket grading of routes (a), (c), (d),
+(e), and (g) as dead is not established.
 
-Several grades relied on the invalid NEW-3 positive-dimension argument. Those
-routes must be re-evaluated from their exact statements. A route that merely
-renames an unresolved equality is still `INSUFFICIENT_ALONE`; a route that adds a
-new component-sensitive, rank, or deletion-coupling theorem is not covered by the
-old verdict.
+**Evidence:** `VERIFIED_INLINE` for the defect in the NEW-3
+positive-dimension argument; other route-specific observations retain their own
+evidence tiers.
 
-**Exact scope:** Preserve only independently valid sub-findings, such as the
-slackness of a stated first-moment bound or an explicit counterexample to a named
-local lemma.
+A route that only renames an unresolved equality remains
+`INSUFFICIENT_ALONE`. A route adding component-sensitive algebra, rank coupling,
+or deletion synchronization is not covered by the old grading.
+
+**Project relevance:** `STALE_STATUS`.
+
+**Exact scope:** Preserve only independently valid sub-findings, such as a checked
+counterexample to a named lemma or slack in an explicitly written count.
 
 ### 10.2 Gamma multi-deletion descent
 
-**Verdict:** `REDUCED_TO_GLOBAL_CLOSURE`, not `PROVEN-dead`.
+**Assessment:** `REDUCED_TO_GLOBAL_CLOSURE`, not dead.
 
-Deleting additional points cannot restore a lost witness class at a center that
-remains in the carrier. But a simultaneous deletion may also delete that
-obstructing center. The exact validity condition for a deletion set `X` is:
+**Evidence:** `VERIFIED_INLINE` for the deletion condition and logical limitation;
+`SOURCE_CHECKED` for the existence of current two-deletion/common-deletion
+machinery at the audited baseline.
+
+Deleting more points cannot restore a destroyed witness row at a center that
+survives. But a simultaneous deletion may also delete the obstructing center. For
+`X⊆A`, preservation of the per-vertex K4 property on `A\X` requires
 
 \[
 \forall p\in A\setminus X\;\exists r>0:
 \bigl|T_A(p,r)\setminus X\bigr|\ge4.
 \]
 
-A blocker relation can organize failures of currently selected exact-four rows:
-when `X` destroys such a row at `p`, either `p` must also be deleted or another
-row surviving all of `X` must be produced. Joint deletion can destroy a larger
-class even when no single deleted point does, so closure must be checked against
-`X` as a whole.
+A selected exact-four row destroyed by `X` therefore creates a closure
+obligation: delete its center too, or produce another row surviving all of `X`.
+The set `X` must be checked jointly; a larger class can be destroyed by several
+deletions even when no one deletion destroys it.
 
-The monotonicity observation proves only that naïve sequential deletion does not
-repair a killed **surviving** center. It does not prove that no proper
-blocker-closed deletion set exists.
+**Project relevance:** `CURRENT_CONSUMERS_VERIFIED` at the audited baseline in the
+sense that the publish frontier included a Two-deletion cluster. This does not say
+the historical Gamma formulation itself is a current leaf.
 
-**Exact scope:** The historical Gamma construction that retains all selected
-obstructing centers does not improve the one-deletion problem.
+**Exact scope:** The monotonicity observation alone does not validate a Gamma
+construction that retains its selected obstructing centers: every such surviving
+center still needs an alternate row that survives the whole deletion set.
 
 **Not ruled out:** Sink components, Hall-deficient blocker sets, common-deletion
-closures, or simultaneous deletion packets that absorb the obstructing centers.
-The current source contains multi-deletion and common-deletion machinery, so no
-unqualified ban belongs here.
+closures, or simultaneous deletion packets absorbing the obstructing centers.
 
 ### 10.3 Beta foreign-smaller-witness proposal
 
-**Verdict:** `CONJECTURED`.
+**Assessment:** `UNRESOLVED`.
 
-No recorded construction supplied the required foreign witness without
-reintroducing the metric incidence problem. Absence of such a construction is not
-a proof of nonexistence.
+**Evidence:** `HISTORICAL_ONLY`. No recorded construction supplied the required
+foreign witness without reintroducing the metric incidence problem, but absence
+of a construction is not a nonexistence proof.
 
-**Reopen condition:** Give a precise construction and verify every convexity,
-cardinality, and per-vertex K4 obligation in the smaller carrier.
+**Project relevance:** `STALE_STATUS` / `CURRENT_CONSUMERS_UNVERIFIED`.
+
+**Reopen condition:** Give a precise construction and check convexity,
+cardinality, distinctness, and every per-vertex K4 obligation in the smaller
+carrier.
 
 ### 10.4 Complex Gröbner bases with square slack
 
-**Verdict:** `HYPOTHESIS_MISMATCH` for using the exact complex-field slack
-encoding as a representation of a real sign condition.
+**Assessment:** `ENCODING_UNSOUND` when the complex-field square-slack equation is
+used as an encoding of a real sign condition.
 
-If an inequality is represented over `ℂ` by adjoining `s² = r-g(p)`, then every
-complex value of `r-g(p)` has a square root. The slack equation therefore does not
-encode the real sign restriction. Complex emptiness cannot be inferred from a
-purely real inequality obstruction by this device.
+**Evidence:** `VERIFIED_INLINE`.
 
-**Exact scope:** Do not use ordinary complex Gröbner emptiness of that slackened
-system as a proof of real infeasibility.
+If a real inequality is represented over `ℂ` by
 
-**Not ruled out:** Real quantifier elimination, cylindrical algebraic
-decomposition, real radicals/preorderings, or exact sign determination on a
-zero-dimensional real variety.
+\[
+s^2=r-g(p),
+\]
+
+then every complex value of `r-g(p)` has a square root. The equation imposes no
+real nonnegativity condition. Consequently, ordinary complex Gröbner emptiness of
+that slackened system cannot certify infeasibility whose only obstruction is a
+real sign inequality.
+
+**Project relevance:** `CURRENT_CONSUMERS_UNVERIFIED`.
+
+**Exact scope:** The no-go concerns that exact complex encoding.
+
+**Not ruled out:** Real quantifier elimination, CAD, real radicals or preorderings,
+or exact sign determination on a zero-dimensional real variety.
 
 ### 10.5 The `D14` Cramer identity
 
@@ -1042,214 +1365,274 @@ D14=4640\,\delta_0\delta_1\delta_2\,
 \operatorname{SignedArea}(O_0,O_1,O_2).
 \]
 
-**Verdict:** `FORMAL_CORE_ONLY` for the identity; `FALSE_EXACT` for the
-leaf-local forcing claim if the recorded witness satisfies the exact local
-system.
+**Identity assessment:** `REPORTED_RESULT_UNVERIFIED`; the imported log
+reports a formal algebraic core.
 
-**Nondegeneracy correction:** The biconditional
+**Evidence:** `HISTORICAL_ONLY`; the exact declaration and axiom closure were not
+independently located or replayed in this pass.
+
+The biconditional
 
 \[
 D14=0\iff O_0,O_1,O_2\text{ are collinear}
 \]
 
-requires `δ0 δ1 δ2 ≠ 0`. Without those hypotheses, `D14 = 0` also follows from a
-zero denominator factor.
+requires `δ0δ1δ2≠0`. Without that nondegeneracy, `D14=0` may come from any zero
+factor `δi`; calling these “denominator factors” is justified only if the
+coordinate derivation has separately defined them that way.
 
-The historical witness `D14 = 603` shows that the leaf-local equations do not
-force the determinant to vanish. It does not show that the full global row web
-cannot force it.
+**Leaf-local forcing assessment:** `REPORTED_RESULT_UNVERIFIED`.
 
-**Exact scope:** Do not reattempt the same local forcing or claim the unqualified
-biconditional.
+**Evidence:** `HISTORICAL_ONLY` for the reported witness `D14=603`; its exact
+coordinates and source-packet checker were not recovered.
 
-**Not ruled out:** Full-web elimination, nonzero-denominator saturation, a rank
-proof, or a different minor whose support is controlled globally.
+**Project relevance:** `STALE_STATUS` / `CURRENT_CONSUMERS_UNVERIFIED`.
+
+**Exact scope:** Do not claim the unqualified biconditional. Do not use the
+historical `603` value as a permanent local counterexample until replayed.
+
+**Not ruled out:** Full-web elimination, saturation by the nonzero `δi`, a rank
+proof, or another minor whose support is globally controlled.
 
 ### 10.6 Additive descent measures
 
-**Verdict:** `INSUFFICIENT_ALONE` for the recorded additive/first-moment
+**Assessment:** `INSUFFICIENT_ALONE` for the recorded additive and first-moment
 potentials.
 
-The flat indegree vector and the tight-class-member count show that the tested
-scalar measures do not decrease independently of the missing compatibility
-statement. This does not quantify over every possible well-founded state.
+**Evidence:** `HISTORICAL_ONLY` for the flat-indegree and tight-class ledgers.
+
+Those examples show that the tested scalar quantities do not decrease without
+the missing compatibility theorem. They do not quantify over every well-founded
+state.
+
+**Project relevance:** `STALE_STATUS` / `CURRENT_CONSUMERS_UNVERIFIED`.
 
 **Exact scope:** Do not repeat the exact additive potential or a cosmetic
-renaming of it.
+renaming.
 
-**Not ruled out:** Lexicographic measures, multiset orders, nonadditive potentials,
+**Not ruled out:** Lexicographic or multiset orders, nonadditive potentials,
 finite closure ranks, component size, rank deficiency, or a proof that a proper
-blocker-closed subset strictly shrinks.
+blocker-closed subset shrinks.
 
 ### 10.7 Bare outdegree-one blocker graph
 
-**Verdict:** `INSUFFICIENT_ALONE` for the unlabeled functional graph;
-`REOPEN_WITH_NEW_COUPLING` for enriched blocker graphs.
+**Assessment:** `INSUFFICIENT_ALONE` for an unlabeled functional blocker graph.
 
-Selecting one dangerous center per deletion-failing vertex guarantees a directed
-cycle, but the bare cycle identifies only which centers interact. It does not
-supply the cross-incidence or fifth circle member needed for contradiction. The
-local cycle-plus-vesica packet is satisfiable under the recorded hypotheses.
+**Evidence:** `VERIFIED_INLINE` that choosing one blocker per failing deletion
+produces a directed cycle in a finite functional graph; `HISTORICAL_ONLY` for the
+reported local cycle-plus-vesica models.
+
+A bare cycle says which centers interact. It does not supply cross-incidence,
+exact row membership, a fifth circle member, or a metric contradiction.
+
+**Project relevance:** `CURRENT_CONSUMERS_UNVERIFIED`; current source uses richer
+blocker rows and common-deletion data, so no blanket blocker-graph ban is valid.
 
 **Exact scope:** Pigeonhole, cycle length, and unlabeled exact-four cardinality do
-not by themselves imply a small-cardinality bound.
+not by themselves imply a small-cardinality contradiction.
 
-**Not ruled out:** Cycles carrying exact row membership, omission labels, radius
-inequalities, angular midpoint equations, Kalmanson comparisons, radical-axis
-signs, power-matrix support, or common-deletion data. The old sentence “the
-blocker digraph is just `(Q)`” should be read only as a criticism of the bare
-unlabeled reduction.
-
-The historical two-cycle vesica equalities may be valid under their precise row
-hypotheses. The further claim that every bare two-cycle is incompatible with
-strict convexity remained conjectural and must not be promoted without a proof.
+**Not ruled out:** Radius labels, exact rows, omission labels, angular equations,
+Kalmanson comparisons, radical-axis signs, power-matrix support, or
+common-deletion coupling. The historical claim that every bare two-cycle is
+incompatible with strict convexity remains `UNRESOLVED`.
 
 ### 10.8 Angle-2 firewall curve identity
 
-**Verdict:** `CONJECTURED` as currently documented; upgrade to
-`FORMAL_CORE_ONLY` only if a precise classification theorem or independently
-checked certificate is attached. A successful global firewall is
-`EQUIVALENT_TO_FULL_PROBLEM`.
+**Classification assessment:** `UNRESOLVED` as documented.
 
-The old text did not define the admissible curve class, regularity assumptions,
-or functional identity needed to justify “firewall curves are exactly parabolas.”
-At most, the recorded search supports uniqueness inside its degree-four root-set
-ansatz unless a classification theorem is attached.
+**Evidence:** `HISTORICAL_ONLY`. The old text did not define the admissible curve
+class, regularity assumptions, or functional equation needed to prove “the
+firewall curves are exactly parabolas.” At most it reported uniqueness inside a
+particular degree-four root-set ansatz.
 
 Likewise, “no quantity is simultaneously per-vertex and radius-free” is not a
 well-formed theorem without a defined class of quantities.
 
-A firewall showing that no strict-convex all-vertex-K4 configuration exists proves
-Erdős 97 directly. It may bypass the removable-vertex architecture, but it is not
-a mathematical dead end.
+**Global-firewall assessment:** `DIRECT_FULL_PROBLEM_ROUTE`.
+
+**Evidence:** `SOURCE_CHECKED` against the pinned-multiplicity formulation. A
+firewall proving that no strict-convex all-vertex-K4 configuration exists proves
+Erdős 97 directly.
+
+**Project relevance:** `CURRENT_CONSUMERS_UNVERIFIED`; the mathematical
+route remains valid regardless of its current spine position.
+
+**Exact scope:** Do not cite the undocumented curve search as a universal
+classification or no-go theorem.
 
 ### 10.9 Retired U2 opposite-cap vocabulary
 
-**Verdict:** `OFF_CURRENT_SPINE` / `STALE` as a live target.
+**Assessment:** No mathematical assessment; this is a project-status record.
 
-The attic declarations were retired because they had no verified external
-consumer and the active packet vocabulary was rederived elsewhere. Their
-mathematical statements were not thereby proved false or closed.
+**Evidence:** `SOURCE_CHECKED` for the README's broad statement that former
+shared-radius and LIVE-Q/C declarations were bypassed and retired rather than
+individually proved; `HISTORICAL_ONLY` for the exact composition and zero-reference
+audit of the older attic bundle.
 
-**Rule:** Do not resurrect the exact attic declarations as purported live leaves.
-If their content is needed, restate it in the current packet vocabulary and prove
-the source-to-packet bridge.
+**Project relevance:** `STALE_STATUS` / `OFF_SPINE_AT_BASELINE`.
+
+The exact attic declarations are reported retired because the caller and packet
+vocabulary changed. Retirement does not prove their statements false or true.
+
+**Rule:** Do not resurrect the exact attic declarations as purported current
+leaves. Restate needed content in current vocabulary and prove the source bridge.
 
 ### 10.10 Card12Up uniform equality/separator language
 
-**Verdict:** `FALSE_IN_RECORDED_RELAXATION`.
+**Reported target:** Uniform contradiction from the recorded circle equalities,
+separator/noncollinearity data, exact-four rows, and listed row decorations.
 
-The stored W15/W16 lattice and concentric-ring witnesses in
-`scratch/d3-formulation/` refute the exact uniform statements consisting of the
-recorded circle equalities, separator or noncollinearity data, exact-four row
-conditions, and listed row decorations. The exact controls include
-`t1_results.json`, the `t9_wit_*.json` ring witnesses, and the `candidateB/` row
-embedding audit. The witnesses are nonconvex, so they do not refute the source
-Lean leaves carrying `ConvexIndep`.
+**Assessment:** `REPORTED_RESULT_UNVERIFIED` in this audit.
 
-**Exact scope:** Do not retry the same equality/separator-only language, or the
-same row-decorated extension, and expect a uniform ideal-theoretic emptiness
-certificate. The stored witnesses must remain positive controls for any new
-encoding.
+**Evidence:** `REPOSITORY_ARTIFACT_UNREPLAYED`. The audited repository contains
+`scratch/d3-formulation/` artifacts including `t1_results.json`,
+`t9_wit_*.json`, verification scripts, and `candidateB/`. This pass confirmed
+their presence but did not replay every witness and checker.
+
+The stored witnesses are reported nonconvex. Even after replay they would refute
+only the exact equality/separator relaxation, not source Lean leaves carrying
+`ConvexIndep`.
+
+**Project relevance:** `CURRENT_CONSUMERS_UNVERIFIED`.
+
+**Exact scope:** Preserve the artifacts as mandatory positive controls. Upgrade
+to `FALSE_IN_RECORDED_RELAXATION` only after the exact formulas and witnesses are
+replayed under a pinned checker.
 
 **Not ruled out:** Kalmanson inequalities, circular split weights, convex-order
-signs in a lifted representation, MEC support, Euclidean-distance-matrix PSD/rank,
-power-matrix rank, or multi-center coupling. The old phrase “every
-equality/separator-shaped statement” was too broad; only statements expressible
-in the exact recorded language are refuted.
+signs, MEC support, EDM PSD/rank, power-matrix rank, or multi-center coupling.
 
 ### 10.11 Per-type minimal-window exclusions
 
-**Verdict:** `FALSE_EXACT` for excluding each of the thirteen realized decorated
-single-center types; `INSUFFICIENT_ALONE` for the recorded composition scheme.
+**Reported result:** Thirteen of nineteen decorated single-center local types are
+realized by exact rational witnesses, and the recorded token-composition system
+retains global survivors.
 
-Exact rational witnesses recorded under `census/candidate_d_probe/` realize
-thirteen of the nineteen tested local types, so no single-center dead-type bank
-can cover them. Independently, the `q2_results_*` token composition admits
-survivors even after the conjectured/proved local kills are inserted. The later
-exact SUB2-H closure strengthens the local admissibility filters but does not
-remove those composition survivors.
+**Assessment:** `REPORTED_RESULT_UNVERIFIED` in this audit;
+`INSUFFICIENT_ALONE` for the reported single-center composition scheme.
 
-**Exact scope:** Do not redispatch a single-center minimal-window exclusion for a
-stored realized type, and do not assume that the existing local kill list composes
-to a global contradiction.
+**Evidence:** `REPOSITORY_ARTIFACT_UNREPLAYED`. The audited repository contains
+`census/candidate_d_probe/`, witness JSON, checker material, and a state ledger
+reporting the thirteen exact realizations. This pass confirmed the artifacts but
+did not rerun the complete witness and composition checkers.
+
+**Project relevance:** `CURRENT_CONSUMERS_UNVERIFIED`.
+
+**Exact scope:** After replay, a realized type cannot be excluded by the same
+single-center predicate. The existing local kill list still would not be assumed
+to compose to a global contradiction without a separate theorem.
 
 **Not ruled out:** Two-center or larger windows, common-deletion coupling,
-cross-row support rank, or a new global composition theorem. Preserve the exact
-stored witnesses as regression tests.
+cross-row support rank, or a new composition theorem.
 
----
+**Reopen condition:** Replay and digest every witness/checker before upgrading the
+entry to `FALSE_EXACT` for the precise local exclusions.
 
 ## 11. Maintenance rules and durable reopen conditions
 
-### 11.1 Statements that remain safely barred in their exact form
+### 11.1 Statements safely barred now
 
-The following are well scoped and should not be repeated unchanged:
+The following conclusions have source-level or inline support strong enough to
+bar their exact forms without relying on missing historical artifacts:
 
-- treating cap membership as circle membership;
-- inferring strict MEC-disk membership from `capInteriorByIndex` alone;
-- the exact Build-B apex monotonicity lemma refuted by an exact witness;
-- the exact Framing-2 inner-product inequality refuted by `u0`;
-- using Ptolemy equality itself to prove the same concyclicity it characterizes;
-- ordinary complex Gröbner plus square slack as an encoding of real sign
+- cap membership alone supplies no circle equation;
+- unfolding `capInteriorByIndex` alone supplies no radial equality or strict
+  inequality;
+- the bare chord-side-plus-endpoint-erasure implication to MEC-boundary
+  membership is false by the perturbed dodecagon in §2.2;
+- the b1a1M on-sphere transport cannot be applied without a genuine common sphere
+  centered at a separate `O` and the required chord-side/turn hypothesis;
+- Ptolemy equality cannot be used solely to prove the same concyclicity it
+  characterizes, with the stated nondegeneracy and order caveats;
+- ordinary complex Gröbner plus square slack does not encode real sign
   infeasibility;
-- bare chirotopes with no metric lift;
-- the exact unsaturated closed quadratic modules containing a target-negative
-  closure point;
-- the exact nonconvex equality/separator relaxations with stored witnesses;
-- single-center local type exclusions for types already exactly realized;
-- placeholder “reductions” that unfold to the parent goal.
+- positive dimension alone does not show that an equality is unforced;
+- the unqualified `D14=0`/circumcenter-collinearity biconditional is invalid
+  without `δ0δ1δ2≠0`;
+- the crude coverage inequality `|A|≤4|N|` supplies only a lower bound on the
+  number of centers and, beyond aggregate repeated membership, no specified or
+  geometrically useful overlap;
+- placeholder “reductions” that unfold to the parent goal are not reductions.
 
-### 11.2 Routes that were previously overclosed
+These are narrow statements. Each may be escaped by adding a genuinely new
+hypothesis or coupling that changes the exact proposition.
 
-The following must not be rejected merely by citing the historical log:
+### 11.2 Claims retained only as regression leads
+
+The following historical reports are **not** permanent bans at this baseline
+because the exact witness, generator list, solver input, or checker was absent or
+unreplayed:
+
+- the U1.3 midpoint countermodel;
+- the weak local Build-B Frame-I model;
+- the b1a1M and N4d target-negative quadratic-module closure points;
+- the Framing-2 `u0` packet;
+- the local vesica model;
+- the reflection, `hAElt`, Φ, and small-s counterexamples;
+- the U1K3 one-hit solver result;
+- the `D14=603` local witness;
+- the d3 nonconvex witness bank and the candidate-d exact local-type bank, until
+  their repository checkers are replayed.
+
+Before relying on one, restore or run the exact artifact and record its digest,
+checker version, source-packet contract, and result.
+
+### 11.3 Routes previously overclosed
+
+Do not reject the following merely by citing an old universal slogan:
 
 - explicit-class QF_NRA after new source reductions;
 - strict or saturated real-algebraic certificates;
 - circle-power, bisector-rank, EDM, Kalmanson, or other metric lifts;
 - minimality coupled to exact rows and deletion synchronization;
-- metric-labeled blocker cycles;
+- metric-labelled blocker cycles;
 - simultaneous deletion through a proper blocker-closed set;
 - component-sensitive stress or rank arguments;
 - convexity-coupled uniform algebra;
+- normalized N8a3 Route A and its still-needed vocabulary bridge;
 - faithful construction of a counterexample;
-- a direct firewall proof of the headline theorem;
-- any route whose only old no-go was the positive-dimension argument.
+- a direct firewall proof;
+- any route whose only old no-go was the positive-dimensional-stratum argument.
 
-### 11.3 Entry update checklist
+### 11.4 Promotion checklist
 
-Before changing an entry to `FALSE_EXACT`, `FORMALLY_CLOSED`, or
-`CERTIFICATE_CONE_IMPOSSIBLE`, verify all of the following:
+Before upgrading an entry to `FALSE_EXACT`, `PROVED_EXACT`,
+`CERTIFICATE_CLASS_IMPOSSIBLE`, or `FALSE_IN_RECORDED_RELAXATION`, verify all of
+the following:
 
-- the exact proposition is written with quantifiers and nondegeneracy hypotheses;
+- the exact proposition is written with quantifiers, object types, order
+  conventions, positivity assumptions, and nondegeneracy hypotheses;
 - the witness or proof satisfies the **source** packet, not a relaxed proxy;
-- every packet-to-coordinate transport is formal or explicitly marked prose;
-- exact solver branches are separated from timeouts and numerical models;
+- every packet-to-coordinate transport is formal or explicitly separated;
+- the exact artifact is present, hashed, and independently replayed;
+- solver version, command, timeout, and full formula are pinned;
+- UNSAT has a checked certificate or is labelled unreplayed;
+- a Lean theorem's `#print axioms` closure is recorded;
+- current consumers were regenerated from the audited source;
 - the conclusion does not quantify over a larger method family than the evidence;
-- current consumers were checked from the current source;
-- a full-problem route is not mislabeled dead merely because it bypasses the
-  current spine.
+- a direct full-problem route is not mislabeled dead because it bypasses the
+  current architecture.
 
-### 11.4 Suggested machine-readable entry template
+### 11.5 Entry template
 
 ```markdown
 ### <route name>
 
-**Exact target:** <quantified proposition or Lean declaration>
+**Exact target:** <quantified proposition or named Lean declaration>
 
-**Verdict:** `<status>`
+**Assessment:** `<mathematical assessment>`
 
-**Evidence:** `<LEAN | EXACT_CERT | EXACT_WITNESS | EXACT_SOLVER | PROSE |
-NUMERICAL | HISTORICAL>` — <theorem/artifact/command>
+**Evidence:** `<evidence tier>` — <theorem/artifact/command/version/digest>
+
+**Project relevance:** `<relevance status>` — <consumers; checked commit/date>
 
 **Exact scope:** <what is ruled out>
 
 **Not ruled out:** <nearby stronger or differently coupled formulations>
 
-**Current consumers:** <symbols or none; checked YYYY-MM-DD>
-
 **Reopen condition:** <specific new ingredient>
 ```
 
-This format is the guardrail against converting “the recorded bare formulation
+This format is the guardrail against turning “the recorded bare formulation
 failed” into “the entire mathematical mechanism is dead.”
+
