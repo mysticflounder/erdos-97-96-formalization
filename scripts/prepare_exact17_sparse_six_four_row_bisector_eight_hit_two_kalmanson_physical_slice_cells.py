@@ -82,39 +82,34 @@ HARDENED_PREPARER_PATH = (
 )
 VARIABLE_MAP_PATH = ROOT / "census/p97_search/waves/exact17/child40/variable-map.json"
 CHECKPOINT_PATH = ROOT / f".codex/worktree-checkpoints/{LANE_ID}.json"
+PREPARER_PATH = Path(__file__).resolve()
+TEST_PATH = ROOT / (
+    "scripts/test_prepare_exact17_sparse_six_four_row_bisector_"
+    "eight_hit_two_kalmanson_physical_slice_cells.py"
+)
+PRODUCTION_CONFIG_RELATIVE = Path(
+    "census/p97_search/waves/exact17/eight-hit-two-kalmanson-preparation-config.json"
+)
+PRODUCTION_CONFIG_PATH = ROOT / PRODUCTION_CONFIG_RELATIVE
+PRODUCTION_CONFIG_SCHEMA = "p97-exact17-eight-hit-two-kalmanson-preparation-config/v1"
 
-EXPECTED_SOURCE_SHA256 = (
-    "c68589ba81c52099f0653b9d960dd9373179042d6dd87e3679416965525c05c1"
-)
-EXPECTED_ROOT_SOURCE_SHA256 = (
-    "56aa28b8ce567ff9ce6d5e84d669279dff2ea957c5649ed36cda9b79161088bb"
-)
-EXPECTED_EXPORTER_SHA256 = (
-    "6e54467dd4e1e5c948a3ddd593bbb3604c3f8f6507f6705e75a0c72f14c2ae76"
-)
-EXPECTED_ORIGINAL_PARENT_EXPORTER_SHA256 = (
-    "2846ef4ee73017ff65a0aaf610dd99ab41385c3789059babddc76edb304e56d9"
-)
-EXPECTED_DELEGATED_PREPARER_SHA256 = (
-    "cd1e278842fec2be41ff728dd6a012a4a701ef387b388736935f842ea5bc62c2"
-)
-EXPECTED_DELEGATED_PREPARER_BYTES = 36_146
-EXPECTED_HARDENED_PREPARER_SHA256 = (
-    "6fefaa650e82014b9c7f7a218ccb08209ad446500ed2feb49ec036891a10a298"
-)
-EXPECTED_HARDENED_PREPARER_BYTES = 26_066
-DELEGATED_PREPARER_COMMIT = "7097f6541bea6bc667b27786f2d57673610c59fc"
-HARDENED_PREPARER_COMMIT = "7097f6541bea6bc667b27786f2d57673610c59fc"
-EXPECTED_VARIABLE_MAP_SHA256 = (
-    "78df650209311154e9a5fb6fdb88b6e532acaa624b7789d3028434c05e38e63f"
-)
-EXPECTED_CHECKPOINT_SHA256 = (
-    "f17e74ab071a793872c48b18f2debf4c171fb342121260d7978cc24acd4aff32"
-)
-EXPECTED_CHECKPOINT_MANIFEST_SHA256 = (
-    "e21cbe64c5f65b40219a3e518cce176e6aaf84462182822e52bb31828ae239c3"
-)
-PINNED_SOURCE_COMMIT = "7097f6541bea6bc667b27786f2d57673610c59fc"
+# These globals are populated only while an authenticated external production
+# config is retained.  Keeping them provisional in the checked-in code avoids
+# the impossible cycle of embedding this file's own exact digest in itself.
+EXPECTED_SOURCE_SHA256 = ""
+EXPECTED_ROOT_SOURCE_SHA256 = ""
+EXPECTED_EXPORTER_SHA256 = ""
+EXPECTED_ORIGINAL_PARENT_EXPORTER_SHA256 = ""
+EXPECTED_DELEGATED_PREPARER_SHA256 = ""
+EXPECTED_DELEGATED_PREPARER_BYTES = 0
+EXPECTED_HARDENED_PREPARER_SHA256 = ""
+EXPECTED_HARDENED_PREPARER_BYTES = 0
+DELEGATED_PREPARER_COMMIT = ""
+HARDENED_PREPARER_COMMIT = ""
+EXPECTED_VARIABLE_MAP_SHA256 = ""
+EXPECTED_CHECKPOINT_SHA256 = ""
+EXPECTED_CHECKPOINT_MANIFEST_SHA256 = ""
+PINNED_SOURCE_COMMIT = ""
 PRODUCTION_PINS_FINALIZED = False
 REGISTERED_GENERATED_ROOT = ""
 
@@ -161,6 +156,7 @@ ROOT_PRODUCER_SCHEMA = (
 PreparationError = accepted.PreparationError
 _CONFIGURATION_LOCK = threading.RLock()
 _ACTIVE_SUPPORT = threading.local()
+_ACTIVE_PRODUCTION = threading.local()
 
 
 def _anchor(info: os.stat_result) -> tuple[int, int, int, int, int, int, int]:
@@ -1236,6 +1232,273 @@ def _is_full_sha1(value: str) -> bool:
     return len(value) == 40 and all(c in "0123456789abcdef" for c in value)
 
 
+def _require_exact_keys(value: Any, expected: set[str], label: str) -> dict[str, Any]:
+    if not isinstance(value, dict) or set(value) != expected:
+        raise PreparationError(f"{label} keys drifted")
+    return value
+
+
+def _require_string(value: Any, label: str) -> str:
+    if not isinstance(value, str) or not value:
+        raise PreparationError(f"{label} must be a nonempty string")
+    return value
+
+
+def _require_sha256(value: Any, label: str) -> str:
+    result = _require_string(value, label)
+    if len(result) != 64 or any(
+        character not in "0123456789abcdef" for character in result
+    ):
+        raise PreparationError(f"{label} is not a full SHA-256")
+    return result
+
+
+def _require_positive_int(value: Any, label: str) -> int:
+    if type(value) is not int or value <= 0:
+        raise PreparationError(f"{label} must be a positive integer")
+    return value
+
+
+def _validate_artifact_pin(value: Any, label: str) -> dict[str, Any]:
+    pin = _require_exact_keys(value, {"path", "sha256", "bytes"}, label)
+    _require_string(pin["path"], f"{label}.path")
+    _require_sha256(pin["sha256"], f"{label}.sha256")
+    _require_positive_int(pin["bytes"], f"{label}.bytes")
+    return pin
+
+
+def _validate_production_config_payload(value: Any) -> dict[str, Any]:
+    config = _require_exact_keys(
+        value,
+        {
+            "schema",
+            "lane_id",
+            "base_head",
+            "generated_root",
+            "source_commit",
+            "target_code",
+            "support",
+        },
+        "production config",
+    )
+    if config["schema"] != PRODUCTION_CONFIG_SCHEMA:
+        raise PreparationError("production config schema drifted")
+    if config["lane_id"] != LANE_ID or config["base_head"] != BASE_HEAD:
+        raise PreparationError("production config lane or base-head drifted")
+    _require_string(config["generated_root"], "production config generated_root")
+    source_commit = _require_string(
+        config["source_commit"], "production config source_commit"
+    )
+    if not _is_full_sha1(source_commit):
+        raise PreparationError("production config source_commit is not full")
+    target = _require_exact_keys(
+        config["target_code"], {"commit", "preparer", "test"}, "target_code"
+    )
+    target_commit = _require_string(target["commit"], "target_code.commit")
+    if not _is_full_sha1(target_commit):
+        raise PreparationError("target_code.commit is not full")
+    _validate_artifact_pin(target["preparer"], "target_code.preparer")
+    _validate_artifact_pin(target["test"], "target_code.test")
+    support = _require_exact_keys(
+        config["support"],
+        {
+            "source",
+            "root_source",
+            "exporter",
+            "original_parent_exporter",
+            "delegated_preparer",
+            "hardened_preparer",
+            "variable_map",
+            "checkpoint",
+        },
+        "support",
+    )
+    for label in (
+        "source",
+        "root_source",
+        "exporter",
+        "original_parent_exporter",
+        "variable_map",
+    ):
+        _validate_artifact_pin(support[label], f"support.{label}")
+    for label in ("delegated_preparer", "hardened_preparer"):
+        pin = _require_exact_keys(
+            support[label], {"path", "sha256", "bytes", "commit"}, f"support.{label}"
+        )
+        _require_string(pin["path"], f"support.{label}.path")
+        _require_sha256(pin["sha256"], f"support.{label}.sha256")
+        _require_positive_int(pin["bytes"], f"support.{label}.bytes")
+        commit = _require_string(pin["commit"], f"support.{label}.commit")
+        if not _is_full_sha1(commit):
+            raise PreparationError(f"support.{label}.commit is not full")
+    checkpoint = _require_exact_keys(
+        support["checkpoint"],
+        {"path", "sha256", "bytes", "manifest_sha256"},
+        "support.checkpoint",
+    )
+    _require_string(checkpoint["path"], "support.checkpoint.path")
+    _require_sha256(checkpoint["sha256"], "support.checkpoint.sha256")
+    _require_positive_int(checkpoint["bytes"], "support.checkpoint.bytes")
+    _require_sha256(checkpoint["manifest_sha256"], "support.checkpoint.manifest_sha256")
+    return config
+
+
+def _read_committed_blob(repo_root: Path, commit: str, relative_path: str) -> bytes:
+    if not _is_full_sha1(commit):
+        raise PreparationError("committed blob pin is not a full commit")
+    try:
+        kind = subprocess.run(
+            ["git", "cat-file", "-t", commit],
+            cwd=repo_root,
+            check=True,
+            capture_output=True,
+        )
+        blob = subprocess.run(
+            ["git", "show", f"{commit}:{relative_path}"],
+            cwd=repo_root,
+            check=True,
+            capture_output=True,
+        ).stdout
+    except (OSError, subprocess.CalledProcessError) as error:
+        raise PreparationError("committed blob is unavailable") from error
+    if kind.stdout != b"commit\n":
+        raise PreparationError("committed blob pin is not a commit")
+    return blob
+
+
+@dataclass
+class _ProductionConfig:
+    value: dict[str, Any]
+    commit: str
+    custody: _PinnedInput
+
+    @property
+    def sha256(self) -> str:
+        return self.custody.sha256
+
+    @property
+    def bytes(self) -> int:
+        return self.custody.identity[4]
+
+    def verify(self) -> bytes:
+        return self.custody.verify()
+
+    def close(self) -> None:
+        self.custody.close()
+
+    def provenance(self, repo_root: Path) -> dict[str, Any]:
+        return {
+            "schema": PRODUCTION_CONFIG_SCHEMA,
+            "path": _repo_relative(repo_root, self.custody.path),
+            "commit": self.commit,
+            "sha256": self.sha256,
+            "bytes": self.bytes,
+            "target_code": self.value["target_code"],
+        }
+
+
+def _load_production_config(
+    repo_root: Path,
+    config_path: Path,
+    config_commit: str,
+    committed_blob_reader: Any = _read_committed_blob,
+) -> _ProductionConfig:
+    expected_path = repo_root / PRODUCTION_CONFIG_RELATIVE
+    if config_path.resolve(strict=False) != expected_path.resolve(strict=False):
+        raise PreparationError("production config path is not the fixed governed path")
+    if not _is_full_sha1(config_commit):
+        raise PreparationError("production config commit is not full")
+    committed = committed_blob_reader(
+        repo_root, config_commit, PRODUCTION_CONFIG_RELATIVE.as_posix()
+    )
+    custody = _PinnedInput.capture(
+        config_path, "production config", sha256_bytes(committed)
+    )
+    try:
+        live = custody.verify()
+        if live != committed:
+            raise PreparationError("production config differs from committed blob")
+        try:
+            parsed = json.loads(live)
+        except (UnicodeDecodeError, json.JSONDecodeError) as error:
+            raise PreparationError("production config is not valid JSON") from error
+        config = _validate_production_config_payload(parsed)
+        if config_commit == config["target_code"]["commit"]:
+            raise PreparationError(
+                "production config and target code form a self-cycle"
+            )
+        if live != canonical_json_bytes(config):
+            raise PreparationError("production config is not canonical JSON")
+        return _ProductionConfig(config, config_commit, custody)
+    except BaseException:
+        custody.close()
+        raise
+
+
+def _active_production() -> _ProductionConfig:
+    config = getattr(_ACTIVE_PRODUCTION, "config", None)
+    if not isinstance(config, _ProductionConfig):
+        raise PreparationError("authenticated production config is not active")
+    config.verify()
+    return config
+
+
+@contextmanager
+def _configured_production(config: _ProductionConfig) -> Iterator[None]:
+    support = config.value["support"]
+    replacements = {
+        "EXPECTED_SOURCE_SHA256": support["source"]["sha256"],
+        "EXPECTED_ROOT_SOURCE_SHA256": support["root_source"]["sha256"],
+        "EXPECTED_EXPORTER_SHA256": support["exporter"]["sha256"],
+        "EXPECTED_ORIGINAL_PARENT_EXPORTER_SHA256": support["original_parent_exporter"][
+            "sha256"
+        ],
+        "EXPECTED_DELEGATED_PREPARER_SHA256": support["delegated_preparer"]["sha256"],
+        "EXPECTED_DELEGATED_PREPARER_BYTES": support["delegated_preparer"]["bytes"],
+        "EXPECTED_HARDENED_PREPARER_SHA256": support["hardened_preparer"]["sha256"],
+        "EXPECTED_HARDENED_PREPARER_BYTES": support["hardened_preparer"]["bytes"],
+        "DELEGATED_PREPARER_COMMIT": support["delegated_preparer"]["commit"],
+        "HARDENED_PREPARER_COMMIT": support["hardened_preparer"]["commit"],
+        "EXPECTED_VARIABLE_MAP_SHA256": support["variable_map"]["sha256"],
+        "EXPECTED_CHECKPOINT_SHA256": support["checkpoint"]["sha256"],
+        "EXPECTED_CHECKPOINT_MANIFEST_SHA256": support["checkpoint"]["manifest_sha256"],
+        "PINNED_SOURCE_COMMIT": config.value["source_commit"],
+        "PRODUCTION_PINS_FINALIZED": True,
+        "REGISTERED_GENERATED_ROOT": config.value["generated_root"],
+    }
+    names = tuple(replacements)
+    previous = {name: globals()[name] for name in names}
+    with _CONFIGURATION_LOCK:
+        if getattr(_ACTIVE_PRODUCTION, "config", None) is not None:
+            raise PreparationError("nested production config is forbidden")
+        _ACTIVE_PRODUCTION.config = config
+        try:
+            globals().update(replacements)
+            config.verify()
+            yield
+        finally:
+            globals().update(previous)
+            _ACTIVE_PRODUCTION.config = None
+
+
+def verify_committed_target_blobs(
+    repo_root: Path,
+    config: _ProductionConfig,
+    preparer_path: Path,
+    test_path: Path,
+    committed_blob_reader: Any = _read_committed_blob,
+) -> None:
+    target = config.value["target_code"]
+    for role, path in (("preparer", preparer_path), ("test", test_path)):
+        pin = target[role]
+        relative = _repo_relative(repo_root, path)
+        if pin["path"] != relative:
+            raise PreparationError(f"target {role} path drifted")
+        blob = committed_blob_reader(repo_root, target["commit"], relative)
+        if len(blob) != pin["bytes"] or sha256_bytes(blob) != pin["sha256"]:
+            raise PreparationError(f"target {role} committed blob drifted")
+
+
 def verify_committed_dependency_blobs(
     repo_root: Path,
     delegated_preparer_path: Path,
@@ -1341,9 +1604,8 @@ def _validate_checkpoint(
         raise PreparationError("checkpoint does not register the output root")
 
 
-def _validate_support(
+def _support_files(
     *,
-    repo_root: Path,
     source_path: Path,
     root_source_path: Path,
     exporter_path: Path,
@@ -1352,9 +1614,12 @@ def _validate_support(
     hardened_preparer_path: Path,
     variable_map_path: Path,
     checkpoint_path: Path,
-    output_root: Path,
-) -> dict[str, str]:
-    files = {
+    preparer_path: Path,
+    test_path: Path,
+) -> dict[str, tuple[Path, str]]:
+    production = _active_production()
+    target = production.value["target_code"]
+    return {
         "source": (source_path, EXPECTED_SOURCE_SHA256),
         "root_source": (root_source_path, EXPECTED_ROOT_SOURCE_SHA256),
         "exporter": (exporter_path, EXPECTED_EXPORTER_SHA256),
@@ -1372,7 +1637,42 @@ def _validate_support(
         ),
         "variable_map": (variable_map_path, EXPECTED_VARIABLE_MAP_SHA256),
         "checkpoint": (checkpoint_path, EXPECTED_CHECKPOINT_SHA256),
+        "preparer": (preparer_path, target["preparer"]["sha256"]),
+        "test": (test_path, target["test"]["sha256"]),
+        "production_config": (production.custody.path, production.sha256),
     }
+
+
+def _validate_support(
+    *,
+    repo_root: Path,
+    source_path: Path,
+    root_source_path: Path,
+    exporter_path: Path,
+    original_parent_exporter_path: Path,
+    delegated_preparer_path: Path,
+    hardened_preparer_path: Path,
+    variable_map_path: Path,
+    checkpoint_path: Path,
+    preparer_path: Path,
+    test_path: Path,
+    output_root: Path,
+) -> dict[str, str]:
+    production = _active_production()
+    target = production.value["target_code"]
+    support = production.value["support"]
+    files = _support_files(
+        source_path=source_path,
+        root_source_path=root_source_path,
+        exporter_path=exporter_path,
+        original_parent_exporter_path=original_parent_exporter_path,
+        delegated_preparer_path=delegated_preparer_path,
+        hardened_preparer_path=hardened_preparer_path,
+        variable_map_path=variable_map_path,
+        checkpoint_path=checkpoint_path,
+        preparer_path=preparer_path,
+        test_path=test_path,
+    )
     active = _active_support()
     temporary: _SupportCustody | None = None
     if active is None:
@@ -1388,28 +1688,31 @@ def _validate_support(
     finally:
         if temporary is not None:
             temporary.close()
-    preparer_path = Path(__file__).resolve()
-    if preparer_path.is_relative_to(repo_root):
-        preparer = _PinnedInput.capture(
-            preparer_path,
-            "preparer source",
-            _sha256_file(preparer_path),
-        )
-        try:
-            preparer.verify()
-            digests["preparer"] = preparer.sha256
-        finally:
-            preparer.close()
-    test_path = repo_root / (
-        "scripts/test_prepare_exact17_sparse_six_four_row_bisector_"
-        "eight_hit_two_kalmanson_physical_slice_cells.py"
-    )
-    preparer_relative = (
-        _repo_relative(repo_root, preparer_path)
-        if preparer_path.is_relative_to(repo_root)
-        else "scripts/prepare_exact17_sparse_six_four_row_bisector_"
-        "eight_hit_two_kalmanson_physical_slice_cells.py"
-    )
+    expected_paths = {
+        "source": source_path,
+        "root_source": root_source_path,
+        "exporter": exporter_path,
+        "original_parent_exporter": original_parent_exporter_path,
+        "delegated_preparer": delegated_preparer_path,
+        "hardened_preparer": hardened_preparer_path,
+        "variable_map": variable_map_path,
+        "checkpoint": checkpoint_path,
+    }
+    for label, path in expected_paths.items():
+        pin = support[label]
+        entry = active.entries[label]
+        if pin["path"] != _repo_relative(repo_root, path):
+            raise PreparationError(f"support.{label}.path drifted")
+        if pin["bytes"] != entry.identity[4]:
+            raise PreparationError(f"support.{label}.bytes drifted")
+    for label, path in (("preparer", preparer_path), ("test", test_path)):
+        pin = target[label]
+        entry = active.entries[label]
+        if pin["path"] != _repo_relative(repo_root, path):
+            raise PreparationError(f"target_code.{label}.path drifted")
+        if pin["bytes"] != entry.identity[4]:
+            raise PreparationError(f"target_code.{label}.bytes drifted")
+    preparer_relative = _repo_relative(repo_root, preparer_path)
     test_relative = _repo_relative(repo_root, test_path)
     try:
         checkpoint = json.loads(checkpoint_payload)
@@ -1419,7 +1722,11 @@ def _validate_support(
         raise PreparationError("lane checkpoint must be a JSON object")
     _validate_checkpoint(
         checkpoint,
-        {preparer_relative, test_relative},
+        {
+            preparer_relative,
+            test_relative,
+            PRODUCTION_CONFIG_RELATIVE.as_posix(),
+        },
         {
             _repo_relative(repo_root, delegated_preparer_path),
             _repo_relative(repo_root, hardened_preparer_path),
@@ -1467,6 +1774,10 @@ def build_delegated_dependency_manifest(
     }
 
 
+def build_production_config_manifest(repo_root: Path) -> dict[str, Any]:
+    return _active_production().provenance(repo_root)
+
+
 def build_producer(
     center: int,
     category: str,
@@ -1483,6 +1794,7 @@ def build_producer(
     parent_producer_sha256: str,
     parent_novelty: dict[str, Any],
     delegated_dependencies: dict[str, Any],
+    production_config: dict[str, Any],
 ) -> bytes:
     source = {
         "cardinality_scope": f"exactly 17 models in {category_id(center, category)}",
@@ -1498,6 +1810,10 @@ def build_producer(
         "delegated_dependencies": delegated_dependencies,
         "delegated_dependencies_sha256": sha256_bytes(
             canonical_json_bytes(delegated_dependencies)
+        ),
+        "production_config": production_config,
+        "production_config_sha256": sha256_bytes(
+            canonical_json_bytes(production_config)
         ),
     }
     return canonical_json_bytes(
@@ -1515,6 +1831,10 @@ def build_producer(
             "delegated_dependencies": delegated_dependencies,
             "delegated_dependencies_sha256": sha256_bytes(
                 canonical_json_bytes(delegated_dependencies)
+            ),
+            "production_config": production_config,
+            "production_config_sha256": sha256_bytes(
+                canonical_json_bytes(production_config)
             ),
             "producer_id": f"{category_id(center, category)}-v1",
             "producer_kind": "lean-exported-static-dimacs",
@@ -1563,6 +1883,10 @@ def build_root_producer(**kwargs: Any) -> bytes:
             "delegated_dependencies": kwargs["delegated_dependencies"],
             "delegated_dependencies_sha256": sha256_bytes(
                 canonical_json_bytes(kwargs["delegated_dependencies"])
+            ),
+            "production_config": kwargs["production_config"],
+            "production_config_sha256": sha256_bytes(
+                canonical_json_bytes(kwargs["production_config"])
             ),
             "checkpoint_path": kwargs["checkpoint_path"],
             "checkpoint_sha256": kwargs["checkpoint_sha256"],
@@ -1633,6 +1957,8 @@ def build_run_manifest(
     hardened_preparer_path: Path,
     variable_map_path: Path,
     checkpoint_path: Path,
+    preparer_path: Path,
+    test_path: Path,
 ) -> bytes:
     source_digests = {
         _repo_relative(repo_root, source_path): digests["source"],
@@ -1646,10 +1972,10 @@ def build_run_manifest(
         ],
         _repo_relative(repo_root, hardened_preparer_path): digests["hardened_preparer"],
         _repo_relative(repo_root, checkpoint_path): digests["checkpoint"],
+        _repo_relative(repo_root, preparer_path): digests["preparer"],
+        _repo_relative(repo_root, test_path): digests["test"],
+        PRODUCTION_CONFIG_RELATIVE.as_posix(): digests["production_config"],
     }
-    preparer_path = Path(__file__).resolve()
-    if "preparer" in digests and preparer_path.is_relative_to(repo_root):
-        source_digests[_repo_relative(repo_root, preparer_path)] = digests["preparer"]
     run = {
         "schema": "worktree-run-manifest/v1",
         "lane_id": LANE_ID,
@@ -1663,6 +1989,7 @@ def build_run_manifest(
             _repo_relative(repo_root, variable_map_path): digests["variable_map"]
         },
         "created_utc": "2026-08-21T00:00:00Z",
+        "production_config": build_production_config_manifest(repo_root),
     }
     run["manifest_sha256"] = sha256_bytes(canonical_json_bytes(run))
     return canonical_json_bytes(run)
@@ -1805,7 +2132,102 @@ def _configured_predecessor() -> Iterator[None]:
                 setattr(accepted, name, value)
 
 
-def initialize_run_root(
+@contextmanager
+def _production_session(
+    repo_root: Path,
+    production_config_path: Path,
+    production_config_commit: str,
+    config_blob_reader: Any,
+) -> Iterator[_ProductionConfig]:
+    config = _load_production_config(
+        repo_root,
+        production_config_path,
+        production_config_commit,
+        config_blob_reader,
+    )
+    try:
+        with _configured_production(config):
+            yield config
+    finally:
+        config.close()
+
+
+def _preflight_authenticated(
+    *,
+    repo_root: Path,
+    output_root: Path,
+    source_path: Path,
+    root_source_path: Path,
+    exporter_path: Path,
+    original_parent_exporter_path: Path,
+    delegated_preparer_path: Path,
+    hardened_preparer_path: Path,
+    variable_map_path: Path,
+    checkpoint_path: Path,
+    preparer_path: Path,
+    test_path: Path,
+    commit_verifier: Any,
+    dependency_commit_verifier: Any,
+    target_commit_verifier: Any,
+) -> dict[str, Any]:
+    root = repo_root.resolve(strict=True)
+    _require_production_configuration(root, output_root, PINNED_SOURCE_COMMIT)
+    support_files = _support_files(
+        source_path=source_path,
+        root_source_path=root_source_path,
+        exporter_path=exporter_path,
+        original_parent_exporter_path=original_parent_exporter_path,
+        delegated_preparer_path=delegated_preparer_path,
+        hardened_preparer_path=hardened_preparer_path,
+        variable_map_path=variable_map_path,
+        checkpoint_path=checkpoint_path,
+        preparer_path=preparer_path,
+        test_path=test_path,
+    )
+    with _retained_support(support_files) as custody:
+        digests = _validate_support(
+            repo_root=root,
+            source_path=source_path,
+            root_source_path=root_source_path,
+            exporter_path=exporter_path,
+            original_parent_exporter_path=original_parent_exporter_path,
+            delegated_preparer_path=delegated_preparer_path,
+            hardened_preparer_path=hardened_preparer_path,
+            variable_map_path=variable_map_path,
+            checkpoint_path=checkpoint_path,
+            preparer_path=preparer_path,
+            test_path=test_path,
+            output_root=output_root.resolve(strict=False),
+        )
+        custody.verify()
+        commit_verifier(
+            root,
+            PINNED_SOURCE_COMMIT,
+            (
+                source_path,
+                root_source_path,
+                exporter_path,
+                original_parent_exporter_path,
+                delegated_preparer_path,
+                hardened_preparer_path,
+            ),
+        )
+        custody.verify()
+        dependency_commit_verifier(
+            root, delegated_preparer_path, hardened_preparer_path
+        )
+        custody.verify()
+        target_commit_verifier(root, _active_production(), preparer_path, test_path)
+        custody.verify()
+        return {
+            "status": "PRODUCTION_PREFLIGHT_OK",
+            "source_commit": PINNED_SOURCE_COMMIT,
+            "production_config": build_production_config_manifest(root),
+            "support_sha256": digests,
+        }
+
+
+def _initialize_run_root_authenticated(
     *,
     output_root: Path,
     repo_root: Path = ROOT,
@@ -1817,6 +2239,8 @@ def initialize_run_root(
     hardened_preparer_path: Path = HARDENED_PREPARER_PATH,
     variable_map_path: Path = VARIABLE_MAP_PATH,
     checkpoint_path: Path = CHECKPOINT_PATH,
+    preparer_path: Path = PREPARER_PATH,
+    test_path: Path = TEST_PATH,
 ) -> dict[str, Any]:
     root = repo_root.resolve(strict=True)
     _require_production_configuration(root, output_root)
@@ -1831,6 +2255,8 @@ def initialize_run_root(
         hardened_preparer_path=hardened_preparer_path,
         variable_map_path=variable_map_path,
         checkpoint_path=checkpoint_path,
+        preparer_path=preparer_path,
+        test_path=test_path,
         output_root=output,
     )
     manifest = build_run_manifest(
@@ -1845,6 +2271,8 @@ def initialize_run_root(
         hardened_preparer_path=hardened_preparer_path,
         variable_map_path=variable_map_path,
         checkpoint_path=checkpoint_path,
+        preparer_path=preparer_path,
+        test_path=test_path,
     )
     try:
         _validate_governed_skeleton(output, manifest)
@@ -1859,7 +2287,7 @@ def initialize_run_root(
     return {"status": "RUN_ROOT_INITIALIZED", "run_manifest": json.loads(manifest)}
 
 
-def prepare_campaign(
+def _prepare_campaign_authenticated(
     *,
     source_commit: str,
     output_root: Path,
@@ -1872,33 +2300,29 @@ def prepare_campaign(
     hardened_preparer_path: Path = HARDENED_PREPARER_PATH,
     variable_map_path: Path = VARIABLE_MAP_PATH,
     checkpoint_path: Path = CHECKPOINT_PATH,
+    preparer_path: Path = PREPARER_PATH,
+    test_path: Path = TEST_PATH,
     lean_root_exporter: Any = run_lean_root_export,
     lean_exporter: Any = run_lean_export,
     commit_verifier: Any = accepted.verify_committed_support,
     dependency_commit_verifier: Any = verify_committed_dependency_blobs,
+    target_commit_verifier: Any = verify_committed_target_blobs,
 ) -> dict[str, Any]:
     root = repo_root.resolve(strict=True)
     _require_production_configuration(root, output_root, source_commit)
     output = output_root.resolve(strict=False)
-    support_files = {
-        "source": (source_path, EXPECTED_SOURCE_SHA256),
-        "root_source": (root_source_path, EXPECTED_ROOT_SOURCE_SHA256),
-        "exporter": (exporter_path, EXPECTED_EXPORTER_SHA256),
-        "original_parent_exporter": (
-            original_parent_exporter_path,
-            EXPECTED_ORIGINAL_PARENT_EXPORTER_SHA256,
-        ),
-        "delegated_preparer": (
-            delegated_preparer_path,
-            EXPECTED_DELEGATED_PREPARER_SHA256,
-        ),
-        "hardened_preparer": (
-            hardened_preparer_path,
-            EXPECTED_HARDENED_PREPARER_SHA256,
-        ),
-        "variable_map": (variable_map_path, EXPECTED_VARIABLE_MAP_SHA256),
-        "checkpoint": (checkpoint_path, EXPECTED_CHECKPOINT_SHA256),
-    }
+    support_files = _support_files(
+        source_path=source_path,
+        root_source_path=root_source_path,
+        exporter_path=exporter_path,
+        original_parent_exporter_path=original_parent_exporter_path,
+        delegated_preparer_path=delegated_preparer_path,
+        hardened_preparer_path=hardened_preparer_path,
+        variable_map_path=variable_map_path,
+        checkpoint_path=checkpoint_path,
+        preparer_path=preparer_path,
+        test_path=test_path,
+    )
     with _retained_support(support_files) as custody:
         digests = _validate_support(
             repo_root=root,
@@ -1910,11 +2334,14 @@ def prepare_campaign(
             hardened_preparer_path=hardened_preparer_path,
             variable_map_path=variable_map_path,
             checkpoint_path=checkpoint_path,
+            preparer_path=preparer_path,
+            test_path=test_path,
             output_root=output,
         )
         delegated_dependencies = build_delegated_dependency_manifest(
             root, delegated_preparer_path, hardened_preparer_path, digests
         )
+        production_config = build_production_config_manifest(root)
         run_manifest = build_run_manifest(
             root,
             output,
@@ -1927,6 +2354,8 @@ def prepare_campaign(
             hardened_preparer_path=hardened_preparer_path,
             variable_map_path=variable_map_path,
             checkpoint_path=checkpoint_path,
+            preparer_path=preparer_path,
+            test_path=test_path,
         )
         try:
             _validate_governed_skeleton(output, run_manifest)
@@ -1954,6 +2383,11 @@ def prepare_campaign(
             )
         finally:
             _verify_delegated_dependency_custody()
+        custody.verify()
+        try:
+            target_commit_verifier(root, _active_production(), preparer_path, test_path)
+        finally:
+            custody.verify()
 
         parent_root_path = output / "artifacts" / "cumulative-root.cnf"
         original_candidate_path = output / "tmp" / "original-four-row-parent.lean.cnf"
@@ -2026,6 +2460,7 @@ def prepare_campaign(
                 original_parent_exporter_sha256=digests["original_parent_exporter"],
                 parent_novelty=parent_novelty,
                 delegated_dependencies=delegated_dependencies,
+                production_config=production_config,
                 checkpoint_path=_repo_relative(root, checkpoint_path),
                 checkpoint_sha256=digests["checkpoint"],
                 variable_map_sha256=digests["variable_map"],
@@ -2116,6 +2551,7 @@ def prepare_campaign(
                         root_producer_sha256,
                         parent_novelty,
                         delegated_dependencies,
+                        production_config,
                     )
                     producer_path = directory / "producer-manifest.json"
                     _secure_write_once(producer_path, producer)
@@ -2203,6 +2639,10 @@ def prepare_campaign(
                     "delegated_dependencies_sha256": sha256_bytes(
                         canonical_json_bytes(delegated_dependencies)
                     ),
+                    "production_config": production_config,
+                    "production_config_sha256": sha256_bytes(
+                        canonical_json_bytes(production_config)
+                    ),
                 },
                 "cell_count": len(cells),
                 "cells": cells,
@@ -2227,6 +2667,10 @@ def prepare_campaign(
                 "delegated_dependencies": delegated_dependencies,
                 "delegated_dependencies_sha256": sha256_bytes(
                     canonical_json_bytes(delegated_dependencies)
+                ),
+                "production_config": production_config,
+                "production_config_sha256": sha256_bytes(
+                    canonical_json_bytes(production_config)
                 ),
                 "claims": campaign["claims"],
             }
@@ -2253,6 +2697,167 @@ def prepare_campaign(
             parent_root.close()
 
 
+def preflight_configuration(
+    *,
+    production_config_path: Path,
+    production_config_commit: str,
+    output_root: Path,
+    repo_root: Path = ROOT,
+    source_path: Path = SOURCE_PATH,
+    root_source_path: Path = ROOT_SOURCE_PATH,
+    exporter_path: Path = EXPORTER_PATH,
+    original_parent_exporter_path: Path = ORIGINAL_PARENT_EXPORTER_PATH,
+    delegated_preparer_path: Path = DELEGATED_PREPARER_PATH,
+    hardened_preparer_path: Path = HARDENED_PREPARER_PATH,
+    variable_map_path: Path = VARIABLE_MAP_PATH,
+    checkpoint_path: Path = CHECKPOINT_PATH,
+    preparer_path: Path = PREPARER_PATH,
+    test_path: Path = TEST_PATH,
+    config_blob_reader: Any = _read_committed_blob,
+    commit_verifier: Any = accepted.verify_committed_support,
+    dependency_commit_verifier: Any = verify_committed_dependency_blobs,
+    target_commit_verifier: Any = verify_committed_target_blobs,
+) -> dict[str, Any]:
+    root = repo_root.resolve(strict=True)
+    with _production_session(
+        root,
+        production_config_path,
+        production_config_commit,
+        config_blob_reader,
+    ):
+        return _preflight_authenticated(
+            repo_root=root,
+            output_root=output_root,
+            source_path=source_path,
+            root_source_path=root_source_path,
+            exporter_path=exporter_path,
+            original_parent_exporter_path=original_parent_exporter_path,
+            delegated_preparer_path=delegated_preparer_path,
+            hardened_preparer_path=hardened_preparer_path,
+            variable_map_path=variable_map_path,
+            checkpoint_path=checkpoint_path,
+            preparer_path=preparer_path,
+            test_path=test_path,
+            commit_verifier=commit_verifier,
+            dependency_commit_verifier=dependency_commit_verifier,
+            target_commit_verifier=target_commit_verifier,
+        )
+
+
+def initialize_run_root(
+    *,
+    production_config_path: Path,
+    production_config_commit: str,
+    output_root: Path,
+    repo_root: Path = ROOT,
+    source_path: Path = SOURCE_PATH,
+    root_source_path: Path = ROOT_SOURCE_PATH,
+    exporter_path: Path = EXPORTER_PATH,
+    original_parent_exporter_path: Path = ORIGINAL_PARENT_EXPORTER_PATH,
+    delegated_preparer_path: Path = DELEGATED_PREPARER_PATH,
+    hardened_preparer_path: Path = HARDENED_PREPARER_PATH,
+    variable_map_path: Path = VARIABLE_MAP_PATH,
+    checkpoint_path: Path = CHECKPOINT_PATH,
+    preparer_path: Path = PREPARER_PATH,
+    test_path: Path = TEST_PATH,
+    config_blob_reader: Any = _read_committed_blob,
+    commit_verifier: Any = accepted.verify_committed_support,
+    dependency_commit_verifier: Any = verify_committed_dependency_blobs,
+    target_commit_verifier: Any = verify_committed_target_blobs,
+) -> dict[str, Any]:
+    root = repo_root.resolve(strict=True)
+    with _production_session(
+        root,
+        production_config_path,
+        production_config_commit,
+        config_blob_reader,
+    ):
+        _preflight_authenticated(
+            repo_root=root,
+            output_root=output_root,
+            source_path=source_path,
+            root_source_path=root_source_path,
+            exporter_path=exporter_path,
+            original_parent_exporter_path=original_parent_exporter_path,
+            delegated_preparer_path=delegated_preparer_path,
+            hardened_preparer_path=hardened_preparer_path,
+            variable_map_path=variable_map_path,
+            checkpoint_path=checkpoint_path,
+            preparer_path=preparer_path,
+            test_path=test_path,
+            commit_verifier=commit_verifier,
+            dependency_commit_verifier=dependency_commit_verifier,
+            target_commit_verifier=target_commit_verifier,
+        )
+        return _initialize_run_root_authenticated(
+            output_root=output_root,
+            repo_root=root,
+            source_path=source_path,
+            root_source_path=root_source_path,
+            exporter_path=exporter_path,
+            original_parent_exporter_path=original_parent_exporter_path,
+            delegated_preparer_path=delegated_preparer_path,
+            hardened_preparer_path=hardened_preparer_path,
+            variable_map_path=variable_map_path,
+            checkpoint_path=checkpoint_path,
+            preparer_path=preparer_path,
+            test_path=test_path,
+        )
+
+
+def prepare_campaign(
+    *,
+    production_config_path: Path,
+    production_config_commit: str,
+    source_commit: str,
+    output_root: Path,
+    repo_root: Path = ROOT,
+    source_path: Path = SOURCE_PATH,
+    root_source_path: Path = ROOT_SOURCE_PATH,
+    exporter_path: Path = EXPORTER_PATH,
+    original_parent_exporter_path: Path = ORIGINAL_PARENT_EXPORTER_PATH,
+    delegated_preparer_path: Path = DELEGATED_PREPARER_PATH,
+    hardened_preparer_path: Path = HARDENED_PREPARER_PATH,
+    variable_map_path: Path = VARIABLE_MAP_PATH,
+    checkpoint_path: Path = CHECKPOINT_PATH,
+    preparer_path: Path = PREPARER_PATH,
+    test_path: Path = TEST_PATH,
+    lean_root_exporter: Any = run_lean_root_export,
+    lean_exporter: Any = run_lean_export,
+    config_blob_reader: Any = _read_committed_blob,
+    commit_verifier: Any = accepted.verify_committed_support,
+    dependency_commit_verifier: Any = verify_committed_dependency_blobs,
+    target_commit_verifier: Any = verify_committed_target_blobs,
+) -> dict[str, Any]:
+    root = repo_root.resolve(strict=True)
+    with _production_session(
+        root,
+        production_config_path,
+        production_config_commit,
+        config_blob_reader,
+    ):
+        return _prepare_campaign_authenticated(
+            source_commit=source_commit,
+            output_root=output_root,
+            repo_root=root,
+            source_path=source_path,
+            root_source_path=root_source_path,
+            exporter_path=exporter_path,
+            original_parent_exporter_path=original_parent_exporter_path,
+            delegated_preparer_path=delegated_preparer_path,
+            hardened_preparer_path=hardened_preparer_path,
+            variable_map_path=variable_map_path,
+            checkpoint_path=checkpoint_path,
+            preparer_path=preparer_path,
+            test_path=test_path,
+            lean_root_exporter=lean_root_exporter,
+            lean_exporter=lean_exporter,
+            commit_verifier=commit_verifier,
+            dependency_commit_verifier=dependency_commit_verifier,
+            target_commit_verifier=target_commit_verifier,
+        )
+
+
 def main(argv: Sequence[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--source", type=Path, required=True)
@@ -2260,30 +2865,37 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument("--exporter", type=Path, required=True)
     parser.add_argument("--original-parent-exporter", type=Path, required=True)
     parser.add_argument("--checkpoint", type=Path, required=True)
+    parser.add_argument("--production-config", type=Path, required=True)
+    parser.add_argument("--production-config-commit", required=True)
     parser.add_argument("--source-commit")
     parser.add_argument("--initialize-run-root", action="store_true")
+    parser.add_argument("--preflight", action="store_true")
     parser.add_argument("--output-root", type=Path, required=True)
     args = parser.parse_args(argv)
-    if args.initialize_run_root:
+    if args.initialize_run_root and args.preflight:
+        parser.error("--initialize-run-root and --preflight are mutually exclusive")
+    common = {
+        "source_path": args.source,
+        "root_source_path": args.root_source,
+        "exporter_path": args.exporter,
+        "original_parent_exporter_path": args.original_parent_exporter,
+        "checkpoint_path": args.checkpoint,
+        "production_config_path": args.production_config,
+        "production_config_commit": args.production_config_commit,
+        "output_root": args.output_root,
+    }
+    if args.preflight:
+        result = preflight_configuration(**common)
+    elif args.initialize_run_root:
         result = initialize_run_root(
-            source_path=args.source,
-            root_source_path=args.root_source,
-            exporter_path=args.exporter,
-            original_parent_exporter_path=args.original_parent_exporter,
-            checkpoint_path=args.checkpoint,
-            output_root=args.output_root,
+            **common,
         )
     else:
         if args.source_commit is None:
             parser.error("--source-commit is required for preparation")
         result = prepare_campaign(
-            source_path=args.source,
-            root_source_path=args.root_source,
-            exporter_path=args.exporter,
-            original_parent_exporter_path=args.original_parent_exporter,
-            checkpoint_path=args.checkpoint,
             source_commit=args.source_commit,
-            output_root=args.output_root,
+            **common,
         )
     print(json.dumps({"status": result["status"]}, sort_keys=True))
     return 0

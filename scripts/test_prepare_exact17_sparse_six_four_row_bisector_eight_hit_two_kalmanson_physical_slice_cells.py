@@ -54,12 +54,26 @@ def _fixture(
     delegated_preparer.write_bytes(b"def delegated(): return True\n")
     hardened_preparer = tmp_path / "hardened-preparer.py"
     hardened_preparer.write_bytes(b"def hardened(): return True\n")
+    target_preparer = tmp_path / (
+        "scripts/prepare_exact17_sparse_six_four_row_bisector_"
+        "eight_hit_two_kalmanson_physical_slice_cells.py"
+    )
+    target_preparer.parent.mkdir(parents=True)
+    target_preparer.write_bytes(b"def target_preparer(): return True\n")
+    target_test = tmp_path / (
+        "scripts/test_prepare_exact17_sparse_six_four_row_bisector_"
+        "eight_hit_two_kalmanson_physical_slice_cells.py"
+    )
+    target_test.write_bytes(b"def target_test(): return True\n")
+    production_config = tmp_path / subject.PRODUCTION_CONFIG_RELATIVE
+    production_config.parent.mkdir(parents=True)
     checkpoint = tmp_path / "checkpoint.json"
     checkpoint_payload = {
         "schema": "worktree-lane-checkpoint/v1",
         "lane_id": subject.LANE_ID,
         "base_head": subject.BASE_HEAD,
         "owned_paths": [
+            subject.PRODUCTION_CONFIG_RELATIVE.as_posix(),
             (
                 "scripts/prepare_exact17_sparse_six_four_row_bisector_"
                 "eight_hit_two_kalmanson_physical_slice_cells.py"
@@ -80,39 +94,64 @@ def _fixture(
     )
     checkpoint_payload["manifest_sha256"] = checkpoint_self_hash
     checkpoint.write_bytes(subject.canonical_json_bytes(checkpoint_payload))
+    support_paths = {
+        "source": source,
+        "root_source": root_source,
+        "exporter": exporter,
+        "original_parent_exporter": original_parent_exporter,
+        "variable_map": variable_map,
+    }
+    support = {
+        label: {
+            "path": path.relative_to(tmp_path).as_posix(),
+            "sha256": _sha(path),
+            "bytes": path.stat().st_size,
+        }
+        for label, path in support_paths.items()
+    }
+    support["delegated_preparer"] = {
+        "path": delegated_preparer.relative_to(tmp_path).as_posix(),
+        "sha256": _sha(delegated_preparer),
+        "bytes": delegated_preparer.stat().st_size,
+        "commit": "a" * 40,
+    }
+    support["hardened_preparer"] = {
+        "path": hardened_preparer.relative_to(tmp_path).as_posix(),
+        "sha256": _sha(hardened_preparer),
+        "bytes": hardened_preparer.stat().st_size,
+        "commit": "a" * 40,
+    }
+    support["checkpoint"] = {
+        "path": checkpoint.relative_to(tmp_path).as_posix(),
+        "sha256": _sha(checkpoint),
+        "bytes": checkpoint.stat().st_size,
+        "manifest_sha256": checkpoint_self_hash,
+    }
+    config_payload = {
+        "schema": subject.PRODUCTION_CONFIG_SCHEMA,
+        "lane_id": subject.LANE_ID,
+        "base_head": subject.BASE_HEAD,
+        "generated_root": "output",
+        "source_commit": "a" * 40,
+        "target_code": {
+            "commit": "b" * 40,
+            "preparer": {
+                "path": target_preparer.relative_to(tmp_path).as_posix(),
+                "sha256": _sha(target_preparer),
+                "bytes": target_preparer.stat().st_size,
+            },
+            "test": {
+                "path": target_test.relative_to(tmp_path).as_posix(),
+                "sha256": _sha(target_test),
+                "bytes": target_test.stat().st_size,
+            },
+        },
+        "support": support,
+    }
+    production_config.write_bytes(subject.canonical_json_bytes(config_payload))
     monkeypatch.setattr(subject, "ORIGINAL_PARENT_CLAUSES", 2)
     monkeypatch.setattr(subject, "PARENT_CLAUSES", 6)
     monkeypatch.setattr(subject, "CELL_CLAUSES", 12)
-    monkeypatch.setattr(subject, "EXPECTED_SOURCE_SHA256", _sha(source))
-    monkeypatch.setattr(subject, "EXPECTED_ROOT_SOURCE_SHA256", _sha(root_source))
-    monkeypatch.setattr(subject, "EXPECTED_EXPORTER_SHA256", _sha(exporter))
-    monkeypatch.setattr(
-        subject,
-        "EXPECTED_ORIGINAL_PARENT_EXPORTER_SHA256",
-        _sha(original_parent_exporter),
-    )
-    monkeypatch.setattr(
-        subject, "EXPECTED_DELEGATED_PREPARER_SHA256", _sha(delegated_preparer)
-    )
-    monkeypatch.setattr(
-        subject, "EXPECTED_DELEGATED_PREPARER_BYTES", delegated_preparer.stat().st_size
-    )
-    monkeypatch.setattr(
-        subject, "EXPECTED_HARDENED_PREPARER_SHA256", _sha(hardened_preparer)
-    )
-    monkeypatch.setattr(
-        subject, "EXPECTED_HARDENED_PREPARER_BYTES", hardened_preparer.stat().st_size
-    )
-    monkeypatch.setattr(subject, "EXPECTED_VARIABLE_MAP_SHA256", _sha(variable_map))
-    monkeypatch.setattr(subject, "EXPECTED_CHECKPOINT_SHA256", _sha(checkpoint))
-    monkeypatch.setattr(
-        subject, "EXPECTED_CHECKPOINT_MANIFEST_SHA256", checkpoint_self_hash
-    )
-    monkeypatch.setattr(subject, "PINNED_SOURCE_COMMIT", "a" * 40)
-    monkeypatch.setattr(subject, "DELEGATED_PREPARER_COMMIT", "a" * 40)
-    monkeypatch.setattr(subject, "HARDENED_PREPARER_COMMIT", "a" * 40)
-    monkeypatch.setattr(subject, "PRODUCTION_PINS_FINALIZED", True)
-    monkeypatch.setattr(subject, "REGISTERED_GENERATED_ROOT", "output")
     calls: list[tuple[int, str]] = []
 
     def fake_root_export(_repo: Path, _exporter: Path, output: Path) -> None:
@@ -152,6 +191,21 @@ def _fixture(
         assert delegated == delegated_preparer
         assert hardened == hardened_preparer
 
+    def fake_config_blob_reader(_repo: Path, commit: str, relative: str) -> bytes:
+        assert commit == "c" * 40
+        assert relative == subject.PRODUCTION_CONFIG_RELATIVE.as_posix()
+        return production_config.read_bytes()
+
+    def fake_target_commit_verify(
+        _repo: Path,
+        config: subject._ProductionConfig,
+        preparer: Path,
+        test: Path,
+    ) -> None:
+        assert config.value["target_code"]["commit"] == "b" * 40
+        assert preparer == target_preparer
+        assert test == target_test
+
     return (
         {
             "parent": parent,
@@ -164,11 +218,16 @@ def _fixture(
             "delegated_preparer": delegated_preparer,
             "hardened_preparer": hardened_preparer,
             "checkpoint": checkpoint,
+            "target_preparer": target_preparer,
+            "target_test": target_test,
+            "production_config": production_config,
             "output": tmp_path / "output",
             "fake_root_export": fake_root_export,
             "fake_export": fake_export,
             "fake_commit_verify": fake_commit_verify,
             "fake_dependency_commit_verify": fake_dependency_commit_verify,
+            "fake_config_blob_reader": fake_config_blob_reader,
+            "fake_target_commit_verify": fake_target_commit_verify,
         },
         calls,
     )
@@ -178,9 +237,13 @@ def _sha(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def _initialize(tmp_path: Path, paths: dict[str, Any]) -> dict[str, Any]:
+def _initialize(
+    tmp_path: Path, paths: dict[str, Any], *, output_root: Path | None = None
+) -> dict[str, Any]:
     return subject.initialize_run_root(
         repo_root=tmp_path,
+        production_config_path=paths["production_config"],
+        production_config_commit="c" * 40,
         source_path=paths["source"],
         root_source_path=paths["root_source"],
         exporter_path=paths["exporter"],
@@ -189,14 +252,27 @@ def _initialize(tmp_path: Path, paths: dict[str, Any]) -> dict[str, Any]:
         hardened_preparer_path=paths["hardened_preparer"],
         variable_map_path=paths["variable_map"],
         checkpoint_path=paths["checkpoint"],
-        output_root=paths["output"],
+        preparer_path=paths["target_preparer"],
+        test_path=paths["target_test"],
+        output_root=paths["output"] if output_root is None else output_root,
+        config_blob_reader=paths["fake_config_blob_reader"],
+        commit_verifier=paths["fake_commit_verify"],
+        dependency_commit_verifier=paths["fake_dependency_commit_verify"],
+        target_commit_verifier=paths["fake_target_commit_verify"],
     )
 
 
-def _prepare(tmp_path: Path, paths: dict[str, Any]) -> dict[str, Any]:
+def _prepare(
+    tmp_path: Path,
+    paths: dict[str, Any],
+    *,
+    source_commit: str = "a" * 40,
+) -> dict[str, Any]:
     return subject.prepare_campaign(
         repo_root=tmp_path,
-        source_commit="a" * 40,
+        production_config_path=paths["production_config"],
+        production_config_commit="c" * 40,
+        source_commit=source_commit,
         source_path=paths["source"],
         root_source_path=paths["root_source"],
         exporter_path=paths["exporter"],
@@ -205,12 +281,23 @@ def _prepare(tmp_path: Path, paths: dict[str, Any]) -> dict[str, Any]:
         hardened_preparer_path=paths["hardened_preparer"],
         variable_map_path=paths["variable_map"],
         checkpoint_path=paths["checkpoint"],
+        preparer_path=paths["target_preparer"],
+        test_path=paths["target_test"],
         output_root=paths["output"],
         lean_root_exporter=paths["fake_root_export"],
         lean_exporter=paths["fake_export"],
         commit_verifier=paths["fake_commit_verify"],
         dependency_commit_verifier=paths["fake_dependency_commit_verify"],
+        config_blob_reader=paths["fake_config_blob_reader"],
+        target_commit_verifier=paths["fake_target_commit_verify"],
     )
+
+
+def _update_config(paths: dict[str, Any], update: Any) -> dict[str, Any]:
+    payload = json.loads(paths["production_config"].read_bytes())
+    update(payload)
+    paths["production_config"].write_bytes(subject.canonical_json_bytes(payload))
+    return payload
 
 
 def _set_parent_pair(
@@ -248,6 +335,152 @@ def test_checked_in_configuration_refuses_production(tmp_path: Path) -> None:
         subject._require_production_configuration(tmp_path, tmp_path / "output")
 
 
+def test_alternate_production_config_path_is_rejected(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    paths, _ = _fixture(tmp_path, monkeypatch)
+    alternate = tmp_path / "alternate-config.json"
+    alternate.write_bytes(paths["production_config"].read_bytes())
+    with pytest.raises(subject.PreparationError, match="fixed governed path"):
+        subject._load_production_config(
+            tmp_path, alternate, "c" * 40, paths["fake_config_blob_reader"]
+        )
+
+
+def test_uncommitted_production_config_is_rejected(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    paths, _ = _fixture(tmp_path, monkeypatch)
+
+    def missing_blob(_repo: Path, _commit: str, _relative: str) -> bytes:
+        raise subject.PreparationError("committed blob is unavailable")
+
+    with pytest.raises(subject.PreparationError, match="committed blob is unavailable"):
+        subject._load_production_config(
+            tmp_path, paths["production_config"], "c" * 40, missing_blob
+        )
+
+
+def test_production_config_commit_mismatch_is_rejected(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    paths, _ = _fixture(tmp_path, monkeypatch)
+
+    def exact_commit(_repo: Path, commit: str, _relative: str) -> bytes:
+        if commit != "c" * 40:
+            raise subject.PreparationError("production config commit mismatch")
+        return paths["production_config"].read_bytes()
+
+    with pytest.raises(subject.PreparationError, match="commit mismatch"):
+        subject._load_production_config(
+            tmp_path, paths["production_config"], "d" * 40, exact_commit
+        )
+
+
+def test_production_config_commit_cannot_equal_target_code_commit(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    paths, _ = _fixture(tmp_path, monkeypatch)
+    _update_config(
+        paths,
+        lambda config: config["target_code"].update({"commit": "c" * 40}),
+    )
+    with pytest.raises(subject.PreparationError, match="form a self-cycle"):
+        subject._load_production_config(
+            tmp_path,
+            paths["production_config"],
+            "c" * 40,
+            paths["fake_config_blob_reader"],
+        )
+
+
+def test_mutated_production_config_differs_from_committed_blob(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    paths, _ = _fixture(tmp_path, monkeypatch)
+    committed = paths["production_config"].read_bytes()
+    payload = json.loads(committed)
+    payload["generated_root"] = "mutated-root"
+    paths["production_config"].write_bytes(subject.canonical_json_bytes(payload))
+    with pytest.raises(
+        subject.PreparationError, match="production config digest drifted"
+    ):
+        subject._load_production_config(
+            tmp_path,
+            paths["production_config"],
+            "c" * 40,
+            lambda _repo, _commit, _relative: committed,
+        )
+
+
+def test_production_config_extra_key_is_rejected(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    paths, _ = _fixture(tmp_path, monkeypatch)
+    _update_config(paths, lambda config: config.update({"unexpected": True}))
+    with pytest.raises(
+        subject.PreparationError, match="production config keys drifted"
+    ):
+        subject._load_production_config(
+            tmp_path,
+            paths["production_config"],
+            "c" * 40,
+            paths["fake_config_blob_reader"],
+        )
+
+
+def test_production_config_wrong_pin_type_is_rejected(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    paths, _ = _fixture(tmp_path, monkeypatch)
+    _update_config(
+        paths,
+        lambda config: config["target_code"]["preparer"].update({"bytes": True}),
+    )
+    with pytest.raises(subject.PreparationError, match="positive integer"):
+        subject._load_production_config(
+            tmp_path,
+            paths["production_config"],
+            "c" * 40,
+            paths["fake_config_blob_reader"],
+        )
+
+
+@pytest.mark.parametrize("role", ["target_preparer", "target_test"])
+def test_target_code_live_drift_is_rejected(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, role: str
+) -> None:
+    paths, _ = _fixture(tmp_path, monkeypatch)
+    paths[role].write_bytes(paths[role].read_bytes() + b"# live drift\n")
+    with pytest.raises(
+        subject.PreparationError, match="(?:preparer|test) digest drifted"
+    ):
+        _initialize(tmp_path, paths)
+
+
+def test_target_code_commit_blob_mismatch_is_rejected(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    paths, _ = _fixture(tmp_path, monkeypatch)
+    config = subject._load_production_config(
+        tmp_path,
+        paths["production_config"],
+        "c" * 40,
+        paths["fake_config_blob_reader"],
+    )
+    try:
+        with pytest.raises(subject.PreparationError, match="committed blob drifted"):
+            subject.verify_committed_target_blobs(
+                tmp_path,
+                config,
+                paths["target_preparer"],
+                paths["target_test"],
+                lambda _repo, _commit, _relative: b"wrong committed blob\n",
+            )
+    finally:
+        config.close()
+
+
 def test_prepare_refuses_before_registered_manifest_skeleton(
     tmp_path: Path, monkeypatch: pytest.MonkeyPatch
 ) -> None:
@@ -265,18 +498,7 @@ def test_requires_exact_registered_output_root(
 ) -> None:
     paths, _ = _fixture(tmp_path, monkeypatch)
     with pytest.raises(subject.PreparationError, match="registered generated root"):
-        subject.initialize_run_root(
-            repo_root=tmp_path,
-            output_root=tmp_path / "other",
-            source_path=paths["source"],
-            root_source_path=paths["root_source"],
-            exporter_path=paths["exporter"],
-            original_parent_exporter_path=paths["original_parent_exporter"],
-            delegated_preparer_path=paths["delegated_preparer"],
-            hardened_preparer_path=paths["hardened_preparer"],
-            variable_map_path=paths["variable_map"],
-            checkpoint_path=paths["checkpoint"],
-        )
+        _initialize(tmp_path, paths, output_root=tmp_path / "other")
 
 
 def test_requires_pinned_source_commit(
@@ -287,19 +509,7 @@ def test_requires_pinned_source_commit(
     with pytest.raises(
         subject.PreparationError, match="differs from the production pin"
     ):
-        subject.prepare_campaign(
-            repo_root=tmp_path,
-            source_commit="b" * 40,
-            source_path=paths["source"],
-            root_source_path=paths["root_source"],
-            exporter_path=paths["exporter"],
-            original_parent_exporter_path=paths["original_parent_exporter"],
-            delegated_preparer_path=paths["delegated_preparer"],
-            hardened_preparer_path=paths["hardened_preparer"],
-            variable_map_path=paths["variable_map"],
-            checkpoint_path=paths["checkpoint"],
-            output_root=paths["output"],
-        )
+        _prepare(tmp_path, paths, source_commit="d" * 40)
 
 
 def test_checkpoint_must_register_generated_root(
@@ -317,8 +527,14 @@ def test_checkpoint_self_hash_must_match_content(
     checkpoint = json.loads(paths["checkpoint"].read_bytes())
     checkpoint["manifest_sha256"] = "0" * 64
     paths["checkpoint"].write_bytes(subject.canonical_json_bytes(checkpoint))
-    monkeypatch.setattr(
-        subject, "EXPECTED_CHECKPOINT_SHA256", _sha(paths["checkpoint"])
+    _update_config(
+        paths,
+        lambda config: config["support"]["checkpoint"].update(
+            {
+                "sha256": _sha(paths["checkpoint"]),
+                "bytes": paths["checkpoint"].stat().st_size,
+            }
+        ),
     )
     with pytest.raises(subject.PreparationError, match="self-hash drifted"):
         _initialize(tmp_path, paths)
@@ -336,11 +552,15 @@ def test_checkpoint_must_register_delegated_dependencies_as_durable(
     )
     checkpoint["manifest_sha256"] = checkpoint_self_hash
     paths["checkpoint"].write_bytes(subject.canonical_json_bytes(checkpoint))
-    monkeypatch.setattr(
-        subject, "EXPECTED_CHECKPOINT_SHA256", _sha(paths["checkpoint"])
-    )
-    monkeypatch.setattr(
-        subject, "EXPECTED_CHECKPOINT_MANIFEST_SHA256", checkpoint_self_hash
+    _update_config(
+        paths,
+        lambda config: config["support"]["checkpoint"].update(
+            {
+                "sha256": _sha(paths["checkpoint"]),
+                "bytes": paths["checkpoint"].stat().st_size,
+                "manifest_sha256": checkpoint_self_hash,
+            }
+        ),
     )
     with pytest.raises(subject.PreparationError, match="durability does not cover"):
         _initialize(tmp_path, paths)
@@ -391,9 +611,11 @@ def test_cli_initialize_run_root_is_offline_and_does_not_export(
     exporter = tmp_path / "exporter.lean"
     original_parent_exporter = tmp_path / "original-exporter.lean"
     checkpoint = tmp_path / "checkpoint.json"
+    production_config = tmp_path / "production-config.json"
     output = tmp_path / "output"
     for path in (source, root_source, exporter, original_parent_exporter, checkpoint):
         path.write_text("fixture")
+    production_config.write_text("fixture")
     observed: dict[str, Any] = {}
 
     def fake_initialize(**kwargs: Any) -> dict[str, str]:
@@ -418,6 +640,10 @@ def test_cli_initialize_run_root_is_offline_and_does_not_export(
                 str(original_parent_exporter),
                 "--checkpoint",
                 str(checkpoint),
+                "--production-config",
+                str(production_config),
+                "--production-config-commit",
+                "c" * 40,
                 "--output-root",
                 str(output),
                 "--initialize-run-root",
@@ -431,6 +657,8 @@ def test_cli_initialize_run_root_is_offline_and_does_not_export(
         "exporter_path": exporter,
         "original_parent_exporter_path": original_parent_exporter,
         "checkpoint_path": checkpoint,
+        "production_config_path": production_config,
+        "production_config_commit": "c" * 40,
         "output_root": output,
     }
     assert json.loads(capsys.readouterr().out) == {"status": "RUN_ROOT_INITIALIZED"}
@@ -478,9 +706,22 @@ def test_prepares_all_76_cells_and_validates_sentinels(
         "a" * 40,
         "a" * 40,
     ]
+    production = producer["production_config"]
+    assert production == campaign["source"]["production_config"]
+    assert production["commit"] == "c" * 40
+    assert production["target_code"]["commit"] == "b" * 40
     run = json.loads((paths["output"] / "run_manifest.json").read_bytes())
     assert "delegated-preparer.py" in run["source_digests"]
     assert "hardened-preparer.py" in run["source_digests"]
+    assert (
+        paths["target_preparer"].relative_to(tmp_path).as_posix()
+        in run["source_digests"]
+    )
+    assert (
+        paths["target_test"].relative_to(tmp_path).as_posix() in run["source_digests"]
+    )
+    assert subject.PRODUCTION_CONFIG_RELATIVE.as_posix() in run["source_digests"]
+    assert run["production_config"] == production
     assert wave["encoding"]["num_clauses"] == 12
 
 
@@ -678,6 +919,31 @@ def test_support_mutation_or_replacement_during_export_fails_closed(
 
     paths["fake_root_export"] = attacked_root_export
     with pytest.raises(subject.PreparationError, match="source .*drifted"):
+        _prepare(tmp_path, paths)
+
+
+@pytest.mark.parametrize("attack", ["mutate", "replace"])
+def test_production_config_mutation_or_replacement_during_export_fails_closed(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, attack: str
+) -> None:
+    paths, calls = _fixture(tmp_path, monkeypatch)
+    _initialize(tmp_path, paths)
+
+    def attacked_root_export(_repo: Path, _exporter: Path, output: Path) -> None:
+        calls.append((-1, "root"))
+        target = paths["production_config"]
+        if attack == "mutate":
+            target.write_bytes(target.read_bytes() + b" ")
+        else:
+            original = target.with_suffix(".original")
+            target.rename(original)
+            target.write_bytes(original.read_bytes())
+        output.write_bytes(paths["original_parent"].read_bytes())
+
+    paths["fake_root_export"] = attacked_root_export
+    with pytest.raises(
+        subject.PreparationError, match="production[_ ]config .*drifted"
+    ):
         _prepare(tmp_path, paths)
 
 
