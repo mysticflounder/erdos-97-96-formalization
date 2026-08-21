@@ -120,6 +120,28 @@ def test_incomplete_model_rejected() -> None:
         mine.decode_model(model)
 
 
+@pytest.mark.parametrize("left,right", [(False, False), (True, True)])
+def test_named_order_selector_must_be_one_hot(left: bool, right: bool) -> None:
+    mine = module()
+    values, _ = mine.decode_model(live_json(mine.MODEL_ARTIFACT))
+    values[307] = left
+    values[308] = right
+    with pytest.raises(mine.MineError, match="not one-hot"):
+        mine.selected_order_table(values)
+
+
+def test_named_order_selector_controls_actual_table() -> None:
+    mine = module()
+    values, decoded = mine.decode_model(live_json(mine.MODEL_ARTIFACT))
+    assert decoded["selected_order_index"] == 0
+    assert tuple(decoded["selected_order"]) == mine.ORDER_ZERO
+    with pytest.raises(mine.MineError, match="does not match"):
+        mine.require_order_matches_selector(values, 1, mine.ORDER_ONE)
+    values[307] = False
+    values[308] = True
+    assert mine.selected_order_table(values) == (1, mine.ORDER_ONE)
+
+
 def test_cnf_failed_clause_rejected(monkeypatch: pytest.MonkeyPatch) -> None:
     mine = module()
     cnf = b"p cnf 1 1\n1 0\n"
@@ -150,6 +172,76 @@ def test_prior_bank_classification_is_fail_closed() -> None:
         mine.classify_support(support, {frozenset({(3, 4)})})
         == "new-occurrence-existing-family"
     )
+
+
+def test_actual_cnf_bank_requires_every_orbit_clause_despite_duplicates() -> None:
+    mine = module()
+    support = mine.HISTORICAL_SIZE4_SUPPORT
+    orbit = sorted(
+        mine.occurrence_orbit_clauses(support),
+        key=lambda clause: (len(clause), sorted(clause)),
+    )
+    duplicated = sorted(orbit[0])
+    cnf = (
+        "p cnf 308 2\n"
+        + " ".join(map(str, duplicated))
+        + " 0\n"
+        + " ".join(map(str, reversed(duplicated)))
+        + " 0\n"
+    ).encode("ascii")
+    ledger = {"entries": [{"support": [list(hit) for hit in sorted(support)]}]}
+    summary = mine.classify_ledger_against_cnf(cnf, ledger)
+    entry = ledger["entries"][0]
+    assert summary["exact_current_cnf_bank_count"] == 0
+    assert summary["new_after_current_cnf_bank_count"] == 1
+    assert entry["bank_relation"] == "new-occurrence-existing-family"
+    assert entry["current_cnf_exact_orbit_clause_multiplicities"] == [0, 0, 0, 2]
+
+
+def test_actual_cnf_bank_recognizes_strict_clause_subsumption() -> None:
+    mine = module()
+    support = mine.HISTORICAL_SIZE4_SUPPORT
+    orbit = mine.occurrence_orbit_clauses(support)
+    subsumers = []
+    for clause in orbit:
+        row_literal = next(literal for literal in clause if literal not in {-307, -308})
+        subsumers.append(sorted(clause - {row_literal}))
+    lines = [f"p cnf 308 {len(subsumers)}"]
+    lines.extend(" ".join(map(str, clause)) + " 0" for clause in subsumers)
+    ledger = {"entries": [{"support": [list(hit) for hit in sorted(support)]}]}
+    summary = mine.classify_ledger_against_cnf(
+        ("\n".join(lines) + "\n").encode("ascii"), ledger
+    )
+    entry = ledger["entries"][0]
+    assert summary["strictly_subsumed_by_current_cnf_bank_count"] == 1
+    assert entry["bank_relation"] == "strictly-subsumed-by-current-cnf-bank"
+    assert entry["present_or_subsumed_in_current_cnf_bank"] is True
+
+
+def test_historical_hardcoded_order_analysis_is_invalid() -> None:
+    mine = module()
+    values, _ = mine.decode_model(live_json(mine.MODEL_ARTIFACT))
+    correction = mine.historical_analysis_correction(
+        values,
+        live_json(mine.HISTORICAL_ANALYSIS),
+        live_json(mine.HISTORICAL_LEDGER),
+    )
+    assert correction["status"] == "INVALID_HISTORICAL_MODEL_SPECIFIC_MINE"
+    assert correction["authenticated_named_order"] == 0
+    assert correction["authenticated_order_table"] == list(mine.ORDER_ZERO)
+    assert correction["historical_hardcoded_order_table"] == list(mine.ORDER_ONE)
+    assert correction["historical_model_specific_mine_valid"] is False
+    assert correction["historical_size4_rejects_authenticated_model"] is False
+
+
+def test_historical_size4_has_no_active_selector_falsified_clause() -> None:
+    mine = module()
+    values, decoded = mine.decode_model(live_json(mine.MODEL_ARTIFACT))
+    evaluations = mine.evaluate_occurrence_orbit(
+        values, mine.HISTORICAL_SIZE4_SUPPORT, decoded["selected_order_index"]
+    )
+    assert sum(item["active_selector_clause"] for item in evaluations) == 2
+    assert sum(item["active_selector_clause_falsified"] for item in evaluations) == 0
 
 
 def test_live_terminal_artifacts_are_pinned() -> None:

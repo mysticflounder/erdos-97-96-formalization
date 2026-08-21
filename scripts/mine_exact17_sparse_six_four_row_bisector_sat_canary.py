@@ -8,6 +8,7 @@ contacts PIQD, starts a solver, or writes to the live portfolio root.
 
 from __future__ import annotations
 
+import argparse
 import hashlib
 import io
 import json
@@ -88,8 +89,19 @@ PORTFOLIO_CAMPAIGN_SHA256 = (
 CNF_BYTES = 346_273_647
 CNF_CLAUSES = 7_409_263
 VARIABLES = 308
-ORDER = (0, 6, 8, 11, 10, 12, 9, 7, 2, 15, 16, 3, 4, 5, 1, 13, 14)
-REVERSE_ORDER = tuple(reversed(ORDER))
+ORDER_ZERO = (0, 6, 8, 11, 10, 9, 12, 7, 2, 15, 16, 3, 4, 5, 1, 13, 14)
+ORDER_ONE = (0, 6, 8, 11, 10, 12, 9, 7, 2, 15, 16, 3, 4, 5, 1, 13, 14)
+ORDER_TABLES = {0: ORDER_ZERO, 1: ORDER_ONE}
+NAMED_ORDER_VARIABLES = {0: 307, 1: 308}
+HISTORICAL_ANALYSIS = OUTPUT_ROOT / "artifacts/analysis.json"
+HISTORICAL_LEDGER = OUTPUT_ROOT / "artifacts/candidate-occurrence-ledger.json"
+HISTORICAL_ANALYSIS_SHA256 = (
+    "8508552f393796ed1b11615f5d1fe463c85d8f861fd4b7d6d37bbf5fc0c698d9"
+)
+HISTORICAL_LEDGER_SHA256 = (
+    "ecb9e54fdf1144badf5b5837f80444599d21940b34dc7ef46ae2da0d20c60104"
+)
+HISTORICAL_SIZE4_SUPPORT = frozenset({(5, 6), (5, 7), (11, 6), (11, 7)})
 MODEL_ARTIFACT = CANARY_ARTIFACTS / MODEL_SHA256
 LOG_ARTIFACT = CANARY_ARTIFACTS / SOLVER_LOG_SHA256
 MAX_JSON_BYTES = 4 * 1024 * 1024
@@ -646,6 +658,27 @@ def _validate_journal(
     )
 
 
+def selected_order_table(values: dict[int, bool]) -> tuple[int, tuple[int, ...]]:
+    selected = [
+        order for order, variable in NAMED_ORDER_VARIABLES.items() if values[variable]
+    ]
+    _require(selected == [0] or selected == [1], "named-order selector is not one-hot")
+    order_index = selected[0]
+    order = ORDER_TABLES[order_index]
+    _require(len(order) == 17 and len(set(order)) == 17, "named-order table drifted")
+    return order_index, order
+
+
+def require_order_matches_selector(
+    values: dict[int, bool], order_index: int, order: tuple[int, ...]
+) -> None:
+    selected_index, selected_order = selected_order_table(values)
+    _require(
+        order_index == selected_index and order == selected_order,
+        "mining order does not match authenticated named-order selector",
+    )
+
+
 def decode_model(model: dict[str, Any]) -> tuple[dict[int, bool], dict[str, Any]]:
     literals = model.get("assignment")
     _require(
@@ -677,15 +710,14 @@ def decode_model(model: dict[str, Any]) -> tuple[dict[int, bool], dict[str, Any]
         "decoded rows are not exact-four off-center rows",
     )
     next_centers = [center for center in range(17) if values[290 + center]]
-    named_orders = [order for order in range(2) if values[307 + order]]
-    _require(
-        next_centers == [2] and named_orders == [0], "decoded selector identity drifted"
-    )
+    order_index, order = selected_order_table(values)
+    _require(next_centers == [2], "decoded next-center selector identity drifted")
     return values, {
         "rows": rows,
         "next_centers": next_centers,
-        "named_orders": named_orders,
-        "selected_order": list(ORDER),
+        "named_orders": [order_index],
+        "selected_order_index": order_index,
+        "selected_order": list(order),
         "assignment_sha256": sha256_bytes(" ".join(map(str, literals)).encode()),
     }
 
@@ -783,9 +815,131 @@ def classify_support(
     return "new-occurrence-existing-family"
 
 
+def occurrence_orbit_clauses(
+    hits: frozenset[tuple[int, int]],
+) -> frozenset[frozenset[int]]:
+    clauses: set[frozenset[int]] = set()
+    for order_index, order in ORDER_TABLES.items():
+        for reverse_direction in (False, True):
+            literals = {-(307 + order_index)}
+            for center, point in hits:
+                position_center = 16 - center if reverse_direction else center
+                position_point = 16 - point if reverse_direction else point
+                actual_center = order[position_center]
+                actual_point = order[position_point]
+                literals.add(-(1 + 17 * actual_center + actual_point))
+            clauses.add(frozenset(literals))
+    _require(len(clauses) == 4, "occurrence orbit clause family collapsed")
+    return frozenset(clauses)
+
+
+def classify_ledger_against_cnf(cnf: bytes, ledger: dict[str, Any]) -> dict[str, Any]:
+    entry_orbits = [
+        occurrence_orbit_clauses(_support(entry)) for entry in ledger["entries"]
+    ]
+    targets = sorted(
+        set().union(*entry_orbits) if entry_orbits else set(),
+        key=lambda clause: (len(clause), sorted(clause)),
+    )
+    target_index = {clause: index for index, clause in enumerate(targets)}
+    literal_targets: dict[int, set[int]] = {}
+    for index, clause in enumerate(targets):
+        for literal in clause:
+            literal_targets.setdefault(literal, set()).add(index)
+    exact_counts = [0] * len(targets)
+    strict_subsumer_counts = [0] * len(targets)
+    header_seen = False
+    pending: list[int] = []
+    for raw in io.BytesIO(cnf):
+        fields = raw.decode("ascii").strip().split()
+        if not fields or fields[0] == "c":
+            continue
+        if fields[0] == "p":
+            header_seen = True
+            continue
+        _require(header_seen, "DIMACS clause precedes header in bank scan")
+        for token in fields:
+            literal = int(token)
+            if literal:
+                pending.append(literal)
+                continue
+            _require(pending, "empty DIMACS clause in bank scan")
+            clause = frozenset(pending)
+            candidate_indices = literal_targets.get(pending[0], set())
+            exact_index = target_index.get(clause)
+            if exact_index is not None:
+                exact_counts[exact_index] += 1
+            for index in candidate_indices:
+                if clause < targets[index]:
+                    strict_subsumer_counts[index] += 1
+            pending.clear()
+    _require(not pending, "unterminated DIMACS clause in bank scan")
+
+    exact_entry_count = 0
+    subsumed_entry_count = 0
+    new_entry_count = 0
+    for entry, orbit in zip(ledger["entries"], entry_orbits, strict=True):
+        indices = [target_index[clause] for clause in orbit]
+        exact = sorted(exact_counts[index] for index in indices)
+        strict = sorted(strict_subsumer_counts[index] for index in indices)
+        covered = [
+            exact_counts[index] + strict_subsumer_counts[index] > 0 for index in indices
+        ]
+        entry["current_cnf_exact_orbit_clause_multiplicities"] = exact
+        entry["current_cnf_strict_subsumer_clause_multiplicities"] = strict
+        entry["present_or_subsumed_in_current_cnf_bank"] = all(covered)
+        if all(count > 0 for count in exact):
+            entry["bank_relation"] = "exact-current-cnf-bank-support"
+            exact_entry_count += 1
+        elif all(covered):
+            entry["bank_relation"] = "strictly-subsumed-by-current-cnf-bank"
+            subsumed_entry_count += 1
+        else:
+            entry["bank_relation"] = "new-occurrence-existing-family"
+            new_entry_count += 1
+    return {
+        "candidate_count": len(entry_orbits),
+        "exact_current_cnf_bank_count": exact_entry_count,
+        "strictly_subsumed_by_current_cnf_bank_count": subsumed_entry_count,
+        "new_after_current_cnf_bank_count": new_entry_count,
+    }
+
+
+def evaluate_occurrence_orbit(
+    values: dict[int, bool],
+    hits: frozenset[tuple[int, int]],
+    active_order_index: int,
+) -> list[dict[str, Any]]:
+    evaluations: list[dict[str, Any]] = []
+    active_guard = -(307 + active_order_index)
+    for clause in occurrence_orbit_clauses(hits):
+        guard = next(literal for literal in clause if literal in {-307, -308})
+        true_literals = sorted(
+            literal for literal in clause if values[abs(literal)] == (literal > 0)
+        )
+        active = guard == active_guard
+        evaluations.append(
+            {
+                "clause": sorted(clause),
+                "guard_literal": guard,
+                "active_selector_clause": active,
+                "guard_satisfies_clause": guard in true_literals,
+                "satisfied": bool(true_literals),
+                "active_selector_clause_falsified": active and not true_literals,
+                "true_literals": true_literals,
+            }
+        )
+    return sorted(evaluations, key=lambda item: item["clause"])
+
+
 def mine_rows(
-    values: dict[int, bool], bank: set[frozenset[tuple[int, int]]]
+    values: dict[int, bool],
+    bank: set[frozenset[tuple[int, int]]],
+    order_index: int,
+    order: tuple[int, ...],
 ) -> tuple[dict[str, Any], dict[str, Any]]:
+    require_order_matches_selector(values, order_index, order)
+    reverse_order = tuple(reversed(order))
     rows = tuple(
         producer_bank.MetricRow(
             center,
@@ -795,10 +949,10 @@ def mine_rows(
         for center in range(17)
     )
     forward = producer_bank.enumerate_two_kalmanson_cancellations(
-        rows, 17, ORDER, max_cores=100_000
+        rows, 17, order, max_cores=100_000
     )
     reverse = producer_bank.enumerate_two_kalmanson_cancellations(
-        rows, 17, REVERSE_ORDER, max_cores=100_000
+        rows, 17, reverse_order, max_cores=100_000
     )
     forward_by_support = {path_hits(record): record for record in forward}
     reverse_by_support = {path_hits(record): record for record in reverse}
@@ -818,10 +972,10 @@ def mine_rows(
             unpaired_forward += 1
             continue
         forward_record = project_record_for_lean(
-            forward_by_support[hits], hits, ORDER, rows
+            forward_by_support[hits], hits, order, rows
         )
         reverse_record = project_record_for_lean(
-            reverse_by_support[reverse_hits], reverse_hits, REVERSE_ORDER, rows
+            reverse_by_support[reverse_hits], reverse_hits, reverse_order, rows
         )
         _require(
             lean_occurrence_check(
@@ -829,17 +983,29 @@ def mine_rows(
                 forward_record,
                 reverse_record,
                 rows=rows,
-                forward_order=ORDER,
-                reverse_order=REVERSE_ORDER,
+                forward_order=order,
+                reverse_order=reverse_order,
             ),
             "source-valid occurrence replay failed",
         )
-        relation = classify_support(hits, bank)
+        prior_relation = classify_support(hits, bank)
+        evaluations = evaluate_occurrence_orbit(values, hits, order_index)
+        active_falsified = sum(
+            item["active_selector_clause_falsified"] for item in evaluations
+        )
+        _require(
+            active_falsified > 0,
+            "source-valid occurrence has no active-selector-falsified clause",
+        )
         entries.append(
             {
                 "support": [list(hit) for hit in sorted(hits)],
                 "support_size": len(hits),
-                "bank_relation": relation,
+                "prior_ledger_relation": prior_relation,
+                "bank_relation": "unclassified-until-current-cnf-scan",
+                "model_cutting": True,
+                "active_selector_falsified_clause_count": active_falsified,
+                "orbit_evaluations": evaluations,
                 "source_valid": True,
                 "source_validation": {
                     "paired_forward_reverse_replay": True,
@@ -854,7 +1020,7 @@ def mine_rows(
                 ),
             }
         )
-    formalized_count = len(producer_bank.scan_all_formalized_cores(rows, 17, ORDER))
+    formalized_count = len(producer_bank.scan_all_formalized_cores(rows, 17, order))
     return {
         "forward_producer_record_count": len(forward),
         "reverse_producer_record_count": len(reverse),
@@ -865,15 +1031,16 @@ def mine_rows(
         "subset_minimal_size_counts": dict(
             sorted(Counter(item["support_size"] for item in entries).items())
         ),
-        "bank_exact_count": sum(
-            item["bank_relation"] == "exact-parent-bank-support" for item in entries
-        ),
-        "bank_strict_subsumed_count": sum(
-            item["bank_relation"] == "strictly-subsumed-by-parent-bank"
+        "prior_ledger_exact_count": sum(
+            item["prior_ledger_relation"] == "exact-parent-bank-support"
             for item in entries
         ),
-        "new_occurrence_count": sum(
-            item["bank_relation"] == "new-occurrence-existing-family"
+        "prior_ledger_strict_subsumed_count": sum(
+            item["prior_ledger_relation"] == "strictly-subsumed-by-parent-bank"
+            for item in entries
+        ),
+        "prior_ledger_new_occurrence_count": sum(
+            item["prior_ledger_relation"] == "new-occurrence-existing-family"
             for item in entries
         ),
         "formalized_diagnostic_count": formalized_count,
@@ -881,6 +1048,109 @@ def mine_rows(
         "schema": "p97-exact17-sat-canary-source-valid-occurrence-ledger/v1",
         "status": "PASS",
         "entries": entries,
+    }
+
+
+def historical_analysis_correction(
+    values: dict[int, bool],
+    historical_analysis: dict[str, Any],
+    historical_ledger: dict[str, Any],
+) -> dict[str, Any]:
+    selected_index, selected_order = selected_order_table(values)
+    reported = historical_analysis.get("decoded_model")
+    _require(
+        historical_analysis.get("status") == "PASS"
+        and isinstance(reported, dict)
+        and reported.get("named_orders") == [selected_index],
+        "historical analysis identity drifted",
+    )
+    hardcoded_order = tuple(reported.get("selected_order", []))
+    _require(
+        selected_index == 0
+        and selected_order == ORDER_ZERO
+        and hardcoded_order == ORDER_ONE
+        and hardcoded_order != selected_order,
+        "historical hardcoded-order defect is no longer reproduced",
+    )
+    size4_entries = [
+        entry
+        for entry in historical_ledger.get("entries", [])
+        if _support(entry) == HISTORICAL_SIZE4_SUPPORT
+    ]
+    _require(len(size4_entries) == 1, "historical size-4 occurrence drifted")
+    evaluations = evaluate_occurrence_orbit(
+        values, HISTORICAL_SIZE4_SUPPORT, selected_index
+    )
+    active_falsified = sum(
+        item["active_selector_clause_falsified"] for item in evaluations
+    )
+    _require(
+        active_falsified == 0,
+        "historical size-4 occurrence unexpectedly cuts the authenticated model",
+    )
+    return {
+        "schema": "p97-exact17-sat-canary-historical-analysis-correction/v1",
+        "status": "INVALID_HISTORICAL_MODEL_SPECIFIC_MINE",
+        "job_id": JOB_ID,
+        "authenticated_named_order": selected_index,
+        "authenticated_order_table": list(selected_order),
+        "historical_hardcoded_order_table": list(hardcoded_order),
+        "historical_order_matches_authenticated_selector": False,
+        "historical_size4_support": [
+            list(hit) for hit in sorted(HISTORICAL_SIZE4_SUPPORT)
+        ],
+        "historical_size4_active_selector_falsified_clause_count": 0,
+        "historical_size4_rejects_authenticated_model": False,
+        "historical_model_specific_mine_valid": False,
+        "orbit_evaluations": evaluations,
+    }
+
+
+def audit_historical() -> dict[str, Any]:
+    """Authenticate the sealed canary and report a read-only corrected mine."""
+    with prep.DescriptorCustody(ROOT) as custody:
+        _validate_checkpoint(custody)
+        _validate_portfolio_source(custody)
+        manifests = _validate_manifests(custody)
+        model, _, _ = _validate_journal(custody, manifests["wave"])
+        analysis_snapshot = _pinned(
+            custody,
+            ROOT,
+            HISTORICAL_ANALYSIS,
+            HISTORICAL_ANALYSIS_SHA256,
+            MAX_JSON_BYTES,
+        )
+        ledger_snapshot = _pinned(
+            custody,
+            ROOT,
+            HISTORICAL_LEDGER,
+            HISTORICAL_LEDGER_SHA256,
+            MAX_JSON_BYTES,
+        )
+        bank, _ = build_prior_bank(custody)
+    values, decoded = decode_model(model)
+    cnf = manifests["cnf"].content or b""
+    replay = replay_dimacs(cnf, values)
+    correction = historical_analysis_correction(
+        values,
+        _json(analysis_snapshot.content or b"", "historical analysis", canonical=False),
+        _json(ledger_snapshot.content or b"", "historical ledger", canonical=False),
+    )
+    order_index, order = selected_order_table(values)
+    summary, ledger = mine_rows(values, bank, order_index, order)
+    summary.update(classify_ledger_against_cnf(cnf, ledger))
+    summary["new_occurrence_count"] = sum(
+        entry["bank_relation"] == "new-occurrence-existing-family"
+        for entry in ledger["entries"]
+    )
+    return {
+        "status": "PASS_WITH_HISTORICAL_CORRECTION",
+        "scope": "read-only authenticated audit; no artifact, PIQD, solver, or Lean writes",
+        "decoded_model": decoded,
+        "independent_replay": replay,
+        "historical_correction": correction,
+        "corrected_source_valid_scan": summary,
+        "corrected_candidate_ledger_sha256": sha256_bytes(canonical_json_bytes(ledger)),
     }
 
 
@@ -916,9 +1186,43 @@ def mine(
             custody, manifests["wave"]
         )
         values, decoded = decode_model(model)
-        replay = replay_dimacs(manifests["cnf"].content or b"", values)
+        cnf = manifests["cnf"].content or b""
+        replay = replay_dimacs(cnf, values)
         bank, prior_hashes = build_prior_bank(custody)
-    scan_summary, ledger = mine_rows(values, bank)
+        historical_analysis_snapshot = _pinned(
+            custody,
+            ROOT,
+            HISTORICAL_ANALYSIS,
+            HISTORICAL_ANALYSIS_SHA256,
+            MAX_JSON_BYTES,
+        )
+        historical_ledger_snapshot = _pinned(
+            custody,
+            ROOT,
+            HISTORICAL_LEDGER,
+            HISTORICAL_LEDGER_SHA256,
+            MAX_JSON_BYTES,
+        )
+    order_index, order = selected_order_table(values)
+    scan_summary, ledger = mine_rows(values, bank, order_index, order)
+    scan_summary.update(classify_ledger_against_cnf(cnf, ledger))
+    scan_summary["new_occurrence_count"] = sum(
+        entry["bank_relation"] == "new-occurrence-existing-family"
+        for entry in ledger["entries"]
+    )
+    correction = historical_analysis_correction(
+        values,
+        _json(
+            historical_analysis_snapshot.content or b"",
+            "historical analysis",
+            canonical=False,
+        ),
+        _json(
+            historical_ledger_snapshot.content or b"",
+            "historical ledger",
+            canonical=False,
+        ),
+    )
     ledger_payload = canonical_json_bytes(ledger)
     analysis = {
         "schema": "p97-exact17-sparse-six-four-row-bisector-sat-canary-analysis/v1",
@@ -955,6 +1259,7 @@ def mine(
             "source_sha256": prior_hashes,
         },
         "source_valid_scan": scan_summary,
+        "historical_analysis_correction": correction,
         "candidate_ledger_sha256": sha256_bytes(ledger_payload),
         "conclusion": {
             "new_source_valid_occurrence_count": scan_summary["new_occurrence_count"],
@@ -981,6 +1286,8 @@ def mine(
         _relative(root, VARIABLE_MAP): VARIABLE_MAP_SHA256,
         _relative(root, MODEL_ARTIFACT): artifact_meta["model"],
         _relative(root, LOG_ARTIFACT): artifact_meta["solver_log"],
+        _relative(root, HISTORICAL_ANALYSIS): HISTORICAL_ANALYSIS_SHA256,
+        _relative(root, HISTORICAL_LEDGER): HISTORICAL_LEDGER_SHA256,
     }
     created_utc = (
         datetime.now(UTC).replace(microsecond=0).isoformat().replace("+00:00", "Z")
@@ -1041,9 +1348,17 @@ def mine(
     }
 
 
-def main() -> int:
+def main(argv: list[str] | None = None) -> int:
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--audit-historical",
+        action="store_true",
+        help="authenticate and print the corrected historical audit without writing",
+    )
+    args = parser.parse_args(argv)
     try:
-        print(json.dumps(mine(), sort_keys=True))
+        result = audit_historical() if args.audit_historical else mine()
+        print(json.dumps(result, sort_keys=True))
     except (OSError, MineError, prep.PreparationError) as exc:
         print(f"SAT canary mine rejected: {exc}", file=sys.stderr)
         return 2
