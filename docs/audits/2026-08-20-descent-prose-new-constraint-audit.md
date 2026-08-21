@@ -51,7 +51,7 @@ Every row below was tested against the v24, v25 and v26 survivor cubes.
 | 4 | A5.7a | row-avoiding source `\|Z\| ≥ 1`, `≥ 2` if `Kc` meets `{u,xv}` | [NEW DERIVED LEMMA; PROVED IN PROSE] | yes — counting | **no** |
 | 5 | A5.16 | three-row union `\|B\| ≤ 10 < 12`; proper-subset row escape | [DERIVED AND PROVED IN PROSE] | partly | **no** |
 | 6 | CD6/CD7 | forbid the 8-incidence saturation; 7-way missing-incidence disjunction | [PROVED] / [DERIVED AND PROVED IN PROSE] | yes — needs no blocker map | **no** |
-| 7 | A5.2/A5.4 | forced cap order `u < c < xv < xu` | [PROVED IN THE SOURCE] | order-level, not row-level | untested |
+| 7 | A5.2/A5.4 | forced cap order `u < c < xv < xu` | [PROVED IN THE SOURCE] | order-level, not row-level | **no** (measured 2026-08-20) |
 | 8 | A5.6 | four-source fan `\|T2\| = 4`, blocker map non-constant on it | [PROVED, EXACT CARDINALITY] | needs the blocker map | not in vocabulary |
 
 Detail on the ones that matter.
@@ -133,10 +133,24 @@ single-set five-point family targets vacated ground, and A5.17/A5.18/CD8 say
 the whole incidence-only family cannot close the leaf regardless of shape.
 
 Not established here: that no incidence constraint whatever could bite — only
-that the eight tested do not.  A5.2/A5.4's forced cap order was not tested
-against the 48-order deck and is the one untested candidate that could still
-prune; it is an order-level constraint, so it would act on the deck rather than
-on the rows.  {{NEEDS_RESEARCH}}
+that the eight tested do not.
+
+**A5.2/A5.4 measured (2026-08-20): removes 0 of the 48 deck orders.**  The
+deck generator
+(`census/card_head/exact12_v14_ordered_coverage.py:source_boundary_orders`)
+already restricts the second-opposite block to exactly the two internal
+orders `(6,7,8,9)` and `(9,8,7,6)` — with `U=6, C=7, XV=8, XU=9` these are
+`u,c,xv,xu` and its reversal, which is precisely the set A5.4 admits out of
+the 24 internal permutations.  The cap labels are contiguous in all 48
+orders, matching A5.3's strict-interior statement.  So the forced cap order
+was consumed when the deck was built; it is not a live lever.  The finer
+question — whether the cap reversal is coupled to the reversal of the other
+blocks, which would halve the deck — is explicitly open in the prose: lines
+2352-2354 state the crossing/orientation premise "must be derived rather
+than assumed".  Until that premise is derived, the deck's independent
+reversal on the cap is the sound abstraction of what is proved.
+EMPIRICALLY VERIFIED, exhaustive over the 48 deck orders and the 24
+internal cap permutations.
 
 ## Reproduction
 
@@ -144,3 +158,7 @@ Scripts used for the verdicts, all read-only over the three authenticated
 `survivor.json` cubes, are in the session scratchpad and are not durable
 artifacts; the numbers above are the whole result.  The label mapping and the
 two A5 identities can be re-derived from the cited source lines alone.
+
+The A5.2/A5.4 deck measurement is durable:
+`scratch/rigid221-sourceheavy-anchor/core-pair/test_a5_cap_order_deck.py`
+(read-only; asserts its three findings and prints the counts).
