@@ -29,14 +29,60 @@ saved profile under `D.A.card = 12`. Bare “card-12 producer” is retired from
 current-status rows. Historical file names and immutable artifact identifiers
 are not silently renamed.
 
-Last fully reconciled source inventory (live-rechecked 2026-07-26, retained as
-a dated snapshot): the exact-four branch has since undergone further
-on-spine decompositions, so its current leaf count must be read from the
-regenerated `docs/live-blueprint.md`, not from the fixed counts below.
+**Live reconciliation (2026-08-20, source head `9e2f2120`).** This paragraph,
+the current-register section at the end of this document, the generated
+`docs/live-blueprint.md`, and the declaration roster in
+`docs/erdos-97-descent-prose-proof-atomic.md` Section 16.5 are the current
+authorities. Earlier matrix rows remain dated implementation history unless
+the current register explicitly carries them forward.
 
-**Live reconciliation (2026-08-03, `proof-blueprint spine`).** The 2026-07-26
-snapshot below is superseded in its counts and retained only as a dated
-record of the branch shape at that time. Current authoritative state:
+- The publish spine has 37 open obligations: 36 reachable declarations whose
+  proofs contain `sorry`, plus the induced unapproved `sorryAx`.
+- The generated spine has 126/37290 open nodes and 320179 lines of Lean source
+  across 37290 declarations. The twenty trusted certificate leaves remain
+  outside ordinary mining and retain their separately audited trust boundary.
+- The 36 source obligations agree exactly with the prose-proof roster:
+
+  | Current family | Prose roster | Source modules | Reachable `sorry`s |
+  | --- | --- | --- | ---: |
+  | Rigid221 / exact-four and exact-five tail | A1-C5 | `Rigid221SourceHeavy.lean`, `Rigid221Placement.lean`, `Rigid221Closure.lean` | 18 |
+  | retained-omission tri-apex | D1-D9 | `TriApexEndpointRetainedOmission.lean` | 9 |
+  | two-source / FreshThird and first-fiber | E1-H1 | `TwoSourceFreshThirdResidual.lean`, `TwoSourceFirstFiberCollision.lean`, `TwoSourceClosure.lean`, `TwoSourceCanonicalSurface.lean` | 6 |
+  | two-deletion collision | I1-I3 | `TwoDeletionCollision.lean` | 3 |
+  | **Total** | **A1-I3** |  | **36** |
+
+- The generated source roster has three off-spine `sorry` declarations:
+  `false_of_exactFiveDistinct_biApexRobust_postCardEleven`,
+  `TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_firstFiberDescentResidual`,
+  and
+  `TwoSourceExactCollisionRowsTerminal.false_of_freshThird_pinnedEndpoint_outsideSeedResidual`.
+  `DoubleApexOffSurplusSharedRadiusPair` remains in an unimported module and is
+  not part of the current blueprint index. Three additional fidelity-check
+  `sorry`s under `scratch/` are nonproduction and are excluded from both the
+  36-leaf roster and this source-level off-spine list.
+
+Status synchronization with the prose proof is fail-closed:
+
+- `PROVED` means the cited Lean declaration is source-clean under the ordinary
+  core-axiom boundary; `CERTIFIED` means it is closed under the separately
+  declared native-certificate trust boundary. On-spine reachability is a
+  separate matrix gate and is never inferred from either label alone.
+- `DERIVED` or `PROVED IN PROSE` records a mathematical derivation that still
+  needs a Lean declaration and source-faithful adapter before it changes the
+  kernel frontier.
+- `PARTIALLY CLOSED` means only that a case family has been removed. It does
+  not mean that the enclosing declaration's `sorry` is closed.
+- Finite SAT/UNSAT, CEGAR, CAS, and exact-cardinality results retain their
+  explicitly bounded scope until their Lean ingress and named consumer are
+  complete.
+
+Last fully reconciled pre-August source inventory (live-rechecked 2026-07-26,
+retained as a dated snapshot): the exact-four branch later underwent further
+on-spine decompositions, so its counts are historical.
+
+**Historical reconciliation (2026-08-03, `proof-blueprint spine`).** The
+2026-07-26 snapshot below was superseded in its counts. The then-current state
+was:
 
 - 29 open obligations — 28 `sorry` theorems plus the induced `sorryAx`; all
   28 sit inside `ATailFrontierLiveClosure`;
@@ -78,8 +124,8 @@ publication snapshot. All 128 P2 native leaves, `P2Closure`, `ErasedPinRowResidu
 with 0/1376 open nodes, and its target-specific `verify-publish` gate passes.
 A final cached rerun of `scripts/build-p2-certificates.sh` completed all 16
 batches and the 8410-job aggregate `P2Closure` target with exit code 0.
-Global publication remains open because the five Front-A leaves remain
-unproved. The former shared-radius/LIVE-Q/C surface is bypassed and retired,
+Global publication remained open at that snapshot because the five Front-A
+leaves were unproved. The former shared-radius/LIVE-Q/C surface is bypassed and retired,
 not individually proved; the production caller now dispatches through
 `CriticalPairFrontier`.
 
@@ -169,6 +215,12 @@ K4 coupled to those named rows, `R.minimal`, or a complete alternative
 inapplicable because it required the cap-six `L` branch.
 
 ## Kernel obligations
+
+> **Historical register boundary.** The rows in this section record the route
+> as it evolved through 2026-08-17. They are retained for artifact provenance
+> and supersession history; they are not a declaration-complete description of
+> the present 36-leaf frontier. Use the 2026-08-20 current register at the end
+> of this document for active ownership, next actions, and closure claims.
 
 > **Current fixed-card override.** K-A-UNIQUE-POST11 supersedes the
 > fixed-card-11 P4/P5 ingress and “no production closure” clauses retained as
@@ -3139,3 +3191,104 @@ existing source-clean
 `false_of_capSource_firstFiber_collisionFiveCenterDeletion` appears to
 discharge the branch. Owner validation is pending; no shared-file edit has
 been made.
+
+## 2026-08-20 current closure register
+
+This register supersedes every earlier row as a statement of current status.
+Earlier sections remain authoritative only for the immutable artifacts and
+historical decisions they describe. The mathematical crosswalk is the
+committed prose manuscript at blob
+`18ca4ea3b9fc9aac650599d6c09d7e8f6c5428f2`; the kernel-reachability crosswalk
+is the generated 36-leaf spine summarized at the start of this document.
+
+### Current family-level execution matrix
+
+| ID | Prose roster | Current status | Next exact action | Promotion / rejection gate |
+| --- | --- | --- | --- | --- |
+| `LIVE-RIGID221` | A1-C5 (18 leaves) | OPEN-TERMINAL. The exact-twelve A5/A6 boundary, exact-seventeen cap-nine branch, unbounded source-heavy branches, placement leaves, and exact-five tail are all still represented by reachable `sorry`s. | Formalize the source-complete A5 reductions listed below; continue the checked exact-seventeen physical-slice campaign; seek one parametric counting/cap-growth theorem dominating multiple remaining Rigid221 leaves. | A source-clean helper is progress only when its exact ingress is available and it is wired to a named A1-C5 consumer. A bounded exact-cardinality theorem closes only its matching cardinality branch. |
+| `LIVE-TRIAPEX` | D1-D9 (9 leaves) | OPEN-TERMINAL. The retained-omission decomposition is a theorem-shape refinement, not closure. | Factor shared center-coincidence and mirror structure where the source supports it; produce branch-specific metric/counting consumers. | CD7 does not apply to D8, which has only two rows. Do not infer a third row, center distinctness, or a positive cross-incidence. |
+| `LIVE-TWOSOURCE` | E1-H1 (6 leaves) | OPEN-PRODUCER / OPEN-TERMINAL. FreshThird and first-fiber computations have narrowed source families but have not produced a universal consumer-ready theorem. | Continue the source-faithful U3/common-radius and `fan_local_0` producer work; preserve cap-source, blocker-fiber, row provenance, and role identity through every adapter. | Fixed-`n` SAT/UNSAT and source-rejected Boolean models are theorem-mining evidence only. No FreshThird `sorry` closes without a uniform producer or a formally complete transport/lift. |
+| `LIVE-TWODELETION` | I1-I3 (3 leaves) | OPEN-TERMINAL. | Prove the branch-specific blocker-coincidence and survival-square exclusions using the complete two-deletion packet. | CD7 is not a generic closer for I2/I3; only CD1-CD5-style persistence/packet constructors may be reused without additional rows. |
+
+### A5 exact-twelve common-deletion register
+
+The live A5 object is
+`false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_exactTwelve_interiorDeletion_physicalRadius_commonDeletion`.
+It remains a literal, reachable `sorry`. The complementary A6
+`..._physicalRadius_nextRowOnlyHit` theorem also remains open.
+
+The prose proof establishes the following mathematical reduction, but the
+status of each item must remain explicit:
+
+| Prose item | Mathematical content | Lean / computational status | Matrix action |
+| --- | --- | --- | --- |
+| A5.2-A5.5 | strict cap order and the pinned row-intersection bound | Source facts or direct consequences already available to the exact-twelve ingress. The 48-order deck already contains exactly the two A5.4-admissible cap orders, so this removes no current order. | Retain as ingress/regression assertions; do not claim a new cut. |
+| A5.6-A5.7a | four-source deletion fan and a source avoiding the named rows | Proved in prose; the row-avoiding source has no dedicated Lean declaration or spine wiring. | Formalize only with the actual blocker map, source memberships, and exact row provenance retained. |
+| A5.9 | next blocker `d ≠ xv` | Derived and proved in prose; no dedicated Lean theorem. The corresponding unit constraint is satisfied by the authenticated v24-v26 survivors. | Formalize as a source-specific helper consumed by the A5 role dispatcher. |
+| A5.10 | the former five-incidence hypothesis is contradictory | Derived and proved in prose; no dedicated Lean theorem. | Formalize as a tetrahedron-incompatibility adapter, reusing the existing planar three-exact-class theorem. |
+| A5.11-A5.12 | five disjoint roles, with `Bxu` impossible | Derived and proved in prose; no dedicated Lean role type, dispatcher, or `Bxu` exclusion. The direct `Bxu` clause also removes none of v24-v26. | Define a finite source-tagged role type and formalize the exhaustive split and strict-cap contradiction. |
+| A5.16 | a source outside the three-row union and a selected row escaping that union | The cardinality argument is prose-derived. The stronger proper-subset row escape uses minimality, but the current exact-twelve leaf does not carry `D.Minimal`. | Split this into a cardinality lemma and a minimality-dependent row-escape lemma; thread minimality through the caller before consuming the latter. |
+| A5.17-A5.18 | four surviving roles `U`, `Boff`, `Xt`, `Xv`, crossed with six authenticated deletion arms | Exact coverage contract identified: 24 cells. No aggregate coverage theorem exists. | Prove a source-faithful `A5Role × A5SourceArm` coverage theorem and close every cell by a metric/global consumer. |
+
+The exact remaining A5 implication is therefore OPEN-TERMINAL, not closed:
+one of five role families has been eliminated, while four role families and
+all twenty-four source-tagged coverage cells remain. The authenticated
+exact-twelve survivors satisfy every directly encoded new incidence bound,
+and the cap-order deck already matches A5.4. Another incidence-only CEGAR wave
+is not the next production action. The remaining `Boff`, `Xt`, and `Xv`
+families require bisector/circle/order geometry; the `U` family has an
+exact-eleven five-row normal form.
+
+A6 is a separate OPEN-TERMINAL. It is the `nextRowOnlyHit` complement of A5;
+none of the A5 common-deletion reductions closes it automatically.
+
+### Canonical common-deletion formalization register
+
+Section 16.5.38 of the prose manuscript supplies a valid mathematical
+calculus, but most of its generic names are not Lean declarations. The current
+formalization boundary is:
+
+| Prose item | Current formal counterpart | Status / next action |
+| --- | --- | --- |
+| CD0-CD2 | `SelectedFourClass`, `HasNEquidistantPointsAt`, and `selectedFourClass_survives_erase_of_not_mem` | Core representations and persistence are FORMALIZED. Do not duplicate them under generic `ExactRow`/`Survives` names. |
+| CD3 | `CriticalShellSystem.no_qfree_at` and `actual_blocker_ne_of_deletion_survives` | FORMALIZED with an actual chosen blocker map. |
+| CD4 | `CommonDeletionTwoCenterPacket` plus `nonempty_commonDeletionTwoCenterPacket` | OPEN-ADAPTER: add a constructor from two selected rows omitting one carrier source. Its signature must include source/center membership, distinct centers, and the actual `CriticalShellSystem`. |
+| CD5 | `FullyDeletionRobustAt` plus the same packet constructor | OPEN-ADAPTER: add a robust-center/omitted-row constructor with the same membership, distinctness, and blocker-map contract. |
+| CD6 | `U5QDeletedK4Class.three_exact_classes_tetrahedron_incompatibility` | Geometry is FORMALIZED; add only the source-row adapter needed by CD7. |
+| CD7 | robust-apex tetrahedron-or-seven-way continuation | PROVED IN PROSE, NOT FORMALIZED. Define a tagged continuation type retaining the missing incidence, deleted source, two centers, exact rows, and resulting `CommonDeletionTwoCenterPacket`; prove the saturated case through CD6. |
+| CD8 | no positive-incidence completion | PROVED SCOPE BOUNDARY. Missing incidence yields a continuation packet, not a contradiction. Reject generic completion claims and anonymous continuation adapters. |
+| CD9-CD11 | A5/A7/A8 specializations | OPEN-ADAPTER. A5 now prefers its stronger source-specific role split. A7/A8 must prove the pairwise center inequalities and preserve the complete source-faithful parent before invoking CD7. |
+| CD12 | A5 exact-twelve coverage, A7 unbounded continuation, A8 failed-then-surviving continuation | OPEN-GEOMETRIC-TERMINAL. Canonical logic alone closes none of these leaves. |
+| CD13 | D8/I2/I3 exclusions | SCOPE FIXED. These branches lack CD7's three-row robust-apex ingress; reuse only individually justified persistence/packet lemmas. |
+
+The formalization order is CD4, CD5, the CD6 adapter, CD7, A7/A8
+source-specific adapters, then the three CD12 consumers. For A5, the stronger
+A5.9-A5.12 role reduction should be formalized before attempting its
+twenty-four-cell coverage theorem.
+
+### FreshThird and first-fiber computational checkpoints
+
+| ID | Status at 2026-08-20 | Exact next target | Scope guard |
+| --- | --- | --- | --- |
+| `FRESHTHIRD-U3-COMMON-RADIUS` | OPEN-PRODUCER. The corrected source-synchronization waves, six-center v8/v9 packets, and dedicated 93,751-variable / 728,527-clause U3 ingress remain SAT abstractions. The earlier over-constrained UNSAT draft is discarded. | Produce `FirstNonHitCommonRadiusFinitePayloadImpossible`, `SixSurvivorU3ExactRadiusAuditObstruction`, or an equivalent source-level incidence/return/collision/descent theorem accepted by a live E1-H1 consumer. | A SAT abstraction is not a counterexample. An UNSAT result lacking the source producer and Lean ingress closes nothing. |
+| `FRESHTHIRD-FAN-LOCAL` | OPEN-PRODUCER. The 6,006-clause alternation projection and 577-clause order-refined v2 canary remain SAT and are rejected by the source theory; the isolated next family is `fan_local_0`. | Partition and encode the exact source-order `fan_local_0` predicate, then mine any new source-valid obstruction from that wave. | Pause undirected solver volume and one-model alternation cuts. Preserve the full four-arm endpoint-survival and cap-split packet. |
+| `FIRSTFIBER-GLOBAL-CONSUMER` | OPEN-ADAPTER / OWNER VALIDATION. Existing five-to-six-center positive lifts are source-clean but were off-spine at the 2026-08-17 checkpoint. | Complete a live consumer bridge retaining `FirstFiberCapSourceWitness`, blocker-in-cap membership, and role identity. | Do not treat the cardinality producer or weakened generic packet as the missing theorem. |
+
+### Exact-seventeen Rigid221 computational checkpoint
+
+The exact-seventeen cap-nine route is a finite branch of `LIVE-RIGID221`, not
+a FreshThird or universal-cardinality closure. Its current full-multiplicity
+physical-slice campaign has 76 authenticated category packages and a checked
+Lean-to-SAT representation seam. Thirteen parent cells terminated `UNKNOWN`;
+the child campaign produced an authenticated Boolean survivor, and the
+wave-local theorem mine found an instance of the already proved
+`Census554.FourPointTwoCircleBisectorOrderCore.false_of_core`. The complete
+two-order/two-orientation guarded orbit is the active successor refinement.
+
+Status: ACTIVE-CERTIFIED-COVERAGE-CAMPAIGN; NO `sorry` CLOSED. Closure requires
+checked UNSAT for every source category, one `DimacsUnsatisfiable` theorem per
+serialized cell, finite Lean composition into
+`false_of_all_sparseSixPointNextCenterPhysicalSliceCells`, and wiring through
+the exact-cover arm of the live cap-nine leaf. The 2026-08-20 prose additions
+in A5 are exact-twelve facts and supply no new exact-seventeen antecedent;
+their prose A3/A4 conclusions cannot be added as clauses until formalized.
