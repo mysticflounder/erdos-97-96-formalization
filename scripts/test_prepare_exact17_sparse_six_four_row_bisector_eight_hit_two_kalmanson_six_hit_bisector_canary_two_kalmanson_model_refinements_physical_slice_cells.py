@@ -712,6 +712,32 @@ def test_successor_dimensions_and_exact_six_units() -> None:
 
 def test_model_refinement_suffix_and_canary_are_exact() -> None:
     assert len(subject.ORIGINAL_CANARY_TWO_KALMANSON_ORBIT) == 16
+    assert subject.ORIGINAL_CANARY_TWO_KALMANSON_ORBIT[0] == (
+        -307,
+        -175,
+        -172,
+        -161,
+        -169,
+        -135,
+        -121,
+        -263,
+        -260,
+    )
+    assert subject.ORIGINAL_CANARY_TWO_KALMANSON_ORBIT[-1] == (
+        -308,
+        -72,
+        -79,
+        -277,
+        -275,
+        -51,
+        -44,
+        -156,
+        -164,
+        -208,
+        -221,
+        -192,
+        -197,
+    )
     assert len(subject.EXPECTED_CANARY_TWO_KALMANSON_SUFFIX) == 9
     assert subject.RETAINED_ORIGINAL_SUFFIX_INDICES == (0, 1, 2, 3, 4, 6, 8, 10, 12)
     assert subject.PARENT_SUBSUMED_ORIGINAL_SUFFIX_INDICES == (5, 7, 9, 11, 13, 14, 15)
@@ -726,6 +752,8 @@ def test_model_refinement_suffix_and_canary_are_exact() -> None:
     assert subject.ORIGINAL_PARENT_CLAUSES == 7_409_286
     assert subject.PARENT_CLAUSES == 7_409_295
     assert subject.CELL_CLAUSES == 7_409_301
+    assert subject.SOURCE_THEOREM.endswith("ModelRefinementPhysicalSliceCell")
+    assert "ModelRefinementsPhysicalSliceCell" not in subject.SOURCE_THEOREM
 
 
 def test_initialize_creates_exact_governed_skeleton(
