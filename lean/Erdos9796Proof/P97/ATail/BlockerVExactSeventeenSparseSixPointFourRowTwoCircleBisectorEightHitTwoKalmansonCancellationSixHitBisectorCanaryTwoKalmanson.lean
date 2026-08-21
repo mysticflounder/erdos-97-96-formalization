@@ -13,7 +13,9 @@ import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenTwentyEighthModelRefinemen
 The authenticated terminal canary exposes eight subset-minimal occurrences of
 the existing generic two-Kalmanson cancellation theorem. Each record retains
 separately checked forward and reflected certificate data. Their complete
-named-order and orientation orbits contribute 32 source-valid clauses.
+named-order and orientation orbits contribute 32 source-valid clauses.  The
+Lean-owned successor retains the 21 clauses that are not already subsumed by
+the immediate parent; the full 32-clause bank remains available for reuse.
 -/
 
 open scoped EuclideanGeometry
@@ -299,6 +301,24 @@ theorem canaryTwoKalmansonClauses_length :
     canaryTwoKalmansonClauses.length = 32 := by
   native_decide
 
+/-- Indices of the clauses that survive the immediate-parent subsumption scan. -/
+def canaryNovelTwoKalmansonClauseIndices : List Nat :=
+  [0, 1, 2, 3, 4, 5, 6, 8, 9, 12, 14, 16, 17, 18, 19, 20, 22, 24, 26, 28, 30]
+
+/-- The genuinely new suffix, in the original orbit order. -/
+def canaryNovelTwoKalmansonClauses : Std.Sat.CNF Atom :=
+  canaryTwoKalmansonClauses.zipIdx.filterMap fun (clause, index) =>
+    if index ∈ canaryNovelTwoKalmansonClauseIndices then some clause else none
+
+theorem canaryNovelTwoKalmansonClauses_length :
+    canaryNovelTwoKalmansonClauses.length = 21 := by
+  native_decide
+
+theorem canaryNovelTwoKalmansonClauses_subset :
+    ∀ clause ∈ canaryNovelTwoKalmansonClauses,
+      clause ∈ canaryTwoKalmansonClauses := by
+  native_decide
+
 theorem sourceAssign_canaryTwoKalmansonClauses
     {A : Finset (EuclideanSpace ℝ (Fin 2))} (source : SourceRealization A) :
     ∀ clause ∈ canaryTwoKalmansonClauses,
@@ -313,6 +333,14 @@ theorem sourceAssign_canaryTwoKalmansonClauses
     List.mem_flatMap, List.mem_map] at hclause
   obtain ⟨order, _horder, direction, _hdirection, rfl⟩ := hclause
   exact sourceAssign_cancellationOccurrenceClause source occ hcheck order direction
+
+theorem sourceAssign_canaryNovelTwoKalmansonClauses
+    {A : Finset (EuclideanSpace ℝ (Fin 2))} (source : SourceRealization A) :
+    ∀ clause ∈ canaryNovelTwoKalmansonClauses,
+      Std.Sat.CNF.Clause.eval (sourceAssign source.model) clause = true := by
+  intro clause hclause
+  exact sourceAssign_canaryTwoKalmansonClauses source clause
+    (canaryNovelTwoKalmansonClauses_subset clause hclause)
 
 /--
 Exact order-zero forward DIMACS clauses falsified by the authenticated canary.
@@ -336,16 +364,16 @@ theorem orderZeroForwardCanaryClauses_dimacs :
 def extendedCocircularOrderSparseSixPointFourRowBisectorEightHitTwoKalmansonSixHitBisectorCanaryTwoKalmansonCnf :
     Std.Sat.CNF Atom :=
   extendedCocircularOrderSparseSixPointFourRowBisectorEightHitTwoKalmansonSixHitBisectorCnf ++
-    canaryTwoKalmansonClauses
+    canaryNovelTwoKalmansonClauses
 
 theorem extendedCocircularOrderSparseSixPointFourRowBisectorEightHitTwoKalmansonSixHitBisectorCanaryTwoKalmansonCnf_length :
     extendedCocircularOrderSparseSixPointFourRowBisectorEightHitTwoKalmansonSixHitBisectorCanaryTwoKalmansonCnf.length =
-      7409297 := by
+      7409286 := by
   simp only [
     extendedCocircularOrderSparseSixPointFourRowBisectorEightHitTwoKalmansonSixHitBisectorCanaryTwoKalmansonCnf,
     List.length_append,
     extendedCocircularOrderSparseSixPointFourRowBisectorEightHitTwoKalmansonSixHitBisectorCnf_length,
-    canaryTwoKalmansonClauses_length]
+    canaryNovelTwoKalmansonClauses_length]
 
 theorem sourceAssign_extendedCocircularOrderSparseSixPointFourRowBisectorEightHitTwoKalmansonSixHitBisectorCanaryTwoKalmansonCnf
     {A : Finset (EuclideanSpace ℝ (Fin 2))} (source : SourceRealization A)
@@ -364,7 +392,7 @@ theorem sourceAssign_extendedCocircularOrderSparseSixPointFourRowBisectorEightHi
         source horder
     rw [Std.Sat.CNF.eval, List.all_eq_true] at hparentEval
     exact hparentEval clause hparent
-  · exact sourceAssign_canaryTwoKalmansonClauses source clause hsuffix
+  · exact sourceAssign_canaryNovelTwoKalmansonClauses source clause hsuffix
 
 /-- Conditional finite-UNSAT landing contract for the canary successor. -/
 theorem false_of_sourceRealization_of_extendedCocircularOrderSparseSixPointFourRowBisectorEightHitTwoKalmansonSixHitBisectorCanaryTwoKalmansonCnf_unsat
@@ -382,6 +410,8 @@ theorem false_of_sourceRealization_of_extendedCocircularOrderSparseSixPointFourR
 
 #print axioms canaryCancellationOccurrences_all_check
 #print axioms sourceAssign_canaryTwoKalmansonClauses
+#print axioms canaryNovelTwoKalmansonClauses_subset
+#print axioms sourceAssign_canaryNovelTwoKalmansonClauses
 #print axioms orderZeroForwardCanaryClauses_dimacs
 #print axioms
   sourceAssign_extendedCocircularOrderSparseSixPointFourRowBisectorEightHitTwoKalmansonSixHitBisectorCanaryTwoKalmansonCnf

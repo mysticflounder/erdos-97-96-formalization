@@ -35,7 +35,7 @@ def sparseSixPointFourRowTwoCircleBisectorEightHitTwoKalmansonSixHitBisectorCana
 theorem sparseSixPointFourRowTwoCircleBisectorEightHitTwoKalmansonSixHitBisectorCanaryTwoKalmansonPhysicalSliceCellCnf_length
     (center : Label) (category : PhysicalSliceCategory) :
     (sparseSixPointFourRowTwoCircleBisectorEightHitTwoKalmansonSixHitBisectorCanaryTwoKalmansonPhysicalSliceCellCnf
-      center category).length = 7409303 := by
+      center category).length = 7409292 := by
   cases category <;>
     simp [
       sparseSixPointFourRowTwoCircleBisectorEightHitTwoKalmansonSixHitBisectorCanaryTwoKalmansonPhysicalSliceCellCnf,
