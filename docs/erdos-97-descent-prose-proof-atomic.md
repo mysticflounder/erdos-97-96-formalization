@@ -10,10 +10,6 @@ date: "19 August 2026"
 **Proof-status measurement in the repository README:** 18 August 2026  
 **Document status:** Research manuscript. The elementary descent, packet extraction, and `IsM44` branch are reconstructed in full. The general non-`IsM44` theorem remains open.
 
-```{=openxml}
-<w:p><w:r><w:br w:type="page"/></w:r></w:p>
-```
-
 # Contents
 
 **0.** Reader's guide and status convention  
@@ -37,10 +33,6 @@ date: "19 August 2026"
 **Appendix A.** Exact rational local B2 stress model  
 **Appendix B.** Adversarial checklist for terminal lemmas  
 **Appendix C.** Final research conclusion
-
-```{=openxml}
-<w:p><w:r><w:br w:type="page"/></w:r></w:p>
-```
 
 ## 0. Reader's guide and status convention
 
@@ -1691,6 +1683,9 @@ For each numbered leaf, five distinctions are maintained. The *contract* is what
 
 **Status.** [OPEN-ROSTER; 36 built-spine leaves]
 
+**Common-deletion progress.** The generic positive-incidence-completion target has been replaced by a proved robust-apex tetrahedron-or-continuation theorem in Section 16.5.38. It remains the correct generic reduction for A7 and A8. The source-specific A5 analysis is now stronger: the five-incidence hypothesis is redundant, the next blocker cannot equal `xv`, and the entire `d=xu` role family is impossible by strict-cap betweenness. A5 is reduced to four role families and twenty-four source-tagged cells. D8, I2, and I3 require different branch-specific theorems.
+
+
 #### 16.5.A `Rigid221SourceHeavy.lean` - eight reachable leaves
 
 These leaves refine the source-heavy side of an exact `2+2+1` decomposition of a five-point physical radius class. They retain unusually rich provenance: named row companions, exact physical-class traces, cap-interior placement, actual blocker identities, and prescribed deletions. The main opportunity is to replace repeated local case trees by one or two order-sensitive lemmas on points lying on a common physical circle.
@@ -1811,34 +1806,663 @@ These leaves refine the source-heavy side of an exact `2+2+1` decomposition of a
 
 **Status.** [OPEN]
 
-##### 16.5.A5 - Exact-twelve common-deletion residue with one missing tetrahedron incidence
+##### 16.5.A5 - Exact-twelve common-deletion residue: refined source-level analysis
 
 **Declaration.** `false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_exactTwelve_interiorDeletion_physicalRadius_commonDeletion_missingIncidence`
 
-**Source and role.** `Rigid221SourceHeavy.lean`, approximately lines 15438-15505. The source comment identifies the final negated conjunction as the exact producer gap left after a checked common-arm CEGAR lane.
+**Source and role.** `Rigid221SourceHeavy.lean`, approximately lines 15438-15505 in the inspected source lineage. This is the exact-twelve `(5,4,6)` endpoint after the complete tetrahedron-incidence pattern has already been eliminated by a proved consumer. The present theorem is not merely a five-way incidence puzzle: it also receives an exact cap profile, a source-authenticated six-arm deletion clause, two concrete `xu`-deletion packets, and the complete source-heavy physical-cycle trace.
 
-**Atomic contract.** In the exact-twelve cap profile `(5,4,6)`, with the four named second-cap interior points, a named physical-radius source, survival after one of two first-apex deletions, and two nested common-deletion packets, prove `False` when at least one of five required tetrahedron incidences is absent.
+###### A5.0. Atomic notation
 
-**Data already proved upstream.** Let `c=centerAt(xv)`, `d=centerAt(c)`, `Kxv` be the canonical row at source `xv`, `Kc` the row at source `c`, and `BO` the physical-radius class at the second apex after deleting `xu`. The complete-incidence consumer already closes the conjunction `d in BO`, `O in Kc`, `u in Kc`, `O in Kxv`, and `d in Kxv`. Six source/deletion predicates have been checked. Two source-faithful common-deletion packets are available.
+Write
 
-**Exact missing implication.** The missing implication is an incidence-completion theorem: the global exact-twelve and common-deletion hypotheses must force all five positive incidences, or each possible missing incidence must itself yield a contradiction.
+- `O` for the physical second apex `S.oppApex2`;
+- `t` for the distinguished point `P.jointDeletion.deleted`;
+- `u,xu,v,xv` for the four named physical-class points;
+- `C` for the exact five-point physical class centered at `O`;
+- `c = β(xv)` for the actual blocker of `xv`;
+- `d = β(c)` for the actual blocker of `c`;
+- `Kxv` for the canonical exact four-row centered at `c` and selected by source `xv`;
+- `Kc` for the canonical exact four-row centered at `d` and selected by source `c`; and
+- `BO` for the physical radius class after deleting `xu`.
 
-**Candidate closure program.**
+Thus
 
-1. Rewrite the negated five-way conjunction as five explicit branches. Give each branch its own short theorem so no proof accidentally establishes only a different incidence.
+\[
+C=\{u,xu,t,v,xv\},
+\qquad
+BO=C\setminus\{xu\}.
+\tag{A5.0}
+\]
 
-2. For every common-deletion packet, canonicalize the surviving four-support at each nonrobust center. Prove a dichotomy: either the support is the pre-existing canonical row because the deleted point is omitted, or the center is deletion-robust via a second heavy radius. Route the robust alternative to the existing cap-growth bounds.
+The three exact rows used by the checked tetrahedron consumer are `BO`, `Kc`, and `Kxv`.
 
-3. Use support equality, not radius equality, as the default transport. Derive radius equality only from a named shared support point and positive radii.
+**Status:** [NOTATION]
 
-4. After canonicalization, attempt to force the five incidences one at a time. If one remains genuinely independent, encode the exact twelve-point residual as a finite certificate rather than adding it as an axiom.
+###### A5.1. Exact physical row after deleting `xu`
 
+One has
 
-**Known limits and rejection tests.** The finite CEGAR result described in the source is diagnostic until its predicates, terminal coverage, certificate replay, and placement transport are all kernel-connected. A `not (a and b and c and d and e)` hypothesis cannot be consumed by proving some unrelated disjunction. No incidence may be inferred merely because two existential K4 witnesses happen to have the same center.
+\[
+BO=\{u,t,v,xv\},
+\qquad |BO|=4.
+\tag{A5.1}
+\]
 
-**Immediate consumer.** The exact-twelve interior-deletion physical-radius coordinator. Its incidence-completion adapter should be designed to serve A7 and A8 as well.
+**Proof.** The source-heavy packet identifies `C` exactly as the five named points. The point `xu` belongs to `C`, and selected classes commute with erasure. Therefore deleting `xu` removes exactly that one point from `C`. QED.
 
-**Status.** [OPEN]
+**Status:** [DERIVED FROM PROVED SOURCE LEMMAS]
+
+###### A5.2. Exact second-cap profile and forced order
+
+At this endpoint,
+
+\[
+|A|=12,
+\qquad
+(|S_0|,|S_1|,|S_2|)=(5,4,6),
+\tag{A5.2}
+\]
+
+and the strict interior of the physical second cap is exactly
+
+\[
+\{u,c,xv,xu\}.
+\tag{A5.3}
+\]
+
+Up to reversal of the oriented cap, these four points occur in the order
+
+\[
+u<c<xv<xu.
+\tag{A5.4}
+\]
+
+The order is not an arbitrary label choice. It is forced by two equal-chord relations: `xv` is equidistant from `u` and `xu`, while `c` is equidistant from `u` and `xv`.
+
+**Status:** [PROVED IN THE SOURCE]
+
+###### A5.3. Exact trace of `Kxv`
+
+The `xv` row has the exact cap trace
+
+\[
+K_{xv}\cap S_2=\{u,xv\}.
+\tag{A5.5}
+\]
+
+It also has the exact physical-class trace
+
+\[
+K_{xv}\cap C=\{u,xv\}.
+\tag{A5.6}
+\]
+
+Consequently,
+
+\[
+K_{xv}\cap BO=\{u,xv\}.
+\tag{A5.7}
+\]
+
+In particular,
+
+\[
+c\notin K_{xv},
+\qquad
+xu\notin K_{xv},
+\tag{A5.8}
+\]
+
+and the other two members of `Kxv` lie outside the physical second cap.
+
+**Proof.** Equation (A5.5) is the proved cap-intersection theorem for the `xv` row. Equation (A5.6) is one edge of the proved five-cycle trace. Equation (A5.7) follows from (A5.1) and (A5.6). The center `c` is omitted from its own positive-radius row, and `xu` is excluded by (A5.6). QED.
+
+**Status:** [PROVED/DERIVED]
+
+###### A5.4. The concrete `xu`-deleted three-row packet
+
+The common arm supplies exact rows in `A-xu` at all three centers `O,c,d`. More precisely:
+
+1. `BO` is an exact four-row centered at `O`;
+2. `Kxv` is an exact four-row centered at `c` and omits `xu`;
+3. `Kc` is an exact four-row centered at `d` and omits `xu`; and
+4. every pair of these three rows has intersection cardinality at most two.
+
+The two original common-deletion packets are
+
+\[
+\operatorname{CD}(xu;c,O)
+\quad\text{and}\quad
+\operatorname{CD}(xu;d,O).
+\tag{A5.9}
+\]
+
+They imply that the actual blocker of `xu` is distinct from each of `O,c,d`.
+
+**Status:** [PROVED IN THE SOURCE]
+
+###### A5.5. The next-row strict-triple bound
+
+The row `Kc` contains at most one of the three named points `u,xu,xv`:
+
+\[
+|K_c\cap\{u,xu,xv\}|\le 1.
+\tag{A5.10}
+\]
+
+Since the common arm already gives `xu∉Kc`, at most one of `u` and `xv` belongs to `Kc`.
+
+This fact is stronger than the generic two-circle intersection bound and must be retained in every exact-twelve classifier.
+
+**Status:** [PROVED IN THE SOURCE]
+
+###### A5.6. The exact four-source second-cap deletion fan
+
+Let
+
+\[
+T_2=S_2\setminus K_{xv}.
+\]
+
+Because `|S2|=6` and `Kxv∩S2={u,xv}`,
+
+\[
+|T_2|=4.
+\tag{A5.11}
+\]
+
+Every `q∈T2` is a common deletion for the centers `c` and `O`:
+
+\[
+q\in T_2
+\quad\Longrightarrow\quad
+\operatorname{CD}(q;c,O).
+\tag{A5.12}
+\]
+
+The four points of `T2` are exactly `c`, `xu`, and the two boundary endpoints of the six-point cap. Thus A5 already contains a four-source deletion fan, not merely the single `xu` packet displayed by the leaf theorem.
+
+The source also proves that the actual blocker map is not constant on this four-source fan. In particular, at least two sources in `T2` have distinct actual blockers, both different from `c` and `O`.
+
+**Status:** [PROVED, WITH EXACT CARDINALITY DERIVED]
+
+###### A5.7. The physical five-class deletion fan
+
+Let
+
+\[
+T_C=C\setminus K_c.
+\]
+
+The source proves
+
+\[
+|T_C|\ge 3,
+\tag{A5.13}
+\]
+
+and every `q∈TC` is a common deletion for `d` and `O`:
+
+\[
+q\in T_C
+\quad\Longrightarrow\quad
+\operatorname{CD}(q;d,O).
+\tag{A5.14}
+\]
+
+The original `xu` packet belongs to this fan because `xu∉Kc`. This physical fan and the exact four-source cap fan are the two main global incidence resources that were not explicit in the earlier A5 prose reduction.
+
+**Status:** [PROVED IN THE SOURCE]
+
+###### A5.7a. The three concrete rows leave a row-avoiding deletion source
+
+Let
+
+\[
+I_2=\{u,c,xv,xu\}
+\]
+
+be the strict second-cap interior, and define
+
+\[
+Z=(A\setminus I_2)\setminus(BO\cup K_{xv}\cup K_c).
+\tag{A5.14a}
+\]
+
+Then
+
+\[
+|Z|\ge 1.
+\tag{A5.14b}
+\]
+
+If `Kc` contains `u` or `xv`, then in fact
+
+\[
+|Z|\ge 2.
+\tag{A5.14c}
+\]
+
+**Proof.** Since `|A|=12` and `|I2|=4`, exactly eight carrier points lie outside `I2`.
+
+- By A5.1, `BO\I2={t,v}`, so `BO` uses exactly two outside points.
+- By A5.3, `Kxv` has exactly two points outside the entire second cap, hence exactly two outside `I2`. Equation (A5.7) shows that these two points are disjoint from `{t,v}`.
+- The row `Kc` contains `c` and at most one of `u,xv`, while omitting `xu`. Therefore it uses at most three points outside `I2`, and only two when it contains `u` or `xv`.
+
+Thus the three rows use at most `2+2+3=7` of the eight outside points, or at most six in the latter two traces. QED.
+
+Choose `z∈Z`. Then
+
+\[
+z\notin I_2,
+\qquad
+z\notin BO\cup K_{xv}\cup K_c,
+\qquad
+z\notin C.
+\tag{A5.14d}
+\]
+
+The last assertion follows from `C=BO∪{xu}` and `xu∈I2`. Since `z` is absent from every concrete row, the unchanged supports prove
+
+\[
+\operatorname{Survives}_A(z;O),
+\qquad
+\operatorname{Survives}_A(z;c),
+\qquad
+\operatorname{Survives}_A(z;d).
+\tag{A5.14e}
+\]
+
+No robustness argument is needed here: exact-row persistence proves all three survivals, including the cases `z=O` or `z=d`. If `e=beta(z)` is the actual blocker of `z`, blocker semantics therefore give
+
+\[
+e\ne O,
+\qquad
+e\ne c,
+\qquad
+e\ne d.
+\tag{A5.14f}
+\]
+
+Equivalently, the exact-twelve common arm always contains a source-exact three-center deletion fan at some point outside both the physical five-class and the strict second-cap interior. It may be represented by the pair of packets
+
+\[
+\operatorname{CD}(z;O,c)
+\quad\text{and}\quad
+\operatorname{CD}(z;O,d),
+\tag{A5.14g}
+\]
+
+with the same named deleted source `z`, or by one three-center packet retaining all three exact rows simultaneously.
+
+This conclusion is independent of the missing-incidence branch and of the six-arm source choice. It is therefore available in every A5 branch and should be part of the common ingress rather than reconstructed in every source-tagged coverage cell.
+
+**Scope caution.** The point `z` is new relative to the three row supports and the physical five-class, but it is not yet proved distinct from `O` or `d`. Any argument requiring a fourth distinct source point must first exclude those equalities. The blocker `e`, however, is provably distinct from all three row centers.
+
+**Status:** [NEW DERIVED LEMMA; PROVED IN PROSE]
+
+###### A5.8. The source-authenticated six-arm clause
+
+Independently of the five tetrahedron incidences, the exact-twelve theorem receives a named source
+
+\[
+s\in\{u,xv,xu\}
+\tag{A5.15}
+\]
+
+and one of the two prescribed first-apex deletions `q,w` such that deletion of that point preserves K4 at `β(s)`. Equivalently, one of the six exact clauses holds:
+
+\[
+(s,\delta)\in
+\{u,xv,xu\}\times\{q,w\},
+\qquad
+\delta\notin K_s.
+\tag{A5.16}
+\]
+
+The same theorem proves `β(s)≠O1`, where `O1` is the first apex. This six-arm clause is source-authenticated and must be included in any finite coverage theorem; it is not implied by the three concrete `xu`-deleted rows.
+
+**Status:** [PROVED IN THE SOURCE]
+
+###### A5.9. The next blocker cannot be `xv`
+
+One has
+
+\[
+d\ne xv.
+\tag{A5.17}
+\]
+
+**Proof.** The rigid source packet identifies the actual blocker of `u` with `xv`:
+
+\[
+\beta(u)=xv.
+\]
+
+Suppose, for contradiction, that `d=xv`. Since `d=beta(c)`, the sources `c` and `u` would then have the same actual blocker. Canonical-row uniqueness at a fixed actual blocker gives
+
+\[
+K_c=K_u,
+\]
+
+where `Ku` is the canonical row selected by source `u`. The exact source-row trace gives `xu∈Ku`. Hence `xu∈Kc`. But the `xu` common-deletion arm gives `xu∉Kc`. Contradiction. QED.
+
+This argument uses support equality only; it does not identify any independently chosen radii.
+
+**Status:** [DERIVED AND PROVED IN PROSE]
+
+###### A5.10. The five-incidence hypothesis is redundant
+
+The following three incidences are already incompatible:
+
+\[
+u\in K_c,
+\qquad
+d\in BO,
+\qquad
+d\in K_{xv}.
+\tag{A5.18}
+\]
+
+**Proof.** By A5.3,
+
+\[
+BO\cap K_{xv}=\{u,xv\}.
+\]
+
+Thus the last two incidences force `d=u` or `d=xv`. The first alternative is impossible because `d` is the center of the positive-radius row `Kc` while `u∈Kc`. The second is excluded by A5.9. QED.
+
+Consequently the full conjunction used by the planar-tetrahedron consumer is impossible even before the two incidences involving `O` are considered. In particular, the theorem parameter
+
+```text
+not (d in BO and O in Kc and u in Kc and O in Kxv and d in Kxv)
+```
+
+is derivable from the remaining A5 hypotheses and should be removed from the conceptual theorem statement. The source-level `by_cases` on that conjunction remains a valid implementation device, but it is not the mathematical classification of the exact-twelve residue.
+
+**Status:** [DERIVED AND PROVED IN PROSE; ONE REDUNDANT HYPOTHESIS IDENTIFIED]
+
+###### A5.11. The correct disjoint five-family role split
+
+The common arm belongs to exactly one of the following five role families:
+
+\[
+\begin{array}{lll}
+\mathsf U:      & u\notin K_c,\[1mm]
+\mathsf{B_{xu}}:& u\in K_c\ \text{and}\ d=xu,\[1mm]
+\mathsf{B_{off}}:&u\in K_c\ \text{and}\ d\notin C,\[1mm]
+\mathsf{X_t}:   & u\in K_c\ \text{and}\ d=t,\[1mm]
+\mathsf{X_v}:   & u\in K_c\ \text{and}\ d=v.
+\end{array}
+\tag{A5.19}
+\]
+
+**Proof.** Split first on `u∈Kc`.
+
+- If `u∉Kc`, one is in `U`.
+- Assume `u∈Kc`. Split on `d∈BO`.
+  - If `d∉BO`, the identity `C=BO∪{xu}` gives `d=xu` or `d∉C`, producing `Bxu` or `Boff`.
+  - If `d∈BO={u,t,v,xv}`, then `d≠u` because a positive-radius row omits its center, and `d≠xv` by A5.9. Hence `d=t` or `d=v`, producing `Xt` or `Xv`.
+
+The alternatives are pairwise disjoint by construction. QED.
+
+In the last two families, A5.3 also gives automatically
+
+\[
+d\notin K_{xv},
+\tag{A5.20}
+\]
+
+because `t,v∈BO` while `BO∩Kxv={u,xv}`.
+
+Crossing these five role families with the six source-authenticated clauses of A5.8 gives thirty source-faithful cells. The next theorem closes all six cells in the `Bxu` family, leaving twenty-four cells rather than thirty.
+
+**Status:** [DERIVED AND PROVED IN PROSE]
+
+###### A5.12. The `Bxu` family is impossible
+
+The family
+
+\[
+u\in K_c,
+\qquad
+d=xu
+\tag{A5.21}
+\]
+
+cannot occur.
+
+**Proof.** The row `Kc` is centered at `d=xu` and contains both its source `c` and, by assumption, `u`. Therefore
+
+\[
+\operatorname{dist}(xu,u)
+=
+\operatorname{dist}(xu,c).
+\tag{A5.22}
+\]
+
+The three distinct points `u,c,xu` all lie in the strict interior of the same second cap. The strict-cap equal-distance betweenness theorem therefore places the center `xu` strictly between the two equidistant endpoints `u` and `c` in cap order.
+
+But A5.2 gives, up to reversal,
+
+\[
+u<c<xv<xu.
+\]
+
+Thus `c`, not `xu`, lies between `u` and `xu`; in particular `xu` is not between `u` and `c`. Contradiction. QED.
+
+This proof consumes the source-derived cap order and the canonical-row identity. It does not use the six-arm clause or any finite certificate.
+
+**Status:** [DERIVED AND PROVED IN PROSE; SIX OF THIRTY COVERAGE CELLS CLOSED]
+
+###### A5.13. The `U` family has an exact-eleven five-row normal form
+
+Assume
+
+\[
+u\notin K_c.
+\tag{A5.23}
+\]
+
+Deleting `u` then preserves the exact row `Kc` at `d`; the source already supplies the other four required surviving rows. The proved exact-twelve ingress theorem consequently produces:
+
+1. the exact cardinality
+   \[
+   |A-u|=11;
+   \]
+2. a `FiveSurvivorExactRowsBoundary` on the erased carrier; and
+3. the distinct actual blocker at which deletion of `u` fails.
+
+Thus `U` is not an unstructured missing-incidence branch. It is an exact-eleven, five-row finite boundary. The remaining theorem for this family is:
+
+> No exact-eleven five-survivor-row boundary arising from the full A5 packet and one of the six source-authenticated clauses is realizable.
+
+This is the most direct bounded-certificate target among the four surviving A5 families.
+
+**Status:** [PROVED NORMALIZATION; TERMINAL EXCLUSION OPEN]
+
+###### A5.14. The `Boff` family
+
+Assume
+
+\[
+u\in K_c,
+\qquad
+d\notin C.
+\tag{A5.24}
+\]
+
+Then `d` is outside the strict second-cap interior. Indeed that interior is exactly `{u,c,xv,xu}`; the three physical points are excluded by `d∉C`, and `d≠c` because an actual blocker differs from its source.
+
+The row `Kc` nevertheless contains `c` and `u`, so
+
+\[
+\operatorname{dist}(d,c)=
+\operatorname{dist}(d,u).
+\tag{A5.25}
+\]
+
+Hence `d` lies on the perpendicular bisector of the strict-cap chord `cu`, but outside the four-point strict interior. The exact residual is therefore an **off-physical-class two-pinned-point localization problem**, not a generic common-deletion problem.
+
+The branch still carries:
+
+- the forced order `u<c<xv<xu`;
+- the exact row `Kxv`, centered at `c`, through `u,xv`;
+- the exact physical row `BO`;
+- the two deletion fans of A5.6-A5.7;
+- the row-avoiding source of A5.7a; and
+- one source-authenticated six-arm clause.
+
+A closing theorem must use those data to place `d` in a forbidden cap region, force a third point into a two-circle intersection, or produce a shell-metric core. The equality (A5.25) alone is realizable.
+
+**Status:** [NORMAL FORM DERIVED; SIX SOURCE-TAGGED CELLS OPEN]
+
+###### A5.15. The `Xt` and `Xv` five-point chain families
+
+In either remaining physical family,
+
+\[
+u\in K_c,
+\qquad
+d\in\{t,v\},
+\qquad
+d\notin K_{xv}.
+\tag{A5.26}
+\]
+
+The following equalities are forced:
+
+\[
+\begin{aligned}
+&|Ou|=|Oxv|=|Od|=\rho,\\
+&|cu|=|cxv|,\\
+&|du|=|dc|.
+\end{aligned}
+\tag{A5.27}
+\]
+
+Thus the five named points `O,u,c,xv,d` form a source-faithful circle-isosceles chain:
+
+- `u,xv,d` lie on the physical circle centered at `O`;
+- `u,xv` lie on the row centered at `c`;
+- `u,c` lie on the row centered at `d`; and
+- `d` is explicitly omitted from the row centered at `c`.
+
+The two cases `d=t` and `d=v` are distinct physical-cycle placements. They may be related by a reflection only after the adjacent-cap orientation and every source label are transported explicitly.
+
+The remaining geometric target is to turn (A5.27), the strict order `u<c<xv<xu`, and the placement of `t,v` into one of the existing metric cores—most naturally a five-point circle-isosceles order core or a six-point circle-chain collision. The current packet does not yet contain the crossing/orientation premise required by those generic consumers, so that premise must be derived rather than assumed.
+
+**Status:** [TWO METRIC NORMAL FORMS DERIVED; TWELVE SOURCE-TAGGED CELLS OPEN]
+
+###### A5.16. The three-row union forces additional global escape data
+
+Let
+
+\[
+B=BO\cup K_{xv}\cup K_c.
+\tag{A5.28}
+\]
+
+Since `|BO|=|Kxv|=4` and `BO∩Kxv={u,xv}`,
+
+\[
+|BO\cup K_{xv}|=6.
+\]
+
+Adding the four-point row `Kc` gives
+
+\[
+|B|\le10<12=|A|.
+\tag{A5.29}
+\]
+
+Moreover `xu∉B`: it is erased from `BO` and omitted from both canonical rows. Therefore `A\B` contains `xu` and at least one further point `z0≠xu`. For such a point,
+
+\[
+z_0\notin BO\cup K_{xv}\cup K_c.
+\tag{A5.30}
+\]
+
+Exact-row persistence gives survival after deleting `z0` at all three centers `O,c,d`, and hence
+
+\[
+\beta(z_0)\notin\{O,c,d\}.
+\tag{A5.31}
+\]
+
+This is a simpler carrier-counting companion to the stronger cap-localized source `z` constructed in A5.7a.
+
+There is also a carrier-wide minimality consequence. In any faithful carrier pattern extending the A5 rows, the proper nonempty subset `B` has a center `e∈B` such that **every** selected four-support at `e` contains a point outside `B`. This is the proper-subset row-escape theorem applied to (A5.29). It produces a fourth selected row that genuinely leaves the three-row union.
+
+Neither escape statement is itself a contradiction. Together they provide the missing global producer that a finite coverage proof may use:
+
+- a named deletion source outside all three concrete rows, whose blocker avoids all three centers; and
+- a center inside the three-row union whose selected row must escape that union.
+
+**Status:** [DERIVED AND PROVED IN PROSE; GLOBAL ESCAPE PRODUCERS ADDED]
+
+###### A5.17. Revised finite coverage contract: twenty-four cells
+
+The source already constructs a twelve-point faithful carrier pattern whose exact rows at `O,c,d` are `BO,Kxv,Kc`. It also provides a source-clean contradiction consumer once the pattern is shown to satisfy a `ShellMetricCoreAlternative`. What is missing is coverage.
+
+After A5.12, coverage need only consider the four surviving role families
+
+\[
+\mathsf U,
+\quad
+\mathsf{B_{off}},
+\quad
+\mathsf{X_t},
+\quad
+\mathsf{X_v},
+\tag{A5.32}
+\]
+
+crossed with the six source-authenticated clauses of A5.8. Thus the exact classifier has **twenty-four**, not thirty, cells.
+
+Every cell receives the following common ingress:
+
+1. the exact twelve-point carrier and `(5,4,6)` cap partition;
+2. the strict order `u<c<xv<xu`;
+3. exact supports `BO,Kxv,Kc` and their intersection bounds;
+4. the second-cap and physical-class deletion fans;
+5. the two original `xu` common-deletion packets;
+6. the cap-localized row-avoiding source `z` of A5.7a;
+7. the second row-avoiding source `z0` and blocker exclusion (A5.31);
+8. the proper-subset escape center `e` of A5.16; and
+9. one of the four role tags and one of the six source/deletion tags.
+
+The target of each cell is not an arbitrary contradiction but one of the explicit constructors of `ShellMetricCoreAlternative`, or a direct convex-hull/order contradiction. In particular:
+
+- `U` should first pass through the exact-eleven five-row boundary;
+- `Boff` should produce an off-class bisector/cap localization core;
+- `Xt` and `Xv` should produce an oriented five-point circle-isosceles or six-point chain core.
+
+An incidence-only SAT certificate is insufficient. The replay object must retain the cap order, exact source-to-row provenance, and the metric equalities needed by the chosen core constructor.
+
+**Status:** [EXACT TWENTY-FOUR-CELL COVERAGE CONTRACT IDENTIFIED]
+
+###### A5.18. Exact remaining implication
+
+The A5 leaf has now been reduced to the following theorem:
+
+> No twelve-point faithful carrier pattern realizes the complete common A5 ingress together with one of the twenty-four cells in (A5.32) crossed with the source-authenticated six-arm clause.
+
+One of the five structural role families, `Bxu`, is closed by the strict-cap betweenness contradiction of A5.12. The original five-incidence negation is redundant, and the previously considered `d=xv` double-equilateral branch cannot occur at all.
+
+The four remaining families are sharply different:
+
+- `U` is an exact-eleven five-row finite endpoint;
+- `Boff` is an off-physical-class bisector localization endpoint;
+- `Xt` and `Xv` are two named circle-isosceles chain endpoints.
+
+The current repository supplies the faithful-pattern constructor and the conditional shell-metric consumer, but it does not yet supply the exhaustive twenty-four-cell coverage theorem. The off-spine exact-twelve bank chain is evidence about local predicates, not a substitute for that coverage proof.
+
+**Immediate consumer.** The exact-twelve interior-deletion physical-radius coordinator. Together with A6, A5 exhausts the exact-twelve physical-radius endpoint.
+
+**Status.** [PARTIALLY CLOSED: ONE ROLE FAMILY PROVED IMPOSSIBLE; FOUR ROLE FAMILIES / TWENTY-FOUR SOURCE-TAGGED CELLS REMAIN OPEN]
+
 
 ##### 16.5.A6 - Exact-twelve next row has only the named `xu` hit
 
@@ -1873,59 +2497,117 @@ These leaves refine the source-heavy side of an exact `2+2+1` decomposition of a
 
 **Declaration.** `false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_uDeletion_fixedPhysicalPair_missingIncidence`
 
-**Source and role.** `Rigid221SourceHeavy.lean`, approximately lines 15826-15856. This leaf replaces an older arbitrary-source interface with the source-clean fixed pair `xu` and the distinguished deleted point.
+**Source and role.** `Rigid221SourceHeavy.lean`, approximately lines 15826-15856 in the inspected source lineage. This is the source-clean `u`-deletion endpoint with the fixed physical pair `xu` and `deleted`.
 
-**Atomic contract.** Assume `13 <= |A|`. After deleting `u`, the relevant source centers and the physical apex survive. The complete five-incidence tetrahedron packet has a checked contradiction consumer. Prove `False` from the complementary assertion that at least one required incidence is missing.
+**Atomic contract.** Let
 
-**Data already proved upstream.** Let `Kxu` and `Kdeleted` be the canonical rows at sources `xu` and `deleted`; let their blockers be `cxu` and `cd`; and let `BO` be the physical-radius class after deleting `u`. The five desired incidences are `cxu in BO`, `O in Kxu`, `cd in Kxu`, `O in Kdeleted`, and `cxu in Kdeleted`. All source identities, carrier memberships, survival statements, and the rigid physical packet are retained.
+- `cxu` be the actual blocker selected at source `xu`, with exact row `Kxu` centered at `cxu`;
+- `cd` be the actual blocker selected at source `deleted`, with exact row `Kdeleted` centered at `cd`; and
+- `BO` be the exact physical-radius row centered at the fully deletion-robust apex `O`.
 
-**Exact missing implication.** As in A5, the mathematical gap is positive incidence production. Existing code proves that a complete tetrahedron is contradictory; it does not prove that the tetrahedron must be complete.
+The fixed-pair packet supplies the three seed incidences placing `deleted` in `BO`, `Kxu`, and `Kdeleted`. The checked tetrahedron consumer additionally requires
+
+\[
+c_{xu}\in BO,\quad O\in K_{xu},\quad c_d\in K_{xu},
+\quad O\in K_{deleted},\quad c_{xu}\in K_{deleted}.
+\tag{A7.1}
+\]
+
+The leaf assumes that at least one incidence in (A7.1) is absent.
+
+**Canonical reduction now proved.** By the robust-apex tetrahedron-or-continuation theorem of Section 16.5.38, the five branches become exactly:
+
+| Missing incidence | Deleted source | Surviving centers |
+|---|---|---|
+| `cxu ∉ BO` | `cxu` | `O` and `cxu` |
+| `O ∉ Kxu` | `O` | `O` and `cxu` |
+| `cd ∉ Kxu` | `cd` | `O` and `cxu` |
+| `O ∉ Kdeleted` | `O` | `O` and `cd` |
+| `cxu ∉ Kdeleted` | `cxu` | `O` and `cd` |
+
+If all five incidences held, the exact rows would make `O`, `cxu`, `cd`, and `deleted` pairwise equidistant, contradicting planar geometry. If one is absent, exact-row persistence and robustness construct the corresponding common-deletion packet.
+
+**Exact remaining implication.** The leaf is therefore equivalent to an unbounded continuation theorem: under the full source-heavy rigid packet and `13 ≤ |A|`, none of the five typed common-deletion continuations above can occur. Unlike A5, this cannot be completed by a single exact-cardinality certificate.
 
 **Candidate closure program.**
 
-1. Factor a general `fiveIncidences_or_robustAlternative` theorem for two source-faithful canonical rows under a common deletion. Its conclusion should be the complete incidence packet or a precise robustness/second-radius alternative at one of the two blockers.
+1. Normalize the five packets into one tagged family while retaining the deleted source, the non-apex center, and the exact row that survived.
 
-2. Use the multiplicity-blocker equivalence: failure after deleting a source identifies exactly the canonical four-row containing that source, while survival under the prescribed deletion proves that the deleted point is outside that row unless the center is robust.
+2. Compare each continuation to the original `u`-deletion data. In the three arms whose deleted source is one of `O`, `cxu`, or `cd`, determine whether the continuation creates a two-cycle in the chosen blocker map, a repeated common-deletion source, or a third distinct deletion.
 
-3. Thread the rigid cap placement into every robustness alternative. A robust blocker in this branch should trigger an existing all-large-cap or two-radius route rather than a new opaque terminal.
+3. For a repeated source, use canonical-row uniqueness at every nonrobust center to obtain exact support equality. For a new source, preserve it as a strictly larger source-faithful deletion fan; do not flatten it to anonymous survivals.
 
-4. Split any remaining missing incidence into five atomic sublemmas before attempting a finite or geometric proof.
+4. The required terminal must use the rigid cap placement. A promising form is a strict boundary-order potential on the sequence
 
+\[
+\text{deleted source}\longmapsto
+\text{surviving non-apex center}\longmapsto
+\text{its actual blocker}.
+\]
 
-**Known limits and rejection tests.** The complete-incidence consumer cannot be used contrapositively to manufacture the complete packet. Support equality must be justified by uniqueness at a nonrobust center. Since the theorem is unbounded above, a raw finite enumeration is not a complete route unless the missing-incidence obstruction is proved bounded.
+Prove that every continuation arm strictly advances the potential, while finiteness forces a cycle.
 
-**Immediate consumer.** The `threeCenterDeletion_u` coordinator. This is a prime target for a reusable incidence-completion theorem shared with A5 and A8.
+5. If such a potential cannot be proved, this branch should be routed to the unbounded cap-weighted blocker theorem rather than split into more local leaves.
 
-**Status.** [OPEN]
+**Known limits and rejection tests.** The complete-incidence contradiction cannot be contraposed into positive incidence production. A directed blocker cycle is not contradictory without a strict potential. The two centers in a common-deletion packet may use independent radii. A finite list of cardinality slices does not close the unbounded `13 ≤ |A|` theorem.
+
+**Immediate consumer.** The `threeCenterDeletion_u` coordinator. Its canonical five-way reduction is now closed; its continuation geometry remains open.
+
+**Status.** [PARTIALLY REDUCED: canonical reduction PROVED in prose; unbounded five-arm continuation theorem OPEN]
 
 ##### 16.5.A8 - Deletion of `xv` with two failing-then-surviving blockers and a missing incidence
 
 **Declaration.** `false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_threeCenterDeletion_xv_missingIncidence`
 
-**Source and role.** `Rigid221SourceHeavy.lean`, approximately lines 15917-15973. This is the `xv`-deletion endpoint after the complete tetrahedron-incidence packet is eliminated.
+**Source and role.** `Rigid221SourceHeavy.lean`, approximately lines 15917-15973 in the inspected source lineage. This is the `xv`-deletion endpoint after two nonphysical blockers are known to fail under deletion of `u` and survive under deletion of `xv`.
 
-**Atomic contract.** For two outside sources with distinct nonphysical blockers, deletion of `u` destroys K4 at both blockers, while deletion of `xv` preserves K4 at both blockers and at the physical apex. Prove `False` when at least one of the five incidences required by the checked consumer fails.
+**Atomic contract.** Let `c1,c2` be the two distinct nonphysical blockers, with exact canonical rows `K1,K2`, and let `BO` be the exact row centered at the fully deletion-robust physical apex `O`. Failure after deleting `u` gives
 
-**Data already proved upstream.** The two failed `u` deletions are especially strong: by the canonical blocker equivalence, `u` belongs to each blocker's unique four-row and each blocker has pinned multiplicity exactly four. The surviving `xv` deletion proves `xv` is absent from those rows, unless an independently proved robustness alternative applies. The blockers are distinct and not equal to the physical apex.
+\[
+u\in K_1\cap K_2,
+\]
 
-**Exact missing implication.** The missing implication is to convert this failure/survival asymmetry into the exact cross-incidences of the two canonical rows and the surviving physical-apex class.
+and the physical packet gives `u ∈ BO`. The checked complete-incidence consumer requires the additional five incidences
+
+\[
+c_1\in BO,\quad O\in K_1,\quad c_2\in K_1,
+\quad O\in K_2,\quad c_1\in K_2.
+\tag{A8.1}
+\]
+
+The leaf assumes at least one incidence in (A8.1) is absent.
+
+**Canonical reduction now proved.** Section 16.5.38 converts the five missing-incidence branches to:
+
+| Missing incidence | Deleted source | Surviving centers |
+|---|---|---|
+| `c1 ∉ BO` | `c1` | `O` and `c1` |
+| `O ∉ K1` | `O` | `O` and `c1` |
+| `c2 ∉ K1` | `c2` | `O` and `c1` |
+| `O ∉ K2` | `O` | `O` and `c2` |
+| `c1 ∉ K2` | `c1` | `O` and `c2` |
+
+The already-proved failed-then-surviving semantics are used only to identify `K1` and `K2` canonically and to establish `u ∈ K1∩K2`; no existential survival support is synchronized by choice. If all five additional incidences held, `O,c1,c2,u` would be four pairwise equidistant planar points.
+
+**Exact remaining implication.** It remains to show that no one of these five continuation packets is compatible with the source-heavy cap order, the distinct nonphysical blocker placement, and the original `u`-failure/`xv`-survival asymmetry.
 
 **Candidate closure program.**
 
-1. Immediately rewrite both failed `u`-deletion hypotheses into canonical-row memberships `u in K1` and `u in K2`, with exact multiplicity drop `4 -> 3`.
+1. Retain the multiplicity information at `c1` and `c2`: deletion of `u` drops each center from multiplicity four to three, while deletion of `xv` leaves each at multiplicity at least four. Hence `u` lies in both canonical rows and `xv` lies in neither.
 
-2. Rewrite both surviving `xv` deletions into `xv notin K1` and `xv notin K2` after discharging nonrobustness from the failed `u` deletions. This removes the existential K4 witnesses entirely.
+2. For each continuation arm, compare its deleted source with `u` and `xv`. If the source is `c1`, `c2`, or `O`, record a three-deletion table at both blockers rather than discarding the asymmetry.
 
-3. Use the fact that two distinct canonical rows share `u`. They may share at most one additional point. Determine which of the required tetrahedron incidences would force that second point, and show that every missing-incidence branch either creates a forbidden third intersection or leaves a blocker unblocked under deletion `u`.
+3. Since `K1` and `K2` already share `u`, any additional forced shared point saturates their two-circle intersection. Use the continuation packet to determine whether a third shared point is forced; otherwise retain the exact second point as a named pair and place both centers on its perpendicular bisector.
 
-4. If the intersection argument still has a realizable branch, add the cap locations of both blockers and use the perpendicular-bisector line through the shared pair to force a forbidden collinearity of three carrier centers.
+4. Combine that perpendicular-bisector placement with the strict cap locations of `c1` and `c2`. The desired terminal is either three carrier centers on one line, an interlacing-chord violation, or a strict boundary-order cycle.
 
+5. A branch that yields only a new common-deletion packet should be handed to the same tagged continuation dispatcher as A7, not represented by a fresh opaque `False` leaf.
 
-**Known limits and rejection tests.** Two distinct circles may share exactly two points, so the common source `u` alone is not terminal. The proof must identify a second shared point or use cap order. Do not synchronize the radii of the two rows merely because both contain `u`.
+**Known limits and rejection tests.** Two distinct exact rows may share exactly two points, and independent radii may coexist. The common source `u` alone is not a contradiction. No radius equality follows merely from both rows containing `u`. The geometric step must use either a second named shared point or cap order.
 
-**Immediate consumer.** The `threeCenterDeletion_xv` coordinator. This leaf has the strongest direct connection to the all-blockers and multiplicity formulation and may be the cleanest place to test it.
+**Immediate consumer.** The `threeCenterDeletion_xv` coordinator. The common-deletion reduction is complete; the cap-sensitive continuation terminal remains open.
 
-**Status.** [OPEN]
+**Status.** [PARTIALLY REDUCED: canonical reduction PROVED in prose; five cap-sensitive continuation arms OPEN]
 
 #### 16.5.B `Rigid221Placement.lean` - five reachable leaves
 
@@ -2436,30 +3118,31 @@ The TriApex cluster retains three large cap/apex systems, paired common-deletion
 
 **Declaration.** `false_of_retainedOmission_reverseHitFresh_endpointCommonDeletion_triApexAllLarge_core`
 
-**Source and role.** `TriApexEndpointRetainedOmission.lean`, approximately lines 3635-3653. Failure of the cross hit has already been converted into a source-exact `CommonDeletionTwoCenterPacket` based at the opposite endpoint.
+**Source and role.** `TriApexEndpointRetainedOmission.lean`, approximately lines 3635-3653 in the inspected source lineage. Failure of the cross hit has already been converted into a source-exact `CommonDeletionTwoCenterPacket` based at the opposite endpoint.
 
-**Atomic contract.** Consume the common-deletion packet together with the reverse-hit and all-large context to derive `False`.
+**Atomic contract.** Consume one two-center common-deletion packet together with the reverse-hit, retained-omission, and all-large tri-apex context, and derive `False`.
 
-**Data already proved upstream.** The packet supplies two centers that both retain K4 after one named deletion, with exact source identities. The retained shells and reverse hit give pre-deletion canonical rows and omissions. The deleted endpoint and opposite endpoint are named carrier points with cap locations.
+**Data already proved upstream.** The packet supplies one named deleted endpoint, two distinct surviving centers, exact four-supports in the erased carrier, and actual-blocker inequalities. The reverse hit and retained shells supply pre-deletion canonical rows, exact source identities, and cap locations.
 
-**Exact missing implication.** The missing implication is a robust-versus-critical common-deletion dichotomy whose every arm closes in the tri-apex geometry.
+**Scope correction after the common-deletion analysis.** D8 is **not** an instance of the robust-apex tetrahedron theorem in Section 16.5.38. It has one two-row packet but no third exact row and no four-point tetrahedron seed. The reusable parts are only the elementary deletion calculus: exact-row persistence, canonicalization at a nonrobust center, and survival excluding equality with the deleted source's actual blocker.
+
+**Exact missing implication.** The remaining theorem is a genuinely two-row retained-omission continuation theorem. It must show that the endpoint packet either closes a directed omission cycle with a forbidden order, forces a new cross hit, or produces a strictly advanced source-exact packet. A raw robust-versus-critical split is normalization, not closure.
 
 **Candidate closure program.**
 
-1. At each of the two surviving centers, split into deletion-robust and unique-four critical cases using the proved survival semantics.
+1. Canonicalize both surviving rows whenever their centers are nonrobust; retain a typed second-radius witness otherwise.
 
-2. In a critical case, canonicalize the post-deletion support to the pre-deletion row and derive that the deleted endpoint is omitted. Reorient the retained omission cycle using that exact omission.
+2. In the two critical arms, orient the exact omissions relative to the retained reverse hit and identify the next deleted endpoint forced by the source-faithful shell map.
 
-3. In a robust case, extract either a five-point class or two heavy radii and feed it into the all-large cap bounds; avoid creating a new existential survival terminal.
+3. Prove a strict tri-apex potential on this endpoint-to-blocker transition. The potential must advance in every critical arm and must be incompatible with a repeated packet.
 
-4. Prove a four-arm dispatcher whose children are existing geometric terminals or the generic orientation theorem D7.
+4. Route robust arms to the all-large/two-radius theorem. Route critical arms to one two-row cycle theorem, not to the three-row tetrahedron continuation theorem.
 
-
-**Known limits and rejection tests.** A common-deletion packet is a normalization, not a contradiction. Its two K4 witnesses may use different radii and supports. The proof must explicitly split robustness and canonicalize nonrobust centers.
+**Known limits and rejection tests.** A common-deletion packet is realizable local data. Its two K4 witnesses may have independent radii and supports. Without a third row, the planar tetrahedron incompatibility has no premise. Iterating packets is not a descent unless an explicit finite, strictly monotone potential is supplied.
 
 **Immediate consumer.** The no-cross-hit side of the reverse-hit fresh endpoint dispatcher.
 
-**Status.** [OPEN]
+**Status.** [OPEN: two-row retained-omission continuation theorem; not covered by Section 16.5.38]
 
 ##### 16.5.D9 - Three consecutive distinct blockers in the retained-omission route
 
@@ -2711,77 +3394,347 @@ These are the current descendants of the historical B1/B2/B3 family. They are be
 
 **Declaration.** `false_of_exactFourMutualOmission_fourCenterCommonDeletion_blockerCoincidence`
 
-**Source and role.** `TwoDeletionCollision.lean`, approximately lines 637-684. The collision is a disjunction identifying the first prescribed deletion with the blocker of `u`, the blocker of `v`, or the blocker of the second deleted source.
+**Source and role.** `TwoDeletionCollision.lean`, approximately lines 637-684 in the inspected source lineage. The collision disjunction identifies the first prescribed deletion with the blocker of `u`, the blocker of `v`, or the blocker of the second deleted source.
 
-**Atomic contract.** Under the original unique-four residual, card at least twelve, robust surface, positive physical class of size at least five, mutual omission, two distinct prescribed deletions, blocker distinctness, and a four-center common-deletion packet, derive `False` in each blocker-collision branch.
+**Atomic contract.** Under the original unique-four residual, cardinality at least twelve, robust surface, positive physical class of size at least five, mutual omission, two distinct prescribed deletions, blocker distinctness, and a four-center common-deletion packet, derive `False` in each blocker-collision branch.
 
-**Data already proved upstream.** All centers and deletions are named. The common-deletion packet retains exact survival data at four roles. The mutual-omission rows and the source identities are available upstream, although the current flat terminal does not normalize each collision branch into its exact row and cap facts.
+**Data already proved upstream.** Each collision branch has a deterministic exact forward row and a branch-specific mutual-omission orientation. The common-deletion packet retains exact survival data. The current flat disjunction obscures which row and which omitted source belong to the selected equality.
 
-**Exact missing implication.** The missing theorem is three branch-specific global contradictions. The equality `deleted=center` is not itself impossible because a center need not belong to the support in the erased carrier.
+**Scope correction after the common-deletion analysis.** I2 is not a direct application of the robust-apex tetrahedron theorem. A blocker equality is not a missing row incidence, and the branch does not initially provide the three exact rows and three seed incidences needed for a tetrahedron continuation. Section 16.5.38 contributes only the basic rule that a proved omission yields a source-exact survival packet.
+
+**Exact missing implication.** Three typed collision branches remain. Each must combine its equality with its exact forward row, paired omissions, and cap/source provenance to produce a row collision, a forbidden blocker two-cycle, or a strict orientation contradiction.
 
 **Candidate closure program.**
 
-1. Replace the collision disjunction with three typed branches `U`, `V`, and `S`, and preserve the branch's exact mutual-omission orientation.
+1. Replace the nested disjunction by typed branches `U`, `V`, and `S`; attach the exact row and the exact omitted points to each constructor.
 
-2. For each branch, normalize the forward canonical row already present in the source packet. Identify which deletion-survival statements imply omission of the colliding point from which rows.
+2. Apply the canonical deletion calculus to every branch-proved omission. Do not attempt positive incidence completion.
 
-3. Derive every shared support point explicitly. Use a common-deletion canonicalization theorem to obtain either a forbidden third intersection, a center-in-own-row event, or a robust/second-radius alternative.
+3. Search for a three-row tetrahedron seed only after the branch has independently produced all three exact rows and the necessary anchor incidences. When such a seed exists, call Section 16.5.38; otherwise stay in the collision-specific theorem.
 
-4. Feed robust alternatives into the all-large/two-radius machinery and geometric alternatives into the shared six-center orientation theorem.
+4. The terminal alternatives are: a third common point of two distinct rows, a center in its own positive-radius row, a source-faithful blocker two-cycle with a strict cap potential, or a branch-specific finite certificate.
 
+**Known limits and rejection tests.** The equality `deleted=center` is not itself impossible. The rejected four-point-intersection narrative conflicts with live omissions. Support equality requires a uniqueness theorem; radius equality requires a named shared point. The collision branches may not be merged before their omission orientations are retained.
 
-**Known limits and rejection tests.** The rejected four-point-intersection story contradicts live omission hypotheses and an existing intersection upper bound. Canonicalization yields support equality only under a uniqueness argument. Radius equality requires a shared point. No branch may treat the deleted center as a support member without proof.
+**Immediate consumer.** The blocker-collision side of the two-deletion coordinator.
 
-**Immediate consumer.** The two-deletion collision coordinator. Closing it requires exactly three normalized branch certificates, not a generic local circle slogan.
-
-**Status.** [OPEN]
+**Status.** [OPEN: three typed collision certificates; only elementary common-deletion adapters are closed]
 
 ##### 16.5.I3 - Four-center common deletion with one survival-square alternative
 
 **Declaration.** `false_of_exactFourMutualOmission_fourCenterCommonDeletion_survivalSquare`
 
-**Source and role.** `TwoDeletionCollision.lean`, approximately lines 688-782. The `hsquare` input is a disjunction of four alternatives; each alternative contains a pair of K4-survival assertions for one selected role.
+**Source and role.** `TwoDeletionCollision.lean`, approximately lines 688-782 in the inspected source lineage. The `hsquare` input is a disjunction of four alternatives, each containing two K4-survival assertions for one selected role.
 
-**Atomic contract.** For each selected role - physical apex, blocker of `u`, blocker of `v`, or blocker of the second deleted source - use the pair of deletion survivals and the full mutual-omission/common-deletion context to derive `False`.
+**Atomic contract.** For each selected role—physical apex, blocker of `u`, blocker of `v`, or blocker of the second deleted source—use the pair of deletion survivals and the full mutual-omission/common-deletion context to derive `False`.
 
-**Data already proved upstream.** The base packet supplies the same global context as I2. In a chosen arm, K4 survives at one role after deleting the common source and also survives at the paired blocker after deleting the role center. The radii and supports of those two survivals are existential and independent until normalized.
+**Data already proved upstream.** A chosen arm has one exact forward row already present in its source packet. Its reverse survival can be normalized to an exact row in the reverse-erased carrier. The two radii and supports remain independent until separately identified.
 
-**Exact missing implication.** The missing theorem is four branch-specific survival-pair contradictions. There is no simultaneous four-circle square in the hypothesis.
+**Scope correction after the common-deletion analysis.** I3 is also not a direct application of Section 16.5.38. The hypothesis is one of four bidirectional survival pairs, not a simultaneous three-row tetrahedron seed. The common-deletion calculus can normalize each survival and export omissions at nonrobust centers, but it does not synchronize supports or produce the five cross-incidences.
+
+**Exact missing implication.** Four role-specific survival-pair theorems remain. Each must use its exact forward row, normalized reverse row, mutual-omission orientation, and global cap/source provenance.
 
 **Candidate closure program.**
 
-1. Split the four alternatives into typed `NormalizedSurvivalSquareArm` packets. For each of the two survival statements in an arm, name the center, deleted point, positive radius, exact four-support, carrier inclusion, and source provenance.
+1. Replace the disjunction by four typed `NormalizedSurvivalPair` constructors. Name both deleted sources, both centers, both positive radii, both exact supports, and every support inclusion.
 
-2. At nonrobust centers, identify the support with the canonical unique-four row and turn survival into a precise omission. At robust centers, record the five-class or second-heavy-radius certificate.
+2. At nonrobust centers, canonicalize the support and convert survival to exact omission. At robust centers, retain a five-class or second-radius certificate.
 
-3. Within each arm, combine the two omissions with the mutual-omission rows and common-deletion packet. Seek either a directed blocker 2-cycle with an extra shared support, a forbidden third row intersection, or a strict cap-order cycle.
+3. Test whether a branch now contains a genuine three-row tetrahedron seed. Only those subbranches may call Section 16.5.38, and the resulting conclusion is a continuation packet rather than immediate `False`.
 
-4. Keep four metric certificates if their hypotheses genuinely differ. A common dispatcher is useful only after the branch-specific facts have been proved.
+4. For the remaining subbranches, prove a branch-specific two-cycle, intersection, or strict cap-order certificate. Keep independent radii independent.
 
+**Known limits and rejection tests.** Four roles are alternatives, not simultaneous centers. Two survivals may use different radii and supports. The documented partial shell witness blocks a contradiction based only on two local survivals and strict convexity. No generic “survival square” geometry is presently justified.
 
-**Known limits and rejection tests.** The four roles are alternatives, not simultaneous assumptions. The two survivals in one arm may use different radii and supports. The repository's partial shell witness rules out contradictions based only on two local K4 survivals and strict convexity. Every final certificate must use global provenance or cap order.
+**Immediate consumer.** The survival side of the two-deletion coordinator.
 
-**Immediate consumer.** The survival side of the two-deletion collision coordinator and the current B3 terminal.
-
-**Status.** [OPEN]
+**Status.** [OPEN: four normalized survival-pair certificates; not closed by tetrahedron continuation]
 
 #### 16.5.37 Shared closure lemmas suggested by the leaf ledger
 
-The thirty-six leaves do not appear to require thirty-six unrelated discoveries. The ledger exposes five reusable theorem families. These are research targets, not established results.
+The thirty-six leaves do not appear to require thirty-six unrelated discoveries. The ledger now exposes seven reusable theorem families. One of them—the robust-apex tetrahedron-or-continuation theorem—has a complete prose proof in Section 16.5.38. The remaining six are research targets.
 
 1. **Common-circle strict-arc blocker-cycle theorem.** Convert equal-distance rows whose centers and support pairs lie on one physical circle into oriented arc-midpoint relations. A closed strict midpoint cycle would discharge A1 and parts of B2-B5, and would provide the physical-placement side of C1.
 
-2. **Canonical common-deletion incidence-completion theorem.** Under failed deletion at one source and survival under another, identify the unique four-row, force omissions, and produce either the complete five-incidence tetrahedron or a robust/second-radius alternative. This is the intended common engine for A5, A7, A8, D8, I2, and I3.
+2. **Robust-apex tetrahedron-or-common-deletion continuation theorem.** Three exact rows around a fully deletion-robust apex cannot realize the complete planar tetrahedron incidence pattern. Every missing incidence canonically produces a tagged common-deletion packet. This theorem is proved in Section 16.5.38. For A7 and A8 it remains the correct generic reduction. A5 now has a stronger source-specific analysis: A5.9-A5.12 show that the five-incidence hypothesis is redundant, exclude `d=xv`, and close the entire `d=xu` role family by strict-cap betweenness.
 
-3. **Two-radius convex-order theorem.** Combine concentric exact-four classes with reflected-pair or cap-span data to prove an exposed-vertex obstruction. D2 supplies the strongest contract; C3 should be reduced to it only after the missing grid identities are produced.
+3. **Two-row retained-omission common-deletion cycle theorem.** Starting from one source-exact common-deletion packet in the tri-apex all-large context, prove a new cross hit, a forbidden repeated packet, or strict advance of a finite cap-order potential. This is the proper common engine for D8.
 
-4. **Source-faithful six-center orientation theorem.** Normalize the F1, G1, H1, and fresh-third packets into exact rows with branch tags, then prove a cross-blocker, row-collision, or strict cyclic-potential terminal. This theorem must retain source and prescribed-deletion provenance.
+4. **Typed collision and bidirectional-survival theorems.** Normalize the three I2 collision branches and the four I3 survival roles separately. A branch may call the tetrahedron theorem only after it has actually produced the required third row and anchor incidences.
 
-5. **Unbounded cap-weighted blocker inequality or bounded-obstruction theorem.** A3 cannot be closed by finite endpoint enumeration alone. A scalable theorem must either contradict the all-blockers cover using convex boundary intervals or prove that every unbounded residual contains a bounded forbidden packet without deleting arbitrary carrier points.
+5. **Two-radius convex-order theorem.** Combine concentric exact-four classes with reflected-pair or cap-span data to prove an exposed-vertex obstruction. D2 supplies the strongest contract; C3 should be reduced to it only after the missing grid identities are produced.
 
-A sensible proof-discovery order is: first formalize the canonical common-deletion adapters, because they are largely consequences of already proved deletion semantics; second attack the exact finite A2/A5/A6 endpoints to validate packet quality; third prove the D2 two-radius metric theorem; fourth consolidate the six-center source-rich leaves; and only then return to the unbounded A3 route.
+6. **Source-faithful six-center orientation theorem.** Normalize the F1, G1, H1, and fresh-third packets into exact rows with branch tags, then prove a cross-blocker, row-collision, or strict cyclic-potential terminal. This theorem must retain source and prescribed-deletion provenance.
 
-**Status:** [DERIVED research decomposition; no closing theorem claimed]
+7. **Unbounded cap-weighted blocker inequality or bounded-obstruction theorem.** A3 cannot be closed by finite endpoint enumeration alone. A scalable theorem must either contradict the all-blockers cover using convex boundary intervals or prove that every unbounded residual contains a bounded forbidden packet without deleting arbitrary carrier points.
+
+The revised proof-discovery order is: finish A5's twenty-four-cell coverage after the strict-cap proof has removed the `Bxu` family; seek a strict potential for the unbounded A7/A8 continuation families; develop D8's two-row cycle theorem separately; then return to the two-radius, six-center, and unbounded global routes.
+
+**Status:** [ONE SHARED THEOREM PROVED IN PROSE; SIX RESEARCH FAMILIES OPEN]
+
+#### 16.5.38 Canonical common-deletion calculus and the robust-apex tetrahedron continuation theorem
+
+This section replaces the earlier, overstrong “incidence-completion” target. The direction of implication matters. A deletion-survival witness naturally proves that a deleted point is absent from a critical exact row, or that the center has a second heavy radius. It does not force a positive cross-incidence. The valid reusable theorem is therefore a **tetrahedron-or-continuation theorem**: the complete incidence pattern is impossible, and every absent incidence creates a new source-exact common-deletion packet.
+
+##### CD0. Exact rows and local survival
+
+For a finite carrier `A`, write
+
+\[
+\operatorname{ExactRow}_A(c,R)
+\]
+
+when `R ⊆ A`, `|R|=4`, and there is a radius `r>0` such that every point of `R` is at distance `r` from `c`.
+
+Write
+
+\[
+\operatorname{Survives}_A(z;c)
+\]
+
+when the erased carrier `A-z` still has four equidistant points at center `c`. The center itself need not belong to `A-z`; only the four support points must.
+
+In a minimal no-removable configuration with a chosen actual blocker map `β`, a **source-exact common-deletion witness**
+
+\[
+\operatorname{CD}_A(z;p,q)
+\]
+
+records:
+
+1. `z,p,q ∈ A` and `p ≠ q`;
+2. `Survives_A(z;p)` and `Survives_A(z;q)`;
+3. `β(z) ≠ p` and `β(z) ≠ q`; and
+4. exact four-point supports for both survivals in `A-z`.
+
+This is the semantic content needed from a `CommonDeletionTwoCenterPacket`; the present prose theorem does not depend on the current Lean structure boundary.
+
+**Status:** [DEFINITIONAL REFORMULATION]
+
+##### CD1. Exact-row persistence under an omitted deletion
+
+If `ExactRow_A(c,R)` and `z ∉ R`, then
+
+\[
+\operatorname{Survives}_A(z;c).
+\tag{CD1}
+\]
+
+**Proof.** Since `R ⊆ A` and `z ∉ R`, one also has `R ⊆ A-z`. Its four points remain at the same positive radius from `c`. Thus `R` itself witnesses survival. QED.
+
+**Status:** [PROVED]
+
+##### CD2. A positive-radius row omits its center
+
+If `ExactRow_A(c,R)`, then `c ∉ R`.
+
+**Proof.** Every member of `R` is at a positive distance from `c`, whereas `dist(c,c)=0`. QED.
+
+**Status:** [PROVED]
+
+##### CD3. Survival excludes the actual blocker
+
+Assume `β(z)` is chosen so that deletion of `z` destroys K4 at `β(z)`. If `Survives_A(z;c)`, then
+
+\[
+\beta(z)\ne c.
+\tag{CD3}
+\]
+
+**Proof.** Equality would say that deletion of `z` both destroys and preserves K4 at the same center. QED.
+
+**Status:** [PROVED from blocker semantics]
+
+##### CD4. Two omitted exact rows produce a common-deletion witness
+
+Suppose `p≠q`, `ExactRow_A(p,Rp)`, `ExactRow_A(q,Rq)`, and
+
+\[
+z\notin R_p\cup R_q.
+\]
+
+Then `CD_A(z;p,q)`.
+
+**Proof.** CD1 gives survival at both centers. CD3 gives both actual-blocker inequalities. The unchanged rows `Rp` and `Rq` are exact four-point supports in the erased carrier. QED.
+
+**Status:** [PROVED]
+
+##### CD5. A robust center paired with one omitted row
+
+Call `O` **fully deletion-robust** when
+
+\[
+\forall z\in A,
+\quad \operatorname{Survives}_A(z;O).
+\]
+
+If `O` is fully deletion-robust, `O≠c`, `ExactRow_A(c,R)`, and `z∉R`, then
+
+\[
+\operatorname{CD}_A(z;O,c).
+\tag{CD5}
+\]
+
+**Proof.** Robustness gives survival at `O`; CD1 gives survival at `c`; CD3 gives the blocker inequalities; exact supports may be retained or extracted from the two survival witnesses. QED.
+
+**Status:** [PROVED]
+
+##### CD6. The saturated three-row pattern is a planar tetrahedron
+
+Let `B0,B1,B2` be exact rows centered at `O,c1,c2`, respectively. Let `a` be a carrier point. Assume the eight incidences
+
+\[
+\begin{aligned}
+&a,c_1\in B_0,\\
+&O,a,c_2\in B_1,\\
+&O,c_1,a\in B_2.
+\end{aligned}
+\tag{CD6.1}
+\]
+
+Then `O,c1,c2,a` are four distinct pairwise equidistant points.
+
+**Proof.** Let the positive row radii be `r0,r1,r2`. From `a,c1∈B0`,
+
+\[
+\operatorname{dist}(O,a)=r_0=
+\operatorname{dist}(O,c_1).
+\]
+
+From `O,a,c2∈B1`,
+
+\[
+\operatorname{dist}(c_1,O)=r_1=
+\operatorname{dist}(c_1,a)=
+\operatorname{dist}(c_1,c_2).
+\]
+
+Distance symmetry gives `r1=r0`. From `O,c1,a∈B2`,
+
+\[
+\operatorname{dist}(c_2,O)=r_2=
+\operatorname{dist}(c_2,c_1)=
+\operatorname{dist}(c_2,a).
+\]
+
+Since `dist(c2,c1)=dist(c1,c2)=r0`, one has `r2=r0`. Hence every one of the six pairwise distances among `O,c1,c2,a` equals the same positive number `r0`. Positive row radii also make all four points distinct.
+
+Four pairwise equidistant points cannot lie in the Euclidean plane. Equivalently, three of them form an equilateral triangle and there is no planar point at the same edge distance from all three vertices. This is precisely the repository's proved three-exact-classes tetrahedron incompatibility. QED.
+
+**Status:** [PROVED]
+
+##### CD7. Robust-apex tetrahedron-or-common-deletion continuation
+
+Assume:
+
+1. `O` is fully deletion-robust;
+2. `B0,B1,B2` are exact rows centered at pairwise distinct centers `O,c1,c2`;
+3. `a∈B0`; and
+4. all named points belong to `A`.
+
+Then at least one of the following seven tagged continuation witnesses exists:
+
+| Tag | Missing incidence | Common deletion produced |
+|---|---|---|
+| `T0` | `c1 ∉ B0` | `CD_A(c1; O,c1)` |
+| `T1` | `O ∉ B1` | `CD_A(O; O,c1)` |
+| `T2` | `a ∉ B1` | `CD_A(a; O,c1)` |
+| `T3` | `c2 ∉ B1` | `CD_A(c2; O,c1)` |
+| `T4` | `O ∉ B2` | `CD_A(O; O,c2)` |
+| `T5` | `c1 ∉ B2` | `CD_A(c1; O,c2)` |
+| `T6` | `a ∉ B2` | `CD_A(a; O,c2)` |
+
+**Proof.** Suppose none of the seven tags holds. Then all seven listed incidences are present. Together with the assumed `a∈B0`, these are exactly the eight incidences (CD6.1), contradicting CD6.
+
+It remains to construct the advertised packet in each missing-incidence branch.
+
+- In `T0`, the exact row `B0` omits `c1`; the exact row `B1` also omits `c1` by CD2 because it is centered at `c1`. CD4 gives `CD_A(c1;O,c1)`.
+- In `T1`, robustness gives survival at `O` after deleting `O`, while `O∉B1` and CD1 give survival at `c1`. CD5 gives `CD_A(O;O,c1)`.
+- The proofs of `T2` and `T3` are identical, deleting `a` and `c2`, respectively.
+- The proofs of `T4`, `T5`, and `T6` use the exact row `B2` and CD5 in the same way.
+
+Thus saturation is impossible and every failure of saturation has a canonical source-exact continuation. The `T0` packet is degenerate in the following precise sense: because `B1` is centered at `c1` and `O` is fully robust, `CD_A(c1;O,c1)` exists even without the missing incidence `c1∉B0`. The `T0` tag is still a valid branch label, but its packet should not be counted as new progress. QED.
+
+**Status:** [DERIVED AND PROVED IN PROSE; T0 DEGENERACY RECORDED]
+
+##### CD8. Why this is not positive incidence completion
+
+CD7 proves
+
+\[
+\text{not saturated}
+\quad\Longrightarrow\quad
+\text{typed common-deletion continuation}.
+\]
+
+It does **not** prove that the seven incidences hold, nor that a continuation packet is contradictory. This direction is forced by the semantics: survival after deleting `z` is naturally witnessed when `z` is absent from an exact row. The missing incidence is therefore useful negative information, not a defect to be filled by fiat.
+
+A generic positive-incidence theorem would be false without additional global hypotheses. Exact rows and common-deletion packets can occur in realizable local configurations. The remaining proof must consume cap order, exact cardinality, retained source provenance, or another global invariant.
+
+**Status:** [PROVED SCOPE BOUNDARY]
+
+##### CD9. Specialization to A5
+
+Use
+
+\[
+(B_0,B_1,B_2;O,c_1,c_2,a)
+=(BO,K_c,K_{xv};O,d,c,u).
+\]
+
+The branch already supplies `u∈BO`, `c∈Kc`, and `u∈Kxv`, so the generic theorem still produces the five missing-incidence positions formerly used by A5. However, the source-specific information is strictly stronger. A5.9 proves `d≠xv`, A5.10 shows that `u∈Kc`, `d∈BO`, and `d∈Kxv` are already incompatible, and A5.11 replaces the missing-incidence tags by the disjoint role families `U`, `Bxu`, `Boff`, `Xt`, and `Xv`. A5.12 then refutes `Bxu` outright. Consequently CD7 is a valid generic adapter, but it is no longer the preferred A5 dispatcher.
+
+**Status:** [DERIVED; GENERIC REDUCTION SUPERSEDED BY THE STRONGER A5 ROLE SPLIT]
+
+##### CD10. Specialization to A7
+
+Use
+
+\[
+(B_0,B_1,B_2;O,c_1,c_2,a)
+=(BO,K_{xu},K_{deleted};O,c_{xu},c_d,deleted).
+\]
+
+The fixed physical pair supplies `deleted` in all three seed rows, eliminating `T2` and `T6`; the remaining five tags are exactly the five missing incidences in A7.
+
+**Status:** [DERIVED; canonical reduction complete]
+
+##### CD11. Specialization to A8
+
+Use
+
+\[
+(B_0,B_1,B_2;O,c_1,c_2,a)
+=(BO,K_1,K_2;O,c_1,c_2,u).
+\]
+
+Failure after deleting `u` identifies `u` in both canonical rows, while the physical packet gives `u∈BO`. Again `T2` and `T6` are eliminated and the five remaining tags are exactly A8's missing-incidence split.
+
+**Status:** [DERIVED; canonical reduction complete]
+
+##### CD12. The three residual continuation theorems
+
+After CD7, the former common-deletion incidence-completion target has separated into three honest geometric obligations:
+
+1. **Exact-twelve twenty-four-cell coverage.** In A5's full `(5,4,6)` packet, the `Bxu` family is already impossible. Refute the four surviving role families `U`, `Boff`, `Xt`, and `Xv`, each crossed with the six source-authenticated deletion clauses. The `U` family has an exact-eleven five-row normal form; `Boff` is an off-class bisector-localization problem; and `Xt`,`Xv` are named five-point circle-isosceles chains.
+2. **Unbounded `u`-deletion continuation exclusion.** In A7's source-heavy rigid packet, refute the five tagged continuations by a cap-order potential or a scalable blocker inequality.
+3. **Failed-then-surviving continuation exclusion.** In A8, combine the five tags with the exact multiplicity drops at `c1,c2` and the omission of `xv` from both canonical rows.
+
+These are smaller than the original leaves and preserve the exact source and row responsible for every continuation. They should be stated as three dispatchers over one shared tag type, not as another five opaque `False` declarations per leaf.
+
+**Status:** [OPEN GEOMETRIC TERMINALS; canonical logic closed]
+
+##### CD13. Non-applications: D8, I2, and I3
+
+The shared theorem originally proposed for A5, A7, A8, D8, I2, and I3 was too broad.
+
+- **D8** has one two-row common-deletion packet and no third row, so CD6 cannot be instantiated.
+- **I2** begins with blocker equalities, not missing tetrahedron incidences. A three-row seed must first be derived branch by branch.
+- **I3** supplies one of four pairs of survival assertions. The rows, radii, and supports are not simultaneous or synchronized.
+
+All three may reuse CD1-CD5. None is closed by CD7 without additional branch-specific geometry.
+
+**Status:** [PROVED SCOPE CLASSIFICATION]
 
 ### 16.6 New prose-derived adapters
 
@@ -2791,15 +3744,14 @@ A sensible proof-discovery order is: first formalize the canonical common-deleti
 - exact all-blocker incidence identity;
 - canonical row injectivity;
 - pair-codegree at most two;
-- forced directed cycle on unique-four centers.
+- forced directed cycle on unique-four centers;
+- exact-row persistence under omitted deletion;
+- robust-apex tetrahedron-or-common-deletion continuation.
+- exact-twelve three-row noncoverage: a point outside the physical class is omitted by all three concrete rows, so its blocker differs from all three row centers.
 
 **Status:** [DERIVED; suitable for standalone Lean declarations]
 
 ---
-
-```{=openxml}
-<w:p><w:r><w:br w:type="page"/></w:r></w:p>
-```
 
 ## 17. Theorem-to-source crosswalk
 
@@ -2826,10 +3778,6 @@ A sensible proof-discovery order is: first formalize the canonical common-deleti
 - **Current frontier measurement and off-spine exclusions** — repository `README.md`, proof-status section
 
 ---
-
-```{=openxml}
-<w:p><w:r><w:br w:type="page"/></w:r></w:p>
-```
 
 # Appendix A. Exact rational local B2 stress model
 
