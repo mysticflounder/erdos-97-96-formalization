@@ -14768,3 +14768,70 @@ transports checked `CNF Nat` unsatisfiability back to the typed cell, and
 provides the all-certificate finite coordinator. The targeted Lean build and
 axiom scan pass; its only non-core trust is the already accepted
 `native_decide` proof that zero-basing preserves injectivity.
+
+The first authenticated terminal model of the refined campaign occurs in the
+`nextCenter = 0`, physical-slice `none` cell. Its sealed journal reports
+`STRUCTURAL_SAT`; an independent streaming replay checked all 7,409,259 clauses
+against the complete 308-variable assignment. This is a Boolean survivor of
+the source abstraction, not a Euclidean counterexample and not a closure result.
+At the same checkpoint, 47 other cells were sealed solver `UNKNOWN`, twelve were
+still running, and sixteen were prepared but had no event journal.
+
+That predecessor launch is now terminal: among its seventy submitted cells,
+the center-zero/physical-none cell is the sole authenticated structural SAT
+model and the other sixty-nine are solver `UNKNOWN`. The six formerly queued
+center-16 cells are included directly in the corrected 76-cell successor, so no
+separate predecessor launch is needed.
+
+The mandatory wave-local theorem mine found an eight-incidence instance of the
+already proved cardinality-generic theorem
+`Census554.FourPointTwoCircleBisectorOrderCore.false_of_core`. In named order
+zero the four selected rows are
+
+```text
+6 : {10, 12},  2 : {10, 7},  7 : {2, 12},  12 : {7, 2}.
+```
+
+The guarded clause
+`-307 -113 -115 -45 -42 -122 -132 -212 -207 0` rejects the replayed model.
+No mathematical antecedent is missing: `SourceRealization` supplies the selected
+rows, named order, orientation, injective realization, and cyclic signed-area
+facts. The active successor therefore banks the complete two-order,
+two-orientation orbit on top of the 7,409,253-clause cumulative root, then reruns
+the source-total physical cells. This is a finite refinement step until every
+surviving cell is certified UNSAT or another authenticated SAT model yields a
+new source-valid obstruction.
+
+The adapter, four-clause Lean-owned cumulative root, 76-cell source coverage
+coordinator, direct Lean exporter, and governed campaign preparer are banked at
+commit `9bf6bd2c`, with the preparer's corrected next-center encoding at
+`8965fe83`. The cumulative root has 7,409,257 clauses; each physical cell
+adds the next-center unit and five exact physical-multiplicity units, for
+7,409,263 clauses. The new adapter's source clause theorem is kernel-clean; the
+terminal cumulative and coverage theorems inherit only the already approved
+`native_decide` boundary from the parent sparse-six bank and contain no
+`sorryAx`.
+
+The first materialization attempt was rejected by the direct Lean sentinel
+before publication: Python had emitted a hit variable where the source cell
+requires `nextCenter(center)`, whose authenticated DIMACS identifier is
+`290 + center`. The corrected preparer now checks the endpoint regressions
+`0 ↦ 290` and `16 ↦ 306`; the failed package was never submitted to PIQD and
+produced no solver result.
+
+The corrected 76-cell package then passed an independent full audit. Its
+cumulative-root SHA-256 is
+`f829bbaf0bd92490e8d6627b9f0271bd8491e9555ebf3042e5e99efdcf1e6747`,
+its campaign-manifest SHA-256 is
+`5e00a9a5206cbf35393e065a5b43e9daee2ae1a6c0e1eca4ee44a1cbf809ba33`,
+and its root-producer SHA-256 is
+`7793e6bab5a2f00666ed9e82c2f7a611fc3a7cdf94cf2b34c38a15eec25459f5`.
+All 76 cells are now submitted through PIQD with eleven concurrent one-core
+drivers, a 3,600-second solver limit, and the same independent replay limit.
+This launch is protected by a create-once campaign lock.
+
+The 2026-08-20 update to `erdos-97-descent-prose-proof-atomic.md` adds exact-twelve
+lemmas in its A5 branch but no new exact-seventeen cap-nine antecedent. Its A2
+splitter remains the source of the exact-cover `SourceRealization`; its prose A3
+and A4 conclusions remain open Lean obligations and cannot be used as clauses in
+this campaign.

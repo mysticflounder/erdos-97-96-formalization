@@ -1088,3 +1088,43 @@ the LRAT relabelling once for the whole 76-cell family and exposes a single
 all-certificate theorem with the exact hypothesis required by the source
 coverage consumer. Thus terminal solver work no longer has an unimplemented
 Lean representation bridge behind it.
+
+The first refined terminal model is source-structural SAT in the center-zero,
+physical-none cell. Exact replay validates the model against its 7,409,259-clause
+cell, but no metric witness exists. A wave-local mine identifies an existing
+four-row two-circle bisector contradiction with order-zero incidences
+
+```text
+6 : {10, 12},  2 : {10, 7},  7 : {2, 12},  12 : {7, 2}.
+```
+
+`FourPointTwoCircleBisectorOrderCore.false_of_core` already proves the geometric
+contradiction. The only remaining ingress is the exact-17 source adapter and its
+four guarded order/orientation clauses. These clauses will be appended to the
+current cumulative root before regenerating the physical-cell family; the live
+leaf stays unchanged until checked terminal certificates cover every refined
+source category.
+
+The predecessor seventy-cell launch is terminal with that one structural SAT
+model and sixty-nine solver `UNKNOWN` results. Its six unlaunched center-16
+cells are subsumed by the corrected 76-cell successor campaign.
+
+That adapter and its source-total physical-slice coordinator are now banked at
+commit `9bf6bd2c`; the governed preparer's next-center unit correction is banked
+at `8965fe83`. The four orbit clauses extend the cumulative root to
+7,409,257 clauses; every one of the 76 exact physical cells has 7,409,263
+clauses. Targeted Lean builds and independent axiom audits pass, with no new
+custom axiom or `sorryAx`.
+
+The independently audited successor package is now live in PIQD. Its root
+SHA-256 is
+`f829bbaf0bd92490e8d6627b9f0271bd8491e9555ebf3042e5e99efdcf1e6747`;
+its campaign SHA-256 is
+`5e00a9a5206cbf35393e065a5b43e9daee2ae1a6c0e1eca4ee44a1cbf809ba33`.
+The launch uses eleven concurrent one-core drivers and the existing one-hour
+solver/replay limits.
+
+An audit of the current atomic prose proof found no new exact-17 cap-nine lemma.
+The latest A5 additions require cardinality twelve. The A2 splitter continues to
+produce the exact-cover source realization, while A3 and A4 remain open and are
+not available as computational assumptions.
