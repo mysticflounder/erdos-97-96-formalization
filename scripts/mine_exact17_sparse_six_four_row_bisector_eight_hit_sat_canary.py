@@ -266,6 +266,18 @@ def _formalized_orbit_clauses(
     return occurrence_orbit_clauses(positional_hits)
 
 
+def _source_entitled_formalized_record(record: dict[str, Any]) -> bool:
+    """Whether ``SourceRealization`` supplies every antecedent of ``record``.
+
+    Its row table is the pullback of one selected four-subset at each center;
+    it does not say that the subset is the complete metric circle class.
+    Therefore an ``ExactOffCircleCore`` found after marking Boolean rows exact
+    is diagnostic only and must never be emitted as a source-valid nogood.
+    """
+
+    return record["stage"] != "equality-exact-off-circle"
+
+
 def build_candidates(
     values: dict[int, bool], order_index: int, order: tuple[int, ...]
 ) -> tuple[dict[str, Any], list[dict[str, Any]]]:
@@ -301,8 +313,12 @@ def build_candidates(
         )
     formalized = producer_bank.scan_all_formalized_cores(rows, 17, order)
     formalized_counts = Counter(record["stage"] for record in formalized)
+    source_unentitled_counts: Counter[str] = Counter()
     for record in formalized:
         if record["stage"] == "equality-convex-two-kalmanson-cancellation":
+            continue
+        if not _source_entitled_formalized_record(record):
+            source_unentitled_counts[record["stage"]] += 1
             continue
         hits = minimize_formalized_occurrence(record, rows)
         clauses = _formalized_orbit_clauses(hits, record, order)
@@ -327,6 +343,9 @@ def build_candidates(
         "two_kalmanson": two_summary,
         "formalized_diagnostic_count": len(formalized),
         "formalized_stage_counts": dict(sorted(formalized_counts.items())),
+        "source_unentitled_formalized_stage_counts": dict(
+            sorted(source_unentitled_counts.items())
+        ),
         "source_valid_candidate_count": len(candidates),
     }, candidates
 

@@ -117,6 +117,18 @@ def test_reverse_bisector_is_minimized_and_oriented_from_actual_selector() -> No
     assert [-307, -143, -141, -111, -107, -60, -58] in candidate["clauses"]
 
 
+def test_selected_four_subset_does_not_entitle_exact_off_circle() -> None:
+    values, _decoded = mine.decode_model(authenticated_model())
+    order_index, order = mine.selected_order_table(values)
+    summary, candidates = mine.build_candidates(values, order_index, order)
+    assert summary["source_unentitled_formalized_stage_counts"] == {
+        "equality-exact-off-circle": 1
+    }
+    assert all(
+        candidate["stage"] != "equality-exact-off-circle" for candidate in candidates
+    )
+
+
 def test_minimized_reverse_bisector_needs_every_hit() -> None:
     values, _decoded = mine.decode_model(authenticated_model())
     _order_index, order = mine.selected_order_table(values)
