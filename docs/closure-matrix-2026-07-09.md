@@ -3252,17 +3252,18 @@ formalization boundary is:
 | --- | --- | --- |
 | CD0-CD2 | `SelectedFourClass`, `HasNEquidistantPointsAt`, and `selectedFourClass_survives_erase_of_not_mem` | Core representations and persistence are FORMALIZED. Do not duplicate them under generic `ExactRow`/`Survives` names. |
 | CD3 | `CriticalShellSystem.no_qfree_at` and `actual_blocker_ne_of_deletion_survives` | FORMALIZED with an actual chosen blocker map. |
-| CD4 | `CommonDeletionTwoCenterPacket` plus `nonempty_commonDeletionTwoCenterPacket` | OPEN-ADAPTER: add a constructor from two selected rows omitting one carrier source. Its signature must include source/center membership, distinct centers, and the actual `CriticalShellSystem`. |
-| CD5 | `FullyDeletionRobustAt` plus the same packet constructor | OPEN-ADAPTER: add a robust-center/omitted-row constructor with the same membership, distinctness, and blocker-map contract. |
-| CD6 | `U5QDeletedK4Class.three_exact_classes_tetrahedron_incompatibility` | Geometry is FORMALIZED; add only the source-row adapter needed by CD7. |
-| CD7 | robust-apex tetrahedron-or-seven-way continuation | PROVED IN PROSE, NOT FORMALIZED. Define a tagged continuation type retaining the missing incidence, deleted source, two centers, exact rows, and resulting `CommonDeletionTwoCenterPacket`; prove the saturated case through CD6. |
+| CD4 | `nonempty_commonDeletionTwoCenterPacket_of_two_omitted_selectedFourClasses` | FORMALIZED. Two omitted selected four-rows now produce the source-exact packet with explicit source/center membership, distinct centers, and the actual `CriticalShellSystem`. |
+| CD5 | `nonempty_commonDeletionTwoCenterPacket_of_fullyDeletionRobustAt_and_omitted_selectedFourClass` | FORMALIZED. Full deletion robustness and one omitted selected row now produce the corresponding source-exact packet under the same explicit contract. |
+| CD6 | `selectedFourClass_three_rows_tetrahedron_incompatibility` and `U5QDeletedK4Class.three_exact_classes_tetrahedron_incompatibility` | FORMALIZED. Both the selected-row source boundary and the q-deleted metric consumer discharge the saturated planar-tetrahedron pattern. |
+| CD7 | `RobustApexThreeRowSurface`, `RobustApexThreeRowContinuation`, `nonempty_robustApexThreeRowContinuation`, and `nonempty_robustApexFiveIncidenceContinuation_of_commonPoint` | FORMALIZED. The dependent seven-way continuation retains the indexed three-row surface, the missing incidence, and its resulting `CommonDeletionTwoCenterPacket`; saturation is discharged through CD6. The checked five-way specialization removes the two missing-common-point tags used by A7/A8. |
 | CD8 | no positive-incidence completion | PROVED SCOPE BOUNDARY. Missing incidence yields a continuation packet, not a contradiction. Reject generic completion claims and anonymous continuation adapters. |
-| CD9-CD11 | A5/A7/A8 specializations | OPEN-ADAPTER. A5 now prefers its stronger source-specific role split. A7/A8 must prove the pairwise center inequalities and preserve the complete source-faithful parent before invoking CD7. |
+| CD9-CD11 | A5/A7/A8 specializations | A7/A8 ADAPTERS FORMALIZED OFF-SPINE as `nonempty_fixedPhysicalPair_uDeletion_fiveIncidenceContinuation` and `nonempty_xvDeletion_fiveIncidenceContinuation`. Their result packets retain all three canonical support identities and both named common-point incidences. The live `False` leaves still require explicit wiring to the CD12 continuation terminals. A5 continues to prefer its stronger source-specific role split. |
 | CD12 | A5 exact-twelve coverage, A7 unbounded continuation, A8 failed-then-surviving continuation | OPEN-GEOMETRIC-TERMINAL. Canonical logic alone closes none of these leaves. |
 | CD13 | D8/I2/I3 exclusions | SCOPE FIXED. These branches lack CD7's three-row robust-apex ingress; reuse only individually justified persistence/packet lemmas. |
 
-The formalization order is CD4, CD5, the CD6 adapter, CD7, A7/A8
-source-specific adapters, then the three CD12 consumers. For A5, the stronger
+The completed generic layer is CD4-CD7, and the source-faithful A7/A8 adapters
+now exist downstream. The next formalization order is to wire those adapters
+through explicit live terminal contracts, then prove the three CD12 consumers. For A5, the stronger
 A5.9-A5.12 role reduction should be formalized before attempting its
 twenty-four-cell coverage theorem.
 

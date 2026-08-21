@@ -5,6 +5,7 @@ Authors: Adam McKenna
 -/
 
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.Rigid221SourceHeavy
+import Erdos9796Proof.P97.ATail.RobustApexCommonDeletion
 
 /-!
 # Rigid 221 source-heavy common-deletion producers
@@ -22,6 +23,7 @@ open ATailCriticalPairFrontier
 open ATailDeletionRobustness
 open ATailExactFourPhysicalConsumer
 open ATailFiveCenterDeletionBoundary
+open ATailRobustApexCommonDeletion
 open ATailUniqueFourLateChoiceTerminalScratch
 
 attribute [local instance] Classical.propDecidable
@@ -101,6 +103,203 @@ theorem xvDeletion_c1_not_mem_BO_yields_self_commonDeletion
       simpa only [KO, qDeletedK4ClassToSelectedFourClass] using hc₁NotBO)
   exact nonempty_commonDeletionTwoCenterPacket Hlate hc₁A hc₁A hOA
     hcenter₁NeO hsurvivesC₁ hsurvivesO
+
+/-- The fixed physical source pair in the `u`-deletion arm supplies the exact
+five-way robust-apex continuation surface.  This theorem performs only the
+canonical CD7 reduction; excluding the resulting continuation packet remains
+the unbounded A7 geometric terminal. -/
+theorem nonempty_fixedPhysicalPair_uDeletion_fiveIncidenceContinuation
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F}
+    {P : ExactFourRigid221PhysicalApexSourceEqUContext R}
+    {packet :
+      ExactFourRigid221SourceEqUBlockerVRowOtherSourceHeavyPacket P}
+    (Q : ExactFourRigid221PentagonOffClassBlockerResidual P packet) :
+    let Hlate := lateFirstApexSystem R
+    let sourceXu : CarrierVertex D.A := ⟨packet.xu, Q.hxuA⟩
+    let sourceDeleted : CarrierVertex D.A := P.jointDeletion.deleted
+    let Kxu :=
+      (Hlate.selectedAt sourceXu.1 sourceXu.2).toCriticalFourShell
+    let Kdeleted :=
+      (Hlate.selectedAt sourceDeleted.1 sourceDeleted.2).toCriticalFourShell
+    let BO := SelectedClass (D.A.erase P.u.1) S.oppApex2 P.rho
+    let c₁ := Hlate.centerAt sourceXu.1 sourceXu.2
+    let c₂ := Hlate.centerAt sourceDeleted.1 sourceDeleted.2
+    Nonempty
+      (RobustApexFiveIncidenceContinuationPacket
+        D Hlate S.oppApex2 c₁ c₂ sourceDeleted.1
+          BO Kxu.support Kdeleted.support) := by
+  classical
+  let Hlate := lateFirstApexSystem R
+  let sourceXu : CarrierVertex D.A := ⟨packet.xu, Q.hxuA⟩
+  let sourceDeleted : CarrierVertex D.A := P.jointDeletion.deleted
+  let Kxu :=
+    (Hlate.selectedAt sourceXu.1 sourceXu.2).toCriticalFourShell
+  let Kdeleted :=
+    (Hlate.selectedAt sourceDeleted.1 sourceDeleted.2).toCriticalFourShell
+  let BO := SelectedClass (D.A.erase P.u.1) S.oppApex2 P.rho
+  let c₁ := Hlate.centerAt sourceXu.1 sourceXu.2
+  let c₂ := Hlate.centerAt sourceDeleted.1 sourceDeleted.2
+  change
+    Nonempty
+      (RobustApexFiveIncidenceContinuationPacket
+        D Hlate S.oppApex2 c₁ c₂ sourceDeleted.1
+          BO Kxu.support Kdeleted.support)
+  rcases pentagonOffClassBlocker_fixedPhysicalPair_biDeletion Q with
+    ⟨_hxuOutside, _hdeletedOutside, hc₁NeC₂, hc₁NeO, hc₂NeO,
+      _hsurvivalTable⟩
+  rcases pentagonOffClassBlocker_fixedPhysicalPair_uDeletion_threeExactRows_common_deleted
+      Q with
+    ⟨Cxu, Cdeleted, CO, hdeletedKxu, hdeletedKdeleted, hdeletedBO,
+      hBOCard, _hsourceXuKxu⟩
+  have hc₁A : c₁ ∈ D.A := by
+    exact (Finset.mem_erase.mp Kxu.center_mem).2
+  have hc₂A : c₂ ∈ D.A := by
+    exact (Finset.mem_erase.mp Kdeleted.center_mem).2
+  let KO : SelectedFourClass D.A S.oppApex2 :=
+    qDeletedK4ClassToSelectedFourClass CO hBOCard
+  let K₁ : SelectedFourClass D.A c₁ :=
+    qDeletedK4ClassToSelectedFourClass Cxu Kxu.support_card
+  let K₂ : SelectedFourClass D.A c₂ :=
+    qDeletedK4ClassToSelectedFourClass Cdeleted Kdeleted.support_card
+  let surface : RobustApexThreeRowSurface
+      D S.oppApex2 c₁ c₂ sourceDeleted.1 :=
+    { O_mem_A := P.surface.ingress.packet.center₂_mem_A
+      c₁_mem_A := hc₁A
+      c₂_mem_A := hc₂A
+      O_ne_c₁ := hc₁NeO.symm
+      O_ne_c₂ := hc₂NeO.symm
+      c₁_ne_c₂ := hc₁NeC₂
+      robustO := P.surface.secondApex_robust
+      row₀ := KO
+      row₁ := K₁
+      row₂ := K₂
+      a_mem_row₀ := by
+        simpa only [KO, qDeletedK4ClassToSelectedFourClass] using hdeletedBO }
+  have hdeletedK₁ : sourceDeleted.1 ∈ K₁.support := by
+    simpa only [K₁, qDeletedK4ClassToSelectedFourClass] using hdeletedKxu
+  have hdeletedK₂ : sourceDeleted.1 ∈ K₂.support := by
+    simpa only [K₂, qDeletedK4ClassToSelectedFourClass] using hdeletedKdeleted
+  rcases
+      nonempty_robustApexFiveIncidenceContinuation_of_commonPoint
+        Hlate surface hdeletedK₁ hdeletedK₂ with
+    ⟨continuation⟩
+  exact ⟨
+    { surface := surface
+      row₀_support_eq := rfl
+      row₁_support_eq := rfl
+      row₂_support_eq := rfl
+      a_mem_row₁ := hdeletedK₁
+      a_mem_row₂ := hdeletedK₂
+      continuation := continuation }⟩
+
+/-- The failed-after-`u`, surviving-after-`xv` source pair supplies the exact
+five-way robust-apex continuation surface.  The packet retains the canonical
+late-row supports and their common point `u`; excluding its five continuation
+arms is the cap-sensitive A8 terminal. -/
+theorem nonempty_xvDeletion_fiveIncidenceContinuation
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F}
+    {P : ExactFourRigid221PhysicalApexSourceEqUContext R}
+    {packet :
+      ExactFourRigid221SourceEqUBlockerVRowOtherSourceHeavyPacket P}
+    (Q : ExactFourRigid221PentagonOffClassBlockerResidual P packet)
+    (source₁ source₂ : CarrierVertex D.A)
+    (hsource₁Outside :
+      source₁.1 ∉
+        ((lateFirstApexSystem R).selectedAt
+          packet.xv Q.hxvA).toCriticalFourShell.support)
+    (hsource₂Outside :
+      source₂.1 ∉
+        ((lateFirstApexSystem R).selectedAt
+          packet.xv Q.hxvA).toCriticalFourShell.support)
+    (hcenters :
+      (lateFirstApexSystem R).centerAt source₁.1 source₁.2 ≠
+        (lateFirstApexSystem R).centerAt source₂.1 source₂.2)
+    (hcenter₁NeO :
+      (lateFirstApexSystem R).centerAt source₁.1 source₁.2 ≠ S.oppApex2)
+    (hcenter₂NeO :
+      (lateFirstApexSystem R).centerAt source₂.1 source₂.2 ≠ S.oppApex2)
+    (hnotSurvivesU₁ :
+      ¬ HasNEquidistantPointsAt 4 (D.A.erase P.u.1)
+        ((lateFirstApexSystem R).centerAt source₁.1 source₁.2))
+    (hnotSurvivesU₂ :
+      ¬ HasNEquidistantPointsAt 4 (D.A.erase P.u.1)
+        ((lateFirstApexSystem R).centerAt source₂.1 source₂.2))
+    (hsurvivesXv₁ :
+      HasNEquidistantPointsAt 4 (D.A.erase packet.xv)
+        ((lateFirstApexSystem R).centerAt source₁.1 source₁.2))
+    (hsurvivesXv₂ :
+      HasNEquidistantPointsAt 4 (D.A.erase packet.xv)
+        ((lateFirstApexSystem R).centerAt source₂.1 source₂.2)) :
+    let Hlate := lateFirstApexSystem R
+    let K₁ := (Hlate.selectedAt source₁.1 source₁.2).toCriticalFourShell
+    let K₂ := (Hlate.selectedAt source₂.1 source₂.2).toCriticalFourShell
+    let BO := SelectedClass (D.A.erase packet.xv) S.oppApex2 P.rho
+    let c₁ := Hlate.centerAt source₁.1 source₁.2
+    let c₂ := Hlate.centerAt source₂.1 source₂.2
+    Nonempty
+      (RobustApexFiveIncidenceContinuationPacket
+        D Hlate S.oppApex2 c₁ c₂ P.u.1 BO K₁.support K₂.support) := by
+  classical
+  let Hlate := lateFirstApexSystem R
+  let K₁ := (Hlate.selectedAt source₁.1 source₁.2).toCriticalFourShell
+  let K₂ := (Hlate.selectedAt source₂.1 source₂.2).toCriticalFourShell
+  let BO := SelectedClass (D.A.erase packet.xv) S.oppApex2 P.rho
+  let c₁ := Hlate.centerAt source₁.1 source₁.2
+  let c₂ := Hlate.centerAt source₂.1 source₂.2
+  change
+    Nonempty
+      (RobustApexFiveIncidenceContinuationPacket
+        D Hlate S.oppApex2 c₁ c₂ P.u.1 BO K₁.support K₂.support)
+  rcases pentagonOffClassBlocker_xvDeletion_threeExactRows_common_u
+      Q source₁ source₂ hsource₁Outside hsource₂Outside
+      hnotSurvivesU₁ hnotSurvivesU₂ hsurvivesXv₁ hsurvivesXv₂ with
+    ⟨C₁, C₂, CO, huK₁, huK₂, huBO, hBOCard,
+      _hsource₁K₁, _hsource₂K₂⟩
+  have hc₁A : c₁ ∈ D.A := by
+    exact (Finset.mem_erase.mp K₁.center_mem).2
+  have hc₂A : c₂ ∈ D.A := by
+    exact (Finset.mem_erase.mp K₂.center_mem).2
+  let KO : SelectedFourClass D.A S.oppApex2 :=
+    qDeletedK4ClassToSelectedFourClass CO hBOCard
+  let Kc₁ : SelectedFourClass D.A c₁ :=
+    qDeletedK4ClassToSelectedFourClass C₁ K₁.support_card
+  let Kc₂ : SelectedFourClass D.A c₂ :=
+    qDeletedK4ClassToSelectedFourClass C₂ K₂.support_card
+  let surface : RobustApexThreeRowSurface D S.oppApex2 c₁ c₂ P.u.1 :=
+    { O_mem_A := P.surface.ingress.packet.center₂_mem_A
+      c₁_mem_A := hc₁A
+      c₂_mem_A := hc₂A
+      O_ne_c₁ := hcenter₁NeO.symm
+      O_ne_c₂ := hcenter₂NeO.symm
+      c₁_ne_c₂ := hcenters
+      robustO := P.surface.secondApex_robust
+      row₀ := KO
+      row₁ := Kc₁
+      row₂ := Kc₂
+      a_mem_row₀ := by
+        simpa only [KO, qDeletedK4ClassToSelectedFourClass] using huBO }
+  have huKc₁ : P.u.1 ∈ Kc₁.support := by
+    simpa only [Kc₁, qDeletedK4ClassToSelectedFourClass] using huK₁
+  have huKc₂ : P.u.1 ∈ Kc₂.support := by
+    simpa only [Kc₂, qDeletedK4ClassToSelectedFourClass] using huK₂
+  rcases
+      nonempty_robustApexFiveIncidenceContinuation_of_commonPoint
+        Hlate surface huKc₁ huKc₂ with
+    ⟨continuation⟩
+  exact ⟨
+    { surface := surface
+      row₀_support_eq := rfl
+      row₁_support_eq := rfl
+      row₂_support_eq := rfl
+      a_mem_row₁ := huKc₁
+      a_mem_row₂ := huKc₂
+      continuation := continuation }⟩
 
 end ATailFrontierLiveClosure
 end Problem97

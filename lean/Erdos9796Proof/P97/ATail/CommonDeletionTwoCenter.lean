@@ -5,6 +5,7 @@ Authors: Adam McKenna
 -/
 
 import Erdos9796Proof.P97.U5GlobalIncidenceSupport
+import Erdos9796Proof.P97.ATail.DeletionRobustness
 
 /-!
 # Common-deletion two-center packet
@@ -93,6 +94,42 @@ theorem nonempty_commonDeletionTwoCenterPacket
       B₂_card := hB₂
       overlap_le_two :=
         U5QDeletedK4Class.inter_card_le_two R₁ R₂ hcenters }⟩
+
+/-- Two selected four-classes that both omit one carrier source produce a
+source-exact common-deletion packet at their distinct centers. -/
+theorem nonempty_commonDeletionTwoCenterPacket_of_two_omitted_selectedFourClasses
+    {D : CounterexampleData} (H : CriticalShellSystem D.A)
+    {q center₁ center₂ : ℝ²}
+    (hqA : q ∈ D.A)
+    (hcenter₁A : center₁ ∈ D.A)
+    (hcenter₂A : center₂ ∈ D.A)
+    (hcenters : center₁ ≠ center₂)
+    (K₁ : SelectedFourClass D.A center₁)
+    (K₂ : SelectedFourClass D.A center₂)
+    (hqK₁ : q ∉ K₁.support)
+    (hqK₂ : q ∉ K₂.support) :
+    Nonempty (CommonDeletionTwoCenterPacket D H q center₁ center₂) := by
+  apply nonempty_commonDeletionTwoCenterPacket H hqA hcenter₁A hcenter₂A hcenters
+  · exact ATailDeletionRobustness.selectedFourClass_survives_erase_of_not_mem K₁ hqK₁
+  · exact ATailDeletionRobustness.selectedFourClass_survives_erase_of_not_mem K₂ hqK₂
+
+/-- A fully deletion-robust carrier center and a distinct selected four-class
+that omits one carrier source produce a source-exact common-deletion packet. -/
+theorem nonempty_commonDeletionTwoCenterPacket_of_fullyDeletionRobustAt_and_omitted_selectedFourClass
+    {D : CounterexampleData} (H : CriticalShellSystem D.A)
+    {q robustCenter rowCenter : ℝ²}
+    (hqA : q ∈ D.A)
+    (hrobustCenterA : robustCenter ∈ D.A)
+    (hrowCenterA : rowCenter ∈ D.A)
+    (hcenters : robustCenter ≠ rowCenter)
+    (R : ATailDeletionRobustness.FullyDeletionRobustAt D robustCenter)
+    (K : SelectedFourClass D.A rowCenter)
+    (hqK : q ∉ K.support) :
+    Nonempty (CommonDeletionTwoCenterPacket D H q robustCenter rowCenter) := by
+  apply
+    nonempty_commonDeletionTwoCenterPacket H hqA hrobustCenterA hrowCenterA hcenters
+      (R.survives q hqA)
+  exact ATailDeletionRobustness.selectedFourClass_survives_erase_of_not_mem K hqK
 
 end ATailCommonDeletionTwoCenter
 end Problem97
