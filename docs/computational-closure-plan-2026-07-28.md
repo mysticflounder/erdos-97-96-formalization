@@ -14948,3 +14948,58 @@ actual CNF for exact, subsuming, and multiplicity changes, and falsify the
 active selector before promoting a pattern. A finite occurrence is not
 promotion evidence unless it cuts the selected model and is absent from the
 predecessor formula.
+
+## 2026-08-21 model-refinement canary and perpendicular-bisector promotion
+
+Four source-valid cancellation occurrences from the corrected mine produced a
+nine-clause cumulative suffix after parent subsumption. The resulting
+Lean-owned root has 7,409,295 clauses, and its 76 physical-slice cells have
+7,409,301 clauses. The authenticated center-2/no-physical-hit canary ran as
+PIQD job `8481882c-48a5-4041-bd49-c82610631e17` and terminated
+`STRUCTURAL_SAT`. Its complete 308-variable model independently replayed all
+7,409,301 clauses. The remaining five center-2 cells were deliberately not
+launched before the required theorem mine.
+
+That wave-only mine found 62 source-valid occurrences. The smallest new
+obstruction is the eight-hit perpendicular-bisector support
+
+```text
+(5,2), (5,14), (6,2), (6,14),
+(8,5), (8,6), (14,5), (14,6).
+```
+
+Rows 5, 14, and 6 form an equality path from `(2,5)` to `(2,6)`, while rows 8
+and 14 directly place witnesses 8 and 14 at equal distance from foci 5 and 6.
+Together with witness 2, the checked data instantiate
+`Census554.EqualityCore.false_of_convexIndep_of_perpBisectorCore`. The proof
+uses only positive selected-row memberships, the source realization, carrier
+membership, and convex independence. It does not use a full-shell or
+nonmembership premise.
+
+The source-valid clause is the unguarded DIMACS payload
+
+```text
+[-88, -100, -105, -117, -142, -143, -244, -245].
+```
+
+`BlockerVExactSeventeenCanaryPerpBisectorRefinement.lean` banks the checked
+data, exact payload theorem, source evaluator, and a 7,409,296-clause global
+successor. Its physical-slice coverage and exporter modules regenerate all 76
+cells at 7,409,302 clauses. The targeted exporter build passes. The geometric
+clause theorem has only `propext`, `Classical.choice`, and `Quot.sound`; the
+cumulative evaluator and coverage coordinator additionally inherit the
+already accepted `Lean.ofReduceBool` and `Lean.trustCompiler` boundary from the
+parent root.
+
+The 2026-08-21 audit of `erdos-97-descent-prose-proof-atomic.md` found no
+source-valid drop-in lemma for this packet. Its nearest A2/A4/A5 and common-arc
+lemmas require additional blocker provenance, a second physical support pair,
+or common-circle/strict-arc hypotheses not carried by the current source
+realization.
+
+Next regenerate and authenticate the center-2/no-physical-hit cell from the
+7,409,302-clause successor and solve that same cell first. `SAT` again requires
+complete replay and a wave-only source theorem mine. Checked `UNSAT` removes
+that physical cell through the existing 76-cell coordinator. The other five
+center-2 cells remain gated until this canary terminates. Exact 17 and the
+cap-nine production `sorry` remain open.

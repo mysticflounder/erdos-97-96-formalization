@@ -1,0 +1,18 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "exact17-canary-perp-bisector-refinement-20260821",
+  "owner": "exact17-canary-perp-bisector-refinement",
+  "base_head": "2fe695039a3ddfd82bcc3b25ac6269dd60f52e27",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exact17-canary-perp-bisector-refinement-20260821.json",
+    "docs/computational-closure-plan-2026-07-28.md",
+    "docs/specs/p97-exact17-cap9-lean-to-sat-route-v1.md",
+    "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenCanaryPerpBisectorRefinement.lean",
+    "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenCanaryPerpBisectorRefinementPhysicalSliceCellExport.lean",
+    "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenCanaryPerpBisectorRefinementPhysicalSliceCoverage.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-08-21T22:43:17Z",
+  "manifest_sha256": "368a291fe0b3120b3fcbdcc796e49c111ac2cf6a2b4cd6ad4b425e0514b8dc74"
+}

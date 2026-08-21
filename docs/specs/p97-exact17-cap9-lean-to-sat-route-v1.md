@@ -1281,3 +1281,42 @@ direct-zero atoms, indices 200, 1347, and 1480, and no paired cancellations.
 The next promotion groups those three four-clause adapters as a compact
 12-clause successor; this remains a theorem-bank refinement, not a closure
 claim.
+
+## Canary model-refinement perpendicular-bisector successor — 2026-08-21
+
+The current physical-slice route now has a source-valid unguarded successor
+above the 7,409,295-clause model-refinement root. The authenticated
+center-2/no-physical-hit canary was `STRUCTURAL_SAT`, and its independently
+replayed model exposes the positive support
+
+```text
+(5,2), (5,14), (6,2), (6,14),
+(8,5), (8,6), (14,5), (14,6).
+```
+
+The checked equality paths produce three distinct carrier witnesses on the
+perpendicular bisector of foci 5 and 6. The Lean bank therefore appends the
+single clause
+
+```text
+[-88, -100, -105, -117, -142, -143, -244, -245]
+```
+
+without named-order or orientation guards. The global successor has 7,409,296
+clauses; each next-center/physical-multiplicity cell has 7,409,302 clauses.
+The source theorem depends only on positive row membership and the existing
+`SourceRealization` geometry.
+
+Operational route:
+
+1. Export and byte-authenticate the new root and all regenerated physical
+   cells; old 7,409,301-clause cells cannot be relabeled.
+2. Submit only center 2 / physical `none` as the next PIQD canary.
+3. On `SAT`, replay the full CNF and mine only the new model for source-valid
+   obstructions absent from the parent.
+4. On checked `UNSAT`, bank the exact cell certificate and mark only that cell
+   closed in the 76-cell coordinator.
+5. Launch the other five center-2 categories only after the canary result is
+   authenticated and consumed.
+
+This successor does not itself close exact 17 or the production leaf.
