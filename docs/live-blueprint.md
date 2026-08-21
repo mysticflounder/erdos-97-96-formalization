@@ -12,9 +12,9 @@ spine rooted at: Problem97.erdos97_rhs
 approved axioms: core
 open: 126/37290 node(s)
 trusted leaves: 20 🔒 (certs excluded from mine by [mining].skip; covered by `#print axioms`)
-spine source: 320179 line(s) of lean across 37290 decl(s)
+spine source: 320181 line(s) of lean across 37290 decl(s)
 
-open obligations (37):
+open obligations (36):
   💧 Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_capSource_firstFiber_outsidePairDeletionExactRows  [sorry]
   💧 Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_crossBlockerCoincidence  [sorry]
   💧 Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_freshThirdEqualCenter_noncanonicalInteractions  [sorry]
@@ -51,7 +51,7 @@ open obligations (37):
   💧 Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_reverseHitFresh_endpointCrossHit_sharedBlocker_JInLeftAdjacentCap_triApexAllLarge_core  [sorry]
   💧 Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_reverseHitFresh_endpointCrossHit_sharedBlocker_JInRightAdjacentCap_triApexAllLarge_core  [sorry]
   💧 Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_reverseHitFresh_threeDistinctBlockers_triApexAllLarge_core  [sorry]
-  ❌ sorryAx  [unapproved axiom]
+  ❌ Total sorryAx == 36
 
 (open branches only — closed subtrees collapsed; --full for everything)
 └── Problem97.erdos97_rhs
@@ -151,7 +151,7 @@ open obligations (37):
         │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_exactTwelve_interiorDeletion_physicalRadius_commonDeletion_missingIncidence  [💧]
         │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
         │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 24 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_exactTwelve_interiorDeletion_physicalRadius_nextRowOnlyHit  [💧]  ⚓ 6adbe9fd — Exact-12 Rigid221 next-row arm CEGAR lane (user-authorized takeover from arm owner). Active gate: validate FullMembershipPrefixTerminalConsumer, then v9 exact-SHA gate, then one immutable v23 canary via PIQD. Four terminal cells 52/58/65/71 already promoted as finite DimacsUnsatisfiable facts (c1d11453); no aggregate coverage claimed.
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_exactTwelve_interiorDeletion_physicalRadius_nextRowOnlyHit  [💧]  ⚓ 6adbe9fd (YOU) — Exact-12 Rigid221 next-row arm CEGAR lane (user-authorized takeover from arm owner). Active gate: validate FullMembershipPrefixTerminalConsumer, then v9 exact-SHA gate, then one immutable v23 canary via PIQD. Four terminal cells 52/58/65/71 already promoted as finite DimacsUnsatisfiable facts (c1d11453); no aggregate coverage claimed.
         │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
         │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 23 closed dep(s)
         │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 26 closed dep(s)
@@ -360,7 +360,7 @@ open obligations (37):
 
 ❌ NOT kernel-complete — spine of `Problem97.erdos97_rhs` has:
   - reaches sorry via 36 symbol(s)
-  - unapproved axiom on spine: sorryAx
+  - unapproved axiom on spine: sorryAx (Total sorryAx == 36)
 
 ⚠ off-spine sorries (3 symbol(s) in 3 file(s)) — placeholder sorries are no longer allowed; all live work must be wired into the spine:
   Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221Closure.lean  (1 sorry)
@@ -370,7 +370,7 @@ open obligations (37):
   Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean  (1 sorry)
     💧 Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_freshThird_pinnedEndpoint_outsideSeedResidual
 
-unimported files (1164 file(s), 8738 symbol(s), 3 sorry — never reached by any lake import chain) — --full to list
+unimported files (1166 file(s), 8749 symbol(s), 3 sorry — never reached by any lake import chain) — --full to list
 
 name collisions: 82 fully-qualified name(s) declared in ≥2 files
 ⚠  off-spine / identical-copy collisions (82):
