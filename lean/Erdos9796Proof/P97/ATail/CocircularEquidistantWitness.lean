@@ -7,6 +7,8 @@ Authors: Adam McKenna
 import Erdos9796Proof.P97.ATail.ConvexCocircularHalfPlane
 import Mathlib.Geometry.Euclidean.PerpBisector
 import Mathlib.LinearAlgebra.AffineSpace.FiniteDimensional
+import Erdos9796Proof.P97.SignedAreaOangle
+import Mathlib.Analysis.InnerProductSpace.TwoDim
 
 /-!
 # Cocircular equidistant witness localization
@@ -31,11 +33,15 @@ Three layers:
 
 These are the vector-form S1(1)/S1(3) statements of
 `docs/exact-twelve-biapex-schemas-2026-08-20.md` (kernel K2(2) of
-`docs/pentagon-circumfan-schemas-2026-08-19.md`).  Intended consumers: the
-deletion-arm trace-table pruning for the exact-twelve
-`pentagonOffClassBlocker` missing-incidence leaves.  The cyclic-order
-betweenness reading of S1(2) (consecutive class pairs admit no on-class
-witness) additionally needs the class angular order and is not stated here.
+`docs/pentagon-circumfan-schemas-2026-08-19.md`).  * `areaForm_sign_split_of_equidistant_witness` — S1(2) in discrete form:
+  the witness strictly separates the pair in the angular order about `P`,
+  expressed as opposite signs of the standard area form.
+* `not_equidistant_classPoint_of_consecutive_of_convexIndep` — a class
+  pair that no class point strictly separates (a consecutive pair in the
+  class order) has no on-class equidistant witness at all.
+
+Intended consumers: the deletion-arm trace-table pruning for the
+exact-twelve `pentagonOffClassBlocker` missing-incidence leaves.
 -/
 
 open scoped EuclideanGeometry InnerProductSpace
@@ -157,5 +163,112 @@ theorem equidistant_classPoint_unique_of_convexIndep
     (hw p hp) (hw q hq) (hw z₂ hz₂)
   have : z₁ - P = z₂ - P := e₁.trans e₂.symm
   exact sub_left_injective this
+
+
+/-- Two distinct, non-antipodal points of a common circle about `P` have
+non-collinear direction vectors, so the standard area form does not vanish
+on them. -/
+private theorem areaForm_ne_zero_of_cocircular
+    {P p q : ℝ²} {ρ : ℝ}
+    (hp : dist p P = ρ) (hq : dist q P = ρ) (hpq : p ≠ q)
+    (hanti : p - P ≠ -(q - P)) :
+    stdOrientation.areaForm (p - P) (q - P) ≠ 0 := by
+  intro h0
+  have hpn : ‖p - P‖ = ρ := by rw [← dist_eq_norm]; exact hp
+  have hqn : ‖q - P‖ = ρ := by rw [← dist_eq_norm]; exact hq
+  have hsq := stdOrientation.inner_sq_add_areaForm_sq (p - P) (q - P)
+  rw [h0, hpn, hqn] at hsq
+  have hfact :
+      (⟪p - P, q - P⟫_ℝ - ρ ^ 2) * (⟪p - P, q - P⟫_ℝ + ρ ^ 2) = 0 := by
+    nlinarith [hsq]
+  rcases mul_eq_zero.mp hfact with hclose | hfar
+  · have hzero : ‖(p - P) - (q - P)‖ ^ 2 = 0 := by
+      rw [norm_sub_sq_real, hpn, hqn]
+      nlinarith [hclose]
+    have : (p - P) - (q - P) = 0 :=
+      norm_eq_zero.mp (sq_eq_zero_iff.mp hzero)
+    exact hpq (sub_left_injective (sub_eq_zero.mp this))
+  · have hzero : ‖(p - P) + (q - P)‖ ^ 2 = 0 := by
+      rw [norm_add_sq_real, hpn, hqn]
+      nlinarith [hfar]
+    have : (p - P) + (q - P) = 0 :=
+      norm_eq_zero.mp (sq_eq_zero_iff.mp hzero)
+    exact hanti (eq_neg_of_add_eq_zero_left this)
+
+/-- S1(2), discrete betweenness: the equidistant witness strictly separates
+its pair in the angular order about `P` — the two area forms have opposite
+signs. -/
+theorem areaForm_sign_split_of_equidistant_witness
+    {P p q z w : ℝ²} {ρ : ℝ} (hρ : 0 < ρ)
+    (hp : dist p P = ρ) (hq : dist q P = ρ) (hz : dist z P = ρ)
+    (hpq : p ≠ q) (hzeq : dist z p = dist z q)
+    (hwp : 0 < ⟪w, p - P⟫_ℝ) (hwq : 0 < ⟪w, q - P⟫_ℝ)
+    (hwz : 0 < ⟪w, z - P⟫_ℝ) :
+    stdOrientation.areaForm (p - P) (z - P) *
+      stdOrientation.areaForm (q - P) (z - P) < 0 := by
+  have hzd := vsub_eq_radius_smul_chordResultant_of_separating_vector
+    hp hq hz hpq hzeq hwp hwq hwz
+  set u : ℝ² := (p - P) + (q - P) with hu_def
+  set s : ℝ := ρ / ‖u‖ with hs_def
+  have hwu : 0 < ⟪w, u⟫_ℝ := by
+    rw [hu_def, inner_add_right]
+    linarith
+  have hu0 : u ≠ 0 := by
+    intro h
+    rw [h, inner_zero_right] at hwu
+    exact lt_irrefl 0 hwu
+  have hs_pos : 0 < s := by
+    rw [hs_def]
+    exact div_pos hρ (norm_pos_iff.mpr hu0)
+  have hanti : p - P ≠ -(q - P) := by
+    intro h
+    rw [h, inner_neg_right] at hwp
+    linarith
+  have hW := areaForm_ne_zero_of_cocircular hp hq hpq hanti
+  have h1 : stdOrientation.areaForm (p - P) (z - P)
+      = s * stdOrientation.areaForm (p - P) (q - P) := by
+    rw [hzd, map_smul, smul_eq_mul, hu_def, map_add,
+      stdOrientation.areaForm_apply_self]
+    ring
+  have h2 : stdOrientation.areaForm (q - P) (z - P)
+      = -(s * stdOrientation.areaForm (p - P) (q - P)) := by
+    rw [hzd, map_smul, smul_eq_mul, hu_def, map_add,
+      stdOrientation.areaForm_apply_self,
+      stdOrientation.areaForm_swap (q - P) (p - P)]
+    ring
+  have hprod : stdOrientation.areaForm (p - P) (z - P) *
+      stdOrientation.areaForm (q - P) (z - P)
+      = -(s * stdOrientation.areaForm (p - P) (q - P)) ^ 2 := by
+    rw [h1, h2]
+    ring
+  have hne : s * stdOrientation.areaForm (p - P) (q - P) ≠ 0 :=
+    mul_ne_zero hs_pos.ne' hW
+  have habs : 0 < |s * stdOrientation.areaForm (p - P) (q - P)| :=
+    abs_pos.mpr hne
+  have hsq_pos : 0 < (s * stdOrientation.areaForm (p - P) (q - P)) ^ 2 := by
+    have := pow_pos habs 2
+    rwa [sq_abs] at this
+  rw [hprod]
+  linarith
+
+/-- S1(2), consumer form: a class pair that no class point strictly
+separates in the angular order (a consecutive pair) has no on-class
+equidistant witness. -/
+theorem not_equidistant_classPoint_of_consecutive_of_convexIndep
+    {A C : Finset ℝ²} {P : ℝ²} {ρ : ℝ}
+    (hA : ConvexIndep A) (hP : P ∈ A) (hC : C ⊆ A.erase P)
+    (hρ : 0 < ρ) (hcommon : ∀ x ∈ C, dist x P = ρ)
+    {p q : ℝ²} (hp : p ∈ C) (hq : q ∈ C) (hpq : p ≠ q)
+    (hconsec : ∀ z ∈ C, 0 ≤ stdOrientation.areaForm (p - P) (z - P) *
+        stdOrientation.areaForm (q - P) (z - P)) :
+    ∀ z ∈ C, dist z p ≠ dist z q := by
+  intro z hzC hzeq
+  obtain ⟨w, hw⟩ :=
+    exists_strict_separating_vector_of_convexIndep_cocircular
+      hA hP hC hρ hcommon
+  have hsplit := areaForm_sign_split_of_equidistant_witness hρ
+    (hcommon p hp) (hcommon q hq) (hcommon z hzC) hpq hzeq
+    (hw p hp) (hw q hq) (hw z hzC)
+  exact absurd hsplit (not_lt.mpr (hconsec z hzC))
 
 end Problem97

@@ -68,9 +68,25 @@ plus S1(3) uniqueness.
 
 Intended consumer: deletion-arm trace-table pruning for the exact-twelve
 `pentagonOffClassBlocker` missing-incidence leaves (biapex doc §4.2).
-No `sorry` introduced; the obligation frontier is unchanged.  S1(2)'s
-consecutive-pair corollary needs the class angular order and is not
-formalized yet.
+No `sorry` introduced; the obligation frontier is unchanged.
+
+S1(2) is now also formalized, in the same module, without any angle
+coordinate system: the angular betweenness is expressed through the
+standard area form (`Problem97.stdOrientation`).
+
+- `areaForm_sign_split_of_equidistant_witness` — the witness strictly
+  separates its pair in the angular order about the apex: the two area
+  forms have opposite signs, by the three-line bilinearity computation
+  `ω(pd, zd)·ω(qd, zd) = −s²·ω(pd, qd)²` with `s > 0` and nondegeneracy
+  from `inner_sq_add_areaForm_sq`;
+- `not_equidistant_classPoint_of_consecutive_of_convexIndep` — a class
+  pair that no class point strictly separates (a consecutive pair in the
+  class order) admits no on-class equidistant witness.
+
+Both are axiom-clean (`[propext, Classical.choice, Quot.sound]`), zero
+warnings.  This is the exact statement family the S1 replay used
+empirically: the replay's betweenness test is the discrete shadow of
+`areaForm_sign_split_of_equidistant_witness`.
 
 ## S1 replay against the live model space (step 4.2 of the biapex doc)
 
