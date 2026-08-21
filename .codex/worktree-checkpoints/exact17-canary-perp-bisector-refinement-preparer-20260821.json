@@ -1,0 +1,15 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "exact17-canary-perp-bisector-refinement-preparer-20260821",
+  "owner": "exact17-canary-perp-bisector-refinement-preparer",
+  "base_head": "0d826651cbdbdc5f144f175d4e56d929870a6ab6",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exact17-canary-perp-bisector-refinement-preparer-20260821.json",
+    "scripts/prepare_exact17_canary_perp_bisector_refinement_physical_slice_cells.py",
+    "scripts/test_prepare_exact17_canary_perp_bisector_refinement_physical_slice_cells.py"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-08-21T23:13:30Z",
+  "manifest_sha256": "a7eeda23e0891d1ccb29bc5ac6d7f6ab832ac2d547b55ae274d412ec588d3e27"
+}
