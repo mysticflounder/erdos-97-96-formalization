@@ -52,6 +52,7 @@ LANE_ID = (
     "exact17-sparse-six-four-row-bisector-eight-hit-two-kalmanson-preparer-20260821"
 )
 RUN_ID = "physical-slice-cell-campaign-v1"
+RUN_OWNER = "exact17-eight-hit-preparer"
 BASE_HEAD = "7097f6541bea6bc667b27786f2d57673610c59fc"
 STANDARD_ID = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$")
 
@@ -2018,7 +2019,7 @@ def build_run_manifest(
         "lane_id": LANE_ID,
         "run_id": RUN_ID,
         "root": _repo_relative(repo_root, output_root),
-        "owner": "exact17-eight-hit-two-kalmanson-preparer",
+        "owner": RUN_OWNER,
         "base_head": BASE_HEAD,
         "output_classes": ["artifacts", "events", "tmp"],
         "source_digests": source_digests,

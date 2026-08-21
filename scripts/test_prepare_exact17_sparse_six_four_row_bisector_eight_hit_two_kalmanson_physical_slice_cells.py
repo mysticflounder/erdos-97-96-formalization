@@ -11,6 +11,7 @@ import os
 from pathlib import Path
 from typing import Any
 
+import check_worktree_hygiene as hygiene
 import prepare_exact17_sparse_six_four_row_bisector_eight_hit_two_kalmanson_physical_slice_cells as subject
 import pytest
 
@@ -670,8 +671,42 @@ def test_initialize_creates_exact_governed_skeleton(
     run = json.loads((paths["output"] / "run_manifest.json").read_bytes())
     assert run["lane_id"] == subject.LANE_ID
     assert run["run_id"] == paths["run_id"]
-    assert run["owner"] == "exact17-eight-hit-two-kalmanson-preparer"
+    assert run["owner"] == subject.RUN_OWNER == "exact17-eight-hit-preparer"
     assert run["root"] == paths["generated_root"]
+
+
+def test_initialized_manifest_satisfies_full_standard_hygiene_contract(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    paths, _ = _fixture(tmp_path, monkeypatch)
+    _initialize(tmp_path, paths)
+    raw = (paths["output"] / "run_manifest.json").read_bytes()
+    checkpoint = hygiene.Checkpoint(
+        path=paths["checkpoint"].relative_to(tmp_path).as_posix(),
+        lane_id=subject.LANE_ID,
+        owner=subject.RUN_OWNER,
+        base_head=subject.BASE_HEAD,
+        owned_paths=(),
+        generated_roots=(paths["generated_root"],),
+        durable_paths=(),
+        raw_sha256=_sha(paths["checkpoint"]),
+    )
+    value, authenticated_paths = hygiene._validate_standard_run_manifest(
+        tmp_path, paths["generated_root"], checkpoint, raw
+    )
+    assert set(value) == hygiene._RUN_MANIFEST_KEYS
+    assert value["schema"] == hygiene.RUN_MANIFEST_SCHEMA
+    assert value["lane_id"] == checkpoint.lane_id
+    assert value["run_id"] == paths["run_id"]
+    assert value["root"] == paths["generated_root"]
+    assert value["owner"] == checkpoint.owner
+    assert value["base_head"] == checkpoint.base_head
+    assert value["created_utc"] == "2026-08-21T00:00:00Z"
+    assert value["output_classes"] == list(hygiene.GENERATED_OUTPUT_CLASSES)
+    assert value["source_digests"]
+    assert value["input_digests"]
+    assert authenticated_paths
+    assert value["manifest_sha256"] == hygiene.manifest_self_hash(value)
 
 
 def test_cli_initialize_run_root_is_offline_and_does_not_export(
