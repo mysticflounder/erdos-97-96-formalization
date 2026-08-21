@@ -2864,6 +2864,62 @@ solver wave is authorized by this run.  The next analysis step is the v26
 all-order mine on the new survivor, which is what would tell us the covering
 family and whether a 23rd bank is worth building.
 
+### v26 survivor structural analysis (2026-08-20)
+
+Full write-up:
+`docs/exact12-v26-survivor-structural-analysis-2026-08-20.md`.  EMPIRICAL
+throughout — observations on authenticated SAT models, not theorems.  The
+statistics were recomputed independently of the mine by
+`scratch/rigid221-sourceheavy-anchor/core-pair/analyze_v26_survivor.py`,
+which reloads each wave's `survivor.json` and asserts (exiting non-zero on
+failure) the two load-bearing claims below.  Mine and script agree on
+degrees, reciprocal pairs and triangles.
+
+The new finding is a standing invariant across three waves.  Six of the twelve
+rows are byte-identical in the v24, v25 and v26 survivors — that is, across two
+installed banks:
+
+| center | block | support |
+|---|---|---|
+| 0 | anchor | `{1,2,3,4}` |
+| 1 | anchor | `{0,3,6,8}` |
+| 2 | anchor | `{0,1,10,11}` |
+| 3 | surplus | `{0,5,7,9}` |
+| 4 | surplus | `{0,5,6,10}` |
+| 9 | second | `{0,3,7,11}` |
+
+That set is exactly the closed star of anchor label 0: in all three waves
+`supp(0) = {1,2,3,4}` and the centers whose support contains 0 are precisely
+`{1,2,3,4,9}`, so the frozen set is `{0} ∪ {c : 0 ∈ supp(c)}`.  Every row the
+solver has moved lies outside it, in the deck-mobile blocks:
+
+| transition | rows moved | by block |
+|---|---|---|
+| v24 → v25 | 4 — centers 7, 8, 10, 11 | second ×2, first-opp ×2 |
+| v25 → v26 | 6 — centers 5, 6, 7, 8, 10, 11 | second ×3, first-opp ×2, surplus ×1 |
+
+No anchor row has moved in either transition.  Consistent with this, no anchor
+label appears in either v26 covering core, and the mine's deck-aware reporting
+gives every role in both cores a mobile classification (`S3-permutable`,
+`endpoint-pair-reversible`, `middle-pair-reversible`, or `pair-reversible`).
+
+Dispersion is essentially unchanged across the intervention: the pairwise
+support-intersection histogram moved from `{0→9, 1→36, 2→21}` at v25 to
+`{0→8, 1→37, 2→21}` at v26, no two supports share more than two elements in
+either wave, and no support takes more than two labels from any one block.
+The heavy end of the support-degree profile rotated off `{8,11}` onto
+`{4,6,10}`, with 0 and 5 heavy in both and 1 and 9 lightest in both.
+
+Consequence for a 23rd bank, recorded as evidence and not as a decision.  The
+label-set split remains the only discriminating signal, so the target shape is
+unchanged from the mine's reading.  The three-wave invariant adds a second,
+different lever: a bank that constrains the anchor star directly, or a proof
+that the star is forced, would cut the free cube from twelve rows to six.
+Nothing yet says which lever is cheaper, and the invariant is EMPIRICAL over
+three models — {{NEEDS_RESEARCH}}, {{UNVALIDATED}} as a claim about the formula
+rather than about these three survivors.  Starting a 23rd bank is still a goal
+decision requiring authorization.
+
 The card-at-least-13 adapter audit also rules out a tempting shortcut.  The
 pentagon residual does not supply a
 `LargeCapUniqueFiveSecondApexRadius`: in particular it has no
