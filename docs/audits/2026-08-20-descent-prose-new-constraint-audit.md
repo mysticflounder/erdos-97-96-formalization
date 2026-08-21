@@ -143,7 +143,10 @@ orders `(6,7,8,9)` and `(9,8,7,6)` — with `U=6, C=7, XV=8, XU=9` these are
 `u,c,xv,xu` and its reversal, which is precisely the set A5.4 admits out of
 the 24 internal permutations.  The cap labels are contiguous in all 48
 orders, matching A5.3's strict-interior statement.  So the forced cap order
-was consumed when the deck was built; it is not a live lever.  The finer
+is not a live lever: the frozen deck coincides with the A5.4-admissible
+set.  Whether the deck's two-order restriction was originally derived from
+the same equal-chord relations is CONJECTURED — no provenance tying the
+two was found, only the coincidence of the sets.  The finer
 question — whether the cap reversal is coupled to the reversal of the other
 blocks, which would halve the deck — is explicitly open in the prose: lines
 2352-2354 state the crossing/orientation premise "must be derived rather
