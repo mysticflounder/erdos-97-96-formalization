@@ -3,7 +3,26 @@
 **Date**: 2026-08-17  
 **Build Status**: `lake-build` verified clean (10,865 jobs, exit code 0)  
 **Spine Target**: `Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal`  
-**Active On-Spine Sorries**: 34 effective  
+**Active On-Spine Sorries**: 34 effective *(as recorded 2026-08-17; superseded — see the correction note below)*  
+
+> **Correction, 2026-08-20.** Two problems with this document's counts were found
+> while auditing the repository against `docs/dead-ends.md`.
+>
+> First, `false_of_crossBlockerCoincidence` was marked CLOSED at §2 Cluster A. It
+> is open — see that entry for the corrected status and for where the abandoned
+> proof attempt was recovered to. Because the whole execution sequence in §5 is
+> ordered on Cluster A closing first, re-derive that sequence before following
+> it.
+>
+> Second, the leaf counts here disagree with each other and with the build. The
+> header says 34; the §2 cluster list sums to 34 (5+9+17+3); the §2 cluster table
+> sums to 31 (6+9+13+3). A fresh `proof-blueprint spine` reports **36 leaves**
+> (37 open obligations = 36 `sorry`-carrying leaves plus the `sorryAx` node),
+> split **Cluster A 6, Cluster B 9, Cluster C 18, Cluster D 3**. The table's 6
+> for Cluster A was right and the list's 5 was not; both figures for Cluster C
+> are low. Only the Cluster A heading and entry are corrected inline below —
+> treat every other count in this document as stale and take
+> `proof-blueprint spine` as the roster authority.
 
 ---
 
@@ -27,11 +46,23 @@ The **highest-leverage immediate target** is **Cluster A (`TwoSourceExactCollisi
 
 ## 2. Detailed Breakdown by Cluster
 
-### Cluster A: Level 5 / TwoSource Closure (5 sorries remaining)
+### Cluster A: Level 5 / TwoSource Closure (6 sorries remaining)
 
 Located in `lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/`:
 1. `TwoSourceCanonicalSurface.lean`:
-   - [x] `false_of_crossBlockerCoincidence`: **CLOSED** (verified via `proof-blueprint`)
+   - [ ] `false_of_crossBlockerCoincidence` (line 136) — **OPEN.** Corrected
+     2026-08-20. This entry previously read "CLOSED (verified via
+     `proof-blueprint`)", which was wrong in both directions: the theorem is a
+     literal `sorry` at `TwoSourceCanonicalSurface.lean:136`, and
+     `proof-blueprint spine` lists it among the open obligations rather than
+     confirming closure. A 2917-line four-branch proof attempt existed in a
+     working tree on 2026-08-17 but was never committed and never
+     kernel-checked; it is recoverable from the git ref
+     `refs/recovered/crossblocker-proof-20260817`. Its endgame derives `False`
+     from two proofs of the same proposition, so read
+     `docs/audits/2026-08-20-dead-ends-registry-repo-audit.md` §4.1a before
+     resuming it, and do **not** act on the perf-hardening follow-up in
+     `docs/audits/2026-08-17-false-of-cross-blocker-coincidence-audit.md`.
 2. `TwoSourceClosure.lean`:
    - [ ] `false_of_twoCapSources_freshOutsideFirstBlockerFiber_acyclicHardResidual` (line 3205)
 3. `TwoSourceFirstFiberCollision.lean`:
