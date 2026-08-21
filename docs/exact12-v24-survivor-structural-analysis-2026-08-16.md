@@ -95,9 +95,17 @@ model.
    supp(c) = {a, b, x, y}.  Result: 8,926 raw gap patterns, 6,991 with
    realizable union rows, 0 instances in the v24 survivor cube.  The
    predicted a↔b class is real and uncovered; every gap pattern genuinely
-   mixes both branches (pure branches are already banked).  Surplus-S₃
-   triple cycling is a different shape and remains unmeasured.
-   {{NEEDS_RESEARCH}} (S₃ shape only)
+   mixes both branches (pure branches are already banked).
+   **S₃ shape MEASURED 2026-08-20**
+   (`scratch/rigid221-sourceheavy-anchor/core-pair/measure_s3_role_cycling_gap.py`,
+   `docs/exact12-s3-role-cycling-gap-measurement-2026-08-20.md`): the
+   fully-widened gap class is exactly the 36 five-label sets containing
+   {3, 4, 5} — the predicted S₃ class is real and is the entire gap —
+   but the v26 survivor holds no instance of it, and 0 of its 8 realized
+   instances are coverable by any role-cycling widening (each has only
+   its base and x↔y twin membership-valid, unorientable at 12–24 of the
+   48 orders).  Both prediction branches are now refuted on the live
+   survivors: a↔b for v25, surplus-S₃ for v26.
 2. **Preview-solve the v25 CNF** as unauthenticated scratch diagnostics
    the moment the chaining lands, before the canary: a SAT preview model
    gets mined immediately for the uncovered exchanges; UNSAT predicts
