@@ -2006,7 +2006,6 @@ def build_run_manifest(
             _repo_relative(repo_root, variable_map_path): digests["variable_map"]
         },
         "created_utc": "2026-08-21T00:00:00Z",
-        "production_config": build_production_config_manifest(repo_root),
     }
     run["manifest_sha256"] = sha256_bytes(canonical_json_bytes(run))
     return canonical_json_bytes(run)

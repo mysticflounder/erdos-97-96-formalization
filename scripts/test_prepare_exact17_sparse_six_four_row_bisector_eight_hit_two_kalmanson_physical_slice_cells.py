@@ -708,9 +708,49 @@ def test_prepares_all_76_cells_and_validates_sentinels(
     ]
     production = producer["production_config"]
     assert production == campaign["source"]["production_config"]
+    assert production == report["production_config"]
     assert production["commit"] == "c" * 40
+    assert production["sha256"] == _sha(paths["production_config"])
+    assert production["bytes"] == paths["production_config"].stat().st_size
     assert production["target_code"]["commit"] == "b" * 40
+    assert (
+        production["target_code"]["preparer"]
+        == json.loads(paths["production_config"].read_bytes())["target_code"][
+            "preparer"
+        ]
+    )
+    assert (
+        production["target_code"]["test"]
+        == json.loads(paths["production_config"].read_bytes())["target_code"]["test"]
+    )
+    production_sha256 = subject.sha256_bytes(subject.canonical_json_bytes(production))
+    assert campaign["source"]["production_config_sha256"] == production_sha256
+    assert report["production_config_sha256"] == production_sha256
+    assert producer["production_config_sha256"] == production_sha256
+    assert producer["source_manifest"]["production_config"] == production
+    assert producer["source_manifest"]["production_config_sha256"] == production_sha256
+    root_producer = json.loads(
+        (paths["output"] / "artifacts" / "root-producer-manifest.json").read_bytes()
+    )
+    assert root_producer["production_config"] == production
+    assert root_producer["production_config_sha256"] == production_sha256
+    producer_sha256 = _sha(tmp_path / first["producer_manifest"]["path"])
+    assert first["producer_manifest"]["sha256"] == producer_sha256
+    assert wave["encoding"]["producer_manifest_sha256"] == producer_sha256
     run = json.loads((paths["output"] / "run_manifest.json").read_bytes())
+    assert set(run) == {
+        "schema",
+        "lane_id",
+        "run_id",
+        "root",
+        "owner",
+        "base_head",
+        "output_classes",
+        "source_digests",
+        "input_digests",
+        "created_utc",
+        "manifest_sha256",
+    }
     assert "delegated-preparer.py" in run["source_digests"]
     assert "hardened-preparer.py" in run["source_digests"]
     assert (
@@ -720,8 +760,10 @@ def test_prepares_all_76_cells_and_validates_sentinels(
     assert (
         paths["target_test"].relative_to(tmp_path).as_posix() in run["source_digests"]
     )
-    assert subject.PRODUCTION_CONFIG_RELATIVE.as_posix() in run["source_digests"]
-    assert run["production_config"] == production
+    assert (
+        run["source_digests"][subject.PRODUCTION_CONFIG_RELATIVE.as_posix()]
+        == production["sha256"]
+    )
     assert wave["encoding"]["num_clauses"] == 12
 
 
