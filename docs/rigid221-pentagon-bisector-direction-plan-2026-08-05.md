@@ -1150,3 +1150,26 @@ An audit of the current atomic prose proof found no new exact-17 cap-nine lemma.
 The latest A5 additions require cardinality twelve. The A2 splitter continues to
 produce the exact-cover source realization, while A3 and A4 remain open and are
 not available as computational assumptions.
+
+## 2026-08-20 SAT-profile canary and theorem-mine checkpoint
+
+The corrected 76-cell UNSAT-profile campaign is source-authenticated under
+root `f829bbaf0bd92490e8d6627b9f0271bd8491e9555ebf3042e5e99efdcf1e6747` and
+campaign `5e00a9a5206cbf35393e065a5b43e9daee2ae1a6c0e1eca4ee44a1cbf809ba33`.
+The first 22 jobs are authenticated `SOLVER_UNKNOWN`; no cell is closed by
+those timeouts.
+
+The SAT-profile canary, PIQD job
+`48275627-f0f5-4f13-b50d-f0ca53a6b4ad`, is sealed `STRUCTURAL_SAT`. This is a
+finite Boolean SAT assignment, not a Euclidean counterexample and not an
+exact-17 closure. Independent replay checked its exact CNF
+`227005eefeec723b2b0a04d4f8d75341a64ed3e2f5060c1ee1deef91f9763817` with 308
+variables and 7,409,263 clauses, with zero failures.
+
+The mandatory wave-only theorem mine found no new general theorem. It did
+find 20 new paired source-valid finite occurrences of the existing generic
+two-Kalmanson cancellation theorem. The smallest occurrence has forward
+support `{(5,6),(5,7),(11,6),(11,7)}` and its reflected reverse. The next
+required step is to promote this four-clause orbit before running the remaining
+five SAT-profile cells; this refines the finite search only and does not change
+the current closure target.

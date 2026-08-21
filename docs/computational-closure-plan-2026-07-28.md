@@ -14860,3 +14860,29 @@ lemmas in its A5 branch but no new exact-seventeen cap-nine antecedent. Its A2
 splitter remains the source of the exact-cover `SourceRealization`; its prose A3
 and A4 conclusions remain open Lean obligations and cannot be used as clauses in
 this campaign.
+
+## 2026-08-20 SAT-profile canary and mandatory theorem mine
+
+The corrected 76-cell UNSAT-profile campaign is authenticated under root
+`f829bbaf0bd92490e8d6627b9f0271bd8491e9555ebf3042e5e99efdcf1e6747` and
+campaign `5e00a9a5206cbf35393e065a5b43e9daee2ae1a6c0e1eca4ee44a1cbf809ba33`.
+Its first 22 jobs have all returned authenticated `SOLVER_UNKNOWN`; these
+timeouts settle no cell and do not advance the Lean coverage theorem.
+
+Before launching the remaining SAT-profile cells, the required canary and
+wave-only mine were completed. PIQD job
+`48275627-f0f5-4f13-b50d-f0ca53a6b4ad` returned sealed `STRUCTURAL_SAT`.
+The canary is a finite Boolean SAT assignment, not a Euclidean counterexample
+and not an exact-17 closure. Its exact 308-variable, 7,409,263-clause CNF
+(`227005eefeec723b2b0a04d4f8d75341a64ed3e2f5060c1ee1deef91f9763817`) was
+independently replayed with zero unsatisfied clauses.
+
+The mandatory mine found no new general theorem. It found 20 new paired,
+source-valid finite occurrences of the existing generic two-Kalmanson
+cancellation theorem. The smallest source-valid occurrence has forward
+support `{(5,6),(5,7),(11,6),(11,7)}` together with its reflected reverse;
+it is a size-four paired occurrence and is sufficient to reject the current
+canary model. The required next action is to promote this four-clause orbit,
+then regenerate and run the remaining five SAT-profile cells. The current
+route and goal remain unchanged: only checked certificates covering every
+source-total cell can feed the Lean coverage consumer.
