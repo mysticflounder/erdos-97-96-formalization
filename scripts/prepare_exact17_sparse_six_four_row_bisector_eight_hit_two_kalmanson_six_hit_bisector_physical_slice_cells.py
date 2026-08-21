@@ -72,7 +72,7 @@ EXPORTER_PATH = ROOT / (
 ORIGINAL_PARENT_EXPORTER_PATH = ROOT / (
     "lean/Erdos9796Proof/P97/ATail/"
     "BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisector"
-    "PhysicalSliceCellExport.lean"
+    "EightHitTwoKalmansonCancellationPhysicalSliceCellExport.lean"
 )
 DELEGATED_PREPARER_PATH = (
     ROOT

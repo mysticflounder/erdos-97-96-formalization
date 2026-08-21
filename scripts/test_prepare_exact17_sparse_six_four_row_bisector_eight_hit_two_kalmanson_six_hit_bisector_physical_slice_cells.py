@@ -23,6 +23,14 @@ def test_target_test_path_is_this_lane() -> None:
     )
 
 
+def test_original_parent_exporter_is_the_true_eight_hit_parent() -> None:
+    assert subject.ORIGINAL_PARENT_EXPORTER_PATH == subject.ROOT / (
+        "lean/Erdos9796Proof/P97/ATail/"
+        "BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisector"
+        "EightHitTwoKalmansonCancellationPhysicalSliceCellExport.lean"
+    )
+
+
 def _root() -> bytes:
     return b"p cnf 308 2\n1 0\n-2 3 0\n"
 
