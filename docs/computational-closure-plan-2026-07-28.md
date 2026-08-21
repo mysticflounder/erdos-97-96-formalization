@@ -14830,6 +14830,12 @@ All 76 cells are now submitted through PIQD with eleven concurrent one-core
 drivers, a 3,600-second solver limit, and the same independent replay limit.
 This launch is protected by a create-once campaign lock.
 
+The successor's zero-based LRAT representation seam is banked at `981218e4`.
+It relabels the exact new typed cell CNF, transports checked certificate UNSAT
+back through the injective variable map, and feeds all 76 certificate theorems
+directly into the source coverage coordinator. Thus a terminal UNSAT result no
+longer has a missing Lean ingress step.
+
 The 2026-08-20 update to `erdos-97-descent-prose-proof-atomic.md` adds exact-twelve
 lemmas in its A5 branch but no new exact-seventeen cap-nine antecedent. Its A2
 splitter remains the source of the exact-cover `SourceRealization`; its prose A3

@@ -1124,6 +1124,10 @@ its campaign SHA-256 is
 The launch uses eleven concurrent one-core drivers and the existing one-hour
 solver/replay limits.
 
+The exact successor-certificate ingress is banked at `981218e4`; it provides
+the zero-based LRAT relabelling, typed-cell UNSAT transport, and the all-76
+certificate coordinator required by the source coverage theorem.
+
 An audit of the current atomic prose proof found no new exact-17 cap-nine lemma.
 The latest A5 additions require cardinality twelve. The A2 splitter continues to
 produce the exact-cover source realization, while A3 and A4 remain open and are
