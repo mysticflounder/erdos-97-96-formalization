@@ -2965,34 +2965,60 @@ The TriApex cluster retains three large cap/apex systems, paired common-deletion
 
 **Status.** [OPEN]
 
-##### 16.5.D2 - The two-radius reflected grid in one strict first cap
+##### 16.5.D2 - The two-radius reflected grid with a four-in/four-escape cap census
 
 **Declaration.** `false_of_pairedCommonDeletion_twoRadiusGrid_triApexAllLarge_core`
 
 **Source and role.** `TriApexEndpointRetainedOmission.lean`, approximately lines 2036-2061. This is the richest explicit metric terminal in the TriApex cluster.
 
-**Atomic contract.** Two distinct positive radii at the first apex produce two disjoint exact four-classes. Two retained shells partition those eight points, and four reflected-pair identities form a two-radius grid. All eight grid points lie in the strict first-cap interior. Prove `False`.
+**Atomic contract.** Two distinct positive radii at the first apex produce two
+disjoint exact four-classes. Two retained shells partition those eight points,
+and four signed-area pair-separation identities form a two-radius grid. Exactly
+four grid points lie in the strict first-cap interior; the other four escape to
+the two adjacent caps. Prove `False`.
 
-**Data already proved upstream.** The two circles are concentric and their radii are independently named. Each class has exactly four points. The shell partition and reflected-pair equalities remove much of the support-choice ambiguity. The carrier is strictly convex and the entire grid lies in one ordered cap interval.
+**Data already proved upstream.** `PairedGridCapPlacement` proves that the
+retained-radius interior slice is exactly `{O.kept, O.deleted}`, the other
+radius contributes exactly two interior points, and each retained shell
+contributes exactly one of those points.  The retained partners lie outside the
+strict interior.  The theorems
+`grid_retainedPartners_mem_distinct_adjacentCaps` and
+`grid_otherClass_escapees_mem_distinct_adjacentCaps` place both escape pairs
+in opposite adjacent caps.  This four-in/four-escape census is PROVEN in Lean.
 
-**Exact missing implication.** The unresolved statement is an order-sensitive metric fact: the reflected two-radius grid cannot place all eight points as vertices in one strict cap.
+**Exact missing implication.** The unresolved statement is an order-sensitive
+metric fact using the proved cap census: the two exact four-classes, shell
+partition, four pair-separation identities, and opposite-adjacent-cap escapes
+cannot occur in the strictly convex carrier.
 
 **Candidate closure program.**
 
-1. Choose an oriented axis through the first apex determined by one reflected pair. Express each pair as equal angular offsets on its radius circle; this is a consequence of equal chords, not an assumed symmetry.
+1. Choose typed labels for the interior point and escapee in each shell's
+other-radius pair.  Retain the two independent left/right orientations instead
+of assuming a common reflection axis.
 
-2. Derive the cyclic order forced by the four pair identities. The grid should alternate inner- and outer-radius points in a repeated reflected pattern.
+2. Localize the two shell blockers by cap index and split on whether those
+indices agree.
 
-3. Use supporting-line inequalities for convex-hull vertices on two concentric circles. Sum the four inequalities for inner points; the reflection equations should cancel angular terms and yield an impossible inequality in the two radii.
+3. In the equal-index arm, combine the one-hit theorem for the other rich caps
+with the exact shell slices.  In the unequal-index arm, convert the four
+pair-separation identities and escape orientations into a finite forbidden
+boundary-order outcome.
 
-4. Formalize a coordinate-free version after validating the algebra in exact real coordinates. The final Lean theorem can choose an orthonormal frame because Euclidean isometries preserve all hypotheses.
+4. Route each outcome to an existing strict-convexity or Kalmanson consumer.
+Any coordinate calculation must retain both radius-order cases and the exact
+cap labels.
 
 
-**Known limits and rejection tests.** Two arbitrary concentric four-sets can be convexly independent, especially when the radii are close and angular gaps are large. The proof must consume the reflected-pair grid and common strict-cap placement. A generic 'inner circle points are inside the outer hull' lemma would be false.
+**Known limits and rejection tests.** Two arbitrary concentric four-sets can be
+convexly independent, especially when the radii are close and angular gaps are
+large. The proof must consume the reflected-pair grid and the exact
+four-in/four-escape placement. A generic claim that inner-circle points lie
+inside the outer hull is false.
 
 **Immediate consumer.** The two-radius TriApex core. A successful theorem is likely to close or sharply reduce C3 as well.
 
-**Status.** [OPEN]
+**Status.** [CAP CENSUS PROVEN IN LEAN; ORIENTED-LABEL AND TERMINAL KERNEL OPEN]
 
 ##### 16.5.D3 - Endpoint cross-hit with first center equal to the fresh source
 
@@ -3143,31 +3169,75 @@ The TriApex cluster retains three large cap/apex systems, paired common-deletion
 
 **Declaration.** `false_of_retainedOmission_reverseHitFresh_endpointCommonDeletion_triApexAllLarge_core`
 
-**Source and role.** `TriApexEndpointRetainedOmission.lean`, approximately lines 3635-3653 in the inspected source lineage. Failure of the cross hit has already been converted into a source-exact `CommonDeletionTwoCenterPacket` based at the opposite endpoint.
+**Source and role.** `TriApexEndpointRetainedOmission.lean`, in the endpoint
+collision branch.  Failure of the cross hit produces
 
-**Atomic contract.** Consume one two-center common-deletion packet together with the reverse-hit, retained-omission, and all-large tri-apex context, and derive `False`.
+```text
+packet : CommonDeletionTwoCenterPacket D H Q.K S.oppApex1
+  (H.centerAt Q.J Q.J_mem_A).
+```
 
-**Data already proved upstream.** The packet supplies one named deleted endpoint, two distinct surviving centers, exact four-supports in the erased carrier, and actual-blocker inequalities. The reverse hit and retained shells supply pre-deletion canonical rows, exact source identities, and cap locations.
+The inherited reverse-hit context already contains a second packet with the
+same deleted source:
 
-**Scope correction after the common-deletion analysis.** D8 is **not** an instance of the robust-apex tetrahedron theorem in Section 16.5.38. It has one two-row packet but no third exact row and no four-point tetrahedron seed. The reusable parts are only the elementary deletion calculus: exact-row persistence, canonicalization at a nonrobust center, and survival excluding equality with the deleted source's actual blocker.
+```text
+C.freshPacket : CommonDeletionTwoCenterPacket D H Q.K S.oppApex1
+  (H.centerAt O.deleted O.deleted_mem_A).
+```
 
-**Exact missing implication.** The remaining theorem is a genuinely two-row retained-omission continuation theorem. It must show that the endpoint packet either closes a directed omission cycle with a forbidden order, forces a new cross hit, or produces a strictly advanced source-exact packet. A raw robust-versus-critical split is normalization, not closure.
+Write
 
-**Candidate closure program.**
+```text
+b := H.centerAt O.deleted O.deleted_mem_A,
+x := H.centerAt Q.J Q.J_mem_A.
+```
 
-1. Canonicalize both surviving rows whenever their centers are nonrobust; retain a typed second-radius witness otherwise.
+The source-faithful first split is therefore `b = x` or `b ≠ x`.
 
-2. In the two critical arms, orient the exact omissions relative to the retained reverse hit and identify the next deleted endpoint forced by the source-faithful shell map.
+**D8.a, equal secondary blockers — PROVEN in the branch body.** Assume
+`b = x`.  The uniqueness theorem
+`ATailMinimalUniqueFourCover.uniqueFourClass_centerAt_eq_selectedAt_support`
+makes the canonical supports selected at `O.deleted` and `Q.J` equal.  Their
+common support contains `Q.C`, `O.deleted`, and `Q.J`: the first point is the
+reverse hit, the second and third are the own-source points of the two selected
+critical shells, and the third membership is transported across the support
+equality.
 
-3. Prove a strict tri-apex potential on this endpoint-to-blocker transition. The potential must advance in every critical arm and must be incompatible with a repeated packet.
+These points are pairwise distinct by `O.sources_ne`, `Q.J_ne_C`, and
+`Q.J_ne_middle` after the recorded walk equalities.  All three lie in
+`SelectedClass D.A S.oppApex1 radius`.  Hence the selected shell at
+`O.deleted` meets the frontier-radius class in at least three points.  This
+contradicts
+`ATailFirstApexCriticalFiberRow.criticalShell_inter_frontierRadiusClass_card_le_two`.
+This argument uses the frontier-specific bound directly; it does not assume a
+new selected four-class at the first apex.
 
-4. Route robust arms to the all-large/two-radius theorem. Route critical arms to one two-row cycle theorem, not to the three-row tetrahedron continuation theorem.
+**D8.b, distinct secondary blockers — OPEN.** Assume `b ≠ x`.  The two
+same-source packets now preserve K4 after deleting `Q.K` at the three distinct
+centers `S.oppApex1`, `b`, and `x`.  A valid continuation must retain the
+caller data: the reverse shell through `Q.C,O.deleted`, its omission of `Q.K`,
+the fresh row through `Q.C,Q.J`, the actual-blocker identity of `x`, the first
+cap locations, and the reverse-blocker order.  Projecting only the two packets
+would discard hypotheses needed by any boundary-order or finite-state
+argument.
 
-**Known limits and rejection tests.** A common-deletion packet is realizable local data. Its two K4 witnesses may have independent radii and supports. Without a third row, the planar tetrahedron incompatibility has no premise. Iterating packets is not a descent unless an explicit finite, strictly monotone potential is supplied.
+**Measured frontier change.** Before this checkpoint, the theorem body left
+both blocker-coincidence arms unchecked.  The source now proves the `b = x`
+arm and leaves one explicit `sorry` only under `b ≠ x`.  The outer on-spine
+declaration remains open; the internal caller-tagged residual has decreased
+from `{b = x, b ≠ x}` to `{b ≠ x}`.
 
-**Immediate consumer.** The no-cross-hit side of the reverse-hit fresh endpoint dispatcher.
+**Immediate consumer.**
+`false_of_retainedOmission_reverseHitFresh_endpointCriticalFiber_triApexAllLarge_core`,
+and transitively `Problem97.erdos97_rhs`.
 
-**Status.** [OPEN: two-row retained-omission continuation theorem; not covered by Section 16.5.38]
+**Known limits and rejection tests.** The distinct-center packets are
+realizable local data.  D8.b still needs a caller-tagged termination theorem;
+it cannot be closed by a bare statement that three centers survive one
+deletion, and it must not route through a cycle whose decrease has not been
+proved.
+
+**Status.** [PARTIAL LEAN CHECKPOINT: D8.a FOCUSED BUILD PASSED; D8.b OPEN]
 
 ##### 16.5.D9 - Three consecutive distinct blockers in the retained-omission route
 

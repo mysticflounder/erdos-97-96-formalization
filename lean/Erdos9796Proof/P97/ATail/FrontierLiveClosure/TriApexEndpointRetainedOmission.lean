@@ -2123,8 +2123,9 @@ Narrowing relative to the parent: the parent's retained class is only known to
 have at least four points and its shells are unconstrained off the retained
 radius; here both cardinalities are exactly four, both full shells are
 determined by the two classes, the two grid radii are the only rich first-apex
-radii (`PairedTwoRadiusGrid.richClass_mem`), and the strict first-cap interior
-placement of all eight grid points is pinned by `PairedGridCapPlacement`. -/
+radii (`PairedTwoRadiusGrid.richClass_mem`), and `PairedGridCapPlacement` pins
+the exact four-point strict first-cap census while placing the two
+retained-class partners outside that strict interior. -/
 theorem false_of_pairedCommonDeletion_twoRadiusGrid_triApexAllLarge_core
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -3774,7 +3775,62 @@ theorem false_of_retainedOmission_reverseHitFresh_endpointCommonDeletion_triApex
     (packet : CommonDeletionTwoCenterPacket D H Q.K S.oppApex1
       (H.centerAt Q.J Q.J_mem_A)) :
     False := by
-  sorry
+  classical
+  by_cases hbx :
+      H.centerAt O.deleted O.deleted_mem_A = H.centerAt Q.J Q.J_mem_A
+  · have hsupp :
+        (H.selectedAt O.deleted O.deleted_mem_A).toCriticalFourShell.support =
+          (H.selectedAt Q.J Q.J_mem_A).toCriticalFourShell.support := by
+      rw [← ATailMinimalUniqueFourCover.uniqueFourClass_centerAt_eq_selectedAt_support
+          H O.deleted O.deleted_mem_A,
+        ← ATailMinimalUniqueFourCover.uniqueFourClass_centerAt_eq_selectedAt_support
+          H Q.J Q.J_mem_A,
+        hbx]
+    have hCeq : Q.C = O.kept :=
+      Q.C_eq_fiber_source₁.trans
+        (E.fiber_source₁_eq_first.trans C.walk_first_eq)
+    have hCneDeleted : Q.C ≠ O.deleted := by
+      simpa only [hCeq] using O.sources_ne
+    have hJneDeleted : Q.J ≠ O.deleted := by
+      simpa only [C.walk_second_eq] using Q.J_ne_middle
+    have hJReverse :
+        Q.J ∈
+          (H.selectedAt O.deleted O.deleted_mem_A).toCriticalFourShell.support := by
+      rw [hsupp]
+      exact (H.selectedAt Q.J Q.J_mem_A).toCriticalFourShell.q_mem_support
+    have htripleSubset :
+        ({Q.C, O.deleted, Q.J} : Finset ℝ²) ⊆
+          (H.selectedAt O.deleted O.deleted_mem_A).toCriticalFourShell.support ∩
+            SelectedClass D.A S.oppApex1 radius := by
+      intro z hz
+      simp only [Finset.mem_insert, Finset.mem_singleton] at hz
+      rcases hz with rfl | rfl | rfl
+      · exact Finset.mem_inter.mpr
+          ⟨by simpa only [hCeq] using C.reverse_mem, Q.C_mem_radius⟩
+      · exact Finset.mem_inter.mpr
+          ⟨(H.selectedAt O.deleted O.deleted_mem_A).toCriticalFourShell.q_mem_support,
+            O.deleted_mem_radius⟩
+      · exact Finset.mem_inter.mpr ⟨hJReverse, Q.J_mem_radius⟩
+    have htripleCard : ({Q.C, O.deleted, Q.J} : Finset ℝ²).card = 3 := by
+      simp [hCneDeleted, Q.J_ne_C.symm, hJneDeleted.symm]
+    have hthree :
+        3 ≤
+          ((H.selectedAt O.deleted O.deleted_mem_A).toCriticalFourShell.support ∩
+            SelectedClass D.A S.oppApex1 radius).card := by
+      calc
+        3 = ({Q.C, O.deleted, Q.J} : Finset ℝ²).card := htripleCard.symm
+        _ ≤
+            ((H.selectedAt O.deleted O.deleted_mem_A).toCriticalFourShell.support ∩
+              SelectedClass D.A S.oppApex1 radius).card :=
+          Finset.card_le_card htripleSubset
+    have htwo :
+        ((H.selectedAt O.deleted O.deleted_mem_A).toCriticalFourShell.support ∩
+          SelectedClass D.A S.oppApex1 radius).card ≤ 2 := by
+      exact
+        ATailFirstApexCriticalFiberRow.criticalShell_inter_frontierRadiusClass_card_le_two
+          (R := R) O.deleted O.deleted_mem_A
+    omega
+  · sorry
 
 /-- Endpoint-collision child of the fresh reverse-hit leaf.  This checked
 coordinator chooses a genuinely new first-apex row source and dispatches on
