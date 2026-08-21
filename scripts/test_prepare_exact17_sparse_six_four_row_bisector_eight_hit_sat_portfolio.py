@@ -5,6 +5,9 @@ from __future__ import annotations
 
 import hashlib
 import json
+import subprocess
+import sys
+from pathlib import Path
 
 import prepare_exact17_sparse_six_four_row_bisector_eight_hit_sat_portfolio as subject
 import pytest
@@ -71,3 +74,33 @@ def test_prepare_rejects_repository_escape_before_authentication(tmp_path) -> No
     with pytest.raises(subject.PreparationError, match="escapes repository"):
         subject.prepare_portfolio(root=tmp_path, output_root=output)
     assert not output.exists()
+
+
+def test_public_cli_help_is_finalized_eighthit() -> None:
+    result = subprocess.run(
+        [sys.executable, str(Path(subject.__file__)), "--help"],
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    assert result.returncode == 0
+    assert "EightHit" in result.stdout
+    assert "finalized" in result.stdout
+    assert "v5" in result.stdout
+
+
+def test_public_main_passes_explicit_v5_paths(monkeypatch) -> None:
+    observed = {}
+
+    def fake_prepare(**kwargs):
+        observed.update(kwargs)
+        return {"status": "TEST"}
+
+    monkeypatch.setattr(subject, "prepare_portfolio", fake_prepare)
+    assert subject.main([]) == 0
+    assert observed == {
+        "campaign_path": subject.SOURCE_CAMPAIGN_PATH,
+        "source_run_manifest_path": subject.SOURCE_RUN_MANIFEST_PATH,
+        "checkpoint_path": subject.CHECKPOINT_PATH,
+        "output_root": subject.OUTPUT_ROOT,
+    }

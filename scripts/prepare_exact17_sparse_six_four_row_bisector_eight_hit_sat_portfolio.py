@@ -3,8 +3,8 @@
 # ruff: noqa: F821
 """Fresh true-EightHit exact-17 SAT-profile portfolio preparation.
 
-The hardened two-Kalmanson portfolio implementation is evaluated with a
-fresh EightHit identity surface and authenticated against the completed v5
+The hardened portfolio implementation is evaluated with a fresh EightHit
+identity surface and authenticated against the completed v5
 source campaign.  The portfolio output remains create-once and is not made
 until the caller explicitly invokes preparation.
 """
@@ -71,6 +71,11 @@ _REPLACEMENTS = (
 )
 for _old, _new in _REPLACEMENTS:
     _TEXT = _TEXT.replace(_old, _new)
+_MAIN_NAME = "__main__"
+_MAIN_GUARD = f'\nif __name__ == "{_MAIN_NAME}":\n    raise SystemExit(main())\n'
+if _TEXT.count(_MAIN_GUARD) != 1:
+    raise RuntimeError("predecessor main guard drifted; refusing embedded execution")
+_TEXT = _TEXT.replace(_MAIN_GUARD, "\n", 1)
 exec(compile(_TEXT, str(_BASE), "exec"), globals(), globals())  # noqa: S102
 
 # v5 is the completed governed source campaign.  Keep these bindings explicit
@@ -300,3 +305,27 @@ def build_wave(
     }
     validate_wave_manifest(result)
     return canonical_json_bytes(result)
+
+
+def main(argv: list[str] | None = None) -> int:
+    parser = argparse.ArgumentParser(
+        description="Prepare the finalized authenticated EightHit v5 SAT-profile portfolio."
+    )
+    parser.add_argument("--output-root", type=Path, default=OUTPUT_ROOT)
+    args = parser.parse_args(argv)
+    try:
+        report = prepare_portfolio(
+            campaign_path=SOURCE_CAMPAIGN_PATH,
+            source_run_manifest_path=SOURCE_RUN_MANIFEST_PATH,
+            checkpoint_path=CHECKPOINT_PATH,
+            output_root=args.output_root,
+        )
+    except (OSError, PreparationError) as exc:
+        print(f"EightHit SAT-profile preparation rejected: {exc}", file=sys.stderr)
+        return 2
+    print(json.dumps(report, sort_keys=True))
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

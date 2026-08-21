@@ -3,6 +3,10 @@
 
 from __future__ import annotations
 
+import subprocess
+import sys
+from pathlib import Path
+
 import prepare_exact17_sparse_six_four_row_bisector_eight_hit_sat_portfolio as preparation
 import pytest
 import run_piqd_exact17_sparse_six_four_row_bisector_eight_hit_sat_portfolio as subject
@@ -49,3 +53,28 @@ def test_fresh_only_client_rejects_existing_jobs() -> None:
     with pytest.raises(subject.PiqdOracleError, match="existing=true"):
         client.prepare_cnf()
     assert client.rejected_existing is True
+
+
+def test_public_cli_help_is_finalized_eighthit() -> None:
+    result = subprocess.run(
+        [sys.executable, str(Path(subject.__file__)), "--help"],
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    assert result.returncode == 0
+    assert "EightHit" in result.stdout
+    assert "finalized" in result.stdout
+    assert "v5" in result.stdout
+
+
+def test_public_main_passes_v5_runtime_paths(monkeypatch) -> None:
+    observed = {}
+
+    def fake_static_check(**kwargs):
+        observed.update(kwargs)
+        return {"status": "TEST"}
+
+    monkeypatch.setattr(subject, "static_check", fake_static_check)
+    assert subject.main(["static-check"]) == 0
+    assert observed == {"root": preparation.ROOT, "run_root": preparation.OUTPUT_ROOT}
