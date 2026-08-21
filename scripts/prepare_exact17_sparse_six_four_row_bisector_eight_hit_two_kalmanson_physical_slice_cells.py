@@ -21,6 +21,7 @@ import argparse
 import hashlib
 import json
 import os
+import re
 import secrets
 import stat
 import subprocess
@@ -29,7 +30,7 @@ import threading
 from collections.abc import Iterator, Sequence
 from contextlib import contextmanager
 from dataclasses import dataclass
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 from typing import Any
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -52,6 +53,7 @@ LANE_ID = (
 )
 RUN_ID = "physical-slice-cell-campaign-v1"
 BASE_HEAD = "7097f6541bea6bc667b27786f2d57673610c59fc"
+STANDARD_ID = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$")
 
 SOURCE_PATH = ROOT / (
     "lean/Erdos9796Proof/P97/ATail/"
@@ -1455,10 +1457,27 @@ def _active_production() -> _ProductionConfig:
     return config
 
 
+def _run_id_from_generated_root(generated_root: str) -> str:
+    candidate = PurePosixPath(generated_root)
+    expected_parent = PurePosixPath("scratch", "runs", LANE_ID)
+    if generated_root != candidate.as_posix() or candidate.parent != expected_parent:
+        raise PreparationError(
+            "production generated root must be scratch/runs/<lane_id>/<run_id>"
+        )
+    run_id = candidate.name
+    if STANDARD_ID.fullmatch(run_id) is None:
+        raise PreparationError("production run_id has invalid shape")
+    return run_id
+
+
 @contextmanager
 def _configured_production(config: _ProductionConfig) -> Iterator[None]:
+    config.verify()
     support = config.value["support"]
+    generated_root = config.value["generated_root"]
+    run_id = _run_id_from_generated_root(generated_root)
     replacements = {
+        "RUN_ID": run_id,
         "EXPECTED_SOURCE_SHA256": support["source"]["sha256"],
         "EXPECTED_ROOT_SOURCE_SHA256": support["root_source"]["sha256"],
         "EXPECTED_EXPORTER_SHA256": support["exporter"]["sha256"],
@@ -1476,7 +1495,7 @@ def _configured_production(config: _ProductionConfig) -> Iterator[None]:
         "EXPECTED_CHECKPOINT_MANIFEST_SHA256": support["checkpoint"]["manifest_sha256"],
         "PINNED_SOURCE_COMMIT": config.value["source_commit"],
         "PRODUCTION_PINS_FINALIZED": True,
-        "REGISTERED_GENERATED_ROOT": config.value["generated_root"],
+        "REGISTERED_GENERATED_ROOT": generated_root,
     }
     names = tuple(replacements)
     previous = {name: globals()[name] for name in names}
@@ -1853,7 +1872,7 @@ def build_producer(
             "production_config_sha256": sha256_bytes(
                 canonical_json_bytes(production_config)
             ),
-            "producer_id": f"{category_id(center, category)}-v1",
+            "producer_id": f"{category_id(center, category)}-{RUN_ID}",
             "producer_kind": "lean-exported-static-dimacs",
             "query_polarity": UNSAT_MEANS_OBSTRUCTION,
             "schema": PRODUCER_SCHEMA,
@@ -1869,6 +1888,7 @@ def build_root_producer(**kwargs: Any) -> bytes:
     return canonical_json_bytes(
         {
             "schema": ROOT_PRODUCER_SCHEMA,
+            "run_id": RUN_ID,
             "producer_kind": "lean-exported-static-dimacs-root",
             "claims": {
                 "exact17_closed": False,
@@ -1924,7 +1944,7 @@ def build_wave(
 ) -> bytes:
     wave = {
         "schema": WAVE_SCHEMA,
-        "wave_id": f"{category_id(center, category)}-v1",
+        "wave_id": f"{category_id(center, category)}-{RUN_ID}",
         "iteration": 0,
         "parent_checkpoint_sha256": EXPECTED_CHECKPOINT_SHA256,
         "source": {
@@ -2108,47 +2128,6 @@ def _initialize_governed_skeleton(output: Path, manifest: bytes) -> None:
 
 
 @contextmanager
-def _configured_predecessor() -> Iterator[None]:
-    replacements: dict[str, Any] = {
-        "LANE_ID": LANE_ID,
-        "RUN_ID": RUN_ID,
-        "BASE_HEAD": BASE_HEAD,
-        "EXPECTED_SOURCE_SHA256": EXPECTED_SOURCE_SHA256,
-        "EXPECTED_ROOT_SOURCE_SHA256": EXPECTED_ROOT_SOURCE_SHA256,
-        "EXPECTED_EXPORTER_SHA256": EXPECTED_EXPORTER_SHA256,
-        "EXPECTED_VARIABLE_MAP_SHA256": EXPECTED_VARIABLE_MAP_SHA256,
-        "EXPECTED_CHECKPOINT_SHA256": EXPECTED_CHECKPOINT_SHA256,
-        "PARENT_VARIABLES": PARENT_VARIABLES,
-        "PARENT_CLAUSES": PARENT_CLAUSES,
-        "CELL_CLAUSES": CELL_CLAUSES,
-        "CELL_COUNT": CELL_COUNT,
-        "DIRECT_SENTINELS": DIRECT_SENTINELS,
-        "SOURCE_THEOREM": SOURCE_THEOREM,
-        "ORDER_SHA256": ORDER_SHA256,
-        "SCHEMA": SCHEMA,
-        "CAMPAIGN_SCHEMA": CAMPAIGN_SCHEMA,
-        "category_id": category_id,
-        "next_center_variable": next_center_variable,
-        "category_units": category_units,
-        "cell_cnf_bytes": cell_cnf_bytes,
-        "_validate_support": _validate_support,
-        "build_producer": build_producer,
-        "build_root_producer": build_root_producer,
-        "build_wave": build_wave,
-        "build_run_manifest": build_run_manifest,
-    }
-    with _CONFIGURATION_LOCK:
-        previous = {name: getattr(accepted, name) for name in replacements}
-        try:
-            for name, value in replacements.items():
-                setattr(accepted, name, value)
-            yield
-        finally:
-            for name, value in previous.items():
-                setattr(accepted, name, value)
-
-
-@contextmanager
 def _production_session(
     repo_root: Path,
     production_config_path: Path,
@@ -2237,6 +2216,7 @@ def _preflight_authenticated(
         custody.verify()
         return {
             "status": "PRODUCTION_PREFLIGHT_OK",
+            "run_id": RUN_ID,
             "source_commit": PINNED_SOURCE_COMMIT,
             "production_config": build_production_config_manifest(root),
             "support_sha256": digests,
@@ -2618,6 +2598,7 @@ def _prepare_campaign_authenticated(
                 raise PreparationError("direct Lean sentinel coverage drifted")
             campaign = {
                 "schema": CAMPAIGN_SCHEMA,
+                "run_id": RUN_ID,
                 "project": "erdos-97-96-formalization",
                 "status": "PREPARED_LOCAL_ONLY",
                 "claims": {
@@ -2668,6 +2649,7 @@ def _prepare_campaign_authenticated(
             _secure_write_once(campaign_path, campaign_bytes)
             report = {
                 "schema": SCHEMA,
+                "run_id": RUN_ID,
                 "status": "PREPARED_LOCAL_ONLY",
                 "production_run": False,
                 "cell_count": len(cells),

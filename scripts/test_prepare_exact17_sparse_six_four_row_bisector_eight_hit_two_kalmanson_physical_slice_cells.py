@@ -67,6 +67,10 @@ def _fixture(
     target_test.write_bytes(b"def target_test(): return True\n")
     production_config = tmp_path / subject.PRODUCTION_CONFIG_RELATIVE
     production_config.parent.mkdir(parents=True)
+    run_id = "physical-slice-cell-campaign-v4"
+    generated_root = f"scratch/runs/{subject.LANE_ID}/{run_id}"
+    output = tmp_path / generated_root
+    output.parent.mkdir(parents=True)
     checkpoint = tmp_path / "checkpoint.json"
     checkpoint_payload = {
         "schema": "worktree-lane-checkpoint/v1",
@@ -83,7 +87,7 @@ def _fixture(
                 "eight_hit_two_kalmanson_physical_slice_cells.py"
             ),
         ],
-        "generated_roots": ["output"] if register_root else [],
+        "generated_roots": [generated_root] if register_root else [],
         "durable_paths": [
             delegated_preparer.relative_to(tmp_path).as_posix(),
             hardened_preparer.relative_to(tmp_path).as_posix(),
@@ -131,7 +135,7 @@ def _fixture(
         "schema": subject.PRODUCTION_CONFIG_SCHEMA,
         "lane_id": subject.LANE_ID,
         "base_head": subject.BASE_HEAD,
-        "generated_root": "output",
+        "generated_root": generated_root,
         "source_commit": "a" * 40,
         "target_code": {
             "commit": "b" * 40,
@@ -221,7 +225,9 @@ def _fixture(
             "target_preparer": target_preparer,
             "target_test": target_test,
             "production_config": production_config,
-            "output": tmp_path / "output",
+            "output": output,
+            "generated_root": generated_root,
+            "run_id": run_id,
             "fake_root_export": fake_root_export,
             "fake_export": fake_export,
             "fake_commit_verify": fake_commit_verify,
@@ -446,6 +452,71 @@ def test_production_config_wrong_pin_type_is_rejected(
         )
 
 
+@pytest.mark.parametrize(
+    ("generated_root", "message"),
+    [
+        ("scratch/runs/wrong-lane/fixture-run", "must be scratch/runs"),
+        (
+            f"scratch/runs/{subject.LANE_ID}/extra/fixture-run",
+            "must be scratch/runs",
+        ),
+        (f"scratch/runs/{subject.LANE_ID}/bad id", "invalid shape"),
+    ],
+)
+def test_production_generated_root_layout_and_run_id_are_exact(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+    generated_root: str,
+    message: str,
+) -> None:
+    paths, _ = _fixture(tmp_path, monkeypatch)
+    _update_config(
+        paths,
+        lambda config: config.update({"generated_root": generated_root}),
+    )
+    config = subject._load_production_config(
+        tmp_path,
+        paths["production_config"],
+        "c" * 40,
+        paths["fake_config_blob_reader"],
+    )
+    try:
+        with (
+            pytest.raises(subject.PreparationError, match=message),
+            subject._configured_production(config),
+        ):
+            pass
+    finally:
+        config.close()
+
+
+def test_authenticated_run_id_replaces_stale_default_and_restores_scope(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    paths, _ = _fixture(tmp_path, monkeypatch)
+    original_run_id = subject.RUN_ID
+    original_registered_root = subject.REGISTERED_GENERATED_ROOT
+    assert original_run_id != paths["run_id"]
+    config = subject._load_production_config(
+        tmp_path,
+        paths["production_config"],
+        "c" * 40,
+        paths["fake_config_blob_reader"],
+    )
+    try:
+        with (
+            pytest.raises(RuntimeError, match="scope canary"),
+            subject._configured_production(config),
+        ):
+            assert subject.RUN_ID == paths["run_id"]
+            assert subject.REGISTERED_GENERATED_ROOT == paths["generated_root"]
+            raise RuntimeError("scope canary")
+    finally:
+        config.close()
+    assert subject.RUN_ID == original_run_id
+    assert subject.REGISTERED_GENERATED_ROOT == original_registered_root
+
+
 @pytest.mark.parametrize("role", ["target_preparer", "target_test"])
 def test_target_code_live_drift_is_rejected(
     tmp_path: Path, monkeypatch: pytest.MonkeyPatch, role: str
@@ -598,9 +669,9 @@ def test_initialize_creates_exact_governed_skeleton(
     }
     run = json.loads((paths["output"] / "run_manifest.json").read_bytes())
     assert run["lane_id"] == subject.LANE_ID
-    assert run["run_id"] == subject.RUN_ID
+    assert run["run_id"] == paths["run_id"]
     assert run["owner"] == "exact17-eight-hit-two-kalmanson-preparer"
-    assert run["root"] == "output"
+    assert run["root"] == paths["generated_root"]
 
 
 def test_cli_initialize_run_root_is_offline_and_does_not_export(
@@ -694,6 +765,11 @@ def test_prepares_all_76_cells_and_validates_sentinels(
     first = campaign["cells"][0]
     producer = json.loads((tmp_path / first["producer_manifest"]["path"]).read_bytes())
     wave = json.loads((tmp_path / first["wave_manifest"]["path"]).read_bytes())
+    expected_identity = f"{first['cell_id']}-{paths['run_id']}"
+    assert campaign["run_id"] == paths["run_id"]
+    assert report["run_id"] == paths["run_id"]
+    assert producer["producer_id"] == expected_identity
+    assert wave["wave_id"] == expected_identity
     assert producer["source_manifest"]["finite_schema"] == subject.FINITE_SCHEMA
     assert producer["source_manifest"]["source_theorem"] == subject.SOURCE_THEOREM
     assert producer["parent_novelty"] == campaign["source"]["parent_novelty"]
@@ -732,6 +808,7 @@ def test_prepares_all_76_cells_and_validates_sentinels(
     root_producer = json.loads(
         (paths["output"] / "artifacts" / "root-producer-manifest.json").read_bytes()
     )
+    assert root_producer["run_id"] == paths["run_id"]
     assert root_producer["production_config"] == production
     assert root_producer["production_config_sha256"] == production_sha256
     producer_sha256 = _sha(tmp_path / first["producer_manifest"]["path"])
@@ -765,6 +842,44 @@ def test_prepares_all_76_cells_and_validates_sentinels(
         == production["sha256"]
     )
     assert wave["encoding"]["num_clauses"] == 12
+
+
+def test_preparation_uses_owned_builders_and_v4_identity_everywhere(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    paths, _ = _fixture(tmp_path, monkeypatch)
+    _initialize(tmp_path, paths)
+
+    def forbidden_predecessor_builder(*_args: Any, **_kwargs: Any) -> bytes:
+        raise AssertionError("accepted predecessor manifest builder was called")
+
+    for name in ("build_producer", "build_root_producer", "build_wave"):
+        monkeypatch.setattr(subject.accepted, name, forbidden_predecessor_builder)
+
+    report = _prepare(tmp_path, paths)
+    run_id = paths["run_id"]
+    assert run_id == "physical-slice-cell-campaign-v4"
+    assert report["run_id"] == run_id
+    run = json.loads((paths["output"] / "run_manifest.json").read_bytes())
+    assert run["run_id"] == run_id
+    assert run["root"] == f"scratch/runs/{subject.LANE_ID}/{run_id}"
+    root_producer = json.loads(
+        (paths["output"] / "artifacts" / "root-producer-manifest.json").read_bytes()
+    )
+    assert root_producer["run_id"] == run_id
+    campaign = json.loads(
+        (paths["output"] / "artifacts" / "campaign-manifest.json").read_bytes()
+    )
+    assert campaign["run_id"] == run_id
+    assert len(campaign["cells"]) == 76
+    for cell in campaign["cells"]:
+        identity = f"{cell['cell_id']}-{run_id}"
+        producer = json.loads(
+            (tmp_path / cell["producer_manifest"]["path"]).read_bytes()
+        )
+        wave = json.loads((tmp_path / cell["wave_manifest"]["path"]).read_bytes())
+        assert producer["producer_id"] == identity
+        assert wave["wave_id"] == identity
 
 
 def test_parent_duplicate_suffix_clause_fails_before_children(
@@ -1231,14 +1346,3 @@ def test_write_once_symlink_race_fails_closed(
         subject._secure_write_once(destination, b"trusted")
     assert destination.is_symlink()
     assert outside.read_bytes() == b"outside"
-
-
-def test_predecessor_globals_are_restored(
-    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
-) -> None:
-    paths, _ = _fixture(tmp_path, monkeypatch)
-    old_lane = subject.accepted.LANE_ID
-    old_category = subject.accepted.category_id
-    _initialize(tmp_path, paths)
-    assert subject.accepted.LANE_ID == old_lane
-    assert subject.accepted.category_id is old_category
