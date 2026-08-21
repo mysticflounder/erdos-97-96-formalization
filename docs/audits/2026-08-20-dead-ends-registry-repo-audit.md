@@ -134,6 +134,84 @@ spine` "reports reachability and open obligations; it is not a substitute for
 `#print axioms` on an individual theorem", and `dead-ends.md:288` adds that a
 recorded status "never substitutes for a current import-graph or axiom check."
 
+### 4.1a Follow-up — the "closed" proof recovered, and why it does not work
+
+Added 2026-08-20 after tracing the history behind §4.1.
+
+**Provenance.** The four-branch proof was never committed. It survives only as an
+unreferenced git blob, now pinned against garbage collection at
+
+```bash
+git cat-file blob refs/recovered/crossblocker-proof-20260817 > /tmp/recovered.lean
+```
+
+That blob is the whole 3020-line module; the theorem body is 2917 lines over four
+cases (`H.centerAt P.source₁ = Pρ.source₁`, `= Pρ.source₂`, and the two mirrored
+`Pρ` cases), with zero `sorry`. `git log -L` over the theorem shows the committed
+text has been `sorry` since the module was created in `9feb86f6`, so no
+intermediate closed state ever entered history. No stash holds it. The other
+dangling blobs carrying this file are all earlier `sorry` versions, and the four
+untracked `lean/**/TestCross*.lean` and `lean/test_cross.lean` probes are
+`aesop` one-liners, not the proof.
+
+**The refactoring in flight.** The uncommitted working-tree diff on
+`TwoSourceCanonicalSurface.lean` adds two `private` helpers at `:50` and `:59`,
+and both map onto the recovered text: `oppApex1_mem_A_local` because the proof
+calls `oppApex1_mem_A S` four times while that lemma is `private` in nine other
+ATail modules and therefore out of scope here, and `collision_btw_sep` factoring
+the three repeated `SurplusCOMPGBank.btw_sep` applications out of the case
+bodies. Neither helper is referenced yet.
+
+**The defect.** The 2026-08-17 audit read the build failure as performance —
+"deterministic heartbeats/timeouts ... a termination/performance failure in
+checking, not an explicit `sorry`" — and recommended rewriting the timeout-prone
+steps. That diagnosis appears to be wrong.
+
+Case 1 ends by deriving `False` from `hbtw` and `hbtw_sep`:
+
+- `hbtw := QP.alternates_between_firstApex_and_commonBlocker B`, stated at
+  `CriticalFiberRetainedRadiusSelector.lean:285-292` as
+  `btw (idx O) (idx (H.blockerVertex Q.fiber.source₁)) (idx Q.fiber.source₁) ↔ ¬ btw (idx O) (idx …) (idx Q.fiber.source₂)`.
+- `hbtw_sep := SurplusCOMPGBank.btw_sep …` instantiated at `i = idx O`,
+  `j = idx A`, `a = idx source₁`, `b = idx source₂`.
+
+Because `QP := RetainedRadiusCollision.ofSources source₁ source₂ …`, these are
+the same proposition — `alternates_between_firstApex_and_commonBlocker` is itself
+proved by that exact `btw_sep` application, with the same `O`, `A`, `hA_ne_O`,
+`hsource₂_ne_O` scaffolding. Two proofs of one `X ↔ ¬Y` are satisfiable at
+`X` true and `Y` false, so no contradiction follows, and the endgame is
+correspondingly a self-referential `by_contra` tangle. On this reading the
+`whnf`/`isDefEq` heartbeat is the elaborator failing to unify an unprovable
+goal, not a slow but valid proof.
+
+Two independent signs point the same way:
+
+- `hresidual : GeometricMultiplicityResidual P Pρ` is used **zero** times across
+  all four cases — finding 3 of the 2026-08-17 audit. Were the proof sound, the
+  leaf would hold without the residual hypothesis at all, a materially stronger
+  claim than the leaf makes.
+- Case 1 derives the genuinely contradictory material — `hsurvives`, `hblocked`
+  from `H.no_qfree_at`, and `hblockerNe` — and then discards all three. Each name
+  occurs exactly once, at its own definition. The argument assembles the right
+  ingredients and abandons them for the alternation identity.
+
+**Status of this sub-finding:** source-level reading only. No `lake build` was
+run and no `#check` was performed, so the unsoundness is argued from the cited
+statements rather than from the elaborator. That is enough to redirect the
+follow-up, not enough to call the branch refuted.
+
+**Salvageable.** The two extracted helpers and the per-case setup — boundary
+indexing, the `RetainedRadiusCollision.ofSources` construction, `hfirstApexEq`
+and `hcommonBlockerEq` — look like real work. What needs replacing is the
+endgame of all four cases, with an argument that actually consumes
+`hsurvives`/`hblocked`/`hblockerNe` and the unused `hresidual`.
+
+**Consequence for §4.1's recommended action:** correcting the roadmap line is
+still first, but the perf-hardening follow-up in
+`docs/audits/2026-08-17-false-of-cross-blocker-coincidence-audit.md`
+("rewrite the timeout-prone steps ... to avoid heartbeat blowups") should be
+withdrawn before anyone spends time on it.
+
 ### 4.2 HIGH-MED — floating-point evidence carrying a universal method claim
 
 `docs/audits/2026-08-16-firstnonhit-l5-named-fragment-realization.md:82-88`
@@ -292,7 +370,16 @@ proof site and is left unconfirmed in either direction.
 1. Correct `docs/audits/2026-08-17-spine-leverage-analysis-and-roadmap.md:34`
    and re-derive its execution sequence; reconcile its three conflicting leaf
    totals against the live spine. Do this before committing the file, since
-   `README.md:203` already links to it.
+   `README.md:203` already links to it. Live counts for that reconciliation, from
+   a fresh `proof-blueprint spine`: 36 leaves total — Cluster A 6 (the table's
+   figure is right, the section heading's 5 is not), Cluster B 9, Cluster C 18,
+   Cluster D 3. The header's "34 effective" and the cluster table's 13 for
+   Cluster C are both stale.
+1a. Withdraw the perf-hardening follow-up in
+   `docs/audits/2026-08-17-false-of-cross-blocker-coincidence-audit.md`; per
+   §4.1a the build failure is very likely an unprovable goal, not a heartbeat
+   budget. Preserve the recovered attempt at
+   `refs/recovered/crossblocker-proof-20260817` before any `git gc`.
 2. Re-derive the 2026-08-16 realization witness over exact rationals, or
    downgrade both dependent audits to `NUMERICAL_EVIDENCE_ONLY` and reopen the
    SAT-wave decision.
