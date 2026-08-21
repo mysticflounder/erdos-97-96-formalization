@@ -1,0 +1,17 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "exact17-six-hit-bisector-canary-two-kalmanson-model-refinements-mine-20260821",
+  "owner": "exact17-six-hit-bisector-canary-two-kalmanson-model-refinements-mine",
+  "base_head": "9e11a23a9506fc88ac61410756bc5d3c6f7c1206",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exact17-six-hit-bisector-canary-two-kalmanson-model-refinements-mine-20260821.json",
+    "scripts/mine_exact17_sparse_six_four_row_bisector_eight_hit_two_kalmanson_six_hit_bisector_canary_two_kalmanson_model_refinements_sat_canary.py",
+    "scripts/test_mine_exact17_sparse_six_four_row_bisector_eight_hit_two_kalmanson_six_hit_bisector_canary_two_kalmanson_model_refinements_sat_canary.py"
+  ],
+  "generated_roots": [
+    "scratch/runs/exact17-six-hit-bisector-canary-two-kalmanson-model-refinements-mine-20260821/canary-v1"
+  ],
+  "durable_paths": [],
+  "created_utc": "2026-08-21T22:13:15Z",
+  "manifest_sha256": "31e417002bb08e1791eea9d96d6935fb393db56faa408ce7a903d62aab8123e5"
+}
