@@ -32,6 +32,67 @@ frontiers, but would not literally create a ninth retained-omission leaf. Full
 authentication and telemetry are recorded in
 `scratch/retained-omission-e1/round5-general-cegar/V35-TRANSITIVITY-CANARY-TERMINAL.md`.
 
+The authenticated v36 selected-row-alternation Boolean pilot then tested the
+next available source-clean consumer on all twelve v35 `DDD` hard cases. Both
+the `qrow` variant and the full pairwise selected-row variant remained 12/12
+SAT. V37 then strengthened all twelve cases with both the banked exact
+adjacent-cap singleton theorem and the hypothetical branch-localized escaping
+row with at least two `Q.row` hits. They still remained 12/12 SAT. The overlap
+can split one point inside and one outside the chosen adjacent cap, so the
+candidate v36 producer is not terminal-strength. No full metric round should
+be launched from this contract. These are negative Boolean-pilot results, not
+counterexamples or leaf closures; the authenticated report is
+`scratch/retained-omission-e1/round5-general-cegar/V36-SELECTED-ROW-ALTERNATION-PILOT.md`.
+
+The mandatory post-v37 bank audit found one genuine narrowing theorem:
+`selectedFourClass_outside_overlap_card_le_one`. Together with
+`SelectedFourClass.inter_card_le_two`, it localizes the forced overlap exactly
+to `{J, x_out}`, where `J` is the unique point inside the chosen adjacent cap
+and `x_out` lies outside it. This is a proved producer/localizer, not a
+terminal; no audited bank forbids the surviving mixed placement. The first
+proof-engineering step is a thin live-packet adapter for that localizer, after
+which only a symmetry-orbit cyclic-role census is justified. The detailed
+classification is in
+`scratch/retained-omission-e1/round5-general-cegar/POST-V37-GLOBAL-BANK-AND-EFFICIENCY-AUDIT.md`.
+
+The bounded four-role census then leaves exactly two oriented alternating
+classes, `A,J,B,x_out` and `A,x_out,B,J`; zero of the two is consumed by an
+existing Kalmanson terminal. This exhausts the current aggregate contract and
+identifies the missing statement as an endpoint/branch-specific contradiction
+for those two mixed placements. See
+`scratch/retained-omission-e1/round5-general-cegar/POST-V37-CYCLIC-ROLE-CENSUS.md`.
+
+A subsequent no-obligation quantifier extraction sharpens the search contract
+without changing that diagnosis.  The general bank now proves that every
+nonempty proper carrier subset contains one center at which every selected
+four-class escapes the subset, and consequently every positive-radius full
+`SelectedClass` at that center has subset multiplicity at most three.  These
+are `exists_center_all_selectedFourClass_escape_of_proper_subset` and
+`exists_center_selectedClass_inter_card_le_three_of_proper_subset`.  Their
+exact-six endpoint specializations are
+`endpointFresh_exists_seedCenter_all_selectedRows_escape_twoShellSeed_of_sharedBlocker`
+and
+`endpointFresh_exists_seedCenter_selectedClass_seed_card_le_three_of_sharedBlocker`;
+focused axiom checks on the general bank contain only `propext`,
+`Classical.choice`, and `Quot.sound`.  This is a reusable pinned-multiplicity
+producer for successor finite models.  The strengthened endpoint theorem
+`endpointFresh_exists_seedCenter_ne_firstApex_ne_sharedBlocker_selectedClass_seed_card_le_three`
+also excludes the first apex and common blocker as the pinned center, since
+their exposed rows already contribute four seed points on one physical shell.
+It does not identify one of the remaining six seed roles or imply a cap/order
+placement, so neither adjacent-cap leaf closes and the two alternating mixed
+placements remain unexcluded.
+
+The bounded v38 full-metric canary encoded this pinned multiplicity producer
+with one exact-one selector and 210 guarded physical-shell caps.  Its full
+formula already entails the two role exclusions above; regression checks make
+both contrary assumptions separately and obtain `UNSAT`.  The single
+canonical canary itself returned only `UNKNOWN` (`canceled`) at a 20-second
+solver timeout, and it inherits v37's hypothetical forced producer.  Thus it
+is an encoding/provenance check, not a conditional or unconditional leaf
+closure, and no broad successor was launched.  Evidence is in
+`scratch/retained-omission-e1/round5-general-cegar/V38-PINNED-SEED-CENTER-MULTIPLICITY-CANARY.md`.
+
 ## Spine state
 
 - Open: 93/36005 nodes; 29 open obligations — 28 `sorry` theorems plus the
@@ -77,14 +138,20 @@ is blocked on both routes simultaneously (sources:
    67 unknown; v30 all 67 errors (child-contract validation); v31 3 unknown +
    2 allowlist errors with the repair canary timing out.
 
-Round10's eleven DDD `unsat` artifacts target the older
-`retainedOmission_triApexAllLarge_core`, not the normalized FreshThird
-residual; `GLOBAL-THEOREM-BANK-AUDIT.md` classifies them NO-GO for
-normalized-residual promotion.
+Round10's eleven completed DDD `unsat` artifacts do not implement the advertised
+schema-10/full-multiplicity CND contract. The `ProcessPoolExecutor` workers did
+not inherit the parent's monkey patches, so the retained encodings are
+schema-6 cap-local worker outputs. They cover 11 of the 24 exact-15 `DDD` role
+tuples. This is authenticated computational evidence, and schema-6 UNSAT is
+stronger than the intended CND result within each fixed tuple, but there is no
+proved symmetry bridge covering the other tuples and no exact-15-to-general-n
+adapter: the live general leaves imply only `n >= 15`, not `n = 15`.
+Consequently these artifacts currently promote no retained-omission leaf and,
+as before, no normalized FreshThird residual.
 
 ## Recommendations, ranked by expected closure speed-up
 
-### 1. Build the missing producer; keep the three arms computational
+### 1. Build the missing producers; keep solver strata computational
 
 The SAT-in-all-arms result means the aggregate leaf cannot close at the
 incidence level. Keep `firstNonHit`, `secondNonHit`, and
@@ -98,6 +165,24 @@ Corollary: pause further case-splitting on the FreshThird lane until a
 producer lands. Splits without new producers multiply leaves without
 shrinking target freedom.
 
+On the retained-omission lane, v36 rules out selected-row alternation alone and
+v37 rules out the proposed branch-localized two-hit producer even after the
+banked adjacent-cap singleton theorem is imposed.  The endpoint local-geometry
+audit further gives exact rational witnesses for every residual `A = J` and
+`X = C` named-role order, so a role-specific placement theorem is not
+source-producible from those local facts.  The next accepted theorem must use
+global full-carrier/K4 data to couple an anonymous O-centered deletion row to
+the exact blocker shells, and it must name its adapter to an existing
+kernel-complete contradiction consumer before proof work begins.
+
+The reusable finite-set part has now been banked as
+`SelectedFourClass.exact_overlap_of_cap_singleton` in
+`P97/U1CarrierInjection.lean`.  It proves that a two-point overlap with exact
+singleton cap trace is `{J, x_out}` and that the outside overlap is exactly
+`{x_out}`.  This is producer-only progress: the live leaf still lacks the
+endpoint-specific ingress that supplies the selected full classes and the
+two-hit premise, and the two admissible alternating placements remain open.
+
 ### 2. Preserve the repaired harness; spend compute only behind a new theorem
 
 V33--v35 repaired the child-contract, tracker-admission, source-freeze,
@@ -105,13 +190,15 @@ telemetry, and spawned-worker checks. The authenticated v35 terminal result
 shows that the remaining stall is mathematical, not another harness failure.
 Cache normalization/reconstruction work before a future production run, but
 launch that run only after its semantic contract contains a new proved
-metric/order or reciprocal-incidence consequence.
+metric/order or reciprocal-incidence consequence. V37 is the bounded test of
+the branch-localized two-hit proposal; its 12/12-SAT result means that proposal
+must not be escalated into another full round.
 
 ### 3. Close the mirror pair with one proof
 
 `false_of_retainedOmission_reverseHitFresh_endpointCrossHit_sharedBlocker_JInLeftAdjacentCap_triApexAllLarge_core`
-(`lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8221`) and
-`..._JInRightAdjacentCap_...` (`:8243`) are verbatim-identical statements
+(`lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TriApexEndpointRetainedOmission.lean:2459`) and
+`..._JInRightAdjacentCap_...` (`:2481`) are verbatim-identical statements
 except `leftAdjacentCapByIndex` vs `rightAdjacentCapByIndex`; the docstring
 calls the right leaf "the reflected placement branch". Factor a
 side-parameterized core lemma — or a packet reflection involution, if one
@@ -119,15 +206,17 @@ exists {{NEEDS_RESEARCH}} — and close two leaves with one proof. Check
 whether `firstCenterEqFreshSource` / `secondCenterEqFirstSource` admit the
 same treatment before proving either independently {{NEEDS_RESEARCH}}.
 
-### 4. Audit the 11 Round10 DDD UNSATs against the 8 open triApexAllLarge leaves
+### 4. Treat the 11 Round10 UNSATs as partial exact-15 tuple evidence
 
-The artifacts
+The completed artifacts
 (`round10-full-multiplicity-cnd/artifacts/20260802T202236.997745Z-caplocal-pid44841/`)
-target exactly this family. Whether any UNSAT aligns with an open leaf's
-hypothesis set is currently unchecked {{UNVALIDATED}} — the NO-GO
-classification covers only the FreshThird residual. Any alignment makes
-promotion through a verified decision procedure (per the `native_decide`
-policy) mechanical, delegable work.
+are authenticated schema-6 cap-local UNSATs for 11/24 exact-15 `DDD` tuples,
+not schema-10/CND results. They cannot discharge any current general leaf:
+there is neither a proved symmetry reduction from 24 tuples to these 11 nor a
+bridge from a fixed exact-15 tuple to a leaf quantified over `n >= 15`.
+Preserve the artifacts as stronger fixed-tuple evidence, but do not promote
+them through `native_decide` unless both bridges are proved and the remaining
+tuple coverage is supplied.
 
 ### 5. Triage the Rigid221 cluster as a hypothesis lattice, not leaf-by-leaf
 
@@ -157,9 +246,24 @@ branch — dominates several leaves at once {{NEEDS_RESEARCH}}.
 ## Sequencing
 
 The spine is a serial conjunction of 28 leaves, so total closure time is
-bounded by the FreshThird lane (items 1–2). Items 3–5 are parallelizable
-subagent work that shrinks the leaf count in the meantime; item 6 is cheap
-and removes iteration friction.
+bounded by the two missing-producer lanes in items 1–2. The FreshThird lane
+needs common-radius/reciprocal-incidence or metric-order data.  The retained-
+omission endpoint lane first needs a global deletion-row/full-shell coupling;
+the existing exact-15 D44 chain has no general-cardinality ingress or live
+consumer, while the existing Kalmanson bank has no placement producer.  Item 3
+and the Rigid221 lattice work in item 5 can shrink the leaf count in parallel.
+Item 4 is evidence preservation and bridge work, not current leaf closure;
+item 6 is cheap iteration hygiene.
+
+### Producer-to-consumer composition gate
+
+Before a proposed theorem is called a closure target, its plan entry must name
+all four edges: the on-spine live source, the exact proposition produced from
+that source, a checked adapter, and an existing kernel-complete `False`
+consumer.  Missing source coverage makes a theorem a narrow case producer;
+missing consumer reach makes it a banked but off-spine producer.  Neither is a
+leaf closure, even if the theorem has stronger conclusions inside its own
+hypothesis slice.
 
 ## FreshThird consumer audit update (2026-08-03)
 
@@ -176,6 +280,7 @@ The live theorem
 `OPEN / ON-SPINE / NO SOURCE-CLEAN CONSUMER`; the focused reports are archived
 in `scratch/freshthird-equalcenter-terminal-search-20260803.md` and
 `scratch/freshthird-metric-order-consumer-search-20260803.md`.
+
 ## FreshThird cap-size/composition inventory (2026-08-03)
 
 The bounded inventory in
@@ -225,3 +330,17 @@ or separately add and verify a full FreshThird transport theorem before using a
 largest-cap branch.  A profile-independent terminal remains a third route.
 This audit changes sequencing only; the live theorem stays
 `OPEN / ON-SPINE / NO SOURCE-CLEAN CONSUMER` with zero closure credit.
+
+## FreshThird bridge audit follow-up (2026-08-03)
+
+Two independent audits checked the exact-four/cap-interior and same-cap
+alignment banks against the actual `FreshThirdBlockerFiber` interface.  The
+reports are `scratch/freshthird-cap-interior-bridge-audit-20260803.md` and
+`scratch/freshthird-samecap-alignment-audit-20260803.md`.  They confirm that
+the non-hit arms are row-local and that the noncanonical equal-center arm has
+only an OR cap-membership fact.  The nearest consumers require, respectively,
+both endpoints outside one cap, a `RetainedRadiusCollision` with a common
+first-apex radius, distinct centers, or canonical-cap membership.  None is
+derivable from the current packet, so an adapter to those consumers would be
+circular.  The next productive step is a new metric/order or reciprocal-
+incidence producer; further case splitting alone is not a closure route.

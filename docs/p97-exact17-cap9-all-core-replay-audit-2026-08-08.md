@@ -2,6 +2,17 @@
 
 Date: 2026-08-08
 
+## Route supersession — 2026-08-10
+
+All replay, SAT, exact-linear, and theorem-bank results below remain valid
+finite checkpoints. They no longer define the production closure route. The
+required replacement is the Lean-first contract in
+`docs/specs/p97-exact17-cap9-lean-to-sat-route-v1.md`: prove a finite normal
+form with explicit labels and the actual next-row center, export a checked CNF,
+obtain a PIQD terminal certificate, and aggregate all placements in Lean before
+consuming the unchanged cap-nine leaf. The existing Python source adapter is
+not a substitute for those ingress and coverage theorems.
+
 ## Scope
 
 This note records the soundness repair and successor search for the exact-17
@@ -449,9 +460,10 @@ The next closure artifact should therefore be one of:
 2. a finite aggregate coverage theorem proving that every exact-17 cap-nine
    selected-row assignment contains a certified two-Kalmanson cancellation.
 
-Either route needs the existing exact-17 source adapter and a kernel-checked
-coverage/certificate ingress before it closes the anchored production leaf.
-The validated v24t `SAT` result itself is not exact-17 closure.
+Either finite search route would still require the new Lean finite-normal-form
+and checked-export ingress, followed by kernel-checked aggregate placement and
+certificate consumption. The existing Python source adapter is finite semantic
+evidence only. The validated v24t `SAT` result itself is not exact-17 closure.
 
 ## Lazy complete-Kalmanson refinement
 
