@@ -191,3 +191,29 @@ Validation of the checkpoint (2026-08-20):
 - the placement identity is pinned: arm cell 6 is
   `placement_index = 1`, `(d, v) = (0, 3)`, arm `u_q`
   (`arm_cells()[6]` of `census/card_head/exact12_next_row_arm_cell_run.py`).
+
+## Terminal consumer extension and cut-count measurement (2026-08-20)
+
+`ExactTwelveRigid221FullMembershipPrefixTerminalConsumer.lean` (bank-pinned;
+edit followed by the documented re-mine + refreeze) gains the class-extended
+terminal interface:
+
+- `terminalFullMembershipNamedDeletionArmPhysicalClassDimacs` — the one-arm
+  terminal formula with a physically-bridged class-cut suffix appended after
+  the source-order bank;
+- `false_of_terminalFullMembershipNamedDeletionArmPhysicalClassBank` — the
+  consumer: identical to the v26 interface plus the `PhysicalClassRadius`
+  hypothesis of the arm's `(d, v)` placement, discharged at the leaf by
+  `FrozenRoleLabeling.physicalClassRadius`.  Class-bank clauses ride the
+  existing `learnedClause` encoding (full candidate rows), so no new CNF
+  variables are introduced.
+
+Measured expansion over the frozen cell-6 candidate surface
+(EMPIRICAL, exhaustive): the 14 admissible S1 combos expand to **290
+full-row unit cuts** (landmark combos `(3, {0,9})`: 35 rows; three combos
+at `z = 0` have zero candidate rows hosting the pair — already excluded by
+the candidate filter).  The S2 full-row expansion is 292,466 clauses and is
+NOT viable through the certificate path; installing S2 needs a
+definition-variable family layer.  Sample evidence puts S2's marginal value
+beyond S1 at 2 of 300 models, so the S1-only bank is the proposed first
+installation.

@@ -27,6 +27,7 @@ import Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactTwelveRigid221SecondOpp
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactTwelveRigid221AllOrderCommonFiveMembershipFamilyCnf
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactTwelveRigid221CenterExchangeAllOrderCommonFiveMembershipFamilyCnf
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactTwelveRigid221CorePairAllOrderCommonFiveMembershipFamilyCnf
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactTwelveRigid221PhysicalClassWitnessBridge
 
 /-!
 # Full exact-twelve positive-membership prefix consumer
@@ -1690,6 +1691,154 @@ theorem false_of_terminalFullMembershipNamedDeletionArmBank
               (learnedClause nogood.choices) with
           | false => exact False.elim (hfalse heval)
           | true => rfl
+
+/-- Exact one-arm terminal formula extended by physically-bridged class cuts:
+the frozen parent, all authenticated membership layers, the named-deletion arm
+suffix, the proof-carrying source-order cuts, and the class-provenance cuts of
+the arm's `(d, v)` placement. -/
+def terminalFullMembershipNamedDeletionArmPhysicalClassDimacs
+    (cell : FrozenNextRowArmCell)
+    (bank : List SourceOrderPositiveNogood)
+    (classBank : List (PhysicalClassPositiveNogood
+      (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2)) :
+    List (List Int) :=
+  frozenParentDimacs cell.1 ++
+    (fullMembershipPrefixDimacs ++
+      (namedDeletionArmClauseDelta cell ++
+        (bank.map (fun nogood => learnedClause nogood.choices) ++
+          classBank.map fun nogood => learnedClause nogood.choices)))
+
+/-- A terminal UNSAT proof for the class-extended exact full-prefix fixed-arm
+formula contradicts every realized source configuration that satisfies the arm
+and carries the placement's physical class radius.  The class-radius
+hypothesis is the metric provenance supplied at the source leaf by
+`FrozenRoleLabeling.physicalClassRadius`; everything else matches
+`false_of_terminalFullMembershipNamedDeletionArmBank`.  This is still one arm,
+not aggregate exact-twelve coverage. -/
+theorem false_of_terminalFullMembershipNamedDeletionArmPhysicalClassBank
+    {row : RowPattern Label} {pointOf : Label → ℝ²}
+    {blocker : Fin 5 → Label} {ρ : ℝ}
+    (cell : FrozenNextRowArmCell)
+    (hrow : FrozenSafeCubeOK row)
+    (hadded : FrozenNextRowFixedNamedDeletionArmAddedConstraintsHold
+      row blocker (cell.1.1 : Label × Label).1
+        (cell.1.1 : Label × Label).2 cell.2)
+    (hreal : Realizes row pointOf)
+    (order : FrozenBoundaryOrder pointOf)
+    (hforced : FrozenForcedSecondCapOrder order.position)
+    (hconv : ConvexIndep (Finset.univ.image pointOf))
+    (hradius : PhysicalClassRadius pointOf
+      (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2 ρ)
+    (bank : List SourceOrderPositiveNogood)
+    (hencodable : ∀ nogood ∈ bank, ∀ choice ∈ nogood.choices,
+      FrozenSafeCandidateAt choice.center choice.support)
+    (classBank : List (PhysicalClassPositiveNogood
+      (cell.1.1 : Label × Label).1 (cell.1.1 : Label × Label).2))
+    (hclassEncodable : ∀ nogood ∈ classBank, ∀ choice ∈ nogood.choices,
+      FrozenSafeCandidateAt choice.center choice.support)
+    (hterminal : DimacsUnsatisfiable
+      (terminalFullMembershipNamedDeletionArmPhysicalClassDimacs
+        cell bank classBank)) : False := by
+  obtain ⟨d, hparent⟩ :=
+    exists_staticAssign_sat_frozenParentDimacs cell.1 hrow hadded.1 pointOf
+      hreal hconv (by intro y; simp)
+  let base := staticAssign cell.1 blocker row d pointOf
+  have hbase : ∀ n, n ≤ SafeCoverCnf.baseNumVars →
+      base n = SafeCoverCnf.finalAssign (coverIndex row) n :=
+    staticAssign_agreesOnBase cell.1 blocker row d pointOf
+  have hglobalBase : ∀ n, n ≤ SafeCoverCnf.baseNumVars →
+      globalMembershipAssign base row n =
+        SafeCoverCnf.finalAssign (coverIndex row) n := by
+    intro n hn
+    have hnCutoff : n ≤ 44875 := by
+      rw [SafeCoverCnf.baseNumVars_eq] at hn
+      omega
+    rw [globalMembershipAssign,
+      positiveMembershipAssign_of_le base 44875 row globalRequirementAt
+        hnCutoff]
+    exact hbase n hn
+  apply hterminal
+  refine ⟨globalMembershipAssign base row, ?_⟩
+  intro clause hclause
+  change clause ∈ frozenParentDimacs cell.1 ++
+    (fullMembershipPrefixDimacs ++
+      (namedDeletionArmClauseDelta cell ++
+        (bank.map (fun nogood => learnedClause nogood.choices) ++
+          classBank.map fun nogood => learnedClause nogood.choices))) at hclause
+  rcases List.mem_append.mp hclause with hparentClause | hrest
+  · calc
+      evalClauseD (globalMembershipAssign base row) clause =
+          evalClauseD base clause := by
+        apply SafeCoverCnf.evalClauseD_congr
+        intro literal hliteral
+        rw [globalMembershipAssign,
+          positiveMembershipAssign_of_le base 44875 row globalRequirementAt
+            (frozenParentDimacs_lit_bound cell.1 clause hparentClause literal
+              hliteral)]
+      _ = true := hparent clause hparentClause
+  · rcases List.mem_append.mp hrest with hmembership | hrest
+    · exact fullMembershipPrefix_sat base hrow hglobalBase hreal order hforced
+        hconv clause hmembership
+    · rcases List.mem_append.mp hrest with harm | hbank
+      · calc
+          evalClauseD (globalMembershipAssign base row) clause =
+              evalClauseD base clause := by
+            apply SafeCoverCnf.evalClauseD_congr
+            intro literal hliteral
+            rw [globalMembershipAssign,
+              positiveMembershipAssign_of_le base 44875 row globalRequirementAt
+                ((namedDeletionArmClauseDelta_lit_bound cell clause harm literal
+                  hliteral).trans (by
+                    rw [nextRowFinalNumVars_eq]
+                    omega))]
+          _ = evalClauseD (nextRowAssign cell.1 blocker row d) clause := by
+            apply SafeCoverCnf.evalClauseD_congr
+            intro literal hliteral
+            exact staticAssign_eq_nextRowAssign_of_le cell.1 blocker row d
+              pointOf
+              (namedDeletionArmClauseDelta_lit_bound cell clause harm literal
+                hliteral)
+          _ = true := nextRowAssign_sat_namedDeletionArmClauseDelta
+            cell hrow hadded d clause harm
+      · rcases List.mem_append.mp hbank with hsource | hclass
+        · obtain ⟨nogood, hnogood, rfl⟩ := List.mem_map.mp hsource
+          by_cases hfalse : evalClauseD (globalMembershipAssign base row)
+              (learnedClause nogood.choices) = false
+          · have hsourceFalse :
+                evalClauseD (SafeCoverCnf.finalAssign (coverIndex row))
+                    (learnedClause nogood.choices) = false := by
+              rw [← evalClauseD_of_agreesOnBase_learnedClause_eq
+                nogood.choices (hencodable nogood hnogood) hglobalBase]
+              exact hfalse
+            have hselected := selectedByCoverIndex_of_learnedClause_false hrow
+              (hencodable nogood hnogood) hsourceFalse
+            have hpositive := positiveRowsMatch_of_selectedByCoverIndex hrow
+              hselected
+            exact False.elim
+              (nogood.refutes hreal order hforced hconv hpositive)
+          · cases heval : evalClauseD (globalMembershipAssign base row)
+                (learnedClause nogood.choices) with
+            | false => exact False.elim (hfalse heval)
+            | true => rfl
+        · obtain ⟨nogood, hnogood, rfl⟩ := List.mem_map.mp hclass
+          by_cases hfalse : evalClauseD (globalMembershipAssign base row)
+              (learnedClause nogood.choices) = false
+          · have hsourceFalse :
+                evalClauseD (SafeCoverCnf.finalAssign (coverIndex row))
+                    (learnedClause nogood.choices) = false := by
+              rw [← evalClauseD_of_agreesOnBase_learnedClause_eq
+                nogood.choices (hclassEncodable nogood hnogood) hglobalBase]
+              exact hfalse
+            have hselected := selectedByCoverIndex_of_learnedClause_false hrow
+              (hclassEncodable nogood hnogood) hsourceFalse
+            have hpositive := positiveRowsMatch_of_selectedByCoverIndex hrow
+              hselected
+            exact False.elim
+              (nogood.refutes hreal order hforced hconv hradius hpositive)
+          · cases heval : evalClauseD (globalMembershipAssign base row)
+                (learnedClause nogood.choices) with
+            | false => exact False.elim (hfalse heval)
+            | true => rfl
 
 end FullMembershipPrefixTerminalConsumer
 end ExactTwelveRigid221Ingress
