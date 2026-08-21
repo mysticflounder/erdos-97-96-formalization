@@ -14836,6 +14836,25 @@ back through the injective variable map, and feeds all 76 certificate theorems
 directly into the source coverage coordinator. Thus a terminal UNSAT result no
 longer has a missing Lean ingress step.
 
+The first corrected-campaign batch is terminal with eleven authenticated
+solver `UNKNOWN` results after the full 3,600-second `unsat`-profile limits;
+none of those cells is closed. The next eleven one-core jobs are running. This
+does not change the Lean route: any structural SAT result is replayed and mined
+only for a source-valid theorem, while checked UNSAT results feed the existing
+76-cell certificate coordinator.
+
+A complementary `sat`-profile portfolio now covers the six physical categories
+at `nextCenter = 2` using the same CNF bytes and distinct authenticated PIQD
+identities. Its prepared campaign manifest is
+`0033261a63aa0260182bad0afdeac4a9873e152744b2c23787ef37281b9e1006`;
+offline `static-check` reports six distinct cells and run-manifest SHA-256
+`7ccb58e91e8ccc412d0be39dd2373c53c260a1548d11554ab2f240ff38f1a056`.
+The runner passed two independent adversarial audits after repairs that enforce
+fresh-only PIQD submission, descriptor-bound no-follow custody, exact canary
+inventory, and full six-cell result aggregation. Production begins with only
+the physical-`none` canary. Its outcome is discovery evidence until independent
+CNF/model replay or checked UNSAT certificate replay completes.
+
 The 2026-08-20 update to `erdos-97-descent-prose-proof-atomic.md` adds exact-twelve
 lemmas in its A5 branch but no new exact-seventeen cap-nine antecedent. Its A2
 splitter remains the source of the exact-cover `SourceRealization`; its prose A3

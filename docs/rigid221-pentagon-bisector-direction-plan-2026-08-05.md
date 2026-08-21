@@ -1128,6 +1128,24 @@ The exact successor-certificate ingress is banked at `981218e4`; it provides
 the zero-based LRAT relabelling, typed-cell UNSAT transport, and the all-76
 certificate coordinator required by the source coverage theorem.
 
+The first eleven jobs in the corrected campaign have now returned
+authenticated solver `UNKNOWN` after their full 3,600-second `unsat`-profile
+limits. They prove no cell contradiction. The next eleven one-core jobs are
+still running under the same governed campaign, so the source-total 76-cell
+route remains active.
+
+To test solver phase bias without changing the formula, a separately
+identified `sat`-profile portfolio has been prepared for the six physical
+categories at `nextCenter = 2`. It references the existing Lean-exported CNFs
+byte for byte and supplies new authenticated producer, wave, and raw-DIMACS
+identities. Two independent adversarial audits rejected and then verified the
+launcher after fresh-job, descriptor-custody, canary-result aggregation, and
+exact-inventory repairs. Offline `static-check` now authenticates all six
+distinct identities; the first production action is the one-cell
+physical-`none` canary, followed by the other five only if its sealed custody
+validates. This auxiliary profile is a solver-discovery lane, not a new
+mathematical assumption or a closure claim.
+
 An audit of the current atomic prose proof found no new exact-17 cap-nine lemma.
 The latest A5 additions require cardinality twelve. The A2 splitter continues to
 produce the exact-cover source realization, while A3 and A4 remain open and are
