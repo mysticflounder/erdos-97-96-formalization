@@ -136,21 +136,21 @@ def category_id(center: int, category: str) -> str:
     return f"four-row-bisector-next-center-{center:02d}-physical-{category}"
 
 
-def atom_variable(center: int, point: int) -> int:
+def next_center_variable(center: int) -> int:
     if type(center) is not int or center not in LEGAL_CENTERS:
         raise PreparationError(f"illegal next-center label: {center!r}")
-    if type(point) is not int or not 0 <= point < 17:
-        raise PreparationError(f"illegal point label: {point!r}")
-    variable = 1 + 17 * center + point
+    variable = 290 + center
     if not 1 <= variable <= PARENT_VARIABLES:
-        raise PreparationError("atom variable exceeds the authenticated variable map")
+        raise PreparationError(
+            "next-center variable exceeds the authenticated variable map"
+        )
     return variable
 
 
 def category_units(center: int, category: str) -> tuple[int, ...]:
     """The exact next-center unit followed by all five multiplicity units."""
     physical = hardened.category_units(center, category)
-    return (atom_variable(center, center),) + physical
+    return (next_center_variable(center),) + physical
 
 
 def cell_cnf_bytes(parent: bytes, center: int, category: str) -> bytes:

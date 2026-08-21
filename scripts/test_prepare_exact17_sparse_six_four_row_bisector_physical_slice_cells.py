@@ -18,6 +18,13 @@ def _root() -> bytes:
     return b"p cnf 308 2\n1 0\n-2 3 0\n"
 
 
+def test_next_center_units_match_the_authenticated_variable_map() -> None:
+    assert subject.next_center_variable(0) == 290
+    assert subject.next_center_variable(16) == 306
+    assert subject.category_units(0, "none")[0] == 290
+    assert subject.category_units(16, "none")[0] == 306
+
+
 def _fixture(
     tmp_path: Path,
 ) -> tuple[dict[str, Path], list[tuple[int, str]]]:
@@ -237,13 +244,13 @@ def test_prepares_and_directly_checks_all_76_source_categories(tmp_path: Path) -
 def test_header_and_full_multiplicity_units_are_exact(tmp_path: Path) -> None:
     paths, _, _ = _prepare(tmp_path)
     assert _cell(paths["output"], 0, "none").read_bytes() == (
-        b"p cnf 308 8\n1 0\n-2 3 0\n1 0\n-7 0\n-8 0\n-9 0\n-10 0\n-11 0\n"
+        b"p cnf 308 8\n1 0\n-2 3 0\n290 0\n-7 0\n-8 0\n-9 0\n-10 0\n-11 0\n"
     )
     assert _cell(paths["output"], 0, "unique-06").read_bytes() == (
-        b"p cnf 308 8\n1 0\n-2 3 0\n1 0\n7 0\n-8 0\n-9 0\n-10 0\n-11 0\n"
+        b"p cnf 308 8\n1 0\n-2 3 0\n290 0\n7 0\n-8 0\n-9 0\n-10 0\n-11 0\n"
     )
     assert subject.category_units(12, "unique-06") == (
-        217,
+        302,
         211,
         -212,
         -213,
