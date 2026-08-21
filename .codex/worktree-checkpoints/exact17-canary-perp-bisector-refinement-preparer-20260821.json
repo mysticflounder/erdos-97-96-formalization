@@ -5,11 +5,17 @@
   "base_head": "0d826651cbdbdc5f144f175d4e56d929870a6ab6",
   "owned_paths": [
     ".codex/worktree-checkpoints/exact17-canary-perp-bisector-refinement-preparer-20260821.json",
+    "census/p97_search/waves/exact17/canary-perp-bisector-refinement-preparation-config.json",
     "scripts/prepare_exact17_canary_perp_bisector_refinement_physical_slice_cells.py",
     "scripts/test_prepare_exact17_canary_perp_bisector_refinement_physical_slice_cells.py"
   ],
-  "generated_roots": [],
-  "durable_paths": [],
+  "generated_roots": [
+    "scratch/runs/exact17-canary-perp-bisector-refinement-preparer-20260821/physical-slice-cell-campaign-v1"
+  ],
+  "durable_paths": [
+    "scripts/prepare_exact17_sparse_six_four_row_bisector_physical_slice_cells.py",
+    "scripts/prepare_exact17_sparse_six_physical_slice_cells.py"
+  ],
   "created_utc": "2026-08-21T23:13:30Z",
-  "manifest_sha256": "a7eeda23e0891d1ccb29bc5ac6d7f6ab832ac2d547b55ae274d412ec588d3e27"
+  "manifest_sha256": "6f3df5beb1dc96d7fa7156d9a1de5176b82b7b563dc2e0ae4d90305ce0f063cc"
 }
