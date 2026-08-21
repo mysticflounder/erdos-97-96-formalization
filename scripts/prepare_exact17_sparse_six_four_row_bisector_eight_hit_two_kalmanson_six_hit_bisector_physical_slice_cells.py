@@ -86,7 +86,7 @@ CHECKPOINT_PATH = ROOT / f".codex/worktree-checkpoints/{LANE_ID}.json"
 PREPARER_PATH = Path(__file__).resolve()
 TEST_PATH = ROOT / (
     "scripts/test_prepare_exact17_sparse_six_four_row_bisector_"
-    "eight_hit_two_kalmanson_physical_slice_cells.py"
+    "eight_hit_two_kalmanson_six_hit_bisector_physical_slice_cells.py"
 )
 PRODUCTION_CONFIG_RELATIVE = Path(
     "census/p97_search/waves/exact17/six-hit-bisector-preparation-config.json"

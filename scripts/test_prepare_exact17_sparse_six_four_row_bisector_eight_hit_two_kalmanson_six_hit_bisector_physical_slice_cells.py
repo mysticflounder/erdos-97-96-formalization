@@ -16,6 +16,13 @@ import prepare_exact17_sparse_six_four_row_bisector_eight_hit_two_kalmanson_six_
 import pytest
 
 
+def test_target_test_path_is_this_lane() -> None:
+    assert subject.TEST_PATH == subject.ROOT / (
+        "scripts/test_prepare_exact17_sparse_six_four_row_bisector_"
+        "eight_hit_two_kalmanson_six_hit_bisector_physical_slice_cells.py"
+    )
+
+
 def _root() -> bytes:
     return b"p cnf 308 2\n1 0\n-2 3 0\n"
 
