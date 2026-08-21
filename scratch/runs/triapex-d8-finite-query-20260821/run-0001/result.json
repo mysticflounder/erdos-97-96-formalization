@@ -1,0 +1,205 @@
+{
+  "bridge_values": {
+    "J_on_K_shell": false,
+    "deleted_on_J_shell": false,
+    "fresh_on_retained_row": false,
+    "kept_on_J_shell": false
+  },
+  "candidate_bridges": [
+    "fresh_on_retained_row",
+    "kept_on_J_shell",
+    "deleted_on_J_shell",
+    "J_on_K_shell"
+  ],
+  "constraint_groups": [
+    "finite_equality_classes",
+    "four_distinct_centers",
+    "four_distinct_cycle_sources",
+    "actual_blocker_avoids_own_source",
+    "exact_row__retained_o",
+    "exact_row__shell_d_b",
+    "exact_row__shell_j_x",
+    "exact_row__shell_k_a",
+    "exact_row__delete_j_at_o",
+    "exact_row__delete_k_at_o",
+    "exact_row__delete_d_at_o",
+    "named_shell_omissions",
+    "two_circle_overlap__retained_o__shell_d_b",
+    "two_circle_overlap__retained_o__shell_j_x",
+    "two_circle_overlap__retained_o__shell_k_a",
+    "two_circle_overlap__shell_d_b__shell_j_x",
+    "two_circle_overlap__shell_d_b__shell_k_a",
+    "two_circle_overlap__shell_d_b__delete_j_at_o",
+    "two_circle_overlap__shell_d_b__delete_k_at_o",
+    "two_circle_overlap__shell_d_b__delete_d_at_o",
+    "two_circle_overlap__shell_j_x__shell_k_a",
+    "two_circle_overlap__shell_j_x__delete_j_at_o",
+    "two_circle_overlap__shell_j_x__delete_k_at_o",
+    "two_circle_overlap__shell_j_x__delete_d_at_o",
+    "two_circle_overlap__shell_k_a__delete_j_at_o",
+    "two_circle_overlap__shell_k_a__delete_k_at_o",
+    "two_circle_overlap__shell_k_a__delete_d_at_o",
+    "three_packet_overlap_bounds",
+    "avoid_candidate_closure_bridges"
+  ],
+  "point_classes": {
+    "a": 10,
+    "b": 11,
+    "c": 7,
+    "d": 12,
+    "ddo_1": 13,
+    "ddo_2": 14,
+    "ddo_3": 15,
+    "ddo_4": 16,
+    "djo_1": 3,
+    "djo_2": 7,
+    "djo_3": 12,
+    "djo_4": 4,
+    "dko_1": 1,
+    "dko_2": 6,
+    "dko_3": 8,
+    "dko_4": 7,
+    "j": 8,
+    "k": 13,
+    "o": 9,
+    "retained_3": 3,
+    "retained_4": 5,
+    "sd_3": 2,
+    "sd_4": 6,
+    "sj_2": 14,
+    "sj_3": 5,
+    "sj_4": 0,
+    "sk_3": 3,
+    "sk_4": 1,
+    "x": 12
+  },
+  "row_support_classes": {
+    "delete_d_at_o": [
+      13,
+      14,
+      15,
+      16
+    ],
+    "delete_j_at_o": [
+      3,
+      7,
+      12,
+      4
+    ],
+    "delete_k_at_o": [
+      1,
+      6,
+      8,
+      7
+    ],
+    "retained_o": [
+      7,
+      8,
+      3,
+      5
+    ],
+    "shell_d_b": [
+      7,
+      12,
+      2,
+      6
+    ],
+    "shell_j_x": [
+      8,
+      14,
+      5,
+      0
+    ],
+    "shell_k_a": [
+      7,
+      13,
+      3,
+      1
+    ]
+  },
+  "schema": "p97-d8-endpoint-cycle-query-result/v1",
+  "source_manifest": {
+    "files": {
+      "lean/Erdos9796Proof/P97/ATail/CommonDeletionTwoCenter.lean": "253737b1fb18570c031a80aae4357dbe432adda1220b20aefe3e79d8aef8c6aa",
+      "lean/Erdos9796Proof/P97/ATail/FiveCenterDeletionBoundary.lean": "97012b085ebea3fd3b83ac922fa72e932c8567b04bbc749f462718dc90b3d251",
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TriApexEndpointRetainedOmission.lean": "8a317341312f80e28e109a61c81e8674db54f1fb205e96f8ffe99662ec866392",
+      "lean/Erdos9796Proof/P97/ATail/RetainedMatchingEndpointContinuation.lean": "d06afdf1ecd8b25b29e7d4335ddff1fa89937d1e14ef72b5ee19fb12386a2ea9"
+    },
+    "query_sha256": "07c7d803253af549c8a35e4baee2e9bd17bc8b925ea778e03a4edf150cdd471a",
+    "row_contract": {
+      "delete_d_at_o": {
+        "center": "o",
+        "deleted": "d",
+        "slots": [
+          "ddo_1",
+          "ddo_2",
+          "ddo_3",
+          "ddo_4"
+        ]
+      },
+      "delete_j_at_o": {
+        "center": "o",
+        "deleted": "j",
+        "slots": [
+          "djo_1",
+          "djo_2",
+          "djo_3",
+          "djo_4"
+        ]
+      },
+      "delete_k_at_o": {
+        "center": "o",
+        "deleted": "k",
+        "slots": [
+          "dko_1",
+          "dko_2",
+          "dko_3",
+          "dko_4"
+        ]
+      },
+      "retained_o": {
+        "center": "o",
+        "deleted": null,
+        "slots": [
+          "c",
+          "j",
+          "retained_3",
+          "retained_4"
+        ]
+      },
+      "shell_d_b": {
+        "center": "b",
+        "deleted": null,
+        "slots": [
+          "c",
+          "d",
+          "sd_3",
+          "sd_4"
+        ]
+      },
+      "shell_j_x": {
+        "center": "x",
+        "deleted": null,
+        "slots": [
+          "j",
+          "sj_2",
+          "sj_3",
+          "sj_4"
+        ]
+      },
+      "shell_k_a": {
+        "center": "a",
+        "deleted": null,
+        "slots": [
+          "c",
+          "k",
+          "sk_3",
+          "sk_4"
+        ]
+      }
+    },
+    "schema": "p97-d8-endpoint-cycle-source-manifest/v1"
+  },
+  "source_manifest_sha256": "70beb8d1e22e744ecd37d8c0a34d281a1adf3b3201069ffcb671d808540d9a3e",
+  "status": "SAT_ABSTRACTION"
+}

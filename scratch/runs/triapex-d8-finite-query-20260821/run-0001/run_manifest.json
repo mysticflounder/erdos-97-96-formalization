@@ -1,0 +1,25 @@
+{
+  "schema": "worktree-run-manifest/v1",
+  "lane_id": "triapex-d8-finite-query-20260821",
+  "run_id": "run-0001",
+  "root": "scratch/runs/triapex-d8-finite-query-20260821/run-0001",
+  "owner": "TriapexCloser",
+  "base_head": "2fe695039a3ddfd82bcc3b25ac6269dd60f52e27",
+  "output_classes": [
+    "artifacts",
+    "events",
+    "tmp"
+  ],
+  "source_digests": {
+    "lean/Erdos9796Proof/P97/ATail/CommonDeletionTwoCenter.lean": "253737b1fb18570c031a80aae4357dbe432adda1220b20aefe3e79d8aef8c6aa",
+    "lean/Erdos9796Proof/P97/ATail/FiveCenterDeletionBoundary.lean": "97012b085ebea3fd3b83ac922fa72e932c8567b04bbc749f462718dc90b3d251",
+    "lean/Erdos9796Proof/P97/ATail/RetainedMatchingEndpointContinuation.lean": "d06afdf1ecd8b25b29e7d4335ddff1fa89937d1e14ef72b5ee19fb12386a2ea9",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TriApexEndpointRetainedOmission.lean": "8a317341312f80e28e109a61c81e8674db54f1fb205e96f8ffe99662ec866392"
+  },
+  "input_digests": {
+    "scratch/triapex-d8-finite-query-20260821/d8_endpoint_cycle_query.py": "07c7d803253af549c8a35e4baee2e9bd17bc8b925ea778e03a4edf150cdd471a",
+    "scratch/triapex-d8-finite-query-20260821/test_d8_endpoint_cycle_query.py": "f872d68842dcc1e371264791d881599474a4b3d32eb3e7d2f23fea73e4e28546"
+  },
+  "created_utc": "2026-08-21T22:58:58Z",
+  "manifest_sha256": "0af82140872bd6fe8f1477985df40b741973e2cab379ced30515371c3e426f95"
+}
