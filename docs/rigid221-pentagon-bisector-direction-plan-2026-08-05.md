@@ -1173,3 +1173,36 @@ support `{(5,6),(5,7),(11,6),(11,7)}` and its reflected reverse. The next
 required step is to promote this four-clause orbit before running the remaining
 five SAT-profile cells; this refines the finite search only and does not change
 the current closure target.
+
+## 2026-08-20/21 exact-17 two-Kalmanson promotion checkpoint
+
+The canary occurrence is promoted in `7c2f271c`, with the source-total
+physical successor and certificate-ingress modules in `722f56df`. The
+source-authoritative row data is:
+
+```text
+forward:  5 -> {6, 7},  11 -> {6, 7}
+reverse:  Fin.rev 5 -> {Fin.rev 9, Fin.rev 10},
+          Fin.rev 11 -> {Fin.rev 9, Fin.rev 10}
+```
+
+Correction to earlier transposed prose: reverse uses `Fin.rev` on both the
+center and support labels; it is not a center/support coordinate transpose.
+The four guarded clauses are the order-0 forward and reverse clauses and the
+order-1 forward and reverse clauses, with checked DIMACS forms
+`[-307,-166,-161,-64,-59]`, `[-307,-68,-67,-170,-169]`,
+`[-308,-214,-212,-61,-59]`, and `[-308,-68,-67,-221,-220]`.
+
+The cumulative root now has 7,409,261 clauses; each of the 76 source-total
+physical cells has 7,409,267 clauses. Independent audit and the governed
+certificate-ingress build both passed. No new theorem was found, and exact-17
+is not closed: the first 22 UNSAT-profile cells are authenticated
+`SOLVER_UNKNOWN`, while the canary is only a finite Boolean SAT assignment.
+
+The preparer audit initially found pathname and TOCTOU custody gaps inherited
+from its predecessor. Commit `83f958d0` replaces them with retained no-follow
+descriptors, a private export workspace, inode-bound no-replace publication,
+and pre/post input identity checks. The adversarial re-audit passed, and a
+fresh governed skeleton records the repaired preparer digest. Production
+export may now proceed; solver submission remains gated on the authenticated
+76-cell preparation result.

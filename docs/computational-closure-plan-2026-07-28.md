@@ -14886,3 +14886,38 @@ canary model. The required next action is to promote this four-clause orbit,
 then regenerate and run the remaining five SAT-profile cells. The current
 route and goal remain unchanged: only checked certificates covering every
 source-total cell can feed the Lean coverage consumer.
+
+## 2026-08-20/21 exact-17 two-Kalmanson promotion checkpoint
+
+The canary occurrence is now promoted in commit `7c2f271c`; its source-total
+physical successor and certificate-ingress modules are in `722f56df`. The
+source-authoritative rows are:
+
+```text
+forward:  5 -> {6, 7},  11 -> {6, 7}
+reverse:  Fin.rev 5 -> {Fin.rev 9, Fin.rev 10},
+          Fin.rev 11 -> {Fin.rev 9, Fin.rev 10}
+```
+
+Correction to earlier transposed prose: the reverse occurrence uses `Fin.rev`
+on both centers and support labels; it is not obtained by swapping the
+displayed center and support coordinates. The four guarded clauses are the
+order-0 forward and reverse clauses and the order-1 forward and reverse
+clauses, with checked DIMACS forms `[-307,-166,-161,-64,-59]`,
+`[-307,-68,-67,-170,-169]`, `[-308,-214,-212,-61,-59]`, and
+`[-308,-68,-67,-221,-220]`.
+
+The promoted cumulative root has 7,409,261 clauses, and each of the 76
+source-total physical cells has 7,409,267 clauses. Independent audit passed,
+and the governed certificate-ingress build passed. This is a refinement and
+does not close exact-17: the first 22 UNSAT-profile cells remain authenticated
+`SOLVER_UNKNOWN`, and the SAT canary is finite Boolean evidence rather than a
+Euclidean counterexample.
+
+The preparer audit initially found pathname and TOCTOU custody gaps inherited
+from its predecessor. Commit `83f958d0` replaces those paths with retained
+no-follow descriptors, a private export workspace, inode-bound no-replace
+publication, and pre/post input identity checks. The adversarial re-audit
+passed, and a fresh governed skeleton records the repaired preparer digest.
+Production export may now proceed; solver submission remains gated on the
+authenticated 76-cell preparation result.
