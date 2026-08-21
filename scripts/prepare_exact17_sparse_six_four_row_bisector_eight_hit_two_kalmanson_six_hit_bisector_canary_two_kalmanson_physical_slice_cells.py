@@ -11,8 +11,10 @@ root identity with the six-hit-bisector-canary-two-kalmanson successor identitie
 The source pins identify the committed Lean package.  The production route is
 intentionally fail-closed until a governed root and final preparer pins are
 registered.  Before publishing any child, preparation exports the immediate
-SixHitBisector parent and proves that the 32 exact successor clauses are genuinely
-new, unsubsumed by the parent, and the exact suffix of the successor root.
+SixHitBisector parent and proves that the 21 retained successor clauses are
+genuinely new, unsubsumed by the parent, and the exact suffix of the successor
+root.  Eleven theorem-bank clauses whose literal sets are already subsumed by
+the parent remain outside the production suffix.
 """
 
 from __future__ import annotations
@@ -119,9 +121,9 @@ REGISTERED_GENERATED_ROOT = ""
 LEGAL_CENTERS = accepted.LEGAL_CENTERS
 PHYSICAL_POINTS = accepted.PHYSICAL_POINTS
 PARENT_VARIABLES = 308
-PARENT_CLAUSES = 7_409_297
+PARENT_CLAUSES = 7_409_286
 ORIGINAL_PARENT_CLAUSES = 7_409_265
-CELL_CLAUSES = 7_409_303
+CELL_CLAUSES = 7_409_292
 CELL_COUNT = 76
 DIRECT_SENTINELS = accepted.DIRECT_SENTINELS
 SOURCE_THEOREM = (
@@ -139,27 +141,18 @@ EXPECTED_CANARY_TWO_KALMANSON_SUFFIX: tuple[tuple[int, ...], ...] = (
     (-307, -143, -153, -160, -161, -136, -134, -280, -287),
     (-307, -31, -30, -65, -67, -268, -256, -220, -205),
     (-308, -143, -153, -211, -212, -136, -134, -280, -287),
-    (-308, -31, -27, -65, -67, -265, -256, -169, -154),
     (-307, -146, -153, -136, -134, -280, -287, -61, -59),
     (-307, -21, -30, -268, -256, -220, -205, -157, -169),
-    (-308, -149, -153, -136, -134, -280, -287, -64, -59),
-    (-308, -21, -27, -265, -256, -169, -154, -208, -220),
     (-307, -161, -157, -136, -134, -280, -287, -85, -72),
-    (-307, -67, -61, -268, -256, -220, -205, -183, -180),
     (-308, -212, -208, -136, -134, -280, -287, -85, -72),
-    (-308, -67, -64, -265, -256, -169, -154, -180, -183),
     (-307, -161, -157, -46, -38, -267, -265, -61, -59),
     (-307, -67, -61, -40, -44, -125, -123, -157, -169),
     (-308, -212, -208, -46, -38, -267, -268, -64, -59),
     (-308, -67, -64, -40, -47, -125, -123, -208, -220),
     (-307, -176, -172, -136, -125, -280, -274, -60, -59, -26, -34),
-    (-307, -80, -77, -268, -267, -220, -213, -155, -169, -138, -149),
     (-308, -176, -172, -136, -125, -280, -274, -60, -59, -26, -34),
-    (-308, -80, -77, -265, -267, -169, -162, -206, -220, -138, -146),
     (-307, -161, -157, -131, -136, -267, -265, -61, -59, -85, -72),
-    (-307, -67, -61, -261, -268, -125, -123, -157, -169, -183, -180),
     (-308, -212, -208, -131, -136, -267, -268, -64, -59, -85, -72),
-    (-308, -67, -64, -261, -265, -125, -123, -208, -220, -180, -183),
     (
         -307,
         -161,
@@ -178,23 +171,6 @@ EXPECTED_CANARY_TWO_KALMANSON_SUFFIX: tuple[tuple[int, ...], ...] = (
         -34,
     ),
     (
-        -307,
-        -67,
-        -61,
-        -261,
-        -268,
-        -44,
-        -43,
-        -125,
-        -123,
-        -220,
-        -213,
-        -155,
-        -157,
-        -138,
-        -149,
-    ),
-    (
         -308,
         -212,
         -208,
@@ -211,23 +187,42 @@ EXPECTED_CANARY_TWO_KALMANSON_SUFFIX: tuple[tuple[int, ...], ...] = (
         -26,
         -34,
     ),
-    (
-        -308,
-        -67,
-        -64,
-        -261,
-        -265,
-        -47,
-        -43,
-        -125,
-        -123,
-        -169,
-        -162,
-        -206,
-        -208,
-        -138,
-        -146,
-    ),
+)
+RETAINED_ORIGINAL_SUFFIX_INDICES = (
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    8,
+    9,
+    12,
+    14,
+    16,
+    17,
+    18,
+    19,
+    20,
+    22,
+    24,
+    26,
+    28,
+    30,
+)
+PARENT_SUBSUMED_ORIGINAL_SUFFIX_INDICES = (
+    7,
+    10,
+    11,
+    13,
+    15,
+    21,
+    23,
+    25,
+    27,
+    29,
+    31,
 )
 CANARY_ACTIVE_CLAUSE = EXPECTED_CANARY_TWO_KALMANSON_SUFFIX[1]
 ORDER_SHA256 = sha256_bytes(
@@ -1184,6 +1179,7 @@ def validate_six_hit_bisector_canary_two_kalmanson_parent_novelty(
             "subsumption": "parent literal-set subset of suffix literal-set is forbidden",
             "successor_shape": "byte-exact parent body prefix plus exact ordered suffix",
             "child_multiplicity": "each exact suffix tuple occurs once in full successor",
+            "theorem_bank_filter": "retain only original-bank clauses that are parent-unsubsumed",
             "canary_witness": "order-zero-reverse clause must occur in suffix",
         },
         "original_parent_clause_count_scanned": ORIGINAL_PARENT_CLAUSES,
@@ -1191,6 +1187,10 @@ def validate_six_hit_bisector_canary_two_kalmanson_parent_novelty(
         "suffix_clauses": [
             list(clause) for clause in EXPECTED_CANARY_TWO_KALMANSON_SUFFIX
         ],
+        "retained_original_suffix_indices": list(RETAINED_ORIGINAL_SUFFIX_INDICES),
+        "parent_subsumed_original_suffix_indices": list(
+            PARENT_SUBSUMED_ORIGINAL_SUFFIX_INDICES
+        ),
         "exact_parent_multiplicity": exact_parent_multiplicity,
         "parent_subsumer_count": parent_subsumer_count,
         "successor_multiplicity": successor_multiplicity,
@@ -1708,10 +1708,29 @@ def _require_production_configuration(
 ) -> None:
     if not PRODUCTION_PINS_FINALIZED:
         raise PreparationError("production pins are provisional")
-    if len(EXPECTED_CANARY_TWO_KALMANSON_SUFFIX) != 32:
+    if len(EXPECTED_CANARY_TWO_KALMANSON_SUFFIX) != 21:
         raise PreparationError(
             "six-hit-bisector-canary-two-kalmanson suffix cardinality drifted"
         )
+    if (
+        len(RETAINED_ORIGINAL_SUFFIX_INDICES)
+        != len(EXPECTED_CANARY_TWO_KALMANSON_SUFFIX)
+        or tuple(sorted(set(RETAINED_ORIGINAL_SUFFIX_INDICES)))
+        != RETAINED_ORIGINAL_SUFFIX_INDICES
+        or RETAINED_ORIGINAL_SUFFIX_INDICES[0] < 0
+        or RETAINED_ORIGINAL_SUFFIX_INDICES[-1] >= 32
+    ):
+        raise PreparationError("retained original suffix-index inventory drifted")
+    if (
+        tuple(sorted(set(PARENT_SUBSUMED_ORIGINAL_SUFFIX_INDICES)))
+        != PARENT_SUBSUMED_ORIGINAL_SUFFIX_INDICES
+        or set(RETAINED_ORIGINAL_SUFFIX_INDICES)
+        & set(PARENT_SUBSUMED_ORIGINAL_SUFFIX_INDICES)
+        or set(RETAINED_ORIGINAL_SUFFIX_INDICES)
+        | set(PARENT_SUBSUMED_ORIGINAL_SUFFIX_INDICES)
+        != set(range(32))
+    ):
+        raise PreparationError("parent-subsumed suffix-index inventory drifted")
     if any(
         not clause or len(set(clause)) != len(clause)
         for clause in EXPECTED_CANARY_TWO_KALMANSON_SUFFIX
