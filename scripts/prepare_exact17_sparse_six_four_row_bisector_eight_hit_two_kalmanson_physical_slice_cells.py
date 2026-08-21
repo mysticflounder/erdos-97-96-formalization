@@ -793,9 +793,12 @@ def next_center_variable(center: int) -> int:
 
 
 def category_units(center: int, category: str) -> tuple[int, ...]:
-    return (next_center_variable(center),) + _delegated_call(
+    units = (next_center_variable(center),) + _delegated_call(
         accepted.hardened.category_units, center, category
     )
+    if len(set(units)) != len(units):
+        raise PreparationError("generated cell repeats a unit clause")
+    return units
 
 
 def cell_cnf_bytes(parent: bytes, center: int, category: str) -> bytes:
@@ -932,7 +935,13 @@ def _inspect_published_cnf(
     }
 
 
-def _clause_tuple(line: bytes, variables: int, label: str) -> tuple[int, ...]:
+def _clause_tuple(
+    line: bytes,
+    variables: int,
+    label: str,
+    *,
+    require_unique_literals: bool = True,
+) -> tuple[int, ...]:
     """Parse one canonical line-bounded DIMACS clause."""
     _validate_clause(line, variables)
     try:
@@ -942,7 +951,7 @@ def _clause_tuple(line: bytes, variables: int, label: str) -> tuple[int, ...]:
     if not fields or fields[-1] != 0 or 0 in fields[:-1]:
         raise PreparationError(f"{label} is not one terminated DIMACS clause")
     clause = fields[:-1]
-    if len(set(clause)) != len(clause):
+    if require_unique_literals and len(set(clause)) != len(clause):
         raise PreparationError(f"{label} repeats a literal")
     return clause
 
@@ -991,7 +1000,10 @@ def validate_eight_hit_parent_novelty(
                         f"successor parent prefix drifted at clause {index}"
                     )
                 clause = _clause_tuple(
-                    parent_line, PARENT_VARIABLES, f"parent clause {index}"
+                    parent_line,
+                    PARENT_VARIABLES,
+                    f"parent clause {index}",
+                    require_unique_literals=False,
                 )
                 clause_set = set(clause)
                 for suffix_index, suffix in enumerate(EXPECTED_EIGHT_HIT_SUFFIX):
@@ -1556,6 +1568,11 @@ def _require_production_configuration(
         raise PreparationError("production pins are provisional")
     if len(EXPECTED_EIGHT_HIT_SUFFIX) != 4:
         raise PreparationError("eight-hit suffix cardinality drifted")
+    if any(
+        not clause or len(set(clause)) != len(clause)
+        for clause in EXPECTED_EIGHT_HIT_SUFFIX
+    ):
+        raise PreparationError("eight-hit suffix repeats a literal")
     if PARENT_CLAUSES != ORIGINAL_PARENT_CLAUSES + len(EXPECTED_EIGHT_HIT_SUFFIX):
         raise PreparationError("successor root clause count is not parent plus suffix")
     if CELL_CLAUSES != PARENT_CLAUSES + 6:

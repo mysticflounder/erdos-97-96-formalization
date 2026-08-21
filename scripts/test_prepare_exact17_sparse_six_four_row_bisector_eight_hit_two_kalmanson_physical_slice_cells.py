@@ -741,6 +741,32 @@ def test_parent_duplicate_suffix_clause_fails_before_children(
     assert not (paths["output"] / "artifacts" / "cells").exists()
 
 
+def test_historical_parent_duplicate_literals_are_accepted_semantically(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    paths, _ = _fixture(tmp_path, monkeypatch)
+    original = b"p cnf 308 2\n1 1 0\n-2 3 -2 0\n"
+    _set_parent_pair(paths, original)
+    _initialize(tmp_path, paths)
+    report = _prepare(tmp_path, paths)
+    assert report["cell_count"] == 76
+    assert report["parent_novelty"]["exact_parent_multiplicity"] == [0, 0, 0, 0]
+    assert report["parent_novelty"]["parent_subsumer_count"] == [0, 0, 0, 0]
+    assert report["parent_novelty"]["successor_multiplicity"] == [1, 1, 1, 1]
+
+
+def test_historical_duplicate_literals_still_trigger_set_subsumption(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    paths, calls = _fixture(tmp_path, monkeypatch)
+    original = b"p cnf 308 2\n-307 -307 0\n1 0\n"
+    _set_parent_pair(paths, original)
+    _initialize(tmp_path, paths)
+    with pytest.raises(subject.PreparationError, match="subsumes"):
+        _prepare(tmp_path, paths)
+    assert calls == [(-1, "root"), (-1, "root")]
+
+
 def test_parent_strict_subsumer_fails_before_children(
     tmp_path: Path, monkeypatch: pytest.MonkeyPatch
 ) -> None:
@@ -751,6 +777,33 @@ def test_parent_strict_subsumer_fails_before_children(
     with pytest.raises(subject.PreparationError, match="subsumes"):
         _prepare(tmp_path, paths)
     assert calls == [(-1, "root"), (-1, "root")]
+
+
+def test_new_suffix_clause_repeated_literal_is_rejected(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    paths, calls = _fixture(tmp_path, monkeypatch)
+    suffix = list(subject.EXPECTED_EIGHT_HIT_SUFFIX)
+    suffix[0] = suffix[0] + (suffix[0][0],)
+    _set_parent_pair(paths, _root(), suffix=tuple(suffix))
+    _initialize(tmp_path, paths)
+    with pytest.raises(
+        subject.PreparationError, match="eight-hit suffix clause 0 repeats a literal"
+    ):
+        _prepare(tmp_path, paths)
+    assert calls == [(-1, "root"), (-1, "root")]
+
+
+def test_generated_cell_repeated_unit_clause_is_rejected(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    monkeypatch.setattr(
+        subject.accepted.hardened,
+        "category_units",
+        lambda _center, _category: (290, -1, -2, -3, -4),
+    )
+    with pytest.raises(subject.PreparationError, match="repeats a unit clause"):
+        subject.category_units(0, "none")
 
 
 @pytest.mark.parametrize("mutation", ["value", "order", "guard", "duplicate"])
