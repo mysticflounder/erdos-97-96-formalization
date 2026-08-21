@@ -71,3 +71,39 @@ Intended consumer: deletion-arm trace-table pruning for the exact-twelve
 No `sorry` introduced; the obligation frontier is unchanged.  S1(2)'s
 consecutive-pair corollary needs the class angular order and is not
 formalized yet.
+
+## S1 replay against the live model space (step 4.2 of the biapex doc)
+
+EMPIRICAL, conditional on the physical bridge (a selected row is a radius
+class about its center — the proved `support_eq_radius` idiom in the
+leaf, intended semantics of the encoding, but not yet a kernel-checked
+chain from the CNF survivor to geometry).  Script:
+`scratch/rigid221-sourceheavy-anchor/core-pair/replay_s1_class_order.py`.
+
+The class order about the apex is linear (K1) and equals the boundary
+order cut at the apex; restricting the 48 deck orders to
+C = {0, 3, 6, 8, 9} and cutting at label 1 yields exactly two linear
+class orders up to reversal, (t,u,xv,xu,v) and (t,xu,xv,u,v) — derived
+from the deck by the script, not asserted.  S1 forces an on-class center
+hosting a class pair to lie strictly between the pair in that order.
+
+Results:
+
+- **The authenticated v26 survivor violates S1 under both class
+  orders**: its row at v = 3, supp(3) = {0, 5, 7, 9}, contains the class
+  pair {t = 0, xu = 9}, and v is the final point of both orders.  Under
+  the physical bridge the v26 survivor is geometrically unrealizable —
+  the first constraint of any kind found that removes it.
+- Enumerated sample: 291/300 violate S1 under every deck-consistent
+  class order; 99/300 violate S2; **7/300 survive both** (models
+  227, 228, 232, 233, 296, 297, 300 of the 2026-08-20 sample).  The
+  seven share identical rows at centers 0, 1, 2, 6, 7, 8, 9, 10 and
+  differ only at centers 3, 4, 5, 11.
+
+Consequence: a physically-bridged S1+S2 membership family is the
+strongest measured lever on this cell — it removes the authenticated
+survivor (which no orientation family could touch) and cuts the sampled
+space 300 → 7.  Building it as a bank requires the A5.17 metric
+provenance chain (class membership, apex identity, and the class-order
+disjunction as certificate data).  That is a new-kind bank and a goal
+decision.
