@@ -3257,15 +3257,25 @@ formalization boundary is:
 | CD6 | `selectedFourClass_three_rows_tetrahedron_incompatibility` and `U5QDeletedK4Class.three_exact_classes_tetrahedron_incompatibility` | FORMALIZED. Both the selected-row source boundary and the q-deleted metric consumer discharge the saturated planar-tetrahedron pattern. |
 | CD7 | `RobustApexThreeRowSurface`, `RobustApexThreeRowContinuation`, `nonempty_robustApexThreeRowContinuation`, and `nonempty_robustApexFiveIncidenceContinuation_of_commonPoint` | FORMALIZED. The dependent seven-way continuation retains the indexed three-row surface, the missing incidence, and its resulting `CommonDeletionTwoCenterPacket`; saturation is discharged through CD6. The checked five-way specialization removes the two missing-common-point tags used by A7/A8. |
 | CD8 | no positive-incidence completion | PROVED SCOPE BOUNDARY. Missing incidence yields a continuation packet, not a contradiction. Reject generic completion claims and anonymous continuation adapters. |
-| CD9-CD11 | A5/A7/A8 specializations | A7/A8 ADAPTERS FORMALIZED OFF-SPINE as `nonempty_fixedPhysicalPair_uDeletion_fiveIncidenceContinuation` and `nonempty_xvDeletion_fiveIncidenceContinuation`. Their result packets retain all three canonical support identities and both named common-point incidences. The live `False` leaves still require explicit wiring to the CD12 continuation terminals. A5 continues to prefer its stronger source-specific role split. |
-| CD12 | A5 exact-twelve coverage, A7 unbounded continuation, A8 failed-then-surviving continuation | OPEN-GEOMETRIC-TERMINAL. Canonical logic alone closes none of these leaves. |
+| CD9-CD11 | A5/A7/A8 specializations | A7 IS WIRED ON-SPINE through `pentagonOffClassBlocker_fixedPhysicalPair_uDeletion_fiveIncidenceContinuation`; the downstream `nonempty_fixedPhysicalPair_uDeletion_fiveIncidenceContinuation` is now a compatibility forwarding theorem. A8 remains formalized off-spine as `nonempty_xvDeletion_fiveIncidenceContinuation`. Both packets retain all three canonical support identities and both named common-point incidences. A5 continues to prefer its stronger source-specific role split. |
+| CD12 | A5 exact-twelve coverage, A7 unbounded continuation, A8 failed-then-surviving continuation | OPEN-GEOMETRIC-TERMINAL. Canonical logic alone closes none of these leaves. For A7, `pentagonOffClassBlocker_fixedPhysicalPair_uDeletion_exists_source_outside_threeRows` now proves that `13 ≤ D.A.card` supplies a carrier source outside all three fixed exact rows. `..._outsideThreeRows_exactRows` then constructs a support-preserving `ThreeCenterCommonDeletionExactRows` packet for that source. The live parent is wired to the source-tagged `..._outsideThreeRows` terminal with the three omission facts, this exact-row triangle, and the typed five-way continuation packet. |
 | CD13 | D8/I2/I3 exclusions | SCOPE FIXED. These branches lack CD7's three-row robust-apex ingress; reuse only individually justified persistence/packet lemmas. |
 
 The completed generic layer is CD4-CD7, and the source-faithful A7/A8 adapters
-now exist downstream. The next formalization order is to wire those adapters
-through explicit live terminal contracts, then prove the three CD12 consumers. For A5, the stronger
-A5.9-A5.12 role reduction should be formalized before attempting its
-twenty-four-cell coverage theorem.
+now exist downstream. A7 has additionally consumed its unbounded cardinality
+hypothesis: its on-spine frontier changed from an anonymous missing-incidence
+residual to a concrete outside-three-rows source residual. The coordinator
+frontier still contains one A7 terminal `sorry`, but the selected-source
+freedom and three support-membership coordinates have been fixed. Its three
+canonical rows are now retained as exact rows after the new deletion, with
+all three pairwise overlap-at-most-two consequences available. The next A7
+terminal already receives both this exact-row triangle and the typed five-way
+continuation packet; the old untyped negated conjunction is no longer part of
+the terminal contract. The next A7 step is to case-split the five tags against
+the exact-row triangle and derive the order/collision terminal split. A8 still needs its adapter wired
+through an explicit live terminal contract. For A5, the stronger A5.9-A5.12
+role reduction should be formalized before attempting its twenty-four-cell
+coverage theorem.
 
 ### FreshThird and first-fiber computational checkpoints
 

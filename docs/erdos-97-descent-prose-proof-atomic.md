@@ -2527,7 +2527,28 @@ The leaf assumes that at least one incidence in (A7.1) is absent.
 
 If all five incidences held, the exact rows would make `O`, `cxu`, `cd`, and `deleted` pairwise equidistant, contradicting planar geometry. If one is absent, exact-row persistence and robustness construct the corresponding common-deletion packet.
 
-**Exact remaining implication.** The leaf is therefore equivalent to an unbounded continuation theorem: under the full source-heavy rigid packet and `13 ≤ |A|`, none of the five typed common-deletion continuations above can occur. Unlike A5, this cannot be completed by a single exact-cardinality certificate.
+**Unbounded producer now proved.** Each of `BO`, `Kxu`, and `Kdeleted`
+has exactly four points, so their union has at most twelve points. Since
+`13 ≤ |A|`, choose a carrier source `q` outside all three rows. Deleting
+`q` preserves all three exact rows with their original supports. The three
+pairwise distinct centers `O`, `cxu`, and `cd` therefore form a
+source-exact three-center common-deletion packet, and each pair of its row
+supports intersects in at most two points.
+
+This argument is formalized by
+`pentagonOffClassBlocker_fixedPhysicalPair_uDeletion_exists_source_outside_threeRows`,
+`ThreeCenterCommonDeletionExactRows`, and
+`pentagonOffClassBlocker_fixedPhysicalPair_uDeletion_outsideThreeRows_exactRows`.
+The live leaf now passes the chosen source, its three omission facts, and this
+exact-row packet to the remaining terminal. It also passes the typed five-way
+continuation packet; the terminal no longer receives only the unstructured
+negation of (A7.1).
+
+**Exact remaining implication.** It remains to prove the unbounded
+continuation theorem: under the full source-heavy rigid packet, the
+source-tagged exact-row triangle cannot coexist with any of the five typed
+common-deletion continuations above. Unlike A5, a single exact-cardinality
+certificate cannot establish this general-cardinality statement.
 
 **Candidate closure program.**
 
@@ -2535,7 +2556,11 @@ If all five incidences held, the exact rows would make `O`, `cxu`, `cd`, and `de
 
 2. Compare each continuation to the original `u`-deletion data. In the three arms whose deleted source is one of `O`, `cxu`, or `cd`, determine whether the continuation creates a two-cycle in the chosen blocker map, a repeated common-deletion source, or a third distinct deletion.
 
-3. For a repeated source, use canonical-row uniqueness at every nonrobust center to obtain exact support equality. For a new source, preserve it as a strictly larger source-faithful deletion fan; do not flatten it to anonymous survivals.
+3. Use the formalized outside-three-rows source as the common deletion for
+   the exact rows at `O`, `cxu`, and `cd`. For a repeated continuation
+   source, use canonical-row uniqueness at every nonrobust center to obtain
+   exact support equality. For a new source, preserve it as a strictly larger
+   source-faithful deletion fan; do not flatten it to anonymous survivals.
 
 4. The required terminal must use the rigid cap placement. A promising form is a strict boundary-order potential on the sequence
 

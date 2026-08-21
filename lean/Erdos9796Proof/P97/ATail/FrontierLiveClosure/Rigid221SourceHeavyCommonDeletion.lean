@@ -131,69 +131,9 @@ theorem nonempty_fixedPhysicalPair_uDeletion_fiveIncidenceContinuation
       (RobustApexFiveIncidenceContinuationPacket
         D Hlate S.oppApex2 c₁ c₂ sourceDeleted.1
           BO Kxu.support Kdeleted.support) := by
-  classical
-  let Hlate := lateFirstApexSystem R
-  let sourceXu : CarrierVertex D.A := ⟨packet.xu, Q.hxuA⟩
-  let sourceDeleted : CarrierVertex D.A := P.jointDeletion.deleted
-  let Kxu :=
-    (Hlate.selectedAt sourceXu.1 sourceXu.2).toCriticalFourShell
-  let Kdeleted :=
-    (Hlate.selectedAt sourceDeleted.1 sourceDeleted.2).toCriticalFourShell
-  let BO := SelectedClass (D.A.erase P.u.1) S.oppApex2 P.rho
-  let c₁ := Hlate.centerAt sourceXu.1 sourceXu.2
-  let c₂ := Hlate.centerAt sourceDeleted.1 sourceDeleted.2
-  change
-    Nonempty
-      (RobustApexFiveIncidenceContinuationPacket
-        D Hlate S.oppApex2 c₁ c₂ sourceDeleted.1
-          BO Kxu.support Kdeleted.support)
-  rcases pentagonOffClassBlocker_fixedPhysicalPair_biDeletion Q with
-    ⟨_hxuOutside, _hdeletedOutside, hc₁NeC₂, hc₁NeO, hc₂NeO,
-      _hsurvivalTable⟩
-  rcases pentagonOffClassBlocker_fixedPhysicalPair_uDeletion_threeExactRows_common_deleted
-      Q with
-    ⟨Cxu, Cdeleted, CO, hdeletedKxu, hdeletedKdeleted, hdeletedBO,
-      hBOCard, _hsourceXuKxu⟩
-  have hc₁A : c₁ ∈ D.A := by
-    exact (Finset.mem_erase.mp Kxu.center_mem).2
-  have hc₂A : c₂ ∈ D.A := by
-    exact (Finset.mem_erase.mp Kdeleted.center_mem).2
-  let KO : SelectedFourClass D.A S.oppApex2 :=
-    qDeletedK4ClassToSelectedFourClass CO hBOCard
-  let K₁ : SelectedFourClass D.A c₁ :=
-    qDeletedK4ClassToSelectedFourClass Cxu Kxu.support_card
-  let K₂ : SelectedFourClass D.A c₂ :=
-    qDeletedK4ClassToSelectedFourClass Cdeleted Kdeleted.support_card
-  let surface : RobustApexThreeRowSurface
-      D S.oppApex2 c₁ c₂ sourceDeleted.1 :=
-    { O_mem_A := P.surface.ingress.packet.center₂_mem_A
-      c₁_mem_A := hc₁A
-      c₂_mem_A := hc₂A
-      O_ne_c₁ := hc₁NeO.symm
-      O_ne_c₂ := hc₂NeO.symm
-      c₁_ne_c₂ := hc₁NeC₂
-      robustO := P.surface.secondApex_robust
-      row₀ := KO
-      row₁ := K₁
-      row₂ := K₂
-      a_mem_row₀ := by
-        simpa only [KO, qDeletedK4ClassToSelectedFourClass] using hdeletedBO }
-  have hdeletedK₁ : sourceDeleted.1 ∈ K₁.support := by
-    simpa only [K₁, qDeletedK4ClassToSelectedFourClass] using hdeletedKxu
-  have hdeletedK₂ : sourceDeleted.1 ∈ K₂.support := by
-    simpa only [K₂, qDeletedK4ClassToSelectedFourClass] using hdeletedKdeleted
-  rcases
-      nonempty_robustApexFiveIncidenceContinuation_of_commonPoint
-        Hlate surface hdeletedK₁ hdeletedK₂ with
-    ⟨continuation⟩
-  exact ⟨
-    { surface := surface
-      row₀_support_eq := rfl
-      row₁_support_eq := rfl
-      row₂_support_eq := rfl
-      a_mem_row₁ := hdeletedK₁
-      a_mem_row₂ := hdeletedK₂
-      continuation := continuation }⟩
+  exact
+    pentagonOffClassBlocker_fixedPhysicalPair_uDeletion_fiveIncidenceContinuation
+      Q
 
 /-- The failed-after-`u`, surviving-after-`xv` source pair supplies the exact
 five-way robust-apex continuation surface.  The packet retains the canonical

@@ -13,6 +13,8 @@ import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenSourceNormalForm
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenCocircularPentagonOrder
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenCocircularPentagonOrderPromotion
 import Erdos9796Proof.P97.ATail.FiveCenterDeletionBoundary
+import Erdos9796Proof.P97.ATail.RobustApexCommonDeletion
+import Erdos9796Proof.P97.ATail.ThreeCenterCommonDeletion
 import Erdos9796Proof.P97.U5GlobalIncidenceQDeletedTetrahedron
 import Mathlib.Order.Fin.Basic
 
@@ -35,6 +37,7 @@ open ATailDeletionRobustness
 open ATailExactFourPhysicalConsumer
 open ATailExactFourRobustCapExpansion
 open ATailExactFifteenApexProfile
+open ATailFiveCenterDeletionBoundary
 open ATailMinimalUniqueFourCover
 open ATailLargeCapUniqueFive
 open ATailLargeOppositeCapsBiApexSurface
@@ -51,7 +54,9 @@ open ATailRetainedMatchingEndpointCollisionLocalization
 open ATailRetainedMatchingEndpointContinuation
 open ATailRetainedCollisionCapLocalization
 open ATailRetainedStrictInteriorPairSelector
+open ATailRobustApexCommonDeletion
 open ATailSurvivalCover
+open ATailThreeCenterCommonDeletion
 open ATailTwoCollisionGlobalProducer
 open ATailTwoCenterCapLocalization
 open ATailUniqueFourLateChoiceTerminalScratch
@@ -16134,6 +16139,307 @@ theorem false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffCl
                 S D.convex S.oppIndex2 hrho hother hradii.symm
                   (by omega) (by omega) hcapInteriorCardFour))
 
+/-- The fixed physical source pair after deleting `u` supplies the typed
+five-way continuation packet used by the unbounded A7 terminal. -/
+theorem pentagonOffClassBlocker_fixedPhysicalPair_uDeletion_fiveIncidenceContinuation
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F}
+    {P : ExactFourRigid221PhysicalApexSourceEqUContext R}
+    {packet :
+      ExactFourRigid221SourceEqUBlockerVRowOtherSourceHeavyPacket P}
+    (Q : ExactFourRigid221PentagonOffClassBlockerResidual P packet) :
+    let Hlate := lateFirstApexSystem R
+    let sourceXu : CarrierVertex D.A := ⟨packet.xu, Q.hxuA⟩
+    let sourceDeleted : CarrierVertex D.A := P.jointDeletion.deleted
+    let Kxu :=
+      (Hlate.selectedAt sourceXu.1 sourceXu.2).toCriticalFourShell
+    let Kdeleted :=
+      (Hlate.selectedAt sourceDeleted.1 sourceDeleted.2).toCriticalFourShell
+    let BO := SelectedClass (D.A.erase P.u.1) S.oppApex2 P.rho
+    let c₁ := Hlate.centerAt sourceXu.1 sourceXu.2
+    let c₂ := Hlate.centerAt sourceDeleted.1 sourceDeleted.2
+    Nonempty
+      (RobustApexFiveIncidenceContinuationPacket
+        D Hlate S.oppApex2 c₁ c₂ sourceDeleted.1
+          BO Kxu.support Kdeleted.support) := by
+  classical
+  let Hlate := lateFirstApexSystem R
+  let sourceXu : CarrierVertex D.A := ⟨packet.xu, Q.hxuA⟩
+  let sourceDeleted : CarrierVertex D.A := P.jointDeletion.deleted
+  let Kxu :=
+    (Hlate.selectedAt sourceXu.1 sourceXu.2).toCriticalFourShell
+  let Kdeleted :=
+    (Hlate.selectedAt sourceDeleted.1 sourceDeleted.2).toCriticalFourShell
+  let BO := SelectedClass (D.A.erase P.u.1) S.oppApex2 P.rho
+  let c₁ := Hlate.centerAt sourceXu.1 sourceXu.2
+  let c₂ := Hlate.centerAt sourceDeleted.1 sourceDeleted.2
+  change
+    Nonempty
+      (RobustApexFiveIncidenceContinuationPacket
+        D Hlate S.oppApex2 c₁ c₂ sourceDeleted.1
+          BO Kxu.support Kdeleted.support)
+  rcases pentagonOffClassBlocker_fixedPhysicalPair_biDeletion Q with
+    ⟨_hxuOutside, _hdeletedOutside, hc₁NeC₂, hc₁NeO, hc₂NeO,
+      _hsurvivalTable⟩
+  rcases
+      pentagonOffClassBlocker_fixedPhysicalPair_uDeletion_threeExactRows_common_deleted
+        Q with
+    ⟨Cxu, Cdeleted, CO, hdeletedKxu, hdeletedKdeleted, hdeletedBO,
+      hBOCard, _hsourceXuKxu⟩
+  have hc₁A : c₁ ∈ D.A := by
+    exact (Finset.mem_erase.mp Kxu.center_mem).2
+  have hc₂A : c₂ ∈ D.A := by
+    exact (Finset.mem_erase.mp Kdeleted.center_mem).2
+  let KO : SelectedFourClass D.A S.oppApex2 :=
+    qDeletedK4ClassToSelectedFourClass CO hBOCard
+  let K₁ : SelectedFourClass D.A c₁ :=
+    qDeletedK4ClassToSelectedFourClass Cxu Kxu.support_card
+  let K₂ : SelectedFourClass D.A c₂ :=
+    qDeletedK4ClassToSelectedFourClass Cdeleted Kdeleted.support_card
+  let surface : RobustApexThreeRowSurface
+      D S.oppApex2 c₁ c₂ sourceDeleted.1 :=
+    { O_mem_A := P.surface.ingress.packet.center₂_mem_A
+      c₁_mem_A := hc₁A
+      c₂_mem_A := hc₂A
+      O_ne_c₁ := hc₁NeO.symm
+      O_ne_c₂ := hc₂NeO.symm
+      c₁_ne_c₂ := hc₁NeC₂
+      robustO := P.surface.secondApex_robust
+      row₀ := KO
+      row₁ := K₁
+      row₂ := K₂
+      a_mem_row₀ := by
+        simpa only [KO, qDeletedK4ClassToSelectedFourClass] using hdeletedBO }
+  have hdeletedK₁ : sourceDeleted.1 ∈ K₁.support := by
+    simpa only [K₁, qDeletedK4ClassToSelectedFourClass] using hdeletedKxu
+  have hdeletedK₂ : sourceDeleted.1 ∈ K₂.support := by
+    simpa only [K₂, qDeletedK4ClassToSelectedFourClass] using hdeletedKdeleted
+  rcases
+      nonempty_robustApexFiveIncidenceContinuation_of_commonPoint
+        Hlate surface hdeletedK₁ hdeletedK₂ with
+    ⟨continuation⟩
+  exact ⟨
+    { surface := surface
+      row₀_support_eq := rfl
+      row₁_support_eq := rfl
+      row₂_support_eq := rfl
+      a_mem_row₁ := hdeletedK₁
+      a_mem_row₂ := hdeletedK₂
+      continuation := continuation }⟩
+
+/-- At cardinality at least thirteen, the three fixed four-point rows after
+deleting `u` cannot cover the carrier.  Hence there is a source outside all
+three rows.  This is the source-clean unbounded-cardinality producer for the
+A7 continuation terminal. -/
+theorem pentagonOffClassBlocker_fixedPhysicalPair_uDeletion_exists_source_outside_threeRows
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F}
+    {P : ExactFourRigid221PhysicalApexSourceEqUContext R}
+    {packet :
+      ExactFourRigid221SourceEqUBlockerVRowOtherSourceHeavyPacket P}
+    (Q : ExactFourRigid221PentagonOffClassBlockerResidual P packet)
+    (hcardThirteen : 13 ≤ D.A.card) :
+    let Hlate := lateFirstApexSystem R
+    let sourceXu : CarrierVertex D.A := ⟨packet.xu, Q.hxuA⟩
+    let sourceDeleted : CarrierVertex D.A := P.jointDeletion.deleted
+    let Kxu :=
+      (Hlate.selectedAt sourceXu.1 sourceXu.2).toCriticalFourShell
+    let Kdeleted :=
+      (Hlate.selectedAt sourceDeleted.1 sourceDeleted.2).toCriticalFourShell
+    let BO := SelectedClass (D.A.erase P.u.1) S.oppApex2 P.rho
+    ∃ source : CarrierVertex D.A,
+      source.1 ∉ BO ∧
+        source.1 ∉ Kxu.support ∧
+        source.1 ∉ Kdeleted.support := by
+  classical
+  let Hlate := lateFirstApexSystem R
+  let sourceXu : CarrierVertex D.A := ⟨packet.xu, Q.hxuA⟩
+  let sourceDeleted : CarrierVertex D.A := P.jointDeletion.deleted
+  let Kxu :=
+    (Hlate.selectedAt sourceXu.1 sourceXu.2).toCriticalFourShell
+  let Kdeleted :=
+    (Hlate.selectedAt sourceDeleted.1 sourceDeleted.2).toCriticalFourShell
+  let BO := SelectedClass (D.A.erase P.u.1) S.oppApex2 P.rho
+  change
+    ∃ source : CarrierVertex D.A,
+      source.1 ∉ BO ∧
+        source.1 ∉ Kxu.support ∧
+        source.1 ∉ Kdeleted.support
+  rcases
+      pentagonOffClassBlocker_fixedPhysicalPair_uDeletion_threeExactRows_common_deleted
+        Q with
+    ⟨_Cxu, _Cdeleted, _CO, _hdeletedKxu, _hdeletedKdeleted,
+      _hdeletedBO, hBOCard, _hsourceXuKxu⟩
+  have hcoverCard :
+      (BO ∪ Kxu.support ∪ Kdeleted.support).card ≤ 12 := by
+    calc
+      (BO ∪ Kxu.support ∪ Kdeleted.support).card ≤
+          (BO ∪ Kxu.support).card + Kdeleted.support.card :=
+        Finset.card_union_le (BO ∪ Kxu.support) Kdeleted.support
+      _ ≤ (BO.card + Kxu.support.card) + Kdeleted.support.card := by
+        gcongr
+        exact Finset.card_union_le BO Kxu.support
+      _ = 12 := by
+        rw [hBOCard, Kxu.support_card, Kdeleted.support_card]
+  have hnotSubset :
+      ¬ D.A ⊆ BO ∪ Kxu.support ∪ Kdeleted.support := by
+    intro hsubset
+    have hcardSubset :=
+      Finset.card_le_card hsubset
+    omega
+  rw [Finset.not_subset] at hnotSubset
+  rcases hnotSubset with ⟨source, hsourceA, hsourceOutside⟩
+  simp only [Finset.mem_union, not_or] at hsourceOutside
+  exact ⟨⟨source, hsourceA⟩, hsourceOutside.1.1,
+    hsourceOutside.1.2, hsourceOutside.2⟩
+
+/-- A source outside the three fixed rows makes all three rows survive the
+same deletion. Their original supports therefore form an exact three-center
+common-deletion packet with pairwise overlap at most two. -/
+theorem pentagonOffClassBlocker_fixedPhysicalPair_uDeletion_outsideThreeRows_exactRows
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F}
+    {P : ExactFourRigid221PhysicalApexSourceEqUContext R}
+    {packet :
+      ExactFourRigid221SourceEqUBlockerVRowOtherSourceHeavyPacket P}
+    (Q : ExactFourRigid221PentagonOffClassBlockerResidual P packet)
+    (source : CarrierVertex D.A)
+    (hsourceOutside :
+      let Hlate := lateFirstApexSystem R
+      let sourceXu : CarrierVertex D.A := ⟨packet.xu, Q.hxuA⟩
+      let sourceDeleted : CarrierVertex D.A := P.jointDeletion.deleted
+      let Kxu :=
+        (Hlate.selectedAt sourceXu.1 sourceXu.2).toCriticalFourShell
+      let Kdeleted :=
+        (Hlate.selectedAt sourceDeleted.1 sourceDeleted.2).toCriticalFourShell
+      let BO := SelectedClass (D.A.erase P.u.1) S.oppApex2 P.rho
+      source.1 ∉ BO ∧
+        source.1 ∉ Kxu.support ∧
+        source.1 ∉ Kdeleted.support) :
+    let Hlate := lateFirstApexSystem R
+    let sourceXu : CarrierVertex D.A := ⟨packet.xu, Q.hxuA⟩
+    let sourceDeleted : CarrierVertex D.A := P.jointDeletion.deleted
+    let Kxu :=
+      (Hlate.selectedAt sourceXu.1 sourceXu.2).toCriticalFourShell
+    let Kdeleted :=
+      (Hlate.selectedAt sourceDeleted.1 sourceDeleted.2).toCriticalFourShell
+    let BO := SelectedClass (D.A.erase P.u.1) S.oppApex2 P.rho
+    let c₁ := Hlate.centerAt sourceXu.1 sourceXu.2
+    let c₂ := Hlate.centerAt sourceDeleted.1 sourceDeleted.2
+    Nonempty
+      (ThreeCenterCommonDeletionExactRows
+        D source.1 S.oppApex2 c₁ c₂ BO Kxu.support Kdeleted.support) := by
+  classical
+  let Hlate := lateFirstApexSystem R
+  let sourceXu : CarrierVertex D.A := ⟨packet.xu, Q.hxuA⟩
+  let sourceDeleted : CarrierVertex D.A := P.jointDeletion.deleted
+  let Kxu :=
+    (Hlate.selectedAt sourceXu.1 sourceXu.2).toCriticalFourShell
+  let Kdeleted :=
+    (Hlate.selectedAt sourceDeleted.1 sourceDeleted.2).toCriticalFourShell
+  let BO := SelectedClass (D.A.erase P.u.1) S.oppApex2 P.rho
+  let c₁ := Hlate.centerAt sourceXu.1 sourceXu.2
+  let c₂ := Hlate.centerAt sourceDeleted.1 sourceDeleted.2
+  change
+    source.1 ∉ BO ∧
+      source.1 ∉ Kxu.support ∧
+      source.1 ∉ Kdeleted.support at hsourceOutside
+  change
+    Nonempty
+      (ThreeCenterCommonDeletionExactRows
+        D source.1 S.oppApex2 c₁ c₂ BO Kxu.support Kdeleted.support)
+  rcases pentagonOffClassBlocker_fixedPhysicalPair_biDeletion Q with
+    ⟨_hxuOutside, _hdeletedOutside, hc₁NeC₂, hc₁NeO, hc₂NeO,
+      _hsurvivalTable⟩
+  rcases
+      pentagonOffClassBlocker_fixedPhysicalPair_uDeletion_threeExactRows_common_deleted
+        Q with
+    ⟨_Cxu, _Cdeleted, CO, _hdeletedKxu, _hdeletedKdeleted,
+      _hdeletedBO, hBOCard, _hsourceXuKxu⟩
+  have hc₁A : c₁ ∈ D.A := by
+    exact (Finset.mem_erase.mp Kxu.center_mem).2
+  have hc₂A : c₂ ∈ D.A := by
+    exact (Finset.mem_erase.mp Kdeleted.center_mem).2
+  let KO : SelectedFourClass D.A S.oppApex2 :=
+    qDeletedK4ClassToSelectedFourClass CO hBOCard
+  let K₁ : SelectedFourClass D.A c₁ := Kxu.toSelectedFourClass
+  let K₂ : SelectedFourClass D.A c₂ := Kdeleted.toSelectedFourClass
+  apply
+    nonempty_threeCenterCommonDeletionExactRows_of_omitted_selectedFourClasses
+      source.2 P.surface.ingress.packet.center₂_mem_A hc₁A hc₂A
+      hc₁NeO.symm hc₂NeO.symm hc₁NeC₂ KO K₁ K₂
+  · simpa only [KO, qDeletedK4ClassToSelectedFourClass] using hsourceOutside.1
+  · simpa only [K₁] using hsourceOutside.2.1
+  · simpa only [K₂] using hsourceOutside.2.2
+
+/-- Source-tagged A7 continuation terminal.  The retained source lies outside
+all three fixed rows, so its deletion preserves each of them.  Proving this
+terminal requires the unbounded common-deletion fan or an order-sensitive
+continuation exclusion; the cardinality producer above supplies the source. -/
+theorem false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_uDeletion_fixedPhysicalPair_outsideThreeRows
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F}
+    {P : ExactFourRigid221PhysicalApexSourceEqUContext R}
+    {packet :
+      ExactFourRigid221SourceEqUBlockerVRowOtherSourceHeavyPacket P}
+    (_Q : ExactFourRigid221PentagonOffClassBlockerResidual P packet)
+    (_hcardThirteen : 13 ≤ D.A.card)
+    (_source : CarrierVertex D.A)
+    (_hsourceOutside :
+      let Hlate := lateFirstApexSystem R
+      let sourceXu : CarrierVertex D.A := ⟨packet.xu, _Q.hxuA⟩
+      let sourceDeleted : CarrierVertex D.A := P.jointDeletion.deleted
+      let Kxu :=
+        (Hlate.selectedAt sourceXu.1 sourceXu.2).toCriticalFourShell
+      let Kdeleted :=
+        (Hlate.selectedAt sourceDeleted.1
+          sourceDeleted.2).toCriticalFourShell
+      let BO := SelectedClass (D.A.erase P.u.1) S.oppApex2 P.rho
+      _source.1 ∉ BO ∧
+        _source.1 ∉ Kxu.support ∧
+        _source.1 ∉ Kdeleted.support)
+    (_exactRows :
+      let Hlate := lateFirstApexSystem R
+      let sourceXu : CarrierVertex D.A := ⟨packet.xu, _Q.hxuA⟩
+      let sourceDeleted : CarrierVertex D.A := P.jointDeletion.deleted
+      let Kxu :=
+        (Hlate.selectedAt sourceXu.1 sourceXu.2).toCriticalFourShell
+      let Kdeleted :=
+        (Hlate.selectedAt sourceDeleted.1
+          sourceDeleted.2).toCriticalFourShell
+      let BO := SelectedClass (D.A.erase P.u.1) S.oppApex2 P.rho
+      let c₁ := Hlate.centerAt sourceXu.1 sourceXu.2
+      let c₂ := Hlate.centerAt sourceDeleted.1 sourceDeleted.2
+      Nonempty
+        (ThreeCenterCommonDeletionExactRows
+          D _source.1 S.oppApex2 c₁ c₂ BO Kxu.support Kdeleted.support))
+    (_continuation :
+      let Hlate := lateFirstApexSystem R
+      let sourceXu : CarrierVertex D.A := ⟨packet.xu, _Q.hxuA⟩
+      let sourceDeleted : CarrierVertex D.A := P.jointDeletion.deleted
+      let Kxu :=
+        (Hlate.selectedAt sourceXu.1 sourceXu.2).toCriticalFourShell
+      let Kdeleted :=
+        (Hlate.selectedAt sourceDeleted.1
+          sourceDeleted.2).toCriticalFourShell
+      let BO := SelectedClass (D.A.erase P.u.1) S.oppApex2 P.rho
+      let c₁ := Hlate.centerAt sourceXu.1 sourceXu.2
+      let c₂ := Hlate.centerAt sourceDeleted.1 sourceDeleted.2
+      Nonempty
+        (RobustApexFiveIncidenceContinuationPacket
+          D Hlate S.oppApex2 c₁ c₂ sourceDeleted.1
+            BO Kxu.support Kdeleted.support)) :
+    False := by
+  sorry
+
 /-- Fixed-pair residual after deleting `u` and eliminating the complete
 tetrahedron-incidence packet.  The five rows in the final negated conjunction
 are exactly the missing cross-center incidences for the checked
@@ -16164,7 +16470,19 @@ theorem false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffCl
           S.oppApex2 ∈ Kdeleted.support ∧
           Hlate.centerAt sourceXu.1 sourceXu.2 ∈ Kdeleted.support)) :
     False := by
-  sorry
+  rcases
+      pentagonOffClassBlocker_fixedPhysicalPair_uDeletion_exists_source_outside_threeRows
+        _Q _hcardThirteen with
+    ⟨source, hsourceOutside⟩
+  have hExactRows :=
+    pentagonOffClassBlocker_fixedPhysicalPair_uDeletion_outsideThreeRows_exactRows
+      _Q source hsourceOutside
+  have hContinuation :=
+    pentagonOffClassBlocker_fixedPhysicalPair_uDeletion_fiveIncidenceContinuation
+      _Q
+  exact
+    false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_uDeletion_fixedPhysicalPair_outsideThreeRows
+      _Q _hcardThirteen source hsourceOutside hExactRows hContinuation
 
 /-- Compatibility adapter for the older arbitrary-source `u`-deletion
 interface.  The proof no longer depends on those witnesses: it switches to
