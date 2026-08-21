@@ -31,8 +31,15 @@ def test_original_parent_exporter_is_the_immediate_six_hit_parent() -> None:
     )
 
 
+_PARENT_SUBSUMER_CLAUSES = ((-308, -265), (-183, -180, -67), (-149,))
+
+
 def _root() -> bytes:
-    return b"p cnf 308 2\n1 0\n-2 3 0\n"
+    body = b"".join(
+        (" ".join(map(str, clause)) + " 0\n").encode()
+        for clause in _PARENT_SUBSUMER_CLAUSES
+    )
+    return f"p cnf 308 {len(_PARENT_SUBSUMER_CLAUSES)}\n".encode() + body
 
 
 def _successor(
@@ -43,10 +50,15 @@ def _successor(
     parent = _root() if parent is None else parent
     clauses = subject.EXPECTED_CANARY_TWO_KALMANSON_SUFFIX if suffix is None else suffix
     body = parent.split(b"\n", 1)[1]
+    parent_clause_count = int(parent.split(b"\n", 1)[0].split()[3])
     suffix_bytes = b"".join(
         (" ".join(map(str, clause)) + " 0\n").encode() for clause in clauses
     )
-    return f"p cnf 308 {2 + len(clauses)}\n".encode() + body + suffix_bytes
+    return (
+        f"p cnf 308 {parent_clause_count + len(clauses)}\n".encode()
+        + body
+        + suffix_bytes
+    )
 
 
 def _fixture(
@@ -169,9 +181,9 @@ def _fixture(
         "support": support,
     }
     production_config.write_bytes(subject.canonical_json_bytes(config_payload))
-    monkeypatch.setattr(subject, "ORIGINAL_PARENT_CLAUSES", 2)
-    monkeypatch.setattr(subject, "PARENT_CLAUSES", 23)
-    monkeypatch.setattr(subject, "CELL_CLAUSES", 29)
+    monkeypatch.setattr(subject, "ORIGINAL_PARENT_CLAUSES", 3)
+    monkeypatch.setattr(subject, "PARENT_CLAUSES", 24)
+    monkeypatch.setattr(subject, "CELL_CLAUSES", 30)
     calls: list[tuple[int, str]] = []
 
     def fake_root_export(_repo: Path, _exporter: Path, output: Path) -> None:
@@ -336,6 +348,26 @@ def _set_parent_pair(
             suffix=suffix,
         )
     )
+
+
+def _validate_parent_novelty_pair(
+    tmp_path: Path, parent: bytes, stem: str
+) -> dict[str, Any]:
+    parent_path = tmp_path / f"{stem}-parent.cnf"
+    successor_path = tmp_path / f"{stem}-successor.cnf"
+    parent_path.write_bytes(parent)
+    successor_path.write_bytes(_successor(parent=parent))
+    published_parent = subject._PublishedFile.capture(parent_path, "test parent")
+    published_successor = subject._PublishedFile.capture(
+        successor_path, "test successor"
+    )
+    try:
+        return subject.validate_six_hit_bisector_canary_two_kalmanson_parent_novelty(
+            published_parent, published_successor
+        )
+    finally:
+        published_successor.close()
+        published_parent.close()
 
 
 def _mutate_dimacs_body_in_place_same_size(path: Path) -> None:
@@ -671,7 +703,7 @@ def test_successor_dimensions_and_exact_six_units() -> None:
 
 
 def test_six_hit_bisector_canary_two_kalmanson_suffix_and_canary_are_exact() -> None:
-    assert subject.EXPECTED_CANARY_TWO_KALMANSON_SUFFIX == (
+    assert subject.ORIGINAL_CANARY_TWO_KALMANSON_ORBIT == (
         (-307, -11, -13, -113, -104, -179, -172, -26, -30),
         (-307, -243, -255, -226, -230, -70, -77, -138, -153),
         (-308, -11, -10, -113, -104, -179, -172, -26, -27),
@@ -679,18 +711,27 @@ def test_six_hit_bisector_canary_two_kalmanson_suffix_and_canary_are_exact() -> 
         (-307, -143, -153, -160, -161, -136, -134, -280, -287),
         (-307, -31, -30, -65, -67, -268, -256, -220, -205),
         (-308, -143, -153, -211, -212, -136, -134, -280, -287),
+        (-308, -31, -27, -65, -67, -265, -256, -169, -154),
         (-307, -146, -153, -136, -134, -280, -287, -61, -59),
         (-307, -21, -30, -268, -256, -220, -205, -157, -169),
+        (-308, -149, -153, -136, -134, -280, -287, -64, -59),
+        (-308, -21, -27, -265, -256, -169, -154, -208, -220),
         (-307, -161, -157, -136, -134, -280, -287, -85, -72),
+        (-307, -67, -61, -268, -256, -220, -205, -183, -180),
         (-308, -212, -208, -136, -134, -280, -287, -85, -72),
+        (-308, -67, -64, -265, -256, -169, -154, -180, -183),
         (-307, -161, -157, -46, -38, -267, -265, -61, -59),
         (-307, -67, -61, -40, -44, -125, -123, -157, -169),
         (-308, -212, -208, -46, -38, -267, -268, -64, -59),
         (-308, -67, -64, -40, -47, -125, -123, -208, -220),
         (-307, -176, -172, -136, -125, -280, -274, -60, -59, -26, -34),
+        (-307, -80, -77, -268, -267, -220, -213, -155, -169, -138, -149),
         (-308, -176, -172, -136, -125, -280, -274, -60, -59, -26, -34),
+        (-308, -80, -77, -265, -267, -169, -162, -206, -220, -138, -146),
         (-307, -161, -157, -131, -136, -267, -265, -61, -59, -85, -72),
+        (-307, -67, -61, -261, -268, -125, -123, -157, -169, -183, -180),
         (-308, -212, -208, -131, -136, -267, -268, -64, -59, -85, -72),
+        (-308, -67, -64, -261, -265, -125, -123, -208, -220, -180, -183),
         (
             -307,
             -161,
@@ -709,6 +750,23 @@ def test_six_hit_bisector_canary_two_kalmanson_suffix_and_canary_are_exact() -> 
             -34,
         ),
         (
+            -307,
+            -67,
+            -61,
+            -261,
+            -268,
+            -44,
+            -43,
+            -125,
+            -123,
+            -220,
+            -213,
+            -155,
+            -157,
+            -138,
+            -149,
+        ),
+        (
             -308,
             -212,
             -208,
@@ -724,6 +782,23 @@ def test_six_hit_bisector_canary_two_kalmanson_suffix_and_canary_are_exact() -> 
             -64,
             -26,
             -34,
+        ),
+        (
+            -308,
+            -67,
+            -64,
+            -261,
+            -265,
+            -47,
+            -43,
+            -125,
+            -123,
+            -169,
+            -162,
+            -206,
+            -208,
+            -138,
+            -146,
         ),
     )
     assert subject.RETAINED_ORIGINAL_SUFFIX_INDICES == (
@@ -761,6 +836,10 @@ def test_six_hit_bisector_canary_two_kalmanson_suffix_and_canary_are_exact() -> 
         27,
         29,
         31,
+    )
+    assert subject.EXPECTED_CANARY_TWO_KALMANSON_SUFFIX == tuple(
+        subject.ORIGINAL_CANARY_TWO_KALMANSON_ORBIT[index]
+        for index in subject.RETAINED_ORIGINAL_SUFFIX_INDICES
     )
     assert subject.CANARY_ACTIVE_CLAUSE == (
         -307,
@@ -1003,7 +1082,7 @@ def test_prepares_all_76_cells_and_validates_sentinels(
         run["source_digests"][subject.PRODUCTION_CONFIG_RELATIVE.as_posix()]
         == production["sha256"]
     )
-    assert wave["encoding"]["num_clauses"] == 29
+    assert wave["encoding"]["num_clauses"] == 30
 
 
 def test_preparation_uses_owned_builders_and_v4_identity_everywhere(
@@ -1050,7 +1129,9 @@ def test_immediate_six_hit_parent_duplicate_suffix_clause_fails_before_children(
     paths, calls = _fixture(tmp_path, monkeypatch)
     duplicate = subject.EXPECTED_CANARY_TWO_KALMANSON_SUFFIX[0]
     original = (
-        b"p cnf 308 2\n" + (" ".join(map(str, duplicate)) + " 0\n").encode() + b"1 0\n"
+        b"p cnf 308 3\n"
+        + (" ".join(map(str, duplicate)) + " 0\n").encode()
+        + b"-183 -180 -67 0\n-149 0\n"
     )
     _set_parent_pair(paths, original)
     _initialize(tmp_path, paths)
@@ -1061,46 +1142,42 @@ def test_immediate_six_hit_parent_duplicate_suffix_clause_fails_before_children(
 
 
 @pytest.mark.parametrize(
+    "orbit_index", range(len(subject.ORIGINAL_CANARY_TWO_KALMANSON_ORBIT))
+)
+def test_each_full_orbit_clause_is_checked_for_exact_parent_duplication(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, orbit_index: int
+) -> None:
+    monkeypatch.setattr(subject, "ORIGINAL_PARENT_CLAUSES", 2)
+    monkeypatch.setattr(subject, "PARENT_CLAUSES", 23)
+    monkeypatch.setattr(subject, "CELL_CLAUSES", 29)
+    clause = subject.ORIGINAL_CANARY_TWO_KALMANSON_ORBIT[orbit_index]
+    parent = (
+        b"p cnf 308 2\n" + (" ".join(map(str, clause)) + " 0\n").encode() + b"1 0\n"
+    )
+    with pytest.raises(subject.PreparationError, match="already occurs"):
+        _validate_parent_novelty_pair(tmp_path, parent, f"exact-{orbit_index}")
+
+
+@pytest.mark.parametrize(
     "suffix_index", range(len(subject.EXPECTED_CANARY_TWO_KALMANSON_SUFFIX))
 )
-def test_each_retained_clause_is_checked_for_exact_novelty_and_subsumption(
+def test_each_retained_clause_is_checked_for_parent_subsumption(
     tmp_path: Path, monkeypatch: pytest.MonkeyPatch, suffix_index: int
 ) -> None:
     monkeypatch.setattr(subject, "ORIGINAL_PARENT_CLAUSES", 2)
     monkeypatch.setattr(subject, "PARENT_CLAUSES", 23)
+    monkeypatch.setattr(subject, "CELL_CLAUSES", 29)
     clause = subject.EXPECTED_CANARY_TWO_KALMANSON_SUFFIX[suffix_index]
-
-    def check_parent(parent: bytes, message: str, stem: str) -> None:
-        parent_path = tmp_path / f"{stem}-parent.cnf"
-        successor_path = tmp_path / f"{stem}-successor.cnf"
-        parent_path.write_bytes(parent)
-        successor_path.write_bytes(_successor(parent=parent))
-        published_parent = subject._PublishedFile.capture(parent_path, "test parent")
-        published_successor = subject._PublishedFile.capture(
-            successor_path, "test successor"
-        )
-        try:
-            with pytest.raises(subject.PreparationError, match=message):
-                subject.validate_six_hit_bisector_canary_two_kalmanson_parent_novelty(
-                    published_parent, published_successor
-                )
-        finally:
-            published_successor.close()
-            published_parent.close()
-
-    exact_parent = (
-        b"p cnf 308 2\n" + (" ".join(map(str, clause)) + " 0\n").encode() + b"1 0\n"
-    )
-    check_parent(exact_parent, "already occurs", "exact")
-    strict_subsumer = f"p cnf 308 2\n{clause[0]} 0\n1 0\n".encode()
-    check_parent(strict_subsumer, "subsumes", "subsumed")
+    parent = f"p cnf 308 2\n{clause[0]} 0\n1 0\n".encode()
+    with pytest.raises(subject.PreparationError, match="subsumes"):
+        _validate_parent_novelty_pair(tmp_path, parent, f"subsumed-{suffix_index}")
 
 
 def test_historical_parent_duplicate_literals_are_accepted_semantically(
     tmp_path: Path, monkeypatch: pytest.MonkeyPatch
 ) -> None:
     paths, _ = _fixture(tmp_path, monkeypatch)
-    original = b"p cnf 308 2\n1 1 0\n-2 3 -2 0\n"
+    original = b"p cnf 308 3\n-308 -308 -265 0\n-183 -180 -67 -67 0\n-149 -149 0\n"
     _set_parent_pair(paths, original)
     _initialize(tmp_path, paths)
     report = _prepare(tmp_path, paths)
@@ -1120,13 +1197,36 @@ def test_historical_parent_duplicate_literals_are_accepted_semantically(
     assert report["parent_novelty"]["parent_subsumed_original_suffix_indices"] == list(
         subject.PARENT_SUBSUMED_ORIGINAL_SUFFIX_INDICES
     )
+    full_counts = report["parent_novelty"]["full_orbit_parent_subsumer_count"]
+    full_witnesses = report["parent_novelty"]["full_orbit_parent_subsumer_witnesses"]
+    assert report["parent_novelty"]["full_orbit_exact_parent_multiplicity"] == [0] * 32
+    assert all(
+        full_counts[index] == 0 for index in subject.RETAINED_ORIGINAL_SUFFIX_INDICES
+    )
+    assert all(
+        full_counts[index] >= 1 and full_witnesses[index] is not None
+        for index in subject.PARENT_SUBSUMED_ORIGINAL_SUFFIX_INDICES
+    )
+
+
+def test_missing_parent_subsumer_for_omitted_clause_fails_before_children(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    paths, calls = _fixture(tmp_path, monkeypatch)
+    original = b"p cnf 308 3\n-308 -265 0\n-183 -180 -67 0\n1 0\n"
+    _set_parent_pair(paths, original)
+    _initialize(tmp_path, paths)
+    with pytest.raises(subject.PreparationError, match="lacks a parent subsumer"):
+        _prepare(tmp_path, paths)
+    assert calls == [(-1, "root"), (-1, "root")]
+    assert not (paths["output"] / "artifacts" / "cells").exists()
 
 
 def test_historical_duplicate_literals_still_trigger_set_subsumption(
     tmp_path: Path, monkeypatch: pytest.MonkeyPatch
 ) -> None:
     paths, calls = _fixture(tmp_path, monkeypatch)
-    original = b"p cnf 308 2\n-307 -307 0\n1 0\n"
+    original = b"p cnf 308 3\n-307 -307 0\n1 0\n2 0\n"
     _set_parent_pair(paths, original)
     _initialize(tmp_path, paths)
     with pytest.raises(subject.PreparationError, match="subsumes"):
@@ -1138,7 +1238,7 @@ def test_parent_strict_subsumer_fails_before_children(
     tmp_path: Path, monkeypatch: pytest.MonkeyPatch
 ) -> None:
     paths, calls = _fixture(tmp_path, monkeypatch)
-    original = b"p cnf 308 2\n-307 0\n1 0\n"
+    original = b"p cnf 308 3\n-307 0\n1 0\n2 0\n"
     _set_parent_pair(paths, original)
     _initialize(tmp_path, paths)
     with pytest.raises(subject.PreparationError, match="subsumes"):
@@ -1199,7 +1299,7 @@ def test_successor_parent_prefix_mutation_fails_before_children(
     tmp_path: Path, monkeypatch: pytest.MonkeyPatch
 ) -> None:
     paths, calls = _fixture(tmp_path, monkeypatch)
-    mutated = b"p cnf 308 2\n1 0\n-2 4 0\n"
+    mutated = b"p cnf 308 3\n-308 -264 0\n-183 -180 -67 0\n-149 0\n"
     _set_parent_pair(paths, _root(), successor_parent=mutated)
     _initialize(tmp_path, paths)
     with pytest.raises(subject.PreparationError, match="parent prefix drifted"):

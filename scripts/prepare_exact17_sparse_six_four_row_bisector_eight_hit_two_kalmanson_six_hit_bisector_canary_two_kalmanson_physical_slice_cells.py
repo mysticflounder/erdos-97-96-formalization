@@ -13,8 +13,9 @@ intentionally fail-closed until a governed root and final preparer pins are
 registered.  Before publishing any child, preparation exports the immediate
 SixHitBisector parent and proves that the 21 retained successor clauses are
 genuinely new, unsubsumed by the parent, and the exact suffix of the successor
-root.  Eleven theorem-bank clauses whose literal sets are already subsumed by
-the parent remain outside the production suffix.
+root.  The same full-parent scan authenticates the original 32-clause theorem
+orbit and requires concrete parent subsumers for all eleven clauses kept outside
+the production suffix.
 """
 
 from __future__ import annotations
@@ -133,7 +134,7 @@ SOURCE_THEOREM = (
     "sourceAssign_sparseSixPointFourRowTwoCircleBisector"
     "EightHitTwoKalmansonSixHitBisectorCanaryTwoKalmansonPhysicalSliceCell"
 )
-EXPECTED_CANARY_TWO_KALMANSON_SUFFIX: tuple[tuple[int, ...], ...] = (
+ORIGINAL_CANARY_TWO_KALMANSON_ORBIT: tuple[tuple[int, ...], ...] = (
     (-307, -11, -13, -113, -104, -179, -172, -26, -30),
     (-307, -243, -255, -226, -230, -70, -77, -138, -153),
     (-308, -11, -10, -113, -104, -179, -172, -26, -27),
@@ -141,18 +142,27 @@ EXPECTED_CANARY_TWO_KALMANSON_SUFFIX: tuple[tuple[int, ...], ...] = (
     (-307, -143, -153, -160, -161, -136, -134, -280, -287),
     (-307, -31, -30, -65, -67, -268, -256, -220, -205),
     (-308, -143, -153, -211, -212, -136, -134, -280, -287),
+    (-308, -31, -27, -65, -67, -265, -256, -169, -154),
     (-307, -146, -153, -136, -134, -280, -287, -61, -59),
     (-307, -21, -30, -268, -256, -220, -205, -157, -169),
+    (-308, -149, -153, -136, -134, -280, -287, -64, -59),
+    (-308, -21, -27, -265, -256, -169, -154, -208, -220),
     (-307, -161, -157, -136, -134, -280, -287, -85, -72),
+    (-307, -67, -61, -268, -256, -220, -205, -183, -180),
     (-308, -212, -208, -136, -134, -280, -287, -85, -72),
+    (-308, -67, -64, -265, -256, -169, -154, -180, -183),
     (-307, -161, -157, -46, -38, -267, -265, -61, -59),
     (-307, -67, -61, -40, -44, -125, -123, -157, -169),
     (-308, -212, -208, -46, -38, -267, -268, -64, -59),
     (-308, -67, -64, -40, -47, -125, -123, -208, -220),
     (-307, -176, -172, -136, -125, -280, -274, -60, -59, -26, -34),
+    (-307, -80, -77, -268, -267, -220, -213, -155, -169, -138, -149),
     (-308, -176, -172, -136, -125, -280, -274, -60, -59, -26, -34),
+    (-308, -80, -77, -265, -267, -169, -162, -206, -220, -138, -146),
     (-307, -161, -157, -131, -136, -267, -265, -61, -59, -85, -72),
+    (-307, -67, -61, -261, -268, -125, -123, -157, -169, -183, -180),
     (-308, -212, -208, -131, -136, -267, -268, -64, -59, -85, -72),
+    (-308, -67, -64, -261, -265, -125, -123, -208, -220, -180, -183),
     (
         -307,
         -161,
@@ -171,6 +181,23 @@ EXPECTED_CANARY_TWO_KALMANSON_SUFFIX: tuple[tuple[int, ...], ...] = (
         -34,
     ),
     (
+        -307,
+        -67,
+        -61,
+        -261,
+        -268,
+        -44,
+        -43,
+        -125,
+        -123,
+        -220,
+        -213,
+        -155,
+        -157,
+        -138,
+        -149,
+    ),
+    (
         -308,
         -212,
         -208,
@@ -186,6 +213,23 @@ EXPECTED_CANARY_TWO_KALMANSON_SUFFIX: tuple[tuple[int, ...], ...] = (
         -64,
         -26,
         -34,
+    ),
+    (
+        -308,
+        -67,
+        -64,
+        -261,
+        -265,
+        -47,
+        -43,
+        -125,
+        -123,
+        -169,
+        -162,
+        -206,
+        -208,
+        -138,
+        -146,
     ),
 )
 RETAINED_ORIGINAL_SUFFIX_INDICES = (
@@ -223,6 +267,10 @@ PARENT_SUBSUMED_ORIGINAL_SUFFIX_INDICES = (
     27,
     29,
     31,
+)
+EXPECTED_CANARY_TWO_KALMANSON_SUFFIX: tuple[tuple[int, ...], ...] = tuple(
+    ORIGINAL_CANARY_TWO_KALMANSON_ORBIT[index]
+    for index in RETAINED_ORIGINAL_SUFFIX_INDICES
 )
 CANARY_ACTIVE_CLAUSE = EXPECTED_CANARY_TWO_KALMANSON_SUFFIX[1]
 ORDER_SHA256 = sha256_bytes(
@@ -1042,20 +1090,71 @@ def _clause_tuple(
     return clause
 
 
+def _validate_canary_two_kalmanson_orbit_contract() -> None:
+    if len(ORIGINAL_CANARY_TWO_KALMANSON_ORBIT) != 32:
+        raise PreparationError("original two-Kalmanson orbit cardinality drifted")
+    if len(set(ORIGINAL_CANARY_TWO_KALMANSON_ORBIT)) != 32:
+        raise PreparationError("original two-Kalmanson orbit repeats a clause")
+    if any(
+        not clause or len(set(clause)) != len(clause)
+        for clause in ORIGINAL_CANARY_TWO_KALMANSON_ORBIT
+    ):
+        raise PreparationError("original two-Kalmanson orbit repeats a literal")
+    if (
+        len(RETAINED_ORIGINAL_SUFFIX_INDICES) != 21
+        or tuple(sorted(set(RETAINED_ORIGINAL_SUFFIX_INDICES)))
+        != RETAINED_ORIGINAL_SUFFIX_INDICES
+    ):
+        raise PreparationError("retained original suffix-index inventory drifted")
+    if (
+        len(PARENT_SUBSUMED_ORIGINAL_SUFFIX_INDICES) != 11
+        or tuple(sorted(set(PARENT_SUBSUMED_ORIGINAL_SUFFIX_INDICES)))
+        != PARENT_SUBSUMED_ORIGINAL_SUFFIX_INDICES
+        or set(RETAINED_ORIGINAL_SUFFIX_INDICES)
+        & set(PARENT_SUBSUMED_ORIGINAL_SUFFIX_INDICES)
+        or set(RETAINED_ORIGINAL_SUFFIX_INDICES)
+        | set(PARENT_SUBSUMED_ORIGINAL_SUFFIX_INDICES)
+        != set(range(len(ORIGINAL_CANARY_TWO_KALMANSON_ORBIT)))
+    ):
+        raise PreparationError("parent-subsumed suffix-index inventory drifted")
+    derived_suffix = tuple(
+        ORIGINAL_CANARY_TWO_KALMANSON_ORBIT[index]
+        for index in RETAINED_ORIGINAL_SUFFIX_INDICES
+    )
+    if EXPECTED_CANARY_TWO_KALMANSON_SUFFIX != derived_suffix:
+        raise PreparationError("retained successor suffix derivation drifted")
+    if PARENT_CLAUSES != ORIGINAL_PARENT_CLAUSES + len(derived_suffix):
+        raise PreparationError("successor root clause count is not parent plus suffix")
+    if CELL_CLAUSES != PARENT_CLAUSES + 6:
+        raise PreparationError("physical cell clause count is not root plus six units")
+    if CANARY_ACTIVE_CLAUSE not in derived_suffix:
+        raise PreparationError("canary active clause is outside the suffix inventory")
+
+
 def validate_six_hit_bisector_canary_two_kalmanson_parent_novelty(
     original_parent: _PublishedFile,
     successor_root: _PublishedFile,
 ) -> dict[str, Any]:
     """Prove exact suffix identity and parent novelty before child publication."""
+    _validate_canary_two_kalmanson_orbit_contract()
     original_before = original_parent.verify("immediate SixHitBisector parent")
     successor_before = successor_root.verify(
         "six-hit-bisector-canary-two-kalmanson successor root"
     )
     original_fd = os.dup(original_parent.descriptor)
     successor_fd = os.dup(successor_root.descriptor)
-    exact_parent_multiplicity = [0] * len(EXPECTED_CANARY_TWO_KALMANSON_SUFFIX)
-    parent_subsumer_count = [0] * len(EXPECTED_CANARY_TWO_KALMANSON_SUFFIX)
+    full_exact_parent_multiplicity = [0] * len(ORIGINAL_CANARY_TWO_KALMANSON_ORBIT)
+    full_parent_subsumer_count = [0] * len(ORIGINAL_CANARY_TWO_KALMANSON_ORBIT)
+    full_parent_subsumer_witnesses: list[dict[str, Any] | None] = [None] * len(
+        ORIGINAL_CANARY_TWO_KALMANSON_ORBIT
+    )
     successor_multiplicity = [0] * len(EXPECTED_CANARY_TWO_KALMANSON_SUFFIX)
+    retained_position = {
+        original_index: retained_index
+        for retained_index, original_index in enumerate(
+            RETAINED_ORIGINAL_SUFFIX_INDICES
+        )
+    }
     try:
         os.lseek(original_fd, 0, os.SEEK_SET)
         os.lseek(successor_fd, 0, os.SEEK_SET)
@@ -1081,8 +1180,8 @@ def validate_six_hit_bisector_canary_two_kalmanson_parent_novelty(
                 raise PreparationError(
                     "six-hit-bisector-canary-two-kalmanson successor dimensions drifted"
                 )
-            suffix_sets = tuple(
-                set(clause) for clause in EXPECTED_CANARY_TWO_KALMANSON_SUFFIX
+            orbit_sets = tuple(
+                set(clause) for clause in ORIGINAL_CANARY_TWO_KALMANSON_ORBIT
             )
             for index in range(ORIGINAL_PARENT_CLAUSES):
                 parent_line = parent_handle.readline()
@@ -1100,14 +1199,20 @@ def validate_six_hit_bisector_canary_two_kalmanson_parent_novelty(
                     require_unique_literals=False,
                 )
                 clause_set = set(clause)
-                for suffix_index, suffix in enumerate(
-                    EXPECTED_CANARY_TWO_KALMANSON_SUFFIX
+                for orbit_index, orbit_clause in enumerate(
+                    ORIGINAL_CANARY_TWO_KALMANSON_ORBIT
                 ):
-                    if clause == suffix:
-                        exact_parent_multiplicity[suffix_index] += 1
-                        successor_multiplicity[suffix_index] += 1
-                    if clause_set <= suffix_sets[suffix_index]:
-                        parent_subsumer_count[suffix_index] += 1
+                    if clause == orbit_clause:
+                        full_exact_parent_multiplicity[orbit_index] += 1
+                        if orbit_index in retained_position:
+                            successor_multiplicity[retained_position[orbit_index]] += 1
+                    if clause_set <= orbit_sets[orbit_index]:
+                        full_parent_subsumer_count[orbit_index] += 1
+                        if full_parent_subsumer_witnesses[orbit_index] is None:
+                            full_parent_subsumer_witnesses[orbit_index] = {
+                                "parent_clause_index": index,
+                                "clause": list(clause),
+                            }
             if parent_handle.readline():
                 raise PreparationError(
                     "immediate SixHitBisector parent has trailing clauses"
@@ -1157,13 +1262,24 @@ def validate_six_hit_bisector_canary_two_kalmanson_parent_novelty(
         raise PreparationError(
             "six-hit-bisector-canary-two-kalmanson successor changed during novelty scan"
         )
-    if any(exact_parent_multiplicity):
+    if any(full_exact_parent_multiplicity):
         raise PreparationError(
-            "a six-hit-bisector-canary-two-kalmanson suffix clause already occurs in the parent"
+            "an original two-Kalmanson orbit clause already occurs in the parent"
         )
-    if any(parent_subsumer_count):
+    retained_parent_subsumer_count = [
+        full_parent_subsumer_count[index] for index in RETAINED_ORIGINAL_SUFFIX_INDICES
+    ]
+    if any(retained_parent_subsumer_count):
         raise PreparationError(
-            "a parent clause subsumes a six-hit-bisector-canary-two-kalmanson suffix clause"
+            "a parent clause subsumes a retained six-hit-bisector-canary-two-kalmanson suffix clause"
+        )
+    if any(
+        full_parent_subsumer_count[index] < 1
+        or full_parent_subsumer_witnesses[index] is None
+        for index in PARENT_SUBSUMED_ORIGINAL_SUFFIX_INDICES
+    ):
+        raise PreparationError(
+            "an omitted two-Kalmanson orbit clause lacks a parent subsumer"
         )
     if successor_multiplicity != [1] * len(EXPECTED_CANARY_TWO_KALMANSON_SUFFIX):
         raise PreparationError(
@@ -1175,14 +1291,18 @@ def validate_six_hit_bisector_canary_two_kalmanson_parent_novelty(
         "schema": "p97-exact17-six-hit-bisector-canary-two-kalmanson-parent-novelty/v1",
         "policy": {
             "parent_scan": "stream-all-original-parent-clauses",
-            "exact_novelty": "ordered-literal-tuple multiplicity must be zero",
-            "subsumption": "parent literal-set subset of suffix literal-set is forbidden",
+            "exact_novelty": "ordered-literal-tuple multiplicity must be zero across the full 32-clause orbit",
+            "subsumption": "parent literal-set subset is forbidden for retained clauses and required for omitted clauses",
             "successor_shape": "byte-exact parent body prefix plus exact ordered suffix",
             "child_multiplicity": "each exact suffix tuple occurs once in full successor",
             "theorem_bank_filter": "retain only original-bank clauses that are parent-unsubsumed",
             "canary_witness": "order-zero-reverse clause must occur in suffix",
         },
         "original_parent_clause_count_scanned": ORIGINAL_PARENT_CLAUSES,
+        "original_orbit_clause_count": len(ORIGINAL_CANARY_TWO_KALMANSON_ORBIT),
+        "original_orbit_clauses": [
+            list(clause) for clause in ORIGINAL_CANARY_TWO_KALMANSON_ORBIT
+        ],
         "suffix_clause_count": len(EXPECTED_CANARY_TWO_KALMANSON_SUFFIX),
         "suffix_clauses": [
             list(clause) for clause in EXPECTED_CANARY_TWO_KALMANSON_SUFFIX
@@ -1191,8 +1311,14 @@ def validate_six_hit_bisector_canary_two_kalmanson_parent_novelty(
         "parent_subsumed_original_suffix_indices": list(
             PARENT_SUBSUMED_ORIGINAL_SUFFIX_INDICES
         ),
-        "exact_parent_multiplicity": exact_parent_multiplicity,
-        "parent_subsumer_count": parent_subsumer_count,
+        "full_orbit_exact_parent_multiplicity": full_exact_parent_multiplicity,
+        "full_orbit_parent_subsumer_count": full_parent_subsumer_count,
+        "full_orbit_parent_subsumer_witnesses": full_parent_subsumer_witnesses,
+        "exact_parent_multiplicity": [
+            full_exact_parent_multiplicity[index]
+            for index in RETAINED_ORIGINAL_SUFFIX_INDICES
+        ],
+        "parent_subsumer_count": retained_parent_subsumer_count,
         "successor_multiplicity": successor_multiplicity,
         "parent_body_exact_prefix": True,
         "suffix_exact_order": True,
@@ -1708,44 +1834,7 @@ def _require_production_configuration(
 ) -> None:
     if not PRODUCTION_PINS_FINALIZED:
         raise PreparationError("production pins are provisional")
-    if len(EXPECTED_CANARY_TWO_KALMANSON_SUFFIX) != 21:
-        raise PreparationError(
-            "six-hit-bisector-canary-two-kalmanson suffix cardinality drifted"
-        )
-    if (
-        len(RETAINED_ORIGINAL_SUFFIX_INDICES)
-        != len(EXPECTED_CANARY_TWO_KALMANSON_SUFFIX)
-        or tuple(sorted(set(RETAINED_ORIGINAL_SUFFIX_INDICES)))
-        != RETAINED_ORIGINAL_SUFFIX_INDICES
-        or RETAINED_ORIGINAL_SUFFIX_INDICES[0] < 0
-        or RETAINED_ORIGINAL_SUFFIX_INDICES[-1] >= 32
-    ):
-        raise PreparationError("retained original suffix-index inventory drifted")
-    if (
-        tuple(sorted(set(PARENT_SUBSUMED_ORIGINAL_SUFFIX_INDICES)))
-        != PARENT_SUBSUMED_ORIGINAL_SUFFIX_INDICES
-        or set(RETAINED_ORIGINAL_SUFFIX_INDICES)
-        & set(PARENT_SUBSUMED_ORIGINAL_SUFFIX_INDICES)
-        or set(RETAINED_ORIGINAL_SUFFIX_INDICES)
-        | set(PARENT_SUBSUMED_ORIGINAL_SUFFIX_INDICES)
-        != set(range(32))
-    ):
-        raise PreparationError("parent-subsumed suffix-index inventory drifted")
-    if any(
-        not clause or len(set(clause)) != len(clause)
-        for clause in EXPECTED_CANARY_TWO_KALMANSON_SUFFIX
-    ):
-        raise PreparationError(
-            "six-hit-bisector-canary-two-kalmanson suffix repeats a literal"
-        )
-    if PARENT_CLAUSES != ORIGINAL_PARENT_CLAUSES + len(
-        EXPECTED_CANARY_TWO_KALMANSON_SUFFIX
-    ):
-        raise PreparationError("successor root clause count is not parent plus suffix")
-    if CELL_CLAUSES != PARENT_CLAUSES + 6:
-        raise PreparationError("physical cell clause count is not root plus six units")
-    if CANARY_ACTIVE_CLAUSE not in EXPECTED_CANARY_TWO_KALMANSON_SUFFIX:
-        raise PreparationError("canary active clause is outside the suffix inventory")
+    _validate_canary_two_kalmanson_orbit_contract()
     if not _is_full_sha1(PINNED_SOURCE_COMMIT):
         raise PreparationError("production source commit pin is provisional")
     if source_commit is not None and source_commit != PINNED_SOURCE_COMMIT:
