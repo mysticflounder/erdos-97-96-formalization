@@ -81,6 +81,15 @@ Movement is confined to the deck-mobile blocks:
 
 No anchor row has moved in either transition.  EMPIRICAL: three models.
 
+**Scope correction (2026-08-20, later the same day).**  Observation 1
+below is a statement about the three per-wave canary survivors, and it
+remains true as stated.  It is NOT a statement about the formula's model
+space: projected enumeration of the v26 formula
+(`docs/exact12-v26-projected-model-space-2026-08-20.md`) found 0 of 300
+sampled models carrying the full frozen star.  Only the center-1 row
+supp(1) = {0, 3, 6, 8} is universal in the sample, and that row is
+theorem-pinned.  The star is solver-path stability, not forced structure.
+
 ## Observation 2 — what the 22nd bank actually changed
 
 The 22nd (core-pair) bank did real structural work.  Comparing the v25
