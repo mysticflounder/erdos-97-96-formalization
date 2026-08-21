@@ -4,8 +4,9 @@
 
 This is the fresh identity surface for the hardened portfolio driver.  It
 retains canary-then-rest ordering, fresh-only PIQD submission, descriptor and
-nofollow custody, one core per cell, and full UNSAT replay.  The imported
-preparation lane is provisional until the production campaign is materialized.
+nofollow custody, one core per cell, and full UNSAT replay.  The v5 production
+campaign is finalized and authenticated; the portfolio runtime root remains
+uninitialized until an explicit launch command is used.
 """
 
 from __future__ import annotations

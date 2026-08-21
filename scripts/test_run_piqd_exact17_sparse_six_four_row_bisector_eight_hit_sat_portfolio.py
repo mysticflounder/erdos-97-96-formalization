@@ -31,7 +31,7 @@ def test_driver_keeps_six_cell_sat_policy() -> None:
 def test_static_check_is_blocked_before_runtime_root_creation(tmp_path) -> None:
     with pytest.raises(
         (subject.PortfolioRunnerError, preparation.PreparationError),
-        match="provisional|missing|campaign|run root",
+        match="missing|campaign|run root",
     ):
         subject.static_check(root=preparation.ROOT, run_root=tmp_path / "missing")
     assert not (tmp_path / "missing").exists()

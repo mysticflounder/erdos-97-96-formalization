@@ -1,5 +1,5 @@
 # Copyright (c) 2026 Adam McKenna. All rights reserved.
-"""Focused contract tests for the provisional true-EightHit preparation lane."""
+"""Focused contract tests for the authenticated v5 true-EightHit lane."""
 
 from __future__ import annotations
 
@@ -10,15 +10,23 @@ import prepare_exact17_sparse_six_four_row_bisector_eight_hit_sat_portfolio as s
 import pytest
 
 
-def test_production_pins_are_provisional_and_fail_closed() -> None:
-    assert subject.PRODUCTION_PINS_FINALIZED is False
-    assert subject.SOURCE_CAMPAIGN_SHA256 == ""
-    assert subject.SOURCE_RUN_MANIFEST_SHA256 == ""
-    assert subject.SOURCE_PREPARER_COMMIT == ""
-    assert subject.CHECKPOINT_SHA256 == ""
-    assert subject.PRODUCTION_CELL_IDENTITIES == {}
-    with pytest.raises(subject.PreparationError, match="provisional"):
-        subject.require_production_pins_finalized(subject.ROOT)
+def test_production_pins_are_finalized() -> None:
+    assert subject.PRODUCTION_PINS_FINALIZED is True
+    assert (
+        subject.SOURCE_CAMPAIGN_SHA256
+        == "0f12101f828c919c4cebe8cf7467a3e138b14f37c4ae3cfb8989018c3c40e368"
+    )
+    assert (
+        subject.SOURCE_RUN_MANIFEST_SHA256
+        == "b2b386f92e1ea35c896dbfd50a8b888b39d42480b92c697c5c1cd214e0d38b2f"
+    )
+    assert subject.SOURCE_PREPARER_COMMIT == "b2fd08db695253931b3e85a8d71d16858df36d1f"
+    assert (
+        subject.CHECKPOINT_SHA256
+        == "a7f669806491e2cb3e3bc8b02e26522ea563418ee748d1902893a4caafdbb37b"
+    )
+    assert tuple(subject.SOURCE_CELL_IDENTITIES) == subject.CELL_CATEGORIES
+    subject.require_production_pins_finalized(subject.ROOT)
 
 
 def test_exact_six_cell_sat_profile_contract() -> None:
@@ -58,11 +66,8 @@ def test_checkpoint_manifest_has_authenticated_shape() -> None:
     assert checkpoint["owned_paths"] == list(subject.PACKAGE_SOURCE_PATHS)
 
 
-def test_prepare_does_not_materialize_unavailable_campaign() -> None:
-    output = (
-        subject.ROOT
-        / "scratch/runs/exact17-eight-hit-sat-portfolio-20260821/test-unavailable"
-    )
-    with pytest.raises(subject.PreparationError, match="provisional"):
-        subject.prepare_portfolio(root=subject.ROOT, output_root=output)
+def test_prepare_rejects_repository_escape_before_authentication(tmp_path) -> None:
+    output = tmp_path / "portfolio"
+    with pytest.raises(subject.PreparationError, match="escapes repository"):
+        subject.prepare_portfolio(root=tmp_path, output_root=output)
     assert not output.exists()
