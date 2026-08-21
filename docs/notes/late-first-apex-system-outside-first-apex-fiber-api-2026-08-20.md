@@ -1,7 +1,7 @@
 # `lateFirstApexSystem` and `outsideFirstApexFiber` — definitions and API
 
-Source-read reference, anchored at commit `bc4c04db398979c57edaf4af9c60e1eae984f436`
-(2026-08-20).  Line numbers and signatures are read from source at that commit
+Source-read reference, anchored at commit `0cec41a978063497b92751ad5d932f4cf99b7baa`
+(2026-08-20).  Anchors re-verified at that commit.  Line numbers and signatures are read from source at that commit
 and were re-verified against it; they are **not** kernel-confirmed by a fresh
 elaboration in the session that produced this note.  Re-check before relying on
 an anchor.
@@ -165,3 +165,93 @@ the production paths above, not these:
 
 The multicenter copy is the one most likely to mislead: same name, weaker
 cardinality bound.
+
+
+---
+
+## Addendum — what places a point in the first-apex class
+
+Added 2026-08-20 after a follow-up question.  Anchors re-verified at
+`0cec41a9`.
+
+### The membership is structure data, not a lemma
+
+`SelectedClass A s d` is `A.filter (fun q => dist s q = d)`
+(`P97/WitnessPacketInterface.lean:59`).  First-apex-class membership for the
+retained frontier pair is carried **as a field of `CriticalPairFrontier`**
+(`P97/ATail/CriticalPairFrontier.lean:568`, via its `pair` field), in unfolded
+form:
+
+```lean
+q_mem_marginal : q ∈ (D.A.filter fun x => dist x S.oppApex1 = r) \ S.surplusCap
+w_mem_marginal : w ∈ (D.A.filter fun x => dist x S.oppApex1 = r) \ S.surplusCap
+```
+
+That is first-apex-class membership modulo two things: the `dist` arguments are
+flipped relative to `SelectedClass` (hence `dist_comm` in every proof below),
+and the surplus cap is removed.
+
+Two further distinguished points get the same treatment as **fields of
+`OriginalUniqueFourResidual`**
+(`…/UniqueArmRouteAudit/OriginalUniqueResidualDispatch.lean:43`, fields at
+lines 59 and 62):
+
+```lean
+interior_q_mem : interior_q ∈ SelectedClass D.A S.oppApex1 radius ∩
+  S.capInteriorByIndex S.oppIndex1
+interior_w_mem : interior_w ∈ SelectedClass D.A S.oppApex1 radius ∩
+  S.capInteriorByIndex S.oppIndex1
+```
+
+plus the universal `every_class_member_blocks : ∀ x : ℝ², x ∈ SelectedClass
+D.A S.oppApex1 radius → …` (line 54).  The same shape recurs in
+`FirstApexUniqueRadiusExactFourResidual`
+(`P97/ATail/FirstApexUniqueRadiusResidual.lean:121`) and in the private
+`SurvivingPair` (`P97/ATail/FirstApexExactFiveInteriorFrontier.lean:96`).
+
+**Practical consequence:** reach `q`/`w` membership by field projection from the
+frontier, and `interior_q`/`interior_w` membership by field projection from the
+residual.  No lemma is required for either.
+
+### Five duplicate lemma copies, one public
+
+Every copy below has the identical statement `F.pair.q ∈ SelectedClass D.A
+S.oppApex1 radius` (and the `w` twin) and the identical three-line proof —
+unfold `q_mem_marginal` as a `Finset.mem_sdiff`, take the filter component,
+close with `mem_selectedClass.mpr` under `dist_comm`.  They are thin
+re-exports of the frontier field, not independent content.
+
+| Declaration | Location | Visibility |
+|---|---|---|
+| `frontier_pair_q/w_mem_firstApexClass` | `…/Unique4LateChoiceTerminal/UniqueFourLateChoiceTerminal.lean:135,144` | **public** |
+| `q/w_mem_firstApex_class` | `…/UniqueArmRouteAudit/UniqueArmDeletionNormalForm.lean:42,51` | private |
+| `q/w_mem_firstApex_class` | `P97/ATail/FirstApexUniqueRadiusResidual.lean:42,51` | private |
+| `frontier_pair_q/w_mem_firstClass` | `P97/ATail/BiApexRobustCapBounds.lean:77,86` | private |
+| `pair_q/w_mem_firstClass` | `P97/ATail/PhysicalSecondApexSwap.lean:136,145` | private |
+
+Depend on the public pair.  The other four are local re-derivations and are a
+dedup candidate.
+
+### The apexes
+
+`S.oppApex1` is the **center** of the class, not a member.  Membership would
+need `dist oppApex1 oppApex1 = radius`, i.e. `radius = 0`, against
+`frontier_radius_pos F : 0 < radius`
+(`…/UniqueArmRouteAudit/UniqueArmDeletionNormalForm.lean:35`, projecting
+`CriticalPairFrontier.radius_pos`).  Rigor label: this is a sound informal
+derivation from source-read definitions plus `dist_self`.  It is **not** a
+declaration in this repository and was not elaborated — do not cite it as
+PROVEN.
+
+For `S.oppApex2`: a multiline search over `lean/` and `scratch/` for a
+membership assertion into `SelectedClass … S.oppApex1 …` found none naming
+`oppApex2`, in either direction.  Rigor label: EMPIRICAL search result over
+those two trees with that pattern, not a proof of absence.  It would miss
+membership routed through a `let`-bound or otherwise abbreviated class.  A
+plain literal grep is **not** sufficient here — statements wrap across lines in
+this codebase, and a single-line pattern demonstrably misses real hits.
+
+Only carrier membership exists for apexes (`S.oppApexᵢ ∈ D.A`), re-proved
+privately in roughly thirty files as `firstApex_mem_A` / `oppApex1_mem_A` /
+`oppApex2_mem_A` and prefixed variants.  All are `private`; each consumer
+re-derives by `interval_cases` on `S.surplusIdx`.
