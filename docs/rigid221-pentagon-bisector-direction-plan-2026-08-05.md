@@ -1166,13 +1166,16 @@ exact-17 closure. Independent replay checked its exact CNF
 `227005eefeec723b2b0a04d4f8d75341a64ed3e2f5060c1ee1deef91f9763817` with 308
 variables and 7,409,263 clauses, with zero failures.
 
-The mandatory wave-only theorem mine found no new general theorem. It did
-find 20 new paired source-valid finite occurrences of the existing generic
-two-Kalmanson cancellation theorem. The smallest occurrence has forward
-support `{(5,6),(5,7),(11,6),(11,7)}` and its reflected reverse. The next
-required step is to promote this four-clause orbit before running the remaining
-five SAT-profile cells; this refines the finite search only and does not change
-the current closure target.
+The mandatory wave-only theorem mine found no new general theorem. Its first
+report claimed 20 paired occurrences, including a size-four occurrence. That
+interpretation was wrong: predecessor job
+`48275627-f0f5-4f13-b50d-f0ca53a6b4ad` and successor `96551f95` both select
+`NamedOrder = 0` (`var307 = true`, `var308 = false`), while the predecessor
+miner hardcoded `NamedOrder = 1`. The reported size-four occurrence was already
+present once in the predecessor CNF; the successor duplicated each of its four
+clauses. The Lean commits `7c2f271c` and `722f56df` are valid, but this finite
+CEGAR step was a no-op. The SAT outcomes and encoding remain valid; only the
+mine's progress interpretation was wrong.
 
 ## 2026-08-20/21 exact-17 two-Kalmanson promotion checkpoint
 
@@ -1206,3 +1209,28 @@ and pre/post input identity checks. The adversarial re-audit passed, and a
 fresh governed skeleton records the repaired preparer digest. Production
 export may now proceed; solver submission remains gated on the authenticated
 76-cell preparation result.
+
+## 2026-08-21 correction: selector-driven theorem mine
+
+The canary/successor comparison exposed a mine bug, not a SAT or encoding bug.
+Both predecessor job `48275627-f0f5-4f13-b50d-f0ca53a6b4ad` and successor
+`96551f95` select `NamedOrder = 0` (`var307 = true`, `var308 = false`), but the
+predecessor miner assumed `NamedOrder = 1`. The promoted size-four occurrence
+was already present once in the predecessor CNF; the successor merely
+duplicated each of its four clauses. Commits `7c2f271c` and `722f56df` remain
+valid Lean landings, but this finite CEGAR step was a no-op. Existing SAT
+results and the encoding remain valid; only the mine interpretation and
+progress claim were wrong.
+
+The corrected selector-driven actual-CNF scan finds 11 paired, source-valid
+model-cutting occurrences of the existing generic two-Kalmanson theorem:
+sizes 8 (six occurrences), 10 (two), 12 (two), and 14 (one). The smallest
+support is
+`{(0,1),(0,3),(3,9),(3,16),(8,3),(8,16),(16,1),(16,9)}` with active clause
+`[-307,-254,-245,-203,-202,-49,-46,-12,-7]`. True eight-hit promotion is in
+progress from the original four-row root.
+
+The mine now requires three guards before promotion: decode the selected
+order; scan the actual CNF for exact, subsuming, and multiplicity changes; and
+falsify the active selector before accepting a pattern. A finite occurrence
+that does not cut the selected model and change the formula is not progress.

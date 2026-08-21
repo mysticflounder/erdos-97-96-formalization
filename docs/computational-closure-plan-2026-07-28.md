@@ -14877,15 +14877,16 @@ and not an exact-17 closure. Its exact 308-variable, 7,409,263-clause CNF
 (`227005eefeec723b2b0a04d4f8d75341a64ed3e2f5060c1ee1deef91f9763817`) was
 independently replayed with zero unsatisfied clauses.
 
-The mandatory mine found no new general theorem. It found 20 new paired,
-source-valid finite occurrences of the existing generic two-Kalmanson
-cancellation theorem. The smallest source-valid occurrence has forward
-support `{(5,6),(5,7),(11,6),(11,7)}` together with its reflected reverse;
-it is a size-four paired occurrence and is sufficient to reject the current
-canary model. The required next action is to promote this four-clause orbit,
-then regenerate and run the remaining five SAT-profile cells. The current
-route and goal remain unchanged: only checked certificates covering every
-source-total cell can feed the Lean coverage consumer.
+The mandatory mine found no new general theorem. Its first report claimed 20
+paired occurrences, including a size-four occurrence. That interpretation was
+incorrect: the predecessor canary and its successor both select
+`NamedOrder = 0` (`var307 = true`, `var308 = false`), while the predecessor
+miner had hardcoded `NamedOrder = 1`. The reported size-four occurrence was
+already present once in the predecessor CNF; the successor merely duplicated
+each of its four clauses. Commits `7c2f271c` and `722f56df` are valid Lean
+landings, but this particular finite CEGAR step was a no-op. The SAT result,
+CNF encoding, and independent replay remain valid; only the mine's progress
+interpretation was wrong.
 
 ## 2026-08-20/21 exact-17 two-Kalmanson promotion checkpoint
 
@@ -14909,10 +14910,10 @@ clauses, with checked DIMACS forms `[-307,-166,-161,-64,-59]`,
 
 The promoted cumulative root has 7,409,261 clauses, and each of the 76
 source-total physical cells has 7,409,267 clauses. Independent audit passed,
-and the governed certificate-ingress build passed. This is a refinement and
-does not close exact-17: the first 22 UNSAT-profile cells remain authenticated
-`SOLVER_UNKNOWN`, and the SAT canary is finite Boolean evidence rather than a
-Euclidean counterexample.
+and the governed certificate-ingress build passed. The promotion did not
+remove a new canary model: the first 22 UNSAT-profile cells remain
+authenticated `SOLVER_UNKNOWN`, and the SAT canary is finite Boolean evidence
+rather than a Euclidean counterexample.
 
 The preparer audit initially found pathname and TOCTOU custody gaps inherited
 from its predecessor. Commit `83f958d0` replaces those paths with retained
@@ -14921,3 +14922,29 @@ publication, and pre/post input identity checks. The adversarial re-audit
 passed, and a fresh governed skeleton records the repaired preparer digest.
 Production export may now proceed; solver submission remains gated on the
 authenticated 76-cell preparation result.
+
+## 2026-08-21 correction: selector-driven theorem mine
+
+The canary/successor comparison exposed a mine bug, not a SAT or encoding bug.
+PIQD job `48275627-f0f5-4f13-b50d-f0ca53a6b4ad` and successor job
+`96551f95` both select `NamedOrder = 0` (`var307 = true`, `var308 = false`),
+while the predecessor miner assumed `NamedOrder = 1`. The promoted size-four
+occurrence therefore occurred once in the predecessor CNF and was copied, not
+newly learned, by the successor's four added clauses. The Lean commits
+`7c2f271c` and `722f56df` remain source-valid and build-valid; they do not
+represent finite CEGAR progress. Existing SAT outcomes and the CNF encoding
+remain trusted after this correction.
+
+A corrected selector-driven scan of the actual CNF finds 11 paired,
+source-valid model-cutting occurrences of the already banked generic
+two-Kalmanson theorem: six of size 8, two of size 10, two of size 12, and one
+of size 14. The smallest corrected support is
+`{(0,1),(0,3),(3,9),(3,16),(8,3),(8,16),(16,1),(16,9)}` with active clause
+`[-307,-254,-245,-203,-202,-49,-46,-12,-7]`. The genuine eight-hit
+promotion is in progress from the original four-row root.
+
+All future mines must decode the selected order from the model, scan the
+actual CNF for exact, subsuming, and multiplicity changes, and falsify the
+active selector before promoting a pattern. A finite occurrence is not
+promotion evidence unless it cuts the selected model and is absent from the
+predecessor formula.
