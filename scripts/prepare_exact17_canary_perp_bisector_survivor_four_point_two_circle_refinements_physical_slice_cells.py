@@ -139,8 +139,18 @@ EXPECTED_CANARY_PERP_BISECTOR_SURVIVOR_FOUR_POINT_TWO_CIRCLE_REFINEMENT_SUFFIX =
 EXPECTED_CANARY_PERP_BISECTOR_SURVIVOR_FOUR_POINT_TWO_CIRCLE_REFINEMENT_SUFFIX_SHA256 = (
     "caf48e2327d8af044748bb1e3d549d4561474238061bda08262b50cae4dd7c24"
 )
-# Candidate A is already contained in the V2 root; candidate B contributes exactly four strict-new clauses.
-EXPECTED_STRICT_NEW_SUFFIX_INDICES = (0, 1, 2, 3)
+# Candidate A occurs exactly in the V2 suffix.  Candidate B is exact-disjoint,
+# but each of its four clauses has one pinned strict parent subsumer.  The
+# physical-slice units, rather than these four redundant clauses, are the new
+# production split at this layer.
+EXPECTED_PARENT_SUBSUMER_COUNTS = (1, 1, 1, 1)
+EXPECTED_PARENT_SUBSUMER_CLAUSES = (
+    (-307, -7, -2, -103, -108, -176, -172, -18, -24),
+    (-307, -252, -247, -236, -233, -80, -77, -151, -150),
+    (-308, -7, -2, -103, -108, -176, -172, -18, -24),
+    (-308, -252, -247, -236, -233, -80, -77, -151, -150),
+)
+EXPECTED_STRICT_NEW_SUFFIX_INDICES: tuple[int, ...] = ()
 ORDER_SHA256 = sha256_bytes(
     b"exact17-canary-perp-bisector-survivor-four-point-two-circle-refinements-physical-slice-order-v1"
 )
@@ -1143,6 +1153,18 @@ def validate_canary_perp_bisector_survivor_four_point_two_circle_refinement_pare
         raise PreparationError(
             "a survivor FourPointTwoCircle refinement clause already occurs in the parent"
         )
+    if tuple(parent_subsumer_count) != EXPECTED_PARENT_SUBSUMER_COUNTS:
+        raise PreparationError(
+            "survivor FourPointTwoCircle parent-subsumer profile drifted"
+        )
+    observed_parent_subsumers = tuple(
+        tuple(witness["clause"]) if witness is not None else ()
+        for witness in parent_subsumer_witness
+    )
+    if observed_parent_subsumers != EXPECTED_PARENT_SUBSUMER_CLAUSES:
+        raise PreparationError(
+            "survivor FourPointTwoCircle parent-subsumer witnesses drifted"
+        )
     strict_new_suffix_indices = [
         index for index, count in enumerate(parent_subsumer_count) if count == 0
     ]
@@ -1151,10 +1173,6 @@ def validate_canary_perp_bisector_survivor_four_point_two_circle_refinement_pare
             "survivor FourPointTwoCircle strict-new suffix profile drifted"
         )
     strict_new_per_occurrence = [len(EXPECTED_STRICT_NEW_SUFFIX_INDICES)]
-    if strict_new_per_occurrence != [4]:
-        raise PreparationError(
-            "a FourPointTwoCircle occurrence contributes no strict-new orbit clause"
-        )
     if successor_multiplicity != [1] * len(suffix):
         raise PreparationError(
             "survivor FourPointTwoCircle refinement suffix multiplicity is not exactly one"
@@ -1165,8 +1183,8 @@ def validate_canary_perp_bisector_survivor_four_point_two_circle_refinement_pare
             "parent_scan": "stream-all-immediate-parent-clauses",
             "exact_novelty": "ordered-literal-tuple multiplicity must be zero in the full parent",
             "subsumption": (
-                "all four successor slots are pinned strict-new; the other "
-                "full-orbit clauses may be parent-subsumed"
+                "all four exact-disjoint successor slots have one pinned "
+                "strict parent subsumer; physical-slice units are the new split"
             ),
             "successor_shape": "byte-exact parent body prefix plus exact ordered four-clause suffix",
             "child_multiplicity": "each exact suffix tuple occurs once in the full successor",

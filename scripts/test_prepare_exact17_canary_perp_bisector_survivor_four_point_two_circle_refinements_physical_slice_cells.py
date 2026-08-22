@@ -75,7 +75,7 @@ _UNRELATED_PARENT_CLAUSES = (
     (-307, -277, -200),
     (-308, -277, -183),
     (-308, -277, -221),
-    # Actual short parent clauses are unrelated to the four strict-new slots.
+    # Other short parent clauses are unrelated to the four successor slots.
     (-155, -172),
     (-162,),
     (-177,),
@@ -84,6 +84,7 @@ _UNRELATED_PARENT_CLAUSES = (
     (-165,),
     (-194,),
     (-154,),
+    *subject.EXPECTED_PARENT_SUBSUMER_CLAUSES,
 )
 
 
@@ -121,10 +122,15 @@ def _successor(
 def _assert_expected_strict_new_profile(novelty: dict[str, Any]) -> None:
     counts = novelty["parent_subsumer_count"]
     strict = tuple(index for index, count in enumerate(counts) if count == 0)
+    assert tuple(counts) == subject.EXPECTED_PARENT_SUBSUMER_COUNTS
+    assert tuple(
+        tuple(witness["clause"])
+        for witness in novelty["parent_subsumer_witness"]
+    ) == subject.EXPECTED_PARENT_SUBSUMER_CLAUSES
     assert strict == subject.EXPECTED_STRICT_NEW_SUFFIX_INDICES
     assert novelty["strict_new_suffix_indices"] == list(strict)
-    assert novelty["strict_new_suffix_count"] == 4
-    assert novelty["strict_new_per_occurrence"] == [4]
+    assert novelty["strict_new_suffix_count"] == 0
+    assert novelty["strict_new_per_occurrence"] == [0]
 
 
 def _fixture(
@@ -945,7 +951,7 @@ def test_prepares_all_76_cells_and_validates_sentinels(
     assert producer["source_manifest"]["source_theorem"] == subject.SOURCE_THEOREM
     assert producer["parent_novelty"] == campaign["source"]["parent_novelty"]
     assert producer["parent_novelty"]["policy"]["subsumption"].startswith(
-        "all four successor slots are pinned strict-new"
+        "all four exact-disjoint successor slots have one pinned"
     )
     dependencies = producer["delegated_dependencies"]
     assert dependencies == campaign["source"]["delegated_dependencies"]
@@ -1075,10 +1081,8 @@ def test_exact_parent_duplicate_of_canary_clause_fails_before_children(
     assert calls == [(-1, "root"), (-1, "root")]
 
 
-@pytest.mark.parametrize(
-    "suffix_index", subject.EXPECTED_STRICT_NEW_SUFFIX_INDICES
-)
-def test_strict_parent_subsumer_of_canary_clause_fails_before_children(
+@pytest.mark.parametrize("suffix_index", range(4))
+def test_additional_parent_subsumer_of_canary_clause_fails_before_children(
     tmp_path: Path, monkeypatch: pytest.MonkeyPatch, suffix_index: int
 ) -> None:
     paths, calls = _fixture(tmp_path, monkeypatch)
@@ -1091,7 +1095,7 @@ def test_strict_parent_subsumer_of_canary_clause_fails_before_children(
     subsumed = _root().replace(b"-307 -264 -263 -179 0\n", subsumer, 1)
     _set_parent_pair(paths, subsumed)
     _initialize(tmp_path, paths)
-    with pytest.raises(subject.PreparationError, match="strict-new suffix profile"):
+    with pytest.raises(subject.PreparationError, match="parent-subsumer profile"):
         _prepare(tmp_path, paths)
     assert calls == [(-1, "root"), (-1, "root")]
 
@@ -1103,7 +1107,7 @@ def test_parent_subsumer_with_duplicate_literal_fails_before_children(
     subsumed = _root().replace(b"-307 -264 -263 -179 0\n", b"-307 -307 0\n", 1)
     _set_parent_pair(paths, subsumed)
     _initialize(tmp_path, paths)
-    with pytest.raises(subject.PreparationError, match="strict-new suffix profile"):
+    with pytest.raises(subject.PreparationError, match="parent-subsumer profile"):
         _prepare(tmp_path, paths)
     assert calls == [(-1, "root"), (-1, "root")]
 
