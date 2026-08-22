@@ -63,19 +63,19 @@ from census.p97_search.phase3_piqd_replay import (
     validate_replay_result,
 )
 
-LANE_ID = "exact17-canary-perp-bisector-survivor-two-kalmanson-refinements-sat-portfolio-v2-20260822"
-RUN_ID = "sat-profile-portfolio-v2"
+LANE_ID = "exact17-canary-perp-bisector-survivor-two-kalmanson-refinements-sat-portfolio-v3-20260822"
+RUN_ID = "sat-profile-portfolio-v3"
 RUN_OWNER = (
-    "exact17-canary-perp-bisector-survivor-two-kalmanson-refinements-sat-portfolio-v2"
+    "exact17-canary-perp-bisector-survivor-two-kalmanson-refinements-sat-portfolio-v3"
 )
-BASE_HEAD = "f35e9f6f04c2d3bf360559511ffa337543a8769a"
+BASE_HEAD = "8e11442a8275a9e8869bcc56576ea1e8d566673e"
 RUNNER_CODE_CHECKPOINT_RELATIVE = (
     ".codex/worktree-checkpoints/"
-    "exact17-canary-perp-bisector-survivor-two-kalmanson-sat-runner-code-v2-20260822.json"
+    "exact17-canary-perp-bisector-survivor-two-kalmanson-sat-runner-code-v3-20260822.json"
 )
 CHECKPOINT_RELATIVE = (
     ".codex/worktree-checkpoints/"
-    "exact17-canary-perp-bisector-survivor-two-kalmanson-refinements-sat-portfolio-v2-20260822.json"
+    "exact17-canary-perp-bisector-survivor-two-kalmanson-refinements-sat-portfolio-v3-20260822.json"
 )
 SOURCE_PREPARER_RELATIVE = (
     "scripts/prepare_exact17_canary_perp_bisector_survivor_two_kalmanson_"
@@ -116,12 +116,12 @@ SOURCE_PREPARER_SHA256 = (
     "3ca3af0ebeb91d3bf7721bc052e27bf7b602f1c3c590f88f370e5cf670bd3a91"
 )
 SOURCE_PREPARER_BYTES = 126475
-CHECKPOINT_SHA256 = "29a5071e4d06fad121f256fd5b1b4cbbb582ec45cbabd9be331483fade30880a"
-CHECKPOINT_BYTES = 1238
+CHECKPOINT_SHA256 = "b6e2c0ba64e9b4e93318f97b4a4b48d708d3f7808a9fcac08e2770fa542e9d2c"
+CHECKPOINT_BYTES = 1320
 RUNNER_CODE_CHECKPOINT_SHA256 = (
-    "a36087d01ef8400d101c242e34faccb73647648234da1aa71e9d9a95ed27651b"
+    "d169ae144598b1e18aea488b826810cc684168e4ebb024fac164338cc2f1dee4"
 )
-RUNNER_CODE_CHECKPOINT_BYTES = 766
+RUNNER_CODE_CHECKPOINT_BYTES = 822
 MINER_SHA256 = "ce55e6e98be87689423236fa1aeb5fb01a4e232a6867cf43b8ecd4428195877c"
 MINER_BYTES = 53608
 MINER_NAME = "exact17-survivor-two-kalmanson-refinements-source-valid-theorem-miner"
@@ -1454,14 +1454,14 @@ PROJECT = (
 )
 
 SOURCE_CAMPAIGN_SCHEMA = "p97-exact17-canary-perp-bisector-survivor-two-kalmanson-refinements-physical-slice-campaign/v1"
-CAMPAIGN_SCHEMA = "p97-exact17-canary-perp-bisector-survivor-two-kalmanson-refinements-sat-profile-campaign/v2"
+CAMPAIGN_SCHEMA = "p97-exact17-canary-perp-bisector-survivor-two-kalmanson-refinements-sat-profile-campaign/v3"
 RUN_MANIFEST_SCHEMA = "worktree-run-manifest/v1"
 LAUNCH_SCHEMA = "p97-exact17-canary-perp-bisector-survivor-two-kalmanson-refinements-sat-profile-launch/v1"
 RESULT_SCHEMA = "p97-exact17-canary-perp-bisector-survivor-two-kalmanson-refinements-sat-profile-result/v1"
 ACCEPTANCE_SCHEMA = "p97-exact17-canary-perp-bisector-survivor-two-kalmanson-refinements-canary-acceptance/v1"
 SAT_REPLAY_SCHEMA = "p97-exact17-canary-perp-bisector-survivor-two-kalmanson-refinements-independent-sat-replay/v1"
 WAVE_MINE_SCHEMA = "p97-exact17-canary-perp-bisector-survivor-two-kalmanson-refinements-wave-only-mine/v1"
-WAVE_MINE_LEDGER_SCHEMA = "p97-exact17-canary-perp-bisector-survivor-two-kalmanson-refinements-wave-only-candidate-ledger/v1"
+WAVE_MINE_LEDGER_SCHEMA = "p97-exact17-canary-perp-bisector-survivor-two-kalmanson-refinements-wave-only-candidate-ledger/v2"
 WAVE_MINE_CANDIDATE_SCHEMA = "p97-exact17-canary-perp-bisector-survivor-two-kalmanson-refinements-wave-only-candidate/v1"
 MINE_VERIFICATION_SCHEMA = "p97-exact17-survivor-two-kalmanson-refinements-source-valid-theorem-mine-verification/v1"
 IDENTITY_DERIVATION_SCHEMA = "p97-exact17-canary-perp-bisector-survivor-two-kalmanson-refinements-sat-profile-identity-derivation/v1"
@@ -3754,6 +3754,16 @@ def _validate_candidate_records(
             support_keys == sorted(set(support_keys)),
             "wave-only candidate support is not canonical",
         )
+        _require(
+            all(
+                type(atom) is list
+                and len(atom) == 2
+                and all(type(index) is int and 0 <= index < 17 for index in atom)
+                and atom[0] != atom[1]
+                for atom in support
+            ),
+            "wave-only candidate support atom is malformed",
+        )
         identifier = candidate["candidate_id"]
         _require(
             type(identifier) is str
@@ -3831,7 +3841,10 @@ def _validate_scanner_dependencies(value: Any, *, root: Path) -> dict[str, Any]:
 
 
 def _validate_mine_inventory(
-    ledger: Mapping[str, Any], candidates: Sequence[Any], canary: Mapping[str, Any]
+    ledger: Mapping[str, Any],
+    candidates: Sequence[Any],
+    canary: Mapping[str, Any],
+    assignment_sha256: str,
 ) -> None:
     inventory = _require_exact_keys(
         ledger.get("family_inventory"),
@@ -3840,6 +3853,7 @@ def _validate_mine_inventory(
             "formalized_stage_counts",
             "excluded_diagnostic_stage_counts",
             "complete_equality_component_counts",
+            "two_kalmanson_pairing_counts",
         },
         "wave-only family inventory",
     )
@@ -3856,7 +3870,6 @@ def _validate_mine_inventory(
     for label in (
         "formalized_stage_counts",
         "excluded_diagnostic_stage_counts",
-        "complete_equality_component_counts",
     ):
         values = inventory[label]
         _require(
@@ -3864,6 +3877,76 @@ def _validate_mine_inventory(
             and all(type(key) is str and key for key in values)
             and all(type(count) is int and count >= 0 for count in values.values()),
             f"wave-only {label} is malformed",
+        )
+    component_counts = _require_exact_keys(
+        inventory["complete_equality_component_counts"],
+        {
+            "candidate_count",
+            "component_count",
+            "oriented_edge_count",
+            "pair_count",
+            "row_transition_count",
+            "unordered_edge_count",
+        },
+        "wave-only complete equality component counts",
+    )
+    _require(
+        all(type(count) is int and count >= 0 for count in component_counts.values()),
+        "wave-only complete equality component counts are malformed",
+    )
+    _require(
+        component_counts["pair_count"] == component_counts["unordered_edge_count"]
+        and component_counts["oriented_edge_count"]
+        == 2 * component_counts["unordered_edge_count"]
+        and component_counts["candidate_count"] <= component_counts["pair_count"],
+        "wave-only complete equality component count relations drifted",
+    )
+    pairing_counts = _require_exact_keys(
+        inventory["two_kalmanson_pairing_counts"],
+        {
+            "forward_record_count",
+            "minimal_forward_support_count",
+            "minimal_paired_union_count",
+            "minimal_reverse_support_count",
+            "paired_union_count",
+            "reverse_record_count",
+        },
+        "wave-only two-Kalmanson pairing counts",
+    )
+    _require(
+        all(type(count) is int and count >= 0 for count in pairing_counts.values()),
+        "wave-only two-Kalmanson pairing counts are malformed",
+    )
+    _require(
+        pairing_counts["minimal_forward_support_count"]
+        <= pairing_counts["forward_record_count"]
+        and pairing_counts["minimal_reverse_support_count"]
+        <= pairing_counts["reverse_record_count"]
+        and pairing_counts["minimal_paired_union_count"]
+        <= pairing_counts["paired_union_count"]
+        and pairing_counts["paired_union_count"]
+        <= pairing_counts["minimal_forward_support_count"]
+        * pairing_counts["minimal_reverse_support_count"],
+        "wave-only two-Kalmanson pairing count relations drifted",
+    )
+    if "two-kalmanson-cancellation" in counts:
+        _require(
+            counts["two-kalmanson-cancellation"]
+            == pairing_counts["minimal_paired_union_count"],
+            "wave-only two-Kalmanson candidate count drifted",
+        )
+    if "perpendicular-bisector-equality-component" in counts:
+        _require(
+            counts["perpendicular-bisector-equality-component"]
+            == component_counts["candidate_count"],
+            "wave-only perpendicular-bisector candidate count drifted",
+        )
+    if "formalized-core-bank" in counts:
+        _require(
+            counts["formalized-core-bank"]
+            == sum(inventory["formalized_stage_counts"].values())
+            - sum(inventory["excluded_diagnostic_stage_counts"].values()),
+            "wave-only formalized-core candidate count drifted",
         )
 
     decoded = _require_exact_keys(
@@ -3894,7 +3977,10 @@ def _validate_mine_inventory(
         and decoded["nextCenter"] == canary["center"],
         "wave-only decoded selector binding drifted",
     )
-    _digest(decoded["assignment_sha256"], "wave-only assignment")
+    _require(
+        decoded["assignment_sha256"] == _digest(assignment_sha256, "SAT assignment"),
+        "wave-only assignment binding drifted",
+    )
 
 
 def _verify_existing_mine(
@@ -4193,11 +4279,12 @@ def _validate_acceptance(
             "archived SAT model",
             16 << 20,
         )
-        _validated_archived_sat_assignment(
+        assignment = _validated_archived_sat_assignment(
             model_raw,
             terminal=terminal,
             cnf=cnf,
         )
+        assignment_sha256 = sha256_bytes(" ".join(map(str, assignment)).encode())
         _require(
             replay.get("schema") == SAT_REPLAY_SCHEMA
             and replay.get("status") == "PASS"
@@ -4318,7 +4405,9 @@ def _validate_acceptance(
         )
         _validate_candidate_records(candidates, family_inventory)
         _validate_scanner_dependencies(ledger.get("scanner_dependencies"), root=root)
-        _validate_mine_inventory(ledger, candidates, canary)
+        _validate_mine_inventory(
+            ledger, candidates, canary, assignment_sha256
+        )
         _require(
             type(mine.get("models_mined")) is int and mine["models_mined"] == 1,
             "wave-only theorem mine model count drifted",

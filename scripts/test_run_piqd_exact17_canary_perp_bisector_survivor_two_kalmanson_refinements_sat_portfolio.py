@@ -2411,7 +2411,22 @@ def test_sat_canary_acceptance_requires_full_replay_and_hardened_mine(
             },
             "formalized_stage_counts": {},
             "excluded_diagnostic_stage_counts": {},
-            "complete_equality_component_counts": {"candidate_count": 0},
+            "complete_equality_component_counts": {
+                "candidate_count": 0,
+                "component_count": 0,
+                "oriented_edge_count": 0,
+                "pair_count": 0,
+                "row_transition_count": 0,
+                "unordered_edge_count": 0,
+            },
+            "two_kalmanson_pairing_counts": {
+                "forward_record_count": 0,
+                "minimal_forward_support_count": 0,
+                "minimal_paired_union_count": 0,
+                "minimal_reverse_support_count": 0,
+                "paired_union_count": 0,
+                "reverse_record_count": 0,
+            },
         },
         "decoded_selectors": {
             "rows": {
@@ -2421,7 +2436,9 @@ def test_sat_canary_acceptance_requires_full_replay_and_hardened_mine(
             "nextCenter": cell["center"],
             "NamedOrder": 0,
             "order": list(runner.NAMED_ORDER_TABLES[0]),
-            "assignment_sha256": "f" * 64,
+            "assignment_sha256": hashlib.sha256(
+                " ".join(map(str, assignment)).encode()
+            ).hexdigest(),
         },
         "candidates_examined": 0,
         "scan_complete": True,
@@ -2472,9 +2489,17 @@ def test_sat_canary_acceptance_requires_full_replay_and_hardened_mine(
                 )
                 for family in runner.PINNED_SOURCE_VALID_FAMILIES
             }
-            ledger["family_inventory"]["complete_equality_component_counts"] = {
-                "candidate_count": len(ledger["candidates"])
-            }
+            component_candidates = sum(
+                candidate.get("family") == "perp-bisector-core"
+                for candidate in ledger["candidates"]
+            )
+            component_counts = ledger["family_inventory"][
+                "complete_equality_component_counts"
+            ]
+            component_counts["candidate_count"] = component_candidates
+            component_counts["pair_count"] = component_candidates
+            component_counts["unordered_edge_count"] = component_candidates
+            component_counts["oriented_edge_count"] = 2 * component_candidates
         ledger["manifest_sha256"] = runner._self_hash(ledger)
         updated_ledger_ref = _write(ledger_path, runner.canonical_json_bytes(ledger))
         updated_ledger_ref["path"] = ledger_path.relative_to(tmp_path).as_posix()
@@ -2575,6 +2600,34 @@ def test_sat_canary_acceptance_requires_full_replay_and_hardened_mine(
         runner._validate_acceptance(tmp_path, run_root, checked)
     ledger.pop("unexpected")
     persist_mine_chain()
+    pairing_counts = ledger["family_inventory"].pop(
+        "two_kalmanson_pairing_counts"
+    )
+    persist_mine_chain()
+    with pytest.raises(runner.PortfolioRunnerError, match="family inventory"):
+        runner._validate_acceptance(tmp_path, run_root, checked)
+    ledger["family_inventory"]["two_kalmanson_pairing_counts"] = pairing_counts
+    pairing_counts["minimal_paired_union_count"] = 1
+    persist_mine_chain()
+    with pytest.raises(runner.PortfolioRunnerError, match="count relations"):
+        runner._validate_acceptance(tmp_path, run_root, checked)
+    pairing_counts["minimal_paired_union_count"] = 0
+    persist_mine_chain()
+    component_counts = ledger["family_inventory"][
+        "complete_equality_component_counts"
+    ]
+    component_counts["oriented_edge_count"] = 1
+    persist_mine_chain(sync_inventory=False)
+    with pytest.raises(runner.PortfolioRunnerError, match="component count relations"):
+        runner._validate_acceptance(tmp_path, run_root, checked)
+    component_counts["oriented_edge_count"] = 0
+    original_assignment_sha256 = ledger["decoded_selectors"]["assignment_sha256"]
+    ledger["decoded_selectors"]["assignment_sha256"] = "0" * 64
+    persist_mine_chain()
+    with pytest.raises(runner.PortfolioRunnerError, match="assignment binding"):
+        runner._validate_acceptance(tmp_path, run_root, checked)
+    ledger["decoded_selectors"]["assignment_sha256"] = original_assignment_sha256
+    persist_mine_chain()
     for key in (
         "producer_manifest_sha256",
         "wave_manifest_sha256",
@@ -2652,6 +2705,11 @@ def test_sat_canary_acceptance_requires_full_replay_and_hardened_mine(
     ledger["candidates"] = [unsorted_support]
     persist_mine_chain()
     with pytest.raises(runner.PortfolioRunnerError, match="support is not canonical"):
+        runner._validate_acceptance(tmp_path, run_root, checked)
+    malformed_support = _candidate(support=[[0, 17]])
+    ledger["candidates"] = [malformed_support]
+    persist_mine_chain()
+    with pytest.raises(runner.PortfolioRunnerError, match="support atom"):
         runner._validate_acceptance(tmp_path, run_root, checked)
     invalid_consumer = _candidate()
     invalid_consumer["lean_consumer"] = "not-a-Lean-name"
