@@ -3122,8 +3122,34 @@ def _read_journal_records(path: Path, wave: Mapping[str, Any]) -> list[dict[str,
     for index, line in enumerate(raw.splitlines(), start=1):
         records.append(_strict_json(line, f"journal record {index}"))
     _driver.validate_attempt_journal(records, manifest=wave)
-    _journal_job_id(records)
-    return records
+    artifact_dir = path.with_name(f"{path.name}.artifacts")
+    hydrated: list[dict[str, Any]] = []
+    for index, record in enumerate(records, start=1):
+        checkpoint = _digest(
+            record["artifacts"].get("checkpoint_sha256"),
+            f"journal record {index} checkpoint",
+        )
+        event_raw = _read_private_file(
+            artifact_dir / checkpoint,
+            maximum=2 << 20,
+            label=f"journal record {index} event artifact",
+        )
+        _require(
+            sha256_bytes(event_raw) == checkpoint,
+            f"journal record {index} event artifact hash drifted",
+        )
+        event = _strict_json(event_raw, f"journal record {index} event artifact")
+        try:
+            _driver._validate_event(event)
+        except PiqdDriverError as exc:
+            raise PortfolioRunnerError(
+                f"journal record {index} event artifact is malformed"
+            ) from exc
+        hydrated_record = dict(record)
+        hydrated_record["event"] = event
+        hydrated.append(hydrated_record)
+    _journal_job_id(hydrated)
+    return hydrated
 
 
 def _journal_job_id(records: Sequence[Mapping[str, Any]]) -> str | None:
@@ -3197,7 +3223,10 @@ def _open_existing_descriptor_journal(
     journal.path = path
     journal.manifest = dict(wave)
     journal._raw = _read_private_file(path, maximum=64 << 20, label="resume journal")
-    journal.records = [dict(record) for record in records]
+    journal.records = [
+        {key: value for key, value in record.items() if key != "event"}
+        for record in records
+    ]
     journal._sealed = None
     journal._events_fd = _legacy._open_directory(
         root, _legacy.preparation._relative(root, path.parent)
@@ -3339,16 +3368,18 @@ def _resume_run_cell_under_lock(
         ]
         if not prepared:
             if not records:
-                driver._append(
-                    event=_driver._event(
-                        phase="DRIVER_START",
-                        disposition="SUCCESS",
-                        detail="descriptor-bound recovery started",
-                        response=_policy().as_dict(),
-                    ),
+                start_event = _driver._event(
+                    phase="DRIVER_START",
+                    disposition="SUCCESS",
+                    detail="descriptor-bound recovery started",
+                    response=_policy().as_dict(),
+                )
+                start_record = driver._append(
+                    event=start_event,
                     outcome=CHECKPOINT,
                     detail="DRIVER_START: descriptor-bound recovery started",
                 )
+                records.append({**start_record, "event": start_event})
             job = client.prepare_cnf(
                 wave_manifest=wave,
                 cnf=cnf,
@@ -3358,32 +3389,33 @@ def _resume_run_cell_under_lock(
                 project=PROJECT,
                 requested_core_limit=REQUESTED_CORE_LIMIT,
             )
-            driver._append(
-                event=_driver._event(
-                    phase="PREPARE",
-                    disposition="SUCCESS",
-                    retry_index=0,
-                    job_id=job.job_id,
-                    status="prepared",
-                    detail=(
-                        "recovered exact raw identity"
-                        if job.existing
-                        else "new raw identity"
-                    ),
-                    response={
-                        "backend": job.backend,
-                        "solver_profile": job.solver_profile,
-                        "cnf_blob_hash": job.cnf_blob_hash,
-                        "identity_hash": job.identity_hash,
-                        "num_vars": job.num_vars,
-                        "num_clauses": job.num_clauses,
-                        "existing": job.existing,
-                    },
+            prepare_event = _driver._event(
+                phase="PREPARE",
+                disposition="SUCCESS",
+                retry_index=0,
+                job_id=job.job_id,
+                status="prepared",
+                detail=(
+                    "recovered exact raw identity"
+                    if job.existing
+                    else "new raw identity"
                 ),
+                response={
+                    "backend": job.backend,
+                    "solver_profile": job.solver_profile,
+                    "cnf_blob_hash": job.cnf_blob_hash,
+                    "identity_hash": job.identity_hash,
+                    "num_vars": job.num_vars,
+                    "num_clauses": job.num_clauses,
+                    "existing": job.existing,
+                },
+            )
+            prepare_record = driver._append(
+                event=prepare_event,
                 outcome=CHECKPOINT,
                 detail=f"PREPARE: recovered job {job.job_id}",
             )
-            records = journal.records
+            records.append({**prepare_record, "event": prepare_event})
         job = _prepared_job_from_records(records, cell, cnf)
         client.verify_stored_cnf(job, cnf)
         driver._append(
@@ -3985,9 +4017,10 @@ def _validated_archived_sat_assignment(
 ) -> list[int]:
     """Validate the exact PIQD SAT-model response schema and replay it.
 
-    PIQD's certified model seam has exactly four keys and no embedded self-hash.
-    The immutable artifact filename and terminal custody therefore bind the exact
-    canonical response bytes by their SHA-256 instead of inventing a fifth field.
+    PIQD's raw model seam has exactly six keys and no embedded self-hash.  Its
+    daemon serialization preserves API field order rather than sorted-key
+    canonical order, so the immutable artifact filename and terminal custody
+    bind the exact response bytes while strict JSON parsing binds their meaning.
     """
 
     expected_sha256 = _digest(
@@ -3997,20 +4030,31 @@ def _validated_archived_sat_assignment(
         sha256_bytes(model_raw) == expected_sha256,
         "archived SAT model raw hash drifted",
     )
-    model = _strict_json(model_raw, "archived SAT model")
+    model = _json_mapping(model_raw, "archived SAT model")
     _require_exact_keys(
         model,
-        {"job_id", "result", "num_assigned", "assignment"},
+        {
+            "job_id",
+            "result",
+            "backend",
+            "solver_profile",
+            "num_assigned",
+            "assignment",
+        },
         "archived SAT model",
     )
     assignment = model["assignment"]
     _require(
         model["job_id"] == terminal["job_id"]
         and model["result"] == "SAT"
+        and model["backend"] == BACKEND
+        and model["solver_profile"] == SOLVER_PROFILE
         and type(assignment) is list
         and model["num_assigned"] == NUM_VARIABLES
         and len(assignment) == NUM_VARIABLES
-        and all(type(literal) is int for literal in assignment),
+        and all(type(literal) is int and literal != 0 for literal in assignment)
+        and {abs(literal) for literal in assignment}
+        == set(range(1, NUM_VARIABLES + 1)),
         "archived SAT model binding drifted",
     )
     scan_dimacs(cnf, assignment=assignment)

@@ -1964,6 +1964,44 @@ def test_journal_rejects_multiple_job_ids() -> None:
         runner._journal_job_id(records)
 
 
+def test_journal_reader_hydrates_content_addressed_event_artifacts(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    event = runner._driver._event(
+        phase="PREPARE",
+        disposition="SUCCESS",
+        retry_index=0,
+        job_id="job-1",
+        status="prepared",
+        detail="new raw identity",
+        response={"existing": False},
+    )
+    event_raw = runner.canonical_json_bytes(event)
+    checkpoint = hashlib.sha256(event_raw).hexdigest()
+    record = {"artifacts": {"checkpoint_sha256": checkpoint}}
+    journal = tmp_path / "cell.jsonl"
+    artifact_dir = tmp_path / "cell.jsonl.artifacts"
+    artifact_dir.mkdir(mode=0o700)
+    journal.write_bytes(runner.canonical_json_bytes(record) + b"\n")
+    journal.chmod(0o600)
+    event_path = artifact_dir / checkpoint
+    event_path.write_bytes(event_raw)
+    event_path.chmod(0o600)
+    monkeypatch.setattr(
+        runner._driver,
+        "validate_attempt_journal",
+        lambda records, manifest: None,
+    )
+
+    records = runner._read_journal_records(journal, {})
+    assert records == [{**record, "event": event}]
+    assert runner._journal_job_id(records) == "job-1"
+
+    event_path.write_bytes(event_raw + b" ")
+    with pytest.raises(runner.PortfolioRunnerError, match="hash drifted"):
+        runner._read_journal_records(journal, {})
+
+
 def test_partial_prepare_binding_rejects_existing_or_ambiguous_job() -> None:
     cell = _cells()[0]
     cnf = b"p cnf 1 1\n1 0\n"
@@ -2214,14 +2252,17 @@ def test_sat_canary_acceptance_requires_full_replay_and_hardened_mine(
     cnf = b"p cnf 308 1\n1 0\n"
     wave = {"encoding": {}, "execution": {}}
     assignment = [index + 1 for index in range(runner.NUM_VARIABLES)]
-    model_raw = runner.canonical_json_bytes(
+    model_raw = json.dumps(
         {
             "job_id": "job-1",
             "result": "SAT",
+            "backend": runner.BACKEND,
+            "solver_profile": runner.SOLVER_PROFILE,
             "num_assigned": runner.NUM_VARIABLES,
             "assignment": assignment,
-        }
-    )
+        },
+        separators=(",", ":"),
+    ).encode()
     terminal = _terminal(cell)
     terminal["artifacts"]["model_sha256"] = hashlib.sha256(model_raw).hexdigest()
     monkeypatch.setattr(runner, "_terminal_cell", lambda root, rr, selected: terminal)
@@ -2829,10 +2870,12 @@ def test_archived_sat_model_uses_exact_upstream_schema_and_raw_hash(
     model = {
         "job_id": "job-1",
         "result": "SAT",
+        "backend": runner.BACKEND,
+        "solver_profile": runner.SOLVER_PROFILE,
         "num_assigned": runner.NUM_VARIABLES,
         "assignment": assignment,
     }
-    model_raw = runner.canonical_json_bytes(model)
+    model_raw = json.dumps(model, separators=(",", ":")).encode()
     terminal = _terminal(_cells()[0])
     terminal["artifacts"]["model_sha256"] = hashlib.sha256(model_raw).hexdigest()
     monkeypatch.setattr(runner, "scan_dimacs", lambda cnf, assignment: None)
@@ -2853,6 +2896,47 @@ def test_archived_sat_model_uses_exact_upstream_schema_and_raw_hash(
     with pytest.raises(runner.PortfolioRunnerError, match="raw hash drifted"):
         runner._validated_archived_sat_assignment(
             model_raw, terminal=terminal, cnf=b"cnf"
+        )
+    wrong_backend = {**model, "backend": "not-cadical"}
+    wrong_backend_raw = json.dumps(wrong_backend, separators=(",", ":")).encode()
+    terminal["artifacts"]["model_sha256"] = hashlib.sha256(
+        wrong_backend_raw
+    ).hexdigest()
+    with pytest.raises(runner.PortfolioRunnerError, match="binding drifted"):
+        runner._validated_archived_sat_assignment(
+            wrong_backend_raw, terminal=terminal, cnf=b"cnf"
+        )
+    duplicate_key_raw = model_raw.replace(
+        b'{"job_id":"job-1",',
+        b'{"job_id":"job-1","job_id":"job-1",',
+        1,
+    )
+    terminal["artifacts"]["model_sha256"] = hashlib.sha256(
+        duplicate_key_raw
+    ).hexdigest()
+    with pytest.raises(runner.PortfolioRunnerError, match="duplicate JSON key"):
+        runner._validated_archived_sat_assignment(
+            duplicate_key_raw, terminal=terminal, cnf=b"cnf"
+        )
+    nonstandard_raw = json.dumps(
+        {**model, "num_assigned": float("nan")},
+        separators=(",", ":"),
+    ).encode()
+    terminal["artifacts"]["model_sha256"] = hashlib.sha256(nonstandard_raw).hexdigest()
+    with pytest.raises(runner.PortfolioRunnerError, match="valid strict JSON"):
+        runner._validated_archived_sat_assignment(
+            nonstandard_raw, terminal=terminal, cnf=b"cnf"
+        )
+    duplicate_literal = {**model, "assignment": [1, 1, *assignment[2:]]}
+    duplicate_literal_raw = json.dumps(
+        duplicate_literal, separators=(",", ":")
+    ).encode()
+    terminal["artifacts"]["model_sha256"] = hashlib.sha256(
+        duplicate_literal_raw
+    ).hexdigest()
+    with pytest.raises(runner.PortfolioRunnerError, match="binding drifted"):
+        runner._validated_archived_sat_assignment(
+            duplicate_literal_raw, terminal=terminal, cnf=b"cnf"
         )
 
 
