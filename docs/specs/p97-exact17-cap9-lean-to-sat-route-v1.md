@@ -1499,3 +1499,16 @@ The old 7,409,378-clause physical cells are permanently superseded. The next
 gate is a fresh governed export of 76 cells, each formed from the 7,409,516-
 clause root plus its six source-total physical-multiplicity units, followed by
 static authentication before any PIQD preparation.
+
+The Lean side of that gate is now implemented. Dedicated exporters certify the
+7,409,512-clause two-Kalmanson intermediate root and the 7,409,516-clause
+FourPoint root. The reused source-total physical partition gives exactly 76
+cells of 7,409,522 clauses. A new certificate-ingress coordinator transports
+future relabelled LRAT cell theorems back to the typed FourPoint cells and then
+feeds the existing source-coverage argument. The source assignment and final
+certificate coordinator have no `sorryAx`; their current axiom closure is
+`propext`, `Classical.choice`, `Quot.sound`, `Lean.ofReduceBool`, and
+`Lean.trustCompiler`, so this checkpoint uses the project-approved native
+computation trust boundary. No new PIQD job has been prepared: the fresh
+preparation config, authenticated 76-cell byte campaign, and v4 portfolio pins
+remain the next custody gate.

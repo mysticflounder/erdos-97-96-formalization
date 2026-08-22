@@ -15183,3 +15183,15 @@ clauses from the second record, and the successor root has exactly 7,409,516
 clauses. Lean proves the source assignment satisfies both intermediate and
 final roots. The next production action is to regenerate all 76 physical cells
 from this root; none of the 7,409,378-clause cells remain current.
+
+That successor now has a complete Lean physical-cell interface. Root exporters
+check the 7,409,512-clause intermediate and 7,409,516-clause final roots; the
+source-total next-center/physical partition produces exactly 76 cells of
+7,409,522 clauses. The corresponding certificate ingress is already wired to a
+76-cell coordinator, so a certified UNSAT portfolio has a direct checked
+consumer. The source and certificate coordinators are free of `sorryAx` and
+inherit the explicitly accepted native-computation axioms
+`Lean.ofReduceBool`/`Lean.trustCompiler` in addition to the ordinary core
+axioms. The next action is operational rather than mathematical: freeze a fresh
+preparation config, byte-authenticate all 76 exported cells, and launch only the
+new center-2/physical-`none` canary before admitting the other 75 cells.
