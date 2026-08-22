@@ -63,19 +63,19 @@ from census.p97_search.phase3_piqd_replay import (
     validate_replay_result,
 )
 
-LANE_ID = "exact17-canary-perp-bisector-survivor-two-kalmanson-refinements-sat-portfolio-20260822"
-RUN_ID = "sat-profile-portfolio-v1"
+LANE_ID = "exact17-canary-perp-bisector-survivor-two-kalmanson-refinements-sat-portfolio-v2-20260822"
+RUN_ID = "sat-profile-portfolio-v2"
 RUN_OWNER = (
-    "exact17-canary-perp-bisector-survivor-two-kalmanson-refinements-sat-portfolio"
+    "exact17-canary-perp-bisector-survivor-two-kalmanson-refinements-sat-portfolio-v2"
 )
-BASE_HEAD = "7ff1cefef56d5c9de47e8d147d89b6ed4b1a5403"
+BASE_HEAD = "f35e9f6f04c2d3bf360559511ffa337543a8769a"
 RUNNER_CODE_CHECKPOINT_RELATIVE = (
     ".codex/worktree-checkpoints/"
-    "exact17-canary-perp-bisector-survivor-two-kalmanson-sat-runner-code-20260822.json"
+    "exact17-canary-perp-bisector-survivor-two-kalmanson-sat-runner-code-v2-20260822.json"
 )
 CHECKPOINT_RELATIVE = (
     ".codex/worktree-checkpoints/"
-    "exact17-canary-perp-bisector-survivor-two-kalmanson-refinements-sat-portfolio-20260822.json"
+    "exact17-canary-perp-bisector-survivor-two-kalmanson-refinements-sat-portfolio-v2-20260822.json"
 )
 SOURCE_PREPARER_RELATIVE = (
     "scripts/prepare_exact17_canary_perp_bisector_survivor_two_kalmanson_"
@@ -116,19 +116,19 @@ SOURCE_PREPARER_SHA256 = (
     "3ca3af0ebeb91d3bf7721bc052e27bf7b602f1c3c590f88f370e5cf670bd3a91"
 )
 SOURCE_PREPARER_BYTES = 126475
-CHECKPOINT_SHA256 = "3034c7bcc2d04a5502a5b214acb70bed3782106e3bbffdd0fd1eff1f91b5c266"
-CHECKPOINT_BYTES = 1223
+CHECKPOINT_SHA256 = "c281d74fc49d637bb6dcad2c4978719a28dee29bc2c081ac7f8262daf62c24d9"
+CHECKPOINT_BYTES = 1238
 RUNNER_CODE_CHECKPOINT_SHA256 = (
-    "03b2555852992900728c63b6be77f3cef7cd10cb26382c1a7f2e53ec8a5d0dc6"
+    "a36087d01ef8400d101c242e34faccb73647648234da1aa71e9d9a95ed27651b"
 )
-RUNNER_CODE_CHECKPOINT_BYTES = 715
-MINER_SHA256 = "610d32335971c0ed1bb8fc4af2f98e4e38970d9f268923f45048151f6f45f85f"
-MINER_BYTES = 51362
+RUNNER_CODE_CHECKPOINT_BYTES = 766
+MINER_SHA256 = "ce55e6e98be87689423236fa1aeb5fb01a4e232a6867cf43b8ecd4428195877c"
+MINER_BYTES = 53608
 MINER_NAME = "exact17-survivor-two-kalmanson-refinements-source-valid-theorem-miner"
 MINER_SCHEMA = (
-    "p97-exact17-survivor-two-kalmanson-refinements-source-valid-theorem-miner/v1"
+    "p97-exact17-survivor-two-kalmanson-refinements-source-valid-theorem-miner/v2"
 )
-MINER_VERSION = "1"
+MINER_VERSION = "2"
 PINNED_SOURCE_VALID_FAMILIES: tuple[str, ...] = (
     "formalized-core-bank",
     "perpendicular-bisector-equality-component",
@@ -1454,7 +1454,7 @@ PROJECT = (
 )
 
 SOURCE_CAMPAIGN_SCHEMA = "p97-exact17-canary-perp-bisector-survivor-two-kalmanson-refinements-physical-slice-campaign/v1"
-CAMPAIGN_SCHEMA = "p97-exact17-canary-perp-bisector-survivor-two-kalmanson-refinements-sat-profile-campaign/v1"
+CAMPAIGN_SCHEMA = "p97-exact17-canary-perp-bisector-survivor-two-kalmanson-refinements-sat-profile-campaign/v2"
 RUN_MANIFEST_SCHEMA = "worktree-run-manifest/v1"
 LAUNCH_SCHEMA = "p97-exact17-canary-perp-bisector-survivor-two-kalmanson-refinements-sat-profile-launch/v1"
 RESULT_SCHEMA = "p97-exact17-canary-perp-bisector-survivor-two-kalmanson-refinements-sat-profile-result/v1"
@@ -1834,14 +1834,19 @@ def _authenticate_runner_support(root: Path = ROOT) -> dict[str, str]:
         and checkpoint["lane_id"] == LANE_ID
         and checkpoint["owner"] == RUN_OWNER
         and checkpoint["base_head"] == BASE_HEAD
-        and checkpoint["owned_paths"] == [CHECKPOINT_RELATIVE]
+        and checkpoint["owned_paths"]
+        == sorted(
+            [
+                CHECKPOINT_RELATIVE,
+                RUNNER_CODE_CHECKPOINT_RELATIVE,
+                RUNNER_RELATIVE,
+                RUNNER_TEST_RELATIVE,
+            ]
+        )
         and checkpoint["durable_paths"]
         == sorted(
             [
                 MINER_RELATIVE,
-                RUNNER_CODE_CHECKPOINT_RELATIVE,
-                RUNNER_RELATIVE,
-                RUNNER_TEST_RELATIVE,
                 SOURCE_PREPARER_RELATIVE,
             ]
         )

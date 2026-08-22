@@ -250,13 +250,17 @@ def _production_checkpoint(checkpoint_relative: str) -> dict[str, Any]:
         "owner": runner.RUN_OWNER,
         "base_head": runner.BASE_HEAD,
         "created_utc": "2026-08-22T00:00:00Z",
-        "owned_paths": [checkpoint_relative],
-        "durable_paths": sorted(
+        "owned_paths": sorted(
             [
-                runner.MINER_RELATIVE,
+                checkpoint_relative,
                 runner.RUNNER_CODE_CHECKPOINT_RELATIVE,
                 runner.RUNNER_RELATIVE,
                 runner.RUNNER_TEST_RELATIVE,
+            ]
+        ),
+        "durable_paths": sorted(
+            [
+                runner.MINER_RELATIVE,
                 runner.SOURCE_PREPARER_RELATIVE,
             ]
         ),
