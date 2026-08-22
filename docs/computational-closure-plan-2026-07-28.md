@@ -15172,3 +15172,14 @@ perpendicular-bisector component. Its candidate array is identical to the
 corrected v2 replay. The remaining 75 old-root cells are therefore superseded,
 not launchable: all 37 candidates must first be source-adapted and the physical
 portfolio regenerated from the resulting Lean-owned successor root.
+
+That promotion is now source-banked. The 35 generic candidates replay as
+`CancellationOccurrence`s and contribute 140 pairwise-distinct clauses, giving
+a 7,409,512-clause Lean-owned intermediate root. Both formalized-core records
+also have direct source adapters. The first record's four-clause orbit is
+already contained in the 140-clause suffix; the second record's orbit is
+disjoint from it. The final strict-new suffix therefore contains only the four
+clauses from the second record, and the successor root has exactly 7,409,516
+clauses. Lean proves the source assignment satisfies both intermediate and
+final roots. The next production action is to regenerate all 76 physical cells
+from this root; none of the 7,409,378-clause cells remain current.

@@ -1486,3 +1486,16 @@ It contains exactly 35 generic two-Kalmanson occurrences and two
 identical to the corrected v2 replay. Consequently the prior 75-cell portfolio
 must not run: first bank all source-valid strict-new clauses, then regenerate a
 new Lean-owned root and all source-total physical-multiplicity cells.
+
+The source promotion is complete. The 35 generic candidates give 140 distinct
+Lean-owned clauses and a 7,409,512-clause intermediate root. Direct Lean
+adapters prove both formalized-core candidates from `SourceRealization`. The
+first candidate's four-clause orbit is already contained in the generic suffix;
+the second candidate's orbit is disjoint. Accordingly only the latter four
+clauses form the strict-new FourPoint suffix, and the final successor has
+7,409,516 clauses. The source-assignment theorem covers the full final root.
+
+The old 7,409,378-clause physical cells are permanently superseded. The next
+gate is a fresh governed export of 76 cells, each formed from the 7,409,516-
+clause root plus its six source-total physical-multiplicity units, followed by
+static authentication before any PIQD preparation.
