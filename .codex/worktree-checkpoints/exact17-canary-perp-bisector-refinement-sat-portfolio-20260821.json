@@ -1,0 +1,21 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "exact17-canary-perp-bisector-refinement-sat-portfolio-20260821",
+  "owner": "exact17-canary-perp-bisector-refinement-sat-portfolio",
+  "base_head": "147587da98e1043636f528b8845e947743cbc6d0",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exact17-canary-perp-bisector-refinement-sat-portfolio-20260821.json",
+    "scripts/run_piqd_exact17_canary_perp_bisector_refinement_sat_portfolio.py",
+    "scripts/test_run_piqd_exact17_canary_perp_bisector_refinement_sat_portfolio.py"
+  ],
+  "generated_roots": [
+    "scratch/runs/exact17-canary-perp-bisector-refinement-sat-portfolio-20260821/sat-profile-portfolio-v1"
+  ],
+  "durable_paths": [
+    "scripts/prepare_exact17_canary_perp_bisector_refinement_physical_slice_cells.py",
+    "scripts/prepare_exact17_sparse_six_four_row_bisector_eight_hit_sat_portfolio.py",
+    "scripts/run_piqd_exact17_sparse_six_four_row_bisector_eight_hit_sat_portfolio.py"
+  ],
+  "created_utc": "2026-08-21T23:52:38Z",
+  "manifest_sha256": "71cc5ea7ab158884213ff2025db3b1d7dcebdc211297c300e623c4e6f981ee35"
+}
