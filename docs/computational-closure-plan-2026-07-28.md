@@ -15136,3 +15136,20 @@ production leaf are still open. No PIQD job has yet been prepared or confirmed.
 The next gate is the live daemon/capacity attestation followed by the single
 center-2/physical-`none` canary; the remaining 75 cells stay gated behind its
 independent replay and mandatory wave-only theorem mine.
+
+That canary gate has now run. PIQD job
+`f2fe634a-929e-449c-89c4-d0e2becd6a01` terminated `STRUCTURAL_SAT`; the
+sealed terminal record and model were authenticated and the complete DIMACS
+assignment replay passed. The mandatory theorem mine then failed closed on an
+over-strong implementation condition: it required the inclusion-minimal
+forward cancellation supports to match the reflected inclusion-minimal reverse
+supports one-for-one. `CancellationOccurrence.check` only requires one
+occurrence support to cover the used forward choices and the reflected used
+reverse choices. The corrected exhaustive pairing forms all forward/reverse
+support unions and keeps their inclusion-minimal members. On the authenticated
+canary model this yields 692 distinct unions and 35 inclusion-minimal checked
+occurrences, with support sizes 8, 10, 11, 12, 13, 14, 20, and 21. The other
+registered scans contribute two formalized-core records and no perpendicular-
+bisector component. This is a corrected offline replay, not yet a production
+acceptance receipt: the miner and its authenticated dependency inventory must
+be re-frozen before the remaining 75 cells may start.

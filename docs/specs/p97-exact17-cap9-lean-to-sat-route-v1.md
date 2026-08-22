@@ -1453,3 +1453,15 @@ prepared or confirmed. The next live action is therefore exactly the
 center-2/physical-`none` canary after daemon/capacity attestation; the remaining
 75 cells stay gated until that result is independently replayed and subjected
 to the mandatory wave-only theorem mine.
+
+The canary has since terminated `STRUCTURAL_SAT` as PIQD job
+`f2fe634a-929e-449c-89c4-d0e2becd6a01`, with sealed custody and a complete
+independent clause replay. Its first theorem-mine attempt correctly rejected
+its own overly restrictive forward/reverse support-bijection test. The Lean
+consumer permits asymmetric paths: an occurrence support covers every forward
+choice directly and every reverse choice after `Fin.rev`. Exhaustively pairing
+the two minimal-support families by their union gives 692 unions and 35
+inclusion-minimal checked occurrences on this model. Focused adversarial tests
+now cover that asymmetric case. These results remain diagnostic until the
+corrected miner dependency set and production acceptance route are re-frozen;
+the other 75 cells remain blocked.
