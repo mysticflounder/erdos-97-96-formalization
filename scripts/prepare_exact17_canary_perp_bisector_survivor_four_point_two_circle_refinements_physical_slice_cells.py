@@ -840,6 +840,34 @@ def run_lean_root_export(
     return _publish_private_export(output_path, invoke)
 
 
+def run_lean_immediate_parent_export(
+    repo_root: Path, exporter_path: Path, output_path: Path
+) -> _PublishedFile:
+    """Run the v2 immediate-parent exporter, whose CLI takes only an output path."""
+    lean_root = repo_root / "lean"
+    relative = exporter_path.resolve().relative_to(lean_root.resolve())
+
+    def invoke(bound_output: Path, pass_fds: tuple[int, ...]) -> None:
+        try:
+            subprocess.run(
+                [
+                    "lake",
+                    "env",
+                    "lean",
+                    "--run",
+                    str(relative),
+                    str(bound_output),
+                ],
+                cwd=lean_root,
+                check=True,
+                pass_fds=pass_fds,
+            )
+        except (OSError, subprocess.CalledProcessError) as error:
+            raise PreparationError("Lean immediate-parent export failed") from error
+
+    return _publish_private_export(output_path, invoke)
+
+
 def run_lean_export(
     repo_root: Path,
     exporter_path: Path,
@@ -2368,6 +2396,7 @@ def _prepare_campaign_authenticated(
     preparer_path: Path = PREPARER_PATH,
     test_path: Path = TEST_PATH,
     lean_root_exporter: Any = run_lean_root_export,
+    lean_immediate_parent_exporter: Any = run_lean_immediate_parent_export,
     lean_exporter: Any = run_lean_export,
     commit_verifier: Any = accepted.verify_committed_support,
     dependency_commit_verifier: Any = verify_committed_dependency_blobs,
@@ -2460,7 +2489,7 @@ def _prepare_campaign_authenticated(
         )
         root_candidate_path = output / "tmp" / "cumulative-root.lean.cnf"
         custody.verify()
-        immediate_result = lean_root_exporter(
+        immediate_result = lean_immediate_parent_exporter(
             root, immediate_parent_exporter_path, immediate_candidate_path
         )
         custody.verify()
@@ -2894,6 +2923,7 @@ def prepare_campaign(
     preparer_path: Path = PREPARER_PATH,
     test_path: Path = TEST_PATH,
     lean_root_exporter: Any = run_lean_root_export,
+    lean_immediate_parent_exporter: Any = run_lean_immediate_parent_export,
     lean_exporter: Any = run_lean_export,
     config_blob_reader: Any = _read_committed_blob,
     commit_verifier: Any = accepted.verify_committed_support,
@@ -2922,6 +2952,7 @@ def prepare_campaign(
             preparer_path=preparer_path,
             test_path=test_path,
             lean_root_exporter=lean_root_exporter,
+            lean_immediate_parent_exporter=lean_immediate_parent_exporter,
             lean_exporter=lean_exporter,
             commit_verifier=commit_verifier,
             dependency_commit_verifier=dependency_commit_verifier,

@@ -30,6 +30,43 @@ def test_immediate_parent_exporter_is_the_survivor_refinement_parent() -> None:
     )
 
 
+def test_immediate_parent_export_uses_single_output_argument(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    lean_root = tmp_path / "lean"
+    exporter = lean_root / "ImmediateParentExport.lean"
+    output = tmp_path / "parent.cnf"
+    lean_root.mkdir()
+    exporter.write_text("def main : IO Unit := pure ()\n")
+    commands: list[list[str]] = []
+
+    def fake_run(command: list[str], **_kwargs: Any) -> None:
+        commands.append(command)
+
+    sentinel = object()
+
+    def fake_publish(_output: Path, invoke: Any) -> object:
+        invoke(output, ())
+        return sentinel
+
+    monkeypatch.setattr(subject.subprocess, "run", fake_run)
+    monkeypatch.setattr(subject, "_publish_private_export", fake_publish)
+
+    result = subject.run_lean_immediate_parent_export(tmp_path, exporter, output)
+
+    assert result is sentinel
+    assert commands == [
+        [
+            "lake",
+            "env",
+            "lean",
+            "--run",
+            "ImmediateParentExport.lean",
+            str(output),
+        ]
+    ]
+
+
 _UNRELATED_PARENT_CLAUSES = (
     (-307, -264, -263, -179),
     (-308, -264, -263, -179),
@@ -346,6 +383,7 @@ def _prepare(
         test_path=paths["target_test"],
         output_root=paths["output"],
         lean_root_exporter=paths["fake_root_export"],
+        lean_immediate_parent_exporter=paths["fake_root_export"],
         lean_exporter=paths["fake_export"],
         commit_verifier=paths["fake_commit_verify"],
         dependency_commit_verifier=paths["fake_dependency_commit_verify"],
