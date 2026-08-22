@@ -321,6 +321,13 @@ theorem candidateBClauses_disjoint_v2 :
       clause ∉ twoKalmansonRefinementClauses := by
   native_decide
 
+theorem candidateBClauses_strictly_subsumed_v2 :
+    ∀ clause ∈ candidateBClauses,
+      ∃ parent ∈ twoKalmansonRefinementClauses,
+        parent.length + 1 = clause.length ∧
+        ∀ literal ∈ parent, literal ∈ clause := by
+  native_decide
+
 theorem sourceAssign_fourPointTwoCircleRefinementClauses {A : Finset ℝ²}
     (source : SourceRealization A) :
     ∀ clause ∈ fourPointTwoCircleRefinementClauses,
@@ -361,6 +368,7 @@ theorem sourceAssign_canaryPerpBisectorSurvivorFourPointTwoCircleRefinementCnf
 #print axioms fourPointTwoCircleRefinementClauses_nodup
 #print axioms candidateAClauses_already_in_v2
 #print axioms candidateBClauses_disjoint_v2
+#print axioms candidateBClauses_strictly_subsumed_v2
 #print axioms sourceAssign_canaryPerpBisectorSurvivorFourPointTwoCircleRefinementCnf
 
 end ATailBlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleRefinements
