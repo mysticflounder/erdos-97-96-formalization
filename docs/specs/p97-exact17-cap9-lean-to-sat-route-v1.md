@@ -1398,3 +1398,38 @@ An authoritative `static-check` accepts all 76 cells. The production
 checkpoint and immutable pins are committed at `2bb53930` and `2fc62473`.
 The canary remains unlaunched pending live PIQD identity and capacity
 attestation.
+
+## Authenticated SAT canary and 68-clause promotion — 2026-08-22
+
+The gated center-2/physical-`none` job
+`8573bf0d-9367-4661-a9d6-278e473496d3` is terminal `STRUCTURAL_SAT`. It was
+resumed from its original journal binding rather than resubmitted. The exact
+CNF contains 308 variables and 7,409,310 clauses, with SHA-256
+`2b001bc92e09577c9c3e7e7267e404bbd8b16face7f45ba5ee6518caa634b955`;
+independent full-CNF replay passed.
+
+The accepted candidate ledger contains exactly 17 unweighted
+`CancellationOccurrence` records. Every record passes its structural mirror
+check and names the already banked generic two-Kalmanson cancellation
+consumer. Expanding the full named-order and orientation orbit produces 68
+distinct source-valid clauses. Thirty-six are strict-new relative to the
+7,409,304-clause parent, and no candidate is redundant with the parent across
+its entire orbit.
+
+The promoted Lean root has 7,409,372 clauses. Adding the existing next-center
+and physical-multiplicity units yields 76 cells of 7,409,378 clauses. The root
+exporter, physical coverage theorem, and physical-cell exporter all pass
+targeted builds. A direct Lean export confirms the root header and the exact
+ordered 68-clause suffix; the suffix SHA-256 is
+`a84972fd78857209b57024b9091b8cb14535ad7cb480062c445f3d43f129e12c`.
+
+The finalization audit also repaired two fail-closed runner defects: retained
+journal events are now hydrated from their content-addressed payloads, and raw
+PIQD model rows use the daemon's six-field format. These defects rejected valid
+evidence but did not alter any encoded clause or accepted solver result.
+
+The route remains nonterminal. Before another solve, the production checkpoint
+must register `preparation-v1`, the preparer must freeze all source and custody
+digests, all 76 cells must be regenerated and authenticated, and a direct-Lean
+sentinel must match. Only then may the center-2/physical-`none` canary launch;
+the remaining cells stay gated until that result is replayed and mined.

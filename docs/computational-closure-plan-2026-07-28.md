@@ -15078,3 +15078,36 @@ and run-manifest SHA-256
 pins are committed at `2bb53930` and `2fc62473`. No PIQD job has been prepared
 or confirmed. The remaining launch gate is live daemon identity and global
 capacity attestation at no more than 12 workers.
+
+### 2026-08-22 authenticated canary result and two-Kalmanson successor
+
+The center-2/physical-`none` canary was resumed through its original
+journal-bound PIQD job; no duplicate job was created. Job
+`8573bf0d-9367-4661-a9d6-278e473496d3` terminated `STRUCTURAL_SAT` after
+11.918 seconds. Its 308-variable, 7,409,310-clause CNF has SHA-256
+`2b001bc92e09577c9c3e7e7267e404bbd8b16face7f45ba5ee6518caa634b955`.
+An independent replay checked every clause against the retained model and
+passed.
+
+The mandatory wave-only mine produced 17 checked occurrences of the existing
+source-valid `TwoKalmansonCancellationData` consumer. Their complete two-order
+by two-orientation orbit contains 68 distinct clauses; 36 are strict additions
+to the parent, and every occurrence contributes at least one strict-new clause.
+The Lean-owned successor therefore has 7,409,372 clauses, and each of its 76
+source-total physical-multiplicity cells has 7,409,378 clauses. The generated
+source assignment theorem and physical-cell coordinator build without
+`sorryAx`; their only non-core trust is the project-approved `native_decide`
+boundary used for the finite occurrence checks.
+
+Two runner defects found during finalization were repaired before promotion:
+journal replay now hydrates content-addressed event payloads, and raw PIQD
+models are parsed using the daemon's six-field record format. Both defects
+caused fail-closed rejection of valid retained evidence; neither changed a CNF,
+model, solver verdict, or theorem candidate. The focused runner suite has 62
+passing tests, while the new physical preparer has 206 passing tests.
+
+This remains a CEGAR refinement rather than closure: exact 17 and the cap-nine
+production leaf are still open. The next gate is to freeze the new preparation
+identities, regenerate all 76 cells from the 7,409,372-clause Lean root, run a
+direct-Lean sentinel comparison, and launch only the center-2/physical-`none`
+canary through PIQD before admitting the other cells.
