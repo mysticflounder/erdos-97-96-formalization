@@ -1386,3 +1386,15 @@ declares its generated run root. An independent adversarial review and the
 combined focused suite pass; no PIQD job has yet been launched from this
 successor. The next action is the pin-only checkpoint followed by the single
 center-2/physical-`none` canary.
+
+The pin-only pass is now complete. A second independent derivation reproduced
+all 76 source and 76 production identities, including the center-2/`none`
+identity `cb8c878ce2f35facc9ac352fa026667a538e80b885bae1e557d5bccf5e2b5b2b`.
+The final formatted-runner preparation has campaign SHA-256
+`787eba2e52b1fa8a72c6621bd3dcff0dabed51a05063345b5e5f266886ad8cae`
+and run-manifest SHA-256
+`410ed4251aaba2a4037f493f07518953cd77f735bdc91abd824e52c0386cd93c`.
+An authoritative `static-check` accepts all 76 cells. The production
+checkpoint and immutable pins are committed at `2bb53930` and `2fc62473`.
+The canary remains unlaunched pending live PIQD identity and capacity
+attestation.

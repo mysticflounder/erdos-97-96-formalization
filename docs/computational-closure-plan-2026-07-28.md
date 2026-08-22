@@ -15067,3 +15067,14 @@ and an independent adversarial audit pass. No successor PIQD solve has been
 launched. Next: freeze the immutable identities, materialize and statically
 check the governed run, then launch only center 2 / physical `none` under the
 12-core global cap.
+
+The pin-only pass has since completed. Independent checking reproduced all
+152 cell identities and the complete center-2/`none` CNF hash. The formatted
+runner's governed preparation has campaign SHA-256
+`787eba2e52b1fa8a72c6621bd3dcff0dabed51a05063345b5e5f266886ad8cae`
+and run-manifest SHA-256
+`410ed4251aaba2a4037f493f07518953cd77f735bdc91abd824e52c0386cd93c`;
+`static-check` accepts all 76 cells. The production checkpoint and immutable
+pins are committed at `2bb53930` and `2fc62473`. No PIQD job has been prepared
+or confirmed. The remaining launch gate is live daemon identity and global
+capacity attestation at no more than 12 workers.
