@@ -1234,3 +1234,30 @@ The mine now requires three guards before promotion: decode the selected
 order; scan the actual CNF for exact, subsuming, and multiplicity changes; and
 falsify the active selector before accepting a pattern. A finite occurrence
 that does not cut the selected model and change the formula is not progress.
+
+## 2026-08-22 center-2 survivor refinement
+
+The complete center-2 physical portfolio is now authenticated SAT and fully
+replayed for all six categories. The five source-valid clauses committed at
+`f3a0cc82` form a 7,409,301-clause root. They cut the `unique-06`, `unique-09`,
+and `unique-10` predecessor assignments; `none`, `unique-07`, and `unique-08`
+remain exact satisfying assignments of the corresponding successor cells.
+
+Mandatory wave-only mining found 49, 15, and 15 uninstalled occurrences of
+the existing generic two-Kalmanson theorem in those three surviving models.
+Commit `69fc5c4f` banks one minimal checked occurrence from each survivor,
+giving a 7,409,304-clause root and 7,409,310-clause physical cells. No UNSAT
+certificate was produced, the stop condition did not fire, and exact 17
+remains open. The preparer is being retargeted to the new Lean-owned root.
+
+The next miner-hardening target is full equality-component coverage. The
+`none` assignment contains foci `(4,9)` and witnesses `{6,10,15}`, but the
+supporting equalities require five-step paths through the selected-row
+component. The shared metric probe finds the component, but the source-valid
+family scanner does not yet turn arbitrary component witnesses into replayable
+paths. The revised miner must enumerate every qualifying component witness and
+emit deterministic, bounded, source-replayable path certificates.
+
+Finally, the current audit of `docs/erdos-97-descent-prose-proof-atomic.md`
+found no new source-clean drop-in lemma for this packet. The prose descent
+library does not presently supply the missing consumer or close this branch.

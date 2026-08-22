@@ -1320,3 +1320,42 @@ Operational route:
    authenticated and consumed.
 
 This successor does not itself close exact 17 or the production leaf.
+
+## Six-cell survivor-refinement checkpoint — 2026-08-22
+
+The center-2 portfolio has now completed one authenticated SAT/replay pass over
+all six physical categories: `none` and `unique-06` through `unique-10`. Each
+returned total 308-variable assignment satisfies every clause of its submitted
+cell. These are finite Boolean witnesses only.
+
+Commit `f3a0cc82` appended five source-valid clauses to form the 7,409,301-clause
+root. Independent successor replay shows that those clauses cut the
+`unique-06`, `unique-09`, and `unique-10` predecessor models. The `none`,
+`unique-07`, and `unique-08` models remain exact satisfying assignments of
+their full successor cells.
+
+The mandatory wave-only theorem mines over those three survivors found 49,
+15, and 15 occurrences, respectively, of the already proved generic
+two-Kalmanson cancellation theorem that were not installed in the current
+root. Commit `69fc5c4f` banks one minimal checked occurrence from each model.
+The resulting Lean-owned root has 7,409,304 clauses; each of its 76
+next-center/physical-slice cells has 7,409,310 clauses.
+
+The stop condition did not fire: no cell has a checked UNSAT result, exact 17
+remains open, and the cap-nine production leaf is not closed. The governed
+preparer is being retargeted to export and authenticate the 7,409,304-clause
+root and its regenerated cells before another solve wave.
+
+One mining gap remains explicit. In the `none` model, foci `(4,9)` and
+witnesses `{6,10,15}` lie in a complete equality component whose supporting
+connections use five-step selected-row equality paths. The shared metric probe
+computes that component, but the source-valid family scanner did not convert a
+generic component witness into replayable equality paths. Component-complete
+candidate enumeration, deterministic path certification, and fail-closed
+regression guards are being added before relying on absence reports from the
+next wave.
+
+The concurrent audit of `docs/erdos-97-descent-prose-proof-atomic.md` found no
+new source-clean drop-in lemma for this packet. Its nearby descent statements
+still require antecedents that the exact-17 source realization does not
+provide.

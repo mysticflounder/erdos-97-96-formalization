@@ -15003,3 +15003,40 @@ complete replay and a wave-only source theorem mine. Checked `UNSAT` removes
 that physical cell through the existing 76-cell coordinator. The other five
 center-2 cells remain gated until this canary terminates. Exact 17 and the
 cap-nine production `sorry` remain open.
+
+## 2026-08-22 six-cell survivor-refinement checkpoint
+
+All six center-2 predecessor cells (`none`, then `unique-06` through
+`unique-10`) are authenticated SAT results with independent full-CNF replay.
+The five-clause Lean root committed at `f3a0cc82` has 7,409,301 clauses. Its
+new clauses reject the `unique-06`, `unique-09`, and `unique-10` predecessor
+assignments, while the `none`, `unique-07`, and `unique-08` assignments remain
+exact SAT witnesses for their complete successor cells.
+
+The required wave-only general-theorem scan was run separately on each of the
+three survivors. It found 49, 15, and 15 not-yet-installed occurrences of the
+existing source-valid two-Kalmanson cancellation theorem. One minimal checked
+occurrence per survivor is banked at `69fc5c4f`. This creates a
+7,409,304-clause Lean-owned root and 76 physical-slice cells of 7,409,310
+clauses each.
+
+This is another sound CEGAR refinement, not a terminal result. The exact-17
+stop condition did not fire, exact 17 remains open, and no production `sorry`
+is closed by these SAT witnesses. The next operational step is to retarget the
+governed preparer, export the new root and cells, authenticate byte custody,
+and only then start the next gated solve wave.
+
+The theorem mine also exposed a coverage weakness that must be fixed before a
+negative mine report is treated as complete. In the `none` model, the
+perpendicular-bisector candidate with foci `(4,9)` and witnesses `{6,10,15}`
+is visible only after traversing five-step paths in the full selected-row
+equality component. The metric probe already computes the full component, but
+the source-valid family scanner lacks a generic component-to-path certificate.
+Hardening now targets complete candidate enumeration, deterministic bounded
+certificate extraction, fail-closed completeness metadata, and a regression
+containing this precise configuration.
+
+The updated descent-prose audit found no new source-clean drop-in lemma for
+this source packet. The closest descent lemmas still need blocker provenance,
+additional physical support, or circle/arc hypotheses unavailable at this
+ingress.
