@@ -137,22 +137,26 @@ def lean_occurrence_check(
 ) -> bool:
     """Mirror ``CancellationOccurrence.check`` before emitting Lean.
 
-    With source rows and orders this additionally replays both projected
-    cores through the exact producer checker, covering quads, permutations,
-    primitive paths, and positive source-row membership.  Without them the
-    executable incidence/path portion of Lean's check is still mirrored,
-    which is useful for adversarial unit tests.
+    The occurrence support may be the union of different forward and reflected
+    reverse path supports; Lean only requires every used row choice to be
+    covered.  With source rows and orders this additionally replays both
+    projected cores through the exact producer checker, covering quads,
+    permutations, primitive paths, and positive source-row membership.  Without
+    them the executable incidence/path portion of Lean's check is still
+    mirrored, which is useful for adversarial unit tests.
     """
     try:
         forward_core = record_core(forward)
         reverse_core = record_core(reverse)
-        reverse_hits = reflected(hits)
-        if path_hits(forward) != hits or path_hits(reverse) != reverse_hits:
+        reverse_occurrence_hits = reflected(hits)
+        forward_path_hits = path_hits(forward)
+        reverse_path_hits = path_hits(reverse)
+        if not forward_path_hits <= hits or not reverse_path_hits <= reverse_occurrence_hits:
             return False
         if not _choices_cover_hits(forward_core.get("row_choices"), hits):
             return False
         if not _choices_cover_hits(
-            reverse_core.get("row_choices"), reverse_hits
+            reverse_core.get("row_choices"), reverse_occurrence_hits
         ):
             return False
         if not _paths_supported_by_choices(forward_core):

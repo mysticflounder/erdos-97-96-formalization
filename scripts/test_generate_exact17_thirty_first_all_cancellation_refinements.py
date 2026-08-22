@@ -334,6 +334,41 @@ def test_lean_occurrence_mirror_rejects_extra_or_missing_used_choice() -> None:
     assert reverse_hits == frozenset({(16, 15), (16, 14)})
 
 
+def test_lean_occurrence_mirror_accepts_union_cover_of_asymmetric_paths() -> None:
+    module = generator_module()
+    hits = frozenset({(0, 1), (0, 2), (0, 3)})
+
+    def record(center: int, first: int, second: int) -> dict[str, object]:
+        return {
+            "core": {
+                "paths": [
+                    {
+                        "steps": [
+                            {
+                                "kind": "row",
+                                "center": center,
+                                "first": first,
+                                "second": second,
+                            }
+                        ]
+                    }
+                ],
+                "row_choices": [
+                    {"center": center, "support": [first, second]}
+                ],
+            }
+        }
+
+    forward = record(0, 1, 2)
+    reverse = record(16, 13, 14)
+    assert module.lean_occurrence_check(hits, forward, reverse)
+
+    missing_reverse_cover = frozenset({(0, 1), (0, 2)})
+    assert not module.lean_occurrence_check(
+        missing_reverse_cover, forward, reverse
+    )
+
+
 def test_certificate_selection_rejects_invalid_order() -> None:
     module = generator_module()
     with pytest.raises(ValueError, match="invalid named order"):
