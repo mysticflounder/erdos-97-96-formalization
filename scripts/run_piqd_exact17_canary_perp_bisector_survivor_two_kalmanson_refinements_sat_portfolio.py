@@ -116,7 +116,7 @@ SOURCE_PREPARER_SHA256 = (
     "3ca3af0ebeb91d3bf7721bc052e27bf7b602f1c3c590f88f370e5cf670bd3a91"
 )
 SOURCE_PREPARER_BYTES = 126475
-CHECKPOINT_SHA256 = "c281d74fc49d637bb6dcad2c4978719a28dee29bc2c081ac7f8262daf62c24d9"
+CHECKPOINT_SHA256 = "29a5071e4d06fad121f256fd5b1b4cbbb582ec45cbabd9be331483fade30880a"
 CHECKPOINT_BYTES = 1238
 RUNNER_CODE_CHECKPOINT_SHA256 = (
     "a36087d01ef8400d101c242e34faccb73647648234da1aa71e9d9a95ed27651b"
@@ -1834,19 +1834,14 @@ def _authenticate_runner_support(root: Path = ROOT) -> dict[str, str]:
         and checkpoint["lane_id"] == LANE_ID
         and checkpoint["owner"] == RUN_OWNER
         and checkpoint["base_head"] == BASE_HEAD
-        and checkpoint["owned_paths"]
-        == sorted(
-            [
-                CHECKPOINT_RELATIVE,
-                RUNNER_CODE_CHECKPOINT_RELATIVE,
-                RUNNER_RELATIVE,
-                RUNNER_TEST_RELATIVE,
-            ]
-        )
+        and checkpoint["owned_paths"] == [CHECKPOINT_RELATIVE]
         and checkpoint["durable_paths"]
         == sorted(
             [
                 MINER_RELATIVE,
+                RUNNER_CODE_CHECKPOINT_RELATIVE,
+                RUNNER_RELATIVE,
+                RUNNER_TEST_RELATIVE,
                 SOURCE_PREPARER_RELATIVE,
             ]
         )
