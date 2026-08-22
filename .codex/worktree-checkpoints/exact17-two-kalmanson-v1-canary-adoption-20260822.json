@@ -1,0 +1,18 @@
+{
+  "base_head": "a4e3517ae5d50f2dc7099ab87f6ba6caaaced966",
+  "created_utc": "2026-08-22T00:00:00Z",
+  "durable_paths": [
+    ".codex/worktree-checkpoints/exact17-canary-perp-bisector-survivor-two-kalmanson-refinements-sat-portfolio-v2-20260822.json",
+    "scripts/run_piqd_exact17_canary_perp_bisector_survivor_two_kalmanson_refinements_sat_portfolio.py"
+  ],
+  "generated_roots": [],
+  "lane_id": "exact17-two-kalmanson-v1-canary-adoption-20260822",
+  "manifest_sha256": "2c66642a3b34bf86c5f472da70d78aed539281f4978badb424536afc86027514",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exact17-two-kalmanson-v1-canary-adoption-20260822.json",
+    "scripts/adopt_exact17_two_kalmanson_v1_canary_into_v2.py",
+    "scripts/test_adopt_exact17_two_kalmanson_v1_canary_into_v2.py"
+  ],
+  "owner": "exact17-two-kalmanson-v1-canary-adoption",
+  "schema": "worktree-lane-checkpoint/v1"
+}
