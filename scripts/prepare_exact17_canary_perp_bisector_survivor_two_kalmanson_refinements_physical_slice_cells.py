@@ -523,6 +523,49 @@ EXPECTED_CANARY_PERP_BISECTOR_SURVIVOR_TWO_KALMANSON_REFINEMENT_SUFFIX = (
 EXPECTED_CANARY_PERP_BISECTOR_SURVIVOR_TWO_KALMANSON_REFINEMENT_SUFFIX_SHA256 = (
     "a84972fd78857209b57024b9091b8cb14535ad7cb480062c445f3d43f129e12c"
 )
+# The Lean root deliberately carries the complete four-clause symmetry orbit
+# of every occurrence.  Some orbit clauses are already implied by shorter
+# parent clauses; these are harmless but are not counted as CEGAR progress.
+# Pin the exact zero-subsumer slots so custody proves both the full orbit and
+# the 36 genuinely new clauses, with at least one new clause per occurrence.
+EXPECTED_STRICT_NEW_SUFFIX_INDICES = (
+    0,
+    2,
+    4,
+    6,
+    8,
+    9,
+    12,
+    16,
+    17,
+    18,
+    19,
+    20,
+    23,
+    24,
+    26,
+    28,
+    30,
+    32,
+    34,
+    36,
+    38,
+    40,
+    44,
+    45,
+    46,
+    47,
+    48,
+    51,
+    52,
+    53,
+    55,
+    56,
+    60,
+    62,
+    63,
+    64,
+)
 ORDER_SHA256 = sha256_bytes(
     b"exact17-canary-perp-bisector-survivor-two-kalmanson-refinements-physical-slice-order-v1"
 )
@@ -1497,9 +1540,23 @@ def validate_canary_perp_bisector_survivor_two_kalmanson_refinement_parent_novel
         raise PreparationError(
             "a survivor two-Kalmanson refinement clause already occurs in the parent"
         )
-    if any(parent_subsumer_count):
+    strict_new_suffix_indices = [
+        index for index, count in enumerate(parent_subsumer_count) if count == 0
+    ]
+    if strict_new_suffix_indices != list(EXPECTED_STRICT_NEW_SUFFIX_INDICES):
         raise PreparationError(
-            "a parent clause subsumes the survivor two-Kalmanson refinement suffix"
+            "survivor two-Kalmanson strict-new suffix profile drifted"
+        )
+    strict_new_per_occurrence = [
+        sum(
+            index in EXPECTED_STRICT_NEW_SUFFIX_INDICES
+            for index in range(4 * occurrence, 4 * occurrence + 4)
+        )
+        for occurrence in range(17)
+    ]
+    if any(count == 0 for count in strict_new_per_occurrence):
+        raise PreparationError(
+            "a two-Kalmanson occurrence contributes no strict-new orbit clause"
         )
     if successor_multiplicity != [1] * len(suffix):
         raise PreparationError(
@@ -1510,7 +1567,10 @@ def validate_canary_perp_bisector_survivor_two_kalmanson_refinement_parent_novel
         "policy": {
             "parent_scan": "stream-all-immediate-parent-clauses",
             "exact_novelty": "ordered-literal-tuple multiplicity must be zero in the full parent",
-            "subsumption": "parent literal-set subset is forbidden",
+            "subsumption": (
+                "the exact 36-slot zero-subsumer profile is pinned; the other "
+                "full-orbit clauses may be parent-subsumed"
+            ),
             "successor_shape": "byte-exact parent body prefix plus exact ordered 68-clause suffix",
             "child_multiplicity": "each exact suffix tuple occurs once in the full successor",
         },
@@ -1520,6 +1580,9 @@ def validate_canary_perp_bisector_survivor_two_kalmanson_refinement_parent_novel
         "exact_parent_multiplicity": exact_parent_multiplicity,
         "parent_subsumer_count": parent_subsumer_count,
         "parent_subsumer_witness": parent_subsumer_witness,
+        "strict_new_suffix_indices": strict_new_suffix_indices,
+        "strict_new_suffix_count": len(strict_new_suffix_indices),
+        "strict_new_per_occurrence": strict_new_per_occurrence,
         "successor_multiplicity": successor_multiplicity,
         "parent_body_exact_prefix": True,
         "suffix_exact_order": True,

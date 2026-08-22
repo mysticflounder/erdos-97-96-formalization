@@ -38,6 +38,16 @@ _UNRELATED_PARENT_CLAUSES = (
     (-307, -277, -200),
     (-308, -277, -183),
     (-308, -277, -221),
+    # Actual short parent clauses witnessing the 32 redundant orbit slots.
+    # None subsumes one of the 36 pinned strict-new slots.
+    (-155, -172),
+    (-162,),
+    (-177,),
+    (-149,),
+    (-183,),
+    (-165,),
+    (-194,),
+    (-154,),
 )
 
 
@@ -70,6 +80,16 @@ def _successor(
         + body
         + suffix_bytes
     )
+
+
+def _assert_expected_strict_new_profile(novelty: dict[str, Any]) -> None:
+    counts = novelty["parent_subsumer_count"]
+    strict = tuple(index for index, count in enumerate(counts) if count == 0)
+    assert strict == subject.EXPECTED_STRICT_NEW_SUFFIX_INDICES
+    assert novelty["strict_new_suffix_indices"] == list(strict)
+    assert novelty["strict_new_suffix_count"] == 36
+    assert len(novelty["strict_new_per_occurrence"]) == 17
+    assert all(count > 0 for count in novelty["strict_new_per_occurrence"])
 
 
 def _fixture(
@@ -184,9 +204,15 @@ def _fixture(
         "support": support,
     }
     production_config.write_bytes(subject.canonical_json_bytes(config_payload))
-    monkeypatch.setattr(subject, "IMMEDIATE_PARENT_CLAUSES", 7)
-    monkeypatch.setattr(subject, "PARENT_CLAUSES", 75)
-    monkeypatch.setattr(subject, "CELL_CLAUSES", 81)
+    monkeypatch.setattr(
+        subject, "IMMEDIATE_PARENT_CLAUSES", len(_UNRELATED_PARENT_CLAUSES)
+    )
+    monkeypatch.setattr(
+        subject, "PARENT_CLAUSES", len(_UNRELATED_PARENT_CLAUSES) + 68
+    )
+    monkeypatch.setattr(
+        subject, "CELL_CLAUSES", len(_UNRELATED_PARENT_CLAUSES) + 68 + 6
+    )
     calls: list[tuple[int, str]] = []
 
     def fake_root_export(_repo: Path, _exporter: Path, output: Path) -> None:
@@ -897,7 +923,7 @@ def test_prepares_all_76_cells_and_validates_sentinels(
     assert campaign["schema"] == subject.CAMPAIGN_SCHEMA
     assert campaign["cell_count"] == 76
     assert campaign["source"]["source_commit"] == "a" * 40
-    assert campaign["source"]["parent_novelty"]["parent_subsumer_count"] == [0] * 68
+    _assert_expected_strict_new_profile(campaign["source"]["parent_novelty"])
     assert report["parent_novelty"]["successor_multiplicity"] == [1] * 68
     first = campaign["cells"][0]
     producer = json.loads((tmp_path / first["producer_manifest"]["path"]).read_bytes())
@@ -911,7 +937,7 @@ def test_prepares_all_76_cells_and_validates_sentinels(
     assert producer["source_manifest"]["source_theorem"] == subject.SOURCE_THEOREM
     assert producer["parent_novelty"] == campaign["source"]["parent_novelty"]
     assert producer["parent_novelty"]["policy"]["subsumption"].startswith(
-        "parent literal-set subset"
+        "the exact 36-slot zero-subsumer profile"
     )
     dependencies = producer["delegated_dependencies"]
     assert dependencies == campaign["source"]["delegated_dependencies"]
@@ -978,7 +1004,7 @@ def test_prepares_all_76_cells_and_validates_sentinels(
         run["source_digests"][subject.PRODUCTION_CONFIG_RELATIVE.as_posix()]
         == production["sha256"]
     )
-    assert wave["encoding"]["num_clauses"] == 81
+    assert wave["encoding"]["num_clauses"] == subject.CELL_CLAUSES
 
 
 def test_preparation_uses_owned_builders_and_v4_identity_everywhere(
@@ -1041,7 +1067,9 @@ def test_exact_parent_duplicate_of_canary_clause_fails_before_children(
     assert calls == [(-1, "root"), (-1, "root")]
 
 
-@pytest.mark.parametrize("suffix_index", range(68))
+@pytest.mark.parametrize(
+    "suffix_index", subject.EXPECTED_STRICT_NEW_SUFFIX_INDICES
+)
 def test_strict_parent_subsumer_of_canary_clause_fails_before_children(
     tmp_path: Path, monkeypatch: pytest.MonkeyPatch, suffix_index: int
 ) -> None:
@@ -1055,7 +1083,7 @@ def test_strict_parent_subsumer_of_canary_clause_fails_before_children(
     subsumed = _root().replace(b"-307 -264 -263 -179 0\n", subsumer, 1)
     _set_parent_pair(paths, subsumed)
     _initialize(tmp_path, paths)
-    with pytest.raises(subject.PreparationError, match="subsumes"):
+    with pytest.raises(subject.PreparationError, match="strict-new suffix profile"):
         _prepare(tmp_path, paths)
     assert calls == [(-1, "root"), (-1, "root")]
 
@@ -1067,7 +1095,7 @@ def test_parent_subsumer_with_duplicate_literal_fails_before_children(
     subsumed = _root().replace(b"-307 -264 -263 -179 0\n", b"-143 -143 0\n", 1)
     _set_parent_pair(paths, subsumed)
     _initialize(tmp_path, paths)
-    with pytest.raises(subject.PreparationError, match="subsumes"):
+    with pytest.raises(subject.PreparationError, match="strict-new suffix profile"):
         _prepare(tmp_path, paths)
     assert calls == [(-1, "root"), (-1, "root")]
 
@@ -1082,7 +1110,7 @@ def test_unrelated_parent_clause_with_duplicate_literal_is_accepted(
     report = _prepare(tmp_path, paths)
     novelty = report["parent_novelty"]
     assert novelty["exact_parent_multiplicity"] == [0] * 68
-    assert novelty["parent_subsumer_count"] == [0] * 68
+    _assert_expected_strict_new_profile(novelty)
     assert novelty["successor_multiplicity"] == [1] * 68
     assert novelty["suffix_clauses"] == [
         list(clause)
