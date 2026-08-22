@@ -1,0 +1,22 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "exact17-canary-perp-bisector-model-refinements-20260822",
+  "owner": "exact17-canary-perp-bisector-model-refinements",
+  "base_head": "db45c89ca874ebe692041913a62ee14665d1eb28",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exact17-canary-perp-bisector-model-refinements-20260822.json",
+    "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenCanaryPerpBisectorRefinementModelRefinements.lean",
+    "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenCanaryPerpBisectorRefinementModelRefinementsPhysicalSliceCellExport.lean",
+    "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenCanaryPerpBisectorRefinementModelRefinementsPhysicalSliceCoverage.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [
+    "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenCanaryPerpBisectorRefinement.lean",
+    "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenCanaryPerpBisectorRefinementPhysicalSliceCellExport.lean",
+    "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenCanaryPerpBisectorRefinementPhysicalSliceCoverage.lean",
+    "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenNineteenthModelRefinements.lean",
+    "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisectorEightHitTwoKalmansonCancellationSixHitBisectorCanaryTwoKalmansonModelRefinements.lean"
+  ],
+  "created_utc": "2026-08-22T01:10:00Z",
+  "manifest_sha256": "243c1d8496aeae79e45410a80960a6c035872f0f300f33e0eae2e16ab7a96abd"
+}
