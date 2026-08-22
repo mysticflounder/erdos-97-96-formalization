@@ -1484,16 +1484,22 @@ The accepted v3 candidate ledger has raw SHA-256
 It contains exactly 35 generic two-Kalmanson occurrences and two
 `FourPointTwoCircleBisectorOrderCore` occurrences. The candidate array is
 identical to the corrected v2 replay. Consequently the prior 75-cell portfolio
-must not run: first bank all source-valid strict-new clauses, then regenerate a
-new Lean-owned root and all source-total physical-multiplicity cells.
+must not run: first bank every source-valid candidate, classify both exact and
+subsumption novelty against the full parent, then regenerate a Lean-owned root
+and all source-total physical-multiplicity cells.
 
 The source promotion is complete. The 35 generic candidates give 140 distinct
 Lean-owned clauses and a 7,409,512-clause intermediate root. Direct Lean
 adapters prove both formalized-core candidates from `SourceRealization`. The
 first candidate's four-clause orbit is already contained in the generic suffix;
-the second candidate's orbit is disjoint. Accordingly only the latter four
-clauses form the strict-new FourPoint suffix, and the final successor has
-7,409,516 clauses. The source-assignment theorem covers the full final root.
+the second candidate's orbit is exact-disjoint. The authenticated full-parent
+scan nevertheless finds one strict V2 subsumer for each of those four clauses:
+each parent witness is the corresponding FourPoint clause with one literal
+deleted. The Lean theorem `candidateBClauses_strictly_subsumed_v2` records the
+same finite fact. Therefore the final 7,409,516-clause successor is a governed
+source-adapter bank with no additional Boolean pruning beyond the 7,409,512-
+clause V2 root. The source-assignment theorem still covers the full final root;
+the source-total physical-multiplicity units are the new production split.
 
 The old 7,409,378-clause physical cells are permanently superseded. The next
 gate is a fresh governed export of 76 cells, each formed from the 7,409,516-

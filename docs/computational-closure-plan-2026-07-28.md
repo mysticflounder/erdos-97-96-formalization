@@ -15178,11 +15178,15 @@ That promotion is now source-banked. The 35 generic candidates replay as
 a 7,409,512-clause Lean-owned intermediate root. Both formalized-core records
 also have direct source adapters. The first record's four-clause orbit is
 already contained in the 140-clause suffix; the second record's orbit is
-disjoint from it. The final strict-new suffix therefore contains only the four
-clauses from the second record, and the successor root has exactly 7,409,516
-clauses. Lean proves the source assignment satisfies both intermediate and
-final roots. The next production action is to regenerate all 76 physical cells
-from this root; none of the 7,409,378-clause cells remain current.
+exact-disjoint from it. A full parent-subsumption scan on 2026-08-22 corrected
+the stronger novelty claim: each second-record clause has exactly one V2
+parent clause obtained by deleting one literal. Lean now banks this fact as
+`candidateBClauses_strictly_subsumed_v2`. Thus the 7,409,516-clause successor
+is a byte-level/source-adapter bank, but has the same Boolean models as the
+7,409,512-clause V2 root. The actual production refinement at this layer is
+the source-total physical-multiplicity partition. The next action remains to
+regenerate and solve all 76 physical cells; none of the 7,409,378-clause cells
+remain current because they predate the 140-clause V2 refinement bank.
 
 That successor now has a complete Lean physical-cell interface. Root exporters
 check the 7,409,512-clause intermediate and 7,409,516-clause final roots; the
