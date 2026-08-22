@@ -39,8 +39,8 @@ from scripts import (
 )
 
 MINER_NAME = "exact17-survivor-two-kalmanson-refinements-source-valid-theorem-miner"
-MINER_SCHEMA = "p97-exact17-survivor-two-kalmanson-refinements-source-valid-theorem-miner/v1"
-MINER_VERSION = "1"
+MINER_SCHEMA = "p97-exact17-survivor-two-kalmanson-refinements-source-valid-theorem-miner/v2"
+MINER_VERSION = "2"
 VERIFICATION_SCHEMA = (
     "p97-exact17-survivor-two-kalmanson-refinements-source-valid-theorem-mine-verification/v1"
 )
@@ -108,8 +108,8 @@ SCANNER_DEPENDENCIES: dict[str, dict[str, str | int]] = {
         "bytes": 5_837,
     },
     "scripts/generate_exact17_twenty_eighth_all_cancellation_refinements.py": {
-        "sha256": "b940ddab08a07ac4de39105b734bdcfc97f6dc34593fb540e912243a900e13e7",
-        "bytes": 26_464,
+        "sha256": "9b318552be20475748b03ea428f27b4b197ed9721f5fa4af04999eda7633b986",
+        "bytes": 26_760,
     },
     "scratch/atail-force/common_system_metric_probe.py": {
         "sha256": "18b1a91a3326b975c8baa16f82e7c692fafd5b979450bb305d4c31895cde1334",
@@ -844,19 +844,54 @@ def enumerate_candidates(
         ),
         key=lambda hits: (len(hits), sorted(hits)),
     )
-    reflected_forward = {scanner.reflected(hits) for hits in minimal_forward}
-    reverse_minimal_set = set(minimal_reverse)
-    _require(
-        reflected_forward == reverse_minimal_set,
-        "two-Kalmanson forward/reverse minimal-support pairing is asymmetric",
+    # A Lean occurrence need not use the same path support in both boundary
+    # orientations.  Its forward choices must be covered by ``hits`` and its
+    # reverse choices by ``Fin.rev hits``.  Pair every minimal certificate and
+    # retain the inclusion-minimal unions that satisfy exactly that contract.
+    paired_by_occurrence: dict[
+        frozenset[tuple[int, int]],
+        tuple[frozenset[tuple[int, int]], frozenset[tuple[int, int]]],
+    ] = {}
+    paired_key: dict[frozenset[tuple[int, int]], tuple[Any, ...]] = {}
+    for forward_hits in minimal_forward:
+        for reverse_hits in minimal_reverse:
+            occurrence_hits = forward_hits | scanner.reflected(reverse_hits)
+            key = (
+                len(forward_hits) + len(reverse_hits),
+                tuple(sorted(forward_hits)),
+                tuple(sorted(reverse_hits)),
+            )
+            if occurrence_hits not in paired_key or key < paired_key[occurrence_hits]:
+                paired_key[occurrence_hits] = key
+                paired_by_occurrence[occurrence_hits] = (
+                    forward_hits,
+                    reverse_hits,
+                )
+    minimal_occurrences = sorted(
+        (
+            hits
+            for hits in paired_by_occurrence
+            if not any(other < hits for other in paired_by_occurrence)
+        ),
+        key=lambda hits: (len(hits), sorted(hits)),
+    )
+    position = {label: index for index, label in enumerate(order)}
+    positive_hits = frozenset(
+        (position[row.center], position[point])
+        for row in rows
+        for point in row.support
     )
     candidates: list[dict[str, Any]] = []
     paired = 0
-    for hits in minimal_forward:
-        reverse_hits = scanner.reflected(hits)
+    for hits in minimal_occurrences:
+        _require(
+            hits <= positive_hits,
+            "two-Kalmanson occurrence is not positive in the SAT model",
+        )
+        forward_hits, reverse_hits = paired_by_occurrence[hits]
         reverse_record = reverse_by_support[reverse_hits]
         forward_source = scanner.project_record_for_lean(
-            forward_by_support[hits], hits, order, rows
+            forward_by_support[forward_hits], forward_hits, order, rows
         )
         reverse_source = scanner.project_record_for_lean(
             reverse_record, reverse_hits, reverse_order, rows
@@ -885,6 +920,13 @@ def enumerate_candidates(
                     "forward": forward_source,
                     "reverse": reverse_source,
                     "paired_forward_reverse_replay": True,
+                    "occurrence_union_cover": True,
+                    "forward_path_support": [
+                        list(hit) for hit in sorted(forward_hits)
+                    ],
+                    "reverse_path_support": [
+                        list(hit) for hit in sorted(reverse_hits)
+                    ],
                 },
             )
         )
@@ -973,6 +1015,14 @@ def enumerate_candidates(
         ),
         "excluded_diagnostic_stage_counts": dict(sorted(excluded.items())),
         "complete_equality_component_counts": component["counts"],
+        "two_kalmanson_pairing_counts": {
+            "forward_record_count": len(forward),
+            "reverse_record_count": len(reverse),
+            "minimal_forward_support_count": len(minimal_forward),
+            "minimal_reverse_support_count": len(minimal_reverse),
+            "paired_union_count": len(paired_by_occurrence),
+            "minimal_paired_union_count": len(minimal_occurrences),
+        },
     }
 
 

@@ -117,8 +117,9 @@ def test_successor_lane_identity_and_dimensions_are_runner_bound() -> None:
     assert mine.MINER_NAME == "exact17-survivor-two-kalmanson-refinements-source-valid-theorem-miner"
     assert mine.MINER_SCHEMA == (
         "p97-exact17-survivor-two-kalmanson-refinements-"
-        "source-valid-theorem-miner/v1"
+        "source-valid-theorem-miner/v2"
     )
+    assert mine.MINER_VERSION == "2"
     assert mine.VERIFICATION_SCHEMA == mine.runner.MINE_VERIFICATION_SCHEMA
     assert mine.runner.CANARY_PORTFOLIO_CELL_ID == (
         "canary-perp-bisector-survivor-two-kalmanson-refinements-"
@@ -440,8 +441,9 @@ def test_future_unapproved_formalized_stage_is_rejected(
 
 
 @pytest.mark.parametrize("unpaired_direction", ["forward", "reverse"])
-def test_two_kalmanson_minimal_support_pairing_fails_closed_on_asymmetry(
+def test_two_kalmanson_does_not_promote_if_one_orientation_is_empty(
     unpaired_direction: str,
+    monkeypatch: pytest.MonkeyPatch,
 ) -> None:
     scanner = _scanner()
     order = mine.ORDER_TABLES[0]
@@ -458,17 +460,100 @@ def test_two_kalmanson_minimal_support_pairing_fails_closed_on_asymmetry(
         present = is_forward == (unpaired_direction == "forward")
         return (record,) if present else ()
 
+    monkeypatch.setattr(
+        scanner.producer_bank,
+        "enumerate_two_kalmanson_cancellations",
+        enumerate_direction,
+    )
+    asymmetric = replace(
+        scanner,
+        path_hits=lambda value: frozenset(value["hits"]),
+        reflected=lambda hits: hits,
+    )
+    candidates, inventory = mine.enumerate_candidates(asymmetric, rows, order)
+    assert not any(
+        candidate["family"] == "two-kalmanson-cancellation"
+        for candidate in candidates
+    )
+    assert inventory["family_candidate_counts"]["two-kalmanson-cancellation"] == 0
+
+
+def test_two_kalmanson_asymmetric_paths_are_paired_by_minimal_union() -> None:
+    scanner = _scanner()
+    order = mine.ORDER_TABLES[0]
+    rows = tuple(
+        scanner.producer_bank.MetricRow(
+            center, tuple((center + offset) % 17 for offset in range(1, 5)), False
+        )
+        for center in range(17)
+    )
+    position = {label: index for index, label in enumerate(order)}
+    positive_hits = sorted(
+        {
+            (position[row.center], position[point])
+            for row in rows
+            for point in row.support
+        }
+    )
+    first_center = positive_hits[0][0]
+    same_center = [hit for hit in positive_hits if hit[0] == first_center]
+    forward = {"hits": tuple(same_center[:2]), "name": "forward"}
+    reverse = {"hits": tuple(same_center[1:3]), "name": "reverse"}
+
+    def enumerate_direction(_rows: Any, _n: int, cyclic: Any, **_kwargs: Any) -> Any:
+        return (forward,) if tuple(cyclic) == order else (reverse,)
+
+    component = {
+        "status": "COMPLETE",
+        "complete": True,
+        "lean_consumer": "unused",
+        "candidates": [],
+        "counts": {},
+    }
     fake_producer = SimpleNamespace(
-        enumerate_two_kalmanson_cancellations=enumerate_direction
+        enumerate_two_kalmanson_cancellations=enumerate_direction,
+        scan_all_formalized_cores=lambda *_args, **_kwargs: (),
+        complete_perpendicular_bisector_certificate=(
+            lambda *_args, **_kwargs: component
+        ),
     )
     asymmetric = replace(
         scanner,
         producer_bank=fake_producer,
         path_hits=lambda value: frozenset(value["hits"]),
         reflected=lambda hits: hits,
+        project_record_for_lean=(
+            lambda record, _hits, _order, _rows: record
+        ),
+        lean_occurrence_check=(
+            lambda hits, fwd, rev, **_kwargs: (
+                frozenset(fwd["hits"]) <= hits
+                and frozenset(rev["hits"]) <= hits
+            )
+        ),
+        validate_complete_perpendicular_bisector_certificate=(
+            lambda *_args, **_kwargs: True
+        ),
     )
-    with pytest.raises(mine.MineError, match="pairing is asymmetric"):
-        mine.enumerate_candidates(asymmetric, rows, order)
+    candidates, inventory = mine.enumerate_candidates(asymmetric, rows, order)
+    cancellation = [
+        candidate
+        for candidate in candidates
+        if candidate["family"] == "two-kalmanson-cancellation"
+    ]
+    assert len(cancellation) == 1
+    assert cancellation[0]["support"] == sorted(
+        (list(hit) for hit in same_center[:3]), key=canonical_json_bytes
+    )
+    assert cancellation[0]["payload"]["occurrence_union_cover"] is True
+    assert inventory["two_kalmanson_pairing_counts"] == {
+        "forward_record_count": 1,
+        "reverse_record_count": 1,
+        "minimal_forward_support_count": 1,
+        "minimal_reverse_support_count": 1,
+        "paired_union_count": 1,
+        "minimal_paired_union_count": 1,
+    }
 
 
 def test_receipts_bind_campaign_cell_wave_variable_map_cnf_model_and_ledger(
