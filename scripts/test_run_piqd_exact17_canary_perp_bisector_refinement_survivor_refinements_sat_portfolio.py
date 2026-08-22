@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import hashlib
+import json
 import multiprocessing
 import os
 import queue
@@ -267,6 +268,133 @@ def _candidate(
     return candidate
 
 
+def _identity_source_fixture(
+    root: Path, *, commit: str, source_root_relative: str
+) -> dict[str, Any]:
+    source_root = root / source_root_relative
+    source_cells = []
+    categories = (
+        "none",
+        "unique-06",
+        "unique-07",
+        "unique-08",
+        "unique-09",
+        "unique-10",
+    )
+    roles = [
+        (center, category)
+        for center in (*range(8), *range(12, 17))
+        for category in categories
+        if (center, category) not in {(6, "unique-06"), (7, "unique-07")}
+    ]
+    assert len(roles) == runner.CELL_COUNT
+    for ordinal, (center, category) in enumerate(roles):
+        source_id = (
+            "canary-perp-bisector-survivor-refinements-next-center-"
+            f"{center:02d}-physical-{category}"
+        )
+        cnf = f"p cnf {runner.NUM_VARIABLES} 1\n1 0\n".encode()
+        cnf_path = source_root / "inputs" / f"{ordinal}.cnf"
+        cnf_ref = _write(cnf_path, cnf)
+        cnf_ref["path"] = cnf_path.relative_to(root).as_posix()
+        producer = {
+            "backend": runner.BACKEND,
+            "solver_profile": runner.SOURCE_SOLVER_PROFILE,
+            "query_polarity": runner.QUERY_POLARITY,
+            "source_manifest": {
+                "source_id": source_id,
+                "source_theorem": runner.EXPECTED_SOURCE_THEOREM,
+                "source_path": runner.EXPECTED_SOURCE_PATH,
+                "root_source_path": runner.EXPECTED_ROOT_SOURCE_PATH,
+                "finite_schema": runner.EXPECTED_FINITE_SCHEMA,
+            },
+            "production_config": {"target_code": {"commit": commit}},
+        }
+        producer_raw = runner.canonical_json_bytes(producer)
+        producer_path = source_root / "inputs" / f"{ordinal}.producer.json"
+        producer_ref = _write(producer_path, producer_raw)
+        producer_ref["path"] = producer_path.relative_to(root).as_posix()
+        wave = {
+            "encoding": {
+                "cnf_sha256": hashlib.sha256(cnf).hexdigest(),
+                "producer_manifest_sha256": hashlib.sha256(producer_raw).hexdigest(),
+                "num_variables": runner.NUM_VARIABLES,
+                "num_clauses": runner.NUM_CLAUSES,
+                "query_polarity": runner.QUERY_POLARITY,
+            },
+            "execution": {
+                "backend": runner.BACKEND,
+                "solver_profile": runner.SOURCE_SOLVER_PROFILE,
+            },
+        }
+        wave_raw = runner.canonical_json_bytes(wave)
+        wave_path = source_root / "inputs" / f"{ordinal}.wave.json"
+        wave_ref = _write(wave_path, wave_raw)
+        wave_ref["path"] = wave_path.relative_to(root).as_posix()
+        source_cells.append(
+            {
+                "cell_id": source_id,
+                "ordinal": ordinal,
+                "center": center,
+                "category": category,
+                "direct_lean_bytes_validated": (center, category)
+                in runner.DIRECT_SENTINELS,
+                "cnf": cnf_ref,
+                "producer_manifest": producer_ref,
+                "wave_manifest": wave_ref,
+            }
+        )
+    campaign = {
+        "schema": runner.SOURCE_CAMPAIGN_SCHEMA,
+        "status": "PREPARED_LOCAL_ONLY",
+        "cell_count": runner.CELL_COUNT,
+        "cells": source_cells,
+    }
+    campaign_raw = runner.canonical_json_bytes(campaign)
+    campaign_path = source_root / "artifacts/campaign-manifest.json"
+    _write(campaign_path, campaign_raw)
+    run_unsigned = {
+        "schema": runner.RUN_MANIFEST_SCHEMA,
+        "root": source_root_relative,
+    }
+    source_run = {
+        **run_unsigned,
+        "manifest_sha256": runner._self_hash(run_unsigned),
+    }
+    run_raw = runner.canonical_json_bytes(source_run)
+    run_path = source_root / "run_manifest.json"
+    _write(run_path, run_raw)
+    return {
+        "source_root": source_root,
+        "campaign": campaign,
+        "campaign_raw": campaign_raw,
+        "run_raw": run_raw,
+        "pins": {
+            "source_campaign_sha256": hashlib.sha256(campaign_raw).hexdigest(),
+            "source_campaign_bytes": len(campaign_raw),
+            "source_run_manifest_sha256": hashlib.sha256(run_raw).hexdigest(),
+            "source_run_manifest_bytes": len(run_raw),
+            "source_preparer_commit": commit,
+        },
+    }
+
+
+def test_real_prepared_campaign_has_exact_direct_lean_sentinel_inventory() -> None:
+    campaign_path = (
+        runner.ROOT
+        / runner.SOURCE_RUN_ROOT_RELATIVE
+        / "artifacts/campaign-manifest.json"
+    )
+    if not campaign_path.is_file():
+        pytest.skip("governed prepared campaign is not materialized in this checkout")
+    campaign = runner._strict_json(campaign_path.read_bytes(), "real source campaign")
+    cells = campaign.get("cells")
+    assert type(cells) is list and len(cells) == runner.CELL_COUNT
+    runner._require_direct_sentinel_inventory(cells)
+    assert sum(cell["direct_lean_bytes_validated"] is True for cell in cells) == 5
+    assert sum(cell["direct_lean_bytes_validated"] is False for cell in cells) == 71
+
+
 def test_production_commands_fail_closed_before_any_daemon_call(
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
@@ -290,6 +418,250 @@ def test_production_commands_fail_closed_before_any_daemon_call(
     assert called is False
 
 
+def test_provisional_identity_derivation_is_deterministic_read_only_and_complete(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+    capsys: pytest.CaptureFixture[str],
+) -> None:
+    commit = "4" * 40
+    source_relative = "scratch/runs/source/preparation-v1"
+    fixture = _identity_source_fixture(
+        tmp_path, commit=commit, source_root_relative=source_relative
+    )
+    monkeypatch.setattr(runner, "ROOT", tmp_path)
+    monkeypatch.setattr(runner, "SOURCE_RUN_ROOT_RELATIVE", source_relative)
+    monkeypatch.setattr(runner, "PRODUCTION_PINS_FINALIZED", False)
+    monkeypatch.setattr(
+        runner, "scan_dimacs", lambda cnf: (runner.NUM_VARIABLES, runner.NUM_CLAUSES)
+    )
+    monkeypatch.setattr(runner, "validate_wave_manifest", lambda wave: None)
+
+    def forbidden(*args: Any, **kwargs: Any) -> Any:
+        del args, kwargs
+        raise AssertionError("identity derivation must not mutate or contact PIQD")
+
+    monkeypatch.setattr(runner, "_write_once_or_validate", forbidden)
+    monkeypatch.setattr(runner, "PiqdRawDimacsClient", forbidden)
+    monkeypatch.setattr(runner, "_live_daemon_attestation", forbidden)
+
+    def snapshot() -> dict[str, tuple[str, int, int]]:
+        return {
+            path.relative_to(tmp_path).as_posix(): (
+                hashlib.sha256(path.read_bytes()).hexdigest(),
+                path.stat().st_size,
+                path.stat().st_mtime_ns,
+            )
+            for path in tmp_path.rglob("*")
+            if path.is_file()
+        }
+
+    before = snapshot()
+    args = [
+        "derive-identities",
+        "--source-campaign-sha256",
+        fixture["pins"]["source_campaign_sha256"],
+        "--source-campaign-bytes",
+        str(fixture["pins"]["source_campaign_bytes"]),
+        "--source-run-manifest-sha256",
+        fixture["pins"]["source_run_manifest_sha256"],
+        "--source-run-manifest-bytes",
+        str(fixture["pins"]["source_run_manifest_bytes"]),
+        "--source-preparer-commit",
+        commit,
+    ]
+    assert runner.main(args) == 0
+    first = capsys.readouterr().out
+    assert runner.main(args) == 0
+    second = capsys.readouterr().out
+    assert first == second
+    payload = json.loads(first)
+    assert runner.canonical_json_bytes(payload) == first.rstrip("\n").encode()
+    assert payload["schema"] == runner.IDENTITY_DERIVATION_SCHEMA
+    assert payload["cell_count"] == runner.CELL_COUNT
+    assert len(payload["source_cell_identities"]) == runner.CELL_COUNT
+    assert len(payload["production_cell_identities"]) == runner.CELL_COUNT
+    assert (
+        payload["source_table_sha256"]
+        == hashlib.sha256(
+            runner.canonical_json_bytes(payload["source_cell_identities"])
+        ).hexdigest()
+    )
+    assert (
+        payload["production_table_sha256"]
+        == hashlib.sha256(
+            runner.canonical_json_bytes(payload["production_cell_identities"])
+        ).hexdigest()
+    )
+    assert snapshot() == before
+
+
+def test_provisional_identity_derivation_rejects_pin_descriptor_and_self_hash_drift(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    commit = "4" * 40
+    source_relative = "scratch/runs/source/preparation-v1"
+    fixture = _identity_source_fixture(
+        tmp_path, commit=commit, source_root_relative=source_relative
+    )
+    monkeypatch.setattr(runner, "SOURCE_RUN_ROOT_RELATIVE", source_relative)
+    monkeypatch.setattr(
+        runner, "scan_dimacs", lambda cnf: (runner.NUM_VARIABLES, runner.NUM_CLAUSES)
+    )
+    monkeypatch.setattr(runner, "validate_wave_manifest", lambda wave: None)
+    with pytest.raises(runner.PortfolioRunnerError, match="caller pin drifted"):
+        runner.derive_identities(
+            root=tmp_path,
+            **{**fixture["pins"], "source_campaign_sha256": "0" * 64},
+        )
+    producer_ref = fixture["campaign"]["cells"][0]["producer_manifest"]
+    producer_path = tmp_path / producer_ref["path"]
+    original_producer = producer_path.read_bytes()
+    producer_path.write_bytes(b"{}")
+    producer_path.chmod(0o600)
+    with pytest.raises(runner.PortfolioRunnerError, match="source producer"):
+        runner.derive_identities(root=tmp_path, **fixture["pins"])
+    producer_path.write_bytes(original_producer)
+    producer_path.chmod(0o600)
+    source_run_path = fixture["source_root"] / "run_manifest.json"
+    bad_run = json.loads(fixture["run_raw"])
+    bad_run["manifest_sha256"] = "0" * 64
+    bad_run_raw = runner.canonical_json_bytes(bad_run)
+    source_run_path.write_bytes(bad_run_raw)
+    source_run_path.chmod(0o600)
+    with pytest.raises(runner.PortfolioRunnerError, match="self-hash drifted"):
+        runner.derive_identities(
+            root=tmp_path,
+            **{
+                **fixture["pins"],
+                "source_run_manifest_sha256": hashlib.sha256(bad_run_raw).hexdigest(),
+                "source_run_manifest_bytes": len(bad_run_raw),
+            },
+        )
+
+
+def test_provisional_identity_derivation_rejects_target_commit_drift(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    commit = "4" * 40
+    source_relative = "scratch/runs/source/preparation-v1"
+    fixture = _identity_source_fixture(
+        tmp_path, commit=commit, source_root_relative=source_relative
+    )
+    monkeypatch.setattr(runner, "SOURCE_RUN_ROOT_RELATIVE", source_relative)
+    monkeypatch.setattr(
+        runner, "scan_dimacs", lambda cnf: (runner.NUM_VARIABLES, runner.NUM_CLAUSES)
+    )
+    monkeypatch.setattr(runner, "validate_wave_manifest", lambda wave: None)
+    cell = fixture["campaign"]["cells"][0]
+    producer_path = tmp_path / cell["producer_manifest"]["path"]
+    producer = json.loads(producer_path.read_bytes())
+    producer["production_config"]["target_code"]["commit"] = "5" * 40
+    producer_raw = runner.canonical_json_bytes(producer)
+    producer_path.write_bytes(producer_raw)
+    producer_path.chmod(0o600)
+    cell["producer_manifest"]["sha256"] = hashlib.sha256(producer_raw).hexdigest()
+    cell["producer_manifest"]["bytes"] = len(producer_raw)
+    campaign_raw = runner.canonical_json_bytes(fixture["campaign"])
+    campaign_path = fixture["source_root"] / "artifacts/campaign-manifest.json"
+    campaign_path.write_bytes(campaign_raw)
+    campaign_path.chmod(0o600)
+    with pytest.raises(runner.PortfolioRunnerError, match="preparer commit drifted"):
+        runner.derive_identities(
+            root=tmp_path,
+            **{
+                **fixture["pins"],
+                "source_campaign_sha256": hashlib.sha256(campaign_raw).hexdigest(),
+                "source_campaign_bytes": len(campaign_raw),
+            },
+        )
+
+
+def test_prepare_uses_exactly_the_provisional_transformation_tables(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    commit = "4" * 40
+    source_relative = "scratch/runs/source/preparation-v1"
+    fixture = _identity_source_fixture(
+        tmp_path, commit=commit, source_root_relative=source_relative
+    )
+    monkeypatch.setattr(runner, "ROOT", tmp_path)
+    monkeypatch.setattr(runner, "SOURCE_RUN_ROOT_RELATIVE", source_relative)
+    monkeypatch.setattr(runner, "SOURCE_RUN_ROOT", fixture["source_root"])
+    monkeypatch.setattr(
+        runner, "scan_dimacs", lambda cnf: (runner.NUM_VARIABLES, runner.NUM_CLAUSES)
+    )
+    monkeypatch.setattr(runner, "validate_wave_manifest", lambda wave: None)
+    derived = runner.derive_identities(root=tmp_path, **fixture["pins"])
+    monkeypatch.setattr(runner, "SOURCE_PREPARER_COMMIT", commit)
+    monkeypatch.setattr(
+        runner, "SOURCE_CAMPAIGN_SHA256", fixture["pins"]["source_campaign_sha256"]
+    )
+    monkeypatch.setattr(
+        runner, "SOURCE_CAMPAIGN_BYTES", fixture["pins"]["source_campaign_bytes"]
+    )
+    monkeypatch.setattr(
+        runner,
+        "SOURCE_RUN_MANIFEST_SHA256",
+        fixture["pins"]["source_run_manifest_sha256"],
+    )
+    monkeypatch.setattr(
+        runner,
+        "SOURCE_RUN_MANIFEST_BYTES",
+        fixture["pins"]["source_run_manifest_bytes"],
+    )
+    monkeypatch.setattr(
+        runner, "SOURCE_CELL_IDENTITIES", derived["source_cell_identities"]
+    )
+    monkeypatch.setattr(
+        runner, "PRODUCTION_CELL_IDENTITIES", derived["production_cell_identities"]
+    )
+    support = {
+        "source.py": b"source\n",
+        "checkpoint.json": b"{}",
+        "miner.py": b"miner\n",
+        "runner.py": b"runner\n",
+        "runner-test.py": b"runner-test\n",
+    }
+    for relative, raw in support.items():
+        _write(tmp_path / relative, raw)
+        (tmp_path / relative).chmod(0o644)
+    for name, value in (
+        ("SOURCE_PREPARER_RELATIVE", "source.py"),
+        ("CHECKPOINT_RELATIVE", "checkpoint.json"),
+        ("MINER_RELATIVE", "miner.py"),
+        ("RUNNER_RELATIVE", "runner.py"),
+        ("RUNNER_TEST_RELATIVE", "runner-test.py"),
+    ):
+        monkeypatch.setattr(runner, name, value)
+    for prefix, relative in (
+        ("SOURCE_PREPARER", "source.py"),
+        ("CHECKPOINT", "checkpoint.json"),
+        ("MINER", "miner.py"),
+    ):
+        monkeypatch.setattr(
+            runner, f"{prefix}_SHA256", hashlib.sha256(support[relative]).hexdigest()
+        )
+        monkeypatch.setattr(runner, f"{prefix}_BYTES", len(support[relative]))
+    output_root = tmp_path / f"scratch/runs/{runner.LANE_ID}/{runner.RUN_ID}"
+    assert runner.prepare_portfolio(output_root=output_root)["cell_count"] == 76
+    campaign = json.loads(
+        (output_root / "artifacts/campaign-manifest.json").read_bytes()
+    )
+    observed = {
+        cell["portfolio_cell_id"]: {
+            "cnf_sha256": cell["source_cnf"]["sha256"],
+            "cnf_bytes": cell["source_cnf"]["bytes"],
+            "producer_sha256": cell["producer_manifest"]["sha256"],
+            "producer_bytes": cell["producer_manifest"]["bytes"],
+            "wave_sha256": cell["wave_manifest"]["sha256"],
+            "wave_bytes": cell["wave_manifest"]["bytes"],
+            "identity_hash": cell["expected_identity_hash"],
+        }
+        for cell in campaign["cells"]
+    }
+    assert observed == derived["production_cell_identities"]
+
+
 def test_every_internal_mutating_route_is_gated_before_files_or_daemon(
     tmp_path: Path, monkeypatch: pytest.MonkeyPatch
 ) -> None:
@@ -299,11 +671,18 @@ def test_every_internal_mutating_route_is_gated_before_files_or_daemon(
         "job-1", "cadical", "sat", "a" * 64, "b" * 64, 308, 1, False, 1
     )
     calls = (
+        lambda: _ORIGINAL_LIVE_DAEMON_ATTESTATION("unused"),
         lambda: runner._reserve_cell(tmp_path, "cell"),
         lambda: runner._phase_lock(tmp_path, "rest", b"launch"),
         lambda: runner._confirm_and_refresh(object(), job, b"cnf"),
         lambda: runner._fresh_run_cell(tmp_path, tmp_path, cell, "unused"),
+        lambda: runner._fresh_run_cell_under_lock(
+            tmp_path, tmp_path, "cell", b"cnf", b"producer", {}, "unused"
+        ),
         lambda: runner._resume_run_cell(tmp_path, tmp_path, cell, "unused"),
+        lambda: runner._write_once_or_validate(
+            tmp_path / "forbidden.json", b"{}", "forbidden"
+        ),
         lambda: runner._bounded_run(
             [],
             root=tmp_path,

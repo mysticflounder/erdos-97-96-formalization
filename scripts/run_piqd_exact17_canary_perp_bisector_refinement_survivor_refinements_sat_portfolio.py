@@ -160,6 +160,10 @@ WAVE_MINE_LEDGER_SCHEMA = (
 WAVE_MINE_CANDIDATE_SCHEMA = (
     "p97-exact17-canary-perp-bisector-survivor-refinements-wave-only-candidate/v1"
 )
+IDENTITY_DERIVATION_SCHEMA = (
+    "p97-exact17-canary-perp-bisector-survivor-refinements-"
+    "sat-profile-identity-derivation/v1"
+)
 UNSAT_REPLAY_SCHEMA = (
     "p97-exact17-canary-perp-bisector-survivor-refinements-independent-unsat-replay/v1"
 )
@@ -185,6 +189,15 @@ CANARY_SOURCE_CELL_ID = (
     "canary-perp-bisector-survivor-refinements-next-center-02-physical-none"
 )
 CANARY_PORTFOLIO_CELL_ID = f"{CANARY_SOURCE_CELL_ID}-sat-profile-v1"
+DIRECT_SENTINELS = frozenset(
+    {
+        (0, "none"),
+        (0, "unique-06"),
+        (2, "none"),
+        (6, "none"),
+        (16, "unique-10"),
+    }
+)
 
 CAMPAIGN_PATH = OUTPUT_ROOT / "artifacts/campaign-manifest.json"
 RUN_MANIFEST_PATH = OUTPUT_ROOT / "run_manifest.json"
@@ -472,6 +485,303 @@ def _authenticate_runner_support(root: Path = ROOT) -> dict[str, str]:
     return observed
 
 
+def _transform_source_cell(
+    *,
+    source_cell: Mapping[str, Any],
+    ordinal: int,
+    cnf: bytes,
+    source_producer_raw: bytes,
+    source_wave_raw: bytes,
+    source_preparer_commit: str,
+) -> dict[str, Any]:
+    """Purely validate and transform one authenticated physical cell."""
+
+    source_id = source_cell.get("cell_id")
+    _require(type(source_id) is str, "source cell id drifted")
+    _require(source_cell.get("ordinal") == ordinal, "source cell ordinal drifted")
+    _require(
+        type(source_cell.get("direct_lean_bytes_validated")) is bool
+        and type(source_cell.get("center")) is int
+        and type(source_cell.get("category")) is str,
+        "source cell physical/Lean validation drifted",
+    )
+    source_producer = _strict_json(source_producer_raw, "source producer")
+    source_wave = _strict_json(source_wave_raw, "source wave")
+    validate_wave_manifest(source_wave)
+    variables, clauses = scan_dimacs(cnf)
+    _require(
+        (variables, clauses) == (NUM_VARIABLES, NUM_CLAUSES),
+        "source cell DIMACS dimensions drifted",
+    )
+    source_manifest = source_producer.get("source_manifest")
+    production_config = source_producer.get("production_config")
+    target_code = (
+        production_config.get("target_code")
+        if type(production_config) is dict
+        else None
+    )
+    _require(
+        type(source_manifest) is dict
+        and source_manifest.get("source_id") == source_id
+        and source_manifest.get("source_theorem") == EXPECTED_SOURCE_THEOREM
+        and source_manifest.get("source_path") == EXPECTED_SOURCE_PATH
+        and source_manifest.get("root_source_path") == EXPECTED_ROOT_SOURCE_PATH
+        and source_manifest.get("finite_schema") == EXPECTED_FINITE_SCHEMA,
+        "source producer Lean ingress drifted",
+    )
+    _require(
+        type(target_code) is dict
+        and target_code.get("commit") == source_preparer_commit,
+        "source producer preparer commit drifted",
+    )
+    source_encoding = source_wave.get("encoding")
+    source_execution = source_wave.get("execution")
+    _require(
+        source_producer.get("backend") == BACKEND
+        and source_producer.get("solver_profile") == SOURCE_SOLVER_PROFILE
+        and source_producer.get("query_polarity") == QUERY_POLARITY,
+        "source producer profile drifted",
+    )
+    cnf_sha256 = sha256_bytes(cnf)
+    source_producer_sha256 = sha256_bytes(source_producer_raw)
+    _require(
+        type(source_encoding) is dict
+        and source_encoding.get("cnf_sha256") == cnf_sha256
+        and source_encoding.get("producer_manifest_sha256") == source_producer_sha256
+        and source_encoding.get("num_variables") == NUM_VARIABLES
+        and source_encoding.get("num_clauses") == NUM_CLAUSES
+        and source_encoding.get("query_polarity") == QUERY_POLARITY
+        and type(source_execution) is dict
+        and source_execution.get("backend") == BACKEND
+        and source_execution.get("solver_profile") == SOURCE_SOLVER_PROFILE,
+        "source wave profile or encoding drifted",
+    )
+    portfolio_id = f"{source_id}-sat-profile-v1"
+    producer = dict(source_producer)
+    producer["producer_id"] = portfolio_id
+    producer["solver_profile"] = SOLVER_PROFILE
+    producer["profile_source_producer_manifest_sha256"] = source_producer_sha256
+    producer_raw = canonical_json_bytes(producer)
+    producer_sha256 = sha256_bytes(producer_raw)
+    wave = dict(source_wave)
+    wave["wave_id"] = portfolio_id
+    wave["encoding"] = {
+        **source_wave["encoding"],
+        "producer_manifest_sha256": producer_sha256,
+    }
+    wave["execution"] = {
+        **source_wave["execution"],
+        "solver_profile": SOLVER_PROFILE,
+        "shard_id": ordinal,
+        "shard_count": CELL_COUNT,
+    }
+    validate_wave_manifest(wave)
+    wave_raw = canonical_json_bytes(wave)
+    return {
+        "portfolio_cell_id": portfolio_id,
+        "source_cell_id": source_id,
+        "center": source_cell["center"],
+        "category": source_cell["category"],
+        "ordinal": ordinal,
+        "producer_raw": producer_raw,
+        "wave_raw": wave_raw,
+        "identity_hash": _legacy.preparation.raw_dimacs_identity(
+            cnf_sha256, producer_sha256
+        ),
+    }
+
+
+def _require_direct_sentinel_inventory(source_cells: Sequence[Any]) -> None:
+    observed: set[tuple[int, str]] = set()
+    for source_cell in source_cells:
+        _require(type(source_cell) is dict, "source campaign cell is malformed")
+        direct = source_cell.get("direct_lean_bytes_validated")
+        center = source_cell.get("center")
+        category = source_cell.get("category")
+        _require(
+            type(direct) is bool and type(center) is int and type(category) is str,
+            "source cell direct Lean sentinel marker is malformed",
+        )
+        if direct:
+            observed.add((center, category))
+    _require(
+        frozenset(observed) == DIRECT_SENTINELS,
+        "source campaign direct Lean sentinel inventory drifted",
+    )
+
+
+def _derive_identity_bundle(
+    *,
+    root: Path,
+    source_campaign: Mapping[str, Any],
+    source_preparer_commit: str,
+) -> dict[str, Any]:
+    """Descriptor-authenticate all 76 cells and derive both identity tables."""
+
+    _require(
+        type(source_preparer_commit) is str
+        and len(source_preparer_commit) == 40
+        and all(char in _HEX for char in source_preparer_commit),
+        "source preparer commit is not a lowercase full Git identity",
+    )
+    _require(
+        source_campaign.get("schema") == SOURCE_CAMPAIGN_SCHEMA
+        and source_campaign.get("status") == "PREPARED_LOCAL_ONLY"
+        and source_campaign.get("cell_count") == CELL_COUNT,
+        "source campaign contract drifted",
+    )
+    source_cells = source_campaign.get("cells")
+    _require(
+        type(source_cells) is list and len(source_cells) == CELL_COUNT,
+        "source campaign cells drifted",
+    )
+    _require_direct_sentinel_inventory(source_cells)
+    transformed: list[dict[str, Any]] = []
+    source_identities: dict[str, dict[str, str | int]] = {}
+    production_identities: dict[str, dict[str, str | int]] = {}
+    for ordinal, source_cell in enumerate(source_cells):
+        _require(type(source_cell) is dict, "source campaign cell is malformed")
+        source_id = source_cell.get("cell_id")
+        _require(
+            type(source_id) is str and source_id not in source_identities,
+            "source cell id drifted",
+        )
+        source_refs = {
+            "cnf": source_cell.get("cnf"),
+            "producer": source_cell.get("producer_manifest"),
+            "wave": source_cell.get("wave_manifest"),
+        }
+        _require(
+            all(type(ref) is dict for ref in source_refs.values()),
+            "source cell references are malformed",
+        )
+        cnf = _read_ref(root, source_refs["cnf"], "source cell CNF", 512 << 20)
+        source_producer_raw = _read_ref(
+            root, source_refs["producer"], "source producer", 4 << 20
+        )
+        source_wave_raw = _read_ref(root, source_refs["wave"], "source wave", 4 << 20)
+        item = _transform_source_cell(
+            source_cell=source_cell,
+            ordinal=ordinal,
+            cnf=cnf,
+            source_producer_raw=source_producer_raw,
+            source_wave_raw=source_wave_raw,
+            source_preparer_commit=source_preparer_commit,
+        )
+        source_identity = {
+            "cnf_sha256": source_refs["cnf"]["sha256"],
+            "cnf_bytes": source_refs["cnf"]["bytes"],
+            "producer_sha256": source_refs["producer"]["sha256"],
+            "producer_bytes": source_refs["producer"]["bytes"],
+            "wave_sha256": source_refs["wave"]["sha256"],
+            "wave_bytes": source_refs["wave"]["bytes"],
+        }
+        production_identity = {
+            "cnf_sha256": source_refs["cnf"]["sha256"],
+            "cnf_bytes": source_refs["cnf"]["bytes"],
+            "producer_sha256": sha256_bytes(item["producer_raw"]),
+            "producer_bytes": len(item["producer_raw"]),
+            "wave_sha256": sha256_bytes(item["wave_raw"]),
+            "wave_bytes": len(item["wave_raw"]),
+            "identity_hash": item["identity_hash"],
+        }
+        source_identities[source_id] = source_identity
+        production_identities[item["portfolio_cell_id"]] = production_identity
+        item["source_refs"] = source_refs
+        item["source_identity"] = source_identity
+        item["production_identity"] = production_identity
+        transformed.append(item)
+    _require(
+        len(source_identities) == CELL_COUNT
+        and len(production_identities) == CELL_COUNT,
+        "derived identity tables are incomplete",
+    )
+    source_identities = dict(sorted(source_identities.items()))
+    production_identities = dict(sorted(production_identities.items()))
+    return {
+        "transformed": transformed,
+        "source_cell_identities": source_identities,
+        "production_cell_identities": production_identities,
+        "source_table_sha256": sha256_bytes(canonical_json_bytes(source_identities)),
+        "production_table_sha256": sha256_bytes(
+            canonical_json_bytes(production_identities)
+        ),
+    }
+
+
+def derive_identities(
+    *,
+    source_campaign_sha256: str,
+    source_campaign_bytes: int,
+    source_run_manifest_sha256: str,
+    source_run_manifest_bytes: int,
+    source_preparer_commit: str,
+    root: Path = ROOT,
+) -> dict[str, Any]:
+    """Read-only, provisional-safe derivation of the two production pin tables."""
+
+    _digest(source_campaign_sha256, "source campaign")
+    _digest(source_run_manifest_sha256, "source run manifest")
+    _require(
+        type(source_campaign_bytes) is int and source_campaign_bytes > 0,
+        "source campaign byte count is invalid",
+    )
+    _require(
+        type(source_run_manifest_bytes) is int and source_run_manifest_bytes > 0,
+        "source run manifest byte count is invalid",
+    )
+    source_root = root / SOURCE_RUN_ROOT_RELATIVE
+    campaign_raw = _read_private_file(
+        source_root / "artifacts/campaign-manifest.json",
+        maximum=8 << 20,
+        label="source campaign",
+    )
+    run_raw = _read_private_file(
+        source_root / "run_manifest.json",
+        maximum=2 << 20,
+        label="source run manifest",
+    )
+    _require(
+        len(campaign_raw) == source_campaign_bytes
+        and sha256_bytes(campaign_raw) == source_campaign_sha256,
+        "source campaign caller pin drifted",
+    )
+    _require(
+        len(run_raw) == source_run_manifest_bytes
+        and sha256_bytes(run_raw) == source_run_manifest_sha256,
+        "source run manifest caller pin drifted",
+    )
+    source_campaign = _strict_json(campaign_raw, "source campaign")
+    source_run = _strict_json(run_raw, "source run manifest")
+    _require(
+        source_run.get("schema") == RUN_MANIFEST_SCHEMA
+        and source_run.get("root") == SOURCE_RUN_ROOT_RELATIVE,
+        "source run custody drifted",
+    )
+    _require(
+        source_run.get("manifest_sha256") == _self_hash(source_run),
+        "source run manifest self-hash drifted",
+    )
+    bundle = _derive_identity_bundle(
+        root=root,
+        source_campaign=source_campaign,
+        source_preparer_commit=source_preparer_commit,
+    )
+    return {
+        "schema": IDENTITY_DERIVATION_SCHEMA,
+        "source_campaign_sha256": source_campaign_sha256,
+        "source_campaign_bytes": source_campaign_bytes,
+        "source_run_manifest_sha256": source_run_manifest_sha256,
+        "source_run_manifest_bytes": source_run_manifest_bytes,
+        "source_preparer_commit": source_preparer_commit,
+        "cell_count": CELL_COUNT,
+        "source_cell_identities": bundle["source_cell_identities"],
+        "production_cell_identities": bundle["production_cell_identities"],
+        "source_table_sha256": bundle["source_table_sha256"],
+        "production_table_sha256": bundle["production_table_sha256"],
+    }
+
+
 def prepare_portfolio(*, output_root: Path = OUTPUT_ROOT) -> dict[str, Any]:
     """Transform the pinned physical campaign to the SAT profile create-once."""
 
@@ -562,120 +872,25 @@ def prepare_portfolio(*, output_root: Path = OUTPUT_ROOT) -> dict[str, Any]:
         type(source_cells) is list and len(source_cells) == CELL_COUNT,
         "source campaign cells drifted",
     )
+    bundle = _derive_identity_bundle(
+        root=ROOT,
+        source_campaign=source_campaign,
+        source_preparer_commit=SOURCE_PREPARER_COMMIT,
+    )
+    _require(
+        bundle["source_cell_identities"] == SOURCE_CELL_IDENTITIES,
+        "source cell identity table drifted",
+    )
+    _require(
+        bundle["production_cell_identities"] == PRODUCTION_CELL_IDENTITIES,
+        "SAT-profile cell identity table drifted",
+    )
     output_cells: list[dict[str, Any]] = []
     pending_files: list[tuple[Path, bytes, str]] = []
-    seen: set[str] = set()
-    for ordinal, source_cell in enumerate(source_cells):
-        _require(type(source_cell) is dict, "source campaign cell is malformed")
-        source_id = source_cell.get("cell_id")
-        _require(
-            type(source_id) is str and source_id not in seen, "source cell id drifted"
-        )
-        seen.add(source_id)
-        _require(source_cell.get("ordinal") == ordinal, "source cell ordinal drifted")
-        expected_source = SOURCE_CELL_IDENTITIES.get(source_id)
-        _require(type(expected_source) is dict, "source cell byte identity is unpinned")
-        source_refs = {
-            "cnf": source_cell.get("cnf"),
-            "producer": source_cell.get("producer_manifest"),
-            "wave": source_cell.get("wave_manifest"),
-        }
-        _require(
-            all(type(ref) is dict for ref in source_refs.values()),
-            "source cell references are malformed",
-        )
-        observed_source = {
-            "cnf_sha256": source_refs["cnf"].get("sha256"),
-            "cnf_bytes": source_refs["cnf"].get("bytes"),
-            "producer_sha256": source_refs["producer"].get("sha256"),
-            "producer_bytes": source_refs["producer"].get("bytes"),
-            "wave_sha256": source_refs["wave"].get("sha256"),
-            "wave_bytes": source_refs["wave"].get("bytes"),
-        }
-        _require(expected_source == observed_source, "source cell identity drifted")
-        cnf = _read_ref(ROOT, source_refs["cnf"], "source cell CNF", 512 << 20)
-        source_producer_raw = _read_ref(
-            ROOT, source_refs["producer"], "source producer", 4 << 20
-        )
-        source_wave_raw = _read_ref(ROOT, source_refs["wave"], "source wave", 4 << 20)
-        source_producer = _strict_json(source_producer_raw, "source producer")
-        source_wave = _strict_json(source_wave_raw, "source wave")
-        validate_wave_manifest(source_wave)
-        variables, clauses = scan_dimacs(cnf)
-        _require(
-            (variables, clauses) == (NUM_VARIABLES, NUM_CLAUSES),
-            "source cell DIMACS dimensions drifted",
-        )
-        _require(
-            source_cell.get("direct_lean_bytes_validated") is True
-            and type(source_cell.get("center")) is int
-            and type(source_cell.get("category")) is str,
-            "source cell physical/Lean validation drifted",
-        )
-        source_manifest = source_producer.get("source_manifest")
-        production_config = source_producer.get("production_config")
-        target_code = (
-            production_config.get("target_code")
-            if type(production_config) is dict
-            else None
-        )
-        _require(
-            type(source_manifest) is dict
-            and source_manifest.get("source_id") == source_id
-            and source_manifest.get("source_theorem") == EXPECTED_SOURCE_THEOREM
-            and source_manifest.get("source_path") == EXPECTED_SOURCE_PATH
-            and source_manifest.get("root_source_path") == EXPECTED_ROOT_SOURCE_PATH
-            and source_manifest.get("finite_schema") == EXPECTED_FINITE_SCHEMA,
-            "source producer Lean ingress drifted",
-        )
-        _require(
-            type(target_code) is dict
-            and target_code.get("commit") == SOURCE_PREPARER_COMMIT,
-            "source producer preparer commit drifted",
-        )
-        source_encoding = source_wave.get("encoding")
-        source_execution = source_wave.get("execution")
-        _require(
-            source_producer.get("backend") == BACKEND
-            and source_producer.get("solver_profile") == SOURCE_SOLVER_PROFILE
-            and source_producer.get("query_polarity") == QUERY_POLARITY,
-            "source producer profile drifted",
-        )
-        _require(
-            type(source_encoding) is dict
-            and source_encoding.get("cnf_sha256") == sha256_bytes(cnf)
-            and source_encoding.get("producer_manifest_sha256")
-            == sha256_bytes(source_producer_raw)
-            and source_encoding.get("num_variables") == NUM_VARIABLES
-            and source_encoding.get("num_clauses") == NUM_CLAUSES
-            and source_encoding.get("query_polarity") == QUERY_POLARITY
-            and type(source_execution) is dict
-            and source_execution.get("backend") == BACKEND
-            and source_execution.get("solver_profile") == SOURCE_SOLVER_PROFILE,
-            "source wave profile or encoding drifted",
-        )
-        portfolio_id = f"{source_id}-sat-profile-v1"
-        producer = dict(source_producer)
-        producer["producer_id"] = portfolio_id
-        producer["solver_profile"] = SOLVER_PROFILE
-        producer["profile_source_producer_manifest_sha256"] = sha256_bytes(
-            source_producer_raw
-        )
-        producer_raw = canonical_json_bytes(producer)
-        wave = dict(source_wave)
-        wave["wave_id"] = portfolio_id
-        wave["encoding"] = {
-            **source_wave["encoding"],
-            "producer_manifest_sha256": sha256_bytes(producer_raw),
-        }
-        wave["execution"] = {
-            **source_wave["execution"],
-            "solver_profile": SOLVER_PROFILE,
-            "shard_id": ordinal,
-            "shard_count": CELL_COUNT,
-        }
-        validate_wave_manifest(wave)
-        wave_raw = canonical_json_bytes(wave)
+    for item in bundle["transformed"]:
+        portfolio_id = item["portfolio_cell_id"]
+        producer_raw = item["producer_raw"]
+        wave_raw = item["wave_raw"]
         cell_root = output_root / "artifacts/cells" / portfolio_id
         producer_path = cell_root / "producer-manifest.json"
         wave_path = cell_root / "wave-manifest.json"
@@ -687,30 +902,15 @@ def prepare_portfolio(*, output_root: Path = OUTPUT_ROOT) -> dict[str, Any]:
         )
         output_cell = {
             "portfolio_cell_id": portfolio_id,
-            "source_cell_id": source_id,
-            "center": source_cell.get("center"),
-            "category": source_cell.get("category"),
-            "ordinal": ordinal,
-            "source_cnf": dict(source_refs["cnf"]),
+            "source_cell_id": item["source_cell_id"],
+            "center": item["center"],
+            "category": item["category"],
+            "ordinal": item["ordinal"],
+            "source_cnf": dict(item["source_refs"]["cnf"]),
             "producer_manifest": _file_ref(producer_path, producer_raw, ROOT),
             "wave_manifest": _file_ref(wave_path, wave_raw, ROOT),
-            "expected_identity_hash": _legacy.preparation.raw_dimacs_identity(
-                sha256_bytes(cnf), sha256_bytes(producer_raw)
-            ),
+            "expected_identity_hash": item["identity_hash"],
         }
-        expected_output = PRODUCTION_CELL_IDENTITIES.get(portfolio_id)
-        observed_output = {
-            "cnf_sha256": output_cell["source_cnf"]["sha256"],
-            "cnf_bytes": output_cell["source_cnf"]["bytes"],
-            "producer_sha256": output_cell["producer_manifest"]["sha256"],
-            "producer_bytes": output_cell["producer_manifest"]["bytes"],
-            "wave_sha256": output_cell["wave_manifest"]["sha256"],
-            "wave_bytes": output_cell["wave_manifest"]["bytes"],
-            "identity_hash": output_cell["expected_identity_hash"],
-        }
-        _require(
-            expected_output == observed_output, "SAT-profile cell identity drifted"
-        )
         output_cells.append(output_cell)
     campaign = {
         "schema": CAMPAIGN_SCHEMA,
@@ -1217,6 +1417,7 @@ def _authenticate_selected(
 def _live_daemon_attestation(base_url: str) -> dict[str, Any]:
     """Require a loopback PIQD with the exact SAT-worker capability."""
 
+    _require_production_pins()
     observed = _legacy.live_identity(base_url)
     capacity = _legacy._http_json(base_url, "/projects")
     version = observed.get("version")
@@ -1410,6 +1611,7 @@ def _fresh_run_cell_under_lock(
     wave: Mapping[str, Any],
     base_url: str,
 ) -> dict[str, Any]:
+    _require_production_pins()
     _live_daemon_attestation(base_url)
     journal_identity, lock_identity = _reserve_cell(run_root, identifier)
     journal = _legacy.DescriptorAttemptJournal(
@@ -2492,6 +2694,7 @@ def _phase_paths(run_root: Path, phase: str) -> tuple[Path, Path, Path]:
 
 
 def _write_once_or_validate(path: Path, raw: bytes, label: str) -> None:
+    _require_production_pins()
     path.parent.mkdir(mode=0o700, parents=True, exist_ok=True)
     try:
         descriptor = os.open(
@@ -2767,12 +2970,33 @@ def main(argv: list[str] | None = None) -> int:
         description="Run the gated 76-cell survivor-refinement SAT portfolio"
     )
     parser.add_argument(
-        "command", choices=("prepare", "static-check", "start-canary", "start-rest")
+        "command",
+        choices=(
+            "derive-identities",
+            "prepare",
+            "static-check",
+            "start-canary",
+            "start-rest",
+        ),
     )
     parser.add_argument("--base-url", default="http://127.0.0.1:7272")
+    parser.add_argument("--source-campaign-sha256")
+    parser.add_argument("--source-campaign-bytes", type=int)
+    parser.add_argument("--source-run-manifest-sha256")
+    parser.add_argument("--source-run-manifest-bytes", type=int)
+    parser.add_argument("--source-preparer-commit")
     args = parser.parse_args(argv)
     try:
-        if args.command == "prepare":
+        if args.command == "derive-identities":
+            result = derive_identities(
+                source_campaign_sha256=args.source_campaign_sha256,
+                source_campaign_bytes=args.source_campaign_bytes,
+                source_run_manifest_sha256=args.source_run_manifest_sha256,
+                source_run_manifest_bytes=args.source_run_manifest_bytes,
+                source_preparer_commit=args.source_preparer_commit,
+                root=ROOT,
+            )
+        elif args.command == "prepare":
             result = prepare_portfolio()
         elif args.command == "static-check":
             result = static_check()
@@ -2789,7 +3013,7 @@ def main(argv: list[str] | None = None) -> int:
     ) as exc:
         print(f"survivor-refinement SAT portfolio rejected: {exc}", file=sys.stderr)
         return 2
-    print(json.dumps(result, sort_keys=True))
+    print(canonical_json_bytes(result).decode("utf-8"))
     return 0
 
 
