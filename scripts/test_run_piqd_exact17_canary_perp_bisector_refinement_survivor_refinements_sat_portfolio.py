@@ -5,6 +5,8 @@ import json
 import multiprocessing
 import os
 import queue
+import subprocess
+import sys
 import threading
 import time
 from concurrent.futures import ThreadPoolExecutor
@@ -17,6 +19,33 @@ import run_piqd_exact17_canary_perp_bisector_refinement_survivor_refinements_sat
 
 _ORIGINAL_LIVE_DAEMON_ATTESTATION = runner._live_daemon_attestation
 _ORIGINAL_AUTHENTICATE_RUNNER_SUPPORT = runner._authenticate_runner_support
+
+
+def _live_identity_fixture() -> dict[str, Any]:
+    return {
+        "daemon": dict(runner._legacy.DAEMON_IDENTITY),
+        "solver": {
+            "name": runner._legacy.SOLVER_NAME,
+            "sha256": runner._legacy.SOLVER_SHA256,
+            "solver_signature": runner._legacy.SOLVER_SIGNATURE,
+            "protocol_version": runner._legacy.DAEMON_IDENTITY["protocol_version"],
+            "solver": runner.BACKEND,
+            "backend": runner.BACKEND,
+            "lane": "sat",
+            "usable": True,
+        },
+        "global_worker_capacity": runner.MAX_ACTIVE_JOBS,
+        "project": {
+            "name": runner.PROJECT,
+            "min_workers": 0,
+            "running": 0,
+            "queued": 0,
+            "created_at": 0,
+            "updated_at": 0,
+            "ce_scope": None,
+        },
+        "fetched_endpoints": ["/version", "/solvers", "/projects"],
+    }
 
 
 def _bounded_capacity_process(
@@ -54,6 +83,7 @@ def finalized_test_pins(monkeypatch: pytest.MonkeyPatch) -> None:
         "SOURCE_RUN_MANIFEST_SHA256",
         "SOURCE_PREPARER_SHA256",
         "CHECKPOINT_SHA256",
+        "RUNNER_CODE_CHECKPOINT_SHA256",
         "MINER_SHA256",
     ):
         monkeypatch.setattr(runner, name, "a" * 64)
@@ -62,6 +92,7 @@ def finalized_test_pins(monkeypatch: pytest.MonkeyPatch) -> None:
         "SOURCE_RUN_MANIFEST_BYTES",
         "SOURCE_PREPARER_BYTES",
         "CHECKPOINT_BYTES",
+        "RUNNER_CODE_CHECKPOINT_BYTES",
         "MINER_BYTES",
     ):
         monkeypatch.setattr(runner, name, 1)
@@ -94,6 +125,9 @@ def finalized_test_pins(monkeypatch: pytest.MonkeyPatch) -> None:
         lambda root=runner.ROOT: {
             runner.SOURCE_PREPARER_RELATIVE: runner.SOURCE_PREPARER_SHA256,
             runner.CHECKPOINT_RELATIVE: runner.CHECKPOINT_SHA256,
+            runner.RUNNER_CODE_CHECKPOINT_RELATIVE: (
+                runner.RUNNER_CODE_CHECKPOINT_SHA256
+            ),
             runner.MINER_RELATIVE: runner.MINER_SHA256,
             "source_preparer_commit": runner.SOURCE_PREPARER_COMMIT,
         },
@@ -101,7 +135,7 @@ def finalized_test_pins(monkeypatch: pytest.MonkeyPatch) -> None:
     monkeypatch.setattr(
         runner,
         "_live_daemon_attestation",
-        lambda base_url: {"daemon": "test", "solver": "test", "base": base_url},
+        lambda base_url: _live_identity_fixture(),
     )
 
 
@@ -207,6 +241,28 @@ def _campaign() -> tuple[dict[str, Any], dict[str, Any]]:
     }
     run = {**run_unsigned, "manifest_sha256": runner._self_hash(run_unsigned)}
     return campaign, run
+
+
+def _production_checkpoint(checkpoint_relative: str) -> dict[str, Any]:
+    payload = {
+        "schema": "worktree-lane-checkpoint/v1",
+        "lane_id": runner.LANE_ID,
+        "owner": runner.RUN_OWNER,
+        "base_head": runner.BASE_HEAD,
+        "created_utc": "2026-08-22T00:00:00Z",
+        "owned_paths": [checkpoint_relative],
+        "durable_paths": sorted(
+            [
+                runner.MINER_RELATIVE,
+                runner.RUNNER_CODE_CHECKPOINT_RELATIVE,
+                runner.RUNNER_RELATIVE,
+                runner.RUNNER_TEST_RELATIVE,
+                runner.SOURCE_PREPARER_RELATIVE,
+            ]
+        ),
+        "generated_roots": [f"scratch/runs/{runner.LANE_ID}/{runner.RUN_ID}"],
+    }
+    return {**payload, "manifest_sha256": runner._self_hash(payload)}
 
 
 def _write(path: Path, payload: bytes) -> dict[str, Any]:
@@ -618,6 +674,7 @@ def test_prepare_uses_exactly_the_provisional_transformation_tables(
     support = {
         "source.py": b"source\n",
         "checkpoint.json": b"{}",
+        "code-checkpoint.json": b"{}",
         "miner.py": b"miner\n",
         "runner.py": b"runner\n",
         "runner-test.py": b"runner-test\n",
@@ -628,6 +685,7 @@ def test_prepare_uses_exactly_the_provisional_transformation_tables(
     for name, value in (
         ("SOURCE_PREPARER_RELATIVE", "source.py"),
         ("CHECKPOINT_RELATIVE", "checkpoint.json"),
+        ("RUNNER_CODE_CHECKPOINT_RELATIVE", "code-checkpoint.json"),
         ("MINER_RELATIVE", "miner.py"),
         ("RUNNER_RELATIVE", "runner.py"),
         ("RUNNER_TEST_RELATIVE", "runner-test.py"),
@@ -636,6 +694,7 @@ def test_prepare_uses_exactly_the_provisional_transformation_tables(
     for prefix, relative in (
         ("SOURCE_PREPARER", "source.py"),
         ("CHECKPOINT", "checkpoint.json"),
+        ("RUNNER_CODE_CHECKPOINT", "code-checkpoint.json"),
         ("MINER", "miner.py"),
     ):
         monkeypatch.setattr(
@@ -707,19 +766,33 @@ def test_runner_support_accepts_0644_and_reauthenticates_all_pins(
     tmp_path: Path, monkeypatch: pytest.MonkeyPatch
 ) -> None:
     source_relative = "scripts/source-preparer.py"
-    checkpoint_relative = ".codex/worktree-checkpoints/runner.json"
+    checkpoint_relative = ".codex/worktree-checkpoints/production.json"
+    code_checkpoint_relative = ".codex/worktree-checkpoints/runner-code.json"
     miner_relative = "scripts/wave-miner.py"
+    runner_relative = "scripts/runner.py"
+    test_relative = "scripts/test-runner.py"
     source = b"source-preparer\n"
-    checkpoint = b'{"checkpoint":true}\n'
+    code_checkpoint = b'{"checkpoint":"code"}\n'
     miner = b"wave-miner\n"
-    _write(tmp_path / source_relative, source)
-    _write(tmp_path / checkpoint_relative, checkpoint)
-    _write(tmp_path / miner_relative, miner)
-    for relative in (source_relative, checkpoint_relative, miner_relative):
-        (tmp_path / relative).chmod(0o644)
     monkeypatch.setattr(runner, "SOURCE_PREPARER_RELATIVE", source_relative)
     monkeypatch.setattr(runner, "CHECKPOINT_RELATIVE", checkpoint_relative)
+    monkeypatch.setattr(
+        runner, "RUNNER_CODE_CHECKPOINT_RELATIVE", code_checkpoint_relative
+    )
     monkeypatch.setattr(runner, "MINER_RELATIVE", miner_relative)
+    monkeypatch.setattr(runner, "RUNNER_RELATIVE", runner_relative)
+    monkeypatch.setattr(runner, "RUNNER_TEST_RELATIVE", test_relative)
+    checkpoint = runner.canonical_json_bytes(
+        _production_checkpoint(checkpoint_relative)
+    )
+    for relative, raw in (
+        (source_relative, source),
+        (checkpoint_relative, checkpoint),
+        (code_checkpoint_relative, code_checkpoint),
+        (miner_relative, miner),
+    ):
+        _write(tmp_path / relative, raw)
+        (tmp_path / relative).chmod(0o644)
     monkeypatch.setattr(
         runner, "SOURCE_PREPARER_SHA256", hashlib.sha256(source).hexdigest()
     )
@@ -728,12 +801,19 @@ def test_runner_support_accepts_0644_and_reauthenticates_all_pins(
         runner, "CHECKPOINT_SHA256", hashlib.sha256(checkpoint).hexdigest()
     )
     monkeypatch.setattr(runner, "CHECKPOINT_BYTES", len(checkpoint))
+    monkeypatch.setattr(
+        runner,
+        "RUNNER_CODE_CHECKPOINT_SHA256",
+        hashlib.sha256(code_checkpoint).hexdigest(),
+    )
+    monkeypatch.setattr(runner, "RUNNER_CODE_CHECKPOINT_BYTES", len(code_checkpoint))
     monkeypatch.setattr(runner, "MINER_SHA256", hashlib.sha256(miner).hexdigest())
     monkeypatch.setattr(runner, "MINER_BYTES", len(miner))
     observed = _ORIGINAL_AUTHENTICATE_RUNNER_SUPPORT(tmp_path)
     assert observed == {
         source_relative: hashlib.sha256(source).hexdigest(),
         checkpoint_relative: hashlib.sha256(checkpoint).hexdigest(),
+        code_checkpoint_relative: hashlib.sha256(code_checkpoint).hexdigest(),
         miner_relative: hashlib.sha256(miner).hexdigest(),
         "source_preparer_commit": runner.SOURCE_PREPARER_COMMIT,
     }
@@ -746,6 +826,18 @@ def test_runner_support_accepts_0644_and_reauthenticates_all_pins(
     (tmp_path / checkpoint_relative).write_bytes(b'{"checkpoint":false}\n')
     (tmp_path / checkpoint_relative).chmod(0o644)
     with pytest.raises(runner.PortfolioRunnerError, match="support pin drifted"):
+        _ORIGINAL_AUTHENTICATE_RUNNER_SUPPORT(tmp_path)
+    malformed = _production_checkpoint(checkpoint_relative)
+    malformed["generated_roots"] = []
+    malformed["manifest_sha256"] = runner._self_hash(malformed)
+    malformed_raw = runner.canonical_json_bytes(malformed)
+    (tmp_path / checkpoint_relative).write_bytes(malformed_raw)
+    (tmp_path / checkpoint_relative).chmod(0o644)
+    monkeypatch.setattr(
+        runner, "CHECKPOINT_SHA256", hashlib.sha256(malformed_raw).hexdigest()
+    )
+    monkeypatch.setattr(runner, "CHECKPOINT_BYTES", len(malformed_raw))
+    with pytest.raises(runner.PortfolioRunnerError, match="checkpoint custody"):
         _ORIGINAL_AUTHENTICATE_RUNNER_SUPPORT(tmp_path)
 
 
@@ -797,7 +889,8 @@ def test_static_check_binds_every_governed_source_and_detects_runner_tamper(
 ) -> None:
     relative_payloads = {
         "source.py": b"source\n",
-        "checkpoint.json": b"{}\n",
+        "checkpoint.json": b"placeholder\n",
+        "code-checkpoint.json": b"code-checkpoint\n",
         "miner.py": b"miner\n",
         "runner.py": b"runner\n",
         "runner-test.py": b"runner-test\n",
@@ -807,9 +900,17 @@ def test_static_check_binds_every_governed_source_and_detects_runner_tamper(
         (tmp_path / relative).chmod(0o644)
     monkeypatch.setattr(runner, "SOURCE_PREPARER_RELATIVE", "source.py")
     monkeypatch.setattr(runner, "CHECKPOINT_RELATIVE", "checkpoint.json")
+    monkeypatch.setattr(
+        runner, "RUNNER_CODE_CHECKPOINT_RELATIVE", "code-checkpoint.json"
+    )
     monkeypatch.setattr(runner, "MINER_RELATIVE", "miner.py")
     monkeypatch.setattr(runner, "RUNNER_RELATIVE", "runner.py")
     monkeypatch.setattr(runner, "RUNNER_TEST_RELATIVE", "runner-test.py")
+    relative_payloads["checkpoint.json"] = runner.canonical_json_bytes(
+        _production_checkpoint("checkpoint.json")
+    )
+    _write(tmp_path / "checkpoint.json", relative_payloads["checkpoint.json"])
+    (tmp_path / "checkpoint.json").chmod(0o644)
     monkeypatch.setattr(
         runner,
         "SOURCE_PREPARER_SHA256",
@@ -825,6 +926,16 @@ def test_static_check_binds_every_governed_source_and_detects_runner_tamper(
     )
     monkeypatch.setattr(
         runner, "CHECKPOINT_BYTES", len(relative_payloads["checkpoint.json"])
+    )
+    monkeypatch.setattr(
+        runner,
+        "RUNNER_CODE_CHECKPOINT_SHA256",
+        hashlib.sha256(relative_payloads["code-checkpoint.json"]).hexdigest(),
+    )
+    monkeypatch.setattr(
+        runner,
+        "RUNNER_CODE_CHECKPOINT_BYTES",
+        len(relative_payloads["code-checkpoint.json"]),
     )
     monkeypatch.setattr(
         runner,
@@ -961,7 +1072,10 @@ def test_live_identity_rejects_non_loopback_and_wrong_solver_capability(
     monkeypatch.setattr(
         runner._legacy,
         "live_identity",
-        lambda base_url: {"version": {"daemon": {}}, "solver": {}},
+        lambda base_url: {
+            "version": {"daemon": runner._legacy.DAEMON_IDENTITY},
+            "solver": _live_identity_fixture()["solver"],
+        },
     )
     monkeypatch.setattr(
         runner._legacy,
@@ -1038,7 +1152,10 @@ def test_live_identity_persists_exact_project_row(
     monkeypatch.setattr(
         runner._legacy,
         "live_identity",
-        lambda base_url: {"version": {"daemon": {}}, "solver": {}},
+        lambda base_url: {
+            "version": {"daemon": runner._legacy.DAEMON_IDENTITY},
+            "solver": _live_identity_fixture()["solver"],
+        },
     )
     monkeypatch.setattr(
         runner._legacy,
@@ -1052,6 +1169,18 @@ def test_live_identity_persists_exact_project_row(
     observed = _ORIGINAL_LIVE_DAEMON_ATTESTATION("http://127.0.0.1:7272")
     assert observed["project"] == project
     assert observed["fetched_endpoints"] == ["/version", "/solvers", "/projects"]
+
+
+@pytest.mark.parametrize("location", ("top", "solver", "project"))
+def test_persisted_live_identity_schema_is_exact(location: str) -> None:
+    identity = _live_identity_fixture()
+    assert runner._validate_live_identity_attestation(identity) == identity
+    if location == "top":
+        identity["unexpected"] = True
+    else:
+        identity[location]["unexpected"] = True
+    with pytest.raises(runner.PortfolioRunnerError, match="schema drifted"):
+        runner._validate_live_identity_attestation(identity)
 
 
 def test_confirm_completion_is_refetched_with_result() -> None:
@@ -1517,12 +1646,53 @@ def test_phase_skips_authenticated_terminal_and_never_calls_runner(
     assert replayed == result
     assert calls == calls_before
     assert daemon_calls == 0
-    _, _, result_path = runner._phase_paths(tmp_path / "run", "rest")
+    _, launch_path, result_path = runner._phase_paths(tmp_path / "run", "rest")
+    launch_raw = launch_path.read_bytes()
+    launch = runner._strict_json(launch_raw, "phase launch")
+    assert launch["manifest_sha256"] == runner._self_hash(launch)
+    result_raw = result_path.read_bytes()
+    persisted_result = runner._strict_json(result_raw, "phase result")
+    assert persisted_result["manifest_sha256"] == runner._self_hash(persisted_result)
+    persisted_result["unexpected"] = True
+    persisted_result["manifest_sha256"] = runner._self_hash(persisted_result)
+    result_path.write_bytes(runner.canonical_json_bytes(persisted_result))
+    result_path.chmod(0o600)
+    with pytest.raises(runner.PortfolioRunnerError, match="result keys drifted"):
+        runner._execute_phase(
+            phase="rest",
+            root=tmp_path,
+            run_root=tmp_path / "run",
+            base_url="unused",
+        )
+    result_path.write_bytes(result_raw)
+    result_path.chmod(0o600)
+    extra_launch = dict(launch)
+    extra_launch["unexpected"] = True
+    extra_launch["manifest_sha256"] = runner._self_hash(extra_launch)
+    extra_launch_raw = runner.canonical_json_bytes(extra_launch)
+    launch_path.write_bytes(extra_launch_raw)
+    launch_path.chmod(0o600)
+    rebound_result = runner._strict_json(result_raw, "phase result")
+    rebound_result["launch_sha256"] = hashlib.sha256(extra_launch_raw).hexdigest()
+    rebound_result["manifest_sha256"] = runner._self_hash(rebound_result)
+    result_path.write_bytes(runner.canonical_json_bytes(rebound_result))
+    result_path.chmod(0o600)
+    with pytest.raises(runner.PortfolioRunnerError, match="binding drifted"):
+        runner._execute_phase(
+            phase="rest",
+            root=tmp_path,
+            run_root=tmp_path / "run",
+            base_url="unused",
+        )
+    launch_path.write_bytes(launch_raw)
+    launch_path.chmod(0o600)
+    result_path.write_bytes(result_raw)
+    result_path.chmod(0o600)
     stale = runner._strict_json(result_path.read_bytes(), "phase result")
     stale["campaign_sha256"] = "e" * 64
     result_path.write_bytes(runner.canonical_json_bytes(stale))
     result_path.chmod(0o600)
-    with pytest.raises(runner.PortfolioRunnerError, match="binding drifted"):
+    with pytest.raises(runner.PortfolioRunnerError, match="self-hash drifted"):
         runner._execute_phase(
             phase="rest",
             root=tmp_path,
@@ -1673,6 +1843,14 @@ def test_create_once_phase_lock_accepts_exact_recovery_and_rejects_tamper(
     fcntl.flock(second, fcntl.LOCK_UN)
     os.close(second)
     lock_path, _, _ = runner._phase_paths(run_root, "rest")
+    lock_payload = runner._strict_json(lock_path.read_bytes(), "phase lock")
+    assert set(lock_payload) == {
+        "schema",
+        "phase",
+        "launch_sha256",
+        "manifest_sha256",
+    }
+    assert lock_payload["manifest_sha256"] == runner._self_hash(lock_payload)
     lock_path.write_bytes(b"tampered")
     with pytest.raises(runner.PortfolioRunnerError, match="conflicts"):
         runner._phase_lock(run_root, "rest", launch)
@@ -2109,11 +2287,31 @@ def test_sat_canary_acceptance_requires_full_replay_and_hardened_mine(
             "source_sha256": runner.MINER_SHA256,
         },
         "source_valid_family_inventory": list(runner.PINNED_SOURCE_VALID_FAMILIES),
+        "scanner_dependencies": {"scanner.py": {"sha256": "e" * 64, "bytes": 1}},
+        "family_inventory": {
+            "family_candidate_counts": {
+                family: 0 for family in runner.PINNED_SOURCE_VALID_FAMILIES
+            },
+            "formalized_stage_counts": {},
+            "excluded_diagnostic_stage_counts": {},
+            "complete_equality_component_counts": {"candidate_count": 0},
+        },
+        "decoded_selectors": {
+            "rows": {
+                str(center): sorted((center + offset) % 17 for offset in range(1, 5))
+                for center in range(17)
+            },
+            "nextCenter": cell["center"],
+            "NamedOrder": 0,
+            "order": list(runner.NAMED_ORDER_TABLES[0]),
+            "assignment_sha256": "f" * 64,
+        },
         "candidates_examined": 0,
         "scan_complete": True,
         "complete_no_candidates": True,
         "candidates": [],
     }
+    ledger["manifest_sha256"] = runner._self_hash(ledger)
     ledger_path = tmp_path / "evidence/ledger.json"
     ledger_ref = _write(ledger_path, runner.canonical_json_bytes(ledger))
     ledger_ref["path"] = ledger_path.relative_to(tmp_path).as_posix()
@@ -2148,7 +2346,19 @@ def test_sat_canary_acceptance_requires_full_replay_and_hardened_mine(
         "run_manifest_sha256": "4" * 64,
     }
 
-    def persist_mine_chain() -> None:
+    def persist_mine_chain(*, sync_inventory: bool = True) -> None:
+        if sync_inventory:
+            ledger["family_inventory"]["family_candidate_counts"] = {
+                family: sum(
+                    candidate.get("family") == family
+                    for candidate in ledger["candidates"]
+                )
+                for family in runner.PINNED_SOURCE_VALID_FAMILIES
+            }
+            ledger["family_inventory"]["complete_equality_component_counts"] = {
+                "candidate_count": len(ledger["candidates"])
+            }
+        ledger["manifest_sha256"] = runner._self_hash(ledger)
         updated_ledger_ref = _write(ledger_path, runner.canonical_json_bytes(ledger))
         updated_ledger_ref["path"] = ledger_path.relative_to(tmp_path).as_posix()
         mine["candidate_ledger"] = updated_ledger_ref
@@ -2162,6 +2372,35 @@ def test_sat_canary_acceptance_requires_full_replay_and_hardened_mine(
             runner.canonical_json_bytes(acceptance),
         )
 
+    def verify_existing(**kwargs: Any) -> dict[str, Any]:
+        current_receipts = kwargs["receipt_raws"]
+        current_ledger = kwargs["ledger"]
+        return {
+            "schema": runner.MINE_VERIFICATION_SCHEMA,
+            "status": "PASS",
+            "portfolio_cell_id": runner.CANARY_PORTFOLIO_CELL_ID,
+            "campaign_sha256": checked["campaign_sha256"],
+            "run_manifest_sha256": checked["run_manifest_sha256"],
+            "model_sha256": terminal["artifacts"]["model_sha256"],
+            "cnf_sha256": cell["source_cnf"]["sha256"],
+            "candidate_ledger_sha256": hashlib.sha256(
+                current_receipts["candidate-ledger.json"]
+            ).hexdigest(),
+            "scanner_dependencies_sha256": hashlib.sha256(
+                runner.canonical_json_bytes(current_ledger["scanner_dependencies"])
+            ).hexdigest(),
+            "family_inventory_sha256": hashlib.sha256(
+                runner.canonical_json_bytes(current_ledger["family_inventory"])
+            ).hexdigest(),
+            "decoded_selectors_sha256": hashlib.sha256(
+                runner.canonical_json_bytes(current_ledger["decoded_selectors"])
+            ).hexdigest(),
+            "receipt_sha256s": {
+                name: hashlib.sha256(raw).hexdigest()
+                for name, raw in sorted(current_receipts.items())
+            },
+        }
+
     def persist_replay_chain() -> None:
         updated_replay_ref = _write(replay_path, runner.canonical_json_bytes(replay))
         updated_replay_ref["path"] = replay_path.relative_to(tmp_path).as_posix()
@@ -2172,9 +2411,53 @@ def test_sat_canary_acceptance_requires_full_replay_and_hardened_mine(
             runner.canonical_json_bytes(acceptance),
         )
 
+    def reject_unverified_empty(**kwargs: Any) -> dict[str, Any]:
+        del kwargs
+        raise runner.PortfolioRunnerError("pinned miner verification failed")
+
+    monkeypatch.setattr(runner, "_verify_existing_mine", reject_unverified_empty)
+    with pytest.raises(runner.PortfolioRunnerError, match="miner verification"):
+        runner._validate_acceptance(tmp_path, run_root, checked)
+    monkeypatch.setattr(runner, "_verify_existing_mine", verify_existing)
     assert (
         runner._validate_acceptance(tmp_path, run_root, checked)["status"] == "ACCEPTED"
     )
+    acceptance["unexpected"] = True
+    acceptance["manifest_sha256"] = runner._self_hash(acceptance)
+    _write(
+        run_root / "artifacts/canary-acceptance.json",
+        runner.canonical_json_bytes(acceptance),
+    )
+    with pytest.raises(runner.PortfolioRunnerError, match="acceptance schema"):
+        runner._validate_acceptance(tmp_path, run_root, checked)
+    acceptance.pop("unexpected")
+    acceptance["evidence"]["unexpected"] = True
+    acceptance["manifest_sha256"] = runner._self_hash(acceptance)
+    _write(
+        run_root / "artifacts/canary-acceptance.json",
+        runner.canonical_json_bytes(acceptance),
+    )
+    with pytest.raises(runner.PortfolioRunnerError, match="evidence schema"):
+        runner._validate_acceptance(tmp_path, run_root, checked)
+    acceptance["evidence"].pop("unexpected")
+    replay["unexpected"] = True
+    persist_replay_chain()
+    with pytest.raises(runner.PortfolioRunnerError, match="replay receipt schema"):
+        runner._validate_acceptance(tmp_path, run_root, checked)
+    replay.pop("unexpected")
+    persist_replay_chain()
+    mine["unexpected"] = True
+    persist_mine_chain()
+    with pytest.raises(runner.PortfolioRunnerError, match="mine receipt schema"):
+        runner._validate_acceptance(tmp_path, run_root, checked)
+    mine.pop("unexpected")
+    persist_mine_chain()
+    ledger["unexpected"] = True
+    persist_mine_chain()
+    with pytest.raises(runner.PortfolioRunnerError, match="ledger schema"):
+        runner._validate_acceptance(tmp_path, run_root, checked)
+    ledger.pop("unexpected")
+    persist_mine_chain()
     for key in (
         "producer_manifest_sha256",
         "wave_manifest_sha256",
@@ -2293,6 +2576,284 @@ def test_sat_canary_acceptance_requires_full_replay_and_hardened_mine(
     _write(mine_path, runner.canonical_json_bytes(mine))
     with pytest.raises(runner.PortfolioRunnerError):
         runner._validate_acceptance(tmp_path, run_root, checked)
+
+
+def test_pinned_miner_verify_existing_is_fixed_isolated_and_hash_bound(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    miner_relative = "scripts/miner.py"
+    miner_raw = b"raise AssertionError('subprocess is mocked')\n"
+    _write(tmp_path / miner_relative, miner_raw)
+    (tmp_path / miner_relative).chmod(0o644)
+    monkeypatch.setattr(runner, "MINER_RELATIVE", miner_relative)
+    monkeypatch.setattr(runner, "MINER_SHA256", hashlib.sha256(miner_raw).hexdigest())
+    monkeypatch.setattr(runner, "MINER_BYTES", len(miner_raw))
+    canary = _cells()[0]
+    terminal = _terminal(canary)
+    run_root = tmp_path / "run"
+    receipt_raws = {
+        "candidate-ledger.json": b"ledger",
+        "sat-replay-receipt.json": b"replay",
+        "mine-receipt.json": b"mine",
+        "canary-acceptance.json": b"acceptance",
+    }
+    ledger = {
+        "scanner_dependencies": {
+            "scripts/dependency.py": {"sha256": "1" * 64, "bytes": 12}
+        },
+        "family_inventory": {"family_candidate_counts": {}},
+        "decoded_selectors": {"NamedOrder": 0},
+    }
+    expected_receipts = {
+        name: hashlib.sha256(raw).hexdigest()
+        for name, raw in sorted(receipt_raws.items())
+    }
+
+    def verification() -> dict[str, Any]:
+        return {
+            "schema": runner.MINE_VERIFICATION_SCHEMA,
+            "status": "PASS",
+            "portfolio_cell_id": runner.CANARY_PORTFOLIO_CELL_ID,
+            "campaign_sha256": "2" * 64,
+            "run_manifest_sha256": "3" * 64,
+            "model_sha256": terminal["artifacts"]["model_sha256"],
+            "cnf_sha256": canary["source_cnf"]["sha256"],
+            "candidate_ledger_sha256": expected_receipts["candidate-ledger.json"],
+            "scanner_dependencies_sha256": hashlib.sha256(
+                runner.canonical_json_bytes(ledger["scanner_dependencies"])
+            ).hexdigest(),
+            "family_inventory_sha256": hashlib.sha256(
+                runner.canonical_json_bytes(ledger["family_inventory"])
+            ).hexdigest(),
+            "decoded_selectors_sha256": hashlib.sha256(
+                runner.canonical_json_bytes(ledger["decoded_selectors"])
+            ).hexdigest(),
+            "receipt_sha256s": expected_receipts,
+        }
+
+    response = verification()
+    observed: dict[str, Any] = {}
+
+    def fake_run(command: tuple[str, ...], **kwargs: Any) -> Any:
+        observed["command"] = command
+        observed["kwargs"] = kwargs
+        return subprocess.CompletedProcess(
+            command,
+            0,
+            stdout=runner.canonical_json_bytes(response),
+            stderr=b"",
+        )
+
+    monkeypatch.setattr(runner.subprocess, "run", fake_run)
+
+    def invoke() -> dict[str, Any]:
+        return runner._verify_existing_mine(
+            root=tmp_path,
+            run_root=run_root,
+            canary=canary,
+            terminal=terminal,
+            campaign_sha256="2" * 64,
+            run_manifest_sha256="3" * 64,
+            ledger=ledger,
+            receipt_raws=receipt_raws,
+        )
+
+    assert invoke()["status"] == "PASS"
+    command = observed["command"]
+    assert command[:4] == (
+        runner.sys.executable,
+        "-I",
+        "-B",
+        "-c",
+    )
+    assert command[5:] == (
+        str(tmp_path / miner_relative),
+        "--run-root",
+        str(run_root),
+        "--cell-id",
+        runner.CANARY_PORTFOLIO_CELL_ID,
+        "--output-dir",
+        str(run_root / "artifacts"),
+        "--verify-existing",
+    )
+    assert "PYTHONPATH" not in observed["kwargs"]["env"]
+    assert observed["kwargs"]["stdin"] is subprocess.DEVNULL
+    assert observed["kwargs"]["timeout"] == runner.MINE_VERIFICATION_TIMEOUT_S
+    dependency_sha256 = ledger["scanner_dependencies"]["scripts/dependency.py"][
+        "sha256"
+    ]
+    ledger["scanner_dependencies"]["scripts/dependency.py"]["sha256"] = "0" * 64
+    with pytest.raises(runner.PortfolioRunnerError, match="binding drifted"):
+        invoke()
+    ledger["scanner_dependencies"]["scripts/dependency.py"]["sha256"] = (
+        dependency_sha256
+    )
+    response["unexpected"] = True
+    with pytest.raises(runner.PortfolioRunnerError, match="verification schema"):
+        invoke()
+    response = verification()
+    response["scanner_dependencies_sha256"] = "0" * 64
+    with pytest.raises(runner.PortfolioRunnerError, match="binding drifted"):
+        invoke()
+    response = verification()
+    response["receipt_sha256s"]["candidate-ledger.json"] = "0" * 64
+    with pytest.raises(runner.PortfolioRunnerError, match="binding drifted"):
+        invoke()
+
+    def failed_run(command: tuple[str, ...], **kwargs: Any) -> Any:
+        del kwargs
+        return subprocess.CompletedProcess(command, 1, stdout=b"", stderr=b"rejected")
+
+    monkeypatch.setattr(runner.subprocess, "run", failed_run)
+    with pytest.raises(runner.PortfolioRunnerError, match="verification failed"):
+        invoke()
+
+
+def test_miner_audit_wrapper_allows_reads_and_denies_process_metadata_mutation(
+    tmp_path: Path,
+) -> None:
+    def run_script(name: str, source: str) -> subprocess.CompletedProcess[bytes]:
+        path = tmp_path / name
+        path.write_text(source)
+        path.chmod(0o644)
+        return subprocess.run(
+            [
+                sys.executable,
+                "-I",
+                "-B",
+                "-c",
+                runner._MINE_VERIFY_AUDIT_WRAPPER,
+                str(path),
+            ],
+            cwd=tmp_path,
+            env={
+                "LANG": "C",
+                "LC_ALL": "C",
+                "PATH": "/usr/bin:/bin",
+                "PYTHONDONTWRITEBYTECODE": "1",
+                "PYTHONNOUSERSITE": "1",
+            },
+            stdin=subprocess.DEVNULL,
+            capture_output=True,
+            check=False,
+            timeout=30,
+        )
+
+    readable = run_script(
+        "read.py",
+        "from pathlib import Path\n"
+        "p=Path(__file__)\n"
+        "assert p.read_bytes()\n"
+        "assert p in tuple(p.parent.glob('*.py'))\n"
+        "print('PASS', end='')\n",
+    )
+    assert readable.returncode == 0, readable.stderr.decode()
+    assert readable.stdout == b"PASS"
+    for name, source, event in (
+        ("utime.py", "import os\nos.utime(__file__, None)\n", "os.utime"),
+        ("fork.py", "import os\nos.fork()\n", "os.fork"),
+        ("putenv.py", "import os\nos.putenv('VERIFY_MUTATION','1')\n", "os.putenv"),
+    ):
+        denied = run_script(name, source)
+        assert denied.returncode != 0
+        assert event.encode() in denied.stderr
+
+
+def test_real_miner_verify_existing_subprocess_emits_canonical_bound_output() -> None:
+    run_root = runner.OUTPUT_ROOT
+    acceptance_path = run_root / "artifacts/canary-acceptance.json"
+    if not acceptance_path.is_file():
+        pytest.skip("production canary acceptance has not been materialized yet")
+    acceptance = runner._strict_json(
+        acceptance_path.read_bytes(), "production canary acceptance"
+    )
+    if acceptance.get("outcome") != runner.STRUCTURAL_SAT:
+        pytest.skip("production canary is not a SAT theorem-mining outcome")
+    completed = subprocess.run(
+        [
+            sys.executable,
+            "-I",
+            "-B",
+            "-c",
+            runner._MINE_VERIFY_AUDIT_WRAPPER,
+            str(runner.ROOT / runner.MINER_RELATIVE),
+            "--run-root",
+            str(run_root),
+            "--cell-id",
+            runner.CANARY_PORTFOLIO_CELL_ID,
+            "--output-dir",
+            str(run_root / "artifacts"),
+            "--verify-existing",
+        ],
+        cwd=runner.ROOT,
+        env={
+            "LANG": "C",
+            "LC_ALL": "C",
+            "PATH": "/usr/bin:/bin",
+            "PYTHONHASHSEED": "0",
+            "PYTHONDONTWRITEBYTECODE": "1",
+            "PYTHONNOUSERSITE": "1",
+        },
+        stdin=subprocess.DEVNULL,
+        capture_output=True,
+        check=False,
+        close_fds=True,
+        start_new_session=True,
+        timeout=runner.MINE_VERIFICATION_TIMEOUT_S,
+    )
+    assert completed.returncode == 0, completed.stderr.decode()
+    assert completed.stderr == b""
+    verified = runner._strict_json(completed.stdout, "real miner verification")
+    assert set(verified) == {
+        "schema",
+        "status",
+        "portfolio_cell_id",
+        "campaign_sha256",
+        "run_manifest_sha256",
+        "model_sha256",
+        "cnf_sha256",
+        "candidate_ledger_sha256",
+        "scanner_dependencies_sha256",
+        "family_inventory_sha256",
+        "decoded_selectors_sha256",
+        "receipt_sha256s",
+    }
+    assert verified["schema"] == runner.MINE_VERIFICATION_SCHEMA
+    assert verified["status"] == "PASS"
+
+
+def test_archived_sat_model_uses_exact_upstream_schema_and_raw_hash(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    assignment = list(range(1, runner.NUM_VARIABLES + 1))
+    model = {
+        "job_id": "job-1",
+        "result": "SAT",
+        "num_assigned": runner.NUM_VARIABLES,
+        "assignment": assignment,
+    }
+    model_raw = runner.canonical_json_bytes(model)
+    terminal = _terminal(_cells()[0])
+    terminal["artifacts"]["model_sha256"] = hashlib.sha256(model_raw).hexdigest()
+    monkeypatch.setattr(runner, "scan_dimacs", lambda cnf, assignment: None)
+    assert (
+        runner._validated_archived_sat_assignment(
+            model_raw, terminal=terminal, cnf=b"cnf"
+        )
+        == assignment
+    )
+    extra = {**model, "manifest_sha256": "0" * 64}
+    extra_raw = runner.canonical_json_bytes(extra)
+    terminal["artifacts"]["model_sha256"] = hashlib.sha256(extra_raw).hexdigest()
+    with pytest.raises(runner.PortfolioRunnerError, match="model schema drifted"):
+        runner._validated_archived_sat_assignment(
+            extra_raw, terminal=terminal, cnf=b"cnf"
+        )
+    terminal["artifacts"]["model_sha256"] = "0" * 64
+    with pytest.raises(runner.PortfolioRunnerError, match="raw hash drifted"):
+        runner._validated_archived_sat_assignment(
+            model_raw, terminal=terminal, cnf=b"cnf"
+        )
 
 
 def test_unsat_canary_acceptance_requires_proof_checker_and_replay(

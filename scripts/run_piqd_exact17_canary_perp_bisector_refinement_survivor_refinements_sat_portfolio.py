@@ -20,6 +20,7 @@ import fcntl
 import json
 import os
 import stat
+import subprocess
 import sys
 import time
 from collections.abc import Mapping, Sequence
@@ -68,9 +69,13 @@ LANE_ID = "exact17-canary-perp-bisector-survivor-refinements-sat-portfolio-20260
 RUN_ID = "sat-profile-portfolio-v1"
 RUN_OWNER = "exact17-canary-perp-bisector-survivor-refinements-sat-portfolio"
 BASE_HEAD = "9b234bbabebe6953ff7dac721a189b2c4c90b9fb"
-CHECKPOINT_RELATIVE = (
+RUNNER_CODE_CHECKPOINT_RELATIVE = (
     ".codex/worktree-checkpoints/"
     "exact17-canary-perp-bisector-survivor-refinements-sat-runner-code-20260822.json"
+)
+CHECKPOINT_RELATIVE = (
+    ".codex/worktree-checkpoints/"
+    "exact17-canary-perp-bisector-survivor-refinements-sat-portfolio-20260822.json"
 )
 SOURCE_PREPARER_RELATIVE = (
     "scripts/prepare_exact17_canary_perp_bisector_refinement_"
@@ -107,6 +112,8 @@ SOURCE_PREPARER_SHA256 = ""
 SOURCE_PREPARER_BYTES = 0
 CHECKPOINT_SHA256 = ""
 CHECKPOINT_BYTES = 0
+RUNNER_CODE_CHECKPOINT_SHA256 = ""
+RUNNER_CODE_CHECKPOINT_BYTES = 0
 MINER_SHA256 = ""
 MINER_BYTES = 0
 MINER_NAME = ""
@@ -119,12 +126,17 @@ PRODUCTION_CELL_IDENTITIES: dict[str, dict[str, str | int]] = {}
 NUM_VARIABLES = 308
 NUM_CLAUSES = 7_409_310
 CELL_COUNT = 76
+NAMED_ORDER_TABLES = {
+    0: (0, 6, 8, 11, 10, 9, 12, 7, 2, 15, 16, 3, 4, 5, 1, 13, 14),
+    1: (0, 6, 8, 11, 10, 12, 9, 7, 2, 15, 16, 3, 4, 5, 1, 13, 14),
+}
 REQUESTED_CORE_LIMIT = 1
 MAX_ACTIVE_JOBS = 12
 SOLVE_TIMEOUT_S = 3_600
 REPLAY_TIMEOUT_S = 3_600
 MAX_POLLS = 2_400
 POLL_INTERVAL_S = 2.0
+MINE_VERIFICATION_TIMEOUT_S = 1_800
 BACKEND = "cadical"
 SOLVER_PROFILE = "sat"
 SOURCE_SOLVER_PROFILE = "unsat"
@@ -159,6 +171,9 @@ WAVE_MINE_LEDGER_SCHEMA = (
 )
 WAVE_MINE_CANDIDATE_SCHEMA = (
     "p97-exact17-canary-perp-bisector-survivor-refinements-wave-only-candidate/v1"
+)
+MINE_VERIFICATION_SCHEMA = (
+    "p97-exact17-survivor-refinements-source-valid-theorem-mine-verification/v1"
 )
 IDENTITY_DERIVATION_SCHEMA = (
     "p97-exact17-canary-perp-bisector-survivor-refinements-"
@@ -256,6 +271,16 @@ def _strict_json(raw: bytes, label: str) -> dict[str, Any]:
         raise PortfolioRunnerError(f"{label} is not strict JSON") from exc
     _require(type(value) is dict, f"{label} must be a JSON object")
     _require(canonical_json_bytes(value) == raw, f"{label} is not canonical JSON")
+    return value
+
+
+def _require_exact_keys(
+    value: Any, expected: set[str] | frozenset[str], label: str
+) -> dict[str, Any]:
+    _require(
+        type(value) is dict and set(value) == set(expected),
+        f"{label} schema drifted",
+    )
     return value
 
 
@@ -412,7 +437,8 @@ def _require_production_pins() -> None:
         "source run hash": SOURCE_RUN_MANIFEST_SHA256,
         "source preparer commit": SOURCE_PREPARER_COMMIT,
         "source preparer hash": SOURCE_PREPARER_SHA256,
-        "checkpoint hash": CHECKPOINT_SHA256,
+        "production checkpoint hash": CHECKPOINT_SHA256,
+        "runner-code checkpoint hash": RUNNER_CODE_CHECKPOINT_SHA256,
         "miner hash": MINER_SHA256,
     }
     _require(PRODUCTION_PINS_FINALIZED is True, "production identities are provisional")
@@ -422,7 +448,8 @@ def _require_production_pins() -> None:
         ("source campaign bytes", SOURCE_CAMPAIGN_BYTES),
         ("source run bytes", SOURCE_RUN_MANIFEST_BYTES),
         ("source preparer bytes", SOURCE_PREPARER_BYTES),
-        ("checkpoint bytes", CHECKPOINT_BYTES),
+        ("production checkpoint bytes", CHECKPOINT_BYTES),
+        ("runner-code checkpoint bytes", RUNNER_CODE_CHECKPOINT_BYTES),
         ("miner bytes", MINER_BYTES),
     ):
         _require(type(value) is int and value > 0, f"{label} is not finalized")
@@ -466,7 +493,13 @@ def _authenticate_runner_support(root: Path = ROOT) -> dict[str, str]:
             CHECKPOINT_RELATIVE,
             CHECKPOINT_SHA256,
             CHECKPOINT_BYTES,
-            "runner checkpoint",
+            "production checkpoint",
+        ),
+        (
+            RUNNER_CODE_CHECKPOINT_RELATIVE,
+            RUNNER_CODE_CHECKPOINT_SHA256,
+            RUNNER_CODE_CHECKPOINT_BYTES,
+            "runner-code checkpoint",
         ),
         (MINER_RELATIVE, MINER_SHA256, MINER_BYTES, "wave-only miner"),
     ):
@@ -481,6 +514,50 @@ def _authenticate_runner_support(root: Path = ROOT) -> dict[str, str]:
             f"{label} support pin drifted",
         )
         observed[relative] = expected_hash
+    checkpoint = _strict_json(
+        _read_repo_source_file(
+            root / CHECKPOINT_RELATIVE,
+            maximum=max(CHECKPOINT_BYTES, 1 << 20),
+            label="production checkpoint",
+        ),
+        "production checkpoint",
+    )
+    expected_root = f"scratch/runs/{LANE_ID}/{RUN_ID}"
+    _require_exact_keys(
+        checkpoint,
+        {
+            "schema",
+            "lane_id",
+            "owner",
+            "base_head",
+            "created_utc",
+            "owned_paths",
+            "durable_paths",
+            "generated_roots",
+            "manifest_sha256",
+        },
+        "production checkpoint",
+    )
+    _require(
+        checkpoint["schema"] == "worktree-lane-checkpoint/v1"
+        and checkpoint["lane_id"] == LANE_ID
+        and checkpoint["owner"] == RUN_OWNER
+        and checkpoint["base_head"] == BASE_HEAD
+        and checkpoint["owned_paths"] == [CHECKPOINT_RELATIVE]
+        and checkpoint["durable_paths"]
+        == sorted(
+            [
+                MINER_RELATIVE,
+                RUNNER_CODE_CHECKPOINT_RELATIVE,
+                RUNNER_RELATIVE,
+                RUNNER_TEST_RELATIVE,
+                SOURCE_PREPARER_RELATIVE,
+            ]
+        )
+        and checkpoint["generated_roots"] == [expected_root]
+        and checkpoint["manifest_sha256"] == _self_hash(checkpoint),
+        "production checkpoint custody drifted",
+    )
     observed["source_preparer_commit"] = SOURCE_PREPARER_COMMIT
     return observed
 
@@ -786,6 +863,7 @@ def prepare_portfolio(*, output_root: Path = OUTPUT_ROOT) -> dict[str, Any]:
     """Transform the pinned physical campaign to the SAT profile create-once."""
 
     _require_production_pins()
+    _authenticate_runner_support(ROOT)
     source_campaign_path = SOURCE_RUN_ROOT / "artifacts/campaign-manifest.json"
     source_run_path = SOURCE_RUN_ROOT / "run_manifest.json"
     source_campaign_raw = _read_private_file(
@@ -806,7 +884,12 @@ def prepare_portfolio(*, output_root: Path = OUTPUT_ROOT) -> dict[str, Any]:
     checkpoint_raw = _read_repo_source_file(
         ROOT / CHECKPOINT_RELATIVE,
         maximum=1 << 20,
-        label="runner checkpoint",
+        label="production checkpoint",
+    )
+    runner_code_checkpoint_raw = _read_repo_source_file(
+        ROOT / RUNNER_CODE_CHECKPOINT_RELATIVE,
+        maximum=1 << 20,
+        label="runner-code checkpoint",
     )
     miner_raw = _read_repo_source_file(
         ROOT / MINER_RELATIVE,
@@ -847,6 +930,12 @@ def prepare_portfolio(*, output_root: Path = OUTPUT_ROOT) -> dict[str, Any]:
             CHECKPOINT_SHA256,
             CHECKPOINT_BYTES,
             "runner checkpoint",
+        ),
+        (
+            runner_code_checkpoint_raw,
+            RUNNER_CODE_CHECKPOINT_SHA256,
+            RUNNER_CODE_CHECKPOINT_BYTES,
+            "runner-code checkpoint",
         ),
         (miner_raw, MINER_SHA256, MINER_BYTES, "wave-only miner"),
     ):
@@ -957,6 +1046,7 @@ def prepare_portfolio(*, output_root: Path = OUTPUT_ROOT) -> dict[str, Any]:
         "source_digests": {
             SOURCE_PREPARER_RELATIVE: sha256_bytes(source_preparer_raw),
             CHECKPOINT_RELATIVE: sha256_bytes(checkpoint_raw),
+            RUNNER_CODE_CHECKPOINT_RELATIVE: sha256_bytes(runner_code_checkpoint_raw),
             MINER_RELATIVE: sha256_bytes(miner_raw),
             RUNNER_RELATIVE: sha256_bytes(runner_raw),
             RUNNER_TEST_RELATIVE: sha256_bytes(runner_test_raw),
@@ -1253,7 +1343,8 @@ def static_check(*, root: Path = ROOT, run_root: Path = OUTPUT_ROOT) -> dict[str
     source_digests = run_manifest["source_digests"]
     governed_sources = {
         SOURCE_PREPARER_RELATIVE: "source preparer",
-        CHECKPOINT_RELATIVE: "runner checkpoint",
+        CHECKPOINT_RELATIVE: "production checkpoint",
+        RUNNER_CODE_CHECKPOINT_RELATIVE: "runner-code checkpoint",
         MINER_RELATIVE: "wave-only miner",
         RUNNER_RELATIVE: "portfolio runner",
         RUNNER_TEST_RELATIVE: "portfolio runner test",
@@ -1276,6 +1367,8 @@ def static_check(*, root: Path = ROOT, run_root: Path = OUTPUT_ROOT) -> dict[str
         source_digests.get(SOURCE_PREPARER_RELATIVE)
         == support[SOURCE_PREPARER_RELATIVE]
         and source_digests.get(CHECKPOINT_RELATIVE) == support[CHECKPOINT_RELATIVE]
+        and source_digests.get(RUNNER_CODE_CHECKPOINT_RELATIVE)
+        == support[RUNNER_CODE_CHECKPOINT_RELATIVE]
         and source_digests.get(MINER_RELATIVE) == support[MINER_RELATIVE]
         and campaign["source_ingress"].get("source_preparer_commit")
         == support["source_preparer_commit"],
@@ -1457,25 +1550,111 @@ def _live_daemon_attestation(base_url: str) -> dict[str, Any]:
         project.get("ce_scope") is None or type(project.get("ce_scope")) is str,
         "live PIQD project ce_scope is malformed",
     )
-    return {
+    solver_attestation = {
+        key: solver.get(key)
+        for key in (
+            "name",
+            "sha256",
+            "solver_signature",
+            "protocol_version",
+            "solver",
+            "backend",
+            "lane",
+            "usable",
+        )
+    }
+    solver_attestation["solver"] = solver.get("solver", solver.get("backend"))
+    solver_attestation["backend"] = solver.get("backend", solver.get("solver"))
+    attestation = {
         "daemon": version.get("daemon"),
-        "solver": {
-            key: solver.get(key)
+        "solver": solver_attestation,
+        "global_worker_capacity": capacity["max_workers"],
+        "project": {
+            key: project.get(key)
             for key in (
                 "name",
-                "sha256",
-                "solver_signature",
-                "protocol_version",
-                "solver",
-                "backend",
-                "lane",
-                "usable",
+                "min_workers",
+                "running",
+                "queued",
+                "created_at",
+                "updated_at",
+                "ce_scope",
             )
         },
-        "global_worker_capacity": capacity["max_workers"],
-        "project": project,
         "fetched_endpoints": ["/version", "/solvers", "/projects"],
     }
+    _validate_live_identity_attestation(attestation)
+    return attestation
+
+
+def _validate_live_identity_attestation(value: Any) -> dict[str, Any]:
+    identity = _require_exact_keys(
+        value,
+        {
+            "daemon",
+            "solver",
+            "global_worker_capacity",
+            "project",
+            "fetched_endpoints",
+        },
+        "persisted live PIQD identity",
+    )
+    solver = _require_exact_keys(
+        identity["solver"],
+        {
+            "name",
+            "sha256",
+            "solver_signature",
+            "protocol_version",
+            "solver",
+            "backend",
+            "lane",
+            "usable",
+        },
+        "persisted PIQD solver identity",
+    )
+    project = _require_exact_keys(
+        identity["project"],
+        {
+            "name",
+            "min_workers",
+            "running",
+            "queued",
+            "created_at",
+            "updated_at",
+            "ce_scope",
+        },
+        "persisted PIQD project identity",
+    )
+    _require(
+        identity["daemon"] == _legacy.DAEMON_IDENTITY
+        and solver["name"] == _legacy.SOLVER_NAME
+        and solver["sha256"] == _legacy.SOLVER_SHA256
+        and solver["solver_signature"] == _legacy.SOLVER_SIGNATURE
+        and solver["protocol_version"] == _legacy.DAEMON_IDENTITY["protocol_version"]
+        and solver["solver"] == BACKEND
+        and solver["backend"] == BACKEND
+        and solver["lane"] == "sat"
+        and solver["usable"] is True
+        and type(identity["global_worker_capacity"]) is int
+        and 1 <= identity["global_worker_capacity"] <= MAX_ACTIVE_JOBS
+        and project["name"] == PROJECT
+        and all(
+            type(project[key]) is int and project[key] >= 0
+            for key in (
+                "min_workers",
+                "running",
+                "queued",
+                "created_at",
+                "updated_at",
+            )
+        )
+        and project["min_workers"] <= identity["global_worker_capacity"]
+        and (project["ce_scope"] is None or type(project["ce_scope"]) is str)
+        and identity["fetched_endpoints"] == ["/version", "/solvers", "/projects"],
+        "persisted live PIQD identity drifted",
+    )
+    return identity
 
 
 def _policy() -> DriverPolicy:
@@ -2258,6 +2437,289 @@ def _validate_candidate_records(
     )
 
 
+_MINE_VERIFY_AUDIT_WRAPPER = r"""
+import os
+import runpy
+import sys
+
+_WRITE_FLAGS = (
+    os.O_WRONLY | os.O_RDWR | os.O_APPEND | os.O_CREAT | os.O_TRUNC
+)
+_MUTATION_EVENTS = {
+    "os.chdir", "os.chflags", "os.chmod", "os.chown", "os.fchdir",
+    "os.fchmod", "os.fchown", "os.lchflags", "os.lchmod", "os.lchown",
+    "os.link", "os.mkdir", "os.putenv", "os.remove", "os.removexattr",
+    "os.rename", "os.rmdir", "os.setxattr", "os.symlink", "os.truncate",
+    "os.unlink", "os.unsetenv", "os.utime",
+}
+_PROCESS_EVENTS = {
+    "os.fork", "os.forkpty", "os.kill", "os.killpg", "os.posix_spawn",
+    "pty.spawn", "signal.pthread_kill",
+}
+
+def _deny_side_effects(event, args):
+    if event.startswith(("socket.", "subprocess.", "os.exec", "os.spawn")):
+        raise RuntimeError("verify-existing side effect denied: " + event)
+    if event in _MUTATION_EVENTS or event in _PROCESS_EVENTS or event == "os.system":
+        raise RuntimeError("verify-existing side effect denied: " + event)
+    if event == "open":
+        mode = args[1] if len(args) > 1 else None
+        flags = args[2] if len(args) > 2 else 0
+        if (
+            isinstance(mode, str) and any(char in mode for char in "wax+")
+        ) or (isinstance(flags, int) and flags & _WRITE_FLAGS):
+            raise RuntimeError("verify-existing file mutation denied")
+
+sys.addaudithook(_deny_side_effects)
+script = sys.argv[1]
+sys.argv = sys.argv[1:]
+runpy.run_path(script, run_name="__main__")
+""".strip()
+
+
+def _validate_scanner_dependencies(value: Any, *, root: Path) -> dict[str, Any]:
+    dependencies = _require_exact_keys(
+        value,
+        set(value) if type(value) is dict else set(),
+        "scanner dependency inventory",
+    )
+    _require(bool(dependencies), "scanner dependency inventory is empty")
+    for relative, reference in dependencies.items():
+        _safe_path(root, relative, "scanner dependency")
+        _require_exact_keys(reference, {"sha256", "bytes"}, "scanner dependency")
+        _digest(reference["sha256"], "scanner dependency")
+        _require(
+            type(reference["bytes"]) is int and reference["bytes"] > 0,
+            "scanner dependency byte count is invalid",
+        )
+    return dependencies
+
+
+def _validate_mine_inventory(
+    ledger: Mapping[str, Any], candidates: Sequence[Any], canary: Mapping[str, Any]
+) -> None:
+    inventory = _require_exact_keys(
+        ledger.get("family_inventory"),
+        {
+            "family_candidate_counts",
+            "formalized_stage_counts",
+            "excluded_diagnostic_stage_counts",
+            "complete_equality_component_counts",
+        },
+        "wave-only family inventory",
+    )
+    counts = _require_exact_keys(
+        inventory["family_candidate_counts"],
+        set(PINNED_SOURCE_VALID_FAMILIES),
+        "wave-only family candidate counts",
+    )
+    observed_counts = {
+        family: sum(candidate["family"] == family for candidate in candidates)
+        for family in PINNED_SOURCE_VALID_FAMILIES
+    }
+    _require(counts == observed_counts, "wave-only family candidate counts drifted")
+    for label in (
+        "formalized_stage_counts",
+        "excluded_diagnostic_stage_counts",
+        "complete_equality_component_counts",
+    ):
+        values = inventory[label]
+        _require(
+            type(values) is dict
+            and all(type(key) is str and key for key in values)
+            and all(type(count) is int and count >= 0 for count in values.values()),
+            f"wave-only {label} is malformed",
+        )
+
+    decoded = _require_exact_keys(
+        ledger.get("decoded_selectors"),
+        {"rows", "nextCenter", "NamedOrder", "order", "assignment_sha256"},
+        "wave-only decoded selectors",
+    )
+    rows = decoded["rows"]
+    _require(
+        type(rows) is dict and set(rows) == {str(index) for index in range(17)},
+        "wave-only decoded rows are incomplete",
+    )
+    for center in range(17):
+        support = rows[str(center)]
+        _require(
+            type(support) is list
+            and len(support) == 4
+            and support == sorted(set(support))
+            and center not in support
+            and all(type(point) is int and 0 <= point < 17 for point in support),
+            "wave-only decoded row is malformed",
+        )
+    order_index = decoded["NamedOrder"]
+    _require(
+        type(order_index) is int
+        and order_index in NAMED_ORDER_TABLES
+        and decoded["order"] == list(NAMED_ORDER_TABLES[order_index])
+        and decoded["nextCenter"] == canary["center"],
+        "wave-only decoded selector binding drifted",
+    )
+    _digest(decoded["assignment_sha256"], "wave-only assignment")
+
+
+def _verify_existing_mine(
+    *,
+    root: Path,
+    run_root: Path,
+    canary: Mapping[str, Any],
+    terminal: Mapping[str, Any],
+    campaign_sha256: str,
+    run_manifest_sha256: str,
+    ledger: Mapping[str, Any],
+    receipt_raws: Mapping[str, bytes],
+) -> dict[str, Any]:
+    """Re-run the exact pinned miner in an isolated, read-only process."""
+
+    miner_path = root / MINER_RELATIVE
+    miner_raw = _read_repo_source_file(
+        miner_path,
+        maximum=max(MINER_BYTES, 1 << 20),
+        label="wave-only miner",
+    )
+    _require(
+        len(miner_raw) == MINER_BYTES
+        and sha256_bytes(miner_raw) == _digest(MINER_SHA256, "wave-only miner"),
+        "wave-only miner support pin drifted before verification",
+    )
+    command = (
+        sys.executable,
+        "-I",
+        "-B",
+        "-c",
+        _MINE_VERIFY_AUDIT_WRAPPER,
+        str(miner_path),
+        "--run-root",
+        str(run_root),
+        "--cell-id",
+        CANARY_PORTFOLIO_CELL_ID,
+        "--output-dir",
+        str(run_root / "artifacts"),
+        "--verify-existing",
+    )
+    environment = {
+        "LANG": "C",
+        "LC_ALL": "C",
+        "PATH": "/usr/bin:/bin",
+        "PYTHONHASHSEED": "0",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONNOUSERSITE": "1",
+    }
+    try:
+        completed = subprocess.run(
+            command,
+            cwd=root,
+            env=environment,
+            stdin=subprocess.DEVNULL,
+            capture_output=True,
+            timeout=MINE_VERIFICATION_TIMEOUT_S,
+            check=False,
+            close_fds=True,
+            start_new_session=True,
+        )
+    except (OSError, subprocess.TimeoutExpired) as exc:
+        raise PortfolioRunnerError(
+            "pinned miner verification did not complete"
+        ) from exc
+    _require(
+        completed.returncode == 0
+        and completed.stderr == b""
+        and 0 < len(completed.stdout) <= 64 << 10,
+        "pinned miner verification failed",
+    )
+    verification = _strict_json(completed.stdout, "pinned miner verification")
+    _require_exact_keys(
+        verification,
+        {
+            "schema",
+            "status",
+            "portfolio_cell_id",
+            "campaign_sha256",
+            "run_manifest_sha256",
+            "model_sha256",
+            "cnf_sha256",
+            "candidate_ledger_sha256",
+            "scanner_dependencies_sha256",
+            "family_inventory_sha256",
+            "decoded_selectors_sha256",
+            "receipt_sha256s",
+        },
+        "pinned miner verification",
+    )
+    expected_receipts = {
+        name: sha256_bytes(raw) for name, raw in sorted(receipt_raws.items())
+    }
+    _require_exact_keys(
+        verification["receipt_sha256s"],
+        set(expected_receipts),
+        "pinned miner verification receipt hashes",
+    )
+    _require(
+        verification["schema"] == MINE_VERIFICATION_SCHEMA
+        and verification["status"] == "PASS"
+        and verification["portfolio_cell_id"] == CANARY_PORTFOLIO_CELL_ID
+        and verification["campaign_sha256"] == campaign_sha256
+        and verification["run_manifest_sha256"] == run_manifest_sha256
+        and verification["model_sha256"] == terminal["artifacts"]["model_sha256"]
+        and verification["cnf_sha256"] == canary["source_cnf"]["sha256"]
+        and verification["candidate_ledger_sha256"]
+        == expected_receipts["candidate-ledger.json"]
+        and verification["scanner_dependencies_sha256"]
+        == sha256_bytes(canonical_json_bytes(ledger["scanner_dependencies"]))
+        and verification["family_inventory_sha256"]
+        == sha256_bytes(canonical_json_bytes(ledger["family_inventory"]))
+        and verification["decoded_selectors_sha256"]
+        == sha256_bytes(canonical_json_bytes(ledger["decoded_selectors"]))
+        and verification["receipt_sha256s"] == expected_receipts,
+        "pinned miner verification binding drifted",
+    )
+    return verification
+
+
+def _validated_archived_sat_assignment(
+    model_raw: bytes,
+    *,
+    terminal: Mapping[str, Any],
+    cnf: bytes,
+) -> list[int]:
+    """Validate the exact PIQD SAT-model response schema and replay it.
+
+    PIQD's certified model seam has exactly four keys and no embedded self-hash.
+    The immutable artifact filename and terminal custody therefore bind the exact
+    canonical response bytes by their SHA-256 instead of inventing a fifth field.
+    """
+
+    expected_sha256 = _digest(
+        terminal["artifacts"].get("model_sha256"), "archived SAT model"
+    )
+    _require(
+        sha256_bytes(model_raw) == expected_sha256,
+        "archived SAT model raw hash drifted",
+    )
+    model = _strict_json(model_raw, "archived SAT model")
+    _require_exact_keys(
+        model,
+        {"job_id", "result", "num_assigned", "assignment"},
+        "archived SAT model",
+    )
+    assignment = model["assignment"]
+    _require(
+        model["job_id"] == terminal["job_id"]
+        and model["result"] == "SAT"
+        and type(assignment) is list
+        and model["num_assigned"] == NUM_VARIABLES
+        and len(assignment) == NUM_VARIABLES
+        and all(type(literal) is int for literal in assignment),
+        "archived SAT model binding drifted",
+    )
+    scan_dimacs(cnf, assignment=assignment)
+    return assignment
+
+
 def _validate_acceptance(
     root: Path,
     run_root: Path,
@@ -2272,6 +2734,19 @@ def _validate_acceptance(
     path = run_root / "artifacts/canary-acceptance.json"
     raw = _read_private_file(path, maximum=1 << 20, label="canary acceptance")
     payload = _strict_json(raw, "canary acceptance")
+    _require_exact_keys(
+        payload,
+        set(_TERMINAL_RESULT_KEYS)
+        | {
+            "schema",
+            "status",
+            "campaign_sha256",
+            "run_manifest_sha256",
+            "evidence",
+            "manifest_sha256",
+        },
+        "canary acceptance",
+    )
     _require(
         payload.get("schema") == ACCEPTANCE_SCHEMA
         and payload.get("status") == "ACCEPTED",
@@ -2294,13 +2769,31 @@ def _validate_acceptance(
         "canary acceptance run drifted",
     )
     evidence = payload.get("evidence")
-    _require(type(evidence) is dict, "canary acceptance evidence is malformed")
+    _require_exact_keys(
+        evidence,
+        {
+            "independent_sat_replay",
+            "wave_only_mine",
+            "independent_unsat_replay",
+        },
+        "canary acceptance evidence",
+    )
     cnf, producer_raw, wave = _load_cell_inputs(root, canary)
     producer = _strict_json(producer_raw, "canary producer manifest")
     variable_map_sha256 = _digest(
         producer.get("variable_map_sha256"), "canary producer variable map"
     )
     if terminal["outcome"] == STRUCTURAL_SAT:
+        _require_exact_keys(
+            evidence["independent_sat_replay"],
+            {"path", "sha256", "bytes"},
+            "SAT replay receipt reference",
+        )
+        _require_exact_keys(
+            evidence["wave_only_mine"],
+            {"path", "sha256", "bytes"},
+            "wave-only mine receipt reference",
+        )
         replay_raw = _read_ref(
             root, evidence.get("independent_sat_replay"), "SAT replay receipt", 4 << 20
         )
@@ -2309,6 +2802,43 @@ def _validate_acceptance(
         )
         replay = _strict_json(replay_raw, "SAT replay receipt")
         mine = _strict_json(mine_raw, "wave-only mine receipt")
+        _require_exact_keys(
+            replay,
+            {
+                "schema",
+                "status",
+                "portfolio_cell_id",
+                "job_id",
+                "cnf_sha256",
+                "producer_manifest_sha256",
+                "wave_manifest_sha256",
+                "variable_map_sha256",
+                "num_variables",
+                "clauses_checked",
+                "all_clauses_satisfied",
+                "model_sha256",
+            },
+            "SAT replay receipt",
+        )
+        _require_exact_keys(
+            mine,
+            {
+                "schema",
+                "status",
+                "portfolio_cell_id",
+                "job_id",
+                "model_sha256",
+                "source_valid_only",
+                "complete_equality_component_checked",
+                "candidate_ledger_sha256",
+                "candidate_ledger",
+                "candidates_examined",
+                "scan_complete",
+                "complete_no_candidates",
+                "models_mined",
+            },
+            "wave-only mine receipt",
+        )
         model_raw = _artifact_bytes(
             run_root,
             CANARY_PORTFOLIO_CELL_ID,
@@ -2316,17 +2846,11 @@ def _validate_acceptance(
             "archived SAT model",
             16 << 20,
         )
-        model = _json_mapping(model_raw, "archived SAT model")
-        assignment = model.get("assignment")
-        _require(
-            model.get("job_id") == terminal["job_id"]
-            and model.get("result") == "SAT"
-            and type(assignment) is list
-            and model.get("num_assigned") == NUM_VARIABLES
-            and len(assignment) == NUM_VARIABLES,
-            "archived SAT model binding drifted",
+        _validated_archived_sat_assignment(
+            model_raw,
+            terminal=terminal,
+            cnf=cnf,
         )
-        scan_dimacs(cnf, assignment=assignment)
         _require(
             replay.get("schema") == SAT_REPLAY_SCHEMA
             and replay.get("status") == "PASS"
@@ -2354,6 +2878,11 @@ def _validate_acceptance(
             "wave-only theorem mine acceptance drifted",
         )
         _digest(mine.get("candidate_ledger_sha256"), "wave-only candidate ledger")
+        _require_exact_keys(
+            mine["candidate_ledger"],
+            {"path", "sha256", "bytes"},
+            "wave-only candidate ledger reference",
+        )
         ledger_raw = _read_ref(
             root,
             mine.get("candidate_ledger"),
@@ -2365,6 +2894,36 @@ def _validate_acceptance(
             "wave-only candidate ledger receipt hash drifted",
         )
         ledger = _strict_json(ledger_raw, "wave-only candidate ledger")
+        _require_exact_keys(
+            ledger,
+            {
+                "schema",
+                "status",
+                "portfolio_cell_id",
+                "job_id",
+                "model_sha256",
+                "cnf_sha256",
+                "producer_manifest_sha256",
+                "wave_manifest_sha256",
+                "variable_map_sha256",
+                "source_valid_only",
+                "scan_complete",
+                "candidates_examined",
+                "complete_no_candidates",
+                "scanner",
+                "scanner_dependencies",
+                "source_valid_family_inventory",
+                "family_inventory",
+                "decoded_selectors",
+                "candidates",
+                "manifest_sha256",
+            },
+            "wave-only candidate ledger",
+        )
+        _require(
+            ledger.get("manifest_sha256") == _self_hash(ledger),
+            "wave-only candidate ledger self-hash drifted",
+        )
         candidates = ledger.get("candidates")
         scanner = ledger.get("scanner")
         family_inventory = ledger.get("source_valid_family_inventory")
@@ -2411,6 +2970,8 @@ def _validate_acceptance(
             "wave-only source-valid family inventory is incomplete",
         )
         _validate_candidate_records(candidates, family_inventory)
+        _validate_scanner_dependencies(ledger.get("scanner_dependencies"), root=root)
+        _validate_mine_inventory(ledger, candidates, canary)
         _require(
             type(mine.get("models_mined")) is int and mine["models_mined"] == 1,
             "wave-only theorem mine model count drifted",
@@ -2419,7 +2980,27 @@ def _validate_acceptance(
             evidence.get("independent_unsat_replay") is None,
             "SAT acceptance carries UNSAT evidence",
         )
+        _verify_existing_mine(
+            root=root,
+            run_root=run_root,
+            canary=canary,
+            terminal=terminal,
+            campaign_sha256=checked["campaign_sha256"],
+            run_manifest_sha256=checked["run_manifest_sha256"],
+            ledger=ledger,
+            receipt_raws={
+                "candidate-ledger.json": ledger_raw,
+                "sat-replay-receipt.json": replay_raw,
+                "mine-receipt.json": mine_raw,
+                "canary-acceptance.json": raw,
+            },
+        )
     elif terminal["outcome"] == CERTIFIED_UNSAT:
+        _require_exact_keys(
+            evidence["independent_unsat_replay"],
+            {"path", "sha256", "bytes"},
+            "UNSAT replay receipt reference",
+        )
         proof_raw = _read_ref(
             root,
             evidence.get("independent_unsat_replay"),
@@ -2427,6 +3008,20 @@ def _validate_acceptance(
             4 << 20,
         )
         proof = _strict_json(proof_raw, "UNSAT replay receipt")
+        _require_exact_keys(
+            proof,
+            {
+                "schema",
+                "status",
+                "portfolio_cell_id",
+                "job_id",
+                "cnf_sha256",
+                "proof_sha256",
+                "proof_checker_sha256",
+                "proof_replay_sha256",
+            },
+            "UNSAT replay receipt",
+        )
         proof_bytes = _artifact_bytes(
             run_root,
             CANARY_PORTFOLIO_CELL_ID,
@@ -2726,12 +3321,13 @@ def _write_once_or_validate(path: Path, raw: bytes, label: str) -> None:
 def _phase_lock(run_root: Path, phase: str, launch_bytes: bytes) -> int:
     _require_production_pins()
     lock, _, _ = _phase_paths(run_root, phase)
+    binding_payload = {
+        "schema": f"{LAUNCH_SCHEMA}/lock/v1",
+        "phase": phase,
+        "launch_sha256": sha256_bytes(launch_bytes),
+    }
     binding = canonical_json_bytes(
-        {
-            "schema": f"{LAUNCH_SCHEMA}/lock/v1",
-            "phase": phase,
-            "launch_sha256": sha256_bytes(launch_bytes),
-        }
+        {**binding_payload, "manifest_sha256": _self_hash(binding_payload)}
     )
     _write_once_or_validate(lock, binding, f"{phase} launch lock")
     descriptor = os.open(lock, os.O_RDWR | os.O_NOFOLLOW)
@@ -2769,8 +3365,13 @@ def _validated_existing_phase_result(
             "run_manifest_sha256",
             "launch_sha256",
             "results",
+            "manifest_sha256",
         },
         f"preexisting {phase} result keys drifted",
+    )
+    _require(
+        result["manifest_sha256"] == _self_hash(result),
+        f"preexisting {phase} result self-hash drifted",
     )
     launch_raw = _read_private_file(
         launch_path, maximum=4 << 20, label=f"preexisting {phase} launch manifest"
@@ -2787,14 +3388,15 @@ def _validated_existing_phase_result(
         "source_preparer_commit": SOURCE_PREPARER_COMMIT,
         "canary_acceptance_sha256": checked.get("canary_acceptance_sha256"),
     }
+    _validate_live_identity_attestation(launch.get("live_identity"))
     _require(
         result.get("schema") == RESULT_SCHEMA
         and result.get("phase") == phase
         and result.get("campaign_sha256") == checked["campaign_sha256"]
         and result.get("run_manifest_sha256") == checked["run_manifest_sha256"]
         and result.get("launch_sha256") == sha256_bytes(launch_raw)
-        and set(launch) == set(expected_launch) | {"live_identity"}
-        and type(launch.get("live_identity")) is dict
+        and set(launch) == set(expected_launch) | {"live_identity", "manifest_sha256"}
+        and launch.get("manifest_sha256") == _self_hash(launch)
         and all(launch.get(key) == value for key, value in expected_launch.items()),
         f"preexisting {phase} launch/result binding drifted",
     )
@@ -2871,11 +3473,17 @@ def _execute_phase(
         )
         if existing is not None:
             return existing
-        live_identity = _live_daemon_attestation(base_url)
+        live_identity = _validate_live_identity_attestation(
+            _live_daemon_attestation(base_url)
+        )
         states = [
             (cell, classify_cell_state(root, run_root, cell)) for cell in selected
         ]
-        launch = {**launch_intent, "live_identity": live_identity}
+        launch_payload = {**launch_intent, "live_identity": live_identity}
+        launch = {
+            **launch_payload,
+            "manifest_sha256": _self_hash(launch_payload),
+        }
         launch_bytes = canonical_json_bytes(launch)
         _write_once_or_validate(launch_path, launch_bytes, f"{phase} launch manifest")
         terminal = [
@@ -2918,13 +3526,17 @@ def _execute_phase(
                 result["outcome"] in {STRUCTURAL_SAT, CERTIFIED_UNSAT},
                 "terminal cell did not produce accepted SAT/UNSAT custody",
             )
-        payload = {
+        result_payload = {
             "schema": RESULT_SCHEMA,
             "phase": phase,
             "campaign_sha256": checked["campaign_sha256"],
             "run_manifest_sha256": checked["run_manifest_sha256"],
             "launch_sha256": sha256_bytes(launch_bytes),
             "results": results,
+        }
+        payload = {
+            **result_payload,
+            "manifest_sha256": _self_hash(result_payload),
         }
         result_bytes = canonical_json_bytes(payload)
         _write_once_or_validate(result_path, result_bytes, f"{phase} result")
