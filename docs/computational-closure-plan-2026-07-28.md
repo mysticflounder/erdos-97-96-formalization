@@ -15153,3 +15153,22 @@ registered scans contribute two formalized-core records and no perpendicular-
 bisector component. This is a corrected offline replay, not yet a production
 acceptance receipt: the miner and its authenticated dependency inventory must
 be re-frozen before the remaining 75 cells may start.
+
+The corrected miner has now been frozen and accepted under a fresh v3 campaign.
+The v3 campaign and run-manifest SHA-256 values are respectively
+`da9ba6d21106d6c9530d6f72415c8b129fed2e4721a7ecf86c811a869fb57253`
+and `b8ce88b3ad8d4da59fd1726250f57230089602f00f6a7be09cb5c20cecea2938`.
+The sealed v2 terminal was adopted locally into v3 without another solver run;
+the create-once adoption receipt has manifest SHA-256
+`ec7673cba3dc7a59be0e4661290fb3be552b626c078f0952a5a68cda2635eb7c`.
+Its archive path is resumable even after the copied terminal is installed, and
+the adapter revalidates the archived inventory on every retry.
+
+The accepted v3 candidate ledger has raw SHA-256
+`b498bb9c14b28f93bf351c880b1778f19f670d258a9c4f7a96a71db25594a338`
+and contains exactly 37 source-valid candidates: 35 generic two-Kalmanson
+cancellations, two `FourPointTwoCircleBisectorOrderCore` candidates, and no
+perpendicular-bisector component. Its candidate array is identical to the
+corrected v2 replay. The remaining 75 old-root cells are therefore superseded,
+not launchable: all 37 candidates must first be source-adapted and the physical
+portfolio regenerated from the resulting Lean-owned successor root.

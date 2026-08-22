@@ -1465,3 +1465,24 @@ inclusion-minimal checked occurrences on this model. Focused adversarial tests
 now cover that asymmetric case. These results remain diagnostic until the
 corrected miner dependency set and production acceptance route are re-frozen;
 the other 75 cells remain blocked.
+
+## Corrected v3 acceptance and promotion gate — 2026-08-22
+
+The corrected exhaustive pairing mine is now accepted under a fresh v3
+campaign, rather than merely replayed offline. The v3 campaign and run-manifest
+SHA-256 values are
+`da9ba6d21106d6c9530d6f72415c8b129fed2e4721a7ecf86c811a869fb57253`
+and `b8ce88b3ad8d4da59fd1726250f57230089602f00f6a7be09cb5c20cecea2938`.
+The sealed v2 canary terminal was copied locally under create-once custody; no
+second PIQD execution occurred. The adoption receipt's manifest SHA-256 is
+`ec7673cba3dc7a59be0e4661290fb3be552b626c078f0952a5a68cda2635eb7c`.
+The adapter is restart-safe after the target terminal exists and rechecks every
+archived artifact before accepting the completed move-only archive.
+
+The accepted v3 candidate ledger has raw SHA-256
+`b498bb9c14b28f93bf351c880b1778f19f670d258a9c4f7a96a71db25594a338`.
+It contains exactly 35 generic two-Kalmanson occurrences and two
+`FourPointTwoCircleBisectorOrderCore` occurrences. The candidate array is
+identical to the corrected v2 replay. Consequently the prior 75-cell portfolio
+must not run: first bank all source-valid strict-new clauses, then regenerate a
+new Lean-owned root and all source-total physical-multiplicity cells.
