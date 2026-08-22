@@ -1428,8 +1428,28 @@ journal events are now hydrated from their content-addressed payloads, and raw
 PIQD model rows use the daemon's six-field format. These defects rejected valid
 evidence but did not alter any encoded clause or accepted solver result.
 
-The route remains nonterminal. Before another solve, the production checkpoint
-must register `preparation-v1`, the preparer must freeze all source and custody
-digests, all 76 cells must be regenerated and authenticated, and a direct-Lean
-sentinel must match. Only then may the center-2/physical-`none` canary launch;
-the remaining cells stay gated until that result is replayed and mined.
+The first governed preparation exposed a separate fail-closed policy mismatch:
+the Lean root intentionally retains all 68 symmetry-orbit clauses, while 32 are
+strictly subsumed by shorter parent clauses and 36 are strict-new. The preparer
+now authenticates all 68 in exact order and multiplicity, requires zero exact
+parent duplicates, pins the 36 zero-subsumer slots, and verifies that every one
+of the 17 mined occurrences contributes a strict-new clause.
+
+The governed source preparation now satisfies those gates. Its campaign and
+run-manifest SHA-256 values are respectively
+`98540d34c34d1b3ac432969de2411d53040773739174ea2989bd7eb5eb4dbc93` and
+`272bd3d353203d2bdb7deca174c634246f5222e5abc6f3bfdb2074fdaf94608f`.
+It contains exactly 76 distinct cells; all wave manifests have dimensions
+308/7,409,378, and five spread physical cells were compared byte-for-byte with
+direct Lean exports. An independent full-DIMACS pass froze the 76 source and
+76 SAT-profile identities.
+
+The derived SAT-profile campaign has SHA-256
+`44da46805d9c8f9b92fb20bd6e402d4d5944c172ac29b49c45078b57ecec24cb`,
+its run manifest has SHA-256
+`e47ffe5e3550f2aeb2d832dc554da0a12e69a51a091bf508b6d02c2dee91ef63`,
+and the runner's final `static-check` accepts all cells. No PIQD job has been
+prepared or confirmed. The next live action is therefore exactly the
+center-2/physical-`none` canary after daemon/capacity attestation; the remaining
+75 cells stay gated until that result is independently replayed and subjected
+to the mandatory wave-only theorem mine.

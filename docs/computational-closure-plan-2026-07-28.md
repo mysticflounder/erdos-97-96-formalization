@@ -15104,10 +15104,35 @@ journal replay now hydrates content-addressed event payloads, and raw PIQD
 models are parsed using the daemon's six-field record format. Both defects
 caused fail-closed rejection of valid retained evidence; neither changed a CNF,
 model, solver verdict, or theorem candidate. The focused runner suite has 62
-passing tests, while the new physical preparer has 206 passing tests.
+passing tests. The first production preparation then failed closed because its
+novelty policy incorrectly required all 68 orbit clauses to be unsubsumed by
+the parent. The repaired policy authenticates the full ordered orbit, proves
+zero exact duplicates, pins the 36 strict-new slots, and checks that all 17
+occurrences contribute at least one strict-new clause. Its focused preparer
+suite has 174 passing tests.
+
+The governed source preparation is now complete. Its 76-cell campaign has
+SHA-256 `98540d34c34d1b3ac432969de2411d53040773739174ea2989bd7eb5eb4dbc93`,
+and its run manifest has SHA-256
+`272bd3d353203d2bdb7deca174c634246f5222e5abc6f3bfdb2074fdaf94608f`.
+All cell wave manifests report exactly 308 variables and 7,409,378 clauses;
+five spread sentinels matched direct Lean exports. A second independent pass
+parsed and hashed all 76 full DIMACS files and froze both identity tables.
+
+The SAT-profile transformation is also complete and passes the runner's final
+`static-check`. Its campaign has SHA-256
+`44da46805d9c8f9b92fb20bd6e402d4d5944c172ac29b49c45078b57ecec24cb`,
+and its run manifest has SHA-256
+`e47ffe5e3550f2aeb2d832dc554da0a12e69a51a091bf508b6d02c2dee91ef63`.
+The source/production identity-table digests are respectively
+`7c5d8e5da2f4254d1fbe2f728cfe8eebc2aa84edf6467909923e9a42ff93cc89`
+and `0f48353efc60ec876ba5442be67c0a0e68ebb8a2f301605f1e170f4ac9dc1ac2`.
+The offline theorem miner preserves the three registered source-valid family
+inventories, and the combined runner/miner suite has 84 passing tests with one
+environment-dependent skip.
 
 This remains a CEGAR refinement rather than closure: exact 17 and the cap-nine
-production leaf are still open. The next gate is to freeze the new preparation
-identities, regenerate all 76 cells from the 7,409,372-clause Lean root, run a
-direct-Lean sentinel comparison, and launch only the center-2/physical-`none`
-canary through PIQD before admitting the other cells.
+production leaf are still open. No PIQD job has yet been prepared or confirmed.
+The next gate is the live daemon/capacity attestation followed by the single
+center-2/physical-`none` canary; the remaining 75 cells stay gated behind its
+independent replay and mandatory wave-only theorem mine.
