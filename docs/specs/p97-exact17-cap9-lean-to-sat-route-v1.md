@@ -1359,3 +1359,30 @@ The concurrent audit of `docs/erdos-97-descent-prose-proof-atomic.md` found no
 new source-clean drop-in lemma for this packet. Its nearby descent statements
 still require antecedents that the exact-17 source realization does not
 provide.
+
+## Authenticated 76-cell runner and theorem-mine gate — 2026-08-22
+
+The governed preparer now exports all 76 source-total physical-multiplicity
+cells from the 7,409,304-clause Lean root. Every regenerated cell contains
+7,409,310 clauses. The production runner remains deliberately fail-closed
+until its immutable source, miner, checkpoint, and per-cell identity tables
+are filled and rechecked.
+
+The SAT acceptance path now treats each selected four-set as positive row
+membership only; it does not infer full-shell nonmembership. Before loading
+the theorem scanners, the miner authenticates their transitive Python support
+and the Lean sources of every admitted consumer. Its source-valid stage and
+consumer inventories are exact, its equality-component scan is complete, and
+its two-Kalmanson scan requires a bijection between minimal forward and
+reflected reverse supports. A read-only `verify-existing` mode replays the
+entire CNF, recomputes the complete candidate ledger, and byte-compares all
+four persisted receipts.
+
+The runner accepts a SAT result only after rerunning that pinned verifier in
+an isolated subprocess and matching the model, CNF, dependency, family,
+selector, ledger, and receipt digests. Runner-owned phase artifacts have exact
+schemas and self-hashes. The production lane has a separate checkpoint that
+declares its generated run root. An independent adversarial review and the
+combined focused suite pass; no PIQD job has yet been launched from this
+successor. The next action is the pin-only checkpoint followed by the single
+center-2/physical-`none` canary.

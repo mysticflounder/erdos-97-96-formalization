@@ -15040,3 +15040,30 @@ The updated descent-prose audit found no new source-clean drop-in lemma for
 this source packet. The closest descent lemmas still need blocker provenance,
 additional physical support, or circle/arc hypotheses unavailable at this
 ingress.
+
+### 2026-08-22 authenticated 76-cell launch gate
+
+The 7,409,304-clause Lean root and all 76 source-total
+physical-multiplicity cells have been regenerated; every cell has 7,409,310
+clauses. The new SAT-profile runner is fail-closed until a pin-only checkpoint
+authenticates the source campaign, preparer, code and production checkpoints,
+the theorem miner, and every source/production cell identity.
+
+The mandatory SAT theorem miner has been hardened against the previously
+identified abstraction and custody failures. Selected four-sets are decoded
+as positive-only rows, proof scanners are imported only after their transitive
+Python and Lean-consumer dependencies are authenticated, admitted stages and
+consumers are exact whitelists, full equality components are scanned, and
+two-Kalmanson candidates require paired minimal forward and reflected reverse
+supports. Its read-only verification mode replays every CNF clause and
+recomputes and byte-compares the complete ledger and receipts.
+
+The runner now invokes that pinned verifier before accepting SAT evidence,
+binds exact PIQD model bytes through the terminal model digest, validates
+exact schemas and self-hashes for runner-owned artifacts, denies mutation and
+process/network escape from the verification subprocess, and uses a separate
+production-lane checkpoint for the generated root. The combined focused suite
+and an independent adversarial audit pass. No successor PIQD solve has been
+launched. Next: freeze the immutable identities, materialize and statically
+check the governed run, then launch only center 2 / physical `none` under the
+12-core global cap.
