@@ -4,11 +4,9 @@
   "durable_paths": [],
   "generated_roots": [],
   "lane_id": "exact17-fourpoint-physical-preparer-20260822",
-  "manifest_sha256": "d0ccab6f07ed0eb9d8506960108b4600b99380ff9ceff25f275af66958478280",
+  "manifest_sha256": "ad77b9b1c2980ab9b83ed7e3de575f362abca2136a0994110f9a22d9444dd43b",
   "owned_paths": [
-    ".codex/worktree-checkpoints/exact17-fourpoint-physical-preparer-20260822.json",
-    "scripts/prepare_exact17_canary_perp_bisector_survivor_four_point_two_circle_refinements_physical_slice_cells.py",
-    "scripts/test_prepare_exact17_canary_perp_bisector_survivor_four_point_two_circle_refinements_physical_slice_cells.py"
+    ".codex/worktree-checkpoints/exact17-fourpoint-physical-preparer-20260822.json"
   ],
   "owner": "exact17-fourpoint-physical-preparer",
   "schema": "worktree-lane-checkpoint/v1"
