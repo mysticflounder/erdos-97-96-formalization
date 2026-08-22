@@ -175,6 +175,24 @@ def test_named_order_selector_flip_changes_table() -> None:
         mine.require_order_matches_selector(flipped, 0, mine.ORDER_ZERO)
 
 
+def test_active_registered_scan_rejects_incomplete_component_certificate(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    mine = module()
+    model = live_json(mine.MODEL_ARTIFACT)
+    values, _ = mine.decode_model(model)
+    order_index, order = mine.selected_order_table(values)
+    monkeypatch.setattr(
+        mine.producer_bank,
+        "complete_perpendicular_bisector_certificate",
+        lambda rows, n, selected_order: {"status": "INCOMPLETE", "complete": False},
+    )
+    with pytest.raises(mine.MineError, match="equality-component scan did not complete"):
+        mine.scan_registered_families(
+            values, mine.MOTIF_SCANNER.read_bytes(), order_index, order
+        )
+
+
 def test_predecessor_hardcoded_order_did_not_match_selector() -> None:
     mine = module()
     audit = mine.audit_predecessor_selector(

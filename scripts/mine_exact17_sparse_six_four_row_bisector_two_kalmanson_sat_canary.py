@@ -1190,8 +1190,16 @@ def scan_registered_families(
     direct_reverse = motif.direct_six_occurrence_hits(raw_rows, reverse_order)
     interlacing_forward = motif.paper_interlacing_hits(raw_rows, order)
     interlacing_reverse = motif.paper_interlacing_hits(raw_rows, reverse_order)
+    complete_components = producer_bank.complete_perpendicular_bisector_certificate(
+        rows, 17, order
+    )
+    if (
+        complete_components.get("status") != "COMPLETE"
+        or complete_components.get("complete") is not True
+    ):
+        raise MineError("equality-component scan did not complete")
     return {
-        "registered_source_valid_generic_family_count": 2,
+        "registered_source_valid_generic_family_count": 3,
         "source_valid_generic_families": {
             "two_kalmanson_cancellation": {
                 "paired_forward_reverse_required": True,
@@ -1203,10 +1211,16 @@ def scan_registered_families(
                 "reverse_hits": len(direct_reverse),
                 "immediate_lean_consumer": "false_of_six_ccw_two_triple_row_equalities",
             },
+            "perpendicular_bisector_equality_component": {
+                "candidate_count": complete_components["counts"]["candidate_count"],
+                "immediate_lean_consumer": complete_components["lean_consumer"],
+                "complete": True,
+            },
         },
         "formalized_core_stage_counts": dict(sorted(stage_counts.items())),
         "formalized_diagnostic_count": len(formalized),
         "formalized_diagnostics_source_valid_new": 0,
+        "complete_equality_component_certificate": complete_components,
         "conditional_or_non_source_valid_families": {
             "equality_closure_class_count": closure["class_count"],
             "rhombus_identity_count": len(rhombi),
@@ -1215,7 +1229,7 @@ def scan_registered_families(
             "interlacing_forward_hits": len(interlacing_forward),
             "interlacing_reverse_hits": len(interlacing_reverse),
         },
-        "new_source_valid_generic_family": False,
+        "new_source_valid_generic_family": bool(complete_components["candidates"]),
     }
 
 

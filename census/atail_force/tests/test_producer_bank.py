@@ -9,6 +9,27 @@ from census.atail_force import producer_bank
 
 
 class ProducerBankTests(unittest.TestCase):
+    def test_complete_perpendicular_bisector_certificate_is_source_facing(self) -> None:
+        rows = tuple(
+            producer_bank.MetricRow(center, (0, 1, 5, 6), exact=False)
+            for center in (2, 3, 4)
+        )
+        certificate = producer_bank.complete_perpendicular_bisector_certificate(
+            rows, 7, tuple(range(7))
+        )
+        target = next(
+            item for item in certificate["candidates"] if item["foci"] == [0, 1]
+        )
+        self.assertEqual(
+            {item["center"] for item in target["witnesses"]}, {2, 3, 4}
+        )
+        self.assertEqual(certificate["status"], "COMPLETE")
+        self.assertEqual(
+            certificate["lean_consumer"],
+            "Problem97.ATailFrontierLiveClosure.GenericRowNogoodCertificate."
+            "nonempty_perpBisectorCore_of_positiveCheck",
+        )
+
     @staticmethod
     def _kalmanson_rows() -> tuple[producer_bank.MetricRow, ...]:
         row = producer_bank.MetricRow

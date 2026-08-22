@@ -2035,12 +2035,36 @@ def scan_all_formalized_cores(
     return tuple(unique[key] for key in sorted(unique))
 
 
+def complete_perpendicular_bisector_certificate(
+    rows: Sequence[MetricRow], n: int, order: Sequence[int] | None = None
+) -> dict[str, Any]:
+    """Return the complete source-facing equality-component certificate.
+
+    This is intentionally separate from ``scan_all_formalized_cores``: the
+    latter preserves first-embedding discovery semantics, while this producer
+    must enumerate every foci/witness group and every replayable path.
+    """
+
+    if order is not None:
+        _validate_order(n, order)
+    certificate = metric.complete_perpendicular_bisector_components(rows, n)
+    certificate = dict(certificate)
+    certificate["lean_consumer"] = (
+        "Problem97.ATailFrontierLiveClosure.GenericRowNogoodCertificate."
+        "nonempty_perpBisectorCore_of_positiveCheck"
+    )
+    if order is not None:
+        certificate["order"] = list(order)
+    return certificate
+
+
 __all__ = [
     "CoreRecord",
     "MetricRow",
     "MissingLeanConsumerError",
     "canonical_core_record",
     "certify_two_kalmanson_cancellation",
+    "complete_perpendicular_bisector_certificate",
     "enumerate_two_kalmanson_cancellations",
     "scan_all_formalized_cores",
 ]

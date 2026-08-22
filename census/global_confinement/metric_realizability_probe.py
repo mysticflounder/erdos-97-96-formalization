@@ -23,18 +23,18 @@ import math
 import os
 import tempfile
 import time
-from collections import Counter
+from collections import Counter, deque
+from collections.abc import Iterable, Mapping, Sequence
 from concurrent.futures import ProcessPoolExecutor, as_completed
 from dataclasses import dataclass
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from itertools import combinations, permutations
 from pathlib import Path
-from typing import Any, Iterable, Mapping, Sequence
+from typing import Any
 
 from census.multi_center import multi_center_census as mc
 
 from .shadow import hull_order
-
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
@@ -143,6 +143,248 @@ def _row_equality_closure(n: int, rows: Sequence[MetricRow]) -> _EdgeClosure:
         for point in row.support[1:]:
             closure.union(reference, _edge(row.center, point))
     return closure
+
+
+class IncompleteEqualityComponentError(ValueError):
+    """Raised when a complete equality-component certificate cannot be replayed."""
+
+
+def _validate_component_rows(n: int, rows: Sequence[MetricRow]) -> tuple[MetricRow, ...]:
+    if not isinstance(n, int) or isinstance(n, bool) or n < 2:
+        raise ValueError("component index needs an ambient size of at least two")
+    normalized: list[MetricRow] = []
+    seen_centers: set[int] = set()
+    for row in rows:
+        if not isinstance(row, MetricRow):
+            raise TypeError("component index rows must be MetricRow values")
+        if row.center in seen_centers:
+            raise ValueError("component index received duplicate row centers")
+        if not 0 <= row.center < n:
+            raise ValueError("component row center is outside the ambient labels")
+        support = tuple(sorted(set(row.support)))
+        if len(support) != len(row.support) or not support:
+            raise ValueError("component row support must be nonempty and duplicate-free")
+        if any(
+            isinstance(point, bool)
+            or not 0 <= point < n
+            or point == row.center
+            for point in support
+        ):
+            raise ValueError("component row support contains an invalid label")
+        seen_centers.add(row.center)
+        normalized.append(MetricRow(row.center, support, bool(row.exact)))
+    return tuple(sorted(normalized, key=lambda row: (row.center, row.support)))
+
+
+def _complete_component_path(
+    adjacency: Mapping[tuple[int, int], Sequence[tuple[tuple[int, int], dict[str, Any]]]],
+    first: tuple[int, int],
+    last: tuple[int, int],
+) -> dict[str, Any]:
+    if first == last:
+        return {"first": list(first), "steps": [], "last": list(last)}
+    previous: dict[tuple[int, int], tuple[tuple[int, int], dict[str, Any]]] = {}
+    queue = deque([first])
+    seen = {first}
+    while queue:
+        source = queue.popleft()
+        for target, step in adjacency[source]:
+            if target in seen:
+                continue
+            seen.add(target)
+            previous[target] = (source, step)
+            if target == last:
+                queue.clear()
+                break
+            queue.append(target)
+    if last not in seen:
+        raise IncompleteEqualityComponentError(
+            f"component closure has no replayable path from {first} to {last}"
+        )
+    steps: list[dict[str, Any]] = []
+    cursor = last
+    while cursor != first:
+        cursor, step = previous[cursor]
+        steps.append(dict(step))
+    steps.reverse()
+    return {"first": list(first), "steps": steps, "last": list(last)}
+
+
+def _replay_complete_component_path(
+    path: Mapping[str, Any],
+    rows: Sequence[MetricRow],
+    first: tuple[int, int],
+    last: tuple[int, int],
+) -> bool:
+    if path.get("first") != list(first) or path.get("last") != list(last):
+        return False
+    cursor = first
+    row_supports = {row.center: set(row.support) for row in rows}
+    steps = path.get("steps")
+    if not isinstance(steps, list):
+        return False
+    for step in steps:
+        if not isinstance(step, Mapping):
+            return False
+        kind = step.get("kind")
+        if kind == "flip":
+            if step.get("first") != cursor[0] or step.get("second") != cursor[1]:
+                return False
+            cursor = (cursor[1], cursor[0])
+        elif kind == "row":
+            center = step.get("center")
+            source = step.get("first")
+            target = step.get("second")
+            if (
+                cursor != (center, source)
+                or not isinstance(center, int)
+                or center not in row_supports
+                or source not in row_supports[center]
+                or target not in row_supports[center]
+                or source == target
+            ):
+                return False
+            cursor = (center, target)
+        else:
+            return False
+    return cursor == last
+
+
+def complete_perpendicular_bisector_components(
+    rows: Sequence[MetricRow], n: int
+) -> dict[str, Any]:
+    """Enumerate every equality-component perpendicular-bisector candidate.
+
+    The returned certificate is deliberately source-facing: every witness has
+    an explicit row/flip path consumable by ``ClosurePathData`` and the full
+    unordered-edge component inventory is retained for completeness auditing.
+    There is no path-depth limit.  Any internal closure/path mismatch raises an
+    ``IncompleteEqualityComponentError`` instead of producing an exhaustion
+    result.
+    """
+
+    normalized = _validate_component_rows(n, rows)
+    adjacency: dict[
+        tuple[int, int], list[tuple[tuple[int, int], dict[str, Any]]]
+    ] = {
+        (left, right): []
+        for left in range(n)
+        for right in range(n)
+        if left != right
+    }
+    for left, right in sorted(adjacency):
+        adjacency[(left, right)].append(
+            ((right, left), {"kind": "flip", "first": left, "second": right})
+        )
+    row_transition_count = 0
+    for row in normalized:
+        for source in row.support:
+            for target in row.support:
+                if source == target:
+                    continue
+                adjacency[(row.center, source)].append(
+                    (
+                        (row.center, target),
+                        {
+                            "kind": "row",
+                            "center": row.center,
+                            "first": source,
+                            "second": target,
+                        },
+                    )
+                )
+                row_transition_count += 1
+    for neighbors in adjacency.values():
+        neighbors.sort(
+            key=lambda item: (
+                item[0],
+                item[1]["kind"],
+                tuple(item[1].get(key, -1) for key in ("center", "first", "second")),
+            )
+        )
+
+    closure = _row_equality_closure(n, normalized)
+    edge_component: dict[tuple[int, int], str] = {}
+    components: dict[str, list[list[int]]] = {}
+    for edge_value in combinations(range(n), 2):
+        root = closure.find(edge_value)
+        components.setdefault(str(root), []).append(list(edge_value))
+    # Union-find roots depend on row insertion order; canonicalize them for a
+    # stable certificate while preserving the complete edge inventory.
+    canonical_components: dict[str, list[list[int]]] = {}
+    for edges in components.values():
+        canonical = min(tuple(edge_value) for edge_value in edges)
+        component_id = f"{canonical[0]}-{canonical[1]}"
+        canonical_components[component_id] = sorted(edges)
+        for edge_value in edges:
+            edge_component[tuple(edge_value)] = component_id
+
+    pair_scan: list[dict[str, Any]] = []
+    candidates: list[dict[str, Any]] = []
+    for left, right in combinations(range(n), 2):
+        witnesses: list[dict[str, Any]] = []
+        for point in range(n):
+            if point in (left, right):
+                continue
+            first = (point, left)
+            last = (point, right)
+            if edge_component[_edge(*first)] != edge_component[_edge(*last)]:
+                continue
+            path = _complete_component_path(adjacency, first, last)
+            if not _replay_complete_component_path(path, normalized, first, last):
+                raise IncompleteEqualityComponentError(
+                    f"component path replay failed for foci {(left, right)} and witness {point}"
+                )
+            witnesses.append(
+                {
+                    "center": point,
+                    "component": edge_component[_edge(*first)],
+                    "path": path,
+                    "row_step_count": sum(
+                        step.get("kind") == "row" for step in path["steps"]
+                    ),
+                }
+            )
+        pair = {"foci": [left, right], "witnesses": witnesses}
+        pair_scan.append(pair)
+        if len(witnesses) >= 3:
+            candidates.append(pair)
+
+    return {
+        "schema": "p97-complete-equality-component-perpendicular-bisector/v1",
+        "status": "COMPLETE",
+        "complete": True,
+        "n": n,
+        "rows": [row.as_dict() for row in normalized],
+        "components": [
+            {"id": component_id, "edges": edges}
+            for component_id, edges in sorted(canonical_components.items())
+        ],
+        "pairs": pair_scan,
+        "candidates": candidates,
+        "counts": {
+            "oriented_edge_count": n * (n - 1),
+            "unordered_edge_count": n * (n - 1) // 2,
+            "component_count": len(canonical_components),
+            "row_transition_count": row_transition_count,
+            "pair_count": n * (n - 1) // 2,
+            "candidate_count": len(candidates),
+        },
+    }
+
+
+def validate_complete_perpendicular_bisector_certificate(
+    rows: Sequence[MetricRow], n: int, certificate: Mapping[str, Any]
+) -> bool:
+    """Fail-closed replay check for a complete component certificate."""
+
+    if certificate.get("status") != "COMPLETE" or certificate.get("complete") is not True:
+        return False
+    try:
+        expected = complete_perpendicular_bisector_components(rows, n)
+    except (IncompleteEqualityComponentError, TypeError, ValueError):
+        return False
+    return dict(certificate) == expected
 
 
 def _duplicate_center_core(
@@ -1559,8 +1801,10 @@ def _formalized_metric_core(
                     closure, n, order, index=shared_closure_index()
                 )),
             (
-                "equality-convex-eight-point-"
-                "five-row-circle-intersection-order",
+                (
+                    "equality-convex-eight-point-"
+                    "five-row-circle-intersection-order"
+                ),
                 lambda: _five_row_circle_intersection_order_core_from_closure(
                     closure, n, order, index=shared_closure_index()
                 ),
@@ -1574,8 +1818,10 @@ def _formalized_metric_core(
                     closure, n, reverse_order, index=shared_closure_index()
                 )),
             (
-                "equality-convex-eight-point-"
-                "five-row-circle-intersection-order-reverse",
+                (
+                    "equality-convex-eight-point-"
+                    "five-row-circle-intersection-order-reverse"
+                ),
                 lambda: _five_row_circle_intersection_order_core_from_closure(
                     closure, n, reverse_order, index=shared_closure_index()
                 ),
@@ -1800,7 +2046,7 @@ def _normalize_assignment(
     merged: dict[tuple[int, tuple[int, ...]], bool] = {}
     for name, raw in assignment.items():
         if not isinstance(raw, Mapping):
-            raise ValueError(f"row {name!r} is not an object")
+            raise TypeError(f"row {name!r} is not an object")
         center = int(raw["center"])
         support = tuple(sorted(int(point) for point in raw["support"]))
         if len(support) != 4 or len(set(support)) != 4:
@@ -1899,7 +2145,12 @@ def extract_systems(paths: Sequence[Path]) -> tuple[list[dict[str, Any]], dict[s
             }
         )
 
-        def visit(value: Any, json_path: tuple[Any, ...], context: dict[str, Any]) -> None:
+        def visit(
+            value: Any,
+            json_path: tuple[Any, ...],
+            context: dict[str, Any],
+            source_path: Path = path,
+        ) -> None:
             nonlocal raw_assignments, rejected_non_sat
             if isinstance(value, dict):
                 next_context = dict(context)
@@ -1919,7 +2170,7 @@ def extract_systems(paths: Sequence[Path]) -> tuple[list[dict[str, Any]], dict[s
                     else:
                         if "n" not in next_context or "profile" not in next_context:
                             raise ValueError(
-                                f"missing frame metadata at {path}:{_json_pointer(json_path)}"
+                                f"missing frame metadata at {source_path}:{_json_pointer(json_path)}"
                             )
                         n = int(next_context["n"])
                         profile = tuple(int(x) for x in next_context["profile"])
@@ -1937,9 +2188,9 @@ def extract_systems(paths: Sequence[Path]) -> tuple[list[dict[str, Any]], dict[s
                             if field in next_context
                         }
                         source = {
-                            "file": os.path.relpath(path, ROOT),
+                            "file": os.path.relpath(source_path, ROOT),
                             "json_pointer": _json_pointer(json_path + ("assignment",)),
-                            "family": _source_family(path, json_path),
+                            "family": _source_family(source_path, json_path),
                             "context": source_context,
                         }
                         if key not in by_key:
@@ -2670,7 +2921,7 @@ def _write_checkpoint(
         enriched.append(result)
     payload = {
         "schema": SCHEMA,
-        "generated_at": datetime.now(timezone.utc).isoformat(),
+        "generated_at": datetime.now(UTC).isoformat(),
         "extraction": extraction,
         "config": config,
         "smoke": smoke,

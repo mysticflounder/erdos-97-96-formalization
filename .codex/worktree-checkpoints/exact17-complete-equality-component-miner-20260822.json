@@ -1,0 +1,19 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "exact17-complete-equality-component-miner-20260822",
+  "owner": "refinement-preparer-design",
+  "base_head": "69fc5c4f65345cda29bab091920d3a84aa2cd90f",
+  "created_utc": "2026-08-22T01:45:00Z",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exact17-complete-equality-component-miner-20260822.json",
+    "census/atail_force/producer_bank.py",
+    "census/atail_force/tests/test_producer_bank.py",
+    "census/global_confinement/metric_realizability_probe.py",
+    "census/global_confinement/tests/test_metric_realizability_probe.py",
+    "scripts/mine_exact17_sparse_six_four_row_bisector_two_kalmanson_sat_canary.py",
+    "scripts/test_mine_exact17_sparse_six_four_row_bisector_two_kalmanson_sat_canary.py"
+  ],
+  "durable_paths": [],
+  "generated_roots": [],
+  "manifest_sha256": "0c0734703fae0bcf112b4aa8bf556f0cb646e8034c73eeb89c90fdd320a7b2d5"
+}

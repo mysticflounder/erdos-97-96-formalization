@@ -4,46 +4,101 @@
 
 from __future__ import annotations
 
-from collections import Counter
-from itertools import permutations
 import random
 import unittest
+from collections import Counter
+from itertools import permutations
 
 from census.global_confinement.metric_realizability_probe import (
     DEFAULT_INPUTS,
     MetricRow,
-    _convex_rhombus_equilateral_core,
     _closure_circle_index,
+    _convex_rhombus_equilateral_core,
     _duplicate_center_core,
+    _eight_point_five_circle_collision_core_from_closure,
     _equal_k4_core,
-    _exact_off_circle_core,
     _exact_metric_unsat_core,
+    _exact_off_circle_core,
     _five_point_bisector_circle_core,
     _formalized_metric_core,
     _normalize_assignment,
     _perpendicular_bisector_core,
-    _smoke_systems,
-    _surplus_source_collision_core_from_closure,
-    _three_triad_collision_core_from_closure,
     _row_equality_closure,
-    _seven_point_orbit_collision_core_from_closure,
     _seven_point_circle_network_collision_core_from_closure,
-    _seven_point_six_circle_collision_core_from_closure,
+    _seven_point_five_circle_collision_core_from_closure,
+    _seven_point_orbit_collision_core_from_closure,
     _seven_point_six_circle_collision_core_b_from_closure,
+    _seven_point_six_circle_collision_core_from_closure,
     _seven_point_twin_four_circle_collision_core_from_closure,
+    _six_point_circle_chain_collision_core_from_closure,
     _six_point_five_circle_collision_core_a_from_closure,
     _six_point_five_circle_collision_core_b_from_closure,
     _six_point_five_circle_collision_core_c_from_closure,
-    _seven_point_five_circle_collision_core_from_closure,
-    _eight_point_five_circle_collision_core_from_closure,
-    _six_point_circle_chain_collision_core_from_closure,
     _six_row_anchor_collision_core_from_closure,
+    _smoke_systems,
+    _surplus_source_collision_core_from_closure,
+    _three_triad_collision_core_from_closure,
+    complete_perpendicular_bisector_components,
     extract_systems,
     run_smoke,
+    validate_complete_perpendicular_bisector_certificate,
 )
 
 
 class MetricRealizabilityProbeTests(unittest.TestCase):
+    @staticmethod
+    def _model_6807fbaa_rows() -> tuple[MetricRow, ...]:
+        # Authenticated center2/none survivor fixture: the rows below preserve
+        # the relevant (4, 9) / (6, 10, 15) component pattern while keeping the
+        # fixture small and deterministic for source-side replay tests.
+        return (
+            MetricRow(4, (6, 1, 10, 2), False),
+            MetricRow(1, (4, 3, 5, 7), False),
+            MetricRow(3, (1, 8, 11, 12), False),
+            MetricRow(8, (3, 9, 13, 14), False),
+            MetricRow(2, (4, 5, 11, 12), False),
+            MetricRow(5, (2, 7, 11, 12), False),
+            MetricRow(7, (5, 9, 3, 11), False),
+            MetricRow(9, (8, 6, 7, 10), False),
+            MetricRow(15, (4, 9, 2, 3), False),
+            MetricRow(11, (0, 1, 2, 3), False),
+            MetricRow(12, (0, 1, 2, 3), False),
+            MetricRow(13, (0, 1, 2, 3), False),
+        )
+
+    def test_complete_component_fixture_finds_all_target_witnesses(self) -> None:
+        certificate = complete_perpendicular_bisector_components(
+            self._model_6807fbaa_rows(), 17
+        )
+        target = next(
+            item for item in certificate["candidates"] if item["foci"] == [4, 9]
+        )
+        self.assertEqual({item["center"] for item in target["witnesses"]}, {6, 10, 15})
+        self.assertTrue(certificate["complete"])
+        self.assertGreaterEqual(
+            max(item["row_step_count"] for item in target["witnesses"]), 5
+        )
+
+    def test_complete_component_enumerates_multiple_groups_and_replays_mutations(self) -> None:
+        rows = self._model_6807fbaa_rows()
+        certificate = complete_perpendicular_bisector_components(rows, 17)
+        self.assertEqual(certificate, complete_perpendicular_bisector_components(rows, 17))
+        self.assertGreaterEqual(certificate["counts"]["candidate_count"], 2)
+        self.assertTrue(validate_complete_perpendicular_bisector_certificate(rows, 17, certificate))
+        mutated = dict(certificate)
+        mutated["complete"] = False
+        self.assertFalse(validate_complete_perpendicular_bisector_certificate(rows, 17, mutated))
+        mutated = dict(certificate)
+        mutated["pairs"] = list(certificate["pairs"])
+        mutated["pairs"][0] = dict(mutated["pairs"][0])
+        mutated["pairs"][0]["witnesses"] = []
+        self.assertFalse(validate_complete_perpendicular_bisector_certificate(rows, 17, mutated))
+
+    def test_complete_component_fails_closed_on_unreplayable_input(self) -> None:
+        rows = (MetricRow(4, (6, 6), False),)
+        with self.assertRaises(ValueError):
+            complete_perpendicular_bisector_components(rows, 17)
+
     def test_duplicate_rows_merge_with_strongest_exact_flag(self) -> None:
         assignment = {
             "global:0": {"center": 0, "support": [1, 2, 3, 4], "exact": False},
