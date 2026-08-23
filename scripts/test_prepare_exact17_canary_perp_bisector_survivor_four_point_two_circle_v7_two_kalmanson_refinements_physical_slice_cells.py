@@ -39,8 +39,8 @@ def test_v7_preparer_config_phase_is_fail_closed() -> None:
     preparer._BASE._validate_production_config_payload(config)
     assert raw == preparer._BASE.canonical_json_bytes(config)
     assert config["generated_root"] == (
-        "scratch/runs/exact17-v7-two-kalmanson-successor-preparer-v2-20260823/"
-        "preparation-v2"
+        "scratch/runs/exact17-v7-two-kalmanson-successor-preparer-v3-20260823/"
+        "preparation-v3"
     )
     target = config["target_code"]
     target_paths = {
@@ -111,20 +111,20 @@ def test_v7_preparer_uses_fresh_source_ids_and_schemas() -> None:
     assert preparer._BASE.EXPORTER_PATH == preparer.EXPORTER_PATH
 
 
-def test_v7_preparer_uses_fresh_v2_governance_surface() -> None:
+def test_v7_preparer_uses_fresh_v3_governance_surface() -> None:
     assert preparer.LANE_ID == (
-        "exact17-v7-two-kalmanson-successor-preparer-v2-20260823"
+        "exact17-v7-two-kalmanson-successor-preparer-v3-20260823"
     )
-    assert preparer.RUN_ID == "preparation-v2"
-    assert preparer.RUN_OWNER == "exact17-fourpoint-v7-preparer-v2"
+    assert preparer.RUN_ID == "preparation-v3"
+    assert preparer.RUN_OWNER == "exact17-fourpoint-v7-preparer-v3"
     assert preparer.CHECKPOINT_PATH.name == (
-        "exact17-v7-two-kalmanson-successor-preparer-v2-20260823.json"
+        "exact17-v7-two-kalmanson-successor-preparer-v3-20260823.json"
     )
     assert preparer.PRODUCTION_CONFIG_PATH.name == (
         "canary-perp-bisector-survivor-four-point-two-circle-v7-two-kalmanson-"
-        "preparation-config-v2.json"
+        "preparation-config-v3.json"
     )
-    assert "v2-preparation-config" in preparer.PRODUCTION_CONFIG_SCHEMA
+    assert "v3-preparation-config" in preparer.PRODUCTION_CONFIG_SCHEMA
 
 
 @pytest.mark.parametrize("binding", ("category_id", "_cell_id"))
@@ -145,7 +145,7 @@ def test_v7_preparer_help_never_describes_the_v5_packet(
     rendered = capsys.readouterr().out
     for required in (
         "V7",
-        "preparation-v2",
+        "preparation-v3",
         "22-clause",
         "7,409,810",
         "7,409,816",

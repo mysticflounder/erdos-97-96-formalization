@@ -1,6 +1,6 @@
-"""Governed code-first V7 physical-slice V2 preparer.
+"""Governed code-first V7 physical-slice V3 preparer.
 
-This V2 adapter reuses the committed V6 custody implementation, but replaces
+This V3 adapter reuses the committed V6 custody implementation, but replaces
 every source/schema/count contract with the committed V7 two-Kalmanson root.  The V7
 physical coverage/exporter and V6 immediate-parent exporter are pinned; the
 adapter remains intentionally non-production until an external config and the
@@ -42,10 +42,10 @@ ROOT_SOURCE_COMMIT = "ba5dd982fb3c345e75437daa710186bf5345c701"
 ROOT_SOURCE_SHA256 = "1a68382662e8d005109dd6ff50fb3b5c3f18006b01acbd213a1f8ffd6ebf39fb"
 ROOT_SOURCE_BYTES = 21_139
 
-LANE_ID = "exact17-v7-two-kalmanson-successor-preparer-v2-20260823"
-RUN_ID = "preparation-v2"
-RUN_OWNER = "exact17-fourpoint-v7-preparer-v2"
-BASE_HEAD = "0dbfd4b7939561b141b0305c59009ff3349a8081"
+LANE_ID = "exact17-v7-two-kalmanson-successor-preparer-v3-20260823"
+RUN_ID = "preparation-v3"
+RUN_OWNER = "exact17-fourpoint-v7-preparer-v3"
+BASE_HEAD = "b5e58d40590b8749979cded525d76f602ae321ea"
 
 SOURCE_PATH = ROOT / (
     "lean/Erdos9796Proof/P97/ATail/"
@@ -80,7 +80,7 @@ IMMEDIATE_PARENT_EXPORTER_SHA256 = (
 IMMEDIATE_PARENT_EXPORTER_BYTES = 3_646
 CHECKPOINT_PATH = ROOT / (
     ".codex/worktree-checkpoints/"
-    "exact17-v7-two-kalmanson-successor-preparer-v2-20260823.json"
+    "exact17-v7-two-kalmanson-successor-preparer-v3-20260823.json"
 )
 PREPARER_PATH = Path(__file__).resolve()
 TEST_PATH = ROOT / (
@@ -90,12 +90,12 @@ TEST_PATH = ROOT / (
 PRODUCTION_CONFIG_RELATIVE = Path(
     "census/p97_search/waves/exact17/"
     "canary-perp-bisector-survivor-four-point-two-circle-v7-two-kalmanson-"
-    "preparation-config-v2.json"
+    "preparation-config-v3.json"
 )
 PRODUCTION_CONFIG_PATH = ROOT / PRODUCTION_CONFIG_RELATIVE
 PRODUCTION_CONFIG_SCHEMA = (
     "p97-exact17-canary-perp-bisector-survivor-four-point-two-circle-v7-two-"
-    "kalmanson-refinements-v2-preparation-config/v1"
+    "kalmanson-refinements-v3-preparation-config/v1"
 )
 
 PARENT_VARIABLES = 308
@@ -139,7 +139,7 @@ EXPECTED_SUFFIX_OCCURRENCE = (
 EXPECTED_STRICT_NEW_PER_OCCURRENCE = (3, 4, 2, 3, 0, 3, 4, 0, 3)
 
 OPERATOR_HELP = """\
-Govern the V7 two-Kalmanson physical packet on the fresh preparation-v2 surface.
+Govern the V7 two-Kalmanson physical packet on the fresh preparation-v3 surface.
 
 The authenticated 22-clause suffix extends the 7,409,788-clause V6 parent to
 a 7,409,810-clause V7 root.  Each of the 76 physical cells has 308 variables
