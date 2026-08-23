@@ -786,6 +786,9 @@ def test_real_packet_exporter_preserves_partial_root_and_blocks_retry(
         DELEGATED_PREPARER_PATH = tmp_path / "delegated.py"
         HARDENED_PREPARER_PATH = tmp_path / "hardened.py"
         VARIABLE_MAP_PATH = tmp_path / "variable-map.json"
+        verify_committed_dependency_blobs = staticmethod(
+            lambda *_args, **_kwargs: None
+        )
 
         @staticmethod
         def _initialize_run_root_authenticated(**_kwargs: object) -> dict[str, object]:
@@ -838,6 +841,9 @@ def test_export_failure_preserves_root_replacement_detached_original_and_sibling
         DELEGATED_PREPARER_PATH = tmp_path / "delegated.py"
         HARDENED_PREPARER_PATH = tmp_path / "hardened.py"
         VARIABLE_MAP_PATH = tmp_path / "variable-map.json"
+        verify_committed_dependency_blobs = staticmethod(
+            lambda *_args, **_kwargs: None
+        )
 
         @staticmethod
         def _initialize_run_root_authenticated(**_kwargs: object) -> dict[str, object]:
@@ -1030,6 +1036,172 @@ def test_export_adapter_context_has_only_v8_schema_and_identities() -> None:
             )
         )
     assert legacy_base.PRODUCTION_CONFIG_SCHEMA == prior_production_schema
+
+
+def _runtime_support_validation_kwargs() -> dict[str, Path]:
+    return {
+        "repo_root": preparer.ROOT,
+        "source_path": preparer.SOURCE_PATH,
+        "root_source_path": preparer.ROOT_SOURCE_PATH,
+        "exporter_path": preparer.EXPORTER_PATH,
+        "immediate_parent_exporter_path": (
+            preparer.ROOT / preparer.INHERITED_IMMEDIATE_PARENT_EXPORTER_RELATIVE
+        ),
+        "delegated_preparer_path": (
+            preparer.ROOT / preparer.INHERITED_DELEGATED_PREPARER_RELATIVE
+        ),
+        "hardened_preparer_path": (
+            preparer.ROOT / preparer.INHERITED_HARDENED_PREPARER_RELATIVE
+        ),
+        "variable_map_path": preparer.ROOT / preparer.INHERITED_VARIABLE_MAP_RELATIVE,
+        "checkpoint_path": (
+            preparer.ROOT
+            / ".codex/worktree-checkpoints/"
+            "exact17-v8-source-export-hook-20260823.json"
+        ),
+        "preparer_path": preparer.PREPARER_PATH,
+        "test_path": preparer.TEST_PATH,
+        "output_root": preparer.RUN_ROOT,
+    }
+
+
+def test_real_runtime_adapter_validates_every_live_inherited_support_file() -> None:
+    config = _config()
+    kwargs = _runtime_support_validation_kwargs()
+    checkpoint_path = kwargs["checkpoint_path"]
+    checkpoint = json.loads(checkpoint_path.read_bytes())
+    with preparer._configured_v8_export(
+        config=config,
+        checkpoint_path=checkpoint_path,
+        checkpoint=checkpoint,
+        head="a" * 40,
+    ) as base:
+        digests = base._validate_support(**kwargs)
+        assert digests["immediate_parent_exporter"] == (
+            preparer.INHERITED_IMMEDIATE_PARENT_EXPORTER_SHA256
+        )
+        assert digests["delegated_preparer"] == (
+            preparer.INHERITED_DELEGATED_PREPARER_SHA256
+        )
+        assert digests["hardened_preparer"] == (
+            preparer.INHERITED_HARDENED_PREPARER_SHA256
+        )
+        assert digests["variable_map"] == preparer.INHERITED_VARIABLE_MAP_SHA256
+        base.verify_committed_dependency_blobs(
+            preparer.ROOT,
+            kwargs["delegated_preparer_path"],
+            kwargs["hardened_preparer_path"],
+        )
+
+
+@pytest.mark.parametrize(
+    ("field", "relative", "label"),
+    [
+        (
+            "immediate_parent_exporter_path",
+            preparer.INHERITED_IMMEDIATE_PARENT_EXPORTER_RELATIVE,
+            "immediate_parent_exporter",
+        ),
+        (
+            "delegated_preparer_path",
+            preparer.INHERITED_DELEGATED_PREPARER_RELATIVE,
+            "delegated_preparer",
+        ),
+        (
+            "hardened_preparer_path",
+            preparer.INHERITED_HARDENED_PREPARER_RELATIVE,
+            "hardened_preparer",
+        ),
+        (
+            "variable_map_path",
+            preparer.INHERITED_VARIABLE_MAP_RELATIVE,
+            "variable_map",
+        ),
+    ],
+)
+def test_real_runtime_adapter_rejects_each_inherited_support_tamper(
+    tmp_path: Path, field: str, relative: str, label: str
+) -> None:
+    config = _config()
+    kwargs = _runtime_support_validation_kwargs()
+    checkpoint_path = kwargs["checkpoint_path"]
+    checkpoint = json.loads(checkpoint_path.read_bytes())
+    tampered = tmp_path / Path(relative).name
+    tampered.write_bytes((preparer.ROOT / relative).read_bytes() + b"\n")
+    kwargs[field] = tampered
+    with preparer._configured_v8_export(
+        config=config,
+        checkpoint_path=checkpoint_path,
+        checkpoint=checkpoint,
+        head="a" * 40,
+    ) as base, pytest.raises(
+        base.PreparationError, match=f"{label} digest drifted"
+    ):
+        base._validate_support(**kwargs)
+
+
+@pytest.mark.parametrize(
+    ("constant", "label"),
+    [
+        (
+            "INHERITED_IMMEDIATE_PARENT_EXPORTER_SHA256",
+            "immediate_parent_exporter",
+        ),
+        ("INHERITED_DELEGATED_PREPARER_SHA256", "delegated_preparer"),
+        ("INHERITED_HARDENED_PREPARER_SHA256", "hardened_preparer"),
+        ("INHERITED_VARIABLE_MAP_SHA256", "variable_map"),
+    ],
+)
+def test_runtime_adapter_rejects_each_inherited_identity_pin_tamper(
+    monkeypatch: pytest.MonkeyPatch, constant: str, label: str
+) -> None:
+    config = _config()
+    checkpoint_path = (
+        preparer.ROOT
+        / ".codex/worktree-checkpoints/exact17-v8-source-export-hook-20260823.json"
+    )
+    checkpoint = json.loads(checkpoint_path.read_bytes())
+    monkeypatch.setattr(preparer, constant, "0" * 64)
+    with pytest.raises(
+        preparer.V8PreparationError,
+        match=f"inherited V8 runtime support {label} identity drifted",
+    ), preparer._configured_v8_export(
+        config=config,
+        checkpoint_path=checkpoint_path,
+        checkpoint=checkpoint,
+        head="a" * 40,
+    ):
+        pass
+
+
+@pytest.mark.parametrize(
+    "constant",
+    [
+        "INHERITED_DELEGATED_PREPARER_COMMIT",
+        "INHERITED_HARDENED_PREPARER_COMMIT",
+    ],
+)
+def test_runtime_adapter_rejects_each_inherited_commit_pin_tamper(
+    monkeypatch: pytest.MonkeyPatch, constant: str
+) -> None:
+    config = _config()
+    kwargs = _runtime_support_validation_kwargs()
+    checkpoint_path = kwargs["checkpoint_path"]
+    checkpoint = json.loads(checkpoint_path.read_bytes())
+    monkeypatch.setattr(preparer, constant, "0" * 40)
+    with preparer._configured_v8_export(
+        config=config,
+        checkpoint_path=checkpoint_path,
+        checkpoint=checkpoint,
+        head="a" * 40,
+    ) as base, pytest.raises(
+        base.PreparationError, match="delegated dependency commit blob unavailable"
+    ):
+        base.verify_committed_dependency_blobs(
+            preparer.ROOT,
+            kwargs["delegated_preparer_path"],
+            kwargs["hardened_preparer_path"],
+        )
 
 
 def test_export_adapter_replaces_inherited_post_create_initializer() -> None:
@@ -1710,6 +1882,98 @@ def test_identity_replay_rejects_existing_same_payload_hardlink(
     assert identity_path.is_file()
     assert hardlink_path.is_file()
     assert identity_path.stat().st_ino == hardlink_path.stat().st_ino
+
+
+def test_identity_replay_rejects_hardlink_added_during_retained_verify(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    base, config, checkpoint_path, checkpoint, head, root_custody = (
+        _build_small_source_packet(tmp_path, monkeypatch)
+    )
+    identity_path = preparer.RUN_ROOT / "artifacts/source-export-identity.json"
+    hardlink_path = preparer.RUN_ROOT / "artifacts/source-export-identity-hardlink.json"
+    original_verify = preparer._RetainedDescendant.verify
+    target_verifications = 0
+
+    def hardlink_after_final_verify(
+        retained: preparer._RetainedDescendant, label: str
+    ) -> None:
+        nonlocal target_verifications
+        original_verify(retained, label)
+        if label == "existing V8 source-export identity":
+            target_verifications += 1
+        if target_verifications == 2 and not hardlink_path.exists():
+            os.link(identity_path, hardlink_path)
+
+    try:
+        preparer._audit_source_packet(
+            base=base,
+            config=config,
+            checkpoint_path=checkpoint_path,
+            checkpoint=checkpoint,
+            head=head,
+            root_custody=root_custody,
+        )
+        monkeypatch.setattr(
+            preparer._RetainedDescendant, "verify", hardlink_after_final_verify
+        )
+        with pytest.raises(
+            preparer.V8PreparationError, match="singly linked regular file"
+        ):
+            preparer._audit_source_packet(
+                base=base,
+                config=config,
+                checkpoint_path=checkpoint_path,
+                checkpoint=checkpoint,
+                head=head,
+                root_custody=root_custody,
+            )
+    finally:
+        preparer._close_export_root_custody(root_custody)
+    assert identity_path.is_file()
+    assert hardlink_path.is_file()
+
+
+def test_new_identity_rejects_hardlink_added_during_reopened_verify(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    base, config, checkpoint_path, checkpoint, head, root_custody = (
+        _build_small_source_packet(tmp_path, monkeypatch)
+    )
+    identity_path = preparer.RUN_ROOT / "artifacts/source-export-identity.json"
+    hardlink_path = preparer.RUN_ROOT / "artifacts/source-export-identity-hardlink.json"
+    original_verify = preparer._RetainedDescendant.verify
+    target_verifications = 0
+
+    def hardlink_after_final_verify(
+        retained: preparer._RetainedDescendant, label: str
+    ) -> None:
+        nonlocal target_verifications
+        original_verify(retained, label)
+        if label == "published V8 source-export identity":
+            target_verifications += 1
+        if target_verifications == 2 and not hardlink_path.exists():
+            os.link(identity_path, hardlink_path)
+
+    monkeypatch.setattr(
+        preparer._RetainedDescendant, "verify", hardlink_after_final_verify
+    )
+    try:
+        with pytest.raises(
+            preparer.V8PreparationError, match="singly linked regular file"
+        ):
+            preparer._audit_source_packet(
+                base=base,
+                config=config,
+                checkpoint_path=checkpoint_path,
+                checkpoint=checkpoint,
+                head=head,
+                root_custody=root_custody,
+            )
+    finally:
+        preparer._close_export_root_custody(root_custody)
+    assert identity_path.is_file()
+    assert hardlink_path.is_file()
 
 
 def test_packet_audit_rejects_identical_path_replacement_before_audit(

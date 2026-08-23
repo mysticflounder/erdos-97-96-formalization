@@ -109,6 +109,45 @@ PRODUCER_SCHEMA = "p97-piqd-static-producer/v1"
 SOURCE_SCHEMA = "p97-piqd-static-source/v1"
 WAVE_SCHEMA = "p97-cegar-wave/v1"
 
+# These are the immutable runtime inputs inherited by the V8 adapter from the
+# hardened V5/V7 exporter.  They are authenticated by the finalized V8
+# preparer pin and rechecked against live bytes before the inherited support
+# validator is entered.  In particular, do not source these values from the
+# base module's mutable EXPECTED_* globals: those are intentionally empty
+# outside an active production context.
+INHERITED_IMMEDIATE_PARENT_EXPORTER_RELATIVE = (
+    "lean/Erdos9796Proof/P97/ATail/"
+    "BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircle"
+    "V7TwoKalmansonRefinementsPhysicalSliceCellExport.lean"
+)
+INHERITED_IMMEDIATE_PARENT_EXPORTER_SHA256 = (
+    "2f0b439bae33e796cf10e312f43ef23dddfa4ee485e119bbd4334353adbcb90e"
+)
+INHERITED_IMMEDIATE_PARENT_EXPORTER_BYTES = 3_667
+INHERITED_DELEGATED_PREPARER_RELATIVE = (
+    "scripts/prepare_exact17_sparse_six_four_row_bisector_physical_slice_cells.py"
+)
+INHERITED_DELEGATED_PREPARER_SHA256 = (
+    "cd1e278842fec2be41ff728dd6a012a4a701ef387b388736935f842ea5bc62c2"
+)
+INHERITED_DELEGATED_PREPARER_BYTES = 36_146
+INHERITED_DELEGATED_PREPARER_COMMIT = "8965fe837167aa010abb2c8835df0938dad3f595"
+INHERITED_HARDENED_PREPARER_RELATIVE = (
+    "scripts/prepare_exact17_sparse_six_physical_slice_cells.py"
+)
+INHERITED_HARDENED_PREPARER_SHA256 = (
+    "6fefaa650e82014b9c7f7a218ccb08209ad446500ed2feb49ec036891a10a298"
+)
+INHERITED_HARDENED_PREPARER_BYTES = 26_066
+INHERITED_HARDENED_PREPARER_COMMIT = "bc4c04db398979c57edaf4af9c60e1eae984f436"
+INHERITED_VARIABLE_MAP_RELATIVE = (
+    "census/p97_search/waves/exact17/child40/variable-map.json"
+)
+INHERITED_VARIABLE_MAP_SHA256 = (
+    "78df650209311154e9a5fb6fdb88b6e532acaa624b7789d3028434c05e38e63f"
+)
+INHERITED_VARIABLE_MAP_BYTES = 23_341
+
 VARIABLES = 308
 ROOT_CLAUSES = 7_409_839
 CELL_CLAUSES = 7_409_845
@@ -639,6 +678,52 @@ def _v8_contract_for_parent() -> None:
     _validate_clause_contract()
 
 
+def _validated_inherited_runtime_support() -> dict[str, dict[str, Any]]:
+    specifications = {
+        "immediate_parent_exporter": (
+            INHERITED_IMMEDIATE_PARENT_EXPORTER_RELATIVE,
+            INHERITED_IMMEDIATE_PARENT_EXPORTER_SHA256,
+            INHERITED_IMMEDIATE_PARENT_EXPORTER_BYTES,
+            None,
+        ),
+        "delegated_preparer": (
+            INHERITED_DELEGATED_PREPARER_RELATIVE,
+            INHERITED_DELEGATED_PREPARER_SHA256,
+            INHERITED_DELEGATED_PREPARER_BYTES,
+            INHERITED_DELEGATED_PREPARER_COMMIT,
+        ),
+        "hardened_preparer": (
+            INHERITED_HARDENED_PREPARER_RELATIVE,
+            INHERITED_HARDENED_PREPARER_SHA256,
+            INHERITED_HARDENED_PREPARER_BYTES,
+            INHERITED_HARDENED_PREPARER_COMMIT,
+        ),
+        "variable_map": (
+            INHERITED_VARIABLE_MAP_RELATIVE,
+            INHERITED_VARIABLE_MAP_SHA256,
+            INHERITED_VARIABLE_MAP_BYTES,
+            None,
+        ),
+    }
+    validated: dict[str, dict[str, Any]] = {}
+    for label, (relative, digest, size, commit) in specifications.items():
+        path = ROOT / relative
+        raw = _read_regular(path, f"inherited V8 runtime support {label}")
+        if len(raw) != size or sha256_bytes(raw) != digest:
+            raise V8PreparationError(
+                f"inherited V8 runtime support {label} identity drifted"
+            )
+        pin: dict[str, Any] = {
+            "path": relative,
+            "sha256": digest,
+            "bytes": size,
+        }
+        if commit is not None:
+            pin["commit"] = commit
+        validated[label] = {"path_object": path, "pin": pin}
+    return validated
+
+
 @contextmanager
 def _configured_v8_export(
     *,
@@ -657,10 +742,13 @@ def _configured_v8_export(
         previous[name] = getattr(base, name)
         setattr(base, name, value)
 
-    immediate_parent_exporter = _PARENT.EXPORTER_PATH
-    delegated_preparer = base.DELEGATED_PREPARER_PATH
-    hardened_preparer = base.HARDENED_PREPARER_PATH
-    variable_map = base.VARIABLE_MAP_PATH
+    inherited_support = _validated_inherited_runtime_support()
+    immediate_parent_exporter = inherited_support["immediate_parent_exporter"][
+        "path_object"
+    ]
+    delegated_preparer = inherited_support["delegated_preparer"]["path_object"]
+    hardened_preparer = inherited_support["hardened_preparer"]["path_object"]
+    variable_map = inherited_support["variable_map"]["path_object"]
     checkpoint_raw = _read_regular(checkpoint_path, "V8 source-export lane checkpoint")
     checkpoint_sha256 = sha256_bytes(checkpoint_raw)
     config_raw = _read_regular(PRODUCTION_CONFIG_PATH, "V8 preparation config")
@@ -687,20 +775,12 @@ def _configured_v8_export(
         "source": artifact(SOURCE_PATH),
         "root_source": artifact(ROOT_SOURCE_PATH),
         "exporter": artifact(EXPORTER_PATH),
-        "immediate_parent_exporter": artifact(immediate_parent_exporter),
-        "delegated_preparer": {
-            "path": _repo_relative(delegated_preparer),
-            "sha256": base.EXPECTED_DELEGATED_PREPARER_SHA256,
-            "bytes": base.EXPECTED_DELEGATED_PREPARER_BYTES,
-            "commit": base.DELEGATED_PREPARER_COMMIT,
-        },
-        "hardened_preparer": {
-            "path": _repo_relative(hardened_preparer),
-            "sha256": base.EXPECTED_HARDENED_PREPARER_SHA256,
-            "bytes": base.EXPECTED_HARDENED_PREPARER_BYTES,
-            "commit": base.HARDENED_PREPARER_COMMIT,
-        },
-        "variable_map": artifact(variable_map),
+        "immediate_parent_exporter": inherited_support[
+            "immediate_parent_exporter"
+        ]["pin"],
+        "delegated_preparer": inherited_support["delegated_preparer"]["pin"],
+        "hardened_preparer": inherited_support["hardened_preparer"]["pin"],
+        "variable_map": inherited_support["variable_map"]["pin"],
         "checkpoint": {
             "path": _repo_relative(checkpoint_path),
             "sha256": checkpoint_sha256,
@@ -1494,6 +1574,12 @@ def _capture_export_reference(
         raise
 
 
+def _assert_single_link_regular_descriptor(descriptor: int, label: str) -> None:
+    info = os.fstat(descriptor)
+    if not stat.S_ISREG(info.st_mode) or info.st_nlink != 1:
+        raise V8PreparationError(f"{label} is not a singly linked regular file")
+
+
 def _secure_write_export_identity(
     base: Any,
     root_custody: _ExportRootCustody,
@@ -1550,6 +1636,9 @@ def _secure_write_export_identity(
                 if current_payload != payload:
                     raise V8PreparationError("V8 source-export identity differs")
                 existing.verify("existing V8 source-export identity")
+                _assert_single_link_regular_descriptor(
+                    existing.descriptor, "existing V8 source-export identity"
+                )
                 return
             finally:
                 existing.close()
@@ -1591,10 +1680,13 @@ def _secure_write_export_identity(
                     "V8 source-export identity canonical publication drifted"
                 )
             reopened.verify("published V8 source-export identity")
+            directories.verify("V8 source-export identity directory")
+            _assert_export_root_custody(RUN_ROOT, root_custody)
+            _assert_single_link_regular_descriptor(
+                reopened.descriptor, "published V8 source-export identity"
+            )
         finally:
             reopened.close()
-        directories.verify("V8 source-export identity directory")
-        _assert_export_root_custody(RUN_ROOT, root_custody)
     finally:
         # Never unlink a failed publication by name.  Even after an inode
         # comparison, the name can be replaced before unlink.  The create-once
@@ -2365,7 +2457,7 @@ def _export_source_packet(
                 preparer_path=PREPARER_PATH,
                 test_path=TEST_PATH,
                 commit_verifier=noop,
-                dependency_commit_verifier=noop,
+                dependency_commit_verifier=base.verify_committed_dependency_blobs,
                 target_commit_verifier=noop,
             )
             result["source_export_identity"] = _audit_source_packet(
