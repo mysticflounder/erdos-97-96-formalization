@@ -1,0 +1,13 @@
+{
+  "base_head": "dbd449d772908af330686d6ddde7df7a6d5026b0",
+  "blocker": "V8 Lean root, physical-slice coverage, exporter, clause counts, and source packet identities are not frozen yet",
+  "generated_root": "scratch/runs/exact17-v8-two-kalmanson-successor-preparer-20260823/preparation-v1",
+  "lane_id": "exact17-v8-two-kalmanson-successor-preparer-20260823",
+  "production_pins_finalized": false,
+  "schema": "p97-exact17-canary-perp-bisector-survivor-four-point-two-circle-v8-two-kalmanson-refinements-preparation-config/v1",
+  "source_paths": {
+    "exporter": "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV8TwoKalmansonRefinementsPhysicalSliceCellExport.lean",
+    "root": "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV8TwoKalmansonRefinements.lean",
+    "source": "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV8TwoKalmansonRefinementsPhysicalSliceCoverage.lean"
+  }
+}
