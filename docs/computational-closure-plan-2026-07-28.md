@@ -15199,3 +15199,36 @@ inherit the explicitly accepted native-computation axioms
 axioms. The next action is operational rather than mathematical: freeze a fresh
 preparation config, byte-authenticate all 76 exported cells, and launch only the
 new center-2/physical-`none` canary before admitting the other 75 cells.
+
+### 2026-08-22 v4 canary theorem-mine and composition checkpoint
+
+The governed v4 campaign and run-manifest SHA-256 values are
+`eab2a62302ec8f240920ec68a6ca05ce9a9a833e6b316012395cb1ba30478708`
+and `59de713a532863d75fb95a2aa8a26ff5e6dd9c46009f15758dec769e04b6b422`.
+Its single authorized canary, PIQD job
+`b9190a9a-397d-41ca-82a9-20c0385d44dc`, terminated `SAT` at epoch 1 after
+50.1 seconds. Exact replay of all 7,409,522 cell clauses passed.
+
+The accepted candidate ledger has raw SHA-256
+`a3f7e3b098e13831684d8c219d0d4e632ff9a1196f5d875e3f1b893f25ffc828`
+and exactly 63 source-valid candidates: 59 two-Kalmanson candidates, four
+formalized-core candidates, and no perpendicular-bisector component. The other
+75 cells remain intentionally gated and superseded until a successor canary is
+ready. The source banks landed chronologically at `1364a192`, `80d687b0`, and
+`252c44e1`.
+
+Composition found that all eight FourPoint orbit clauses duplicate clauses in
+the 236-clause two-Kalmanson suffix, while the other eight promoted clauses are
+disjoint from that suffix. The final combined verifier certifies a deduplicated
+244-clause production suffix and a 7,409,760-clause root. Against the old
+7,409,516-clause parent prefix, the suffix has zero exact duplicates, 61
+strictly subsumed clauses, and 183 strict-new clauses.
+
+The operational v5 physical-preparation contract uses the 7,409,752-clause
+two-Kalmanson root as its immediate parent and appends the eight other-core
+clauses. Against that immediate parent there are zero exact duplicates; the
+strict-subsumer counts are `(1, 1, 1, 1, 0, 0, 0, 0)`, so strict-new suffix
+indices are exactly 4--7. Adding the six physical-multiplicity units gives
+7,409,766 clauses per cell. The next gate is: freeze fresh successor identities
+and portfolio; run one canary; perform mandatory exact replay and wave-only
+mining; and only then release the remaining cells if that canary is cut-free.

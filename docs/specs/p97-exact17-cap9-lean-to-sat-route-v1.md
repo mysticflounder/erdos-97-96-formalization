@@ -1518,3 +1518,37 @@ certificate coordinator have no `sorryAx`; their current axiom closure is
 computation trust boundary. No new PIQD job has been prepared: the fresh
 preparation config, authenticated 76-cell byte campaign, and v4 portfolio pins
 remain the next custody gate.
+
+## V4 canary theorem-mine and successor composition — 2026-08-22
+
+The governed v4 campaign has SHA-256
+`eab2a62302ec8f240920ec68a6ca05ce9a9a833e6b316012395cb1ba30478708`;
+its run manifest has SHA-256
+`59de713a532863d75fb95a2aa8a26ff5e6dd9c46009f15758dec769e04b6b422`.
+PIQD job `b9190a9a-397d-41ca-82a9-20c0385d44dc` was the only authorized
+canary. It terminated `SAT` at epoch 1 after 50.1 seconds, and exact replay of
+all 7,409,522 clauses passed.
+
+The accepted candidate ledger, raw SHA-256
+`a3f7e3b098e13831684d8c219d0d4e632ff9a1196f5d875e3f1b893f25ffc828`,
+contains exactly 63 source-valid candidates: 59 two-Kalmanson, four
+formalized-core, and zero perpendicular-bisector-component candidates. The
+remaining 75 cells are intentionally gated and superseded pending a successor
+canary. The corresponding banks landed at `1364a192`, `80d687b0`, and
+`252c44e1`.
+
+The production composition audit found that all eight FourPoint orbit clauses
+duplicate the 236-clause two-Kalmanson suffix; the other eight promoted clauses
+are disjoint from that suffix. The final combined verifier certifies a
+deduplicated 244-clause production suffix and a 7,409,760-clause root. Relative
+to the old 7,409,516-clause parent prefix, the suffix has zero exact duplicates,
+61 strictly subsumed clauses, and 183 strict-new clauses.
+
+The operational v5 preparation deliberately uses a different, immediate-parent
+census: its 7,409,752-clause two-Kalmanson root receives the eight other-core
+clauses. Their exact-duplicate count is zero and their strict-subsumer counts
+are `(1, 1, 1, 1, 0, 0, 0, 0)`, making suffix indices 4--7 exactly strict-new.
+Each source-total physical cell then has 7,409,766 clauses after its six unit
+clauses. The next authorized gate is fresh successor identities and portfolio,
+one canary, mandatory exact replay and wave-only mining, and only then the
+remaining cells if the canary is cut-free.
