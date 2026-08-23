@@ -271,7 +271,48 @@ naive deficit 1), mixed on/off-axis orbit structures, and other n.
   branches missed by all 3 starts.
 - The floor in F1 is measured at n = 15 only.
 
-## 7. Reproduction
+## 7. Addendum 2026-08-23 — reuse audit and F3 supersession
+
+An external (GPT) review of this document proposed a four-item "formalize
+now" shortlist: an equidistance-witness API with the perpendicular-bisector
+characterization, a pair-codegree ≤ 2 bound for carrier centers, an
+opposite-sides theorem for two witnesses of one chord, and an exact-row
+shared-pair cyclic-separation adapter. A reuse preflight against the indexed
+Lean corpus shows **all four already exist in repo-native form**:
+
+| shortlist item | existing declaration(s) |
+|---|---|
+| bisector characterization | `Problem97.inner_witness_midpoint_eq_zero` (Dumitrescu.Lc1Strict); `exists_bisector_direction` (ATail.CocircularPerpendicularBisector) |
+| centers per pair ≤ 2 | `perpBisector_carrier_card_le_two`, `false_of_three_distinct_equidistant_carriers` (ATail.ConvexPerpendicularBisectorSides) |
+| opposite sides of the chord | `false_of_two_centers_equidistant_pair_{after,enclosed,split,before}` + `dist_eq_dist_of_mutual_bisector` (ATail.TwoCenterBisectorParity), stated in the project's CCW cyclic-position form over `ConvexIndep` |
+| shared-pair cyclic adapter | `BoundaryIndexing.sharedPair_satisfied` (Census554.GeneralCarrierBridge) |
+
+No new formalization is required by this document. Adding a parallel
+`EqDistWitness` wrapper API is NOT recommended: the repo already carries
+duplicate-interface debt, and a bridge with zero consumers is bookkeeping,
+not progress.
+
+**F3 supersession.** The same review supplied a strictly stronger and
+simpler argument that retires F3's candidate lemma: in the all-axes D_m
+ansatz the oriented reflection-axis rays fall into exactly two rotational
+phase classes, so three C_m orbits force two orbits onto the same ray set
+(pigeonhole); the smaller-radius orbit is then a radial contraction of the
+larger, and since the orbit's center lies in its convex hull, every
+contracted point lies in the convex hull of the larger orbit. Hence **no
+union of three distinct all-axes C_m orbits is convexly independent at
+all** — the non-convexity of every exact solution in §F3 was decided by the
+ansatz alone, before the equalization equations were imposed. The
+golden-ratio ratio bound remains a true measured property of the
+equalization system, but it is not the cause of the convexity failure, and
+the "radial collapse below the extremality threshold" lemma candidate is
+withdrawn in favor of the pigeonhole statement. The argument is elementary;
+a Lean utility form (`t • x ∈ convexHull` contradiction against
+`ConvexIndep`) would be a two-line corollary of the definition and has no
+current consumer, so it is left unformalized. F2 (the free-pair counting
+law) is unaffected and remains the substantive residue of the D5
+experiment.
+
+## 8. Reproduction
 
 ```bash
 cd scratch/alphaevolve-p97-analysis-20260822
