@@ -1817,9 +1817,20 @@ def _audit_source_packet(
             _reject_unsafe_manifest_paths(value, label)
 
         expected_production = base.build_production_config_manifest(ROOT)
-        production_support = expected_production.get("support")
-        target_code = expected_production.get("target_code")
-        if type(production_support) is not dict or type(target_code) is not dict:
+        active_production = base._active_production()
+        active_value = getattr(active_production, "value", None)
+        production_support = (
+            active_value.get("support") if type(active_value) is dict else None
+        )
+        target_code = (
+            active_value.get("target_code") if type(active_value) is dict else None
+        )
+        if (
+            type(expected_production) is not dict
+            or type(production_support) is not dict
+            or type(target_code) is not dict
+            or expected_production.get("target_code") != target_code
+        ):
             raise V8PreparationError("V8 production provenance inventory drifted")
         run_digests = {
             "source": production_support["source"]["sha256"],

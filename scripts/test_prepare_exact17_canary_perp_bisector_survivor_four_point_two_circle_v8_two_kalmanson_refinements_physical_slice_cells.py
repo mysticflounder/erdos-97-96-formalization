@@ -5,6 +5,7 @@ import json
 import os
 import shutil
 from pathlib import Path
+from types import SimpleNamespace
 
 import prepare_exact17_canary_perp_bisector_survivor_four_point_two_circle_v8_two_kalmanson_refinements_physical_slice_cells as preparer
 import pytest
@@ -276,51 +277,52 @@ def _build_small_source_packet(
         "path": "support/hardened-preparer.py",
         "sha256": "a" * 64,
     }
+    production_support = {
+        "checkpoint": {
+            "bytes": len(checkpoint_raw),
+            "path": checkpoint_path.relative_to(root).as_posix(),
+            "sha256": checkpoint_sha,
+        },
+        "delegated_preparer": delegated_preparer,
+        "hardened_preparer": hardened_preparer,
+        "immediate_parent_exporter": immediate_parent,
+        "source": {
+            key: value
+            for key, value in source_pins["source"].items()
+            if key != "commit"
+        },
+        "root_source": {
+            key: value
+            for key, value in source_pins["root"].items()
+            if key != "commit"
+        },
+        "exporter": {
+            key: value
+            for key, value in source_pins["exporter"].items()
+            if key != "commit"
+        },
+        "variable_map": variable_map,
+    }
+    target_code = {
+        "commit": head,
+        "preparer": {
+            "bytes": 1,
+            "path": "scripts/v8-preparer.py",
+            "sha256": "d" * 64,
+        },
+        "test": {
+            "bytes": 1,
+            "path": "scripts/test-v8-preparer.py",
+            "sha256": "e" * 64,
+        },
+    }
     production = {
         "bytes": 1,
         "commit": head,
         "path": "config/v8.json",
         "schema": preparer.PRODUCTION_CONFIG_SCHEMA,
         "sha256": "6" * 64,
-        "support": {
-            "checkpoint": {
-                "bytes": len(checkpoint_raw),
-                "path": checkpoint_path.relative_to(root).as_posix(),
-                "sha256": checkpoint_sha,
-            },
-            "delegated_preparer": delegated_preparer,
-            "hardened_preparer": hardened_preparer,
-            "immediate_parent_exporter": immediate_parent,
-            "source": {
-                key: value
-                for key, value in source_pins["source"].items()
-                if key != "commit"
-            },
-            "root_source": {
-                key: value
-                for key, value in source_pins["root"].items()
-                if key != "commit"
-            },
-            "exporter": {
-                key: value
-                for key, value in source_pins["exporter"].items()
-                if key != "commit"
-            },
-            "variable_map": variable_map,
-        },
-        "target_code": {
-            "commit": head,
-            "preparer": {
-                "bytes": 1,
-                "path": "scripts/v8-preparer.py",
-                "sha256": "d" * 64,
-            },
-            "test": {
-                "bytes": 1,
-                "path": "scripts/test-v8-preparer.py",
-                "sha256": "e" * 64,
-            },
-        },
+        "target_code": target_code,
     }
     parent_novelty = {
         "schema": (
@@ -344,6 +346,13 @@ def _build_small_source_packet(
     }
     delegated = {"schema": "p97-delegated-python-dependencies/v1", "dependencies": []}
     monkeypatch.setattr(base, "build_production_config_manifest", lambda _root: production)
+    monkeypatch.setattr(
+        base,
+        "_active_production",
+        lambda: SimpleNamespace(
+            value={"support": production_support, "target_code": target_code}
+        ),
+    )
     monkeypatch.setattr(
         base,
         "build_delegated_dependency_manifest",
