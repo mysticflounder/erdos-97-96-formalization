@@ -1552,3 +1552,38 @@ Each source-total physical cell then has 7,409,766 clauses after its six unit
 clauses. The next authorized gate is fresh successor identities and portfolio,
 one canary, mandatory exact replay and wave-only mining, and only then the
 remaining cells if the canary is cut-free.
+
+## V5 canary two-Kalmanson promotion — 2026-08-22
+
+The source preparation is under create-once custody with campaign SHA-256
+`e2adff5b6e136a96b9de3764619b4e25e39f3d21c52e78dd8da5ab21914a65a5`
+and run-manifest SHA-256
+`7afd441a9674a9cf101bcffb6d2f580ec67c98bea449b896da395a15b0e3bd74`.
+It contains exactly 76 source-total physical cells, each with 308 variables
+and 7,409,766 clauses.
+
+Only the center-2/physical-`none` canary was launched. PIQD job
+`0854309c-48a1-47b8-9dad-e697fc61904a` terminated `STRUCTURAL_SAT`, and an
+independent replay checked all 7,409,766 clauses and returned `PASS`. The
+mandatory wave-only mine produced exactly eight source-valid two-Kalmanson
+candidates. Their complete named-order/orientation expansion has 32 distinct
+clauses. Twelve are strictly subsumed by the parent, while the remaining 20
+form the source-valid strict-new antichain with SHA-256
+`015b639c3f329e03f100403aa80875300a58b4f144670df299dcfc29393965ce`.
+
+Lean now banks those 20 clauses in the 7,409,780-clause
+`V5CanaryTwoKalmansonRefinementCnf`. Its source-total physical coordinator
+again covers exactly 76 cells, now with 7,409,786 clauses apiece. The new root,
+cell ingress, and 76-cell coordinator contain no `sorry`; their axiom boundary
+is the approved set `propext`, `Classical.choice`, `Lean.ofReduceBool`,
+`Lean.trustCompiler`, and `Quot.sound`.
+
+The other 75 cells have not been launched. The next gate is to commit the bank,
+regenerate the source-total physical successor over the V5 root, derive and
+freeze its identities, and run exactly one canary before considering the rest.
+The next uniform source candidate, A5.16's old-row-union escape, is not an
+immediate `SourceRealization` clause: its proper-subset escape uses
+`D.Minimal`, which the current finite source interface does not carry.
+
+This promotion does not yet close a direct production `sorry` and does not
+close exact 17.

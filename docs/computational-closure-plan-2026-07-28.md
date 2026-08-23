@@ -15232,3 +15232,45 @@ indices are exactly 4--7. Adding the six physical-multiplicity units gives
 7,409,766 clauses per cell. The next gate is: freeze fresh successor identities
 and portfolio; run one canary; perform mandatory exact replay and wave-only
 mining; and only then release the remaining cells if that canary is cut-free.
+
+### 2026-08-22 v5 canary two-Kalmanson promotion checkpoint
+
+The combined-v4 physical source campaign is frozen under campaign SHA-256
+`e2adff5b6e136a96b9de3764619b4e25e39f3d21c52e78dd8da5ab21914a65a5`
+and run-manifest SHA-256
+`7afd441a9674a9cf101bcffb6d2f580ec67c98bea449b896da395a15b0e3bd74`.
+It authenticates exactly 76 source-total cells at 308 variables and 7,409,766
+clauses per cell.
+
+The single authorized canary, center 2 with physical category `none`, ran as
+PIQD job `0854309c-48a1-47b8-9dad-e697fc61904a` and terminated
+`STRUCTURAL_SAT`. Independent exact replay of all 7,409,766 clauses passed.
+The mandatory complete wave-only mine returned eight source-valid
+two-Kalmanson candidates and no claim about the unlaunched cells.
+
+Their full symmetry orbit contains 32 distinct clauses. Exact comparison with
+the parent classifies 12 as strictly parent-subsumed and leaves a 20-clause
+strict-new antichain, SHA-256
+`015b639c3f329e03f100403aa80875300a58b4f144670df299dcfc29393965ce`.
+The Lean-owned V5 successor appends exactly those 20 clauses, producing a
+7,409,780-clause root. Its source-total physical interface has exactly 76 cells
+of 7,409,786 clauses. Targeted builds and source scans pass with no `sorry`;
+the source and coverage theorems use only the approved axioms `propext`,
+`Classical.choice`, `Lean.ofReduceBool`, `Lean.trustCompiler`, and `Quot.sound`.
+
+The remaining 75 cells were not launched. The operational route is now:
+
+1. commit the V5 theorem bank;
+2. regenerate the source-total physical successor from that V5 root;
+3. derive and freeze all successor identities;
+4. launch one canary; and
+5. admit the remaining cells only after exact replay and the mandatory
+   wave-only theorem mine.
+
+The next plausible uniform producer is A5.16's old-row-union escape, but its
+proper-subset conclusion consumes `D.Minimal`. That hypothesis lies outside
+the current exact-17 `SourceRealization`, so A5.16 first needs a source-level
+adapter or a widened ingress rather than another finite clause mined from this
+model alone.
+
+This checkpoint closes neither a direct production `sorry` nor exact 17.
