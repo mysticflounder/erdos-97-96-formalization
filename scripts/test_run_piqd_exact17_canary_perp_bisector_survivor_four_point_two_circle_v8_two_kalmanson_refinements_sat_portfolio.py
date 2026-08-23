@@ -306,6 +306,100 @@ def test_v8_transform_rejects_v7_source_before_parsing_payload() -> None:
         )
 
 
+def test_v8_transform_accepts_a_source_shaped_v8_cell(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    source_id = runner.CANARY_SOURCE_CELL_ID
+    source_preparer_commit = "2" * 40
+    cnf = b"synthetic V8 DIMACS bytes"
+    source_producer = {
+        "producer_id": source_id,
+        "backend": runner._BASE.BACKEND,
+        "solver_profile": runner._BASE.SOURCE_SOLVER_PROFILE,
+        "query_polarity": runner._BASE.QUERY_POLARITY,
+        "source_manifest": {
+            "source_id": source_id,
+            "source_theorem": runner.EXPECTED_SOURCE_THEOREM,
+            "source_path": runner.EXPECTED_SOURCE_PATH,
+            "root_source_path": runner.EXPECTED_ROOT_SOURCE_PATH,
+            "finite_schema": runner.EXPECTED_FINITE_SCHEMA,
+        },
+        "production_config": {
+            "path": runner.SOURCE_PREPARATION_CONFIG_RELATIVE,
+            "schema": runner.EXPECTED_SOURCE_PREPARATION_CONFIG_SCHEMA,
+            "target_code": {
+                "commit": source_preparer_commit,
+                "preparer": {
+                    "path": runner.EXPECTED_SOURCE_PREPARER_RELATIVE,
+                }
+            },
+        },
+    }
+    producer_raw = runner.canonical_json_bytes(source_producer)
+    source_wave = {
+        "wave_id": source_id,
+        "encoding": {
+            "cnf_sha256": runner.sha256_bytes(cnf),
+            "producer_manifest_sha256": runner.sha256_bytes(producer_raw),
+            "num_variables": runner.NUM_VARIABLES,
+            "num_clauses": runner.NUM_CLAUSES,
+            "query_polarity": runner._BASE.QUERY_POLARITY,
+        },
+        "execution": {
+            "backend": runner._BASE.BACKEND,
+            "solver_profile": runner._BASE.SOURCE_SOLVER_PROFILE,
+        },
+    }
+    validated_waves: list[dict[str, object]] = []
+    monkeypatch.setattr(
+        runner._BASE,
+        "scan_dimacs",
+        lambda _cnf: (runner.NUM_VARIABLES, runner.NUM_CLAUSES),
+    )
+    monkeypatch.setattr(
+        runner._BASE,
+        "validate_wave_manifest",
+        lambda wave: validated_waves.append(copy.deepcopy(wave)),
+    )
+
+    transformed = runner._transform_source_cell(
+        source_cell={
+            "cell_id": source_id,
+            "ordinal": 12,
+            "direct_lean_bytes_validated": True,
+            "center": 2,
+            "category": "none",
+        },
+        ordinal=12,
+        cnf=cnf,
+        source_producer_raw=producer_raw,
+        source_wave_raw=runner.canonical_json_bytes(source_wave),
+        source_preparer_commit=source_preparer_commit,
+    )
+
+    assert transformed["source_cell_id"] == source_id
+    assert transformed["portfolio_cell_id"] == runner.CANARY_PORTFOLIO_CELL_ID
+    assert transformed["ordinal"] == 12
+    assert transformed["center"] == 2
+    assert transformed["category"] == "none"
+    assert len(validated_waves) == 2
+    assert validated_waves[1]["wave_id"] == runner.CANARY_PORTFOLIO_CELL_ID
+    assert validated_waves[1]["execution"] == {
+        "backend": runner._BASE.BACKEND,
+        "solver_profile": runner._BASE.SOLVER_PROFILE,
+        "shard_id": 12,
+        "shard_count": runner.CELL_COUNT,
+    }
+    transformed_producer = runner._BASE._strict_json(
+        transformed["producer_raw"], "transformed producer"
+    )
+    assert transformed_producer["producer_id"] == runner.CANARY_PORTFOLIO_CELL_ID
+    assert transformed_producer["solver_profile"] == runner._BASE.SOLVER_PROFILE
+    assert transformed_producer["profile_source_producer_manifest_sha256"] == (
+        runner.sha256_bytes(producer_raw)
+    )
+
+
 def _production_checkpoint() -> dict[str, object]:
     payload: dict[str, object] = {
         "schema": "worktree-lane-checkpoint/v1",
