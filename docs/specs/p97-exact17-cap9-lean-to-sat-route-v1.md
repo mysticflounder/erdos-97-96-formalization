@@ -1587,3 +1587,37 @@ immediate `SourceRealization` clause: its proper-subset escape uses
 
 This promotion does not yet close a direct production `sorry` and does not
 close exact 17.
+
+## V6 canary mine and V7 source root — 2026-08-23
+
+The V6 source-total campaign is authenticated by campaign SHA-256
+`439d7c03318b845d7fc9992cb8745499543ac407ad5f6602fc4453a8b91cd307`
+and run-manifest SHA-256
+`15a797cbe886e2835773a5a48417b5a62a4e59d97b4e309e4a041a93522ece94`.
+Only its center-2/physical-`none` canary was launched. PIQD job
+`563adc46-95db-429e-8ece-acf4e66bef47` terminated `STRUCTURAL_SAT`, and an
+independent replay checked all 7,409,786 clauses.
+
+The wave-only candidate ledger has SHA-256
+`ed2abfe2b9606875749bacd85d88dfd953c783ac51d6b8ce20df3cbe5a96ee9d`
+and contains two formalized-core candidates plus nine two-Kalmanson
+candidates. The two core candidates are transported through
+`FourPointTwoCircleBisectorOrderCore`; their full eight-clause orbit gives the
+7,409,788-clause V6 source root. The nine cancellation candidates authenticate
+36 distinct orbit clauses. Relative to the immediate V6 parent, four of those
+clauses are exact V6 duplicates, ten are strictly parent-subsumed, and the
+remaining 22 are appended. Their canonical JSON SHA-256 is
+`3b490543c3dc09319128ef749cdd48cc981bcf86d3afb8560319745c655a0765`,
+and the V7 source root has 7,409,810 clauses.
+
+The source theorems and final root theorem have no `sorryAx`; their axiom
+closure is the approved set `propext`, `Classical.choice`,
+`Lean.ofReduceBool`, `Lean.trustCompiler`, and `Quot.sound`. The old 75
+unlaunched V6 cells are superseded. The next governed export must contain the
+76 source-total physical cells over V7, each with 7,409,816 clauses after its
+six physical-multiplicity units. After freezing the new source identities and
+PIQD portfolio, run one canary and perform exact replay plus the mandatory
+wave-only theorem mine before releasing any remaining cells.
+
+This source promotion does not yet close a direct production `sorry` and does
+not close exact 17.

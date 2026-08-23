@@ -15293,3 +15293,42 @@ adapter or a widened ingress rather than another finite clause mined from this
 model alone.
 
 This checkpoint closes neither a direct production `sorry` nor exact 17.
+
+### 2026-08-23 v6 canary mine and v7 source promotion
+
+The governed V6 campaign and run-manifest SHA-256 values are
+`439d7c03318b845d7fc9992cb8745499543ac407ad5f6602fc4453a8b91cd307`
+and `15a797cbe886e2835773a5a48417b5a62a4e59d97b4e309e4a041a93522ece94`.
+Its only authorized cell, center 2 with physical category `none`, ran as PIQD
+job `563adc46-95db-429e-8ece-acf4e66bef47` and terminated
+`STRUCTURAL_SAT`. Independent replay checked all 7,409,786 clauses. The
+authenticated wave-only ledger has SHA-256
+`ed2abfe2b9606875749bacd85d88dfd953c783ac51d6b8ce20df3cbe5a96ee9d`
+and contains exactly eleven source-valid candidates: two formalized
+FourPoint/two-circle cores and nine two-Kalmanson cancellations.
+
+The FourPoint candidates contribute eight orbit clauses. Their exact-parent
+multiplicities are all zero, their strict-subsumer multiplicities are
+`(0, 2, 2, 1, 0, 0, 2, 0)`, and indices `0, 4, 5, 7` are strict-new. Lean
+banks the complete orbit through the existing
+`FourPointTwoCircleBisectorOrderCore` consumer, producing the 7,409,788-clause
+V6 source root.
+
+The nine cancellation candidates contribute 36 distinct orbit clauses. The
+novelty census must be taken against V6 rather than the older V5 root: indices
+`16, 17, 19, 28` duplicate the V6 FourPoint suffix, and indices
+`2, 10, 11, 15, 18, 22, 29, 30, 31, 34` remain strictly parent-subsumed. The
+remaining 22 clauses form the V7 production suffix, with canonical JSON
+SHA-256
+`3b490543c3dc09319128ef749cdd48cc981bcf86d3afb8560319745c655a0765`.
+The resulting V7 source root has 7,409,810 clauses. Targeted Lean builds,
+source scans, and axiom audits pass without `sorryAx`; the root theorem uses
+only `propext`, `Classical.choice`, `Lean.ofReduceBool`,
+`Lean.trustCompiler`, and `Quot.sound`.
+
+The other 75 V6 physical cells were not launched and are now superseded. The
+next gate is to export a fresh 76-cell physical packet over V7, with 7,409,816
+clauses per cell after the six physical-multiplicity units; freeze its source
+identities and PIQD portfolio; then run exactly one canary followed by exact
+replay and the mandatory wave-only theorem mine. This promotion closes neither
+a direct production `sorry` nor exact 17.
