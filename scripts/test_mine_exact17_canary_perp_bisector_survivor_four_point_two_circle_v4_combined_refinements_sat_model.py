@@ -125,7 +125,7 @@ def test_successor_lane_identity_and_dimensions_are_runner_bound() -> None:
     assert mine.MINER_VERSION == "5"
     assert mine.VERIFICATION_SCHEMA == mine.runner.MINE_VERIFICATION_SCHEMA
     assert mine.runner.CANARY_PORTFOLIO_CELL_ID == (
-        "canary-perp-bisector-survivor-four-point-two-circle-v4-combined-v5-"
+        "canary-perp-bisector-survivor-four-point-two-circle-v4-combined-refinements-"
         "next-center-02-physical-none-combined-v5-sat-profile-v1"
     )
     assert mine.runner.CAMPAIGN_SCHEMA == (

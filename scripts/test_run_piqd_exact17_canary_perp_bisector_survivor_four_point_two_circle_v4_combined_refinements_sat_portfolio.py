@@ -5,6 +5,7 @@ import os
 from pathlib import Path
 from typing import Any
 
+import prepare_exact17_canary_perp_bisector_survivor_four_point_two_circle_v4_combined_refinements_physical_slice_cells as preparer
 import pytest
 import run_piqd_exact17_canary_perp_bisector_survivor_four_point_two_circle_v4_combined_refinements_sat_portfolio as runner
 
@@ -18,10 +19,10 @@ def test_combined_v5_identity_and_execution_contract() -> None:
     assert runner.NUM_CLAUSES == 7_409_766
     assert runner.CELL_COUNT == 76
     assert runner.CANARY_SOURCE_CELL_ID.endswith(
-        "combined-v5-next-center-02-physical-none"
+        "combined-refinements-next-center-02-physical-none"
     )
     assert runner.CANARY_PORTFOLIO_CELL_ID.endswith(
-        "combined-v5-next-center-02-physical-none-combined-v5-sat-profile-v1"
+        "combined-refinements-next-center-02-physical-none-combined-v5-sat-profile-v1"
     )
     assert runner.REQUESTED_CORE_LIMIT == 1
     assert runner.MAX_ACTIVE_JOBS == 12
@@ -33,9 +34,8 @@ def test_combined_v5_identity_and_execution_contract() -> None:
 
 
 def test_every_combined_v5_lane_label_is_fresh() -> None:
-    labels = (
+    output_labels = (
         runner.PROJECT,
-        runner.SOURCE_CAMPAIGN_SCHEMA,
         runner.CAMPAIGN_SCHEMA,
         runner.LAUNCH_SCHEMA,
         runner.RESULT_SCHEMA,
@@ -49,14 +49,85 @@ def test_every_combined_v5_lane_label_is_fresh() -> None:
         runner.IDENTITY_DERIVATION_SCHEMA,
         runner.MINER_NAME,
         runner.MINER_SCHEMA,
-        runner.EXPECTED_FINITE_SCHEMA,
-        runner.EXPECTED_SOURCE_PREPARATION_CONFIG_SCHEMA,
-        runner.CANARY_SOURCE_CELL_ID,
         runner.CANARY_PORTFOLIO_CELL_ID,
     )
-    assert len(labels) == len(set(labels))
-    assert all("combined-v5" in label for label in labels)
+    assert len(output_labels) == len(set(output_labels))
+    assert all("combined-v5" in label for label in output_labels)
     assert runner.RUN_MANIFEST_SCHEMA == "worktree-run-manifest/v1"
+
+
+def test_real_staged_source_config_binds_ingress_contract() -> None:
+    config_path = runner.ROOT / runner.SOURCE_PREPARATION_CONFIG_RELATIVE
+    assert config_path == runner.ROOT / (
+        "census/p97_search/waves/exact17/"
+        "canary-perp-bisector-survivor-four-point-two-circle-v4-combined-"
+        "refinements-preparation-config.json"
+    )
+    config = runner._strict_repo_json(
+        config_path.read_bytes(), "staged source production config"
+    )
+    assert config["schema"] == runner.EXPECTED_SOURCE_PREPARATION_CONFIG_SCHEMA
+    assert config["schema"] == preparer.PRODUCTION_CONFIG_SCHEMA
+    assert config["generated_root"] == runner.SOURCE_RUN_ROOT_RELATIVE
+    assert config["generated_root"] == (
+        f"scratch/runs/{preparer.LANE_ID}/{preparer.RUN_ID}"
+    )
+    assert config["lane_id"] == runner.EXPECTED_SOURCE_LANE_ID == preparer.LANE_ID
+    assert config["base_head"] == runner.EXPECTED_SOURCE_BASE_HEAD
+    assert preparer.RUN_ID == runner.EXPECTED_SOURCE_RUN_ID
+    assert config["target_code"]["preparer"]["path"] == (
+        runner.EXPECTED_SOURCE_PREPARER_RELATIVE
+    )
+    assert runner.SOURCE_CAMPAIGN_SCHEMA == preparer.CAMPAIGN_SCHEMA
+    assert runner.EXPECTED_FINITE_SCHEMA == preparer.FINITE_SCHEMA
+
+    runner._require_source_production_config(
+        {
+            "path": runner.SOURCE_PREPARATION_CONFIG_RELATIVE,
+            "schema": config["schema"],
+            "target_code": config["target_code"],
+        },
+        source_preparer_commit=config["target_code"]["commit"],
+        label="staged source production config",
+    )
+    assert runner.CANARY_SOURCE_CELL_ID == preparer.category_id(2, "none")
+    assert runner.CANARY_PORTFOLIO_CELL_ID == (
+        f"{runner.CANARY_SOURCE_CELL_ID}-combined-v5-sat-profile-v1"
+    )
+
+
+def test_real_staged_source_run_manifest_binds_ingress_identity() -> None:
+    manifest_path = runner.ROOT / runner.SOURCE_RUN_ROOT_RELATIVE / "run_manifest.json"
+    manifest = runner._strict_repo_json(
+        manifest_path.read_bytes(), "staged source run manifest"
+    )
+    runner._require_source_run_contract(manifest)
+    assert manifest["lane_id"] == runner.EXPECTED_SOURCE_LANE_ID
+    assert manifest["run_id"] == runner.EXPECTED_SOURCE_RUN_ID
+    assert manifest["base_head"] == runner.EXPECTED_SOURCE_BASE_HEAD
+
+    campaign_contract = {
+        "schema": runner.SOURCE_CAMPAIGN_SCHEMA,
+        "run_id": runner.EXPECTED_SOURCE_RUN_ID,
+        "status": "PREPARED_LOCAL_ONLY",
+        "cell_count": runner.CELL_COUNT,
+    }
+    runner._require_source_campaign_contract(campaign_contract)
+
+    for field, replacement in (
+        ("lane_id", "foreign-lane"),
+        ("run_id", "preparation-v5"),
+        ("base_head", "0" * 40),
+    ):
+        drifted = dict(manifest)
+        drifted[field] = replacement
+        with pytest.raises(runner.PortfolioRunnerError, match="source run custody"):
+            runner._require_source_run_contract(drifted)
+
+    drifted_campaign = dict(campaign_contract)
+    drifted_campaign["run_id"] = "preparation-v5"
+    with pytest.raises(runner.PortfolioRunnerError, match="source campaign contract"):
+        runner._require_source_campaign_contract(drifted_campaign)
 
 
 def test_unfrozen_pins_are_explicitly_blank() -> None:

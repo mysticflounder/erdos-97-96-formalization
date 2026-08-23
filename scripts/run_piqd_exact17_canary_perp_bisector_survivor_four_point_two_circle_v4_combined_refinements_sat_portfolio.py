@@ -84,7 +84,7 @@ SOURCE_PREPARER_RELATIVE = (
 EXPECTED_SOURCE_PREPARER_RELATIVE = SOURCE_PREPARER_RELATIVE
 SOURCE_PREPARATION_CONFIG_RELATIVE = (
     "census/p97_search/waves/exact17/"
-    "canary-perp-bisector-survivor-four-point-two-circle-v4-combined-v5-"
+    "canary-perp-bisector-survivor-four-point-two-circle-v4-combined-refinements-"
     "preparation-config.json"
 )
 RUNNER_RELATIVE = "scripts/run_piqd_exact17_canary_perp_bisector_survivor_four_point_two_circle_v4_combined_refinements_sat_portfolio.py"
@@ -95,8 +95,14 @@ RUNNER_TEST_RELATIVE = (
 MINER_RELATIVE = "scripts/mine_exact17_canary_perp_bisector_survivor_four_point_two_circle_v4_combined_refinements_sat_model.py"
 SOURCE_RUN_ROOT_RELATIVE = (
     "scratch/runs/exact17-canary-perp-bisector-survivor-four-point-two-circle-"
-    "v4-combined-refinements-preparer-20260822/preparation-v5"
+    "v4-combined-refinements-preparer-20260822/preparation-v1"
 )
+EXPECTED_SOURCE_LANE_ID = (
+    "exact17-canary-perp-bisector-survivor-four-point-two-circle-v4-combined-"
+    "refinements-preparer-20260822"
+)
+EXPECTED_SOURCE_RUN_ID = "preparation-v1"
+EXPECTED_SOURCE_BASE_HEAD = "1730c811aa50dd83c5836262c66e34a263d3d40d"
 SOURCE_RUN_ROOT = ROOT / SOURCE_RUN_ROOT_RELATIVE
 OUTPUT_ROOT = ROOT / f"scratch/runs/{LANE_ID}/{RUN_ID}"
 
@@ -151,7 +157,7 @@ PROJECT = (
     "erdos-97-96-exact17-canary-perp-bisector-survivor-four-point-two-circle-v4-combined-v5-sat"
 )
 
-SOURCE_CAMPAIGN_SCHEMA = "p97-exact17-canary-perp-bisector-survivor-four-point-two-circle-v4-combined-v5-physical-slice-campaign/v1"
+SOURCE_CAMPAIGN_SCHEMA = "p97-exact17-canary-perp-bisector-survivor-four-point-two-circle-v4-combined-refinements-physical-slice-campaign/v1"
 CAMPAIGN_SCHEMA = "p97-exact17-canary-perp-bisector-survivor-four-point-two-circle-v4-combined-v5-sat-profile-campaign/v1"
 RUN_MANIFEST_SCHEMA = "worktree-run-manifest/v1"
 LAUNCH_SCHEMA = "p97-exact17-canary-perp-bisector-survivor-four-point-two-circle-v4-combined-v5-sat-profile-launch/v1"
@@ -179,12 +185,12 @@ EXPECTED_ROOT_SOURCE_PATH = (
     "lean/Erdos9796Proof/P97/ATail/"
     "BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV4CombinedRefinements.lean"
 )
-EXPECTED_FINITE_SCHEMA = "p97-exact17-canary-perp-bisector-survivor-four-point-two-circle-v4-combined-v5-physical-slice/v1"
+EXPECTED_FINITE_SCHEMA = "p97-exact17-canary-perp-bisector-survivor-four-point-two-circle-v4-combined-refinements-physical-slice/v1"
 EXPECTED_SOURCE_PREPARATION_CONFIG_SCHEMA = (
-    "p97-exact17-canary-perp-bisector-survivor-four-point-two-circle-v4-combined-v5-"
+    "p97-exact17-canary-perp-bisector-survivor-four-point-two-circle-v4-combined-refinements-"
     "preparation-config/v1"
 )
-CANARY_SOURCE_CELL_ID = "canary-perp-bisector-survivor-four-point-two-circle-v4-combined-v5-next-center-02-physical-none"
+CANARY_SOURCE_CELL_ID = "canary-perp-bisector-survivor-four-point-two-circle-v4-combined-refinements-next-center-02-physical-none"
 CANARY_PORTFOLIO_CELL_ID = f"{CANARY_SOURCE_CELL_ID}-combined-v5-sat-profile-v1"
 DIRECT_SENTINELS = frozenset(
     {
@@ -573,6 +579,27 @@ def _require_source_production_config(
     )
 
 
+def _require_source_campaign_contract(value: Mapping[str, Any]) -> None:
+    _require(
+        value.get("schema") == SOURCE_CAMPAIGN_SCHEMA
+        and value.get("run_id") == EXPECTED_SOURCE_RUN_ID
+        and value.get("status") == "PREPARED_LOCAL_ONLY"
+        and value.get("cell_count") == CELL_COUNT,
+        "source campaign contract drifted",
+    )
+
+
+def _require_source_run_contract(value: Mapping[str, Any]) -> None:
+    _require(
+        value.get("schema") == RUN_MANIFEST_SCHEMA
+        and value.get("lane_id") == EXPECTED_SOURCE_LANE_ID
+        and value.get("run_id") == EXPECTED_SOURCE_RUN_ID
+        and value.get("base_head") == EXPECTED_SOURCE_BASE_HEAD
+        and value.get("root") == SOURCE_RUN_ROOT_RELATIVE,
+        "source run custody drifted",
+    )
+
+
 def _transform_source_cell(
     *,
     source_cell: Mapping[str, Any],
@@ -707,12 +734,7 @@ def _derive_identity_bundle(
         and all(char in _HEX for char in source_preparer_commit),
         "source preparer commit is not a lowercase full Git identity",
     )
-    _require(
-        source_campaign.get("schema") == SOURCE_CAMPAIGN_SCHEMA
-        and source_campaign.get("status") == "PREPARED_LOCAL_ONLY"
-        and source_campaign.get("cell_count") == CELL_COUNT,
-        "source campaign contract drifted",
-    )
+    _require_source_campaign_contract(source_campaign)
     source_cells = source_campaign.get("cells")
     _require(
         type(source_cells) is list and len(source_cells) == CELL_COUNT,
@@ -836,11 +858,7 @@ def derive_identities(
     )
     source_campaign = _strict_json(campaign_raw, "source campaign")
     source_run = _strict_json(run_raw, "source run manifest")
-    _require(
-        source_run.get("schema") == RUN_MANIFEST_SCHEMA
-        and source_run.get("root") == SOURCE_RUN_ROOT_RELATIVE,
-        "source run custody drifted",
-    )
+    _require_source_run_contract(source_run)
     _require(
         source_run.get("manifest_sha256") == _self_hash(source_run),
         "source run manifest self-hash drifted",
@@ -951,17 +969,8 @@ def prepare_portfolio(*, output_root: Path = OUTPUT_ROOT) -> dict[str, Any]:
         )
     source_campaign = _strict_json(source_campaign_raw, "source campaign")
     source_run = _strict_json(source_run_raw, "source run manifest")
-    _require(
-        source_campaign.get("schema") == SOURCE_CAMPAIGN_SCHEMA
-        and source_campaign.get("status") == "PREPARED_LOCAL_ONLY"
-        and source_campaign.get("cell_count") == CELL_COUNT,
-        "source campaign contract drifted",
-    )
-    _require(
-        source_run.get("schema") == "worktree-run-manifest/v1"
-        and source_run.get("root") == _relative(ROOT, SOURCE_RUN_ROOT),
-        "source run custody drifted",
-    )
+    _require_source_campaign_contract(source_campaign)
+    _require_source_run_contract(source_run)
     source_cells = source_campaign.get("cells")
     _require(
         type(source_cells) is list and len(source_cells) == CELL_COUNT,
@@ -1283,17 +1292,8 @@ def _authoritative_input_digests(
     )
     source_campaign = _strict_json(source_campaign_raw, "source campaign")
     source_run = _strict_json(source_run_raw, "source run manifest")
-    _require(
-        source_campaign.get("schema") == SOURCE_CAMPAIGN_SCHEMA
-        and source_campaign.get("status") == "PREPARED_LOCAL_ONLY"
-        and source_campaign.get("cell_count") == CELL_COUNT,
-        "source campaign contract drifted",
-    )
-    _require(
-        source_run.get("schema") == RUN_MANIFEST_SCHEMA
-        and source_run.get("root") == SOURCE_RUN_ROOT_RELATIVE,
-        "source run custody drifted",
-    )
+    _require_source_campaign_contract(source_campaign)
+    _require_source_run_contract(source_run)
     source_cells = source_campaign.get("cells")
     _require(
         type(source_cells) is list and len(source_cells) == CELL_COUNT,
