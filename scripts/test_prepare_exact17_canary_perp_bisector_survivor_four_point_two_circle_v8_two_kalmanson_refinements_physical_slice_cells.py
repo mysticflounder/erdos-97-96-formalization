@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import copy
 import json
 from pathlib import Path
 
@@ -7,37 +8,28 @@ import prepare_exact17_canary_perp_bisector_survivor_four_point_two_circle_v8_tw
 import pytest
 
 
-def _config(*, finalized: bool = False) -> dict[str, object]:
-    return {
-        "base_head": preparer.BASE_HEAD,
-        "blocker": "V8 Lean packet is not frozen",
-        "generated_root": preparer.RUN_ROOT.relative_to(preparer.ROOT).as_posix(),
-        "lane_id": preparer.LANE_ID,
-        "production_pins_finalized": finalized,
-        "schema": preparer.PRODUCTION_CONFIG_SCHEMA,
-        "source_paths": {
-            "exporter": preparer.EXPORTER_RELATIVE,
-            "root": preparer.ROOT_SOURCE_RELATIVE,
-            "source": preparer.SOURCE_RELATIVE,
-        },
-    }
+def _config() -> dict[str, object]:
+    return json.loads(preparer.PRODUCTION_CONFIG_PATH.read_bytes())
 
 
 def _write_config(tmp_path: Path, value: dict[str, object]) -> Path:
     path = tmp_path / "config.json"
-    path.write_text(json.dumps(value, sort_keys=True), encoding="utf-8")
+    path.write_bytes(preparer.canonical_json_bytes(value) + b"\n")
     return path
 
 
-def test_provisional_config_fails_closed(tmp_path: Path) -> None:
+def test_finalized_config_authenticates_every_source(tmp_path: Path) -> None:
     path = _write_config(tmp_path, _config())
-    with pytest.raises(preparer.V8PreparationError, match="source pins are incomplete"):
-        preparer.require_production_pins(path)
+    accepted = preparer.require_production_pins(path)
+    assert accepted["production_pins_finalized"] is True
+    assert accepted["counts"]["root_clauses"] == 7_409_839
 
 
-def test_false_finality_under_provisional_schema_fails_closed(tmp_path: Path) -> None:
-    path = _write_config(tmp_path, _config(finalized=True))
-    with pytest.raises(preparer.V8PreparationError, match="finalized support schema"):
+def test_nonfinal_production_flag_fails_closed(tmp_path: Path) -> None:
+    value = _config()
+    value["production_pins_finalized"] = False
+    path = _write_config(tmp_path, value)
+    with pytest.raises(preparer.V8PreparationError, match="not finalized"):
         preparer.require_production_pins(path)
 
 
@@ -50,7 +42,7 @@ def test_false_finality_under_provisional_schema_fails_closed(tmp_path: Path) ->
         ("schema", "old-v7-schema", "schema"),
     ],
 )
-def test_config_route_tamper_fails(
+def test_top_level_route_tamper_fails(
     tmp_path: Path, field: str, replacement: str, message: str
 ) -> None:
     value = _config()
@@ -60,14 +52,49 @@ def test_config_route_tamper_fails(
         preparer.require_production_pins(path)
 
 
-@pytest.mark.parametrize("source_field", ["root", "source", "exporter"])
-def test_source_route_tamper_fails(tmp_path: Path, source_field: str) -> None:
+@pytest.mark.parametrize(
+    ("count_field", "replacement"),
+    [("variables", 307), ("root_clauses", 7_409_838), ("physical_cell_clauses", 7_409_844)],
+)
+def test_exact_count_tamper_fails(
+    tmp_path: Path, count_field: str, replacement: int
+) -> None:
     value = _config()
-    source_paths = dict(value["source_paths"])
-    source_paths[source_field] = "lean/old-v7.lean"
-    value["source_paths"] = source_paths
+    counts = dict(value["counts"])
+    counts[count_field] = replacement
+    value["counts"] = counts
     path = _write_config(tmp_path, value)
-    with pytest.raises(preparer.V8PreparationError, match="source routes"):
+    with pytest.raises(preparer.V8PreparationError, match="count contract"):
+        preparer.require_production_pins(path)
+
+
+PIN_CASES = (
+    ("source_support", "root"),
+    ("source_support", "source"),
+    ("source_support", "exporter"),
+    ("source_support", "ingress"),
+    ("source_support", "generator"),
+    ("target_code", "preparer"),
+    ("target_code", "miner"),
+    ("target_code", "runner"),
+    ("parent_dependencies", "v7_preparer"),
+    ("parent_dependencies", "v7_miner"),
+    ("parent_dependencies", "v7_runner"),
+)
+
+
+@pytest.mark.parametrize(("inventory", "label"), PIN_CASES)
+def test_every_finalized_artifact_pin_is_fail_closed(
+    tmp_path: Path, inventory: str, label: str
+) -> None:
+    value = _config()
+    items = copy.deepcopy(value[inventory])
+    pin = dict(items[label])
+    pin["sha256"] = "0" * 64
+    items[label] = pin
+    value[inventory] = items
+    path = _write_config(tmp_path, value)
+    with pytest.raises(preparer.V8PreparationError, match="live bytes drifted"):
         preparer.require_production_pins(path)
 
 
@@ -81,21 +108,19 @@ def test_route_contract_contains_only_v8_routes() -> None:
     assert all("v7" not in route.lower() for route in contract.values())
 
 
-def test_direct_call_rejects_non_v8_output_root(monkeypatch: pytest.MonkeyPatch) -> None:
-    monkeypatch.setattr(preparer, "validate_committed_dependencies", lambda: None)
+def test_direct_call_rejects_non_v8_output_root() -> None:
     with pytest.raises(preparer.V8PreparationError, match="output root drifted"):
         preparer.prepare_campaign(run_root=preparer.ROOT / "scratch/runs/v7/run")
 
 
-def test_category_id_rewrites_only_the_exact_parent_prefix() -> None:
-    parent = preparer._PARENT.SOURCE_CELL_PREFIX + "-next-center-02-physical-none"
-    result = preparer.category_id(parent)
+def test_category_id_validates_parent_and_emits_v8() -> None:
+    result = preparer.category_id(2, "none")
     assert result == preparer.SOURCE_CELL_PREFIX + "-next-center-02-physical-none"
     assert "v8-two-kalmanson" in result
-    with pytest.raises(preparer.V8PreparationError):
-        preparer.category_id("not-a-parent-cell")
+    with pytest.raises(preparer._PARENT.PreparationError):
+        preparer.category_id(99, "none")
 
 
-def test_cli_help_does_not_touch_parent_or_files(capsys: pytest.CaptureFixture[str]) -> None:
+def test_cli_help_does_not_export(capsys: pytest.CaptureFixture[str]) -> None:
     assert preparer.main(["--help"]) == 0
-    assert "V8" in capsys.readouterr().out
+    assert "without exporting" in capsys.readouterr().out

@@ -45,11 +45,9 @@ SOLVE_TIMEOUT_S = 3_600
 REPLAY_TIMEOUT_S = 3_600
 CELL_COUNT = 76
 NUM_VARIABLES = 308
-# These counts are deliberately unusable placeholders until the Lean V8 root
-# and physical exporter are frozen.  preparer.require_production_pins() runs
-# before every inherited control-plane operation.
-ROOT_NUM_CLAUSES = 0
-NUM_CLAUSES = 0
+# Frozen from the committed V8 root and physical-slice coverage theorem.
+ROOT_NUM_CLAUSES = preparer.ROOT_CLAUSES
+NUM_CLAUSES = preparer.CELL_CLAUSES
 
 CAMPAIGN_SCHEMA = f"{PREFIX}-v8-sat-profile-campaign/v1"
 LAUNCH_SCHEMA = f"{PREFIX}-v8-sat-profile-launch/v1"
@@ -181,7 +179,8 @@ def route_contract() -> dict[str, str]:
 
 
 def validate_committed_dependencies() -> None:
-    _PARENT.validate_committed_dependencies()
+    # The finalized preparer pins the committed V7 control-plane parents.  A
+    # direct V7 validation here would reject V8's intentional route rebinding.
     preparer.validate_committed_dependencies()
     miner.validate_committed_dependencies()
     validate_scanner_identity_contract(

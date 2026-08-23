@@ -159,7 +159,9 @@ _configure_parent_for_v8()
 
 
 def validate_committed_dependencies() -> None:
-    _PARENT.validate_committed_dependencies()
+    # V8 intentionally replaces the shared inherited runtime routes.  The
+    # finalized preparer authenticates the committed V7 miner/runner blobs
+    # directly, without reasserting their predecessor route bindings.
     preparer.validate_committed_dependencies()
     # This checks that the runner and miner read the same live, immutable byte
     # identity before a future source-finalized launch.
