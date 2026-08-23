@@ -6025,5 +6025,68 @@ theorem false_of_selectedFourClass_common_actualCenter_pair_outside_cap
       S i hcenterCap hactualCenterCap hcenter_ne_actualCenter Row ActualRow
   omega
 
+/-- Select two points outside the row cap before inspecting their actual
+blockers.  If neither blocker escapes that cap, equal blockers contradict the
+outside-pair overlap bound, while distinct blockers force one cross-deletion
+to preserve a four-point row.
+
+This keeps the complete source-faithful deletion packets attached to the
+selected points.  In particular, it exposes the exact remaining endpoint
+residual without assuming that the deletion fan's blocker-cap labels agree
+with the row cap. -/
+theorem exists_distinct_outsideCap_fan_escape_or_crossDeletion
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    {H : CriticalShellSystem D.A}
+    {center : ℝ²} (Row : SelectedFourClass D.A center)
+    (i : Fin 3)
+    (hcenterCap : center ∈ S.capByIndex i)
+    (houtside : 2 ≤ (Row.support \ S.capByIndex i).card)
+    (hfan : SourceFaithfulSelectedFourDeletionFan D S H Row)
+    (hcenterNe :
+      ∀ (w : ℝ²) (hw : w ∈ Row.support),
+        center ≠ H.centerAt w (Row.support_subset_A hw)) :
+    ∃ z w : CriticalShellSystem.CarrierVertex D.A,
+      ∃ hz : z.1 ∈ Row.support \ S.capByIndex i,
+        ∃ hw : w.1 ∈ Row.support \ S.capByIndex i,
+          z ≠ w ∧
+            SourceFaithfulSelectedFourDeletionPacket D S H Row z.1
+              (Finset.mem_sdiff.mp hz).1 ∧
+            SourceFaithfulSelectedFourDeletionPacket D S H Row w.1
+              (Finset.mem_sdiff.mp hw).1 ∧
+            (H.centerAt z.1 z.2 ∉ S.capByIndex i ∨
+              H.centerAt w.1 w.2 ∉ S.capByIndex i ∨
+              HasNEquidistantPointsAt 4 (D.A.erase w.1)
+                (H.centerAt z.1 z.2) ∨
+              HasNEquidistantPointsAt 4 (D.A.erase z.1)
+                (H.centerAt w.1 w.2)) := by
+  classical
+  rcases exists_distinct_outsideCap_sourceFaithful_packets
+      Row i houtside hfan with
+    ⟨z, w, hz, hw, hzw, hzPacket, hwPacket⟩
+  refine ⟨z, w, hz, hw, hzw, hzPacket, hwPacket, ?_⟩
+  have hzRow : z.1 ∈ Row.support := (Finset.mem_sdiff.mp hz).1
+  have hwRow : w.1 ∈ Row.support := (Finset.mem_sdiff.mp hw).1
+  have hzOutside : z.1 ∉ S.capByIndex i := (Finset.mem_sdiff.mp hz).2
+  have hwOutside : w.1 ∉ S.capByIndex i := (Finset.mem_sdiff.mp hw).2
+  have hzwVal : z.1 ≠ w.1 := by
+    intro h
+    apply hzw
+    exact Subtype.ext h
+  have hcenterNeZ : center ≠ H.centerAt z.1 z.2 := by
+    simpa using hcenterNe z.1 hzRow
+  by_cases hzCap : H.centerAt z.1 z.2 ∈ S.capByIndex i
+  · by_cases hwCap : H.centerAt w.1 w.2 ∈ S.capByIndex i
+    · by_cases hcenters : H.centerAt z.1 z.2 = H.centerAt w.1 w.2
+      · exact (false_of_selectedFourClass_common_actualCenter_pair_outside_cap
+          S H i Row z w hzRow hwRow hzwVal hcenters hcenterCap hzCap
+          hzOutside hwOutside hcenterNeZ).elim
+      · rcases crossDeletion_survives_of_distinct_sameCap_blockers_outside_pair
+          z.2 w.2 hzwVal i hzCap hwCap hcenters hzOutside hwOutside with
+          hsurvives | hsurvives
+        · exact Or.inr (Or.inr (Or.inl hsurvives))
+        · exact Or.inr (Or.inr (Or.inr hsurvives))
+    · exact Or.inr (Or.inl hwCap)
+  · exact Or.inl hzCap
+
 end ATailFrontierLiveClosure
 end Problem97
