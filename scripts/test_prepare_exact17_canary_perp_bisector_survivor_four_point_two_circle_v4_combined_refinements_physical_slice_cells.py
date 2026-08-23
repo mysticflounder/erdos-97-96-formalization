@@ -22,7 +22,7 @@ def test_target_test_path_is_this_lane() -> None:
     )
 
 
-def test_v5_lane_schemas_and_future_paths_are_distinct_and_unfrozen() -> None:
+def test_v5_lane_schemas_paths_and_provisional_globals_are_distinct() -> None:
     assert subject.LANE_ID == (
         "exact17-canary-perp-bisector-survivor-four-point-two-circle-v4-combined-"
         "refinements-preparer-20260822"
@@ -33,7 +33,9 @@ def test_v5_lane_schemas_and_future_paths_are_distinct_and_unfrozen() -> None:
         "canary-perp-bisector-survivor-four-point-two-circle-v4-combined-"
         "refinements-preparation-config.json"
     )
-    assert not subject.PRODUCTION_CONFIG_PATH.exists()
+    assert subject.PRODUCTION_CONFIG_PATH == (
+        subject.ROOT / subject.PRODUCTION_CONFIG_RELATIVE
+    )
     for schema in (
         subject.PRODUCTION_CONFIG_SCHEMA,
         subject.SCHEMA,
