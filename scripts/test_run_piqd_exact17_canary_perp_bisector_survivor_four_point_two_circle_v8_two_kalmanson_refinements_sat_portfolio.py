@@ -184,6 +184,216 @@ def test_route_contract_is_fresh_v8() -> None:
     assert all("v7" not in route.lower() for route in routes.values())
 
 
+def test_v8_base_owns_every_source_route_and_hook() -> None:
+    expected = {
+        "RUNNER_CODE_CHECKPOINT_RELATIVE": runner.RUNNER_CODE_CHECKPOINT_RELATIVE,
+        "CHECKPOINT_RELATIVE": runner.CHECKPOINT_RELATIVE,
+        "SOURCE_PREPARER_RELATIVE": runner.SOURCE_PREPARER_RELATIVE,
+        "EXPECTED_SOURCE_PREPARER_RELATIVE": (
+            runner.EXPECTED_SOURCE_PREPARER_RELATIVE
+        ),
+        "SOURCE_PREPARATION_CONFIG_RELATIVE": (
+            runner.SOURCE_PREPARATION_CONFIG_RELATIVE
+        ),
+        "RUNNER_RELATIVE": runner.RUNNER_RELATIVE,
+        "RUNNER_TEST_RELATIVE": runner.RUNNER_TEST_RELATIVE,
+        "SOURCE_RUN_ROOT_RELATIVE": runner.SOURCE_RUN_ROOT_RELATIVE,
+        "SOURCE_RUN_ROOT": runner.SOURCE_RUN_ROOT,
+        "EXPECTED_SOURCE_LANE_ID": runner.EXPECTED_SOURCE_LANE_ID,
+        "EXPECTED_SOURCE_RUN_ID": runner.EXPECTED_SOURCE_RUN_ID,
+        "EXPECTED_SOURCE_BASE_HEAD": runner.EXPECTED_SOURCE_BASE_HEAD,
+        "SOURCE_CAMPAIGN_SCHEMA": runner.SOURCE_CAMPAIGN_SCHEMA,
+        "EXPECTED_SOURCE_THEOREM": runner.EXPECTED_SOURCE_THEOREM,
+        "EXPECTED_SOURCE_PATH": runner.EXPECTED_SOURCE_PATH,
+        "EXPECTED_ROOT_SOURCE_PATH": runner.EXPECTED_ROOT_SOURCE_PATH,
+        "EXPECTED_FINITE_SCHEMA": runner.EXPECTED_FINITE_SCHEMA,
+        "EXPECTED_SOURCE_PREPARATION_CONFIG_SCHEMA": (
+            runner.EXPECTED_SOURCE_PREPARATION_CONFIG_SCHEMA
+        ),
+        "GLOBAL_CAPACITY_ROOT": runner.GLOBAL_CAPACITY_ROOT,
+    }
+    for name, value in expected.items():
+        assert getattr(runner._BASE, name) == value
+    assert runner._BASE._transform_source_cell is runner._transform_source_cell
+    assert runner._BASE._validate_cell is runner._validate_cell
+    assert runner._BASE.PRODUCTION_PINS_FINALIZED is False
+    assert "v7" not in runner.SOURCE_RUN_ROOT_RELATIVE.lower()
+    assert "v7" not in runner.EXPECTED_SOURCE_THEOREM.lower()
+    assert "v7" not in runner.GLOBAL_CAPACITY_ROOT.as_posix().lower()
+
+
+def test_v8_provisional_pins_never_fall_back_to_v7() -> None:
+    for name in (
+        "SOURCE_CAMPAIGN_SHA256",
+        "SOURCE_RUN_MANIFEST_SHA256",
+        "SOURCE_PREPARER_COMMIT",
+        "SOURCE_PREPARER_SHA256",
+        "CHECKPOINT_SHA256",
+        "RUNNER_CODE_CHECKPOINT_SHA256",
+        "SOURCE_CELL_IDENTITIES_SHA256",
+        "PRODUCTION_CELL_IDENTITIES_SHA256",
+    ):
+        assert getattr(runner._BASE, name) == ""
+    for name in (
+        "SOURCE_CAMPAIGN_BYTES",
+        "SOURCE_RUN_MANIFEST_BYTES",
+        "SOURCE_PREPARER_BYTES",
+        "CHECKPOINT_BYTES",
+        "RUNNER_CODE_CHECKPOINT_BYTES",
+    ):
+        assert getattr(runner._BASE, name) == 0
+    assert runner._BASE.SOURCE_CELL_IDENTITIES == {}
+    assert runner._BASE.PRODUCTION_CELL_IDENTITIES == {}
+
+
+def test_v8_base_has_no_uppercase_v7_route_or_schema_binding() -> None:
+    inherited_v7 = {
+        name: value
+        for name, value in vars(runner._BASE).items()
+        if name.isupper() and "v7" in repr(value).lower()
+    }
+    assert inherited_v7 == {}
+
+
+def _campaign_cell(source_id: str, portfolio_id: str) -> dict[str, object]:
+    ref = {"path": "scratch/input", "sha256": "0" * 64, "bytes": 1}
+    return {
+        "portfolio_cell_id": portfolio_id,
+        "source_cell_id": source_id,
+        "center": 2,
+        "category": "none",
+        "ordinal": 12,
+        "source_cnf": ref,
+        "producer_manifest": ref,
+        "wave_manifest": ref,
+        "expected_identity_hash": "1" * 64,
+    }
+
+
+def test_v8_cell_validator_rejects_v7_prefix_and_suffix() -> None:
+    source_id = runner.CANARY_SOURCE_CELL_ID
+    cell = _campaign_cell(source_id, runner.CANARY_PORTFOLIO_CELL_ID)
+    assert runner._validate_cell(cell, 12) == cell
+
+    v7_source = source_id.replace(
+        "v8-two-kalmanson", "v7-two-kalmanson", 1
+    )
+    with pytest.raises(RuntimeError, match="not V8-owned"):
+        runner._validate_cell(
+            _campaign_cell(v7_source, f"{v7_source}-{runner.PORTFOLIO_CELL_SUFFIX}"),
+            12,
+        )
+
+    v7_suffix = "canary-two-kalmanson-v7-sat-profile-v1"
+    with pytest.raises(RuntimeError, match="V8 source cell"):
+        runner._validate_cell(
+            _campaign_cell(source_id, f"{source_id}-{v7_suffix}"), 12
+        )
+
+
+def test_v8_transform_rejects_v7_source_before_parsing_payload() -> None:
+    v7_source = runner.CANARY_SOURCE_CELL_ID.replace(
+        "v8-two-kalmanson", "v7-two-kalmanson", 1
+    )
+    with pytest.raises(RuntimeError, match="not V8-owned"):
+        runner._transform_source_cell(
+            source_cell={"cell_id": v7_source},
+            ordinal=12,
+            cnf=b"",
+            source_producer_raw=b"",
+            source_wave_raw=b"",
+            source_preparer_commit="0" * 40,
+        )
+
+
+def _production_checkpoint() -> dict[str, object]:
+    payload: dict[str, object] = {
+        "schema": "worktree-lane-checkpoint/v1",
+        "lane_id": runner.LANE_ID,
+        "owner": runner.RUN_OWNER,
+        "base_head": runner.BASE_HEAD,
+        "created_utc": "2026-08-23T00:00:00Z",
+        "owned_paths": [runner.CHECKPOINT_RELATIVE],
+        "durable_paths": sorted(
+            [
+                miner.MINER_RELATIVE,
+                runner.RUNNER_CODE_CHECKPOINT_RELATIVE,
+                runner.RUNNER_RELATIVE,
+                runner.RUNNER_TEST_RELATIVE,
+                runner.SOURCE_PREPARER_RELATIVE,
+            ]
+        ),
+        "generated_roots": [runner.OUTPUT_ROOT.relative_to(runner.ROOT).as_posix()],
+        "manifest_sha256": "",
+    }
+    payload["manifest_sha256"] = runner._BASE._self_hash(payload)
+    return payload
+
+
+def test_v8_checkpoint_roles_are_distinct_and_source_clean() -> None:
+    # The preparation config intentionally pins the pre-repair runner bytes
+    # until the control-plane owner refreezes it.  Exercise only this runner's
+    # independent checkpoint-role contract here.
+    runner._validate_checkpoint_roles()
+    assert runner.CHECKPOINT_RELATIVE != runner.RUNNER_CODE_CHECKPOINT_RELATIVE
+    runner._validate_production_checkpoint_payload(_production_checkpoint())
+    runner_code = runner._checkpoint_payload(
+        runner.RUNNER_CODE_CHECKPOINT_RELATIVE, "V8 runner-code checkpoint"
+    )
+    runner._validate_runner_code_checkpoint_payload(runner_code)
+    with pytest.raises(RuntimeError, match="production checkpoint contract"):
+        runner._validate_production_checkpoint_payload(runner_code)
+
+
+@pytest.mark.parametrize(
+    ("field", "replacement"),
+    [
+        ("base_head", "0" * 40),
+        ("owned_paths", [*runner.RUNNER_CODE_CHECKPOINT_OWNED_PATHS, "old-v7"]),
+    ],
+)
+def test_v8_runner_code_checkpoint_field_tamper_is_rejected(
+    field: str, replacement: object
+) -> None:
+    payload = runner._checkpoint_payload(
+        runner.RUNNER_CODE_CHECKPOINT_RELATIVE, "V8 runner-code checkpoint"
+    )
+    payload[field] = replacement
+    payload["manifest_sha256"] = runner._BASE._self_hash(payload)
+    with pytest.raises(RuntimeError, match="runner-code checkpoint contract"):
+        runner._validate_runner_code_checkpoint_payload(payload)
+
+
+@pytest.mark.parametrize(
+    ("field", "replacement"),
+    [
+        ("lane_id", "old-v7-lane"),
+        ("owner", "old-v7-owner"),
+        ("base_head", "0" * 40),
+        ("owned_paths", [".codex/worktree-checkpoints/old-v7.json"]),
+        ("generated_roots", ["scratch/runs/old-v7/run"]),
+    ],
+)
+def test_v8_production_checkpoint_field_tamper_is_rejected(
+    field: str, replacement: object
+) -> None:
+    payload = _production_checkpoint()
+    payload[field] = replacement
+    payload["manifest_sha256"] = runner._BASE._self_hash(payload)
+    with pytest.raises(RuntimeError, match="production checkpoint contract"):
+        runner._validate_production_checkpoint_payload(payload)
+
+
+def test_v8_checkpoint_path_alias_is_rejected(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    monkeypatch.setattr(
+        runner, "CHECKPOINT_RELATIVE", runner.RUNNER_CODE_CHECKPOINT_RELATIVE
+    )
+    with pytest.raises(RuntimeError, match="checkpoint paths alias"):
+        runner._validate_checkpoint_roles()
+
+
 def test_direct_callable_defaults_route_to_v8(monkeypatch: pytest.MonkeyPatch) -> None:
     observed: dict[str, Path] = {}
     monkeypatch.setattr(runner, "_require_v8_ready", lambda: None)
@@ -227,4 +437,13 @@ def test_runtime_route_tamper_is_rejected(monkeypatch: pytest.MonkeyPatch) -> No
 
 def test_cli_help_does_not_prepare_or_contact_piqd(capsys: pytest.CaptureFixture[str]) -> None:
     assert runner.main(["--help"]) == 0
-    assert "V8" in capsys.readouterr().out
+    rendered = capsys.readouterr().out
+    assert "V8" in rendered
+    for command in (
+        "derive-identities",
+        "prepare",
+        "static-check",
+        "start-canary",
+        "start-rest",
+    ):
+        assert command in rendered
