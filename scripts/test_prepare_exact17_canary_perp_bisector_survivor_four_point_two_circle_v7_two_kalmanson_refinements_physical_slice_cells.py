@@ -39,8 +39,8 @@ def test_v7_preparer_config_phase_is_fail_closed() -> None:
     preparer._BASE._validate_production_config_payload(config)
     assert raw == preparer._BASE.canonical_json_bytes(config)
     assert config["generated_root"] == (
-        "scratch/runs/exact17-v7-two-kalmanson-successor-preparer-20260823/"
-        "preparation-v1"
+        "scratch/runs/exact17-v7-two-kalmanson-successor-preparer-v2-20260823/"
+        "preparation-v2"
     )
     target = config["target_code"]
     target_paths = {
@@ -79,11 +79,25 @@ def test_v7_preparer_config_phase_is_fail_closed() -> None:
 
 
 def test_v7_preparer_uses_fresh_source_ids_and_schemas() -> None:
-    cell_id = preparer._BASE._cell_id(2, "none")
+    cell_id = preparer.category_id(2, "none")
     assert cell_id == (
         "canary-perp-bisector-survivor-four-point-two-circle-v7-two-kalmanson-"
         "refinements-next-center-02-physical-none"
     )
+    assert preparer._BASE.category_id(2, "none") == cell_id
+    assert preparer._BASE._cell_id(2, "none") == cell_id
+    inventory = preparer._expected_v7_source_cell_inventory()
+    assert len(inventory) == 76
+    assert len({identifier for _, _, identifier in inventory}) == 76
+    assert all(
+        identifier.startswith(
+            "canary-perp-bisector-survivor-four-point-two-circle-v7-two-"
+            "kalmanson-refinements-next-center-"
+        )
+        for _, _, identifier in inventory
+    )
+    assert all("v5-canary" not in identifier for _, _, identifier in inventory)
+    preparer._validate_v7_source_id_contract()
     labels = (
         preparer.PRODUCTION_CONFIG_SCHEMA,
         preparer._BASE.SCHEMA,
@@ -97,12 +111,46 @@ def test_v7_preparer_uses_fresh_source_ids_and_schemas() -> None:
     assert preparer._BASE.EXPORTER_PATH == preparer.EXPORTER_PATH
 
 
+def test_v7_preparer_uses_fresh_v2_governance_surface() -> None:
+    assert preparer.LANE_ID == (
+        "exact17-v7-two-kalmanson-successor-preparer-v2-20260823"
+    )
+    assert preparer.RUN_ID == "preparation-v2"
+    assert preparer.RUN_OWNER == "exact17-fourpoint-v7-preparer-v2"
+    assert preparer.CHECKPOINT_PATH.name == (
+        "exact17-v7-two-kalmanson-successor-preparer-v2-20260823.json"
+    )
+    assert preparer.PRODUCTION_CONFIG_PATH.name == (
+        "canary-perp-bisector-survivor-four-point-two-circle-v7-two-kalmanson-"
+        "preparation-config-v2.json"
+    )
+    assert "v2-preparation-config" in preparer.PRODUCTION_CONFIG_SCHEMA
+
+
+@pytest.mark.parametrize("binding", ("category_id", "_cell_id"))
+def test_v7_preflight_and_preparation_reject_inherited_source_id_binding(
+    monkeypatch: pytest.MonkeyPatch, binding: str
+) -> None:
+    monkeypatch.setattr(preparer._BASE, binding, preparer._INHERITED_CATEGORY_ID)
+    with pytest.raises(preparer.PreparationError, match="source ID binding drifted"):
+        preparer.preflight_configuration()
+    with pytest.raises(preparer.PreparationError, match="source ID binding drifted"):
+        preparer.prepare_campaign()
+
+
 def test_v7_preparer_help_never_describes_the_v5_packet(
     capsys: pytest.CaptureFixture[str],
 ) -> None:
     assert preparer.main(["--help"]) == 0
     rendered = capsys.readouterr().out
-    for required in ("V7", "22-clause", "7,409,810", "7,409,816", "76"):
+    for required in (
+        "V7",
+        "preparation-v2",
+        "22-clause",
+        "7,409,810",
+        "7,409,816",
+        "76",
+    ):
         assert required in rendered
     for stale in ("V5", "20-clause", "7,409,780", "7,409,786"):
         assert stale not in rendered

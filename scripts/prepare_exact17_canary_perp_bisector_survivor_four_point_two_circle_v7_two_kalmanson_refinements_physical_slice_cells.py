@@ -1,7 +1,7 @@
-"""Governed code-first V7 physical-slice preparer.
+"""Governed code-first V7 physical-slice V2 preparer.
 
-This adapter reuses the committed V6 custody implementation, but replaces every
-source/schema/count contract with the committed V7 two-Kalmanson root.  The V7
+This V2 adapter reuses the committed V6 custody implementation, but replaces
+every source/schema/count contract with the committed V7 two-Kalmanson root.  The V7
 physical coverage/exporter and V6 immediate-parent exporter are pinned; the
 adapter remains intentionally non-production until an external config and the
 76 cell identities are frozen.  It never contacts PIQD or a SAT solver.
@@ -42,10 +42,10 @@ ROOT_SOURCE_COMMIT = "ba5dd982fb3c345e75437daa710186bf5345c701"
 ROOT_SOURCE_SHA256 = "1a68382662e8d005109dd6ff50fb3b5c3f18006b01acbd213a1f8ffd6ebf39fb"
 ROOT_SOURCE_BYTES = 21_139
 
-LANE_ID = "exact17-v7-two-kalmanson-successor-preparer-20260823"
-RUN_ID = "preparation-v1"
-RUN_OWNER = "exact17-fourpoint-v7-preparer"
-BASE_HEAD = "f8b3b1ce955c2a225986b0af4cbeed8b9a3209e7"
+LANE_ID = "exact17-v7-two-kalmanson-successor-preparer-v2-20260823"
+RUN_ID = "preparation-v2"
+RUN_OWNER = "exact17-fourpoint-v7-preparer-v2"
+BASE_HEAD = "0dbfd4b7939561b141b0305c59009ff3349a8081"
 
 SOURCE_PATH = ROOT / (
     "lean/Erdos9796Proof/P97/ATail/"
@@ -80,7 +80,7 @@ IMMEDIATE_PARENT_EXPORTER_SHA256 = (
 IMMEDIATE_PARENT_EXPORTER_BYTES = 3_646
 CHECKPOINT_PATH = ROOT / (
     ".codex/worktree-checkpoints/"
-    "exact17-v7-two-kalmanson-successor-preparer-20260823.json"
+    "exact17-v7-two-kalmanson-successor-preparer-v2-20260823.json"
 )
 PREPARER_PATH = Path(__file__).resolve()
 TEST_PATH = ROOT / (
@@ -90,12 +90,12 @@ TEST_PATH = ROOT / (
 PRODUCTION_CONFIG_RELATIVE = Path(
     "census/p97_search/waves/exact17/"
     "canary-perp-bisector-survivor-four-point-two-circle-v7-two-kalmanson-"
-    "preparation-config.json"
+    "preparation-config-v2.json"
 )
 PRODUCTION_CONFIG_PATH = ROOT / PRODUCTION_CONFIG_RELATIVE
 PRODUCTION_CONFIG_SCHEMA = (
     "p97-exact17-canary-perp-bisector-survivor-four-point-two-circle-v7-two-"
-    "kalmanson-refinements-preparation-config/v1"
+    "kalmanson-refinements-v2-preparation-config/v1"
 )
 
 PARENT_VARIABLES = 308
@@ -103,6 +103,10 @@ PARENT_CLAUSES = 7_409_810
 IMMEDIATE_PARENT_CLAUSES = 7_409_788
 CELL_CLAUSES = 7_409_816
 CELL_COUNT = 76
+SOURCE_CELL_PREFIX = (
+    "canary-perp-bisector-survivor-four-point-two-circle-v7-two-kalmanson-"
+    "refinements"
+)
 
 EXPECTED_SUFFIX = (
     (-307, -115, -119, -207, -210, -47, -40, -224, -238),
@@ -135,7 +139,7 @@ EXPECTED_SUFFIX_OCCURRENCE = (
 EXPECTED_STRICT_NEW_PER_OCCURRENCE = (3, 4, 2, 3, 0, 3, 4, 0, 3)
 
 OPERATOR_HELP = """\
-Govern the V7 two-Kalmanson physical packet.
+Govern the V7 two-Kalmanson physical packet on the fresh preparation-v2 surface.
 
 The authenticated 22-clause suffix extends the 7,409,788-clause V6 parent to
 a 7,409,810-clause V7 root.  Each of the 76 physical cells has 308 variables
@@ -234,6 +238,7 @@ def validate_committed_dependencies() -> None:
         IMMEDIATE_PARENT_EXPORTER_SHA256,
         IMMEDIATE_PARENT_EXPORTER_BYTES,
     )
+    _validate_v7_contract()
 
 
 def missing_lean_dependencies() -> tuple[Path, ...]:
@@ -258,9 +263,83 @@ def _load_base() -> Any:
 
 _BASE = _load_base()
 PreparationError = _BASE.PreparationError
+_INHERITED_CATEGORY_ID = _BASE.category_id
+
+
+def category_id(center: int, category: str) -> str:
+    """Return the V7-owned source ID after inherited physical validation."""
+
+    _INHERITED_CATEGORY_ID(center, category)
+    return f"{SOURCE_CELL_PREFIX}-next-center-{center:02d}-physical-{category}"
+
+
+def _expected_v7_source_cell_inventory() -> tuple[tuple[int, str, str], ...]:
+    cells: list[tuple[int, str, str]] = []
+    for center in _BASE.LEGAL_CENTERS:
+        categories = _BASE._delegated_call(
+            _BASE.accepted.hardened._physical_categories, center
+        )
+        for physical_category in categories:
+            cells.append(
+                (center, physical_category, category_id(center, physical_category))
+            )
+    return tuple(cells)
+
+
+def _validate_v7_source_id_contract() -> None:
+    """Fail closed unless every source-ID producer resolves to the V7 surface."""
+
+    inventory = _expected_v7_source_cell_inventory()
+    identifiers = tuple(identifier for _, _, identifier in inventory)
+    expected_prefix = f"{SOURCE_CELL_PREFIX}-next-center-"
+    if len(inventory) != CELL_COUNT or len(set(identifiers)) != CELL_COUNT:
+        raise PreparationError("V7 source cell inventory is not exactly 76 unique IDs")
+    if any(
+        not identifier.startswith(expected_prefix)
+        or "v5-canary-two-kalmanson-refinements-next-center" in identifier
+        for identifier in identifiers
+    ):
+        raise PreparationError("V7 source cell inventory contains an inherited ID")
+    if _BASE.category_id is not category_id or _BASE._cell_id is not category_id:
+        raise PreparationError("V7 source ID binding drifted")
+
+    digest = "0" * 64
+    for center, physical_category, identifier in inventory:
+        if _BASE.category_id(center, physical_category) != identifier:
+            raise PreparationError("V7 generated directory ID drifted")
+        producer_raw = _BASE.build_producer(
+            center=center,
+            category=physical_category,
+            source_path="source.lean",
+            source_sha256=digest,
+            root_source_path="root.lean",
+            root_source_sha256=digest,
+            exporter_path="exporter.lean",
+            exporter_sha256=digest,
+            immediate_parent_exporter_path="parent-exporter.lean",
+            immediate_parent_exporter_sha256=digest,
+            variable_map_sha256=digest,
+            parent_root_sha256=digest,
+            parent_producer_sha256=digest,
+            parent_novelty={},
+            delegated_dependencies={},
+            production_config={},
+        )
+        producer = json.loads(producer_raw)
+        source = producer.get("source_manifest")
+        expected_run_id = f"{identifier}-{RUN_ID}"
+        if (
+            type(source) is not dict
+            or source.get("source_id") != identifier
+            or source.get("cardinality_scope")
+            != f"exactly 17 models in {identifier}"
+            or producer.get("producer_id") != expected_run_id
+        ):
+            raise PreparationError("V7 source ID did not reach every generated manifest")
 
 
 def _validate_v7_contract() -> None:
+    _validate_v7_source_id_contract()
     suffix = _BASE.EXPECTED_CANARY_PERP_BISECTOR_SURVIVOR_FOUR_POINT_TWO_CIRCLE_REFINEMENT_SUFFIX
     if suffix != EXPECTED_SUFFIX or len(suffix) != 22 or len(set(suffix)) != 22:
         raise PreparationError("V7 two-Kalmanson suffix inventory drifted")
@@ -471,10 +550,12 @@ def _configure_base() -> None:
         function.__kwdefaults__ = defaults
     _BASE._validate_canary_perp_bisector_survivor_four_point_two_circle_v4_combined_refinement_contract = _validate_v7_contract
     _BASE.validate_canary_perp_bisector_survivor_four_point_two_circle_v4_combined_refinement_parent_novelty = _validate_v7_parent_novelty
-    _BASE._cell_id = lambda center, category: (
-        "canary-perp-bisector-survivor-four-point-two-circle-v7-two-kalmanson-"
-        f"refinements-next-center-{center:02d}-physical-{category}"
-    )
+    # The delegated V5 preparer resolves `category_id` from its own module
+    # globals at every source-ID call site.  `_cell_id` is retained only as a
+    # compatibility alias for downstream adapters; overriding it alone does
+    # not affect physical packet generation.
+    _BASE.category_id = category_id
+    _BASE._cell_id = category_id
 
 
 _configure_base()
