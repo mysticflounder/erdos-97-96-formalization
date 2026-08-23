@@ -288,3 +288,51 @@ def test_v7_cli_routes_all_runtime_entry_points_to_the_v7_root(
     ]
     assert "v7-two-kalmanson" in runner.OUTPUT_ROOT.as_posix()
     assert "sat-profile-portfolio-v7" in runner.OUTPUT_ROOT.as_posix()
+
+
+def test_v7_direct_calls_route_to_the_v7_root(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    calls: list[tuple[str, object, object]] = []
+
+    def fake_prepare(*, output_root: object) -> dict[str, bool]:
+        calls.append(("prepare", output_root, None))
+        return {"ok": True}
+
+    def fake_static(*, root: object, run_root: object) -> dict[str, bool]:
+        calls.append(("static-check", root, run_root))
+        return {"ok": True}
+
+    def fake_start(
+        *, base_url: str, root: object, run_root: object
+    ) -> dict[str, bool]:
+        calls.append((base_url, root, run_root))
+        return {"ok": True}
+
+    monkeypatch.setattr(runner, "_BASE_PREPARE_PORTFOLIO", fake_prepare)
+    monkeypatch.setattr(runner, "_BASE_STATIC_CHECK", fake_static)
+    monkeypatch.setattr(runner, "_BASE_START_CANARY", fake_start)
+    monkeypatch.setattr(runner, "_BASE_START_REST", fake_start)
+
+    assert runner.prepare_portfolio() == {"ok": True}
+    assert runner.static_check() == {"ok": True}
+    assert runner.start_canary(base_url="http://canary") == {"ok": True}
+    assert runner.start_rest(base_url="http://rest") == {"ok": True}
+    assert calls == [
+        ("prepare", runner.OUTPUT_ROOT, None),
+        ("static-check", runner.ROOT, runner.OUTPUT_ROOT),
+        ("http://canary", runner.ROOT, runner.OUTPUT_ROOT),
+        ("http://rest", runner.ROOT, runner.OUTPUT_ROOT),
+    ]
+
+
+def test_v7_runtime_route_tamper_fails_closed(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    monkeypatch.setattr(
+        runner._BASE,
+        "prepare_portfolio",
+        runner._BASE_PREPARE_PORTFOLIO,
+    )
+    with pytest.raises(RuntimeError, match="runtime entrypoint route drifted"):
+        runner._validate_runtime_entrypoint_routes()

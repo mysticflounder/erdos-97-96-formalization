@@ -1116,6 +1116,7 @@ def validate_committed_dependencies() -> None:
     preparer.validate_committed_dependencies()
     _verify_base_runner()
     _validate_checkpoint_roles()
+    _validate_runtime_entrypoint_routes()
 
 
 def _load_base() -> Any:
@@ -1468,6 +1469,18 @@ _BASE.prepare_portfolio = _prepare_portfolio_v7
 _BASE.static_check = _static_check_v7
 _BASE.start_canary = _start_canary_v7
 _BASE.start_rest = _start_rest_v7
+
+
+def _validate_runtime_entrypoint_routes() -> None:
+    expected = (
+        ("prepare_portfolio", _prepare_portfolio_v7),
+        ("static_check", _static_check_v7),
+        ("start_canary", _start_canary_v7),
+        ("start_rest", _start_rest_v7),
+    )
+    for name, route in expected:
+        if getattr(_BASE, name) is not route:
+            raise RuntimeError(f"V7 runtime entrypoint route drifted: {name}")
 
 for _name in (
     "REQUESTED_CORE_LIMIT",
