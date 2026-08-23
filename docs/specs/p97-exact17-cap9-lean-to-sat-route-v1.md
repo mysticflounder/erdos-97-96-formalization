@@ -1635,5 +1635,16 @@ aggregate.
 
 The fail-closed preparation path also has a dedicated V6 immediate-parent
 exporter. It emits the 7,409,788-clause V6 root and 7,409,794-clause physical
-cells solely to authenticate the V7 prefix and 22-clause novelty boundary; no
-V6 solver portfolio is authorized.
+cells solely as custody evidence. The novelty gate proves that the V7 root is
+the exact V6 root prefix followed by the ordered 22-clause suffix; each V7
+physical cell is then checked independently as the V7 root followed by its six
+physical units. No V6 solver portfolio is authorized.
+
+The V7 preparer, PIQD runner, and offline theorem miner are now implemented as
+fail-closed wrappers around the audited predecessor custody code. They pin the
+committed Lean sources and immediate parent, fix one core per job, cap the
+portfolio at twelve active jobs, and use 3,600-second solve and replay
+timeouts. All inherited and V7-focused adversarial tests pass. Production pins
+remain deliberately unset until the wrapper source has a committed identity;
+there is still no V7 preparation config, generated packet, frozen portfolio,
+or PIQD submission.

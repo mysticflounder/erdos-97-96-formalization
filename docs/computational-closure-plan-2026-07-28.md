@@ -15345,5 +15345,17 @@ to the exact-cover source branch in `Rigid221SourceHeavy`.
 
 A separate V6 immediate-parent exporter emits its 7,409,788-clause root and
 7,409,794-clause physical cells. It is a custody witness, not a solver
-campaign: the V7 preparer must prove that every V7 cell has this exact prefix
-and appends exactly the 22 V7 clauses before any packet can be frozen.
+campaign: before any packet can be frozen, the V7 preparer must prove that the
+V7 root is the exact V6 root prefix followed by the 22 V7 clauses. It then
+checks every exported V7 cell separately as that V7 root followed by its exact
+six physical units.
+
+The V7 preparer, PIQD runner, and offline theorem-miner wrappers are now
+source-frozen but intentionally non-production. Their static contract pins the
+committed V7 root, V7 coverage/exporter, V6 immediate-parent exporter, and
+audited predecessor custody code; fixes 308 variables, 76 cells, one core per
+job, at most twelve active jobs, and 3,600-second solve/replay timeouts; and
+keeps `PRODUCTION_PINS_FINALIZED = false`. The combined inherited and V7
+adversarial suite passes 155 tests. After the control-plane commit, the next
+step is to create and commit the external preparation config, freeze the source
+campaign and all 76 identities, and only then authorize one PIQD canary.
