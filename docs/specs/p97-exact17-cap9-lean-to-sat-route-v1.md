@@ -1706,3 +1706,32 @@ the center-2, physical-`none` canary. A terminal result still requires custody
 acceptance, exact 7,409,816-clause replay, and a complete wave-only theorem
 mine before any remaining cell may start. This checkpoint closes neither
 exact-17 nor a production `sorry`.
+
+## V7 SAT quarantine and the mandatory V8 replacement — 2026-08-23
+
+The authorized V7 canary returned `STRUCTURAL_SAT`, and independent exact
+replay satisfied all 7,409,816 clauses. The source-valid complete mine found
+three formalized-core diagnostics and eleven paired two-Kalmanson
+cancellations. Production acceptance then failed closed because the runner and
+miner disagreed on the exact scanner schema and verification-schema strings.
+The V7 result is therefore discovery evidence only: its acceptance artifact
+is quarantined, no V7 remaining cell may launch, and no proof claim may cite it
+as an accepted production wave.
+
+The strict novelty audit found that all three formalized-core records are
+duplicate or subsumed by one of the cancellation supports. The eleven paired
+cancellations generate 44 distinct orbit clauses, of which exactly 29 are
+strict-new over the V7 parent. Their ordered suffix SHA-256 is
+`43c3f4a7452404a67cd179a18966edf9fd58a11a8b1077b86eb312daba710f75`.
+The fresh V8 Lean root must therefore have 7,409,839 clauses, and each physical
+cell must have 7,409,845 clauses.
+
+V8 must use fresh Lean, packet, project, portfolio, runner, and miner
+identities. Prelaunch validation must compare the exact scanner name, scanner
+schema, verification schema, version, script path/hash/bytes, candidate
+counts and families, dependency inventory, and runner-owned receipt schemas.
+Each field needs a tamper regression; V7 identities must be rejected
+explicitly; and a receipt emitted by the real V8 miner must pass an integration
+acceptance test. Only then may one fresh center-2, physical-`none` V8 canary
+run. Its terminal result must again undergo independent exact replay and a
+complete wave-only theorem mine before any remaining V8 cell is authorized.

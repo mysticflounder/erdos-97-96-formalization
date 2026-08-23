@@ -15417,3 +15417,47 @@ the center-2, physical-`none` canary. A terminal result still requires custody
 acceptance, exact 7,409,816-clause replay, and a complete wave-only theorem
 mine before any remaining cell may start. This checkpoint closes neither
 exact-17 nor a production `sorry`.
+
+### 2026-08-23 V7 SAT canary quarantine and V8 successor contract
+
+The center-2, physical-`none` V7 canary subsequently ran exactly once through
+PIQD and returned `STRUCTURAL_SAT`. Its 308-variable, 7,409,816-clause model
+was replayed independently against every clause. The complete wave-only mine
+is source-valid and contains fourteen records: three existing formalized-core
+diagnostics and eleven paired two-Kalmanson cancellations. These mathematical
+results are retained in commit `dbd449d7`.
+
+The V7 production acceptance nevertheless failed closed. The runner expected
+scanner and verification schema strings with a canary-specific prefix, while
+the miner emitted the corresponding unprefixed V7 schemas. The first mismatch
+stopped acceptance, and a second verification-schema mismatch was queued
+behind it. Therefore the V7 acceptance receipt and all V7 remaining cells are
+quarantined: the model and mine may be used for theorem discovery, but they
+are not production evidence and V7 `start-rest` is forbidden.
+
+An independent novelty audit reduced the fourteen records to one production
+family. The two directed FourPoint/two-circle cores reconstruct the same
+eight-hit positional support as one of the eleven two-Kalmanson records; the
+duplicate-center core is strictly subsumed by that support. They add no new
+clauses. The eleven paired cancellation occurrences generate 44 distinct
+order-by-direction clauses. Fifteen are already strictly subsumed by the V7
+parent, leaving the exact strict-new indices
+
+```text
+0,1,2,3,4,6,8,10,12,14,16,18,19,20,21,23,24,27,28,30,31,32,
+35,36,37,39,40,41,43
+```
+
+and a 29-clause suffix with SHA-256
+`43c3f4a7452404a67cd179a18966edf9fd58a11a8b1077b86eb312daba710f75`.
+Every occurrence contributes a strict-new clause violated by the V7 model.
+
+The authorized successor is a fresh V8 root, not a repair or continuation of
+V7. V8 must bank all eleven source occurrences, authenticate all 44 orbit
+clauses, append only the 29-clause suffix, and prove the source-assignment and
+physical-slice bridges. Its expected root size is 7,409,839 clauses and each
+of its 76 source-total physical cells has 7,409,845 clauses. Before preparing
+or launching a V8 canary, the runner and miner must agree exactly on every
+cross-module identity field, with per-field tamper tests, an explicit V7
+mismatch regression, and a real receipt-acceptance integration test. A fresh
+V8 canary is mandatory even though the V7 model seeded the theorem discovery.
