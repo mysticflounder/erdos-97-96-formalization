@@ -1735,3 +1735,55 @@ explicitly; and a receipt emitted by the real V8 miner must pass an integration
 acceptance test. Only then may one fresh center-2, physical-`none` V8 canary
 run. Its terminal result must again undergo independent exact replay and a
 complete wave-only theorem mine before any remaining V8 cell is authorized.
+
+## V8 source packet and runner identity freeze — 2026-08-23
+
+The governed V8 source export completed from base commit `822e2690`. Its
+`source-export-identity.json` has SHA-256
+`0c3815b35c82f2a51329cf74e73ede302e01030252985a8d326b5a52b7ae7b7f`.
+The packet contains 76 ordered physical cells, a 308-variable,
+7,409,839-clause root, and 308-variable, 7,409,845-clause cell CNFs. The 76
+cell CNFs contain 26,319,325,963 bytes in total. The campaign and run-manifest
+byte identities are respectively
+`c83fed020c0cc65aa10db1c9cb73c8b73207ace3d9ab66dbb736a6e1891cd54b`
+(119,943 bytes) and
+`b7954c9351904c86907e8c6d274b5fb8794e596a859b02cc202b824647bffcda`
+(2,543 bytes). Commit `d5c6abd3` retains the exact checkpoint that authorized
+this create-once export.
+
+An independent read-only audit rehashed every root/cell CNF, producer
+manifest, and wave manifest; rejected symlinks; checked the exact ordered
+76-cell inventory; and scanned the root and all cells for the pinned DIMACS
+dimensions and clause-line counts. All checks passed. That audit did not
+repeat literal-range/duplicate-literal validation or rerun the five direct
+Lean byte sentinels, so those stronger checks are not claimed by the
+independent pass.
+
+The live preparation config was then repinned to the finalized runner, so the
+historical source-export checkpoint could no longer serve as an active hygiene
+controller without falsely rewriting its execution inputs. The packet and all
+of its manifests remain immutable. The checkpoint's exact bytes and digest are
+retained in
+`scratch/runs/exact17-v8-identity-freeze-20260823/identity-freeze-v1/source-export-checkpoint-retired.json`.
+That retirement record is bound as an input of the identity-freeze run. The
+original checkpoint path remains only as a tombstone that points to the record;
+it no longer governs the historical packet root.
+
+The provisional-safe identity derivation then produced 76 source and 76
+portfolio identities in
+`scratch/runs/exact17-v8-identity-freeze-20260823/identity-freeze-v1/derived-runner-identities.json`
+(74,222 bytes, SHA-256
+`5f14b89c833f6f3e94046b54615679a1a1617002b5a7bef703146e221a0d4a48`).
+Their canonical table digests are
+`bb61c25860cfebd1a9e6c02048efe2f45b392cbb3b58279fe0d83633faec4512`
+and
+`3081baef569945da87f5c2d652f44af4f5c486c3ea906a55fed3d38d231cf3ad`.
+The V8 runner freezes those tables, the source packet identities, and the
+separate production/runner-code checkpoint identities. Focused runner tests
+check exact artifact equality and fail-closed table tampering.
+
+This checkpoint has not prepared the transformed V8 portfolio and has not
+contacted PIQD. After the frozen runner is committed, the required next gates
+are local `prepare`, independent `static-check`, and only then the single
+center-2, physical-`none` canary. It closes neither exact-17 nor a production
+`sorry`.

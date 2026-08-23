@@ -1,11 +1,17 @@
 from __future__ import annotations
 
 import copy
+import json
 from pathlib import Path
 
 import mine_exact17_canary_perp_bisector_survivor_four_point_two_circle_v8_two_kalmanson_refinements_sat_model as miner
 import pytest
 import run_piqd_exact17_canary_perp_bisector_survivor_four_point_two_circle_v8_two_kalmanson_refinements_sat_portfolio as runner
+
+IDENTITY_AUDIT_RELATIVE = (
+    "scratch/runs/exact17-v8-identity-freeze-20260823/identity-freeze-v1/"
+    "derived-runner-identities.json"
+)
 
 
 def _candidate(family: str) -> dict[str, str]:
@@ -216,34 +222,83 @@ def test_v8_base_owns_every_source_route_and_hook() -> None:
         assert getattr(runner._BASE, name) == value
     assert runner._BASE._transform_source_cell is runner._transform_source_cell
     assert runner._BASE._validate_cell is runner._validate_cell
-    assert runner._BASE.PRODUCTION_PINS_FINALIZED is False
+    assert runner._BASE.PRODUCTION_PINS_FINALIZED is True
     assert "v7" not in runner.SOURCE_RUN_ROOT_RELATIVE.lower()
     assert "v7" not in runner.EXPECTED_SOURCE_THEOREM.lower()
     assert "v7" not in runner.GLOBAL_CAPACITY_ROOT.as_posix().lower()
 
 
-def test_v8_provisional_pins_never_fall_back_to_v7() -> None:
-    for name in (
-        "SOURCE_CAMPAIGN_SHA256",
-        "SOURCE_RUN_MANIFEST_SHA256",
-        "SOURCE_PREPARER_COMMIT",
-        "SOURCE_PREPARER_SHA256",
-        "CHECKPOINT_SHA256",
-        "RUNNER_CODE_CHECKPOINT_SHA256",
-        "SOURCE_CELL_IDENTITIES_SHA256",
-        "PRODUCTION_CELL_IDENTITIES_SHA256",
-    ):
-        assert getattr(runner._BASE, name) == ""
-    for name in (
-        "SOURCE_CAMPAIGN_BYTES",
-        "SOURCE_RUN_MANIFEST_BYTES",
-        "SOURCE_PREPARER_BYTES",
-        "CHECKPOINT_BYTES",
-        "RUNNER_CODE_CHECKPOINT_BYTES",
-    ):
-        assert getattr(runner._BASE, name) == 0
-    assert runner._BASE.SOURCE_CELL_IDENTITIES == {}
-    assert runner._BASE.PRODUCTION_CELL_IDENTITIES == {}
+def test_v8_frozen_source_support_and_identity_pins_are_exact() -> None:
+    runner.validate_committed_dependencies()
+    runner._BASE._require_production_pins()
+    assert runner.EXPECTED_SOURCE_BASE_HEAD == (
+        "822e2690959721c52749ea68a4e304b351a3592d"
+    )
+    assert (runner.SOURCE_CAMPAIGN_SHA256, runner.SOURCE_CAMPAIGN_BYTES) == (
+        "c83fed020c0cc65aa10db1c9cb73c8b73207ace3d9ab66dbb736a6e1891cd54b",
+        119_943,
+    )
+    assert (runner.SOURCE_RUN_MANIFEST_SHA256, runner.SOURCE_RUN_MANIFEST_BYTES) == (
+        "b7954c9351904c86907e8c6d274b5fb8794e596a859b02cc202b824647bffcda",
+        2_543,
+    )
+    assert runner.SOURCE_PREPARER_COMMIT == (
+        "822e2690959721c52749ea68a4e304b351a3592d"
+    )
+    assert (runner.SOURCE_PREPARER_SHA256, runner.SOURCE_PREPARER_BYTES) == (
+        "03554c21050807722f57bd363088e0cec4afb4f33425e366ad23ba4092f081d0",
+        107_061,
+    )
+    assert (runner.CHECKPOINT_SHA256, runner.CHECKPOINT_BYTES) == (
+        "e20fc6d29bcdf8452c2406504e5c8985701f7638564a26bcbe4a24479b643b42",
+        1_328,
+    )
+    assert (
+        runner.RUNNER_CODE_CHECKPOINT_SHA256,
+        runner.RUNNER_CODE_CHECKPOINT_BYTES,
+    ) == (
+        "d9d3aba8eb3b4aa37d93ddca6a57d6a4ec8ebeadb7591f10a18e8257d578e007",
+        1_321,
+    )
+    assert len(runner.SOURCE_CELL_IDENTITIES) == 76
+    assert len(runner.PRODUCTION_CELL_IDENTITIES) == 76
+    assert runner.SOURCE_CELL_IDENTITIES_SHA256 == (
+        "bb61c25860cfebd1a9e6c02048efe2f45b392cbb3b58279fe0d83633faec4512"
+    )
+    assert runner.PRODUCTION_CELL_IDENTITIES_SHA256 == (
+        "3081baef569945da87f5c2d652f44af4f5c486c3ea906a55fed3d38d231cf3ad"
+    )
+
+    audit = json.loads((runner.ROOT / IDENTITY_AUDIT_RELATIVE).read_text())
+    assert audit["source_cell_identities"] == runner.SOURCE_CELL_IDENTITIES
+    assert audit["production_cell_identities"] == runner.PRODUCTION_CELL_IDENTITIES
+    assert audit["source_table_sha256"] == runner.SOURCE_CELL_IDENTITIES_SHA256
+    assert (
+        audit["production_table_sha256"]
+        == runner.PRODUCTION_CELL_IDENTITIES_SHA256
+    )
+
+
+def test_v8_freeze_flag_and_table_tamper_fail_closed(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    with monkeypatch.context() as scoped:
+        scoped.setattr(runner._BASE, "PRODUCTION_PINS_FINALIZED", False)
+        with pytest.raises(runner._BASE.PortfolioRunnerError, match="provisional"):
+            runner._BASE._require_production_pins()
+
+    with monkeypatch.context() as scoped:
+        tampered = dict(runner.SOURCE_CELL_IDENTITIES)
+        first = next(iter(tampered))
+        tampered[first] = {
+            **tampered[first],
+            "cnf_bytes": tampered[first]["cnf_bytes"] + 1,
+        }
+        scoped.setattr(runner._BASE, "SOURCE_CELL_IDENTITIES", tampered)
+        with pytest.raises(
+            runner._BASE.PortfolioRunnerError, match="identity table digest"
+        ):
+            runner._BASE._require_production_pins()
 
 
 def test_v8_base_has_no_uppercase_v7_route_or_schema_binding() -> None:

@@ -15461,3 +15461,35 @@ or launching a V8 canary, the runner and miner must agree exactly on every
 cross-module identity field, with per-field tamper tests, an explicit V7
 mismatch regression, and a real receipt-acceptance integration test. A fresh
 V8 canary is mandatory even though the V7 model seeded the theorem discovery.
+
+### 2026-08-23 V8 authenticated packet and identity freeze
+
+The V8 create-once source export completed at base `822e2690`, and its exact
+checkpoint was retained in commit `d5c6abd3`. The packet has the required 76
+cells, 308 variables, 7,409,839 root clauses, and 7,409,845 clauses per
+physical cell. Its campaign identity is
+`c83fed020c0cc65aa10db1c9cb73c8b73207ace3d9ab66dbb736a6e1891cd54b`
+(119,943 bytes); its run-manifest identity is
+`b7954c9351904c86907e8c6d274b5fb8794e596a859b02cc202b824647bffcda`
+(2,543 bytes). An independent read-only audit rehashed every referenced
+artifact, checked regular-file/no-symlink custody, matched the ordered cell
+inventory, and scanned all root/cell DIMACS dimensions and clause counts.
+
+Finalizing the live runner pin necessarily changed the preparation config after
+that historical export. The source packet and its manifests remain untouched;
+the checkpoint's exact bytes and digest are retained in
+`scratch/runs/exact17-v8-identity-freeze-20260823/identity-freeze-v1/source-export-checkpoint-retired.json`.
+The original export checkpoint no longer controls the packet; its active path
+is now a tombstone pointing to this retirement record.
+
+The retained runner derivation contains 76 source and 76 transformed
+identities. Their canonical table hashes are
+`bb61c25860cfebd1a9e6c02048efe2f45b392cbb3b58279fe0d83633faec4512`
+and
+`3081baef569945da87f5c2d652f44af4f5c486c3ea906a55fed3d38d231cf3ad`.
+The V8 runner now freezes these tables and the exact source/checkpoint byte
+pins, with focused exact-artifact and tamper regressions. The next authorized
+steps are a committed local portfolio `prepare`, an independent
+`static-check`, and then only the center-2, physical-`none` PIQD canary.
+No V8 solver job has run, and this checkpoint closes neither exact-17 nor a
+production `sorry`.
