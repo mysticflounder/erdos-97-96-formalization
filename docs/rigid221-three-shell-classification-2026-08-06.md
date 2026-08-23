@@ -79,22 +79,74 @@ R_v  ∩ C9 = {u, x_v}    R_xv ∩ C9 = {u, x_u}
 R_δ  ∩ C9 = {v, x_v}    R_c  ∩ C9 = {v, δ}.
 ```
 
-The eight points outside `C9` split into four two-point portions, one for each
-row. Up to reversal, the two remaining cap orders are
-`ℓ<u<v<c<δ<x_v<e<x_u<r` and
-`ℓ<u<v<c<δ<e<x_v<x_u<r`. Upstream invariants fix the carrier, these four
-rows, the physical five-class `H = {u, x_u, v, x_v, δ}`, all outside points
-assigned to a row, `R_e ∩ H = {x_u, δ}`, and a further row `R_d` with at most
-one physical hit; the row centers share one radius, omit their own centers,
-and have pairwise intersections of size at most two.
+Lean selects these rows at the respective deletion sources `x_v`, `u`, `v`,
+and `δ`; the displayed subscripts name their proved geometric centers rather
+than their source-row object names.
 
-The unused-outside-point arm is closed. The exact-cover arm is **OPEN**: the
-four two-point outside portions alone are not contradictory. The missing
-certificate must use the cyclic order together with metric circle incidence
-(or a finite perpendicular-bisector/interlacing certificate) to show that no
-such exact cover exists. Cardinality and four-pair partition arguments alone
-must not be promoted. This terminal remains outside the universal exact-17
-closure and is the intended producer/consumer target for the exact replay.
+The eight points outside `C9` split into four disjoint two-point portions, one
+for each row.  This already determines the complete pairwise intersections:
+
+```text
+R_xv ∩ R_v = {u}     R_v ∩ R_δ = {x_v}     R_δ ∩ R_c = {v},
+R_xv ∩ R_δ = ∅       R_xv ∩ R_c = ∅         R_v ∩ R_c = ∅.
+```
+
+Their union is the outside set together with `{u, x_u, v, x_v, δ}`.
+Consequently `ℓ`, `r`, `c`, and `e` are exactly the four carrier points
+omitted by all four old rows.  These are derived consequences of the exact cap
+slices and outside multiplicity one, not additional source assumptions.  The
+base finite encoding already entails them, so restating them does not create a
+new CEGAR cut.
+
+The cocircular-pentagon order theorem has retired the second formerly possible
+named order.  The surviving source packet has, up to reversal, only
+
+```text
+ℓ < u < v < c < δ < x_v < e < x_u < r.
+```
+
+The eliminated order placed `e` between `δ` and `x_v`.  Its exclusion uses
+the common physical circle and the fact that its carrier apex lies outside the
+selected cap; it is not a consequence of the five displayed betweenness facts
+alone.  The source constructor now returns only `source.model.order = 0`.
+
+Upstream invariants also fix the physical five-class
+`H = {u, x_u, v, x_v, δ}`, give `R_e ∩ H = {x_u, δ}`, and give a further
+row `R_d` containing `c`, whose center is not one of the four old centers and
+whose physical trace has cardinality at most one.  Different rows have their
+own radii; no common radius across the four old rows is asserted.
+
+There are two representation boundaries that subsequent theorem mining must
+respect:
+
+1. Source membership in an exact shell is not by itself the blocker property.
+   The selected critical-shell system additionally carries `no_qfree`, which
+   rules out every positive-radius class containing at least four remaining
+   carrier points at the center after deletion of the source.  Without that
+   clause, another radius could survive.
+2. In the geometric branch the named rows at `e` and `d` come from exact
+   critical shells.  The finite `SourceRealization`, however, exposes a
+   selected four-support at every center and does not retain full-shell
+   exactness as a field for arbitrary rows.  A finite omission may therefore
+   be treated as an off-circle fact only where a separate exact-shell bridge
+   supplies it.
+
+The unused-outside-point arm is closed.  The exact-cover arm remains
+**OPEN**, but the literal `sorry` currently on the spine is not a valid
+certificate-shaped endpoint: it asks for UNSAT of
+`extendedCocircularPentagonOrderCnf`, while that exact 7,198,853-clause root
+has an independently replayed satisfying assignment.  It must not be filled
+by an axiom or an UNSAT certificate.  Closure now requires either:
+
+- a later source-valid refinement with a proved source adapter and an
+  independently replayed UNSAT certificate, followed by rewiring the spine to
+  that child; or
+- a direct geometric contradiction under the full typed residual hypotheses.
+
+The evolving authenticated root and model identities are recorded in
+`computational-closure-plan-2026-07-28.md`, section 13.28.24 and its successors.
+Cardinality, the four-pair partition, and the six derived row intersections
+alone remain insufficient and must not be promoted as a closure argument.
 
 ## First obstruction beyond the three-shell bank
 
