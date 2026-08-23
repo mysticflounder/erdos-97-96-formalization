@@ -15374,3 +15374,46 @@ fresh V2 checkpoint, config, and generated-root names. V1 remains immutable and
 must never be promoted. The next gate is a newly frozen V2 config followed by a
 fresh source export and independent 76-cell identity audit; only a passing V2
 packet may enter the runner-freeze and one-canary sequence.
+
+### 2026-08-23 V7 V3 packet and production-identity freeze
+
+The V2 name above was used only for a governed empty bootstrap. Its ownership
+contract failed closed before source export, so it contains no reusable packet.
+The authoritative replacement is lane
+`exact17-v7-two-kalmanson-successor-preparer-v3-20260823`, run
+`preparation-v3`, using source-preparer commit
+`1fe86e292b6d112ee98052c443b92ca4b84354ca`. The V3 source export is
+source-total: 76 cells over the 7,409,810-clause V7 root, each with 308
+variables and 7,409,816 clauses. Its campaign is 121,958 bytes with SHA-256
+`bf034f55631fa7d33f3aa4d9a81b46e87b922a94b5b7a1fa3f5c53b8de45c001`;
+its run manifest is 2,532 bytes with SHA-256
+`4deb8f23ac7e63567083e7b5021a609ad56cc6d83be4d28aaa4ac56d8ecb7cfa`.
+
+The independent identity audit is retained at
+`scratch/runs/exact17-v7-checkpoint-alias-fix-20260823/identity-freeze-v1/derived-runner-identities.json`
+(74,906 bytes, SHA-256
+`58cdbce660c4f09280b4ec5e35d539b69da57f65cd5ec4bd42f109208fab15c0`).
+It contains 76 source and 76 production rows; their canonical table digests are
+`b492050a28756b28fa78f533287b77ce6b6d41b266bc770d36c428de1327547c`
+and `0d52e944a3c145f37765db2954f5f930586502e1e961a59b3863d95dbe45b153`.
+
+The first production `prepare` exposed a Python default-argument routing bug:
+the delegated entry points had captured the predecessor V6 output root before
+the V7 wrapper rebound its constants. The existing V6 campaign rejected the
+conflicting bytes, so no V6 or V7 artifact was overwritten and PIQD was never
+contacted. Commits `80322356` and `080dc266` replace all four inherited runtime
+entry points with explicit V7-root adapters and add CLI, direct-call, and
+route-tamper regressions; the focused runner/miner suite passes 16 tests and
+Ruff.
+
+The corrected committed runner has now created and independently static-checked
+the 76-cell production portfolio. Its 154 retained JSON artifacts remain
+`PREPARED_LOCAL_ONLY`; the campaign manifest is 139,649 bytes with SHA-256
+`cba94bd7d1e7569409d8616fbd57eeac5d14ea8e9d376205cef91c8b0aa73b94`,
+and the run manifest is 79,152 bytes with raw SHA-256
+`4aa89d0637f3255832b0a7e078fef77050808026d7fd0007f48b82da1dc2ef0e`.
+No canary, solver, or PIQD job has run. The next authorized action is exactly
+the center-2, physical-`none` canary. A terminal result still requires custody
+acceptance, exact 7,409,816-clause replay, and a complete wave-only theorem
+mine before any remaining cell may start. This checkpoint closes neither
+exact-17 nor a production `sorry`.
