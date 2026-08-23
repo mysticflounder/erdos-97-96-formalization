@@ -1,6 +1,6 @@
 # F1/TriApex checkpoint 4 review
 
-**Date:** 2026-08-22
+**Date:** 2026-08-22; implementation update 2026-08-23
 **Scope:** the 15 F1-lane files plus the independent checkpoint-4 review in
 `/tmp/Erdos-97-Proof-complete-2026-08-22.tar`, reconciled with the live
 repository.  This is a status and supersession audit, not a closure claim.
@@ -14,16 +14,16 @@ correct frontier is:
 - **D1 / provenance-rich joint deletion:** mathematically open;
 - **D2 / two-radius grid:** prose-closed by a trig-free polynomial
   contradiction, but not yet formalized as a live Lean theorem;
-- **D3--D7 and D9:** bypass candidates through the reverse-hit-to-D1 escape;
-- **D8:** its coordinator is source-clean and its equal-secondary-blocker
-  branch is closed by canonical-support equality plus the two-circle
-  intersection bound; the distinct-secondary-blocker branch constructs a
-  source-faithful three-edge cycle and reaches an open consumer.
+- **D3--D9:** source-clean compatibility wrappers through the checked
+  reverse-hit-to-D1 escape; their endpoint-specific data remain available in
+  the public APIs but no longer create independent proof obligations.
 
-The live `TriApexEndpointRetainedOmission.lean` file still contains exactly
-nine bare `sorry` occurrences.  Thus “D8 source-clean” does not mean F1 is
-closed: the D8 coordinator delegates its distinct branch to the open
-three-cycle theorem, and the other eight current declarations remain open.
+The live `TriApexEndpointRetainedOmission.lean` file now contains exactly two
+bare `sorry` occurrences, D1 and D2.  A focused `lake-build` and refreshed
+kernel reference mine on 2026-08-23 reduced the publish-spine frontier from 36
+to 29 reachable `sorry` leaves, with exactly those two TriApex leaves.  Both
+published claims still reach `sorryAx`, so this is a seven-leaf frontier
+reduction, not F1 closure.
 
 ## Independent checkpoint-4 review
 
@@ -63,14 +63,17 @@ four-point retained-radius partition and a second-rich-radius escape.  A
 rich first-apex class of size at least four supplies a mutually omitted pair,
 but renewal is a fallback producer, not the primary contradiction.
 
-The reverse-hit observation is the preferred bypass producer.  If the two
+The reverse-hit observation is now the checked bypass producer.  If the two
 retained shells each meet the retained first-apex radius in at most two points
 and share the retained source, their union covers at most three points of a
 class of size at least four.  A point outside their union preserves both exact
 rows and the robust first apex, yielding the D1 joint-deletion packet.  This
-should bypass D3--D9 before constructing a fresh endpoint.  The proposed
-adapter name is `nonempty_pairedApexClassJointDeletion_of_reverseHit`; it is
-not currently present in the live source.
+bypasses D3--D9 before constructing a fresh endpoint.  The live adapter is
+`nonempty_pairedApexClassJointDeletion_of_reverseHit`; `#print axioms` reports
+only `propext`, `Classical.choice`, and `Quot.sound` for it.  The generic
+contradiction route
+`false_of_retainedOmission_reverseHit_jointDeletion_triApexAllLarge_core`
+then calls D1 and therefore still reaches `sorryAx`.
 
 ## D2 prose-only result
 
@@ -88,7 +91,7 @@ This is a mathematically closed route in the archive, not a current Lean
 declaration.  The live source still has the D2 `sorry`; implementation needs
 the three coordinate adapters and then a direct build/axiom audit.
 
-## D8 source truth
+## D8 source truth and supersession
 
 The current source-clean coordinator is
 `false_of_retainedOmission_reverseHitFresh_endpointCommonDeletion_triApexAllLarge_core`.
@@ -98,53 +101,48 @@ intersection bound.  Its distinct-blocker branch constructs
 `EndpointDistinctBlockerThreeStepDeletionCycle` and calls the open theorem
 `false_of_endpointDistinctBlockerThreeStepDeletionCycle_triApexAllLarge_core`.
 
-Therefore the accurate classification is:
+Before the 2026-08-23 bypass, the accurate branch classification was:
 
 ```text
 D8 producer/coordinator: source-clean
 D8 equal-secondary-blocker child: prose/source branch closer
-D8 distinct-secondary-blocker consumer: open
+D8 distinct-secondary-blocker consumer: formerly open
 ```
 
-It remains independently bypassable through D1; no D8 branch should be
-promoted to whole-F1 closure.
+The distinct-cycle consumer is now a source-clean wrapper through D1 and is
+off the active reverse-hit spine.  Its geometric development remains useful
+historical evidence, but it is no longer an independent closure obligation.
 
-## Current nine-sorry source roster
+## Current two-root source roster
 
-The nine live open declarations are:
+The two live open declarations are:
 
 1. `false_of_pairedCommonDeletion_apexClassJointDeletion_triApexAllLarge_core`
 2. `false_of_pairedCommonDeletion_twoRadiusGrid_triApexAllLarge_core`
-3. `false_of_retainedOmission_reverseHitFresh_endpointCrossHit_firstCenterEqFreshSource_triApexAllLarge_core`
-4. `false_of_retainedOmission_reverseHitFresh_endpointCrossHit_sharedBlocker_JInLeftAdjacentCap_triApexAllLarge_core`
-5. `false_of_retainedOmission_reverseHitFresh_endpointCrossHit_sharedBlocker_JInRightAdjacentCap_triApexAllLarge_core`
-6. `false_of_retainedOmission_reverseHitFresh_endpointCrossHit_secondCenterEqFirstSource_triApexAllLarge_core`
-7. `false_of_retainedOmission_reverseHitFresh_endpointCrossHit_genericRoles_triApexAllLarge_core`
-8. `false_of_endpointDistinctBlockerThreeStepDeletionCycle_triApexAllLarge_core`
-9. `false_of_retainedOmission_reverseHitFresh_threeDistinctBlockers_triApexAllLarge_core`
 
-The source file also contains checked dispatchers and producers around these
-leaves.  The repository README’s global 36-leaf count is an older built-spine
-measurement; it must not be read as evidence that these nine current leaves
-have closed.
+The seven former D3--D9 declarations remain as source-clean compatibility
+wrappers so downstream names and theorem signatures do not break.  A refreshed
+kernel mine reports 29 reachable leaves globally and exactly the two entries
+above for TriApex.
 
 ## Stale anchors and trust boundary
 
 - Use fully qualified declaration names, not archive line numbers.  The
   checkpoint snapshots and old source-audited ledger have drifted.
-- `docs/live-blueprint.md` is a generated stale snapshot: it still displays
-  the old D8 coordinator as a `sorry`, while the live source has a source-clean
-  coordinator and an open distinct-cycle consumer.
-- The old nine-leaf roster in pre-v4 F1 ledgers is superseded by the exact v4
-  roster above.
-- The proposed reverse-hit adapter and D2 polynomial declaration are prose
-  targets, not live declarations.
+- `docs/live-blueprint.md` is a generated shared-worktree artifact and was not
+  overwritten by this lane.  The refreshed `proof-blueprint spine` command,
+  not that file, is the authority for the 29/2 counts above.
+- The old nine-leaf roster is a historical pre-refactor snapshot.  D3--D9 are
+  now transparent wrappers; D1 and D2 are the current independent roots.
+- The reverse-hit adapter is live and kernel-clean.  The D2 polynomial
+  declaration remains a prose target.
 
 Prose closure, source audits, finite polynomial reasoning, static inventories,
 and generated blueprint entries do not remove `sorryAx`. F1 reclassification
 requires live Lean elaboration, a clean relevant build, direct reachability
-verification, and publication-target `#print axioms`. The last built README
-measurement still reports `sorryAx` on the published claims.
+verification, and publication-target `#print axioms`.  Those checks were rerun
+for this refactor: the selector is kernel-clean, the global frontier is 29,
+and `Problem97.erdos97_rhs` still reports `sorryAx`.
 
 ## Archive appendix: all 16 F1-relevant files
 

@@ -33,7 +33,7 @@ Two of the three are finished and kernel-checked. The counting engine and the
 2026-08-18 as exactly `{propext, Classical.choice, Quot.sound}`. The descent
 engine is where the work remains. Its hard core is the removable-vertex lemma,
 which is assembled from a three-way split; two of the three branches are closed, and the third fans out
-through a long sequence of case splits into an open frontier of **36
+through a long sequence of case splits into an open frontier of **29
 `sorry`-carrying leaf theorems** reachable from the publish target, all of them
 in the `ATailFrontierLiveClosure` namespace under
 [`P97/ATail/FrontierLiveClosure/`](lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure).
@@ -57,7 +57,7 @@ proofs discharge the restatement — so a reviewer can see exactly what is claim
 without trusting anything in this tree.
 
 The frontier has grown rather than shrunk since the last README revision, which
-on 2026-08-07 reported 21 open leaves against the 36 measured today. That is the
+on 2026-08-07 reported 21 open leaves against the 29 measured today. That is the
 expected shape of this kind of work — case splitting converts one coarse
 obligation into several sharp ones — but it should not be read as progress
 toward zero. The solver-assisted lanes — SAT, CEGAR, PIQD, and the off-spine
@@ -152,7 +152,7 @@ convex `A`
 ## Proof status
 
 **Both published claims still reach `sorryAx`.** Measured directly against a
-built tree on 2026-08-18:
+built tree on 2026-08-23:
 
 ```
 'Problem97.erdos97_rhs' depends on axioms:
@@ -161,7 +161,7 @@ built tree on 2026-08-18:
   [propext, sorryAx, Classical.choice, Lean.ofReduceBool, Lean.trustCompiler, Quot.sound]
 ```
 
-`sorryAx` traces to the 36 leaves below. The kernel mine backing that
+`sorryAx` traces to the 29 leaves below. The kernel mine backing that
 statement has a declared boundary — `.blueprint.toml`'s `[mining].skip` excludes
 the generated `EndpointCertificate` / `SurplusCertificate` / `*Export` subtrees,
 which is what the "20 trusted leaves" line below counts. Those subtrees contain
@@ -171,7 +171,7 @@ no bare `sorry`, and `#print axioms` on the targets covers them regardless.
 `Lean.trustCompiler` come from `native_decide` in the generated finite
 certificate banks, allowed under the project's `native_decide` policy (the
 closure is kernel-checked and the evaluated checkers are plain verified Lean,
-with no `unsafe`, `@[implemented_by]`, or `@[extern]`). Once the 36 leaves are
+with no `unsafe`, `@[implemented_by]`, or `@[extern]`). Once the 29 leaves are
 proved, `sorryAx` drops out and both closures become the core axioms plus those
 two compiler axioms — the declared trust boundary of the certificate
 infrastructure.
@@ -179,18 +179,19 @@ infrastructure.
 `proof-blueprint spine`, run against this checkout, reports:
 
 ```
-open: 126/36264 node(s)
+open: 117/37252 node(s)
 trusted leaves: 20 🔒 (certs excluded from mine by [mining].skip; covered by `#print axioms`)
-spine source: 291224 line(s) of lean across 36264 decl(s)
-open obligations (37):   -- 36 sorry-carrying leaves + the sorryAx node itself
+spine source: 319741 line(s) of lean across 37252 decl(s)
+open obligations (29):   -- 29 reachable sorry-carrying leaves
 ```
 
 The 2026-08-22 prose-library synthesis did not rerun this build-derived
-measurement. Its live source audit found the same nine TriApex and three
-TwoDeletion `sorry`s, plus eight bare TwoSource `sorry`s of which the table
-below counts six as reachable in the built snapshot. The prose reductions and
-new source-clean helpers close no whole publish-spine obligation; regenerate
-the spine before changing the table.
+measurement.  The 2026-08-23 TriApex refactor did: it proves a source-clean
+reverse-hit joint-deletion selector, routes the seven endpoint-specific D3--D9
+declarations transparently through D1, and leaves exactly D1 and D2 as the
+cluster's independent open roots.  The selector has core-only axiom closure;
+the route and both published claims still reach `sorryAx` through D1/D2 and the
+other clusters.
 
 Three status terms recur below and are worth pinning down, since they are what
 separates "proved" from "not proved" in this document. **Source-clean** means the
@@ -202,7 +203,7 @@ the one that means proved.
 
 ### The open frontier
 
-All 36 leaves live in the `Problem97.ATailFrontierLiveClosure` namespace, spread
+All 29 leaves live in the `Problem97.ATailFrontierLiveClosure` namespace, spread
 over nine modules. They group into four clusters, each a separate line of
 attack — though not fully independent: the roadmap notes that closing the
 TwoSource cluster would terminate the Level-5 and FreshThird branches together
@@ -217,19 +218,19 @@ roster authority):
 | **Rigid221** | `Rigid221SourceHeavy.lean` | 8 | The source-heavy BlockerV residual — exact-cardinality strata, `native_decide` coverage banks, and the exact-12/exact-17 CEGAR lane |
 | | `Rigid221Placement.lean` | 5 | |
 | | `Rigid221Closure.lean` | 5 | |
-| **TriApex** | `TriApexEndpointRetainedOmission.lean` | 9 | Retained-omission configurations with all three apex caps large |
+| **TriApex** | `TriApexEndpointRetainedOmission.lean` | 2 | Retained-omission configurations with all three apex caps large; D1 joint deletion and D2 two-radius grid remain |
 | **TwoSource** | `TwoSourceFreshThirdResidual.lean` | 3 | Two cap sources plus a fresh third centre; the FreshThird and FirstFiber lanes |
 | | `TwoSourceFirstFiberCollision.lean` | 1 | |
 | | `TwoSourceClosure.lean` | 1 | |
 | | `TwoSourceCanonicalSurface.lean` | 1 | |
 | **Two-deletion** | `TwoDeletionCollision.lean` | 3 | The B-family (formerly packages B1/B2/B3): mutual-omission and four-centre common-deletion collisions |
-| **Total** | | **36** | |
+| **Total** | | **29** | |
 
 [`FrontierLiveClosure.lean`](lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean)
 is now a 46-line import-only coordinator; the obligations live in the
 [`FrontierLiveClosure/`](lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure)
 package beside it (349 modules, ~196k lines, most of it generated CNF and
-replay material). Six of the 36 sit in the nested
+replay material). Six of the 29 sit in the nested
 `TwoSourceExactCollisionRowsTerminal` namespace.
 
 The table counts **obligations reachable from the publish target**, as reported
@@ -596,7 +597,7 @@ pin.
 
 **Note on scale.** `lean/Erdos9796Proof/` is 5,213 `.lean` files and about 1.46M
 lines, most of it generated certificate and replay material; the published spine
-is 291,224 lines across 36,264 declarations. A cold build is correspondingly
+is 319,741 lines across 37,252 declarations. A cold build is correspondingly
 long, and `lake exe cache get` is not optional in practice.
 
 ### Python and repository hygiene
@@ -649,7 +650,7 @@ lean/
       Foundation.lean           -- shared vocabulary + signed-area primitives
       ATail/                    -- the A-tail frontier and its certificate ingress
         FrontierLiveClosure.lean          -- 46-line import-only coordinator
-        FrontierLiveClosure/              -- the 36 open leaves + generated CNF/replay
+        FrontierLiveClosure/              -- the 29 open leaves + generated CNF/replay
         CardElevenUniqueFourCertificate/  -- promoted card-11 certificate graph
       Dumitrescu/               -- isosceles-counting lemma chain (L1 ... Lc3)
       CGN/                      -- cap-witness counting bridge (CGN ... CGN8)
@@ -812,7 +813,7 @@ a final single-apex exhaustion:
 - [`Descent.lean`](lean/Erdos9796Proof/P97/Descent.lean) — packages the two into
   the contradiction-with-minimality shape the induction wrapper consumes.
 
-Everything on the descent path outside the 36 frontier leaves is closed and
+Everything on the descent path outside the 29 frontier leaves is closed and
 kernel-audited: the base case `FiniteN9Closure` (axiom closure `propext,
 Classical.choice, Quot.sound`), the cap-sum bridge (`|A| > 9 ⇒ some opposite cap
 is surplus`), the counting bound `counterexample_card_ge_nine`, the surplus-cap

@@ -2,20 +2,20 @@
 title: "The Erdős 97 Descent Argument"
 subtitle: "Authoritative merged atomic prose proof, blocker reformulation, and exact open frontier"
 author: "Working proof manuscript"
-date: "22 August 2026"
+date: "23 August 2026"
 ---
 
 **Repository:** `mysticflounder/erdos-97-96-formalization`
 **Git repository:** `https://github.com/mysticflounder/erdos-97-96-formalization`
-**Built-spine status measurement:** repository README snapshot of 18 August 2026
+**Built-spine status measurement:** refreshed kernel mine of 23 August 2026
 **Source-read anchor used for the late-first-apex API:** commit `bc4c04db398979c57edaf4af9c60e1eae984f436` (20 August 2026)
 **Authoritative consolidation:** 22 August 2026
 **Latest companion-agent merge:** A5 same-side metric-cell audit, F1 checkpoint-4/D1-v23/D8 reconciliation, F2 checkpoint 36, FreshThird preferred-choice patch kit, and the F3 third-pass trace-system correction, 22 August 2026
 **Latest theorem-discovery checkpoint:** universal physical-source (`∀v`) trace, blocker-fiber, deletion-fan, sparse-graph, and survival-amplification package extracted from the F3 trace-digraph pass, 22 August 2026
-**Current Lean-frontier annotation audit:** live source and all 117 archive files reconciled at lane base `e55af1fac5bf7616dc22ea70ffaa414246471848`, 22 August 2026; no fresh integrated Lean build was run
-**Document status:** Authoritative merged research manuscript. It consolidates the latest A5 escape metric-cell audit, the source-audited TriApex specification, the intrinsic F2 all-blockers/late-choice reduction through checkpoint 36, the preferred-first-cap FreshThird compatibility proof, the corrected nonrecursive F3 physical-trace program, and the universal physical-source (`∀v`) theorem package. The elementary descent, packet extraction, and `IsM44` branch are reconstructed in full. A5 same-side Cell 7, the TriApex D8 equal-secondary-blocker child, and the rebased raw-main FreshThird route are locally prose-closed or source-clean as stated below; the TriApex D1 consumer, four intrinsic F2 terminals and F8 adapter, five F3 metric roots, and the general non-`IsM44` theorem remain open.
+**Current Lean-frontier annotation audit:** live source and all 117 archive files reconciled on 22 August 2026; the F1 reverse-hit refactor was built and kernel-mined on 23 August 2026, reducing the global reachable frontier from 36 to 29 and TriApex from nine roots to D1 and D2
+**Document status:** Authoritative merged research manuscript. It consolidates the latest A5 escape metric-cell audit, the source-audited TriApex specification and implemented reverse-hit-to-D1 bypass, the intrinsic F2 all-blockers/late-choice reduction through checkpoint 36, the preferred-first-cap FreshThird compatibility proof, the corrected nonrecursive F3 physical-trace program, and the universal physical-source (`∀v`) theorem package. The elementary descent, packet extraction, and `IsM44` branch are reconstructed in full. A5 same-side Cell 7 and the rebased raw-main FreshThird route are locally prose-closed as stated below; the TriApex D1 and D2 consumers, four intrinsic F2 terminals and F8 adapter, five F3 metric roots, and the general non-`IsM44` theorem remain open.
 
-> **Merge authority and verification boundary.** This file supersedes the prior authoritative merge and incorporates the A5 escape-refactor audit, the F1 checkpoint-4 continuation and D1-v23 ingress, F2 checkpoint 36, the FreshThird preferred-choice v2 patch kit, the third-pass correction to the F3 program, and the universal physical-source checkpoint. The A5 finite audit was replayed by exact scripts; the FreshThird patch passed static source and `git apply --check` audits; and the F1/F2/F3 source declarations were read in the live checkout. No fresh integrated Lean/Lake build or axiom audit was run for this consolidation. Prose-complete reductions, static patches, source-clean helpers, and kernel-verified closure are therefore kept separate throughout.
+> **Merge authority and verification boundary.** This file supersedes the prior authoritative merge and incorporates the A5 escape-refactor audit, the F1 checkpoint-4 continuation and D1-v23 ingress, F2 checkpoint 36, the FreshThird preferred-choice v2 patch kit, the third-pass correction to the F3 program, and the universal physical-source checkpoint. The A5 finite audit was replayed by exact scripts; the FreshThird patch passed static source and `git apply --check` audits; and the F1/F2/F3 source declarations were read in the live checkout. The 23 August F1 refactor additionally passed a focused `lake-build`, refreshed kernel reference mining, and direct axiom audits. Its selector is kernel-clean, but its contradiction route and the publication target still reach `sorryAx` through D1/D2 and the other clusters. Prose-complete reductions, static patches, source-clean helpers, frontier reductions, and kernel-verified closure are therefore kept separate throughout.
 >
 > **Bundle-integration receipt.** This revision synthesizes every file in `/tmp/Erdos-97-Proof-complete-2026-08-22.tar` (SHA-256 `e0a2df74165ed4ed13925273bc2e064eaafc51696139f02307cf861a551fc357`) into this manuscript, the dated branch audits, the literature note, the B-family plan, the dead-end/status ledgers, or the source-accounting ledger. Superseded drafts and duplicate exports contribute provenance and corrected lessons; they are not copied back as competing proof authorities.
 
@@ -66,7 +66,7 @@ A second, independent set of annotations records the expected effect of formaliz
 - **[LEAN-BYPASS-CANDIDATE]** The section describes a source-faithful refactor that could remove a current `sorry` from the reachable spine without proving that declaration at its present information-poor boundary. Every downstream root named by the refactor must still be closed.
 - **[LEAN-NOT-A-CLOSER]** The section is a stress model, conditional calculation, scope correction, or negative result. It is useful proof-safety information but should not be assigned as a task to fill a `sorry`.
 
-> **Current audit conclusion.** No section yet qualifies as `[LEAN-DIRECT-CLOSER]` for an entire one of the 36 leaves in the last built publication-spine snapshot. The newest work adds a complete A5 same-side Cell 7 proof, retains the complete TriApex D8 equal-blocker child proof, gives a prose-complete preferred-system proof of the later raw-main FreshThird packet, reduces the old six-leaf F2 architecture to two intrinsic open roots, and closes the finite-set/state calculus underlying a proposed F3 well-founded descent. The latter F2/F3 results are bypass/helper frameworks, not proofs of their terminal roots.
+> **Current audit conclusion.** No remaining open root yet qualifies as `[LEAN-DIRECT-CLOSER]`. The implemented TriApex bypass proves the reverse-hit selector and removes seven endpoint-specific declarations from the reachable frontier by routing them through D1; it does not prove D1. The current publication spine has 29 `sorry` leaves. The newest prose work also adds a complete A5 same-side Cell 7 proof, gives a prose-complete preferred-system proof of the later raw-main FreshThird packet, reduces the old six-leaf F2 architecture to two intrinsic open roots, and closes the finite-set/state calculus underlying a proposed F3 well-founded descent. The latter F2/F3 results are bypass/helper frameworks, not proofs of their terminal roots.
 
 The current positive annotation map is:
 
@@ -81,8 +81,8 @@ The current positive annotation map is:
 | A5.13j8a, same-side Cell 7 | `[LEAN-BRANCH-CLOSER]` | closes one of the ten exact same-side A5 slot cells by the cocircular nested-bisector midpoint contradiction; nine same-side cells remain |
 | A5.13k | `[LEAN-BRANCH-CLOSER]` | closes twenty of the forty-nine raw U7 trace/hit products |
 | A5.7a, A5.10-A5.11, A5.13c, A5.13j6e-A5.13j6i, A5.13j6o-A5.13j6v, A5.13j8-A5.13j8a, A5.16 | `[LEAN-HELPER-READY]` | supplies prose-complete A5 normalizers, exact fiber/cardinality facts, order classifiers, continuation producers, exact ten-cell coverage contracts, and the nine-cell residual interface |
-| TriApex D8.a | `[LEAN-BRANCH-CLOSER]` | closes the equal-secondary-blocker child of `false_of_retainedOmission_reverseHitFresh_endpointCommonDeletion_triApexAllLarge_core`; the distinct child remains `TA-JOINT-DELETION` |
-| TriApex D0-D13 | specification / typed-kernel reduction | reduces the nine leaves to five explicit kernels; no whole leaf is yet closed |
+| TriApex D8.a | `[LEAN-BRANCH-CLOSER]` | historical local closer retained for research value; D8 is now a source-clean compatibility wrapper through D1 and is off the active reverse-hit spine |
+| TriApex reverse-hit selector / D0-D13 | `[LEAN-BYPASS-CANDIDATE]` (implemented and kernel-checked) | proves `nonempty_pairedApexClassJointDeletion_of_reverseHit`, routes D3--D9 through D1, and reduces nine TriApex roots to D1 and D2; it does not prove either root |
 | CD1-CD11 in §16.5.38 | `[LEAN-HELPER-READY]` | supplies the canonical common-deletion calculus and robust-apex tetrahedron-or-continuation theorem used to reduce A5/A7/A8 |
 | I15.0-I15.11, universal physical-source package | `[LEAN-HELPER-READY]` | promotes named-`v` trace, blocker-fiber, boundary-placement, deletion-fan, sparse conflict-graph, and survival-amplification arguments to a source-independent API; no whole leaf closes |
 | F2 §§0-11, intrinsic all-blockers reduction | `[LEAN-BYPASS-CANDIDATE]` plus `[LEAN-HELPER-READY]` | replaces the old E1/E2/E3/F1/G1/H1 architecture by four intrinsic packets and two open roots; all finite late-choice and trace normalizers are prose-complete |
@@ -91,7 +91,7 @@ The current positive annotation map is:
 
 Sections carrying no Lean-closure annotation retain their ordinary mathematical status only. In particular, `[DERIVED]` does not automatically mean that a current Lean leaf is closed.
 
-The current public README says that neither Problem 97 nor Problem 96 is proved. It reports 36 `sorry`-carrying leaves reachable from the Problem 97 publication target, all below the general non-`IsM44` A-tail contradiction. Those leaves are one refinement tree for a single load-bearing mathematical assertion.
+The current public README says that neither Problem 97 nor Problem 96 is proved. It reports 29 `sorry`-carrying leaves reachable from the Problem 97 publication target, all below the general non-`IsM44` A-tail contradiction. Those leaves are one refinement tree for a single load-bearing mathematical assertion.
 
 > **Global non-`IsM44` contradiction.** There is no minimal nonempty convexly independent K4 set of cardinality greater than nine that admits a surplus-cap packet but admits no `IsM44` surplus-cap packet.
 
@@ -2002,7 +2002,7 @@ The entire negative branch would be unconditional if the following theorem were 
 
 > **GlobalNonM44Contradiction.** Let `D` be counterexample data. Assume `D` is minimal, `9<|D.A|`, no surplus packet on `D.A` is `IsM44`, and `H` is a critical shell system on `D.A`. Then `False`.
 
-The existing 36 leaves are one refinement tree for this theorem. Because unrestricted refactoring is allowed, those theorem boundaries need not be preserved. A different proof of `GlobalNonM44Contradiction`, or a direct removable-vertex theorem under the same hypotheses, would close the same spine.
+The current 29 leaves are one refinement tree for this theorem. Because unrestricted refactoring is allowed, those theorem boundaries need not be preserved. A different proof of `GlobalNonM44Contradiction`, or a direct removable-vertex theorem under the same hypotheses, would close the same spine.
 
 **Status:** [OPEN]
 
@@ -2010,7 +2010,7 @@ The existing 36 leaves are one refinement tree for this theorem. Because unrestr
 
 ## 11. Current decomposition of the open theorem
 
-The current README measures 36 `sorry`-carrying leaves reachable from the publication target. They are all descendants of N8 and fall into four clusters.
+The current README measures 29 `sorry`-carrying leaves reachable from the publication target. They are all descendants of N8 and fall into four clusters.
 
 ### F0. Rigid221 cluster - 18 leaves
 
@@ -2028,15 +2028,15 @@ The route is not unbounded: the current source has no transfer theorem for `|A|�
 
 **Status:** [OPEN cluster]
 
-### F1. TriApex cluster - 9 leaves (source-reconciled 22 August 2026)
+### F1. TriApex cluster - 2 roots (kernel-mined 23 August 2026)
 
-The current `main` version of `TriApexEndpointRetainedOmission.lean` has exactly nine reachable `sorry` declarations in this cluster. The previous ledger description was too coarse in three important ways.
+The current `TriApexEndpointRetainedOmission.lean` has exactly two reachable `sorry` declarations in this cluster, D1 and D2.  The 22 August ledger described nine declarations before the reverse-hit bypass was implemented.  Three source facts remain important.
 
 1. The all-large input is not merely a statement that three caps are large. `TriApexAllLargeContext` supplies an indexed six-point floor on every MEC cap, rich-class structure at every opposite apex, the global nonrobust-center cover inequality, and the theorem that no one positive-radius class covers all three MEC apices.
 2. The source already proves most of the normalization that the old closure programs proposed as future work. In particular, it provides a source-faithful deletion fan over every selected four-row, exact blocker-cap localization, a nonrobust/equal-support versus distinct-center/small-overlap dichotomy, the reverse-blocker order between the retained endpoints, the paired-grid cap census, the endpoint shared-blocker support collapse, and the exact cross-hit-or-third-packet continuation of a three-distinct-blocker path.
 3. The old D2 statement was false: the eight points of the two-radius grid do **not** all lie in the strict first-cap interior. Exactly four lie there. On each of the two first-apex radii, the remaining two points escape to opposite adjacent caps.
 
-After retaining the exact caller data, the nine leaves reduce to five typed geometry/continuation kernels:
+Before the bypass, the nine leaves were organized into five typed geometry/continuation kernels:
 
 - `TA-JOINT-DELETION`: D1 and the distinct-secondary-blocker arm of D8;
 - `TA-TWO-RADIUS-GRID`: D2;
@@ -2044,11 +2044,22 @@ After retaining the exact caller data, the nine leaves reduce to five typed geom
 - `TA-SHARED-SIX-SEED`: D4 and D5; and
 - `TA-THREE-PACKET-CYCLE`: the cycle arm of D9.
 
-The 22 August source reconciliation sharpens this picture. D2's two-radius-grid argument is analytically closed in prose, but its declaration is still `sorry`. D3--D7 and D9 are bypassed only in the preferred architecture after the D1 ingress is wired; they have not disappeared from the current source. In D8, both the three-edge producer and the equal-secondary-blocker contradiction are source-clean, while the caller-tagged distinct-cycle cap/order consumer remains open. The appended fan-escape helper is source-only and has no live consumer.
+The 23 August implementation proves
+`nonempty_pairedApexClassJointDeletion_of_reverseHit`.  Each retained shell
+meets the frontier radius class in at most two points, and `O.kept` lies in
+both intersections; hence their union has cardinality at most three.  The
+frontier class has at least four points, so one source escapes both shells.
+Deletion of that source survives at the robust first apex and at both retained
+blockers, producing the D1 packet.  D3--D9 now call this route transparently,
+and the main reverse-hit coordinator uses it before endpoint classification.
 
-Thus D1 is the remaining mathematical research kernel of the preferred F1 architecture, but the current module still contains all nine original `sorry` declarations. The detailed replacement in Section 16.5.D closes a specification gap and records valid local progress; it does not claim a whole F1 leaf has closed.
+The selector's direct axiom closure is exactly the ordinary core set
+`{propext, Classical.choice, Quot.sound}`.  The contradiction route still
+reaches `sorryAx` through D1, while D2 remains prose-closed but Lean-open.
+Thus the independent F1 frontier is exactly D1 plus D2; no F1 closure is
+claimed.
 
-**Status:** [NINE LIVE SORRIES; D1 PREFERRED RESEARCH KERNEL OPEN; D2 PROSE-CLOSED/LEAN-OPEN; D8 PRODUCER AND EQUAL-BLOCKER CHILD SOURCE-CLEAN; DISTINCT-CYCLE CONSUMER OPEN]
+**Status:** [TWO LIVE SORRIES; D1 RESEARCH KERNEL OPEN; D2 PROSE-CLOSED/LEAN-OPEN; D3--D9 SOURCE-CLEAN WRAPPERS THROUGH D1]
 
 The consolidated source review and full F1 archive accounting is in
 `docs/audits/2026-08-22-f1-triapex-checkpoint4-review.md`.
@@ -4599,19 +4610,19 @@ Afterward, `#print axioms Problem97.erdos97_rhs` must contain no `sorryAx`.
 
 ### 16.5 The open theorem decomposed into its reachable leaves
 
-The single prose statement `GlobalNonM44Contradiction` is not a single unstructured gap in the current Lean development. In the last built dependency-spine snapshot it reaches thirty-six declarations containing `sorry`, distributed over nine modules. This subsection records every one of those declarations as a separate mathematical obligation. The purpose is to prevent a source-clean coordinator, an exhaustive case split, or a stronger-looking packet type from being mistaken for a proof of its unresolved terminal.
+The single prose statement `GlobalNonM44Contradiction` is not a single unstructured gap in the current Lean development. In the 23 August 2026 kernel-mined dependency spine it reaches twenty-nine declarations containing `sorry`. This subsection retains the detailed historical contracts while marking declarations removed from the active frontier by later refactors. The purpose is to prevent a source-clean coordinator, an exhaustive case split, or a stronger-looking packet type from being mistaken for a proof of its unresolved terminal.
 
 #### 16.5.0 Roster authority, snapshot discipline, and counting rule
 
-The numbered roster below follows the repository README's last built `proof-blueprint spine` measurement: thirty-six reachable leaves below `Problem97.erdos97_rhs`. This is the reachability authority for this manuscript. A raw grep for `sorry` is not equivalent to a dependency-spine measurement: raw `main` may contain newly added placeholders not yet present in the last built report, old placeholders that have become unreachable, and explicitly parked off-spine declarations.
+The current roster follows the refreshed `proof-blueprint spine` measurement: twenty-nine reachable leaves below `Problem97.erdos97_rhs`. This is the reachability authority for this manuscript. A raw grep for `sorry` is not equivalent to a dependency-spine measurement: raw source may contain newly added placeholders not yet present in a build, old declarations that have become unreachable, and explicitly parked off-spine declarations.
 
-Three declarations are expressly excluded from the thirty-six-leaf count because the README marks them off-spine: `false_of_exactFiveDistinct_biApexRobust_postCardEleven`, `TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_firstFiberDescentResidual`, and `DoubleApexOffSurplusSharedRadiusPair`. Current raw source also contains later fresh-third edits whose built-spine reachability has not yet been regenerated. Those declarations must be reassessed after a clean build, but they are not silently promoted into this numbered roster.
+The seven former TriApex D3--D9 terminals are also excluded from the current count: their declarations remain source-clean compatibility wrappers, but the active reverse-hit coordinator now routes directly through D1. Historical sections below remain useful descriptions of their stronger endpoint geometry, not current independent obligations.
 
 For each numbered leaf, five distinctions are maintained. The *contract* is what the theorem actually assumes and concludes. The *available data* are facts already produced by callers. The *missing implication* is the smallest presently unproved mathematical step. The *candidate closure program* is a research route, not a claim of proof. The *rejection tests* identify shortcuts that would be unsound or contradicted by known realizable local models.
 
-**Status.** [OPEN-ROSTER; 36 built-spine leaves]
+**Status.** [OPEN-ROSTER; 29 BUILT-SPINE LEAVES; TRIAPEX ROOTS D1 AND D2]
 
-**Merged frontier progress.** The robust-apex tetrahedron-or-continuation theorem in §16.5.38 remains a valid generic reduction for A7 and A8. A5 retains the exact late-first-apex `5+4+3` partition, boundary-separation certificates, and the exact ten-cell same-side classifier; Cell 7 is midpoint-impossible, while nine full-A5 same-side cells and the opposite-side family remain. TriApex is reduced to its preferred D1 kernel, with D2 prose-closed and the D8 equal-blocker child source-clean, while all nine current declarations remain `sorry`. F2 is reorganized intrinsically: the old six-leaf tree is bypassed in prose by a four-packet reduction with two open roots, checkpoint 36 adds a cross-radius cycle producer, and F8 remains separate. F3 preserves its local joint-locus calculus but replaces the unsupported recursive state framework by the third-pass physical-trace, sparse-graph, amplified-fan, bounded, grid, and diagonal program with five open metric roots.
+**Merged frontier progress.** The robust-apex tetrahedron-or-continuation theorem in §16.5.38 remains a valid generic reduction for A7 and A8. A5 retains the exact late-first-apex `5+4+3` partition, boundary-separation certificates, and the exact ten-cell same-side classifier; Cell 7 is midpoint-impossible, while nine full-A5 same-side cells and the opposite-side family remain. TriApex now has two independent roots: the kernel-clean reverse-hit selector routes D3--D9 through open D1, while D2 is prose-closed and Lean-open. F2 is reorganized intrinsically: the old six-leaf tree is bypassed in prose by a four-packet reduction with two open roots, checkpoint 36 adds a cross-radius cycle producer, and F8 remains separate. F3 preserves its local joint-locus calculus but replaces the unsupported recursive state framework by the third-pass physical-trace, sparse-graph, amplified-fan, bounded, grid, and diagonal program with five open metric roots.
 
 
 #### 16.5.A `Rigid221SourceHeavy.lean` - eight reachable leaves
@@ -8192,23 +8203,24 @@ These leaves coordinate the placement modules and the post-card-eleven continuat
 
 **Status.** [OPEN]
 
-#### 16.5.D `TriApexEndpointRetainedOmission.lean` - source-audited closure specification for nine reachable leaves
+#### 16.5.D `TriApexEndpointRetainedOmission.lean` - two-root frontier and historical endpoint specification
 
-This section replaces the former D1-D9 research sketches. It is checked against the current theorem signatures and against the packet fields that the callers actually retain. The purpose is to make the remaining work mechanical for a low-level formalization agent: no leaf below should require rediscovering its role aliases, reconstructing erased source provenance, guessing which normalization lemmas already exist, or deciding where a new helper belongs.
+This section replaces the former D1-D9 research sketches. It is checked against the current theorem signatures and against the packet fields that the callers actually retain.  The 23 August refactor implemented the common reverse-hit-to-D1 route.  D3--D9 remain below as historical stronger endpoint specifications and compatibility APIs, but only D1 and D2 are independent live roots.
 
 ##### 16.5.D0 - Audit anchor, status vocabulary, and editing rule
 
-As of 20 August 2026, the nine `sorry` declarations are the following.
+As of 23 August 2026, the two `sorry` declarations are the following.
 
 1. `false_of_pairedCommonDeletion_apexClassJointDeletion_triApexAllLarge_core`
 2. `false_of_pairedCommonDeletion_twoRadiusGrid_triApexAllLarge_core`
-3. `false_of_retainedOmission_reverseHitFresh_endpointCrossHit_firstCenterEqFreshSource_triApexAllLarge_core`
-4. `false_of_retainedOmission_reverseHitFresh_endpointCrossHit_sharedBlocker_JInLeftAdjacentCap_triApexAllLarge_core`
-5. `false_of_retainedOmission_reverseHitFresh_endpointCrossHit_sharedBlocker_JInRightAdjacentCap_triApexAllLarge_core`
-6. `false_of_retainedOmission_reverseHitFresh_endpointCrossHit_secondCenterEqFirstSource_triApexAllLarge_core`
-7. `false_of_retainedOmission_reverseHitFresh_endpointCrossHit_genericRoles_triApexAllLarge_core`
-8. `false_of_retainedOmission_reverseHitFresh_endpointCommonDeletion_triApexAllLarge_core`
-9. `false_of_retainedOmission_reverseHitFresh_threeDistinctBlockers_triApexAllLarge_core`
+
+The former D3--D9 declarations retain their public theorem signatures but have
+source-clean bodies calling
+`false_of_retainedOmission_reverseHit_jointDeletion_triApexAllLarge_core` with
+`C.reverse_mem` and `C.allLarge`.  The main reverse-hit coordinator makes the
+same call directly.  The producer
+`nonempty_pairedApexClassJointDeletion_of_reverseHit` is independently
+kernel-clean; the generic route inherits `sorryAx` only from D1.
 
 The statuses used below are deliberately distinct.
 
@@ -8216,8 +8228,9 @@ The statuses used below are deliberately distinct.
 - **[PROSE-CLOSED SUBCASE]** means a complete mathematical reduction and Lean-facing proof skeleton are supplied for a proper branch, but the enclosing declaration still has another branch.
 - **[REDUCED TO KERNEL]** means all normalization and caller-specific bookkeeping are specified and the only remaining theorem is a named, typed kernel.
 - **[KERNEL-OPEN]** means the final geometric or finite-continuation implication has not yet been proved.
+- **[SOURCE-CLEAN WRAPPER]** means the historical declaration remains for API compatibility but transparently calls one of the two live roots.
 
-**Editing rule.** During the first implementation pass, keep the new helper structures and theorems in `TriApexEndpointRetainedOmission.lean` immediately above their first consumer. This avoids an import cycle because `TriApexAllLargeContext`, `ReverseHitFreshEndpointContext`, and `EndpointFreshOrderedCrossRowPlacement` currently live in that file. Extract them only after the file compiles. Do not begin by creating a new file that imports this module and is then imported back by it.
+**Editing rule.** Preserve the public D3--D9 signatures while D1 and D2 are attacked.  Refactor helper placement only when it shortens the D1/D2 dependency surface; do not reactivate the endpoint fan-out unless a new theorem proves a strictly stronger independent consequence than the live reverse-hit selector.
 
 ##### 16.5.D0.1 - Exact all-large input
 
@@ -8328,9 +8341,9 @@ reverseHit_twoCenter_sqdist_acute
 
 A new cross-order producer must consume these theorems. It must not discard `m` and `b` merely because the final Kalmanson consumer displays only `o,a,x,j,c,k`.
 
-##### 16.5.D0.3 - Exact closure graph
+##### 16.5.D0.3 - Historical pre-bypass closure graph
 
-The implementation should introduce five named kernels. The names below are descriptive; exact namespace placement may be adjusted, but the argument content must not be weakened.
+Before the reverse-hit selector was formalized, the endpoint program proposed five named kernels.  The table is retained as a record of stronger geometric subproblems, but D3--D9 no longer require these kernels for closure; they route through D1.  Only `TA-JOINT-DELETION` (D1) and `TA-TWO-RADIUS-GRID` (D2) remain active roots.
 
 | Kernel ID | Consumers | Exact purpose |
 |---|---|---|
@@ -9298,19 +9311,19 @@ cases outcome with
 
 ##### 16.5.D10 - Low-level implementation order
 
-The following order minimizes simultaneous open goals and gives useful checkpoints.
+The reverse-hit portion of the former order is complete.  The remaining order is:
 
-1. **Add shared endpoint aliases as local lemmas.** Prove carrier membership, retained-radius membership, shell hits/omissions, and blocker inequalities once. Do not change theorem statements yet.
-2. **Implement D8.a.** This is the smallest genuine contradiction and tests all dependent rewriting conventions. The full D8 theorem may remain open in the `b ≠ x` arm, but the equal arm must compile without axioms.
-3. **Introduce the exact D9 cross-or-cycle split in the leaf body.** Leave each branch calling a temporary named theorem. This removes the misleading monolithic D9 obligation.
-4. **Build the side-neutral shared-seed state from existing helpers.** Close the D4/D5 duplication through an explicit `AdjacentSide` or boundary-reversal adapter before attempting the continuation kernel.
-5. **Build the D3 and D6 five-point adapters.** Verify the role mappings to `false_of_five_ccw_three_shell_equalities` in isolated example theorems. These adapters should compile once a placement is supplied, even while the placement producer remains open.
-6. **Refactor D7 to call `EndpointFreshCrossGlobalOutcome`.** Keep the existing `EndpointFreshOrderedCrossRowPlacement` consumer unchanged.
-7. **Build the D1 selected-row/fan continuation producer.** Every renewed survival must be converted to a `CommonDeletionTwoCenterPacket` immediately.
-8. **Unify D1 and D8.b only after both caller wrappers exist.** Generalize the kernel by an inductive caller tag, not by deleting fields until the types match.
-9. **Attack `TA-TWO-RADIUS-GRID`.** Its finite cap census is self-contained and can be developed independently of the endpoint kernels.
-10. **Finish shared-seed and cycle finite states.** Add recursion only after the measure theorem is proved separately.
-11. **Remove every temporary theorem carrying `sorry`.** Run `rg -n '\bsorry\b'` on the module and confirm the count falls from nine to zero.
+1. **Formalize D2.** Port the trig-free polynomial core, then supply the three
+   coordinate/order adapters from `PairedTwoRadiusGrid` and
+   `PairedGridCapPlacement`.
+2. **Attack D1 with its full provenance.** Consume the six-center
+   fail-vs-survive surface carried by `PairedApexClassJointDeletion`; do not
+   weaken it to an anonymous multi-center survival claim.
+3. **Keep D3--D9 transparent.** Their endpoint-specific APIs may support
+   auxiliary research, but no new `sorry` may be introduced below them.
+4. **Rebuild and re-mine after each root closes.** The module token count must
+   fall from two to one to zero, and `#print axioms` must confirm that
+   `sorryAx` disappears from the corresponding route.
 
 ##### 16.5.D11 - Completion matrix
 
@@ -9318,13 +9331,13 @@ The following order minimizes simultaneous open goals and gives useful checkpoin
 |---|---:|---|---|---|
 | D1 | yes | selected apex row preserving `J.source`; source-faithful fan outcome; exact renewed-packet constructor; finite measure | `TA-JOINT-DELETION` | kernel open |
 | D2 | yes | oriented inside/escape labels; blocker-cap split; finite forbidden-order outcome | `TA-TWO-RADIUS-GRID` | kernel open |
-| D3 | metric adapter specified | exhaustive placement/route producer using reverse context | `TA-ENDPOINT-CROSS-ORDER` | kernel open |
-| D4 | extensive six-seed normalization already proved | side-neutral state; pinned-center continuation; finite count/measure | `TA-SHARED-SIX-SEED` | kernel open |
-| D5 | same as D4 | explicit reversal or `AdjacentSide` adapter | `TA-SHARED-SIX-SEED` | kernel open |
-| D6 | metric adapter specified | exhaustive placement/route producer using reverse context | `TA-ENDPOINT-CROSS-ORDER` | kernel open |
-| D7 | ordered metric consumer already proved | global cap/order outcome producer | `TA-ENDPOINT-CROSS-ORDER` | kernel open |
-| D8 | two same-source packets identified | equal-blocker Lean patch; caller-tagged distinct arm | `TA-JOINT-DELETION` | equal arm prose-closed; kernel open |
-| D9 | exact cross/cycle producer already proved | cross continuation; exact cycle wrapper; finite order/measure | `TA-ENDPOINT-CROSS-ORDER`, `TA-THREE-PACKET-CYCLE` | kernels open |
+| D3 | reverse-hit selector proved | none for closure; endpoint data retained by API | D1 | source-clean wrapper |
+| D4 | reverse-hit selector proved | none for closure; endpoint data retained by API | D1 | source-clean wrapper |
+| D5 | reverse-hit selector proved | none for closure; endpoint data retained by API | D1 | source-clean wrapper |
+| D6 | reverse-hit selector proved | none for closure; endpoint data retained by API | D1 | source-clean wrapper |
+| D7 | reverse-hit selector proved | none for closure; endpoint data retained by API | D1 | source-clean wrapper |
+| D8 | reverse-hit selector proved; historical equal-blocker closer retained | none for closure; distinct-cycle evidence is off the active route | D1 | source-clean wrapper |
+| D9 | reverse-hit selector proved | none for closure; historical cross/cycle producer retained | D1 | source-clean wrapper |
 
 ##### 16.5.D12 - Build, axiom, and regression checks
 
@@ -9340,14 +9353,17 @@ rg -n '\bsorry\b|axiom ' lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TriAp
 ```
 
 and inspect every match. New `axiom` declarations are forbidden.
-5. Run `#print axioms` on each of the nine declarations and on each new kernel. No result may contain `sorryAx`.
+5. Run `#print axioms` on D1, D2, the selector, the generic reverse-hit route,
+   and the publish target.  The selector must remain kernel-clean; the route is
+   expected to contain `sorryAx` until D1 closes.
 6. Preserve exact source identities through every `CommonDeletionTwoCenterPacket`. A packet deleting `q` may not be rebuilt with a proposition about an unnamed deletion source.
 7. Never identify two selected supports merely because they have the same cardinality or radius. Support equality requires equal canonical centers or an explicit existing theorem.
 8. Never treat a selected four-support as the entire physical `SelectedClass` unless exact class cardinality four and both inclusions have been proved.
 9. In D2, assert the exact four-inside/four-escape census in a regression lemma. This catches reintroduction of the former “all eight inside” error.
 10. In D4/D5, retain the unique fourth common-shell point and verify the seed cardinality remains six.
-11. In D8, include a regression theorem for the equal-secondary-blocker contradiction before generalizing the distinct branch.
-12. In D9, keep the `nonempty_threeDistinctEndpointCrossOrCycle` split visible in the final source so future refactors cannot erase the third packet.
+11. Preserve the historical D8 equal-secondary-blocker theorem and D9
+    cross-or-cycle producer as source-clean auxiliary results; neither is a
+    prerequisite on the active reverse-hit spine.
 
 ##### 16.5.D13 - Confidence assessment
 
@@ -9355,13 +9371,18 @@ The source-level confidence is high: the live theorem signatures, caller packets
 
 The formalization risk is uneven.
 
-- **Low risk:** D8 equal-blocker branch; D3/D6 metric adapters once a boundary placement is supplied; D5-to-D4 side adapter; D9's initial cross/cycle split.
-- **Medium risk:** D1's selected-row fan producer and exact renewed-packet construction; D2's finite label normalization; shared-seed state construction.
-- **High risk:** the actual global placement theorem for D7, the finite termination theorem for D1/D4/D8/D9, and the final two-radius grid contradiction. These are the remaining mathematical kernels, not bookkeeping gaps.
+- **Completed low-risk layer:** the reverse-hit finite selector, both renewed
+  source-exact packets, the generic D1 route, and the seven compatibility
+  wrappers compile and have been kernel-mined.
+- **Medium risk:** D2's finite label normalization and the three adapters into
+  the prose-closed polynomial contradiction.
+- **High risk:** the provenance-rich D1 six-center fail-vs-survive
+  contradiction.  This is the remaining mathematical F1 research kernel, not
+  an endpoint bookkeeping gap.
 
-Accordingly, this section is now low-level complete as a **formalization specification**, but the TriApex cluster is not yet mathematically or kernel-closed until the five named kernels are proved.
+Accordingly, this section is now low-level complete as a **formalization specification** for the bypass.  The TriApex cluster is not mathematically or kernel-closed until D1 and D2 are proved.
 
-**Overall status.** [SPECIFICATION CLOSED; FIVE MATHEMATICAL KERNELS OPEN; NO CLAIM OF FINAL LEAN CLOSURE]
+**Overall status.** [REVERSE-HIT BYPASS KERNEL-CHECKED; TWO MATHEMATICAL ROOTS OPEN; NO CLAIM OF FINAL LEAN CLOSURE]
 
 #### 16.5.E-H F2 TwoSource cluster — all-blockers semantic refactor
 
@@ -12660,7 +12681,7 @@ RECURSIVE INTERFACE REJECTED; FIVE METRIC ROOTS AND THREE LIVE SORRIES OPEN]`.
 
 #### 16.5.37 Shared closure lemmas suggested by the leaf ledger
 
-The thirty-six leaves do not appear to require thirty-six unrelated discoveries. The ledger now exposes seven reusable theorem families. One of them—the robust-apex tetrahedron-or-continuation theorem—has a complete prose proof in Section 16.5.38. The remaining six are research targets.
+The twenty-nine current leaves do not appear to require twenty-nine unrelated discoveries. The ledger exposes reusable theorem families, and the TriApex reverse-hit refactor has already demonstrated that a proved producer can collapse several source leaves onto one genuine root. The robust-apex tetrahedron-or-continuation theorem has a complete prose proof in Section 16.5.38; the remaining families are research targets.
 
 1. **Common-circle strict-arc blocker-cycle theorem.** Convert equal-distance rows whose centers and support pairs lie on one physical circle into oriented arc-midpoint relations. A closed strict midpoint cycle would discharge A1 and parts of B2-B5, and would provide the physical-placement side of C1.
 
@@ -13070,9 +13091,16 @@ A safe implementation order is now:
    wrapper without new invariant theorems;
 9. regenerate direct, coordinator, and publication spines before deleting or deprecating old leaves.
 
-**Current count of prose-complete frontier effects:** zero whole closures of the 36 leaves in the last built snapshot; nine strict branch-closer results (eight A5 families, including same-side Cell 7, plus TriApex D8.a); one later raw-main FreshThird route prose-closed after a source-choice refactor; the old six-leaf F2 architecture reduced to two open intrinsic roots; and a prose-complete F3 trace/graph/fan normalization with five metric roots and three live `sorry`s still open.
+**Current frontier effect:** the built 23 August spine has 29 reachable
+`sorry` leaves.  The TriApex reverse-hit selector is kernel-clean and removes
+seven endpoint-specific leaves by transparent reduction to D1; D1 and D2 remain
+open.  Eight A5 branch-closer families, including same-side Cell 7, remain
+prose-complete; one later raw-main FreshThird route is prose-closed after a
+source-choice refactor; the old six-leaf F2 architecture is reduced in prose to
+two intrinsic roots; and the F3 trace/graph/fan normalization still has five
+metric roots and three live `sorry`s.
 
-**Status:** [LEAN IMPACT AUDIT UPDATED 22 AUGUST 2026; NO WHOLE BUILT-SPINE LEAF FALSELY MARKED CLOSED]
+**Status:** [LEAN IMPACT AUDIT UPDATED 23 AUGUST 2026; SEVEN-LEAF TRIAPEX FRONTIER REDUCTION VERIFIED; NO PROOF CLOSURE CLAIMED]
 
 ---
 ## 17. Theorem-to-source crosswalk
@@ -13169,7 +13197,11 @@ The prose proof is complete through the elementary deletion calculus, pinned-mul
    \]
    partition, boundary-separation certificates, an exact opposite-side/same-side split, and an audited ten-cell same-side classifier. Cell 7 is prose-closed by a cocircular nested-bisector midpoint contradiction. Exact rational physical-core witnesses show that cells `1,2,3,4,5,6,8,9,10` cannot be closed from the midpoint/order core alone. The genuine A5 escape frontier is therefore Child O plus those nine full-A5 cells.
 
-2. **TriApex.** The nine leaves remain reduced to five typed kernels. The equal-secondary-blocker child of D8 is prose-closed by canonical-support equality and a three-point circle-intersection contradiction.
+2. **TriApex.** A kernel-clean reverse-hit selector now produces the D1
+   joint-deletion packet before endpoint classification.  D3--D9 are
+   source-clean wrappers through D1, leaving exactly D1 and D2 as independent
+   open roots.  The historical equal-secondary-blocker child of D8 remains a
+   useful local contradiction but is off the active route.
 
 3. **F2/TwoSource semantic refactor.** The old six-leaf FreshThird/fiber architecture is no longer the recommended mathematical boundary. An intrinsic all-blockers and finite-late-choice argument proves a four-packet reduction:
    \[

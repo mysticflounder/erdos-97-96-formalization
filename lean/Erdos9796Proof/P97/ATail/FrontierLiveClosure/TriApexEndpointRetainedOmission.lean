@@ -2085,6 +2085,112 @@ theorem grid_otherClass_escapees_mem_distinct_adjacentCaps
       huOut hvOut
       (Gr.ne_of_mem_keptShell_of_mem_deletedShell huShell hvShell)⟩
 
+/-- A reverse hit leaves a point of the retained first-apex class outside both
+retained critical shells.  Indeed, each shell meets that class in at most two
+points, while `O.kept` belongs to both intersections; their union therefore
+has cardinality at most three, whereas the frontier class has at least four
+points.  Deleting the escaping point preserves K4 at the robust first apex and
+at both retained blockers. -/
+theorem nonempty_pairedApexClassJointDeletion_of_reverseHit
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : FrontierCommonDeletionParentResidual F)
+    {P : RetainedInteriorDirectedOmission R}
+    (O : OrientedRetainedCommonDeletion P)
+    (reverse_mem :
+      O.kept ∈
+        (H.selectedAt O.deleted O.deleted_mem_A).toCriticalFourShell.support) :
+    Nonempty (PairedApexClassJointDeletion O) := by
+  classical
+  let C := SelectedClass D.A S.oppApex1 radius
+  let K :=
+    (H.selectedAt O.kept O.kept_mem_A).toCriticalFourShell.support ∩ C
+  let M :=
+    (H.selectedAt O.deleted O.deleted_mem_A).toCriticalFourShell.support ∩ C
+  have hKcard : K.card ≤ 2 := by
+    simpa only [K, C] using
+      ATailFirstApexCriticalFiberRow.criticalShell_inter_frontierRadiusClass_card_le_two
+        R O.kept O.kept_mem_A
+  have hMcard : M.card ≤ 2 := by
+    simpa only [M, C] using
+      ATailFirstApexCriticalFiberRow.criticalShell_inter_frontierRadiusClass_card_le_two
+        R O.deleted O.deleted_mem_A
+  have hcommon : O.kept ∈ K ∩ M := by
+    refine Finset.mem_inter.mpr ⟨?_, ?_⟩
+    · exact Finset.mem_inter.mpr
+        ⟨(H.selectedAt O.kept O.kept_mem_A).toCriticalFourShell.q_mem_support,
+          O.kept_mem_radius⟩
+    · exact Finset.mem_inter.mpr ⟨reverse_mem, O.kept_mem_radius⟩
+  have hinterPos : 0 < (K ∩ M).card :=
+    Finset.card_pos.mpr ⟨O.kept, hcommon⟩
+  have hcardIdentity := Finset.card_union_add_card_inter K M
+  have hunionCard : (K ∪ M).card ≤ 3 := by
+    omega
+  have hnotSubset : ¬ C ⊆ K ∪ M := by
+    intro hsubset
+    have hcardLe := Finset.card_le_card hsubset
+    have hCcard : 4 ≤ C.card := by
+      simpa only [C] using R.frontierRadius_class_card_ge_four
+    omega
+  rcases Finset.not_subset.mp hnotSubset with
+    ⟨source, hsourceClass, hsourceOutside⟩
+  have hsourceNotKept :
+      source ∉
+        (H.selectedAt O.kept O.kept_mem_A).toCriticalFourShell.support := by
+    intro hsource
+    apply hsourceOutside
+    exact Finset.mem_union.mpr
+      (Or.inl (Finset.mem_inter.mpr ⟨hsource, hsourceClass⟩))
+  have hsourceNotDeleted :
+      source ∉
+        (H.selectedAt O.deleted O.deleted_mem_A).toCriticalFourShell.support := by
+    intro hsource
+    apply hsourceOutside
+    exact Finset.mem_union.mpr
+      (Or.inr (Finset.mem_inter.mpr ⟨hsource, hsourceClass⟩))
+  have hsourceA : source ∈ D.A :=
+    (mem_selectedClass.mp hsourceClass).1
+  have hfirstSurvives :
+      HasNEquidistantPointsAt 4 (D.A.erase source) S.oppApex1 :=
+    R.firstApexFullyDeletionRobust.survives source hsourceA
+  have hkeptSurvives :
+      HasNEquidistantPointsAt 4 (D.A.erase source)
+        (H.centerAt O.kept O.kept_mem_A) :=
+    (cross_deletion_survives_iff_not_mem_selected_support
+      H O.kept_mem_A).mpr hsourceNotKept
+  rcases nonempty_commonDeletionTwoCenterPacket H
+      hsourceA (oppApex1_mem_A_for_reverseHit S) O.packet.center₂_mem_A
+      O.packet.centers_ne hfirstSurvives hkeptSurvives with
+    ⟨keptPacket⟩
+  have hdeletedBlockerA :
+      H.centerAt O.deleted O.deleted_mem_A ∈ D.A :=
+    (Finset.mem_erase.mp
+      (H.selectedAt O.deleted
+        O.deleted_mem_A).toCriticalFourShell.center_mem).2
+  have hdeletedCentersNe :
+      S.oppApex1 ≠ H.centerAt O.deleted O.deleted_mem_A :=
+    (R.actualBlocker_ne_firstApex O.deleted O.deleted_mem_A).symm
+  have hdeletedSurvives :
+      HasNEquidistantPointsAt 4 (D.A.erase source)
+        (H.centerAt O.deleted O.deleted_mem_A) :=
+    (cross_deletion_survives_iff_not_mem_selected_support
+      H O.deleted_mem_A).mpr hsourceNotDeleted
+  rcases nonempty_commonDeletionTwoCenterPacket H
+      hsourceA (oppApex1_mem_A_for_reverseHit S) hdeletedBlockerA
+      hdeletedCentersNe hfirstSurvives hdeletedSurvives with
+    ⟨deletedPacket⟩
+  exact ⟨{
+    sourceRadius := radius
+    sourceRadius_pos := F.radius_pos
+    sourceClass_card_ge_four := R.frontierRadius_class_card_ge_four
+    source := source
+    source_mem_class := hsourceClass
+    source_not_mem_keptShell := hsourceNotKept
+    source_not_mem_deletedShell := hsourceNotDeleted
+    keptPacket := keptPacket
+    deletedPacket := deletedPacket }⟩
+
 /-- Escaping-source child of the paired common-deletion leaf.
 
 The retained common deletion renews at a carrier point on a first-apex class of
@@ -2108,6 +2214,28 @@ theorem false_of_pairedCommonDeletion_apexClassJointDeletion_triApexAllLarge_cor
     (G : TriApexAllLargeContext D S) :
     False := by
   sorry
+
+/-- A reverse hit already forces the escaping-source child of the paired
+common-deletion leaf.  This is the common contradiction route for all
+source-faithful refinements of the reverse-hit branch; endpoint data can be
+retained by compatibility wrappers without creating new proof obligations. -/
+theorem false_of_retainedOmission_reverseHit_jointDeletion_triApexAllLarge_core
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : FrontierCommonDeletionParentResidual F)
+    {P : RetainedInteriorDirectedOmission R}
+    (O : OrientedRetainedCommonDeletion P)
+    (reverse_mem :
+      O.kept ∈
+        (H.selectedAt O.deleted O.deleted_mem_A).toCriticalFourShell.support)
+    (G : TriApexAllLargeContext D S) :
+    False := by
+  rcases nonempty_pairedApexClassJointDeletion_of_reverseHit R O reverse_mem with
+    ⟨J⟩
+  exact
+    false_of_pairedCommonDeletion_apexClassJointDeletion_triApexAllLarge_core
+      J G
 
 /-- Saturated child of the paired common-deletion leaf.
 
@@ -3575,7 +3703,9 @@ theorem false_of_retainedOmission_reverseHitFresh_endpointCrossHit_firstCenterEq
       Q.K ∈ (H.selectedAt Q.J Q.J_mem_A).toCriticalFourShell.support)
     (hAJ : H.centerAt E.fiber.source₁.1 E.fiber.source₁.2 = Q.J) :
     False := by
-  sorry
+  exact
+    false_of_retainedOmission_reverseHit_jointDeletion_triApexAllLarge_core
+      R O C.reverse_mem C.allLarge
 
 /-- Left-adjacent-cap half of the shared-blocker endpoint terminal.  Relative
 to the former `A = X` leaf, both exclusion from the strict first-cap interior
@@ -3598,7 +3728,9 @@ theorem false_of_retainedOmission_reverseHitFresh_endpointCrossHit_sharedBlocker
     (hJOutside : Q.J ∉ S.capInteriorByIndex S.oppIndex1)
     (hJLeft : Q.J ∈ S.leftAdjacentCapByIndex S.oppIndex1) :
     False := by
-  sorry
+  exact
+    false_of_retainedOmission_reverseHit_jointDeletion_triApexAllLarge_core
+      R O C.reverse_mem C.allLarge
 
 /-- Right-adjacent-cap half of the shared-blocker endpoint terminal.  This is
 the reflected placement branch of the preceding load-bearing leaf. -/
@@ -3620,7 +3752,9 @@ theorem false_of_retainedOmission_reverseHitFresh_endpointCrossHit_sharedBlocker
     (hJOutside : Q.J ∉ S.capInteriorByIndex S.oppIndex1)
     (hJRight : Q.J ∈ S.rightAdjacentCapByIndex S.oppIndex1) :
     False := by
-  sorry
+  exact
+    false_of_retainedOmission_reverseHit_jointDeletion_triApexAllLarge_core
+      R O C.reverse_mem C.allLarge
 
 /-- Collision localization first excludes `J` from the strict first-cap
 interior; the global positive-radius cap cover then splits the old terminal
@@ -3697,7 +3831,9 @@ theorem false_of_retainedOmission_reverseHitFresh_endpointCrossHit_secondCenterE
       Q.K ∈ (H.selectedAt Q.J Q.J_mem_A).toCriticalFourShell.support)
     (hXC : H.centerAt Q.J Q.J_mem_A = Q.C) :
     False := by
-  sorry
+  exact
+    false_of_retainedOmission_reverseHit_jointDeletion_triApexAllLarge_core
+      R O C.reverse_mem C.allLarge
 
 /-- Residual cross-hit subproblem after excluding all three unresolved role
 coincidences.  Together with the inherited row and shell exclusions, these
@@ -3720,7 +3856,9 @@ theorem false_of_retainedOmission_reverseHitFresh_endpointCrossHit_genericRoles_
         H.centerAt Q.J Q.J_mem_A)
     (hXC : H.centerAt Q.J Q.J_mem_A ≠ Q.C) :
     False := by
-  sorry
+  exact
+    false_of_retainedOmission_reverseHit_jointDeletion_triApexAllLarge_core
+      R O C.reverse_mem C.allLarge
 
 /-- Cross-hit child of the endpoint-collision leaf.  The checked dispatcher
 retains the complete source data while splitting the only three role
@@ -3909,7 +4047,9 @@ theorem false_of_endpointDistinctBlockerThreeStepDeletionCycle_triApexAllLarge_c
     {Q : EndpointFreshFirstApexRowSource E}
     (_cycle : EndpointDistinctBlockerThreeStepDeletionCycle R O C E Q) :
     False := by
-  sorry
+  exact
+    false_of_retainedOmission_reverseHit_jointDeletion_triApexAllLarge_core
+      R O C.reverse_mem C.allLarge
 
 /-- Omission child of the endpoint-collision leaf.  The missing cross hit is
 not discarded: it gives a new source-exact common-deletion packet based at the
@@ -4029,12 +4169,16 @@ theorem false_of_retainedOmission_reverseHitFresh_threeDistinctBlockers_triApexA
     (C : ReverseHitFreshEndpointContext R O)
     (path : RetainedMatchingThreeDistinctBlockerPath C.walk) :
     False := by
-  sorry
+  exact
+    false_of_retainedOmission_reverseHit_jointDeletion_triApexAllLarge_core
+      R O C.reverse_mem C.allLarge
 
 /-- Reverse-hit/fresh-common-deletion branch of the E1 geometric consumer.
 This branch retains the localized reverse blocker, its exact two-point
-first-cap intersection, and the fresh common-deletion packet explicitly.  Its
-body is now a checked dispatch to the two exact nonreturn endpoint shapes. -/
+first-cap intersection, and the fresh common-deletion packet explicitly for
+API compatibility.  The contradiction now occurs earlier: the reverse hit
+itself produces a frontier-class source omitted from both retained shells and
+therefore routes directly to the paired joint-deletion leaf. -/
 theorem false_of_retainedOmission_reverseHitFresh_triApexAllLarge_core
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -4066,44 +4210,13 @@ theorem false_of_retainedOmission_reverseHitFresh_triApexAllLarge_core
         (H.centerAt O.deleted O.deleted_mem_A))
     (G : TriApexAllLargeContext D S) :
     False := by
-  rcases exists_reverseHitFresh_nonreturnEndpointClassification R O fresh
-      fresh_mem_capInterior fresh_ne_kept fresh_ne_deleted freshPacket with
-    ⟨W, hfirst, hsecond, hnext, endpoint⟩
-  let C : ReverseHitFreshEndpointContext R O := {
-    reverse_mem := reverse_mem
-    reverseBlocker_mem_capInterior := reverseBlocker_mem_capInterior
-    reverseShell_inter_cap_eq := reverseShell_inter_cap_eq
-    fresh := fresh
-    fresh_mem_capInterior := fresh_mem_capInterior
-    fresh_ne_kept := fresh_ne_kept
-    fresh_ne_deleted := fresh_ne_deleted
-    fresh_not_mem_reverseShell := fresh_not_mem_reverseShell
-    freshPacket := freshPacket
-    allLarge := G
-    walk := W
-    walk_first_eq := hfirst
-    walk_second_eq := hsecond
-    walk_next_eq := hnext }
-  rcases endpoint with
-    ⟨endpointCriticalFiber⟩ | ⟨threeDistinctBlockers⟩
-  · rcases endpointCriticalFiber with ⟨endpointCriticalFiber⟩
-    have endpointCriticalFiber' :
-        RetainedMatchingEndpointCriticalFiber C.walk := by
-      simpa [C] using endpointCriticalFiber
-    exact
-      false_of_retainedOmission_reverseHitFresh_endpointCriticalFiber_triApexAllLarge_core
-        R O C endpointCriticalFiber'
-  · rcases threeDistinctBlockers with ⟨threeDistinctBlockers⟩
-    have threeDistinctBlockers' :
-        RetainedMatchingThreeDistinctBlockerPath C.walk := by
-      simpa [C] using threeDistinctBlockers
-    exact
-      false_of_retainedOmission_reverseHitFresh_threeDistinctBlockers_triApexAllLarge_core
-        R O C threeDistinctBlockers'
+  exact
+    false_of_retainedOmission_reverseHit_jointDeletion_triApexAllLarge_core
+      R O reverse_mem G
 
-/- The actual E1 coordinator.  The former single obligation dispatches to the
-paired terminal and the proved reverse-hit/fresh coordinator, which in turn
-dispatches to its two endpoint terminals. -/
+/- The actual E1 coordinator.  The paired arm retains its D1/D2 outcome split;
+the reverse-hit arm now reaches D1 directly through the joint-deletion selector
+before any endpoint classification. -/
 theorem false_of_retainedOmission_triApexAllLarge_core
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
