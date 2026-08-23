@@ -3,7 +3,6 @@ from __future__ import annotations
 import fcntl
 import os
 from pathlib import Path
-from typing import Any
 
 import prepare_exact17_canary_perp_bisector_survivor_four_point_two_circle_v4_combined_refinements_physical_slice_cells as preparer
 import pytest
@@ -11,9 +10,9 @@ import run_piqd_exact17_canary_perp_bisector_survivor_four_point_two_circle_v4_c
 
 
 def test_combined_v5_identity_and_execution_contract() -> None:
-    assert runner.PRODUCTION_PINS_FINALIZED is False
-    assert runner.SOURCE_CELL_IDENTITIES == {}
-    assert runner.PRODUCTION_CELL_IDENTITIES == {}
+    assert runner.PRODUCTION_PINS_FINALIZED is True
+    assert len(runner.SOURCE_CELL_IDENTITIES) == 76
+    assert len(runner.PRODUCTION_CELL_IDENTITIES) == 76
     assert runner.NUM_VARIABLES == 308
     assert runner.ROOT_NUM_CLAUSES == 7_409_760
     assert runner.NUM_CLAUSES == 7_409_766
@@ -130,122 +129,71 @@ def test_real_staged_source_run_manifest_binds_ingress_identity() -> None:
         runner._require_source_campaign_contract(drifted_campaign)
 
 
-def test_unfrozen_pins_are_explicitly_blank() -> None:
-    for name in (
-        "SOURCE_CAMPAIGN_SHA256",
-        "SOURCE_RUN_MANIFEST_SHA256",
-        "SOURCE_PREPARER_COMMIT",
-        "SOURCE_PREPARER_SHA256",
-        "CHECKPOINT_SHA256",
-        "RUNNER_CODE_CHECKPOINT_SHA256",
-        "MINER_SHA256",
-    ):
-        assert getattr(runner, name) == ""
-    for name in (
-        "SOURCE_CAMPAIGN_BYTES",
-        "SOURCE_RUN_MANIFEST_BYTES",
-        "SOURCE_PREPARER_BYTES",
-        "CHECKPOINT_BYTES",
-        "RUNNER_CODE_CHECKPOINT_BYTES",
-        "MINER_BYTES",
-    ):
-        assert getattr(runner, name) == 0
-    with pytest.raises(runner.PortfolioRunnerError, match="provisional"):
+def test_frozen_pins_and_identity_tables_are_exact() -> None:
+    assert (runner.SOURCE_CAMPAIGN_SHA256, runner.SOURCE_CAMPAIGN_BYTES) == (
+        "e2adff5b6e136a96b9de3764619b4e25e39f3d21c52e78dd8da5ab21914a65a5",
+        129_390,
+    )
+    assert (
+        runner.SOURCE_RUN_MANIFEST_SHA256,
+        runner.SOURCE_RUN_MANIFEST_BYTES,
+    ) == (
+        "7afd441a9674a9cf101bcffb6d2f580ec67c98bea449b896da395a15b0e3bd74",
+        2_635,
+    )
+    assert runner.SOURCE_PREPARER_COMMIT == (
+        "d6add9c98563e3858eec70e919547f8264eb4871"
+    )
+    assert (runner.SOURCE_PREPARER_SHA256, runner.SOURCE_PREPARER_BYTES) == (
+        "887d0b0ca1b4971f3d17750d09744911cecaf2ca04c83ba68782790ce4674b61",
+        121_692,
+    )
+    assert (runner.CHECKPOINT_SHA256, runner.CHECKPOINT_BYTES) == (
+        "18bb9de2a6a9d5c4feb2566e6be945da0d49e1c9758dfcc7cd2eaddb0a974a6b",
+        1_321,
+    )
+    assert (
+        runner.RUNNER_CODE_CHECKPOINT_SHA256,
+        runner.RUNNER_CODE_CHECKPOINT_BYTES,
+    ) == (
+        "16e252a56d3026ff45f6ba62e54fff5e44ad40ca081c6b3b9778b08b7e6c8f12",
+        949,
+    )
+    assert (runner.MINER_SHA256, runner.MINER_BYTES) == (
+        "d074010dd81be4553cc2b04f90121391f6d8b483aebd9686a11814044f15cbda",
+        53_608,
+    )
+    assert runner.sha256_bytes(
+        runner.canonical_json_bytes(runner.SOURCE_CELL_IDENTITIES)
+    ) == runner.SOURCE_CELL_IDENTITIES_SHA256 == (
+        "4870d07e6643216844a6334ee88d5a512aa3f66db24fd59b0685bae94aafee1b"
+    )
+    assert runner.sha256_bytes(
+        runner.canonical_json_bytes(runner.PRODUCTION_CELL_IDENTITIES)
+    ) == runner.PRODUCTION_CELL_IDENTITIES_SHA256 == (
+        "d8debb01c7b353eafdf9b938c1a34cbcf02f53cae1fc164bfb2af3d7180aa003"
+    )
+    runner._require_production_pins()
+    support = runner._authenticate_runner_support()
+    assert support[runner.CHECKPOINT_RELATIVE] == runner.CHECKPOINT_SHA256
+    assert support[runner.MINER_RELATIVE] == runner.MINER_SHA256
+
+
+def test_frozen_identity_and_support_tamper_fail_closed(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    original_source = runner.SOURCE_CELL_IDENTITIES
+    source = dict(original_source)
+    first = next(iter(source))
+    source[first] = {**source[first], "cnf_bytes": source[first]["cnf_bytes"] + 1}
+    monkeypatch.setattr(runner, "SOURCE_CELL_IDENTITIES", source)
+    with pytest.raises(runner.PortfolioRunnerError, match="identity table digest"):
         runner._require_production_pins()
 
-
-def test_public_mutating_and_piqd_routes_fail_before_contact_or_files(
-    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
-) -> None:
-    contacted = False
-
-    def forbidden(*args: Any, **kwargs: Any) -> Any:
-        nonlocal contacted
-        del args, kwargs
-        contacted = True
-        raise AssertionError("unfrozen runner must not contact PIQD")
-
-    monkeypatch.setattr(runner, "PiqdRawDimacsClient", forbidden)
-    monkeypatch.setattr(runner._legacy, "live_identity", forbidden)
-    for action in (
-        lambda: runner.prepare_portfolio(output_root=tmp_path / "prepared"),
-        lambda: runner.static_check(root=tmp_path, run_root=tmp_path / "run"),
-        lambda: runner.start_canary(
-            base_url="http://127.0.0.1:7272", root=tmp_path, run_root=tmp_path / "run"
-        ),
-        lambda: runner.start_rest(
-            base_url="http://127.0.0.1:7272", root=tmp_path, run_root=tmp_path / "run"
-        ),
-    ):
-        with pytest.raises(runner.PortfolioRunnerError, match="provisional"):
-            action()
-    assert contacted is False
-    assert list(tmp_path.iterdir()) == []
-
-
-def test_internal_confirm_accept_and_process_routes_fail_before_freeze(
-    tmp_path: Path,
-) -> None:
-    calls = (
-        lambda: runner._live_daemon_attestation("http://127.0.0.1:7272"),
-        lambda: runner._reserve_cell(tmp_path, "cell"),
-        lambda: runner._phase_lock(tmp_path, "canary", b"launch"),
-        lambda: runner._write_once_or_validate(tmp_path / "x", b"x", "x"),
-        lambda: runner._confirm_and_refresh(object(), object(), b"p cnf 0 0\n"),
-        lambda: runner._fresh_run_cell(
-            tmp_path, tmp_path, {}, "http://127.0.0.1:7272"
-        ),
-        lambda: runner._fresh_run_cell_under_lock(
-            tmp_path,
-            tmp_path,
-            "cell",
-            b"p cnf 0 0\n",
-            b"{}",
-            {},
-            "http://127.0.0.1:7272",
-        ),
-        lambda: runner._resume_run_cell(
-            tmp_path, tmp_path, {}, "http://127.0.0.1:7272"
-        ),
-        lambda: runner._bounded_run(
-            [],
-            root=tmp_path,
-            run_root=tmp_path,
-            base_url="http://127.0.0.1:7272",
-            capacity_root=tmp_path / "capacity",
-        ),
-        lambda: runner._execute_phase(
-            phase="rest",
-            root=tmp_path,
-            run_root=tmp_path,
-            base_url="http://127.0.0.1:7272",
-        ),
-        lambda: runner._validate_acceptance(tmp_path, tmp_path, {}),
-        lambda: runner._verify_existing_mine(
-            root=tmp_path,
-            run_root=tmp_path,
-            canary={},
-            terminal={},
-            campaign_sha256="0" * 64,
-            run_manifest_sha256="1" * 64,
-            ledger={},
-            receipt_raws={},
-        ),
-    )
-    for call in calls:
-        with pytest.raises(runner.PortfolioRunnerError, match="provisional"):
-            call()
-    assert list(tmp_path.iterdir()) == []
-
-
-def test_cli_start_confirm_and_accept_surfaces_remain_unavailable(
-    capsys: pytest.CaptureFixture[str],
-) -> None:
-    for command in ("prepare", "static-check", "start-canary", "start-rest"):
-        assert runner.main([command, "--base-url", "http://127.0.0.1:7272"]) == 2
-        assert "provisional" in capsys.readouterr().err
-    with pytest.raises(runner.PortfolioRunnerError, match="ungated launch"):
-        runner.start(base_url="http://127.0.0.1:7272")
+    monkeypatch.setattr(runner, "SOURCE_CELL_IDENTITIES", original_source)
+    monkeypatch.setattr(runner, "CHECKPOINT_SHA256", "0" * 64)
+    with pytest.raises(runner.PortfolioRunnerError, match="support pin drifted"):
+        runner._authenticate_runner_support()
 
 
 def test_create_once_write_and_phase_lock_recovery_reject_tamper(
