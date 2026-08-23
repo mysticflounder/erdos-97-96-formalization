@@ -246,3 +246,45 @@ def test_v7_runner_help_never_describes_the_v5_portfolio(
         assert required in rendered
     for stale in ("V5", "7,409,780", "7,409,786"):
         assert stale not in rendered
+
+
+def test_v7_cli_routes_all_runtime_entry_points_to_the_v7_root(
+    monkeypatch: pytest.MonkeyPatch,
+    capsys: pytest.CaptureFixture[str],
+) -> None:
+    calls: list[tuple[str, object, object]] = []
+
+    def fake_prepare(*, output_root: object) -> dict[str, bool]:
+        calls.append(("prepare", output_root, None))
+        return {"ok": True}
+
+    def fake_static(*, root: object, run_root: object) -> dict[str, bool]:
+        calls.append(("static-check", root, run_root))
+        return {"ok": True}
+
+    def fake_start(
+        *, base_url: str, root: object, run_root: object
+    ) -> dict[str, bool]:
+        calls.append((base_url, root, run_root))
+        return {"ok": True}
+
+    monkeypatch.setattr(runner, "validate_committed_dependencies", lambda: None)
+    monkeypatch.setattr(runner, "_BASE_PREPARE_PORTFOLIO", fake_prepare)
+    monkeypatch.setattr(runner, "_BASE_STATIC_CHECK", fake_static)
+    monkeypatch.setattr(runner, "_BASE_START_CANARY", fake_start)
+    monkeypatch.setattr(runner, "_BASE_START_REST", fake_start)
+
+    assert runner.main(["prepare"]) == 0
+    assert runner.main(["static-check"]) == 0
+    assert runner.main(["start-canary", "--base-url", "http://canary"]) == 0
+    assert runner.main(["start-rest", "--base-url", "http://rest"]) == 0
+    capsys.readouterr()
+
+    assert calls == [
+        ("prepare", runner.OUTPUT_ROOT, None),
+        ("static-check", runner.ROOT, runner.OUTPUT_ROOT),
+        ("http://canary", runner.ROOT, runner.OUTPUT_ROOT),
+        ("http://rest", runner.ROOT, runner.OUTPUT_ROOT),
+    ]
+    assert "v7-two-kalmanson" in runner.OUTPUT_ROOT.as_posix()
+    assert "sat-profile-portfolio-v7" in runner.OUTPUT_ROOT.as_posix()

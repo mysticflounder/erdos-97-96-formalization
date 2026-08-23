@@ -1431,6 +1431,44 @@ def _configure_base() -> None:
 
 _configure_base()
 
+# The delegated V6 functions capture their default output root when the V6
+# module is defined.  Rebinding ``_BASE.OUTPUT_ROOT`` above therefore does not
+# change the no-argument calls made by ``_BASE.main``.  Route every inherited
+# filesystem entry point through an explicit V7 root so the CLI can never fall
+# back to the predecessor campaign.
+_BASE_PREPARE_PORTFOLIO = _BASE.prepare_portfolio
+_BASE_STATIC_CHECK = _BASE.static_check
+_BASE_START_CANARY = _BASE.start_canary
+_BASE_START_REST = _BASE.start_rest
+
+
+def _prepare_portfolio_v7(*, output_root: Path = OUTPUT_ROOT) -> dict[str, Any]:
+    return _BASE_PREPARE_PORTFOLIO(output_root=output_root)
+
+
+def _static_check_v7(
+    *, root: Path = ROOT, run_root: Path = OUTPUT_ROOT
+) -> dict[str, Any]:
+    return _BASE_STATIC_CHECK(root=root, run_root=run_root)
+
+
+def _start_canary_v7(
+    *, base_url: str, root: Path = ROOT, run_root: Path = OUTPUT_ROOT
+) -> dict[str, Any]:
+    return _BASE_START_CANARY(base_url=base_url, root=root, run_root=run_root)
+
+
+def _start_rest_v7(
+    *, base_url: str, root: Path = ROOT, run_root: Path = OUTPUT_ROOT
+) -> dict[str, Any]:
+    return _BASE_START_REST(base_url=base_url, root=root, run_root=run_root)
+
+
+_BASE.prepare_portfolio = _prepare_portfolio_v7
+_BASE.static_check = _static_check_v7
+_BASE.start_canary = _start_canary_v7
+_BASE.start_rest = _start_rest_v7
+
 for _name in (
     "REQUESTED_CORE_LIMIT",
     "MAX_ACTIVE_JOBS",
