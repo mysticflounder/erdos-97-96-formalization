@@ -1,0 +1,1 @@
+{"detail":"complete assignment independently satisfies submitted CNF; solver log archived","disposition":"SUCCESS","job_id":"8728dcc4-fb4f-43af-9c27-f2baae6cf83f","phase":"MODEL","poll_index":null,"response":{"num_assigned":308},"result":"SAT","retry_index":0,"schema":"p97-cegar-piqd-event/v1","status":"completed"}
