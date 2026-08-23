@@ -6,7 +6,9 @@ Authors: Adam McKenna
 
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.Rigid221Closure
 import Erdos9796Proof.P97.ATail.ExactFourAdjacentGridKalmanson
+import Erdos9796Proof.P97.ATail.FourVertexLowSpan
 import Erdos9796Proof.P97.ATail.PairedCommonDeletionNormalForm
+import Erdos9796Proof.P97.ATail.TriApexFiveSurviveOneFail
 import Erdos9796Proof.P97.ATail.TwoRadiusGridCapBoundarySigns
 import Erdos9796Proof.P97.ATail.TwoRadiusGridCoordinateGeometry
 import Erdos9796Proof.P97.ATail.TwoRadiusGridConvexNesting
@@ -51,9 +53,11 @@ open ATailTwoCenterCapLocalization
 open ATailTwoRadiusGridCoordinateGeometry
 open ATailTwoRadiusGridEscapeSynchronization
 open ATailTwoRadiusGridZeroCutAssembly
+open ATailTriApexFiveSurviveOneFail
 open ATailUniqueFourLateChoiceTerminalScratch
 open FirstApexUniqueRadiusResidual
 open Census554.GeneralCarrierBridge
+open ATailFourVertexLowSpan
 
 attribute [local instance] Classical.propDecidable
 
@@ -1338,9 +1342,6 @@ theorem exists_repeatedBlockerCap_pair_outcome
   · exact Or.inr (Or.inr (Or.inr (Or.inl hzwSurvives)))
   · exact Or.inr (Or.inr (Or.inr (Or.inr hwzSurvives)))
 
-set_option maxHeartbeats 5000000 in
--- The explicit orientation split is kernel-checked but exceeds the default
--- heartbeat budget while elaborating all 2^6 branches.
 /-- A four-vertex directed graph with at least two outgoing non-edges at
 every vertex contains a mutually missing pair.  Keeping this closed finite
 kernel separate makes the geometric lift below independent of a hand-written
@@ -1352,55 +1353,9 @@ private theorem finFour_exists_mutualFalse_of_row_card_le_two :
       ∃ i j : Fin 4,
         i ≠ j ∧ contains i j = false ∧ contains j i = false := by
   intro contains hself hbound
-  have hno_two (i j k : Fin 4) (hij : i ≠ j) (hik : i ≠ k) (hjk : j ≠ k) :
-      ¬ (contains i j = true ∧ contains i k = true) := by
-    intro h
-    have hsub : ({i, j, k} : Finset (Fin 4)) ⊆
-        Finset.univ.filter (fun x ↦ contains i x = true) := by
-      intro x hx
-      have hx' : x = i ∨ x = j ∨ x = k := by
-        simpa only [Finset.mem_insert, Finset.mem_singleton] using hx
-      rcases hx' with hxi | hxj | hxk
-      · subst x
-        simp only [Finset.mem_filter, Finset.mem_univ, true_and]
-        exact hself i
-      · subst x
-        simp only [Finset.mem_filter, Finset.mem_univ, true_and]
-        exact h.1
-      · subst x
-        simp only [Finset.mem_filter, Finset.mem_univ, true_and]
-        exact h.2
-    have hcard : ({i, j, k} : Finset (Fin 4)).card ≤ 2 :=
-      (Finset.card_le_card hsub).trans (hbound i)
-    have hthree : ({i, j, k} : Finset (Fin 4)).card = 3 := by
-      simp [hij, hik, hjk]
-    omega
-  by_contra h
-  have hpair (i j : Fin 4) (hij : i ≠ j) :
-      contains i j = true ∨ contains j i = true := by
-    by_contra hp
-    push_neg at hp
-    exact h ⟨i, j, hij, Bool.eq_false_of_not_eq_true hp.1,
-      Bool.eq_false_of_not_eq_true hp.2⟩
-  have h012 := hno_two 0 1 2 (by decide) (by decide) (by decide)
-  have h013 := hno_two 0 1 3 (by decide) (by decide) (by decide)
-  have h023 := hno_two 0 2 3 (by decide) (by decide) (by decide)
-  have h102 := hno_two 1 0 2 (by decide) (by decide) (by decide)
-  have h103 := hno_two 1 0 3 (by decide) (by decide) (by decide)
-  have h123 := hno_two 1 2 3 (by decide) (by decide) (by decide)
-  have h201 := hno_two 2 0 1 (by decide) (by decide) (by decide)
-  have h203 := hno_two 2 0 3 (by decide) (by decide) (by decide)
-  have h213 := hno_two 2 1 3 (by decide) (by decide) (by decide)
-  have h301 := hno_two 3 0 1 (by decide) (by decide) (by decide)
-  have h302 := hno_two 3 0 2 (by decide) (by decide) (by decide)
-  have h312 := hno_two 3 1 2 (by decide) (by decide) (by decide)
-  rcases hpair 0 1 (by decide) with h01 | h10 <;>
-    rcases hpair 0 2 (by decide) with h02 | h20 <;>
-    rcases hpair 0 3 (by decide) with h03 | h30 <;>
-    rcases hpair 1 2 (by decide) with h12 | h21 <;>
-    rcases hpair 1 3 (by decide) with h13 | h31 <;>
-    rcases hpair 2 3 (by decide) with h23 | h32 <;>
-    aesop
+  rcases finFour_exists_nearby_mutualFalse_of_card_le_two contains hself hbound with
+    ⟨i, j, hij, _, hijOmit, hjiOmit⟩
+  exact ⟨i, j, ne_of_lt hij, hijOmit, hjiOmit⟩
 
 /-- If none of the four sources in a source-faithful deletion fan uses the
 row center itself as its canonical blocker, two sources mutually omit one
@@ -2894,6 +2849,26 @@ theorem nonempty_pairedApexClassJointDeletion_of_reverseHit
     keptPacket := keptPacket
     deletedPacket := deletedPacket }⟩
 
+/-- Residual contradiction after the tri-apex witness count has produced four
+strict sources with the full five-survive/one-fail deletion signature.
+
+The producer is now checked.  This residual must consume its cap/radius
+provenance; it must not repackage non-first-cap sources as
+`PairedApexClassJointDeletion`. -/
+theorem false_of_pairedCommonDeletion_fiveSurviveOneFail_triApexAllLarge_core
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    {P : RetainedInteriorDirectedOmission R}
+    {O : OrientedRetainedCommonDeletion P}
+    (J : PairedApexClassJointDeletion O)
+    (G : TriApexAllLargeContext D S)
+    (Q : TriApexFiveSurviveOneFail S H O.kept O.deleted
+      O.kept_mem_A O.deleted_mem_A) :
+    False := by
+  sorry
+
 /-- Escaping-source child of the paired common-deletion leaf.
 
 The retained common deletion renews at a carrier point on a first-apex class of
@@ -2916,7 +2891,13 @@ theorem false_of_pairedCommonDeletion_apexClassJointDeletion_triApexAllLarge_cor
     (J : PairedApexClassJointDeletion O)
     (G : TriApexAllLargeContext D S) :
     False := by
-  sorry
+  let Q : TriApexFiveSurviveOneFail S H O.kept O.deleted
+      O.kept_mem_A O.deleted_mem_A :=
+    triApexFiveSurviveOneFailOfApexRich S H O.kept O.deleted
+      O.kept_mem_A O.deleted_mem_A D.convex G.apex_rich
+  exact
+    false_of_pairedCommonDeletion_fiveSurviveOneFail_triApexAllLarge_core
+      J G Q
 
 /-- A reverse hit already forces the escaping-source child of the paired
 common-deletion leaf.  This is the common contradiction route for all

@@ -1,18 +1,23 @@
-# F1/TriApex checkpoint 4 review
+# F1/TriApex checkpoint 4 and D1 v87 review
 
-**Date:** 2026-08-22; implementation update 2026-08-23
+**Date:** 2026-08-22; D1 and implementation update 2026-08-23
 **Scope:** the 15 F1-lane files plus the independent checkpoint-4 review in
 `/tmp/Erdos-97-Proof-complete-2026-08-22.tar`, reconciled with the live
 repository. This is a status and supersession audit and records the subsequent
-kernel-checked D2 closure; it does not claim closure of D1 or F1 as a whole.
+kernel-checked D2 closure and the subsequent D1 working checkpoint v87; it
+does not claim closure of D1 or F1 as a whole. The v87 source has SHA-256
+`649625c35c447073d1b0b043017601c84286d57e64083881e7759a01649a0143`.
 
 ## Executive status
 
 The current F1 authority is checkpoint 4, read together with the authoritative
-pointer, three-cycle continuation v4, and D1 working checkpoint v23.  The
-correct frontier is:
+pointer, three-cycle continuation v4, and D1 working checkpoint v87. The v87
+checkpoint supersedes v23 only for the detailed D1 research route. The correct
+frontier is:
 
-- **D1 / provenance-rich joint deletion:** mathematically open;
+- **D1 / provenance-rich joint deletion:** its twelve-witness and exact
+  four-source five-survive/one-fail producer is kernel-checked; the geometric
+  consumer remains mathematically open;
 - **D2 / two-radius grid:** formally closed by the trig-free polynomial route,
   with checked coordinate, convex-nesting, zero-cut synchronization, and
   boundary-sign adapters;
@@ -20,11 +25,15 @@ correct frontier is:
   reverse-hit-to-D1 escape; their endpoint-specific data remain available in
   the public APIs but no longer create independent proof obligations.
 
-The live `TriApexEndpointRetainedOmission.lean` file now contains exactly one
-bare `sorry` occurrence, D1. A focused `lake-build` and refreshed kernel
-reference mine on 2026-08-23 reduced the publish-spine frontier from 29 to 28
-reachable `sorry` leaves and the TriApex branch from D1+D2 to D1 alone. Both
-published claims still reach `sorryAx`, so F1 is not yet closed.
+The live `TriApexEndpointRetainedOmission.lean` file still contains exactly one
+bare `sorry` occurrence. It is now the explicit five-survive/one-fail consumer
+`false_of_pairedCommonDeletion_fiveSurviveOneFail_triApexAllLarge_core`; the
+former D1 declaration is a source-clean producer wrapper. This refactor has no
+net effect on the open-root count. Before it, a focused `lake-build` and
+refreshed kernel reference mine on 2026-08-23 reduced the publish-spine
+frontier from 29 to 28 reachable `sorry` leaves and the TriApex branch from
+D1+D2 to D1 alone. Both published claims still reach `sorryAx`, so F1 is not
+yet closed.
 
 ## Independent checkpoint-4 review
 
@@ -43,9 +52,11 @@ check transitive axioms, or prove the proposed matching-cover theorem.
 ## Preferred D1 architecture
 
 The older D1 plan selected an arbitrary four-row and proposed recursion through
-a blocker fiber or a renewed packet.  Checkpoint v23 explicitly supersedes
-that ingress.  Preserve the producer provenance and begin with the
-provenance-rich packet:
+a blocker fiber or a renewed packet. Checkpoint v23 replaced that ingress by
+the provenance-rich six-center packet. Checkpoint v87 retains that provenance
+but sharpens the preferred route further: first produce strict rich-class
+witnesses in all three indexed caps, then preserve the radius split. The
+upstream packet still records:
 
 1. three rich Moser apices where deletion of the D1 source survives;
 2. two retained blockers where deletion also survives by source-exact packets;
@@ -63,6 +74,39 @@ retained branch has its U5 ingress, while the renewed branch has an exact
 four-point retained-radius partition and a second-rich-radius escape.  A
 rich first-apex class of size at least four supplies a mutually omitted pair,
 but renewal is a fallback producer, not the primary contradiction.
+
+The v87 twelve-witness count is now kernel-checked. `StrictApexFourWitness`
+retains the one-radius versus two-radii constructor at one apex;
+`StrictApexFourFamily.support_card_eq_twelve` aggregates three pairwise
+disjoint strict-cap supports; and
+`triApexFiveSurviveOneFailOfApexRich` extracts exactly four sources outside
+both retained shells. For each selected source it proves deletion survival at
+the three indexed apexes and both retained blockers, failure at the actual
+blocker, and separation of that blocker from all five surviving centers.
+`TriApexFiveSurviveOneFail.exists_distinct_same_index` also kernel-checks the
+four-sources-versus-three-caps pigeonhole step.
+
+The packet also yields a same-cap pair, but this does not give four sources on
+one radius. The two-rich-radii arm can produce a cross-radius pair, and even a
+same-radius pair contains only two sources. The current route therefore has
+two ingress gaps before the interval descent:
+
+1. **Cross-radius:** an exact transverse `2 x 2` packet can remain, with two
+   strict points on each radius and one hit from each retained shell on each
+   slice. This packet is not D2.
+2. **Same-radius:** no bridge yet upgrades the pair to four ordered sources on
+   one radius. Conditional on those four sources, the low-span selector starts
+   the interval potential at `mu <= 1`. The pure finite theorem
+   `ATailFourVertexLowSpan.finFour_exists_nearby_mutualFalse_of_card_le_two`
+   is kernel-clean with exactly the three Lean core axioms. The cap-order lift
+   and interval descent are not yet formalized.
+
+The same-radius prose analysis terminates at either a `mu = 0` paired fixed
+point or a disjoint outside `K2,2` packet with at least eight global escapes.
+The shared-support `mu = 1` arm is closed in prose, while the MEC-cap
+acute-visibility step is adapter-open. No Lean contradiction consumer exists
+for either surviving terminal. Consequently v87 is a bounded-terminal
+classification, not D1 closure.
 
 The reverse-hit observation is now the checked bypass producer.  If the two
 retained shells each meet the retained first-apex radius in at most two points
@@ -139,12 +183,13 @@ historical evidence, but it is no longer an independent closure obligation.
 
 The sole live open declaration is:
 
-1. `false_of_pairedCommonDeletion_apexClassJointDeletion_triApexAllLarge_core`
+1. `false_of_pairedCommonDeletion_fiveSurviveOneFail_triApexAllLarge_core`
 
 The seven former D3--D9 declarations remain as source-clean compatibility
-wrappers so downstream names and theorem signatures do not break.  A refreshed
-kernel mine reports 28 reachable leaves globally and exactly the D1 entry
-above for TriApex.
+wrappers so downstream names and theorem signatures do not break. The public
+D1 declaration is also source-clean and constructs the checked packet before
+calling the residual above. The refreshed post-refactor kernel mine reports 28
+reachable leaves globally and exactly the residual above for TriApex.
 
 ## Stale anchors and trust boundary
 
@@ -153,8 +198,9 @@ above for TriApex.
 - `docs/live-blueprint.md` is a generated shared-worktree artifact and was not
   overwritten by this lane.  The refreshed `proof-blueprint spine` command,
   not that file, is the authority for the 28/1 counts above.
-- The old nine-leaf roster is a historical pre-refactor snapshot.  D3--D9 are
-  now transparent wrappers; D1 is the current independent root.
+- The old nine-leaf roster is a historical pre-refactor snapshot. D3--D9 and
+  the former D1 declaration are transparent wrappers; the five-survive/one-
+  fail consumer is the current independent root.
 - The reverse-hit adapter and D2 contradiction are live and kernel-clean.
 
 Prose closure, source audits, finite polynomial reasoning, static inventories,

@@ -195,6 +195,20 @@ contradiction. D1 is now the cluster's only open root. The D2 declaration has
 axiom closure `{propext, Classical.choice, Quot.sound}`; both published claims
 still reach `sorryAx` through D1 and the other clusters.
 
+The D1 working checkpoint v87 does not close that root. It reduces the
+same-radius analysis to a `mu = 0` paired fixed point or a strict two-cap
+disjoint `K2,2` packet with global deletion escapes, but a cross-radius
+transverse `2 x 2` ingress remains outside that descent, and no checked bridge
+upgrades a same-cap pair to the four ordered same-radius sources the descent
+assumes. The pure four-vertex low-span selector used by that conditional branch
+is now kernel-checked. The D1-wide producer is now kernel-checked as well: it
+retains the one-radius/two-radii provenance at all three indexed apexes,
+proves the aggregate support has cardinality twelve, and extracts an exact
+four-source five-survive/one-fail packet outside the two retained shells. The
+geometric lift and terminal consumers remain open. The refactor moved the one
+D1 `sorry` to the explicit five-survive/one-fail residual; it did not reduce
+the global open-root count.
+
 Three status terms recur below and are worth pinning down, since they are what
 separates "proved" from "not proved" in this document. **Source-clean** means the
 declaration's own file contains no `sorry`; it may still reach `sorryAx` through
@@ -220,7 +234,7 @@ roster authority):
 | **Rigid221** | `Rigid221SourceHeavy.lean` | 8 | The source-heavy BlockerV residual — exact-cardinality strata, `native_decide` coverage banks, and the exact-12/exact-17 CEGAR lane |
 | | `Rigid221Placement.lean` | 5 | |
 | | `Rigid221Closure.lean` | 5 | |
-| **TriApex** | `TriApexEndpointRetainedOmission.lean` | 1 | Retained-omission configurations with all three apex caps large; D2 is closed and D1 provenance-rich joint deletion remains |
+| **TriApex** | `TriApexEndpointRetainedOmission.lean` | 1 | Retained-omission configurations with all three apex caps large; D2 is closed, while D1 retains cross-radius, `mu = 0`, and disjoint-`K2,2` residuals |
 | **TwoSource** | `TwoSourceFreshThirdResidual.lean` | 3 | Two cap sources plus a fresh third centre; the FreshThird and FirstFiber lanes |
 | | `TwoSourceFirstFiberCollision.lean` | 1 | |
 | | `TwoSourceClosure.lean` | 1 | |

@@ -8425,6 +8425,73 @@ Therefore D3, D6, and D7 are not missing metric contradiction consumers. They ar
 
 but `J` retains both `O` and the complete source-exact packets.
 
+**Current detailed source audit.** The 23 August D1 working checkpoint v87
+(SHA-256
+`649625c35c447073d1b0b043017601c84286d57e64083881e7759a01649a0143`)
+supersedes the v23 continuation proposal below as the research frontier.  Its
+surviving claims are integrated here; the temporary checkpoint is not a second
+proof authority.
+
+The v87 argument first uses the three rich apex systems to choose four strict
+rich-class witnesses in each indexed cap.  The three witness sets are disjoint,
+so their union has cardinality twelve.  The two retained shells have union
+cardinality at most eight.  The resulting complement therefore contains at
+least four strict sources omitted by both retained shells, including two in one
+strict cap. This producer is now checked in Lean. `StrictApexFourWitness`
+retains the one-radius/two-radii constructor, `StrictApexFourFamily` proves the
+pairwise-disjoint aggregate support has cardinality twelve, and
+`triApexFiveSurviveOneFailOfApexRich` selects an exact four-point complement.
+For every selected source it proves deletion survival at the three indexed
+apexes and both retained blockers, failure at the actual blocker, and
+separation of that blocker from all five surviving centers.
+`TriApexFiveSurviveOneFail.exists_distinct_same_index` then proves that two
+distinct selected sources retain one common strict-cap index.
+
+The same-cap pair still has two radius cases, but that split does not reach the
+interval argument: even a same-radius pair supplies only two sources, not the
+four ordered same-radius sources assumed at checkpoint 78.  Conditional on a
+separate four-source ingress, the finite incidence bound produces a mutually
+omitted pair other than the two extreme sources.  Hence at most one of the four
+sources lies strictly between its endpoints.  The finite graph kernel is now
+`ATailFourVertexLowSpan.finFour_exists_nearby_mutualFalse_of_card_le_two`;
+it builds without `sorry`, and its axiom closure is exactly `propext`,
+`Classical.choice`, and `Quot.sound`.  The geometric lift from cap order to the
+finite indices and the interval-count descent remain open.
+
+The same-radius prose descent terminates at `mu = 0` or `mu = 1`.  The `mu = 1`
+arm yields either a `mu = 0` pair or two adjacent exact rows.  One shared
+outside support is excluded by the circumcenter/chord sign identity and a
+strict-cone dot-product argument.  The disjoint-support arm retains an outside
+`K2,2` of mutual omissions and at least eight global sources whose deletions
+survive at both row centers.  The MEC-cap acute-visibility step still needs a
+low-level Lean adapter.  Neither the `mu = 0` paired fixed point nor the strict
+two-cap disjoint `K2,2` plus global-escape packet has a contradiction consumer.
+
+The cross-radius ingress is also open.  In the two-rich-radii arm the same-cap
+pair supplied by the twelve-witness count may use different radii.  The sharper
+third-cap analysis leaves an exact transverse `2 x 2` saturation: two strict
+points on each of two radii, with one point of each slice in each retained
+shell.  This packet is not the closed D2 grid and must not be routed to the D2
+consumer.
+
+Thus v87 is a conditional bounded-terminal classification, not a proof of D1.
+The checked producer prefix is now wired into the source-clean declaration
+`false_of_pairedCommonDeletion_apexClassJointDeletion_triApexAllLarge_core`.
+The one live `sorry` has moved, without any net root-count reduction, to
+`false_of_pairedCommonDeletion_fiveSurviveOneFail_triApexAllLarge_core`.
+The current D1 consumer frontier has four explicit components:
+
+1. the missing ingress from a same-cap escape pair to four ordered sources on
+   one radius;
+2. the cross-radius/transverse `2 x 2` ingress;
+3. the conditional same-radius `mu = 0` paired fixed point; and
+4. the conditional same-radius strict two-cap disjoint `K2,2` plus global
+   escapes.
+
+**Historical v23 fallback.** The normalization and arbitrary-four-row
+continuation below remain a source-audited fallback, but they are no longer the
+preferred detailed route and must not be cited as the current D1 frontier.
+
 **Correct source inventory.** Let
 
 ```text
@@ -9440,7 +9507,7 @@ The reverse-hit portion of the former order is complete.  The remaining order is
 
 | Leaf | Normalization complete in current source | New mechanical work | Final kernel | Current status |
 |---|---:|---|---|---|
-| D1 | yes | selected apex row preserving `J.source`; source-faithful fan outcome; exact renewed-packet constructor; finite measure | `TA-JOINT-DELETION` | kernel open |
+| D1 | checked twelve-witness and exact-four five-survive/one-fail producer; public D1 wrapper source-clean | same-cap-to-four-same-radius ingress; transverse `2 x 2`; `mu = 0`; disjoint outside `K2,2` consumer | `false_of_pairedCommonDeletion_fiveSurviveOneFail_triApexAllLarge_core` | one kernel-open residual; no net root-count reduction |
 | D2 | yes | oriented labels; scaled coordinates; convex nesting; zero-cut synchronization and signs; polynomial contradiction | `TA-TWO-RADIUS-GRID` | kernel-clean |
 | D3 | reverse-hit selector proved | none for closure; endpoint data retained by API | D1 | source-clean wrapper |
 | D4 | reverse-hit selector proved | none for closure; endpoint data retained by API | D1 | source-clean wrapper |
