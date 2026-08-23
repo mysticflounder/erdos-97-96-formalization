@@ -33,7 +33,7 @@ Two of the three are finished and kernel-checked. The counting engine and the
 2026-08-18 as exactly `{propext, Classical.choice, Quot.sound}`. The descent
 engine is where the work remains. Its hard core is the removable-vertex lemma,
 which is assembled from a three-way split; two of the three branches are closed, and the third fans out
-through a long sequence of case splits into an open frontier of **29
+through a long sequence of case splits into an open frontier of **28
 `sorry`-carrying leaf theorems** reachable from the publish target, all of them
 in the `ATailFrontierLiveClosure` namespace under
 [`P97/ATail/FrontierLiveClosure/`](lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure).
@@ -56,15 +56,16 @@ restates each one in mathlib vocabulary alone and checks that this repository's
 proofs discharge the restatement — so a reviewer can see exactly what is claimed
 without trusting anything in this tree.
 
-The frontier has grown rather than shrunk since the last README revision, which
-on 2026-08-07 reported 21 open leaves against the 29 measured today. That is the
-expected shape of this kind of work — case splitting converts one coarse
-obligation into several sharp ones — but it should not be read as progress
-toward zero. The solver-assisted lanes — SAT, CEGAR, PIQD, and the off-spine
-bank chain — have produced a large body of finite checked artifacts, and **none
-of that work has closed a Lean leaf**. (Certificate banks that *are* on the
-published import spine have closed branches; the distinction matters and is
-drawn under **The computational lanes** below.)
+The frontier has grown since the 2026-08-07 README snapshot, which reported 21
+open leaves, because later case splits replaced coarse obligations by sharper
+ones. The 2026-08-23 D2 two-radius-grid formalization is the first closure in
+the present TriApex campaign: it reduced the freshly mined frontier from 29 to
+28. The solver-assisted lanes — SAT, CEGAR, PIQD, and the off-spine bank chain
+— have separately produced a large body of finite checked artifacts; those
+off-spine artifacts do not count as leaf closures until a kernel-connected
+consumer uses them. Certificate banks already on the published import spine
+have closed branches; the distinction is drawn under **The computational
+lanes** below.
 
 **This is the main repository where the proof is being closed.** The former
 companion repository `p97-rvol` is historical as of 2026-07-06; its U-lane
@@ -161,7 +162,7 @@ built tree on 2026-08-23:
   [propext, sorryAx, Classical.choice, Lean.ofReduceBool, Lean.trustCompiler, Quot.sound]
 ```
 
-`sorryAx` traces to the 29 leaves below. The kernel mine backing that
+`sorryAx` traces to the 28 leaves below. The kernel mine backing that
 statement has a declared boundary — `.blueprint.toml`'s `[mining].skip` excludes
 the generated `EndpointCertificate` / `SurplusCertificate` / `*Export` subtrees,
 which is what the "20 trusted leaves" line below counts. Those subtrees contain
@@ -171,7 +172,7 @@ no bare `sorry`, and `#print axioms` on the targets covers them regardless.
 `Lean.trustCompiler` come from `native_decide` in the generated finite
 certificate banks, allowed under the project's `native_decide` policy (the
 closure is kernel-checked and the evaluated checkers are plain verified Lean,
-with no `unsafe`, `@[implemented_by]`, or `@[extern]`). Once the 29 leaves are
+with no `unsafe`, `@[implemented_by]`, or `@[extern]`). Once the 28 leaves are
 proved, `sorryAx` drops out and both closures become the core axioms plus those
 two compiler axioms — the declared trust boundary of the certificate
 infrastructure.
@@ -179,19 +180,20 @@ infrastructure.
 `proof-blueprint spine`, run against this checkout, reports:
 
 ```
-open: 117/37252 node(s)
+open: 116/37281 node(s)
 trusted leaves: 20 🔒 (certs excluded from mine by [mining].skip; covered by `#print axioms`)
-spine source: 319741 line(s) of lean across 37252 decl(s)
-open obligations (29):   -- 29 reachable sorry-carrying leaves
+spine source: 321373 line(s) of lean across 37281 decl(s)
+open obligations (28):   -- 28 reachable sorry-carrying leaves
 ```
 
 The 2026-08-22 prose-library synthesis did not rerun this build-derived
-measurement.  The 2026-08-23 TriApex refactor did: it proves a source-clean
-reverse-hit joint-deletion selector, routes the seven endpoint-specific D3--D9
-declarations transparently through D1, and leaves exactly D1 and D2 as the
-cluster's independent open roots.  The selector has core-only axiom closure;
-the route and both published claims still reach `sorryAx` through D1/D2 and the
-other clusters.
+measurement. The 2026-08-23 TriApex work did: first it proved a source-clean
+reverse-hit joint-deletion selector and routed the seven endpoint-specific
+D3--D9 declarations transparently through D1; then it closed D2 by a checked
+zero-cut synchronization, convex-nesting, boundary-sign, and polynomial
+contradiction. D1 is now the cluster's only open root. The D2 declaration has
+axiom closure `{propext, Classical.choice, Quot.sound}`; both published claims
+still reach `sorryAx` through D1 and the other clusters.
 
 Three status terms recur below and are worth pinning down, since they are what
 separates "proved" from "not proved" in this document. **Source-clean** means the
@@ -203,7 +205,7 @@ the one that means proved.
 
 ### The open frontier
 
-All 29 leaves live in the `Problem97.ATailFrontierLiveClosure` namespace, spread
+All 28 leaves live in the `Problem97.ATailFrontierLiveClosure` namespace, spread
 over nine modules. They group into four clusters, each a separate line of
 attack — though not fully independent: the roadmap notes that closing the
 TwoSource cluster would terminate the Level-5 and FreshThird branches together
@@ -218,19 +220,19 @@ roster authority):
 | **Rigid221** | `Rigid221SourceHeavy.lean` | 8 | The source-heavy BlockerV residual — exact-cardinality strata, `native_decide` coverage banks, and the exact-12/exact-17 CEGAR lane |
 | | `Rigid221Placement.lean` | 5 | |
 | | `Rigid221Closure.lean` | 5 | |
-| **TriApex** | `TriApexEndpointRetainedOmission.lean` | 2 | Retained-omission configurations with all three apex caps large; D1 joint deletion and D2 two-radius grid remain |
+| **TriApex** | `TriApexEndpointRetainedOmission.lean` | 1 | Retained-omission configurations with all three apex caps large; D2 is closed and D1 provenance-rich joint deletion remains |
 | **TwoSource** | `TwoSourceFreshThirdResidual.lean` | 3 | Two cap sources plus a fresh third centre; the FreshThird and FirstFiber lanes |
 | | `TwoSourceFirstFiberCollision.lean` | 1 | |
 | | `TwoSourceClosure.lean` | 1 | |
 | | `TwoSourceCanonicalSurface.lean` | 1 | |
 | **Two-deletion** | `TwoDeletionCollision.lean` | 3 | The B-family (formerly packages B1/B2/B3): mutual-omission and four-centre common-deletion collisions |
-| **Total** | | **29** | |
+| **Total** | | **28** | |
 
 [`FrontierLiveClosure.lean`](lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean)
 is now a 46-line import-only coordinator; the obligations live in the
 [`FrontierLiveClosure/`](lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure)
 package beside it (349 modules, ~196k lines, most of it generated CNF and
-replay material). Six of the 29 sit in the nested
+replay material). Six of the 28 sit in the nested
 `TwoSourceExactCollisionRowsTerminal` namespace.
 
 The table counts **obligations reachable from the publish target**, as reported
@@ -650,7 +652,7 @@ lean/
       Foundation.lean           -- shared vocabulary + signed-area primitives
       ATail/                    -- the A-tail frontier and its certificate ingress
         FrontierLiveClosure.lean          -- 46-line import-only coordinator
-        FrontierLiveClosure/              -- the 29 open leaves + generated CNF/replay
+        FrontierLiveClosure/              -- the 28 open leaves + generated CNF/replay
         CardElevenUniqueFourCertificate/  -- promoted card-11 certificate graph
       Dumitrescu/               -- isosceles-counting lemma chain (L1 ... Lc3)
       CGN/                      -- cap-witness counting bridge (CGN ... CGN8)
@@ -813,7 +815,7 @@ a final single-apex exhaustion:
 - [`Descent.lean`](lean/Erdos9796Proof/P97/Descent.lean) — packages the two into
   the contradiction-with-minimality shape the induction wrapper consumes.
 
-Everything on the descent path outside the 29 frontier leaves is closed and
+Everything on the descent path outside the 28 frontier leaves is closed and
 kernel-audited: the base case `FiniteN9Closure` (axiom closure `propext,
 Classical.choice, Quot.sound`), the cap-sum bridge (`|A| > 9 ⇒ some opposite cap
 is surplus`), the counting bound `counterexample_card_ge_nine`, the surplus-cap

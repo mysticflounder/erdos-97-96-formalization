@@ -5,7 +5,13 @@ Authors: Adam McKenna
 -/
 
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.Rigid221Closure
+import Erdos9796Proof.P97.ATail.ExactFourAdjacentGridKalmanson
 import Erdos9796Proof.P97.ATail.PairedCommonDeletionNormalForm
+import Erdos9796Proof.P97.ATail.TwoRadiusGridCapBoundarySigns
+import Erdos9796Proof.P97.ATail.TwoRadiusGridCoordinateGeometry
+import Erdos9796Proof.P97.ATail.TwoRadiusGridConvexNesting
+import Erdos9796Proof.P97.ATail.TwoRadiusGridEscapeSynchronization
+import Erdos9796Proof.P97.ATail.TwoRadiusGridZeroCutAssembly
 
 namespace Problem97
 namespace ATailFrontierLiveClosure
@@ -42,6 +48,9 @@ open ATailRetainedStrictInteriorPairSelector
 open ATailSurvivalCover
 open ATailTwoCollisionGlobalProducer
 open ATailTwoCenterCapLocalization
+open ATailTwoRadiusGridCoordinateGeometry
+open ATailTwoRadiusGridEscapeSynchronization
+open ATailTwoRadiusGridZeroCutAssembly
 open ATailUniqueFourLateChoiceTerminalScratch
 open FirstApexUniqueRadiusResidual
 open Census554.GeneralCarrierBridge
@@ -1925,6 +1934,52 @@ theorem pairedGridCapPlacement
         Gr.deletedShell_subset_union Gr.deletedShell_inter_retained_eq
         O.deleted_mem_capInterior hdeletedPartnerOut hDelEqTwo }
 
+/-- The exact first-cap census of a paired grid supplies the existing
+two-radius adjacent-cap grid API.  This is the bridge from the D2 normal form
+to the cut-independent boundary-order machinery. -/
+theorem pairedGrid_exactFourTwoRadiusAdjacentCapGrid
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    {P : RetainedInteriorDirectedOmission R}
+    {O : OrientedRetainedCommonDeletion P}
+    (Gr : PairedTwoRadiusGrid O) (place : PairedGridCapPlacement Gr) :
+    S.ExactFourTwoRadiusAdjacentCapGrid S.oppIndex1 radius Gr.otherRadius := by
+  have hretainedInterior :
+      (SelectedClass D.A (S.oppositeVertexByIndex S.oppIndex1) radius ∩
+        S.capInteriorByIndex S.oppIndex1).card = 2 := by
+    simpa [O.sources_ne] using
+      congrArg Finset.card place.retained_inter_capInterior_eq
+  exact S.exactFourTwoRadiusAdjacentCapGrid D.convex S.oppIndex1
+    F.radius_pos Gr.otherRadius_pos Gr.otherRadius_ne_radius.symm
+    (by simpa using Gr.retainedClass_card_eq_four)
+    (by simpa using Gr.otherClass_card_eq_four)
+    hretainedInterior (by simpa using place.other_inter_capInterior_card)
+
+/-- The paired D2 grid therefore inherits the public radial cyclic-order
+packet, with all zero-cut and adjacent-cap endpoint cases discharged by the
+shared boundary adapter. -/
+theorem pairedGrid_exists_fourHits_radialCyclicOrder
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    {P : RetainedInteriorDirectedOmission R}
+    {O : OrientedRetainedCommonDeletion P}
+    (Gr : PairedTwoRadiusGrid O) (place : PairedGridCapPlacement Gr) :
+    ∃ (G : S.ExactFourTwoRadiusAdjacentCapGrid
+          S.oppIndex1 radius Gr.otherRadius)
+      (hits : ExactFourAdjacentGridKalmanson.FourHits G),
+      ExactFourAdjacentGridKalmanson.RadialCyclicOrder hits := by
+  let G := pairedGrid_exactFourTwoRadiusAdjacentCapGrid Gr place
+  rcases
+      ExactFourAdjacentGridKalmanson.exists_fourHits_radialCyclicOrder_oppIndex1
+        D S G F.radius_pos Gr.otherRadius_pos
+          Gr.otherRadius_ne_radius.symm with
+    ⟨hits, horder⟩
+  exact ⟨G, hits, horder⟩
+
 /-- **Two distinct first-apex class points outside the strict first-cap
 interior occupy different adjacent caps.**
 
@@ -2085,6 +2140,654 @@ theorem grid_otherClass_escapees_mem_distinct_adjacentCaps
       huOut hvOut
       (Gr.ne_of_mem_keptShell_of_mem_deletedShell huShell hvShell)⟩
 
+/-- A two-point slice with its strict-interior point and escapee distinguished.
+The disjunction retains which of the source names was chosen, so later metric
+adapters can recover the source-proved pair identities without rewriting the
+slice as an anonymous set. -/
+private structure OrientedTwoPointSlice (s t : ℝ²) (interior : Finset ℝ²) where
+  inside : ℝ²
+  escape : ℝ²
+  source_order :
+    (inside = s ∧ escape = t) ∨ (inside = t ∧ escape = s)
+  inside_mem : inside ∈ interior
+  escape_not_mem : escape ∉ interior
+
+private theorem OrientedTwoPointSlice.inside_ne_escape
+    {s t : ℝ²} {interior : Finset ℝ²}
+    (Q : OrientedTwoPointSlice s t interior) (hne : s ≠ t) :
+    Q.inside ≠ Q.escape := by
+  rcases Q.source_order with ⟨hinside, hescape⟩ | ⟨hinside, hescape⟩
+  · simpa [hinside, hescape] using hne
+  · simpa [hinside, hescape] using hne.symm
+
+/-- A named two-point slice with exactly one strict-interior member has an
+oriented inside/escape labeling. -/
+private theorem nonempty_orientedTwoPointSlice_of_inter_card_eq_one
+    {s t : ℝ²} (hne : s ≠ t) {interior : Finset ℝ²}
+    (hcard : (({s, t} : Finset ℝ²) ∩ interior).card = 1) :
+    Nonempty (OrientedTwoPointSlice s t interior) := by
+  classical
+  by_cases hs : s ∈ interior
+  · have ht : t ∉ interior := by
+      intro ht
+      have htwo : (({s, t} : Finset ℝ²) ∩ interior).card = 2 := by
+        simp [hs, ht, hne]
+      omega
+    exact ⟨{
+      inside := s
+      escape := t
+      source_order := Or.inl ⟨rfl, rfl⟩
+      inside_mem := hs
+      escape_not_mem := ht }⟩
+  · have ht : t ∈ interior := by
+      by_contra ht
+      have hzero : (({s, t} : Finset ℝ²) ∩ interior).card = 0 := by
+        simp [hs, ht]
+      omega
+    exact ⟨{
+      inside := t
+      escape := s
+      source_order := Or.inr ⟨rfl, rfl⟩
+      inside_mem := ht
+      escape_not_mem := hs }⟩
+
+/-- Typed finite choices for the two other-radius shell slices, together with
+the two source-checked adjacent-cap orientations. -/
+private structure PairedGridOrientedLabels
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    {P : RetainedInteriorDirectedOmission R}
+    {O : OrientedRetainedCommonDeletion P}
+    (Gr : PairedTwoRadiusGrid O) (place : PairedGridCapPlacement Gr) where
+  keptOther :
+    OrientedTwoPointSlice Gr.keptOtherFirst Gr.keptOtherSecond
+      (S.capInteriorByIndex S.oppIndex1)
+  deletedOther :
+    OrientedTwoPointSlice Gr.deletedOtherFirst Gr.deletedOtherSecond
+      (S.capInteriorByIndex S.oppIndex1)
+  keptOther_inside_mem_shell :
+    keptOther.inside ∈
+      (H.selectedAt O.kept O.kept_mem_A).toCriticalFourShell.support
+  keptOther_inside_mem_class :
+    keptOther.inside ∈ SelectedClass D.A S.oppApex1 Gr.otherRadius
+  keptOther_escape_mem_shell :
+    keptOther.escape ∈
+      (H.selectedAt O.kept O.kept_mem_A).toCriticalFourShell.support
+  keptOther_escape_mem_class :
+    keptOther.escape ∈ SelectedClass D.A S.oppApex1 Gr.otherRadius
+  deletedOther_inside_mem_shell :
+    deletedOther.inside ∈
+      (H.selectedAt O.deleted O.deleted_mem_A).toCriticalFourShell.support
+  deletedOther_inside_mem_class :
+    deletedOther.inside ∈ SelectedClass D.A S.oppApex1 Gr.otherRadius
+  deletedOther_escape_mem_shell :
+    deletedOther.escape ∈
+      (H.selectedAt O.deleted O.deleted_mem_A).toCriticalFourShell.support
+  deletedOther_escape_mem_class :
+    deletedOther.escape ∈ SelectedClass D.A S.oppApex1 Gr.otherRadius
+  retainedEscape_orientation :
+    (Gr.keptPartner ∈ S.leftAdjacentCapByIndex S.oppIndex1 ∧
+        Gr.deletedPartner ∈ S.rightAdjacentCapByIndex S.oppIndex1) ∨
+      (Gr.keptPartner ∈ S.rightAdjacentCapByIndex S.oppIndex1 ∧
+        Gr.deletedPartner ∈ S.leftAdjacentCapByIndex S.oppIndex1)
+  otherEscape_orientation :
+    (keptOther.escape ∈ S.leftAdjacentCapByIndex S.oppIndex1 ∧
+        deletedOther.escape ∈ S.rightAdjacentCapByIndex S.oppIndex1) ∨
+      (keptOther.escape ∈ S.rightAdjacentCapByIndex S.oppIndex1 ∧
+        deletedOther.escape ∈ S.leftAdjacentCapByIndex S.oppIndex1)
+
+/-- The exact-one slice census canonically supplies the finite orientation
+packet used by the coordinate adapters. -/
+private theorem nonempty_pairedGridOrientedLabels
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    {P : RetainedInteriorDirectedOmission R}
+    {O : OrientedRetainedCommonDeletion P}
+    (Gr : PairedTwoRadiusGrid O) (place : PairedGridCapPlacement Gr) :
+    Nonempty (PairedGridOrientedLabels Gr place) := by
+  classical
+  have hkeptCard :
+      (({Gr.keptOtherFirst, Gr.keptOtherSecond} : Finset ℝ²) ∩
+        S.capInteriorByIndex S.oppIndex1).card = 1 := by
+    have h := place.keptShell_inter_other_capInterior_card
+    rw [← Finset.inter_assoc, Gr.keptShell_inter_other_eq] at h
+    exact h
+  have hdeletedCard :
+      (({Gr.deletedOtherFirst, Gr.deletedOtherSecond} : Finset ℝ²) ∩
+        S.capInteriorByIndex S.oppIndex1).card = 1 := by
+    have h := place.deletedShell_inter_other_capInterior_card
+    rw [← Finset.inter_assoc, Gr.deletedShell_inter_other_eq] at h
+    exact h
+  rcases nonempty_orientedTwoPointSlice_of_inter_card_eq_one
+      Gr.keptOther_ne hkeptCard with ⟨keptOther⟩
+  rcases nonempty_orientedTwoPointSlice_of_inter_card_eq_one
+      Gr.deletedOther_ne hdeletedCard with ⟨deletedOther⟩
+  have hkeptInsideShell :
+      keptOther.inside ∈
+        (H.selectedAt O.kept O.kept_mem_A).toCriticalFourShell.support := by
+    rcases keptOther.source_order with ⟨hinside, _⟩ | ⟨hinside, _⟩
+    · rw [hinside]
+      exact Gr.keptOtherFirst_mem_keptShell
+    · rw [hinside]
+      exact Gr.keptOtherSecond_mem_keptShell
+  have hkeptInsideClass :
+      keptOther.inside ∈ SelectedClass D.A S.oppApex1 Gr.otherRadius := by
+    rcases keptOther.source_order with ⟨hinside, _⟩ | ⟨hinside, _⟩
+    · rw [hinside]
+      exact Gr.keptOtherFirst_mem_other
+    · rw [hinside]
+      exact Gr.keptOtherSecond_mem_other
+  have hkeptShell :
+      keptOther.escape ∈
+        (H.selectedAt O.kept O.kept_mem_A).toCriticalFourShell.support := by
+    rcases keptOther.source_order with ⟨_, hescape⟩ | ⟨_, hescape⟩
+    · rw [hescape]
+      exact Gr.keptOtherSecond_mem_keptShell
+    · rw [hescape]
+      exact Gr.keptOtherFirst_mem_keptShell
+  have hkeptClass :
+      keptOther.escape ∈ SelectedClass D.A S.oppApex1 Gr.otherRadius := by
+    rcases keptOther.source_order with ⟨_, hescape⟩ | ⟨_, hescape⟩
+    · rw [hescape]
+      exact Gr.keptOtherSecond_mem_other
+    · rw [hescape]
+      exact Gr.keptOtherFirst_mem_other
+  have hdeletedInsideShell :
+      deletedOther.inside ∈
+        (H.selectedAt O.deleted
+          O.deleted_mem_A).toCriticalFourShell.support := by
+    rcases deletedOther.source_order with ⟨hinside, _⟩ | ⟨hinside, _⟩
+    · rw [hinside]
+      exact Gr.deletedOtherFirst_mem_deletedShell
+    · rw [hinside]
+      exact Gr.deletedOtherSecond_mem_deletedShell
+  have hdeletedInsideClass :
+      deletedOther.inside ∈
+        SelectedClass D.A S.oppApex1 Gr.otherRadius := by
+    rcases deletedOther.source_order with ⟨hinside, _⟩ | ⟨hinside, _⟩
+    · rw [hinside]
+      exact Gr.deletedOtherFirst_mem_other
+    · rw [hinside]
+      exact Gr.deletedOtherSecond_mem_other
+  have hdeletedShell :
+      deletedOther.escape ∈
+        (H.selectedAt O.deleted
+          O.deleted_mem_A).toCriticalFourShell.support := by
+    rcases deletedOther.source_order with ⟨_, hescape⟩ | ⟨_, hescape⟩
+    · rw [hescape]
+      exact Gr.deletedOtherSecond_mem_deletedShell
+    · rw [hescape]
+      exact Gr.deletedOtherFirst_mem_deletedShell
+  have hdeletedClass :
+      deletedOther.escape ∈
+        SelectedClass D.A S.oppApex1 Gr.otherRadius := by
+    rcases deletedOther.source_order with ⟨_, hescape⟩ | ⟨_, hescape⟩
+    · rw [hescape]
+      exact Gr.deletedOtherSecond_mem_other
+    · rw [hescape]
+      exact Gr.deletedOtherFirst_mem_other
+  refine ⟨{
+    keptOther := keptOther
+    deletedOther := deletedOther
+    keptOther_inside_mem_shell := hkeptInsideShell
+    keptOther_inside_mem_class := hkeptInsideClass
+    keptOther_escape_mem_shell := hkeptShell
+    keptOther_escape_mem_class := hkeptClass
+    deletedOther_inside_mem_shell := hdeletedInsideShell
+    deletedOther_inside_mem_class := hdeletedInsideClass
+    deletedOther_escape_mem_shell := hdeletedShell
+    deletedOther_escape_mem_class := hdeletedClass
+    retainedEscape_orientation :=
+      grid_retainedPartners_mem_distinct_adjacentCaps place
+    otherEscape_orientation := ?_ }⟩
+  exact class_outside_pair_distinct_adjacentCaps Gr.otherRadius_pos
+    hkeptClass hdeletedClass keptOther.escape_not_mem
+    deletedOther.escape_not_mem
+    (Gr.ne_of_mem_keptShell_of_mem_deletedShell hkeptShell hdeletedShell)
+
+/-- Choose the smaller grid radius and then choose as primary the retained
+shell whose smaller-radius escape lies in the left adjacent cap.  The packet
+keeps both reflected pairs of that shell and the smaller-radius escape of the
+other shell.  No cross-radius escape synchronization is assumed here. -/
+private structure PairedGridNestedPrimary
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    {P : RetainedInteriorDirectedOmission R}
+    {O : OrientedRetainedCommonDeletion P}
+    (Gr : PairedTwoRadiusGrid O) {place : PairedGridCapPlacement Gr}
+    (labels : PairedGridOrientedLabels Gr place) where
+  source : ℝ²
+  source_mem_A : source ∈ D.A
+  otherSource : ℝ²
+  otherSource_mem_A : otherSource ∈ D.A
+  source_ne_otherSource : source ≠ otherSource
+  smallRadius : ℝ
+  largeRadius : ℝ
+  smallRadius_pos : 0 < smallRadius
+  smallRadius_lt_largeRadius : smallRadius < largeRadius
+  smallInside : ℝ²
+  smallEscape : ℝ²
+  largeInside : ℝ²
+  largeEscape : ℝ²
+  otherSmallEscape : ℝ²
+  smallInside_mem_capInterior :
+    smallInside ∈ S.capInteriorByIndex S.oppIndex1
+  largeInside_mem_capInterior :
+    largeInside ∈ S.capInteriorByIndex S.oppIndex1
+  largeEscape_not_mem_capInterior :
+    largeEscape ∉ S.capInteriorByIndex S.oppIndex1
+  smallEscape_not_mem_capInterior :
+    smallEscape ∉ S.capInteriorByIndex S.oppIndex1
+  smallEscape_mem_left :
+    smallEscape ∈ S.leftAdjacentCapByIndex S.oppIndex1
+  otherSmallEscape_mem_right :
+    otherSmallEscape ∈ S.rightAdjacentCapByIndex S.oppIndex1
+  smallInside_mem_smallClass :
+    smallInside ∈ SelectedClass D.A S.oppApex1 smallRadius
+  smallEscape_mem_smallClass :
+    smallEscape ∈ SelectedClass D.A S.oppApex1 smallRadius
+  otherSmallEscape_mem_smallClass :
+    otherSmallEscape ∈ SelectedClass D.A S.oppApex1 smallRadius
+  largeInside_mem_largeClass :
+    largeInside ∈ SelectedClass D.A S.oppApex1 largeRadius
+  largeEscape_mem_largeClass :
+    largeEscape ∈ SelectedClass D.A S.oppApex1 largeRadius
+  smallInside_mem_primaryShell :
+    smallInside ∈
+      (H.selectedAt source source_mem_A).toCriticalFourShell.support
+  smallEscape_mem_primaryShell :
+    smallEscape ∈
+      (H.selectedAt source source_mem_A).toCriticalFourShell.support
+  largeInside_mem_primaryShell :
+    largeInside ∈
+      (H.selectedAt source source_mem_A).toCriticalFourShell.support
+  largeEscape_mem_primaryShell :
+    largeEscape ∈
+      (H.selectedAt source source_mem_A).toCriticalFourShell.support
+  otherSmallEscape_mem_otherShell :
+    otherSmallEscape ∈
+      (H.selectedAt otherSource otherSource_mem_A).toCriticalFourShell.support
+  shells_disjoint :
+    Disjoint
+      (H.selectedAt source source_mem_A).toCriticalFourShell.support
+      (H.selectedAt otherSource otherSource_mem_A).toCriticalFourShell.support
+  smallPair_ne : smallInside ≠ smallEscape
+  largePair_ne : largeInside ≠ largeEscape
+
+/-- The radius comparison and the two already-checked adjacent-cap
+orientations construct a primary nested-shell packet in four typed cases. -/
+private theorem nonempty_pairedGridNestedPrimary
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    {P : RetainedInteriorDirectedOmission R}
+    {O : OrientedRetainedCommonDeletion P}
+    {Gr : PairedTwoRadiusGrid O} {place : PairedGridCapPlacement Gr}
+    (labels : PairedGridOrientedLabels Gr place) :
+    Nonempty (PairedGridNestedPrimary Gr labels) := by
+  rcases lt_or_gt_of_ne Gr.otherRadius_ne_radius.symm with hrlt | hotherlt
+  · rcases labels.retainedEscape_orientation with hcaps | hcaps
+    · exact ⟨{
+        source := O.kept
+        source_mem_A := O.kept_mem_A
+        otherSource := O.deleted
+        otherSource_mem_A := O.deleted_mem_A
+        source_ne_otherSource := O.sources_ne
+        smallRadius := radius
+        largeRadius := Gr.otherRadius
+        smallRadius_pos := F.radius_pos
+        smallRadius_lt_largeRadius := hrlt
+        smallInside := O.kept
+        smallEscape := Gr.keptPartner
+        largeInside := labels.keptOther.inside
+        largeEscape := labels.keptOther.escape
+        otherSmallEscape := Gr.deletedPartner
+        smallInside_mem_capInterior := O.kept_mem_capInterior
+        largeInside_mem_capInterior := labels.keptOther.inside_mem
+        largeEscape_not_mem_capInterior := labels.keptOther.escape_not_mem
+        smallEscape_not_mem_capInterior := place.keptPartner_not_mem_capInterior
+        smallEscape_mem_left := hcaps.1
+        otherSmallEscape_mem_right := hcaps.2
+        smallInside_mem_smallClass := O.kept_mem_radius
+        smallEscape_mem_smallClass := Gr.keptPartner_mem_retained
+        otherSmallEscape_mem_smallClass := Gr.deletedPartner_mem_retained
+        largeInside_mem_largeClass := labels.keptOther_inside_mem_class
+        largeEscape_mem_largeClass := labels.keptOther_escape_mem_class
+        smallInside_mem_primaryShell := Gr.kept_mem_keptShell
+        smallEscape_mem_primaryShell := Gr.keptPartner_mem_keptShell
+        largeInside_mem_primaryShell := labels.keptOther_inside_mem_shell
+        largeEscape_mem_primaryShell := labels.keptOther_escape_mem_shell
+        otherSmallEscape_mem_otherShell := Gr.deletedPartner_mem_deletedShell
+        shells_disjoint := Gr.shells_disjoint
+        smallPair_ne := Gr.keptPartner_ne_kept.symm
+        largePair_ne := labels.keptOther.inside_ne_escape Gr.keptOther_ne }⟩
+    · exact ⟨{
+        source := O.deleted
+        source_mem_A := O.deleted_mem_A
+        otherSource := O.kept
+        otherSource_mem_A := O.kept_mem_A
+        source_ne_otherSource := O.sources_ne.symm
+        smallRadius := radius
+        largeRadius := Gr.otherRadius
+        smallRadius_pos := F.radius_pos
+        smallRadius_lt_largeRadius := hrlt
+        smallInside := O.deleted
+        smallEscape := Gr.deletedPartner
+        largeInside := labels.deletedOther.inside
+        largeEscape := labels.deletedOther.escape
+        otherSmallEscape := Gr.keptPartner
+        smallInside_mem_capInterior := O.deleted_mem_capInterior
+        largeInside_mem_capInterior := labels.deletedOther.inside_mem
+        largeEscape_not_mem_capInterior := labels.deletedOther.escape_not_mem
+        smallEscape_not_mem_capInterior := place.deletedPartner_not_mem_capInterior
+        smallEscape_mem_left := hcaps.2
+        otherSmallEscape_mem_right := hcaps.1
+        smallInside_mem_smallClass := O.deleted_mem_radius
+        smallEscape_mem_smallClass := Gr.deletedPartner_mem_retained
+        otherSmallEscape_mem_smallClass := Gr.keptPartner_mem_retained
+        largeInside_mem_largeClass := labels.deletedOther_inside_mem_class
+        largeEscape_mem_largeClass := labels.deletedOther_escape_mem_class
+        smallInside_mem_primaryShell := Gr.deleted_mem_deletedShell
+        smallEscape_mem_primaryShell := Gr.deletedPartner_mem_deletedShell
+        largeInside_mem_primaryShell := labels.deletedOther_inside_mem_shell
+        largeEscape_mem_primaryShell := labels.deletedOther_escape_mem_shell
+        otherSmallEscape_mem_otherShell := Gr.keptPartner_mem_keptShell
+        shells_disjoint := Gr.shells_disjoint.symm
+        smallPair_ne := Gr.deletedPartner_ne_deleted.symm
+        largePair_ne := labels.deletedOther.inside_ne_escape Gr.deletedOther_ne }⟩
+  · rcases labels.otherEscape_orientation with hcaps | hcaps
+    · exact ⟨{
+        source := O.kept
+        source_mem_A := O.kept_mem_A
+        otherSource := O.deleted
+        otherSource_mem_A := O.deleted_mem_A
+        source_ne_otherSource := O.sources_ne
+        smallRadius := Gr.otherRadius
+        largeRadius := radius
+        smallRadius_pos := Gr.otherRadius_pos
+        smallRadius_lt_largeRadius := hotherlt
+        smallInside := labels.keptOther.inside
+        smallEscape := labels.keptOther.escape
+        largeInside := O.kept
+        largeEscape := Gr.keptPartner
+        otherSmallEscape := labels.deletedOther.escape
+        smallInside_mem_capInterior := labels.keptOther.inside_mem
+        largeInside_mem_capInterior := O.kept_mem_capInterior
+        largeEscape_not_mem_capInterior := place.keptPartner_not_mem_capInterior
+        smallEscape_not_mem_capInterior := labels.keptOther.escape_not_mem
+        smallEscape_mem_left := hcaps.1
+        otherSmallEscape_mem_right := hcaps.2
+        smallInside_mem_smallClass := labels.keptOther_inside_mem_class
+        smallEscape_mem_smallClass := labels.keptOther_escape_mem_class
+        otherSmallEscape_mem_smallClass := labels.deletedOther_escape_mem_class
+        largeInside_mem_largeClass := O.kept_mem_radius
+        largeEscape_mem_largeClass := Gr.keptPartner_mem_retained
+        smallInside_mem_primaryShell := labels.keptOther_inside_mem_shell
+        smallEscape_mem_primaryShell := labels.keptOther_escape_mem_shell
+        largeInside_mem_primaryShell := Gr.kept_mem_keptShell
+        largeEscape_mem_primaryShell := Gr.keptPartner_mem_keptShell
+        otherSmallEscape_mem_otherShell := labels.deletedOther_escape_mem_shell
+        shells_disjoint := Gr.shells_disjoint
+        smallPair_ne := labels.keptOther.inside_ne_escape Gr.keptOther_ne
+        largePair_ne := Gr.keptPartner_ne_kept.symm }⟩
+    · exact ⟨{
+        source := O.deleted
+        source_mem_A := O.deleted_mem_A
+        otherSource := O.kept
+        otherSource_mem_A := O.kept_mem_A
+        source_ne_otherSource := O.sources_ne.symm
+        smallRadius := Gr.otherRadius
+        largeRadius := radius
+        smallRadius_pos := Gr.otherRadius_pos
+        smallRadius_lt_largeRadius := hotherlt
+        smallInside := labels.deletedOther.inside
+        smallEscape := labels.deletedOther.escape
+        largeInside := O.deleted
+        largeEscape := Gr.deletedPartner
+        otherSmallEscape := labels.keptOther.escape
+        smallInside_mem_capInterior := labels.deletedOther.inside_mem
+        largeInside_mem_capInterior := O.deleted_mem_capInterior
+        largeEscape_not_mem_capInterior := place.deletedPartner_not_mem_capInterior
+        smallEscape_not_mem_capInterior := labels.deletedOther.escape_not_mem
+        smallEscape_mem_left := hcaps.2
+        otherSmallEscape_mem_right := hcaps.1
+        smallInside_mem_smallClass := labels.deletedOther_inside_mem_class
+        smallEscape_mem_smallClass := labels.deletedOther_escape_mem_class
+        otherSmallEscape_mem_smallClass := labels.keptOther_escape_mem_class
+        largeInside_mem_largeClass := O.deleted_mem_radius
+        largeEscape_mem_largeClass := Gr.deletedPartner_mem_retained
+        smallInside_mem_primaryShell := labels.deletedOther_inside_mem_shell
+        smallEscape_mem_primaryShell := labels.deletedOther_escape_mem_shell
+        largeInside_mem_primaryShell := Gr.deleted_mem_deletedShell
+        largeEscape_mem_primaryShell := Gr.deletedPartner_mem_deletedShell
+        otherSmallEscape_mem_otherShell := labels.keptOther_escape_mem_shell
+        shells_disjoint := Gr.shells_disjoint.symm
+        smallPair_ne := labels.deletedOther.inside_ne_escape Gr.deletedOther_ne
+        largePair_ne := Gr.deletedPartner_ne_deleted.symm }⟩
+
+private theorem PairedGridNestedPrimary.apex_ne_blocker
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    {P : RetainedInteriorDirectedOmission R}
+    {O : OrientedRetainedCommonDeletion P}
+    {Gr : PairedTwoRadiusGrid O} {place : PairedGridCapPlacement Gr}
+    {labels : PairedGridOrientedLabels Gr place}
+    (Q : PairedGridNestedPrimary Gr labels) :
+    S.oppApex1 ≠ H.centerAt Q.source Q.source_mem_A := by
+  intro hcenter
+  have hshellDist :
+      dist (H.centerAt Q.source Q.source_mem_A) Q.smallInside =
+        dist (H.centerAt Q.source Q.source_mem_A) Q.largeInside := by
+    exact
+      ((H.selectedAt Q.source Q.source_mem_A).toCriticalFourShell.support_eq_radius
+          Q.smallInside Q.smallInside_mem_primaryShell).trans
+        ((H.selectedAt Q.source Q.source_mem_A).toCriticalFourShell.support_eq_radius
+          Q.largeInside Q.largeInside_mem_primaryShell).symm
+  have hradii : Q.smallRadius = Q.largeRadius := by
+    calc
+      Q.smallRadius = dist S.oppApex1 Q.smallInside :=
+        (mem_selectedClass.mp Q.smallInside_mem_smallClass).2.symm
+      _ = dist S.oppApex1 Q.largeInside := by simpa [hcenter] using hshellDist
+      _ = Q.largeRadius :=
+        (mem_selectedClass.mp Q.largeInside_mem_largeClass).2
+  exact (ne_of_lt Q.smallRadius_lt_largeRadius) hradii
+
+private theorem PairedGridNestedPrimary.smallPair_scaledCoordinates
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    {P : RetainedInteriorDirectedOmission R}
+    {O : OrientedRetainedCommonDeletion P}
+    {Gr : PairedTwoRadiusGrid O} {place : PairedGridCapPlacement Gr}
+    {labels : PairedGridOrientedLabels Gr place}
+    (Q : PairedGridNestedPrimary Gr labels) :
+    scaledLongitudinalCoord S.oppApex1
+          (H.centerAt Q.source Q.source_mem_A) Q.smallInside =
+        scaledLongitudinalCoord S.oppApex1
+          (H.centerAt Q.source Q.source_mem_A) Q.smallEscape ∧
+      scaledTransverseCoord S.oppApex1
+          (H.centerAt Q.source Q.source_mem_A) Q.smallInside =
+        -scaledTransverseCoord S.oppApex1
+          (H.centerAt Q.source Q.source_mem_A) Q.smallEscape := by
+  apply scaledCoordinates_reflect_of_equidistant_of_signedArea2_eq_neg
+  · simpa only [dist_comm] using
+      (mem_selectedClass.mp Q.smallInside_mem_smallClass).2.trans
+        (mem_selectedClass.mp Q.smallEscape_mem_smallClass).2.symm
+  · simpa only [dist_comm] using
+      ((H.selectedAt Q.source Q.source_mem_A).toCriticalFourShell.support_eq_radius
+          Q.smallInside Q.smallInside_mem_primaryShell).trans
+        ((H.selectedAt Q.source Q.source_mem_A).toCriticalFourShell.support_eq_radius
+          Q.smallEscape Q.smallEscape_mem_primaryShell).symm
+  · exact shellClassPair_sep Q.source_mem_A
+      Q.smallInside_mem_primaryShell Q.smallEscape_mem_primaryShell
+      Q.smallInside_mem_smallClass Q.smallEscape_mem_smallClass Q.smallPair_ne
+
+private theorem PairedGridNestedPrimary.largePair_scaledCoordinates
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    {P : RetainedInteriorDirectedOmission R}
+    {O : OrientedRetainedCommonDeletion P}
+    {Gr : PairedTwoRadiusGrid O} {place : PairedGridCapPlacement Gr}
+    {labels : PairedGridOrientedLabels Gr place}
+    (Q : PairedGridNestedPrimary Gr labels) :
+    scaledLongitudinalCoord S.oppApex1
+          (H.centerAt Q.source Q.source_mem_A) Q.largeInside =
+        scaledLongitudinalCoord S.oppApex1
+          (H.centerAt Q.source Q.source_mem_A) Q.largeEscape ∧
+      scaledTransverseCoord S.oppApex1
+          (H.centerAt Q.source Q.source_mem_A) Q.largeInside =
+        -scaledTransverseCoord S.oppApex1
+          (H.centerAt Q.source Q.source_mem_A) Q.largeEscape := by
+  apply scaledCoordinates_reflect_of_equidistant_of_signedArea2_eq_neg
+  · simpa only [dist_comm] using
+      (mem_selectedClass.mp Q.largeInside_mem_largeClass).2.trans
+        (mem_selectedClass.mp Q.largeEscape_mem_largeClass).2.symm
+  · simpa only [dist_comm] using
+      ((H.selectedAt Q.source Q.source_mem_A).toCriticalFourShell.support_eq_radius
+          Q.largeInside Q.largeInside_mem_primaryShell).trans
+        ((H.selectedAt Q.source Q.source_mem_A).toCriticalFourShell.support_eq_radius
+          Q.largeEscape Q.largeEscape_mem_primaryShell).symm
+  · exact shellClassPair_sep Q.source_mem_A
+      Q.largeInside_mem_primaryShell Q.largeEscape_mem_primaryShell
+      Q.largeInside_mem_largeClass Q.largeEscape_mem_largeClass Q.largePair_ne
+
+private theorem PairedGridNestedPrimary.smallRadius_scaledNorm
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    {P : RetainedInteriorDirectedOmission R}
+    {O : OrientedRetainedCommonDeletion P}
+    {Gr : PairedTwoRadiusGrid O} {place : PairedGridCapPlacement Gr}
+    {labels : PairedGridOrientedLabels Gr place}
+    (Q : PairedGridNestedPrimary Gr labels) :
+    scaledLongitudinalCoord S.oppApex1
+          (H.centerAt Q.source Q.source_mem_A) Q.otherSmallEscape ^ 2 +
+        scaledTransverseCoord S.oppApex1
+          (H.centerAt Q.source Q.source_mem_A) Q.otherSmallEscape ^ 2 =
+      scaledLongitudinalCoord S.oppApex1
+          (H.centerAt Q.source Q.source_mem_A) Q.smallInside ^ 2 +
+        scaledTransverseCoord S.oppApex1
+          (H.centerAt Q.source Q.source_mem_A) Q.smallInside ^ 2 := by
+  rw [scaledCoordinate_norm_sq, scaledCoordinate_norm_sq]
+  have hdist :
+      ‖Q.otherSmallEscape - S.oppApex1‖ =
+        ‖Q.smallInside - S.oppApex1‖ := by
+    rw [← dist_eq_norm, ← dist_eq_norm, dist_comm Q.otherSmallEscape,
+      dist_comm Q.smallInside,
+      (mem_selectedClass.mp Q.otherSmallEscape_mem_smallClass).2,
+      (mem_selectedClass.mp Q.smallInside_mem_smallClass).2]
+  rw [hdist]
+
+private theorem eq_of_mem_of_mem_of_card_eq_one
+    {T : Finset ℝ²} (hcard : T.card = 1) {x y : ℝ²}
+    (hx : x ∈ T) (hy : y ∈ T) :
+    x = y := by
+  obtain ⟨z, rfl⟩ := Finset.card_eq_one.mp hcard
+  exact (Finset.mem_singleton.mp hx).trans (Finset.mem_singleton.mp hy).symm
+
+/-- Identify the abstract representatives supplied by the public adjacent-grid
+API with the D2 grid's typed escape labels.  Singleton-cell uniqueness is what
+makes the identification insensitive to the choices used by `FourHits.exists`.
+-/
+private theorem pairedGrid_fourHits_identification
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    {P : RetainedInteriorDirectedOmission R}
+    {O : OrientedRetainedCommonDeletion P}
+    {Gr : PairedTwoRadiusGrid O} {place : PairedGridCapPlacement Gr}
+    (labels : PairedGridOrientedLabels Gr place)
+    {grid : S.ExactFourTwoRadiusAdjacentCapGrid
+      S.oppIndex1 radius Gr.otherRadius}
+    (hits : ExactFourAdjacentGridKalmanson.FourHits grid) :
+    ((hits.radiusLeft = Gr.keptPartner ∧
+        hits.radiusRight = Gr.deletedPartner) ∨
+      (hits.radiusLeft = Gr.deletedPartner ∧
+        hits.radiusRight = Gr.keptPartner)) ∧
+    ((hits.rhoLeft = labels.keptOther.escape ∧
+        hits.rhoRight = labels.deletedOther.escape) ∨
+      (hits.rhoLeft = labels.deletedOther.escape ∧
+        hits.rhoRight = labels.keptOther.escape)) := by
+  constructor
+  · rcases labels.retainedEscape_orientation with h | h
+    · left
+      constructor
+      · exact eq_of_mem_of_mem_of_card_eq_one grid.radius_left_card_eq_one
+          hits.radiusLeft_mem
+          (Finset.mem_inter.mpr ⟨by simpa using Gr.keptPartner_mem_retained, h.1⟩)
+      · exact eq_of_mem_of_mem_of_card_eq_one grid.radius_right_card_eq_one
+          hits.radiusRight_mem
+          (Finset.mem_inter.mpr
+            ⟨by simpa using Gr.deletedPartner_mem_retained, h.2⟩)
+    · right
+      constructor
+      · exact eq_of_mem_of_mem_of_card_eq_one grid.radius_left_card_eq_one
+          hits.radiusLeft_mem
+          (Finset.mem_inter.mpr
+            ⟨by simpa using Gr.deletedPartner_mem_retained, h.2⟩)
+      · exact eq_of_mem_of_mem_of_card_eq_one grid.radius_right_card_eq_one
+          hits.radiusRight_mem
+          (Finset.mem_inter.mpr ⟨by simpa using Gr.keptPartner_mem_retained, h.1⟩)
+  · rcases labels.otherEscape_orientation with h | h
+    · left
+      constructor
+      · exact eq_of_mem_of_mem_of_card_eq_one grid.rho_left_card_eq_one
+          hits.rhoLeft_mem
+          (Finset.mem_inter.mpr
+            ⟨by simpa using labels.keptOther_escape_mem_class, h.1⟩)
+      · exact eq_of_mem_of_mem_of_card_eq_one grid.rho_right_card_eq_one
+          hits.rhoRight_mem
+          (Finset.mem_inter.mpr
+            ⟨by simpa using labels.deletedOther_escape_mem_class, h.2⟩)
+    · right
+      constructor
+      · exact eq_of_mem_of_mem_of_card_eq_one grid.rho_left_card_eq_one
+          hits.rhoLeft_mem
+          (Finset.mem_inter.mpr
+            ⟨by simpa using labels.deletedOther_escape_mem_class, h.2⟩)
+      · exact eq_of_mem_of_mem_of_card_eq_one grid.rho_right_card_eq_one
+          hits.rhoRight_mem
+          (Finset.mem_inter.mpr
+            ⟨by simpa using labels.keptOther_escape_mem_class, h.1⟩)
+
+/-- Scaled-coordinate reflection for two hits in one shell and one apex
+class. This is the D2 coordinate adapter before any cap or radius ordering is
+chosen. -/
+private theorem shellPair_scaledCoordinates
+    {D : CounterexampleData} {H : CriticalShellSystem D.A}
+    {w : ℝ²} (hw : w ∈ D.A) {p u v : ℝ²} {r : ℝ}
+    (hu : u ∈ (H.selectedAt w hw).toCriticalFourShell.support)
+    (hv : v ∈ (H.selectedAt w hw).toCriticalFourShell.support)
+    (huClass : u ∈ SelectedClass D.A p r)
+    (hvClass : v ∈ SelectedClass D.A p r)
+    (huv : u ≠ v) :
+    scaledLongitudinalCoord p (H.centerAt w hw) u =
+        scaledLongitudinalCoord p (H.centerAt w hw) v ∧
+      scaledTransverseCoord p (H.centerAt w hw) u =
+        -scaledTransverseCoord p (H.centerAt w hw) v := by
+  apply scaledCoordinates_reflect_of_equidistant_of_signedArea2_eq_neg
+  · simpa only [dist_comm] using
+      (mem_selectedClass.mp huClass).2.trans
+        (mem_selectedClass.mp hvClass).2.symm
+  · simpa only [dist_comm] using
+      ((H.selectedAt w hw).toCriticalFourShell.support_eq_radius u hu).trans
+        ((H.selectedAt w hw).toCriticalFourShell.support_eq_radius v hv).symm
+  · exact shellClassPair_sep hw hu hv huClass hvClass huv
+
 /-- A reverse hit leaves a point of the retained first-apex class outside both
 retained critical shells.  Indeed, each shell meets that class in at most two
 points, while `O.kept` belongs to both intersections; their union therefore
@@ -2237,6 +2940,290 @@ theorem false_of_retainedOmission_reverseHit_jointDeletion_triApexAllLarge_core
     false_of_pairedCommonDeletion_apexClassJointDeletion_triApexAllLarge_core
       J G
 
+/-- The source-independent algebraic contradiction behind the two-radius-grid
+leaf.  The variables are scaled longitudinal and transverse coordinates along
+one shell-blocker axis; all geometric normalization is kept outside this
+lemma. -/
+private theorem polynomial_nested_escape_core
+    {x y X Y u v : ℝ}
+    (hx : 0 < x) (hy : 0 < y) (hyY : y < Y)
+    (hNest : 0 < X * y - Y * x)
+    (hNorm : u ^ 2 + v ^ 2 = x ^ 2 + y ^ 2)
+    (hRayOrder : 0 < x * v - y * u)
+    (hTriple :
+      0 < (x - X) * (v - Y) - (y - Y) * (u - X)) :
+    x * v + y * u < 0 := by
+  have hNormDiff : x ^ 2 + y ^ 2 - u ^ 2 - v ^ 2 = 0 := by
+    nlinarith [hNorm]
+  have hN : 0 < x ^ 2 + y ^ 2 := by
+    positivity
+  have hE : 0 < x ^ 2 + y ^ 2 + x * u + y * v := by
+    nlinarith [sq_nonneg (x + u), sq_nonneg (y + v)]
+  have hFactor :
+      (x ^ 2 + y ^ 2) * (x ^ 2 + y ^ 2 + x * u + y * v) *
+          ((x - X) * (v - Y) - (y - Y) * (u - X)) =
+        (x * v - y * u) *
+          ((x * v - y * u) * (X * y - Y * x) +
+            (x ^ 2 + y ^ 2 + x * u + y * v) *
+              (x ^ 2 + y ^ 2 - (X * x + Y * y))) := by
+    calc
+      _ =
+          (x * v - y * u) *
+              ((x * v - y * u) * (X * y - Y * x) +
+                (x ^ 2 + y ^ 2 + x * u + y * v) *
+                  (x ^ 2 + y ^ 2 - (X * x + Y * y))) +
+            (x ^ 2 + y ^ 2) * (X * y - Y * x) *
+              (x ^ 2 + y ^ 2 - u ^ 2 - v ^ 2) := by ring
+      _ = _ := by rw [hNormDiff]; ring
+  have hBracket :
+      0 < (x * v - y * u) * (X * y - Y * x) +
+        (x ^ 2 + y ^ 2 + x * u + y * v) *
+          (x ^ 2 + y ^ 2 - (X * x + Y * y)) := by
+    have hleft :
+        0 < (x ^ 2 + y ^ 2) * (x ^ 2 + y ^ 2 + x * u + y * v) *
+          ((x - X) * (v - Y) - (y - Y) * (u - X)) :=
+      mul_pos (mul_pos hN hE) hTriple
+    rw [hFactor] at hleft
+    by_contra hnot
+    have hnonpos :
+        (x * v - y * u) *
+            ((x * v - y * u) * (X * y - Y * x) +
+              (x ^ 2 + y ^ 2 + x * u + y * v) *
+                (x ^ 2 + y ^ 2 - (X * x + Y * y))) ≤ 0 :=
+      mul_nonpos_of_nonneg_of_nonpos (le_of_lt hRayOrder)
+        (le_of_not_gt hnot)
+    exact (not_lt_of_ge hnonpos) hleft
+  have hLinear :
+      x * (X * y - Y * x) +
+          y * (x ^ 2 + y ^ 2 - (X * x + Y * y)) < 0 := by
+    have hIdentity :
+        x * (X * y - Y * x) +
+            y * (x ^ 2 + y ^ 2 - (X * x + Y * y)) =
+          (x ^ 2 + y ^ 2) * (y - Y) := by ring
+    rw [hIdentity]
+    exact mul_neg_of_pos_of_neg hN (sub_neg.mpr hyY)
+  have hEliminate :
+      0 < (X * y - Y * x) *
+        ((x * v - y * u) * y -
+          (x ^ 2 + y ^ 2 + x * u + y * v) * x) := by
+    have hFirst :
+        0 < y *
+          ((x * v - y * u) * (X * y - Y * x) +
+            (x ^ 2 + y ^ 2 + x * u + y * v) *
+              (x ^ 2 + y ^ 2 - (X * x + Y * y))) :=
+      mul_pos hy hBracket
+    have hSecond :
+        (x ^ 2 + y ^ 2 + x * u + y * v) *
+            (x * (X * y - Y * x) +
+              y * (x ^ 2 + y ^ 2 - (X * x + Y * y))) < 0 :=
+      mul_neg_of_pos_of_neg hE hLinear
+    calc
+      0 <
+          y *
+              ((x * v - y * u) * (X * y - Y * x) +
+                (x ^ 2 + y ^ 2 + x * u + y * v) *
+                  (x ^ 2 + y ^ 2 - (X * x + Y * y))) -
+            (x ^ 2 + y ^ 2 + x * u + y * v) *
+              (x * (X * y - Y * x) +
+                y * (x ^ 2 + y ^ 2 - (X * x + Y * y))) := by
+            nlinarith
+        _ = _ := by ring
+  have hCore :
+      0 < (x * v - y * u) * y -
+        (x ^ 2 + y ^ 2 + x * u + y * v) * x := by
+    by_contra hnot
+    have hnonpos :
+        (X * y - Y * x) *
+            ((x * v - y * u) * y -
+              (x ^ 2 + y ^ 2 + x * u + y * v) * x) ≤ 0 :=
+      mul_nonpos_of_nonneg_of_nonpos (le_of_lt hNest)
+        (le_of_not_gt hnot)
+    exact (not_lt_of_ge hnonpos) hEliminate
+  have hCoreIdentity :
+      (x * v - y * u) * y -
+          (x ^ 2 + y ^ 2 + x * u + y * v) * x =
+        -(x ^ 2 + y ^ 2) * (u + x) := by ring
+  rw [hCoreIdentity] at hCore
+  have hux : u + x < 0 := by
+    by_contra hnot
+    have hnonpos : -(x ^ 2 + y ^ 2) * (u + x) ≤ 0 :=
+      mul_nonpos_of_nonpos_of_nonneg (neg_nonpos.mpr (le_of_lt hN))
+        (le_of_not_gt hnot)
+    exact (not_lt_of_ge hnonpos) hCore
+  have huSquare : x ^ 2 < u ^ 2 := by
+    have hdiff : u - x < 0 := by linarith
+    have hprod : 0 < (u - x) * (u + x) :=
+      mul_pos_of_neg_of_neg hdiff hux
+    nlinarith
+  have hvSquare : v ^ 2 < y ^ 2 := by
+    nlinarith [hNorm]
+  have hv : v < y := by
+    by_contra hnot
+    have hdiff : 0 ≤ v - y := by linarith
+    have hsum : 0 ≤ v + y := by linarith
+    have hprod : 0 ≤ (v - y) * (v + y) := mul_nonneg hdiff hsum
+    nlinarith
+  have hxv : x * v < x * y := mul_lt_mul_of_pos_left hv hx
+  have hyu : y * u < y * (-x) :=
+    mul_lt_mul_of_pos_left (by linarith : u < -x) hy
+  nlinarith
+
+/-- Orientation-reversed form of `polynomial_nested_escape_core`.  Negating
+all transverse coordinates converts a clockwise boundary packet to the
+counterclockwise algebraic normalization without duplicating the elimination
+argument. -/
+private theorem polynomial_nested_escape_core_of_negative
+    {x y X Y u v : ℝ}
+    (hx : 0 < x) (hy : y < 0) (hYy : Y < y)
+    (hNest : X * y - Y * x < 0)
+    (hNorm : u ^ 2 + v ^ 2 = x ^ 2 + y ^ 2)
+    (hRayOrder : x * v - y * u < 0)
+    (hTriple :
+      (x - X) * (v - Y) - (y - Y) * (u - X) < 0) :
+    0 < x * v + y * u := by
+  have h := polynomial_nested_escape_core
+    (x := x) (y := -y) (X := X) (Y := -Y) (u := u) (v := -v)
+    hx (by linarith) (by linarith) (by nlinarith)
+    (by nlinarith [hNorm]) (by nlinarith) (by nlinarith)
+  nlinarith
+
+/-- Point-level positive-orientation wrapper around the polynomial core.  The
+determinant transport lemmas turn the three boundary signed-area inequalities
+into the exact coordinate hypotheses, while the reflected smaller pair turns
+the final boundary determinant into the forbidden positive dot expression. -/
+private theorem false_of_scaledNestedEscape_positive
+    {o a s sMinus L t : ℝ²}
+    (hoa : o ≠ a)
+    (hreflect :
+      scaledLongitudinalCoord o a s =
+          scaledLongitudinalCoord o a sMinus ∧
+        scaledTransverseCoord o a s =
+          -scaledTransverseCoord o a sMinus)
+    (hx : 0 < scaledLongitudinalCoord o a s)
+    (hy : 0 < scaledTransverseCoord o a s)
+    (hyY :
+      scaledTransverseCoord o a s < scaledTransverseCoord o a L)
+    (hNest :
+      0 < scaledLongitudinalCoord o a L *
+          scaledTransverseCoord o a s -
+        scaledTransverseCoord o a L * scaledLongitudinalCoord o a s)
+    (hNorm :
+      scaledLongitudinalCoord o a t ^ 2 +
+          scaledTransverseCoord o a t ^ 2 =
+        scaledLongitudinalCoord o a s ^ 2 +
+          scaledTransverseCoord o a s ^ 2)
+    (hRayArea : 0 < signedArea2 o s t)
+    (hTripleArea : 0 < signedArea2 L s t)
+    (hFinalArea : 0 < signedArea2 o sMinus t) :
+    False := by
+  let x := scaledLongitudinalCoord o a s
+  let y := scaledTransverseCoord o a s
+  let X := scaledLongitudinalCoord o a L
+  let Y := scaledTransverseCoord o a L
+  let u := scaledLongitudinalCoord o a t
+  let v := scaledTransverseCoord o a t
+  have hRay : 0 < x * v - y * u := by
+    have h := (scaledCoordinate_det_pos_iff hoa).2 hRayArea
+    simpa only [x, y, u, v] using h
+  have hTriple :
+      0 < (x - X) * (v - Y) - (y - Y) * (u - X) := by
+    have h := (scaledCoordinate_triangle_det_pos_iff hoa).2 hTripleArea
+    simpa only [x, y, X, Y, u, v] using h
+  have hFinalRaw := (scaledCoordinate_det_pos_iff hoa).2 hFinalArea
+  have hsmallLong : scaledLongitudinalCoord o a sMinus = x := by
+    exact hreflect.1.symm.trans (by rfl)
+  have hsmallTrans : scaledTransverseCoord o a sMinus = -y := by
+    dsimp only [y]
+    linarith [hreflect.2]
+  have hFinal : 0 < x * v + y * u := by
+    rw [hsmallLong, hsmallTrans] at hFinalRaw
+    change 0 < x * v - (-y) * u at hFinalRaw
+    nlinarith
+  have hpoly : x * v + y * u < 0 := by
+    apply polynomial_nested_escape_core (x := x) (y := y) (X := X) (Y := Y)
+    · simpa only [x] using hx
+    · simpa only [y] using hy
+    · simpa only [y, Y] using hyY
+    · simpa only [x, y, X, Y] using hNest
+    · simpa only [x, y, u, v] using hNorm
+    · exact hRay
+    · exact hTriple
+  linarith
+
+/-- Clockwise counterpart of `false_of_scaledNestedEscape_positive`.  It uses
+the orientation-reversed polynomial wrapper, so the boundary adapter may keep
+the repository's native direct-or-mirror signed-area convention. -/
+private theorem false_of_scaledNestedEscape_negative
+    {o a s sMinus L t : ℝ²}
+    (hoa : o ≠ a)
+    (hreflect :
+      scaledLongitudinalCoord o a s =
+          scaledLongitudinalCoord o a sMinus ∧
+        scaledTransverseCoord o a s =
+          -scaledTransverseCoord o a sMinus)
+    (hx : 0 < scaledLongitudinalCoord o a s)
+    (hy : scaledTransverseCoord o a s < 0)
+    (hYy :
+      scaledTransverseCoord o a L < scaledTransverseCoord o a s)
+    (hNest :
+      scaledLongitudinalCoord o a L *
+          scaledTransverseCoord o a s -
+        scaledTransverseCoord o a L * scaledLongitudinalCoord o a s < 0)
+    (hNorm :
+      scaledLongitudinalCoord o a t ^ 2 +
+          scaledTransverseCoord o a t ^ 2 =
+        scaledLongitudinalCoord o a s ^ 2 +
+          scaledTransverseCoord o a s ^ 2)
+    (hRayArea : signedArea2 o s t < 0)
+    (hTripleArea : signedArea2 L s t < 0)
+    (hFinalArea : signedArea2 o sMinus t < 0) :
+    False := by
+  let x := scaledLongitudinalCoord o a s
+  let y := scaledTransverseCoord o a s
+  let X := scaledLongitudinalCoord o a L
+  let Y := scaledTransverseCoord o a L
+  let u := scaledLongitudinalCoord o a t
+  let v := scaledTransverseCoord o a t
+  have hbase : 0 < ‖a - o‖ ^ 2 :=
+    sq_pos_of_pos (norm_pos_iff.mpr (sub_ne_zero.mpr hoa.symm))
+  have hRayEq := scaledCoordinate_det o a s t
+  have hRay : x * v - y * u < 0 := by
+    change x * v - y * u = ‖a - o‖ ^ 2 * signedArea2 o s t at hRayEq
+    rw [hRayEq]
+    exact mul_neg_of_pos_of_neg hbase hRayArea
+  have hTripleEq := scaledCoordinate_triangle_det o a L s t
+  have hTriple :
+      (x - X) * (v - Y) - (y - Y) * (u - X) < 0 := by
+    change
+      (x - X) * (v - Y) - (y - Y) * (u - X) =
+        ‖a - o‖ ^ 2 * signedArea2 L s t at hTripleEq
+    rw [hTripleEq]
+    exact mul_neg_of_pos_of_neg hbase hTripleArea
+  have hFinalEq := scaledCoordinate_det o a sMinus t
+  have hsmallLong : scaledLongitudinalCoord o a sMinus = x := by
+    exact hreflect.1.symm.trans (by rfl)
+  have hsmallTrans : scaledTransverseCoord o a sMinus = -y := by
+    dsimp only [y]
+    linarith [hreflect.2]
+  have hFinalRaw : x * v - (-y) * u < 0 := by
+    rw [hsmallLong, hsmallTrans] at hFinalEq
+    change x * v - (-y) * u =
+      ‖a - o‖ ^ 2 * signedArea2 o sMinus t at hFinalEq
+    rw [hFinalEq]
+    exact mul_neg_of_pos_of_neg hbase hFinalArea
+  have hFinal : x * v + y * u < 0 := by nlinarith [hFinalRaw]
+  have hpoly : 0 < x * v + y * u := by
+    apply polynomial_nested_escape_core_of_negative
+      (x := x) (y := y) (X := X) (Y := Y)
+    · simpa only [x] using hx
+    · simpa only [y] using hy
+    · simpa only [y, Y] using hYy
+    · simpa only [x, y, X, Y] using hNest
+    · simpa only [x, y, u, v] using hNorm
+    · exact hRay
+    · exact hTriple
+  linarith
+
 /-- Saturated child of the paired common-deletion leaf.
 
 Both retained critical shells are pinned onto two concentric first-apex classes
@@ -2265,7 +3252,159 @@ theorem false_of_pairedCommonDeletion_twoRadiusGrid_triApexAllLarge_core
     (place : PairedGridCapPlacement Gr)
     (G : TriApexAllLargeContext D S) :
     False := by
-  sorry
+  classical
+  let labels : PairedGridOrientedLabels Gr place :=
+    Classical.choice (nonempty_pairedGridOrientedLabels Gr place)
+  let Q : PairedGridNestedPrimary Gr labels :=
+    Classical.choice (nonempty_pairedGridNestedPrimary labels)
+  let K :=
+    (H.selectedAt Q.source Q.source_mem_A).toCriticalFourShell
+  have hoa : S.oppApex1 ≠ H.centerAt Q.source Q.source_mem_A :=
+    Q.apex_ne_blocker
+  have haA : H.centerAt Q.source Q.source_mem_A ∈ D.A :=
+    (Finset.mem_erase.mp K.center_mem).2
+  have hlargeEscapeA : Q.largeEscape ∈ D.A :=
+    K.support_subset_A Q.largeEscape_mem_primaryShell
+  have hot : S.oppApex1 ≠ Q.otherSmallEscape := by
+    intro h
+    have hd := (mem_selectedClass.mp Q.otherSmallEscape_mem_smallClass).2
+    rw [h, dist_self] at hd
+    linarith [Q.smallRadius_pos]
+  have hos : S.oppApex1 ≠ Q.smallInside := by
+    intro h
+    have hd := (mem_selectedClass.mp Q.smallInside_mem_smallClass).2
+    rw [h, dist_self] at hd
+    linarith [Q.smallRadius_pos]
+  have hosEscape : S.oppApex1 ≠ Q.smallEscape := by
+    intro h
+    have hd := (mem_selectedClass.mp Q.smallEscape_mem_smallClass).2
+    rw [h, dist_self] at hd
+    linarith [Q.smallRadius_pos]
+  have hasEscape :
+      H.centerAt Q.source Q.source_mem_A ≠ Q.smallEscape := by
+    intro h
+    have hmem := Q.smallEscape_mem_primaryShell
+    rw [← h] at hmem
+    exact K.center_not_mem_support hmem
+  have haLarge :
+      H.centerAt Q.source Q.source_mem_A ≠ Q.largeInside := by
+    intro h
+    have hmem := Q.largeInside_mem_primaryShell
+    rw [← h] at hmem
+    exact K.center_not_mem_support hmem
+  have haLargeEscape :
+      H.centerAt Q.source Q.source_mem_A ≠ Q.largeEscape := by
+    intro h
+    have hmem := Q.largeEscape_mem_primaryShell
+    rw [← h] at hmem
+    exact K.center_not_mem_support hmem
+  have hsmallReflect := Q.smallPair_scaledCoordinates
+  have hlargeReflect := Q.largePair_scaledCoordinates
+  have hsmallO :
+      dist S.oppApex1 Q.smallInside =
+        dist S.oppApex1 Q.smallEscape :=
+    (mem_selectedClass.mp Q.smallInside_mem_smallClass).2.trans
+      (mem_selectedClass.mp Q.smallEscape_mem_smallClass).2.symm
+  have hsmallA :
+      dist (H.centerAt Q.source Q.source_mem_A) Q.smallInside =
+        dist (H.centerAt Q.source Q.source_mem_A) Q.smallEscape :=
+    (K.support_eq_radius Q.smallInside
+      Q.smallInside_mem_primaryShell).trans
+      (K.support_eq_radius Q.smallEscape
+        Q.smallEscape_mem_primaryShell).symm
+  have hlargeO :
+      dist S.oppApex1 Q.largeInside =
+        dist S.oppApex1 Q.largeEscape :=
+    (mem_selectedClass.mp Q.largeInside_mem_largeClass).2.trans
+      (mem_selectedClass.mp Q.largeEscape_mem_largeClass).2.symm
+  have hlargeA :
+      dist (H.centerAt Q.source Q.source_mem_A) Q.largeInside =
+        dist (H.centerAt Q.source Q.source_mem_A) Q.largeEscape :=
+    (K.support_eq_radius Q.largeInside
+      Q.largeInside_mem_primaryShell).trans
+      (K.support_eq_radius Q.largeEscape
+        Q.largeEscape_mem_primaryShell).symm
+  have hRadius :
+      dist S.oppApex1 Q.smallInside <
+        dist S.oppApex1 Q.largeInside := by
+    calc
+      dist S.oppApex1 Q.smallInside = Q.smallRadius :=
+        (mem_selectedClass.mp Q.smallInside_mem_smallClass).2
+      _ < Q.largeRadius := Q.smallRadius_lt_largeRadius
+      _ = dist S.oppApex1 Q.largeInside :=
+        (mem_selectedClass.mp Q.largeInside_mem_largeClass).2.symm
+  have hCommonBlocker :
+      dist (H.centerAt Q.source Q.source_mem_A) Q.smallInside =
+        dist (H.centerAt Q.source Q.source_mem_A) Q.largeInside :=
+    (K.support_eq_radius Q.smallInside
+      Q.smallInside_mem_primaryShell).trans
+      (K.support_eq_radius Q.largeInside
+        Q.largeInside_mem_primaryShell).symm
+  have hpacket := twoRadiusGrid_zeroCut_assembly S haA hlargeEscapeA
+    Q.smallInside_mem_capInterior Q.largeInside_mem_capInterior
+    Q.smallEscape_mem_left Q.otherSmallEscape_mem_right hoa hot hos
+    hosEscape hasEscape Q.smallPair_ne haLarge haLargeEscape Q.largePair_ne
+    hsmallReflect hlargeReflect hsmallO hsmallA hlargeO hlargeA hRadius
+    hCommonBlocker Q.largeEscape_not_mem_capInterior
+  rcases hpacket with hpositive | hnegative
+  · rcases hpositive with
+      ⟨hnest, _hbaseSign, hRay, hFinal, hTripleOf⟩
+    rcases hnest with ⟨hx, hy, hyY, hNest⟩
+    have hAreaOLs :
+        0 < signedArea2 S.oppApex1 Q.largeInside Q.smallInside :=
+      (scaledCoordinate_det_pos_iff hoa).1 hNest
+    exact false_of_scaledNestedEscape_positive hoa hsmallReflect hx hy hyY
+      hNest Q.smallRadius_scaledNorm hRay (hTripleOf hAreaOLs) hFinal
+  · rcases hnegative with
+      ⟨⟨hy, _hLargeTransNeg⟩, hmirrorNest, _hbaseSign,
+        hRay, hFinal, hTripleOf⟩
+    rcases hmirrorNest with ⟨hxMirror, _hyMirror, hyYMirror, hNestMirror⟩
+    have hx :
+        0 < scaledLongitudinalCoord S.oppApex1
+          (H.centerAt Q.source Q.source_mem_A) Q.smallInside := by
+      rw [hsmallReflect.1]
+      exact hxMirror
+    have hYy :
+        scaledTransverseCoord S.oppApex1
+            (H.centerAt Q.source Q.source_mem_A) Q.largeInside <
+          scaledTransverseCoord S.oppApex1
+            (H.centerAt Q.source Q.source_mem_A) Q.smallInside := by
+      nlinarith [hsmallReflect.2, hlargeReflect.2, hyYMirror]
+    have hNest :
+        scaledLongitudinalCoord S.oppApex1
+              (H.centerAt Q.source Q.source_mem_A) Q.largeInside *
+            scaledTransverseCoord S.oppApex1
+              (H.centerAt Q.source Q.source_mem_A) Q.smallInside -
+          scaledTransverseCoord S.oppApex1
+              (H.centerAt Q.source Q.source_mem_A) Q.largeInside *
+            scaledLongitudinalCoord S.oppApex1
+              (H.centerAt Q.source Q.source_mem_A) Q.smallInside < 0 := by
+      rw [hsmallReflect.1, hlargeReflect.1, hsmallReflect.2,
+        hlargeReflect.2]
+      nlinarith [hNestMirror]
+    have hDetSwap :
+        0 < scaledLongitudinalCoord S.oppApex1
+              (H.centerAt Q.source Q.source_mem_A) Q.smallInside *
+            scaledTransverseCoord S.oppApex1
+              (H.centerAt Q.source Q.source_mem_A) Q.largeInside -
+          scaledTransverseCoord S.oppApex1
+              (H.centerAt Q.source Q.source_mem_A) Q.smallInside *
+            scaledLongitudinalCoord S.oppApex1
+              (H.centerAt Q.source Q.source_mem_A) Q.largeInside := by
+      nlinarith [hNest]
+    have hAreaSwap :
+        0 < signedArea2 S.oppApex1 Q.smallInside Q.largeInside :=
+      (scaledCoordinate_det_pos_iff hoa).1 hDetSwap
+    have hAreaOLs :
+        signedArea2 S.oppApex1 Q.largeInside Q.smallInside < 0 := by
+      have hswap :
+        signedArea2 S.oppApex1 Q.largeInside Q.smallInside =
+            -signedArea2 S.oppApex1 Q.smallInside Q.largeInside := by
+        simp [signedArea2]
+      rw [hswap]
+      linarith
+    exact false_of_scaledNestedEscape_negative hoa hsmallReflect hx hy hYy
+      hNest Q.smallRadius_scaledNorm hRay (hTripleOf hAreaOLs) hFinal
 
 /-- Paired-common-deletion branch of the E1 geometric consumer.  Its inputs
 are exactly the first constructor of `RetainedOmissionAllLargeNormalForm`.

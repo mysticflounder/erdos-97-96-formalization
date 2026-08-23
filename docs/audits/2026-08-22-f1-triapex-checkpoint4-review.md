@@ -3,7 +3,8 @@
 **Date:** 2026-08-22; implementation update 2026-08-23
 **Scope:** the 15 F1-lane files plus the independent checkpoint-4 review in
 `/tmp/Erdos-97-Proof-complete-2026-08-22.tar`, reconciled with the live
-repository.  This is a status and supersession audit, not a closure claim.
+repository. This is a status and supersession audit and records the subsequent
+kernel-checked D2 closure; it does not claim closure of D1 or F1 as a whole.
 
 ## Executive status
 
@@ -12,18 +13,18 @@ pointer, three-cycle continuation v4, and D1 working checkpoint v23.  The
 correct frontier is:
 
 - **D1 / provenance-rich joint deletion:** mathematically open;
-- **D2 / two-radius grid:** prose-closed by a trig-free polynomial
-  contradiction, but not yet formalized as a live Lean theorem;
+- **D2 / two-radius grid:** formally closed by the trig-free polynomial route,
+  with checked coordinate, convex-nesting, zero-cut synchronization, and
+  boundary-sign adapters;
 - **D3--D9:** source-clean compatibility wrappers through the checked
   reverse-hit-to-D1 escape; their endpoint-specific data remain available in
   the public APIs but no longer create independent proof obligations.
 
-The live `TriApexEndpointRetainedOmission.lean` file now contains exactly two
-bare `sorry` occurrences, D1 and D2.  A focused `lake-build` and refreshed
-kernel reference mine on 2026-08-23 reduced the publish-spine frontier from 36
-to 29 reachable `sorry` leaves, with exactly those two TriApex leaves.  Both
-published claims still reach `sorryAx`, so this is a seven-leaf frontier
-reduction, not F1 closure.
+The live `TriApexEndpointRetainedOmission.lean` file now contains exactly one
+bare `sorry` occurrence, D1. A focused `lake-build` and refreshed kernel
+reference mine on 2026-08-23 reduced the publish-spine frontier from 29 to 28
+reachable `sorry` leaves and the TriApex branch from D1+D2 to D1 alone. Both
+published claims still reach `sorryAx`, so F1 is not yet closed.
 
 ## Independent checkpoint-4 review
 
@@ -75,7 +76,7 @@ contradiction route
 `false_of_retainedOmission_reverseHit_jointDeletion_triApexAllLarge_core`
 then calls D1 and therefore still reaches `sorryAx`.
 
-## D2 prose-only result
+## D2 formal closure
 
 D2 is the two-radius-grid kernel
 `false_of_pairedCommonDeletion_twoRadiusGrid_triApexAllLarge_core`.  The
@@ -87,9 +88,30 @@ theorem polynomial_nested_escape_core
     {x y X Y u v : ℝ} ... : x * v + y * u < 0
 ```
 
-This is a mathematically closed route in the archive, not a current Lean
-declaration.  The live source still has the D2 `sorry`; implementation needs
-the three coordinate adapters and then a direct build/axiom audit.
+The source now contains this theorem as a private, source-independent algebra
+kernel.  Its proof expands the three audited polynomial identities and uses
+only positivity and ordered-ring reasoning.  A focused build of
+`TriApexEndpointRetainedOmission` passes with the theorem in place.
+
+The public D2 declaration is now proved. The implementation separates five
+interfaces:
+
+1. `TwoRadiusGridCoordinateGeometry` supplies division-free scaled coordinates,
+   reflection, norm, and signed-determinant transport;
+2. `TwoRadiusGridConvexNesting` proves the positive representative nesting
+   inequalities from convex independence;
+3. `TwoRadiusGridEscapeSynchronization` uses order-convexity of the strict cap
+   interior to eliminate crossed transverse choices before the actual inside
+   representatives are assigned a common sign;
+4. `TwoRadiusGridCapBoundarySigns` and `TwoRadiusGridZeroCutAssembly` extract
+   the coherent direct/mirror escape signs from one zero-cut boundary; and
+5. the point-level positive/negative wrappers feed those facts to
+   `polynomial_nested_escape_core`.
+
+The dependency order is essential: synchronization precedes positivity of the
+actual inside representatives. Reversing those steps would assume the fact
+being proved. A focused build completed successfully, and `#print axioms` for
+the D2 declaration reports only `propext`, `Classical.choice`, and `Quot.sound`.
 
 ## D8 source truth and supersession
 
@@ -113,16 +135,15 @@ The distinct-cycle consumer is now a source-clean wrapper through D1 and is
 off the active reverse-hit spine.  Its geometric development remains useful
 historical evidence, but it is no longer an independent closure obligation.
 
-## Current two-root source roster
+## Current one-root source roster
 
-The two live open declarations are:
+The sole live open declaration is:
 
 1. `false_of_pairedCommonDeletion_apexClassJointDeletion_triApexAllLarge_core`
-2. `false_of_pairedCommonDeletion_twoRadiusGrid_triApexAllLarge_core`
 
 The seven former D3--D9 declarations remain as source-clean compatibility
 wrappers so downstream names and theorem signatures do not break.  A refreshed
-kernel mine reports 29 reachable leaves globally and exactly the two entries
+kernel mine reports 28 reachable leaves globally and exactly the D1 entry
 above for TriApex.
 
 ## Stale anchors and trust boundary
@@ -131,17 +152,17 @@ above for TriApex.
   checkpoint snapshots and old source-audited ledger have drifted.
 - `docs/live-blueprint.md` is a generated shared-worktree artifact and was not
   overwritten by this lane.  The refreshed `proof-blueprint spine` command,
-  not that file, is the authority for the 29/2 counts above.
+  not that file, is the authority for the 28/1 counts above.
 - The old nine-leaf roster is a historical pre-refactor snapshot.  D3--D9 are
-  now transparent wrappers; D1 and D2 are the current independent roots.
-- The reverse-hit adapter is live and kernel-clean.  The D2 polynomial
-  declaration remains a prose target.
+  now transparent wrappers; D1 is the current independent root.
+- The reverse-hit adapter and D2 contradiction are live and kernel-clean.
 
 Prose closure, source audits, finite polynomial reasoning, static inventories,
 and generated blueprint entries do not remove `sorryAx`. F1 reclassification
 requires live Lean elaboration, a clean relevant build, direct reachability
 verification, and publication-target `#print axioms`.  Those checks were rerun
-for this refactor: the selector is kernel-clean, the global frontier is 29,
+for this refactor and D2 closure: the relevant declarations are kernel-clean,
+the global frontier is 28,
 and `Problem97.erdos97_rhs` still reports `sorryAx`.
 
 ## Archive appendix: all 16 F1-relevant files
