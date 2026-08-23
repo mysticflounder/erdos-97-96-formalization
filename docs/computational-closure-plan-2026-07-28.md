@@ -15359,3 +15359,18 @@ keeps `PRODUCTION_PINS_FINALIZED = false`. The combined inherited and V7
 adversarial suite passes 155 tests. After the control-plane commit, the next
 step is to create and commit the external preparation config, freeze the source
 campaign and all 76 identities, and only then authorize one PIQD canary.
+
+The first governed source preparation is quarantined. Commit `0dbfd4b7` froze
+the V1 config and empty run skeleton, and the local-only exporter produced 76
+cells without contacting PIQD. The mandatory runner-side identity derivation
+then rejected the packet before any job launch because every generated cell ID
+still used the inherited V5 prefix. The wrapper had overridden the unused
+`_cell_id` compatibility hook, while the delegated generator resolves its
+directory, CNF, producer, wave, and campaign identities through module-global
+`category_id`. No SAT result, certificate, or Lean claim was produced from the
+invalid packet. Commit `8b2150df` fixes the load-bearing binding, adds an
+all-76 fail-closed identity/manifest gate, and advances the create-once route to
+fresh V2 checkpoint, config, and generated-root names. V1 remains immutable and
+must never be promoted. The next gate is a newly frozen V2 config followed by a
+fresh source export and independent 76-cell identity audit; only a passing V2
+packet may enter the runner-freeze and one-canary sequence.

@@ -1648,3 +1648,18 @@ timeouts. All inherited and V7-focused adversarial tests pass. Production pins
 remain deliberately unset until the wrapper source has a committed identity;
 there is still no V7 preparation config, generated packet, frozen portfolio,
 or PIQD submission.
+
+The subsequent V1 preparation attempt is a fail-closed quarantine, not a route
+milestone. Commit `0dbfd4b7` froze its config and governed empty root; the
+source-only exporter then produced 76 local cells. Before PIQD preparation or
+confirmation, `derive-identities` rejected the first cell because the whole
+packet retained the inherited V5 source-ID prefix. The cause was precise: the
+V7 wrapper overrode `_cell_id`, but the delegated preparer generates all
+physical directory, CNF, producer, wave, and campaign IDs via its module-global
+`category_id`. Therefore the V1 packet is not V7-owned and is ineligible for
+portfolio freezing. No solver result or proof claim depends on it. Commit
+`8b2150df` binds the load-bearing function, validates all 76 generated IDs and
+producer fields before delegation, forbids the inherited prefix, and moves the
+create-once custody surface to `preparation-v2`. V1 remains immutable. A fresh
+V2 config, packet, and independent identity-table audit are required before the
+runner may set production pins or authorize exactly one canary.
