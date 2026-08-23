@@ -1632,3 +1632,8 @@ claimed at this stage: that module can be generated only after every V7 cell
 has a checked UNSAT theorem. The exact-cover branch of `Rigid221SourceHeavy`
 already produces the order-zero `SourceRealization` consumed by the future
 aggregate.
+
+The fail-closed preparation path also has a dedicated V6 immediate-parent
+exporter. It emits the 7,409,788-clause V6 root and 7,409,794-clause physical
+cells solely to authenticate the V7 prefix and 22-clause novelty boundary; no
+V6 solver portfolio is authorized.

@@ -15342,3 +15342,8 @@ builds and the approved five-axiom audit without `sorryAx`. The concrete
 76-certificate aggregate does not yet exist; it is generated only after all
 cells have certified UNSAT proofs. That future aggregate is the direct input
 to the exact-cover source branch in `Rigid221SourceHeavy`.
+
+A separate V6 immediate-parent exporter emits its 7,409,788-clause root and
+7,409,794-clause physical cells. It is a custody witness, not a solver
+campaign: the V7 preparer must prove that every V7 cell has this exact prefix
+and appends exactly the 22 V7 clauses before any packet can be frozen.
