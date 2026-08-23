@@ -1528,9 +1528,154 @@ cross-row support rank, or a new composition theorem.
 **Reopen condition:** Replay and digest every witness/checker before upgrading the
 entry to `FALSE_EXACT` for the precise local exclusions.
 
-## 11. Maintenance rules and durable reopen conditions
+## 11. 2026-08-22 route corrections
 
-### 11.1 Statements safely barred now
+This dated addendum records corrections from the F1, F2, F3, Rigid221, and
+literature reconciliations. It narrows old claims; it does not turn the
+remaining stronger geometric routes into dead ends.
+
+### 11.1 F3 recursive `JointCapCover` successor interface
+
+**Exact target:** The proposed recursive `F3DescentState.jointCapCover` /
+`JointCapCover` successor contract from F3.48 and its constructor-by-constructor
+successor obligation `F3-COV3`.
+
+**Assessment:** `HYPOTHESIS_MISMATCH`.
+
+**Evidence:** `SOURCE_CHECKED` and `PROSE_CHECKED` —
+`docs/audits/2026-08-22-f3-twodeletion-third-pass-synthesis.md` and the current
+F3 third-pass source reconciliation.
+
+**Project relevance:** `STALE_STATUS` / `CURRENT_CONSUMERS_UNVERIFIED` — the
+second-pass recursive interface is superseded; the three live F3 leaves remain.
+
+**Exact scope:** A physical point in the joint locus need not be a successor
+center, a survival pair need not retain both sources, rows, and deletions, and
+no current constructor proves that an arbitrary pair covers the whole joint
+locus in one strict cap interval. The recorded recursive interface therefore
+cannot be used as a descent theorem.
+
+**Not ruled out:** The nonrecursive physical-trace system, sparse conflict
+graphs, survival amplification, the bounded/grid/diagonal packets, and all five
+metric roots remain open.
+
+**Reopen condition:** Supply a source-faithful constructor that preserves the
+ordered deletion window, exact rows, and provenance, then prove its strict
+measure decrease and successor-specific cover; otherwise consume the corrected
+trace packets directly.
+
+### 11.2 F1 preferred bypass versus the live nine-sorry source
+
+**Exact target:** The preferred F1 D1 ingress/bypass through
+`TriApexEndpointRetainedOmission.lean`, including the D3--D7 and D9 routes it
+is intended to bypass.
+
+**Assessment:** `UNRESOLVED`.
+
+**Evidence:** `SOURCE_CHECKED` and `PROSE_CHECKED` —
+`docs/audits/2026-08-22-f1-triapex-checkpoint4-review.md` and the 22 August
+source audit.
+
+**Project relevance:** `CURRENT_CONSUMERS_UNVERIFIED` — the live F1 module
+still contains nine `sorry`s; D1 is the preferred research kernel, while D8's
+distinct-cycle consumer and D1 ingress wiring remain open.
+
+**Exact scope:** “Preferred bypass” is an architectural recommendation, not a
+closed source route. D2 is prose-closed but Lean-open; D8's producer and
+equal-secondary-blocker child are source-clean, but these facts do not remove
+the nine live declarations or close the publication spine.
+
+**Not ruled out:** A source-faithful D1 kernel, the D2 analytic argument after
+Lean formalization, D8's remaining cap/order consumer, and a direct closure of
+any typed F1 kernel remain available.
+
+**Reopen condition:** Wire the retained caller data through D1 (or a stronger
+typed kernel), build the live module, check reachability and `#print axioms`,
+and only then reclassify the bypass or its downstream leaves.
+
+### 11.3 F2 fixed-total-blocker and old six-leaf architecture
+
+**Exact target:** The earlier FreshThird-first six-leaf tree based on choosing a
+total `CriticalShellSystem` before the useful source pair and branch are known.
+
+**Assessment:** `UNRESOLVED`.
+
+**Evidence:** `SOURCE_CHECKED` and `PROSE_CHECKED` —
+`docs/audits/2026-08-22-f2-twosource-checkpoint36-synthesis.md`, checkpoint 36,
+and the current manuscript's intrinsic F2 reduction.
+
+**Project relevance:** `STALE_STATUS` / `CURRENT_CONSUMERS_UNVERIFIED` — the
+old six boundaries remain reachable in Lean but are no longer the recommended
+mathematical boundary.
+
+**Exact scope:** A fixed early blocker section and its six-leaf decomposition
+are not required by the current reduction. This is a correction of architecture,
+not a proof that the old theorem statements are false or that F2 is closed.
+
+**Not ruled out:** The intrinsic all-blockers late-choice reduction to
+`CR-CB`, `CR-MO`, `AR-CB`, and `AR-MO`, grouped into Root A and Root B, remains
+open. The preferred-first-cap FreshThird compatibility lane and the separate
+F8 provenance-preserving adapter also remain open.
+
+**Reopen condition:** Preserve all legal blockers until the fresh pair and
+radial branch are selected; implement the intrinsic packets, Root A/Root B
+consumers, and the F8 adapter; then run a live build and axiom audit.
+
+### 11.4 Rigid221 exact-cover cap-nine counting
+
+**Exact target:** The exact-seventeen, second-cap-nine declaration
+`false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV_vRowBlockerDeleted_deletedRowBlockerOffClass_card_eq_seventeen_secondCapNine`,
+restricted to the claim that four two-point outside portions force a
+contradiction by cardinality or partition counting alone.
+
+**Assessment:** `INSUFFICIENT_ALONE`.
+
+**Evidence:** `SOURCE_CHECKED` and `PROSE_CHECKED` — the exact-cover terminal
+and its two cap orders in the current Rigid221 classification and source audit.
+
+**Project relevance:** `CURRENT_CONSUMERS_UNVERIFIED` — the unused-outside arm
+is closed, but the exact-cover arm and the universal exact-17 closure remain
+open.
+
+**Exact scope:** The nine-point cap, four row slices, eight outside points, and
+their four two-point partition do not by themselves contradict the packet.
+
+**Not ruled out:** Cyclic order combined with circle incidence, perpendicular
+bisectors, interlacing, or a finite exact replay certificate remains a stronger
+geometric route.
+
+**Reopen condition:** Prove a source-faithful metric/cyclic-order obstruction
+for both cap orders, with exact row radii and all outside assignments retained.
+
+### 11.5 Literature candidates and project-native adapters
+
+**Exact target:** LB3--LB10 in the 22 August literature bridge: external
+cap-witness, strict-chord, anti-Monge, forbidden-matrix, scalable few-distance,
+and MEC-cap candidates together with their project-native adapters.
+
+**Assessment:** `REPORTED_RESULT_UNVERIFIED`.
+
+**Evidence:** `SOURCE_CHECKED` for the repository bridge note and its source
+accounting; the external theorem statements and adapters were not independently
+verified. See `docs/notes/2026-08-22-p97-literature-bridge.md`.
+
+**Project relevance:** `CURRENT_CONSUMERS_UNVERIFIED` — the bridge identifies
+possible tools but closes no proof obligation.
+
+**Exact scope:** Candidate literature claims, applicability statements, and
+source-to-cap/order adapters must not be cited as proved project lemmas.
+
+**Not ruled out:** After the adapter boundary is met, LB3/LB4 nesting and
+strict decrease, LB5/LB6 two-chain obstructions, LB7 scalable bounds, and LB10
+the MEC-cap bridge remain possible stronger routes.
+
+**Reopen condition:** Check each cited source and hypotheses, define the native
+`CapWitness` and MEC bridge, prove the orientation/order adapters, replay the
+result in Lean or an exact certificate, and record the resulting axiom boundary.
+
+## 12. Maintenance rules and durable reopen conditions
+
+### 12.1 Statements safely barred now
 
 The following conclusions have source-level or inline support strong enough to
 bar their exact forms without relying on missing historical artifacts:
@@ -1557,7 +1702,7 @@ bar their exact forms without relying on missing historical artifacts:
 These are narrow statements. Each may be escaped by adding a genuinely new
 hypothesis or coupling that changes the exact proposition.
 
-### 11.2 Claims retained only as regression leads
+### 12.2 Claims retained only as regression leads
 
 The following historical reports are **not** permanent bans at this baseline
 because the exact witness, generator list, solver input, or checker was absent or
@@ -1577,7 +1722,7 @@ unreplayed:
 Before relying on one, restore or run the exact artifact and record its digest,
 checker version, source-packet contract, and result.
 
-### 11.3 Routes previously overclosed
+### 12.3 Routes previously overclosed
 
 Do not reject the following merely by citing an old universal slogan:
 
@@ -1594,7 +1739,7 @@ Do not reject the following merely by citing an old universal slogan:
 - a direct firewall proof;
 - any route whose only old no-go was the positive-dimensional-stratum argument.
 
-### 11.4 Promotion checklist
+### 12.4 Promotion checklist
 
 Before upgrading an entry to `FALSE_EXACT`, `PROVED_EXACT`,
 `CERTIFICATE_CLASS_IMPOSSIBLE`, or `FALSE_IN_RECORDED_RELAXATION`, verify all of
@@ -1613,7 +1758,7 @@ the following:
 - a direct full-problem route is not mislabeled dead because it bypasses the
   current architecture.
 
-### 11.5 Entry template
+### 12.5 Entry template
 
 ```markdown
 ### <route name>
@@ -1635,4 +1780,3 @@ the following:
 
 This format is the guardrail against turning “the recorded bare formulation
 failed” into “the entire mathematical mechanism is dead.”
-

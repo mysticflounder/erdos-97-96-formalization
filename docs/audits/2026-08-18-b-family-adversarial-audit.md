@@ -1,5 +1,13 @@
 # Comprehensive Adversarial Red-Team Audit: B-Family Closure Spine
 
+> **SUPERSEDED AS CURRENT B1 CONTRACT (Revision 4, 22 August 2026).** This
+> document remains historical red-team evidence. Its recommendation to bypass
+> the B1 wrapper and derive `False` directly was not established by the v4
+> source audit. The current contract keeps B1 open: prove the positive terminal
+> or derive a contradiction from the same context. No top-level refutation was
+> found. The B2 local-realizability and B3 metric-obstruction findings remain
+> useful; see the [current plan](../plans/2026-08-18-b-family-closure-plan.md).
+
 **Date**: 2026-08-18  
 **Target Files**:
 - [`lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean`](file:///Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean)

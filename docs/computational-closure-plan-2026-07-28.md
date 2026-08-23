@@ -12001,6 +12001,25 @@ current on-spine `sorryAx` count.  Promotion requires both a source-clean
 consumer and fresh proof-blueprint evidence that the resulting declaration is
 actually used by the published spine.
 
+##### 13.24.1.22a Literature bridge reconciliation (2026-08-22)
+
+The complete prose-library merge preserves the literature work as an explicit
+LB0--LB10 bridge rather than as part of an obsolete whole-manuscript hybrid.
+LB0--LB2 are project-internal definitions or prose-derived alternation facts.
+LB3--LB7 are external theorem candidates: cap-witness nesting, strict
+five-point chord decrease, Aggarwal two-chain inequalities, obtuse-angle
+forbidden matrices, and a conditional Pach--de Zeeuw scalable bound. Their
+exact published statements and project-native adapters have not been verified.
+LB8--LB9 record applicability and priority, and LB10 is the still-unproved
+MEC/Moser-cap-to-literature-cap adapter.
+
+This classification reinforces the source-entitlement rule above. No external
+result may be called until Lean or an audited prose bridge supplies the exact
+cap model, cyclic order, pairing, crossing, separation, and metric hypotheses
+required by that result. The current bridge closes no FirstNonHit, F1, F2, F3,
+or publish-spine obligation. The project-native matrix and source accounting
+are in `docs/notes/2026-08-22-p97-literature-bridge.md`.
+
 #### 13.24.1.23 Pinned-fan interface survivor and bounded-lift pivot (2026-08-13)
 
 This subsection supersedes the claim in §13.24.1.22 that the pinned-endpoint

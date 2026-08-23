@@ -185,6 +185,13 @@ spine source: 291224 line(s) of lean across 36264 decl(s)
 open obligations (37):   -- 36 sorry-carrying leaves + the sorryAx node itself
 ```
 
+The 2026-08-22 prose-library synthesis did not rerun this build-derived
+measurement. Its live source audit found the same nine TriApex and three
+TwoDeletion `sorry`s, plus eight bare TwoSource `sorry`s of which the table
+below counts six as reachable in the built snapshot. The prose reductions and
+new source-clean helpers close no whole publish-spine obligation; regenerate
+the spine before changing the table.
+
 Three status terms recur below and are worth pinning down, since they are what
 separates "proved" from "not proved" in this document. **Source-clean** means the
 declaration's own file contains no `sorry`; it may still reach `sorryAx` through
@@ -875,10 +882,20 @@ that command and is marked do-not-edit.
 
 Other durable entry points:
 
+- [`docs/erdos-97-descent-prose-proof-atomic.md`](docs/erdos-97-descent-prose-proof-atomic.md)
+  — the current authoritative end-to-end research manuscript. Its 2026-08-22
+  synthesis incorporates the complete 117-file prose bundle, the F1
+  checkpoint-4/D1-v23/D8 reconciliation, F2 checkpoint 36, the corrected F3
+  third pass, A5/B-family evidence, and the literature bridge while preserving
+  every open proof boundary.
+- [`docs/p97-prose-material-integration-ledger-2026-08-22.md`](docs/p97-prose-material-integration-ledger-2026-08-22.md)
+  — exact source-to-destination accounting for all 117 bundle files. The dated
+  F1, F2, and F3 syntheses live under [`docs/audits/`](docs/audits), and the
+  literature bridge is under [`docs/notes/`](docs/notes).
 - [`docs/97-rvol-full-prose-proof-2026-07-13.md`](docs/97-rvol-full-prose-proof-2026-07-13.md)
-  — the dated end-to-end prose proof of the Problem 97 target, with per-component
-  proved/open status, kernel axiom closures, and a completion matrix. Still the
-  only end-to-end prose narrative; its content is dated 2026-07-13.
+  — a historical dated end-to-end narrative with per-component proved/open
+  status, kernel axiom closures, and a completion matrix. Its content is dated
+  2026-07-13; use the current authoritative manuscript above for active work.
 - [`docs/audits/`](docs/audits) — dated analysis snapshots. This is where the
   live per-lane status actually lives; the 2026-08-16 through 2026-08-18 audits
   are the current record.

@@ -1,0 +1,827 @@
+{
+  "archive": "/tmp/Erdos-97-Proof-complete-2026-08-22.tar",
+  "archive_sha256": "e0a2df74165ed4ed13925273bc2e064eaafc51696139f02307cf861a551fc357",
+  "file_count": 117,
+  "records": [
+    {
+      "area": "B-family \u2014 4, superseded by v4",
+      "bytes": 833,
+      "section": "F",
+      "sha256": "a6bd233a2b6f0633f3bd33d18e5d60d3665e2939cb9e9675ddf9628eb9632b1d",
+      "source": "2026-08-18-b-family-closure-plan-audited-expanded-v3-validation.txt"
+    },
+    {
+      "area": "B-family \u2014 4, superseded by v4",
+      "bytes": 150159,
+      "section": "F",
+      "sha256": "0c9b6135e057fee6ff2834e25c248139828ffdc33cb7dcd195b5bf76de6af60a",
+      "source": "2026-08-18-b-family-closure-plan-audited-expanded-v3.md"
+    },
+    {
+      "area": "B-family \u2014 2",
+      "bytes": 126702,
+      "section": "E",
+      "sha256": "278b2d39b8810aa3c853bed38234c5048de1370c9b7ca350571126a0cb253bdd",
+      "source": "2026-08-18-b-family-closure-plan-audited-expanded-v4-tasks.json"
+    },
+    {
+      "area": "B-family \u2014 2",
+      "bytes": 4644,
+      "section": "E",
+      "sha256": "f1a3015a1f9800968c23044e6e32b655e7ba7fef7850eeb9e6e921bcb78aee5c",
+      "source": "2026-08-18-b-family-closure-plan-audited-expanded-v4-validation.txt"
+    },
+    {
+      "area": "B-family \u2014 3",
+      "bytes": 110024,
+      "section": "C",
+      "sha256": "6671b35b6e9ac17ff84822c88be3f0950b50e903889d59c63e3ce8b408b0b09d",
+      "source": "2026-08-18-b-family-closure-plan-audited-expanded-v4.md"
+    },
+    {
+      "area": "B-family \u2014 4, superseded by v4",
+      "bytes": 106867,
+      "section": "F",
+      "sha256": "78928d7ff07d9340489d8195187b7e736b93784e7c6110e30621ee0d996fb317",
+      "source": "2026-08-18-b-family-closure-plan-audited-expanded.md"
+    },
+    {
+      "area": "B-family \u2014 4, superseded by v4",
+      "bytes": 50719,
+      "section": "F",
+      "sha256": "b516bd782a587b2907ae93bcd0f612aef24a1182aaf55b9544370153a8b175d7",
+      "source": "2026-08-18-b-family-closure-plan-audited.md"
+    },
+    {
+      "area": "B-family \u2014 3",
+      "bytes": 15742,
+      "section": "C",
+      "sha256": "ad85e4a507cdbc5546f2afc5af3b837e5e3c76b99a5a285dbdce08927b88d9d6",
+      "source": "2026-08-18-b-family-closure-plan-v4-full-audit.md"
+    },
+    {
+      "area": "F1 TriApex \u2014 10, superseded by checkpoint 4 / continuation v4 / D1 v23",
+      "bytes": 37784,
+      "section": "F",
+      "sha256": "e1b308f79ad950d087ea027a47e13455aee51e6e060938b7869b9943ee3bfbc1",
+      "source": "2026-08-20-f1-triapex-closure-dossier.md"
+    },
+    {
+      "area": "F1 TriApex \u2014 10, superseded by checkpoint 4 / continuation v4 / D1 v23",
+      "bytes": 39071,
+      "section": "F",
+      "sha256": "c35a85fb2251245a0e4413e50a3a52965614aed74092d6f0db73ce0d03471b15",
+      "source": "2026-08-20-f1-triapex-closure-plan-and-expanded-prose.md"
+    },
+    {
+      "area": "F1 TriApex \u2014 10, superseded by checkpoint 4 / continuation v4 / D1 v23",
+      "bytes": 14341,
+      "section": "F",
+      "sha256": "7d7906baef4e3c1e563875deb122029a47dcb797fd20c6a869877f2864e75301",
+      "source": "2026-08-20-f1-triapex-closure-task-ledger-v2.yaml"
+    },
+    {
+      "area": "F1 TriApex \u2014 10, superseded by checkpoint 4 / continuation v4 / D1 v23",
+      "bytes": 26328,
+      "section": "F",
+      "sha256": "efdce57317595795b7a2625419aa9f171f7adce67b12eb658c76ba32f6ac09b2",
+      "source": "2026-08-20-f1-triapex-low-level-task-ledger.yaml"
+    },
+    {
+      "area": "F1 TriApex \u2014 4",
+      "bytes": 27464,
+      "section": "C",
+      "sha256": "f68f1eb1c97a3d013cb2839d3734e868603f859ea6ff556d6472b6d67fcacd06",
+      "source": "2026-08-22-f1-d1-working-checkpoint-v23.md"
+    },
+    {
+      "area": "F1 TriApex \u2014 4",
+      "bytes": 3046,
+      "section": "C",
+      "sha256": "2dd7b330f9b84e39ddb8ef12c47a0698c6dd1eed1dc90ebf00093fcfc962b687",
+      "source": "2026-08-22-f1-triapex-authoritative-checkpoint4.md"
+    },
+    {
+      "area": "F1 TriApex \u2014 10, superseded by checkpoint 4 / continuation v4 / D1 v23",
+      "bytes": 12133,
+      "section": "F",
+      "sha256": "44d0d2bbd93a1e3aa3b8e080bd7d2785ec34e2367a592886e87a2ad51750fa4f",
+      "source": "2026-08-22-f1-triapex-task-ledger-v3.yaml"
+    },
+    {
+      "area": "F1 TriApex \u2014 1",
+      "bytes": 3332,
+      "section": "E",
+      "sha256": "922333415c59740c4898fe91ef739f17111d4272fc16f4090c01b690e3669769",
+      "source": "2026-08-22-f1-triapex-task-ledger-v4.yaml"
+    },
+    {
+      "area": "F1 TriApex \u2014 4",
+      "bytes": 25159,
+      "section": "C",
+      "sha256": "f7e73ad38610b92a506bcf430373c917a2326fe307904f91f3e4a7acb19f7f1d",
+      "source": "2026-08-22-f1-triapex-three-cycle-continuation-v4.md"
+    },
+    {
+      "area": "F1 TriApex \u2014 10, superseded by checkpoint 4 / continuation v4 / D1 v23",
+      "bytes": 22106,
+      "section": "F",
+      "sha256": "66d14233a9842dc5a3955da40514cfeaab93d4bf480b57c9c398d01fe2f8532f",
+      "source": "2026-08-22-f1-triapex-three-cycle-continuation.md"
+    },
+    {
+      "area": "A5 Escape \u2014 6",
+      "bytes": 8946,
+      "section": "E",
+      "sha256": "43fe9d0b6b3e231d86095bfd8191106edf22dd7f81256198fcfbda662f857008",
+      "source": "A5EscapeCollisionMetricCells.lean"
+    },
+    {
+      "area": "Administration",
+      "bytes": 1767,
+      "section": "ADMIN",
+      "sha256": "a357d8f15ea8fc0bd3dd67e47e5a216ec05ce426f629b7a0c2233a174d04a2c4",
+      "source": "ARCHIVE-NOTICE.md"
+    },
+    {
+      "area": "F2 TwoSource \u2014 24, superseded by checkpoint 36 or retained only as historical implementation evidence",
+      "bytes": 81771,
+      "section": "F",
+      "sha256": "d4b4f79a7b57522eaac85c09baa236fc5067ab9f75c2dc857eed3421014fef7b",
+      "source": "F2-TwoSource-closure-pass-2026-08-20.zip"
+    },
+    {
+      "area": "F2 TwoSource \u2014 24, superseded by checkpoint 36 or retained only as historical implementation evidence",
+      "bytes": 10218,
+      "section": "F",
+      "sha256": "49c04e82c5e6acbae2128fd9e887dd14c0842e0538632ec1aa45bc50320d8da2",
+      "source": "F2-TwoSource-closure-research-pass-2026-08-20.md"
+    },
+    {
+      "area": "F2 TwoSource \u2014 24, superseded by checkpoint 36 or retained only as historical implementation evidence",
+      "bytes": 71145,
+      "section": "F",
+      "sha256": "49d772112f73737af88e783b6ba1225d9a17e166f6cbbc16b4832307cd606479",
+      "source": "F2-TwoSource-expanded-formalization-ledger-FreshThird-preferred-choice-v2.md"
+    },
+    {
+      "area": "F2 TwoSource \u2014 24, superseded by checkpoint 36 or retained only as historical implementation evidence",
+      "bytes": 53623,
+      "section": "F",
+      "sha256": "d59db2b510cf0d23258c26c6ec153ef9dacbe78720a887abae2790da8cab56e3",
+      "source": "F2-TwoSource-expanded-formalization-ledger-FreshThird-synchronization-prose-closed.md"
+    },
+    {
+      "area": "F2 TwoSource \u2014 24, superseded by checkpoint 36 or retained only as historical implementation evidence",
+      "bytes": 48253,
+      "section": "F",
+      "sha256": "4cb71d7d3df1f8c0c425b4a766012078d562135c49213ad6c2c383acfed2e896",
+      "source": "F2-TwoSource-expanded-formalization-ledger.md"
+    },
+    {
+      "area": "F2 TwoSource \u2014 24, superseded by checkpoint 36 or retained only as historical implementation evidence",
+      "bytes": 4737,
+      "section": "F",
+      "sha256": "62661fbf05fb2e0f46b551a096c80448c18e065bb30126141f2f0f490f8e2cb2",
+      "source": "F2-TwoSource-repaired-diagnostic.lean"
+    },
+    {
+      "area": "F2 TwoSource \u2014 24, superseded by checkpoint 36 or retained only as historical implementation evidence",
+      "bytes": 6674,
+      "section": "F",
+      "sha256": "cc8b7d5cca920c730f1e05ea6bc40df4618bd483092382539a0bc0fe36e34cd7",
+      "source": "F2-TwoSource-row-center-cap-cut.lean"
+    },
+    {
+      "area": "F2 TwoSource \u2014 24, superseded by checkpoint 36 or retained only as historical implementation evidence",
+      "bytes": 97064,
+      "section": "F",
+      "sha256": "0623be4db60d562aea114a71acc54fc6408781254a8388cd68331d025af72d83",
+      "source": "F2-TwoSource-semantic-all-blockers-ledger-checkpoint27.md"
+    },
+    {
+      "area": "F2 TwoSource \u2014 3",
+      "bytes": 156557,
+      "section": "C",
+      "sha256": "028524539a82580837b082a08e16eaabc9de3cb603a8934fa49cec84ff00bcf4",
+      "source": "F2-TwoSource-semantic-all-blockers-ledger-checkpoint36.md"
+    },
+    {
+      "area": "F2 TwoSource \u2014 24, superseded by checkpoint 36 or retained only as historical implementation evidence",
+      "bytes": 51674,
+      "section": "F",
+      "sha256": "57d7872611c7df5dd13a1b0d33a7cf3d1fb06c72c0ea89577844086db15042e8",
+      "source": "F2-TwoSource-semantic-all-blockers-ledger.md"
+    },
+    {
+      "area": "Lean handoffs \u2014 5",
+      "bytes": 2069,
+      "section": "D",
+      "sha256": "672306401f9c0e3c285a653cf5ddd958af4c9f57e73569f09202276c65d19c94",
+      "source": "F2-all-blockers-refactor-README.md"
+    },
+    {
+      "area": "F2 TwoSource \u2014 9",
+      "bytes": 155430,
+      "section": "E",
+      "sha256": "b3f715cb0a0c5f77cc932c5baed1b367e8ad527ab2dbc6381a9a8f9e7990f623",
+      "source": "F2-all-blockers-semantic-refactor-bundle-v2.zip"
+    },
+    {
+      "area": "F2 TwoSource \u2014 24, superseded by checkpoint 36 or retained only as historical implementation evidence",
+      "bytes": 144696,
+      "section": "F",
+      "sha256": "9778c5e73116b750827d354767548828eebde461179133f28b086f7017d23b54",
+      "source": "F2-all-blockers-semantic-refactor-bundle.zip"
+    },
+    {
+      "area": "F2 TwoSource \u2014 9",
+      "bytes": 105517,
+      "section": "E",
+      "sha256": "17c180a97385b31c76d3a60a5e0fa0566723c68514f7f735950fb324979e9880",
+      "source": "F2-all-blockers-semantic-refactor.patch"
+    },
+    {
+      "area": "F2 TwoSource \u2014 24, superseded by checkpoint 36 or retained only as historical implementation evidence",
+      "bytes": 96907,
+      "section": "F",
+      "sha256": "32aa601f164109c42d815157ec400461fd3c9e18deeb3c4678b0a437a351640e",
+      "source": "F2-all-blockers-two-cap-source-refactor-checkpoint27.md"
+    },
+    {
+      "area": "F2 TwoSource \u2014 3",
+      "bytes": 156400,
+      "section": "C",
+      "sha256": "17415eadc0344f8b09d7ee4df7014f536b1fba446586f8e2ce9c17f00ca26a73",
+      "source": "F2-all-blockers-two-cap-source-refactor-checkpoint36.md"
+    },
+    {
+      "area": "F2 TwoSource \u2014 24, superseded by checkpoint 36 or retained only as historical implementation evidence",
+      "bytes": 51517,
+      "section": "F",
+      "sha256": "738c457039bda6a135570921b17a2f9991910ad22c290249a8f5ff381445a49a",
+      "source": "F2-all-blockers-two-cap-source-refactor.md"
+    },
+    {
+      "area": "F2 TwoSource \u2014 24, superseded by checkpoint 36 or retained only as historical implementation evidence",
+      "bytes": 813,
+      "section": "F",
+      "sha256": "532592c434ac7796e2f9ec8bf4f33820eb16ffbdb164ed29d1d0ef47b7568bd1",
+      "source": "F2-cap-repair-verification.txt"
+    },
+    {
+      "area": "F2 TwoSource \u2014 24, superseded by checkpoint 36 or retained only as historical implementation evidence",
+      "bytes": 163728,
+      "section": "F",
+      "sha256": "6fd7a0cea1dbdbc6b84c2b51b78e7d9b8b8d0950561328de18af106ca93e09a0",
+      "source": "F2-checkpoint27-bundle.zip"
+    },
+    {
+      "area": "F2 TwoSource \u2014 24, superseded by checkpoint 36 or retained only as historical implementation evidence",
+      "bytes": 8339,
+      "section": "F",
+      "sha256": "532a1879cdb1d3a5ea9e365359ba393ca3fbc5bfed84305fc5be6fca02fb920b",
+      "source": "F2-checkpoint27-prose.patch"
+    },
+    {
+      "area": "F2 TwoSource \u2014 9",
+      "bytes": 218968,
+      "section": "E",
+      "sha256": "bb755dda78fa104c1a35b0668f61b8517e12269384c5da9a4d3d113167812151",
+      "source": "F2-checkpoint36-bundle.zip"
+    },
+    {
+      "area": "F2 TwoSource \u2014 9",
+      "bytes": 7592,
+      "section": "E",
+      "sha256": "611f9f10f1c62b42b12efa6a6f0df125583aa010f6a1faec09837e921033bf3a",
+      "source": "F2-checkpoint36-prose.patch"
+    },
+    {
+      "area": "F2 TwoSource \u2014 24, superseded by checkpoint 36 or retained only as historical implementation evidence",
+      "bytes": 65224,
+      "section": "F",
+      "sha256": "57d96dd34248d36b71706e90df4b4fd39523ef9825df6d57804f713d345635f5",
+      "source": "F2-expanded-audited.patch"
+    },
+    {
+      "area": "F3 TwoDeletion \u2014 10, superseded/corrected by the third-pass addendum",
+      "bytes": 308,
+      "section": "F",
+      "sha256": "75ec89e6945e077f39313b1cbdcebf1bf4360b4d418999891bf3e9c71b036436",
+      "source": "F3-closure-work-validation.txt"
+    },
+    {
+      "area": "F3 TwoDeletion \u2014 10, superseded/corrected by the third-pass addendum",
+      "bytes": 89,
+      "section": "F",
+      "sha256": "bb83fdd9250bf657f5e5de5fe525b7b321095543ddbf878cdf43edf6d759aeb4",
+      "source": "F3-live-constructor-closure-worksheet.md"
+    },
+    {
+      "area": "Lean handoffs \u2014 5",
+      "bytes": 28172,
+      "section": "D",
+      "sha256": "3d0162ca5919ef16bc01b4ebbf528bc53e167e754df69285baab4d74bea49823",
+      "source": "FreshThird-first-cap-preferred-blocker-synchronization-prose-proof-v2.md"
+    },
+    {
+      "area": "F2 TwoSource \u2014 24, superseded by checkpoint 36 or retained only as historical implementation evidence",
+      "bytes": 25187,
+      "section": "F",
+      "sha256": "9a422c101ebffe9b48cfcb4f1db7716b7274772da8dd0b761c2bf9fe7e278f89",
+      "source": "FreshThird-first-cap-preferred-blocker-synchronization-prose-proof.md"
+    },
+    {
+      "area": "Lean handoffs \u2014 5",
+      "bytes": 13008,
+      "section": "D",
+      "sha256": "45b93e395013d3e359ef59e429722b4828594c85840bb6b157d38b4bd18172a0",
+      "source": "FreshThird-first-cap-preferred-closure-Lean-patch-kit.md"
+    },
+    {
+      "area": "Lean handoffs \u2014 5",
+      "bytes": 2055,
+      "section": "D",
+      "sha256": "35f2920c7e299a911447657e6ff600342416714acc103c9f8433c397d7a3a0d7",
+      "source": "FreshThird-first-cap-preferred-closure-README.md"
+    },
+    {
+      "area": "F2 TwoSource \u2014 9",
+      "bytes": 164032,
+      "section": "E",
+      "sha256": "ba755a5aac750c1766290ee0807eada25badb778ec5b58f17caec6ed365300f4",
+      "source": "FreshThird-first-cap-preferred-closure-bundle.zip"
+    },
+    {
+      "area": "F2 TwoSource \u2014 9",
+      "bytes": 35692,
+      "section": "E",
+      "sha256": "20dcffdf06e9f25c5ffde7e393b2072dc6a479125911a5a5ac40428e5bfec635",
+      "source": "FreshThird-first-cap-preferred-source.patch"
+    },
+    {
+      "area": "F2 TwoSource \u2014 9",
+      "bytes": 10000,
+      "section": "E",
+      "sha256": "347d6a5da67a3aead648fbde01a2d544132c82757ea67ca36065433a4dbde9bf",
+      "source": "FreshThird-first-cap-preferred-static-audit.txt"
+    },
+    {
+      "area": "Lean handoffs \u2014 5",
+      "bytes": 10248,
+      "section": "D",
+      "sha256": "f29ef89b60c3f103137a7f8ca84f3142ce90600a5d5cbfcc8c40ec49b6046879",
+      "source": "FreshThird-first-cap-synchronization-Lean-handoff.md"
+    },
+    {
+      "area": "F2 TwoSource \u2014 24, superseded by checkpoint 36 or retained only as historical implementation evidence",
+      "bytes": 51972,
+      "section": "F",
+      "sha256": "8b2ab54b166ea6076f7f195bcda70e6d4b503e54cb4abda3aa352d10f2a8f5fc",
+      "source": "FreshThird-first-cap-synchronization-prose-closure.patch"
+    },
+    {
+      "area": "F2 TwoSource \u2014 9",
+      "bytes": 97299,
+      "section": "E",
+      "sha256": "dfd27a7f54309055ab104500b2313986fef405e094e2b0688b7f0cc488312a71",
+      "source": "FreshThird-preferred-choice-prose-v2.patch"
+    },
+    {
+      "area": "Administration",
+      "bytes": 5191,
+      "section": "ADMIN",
+      "sha256": "e8b18cb21e1e821578d7f55fdb3e9de8863dcf0010ffc9a6128a839b78d02dea",
+      "source": "ORGANIZATION-LOG.md"
+    },
+    {
+      "area": "Administration",
+      "bytes": 7045,
+      "section": "ADMIN",
+      "sha256": "e3111fe92845fb3a643fbf09ef80e0a3005c4ce8c300ef1f4a0c8b6025cafa73",
+      "source": "README.md"
+    },
+    {
+      "area": "F2 TwoSource \u2014 9",
+      "bytes": 8361,
+      "section": "E",
+      "sha256": "6ecd22fbffadc7a694b38c2f161997e31d288cbc42057a595a1ae1315c09faf2",
+      "source": "RegionPreferredCriticalShell.lean"
+    },
+    {
+      "area": "Administration",
+      "bytes": 12002,
+      "section": "ADMIN",
+      "sha256": "d7590d5f410fe5024963e29088198c7330a998ca88278d52a5a816c207bf43f3",
+      "source": "STATUS-MANIFEST.md"
+    },
+    {
+      "area": "A5 Escape \u2014 6",
+      "bytes": 3307,
+      "section": "E",
+      "sha256": "e8d2a61485c6ec2ff21756669b2b7d808813f8663932efadb98fe59515679b8f",
+      "source": "a5-escape-cap-slot-models.csv"
+    },
+    {
+      "area": "A5 Escape \u2014 6",
+      "bytes": 459,
+      "section": "E",
+      "sha256": "eabf6863d112115d215018b9651873a30eec17998961f6b0f4dab4b6b77da939",
+      "source": "a5-escape-metric-audit-output.txt"
+    },
+    {
+      "area": "A5 Escape \u2014 6",
+      "bytes": 26089,
+      "section": "E",
+      "sha256": "9a703bed38de58e5394fdc9a09e2298fe69f7383cf4bf3b52f66e64af54a6ca5",
+      "source": "a5-escape-refactor-2026-08-21.patch"
+    },
+    {
+      "area": "A5 Escape \u2014 6",
+      "bytes": 1120,
+      "section": "E",
+      "sha256": "fa003771fe1234a8a4f2f730c486f4c6b6297b093de1d61996af7dc056ddedd5",
+      "source": "a5-escape-same-side-metric-cells.csv"
+    },
+    {
+      "area": "Cross-cutting \u2014 2",
+      "bytes": 973,
+      "section": "E",
+      "sha256": "d0db48cc045773322d1636f75647f168fef1563e0c9ab4957525dbc456057847",
+      "source": "b2_local_geometry_stress-rerun.out"
+    },
+    {
+      "area": "Cross-cutting \u2014 2, superseded or split into current replacements",
+      "bytes": 973,
+      "section": "F",
+      "sha256": "d0db48cc045773322d1636f75647f168fef1563e0c9ab4957525dbc456057847",
+      "source": "b2_local_geometry_stress.out"
+    },
+    {
+      "area": "Cross-cutting \u2014 2",
+      "bytes": 4598,
+      "section": "E",
+      "sha256": "1045f970781ab7292fae0d0f5cc7fdc11252624bc23553ab4420fa4a1e9d48ee",
+      "source": "b2_local_geometry_stress.py"
+    },
+    {
+      "area": "Dead ends \u2014 1",
+      "bytes": 70225,
+      "section": "D",
+      "sha256": "63fad4627f654efb1c65c3ed4c3f7a0baf65aeb6faf0eb544c3c5e8965395f3a",
+      "source": "dead-ends-final.md"
+    },
+    {
+      "area": "Dead-ends lineage \u2014 4, superseded by `dead-ends-final.md`",
+      "bytes": 126834,
+      "section": "F",
+      "sha256": "469300bd6c72536a211cf618808dfc0ec9785ed57cdb3bcb3f49eff8eedcc207",
+      "source": "dead-ends-final.patch"
+    },
+    {
+      "area": "Dead-ends lineage \u2014 4, superseded by `dead-ends-final.md`",
+      "bytes": 54432,
+      "section": "F",
+      "sha256": "c13b839508114ffc624cc7994de288d1363099bc3f44cb8a52b58a8e86a9cc42",
+      "source": "dead-ends-repo-baseline.md"
+    },
+    {
+      "area": "Dead-ends lineage \u2014 4, superseded by `dead-ends-final.md`",
+      "bytes": 111178,
+      "section": "F",
+      "sha256": "d92cc3a16030f8c62f4373968c6484fb5622a2c15addcb1d4fbbf86254d9bdde",
+      "source": "dead-ends-update.patch"
+    },
+    {
+      "area": "Dead-ends lineage \u2014 4, superseded by `dead-ends-final.md`",
+      "bytes": 54981,
+      "section": "F",
+      "sha256": "c129984d8b5e30df5ed35d6d8fe564d635c3b38f5e590c6fe9f7d6529c195d9f",
+      "source": "dead-ends.md"
+    },
+    {
+      "area": "F3 TwoDeletion \u2014 10, superseded/corrected by the third-pass addendum",
+      "bytes": 98126,
+      "section": "F",
+      "sha256": "00b7ca8d00e3a3fb6cdb5cd60f607c00fed612a5358207cd9ca214402876e3e0",
+      "source": "erdos-97-F3-closure-work-2026-08-22.patch"
+    },
+    {
+      "area": "F3 TwoDeletion \u2014 10, superseded/corrected by the third-pass addendum",
+      "bytes": 68845,
+      "section": "F",
+      "sha256": "088aafc059e8c7c647b1c40559dd2dcb9dbf1adea08201ef547727bffe6bfb85",
+      "source": "erdos-97-F3-expansion.patch"
+    },
+    {
+      "area": "Audits and reports \u2014 1",
+      "bytes": 29529,
+      "section": "D",
+      "sha256": "aa56699a98fd627f2878220b0f626571725285a0691a33e092ef46c362c1a545",
+      "source": "erdos-97-checkpoint4-review.md"
+    },
+    {
+      "area": "Reports and exports \u2014 6, outdated snapshots/duplicate formats",
+      "bytes": 70573,
+      "section": "F",
+      "sha256": "6b15d95d2cdebd49cab7a01fbed5dab7a8e734d61f2d3cb1369848b7dea0b204",
+      "source": "erdos-97-descent-findings-report-with-pinned-multiplicity.docx"
+    },
+    {
+      "area": "Reports and exports \u2014 6, outdated snapshots/duplicate formats",
+      "bytes": 56745,
+      "section": "F",
+      "sha256": "19030ea452b49ff109c04b1b706c31bea34baeb2fc07300ee314f32ac5431ee8",
+      "source": "erdos-97-descent-findings-report-with-pinned-multiplicity.md"
+    },
+    {
+      "area": "Reports and exports \u2014 6, outdated snapshots/duplicate formats",
+      "bytes": 66533,
+      "section": "F",
+      "sha256": "543c5b19ad6eaf01b1a21fc9357284bdfcc176a0c432a1518ba99847502243c3",
+      "source": "erdos-97-descent-findings-report.docx"
+    },
+    {
+      "area": "Reports and exports \u2014 6, outdated snapshots/duplicate formats",
+      "bytes": 47676,
+      "section": "F",
+      "sha256": "ee7e3b7b2725e2dd51a72c46644b94cdc07e5c101e7949d5637b04a1d6f043a3",
+      "source": "erdos-97-descent-findings-report.md"
+    },
+    {
+      "area": "Main proof lineage \u2014 11, superseded by canonical version 8",
+      "bytes": 235894,
+      "section": "F",
+      "sha256": "55912259fafef5917c3907fa64efbb38ed452f156e0c6b93924365865e1d4705",
+      "source": "erdos-97-descent-prose-proof-atomic-leaf-ledger (2)(1).md"
+    },
+    {
+      "area": "Main proof lineage \u2014 11, superseded by canonical version 8",
+      "bytes": 235894,
+      "section": "F",
+      "sha256": "55912259fafef5917c3907fa64efbb38ed452f156e0c6b93924365865e1d4705",
+      "source": "erdos-97-descent-prose-proof-atomic-leaf-ledger (2).md"
+    },
+    {
+      "area": "Main proof lineage \u2014 11, superseded by canonical version 8",
+      "bytes": 157859,
+      "section": "F",
+      "sha256": "37a2f9c7f769e3e9a27b237bd3199576eeefa123fd1c011f5b477a9a3956cbaf",
+      "source": "erdos-97-descent-prose-proof-atomic-leaf-ledger(1).md"
+    },
+    {
+      "area": "F2 TwoSource \u2014 24, superseded by checkpoint 36 or retained only as historical implementation evidence",
+      "bytes": 294259,
+      "section": "F",
+      "sha256": "18fdb1ec4c67d120f16642572c675398754252354ae0b3aee24c2d95d5336a96",
+      "source": "erdos-97-descent-prose-proof-atomic-leaf-ledger-F2-FreshThird-preferred-choice-v2.md"
+    },
+    {
+      "area": "F2 TwoSource \u2014 24, superseded by checkpoint 36 or retained only as historical implementation evidence",
+      "bytes": 276777,
+      "section": "F",
+      "sha256": "fb0d2e0da2a2892d34b534b59305c5d76ea10418739b6344075b26c9b7bd1b06",
+      "source": "erdos-97-descent-prose-proof-atomic-leaf-ledger-F2-FreshThird-synchronization-prose-closed.md"
+    },
+    {
+      "area": "F2 TwoSource \u2014 24, superseded by checkpoint 36 or retained only as historical implementation evidence",
+      "bytes": 266496,
+      "section": "F",
+      "sha256": "cab8bc858085dd093cd52b3149be19c0fe89d6bdebebb369ea471a6461112fb0",
+      "source": "erdos-97-descent-prose-proof-atomic-leaf-ledger-F2-all-blockers-refactor.md"
+    },
+    {
+      "area": "F2 TwoSource \u2014 24, superseded by checkpoint 36 or retained only as historical implementation evidence",
+      "bytes": 306486,
+      "section": "F",
+      "sha256": "8c8b0ec73daea967ade8221016731dd8e0804168ed60d4851c05c92c60a9582e",
+      "source": "erdos-97-descent-prose-proof-atomic-leaf-ledger-F2-checkpoint27.md"
+    },
+    {
+      "area": "F2 TwoSource \u2014 3",
+      "bytes": 366138,
+      "section": "C",
+      "sha256": "c81479e9381671ef38257c2f44e67e52af9b0b5bf679ae2c355315ddf3cfd896",
+      "source": "erdos-97-descent-prose-proof-atomic-leaf-ledger-F2-checkpoint36.md"
+    },
+    {
+      "area": "F2 TwoSource \u2014 24, superseded by checkpoint 36 or retained only as historical implementation evidence",
+      "bytes": 239273,
+      "section": "F",
+      "sha256": "1e597da11bab3ca6bbed32c16a218f4c4f5a7e117deab7f5bd63f7eab227b075",
+      "source": "erdos-97-descent-prose-proof-atomic-leaf-ledger-F2-closure-pass-2026-08-20.md"
+    },
+    {
+      "area": "F2 TwoSource \u2014 24, superseded by checkpoint 36 or retained only as historical implementation evidence",
+      "bytes": 270904,
+      "section": "F",
+      "sha256": "d8d074a3359f6e9392321a6f92706babb31996ab3665651cbf57f208df4fc697",
+      "source": "erdos-97-descent-prose-proof-atomic-leaf-ledger-F2-expanded-audited.md"
+    },
+    {
+      "area": "F1 TriApex \u2014 4",
+      "bytes": 314357,
+      "section": "C",
+      "sha256": "8d8b6d121278ff086dbfb590b8e2bdb3e94b79f56a820eecd83737402aaea0e0",
+      "source": "erdos-97-descent-prose-proof-atomic-leaf-ledger-f1-triapex-checkpoint4-2026-08-22.md"
+    },
+    {
+      "area": "F1 TriApex \u2014 10, superseded by checkpoint 4 / continuation v4 / D1 v23",
+      "bytes": 282593,
+      "section": "F",
+      "sha256": "20bbc8e0ecde136291f3efdda199dd8bd116d75d38e03440f212ca5a5a74f7c4",
+      "source": "erdos-97-descent-prose-proof-atomic-leaf-ledger-f1-triapex-continuation-2026-08-22.md"
+    },
+    {
+      "area": "F1 TriApex \u2014 10, superseded by checkpoint 4 / continuation v4 / D1 v23",
+      "bytes": 278705,
+      "section": "F",
+      "sha256": "09b364f73d6cb6b316aff690fb18aa6701027d41f5de4082578f8b8e6496e716",
+      "source": "erdos-97-descent-prose-proof-atomic-leaf-ledger-f1-triapex-source-audited.md"
+    },
+    {
+      "area": "F1 TriApex \u2014 10, superseded by checkpoint 4 / continuation v4 / D1 v23",
+      "bytes": 253451,
+      "section": "F",
+      "sha256": "1c7e6fa1a209f7a2cfcdbf32b5e259b23f8d5a04f46a29032714cf0b33c5b60e",
+      "source": "erdos-97-descent-prose-proof-atomic-leaf-ledger-triapex-closure-plan-2026-08-20.md"
+    },
+    {
+      "area": "F1 TriApex \u2014 10, superseded by checkpoint 4 / continuation v4 / D1 v23",
+      "bytes": 227252,
+      "section": "F",
+      "sha256": "4345750be6530e14c783c8dac47fc3f8099b4d988c4f6268c5277eb8b6c0fa3a",
+      "source": "erdos-97-descent-prose-proof-atomic-leaf-ledger-triapex-revised-2026-08-20.md"
+    },
+    {
+      "area": "Reports and exports \u2014 6, outdated snapshots/duplicate formats",
+      "bytes": 93427,
+      "section": "F",
+      "sha256": "a008de6aad6b6b4aa75c769eaa793a36623e303ab5a50dbd0dade18311a91f02",
+      "source": "erdos-97-descent-prose-proof-atomic-leaf-ledger.docx"
+    },
+    {
+      "area": "Main proof lineage \u2014 11, superseded by canonical version 8",
+      "bytes": 247714,
+      "section": "F",
+      "sha256": "10fb55991ead1eac65f4fcb86376e171e72a7705cff904bd9de988b727a84cbc",
+      "source": "erdos-97-descent-prose-proof-atomic-leaf-ledger.md"
+    },
+    {
+      "area": "Reports and exports \u2014 6, outdated snapshots/duplicate formats",
+      "bytes": 60234,
+      "section": "F",
+      "sha256": "3222a495f4ba51511ae2202e4d5a8ec7fb447e2b208745031ad3fd02256985cb",
+      "source": "erdos-97-descent-prose-proof-atomic.docx"
+    },
+    {
+      "area": "Main proof lineage \u2014 11, superseded by canonical version 8",
+      "bytes": 62806,
+      "section": "F",
+      "sha256": "58fa67111378838bc8c1aeba736ed5af8fe7d8fa620a934b18b2d390710960f3",
+      "source": "erdos-97-descent-prose-proof-atomic.md"
+    },
+    {
+      "area": "Main proof lineage \u2014 11, superseded by canonical version 8",
+      "bytes": 282870,
+      "section": "F",
+      "sha256": "4d3711e75e0470b4be8b519ec3fe2358fe685f3230d1fcc1933d83409a67b261",
+      "source": "erdos-97-descent-prose-proof-authoritative(1).md"
+    },
+    {
+      "area": "Main proof lineage \u2014 11, superseded by canonical version 8",
+      "bytes": 295699,
+      "section": "F",
+      "sha256": "512aad21f1e6373566913b8db5f9bd320cb4e462b2b271345a32fbcfe001f60f",
+      "source": "erdos-97-descent-prose-proof-authoritative(2).md"
+    },
+    {
+      "area": "Main proof lineage \u2014 11, superseded by canonical version 8",
+      "bytes": 363741,
+      "section": "F",
+      "sha256": "cf45bd8498193f43092e4a2bb8e77782c2ecec1e7f6b731d62790c681ad58b5c",
+      "source": "erdos-97-descent-prose-proof-authoritative(3).md"
+    },
+    {
+      "area": "A5 Escape \u2014 1, incorporated into canonical/supporting artifacts",
+      "bytes": 385513,
+      "section": "F",
+      "sha256": "7f1c724680c7ff7e73964561d5010208bdb5dfc9ae4f13209934d8c00bdd888e",
+      "source": "erdos-97-descent-prose-proof-authoritative(4)-escape-refactor-2026-08-21.md"
+    },
+    {
+      "area": "Main proof lineage \u2014 11, superseded by canonical version 8",
+      "bytes": 374476,
+      "section": "F",
+      "sha256": "a5f57bea498215b163ef17ac239119a8e8ceedadf42f65bfc38f75a827504024",
+      "source": "erdos-97-descent-prose-proof-authoritative(4).md"
+    },
+    {
+      "area": "Main proof lineage \u2014 11, superseded by canonical version 8",
+      "bytes": 536382,
+      "section": "F",
+      "sha256": "5d1b7d0dad20a974701d228367f4bdaf5babc7f8674d010c42f78d6950cef803",
+      "source": "erdos-97-descent-prose-proof-authoritative(5).md"
+    },
+    {
+      "area": "F3 TwoDeletion \u2014 10, superseded/corrected by the third-pass addendum",
+      "bytes": 419642,
+      "section": "F",
+      "sha256": "a3f48f6242f0fa77eb2d5d42bddc04435c3cfa5f46fed41f8b50f63056aed37d",
+      "source": "erdos-97-descent-prose-proof-authoritative-F3-closure-work-2026-08-22.md"
+    },
+    {
+      "area": "F3 TwoDeletion \u2014 10, superseded/corrected by the third-pass addendum",
+      "bytes": 324392,
+      "section": "F",
+      "sha256": "132f11dcadb88f2f8a4219a7e37ea8d1e66c05c96e830ef72b87a4e9376457e4",
+      "source": "erdos-97-descent-prose-proof-authoritative-F3-expanded-2026-08-21.md"
+    },
+    {
+      "area": "Cross-cutting \u2014 2, superseded or split into current replacements",
+      "bytes": 428078,
+      "section": "F",
+      "sha256": "df9f7766e2125606a7bc9af698b1dc1c4fcff2bc23a122a0f88fdc3fbe033dea",
+      "source": "erdos-97-descent-prose-proof-authoritative-literature-bridge-2026-08-22.md"
+    },
+    {
+      "area": "`10-CANONICAL`",
+      "bytes": 553833,
+      "section": "B",
+      "sha256": "40176fb5ce0f81832607564dd84570d2e139dff25750458dc9041403e3ab45de",
+      "source": "erdos-97-descent-prose-proof-authoritative.md"
+    },
+    {
+      "area": "Main proof lineage \u2014 11, superseded by canonical version 8",
+      "bytes": 41825,
+      "section": "F",
+      "sha256": "23d928923ad13a293195d4477d88e20aa14f6bc69232cce27c522fdae5348ab2",
+      "source": "erdos-97-descent-prose-proof.md"
+    },
+    {
+      "area": "Cross-cutting literature bridge \u2014 2",
+      "bytes": 9263,
+      "section": "C",
+      "sha256": "c8da6e3aa96b7d007a2a7845e4543509ff47f130c3379e16b558208c4f1019e9",
+      "source": "erdos-97-literature-bridge-active-2026-08-22.md"
+    },
+    {
+      "area": "Cross-cutting literature bridge \u2014 2",
+      "bytes": 1609,
+      "section": "C",
+      "sha256": "f8f3198fb8ee96e18624a44590494e787b78af3eff819320f11368d2a5be580e",
+      "source": "erdos-97-literature-bridge-closure-matrix-2026-08-22.md"
+    },
+    {
+      "area": "F3 TwoDeletion \u2014 10, superseded/corrected by the third-pass addendum",
+      "bytes": 11039,
+      "section": "F",
+      "sha256": "e3520432bd4986e7995636c75bbcc45be8d4d9db7f020bc7efcf018608adf5b5",
+      "source": "f3_authoritative_closure_matrix.md"
+    },
+    {
+      "area": "F3 TwoDeletion \u2014 10, superseded/corrected by the third-pass addendum",
+      "bytes": 47778,
+      "section": "F",
+      "sha256": "a051b5a44f0ab3a58749bf45c564db10ae8b1b9132ba3a1c8af91f1cdf3f95e4",
+      "source": "f3_expanded_section.md"
+    },
+    {
+      "area": "F3 TwoDeletion \u2014 10, superseded/corrected by the third-pass addendum",
+      "bytes": 40019,
+      "section": "F",
+      "sha256": "a390d461a608d4075b77335a0050260fe7d0e0d27165f5d5048b045631c6c4a5",
+      "source": "f3_joint_locus_descent_addendum.md"
+    },
+    {
+      "area": "F3 TwoDeletion \u2014 10, superseded/corrected by the third-pass addendum",
+      "bytes": 347,
+      "section": "F",
+      "sha256": "38b75e18fc5b97e4e9473a5359affe5d7307d81d44f9cc1f3dc2135348f763c3",
+      "source": "f3_live_source_reconciliation.md"
+    },
+    {
+      "area": "F3 TwoDeletion \u2014 1",
+      "bytes": 118893,
+      "section": "C",
+      "sha256": "de05fb5678821cb5c3d9ccbb79018aa1776675413241377fe58b67434f2458b6",
+      "source": "f3_trace_graph_third_pass_addendum.md"
+    },
+    {
+      "area": "B-family \u2014 3",
+      "bytes": 30851,
+      "section": "C",
+      "sha256": "1b072b4b0d79f58e7787c4fef8b1d0f2bb1a4417880d7bc7d8d599a04985bb3b",
+      "source": "rigid221-exact-seventeen-cap-nine-exact-cover.md"
+    },
+    {
+      "area": "A5 Escape \u2014 6",
+      "bytes": 12969,
+      "section": "E",
+      "sha256": "9cda0727b4c75f232dedd308aa88cd6b7754532e84ccb23de64e42ad6a1d7c9f",
+      "source": "verify_a5_escape_metric_cells.py"
+    }
+  ],
+  "schema": "p97-prose-source-inventory/v1"
+}

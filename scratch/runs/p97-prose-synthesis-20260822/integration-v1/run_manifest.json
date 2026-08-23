@@ -1,0 +1,21 @@
+{
+  "schema": "worktree-run-manifest/v1",
+  "lane_id": "p97-prose-synthesis-20260822",
+  "run_id": "integration-v1",
+  "root": "scratch/runs/p97-prose-synthesis-20260822/integration-v1",
+  "owner": "TriapexCloser",
+  "base_head": "e55af1fac5bf7616dc22ea70ffaa414246471848",
+  "created_utc": "2026-08-23T05:57:00Z",
+  "output_classes": [
+    "artifacts",
+    "events",
+    "tmp"
+  ],
+  "source_digests": {
+    "CLAUDE.md": "294f406f54240de31d52ee90294135e6e6a57f1876c6bca3ea683ecb8e777663"
+  },
+  "input_digests": {
+    "scratch/p97-prose-synthesis-20260822/source-receipt.md": "4134385c5513c1327cf9526c8fc4d4b02c404f4da6a332a0b6ba9794963e7572"
+  },
+  "manifest_sha256": "ceea8663cbdd43d0eb013b73f073da58ca77b460862a5386ab0c5fb1601c0004"
+}

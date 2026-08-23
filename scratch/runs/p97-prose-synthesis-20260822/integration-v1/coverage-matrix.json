@@ -1,0 +1,714 @@
+{
+  "archive_file_count": 117,
+  "duplicates": [],
+  "empty_integration_notes": [],
+  "extra": [],
+  "ledger_row_count": 117,
+  "missing": [],
+  "records": [
+    {
+      "destination": "docs/plans/2026-08-18-b-family-closure-plan.md",
+      "disposition": "subsumed (historical; not copied)",
+      "integrated_content": "B-family/rigid221 exact-cover and blocker-placement obligations; preserve open consumers.",
+      "source": "2026-08-18-b-family-closure-plan-audited-expanded-v3-validation.txt"
+    },
+    {
+      "destination": "docs/plans/2026-08-18-b-family-closure-plan.md",
+      "disposition": "subsumed (historical; not copied)",
+      "integrated_content": "B-family/rigid221 exact-cover and blocker-placement obligations; preserve open consumers.",
+      "source": "2026-08-18-b-family-closure-plan-audited-expanded-v3.md"
+    },
+    {
+      "destination": "docs/plans/2026-08-18-b-family-closure-plan.md",
+      "disposition": "evidence-only (not copied)",
+      "integrated_content": "B-family/rigid221 exact-cover and blocker-placement obligations; preserve open consumers.",
+      "source": "2026-08-18-b-family-closure-plan-audited-expanded-v4-tasks.json"
+    },
+    {
+      "destination": "docs/plans/2026-08-18-b-family-closure-plan.md",
+      "disposition": "evidence-only (not copied)",
+      "integrated_content": "B-family/rigid221 exact-cover and blocker-placement obligations; preserve open consumers.",
+      "source": "2026-08-18-b-family-closure-plan-audited-expanded-v4-validation.txt"
+    },
+    {
+      "destination": "docs/plans/2026-08-18-b-family-closure-plan.md",
+      "disposition": "authoritative/current",
+      "integrated_content": "B-family/rigid221 exact-cover and blocker-placement obligations; preserve open consumers.",
+      "source": "2026-08-18-b-family-closure-plan-audited-expanded-v4.md"
+    },
+    {
+      "destination": "docs/plans/2026-08-18-b-family-closure-plan.md",
+      "disposition": "subsumed (historical; not copied)",
+      "integrated_content": "B-family/rigid221 exact-cover and blocker-placement obligations; preserve open consumers.",
+      "source": "2026-08-18-b-family-closure-plan-audited-expanded.md"
+    },
+    {
+      "destination": "docs/plans/2026-08-18-b-family-closure-plan.md",
+      "disposition": "subsumed (historical; not copied)",
+      "integrated_content": "B-family/rigid221 exact-cover and blocker-placement obligations; preserve open consumers.",
+      "source": "2026-08-18-b-family-closure-plan-audited.md"
+    },
+    {
+      "destination": "docs/plans/2026-08-18-b-family-closure-plan.md",
+      "disposition": "authoritative/current",
+      "integrated_content": "B-family/rigid221 exact-cover and blocker-placement obligations; preserve open consumers.",
+      "source": "2026-08-18-b-family-closure-plan-v4-full-audit.md"
+    },
+    {
+      "destination": "docs/audits/2026-08-22-f1-triapex-checkpoint4-review.md",
+      "disposition": "subsumed (historical; not copied)",
+      "integrated_content": "F1 TriApex/D1 continuation and checkpoint material; current checkpoint controls source/status.",
+      "source": "2026-08-20-f1-triapex-closure-dossier.md"
+    },
+    {
+      "destination": "docs/audits/2026-08-22-f1-triapex-checkpoint4-review.md",
+      "disposition": "subsumed (historical; not copied)",
+      "integrated_content": "F1 TriApex/D1 continuation and checkpoint material; current checkpoint controls source/status.",
+      "source": "2026-08-20-f1-triapex-closure-plan-and-expanded-prose.md"
+    },
+    {
+      "destination": "docs/audits/2026-08-22-f1-triapex-checkpoint4-review.md",
+      "disposition": "subsumed (historical; not copied)",
+      "integrated_content": "F1 TriApex/D1 continuation and checkpoint material; current checkpoint controls source/status.",
+      "source": "2026-08-20-f1-triapex-closure-task-ledger-v2.yaml"
+    },
+    {
+      "destination": "docs/audits/2026-08-22-f1-triapex-checkpoint4-review.md",
+      "disposition": "subsumed (historical; not copied)",
+      "integrated_content": "F1 TriApex/D1 continuation and checkpoint material; current checkpoint controls source/status.",
+      "source": "2026-08-20-f1-triapex-low-level-task-ledger.yaml"
+    },
+    {
+      "destination": "docs/audits/2026-08-22-f1-triapex-checkpoint4-review.md",
+      "disposition": "authoritative/current",
+      "integrated_content": "Current F1/D1 checkpoint: records D1-v23 source boundary, surviving continuation cases, and unresolved consumers.",
+      "source": "2026-08-22-f1-d1-working-checkpoint-v23.md"
+    },
+    {
+      "destination": "docs/audits/2026-08-22-f1-triapex-checkpoint4-review.md",
+      "disposition": "authoritative/current",
+      "integrated_content": "Authoritative F1 checkpoint 4: fixes TriApex source leaves, continuation routing, and proof-status ledger.",
+      "source": "2026-08-22-f1-triapex-authoritative-checkpoint4.md"
+    },
+    {
+      "destination": "docs/audits/2026-08-22-f1-triapex-checkpoint4-review.md",
+      "disposition": "subsumed (historical; not copied)",
+      "integrated_content": "F1 TriApex/D1 continuation and checkpoint material; current checkpoint controls source/status.",
+      "source": "2026-08-22-f1-triapex-task-ledger-v3.yaml"
+    },
+    {
+      "destination": "docs/audits/2026-08-22-f1-triapex-checkpoint4-review.md",
+      "disposition": "evidence-only (not copied)",
+      "integrated_content": "F1 TriApex/D1 continuation and checkpoint material; current checkpoint controls source/status.",
+      "source": "2026-08-22-f1-triapex-task-ledger-v4.yaml"
+    },
+    {
+      "destination": "docs/audits/2026-08-22-f1-triapex-checkpoint4-review.md",
+      "disposition": "evidence-only (not copied)",
+      "integrated_content": "F1 TriApex/D1 continuation and checkpoint material; current checkpoint controls source/status.",
+      "source": "2026-08-22-f1-triapex-three-cycle-continuation-v4.md"
+    },
+    {
+      "destination": "docs/audits/2026-08-22-f1-triapex-checkpoint4-review.md",
+      "disposition": "subsumed (historical; not copied)",
+      "integrated_content": "F1 TriApex/D1 continuation and checkpoint material; current checkpoint controls source/status.",
+      "source": "2026-08-22-f1-triapex-three-cycle-continuation.md"
+    },
+    {
+      "destination": "docs/erdos-97-descent-prose-proof-atomic.md",
+      "disposition": "evidence-only (not copied)",
+      "integrated_content": "A5 metric-cell/cap-slot evidence incorporated into the atomic A5 audit.",
+      "source": "A5EscapeCollisionMetricCells.lean"
+    },
+    {
+      "destination": "docs/p97-prose-material-integration-ledger-2026-08-22.md",
+      "disposition": "retained as archive metadata",
+      "integrated_content": "Archive metadata only.",
+      "source": "ARCHIVE-NOTICE.md"
+    },
+    {
+      "destination": "docs/audits/2026-08-22-f2-twosource-checkpoint36-synthesis.md",
+      "disposition": "subsumed (historical; not copied)",
+      "integrated_content": "F2 semantic all-blockers/FreshThird material; checkpoint 36 is current and diagnostics do not prove closure.",
+      "source": "F2-TwoSource-closure-pass-2026-08-20.zip"
+    },
+    {
+      "destination": "docs/audits/2026-08-22-f2-twosource-checkpoint36-synthesis.md",
+      "disposition": "subsumed (historical; not copied)",
+      "integrated_content": "F2 semantic all-blockers/FreshThird material; checkpoint 36 is current and diagnostics do not prove closure.",
+      "source": "F2-TwoSource-closure-research-pass-2026-08-20.md"
+    },
+    {
+      "destination": "docs/audits/2026-08-22-f2-twosource-checkpoint36-synthesis.md",
+      "disposition": "subsumed (historical; not copied)",
+      "integrated_content": "F2 semantic all-blockers/FreshThird material; checkpoint 36 is current and diagnostics do not prove closure.",
+      "source": "F2-TwoSource-expanded-formalization-ledger-FreshThird-preferred-choice-v2.md"
+    },
+    {
+      "destination": "docs/audits/2026-08-22-f2-twosource-checkpoint36-synthesis.md",
+      "disposition": "subsumed (historical; not copied)",
+      "integrated_content": "F2 semantic all-blockers/FreshThird material; checkpoint 36 is current and diagnostics do not prove closure.",
+      "source": "F2-TwoSource-expanded-formalization-ledger-FreshThird-synchronization-prose-closed.md"
+    },
+    {
+      "destination": "docs/audits/2026-08-22-f2-twosource-checkpoint36-synthesis.md",
+      "disposition": "subsumed (historical; not copied)",
+      "integrated_content": "F2 semantic all-blockers/FreshThird material; checkpoint 36 is current and diagnostics do not prove closure.",
+      "source": "F2-TwoSource-expanded-formalization-ledger.md"
+    },
+    {
+      "destination": "docs/audits/2026-08-22-f2-twosource-checkpoint36-synthesis.md",
+      "disposition": "subsumed (historical; not copied)",
+      "integrated_content": "F2 semantic all-blockers/FreshThird material; checkpoint 36 is current and diagnostics do not prove closure.",
+      "source": "F2-TwoSource-repaired-diagnostic.lean"
+    },
+    {
+      "destination": "docs/audits/2026-08-22-f2-twosource-checkpoint36-synthesis.md",
+      "disposition": "subsumed (historical; not copied)",
+      "integrated_content": "F2 semantic all-blockers/FreshThird material; checkpoint 36 is current and diagnostics do not prove closure.",
+      "source": "F2-TwoSource-row-center-cap-cut.lean"
+    },
+    {
+      "destination": "docs/audits/2026-08-22-f2-twosource-checkpoint36-synthesis.md",
+      "disposition": "subsumed (historical; not copied)",
+      "integrated_content": "F2 semantic all-blockers/FreshThird material; checkpoint 36 is current and diagnostics do not prove closure.",
+      "source": "F2-TwoSource-semantic-all-blockers-ledger-checkpoint27.md"
+    },
+    {
+      "destination": "docs/audits/2026-08-22-f2-twosource-checkpoint36-synthesis.md",
+      "disposition": "authoritative/current",
+      "integrated_content": "F2 semantic all-blockers/FreshThird material; checkpoint 36 is current and diagnostics do not prove closure.",
+      "source": "F2-TwoSource-semantic-all-blockers-ledger-checkpoint36.md"
+    },
+    {
+      "destination": "docs/audits/2026-08-22-f2-twosource-checkpoint36-synthesis.md",
+      "disposition": "subsumed (historical; not copied)",
+      "integrated_content": "F2 semantic all-blockers/FreshThird material; checkpoint 36 is current and diagnostics do not prove closure.",
+      "source": "F2-TwoSource-semantic-all-blockers-ledger.md"
+    },
+    {
+      "destination": "docs/audits/2026-08-22-f2-twosource-checkpoint36-synthesis.md",
+      "disposition": "evidence-only (not copied)",
+      "integrated_content": "F2 semantic all-blockers/FreshThird material; checkpoint 36 is current and diagnostics do not prove closure.",
+      "source": "F2-all-blockers-refactor-README.md"
+    },
+    {
+      "destination": "docs/audits/2026-08-22-f2-twosource-checkpoint36-synthesis.md",
+      "disposition": "evidence-only (not copied)",
+      "integrated_content": "F2 semantic all-blockers/FreshThird material; checkpoint 36 is current and diagnostics do not prove closure.",
+      "source": "F2-all-blockers-semantic-refactor-bundle-v2.zip"
+    },
+    {
+      "destination": "docs/audits/2026-08-22-f2-twosource-checkpoint36-synthesis.md",
+      "disposition": "subsumed (historical; not copied)",
+      "integrated_content": "F2 semantic all-blockers/FreshThird material; checkpoint 36 is current and diagnostics do not prove closure.",
+      "source": "F2-all-blockers-semantic-refactor-bundle.zip"
+    },
+    {
+      "destination": "docs/audits/2026-08-22-f2-twosource-checkpoint36-synthesis.md",
+      "disposition": "evidence-only (not copied)",
+      "integrated_content": "F2 semantic all-blockers/FreshThird material; checkpoint 36 is current and diagnostics do not prove closure.",
+      "source": "F2-all-blockers-semantic-refactor.patch"
+    },
+    {
+      "destination": "docs/audits/2026-08-22-f2-twosource-checkpoint36-synthesis.md",
+      "disposition": "subsumed (historical; not copied)",
+      "integrated_content": "F2 semantic all-blockers/FreshThird material; checkpoint 36 is current and diagnostics do not prove closure.",
+      "source": "F2-all-blockers-two-cap-source-refactor-checkpoint27.md"
+    },
+    {
+      "destination": "docs/audits/2026-08-22-f2-twosource-checkpoint36-synthesis.md",
+      "disposition": "authoritative/current",
+      "integrated_content": "F2 semantic all-blockers/FreshThird material; checkpoint 36 is current and diagnostics do not prove closure.",
+      "source": "F2-all-blockers-two-cap-source-refactor-checkpoint36.md"
+    },
+    {
+      "destination": "docs/audits/2026-08-22-f2-twosource-checkpoint36-synthesis.md",
+      "disposition": "subsumed (historical; not copied)",
+      "integrated_content": "F2 semantic all-blockers/FreshThird material; checkpoint 36 is current and diagnostics do not prove closure.",
+      "source": "F2-all-blockers-two-cap-source-refactor.md"
+    },
+    {
+      "destination": "docs/audits/2026-08-22-f2-twosource-checkpoint36-synthesis.md",
+      "disposition": "subsumed (historical; not copied)",
+      "integrated_content": "F2 semantic all-blockers/FreshThird material; checkpoint 36 is current and diagnostics do not prove closure.",
+      "source": "F2-cap-repair-verification.txt"
+    },
+    {
+      "destination": "docs/audits/2026-08-22-f2-twosource-checkpoint36-synthesis.md",
+      "disposition": "subsumed (historical; not copied)",
+      "integrated_content": "F2 semantic all-blockers/FreshThird material; checkpoint 36 is current and diagnostics do not prove closure.",
+      "source": "F2-checkpoint27-bundle.zip"
+    },
+    {
+      "destination": "docs/audits/2026-08-22-f2-twosource-checkpoint36-synthesis.md",
+      "disposition": "subsumed (historical; not copied)",
+      "integrated_content": "F2 semantic all-blockers/FreshThird material; checkpoint 36 is current and diagnostics do not prove closure.",
+      "source": "F2-checkpoint27-prose.patch"
+    },
+    {
+      "destination": "docs/audits/2026-08-22-f2-twosource-checkpoint36-synthesis.md",
+      "disposition": "evidence-only (not copied)",
+      "integrated_content": "F2 semantic all-blockers/FreshThird material; checkpoint 36 is current and diagnostics do not prove closure.",
+      "source": "F2-checkpoint36-bundle.zip"
+    },
+    {
+      "destination": "docs/audits/2026-08-22-f2-twosource-checkpoint36-synthesis.md",
+      "disposition": "evidence-only (not copied)",
+      "integrated_content": "F2 semantic all-blockers/FreshThird material; checkpoint 36 is current and diagnostics do not prove closure.",
+      "source": "F2-checkpoint36-prose.patch"
+    },
+    {
+      "destination": "docs/audits/2026-08-22-f2-twosource-checkpoint36-synthesis.md",
+      "disposition": "subsumed (historical; not copied)",
+      "integrated_content": "F2 semantic all-blockers/FreshThird material; checkpoint 36 is current and diagnostics do not prove closure.",
+      "source": "F2-expanded-audited.patch"
+    },
+    {
+      "destination": "docs/audits/2026-08-22-f3-twodeletion-third-pass-synthesis.md",
+      "disposition": "subsumed (historical; not copied)",
+      "integrated_content": "Status/evidence artifact; retain provenance without copying duplicate prose.",
+      "source": "F3-closure-work-validation.txt"
+    },
+    {
+      "destination": "docs/audits/2026-08-22-f3-twodeletion-third-pass-synthesis.md",
+      "disposition": "subsumed (historical; not copied)",
+      "integrated_content": "Status/evidence artifact; retain provenance without copying duplicate prose.",
+      "source": "F3-live-constructor-closure-worksheet.md"
+    },
+    {
+      "destination": "docs/audits/2026-08-22-f2-twosource-checkpoint36-synthesis.md",
+      "disposition": "evidence-only (not copied)",
+      "integrated_content": "F2 semantic all-blockers/FreshThird material; checkpoint 36 is current and diagnostics do not prove closure.",
+      "source": "FreshThird-first-cap-preferred-blocker-synchronization-prose-proof-v2.md"
+    },
+    {
+      "destination": "docs/audits/2026-08-22-f2-twosource-checkpoint36-synthesis.md",
+      "disposition": "subsumed (historical; not copied)",
+      "integrated_content": "F2 semantic all-blockers/FreshThird material; checkpoint 36 is current and diagnostics do not prove closure.",
+      "source": "FreshThird-first-cap-preferred-blocker-synchronization-prose-proof.md"
+    },
+    {
+      "destination": "docs/audits/2026-08-22-f2-twosource-checkpoint36-synthesis.md",
+      "disposition": "evidence-only (not copied)",
+      "integrated_content": "F2 semantic all-blockers/FreshThird material; checkpoint 36 is current and diagnostics do not prove closure.",
+      "source": "FreshThird-first-cap-preferred-closure-Lean-patch-kit.md"
+    },
+    {
+      "destination": "docs/audits/2026-08-22-f2-twosource-checkpoint36-synthesis.md",
+      "disposition": "evidence-only (not copied)",
+      "integrated_content": "F2 semantic all-blockers/FreshThird material; checkpoint 36 is current and diagnostics do not prove closure.",
+      "source": "FreshThird-first-cap-preferred-closure-README.md"
+    },
+    {
+      "destination": "docs/audits/2026-08-22-f2-twosource-checkpoint36-synthesis.md",
+      "disposition": "evidence-only (not copied)",
+      "integrated_content": "F2 semantic all-blockers/FreshThird material; checkpoint 36 is current and diagnostics do not prove closure.",
+      "source": "FreshThird-first-cap-preferred-closure-bundle.zip"
+    },
+    {
+      "destination": "docs/audits/2026-08-22-f2-twosource-checkpoint36-synthesis.md",
+      "disposition": "evidence-only (not copied)",
+      "integrated_content": "F2 semantic all-blockers/FreshThird material; checkpoint 36 is current and diagnostics do not prove closure.",
+      "source": "FreshThird-first-cap-preferred-source.patch"
+    },
+    {
+      "destination": "docs/audits/2026-08-22-f2-twosource-checkpoint36-synthesis.md",
+      "disposition": "evidence-only (not copied)",
+      "integrated_content": "F2 semantic all-blockers/FreshThird material; checkpoint 36 is current and diagnostics do not prove closure.",
+      "source": "FreshThird-first-cap-preferred-static-audit.txt"
+    },
+    {
+      "destination": "docs/audits/2026-08-22-f2-twosource-checkpoint36-synthesis.md",
+      "disposition": "evidence-only (not copied)",
+      "integrated_content": "F2 semantic all-blockers/FreshThird material; checkpoint 36 is current and diagnostics do not prove closure.",
+      "source": "FreshThird-first-cap-synchronization-Lean-handoff.md"
+    },
+    {
+      "destination": "docs/audits/2026-08-22-f2-twosource-checkpoint36-synthesis.md",
+      "disposition": "subsumed (historical; not copied)",
+      "integrated_content": "F2 semantic all-blockers/FreshThird material; checkpoint 36 is current and diagnostics do not prove closure.",
+      "source": "FreshThird-first-cap-synchronization-prose-closure.patch"
+    },
+    {
+      "destination": "docs/audits/2026-08-22-f2-twosource-checkpoint36-synthesis.md",
+      "disposition": "evidence-only (not copied)",
+      "integrated_content": "F2 semantic all-blockers/FreshThird material; checkpoint 36 is current and diagnostics do not prove closure.",
+      "source": "FreshThird-preferred-choice-prose-v2.patch"
+    },
+    {
+      "destination": "docs/p97-prose-material-integration-ledger-2026-08-22.md",
+      "disposition": "retained as archive metadata",
+      "integrated_content": "Archive metadata only.",
+      "source": "ORGANIZATION-LOG.md"
+    },
+    {
+      "destination": "docs/p97-prose-material-integration-ledger-2026-08-22.md",
+      "disposition": "retained as archive metadata",
+      "integrated_content": "Archive metadata only.",
+      "source": "README.md"
+    },
+    {
+      "destination": "docs/audits/2026-08-22-f2-twosource-checkpoint36-synthesis.md",
+      "disposition": "evidence-only (not copied)",
+      "integrated_content": "F2 semantic all-blockers/FreshThird material; checkpoint 36 is current and diagnostics do not prove closure.",
+      "source": "RegionPreferredCriticalShell.lean"
+    },
+    {
+      "destination": "docs/p97-prose-material-integration-ledger-2026-08-22.md",
+      "disposition": "retained as archive metadata",
+      "integrated_content": "Archive metadata only.",
+      "source": "STATUS-MANIFEST.md"
+    },
+    {
+      "destination": "docs/erdos-97-descent-prose-proof-atomic.md",
+      "disposition": "evidence-only (not copied)",
+      "integrated_content": "A5 metric-cell/cap-slot evidence incorporated into the atomic A5 audit.",
+      "source": "a5-escape-cap-slot-models.csv"
+    },
+    {
+      "destination": "docs/erdos-97-descent-prose-proof-atomic.md",
+      "disposition": "evidence-only (not copied)",
+      "integrated_content": "A5 metric-cell/cap-slot evidence incorporated into the atomic A5 audit.",
+      "source": "a5-escape-metric-audit-output.txt"
+    },
+    {
+      "destination": "docs/erdos-97-descent-prose-proof-atomic.md",
+      "disposition": "evidence-only (not copied)",
+      "integrated_content": "A5 metric-cell/cap-slot evidence incorporated into the atomic A5 audit.",
+      "source": "a5-escape-refactor-2026-08-21.patch"
+    },
+    {
+      "destination": "docs/erdos-97-descent-prose-proof-atomic.md",
+      "disposition": "evidence-only (not copied)",
+      "integrated_content": "A5 metric-cell/cap-slot evidence incorporated into the atomic A5 audit.",
+      "source": "a5-escape-same-side-metric-cells.csv"
+    },
+    {
+      "destination": "docs/closure-evidence-status-ledger-2026-08-05.md",
+      "disposition": "evidence-only (not copied)",
+      "integrated_content": "Status/evidence artifact; retain provenance without copying duplicate prose.",
+      "source": "b2_local_geometry_stress-rerun.out"
+    },
+    {
+      "destination": "docs/closure-evidence-status-ledger-2026-08-05.md",
+      "disposition": "subsumed (historical; not copied)",
+      "integrated_content": "Status/evidence artifact; retain provenance without copying duplicate prose.",
+      "source": "b2_local_geometry_stress.out"
+    },
+    {
+      "destination": "docs/closure-evidence-status-ledger-2026-08-05.md",
+      "disposition": "evidence-only (not copied)",
+      "integrated_content": "Status/evidence artifact; retain provenance without copying duplicate prose.",
+      "source": "b2_local_geometry_stress.py"
+    },
+    {
+      "destination": "docs/dead-ends.md",
+      "disposition": "authoritative/current",
+      "integrated_content": "Rejected-route registry; prevents revival of failed projections.",
+      "source": "dead-ends-final.md"
+    },
+    {
+      "destination": "docs/dead-ends.md",
+      "disposition": "subsumed (historical; not copied)",
+      "integrated_content": "Rejected-route registry; prevents revival of failed projections.",
+      "source": "dead-ends-final.patch"
+    },
+    {
+      "destination": "docs/dead-ends.md",
+      "disposition": "subsumed (historical; not copied)",
+      "integrated_content": "Rejected-route registry; prevents revival of failed projections.",
+      "source": "dead-ends-repo-baseline.md"
+    },
+    {
+      "destination": "docs/dead-ends.md",
+      "disposition": "subsumed (historical; not copied)",
+      "integrated_content": "Rejected-route registry; prevents revival of failed projections.",
+      "source": "dead-ends-update.patch"
+    },
+    {
+      "destination": "docs/dead-ends.md",
+      "disposition": "subsumed (historical; not copied)",
+      "integrated_content": "Rejected-route registry; prevents revival of failed projections.",
+      "source": "dead-ends.md"
+    },
+    {
+      "destination": "docs/audits/2026-08-22-f3-twodeletion-third-pass-synthesis.md",
+      "disposition": "subsumed (historical; not copied)",
+      "integrated_content": "F3 historical expansion/patch/validation; local reductions retained, no closure claim.",
+      "source": "erdos-97-F3-closure-work-2026-08-22.patch"
+    },
+    {
+      "destination": "docs/audits/2026-08-22-f3-twodeletion-third-pass-synthesis.md",
+      "disposition": "subsumed (historical; not copied)",
+      "integrated_content": "F3 historical expansion/patch/validation; local reductions retained, no closure claim.",
+      "source": "erdos-97-F3-expansion.patch"
+    },
+    {
+      "destination": "docs/audits/2026-08-22-f1-triapex-checkpoint4-review.md",
+      "disposition": "evidence-only (not copied)",
+      "integrated_content": "Independent prose/CAS/numerical checkpoint review; supporting evidence with an explicit non-Lean boundary.",
+      "source": "erdos-97-checkpoint4-review.md"
+    },
+    {
+      "destination": "docs/closure-evidence-status-ledger-2026-08-05.md",
+      "disposition": "subsumed (historical; not copied)",
+      "integrated_content": "Status/evidence artifact; retain provenance without copying duplicate prose.",
+      "source": "erdos-97-descent-findings-report-with-pinned-multiplicity.docx"
+    },
+    {
+      "destination": "docs/closure-evidence-status-ledger-2026-08-05.md",
+      "disposition": "subsumed (historical; not copied)",
+      "integrated_content": "Status/evidence artifact; retain provenance without copying duplicate prose.",
+      "source": "erdos-97-descent-findings-report-with-pinned-multiplicity.md"
+    },
+    {
+      "destination": "docs/closure-evidence-status-ledger-2026-08-05.md",
+      "disposition": "subsumed (historical; not copied)",
+      "integrated_content": "Status/evidence artifact; retain provenance without copying duplicate prose.",
+      "source": "erdos-97-descent-findings-report.docx"
+    },
+    {
+      "destination": "docs/closure-evidence-status-ledger-2026-08-05.md",
+      "disposition": "subsumed (historical; not copied)",
+      "integrated_content": "Status/evidence artifact; retain provenance without copying duplicate prose.",
+      "source": "erdos-97-descent-findings-report.md"
+    },
+    {
+      "destination": "docs/erdos-97-descent-prose-proof-atomic.md",
+      "disposition": "subsumed (historical; not copied)",
+      "integrated_content": "Manuscript lineage; canonical atomic version is authoritative.",
+      "source": "erdos-97-descent-prose-proof-atomic-leaf-ledger (2)(1).md"
+    },
+    {
+      "destination": "docs/erdos-97-descent-prose-proof-atomic.md",
+      "disposition": "subsumed (historical; not copied)",
+      "integrated_content": "Manuscript lineage; canonical atomic version is authoritative.",
+      "source": "erdos-97-descent-prose-proof-atomic-leaf-ledger (2).md"
+    },
+    {
+      "destination": "docs/erdos-97-descent-prose-proof-atomic.md",
+      "disposition": "subsumed (historical; not copied)",
+      "integrated_content": "Manuscript lineage; canonical atomic version is authoritative.",
+      "source": "erdos-97-descent-prose-proof-atomic-leaf-ledger(1).md"
+    },
+    {
+      "destination": "docs/audits/2026-08-22-f2-twosource-checkpoint36-synthesis.md",
+      "disposition": "subsumed (historical; not copied)",
+      "integrated_content": "F2 semantic all-blockers/FreshThird material; checkpoint 36 is current and diagnostics do not prove closure.",
+      "source": "erdos-97-descent-prose-proof-atomic-leaf-ledger-F2-FreshThird-preferred-choice-v2.md"
+    },
+    {
+      "destination": "docs/audits/2026-08-22-f2-twosource-checkpoint36-synthesis.md",
+      "disposition": "subsumed (historical; not copied)",
+      "integrated_content": "F2 semantic all-blockers/FreshThird material; checkpoint 36 is current and diagnostics do not prove closure.",
+      "source": "erdos-97-descent-prose-proof-atomic-leaf-ledger-F2-FreshThird-synchronization-prose-closed.md"
+    },
+    {
+      "destination": "docs/audits/2026-08-22-f2-twosource-checkpoint36-synthesis.md",
+      "disposition": "subsumed (historical; not copied)",
+      "integrated_content": "F2 semantic all-blockers/FreshThird material; checkpoint 36 is current and diagnostics do not prove closure.",
+      "source": "erdos-97-descent-prose-proof-atomic-leaf-ledger-F2-all-blockers-refactor.md"
+    },
+    {
+      "destination": "docs/audits/2026-08-22-f2-twosource-checkpoint36-synthesis.md",
+      "disposition": "subsumed (historical; not copied)",
+      "integrated_content": "F2 semantic all-blockers/FreshThird material; checkpoint 36 is current and diagnostics do not prove closure.",
+      "source": "erdos-97-descent-prose-proof-atomic-leaf-ledger-F2-checkpoint27.md"
+    },
+    {
+      "destination": "docs/audits/2026-08-22-f2-twosource-checkpoint36-synthesis.md",
+      "disposition": "authoritative/current",
+      "integrated_content": "F2 semantic all-blockers/FreshThird material; checkpoint 36 is current and diagnostics do not prove closure.",
+      "source": "erdos-97-descent-prose-proof-atomic-leaf-ledger-F2-checkpoint36.md"
+    },
+    {
+      "destination": "docs/audits/2026-08-22-f2-twosource-checkpoint36-synthesis.md",
+      "disposition": "subsumed (historical; not copied)",
+      "integrated_content": "F2 semantic all-blockers/FreshThird material; checkpoint 36 is current and diagnostics do not prove closure.",
+      "source": "erdos-97-descent-prose-proof-atomic-leaf-ledger-F2-closure-pass-2026-08-20.md"
+    },
+    {
+      "destination": "docs/audits/2026-08-22-f2-twosource-checkpoint36-synthesis.md",
+      "disposition": "subsumed (historical; not copied)",
+      "integrated_content": "F2 semantic all-blockers/FreshThird material; checkpoint 36 is current and diagnostics do not prove closure.",
+      "source": "erdos-97-descent-prose-proof-atomic-leaf-ledger-F2-expanded-audited.md"
+    },
+    {
+      "destination": "docs/audits/2026-08-22-f1-triapex-checkpoint4-review.md",
+      "disposition": "evidence-only (not copied)",
+      "integrated_content": "F1 TriApex/D1 continuation and checkpoint material; current checkpoint controls source/status.",
+      "source": "erdos-97-descent-prose-proof-atomic-leaf-ledger-f1-triapex-checkpoint4-2026-08-22.md"
+    },
+    {
+      "destination": "docs/audits/2026-08-22-f1-triapex-checkpoint4-review.md",
+      "disposition": "subsumed (historical; not copied)",
+      "integrated_content": "F1 TriApex/D1 continuation and checkpoint material; current checkpoint controls source/status.",
+      "source": "erdos-97-descent-prose-proof-atomic-leaf-ledger-f1-triapex-continuation-2026-08-22.md"
+    },
+    {
+      "destination": "docs/audits/2026-08-22-f1-triapex-checkpoint4-review.md",
+      "disposition": "subsumed (historical; not copied)",
+      "integrated_content": "F1 TriApex/D1 continuation and checkpoint material; current checkpoint controls source/status.",
+      "source": "erdos-97-descent-prose-proof-atomic-leaf-ledger-f1-triapex-source-audited.md"
+    },
+    {
+      "destination": "docs/audits/2026-08-22-f1-triapex-checkpoint4-review.md",
+      "disposition": "subsumed (historical; not copied)",
+      "integrated_content": "F1 TriApex/D1 continuation and checkpoint material; current checkpoint controls source/status.",
+      "source": "erdos-97-descent-prose-proof-atomic-leaf-ledger-triapex-closure-plan-2026-08-20.md"
+    },
+    {
+      "destination": "docs/audits/2026-08-22-f1-triapex-checkpoint4-review.md",
+      "disposition": "subsumed (historical; not copied)",
+      "integrated_content": "F1 TriApex/D1 continuation and checkpoint material; current checkpoint controls source/status.",
+      "source": "erdos-97-descent-prose-proof-atomic-leaf-ledger-triapex-revised-2026-08-20.md"
+    },
+    {
+      "destination": "docs/closure-evidence-status-ledger-2026-08-05.md",
+      "disposition": "subsumed (historical; not copied)",
+      "integrated_content": "Status/evidence artifact; retain provenance without copying duplicate prose.",
+      "source": "erdos-97-descent-prose-proof-atomic-leaf-ledger.docx"
+    },
+    {
+      "destination": "docs/erdos-97-descent-prose-proof-atomic.md",
+      "disposition": "subsumed (historical; not copied)",
+      "integrated_content": "Manuscript lineage; canonical atomic version is authoritative.",
+      "source": "erdos-97-descent-prose-proof-atomic-leaf-ledger.md"
+    },
+    {
+      "destination": "docs/closure-evidence-status-ledger-2026-08-05.md",
+      "disposition": "subsumed (historical; not copied)",
+      "integrated_content": "Status/evidence artifact; retain provenance without copying duplicate prose.",
+      "source": "erdos-97-descent-prose-proof-atomic.docx"
+    },
+    {
+      "destination": "docs/erdos-97-descent-prose-proof-atomic.md",
+      "disposition": "subsumed (historical; not copied)",
+      "integrated_content": "Manuscript lineage; canonical atomic version is authoritative.",
+      "source": "erdos-97-descent-prose-proof-atomic.md"
+    },
+    {
+      "destination": "docs/erdos-97-descent-prose-proof-atomic.md",
+      "disposition": "subsumed (historical; not copied)",
+      "integrated_content": "Manuscript lineage; canonical atomic version is authoritative.",
+      "source": "erdos-97-descent-prose-proof-authoritative(1).md"
+    },
+    {
+      "destination": "docs/erdos-97-descent-prose-proof-atomic.md",
+      "disposition": "subsumed (historical; not copied)",
+      "integrated_content": "Manuscript lineage; canonical atomic version is authoritative.",
+      "source": "erdos-97-descent-prose-proof-authoritative(2).md"
+    },
+    {
+      "destination": "docs/erdos-97-descent-prose-proof-atomic.md",
+      "disposition": "subsumed (historical; not copied)",
+      "integrated_content": "Manuscript lineage; canonical atomic version is authoritative.",
+      "source": "erdos-97-descent-prose-proof-authoritative(3).md"
+    },
+    {
+      "destination": "docs/erdos-97-descent-prose-proof-atomic.md",
+      "disposition": "incorporated (supporting evidence)",
+      "integrated_content": "A5 escape refactor: same-side metric-cell classification and strict-cap role reduction incorporated into the atomic A5 audit.",
+      "source": "erdos-97-descent-prose-proof-authoritative(4)-escape-refactor-2026-08-21.md"
+    },
+    {
+      "destination": "docs/erdos-97-descent-prose-proof-atomic.md",
+      "disposition": "subsumed (historical; not copied)",
+      "integrated_content": "Manuscript lineage; canonical atomic version is authoritative.",
+      "source": "erdos-97-descent-prose-proof-authoritative(4).md"
+    },
+    {
+      "destination": "docs/erdos-97-descent-prose-proof-atomic.md",
+      "disposition": "subsumed (historical; not copied)",
+      "integrated_content": "Manuscript lineage; canonical atomic version is authoritative.",
+      "source": "erdos-97-descent-prose-proof-authoritative(5).md"
+    },
+    {
+      "destination": "docs/audits/2026-08-22-f3-twodeletion-third-pass-synthesis.md",
+      "disposition": "subsumed (historical; not copied)",
+      "integrated_content": "Status/evidence artifact; retain provenance without copying duplicate prose.",
+      "source": "erdos-97-descent-prose-proof-authoritative-F3-closure-work-2026-08-22.md"
+    },
+    {
+      "destination": "docs/audits/2026-08-22-f3-twodeletion-third-pass-synthesis.md",
+      "disposition": "subsumed (historical; not copied)",
+      "integrated_content": "Status/evidence artifact; retain provenance without copying duplicate prose.",
+      "source": "erdos-97-descent-prose-proof-authoritative-F3-expanded-2026-08-21.md"
+    },
+    {
+      "destination": "docs/notes/2026-08-22-p97-literature-bridge.md",
+      "disposition": "subsumed (historical; not copied)",
+      "integrated_content": "Obsolete manuscript body discarded; LB0--LB10 material is retained in the project-native literature note.",
+      "source": "erdos-97-descent-prose-proof-authoritative-literature-bridge-2026-08-22.md"
+    },
+    {
+      "destination": "docs/erdos-97-descent-prose-proof-atomic.md",
+      "disposition": "authoritative/current",
+      "integrated_content": "Canonical manuscript baseline; retains the full atomic proof spine and explicit open-status boundary.",
+      "source": "erdos-97-descent-prose-proof-authoritative.md"
+    },
+    {
+      "destination": "docs/erdos-97-descent-prose-proof-atomic.md",
+      "disposition": "subsumed (historical; not copied)",
+      "integrated_content": "Manuscript lineage; canonical atomic version is authoritative.",
+      "source": "erdos-97-descent-prose-proof.md"
+    },
+    {
+      "destination": "docs/notes/2026-08-22-p97-literature-bridge.md",
+      "disposition": "authoritative/current",
+      "integrated_content": "Literature bridge constraints; citations do not replace project proofs.",
+      "source": "erdos-97-literature-bridge-active-2026-08-22.md"
+    },
+    {
+      "destination": "docs/notes/2026-08-22-p97-literature-bridge.md",
+      "disposition": "authoritative/current",
+      "integrated_content": "Literature bridge constraints; citations do not replace project proofs.",
+      "source": "erdos-97-literature-bridge-closure-matrix-2026-08-22.md"
+    },
+    {
+      "destination": "docs/audits/2026-08-22-f3-twodeletion-third-pass-synthesis.md",
+      "disposition": "subsumed (historical; not copied)",
+      "integrated_content": "F3.54 v8 matrix; recursive interface superseded by F3.73.",
+      "source": "f3_authoritative_closure_matrix.md"
+    },
+    {
+      "destination": "docs/audits/2026-08-22-f3-twodeletion-third-pass-synthesis.md",
+      "disposition": "subsumed (historical; not copied)",
+      "integrated_content": "F3 historical expansion/patch/validation; local reductions retained, no closure claim.",
+      "source": "f3_expanded_section.md"
+    },
+    {
+      "destination": "docs/audits/2026-08-22-f3-twodeletion-third-pass-synthesis.md",
+      "disposition": "subsumed (historical; not copied)",
+      "integrated_content": "F3.32-F3.53 joint-locus decomposition and bounded normal forms; retained under third-pass correction.",
+      "source": "f3_joint_locus_descent_addendum.md"
+    },
+    {
+      "destination": "docs/audits/2026-08-22-f3-twodeletion-third-pass-synthesis.md",
+      "disposition": "subsumed (historical; not copied)",
+      "integrated_content": "F3 historical expansion/patch/validation; local reductions retained, no closure claim.",
+      "source": "f3_live_source_reconciliation.md"
+    },
+    {
+      "destination": "docs/audits/2026-08-22-f3-twodeletion-third-pass-synthesis.md",
+      "disposition": "authoritative/current",
+      "integrated_content": "F3.55-F3.73 authority: physical trace system, sparse graph, fans/grids/diagonals; five metric roots open.",
+      "source": "f3_trace_graph_third_pass_addendum.md"
+    },
+    {
+      "destination": "docs/rigid221-three-shell-classification-2026-08-06.md",
+      "disposition": "authoritative/current",
+      "integrated_content": "B-family/rigid221 exact-cover and blocker-placement obligations; preserve open consumers.",
+      "source": "rigid221-exact-seventeen-cap-nine-exact-cover.md"
+    },
+    {
+      "destination": "docs/erdos-97-descent-prose-proof-atomic.md",
+      "disposition": "evidence-only (not copied)",
+      "integrated_content": "A5 metric-cell/cap-slot evidence incorporated into the atomic A5 audit.",
+      "source": "verify_a5_escape_metric_cells.py"
+    }
+  ],
+  "schema": "p97-prose-synthesis-coverage/v1",
+  "verified": true
+}

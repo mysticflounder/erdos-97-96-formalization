@@ -26,6 +26,28 @@ smaller residual is not by itself closure of a publish-target obligation.
 Use the unqualified word "closed" only for **KERNEL-CLOSED** claims.  Otherwise
 write the exact status above and name the residual, mechanism, or abstraction.
 
+## 2026-08-22 complete-prose synthesis update
+
+The 117-file prose bundle dated 2026-08-22 has been reconciled into the live
+manuscript and branch audits. The bundle is complete as a collected research
+library, not as a proof of Erdős Problem 97. No fresh integrated Lean build or
+publish-spine axiom audit was run during this prose merge.
+
+| Area | Strongest integrated evidence | Exact remaining boundary |
+|---|---|---|
+| Canonical descent | The deletion calculus, blocker reformulation, incidence package, MEC/surplus-cap extraction, `IsM44` branch, and universal physical-source package are assembled in one current manuscript. | The general non-`IsM44` contradiction remains open. |
+| A5 escape | The 178-assignment classifier, ten same-side cells, and Cell 7 midpoint contradiction are exact finite/prose evidence. | Nine full-A5 same-side cells, Child O, source adapters, elaboration, and spine wiring remain. |
+| B family / Rigid221 | Revision 4 gives source-validated B1/B2/B3 contracts; the exact-seventeen/cap-nine terminal is reduced to two cap orders and four outside pairs. | The B1 positive terminal, B2/B3 geometric consumers, exact-cover impossibility, and scalable `|A|≥18` transfer remain. The 57/57 check was static only. |
+| F1 TriApex | D2 is analytically closed in prose; D8's three-edge producer and equal-secondary-blocker child are source-clean. | The live module still has nine `sorry`s. D1 is the preferred mathematical kernel; D8's distinct-cycle consumer and D1 ingress wiring remain. |
+| F2 TwoSource | Four intrinsic packets reduce to Root A/Root B; checkpoint 36 supplies a cross-radius mutual-omission-cycle producer; the preferred FreshThird route is prose-complete. | Eight live F2 `sorry`s, Root A, Root B, the F8 saturation adapter, preferred-source integration, build, and axiom audit remain. |
+| F3 TwoDeletion | Local joint-locus calculus, physical traces, sparse conflict graphs, survival amplification, and bounded/grid/diagonal normal forms are prose-complete. | The second-pass recursive interface is rejected. Three live `sorry`s and five metric roots remain. |
+| Literature bridge | LB0--LB2 are internal or prose-derived; LB3--LB7 identify external candidates; LB8--LB10 organize applicability and adapter work. | External statements and project-native adapters are unverified; the bridge closes no proof obligation. |
+
+Superseded drafts, patches, ZIP/DOCX exports, static audits, and solver outputs
+were integrated through their surviving claims, corrections, or provenance.
+They are not independent proof authorities. Exact per-file disposition is in
+`docs/p97-prose-material-integration-ledger-2026-08-22.md`.
+
 ## Corrected route ledger
 
 | Work item | Correct status | What remains open |

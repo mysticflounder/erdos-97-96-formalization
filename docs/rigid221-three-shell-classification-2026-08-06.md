@@ -67,6 +67,35 @@ accepted by the exact replay.  A SAT Boolean survivor after imposing the full
 rotation closure would show that the three-shell family alone is insufficient
 and identify the next missing global constraint.
 
+## Exact-seventeen second-cap-nine exact-cover terminal
+
+The exact-seventeen source-heavy branch has a terminal separate from the
+three-shell bank. The carrier has 17 points and the second cap has the exact
+nine-point set `C9 = {ℓ, r, u, v, c, δ, x_v, e, x_u}`. The four old exact rows
+are centered at `v`, `x_v`, `δ`, and `c`, with cap slices
+
+```text
+R_v  ∩ C9 = {u, x_v}    R_xv ∩ C9 = {u, x_u}
+R_δ  ∩ C9 = {v, x_v}    R_c  ∩ C9 = {v, δ}.
+```
+
+The eight points outside `C9` split into four two-point portions, one for each
+row. Up to reversal, the two remaining cap orders are
+`ℓ<u<v<c<δ<x_v<e<x_u<r` and
+`ℓ<u<v<c<δ<e<x_v<x_u<r`. Upstream invariants fix the carrier, these four
+rows, the physical five-class `H = {u, x_u, v, x_v, δ}`, all outside points
+assigned to a row, `R_e ∩ H = {x_u, δ}`, and a further row `R_d` with at most
+one physical hit; the row centers share one radius, omit their own centers,
+and have pairwise intersections of size at most two.
+
+The unused-outside-point arm is closed. The exact-cover arm is **OPEN**: the
+four two-point outside portions alone are not contradictory. The missing
+certificate must use the cyclic order together with metric circle incidence
+(or a finite perpendicular-bisector/interlacing certificate) to show that no
+such exact cover exists. Cardinality and four-pair partition arguments alone
+must not be promoted. This terminal remains outside the universal exact-17
+closure and is the intended producer/consumer target for the exact replay.
+
 ## First obstruction beyond the three-shell bank
 
 The first authenticated survivor of that completed bank is nevertheless

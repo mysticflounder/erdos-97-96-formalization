@@ -29,6 +29,28 @@ saved profile under `D.A.card = 12`. Bare “card-12 producer” is retired from
 current-status rows. Historical file names and immutable artifact identifiers
 are not silently renamed.
 
+**Prose-library reconciliation (2026-08-22, lane base
+`e55af1fac5bf7616dc22ea70ffaa414246471848`).** The complete 117-file prose
+bundle has been synthesized into the live manuscript and dated branch audits.
+This was a source/prose audit, not a fresh `proof-blueprint spine`, Lean build,
+or axiom audit; it therefore does not replace the last generated reachability
+measurement below.
+
+- F1 still has nine source `sorry`s. D2 is prose-closed, and D8's producer and
+  equal-blocker child are source-clean, but D1 ingress and the distinct-cycle
+  consumer remain open.
+- F2 has eight bare source `sorry`s across its four current modules. Its
+  four-packet/two-root reduction and checkpoint-36 cycle producer are prose
+  results; the F8 saturation adapter and preferred-source integration are open.
+- F3 still has three source `sorry`s. The second-pass generic recursive
+  interface is rejected; the third pass leaves five explicit metric roots.
+- Rigid221 exact-seventeen/cap-nine exact cover remains a geometric terminal,
+  and no scalable `|A|≥18` transfer theorem has been supplied.
+
+These corrections narrow or replace prose interfaces only. They close no
+whole publish-spine obligation. Exact per-file provenance is recorded in
+`docs/p97-prose-material-integration-ledger-2026-08-22.md`.
+
 **Live reconciliation (2026-08-20, source head `9e2f2120`).** This paragraph,
 the current-register section at the end of this document, the generated
 `docs/live-blueprint.md`, and the declaration roster in

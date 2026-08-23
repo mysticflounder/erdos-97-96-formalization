@@ -15,6 +15,54 @@
 
 ---
 
+> **Revision 4 authority (22 August 2026).** The v4 source audit is the
+> current B-family contract. The direct-False recommendation in the older
+> red-team summary below is retained as historical analysis, but is not a
+> proved reduction. B1, B2, and B3 remain open mathematical leaves.
+
+## Revision 4 — current contracts and execution boundary
+
+Revision 4 is an execution-complete, certificate-first plan for discovery,
+gap certification, refactoring, and integration; it is not a proof certificate
+and gives no top-level P97/P96 refutation.
+
+### B1 contract
+
+The producer must establish `B1GlobalGapOrClosedTerminal C`, or derive a direct
+contradiction from the same context `C`. The existing consumer only refutes a
+supplied terminal; proving that terminal's negation is not closure. The active
+producers are the P/Q routes and all six atomic both-live-source outcomes. Any
+escape survival must first be normalized to an exact q-deleted row and
+canonical support.
+
+### B2 contract
+
+The four live branches are the blocker choices `q = blocker(u)`,
+`q = blocker(v)`, `q = blocker(second)` with `u` absent, and the corresponding
+branch with `v` absent. Their exact card-four forward rows are, respectively,
+`first.uPacket.row1`, `first.vPacket.row1`, `crossPacket.row1`, and
+`crossPacket.row1`. Canonicalization supplies support equality only; a radius
+equality needs a separate shared-point theorem, and a center equal to the
+deleted point is not an immediate contradiction. The exact-rational stress
+model confirms B2 local realizability (including the five-point cap class and
+four-point row support); it is not a Lean context or a P97 counterexample.
+
+### B3 contract
+
+Use roles A/U/V/S with exact forward rows `first.uPacket.row2`,
+`first.uPacket.row1`, `first.vPacket.row1`, and `crossPacket.row1`. Reverse
+survivals must normalize to exact q-deleted rows, with `source := first.deleted`;
+independent radii must be preserved.
+
+### Validation boundary
+
+The v4 static validator passes **57/57** checks. Lean compilation was **not
+run** (the pinned checkout/toolchain was unavailable), and no enriched route
+has passed. The remaining obligations are a positive B1 terminal or direct
+contradiction, complete B2 branch certificates, and the B3 role certificate.
+
+---
+
 ## 1. Structural Overview & Call Graph
 
 ```mermaid
