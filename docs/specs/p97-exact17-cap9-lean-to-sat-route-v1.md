@@ -1621,3 +1621,14 @@ wave-only theorem mine before releasing any remaining cells.
 
 This source promotion does not yet close a direct production `sorry` and does
 not close exact 17.
+
+The V7 physical Lean interface is now implemented. Its coverage module proves
+that the inherited source-total partition still has the required typed
+consumer, its exporter deterministically emits the root and all physical
+cells, and its certificate ingress transports relabelled LRAT UNSAT theorems
+to the typed 76-cell coordinator. Targeted builds and axiom scans pass with the
+approved five-axiom closure and no `sorryAx`. No certificate aggregate is
+claimed at this stage: that module can be generated only after every V7 cell
+has a checked UNSAT theorem. The exact-cover branch of `Rigid221SourceHeavy`
+already produces the order-zero `SourceRealization` consumed by the future
+aggregate.

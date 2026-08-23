@@ -15332,3 +15332,13 @@ clauses per cell after the six physical-multiplicity units; freeze its source
 identities and PIQD portfolio; then run exactly one canary followed by exact
 replay and the mandatory wave-only theorem mine. This promotion closes neither
 a direct production `sorry` nor exact 17.
+
+The Lean side of that gate is now present. The V7 physical coverage theorem
+partitions every order-zero source across the inherited 76 source-total cells,
+the deterministic exporter emits the 7,409,810-clause root and 7,409,816-clause
+cells, and the V7 certificate ingress transports future relabelled LRAT UNSAT
+theorems back to the typed coordinator. These declarations pass targeted
+builds and the approved five-axiom audit without `sorryAx`. The concrete
+76-certificate aggregate does not yet exist; it is generated only after all
+cells have certified UNSAT proofs. That future aggregate is the direct input
+to the exact-cover source branch in `Rigid221SourceHeavy`.
