@@ -217,3 +217,13 @@ NOT viable through the certificate path; installing S2 needs a
 definition-variable family layer.  Sample evidence puts S2's marginal value
 beyond S1 at 2 of 300 models, so the S1-only bank is the proposed first
 installation.
+
+Refreeze closure (2026-08-21): the documented narrowed-chain refreeze ran
+over the tree at `2d8e8d16` (contains this consumer edit `b4eb4b71` and
+the A7 checkpoint `97a6f503`) and produced **zero pin rewrites** — every
+recomputed manifest sha matched the frozen pins, and the `--verify` walk
+reported `CHAIN VERIFY COMPLETE` (13 banks).  No bank's kernel-mined
+`LEAN_DEPENDENCY_MODULES` set reaches the edited modules, so the
+stale-pins flag in the `b4eb4b71` commit message is resolved with no pin
+commit.  The one genuinely stale pin is the v26 validator/canary Lean-file
+tuple, which pins this consumer file; the planned v27 freeze resolves it.
