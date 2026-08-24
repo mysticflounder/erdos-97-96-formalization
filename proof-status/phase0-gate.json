@@ -1,0 +1,166 @@
+{
+  "artifacts_examined": [
+    "proof-status/baseline/base-head.txt",
+    "proof-status/baseline/dirty-files.txt",
+    "proof-status/baseline/offspine-sorry.json",
+    "proof-status/baseline/spine-sorry.json",
+    "proof-status/frontier-table.generated.md",
+    "proof-status/id-assignments.json",
+    "proof-status/import-waivers.json",
+    "proof-status/obligations-meta.json",
+    "proof-status/obligations.json",
+    "README.md",
+    "docs/audits/2026-08-23-consolidation-refactor-audit.md",
+    "scripts/gen_obligation_registry.py",
+    "scripts/lint_cluster_imports.py"
+  ],
+  "baseline_base_head": "222809b9f43fa609a7e359ea4f9f5ed0b463e24f",
+  "blockers": [
+    "Check 7: `git status --porcelain -- lean` is not byte-identical to the lean/-prefixed subset of proof-status/baseline/dirty-files.txt. One extra live entry: 'M lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactTwelveRigid221PhysicalClassCell6PositiveCuts.lean'. Evidence attributes it to the exact-12 cell-6 generator lane (added by commit e72fa308, after the baseline head), not to Phase 0; the file carries no `sorry` and cannot move the roster."
+  ],
+  "checks": {
+    "1_registry_check": {
+      "clean": true,
+      "command": "uv run python scripts/gen_obligation_registry.py check --baseline proof-status/baseline",
+      "exit_code": 0,
+      "notes": [
+        "command_check calls gather_exports(None, fresh=True, ...), which re-runs `proof-blueprint search --with-sorry --spine|--off-spine --json` against the live tree; it is not a re-read of the recorded baseline files.",
+        "Compared fields are CHECKED_FIELDS = (lean_decl, source_file, reachable); `line` is deliberately not compared.",
+        "Run twice at repo head f3063069; identical result both times."
+      ],
+      "stdout": "OK: proof-status/obligations.json matches the live spine (28 reachable, 6 off-spine)"
+    },
+    "2_roster_set_compare": {
+      "baseline_offspine_symbols": 6,
+      "baseline_spine_offspine_overlap": [],
+      "baseline_spine_symbols": 28,
+      "clean": true,
+      "duplicate_lean_decl_in_registry": [],
+      "duplicate_obligation_ids": [],
+      "duplicate_symbols_in_baseline": [],
+      "extra_obligations": [],
+      "notes": [
+        "Exact set equality in both directions, both roster halves, with no duplicate lean_decl and no duplicate obligation id.",
+        "Independently reconfirmed against the live index: `proof-blueprint search --with-sorry --off-spine --json` at head f3063069 returns exactly the 6 baseline off-spine symbols."
+      ],
+      "offspine_baseline_missing_from_reachable_false": [],
+      "reachable_false_not_in_offspine_baseline": [],
+      "reachable_true_not_in_spine_baseline": [],
+      "registry_reachable_false": 6,
+      "registry_reachable_true": 28,
+      "registry_total_obligations": 34,
+      "spine_baseline_missing_from_reachable_true": []
+    },
+    "3_overlay_consistency": {
+      "clean": true,
+      "controlled_vocabulary": [
+        "CERTIFIED_APPROVED_TRUST",
+        "KERNEL_CLEAN",
+        "NORMAL_FORM_CLOSED_TERMINAL_OPEN",
+        "OFF_SPINE_DIAGNOSTIC",
+        "OPEN_MATHEMATICAL",
+        "PROSE_CLOSED_LEAN_UNIMPLEMENTED",
+        "REFUTED_LOCAL_STATEMENT",
+        "SOURCE_CLEAN_TRANSITIVELY_OPEN",
+        "SUPERSEDED"
+      ],
+      "controlled_vocabulary_source": "docs/audits/2026-08-23-consolidation-refactor-audit.md:630-644 ('P1 refactor - controlled status vocabulary')",
+      "duplicate_meta_keys": [],
+      "ids_in_meta_not_in_registry": [],
+      "ids_in_registry_not_in_meta": [],
+      "meta_entry_count": 34,
+      "notes": [
+        "All 6 reachable=false obligations carry prose_status OFF_SPINE_DIAGNOSTIC, and no reachable=true obligation does; the OFF_SPINE_DIAGNOSTIC count (6) equals the reachable=false count.",
+        "The vocabulary is not encoded in scripts/gen_obligation_registry.py; it exists only as the audit prose enum cited above. There is no machine gate that would catch a future out-of-vocabulary prose_status value. Recommend encoding the enum in the generator.",
+        "implementation_effect (a separate field per the same audit section) takes values branch-closer (19), bypass (9), helper (3), unknown (3). 'unknown' is outside the audit's suggested set (direct closer / branch closer / helper / bypass); recorded as informational only, not gated by this check.",
+        "obligations.json carries meta_status: null on the off-spine entries sampled; the overlay, not the registry field, is where prose_status lives. Informational."
+      ],
+      "obligation_id_count": 34,
+      "prose_status_outside_vocabulary": [],
+      "prose_status_tally": {
+        "NORMAL_FORM_CLOSED_TERMINAL_OPEN": 11,
+        "OFF_SPINE_DIAGNOSTIC": 6,
+        "OPEN_MATHEMATICAL": 17
+      },
+      "reachable_false_all_off_spine_diagnostic": true,
+      "reachable_true_marked_off_spine_diagnostic": []
+    },
+    "4_readme_table_comparison": {
+      "counts_agree": true,
+      "discrepancies": [
+        "Column count: README.md:232 has a fourth column 'What the cluster is about' that the generated table does not emit; the generated table is three columns.",
+        "Rigid221 sub-row order: generated emits SourceHeavy(8), Closure(5), Placement(5); README.md:234-236 emits SourceHeavy(8), Placement(5), Closure(5).",
+        "TwoSource sub-row order: generated emits FreshThirdResidual(3), CanonicalSurface(1), Closure(1), FirstFiberCollision(1); README.md:238-241 emits FreshThirdResidual(3), FirstFiberCollision(1), Closure(1), CanonicalSurface(1).",
+        "Total row cell count: generated '| **Total** | | **28** |' vs README.md:243 '| **Total** | | **28** | |' (the extra empty cell is the fourth column).",
+        "Continuation-row cluster cell: generated writes '|  |' (two spaces), README writes '| |'.",
+        "README.md:255 states 'Three further sorrys exist off that spine'; the registry and the live index both record six off-spine sorry-carrying declarations.",
+        "README.md:263 lists 'P97/U1LargeCapRouteBTail.lean:2446 -> DoubleApexOffSurplusSharedRadiusPair' as an off-spine sorry. That name resolves to zero declarations in the live index (proof-blueprint search --name '*DoubleApexOffSurplusSharedRadiusPair*' returns nothing). The actual third FrontierLiveClosure off-spine leaf is TwoSourceFreshThirdResidual.lean:9424 -> TwoSourceExactCollisionRowsTerminal.false_of_freshThird_pinnedEndpoint_outsideSeedResidual.",
+        "README's off-spine bullet list omits the three fidelity-check off-spine sorrys: scratch/c-package-bank/FidelityCheck.lean:38 (Problem97.CPackageBankFidelity.fidelity_c1), :122 (fidelity_c2), and scratch/e-package-bank/FidelityCheck.lean:47 (Problem97.EPackageBankFidelity.fidelity_e1).",
+        "The generated table pins a 'Source head' anchor (222809b9f43fa609a7e359ea4f9f5ed0b463e24f); the README table carries no head anchor.",
+        "Consistent, for the record: README.md:222 'nine modules' matches the nine generated module rows, and README.md:250 'Six of the 28 sit in the nested TwoSourceExactCollisionRowsTerminal namespace' matches the registry (6 of 28 reachable decls carry that namespace prefix)."
+      ],
+      "gate_affecting": false,
+      "generated_table": "proof-status/frontier-table.generated.md",
+      "notes": [
+        "All nine per-module counts and the total (28) agree exactly between the generated table and the README table.",
+        "Differences below are drift, listed for the record only."
+      ],
+      "readme_table_lines": "README.md:232-243 (frontier section README.md:220-266)",
+      "report_only": true
+    },
+    "5_lean_decl_resolution": {
+      "ambiguous_decls": [],
+      "clean": true,
+      "method": "proof-blueprint search --name '<exact fully-qualified name>' --json --no-refresh, one call per reachable obligation, output filtered with jq to rows whose .symbol equals the queried name (output is JSON-lines, not a JSON array).",
+      "missing_decls": [],
+      "notes": [
+        "Extra adversarial cross-check beyond the required one: for all 28, the live index file:line matches obligations.json source_file:line exactly (zero mismatches), and all 28 report has_sorry=true."
+      ],
+      "reachable_obligations_checked": 28,
+      "resolved_to_exactly_one_declaration": 28
+    },
+    "6_cluster_import_lint": {
+      "clean": true,
+      "command": "uv run python scripts/lint_cluster_imports.py",
+      "exit_code": 0,
+      "notes": [
+        "The lint exits 0 only because all 30 live forbidden edges are covered by proof-status/import-waivers.json (cross-cluster 5, from-shared-to-cluster 25). This is a documented freeze-the-graph baseline: the lint blocks NEW violations, it does not assert the cluster graph is clean.",
+        "Waiver retirement ownership: W1b 2, W3 2, unassigned 26.",
+        "--stale-waivers reports no waiver whose edge has disappeared.",
+        "import-waivers.json base_head is the abbreviated '222809b9', while obligations.json and baseline/base-head.txt carry the full 40-character hash. Cosmetic inconsistency, not gated."
+      ],
+      "stale_waivers": 0,
+      "stdout": "lint_cluster_imports: OK -- 650 import edges scanned, 30 forbidden edges, all waived."
+    },
+    "7_no_lean_files_modified": {
+      "baseline_lean_entries": 18,
+      "byte_identical": false,
+      "clean": false,
+      "delta": [
+        " M lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactTwelveRigid221PhysicalClassCell6PositiveCuts.lean"
+      ],
+      "delta_direction": "present live, absent from baseline",
+      "live_lean_entries": 19,
+      "notes": [
+        "The single delta is a generated cut module, not Phase 0 output. Attribution evidence: the file did not exist at the baseline head (it was added by commit e72fa308 'Add the generated exact-12 cell-6 physical-class cut module', which lands AFTER baseline head 222809b9); its working-tree diff is 183 insertions / 303 deletions confined to the generated `cutEntries` list and its docstring; it contains zero `sorry` tokens, so it cannot move the obligation roster.",
+        "Phase 0's own footprint is entirely untracked and non-Lean: `git status --porcelain -- proof-status scripts/gen_obligation_registry.py scripts/lint_cluster_imports.py` reports only '?? proof-status/', '?? scripts/gen_obligation_registry.py', '?? scripts/lint_cluster_imports.py'.",
+        "Method caveat: the baseline dirty-file list was captured at head 222809b9, but the live comparison runs at head f3063069 (4 commits later: d3f7c2bd, b77524c5, e72fa308, f3063069). Comparing a dirty list across a moved HEAD is not a sound isolation test - a file committed after capture drops out of the list, and a file added after capture and then edited appears in it. That is exactly what happened here.",
+        "Recorded as a gate failure because the task rule is mechanical: nonempty delta = gate failure. The evidence attributes the delta to a concurrent non-Phase-0 lane, so the orchestrator may choose to re-baseline at head f3063069 and re-run rather than treat this as a Phase 0 defect."
+      ]
+    }
+  },
+  "generated_by": "independent Phase 0 gate check (adversarial, non-author)",
+  "non_blocking_observations": [
+    "The baseline is stale relative to HEAD: baseline/base-head.txt and obligations.json source_head are both 222809b9, while the working head is f3063069 (4 commits later). The roster is unaffected - the live re-export in check 1 and the independent off-spine query both match the baseline exactly - but every baseline-vs-live comparison in this gate inherits the head skew, and check 7 is the one that breaks on it.",
+    "Other agents are committing to this worktree concurrently (HEAD advanced from fe375a8a at session start to f3063069 during the check). Gate results are a snapshot at f3063069.",
+    "The prose_status controlled vocabulary lives only in audit prose (docs/audits/2026-08-23-consolidation-refactor-audit.md:630-644). Nothing in scripts/gen_obligation_registry.py validates it, so check 3 is currently a human-enforced invariant.",
+    "scripts/gen_obligation_registry.py check compares only lean_decl, source_file and reachable. A drifted `line`, `cluster`, `kind` or `legacy_labels` field would not fail the gate. Verified separately here: all 28 reachable line numbers match the live index."
+  ],
+  "pass": false,
+  "pass_definition": "checks 1, 2, 3, 5, 6, 7 all clean; check 4 is report-only",
+  "publish_target": "Problem97.erdos97_rhs",
+  "registry_source_head": "222809b9f43fa609a7e359ea4f9f5ed0b463e24f",
+  "repo_head_at_check": "f3063069939cfb6dc2a8a9b20d9a7ef660c86fdf",
+  "roster_exact_match": true,
+  "schema": "p97-phase0-gate/v1"
+}

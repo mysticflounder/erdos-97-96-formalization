@@ -1,0 +1,425 @@
+{
+  "P97-OFF-R221-POSTCARDELEVEN": {
+    "cluster": "Rigid221",
+    "evidence_note": "README.md's open-frontier section lists this declaration among the three off-spine placeholder `sorry`s that no publish-spine path reaches, matching `reachable: false` in proof-status/obligations.json.",
+    "implementation_effect": "unknown",
+    "latest_checkpoint": "README.md",
+    "legacy_labels": [],
+    "mathematical_packet": null,
+    "prose_status": "OFF_SPINE_DIAGNOSTIC",
+    "terminal_family": "exact-five distinct-center bi-apex-robust post-card-eleven arm"
+  },
+  "P97-OFF-TS-FIRSTFIBERDESCENT": {
+    "cluster": "TwoSource",
+    "evidence_note": "README.md's open-frontier section lists this declaration among the three off-spine placeholder `sorry`s that no publish-spine path reaches, matching `reachable: false` in proof-status/obligations.json.",
+    "implementation_effect": "unknown",
+    "latest_checkpoint": "README.md",
+    "legacy_labels": [
+      "F2"
+    ],
+    "mathematical_packet": null,
+    "prose_status": "OFF_SPINE_DIAGNOSTIC",
+    "terminal_family": "two cap sources first-fiber descent residual"
+  },
+  "P97-OFF-TS-OUTSIDESEEDRESIDUAL": {
+    "cluster": "TwoSource",
+    "evidence_note": "docs/audits/2026-08-22-f2-twosource-checkpoint36-synthesis.md counts the pinned-endpoint residual among the five bare `sorry`s in TwoSourceFreshThirdResidual.lean, and proof-status/obligations.json records this declaration as unreachable from the publish target.",
+    "implementation_effect": "unknown",
+    "latest_checkpoint": "docs/audits/2026-08-22-f2-twosource-checkpoint36-synthesis.md",
+    "legacy_labels": [
+      "F2"
+    ],
+    "mathematical_packet": null,
+    "prose_status": "OFF_SPINE_DIAGNOSTIC",
+    "terminal_family": "FreshThird pinned-endpoint outside-seed residual"
+  },
+  "P97-OFF-X-FIDELITYC1": {
+    "cluster": "Other",
+    "evidence_note": "The module docstring of lean/scratch/c-package-bank/FidelityCheck.lean states the file is an elaboration check harness that deliberately contains `sorry`, and proof-status/obligations.json records it as unreachable from the publish target.",
+    "implementation_effect": "helper",
+    "latest_checkpoint": null,
+    "legacy_labels": [
+      "C1"
+    ],
+    "mathematical_packet": null,
+    "prose_status": "OFF_SPINE_DIAGNOSTIC",
+    "terminal_family": "C-package bank leaf C1 binder fidelity harness"
+  },
+  "P97-OFF-X-FIDELITYC2": {
+    "cluster": "Other",
+    "evidence_note": "The module docstring of lean/scratch/c-package-bank/FidelityCheck.lean states the file is an elaboration check harness that deliberately contains `sorry`, and proof-status/obligations.json records it as unreachable from the publish target.",
+    "implementation_effect": "helper",
+    "latest_checkpoint": null,
+    "legacy_labels": [
+      "C2"
+    ],
+    "mathematical_packet": null,
+    "prose_status": "OFF_SPINE_DIAGNOSTIC",
+    "terminal_family": "C-package bank leaf C2 binder fidelity harness"
+  },
+  "P97-OFF-X-FIDELITYE1": {
+    "cluster": "Other",
+    "evidence_note": "The module docstring of lean/scratch/e-package-bank/FidelityCheck.lean marks the file PARKED-SPEC and states its one `sorry` is not an obligation and is not wired to any publish target, matching `reachable: false` in proof-status/obligations.json.",
+    "implementation_effect": "helper",
+    "latest_checkpoint": null,
+    "legacy_labels": [
+      "E1"
+    ],
+    "mathematical_packet": null,
+    "prose_status": "OFF_SPINE_DIAGNOSTIC",
+    "terminal_family": "E-package bank leaf E1 binder fidelity harness"
+  },
+  "P97-R221-BLOCKERDELETED": {
+    "cluster": "Rigid221",
+    "evidence_note": "Section 16.5.B2 of docs/erdos-97-descent-prose-proof-atomic.md names this declaration and records **Status.** [OPEN].",
+    "implementation_effect": "branch-closer",
+    "latest_checkpoint": "docs/erdos-97-descent-prose-proof-atomic.md",
+    "legacy_labels": [
+      "16.5.B2"
+    ],
+    "mathematical_packet": "global placement/nonphysical collision root",
+    "prose_status": "OPEN_MATHEMATICAL",
+    "terminal_family": "source blocker is the rigid singleton deletion"
+  },
+  "P97-R221-CARDEIGHTEEN": {
+    "cluster": "Rigid221",
+    "evidence_note": "Section 16.5.A3 of docs/erdos-97-descent-prose-proof-atomic.md names this declaration and records **Status.** [OPEN].",
+    "implementation_effect": "branch-closer",
+    "latest_checkpoint": "docs/erdos-97-descent-prose-proof-atomic.md",
+    "legacy_labels": [
+      "A3",
+      "16.5.A3"
+    ],
+    "mathematical_packet": "cardinality-at-least-18 source-heavy transport root",
+    "prose_status": "OPEN_MATHEMATICAL",
+    "terminal_family": "unbounded deleted-row off-class continuation at |A| >= 18"
+  },
+  "P97-R221-EXACTFOURPHYSICAL": {
+    "cluster": "Rigid221",
+    "evidence_note": "Section 16.5.C4 of docs/erdos-97-descent-prose-proof-atomic.md names this declaration and records **Status.** [OPEN].",
+    "implementation_effect": "branch-closer",
+    "latest_checkpoint": "docs/erdos-97-descent-prose-proof-atomic.md",
+    "legacy_labels": [
+      "C4",
+      "16.5.C4"
+    ],
+    "mathematical_packet": null,
+    "prose_status": "OPEN_MATHEMATICAL",
+    "terminal_family": "swapped protected exact-four outcome"
+  },
+  "P97-R221-EXACTFOURPOSTCARD": {
+    "cluster": "Rigid221",
+    "evidence_note": "Section 16.5.C3 of docs/erdos-97-descent-prose-proof-atomic.md names this declaration and records **Status.** [OPEN].",
+    "implementation_effect": "branch-closer",
+    "latest_checkpoint": "docs/erdos-97-descent-prose-proof-atomic.md",
+    "legacy_labels": [
+      "C3",
+      "16.5.C3"
+    ],
+    "mathematical_packet": "post-card-eleven/two-radius residual root",
+    "prose_status": "OPEN_MATHEMATICAL",
+    "terminal_family": "two disjoint exact-four classes at two radii of one apex"
+  },
+  "P97-R221-FIRSTAPEXUNIQUE": {
+    "cluster": "Rigid221",
+    "evidence_note": "Section 16.5.C5 of docs/erdos-97-descent-prose-proof-atomic.md names this declaration and records **Status.** [OPEN].",
+    "implementation_effect": "branch-closer",
+    "latest_checkpoint": "docs/erdos-97-descent-prose-proof-atomic.md",
+    "legacy_labels": [
+      "C5",
+      "16.5.C5"
+    ],
+    "mathematical_packet": null,
+    "prose_status": "OPEN_MATHEMATICAL",
+    "terminal_family": "exact-five first-apex residual with a common obstruction centre"
+  },
+  "P97-R221-MINIMALCORE": {
+    "cluster": "Rigid221",
+    "evidence_note": "Section 16.5.B1 of docs/erdos-97-descent-prose-proof-atomic.md names this declaration and records **Status.** [OPEN].",
+    "implementation_effect": "branch-closer",
+    "latest_checkpoint": "docs/erdos-97-descent-prose-proof-atomic.md",
+    "legacy_labels": [
+      "16.5.B1"
+    ],
+    "mathematical_packet": "global placement/nonphysical collision root",
+    "prose_status": "OPEN_MATHEMATICAL",
+    "terminal_family": "pairwise-distinct-radius minimal deletion core"
+  },
+  "P97-R221-MISSINGINCIDENCE": {
+    "cluster": "Rigid221",
+    "evidence_note": "Section 16.5.A5 of docs/erdos-97-descent-prose-proof-atomic.md names this declaration and closes with **Status.** [PARTIALLY CLOSED: `Bxu` PROVED IMPOSSIBLE; FOUR STRUCTURAL FAMILIES / TWENTY-FOUR COARSE SOURCE-TAGGED CELLS REMAIN], and its Section 16.7 ledger row records the parent as still open.",
+    "implementation_effect": "branch-closer",
+    "latest_checkpoint": "docs/erdos-97-descent-prose-proof-atomic.md",
+    "legacy_labels": [
+      "A5",
+      "16.5.A5"
+    ],
+    "mathematical_packet": "exact-12 late-choice/A5 escape root",
+    "prose_status": "OPEN_MATHEMATICAL",
+    "terminal_family": "exact-twelve common-deletion residue with a missing incidence"
+  },
+  "P97-R221-MISSINGINCIDENCE-2": {
+    "cluster": "Rigid221",
+    "evidence_note": "Section 16.5.A8 of docs/erdos-97-descent-prose-proof-atomic.md names this declaration and records **Status.** [PARTIALLY REDUCED: canonical reduction PROVED in prose; five cap-sensitive continuation arms OPEN].",
+    "implementation_effect": "branch-closer",
+    "latest_checkpoint": "docs/erdos-97-descent-prose-proof-atomic.md",
+    "legacy_labels": [
+      "A8",
+      "16.5.A8"
+    ],
+    "mathematical_packet": "source-heavy pentagon/off-class root",
+    "prose_status": "NORMAL_FORM_CLOSED_TERMINAL_OPEN",
+    "terminal_family": "xv three-centre deletion with a missing incidence"
+  },
+  "P97-R221-NEXTROWONLYHIT": {
+    "cluster": "Rigid221",
+    "evidence_note": "Section 16.5.A6 of docs/erdos-97-descent-prose-proof-atomic.md names this declaration and records **Status.** [OPEN].",
+    "implementation_effect": "branch-closer",
+    "latest_checkpoint": "docs/erdos-97-descent-prose-proof-atomic.md",
+    "legacy_labels": [
+      "A6",
+      "16.5.A6"
+    ],
+    "mathematical_packet": "exact-12 late-choice/A5 escape root",
+    "prose_status": "OPEN_MATHEMATICAL",
+    "terminal_family": "exact-twelve next row has only the named xu hit"
+  },
+  "P97-R221-NONPHYSICALCOLLISION": {
+    "cluster": "Rigid221",
+    "evidence_note": "Section 16.5.C2 of docs/erdos-97-descent-prose-proof-atomic.md names this declaration and records **Status.** [OPEN].",
+    "implementation_effect": "branch-closer",
+    "latest_checkpoint": "docs/erdos-97-descent-prose-proof-atomic.md",
+    "legacy_labels": [
+      "C2",
+      "16.5.C2"
+    ],
+    "mathematical_packet": "global placement/nonphysical collision root",
+    "prose_status": "OPEN_MATHEMATICAL",
+    "terminal_family": "nonphysical global centre with an equal-distance deleted pair"
+  },
+  "P97-R221-OPPOSITEROWHEAVY": {
+    "cluster": "Rigid221",
+    "evidence_note": "Section 16.5.B4 of docs/erdos-97-descent-prose-proof-atomic.md names this declaration and records **Status.** [OPEN].",
+    "implementation_effect": "branch-closer",
+    "latest_checkpoint": "docs/erdos-97-descent-prose-proof-atomic.md",
+    "legacy_labels": [
+      "16.5.B4"
+    ],
+    "mathematical_packet": "global placement/nonphysical collision root",
+    "prose_status": "OPEN_MATHEMATICAL",
+    "terminal_family": "blocker in the opposite rigid row with an opposite-row-heavy shape"
+  },
+  "P97-R221-OUTSIDETHREEROWS": {
+    "cluster": "Rigid221",
+    "evidence_note": "Section 16.5.A7 of docs/erdos-97-descent-prose-proof-atomic.md records **Status.** [PARTIALLY REDUCED: canonical reduction PROVED in prose; unbounded five-arm continuation theorem OPEN], and docs/live-blueprint.md anchors this leaf as that A7 typed five-way continuation terminal.",
+    "implementation_effect": "branch-closer",
+    "latest_checkpoint": "docs/erdos-97-descent-prose-proof-atomic.md",
+    "legacy_labels": [
+      "A7",
+      "16.5.A7"
+    ],
+    "mathematical_packet": "source-heavy pentagon/off-class root",
+    "prose_status": "OPEN_MATHEMATICAL",
+    "terminal_family": "u-deletion fixed physical pair with a point outside three rows"
+  },
+  "P97-R221-PENTAGONBLOCKER": {
+    "cluster": "Rigid221",
+    "evidence_note": "Section 16.5.A1 of docs/erdos-97-descent-prose-proof-atomic.md names this declaration and records **Status.** [OPEN].",
+    "implementation_effect": "branch-closer",
+    "latest_checkpoint": "docs/erdos-97-descent-prose-proof-atomic.md",
+    "legacy_labels": [
+      "A1",
+      "16.5.A1"
+    ],
+    "mathematical_packet": "source-heavy pentagon/off-class root",
+    "prose_status": "OPEN_MATHEMATICAL",
+    "terminal_family": "pentagon blocker is the distinguished deleted point"
+  },
+  "P97-R221-SECONDCAPNINE": {
+    "cluster": "Rigid221",
+    "evidence_note": "Section 16.5.A2 of docs/erdos-97-descent-prose-proof-atomic.md names this declaration and records **Status.** [OPEN].",
+    "implementation_effect": "branch-closer",
+    "latest_checkpoint": "docs/erdos-97-descent-prose-proof-atomic.md",
+    "legacy_labels": [
+      "A2",
+      "16.5.A2"
+    ],
+    "mathematical_packet": "exact-17 / cap-9 exact-cover root",
+    "prose_status": "OPEN_MATHEMATICAL",
+    "terminal_family": "exact-seventeen second-cap-nine four-row exact cover"
+  },
+  "P97-R221-SOURCENEU": {
+    "cluster": "Rigid221",
+    "evidence_note": "Section 16.5.C1 of docs/erdos-97-descent-prose-proof-atomic.md names this declaration and records **Status.** [OPEN].",
+    "implementation_effect": "branch-closer",
+    "latest_checkpoint": "docs/erdos-97-descent-prose-proof-atomic.md",
+    "legacy_labels": [
+      "C1",
+      "16.5.C1"
+    ],
+    "mathematical_packet": "PostCardElevenSurfaceFrame",
+    "prose_status": "OPEN_MATHEMATICAL",
+    "terminal_family": "physical-apex branch with a genuine third source"
+  },
+  "P97-R221-SOURCEROWHEAVY": {
+    "cluster": "Rigid221",
+    "evidence_note": "Section 16.5.B3 of docs/erdos-97-descent-prose-proof-atomic.md names this declaration and records **Status.** [OPEN].",
+    "implementation_effect": "branch-closer",
+    "latest_checkpoint": "docs/erdos-97-descent-prose-proof-atomic.md",
+    "legacy_labels": [
+      "16.5.B3"
+    ],
+    "mathematical_packet": "global placement/nonphysical collision root",
+    "prose_status": "OPEN_MATHEMATICAL",
+    "terminal_family": "blocker v with a source-row-heavy cap shape"
+  },
+  "P97-R221-SPARSEROWS": {
+    "cluster": "Rigid221",
+    "evidence_note": "Section 16.5.B5 of docs/erdos-97-descent-prose-proof-atomic.md names this declaration and records **Status.** [OPEN].",
+    "implementation_effect": "branch-closer",
+    "latest_checkpoint": "docs/erdos-97-descent-prose-proof-atomic.md",
+    "legacy_labels": [
+      "16.5.B5"
+    ],
+    "mathematical_packet": "global placement/nonphysical collision root",
+    "prose_status": "OPEN_MATHEMATICAL",
+    "terminal_family": "exceptional sparse 1+1+1 row pattern"
+  },
+  "P97-R221-VROWBLOCKEROFFCLASS": {
+    "cluster": "Rigid221",
+    "evidence_note": "Section 16.5.A4 of docs/erdos-97-descent-prose-proof-atomic.md names this declaration and records **Status.** [OPEN].",
+    "implementation_effect": "branch-closer",
+    "latest_checkpoint": "docs/erdos-97-descent-prose-proof-atomic.md",
+    "legacy_labels": [
+      "A4",
+      "16.5.A4"
+    ],
+    "mathematical_packet": "source-heavy pentagon/off-class root",
+    "prose_status": "OPEN_MATHEMATICAL",
+    "terminal_family": "blocker centred at v lies off the physical class"
+  },
+  "P97-TA-TRIAPEXALLLARGECORE": {
+    "cluster": "TriApex",
+    "evidence_note": "docs/audits/2026-08-22-f1-triapex-checkpoint4-review.md states that the twelve-witness five-survive/one-fail producer is kernel-checked while its geometric consumer remains mathematically open, and that v87 is a bounded-terminal classification rather than D1 closure.",
+    "implementation_effect": "branch-closer",
+    "latest_checkpoint": "docs/audits/2026-08-22-f1-triapex-checkpoint4-review.md",
+    "legacy_labels": [
+      "F1",
+      "D1"
+    ],
+    "mathematical_packet": "TriApexJointDeletionOutcome",
+    "prose_status": "NORMAL_FORM_CLOSED_TERMINAL_OPEN",
+    "terminal_family": "paired common-deletion five-survive/one-fail all-large core"
+  },
+  "P97-TD-BLOCKERCOINCIDENCE": {
+    "cluster": "Two-deletion",
+    "evidence_note": "docs/audits/2026-08-22-f3-twodeletion-third-pass-synthesis.md records the third-pass trace/graph/fan normal forms as prose-closed while this declaration remains one of the three live unresolved TwoDeletion leaves with five metric roots open.",
+    "implementation_effect": "bypass",
+    "latest_checkpoint": "docs/audits/2026-08-22-f3-twodeletion-third-pass-synthesis.md",
+    "legacy_labels": [
+      "F3",
+      "B2"
+    ],
+    "mathematical_packet": null,
+    "prose_status": "NORMAL_FORM_CLOSED_TERMINAL_OPEN",
+    "terminal_family": "four-centre common-deletion blocker coincidence arms"
+  },
+  "P97-TD-GLOBALGAPORCLOSED": {
+    "cluster": "Two-deletion",
+    "evidence_note": "docs/audits/2026-08-22-f3-twodeletion-third-pass-synthesis.md records the third-pass trace/graph/fan normal forms as prose-closed while this declaration remains one of the three live unresolved TwoDeletion leaves with five metric roots open.",
+    "implementation_effect": "bypass",
+    "latest_checkpoint": "docs/audits/2026-08-22-f3-twodeletion-third-pass-synthesis.md",
+    "legacy_labels": [
+      "F3",
+      "B1"
+    ],
+    "mathematical_packet": null,
+    "prose_status": "NORMAL_FORM_CLOSED_TERMINAL_OPEN",
+    "terminal_family": "B1 global-gap-or-closed positive terminal producer"
+  },
+  "P97-TD-SURVIVALSQUARE": {
+    "cluster": "Two-deletion",
+    "evidence_note": "docs/audits/2026-08-22-f3-twodeletion-third-pass-synthesis.md records the third-pass trace/graph/fan normal forms as prose-closed while this declaration remains one of the three live unresolved TwoDeletion leaves with five metric roots open.",
+    "implementation_effect": "bypass",
+    "latest_checkpoint": "docs/audits/2026-08-22-f3-twodeletion-third-pass-synthesis.md",
+    "legacy_labels": [
+      "F3",
+      "B3"
+    ],
+    "mathematical_packet": null,
+    "prose_status": "NORMAL_FORM_CLOSED_TERMINAL_OPEN",
+    "terminal_family": "four-centre common-deletion survival square"
+  },
+  "P97-TS-ACYCLICHARDRESIDUAL": {
+    "cluster": "TwoSource",
+    "evidence_note": "docs/audits/2026-08-22-f2-twosource-checkpoint36-synthesis.md records the checkpoint-36 all-blockers reduction as prose-complete with its Root A and Root B terminal consumers still open, and keeps this old built leaf live until a separately verified spine change bypasses it.",
+    "implementation_effect": "bypass",
+    "latest_checkpoint": "docs/audits/2026-08-22-f2-twosource-checkpoint36-synthesis.md",
+    "legacy_labels": [
+      "F2"
+    ],
+    "mathematical_packet": "TwoSourceCollisionFrame",
+    "prose_status": "NORMAL_FORM_CLOSED_TERMINAL_OPEN",
+    "terminal_family": "fresh-outside first-blocker-fiber acyclic hard residual"
+  },
+  "P97-TS-ALIGNEDRETAINED": {
+    "cluster": "TwoSource",
+    "evidence_note": "docs/audits/2026-08-22-f2-twosource-checkpoint36-synthesis.md records the checkpoint-36 all-blockers reduction as prose-complete with its Root A and Root B terminal consumers still open, and keeps this old built leaf live until a separately verified spine change bypasses it.",
+    "implementation_effect": "bypass",
+    "latest_checkpoint": "docs/audits/2026-08-22-f2-twosource-checkpoint36-synthesis.md",
+    "legacy_labels": [
+      "F2"
+    ],
+    "mathematical_packet": "TwoSourceCollisionFrame",
+    "prose_status": "NORMAL_FORM_CLOSED_TERMINAL_OPEN",
+    "terminal_family": "FreshThird first-non-hit aligned retained arm"
+  },
+  "P97-TS-COMMONRADIUS": {
+    "cluster": "TwoSource",
+    "evidence_note": "docs/audits/2026-08-22-f2-twosource-checkpoint36-synthesis.md records the checkpoint-36 all-blockers reduction as prose-complete with its Root A and Root B terminal consumers still open, and keeps this old built leaf live until a separately verified spine change bypasses it.",
+    "implementation_effect": "bypass",
+    "latest_checkpoint": "docs/audits/2026-08-22-f2-twosource-checkpoint36-synthesis.md",
+    "legacy_labels": [
+      "F2"
+    ],
+    "mathematical_packet": "TwoSourceCollisionFrame",
+    "prose_status": "NORMAL_FORM_CLOSED_TERMINAL_OPEN",
+    "terminal_family": "FreshThird first-non-hit common-radius arm"
+  },
+  "P97-TS-CROSSBLOCKER": {
+    "cluster": "TwoSource",
+    "evidence_note": "docs/audits/2026-08-22-f2-twosource-checkpoint36-synthesis.md records the checkpoint-36 all-blockers reduction as prose-complete with its Root A and Root B terminal consumers still open, and keeps this old built leaf live until a separately verified spine change bypasses it.",
+    "implementation_effect": "bypass",
+    "latest_checkpoint": "docs/audits/2026-08-22-f2-twosource-checkpoint36-synthesis.md",
+    "legacy_labels": [
+      "F2"
+    ],
+    "mathematical_packet": "CanonicalBlockerRelation",
+    "prose_status": "NORMAL_FORM_CLOSED_TERMINAL_OPEN",
+    "terminal_family": "cross-blocker coincidence on the canonical collision surface"
+  },
+  "P97-TS-NONCANONICAL": {
+    "cluster": "TwoSource",
+    "evidence_note": "docs/audits/2026-08-22-f2-twosource-checkpoint36-synthesis.md records the checkpoint-36 all-blockers reduction as prose-complete with its Root A and Root B terminal consumers still open, and keeps this old built leaf live until a separately verified spine change bypasses it.",
+    "implementation_effect": "bypass",
+    "latest_checkpoint": "docs/audits/2026-08-22-f2-twosource-checkpoint36-synthesis.md",
+    "legacy_labels": [
+      "F2"
+    ],
+    "mathematical_packet": "TwoSourceCollisionFrame",
+    "prose_status": "NORMAL_FORM_CLOSED_TERMINAL_OPEN",
+    "terminal_family": "FreshThird equal-centre noncanonical interaction residual"
+  },
+  "P97-TS-OUTSIDEPAIRDELETION": {
+    "cluster": "TwoSource",
+    "evidence_note": "docs/audits/2026-08-22-f2-twosource-checkpoint36-synthesis.md records the checkpoint-36 all-blockers reduction as prose-complete with its Root A and Root B terminal consumers still open, and keeps this old built leaf live until a separately verified spine change bypasses it.",
+    "implementation_effect": "bypass",
+    "latest_checkpoint": "docs/audits/2026-08-22-f2-twosource-checkpoint36-synthesis.md",
+    "legacy_labels": [
+      "F2"
+    ],
+    "mathematical_packet": "TwoSourceCollisionFrame",
+    "prose_status": "NORMAL_FORM_CLOSED_TERMINAL_OPEN",
+    "terminal_family": "first-fiber outside-pair deletion exact rows"
+  }
+}

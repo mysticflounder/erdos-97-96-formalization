@@ -1,0 +1,192 @@
+claiming (target_symbol): Problem97.erdos97_rhs
+sanctioned axioms: none
+
+  ⚠ 10 uncommitted lean file(s) — this verdict is computed from working-tree source, not git HEAD
+
+⚠ off-spine sorries (3 symbol(s) in 3 file(s)) — placeholder sorries are no longer allowed; all live work must be wired into the spine:
+  Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221Closure.lean  (1 sorry)
+    💧 Problem97.ATailFrontierLiveClosure.false_of_exactFiveDistinct_biApexRobust_postCardEleven
+  Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdFiber.lean  (1 sorry)
+    💧 Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_firstFiberDescentResidual
+  Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean  (1 sorry)
+    💧 Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_freshThird_pinnedEndpoint_outsideSeedResidual
+
+name collisions: 82 fully-qualified name(s) declared in ≥2 files
+⚠  off-spine / identical-copy collisions (82):
+  ⚠ main  (98 distinct bodies across 98 files)
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenCanaryPerpBisectorRefinementModelRefinementsPhysicalSliceCellExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenCanaryPerpBisectorRefinementPhysicalSliceCellExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenCanaryPerpBisectorRefinementSurvivorRefinementsPhysicalSliceCellExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleRefinementsExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleRefinementsPhysicalSliceCellExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV4CombinedRefinementsPhysicalSliceCellExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV4TwoKalmansonRefinementsExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV5CanaryTwoKalmansonRefinementsPhysicalSliceCellExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV6ModelCoreRefinementsPhysicalSliceCellExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV7TwoKalmansonRefinementsPhysicalSliceCellExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV8TwoKalmansonRefinementsPhysicalSliceCellExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenCanaryPerpBisectorSurvivorTwoKalmansonRefinementsExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenCanaryPerpBisectorSurvivorTwoKalmansonRefinementsPhysicalSliceCellExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenCanaryPerpBisectorSurvivorTwoKalmansonRefinementsV2Export.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenCocircularPentagonOrderConvexFiveFullBankExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenCocircularPentagonOrderConvexFiveRefinementExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenCocircularPentagonOrderCyclicConvexFiveFullBankExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenCocircularPentagonOrderPromotionExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenCocircularPentagonOrderSatRefinementExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenCocircularPentagonOrderSparseSixPointFullBankExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenConvexFivePointFifthRowsExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenConvexFivePointFourthRowsExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenConvexFivePointThirdRowsExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenCurrentRootTwoKalmansonRefinementsExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenCurrentRootTwoKalmansonSuccessorRefinementsExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenEighteenthModelRefinementsExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenFortiethModelRefinementsExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenFortyEighthModelRefinementsExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenFortyFifthModelRefinementsExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenFortyFirstModelRefinementsExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenFortyFourthModelRefinementsExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenFortyNinthModelRefinementsExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenFortyNinthNextZeroAtomPromotionExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenFortyNinthThreeCancellationPromotionExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenFortyNinthWaveV2ZeroAtomPromotionExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenFortyNinthWaveV3ZeroAtomPromotionExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenFortyNinthWaveV4ThreeZeroAtomPromotionExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenFortyNinthWaveV5FiveSize8PromotionExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenFortyNinthWaveV6FiveSize8PromotionExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenFortyNinthWaveV7TwoSize8PromotionExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenFortyNinthWaveV8SeventeenSize8PromotionExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenFortyNinthWaveV9FourSize8PromotionExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenFortyNinthZeroAtomPromotionExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenFortySecondModelRefinementsExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenFortySeventhModelRefinementsExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenFortySixthModelRefinementsExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenFortyThirdModelRefinementsExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenFourPointTwoCircleBisectorRowsExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenFourRowTwoCircleBisectorExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenGenericCancellationSecondExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenNineteenthModelRefinementsExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenSeventeenthModelRefinementsExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenSixteenthModelRefinementsExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenSmallRoleCycleRefinementsExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenSourceCnfCdefgEqualK4Export.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenSourceCnfCdefgEqualK4TwoCircleExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenSourceCnfCdefgEqualK4TwoCircleThreeRowExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenSourceCnfCdefgEqualK4TwoCircleThreeRowHijkExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenSourceCnfCdefgEqualK4TwoCircleThreeRowHijkInterleavedEqualityChainExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenSourceCnfCdefgEqualK4TwoCircleThreeRowHijkInterleavedEqualityChainPerpBisectorChainExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenSourceCnfCdefgEqualK4TwoCircleThreeRowHijkInterleavedEqualityChainPerpBisectorChainTwoKalmansonExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenSourceCnfCdefgEqualK4TwoCircleThreeRowHijkInterleavedEqualityChainPerpBisectorChainTwoKalmansonSwappedDEExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenSourceCnfCdefgEqualK4TwoCircleThreeRowHijkInterleavedEqualityChainPerpBisectorChainTwoKalmansonSwappedDEGenericCancellationExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenSourceCnfCdefgEqualK4TwoCircleThreeRowHijkInterleavedExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenSourceCnfCdefgExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenSourceCnfExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisectorEightHitTwoKalmansonCancellationPhysicalSliceCellExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisectorEightHitTwoKalmansonCancellationSixHitBisectorCanaryTwoKalmansonModelRefinementsPhysicalSliceCellExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisectorEightHitTwoKalmansonCancellationSixHitBisectorCanaryTwoKalmansonPhysicalSliceCellExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisectorEightHitTwoKalmansonCancellationSixHitBisectorPhysicalSliceCellExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisectorPhysicalSliceCellExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisectorTwoKalmansonCancellationPhysicalSliceCellExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenSparseSixPointNextCenterCellExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenSparseSixPointNextCenterPhysicalSliceCellExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenThirtiethModelRefinementsExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenThirtyEighthModelRefinementsExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenThirtyFifthModelRefinementsExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenThirtyFirstModelRefinementsExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenThirtyFourthModelRefinementsExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenThirtyNinthModelRefinementsExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenThirtySecondModelRefinementsExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenThirtySeventhModelRefinementsExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenThirtySixthModelRefinementsExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenThirtyThirdModelRefinementsExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenThreeRowCycleRefinementsExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenTwentiethModelRefinementsExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenTwentyEighthModelRefinementsExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenTwentyFifthModelRefinementsExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenTwentyFirstModelRefinementsExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenTwentyFourthModelRefinementsExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenTwentyNinthModelRefinementsExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenTwentySecondModelRefinementsExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenTwentySeventhModelRefinementsExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenTwentySixthModelRefinementsExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenTwentyThirdModelRefinementsExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenTwoTripleRowRefinementsExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenWeightedKalmansonModelRefinementsExport.lean
+       Erdos9796Proof/P97/ErasedCertificate/ErasedNativeEvalGate.lean
+  ⚠ Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress.FrozenDistinguishedDCommonMissing.reindex  (2 distinct bodies across 2 files)
+       Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactTwelveRigid221BranchTransport.lean
+       scratch/exact_twelve_branch_equivariance_probe.lean
+  ⚠ Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress.FrozenDistinguishedDCommonMissingAwayFromEight.reindex  (2 distinct bodies across 2 files)
+       Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactTwelveRigid221BranchTransport.lean
+       scratch/exact_twelve_branch_equivariance_probe.lean
+  ⚠ Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress.FrozenNamedDeletionSixArm.reindex  (2 distinct bodies across 2 files)
+       Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactTwelveRigid221BranchTransport.lean
+       scratch/exact_twelve_branch_equivariance_probe.lean
+  ⚠ Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress.false_of_orderedCut_4898  (2 distinct bodies across 2 files)
+       Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactTwelveRigid221OrderedCoverageCuts.lean
+       Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactTwelveRigid221OrderedLongClosureCuts.lean
+  ⚠ Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress.frozenPlacementRepresentatives  (2 distinct bodies across 2 files)
+       Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactTwelveRigid221PlacementOrbits.lean
+       scratch/exact_twelve_placement_orbit_probe.lean
+  ⚠ Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress.frozenPlacementRepresentatives_card  (2 distinct bodies across 2 files)
+       Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactTwelveRigid221PlacementOrbits.lean
+       scratch/exact_twelve_placement_orbit_probe.lean
+  ⚠ Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress.frozenPlacementRepresentatives_cover  (2 distinct bodies across 2 files)
+       Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactTwelveRigid221PlacementOrbits.lean
+       scratch/exact_twelve_placement_orbit_probe.lean
+  ⚠ Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress.normalizePlacement_mem_domain  (2 distinct bodies across 2 files)
+       Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactTwelveRigid221PlacementOrbits.lean
+       scratch/exact_twelve_placement_orbit_probe.lean
+  ⚠ Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress.normalizingRelabeling_admissible  (2 distinct bodies across 2 files)
+       Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactTwelveRigid221PlacementOrbits.lean
+       scratch/exact_twelve_placement_orbit_probe.lean
+  ⚠ Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress.reindexBlocker  (2 distinct bodies across 2 files)
+       Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactTwelveRigid221BranchTransport.lean
+       scratch/exact_twelve_branch_equivariance_probe.lean
+  ⚠ Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.FreshThirdQFiberThreeBoundary.centerAt_eq_qCenter_of_mem_ne_source  (2 distinct bodies across 2 files)
+       Erdos9796Proof/P97/ATail/FrontierLiveClosure/FreshThirdQFiberThreeSynchronization.lean
+       scratch/freshthird-firstnonhit-qfiber-three/QFiberThreeBoundary.lean
+  ⚠ Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.FreshThirdQFiberThreeBoundary.false_of_pinnedFan_source_and_twoFiberPoints  (2 distinct bodies across 2 files)
+       Erdos9796Proof/P97/ATail/FrontierLiveClosure/FreshThirdQFiberThreeSynchronization.lean
+       scratch/freshthird-firstnonhit-qfiber-three/QFiberThreeBoundary.lean
+  ⚠ Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.FreshThirdQFiberThreeBoundary.fiberImage_eq_qSupport_erase_source  (2 distinct bodies across 2 files)
+       Erdos9796Proof/P97/ATail/FrontierLiveClosure/FreshThirdQFiberThreeSynchronization.lean
+       scratch/freshthird-firstnonhit-qfiber-three/QFiberThreeBoundary.lean
+  ⚠ Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.FreshThirdQFiberThreeBoundary.omissionSuccessor_qCenter_and_survives  (2 distinct bodies across 2 files)
+       Erdos9796Proof/P97/ATail/FrontierLiveClosure/FreshThirdQFiberThreeSynchronization.lean
+       scratch/freshthird-firstnonhit-qfiber-three/QFiberThreeBoundary.lean
+  ⚠ Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.FreshThirdQFiberThreeBoundary.pinnedCenter_eq_source_or_qBlocker  (2 distinct bodies across 2 files)
+       Erdos9796Proof/P97/ATail/FrontierLiveClosure/FreshThirdQFiberThreeSynchronization.lean
+       scratch/freshthird-firstnonhit-qfiber-three/QFiberThreeBoundary.lean
+  ⚠ Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.FreshThirdQFiberThreeBoundary.source_mem_freshRemainder  (2 distinct bodies across 2 files)
+       Erdos9796Proof/P97/ATail/FrontierLiveClosure/FreshThirdQFiberThreeSynchronization.lean
+       scratch/freshthird-firstnonhit-qfiber-three/QFiberThreeBoundary.lean
+  ⚠ Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.exists_q_tripleShellEscape_qRow_overlap_card_le_two  (2 distinct bodies across 2 files)
+       Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceTripleShellEscape.lean
+       scratch/firstnonhit-retained-escape-math/RetainedEscape.lean
+  ⚠ Problem97.ATailSurvivalCover.actualBlockerFiber_image_eq_selectedSupport_erase_of_card_eq_three  (2 distinct bodies across 2 files)
+       Erdos9796Proof/P97/ATail/FrontierLiveClosure/FreshThirdQFiberThreeSynchronization.lean
+       scratch/freshthird-firstnonhit-qfiber-three/QFiberThreeBoundary.lean
+  ⚠ Problem97.CrossedArmSevenPointEuclideanObstruction.e2Polynomial  (2 distinct bodies across 2 files)
+       Erdos9796Proof/P97/ATail/CrossedArmQ1G7Producer.lean
+       Erdos9796Proof/P97/ATail/CrossedArmSevenPointEuclideanObstruction.lean
+  ⚠ Problem97.CrossedArmSevenPointEuclideanObstruction.e5Polynomial  (2 distinct bodies across 2 files)
+       Erdos9796Proof/P97/ATail/CrossedArmQ1G7Producer.lean
+       Erdos9796Proof/P97/ATail/CrossedArmSevenPointEuclideanObstruction.lean
+  ⚠ Problem97.CrossedArmSevenPointEuclideanObstruction.e7Polynomial  (2 distinct bodies across 2 files)
+       Erdos9796Proof/P97/ATail/CrossedArmQ1G7Producer.lean
+       Erdos9796Proof/P97/ATail/CrossedArmSevenPointEuclideanObstruction.lean
+  ⚠ Problem97.CrossedArmSevenPointEuclideanObstruction.e8Polynomial  (2 distinct bodies across 2 files)
+       Erdos9796Proof/P97/ATail/CrossedArmQ1G7Producer.lean
+       Erdos9796Proof/P97/ATail/CrossedArmSevenPointEuclideanObstruction.lean
+  ⚠ Problem97.CrossedArmSevenPointEuclideanObstruction.e9Polynomial  (2 distinct bodies across 2 files)
+       Erdos9796Proof/P97/ATail/CrossedArmQ1G7Producer.lean
+       Erdos9796Proof/P97/ATail/CrossedArmSevenPointEuclideanObstruction.lean
+  ⚠ Problem97.CrossedArmSevenPointEuclideanObstruction.false_of_q1_br_eq_bv  (2 distinct bodies across 2 files)
+       Erdos9796Proof/P97/ATail/CrossedArmQ1G7Producer.lean
+       Erdos9796Proof/P97/ATail/CrossedArmSevenPointEuclideanObstruction.lean
+  … and 57 more
+
+❌ verify-publish FAILED (2 blocker(s)):
+  - target_symbol `Problem97.erdos97_rhs`: 1 unapproved custom axiom(s) on spine: sorryAx
+  - spine of `Problem97.erdos97_rhs` reaches sorry via Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_capSource_firstFiber_outsidePairDeletionExactRows, Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_crossBlockerCoincidence, Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_freshThirdEqualCenter_noncanonicalInteractions, Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_freshThird_firstNonHit_alignedRetained, Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_freshThird_firstNonHit_commonRadius
+verify-publish exit 1

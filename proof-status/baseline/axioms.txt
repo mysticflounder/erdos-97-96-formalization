@@ -1,0 +1,16 @@
+axioms reported by `#print axioms Problem97.erdos97_rhs` (6):
+      core  propext
+  🪶 CUSTOM  sorryAx
+      core  Classical.choice
+     core*  Lean.ofReduceBool
+     core*  Lean.trustCompiler
+      core  Quot.sound
+
+  * native-reduction trust (2): the Lean compiler, interpreter, and all
+    @[implemented_by]/@[extern] annotations are in the trusted base (native_decide,
+    Lean.reduceBool). Core-allowed; no [axioms].approved entry needed.
+
+❌ 1 unapproved custom axiom(s) on spine:
+  - sorryAx  (a sorry on the spine — discharge it; it cannot be approved)
+
+Either discharge with a real proof, or approve explicitly in .blueprint.toml under [axioms].approved (full FQ name).
