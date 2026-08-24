@@ -290,6 +290,30 @@ build.  The 229-cut Lean/bank pair is validated; these are finite
 exact-12 certificate-ingress artifacts only (no terminal-UNSAT or
 coverage claim).
 
+v27 canary integration and validator freeze (2026-08-23, steps 3 and 4):
+the canary (`exact12_next_row_arm_static_canary.py`) now builds, attests,
+snapshots, and installs the class-cut bank immediately after the
+source-order install, exactly matching the Lean terminal formula order.
+The v26 final identity survives as the frozen post-source-order
+intermediate gate (704,481 clauses, DIMACS sha `82be51273d21d1…`), and
+the new frozen final identity was measured by
+`discover_v27_identity.py`, never assumed: 47,211 variables, 704,710
+clauses, DIMACS sha `8da06d5e45d1326f…`; class-cut installation JSON
+digest `c25e722813d1741b…`.  The job payload and run artifacts gain
+`physical_class_cut_bank` and `physical_class_cut_installation`, the
+ingress theorem switches to
+`false_of_terminalFullMembershipNamedDeletionArmPhysicalClassBank`, and
+— following the per-layer precedent v12→v13→v14 — the run/job schemas
+bump to `.v15` with PIQD project `cell6-v15-r1`.  The PIQD descriptor
+binds the class-cut layer fail-closed.  The v27 validator pair was
+derived from the untouched v26 pair by
+`freeze_v27_validator.py` (exact counted replacements, `--verify`
+round-trip green) and `pin_v27_identity.py` records the measured pins.
+Tests: canary suite, PIQD suite, and v27 validator suite all pass;
+`validate_v27_workdir` additionally checks the class-cut bank artifact,
+installation binding, and descriptor identity.  No canary run has been
+performed; the v27 canary run remains gated on explicit authorization.
+
 Refreeze closure (2026-08-21): the documented narrowed-chain refreeze ran
 over the tree at `2d8e8d16` (contains this consumer edit `b4eb4b71` and
 the A7 checkpoint `97a6f503`) and produced **zero pin rewrites** — every

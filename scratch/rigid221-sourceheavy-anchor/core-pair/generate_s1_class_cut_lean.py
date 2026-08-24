@@ -1,4 +1,4 @@
-"""Generate the Lean module carrying the 290 cell-6 S1 class cuts.
+"""Generate the Lean module carrying the 229 distinct cell-6 S1 class cuts.
 
 Reads ``s1_class_cut_manifest_v1.json`` (written by
 ``derive_s1_class_cut_bank.py``) and emits

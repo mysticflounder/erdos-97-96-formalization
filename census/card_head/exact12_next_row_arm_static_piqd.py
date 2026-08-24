@@ -34,9 +34,14 @@ from . import exact12_next_row_static_piqd as _custody
 from .exact12_next_row_arm_static_canary import (
     ARM_SUFFIX_SCHEMA,
     EXPECTED_ARM_SUFFIX_CLAUSES,
+    EXPECTED_CLASS_CUT_BANK_SHA256,
+    EXPECTED_CLASS_CUT_CLAUSES,
+    EXPECTED_CLASS_CUT_INSTALLED_CNF_JSON_SHA256,
     EXPECTED_FINAL_CLAUSES,
     EXPECTED_FINAL_DIMACS_SHA256,
     EXPECTED_POST_ARM_DIMACS_SHA256,
+    EXPECTED_POST_SOURCE_ORDER_CLAUSES,
+    EXPECTED_POST_SOURCE_ORDER_DIMACS_SHA256,
     EXPECTED_PREFIX_VARIABLES,
     EXPECTED_SOURCE_ORDER_CLAUSES,
     JOB_SCHEMA,
@@ -52,7 +57,7 @@ from .exact12_next_row_cell_run import _json_sha256, cnf_assignment_satisfies
 from .sat_encoding import CadicalResult, solve_cadical
 
 DESCRIPTOR_SCHEMA = "p97_rigid221_exact12_next_row_arm_static_piqd_descriptor.v2"
-PIQD_PROJECT = "p97-exact12-next-row-arm-static-cell6-v14-r1"
+PIQD_PROJECT = "p97-exact12-next-row-arm-static-cell6-v15-r1"
 MAX_CNF_BYTES = 256 * 1024 * 1024
 MAX_DESCRIPTOR_BYTES = 1024 * 1024
 
@@ -239,11 +244,48 @@ def build_discovery_descriptor(
         installation.get("bank_sha256") != bank_sha256
         or installation.get("suffix_n_clauses") != EXPECTED_SOURCE_ORDER_CLAUSES
         or installation.get("final_n_variables") != EXPECTED_PREFIX_VARIABLES
-        or installation.get("final_n_clauses") != EXPECTED_FINAL_CLAUSES
-        or installation.get("final_cnf_sha256") != EXPECTED_FINAL_DIMACS_SHA256
+        or installation.get("final_n_clauses") != EXPECTED_POST_SOURCE_ORDER_CLAUSES
+        or installation.get("final_cnf_sha256")
+        != EXPECTED_POST_SOURCE_ORDER_DIMACS_SHA256
     ):
         raise Exact12NextRowArmStaticPiqdError(
-            "source-order installation is not bound to the final CNF"
+            "source-order installation is not bound to the post-source-order CNF"
+        )
+
+    class_cut_bank = materialized.physical_class_cut_bank
+    class_cut_installation = materialized.physical_class_cut_installation
+    if type(class_cut_bank) is not dict or type(class_cut_installation) is not dict:
+        raise Exact12NextRowArmStaticPiqdError(
+            "class-cut bank or installation is malformed"
+        )
+    class_cut_bank_sha256 = _digest(
+        class_cut_bank.get("bank_sha256"), "class-cut bank sha256"
+    )
+    expected_class_cut = {
+        "schema": class_cut_bank.get("schema"),
+        "sha256": class_cut_bank_sha256,
+        "n_clauses": EXPECTED_CLASS_CUT_CLAUSES,
+        "installation": class_cut_installation,
+    }
+    if job.get("physical_class_cut_bank") != expected_class_cut:
+        raise Exact12NextRowArmStaticPiqdError(
+            "class-cut bank/installation identity is crossed"
+        )
+    if (
+        class_cut_bank_sha256 != EXPECTED_CLASS_CUT_BANK_SHA256
+        or class_cut_installation.get("bank_sha256") != class_cut_bank_sha256
+        or class_cut_installation.get("suffix_n_clauses")
+        != EXPECTED_CLASS_CUT_CLAUSES
+        or class_cut_installation.get("base_n_clauses")
+        != EXPECTED_POST_SOURCE_ORDER_CLAUSES
+        or class_cut_installation.get("final_n_variables")
+        != EXPECTED_PREFIX_VARIABLES
+        or class_cut_installation.get("final_n_clauses") != EXPECTED_FINAL_CLAUSES
+        or class_cut_installation.get("final_cnf_sha256")
+        != EXPECTED_CLASS_CUT_INSTALLED_CNF_JSON_SHA256
+    ):
+        raise Exact12NextRowArmStaticPiqdError(
+            "class-cut installation is not bound to the final CNF"
         )
 
     sources = _verify_sources(repo_root.resolve(), job.get("sources"))
@@ -261,6 +303,7 @@ def build_discovery_descriptor(
         },
         "arm_suffix": expected_suffix,
         "source_order_bank": expected_source_order,
+        "physical_class_cut_bank": expected_class_cut,
         "lean_terminal_ingress": expected_promotion,
         "sources": sources,
         "sources_sha256": sha256_json(sources),

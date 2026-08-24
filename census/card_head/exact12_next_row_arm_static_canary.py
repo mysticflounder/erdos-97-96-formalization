@@ -2,8 +2,10 @@
 
 The historical cell-1 static-convex and positive-membership formula is kept
 byte-for-byte intact.  The selected named-deletion arm is appended as a
-separately authenticated suffix, and the proof-backed source-order bank is
-then rebuilt and installed against that strengthened parent.
+separately authenticated suffix, the proof-backed source-order bank is
+rebuilt and installed against that strengthened parent, and the
+physically-bridged class-cut bank is then rebuilt and installed last,
+matching the Lean terminal formula order.
 
 SAT is accepted only after replay of the source candidate, base next-row
 predicate, named-deletion arm, complete CNF, and canonical static extension.
@@ -147,6 +149,13 @@ from .exact12_next_row_valuation import (
     decode_blockers,
     named_deletion_arm_holds,
 )
+from .exact12_physical_class_cut_bank import (
+    Exact12PhysicalClassCutBankError,
+    attest_physical_class_cut_bank_installed,
+    attest_physical_class_cut_bank_live_sources,
+    build_physical_class_cut_bank,
+    install_physical_class_cut_bank,
+)
 from .exact12_positive_membership_source_order_bank import _source_record
 from .exact12_reciprocal_first_opposite_surplus_second_opposite_common_five_membership_family_bank import (
     Exact12ReciprocalFirstOppositeSurplusSecondOppositeCommonFiveMembershipFamilyBankError,
@@ -219,8 +228,8 @@ from .source_faithful_candidate_surface import (
     SourceFaithfulCoverInstance,
 )
 
-RUN_SCHEMA = "p97_rigid221_exact12_next_row_arm_static_canary_run.v14"
-JOB_SCHEMA = "p97_rigid221_exact12_next_row_arm_static_canary_job.v14"
+RUN_SCHEMA = "p97_rigid221_exact12_next_row_arm_static_canary_run.v15"
+JOB_SCHEMA = "p97_rigid221_exact12_next_row_arm_static_canary_job.v15"
 ARM_SUFFIX_SCHEMA = "p97_rigid221_exact12_next_row_arm_static_named_deletion_suffix.v1"
 SUPPORTED_ARM_CELL_INDEX = 6
 SUPPORTED_PLACEMENT_INDEX = 1
@@ -238,14 +247,25 @@ EXPECTED_SOURCE_ORDER_CLAUSES = 81
 EXPECTED_SOURCE_ORDER_BANK_SHA256 = (
     "cedf416274a28e0aaee1fe148986610fe7e0f81ca510cae5a69b43af3aa4348c"
 )
-EXPECTED_FINAL_CLAUSES = 704_481
-EXPECTED_FINAL_DIMACS_SHA256 = (
+EXPECTED_POST_SOURCE_ORDER_CLAUSES = 704_481
+EXPECTED_POST_SOURCE_ORDER_DIMACS_SHA256 = (
     "82be51273d21d1377692a288b8d5714fb120792cb2e6565834b79f9b228ebd78"
+)
+EXPECTED_CLASS_CUT_CLAUSES = 229
+EXPECTED_CLASS_CUT_BANK_SHA256 = (
+    "4ee8e46a036c04d3065f0b87160e23bdf21479f3021409ab2518cc25529ebb2c"
+)
+EXPECTED_CLASS_CUT_INSTALLED_CNF_JSON_SHA256 = (
+    "c25e722813d1741b618794558012b7f93ca32b053fc26b4285fe2337c0c75a6d"
+)
+EXPECTED_FINAL_CLAUSES = 704_710
+EXPECTED_FINAL_DIMACS_SHA256 = (
+    "8da06d5e45d1326fb256d3ca735a802c0bf942ce3e84f5df53125441526f2b5f"
 )
 LEAN_INGRESS_THEOREM = (
     "Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress."
     "FullMembershipPrefixTerminalConsumer."
-    "false_of_terminalFullMembershipNamedDeletionArmBank"
+    "false_of_terminalFullMembershipNamedDeletionArmPhysicalClassBank"
 )
 TERMINAL_STATUS = "UNSAT_DRAT_VERIFIED_AWAITING_LEAN_TERMINAL_CERTIFICATE"
 SUCCESS_STATUSES = frozenset({"SAT_WITNESS_REPLAYED", TERMINAL_STATUS})
@@ -329,6 +349,7 @@ SOURCE_PATHS = (
     "census/card_head/exact12_zero_center_cross_block_membership_family_bank.py",
     "census/card_head/exact12_v14_ordered_cut_adapter.py",
     "census/card_head/exact12_v14_source_order_bank.py",
+    "census/card_head/exact12_physical_class_cut_bank.py",
     "census/card_head/source_faithful_candidate_surface.py",
     "census/card_head/sat_encoding.py",
     (
@@ -445,6 +466,18 @@ SOURCE_PATHS = (
     ),
     (
         "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/"
+        "ExactTwelveRigid221PhysicalClassWitnessBridge.lean"
+    ),
+    (
+        "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/"
+        "ExactTwelveRigid221PhysicalClassCell6PositiveCuts.lean"
+    ),
+    (
+        "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/"
+        "ExactTwelveRigid221SafeCandidate.lean"
+    ),
+    (
+        "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/"
         "ExactTwelveRigid221FullMembershipPrefixTerminalConsumer.lean"
     ),
 )
@@ -495,6 +528,8 @@ class MaterializedArmStaticCanary:
     source_order_bank: dict[str, Any]
     prepared_source_order_bank: PreparedSourceOrderBank
     source_order_installation: dict[str, Any]
+    physical_class_cut_bank: dict[str, Any]
+    physical_class_cut_installation: dict[str, Any]
 
 
 def _cnf_sha256(instance: SourceFaithfulCoverInstance) -> str:
@@ -961,14 +996,14 @@ def materialize_arm_static_canary(
         raise Exact12NextRowArmStaticCanaryError(str(exc)) from exc
 
     entries = source_order_bank.get("entries")
-    final_dimacs_sha256 = _cnf_sha256(instance)
+    post_source_order_dimacs_sha256 = _cnf_sha256(instance)
     frozen_identity = {
         "installation_attested": installation == attested_installation,
         "source_order_entries": len(entries) if type(entries) is list else None,
         "source_order_bank_sha256": source_order_bank.get("bank_sha256"),
         "variables": instance.cnf.n_variables,
         "clauses": len(instance.cnf.clauses),
-        "final_dimacs_sha256": final_dimacs_sha256,
+        "post_source_order_dimacs_sha256": post_source_order_dimacs_sha256,
         "installed_final_cnf_sha256": installation.get("final_cnf_sha256"),
     }
     expected_identity = {
@@ -976,9 +1011,9 @@ def materialize_arm_static_canary(
         "source_order_entries": EXPECTED_SOURCE_ORDER_CLAUSES,
         "source_order_bank_sha256": EXPECTED_SOURCE_ORDER_BANK_SHA256,
         "variables": EXPECTED_PREFIX_VARIABLES,
-        "clauses": EXPECTED_FINAL_CLAUSES,
-        "final_dimacs_sha256": EXPECTED_FINAL_DIMACS_SHA256,
-        "installed_final_cnf_sha256": EXPECTED_FINAL_DIMACS_SHA256,
+        "clauses": EXPECTED_POST_SOURCE_ORDER_CLAUSES,
+        "post_source_order_dimacs_sha256": EXPECTED_POST_SOURCE_ORDER_DIMACS_SHA256,
+        "installed_final_cnf_sha256": EXPECTED_POST_SOURCE_ORDER_DIMACS_SHA256,
     }
     mismatches = {
         key: {"expected": expected_identity[key], "actual": actual}
@@ -989,6 +1024,59 @@ def materialize_arm_static_canary(
         raise Exact12NextRowArmStaticCanaryError(
             "rebuilt source-order installation differs from the frozen canary: "
             f"{mismatches}"
+        )
+
+    try:
+        physical_class_cut_bank = build_physical_class_cut_bank(repo_root, instance)
+        attest_physical_class_cut_bank_live_sources(
+            repo_root, physical_class_cut_bank
+        )
+        class_cut_installation = install_physical_class_cut_bank(
+            repo_root, instance, physical_class_cut_bank
+        )
+        attested_class_cut_installation = attest_physical_class_cut_bank_installed(
+            instance, physical_class_cut_bank
+        )
+    except Exact12PhysicalClassCutBankError as exc:
+        raise Exact12NextRowArmStaticCanaryError(str(exc)) from exc
+
+    class_cut_entries = physical_class_cut_bank.get("entries")
+    final_dimacs_sha256 = _cnf_sha256(instance)
+    frozen_class_identity = {
+        "installation_attested": (
+            class_cut_installation == attested_class_cut_installation
+        ),
+        "class_cut_entries": (
+            len(class_cut_entries) if type(class_cut_entries) is list else None
+        ),
+        "class_cut_bank_sha256": physical_class_cut_bank.get("bank_sha256"),
+        "variables": instance.cnf.n_variables,
+        "clauses": len(instance.cnf.clauses),
+        "final_dimacs_sha256": final_dimacs_sha256,
+        "installed_final_cnf_sha256": class_cut_installation.get(
+            "final_cnf_sha256"
+        ),
+    }
+    expected_class_identity = {
+        "installation_attested": True,
+        "class_cut_entries": EXPECTED_CLASS_CUT_CLAUSES,
+        "class_cut_bank_sha256": EXPECTED_CLASS_CUT_BANK_SHA256,
+        "variables": EXPECTED_PREFIX_VARIABLES,
+        "clauses": EXPECTED_FINAL_CLAUSES,
+        "final_dimacs_sha256": EXPECTED_FINAL_DIMACS_SHA256,
+        "installed_final_cnf_sha256": (
+            EXPECTED_CLASS_CUT_INSTALLED_CNF_JSON_SHA256
+        ),
+    }
+    class_mismatches = {
+        key: {"expected": expected_class_identity[key], "actual": actual}
+        for key, actual in frozen_class_identity.items()
+        if actual != expected_class_identity[key]
+    }
+    if class_mismatches:
+        raise Exact12NextRowArmStaticCanaryError(
+            "rebuilt class-cut installation differs from the frozen canary: "
+            f"{class_mismatches}"
         )
 
     return MaterializedArmStaticCanary(
@@ -1051,6 +1139,8 @@ def materialize_arm_static_canary(
         source_order_bank=source_order_bank,
         prepared_source_order_bank=prepared,
         source_order_installation=installation,
+        physical_class_cut_bank=physical_class_cut_bank,
+        physical_class_cut_installation=class_cut_installation,
     )
 
 
@@ -1196,6 +1286,7 @@ def _build_job(
         materialized.second_apex_surplus_second_first_common_five_family_bank
     )
     source_order_bank = materialized.source_order_bank
+    physical_class_cut_bank = materialized.physical_class_cut_bank
     payload = {
         "schema": JOB_SCHEMA,
         "scope": (
@@ -1430,6 +1521,12 @@ def _build_job(
             "n_clauses": EXPECTED_SOURCE_ORDER_CLAUSES,
             "installation": materialized.source_order_installation,
         },
+        "physical_class_cut_bank": {
+            "schema": physical_class_cut_bank.get("schema"),
+            "sha256": physical_class_cut_bank.get("bank_sha256"),
+            "n_clauses": EXPECTED_CLASS_CUT_CLAUSES,
+            "installation": materialized.physical_class_cut_installation,
+        },
         "cnf": {
             "bytes": len(instance.dimacs().encode("ascii")),
             "sha256": EXPECTED_FINAL_DIMACS_SHA256,
@@ -1522,6 +1619,12 @@ def _required_artifact_hashes(
         "source_order_bank": _json_sha256(materialized.source_order_bank),
         "source_order_installation": _json_sha256(
             materialized.source_order_installation
+        ),
+        "physical_class_cut_bank": _json_sha256(
+            materialized.physical_class_cut_bank
+        ),
+        "physical_class_cut_installation": _json_sha256(
+            materialized.physical_class_cut_installation
         ),
         "discovery_cnf": EXPECTED_FINAL_DIMACS_SHA256,
     }
@@ -1679,6 +1782,10 @@ def run_arm_static_canary(
         )
         source_order_bank_path = workdir / "source_order_bank.json"
         source_order_installation_path = workdir / "source_order_installation.json"
+        physical_class_cut_bank_path = workdir / "physical_class_cut_bank.json"
+        physical_class_cut_installation_path = (
+            workdir / "physical_class_cut_installation.json"
+        )
         discovery_cnf_path = workdir / "discovery.cnf"
         terminal_cnf_path = workdir / "terminal.cnf"
         proof_path = workdir / "terminal.drat"
@@ -1779,6 +1886,14 @@ def run_arm_static_canary(
         _write_json(
             source_order_installation_path,
             materialized.source_order_installation,
+        )
+        _write_json(
+            physical_class_cut_bank_path,
+            materialized.physical_class_cut_bank,
+        )
+        _write_json(
+            physical_class_cut_installation_path,
+            materialized.physical_class_cut_installation,
         )
         _write_bytes(discovery_cnf_path, cnf_bytes)
 
@@ -1960,6 +2075,10 @@ def run_arm_static_canary(
             ),
             "source_order_bank": _artifact(source_order_bank_path),
             "source_order_installation": _artifact(source_order_installation_path),
+            "physical_class_cut_bank": _artifact(physical_class_cut_bank_path),
+            "physical_class_cut_installation": _artifact(
+                physical_class_cut_installation_path
+            ),
             "discovery_cnf": _artifact(discovery_cnf_path),
             "survivor": _artifact(survivor_path),
             "terminal_cnf": _artifact(terminal_cnf_path),

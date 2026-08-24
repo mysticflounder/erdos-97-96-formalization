@@ -187,6 +187,15 @@ def _fixture(
         monkeypatch.setattr(module, "EXPECTED_ARM_SUFFIX_CLAUSES", 1)
         monkeypatch.setattr(module, "EXPECTED_POST_ARM_DIMACS_SHA256", "a" * 64)
         monkeypatch.setattr(module, "EXPECTED_SOURCE_ORDER_CLAUSES", 1)
+        monkeypatch.setattr(module, "EXPECTED_POST_SOURCE_ORDER_CLAUSES", 1)
+        monkeypatch.setattr(
+            module, "EXPECTED_POST_SOURCE_ORDER_DIMACS_SHA256", cnf_sha256
+        )
+        monkeypatch.setattr(module, "EXPECTED_CLASS_CUT_CLAUSES", 1)
+        monkeypatch.setattr(module, "EXPECTED_CLASS_CUT_BANK_SHA256", "c" * 64)
+        monkeypatch.setattr(
+            module, "EXPECTED_CLASS_CUT_INSTALLED_CNF_JSON_SHA256", "d" * 64
+        )
 
     suffix_body = {"schema": ARM_SUFFIX_SCHEMA, "synthetic": True}
     suffix = {
@@ -205,6 +214,19 @@ def _fixture(
         "final_n_clauses": 1,
         "final_cnf_sha256": cnf_sha256,
     }
+    class_cut_bank = {
+        "schema": "synthetic-class-cut-bank/v1",
+        "bank_sha256": "c" * 64,
+    }
+    class_cut_installation = {
+        "schema": "synthetic-class-cut-installation/v1",
+        "bank_sha256": class_cut_bank["bank_sha256"],
+        "suffix_n_clauses": 1,
+        "base_n_clauses": 1,
+        "final_n_variables": 1,
+        "final_n_clauses": 1,
+        "final_cnf_sha256": "d" * 64,
+    }
     values = {field.name: {} for field in fields(MaterializedArmStaticCanary)}
     values.update(
         {
@@ -213,6 +235,8 @@ def _fixture(
             "arm_suffix": suffix,
             "source_order_bank": source_order_bank,
             "source_order_installation": installation,
+            "physical_class_cut_bank": class_cut_bank,
+            "physical_class_cut_installation": class_cut_installation,
         }
     )
     materialized = MaterializedArmStaticCanary(**values)  # type: ignore[arg-type]
@@ -239,6 +263,12 @@ def _fixture(
             "sha256": source_order_bank["bank_sha256"],
             "n_clauses": 1,
             "installation": installation,
+        },
+        "physical_class_cut_bank": {
+            "schema": class_cut_bank["schema"],
+            "sha256": class_cut_bank["bank_sha256"],
+            "n_clauses": 1,
+            "installation": class_cut_installation,
         },
         "cnf": {
             "bytes": len(cnf_bytes),
@@ -313,6 +343,7 @@ def test_descriptor_binds_arm_cnf_map_sources_and_no_proof_claims(
     assert descriptor["compiler"]["manifest"] == job["compiler_manifest"]
     assert descriptor["arm_suffix"] == job["arm_suffix"]
     assert descriptor["source_order_bank"] == job["source_order_bank"]
+    assert descriptor["physical_class_cut_bank"] == job["physical_class_cut_bank"]
     assert descriptor["lean_terminal_ingress"] == job["promotion"]
     assert descriptor["sources"] == job["sources"]
     assert descriptor["certificate_blocker"] == CERTIFICATE_BLOCKER
@@ -362,7 +393,7 @@ def test_fresh_production_namespace_and_sequential_request(
     discovery = _discovery(tmp_path, repo_root, materialized, job, api)
     producer = json.loads(discovery.producer_manifest)
 
-    assert PIQD_PROJECT == "p97-exact12-next-row-arm-static-cell6-v14-r1"
+    assert PIQD_PROJECT == "p97-exact12-next-row-arm-static-cell6-v15-r1"
     assert producer["producer_id"].startswith(f"{PIQD_PROJECT}:")
     assert producer["claims"]["one_process"] is False
     assert producer["claims"]["one_core"] is False

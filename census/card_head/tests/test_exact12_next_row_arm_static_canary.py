@@ -76,10 +76,13 @@ from census.card_head.exact12_first_opposite_pair_surplus_second_opposite_common
 )
 from census.card_head.exact12_next_row_arm_static_canary import (
     EXPECTED_ARM_SUFFIX_CLAUSES,
+    EXPECTED_CLASS_CUT_BANK_SHA256,
+    EXPECTED_CLASS_CUT_CLAUSES,
     EXPECTED_FINAL_CLAUSES,
     EXPECTED_FINAL_DIMACS_SHA256,
     EXPECTED_POST_ARM_CLAUSES,
     EXPECTED_POST_ARM_DIMACS_SHA256,
+    EXPECTED_POST_SOURCE_ORDER_CLAUSES,
     EXPECTED_PREFIX_CLAUSES,
     EXPECTED_PREFIX_DIMACS_SHA256,
     EXPECTED_PREFIX_VARIABLES,
@@ -174,7 +177,9 @@ class Exact12NextRowArmStaticCanaryTests(unittest.TestCase):
         self.assertEqual(EXPECTED_PREFIX_VARIABLES, 47_211)
         self.assertEqual(EXPECTED_PREFIX_CLAUSES, 703_533)
         self.assertEqual(EXPECTED_POST_ARM_CLAUSES, 704_400)
-        self.assertEqual(EXPECTED_FINAL_CLAUSES, 704_481)
+        self.assertEqual(EXPECTED_POST_SOURCE_ORDER_CLAUSES, 704_481)
+        self.assertEqual(EXPECTED_CLASS_CUT_CLAUSES, 229)
+        self.assertEqual(EXPECTED_FINAL_CLAUSES, 704_710)
         instance, compiled, layout, membership_bank = (
             materialize_positive_membership_static_cell(REPO_ROOT, 1)
         )
@@ -465,11 +470,11 @@ class Exact12NextRowArmStaticCanaryTests(unittest.TestCase):
         self.assertEqual(job["schema"], JOB_SCHEMA)
         self.assertEqual(
             RUN_SCHEMA,
-            "p97_rigid221_exact12_next_row_arm_static_canary_run.v14",
+            "p97_rigid221_exact12_next_row_arm_static_canary_run.v15",
         )
         self.assertEqual(
             JOB_SCHEMA,
-            "p97_rigid221_exact12_next_row_arm_static_canary_job.v14",
+            "p97_rigid221_exact12_next_row_arm_static_canary_job.v15",
         )
         self.assertEqual(job["lean_ingress_theorem"], LEAN_INGRESS_THEOREM)
         self.assertIs(job["lean_terminal_ingress_ready"], True)
@@ -605,6 +610,20 @@ class Exact12NextRowArmStaticCanaryTests(unittest.TestCase):
             core_pair_all_order_common_five_binding["family_id"],
             core_pair_all_order_common_five_bank["family_id"],
         )
+        class_cut_bank = materialized.physical_class_cut_bank
+        class_cut_binding = job["physical_class_cut_bank"]
+        self.assertEqual(class_cut_binding["sha256"], class_cut_bank["bank_sha256"])
+        self.assertEqual(
+            class_cut_binding["sha256"], EXPECTED_CLASS_CUT_BANK_SHA256
+        )
+        self.assertEqual(
+            class_cut_binding["n_clauses"], EXPECTED_CLASS_CUT_CLAUSES
+        )
+        self.assertEqual(
+            class_cut_binding["installation"],
+            materialized.physical_class_cut_installation,
+        )
+        self.assertEqual(len(class_cut_bank["entries"]), EXPECTED_CLASS_CUT_CLAUSES)
         expected_source_paths = set(SOURCE_PATHS)
         expected_source_paths.update(
             apex_first_opposite_shared_pair_common_five_source_paths(REPO_ROOT)
@@ -803,6 +822,24 @@ class Exact12NextRowArmStaticCanaryTests(unittest.TestCase):
         }
         self.assertFalse(_required_artifacts_authenticated(artifacts, required))
         artifacts.pop("core_pair_all_order_common_five_family_bank")
+        self.assertFalse(_required_artifacts_authenticated(artifacts, required))
+
+        artifacts = {
+            name: {"sha256": expected_sha256}
+            for name, expected_sha256 in required.items()
+        }
+        artifacts["physical_class_cut_bank"] = {"sha256": "0" * 64}
+        self.assertFalse(_required_artifacts_authenticated(artifacts, required))
+        artifacts.pop("physical_class_cut_bank")
+        self.assertFalse(_required_artifacts_authenticated(artifacts, required))
+
+        artifacts = {
+            name: {"sha256": expected_sha256}
+            for name, expected_sha256 in required.items()
+        }
+        artifacts["physical_class_cut_installation"] = {"sha256": "0" * 64}
+        self.assertFalse(_required_artifacts_authenticated(artifacts, required))
+        artifacts.pop("physical_class_cut_installation")
         self.assertFalse(_required_artifacts_authenticated(artifacts, required))
 
         self.assertEqual(
