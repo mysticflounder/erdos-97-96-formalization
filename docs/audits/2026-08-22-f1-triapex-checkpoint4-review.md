@@ -86,6 +86,54 @@ blocker, and separation of that blocker from all five surviving centers.
 `TriApexFiveSurviveOneFail.exists_distinct_same_index` also kernel-checks the
 four-sources-versus-three-caps pigeonhole step.
 
+## Post-v87 safe-slice ingress audit (2026-08-23)
+
+Commit `0cac5ce9` repaired the source-integration defect around
+`exists_distinct_outsideCap_fan_escape_or_crossDeletion`. The helper and its
+`FreshThird` caller now build from committed source, and the focused axiom
+audit reports only `propext`, `Classical.choice`, and `Quot.sound`. This is a
+source-reproducibility repair, not a closure of D1.
+
+The all-large context also gives a larger global escape budget. For the set
+
+```text
+Z := D.A \ (retainedShellSupport H O.kept O.kept_mem_A ∪
+            retainedShellSupport H O.deleted O.deleted_mem_A),
+```
+
+`ATailExactFifteenApexProfile.card_ge_fifteen_of_all_cap_card_ge_six` and
+`ATailSevenSourcesOutsideTwoShells.seven_le_outside_two_selected_supports_card`
+give `7 ≤ Z.card`. Every `z ∈ Z` has the weak five-survive/one-fail deletion
+signature: it survives deletion at the three rich apexes and both retained
+blockers, fails at its own blocker, and its blocker is distinct from those
+five surviving centers. The count does not, however, equip every point of
+`Z` with the radius provenance carried by `StrictApexFourFamily`.
+
+Consequently the seven-point bound alone cannot force the packet needed by
+the low-span route. At the pure incidence level, three disjoint four-point
+strict supports can have ordered support-wise safe counts
+`((Z ∩ W.supportAt 0).card, (Z ∩ W.supportAt 1).card,
+(Z ∩ W.supportAt 2).card) = (2, 2, 0)`, while three additional points of `Z`
+lie outside `W.support`. This realizes `Z.card = 7` without four safe points
+on one strict support or a forced two-radii packet. The global complement
+should therefore not be introduced as an isolated D1 ingress.
+
+The sound next ingress is local. Localize both retained shell centers to
+strict cap indices, choose a third cap distinct from both, and apply
+`criticalShell_inter_otherRichCapSlice_card_le_one` to each strict slice of
+its `StrictApexFourWitness`. In the `oneRadius` arm, the four-point support
+contains at least two points outside both retained shells on the same radius.
+In the `twoRadii` arm, classify each two-point slice by safe count `2`, `1`,
+or `0`; a zero-safe slice has exactly one hit from each retained shell, and
+the double-zero case is exact transverse `K2,2` saturation. No live theorem
+currently packages this classifier.
+
+The implementation order is therefore: prove the closed safe-slice
+classifier without adding a new `sorry`; prove the D1-specific transverse
+saturation contradiction; then split the current on-spine D1 residual. The
+existing D2 `PairedTwoRadiusGrid` consumer is not directly applicable to this
+packet.
+
 The packet also yields a same-cap pair, but this does not give four sources on
 one radius. The two-rich-radii arm can produce a cross-radius pair, and even a
 same-radius pair contains only two sources. The current route therefore has
