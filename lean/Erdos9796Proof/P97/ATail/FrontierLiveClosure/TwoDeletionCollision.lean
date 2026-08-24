@@ -4,7 +4,9 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Adam McKenna
 -/
 
-import Erdos9796Proof.P97.ATail.FrontierLiveClosure.B1Live
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure.ContextFrames
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure.JointDeletionCore
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure.SharedFrontierHelpers
 
 namespace Problem97
 namespace ATailFrontierLiveClosure
@@ -157,8 +159,7 @@ theorem false_of_twoDistinctExactFourMutualOmissionJointDeletions_blockerCollisi
     {H : CriticalShellSystem D.A}
     {F : CriticalPairFrontier D S radius H}
     (R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F)
-    (_hcard : 12 ≤ D.A.card)
-    (surface : ExactFourPostCardElevenRobustSurface R)
+    (frame : PostCardElevenSurfaceFrame R)
     (rho : ℝ)
     (_hrho : 0 < rho)
     (_hfive : 5 ≤ (SelectedClass D.A S.oppApex2 rho).card)
@@ -185,6 +186,7 @@ theorem false_of_twoDistinctExactFourMutualOmissionJointDeletions_blockerCollisi
         (lateFirstApexSystem R).centerAt
           second.deleted.1 second.deleted.2) :
     False := by
+  obtain ⟨_hcard, surface⟩ := frame
   let C : B1GlobalTransportContext
       (D := D) (S := S) (radius := radius) (H := H) (F := F) :=
     { R := R
@@ -805,8 +807,7 @@ theorem false_of_exactFourMutualOmission_fourCenterCommonDeletion
     {H : CriticalShellSystem D.A}
     {F : CriticalPairFrontier D S radius H}
     (R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F)
-    (_hcard : 12 ≤ D.A.card)
-    (surface : ExactFourPostCardElevenRobustSurface R)
+    (frame : PostCardElevenSurfaceFrame R)
     (rho : ℝ)
     (_hrho : 0 < rho)
     (_hfive : 5 ≤ (SelectedClass D.A S.oppApex2 rho).card)
@@ -861,6 +862,7 @@ theorem false_of_exactFourMutualOmission_fourCenterCommonDeletion
           second.deleted.1 second.deleted.2)
         S.oppApex2) :
     False := by
+  obtain ⟨_hcard, surface⟩ := frame
   have hsplit :=
     exactFour_fourSurvivingCenters_survivalSquare_split
       _hrho first second
@@ -932,8 +934,7 @@ theorem false_of_twoDistinctExactFourMutualOmissionJointDeletions_oneWayCrossOmi
     {H : CriticalShellSystem D.A}
     {F : CriticalPairFrontier D S radius H}
     (R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F)
-    (hcard : 12 ≤ D.A.card)
-    (surface : ExactFourPostCardElevenRobustSurface R)
+    (frame : PostCardElevenSurfaceFrame R)
     (rho : ℝ)
     (hrho : 0 < rho)
     (hfive : 5 ≤ (SelectedClass D.A S.oppApex2 rho).card)
@@ -986,6 +987,7 @@ theorem false_of_twoDistinctExactFourMutualOmissionJointDeletions_oneWayCrossOmi
         ((lateFirstApexSystem R).selectedAt
           second.deleted.1 second.deleted.2).toCriticalFourShell.support) :
     False := by
+  obtain ⟨hcard, surface⟩ := frame
   have hsecondBlockerA :
       (lateFirstApexSystem R).centerAt
           second.deleted.1 second.deleted.2 ∈ D.A := by
@@ -1012,7 +1014,7 @@ theorem false_of_twoDistinctExactFourMutualOmissionJointDeletions_oneWayCrossOmi
     ⟨crossPacket⟩
   exact
     false_of_exactFourMutualOmission_fourCenterCommonDeletion
-      R hcard surface rho hrho hfive u v huNeV
+      R ⟨hcard, surface⟩ rho hrho hfive u v huNeV
       huClass hvClass hvOmitted huOmitted first second
       hdeletedNe hdeletedBlockersNe
       hfirstBlockerNeU hfirstBlockerNeV hfirstBlockerNeApex
@@ -1026,8 +1028,7 @@ theorem false_of_twoDistinctExactFourMutualOmissionJointDeletions_fiveCenters
     {H : CriticalShellSystem D.A}
     {F : CriticalPairFrontier D S radius H}
     (R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F)
-    (hcard : 12 ≤ D.A.card)
-    (surface : ExactFourPostCardElevenRobustSurface R)
+    (frame : PostCardElevenSurfaceFrame R)
     (rho : ℝ)
     (hrho : 0 < rho)
     (hfive : 5 ≤ (SelectedClass D.A S.oppApex2 rho).card)
@@ -1076,19 +1077,20 @@ theorem false_of_twoDistinctExactFourMutualOmissionJointDeletions_fiveCenters
       (lateFirstApexSystem R).centerAt
           second.deleted.1 second.deleted.2 ≠ S.oppApex2) :
     False := by
+  obtain ⟨hcard, surface⟩ := frame
   rcases exactFour_twoDeletion_crossOmission first second hdeletedNe
       hdeletedBlockersNe hfirstBlockerNeApex hsecondBlockerNeApex with
     hfirstNotMem | hsecondNotMem
   · exact
       false_of_twoDistinctExactFourMutualOmissionJointDeletions_oneWayCrossOmission
-        R hcard surface rho hrho hfive u v huNeV huClass hvClass
+        R ⟨hcard, surface⟩ rho hrho hfive u v huNeV huClass hvClass
         hvOmitted huOmitted first second hdeletedNe hdeletedBlockersNe
         hfirstBlockerNeU hfirstBlockerNeV hfirstBlockerNeApex
         hsecondBlockerNeU hsecondBlockerNeV hsecondBlockerNeApex
         hfirstNotMem
   · exact
       false_of_twoDistinctExactFourMutualOmissionJointDeletions_oneWayCrossOmission
-        R hcard surface rho hrho hfive u v huNeV huClass hvClass
+        R ⟨hcard, surface⟩ rho hrho hfive u v huNeV huClass hvClass
         hvOmitted huOmitted second first hdeletedNe.symm
         hdeletedBlockersNe.symm
         hsecondBlockerNeU hsecondBlockerNeV hsecondBlockerNeApex
@@ -1135,11 +1137,11 @@ theorem false_of_twoDistinctExactFourMutualOmissionJointDeletions
         Hlate.centerAt second.deleted.1 second.deleted.2
   · exact
       false_of_twoDistinctExactFourMutualOmissionJointDeletions_blockerCollision
-        R hcard surface rho hrho hfive u v huNeV huClass hvClass
+        R ⟨hcard, surface⟩ rho hrho hfive u v huNeV huClass hvClass
           hvOmitted huOmitted first second hdeletedNe hblockersEq
   · exact
       false_of_twoDistinctExactFourMutualOmissionJointDeletions_fiveCenters
-        R hcard surface rho hrho hfive u v huNeV huClass hvClass
+        R ⟨hcard, surface⟩ rho hrho hfive u v huNeV huClass hvClass
           hvOmitted huOmitted first second hdeletedNe
           (by simpa [Hlate] using hblockersEq)
           first.uPacket.actual_blocker_ne_center₁

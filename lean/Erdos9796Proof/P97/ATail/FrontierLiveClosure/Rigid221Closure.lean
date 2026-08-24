@@ -4,6 +4,7 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Adam McKenna
 -/
 
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure.ContextFrames
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.Rigid221SourceHeavy
 
 namespace Problem97
@@ -109,8 +110,7 @@ theorem false_of_exactFourMutualOmissionRigid221_physicalApex_sourceBlockerInCla
     {H : CriticalShellSystem D.A}
     {F : CriticalPairFrontier D S radius H}
     (R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F)
-    (hcard : 12 ≤ D.A.card)
-    (surface : ExactFourPostCardElevenRobustSurface R)
+    (frame : PostCardElevenSurfaceFrame R)
     (rho : ℝ)
     (source other : CarrierVertex D.A)
     (hrho : 0 < rho)
@@ -144,6 +144,7 @@ theorem false_of_exactFourMutualOmissionRigid221_physicalApex_sourceBlockerInCla
       (lateFirstApexSystem R).centerAt source.1 source.2 ∈
         SelectedClass D.A S.oppApex2 rho) :
     False := by
+  obtain ⟨hcard, surface⟩ := frame
   rcases
       exactFourRigid221_sourceBlockerInClass_placement
         huClass context globalDeletion hsourceBlockerClass with
@@ -167,8 +168,7 @@ theorem false_of_exactFourMutualOmissionRigid221_physicalApex
     {H : CriticalShellSystem D.A}
     {F : CriticalPairFrontier D S radius H}
     (R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F)
-    (hcard : 12 ≤ D.A.card)
-    (surface : ExactFourPostCardElevenRobustSurface R)
+    (frame : PostCardElevenSurfaceFrame R)
     (rho : ℝ)
     (source other : CarrierVertex D.A)
     (hrho : 0 < rho)
@@ -199,12 +199,13 @@ theorem false_of_exactFourMutualOmissionRigid221_physicalApex
         R rho u v jointDeletion)
     (hcenter : globalDeletion.center = S.oppApex2) :
     False := by
+  obtain ⟨hcard, surface⟩ := frame
   by_cases hsourceBlockerClass :
       (lateFirstApexSystem R).centerAt source.1 source.2 ∈
         SelectedClass D.A S.oppApex2 rho
   · exact
       false_of_exactFourMutualOmissionRigid221_physicalApex_sourceBlockerInClass
-        R hcard surface rho source other hrho hfive u v huNeV
+        R ⟨hcard, surface⟩ rho source other hrho hfive u v huNeV
           huClass hvClass hvOmitted huOmitted context jointDeletion
           hclassFive globalDeletion hcenter hsourceBlockerClass
   · obtain
@@ -275,8 +276,7 @@ theorem false_of_exactFourMutualOmissionRigid221_globalDeletion
     {H : CriticalShellSystem D.A}
     {F : CriticalPairFrontier D S radius H}
     (R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F)
-    (hcard : 12 ≤ D.A.card)
-    (surface : ExactFourPostCardElevenRobustSurface R)
+    (frame : PostCardElevenSurfaceFrame R)
     (rho : ℝ)
     (source other : CarrierVertex D.A)
     (hrho : 0 < rho)
@@ -306,10 +306,11 @@ theorem false_of_exactFourMutualOmissionRigid221_globalDeletion
       ExactFourMutualOmissionRigid221GlobalDeletion
         R rho u v jointDeletion) :
     False := by
+  obtain ⟨hcard, surface⟩ := frame
   by_cases hcenter : globalDeletion.center = S.oppApex2
   · exact
       false_of_exactFourMutualOmissionRigid221_physicalApex
-        R hcard surface rho source other hrho hfive u v huNeV
+        R ⟨hcard, surface⟩ rho source other hrho hfive u v huNeV
           huClass hvClass hvOmitted huOmitted context jointDeletion
           hclassFive globalDeletion hcenter
   · rcases globalDeletion.geometry with hcollision | hcore
@@ -332,8 +333,7 @@ theorem false_of_exactFourMutualOmissionRigid221
     {H : CriticalShellSystem D.A}
     {F : CriticalPairFrontier D S radius H}
     (R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F)
-    (hcard : 12 ≤ D.A.card)
-    (surface : ExactFourPostCardElevenRobustSurface R)
+    (frame : PostCardElevenSurfaceFrame R)
     (rho : ℝ)
     (source other : CarrierVertex D.A)
     (hrho : 0 < rho)
@@ -370,13 +370,14 @@ theorem false_of_exactFourMutualOmissionRigid221
       Iu.card = 2 ∧ Iv.card = 2 ∧ Disjoint Iu Iv ∧
         C = insert jointDeletion.deleted.1 (Iu ∪ Iv)) :
     False := by
+  obtain ⟨hcard, surface⟩ := frame
   rcases
       exactFourMutualOmissionRigid221_globalDeletion
         R rho hrho u v jointDeletion hclassFive hrigid with
     ⟨globalDeletion⟩
   exact
     false_of_exactFourMutualOmissionRigid221_globalDeletion
-      R hcard surface rho source other hrho hfive u v huNeV
+      R ⟨hcard, surface⟩ rho source other hrho hfive u v huNeV
       huClass hvClass hvOmitted huOmitted context jointDeletion
       hclassFive globalDeletion
 
@@ -389,8 +390,7 @@ theorem false_of_exactFourMutualOmissionJointDeletion
     {H : CriticalShellSystem D.A}
     {F : CriticalPairFrontier D S radius H}
     (R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F)
-    (_hcard : 12 ≤ D.A.card)
-    (surface : ExactFourPostCardElevenRobustSurface R)
+    (frame : PostCardElevenSurfaceFrame R)
     (rho : ℝ)
     (source other : CarrierVertex D.A)
     (_hrho : 0 < rho)
@@ -415,6 +415,7 @@ theorem false_of_exactFourMutualOmissionJointDeletion
     (jointDeletion :
       ExactFourMutualOmissionJointDeletion R rho u v) :
     False := by
+  obtain ⟨_hcard, surface⟩ := frame
   classical
   by_cases hclassFive :
       (SelectedClass D.A S.oppApex2 rho).card = 5
@@ -430,7 +431,7 @@ theorem false_of_exactFourMutualOmissionJointDeletion
           second jointDeletion hdeletedNe
     · exact
         false_of_exactFourMutualOmissionRigid221
-          R _hcard surface rho source other _hrho _hfive u v _huNeV
+          R ⟨_hcard, surface⟩ rho source other _hrho _hfive u v _huNeV
           _huClass _hvClass _hvOmitted _huOmitted
           context jointDeletion hclassFive hrigid
   · have hsix :
@@ -454,8 +455,7 @@ theorem false_of_exactFourPostCardElevenInteriorDeletionMutualOmissionBranch
     {H : CriticalShellSystem D.A}
     {F : CriticalPairFrontier D S radius H}
     (R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F)
-    (_hcard : 12 ≤ D.A.card)
-    (surface : ExactFourPostCardElevenRobustSurface R)
+    (frame : PostCardElevenSurfaceFrame R)
     (rho : ℝ)
     (source : CarrierVertex D.A)
     (_hrho : 0 < rho)
@@ -525,6 +525,7 @@ theorem false_of_exactFourPostCardElevenInteriorDeletionMutualOmissionBranch
       HasNEquidistantPointsAt 4 (D.A.erase u.1)
         ((lateFirstApexSystem R).centerAt v.1 v.2)) :
     False := by
+  obtain ⟨_hcard, surface⟩ := frame
   let context :
       ExactFourMutualOmissionSourceContext
         R rho source other u v := {
@@ -548,7 +549,7 @@ theorem false_of_exactFourPostCardElevenInteriorDeletionMutualOmissionBranch
     ⟨jointDeletion⟩
   exact
     false_of_exactFourMutualOmissionJointDeletion
-      R _hcard surface rho source other _hrho _hfive u v _huNeV
+      R ⟨_hcard, surface⟩ rho source other _hrho _hfive u v _huNeV
         _huClass _hvClass _hvOmitted _huOmitted context jointDeletion
 
 /-- The asymmetric strict-cap omitted peer forces a stronger whole-class
@@ -560,8 +561,7 @@ theorem false_of_exactFourPostCardElevenInteriorDeletionOmittedPeerBranch
     {H : CriticalShellSystem D.A}
     {F : CriticalPairFrontier D S radius H}
     (R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F)
-    (hcard : 12 ≤ D.A.card)
-    (surface : ExactFourPostCardElevenRobustSurface R)
+    (frame : PostCardElevenSurfaceFrame R)
     (rho : ℝ)
     (source : CarrierVertex D.A)
     (hrho : 0 < rho)
@@ -595,6 +595,7 @@ theorem false_of_exactFourPostCardElevenInteriorDeletionOmittedPeerBranch
         HasNEquidistantPointsAt 4 (D.A.erase R.interior_w)
           ((lateFirstApexSystem R).centerAt source.1 source.2)) :
     False := by
+  obtain ⟨hcard, surface⟩ := frame
   rcases
       exists_mutuallyOmittedSecondClassPair
         R surface source hfive hsourceClass with
@@ -624,7 +625,7 @@ theorem false_of_exactFourPostCardElevenInteriorDeletionOmittedPeerBranch
       (lateFirstApexSystem R) v.2).mpr huOmitted
   exact
     false_of_exactFourPostCardElevenInteriorDeletionMutualOmissionBranch
-      R hcard surface rho source hrho hfive hsourceClass hsourceInterior
+      R ⟨hcard, surface⟩ rho source hrho hfive hsourceClass hsourceInterior
         hsourceOutside hlateCross other hotherNe hotherClass hotherInterior
         hotherOmitted hblockersNe hsurvives u v huNeV huClass hvClass
         hvOmitted huOmitted hsourceMemURow hvOmittedSourceRow
@@ -640,8 +641,7 @@ theorem false_of_exactFourPostCardElevenInteriorDeletionLowCrossBranch
     {H : CriticalShellSystem D.A}
     {F : CriticalPairFrontier D S radius H}
     (R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F)
-    (hcard : 12 ≤ D.A.card)
-    (surface : ExactFourPostCardElevenRobustSurface R)
+    (frame : PostCardElevenSurfaceFrame R)
     (rho : ℝ)
     (source : CarrierVertex D.A)
     (hrho : 0 < rho)
@@ -662,6 +662,7 @@ theorem false_of_exactFourPostCardElevenInteriorDeletionLowCrossBranch
         HasNEquidistantPointsAt 4 (D.A.erase R.interior_w)
           ((lateFirstApexSystem R).centerAt source.1 source.2)) :
     False := by
+  obtain ⟨hcard, surface⟩ := frame
   rcases
       exists_omittedSecondClassInteriorPeer
         R source hrho hfive hlateCross with
@@ -669,7 +670,7 @@ theorem false_of_exactFourPostCardElevenInteriorDeletionLowCrossBranch
       hotherOmitted, hblockersNe⟩
   exact
     false_of_exactFourPostCardElevenInteriorDeletionOmittedPeerBranch
-      R hcard surface rho source hrho hfive hsourceClass hsourceInterior
+      R ⟨hcard, surface⟩ rho source hrho hfive hsourceClass hsourceInterior
         hsourceOutside hlateCross other hotherNe hotherClass hotherInterior
         hotherOmitted hblockersNe hsurvives
 
@@ -681,8 +682,7 @@ theorem false_of_exactFourPostCardElevenInteriorDeletionBranch
     {H : CriticalShellSystem D.A}
     {F : CriticalPairFrontier D S radius H}
     (R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F)
-    (hcard : 12 ≤ D.A.card)
-    (surface : ExactFourPostCardElevenRobustSurface R)
+    (frame : PostCardElevenSurfaceFrame R)
     (rho : ℝ)
     (source : CarrierVertex D.A)
     (hrho : 0 < rho)
@@ -698,9 +698,10 @@ theorem false_of_exactFourPostCardElevenInteriorDeletionBranch
         HasNEquidistantPointsAt 4 (D.A.erase R.interior_w)
           ((lateFirstApexSystem R).centerAt source.1 source.2)) :
     False := by
+  obtain ⟨hcard, surface⟩ := frame
   exact
     false_of_exactFourPostCardElevenInteriorDeletionLowCrossBranch
-      R hcard surface rho source hrho hfive hsourceClass hsourceInterior
+      R ⟨hcard, surface⟩ rho source hrho hfive hsourceClass hsourceInterior
         hsourceOutside
         (actualLateRow_secondClassInterior_card_le_two
           R surface source hsourceClass hsourceInterior)
@@ -737,9 +738,9 @@ theorem false_of_exactFourPostCardElevenRobustSurface
     {H : CriticalShellSystem D.A}
     {F : CriticalPairFrontier D S radius H}
     (R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F)
-    (hcard : 12 ≤ D.A.card)
-    (surface : ExactFourPostCardElevenRobustSurface R) :
+    (frame : PostCardElevenSurfaceFrame R) :
     False := by
+  obtain ⟨hcard, surface⟩ := frame
   rcases interiorPairGood_or_twoDistinctExactFourInteriorRows R surface with
     ⟨rho, source, hrho, hfive, hsourceClass, hsourceInterior,
       hsourceOutside, hsurvives⟩ |
@@ -748,7 +749,7 @@ theorem false_of_exactFourPostCardElevenRobustSurface
         hdisjoint, hinterior, hinteriorOther⟩
   · exact
       false_of_exactFourPostCardElevenInteriorDeletionBranch
-        R hcard surface rho source hrho hfive hsourceClass hsourceInterior
+        R ⟨hcard, surface⟩ rho source hrho hfive hsourceClass hsourceInterior
           hsourceOutside hsurvives
   · exact
       false_of_exactFourPostCardElevenTwoRadiusBranch
@@ -769,7 +770,7 @@ theorem false_of_exactFourPhysicalConsumerRobustOutcome
     False := by
   rcases nonempty_postCardElevenRobustSurface_of_robust
       _hcard _ingress _secondApex_robust with ⟨surface⟩
-  exact false_of_exactFourPostCardElevenRobustSurface _R _hcard surface
+  exact false_of_exactFourPostCardElevenRobustSurface _R ⟨_hcard, surface⟩
 
 /-- The swapped protected-exact-four terminal remaining after the checked
 exact-four source reduction.  Both the original residual and the physical

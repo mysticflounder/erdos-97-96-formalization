@@ -11,15 +11,14 @@
   "schema": "import-waivers/v1",
   "summary": {
     "by_class": {
-      "cross-cluster": 5,
+      "cross-cluster": 4,
       "from-shared-to-cluster": 25
     },
     "by_planned_retirement": {
-      "W1b": 2,
-      "W3": 2,
+      "W3": 3,
       "unassigned": 26
     },
-    "waivers": 30
+    "waivers": 29
   },
   "waivers": [
     {
@@ -180,8 +179,8 @@
     },
     {
       "from": "Erdos9796Proof.P97.ATail.FrontierLiveClosure.Rigid221Placement",
-      "planned_retirement": "W1b",
-      "reason": "pre-existing at base_head 222809b9",
+      "planned_retirement": "W3",
+      "reason": "retirement deferred from W1b on 2026-08-24: the TwoDeletionCollision declarations that Rigid221SourceHeavy and Rigid221Closure consume through this edge have a proof closure containing all three sorry-bearing declarations of TwoDeletionCollision; moving them would relocate roster leaves, and the alternative requires editing Rigid221SourceHeavy/Rigid221Closure, which W1b may not touch. Retire with the W3 cluster-coordinator wave.",
       "to": "Erdos9796Proof.P97.ATail.FrontierLiveClosure.TwoDeletionCollision"
     },
     {
@@ -189,12 +188,6 @@
       "planned_retirement": "W3",
       "reason": "pre-existing at base_head 222809b9",
       "to": "Erdos9796Proof.P97.ATail.FrontierLiveClosure.Rigid221Closure"
-    },
-    {
-      "from": "Erdos9796Proof.P97.ATail.FrontierLiveClosure.TwoDeletionCollision",
-      "planned_retirement": "W1b",
-      "reason": "pre-existing at base_head 222809b9",
-      "to": "Erdos9796Proof.P97.ATail.FrontierLiveClosure.B1Live"
     },
     {
       "from": "Erdos9796Proof.P97.ATail.FrontierLiveClosure.TwoSourceCanonicalSurface",
