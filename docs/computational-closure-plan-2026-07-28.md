@@ -15507,3 +15507,48 @@ No V8 solver job has run and PIQD has not been contacted by this campaign. The
 next authorized step is only the center-2, physical-`none`, one-core,
 3,600-second PIQD canary. This checkpoint closes neither exact-17 nor a
 production `sorry`.
+
+### 2026-08-24 V8 repair/refreeze and V9 source-total promotion gate
+
+A V8-labelled center-2, physical-`none` diagnostic canary did later run as
+PIQD job `a785104c-3351-4ea6-a5ca-3f7a037454f5`. It returned
+`STRUCTURAL_SAT`, and independent exact replay satisfied all 7,409,845
+physical-cell clauses. Its candidate ledger is not production evidence: the
+pre-repair miner delegated to a V5 implementation without rebinding the
+runner's private base-module contract. The result is retained only for theorem
+discovery, and it authorizes neither V9 promotion nor the other 75 V8 cells.
+
+Commit `956dfd82` repairs that miner contract; `fe375a8a` refreezes the runner
+and control plane. The repaired miner identity is
+`e370ada228b6bcdff619e2997b0b3faa54ac11bbe913546e7b266398a7e402c5`.
+A clean derivation reread the immutable 26,319,325,963-byte packet and
+reproduced the 76 source and 76 production identity tables byte-for-byte. The
+74,222-byte output has SHA-256
+`5f14b89c833f6f3e94046b54615679a1a1617002b5a7bef703146e221a0d4a48`;
+`ddcb0a7a` freezes it.
+
+The diagnostic mine contains nineteen source-valid two-Kalmanson supports and
+76 unique orbit clauses (canonical SHA-256
+`45f6534755d2242c4175824716ab6e7e1a7ef9251793ced6d20b21bd44c74206`).
+The independent novelty audit against the 7,409,839-clause Lean root found
+zero exact duplicates, twenty strict-subsumed clauses with total subsumer
+multiplicity 29, and 56 strict-new clauses. The strict-new index-list,
+ordered-clause, and census
+hashes are
+`9b519c1292c89b4cd4a98f0cd6801d769b5eaa7fd300d9e1c9aab1dd1a649987`,
+`e6f2940cdea17d8f5819c65e9c7b181f83f107034b5043ae73d9c6dcb354bcd2`,
+and
+`4a4d3e784ce9b89fdfc127803aaf52a3e6d64a65da68f1bbe569ab8aa13dbc81`.
+Accordingly the source-total V9 root target is 7,409,895 clauses.
+
+The superficially smaller 51-clause suffix is a physical-cell-only result:
+five more orbit clauses are subsumed solely by the six physical unit clauses.
+Those assumptions are not present in the source theorem. The V9 scaffold pins
+the 56-clause source-total census and keeps official ledger, receipt,
+candidate, and multiplicity identities empty so that promotion fails closed.
+
+The executable next step is one fresh official center-2, physical-`none` V8
+canary under the repaired/refrozen identities. Only its accepted artifacts,
+independent replay, and complete official wave-only mine may finalize V9 and
+authorize further cells. No official repaired-contract V8 canary has run;
+exact-17 and the production `sorry` remain open.

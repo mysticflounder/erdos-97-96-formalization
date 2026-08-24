@@ -1803,3 +1803,54 @@ Neither preparation nor either audit contacted PIQD or launched a solver. The
 next authorized mutation is only the single center-2, physical-`none`, one-core,
 3,600-second canary. This checkpoint closes neither exact-17 nor a production
 `sorry`.
+
+## V8 miner repair, diagnostic quarantine, and V9 source-root accounting — 2026-08-24
+
+One center-2, physical-`none` V8-labelled canary subsequently ran as PIQD job
+`a785104c-3351-4ea6-a5ca-3f7a037454f5` and returned `STRUCTURAL_SAT`; an
+independent replay satisfied all 7,409,845 physical-cell clauses. The run is
+diagnostic rather than production evidence. Its mine used the pre-repair miner
+identity, whose delegated V5 implementation had not rebound the private base
+module to the V8 runner contract. Consequently its ledger cannot populate a
+production V9 promotion, and no remaining V8 cell is authorized from it.
+
+The miner and runner contract was repaired in `956dfd82`, and the refrozen
+control plane landed in `fe375a8a`. The repaired miner has SHA-256
+`e370ada228b6bcdff619e2997b0b3faa54ac11bbe913546e7b266398a7e402c5`
+and freezes the 308-variable, 7,409,845-clause physical-cell contract. A clean
+identity derivation then reread the immutable 26,319,325,963-byte packet and
+reproduced all 76 source and 76 production identities byte-for-byte. The
+derived table is 74,222 bytes with SHA-256
+`5f14b89c833f6f3e94046b54615679a1a1617002b5a7bef703146e221a0d4a48`;
+its source and production table hashes remain
+`bb61c25860cfebd1a9e6c02048efe2f45b392cbb3b58279fe0d83633faec4512`
+and
+`3081baef569945da87f5c2d652f44af4f5c486c3ea906a55fed3d38d231cf3ad`.
+Commit `ddcb0a7a` freezes that clean replay.
+
+The diagnostic model exposes nineteen source-valid two-Kalmanson supports.
+Their 76 unique orbit clauses have canonical SHA-256
+`45f6534755d2242c4175824716ab6e7e1a7ef9251793ced6d20b21bd44c74206`.
+An independent novelty audit against the 7,409,839-clause **Lean source root**
+found no exact duplicates, twenty strict-subsumed clauses with total subsumer
+multiplicity 29, and 56 strict-new clauses. The strict-new index-list,
+ordered-clause, and novelty-census hashes are respectively
+`9b519c1292c89b4cd4a98f0cd6801d769b5eaa7fd300d9e1c9aab1dd1a649987`,
+`e6f2940cdea17d8f5819c65e9c7b181f83f107034b5043ae73d9c6dcb354bcd2`,
+and
+`4a4d3e784ce9b89fdfc127803aaf52a3e6d64a65da68f1bbe569ab8aa13dbc81`.
+Thus a source-total V9 root would have 7,409,895 clauses.
+
+The earlier 51-clause count was valid only relative to the full physical cell:
+five additional orbit clauses were subsumed solely by its six physical unit
+assumptions. Those units are unavailable to the Lean source-total theorem and
+must not remove clauses from its root. The V9 promotion scaffold therefore
+pins the 56-clause source-root census but deliberately leaves every official
+ledger, receipt, candidate, and multiplicity identity empty, so it fails
+closed until a fresh production mine supplies them.
+
+The next authorized mutation remains one fresh center-2, physical-`none`
+official V8 canary under the refrozen identities, followed by independent
+exact replay and a complete official wave-only mine. No official V8 canary has
+yet run under the repaired contract; exact-17 and the production `sorry`
+remain open.
