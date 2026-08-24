@@ -1,0 +1,18 @@
+{
+  "base_head": "0cdb2660fa5baddb3abeb8f1d6eef3b8d00f64db",
+  "created_utc": "2026-08-24T00:16:18Z",
+  "durable_paths": [
+    "scripts/mine_exact17_canary_perp_bisector_survivor_four_point_two_circle_v8_two_kalmanson_refinements_sat_model.py",
+    "scripts/run_piqd_exact17_canary_perp_bisector_survivor_four_point_two_circle_v8_two_kalmanson_refinements_sat_portfolio.py"
+  ],
+  "generated_roots": [],
+  "lane_id": "exact17-v8-wave-miner-bridge-20260824",
+  "manifest_sha256": "dfa861ee1f9a56d6b030fbb207a56b6975cdec98acd49002b8364e54bc9ce394",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exact17-v8-wave-miner-bridge-20260824.json",
+    "scripts/run_exact17_v8_wave_miner_bridge.py",
+    "scripts/test_run_exact17_v8_wave_miner_bridge.py"
+  ],
+  "owner": "exact17-v8-wave-miner-bridge",
+  "schema": "worktree-lane-checkpoint/v1"
+}
