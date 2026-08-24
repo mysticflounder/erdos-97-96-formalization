@@ -45,10 +45,12 @@ GENERATED FILE - do not edit by hand.  Produced by
 from `s1_class_cut_manifest_v1.json`; regenerate rather than patching.
 
 Each entry is one full-row unit cut of the S1 mid-angle witness family at
-the cell-6 placement `(d, v) = (0, 3)`: a candidate four-row hosted at an
-on-class center `z` whose support contains a class pair `{p, q}` that `z`
-never strictly separates in any of the 48 canonical boundary orders
-(`witnessSameSideAll48 z p q = true`).  The proof-carrying form is
+the cell-6 placement `(d, v) = (0, 3)`: a distinct candidate four-row
+hosted at an on-class center `z` whose support contains a class pair
+`{p, q}` that `z` never strictly separates in any of the 48 canonical
+boundary orders (`witnessSameSideAll48 z p q = true`).  A row hosting
+several admissible pairs appears once, certified by its first admissible
+witness in combo order, so the emitted clause list is duplicate-free.  The proof-carrying form is
 `PhysicalClassPositiveNogood.ofCut` with `PhysicalClassCutData.witness`;
 the class-radius hypothesis is discharged at the leaf by
 `FrozenRoleLabeling.physicalClassRadius`.
@@ -123,8 +125,8 @@ def main() -> None:
     if manifest.get("schema") != "p97_rigid221_exact12_s1_class_cut_manifest.v1":
         raise SystemExit("unexpected manifest schema")
     cuts = manifest["cuts"]
-    if len(cuts) != 290:
-        raise SystemExit(f"manifest carries {len(cuts)} cuts, expected 290")
+    if len(cuts) != 229:
+        raise SystemExit(f"manifest carries {len(cuts)} cuts, expected 229")
 
     lines = []
     for position, cut in enumerate(cuts):

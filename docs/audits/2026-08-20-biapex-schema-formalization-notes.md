@@ -270,10 +270,25 @@ combo order) so the CNF suffix is duplicate-free: 229 unit clauses, not
 live-source attestation, snapshot recompilation, install-after-
 source-order, install attestation; bank sha over strict canonical JSON)
 are updated to the 229-cut contract with the 290-instance distribution
-still asserted upstream.  The regenerated 229-entry Lean module was
-awaiting its fresh build at the time of this note; treat the 229-cut
-Lean/bank pair as unvalidated until a green build and axiom audit are
-recorded.
+still asserted upstream.
+
+Dedup validation (2026-08-23, step 2 closed): the regenerated 229-entry
+Lean module built green (only the three expected `native_decide`
+style-linter notes on the module) and its axiom audit reports the same
+native-trust profile — `cutEntries_check` and `cutEntries_length` on
+`[propext, Lean.ofReduceBool, Lean.trustCompiler, Quot.sound]`,
+`physicalClassCell6Bank_encodable` adding `Classical.choice`; no
+`sorryAx`.  The bank-module end-to-end retest passed post-dedup: build
+(229 entries, bank sha `4ee8e46a036c04d3…`), live-source attestation
+against the four pinned files, snapshot exact recompilation,
+source-order-guard rejection, install mechanics on a scratch instance
+(368,075 → 368,304 clauses; suffix 229), installed attestation, and
+double-install rejection.  The build step re-extracts the Lean
+`cutEntries` textually and requires exact 229/229 equality with the
+frozen derivation, so the Lean/bank differential is part of every bank
+build.  The 229-cut Lean/bank pair is validated; these are finite
+exact-12 certificate-ingress artifacts only (no terminal-UNSAT or
+coverage claim).
 
 Refreeze closure (2026-08-21): the documented narrowed-chain refreeze ran
 over the tree at `2d8e8d16` (contains this consumer edit `b4eb4b71` and
