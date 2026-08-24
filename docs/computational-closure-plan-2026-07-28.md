@@ -15488,8 +15488,22 @@ identities. Their canonical table hashes are
 and
 `3081baef569945da87f5c2d652f44af4f5c486c3ea906a55fed3d38d231cf3ad`.
 The V8 runner now freezes these tables and the exact source/checkpoint byte
-pins, with focused exact-artifact and tamper regressions. The next authorized
-steps are a committed local portfolio `prepare`, an independent
-`static-check`, and then only the center-2, physical-`none` PIQD canary.
-No V8 solver job has run, and this checkpoint closes neither exact-17 nor a
+pins, with focused exact-artifact and tamper regressions. The governed local
+portfolio preparation has completed with 76 cells. Its campaign identity is
+`2976cd9174b95e93b270de64c0c204916ba1fd3918cc87f3c25c82d569b39bff`
+(137,737 bytes), and its run-manifest identity is
+`fcd96af6f99e8b730a3d4a7196a81d7b76a478af85d11abb166d7efdf29ac486`
+(78,448 bytes).
+
+Both the ordinary `static-check` and the stronger independent prepared-packet
+audit passed. The latter rederived all 76 transforms from the 25 GiB source
+packet, verified canonical source-to-production order and exact binding,
+compared all generated producer/wave bytes with the rederived bytes, and
+accepted an exact inventory of 154 files and 80 directories. The durable
+receipt is
+`scratch/runs/exact17-v8-portfolio-prepared-audit-20260823/prepared-audit-v1/prepared-packet-audit.json`.
+
+No V8 solver job has run and PIQD has not been contacted by this campaign. The
+next authorized step is only the center-2, physical-`none`, one-core,
+3,600-second PIQD canary. This checkpoint closes neither exact-17 nor a
 production `sorry`.

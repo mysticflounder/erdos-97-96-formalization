@@ -1782,8 +1782,24 @@ The V8 runner freezes those tables, the source packet identities, and the
 separate production/runner-code checkpoint identities. Focused runner tests
 check exact artifact equality and fail-closed table tampering.
 
-This checkpoint has not prepared the transformed V8 portfolio and has not
-contacted PIQD. After the frozen runner is committed, the required next gates
-are local `prepare`, independent `static-check`, and only then the single
-center-2, physical-`none` canary. It closes neither exact-17 nor a production
+The transformed V8 portfolio is now prepared locally under the governed
+76-cell output root. Its campaign is 137,737 bytes with SHA-256
+`2976cd9174b95e93b270de64c0c204916ba1fd3918cc87f3c25c82d569b39bff`;
+its run manifest is 78,448 bytes with SHA-256
+`fcd96af6f99e8b730a3d4a7196a81d7b76a478af85d11abb166d7efdf29ac486`.
+The ordinary V8 `static-check` passed.
+
+A separate read-only auditor then rederived all 76 source and production
+identities, enforced canonical source-to-production order and binding, scanned
+every 308-variable / 7,409,845-clause cell, compared every generated producer
+and wave manifest byte-for-byte with its fresh transform, and rejected missing,
+extra, symlinked, or special output entries. The exact inventory was 154 files
+and 80 directories, and the audit passed. Its compact receipt is
+`scratch/runs/exact17-v8-portfolio-prepared-audit-20260823/prepared-audit-v1/prepared-packet-audit.json`;
+the replayable checker is
+`scripts/audit_piqd_exact17_v8_prepared_portfolio.py`.
+
+Neither preparation nor either audit contacted PIQD or launched a solver. The
+next authorized mutation is only the single center-2, physical-`none`, one-core,
+3,600-second canary. This checkpoint closes neither exact-17 nor a production
 `sorry`.

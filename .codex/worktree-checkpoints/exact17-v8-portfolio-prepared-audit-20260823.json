@@ -1,0 +1,30 @@
+{
+  "base_head": "54278a356ca8cdd29c43eb3393667524fb99cd75",
+  "created_utc": "2026-08-23T23:31:59Z",
+  "durable_paths": [
+    ".codex/worktree-checkpoints/exact17-v8-prepared-packet-auditor-20260823.json",
+    ".codex/worktree-checkpoints/exact17-v8-two-kalmanson-v8-sat-portfolio-20260823.json",
+    "scratch/runs/exact17-canary-perp-bisector-survivor-four-point-two-circle-v8-two-kalmanson-refinements-sat-portfolio-v8-20260823/sat-profile-portfolio-v8/artifacts/campaign-manifest.json",
+    "scratch/runs/exact17-canary-perp-bisector-survivor-four-point-two-circle-v8-two-kalmanson-refinements-sat-portfolio-v8-20260823/sat-profile-portfolio-v8/run_manifest.json",
+    "scratch/runs/exact17-v8-identity-freeze-20260823/identity-freeze-v1/derived-runner-identities.json",
+    "scratch/runs/exact17-v8-portfolio-prepared-audit-20260823/prepared-audit-v1/prepared-packet-audit.json",
+    "scratch/runs/exact17-v8-portfolio-prepared-audit-20260823/prepared-audit-v1/run_manifest.json",
+    "scratch/runs/exact17-v8-two-kalmanson-successor-preparer-20260823/preparation-v1/artifacts/campaign-manifest.json",
+    "scratch/runs/exact17-v8-two-kalmanson-successor-preparer-20260823/preparation-v1/run_manifest.json",
+    "scripts/audit_piqd_exact17_v8_prepared_portfolio.py",
+    "scripts/run_piqd_exact17_canary_perp_bisector_survivor_four_point_two_circle_v8_two_kalmanson_refinements_sat_portfolio.py",
+    "scripts/test_audit_piqd_exact17_v8_prepared_portfolio.py"
+  ],
+  "generated_roots": [
+    "scratch/runs/exact17-v8-portfolio-prepared-audit-20260823/prepared-audit-v1"
+  ],
+  "lane_id": "exact17-v8-portfolio-prepared-audit-20260823",
+  "manifest_sha256": "513df1ccfb3fff73d06c35099903f0747400313a6f19b9f90512ac8c1b0eff25",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exact17-v8-portfolio-prepared-audit-20260823.json",
+    "docs/computational-closure-plan-2026-07-28.md",
+    "docs/specs/p97-exact17-cap9-lean-to-sat-route-v1.md"
+  ],
+  "owner": "exact17-v8-portfolio-prepared-audit",
+  "schema": "worktree-lane-checkpoint/v1"
+}
