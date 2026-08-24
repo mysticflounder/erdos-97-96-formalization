@@ -1,0 +1,24 @@
+{
+  "base_head": "f73cb33ca01f66aa7e9f25dbd779f267a32f3027",
+  "created_utc": "2026-08-24T00:31:35Z",
+  "durable_paths": [
+    "scratch/runs/exact17-canary-perp-bisector-survivor-four-point-two-circle-v8-two-kalmanson-refinements-sat-portfolio-v8-20260823/sat-profile-portfolio-v8/artifacts/campaign-manifest.json",
+    "scratch/runs/exact17-canary-perp-bisector-survivor-four-point-two-circle-v8-two-kalmanson-refinements-sat-portfolio-v8-20260823/sat-profile-portfolio-v8/artifacts/canary-result.json",
+    "scratch/runs/exact17-canary-perp-bisector-survivor-four-point-two-circle-v8-two-kalmanson-refinements-sat-portfolio-v8-20260823/sat-profile-portfolio-v8/events/canary-perp-bisector-survivor-four-point-two-circle-v8-two-kalmanson-refinements-next-center-02-physical-none-sat-profile-cadical-1core-3600s.jsonl",
+    "scratch/runs/exact17-canary-perp-bisector-survivor-four-point-two-circle-v8-two-kalmanson-refinements-sat-portfolio-v8-20260823/sat-profile-portfolio-v8/run_manifest.json",
+    "scripts/mine_exact17_canary_perp_bisector_survivor_four_point_two_circle_v8_two_kalmanson_refinements_sat_model.py",
+    "scripts/prepare_exact17_canary_perp_bisector_survivor_four_point_two_circle_v8_two_kalmanson_refinements_physical_slice_cells.py",
+    "scripts/run_exact17_v8_wave_miner_bridge.py",
+    "scripts/run_piqd_exact17_canary_perp_bisector_survivor_four_point_two_circle_v8_two_kalmanson_refinements_sat_portfolio.py"
+  ],
+  "generated_roots": [
+    "scratch/runs/exact17-v8-canary-diagnostic-mine-20260824/canary-a785104c"
+  ],
+  "lane_id": "exact17-v8-canary-diagnostic-mine-20260824",
+  "manifest_sha256": "32330491a15f202867ffedb714297bf30afba7551722bac939b806cf75f03207",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exact17-v8-canary-diagnostic-mine-20260824.json"
+  ],
+  "owner": "exact17-v8-canary-diagnostic-mine",
+  "schema": "worktree-lane-checkpoint/v1"
+}
