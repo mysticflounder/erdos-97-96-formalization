@@ -218,6 +218,45 @@ definition-variable family layer.  Sample evidence puts S2's marginal value
 beyond S1 at 2 of 300 models, so the S1-only bank is the proposed first
 installation.
 
+## v27 construction step 1: the generated cell-6 class-cut bank module (2026-08-23)
+
+`scratch/rigid221-sourceheavy-anchor/core-pair/derive_s1_class_cut_bank.py`
+re-derives the S1 cut list with the recorded anchors enforced as hard
+assertions (EMPIRICAL, exhaustive): 28 of 60 ordered class triples pass the
+`witnessSameSideAll48` mirror, 14 unordered combos, 290 full-row unit cuts
+with the exact recorded per-combo distribution — including the previously
+under-documented 21 cuts at `z = 0` (`(0, {3, 6/8/9})`: 7 rows each; only
+the three combos `(0, {6, 8})`, `(0, {6, 9})`, `(0, {8, 9})` host zero
+rows).  The candidate surface authority is the bank-mirroring
+`candidate_rows` derivation, asserted equal to the live
+`SourceFaithfulCoverInstance` candidates at every class center.  Output:
+`s1_class_cut_manifest_v1.json` (cut list with candidate indices, choice
+variables, and unit clauses).
+
+`generate_s1_class_cut_lean.py` deterministically emits the generated
+module
+`lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactTwelveRigid221PhysicalClassCell6PositiveCuts.lean`:
+`cutEntries` (the 290 `(RowChoice, PhysicalClassCutData.witness)` pairs),
+`cutEntries_check` (every entry passes `PhysicalClassCutData.check 0 3`),
+`physicalClassCell6Bank : List (PhysicalClassPositiveNogood 0 3)` via
+`ofCut`, and `physicalClassCell6Bank_encodable` (every choice lies on the
+frozen safe candidate surface — the exact `hclassEncodable` hypothesis of
+the class-extended terminal consumer).
+
+Validation (2026-08-23): module builds green; the only new warnings are
+the three `native_decide` style-linter notes, matching the
+generated-certificate policy of every existing family module; axiom
+closure of all four public declarations is
+`[propext, Classical.choice, Lean.ofReduceBool, Lean.trustCompiler,
+Quot.sound]` (the pre-existing native-trust profile; no `sorryAx`);
+independent textual re-extraction of the 290 Lean entries matches the
+manifest in order and content, 290/290.
+
+Remaining v27 steps: the proof-backed Python bank builder + installer
+(clause-to-Lean-binding equality against `cutEntries`), canary
+integration after the source-order install, v27 validator freeze, and the
+run gate (canary run requires explicit authorization).
+
 Refreeze closure (2026-08-21): the documented narrowed-chain refreeze ran
 over the tree at `2d8e8d16` (contains this consumer edit `b4eb4b71` and
 the A7 checkpoint `97a6f503`) and produced **zero pin rewrites** — every
