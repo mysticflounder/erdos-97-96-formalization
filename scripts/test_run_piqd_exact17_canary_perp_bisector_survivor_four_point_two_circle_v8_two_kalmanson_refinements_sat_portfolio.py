@@ -250,15 +250,15 @@ def test_v8_frozen_source_support_and_identity_pins_are_exact() -> None:
         107_061,
     )
     assert (runner.CHECKPOINT_SHA256, runner.CHECKPOINT_BYTES) == (
-        "e20fc6d29bcdf8452c2406504e5c8985701f7638564a26bcbe4a24479b643b42",
-        1_328,
+        "b066e37be9241c67c2ffa8d337342b53ca7f747766dcdc24b18d43fc04317f2b",
+        1_365,
     )
     assert (
         runner.RUNNER_CODE_CHECKPOINT_SHA256,
         runner.RUNNER_CODE_CHECKPOINT_BYTES,
     ) == (
-        "d9d3aba8eb3b4aa37d93ddca6a57d6a4ec8ebeadb7591f10a18e8257d578e007",
-        1_321,
+        "77d5b42ad3038c9cb4e1949d1b20866cd8d89d4fae0347d99064d73237d794ac",
+        1_348,
     )
     assert len(runner.SOURCE_CELL_IDENTITIES) == 76
     assert len(runner.PRODUCTION_CELL_IDENTITIES) == 76
@@ -480,9 +480,8 @@ def _production_checkpoint() -> dict[str, object]:
 
 
 def test_v8_checkpoint_roles_are_distinct_and_source_clean() -> None:
-    # The preparation config intentionally pins the pre-repair runner bytes
-    # until the control-plane owner refreezes it.  Exercise only this runner's
-    # independent checkpoint-role contract here.
+    # The refrozen preparation config and both checkpoint roles are now bound
+    # to the corrected production control plane.
     runner._validate_checkpoint_roles()
     assert runner.CHECKPOINT_RELATIVE != runner.RUNNER_CODE_CHECKPOINT_RELATIVE
     runner._validate_production_checkpoint_payload(_production_checkpoint())

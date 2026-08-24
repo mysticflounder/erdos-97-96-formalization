@@ -28,19 +28,19 @@ import run_piqd_exact17_canary_perp_bisector_survivor_four_point_two_circle_v7_t
 PREFIX = miner.PREFIX
 LANE_ID = (
     "exact17-canary-perp-bisector-survivor-four-point-two-circle-v8-two-"
-    "kalmanson-refinements-sat-portfolio-v8-20260823"
+    "kalmanson-refinements-sat-portfolio-v8-refrozen-20260824"
 )
-RUN_ID = "sat-profile-portfolio-v8"
-RUN_OWNER = LANE_ID.removesuffix("-20260823")
-BASE_HEAD = preparer.BASE_HEAD
+RUN_ID = "sat-profile-portfolio-v8-refrozen"
+RUN_OWNER = LANE_ID.removesuffix("-20260824")
+BASE_HEAD = "956dfd82b07262a2de32c96c533920d1b3fd7ac9"
 RUNNER_CODE_CHECKPOINT_RELATIVE = (
-    ".codex/worktree-checkpoints/exact17-v8-control-plane-20260823.json"
+    ".codex/worktree-checkpoints/exact17-v8-refrozen-control-plane-20260824.json"
 )
-RUNNER_CODE_CHECKPOINT_LANE_ID = "exact17-v8-control-plane-20260823"
-RUNNER_CODE_CHECKPOINT_BASE_HEAD = "dbd449d772908af330686d6ddde7df7a6d5026b0"
+RUNNER_CODE_CHECKPOINT_LANE_ID = "exact17-v8-refrozen-control-plane-20260824"
+RUNNER_CODE_CHECKPOINT_BASE_HEAD = BASE_HEAD
 CHECKPOINT_RELATIVE = (
     ".codex/worktree-checkpoints/"
-    "exact17-v8-two-kalmanson-v8-sat-portfolio-20260823.json"
+    "exact17-v8-refrozen-sat-portfolio-20260824.json"
 )
 SOURCE_PREPARER_RELATIVE = preparer.PREPARER_PATH.relative_to(ROOT).as_posix()
 EXPECTED_SOURCE_PREPARER_RELATIVE = SOURCE_PREPARER_RELATIVE
@@ -120,10 +120,10 @@ SOURCE_RUN_MANIFEST_BYTES = 2_543
 SOURCE_PREPARER_COMMIT = "822e2690959721c52749ea68a4e304b351a3592d"
 SOURCE_PREPARER_SHA256 = "03554c21050807722f57bd363088e0cec4afb4f33425e366ad23ba4092f081d0"
 SOURCE_PREPARER_BYTES = 107_061
-CHECKPOINT_SHA256 = "e20fc6d29bcdf8452c2406504e5c8985701f7638564a26bcbe4a24479b643b42"
-CHECKPOINT_BYTES = 1_328
-RUNNER_CODE_CHECKPOINT_SHA256 = "d9d3aba8eb3b4aa37d93ddca6a57d6a4ec8ebeadb7591f10a18e8257d578e007"
-RUNNER_CODE_CHECKPOINT_BYTES = 1_321
+CHECKPOINT_SHA256 = "b066e37be9241c67c2ffa8d337342b53ca7f747766dcdc24b18d43fc04317f2b"
+CHECKPOINT_BYTES = 1_365
+RUNNER_CODE_CHECKPOINT_SHA256 = "77d5b42ad3038c9cb4e1949d1b20866cd8d89d4fae0347d99064d73237d794ac"
+RUNNER_CODE_CHECKPOINT_BYTES = 1_348
 SOURCE_CELL_IDENTITIES: dict[str, dict[str, str | int]] = {'canary-perp-bisector-survivor-four-point-two-circle-v8-two-kalmanson-refinements-next-center-00-physical-none': {'cnf_bytes': 346306916,
                                                                                                                    'cnf_sha256': '2ebae34e0cfe9a993aa9a45efa676f071766bd98f69342549e26233b0bcbcfdd',
                                                                                                                    'producer_bytes': 8868,
