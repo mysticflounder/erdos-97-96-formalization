@@ -257,6 +257,24 @@ Remaining v27 steps: the proof-backed Python bank builder + installer
 integration after the source-order install, v27 validator freeze, and the
 run gate (canary run requires explicit authorization).
 
+Dedup correction (2026-08-23, step 2 in progress): the 290 cut instances
+collapse to **229 distinct hosted rows** (28 rows host three admissible
+pairs each; one row at `z = 3` hosts six; distinct rows per center:
+21 at `z = 0`, 152 at `z = 3`, 28 at `z = 6`, 28 at `z = 9`).  Because
+the Lean terminal formula maps `learnedClause` over the bank list and
+the Python installer must stay byte-aligned with it, the emitted cut
+list carries one entry per distinct row (first admissible witness in
+combo order) so the CNF suffix is duplicate-free: 229 unit clauses, not
+290.  The derive/generate scripts and the new bank module
+`census/card_head/exact12_physical_class_cut_bank.py` (build,
+live-source attestation, snapshot recompilation, install-after-
+source-order, install attestation; bank sha over strict canonical JSON)
+are updated to the 229-cut contract with the 290-instance distribution
+still asserted upstream.  The regenerated 229-entry Lean module was
+awaiting its fresh build at the time of this note; treat the 229-cut
+Lean/bank pair as unvalidated until a green build and axiom audit are
+recorded.
+
 Refreeze closure (2026-08-21): the documented narrowed-chain refreeze ran
 over the tree at `2d8e8d16` (contains this consumer edit `b4eb4b71` and
 the A7 checkpoint `97a6f503`) and produced **zero pin rewrites** — every
