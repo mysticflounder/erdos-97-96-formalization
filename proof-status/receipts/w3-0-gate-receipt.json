@@ -6,7 +6,7 @@
   "generated_at_utc": "2026-08-25T06:50:59Z",
   "git_head": "39a4014108f430e43ec84df98ec8f2eeebe08e12",
   "git_head_short": "39a40141",
-  "head_note": "Bound to commit 39a4014108f430e43ec84df98ec8f2eeebe08e12. Every path below is committed at that commit and its sha256 was taken from `git show 39a40141:<path>`. The checker's draft at the previous HEAD is preserved under historical_precommit_snapshot_w3_0b; the original W3-0 draft at f747d0ef under historical_precommit_snapshot_w3_0; the 11-file scope of c6fc78d0 under c6fc78d0_committed_state.",
+  "head_note": "Bound to commit 39a4014108f430e43ec84df98ec8f2eeebe08e12. Every path below is committed at that commit and its sha256 was taken from `git show 39a40141:<path>`. The original W3-0 checker draft at f747d0ef is preserved under historical_precommit_snapshot_w3_0 (the W3-0b pre-commit draft is this receipt's own gates/remediation sections, taken at c6fc78d0 before the remediation commit); the 11-file scope of c6fc78d0 under c6fc78d0_committed_state.",
   "scope_note": "W3-0/W3-0b: scripts and proof-status only; no Lean; no live factorization entry; no promotion claim",
   "remediation_files": {
     "note": "sha256 of the WORKING-TREE bytes the gates below actually exercised, computed with `shasum -a 256` at gate time. Four are modified relative to c6fc78d0; proof-status/README.md is modified; proof-status/legacy-import-exceptions.json is UNCHANGED from c6fc78d0 (same digest) and was correctly left untouched -- its base_head f747d0ef is a commit and an ancestor of HEAD, and its 'exceptions' list is already empty.",
@@ -1016,3 +1016,4 @@
     }
   ]
 }
+
