@@ -40,7 +40,99 @@ check --baseline DIR
     ``proof-blueprint refs --check`` build id and staleness counts that the
     verdict was computed against.
 
+check ... --require-factorized LABEL
+    Additionally require a VERIFIED ``p97-factorization/v2`` block on every
+    REACHABLE leaf of the named cluster (a ``CLUSTER_*`` code, e.g. ``TD``);
+    repeatable.  Without the flag, missing blocks are only counted.
+
 Exit codes: 0 pass, 1 drift or metadata violation, 2 operational failure.
+
+Factorization entries (W3-0)
+----------------------------
+A reviewed ``obligations-meta.json`` entry MAY carry a ``factorization`` block
+recording the machine-checkable shape a cluster coordinator refactor leaves
+behind (audit "Phase 3 - cluster coordinators": *every old leaf has a
+machine-checked factorization entry in the obligation registry*)::
+
+    "factorization": {
+      "schema": "p97-factorization/v2",
+      "obligation_id": "<the entry's own id>",
+      "roles": {"legacy_wrapper": Sym, "coordinator": Sym,
+                "producer": Sym, "eliminator": Sym, "open_leaf": Sym},
+      "transitive": [{"from": "<role>", "to": "<role>", "via": [Sym, ...]}],
+      "pinned": {"legacy_wrapper_statement_sha256": <hex>,
+                 "open_leaf_statement_sha256": <hex>},
+      "note": "<free prose>"
+    }
+
+``p97-factorization/v1`` is the same block WITHOUT the ``pinned`` digests.  It
+still loads, is counted as a WARNING in the receipt, and is NEVER reported as a
+verified factorization: without pinned statement digests nothing binds the
+block to the statements it claims to factor.  A meta file with no factorization
+block at all is unchanged legacy input.  Any key inside a block outside the set
+above is a metadata violation, as is an unknown ``schema``.
+
+What a v2 block must satisfy (all violations are reported, none are inferred):
+
+* the five roles are DISTINCT, exact, fully qualified, PUBLIC declarations that
+  each resolve to exactly one index record (``search --name`` filtered to an
+  exact fully-qualified match; zero or more than one record is ambiguous and is
+  a violation, as is ``private == true``);
+* the direct-call chain ``legacy_wrapper -> coordinator``,
+  ``coordinator -> producer``, ``coordinator -> eliminator`` and
+  ``eliminator -> open_leaf`` holds in the kernel-mined call graph.  "A directly
+  calls B" is decided as ``A in callers(B)``, where ``callers(B)`` is exactly
+  what ``proof-blueprint search --uses B`` returns (the declarations whose
+  proofs use B).  A ``transitive`` row REPLACES the direct check for its
+  ``(from, to)`` pair by checking every consecutive hop of
+  ``from -> via[0] -> ... -> via[-1] -> to`` directly; a pair with no row must
+  be direct;
+* the direct-call relation RESTRICTED to the five role symbols is acyclic;
+* ``open_leaf`` is the registry entry's ``lean_decl`` (after the alias
+  migration below) and has ``has_sorry == true``;
+* the pinned ``open_leaf`` and ``legacy_wrapper`` digests equal the current
+  statement digests of those two declarations;
+* every symbol the block names (roles and ``via`` hops) is mined for the
+  CURRENT build - not stale, not never-mined;
+* the ``producer`` is kernel clean: its transitive axiom closure, read from
+  ``proof-blueprint axioms``, contains no ``sorryAx``, no ``Lean.ofReduceBool``,
+  no ``Lean.trustCompiler`` and no axiom the tool does not tag ``core``.  A
+  ``has_sorry`` scan is deliberately NOT used: it cannot see a transitively
+  reached ``sorry``.  ``coordinator`` and ``eliminator`` consume the open leaf
+  and therefore carry ``sorryAx`` BY DESIGN, so for those two the closure may
+  add nothing beyond core axioms and ``sorryAx``; any other custom or native
+  trust is a violation.
+
+Statement digest
+    ``sha256`` of the index record's ``signature`` string after collapsing every
+    whitespace run to one space and stripping leading/trailing whitespace
+    (``" ".join(text.split())``), encoded UTF-8, lowercase hex.  The
+    normalization exists so that re-indentation of a Lean statement does not
+    read as a statement change; a token change does.
+
+Stable identity / alias migration
+    When a v2 block names an ``open_leaf`` different from the symbol the id
+    ledger currently assigns to that id, that is a RENAME, not drift: the
+    ``P97-*`` id FOLLOWS the new ``open_leaf``, and the old public name is
+    recorded in ``id-assignments.json`` under ``aliases`` as
+    ``{"aliases": [<old>, ...], "renamed_from": <old>,
+    "renamed_at_head": <git HEAD short>}``.  A rename is accepted only when the
+    old name still resolves to exactly one PUBLIC index record (the
+    compatibility wrapper) and is exactly the ``legacy_wrapper`` role.  It may
+    not allocate a new id, may not retire the old id, may not reuse an id
+    another entry holds, and may not alias a symbol another id already claims;
+    each of those is a violation and the ledger is left alone.  WITHOUT a
+    factorization block a ``lean_decl`` change is still ordinary drift, exactly
+    as before.  The ``aliases`` key is written only when it is non-empty, so a
+    ledger with no rename stays byte-identical.
+
+Freshness and trust are read through one injectable seam
+(``FactorizationBackend``): ``resolve``, ``callers``, ``axioms``,
+``mined_build`` and ``current_build``.  ``BlueprintBackend`` backs it with the
+``proof-blueprint`` CLI plus a READ-ONLY sqlite3 read of the blueprint database
+named by ``[paths] db`` in ``.blueprint.toml``; the tests back it with dicts.
+Every seam failure is reported as a "cannot verify" violation - freshness is
+never assumed.
 
 Standard library only.  The registry and the tables are deterministic (no
 timestamps, every collection sorted); receipts are timestamped by design.
@@ -53,9 +145,11 @@ import datetime
 import hashlib
 import json
 import shutil
+import sqlite3
 import subprocess
 import sys
 import tempfile
+import tomllib
 from pathlib import Path
 
 SCHEMA = "p97-obligation-registry/v1"
@@ -387,14 +481,18 @@ def export_fresh(target_dir: Path) -> Path:
 
 def load_id_assignments(path: Path) -> dict:
     if not path.is_file():
-        return {"schema": ID_SCHEMA, "assigned": {}, "retired": {}}
+        return {"schema": ID_SCHEMA, "assigned": {}, "retired": {}, "aliases": {}}
     data = read_json(path)
     assigned = data.get("assigned")
     retired = data.get("retired")
+    aliases = data.get("aliases")
     return {
         "schema": data.get("schema", ID_SCHEMA),
         "assigned": dict(assigned) if isinstance(assigned, dict) else {},
         "retired": dict(retired) if isinstance(retired, dict) else {},
+        # Alias records written by the W3-0 factorization rename migration.
+        # Absent on a ledger that has never seen a rename.
+        "aliases": dict(aliases) if isinstance(aliases, dict) else {},
     }
 
 
@@ -452,6 +550,13 @@ def assign_ids(records: list[dict], ledger: dict, source_head: str) -> tuple[dic
         "assigned": {symbol: assigned[symbol] for symbol in sorted(assigned)},
         "retired": {symbol: retired[symbol] for symbol in sorted(retired)},
     }
+    # Written only when a rename has actually happened, so a ledger that has
+    # never been migrated stays byte-identical.
+    aliases = ledger.get("aliases") or {}
+    if aliases:
+        updated["aliases"] = {
+            obligation_id: aliases[obligation_id] for obligation_id in sorted(aliases)
+        }
     return current, updated
 
 
@@ -565,6 +670,1249 @@ def validate_meta(registry: dict, meta: dict) -> list[str]:
                 + " disagrees with the generated cluster " + repr(derived_cluster)
             )
     return violations
+
+
+# ---------------------------------------------------------------------------
+# factorization entries (W3-0)
+# ---------------------------------------------------------------------------
+
+FACTORIZATION_KEY = "factorization"
+FACTORIZATION_SCHEMA_V1 = "p97-factorization/v1"
+FACTORIZATION_SCHEMA_V2 = "p97-factorization/v2"
+FACTORIZATION_SCHEMAS = (FACTORIZATION_SCHEMA_V1, FACTORIZATION_SCHEMA_V2)
+
+ROLE_LEGACY_WRAPPER = "legacy_wrapper"
+ROLE_COORDINATOR = "coordinator"
+ROLE_PRODUCER = "producer"
+ROLE_ELIMINATOR = "eliminator"
+ROLE_OPEN_LEAF = "open_leaf"
+
+FACTORIZATION_ROLES = (
+    ROLE_LEGACY_WRAPPER,
+    ROLE_COORDINATOR,
+    ROLE_PRODUCER,
+    ROLE_ELIMINATOR,
+    ROLE_OPEN_LEAF,
+)
+
+# Direct caller -> callee obligations the block asserts.  A ``transitive`` row
+# replaces exactly one of these pairs by an explicit multi-step path.
+FACTORIZATION_CHAIN = (
+    (ROLE_LEGACY_WRAPPER, ROLE_COORDINATOR),
+    (ROLE_COORDINATOR, ROLE_PRODUCER),
+    (ROLE_COORDINATOR, ROLE_ELIMINATOR),
+    (ROLE_ELIMINATOR, ROLE_OPEN_LEAF),
+)
+
+PINNED_LEGACY_WRAPPER = "legacy_wrapper_statement_sha256"
+PINNED_OPEN_LEAF = "open_leaf_statement_sha256"
+PINNED_KEYS = (PINNED_LEGACY_WRAPPER, PINNED_OPEN_LEAF)
+
+BLOCK_KEYS_V2 = ("schema", "obligation_id", "roles", "transitive", "pinned", "note")
+# v1 is the same block WITHOUT pinned digests: a ``pinned`` key in a v1 block is
+# an unknown key, not a silent upgrade.
+BLOCK_KEYS_V1 = ("schema", "obligation_id", "roles", "transitive", "note")
+
+TRANSITIVE_KEYS = ("from", "to", "via")
+
+# Never acceptable in ANY role closure, whatever tag the tool prints.
+FORBIDDEN_AXIOMS = ("sorryAx", "Lean.ofReduceBool", "Lean.trustCompiler")
+# The coordinator and the eliminator consume the open leaf, so sorryAx is the
+# expected state for them; native/compiler trust is still forbidden.
+SORRY_AXIOM = "sorryAx"
+CORE_AXIOM_TAG = "core"
+
+CLUSTER_CODES = tuple(sorted(CLUSTER_LABELS))
+
+BLUEPRINT_CONFIG = ".blueprint.toml"
+SYMBOL_MINED_TABLE = "symbol_mined"
+MODULE_MINED_TABLE = "module_mined"
+HEX_DIGITS = "0123456789abcdef"
+
+
+def normalize_statement(text: str) -> str:
+    """Collapse every whitespace run to one space and strip the ends.
+
+    ``str.split()`` with no argument splits on runs of whitespace, so the join
+    below is exactly the documented normalization - no regex.
+    """
+    return " ".join(text.split())
+
+
+def statement_digest(signature: str) -> str:
+    """sha256 of a normalized index-record ``signature``, lowercase hex."""
+    return hashlib.sha256(normalize_statement(signature).encode("utf-8")).hexdigest()
+
+
+def is_sha256_hex(value: object) -> bool:
+    return (
+        isinstance(value, str)
+        and len(value) == 64
+        and all(ch in HEX_DIGITS for ch in value)
+    )
+
+
+def parenthesized_count(line: str) -> int | None:
+    """Trailing ``(n)`` of a ``proof-blueprint axioms`` header line, or None."""
+    close = line.rfind(")")
+    if close == -1:
+        return None
+    opened = line.rfind("(", 0, close)
+    if opened == -1:
+        return None
+    digits = line[opened + 1 : close].strip()
+    if not digits or not digits.isdigit():
+        return None
+    return int(digits)
+
+
+def parse_axioms_output(text: str) -> list[tuple[str, str]]:
+    """Parse ``proof-blueprint axioms <Sym>`` into ``(tag, axiom)`` pairs.
+
+    Recognised shape (the exit code is deliberately NOT trusted; the tool exits
+    nonzero for some symbols by design)::
+
+        axioms reported by `#print axioms <Sym>` (3):
+              core  propext
+          🪶 CUSTOM  sorryAx
+              core  Quot.sound
+
+    The axiom name is the last whitespace-separated token of a line and the tag
+    is the token before it, lowercased.  The list ends at the first blank or
+    unindented line.  A header count that disagrees with the number of parsed
+    lines raises, so a format change surfaces as "cannot verify" rather than as
+    a false clean verdict.
+    """
+    lines = text.splitlines()
+    header = None
+    expected = None
+    for index, raw in enumerate(lines):
+        stripped = raw.strip()
+        if stripped.startswith("axioms reported by") and stripped.endswith(":"):
+            header = index
+            expected = parenthesized_count(stripped)
+            break
+    if header is None:
+        raise RegistryError(
+            "unrecognised `" + BLUEPRINT_CMD + " axioms` output: no header line"
+        )
+    entries: list[tuple[str, str]] = []
+    for raw in lines[header + 1 :]:
+        if not raw.strip():
+            break
+        if not raw.startswith((" ", "\t")):
+            break
+        tokens = raw.split()
+        if len(tokens) < 2:
+            break
+        entries.append((tokens[-2].lower(), tokens[-1]))
+    if expected is not None and expected != len(entries):
+        raise RegistryError(
+            "`"
+            + BLUEPRINT_CMD
+            + " axioms` reported "
+            + str(expected)
+            + " axiom(s) but "
+            + str(len(entries))
+            + " line(s) parsed"
+        )
+    return entries
+
+
+class FactorizationBackend:
+    """Seam between the factorization gate and kernel-mined truth.
+
+    ``BlueprintBackend`` backs it with the ``proof-blueprint`` CLI and a
+    read-only sqlite3 read of the blueprint database; ``MappingBackend`` backs
+    it with plain dictionaries for tests.  Every method raises ``RegistryError``
+    when the underlying truth cannot be read, and the gate turns that into a
+    "cannot verify" violation.
+    """
+
+    def resolve(self, symbol: str) -> list[dict]:
+        """Index records whose fully qualified name is exactly ``symbol``."""
+        raise NotImplementedError
+
+    def callers(self, symbol: str) -> set[str]:
+        """Declarations whose proofs use ``symbol`` (the callers of it)."""
+        raise NotImplementedError
+
+    def axioms(self, symbol: str) -> list[tuple[str, str]]:
+        """Transitive kernel axiom closure as ``(tag, axiom)`` pairs."""
+        raise NotImplementedError
+
+    def mined_build(self, symbol: str) -> str | None:
+        """Build fingerprint ``symbol`` was mined against, None if never."""
+        raise NotImplementedError
+
+    def current_build(self) -> str:
+        """Build fingerprint of the CURRENT build."""
+        raise NotImplementedError
+
+
+class MappingBackend(FactorizationBackend):
+    """Dictionary-backed seam.
+
+    ``index``  symbol -> list of index records (a list of length != 1 is what an
+               unknown or ambiguous declaration looks like).
+    ``calls``  caller -> iterable of callees.  This stores the true call
+               relation; ``callers`` inverts it, so the fake answers exactly the
+               query the CLI answers.
+    ``axiom_closures`` symbol -> iterable of ``(tag, axiom)``.
+    ``mined``  symbol -> build fingerprint (absent means never mined).
+    ``build``  the current build fingerprint (None means "cannot determine").
+    """
+
+    def __init__(
+        self,
+        index: dict | None = None,
+        calls: dict | None = None,
+        axiom_closures: dict | None = None,
+        mined: dict | None = None,
+        build: str | None = None,
+    ) -> None:
+        self._index = dict(index or {})
+        self._calls = {key: set(value) for key, value in (calls or {}).items()}
+        self._axioms = {
+            key: [(str(tag), str(name)) for tag, name in value]
+            for key, value in (axiom_closures or {}).items()
+        }
+        self._mined = dict(mined or {})
+        self._build = build
+
+    def resolve(self, symbol: str) -> list[dict]:
+        return list(self._index.get(symbol, []))
+
+    def callers(self, symbol: str) -> set[str]:
+        return {
+            caller for caller, callees in self._calls.items() if symbol in callees
+        }
+
+    def axioms(self, symbol: str) -> list[tuple[str, str]]:
+        if symbol not in self._axioms:
+            raise RegistryError("no recorded axiom closure for " + symbol)
+        return list(self._axioms[symbol])
+
+    def mined_build(self, symbol: str) -> str | None:
+        return self._mined.get(symbol)
+
+    def current_build(self) -> str:
+        if not self._build:
+            raise RegistryError("no current build fingerprint recorded")
+        return self._build
+
+
+def blueprint_db_path(repo_root: Path = REPO_ROOT) -> Path:
+    """Blueprint database path named by ``[paths] db`` in ``.blueprint.toml``."""
+    config = repo_root / BLUEPRINT_CONFIG
+    if not config.is_file():
+        raise RegistryError("missing " + BLUEPRINT_CONFIG + " at " + str(repo_root))
+    try:
+        with config.open("rb") as handle:
+            data = tomllib.load(handle)
+    except (OSError, tomllib.TOMLDecodeError) as exc:
+        raise RegistryError(
+            "cannot read " + BLUEPRINT_CONFIG + ": " + str(exc)
+        ) from exc
+    paths = data.get("paths")
+    relative = paths.get("db") if isinstance(paths, dict) else None
+    if not isinstance(relative, str) or not relative:
+        raise RegistryError(BLUEPRINT_CONFIG + " has no [paths] db entry")
+    return repo_root / relative
+
+
+class BlueprintBackend(FactorizationBackend):
+    """Live seam: the ``proof-blueprint`` CLI plus a READ-ONLY database read.
+
+    Symbol resolution, the call graph and the axiom closure come from the CLI.
+    Per-symbol mined-build freshness has no CLI surface (``refs --check``
+    reports GLOBAL counts only), so it is read from the blueprint database named
+    by ``[paths] db`` in ``.blueprint.toml``, opened read-only:
+
+    * ``symbol_mined(symbol, file_hash, mined_at)`` - ``file_hash`` is the build
+      fingerprint the symbol was mined against; no row at all means never mined;
+    * ``module_mined(module_name, olean_hash, global_fp, mined_at)`` - consulted
+      only to resolve the short build id printed by ``refs --check`` to the full
+      fingerprint stored in those tables.
+
+    The CURRENT build is the id ``proof-blueprint refs --check`` prints
+    (``current build: <id>``, a short prefix), expanded to the unique full
+    fingerprint carrying that prefix in either table.  Zero or several matches
+    means the build cannot be identified, which is reported as "cannot verify",
+    never as fresh.
+    """
+
+    def __init__(self, repo_root: Path = REPO_ROOT) -> None:
+        self._root = repo_root
+        self._resolved: dict[str, list[dict]] = {}
+        self._callers: dict[str, set[str]] = {}
+        self._axioms: dict[str, list[tuple[str, str]]] = {}
+        self._mined: dict[str, str | None] = {}
+        self._build: str | None = None
+        self._build_read = False
+        self._connection: sqlite3.Connection | None = None
+
+    # -- process / database plumbing ----------------------------------------
+
+    def _run(self, args: list[str]) -> tuple[str, str]:
+        """Run one ``proof-blueprint`` invocation, returning (stdout, stderr).
+
+        The exit code is deliberately not used as an error signal: ``search``
+        exits 1 on an EMPTY result set, and an empty caller set is a legitimate
+        answer that the chain check must be able to observe.  A real failure is
+        recognised by the CLI's own ``proof-blueprint: ...`` diagnostic line,
+        which is what an unindexed argument produces.
+        """
+        command = [BLUEPRINT_CMD] + args
+        try:
+            result = subprocess.run(
+                command,
+                cwd=str(self._root),
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+        except OSError as exc:
+            raise RegistryError(
+                "cannot run " + " ".join(command) + ": " + str(exc)
+            ) from exc
+        return result.stdout, result.stderr
+
+    def _records(self, args: list[str]) -> list[dict]:
+        stdout, stderr = self._run(args)
+        for line in stderr.splitlines():
+            if line.strip().startswith(BLUEPRINT_CMD + ":"):
+                raise RegistryError(
+                    " ".join([BLUEPRINT_CMD] + args) + ": " + line.strip()
+                )
+        records = []
+        for line in stdout.splitlines():
+            line = line.strip()
+            if not line.startswith("{"):
+                continue
+            try:
+                parsed = json.loads(line)
+            except json.JSONDecodeError:
+                continue
+            if isinstance(parsed, dict):
+                records.append(parsed)
+        return records
+
+    def _cursor(self) -> sqlite3.Cursor:
+        if self._connection is None:
+            path = blueprint_db_path(self._root)
+            if not path.is_file():
+                raise RegistryError("missing blueprint database: " + str(path))
+            try:
+                self._connection = sqlite3.connect(path.as_uri() + "?mode=ro", uri=True)
+            except sqlite3.Error as exc:
+                raise RegistryError(
+                    "cannot open " + str(path) + " read-only: " + str(exc)
+                ) from exc
+        return self._connection.cursor()
+
+    def close(self) -> None:
+        if self._connection is not None:
+            self._connection.close()
+            self._connection = None
+
+    # -- seam ---------------------------------------------------------------
+
+    def resolve(self, symbol: str) -> list[dict]:
+        if symbol not in self._resolved:
+            # --name matches substrings, so the exact fully-qualified match is
+            # imposed here rather than trusted from the query.
+            records = self._records(
+                ["search", "--name", symbol, "--json", "--all", "--private"]
+            )
+            self._resolved[symbol] = [
+                record for record in records if record.get("symbol") == symbol
+            ]
+        return list(self._resolved[symbol])
+
+    def callers(self, symbol: str) -> set[str]:
+        if symbol not in self._callers:
+            records = self._records(
+                ["search", "--uses", symbol, "--json", "--all", "--private"]
+            )
+            self._callers[symbol] = {
+                record["symbol"] for record in records if record.get("symbol")
+            }
+        return set(self._callers[symbol])
+
+    def axioms(self, symbol: str) -> list[tuple[str, str]]:
+        if symbol not in self._axioms:
+            stdout, stderr = self._run(["axioms", symbol])
+            self._axioms[symbol] = parse_axioms_output(stdout + stderr)
+        return list(self._axioms[symbol])
+
+    def mined_build(self, symbol: str) -> str | None:
+        if symbol not in self._mined:
+            try:
+                cursor = self._cursor()
+                cursor.execute(
+                    "SELECT file_hash FROM " + SYMBOL_MINED_TABLE + " WHERE symbol = ?",
+                    (symbol,),
+                )
+                row = cursor.fetchone()
+            except sqlite3.Error as exc:
+                raise RegistryError(
+                    "cannot read " + SYMBOL_MINED_TABLE + ": " + str(exc)
+                ) from exc
+            self._mined[symbol] = row[0] if row else None
+        return self._mined[symbol]
+
+    def current_build(self) -> str:
+        if not self._build_read:
+            self._build_read = True
+            self._build = self._compute_current_build()
+        if not self._build:
+            raise RegistryError(
+                "cannot identify the current mined build from `"
+                + BLUEPRINT_CMD
+                + " "
+                + " ".join(REFS_CHECK_ARGS)
+                + "`"
+            )
+        return self._build
+
+    def _compute_current_build(self) -> str | None:
+        stdout, stderr = self._run(REFS_CHECK_ARGS)
+        state = parse_refs_check(stdout + stderr)
+        short = state.get("build_id")
+        if not short:
+            return None
+        matches: set[str] = set()
+        try:
+            cursor = self._cursor()
+            for table, column in (
+                (SYMBOL_MINED_TABLE, "file_hash"),
+                (MODULE_MINED_TABLE, "global_fp"),
+            ):
+                cursor.execute(
+                    "SELECT DISTINCT "
+                    + column
+                    + " FROM "
+                    + table
+                    + " WHERE substr("
+                    + column
+                    + ", 1, ?) = ?",
+                    (len(short), short),
+                )
+                matches.update(row[0] for row in cursor.fetchall() if row[0])
+        except sqlite3.Error as exc:
+            raise RegistryError("cannot read the blueprint database: " + str(exc)) from exc
+        if len(matches) == 1:
+            return matches.pop()
+        return None
+
+
+def make_backend(meta: dict) -> FactorizationBackend | None:
+    """A live backend, but only when a factorization block actually needs one.
+
+    A reviewed metadata file with no factorization block costs no extra
+    ``proof-blueprint`` invocation and no database read at all.
+    """
+    if not has_any_factorization(meta):
+        return None
+    return BlueprintBackend()
+
+
+def factorization_blocks(meta: dict) -> dict:
+    """``obligation id -> factorization block`` for every entry carrying one."""
+    blocks = {}
+    for obligation_id in sorted(meta):
+        entry = meta[obligation_id]
+        if isinstance(entry, dict) and FACTORIZATION_KEY in entry:
+            blocks[obligation_id] = entry[FACTORIZATION_KEY]
+    return blocks
+
+
+def has_any_factorization(meta: dict) -> bool:
+    return bool(factorization_blocks(meta))
+
+
+def check_block_structure(
+    obligation_id: str, block: object
+) -> tuple[str | None, dict | None, list[str]]:
+    """Schema-level checks shared by v1 and v2.
+
+    Returns ``(schema, roles, violations)``; ``schema`` is None when the block
+    cannot be classified at all.
+    """
+    if not isinstance(block, dict):
+        return None, None, [obligation_id + ": factorization block is not a JSON object"]
+
+    violations: list[str] = []
+    schema = block.get("schema")
+    if not isinstance(schema, str) or schema not in FACTORIZATION_SCHEMAS:
+        violations.append(
+            obligation_id
+            + ": factorization schema "
+            + repr(schema)
+            + " is unknown (expected one of "
+            + ", ".join(FACTORIZATION_SCHEMAS)
+            + ")"
+        )
+        return None, None, violations
+
+    allowed = BLOCK_KEYS_V2 if schema == FACTORIZATION_SCHEMA_V2 else BLOCK_KEYS_V1
+    for key in sorted(set(block) - set(allowed)):
+        violations.append(
+            obligation_id
+            + ": unknown key "
+            + repr(key)
+            + " in the "
+            + schema
+            + " factorization block"
+        )
+
+    declared = block.get("obligation_id")
+    if declared != obligation_id:
+        violations.append(
+            obligation_id
+            + ": factorization obligation_id "
+            + repr(declared)
+            + " does not name its own entry"
+        )
+
+    roles = block.get("roles")
+    if not isinstance(roles, dict):
+        violations.append(obligation_id + ": factorization roles is not a JSON object")
+        return schema, None, violations
+
+    for key in sorted(set(roles) - set(FACTORIZATION_ROLES)):
+        violations.append(
+            obligation_id + ": unknown role " + repr(key) + " in the factorization block"
+        )
+    for role in FACTORIZATION_ROLES:
+        value = roles.get(role)
+        if not isinstance(value, str) or not value.strip():
+            violations.append(
+                obligation_id
+                + ": role "
+                + role
+                + " is missing or is not a declaration name"
+            )
+
+    holders: dict[str, list[str]] = {}
+    for role in FACTORIZATION_ROLES:
+        value = roles.get(role)
+        if isinstance(value, str) and value.strip():
+            holders.setdefault(value, []).append(role)
+    for symbol in sorted(holders):
+        if len(holders[symbol]) > 1:
+            violations.append(
+                obligation_id
+                + ": roles "
+                + ", ".join(holders[symbol])
+                + " name the same declaration ("
+                + symbol
+                + "); the five roles must be distinct"
+            )
+    return schema, roles, violations
+
+
+def parse_transitive(obligation_id: str, block: dict) -> tuple[dict, list[str]]:
+    """``(from, to) -> [via, ...]`` overrides declared by the block."""
+    violations: list[str] = []
+    rows = block.get("transitive")
+    if rows is None:
+        return {}, violations
+    if not isinstance(rows, list):
+        violations.append(obligation_id + ": factorization transitive is not a list")
+        return {}, violations
+
+    overrides: dict[tuple[str, str], list[str]] = {}
+    for position, row in enumerate(rows):
+        label = "transitive[" + str(position) + "]"
+        if not isinstance(row, dict):
+            violations.append(obligation_id + ": " + label + " is not a JSON object")
+            continue
+        for key in sorted(set(row) - set(TRANSITIVE_KEYS)):
+            violations.append(
+                obligation_id + ": unknown key " + repr(key) + " in " + label
+            )
+        source = row.get("from")
+        target = row.get("to")
+        via = row.get("via")
+        if (source, target) not in FACTORIZATION_CHAIN:
+            violations.append(
+                obligation_id
+                + ": "
+                + label
+                + " names the pair ("
+                + repr(source)
+                + ", "
+                + repr(target)
+                + "), which is not a factorization chain edge"
+            )
+            continue
+        if not isinstance(via, list) or not via:
+            violations.append(
+                obligation_id + ": " + label + " has no non-empty via path"
+            )
+            continue
+        if not all(isinstance(hop, str) and hop.strip() for hop in via):
+            violations.append(
+                obligation_id + ": " + label + " has a via hop that is not a declaration name"
+            )
+            continue
+        if (source, target) in overrides:
+            violations.append(
+                obligation_id
+                + ": "
+                + label
+                + " repeats the pair ("
+                + source
+                + ", "
+                + target
+                + ")"
+            )
+            continue
+        overrides[(source, target)] = list(via)
+    return overrides, violations
+
+
+def find_role_cycle(
+    symbols: list[str], edges: dict[str, set[str]]
+) -> list[str] | None:
+    """A directed cycle over ``symbols`` under ``edges``, or None."""
+    colour = {symbol: 0 for symbol in symbols}
+    stack: list[str] = []
+    found: list[list[str]] = []
+
+    def visit(node: str) -> bool:
+        colour[node] = 1
+        stack.append(node)
+        for successor in sorted(edges.get(node, set())):
+            if successor not in colour:
+                continue
+            if colour[successor] == 1:
+                start = stack.index(successor)
+                found.append(stack[start:] + [successor])
+                return True
+            if colour[successor] == 0 and visit(successor):
+                return True
+        stack.pop()
+        colour[node] = 2
+        return False
+
+    for symbol in sorted(symbols):
+        if colour[symbol] == 0 and visit(symbol):
+            return found[0]
+    return None
+
+
+def _calls_directly(
+    backend: FactorizationBackend, caller: str, callee: str
+) -> bool:
+    """``caller`` directly calls ``callee`` in the kernel-mined call graph."""
+    return caller in backend.callers(callee)
+
+
+def check_v2_block(
+    obligation_id: str,
+    block: dict,
+    roles: dict,
+    registry_entry: dict | None,
+    backend: FactorizationBackend | None,
+) -> list[str]:
+    """Live checks for one well-formed v2 block; empty list means verified."""
+    violations: list[str] = []
+    if backend is None:
+        return [
+            obligation_id
+            + ": cannot verify the factorization (no kernel-mined backend available)"
+        ]
+
+    role_symbol = {role: roles.get(role) for role in FACTORIZATION_ROLES}
+
+    # -- pinned digests, structurally ---------------------------------------
+    pinned = block.get("pinned")
+    if not isinstance(pinned, dict):
+        violations.append(
+            obligation_id + ": " + FACTORIZATION_SCHEMA_V2 + " block has no pinned digests"
+        )
+        pinned = {}
+    else:
+        for key in sorted(set(pinned) - set(PINNED_KEYS)):
+            violations.append(
+                obligation_id + ": unknown key " + repr(key) + " in the pinned digests"
+            )
+        for key in PINNED_KEYS:
+            if key not in pinned:
+                violations.append(obligation_id + ": pinned digest " + key + " is missing")
+            elif not is_sha256_hex(pinned.get(key)):
+                violations.append(
+                    obligation_id
+                    + ": pinned digest "
+                    + key
+                    + " is not a lowercase sha256 hex string"
+                )
+
+    # -- role resolution ----------------------------------------------------
+    records: dict[str, dict] = {}
+    for role in FACTORIZATION_ROLES:
+        symbol = role_symbol[role]
+        if not isinstance(symbol, str) or not symbol.strip():
+            continue
+        try:
+            matches = backend.resolve(symbol)
+        except RegistryError as exc:
+            violations.append(
+                obligation_id
+                + ": cannot verify "
+                + role
+                + " ("
+                + symbol
+                + "): "
+                + str(exc)
+            )
+            continue
+        if len(matches) != 1:
+            violations.append(
+                obligation_id
+                + ": "
+                + role
+                + " ("
+                + symbol
+                + ") resolves to "
+                + str(len(matches))
+                + " index records; exactly one exact match is required"
+            )
+            continue
+        record = matches[0]
+        if record.get("private") is True:
+            violations.append(
+                obligation_id
+                + ": "
+                + role
+                + " ("
+                + symbol
+                + ") is a private declaration; every role must be public"
+            )
+            continue
+        records[role] = record
+
+    # -- open leaf identity -------------------------------------------------
+    leaf = role_symbol[ROLE_OPEN_LEAF]
+    if registry_entry is None:
+        violations.append(
+            obligation_id + ": the factorization names no live registry entry"
+        )
+    elif isinstance(leaf, str) and leaf != registry_entry.get("lean_decl"):
+        violations.append(
+            obligation_id
+            + ": open_leaf ("
+            + leaf
+            + ") is not the registry lean_decl ("
+            + str(registry_entry.get("lean_decl"))
+            + ")"
+        )
+    if ROLE_OPEN_LEAF in records and records[ROLE_OPEN_LEAF].get("has_sorry") is not True:
+        violations.append(
+            obligation_id
+            + ": open_leaf ("
+            + str(leaf)
+            + ") has no sorry; an open leaf must carry one"
+        )
+
+    # -- pinned digests, against the live statements ------------------------
+    for role, key, label in (
+        (ROLE_OPEN_LEAF, PINNED_OPEN_LEAF, "open leaf"),
+        (ROLE_LEGACY_WRAPPER, PINNED_LEGACY_WRAPPER, "legacy wrapper"),
+    ):
+        expected = pinned.get(key)
+        if not is_sha256_hex(expected) or role not in records:
+            continue
+        signature = records[role].get("signature")
+        if not isinstance(signature, str):
+            violations.append(
+                obligation_id
+                + ": "
+                + role
+                + " ("
+                + str(role_symbol[role])
+                + ") has no indexed statement to digest"
+            )
+            continue
+        actual = statement_digest(signature)
+        if actual != expected:
+            violations.append(
+                obligation_id
+                + ": "
+                + label
+                + " statement changed ("
+                + role
+                + " "
+                + str(role_symbol[role])
+                + ": pinned "
+                + expected[:12]
+                + ", current "
+                + actual[:12]
+                + ")"
+            )
+
+    # -- freshness ----------------------------------------------------------
+    named: list[tuple[str, str]] = []
+    for role in FACTORIZATION_ROLES:
+        symbol = role_symbol[role]
+        if isinstance(symbol, str) and symbol.strip():
+            named.append((role, symbol))
+    overrides, transitive_violations = parse_transitive(obligation_id, block)
+    violations.extend(transitive_violations)
+    for (source, target), via in sorted(overrides.items()):
+        for position, hop in enumerate(via):
+            named.append(("transitive " + source + " -> " + target + " via[" + str(position) + "]", hop))
+
+    try:
+        current = backend.current_build()
+    except RegistryError as exc:
+        current = None
+        violations.append(
+            obligation_id + ": cannot verify mined freshness: " + str(exc)
+        )
+    if current is not None:
+        for label, symbol in named:
+            try:
+                mined = backend.mined_build(symbol)
+            except RegistryError as exc:
+                violations.append(
+                    obligation_id
+                    + ": cannot verify mined freshness of "
+                    + label
+                    + " ("
+                    + symbol
+                    + "): "
+                    + str(exc)
+                )
+                continue
+            if mined is None:
+                violations.append(
+                    obligation_id
+                    + ": "
+                    + label
+                    + " ("
+                    + symbol
+                    + ") is never mined; the factorization cannot be verified against"
+                    + " the current build"
+                )
+            elif mined != current:
+                violations.append(
+                    obligation_id
+                    + ": "
+                    + label
+                    + " ("
+                    + symbol
+                    + ") is stale (mined against build "
+                    + mined[:12]
+                    + ", current build "
+                    + current[:12]
+                    + ")"
+                )
+
+    # -- chain --------------------------------------------------------------
+    for source, target in FACTORIZATION_CHAIN:
+        source_symbol = role_symbol[source]
+        target_symbol = role_symbol[target]
+        if not isinstance(source_symbol, str) or not isinstance(target_symbol, str):
+            continue
+        via = overrides.get((source, target))
+        if via is None:
+            hops = [(source, source_symbol, target, target_symbol)]
+        else:
+            path = [(source, source_symbol)]
+            for position, hop in enumerate(via):
+                path.append(("via[" + str(position) + "]", hop))
+            path.append((target, target_symbol))
+            hops = [
+                (path[index][0], path[index][1], path[index + 1][0], path[index + 1][1])
+                for index in range(len(path) - 1)
+            ]
+        for caller_label, caller, callee_label, callee in hops:
+            try:
+                direct = _calls_directly(backend, caller, callee)
+            except RegistryError as exc:
+                violations.append(
+                    obligation_id
+                    + ": cannot verify that "
+                    + caller_label
+                    + " ("
+                    + caller
+                    + ") directly calls "
+                    + callee_label
+                    + " ("
+                    + callee
+                    + "): "
+                    + str(exc)
+                )
+                continue
+            if not direct:
+                violations.append(
+                    obligation_id
+                    + ": "
+                    + caller_label
+                    + " ("
+                    + caller
+                    + ") does not directly call "
+                    + callee_label
+                    + " ("
+                    + callee
+                    + ")"
+                )
+
+    # -- cycles over the five role symbols ----------------------------------
+    role_symbols = [
+        symbol
+        for symbol in (role_symbol[role] for role in FACTORIZATION_ROLES)
+        if isinstance(symbol, str) and symbol.strip()
+    ]
+    unique_symbols = sorted(set(role_symbols))
+    edges: dict[str, set[str]] = {symbol: set() for symbol in unique_symbols}
+    cycle_readable = True
+    for callee in unique_symbols:
+        try:
+            callers = backend.callers(callee)
+        except RegistryError:
+            cycle_readable = False
+            break
+        for caller in unique_symbols:
+            if caller in callers:
+                edges[caller].add(callee)
+    if cycle_readable:
+        cycle = find_role_cycle(unique_symbols, edges)
+        if cycle is not None:
+            names = {}
+            for role in FACTORIZATION_ROLES:
+                symbol = role_symbol[role]
+                if isinstance(symbol, str):
+                    names.setdefault(symbol, role)
+            violations.append(
+                obligation_id
+                + ": role cycle "
+                + " -> ".join(
+                    names.get(symbol, "?") + " (" + symbol + ")" for symbol in cycle
+                )
+            )
+
+    # -- axiom closures -----------------------------------------------------
+    for role in (ROLE_PRODUCER, ROLE_COORDINATOR, ROLE_ELIMINATOR):
+        symbol = role_symbol[role]
+        if not isinstance(symbol, str) or not symbol.strip():
+            continue
+        try:
+            closure = backend.axioms(symbol)
+        except RegistryError as exc:
+            violations.append(
+                obligation_id
+                + ": cannot verify the axiom closure of "
+                + role
+                + " ("
+                + symbol
+                + "): "
+                + str(exc)
+            )
+            continue
+        consumer = role in (ROLE_COORDINATOR, ROLE_ELIMINATOR)
+        for tag, axiom in closure:
+            if axiom == SORRY_AXIOM and consumer:
+                continue
+            if axiom in FORBIDDEN_AXIOMS:
+                violations.append(
+                    obligation_id
+                    + ": "
+                    + role
+                    + " ("
+                    + symbol
+                    + ") axiom closure contains "
+                    + axiom
+                    + (
+                        "; the producer must be kernel clean"
+                        if not consumer
+                        else "; a consumer may add nothing beyond core axioms and "
+                        + SORRY_AXIOM
+                    )
+                )
+            elif tag != CORE_AXIOM_TAG:
+                violations.append(
+                    obligation_id
+                    + ": "
+                    + role
+                    + " ("
+                    + symbol
+                    + ") axiom closure contains "
+                    + axiom
+                    + " tagged "
+                    + repr(tag)
+                    + ", which is not a core axiom"
+                )
+    return violations
+
+
+def check_factorizations(
+    registry: dict,
+    meta: dict,
+    backend: FactorizationBackend | None,
+    required_clusters: tuple[str, ...] = (),
+) -> dict:
+    """Validate every factorization block against kernel-mined truth.
+
+    Returns ``{"summary": <receipt section>, "verified_ids": [...],
+    "missing_ids": [...]}``.  ``summary`` carries exactly the receipt keys.
+    """
+    by_id = {item["id"]: item for item in registry.get("obligations", [])}
+    blocks = factorization_blocks(meta)
+
+    violations: list[str] = []
+    schema_versions: dict[str, int] = {}
+    verified_ids: list[str] = []
+    v1_warnings = 0
+
+    for obligation_id in sorted(blocks):
+        block = blocks[obligation_id]
+        schema, roles, structural = check_block_structure(obligation_id, block)
+        violations.extend(structural)
+        key = schema if schema is not None else "unknown"
+        schema_versions[key] = schema_versions.get(key, 0) + 1
+        if schema == FACTORIZATION_SCHEMA_V1:
+            v1_warnings += 1
+            continue
+        if schema != FACTORIZATION_SCHEMA_V2 or roles is None or structural:
+            continue
+        live = check_v2_block(
+            obligation_id, block, roles, by_id.get(obligation_id), backend
+        )
+        violations.extend(live)
+        if not live:
+            verified_ids.append(obligation_id)
+
+    reachable_ids = sorted(
+        item["id"] for item in registry.get("obligations", []) if item.get("reachable")
+    )
+    missing_ids = [
+        obligation_id for obligation_id in reachable_ids if obligation_id not in blocks
+    ]
+
+    verified = set(verified_ids)
+    for code in required_clusters:
+        label = CLUSTER_LABELS.get(code, code)
+        for obligation_id in reachable_ids:
+            if by_id[obligation_id].get("cluster") != label:
+                continue
+            if obligation_id in verified:
+                continue
+            if obligation_id not in blocks:
+                violations.append(
+                    "--require-factorized "
+                    + code
+                    + ": "
+                    + obligation_id
+                    + " ("
+                    + str(by_id[obligation_id].get("lean_decl"))
+                    + ") has no "
+                    + FACTORIZATION_SCHEMA_V2
+                    + " factorization block"
+                )
+            else:
+                violations.append(
+                    "--require-factorized "
+                    + code
+                    + ": "
+                    + obligation_id
+                    + " ("
+                    + str(by_id[obligation_id].get("lean_decl"))
+                    + ") has no VERIFIED "
+                    + FACTORIZATION_SCHEMA_V2
+                    + " factorization block"
+                )
+
+    summary = {
+        "schema_versions": {name: schema_versions[name] for name in sorted(schema_versions)},
+        "checked": len(blocks),
+        "verified": len(verified_ids),
+        "v1_warnings": v1_warnings,
+        "missing": len(missing_ids),
+        "required_clusters": list(required_clusters),
+        "violations": violations,
+    }
+    return {
+        "summary": summary,
+        "verified_ids": sorted(verified_ids),
+        "missing_ids": missing_ids,
+        "reachable_ids": reachable_ids,
+    }
+
+
+# ---------------------------------------------------------------------------
+# stable identity: factorization rename / alias migration
+# ---------------------------------------------------------------------------
+
+
+def git_head_short() -> str:
+    lines = git_lines(["rev-parse", "--short", "HEAD"])
+    return lines[0].strip() if lines else "unknown"
+
+
+def plan_alias_migrations(
+    ledger: dict, meta: dict, backend: FactorizationBackend | None
+) -> tuple[list[dict], list[str]]:
+    """Renames a v2 factorization asks the id ledger to follow.
+
+    A rename is planned only when the block is v2, the ledger already assigns
+    the id, and the block's ``open_leaf`` differs from the symbol the ledger
+    holds.  Every rejection leaves the ledger untouched and yields a violation.
+    """
+    violations: list[str] = []
+    assigned = ledger.get("assigned") or {}
+    aliases = ledger.get("aliases") or {}
+
+    symbol_by_id: dict[str, str] = {}
+    for symbol in sorted(assigned):
+        obligation_id = assigned[symbol]
+        if obligation_id in symbol_by_id:
+            violations.append(
+                obligation_id
+                + ": the id ledger assigns this id to both "
+                + symbol_by_id[obligation_id]
+                + " and "
+                + symbol
+            )
+            continue
+        symbol_by_id[obligation_id] = symbol
+
+    alias_owner: dict[str, str] = {}
+    for obligation_id in sorted(aliases):
+        record = aliases[obligation_id]
+        names = record.get("aliases") if isinstance(record, dict) else None
+        for name in names or []:
+            alias_owner.setdefault(name, obligation_id)
+
+    migrations: list[dict] = []
+    for obligation_id, block in sorted(factorization_blocks(meta).items()):
+        if not isinstance(block, dict):
+            continue
+        if block.get("schema") != FACTORIZATION_SCHEMA_V2:
+            continue
+        roles = block.get("roles")
+        if not isinstance(roles, dict):
+            continue
+        new_leaf = roles.get(ROLE_OPEN_LEAF)
+        wrapper = roles.get(ROLE_LEGACY_WRAPPER)
+        if not isinstance(new_leaf, str) or not new_leaf.strip():
+            continue
+        old = symbol_by_id.get(obligation_id)
+        if old is None or old == new_leaf:
+            continue
+
+        prefix = obligation_id + ": rename to " + new_leaf
+        if wrapper != old:
+            violations.append(
+                prefix
+                + " would allocate a new id: legacy_wrapper ("
+                + str(wrapper)
+                + ") is not the current name ("
+                + old
+                + ")"
+            )
+            continue
+        holder = assigned.get(new_leaf)
+        if holder is not None and holder != obligation_id:
+            violations.append(
+                prefix + " rejected (id reuse): " + new_leaf + " is already claimed by " + holder
+            )
+            continue
+        owner = alias_owner.get(new_leaf)
+        if owner is not None and owner != obligation_id:
+            violations.append(
+                prefix
+                + " rejected (id reuse): "
+                + new_leaf
+                + " is already recorded as an alias of "
+                + owner
+            )
+            continue
+        owner = alias_owner.get(old)
+        if owner is not None and owner != obligation_id:
+            violations.append(
+                prefix
+                + " rejected (id reuse): alias "
+                + old
+                + " is already claimed by "
+                + owner
+            )
+            continue
+        if backend is None:
+            violations.append(
+                prefix + " rejected: cannot verify the compatibility wrapper "
+                + old
+                + " (no kernel-mined backend available)"
+            )
+            continue
+        try:
+            matches = backend.resolve(old)
+        except RegistryError as exc:
+            violations.append(
+                prefix + " rejected: cannot resolve the previous name " + old + ": " + str(exc)
+            )
+            continue
+        if len(matches) != 1:
+            violations.append(
+                prefix
+                + " rejected: the previous name "
+                + old
+                + " resolves to "
+                + str(len(matches))
+                + " index records; the compatibility wrapper must remain as exactly one"
+                + " declaration"
+            )
+            continue
+        if matches[0].get("private") is True:
+            violations.append(
+                prefix
+                + " rejected: the previous name "
+                + old
+                + " is private; the compatibility wrapper must be public"
+            )
+            continue
+        migrations.append({"id": obligation_id, "old": old, "new": new_leaf})
+    return migrations, violations
+
+
+def apply_alias_migrations(
+    ledger: dict, migrations: list[dict], head_short: str
+) -> dict:
+    """Ledger with every planned rename applied; the input is not mutated."""
+    assigned = dict(ledger.get("assigned") or {})
+    retired = dict(ledger.get("retired") or {})
+    aliases = {
+        key: dict(value)
+        for key, value in (ledger.get("aliases") or {}).items()
+        if isinstance(value, dict)
+    }
+    for migration in migrations:
+        obligation_id = migration["id"]
+        old = migration["old"]
+        new = migration["new"]
+        assigned.pop(old, None)
+        assigned[new] = obligation_id
+        # The id follows the leaf: it is neither reissued nor retired.
+        retired.pop(new, None)
+        record = aliases.get(obligation_id, {})
+        names = list(record.get("aliases") or [])
+        if old not in names:
+            names.append(old)
+        record["aliases"] = sorted(names)
+        record["renamed_from"] = old
+        record["renamed_at_head"] = head_short
+        aliases[obligation_id] = record
+    updated = {
+        "schema": ledger.get("schema", ID_SCHEMA),
+        "assigned": assigned,
+        "retired": retired,
+        "aliases": aliases,
+    }
+    return updated
 
 
 def build_registry(
@@ -901,9 +2249,17 @@ def command_generate(args: argparse.Namespace) -> int:
 
     ledger = load_id_assignments(out_dir / ID_ASSIGNMENTS_NAME)
     meta = load_meta(out_dir)
+    backend = make_backend(meta)
+    migrations, migration_violations = plan_alias_migrations(ledger, meta, backend)
+    ledger = apply_alias_migrations(ledger, migrations, git_head_short())
     registry, updated_ledger = build_registry(spine, offspine, source_head, ledger, meta)
 
     violations = validate_meta(registry, meta)
+    factorization = check_factorizations(registry, meta, backend)
+    violations = violations + [
+        "factorization: " + reason
+        for reason in migration_violations + factorization["summary"]["violations"]
+    ]
 
     out_dir.mkdir(parents=True, exist_ok=True)
     (out_dir / REGISTRY_NAME).write_text(dump_canonical(registry), encoding="utf-8")
@@ -931,6 +2287,28 @@ def command_generate(args: argparse.Namespace) -> int:
     )
     print("wrote " + str(out_dir / ID_ASSIGNMENTS_NAME))
     print("wrote " + str(out_dir / FRONTIER_TABLE_NAME))
+    print(
+        "factorized "
+        + str(factorization["summary"]["verified"])
+        + "/"
+        + str(len(factorization["reachable_ids"]))
+        + " reachable leaves"
+        + (
+            " (" + str(factorization["summary"]["v1_warnings"]) + " legacy v1 block(s))"
+            if factorization["summary"]["v1_warnings"]
+            else ""
+        )
+    )
+    for migration in migrations:
+        print(
+            "  alias migration: "
+            + migration["id"]
+            + " follows "
+            + migration["new"]
+            + " (was "
+            + migration["old"]
+            + ")"
+        )
     if violations:
         print(
             "WARNING: reviewed metadata ("
@@ -948,6 +2326,26 @@ def command_generate(args: argparse.Namespace) -> int:
 
 
 CHECKED_FIELDS = ("lean_decl", "source_file", "reachable")
+
+
+def factorization_line(factorization: dict) -> str:
+    """One-line factorization census for the console."""
+    summary = factorization["summary"]
+    line = (
+        "factorized "
+        + str(summary["verified"])
+        + "/"
+        + str(len(factorization["reachable_ids"]))
+        + " reachable leaves"
+    )
+    extras = []
+    if summary["v1_warnings"]:
+        extras.append(str(summary["v1_warnings"]) + " legacy v1 block(s), never verified")
+    if summary["required_clusters"]:
+        extras.append("required: " + ", ".join(summary["required_clusters"]))
+    if extras:
+        line = line + " (" + "; ".join(extras) + ")"
+    return line
 
 
 def command_check(args: argparse.Namespace) -> int:
@@ -983,6 +2381,7 @@ def command_check(args: argparse.Namespace) -> int:
         "source_files": None,
         "roster": None,
         "meta": None,
+        "factorization": None,
         "verdict": "error",
         "exit_code": 2,
         "reasons": [],
@@ -1026,6 +2425,9 @@ def command_check(args: argparse.Namespace) -> int:
         spine, offspine = gather_exports(None, True, status_dir)
         ledger = load_id_assignments(status_dir / ID_ASSIGNMENTS_NAME)
         meta = load_meta(status_dir)
+        backend = make_backend(meta)
+        migrations, migration_violations = plan_alias_migrations(ledger, meta, backend)
+        ledger = apply_alias_migrations(ledger, migrations, git_head_short())
         fresh_registry, _ = build_registry(
             spine, offspine, committed_head or "unknown", ledger, meta
         )
@@ -1080,6 +2482,18 @@ def command_check(args: argparse.Namespace) -> int:
         "violations": meta_violations,
     }
 
+    # Factorization blocks are validated against the COMMITTED registry for the
+    # same reason the reviewed metadata is: that file is what consumers read.
+    required_clusters = tuple(args.require_factorized or ())
+    factorization = check_factorizations(
+        committed, meta, backend, required_clusters
+    )
+    factorization_violations = (
+        migration_violations + factorization["summary"]["violations"]
+    )
+    receipt["factorization"] = dict(factorization["summary"])
+    receipt["factorization"]["violations"] = factorization_violations
+
     reasons: list[str] = []
     if added or removed or changed:
         reasons.append(
@@ -1088,6 +2502,8 @@ def command_check(args: argparse.Namespace) -> int:
         )
     for violation in meta_violations:
         reasons.append("metadata: " + violation)
+    for violation in factorization_violations:
+        reasons.append("factorization: " + violation)
 
     refs = receipt["blueprint_refs"] or {}
     stale = refs.get("stale")
@@ -1123,6 +2539,7 @@ def command_check(args: argparse.Namespace) -> int:
             + str(committed_counts["total"])
             + " reviewed meta_status, vocabulary clean"
         )
+        print("  " + factorization_line(factorization))
         print(
             "  bound to: HEAD "
             + (head or "unknown")
@@ -1189,6 +2606,15 @@ def command_check(args: argparse.Namespace) -> int:
         for violation in meta_violations:
             print("    ! " + violation)
         print("  controlled vocabulary: " + ", ".join(PROSE_STATUS_VOCABULARY))
+    if factorization_violations:
+        print(
+            "FAIL: factorization entries are not verified ("
+            + str(len(factorization_violations))
+            + "):"
+        )
+        for violation in factorization_violations:
+            print("    ! " + violation)
+        print("  " + factorization_line(factorization))
     stale_reasons = [reason for reason in reasons if reason.startswith("--require-fresh-refs")]
     if stale_reasons:
         print("FAIL: kernel-mined refs are not fresh")
@@ -1248,6 +2674,15 @@ def build_parser() -> argparse.ArgumentParser:
         action="store_true",
         help="also fail when `proof-blueprint refs --check` reports a nonzero"
         " stale or never-mined count",
+    )
+    check.add_argument(
+        "--require-factorized",
+        action="append",
+        metavar="LABEL",
+        choices=list(CLUSTER_CODES),
+        help="require a VERIFIED " + FACTORIZATION_SCHEMA_V2 + " factorization block"
+        " on every reachable leaf of this cluster code (" + ", ".join(CLUSTER_CODES)
+        + "); repeatable. Without it, missing blocks are only counted.",
     )
     check.set_defaults(func=command_check)
 
