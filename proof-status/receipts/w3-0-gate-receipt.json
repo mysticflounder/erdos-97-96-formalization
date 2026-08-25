@@ -1,12 +1,12 @@
 {
   "schema": "p97-gate-receipt/v1",
   "wave": "W3-0",
-  "state": "FINAL — bound to remediation commit 39a40141 (W3-0b); this receipt ships in the receipt-only child commit of 39a40141",
+  "state": "FINAL — bound to W3-0c remediation commit e0b19247 (auditor #7468), which follows the W3-0b remediation commit 39a40141; this receipt ships in the receipt-only child commit of e0b19247",
   "generated_by": "W3-0b independent checker subagent (verification only; no authoring). Every gate below was re-run by the checker from the repository root against the working tree. The checker edited no script, test, manifest or README, ran no git write command, ran no lake build, and never ran `proof-blueprint refs --refresh`. The only file it wrote is this one.",
   "generated_at_utc": "2026-08-25T06:50:59Z",
-  "git_head": "39a4014108f430e43ec84df98ec8f2eeebe08e12",
-  "git_head_short": "39a40141",
-  "head_note": "Bound to commit 39a4014108f430e43ec84df98ec8f2eeebe08e12. Every path below is committed at that commit and its sha256 was taken from `git show 39a40141:<path>`. The original W3-0 checker draft at f747d0ef is preserved under historical_precommit_snapshot_w3_0 (the W3-0b pre-commit draft is this receipt's own gates/remediation sections, taken at c6fc78d0 before the remediation commit); the 11-file scope of c6fc78d0 under c6fc78d0_committed_state.",
+  "git_head": "e0b1924768f3631a16adfb3029246d140e680df0",
+  "git_head_short": "e0b19247",
+  "head_note": "Bound to commit e0b1924768f3631a16adfb3029246d140e680df0. content_bound_files holds the sha256 of every path of the W3-0b and W3-0c remediation scope as committed at e0b19247 (`git show e0b19247:<path>`). The 39a40141 binding is kept, labeled, under content_bound_files_39a40141 and remediation_commit (W3-0b). The original W3-0 checker draft at f747d0ef stays under historical_precommit_snapshot_w3_0; the 11-file scope of c6fc78d0 under c6fc78d0_committed_state. The gates/remediation/tests sections are the W3-0b checker's pre-commit snapshot taken at c6fc78d0 (see tests.temporal_note and tests_history).",
   "scope_note": "W3-0/W3-0b: scripts and proof-status only; no Lean; no live factorization entry; no promotion claim",
   "remediation_files": {
     "note": "sha256 of the WORKING-TREE bytes the gates below actually exercised, computed with `shasum -a 256` at gate time. Four are modified relative to c6fc78d0; proof-status/README.md is modified; proof-status/legacy-import-exceptions.json is UNCHANGED from c6fc78d0 (same digest) and was correctly left untouched -- its base_head f747d0ef is a commit and an ancestor of HEAD, and its 'exceptions' list is already empty.",
@@ -214,7 +214,8 @@
         {
           "command": "uv run pytest -q scripts/test_gen_obligation_registry_factorization.py scripts/test_lint_cluster_imports_legacy.py",
           "exit_code": 0,
-          "final_line": "91 passed in 6.72s"
+          "final_line": "91 passed in 6.72s",
+          "temporal_note": "HISTORICAL — count at c6fc78d0 (checker draft); see tests_history"
         },
         {
           "command": "uv run pytest -q scripts/test_gen_obligation_registry_factorization.py",
@@ -310,7 +311,8 @@
       }
     ],
     "command": "uv run pytest -q scripts/test_gen_obligation_registry_factorization.py scripts/test_lint_cluster_imports_legacy.py",
-    "note": "All fixtures are synthetic: MappingBackend closures/index/callers for the registry block tests, tmp_path trees plus a real throwaway git repository for the lint tests, and a tmp_path COPY of proof-status for the command-level migration tests. No test reads the live blueprint database or writes a receipt outside tmp_path."
+    "note": "All fixtures are synthetic: MappingBackend closures/index/callers for the registry block tests, tmp_path trees plus a real throwaway git repository for the lint tests, and a tmp_path COPY of proof-status for the command-level migration tests. No test reads the live blueprint database or writes a receipt outside tmp_path.",
+    "temporal_note": "HISTORICAL — 91 passed (60 registry + 31 lint) is the W3-0b checker's snapshot of the working tree at c6fc78d0 before the remediation commit; 39a40141 has 94 (63 + 31); the current count is in tests_history and main_session_reverification."
   },
   "new_receipts_written_by_this_check": {
     "note": "The three live `check` invocations of gate 4 each wrote a registry-check receipt into proof-status/receipts/. They are untracked; the main session decides whether to commit them.",
@@ -931,7 +933,7 @@
   "author_claims_checked": {
     "note": "Author statements the checker confirmed or corrected from the working tree.",
     "confirmed": [
-      "60 registry tests + 31 lint tests = 91, all passing.",
+      "[HISTORICAL, c6fc78d0 checker draft; see tests_history] 60 registry tests + 31 lint tests = 91, all passing.",
       "FORBIDDEN_AXIOMS and CORE_AXIOM_TAG are gone; ALLOWED_AXIOMS is the sole baseline and the tool tag is echoed as advisory.",
       "legacy-import-exceptions.json needed no edit: it is not dirty, its digest matches c6fc78d0, and the live lint passes with its base_head f747d0ef bound to HEAD.",
       "The two command-level seams are unreachable from the command line; both default to None and the live CLI runs used the defaults.",
@@ -944,9 +946,21 @@
     ]
   },
   "notes_for_main_session": [
-    "Re-bind git_head, head_note, remediation_files.sha256 and the remediation line numbers in the receipt-only commit that follows the remediation commit; the line numbers above are working-tree line numbers.",
-    "Decide whether the three registry-check receipts this check wrote (063752Z / 063757Z / 063802Z) join the commit.",
-    "overall_pass stays false until `proof-blueprint refs --refresh` clears the inherited 36 stale + 1 never-mined symbols; that is outside this lane."
+    {
+      "note": "Re-bind git_head, head_note, remediation_files.sha256 and the remediation line numbers in the receipt-only commit that follows the remediation commit; the line numbers above are working-tree line numbers.",
+      "status": "RESOLVED",
+      "resolution": "re-bound in c639a66e/ba7c9e1c (39a40141) and again in the receipt-only child of e0b19247; remediation line numbers are the working-tree numbers of the c6fc78d0 draft and are labeled historical"
+    },
+    {
+      "note": "Decide whether the three registry-check receipts this check wrote (063752Z / 063757Z / 063802Z) join the commit.",
+      "status": "RESOLVED",
+      "resolution": "the three registry-check receipts joined the remediation commit 39a40141"
+    },
+    {
+      "note": "overall_pass stays false until `proof-blueprint refs --refresh` clears the inherited 36 stale + 1 never-mined symbols; that is outside this lane.",
+      "status": "OPEN, outside this lane",
+      "resolution": "unchanged: overall_pass stays false until proof-blueprint refs --refresh clears 36 stale + 1 never-mined"
+    }
   ],
   "remediation_commit": {
     "sha": "39a4014108f430e43ec84df98ec8f2eeebe08e12",
@@ -971,34 +985,39 @@
       "scripts/lint_cluster_imports.py": "709e3b3798332581a303f81c71516e7c5a143f6c8ba7a32fdab95e00b38cbe5c",
       "scripts/test_gen_obligation_registry_factorization.py": "7d917992c1541280eaff234c09b34aa75bff2b44554c02d186d9b8b35bbbc197",
       "scripts/test_lint_cluster_imports_legacy.py": "8864afcf69bf8fba5b1539dadf8c026b4f8ab9595f3b498dd45cdf81f4edf90a"
-    }
+    },
+    "label": "W3-0b remediation commit (auditor #7455/#7456/#7462); historical, superseded by remediation_commit_w3_0c for re-committed paths"
   },
   "content_bound_files": {
-    "note": "sha256 of every path committed at 39a40141 (git show)",
+    "note": "sha256 of every path of the W3-0b + W3-0c remediation scope as it stands at e0b19247 (git show e0b19247:<path>)",
     "sha256": {
-      "proof-status/README.md": "35f1116fa7e0fae9dd8a6f65d4dbb0c8b147cf9a0a75039e26d5d6aefbda8e20",
+      "proof-status/README.md": "498b593dc525db9cd51dfeeeddd258ee803dde96fb639b0a85d8078c5c7d24c2",
       "proof-status/receipts/registry-check-20260825T063752Z.json": "ee6eb896855acea137d02720decc69a18cd9d011a47af842a58a623fa52fc0b3",
       "proof-status/receipts/registry-check-20260825T063757Z.json": "4b0376fc918bb73481e906602a7b6797ab8a2623b5a2adf825a9d9faed5df834",
       "proof-status/receipts/registry-check-20260825T063802Z.json": "70981fb32e9f406dffe4d2ed38cba37172bb20ceb9489ca9fa71b3b0214e5557",
-      "proof-status/receipts/w3-0-gate-receipt.json": "d648186e9c732b4969cbd17f639bf79f7c2a82cc91c1da9eefc8e82ecc3505cf",
-      "scripts/gen_obligation_registry.py": "209dd4283ef0664be06eba2cb77f29e9dff1ff164b05405868d6c9f865351377",
+      "proof-status/receipts/registry-check-20260825T145811Z.json": "bd5dfce1d12ad0e0acc2cbfe71938620c5770cd28a50286e0f2e79a70b29bd70",
+      "proof-status/receipts/registry-check-20260825T145812Z.json": "fe657d4ef9d0baaca60540d2397a65080b2dd56107501442448745afd7941b07",
+      "proof-status/receipts/registry-check-20260825T145813Z.json": "e4c00ed56aaf8106d0f98c0620671d395a2292b0cc93eaf3cf1c22e7d10d4905",
+      "proof-status/receipts/w3-0-gate-receipt.json": "cbd0f7cb18b5d763b9e0dabcf52d7f339b6b7fde047bafed66ecba35285a736d",
+      "scripts/gen_obligation_registry.py": "c684567e72be8bde5f9ea1ac48e35750e8b6c48a33b1ce5fb801b2b36cb8d045",
       "scripts/lint_cluster_imports.py": "709e3b3798332581a303f81c71516e7c5a143f6c8ba7a32fdab95e00b38cbe5c",
-      "scripts/test_gen_obligation_registry_factorization.py": "7d917992c1541280eaff234c09b34aa75bff2b44554c02d186d9b8b35bbbc197",
+      "scripts/test_gen_obligation_registry_factorization.py": "71d2eeaf54002de2f6bacd0eb985b01ee9e598f95672eb117a7ef6dabb1790db",
       "scripts/test_lint_cluster_imports_legacy.py": "8864afcf69bf8fba5b1539dadf8c026b4f8ab9595f3b498dd45cdf81f4edf90a"
     }
   },
   "main_session_reverification": {
-    "utc": "2026-08-25T06:50:59Z",
-    "on": "the staged tree that became 39a40141 (byte-identical to the commit)",
+    "utc": "2026-08-25T14:59:47Z",
+    "on": "the staged tree that became e0b19247 (byte-identical to the commit)",
     "results": [
-      "uv run pytest -q scripts/test_gen_obligation_registry_factorization.py scripts/test_lint_cluster_imports_legacy.py: 94 passed, 0 failed",
-      "gen_obligation_registry.py check --baseline proof-status/baseline: exit 0 (28 reachable / 6 off-spine / 34/34 reviewed; factorized 0/28)",
-      "same --require-fresh-refs: exit 1 at the inherited 36 stale + 1 never-mined (FAIL-inherited, never passing)",
-      "same --require-factorized TD: exit 1 naming P97-TD-BLOCKERCOINCIDENCE, P97-TD-GLOBALGAPORCLOSED, P97-TD-SURVIVALSQUARE",
-      "lint_cluster_imports.py (plain, --list-legacy, --fail-on-legacy): exit 0; 'lint_cluster_imports: OK -- 679 import edges scanned, 29 forbidden edges, all waived by 29 authenticated waivers; 0 legacy edges, all listed.'",
-      "git diff --stat obligations.json id-assignments.json obligations-meta.json import-waivers.json cluster-import-edges.json vs parent: empty",
-      "proof-blueprint refs --check: current build f80c3204eef5, 36 stale, 1 never-mined",
-      "staged hygiene check --lane consolidation-refactor-20260823 --staged: exit 0, 0 issues, 0 foreign staged"
+      "uv run python -m pytest scripts/test_gen_obligation_registry_factorization.py scripts/test_lint_cluster_imports_legacy.py -q: 101 passed, 0 failed (70 registry + 31 lint)",
+      "gen_obligation_registry.py check --baseline proof-status/baseline: exit 0 (28 reachable / 6 off-spine / 34/34 reviewed; factorized 0/28); receipt registry-check-20260825T145811Z.json (committed)",
+      "same --require-fresh-refs: exit 1 at the inherited 36 stale + 1 never-mined (FAIL-inherited, never passing); receipt registry-check-20260825T145812Z.json (committed)",
+      "same --require-factorized TD: exit 1 naming P97-TD-BLOCKERCOINCIDENCE, P97-TD-GLOBALGAPORCLOSED, P97-TD-SURVIVALSQUARE; receipt registry-check-20260825T145813Z.json (committed)",
+      "lint_cluster_imports.py (plain, --fail-on-legacy): exit 0; 679 import edges, 29 forbidden all waived, 0 legacy edges",
+      "git diff --stat -- proof-status/ scripts/ before staging: README.md, gen_obligation_registry.py, test_gen_obligation_registry_factorization.py only; obligations.json / id-assignments.json / frontier-table.generated.md / obligations-meta.json / import-waivers.json / legacy-import-exceptions.json / cluster-import-edges*.json untouched",
+      "git diff --cached --check: clean",
+      "staged hygiene check --lane consolidation-refactor-20260823 --staged: exit 0, 0 issues, 0 foreign staged; checkpoint 53 owned / 30 durable / generated_roots []",
+      "independent opus checker (workflow wf_86cc423e-334): PASS; reproduced #7468 scenarios (a) and (b) against HEAD ba7c9e1c (exit 0 with mutation, as reported) and against the fix in strict and default mode (exit 1, three files byte-unchanged, ledger unchanged, no block); positive valid rename in default mode writes and migrates; live generate over a copy of proof-status with the real backend is cmp-identical to the committed files"
     ]
   },
   "metadata_corrections": [
@@ -1013,7 +1032,119 @@
         "main_session_reverification added"
       ],
       "unchanged": "overall_pass=false (inherited strict refs 36+1), source_gates_pass=true, --require-factorized TD failure expected"
+    },
+    {
+      "utc": "2026-08-25T14:59:47Z",
+      "auditor_finding": "#7468 item 5 (W3-0c closeout)",
+      "kind": "receipt reissued after the W3-0c remediation; metadata only",
+      "corrected": [
+        "git_head/head_note/state -> W3-0c remediation commit e0b19247",
+        "content_bound_files -> W3-0b + W3-0c scope at the new commit; 39a40141 map kept labeled historical",
+        "tests 91-vs-94 temporal wording reconciled (tests.temporal_note, tests_history, gates[2].commands[0].temporal_note, author_claims_checked.confirmed[0])",
+        "notes_for_main_session resolved in place",
+        "trailing blank line at EOF removed"
+      ],
+      "unchanged": "overall_pass=false (inherited strict refs 36+1), source_gates_pass=true, --require-factorized TD failure expected"
     }
-  ]
+  ],
+  "remediation_commit_w3_0c": {
+    "sha": "e0b1924768f3631a16adfb3029246d140e680df0",
+    "auditor_finding": "#7468 (W3-0b re-audit: BLOCKED, one HIGH fail-closed defect in `generate`)",
+    "paths": [
+      "proof-status/README.md",
+      "proof-status/receipts/registry-check-20260825T145811Z.json",
+      "proof-status/receipts/registry-check-20260825T145812Z.json",
+      "proof-status/receipts/registry-check-20260825T145813Z.json",
+      "scripts/gen_obligation_registry.py",
+      "scripts/test_gen_obligation_registry_factorization.py"
+    ],
+    "sha256": {
+      "proof-status/README.md": "498b593dc525db9cd51dfeeeddd258ee803dde96fb639b0a85d8078c5c7d24c2",
+      "proof-status/receipts/registry-check-20260825T145811Z.json": "bd5dfce1d12ad0e0acc2cbfe71938620c5770cd28a50286e0f2e79a70b29bd70",
+      "proof-status/receipts/registry-check-20260825T145812Z.json": "fe657d4ef9d0baaca60540d2397a65080b2dd56107501442448745afd7941b07",
+      "proof-status/receipts/registry-check-20260825T145813Z.json": "e4c00ed56aaf8106d0f98c0620671d395a2292b0cc93eaf3cf1c22e7d10d4905",
+      "scripts/gen_obligation_registry.py": "c684567e72be8bde5f9ea1ac48e35750e8b6c48a33b1ce5fb801b2b36cb8d045",
+      "scripts/test_gen_obligation_registry_factorization.py": "71d2eeaf54002de2f6bacd0eb985b01ee9e598f95672eb117a7ef6dabb1790db"
+    }
+  },
+  "content_bound_files_39a40141": {
+    "note": "HISTORICAL — sha256 of every path committed at 39a40141 (git show); verified by the auditor in #7468 to match; superseded for the paths re-committed at e0b19247",
+    "sha256": {
+      "proof-status/README.md": "35f1116fa7e0fae9dd8a6f65d4dbb0c8b147cf9a0a75039e26d5d6aefbda8e20",
+      "proof-status/receipts/registry-check-20260825T063752Z.json": "ee6eb896855acea137d02720decc69a18cd9d011a47af842a58a623fa52fc0b3",
+      "proof-status/receipts/registry-check-20260825T063757Z.json": "4b0376fc918bb73481e906602a7b6797ab8a2623b5a2adf825a9d9faed5df834",
+      "proof-status/receipts/registry-check-20260825T063802Z.json": "70981fb32e9f406dffe4d2ed38cba37172bb20ceb9489ca9fa71b3b0214e5557",
+      "proof-status/receipts/w3-0-gate-receipt.json": "d648186e9c732b4969cbd17f639bf79f7c2a82cc91c1da9eefc8e82ecc3505cf",
+      "scripts/gen_obligation_registry.py": "209dd4283ef0664be06eba2cb77f29e9dff1ff164b05405868d6c9f865351377",
+      "scripts/lint_cluster_imports.py": "709e3b3798332581a303f81c71516e7c5a143f6c8ba7a32fdab95e00b38cbe5c",
+      "scripts/test_gen_obligation_registry_factorization.py": "7d917992c1541280eaff234c09b34aa75bff2b44554c02d186d9b8b35bbbc197",
+      "scripts/test_lint_cluster_imports_legacy.py": "8864afcf69bf8fba5b1539dadf8c026b4f8ab9595f3b498dd45cdf81f4edf90a"
+    }
+  },
+  "tests_history": [
+    {
+      "at": "c6fc78d0 working tree, W3-0b checker draft",
+      "passed": 91,
+      "registry": 60,
+      "lint": 31
+    },
+    {
+      "at": "39a40141 (W3-0b remediation commit)",
+      "passed": 94,
+      "registry": 63,
+      "lint": 31
+    },
+    {
+      "at": "e0b19247 (W3-0c remediation commit)",
+      "passed": 101,
+      "registry": 70,
+      "lint": 31
+    }
+  ],
+  "main_session_reverification_39a40141": {
+    "utc": "2026-08-25T06:50:59Z",
+    "on": "the staged tree that became 39a40141 (byte-identical to the commit)",
+    "results": [
+      "uv run pytest -q scripts/test_gen_obligation_registry_factorization.py scripts/test_lint_cluster_imports_legacy.py: 94 passed, 0 failed",
+      "gen_obligation_registry.py check --baseline proof-status/baseline: exit 0 (28 reachable / 6 off-spine / 34/34 reviewed; factorized 0/28)",
+      "same --require-fresh-refs: exit 1 at the inherited 36 stale + 1 never-mined (FAIL-inherited, never passing)",
+      "same --require-factorized TD: exit 1 naming P97-TD-BLOCKERCOINCIDENCE, P97-TD-GLOBALGAPORCLOSED, P97-TD-SURVIVALSQUARE",
+      "lint_cluster_imports.py (plain, --list-legacy, --fail-on-legacy): exit 0; 'lint_cluster_imports: OK -- 679 import edges scanned, 29 forbidden edges, all waived by 29 authenticated waivers; 0 legacy edges, all listed.'",
+      "git diff --stat obligations.json id-assignments.json obligations-meta.json import-waivers.json cluster-import-edges.json vs parent: empty",
+      "proof-blueprint refs --check: current build f80c3204eef5, 36 stale, 1 never-mined",
+      "staged hygiene check --lane consolidation-refactor-20260823 --staged: exit 0, 0 issues, 0 foreign staged"
+    ]
+  },
+  "w3_0c": {
+    "auditor_finding": "#7468 HIGH: generate mutated/returned success on rejected factorization or alias state",
+    "remediation_commit": "e0b1924768f3631a16adfb3029246d140e680df0",
+    "contract": [
+      {
+        "item": 1,
+        "requirement": "alias-migration and factorization violations are hard errors independent of --strict-meta",
+        "evidence": "scripts/gen_obligation_registry.py command_generate: hard_violations = migration_violations + factorization summary violations; each printed as ERROR: factorization: <reason>; return 1 before any write; args.strict_meta is read only for validate_meta warnings"
+      },
+      {
+        "item": 2,
+        "requirement": "transactional: no mutation of obligations.json, id-assignments.json, frontier-table.generated.md on violation; materialize/stamp only after live validation",
+        "evidence": "the gate precedes out_dir.mkdir and all three write_text calls; the post-gate rebuild passes verified_ids=factorization[\"verified_ids\"] to build_registry, whose materialization guard requires the id to be verified; residual: under --fresh the scratch parent directory for the live export is created before the gate (documented in the module docstring and README)"
+      },
+      {
+        "item": 3,
+        "requirement": "command-level fixtures, strict and default, actual renamed exports",
+        "evidence": "test_command_level_rejected_wrapper_writes_nothing_in_either_mode[run_generate|run_generate_default], test_command_level_native_axiom_producer_writes_nothing_in_either_mode[run_generate|run_generate_default], test_command_level_valid_rename_in_default_mode_writes_and_migrates, test_command_level_an_unverified_block_is_never_materialized, test_command_level_refused_generate_creates_no_output_file; byte comparison via read_bytes; all six regression tests fail against git show ba7c9e1c:scripts/gen_obligation_registry.py"
+      },
+      {
+        "item": 4,
+        "requirement": "README: hard generator gate; Legacy base_head existing-commit/ancestor binding; waiver_pair source equality + direct wrapper-import rule",
+        "evidence": "proof-status/README.md: Metadata validation regenerate comment; new subsection Generator gate (W3-0c); section 2 verified-only materialization bullet; section 6 fixture pointer; Legacy section base_head and waiver_pair fields rewritten from scripts/lint_cluster_imports.py (git cat-file -e ^{commit}, git merge-base --is-ancestor reflexive, exit 2; waiver_pair existing row, pair[0] == row.from, pair[1] a direct header import of wrapper_module, unseen wrapper fails closed, exit 1)"
+      },
+      {
+        "item": 5,
+        "requirement": "reissue final evidence; reconcile 91-vs-94 wording and stale notes; remove EOF blank line",
+        "evidence": "this receipt reissue (metadata_corrections[2])"
+      }
+    ],
+    "promotion_claim": "none; no Lean change; no live factorization entry; overall_pass stays false for the inherited strict-refs reason only"
+  }
 }
-
