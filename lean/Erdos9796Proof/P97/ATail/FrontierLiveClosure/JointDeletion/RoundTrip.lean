@@ -62,6 +62,18 @@ recovery above is claimed for `ExactFourMutualOmissionJointDeletion` only.
 The reverse round trip for the source context is a W2b obligation, to be
 stated together with the producer port.
 
+That reverse direction is now stated below, in section
+`SourceContextRoundTrip`: `ExactFourMutualOmissionSourceExtension` carries the
+ten context fields the core drops,
+`ExactFourMutualOmissionSourceContext.toSourceExtension` reads it off a context,
+`ExactFourMutualOmissionSourceContext.jointDeletionCoreWide` reads a core that
+keeps both of the context's recorded omissions,
+`exactFourMutualOmissionSourceContext_ofCoreExtension` rebuilds the context from
+a core and an extension, and
+`agree_jointDeletionCoreWide_ofCoreExtension` together with
+`jointDeletionCoreWide_ofCoreExtension_eq_self` states the composite as a
+retraction onto the cores in `JointDeletionCore.IsSourceContextNormal` form.
+
 ## Late blocker choice
 
 `JointDeletionCore.rebase` moves a core from the shell system it was built over
@@ -1210,6 +1222,384 @@ provenance core. -/
   rfl
 
 end ClassificationRoundTrip
+
+/- ## The source context, as a core plus one extension record -/
+
+/-- Exactly the data the provenance core drops on its way from the source
+context `ExactFourMutualOmissionSourceContext`: where the source sits in the
+second-apex class, in the strict cap interior and outside the exact first-apex
+blocker fiber, how often the source row meets the class interior, where the
+deletion sits in that class and interior, that the two rows carry distinct
+blockers, which of the two interior deletions the source's blocker survives, and
+how the source sits against the first named vertex's row.
+
+The context has thirteen fields.  Three of them are kept by the core instead of
+by this record: `other_ne_source` is `JointDeletionCore.deleted_ne_source`,
+`other_not_mem_source_row` is the core's omission at the deletion, and
+`v_not_mem_source_row` is the core's omission at the second named vertex, which
+`ExactFourMutualOmissionSourceContext.jointDeletionCoreWide` records.  Ten plus
+three is thirteen, so a core and one record of this type carry the whole
+context and `exactFourMutualOmissionSourceContext_ofCoreExtension` rebuilds
+it. -/
+structure ExactFourMutualOmissionSourceExtension
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F)
+    (rho : ℝ)
+    (source other u v : CriticalShellSystem.CarrierVertex D.A) : Prop where
+  /-- The source sits on the second-apex class of radius `rho`. -/
+  source_mem_class :
+    source.1 ∈ SelectedClass D.A S.oppApex2 rho
+  /-- The source sits in the strict cap interior at the second apex. -/
+  source_mem_interior :
+    source.1 ∈ S.capInteriorByIndex S.oppIndex2
+  /-- The source lies outside the exact first-apex blocker fiber. -/
+  source_mem_outside :
+    source ∈ ATailExactFourPhysicalConsumer.outsideFirstApexFiber R
+  /-- The source row meets the class-and-interior intersection at most twice. -/
+  source_cross_card_le_two :
+    ((((lateFirstApexSystem R).selectedAt
+          source.1 source.2).toCriticalFourShell.support ∩
+        (SelectedClass D.A S.oppApex2 rho ∩
+          S.capInteriorByIndex S.oppIndex2)).card ≤ 2)
+  /-- The deletion sits on the same second-apex class. -/
+  other_mem_class :
+    other.1 ∈ SelectedClass D.A S.oppApex2 rho
+  /-- The deletion sits in the same strict cap interior. -/
+  other_mem_interior :
+    other.1 ∈ S.capInteriorByIndex S.oppIndex2
+  /-- The source's row and the deletion's row carry distinct blockers. -/
+  source_other_blockers_ne :
+    (lateFirstApexSystem R).centerAt source.1 source.2 ≠
+      (lateFirstApexSystem R).centerAt other.1 other.2
+  /-- The source's blocker survives one of the two interior deletions. -/
+  source_survives_q_or_w :
+    HasNEquidistantPointsAt 4 (D.A.erase R.interior_q)
+        ((lateFirstApexSystem R).centerAt source.1 source.2) ∨
+      HasNEquidistantPointsAt 4 (D.A.erase R.interior_w)
+        ((lateFirstApexSystem R).centerAt source.1 source.2)
+  /-- The source lies on the first named vertex's row. -/
+  source_mem_u_row :
+    source.1 ∈
+      ((lateFirstApexSystem R).selectedAt
+        u.1 u.2).toCriticalFourShell.support
+  /-- The first named vertex is the source itself or misses the source row. -/
+  u_eq_source_or_not_mem_source_row :
+    u = source ∨
+      u.1 ∉
+        ((lateFirstApexSystem R).selectedAt
+          source.1 source.2).toCriticalFourShell.support
+
+/-- A core is in the normal form the source context can carry when its row is
+the late first-apex system's own row at the source and its recorded omissions
+are exactly the deletion and the second named vertex.
+
+The source context fixes no survival center, so the survival set is left free
+here: a core in this normal form may record any survivals at all. -/
+def JointDeletionCore.IsSourceContextNormal
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F}
+    (C : JointDeletionCore D (lateFirstApexSystem R))
+    (v : CriticalShellSystem.CarrierVertex D.A) : Prop :=
+  C.exactSourceRow = (lateFirstApexSystem R).selectedAt C.source.1 C.source.2 ∧
+    C.fixedOmissions = ({C.deleted.1, v.1} : Finset ℝ²)
+
+noncomputable section SourceContextRoundTrip
+
+variable {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+  {H : CriticalShellSystem D.A}
+  {F : CriticalPairFrontier D S radius H}
+  {R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F}
+  {rho : ℝ}
+  {source other u v : CriticalShellSystem.CarrierVertex D.A}
+
+/-- Read a provenance core off the source context, recording both omissions the
+context states.
+
+`ExactFourMutualOmissionSourceContext.jointDeletionCore` records only the
+deletion as an omission and therefore drops `v_not_mem_source_row`.  This
+reading keeps that field by recording the second named vertex as a second
+omission, which is what makes the rebuild below total.  Survival centers are
+still supplied by the caller, since the context certifies no survival of the
+deletion. -/
+def ExactFourMutualOmissionSourceContext.jointDeletionCoreWide
+    (hctx : ExactFourMutualOmissionSourceContext R rho source other u v)
+    (fixedSurvivals : Finset ℝ²)
+    (hsubset : fixedSurvivals ⊆ D.A)
+    (hsurvives : ∀ c ∈ fixedSurvivals,
+      HasNEquidistantPointsAt 4 (D.A.erase other.1) c) :
+    JointDeletionCore D (lateFirstApexSystem R) where
+  source := source
+  sourceBlocker := (lateFirstApexSystem R).centerAt source.1 source.2
+  sourceBlocker_eq := rfl
+  exactSourceRow := (lateFirstApexSystem R).selectedAt source.1 source.2
+  deleted := other
+  fixedSurvivals := fixedSurvivals
+  fixedSurvivals_subset_carrier := hsubset
+  survives_of_mem_fixedSurvivals := hsurvives
+  fixedOmissions := {other.1, v.1}
+  fixedOmissions_subset_carrier := by
+    intro z hz
+    rcases Finset.mem_insert.mp hz with hz | hz
+    · subst hz
+      exact other.2
+    · rw [Finset.mem_singleton] at hz
+      subst hz
+      exact v.2
+  deleted_mem_fixedOmissions := Finset.mem_insert_self _ _
+  omitted_of_mem_fixedOmissions := by
+    intro z hz
+    rcases Finset.mem_insert.mp hz with hz | hz
+    · subst hz
+      exact hctx.other_not_mem_source_row
+    · rw [Finset.mem_singleton] at hz
+      subst hz
+      exact hctx.v_not_mem_source_row
+
+/-- Read the extension record off a source context. -/
+theorem ExactFourMutualOmissionSourceContext.toSourceExtension
+    (hctx : ExactFourMutualOmissionSourceContext R rho source other u v) :
+    ExactFourMutualOmissionSourceExtension R rho source other u v where
+  source_mem_class := hctx.source_mem_class
+  source_mem_interior := hctx.source_mem_interior
+  source_mem_outside := hctx.source_mem_outside
+  source_cross_card_le_two := hctx.source_cross_card_le_two
+  other_mem_class := hctx.other_mem_class
+  other_mem_interior := hctx.other_mem_interior
+  source_other_blockers_ne := hctx.source_other_blockers_ne
+  source_survives_q_or_w := hctx.source_survives_q_or_w
+  source_mem_u_row := hctx.source_mem_u_row
+  u_eq_source_or_not_mem_source_row := hctx.u_eq_source_or_not_mem_source_row
+
+section WideReader
+
+variable (hctx : ExactFourMutualOmissionSourceContext R rho source other u v)
+  (fixedSurvivals : Finset ℝ²) (hsubset : fixedSurvivals ⊆ D.A)
+  (hsurvives : ∀ c ∈ fixedSurvivals,
+    HasNEquidistantPointsAt 4 (D.A.erase other.1) c)
+
+@[simp] theorem
+    ExactFourMutualOmissionSourceContext.jointDeletionCoreWide_source :
+    (hctx.jointDeletionCoreWide fixedSurvivals hsubset hsurvives).source =
+      source := rfl
+
+@[simp] theorem
+    ExactFourMutualOmissionSourceContext.jointDeletionCoreWide_deleted :
+    (hctx.jointDeletionCoreWide fixedSurvivals hsubset hsurvives).deleted =
+      other := rfl
+
+@[simp] theorem
+    ExactFourMutualOmissionSourceContext.jointDeletionCoreWide_fixedSurvivals :
+    (hctx.jointDeletionCoreWide fixedSurvivals hsubset
+        hsurvives).fixedSurvivals = fixedSurvivals := rfl
+
+@[simp] theorem
+    ExactFourMutualOmissionSourceContext.jointDeletionCoreWide_fixedOmissions :
+    (hctx.jointDeletionCoreWide fixedSurvivals hsubset
+        hsurvives).fixedOmissions = ({other.1, v.1} : Finset ℝ²) := rfl
+
+/-- The wide reading always lands in the source-context normal form. -/
+theorem isSourceContextNormal_jointDeletionCoreWide :
+    (hctx.jointDeletionCoreWide fixedSurvivals hsubset
+      hsurvives).IsSourceContextNormal v := ⟨rfl, rfl⟩
+
+/-- The wide reading and the original one-way reading name the same source, the
+same blocker, the same deletion and the same row support: they differ only in
+how many omissions they record. -/
+theorem agree_jointDeletionCore_jointDeletionCoreWide :
+    JointDeletionCore.Agree (hctx.jointDeletionCore fixedSurvivals hsubset
+        hsurvives)
+      (hctx.jointDeletionCoreWide fixedSurvivals hsubset hsurvives) :=
+  ⟨rfl, rfl, rfl, rfl⟩
+
+/-- The wide reading records strictly more: every omission the original reading
+states is one of its own. -/
+theorem jointDeletionCore_fixedOmissions_subset_jointDeletionCoreWide :
+    (hctx.jointDeletionCore fixedSurvivals hsubset hsurvives).fixedOmissions ⊆
+      (hctx.jointDeletionCoreWide fixedSurvivals hsubset
+        hsurvives).fixedOmissions := by
+  intro z hz
+  have hz' : z ∈ ({other.1} : Finset ℝ²) := hz
+  rw [Finset.mem_singleton] at hz'
+  subst hz'
+  change other.1 ∈ ({other.1, v.1} : Finset ℝ²)
+  exact Finset.mem_insert_self _ _
+
+end WideReader
+
+/-- Rebuild the source context from a provenance core and one extension record.
+
+The core supplies three of the context's thirteen fields from its own data: the
+deletion differs from the source because the source lies on its row and the
+deletion does not, the deletion misses the source row because it is a recorded
+omission, and the second named vertex misses the source row for the same reason
+once the core records it as an omission — which is the hypothesis `hv`.  The
+remaining ten fields are the extension record, field for field.
+
+The context's own source and deletion are read off the core, so no equation
+between them is needed. -/
+theorem exactFourMutualOmissionSourceContext_ofCoreExtension
+    (C : JointDeletionCore D (lateFirstApexSystem R))
+    (E : ExactFourMutualOmissionSourceExtension R rho C.source C.deleted u v)
+    (hv : v.1 ∈ C.fixedOmissions) :
+    ExactFourMutualOmissionSourceContext R rho C.source C.deleted u v where
+  source_mem_class := E.source_mem_class
+  source_mem_interior := E.source_mem_interior
+  source_mem_outside := E.source_mem_outside
+  source_cross_card_le_two := E.source_cross_card_le_two
+  other_ne_source := C.deleted_ne_source
+  other_mem_class := E.other_mem_class
+  other_mem_interior := E.other_mem_interior
+  other_not_mem_source_row := C.deleted_not_mem_selectedAt_source
+  source_other_blockers_ne := E.source_other_blockers_ne
+  source_survives_q_or_w := E.source_survives_q_or_w
+  source_mem_u_row := E.source_mem_u_row
+  v_not_mem_source_row := by
+    rw [← C.exactSourceRow_support_eq_selectedAt]
+    exact C.omitted_of_mem_fixedOmissions v.1 hv
+  u_eq_source_or_not_mem_source_row := E.u_eq_source_or_not_mem_source_row
+
+/-- Round trip, context to core and back.  Splitting a source context into a
+wide provenance core and an extension record and reassembling it returns the
+original context.
+
+`ExactFourMutualOmissionSourceContext` is a `Prop`, so this equation closes by
+proof irrelevance and carries no information on its own.  The content of the
+round trip is the data-side agreement below: the rebuilt context names the
+core's own source, blocker, deletion, row support and omissions, which is what
+`jointDeletionCoreWide_ofCoreExtension_source` and its companions state. -/
+theorem exactFourMutualOmissionSourceContext_ofCoreExtension_toSourceExtension
+    (hctx : ExactFourMutualOmissionSourceContext R rho source other u v)
+    (fixedSurvivals : Finset ℝ²) (hsubset : fixedSurvivals ⊆ D.A)
+    (hsurvives : ∀ c ∈ fixedSurvivals,
+      HasNEquidistantPointsAt 4 (D.A.erase other.1) c)
+    (hv : v.1 ∈
+      (hctx.jointDeletionCoreWide fixedSurvivals hsubset
+        hsurvives).fixedOmissions) :
+    exactFourMutualOmissionSourceContext_ofCoreExtension
+        (hctx.jointDeletionCoreWide fixedSurvivals hsubset hsurvives)
+        hctx.toSourceExtension hv = hctx :=
+  rfl
+
+/- ### Core to context and back -/
+
+section CoreToContext
+
+variable (C : JointDeletionCore D (lateFirstApexSystem R))
+  (E : ExactFourMutualOmissionSourceExtension R rho C.source C.deleted u v)
+  (hv : v.1 ∈ C.fixedOmissions)
+  (fixedSurvivals : Finset ℝ²) (hsubset : fixedSurvivals ⊆ D.A)
+  (hsurvives : ∀ c ∈ fixedSurvivals,
+    HasNEquidistantPointsAt 4 (D.A.erase C.deleted.1) c)
+
+@[simp] theorem jointDeletionCoreWide_ofCoreExtension_source :
+    ((exactFourMutualOmissionSourceContext_ofCoreExtension C E
+        hv).jointDeletionCoreWide fixedSurvivals hsubset hsurvives).source =
+      C.source := rfl
+
+@[simp] theorem jointDeletionCoreWide_ofCoreExtension_deleted :
+    ((exactFourMutualOmissionSourceContext_ofCoreExtension C E
+        hv).jointDeletionCoreWide fixedSurvivals hsubset hsurvives).deleted =
+      C.deleted := rfl
+
+@[simp] theorem jointDeletionCoreWide_ofCoreExtension_fixedSurvivals :
+    ((exactFourMutualOmissionSourceContext_ofCoreExtension C E
+        hv).jointDeletionCoreWide fixedSurvivals hsubset
+      hsurvives).fixedSurvivals = fixedSurvivals := rfl
+
+@[simp] theorem jointDeletionCoreWide_ofCoreExtension_fixedOmissions :
+    ((exactFourMutualOmissionSourceContext_ofCoreExtension C E
+        hv).jointDeletionCoreWide fixedSurvivals hsubset
+      hsurvives).fixedOmissions = ({C.deleted.1, v.1} : Finset ℝ²) := rfl
+
+/-- The rebuilt core records the same blocker as the original. -/
+theorem jointDeletionCoreWide_ofCoreExtension_sourceBlocker :
+    ((exactFourMutualOmissionSourceContext_ofCoreExtension C E
+        hv).jointDeletionCoreWide fixedSurvivals hsubset
+      hsurvives).sourceBlocker = C.sourceBlocker :=
+  C.sourceBlocker_eq.symm
+
+/-- The rebuilt core records the same exact row support as the original. -/
+theorem jointDeletionCoreWide_ofCoreExtension_support :
+    ((exactFourMutualOmissionSourceContext_ofCoreExtension C E
+          hv).jointDeletionCoreWide fixedSurvivals hsubset
+        hsurvives).exactSourceRow.toCriticalFourShell.support =
+      C.exactSourceRow.toCriticalFourShell.support :=
+  C.exactSourceRow_support_eq_selectedAt.symm
+
+/-- Round trip, core to context and back, on every projection a consumer reads:
+source, blocker, deletion and exact row support all return unchanged. -/
+theorem agree_jointDeletionCoreWide_ofCoreExtension :
+    JointDeletionCore.Agree C
+      ((exactFourMutualOmissionSourceContext_ofCoreExtension C E
+        hv).jointDeletionCoreWide fixedSurvivals hsubset hsurvives) :=
+  ⟨rfl, C.sourceBlocker_eq, rfl, C.exactSourceRow_support_eq_selectedAt⟩
+
+/-- Every survival the original core recorded still holds of the rebuilt core's
+deletion. -/
+theorem survives_of_mem_fixedSurvivals_ofCoreExtension {c : ℝ²}
+    (hc : c ∈ C.fixedSurvivals) :
+    HasNEquidistantPointsAt 4
+      (D.A.erase ((exactFourMutualOmissionSourceContext_ofCoreExtension C E
+        hv).jointDeletionCoreWide fixedSurvivals hsubset
+          hsurvives).deleted.1) c :=
+  C.survives_of_mem_fixedSurvivals c hc
+
+/-- Every omission the original core recorded still misses the rebuilt core's
+row, even though the rebuilt core keeps only the deletion and the second named
+vertex. -/
+theorem omitted_of_mem_fixedOmissions_ofCoreExtension {z : ℝ²}
+    (hz : z ∈ C.fixedOmissions) :
+    z ∉
+      ((exactFourMutualOmissionSourceContext_ofCoreExtension C E
+          hv).jointDeletionCoreWide fixedSurvivals hsubset
+        hsurvives).exactSourceRow.toCriticalFourShell.support := by
+  rw [jointDeletionCoreWide_ofCoreExtension_support C E hv fixedSurvivals
+    hsubset hsurvives]
+  exact C.omitted_of_mem_fixedOmissions z hz
+
+end CoreToContext
+
+/-- Round trip, core to context and back, as an identity: on a core already in
+the source-context normal form, carrying its own survivals through, the
+composite changes nothing.
+
+With `isSourceContextNormal_jointDeletionCoreWide` this says the composite is a
+retraction onto the normalised cores, and with
+`exactFourMutualOmissionSourceContext_ofCoreExtension_toSourceExtension` it says
+the source contexts and the normalised cores carry each other's data without
+loss. -/
+theorem jointDeletionCoreWide_ofCoreExtension_eq_self
+    (C : JointDeletionCore D (lateFirstApexSystem R))
+    (E : ExactFourMutualOmissionSourceExtension R rho C.source C.deleted u v)
+    (hv : v.1 ∈ C.fixedOmissions) (hnormal : C.IsSourceContextNormal v) :
+    (exactFourMutualOmissionSourceContext_ofCoreExtension C E
+        hv).jointDeletionCoreWide C.fixedSurvivals
+        C.fixedSurvivals_subset_carrier C.survives_of_mem_fixedSurvivals = C :=
+  JointDeletionCore.ext_of_data rfl (heq_of_eq hnormal.1.symm) rfl rfl
+    hnormal.2.symm
+
+/-- The full round trip on a core read off a context: reading a wide core,
+splitting it, rebuilding the context and reading the wide core again returns the
+first wide core on the nose. -/
+theorem jointDeletionCoreWide_ofCoreExtension_jointDeletionCoreWide
+    (hctx : ExactFourMutualOmissionSourceContext R rho source other u v)
+    (fixedSurvivals : Finset ℝ²) (hsubset : fixedSurvivals ⊆ D.A)
+    (hsurvives : ∀ c ∈ fixedSurvivals,
+      HasNEquidistantPointsAt 4 (D.A.erase other.1) c)
+    (hv : v.1 ∈
+      (hctx.jointDeletionCoreWide fixedSurvivals hsubset
+        hsurvives).fixedOmissions) :
+    (exactFourMutualOmissionSourceContext_ofCoreExtension
+          (hctx.jointDeletionCoreWide fixedSurvivals hsubset hsurvives)
+          hctx.toSourceExtension
+          hv).jointDeletionCoreWide fixedSurvivals hsubset hsurvives =
+      hctx.jointDeletionCoreWide fixedSurvivals hsubset hsurvives := rfl
+
+end SourceContextRoundTrip
 
 end ATailFrontierLiveClosure
 end Problem97

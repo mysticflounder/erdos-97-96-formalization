@@ -209,7 +209,7 @@
       "numbers_differ_from_expected": false,
       "verbatim_output": "FAIL: kernel-mined refs are not fresh\n    ! --require-fresh-refs: 36 stale mined symbol(s)\n    ! --require-fresh-refs: 1 never-mined symbol(s)\n  fix: proof-blueprint refs --refresh\nreceipt: /Users/adam/projects/math-projects/erdos-97-96-formalization/proof-status/receipts/registry-check-20260825T015132Z.json",
       "tool_receipt": "proof-status/receipts/registry-check-20260825T015132Z.json",
-      "detail": "The counts are exactly the expected 36 stale + 1 never-mined, so this is the documented proof-blueprint miner exception and nothing new. proof-blueprint refs --check confirms the same 36/1 at the current build 6b705bc406c9, and proof-status/baseline/refs-check.txt records the same 36/1 at baseline build fd3f51e09b99 — the staleness set is inherited, not introduced by W2a. It is recorded here as a documented miner exception and by explicit instruction it does not flip overall_pass."
+      "detail": "The counts are exactly the expected 36 stale + 1 never-mined, so this is the documented proof-blueprint miner exception and nothing new. proof-blueprint refs --check confirms the same 36/1 at the current build 6b705bc406c9, and proof-status/baseline/refs-check.txt records the same 36/1 at baseline build fd3f51e09b99 — the staleness set is inherited, not introduced by W2a. Per #7422 and the W1c precedent this inherited FAIL sets overall_pass=false; the W2a-specific source checks are reported separately as source_gates_pass=true."
     },
     "verify_publish": {
       "verdict": "PASS (same target, same failure class as baseline)",
@@ -294,5 +294,11 @@
   "checkpoint_declaration": {
     "pre_write_declaration": "convo #7423 (2026-08-24 17:26 PDT) named the exact five paths before the first write (17:56 PDT).",
     "lane_checkpoint": "refreshed after file creation (validator raises blocking OWNED_PATH_MISSING for paths that do not exist yet); the refresh is post-creation and is not presented as preceding the writes."
-  }
+  },
+  "metadata_corrections": [
+    {
+      "when": "W2b commit",
+      "what": "gates.registry_strict_fresh_refs: the verdict and detail sentences that described the inherited fresh-refs failure as leaving overall_pass unchanged were replaced by the statement that it sets overall_pass=false per #7422 and the W1c precedent (auditor #7433); no other field changed"
+    }
+  ]
 }

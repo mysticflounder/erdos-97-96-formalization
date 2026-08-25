@@ -49,6 +49,8 @@ import Erdos9796Proof.P97.ATail.FrontierLiveClosure.BlockerRelation
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.JointDeletion.ProvenanceCore
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.JointDeletion.CallerProvenance
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.JointDeletion.RoundTrip
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure.JointDeletion.Producers
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure.JointDeletion.CallerConstructors
 
 /-!
 # Joint-deletion core (re-export)
@@ -68,6 +70,11 @@ It also re-exports the provenance and blocker layers — `BlockerRelation`,
 provenance-preserving core, its radius-mode and caller extensions, the
 choice-free blocker relation, and the round-trip lemmas relating them to the
 historical packet without adding imports of its own.
+
+It also re-exports `JointDeletion.Producers` and
+`JointDeletion.CallerConstructors`, so the same consumer reaches the readers
+that build a provenance core from the live retained-matching geometry and the
+constructors that pin the caller records to the ambient surplus-cap apexes.
 
 The original import block is retained above so that every existing importer of
 this module keeps the same transitive import closure and elaborates unchanged.

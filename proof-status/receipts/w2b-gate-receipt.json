@@ -1,0 +1,593 @@
+{
+  "schema": "p97-gate-receipt/v1",
+  "wave": "W2b",
+  "generated_by": "W2b gate-receipt subagent (verification only), then re-bound by the main session after (a) the docstring-only rewrite of the dangerous-triple paragraph in JointDeletion/CallerConstructors.lean (auditor #7438) and (b) the type-level origin binding of PairedCommonDeletionProvenance in JointDeletion/Producers.lean (auditor #7437); every gate was re-run by the main session on the edited working tree before commit.",
+  "generated_at_utc": "2026-08-25T03:43:29Z",
+  "git_head": "c578afd1e8c720a84ffa651b354804798f1cb8f4",
+  "git_head_short": "c578afd1",
+  "head_note": "Every W2b change is UNCOMMITTED at this HEAD: Producers.lean and CallerConstructors.lean are untracked, RoundTrip.lean and JointDeletionCore.lean are modified in the working tree. Every verdict below is computed from working-tree source, not from the commit. Content is bound by the sha256 map in content_bound_files, not by the commit hash.",
+  "scope_note": "This receipt records gate outcomes only. It makes NO proof-promotion claim, NO fresh-spine claim, and NO claim that any obligation was discharged. The publication gate still fails on sorryAx exactly as it did at baseline; W2b neither advanced nor regressed it.",
+  "lean_toolchain": {
+    "path": "lean/lean-toolchain",
+    "content": "leanprover/lean4:v4.27.0",
+    "sha256": "d55ca0039a5479db5b38919d005b2c427b89b3be4f0184a20f2f4eae931f5bdb",
+    "note": "The repository-root lean-toolchain carries identical content and the same digest."
+  },
+  "blueprint": {
+    "build_id": "f80c3204eef5",
+    "w2a_build_id": "6beb7ec16654",
+    "baseline_build_id": "fd3f51e09b99",
+    "refs_check_exit": 1,
+    "project_symbols": 64766,
+    "minable": 56446,
+    "trusted_skipped": 7390,
+    "without_importable_olean": 931,
+    "mined_fresh": 56409,
+    "stale": 36,
+    "never_mined": 1,
+    "baseline_refs_check": {
+      "build_id": "fd3f51e09b99",
+      "project_symbols": 64379,
+      "minable": 56059,
+      "mined_fresh": 56022,
+      "stale": 36,
+      "never_mined": 1
+    },
+    "note": "Stale (36) and never-mined (1) are byte-for-byte the baseline condition in proof-status/baseline/refs-check.txt and the W2a condition. Project symbols grew 64642 -> 64766 (+124) across W2a -> W2b, consistent with the two new modules and the RoundTrip additions; the staleness set did not grow."
+  },
+  "wave_files": {
+    "new": [
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletion/Producers.lean",
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletion/CallerConstructors.lean"
+    ],
+    "edited": [
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletion/RoundTrip.lean",
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletionCore.lean"
+    ],
+    "edited_diffstat": "2 files changed, 397 insertions(+), 0 deletions(-) — RoundTrip.lean +390 in two hunks (12 prose lines inside the module docstring at 65-76, and 378 appended lines at 1226-1603); JointDeletionCore.lean +7 (2 import lines plus a 5-line one-sentence docstring paragraph). No line removed anywhere.",
+    "new_file_sizes": {
+      "Producers.lean": 867,
+      "CallerConstructors.lean": 543
+    }
+  },
+  "content_bound_files": {
+    "note": "Working-tree sha256 for the four W2b files and the three foreign-lane files checked for drift.",
+    "sha256": {
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletion/Producers.lean": "5a979066fdc40002864f5d11f25d768d7fa6369e6c3b82f0fd12392a879ae4f9",
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletion/CallerConstructors.lean": "114e28f29b1c920988b989b160b3d58ac1e5b4fb87514d67151764a47034eaab",
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletion/RoundTrip.lean": "bece113fd68beb6a0d25014611b1d70fe6b0edf501caf0eb8e7b09b87189f75e",
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletionCore.lean": "131976feb5d3d645879db1512d90d670e26c65e55913885ddf4418662d3da63c",
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceCanonicalSurface.lean": "6d7bc2e50828072339307ae3f8879c3073e54489e613ab3d74830a615c519268",
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceRetainedMinimalCore.lean": "b6407b84f7f9609bca45cdf6ab98db5e2fe542cb46e7de00b1963be3bb431e11",
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TriApexEndpointRetainedOmission.lean": "88af81a1ef621909c0fe6e29b6fa725edaf5b796429bc1f24399bea18a740737"
+    },
+    "frontier_live_closure_dirty_vs_head": [
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletion/RoundTrip.lean",
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletionCore.lean",
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceCanonicalSurface.lean",
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceRetainedMinimalCore.lean"
+    ],
+    "frontier_live_closure_untracked": [
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletion/CallerConstructors.lean",
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletion/Producers.lean"
+    ]
+  },
+  "gates": {
+    "build": {
+      "gate": 1,
+      "verdict": "PASS",
+      "command": "lake-build",
+      "exit_code": 0,
+      "jobs": 12190,
+      "final_line": "Build completed successfully (12190 jobs).",
+      "error_lines": 0,
+      "oleans_present": {
+        "Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletion/Producers.olean": 668360,
+        "Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletion/CallerConstructors.olean": 299288,
+        "Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletion/RoundTrip.olean": 944664,
+        "Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletionCore.olean": 51456
+      },
+      "detail": "Plain full lake-build exits 0 with 12190 jobs and zero error lines (warnings only, from the unused-variable linter in unrelated modules). Both new modules have a .olean under lean/.lake/build/lib/lean, each newer than its source, so they are inside the verified build rather than unbuilt WIP. The post-build proof-blueprint sync mined 19 changed modules / 1020 symbols and reported 'sync complete — index and kernel call graph match the current build' at build e1761ec1c169."
+    },
+    "sorry_and_trust_scan": {
+      "gate": 2,
+      "verdict": "PASS",
+      "scope": "Producers.lean, CallerConstructors.lean (whole file), and the 390 added lines of the RoundTrip.lean diff",
+      "method": "raw substring grep, case sensitive",
+      "counts_new_files": {
+        "sorry": 0,
+        "axiom": 0,
+        "native_decide": 0,
+        "unsafe": 0,
+        "partial": 0,
+        "implemented_by": 0,
+        "sorryAx": 0,
+        "ofReduceBool": 0,
+        "trustCompiler": 0
+      },
+      "counts_roundtrip_added_lines": {
+        "sorry": 0,
+        "axiom": 0,
+        "native_decide": 0,
+        "unsafe": 0,
+        "partial": 0,
+        "implemented_by": 0
+      },
+      "detail": "All six required tokens are 0 in both new files and 0 across all 390 added RoundTrip lines. proof-blueprint independently reports has_sorry false for every declaration it indexes in the two new files."
+    },
+    "axioms": {
+      "gate": 3,
+      "verdict": "PASS",
+      "command": "proof-blueprint axioms <symbol>, once per theorem",
+      "theorems_checked": 103,
+      "breakdown": {
+        "Producers.lean": 47,
+        "CallerConstructors.lean": 39,
+        "RoundTrip.lean_added_lines": 17
+      },
+      "coverage": "exact — 47 and 39 are every theorem-kind declaration proof-blueprint indexes in the two new files (private included); 17 is every theorem-kind declaration at line >= 1226 in RoundTrip.lean, which is exactly the appended hunk (the other hunk, lines 65-76, lies inside the module docstring and adds no declaration)",
+      "nonzero_exits": 0,
+      "distinct_closures": 1,
+      "closure": [
+        "Classical.choice",
+        "propext",
+        "Quot.sound"
+      ],
+      "forbidden_axioms_found": 0,
+      "detail": "Every one of the 103 theorems reports exactly 3 axioms, and all 309 axiom lines carry the 'core' tag. No sorryAx, no Lean.ofReduceBool, no Lean.trustCompiler, no custom axiom appears in any closure. Each closure is therefore a subset of {propext, Classical.choice, Quot.sound}."
+    },
+    "roster": {
+      "gate": 4,
+      "verdict": "PASS",
+      "command": "proof-blueprint search --with-sorry --spine --json --all / --off-spine",
+      "spine_count": 28,
+      "spine_baseline_count": 28,
+      "spine_symbol_set_identical": true,
+      "offspine_count": 6,
+      "offspine_baseline_count": 6,
+      "offspine_symbol_set_identical": true,
+      "detail": "The live spine sorry roster is the same 28 symbols as proof-status/baseline/spine-sorry.json with an empty diff, and the off-spine roster is the same 6 symbols as proof-status/baseline/offspine-sorry.json with an empty diff. W2b added no leaf and removed none."
+    },
+    "publication_axioms": {
+      "gate": 5,
+      "verdict": "PASS",
+      "command": "proof-blueprint axioms Problem97.erdos97_rhs",
+      "exit_code": 1,
+      "exit_note": "exit 1 is by design — the target still carries an unapproved sorryAx",
+      "byte_identical_to_baseline": true,
+      "sha256_now": "885f4dbeabd8fc8a86f9acd9b1d85275ddd7218f247d367aa42798b560ed4936",
+      "sha256_baseline": "885f4dbeabd8fc8a86f9acd9b1d85275ddd7218f247d367aa42798b560ed4936",
+      "detail": "cmp against proof-status/baseline/axioms.txt is clean and the digests match. The 6-axiom closure of Problem97.erdos97_rhs — propext, sorryAx, Classical.choice, Lean.ofReduceBool, Lean.trustCompiler, Quot.sound — is unchanged by W2b."
+    },
+    "lint": {
+      "gate": 6,
+      "verdict": "PASS",
+      "command": "uv run python scripts/lint_cluster_imports.py",
+      "exit_code": 0,
+      "verbatim_output": "lint_cluster_imports: OK -- 679 import edges scanned, 29 forbidden edges, all waived by 29 authenticated waivers.",
+      "edges_scanned": 679,
+      "forbidden_edges": 29,
+      "waived_edges": 29,
+      "violations": 0,
+      "forbidden_edges_note": "The 29 forbidden edges are pre-existing and each is covered by an authenticated waiver, which is why the linter exits 0 with 0 violations. None of the 29 originates in a W2b module. Edge count grew 673 -> 679 (+6) against W2a, matching the six new header imports.",
+      "new_module_classification": {
+        "Erdos9796Proof.P97.ATail.FrontierLiveClosure.JointDeletion.Producers": "cluster shared",
+        "Erdos9796Proof.P97.ATail.FrontierLiveClosure.JointDeletion.CallerConstructors": "cluster shared"
+      },
+      "new_module_imports": {
+        "Producers": [
+          "Erdos9796Proof.P97.ATail.PairedCommonDeletionNormalForm",
+          "Erdos9796Proof.P97.ATail.RetainedMatchingLargeCapConsumer",
+          "Erdos9796Proof.P97.ATail.FrontierLiveClosure.JointDeletion.ProvenanceCore",
+          "Erdos9796Proof.P97.ATail.FrontierLiveClosure.JointDeletion.RoundTrip"
+        ],
+        "CallerConstructors": [
+          "Erdos9796Proof.P97.ATail.FrontierLiveClosure.JointDeletion.CallerProvenance",
+          "Erdos9796Proof.P97.ATail.FrontierLiveClosure.JointDeletion.Producers"
+        ]
+      },
+      "new_modules_import_no_cluster_module": true,
+      "detail": "scripts/lint_cluster_imports.py --scan-file classifies both new modules as [cluster shared] and reports every one of their six header imports as 'shared -> shared, to-shared'. No import targets a module with a Rigid221*/TriApex*/TwoSource*/FreshThird*/FirstFiber*/FirstNonHit*/TwoDeletion*/B1Live basename, so the shared-module import discipline holds."
+    },
+    "registry": {
+      "gate": 7,
+      "verdict": "PASS",
+      "command": "uv run python scripts/gen_obligation_registry.py check --baseline proof-status/baseline",
+      "exit_code": 0,
+      "reachable": 28,
+      "off_spine": 6,
+      "meta_status_reviewed": "34/34",
+      "vocabulary": "clean",
+      "bound_to": "HEAD c578afd1e8c720a84ffa651b354804798f1cb8f4, build e1761ec1c169, roster sources dirty",
+      "tool_receipt": "proof-status/receipts/registry-check-20260825T032006Z.json",
+      "detail": "Without --require-fresh-refs the registry check exits 0: obligations.json matches the live spine at 28 reachable / 6 off-spine, all 34 reviewed meta_status entries are present, vocabulary clean."
+    },
+    "registry_strict_fresh_refs": {
+      "gate": 7,
+      "verdict": "FAIL (documented inherited miner exception; sets overall_pass=false per #7422 and the W1c/W2a receipts)",
+      "command": "uv run python scripts/gen_obligation_registry.py check --baseline proof-status/baseline --require-fresh-refs",
+      "exit_code": 1,
+      "stale": 36,
+      "never_mined": 1,
+      "matches_documented_exception": true,
+      "numbers_differ_from_expected": false,
+      "verbatim_output": "FAIL: kernel-mined refs are not fresh\n    ! --require-fresh-refs: 36 stale mined symbol(s)\n    ! --require-fresh-refs: 1 never-mined symbol(s)\n  fix: proof-blueprint refs --refresh\nreceipt: /Users/adam/projects/math-projects/erdos-97-96-formalization/proof-status/receipts/registry-check-20260825T032012Z.json",
+      "tool_receipt": "proof-status/receipts/registry-check-20260825T032012Z.json",
+      "detail": "The counts are exactly the expected 36 stale + 1 never-mined, so this is the documented proof-blueprint miner exception and nothing new. proof-blueprint refs --check reports the same 36/1 at the current build e1761ec1c169, and proof-status/baseline/refs-check.txt records the same 36/1 at baseline build fd3f51e09b99 — the staleness set is inherited, not introduced by W2b. No other numbers appear. Per #7422 and the W1c/W2a precedent this inherited FAIL sets overall_pass=false; the W2b-specific source checks are reported separately as source_gates_pass."
+    },
+    "verify_publish": {
+      "gate": 8,
+      "verdict": "PASS (same target, same failure class as baseline)",
+      "command": "proof-blueprint verify-publish",
+      "exit_code": 1,
+      "exit_note": "exit 1 is the expected baseline state — the spine still reaches sorry",
+      "target_symbol": "Problem97.erdos97_rhs",
+      "baseline_target_symbol": "Problem97.erdos97_rhs",
+      "failure_class": "sorryAx",
+      "blocker_count": 2,
+      "blockers_identical_to_baseline": true,
+      "offspine_sorries": "3 symbol(s) in 3 file(s) — same as baseline",
+      "diff_vs_baseline": [
+        "line 4: '10 uncommitted lean file(s)' -> '14 uncommitted lean file(s)' (working-tree bookkeeping; the tree carries the 2 untracked W2b modules, the 2 modified W2b files, 2 foreign-lane modified files, and 8 untracked scratch/test lean files)",
+        "trailing line 'verify-publish exit 1' present in the baseline capture only (capture-wrapper artifact; the live exit code is 1 in both)"
+      ],
+      "detail": "Every substantive line matches proof-status/baseline/verify-publish.txt, including line numbers. Both blockers are identical: (1) target_symbol Problem97.erdos97_rhs carries 1 unapproved custom axiom on spine, sorryAx; (2) the spine of Problem97.erdos97_rhs reaches sorry via the same five TwoSourceExactCollisionRowsTerminal symbols. The only differences are the uncommitted-file count and the capture-wrapper trailing line."
+    },
+    "w2_gate_signatures": {
+      "gate": "9(a)",
+      "verdict": "PASS with one reported qualification",
+      "old_signatures_elaborate_unchanged": true,
+      "evidence": [
+        "Plain full lake-build exits 0 on the working tree, so every pre-existing declaration in the cluster still elaborates.",
+        "git diff of JointDeletion/RoundTrip.lean has 390 added lines and 0 removed lines. The two hunks are '@@ -64,0 +65,12 @@' (inside the module docstring, which spans lines 10-89, so prose only) and '@@ -1213,0 +1226,378 @@' (appended after 'end ClassificationRoundTrip'). No existing declaration was touched.",
+        "git diff of JointDeletionCore.lean is 7 added lines and 0 removed lines: 2 import lines appended to the existing import block, plus one 5-line docstring sentence appended to the module docstring. No declaration added, removed, or altered."
+      ],
+      "porcelain_under_cluster_dir": [
+        " M lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletion/RoundTrip.lean",
+        " M lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletionCore.lean",
+        " M lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceCanonicalSurface.lean",
+        " M lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceRetainedMinimalCore.lean",
+        "?? lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletion/CallerConstructors.lean",
+        "?? lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletion/Producers.lean"
+      ],
+      "qualification": "The literal criterion 'porcelain shows nothing under the cluster directory other than the four wave files' does not hold as written: TwoSourceCanonicalSurface.lean and TwoSourceRetainedMinimalCore.lean also report as modified. Both are pre-existing foreign-lane dirt, not W2b drift — their working-tree sha256 digests (6d7bc2e5..., b6407b84...) are byte-identical to the digests the W2a receipt recorded for them and to the prefixes this gate was told to expect. No other file under the cluster directory differs from HEAD."
+    },
+    "w2_gate_reconstruction": {
+      "gate": "9(b)",
+      "verdict": "PASS",
+      "note": "Every lemma listed below is present in a built module (proof-blueprint indexes it from the current build e1761ec1c169, and its module has a .olean).",
+      "historical_packet_round_trip": {
+        "file": "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletion/RoundTrip.lean",
+        "section": "HistoricalRoundTrip (lines 570-907), pre-existing from W2a",
+        "lemmas": [
+          "ofExtension_toExtension",
+          "toJointDeletionCore_ofExtension_source",
+          "toJointDeletionCore_ofExtension_deleted",
+          "toJointDeletionCore_ofExtension_fixedSurvivals",
+          "toJointDeletionCore_ofExtension_fixedOmissions",
+          "toJointDeletionCore_ofExtension_sourceBlocker",
+          "toJointDeletionCore_ofExtension_support",
+          "agree_toJointDeletionCore_ofExtension",
+          "survives_of_mem_fixedSurvivals_ofExtension",
+          "omitted_of_mem_fixedOmissions_ofExtension",
+          "isPacketNormal_toJointDeletionCore_ofExtension",
+          "toJointDeletionCore_ofExtension_eq_self",
+          "toJointDeletionCore_ofExtension_idem",
+          "isPacketNormal_toJointDeletionCore",
+          "ExactFourMutualOmissionJointDeletion.recover_deleted",
+          "ExactFourMutualOmissionJointDeletion.recover_deleted_mem_class",
+          "ExactFourMutualOmissionJointDeletion.recover_deleted_ne_u",
+          "ExactFourMutualOmissionJointDeletion.recover_deleted_ne_v",
+          "ExactFourMutualOmissionJointDeletion.recover_deleted_not_mem_uRow",
+          "ExactFourMutualOmissionJointDeletion.recover_deleted_not_mem_vRow",
+          "ExactFourMutualOmissionJointDeletion.recover_blockers_ne",
+          "ExactFourMutualOmissionJointDeletion.recover_packets_survivals",
+          "ExactFourMutualOmissionJointDeletion.isCanonicalBlocker_toJointDeletionCore",
+          "ExactFourMutualOmissionJointDeletion.isCanonicalBlocker_toJointDeletionCoreAtSecond",
+          "ExactFourMutualOmissionJointDeletion.swap_deleted",
+          "ExactFourMutualOmissionJointDeletion.swap_swap",
+          "toJointDeletionCoreAtSecond_deleted_eq",
+          "toJointDeletionCoreAtSecond_swap"
+        ]
+      },
+      "source_context_round_trip": {
+        "file": "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletion/RoundTrip.lean",
+        "section": "SourceContextRoundTrip (lines 1310-1602), NEW in W2b",
+        "closes": "W2a auditor finding #7428 item 2 — ExactFourMutualOmissionSourceContext previously had one-way core readers only",
+        "carrier_type": "ExactFourMutualOmissionSourceExtension (10 fields; the other 3 of the context's 13 are kept by the core)",
+        "lemmas": [
+          "ExactFourMutualOmissionSourceContext.jointDeletionCoreWide",
+          "ExactFourMutualOmissionSourceContext.toSourceExtension",
+          "isSourceContextNormal_jointDeletionCoreWide",
+          "agree_jointDeletionCore_jointDeletionCoreWide",
+          "jointDeletionCore_fixedOmissions_subset_jointDeletionCoreWide",
+          "exactFourMutualOmissionSourceContext_ofCoreExtension",
+          "exactFourMutualOmissionSourceContext_ofCoreExtension_toSourceExtension",
+          "jointDeletionCoreWide_ofCoreExtension_source",
+          "jointDeletionCoreWide_ofCoreExtension_deleted",
+          "jointDeletionCoreWide_ofCoreExtension_fixedSurvivals",
+          "jointDeletionCoreWide_ofCoreExtension_fixedOmissions",
+          "jointDeletionCoreWide_ofCoreExtension_sourceBlocker",
+          "jointDeletionCoreWide_ofCoreExtension_support",
+          "agree_jointDeletionCoreWide_ofCoreExtension",
+          "survives_of_mem_fixedSurvivals_ofCoreExtension",
+          "omitted_of_mem_fixedOmissions_ofCoreExtension",
+          "jointDeletionCoreWide_ofCoreExtension_eq_self",
+          "jointDeletionCoreWide_ofCoreExtension_jointDeletionCoreWide"
+        ],
+        "retraction_statement": "jointDeletionCoreWide_ofCoreExtension_eq_self says the composite changes nothing on a core already in JointDeletionCore.IsSourceContextNormal form; jointDeletionCoreWide_ofCoreExtension_jointDeletionCoreWide says the full trip on a core read off a context returns that core on the nose (proved by rfl)."
+      },
+      "w2b_adapter_readers": {
+        "producers_file": "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletion/Producers.lean",
+        "oriented_retained_common_deletion": [
+          "jointDeletionCore_ofOrientedRetainedCommonDeletion_source",
+          "jointDeletionCore_ofOrientedRetainedCommonDeletion_sourceBlocker",
+          "jointDeletionCore_ofOrientedRetainedCommonDeletion_deleted",
+          "jointDeletionCore_ofOrientedRetainedCommonDeletion_exactSourceRow_support",
+          "jointDeletionCore_ofOrientedRetainedCommonDeletion_fixedSurvivals",
+          "jointDeletionCore_ofOrientedRetainedCommonDeletion_fixedOmissions",
+          "oppApex1_mem_jointDeletionCore_ofOrientedRetainedCommonDeletion"
+        ],
+        "paired_apex_class": [
+          "jointDeletionCore_ofPairedApexClass_source",
+          "jointDeletionCore_ofPairedApexClass_sourceBlocker",
+          "jointDeletionCore_ofPairedApexClass_deleted",
+          "jointDeletionCore_ofPairedApexClass_exactSourceRow_support",
+          "jointDeletionCore_ofPairedApexClass_fixedSurvivals",
+          "jointDeletionCore_ofPairedApexClass_fixedOmissions",
+          "oppApex1_mem_jointDeletionCore_ofPairedApexClass",
+          "sameRadiusJointDeletion_ofPairedApexClass_toJointDeletionCore",
+          "crossRadiusJointDeletion_ofPairedApexClass_toJointDeletionCore"
+        ],
+        "concentric_grid": [
+          "ConcentricGridJointDeletion.deleted_not_mem_retainedRow",
+          "ConcentricGridJointDeletion.deleted_not_mem_retainedClass",
+          "ConcentricGridJointDeletion.apex_survives_deleted",
+          "ConcentricGridJointDeletion.retainedBlocker_survives_deleted",
+          "ConcentricGridJointDeletion.retainedBlocker_mem_carrier",
+          "crossRadiusJointDeletion_ofConcentricGrid_source",
+          "crossRadiusJointDeletion_ofConcentricGrid_sourceBlocker",
+          "crossRadiusJointDeletion_ofConcentricGrid_deleted",
+          "crossRadiusJointDeletion_ofConcentricGrid_exactSourceRow_support",
+          "crossRadiusJointDeletion_ofConcentricGrid_fixedSurvivals",
+          "crossRadiusJointDeletion_ofConcentricGrid_fixedOmissions",
+          "concentricGridJointDeletion_ofPairedTwoRadiusGrid_retained",
+          "concentricGridJointDeletion_ofPairedTwoRadiusGrid_deleted",
+          "concentricGridJointDeletion_ofPairedTwoRadiusGrid_radii"
+        ],
+        "branch_tag": [
+          "PairedCommonDeletionProvenance.apex_mem_fixedSurvivals",
+          "PairedCommonDeletionProvenance.apex_survives",
+          "PairedCommonDeletionProvenance.toJointDeletionCore_sameRadius",
+          "PairedCommonDeletionProvenance.toJointDeletionCore_crossRadiusApexClass",
+          "PairedCommonDeletionProvenance.toJointDeletionCore_crossRadiusGrid",
+          "PairedCommonDeletionProvenance.toJointDeletionCore_crossRadiusGrid_source",
+          "PairedCommonDeletionProvenance.toJointDeletionCore_crossRadiusGrid_deleted",
+          "pairedCommonDeletionProvenance_apexClassJointDeletion",
+          "pairedCommonDeletionProvenance_apexClass_of_radius_eq",
+          "pairedCommonDeletionProvenance_apexClass_of_radius_ne",
+          "pairedCommonDeletionProvenance_twoRadiusGrid",
+          "toJointDeletionCore_ofPairedApexClass",
+          "toJointDeletionCore_ofPairedTwoRadiusGrid",
+          "toJointDeletionCore_ofPairedTwoRadiusGrid_deleted",
+          "nonempty_jointDeletionCore_of_retainedInteriorCommonDeletion",
+          "nonempty_pairedCommonDeletionProvenance",
+          "nonempty_apexRadiusMode_of_pairedCommonDeletion"
+        ],
+        "caller_constructors_file": "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletion/CallerConstructors.lean",
+        "tri_apex_binding": [
+          "surplusTriApexes_pointwise",
+          "surplusTriApexes_mem_surplusTriApexFinset",
+          "exists_index_of_mem_surplusTriApexFinset",
+          "surplusTriApexFinset_subset_carrier",
+          "fullyDeletionRobustAt_surplusTriApexes",
+          "triApexAugmentedJointDeletionCore_source",
+          "triApexAugmentedJointDeletionCore_sourceBlocker",
+          "triApexAugmentedJointDeletionCore_exactSourceRow",
+          "triApexAugmentedJointDeletionCore_deleted",
+          "triApexAugmentedJointDeletionCore_fixedSurvivals",
+          "triApexAugmentedJointDeletionCore_fixedOmissions",
+          "surplusTriApexes_mem_triApexAugmentedJointDeletionCore_fixedSurvivals",
+          "triApexJointDeletionProvenance_ofJointDeletionCore_toJointDeletionCore",
+          "triApexJointDeletionProvenance_ofJointDeletionCore_source",
+          "triApexJointDeletionProvenance_ofJointDeletionCore_sourceBlocker",
+          "triApexJointDeletionProvenance_ofJointDeletionCore_exactSourceRow",
+          "triApexJointDeletionProvenance_ofJointDeletionCore_deleted",
+          "triApexJointDeletionProvenance_ofJointDeletionCore_globalEscapeSet",
+          "triApexJointDeletionProvenance_ofJointDeletionCore_capLabels",
+          "surplusApex_mem_triApexJointDeletionProvenance_fixedSurvivals",
+          "oppApex1_mem_triApexJointDeletionProvenance_fixedSurvivals",
+          "oppApex2_mem_triApexJointDeletionProvenance_fixedSurvivals",
+          "triApexJointDeletionProvenance_ofJointDeletionCore_surplusApex_survives",
+          "triApexJointDeletionProvenance_ofJointDeletionCore_oppApex1_survives",
+          "triApexJointDeletionProvenance_ofJointDeletionCore_oppApex2_survives",
+          "TriApexJointDeletionProvenance.surplusApex_survives",
+          "TriApexJointDeletionProvenance.oppApex1_survives",
+          "TriApexJointDeletionProvenance.oppApex2_survives",
+          "TriApexJointDeletionProvenance.escape_survives_at_moserApexes",
+          "triApexJointDeletionProvenance_ofOrientedRetainedCommonDeletion_source",
+          "triApexJointDeletionProvenance_ofOrientedRetainedCommonDeletion_sourceBlocker",
+          "triApexJointDeletionProvenance_ofOrientedRetainedCommonDeletion_deleted",
+          "nonempty_triApexJointDeletionProvenance_of_retainedInteriorCommonDeletion"
+        ],
+        "escape_set_readers": [
+          "mem_classCapInteriorEscapeSet_iff",
+          "mem_selectedClass_of_mem_classCapInteriorEscapeSet",
+          "mem_capInterior_of_mem_classCapInteriorEscapeSet",
+          "not_mem_exactSourceRow_of_mem_classCapInteriorEscapeSet",
+          "classCapInteriorEscapeSet_subset_carrier",
+          "deleted_mem_classCapInteriorEscapeSet"
+        ]
+      }
+    },
+    "w2_gate_cardinality": {
+      "gate": "9(c)",
+      "verdict": "PASS — 0 violations",
+      "method": "rg -n 'card' over both new files and over the added lines of the RoundTrip.lean diff",
+      "hits": [
+        {
+          "file": "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletion/Producers.lean",
+          "lines": [
+            40,
+            101,
+            295,
+            361,
+            716
+          ],
+          "classification": "prose only",
+          "note": "Module and declaration docstrings stating that no reading is taken off a cardinality. No code."
+        },
+        {
+          "file": "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletion/Producers.lean",
+          "lines": [
+            378,
+            387
+          ],
+          "symbol": "ConcentricGridJointDeletion.retainedClass_card_eq_four / otherClass_card_eq_four",
+          "shape": "(SelectedClass D.A apex r).card = 4",
+          "classification": "allowed — class-shape hypothesis, not a witness stand-in",
+          "note": "Both fields are verbatim transcriptions of the same-named fields on the pre-existing upstream record PairedTwoRadiusGrid (lean/Erdos9796Proof/P97/ATail/PairedCommonDeletionNormalForm.lean:180 and :182). Their only consumer is ConcentricGridJointDeletion.retainedFourClass (line 426), which calls SelectedFourClass.ofSelectedClass (Erdos9796Proof/P97/U1CarrierInjection.lean:420), whose parameter is literally hcard : (SelectedClass A center radius).card = 4. The Finset SelectedClass D.A apex r is a named term, so the four points are its own elements and nothing existential is being replaced. Every source, blocker, deletion, survival and omission of the record is separately carried: source = retained (named CarrierVertex) with retained_mem_retainedClass; deletion = deleted (named CarrierVertex) with deleted_mem_otherClass and deleted_mem_deletedRow; blocker = H.centerAt retained.1 retained.2, a named term; the omissions deleted_not_mem_retainedRow and deleted_not_mem_retainedClass and the survivals apex_survives_deleted and retainedBlocker_survives_deleted are all consequence theorems."
+        },
+        {
+          "file": "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletion/Producers.lean",
+          "lines": [
+            429,
+            569,
+            573
+          ],
+          "classification": "allowed — field passthrough",
+          "note": "Line 429 feeds retainedClass_card_eq_four to SelectedFourClass.ofSelectedClass. Lines 569 and 573 copy Gr.retainedClass_card_eq_four and Gr.otherClass_card_eq_four straight off the upstream PairedTwoRadiusGrid."
+        },
+        {
+          "file": "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletion/CallerConstructors.lean",
+          "lines": [
+            163
+          ],
+          "classification": "prose only",
+          "note": "Docstring sentence stating the escape set is never described by its cardinality."
+        },
+        {
+          "file": "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletion/RoundTrip.lean",
+          "lines": [
+            1261,
+            1369,
+            1452
+          ],
+          "symbol": "ExactFourMutualOmissionSourceExtension.source_cross_card_le_two",
+          "shape": "(row support ∩ (class ∩ cap interior)).card ≤ 2",
+          "classification": "allowed — upper bound, and a required round-trip carry",
+          "note": "This field already exists on the pre-existing ExactFourMutualOmissionSourceContext (lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletion/Types.lean:87) and on live consumers (TwoDeletionCollision.lean:121, Rigid221SourceHeavy.lean:1589 and :1848, Rigid221Closure.lean:778). The extension record transcribes it at 1261, reads it off a context at 1369, and writes it back at 1452, which is exactly what the round-trip identity needs. An upper bound asserts no existence and therefore cannot stand in for a witness."
+        }
+      ],
+      "violations": []
+    },
+    "foreign_files": {
+      "gate": 10,
+      "verdict": "PASS (no drift)",
+      "command": "shasum -a 256 TwoSourceCanonicalSurface.lean TwoSourceRetainedMinimalCore.lean TriApexEndpointRetainedOmission.lean",
+      "observed": {
+        "TwoSourceCanonicalSurface.lean": "6d7bc2e50828072339307ae3f8879c3073e54489e613ab3d74830a615c519268",
+        "TwoSourceRetainedMinimalCore.lean": "b6407b84f7f9609bca45cdf6ab98db5e2fe542cb46e7de00b1963be3bb431e11",
+        "TriApexEndpointRetainedOmission.lean": "88af81a1ef621909c0fe6e29b6fa725edaf5b796429bc1f24399bea18a740737"
+      },
+      "expected_prefixes": {
+        "TwoSourceCanonicalSurface.lean": "6d7bc2e5",
+        "TwoSourceRetainedMinimalCore.lean": "b6407b84",
+        "TriApexEndpointRetainedOmission.lean": "88af81a1"
+      },
+      "drift": [],
+      "detail": "All three observed digests match their expected prefixes and the digests the W2a receipt recorded. TwoSourceCanonicalSurface.lean and TwoSourceRetainedMinimalCore.lean are modified relative to HEAD, but that is pre-existing foreign-lane state at the digests this gate was told to expect, not W2b drift; TriApexEndpointRetainedOmission.lean is clean against HEAD. Report only — no action taken."
+    },
+    "house_style_spot_check": {
+      "gate": "informational, not one of the numbered gates",
+      "copyright_header": "both new files open with the 5-line Apache block copied from ContextFrames.lean",
+      "namespaces": "both new files open namespace Problem97 / ATailFrontierLiveClosure and close them at end of file",
+      "banned_prose_word": "no occurrence of 'equivalent' or 'equivalence' in either new file or in the RoundTrip.lean / JointDeletionCore.lean diffs; every 'iff' hit is a Lean lemma name (mem_classCapInteriorEscapeSet_iff), not prose"
+    }
+  },
+  "caller_coverage": {
+    "note": "This section answers W2a auditor finding #7428 item 3 (no adapter connected the live producers) and item 4 (identity binding obligations).",
+    "now_adapted": [
+      {
+        "producer": "OrientedRetainedCommonDeletion (Erdos9796Proof.P97.ATail.RetainedMatchingLargeCapConsumer)",
+        "adapter": "jointDeletionCore_ofOrientedRetainedCommonDeletion",
+        "totality": "total, no extra argument",
+        "file": "JointDeletion/Producers.lean:102"
+      },
+      {
+        "producer": "PairedApexClassJointDeletion (Erdos9796Proof.P97.ATail.PairedCommonDeletionNormalForm)",
+        "adapter": "jointDeletionCore_ofPairedApexClass, then sameRadiusJointDeletion_ofPairedApexClass or crossRadiusJointDeletion_ofPairedApexClass",
+        "totality": "each radius arm takes the comparison of the record's own sourceRadius with the ambient frontier radius as an explicit argument; the arm is never selected from a cardinality",
+        "file": "JointDeletion/Producers.lean:197, 298, 315"
+      },
+      {
+        "producer": "PairedTwoRadiusGrid (Erdos9796Proof.P97.ATail.PairedCommonDeletionNormalForm)",
+        "adapter": "concentricGridJointDeletion_ofPairedTwoRadiusGrid, then crossRadiusJointDeletion_ofConcentricGrid",
+        "totality": "the grid carries no common-deletion packet, so the deletion is a chosen point supplied with its two memberships (the caller passes Gr.deletedOtherFirst or Gr.deletedOtherSecond); both survivals are constructed from the retained class",
+        "file": "JointDeletion/Producers.lean:363, 467, 555"
+      },
+      {
+        "producer": "the paired common-deletion outcome as a whole",
+        "adapter": "pairedCommonDeletionProvenance_ofPairedCommonDeletionOutcome (total branch tag), with nonempty_pairedCommonDeletionProvenance and nonempty_apexRadiusMode_of_pairedCommonDeletion",
+        "totality": "total; case-splits the apex-class outcome on whether its class radius agrees with the frontier radius, a comparison of two reals under classical decidability",
+        "file": "JointDeletion/Producers.lean:633, 717, 731, 841, 854"
+      },
+      {
+        "producer": "TriApexJointDeletionProvenance apexes (W2a #7428 item 4, first identity)",
+        "adapter": "triApexJointDeletionProvenance_ofJointDeletionCore and triApexJointDeletionProvenance_ofOrientedRetainedCommonDeletion, both building the record with apexes instantiated to surplusTriApexes S",
+        "totality": "not total: FullyDeletionRobustAt D S.surplusApex is taken as an explicit hypothesis, because ApexRichClassStructure D.A S.surplusApex occurs in this repository only as a field of the live closure cluster's tri-apex robust residual, which a shared module may not import. Both named types live outside the cluster, so the signature stays importable; the cluster caller supplies the hypothesis. The other two survivals come from the shared layer (FrontierCommonDeletionParentResidual.firstApexFullyDeletionRobust and FrontierBiApexRobustResidual.secondApex_robust).",
+        "file": "JointDeletion/CallerConstructors.lean:236, 328, 489, 530"
+      }
+    ],
+    "still_unadapted": [
+      {
+        "item": "TwoSourceJointDeletionProvenance.dangerousTriple (W2a #7428 item 4, second identity) — labelled A6",
+        "status": "DEFERRED pending a project-owner naming decision",
+        "recorded_where": "module docstring of JointDeletion/CallerConstructors.lean, section 'The two-source dangerous triple stays deferred' (lines 59-72)",
+        "finding_verbatim_summary": "The audit sketch that named the dangerous triple has no referent in the two-source cluster. The only 'dangerous' triple occurring there is the fixed-circle triple of the U3 audit frame, whose three points are produced existentially on a blocker's circle and are not constrained to lie on the two apex classes, so they cannot discharge dangerousTriple_subset. The points the two-source closure argument actually chases are the canonical sources of its two collisions, and the candidate binding {P.source₁, P.source₂, Pρ.source₁} — with the third point pinned to the fresh point of the localized common deletion — reinterprets the sketch rather than porting it. Naming those three points 'dangerous' is a new naming decision reserved for the project owner, so the module records the finding and writes nothing for it.",
+        "verified": "no constructor for TwoSourceJointDeletionProvenance exists in either new file; the type is referenced in CallerConstructors.lean only inside that docstring paragraph (line 61)"
+      },
+      {
+        "item": "the F2 common-radius producer named in W2a finding #7428 item 3",
+        "status": "UNADAPTED in W2b",
+        "evidence": "rg for 'commonRadius' / 'CommonRadius' returns no hit in either new file. Every declaration this repository indexes under that name lives in a cluster module (FirstNonHitCommonRadius*.lean, namespace TwoSourceExactCollisionRowsTerminal), which a shared module of the cluster directory may not import under scripts/lint_cluster_imports.py. Adapting it from the shared layer would require taking the underlying Finset/Prop data as a parameter. This receipt states the observation and makes no claim about whether that port is the right next step."
+      }
+    ],
+    "a7_round_trip": {
+      "status": "DELIVERED, UNCONSUMED",
+      "delivered": "the SourceContextRoundTrip section of JointDeletion/RoundTrip.lean (lines 1310-1602): 1 structure, 2 defs and 17 theorems closing the ExactFourMutualOmissionSourceContext direction that W2a had stated as one-way only",
+      "consumption_check": "proof-blueprint --uses on ExactFourMutualOmissionSourceExtension, ExactFourMutualOmissionSourceContext.jointDeletionCoreWide and exactFourMutualOmissionSourceContext_ofCoreExtension returns consumers inside the same SourceContextRoundTrip section only. Nothing in Producers.lean, CallerConstructors.lean, or any cluster module calls into it yet.",
+      "consequence": "the round trip is available to a caller but no caller has been wired to it in this wave"
+    }
+  },
+  "overall_pass": false,
+  "overall_note": "overall_pass is false because the registry gate fails on its --require-fresh-refs precondition (36 stale + 1 never-mined mined symbols), exactly as at the frozen baseline, in the W1c receipt and in the W2a receipt. That failure is the documented proof-blueprint miner exception, inherited and not introduced by W2b, and per #7422 and the W1c/W2a precedent it is not called passing. No proof-promotion and no fresh-spine claim is made anywhere in this receipt; the publication gate remains blocked on sorryAx exactly as at baseline.",
+  "source_gates_pass": true,
+  "source_gates_note": "The W2b-specific checks — gate 1 build, gate 2 sorry/trust scan, gate 3 per-theorem axiom closures, gate 4 spine roster set-equality, gate 5 publication axioms byte-identity, gate 6 lint, gate 8 verify-publish failure class, gate 9 signatures/reconstruction/cardinality — all pass. Gate 9(a) passes with one reported qualification: two foreign-lane files under the cluster directory also read as modified, at digests byte-identical to the ones the W2a receipt recorded and to the prefixes this gate was told to expect, so they are pre-existing foreign dirt rather than W2b drift.",
+  "repair_note": "This agent held build rights and no repair rights. Nothing was edited. The only file written is this receipt.",
+  "main_session_reverification": {
+    "utc": "2026-08-25T03:43:29Z",
+    "build": "plain lake-build exit 0 on the edited tree",
+    "gates_rerun": [
+      "registry check (no --require-fresh-refs) exit 0",
+      "registry check --require-fresh-refs exit 1 at the same 36 stale + 1 never-mined miner exception",
+      "lint_cluster_imports exit 0, 0 violations",
+      "spine sorry roster 28 set-equal to baseline; off-spine 6 set-equal",
+      "proof-blueprint axioms Problem97.erdos97_rhs byte-identical to baseline",
+      "Producers.lean, CallerConstructors.lean and the RoundTrip.lean diff: 0 sorry/axiom/native_decide/unsafe/partial/implemented_by",
+      "per-theorem axiom closures of Producers.lean and CallerConstructors.lean: {propext, Classical.choice, Quot.sound} only",
+      "RoundTrip.lean and JointDeletionCore.lean diffs vs HEAD: additions only",
+      "foreign files TwoSourceCanonicalSurface/TwoSourceRetainedMinimalCore/TriApexEndpointRetainedOmission hashes unchanged"
+    ]
+  },
+  "auditor_findings_w2b": {
+    "7437_origin_binding": "fixed at type level: each PairedCommonDeletionProvenance constructor carries its originating PairedApexClassJointDeletion O with the radius decision, or the PairedTwoRadiusGrid O with the chosen deletion data; the normalized payloads are derived projections through the standalone adapters; branch tag kept; factory from PairedCommonDeletionOutcome kept total.",
+    "7438_dangerous_triple_paragraph": "rewritten to the decided meaning: dangerousTriple := largeClass.erase J.source, constructed in W3 after the radius-order split, large-class identification, construction of J and J.source outside largeInside, as a derived definition replacing the independent dangerousFirst/Second/Third fields; no W2b constructor.",
+    "7433_w2a_receipt": "metadata-only correction to proof-status/receipts/w2a-gate-receipt.json ships in this commit (recorded in its metadata_corrections)."
+  },
+  "deferred_to_w3": [
+    "A6 dangerous triple (decided meaning above)",
+    "A7 consumer routing: TwoDeletionCollision/Rigid221* callers of ExactFourMutualOmissionSourceContext still use the one-way reader; the reverse round trip is delivered unconsumed",
+    "Rigid221Placement -> TwoDeletionCollision waived import edge (W3 retirement)"
+  ]
+}
