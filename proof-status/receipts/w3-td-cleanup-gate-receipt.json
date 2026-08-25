@@ -1,0 +1,520 @@
+{
+  "schema": "p97-gate-receipt/v1",
+  "wave": "W3-TD-cleanup",
+  "state": "FINAL — bound to W3-TD-cleanup wave commit 236e6413; this receipt ships in the receipt-only child commit of 236e6413",
+  "generated_by": "independent gate verifier (opus), subagent of the W3-TD-cleanup main session",
+  "generated_at_utc": "2026-08-25T23:35:00Z",
+  "git_head": "236e6413ef04434922f0fefb60e93c22aedf9dd5",
+  "git_head_short": "236e6413",
+  "head_note": "Bound to commit 236e6413ef04434922f0fefb60e93c22aedf9dd5. content_bound_files holds the sha256 of every path committed at 236e6413 (`git show 236e6413:<path>`). The gate verifier's pre-commit draft (working-tree hashes at HEAD fc4c0c7c) is kept, labeled, under content_bound_files_working_tree; its gates section is that pre-commit snapshot.",
+  "wave_commit": {
+    "sha": "236e6413ef04434922f0fefb60e93c22aedf9dd5",
+    "paths": [
+      "attic/twodeletion-transcription-oracle-2026-08-25/README.md",
+      "attic/twodeletion-transcription-oracle-2026-08-25/TwoDeletionTranscriptionOracle.lean",
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean",
+      "proof-status/obligations.json"
+    ]
+  },
+  "baseline_reference": "proof-status/baseline (base-head f3063069939cfb6dc2a8a9b20d9a7ef660c86fdf, build fd3f51e09b99)",
+  "build_fingerprint": "4836034d7c65aff561b81e888f67fbaff80d8b0a18d0dfaad9d8e34e325c00c9",
+  "promotion_claim": "none",
+  "promotion_note": "Nothing was proved, discharged or promoted. The publication axiom closure of Problem97.erdos97_rhs is byte-identical to the baseline and still carries the unapproved sorryAx.",
+  "claim_scope": "bookkeeping; oracle text relocated to the attic with provenance, nothing deleted; no obligation, statement, axiom or import change; no proof-progress or closure claim",
+  "source_gates_pass": true,
+  "source_gates_note": "Gates 0-7 and 9-12 all PASS. The single red gate (8d, strict refs) is the pre-existing 36 stale + 1 never-mined condition inherited byte-for-byte from proof-status/baseline/refs-check.txt; it is repaired only by `proof-blueprint refs --refresh`, which no gate verifier may run.",
+  "overall_pass": false,
+  "overall_note": "overall_pass=false solely because gate 8d (--require-fresh-refs) exits 1 at 36 stale + 1 never-mined, the same counts as the baseline. Every gate that carries the source verdict for this wave passes; source_gates_pass=true.",
+  "blockers": [],
+  "gates": [
+    {
+      "step": 0,
+      "name": "root build is current: nothing left to rebuild",
+      "verdict": "PASS",
+      "commands": [
+        {
+          "command": "lake-build   (root wrapper, from the repository root)",
+          "exit_code": 0,
+          "final_line": "Build completed successfully (12194 jobs)."
+        }
+      ],
+      "detail": "16615-line log: 0 `Built` lines, 546 `Replayed` lines, 0 lines matching `error`. Nothing was left to rebuild, so no build of my own was needed and the 'something to rebuild is itself a finding' condition did not trigger. The wrapper's trailing sync reported `already fresh -- 4088 module(s) unchanged at build 4836034d7c65`, so every proof-blueprint gate below reads the build that contains the working-tree edits. The wrapper ran `proof-blueprint refs --refresh` internally and it reported 'No Lean invocation needed' (no mine performed); I did not invoke that command myself. The wrapper also rewrote docs/live-blueprint.md, which was already foreign-dirty. TwoDeletionCollision.lean replayed with exactly 7 diagnostics, listed under gate 6.",
+      "log_path": "<scratchpad>/w3-td-cleanup-verifier/root-build.log"
+    },
+    {
+      "step": 1,
+      "name": "leaf roster: spine and off-spine sorry symbol sets unchanged",
+      "verdict": "PASS",
+      "commands": [
+        {
+          "command": "proof-blueprint search --with-sorry --spine --json",
+          "exit_code": 0,
+          "final_line": "28 objects"
+        },
+        {
+          "command": "proof-blueprint search --with-sorry --off-spine --json",
+          "exit_code": 0,
+          "final_line": "6 objects"
+        }
+      ],
+      "detail": "Both streams parsed as NDJSON with `jq 'select(type==\"object\") | .symbol'`, sorted, and diffed against the baseline exports. Spine: 28 vs 28, `diff` empty. Off-spine: 6 vs 6, `diff` empty. The symbol sets are equal, not merely equinumerous. `proof-blueprint spine` still reports open obligations (28).",
+      "counts": {
+        "spine_sorry_now": 28,
+        "spine_sorry_baseline": 28,
+        "offspine_sorry_now": 6,
+        "offspine_sorry_baseline": 6
+      }
+    },
+    {
+      "step": 2,
+      "name": "publication axiom closure of Problem97.erdos97_rhs is byte-identical to the baseline",
+      "verdict": "PASS",
+      "commands": [
+        {
+          "command": "proof-blueprint axioms Problem97.erdos97_rhs",
+          "exit_code": 1,
+          "final_line": "Either discharge with a real proof, or approve explicitly in .blueprint.toml under [axioms].approved (full FQ name)."
+        }
+      ],
+      "detail": "`diff proof-status/baseline/axioms.txt <output>` is empty: AXIOMS BYTE-IDENTICAL. The same 6 axioms (propext, sorryAx, Classical.choice, Lean.ofReduceBool, Lean.trustCompiler, Quot.sound) with the same annotations. Exit code 1 is the pre-existing '1 unapproved custom axiom on spine: sorryAx' verdict and is identical at the baseline; it is not a regression introduced by this wave."
+    },
+    {
+      "step": 3,
+      "name": "the three TD leaf statements are byte-identical to HEAD",
+      "verdict": "PASS",
+      "commands": [
+        {
+          "command": "extract header-through-`:=` from `git show HEAD:<src>` and from the working tree, then diff, per leaf",
+          "exit_code": 0,
+          "final_line": "3/3 STATEMENT BYTE-IDENTICAL"
+        }
+      ],
+      "detail": "b1_globalGapOrClosedTerminal_of_counterexample (HEAD 144 -> now 144, 7 lines, sha 7b28ab224d1b37ca90a2f180ab98da127ffab15d5204d90bceb9b31624acd436 both sides); false_of_exactFourMutualOmission_fourCenterCommonDeletion_blockerCoincidence (HEAD 678 -> now 573, 69 lines, sha 854605edccdd2291a5ce8f272c8b8da1ecab4687095c64e3de79dab01ff64887); false_of_exactFourMutualOmission_fourCenterCommonDeletion_survivalSquare (HEAD 752 -> now 647, 94 lines, sha 9cf9ff400b2a1aa100d999793874117bed4f739db846929df18f967e2a20b28f). Strictly stronger evidence is on record from gate 4: `git show HEAD:<src> | sed '848,1358d;153,257d'` is byte-identical to the working file (sha f33d4652fe4655e10060379e4f0fb5c88bb3c73644da97cecf8fe3bac94b9cdc on both sides), so every retained line of the file -- statements, proofs, docstrings and the private helper alike -- is unchanged, not only the three leaf statements.",
+      "naming_note": "The task brief names the second leaf `false_of_twoDistinctExactFourMutualOmissionJointDeletions_fourCenterCommonDeletion_blockerCoincidence`. No such declaration exists at HEAD or now; the actual name is `false_of_exactFourMutualOmission_fourCenterCommonDeletion_blockerCoincidence`. Brief-text error, verified against both revisions; no source defect."
+    },
+    {
+      "step": 4,
+      "name": "deletion-only diff; removed lines equal the attic block line for line; imports unchanged",
+      "verdict": "PASS",
+      "commands": [
+        {
+          "command": "git diff --stat HEAD -- lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean",
+          "exit_code": 0,
+          "final_line": "1 file changed, 616 deletions(-)"
+        },
+        {
+          "command": "diff <(git diff -U0 HEAD -- <src> | grep '^-' | grep -v '^--- ' | cut -c2-) <(sed -n '78,693p' <attic.lean>)",
+          "exit_code": 0,
+          "final_line": "no output"
+        }
+      ],
+      "detail": "0 insertions / 616 deletions in exactly two hunks: `@@ -153,105 +152,0 @@` and `@@ -848,511 +742,0 @@`. Added-line count excluding the `+++` header is 0. I located the attic block boundary myself rather than taking 78-693 on trust: the first removed line occurs at attic lines 78 and 137 (the two blockerCollision docstrings share a first line), and the 616-line run beginning at 78 diffs empty against the extracted removals; both sides are 616 lines and hash to 73636ac7d6e480c213caac9e55768d6a38fa2e370703e649c10903c7a8b7e6fc. Independently, the eight declaration boundaries inside the attic block map back to source lines 153, 212, 848, 975, 1049, 1144, 1216, 1292 under the two constant offsets (75 for the first run, 665 for the second), matching the ranges printed in the attic provenance header. Imports: `diff` of the three `import` lines at HEAD against the working tree is empty. The attic file's namespace/open/attribute preamble (attic 38-76) is byte-identical to source lines 11-49 at HEAD.",
+      "reconstruction": "git show HEAD:<src> | sed '848,1358d;153,257d'  ->  cmp byte-identical to the working file; sha256 f33d4652fe4655e10060379e4f0fb5c88bb3c73644da97cecf8fe3bac94b9cdc on both sides."
+    },
+    {
+      "step": 5,
+      "name": "NOTHING DELETED: all eight names present in the attic, absent from the live file, de-indexed; survivors still resolve",
+      "verdict": "PASS",
+      "commands": [
+        {
+          "command": "grep '^theorem <name>$' over the attic file, per name",
+          "exit_code": 0,
+          "final_line": "8/8 attic_header=1"
+        },
+        {
+          "command": "proof-blueprint search --name <name> --json, per name",
+          "exit_code": 0,
+          "final_line": "0 exact index entries for all eight; 1 each for the survivors"
+        }
+      ],
+      "detail": "Each of the eight appears exactly once as a `theorem <name>` header in the attic file and zero times anywhere in the live source file (grep -w count 0 for all eight). `proof-blueprint search --name` returns 0 hits for seven of the eight; `false_of_exactFourMutualOmission_fourCenterCommonDeletion` returns 2 hits, but both are prefix matches on the surviving leaves `..._blockerCoincidence` and `..._survivalSquare` -- filtering on `.symbol | endswith(\".false_of_exactFourMutualOmission_fourCenterCommonDeletion\")` yields nothing, so the exact name is de-indexed too. De-indexing is expected: the attic sits outside the Lake tree and is named by no `lean_lib` in lean/lakefile.toml. Survivors all resolve: b1_globalGapOrClosedTerminal_of_counterexample, false_of_exactFourMutualOmission_fourCenterCommonDeletion_blockerCoincidence and false_of_exactFourMutualOmission_fourCenterCommonDeletion_survivalSquare in TwoDeletionCollision.lean; false_of_twoDeletionIngress, false_of_twoDeletionOutcome and twoDeletionOutcome_of_ingress in TwoDeletion/Coordinator.lean; the Legacy wrapper false_of_twoDistinctExactFourMutualOmissionJointDeletions in Legacy/TwoDeletionWrappers.lean. `rg` for all eight names over lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure returns zero hits, so no remaining declaration in TwoDeletionCollision.lean, TwoDeletion/ or Legacy/ names any of them.",
+      "independent_elaboration": "From lean/: `lake env lean ../attic/twodeletion-transcription-oracle-2026-08-25/TwoDeletionTranscriptionOracle.lean` exits 0. 24 output lines, 0 error lines, 8 warnings, all `linter.style.moduleDocstring`, and 0 `declaration uses 'sorry'` warnings. All eight moved declarations therefore still elaborate and are sorry-free -- the text survived the move intact, not merely the names."
+    },
+    {
+      "step": 6,
+      "name": "no new sorry / axiom / native_decide / maxHeartbeats / unsafe token",
+      "verdict": "PASS",
+      "commands": [
+        {
+          "command": "grep -o -w <token> over `git show HEAD:<src>` and the working file, per token",
+          "exit_code": 0,
+          "final_line": "sorry 4 -> 4; axiom 0 -> 0; native_decide 0 -> 0; maxHeartbeats 0 -> 0; unsafe 0 -> 0"
+        }
+      ],
+      "detail": "Source-file token counts HEAD -> now: sorry 4 -> 4 (three real, at HEAD 151/747/846 and now 151/642/741, the three leaves keeping theirs; the fourth is the word 'sorry-free' in the line-55 docstring, unchanged), axiom 0 -> 0, native_decide 0 -> 0, maxHeartbeats 0 -> 0, unsafe 0 -> 0. The sorry count drops by 0 exactly as the gate requires and no other token appears. Attic-file token counts, reported not gated: sorry 0, axiom 0, native_decide 0, maxHeartbeats 0, unsafe 0.",
+      "warnings": "TwoDeletionCollision.lean emits exactly 7 diagnostics in the replayed build -- 22:0 and 32:0 moduleDocstring, 77:8 unused variable `jointDeletion`, 144:8 declaration uses 'sorry', 294:0 unusedDecidableInType on `four_mem_card_four_split`, 573:8 and 647:8 declaration uses 'sorry'. Zero new warnings, none at either removal seam. Line arithmetic confirms the -105 shift after the first hunk for the three that moved (399->294, 678->573, 752->647) and no shift for the four before it. The `four_mem_card_four_split` header itself moved 402 -> 297; the linter anchors 3 lines earlier, on the docstring."
+    },
+    {
+      "step": 7,
+      "name": "cluster import lint unchanged",
+      "verdict": "PASS",
+      "commands": [
+        {
+          "command": "uv run python scripts/lint_cluster_imports.py",
+          "exit_code": 0,
+          "final_line": "lint_cluster_imports: OK -- 688 import edges scanned, 28 forbidden edges, all waived by 28 authenticated waivers; 3 legacy edges, all listed."
+        },
+        {
+          "command": "uv run python scripts/lint_cluster_imports.py --list-legacy",
+          "exit_code": 0,
+          "final_line": "lint_cluster_imports: OK -- 688 import edges scanned, 28 forbidden edges, all waived by 28 authenticated waivers; 3 legacy edges, all listed."
+        }
+      ],
+      "detail": "688 edges / 28 waivers / 3 legacy on both runs, exactly the expected numbers. The three legacy edges are unchanged: Legacy.TwoDeletionWrappers -> TwoDeletion.Coordinator, Legacy.TwoDeletionWrappers -> TwoDeletionCollision, and Rigid221Placement -> Legacy.TwoDeletionWrappers. Moving declarations out of TwoDeletionCollision.lean changed no import edge because the import block was untouched."
+    },
+    {
+      "step": 8,
+      "name": "obligation registry: regenerate, then check",
+      "verdict": "PASS (8a-8c); 8d red as expected and inherited",
+      "commands": [
+        {
+          "command": "uv run python scripts/gen_obligation_registry.py generate --baseline proof-status/baseline --out proof-status",
+          "exit_code": 0,
+          "final_line": "factorized 3/28 reachable leaves"
+        },
+        {
+          "command": "uv run python scripts/gen_obligation_registry.py check --baseline proof-status/baseline",
+          "exit_code": 0,
+          "final_line": "receipt: proof-status/receipts/registry-check-20260825T233117Z.json"
+        },
+        {
+          "command": "uv run python scripts/gen_obligation_registry.py check --baseline proof-status/baseline --require-factorized TD",
+          "exit_code": 0,
+          "final_line": "receipt: proof-status/receipts/registry-check-20260825T233159Z.json"
+        },
+        {
+          "command": "uv run python scripts/gen_obligation_registry.py check --baseline proof-status/baseline --require-fresh-refs",
+          "exit_code": 1,
+          "final_line": "FAIL: kernel-mined refs are not fresh -- 36 stale mined symbol(s), 1 never-mined symbol(s)"
+        }
+      ],
+      "detail": "8a: the generator wrote without refusing and emitted zero ERROR lines, so every materialized factorization block passed live validation. `git diff -- proof-status/obligations.json` is 3 insertions / 3 deletions and the only changed key is `verified_at_build`, moving from d06f12a265f43ca954fa1d06a529e542b345d13370528ea37f2e002e57e3ae8a to 4836034d7c65aff561b81e888f67fbaff80d8b0a18d0dfaad9d8e34e325c00c9 on all three P97-TD blocks. No other line changed. 8b: OK -- 28 reachable, 6 off-spine, 34/34 reviewed meta_status, vocabulary clean, factorized 3/28, bound to HEAD fc4c0c7c and build 4836034d7c65. 8c: OK with `required: TD` -- the three factorized leaves are exactly P97-TD-GLOBALGAPORCLOSED, P97-TD-BLOCKERCOINCIDENCE and P97-TD-SURVIVALSQUARE, all p97-factorization/v2, 3 verified / 0 violations / 0 registry drift. 8d: exit 1 at 36 stale + 1 never-mined, byte-for-byte the counts in proof-status/baseline/refs-check.txt (36 stale, 1 never mined at build fd3f51e09b99). Unchanged, so the 'a change naming a TD symbol is a finding' condition did not trigger. `proof-blueprint refs --check` at build 4836034d7c65 reports 56434 fresh / 36 stale / 1 never mined out of 56471 minable.",
+      "registry_diff_only_verified_at_build": true,
+      "strict_refs": {
+        "stale_now": 36,
+        "never_mined_now": 1,
+        "stale_baseline": 36,
+        "never_mined_baseline": 1,
+        "changed": false,
+        "names_a_td_symbol": false
+      }
+    },
+    {
+      "step": 9,
+      "name": "focused tests",
+      "verdict": "PASS",
+      "commands": [
+        {
+          "command": "uv run python -m pytest scripts/test_gen_obligation_registry_factorization.py scripts/test_lint_cluster_imports_legacy.py -q",
+          "exit_code": 0,
+          "final_line": "101 passed in 4.26s"
+        }
+      ],
+      "detail": "101 passed, 0 failed, matching the expected count exactly."
+    },
+    {
+      "step": 10,
+      "name": "whitespace and trailing newline hygiene",
+      "verdict": "PASS",
+      "commands": [
+        {
+          "command": "git diff --check HEAD -- lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean",
+          "exit_code": 0,
+          "final_line": "no output"
+        }
+      ],
+      "detail": "`git diff --check` is silent (a pure-deletion diff introduces no whitespace error by construction, and none is reported). Final two bytes: TwoDeletionCollision.lean ends `7 \\n`, TwoDeletionTranscriptionOracle.lean ends `7 \\n`, README.md ends `. \\n` -- each file ends in exactly one newline with no blank final line. This receipt is written with a single trailing newline. Zero trailing-space lines in either attic file. The attic .lean closes with the two `end`s (`end ATailFrontierLiveClosure`, `end Problem97`) at lines 694-695 of 695."
+    },
+    {
+      "step": 11,
+      "name": "foreign modules untouched",
+      "verdict": "PASS",
+      "commands": [
+        {
+          "command": "shasum -a 256 -c <scratchpad>/w3-td-baseline/module-hashes.txt",
+          "exit_code": 1,
+          "final_line": "WARNING: 2 computed checksums did NOT match"
+        }
+      ],
+      "detail": "5 of 7 entries OK. The two FAILED entries are the two the gate declares expected: TwoDeletionCollision.lean (this wave's own edit) and Rigid221Placement.lean. Rigid221Placement.lean is clean against HEAD (`git status --porcelain` on it is empty), so its snapshot in the w3-td-baseline manifest predates the W3-TD wave commit rather than reflecting a live edit. The five that verify OK are Rigid221SourceHeavy, Rigid221Closure, TriApex, TwoSourceCanonicalSurface and B1Live -- none of the protected files was touched. The full lean/ tree status shows exactly three modified files: TwoDeletionCollision.lean (mine) and TwoSourceCanonicalSurface.lean / TwoSourceRetainedMinimalCore.lean, both foreign-dirty since 2026-08-23 and out of scope."
+    },
+    {
+      "step": 12,
+      "name": "ROI recomputed from source",
+      "verdict": "PASS",
+      "commands": [
+        {
+          "command": "wc -l on `git show HEAD:<src>` and the working file; grep of declaration headers in both; rg for the eight names over lean/",
+          "exit_code": 0,
+          "final_line": "1360 -> 744, 18 -> 10 top-level declarations, 616 lines moved"
+        }
+      ],
+      "detail": "Recomputed independently, not copied from the author's summary. Every number in the roi block below was measured from the two revisions. The declaration-header grep shows 18 top-level `theorem` headers at HEAD and 10 now: the difference is exactly the eight moved names, and no other header changed name or order. The callers map is verified from the moved text itself rather than from the stale index; see roi.callers_map."
+    }
+  ],
+  "roi": {
+    "declarations_moved": [
+      "Problem97.ATailFrontierLiveClosure.false_of_twoDistinctExactFourMutualOmissionJointDeletions_blockerCollision_frame",
+      "Problem97.ATailFrontierLiveClosure.false_of_twoDistinctExactFourMutualOmissionJointDeletions_blockerCollision",
+      "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmission_fourCenterCommonDeletion_frame",
+      "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmission_fourCenterCommonDeletion",
+      "Problem97.ATailFrontierLiveClosure.false_of_twoDistinctExactFourMutualOmissionJointDeletions_oneWayCrossOmission_frame",
+      "Problem97.ATailFrontierLiveClosure.false_of_twoDistinctExactFourMutualOmissionJointDeletions_oneWayCrossOmission",
+      "Problem97.ATailFrontierLiveClosure.false_of_twoDistinctExactFourMutualOmissionJointDeletions_fiveCenters_frame",
+      "Problem97.ATailFrontierLiveClosure.false_of_twoDistinctExactFourMutualOmissionJointDeletions_fiveCenters"
+    ],
+    "declarations_moved_count": 8,
+    "declarations_deleted": [],
+    "declarations_deleted_note": "None. All eight are present as `theorem` headers in the attic file and all eight elaborate there. This is a move, not a removal.",
+    "lines_moved": 616,
+    "lines_moved_note": "Two contiguous source runs at fc4c0c7c: 153-257 (105 lines, declarations 1-2) and 848-1358 (511 lines, declarations 3-8). Each range starts at the declaration's docstring, not its `theorem` header.",
+    "src_lines_before": 1360,
+    "src_lines_after": 744,
+    "percent_reduction": 45.29,
+    "percent_reduction_note": "616 / 1360 = 45.29% of the file's lines. Top-level declaration count fell 18 -> 10 (44.4%).",
+    "attic_path": "attic/twodeletion-transcription-oracle-2026-08-25/TwoDeletionTranscriptionOracle.lean",
+    "attic_sha256": "70842f503d5b810c3d564420e1864587b22edd16ab2864bddc97099ca0b6be1b",
+    "attic_readme_path": "attic/twodeletion-transcription-oracle-2026-08-25/README.md",
+    "attic_readme_sha256": "9795c5b4c0870d38e204aa42eae4366e7c59e453501723f2afbb52323c3406d2",
+    "attic_lines": 695,
+    "attic_layout": "1-34 provenance header (source path, commit fc4c0c7c, per-declaration ranges, oracle role, do-not-resurrect and not-compiled notices); 36 import of TwoDeletionCollision; 38-76 namespace/open/attribute preamble copied byte-identically from source lines 11-49; 78-693 the 616 moved lines; 694-695 the two closing `end`s.",
+    "attic_elaborates": "YES. From lean/: `lake env lean ../attic/twodeletion-transcription-oracle-2026-08-25/TwoDeletionTranscriptionOracle.lean` exits 0. 24 output lines, 0 error lines, 8 warnings, all of the single class `linter.style.moduleDocstring` (at 39:0, 51:0, 54:0, 58:0, 59:0, 61:0, 63:0, 67:0), 0 `declaration uses 'sorry'` warnings. Re-run by this verifier, not taken from the author. NOT a gate: the file is outside the Lake tree and no receipt depends on it elaborating.",
+    "callers_map": {
+      "false_of_twoDistinctExactFourMutualOmissionJointDeletions_blockerCollision_frame": [
+        "false_of_twoDistinctExactFourMutualOmissionJointDeletions_blockerCollision"
+      ],
+      "false_of_twoDistinctExactFourMutualOmissionJointDeletions_blockerCollision": [],
+      "false_of_exactFourMutualOmission_fourCenterCommonDeletion_frame": [
+        "false_of_exactFourMutualOmission_fourCenterCommonDeletion",
+        "false_of_twoDistinctExactFourMutualOmissionJointDeletions_oneWayCrossOmission_frame"
+      ],
+      "false_of_exactFourMutualOmission_fourCenterCommonDeletion": [],
+      "false_of_twoDistinctExactFourMutualOmissionJointDeletions_oneWayCrossOmission_frame": [
+        "false_of_twoDistinctExactFourMutualOmissionJointDeletions_oneWayCrossOmission",
+        "false_of_twoDistinctExactFourMutualOmissionJointDeletions_fiveCenters_frame"
+      ],
+      "false_of_twoDistinctExactFourMutualOmissionJointDeletions_oneWayCrossOmission": [],
+      "false_of_twoDistinctExactFourMutualOmissionJointDeletions_fiveCenters_frame": [
+        "false_of_twoDistinctExactFourMutualOmissionJointDeletions_fiveCenters"
+      ],
+      "false_of_twoDistinctExactFourMutualOmissionJointDeletions_fiveCenters": []
+    },
+    "callers_map_provenance": "The kernel index at HEAD no longer carries these symbols after the rebuild, so `proof-blueprint search --uses` cannot confirm the map. I reconstructed it from the moved text itself: within the attic file, every occurrence of each of the eight names was located and attributed to the declaration whose line range contains it. The four `_frame` names are each referenced from exactly the bodies listed above (attic lines 178; 377 and 471; 545 and 612/619; 688) plus one prose mention in the caller's docstring; the four non-`_frame` names occur only at their own header and in the provenance table, so they have no caller. `rg` for all eight names over lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure returns zero hits, confirming from the source text that no remaining declaration in TwoDeletionCollision.lean, TwoDeletion/ or Legacy/ names any of them. This map agrees with the task brief and extends `proof-status/receipts/w3-td-gate-receipt.json` -> `retained_transcription_oracle.callers_after_wave`, which records only the first two edges.",
+    "role_citation": "proof-status/receipts/w3-td-gate-receipt.json -> retained_transcription_oracle: 'RETAINED TRANSCRIPTION ORACLE for the producer twoDeletionOutcome_of_ingress (arm-by-arm diff source). NOT a live coordinator dependency: the coordinator, eliminator and Legacy wrapper do not call any of them; the publish spine reaches the three TD leaves only through Legacy wrapper -> false_of_twoDeletionIngress -> false_of_twoDeletionOutcome -> leaf.' Its `disposition` field read 'deletion deferred to a follow-up commit after auditor acceptance'; this wave performs a MOVE to the attic instead, per the standing instruction that nothing is deleted.",
+    "obligation_effect": "None. 28 reachable and 6 off-spine sorry leaves before and after, the same symbols; 34/34 reviewed meta_status; factorized 3/28 on the same three TD leaves; axiom closure byte-identical. The eight moved declarations were never an obligation and are not one now."
+  },
+  "tests": {
+    "command": "uv run python -m pytest scripts/test_gen_obligation_registry_factorization.py scripts/test_lint_cluster_imports_legacy.py -q",
+    "exit_code": 0,
+    "expected_passed": 101,
+    "passed": 101,
+    "failed": 0,
+    "final_line": "101 passed in 4.26s"
+  },
+  "build": {
+    "wrapper": "lake-build",
+    "target": "Erdos9796Proof (root, no args)",
+    "exit_code": 0,
+    "final_line": "Build completed successfully (12194 jobs).",
+    "build_fingerprint": "4836034d7c65",
+    "build_fingerprint_full": "4836034d7c65aff561b81e888f67fbaff80d8b0a18d0dfaad9d8e34e325c00c9",
+    "modules_rebuilt": 0,
+    "modules_replayed": 546,
+    "errors": 0,
+    "log_lines": 16615,
+    "log_path": "/private/tmp/claude-1000/-Users-adam-projects-math-projects-erdos-97-96-formalization/a3ca4806-7395-4cba-bc60-1bc108a7653a/scratchpad/w3-td-cleanup-verifier/root-build.log",
+    "note": "The root build was already current: 0 `Built` lines. No build of my own was required and the 'something to rebuild would itself be a finding' condition did not trigger. The wrapper's sync reported 'already fresh -- 4088 module(s) unchanged at build 4836034d7c65'.",
+    "warnings_in_own_files": 7,
+    "warning_scan": "TwoDeletionCollision.lean emits exactly 7 diagnostics, all pre-existing classes at shifted positions: 22:0 and 32:0 moduleDocstring, 77:8 unused variable `jointDeletion`, 144:8 sorry, 294:0 unusedDecidableInType on `four_mem_card_four_split`, 573:8 sorry, 647:8 sorry. Zero new warnings and no `emptyLine` warning at either removal seam. No other module in the 16615-line log names the file.",
+    "auxiliary_elaboration": {
+      "command": "cd lean && lake env lean ../attic/twodeletion-transcription-oracle-2026-08-25/TwoDeletionTranscriptionOracle.lean",
+      "exit_code": 0,
+      "errors": 0,
+      "warnings": 8,
+      "warning_classes": [
+        "linter.style.moduleDocstring"
+      ],
+      "sorry_warnings": 0,
+      "note": "Read-only single-file elaboration against the already-current olean tree. It rebuilds nothing and writes no artifact; it is the evidence for roi.attic_elaborates."
+    }
+  },
+  "content_bound_files": {
+    "note": "sha256 of every path committed at 236e6413 (git show 236e6413:<path>)",
+    "sha256": {
+      "attic/twodeletion-transcription-oracle-2026-08-25/README.md": "0eec9f93a259a31a9664d124e6605761f64d4ebe2ef87820af2de0083daa3589",
+      "attic/twodeletion-transcription-oracle-2026-08-25/TwoDeletionTranscriptionOracle.lean": "70842f503d5b810c3d564420e1864587b22edd16ab2864bddc97099ca0b6be1b",
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean": "f33d4652fe4655e10060379e4f0fb5c88bb3c73644da97cecf8fe3bac94b9cdc",
+      "proof-status/obligations.json": "11c03d635d788ed7b8271fddd221a94c20af1d97cf2e7b0c26cc714155a8a3f7"
+    }
+  },
+  "author_claims_checked": {
+    "verified": [
+      "Source extents 153-211, 212-257, 848-974, 975-1048, 1049-1143, 1144-1215, 1216-1291, 1292-1358 -- confirmed by mapping the eight declaration boundaries in the attic block back through the two hunk offsets.",
+      "0 insertions / 616 deletions in exactly two hunks `@@ -153,105 +152,0 @@` and `@@ -848,511 +742,0 @@` -- confirmed.",
+      "Imports byte-identical -- confirmed by diffing the import lines at both revisions.",
+      "`cmp` of the working file against `git show HEAD:<src> | sed '848,1358d;153,257d'` byte-identical, sha f33d4652... both sides -- reproduced independently.",
+      "Moved block equals the diff `-` lines, both 616 lines, both sha 73636ac7d6e480c213caac9e55768d6a38fa2e370703e649c10903c7a8b7e6fc -- reproduced independently, with the attic block boundary located by search rather than taken on trust.",
+      "Attic file 695 lines with provenance header, import, preamble copied from source lines 11-49, the 616 moved lines, and two closing `end`s -- confirmed line by line.",
+      "Root lake-build exit 0 with 0 errors -- confirmed; 0 Built, 546 Replayed.",
+      "TwoDeletionCollision.lean emits exactly 7 warnings, the same set as at HEAD with the -105 shift, zero new warnings, no emptyLine warning at either seam -- confirmed from the build log; the shifted positions 294/573/647 match the claimed HEAD positions 399/678/752 exactly.",
+      "`proof-blueprint spine` reports open obligations (28); axioms diff clean ('AXIOMS BYTE-IDENTICAL') -- confirmed.",
+      "No sorry/axiom/native_decide/maxHeartbeats/unsafe added; attic file contains zero occurrences of 'sorry' -- confirmed by token count on both revisions.",
+      "Working tree shows only ` M lean/.../TwoDeletionCollision.lean` and `?? attic/twodeletion-transcription-oracle-2026-08-25/` among the author's paths -- confirmed.",
+      "Attic standalone elaboration exits 0 with zero error lines, output all one warning class -- confirmed by re-running it."
+    ],
+    "corrected": [
+      "The author's summary says the attic elaboration's 'Total output is 12 lines'. The actual log is 24 lines: 8 warning blocks of 3 lines each (warning, blank, `Note: This linter can be disabled...`). The substance of the claim -- exit 0, zero errors, one warning class -- holds.",
+      "The attic README states the moduleDocstring warning is 'raised five times'. The actual count is 8, one per moved declaration docstring, at attic lines 39, 51, 54, 58, 59, 61, 63 and 67. The README is a durable file and the count in it is wrong."
+    ],
+    "not_reproducible_as_stated": []
+  },
+  "metadata_corrections": [
+    {
+      "id": "MC-1",
+      "where": "task brief and any doc repeating it",
+      "claim": "The second TD leaf is named `false_of_twoDistinctExactFourMutualOmissionJointDeletions_fourCenterCommonDeletion_blockerCoincidence`.",
+      "correction": "No declaration by that name exists at HEAD or in the working tree. The leaf at HEAD line 678 / working line 573 is `false_of_exactFourMutualOmission_fourCenterCommonDeletion_blockerCoincidence`. Brief-text error only; the source is correct and the gate was run against the real name.",
+      "blocking": false
+    },
+    {
+      "id": "MC-2",
+      "where": "attic/twodeletion-transcription-oracle-2026-08-25/README.md, section 'Standalone elaboration status'",
+      "claim": "the `linter.style.moduleDocstring` style warning is 'raised five times'",
+      "correction": "It is raised 8 times, at attic lines 39, 51, 54, 58, 59, 61, 63, 67. Everything else in that section reproduces: exit 0, zero errors, one warning class, no private helper reached. The README is durable and should be corrected by whoever owns it; I am not authorized to edit it.",
+      "blocking": false
+    },
+    {
+      "id": "MC-3",
+      "where": "proof-status/receipts/w3-td-gate-receipt.json -> retained_transcription_oracle.callers_after_wave",
+      "claim": "The field records the caller edges of the eight declarations.",
+      "correction": "It records only two of the four: `blockerCollision_frame <- blockerCollision` and `fourCenterCommonDeletion_frame <- fourCenterCommonDeletion, oneWayCrossOmission_frame`. The remaining two -- `oneWayCrossOmission_frame <- oneWayCrossOmission, fiveCenters_frame` and `fiveCenters_frame <- fiveCenters` -- are absent from that field. I verified all four independently from the moved text (see roi.callers_map_provenance); the task brief's map is the correct one and this receipt's roi.callers_map supersedes the W3-TD field.",
+      "blocking": false
+    },
+    {
+      "id": "MC-4",
+      "where": "the regenerate step of this gate",
+      "claim": "`gen_obligation_registry.py generate --baseline proof-status/baseline --out proof-status` writes proof-status/obligations.json.",
+      "correction": "It also writes proof-status/id-assignments.json and proof-status/frontier-table.generated.md. Both came out byte-identical to their HEAD content, so `git status` still reports them clean and no durable change was made beyond obligations.json; but the command is not obligations.json-only and a future verifier should expect the two extra writes.",
+      "blocking": false
+    },
+    {
+      "utc": "2026-08-25T23:46:45Z",
+      "kind": "receipt re-bound to the wave commit; claim reference, note resolutions (MC-1..MC-4, dead-ends follow-up) and main-session reverification added; README MC-2 edit landed in the wave commit; metadata only",
+      "unchanged": "overall_pass=false (inherited strict refs 36+1), source_gates_pass=true, promotion_claim none, claim_scope unchanged"
+    }
+  ],
+  "observations_not_blocking": [
+    {
+      "id": "OBS-1",
+      "text": "The attic file elaborates with zero `declaration uses 'sorry'` warnings, so all eight moved declarations are sorry-free proofs, not stubs. This is stronger evidence of a faithful move than the text comparison alone: the eight theorems still typecheck against the live tree from their new location."
+    },
+    {
+      "id": "OBS-2",
+      "text": "Three prose references to the moved names survive outside the build: lean/scratch/b-family-bank/B2Arm3.lean lines 20 and 588 and lean/scratch/b-family-bank/BFamilyBank.lean line 15 cite `false_of_twoDistinctExactFourMutualOmissionJointDeletions_blockerCollision`, and lean/scratch/canonical-row-override-rebase/anchor-spine.txt line 72 names it too. All four are backticked text inside comments or a plain text file, all cite already-stale locations (FrontierLiveClosure.lean:693/695), and lean/scratch is named by no `lean_lib` in lean/lakefile.toml, so nothing compiles them. They are foreign untracked lane files and outside this wave's scope; no action required, but they are now doubly stale."
+    },
+    {
+      "id": "OBS-3",
+      "text": "The attic README's 'Do not resurrect' clause routes any revival proposal through docs/dead-ends.md. That file exists (77 KB) but currently names none of the eight declarations. Recording them there is a separate, unassigned follow-up; the attic bundle is self-describing in the meantime."
+    },
+    {
+      "id": "OBS-4",
+      "text": "The w3-td-baseline module-hashes manifest entry for Rigid221Placement.lean no longer matches, yet that file is clean against HEAD. The manifest snapshot was taken before the W3-TD wave commit landed. Expected by the gate text; no live edit to that file exists."
+    },
+    {
+      "id": "OBS-5",
+      "text": "The build fingerprint moved from d06f12a265f4 (W3-A) to 4836034d7c65 as a direct consequence of the source rebuild, which is exactly why the registry regenerate was required. All three P97-TD verified_at_build values now carry the new fingerprint and nothing else in obligations.json changed."
+    }
+  ],
+  "files_written_by_this_verifier": [
+    "proof-status/receipts/w3-td-cleanup-gate-receipt.json",
+    "proof-status/obligations.json  (only via `gen_obligation_registry.py generate --baseline proof-status/baseline --out proof-status`)",
+    "proof-status/receipts/registry-check-20260825T233117Z.json  (emitted by check)",
+    "proof-status/receipts/registry-check-20260825T233159Z.json  (emitted by check --require-factorized TD)",
+    "proof-status/receipts/registry-check-20260825T233324Z.json  (emitted by check --require-fresh-refs)"
+  ],
+  "new_receipts_written_by_this_check": [
+    "proof-status/receipts/registry-check-20260825T233117Z.json",
+    "proof-status/receipts/registry-check-20260825T233159Z.json",
+    "proof-status/receipts/registry-check-20260825T233324Z.json"
+  ],
+  "git_operations_performed": "Read-only only: git rev-parse, git status, git diff, git show. No add, commit, checkout, stash, reset, push or restore was run. `proof-blueprint refs --refresh` was not invoked by me; the lake-build wrapper calls it internally and it reported 'No Lean invocation needed'.",
+  "notes_for_main_session": [
+    "W3-TD-cleanup is source-clean. Nothing blocks the wave commit. blockers is empty.",
+    "The move is verified in the strongest available form: `git show HEAD:<src> | sed '848,1358d;153,257d'` is byte-identical to the working file, so every retained line -- not just the three leaf statements -- is unchanged, and the 616 removed lines equal the attic block line for line (both sha 73636ac7d6e480c213caac9e55768d6a38fa2e370703e649c10903c7a8b7e6fc).",
+    "NOTHING WAS DELETED, confirmed two ways: all eight names are `theorem` headers in the attic file, and the attic file elaborates with `lake env lean` at exit 0, 0 errors, 0 sorry warnings.",
+    "Commit exactly five paths: TwoDeletionCollision.lean, the two attic files, and the regenerated proof-status/obligations.json; then this receipt plus the three registry-check receipts as a receipt-only child commit, matching W3-0, W3-TD and W3-A.",
+    "Do NOT stage TwoSourceCanonicalSurface.lean or TwoSourceRetainedMinimalCore.lean; both are foreign-dirty from 2026-08-23 and belong to another lane. docs/live-blueprint.md was rewritten by the lake-build wrapper and was already foreign-dirty; treat it as render drift.",
+    "After the wave commit lands, rebind content_bound_files here to `git show <commit>:<path>` hashes -- the values in this receipt are pre-commit working-tree hashes and are labeled as such.",
+    "The registry regenerate moved exactly three verified_at_build values (the P97-TD blocks) from d06f12a265f4 to 4836034d7c65. The generator did not refuse and emitted no ERROR line, so every materialized factorization block passed live validation.",
+    "MC-2 is the one item worth an owner's edit before commit: the attic README says the standalone elaboration raises the moduleDocstring warning five times; it raises it eight times. Durable file, wrong count, and I am not authorized to edit it.",
+    "MC-3 records that the W3-TD receipt's callers_after_wave field lists only two of the four caller edges. This receipt's roi.callers_map carries the full four, verified from the moved text.",
+    "The strict-refs gate stays red at 36 stale + 1 never-mined, identical to the baseline at build fd3f51e09b99. It needs `proof-blueprint refs --refresh`, which no gate verifier is allowed to run. overall_pass=false is inherited from that alone; source_gates_pass=true carries the source verdict."
+  ],
+  "content_bound_files_working_tree": {
+    "hash_kind": "working-tree",
+    "note": "HISTORICAL — working-tree hashes taken by the gate verifier before the wave commit (HEAD fc4c0c7c). WORKING-TREE sha256 (`shasum -a 256` of the file on disk at 2026-08-25T23:35Z, HEAD fc4c0c7c, PRE-COMMIT). These are NOT commit-object hashes. After the W3-TD-cleanup wave commit lands, the main session must recompute them with `git show <commit>:<path>` and rebind this receipt.",
+    "sha256": {
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean": "f33d4652fe4655e10060379e4f0fb5c88bb3c73644da97cecf8fe3bac94b9cdc",
+      "attic/twodeletion-transcription-oracle-2026-08-25/TwoDeletionTranscriptionOracle.lean": "70842f503d5b810c3d564420e1864587b22edd16ab2864bddc97099ca0b6be1b",
+      "attic/twodeletion-transcription-oracle-2026-08-25/README.md": "9795c5b4c0870d38e204aa42eae4366e7c59e453501723f2afbb52323c3406d2",
+      "proof-status/obligations.json": "11c03d635d788ed7b8271fddd221a94c20af1d97cf2e7b0c26cc714155a8a3f7",
+      "proof-status/obligations-meta.json": "e396ac952e49a6b307037a105ab252b3b092de213ff50fe9bbf635ca4bfe1cc0",
+      "proof-status/id-assignments.json": "4c1c0a5bfa5956904c1b4266d7a8b4bda4454d3ff1f85b663eae88197d364313",
+      "proof-status/frontier-table.generated.md": "0cb5d00f2c542ce082e59b11b7fe9268b22115753f16b07c68772446d8bfbd07",
+      "proof-status/receipts/registry-check-20260825T233117Z.json": "2ebdc9f46d4c7060a65ee5edeb1bd035bdabe896a5ed6e928adb8fef0667ea16",
+      "proof-status/receipts/registry-check-20260825T233159Z.json": "ee566f2e911daa73f13609d017c176a664fcf4bca1d2726579ef896516ca714b",
+      "proof-status/receipts/registry-check-20260825T233324Z.json": "c9ddb3bca614eff8794227042d4d7c7416f982cc51881524a50ba387c5b3425a"
+    },
+    "unchanged_since_head": [
+      "proof-status/obligations-meta.json",
+      "proof-status/id-assignments.json",
+      "proof-status/frontier-table.generated.md"
+    ],
+    "unchanged_note": "The regenerate rewrote id-assignments.json and frontier-table.generated.md as a side effect, but both came out byte-identical to HEAD and `git status` still reports them clean. obligations-meta.json is an input and was not written."
+  },
+  "note_resolutions": [
+    {
+      "id": "MC-1",
+      "resolution": "task-brief text named a non-existent second-leaf symbol; the source name false_of_exactFourMutualOmission_fourCenterCommonDeletion_blockerCoincidence is correct at both revisions; no file change"
+    },
+    {
+      "id": "MC-2",
+      "resolution": "attic README 'raised five times' replaced before the wave commit by a run-independent statement (2, 5 and 8 repeats observed in three runs on 2026-08-25; no run reported an error or a sorry warning); this is why the README working-tree hash in content_bound_files_working_tree differs from the committed blob"
+    },
+    {
+      "id": "MC-3",
+      "resolution": "the committed W3-TD receipt (d8c10c44) lists 2 of the 4 oracle caller edges under retained_transcription_oracle.callers_after_wave; the full four-edge map is in this receipt's roi.callers_map and in the attic README; the committed W3-TD receipt is not edited"
+    },
+    {
+      "id": "MC-4",
+      "resolution": "gen_obligation_registry.py generate also rewrites id-assignments.json and frontier-table.generated.md; both byte-identical at HEAD, no durable side effect; no file change"
+    },
+    {
+      "id": "OBS-dead-ends",
+      "resolution": "open follow-up, unassigned: docs/dead-ends.md names none of the eight moved theorems although the attic README routes revival through it"
+    }
+  ],
+  "claim_reference": "convo #7491 (claim + ROI; Adam authorized the launch directly with the attic-move, nothing-deleted constraint)",
+  "main_session_reverification": {
+    "utc": "2026-08-25T23:46:45Z",
+    "on": "the staged tree that became 236e6413 (byte-identical to the commit)",
+    "results": {
+      "spine_leaves": "28 == 28, sorted .symbol sets diff empty (NDJSON both sides)",
+      "offspine_leaves": "6 == 6, sorted .symbol sets diff empty",
+      "axiom_closure": "proof-blueprint axioms Problem97.erdos97_rhs diff vs proof-status/baseline/axioms.txt empty (exit 1 is the pre-existing sorryAx report, identical at baseline)",
+      "td_leaf_statements": "3/3 byte-identical vs fc4c0c7c: b1_globalGapOrClosedTerminal_of_counterexample 7b28ab22, false_of_exactFourMutualOmission_fourCenterCommonDeletion_blockerCoincidence 854605ed, false_of_exactFourMutualOmission_fourCenterCommonDeletion_survivalSquare 9cf9ff40",
+      "whole_file_reconstruction": "git show fc4c0c7c:<src> | sed '848,1358d;153,257d' is cmp-identical to the committed file (sha256 f33d4652...)",
+      "diff_shape": "0 insertions / 616 deletions, two hunks @@ -153,105 +152,0 @@ and @@ -848,511 +742,0 @@; import lines identical",
+      "removed_equals_attic_block": "extracted '-' lines == attic lines 78-693, both 616 lines, both sha256 73636ac7d6e480c2...",
+      "token_counts": "sorry 4 -> 4 in the source file (three leaves + one docstring mention), attic file 0",
+      "lint": "688 edges / 28 forbidden all waived / 3 legacy listed, exit 0 (plain and --list-legacy)",
+      "registry_check": "exit 0, receipt registry-check-20260825T234232Z.json",
+      "registry_require_factorized_TD": "exit 0, receipt registry-check-20260825T234312Z.json",
+      "registry_require_fresh_refs": "exit 1, 36 stale + 1 never-mined (inherited, unchanged), receipt registry-check-20260825T234358Z.json",
+      "focused_tests": "101 passed (scripts/test_gen_obligation_registry_factorization.py + scripts/test_lint_cluster_imports_legacy.py)",
+      "whitespace": "git diff --check clean; attic files and receipt end with a single newline, no trailing whitespace",
+      "hygiene_staged": "check --lane consolidation-refactor-20260823 --staged: blocking=false, issues=0 (wave commit and receipt commit)",
+      "attic_elaboration": "lake env lean ../attic/.../TwoDeletionTranscriptionOracle.lean exit 0, 0 errors, 0 'declaration uses sorry' warnings; linter.style.moduleDocstring fired 2 times in this run (author's run 5, verifier's run 8: run-dependent count)"
+    }
+  }
+}
