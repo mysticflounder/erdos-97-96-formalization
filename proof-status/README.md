@@ -121,10 +121,12 @@ red until both are done.
 
 Phase 3 of the consolidation refactor ("cluster coordinators") gates on *every
 old leaf has a machine-checked factorization entry in the obligation registry*.
-The entry is an OPTIONAL `factorization` block on a reviewed
+The reviewed half is an OPTIONAL `factorization` block on an
 `obligations-meta.json` entry, checked by
 `scripts/gen_obligation_registry.py` against kernel-mined truth — never against
-prose.
+prose. The generated half is a normalized copy of that block MATERIALIZED onto
+the matching `obligations.json` entry (section 2), so the canonical registry
+carries every verified factorization itself.
 
 ### 1. The versioned block
 
@@ -163,12 +165,21 @@ prose.
   statements it claims to factor. A `pinned` key inside a v1 block is an
   unknown key, not a silent upgrade.
 
-**Roles.** The five roles must be DISTINCT, exact, fully qualified, PUBLIC
-declarations, each resolving to exactly one index record. Resolution is
-`proof-blueprint search --name <symbol> --json --all --private` filtered to an
-exact fully-qualified match (`--name` matches substrings, so the exactness is
-imposed by the checker, not trusted from the query). Zero or more than one
-record is ambiguous and is a violation; `private == true` is a violation.
+**Roles and via hops.** The five roles must be DISTINCT, exact, fully
+qualified, PUBLIC declarations, each resolving to exactly one index record.
+Resolution is `proof-blueprint search --name <symbol> --json --all --private`
+filtered to an exact fully-qualified match (`--name` matches substrings, so the
+exactness is imposed by the checker, not trusted from the query). Zero or more
+than one record is ambiguous and is a violation; `private == true` is a
+violation.
+
+EVERY `via` declaration obeys exactly the same rule (W3-0b): a via hop that is
+missing, ambiguous or private is a violation naming that via symbol, and a via
+symbol equal to any of the five roles is a violation
+(`transitive coordinator -> eliminator via[0] (Namespace.hop) is also the
+producer role`). A via hop is a first-class vertex of the block: it is
+resolved, freshness-checked, trust-checked and included in the cycle detection
+exactly like a role.
 
 **Statement digest.** `sha256` of the index record's `signature` string after
 collapsing every whitespace run to a single space and stripping leading and
@@ -198,8 +209,9 @@ Every failure line names both endpoints and the direction explicitly:
 P97-XX-EXAMPLE: eliminator (Namespace.terminal_eliminator) does not directly call open_leaf (Namespace.the_open_leaf)
 ```
 
-**Cycles.** The direct-call relation RESTRICTED to the five role symbols must be
-acyclic. Any cycle is a violation.
+**Cycles.** The direct-call relation RESTRICTED to the five role symbols UNION
+every declared `via` declaration must be acyclic. Any cycle is a violation, and
+the failure line names each vertex by its role or via label.
 
 **Leaf identity.** `open_leaf` must be the registry entry's `lean_decl` (after
 the alias migration below) and must have `has_sorry == true`. The pinned
@@ -207,7 +219,50 @@ the alias migration below) and must have `has_sorry == true`. The pinned
 changed" otherwise), and the pinned `legacy_wrapper` digest must equal the
 current digest of `legacy_wrapper`.
 
-### 2. Stable identity and the alias migration
+### 2. What the canonical registry carries (W3-0b)
+
+`obligations.json` is the file downstream consumers read, so it CARRIES each
+verified factorization rather than pointing at the reviewed file. `generate`
+materializes a normalized copy of every reviewed v2 block onto its own registry
+entry:
+
+```json
+"factorization": {
+  "schema": "p97-factorization/v2",
+  "roles": { "...the five roles..." },
+  "transitive": [
+    {"from": "coordinator", "to": "eliminator", "via": ["Namespace.hop"]}
+  ],
+  "pinned": { "...the two digests..." },
+  "verified_at_build": "<current mined build fingerprint>"
+}
+```
+
+- Keys are sorted, `transitive` rows are sorted (and the key is omitted when
+  the reviewed block declares no rows); the `via` order inside a row is the
+  path and is preserved.
+- `obligation_id` and `note` are dropped: the ID is the key of the entry the
+  block sits on, and prose is not machine-checkable.
+- An entry whose reviewed metadata carries no v2 block gets NO `factorization`
+  key, and a v1 block is never materialized (it is never a verified
+  factorization). Today no entry carries a block, so `obligations.json`
+  regenerates byte-identical.
+
+`check` then compares the materialized block on the COMMITTED registry entry
+with the normalized reviewed block stamped with the CURRENT build. Each of the
+following is registry drift and exits 1 naming the ID and the differing key:
+
+- the registry entry carries no materialized block for a reviewed v2 block;
+- the registry entry carries a block the reviewed metadata does not declare;
+- any field differs (`materialized factorization key 'roles' is … on the
+  registry but … in the reviewed metadata`);
+- `verified_at_build` is not the current mined build — including the case where
+  the current build cannot be read at all, which is never treated as fresh.
+
+The fix is always to regenerate:
+`uv run python scripts/gen_obligation_registry.py generate --fresh --out proof-status`.
+
+### 3. Stable identity and the alias migration
 
 When a v2 block names an `open_leaf` different from the symbol the ID ledger
 currently assigns to that ID, that is a RENAME, not drift: the `P97-*` ID
@@ -234,7 +289,7 @@ today. WITHOUT a factorization block a `lean_decl` change is still ordinary
 drift. The `aliases` key is written only when it is non-empty, so a ledger that
 has never been migrated stays byte-identical.
 
-### 3. Freshness and trust
+### 4. Freshness and trust
 
 Every symbol a live (v2) block names — the five roles AND every `transitive`
 hop — must be mined for the CURRENT build: never-mined and stale are both
@@ -252,16 +307,51 @@ database named by `[paths] db` in `.blueprint.toml`, opened READ-ONLY:
   into the full fingerprint those tables store. Zero or several matching full
   fingerprints means the build cannot be identified.
 
-**Trust.** The `producer` must be kernel clean: its TRANSITIVE kernel axiom
-closure, read from `proof-blueprint axioms <producer>`, may contain no
-`sorryAx`, no `Lean.ofReduceBool`, no `Lean.trustCompiler`, and no axiom the
-tool does not tag `core`. A `has_sorry` source scan is deliberately NOT used
-and is not sufficient: it cannot see a `sorry` reached through a helper. The
-`coordinator` and the `eliminator` consume the open leaf and therefore carry
-`sorryAx` BY DESIGN, so for those two the closure may add nothing beyond core
-axioms and `sorryAx`; any other custom or native trust is a violation. The
-`axioms` exit code is not trusted — the tool exits nonzero for some symbols by
-design — the printed closure lines are parsed instead, and a header count that
+**Trust boundary (W3-0b).** Trust is decided by an EXPLICIT allowed baseline
+and by nothing else:
+
+```text
+ALLOWED_AXIOMS = propext, Classical.choice, Quot.sound
+CLEAN        := every axiom of the closure is in ALLOWED_AXIOMS
+CONSUMER-OK  := every axiom is in ALLOWED_AXIOMS or is sorryAx
+```
+
+The tag `proof-blueprint axioms` prints next to an axiom is ADVISORY and is
+never a trust decision: a `core`-tagged `Lean.ofReduceNat` is rejected exactly
+like an untagged custom axiom. `Lean.ofReduceBool`, `Lean.trustCompiler`, any
+custom axiom and any unknown name are forbidden on EVERY hop. Each violation
+line prints the tag as advisory, e.g. `producer (…) axiom closure contains
+Lean.ofReduceNat (tool tag 'core', advisory); the producer path must be kernel
+clean`.
+
+- **Producer path** — the `producer` itself and every `via` hop on the
+  `coordinator -> producer` row — must be CLEAN.
+- **Consumer side** — `legacy_wrapper`, `coordinator`, `eliminator` and every
+  `via` hop on the `legacy_wrapper -> coordinator`,
+  `coordinator -> eliminator` and `eliminator -> open_leaf` rows — must be
+  CONSUMER-OK, and `sorryAx` is permitted on such a hop ONLY when that hop
+  actually consumes the open leaf. Consumption is decided from the call graph,
+  never from prose: a bounded backwards walk from `open_leaf` over `callers`,
+  restricted to the role and `via` symbols. A consumer hop carrying `sorryAx`
+  that does not reach the open leaf is reported as
+  `<ID>: <role> carries sorryAx without consuming the open leaf`. A broken
+  chain therefore reports one line per orphaned hop as well as the broken edge
+  — under that call graph each of those hops really does carry an unexplained
+  `sorryAx`.
+- **The open leaf itself** (auditor #7462) — `open_leaf` is audited on the same
+  boundary and must be CONSUMER-OK: `propext`, `Classical.choice`, `Quot.sound`
+  and `sorryAx`, nothing else. `has_sorry == true` proves the leaf is OPEN; it
+  does NOT prove the leaf adds nothing else, so an extra custom, native or
+  unknown axiom on the leaf — whatever tag the tool prints — is reported as
+  `<ID>: open_leaf (<Sym>) carries forbidden axiom <name>`. `sorryAx` is ALWAYS
+  permitted there and is the one consumer-side case that needs no consumption
+  justification: the leaf IS the open leaf every other consumer hop has to
+  reach, so it consumes itself.
+
+A `has_sorry` source scan is deliberately NOT used anywhere and is not
+sufficient: it cannot see a `sorry` reached through a helper. The `axioms` exit
+code is not trusted either — the tool exits nonzero for some symbols by design
+— the printed closure lines are parsed instead, and a header count that
 disagrees with the parsed lines is reported as "cannot verify".
 
 All of this is read through one injectable seam (`FactorizationBackend`:
@@ -272,7 +362,7 @@ dictionaries, so every adversarial case is exercised without touching live
 data. A reviewed metadata file with no factorization block constructs no
 backend at all and costs no extra CLI invocation.
 
-### 4. Per-cluster requirement (fail-closed)
+### 5. Per-cluster requirement (fail-closed)
 
 ```bash
 uv run python scripts/gen_obligation_registry.py check --baseline proof-status/baseline \
@@ -293,15 +383,41 @@ Every `check` receipt gains:
 "factorization": {
   "schema_versions": {"p97-factorization/v2": 1},
   "checked": 1, "verified": 1, "v1_warnings": 0, "missing": 27,
-  "required_clusters": ["TD"], "violations": []
+  "required_clusters": ["TD"], "violations": [],
+  "registry_drift": [], "build_id": "<current mined build fingerprint>"
 }
 ```
 
 `checked` counts blocks examined, `verified` counts v2 blocks that passed every
 check above, `v1_warnings` counts legacy v1 blocks (never verified), and
-`missing` counts REACHABLE leaves carrying no block at all. A non-empty
-`violations` list fails the check (exit 1) whether or not
+`missing` counts REACHABLE leaves carrying no block at all. `registry_drift`
+holds the section-2 comparison against the committed registry and `build_id` is
+the build every `verified_at_build` was compared with. A non-empty `violations`
+OR `registry_drift` list fails the check (exit 1) whether or not
 `--require-factorized` was passed.
+
+### 6. Command-level test seams (W3-0b)
+
+`main(argv, backend_factory=..., export_source=...)` in
+`scripts/gen_obligation_registry.py` exposes two keyword-only seams so a test
+can drive the REAL `generate` / `check` entry point over a COPY of
+`proof-status` without reading live data:
+
+- `backend_factory()` returns a `FactorizationBackend` (a `MappingBackend` in
+  the tests) and is consulted only when a reviewed block actually needs one;
+- `export_source()` returns the `(spine, offspine)` record lists that would
+  otherwise be read from the baseline exports or re-exported live.
+
+Both default to `None`, which is the live behaviour, and NEITHER can be set
+from the command line — no CLI flag weakens the gate. The command-level
+fixtures in `scripts/test_gen_obligation_registry_factorization.py` use them to
+pin a rename on one entry of a copied `proof-status`, run `generate` and then
+`check` on the copy, and assert that the roster shows no add/remove drift, that
+the ID follows the new open leaf, that `id-assignments.json` in the copy gains
+the alias record, and that a second `check` is byte-stable. The negative
+fixture pins the same rename with a `legacy_wrapper` that is not the old name
+and asserts exit 1 with `would allocate a new id` and an unchanged ledger.
+Every receipt those fixtures write lands inside the copy.
 
 ## Legacy import exceptions and dated graph (W3-0)
 

@@ -78,6 +78,8 @@ What a v2 block must satisfy (all violations are reported, none are inferred):
   each resolve to exactly one index record (``search --name`` filtered to an
   exact fully-qualified match; zero or more than one record is ambiguous and is
   a violation, as is ``private == true``);
+* EVERY ``via`` declaration obeys the same resolve rule - exactly one PUBLIC
+  index record - and may not be one of the five roles;
 * the direct-call chain ``legacy_wrapper -> coordinator``,
   ``coordinator -> producer``, ``coordinator -> eliminator`` and
   ``eliminator -> open_leaf`` holds in the kernel-mined call graph.  "A directly
@@ -87,21 +89,70 @@ What a v2 block must satisfy (all violations are reported, none are inferred):
   ``(from, to)`` pair by checking every consecutive hop of
   ``from -> via[0] -> ... -> via[-1] -> to`` directly; a pair with no row must
   be direct;
-* the direct-call relation RESTRICTED to the five role symbols is acyclic;
+* the direct-call relation RESTRICTED to the five roles UNION every ``via``
+  declaration is acyclic;
 * ``open_leaf`` is the registry entry's ``lean_decl`` (after the alias
   migration below) and has ``has_sorry == true``;
 * the pinned ``open_leaf`` and ``legacy_wrapper`` digests equal the current
   statement digests of those two declarations;
 * every symbol the block names (roles and ``via`` hops) is mined for the
   CURRENT build - not stale, not never-mined;
-* the ``producer`` is kernel clean: its transitive axiom closure, read from
-  ``proof-blueprint axioms``, contains no ``sorryAx``, no ``Lean.ofReduceBool``,
-  no ``Lean.trustCompiler`` and no axiom the tool does not tag ``core``.  A
-  ``has_sorry`` scan is deliberately NOT used: it cannot see a transitively
-  reached ``sorry``.  ``coordinator`` and ``eliminator`` consume the open leaf
-  and therefore carry ``sorryAx`` BY DESIGN, so for those two the closure may
-  add nothing beyond core axioms and ``sorryAx``; any other custom or native
-  trust is a violation.
+* every hop meets the trust boundary below.
+
+Trust boundary (W3-0b)
+    The allowed baseline is EXPLICIT: ``ALLOWED_AXIOMS = ("propext",
+    "Classical.choice", "Quot.sound")``.  A closure is CLEAN when every axiom is
+    in that tuple and CONSUMER-OK when every axiom is in that tuple or is
+    ``sorryAx``.  Everything else - ``Lean.ofReduceNat``, ``Lean.ofReduceBool``,
+    ``Lean.trustCompiler``, any custom axiom, any unknown name - is forbidden on
+    every hop REGARDLESS of the tag ``proof-blueprint axioms`` prints next to
+    it: the tag is advisory and is never a trust decision.
+
+    Producer-path hops (the ``producer`` itself and every ``via`` on the
+    ``coordinator -> producer`` row) must be CLEAN.  Consumer-side hops
+    (``legacy_wrapper``, ``coordinator``, ``eliminator`` and every ``via`` on
+    the ``legacy_wrapper -> coordinator``, ``coordinator -> eliminator`` and
+    ``eliminator -> open_leaf`` rows) must be CONSUMER-OK, and ``sorryAx`` is
+    permitted on such a hop ONLY when that hop actually consumes the open leaf -
+    decided from the call graph as a bounded backwards reachability from
+    ``open_leaf`` over ``callers`` restricted to the role and ``via`` symbols.
+    A consumer hop carrying ``sorryAx`` that does not reach the open leaf is
+    reported as "<id>: <role> carries sorryAx without consuming the open leaf".
+    A ``has_sorry`` source scan is deliberately NOT used anywhere: it cannot see
+    a transitively reached ``sorry``.
+
+    The ``open_leaf`` role is audited on the SAME boundary (auditor #7462):
+    ``has_sorry == true`` proves the leaf is OPEN, it does NOT prove the leaf
+    adds nothing else, so the leaf's own closure must be CONSUMER-OK - exactly
+    ``propext``, ``Classical.choice``, ``Quot.sound`` and ``sorryAx``, and any
+    other axiom (custom, native, unknown, whatever tag the tool prints) is
+    reported as "<id>: open_leaf (<Sym>) carries forbidden axiom <name>".
+    ``sorryAx`` is ALWAYS permitted on the leaf and needs no consumption
+    justification there: the leaf is the open leaf a consumer hop would have to
+    reach, so it consumes itself.  Every other consumer hop still has to reach
+    it.
+
+Canonical registry materialization (W3-0b)
+    ``build_registry`` copies every reviewed v2 block onto its own registry
+    entry in a normalized form, so ``obligations.json`` CARRIES the verified
+    factorization instead of pointing at the reviewed file::
+
+        "factorization": {
+          "schema": "p97-factorization/v2",
+          "roles": {...five roles...},
+          "transitive": [...],            # sorted; omitted when empty
+          "pinned": {...},
+          "verified_at_build": "<current mined build fingerprint>"
+        }
+
+    ``obligation_id`` and ``note`` are dropped (the id is the entry's own key;
+    prose is not machine-checkable).  An entry whose reviewed metadata carries
+    no v2 block gets NO ``factorization`` key, so a registry with no
+    factorization entries regenerates byte-identical.  ``check`` compares the
+    materialized block on the COMMITTED registry entry with the normalized
+    reviewed block stamped with the CURRENT build: a missing block, an extra
+    block, a drifted field or a ``verified_at_build`` that is not the current
+    build is registry drift and exits 1 naming the id and the differing key.
 
 Statement digest
     ``sha256`` of the index record's ``signature`` string after collapsing every
@@ -133,6 +184,12 @@ Freshness and trust are read through one injectable seam
 named by ``[paths] db`` in ``.blueprint.toml``; the tests back it with dicts.
 Every seam failure is reported as a "cannot verify" violation - freshness is
 never assumed.
+
+``main(argv, backend_factory=..., export_source=...)`` exposes that seam at the
+COMMAND level (W3-0b), together with a second one for the roster records.  Both
+default to None, which is the live behaviour, and neither can be set from the
+command line; they exist so a test can drive the real ``generate`` / ``check``
+entry point over a COPY of ``proof-status`` without reading live data.
 
 Standard library only.  The registry and the tables are deterministic (no
 timestamps, every collection sorted); receipts are timestamped by design.
@@ -677,6 +734,11 @@ def validate_meta(registry: dict, meta: dict) -> list[str]:
 # ---------------------------------------------------------------------------
 
 FACTORIZATION_KEY = "factorization"
+# Key of the build fingerprint stamped onto a MATERIALIZED registry block.
+VERIFIED_AT_BUILD = "verified_at_build"
+# Keys of the materialized block, in the canonical registry.  ``transitive`` is
+# omitted when the reviewed block declares no rows.
+MATERIALIZED_KEYS = ("schema", "roles", "transitive", "pinned", VERIFIED_AT_BUILD)
 FACTORIZATION_SCHEMA_V1 = "p97-factorization/v1"
 FACTORIZATION_SCHEMA_V2 = "p97-factorization/v2"
 FACTORIZATION_SCHEMAS = (FACTORIZATION_SCHEMA_V1, FACTORIZATION_SCHEMA_V2)
@@ -715,12 +777,28 @@ BLOCK_KEYS_V1 = ("schema", "obligation_id", "roles", "transitive", "note")
 
 TRANSITIVE_KEYS = ("from", "to", "via")
 
-# Never acceptable in ANY role closure, whatever tag the tool prints.
-FORBIDDEN_AXIOMS = ("sorryAx", "Lean.ofReduceBool", "Lean.trustCompiler")
-# The coordinator and the eliminator consume the open leaf, so sorryAx is the
-# expected state for them; native/compiler trust is still forbidden.
+# -- trust boundary (W3-0b) -------------------------------------------------
+# The EXPLICIT allowed baseline.  Trust is decided by membership in this tuple
+# and nothing else: the tag ``proof-blueprint axioms`` prints next to an axiom
+# is ADVISORY and is never a trust decision, so a ``core``-tagged
+# ``Lean.ofReduceNat`` is rejected exactly like an untagged custom axiom.
+ALLOWED_AXIOMS = ("propext", "Classical.choice", "Quot.sound")
+# The one axiom a CONSUMER hop may add, and only when that hop's closure
+# actually reaches the open leaf (see ``reaching_symbols``).
 SORRY_AXIOM = "sorryAx"
-CORE_AXIOM_TAG = "core"
+
+
+def is_clean_closure(closure: list[tuple[str, str]]) -> bool:
+    """CLEAN: every axiom is in the allowed baseline."""
+    return all(axiom in ALLOWED_AXIOMS for _tag, axiom in closure)
+
+
+def is_consumer_ok_closure(closure: list[tuple[str, str]]) -> bool:
+    """CONSUMER-OK: every axiom is in the allowed baseline or is ``sorryAx``."""
+    return all(
+        axiom in ALLOWED_AXIOMS or axiom == SORRY_AXIOM for _tag, axiom in closure
+    )
+
 
 CLUSTER_CODES = tuple(sorted(CLUSTER_LABELS))
 
@@ -1107,14 +1185,21 @@ class BlueprintBackend(FactorizationBackend):
         return None
 
 
-def make_backend(meta: dict) -> FactorizationBackend | None:
+def make_backend(meta: dict, factory=None) -> FactorizationBackend | None:
     """A live backend, but only when a factorization block actually needs one.
 
     A reviewed metadata file with no factorization block costs no extra
     ``proof-blueprint`` invocation and no database read at all.
+
+    ``factory`` is the command-level test seam (see ``main``): a zero-argument
+    callable returning a ``FactorizationBackend``.  It is consulted only when a
+    block actually needs a backend, so it never changes which commands read
+    live data.
     """
     if not has_any_factorization(meta):
         return None
+    if factory is not None:
+        return factory()
     return BlueprintBackend()
 
 
@@ -1130,6 +1215,174 @@ def factorization_blocks(meta: dict) -> dict:
 
 def has_any_factorization(meta: dict) -> bool:
     return bool(factorization_blocks(meta))
+
+
+def current_build_id(backend: FactorizationBackend | None) -> str | None:
+    """Current mined build fingerprint, or None when it cannot be read.
+
+    None is never "fresh": ``check_v2_block`` reports an unreadable build as a
+    "cannot verify" violation, and a materialized ``verified_at_build`` of None
+    can never equal a committed one, so the registry comparison fails closed.
+    """
+    if backend is None:
+        return None
+    try:
+        return backend.current_build()
+    except RegistryError:
+        return None
+
+
+def normalized_factorization_block(block: object, build_id: str | None) -> dict | None:
+    """The CANONICAL registry form of a reviewed v2 factorization block.
+
+    Only a ``p97-factorization/v2`` block with an object ``roles`` map is
+    materialized.  A v1 block is never a verified factorization (it pins no
+    statement digests), so it must not appear on the registry at all, and an
+    entry with no reviewed block gets no ``factorization`` key - which is what
+    keeps a registry with no factorization entries byte-identical.
+
+    ``obligation_id`` and ``note`` are deliberately dropped: the id is the key
+    of the entry the block sits on, and prose is not machine-checkable.
+    ``transitive`` is sorted (and omitted when empty) so the materialization is
+    a function of the reviewed block alone; ``via`` order inside a row is the
+    path and is preserved.
+    """
+    if not isinstance(block, dict):
+        return None
+    if block.get("schema") != FACTORIZATION_SCHEMA_V2:
+        return None
+    roles = block.get("roles")
+    if not isinstance(roles, dict):
+        return None
+
+    pinned = block.get("pinned")
+    materialized: dict = {
+        "schema": FACTORIZATION_SCHEMA_V2,
+        "roles": {key: roles[key] for key in sorted(roles)},
+        "pinned": {key: pinned[key] for key in sorted(pinned)}
+        if isinstance(pinned, dict)
+        else {},
+        VERIFIED_AT_BUILD: build_id,
+    }
+
+    rows = block.get("transitive")
+    normalized_rows: list[dict] = []
+    if isinstance(rows, list):
+        for row in rows:
+            if isinstance(row, dict):
+                normalized_rows.append({key: row[key] for key in sorted(row)})
+    normalized_rows.sort(
+        key=lambda row: json.dumps(row, sort_keys=True, ensure_ascii=False)
+    )
+    if normalized_rows:
+        materialized["transitive"] = normalized_rows
+    return materialized
+
+
+def compare_registry_factorizations(
+    registry: dict, meta: dict, build_id: str | None
+) -> list[str]:
+    """Drift between the MATERIALIZED registry blocks and the reviewed metadata.
+
+    The registry is the file downstream consumers read, so it must carry every
+    verified factorization itself rather than pointing at the reviewed file.
+    A block missing from the registry, an extra block the reviewed file does not
+    declare, a drifted field, or a ``verified_at_build`` that is not the current
+    build are all registry drift and all fail the check.
+    """
+    violations: list[str] = []
+    by_id = {item["id"]: item for item in registry.get("obligations", [])}
+    expected: dict[str, dict] = {}
+    for obligation_id, block in factorization_blocks(meta).items():
+        normalized = normalized_factorization_block(block, build_id)
+        if normalized is not None:
+            expected[obligation_id] = normalized
+
+    for obligation_id in sorted(by_id):
+        want = expected.get(obligation_id)
+        got = by_id[obligation_id].get(FACTORIZATION_KEY)
+        if want is None and got is None:
+            continue
+        if want is None:
+            violations.append(
+                obligation_id
+                + ": the registry entry carries a materialized "
+                + FACTORIZATION_KEY
+                + " block that the reviewed metadata does not declare"
+            )
+            continue
+        if got is None:
+            violations.append(
+                obligation_id
+                + ": the registry entry carries no materialized "
+                + FACTORIZATION_KEY
+                + " block for its reviewed "
+                + FACTORIZATION_SCHEMA_V2
+                + " block"
+            )
+            continue
+        if not isinstance(got, dict):
+            violations.append(
+                obligation_id
+                + ": the materialized "
+                + FACTORIZATION_KEY
+                + " block is not a JSON object"
+            )
+            continue
+        for key in sorted(set(want) | set(got)):
+            if want.get(key) == got.get(key):
+                continue
+            if key == VERIFIED_AT_BUILD:
+                violations.append(
+                    obligation_id
+                    + ": materialized "
+                    + VERIFIED_AT_BUILD
+                    + " is "
+                    + repr(got.get(key))
+                    + " but the current build is "
+                    + repr(want.get(key))
+                )
+            else:
+                violations.append(
+                    obligation_id
+                    + ": materialized factorization key "
+                    + repr(key)
+                    + " is "
+                    + repr(got.get(key))
+                    + " on the registry but "
+                    + repr(want.get(key))
+                    + " in the reviewed metadata"
+                )
+    return violations
+
+
+def via_label(pair: tuple[str, str], position: int) -> str:
+    """Stable label of one declared ``transitive`` hop."""
+    return (
+        "transitive " + pair[0] + " -> " + pair[1] + " via[" + str(position) + "]"
+    )
+
+
+def reaching_symbols(
+    edges: dict[str, set[str]], target: str, vertices: list[str]
+) -> set[str]:
+    """Vertices whose calls reach ``target`` inside ``vertices`` (bounded).
+
+    ``edges`` is the direct caller -> callee relation restricted to
+    ``vertices``.  The walk is backwards from ``target``; each vertex is added
+    at most once, so the loop runs at most ``len(vertices)`` times.
+    """
+    reaching: set[str] = set()
+    frontier = [target]
+    while frontier:
+        current = frontier.pop()
+        for caller in vertices:
+            if caller in reaching or caller == target:
+                continue
+            if current in edges.get(caller, set()):
+                reaching.add(caller)
+                frontier.append(caller)
+    return reaching
 
 
 def check_block_structure(
@@ -1327,6 +1580,37 @@ def check_v2_block(
         ]
 
     role_symbol = {role: roles.get(role) for role in FACTORIZATION_ROLES}
+    leaf = role_symbol[ROLE_OPEN_LEAF]
+
+    # -- transitive rows, read FIRST -----------------------------------------
+    # Every declared via hop is a first-class vertex of this block: it is
+    # resolved, mined-freshness checked, trust checked and included in the cycle
+    # detection exactly like a role.
+    overrides, transitive_violations = parse_transitive(obligation_id, block)
+    violations.extend(transitive_violations)
+    via_hops: list[tuple[str, str, tuple[str, str]]] = []
+    for pair in FACTORIZATION_CHAIN:
+        for position, hop in enumerate(overrides.get(pair, [])):
+            via_hops.append((via_label(pair, position), hop, pair))
+
+    role_holder: dict[str, str] = {}
+    for role in FACTORIZATION_ROLES:
+        symbol = role_symbol[role]
+        if isinstance(symbol, str) and symbol.strip():
+            role_holder.setdefault(symbol, role)
+    for label, symbol, _pair in via_hops:
+        if symbol in role_holder:
+            violations.append(
+                obligation_id
+                + ": "
+                + label
+                + " ("
+                + symbol
+                + ") is also the "
+                + role_holder[symbol]
+                + " role; a via hop must name a declaration distinct from the five"
+                + " roles"
+            )
 
     # -- pinned digests, structurally ---------------------------------------
     pinned = block.get("pinned")
@@ -1351,19 +1635,24 @@ def check_v2_block(
                     + " is not a lowercase sha256 hex string"
                 )
 
-    # -- role resolution ----------------------------------------------------
+    # -- resolution: the five roles AND every via hop ------------------------
+    # A via declaration obeys exactly the role resolve rule: exactly one PUBLIC
+    # index record, or the block is not verified.
+    named: list[tuple[str, str]] = [
+        (role, role_symbol[role])
+        for role in FACTORIZATION_ROLES
+        if isinstance(role_symbol[role], str) and role_symbol[role].strip()
+    ] + [(label, symbol) for label, symbol, _pair in via_hops]
+
     records: dict[str, dict] = {}
-    for role in FACTORIZATION_ROLES:
-        symbol = role_symbol[role]
-        if not isinstance(symbol, str) or not symbol.strip():
-            continue
+    for label, symbol in named:
         try:
             matches = backend.resolve(symbol)
         except RegistryError as exc:
             violations.append(
                 obligation_id
                 + ": cannot verify "
-                + role
+                + label
                 + " ("
                 + symbol
                 + "): "
@@ -1374,7 +1663,7 @@ def check_v2_block(
             violations.append(
                 obligation_id
                 + ": "
-                + role
+                + label
                 + " ("
                 + symbol
                 + ") resolves to "
@@ -1387,16 +1676,15 @@ def check_v2_block(
             violations.append(
                 obligation_id
                 + ": "
-                + role
+                + label
                 + " ("
                 + symbol
-                + ") is a private declaration; every role must be public"
+                + ") is a private declaration; every role and via hop must be public"
             )
             continue
-        records[role] = record
+        records[label] = record
 
     # -- open leaf identity -------------------------------------------------
-    leaf = role_symbol[ROLE_OPEN_LEAF]
     if registry_entry is None:
         violations.append(
             obligation_id + ": the factorization names no live registry entry"
@@ -1454,18 +1742,7 @@ def check_v2_block(
                 + ")"
             )
 
-    # -- freshness ----------------------------------------------------------
-    named: list[tuple[str, str]] = []
-    for role in FACTORIZATION_ROLES:
-        symbol = role_symbol[role]
-        if isinstance(symbol, str) and symbol.strip():
-            named.append((role, symbol))
-    overrides, transitive_violations = parse_transitive(obligation_id, block)
-    violations.extend(transitive_violations)
-    for (source, target), via in sorted(overrides.items()):
-        for position, hop in enumerate(via):
-            named.append(("transitive " + source + " -> " + target + " via[" + str(position) + "]", hop))
-
+    # -- freshness (the five roles AND every via hop) ------------------------
     try:
         current = backend.current_build()
     except RegistryError as exc:
@@ -1562,32 +1839,27 @@ def check_v2_block(
                     + ")"
                 )
 
-    # -- cycles over the five role symbols ----------------------------------
-    role_symbols = [
-        symbol
-        for symbol in (role_symbol[role] for role in FACTORIZATION_ROLES)
-        if isinstance(symbol, str) and symbol.strip()
-    ]
-    unique_symbols = sorted(set(role_symbols))
-    edges: dict[str, set[str]] = {symbol: set() for symbol in unique_symbols}
-    cycle_readable = True
-    for callee in unique_symbols:
+    # -- call graph over the five roles AND every via hop --------------------
+    vertices = sorted({symbol for _label, symbol in named})
+    edges: dict[str, set[str]] = {symbol: set() for symbol in vertices}
+    graph_readable = True
+    for callee in vertices:
         try:
             callers = backend.callers(callee)
         except RegistryError:
-            cycle_readable = False
+            graph_readable = False
             break
-        for caller in unique_symbols:
+        for caller in vertices:
             if caller in callers:
                 edges[caller].add(callee)
-    if cycle_readable:
-        cycle = find_role_cycle(unique_symbols, edges)
+
+    # -- cycles over roles union vias ---------------------------------------
+    if graph_readable:
+        cycle = find_role_cycle(vertices, edges)
         if cycle is not None:
-            names = {}
-            for role in FACTORIZATION_ROLES:
-                symbol = role_symbol[role]
-                if isinstance(symbol, str):
-                    names.setdefault(symbol, role)
+            names = dict(role_holder)
+            for label, symbol, _pair in via_hops:
+                names.setdefault(symbol, label)
             violations.append(
                 obligation_id
                 + ": role cycle "
@@ -1596,57 +1868,130 @@ def check_v2_block(
                 )
             )
 
-    # -- axiom closures -----------------------------------------------------
-    for role in (ROLE_PRODUCER, ROLE_COORDINATOR, ROLE_ELIMINATOR):
+    # -- which hops actually consume the open leaf --------------------------
+    consumption_known = graph_readable and isinstance(leaf, str) and leaf in edges
+    leaf_consumers = (
+        reaching_symbols(edges, leaf, vertices) if consumption_known else set()
+    )
+
+    # -- trust boundary ------------------------------------------------------
+    # Producer-path hops (the producer and every via on coordinator -> producer)
+    # must be CLEAN.  Consumer-side hops (legacy_wrapper, coordinator,
+    # eliminator and every via on the other three chain rows) must be
+    # CONSUMER-OK, and may carry sorryAx only when that hop reaches the open
+    # leaf.  The tool's tag is advisory throughout.
+    trust_hops: list[tuple[str, str, bool]] = []
+    for role in (
+        ROLE_LEGACY_WRAPPER,
+        ROLE_COORDINATOR,
+        ROLE_PRODUCER,
+        ROLE_ELIMINATOR,
+    ):
         symbol = role_symbol[role]
-        if not isinstance(symbol, str) or not symbol.strip():
-            continue
+        if isinstance(symbol, str) and symbol.strip():
+            trust_hops.append((role, symbol, role != ROLE_PRODUCER))
+    for label, symbol, pair in via_hops:
+        trust_hops.append((label, symbol, pair != (ROLE_COORDINATOR, ROLE_PRODUCER)))
+
+    for label, symbol, consumer in trust_hops:
         try:
             closure = backend.axioms(symbol)
         except RegistryError as exc:
             violations.append(
                 obligation_id
                 + ": cannot verify the axiom closure of "
-                + role
+                + label
                 + " ("
                 + symbol
                 + "): "
                 + str(exc)
             )
             continue
-        consumer = role in (ROLE_COORDINATOR, ROLE_ELIMINATOR)
-        for tag, axiom in closure:
-            if axiom == SORRY_AXIOM and consumer:
-                continue
-            if axiom in FORBIDDEN_AXIOMS:
+        acceptable = (
+            is_consumer_ok_closure(closure) if consumer else is_clean_closure(closure)
+        )
+        if not acceptable:
+            for tag, axiom in closure:
+                if axiom in ALLOWED_AXIOMS:
+                    continue
+                if axiom == SORRY_AXIOM and consumer:
+                    continue
                 violations.append(
                     obligation_id
                     + ": "
-                    + role
+                    + label
                     + " ("
                     + symbol
                     + ") axiom closure contains "
                     + axiom
+                    + " (tool tag "
+                    + repr(tag)
+                    + ", advisory)"
                     + (
-                        "; the producer must be kernel clean"
-                        if not consumer
-                        else "; a consumer may add nothing beyond core axioms and "
+                        "; a consumer hop may add nothing beyond "
+                        + ", ".join(ALLOWED_AXIOMS)
+                        + " and "
                         + SORRY_AXIOM
+                        if consumer
+                        else "; the producer path must be kernel clean"
                     )
                 )
-            elif tag != CORE_AXIOM_TAG:
-                violations.append(
-                    obligation_id
-                    + ": "
-                    + role
-                    + " ("
-                    + symbol
-                    + ") axiom closure contains "
-                    + axiom
-                    + " tagged "
-                    + repr(tag)
-                    + ", which is not a core axiom"
-                )
+        if not (consumer and any(axiom == SORRY_AXIOM for _tag, axiom in closure)):
+            continue
+        if not consumption_known:
+            violations.append(
+                obligation_id
+                + ": cannot verify that "
+                + label
+                + " ("
+                + symbol
+                + ") consumes the open leaf: the call graph could not be read"
+            )
+        elif symbol not in leaf_consumers:
+            violations.append(
+                obligation_id
+                + ": "
+                + label
+                + " carries "
+                + SORRY_AXIOM
+                + " without consuming the open leaf"
+            )
+
+    # -- the open leaf itself (auditor #7462) --------------------------------
+    # ``has_sorry == true`` proves the leaf is OPEN; it does NOT prove the leaf
+    # adds nothing else, so the leaf is audited as a consumer-side hop: its
+    # closure must be CONSUMER-OK, i.e. the baseline plus sorryAx and nothing
+    # more, whatever tag the tool prints next to an axiom.  sorryAx is ALWAYS
+    # permitted here and is deliberately NOT put through the reaching_symbols
+    # justification the other consumer hops get: the leaf IS the open leaf such
+    # a hop would have to reach, so it consumes itself.
+    if isinstance(leaf, str) and leaf.strip():
+        try:
+            leaf_closure = backend.axioms(leaf)
+        except RegistryError as exc:
+            violations.append(
+                obligation_id
+                + ": cannot verify the axiom closure of "
+                + ROLE_OPEN_LEAF
+                + " ("
+                + leaf
+                + "): "
+                + str(exc)
+            )
+        else:
+            if not is_consumer_ok_closure(leaf_closure):
+                for _tag, axiom in leaf_closure:
+                    if axiom in ALLOWED_AXIOMS or axiom == SORRY_AXIOM:
+                        continue
+                    violations.append(
+                        obligation_id
+                        + ": "
+                        + ROLE_OPEN_LEAF
+                        + " ("
+                        + leaf
+                        + ") carries forbidden axiom "
+                        + axiom
+                    )
     return violations
 
 
@@ -1921,7 +2266,16 @@ def build_registry(
     source_head: str,
     ledger: dict,
     meta: dict | None = None,
+    build_id: str | None = None,
 ) -> tuple[dict, dict]:
+    """Canonical registry plus the updated id ledger.
+
+    ``build_id`` is the current mined build fingerprint; it is stamped as
+    ``verified_at_build`` onto every MATERIALIZED factorization block.  An entry
+    whose reviewed metadata carries no ``p97-factorization/v2`` block gets no
+    ``factorization`` key at all, so a registry with no factorization entries is
+    byte-identical to one built before this key existed.
+    """
     records = normalize_records(spine, offspine)
     ids, updated_ledger = assign_ids(records, ledger, source_head)
     meta = meta or {}
@@ -1947,6 +2301,11 @@ def build_registry(
         }
         for field in META_ATTACHED_FIELDS:
             obligation[field] = reviewed.get(field)
+        materialized = normalized_factorization_block(
+            reviewed.get(FACTORIZATION_KEY), build_id
+        )
+        if materialized is not None:
+            obligation[FACTORIZATION_KEY] = materialized
         obligations.append(obligation)
     obligations.sort(key=lambda item: item["id"])
 
@@ -2236,11 +2595,17 @@ def gather_exports(
     )
 
 
-def command_generate(args: argparse.Namespace) -> int:
+def command_generate(
+    args: argparse.Namespace, backend_factory=None, export_source=None
+) -> int:
     out_dir = Path(args.out).resolve()
     baseline_dir = Path(args.baseline).resolve() if args.baseline else None
 
-    spine, offspine = gather_exports(baseline_dir, args.fresh, out_dir)
+    spine, offspine = (
+        gather_exports(baseline_dir, args.fresh, out_dir)
+        if export_source is None
+        else export_source()
+    )
 
     if args.fresh:
         source_head = git_head() or read_base_head(baseline_dir, out_dir)
@@ -2249,10 +2614,13 @@ def command_generate(args: argparse.Namespace) -> int:
 
     ledger = load_id_assignments(out_dir / ID_ASSIGNMENTS_NAME)
     meta = load_meta(out_dir)
-    backend = make_backend(meta)
+    backend = make_backend(meta, backend_factory)
+    build_id = current_build_id(backend)
     migrations, migration_violations = plan_alias_migrations(ledger, meta, backend)
     ledger = apply_alias_migrations(ledger, migrations, git_head_short())
-    registry, updated_ledger = build_registry(spine, offspine, source_head, ledger, meta)
+    registry, updated_ledger = build_registry(
+        spine, offspine, source_head, ledger, meta, build_id
+    )
 
     violations = validate_meta(registry, meta)
     factorization = check_factorizations(registry, meta, backend)
@@ -2348,7 +2716,9 @@ def factorization_line(factorization: dict) -> str:
     return line
 
 
-def command_check(args: argparse.Namespace) -> int:
+def command_check(
+    args: argparse.Namespace, backend_factory=None, export_source=None
+) -> int:
     baseline_dir = Path(args.baseline).resolve()
     registry_path = (
         Path(args.registry).resolve()
@@ -2422,14 +2792,19 @@ def command_check(args: argparse.Namespace) -> int:
     receipt["blueprint_refs"] = refs_check_state()
 
     try:
-        spine, offspine = gather_exports(None, True, status_dir)
+        spine, offspine = (
+            gather_exports(None, True, status_dir)
+            if export_source is None
+            else export_source()
+        )
         ledger = load_id_assignments(status_dir / ID_ASSIGNMENTS_NAME)
         meta = load_meta(status_dir)
-        backend = make_backend(meta)
+        backend = make_backend(meta, backend_factory)
+        build_id = current_build_id(backend)
         migrations, migration_violations = plan_alias_migrations(ledger, meta, backend)
         ledger = apply_alias_migrations(ledger, migrations, git_head_short())
         fresh_registry, _ = build_registry(
-            spine, offspine, committed_head or "unknown", ledger, meta
+            spine, offspine, committed_head or "unknown", ledger, meta, build_id
         )
     except RegistryError as exc:
         print("error: " + str(exc), file=sys.stderr)
@@ -2491,8 +2866,14 @@ def command_check(args: argparse.Namespace) -> int:
     factorization_violations = (
         migration_violations + factorization["summary"]["violations"]
     )
+    # The registry must CARRY every verified factorization, not point at the
+    # reviewed file: the materialized block on the committed entry is compared
+    # to the normalized reviewed block, stamped with the CURRENT build.
+    registry_drift = compare_registry_factorizations(committed, meta, build_id)
     receipt["factorization"] = dict(factorization["summary"])
     receipt["factorization"]["violations"] = factorization_violations
+    receipt["factorization"]["registry_drift"] = registry_drift
+    receipt["factorization"]["build_id"] = build_id
 
     reasons: list[str] = []
     if added or removed or changed:
@@ -2504,6 +2885,8 @@ def command_check(args: argparse.Namespace) -> int:
         reasons.append("metadata: " + violation)
     for violation in factorization_violations:
         reasons.append("factorization: " + violation)
+    for violation in registry_drift:
+        reasons.append("factorization registry drift: " + violation)
 
     refs = receipt["blueprint_refs"] or {}
     stale = refs.get("stale")
@@ -2615,7 +2998,21 @@ def command_check(args: argparse.Namespace) -> int:
         for violation in factorization_violations:
             print("    ! " + violation)
         print("  " + factorization_line(factorization))
-    stale_reasons = [reason for reason in reasons if reason.startswith("--require-fresh-refs")]
+    if registry_drift:
+        print(
+            "FAIL: the committed registry does not carry the reviewed"
+            " factorization blocks (" + str(len(registry_drift)) + "):"
+        )
+        for violation in registry_drift:
+            print("    ! " + violation)
+        print(
+            "  fix: uv run python "
+            + GENERATED_BY
+            + " generate --fresh --out proof-status"
+        )
+    stale_reasons = [
+        reason for reason in reasons if reason.startswith("--require-fresh-refs")
+    ]
     if stale_reasons:
         print("FAIL: kernel-mined refs are not fresh")
         for reason in stale_reasons:
@@ -2689,10 +3086,28 @@ def build_parser() -> argparse.ArgumentParser:
     return parser
 
 
-def main(argv: list[str] | None = None) -> int:
+def main(argv: list[str] | None = None, backend_factory=None, export_source=None) -> int:
+    """Command entry point.
+
+    ``backend_factory`` and ``export_source`` are the COMMAND-LEVEL test seams
+    (W3-0b).  Both default to None, which is the live behaviour: the backend is
+    a ``BlueprintBackend`` and the roster comes from the recorded baseline
+    exports (``generate --baseline``) or a live ``proof-blueprint`` re-export
+    (``generate --fresh`` and every ``check``).  The command line cannot set
+    either one - they exist so a test can drive the real ``generate`` / ``check``
+    entry point over a COPY of ``proof-status`` without touching live data:
+
+    * ``backend_factory()`` returns a ``FactorizationBackend`` (a
+      ``MappingBackend`` in the tests) and is consulted only when a reviewed
+      factorization block actually needs a backend;
+    * ``export_source()`` returns the ``(spine, offspine)`` record lists that
+      would otherwise be read or re-exported.
+    """
     args = build_parser().parse_args(argv)
     try:
-        return args.func(args)
+        return args.func(
+            args, backend_factory=backend_factory, export_source=export_source
+        )
     except RegistryError as exc:
         print("error: " + str(exc), file=sys.stderr)
         return 2

@@ -1,10 +1,29 @@
-"""W3-0 adversarial tests for the factorization gate of scripts/gen_obligation_registry.py.
+"""W3-0/W3-0b adversarial tests for the factorization gate of
+scripts/gen_obligation_registry.py.
 
 Every case here is SYNTHETIC.  The fixtures are injected through the
 ``FactorizationBackend`` seam (``MappingBackend``), never through the live
-blueprint database, and no fixture id or declaration name is a real P97
-obligation: the Lean declarations a real W3-TD factorization would name do not
-exist yet, so no live factorization entry may be written for one.
+blueprint database, and no fixture declaration name is a real P97 declaration:
+the Lean declarations a real W3-TD factorization would name do not exist yet,
+so no live factorization entry may be written for one.
+
+The W3-0b sections cover, in order:
+
+1. the CANONICAL registry - ``build_registry`` materializes a normalized copy
+   of every reviewed v2 block onto its own registry entry, and ``check``
+   reports every kind of drift between the two;
+2. the EXPLICIT trust boundary - ``ALLOWED_AXIOMS`` decides trust and the
+   tool's tag is advisory, producer-path hops must be CLEAN and consumer-side
+   hops must be CONSUMER-OK with ``sorryAx`` explained by the open leaf.  The
+   ``open_leaf`` role is audited on that boundary too (#7462): CONSUMER-OK,
+   with ``sorryAx`` always permitted because the leaf consumes itself;
+3. transitive EXACTNESS - every ``via`` declaration resolves like a role, is a
+   cycle-detection vertex, and may not be a role;
+4. the stable-id migration at the COMMAND level - the real ``generate`` /
+   ``check`` entry point driven over a COPY of proof-status in ``tmp_path``
+   through the documented ``backend_factory`` / ``export_source`` seams.  Those
+   fixtures use the real obligation ids OF THE COPY and write every artifact,
+   receipts included, inside the copy.
 
 Run with::
 
@@ -15,6 +34,7 @@ from __future__ import annotations
 
 import importlib.util
 import json
+import shutil
 import sys
 from pathlib import Path
 
@@ -61,8 +81,12 @@ SIGNATURES = {
 
 CLEAN_CLOSURE = [("core", "propext"), ("core", "Quot.sound")]
 CONSUMER_CLOSURE = [("core", "propext"), ("custom", "sorryAx")]
+# The audit's counterexample to tag-based trust: the tool prints ``core`` next
+# to a native-reduction axiom, and the tag must not buy it any trust.
+CORE_TAGGED_NATIVE = ("core", "Lean.ofReduceNat")
 
 TD_CLUSTER = gor.CLUSTER_LABELS[gor.CLUSTER_TD]
+FIXTURE_FILE = "Fixture/TwoDeletionCollisionFixture.lean"
 
 
 def record(symbol: str, *, has_sorry: bool = False, private: bool = False,
@@ -99,10 +123,21 @@ def base_calls() -> dict:
 
 
 def base_closures() -> dict:
+    """Axiom closures for every hop the W3-0b trust boundary reads.
+
+    ``legacy_wrapper``, the ``open_leaf`` itself and a consumer-side ``via`` hop
+    are checked too, so they need a recorded closure: an unrecorded one is a
+    "cannot verify" violation, which is the correct fail-closed answer but not
+    the case under test.  The leaf's closure is CONSUMER-OK and carries
+    ``sorryAx``: that is what an open leaf looks like in the kernel.
+    """
     return {
+        WRAPPER: list(CONSUMER_CLOSURE),
         PRODUCER: list(CLEAN_CLOSURE),
         COORDINATOR: list(CONSUMER_CLOSURE),
         ELIMINATOR: list(CONSUMER_CLOSURE),
+        LEAF: list(CONSUMER_CLOSURE),
+        HOP: list(CONSUMER_CLOSURE),
     }
 
 
@@ -296,14 +331,22 @@ def test_edge_reversal_open_leaf_calls_eliminator_fails():
     calls[LEAF] = [ELIMINATOR]
     result = run(block(), backend(calls=calls))
     assert result["verified_ids"] == []
-    assert messages(result) == [
+    assert (
         OID
         + ": eliminator ("
         + ELIMINATOR
         + ") does not directly call open_leaf ("
         + LEAF
         + ")"
-    ]
+    ) in messages(result)
+    # With the last edge reversed nothing reaches the open leaf any more, so the
+    # W3-0b trust rule reports every consumer hop that carries sorryAx without
+    # consuming it.  The cascade is deliberate: each of those hops really does
+    # carry an unexplained sorryAx under this call graph.
+    for role in ("legacy_wrapper", "coordinator", "eliminator"):
+        assert (
+            OID + ": " + role + " carries sorryAx without consuming the open leaf"
+        ) in messages(result)
 
 
 def test_cycle_among_roles_fails():
@@ -340,7 +383,7 @@ def test_private_role_fails():
     result = run(block(), backend(index=index))
     assert result["verified_ids"] == []
     assert "is a private declaration" in joined(result)
-    assert "every role must be public" in joined(result)
+    assert "every role and via hop must be public" in joined(result)
 
 
 def test_ambiguous_role_with_two_index_matches_fails():
@@ -439,16 +482,18 @@ def test_consumer_roles_may_carry_sorry_ax_but_not_native_trust():
     result = run(block(), backend(closures=closures))
     assert result["verified_ids"] == []
     assert "Lean.trustCompiler" in joined(result)
-    assert "beyond core axioms and sorryAx" in joined(result)
+    assert "a consumer hop may add nothing beyond" in joined(result)
+    for allowed in gor.ALLOWED_AXIOMS:
+        assert allowed in joined(result)
 
 
-def test_producer_with_a_non_core_axiom_fails():
+def test_producer_with_a_custom_axiom_fails():
     closures = base_closures()
     closures[PRODUCER] = [("core", "propext"), ("custom", "Fixture.myAxiom")]
     result = run(block(), backend(closures=closures))
     assert result["verified_ids"] == []
     assert "Fixture.myAxiom" in joined(result)
-    assert "not a core axiom" in joined(result)
+    assert "the producer path must be kernel clean" in joined(result)
 
 
 # ---------------------------------------------------------------------------
@@ -528,14 +573,18 @@ def test_transitive_path_with_a_broken_hop_fails():
     )
     result = run(payload, backend(calls=calls))
     assert result["verified_ids"] == []
-    assert messages(result) == [
+    assert (
         OID
         + ": via[0] ("
         + HOP
         + ") does not directly call eliminator ("
         + ELIMINATOR
         + ")"
-    ]
+    ) in messages(result)
+    # The broken hop also cuts every consumer hop off from the open leaf.
+    assert (
+        OID + ": legacy_wrapper carries sorryAx without consuming the open leaf"
+    ) in messages(result)
 
 
 def test_transitive_hop_freshness_is_checked_too():
@@ -644,6 +693,16 @@ def rename_mined() -> dict:
     return mined
 
 
+def rename_closures() -> dict:
+    """After the rename the OLD leaf name is the legacy wrapper, so it is the
+    hop whose closure the consumer-side trust rule reads, and the NEW name is
+    the audited open leaf."""
+    closures = base_closures()
+    closures[LEAF] = list(CONSUMER_CLOSURE)
+    closures[RENAMED_LEAF] = list(CONSUMER_CLOSURE)
+    return closures
+
+
 def rename_block() -> dict:
     return block(
         roles={
@@ -664,6 +723,7 @@ def rename_backend(index=None):
     return backend(
         index=rename_index() if index is None else index,
         calls=rename_calls(),
+        closures=rename_closures(),
         mined=rename_mined(),
     )
 
@@ -838,3 +898,693 @@ def test_a_cli_diagnostic_is_reported_as_cannot_verify():
     )
     with pytest.raises(gor.RegistryError):
         live._records(["search", "--uses", "Fixture.NoSuchSymbol.ever", "--json"])
+
+
+# ---------------------------------------------------------------------------
+# W3-0b item 1: the canonical registry carries every verified factorization
+# ---------------------------------------------------------------------------
+
+
+def export_record(symbol: str, *, line: int = 1, signature: str | None = None) -> dict:
+    """One synthetic ``search --with-sorry --json`` export row."""
+    return {
+        "symbol": symbol,
+        "kind": "theorem",
+        "file": FIXTURE_FILE,
+        "line": line,
+        "has_sorry": True,
+        "private": False,
+        "signature": SIGNATURES[symbol] if signature is None else signature,
+    }
+
+
+def generated_registry(payload, *, symbol: str = LEAF, obligation_id: str = OID,
+                       build: str | None = BUILD, extra_rows: list | None = None) -> dict:
+    """The registry ``generate`` would write for one fixture obligation."""
+    rows = [export_record(symbol)] + list(extra_rows or [])
+    assigned = {row["symbol"]: obligation_id for row in rows[:1]}
+    for index, row in enumerate(rows[1:], start=2):
+        assigned[row["symbol"]] = obligation_id + "-" + str(index)
+    registry, _ledger = gor.build_registry(
+        rows, [], "deadbeefdeadbeef", ledger_with(assigned),
+        meta_for(payload, obligation_id), build,
+    )
+    return registry
+
+
+def entry_of(registry: dict, obligation_id: str = OID) -> dict:
+    matches = [item for item in registry["obligations"] if item["id"] == obligation_id]
+    assert len(matches) == 1
+    return matches[0]
+
+
+def test_generation_materializes_the_reviewed_block_on_the_registry_entry():
+    payload = block(
+        transitive=[
+            {"from": "legacy_wrapper", "to": "coordinator", "via": [STRANGER]},
+            {"from": "coordinator", "to": "eliminator", "via": [HOP]},
+        ]
+    )
+    materialized = entry_of(generated_registry(payload))[gor.FACTORIZATION_KEY]
+
+    assert set(materialized) == set(gor.MATERIALIZED_KEYS)
+    assert set(gor.MATERIALIZED_KEYS) == {
+        "schema", "roles", "pinned", "transitive", gor.VERIFIED_AT_BUILD
+    }
+    assert materialized["schema"] == gor.FACTORIZATION_SCHEMA_V2
+    assert materialized["roles"] == payload["roles"]
+    assert materialized["pinned"] == payload["pinned"]
+    assert materialized[gor.VERIFIED_AT_BUILD] == BUILD
+    # obligation_id (the entry's own key) and note (prose) are dropped, and the
+    # rows are sorted, so the materialization is a function of the block alone.
+    assert [row["from"] for row in materialized["transitive"]] == [
+        "coordinator", "legacy_wrapper"
+    ]
+    assert materialized["transitive"][0]["via"] == [HOP]
+
+
+def test_entry_without_a_reviewed_block_gets_no_factorization_key():
+    registry = generated_registry(None)
+    assert gor.FACTORIZATION_KEY not in entry_of(registry)
+    # ... and the build fingerprint cannot leak into such an entry, so a
+    # registry with no factorization entries regenerates byte-identical.
+    assert gor.dump_canonical(registry) == gor.dump_canonical(
+        generated_registry(None, build=None)
+    )
+
+
+def test_a_v1_block_is_never_materialized():
+    payload = {
+        "schema": gor.FACTORIZATION_SCHEMA_V1,
+        "obligation_id": OID,
+        "roles": block()["roles"],
+        "note": "pre-pin legacy record",
+    }
+    assert gor.FACTORIZATION_KEY not in entry_of(generated_registry(payload))
+
+
+def test_check_passes_when_the_registry_and_the_reviewed_block_agree():
+    payload = block()
+    registry = generated_registry(payload)
+    assert gor.compare_registry_factorizations(registry, meta_for(payload), BUILD) == []
+    # The live gate agrees too: the block itself still verifies.
+    assert run(payload, registry=registry)["verified_ids"] == [OID]
+
+
+def test_registry_drift_when_the_materialized_block_is_missing():
+    payload = block()
+    registry = generated_registry(payload)
+    del entry_of(registry)[gor.FACTORIZATION_KEY]
+    drift = gor.compare_registry_factorizations(registry, meta_for(payload), BUILD)
+    assert len(drift) == 1
+    assert OID in drift[0]
+    assert "carries no materialized factorization block" in drift[0]
+
+
+def test_registry_drift_when_the_registry_carries_an_undeclared_block():
+    registry = generated_registry(block())
+    drift = gor.compare_registry_factorizations(registry, meta_for(None), BUILD)
+    assert len(drift) == 1
+    assert OID in drift[0]
+    assert "the reviewed metadata does not declare" in drift[0]
+
+
+def test_registry_drift_on_a_field_names_the_id_and_the_key():
+    payload = block()
+    registry = generated_registry(payload)
+    entry_of(registry)[gor.FACTORIZATION_KEY]["roles"]["producer"] = STRANGER
+    drift = gor.compare_registry_factorizations(registry, meta_for(payload), BUILD)
+    assert len(drift) == 1
+    assert drift[0].startswith(OID + ": materialized factorization key 'roles'")
+    assert STRANGER in drift[0] and PRODUCER in drift[0]
+
+    pinned = block()
+    registry = generated_registry(pinned)
+    entry_of(registry)[gor.FACTORIZATION_KEY]["pinned"][
+        "open_leaf_statement_sha256"
+    ] = "0" * 64
+    drift = gor.compare_registry_factorizations(registry, meta_for(pinned), BUILD)
+    assert len(drift) == 1
+    assert "'pinned'" in drift[0]
+
+
+def test_registry_drift_when_verified_at_build_is_not_the_current_build():
+    payload = block()
+    registry = generated_registry(payload, build=OLD_BUILD)
+    drift = gor.compare_registry_factorizations(registry, meta_for(payload), BUILD)
+    assert len(drift) == 1
+    assert OID in drift[0]
+    assert gor.VERIFIED_AT_BUILD in drift[0]
+    assert OLD_BUILD in drift[0] and BUILD in drift[0]
+
+    # An unreadable current build is never "fresh": it fails closed here too.
+    unknown = gor.compare_registry_factorizations(registry, meta_for(payload), None)
+    assert len(unknown) == 1
+    assert gor.VERIFIED_AT_BUILD in unknown[0]
+
+
+def test_entries_without_a_block_are_untouched_by_the_comparison():
+    payload = block()
+    registry = generated_registry(
+        payload, extra_rows=[export_record(STRANGER, line=9)]
+    )
+    other = [item for item in registry["obligations"] if item["id"] != OID]
+    assert len(other) == 1
+    assert gor.FACTORIZATION_KEY not in other[0]
+    assert gor.compare_registry_factorizations(registry, meta_for(payload), BUILD) == []
+
+
+def test_current_build_id_is_none_when_it_cannot_be_read():
+    assert gor.current_build_id(None) is None
+    assert gor.current_build_id(backend(build=None)) is None
+    assert gor.current_build_id(backend()) == BUILD
+
+
+# ---------------------------------------------------------------------------
+# W3-0b item 2: the explicit trust boundary (tags are advisory)
+# ---------------------------------------------------------------------------
+
+
+def transitive_calls(via_pair: str = "consumer") -> dict:
+    """Call graph with HOP inserted on one chain row."""
+    if via_pair == "consumer":
+        return {
+            WRAPPER: [COORDINATOR],
+            COORDINATOR: [PRODUCER, HOP],
+            HOP: [ELIMINATOR],
+            ELIMINATOR: [LEAF],
+        }
+    return {
+        WRAPPER: [COORDINATOR],
+        COORDINATOR: [HOP, ELIMINATOR],
+        HOP: [PRODUCER],
+        ELIMINATOR: [LEAF],
+    }
+
+
+def transitive_block(via_pair: str = "consumer") -> dict:
+    pair = ("coordinator", "eliminator") if via_pair == "consumer" else (
+        "coordinator", "producer"
+    )
+    return block(transitive=[{"from": pair[0], "to": pair[1], "via": [HOP]}])
+
+
+def test_allowed_axiom_baseline_is_explicit():
+    assert gor.ALLOWED_AXIOMS == ("propext", "Classical.choice", "Quot.sound")
+    assert gor.is_clean_closure([("core", "propext"), ("x", "Classical.choice")])
+    assert not gor.is_clean_closure([("core", "sorryAx")])
+    assert gor.is_consumer_ok_closure([("core", "propext"), ("x", "sorryAx")])
+    assert not gor.is_consumer_ok_closure([("core", "Lean.ofReduceNat")])
+
+
+def test_core_tagged_native_axiom_is_rejected_on_every_hop_kind():
+    """The tool tags Lean.ofReduceNat ``core``; the tag buys it nothing."""
+    for symbol, label in (
+        (WRAPPER, "legacy_wrapper"),
+        (COORDINATOR, "coordinator"),
+        (PRODUCER, "producer"),
+        (ELIMINATOR, "eliminator"),
+    ):
+        closures = base_closures()
+        closures[symbol] = list(closures[symbol]) + [CORE_TAGGED_NATIVE]
+        result = run(block(), backend(closures=closures))
+        assert result["verified_ids"] == []
+        text = joined(result)
+        assert (
+            label + " (" + symbol + ") axiom closure contains Lean.ofReduceNat"
+        ) in text
+        assert "tool tag 'core', advisory" in text
+
+    # ... and on a via hop of either side.
+    for via_pair in ("consumer", "producer"):
+        closures = base_closures()
+        base = CONSUMER_CLOSURE if via_pair == "consumer" else CLEAN_CLOSURE
+        closures[HOP] = list(base) + [CORE_TAGGED_NATIVE]
+        result = run(
+            transitive_block(via_pair),
+            backend(calls=transitive_calls(via_pair), closures=closures),
+        )
+        assert result["verified_ids"] == []
+        assert "via[0] (" + HOP + ") axiom closure contains Lean.ofReduceNat" in joined(
+            result
+        )
+
+
+def test_sorry_ax_on_a_producer_path_hop_is_rejected():
+    # The producer itself.
+    closures = base_closures()
+    closures[PRODUCER] = list(CONSUMER_CLOSURE)
+    result = run(block(), backend(closures=closures))
+    assert result["verified_ids"] == []
+    assert "producer (" + PRODUCER + ") axiom closure contains sorryAx" in joined(result)
+    assert "the producer path must be kernel clean" in joined(result)
+
+    # A via hop on the coordinator -> producer row is producer path too.
+    closures = base_closures()
+    closures[HOP] = list(CONSUMER_CLOSURE)
+    result = run(
+        transitive_block("producer"),
+        backend(calls=transitive_calls("producer"), closures=closures),
+    )
+    assert result["verified_ids"] == []
+    assert "via[0] (" + HOP + ") axiom closure contains sorryAx" in joined(result)
+    assert "the producer path must be kernel clean" in joined(result)
+
+
+def test_sorry_ax_on_legacy_wrapper_is_accepted_only_when_it_reaches_the_leaf():
+    # The base fixture: the wrapper carries sorryAx and the chain reaches the
+    # open leaf, so the hop is explained and the block verifies.
+    assert base_closures()[WRAPPER] == list(CONSUMER_CLOSURE)
+    assert run(block())["verified_ids"] == [OID]
+
+    # Same closure, but nothing on the wrapper's path reaches the open leaf.
+    calls = base_calls()
+    del calls[ELIMINATOR]
+    result = run(block(), backend(calls=calls))
+    assert result["verified_ids"] == []
+    assert (
+        OID + ": legacy_wrapper carries sorryAx without consuming the open leaf"
+    ) in messages(result)
+
+
+def test_custom_axiom_on_a_via_hop_is_rejected():
+    closures = base_closures()
+    closures[HOP] = list(CONSUMER_CLOSURE) + [("core", "Fixture.clusterAxiom")]
+    result = run(
+        transitive_block(), backend(calls=transitive_calls(), closures=closures)
+    )
+    assert result["verified_ids"] == []
+    text = joined(result)
+    assert "Fixture.clusterAxiom" in text
+    assert "a consumer hop may add nothing beyond" in text
+
+
+def test_a_hop_without_a_readable_closure_is_cannot_verify():
+    closures = base_closures()
+    del closures[WRAPPER]
+    result = run(block(), backend(closures=closures))
+    assert result["verified_ids"] == []
+    assert "cannot verify the axiom closure of legacy_wrapper" in joined(result)
+
+
+def test_open_leaf_closure_of_baseline_plus_sorry_ax_is_accepted():
+    """#7462: the leaf is audited, and sorryAx alone does not fail it.
+
+    sorryAx needs no consumption justification on the leaf - the leaf IS the
+    open leaf every other consumer hop has to reach.
+    """
+    closures = base_closures()
+    closures[LEAF] = [
+        ("core", "propext"),
+        ("core", "Classical.choice"),
+        ("core", "Quot.sound"),
+        ("custom", "sorryAx"),
+    ]
+    result = run(block(), backend(closures=closures))
+    assert messages(result) == []
+    assert result["verified_ids"] == [OID]
+
+
+def test_open_leaf_with_a_native_axiom_fails_and_names_the_leaf():
+    """has_sorry proves the leaf is OPEN; it does not exclude Lean.ofReduceNat.
+
+    The tool tags that axiom ``core``; the tag buys it nothing on the leaf
+    either.
+    """
+    closures = base_closures()
+    closures[LEAF] = list(CONSUMER_CLOSURE) + [CORE_TAGGED_NATIVE]
+    result = run(block(), backend(closures=closures))
+    assert result["verified_ids"] == []
+    assert (
+        OID + ": open_leaf (" + LEAF + ") carries forbidden axiom Lean.ofReduceNat"
+    ) in messages(result)
+
+
+def test_open_leaf_with_a_custom_axiom_fails():
+    closures = base_closures()
+    closures[LEAF] = list(CONSUMER_CLOSURE) + [("custom", "Fixture.leafAxiom")]
+    result = run(block(), backend(closures=closures))
+    assert result["verified_ids"] == []
+    assert (
+        OID + ": open_leaf (" + LEAF + ") carries forbidden axiom Fixture.leafAxiom"
+    ) in messages(result)
+
+
+# ---------------------------------------------------------------------------
+# W3-0b item 3: transitive exactness
+# ---------------------------------------------------------------------------
+
+
+def test_ambiguous_via_fails():
+    index = base_index()
+    index[HOP] = [record(HOP), record(HOP)]
+    result = run(
+        transitive_block(), backend(index=index, calls=transitive_calls())
+    )
+    assert result["verified_ids"] == []
+    assert (
+        "via[0] (" + HOP + ") resolves to 2 index records"
+    ) in joined(result)
+
+
+def test_unknown_via_fails():
+    index = base_index()
+    del index[HOP]
+    result = run(
+        transitive_block(), backend(index=index, calls=transitive_calls())
+    )
+    assert result["verified_ids"] == []
+    assert (
+        "via[0] (" + HOP + ") resolves to 0 index records"
+    ) in joined(result)
+
+
+def test_private_via_fails():
+    index = base_index()
+    index[HOP] = [record(HOP, private=True)]
+    result = run(
+        transitive_block(), backend(index=index, calls=transitive_calls())
+    )
+    assert result["verified_ids"] == []
+    text = joined(result)
+    assert "via[0] (" + HOP + ") is a private declaration" in text
+    assert "every role and via hop must be public" in text
+
+
+def test_via_that_is_also_a_role_fails():
+    payload = block(
+        transitive=[{"from": "coordinator", "to": "eliminator", "via": [PRODUCER]}]
+    )
+    calls = {
+        WRAPPER: [COORDINATOR],
+        COORDINATOR: [PRODUCER],
+        PRODUCER: [ELIMINATOR],
+        ELIMINATOR: [LEAF],
+    }
+    result = run(payload, backend(calls=calls))
+    assert result["verified_ids"] == []
+    assert len(messages(result)) == 1
+    assert "is also the producer role" in messages(result)[0]
+    assert PRODUCER in messages(result)[0]
+
+
+def test_cycle_through_a_via_fails():
+    calls = transitive_calls()
+    calls[HOP] = [ELIMINATOR, COORDINATOR]
+    result = run(transitive_block(), backend(calls=calls))
+    assert result["verified_ids"] == []
+    assert len(messages(result)) == 1
+    text = messages(result)[0]
+    assert "role cycle" in text
+    assert HOP in text
+    assert COORDINATOR in text
+
+
+# ---------------------------------------------------------------------------
+# W3-0b item 4: the stable-id migration at the COMMAND level
+#
+# These drive the real ``generate`` / ``check`` entry point over a COPY of
+# proof-status in tmp_path, with the kernel-mined backend and the roster
+# records injected through the documented command-level seams
+# (``main(argv, backend_factory=..., export_source=...)``).  Nothing reads the
+# live blueprint database and no receipt is written outside the copy.
+# ---------------------------------------------------------------------------
+
+PROOF_STATUS = SCRIPT.parent.parent / "proof-status"
+
+MIGRATED_LEAF = "Fixture.W30b.migrated_open_leaf"
+MIGRATED_COORDINATOR = "Fixture.W30b.cluster_coordinator"
+MIGRATED_PRODUCER = "Fixture.W30b.intrinsic_producer"
+MIGRATED_ELIMINATOR = "Fixture.W30b.terminal_eliminator"
+
+MIGRATED_SIGNATURES = {
+    MIGRATED_LEAF: "theorem migrated_open_leaf\n    (p : Fixture.Packet) :\n    False",
+    MIGRATED_COORDINATOR: "theorem cluster_coordinator\n    (h : Fixture.Hyp) :\n    False",
+    MIGRATED_PRODUCER: "theorem intrinsic_producer\n    (h : Fixture.Hyp) :\n    Fixture.Packet",
+    MIGRATED_ELIMINATOR: "theorem terminal_eliminator\n    (p : Fixture.Packet) :\n    False",
+}
+
+
+def fixture_record(symbol: str, signature: str, *, has_sorry: bool = False,
+                   private: bool = False) -> dict:
+    return {
+        "symbol": symbol,
+        "kind": "theorem",
+        "file": FIXTURE_FILE,
+        "line": 1,
+        "has_sorry": has_sorry,
+        "private": private,
+        "signature": signature,
+        "doc": "",
+        "attributes": [],
+    }
+
+
+def copy_proof_status(tmp_path: Path) -> Path:
+    """A COPY of proof-status; every fixture edit and receipt stays inside it."""
+    target = tmp_path / "proof-status"
+    shutil.copytree(PROOF_STATUS, target)
+    return target
+
+
+def read_status_json(status: Path, name: str) -> dict:
+    return json.loads((status / name).read_text(encoding="utf-8"))
+
+
+def first_reachable_entry(status: Path) -> dict:
+    registry = read_status_json(status, gor.REGISTRY_NAME)
+    reachable = sorted(
+        (item for item in registry["obligations"] if item.get("reachable")),
+        key=lambda item: item["id"],
+    )
+    assert reachable
+    return reachable[0]
+
+
+def wrapper_signature_for(symbol: str) -> str:
+    return "theorem " + symbol.rsplit(".", 1)[-1] + "\n    (h : Fixture.Hyp) :\n    False"
+
+
+def migration_backend(old_symbol: str) -> gor.MappingBackend:
+    """Kernel-mined truth AFTER the refactor: the old name is the wrapper."""
+    wrapper_sig = wrapper_signature_for(old_symbol)
+    index = {
+        old_symbol: [fixture_record(old_symbol, wrapper_sig)],
+        STRANGER: [record(STRANGER)],
+    }
+    for symbol, signature in MIGRATED_SIGNATURES.items():
+        index[symbol] = [
+            fixture_record(symbol, signature, has_sorry=symbol == MIGRATED_LEAF)
+        ]
+    calls = {
+        old_symbol: [MIGRATED_COORDINATOR],
+        MIGRATED_COORDINATOR: [MIGRATED_PRODUCER, MIGRATED_ELIMINATOR],
+        MIGRATED_ELIMINATOR: [MIGRATED_LEAF],
+    }
+    closures = {
+        old_symbol: list(CONSUMER_CLOSURE),
+        MIGRATED_COORDINATOR: list(CONSUMER_CLOSURE),
+        MIGRATED_ELIMINATOR: list(CONSUMER_CLOSURE),
+        MIGRATED_LEAF: list(CONSUMER_CLOSURE),
+        MIGRATED_PRODUCER: list(CLEAN_CLOSURE),
+        STRANGER: list(CLEAN_CLOSURE),
+    }
+    mined = {symbol: BUILD for symbol in index}
+    return gor.MappingBackend(
+        index=index, calls=calls, axiom_closures=closures, mined=mined, build=BUILD
+    )
+
+
+def inject_factorization(status: Path, obligation_id: str, old_symbol: str,
+                         *, legacy_wrapper: str | None = None) -> None:
+    """Pin a rename on ONE entry of the copied reviewed metadata."""
+    path = status / gor.META_NAME
+    meta = json.loads(path.read_text(encoding="utf-8"))
+    wrapper = old_symbol if legacy_wrapper is None else legacy_wrapper
+    wrapper_sig = (
+        wrapper_signature_for(old_symbol)
+        if legacy_wrapper is None
+        else SIGNATURES[STRANGER]
+    )
+    meta[obligation_id][gor.FACTORIZATION_KEY] = {
+        "schema": gor.FACTORIZATION_SCHEMA_V2,
+        "obligation_id": obligation_id,
+        "roles": {
+            "legacy_wrapper": wrapper,
+            "coordinator": MIGRATED_COORDINATOR,
+            "producer": MIGRATED_PRODUCER,
+            "eliminator": MIGRATED_ELIMINATOR,
+            "open_leaf": MIGRATED_LEAF,
+        },
+        "pinned": {
+            "legacy_wrapper_statement_sha256": gor.statement_digest(wrapper_sig),
+            "open_leaf_statement_sha256": gor.statement_digest(
+                MIGRATED_SIGNATURES[MIGRATED_LEAF]
+            ),
+        },
+        "note": "synthetic W3-0b command-level fixture; not a live factorization",
+    }
+    path.write_text(
+        json.dumps(meta, indent=2, sort_keys=True, ensure_ascii=False) + "\n",
+        encoding="utf-8",
+    )
+
+
+def baseline_exports(status: Path) -> tuple[list, list]:
+    return (
+        gor.read_records(status / "baseline" / gor.SPINE_EXPORT),
+        gor.read_records(status / "baseline" / gor.OFFSPINE_EXPORT),
+    )
+
+
+def renamed_exports(status: Path, old_symbol: str) -> tuple[list, list]:
+    """What the exporter reports AFTER the Lean rename.
+
+    The open leaf is exported under its new name; the old public name survives
+    as the compatibility wrapper and, carrying no sorry, is not exported.
+    """
+    spine, offspine = baseline_exports(status)
+    renamed = []
+    for row in spine:
+        if row.get("symbol") == old_symbol:
+            row = dict(row)
+            row["symbol"] = MIGRATED_LEAF
+        renamed.append(row)
+    return renamed, offspine
+
+
+def run_generate(status: Path, backend_obj, exports) -> int:
+    return gor.main(
+        [
+            "generate",
+            "--baseline", str(status / "baseline"),
+            "--out", str(status),
+            "--strict-meta",
+        ],
+        backend_factory=lambda: backend_obj,
+        export_source=lambda: exports,
+    )
+
+
+def run_command_check(status: Path, backend_obj, exports) -> int:
+    return gor.main(
+        [
+            "check",
+            "--baseline", str(status / "baseline"),
+            "--registry", str(status / gor.REGISTRY_NAME),
+            "--receipts-dir", str(status / gor.RECEIPTS_DIRNAME),
+        ],
+        backend_factory=lambda: backend_obj,
+        export_source=lambda: exports,
+    )
+
+
+def test_command_level_rename_migration_keeps_the_roster_and_is_idempotent(tmp_path):
+    status = copy_proof_status(tmp_path)
+    before = read_status_json(status, gor.REGISTRY_NAME)
+    entry = first_reachable_entry(status)
+    old_symbol = entry["lean_decl"]
+    obligation_id = entry["id"]
+
+    inject_factorization(status, obligation_id, old_symbol)
+    backend_obj = migration_backend(old_symbol)
+    exports = renamed_exports(status, old_symbol)
+
+    assert run_generate(status, backend_obj, exports) == 0
+
+    registry = read_status_json(status, gor.REGISTRY_NAME)
+    # NO add / remove drift: the same id set, the same counts.
+    assert sorted(item["id"] for item in registry["obligations"]) == sorted(
+        item["id"] for item in before["obligations"]
+    )
+    counts = gor.roster_counts(registry["obligations"])
+    assert counts == gor.roster_counts(before["obligations"])
+    # The committed roster this fixture tracks.
+    assert counts == {"total": 34, "reachable": 28, "off_spine": 6}
+
+    migrated = [item for item in registry["obligations"] if item["id"] == obligation_id]
+    assert len(migrated) == 1
+    # The id FOLLOWS the new open leaf ...
+    assert migrated[0]["lean_decl"] == MIGRATED_LEAF
+    # ... and the registry CARRIES the verified factorization.
+    assert migrated[0][gor.FACTORIZATION_KEY][gor.VERIFIED_AT_BUILD] == BUILD
+    assert migrated[0][gor.FACTORIZATION_KEY]["roles"]["legacy_wrapper"] == old_symbol
+
+    ledger = read_status_json(status, gor.ID_ASSIGNMENTS_NAME)
+    assert ledger["assigned"][MIGRATED_LEAF] == obligation_id
+    assert old_symbol not in ledger["assigned"]
+    assert old_symbol not in ledger["retired"]
+    assert ledger["aliases"][obligation_id]["aliases"] == [old_symbol]
+    assert ledger["aliases"][obligation_id]["renamed_from"] == old_symbol
+
+    # Regenerating over the migrated ledger changes nothing.
+    generated_once = (status / gor.REGISTRY_NAME).read_bytes()
+    ledger_once = (status / gor.ID_ASSIGNMENTS_NAME).read_bytes()
+    assert run_generate(status, backend_obj, exports) == 0
+    assert (status / gor.REGISTRY_NAME).read_bytes() == generated_once
+    assert (status / gor.ID_ASSIGNMENTS_NAME).read_bytes() == ledger_once
+
+    # check on the copy agrees, and a second run is stable.
+    assert run_command_check(status, backend_obj, exports) == 0
+    assert run_command_check(status, backend_obj, exports) == 0
+    assert (status / gor.ID_ASSIGNMENTS_NAME).read_bytes() == ledger_once
+    assert (status / gor.REGISTRY_NAME).read_bytes() == generated_once
+
+
+def test_command_level_check_fails_when_the_registry_block_drifts(tmp_path, capsys):
+    status = copy_proof_status(tmp_path)
+    entry = first_reachable_entry(status)
+    old_symbol = entry["lean_decl"]
+    obligation_id = entry["id"]
+
+    inject_factorization(status, obligation_id, old_symbol)
+    backend_obj = migration_backend(old_symbol)
+    exports = renamed_exports(status, old_symbol)
+    assert run_generate(status, backend_obj, exports) == 0
+    capsys.readouterr()
+
+    # Tamper with the materialized block on the COMMITTED registry.
+    registry = read_status_json(status, gor.REGISTRY_NAME)
+    for item in registry["obligations"]:
+        if item["id"] == obligation_id:
+            item[gor.FACTORIZATION_KEY][gor.VERIFIED_AT_BUILD] = OLD_BUILD
+    (status / gor.REGISTRY_NAME).write_text(
+        gor.dump_canonical(registry), encoding="utf-8"
+    )
+
+    assert run_command_check(status, backend_obj, exports) == 1
+    out = capsys.readouterr().out
+    assert "does not carry the reviewed factorization blocks" in out
+    assert obligation_id in out
+    assert gor.VERIFIED_AT_BUILD in out
+
+
+def test_command_level_rename_that_would_allocate_a_new_id_is_rejected(tmp_path, capsys):
+    status = copy_proof_status(tmp_path)
+    entry = first_reachable_entry(status)
+    old_symbol = entry["lean_decl"]
+    obligation_id = entry["id"]
+
+    # The block renames the leaf but does NOT keep the old public name as the
+    # legacy wrapper, so the id could not follow it.
+    inject_factorization(status, obligation_id, old_symbol, legacy_wrapper=STRANGER)
+    backend_obj = migration_backend(old_symbol)
+    # The tree is unchanged: the exports still name the old symbol.
+    exports = baseline_exports(status)
+    before_ledger = (status / gor.ID_ASSIGNMENTS_NAME).read_bytes()
+
+    assert run_generate(status, backend_obj, exports) == 1
+    captured = capsys.readouterr()
+    assert "would allocate a new id" in captured.err
+    assert obligation_id in captured.err
+    assert (status / gor.ID_ASSIGNMENTS_NAME).read_bytes() == before_ledger
+
+    assert run_command_check(status, backend_obj, exports) == 1
+    captured = capsys.readouterr()
+    assert "would allocate a new id" in captured.out
+    assert (status / gor.ID_ASSIGNMENTS_NAME).read_bytes() == before_ledger
+    # The entry still holds its original name and id.
+    registry = read_status_json(status, gor.REGISTRY_NAME)
+    still = [item for item in registry["obligations"] if item["id"] == obligation_id]
+    assert len(still) == 1
+    assert still[0]["lean_decl"] == old_symbol

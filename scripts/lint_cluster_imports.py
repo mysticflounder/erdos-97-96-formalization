@@ -52,9 +52,43 @@ the waiver file proves the migration is finished.
 
 The Legacy manifest cross-references the waiver file through `waiver_pair`.
 A non-null `waiver_pair` names the waiver row that the wrapper exists to
-retire; that row must still be present and still cover a live forbidden edge.
-Once the wrapper actually retires the direct edge, the waiver row is stale and
-the lint says so, so the waiver row and the manifest row move in one commit.
+retire, and it must identify that exact edge rather than merely some waiver
+row that happens to exist:
+
+  * `waiver_pair[0]` must equal the manifest row's own `from` -- the cluster
+    module that now reaches the retired target through the wrapper;
+  * `waiver_pair[1]` must be a DIRECT header import of `wrapper_module` -- the
+    retired target must really be reached through this wrapper;
+  * the pair must still be a waiver row in `proof-status/import-waivers.json`.
+
+Without all three, a manifest row could name any real waiver at all and take
+credit for retiring an edge it does not carry.  The stale-waiver rule is
+unchanged: once the wrapper actually retires the direct edge, the waiver row is
+stale and the lint says so, so the waiver row and the manifest row move in one
+commit.
+
+Pinned base_head
+----------------
+
+The Legacy manifest's `base_head` is a claim about the tree a row set was
+written against, so it is checked as one.  The value must be 8 lowercase hex
+characters, must name a commit of this repository (`git cat-file -e
+<base_head>^{commit}`), and that commit must be an ancestor of -- or equal to
+-- HEAD (`git merge-base --is-ancestor <base_head> HEAD`).  A `base_head`
+naming no commit, or naming a commit on a discarded line of history, pins the
+manifest to nothing.  Both failures are exit 2: the manifest cannot be
+authenticated, so the lint does not run.  Git is reached through `git_status`,
+the module's single seam for it, and a git that cannot be run is a failure
+rather than a pass.
+
+The frozen graph record's own `base_head` deliberately keeps the format check
+alone.  That record is the immutable Phase 0 authentication basis: this lint
+never writes it, and the Legacy manifest already binds to it by content digest
+(`frozen_graph_sha256`), which is a stronger statement than reachability.
+Binding it to HEAD as well would turn the whole lint into exit 2 in any
+checkout where the freeze commit is simply not present -- a shallow clone, a
+detached export -- for a reason unrelated to the rows under review.  The
+manifest is rewritten every wave, so its pin is the one a wave can get wrong.
 
 Dated current graph
 -------------------
@@ -81,13 +115,16 @@ Exit status:
        waiver file's own metadata and summary are consistent
     1  at least one non-waived forbidden edge; at least one waiver that fails
        authentication or metadata validation; at least one unlisted, stale,
-       duplicated or misclassified Legacy exception; a frozen row whose class
-       the live tree recomputes differently; or --fail-on-legacy with a Legacy
+       duplicated or misclassified Legacy exception; a `waiver_pair` that does
+       not identify the edge its wrapper retires; a frozen row whose class the
+       live tree recomputes differently; or --fail-on-legacy with a Legacy
        edge present
     2  the lint could not run (missing tree; unreadable waiver, graph or
        Legacy manifest file; a frozen graph record that fails its own
-       structural validation; a Legacy manifest whose `base_head` is malformed
-       or whose `frozen_graph_sha256` does not match the graph file in use)
+       structural validation, including two rows for one `(from, to)` pair; a
+       Legacy manifest whose `base_head` is malformed, names no commit or
+       names a commit that is not an ancestor of HEAD, or whose
+       `frozen_graph_sha256` does not match the graph file in use)
 
 Standard library only.  No third-party imports, no regular expressions.
 """
@@ -443,21 +480,39 @@ def edge_record(source_module: str, target: str, relative_path: str, number: int
     }
 
 
-def collect_edges() -> list:
-    """Every intra-directory import edge in the live tree.
+def scan_tree():
+    """One walk of the cluster tree: `(edges, imports_by_module)`.
 
-    Each edge is a dict with `from`, `to`, `from_cluster`, `to_cluster`,
-    `class`, `from_file` (repo-relative) and `line`.
+    `edges` is every intra-directory import edge, each a dict with `from`,
+    `to`, `from_cluster`, `to_cluster`, `class`, `from_file` (repo-relative)
+    and `line`.  `imports_by_module` maps a scanned module to the frozenset of
+    modules its header imports DIRECTLY -- including targets outside the
+    cluster tree, which are not edges.
+
+    The two results come from one walk because the second is needed for exactly
+    one question, `waiver_pair` linkage: does this wrapper really import the
+    retired target?  Re-reading every header to answer it would let the two
+    views of the tree drift apart between walks.
     """
     edges = []
+    imports_by_module = {}
     for path in source_files():
         source_module = module_name(path)
         relative_path = os.path.relpath(path, REPO_ROOT)
+        targets = set()
         for number, target in header_imports(path):
+            targets.add(target)
             if not in_cluster_tree(target):
                 continue
             edges.append(edge_record(source_module, target, relative_path, number))
+        imports_by_module[source_module] = frozenset(targets)
     edges.sort(key=lambda edge: (edge["from"], edge["to"], edge["line"]))
+    return edges, imports_by_module
+
+
+def collect_edges() -> list:
+    """Every intra-directory import edge in the live tree (see `scan_tree`)."""
+    edges, _ = scan_tree()
     return edges
 
 
@@ -503,6 +558,56 @@ def file_digest(path: str) -> str:
     return digest.hexdigest()
 
 
+# `git` could not be run at all.  Any non-zero value fails the binding check;
+# a distinct one keeps the two situations apart when a message quotes it.
+GIT_UNAVAILABLE = -1
+
+
+def git_status(arguments) -> int:
+    """Exit status of `git -C REPO_ROOT <arguments>`; non-zero when git fails.
+
+    The module's one seam for a plain success/failure git question.  Output is
+    discarded on purpose: every caller asks a yes/no question, so nothing here
+    parses git output and no regular expression is involved.  An OSError (git
+    absent, not executable) returns `GIT_UNAVAILABLE`, which is non-zero, so
+    the caller fails closed instead of treating an unaskable question as a
+    "yes".
+    """
+    try:
+        completed = subprocess.run(
+            ["git", "-C", REPO_ROOT] + list(arguments),
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+            check=False,
+        )
+    except OSError:
+        return GIT_UNAVAILABLE
+    return completed.returncode
+
+
+def base_head_binding_failure(base_head: str):
+    """Why `base_head` does not name a commit at or behind HEAD, or None.
+
+    Two questions, both asked of git in `REPO_ROOT`:
+
+      * `git cat-file -e <base_head>^{commit}` -- does the abbreviated id name
+        an object that peels to a commit of this repository?  An unknown or
+        ambiguous id, or one naming a tree or a blob, fails here;
+      * `git merge-base --is-ancestor <base_head> HEAD` -- is that commit an
+        ancestor of HEAD, or HEAD itself?  `--is-ancestor` is reflexive, so a
+        manifest pinned to the current commit passes.
+
+    The caller turns a returned reason into exit 2.  A malformed (non 8-hex)
+    value is rejected before this is ever reached, so the value interpolated
+    into a message is always a plain abbreviated commit id.
+    """
+    if git_status(["cat-file", "-e", base_head + "^{commit}"]) != 0:
+        return "base_head %s is not a commit" % base_head
+    if git_status(["merge-base", "--is-ancestor", base_head, "HEAD"]) != 0:
+        return "base_head %s is not an ancestor of HEAD" % base_head
+    return None
+
+
 def load_frozen_edges(path: str) -> dict:
     """`{(from, to): class}` from the frozen Phase 0 graph record.
 
@@ -512,9 +617,15 @@ def load_frozen_edges(path: str) -> dict:
     The record is validated on every run, because an authentication basis that
     is never checked is not one.  `ValueError` here means the lint cannot run
     (exit 2): a wrong `schema`, a malformed `base_head`, a malformed row, or a
-    duplicated `(from, to, line)` row -- the last because two rows for one
-    physical import would let the record disagree with itself about a class
-    while still looking well-formed.
+    duplicated row.
+
+    Duplication is judged on the `(from, to)` pair, not on the whole
+    `(from, to, line)` triple.  The pair is the key this function returns and
+    the key a waiver authenticates against, so two rows for one pair are two
+    answers to one question no matter what line numbers they carry: the second
+    would silently overwrite the first's class here, and a differing line
+    number is exactly how that would be dressed up as a legitimate second row.
+    An exact triple duplicate keeps its own message, being the narrower case.
     """
     label = os.path.basename(path)
     with open(path, "r", encoding="utf-8") as handle:
@@ -537,6 +648,7 @@ def load_frozen_edges(path: str) -> dict:
         raise ValueError("%s: 'edges' must be a list" % label)
     frozen = {}
     seen_rows = set()
+    line_of_pair = {}
     for index, entry in enumerate(entries):
         if not isinstance(entry, dict):
             raise ValueError("%s: edge %d is not an object" % (label, index))
@@ -567,7 +679,16 @@ def load_frozen_edges(path: str) -> dict:
                 % (label, index, source, target, line)
             )
         seen_rows.add(row)
-        frozen[(source, target)] = edge_class
+        pair = (source, target)
+        if pair in line_of_pair:
+            raise ValueError(
+                "%s: edge %d duplicates the pair %s -> %s already recorded at "
+                "line %d (this row says line %d); one row per pair, so a second "
+                "row can only disagree with the first"
+                % (label, index, source, target, line_of_pair[pair], line)
+            )
+        line_of_pair[pair] = line
+        frozen[pair] = edge_class
     if not frozen:
         raise ValueError("%s: 'edges' is empty" % label)
     return frozen
@@ -636,8 +757,13 @@ def load_legacy_document(path: str, graph_path: str) -> dict:
     `ValueError` here means the lint cannot run (exit 2).  Two of those checks
     are the reason the manifest can be trusted at all:
 
-      * `base_head` must be an 8-hex commit id, so a row set is always pinned
-        to the tree it was written against;
+      * `base_head` must be an 8-hex commit id AND must bind: it must name a
+        commit of this repository that is an ancestor of, or equal to, HEAD.
+        The format check alone would accept `deadbeef`, which pins a row set
+        to nothing; the binding is what makes "written against this tree" a
+        statement git can refute.  See `base_head_binding_failure`, and the
+        module docstring for why the frozen record's `base_head` is not bound
+        the same way;
       * `frozen_graph_sha256` must equal the digest of the frozen graph record
         actually in use, so a manifest written against one authentication basis
         can never be silently applied to another.
@@ -671,6 +797,9 @@ def load_legacy_document(path: str, graph_path: str) -> dict:
             "%s: 'base_head' is %s; expected 8 lowercase hex characters"
             % (label, json.dumps(document.get("base_head")))
         )
+    binding = base_head_binding_failure(document.get("base_head"))
+    if binding is not None:
+        raise ValueError("%s: %s" % (label, binding))
     recorded_digest = document.get("frozen_graph_sha256")
     if not is_sha256_hex(recorded_digest):
         raise ValueError(
@@ -739,7 +868,53 @@ def _legacy_row_failures(entry: dict, label: str) -> list:
     return failures
 
 
-def validate_legacy(document: dict, edges: list, waiver_pairs: set):
+def waiver_pair_link_failure(
+    entry: dict, pair: tuple, waiver_pairs: set, imports_by_module: dict
+):
+    """Why `pair` does not identify the edge this row's wrapper retires, or None.
+
+    A `waiver_pair` is a claim with three parts, and all three are checked:
+
+      * the pair is a waiver row in `import-waivers.json` -- otherwise the
+        cross-reference dangles;
+      * `pair[0]` is the manifest row's own `from`, the cluster module that now
+        imports the wrapper.  Without this, the row of a wrapper's OUTGOING
+        edge could claim a waiver belonging to some unrelated module;
+      * `pair[1]` is a direct header import of `wrapper_module`.  Without this,
+        a wrapper could claim to retire an edge whose target it never reaches,
+        and the stale-waiver message would name the wrong wrapper.
+
+    `imports_by_module` comes from `scan_tree`; a wrapper module absent from it
+    (no such file in the scanned tree) has no imports at all, so the third
+    check fails closed rather than being skipped.
+    """
+    if pair not in waiver_pairs:
+        return "'waiver_pair' %s names no row in import-waivers.json" % json.dumps(
+            list(pair)
+        )
+    source = entry.get("from")
+    if pair[0] != source:
+        return (
+            "'waiver_pair' %s does not identify the edge this wrapper retires: "
+            "its first module must be this row's 'from' %s, the module that now "
+            "imports the wrapper"
+            % (json.dumps(list(pair)), json.dumps(source))
+        )
+    wrapper = entry.get("wrapper_module")
+    direct = imports_by_module.get(wrapper, frozenset())
+    if pair[1] not in direct:
+        return (
+            "'waiver_pair' %s does not identify the edge this wrapper retires: "
+            "wrapper %s does not import %s in its module header, so the retired "
+            "target is not reached through it"
+            % (json.dumps(list(pair)), wrapper, pair[1])
+        )
+    return None
+
+
+def validate_legacy(
+    document: dict, edges: list, waiver_pairs: set, imports_by_module: dict
+):
     """Match every live Legacy edge against exactly one manifest row.
 
     Returns `(listed, failures, retired_by_legacy)`:
@@ -749,7 +924,9 @@ def validate_legacy(document: dict, edges: list, waiver_pairs: set):
       * `failures` -- human-readable strings, any of which fails the lint;
       * `retired_by_legacy` -- `{(from, to): wrapper_module}` for the waiver
         rows that manifest rows claim to retire, handed to the waiver
-        validator so a retired edge's stale waiver names its wrapper.
+        validator so a retired edge's stale waiver names its wrapper.  Only a
+        `waiver_pair` that passes `waiver_pair_link_failure` is entered here,
+        so a misidentified pair can never rename someone else's stale waiver.
 
     Matching is on the whole triple `(wrapper_module, from, to)` and on nothing
     weaker.  A row is only ever consulted for the exact edge it names, so no
@@ -859,11 +1036,11 @@ def validate_legacy(document: dict, edges: list, waiver_pairs: set):
             # Already reported by the field check; nothing to link.
             continue
         pair = (waiver_pair[0], waiver_pair[1])
-        if pair not in waiver_pairs:
-            failures.append(
-                "%s: 'waiver_pair' %s names no row in import-waivers.json"
-                % (row_labels[index], json.dumps(list(pair)))
-            )
+        link_failure = waiver_pair_link_failure(
+            entry, pair, waiver_pairs, imports_by_module
+        )
+        if link_failure is not None:
+            failures.append("%s: %s" % (row_labels[index], link_failure))
             continue
         retired_by_legacy.setdefault(pair, entry.get("wrapper_module"))
 
@@ -1266,7 +1443,7 @@ def main(argv=None) -> int:
         return 2
 
     try:
-        edges = collect_edges()
+        edges, imports_by_module = scan_tree()
     except (OSError, HeaderParseError) as error:
         sys.stderr.write("lint_cluster_imports: %s\n" % error)
         return 2
@@ -1288,7 +1465,7 @@ def main(argv=None) -> int:
     live_forbidden = {(edge["from"], edge["to"]) for edge in forbidden}
 
     listed_legacy, legacy_failures, retired_by_legacy = validate_legacy(
-        legacy_document, edges, waiver_pairs_declared(document)
+        legacy_document, edges, waiver_pairs_declared(document), imports_by_module
     )
 
     try:

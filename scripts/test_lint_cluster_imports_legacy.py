@@ -1,5 +1,5 @@
-"""W3-0 adversarial tests for the Legacy-exception and dated-graph rules of
-`scripts/lint_cluster_imports.py`.
+"""W3-0/W3-0b adversarial tests for the Legacy-exception, base_head-binding and
+dated-graph rules of `scripts/lint_cluster_imports.py`.
 
 Every test builds a synthetic Lean tree and synthetic JSON records under
 `tmp_path` and points the lint at them through `configure_paths`.  Nothing here
@@ -7,6 +7,13 @@ reads the live repository tree, the real waiver file, the frozen Phase 0 record
 or the obligation database, and no fixture names a real obligation id: the
 declarations these rules will eventually govern do not exist yet, so a test that
 touched live data would be asserting against a moving target.
+
+The fixture tree is also a real git repository -- `git init` plus one empty
+commit inside `tmp_path`, never the repository under test.  The lint now binds
+a manifest's `base_head` to actual history (it must name a commit that is an
+ancestor of, or equal to, HEAD), and a stub would only prove that the stub
+agrees with itself.  A real repository lets a test hand the lint a genuinely
+unreachable commit, made with `git commit-tree`, and see it refused.
 
 The cases are adversarial by design.  Each one is a way the Legacy escape hatch
 could be widened into a general exemption -- a Legacy-looking name at the wrong
@@ -22,6 +29,7 @@ from __future__ import annotations
 
 import json
 import os
+import subprocess
 import sys
 
 import pytest
@@ -38,10 +46,42 @@ LEGACY = NS + ".Legacy"
 SHARED_CORE = NS + ".SharedCore"
 RIGID_ALPHA = NS + ".Rigid221Alpha"
 TRIAPEX_BETA = NS + ".TriApexBeta"
+TRIAPEX_GAMMA = NS + ".TriApexGamma"
+TWO_SOURCE_ZETA = NS + ".TwoSourceZeta"
 LEGACY_BRIDGE = LEGACY + ".Rigid221Bridge"
 
+# `0123abcd` names no commit in the fixture repository, which is the point: the
+# frozen graph record's `base_head` is checked for format only, so a fixture
+# freeze keeps working while a manifest pinned to the same value would be
+# refused.  `test_frozen_graph_base_head_is_not_bound_to_head` asserts that gap
+# on purpose.
 FAKE_HEAD = "0123abcd"
 FAKE_FULL_HEAD = "0123abcd" * 5  # 40 hex characters
+
+# Identity for the fixture repository's own commits.  Passed per-invocation so
+# the tests never read or write the developer's git configuration.
+GIT_IDENTITY = (
+    "-c",
+    "user.name=lint fixture",
+    "-c",
+    "user.email=fixture@example.invalid",
+    "-c",
+    "commit.gpgsign=false",
+)
+
+
+def git(root, arguments) -> str:
+    """Stdout of `git -C root <arguments>`, stripped.  Raises on failure.
+
+    Only ever run against a throwaway `tmp_path` repository.
+    """
+    completed = subprocess.run(
+        ["git", "-C", str(root)] + list(arguments),
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        check=True,
+    )
+    return completed.stdout.decode("utf-8").strip()
 
 
 # --------------------------------------------------------------------------
@@ -50,12 +90,13 @@ FAKE_FULL_HEAD = "0123abcd" * 5  # 40 hex characters
 
 
 class Fixture:
-    """A throwaway repository: a Lean tree plus the three JSON records."""
+    """A throwaway git repository: a Lean tree plus the three JSON records."""
 
     def __init__(self, root):
         self.root = str(root)
         self.modules = {}
         os.makedirs(os.path.join(self.root, "proof-status"), exist_ok=True)
+        self.head = self._init_git()
         # `main` refuses to run without the cluster directory itself.
         os.makedirs(
             os.path.join(
@@ -68,6 +109,42 @@ class Fixture:
             ),
             exist_ok=True,
         )
+
+    # -- Git ---------------------------------------------------------------
+
+    def _init_git(self) -> str:
+        """Make `self.root` a git repository with one commit; return HEAD (8 hex).
+
+        `-c init.defaultBranch=main` only silences the default-branch hint; no
+        test names a branch.  The commit is empty because the lint asks git two
+        questions about `base_head` only -- is it a commit, is it an ancestor of
+        HEAD -- and neither reads a tree.
+        """
+        git(self.root, ["-c", "init.defaultBranch=main", "init", "-q"])
+        git(
+            self.root,
+            list(GIT_IDENTITY)
+            + ["commit", "-q", "--allow-empty", "-m", "fixture base"],
+        )
+        head = git(self.root, ["rev-parse", "--short=8", "HEAD"])
+        assert len(head) == 8, head
+        return head
+
+    def unrelated_commit(self) -> str:
+        """A real commit of this repository that is NOT an ancestor of HEAD.
+
+        `commit-tree` writes a parentless commit object directly, so the object
+        exists and `git cat-file -e` finds it, but no parent chain from HEAD
+        reaches it.  The message differs from HEAD's, so the content-addressed
+        id differs too.
+        """
+        tree = git(self.root, ["rev-parse", "HEAD^{tree}"])
+        full = git(
+            self.root,
+            list(GIT_IDENTITY) + ["commit-tree", tree, "-m", "off the history"],
+        )
+        assert full != git(self.root, ["rev-parse", "HEAD"])
+        return full[:8]
 
     # -- Lean tree ---------------------------------------------------------
 
@@ -171,7 +248,14 @@ class Fixture:
             },
         )
 
-    def legacy(self, rows=(), base_head=FAKE_HEAD, digest=None):
+    def legacy(self, rows=(), base_head=None, digest=None):
+        """Write the Legacy manifest.  `base_head` defaults to the real HEAD.
+
+        The default has to be a commit of the fixture repository: the manifest's
+        `base_head` is bound to history, so a made-up value is a hard failure.
+        """
+        if base_head is None:
+            base_head = self.head
         if digest is None:
             digest = lint.file_digest(self.path("cluster-import-edges.json"))
         return self.write_json(
@@ -484,14 +568,137 @@ def test_waiver_pair_naming_a_missing_waiver_fails(repo, capsys):
     assert "names no row in import-waivers.json" in captured.err
 
 
+def wrapper_tree(repo, alpha_imports=(), extra_modules=(), direct_edge=True):
+    """Build and freeze the wrapper scenario's Lean tree.
+
+    `RIGID_ALPHA` (Rigid221) reaches `TRIAPEX_BETA` (TriApex) two ways: the
+    direct import, a live forbidden edge for a waiver row to cover, and the
+    Legacy wrapper `LEGACY_BRIDGE`, which exists to retire that direct edge.
+    `direct_edge=False` drops the direct import, which is the state after the
+    wrapper has done its job.  `alpha_imports` are further direct imports of
+    `RIGID_ALPHA`; `extra_modules` is `(name, imports)` written as given.
+    """
+    repo.base_tree()
+    alpha = [SHARED_CORE, LEGACY_BRIDGE] + list(alpha_imports)
+    if direct_edge:
+        alpha.append(TRIAPEX_BETA)
+    repo.module(RIGID_ALPHA, alpha)
+    repo.module(LEGACY_BRIDGE, [TRIAPEX_BETA])
+    for name, imports in extra_modules:
+        repo.module(name, imports)
+    return repo
+
+
+def wrapper_manifest(waiver_pair, on_egress=False):
+    """The wrapper scenario's two manifest rows.
+
+    `waiver_pair` rides the INGRESS row `RIGID_ALPHA -> LEGACY_BRIDGE`, whose
+    `from` is the module that now imports the wrapper.  `on_egress` moves it to
+    the wrapper's outgoing row instead -- the plausible-looking mistake that the
+    `waiver_pair[0] == from` rule exists to catch.
+    """
+    ingress = legacy_row(LEGACY_BRIDGE, RIGID_ALPHA, LEGACY_BRIDGE)
+    egress = legacy_row(LEGACY_BRIDGE, LEGACY_BRIDGE, TRIAPEX_BETA)
+    if on_egress:
+        egress["waiver_pair"] = waiver_pair
+    else:
+        ingress["waiver_pair"] = waiver_pair
+    return [ingress, egress]
+
+
+def test_correct_waiver_pair_is_accepted(repo, capsys):
+    """The linkage passes while the direct edge is still live and waived."""
+    wrapper_tree(repo)
+    repo.freeze()
+    repo.waivers([waiver_row(RIGID_ALPHA, TRIAPEX_BETA)])
+    repo.legacy(wrapper_manifest([RIGID_ALPHA, TRIAPEX_BETA]))
+
+    assert repo.run() == 0
+    captured = capsys.readouterr()
+    assert "1 forbidden edges, all waived by 1 authenticated waiver" in captured.out
+    assert "2 legacy edges, all listed." in captured.out
+
+
+def test_waiver_pair_with_the_wrong_from_fails(repo, capsys):
+    """`waiver_pair[0]` must be the manifest row's own `from`.
+
+    Here the pair is a real waiver row for a real live edge, and it even names
+    the wrapper's own outgoing target -- but it rides the wrapper's OUTGOING
+    row, whose `from` is the wrapper.  Nothing in that row says which cluster
+    module the waiver belongs to, so the claim is unfounded.
+    """
+    wrapper_tree(repo)
+    repo.freeze()
+    repo.waivers([waiver_row(RIGID_ALPHA, TRIAPEX_BETA)])
+    repo.legacy(wrapper_manifest([RIGID_ALPHA, TRIAPEX_BETA], on_egress=True))
+
+    assert repo.run() == 1
+    captured = capsys.readouterr()
+    assert "does not identify the edge this wrapper retires" in captured.err
+    assert (
+        "must be this row's 'from' %s" % json.dumps(LEGACY_BRIDGE)
+    ) in captured.err
+
+
+def test_waiver_pair_target_the_wrapper_does_not_import_fails(repo, capsys):
+    """`waiver_pair[1]` must be a direct header import of the wrapper.
+
+    `RIGID_ALPHA -> TRIAPEX_GAMMA` is a live, frozen, waived forbidden edge and
+    the pair sits on the right row, so every other check passes.  The wrapper
+    imports `TRIAPEX_BETA` and nothing else, so it retires nothing here.
+    """
+    wrapper_tree(
+        repo,
+        alpha_imports=[TRIAPEX_GAMMA],
+        extra_modules=[(TRIAPEX_GAMMA, [SHARED_CORE])],
+    )
+    repo.freeze()
+    repo.waivers(
+        [
+            waiver_row(RIGID_ALPHA, TRIAPEX_BETA),
+            waiver_row(RIGID_ALPHA, TRIAPEX_GAMMA),
+        ]
+    )
+    repo.legacy(wrapper_manifest([RIGID_ALPHA, TRIAPEX_GAMMA]))
+
+    assert repo.run() == 1
+    captured = capsys.readouterr()
+    assert "does not identify the edge this wrapper retires" in captured.err
+    assert (
+        "wrapper %s does not import %s in its module header"
+        % (LEGACY_BRIDGE, TRIAPEX_GAMMA)
+    ) in captured.err
+
+
+def test_waiver_pair_naming_an_unrelated_existing_waiver_fails(repo, capsys):
+    """Naming SOME real waiver row is not naming THIS row's edge.
+
+    `TWO_SOURCE_ZETA -> RIGID_ALPHA` is a genuine live waived forbidden edge
+    with a genuine waiver row, so the existence check is satisfied; it simply
+    has nothing to do with the wrapper.
+    """
+    wrapper_tree(repo, extra_modules=[(TWO_SOURCE_ZETA, [RIGID_ALPHA])])
+    repo.freeze()
+    repo.waivers(
+        [
+            waiver_row(RIGID_ALPHA, TRIAPEX_BETA),
+            waiver_row(TWO_SOURCE_ZETA, RIGID_ALPHA),
+        ]
+    )
+    repo.legacy(wrapper_manifest([TWO_SOURCE_ZETA, RIGID_ALPHA]))
+
+    assert repo.run() == 1
+    captured = capsys.readouterr()
+    assert "does not identify the edge this wrapper retires" in captured.err
+    assert json.dumps([TWO_SOURCE_ZETA, RIGID_ALPHA]) in captured.err
+
+
 def test_waiver_retired_through_legacy_wrapper_is_reported_stale(repo, capsys):
     """The waiver row must be deleted in the commit that lands the wrapper."""
     # The frozen record remembers the direct Rigid221 -> TriApex edge, and the
     # waiver file still waives it, but the live tree routes through the
     # wrapper instead: the direct edge is gone.
-    repo.base_tree()
-    repo.module(RIGID_ALPHA, [SHARED_CORE, LEGACY_BRIDGE])
-    repo.module(LEGACY_BRIDGE, [TRIAPEX_BETA])
+    wrapper_tree(repo, direct_edge=False)
     retired = {
         "class": "cross-cluster",
         "from": RIGID_ALPHA,
@@ -503,17 +710,7 @@ def test_waiver_retired_through_legacy_wrapper_is_reported_stale(repo, capsys):
     }
     repo.freeze(extra_rows=[retired])
     repo.waivers([waiver_row(RIGID_ALPHA, TRIAPEX_BETA)])
-    repo.legacy(
-        [
-            legacy_row(LEGACY_BRIDGE, RIGID_ALPHA, LEGACY_BRIDGE),
-            legacy_row(
-                LEGACY_BRIDGE,
-                LEGACY_BRIDGE,
-                TRIAPEX_BETA,
-                waiver_pair=[RIGID_ALPHA, TRIAPEX_BETA],
-            ),
-        ]
-    )
+    repo.legacy(wrapper_manifest([RIGID_ALPHA, TRIAPEX_BETA]))
 
     assert repo.run() == 1
     captured = capsys.readouterr()
@@ -521,31 +718,6 @@ def test_waiver_retired_through_legacy_wrapper_is_reported_stale(repo, capsys):
         "waiver %s -> %s is stale: edge retired through Legacy wrapper %s"
         % (RIGID_ALPHA, TRIAPEX_BETA, LEGACY_BRIDGE)
     ) in captured.err
-
-
-def test_live_waiver_named_by_a_manifest_row_still_passes(repo, capsys):
-    """While the direct edge is still live and waived, the linkage is clean."""
-    repo.base_tree()
-    repo.module(RIGID_ALPHA, [SHARED_CORE, TRIAPEX_BETA, LEGACY_BRIDGE])
-    repo.module(LEGACY_BRIDGE, [TRIAPEX_BETA])
-    repo.freeze()
-    repo.waivers([waiver_row(RIGID_ALPHA, TRIAPEX_BETA)])
-    repo.legacy(
-        [
-            legacy_row(LEGACY_BRIDGE, RIGID_ALPHA, LEGACY_BRIDGE),
-            legacy_row(
-                LEGACY_BRIDGE,
-                LEGACY_BRIDGE,
-                TRIAPEX_BETA,
-                waiver_pair=[RIGID_ALPHA, TRIAPEX_BETA],
-            ),
-        ]
-    )
-
-    assert repo.run() == 0
-    captured = capsys.readouterr()
-    assert "1 forbidden edges, all waived by 1 authenticated waiver" in captured.out
-    assert "2 legacy edges, all listed." in captured.out
 
 
 # --------------------------------------------------------------------------
@@ -595,6 +767,38 @@ def test_duplicate_frozen_rows_exit_2(repo, capsys):
     assert "duplicates the row" in capsys.readouterr().err
 
 
+def test_duplicate_frozen_pair_on_a_different_line_exits_2(repo, capsys):
+    """One pair, two rows, two classes: the line number is not a licence.
+
+    The exact-row check would let this through, and the second row would then
+    quietly overwrite the first's class in the mapping every waiver
+    authenticates against.  Duplication is judged on the pair.
+    """
+    repo.base_tree()
+    edges = repo.scan()
+    twin = {
+        "class": "cross-cluster",  # the disagreement the twin row smuggles in
+        "from": edges[0]["from"],
+        "from_cluster": edges[0]["from_cluster"],
+        "from_file": edges[0]["from_file"],
+        "line": edges[0]["line"] + 1,
+        "to": edges[0]["to"],
+        "to_cluster": edges[0]["to_cluster"],
+    }
+    assert edges[0]["class"] != twin["class"]
+    repo.freeze(edges=edges, extra_rows=[twin])
+    repo.waivers([])
+    repo.legacy([])
+
+    assert repo.run() == 2
+    captured = capsys.readouterr()
+    assert "duplicates the pair" in captured.err
+    assert (
+        "%s -> %s already recorded at line %d"
+        % (edges[0]["from"], edges[0]["to"], edges[0]["line"])
+    ) in captured.err
+
+
 def test_frozen_graph_sha256_mismatch_exits_2(repo, capsys):
     repo.base_tree()
     repo.freeze()
@@ -614,6 +818,92 @@ def test_manifest_base_head_format_exits_2(repo, capsys):
 
     assert repo.run() == 2
     assert "expected 8 lowercase hex characters" in capsys.readouterr().err
+
+
+def test_manifest_base_head_that_names_no_commit_exits_2(repo, capsys):
+    """8 hex characters is a format, not a pin.  `deadbeef` pins nothing."""
+    repo.base_tree()
+    repo.freeze()
+    repo.waivers([])
+    repo.legacy([], base_head="deadbeef")
+
+    assert repo.run() == 2
+    assert "base_head deadbeef is not a commit" in capsys.readouterr().err
+
+
+def test_manifest_base_head_off_the_history_exits_2(repo, capsys):
+    """A real commit object that HEAD cannot reach is still not a pin."""
+    repo.base_tree()
+    repo.freeze()
+    repo.waivers([])
+    stray = repo.unrelated_commit()
+    repo.legacy([], base_head=stray)
+
+    assert repo.run() == 2
+    captured = capsys.readouterr()
+    # The distinction matters: the object exists, so the failure is ancestry.
+    assert ("base_head %s is not an ancestor of HEAD" % stray) in captured.err
+    assert "is not a commit" not in captured.err
+
+
+def test_manifest_base_head_equal_to_head_is_accepted(repo, capsys):
+    """`merge-base --is-ancestor` is reflexive: a manifest pinned to HEAD passes."""
+    repo.base_tree()
+    repo.freeze()
+    repo.waivers([])
+    repo.legacy([], base_head=repo.head)
+
+    assert repo.run() == 0
+    assert "0 legacy edges, all listed." in capsys.readouterr().out
+
+
+def test_manifest_base_head_at_an_older_commit_is_accepted(repo, capsys):
+    """An ancestor is a pin; HEAD moving on does not stale a manifest."""
+    repo.base_tree()
+    repo.freeze()
+    repo.waivers([])
+    first = repo.head
+    git(
+        repo.root,
+        list(GIT_IDENTITY) + ["commit", "-q", "--allow-empty", "-m", "later work"],
+    )
+    assert git(repo.root, ["rev-parse", "--short=8", "HEAD"]) != first
+    repo.legacy([], base_head=first)
+
+    assert repo.run() == 0
+    assert "0 legacy edges, all listed." in capsys.readouterr().out
+
+
+def test_frozen_graph_base_head_is_not_bound_to_head(repo, capsys):
+    """Only the manifest's `base_head` is bound; the frozen record's is not.
+
+    Every other fixture freezes at `FAKE_HEAD`, which names no commit at all,
+    so this asserts the gap deliberately rather than leaving it to inference:
+    the frozen Phase 0 record is authenticated by the manifest's content digest
+    of it, not by reachability from a moving HEAD.
+    """
+    repo.base_tree()
+    repo.freeze(base_head=FAKE_HEAD)
+    repo.waivers([])
+    repo.legacy([])
+    assert lint.base_head_binding_failure(FAKE_HEAD) is not None
+
+    assert repo.run() == 0
+    assert "0 legacy edges, all listed." in capsys.readouterr().out
+
+
+def test_unavailable_git_fails_closed(repo, capsys, monkeypatch):
+    """A binding question that cannot be asked is a failure, not a pass."""
+    repo.base_tree()
+    repo.freeze()
+    repo.waivers([])
+    repo.legacy([])
+    assert repo.run() == 0
+    capsys.readouterr()
+
+    monkeypatch.setattr(lint, "git_status", lambda arguments: lint.GIT_UNAVAILABLE)
+    assert repo.run() == 2
+    assert ("base_head %s is not a commit" % repo.head) in capsys.readouterr().err
 
 
 def test_frozen_class_disagreement_exits_1(repo, capsys):

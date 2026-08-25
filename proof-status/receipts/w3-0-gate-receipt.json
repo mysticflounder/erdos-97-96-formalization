@@ -1,126 +1,254 @@
 {
   "schema": "p97-gate-receipt/v1",
   "wave": "W3-0",
-  "generated_by": "W3-0 independent checker subagent (verification only; no authoring). Every gate below was re-run by the checker from the repository root against the working tree. The checker edited no script, test, manifest or README, ran no git write command, ran no lake build, and never ran `proof-blueprint refs --refresh`.",
-  "generated_at_utc": "2026-08-25T05:48:23Z",
-  "git_head": "f747d0ef4a48ef94118d6f4a970bda36b66ed527",
-  "git_head_short": "f747d0ef",
-  "scope_note": "W3-0: scripts and proof-status only; no Lean; infrastructure only; no factorization claim for any live obligation; no promotion claim",
-  "head_note": "Gates were run against the UNCOMMITTED working tree at HEAD f747d0ef. The four W3-0 source files (two scripts, two tests) and the two new proof-status JSON files are unstaged/untracked at gate time; the digests in content_bound_files are the working-tree bytes the gates actually exercised. The main session must re-bind these digests if it edits anything before committing.",
-  "wave_files": {
-    "modified": [
-      "scripts/gen_obligation_registry.py",
-      "scripts/lint_cluster_imports.py",
-      "proof-status/README.md"
-    ],
-    "created_untracked": [
-      "scripts/test_gen_obligation_registry_factorization.py",
-      "scripts/test_lint_cluster_imports_legacy.py",
-      "proof-status/legacy-import-exceptions.json",
-      "proof-status/cluster-import-edges-live-2026-08-24.json",
-      "proof-status/receipts/w3-0-gate-receipt.json"
-    ],
-    "unchanged_frozen": [
-      "proof-status/obligations.json",
-      "proof-status/id-assignments.json",
-      "proof-status/obligations-meta.json",
-      "proof-status/import-waivers.json",
-      "proof-status/cluster-import-edges.json"
-    ]
-  },
-  "content_bound_files": {
-    "note": "sha256 of the working-tree bytes of every W3-0 file at gate time (2026-08-25T05:48Z), computed with `shasum -a 256`.",
+  "state": "PRE-COMMIT DRAFT of the W3-0b remediation -- the main session re-binds git_head, committed scope and hashes in the receipt-only commit that follows the remediation commit",
+  "generated_by": "W3-0b independent checker subagent (verification only; no authoring). Every gate below was re-run by the checker from the repository root against the working tree. The checker edited no script, test, manifest or README, ran no git write command, ran no lake build, and never ran `proof-blueprint refs --refresh`. The only file it wrote is this one.",
+  "generated_at_utc": "2026-08-25T06:38:02Z",
+  "git_head": "c6fc78d091711a3b88a5e92cf74152e583da2d2f",
+  "git_head_short": "c6fc78d0",
+  "head_note": "The W3-0b REMEDIATION IS UNCOMMITTED at this HEAD. HEAD is c6fc78d0 ('W3-0: factorization gate v2, Legacy import-exception manifest, tests'), which carries the pre-remediation W3-0 state; the four modified source/test files and proof-status/README.md are unstaged working-tree changes on top of it, and the digests in remediation_files are those working-tree bytes -- the bytes every gate below actually exercised. The main session must re-bind git_head, the committed scope and the hashes in the receipt-only commit that follows the remediation commit.",
+  "scope_note": "W3-0/W3-0b: scripts and proof-status only; no Lean; no live factorization entry; no promotion claim",
+  "remediation_files": {
+    "note": "sha256 of the WORKING-TREE bytes the gates below actually exercised, computed with `shasum -a 256` at gate time. Four are modified relative to c6fc78d0; proof-status/README.md is modified; proof-status/legacy-import-exceptions.json is UNCHANGED from c6fc78d0 (same digest) and was correctly left untouched -- its base_head f747d0ef is a commit and an ancestor of HEAD, and its 'exceptions' list is already empty.",
     "sha256": {
-      "scripts/gen_obligation_registry.py": "154d74e08bc7194cba63fc94273cb795bc5a4d6f5f0ca2a4b32834b52d15bedd",
-      "scripts/lint_cluster_imports.py": "1c85c568b27994d930160ad349a69653a206ca64def4ae44b53d693ed98e1eb1",
-      "scripts/test_gen_obligation_registry_factorization.py": "766d3c3a959d3cd38776756404306c0500b86486e0ed3c3a0c14cb3b4fac943e",
-      "scripts/test_lint_cluster_imports_legacy.py": "6f4b518a5ef688fafaf8e67e5b8868f6329ee23c2002dfefd920f695378896dc",
-      "proof-status/README.md": "49b35afe2548b5e6102c17e4840c2978682dce62928fe6a60afad18b7c3cc459",
-      "proof-status/legacy-import-exceptions.json": "3b415dec5f25d396b643831ed4407556a85b2eb36068a4b469c783956c8ba32b",
-      "proof-status/cluster-import-edges-live-2026-08-24.json": "63cb7b29c034a5005c248d0c01e3d7f9fa13bd47ff8b8f45be8b2e0a47a334e5",
-      "proof-status/cluster-import-edges.json": "14a8ee5529e3b8eae1f8e617f1de447045b7d4199df2a4f3b0e85c016224066a"
+      "scripts/gen_obligation_registry.py": "facdc8f6cc8a234a8071945e09936a0a3af2735fcec7bbb8fbaeb1d0440b3f07",
+      "scripts/lint_cluster_imports.py": "709e3b3798332581a303f81c71516e7c5a143f6c8ba7a32fdab95e00b38cbe5c",
+      "scripts/test_gen_obligation_registry_factorization.py": "f7a0f9fffb1d4362afda9c7ef50b72e404c7b6e545bbdb085fc42877de4f7067",
+      "scripts/test_lint_cluster_imports_legacy.py": "8864afcf69bf8fba5b1539dadf8c026b4f8ab9595f3b498dd45cdf81f4edf90a",
+      "proof-status/README.md": "b4dc57d07de4d4c40227d7c52a352874f8c03c20aa9ba46962a49bb2f6d64202",
+      "proof-status/legacy-import-exceptions.json": "3b415dec5f25d396b643831ed4407556a85b2eb36068a4b469c783956c8ba32b"
     }
   },
-  "gates": {
-    "scope": {
-      "gate": 1,
-      "verdict": "PASS",
-      "command": "git status --porcelain scripts proof-status lean docs README.md",
-      "exit_code": 0,
-      "final_line": "?? scripts/test_lint_cluster_imports_legacy.py",
-      "detail": "Under scripts/ and proof-status/ the changed or new paths are EXACTLY the assigned set: scripts/gen_obligation_registry.py (M), scripts/lint_cluster_imports.py (M), proof-status/README.md (M), scripts/test_gen_obligation_registry_factorization.py (??), scripts/test_lint_cluster_imports_legacy.py (??), proof-status/legacy-import-exceptions.json (??), proof-status/cluster-import-edges-live-2026-08-24.json (??), proof-status/receipts/w3-0-gate-receipt.json (??). Nothing else under proof-status/ is dirty; no registry-check-*.json receipt is dirty or new (the newest committed one is 20260825T040631Z at 21:06 local, before the wave), because both authors and the checker redirected every registry-check run with --receipts-dir into scratch. README.md at the repository root is clean. lean/ and docs/ carry pre-existing dirt that is NOT part of this wave -- see inherited_dirty_paths_outside_wave.",
-      "assigned_paths_seen": [
-        "scripts/gen_obligation_registry.py",
-        "scripts/lint_cluster_imports.py",
-        "scripts/test_gen_obligation_registry_factorization.py",
-        "scripts/test_lint_cluster_imports_legacy.py",
-        "proof-status/README.md",
-        "proof-status/legacy-import-exceptions.json",
-        "proof-status/cluster-import-edges-live-2026-08-24.json",
-        "proof-status/receipts/w3-0-gate-receipt.json"
+  "remediation": {
+    "note": "Five W3-0b items, each with the file:line evidence the checker read in the working tree. Line numbers are of the working-tree files whose digests are in remediation_files; they move if the files are edited again before the commit.",
+    "items": [
+      {
+        "item": 1,
+        "title": "Canonical registry: materialized factorization block plus drift detection",
+        "verdict": "IMPLEMENTED",
+        "evidence": [
+          "scripts/gen_obligation_registry.py:725 FACTORIZATION_KEY = \"factorization\"",
+          "scripts/gen_obligation_registry.py:727 VERIFIED_AT_BUILD = \"verified_at_build\"",
+          "scripts/gen_obligation_registry.py:730 MATERIALIZED_KEYS tuple",
+          "scripts/gen_obligation_registry.py:1209 current_build_id() -- fail-closed None on RegistryError",
+          "scripts/gen_obligation_registry.py:1224 normalized_factorization_block(): v2 only, sorted roles/pinned, sorted transitive omitted when empty, obligation_id and note dropped",
+          "scripts/gen_obligation_registry.py:1241 v2 schema gate -- a v1 block returns None and is never materialized",
+          "scripts/gen_obligation_registry.py:1271 compare_registry_factorizations(): missing / extra / field / verified_at_build drift",
+          "scripts/gen_obligation_registry.py:2216 build_registry(..., build_id) and :2257 attaches the materialized block only when it is not None",
+          "scripts/gen_obligation_registry.py:2825 command_check computes registry_drift against the COMMITTED registry; :2828 records receipt.factorization.registry_drift; :2954 prints the separate 'FAIL: the committed registry does not carry the reviewed factorization blocks' block with the regenerate fix"
+        ],
+        "byte_identity_check": "obligations.json / id-assignments.json / obligations-meta.json / import-waivers.json / cluster-import-edges.json all have an empty `git diff --stat`; no reviewed entry carries a v2 block today, so nothing is materialized and the registry is unchanged."
+      },
+      {
+        "item": 2,
+        "title": "Trust boundary: explicit allowed baseline, tool tag advisory only",
+        "verdict": "IMPLEMENTED",
+        "evidence": [
+          "scripts/gen_obligation_registry.py:774 ALLOWED_AXIOMS = (\"propext\", \"Classical.choice\", \"Quot.sound\") -- the ONLY trust baseline",
+          "scripts/gen_obligation_registry.py:780 is_clean_closure(); :785 is_consumer_ok_closure() (ALLOWED_AXIOMS plus sorryAx)",
+          "scripts/gen_obligation_registry.py:1872 trust_hops built over legacy_wrapper / coordinator / producer / eliminator plus every via; the producer and vias on coordinator->producer are the non-consumer (CLEAN) hops",
+          "scripts/gen_obligation_registry.py:1900 acceptability decided ONLY by is_consumer_ok_closure / is_clean_closure",
+          "scripts/gen_obligation_registry.py:1916 the printed tag is echoed as \"(tool tag '<tag>', advisory)\" and decides nothing",
+          "scripts/gen_obligation_registry.py:1925 \"the producer path must be kernel clean\"; :1920 \"a consumer hop may add nothing beyond ...\"",
+          "scripts/gen_obligation_registry.py:1355 reaching_symbols() -- bounded backwards walk over callers restricted to the role/via vertices",
+          "scripts/gen_obligation_registry.py:1946 \"<id>: <role> carries sorryAx without consuming the open leaf\"; :1936 an unreadable call graph is 'cannot verify that ... consumes the open leaf', never a pass",
+          "REMOVED at HEAD c6fc78d0: FORBIDDEN_AXIOMS (was gen_obligation_registry.py:719), CORE_AXIOM_TAG (was :723), and the tag-based acceptance `elif tag != CORE_AXIOM_TAG` (was :1637). `grep` over the working tree finds no occurrence of either name and no tag comparison anywhere."
+        ]
+      },
+      {
+        "item": 3,
+        "title": "Transitive exactness: vias are first-class vertices",
+        "verdict": "IMPLEMENTED",
+        "evidence": [
+          "scripts/gen_obligation_registry.py:1348 via_label() -- stable 'transitive <from> -> <to> via[i]' label",
+          "scripts/gen_obligation_registry.py:1576 transitive rows parsed FIRST; :1580 via_hops derived",
+          "scripts/gen_obligation_registry.py:1590 a via equal to any role is a violation naming both (:1598 'is also the <role> role')",
+          "scripts/gen_obligation_registry.py:1628 `named` = the five roles UNION every via, so :1634 onwards resolves a via by exactly the role rule (one PUBLIC record); :1671 'every role and via hop must be public'",
+          "scripts/gen_obligation_registry.py:1832 vertices = the symbols of `named`; :1847 find_role_cycle over that full vertex set; :1850 a cycle line labels a via by its transitive label",
+          "scripts/gen_obligation_registry.py:1882 via hops are trust-checked alongside the roles"
+        ]
+      },
+      {
+        "item": 4,
+        "title": "Stable-id migration exercised at the command level",
+        "verdict": "IMPLEMENTED",
+        "evidence": [
+          "scripts/gen_obligation_registry.py:3042 main(argv, backend_factory=None, export_source=None) -- two keyword-only seams, documented at :3045",
+          "scripts/gen_obligation_registry.py:2552 command_generate(args, backend_factory, export_source); :2673 command_check(args, backend_factory, export_source)",
+          "scripts/gen_obligation_registry.py:1177 make_backend(meta, factory) consults the factory only when a reviewed block needs a backend",
+          "scripts/gen_obligation_registry.py:177 the module docstring documents the seam",
+          "NEITHER seam is reachable from the command line: the argparse parser defines no flag that sets them, and both default to None (live behaviour). The three live CLI gates below ran through the same main() with the defaults."
+        ]
+      },
+      {
+        "item": 5,
+        "title": "Legacy import lint: duplicate pair, base_head binding, waiver_pair semantics",
+        "verdict": "IMPLEMENTED",
+        "evidence": [
+          "scripts/lint_cluster_imports.py:651 line_of_pair; :683 a second row for an already-recorded (from, to) pair raises 'duplicates the pair ... one row per pair, so a second row can only disagree with the first' -> exit 2; :677 the exact triple keeps the old 'duplicates the row' message",
+          "scripts/lint_cluster_imports.py:566 git_status() -- the module's single subprocess seam, `git -C REPO_ROOT ...`, stdout/stderr discarded, OSError -> GIT_UNAVAILABLE (:563, value -1) so an unaskable question fails closed",
+          "scripts/lint_cluster_imports.py:588 base_head_binding_failure(): :605 `cat-file -e <base_head>^{commit}` -> 'is not a commit'; :607 `merge-base --is-ancestor <base_head> HEAD` -> 'is not an ancestor of HEAD'. No git output is parsed, so no regex is involved anywhere in the binding.",
+          "scripts/lint_cluster_imports.py:800 the binding is called from load_legacy_document (the MANIFEST only); load_frozen_edges (:611) deliberately keeps format-only validation of the frozen record's base_head, documented at :764 and asserted by test_frozen_graph_base_head_is_not_bound_to_head",
+          "scripts/lint_cluster_imports.py:871 waiver_pair_link_failure(): :894 the pair must be a waiver row; :899 pair[0] must equal the row's own 'from'; :906 pair[1] must be a direct header import of wrapper_module; a wrapper absent from the map gets frozenset() (:904) and fails closed",
+          "scripts/lint_cluster_imports.py:1039 the link check gates entry into retired_by_legacy (:1045), so a misidentified pair cannot rename another row's stale waiver",
+          "scripts/lint_cluster_imports.py:483 scan_tree() returns (edges, imports_by_module) from ONE walk; :513 collect_edges() wraps it and keeps its old signature; :916 validate_legacy takes imports_by_module as a fourth positional argument with NO default, so a caller cannot silently get a fail-open empty mapping",
+          "The `re` module is imported and used nowhere in either script (verified by grep for `import re`, `re.match`, `re.search`, `re.compile`, `re.findall`)."
+        ]
+      }
+    ]
+  },
+  "case_coverage": {
+    "note": "Every case the re-audit required, matched to the test that carries it. The checker read both test bodies, not only their names.",
+    "item_1_canonical_registry": {
+      "materialization": [
+        "test_generation_materializes_the_reviewed_block_on_the_registry_entry (scripts/test_gen_obligation_registry_factorization.py:934)",
+        "test_entry_without_a_reviewed_block_gets_no_factorization_key (:959)",
+        "test_a_v1_block_is_never_materialized (:969)"
       ],
-      "foreign_paths_under_scripts_or_proof_status": []
-    },
-    "frozen_records_untouched": {
-      "gate": 2,
-      "verdict": "PASS",
-      "command": "git diff --stat proof-status/obligations.json proof-status/id-assignments.json proof-status/import-waivers.json proof-status/cluster-import-edges.json proof-status/obligations-meta.json",
-      "exit_code": 0,
-      "final_line": "(no output)",
-      "detail": "Zero bytes of output for all five files, so obligations.json, id-assignments.json, import-waivers.json, cluster-import-edges.json AND obligations-meta.json are byte-identical to HEAD. No version marker was written into obligations-meta.json, so the acceptable-exception clause did not need to be exercised. The immutable Phase 0 record proof-status/cluster-import-edges.json still digests to 14a8ee5529e3b8eae1f8e617f1de447045b7d4199df2a4f3b0e85c016224066a and remains the waiver authentication basis."
-    },
-    "tests": {
-      "gate": 3,
-      "verdict": "PASS",
-      "command": "uv run pytest -q scripts/test_gen_obligation_registry_factorization.py scripts/test_lint_cluster_imports_legacy.py",
-      "exit_code": 0,
-      "final_line": "57 passed in 0.11s",
-      "detail": "57 tests pass: 36 in test_gen_obligation_registry_factorization.py, 21 in test_lint_cluster_imports_legacy.py. Both files were then READ end to end. Every contract case named in either author task is present as its own test (see contract_coverage). The registry tests drive the gate exclusively through the MappingBackend seam with synthetic fixtures (obligation ids FIXTURE-TD-ALPHA / FIXTURE-TD-BETA, declarations under Fixture.Cluster.*); the string 'P97-' does not occur anywhere in that file, and the two BlueprintBackend tests stub _run, so no live database read and no live proof-blueprint invocation happens. The lint tests build a synthetic Lean tree under tmp_path and rebind the module paths through configure_paths, so the real lean/ tree and the real proof-status/ files are never written."
-    },
-    "registry_check": {
-      "gate": 4,
-      "verdict": "PASS",
-      "command": "uv run python scripts/gen_obligation_registry.py check --baseline proof-status/baseline --receipts-dir scratch/runs/consolidation-refactor-20260823/w3-0/checker",
-      "exit_code": 0,
-      "final_line": "receipt: /Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/runs/consolidation-refactor-20260823/w3-0/checker/registry-check-20260825T054444Z.json",
-      "verdict_line": "OK: /Users/adam/projects/math-projects/erdos-97-96-formalization/proof-status/obligations.json matches the live spine (28 reachable, 6 off-spine); 34/34 reviewed meta_status, vocabulary clean",
-      "detail": "Both required phrases are present verbatim: '28 reachable, 6 off-spine' and '34/34 reviewed'. The run also prints 'factorized 0/28 reachable leaves' and 'bound to: HEAD f747d0ef4a48ef94118d6f4a970bda36b66ed527, build f80c3204eef5, roster sources dirty'. --receipts-dir was pointed at the checker scratch directory because the checker may not write into proof-status/receipts/; the verdict and the exit code are unaffected by that flag. NOTE FOR THE MAIN SESSION: no registry-check receipt from W3-0 exists under proof-status/receipts/; re-run gates 4-6 without --receipts-dir if the on-record receipts are wanted."
-    },
-    "registry_check_strict_fresh_refs": {
-      "gate": 5,
-      "verdict": "FAIL-inherited",
-      "command": "uv run python scripts/gen_obligation_registry.py check --baseline proof-status/baseline --receipts-dir scratch/runs/consolidation-refactor-20260823/w3-0/checker --require-fresh-refs",
-      "exit_code": 1,
-      "final_line": "receipt: /Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/runs/consolidation-refactor-20260823/w3-0/checker/registry-check-20260825T054450Z.json",
-      "failure_lines": [
-        "FAIL: kernel-mined refs are not fresh",
-        "    ! --require-fresh-refs: 36 stale mined symbol(s)",
-        "    ! --require-fresh-refs: 1 never-mined symbol(s)",
-        "  fix: proof-blueprint refs --refresh"
+      "drift_missing": "test_registry_drift_when_the_materialized_block_is_missing (:987)",
+      "drift_extra": "test_registry_drift_when_the_registry_carries_an_undeclared_block (:997)",
+      "drift_field": "test_registry_drift_on_a_field_names_the_id_and_the_key (:1005)",
+      "drift_verified_at_build": "test_registry_drift_when_verified_at_build_is_not_the_current_build (:1024)",
+      "supporting": [
+        "test_check_passes_when_the_registry_and_the_reviewed_block_agree (:979)",
+        "test_entries_without_a_block_are_untouched_by_the_comparison (:1039)",
+        "test_current_build_id_is_none_when_it_cannot_be_read (:1050)"
       ],
-      "detail": "Exactly the inherited miner exception: 36 stale + 1 never-mined, unchanged in count from the state W3-0 inherited. Independently confirmed by `proof-blueprint refs --check`, which prints 'current build: f80c3204eef5', 'mined (fresh): 56426', 'stale: 36 (mined against an older build)', 'never mined: 1'. This gate is a FAIL and is recorded as a FAIL. It must never be reported as passing, and the checker did not run `refs --refresh` to clear it."
+      "verdict": "COMPLETE -- four drift kinds, each its own test"
     },
-    "registry_require_factorized_TD": {
-      "gate": 6,
-      "verdict": "PASS",
-      "command": "uv run python scripts/gen_obligation_registry.py check --baseline proof-status/baseline --receipts-dir scratch/runs/consolidation-refactor-20260823/w3-0/checker --require-factorized TD",
-      "exit_code": 1,
-      "final_line": "receipt: /Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/runs/consolidation-refactor-20260823/w3-0/checker/registry-check-20260825T054455Z.json",
-      "verdict_line": "FAIL: factorization entries are not verified (3):",
-      "named_ids": [
-        "P97-TD-BLOCKERCOINCIDENCE (Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmission_fourCenterCommonDeletion_blockerCoincidence)",
-        "P97-TD-GLOBALGAPORCLOSED (Problem97.ATailFrontierLiveClosure.b1_globalGapOrClosedTerminal_of_counterexample)",
-        "P97-TD-SURVIVALSQUARE (Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmission_fourCenterCommonDeletion_survivalSquare)"
+    "item_2_trust_boundary": {
+      "ofReduceNat_rejected_on_each_hop_kind": "test_core_tagged_native_axiom_is_rejected_on_every_hop_kind (:1093) -- loops legacy_wrapper / coordinator / producer / eliminator AND a via on each side, asserting the message plus \"tool tag 'core', advisory\"",
+      "sorryAx_producer_rejected": [
+        "test_sorry_ax_on_a_producer_path_hop_is_rejected (:1126) -- producer and a via on coordinator->producer",
+        "test_producer_with_a_direct_sorry_ax_fails (:441)",
+        "test_producer_with_sorry_ax_only_transitively_fails (:452)"
       ],
-      "detail": "Exit 1 with exactly the three expected TD ids, each reported as 'has no p97-factorization/v2 factorization block', plus the summary line 'factorized 0/28 reachable leaves (required: TD)'. The gate is expected to fail here (the W3-TD Lean declarations do not exist yet), so an exit code of 1 with exactly these three ids IS the passing outcome for gate 6. No live factorization entry exists for any real obligation: 'factorized 0/28' and check_factorizations' 'checked' count of 0 both confirm proof-status/obligations-meta.json carries no factorization block at all."
+      "sorryAx_consumer_only_when_reaching_the_leaf": "test_sorry_ax_on_legacy_wrapper_is_accepted_only_when_it_reaches_the_leaf (:1147) -- same closure, accepted with the chain intact and rejected with 'carries sorryAx without consuming the open leaf' when the eliminator edge is removed",
+      "custom_axiom_on_via": "test_custom_axiom_on_a_via_hop_is_rejected (:1163)",
+      "supporting": [
+        "test_allowed_axiom_baseline_is_explicit (:1085) -- pins the tuple and both predicates",
+        "test_a_hop_without_a_readable_closure_is_cannot_verify (:1175)",
+        "test_consumer_roles_may_carry_sorry_ax_but_not_native_trust (:470)",
+        "test_producer_with_a_custom_axiom_fails (:485)"
+      ],
+      "verdict": "COMPLETE"
     },
-    "lint": {
-      "gate": 7,
+    "item_3_transitive_exactness": {
+      "ambiguous_via": "test_ambiguous_via_fails (:1188)",
+      "unknown_via": "test_unknown_via_fails (:1200)",
+      "private_via": "test_private_via_fails (:1212)",
+      "via_equal_to_a_role": "test_via_that_is_also_a_role_fails (:1224)",
+      "cycle_through_a_via": "test_cycle_through_a_via_fails (:1241)",
+      "supporting": [
+        "test_transitive_path_is_verified_hop_by_hop (:532)",
+        "test_transitive_path_with_a_broken_hop_fails (:560)",
+        "test_transitive_hop_freshness_is_checked_too (:585)",
+        "test_transitive_row_naming_a_non_chain_pair_fails (:602)"
+      ],
+      "verdict": "COMPLETE"
+    },
+    "item_4_command_level_migration": {
+      "rename_accepted_no_roster_drift_alias_persisted_idempotent": "test_command_level_rename_migration_keeps_the_roster_and_is_idempotent (:1431) -- copies proof-status into tmp_path, asserts the id set is unchanged, roster counts {total 34, reachable 28, off_spine 6}, the id follows the new leaf, the registry carries the materialized block, the alias record is written with the old name neither retired nor reissued, a second generate is byte-identical, and two consecutive checks exit 0 leaving both files byte-identical",
+      "rename_rejected": "test_command_level_rename_that_would_allocate_a_new_id_is_rejected (:1511) -- generate --strict-meta and check both exit 1 with 'would allocate a new id' and a byte-identical ledger",
+      "supporting": [
+        "test_command_level_check_fails_when_the_registry_block_drifts (:1483)",
+        "test_stable_id_rename_is_accepted_and_records_the_alias (:744)",
+        "test_rename_whose_alias_is_claimed_by_another_id_is_rejected (:804)",
+        "test_rename_without_a_surviving_public_wrapper_is_rejected (:836)",
+        "test_lean_decl_change_without_a_factorization_block_is_still_drift (:856)"
+      ],
+      "verdict": "COMPLETE"
+    },
+    "item_5_lint": {
+      "duplicate_frozen_pair_different_lines": "test_duplicate_frozen_pair_on_a_different_line_exits_2 (scripts/test_lint_cluster_imports_legacy.py:770)",
+      "base_head_not_a_commit": "test_manifest_base_head_that_names_no_commit_exits_2 (:823)",
+      "base_head_not_an_ancestor": "test_manifest_base_head_off_the_history_exits_2 (:834)",
+      "base_head_equal_to_head": "test_manifest_base_head_equal_to_head_is_accepted (:849)",
+      "waiver_pair_wrong_from": "test_waiver_pair_with_the_wrong_from_fails (:622)",
+      "waiver_pair_not_imported": "test_waiver_pair_target_the_wrapper_does_not_import_fails (:643)",
+      "waiver_pair_unrelated": "test_waiver_pair_naming_an_unrelated_existing_waiver_fails (:673)",
+      "waiver_pair_correct": "test_correct_waiver_pair_is_accepted (:609)",
+      "supporting": [
+        "test_manifest_base_head_at_an_older_commit_is_accepted (:860)",
+        "test_frozen_graph_base_head_is_not_bound_to_head (:877)",
+        "test_unavailable_git_fails_closed (:895)",
+        "test_duplicate_frozen_rows_exit_2 (:750) -- the old exact-triple message preserved",
+        "test_waiver_pair_naming_a_missing_waiver_fails (:549)",
+        "test_waiver_retired_through_legacy_wrapper_is_reported_stale (:696)"
+      ],
+      "verdict": "COMPLETE"
+    }
+  },
+  "gates": [
+    {
+      "step": 1,
+      "name": "working-tree scope: the dirty set is inside the assigned envelope",
       "verdict": "PASS",
-      "command": "uv run python scripts/lint_cluster_imports.py ; then --list-legacy ; then --fail-on-legacy",
-      "exit_code": 0,
-      "final_line": "lint_cluster_imports: OK -- 679 import edges scanned, 29 forbidden edges, all waived by 29 authenticated waivers; 0 legacy edges, all listed.",
-      "runs": [
+      "commands": [
+        {
+          "command": "git status --porcelain scripts proof-status",
+          "exit_code": 0,
+          "final_line": "M proof-status/README.md; M scripts/gen_obligation_registry.py; M scripts/lint_cluster_imports.py; M scripts/test_gen_obligation_registry_factorization.py; M scripts/test_lint_cluster_imports_legacy.py"
+        }
+      ],
+      "detail": "Five modified paths, all inside the allowed set, all tracked. Nothing under lean/, docs/, proof-status/baseline/ or any frozen JSON is touched. proof-status/legacy-import-exceptions.json is NOT dirty and needed no edit. After the six live CLI runs of gate 4 the same command additionally shows the three untracked receipts registry-check-20260825T063752Z.json / 063757Z / 063802Z, which the task explicitly admits. The gate-receipt file this receipt overwrites is the checker's own assigned file."
+    },
+    {
+      "step": 2,
+      "name": "frozen status files are byte-identical",
+      "verdict": "PASS",
+      "commands": [
+        {
+          "command": "git diff --stat -- proof-status/obligations.json proof-status/id-assignments.json proof-status/obligations-meta.json proof-status/import-waivers.json proof-status/cluster-import-edges.json",
+          "exit_code": 0,
+          "final_line": "(no output -- all five diffs empty)"
+        }
+      ],
+      "detail": "Re-run after the six live CLI invocations of gate 4 and still empty, so neither `check` nor the lint writes any of them."
+    },
+    {
+      "step": 3,
+      "name": "tests pass and every #7456 case is present as its own test",
+      "verdict": "PASS",
+      "commands": [
+        {
+          "command": "uv run pytest -q scripts/test_gen_obligation_registry_factorization.py scripts/test_lint_cluster_imports_legacy.py",
+          "exit_code": 0,
+          "final_line": "91 passed in 6.72s"
+        },
+        {
+          "command": "uv run pytest -q scripts/test_gen_obligation_registry_factorization.py",
+          "exit_code": 0,
+          "final_line": "60 passed in 6.40s"
+        },
+        {
+          "command": "uv run pytest -q scripts/test_lint_cluster_imports_legacy.py",
+          "exit_code": 0,
+          "final_line": "31 passed in 1.60s"
+        }
+      ],
+      "detail": "The checker read both test files and matched every required case to a named test; see case_coverage. No required case is missing."
+    },
+    {
+      "step": 4,
+      "name": "live CLI behaviour that must survive",
+      "verdict": "PASS",
+      "commands": [
+        {
+          "command": "uv run python scripts/gen_obligation_registry.py check --baseline proof-status/baseline",
+          "exit_code": 0,
+          "final_line": "OK: .../proof-status/obligations.json matches the live spine (28 reachable, 6 off-spine); 34/34 reviewed meta_status, vocabulary clean | factorized 0/28 reachable leaves | bound to: HEAD c6fc78d091711a3b88a5e92cf74152e583da2d2f, build f80c3204eef5, roster sources dirty"
+        },
+        {
+          "command": "uv run python scripts/gen_obligation_registry.py check --baseline proof-status/baseline --require-fresh-refs",
+          "exit_code": 1,
+          "final_line": "FAIL: kernel-mined refs are not fresh -- ! --require-fresh-refs: 36 stale mined symbol(s) / ! --require-fresh-refs: 1 never-mined symbol(s) / fix: proof-blueprint refs --refresh"
+        },
+        {
+          "command": "uv run python scripts/gen_obligation_registry.py check --baseline proof-status/baseline --require-factorized TD",
+          "exit_code": 1,
+          "final_line": "FAIL: factorization entries are not verified (3): P97-TD-BLOCKERCOINCIDENCE, P97-TD-GLOBALGAPORCLOSED, P97-TD-SURVIVALSQUARE have no p97-factorization/v2 factorization block | factorized 0/28 reachable leaves (required: TD)"
+        },
         {
           "command": "uv run python scripts/lint_cluster_imports.py",
           "exit_code": 0,
@@ -129,8 +257,7 @@
         {
           "command": "uv run python scripts/lint_cluster_imports.py --list-legacy",
           "exit_code": 0,
-          "first_line": "legacy edges (0):",
-          "final_line": "lint_cluster_imports: OK -- 679 import edges scanned, 29 forbidden edges, all waived by 29 authenticated waivers; 0 legacy edges, all listed."
+          "final_line": "legacy edges (0): / lint_cluster_imports: OK -- 679 import edges scanned, 29 forbidden edges, all waived by 29 authenticated waivers; 0 legacy edges, all listed."
         },
         {
           "command": "uv run python scripts/lint_cluster_imports.py --fail-on-legacy",
@@ -138,398 +265,687 @@
           "final_line": "lint_cluster_imports: OK -- 679 import edges scanned, 29 forbidden edges, all waived by 29 authenticated waivers; 0 legacy edges, all listed."
         }
       ],
-      "detail": "679 live edges, 29 forbidden, all 29 waived by authenticated waivers, 0 legacy edges. --list-legacy prints the count header 'legacy edges (0):' and exits 0; --fail-on-legacy exits 0 because there is no Legacy edge in the tree to reject. The counts match the pre-wave lint state the authors reported, so the classification change is a no-op on today's tree."
+      "detail": "Every required invariant reproduced exactly: plain check exit 0 with '28 reachable, 6 off-spine' and '34/34'; strict check exit 1 with the inherited 36 stale + 1 never-mined; --require-factorized TD exit 1 naming the three P97-TD-* ids; lint exit 0 with 679 / 29 forbidden all waived / 0 legacy in all three modes. The strict failure is INHERITED (the lane may not run `proof-blueprint refs --refresh`) and is the sole reason overall_pass is false."
     },
-    "source_review_lint": {
-      "gate": 8,
+    {
+      "step": 5,
+      "name": "source reading of both scripts against c6fc78d0",
       "verdict": "PASS",
-      "command": "git diff -U3 scripts/lint_cluster_imports.py (read in full) + targeted reads of cluster_of, is_legacy_module, load_legacy_document, _legacy_row_failures, validate_legacy, validate_waivers, live_record_document, main",
-      "exit_code": 0,
-      "final_line": "(read-only review; no command verdict)",
-      "detail": "NO PREFIX/GLOB/BASENAME/DIRECTORY-WIDE LEGACY EXEMPTION. validate_legacy matches on the whole triple (wrapper_module, from, to) through an exact dict lookup index_by_key[(wrapper, edge['from'], edge['to'])]; there is no startswith, no fnmatch, no glob and no directory test anywhere in the exemption path, and the module imports neither re nor fnmatch nor glob. An edge matching zero rows is 'unlisted Legacy edge ... at file:line'; an edge matching more than one row is rejected; a row matching no live edge is 'stale'. is_legacy_module tests membership of the exact namespace plus a separator, so LegacyWrappers, the bare Legacy namespace and a deeper Foo.Legacy.Bar get nothing, and _legacy_row_failures additionally rejects a wrapper_module that is not under that namespace. In main, Legacy edges are lifted out of the forbidden set before waivers are considered, but every one of them must still be matched by an exact manifest row through validate_legacy, so the lift is not a loophole; --fail-on-legacy rejects every Legacy edge, listed or not. WAIVER AUTHENTICATION UNCHANGED: validate_waivers still authenticates against the frozen graph mapping from load_frozen_edges (waiver honoured only when the FROZEN record classes the pair forbidden and the edge is still live, with .summary counts recomputed); the only diff inside it is one added optional parameter retired_by_legacy and a more informative stale message that names the retiring wrapper. load_frozen_edges gained strictly additive validation (schema, 8-hex base_head, empty-field and duplicate-(from,to,line) rejection, exit 2), which strengthens the basis and does not weaken it; it still passes on the untouched frozen file. LIVE RECORD NEVER AUTHENTICATES: the only code paths referring to the dated record are live_record_document/write_live_record (generator mode, --write-record, which returns immediately) plus documentation; the file is never opened for reading, and a test asserts that pointing --graph at a live record exits 2 because it carries no base_head. DIRECTORY RULE IS CLASSIFICATION ONLY: CLUSTER_DIR_COMPONENTS is consulted solely inside cluster_of, on whole dotted components (module.split('.'), leftmost match wins), and cluster_of only decides ownership; it never permits an edge."
+      "commands": [
+        {
+          "command": "git diff -- scripts/gen_obligation_registry.py scripts/lint_cluster_imports.py (read, plus targeted sed/grep)",
+          "exit_code": 0,
+          "final_line": "ALLOWED_AXIOMS is the only trust baseline; no tag-based acceptance remains; vias resolve and enter the cycle detection; materialization and drift comparison present; base_head bound to git without regex; waiver_pair three-part semantics; duplicate-pair rule present."
+        }
+      ],
+      "detail": "Line-level evidence is in remediation.items. The removed constructs were located in the committed file for contrast: FORBIDDEN_AXIOMS at c6fc78d0:scripts/gen_obligation_registry.py:719, CORE_AXIOM_TAG at :723, and the tag-based acceptance branch at :1637 -- none of the three survives in the working tree."
     },
-    "source_review_registry": {
-      "gate": 8,
+    {
+      "step": 6,
+      "name": "content binding: sha256 of the six source/status files",
       "verdict": "PASS",
-      "command": "targeted reads of scripts/gen_obligation_registry.py (constants, normalize_statement, statement_digest, parse_axioms_output, BlueprintBackend, check_block_structure, parse_transitive, find_role_cycle, check_v2_block, check_factorizations, plan_alias_migrations, apply_alias_migrations)",
-      "exit_code": 0,
-      "final_line": "(read-only review; no command verdict)",
-      "detail": "NO REGEX: the file imports no re/regex/fnmatch module; the only occurrences of the letters 're.' are prose. Parsing is str.split / rfind / isdigit / startswith only. FOUR DIRECT-CALL CHAIN CHECKS: FACTORIZATION_CHAIN is exactly ((legacy_wrapper, coordinator), (coordinator, producer), (coordinator, eliminator), (eliminator, open_leaf)), each verified by _calls_directly(caller in backend.callers(callee)) against the kernel-mined call graph; a transitive row replaces exactly one of those pairs by an explicit path that is then verified hop by hop, and a transitive row naming a non-chain pair is rejected. CYCLE CHECK: the callers relation restricted to the five role symbols is materialised and find_role_cycle reports any cycle by role and symbol. DIGEST NORMALIZATION: normalize_statement is ' '.join(text.split()) (every whitespace run collapsed to one space, ends stripped), digested with sha256 and compared against the pinned open_leaf and legacy_wrapper digests; a non-64-hex pin, a missing pin or an unknown pinned key is itself a violation. ALIAS MIGRATION RULES: a rename is planned only for a v2 block whose open_leaf differs from the ledger symbol; it is REJECTED when legacy_wrapper is not the previous name (recorded as 'would allocate a new id'), when the new leaf is already assigned to another id, when the new leaf is already an alias of another id, when the old name is already an alias of another id, when the old name does not resolve to exactly one index record, and when that record is private. apply_alias_migrations moves the id to the new symbol, records the old name in aliases with renamed_from/renamed_at_head, and explicitly does NOT retire or reissue the id. PER-DECLARATION FRESHNESS IS REAL, NOT SIMULATED: see freshness_method. PRODUCER CLEANLINESS IS THE AXIOM CLOSURE, NOT has_sorry: check_v2_block calls backend.axioms(symbol) (proof-blueprint axioms, i.e. the transitive #print axioms closure) for producer, coordinator and eliminator; the producer fails on sorryAx, Lean.ofReduceBool, Lean.trustCompiler or ANY axiom whose tag is not 'core'; coordinator and eliminator may carry sorryAx (they consume the open leaf) but nothing else non-core. has_sorry is used only for the separate open-leaf identity check (the leaf must carry a sorry), never as the producer trust test, and a dedicated test proves a producer whose own has_sorry is False still fails when a helper contributes sorryAx transitively.",
-      "freshness_method": {
-        "is_real": true,
-        "method": "Per-symbol mined freshness has no CLI surface, so BlueprintBackend reads the blueprint database READ-ONLY: sqlite3.connect(path.as_uri() + '?mode=ro', uri=True) on the path named by [paths] db in .blueprint.toml. mined_build(symbol) = symbol_mined.file_hash for that symbol, or None when no row exists (never mined). current_build() parses 'current build: <short id>' from `proof-blueprint refs --check` and expands it to the unique full fingerprint carrying that prefix across symbol_mined.file_hash and module_mined.global_fp; zero or several matches raise RegistryError and become a 'cannot verify' violation, never 'fresh'. A role (and every declared transitive hop) is fresh only when mined_build == current_build.",
-        "independently_verified": "The checker confirmed .blueprint.toml has db = 'data/proof-blueprint.db'; that symbol_mined(symbol TEXT PRIMARY KEY, file_hash TEXT NOT NULL, mined_at TEXT NOT NULL) and module_mined(module_name, olean_hash, global_fp, mined_at, ...) exist with those columns; that `proof-blueprint refs --check` prints 'current build: f80c3204eef5'; and that the prefix f80c3204eef5 expands to exactly one distinct value in each table (COUNT(DISTINCT ...) = 1 in both), namely f80c3204eef5b7d2ca4586d17e7a4f19e3d17075d5041e608907d2c440fe72e2. The read is read-only (mode=ro URI) and the database file was not modified.",
-        "caveat": "Symbols inside the .blueprint.toml [mining] skip set can only ever read stale or never-mined under this rule. The rule is fail-closed, so that direction is safe."
-      }
-    },
-    "manifest_validation": {
-      "gate": 9,
-      "verdict": "PASS",
-      "command": "jq on proof-status/legacy-import-exceptions.json and proof-status/cluster-import-edges-live-2026-08-24.json; git rev-parse --short=8 HEAD; git rev-parse HEAD; shasum -a 256 proof-status/cluster-import-edges.json",
-      "exit_code": 0,
-      "final_line": "679",
-      "detail": "legacy-import-exceptions.json: top-level keys are exactly base_head, exceptions, frozen_graph_sha256, schema; schema == 'legacy-import-exceptions/v1'; base_head == 'f747d0ef' == `git rev-parse --short=8 HEAD`; frozen_graph_sha256 == 14a8ee5529e3b8eae1f8e617f1de447045b7d4199df2a4f3b0e85c016224066a == `shasum -a 256 proof-status/cluster-import-edges.json`; exceptions == [] (length 0). cluster-import-edges-live-2026-08-24.json: schema == 'cluster-import-edges/v1'; live_record == true; generated_from_head == f747d0ef4a48ef94118d6f4a970bda36b66ed527 == full HEAD; note == 'dated current graph; the Phase 0 file remains the waiver authentication basis'; generated_by names --write-record; (.edges|length) == 679 == the lint's scanned count, and summary.total_edges == 679, summary.forbidden_edges == 29, summary.legacy_edges == 0, summary.lean_files_scanned == 366."
-    },
-    "digests": {
-      "gate": 10,
-      "verdict": "PASS",
-      "command": "shasum -a 256 scripts/gen_obligation_registry.py scripts/lint_cluster_imports.py scripts/test_gen_obligation_registry_factorization.py scripts/test_lint_cluster_imports_legacy.py proof-status/README.md proof-status/legacy-import-exceptions.json proof-status/cluster-import-edges-live-2026-08-24.json",
-      "exit_code": 0,
-      "final_line": "63cb7b29c034a5005c248d0c01e3d7f9fa13bd47ff8b8f45be8b2e0a47a334e5  proof-status/cluster-import-edges-live-2026-08-24.json",
-      "detail": "All seven digests are recorded in content_bound_files.sha256, together with the untouched frozen Phase 0 graph digest for cross-reference."
+      "commands": [
+        {
+          "command": "shasum -a 256 scripts/gen_obligation_registry.py scripts/lint_cluster_imports.py scripts/test_gen_obligation_registry_factorization.py scripts/test_lint_cluster_imports_legacy.py proof-status/README.md proof-status/legacy-import-exceptions.json",
+          "exit_code": 0,
+          "final_line": "six digests recorded in remediation_files.sha256"
+        }
+      ],
+      "detail": "These are the working-tree bytes every gate above exercised. The main session must re-bind them if anything is edited before the remediation commit."
     }
-  },
+  ],
   "tests": {
-    "command": "uv run pytest -q scripts/test_gen_obligation_registry_factorization.py scripts/test_lint_cluster_imports_legacy.py",
-    "exit_code": 0,
-    "passed": 57,
+    "passed": 91,
     "failed": 0,
-    "final_line": "57 passed in 0.11s",
-    "by_file": {
-      "scripts/test_gen_obligation_registry_factorization.py": 36,
-      "scripts/test_lint_cluster_imports_legacy.py": 21
-    },
-    "isolation": "Registry tests run entirely through the MappingBackend seam on synthetic fixtures; no live database, no live proof-blueprint call, no real P97-* obligation id (the string 'P97-' does not appear in the file). Lint tests build a synthetic Lean tree under tmp_path and rebind paths through configure_paths."
-  },
-  "contract_coverage": {
-    "note": "Each contract case named in the two author tasks, and the test that covers it. Line numbers are working-tree lines at the digests in content_bound_files.",
-    "registry": [
+    "files": [
       {
-        "case": "edge reversal",
-        "test": "test_edge_reversal_open_leaf_calls_eliminator_fails",
-        "file": "scripts/test_gen_obligation_registry_factorization.py",
-        "line": 293,
-        "present": true
+        "path": "scripts/test_gen_obligation_registry_factorization.py",
+        "passed": 60,
+        "failed": 0
       },
       {
-        "case": "stale role",
-        "test": "test_stale_role_fails",
-        "file": "scripts/test_gen_obligation_registry_factorization.py",
-        "line": 372,
-        "present": true
-      },
-      {
-        "case": "never-mined role",
-        "test": "test_never_mined_role_fails",
-        "file": "scripts/test_gen_obligation_registry_factorization.py",
-        "line": 383,
-        "present": true
-      },
-      {
-        "case": "direct sorryAx producer",
-        "test": "test_producer_with_a_direct_sorry_ax_fails",
-        "file": "scripts/test_gen_obligation_registry_factorization.py",
-        "line": 403,
-        "present": true
-      },
-      {
-        "case": "transitive sorryAx producer",
-        "test": "test_producer_with_sorry_ax_only_transitively_fails",
-        "file": "scripts/test_gen_obligation_registry_factorization.py",
-        "line": 414,
-        "present": true,
-        "detail": "Asserts index[PRODUCER][0]['has_sorry'] is False first, so it documents why a has_sorry scan is insufficient."
-      },
-      {
-        "case": "missing role",
-        "test": "test_missing_role_fails",
-        "file": "scripts/test_gen_obligation_registry_factorization.py",
-        "line": 320,
-        "present": true
-      },
-      {
-        "case": "duplicate roles",
-        "test": "test_duplicate_roles_fail",
-        "file": "scripts/test_gen_obligation_registry_factorization.py",
-        "line": 328,
-        "present": true
-      },
-      {
-        "case": "private role",
-        "test": "test_private_role_fails",
-        "file": "scripts/test_gen_obligation_registry_factorization.py",
-        "line": 337,
-        "present": true
-      },
-      {
-        "case": "ambiguous role",
-        "test": "test_ambiguous_role_with_two_index_matches_fails",
-        "file": "scripts/test_gen_obligation_registry_factorization.py",
-        "line": 346,
-        "present": true
-      },
-      {
-        "case": "cycle",
-        "test": "test_cycle_among_roles_fails",
-        "file": "scripts/test_gen_obligation_registry_factorization.py",
-        "line": 309,
-        "present": true
-      },
-      {
-        "case": "rename accepted",
-        "test": "test_stable_id_rename_is_accepted_and_records_the_alias",
-        "file": "scripts/test_gen_obligation_registry_factorization.py",
-        "line": 691,
-        "present": true
-      },
-      {
-        "case": "new-id allocation rejected",
-        "test": "test_rename_that_would_allocate_a_new_id_is_rejected",
-        "file": "scripts/test_gen_obligation_registry_factorization.py",
-        "line": 726,
-        "present": true
-      },
-      {
-        "case": "alias claimed by another id rejected",
-        "test": "test_rename_whose_alias_is_claimed_by_another_id_is_rejected",
-        "file": "scripts/test_gen_obligation_registry_factorization.py",
-        "line": 751,
-        "present": true,
-        "detail": "Covers both directions (new leaf already claimed, old name already an alias of another id)."
-      },
-      {
-        "case": "open-leaf digest mismatch",
-        "test": "test_open_leaf_statement_digest_mismatch_fails",
-        "file": "scripts/test_gen_obligation_registry_factorization.py",
-        "line": 459,
-        "present": true
-      },
-      {
-        "case": "legacy-wrapper digest mismatch",
-        "test": "test_legacy_wrapper_statement_digest_mismatch_fails",
-        "file": "scripts/test_gen_obligation_registry_factorization.py",
-        "line": 469,
-        "present": true
-      },
-      {
-        "case": "unknown key",
-        "test": "test_unknown_key_in_block_is_a_metadata_violation",
-        "file": "scripts/test_gen_obligation_registry_factorization.py",
-        "line": 354,
-        "present": true
-      },
-      {
-        "case": "v1 warning",
-        "test": "test_v1_block_loads_with_a_warning_and_is_never_verified",
-        "file": "scripts/test_gen_obligation_registry_factorization.py",
-        "line": 251,
-        "present": true
-      },
-      {
-        "case": "--require-factorized missing entry",
-        "test": "test_require_factorized_with_a_missing_entry_fails_and_names_the_id",
-        "file": "scripts/test_gen_obligation_registry_factorization.py",
-        "line": 572,
-        "present": true
-      },
-      {
-        "case": "transitive path ok",
-        "test": "test_transitive_path_is_verified_hop_by_hop",
-        "file": "scripts/test_gen_obligation_registry_factorization.py",
-        "line": 492,
-        "present": true,
-        "detail": "Also asserts the SAME call graph without the declared row fails, proving an unlisted pair must be direct."
-      },
-      {
-        "case": "transitive path broken",
-        "test": "test_transitive_path_with_a_broken_hop_fails",
-        "file": "scripts/test_gen_obligation_registry_factorization.py",
-        "line": 520,
-        "present": true
+        "path": "scripts/test_lint_cluster_imports_legacy.py",
+        "passed": 31,
+        "failed": 0
       }
     ],
-    "registry_extra": [
-      "test_statement_digest_collapses_whitespace_runs_and_strips:200",
-      "test_parse_axioms_output_reads_tag_and_name:208",
-      "test_parse_axioms_output_rejects_a_count_mismatch:225",
-      "test_meta_without_any_factorization_block_still_loads:236",
-      "test_producer_clean_factorization_verifies:279",
-      "test_unknown_current_build_is_cannot_verify_not_fresh:392",
-      "test_consumer_roles_may_carry_sorry_ax_but_not_native_trust:432",
-      "test_producer_with_a_non_core_axiom_fails:445",
-      "test_open_leaf_must_be_the_registry_lean_decl_and_carry_a_sorry:477",
-      "test_transitive_hop_freshness_is_checked_too:541",
-      "test_transitive_row_naming_a_non_chain_pair_fails:558",
-      "test_require_factorized_rejects_an_unverified_block:604",
-      "test_rename_without_a_surviving_public_wrapper_is_rejected:783",
-      "test_lean_decl_change_without_a_factorization_block_is_still_drift:803",
-      "test_empty_search_result_is_an_empty_answer_not_an_error:821",
-      "test_a_cli_diagnostic_is_reported_as_cannot_verify:833"
-    ],
-    "lint": [
+    "command": "uv run pytest -q scripts/test_gen_obligation_registry_factorization.py scripts/test_lint_cluster_imports_legacy.py",
+    "note": "All fixtures are synthetic: MappingBackend closures/index/callers for the registry block tests, tmp_path trees plus a real throwaway git repository for the lint tests, and a tmp_path COPY of proof-status for the command-level migration tests. No test reads the live blueprint database or writes a receipt outside tmp_path."
+  },
+  "new_receipts_written_by_this_check": {
+    "note": "The three live `check` invocations of gate 4 each wrote a registry-check receipt into proof-status/receipts/. They are untracked; the main session decides whether to commit them.",
+    "paths": [
       {
-        "case": "directory classification",
-        "test": "test_directory_component_classification",
-        "file": "scripts/test_lint_cluster_imports_legacy.py",
-        "line": 246,
-        "present": true,
-        "detail": "Plus test_directory_component_classification_is_enforced_end_to_end:262, which proves the rule changes a real verdict (TwoDeletion -> TriApex, cross-cluster) and that TwoDeletionFoo.Rigid221Leaf is NOT captured by substring matching."
+        "path": "proof-status/receipts/registry-check-20260825T063752Z.json",
+        "from": "plain check --baseline proof-status/baseline (exit 0)"
       },
       {
-        "case": "Legacy-ish modules without exemption",
-        "test": "test_legacyish_modules_get_no_exemption",
-        "file": "scripts/test_lint_cluster_imports_legacy.py",
-        "line": 285,
-        "present": true,
-        "detail": "LegacyWrappers, the bare Legacy namespace and a deeper Foo.Legacy.Bar all get nothing, and an explicit manifest row naming them is rejected too."
+        "path": "proof-status/receipts/registry-check-20260825T063757Z.json",
+        "from": "check --require-fresh-refs (exit 1, inherited)"
       },
       {
-        "case": "unlisted target",
-        "test": "test_approved_wrapper_importing_unlisted_target_fails",
-        "file": "scripts/test_lint_cluster_imports_legacy.py",
-        "line": 325,
-        "present": true
-      },
-      {
-        "case": "listed edge",
-        "test": "test_listed_legacy_edge_passes_and_is_printed",
-        "file": "scripts/test_lint_cluster_imports_legacy.py",
-        "line": 342,
-        "present": true
-      },
-      {
-        "case": "stale row",
-        "test": "test_stale_manifest_row_fails",
-        "file": "scripts/test_lint_cluster_imports_legacy.py",
-        "line": 395,
-        "present": true
-      },
-      {
-        "case": "duplicate rows",
-        "test": "test_duplicate_manifest_rows_fail",
-        "file": "scripts/test_lint_cluster_imports_legacy.py",
-        "line": 415,
-        "present": true
-      },
-      {
-        "case": "class mismatch",
-        "test": "test_manifest_class_mismatch_fails",
-        "file": "scripts/test_lint_cluster_imports_legacy.py",
-        "line": 429,
-        "present": true
-      },
-      {
-        "case": "missing waiver link",
-        "test": "test_waiver_pair_naming_a_missing_waiver_fails",
-        "file": "scripts/test_lint_cluster_imports_legacy.py",
-        "line": 465,
-        "present": true
-      },
-      {
-        "case": "stale waiver",
-        "test": "test_waiver_retired_through_legacy_wrapper_is_reported_stale",
-        "file": "scripts/test_lint_cluster_imports_legacy.py",
-        "line": 487,
-        "present": true,
-        "detail": "Paired with test_live_waiver_named_by_a_manifest_row_still_passes:526."
-      },
-      {
-        "case": "--fail-on-legacy",
-        "test": "test_fail_on_legacy_rejects_a_listed_edge",
-        "file": "scripts/test_lint_cluster_imports_legacy.py",
-        "line": 376,
-        "present": true
-      },
-      {
-        "case": "malformed frozen row",
-        "test": "test_malformed_frozen_row_exits_2",
-        "file": "scripts/test_lint_cluster_imports_legacy.py",
-        "line": 556,
-        "present": true
-      },
-      {
-        "case": "duplicate frozen rows",
-        "test": "test_duplicate_frozen_rows_exit_2",
-        "file": "scripts/test_lint_cluster_imports_legacy.py",
-        "line": 578,
-        "present": true
-      },
-      {
-        "case": "digest mismatch",
-        "test": "test_frozen_graph_sha256_mismatch_exits_2",
-        "file": "scripts/test_lint_cluster_imports_legacy.py",
-        "line": 598,
-        "present": true
-      },
-      {
-        "case": "deterministic --write-record",
-        "test": "test_write_record_is_deterministic_and_matches_the_scan",
-        "file": "scripts/test_lint_cluster_imports_legacy.py",
-        "line": 655,
-        "present": true,
-        "detail": "Two runs byte-identical, document['edges'] == collect_edges(), rows in (from, to, line) order."
+        "path": "proof-status/receipts/registry-check-20260825T063802Z.json",
+        "from": "check --require-factorized TD (exit 1)"
       }
-    ],
-    "lint_extra": [
-      "test_list_legacy_prints_a_count_header:368",
-      "test_unknown_added_wave_fails:446",
-      "test_live_waiver_named_by_a_manifest_row_still_passes:526",
-      "test_manifest_base_head_format_exits_2:609",
-      "test_frozen_class_disagreement_exits_1:619",
-      "test_write_record_never_becomes_an_authentication_basis:695"
-    ],
-    "missing_cases": []
+    ]
   },
-  "inherited_dirty_paths_outside_wave": {
-    "verdict": "NOT-A-W3-0-CHANGE",
-    "detail": "git status reports pre-existing dirt under lean/ and docs/ that W3-0 did not create and did not touch. Modified: docs/audits/2026-08-06-spine-refactor-audit.md, docs/false_of_capSourceThirdCanonicalRowSurface_refactor-plan-07-31-2026.md, docs/live-blueprint.md, docs/specs/p97-piqd-exact17-{refinement-chain,semantic,v19-runner}-v1.md, lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceCanonicalSurface.lean, lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceRetainedMinimalCore.lean, plus a set of untracked docs/audits, docs/plans, docs/solve-prompts and lean/scratch paths. EVIDENCE THAT THIS PREDATES W3-0: the newest mtime among them is docs/live-blueprint.md at 2026-08-24 20:42:44 local and every other one is 2026-08-23 21:14:41 or older, while the first W3-0 file write is 2026-08-24 22:19:08; the two modified Lean files are the foreign-lane modifications the W2a/W2b receipts already recorded; and docs/live-blueprint.md still carried mtime 20:42:44 after all ten checker gates ran, so no W3-0 or checker command wrote it. Neither author lists any lean/ or docs/ path in files_touched. Treated as inherited working-tree state for the main session to resolve, not as a W3-0 scope violation."
+  "c6fc78d0_committed_state": {
+    "commit": "c6fc78d091711a3b88a5e92cf74152e583da2d2f",
+    "commit_short": "c6fc78d0",
+    "note": "The 11 paths of commit c6fc78d0 (`git show --stat --format= c6fc78d0`) with sha256 of the COMMITTED bytes (`git show c6fc78d0:<path>`). These are the bytes the W3-0b remediation edits on top of; four of them (the two scripts and the two test files) are modified in the working tree and their current digests are in remediation_files.",
+    "paths": [
+      {
+        "path": "proof-status/README.md",
+        "sha256": "49b35afe2548b5e6102c17e4840c2978682dce62928fe6a60afad18b7c3cc459"
+      },
+      {
+        "path": "proof-status/cluster-import-edges-live-2026-08-24.json",
+        "sha256": "63cb7b29c034a5005c248d0c01e3d7f9fa13bd47ff8b8f45be8b2e0a47a334e5"
+      },
+      {
+        "path": "proof-status/legacy-import-exceptions.json",
+        "sha256": "3b415dec5f25d396b643831ed4407556a85b2eb36068a4b469c783956c8ba32b"
+      },
+      {
+        "path": "proof-status/receipts/registry-check-20260825T055331Z.json",
+        "sha256": "8bd0de4957fe8281ffd03dae5c3dae1c77df3018936166c13b09c9e2f9a43afd",
+        "label": "historical pre-commit gate snapshot receipts"
+      },
+      {
+        "path": "proof-status/receipts/registry-check-20260825T055336Z.json",
+        "sha256": "9a44355425211eba11b92e57013650b9a85b0f83c842c682503fcbc859910960",
+        "label": "historical pre-commit gate snapshot receipts"
+      },
+      {
+        "path": "proof-status/receipts/registry-check-20260825T055337Z.json",
+        "sha256": "b7096d37c1ea030916b059cf9f700acb097be502abd7ec9520dc129a6c1a92c0",
+        "label": "historical pre-commit gate snapshot receipts"
+      },
+      {
+        "path": "proof-status/receipts/w3-0-gate-receipt.json",
+        "sha256": "1d718ea6cdfee3dbc8e4051048676e331191464e8f39939888a126a3cb1a3c07",
+        "label": "the W3-0 checker draft this file supersedes; copied verbatim into historical_precommit_snapshot_w3_0"
+      },
+      {
+        "path": "scripts/gen_obligation_registry.py",
+        "sha256": "154d74e08bc7194cba63fc94273cb795bc5a4d6f5f0ca2a4b32834b52d15bedd"
+      },
+      {
+        "path": "scripts/lint_cluster_imports.py",
+        "sha256": "1c85c568b27994d930160ad349a69653a206ca64def4ae44b53d693ed98e1eb1"
+      },
+      {
+        "path": "scripts/test_gen_obligation_registry_factorization.py",
+        "sha256": "766d3c3a959d3cd38776756404306c0500b86486e0ed3c3a0c14cb3b4fac943e"
+      },
+      {
+        "path": "scripts/test_lint_cluster_imports_legacy.py",
+        "sha256": "6f4b518a5ef688fafaf8e67e5b8868f6329ee23c2002dfefd920f695378896dc"
+      }
+    ]
   },
-  "author_claims_checked": [
-    {
-      "claim": "36 registry tests pass",
-      "verdict": "CONFIRMED",
-      "detail": "36 tests in that file, all passing in the combined run."
-    },
-    {
-      "claim": "21 lint tests pass",
-      "verdict": "CONFIRMED",
-      "detail": "21 tests in that file, all passing in the combined run."
-    },
-    {
-      "claim": "obligations.json and id-assignments.json untouched",
-      "verdict": "CONFIRMED",
-      "detail": "git diff --stat is empty for those two and for obligations-meta.json, import-waivers.json and cluster-import-edges.json."
-    },
-    {
-      "claim": "check --baseline exits 0 with 28 reachable / 6 off-spine / 34 of 34 reviewed",
-      "verdict": "CONFIRMED",
-      "detail": "Reproduced by the checker."
-    },
-    {
-      "claim": "--require-factorized TD exits 1 naming the three TD ids",
-      "verdict": "CONFIRMED",
-      "detail": "Reproduced by the checker; the three ids match exactly."
-    },
-    {
-      "claim": "lint reports 679 live edges, 29 forbidden, all waived, 0 legacy",
-      "verdict": "CONFIRMED",
-      "detail": "Reproduced by the checker on all three lint invocations."
-    },
-    {
-      "claim": "`proof-blueprint search --json` exits 1 on an EMPTY result set, so the backend must not treat a nonzero exit as an error",
-      "verdict": "PLAUSIBLE-AND-SAFELY-HANDLED",
-      "detail": "The checker did not re-derive the CLI's exit behaviour on an empty result set. Whether or not the premise holds, the implementation is safe: _run ignores the exit code and _records raises RegistryError on the CLI's own 'proof-blueprint:' stderr diagnostic, and both branches are covered by tests (lines 821 and 833). A false-clean verdict cannot arise from this design, because an unreadable answer becomes a 'cannot verify' violation."
-    },
-    {
-      "claim": "the lint classification change is a no-op on today's tree",
-      "verdict": "CONFIRMED-BY-COUNTS",
-      "detail": "The checker independently observes the same 679/29/all-waived/0-legacy state and exit 0; it did not re-run the author's old-vs-new cluster_of comparison over all 366 modules. No cluster-named directory exists in the tree yet, so the new rule fires on nothing today."
-    },
-    {
-      "claim": "generate reproduces obligations.json, id-assignments.json and frontier-table.generated.md byte-identically",
-      "verdict": "NOT-RE-RUN",
-      "detail": "Outside the checker's assigned gate list. The equivalent evidence the gates do carry is that `check` exits 0 against the committed registry (gate 4) and that git diff is empty for both files (gate 2)."
+  "historical_precommit_snapshot_w3_0": {
+    "label": "checker draft at f747d0ef before commit c6fc78d0; superseded",
+    "note": "The entire previous w3-0-gate-receipt.json, verbatim. It was written when HEAD was f747d0ef and the W3-0 work was uncommitted; commit c6fc78d0 then committed it unchanged, so it is also the committed bytes at c6fc78d0:proof-status/receipts/w3-0-gate-receipt.json (sha256 in c6fc78d0_committed_state). Its gate results describe the PRE-remediation source and are superseded by the gates above.",
+    "receipt": {
+      "schema": "p97-gate-receipt/v1",
+      "wave": "W3-0",
+      "generated_by": "W3-0 independent checker subagent (verification only; no authoring). Every gate below was re-run by the checker from the repository root against the working tree. The checker edited no script, test, manifest or README, ran no git write command, ran no lake build, and never ran `proof-blueprint refs --refresh`.",
+      "generated_at_utc": "2026-08-25T05:48:23Z",
+      "git_head": "f747d0ef4a48ef94118d6f4a970bda36b66ed527",
+      "git_head_short": "f747d0ef",
+      "scope_note": "W3-0: scripts and proof-status only; no Lean; infrastructure only; no factorization claim for any live obligation; no promotion claim",
+      "head_note": "Gates were run against the UNCOMMITTED working tree at HEAD f747d0ef. The four W3-0 source files (two scripts, two tests) and the two new proof-status JSON files are unstaged/untracked at gate time; the digests in content_bound_files are the working-tree bytes the gates actually exercised. The main session must re-bind these digests if it edits anything before committing.",
+      "wave_files": {
+        "modified": [
+          "scripts/gen_obligation_registry.py",
+          "scripts/lint_cluster_imports.py",
+          "proof-status/README.md"
+        ],
+        "created_untracked": [
+          "scripts/test_gen_obligation_registry_factorization.py",
+          "scripts/test_lint_cluster_imports_legacy.py",
+          "proof-status/legacy-import-exceptions.json",
+          "proof-status/cluster-import-edges-live-2026-08-24.json",
+          "proof-status/receipts/w3-0-gate-receipt.json"
+        ],
+        "unchanged_frozen": [
+          "proof-status/obligations.json",
+          "proof-status/id-assignments.json",
+          "proof-status/obligations-meta.json",
+          "proof-status/import-waivers.json",
+          "proof-status/cluster-import-edges.json"
+        ]
+      },
+      "content_bound_files": {
+        "note": "sha256 of the working-tree bytes of every W3-0 file at gate time (2026-08-25T05:48Z), computed with `shasum -a 256`.",
+        "sha256": {
+          "scripts/gen_obligation_registry.py": "154d74e08bc7194cba63fc94273cb795bc5a4d6f5f0ca2a4b32834b52d15bedd",
+          "scripts/lint_cluster_imports.py": "1c85c568b27994d930160ad349a69653a206ca64def4ae44b53d693ed98e1eb1",
+          "scripts/test_gen_obligation_registry_factorization.py": "766d3c3a959d3cd38776756404306c0500b86486e0ed3c3a0c14cb3b4fac943e",
+          "scripts/test_lint_cluster_imports_legacy.py": "6f4b518a5ef688fafaf8e67e5b8868f6329ee23c2002dfefd920f695378896dc",
+          "proof-status/README.md": "49b35afe2548b5e6102c17e4840c2978682dce62928fe6a60afad18b7c3cc459",
+          "proof-status/legacy-import-exceptions.json": "3b415dec5f25d396b643831ed4407556a85b2eb36068a4b469c783956c8ba32b",
+          "proof-status/cluster-import-edges-live-2026-08-24.json": "63cb7b29c034a5005c248d0c01e3d7f9fa13bd47ff8b8f45be8b2e0a47a334e5",
+          "proof-status/cluster-import-edges.json": "14a8ee5529e3b8eae1f8e617f1de447045b7d4199df2a4f3b0e85c016224066a"
+        }
+      },
+      "gates": {
+        "scope": {
+          "gate": 1,
+          "verdict": "PASS",
+          "command": "git status --porcelain scripts proof-status lean docs README.md",
+          "exit_code": 0,
+          "final_line": "?? scripts/test_lint_cluster_imports_legacy.py",
+          "detail": "Under scripts/ and proof-status/ the changed or new paths are EXACTLY the assigned set: scripts/gen_obligation_registry.py (M), scripts/lint_cluster_imports.py (M), proof-status/README.md (M), scripts/test_gen_obligation_registry_factorization.py (??), scripts/test_lint_cluster_imports_legacy.py (??), proof-status/legacy-import-exceptions.json (??), proof-status/cluster-import-edges-live-2026-08-24.json (??), proof-status/receipts/w3-0-gate-receipt.json (??). Nothing else under proof-status/ is dirty; no registry-check-*.json receipt is dirty or new (the newest committed one is 20260825T040631Z at 21:06 local, before the wave), because both authors and the checker redirected every registry-check run with --receipts-dir into scratch. README.md at the repository root is clean. lean/ and docs/ carry pre-existing dirt that is NOT part of this wave -- see inherited_dirty_paths_outside_wave.",
+          "assigned_paths_seen": [
+            "scripts/gen_obligation_registry.py",
+            "scripts/lint_cluster_imports.py",
+            "scripts/test_gen_obligation_registry_factorization.py",
+            "scripts/test_lint_cluster_imports_legacy.py",
+            "proof-status/README.md",
+            "proof-status/legacy-import-exceptions.json",
+            "proof-status/cluster-import-edges-live-2026-08-24.json",
+            "proof-status/receipts/w3-0-gate-receipt.json"
+          ],
+          "foreign_paths_under_scripts_or_proof_status": []
+        },
+        "frozen_records_untouched": {
+          "gate": 2,
+          "verdict": "PASS",
+          "command": "git diff --stat proof-status/obligations.json proof-status/id-assignments.json proof-status/import-waivers.json proof-status/cluster-import-edges.json proof-status/obligations-meta.json",
+          "exit_code": 0,
+          "final_line": "(no output)",
+          "detail": "Zero bytes of output for all five files, so obligations.json, id-assignments.json, import-waivers.json, cluster-import-edges.json AND obligations-meta.json are byte-identical to HEAD. No version marker was written into obligations-meta.json, so the acceptable-exception clause did not need to be exercised. The immutable Phase 0 record proof-status/cluster-import-edges.json still digests to 14a8ee5529e3b8eae1f8e617f1de447045b7d4199df2a4f3b0e85c016224066a and remains the waiver authentication basis."
+        },
+        "tests": {
+          "gate": 3,
+          "verdict": "PASS",
+          "command": "uv run pytest -q scripts/test_gen_obligation_registry_factorization.py scripts/test_lint_cluster_imports_legacy.py",
+          "exit_code": 0,
+          "final_line": "57 passed in 0.11s",
+          "detail": "57 tests pass: 36 in test_gen_obligation_registry_factorization.py, 21 in test_lint_cluster_imports_legacy.py. Both files were then READ end to end. Every contract case named in either author task is present as its own test (see contract_coverage). The registry tests drive the gate exclusively through the MappingBackend seam with synthetic fixtures (obligation ids FIXTURE-TD-ALPHA / FIXTURE-TD-BETA, declarations under Fixture.Cluster.*); the string 'P97-' does not occur anywhere in that file, and the two BlueprintBackend tests stub _run, so no live database read and no live proof-blueprint invocation happens. The lint tests build a synthetic Lean tree under tmp_path and rebind the module paths through configure_paths, so the real lean/ tree and the real proof-status/ files are never written."
+        },
+        "registry_check": {
+          "gate": 4,
+          "verdict": "PASS",
+          "command": "uv run python scripts/gen_obligation_registry.py check --baseline proof-status/baseline --receipts-dir scratch/runs/consolidation-refactor-20260823/w3-0/checker",
+          "exit_code": 0,
+          "final_line": "receipt: /Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/runs/consolidation-refactor-20260823/w3-0/checker/registry-check-20260825T054444Z.json",
+          "verdict_line": "OK: /Users/adam/projects/math-projects/erdos-97-96-formalization/proof-status/obligations.json matches the live spine (28 reachable, 6 off-spine); 34/34 reviewed meta_status, vocabulary clean",
+          "detail": "Both required phrases are present verbatim: '28 reachable, 6 off-spine' and '34/34 reviewed'. The run also prints 'factorized 0/28 reachable leaves' and 'bound to: HEAD f747d0ef4a48ef94118d6f4a970bda36b66ed527, build f80c3204eef5, roster sources dirty'. --receipts-dir was pointed at the checker scratch directory because the checker may not write into proof-status/receipts/; the verdict and the exit code are unaffected by that flag. NOTE FOR THE MAIN SESSION: no registry-check receipt from W3-0 exists under proof-status/receipts/; re-run gates 4-6 without --receipts-dir if the on-record receipts are wanted."
+        },
+        "registry_check_strict_fresh_refs": {
+          "gate": 5,
+          "verdict": "FAIL-inherited",
+          "command": "uv run python scripts/gen_obligation_registry.py check --baseline proof-status/baseline --receipts-dir scratch/runs/consolidation-refactor-20260823/w3-0/checker --require-fresh-refs",
+          "exit_code": 1,
+          "final_line": "receipt: /Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/runs/consolidation-refactor-20260823/w3-0/checker/registry-check-20260825T054450Z.json",
+          "failure_lines": [
+            "FAIL: kernel-mined refs are not fresh",
+            "    ! --require-fresh-refs: 36 stale mined symbol(s)",
+            "    ! --require-fresh-refs: 1 never-mined symbol(s)",
+            "  fix: proof-blueprint refs --refresh"
+          ],
+          "detail": "Exactly the inherited miner exception: 36 stale + 1 never-mined, unchanged in count from the state W3-0 inherited. Independently confirmed by `proof-blueprint refs --check`, which prints 'current build: f80c3204eef5', 'mined (fresh): 56426', 'stale: 36 (mined against an older build)', 'never mined: 1'. This gate is a FAIL and is recorded as a FAIL. It must never be reported as passing, and the checker did not run `refs --refresh` to clear it."
+        },
+        "registry_require_factorized_TD": {
+          "gate": 6,
+          "verdict": "PASS",
+          "command": "uv run python scripts/gen_obligation_registry.py check --baseline proof-status/baseline --receipts-dir scratch/runs/consolidation-refactor-20260823/w3-0/checker --require-factorized TD",
+          "exit_code": 1,
+          "final_line": "receipt: /Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/runs/consolidation-refactor-20260823/w3-0/checker/registry-check-20260825T054455Z.json",
+          "verdict_line": "FAIL: factorization entries are not verified (3):",
+          "named_ids": [
+            "P97-TD-BLOCKERCOINCIDENCE (Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmission_fourCenterCommonDeletion_blockerCoincidence)",
+            "P97-TD-GLOBALGAPORCLOSED (Problem97.ATailFrontierLiveClosure.b1_globalGapOrClosedTerminal_of_counterexample)",
+            "P97-TD-SURVIVALSQUARE (Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmission_fourCenterCommonDeletion_survivalSquare)"
+          ],
+          "detail": "Exit 1 with exactly the three expected TD ids, each reported as 'has no p97-factorization/v2 factorization block', plus the summary line 'factorized 0/28 reachable leaves (required: TD)'. The gate is expected to fail here (the W3-TD Lean declarations do not exist yet), so an exit code of 1 with exactly these three ids IS the passing outcome for gate 6. No live factorization entry exists for any real obligation: 'factorized 0/28' and check_factorizations' 'checked' count of 0 both confirm proof-status/obligations-meta.json carries no factorization block at all."
+        },
+        "lint": {
+          "gate": 7,
+          "verdict": "PASS",
+          "command": "uv run python scripts/lint_cluster_imports.py ; then --list-legacy ; then --fail-on-legacy",
+          "exit_code": 0,
+          "final_line": "lint_cluster_imports: OK -- 679 import edges scanned, 29 forbidden edges, all waived by 29 authenticated waivers; 0 legacy edges, all listed.",
+          "runs": [
+            {
+              "command": "uv run python scripts/lint_cluster_imports.py",
+              "exit_code": 0,
+              "final_line": "lint_cluster_imports: OK -- 679 import edges scanned, 29 forbidden edges, all waived by 29 authenticated waivers; 0 legacy edges, all listed."
+            },
+            {
+              "command": "uv run python scripts/lint_cluster_imports.py --list-legacy",
+              "exit_code": 0,
+              "first_line": "legacy edges (0):",
+              "final_line": "lint_cluster_imports: OK -- 679 import edges scanned, 29 forbidden edges, all waived by 29 authenticated waivers; 0 legacy edges, all listed."
+            },
+            {
+              "command": "uv run python scripts/lint_cluster_imports.py --fail-on-legacy",
+              "exit_code": 0,
+              "final_line": "lint_cluster_imports: OK -- 679 import edges scanned, 29 forbidden edges, all waived by 29 authenticated waivers; 0 legacy edges, all listed."
+            }
+          ],
+          "detail": "679 live edges, 29 forbidden, all 29 waived by authenticated waivers, 0 legacy edges. --list-legacy prints the count header 'legacy edges (0):' and exits 0; --fail-on-legacy exits 0 because there is no Legacy edge in the tree to reject. The counts match the pre-wave lint state the authors reported, so the classification change is a no-op on today's tree."
+        },
+        "source_review_lint": {
+          "gate": 8,
+          "verdict": "PASS",
+          "command": "git diff -U3 scripts/lint_cluster_imports.py (read in full) + targeted reads of cluster_of, is_legacy_module, load_legacy_document, _legacy_row_failures, validate_legacy, validate_waivers, live_record_document, main",
+          "exit_code": 0,
+          "final_line": "(read-only review; no command verdict)",
+          "detail": "NO PREFIX/GLOB/BASENAME/DIRECTORY-WIDE LEGACY EXEMPTION. validate_legacy matches on the whole triple (wrapper_module, from, to) through an exact dict lookup index_by_key[(wrapper, edge['from'], edge['to'])]; there is no startswith, no fnmatch, no glob and no directory test anywhere in the exemption path, and the module imports neither re nor fnmatch nor glob. An edge matching zero rows is 'unlisted Legacy edge ... at file:line'; an edge matching more than one row is rejected; a row matching no live edge is 'stale'. is_legacy_module tests membership of the exact namespace plus a separator, so LegacyWrappers, the bare Legacy namespace and a deeper Foo.Legacy.Bar get nothing, and _legacy_row_failures additionally rejects a wrapper_module that is not under that namespace. In main, Legacy edges are lifted out of the forbidden set before waivers are considered, but every one of them must still be matched by an exact manifest row through validate_legacy, so the lift is not a loophole; --fail-on-legacy rejects every Legacy edge, listed or not. WAIVER AUTHENTICATION UNCHANGED: validate_waivers still authenticates against the frozen graph mapping from load_frozen_edges (waiver honoured only when the FROZEN record classes the pair forbidden and the edge is still live, with .summary counts recomputed); the only diff inside it is one added optional parameter retired_by_legacy and a more informative stale message that names the retiring wrapper. load_frozen_edges gained strictly additive validation (schema, 8-hex base_head, empty-field and duplicate-(from,to,line) rejection, exit 2), which strengthens the basis and does not weaken it; it still passes on the untouched frozen file. LIVE RECORD NEVER AUTHENTICATES: the only code paths referring to the dated record are live_record_document/write_live_record (generator mode, --write-record, which returns immediately) plus documentation; the file is never opened for reading, and a test asserts that pointing --graph at a live record exits 2 because it carries no base_head. DIRECTORY RULE IS CLASSIFICATION ONLY: CLUSTER_DIR_COMPONENTS is consulted solely inside cluster_of, on whole dotted components (module.split('.'), leftmost match wins), and cluster_of only decides ownership; it never permits an edge."
+        },
+        "source_review_registry": {
+          "gate": 8,
+          "verdict": "PASS",
+          "command": "targeted reads of scripts/gen_obligation_registry.py (constants, normalize_statement, statement_digest, parse_axioms_output, BlueprintBackend, check_block_structure, parse_transitive, find_role_cycle, check_v2_block, check_factorizations, plan_alias_migrations, apply_alias_migrations)",
+          "exit_code": 0,
+          "final_line": "(read-only review; no command verdict)",
+          "detail": "NO REGEX: the file imports no re/regex/fnmatch module; the only occurrences of the letters 're.' are prose. Parsing is str.split / rfind / isdigit / startswith only. FOUR DIRECT-CALL CHAIN CHECKS: FACTORIZATION_CHAIN is exactly ((legacy_wrapper, coordinator), (coordinator, producer), (coordinator, eliminator), (eliminator, open_leaf)), each verified by _calls_directly(caller in backend.callers(callee)) against the kernel-mined call graph; a transitive row replaces exactly one of those pairs by an explicit path that is then verified hop by hop, and a transitive row naming a non-chain pair is rejected. CYCLE CHECK: the callers relation restricted to the five role symbols is materialised and find_role_cycle reports any cycle by role and symbol. DIGEST NORMALIZATION: normalize_statement is ' '.join(text.split()) (every whitespace run collapsed to one space, ends stripped), digested with sha256 and compared against the pinned open_leaf and legacy_wrapper digests; a non-64-hex pin, a missing pin or an unknown pinned key is itself a violation. ALIAS MIGRATION RULES: a rename is planned only for a v2 block whose open_leaf differs from the ledger symbol; it is REJECTED when legacy_wrapper is not the previous name (recorded as 'would allocate a new id'), when the new leaf is already assigned to another id, when the new leaf is already an alias of another id, when the old name is already an alias of another id, when the old name does not resolve to exactly one index record, and when that record is private. apply_alias_migrations moves the id to the new symbol, records the old name in aliases with renamed_from/renamed_at_head, and explicitly does NOT retire or reissue the id. PER-DECLARATION FRESHNESS IS REAL, NOT SIMULATED: see freshness_method. PRODUCER CLEANLINESS IS THE AXIOM CLOSURE, NOT has_sorry: check_v2_block calls backend.axioms(symbol) (proof-blueprint axioms, i.e. the transitive #print axioms closure) for producer, coordinator and eliminator; the producer fails on sorryAx, Lean.ofReduceBool, Lean.trustCompiler or ANY axiom whose tag is not 'core'; coordinator and eliminator may carry sorryAx (they consume the open leaf) but nothing else non-core. has_sorry is used only for the separate open-leaf identity check (the leaf must carry a sorry), never as the producer trust test, and a dedicated test proves a producer whose own has_sorry is False still fails when a helper contributes sorryAx transitively.",
+          "freshness_method": {
+            "is_real": true,
+            "method": "Per-symbol mined freshness has no CLI surface, so BlueprintBackend reads the blueprint database READ-ONLY: sqlite3.connect(path.as_uri() + '?mode=ro', uri=True) on the path named by [paths] db in .blueprint.toml. mined_build(symbol) = symbol_mined.file_hash for that symbol, or None when no row exists (never mined). current_build() parses 'current build: <short id>' from `proof-blueprint refs --check` and expands it to the unique full fingerprint carrying that prefix across symbol_mined.file_hash and module_mined.global_fp; zero or several matches raise RegistryError and become a 'cannot verify' violation, never 'fresh'. A role (and every declared transitive hop) is fresh only when mined_build == current_build.",
+            "independently_verified": "The checker confirmed .blueprint.toml has db = 'data/proof-blueprint.db'; that symbol_mined(symbol TEXT PRIMARY KEY, file_hash TEXT NOT NULL, mined_at TEXT NOT NULL) and module_mined(module_name, olean_hash, global_fp, mined_at, ...) exist with those columns; that `proof-blueprint refs --check` prints 'current build: f80c3204eef5'; and that the prefix f80c3204eef5 expands to exactly one distinct value in each table (COUNT(DISTINCT ...) = 1 in both), namely f80c3204eef5b7d2ca4586d17e7a4f19e3d17075d5041e608907d2c440fe72e2. The read is read-only (mode=ro URI) and the database file was not modified.",
+            "caveat": "Symbols inside the .blueprint.toml [mining] skip set can only ever read stale or never-mined under this rule. The rule is fail-closed, so that direction is safe."
+          }
+        },
+        "manifest_validation": {
+          "gate": 9,
+          "verdict": "PASS",
+          "command": "jq on proof-status/legacy-import-exceptions.json and proof-status/cluster-import-edges-live-2026-08-24.json; git rev-parse --short=8 HEAD; git rev-parse HEAD; shasum -a 256 proof-status/cluster-import-edges.json",
+          "exit_code": 0,
+          "final_line": "679",
+          "detail": "legacy-import-exceptions.json: top-level keys are exactly base_head, exceptions, frozen_graph_sha256, schema; schema == 'legacy-import-exceptions/v1'; base_head == 'f747d0ef' == `git rev-parse --short=8 HEAD`; frozen_graph_sha256 == 14a8ee5529e3b8eae1f8e617f1de447045b7d4199df2a4f3b0e85c016224066a == `shasum -a 256 proof-status/cluster-import-edges.json`; exceptions == [] (length 0). cluster-import-edges-live-2026-08-24.json: schema == 'cluster-import-edges/v1'; live_record == true; generated_from_head == f747d0ef4a48ef94118d6f4a970bda36b66ed527 == full HEAD; note == 'dated current graph; the Phase 0 file remains the waiver authentication basis'; generated_by names --write-record; (.edges|length) == 679 == the lint's scanned count, and summary.total_edges == 679, summary.forbidden_edges == 29, summary.legacy_edges == 0, summary.lean_files_scanned == 366."
+        },
+        "digests": {
+          "gate": 10,
+          "verdict": "PASS",
+          "command": "shasum -a 256 scripts/gen_obligation_registry.py scripts/lint_cluster_imports.py scripts/test_gen_obligation_registry_factorization.py scripts/test_lint_cluster_imports_legacy.py proof-status/README.md proof-status/legacy-import-exceptions.json proof-status/cluster-import-edges-live-2026-08-24.json",
+          "exit_code": 0,
+          "final_line": "63cb7b29c034a5005c248d0c01e3d7f9fa13bd47ff8b8f45be8b2e0a47a334e5  proof-status/cluster-import-edges-live-2026-08-24.json",
+          "detail": "All seven digests are recorded in content_bound_files.sha256, together with the untouched frozen Phase 0 graph digest for cross-reference."
+        }
+      },
+      "tests": {
+        "command": "uv run pytest -q scripts/test_gen_obligation_registry_factorization.py scripts/test_lint_cluster_imports_legacy.py",
+        "exit_code": 0,
+        "passed": 57,
+        "failed": 0,
+        "final_line": "57 passed in 0.11s",
+        "by_file": {
+          "scripts/test_gen_obligation_registry_factorization.py": 36,
+          "scripts/test_lint_cluster_imports_legacy.py": 21
+        },
+        "isolation": "Registry tests run entirely through the MappingBackend seam on synthetic fixtures; no live database, no live proof-blueprint call, no real P97-* obligation id (the string 'P97-' does not appear in the file). Lint tests build a synthetic Lean tree under tmp_path and rebind paths through configure_paths."
+      },
+      "contract_coverage": {
+        "note": "Each contract case named in the two author tasks, and the test that covers it. Line numbers are working-tree lines at the digests in content_bound_files.",
+        "registry": [
+          {
+            "case": "edge reversal",
+            "test": "test_edge_reversal_open_leaf_calls_eliminator_fails",
+            "file": "scripts/test_gen_obligation_registry_factorization.py",
+            "line": 293,
+            "present": true
+          },
+          {
+            "case": "stale role",
+            "test": "test_stale_role_fails",
+            "file": "scripts/test_gen_obligation_registry_factorization.py",
+            "line": 372,
+            "present": true
+          },
+          {
+            "case": "never-mined role",
+            "test": "test_never_mined_role_fails",
+            "file": "scripts/test_gen_obligation_registry_factorization.py",
+            "line": 383,
+            "present": true
+          },
+          {
+            "case": "direct sorryAx producer",
+            "test": "test_producer_with_a_direct_sorry_ax_fails",
+            "file": "scripts/test_gen_obligation_registry_factorization.py",
+            "line": 403,
+            "present": true
+          },
+          {
+            "case": "transitive sorryAx producer",
+            "test": "test_producer_with_sorry_ax_only_transitively_fails",
+            "file": "scripts/test_gen_obligation_registry_factorization.py",
+            "line": 414,
+            "present": true,
+            "detail": "Asserts index[PRODUCER][0]['has_sorry'] is False first, so it documents why a has_sorry scan is insufficient."
+          },
+          {
+            "case": "missing role",
+            "test": "test_missing_role_fails",
+            "file": "scripts/test_gen_obligation_registry_factorization.py",
+            "line": 320,
+            "present": true
+          },
+          {
+            "case": "duplicate roles",
+            "test": "test_duplicate_roles_fail",
+            "file": "scripts/test_gen_obligation_registry_factorization.py",
+            "line": 328,
+            "present": true
+          },
+          {
+            "case": "private role",
+            "test": "test_private_role_fails",
+            "file": "scripts/test_gen_obligation_registry_factorization.py",
+            "line": 337,
+            "present": true
+          },
+          {
+            "case": "ambiguous role",
+            "test": "test_ambiguous_role_with_two_index_matches_fails",
+            "file": "scripts/test_gen_obligation_registry_factorization.py",
+            "line": 346,
+            "present": true
+          },
+          {
+            "case": "cycle",
+            "test": "test_cycle_among_roles_fails",
+            "file": "scripts/test_gen_obligation_registry_factorization.py",
+            "line": 309,
+            "present": true
+          },
+          {
+            "case": "rename accepted",
+            "test": "test_stable_id_rename_is_accepted_and_records_the_alias",
+            "file": "scripts/test_gen_obligation_registry_factorization.py",
+            "line": 691,
+            "present": true
+          },
+          {
+            "case": "new-id allocation rejected",
+            "test": "test_rename_that_would_allocate_a_new_id_is_rejected",
+            "file": "scripts/test_gen_obligation_registry_factorization.py",
+            "line": 726,
+            "present": true
+          },
+          {
+            "case": "alias claimed by another id rejected",
+            "test": "test_rename_whose_alias_is_claimed_by_another_id_is_rejected",
+            "file": "scripts/test_gen_obligation_registry_factorization.py",
+            "line": 751,
+            "present": true,
+            "detail": "Covers both directions (new leaf already claimed, old name already an alias of another id)."
+          },
+          {
+            "case": "open-leaf digest mismatch",
+            "test": "test_open_leaf_statement_digest_mismatch_fails",
+            "file": "scripts/test_gen_obligation_registry_factorization.py",
+            "line": 459,
+            "present": true
+          },
+          {
+            "case": "legacy-wrapper digest mismatch",
+            "test": "test_legacy_wrapper_statement_digest_mismatch_fails",
+            "file": "scripts/test_gen_obligation_registry_factorization.py",
+            "line": 469,
+            "present": true
+          },
+          {
+            "case": "unknown key",
+            "test": "test_unknown_key_in_block_is_a_metadata_violation",
+            "file": "scripts/test_gen_obligation_registry_factorization.py",
+            "line": 354,
+            "present": true
+          },
+          {
+            "case": "v1 warning",
+            "test": "test_v1_block_loads_with_a_warning_and_is_never_verified",
+            "file": "scripts/test_gen_obligation_registry_factorization.py",
+            "line": 251,
+            "present": true
+          },
+          {
+            "case": "--require-factorized missing entry",
+            "test": "test_require_factorized_with_a_missing_entry_fails_and_names_the_id",
+            "file": "scripts/test_gen_obligation_registry_factorization.py",
+            "line": 572,
+            "present": true
+          },
+          {
+            "case": "transitive path ok",
+            "test": "test_transitive_path_is_verified_hop_by_hop",
+            "file": "scripts/test_gen_obligation_registry_factorization.py",
+            "line": 492,
+            "present": true,
+            "detail": "Also asserts the SAME call graph without the declared row fails, proving an unlisted pair must be direct."
+          },
+          {
+            "case": "transitive path broken",
+            "test": "test_transitive_path_with_a_broken_hop_fails",
+            "file": "scripts/test_gen_obligation_registry_factorization.py",
+            "line": 520,
+            "present": true
+          }
+        ],
+        "registry_extra": [
+          "test_statement_digest_collapses_whitespace_runs_and_strips:200",
+          "test_parse_axioms_output_reads_tag_and_name:208",
+          "test_parse_axioms_output_rejects_a_count_mismatch:225",
+          "test_meta_without_any_factorization_block_still_loads:236",
+          "test_producer_clean_factorization_verifies:279",
+          "test_unknown_current_build_is_cannot_verify_not_fresh:392",
+          "test_consumer_roles_may_carry_sorry_ax_but_not_native_trust:432",
+          "test_producer_with_a_non_core_axiom_fails:445",
+          "test_open_leaf_must_be_the_registry_lean_decl_and_carry_a_sorry:477",
+          "test_transitive_hop_freshness_is_checked_too:541",
+          "test_transitive_row_naming_a_non_chain_pair_fails:558",
+          "test_require_factorized_rejects_an_unverified_block:604",
+          "test_rename_without_a_surviving_public_wrapper_is_rejected:783",
+          "test_lean_decl_change_without_a_factorization_block_is_still_drift:803",
+          "test_empty_search_result_is_an_empty_answer_not_an_error:821",
+          "test_a_cli_diagnostic_is_reported_as_cannot_verify:833"
+        ],
+        "lint": [
+          {
+            "case": "directory classification",
+            "test": "test_directory_component_classification",
+            "file": "scripts/test_lint_cluster_imports_legacy.py",
+            "line": 246,
+            "present": true,
+            "detail": "Plus test_directory_component_classification_is_enforced_end_to_end:262, which proves the rule changes a real verdict (TwoDeletion -> TriApex, cross-cluster) and that TwoDeletionFoo.Rigid221Leaf is NOT captured by substring matching."
+          },
+          {
+            "case": "Legacy-ish modules without exemption",
+            "test": "test_legacyish_modules_get_no_exemption",
+            "file": "scripts/test_lint_cluster_imports_legacy.py",
+            "line": 285,
+            "present": true,
+            "detail": "LegacyWrappers, the bare Legacy namespace and a deeper Foo.Legacy.Bar all get nothing, and an explicit manifest row naming them is rejected too."
+          },
+          {
+            "case": "unlisted target",
+            "test": "test_approved_wrapper_importing_unlisted_target_fails",
+            "file": "scripts/test_lint_cluster_imports_legacy.py",
+            "line": 325,
+            "present": true
+          },
+          {
+            "case": "listed edge",
+            "test": "test_listed_legacy_edge_passes_and_is_printed",
+            "file": "scripts/test_lint_cluster_imports_legacy.py",
+            "line": 342,
+            "present": true
+          },
+          {
+            "case": "stale row",
+            "test": "test_stale_manifest_row_fails",
+            "file": "scripts/test_lint_cluster_imports_legacy.py",
+            "line": 395,
+            "present": true
+          },
+          {
+            "case": "duplicate rows",
+            "test": "test_duplicate_manifest_rows_fail",
+            "file": "scripts/test_lint_cluster_imports_legacy.py",
+            "line": 415,
+            "present": true
+          },
+          {
+            "case": "class mismatch",
+            "test": "test_manifest_class_mismatch_fails",
+            "file": "scripts/test_lint_cluster_imports_legacy.py",
+            "line": 429,
+            "present": true
+          },
+          {
+            "case": "missing waiver link",
+            "test": "test_waiver_pair_naming_a_missing_waiver_fails",
+            "file": "scripts/test_lint_cluster_imports_legacy.py",
+            "line": 465,
+            "present": true
+          },
+          {
+            "case": "stale waiver",
+            "test": "test_waiver_retired_through_legacy_wrapper_is_reported_stale",
+            "file": "scripts/test_lint_cluster_imports_legacy.py",
+            "line": 487,
+            "present": true,
+            "detail": "Paired with test_live_waiver_named_by_a_manifest_row_still_passes:526."
+          },
+          {
+            "case": "--fail-on-legacy",
+            "test": "test_fail_on_legacy_rejects_a_listed_edge",
+            "file": "scripts/test_lint_cluster_imports_legacy.py",
+            "line": 376,
+            "present": true
+          },
+          {
+            "case": "malformed frozen row",
+            "test": "test_malformed_frozen_row_exits_2",
+            "file": "scripts/test_lint_cluster_imports_legacy.py",
+            "line": 556,
+            "present": true
+          },
+          {
+            "case": "duplicate frozen rows",
+            "test": "test_duplicate_frozen_rows_exit_2",
+            "file": "scripts/test_lint_cluster_imports_legacy.py",
+            "line": 578,
+            "present": true
+          },
+          {
+            "case": "digest mismatch",
+            "test": "test_frozen_graph_sha256_mismatch_exits_2",
+            "file": "scripts/test_lint_cluster_imports_legacy.py",
+            "line": 598,
+            "present": true
+          },
+          {
+            "case": "deterministic --write-record",
+            "test": "test_write_record_is_deterministic_and_matches_the_scan",
+            "file": "scripts/test_lint_cluster_imports_legacy.py",
+            "line": 655,
+            "present": true,
+            "detail": "Two runs byte-identical, document['edges'] == collect_edges(), rows in (from, to, line) order."
+          }
+        ],
+        "lint_extra": [
+          "test_list_legacy_prints_a_count_header:368",
+          "test_unknown_added_wave_fails:446",
+          "test_live_waiver_named_by_a_manifest_row_still_passes:526",
+          "test_manifest_base_head_format_exits_2:609",
+          "test_frozen_class_disagreement_exits_1:619",
+          "test_write_record_never_becomes_an_authentication_basis:695"
+        ],
+        "missing_cases": []
+      },
+      "inherited_dirty_paths_outside_wave": {
+        "verdict": "NOT-A-W3-0-CHANGE",
+        "detail": "git status reports pre-existing dirt under lean/ and docs/ that W3-0 did not create and did not touch. Modified: docs/audits/2026-08-06-spine-refactor-audit.md, docs/false_of_capSourceThirdCanonicalRowSurface_refactor-plan-07-31-2026.md, docs/live-blueprint.md, docs/specs/p97-piqd-exact17-{refinement-chain,semantic,v19-runner}-v1.md, lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceCanonicalSurface.lean, lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceRetainedMinimalCore.lean, plus a set of untracked docs/audits, docs/plans, docs/solve-prompts and lean/scratch paths. EVIDENCE THAT THIS PREDATES W3-0: the newest mtime among them is docs/live-blueprint.md at 2026-08-24 20:42:44 local and every other one is 2026-08-23 21:14:41 or older, while the first W3-0 file write is 2026-08-24 22:19:08; the two modified Lean files are the foreign-lane modifications the W2a/W2b receipts already recorded; and docs/live-blueprint.md still carried mtime 20:42:44 after all ten checker gates ran, so no W3-0 or checker command wrote it. Neither author lists any lean/ or docs/ path in files_touched. Treated as inherited working-tree state for the main session to resolve, not as a W3-0 scope violation."
+      },
+      "author_claims_checked": [
+        {
+          "claim": "36 registry tests pass",
+          "verdict": "CONFIRMED",
+          "detail": "36 tests in that file, all passing in the combined run."
+        },
+        {
+          "claim": "21 lint tests pass",
+          "verdict": "CONFIRMED",
+          "detail": "21 tests in that file, all passing in the combined run."
+        },
+        {
+          "claim": "obligations.json and id-assignments.json untouched",
+          "verdict": "CONFIRMED",
+          "detail": "git diff --stat is empty for those two and for obligations-meta.json, import-waivers.json and cluster-import-edges.json."
+        },
+        {
+          "claim": "check --baseline exits 0 with 28 reachable / 6 off-spine / 34 of 34 reviewed",
+          "verdict": "CONFIRMED",
+          "detail": "Reproduced by the checker."
+        },
+        {
+          "claim": "--require-factorized TD exits 1 naming the three TD ids",
+          "verdict": "CONFIRMED",
+          "detail": "Reproduced by the checker; the three ids match exactly."
+        },
+        {
+          "claim": "lint reports 679 live edges, 29 forbidden, all waived, 0 legacy",
+          "verdict": "CONFIRMED",
+          "detail": "Reproduced by the checker on all three lint invocations."
+        },
+        {
+          "claim": "`proof-blueprint search --json` exits 1 on an EMPTY result set, so the backend must not treat a nonzero exit as an error",
+          "verdict": "PLAUSIBLE-AND-SAFELY-HANDLED",
+          "detail": "The checker did not re-derive the CLI's exit behaviour on an empty result set. Whether or not the premise holds, the implementation is safe: _run ignores the exit code and _records raises RegistryError on the CLI's own 'proof-blueprint:' stderr diagnostic, and both branches are covered by tests (lines 821 and 833). A false-clean verdict cannot arise from this design, because an unreadable answer becomes a 'cannot verify' violation."
+        },
+        {
+          "claim": "the lint classification change is a no-op on today's tree",
+          "verdict": "CONFIRMED-BY-COUNTS",
+          "detail": "The checker independently observes the same 679/29/all-waived/0-legacy state and exit 0; it did not re-run the author's old-vs-new cluster_of comparison over all 366 modules. No cluster-named directory exists in the tree yet, so the new rule fires on nothing today."
+        },
+        {
+          "claim": "generate reproduces obligations.json, id-assignments.json and frontier-table.generated.md byte-identically",
+          "verdict": "NOT-RE-RUN",
+          "detail": "Outside the checker's assigned gate list. The equivalent evidence the gates do carry is that `check` exits 0 against the committed registry (gate 4) and that git diff is empty for both files (gate 2)."
+        }
+      ],
+      "notes_for_main_session": [
+        "No registry-check receipt from W3-0 exists under proof-status/receipts/. Both the authors and the checker redirected every run with --receipts-dir into scratch because neither is allowed to write there. Re-run gates 4, 5 and 6 without --receipts-dir if the on-record receipts are wanted; the verdicts and exit codes are unaffected by the flag.",
+        "The lint author's judgement call stands unreviewed by the auditor: every Legacy edge of ANY class needs a manifest row, not only forbidden-class edges. That is the strict reading and it is a no-op today (0 Legacy edges). If the auditor meant the narrow reading, main() needs a one-line filter change.",
+        "The gate digests bind UNCOMMITTED working-tree bytes at HEAD f747d0ef. Re-bind content_bound_files if anything is edited before the commit.",
+        "The inherited working-tree dirt under lean/ and docs/ is unrelated to W3-0 and must not be staged with this wave."
+      ],
+      "overall_pass": false,
+      "overall_note": "overall_pass is false because gate 5 (`check --require-fresh-refs`) FAILS on the inherited 36 stale + 1 never-mined miner exception, exactly as it did before this wave. That failure is inherited, not caused by W3-0, and it may never be reported as passing.",
+      "source_gates_pass": true,
+      "source_gates_note": "Every gate other than the inherited strict-refs gate passed: scope (1), frozen records untouched (2), tests and contract coverage (3), registry check (4), --require-factorized TD (6), lint and its two flag modes (7), both source reviews (8), manifest validation (9) and digests (10). No blocker was found, and no contract case named in either author task is missing a test.",
+      "promotion_claim": "NONE. This receipt records infrastructure gate outcomes only. It makes no proof-promotion claim, no fresh-spine claim, no claim that any obligation was discharged, and no factorization claim for any live obligation -- proof-status/obligations-meta.json carries zero factorization blocks and the registry check reports 'factorized 0/28 reachable leaves'."
     }
-  ],
-  "notes_for_main_session": [
-    "No registry-check receipt from W3-0 exists under proof-status/receipts/. Both the authors and the checker redirected every run with --receipts-dir into scratch because neither is allowed to write there. Re-run gates 4, 5 and 6 without --receipts-dir if the on-record receipts are wanted; the verdicts and exit codes are unaffected by the flag.",
-    "The lint author's judgement call stands unreviewed by the auditor: every Legacy edge of ANY class needs a manifest row, not only forbidden-class edges. That is the strict reading and it is a no-op today (0 Legacy edges). If the auditor meant the narrow reading, main() needs a one-line filter change.",
-    "The gate digests bind UNCOMMITTED working-tree bytes at HEAD f747d0ef. Re-bind content_bound_files if anything is edited before the commit.",
-    "The inherited working-tree dirt under lean/ and docs/ is unrelated to W3-0 and must not be staged with this wave."
-  ],
+  },
   "overall_pass": false,
-  "overall_note": "overall_pass is false because gate 5 (`check --require-fresh-refs`) FAILS on the inherited 36 stale + 1 never-mined miner exception, exactly as it did before this wave. That failure is inherited, not caused by W3-0, and it may never be reported as passing.",
+  "overall_note": "false for one INHERITED reason only: `check --require-fresh-refs` exits 1 with 36 stale mined symbols and 1 never-mined symbol. Refreshing them needs `proof-blueprint refs --refresh`, which this lane is forbidden to run, and the count is unchanged from the W3-0 draft. No gate failed for a reason inside the W3-0b remediation.",
   "source_gates_pass": true,
-  "source_gates_note": "Every gate other than the inherited strict-refs gate passed: scope (1), frozen records untouched (2), tests and contract coverage (3), registry check (4), --require-factorized TD (6), lint and its two flag modes (7), both source reviews (8), manifest validation (9) and digests (10). No blocker was found, and no contract case named in either author task is missing a test.",
-  "promotion_claim": "NONE. This receipt records infrastructure gate outcomes only. It makes no proof-promotion claim, no fresh-spine claim, no claim that any obligation was discharged, and no factorization claim for any live obligation -- proof-status/obligations-meta.json carries zero factorization blocks and the registry check reports 'factorized 0/28 reachable leaves'."
+  "source_gates_note": "true: gates 1, 2, 3, 4 (every invariant other than the inherited strict-refs failure), 5 and 6 all pass. All four W3-0b remediation items in the registry script and item 5 in the lint script are implemented as reported, every required #7456 case is present as its own test, and the behaviour that had to survive is reproduced byte-for-byte.",
+  "promotion_claim": "NONE. This receipt authenticates infrastructure only: two Python gate scripts, their tests and proof-status metadata. It makes no mathematical claim, verifies no factorization for any live obligation (factorized 0/28 reachable leaves), and promotes nothing.",
+  "author_claims_checked": {
+    "note": "Author statements the checker confirmed or corrected from the working tree.",
+    "confirmed": [
+      "60 registry tests + 31 lint tests = 91, all passing.",
+      "FORBIDDEN_AXIOMS and CORE_AXIOM_TAG are gone; ALLOWED_AXIOMS is the sole baseline and the tool tag is echoed as advisory.",
+      "legacy-import-exceptions.json needed no edit: it is not dirty, its digest matches c6fc78d0, and the live lint passes with its base_head f747d0ef bound to HEAD.",
+      "The two command-level seams are unreachable from the command line; both default to None and the live CLI runs used the defaults.",
+      "The scratch run directory is gone: scratch/runs/consolidation-refactor-20260823/ holds no leftover mutation or receipt artifacts from either author.",
+      "validate_legacy's fourth positional argument imports_by_module has no default, so a caller cannot fail open."
+    ],
+    "corrected_or_qualified": [
+      "The registry author's plain-check final line omits 'roster sources dirty'; the live run prints it, because the two scripts are uncommitted. This is a display of working-tree state, not a gate failure, and the exit code and the counts (28 reachable, 6 off-spine, 34/34) are exactly as reported.",
+      "Each author flagged the other's file as 'dirty in the worktree, not mine'. Both files belong to this same W3-0b remediation and both are inside the assigned envelope; there is no foreign lane and no coordination blocker."
+    ]
+  },
+  "notes_for_main_session": [
+    "Re-bind git_head, head_note, remediation_files.sha256 and the remediation line numbers in the receipt-only commit that follows the remediation commit; the line numbers above are working-tree line numbers.",
+    "Decide whether the three registry-check receipts this check wrote (063752Z / 063757Z / 063802Z) join the commit.",
+    "overall_pass stays false until `proof-blueprint refs --refresh` clears the inherited 36 stale + 1 never-mined symbols; that is outside this lane."
+  ]
 }
