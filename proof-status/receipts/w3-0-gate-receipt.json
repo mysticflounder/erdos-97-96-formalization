@@ -1,12 +1,12 @@
 {
   "schema": "p97-gate-receipt/v1",
   "wave": "W3-0",
-  "state": "PRE-COMMIT DRAFT of the W3-0b remediation -- the main session re-binds git_head, committed scope and hashes in the receipt-only commit that follows the remediation commit",
+  "state": "FINAL — bound to remediation commit 39a40141 (W3-0b); this receipt ships in the receipt-only child commit of 39a40141",
   "generated_by": "W3-0b independent checker subagent (verification only; no authoring). Every gate below was re-run by the checker from the repository root against the working tree. The checker edited no script, test, manifest or README, ran no git write command, ran no lake build, and never ran `proof-blueprint refs --refresh`. The only file it wrote is this one.",
-  "generated_at_utc": "2026-08-25T06:38:02Z",
-  "git_head": "c6fc78d091711a3b88a5e92cf74152e583da2d2f",
-  "git_head_short": "c6fc78d0",
-  "head_note": "The W3-0b REMEDIATION IS UNCOMMITTED at this HEAD. HEAD is c6fc78d0 ('W3-0: factorization gate v2, Legacy import-exception manifest, tests'), which carries the pre-remediation W3-0 state; the four modified source/test files and proof-status/README.md are unstaged working-tree changes on top of it, and the digests in remediation_files are those working-tree bytes -- the bytes every gate below actually exercised. The main session must re-bind git_head, the committed scope and the hashes in the receipt-only commit that follows the remediation commit.",
+  "generated_at_utc": "2026-08-25T06:50:59Z",
+  "git_head": "39a4014108f430e43ec84df98ec8f2eeebe08e12",
+  "git_head_short": "39a40141",
+  "head_note": "Bound to commit 39a4014108f430e43ec84df98ec8f2eeebe08e12. Every path below is committed at that commit and its sha256 was taken from `git show 39a40141:<path>`. The checker's draft at the previous HEAD is preserved under historical_precommit_snapshot_w3_0b; the original W3-0 draft at f747d0ef under historical_precommit_snapshot_w3_0; the 11-file scope of c6fc78d0 under c6fc78d0_committed_state.",
   "scope_note": "W3-0/W3-0b: scripts and proof-status only; no Lean; no live factorization entry; no promotion claim",
   "remediation_files": {
     "note": "sha256 of the WORKING-TREE bytes the gates below actually exercised, computed with `shasum -a 256` at gate time. Four are modified relative to c6fc78d0; proof-status/README.md is modified; proof-status/legacy-import-exceptions.json is UNCHANGED from c6fc78d0 (same digest) and was correctly left untouched -- its base_head f747d0ef is a commit and an ancestor of HEAD, and its 'exceptions' list is already empty.",
@@ -947,5 +947,72 @@
     "Re-bind git_head, head_note, remediation_files.sha256 and the remediation line numbers in the receipt-only commit that follows the remediation commit; the line numbers above are working-tree line numbers.",
     "Decide whether the three registry-check receipts this check wrote (063752Z / 063757Z / 063802Z) join the commit.",
     "overall_pass stays false until `proof-blueprint refs --refresh` clears the inherited 36 stale + 1 never-mined symbols; that is outside this lane."
+  ],
+  "remediation_commit": {
+    "sha": "39a4014108f430e43ec84df98ec8f2eeebe08e12",
+    "paths": [
+      "proof-status/README.md",
+      "proof-status/receipts/registry-check-20260825T063752Z.json",
+      "proof-status/receipts/registry-check-20260825T063757Z.json",
+      "proof-status/receipts/registry-check-20260825T063802Z.json",
+      "proof-status/receipts/w3-0-gate-receipt.json",
+      "scripts/gen_obligation_registry.py",
+      "scripts/lint_cluster_imports.py",
+      "scripts/test_gen_obligation_registry_factorization.py",
+      "scripts/test_lint_cluster_imports_legacy.py"
+    ],
+    "sha256": {
+      "proof-status/README.md": "35f1116fa7e0fae9dd8a6f65d4dbb0c8b147cf9a0a75039e26d5d6aefbda8e20",
+      "proof-status/receipts/registry-check-20260825T063752Z.json": "ee6eb896855acea137d02720decc69a18cd9d011a47af842a58a623fa52fc0b3",
+      "proof-status/receipts/registry-check-20260825T063757Z.json": "4b0376fc918bb73481e906602a7b6797ab8a2623b5a2adf825a9d9faed5df834",
+      "proof-status/receipts/registry-check-20260825T063802Z.json": "70981fb32e9f406dffe4d2ed38cba37172bb20ceb9489ca9fa71b3b0214e5557",
+      "proof-status/receipts/w3-0-gate-receipt.json": "d648186e9c732b4969cbd17f639bf79f7c2a82cc91c1da9eefc8e82ecc3505cf",
+      "scripts/gen_obligation_registry.py": "209dd4283ef0664be06eba2cb77f29e9dff1ff164b05405868d6c9f865351377",
+      "scripts/lint_cluster_imports.py": "709e3b3798332581a303f81c71516e7c5a143f6c8ba7a32fdab95e00b38cbe5c",
+      "scripts/test_gen_obligation_registry_factorization.py": "7d917992c1541280eaff234c09b34aa75bff2b44554c02d186d9b8b35bbbc197",
+      "scripts/test_lint_cluster_imports_legacy.py": "8864afcf69bf8fba5b1539dadf8c026b4f8ab9595f3b498dd45cdf81f4edf90a"
+    }
+  },
+  "content_bound_files": {
+    "note": "sha256 of every path committed at 39a40141 (git show)",
+    "sha256": {
+      "proof-status/README.md": "35f1116fa7e0fae9dd8a6f65d4dbb0c8b147cf9a0a75039e26d5d6aefbda8e20",
+      "proof-status/receipts/registry-check-20260825T063752Z.json": "ee6eb896855acea137d02720decc69a18cd9d011a47af842a58a623fa52fc0b3",
+      "proof-status/receipts/registry-check-20260825T063757Z.json": "4b0376fc918bb73481e906602a7b6797ab8a2623b5a2adf825a9d9faed5df834",
+      "proof-status/receipts/registry-check-20260825T063802Z.json": "70981fb32e9f406dffe4d2ed38cba37172bb20ceb9489ca9fa71b3b0214e5557",
+      "proof-status/receipts/w3-0-gate-receipt.json": "d648186e9c732b4969cbd17f639bf79f7c2a82cc91c1da9eefc8e82ecc3505cf",
+      "scripts/gen_obligation_registry.py": "209dd4283ef0664be06eba2cb77f29e9dff1ff164b05405868d6c9f865351377",
+      "scripts/lint_cluster_imports.py": "709e3b3798332581a303f81c71516e7c5a143f6c8ba7a32fdab95e00b38cbe5c",
+      "scripts/test_gen_obligation_registry_factorization.py": "7d917992c1541280eaff234c09b34aa75bff2b44554c02d186d9b8b35bbbc197",
+      "scripts/test_lint_cluster_imports_legacy.py": "8864afcf69bf8fba5b1539dadf8c026b4f8ab9595f3b498dd45cdf81f4edf90a"
+    }
+  },
+  "main_session_reverification": {
+    "utc": "2026-08-25T06:50:59Z",
+    "on": "the staged tree that became 39a40141 (byte-identical to the commit)",
+    "results": [
+      "uv run pytest -q scripts/test_gen_obligation_registry_factorization.py scripts/test_lint_cluster_imports_legacy.py: 94 passed, 0 failed",
+      "gen_obligation_registry.py check --baseline proof-status/baseline: exit 0 (28 reachable / 6 off-spine / 34/34 reviewed; factorized 0/28)",
+      "same --require-fresh-refs: exit 1 at the inherited 36 stale + 1 never-mined (FAIL-inherited, never passing)",
+      "same --require-factorized TD: exit 1 naming P97-TD-BLOCKERCOINCIDENCE, P97-TD-GLOBALGAPORCLOSED, P97-TD-SURVIVALSQUARE",
+      "lint_cluster_imports.py (plain, --list-legacy, --fail-on-legacy): exit 0; 'lint_cluster_imports: OK -- 679 import edges scanned, 29 forbidden edges, all waived by 29 authenticated waivers; 0 legacy edges, all listed.'",
+      "git diff --stat obligations.json id-assignments.json obligations-meta.json import-waivers.json cluster-import-edges.json vs parent: empty",
+      "proof-blueprint refs --check: current build f80c3204eef5, 36 stale, 1 never-mined",
+      "staged hygiene check --lane consolidation-refactor-20260823 --staged: exit 0, 0 issues, 0 foreign staged"
+    ]
+  },
+  "metadata_corrections": [
+    {
+      "utc": "2026-08-25T06:50:59Z",
+      "auditor_finding": "#7455 + #7456 closeout",
+      "kind": "receipt re-bound to the remediation commit; metadata only",
+      "corrected": [
+        "git_head/head_note/state -> remediation commit",
+        "content_bound_files -> full committed scope with git-show hashes",
+        "historical snapshots labeled (f747d0ef draft; c6fc78d0 11-file state; W3-0b pre-commit draft)",
+        "main_session_reverification added"
+      ],
+      "unchanged": "overall_pass=false (inherited strict refs 36+1), source_gates_pass=true, --require-factorized TD failure expected"
+    }
   ]
 }
