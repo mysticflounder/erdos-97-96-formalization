@@ -1341,9 +1341,30 @@ def fixture_record(symbol: str, signature: str, *, has_sorry: bool = False,
 
 
 def copy_proof_status(tmp_path: Path) -> Path:
-    """A COPY of proof-status; every fixture edit and receipt stays inside it."""
+    """A COPY of proof-status; every fixture edit and receipt stays inside it.
+
+    Every LIVE factorization block is stripped from the copy (reviewed
+    metadata and the materialized registry entry alike).  The command-level
+    fixtures inject one synthetic block and run against a MappingBackend that
+    knows only the Fixture.W30b.* symbols, so a real block left in the copy
+    would be "cannot verify" noise unrelated to the behaviour under test.
+    """
     target = tmp_path / "proof-status"
     shutil.copytree(PROOF_STATUS, target)
+    meta_path = target / gor.META_NAME
+    meta = json.loads(meta_path.read_text(encoding="utf-8"))
+    for entry in meta.values():
+        if isinstance(entry, dict):
+            entry.pop(gor.FACTORIZATION_KEY, None)
+    meta_path.write_text(
+        json.dumps(meta, indent=2, sort_keys=True, ensure_ascii=False) + "\n",
+        encoding="utf-8",
+    )
+    registry_path = target / gor.REGISTRY_NAME
+    registry = json.loads(registry_path.read_text(encoding="utf-8"))
+    for item in registry["obligations"]:
+        item.pop(gor.FACTORIZATION_KEY, None)
+    registry_path.write_text(gor.dump_canonical(registry), encoding="utf-8")
     return target
 
 

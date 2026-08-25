@@ -314,6 +314,22 @@
   "P97-TD-BLOCKERCOINCIDENCE": {
     "cluster": "Two-deletion",
     "evidence_note": "docs/audits/2026-08-22-f3-twodeletion-third-pass-synthesis.md records the third-pass trace/graph/fan normal forms as prose-closed while this declaration remains one of the three live unresolved TwoDeletion leaves with five metric roots open.",
+    "factorization": {
+      "note": "W3-TD: the two-deletion cluster coordinator. The producer twoDeletionOutcome_of_ingress narrows a two-deletion ingress to the three open terminals with a kernel-clean case split; the eliminator false_of_twoDeletionOutcome is the only consumer of the three open leaves, and the legacy wrapper reaches both through the coordinator.",
+      "obligation_id": "P97-TD-BLOCKERCOINCIDENCE",
+      "pinned": {
+        "legacy_wrapper_statement_sha256": "32c15396d850f5f3fbd7539c7d0d43016034e4e17553f4ce92fc5ddbec19b60e",
+        "open_leaf_statement_sha256": "4c3a8197661114d72c5f1fe40dede25049655e0f4a031060a0b6402375859545"
+      },
+      "roles": {
+        "coordinator": "Problem97.ATailFrontierLiveClosure.false_of_twoDeletionIngress",
+        "eliminator": "Problem97.ATailFrontierLiveClosure.false_of_twoDeletionOutcome",
+        "legacy_wrapper": "Problem97.ATailFrontierLiveClosure.false_of_twoDistinctExactFourMutualOmissionJointDeletions",
+        "open_leaf": "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmission_fourCenterCommonDeletion_blockerCoincidence",
+        "producer": "Problem97.ATailFrontierLiveClosure.twoDeletionOutcome_of_ingress"
+      },
+      "schema": "p97-factorization/v2"
+    },
     "implementation_effect": "bypass",
     "latest_checkpoint": "docs/audits/2026-08-22-f3-twodeletion-third-pass-synthesis.md",
     "legacy_labels": [
@@ -327,6 +343,22 @@
   "P97-TD-GLOBALGAPORCLOSED": {
     "cluster": "Two-deletion",
     "evidence_note": "docs/audits/2026-08-22-f3-twodeletion-third-pass-synthesis.md records the third-pass trace/graph/fan normal forms as prose-closed while this declaration remains one of the three live unresolved TwoDeletion leaves with five metric roots open.",
+    "factorization": {
+      "note": "W3-TD: the two-deletion cluster coordinator. The producer twoDeletionOutcome_of_ingress narrows a two-deletion ingress to the three open terminals with a kernel-clean case split; the eliminator false_of_twoDeletionOutcome is the only consumer of the three open leaves, and the legacy wrapper reaches both through the coordinator.",
+      "obligation_id": "P97-TD-GLOBALGAPORCLOSED",
+      "pinned": {
+        "legacy_wrapper_statement_sha256": "32c15396d850f5f3fbd7539c7d0d43016034e4e17553f4ce92fc5ddbec19b60e",
+        "open_leaf_statement_sha256": "356d2a888861ce9c3a6eaa9c7cdcc036d5f20f21a0adefce39a8bc521e93a9a1"
+      },
+      "roles": {
+        "coordinator": "Problem97.ATailFrontierLiveClosure.false_of_twoDeletionIngress",
+        "eliminator": "Problem97.ATailFrontierLiveClosure.false_of_twoDeletionOutcome",
+        "legacy_wrapper": "Problem97.ATailFrontierLiveClosure.false_of_twoDistinctExactFourMutualOmissionJointDeletions",
+        "open_leaf": "Problem97.ATailFrontierLiveClosure.b1_globalGapOrClosedTerminal_of_counterexample",
+        "producer": "Problem97.ATailFrontierLiveClosure.twoDeletionOutcome_of_ingress"
+      },
+      "schema": "p97-factorization/v2"
+    },
     "implementation_effect": "bypass",
     "latest_checkpoint": "docs/audits/2026-08-22-f3-twodeletion-third-pass-synthesis.md",
     "legacy_labels": [
@@ -340,6 +372,22 @@
   "P97-TD-SURVIVALSQUARE": {
     "cluster": "Two-deletion",
     "evidence_note": "docs/audits/2026-08-22-f3-twodeletion-third-pass-synthesis.md records the third-pass trace/graph/fan normal forms as prose-closed while this declaration remains one of the three live unresolved TwoDeletion leaves with five metric roots open.",
+    "factorization": {
+      "note": "W3-TD: the two-deletion cluster coordinator. The producer twoDeletionOutcome_of_ingress narrows a two-deletion ingress to the three open terminals with a kernel-clean case split; the eliminator false_of_twoDeletionOutcome is the only consumer of the three open leaves, and the legacy wrapper reaches both through the coordinator.",
+      "obligation_id": "P97-TD-SURVIVALSQUARE",
+      "pinned": {
+        "legacy_wrapper_statement_sha256": "32c15396d850f5f3fbd7539c7d0d43016034e4e17553f4ce92fc5ddbec19b60e",
+        "open_leaf_statement_sha256": "dbd310d58af52d0d19775ffa2290bdb6f6cfa1dd9da2d576e8fa7a51e3481d34"
+      },
+      "roles": {
+        "coordinator": "Problem97.ATailFrontierLiveClosure.false_of_twoDeletionIngress",
+        "eliminator": "Problem97.ATailFrontierLiveClosure.false_of_twoDeletionOutcome",
+        "legacy_wrapper": "Problem97.ATailFrontierLiveClosure.false_of_twoDistinctExactFourMutualOmissionJointDeletions",
+        "open_leaf": "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmission_fourCenterCommonDeletion_survivalSquare",
+        "producer": "Problem97.ATailFrontierLiveClosure.twoDeletionOutcome_of_ingress"
+      },
+      "schema": "p97-factorization/v2"
+    },
     "implementation_effect": "bypass",
     "latest_checkpoint": "docs/audits/2026-08-22-f3-twodeletion-third-pass-synthesis.md",
     "legacy_labels": [

@@ -1,0 +1,367 @@
+{
+  "author_claims_checked": [
+    {
+      "claim": "Both TwoDeletion type files build green with zero attributable warnings",
+      "evidence": "root build log grep for TwoDeletion/ returns no diagnostic from any new file; 0 rebuilt, 546 replayed, exit 0",
+      "verdict": "CONFIRMED"
+    },
+    {
+      "claim": "TwoDeletionCollision.lean SHA-256 is still 2758f01a...",
+      "evidence": "the live hash is 6dfdff9cf5f28bdf1968cc72a0c5164d858891a93a746ca87854ea18b47a3f0e because a LATER stage deleted the cluster entry theorem, which the design requires. The stage-1 claim was true when made and is stale, not wrong in intent: the three leaf statements are byte-identical (gate 4) and the file's whole diff is one pure-deletion hunk with zero added lines.",
+      "verdict": "REFUTED AS STATED, but the invariant it was meant to protect HOLDS"
+    },
+    {
+      "claim": "The producer twoDeletionOutcome_of_ingress is sorry-free",
+      "evidence": "proof-blueprint axioms reports exactly propext, Classical.choice, Quot.sound",
+      "verdict": "CONFIRMED"
+    },
+    {
+      "claim": "The eliminator applies each of the three leaves directly",
+      "evidence": "proof-blueprint search --uses lists Problem97.ATailFrontierLiveClosure.false_of_twoDeletionOutcome (TwoDeletion/Coordinator.lean:268) as a caller of all three leaves; the registry factorization verifier reports verified 3, violations []",
+      "verdict": "CONFIRMED"
+    },
+    {
+      "claim": "The relocated wrapper statement is byte-identical to the deleted one",
+      "evidence": "27 binder lines byte-identical; index signature digest 32c15396... unchanged from the pre-wave pin",
+      "verdict": "CONFIRMED"
+    },
+    {
+      "claim": "No new sorry, axiom, native_decide, decide, maxHeartbeats or unsafe anywhere",
+      "evidence": "grep over all four new files returns no match for any pattern",
+      "verdict": "CONFIRMED"
+    }
+  ],
+  "baseline_reference": {
+    "roster_baseline": "proof-status/baseline (base_head f3063069)",
+    "wave_baseline": "scratchpad w3-td-baseline: three leaf statement texts plus module-hashes.txt for seven Lean modules, captured at HEAD 026eb6ba before the wave"
+  },
+  "build": {
+    "build_fingerprint": "c596f2adbf3a",
+    "errors": 0,
+    "exit_code": 0,
+    "final_line": "Build completed successfully (12192 jobs).",
+    "modules_rebuilt": 0,
+    "modules_replayed": 546,
+    "note": "The stage-3 root build was already current: `lake-build Erdos9796Proof` produced 0 `Built` lines and 546 `Replayed` lines, so nothing was left to rebuild. The wrapper's trailing `proof-blueprint sync` reported `already fresh -- 4088 module(s) unchanged at build c596f2adbf3a`, and index/call-graph state is therefore bound to the same build every gate below reads. The wrapper also rewrote docs/live-blueprint.md, which was already dirty before this wave and is expected render drift, not a W3-TD edit.",
+    "target": "Erdos9796Proof",
+    "warning_scan": "grep of the full 16615-line log for 'TwoDeletion/', 'Legacy/TwoDeletionWrappers', 'TwoDeletionCollision' and 'Rigid221Placement' returns no diagnostic from any of the four NEW files. TwoDeletionCollision.lean and Rigid221Placement.lean carry only pre-existing warnings (missing module docstring, one unused variable, and the `declaration uses 'sorry'` lines for the open leaves at TwoDeletionCollision.lean:144/678/752 and the five pre-existing Rigid221Placement leaves).",
+    "warnings_attributable_to_W3_TD_files": 0,
+    "wrapper": "lake-build"
+  },
+  "content_bound_files": {
+    "hash_kind": "working-tree",
+    "note": "WORKING-TREE sha256 (shasum -a 256 of the file on disk at 2026-08-25T16:30:53Z, HEAD 026eb6ba, PRE-COMMIT). These are NOT commit-object hashes. The main session must recompute them with `git show <commit>:<path>` after the wave commit lands and rebind this receipt, exactly as W3-0 did.",
+    "sha256": {
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Legacy/TwoDeletionWrappers.lean": "2dc9365df993bcaaf92617ac1cd3471e26d5593e66ea594fb8f2f541c4d77c7a",
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221Placement.lean": "2f8c444d6269de79c7a672700a9f80e6744fdaddb48263d61239cdbf99cd8210",
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletion/Coordinator.lean": "73c3cf5f8037819aa2a5fccccb33a524646aef69724c472874f1a827a91af158",
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletion/Ingress.lean": "ea88a27eeb03fa1c4a8966d2a3b7d2faef1e1a74a2efd0e5ec8d8a78cd513033",
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletion/Outcome.lean": "90d0835a6f856b650a6db6b04b06c8422f8afbe1e65a580452c7da41838beb9b",
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean": "6dfdff9cf5f28bdf1968cc72a0c5164d858891a93a746ca87854ea18b47a3f0e",
+      "proof-status/import-waivers.json": "f5946adc097cdccb074a4f00c42b4e3fe730dc5a484b849a0517cf2ca0c6add4",
+      "proof-status/legacy-import-exceptions.json": "ac494a9f89299e2ccd6727e6bbedef18a1c07fc03b9f0eb42efce2bc738bb233",
+      "proof-status/obligations-meta.json": "e396ac952e49a6b307037a105ab252b3b092de213ff50fe9bbf635ca4bfe1cc0",
+      "proof-status/obligations.json": "23822c36b6868716058ad7ea5244643232f50e26b8675609dd4ddaf01012eab0",
+      "proof-status/receipts/registry-check-20260825T162456Z.json": "f1c611b7d83ff4cbdd7dd45ecbef58e11b4f28dec827c07b34eed6da021b0a98",
+      "proof-status/receipts/registry-check-20260825T162539Z.json": "616e953ee0affcfefeabcb8ea2ca2f5135473cfd0549c48921cdd0fc1964edb1",
+      "proof-status/receipts/registry-check-20260825T162622Z.json": "ee2838f1ea5429f5be13aaf2901b5f7fde5cb0696827a007b88787420f4b1792"
+    }
+  },
+  "gates": [
+    {
+      "commands": [
+        {
+          "command": "proof-blueprint search --with-sorry --spine --json | jq -r .symbol | sort | diff - baseline",
+          "exit_code": 0,
+          "final_line": "28 symbols; diff against proof-status/baseline/spine-sorry.json is empty"
+        },
+        {
+          "command": "proof-blueprint search --off-spine --with-sorry --json | jq -r .symbol | sort | diff - baseline",
+          "exit_code": 0,
+          "final_line": "6 symbols; diff against proof-status/baseline/offspine-sorry.json is empty"
+        }
+      ],
+      "detail": "Both symbol SETS are equal to the baseline sets, not merely equal in cardinality: the sorted symbol lists compare byte-identical. 28 reachable open leaves, 6 off-spine. No leaf was added, removed or renamed by the relocation.",
+      "name": "leaf roster: the spine and off-spine sorry sets are unchanged",
+      "step": 1,
+      "verdict": "PASS"
+    },
+    {
+      "commands": [
+        {
+          "command": "proof-blueprint axioms Problem97.erdos97_rhs",
+          "exit_code": 1,
+          "final_line": "axioms (6): propext, sorryAx, Classical.choice, Lean.ofReduceBool, Lean.trustCompiler, Quot.sound"
+        },
+        {
+          "command": "diff proof-status/baseline/axioms.txt <live output>",
+          "exit_code": 0,
+          "final_line": "(no output) -- byte-identical"
+        }
+      ],
+      "detail": "Exit 1 is the tool's verdict on the unapproved sorryAx and matches the baseline capture; the OUTPUT is byte-identical. The native-trust pair Lean.ofReduceBool / Lean.trustCompiler is the pre-existing baseline pair, unchanged in membership.",
+      "name": "publication axiom closure of Problem97.erdos97_rhs is byte-identical to the baseline",
+      "step": 2,
+      "verdict": "PASS"
+    },
+    {
+      "commands": [
+        {
+          "command": "proof-blueprint axioms Problem97.ATailFrontierLiveClosure.twoDeletionOutcome_of_ingress",
+          "exit_code": 0,
+          "final_line": "axioms (3): propext, Classical.choice, Quot.sound"
+        },
+        {
+          "command": "proof-blueprint axioms Problem97.ATailFrontierLiveClosure.false_of_twoDeletionOutcome",
+          "exit_code": 1,
+          "final_line": "axioms (4): propext, sorryAx, Classical.choice, Quot.sound"
+        },
+        {
+          "command": "proof-blueprint axioms Problem97.ATailFrontierLiveClosure.false_of_twoDeletionIngress",
+          "exit_code": 1,
+          "final_line": "axioms (4): propext, sorryAx, Classical.choice, Quot.sound"
+        },
+        {
+          "command": "proof-blueprint axioms Problem97.ATailFrontierLiveClosure.false_of_twoDistinctExactFourMutualOmissionJointDeletions",
+          "exit_code": 1,
+          "final_line": "axioms (4): propext, sorryAx, Classical.choice, Quot.sound"
+        }
+      ],
+      "detail": "The producer twoDeletionOutcome_of_ingress is kernel-CLEAN: exactly propext, Classical.choice, Quot.sound, no sorryAx. The eliminator false_of_twoDeletionOutcome, the cumulative coordinator false_of_twoDeletionIngress and the relocated legacy wrapper each carry exactly the baseline three plus sorryAx. Neither Lean.ofReduceBool nor Lean.trustCompiler appears in any of the four role closures, so no new native trust is introduced anywhere; the only occurrence of that pair in the tree is the pre-existing one already inside the erdos97_rhs closure (gate 2).",
+      "name": "trust of the new roles: producer clean, consumers baseline + sorryAx, no new native trust",
+      "step": 3,
+      "verdict": "PASS"
+    },
+    {
+      "commands": [
+        {
+          "command": "awk-extract each leaf statement from TwoDeletionCollision.lean; cmp against w3-td-baseline/<name>.stmt",
+          "exit_code": 0,
+          "final_line": "IDENTICAL b1_globalGapOrClosedTerminal_of_counterexample (7 lines); IDENTICAL false_of_exactFourMutualOmission_fourCenterCommonDeletion_blockerCoincidence (69 lines); IDENTICAL false_of_exactFourMutualOmission_fourCenterCommonDeletion_survivalSquare (94 lines)"
+        },
+        {
+          "command": "git diff HEAD -- lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean",
+          "exit_code": 0,
+          "final_line": "1 hunk: @@ -1356,60 +1356,5 @@ ; 0 added lines, 53 removed lines, exactly one removed `theorem` line"
+        }
+      ],
+      "detail": "The extraction used the same rule as the baseline capture (from `^theorem <name>` through the first line ending `:= by`) and cmp reports byte equality for all three. The whole-file diff is a single hunk with ZERO added lines, so no line anywhere in the file -- statement or proof -- was rewritten; the only change is the removal of the docstring plus the single cluster entry theorem false_of_twoDistinctExactFourMutualOmissionJointDeletions. The three leaves keep their `sorry` and remain at lines 144, 678 and 752 in the live index.",
+      "name": "the three open leaf statements and proofs are byte-identical; TwoDeletionCollision.lean changes by one pure-deletion hunk",
+      "step": 4,
+      "verdict": "PASS"
+    },
+    {
+      "commands": [
+        {
+          "command": "extract the theorem block from `git show HEAD:...TwoDeletionCollision.lean` and from Legacy/TwoDeletionWrappers.lean; diff",
+          "exit_code": 0,
+          "final_line": "28 lines each; the ONLY differing line is the proof delimiter: `    False := by` (old, tactic proof) vs `    False :=` (new, term proof)"
+        },
+        {
+          "command": "independent re-derivation of the index signature digest sha256(' '.join(signature.split()))",
+          "exit_code": 0,
+          "final_line": "32c15396d850f5f3fbd7539c7d0d43016034e4e17553f4ce92fc5ddbec19b60e at Legacy/TwoDeletionWrappers.lean:74 -- identical to the pre-wave digest"
+        }
+      ],
+      "detail": "All 27 binder/conclusion lines are byte-identical; the single difference is the ` by` that opened the old tactic block, which belongs to the proof and not to the statement. The claim is confirmed independently at the kernel-index level: the digest the registry pins for the legacy_wrapper role is unchanged from its pre-wave value, which is only possible if the elaborated signature string is identical.",
+      "name": "the relocated wrapper statement is identical to the deleted one",
+      "step": 5,
+      "verdict": "PASS"
+    },
+    {
+      "commands": [
+        {
+          "command": "shasum -a 256 of every path in w3-td-baseline/module-hashes.txt",
+          "exit_code": 0,
+          "final_line": "CHANGED only TwoDeletionCollision.lean and Rigid221Placement.lean; SAME for Rigid221SourceHeavy.lean, Rigid221Closure.lean, TriApexEndpointRetainedOmission.lean, TwoSourceCanonicalSurface.lean, B1Live.lean"
+        },
+        {
+          "command": "git diff --name-only HEAD",
+          "exit_code": 0,
+          "final_line": "29 tracked paths; the only ones inside the W3-TD envelope are the 2 Lean files and the 4 proof-status JSONs"
+        }
+      ],
+      "detail": "The five blacklisted modules that the baseline pins are byte-unchanged. Of the 29 tracked working-tree modifications, 6 are the W3-TD envelope (TwoDeletionCollision.lean, Rigid221Placement.lean, import-waivers.json, legacy-import-exceptions.json, obligations-meta.json, obligations.json); the remaining 23 (docs/, scratch/, TwoSourceCanonicalSurface.lean, TwoSourceRetainedMinimalCore.lean, docs/live-blueprint.md) were all dirty before this wave started and are untouched by it -- TwoSourceCanonicalSurface.lean in particular is dirty relative to HEAD yet matches its w3-td-baseline hash exactly, which pins that its dirt predates W3-TD. The 4 new files appear as the two untracked directories lean/.../TwoDeletion/ and lean/.../Legacy/.",
+      "name": "no blacklisted or foreign file was touched",
+      "step": 6,
+      "verdict": "PASS"
+    },
+    {
+      "commands": [
+        {
+          "command": "uv run python scripts/lint_cluster_imports.py",
+          "exit_code": 0,
+          "final_line": "lint_cluster_imports: OK -- 688 import edges scanned, 28 forbidden edges, all waived by 28 authenticated waivers; 3 legacy edges, all listed."
+        },
+        {
+          "command": "uv run python scripts/lint_cluster_imports.py --list-legacy",
+          "exit_code": 0,
+          "final_line": "legacy edges (3): Legacy.TwoDeletionWrappers -> TwoDeletion.Coordinator (intra-cluster); Legacy.TwoDeletionWrappers -> TwoDeletionCollision (intra-cluster); Rigid221Placement -> Legacy.TwoDeletionWrappers (cross-cluster)"
+        },
+        {
+          "command": "uv run python scripts/lint_cluster_imports.py --fail-on-legacy",
+          "exit_code": 1,
+          "final_line": "FAIL -- 3 Legacy-exception problems; one --fail-on-legacy line per live Legacy edge"
+        },
+        {
+          "command": "uv run python scripts/lint_cluster_imports.py --write-record <scratch>; compare the by-class forbidden set with proof-status/cluster-import-edges-live-2026-08-24.json",
+          "exit_code": 0,
+          "final_line": "29 -> 29 by-class forbidden edges; the single change is Rigid221Placement -> TwoDeletionCollision replaced by Rigid221Placement -> Legacy.TwoDeletionWrappers"
+        }
+      ],
+      "detail": "The full edge delta is 10 added and 1 removed (679 -> 688). Added: Ingress -> ContextFrames (to-shared), Ingress -> JointDeletionCore (to-shared), Outcome -> Ingress (intra), Outcome -> SharedFrontierHelpers (to-shared), Coordinator -> Ingress (intra), Coordinator -> Outcome (intra), Coordinator -> TwoDeletionCollision (intra), Legacy.TwoDeletionWrappers -> Coordinator (Legacy, intra), Legacy.TwoDeletionWrappers -> TwoDeletionCollision (Legacy, intra), Rigid221Placement -> Legacy.TwoDeletionWrappers (Legacy, cross). Removed: Rigid221Placement -> TwoDeletionCollision (cross). NOT ONE added edge is a non-Legacy cross-cluster or from-shared-to-cluster edge, so no waiver was needed and none was added; the 29th by-class forbidden edge is Legacy-governed and drops out of the forbidden set, leaving 28 waived by 28 waivers with the retired row deleted and its summary recomputed to 3/25/2/26/28. --fail-on-legacy exits 1 by the script's own documented contract ('rejects every Legacy edge, listed or not, which is how the wave that empties the waiver file proves the migration is finished'); a wave whose entire purpose is to CREATE a Legacy wrapper cannot pass it, and the design's own checklist (section 13 F) does not run it. This is recorded as a deviation from the stage-5 brief's expectation, not as a wave defect.",
+      "deviation_from_design": "Design section 10.1 tabulated 9 new edges and 2 Legacy edges (687 total). The live tree has 10 new edges and 3 Legacy edges (688 total) because Legacy/TwoDeletionWrappers.lean imports TwoDeletionCollision directly in addition to TwoDeletion.Coordinator. That extra edge is intra-cluster, is listed in legacy-import-exceptions.json as its own row, and the design's edge count was explicitly marked {{NEEDS_PROOF}}.",
+      "name": "cluster import lint: no new non-Legacy forbidden edge; every Legacy edge listed",
+      "step": 7,
+      "verdict": "PASS"
+    },
+    {
+      "commands": [
+        {
+          "command": "uv run python scripts/gen_obligation_registry.py check --baseline proof-status/baseline",
+          "exit_code": 0,
+          "final_line": "OK: obligations.json matches the live spine (28 reachable, 6 off-spine); 34/34 reviewed meta_status, vocabulary clean; factorized 3/28 reachable leaves"
+        },
+        {
+          "command": "uv run python scripts/gen_obligation_registry.py check --baseline proof-status/baseline --require-factorized TD",
+          "exit_code": 0,
+          "final_line": "OK ... factorized 3/28 reachable leaves (required: TD)"
+        },
+        {
+          "command": "uv run python scripts/gen_obligation_registry.py check --baseline proof-status/baseline --require-fresh-refs",
+          "exit_code": 1,
+          "final_line": "FAIL: kernel-mined refs are not fresh -- 36 stale mined symbol(s), 1 never-mined symbol(s)"
+        },
+        {
+          "command": "proof-blueprint refs --check",
+          "exit_code": 1,
+          "final_line": "current build c596f2adbf3a; mined (fresh) 56437; stale 36; never mined 1"
+        }
+      ],
+      "detail": "The roster is 28 reachable / 6 off-spine / 34 total with 34/34 reviewed meta_status, exactly as required. The factorization verifier reports checked 3, verified 3, violations [], schema_versions {p97-factorization/v2: 3}, registry_drift [] -- and it verifies per-symbol mined freshness for all five roles and every via hop, so its clean verdict independently establishes that NO W3-TD role symbol is among the stale or never-mined set. The strict-refs counts 36 stale + 1 never-mined are IDENTICAL to the inherited baseline capture in proof-status/baseline/refs-check.txt (36 + 1 at build fd3f51e09b99), while the minable symbol population grew 64379 -> 64794 with the new modules: the wave added zero stale symbols and zero never-mined symbols. I independently re-derived all four pinned statement digests from the live index with sha256(' '.join(signature.split())) and all four match the pins byte for byte: legacy_wrapper 32c15396..., b1_globalGapOrClosedTerminal 356d2a88..., blockerCoincidence 4c3a8197..., survivalSquare dbd310d5...; the three leaf digests are unchanged from their pre-wave values, which is the gate invariant.",
+      "name": "obligation registry: roster, factorization and refs freshness",
+      "step": 8,
+      "verdict": "PASS for the roster and factorization checks; FAIL for --require-fresh-refs, inherited"
+    },
+    {
+      "commands": [
+        {
+          "command": "proof-blueprint verify-publish",
+          "exit_code": 1,
+          "final_line": "verify-publish FAILED (2 blocker(s)): target_symbol Problem97.erdos97_rhs 1 unapproved custom axiom sorryAx; spine reaches sorry"
+        }
+      ],
+      "detail": "191 output lines. Diff against proof-status/baseline/verify-publish.txt shows exactly two differences, neither substantive: the uncommitted-lean-file counter moves 10 -> 12 (the wave adds four new files and removes none from the dirty set), and the baseline capture carries one extra trailing line 'verify-publish exit 1' appended by whoever captured it. Both blockers, the 3 off-spine sorry symbols and the duplicate-body advisories are the same as the baseline. Exit 1 is the expected baseline behaviour on sorryAx; the wave neither improves nor degrades it.",
+      "name": "verify-publish output matches the baseline",
+      "step": 9,
+      "verdict": "PASS"
+    },
+    {
+      "assessment": "This is a defect in the TEST HARNESS exposed by the wave, not a defect in the wave's Lean source, import graph, axiom closure or registry data: the live registry data itself passes every real check (gate 8: verified 3, violations []). The fix belongs in scripts/test_gen_obligation_registry_factorization.py -- strip pre-existing factorization blocks from the copied tree in `copy_proof_status`, or extend `migration_backend` to cover them -- and scripts/ is outside this wave's declared envelope, so the verifier did not attempt it. The main session must decide whether W3-TD absorbs the harness fix or hands it to a follow-up.",
+      "commands": [
+        {
+          "command": "uv run python -m pytest scripts/test_gen_obligation_registry_factorization.py scripts/test_lint_cluster_imports_legacy.py -q",
+          "exit_code": 1,
+          "final_line": "6 failed, 95 passed in 2.02s  (expected: 101 passed)"
+        }
+      ],
+      "controlled_experiment": "In a scratch copy of scripts/ + proof-status/ (repository untouched, no git write): with the three blocks present the suite reports 6 failed / 95 passed; after deleting the three `factorization` blocks from BOTH proof-status/obligations-meta.json and proof-status/obligations.json in that copy, the same command reports 101 passed. The causal link is therefore established, not inferred.",
+      "detail": "SIX command-level tests in scripts/test_gen_obligation_registry_factorization.py fail, all six for the same reason, and the reason is inside this wave. Failing: test_command_level_rename_migration_keeps_the_roster_and_is_idempotent, test_command_level_check_fails_when_the_registry_block_drifts, test_command_level_native_axiom_producer_writes_nothing_in_either_mode[run_generate], test_command_level_native_axiom_producer_writes_nothing_in_either_mode[run_generate_default], test_command_level_valid_rename_in_default_mode_writes_and_migrates, test_command_level_an_unverified_block_is_never_materialized. All 31 tests in scripts/test_lint_cluster_imports_legacy.py pass.",
+      "name": "focused tests: scripts/test_gen_obligation_registry_factorization.py + scripts/test_lint_cluster_imports_legacy.py",
+      "root_cause_verified_in_session": "The six tests drive the real generate/check entry point over `shutil.copytree` of the LIVE proof-status tree (scripts/test_gen_obligation_registry_factorization.py:1313 `PROOF_STATUS = SCRIPT.parent.parent / 'proof-status'`, :1345 `copy_proof_status`) while supplying a `gor.MappingBackend` that knows ONLY the synthetic fixture symbols Fixture.W30b.* plus one STRANGER. Every REAL p97-factorization/v2 block in the copied registry is therefore unverifiable against that backend, and one of the tests additionally asserts `all(FACTORIZATION_KEY not in item for item in registry['obligations'])`, which assumes the live registry materializes no block at all. At HEAD 026eb6ba obligations-meta.json contained ZERO factorization blocks, so the harness was accidentally sound; W3-TD adds three, and each one produces 25-26 'cannot verify' violations (58 in total in one run), naming P97-TD-GLOBALGAPORCLOSED, P97-TD-BLOCKERCOINCIDENCE and P97-TD-SURVIVALSQUARE and no other id except the test's own P97-R221-BLOCKERDELETED injection point.",
+      "step": 10,
+      "verdict": "FAIL"
+    },
+    {
+      "commands": [
+        {
+          "command": "git diff --check HEAD -- <the 6 tracked W3-TD paths>",
+          "exit_code": 0,
+          "final_line": "(no output)"
+        },
+        {
+          "command": "trailing-whitespace / tab / final-newline scan of the 4 new Lean files",
+          "exit_code": 0,
+          "final_line": "Ingress.lean 137 lines, Outcome.lean 232, Coordinator.lean 310, TwoDeletionWrappers.lean 107; 0 trailing-whitespace lines, 0 tabs, all end with a newline"
+        },
+        {
+          "command": "grep for sorry / axiom / native_decide / bare decide / maxHeartbeats / unsafe / set_option across the 4 new files",
+          "exit_code": 1,
+          "final_line": "no match for any of the seven patterns"
+        }
+      ],
+      "detail": "No new `sorry`, `axiom`, `native_decide`, bare `decide`, `maxHeartbeats` or `unsafe` occurs anywhere in the four new files, and no `set_option` at all. The banned prose word 'equivalent'/'equivalence' does not occur. All four carry the exact 5-line ContextFrames.lean copyright header (diff of `head -5` against ContextFrames.lean is empty for each) and open `namespace Problem97` / `namespace ATailFrontierLiveClosure` with matching `end`s. Rigid221Placement.lean's whole diff is the single import line swap TwoDeletionCollision -> Legacy.TwoDeletionWrappers.",
+      "name": "working-tree hygiene of the W3-TD files",
+      "step": 11,
+      "verdict": "PASS"
+    }
+  ],
+  "generated_at_utc": "2026-08-25T16:30:53Z",
+  "generated_by": "W3-TD stage-5 independent gate verifier (verification only; no authoring). Every gate below was re-run from the repository root against the working tree; no author claim was taken on trust. The verifier ran no git write command, edited no Lean, script, manifest or registry file, and never ran `proof-blueprint refs --refresh` or `gen_obligation_registry.py generate`. The only repository files it wrote are this receipt and the three registry-check receipts listed in new_receipts_written_by_this_check, which are the recorded output of gate 8.",
+  "git_head": "026eb6bacf32c9ddf35c912aa006873fe134f7bf",
+  "git_head_short": "026eb6ba",
+  "head_note": "Pre-commit. The W3-TD changes are in the working tree, not in any commit. content_bound_files below are WORKING-TREE hashes; the main session must recompute them with `git show <commit>:<path>` after the wave commit and rebind this receipt.",
+  "new_receipts_written_by_this_check": [
+    "proof-status/receipts/registry-check-20260825T162456Z.json",
+    "proof-status/receipts/registry-check-20260825T162539Z.json",
+    "proof-status/receipts/registry-check-20260825T162622Z.json"
+  ],
+  "notes_for_main_session": [
+    {
+      "note": "GATE 10 IS A REAL FAILURE AND NEEDS A DECISION BEFORE COMMIT. Adding the three p97-factorization/v2 blocks to proof-status/obligations-meta.json breaks six command-level tests in scripts/test_gen_obligation_registry_factorization.py. Fix in the harness (strip pre-existing factorization blocks inside copy_proof_status, or teach migration_backend about them) -- do NOT remove the blocks, which are correct and verified.",
+      "status": "OPEN, outside this lane's envelope (scripts/ is not a W3-TD path)"
+    },
+    {
+      "note": "Legacy/TwoDeletionWrappers.lean imports TwoDeletionCollision directly as well as TwoDeletion.Coordinator, so the live tree has 3 Legacy edges and 688 import edges where design section 10.1 tabulated 2 and 687. The extra edge is intra-cluster, has its own legacy-import-exceptions.json row, and the lint passes; the design's edge count was marked {{NEEDS_PROOF}}. Amend section 10.1 and the 10.3 manifest listing in the same commit so the design and the tree agree.",
+      "status": "OPEN, documentation only"
+    },
+    {
+      "note": "`lint_cluster_imports.py --fail-on-legacy` exits 1 and always will while any Legacy edge exists -- that is the script's documented contract for the wave that finally EMPTIES the waiver file, not a check W3-TD can pass. The stage-5 brief listed it as an expected exit 0; the design's own gate checklist (section 13 F) correctly omits it. Do not treat its exit 1 as wave drift.",
+      "status": "OPEN, brief/design reconciliation"
+    },
+    {
+      "note": "content_bound_files are WORKING-TREE hashes taken pre-commit. Rebind them (and git_head, head_note, state) from `git show <commit>:<path>` in the receipt-only child commit, the way W3-0 did.",
+      "status": "OPEN, mechanical"
+    },
+    {
+      "note": "The three registry-check receipts this check wrote (162456Z / 162539Z / 162622Z) are untracked and must be included in the wave commit or deleted deliberately; the brief directed them to the default proof-status/receipts so they could be committed.",
+      "status": "OPEN, mechanical"
+    },
+    {
+      "note": "`lake-build` regenerated docs/live-blueprint.md as a wrapper side effect. That file was already dirty before the wave; its new content reflects the relocated call graph and is expected render drift, not a source edit by any W3-TD lane.",
+      "status": "INFORMATIONAL"
+    },
+    {
+      "note": "overall_pass stays false until BOTH gate 10 is resolved and `proof-blueprint refs --refresh` clears the inherited 36 stale + 1 never-mined symbols. Neither is inside this lane.",
+      "status": "OPEN, outside this lane"
+    }
+  ],
+  "overall_note": "false for TWO reasons. (1) IN-WAVE, gate 10: the focused test suite reports 6 failed / 95 passed against the expected 101 passed, because scripts/test_gen_obligation_registry_factorization.py copytrees the live proof-status/ and cannot verify the three new real factorization blocks against its synthetic backend. A controlled scratch experiment restores 101 passed once those three blocks are removed from the copy, so the cause is established and the fix belongs in the test harness, which is outside this wave's envelope. (2) INHERITED, gate 8c: `check --require-fresh-refs` exits 1 with 36 stale + 1 never-mined mined symbols, a count identical to the baseline capture; refreshing needs `proof-blueprint refs --refresh`, which this lane may not run, and the factorization verifier separately confirms every W3-TD role symbol is fresh.",
+  "overall_pass": false,
+  "promotion_claim": "none",
+  "promotion_note": "NONE. This receipt authenticates a refactor only: the three open two-deletion leaves keep their `sorry`, keep their statements byte for byte, and remain reachable from Problem97.erdos97_rhs through the new coordinator chain. No obligation was discharged, the open-leaf count is still 28, and the publication axiom closure is byte-identical to the baseline. The wave's mathematical content is the sorry-free producer twoDeletionOutcome_of_ingress, which narrows the ingress to exactly the three existing terminals and proves nothing new about them.",
+  "schema": "p97-gate-receipt/v1",
+  "source_gates_note": "true: gates 1, 2, 3, 4, 5, 6, 7, 9 and 11 all pass. The Lean source verdict is clean -- the leaf roster is set-identical, the publication axiom closure is byte-identical, the producer is kernel-clean, the three leaf statements and proofs are byte-identical under a single pure-deletion hunk, the relocated wrapper statement is identical at both the text and the index-signature level, no blacklisted file moved, no new non-Legacy forbidden import edge exists, verify-publish is unchanged, and the four new files carry no sorry, axiom, native_decide, decide, maxHeartbeats or unsafe. This field deliberately does NOT cover gate 10, which fails on the Python test harness, nor gate 8's inherited strict-refs failure.",
+  "source_gates_pass": true,
+  "state": "FINAL for the pre-commit working tree at HEAD 026eb6ba. One gate FAILS for a reason inside this wave (gate 10, focused tests) and one FAILS for an inherited reason (gate 8c, strict refs). Re-bind git_head and content_bound_files after the wave commit lands.",
+  "tests": {
+    "command": "uv run python -m pytest scripts/test_gen_obligation_registry_factorization.py scripts/test_lint_cluster_imports_legacy.py -q",
+    "expected_passed": 101,
+    "failed": 6,
+    "files": [
+      {
+        "failed": 6,
+        "passed": 64,
+        "path": "scripts/test_gen_obligation_registry_factorization.py"
+      },
+      {
+        "failed": 0,
+        "passed": 31,
+        "path": "scripts/test_lint_cluster_imports_legacy.py"
+      }
+    ],
+    "note": "See gate 10. The six failures are command-level tests that copytree the live proof-status/ and then cannot verify the three real W3-TD factorization blocks against their synthetic MappingBackend. A scratch controlled experiment with those three blocks removed from the copied obligations-meta.json and obligations.json returns 101 passed, which pins the cause.",
+    "passed": 95
+  },
+  "wave": "W3-TD"
+}

@@ -6,19 +6,20 @@
     "Every forbidden import edge that already existed at base_head is waived here so the lint can freeze the graph at its current shape and block new violations.",
     "Waivers are keyed on the (from, to) module pair, not on a line number, so an unrelated edit above the import does not stale a waiver.",
     "The parent coordinator module Erdos9796Proof.P97.ATail.FrontierLiveClosure is an aggregator: it re-exports the whole tree, so its imports of cluster modules are from-shared-to-cluster by the classification rule and are all waived as unassigned. They retire with whatever wave restructures the aggregator, not with a cluster untangling wave.",
-    "planned_retirement values: W1b and W3 are the two recorded chains; 'unassigned' means no wave owns the edge yet."
+    "planned_retirement values: W1b and W3 are the two recorded chains; 'unassigned' means no wave owns the edge yet.",
+    "W3-TD (2026-08-25): the Rigid221Placement -> TwoDeletionCollision row was deleted with the edge it covered. Rigid221Placement now reaches false_of_twoDistinctExactFourMutualOmissionJointDeletions through Erdos9796Proof.P97.ATail.FrontierLiveClosure.Legacy.TwoDeletionWrappers, and that wrapper edge is governed by proof-status/legacy-import-exceptions.json, not by a waiver row."
   ],
   "schema": "import-waivers/v1",
   "summary": {
     "by_class": {
-      "cross-cluster": 4,
+      "cross-cluster": 3,
       "from-shared-to-cluster": 25
     },
     "by_planned_retirement": {
-      "W3": 3,
+      "W3": 2,
       "unassigned": 26
     },
-    "waivers": 29
+    "waivers": 28
   },
   "waivers": [
     {
@@ -176,12 +177,6 @@
       "planned_retirement": "unassigned",
       "reason": "pre-existing at base_head 222809b9",
       "to": "Erdos9796Proof.P97.ATail.FrontierLiveClosure.TriApexEndpointRetainedOmission"
-    },
-    {
-      "from": "Erdos9796Proof.P97.ATail.FrontierLiveClosure.Rigid221Placement",
-      "planned_retirement": "W3",
-      "reason": "retirement deferred from W1b on 2026-08-24: the TwoDeletionCollision declarations that Rigid221SourceHeavy and Rigid221Closure consume through this edge have a proof closure containing all three sorry-bearing declarations of TwoDeletionCollision; moving them would relocate roster leaves, and the alternative requires editing Rigid221SourceHeavy/Rigid221Closure, which W1b may not touch. Retire with the W3 cluster-coordinator wave.",
-      "to": "Erdos9796Proof.P97.ATail.FrontierLiveClosure.TwoDeletionCollision"
     },
     {
       "from": "Erdos9796Proof.P97.ATail.FrontierLiveClosure.TriApexEndpointRetainedOmission",
