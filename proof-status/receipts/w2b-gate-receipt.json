@@ -1,11 +1,11 @@
 {
   "schema": "p97-gate-receipt/v1",
   "wave": "W2b",
-  "generated_by": "W2b gate-receipt subagent (verification only), then re-bound by the main session after (a) the docstring-only rewrite of the dangerous-triple paragraph in JointDeletion/CallerConstructors.lean (auditor #7438) and (b) the type-level origin binding of PairedCommonDeletionProvenance in JointDeletion/Producers.lean (auditor #7437); every gate was re-run by the main session on the edited working tree before commit.",
+  "generated_by": "W2b gate-receipt subagent (verification only), then re-bound by the main session after (a) the docstring-only rewrite of the dangerous-triple paragraph in JointDeletion/CallerConstructors.lean (auditor #7438) and (b) the type-level origin binding of PairedCommonDeletionProvenance in JointDeletion/Producers.lean (auditor #7437); every gate was re-run by the main session on the edited working tree before commit, and again on the committed bytes of 09ecc561 for the #7442 correction.",
   "generated_at_utc": "2026-08-25T04:08:08Z",
   "git_head": "09ecc5611f5b00673dbfebcb5d741993b30790eb",
   "git_head_short": "09ecc561",
-  "head_note": "Every W2b change is UNCOMMITTED at this HEAD: Producers.lean and CallerConstructors.lean are untracked, RoundTrip.lean and JointDeletionCore.lean are modified in the working tree. Every verdict below is computed from working-tree source, not from the commit. Content is bound by the sha256 map in content_bound_files, not by the commit hash.",
+  "head_note": "Bound to commit 09ecc5611f5b00673dbfebcb5d741993b30790eb. At that commit Producers.lean and CallerConstructors.lean are tracked new files and RoundTrip.lean and JointDeletionCore.lean are committed modifications; `git status --porcelain` shows nothing for the four W2b files. Every verdict below was re-run by the main session on the bytes that were committed (content_bound_files.sha256 matches `git show 09ecc561:<path>` for the four W2b files). The pre-commit wording of the first receipt draft is preserved under historical_precommit_snapshot.",
   "scope_note": "This receipt records gate outcomes only. It makes NO proof-promotion claim, NO fresh-spine claim, and NO claim that any obligation was discharged. The publication gate still fails on sorryAx exactly as it did at baseline; W2b neither advanced nor regressed it.",
   "lean_toolchain": {
     "path": "lean/lean-toolchain",
@@ -51,7 +51,7 @@
     }
   },
   "content_bound_files": {
-    "note": "Working-tree sha256 for the four W2b files and the three foreign-lane files checked for drift.",
+    "note": "sha256 of the four W2b files as committed at 09ecc561 (verified against git show) and of the three foreign-lane files as found in the working tree at gate time (TriApexEndpointRetainedOmission.lean matches HEAD; TwoSourceCanonicalSurface.lean and TwoSourceRetainedMinimalCore.lean are foreign-lane modifications relative to HEAD at the digests the W2a receipt recorded).",
     "sha256": {
       "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletion/Producers.lean": "5a979066fdc40002864f5d11f25d768d7fa6369e6c3b82f0fd12392a879ae4f9",
       "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletion/CallerConstructors.lean": "114e28f29b1c920988b989b160b3d58ac1e5b4fb87514d67151764a47034eaab",
@@ -61,16 +61,19 @@
       "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceRetainedMinimalCore.lean": "b6407b84f7f9609bca45cdf6ab98db5e2fe542cb46e7de00b1963be3bb431e11",
       "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TriApexEndpointRetainedOmission.lean": "88af81a1ef621909c0fe6e29b6fa725edaf5b796429bc1f24399bea18a740737"
     },
-    "frontier_live_closure_dirty_vs_head": [
-      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletion/RoundTrip.lean",
-      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletionCore.lean",
-      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceCanonicalSurface.lean",
-      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceRetainedMinimalCore.lean"
-    ],
-    "frontier_live_closure_untracked": [
-      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletion/CallerConstructors.lean",
-      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletion/Producers.lean"
-    ]
+    "committed_state_at_09ecc561": {
+      "w2b_files_tracked": [
+        "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletion/CallerConstructors.lean",
+        "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletion/Producers.lean",
+        "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletion/RoundTrip.lean",
+        "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletionCore.lean"
+      ],
+      "w2b_files_porcelain": "clean",
+      "foreign_lane_dirty_vs_head": [
+        "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceCanonicalSurface.lean",
+        "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceRetainedMinimalCore.lean"
+      ]
+    }
   },
   "gates": {
     "build": {
@@ -605,6 +608,34 @@
         "registry gate receipts re-run on the committed tree: proof-status/receipts/registry-check-20260825T040631Z.json (exit 0) and proof-status/receipts/registry-check-20260825T040632Z.json (--require-fresh-refs exit 1, 36+1)"
       ],
       "unchanged": "overall_pass=false (strict --require-fresh-refs 36 stale + 1 never-mined miner exception), source_gates_pass=true, spine roster 28, publication axiom closure"
+    },
+    {
+      "utc": "2026-08-25T04:11:42Z",
+      "auditor_finding": "#7445",
+      "kind": "metadata correction; pre-commit state fields relabeled as historical_precommit_snapshot; no source change",
+      "corrected": [
+        "head_note rewritten to the committed condition at 09ecc561 (four W2b files tracked, porcelain clean)",
+        "content_bound_files.frontier_live_closure_dirty_vs_head and .frontier_live_closure_untracked moved into historical_precommit_snapshot; content_bound_files.committed_state_at_09ecc561 added",
+        "content_bound_files.note rewritten (committed sha256 verified against git show)",
+        "generated_by notes the second re-run on the committed bytes"
+      ],
+      "unchanged": "overall_pass=false, source_gates_pass=true, sha256 map, gate verdicts"
     }
-  ]
+  ],
+  "historical_precommit_snapshot": {
+    "label": "HISTORICAL PRE-COMMIT SNAPSHOT — describes the working tree the gates were first run on, before commit 09ecc561; not the committed state",
+    "head_note": "Every W2b change is UNCOMMITTED at this HEAD: Producers.lean and CallerConstructors.lean are untracked, RoundTrip.lean and JointDeletionCore.lean are modified in the working tree. Every verdict below is computed from working-tree source, not from the commit. Content is bound by the sha256 map in content_bound_files, not by the commit hash.",
+    "content_bound_files_note": "Working-tree sha256 for the four W2b files and the three foreign-lane files checked for drift.",
+    "frontier_live_closure_dirty_vs_head": [
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletion/RoundTrip.lean",
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletionCore.lean",
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceCanonicalSurface.lean",
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceRetainedMinimalCore.lean"
+    ],
+    "frontier_live_closure_untracked": [
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletion/CallerConstructors.lean",
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletion/Producers.lean"
+    ],
+    "gate_run_context": "gates.verify_publish.diff_vs_baseline[0] ('14 uncommitted lean file(s)') and gates.w2_gate_signatures.evidence/qualification describe that pre-commit working tree; their git diff statements are the diffs of the tree that became 09ecc561 against its parent c578afd1, and remain true as diffs of 09ecc561 vs c578afd1."
+  }
 }
