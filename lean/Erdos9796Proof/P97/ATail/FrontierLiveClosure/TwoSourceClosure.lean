@@ -174,7 +174,7 @@ omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
 /-- At exact carrier size seventeen, the FreshThird surface forces the cap
 profile `(8, 6, 6)`, with the eight-point cap at its designated first index.
 This is the finite source contract for exact-17 computation. -/
-theorem twoCapSourceSurface_exact_seventeen_cap_profile
+theorem twoCapSourceSurface_exact_seventeen_cap_profile_frame
     (frame : TwoSourceCollisionFrame P Pρ)
     (C : TwoCapSourceThirdCanonicalRowSurface P Pρ)
     (hcard : D.A.card = 17) :
@@ -186,6 +186,22 @@ theorem twoCapSourceSurface_exact_seventeen_cap_profile
     ATailExactFifteenApexProfile.capByIndex_card_profile_of_card_eq_seventeen
       S S.oppIndex1 hcard C.cap_card_ge_eight
       (triApexAllLargeContext_of_residuals L N T).cap_card_ge_six
+
+/-- At exact carrier size seventeen, the FreshThird surface forces the cap
+profile `(8, 6, 6)`, with the eight-point cap at its designated first index.
+This is the finite source contract for exact-17 computation.
+This is a compatibility wrapper over
+`twoCapSourceSurface_exact_seventeen_cap_profile_frame`, which takes the
+same hypotheses packaged as a `TwoSourceCollisionFrame`. -/
+theorem twoCapSourceSurface_exact_seventeen_cap_profile
+    (C : TwoCapSourceThirdCanonicalRowSurface P Pρ)
+    (hcard : D.A.card = 17) :
+    (S.capByIndex S.oppIndex1).card = 8 ∧
+      ∀ j : Fin 3, j ≠ S.oppIndex1 → (S.capByIndex j).card = 6 :=
+  twoCapSourceSurface_exact_seventeen_cap_profile_frame P Pρ T
+    ⟨hρne, hfrontierFour, hρfour, hfrontierInteriorEq, hρInteriorEq,
+      hpairsDisjoint, hblockersNe, LPρ, hLPρ, MPρ, LP, hLP, MP⟩
+    C hcard
 
 omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
   hpairsDisjoint hblockersNe
@@ -960,7 +976,7 @@ omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
   hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
 /-- Mutual cross-membership with distinct blocker values is the remaining
 geometric arm of the two-cap-source split. -/
-theorem false_of_twoCapSources_mutualCrossMembership_distinctBlockers
+theorem false_of_twoCapSources_mutualCrossMembership_distinctBlockers_frame
     (frame : TwoSourceCollisionFrame P Pρ)
     {commonRadius : ℝ}
     (source source' : CriticalShellSystem.CarrierVertex D.A)
@@ -980,6 +996,28 @@ theorem false_of_twoCapSources_mutualCrossMembership_distinctBlockers
   exact blocker_centers_eq_of_secondRadius_mutual_cross_membership
     R source.2 source'.2 hsourcesNe hsourceRadius hsourceRadius'
     hmutual.1 hmutual.2
+
+/-- Mutual cross-membership with distinct blocker values is the remaining
+geometric arm of the two-cap-source split.
+This is a compatibility wrapper over
+`false_of_twoCapSources_mutualCrossMembership_distinctBlockers_frame`,
+which takes the same hypotheses packaged as a `TwoSourceCollisionFrame`. -/
+theorem false_of_twoCapSources_mutualCrossMembership_distinctBlockers
+    {commonRadius : ℝ}
+    (source source' : CriticalShellSystem.CarrierVertex D.A)
+    (hsourcesNe : source.1 ≠ source'.1)
+    (hsourceRadius :
+      source.1 ∈ SelectedClass D.A S.oppApex1 commonRadius)
+    (hsourceRadius' :
+      source'.1 ∈ SelectedClass D.A S.oppApex1 commonRadius)
+    (hmutual :
+      TwoCapSourcesMutualCrossMembership (H := H) source source')
+    (hblockersNe' : H.blockerVertex source ≠ H.blockerVertex source') :
+    False :=
+  false_of_twoCapSources_mutualCrossMembership_distinctBlockers_frame P Pρ T
+    ⟨hρne, hfrontierFour, hρfour, hfrontierInteriorEq, hρInteriorEq,
+      hpairsDisjoint, hblockersNe, LPρ, hLPρ, MPρ, LP, hLP, MP⟩
+    source source' hsourcesNe hsourceRadius hsourceRadius' hmutual hblockersNe'
 
 /-- Six pairwise distinct centers whose exact-four rows survive one common
 deletion.  The first five centers are the two collision blockers and the
@@ -1720,7 +1758,7 @@ omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
 their own canonical sources.  This is the positive incidence counterpart to
 `deleted_not_mem_three_selectedShells`; unlike the anonymous apex rows, these
 three row supports have source provenance after the foreign deletion. -/
-theorem SixSurvivorExactRowsBoundary.source_mem_three_deletedRows
+theorem SixSurvivorExactRowsBoundary.source_mem_three_deletedRows_frame
     (frame : TwoSourceCollisionFrame P Pρ)
     (deleted source₀ source₁ source₅ :
       CriticalShellSystem.CarrierVertex D.A)
@@ -1742,6 +1780,30 @@ theorem SixSurvivorExactRowsBoundary.source_mem_three_deletedRows
       source₁.2 B.firstFive.K₁ B.firstFive.B₁_card,
     ATailFiveCenterDeletionBoundary.qDeletedK4Class_source_mem_support
       source₅.2 B.K₅ B.B₅_card⟩
+
+/-- The three deleted rows whose centers are named actual blockers retain
+their own canonical sources.  This is the positive incidence counterpart to
+`deleted_not_mem_three_selectedShells`; unlike the anonymous apex rows, these
+three row supports have source provenance after the foreign deletion.
+This is a compatibility wrapper over
+`SixSurvivorExactRowsBoundary.source_mem_three_deletedRows_frame`, which
+takes the same hypotheses packaged as a `TwoSourceCollisionFrame`. -/
+theorem SixSurvivorExactRowsBoundary.source_mem_three_deletedRows
+    (deleted source₀ source₁ source₅ :
+      CriticalShellSystem.CarrierVertex D.A)
+    (c₂ c₃ c₄ : ℝ²)
+    (B : SixSurvivorExactRowsBoundary (D := D) (H := H) deleted
+      (H.centerAt source₀.1 source₀.2)
+      (H.centerAt source₁.1 source₁.2)
+      c₂ c₃ c₄
+      (H.centerAt source₅.1 source₅.2)) :
+    source₀.1 ∈ B.firstFive.B₀ ∧
+      source₁.1 ∈ B.firstFive.B₁ ∧
+      source₅.1 ∈ B.B₅ :=
+  SixSurvivorExactRowsBoundary.source_mem_three_deletedRows_frame P Pρ T
+    ⟨hρne, hfrontierFour, hρfour, hfrontierInteriorEq, hρInteriorEq,
+      hpairsDisjoint, hblockersNe, LPρ, hLPρ, MPρ, LP, hLP, MP⟩
+    deleted source₀ source₁ source₅ c₂ c₃ c₄ B
 
 omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
   T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
@@ -1986,7 +2048,7 @@ omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
 The first enlarged fiber supplies the corresponding blocker-multiplicity arm.
 The second source, common-radius, and one-sided-deletion refinements are not
 separate terminal inputs after consolidation. -/
-theorem false_of_twoCapSources_oneSidedDeletionSurvival
+theorem false_of_twoCapSources_oneSidedDeletionSurvival_frame
     (frame : TwoSourceCollisionFrame P Pρ)
     (Q : FreshOutsideFirstBlockerFiber P Pρ)
     {commonRadius : ℝ}
@@ -2011,6 +2073,33 @@ theorem false_of_twoCapSources_oneSidedDeletionSurvival
       LPρ hLPρ MPρ LP hLP MP
       ⟨hsource.1, source, source', hsourcesNe, hsource, hsource'⟩
       ⟨Q⟩
+
+/-- Compatibility adapter for the former one-sided-deletion leaf.
+
+The first enlarged fiber supplies the corresponding blocker-multiplicity arm.
+The second source, common-radius, and one-sided-deletion refinements are not
+separate terminal inputs after consolidation.
+This is a compatibility wrapper over
+`false_of_twoCapSources_oneSidedDeletionSurvival_frame`, which takes the
+same hypotheses packaged as a `TwoSourceCollisionFrame`. -/
+theorem false_of_twoCapSources_oneSidedDeletionSurvival
+    (Q : FreshOutsideFirstBlockerFiber P Pρ)
+    {commonRadius : ℝ}
+    (source source' : CriticalShellSystem.CarrierVertex D.A)
+    (hsourcesNe : source.1 ≠ source'.1)
+    (hsourceRadius :
+      source.1 ∈ SelectedClass D.A S.oppApex1 commonRadius)
+    (hsourceRadius' :
+      source'.1 ∈ SelectedClass D.A S.oppApex1 commonRadius)
+    (hsource : FirstFiberCapSourceWitness P Pρ source)
+    (hsource' : FirstFiberCapSourceWitness P Pρ source')
+    (hsurvival :
+      TwoCapSourcesOneSidedDeletionSurvival (H := H) source source') :
+    False :=
+  false_of_twoCapSources_oneSidedDeletionSurvival_frame P Pρ T
+    ⟨hρne, hfrontierFour, hρfour, hfrontierInteriorEq, hρInteriorEq,
+      hpairsDisjoint, hblockersNe, LPρ, hLPρ, MPρ, LP, hLP, MP⟩
+    Q source source' hsourcesNe hsourceRadius hsourceRadius' hsource hsource' hsurvival
 
 /-- Compatibility coordinator for the former two-source first-fiber split.
 
@@ -2083,13 +2172,13 @@ theorem false_of_twoCapSources_firstFiber
           exact .sameBlockerAllEndpointOmission Q source source' hsourcesNe
             hsourceRadius hsourceRadius' hsource hsource' hmutual
             hblockersEq hallEndpointOmission hgeometry.1 hgeometry.2)
-    · exact false_of_twoCapSources_mutualCrossMembership_distinctBlockers
+    · exact false_of_twoCapSources_mutualCrossMembership_distinctBlockers_frame
         P Pρ T
         ⟨hρne, hfrontierFour, hρfour, hfrontierInteriorEq, hρInteriorEq,
           hpairsDisjoint, hblockersNe, LPρ, hLPρ, MPρ, LP, hLP, MP⟩
         source source' hsourcesNe hsourceRadius hsourceRadius'
         hmutual hblockersEq
-  · exact false_of_twoCapSources_oneSidedDeletionSurvival
+  · exact false_of_twoCapSources_oneSidedDeletionSurvival_frame
       P Pρ T
       ⟨hρne, hfrontierFour, hρfour, hfrontierInteriorEq, hρInteriorEq,
         hpairsDisjoint, hblockersNe, LPρ, hLPρ, MPρ, LP, hLP, MP⟩
@@ -2100,7 +2189,7 @@ omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
   hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
 /-- The common-radius mutual-incidence arm is already reduced to the checked
 distinct-blocker contradiction or the exact-row equal-blocker terminal. -/
-theorem false_of_twoCapSources_commonRadius_mutualCrossMembership
+theorem false_of_twoCapSources_commonRadius_mutualCrossMembership_frame
     (frame : TwoSourceCollisionFrame P Pρ)
     (Q : FreshOutsideFirstBlockerFiber P Pρ)
     {commonRadius : ℝ}
@@ -2170,12 +2259,36 @@ theorem false_of_twoCapSources_commonRadius_mutualCrossMembership
         hsource hsource' hmutual hblockersEq hallEndpointOmission
         hgeometry.1 hgeometry.2
   · exact
-      false_of_twoCapSources_mutualCrossMembership_distinctBlockers
+      false_of_twoCapSources_mutualCrossMembership_distinctBlockers_frame
         P Pρ T
         ⟨hρne, hfrontierFour, hρfour, hfrontierInteriorEq, hρInteriorEq,
           hpairsDisjoint, hblockersNe, LPρ, hLPρ, MPρ, LP, hLP, MP⟩
         source source' hsourcesNe hsourceRadius hsourceRadius'
         hmutual hblockersEq
+
+/-- The common-radius mutual-incidence arm is already reduced to the checked
+distinct-blocker contradiction or the exact-row equal-blocker terminal.
+This is a compatibility wrapper over
+`false_of_twoCapSources_commonRadius_mutualCrossMembership_frame`, which
+takes the same hypotheses packaged as a `TwoSourceCollisionFrame`. -/
+theorem false_of_twoCapSources_commonRadius_mutualCrossMembership
+    (Q : FreshOutsideFirstBlockerFiber P Pρ)
+    {commonRadius : ℝ}
+    (source source' : CriticalShellSystem.CarrierVertex D.A)
+    (hsourcesNe : source.1 ≠ source'.1)
+    (hsourceRadius :
+      source.1 ∈ SelectedClass D.A S.oppApex1 commonRadius)
+    (hsourceRadius' :
+      source'.1 ∈ SelectedClass D.A S.oppApex1 commonRadius)
+    (hsource : FirstFiberCapSourceWitness P Pρ source)
+    (hsource' : FirstFiberCapSourceWitness P Pρ source')
+    (hmutual :
+      TwoCapSourcesMutualCrossMembership (H := H) source source') :
+    False :=
+  false_of_twoCapSources_commonRadius_mutualCrossMembership_frame P Pρ T
+    ⟨hρne, hfrontierFour, hρfour, hfrontierInteriorEq, hρInteriorEq,
+      hpairsDisjoint, hblockersNe, LPρ, hLPρ, MPρ, LP, hLP, MP⟩
+    Q source source' hsourcesNe hsourceRadius hsourceRadius' hsource hsource' hmutual
 
 /-- The two source-oriented six-center packets produced by one-sided row
 survival.  Keeping both orientations explicit avoids choosing a preferred
@@ -2655,7 +2768,7 @@ finite two-pair split.  Thus both selected source rows omit one common
 collision endpoint.  This is a genuine normalization step: the remaining
 aligned branch may use the common omission without assuming a favorable
 endpoint choice. -/
-theorem commonCollisionEndpointOmission_of_mutualCrossMembership
+theorem commonCollisionEndpointOmission_of_mutualCrossMembership_frame
     (frame : TwoSourceCollisionFrame P Pρ)
     (C : TwoCapSourceThirdCanonicalRowSurface P Pρ)
     (hmutual :
@@ -2686,6 +2799,28 @@ theorem commonCollisionEndpointOmission_of_mutualCrossMembership
           C.firstSource C.secondSource C.sources_ne
           C.firstSource_data C.secondSource_data
           hmutual hblockersEq hcomplementary.1).elim
+
+include hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- Mutual incidence eliminates the complementary endpoint choices in the
+finite two-pair split.  Thus both selected source rows omit one common
+collision endpoint.  This is a genuine normalization step: the remaining
+aligned branch may use the common omission without assuming a favorable
+endpoint choice.
+This is a compatibility wrapper over
+`commonCollisionEndpointOmission_of_mutualCrossMembership_frame`, which
+takes the same hypotheses packaged as a `TwoSourceCollisionFrame`. -/
+theorem commonCollisionEndpointOmission_of_mutualCrossMembership
+    (C : TwoCapSourceThirdCanonicalRowSurface P Pρ)
+    (hmutual :
+      TwoCapSourcesMutualCrossMembership
+        (H := H) C.firstSource C.secondSource) :
+    CommonCollisionEndpointOmission
+      (H := H) P Pρ C.firstSource C.secondSource :=
+  commonCollisionEndpointOmission_of_mutualCrossMembership_frame P Pρ T
+    ⟨hρne, hfrontierFour, hρfour, hfrontierInteriorEq, hρInteriorEq,
+      hpairsDisjoint, hblockersNe, LPρ, hLPρ, MPρ, LP, hLP, MP⟩
+    C hmutual
 
 omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
   T hpairsDisjoint hblockersNe
@@ -2827,7 +2962,7 @@ omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
 /-- The full indexed-cap and cyclic-order ingress for two mutually incident
 aligned sources with distinct blockers.  This is cardinality-independent and
 uses only global K4 plus the ordered Moser-cap boundary. -/
-theorem freshThird_alignedMutualBlockerBoundaryPacket
+theorem freshThird_alignedMutualBlockerBoundaryPacket_frame
     (frame : TwoSourceCollisionFrame P Pρ)
     (C : TwoCapSourceThirdCanonicalRowSurface P Pρ)
     (hmutual :
@@ -2870,6 +3005,27 @@ theorem freshThird_alignedMutualBlockerBoundaryPacket
       hmutual.1 hmutual.2
       (H.selectedAt C.secondSource.1
         C.secondSource.2).toCriticalFourShell.q_mem_support
+
+include T hblockersNe in
+/-- The full indexed-cap and cyclic-order ingress for two mutually incident
+aligned sources with distinct blockers.  This is cardinality-independent and
+uses only global K4 plus the ordered Moser-cap boundary.
+This is a compatibility wrapper over
+`freshThird_alignedMutualBlockerBoundaryPacket_frame`, which takes the
+same hypotheses packaged as a `TwoSourceCollisionFrame`. -/
+theorem freshThird_alignedMutualBlockerBoundaryPacket
+    (C : TwoCapSourceThirdCanonicalRowSurface P Pρ)
+    (hmutual :
+      TwoCapSourcesMutualCrossMembership
+        (H := H) C.firstSource C.secondSource)
+    (hsourceBlockersNe :
+      H.blockerVertex C.firstSource ≠ H.blockerVertex C.secondSource) :
+    FreshThirdAlignedMutualBlockerBoundaryPacket
+      (S := S) (H := H) P Pρ C :=
+  freshThird_alignedMutualBlockerBoundaryPacket_frame P Pρ T
+    ⟨hρne, hfrontierFour, hρfour, hfrontierInteriorEq, hρInteriorEq,
+      hpairsDisjoint, hblockersNe, LPρ, hLPρ, MPρ, LP, hLP, MP⟩
+    C hmutual hsourceBlockersNe
 
 omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
   T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
@@ -3075,7 +3231,7 @@ omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
 uses no cardinality cutoff: the cap localization is the general ordered-cap
 bisector theorem, and the exact-row alternatives come from the checked
 outside-pair deletion split. -/
-theorem freshThird_alignedMutualFirstFiberResidual_of_mutualCrossMembership
+theorem freshThird_alignedMutualFirstFiberResidual_of_mutualCrossMembership_frame
     (frame : TwoSourceCollisionFrame P Pρ)
     (C : TwoCapSourceThirdCanonicalRowSurface P Pρ)
     (Q : FreshOutsideFirstBlockerFiber P Pρ)
@@ -3216,6 +3372,27 @@ theorem freshThird_alignedMutualFirstFiberResidual_of_mutualCrossMembership
         hfirstInterior, hsecondInterior, hijNe, Or.inr
           ⟨rfl, hshell, hnormalized⟩⟩
 
+include T hblockersNe in
+/-- Source-clean producer for the aligned mutual first-fiber remainder.  This
+uses no cardinality cutoff: the cap localization is the general ordered-cap
+bisector theorem, and the exact-row alternatives come from the checked
+outside-pair deletion split.
+This is a compatibility wrapper over
+`freshThird_alignedMutualFirstFiberResidual_of_mutualCrossMembership_frame`,
+which takes the same hypotheses packaged as a `TwoSourceCollisionFrame`. -/
+theorem freshThird_alignedMutualFirstFiberResidual_of_mutualCrossMembership
+    (C : TwoCapSourceThirdCanonicalRowSurface P Pρ)
+    (Q : FreshOutsideFirstBlockerFiber P Pρ)
+    (hmutual :
+      TwoCapSourcesMutualCrossMembership
+        (H := H) C.firstSource C.secondSource) :
+    FreshThirdAlignedMutualFirstFiberResidual
+      (H := H) P Pρ C Q :=
+  freshThird_alignedMutualFirstFiberResidual_of_mutualCrossMembership_frame P Pρ T
+    ⟨hρne, hfrontierFour, hρfour, hfrontierInteriorEq, hρInteriorEq,
+      hpairsDisjoint, hblockersNe, LPρ, hLPρ, MPρ, LP, hLP, MP⟩
+    C Q hmutual
+
 /-- Strict acyclic first-fiber residual after consuming the common-radius
 mutual-incidence arm.  Each surviving constructor retains its source-produced
 provenance: aligned mutual incidence, aligned one-sided six-center survival,
@@ -3255,7 +3432,7 @@ omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
 /-- The live enlarged-first-fiber consumer.  The source-clean ingress is split
 once, and only the three provenance-preserving hard constructors reach the
 remaining residual. -/
-theorem false_of_twoCapSources_freshOutsideFirstBlockerFiber_acyclicIngress
+theorem false_of_twoCapSources_freshOutsideFirstBlockerFiber_acyclicIngress_frame
     (frame : TwoSourceCollisionFrame P Pρ)
     (C : TwoCapSourceThirdCanonicalRowSurface P Pρ)
     (Q : FreshOutsideFirstBlockerFiber P Pρ)
@@ -3275,7 +3452,7 @@ theorem false_of_twoCapSources_freshOutsideFirstBlockerFiber_acyclicIngress
     · have hcommon :
           CommonCollisionEndpointOmission
             (H := H) P Pρ C.firstSource C.secondSource :=
-        commonCollisionEndpointOmission_of_mutualCrossMembership
+        commonCollisionEndpointOmission_of_mutualCrossMembership_frame
           (P := P) (Pρ := Pρ) (T := T)
           (frame :=
             ⟨hρne, hfrontierFour, hρfour, hfrontierInteriorEq, hρInteriorEq,
@@ -3293,7 +3470,7 @@ theorem false_of_twoCapSources_freshOutsideFirstBlockerFiber_acyclicIngress
       have hfirstFiberResidual :
           FreshThirdAlignedMutualFirstFiberResidual
             (H := H) P Pρ C Q :=
-        freshThird_alignedMutualFirstFiberResidual_of_mutualCrossMembership
+        freshThird_alignedMutualFirstFiberResidual_of_mutualCrossMembership_frame
           (P := P) (Pρ := Pρ) (T := T)
           (frame :=
             ⟨hρne, hfrontierFour, hρfour, hfrontierInteriorEq, hρInteriorEq,
@@ -3354,7 +3531,7 @@ theorem false_of_twoCapSources_freshOutsideFirstBlockerFiber_acyclicIngress
         Ccommon.surface.firstSource Ccommon.surface.secondSource with
       hmutual | hsurvival
     · exact
-        false_of_twoCapSources_commonRadius_mutualCrossMembership
+        false_of_twoCapSources_commonRadius_mutualCrossMembership_frame
           (P := P) (Pρ := Pρ) (T := T)
           (frame :=
             ⟨hρne, hfrontierFour, hρfour, hfrontierInteriorEq, hρInteriorEq,
@@ -3410,6 +3587,25 @@ theorem false_of_twoCapSources_freshOutsideFirstBlockerFiber_acyclicIngress
 
 include hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
   T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- The live enlarged-first-fiber consumer.  The source-clean ingress is split
+once, and only the three provenance-preserving hard constructors reach the
+remaining residual.
+This is a compatibility wrapper over
+`false_of_twoCapSources_freshOutsideFirstBlockerFiber_acyclicIngress_frame`,
+which takes the same hypotheses packaged as a `TwoSourceCollisionFrame`. -/
+theorem false_of_twoCapSources_freshOutsideFirstBlockerFiber_acyclicIngress
+    (C : TwoCapSourceThirdCanonicalRowSurface P Pρ)
+    (Q : FreshOutsideFirstBlockerFiber P Pρ)
+    (hingress :
+      FreshThirdAcyclicCanonicalConsumerPacket (P := P) (Pρ := Pρ) C) :
+    False :=
+  false_of_twoCapSources_freshOutsideFirstBlockerFiber_acyclicIngress_frame P Pρ T
+    ⟨hρne, hfrontierFour, hρfour, hfrontierInteriorEq, hρInteriorEq,
+      hpairsDisjoint, hblockersNe, LPρ, hLPρ, MPρ, LP, hLP, MP⟩
+    C Q hingress
+
+include hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
 /-- Checked adapter from the live surface to the acyclic ingress consumer. -/
 theorem false_of_twoCapSources_freshOutsideFirstBlockerFiber_viaAcyclicIngress
     (C : TwoCapSourceThirdCanonicalRowSurface P Pρ)
@@ -3417,7 +3613,7 @@ theorem false_of_twoCapSources_freshOutsideFirstBlockerFiber_viaAcyclicIngress
     False := by
   rcases hfirst with ⟨Q⟩
   exact
-    false_of_twoCapSources_freshOutsideFirstBlockerFiber_acyclicIngress
+    false_of_twoCapSources_freshOutsideFirstBlockerFiber_acyclicIngress_frame
       (P := P) (Pρ := Pρ) (T := T)
       (frame :=
         ⟨hρne, hfrontierFour, hρfour, hfrontierInteriorEq, hρInteriorEq,

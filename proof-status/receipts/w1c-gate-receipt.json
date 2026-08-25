@@ -1,0 +1,205 @@
+{
+  "schema": "p97-gate-receipt/v1",
+  "wave": "W1c",
+  "generated_at_utc": "2026-08-25T00:02:18Z",
+  "generated_by": "W1c gate-receipt subagent",
+  "git_head": "a0c3e467900d6def4d514640560267d8640c3e0a",
+  "git_head_short": "a0c3e467",
+  "expected_head_in_task": "4b1c21b8",
+  "head_note": "HEAD is one docs-only commit (a0c3e467 'docs: update README status to 2026-08-24') ahead of the 4b1c21b8 named in the task. No Lean, script, or proof-status content differs between the two for any gated path; this receipt binds working-tree CONTENT via the sha256 map below, not the commit hash.",
+  "lean_toolchain": {
+    "path": "lean-toolchain",
+    "content": "leanprover/lean4:v4.27.0",
+    "sha256": "d55ca0039a5479db5b38919d005b2c427b89b3be4f0184a20f2f4eae931f5bdb"
+  },
+  "content_bound_files": {
+    "note": "Working-tree sha256 for every file under lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/ that differs from HEAD, plus the two gate scripts.",
+    "frontier_live_closure_dirty_vs_head": [
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221Closure.lean",
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean",
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceCanonicalSurface.lean",
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceClosure.lean",
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFirstFiberCollision.lean",
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean",
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceRetainedMinimalCore.lean"
+    ],
+    "sha256": {
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221Closure.lean": "72315f9090a931be785826877ea0282e55d595cd30930055836da378bf60fa82",
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean": "2758f01a9995150d896ae98e91abf41e9238a31ced0ef9d140eb1e156a155f97",
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceCanonicalSurface.lean": "6d7bc2e50828072339307ae3f8879c3073e54489e613ab3d74830a615c519268",
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceClosure.lean": "f5f0241b16483d61698469670386e231c6918d38240fee40923b900188d0696f",
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFirstFiberCollision.lean": "64b0387a0b9d98d83a749dc190f363f51062df0ab0d8a7b2f8ff3e138fd6a03b",
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean": "3b7a59caac9924d277e8aa8335e6bd86856c9e5bf4b30ecc5c0c354431941fb2",
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceRetainedMinimalCore.lean": "b6407b84f7f9609bca45cdf6ab98db5e2fe542cb46e7de00b1963be3bb431e11",
+      "scripts/gen_obligation_registry.py": "6a7421339b13680555097835a1e269856443c4d3ef3ad0d69ae301e96f93dfe2",
+      "scripts/lint_cluster_imports.py": "7052155898ca11737a0a4880d80075b49ee7dffe2d1d535b66785b0533334cc8"
+    }
+  },
+  "blueprint": {
+    "build_id": "7b3315f84dcb",
+    "baseline_build_id": "fd3f51e09b99"
+  },
+  "gates": {
+    "build": {
+      "verdict": "PASS",
+      "command": "lake-build",
+      "exit_code": 0,
+      "jobs": 12184,
+      "error_lines": 0,
+      "detail": "Build completed successfully (12184 jobs); warnings only."
+    },
+    "refs": {
+      "verdict": "FAIL",
+      "commands": [
+        "proof-blueprint refs --refresh",
+        "proof-blueprint refs --check"
+      ],
+      "build_id": "7b3315f84dcb",
+      "fresh": 56074,
+      "stale": 36,
+      "never_mined": 1,
+      "expected_stale": 0,
+      "expected_never_mined": 0,
+      "baseline_stale": 36,
+      "baseline_never_mined": 1,
+      "matches_baseline_counts": true,
+      "w1c_drift": false,
+      "why_not_zero": "`refs --refresh` reported 'already fresh -- 4078 module(s) unchanged at build 7b3315f84dcb' because mine incrementality is keyed on olean hash at MODULE granularity. A full `proof-blueprint refs --refresh --force` was then run to completion (4078 modules, 56343 symbols, 19/19 batches committed, no drops or timeouts); `refs --check` still reports the identical 36 stale / 1 never-mined. The condition is therefore structural in the proof-blueprint miner, not incremental-cache drift, and it cannot be cleared from this repository's side.",
+      "stale_source_files": [
+        "Erdos9796Proof/P97/ATail/BlockerVExactSeventeenThirtyFirstModelRefinements.lean",
+        "Erdos9796Proof/P97/ATail/BlockerVExactSeventeenThirtyFirstModelRefinementsShard0.lean",
+        "Erdos9796Proof/P97/ATail/BlockerVExactSeventeenThirtyFirstModelRefinementsShard1.lean",
+        "Erdos9796Proof/P97/ATail/BlockerVExactSeventeenThirtyFirstModelRefinementsShard2.lean",
+        "Erdos9796Proof/P97/ATail/BlockerVExactSeventeenThirtyFirstModelRefinementsShard3.lean",
+        "Erdos9796Proof/P97/ErasedCertificate/ErasedNativeEvalGate.lean",
+        "Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceTripleShellEscape.lean"
+      ],
+      "stale_sources_all_clean_at_head": true,
+      "never_mined_symbol": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.exists_q_tripleShellEscape_qRow_overlap_card_le_two",
+      "never_mined_cause": "Name collision: the same fully-qualified name is declared in Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceTripleShellEscape.lean and in scratch/firstnonhit-retained-escape-math/RetainedEscape.lean. symbol_mined is keyed by fully-qualified name, so the pair cannot both be stamped; 0 mined ref rows exist for it.",
+      "stale_cause": "35 of the 36 are the BlockerVExactSeventeenThirtyFirstModelRefinements module and its four lean-shard shards; the 36th is the bare top-level `main` of ErasedNativeEvalGate.lean, declared outside every namespace (line 231, after `end Problem97`) and therefore colliding on the bare name `main` with 98 Export-module entrypoints that [mining].skip excludes. None of these files is modified by W1c."
+    },
+    "roster": {
+      "verdict": "PASS",
+      "command": "proof-blueprint search --with-sorry --spine --json",
+      "spine_count": 28,
+      "spine_baseline_count": 28,
+      "spine_symbol_set_identical_to_baseline": true,
+      "off_spine_count": 6,
+      "off_spine_baseline_count": 6,
+      "off_spine_symbol_set_identical_to_baseline": true,
+      "revalidated_after_force_remine": true
+    },
+    "axioms": {
+      "verdict": "PASS",
+      "command": "proof-blueprint axioms Problem97.erdos97_rhs",
+      "exit_code": 1,
+      "exit_1_expected_reason": "sorryAx present on the spine",
+      "byte_identical_to_baseline": true,
+      "sha256": "885f4dbeabd8fc8a86f9acd9b1d85275ddd7218f247d367aa42798b560ed4936",
+      "baseline_sha256": "885f4dbeabd8fc8a86f9acd9b1d85275ddd7218f247d367aa42798b560ed4936",
+      "axiom_count": 6,
+      "revalidated_after_force_remine": true
+    },
+    "registry": {
+      "verdict": "FAIL",
+      "command": "uv run python scripts/gen_obligation_registry.py check --baseline proof-status/baseline --require-fresh-refs",
+      "exit_code": 1,
+      "receipt_path": "proof-status/receipts/registry-check-20260825T000201Z.json",
+      "fail_reasons": [
+        "--require-fresh-refs: 36 stale mined symbol(s)",
+        "--require-fresh-refs: 1 never-mined symbol(s)"
+      ],
+      "sole_failure_is_refs_freshness_precondition": true,
+      "content_gates": {
+        "verdict": "PASS",
+        "command_without_freshness_flag": "uv run python scripts/gen_obligation_registry.py check --baseline proof-status/baseline",
+        "exit_code": 0,
+        "receipt_path": "proof-status/receipts/registry-check-20260824T235054Z.json",
+        "reachable": 28,
+        "off_spine": 6,
+        "total_entries": 34,
+        "roster_added": 0,
+        "roster_removed": 0,
+        "roster_changed_fields": 0,
+        "registry_entries_with_meta_status": 34,
+        "meta_all_populated": true,
+        "meta_violations": 0,
+        "vocabulary_clean": true
+      },
+      "script_bug_found": false,
+      "script_repair_applied": false,
+      "script_repair_note": "parse_refs_check and the --require-fresh-refs enforcement in scripts/gen_obligation_registry.py were read and are correct: they faithfully report what `proof-blueprint refs --check` returns. No script edit was warranted or made."
+    },
+    "lint": {
+      "verdict": "PASS",
+      "command": "uv run python scripts/lint_cluster_imports.py",
+      "exit_code": 0,
+      "import_edges_scanned": 665,
+      "forbidden_edges": 29,
+      "waivers": 29,
+      "unwaived_forbidden_edges": 0,
+      "retired_edge": {
+        "edge": "Erdos9796Proof.P97.ATail.FrontierLiveClosure.TwoDeletionCollision -> Erdos9796Proof.P97.ATail.FrontierLiveClosure.B1Live",
+        "absent_from_live_source": true,
+        "absent_from_waivers": true,
+        "still_listed_in_frozen_cluster_import_edges_json": true,
+        "frozen_json_note": "proof-status/cluster-import-edges.json is a snapshot at base_head and still records 650 edges / 30 forbidden. The live scan is authoritative: 665 edges / 29 forbidden.",
+        "live_imports_of_TwoDeletionCollision": [
+          "Erdos9796Proof.P97.ATail.FrontierLiveClosure.ContextFrames",
+          "Erdos9796Proof.P97.ATail.FrontierLiveClosure.JointDeletionCore",
+          "Erdos9796Proof.P97.ATail.FrontierLiveClosure.SharedFrontierHelpers"
+        ]
+      },
+      "waived_edge": {
+        "edge": "Erdos9796Proof.P97.ATail.FrontierLiveClosure.Rigid221Placement -> Erdos9796Proof.P97.ATail.FrontierLiveClosure.TwoDeletionCollision",
+        "present_in_live_source": true,
+        "waived": true,
+        "planned_retirement": "W3"
+      }
+    },
+    "verify_publish": {
+      "verdict": "PASS",
+      "command": "proof-blueprint verify-publish",
+      "exit_code": 1,
+      "target_symbol": "Problem97.erdos97_rhs",
+      "baseline_target_symbol": "Problem97.erdos97_rhs",
+      "failure_class": "sorryAx",
+      "baseline_failure_class": "sorryAx",
+      "same_class_and_target_as_baseline": true,
+      "blocker_lines_identical_to_baseline": true,
+      "blockers": 2,
+      "off_spine_sorry_symbols": 3,
+      "name_collisions": 82,
+      "only_diff_vs_baseline": "informational dirty-file count line: baseline '10 uncommitted lean file(s)' vs now '15 uncommitted lean file(s)'. Not part of the verdict."
+    },
+    "wrappers": {
+      "verdict": "PASS",
+      "command": "proof-blueprint search --name <name>",
+      "names_checked": 35,
+      "originals_present": 35,
+      "frame_siblings_present": 35,
+      "of_frame_siblings_present": 0,
+      "sibling_convention_observed": "_frame (uniform across all 35)",
+      "missing": []
+    },
+    "foreign_files": {
+      "verdict": "PASS",
+      "command": "shasum -a 256 (in FrontierLiveClosure/)",
+      "expected": {
+        "TwoSourceCanonicalSurface.lean": "6d7bc2e50828072339307ae3f8879c3073e54489e613ab3d74830a615c519268",
+        "TwoSourceRetainedMinimalCore.lean": "b6407b84f7f9609bca45cdf6ab98db5e2fe542cb46e7de00b1963be3bb431e11",
+        "TriApexEndpointRetainedOmission.lean": "88af81a1ef621909c0fe6e29b6fa725edaf5b796429bc1f24399bea18a740737"
+      },
+      "observed": {
+        "TwoSourceCanonicalSurface.lean": "6d7bc2e50828072339307ae3f8879c3073e54489e613ab3d74830a615c519268",
+        "TwoSourceRetainedMinimalCore.lean": "b6407b84f7f9609bca45cdf6ab98db5e2fe542cb46e7de00b1963be3bb431e11",
+        "TriApexEndpointRetainedOmission.lean": "88af81a1ef621909c0fe6e29b6fa725edaf5b796429bc1f24399bea18a740737"
+      },
+      "drift": []
+    }
+  },
+  "overall_pass": false,
+  "overall_note": "8 of 9 gates pass. The registry gate fails, and only on its --require-fresh-refs precondition, which is inherited from the proof-blueprint mine and is byte-for-byte the same 36 stale / 1 never-mined condition frozen into proof-status/baseline/refs-check.txt. Every one of the 7 source files carrying that staleness is clean at HEAD, so no part of it is W1c drift. A full forced re-mine does not clear it. The exact 28-leaf spine sorry roster, the 6-symbol off-spine roster, and the byte-identical axiom closure all hold.",
+  "supersedes": "proof-status/phase0-gate-resolution.json"
+}

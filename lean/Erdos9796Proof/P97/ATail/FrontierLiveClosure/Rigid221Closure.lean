@@ -105,7 +105,7 @@ theorem false_of_exactFourMutualOmissionRigid221_physicalApex_sourceNeU
 has been localized into the physical five-class and then into the two
 source-row placements above.  The outside-class arm is discharged into the
 explicit singleton minimal-core leaf by the parent physical-apex split. -/
-theorem false_of_exactFourMutualOmissionRigid221_physicalApex_sourceBlockerInClass
+theorem false_of_exactFourMutualOmissionRigid221_physicalApex_sourceBlockerInClass_frame
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
     {F : CriticalPairFrontier D S radius H}
@@ -162,8 +162,61 @@ theorem false_of_exactFourMutualOmissionRigid221_physicalApex_sourceBlockerInCla
           hclassFive globalDeletion hcenter hsourceBlockerClass
           huNeSource hplacement
 
+/-- Strictly narrower physical-apex coordinator: the source's actual blocker
+has been localized into the physical five-class and then into the two
+source-row placements above.  The outside-class arm is discharged into the
+explicit singleton minimal-core leaf by the parent physical-apex split.
+This is a compatibility wrapper over
+`false_of_exactFourMutualOmissionRigid221_physicalApex_sourceBlockerInClass_frame`,
+which takes the same hypotheses packaged as a
+`PostCardElevenSurfaceFrame`. -/
+theorem false_of_exactFourMutualOmissionRigid221_physicalApex_sourceBlockerInClass
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F)
+    (hcard : 12 ≤ D.A.card)
+    (surface : ExactFourPostCardElevenRobustSurface R)
+    (rho : ℝ)
+    (source other : CarrierVertex D.A)
+    (hrho : 0 < rho)
+    (hfive : 5 ≤ (SelectedClass D.A S.oppApex2 rho).card)
+    (u v : CarrierVertex D.A)
+    (huNeV : u ≠ v)
+    (huClass :
+      u.1 ∈ SelectedClass D.A S.oppApex2 rho)
+    (hvClass :
+      v.1 ∈ SelectedClass D.A S.oppApex2 rho)
+    (hvOmitted :
+      v.1 ∉
+        ((lateFirstApexSystem R).selectedAt
+          u.1 u.2).toCriticalFourShell.support)
+    (huOmitted :
+      u.1 ∉
+        ((lateFirstApexSystem R).selectedAt
+          v.1 v.2).toCriticalFourShell.support)
+    (context :
+      ExactFourMutualOmissionSourceContext
+        R rho source other u v)
+    (jointDeletion :
+      ExactFourMutualOmissionJointDeletion R rho u v)
+    (hclassFive :
+      (SelectedClass D.A S.oppApex2 rho).card = 5)
+    (globalDeletion :
+      ExactFourMutualOmissionRigid221GlobalDeletion
+        R rho u v jointDeletion)
+    (hcenter : globalDeletion.center = S.oppApex2)
+    (hsourceBlockerClass :
+      (lateFirstApexSystem R).centerAt source.1 source.2 ∈
+        SelectedClass D.A S.oppApex2 rho) :
+    False :=
+  false_of_exactFourMutualOmissionRigid221_physicalApex_sourceBlockerInClass_frame R
+    ⟨hcard, surface⟩
+    rho source other hrho hfive u v huNeV huClass hvClass hvOmitted huOmitted context
+    jointDeletion hclassFive globalDeletion hcenter hsourceBlockerClass
+
 /-- Physical-apex leaf of the contextual rigid `2+2+1` terminal. -/
-theorem false_of_exactFourMutualOmissionRigid221_physicalApex
+theorem false_of_exactFourMutualOmissionRigid221_physicalApex_frame
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
     {F : CriticalPairFrontier D S radius H}
@@ -204,7 +257,7 @@ theorem false_of_exactFourMutualOmissionRigid221_physicalApex
       (lateFirstApexSystem R).centerAt source.1 source.2 ∈
         SelectedClass D.A S.oppApex2 rho
   · exact
-      false_of_exactFourMutualOmissionRigid221_physicalApex_sourceBlockerInClass
+      false_of_exactFourMutualOmissionRigid221_physicalApex_sourceBlockerInClass_frame
         R ⟨hcard, surface⟩ rho source other hrho hfive u v huNeV
           huClass hvClass hvOmitted huOmitted context jointDeletion
           hclassFive globalDeletion hcenter hsourceBlockerClass
@@ -219,6 +272,52 @@ theorem false_of_exactFourMutualOmissionRigid221_physicalApex
         R hcard surface rho source other hrho hfive u v huNeV
           huClass hvClass hvOmitted huOmitted context jointDeletion
           hclassFive sourceDeletion hsourceCenterNe sourceCore
+
+/-- Physical-apex leaf of the contextual rigid `2+2+1` terminal.
+This is a compatibility wrapper over
+`false_of_exactFourMutualOmissionRigid221_physicalApex_frame`, which takes
+the same hypotheses packaged as a `PostCardElevenSurfaceFrame`. -/
+theorem false_of_exactFourMutualOmissionRigid221_physicalApex
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F)
+    (hcard : 12 ≤ D.A.card)
+    (surface : ExactFourPostCardElevenRobustSurface R)
+    (rho : ℝ)
+    (source other : CarrierVertex D.A)
+    (hrho : 0 < rho)
+    (hfive : 5 ≤ (SelectedClass D.A S.oppApex2 rho).card)
+    (u v : CarrierVertex D.A)
+    (huNeV : u ≠ v)
+    (huClass :
+      u.1 ∈ SelectedClass D.A S.oppApex2 rho)
+    (hvClass :
+      v.1 ∈ SelectedClass D.A S.oppApex2 rho)
+    (hvOmitted :
+      v.1 ∉
+        ((lateFirstApexSystem R).selectedAt
+          u.1 u.2).toCriticalFourShell.support)
+    (huOmitted :
+      u.1 ∉
+        ((lateFirstApexSystem R).selectedAt
+          v.1 v.2).toCriticalFourShell.support)
+    (context :
+      ExactFourMutualOmissionSourceContext
+        R rho source other u v)
+    (jointDeletion :
+      ExactFourMutualOmissionJointDeletion R rho u v)
+    (hclassFive :
+      (SelectedClass D.A S.oppApex2 rho).card = 5)
+    (globalDeletion :
+      ExactFourMutualOmissionRigid221GlobalDeletion
+        R rho u v jointDeletion)
+    (hcenter : globalDeletion.center = S.oppApex2) :
+    False :=
+  false_of_exactFourMutualOmissionRigid221_physicalApex_frame R
+    ⟨hcard, surface⟩
+    rho source other hrho hfive u v huNeV huClass hvClass hvOmitted huOmitted context
+    jointDeletion hclassFive globalDeletion hcenter
 
 /-- Nonphysical equal-radius collision leaf of the contextual rigid `2+2+1`
 terminal. -/
@@ -271,7 +370,7 @@ theorem false_of_exactFourMutualOmissionRigid221_nonphysicalCollision
 subdeletion of the physical class.  The source-row context is preserved and
 the global geometry is split exhaustively into three strictly narrower
 terminal leaves. -/
-theorem false_of_exactFourMutualOmissionRigid221_globalDeletion
+theorem false_of_exactFourMutualOmissionRigid221_globalDeletion_frame
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
     {F : CriticalPairFrontier D S radius H}
@@ -309,7 +408,7 @@ theorem false_of_exactFourMutualOmissionRigid221_globalDeletion
   obtain ⟨hcard, surface⟩ := frame
   by_cases hcenter : globalDeletion.center = S.oppApex2
   · exact
-      false_of_exactFourMutualOmissionRigid221_physicalApex
+      false_of_exactFourMutualOmissionRigid221_physicalApex_frame
         R ⟨hcard, surface⟩ rho source other hrho hfive u v huNeV
           huClass hvClass hvOmitted huOmitted context jointDeletion
           hclassFive globalDeletion hcenter
@@ -326,9 +425,57 @@ theorem false_of_exactFourMutualOmissionRigid221_globalDeletion
             huClass hvClass hvOmitted huOmitted context jointDeletion
             hclassFive globalDeletion hcenter core
 
+/-- The exact-five rigid residue after retaining a globally minimal blocking
+subdeletion of the physical class.  The source-row context is preserved and
+the global geometry is split exhaustively into three strictly narrower
+terminal leaves.
+This is a compatibility wrapper over
+`false_of_exactFourMutualOmissionRigid221_globalDeletion_frame`, which
+takes the same hypotheses packaged as a `PostCardElevenSurfaceFrame`. -/
+theorem false_of_exactFourMutualOmissionRigid221_globalDeletion
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F)
+    (hcard : 12 ≤ D.A.card)
+    (surface : ExactFourPostCardElevenRobustSurface R)
+    (rho : ℝ)
+    (source other : CarrierVertex D.A)
+    (hrho : 0 < rho)
+    (hfive : 5 ≤ (SelectedClass D.A S.oppApex2 rho).card)
+    (u v : CarrierVertex D.A)
+    (huNeV : u ≠ v)
+    (huClass :
+      u.1 ∈ SelectedClass D.A S.oppApex2 rho)
+    (hvClass :
+      v.1 ∈ SelectedClass D.A S.oppApex2 rho)
+    (hvOmitted :
+      v.1 ∉
+        ((lateFirstApexSystem R).selectedAt
+          u.1 u.2).toCriticalFourShell.support)
+    (huOmitted :
+      u.1 ∉
+        ((lateFirstApexSystem R).selectedAt
+          v.1 v.2).toCriticalFourShell.support)
+    (context :
+      ExactFourMutualOmissionSourceContext
+        R rho source other u v)
+    (jointDeletion :
+      ExactFourMutualOmissionJointDeletion R rho u v)
+    (hclassFive :
+      (SelectedClass D.A S.oppApex2 rho).card = 5)
+    (globalDeletion :
+      ExactFourMutualOmissionRigid221GlobalDeletion
+        R rho u v jointDeletion) :
+    False :=
+  false_of_exactFourMutualOmissionRigid221_globalDeletion_frame R
+    ⟨hcard, surface⟩
+    rho source other hrho hfive u v huNeV huClass hvClass hvOmitted huOmitted context
+    jointDeletion hclassFive globalDeletion
+
 /-- The local rigid partition is strengthened, by global minimality, with a
 card-minimal blocking subdeletion before entering the remaining terminal. -/
-theorem false_of_exactFourMutualOmissionRigid221
+theorem false_of_exactFourMutualOmissionRigid221_frame
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
     {F : CriticalPairFrontier D S radius H}
@@ -376,16 +523,69 @@ theorem false_of_exactFourMutualOmissionRigid221
         R rho hrho u v jointDeletion hclassFive hrigid with
     ⟨globalDeletion⟩
   exact
-    false_of_exactFourMutualOmissionRigid221_globalDeletion
+    false_of_exactFourMutualOmissionRigid221_globalDeletion_frame
       R ⟨hcard, surface⟩ rho source other hrho hfive u v huNeV
       huClass hvClass hvOmitted huOmitted context jointDeletion
       hclassFive globalDeletion
+
+/-- The local rigid partition is strengthened, by global minimality, with a
+card-minimal blocking subdeletion before entering the remaining terminal.
+This is a compatibility wrapper over
+`false_of_exactFourMutualOmissionRigid221_frame`, which takes the same
+hypotheses packaged as a `PostCardElevenSurfaceFrame`. -/
+theorem false_of_exactFourMutualOmissionRigid221
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F)
+    (hcard : 12 ≤ D.A.card)
+    (surface : ExactFourPostCardElevenRobustSurface R)
+    (rho : ℝ)
+    (source other : CarrierVertex D.A)
+    (hrho : 0 < rho)
+    (hfive : 5 ≤ (SelectedClass D.A S.oppApex2 rho).card)
+    (u v : CarrierVertex D.A)
+    (huNeV : u ≠ v)
+    (huClass :
+      u.1 ∈ SelectedClass D.A S.oppApex2 rho)
+    (hvClass :
+      v.1 ∈ SelectedClass D.A S.oppApex2 rho)
+    (hvOmitted :
+      v.1 ∉
+        ((lateFirstApexSystem R).selectedAt
+          u.1 u.2).toCriticalFourShell.support)
+    (huOmitted :
+      u.1 ∉
+        ((lateFirstApexSystem R).selectedAt
+          v.1 v.2).toCriticalFourShell.support)
+    (context :
+      ExactFourMutualOmissionSourceContext
+        R rho source other u v)
+    (jointDeletion :
+      ExactFourMutualOmissionJointDeletion R rho u v)
+    (hclassFive :
+      (SelectedClass D.A S.oppApex2 rho).card = 5)
+    (hrigid :
+      let C := SelectedClass D.A S.oppApex2 rho
+      let Iu :=
+        ((lateFirstApexSystem R).selectedAt
+          u.1 u.2).toCriticalFourShell.support ∩ C
+      let Iv :=
+        ((lateFirstApexSystem R).selectedAt
+          v.1 v.2).toCriticalFourShell.support ∩ C
+      Iu.card = 2 ∧ Iv.card = 2 ∧ Disjoint Iu Iv ∧
+        C = insert jointDeletion.deleted.1 (Iu ∪ Iv)) :
+    False :=
+  false_of_exactFourMutualOmissionRigid221_frame R
+    ⟨hcard, surface⟩
+    rho source other hrho hfive u v huNeV huClass hvClass hvOmitted huOmitted context
+    jointDeletion hclassFive hrigid
 
 /-- The direct exact-four terminal after the mutually omitted pair is
 exhaustively coordinated by class cardinality.  Exact class size five either
 produces a second deletion or the rigid `2+2+1` partition; every larger class
 produces two distinct deletions. -/
-theorem false_of_exactFourMutualOmissionJointDeletion
+theorem false_of_exactFourMutualOmissionJointDeletion_frame
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
     {F : CriticalPairFrontier D S radius H}
@@ -430,7 +630,7 @@ theorem false_of_exactFourMutualOmissionJointDeletion
           _huClass _hvClass _hvOmitted _huOmitted
           second jointDeletion hdeletedNe
     · exact
-        false_of_exactFourMutualOmissionRigid221
+        false_of_exactFourMutualOmissionRigid221_frame
           R ⟨_hcard, surface⟩ rho source other _hrho _hfive u v _huNeV
           _huClass _hvClass _hvOmitted _huOmitted
           context jointDeletion hclassFive hrigid
@@ -446,11 +646,54 @@ theorem false_of_exactFourMutualOmissionJointDeletion
         _huClass _hvClass _hvOmitted _huOmitted
         first second hdeletedNe
 
+/-- The direct exact-four terminal after the mutually omitted pair is
+exhaustively coordinated by class cardinality.  Exact class size five either
+produces a second deletion or the rigid `2+2+1` partition; every larger class
+produces two distinct deletions.
+This is a compatibility wrapper over
+`false_of_exactFourMutualOmissionJointDeletion_frame`, which takes the
+same hypotheses packaged as a `PostCardElevenSurfaceFrame`. -/
+theorem false_of_exactFourMutualOmissionJointDeletion
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F)
+    (_hcard : 12 ≤ D.A.card)
+    (surface : ExactFourPostCardElevenRobustSurface R)
+    (rho : ℝ)
+    (source other : CarrierVertex D.A)
+    (_hrho : 0 < rho)
+    (_hfive : 5 ≤ (SelectedClass D.A S.oppApex2 rho).card)
+    (u v : CarrierVertex D.A)
+    (_huNeV : u ≠ v)
+    (_huClass :
+      u.1 ∈ SelectedClass D.A S.oppApex2 rho)
+    (_hvClass :
+      v.1 ∈ SelectedClass D.A S.oppApex2 rho)
+    (_hvOmitted :
+      v.1 ∉
+        ((lateFirstApexSystem R).selectedAt
+          u.1 u.2).toCriticalFourShell.support)
+    (_huOmitted :
+      u.1 ∉
+        ((lateFirstApexSystem R).selectedAt
+          v.1 v.2).toCriticalFourShell.support)
+    (context :
+      ExactFourMutualOmissionSourceContext
+        R rho source other u v)
+    (jointDeletion :
+      ExactFourMutualOmissionJointDeletion R rho u v) :
+    False :=
+  false_of_exactFourMutualOmissionJointDeletion_frame R
+    ⟨_hcard, surface⟩
+    rho source other _hrho _hfive u v _huNeV _huClass _hvClass _hvOmitted _huOmitted
+    context jointDeletion
+
 /-- The mutually omitted-pair residue of the five-point-radius branch.  It
 retains the preceding strict-cap omitted peer and, in addition, two physical
 second-apex class sources absent from one another's actual late rows.  Both
 cross deletions therefore preserve K4, and the actual blockers are distinct. -/
-theorem false_of_exactFourPostCardElevenInteriorDeletionMutualOmissionBranch
+theorem false_of_exactFourPostCardElevenInteriorDeletionMutualOmissionBranch_frame
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
     {F : CriticalPairFrontier D S radius H}
@@ -548,15 +791,107 @@ theorem false_of_exactFourPostCardElevenInteriorDeletionMutualOmissionBranch
         R surface rho _hfive u v _hblockersUVNe with
     ⟨jointDeletion⟩
   exact
-    false_of_exactFourMutualOmissionJointDeletion
+    false_of_exactFourMutualOmissionJointDeletion_frame
       R ⟨_hcard, surface⟩ rho source other _hrho _hfive u v _huNeV
         _huClass _hvClass _hvOmitted _huOmitted context jointDeletion
+
+/-- The mutually omitted-pair residue of the five-point-radius branch.  It
+retains the preceding strict-cap omitted peer and, in addition, two physical
+second-apex class sources absent from one another's actual late rows.  Both
+cross deletions therefore preserve K4, and the actual blockers are distinct.
+This is a compatibility wrapper over
+`false_of_exactFourPostCardElevenInteriorDeletionMutualOmissionBranch_frame`,
+which takes the same hypotheses packaged as a
+`PostCardElevenSurfaceFrame`. -/
+theorem false_of_exactFourPostCardElevenInteriorDeletionMutualOmissionBranch
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F)
+    (_hcard : 12 ≤ D.A.card)
+    (surface : ExactFourPostCardElevenRobustSurface R)
+    (rho : ℝ)
+    (source : CarrierVertex D.A)
+    (_hrho : 0 < rho)
+    (_hfive : 5 ≤ (SelectedClass D.A S.oppApex2 rho).card)
+    (_hsourceClass :
+      source.1 ∈ SelectedClass D.A S.oppApex2 rho)
+    (_hsourceInterior :
+      source.1 ∈ S.capInteriorByIndex S.oppIndex2)
+    (_hsourceOutside : source ∈ outsideFirstApexFiber R)
+    (_hlateCross :
+      ((((lateFirstApexSystem R).selectedAt
+            source.1 source.2).toCriticalFourShell.support ∩
+          (SelectedClass D.A S.oppApex2 rho ∩
+            S.capInteriorByIndex S.oppIndex2)).card ≤ 2))
+    (other : CarrierVertex D.A)
+    (_hotherNe : other ≠ source)
+    (_hotherClass :
+      other.1 ∈ SelectedClass D.A S.oppApex2 rho)
+    (_hotherInterior :
+      other.1 ∈ S.capInteriorByIndex S.oppIndex2)
+    (_hotherOmitted :
+      other.1 ∉
+        ((lateFirstApexSystem R).selectedAt
+          source.1 source.2).toCriticalFourShell.support)
+    (_hblockersNe :
+      (lateFirstApexSystem R).centerAt source.1 source.2 ≠
+        (lateFirstApexSystem R).centerAt other.1 other.2)
+    (_hsurvives :
+      HasNEquidistantPointsAt 4 (D.A.erase R.interior_q)
+          ((lateFirstApexSystem R).centerAt source.1 source.2) ∨
+        HasNEquidistantPointsAt 4 (D.A.erase R.interior_w)
+          ((lateFirstApexSystem R).centerAt source.1 source.2))
+    (u v : CarrierVertex D.A)
+    (_huNeV : u ≠ v)
+    (_huClass :
+      u.1 ∈ SelectedClass D.A S.oppApex2 rho)
+    (_hvClass :
+      v.1 ∈ SelectedClass D.A S.oppApex2 rho)
+    (_hvOmitted :
+      v.1 ∉
+        ((lateFirstApexSystem R).selectedAt
+          u.1 u.2).toCriticalFourShell.support)
+    (_huOmitted :
+      u.1 ∉
+        ((lateFirstApexSystem R).selectedAt
+          v.1 v.2).toCriticalFourShell.support)
+    (_hsourceMemURow :
+      source.1 ∈
+        ((lateFirstApexSystem R).selectedAt
+          u.1 u.2).toCriticalFourShell.support)
+    (_hvOmittedSourceRow :
+      v.1 ∉
+        ((lateFirstApexSystem R).selectedAt
+          source.1 source.2).toCriticalFourShell.support)
+    (_huEqSourceOrOmitted :
+      u = source ∨
+        u.1 ∉
+          ((lateFirstApexSystem R).selectedAt
+            source.1 source.2).toCriticalFourShell.support)
+    (_hblockersUVNe :
+      (lateFirstApexSystem R).centerAt u.1 u.2 ≠
+        (lateFirstApexSystem R).centerAt v.1 v.2)
+    (_huSurvivesDeleteV :
+      HasNEquidistantPointsAt 4 (D.A.erase v.1)
+        ((lateFirstApexSystem R).centerAt u.1 u.2))
+    (_hvSurvivesDeleteU :
+      HasNEquidistantPointsAt 4 (D.A.erase u.1)
+        ((lateFirstApexSystem R).centerAt v.1 v.2)) :
+    False :=
+  false_of_exactFourPostCardElevenInteriorDeletionMutualOmissionBranch_frame R
+    ⟨_hcard, surface⟩
+    rho source _hrho _hfive _hsourceClass _hsourceInterior _hsourceOutside _hlateCross
+    other _hotherNe _hotherClass _hotherInterior _hotherOmitted _hblockersNe _hsurvives
+    u v _huNeV _huClass _hvClass _hvOmitted _huOmitted _hsourceMemURow
+    _hvOmittedSourceRow _huEqSourceOrOmitted _hblockersUVNe _huSurvivesDeleteV
+    _hvSurvivesDeleteU
 
 /-- The asymmetric strict-cap omitted peer forces a stronger whole-class
 normal form: among the five physical second-apex class sources, two are
 mutually omitted.  This checked wrapper is the one-child narrowing from the
 former omitted-peer obligation to the mutual-omission obligation above. -/
-theorem false_of_exactFourPostCardElevenInteriorDeletionOmittedPeerBranch
+theorem false_of_exactFourPostCardElevenInteriorDeletionOmittedPeerBranch_frame
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
     {F : CriticalPairFrontier D S radius H}
@@ -624,7 +959,7 @@ theorem false_of_exactFourPostCardElevenInteriorDeletionOmittedPeerBranch
     (cross_deletion_survives_iff_not_mem_selected_support
       (lateFirstApexSystem R) v.2).mpr huOmitted
   exact
-    false_of_exactFourPostCardElevenInteriorDeletionMutualOmissionBranch
+    false_of_exactFourPostCardElevenInteriorDeletionMutualOmissionBranch_frame
       R ⟨hcard, surface⟩ rho source hrho hfive hsourceClass hsourceInterior
         hsourceOutside hlateCross other hotherNe hotherClass hotherInterior
         hotherOmitted hblockersNe hsurvives u v huNeV huClass hvClass
@@ -632,11 +967,64 @@ theorem false_of_exactFourPostCardElevenInteriorDeletionOmittedPeerBranch
         huEqSourceOrOmitted hblockersUVNe huSurvivesDeleteV
         hvSurvivesDeleteU
 
+/-- The asymmetric strict-cap omitted peer forces a stronger whole-class
+normal form: among the five physical second-apex class sources, two are
+mutually omitted.  This checked wrapper is the one-child narrowing from the
+former omitted-peer obligation to the mutual-omission obligation above.
+This is a compatibility wrapper over
+`false_of_exactFourPostCardElevenInteriorDeletionOmittedPeerBranch_frame`,
+which takes the same hypotheses packaged as a
+`PostCardElevenSurfaceFrame`. -/
+theorem false_of_exactFourPostCardElevenInteriorDeletionOmittedPeerBranch
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F)
+    (hcard : 12 ≤ D.A.card)
+    (surface : ExactFourPostCardElevenRobustSurface R)
+    (rho : ℝ)
+    (source : CarrierVertex D.A)
+    (hrho : 0 < rho)
+    (hfive : 5 ≤ (SelectedClass D.A S.oppApex2 rho).card)
+    (hsourceClass :
+      source.1 ∈ SelectedClass D.A S.oppApex2 rho)
+    (hsourceInterior :
+      source.1 ∈ S.capInteriorByIndex S.oppIndex2)
+    (hsourceOutside : source ∈ outsideFirstApexFiber R)
+    (hlateCross :
+      ((((lateFirstApexSystem R).selectedAt
+            source.1 source.2).toCriticalFourShell.support ∩
+          (SelectedClass D.A S.oppApex2 rho ∩
+            S.capInteriorByIndex S.oppIndex2)).card ≤ 2))
+    (other : CarrierVertex D.A)
+    (hotherNe : other ≠ source)
+    (hotherClass :
+      other.1 ∈ SelectedClass D.A S.oppApex2 rho)
+    (hotherInterior :
+      other.1 ∈ S.capInteriorByIndex S.oppIndex2)
+    (hotherOmitted :
+      other.1 ∉
+        ((lateFirstApexSystem R).selectedAt
+          source.1 source.2).toCriticalFourShell.support)
+    (hblockersNe :
+      (lateFirstApexSystem R).centerAt source.1 source.2 ≠
+        (lateFirstApexSystem R).centerAt other.1 other.2)
+    (hsurvives :
+      HasNEquidistantPointsAt 4 (D.A.erase R.interior_q)
+          ((lateFirstApexSystem R).centerAt source.1 source.2) ∨
+        HasNEquidistantPointsAt 4 (D.A.erase R.interior_w)
+          ((lateFirstApexSystem R).centerAt source.1 source.2)) :
+    False :=
+  false_of_exactFourPostCardElevenInteriorDeletionOmittedPeerBranch_frame R
+    ⟨hcard, surface⟩
+    rho source hrho hfive hsourceClass hsourceInterior hsourceOutside hlateCross other
+    hotherNe hotherClass hotherInterior hotherOmitted hblockersNe hsurvives
+
 /-- The bounded-cross-incidence residue supplies a named strict-cap peer
 outside the active late row.  Equality of the two actual blockers would make
 their canonical supports equal, so the peer's own-row membership proves the
 blockers are distinct. -/
-theorem false_of_exactFourPostCardElevenInteriorDeletionLowCrossBranch
+theorem false_of_exactFourPostCardElevenInteriorDeletionLowCrossBranch_frame
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
     {F : CriticalPairFrontier D S radius H}
@@ -669,15 +1057,55 @@ theorem false_of_exactFourPostCardElevenInteriorDeletionLowCrossBranch
     ⟨other, hotherNe, hotherClass, hotherInterior,
       hotherOmitted, hblockersNe⟩
   exact
-    false_of_exactFourPostCardElevenInteriorDeletionOmittedPeerBranch
+    false_of_exactFourPostCardElevenInteriorDeletionOmittedPeerBranch_frame
       R ⟨hcard, surface⟩ rho source hrho hfive hsourceClass hsourceInterior
         hsourceOutside hlateCross other hotherNe hotherClass hotherInterior
         hotherOmitted hblockersNe hsurvives
 
+/-- The bounded-cross-incidence residue supplies a named strict-cap peer
+outside the active late row.  Equality of the two actual blockers would make
+their canonical supports equal, so the peer's own-row membership proves the
+blockers are distinct.
+This is a compatibility wrapper over
+`false_of_exactFourPostCardElevenInteriorDeletionLowCrossBranch_frame`,
+which takes the same hypotheses packaged as a
+`PostCardElevenSurfaceFrame`. -/
+theorem false_of_exactFourPostCardElevenInteriorDeletionLowCrossBranch
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F)
+    (hcard : 12 ≤ D.A.card)
+    (surface : ExactFourPostCardElevenRobustSurface R)
+    (rho : ℝ)
+    (source : CarrierVertex D.A)
+    (hrho : 0 < rho)
+    (hfive : 5 ≤ (SelectedClass D.A S.oppApex2 rho).card)
+    (hsourceClass :
+      source.1 ∈ SelectedClass D.A S.oppApex2 rho)
+    (hsourceInterior :
+      source.1 ∈ S.capInteriorByIndex S.oppIndex2)
+    (hsourceOutside : source ∈ outsideFirstApexFiber R)
+    (hlateCross :
+      ((((lateFirstApexSystem R).selectedAt
+            source.1 source.2).toCriticalFourShell.support ∩
+          (SelectedClass D.A S.oppApex2 rho ∩
+            S.capInteriorByIndex S.oppIndex2)).card ≤ 2))
+    (hsurvives :
+      HasNEquidistantPointsAt 4 (D.A.erase R.interior_q)
+          ((lateFirstApexSystem R).centerAt source.1 source.2) ∨
+        HasNEquidistantPointsAt 4 (D.A.erase R.interior_w)
+          ((lateFirstApexSystem R).centerAt source.1 source.2)) :
+    False :=
+  false_of_exactFourPostCardElevenInteriorDeletionLowCrossBranch_frame R
+    ⟨hcard, surface⟩
+    rho source hrho hfive hsourceClass hsourceInterior hsourceOutside hlateCross
+    hsurvives
+
 /-- The five-point-radius branch reduces to its bounded-cross-incidence
 residue: three physical strict-cap hits in the actual late row are already
 ruled out by two-center cap localization and the ordered-cap row bound. -/
-theorem false_of_exactFourPostCardElevenInteriorDeletionBranch
+theorem false_of_exactFourPostCardElevenInteriorDeletionBranch_frame
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
     {F : CriticalPairFrontier D S radius H}
@@ -700,12 +1128,44 @@ theorem false_of_exactFourPostCardElevenInteriorDeletionBranch
     False := by
   obtain ⟨hcard, surface⟩ := frame
   exact
-    false_of_exactFourPostCardElevenInteriorDeletionLowCrossBranch
+    false_of_exactFourPostCardElevenInteriorDeletionLowCrossBranch_frame
       R ⟨hcard, surface⟩ rho source hrho hfive hsourceClass hsourceInterior
         hsourceOutside
         (actualLateRow_secondClassInterior_card_le_two
           R surface source hsourceClass hsourceInterior)
         hsurvives
+
+/-- The five-point-radius branch reduces to its bounded-cross-incidence
+residue: three physical strict-cap hits in the actual late row are already
+ruled out by two-center cap localization and the ordered-cap row bound.
+This is a compatibility wrapper over
+`false_of_exactFourPostCardElevenInteriorDeletionBranch_frame`, which
+takes the same hypotheses packaged as a `PostCardElevenSurfaceFrame`. -/
+theorem false_of_exactFourPostCardElevenInteriorDeletionBranch
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F)
+    (hcard : 12 ≤ D.A.card)
+    (surface : ExactFourPostCardElevenRobustSurface R)
+    (rho : ℝ)
+    (source : CarrierVertex D.A)
+    (hrho : 0 < rho)
+    (hfive : 5 ≤ (SelectedClass D.A S.oppApex2 rho).card)
+    (hsourceClass :
+      source.1 ∈ SelectedClass D.A S.oppApex2 rho)
+    (hsourceInterior :
+      source.1 ∈ S.capInteriorByIndex S.oppIndex2)
+    (hsourceOutside : source ∈ outsideFirstApexFiber R)
+    (hsurvives :
+      HasNEquidistantPointsAt 4 (D.A.erase R.interior_q)
+          ((lateFirstApexSystem R).centerAt source.1 source.2) ∨
+        HasNEquidistantPointsAt 4 (D.A.erase R.interior_w)
+          ((lateFirstApexSystem R).centerAt source.1 source.2)) :
+    False :=
+  false_of_exactFourPostCardElevenInteriorDeletionBranch_frame R
+    ⟨hcard, surface⟩
+    rho source hrho hfive hsourceClass hsourceInterior hsourceOutside hsurvives
 
 /-- The no-five two-distinct-radii branch of the post-card-eleven robust
 exact-four terminal.  It retains the two disjoint exact rows and their radius
@@ -733,7 +1193,7 @@ theorem false_of_exactFourPostCardElevenTwoRadiusBranch
 radius normal form now dispatches directly to two load-bearing branch
 obligations: the surviving interior-deletion branch and the no-five
 two-distinct-radii branch. -/
-theorem false_of_exactFourPostCardElevenRobustSurface
+theorem false_of_exactFourPostCardElevenRobustSurface_frame
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
     {F : CriticalPairFrontier D S radius H}
@@ -748,13 +1208,31 @@ theorem false_of_exactFourPostCardElevenRobustSurface
         hnoFive, hcardRho, hcardOther, hfirstRadius, hsecondRadius,
         hdisjoint, hinterior, hinteriorOther⟩
   · exact
-      false_of_exactFourPostCardElevenInteriorDeletionBranch
+      false_of_exactFourPostCardElevenInteriorDeletionBranch_frame
         R ⟨hcard, surface⟩ rho source hrho hfive hsourceClass hsourceInterior
           hsourceOutside hsurvives
   · exact
       false_of_exactFourPostCardElevenTwoRadiusBranch
         R hcard surface rho otherRadius firstRow secondRow
           hradii hnoFive hfirstRadius hsecondRadius hdisjoint
+
+/-- The narrowed post-card-eleven robust exact-four terminal.  Its checked
+radius normal form now dispatches directly to two load-bearing branch
+obligations: the surviving interior-deletion branch and the no-five
+two-distinct-radii branch.
+This is a compatibility wrapper over
+`false_of_exactFourPostCardElevenRobustSurface_frame`, which takes the
+same hypotheses packaged as a `PostCardElevenSurfaceFrame`. -/
+theorem false_of_exactFourPostCardElevenRobustSurface
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F)
+    (hcard : 12 ≤ D.A.card)
+    (surface : ExactFourPostCardElevenRobustSurface R) :
+    False :=
+  false_of_exactFourPostCardElevenRobustSurface_frame R
+    ⟨hcard, surface⟩
 
 /-- The robust physical-second-apex outcome reduces to the checked
 post-card-eleven surface.  The remaining contradiction is exposed directly
@@ -770,7 +1248,7 @@ theorem false_of_exactFourPhysicalConsumerRobustOutcome
     False := by
   rcases nonempty_postCardElevenRobustSurface_of_robust
       _hcard _ingress _secondApex_robust with ⟨surface⟩
-  exact false_of_exactFourPostCardElevenRobustSurface _R ⟨_hcard, surface⟩
+  exact false_of_exactFourPostCardElevenRobustSurface_frame _R ⟨_hcard, surface⟩
 
 /-- The swapped protected-exact-four terminal remaining after the checked
 exact-four source reduction.  Both the original residual and the physical

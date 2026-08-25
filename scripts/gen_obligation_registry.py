@@ -11,6 +11,14 @@ reachability, source location and cluster into one canonical file:
     proof-status/id-assignments.json       stable symbol -> id ledger
     proof-status/frontier-table.generated.md  README-shaped open frontier table
 
+The reviewed half of the ledger lives in ``proof-status/obligations-meta.json``
+(a plain JSON object keyed by obligation id).  Its reviewed fields are joined
+onto every registry entry at generate time, and the join is validated: every
+registry id must have exactly one meta entry, every meta entry must name a live
+registry id, and ``prose_status`` must be a member of the controlled status
+vocabulary fixed by the consolidation-refactor audit (P1 section "controlled
+status vocabulary").
+
 Subcommands
 -----------
 generate --baseline DIR --out DIR
@@ -24,15 +32,25 @@ generate --fresh --out DIR
 check --baseline DIR
     Regenerate FRESH from the live tree and exit nonzero with a precise diff if
     the obligation SET or any per-obligation ``lean_decl`` / ``source_file`` /
-    ``reachable`` field differs from the committed registry.  This is the
-    standing gate for later refactor phases; it never writes.
+    ``reachable`` field differs from the committed registry, or if the reviewed
+    metadata join is broken.  This is the standing gate for later refactor
+    phases; the only thing it writes is a revision-binding receipt under
+    ``proof-status/receipts/``, which pins the git HEAD, the working-tree
+    sha256 of every roster source file, the Lean toolchain digest and the
+    ``proof-blueprint refs --check`` build id and staleness counts that the
+    verdict was computed against.
 
-Standard library only.  Deterministic: no timestamps, every collection sorted.
+Exit codes: 0 pass, 1 drift or metadata violation, 2 operational failure.
+
+Standard library only.  The registry and the tables are deterministic (no
+timestamps, every collection sorted); receipts are timestamped by design.
 """
 
 from __future__ import annotations
 
 import argparse
+import datetime
+import hashlib
 import json
 import shutil
 import subprocess
@@ -46,6 +64,8 @@ PUBLISH_TARGET = "Problem97.erdos97_rhs"
 GENERATED_BY = "scripts/gen_obligation_registry.py"
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
+# Registry ``source_file`` paths are recorded relative to the Lean package root.
+LEAN_ROOT = REPO_ROOT / "lean"
 
 SPINE_EXPORT = "spine-sorry.json"
 OFFSPINE_EXPORT = "offspine-sorry.json"
@@ -53,11 +73,53 @@ BASE_HEAD_FILE = "base-head.txt"
 REGISTRY_NAME = "obligations.json"
 ID_ASSIGNMENTS_NAME = "id-assignments.json"
 FRONTIER_TABLE_NAME = "frontier-table.generated.md"
+# The reviewed metadata file actually kept in the repository.
+META_NAME = "obligations-meta.json"
+# Historical name, accepted only when META_NAME is absent.
 META_OVERLAY_NAME = "meta-status.overlay.json"
+
+RECEIPTS_DIRNAME = "receipts"
+RECEIPT_SCHEMA = "p97-registry-check-receipt/v1"
+RECEIPT_PREFIX = "registry-check-"
+
+# Toolchain pins, most specific first: the Lake package lives under lean/.
+TOOLCHAIN_CANDIDATES = ("lean/lean-toolchain", "lean-toolchain")
 
 BLUEPRINT_CMD = "proof-blueprint"
 SPINE_ARGS = ["search", "--with-sorry", "--spine", "--json"]
 OFFSPINE_ARGS = ["search", "--with-sorry", "--off-spine", "--json"]
+REFS_CHECK_ARGS = ["refs", "--check"]
+
+# ---------------------------------------------------------------------------
+# reviewed metadata
+# ---------------------------------------------------------------------------
+
+# Controlled status vocabulary, transcribed verbatim from
+# docs/audits/2026-08-23-consolidation-refactor-audit.md, section
+# "P1 refactor - controlled status vocabulary".  This tuple is the authority the
+# gate enforces; extend it only together with that audit section.
+PROSE_STATUS_VOCABULARY = (
+    "KERNEL_CLEAN",
+    "CERTIFIED_APPROVED_TRUST",
+    "SOURCE_CLEAN_TRANSITIVELY_OPEN",
+    "PROSE_CLOSED_LEAN_UNIMPLEMENTED",
+    "NORMAL_FORM_CLOSED_TERMINAL_OPEN",
+    "OPEN_MATHEMATICAL",
+    "REFUTED_LOCAL_STATEMENT",
+    "OFF_SPINE_DIAGNOSTIC",
+    "SUPERSEDED",
+)
+
+# Reviewed fields copied onto each registry entry.  ``cluster`` is deliberately
+# absent: the registry derives its own cluster from the source path and the meta
+# ``cluster`` is cross-checked against it instead of overwriting it.
+META_ATTACHED_FIELDS = (
+    "terminal_family",
+    "mathematical_packet",
+    "latest_checkpoint",
+    "implementation_effect",
+    "evidence_note",
+)
 
 # ---------------------------------------------------------------------------
 # cluster classification (from the source-file basename)
@@ -422,16 +484,87 @@ def normalize_records(spine: list[dict], offspine: list[dict]) -> list[dict]:
     return [seen[symbol] for symbol in sorted(seen)]
 
 
-def load_meta_overlay(out_dir: Path | None) -> dict:
-    """Optional reviewed-metadata overlay: id or lean_decl -> meta_status."""
-    if out_dir is None:
-        return {}
-    path = out_dir / META_OVERLAY_NAME
-    if not path.is_file():
+def meta_path(status_dir: Path | None) -> Path | None:
+    """Path of the reviewed metadata file, preferring the current name."""
+    if status_dir is None:
+        return None
+    primary = status_dir / META_NAME
+    if primary.is_file():
+        return primary
+    fallback = status_dir / META_OVERLAY_NAME
+    if fallback.is_file():
+        return fallback
+    return primary
+
+
+def load_meta(status_dir: Path | None) -> dict:
+    """Reviewed metadata keyed by obligation id.
+
+    The reviewed file (``obligations-meta.json``) is a JSON object mapping an
+    obligation id to an object of reviewed fields.  The historical overlay name
+    is accepted as a fallback, including its degenerate ``id -> status string``
+    shape, which is normalised into ``{"prose_status": <string>}``.
+    """
+    path = meta_path(status_dir)
+    if path is None or not path.is_file():
         return {}
     data = read_json(path)
-    overlay = data.get("meta_status", data)
-    return overlay if isinstance(overlay, dict) else {}
+    if not isinstance(data, dict):
+        raise RegistryError("reviewed metadata is not a JSON object: " + str(path))
+    # Historical overlay shape: {"meta_status": {...}} or a bare id->string map.
+    inner = data.get("meta_status")
+    if isinstance(inner, dict):
+        data = inner
+    meta: dict[str, dict] = {}
+    for key, value in data.items():
+        if key == "schema":
+            continue
+        if isinstance(value, str):
+            meta[key] = {"prose_status": value}
+        elif isinstance(value, dict):
+            meta[key] = value
+        else:
+            raise RegistryError(
+                "reviewed metadata entry " + repr(key) + " is neither an object nor a"
+                " status string in " + str(path)
+            )
+    return meta
+
+
+def validate_meta(registry: dict, meta: dict) -> list[str]:
+    """Reasons the reviewed-metadata join is broken; empty list means valid."""
+    violations: list[str] = []
+    by_id = {item["id"]: item for item in registry.get("obligations", [])}
+
+    for obligation_id in sorted(set(by_id) - set(meta)):
+        violations.append(
+            "missing reviewed metadata for " + obligation_id
+            + " (" + by_id[obligation_id]["lean_decl"] + ")"
+        )
+    for obligation_id in sorted(set(meta) - set(by_id)):
+        violations.append(
+            "orphan reviewed metadata entry " + obligation_id
+            + " names no live obligation"
+        )
+
+    for obligation_id in sorted(set(by_id) & set(meta)):
+        entry = meta[obligation_id]
+        status = entry.get("prose_status")
+        if status is None:
+            violations.append(obligation_id + ": reviewed entry has no prose_status")
+        elif status not in PROSE_STATUS_VOCABULARY:
+            violations.append(
+                obligation_id + ": prose_status " + repr(status)
+                + " is outside the controlled vocabulary"
+            )
+        reviewed_cluster = entry.get("cluster")
+        derived_cluster = by_id[obligation_id]["cluster"]
+        if reviewed_cluster is not None and reviewed_cluster != derived_cluster:
+            violations.append(
+                obligation_id + ": reviewed cluster " + repr(reviewed_cluster)
+                + " disagrees with the generated cluster " + repr(derived_cluster)
+            )
+    return violations
 
 
 def build_registry(
@@ -439,30 +572,34 @@ def build_registry(
     offspine: list[dict],
     source_head: str,
     ledger: dict,
-    overlay: dict | None = None,
+    meta: dict | None = None,
 ) -> tuple[dict, dict]:
     records = normalize_records(spine, offspine)
     ids, updated_ledger = assign_ids(records, ledger, source_head)
-    overlay = overlay or {}
+    meta = meta or {}
 
     obligations = []
     for record in records:
         symbol = record["symbol"]
         obligation_id = ids[symbol]
-        meta_status = overlay.get(obligation_id, overlay.get(symbol))
-        obligations.append(
-            {
-                "id": obligation_id,
-                "lean_decl": symbol,
-                "reachable": record["reachable"],
-                "source_file": record["source_file"],
-                "line": record["line"],
-                "cluster": cluster_label(record["source_file"]),
-                "kind": record["kind"],
-                "legacy_labels": [],
-                "meta_status": meta_status if meta_status is not None else None,
-            }
-        )
+        reviewed = meta.get(obligation_id)
+        if not isinstance(reviewed, dict):
+            reviewed = {}
+        legacy = reviewed.get("legacy_labels")
+        obligation = {
+            "id": obligation_id,
+            "lean_decl": symbol,
+            "reachable": record["reachable"],
+            "source_file": record["source_file"],
+            "line": record["line"],
+            "cluster": cluster_label(record["source_file"]),
+            "kind": record["kind"],
+            "legacy_labels": sorted(legacy) if isinstance(legacy, list) else [],
+            "meta_status": reviewed.get("prose_status"),
+        }
+        for field in META_ATTACHED_FIELDS:
+            obligation[field] = reviewed.get(field)
+        obligations.append(obligation)
     obligations.sort(key=lambda item: item["id"])
 
     registry = {
@@ -470,6 +607,8 @@ def build_registry(
         "source_head": source_head,
         "generated_by": GENERATED_BY,
         "publish_target": PUBLISH_TARGET,
+        "meta_source": META_NAME,
+        "prose_status_vocabulary": list(PROSE_STATUS_VOCABULARY),
         "obligations": obligations,
     }
     return registry, updated_ledger
@@ -529,6 +668,202 @@ def frontier_table(registry: dict) -> str:
 
 
 # ---------------------------------------------------------------------------
+# revision binding (check receipts)
+# ---------------------------------------------------------------------------
+
+
+def sha256_file(path: Path) -> str | None:
+    if not path.is_file():
+        return None
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for chunk in iter(lambda: handle.read(65536), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def git_lines(args: list[str]) -> list[str]:
+    """Run a read-only git command, returning its stdout lines ([] on failure)."""
+    try:
+        result = subprocess.run(
+            ["git"] + args,
+            cwd=str(REPO_ROOT),
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+    except OSError:
+        return []
+    if result.returncode != 0:
+        return []
+    return [line for line in result.stdout.splitlines() if line.strip()]
+
+
+def repo_relative_source(source_file: str) -> Path:
+    """Repository-relative path of a registry ``source_file`` entry."""
+    candidate = LEAN_ROOT / source_file
+    if candidate.is_file():
+        return Path("lean") / source_file
+    return Path(source_file)
+
+
+def source_file_state(registry: dict) -> dict:
+    """Working-tree digest and dirty state for every roster source file."""
+    relatives = sorted(
+        {
+            repo_relative_source(item.get("source_file") or "").as_posix()
+            for item in registry.get("obligations", [])
+            if item.get("source_file")
+        }
+    )
+    dirty: set[str] = set()
+    if relatives:
+        dirty.update(git_lines(["diff", "--name-only", "HEAD", "--"] + relatives))
+        dirty.update(
+            git_lines(["ls-files", "--others", "--exclude-standard", "--"] + relatives)
+        )
+
+    files = {}
+    for relative in relatives:
+        absolute = REPO_ROOT / relative
+        files[relative] = {
+            "sha256": sha256_file(absolute),
+            "present": absolute.is_file(),
+            "dirty": relative in dirty,
+        }
+    return {
+        "count": len(files),
+        "any_dirty": any(entry["dirty"] for entry in files.values()),
+        "missing": sorted(name for name, entry in files.items() if not entry["present"]),
+        "files": files,
+    }
+
+
+def toolchain_state() -> dict:
+    """Digest of the Lean toolchain pin actually governing the build."""
+    found = []
+    for candidate in TOOLCHAIN_CANDIDATES:
+        absolute = REPO_ROOT / candidate
+        if absolute.is_file():
+            found.append(
+                {
+                    "path": candidate,
+                    "sha256": sha256_file(absolute),
+                    "content": absolute.read_text(encoding="utf-8").strip(),
+                }
+            )
+    if not found:
+        return {"path": None, "sha256": None, "content": None, "other_pins": []}
+    primary = dict(found[0])
+    primary["other_pins"] = found[1:]
+    return primary
+
+
+def parse_refs_check(text: str) -> dict:
+    """Parse ``proof-blueprint refs --check`` output without regex.
+
+    Recognised lines::
+
+        current build: <id>
+          mined (fresh):  56022
+          stale:          36 (mined against an older build)
+          never mined:    1
+    """
+    parsed: dict = {
+        "build_id": None,
+        "fresh": None,
+        "stale": None,
+        "never_mined": None,
+    }
+
+    def leading_int(value: str) -> int | None:
+        token = value.strip().split(" ", 1)[0].strip()
+        digits = "".join(ch for ch in token if ch.isdigit())
+        if not digits or not token.startswith(digits):
+            return None
+        return int(digits)
+
+    for raw in text.splitlines():
+        line = raw.strip()
+        if ":" not in line:
+            continue
+        label, _, value = line.partition(":")
+        label = label.strip().lower()
+        if label == "current build":
+            parsed["build_id"] = value.strip() or None
+        elif label == "stale":
+            parsed["stale"] = leading_int(value)
+        elif label == "never mined":
+            parsed["never_mined"] = leading_int(value)
+        elif label == "mined (fresh)":
+            parsed["fresh"] = leading_int(value)
+    return parsed
+
+
+def refs_check_state() -> dict:
+    """Run ``proof-blueprint refs --check`` and parse its build/staleness state."""
+    command = [BLUEPRINT_CMD] + REFS_CHECK_ARGS
+    try:
+        result = subprocess.run(
+            command,
+            cwd=str(REPO_ROOT),
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+    except OSError as exc:
+        return {
+            "command": " ".join(command),
+            "ran": False,
+            "exit_code": None,
+            "error": str(exc),
+            "build_id": None,
+            "fresh": None,
+            "stale": None,
+            "never_mined": None,
+            "raw": None,
+        }
+    combined = result.stdout + result.stderr
+    state = parse_refs_check(combined)
+    state.update(
+        {
+            "command": " ".join(command),
+            "ran": True,
+            "exit_code": result.returncode,
+            "raw": combined.strip(),
+        }
+    )
+    return state
+
+
+def roster_counts(obligations: list[dict]) -> dict:
+    reachable = sum(1 for item in obligations if item.get("reachable"))
+    return {
+        "total": len(obligations),
+        "reachable": reachable,
+        "off_spine": len(obligations) - reachable,
+    }
+
+
+def receipt_filename(now: datetime.datetime) -> str:
+    return RECEIPT_PREFIX + now.strftime("%Y%m%dT%H%M%SZ") + ".json"
+
+
+def write_receipt(receipts_dir: Path, receipt: dict) -> Path:
+    receipts_dir.mkdir(parents=True, exist_ok=True)
+    now = datetime.datetime.strptime(receipt["generated_at_utc"], "%Y-%m-%dT%H:%M:%SZ")
+    path = receipts_dir / receipt_filename(now)
+    suffix = 2
+    while path.exists():
+        path = receipts_dir / (
+            RECEIPT_PREFIX + now.strftime("%Y%m%dT%H%M%SZ") + "-" + str(suffix) + ".json"
+        )
+        suffix += 1
+    path.write_text(dump_canonical(receipt), encoding="utf-8")
+    return path
+
+
+# ---------------------------------------------------------------------------
 # commands
 # ---------------------------------------------------------------------------
 
@@ -565,10 +900,10 @@ def command_generate(args: argparse.Namespace) -> int:
         source_head = read_base_head(baseline_dir, out_dir)
 
     ledger = load_id_assignments(out_dir / ID_ASSIGNMENTS_NAME)
-    overlay = load_meta_overlay(out_dir)
-    registry, updated_ledger = build_registry(
-        spine, offspine, source_head, ledger, overlay
-    )
+    meta = load_meta(out_dir)
+    registry, updated_ledger = build_registry(spine, offspine, source_head, ledger, meta)
+
+    violations = validate_meta(registry, meta)
 
     out_dir.mkdir(parents=True, exist_ok=True)
     (out_dir / REGISTRY_NAME).write_text(dump_canonical(registry), encoding="utf-8")
@@ -577,19 +912,38 @@ def command_generate(args: argparse.Namespace) -> int:
     )
     (out_dir / FRONTIER_TABLE_NAME).write_text(frontier_table(registry), encoding="utf-8")
 
-    reachable = sum(1 for item in registry["obligations"] if item["reachable"])
-    offspine_count = len(registry["obligations"]) - reachable
+    counts = roster_counts(registry["obligations"])
+    populated = sum(
+        1 for item in registry["obligations"] if item.get("meta_status") is not None
+    )
     print(
         "wrote "
         + str(out_dir / REGISTRY_NAME)
         + ": "
-        + str(reachable)
+        + str(counts["reachable"])
         + " reachable, "
-        + str(offspine_count)
-        + " off-spine"
+        + str(counts["off_spine"])
+        + " off-spine, "
+        + str(populated)
+        + "/"
+        + str(counts["total"])
+        + " with reviewed meta_status"
     )
     print("wrote " + str(out_dir / ID_ASSIGNMENTS_NAME))
     print("wrote " + str(out_dir / FRONTIER_TABLE_NAME))
+    if violations:
+        print(
+            "WARNING: reviewed metadata ("
+            + META_NAME
+            + ") has "
+            + str(len(violations))
+            + " violation(s); `check` will fail until they are resolved:",
+            file=sys.stderr,
+        )
+        for reason in violations:
+            print("  - " + reason, file=sys.stderr)
+        if args.strict_meta:
+            return 1
     return 0
 
 
@@ -603,24 +957,81 @@ def command_check(args: argparse.Namespace) -> int:
         if args.registry
         else baseline_dir.parent / REGISTRY_NAME
     )
-    committed = read_json(registry_path)
-    if committed.get("schema") != SCHEMA:
-        print(
-            "FAIL: " + str(registry_path) + " has schema "
-            + repr(committed.get("schema"))
-            + ", expected "
-            + repr(SCHEMA)
-        )
-        return 1
-
-    scratch_parent = registry_path.parent
-    spine, offspine = gather_exports(None, True, scratch_parent)
-
-    ledger = load_id_assignments(registry_path.parent / ID_ASSIGNMENTS_NAME)
-    overlay = load_meta_overlay(registry_path.parent)
-    fresh_registry, _ = build_registry(
-        spine, offspine, committed.get("source_head", "unknown"), ledger, overlay
+    status_dir = registry_path.parent
+    receipts_dir = (
+        Path(args.receipts_dir).resolve()
+        if args.receipts_dir
+        else status_dir / RECEIPTS_DIRNAME
     )
+    now = datetime.datetime.now(datetime.timezone.utc).replace(microsecond=0)
+    head = git_head()
+
+    receipt: dict = {
+        "schema": RECEIPT_SCHEMA,
+        "generated_by": GENERATED_BY,
+        "generated_at_utc": now.strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "command": "check",
+        "registry": str(registry_path.relative_to(REPO_ROOT))
+        if registry_path.is_relative_to(REPO_ROOT)
+        else str(registry_path),
+        "git_head": head or None,
+        "require_fresh_refs": bool(args.require_fresh_refs),
+        "lean_toolchain": toolchain_state(),
+        "blueprint_refs": None,
+        "registry_source_head": None,
+        "source_head_matches_git_head": None,
+        "source_files": None,
+        "roster": None,
+        "meta": None,
+        "verdict": "error",
+        "exit_code": 2,
+        "reasons": [],
+    }
+
+    def finish(exit_code: int, verdict: str, reasons: list[str]) -> int:
+        receipt["verdict"] = verdict
+        receipt["exit_code"] = exit_code
+        receipt["reasons"] = reasons
+        try:
+            path = write_receipt(receipts_dir, receipt)
+            print("receipt: " + str(path))
+        except OSError as exc:
+            print("warning: could not write receipt: " + str(exc), file=sys.stderr)
+        return exit_code
+
+    try:
+        committed = read_json(registry_path)
+    except RegistryError as exc:
+        print("error: cannot read the committed registry: " + str(exc), file=sys.stderr)
+        return finish(2, "error", ["cannot read the committed registry: " + str(exc)])
+
+    committed_head = committed.get("source_head")
+    receipt["registry_source_head"] = committed_head
+    # Report-only: the registry is regenerated on intentional roster change, so
+    # a source_head behind HEAD is expected and is not a failure by itself.
+    receipt["source_head_matches_git_head"] = bool(head) and committed_head == head
+    receipt["source_files"] = source_file_state(committed)
+
+    if committed.get("schema") != SCHEMA:
+        reason = (
+            str(registry_path) + " has schema " + repr(committed.get("schema"))
+            + ", expected " + repr(SCHEMA)
+        )
+        print("FAIL: " + reason)
+        return finish(1, "fail", [reason])
+
+    receipt["blueprint_refs"] = refs_check_state()
+
+    try:
+        spine, offspine = gather_exports(None, True, status_dir)
+        ledger = load_id_assignments(status_dir / ID_ASSIGNMENTS_NAME)
+        meta = load_meta(status_dir)
+        fresh_registry, _ = build_registry(
+            spine, offspine, committed_head or "unknown", ledger, meta
+        )
+    except RegistryError as exc:
+        print("error: " + str(exc), file=sys.stderr)
+        return finish(2, "error", ["live re-export failed: " + str(exc)])
 
     committed_by_decl = {item["lean_decl"]: item for item in committed.get("obligations", [])}
     fresh_by_decl = {item["lean_decl"]: item for item in fresh_registry["obligations"]}
@@ -643,70 +1054,148 @@ def command_check(args: argparse.Namespace) -> int:
                     + repr(fresh_item.get(field))
                 )
 
-    fresh_reachable = sum(1 for item in fresh_registry["obligations"] if item["reachable"])
-    fresh_off = len(fresh_registry["obligations"]) - fresh_reachable
-    committed_reachable = sum(
-        1 for item in committed.get("obligations", []) if item.get("reachable")
-    )
-    committed_off = len(committed.get("obligations", [])) - committed_reachable
+    fresh_counts = roster_counts(fresh_registry["obligations"])
+    committed_counts = roster_counts(committed.get("obligations", []))
+    receipt["roster"] = {
+        "committed": committed_counts,
+        "live": fresh_counts,
+        "added": added,
+        "removed": [str(committed_by_decl[decl].get("id")) for decl in removed],
+        "changed_fields": len(changed),
+    }
 
-    if not added and not removed and not changed:
+    # Reviewed metadata is validated against the COMMITTED registry: that file
+    # is what downstream consumers read.
+    meta_violations = validate_meta(committed, meta)
+    populated = sum(
+        1
+        for item in committed.get("obligations", [])
+        if item.get("meta_status") is not None
+    )
+    receipt["meta"] = {
+        "file": META_NAME if (status_dir / META_NAME).is_file() else META_OVERLAY_NAME,
+        "entries": len(meta),
+        "registry_entries_with_meta_status": populated,
+        "vocabulary": list(PROSE_STATUS_VOCABULARY),
+        "violations": meta_violations,
+    }
+
+    reasons: list[str] = []
+    if added or removed or changed:
+        reasons.append(
+            "roster drift: " + str(len(added)) + " added, " + str(len(removed))
+            + " removed, " + str(len(changed)) + " changed field(s)"
+        )
+    for violation in meta_violations:
+        reasons.append("metadata: " + violation)
+
+    refs = receipt["blueprint_refs"] or {}
+    stale = refs.get("stale")
+    never = refs.get("never_mined")
+    if args.require_fresh_refs:
+        if not refs.get("ran") or refs.get("build_id") is None:
+            reasons.append(
+                "--require-fresh-refs: could not read `"
+                + " ".join([BLUEPRINT_CMD] + REFS_CHECK_ARGS)
+                + "` state"
+            )
+        else:
+            if stale:
+                reasons.append(
+                    "--require-fresh-refs: " + str(stale) + " stale mined symbol(s)"
+                )
+            if never:
+                reasons.append(
+                    "--require-fresh-refs: " + str(never) + " never-mined symbol(s)"
+                )
+
+    if not reasons:
         print(
             "OK: "
             + str(registry_path)
             + " matches the live spine ("
-            + str(fresh_reachable)
+            + str(fresh_counts["reachable"])
             + " reachable, "
-            + str(fresh_off)
-            + " off-spine)"
+            + str(fresh_counts["off_spine"])
+            + " off-spine); "
+            + str(populated)
+            + "/"
+            + str(committed_counts["total"])
+            + " reviewed meta_status, vocabulary clean"
         )
-        return 0
+        print(
+            "  bound to: HEAD "
+            + (head or "unknown")
+            + ", build "
+            + str(refs.get("build_id"))
+            + ", roster sources "
+            + ("dirty" if receipt["source_files"]["any_dirty"] else "clean")
+        )
+        return finish(0, "pass", [])
 
-    print("FAIL: generated obligation registry is stale")
-    print("  registry: " + str(registry_path))
-    print(
-        "  committed: "
-        + str(committed_reachable)
-        + " reachable / "
-        + str(committed_off)
-        + " off-spine"
-    )
-    print(
-        "  live:      "
-        + str(fresh_reachable)
-        + " reachable / "
-        + str(fresh_off)
-        + " off-spine"
-    )
-    if added:
-        print("  NEW obligations on the live tree (" + str(len(added)) + "):")
-        for decl in added:
-            item = fresh_by_decl[decl]
-            print(
-                "    + "
-                + item["id"]
-                + "  "
-                + decl
-                + "  ["
-                + ("reachable" if item["reachable"] else "off-spine")
-                + "]  "
-                + item["source_file"]
-            )
-    if removed:
-        print("  GONE from the live tree (" + str(len(removed)) + "):")
-        for decl in removed:
-            item = committed_by_decl[decl]
-            print("    - " + str(item.get("id")) + "  " + decl)
-    if changed:
-        print("  CHANGED fields (" + str(len(changed)) + "):")
-        for entry in changed:
-            print("    ~ " + entry)
-    print(
-        "  fix: uv run python "
-        + GENERATED_BY
-        + " generate --fresh --out proof-status"
-    )
-    return 1
+    if added or removed or changed:
+        print("FAIL: generated obligation registry is stale")
+        print("  registry: " + str(registry_path))
+        print(
+            "  committed: "
+            + str(committed_counts["reachable"])
+            + " reachable / "
+            + str(committed_counts["off_spine"])
+            + " off-spine"
+        )
+        print(
+            "  live:      "
+            + str(fresh_counts["reachable"])
+            + " reachable / "
+            + str(fresh_counts["off_spine"])
+            + " off-spine"
+        )
+        if added:
+            print("  NEW obligations on the live tree (" + str(len(added)) + "):")
+            for decl in added:
+                item = fresh_by_decl[decl]
+                print(
+                    "    + "
+                    + item["id"]
+                    + "  "
+                    + decl
+                    + "  ["
+                    + ("reachable" if item["reachable"] else "off-spine")
+                    + "]  "
+                    + item["source_file"]
+                )
+        if removed:
+            print("  GONE from the live tree (" + str(len(removed)) + "):")
+            for decl in removed:
+                item = committed_by_decl[decl]
+                print("    - " + str(item.get("id")) + "  " + decl)
+        if changed:
+            print("  CHANGED fields (" + str(len(changed)) + "):")
+            for entry in changed:
+                print("    ~ " + entry)
+        print(
+            "  fix: uv run python "
+            + GENERATED_BY
+            + " generate --fresh --out proof-status"
+        )
+    if meta_violations:
+        print(
+            "FAIL: reviewed metadata ("
+            + str(status_dir / META_NAME)
+            + ") is inconsistent with the registry ("
+            + str(len(meta_violations))
+            + "):"
+        )
+        for violation in meta_violations:
+            print("    ! " + violation)
+        print("  controlled vocabulary: " + ", ".join(PROSE_STATUS_VOCABULARY))
+    stale_reasons = [reason for reason in reasons if reason.startswith("--require-fresh-refs")]
+    if stale_reasons:
+        print("FAIL: kernel-mined refs are not fresh")
+        for reason in stale_reasons:
+            print("    ! " + reason)
+        print("  fix: proof-blueprint refs --refresh")
+    return finish(1, "fail", reasons)
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -729,6 +1218,12 @@ def build_parser() -> argparse.ArgumentParser:
         help="re-export live data with proof-blueprint before generating",
     )
     generate.add_argument("--out", required=True, help="proof-status output directory")
+    generate.add_argument(
+        "--strict-meta",
+        action="store_true",
+        help="exit 1 when the reviewed metadata join has violations (default: warn"
+        " and still write, so a new obligation can be reviewed after generation)",
+    )
     generate.set_defaults(func=command_generate)
 
     check = subparsers.add_parser(
@@ -742,6 +1237,17 @@ def build_parser() -> argparse.ArgumentParser:
     )
     check.add_argument(
         "--registry", help="explicit path to the committed obligations.json"
+    )
+    check.add_argument(
+        "--receipts-dir",
+        help="where to write the revision-binding receipt"
+        " (default: <registry dir>/" + RECEIPTS_DIRNAME + ")",
+    )
+    check.add_argument(
+        "--require-fresh-refs",
+        action="store_true",
+        help="also fail when `proof-blueprint refs --check` reports a nonzero"
+        " stale or never-mined count",
     )
     check.set_defaults(func=command_check)
 

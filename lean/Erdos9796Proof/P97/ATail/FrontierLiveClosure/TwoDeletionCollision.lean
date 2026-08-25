@@ -154,7 +154,7 @@ theorem b1_globalGapOrClosedTerminal_of_counterexample
 adapter: the live binders are packaged as `B1GlobalTransportContext`, the
 load-bearing producer above supplies the exact global-gap disjunction, and the
 source-clean B1 consumer closes each arm. -/
-theorem false_of_twoDistinctExactFourMutualOmissionJointDeletions_blockerCollision
+theorem false_of_twoDistinctExactFourMutualOmissionJointDeletions_blockerCollision_frame
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
     {F : CriticalPairFrontier D S radius H}
@@ -208,6 +208,52 @@ theorem false_of_twoDistinctExactFourMutualOmissionJointDeletions_blockerCollisi
       hblockersEq := _hblockersEq }
   exact false_of_b1_global_gap_or_closed_terminal C
     (b1_globalGapOrClosedTerminal_of_counterexample C)
+
+/-- The collision arm of the two-deletion residue.  It is now a checked
+adapter: the live binders are packaged as `B1GlobalTransportContext`, the
+load-bearing producer above supplies the exact global-gap disjunction, and the
+source-clean B1 consumer closes each arm.
+This is a compatibility wrapper over
+`false_of_twoDistinctExactFourMutualOmissionJointDeletions_blockerCollision_frame`,
+which takes the same hypotheses packaged as a
+`PostCardElevenSurfaceFrame`. -/
+theorem false_of_twoDistinctExactFourMutualOmissionJointDeletions_blockerCollision
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F)
+    (_hcard : 12 ≤ D.A.card)
+    (surface : ExactFourPostCardElevenRobustSurface R)
+    (rho : ℝ)
+    (_hrho : 0 < rho)
+    (_hfive : 5 ≤ (SelectedClass D.A S.oppApex2 rho).card)
+    (u v : CarrierVertex D.A)
+    (_huNeV : u ≠ v)
+    (_huClass :
+      u.1 ∈ SelectedClass D.A S.oppApex2 rho)
+    (_hvClass :
+      v.1 ∈ SelectedClass D.A S.oppApex2 rho)
+    (_hvOmitted :
+      v.1 ∉
+        ((lateFirstApexSystem R).selectedAt
+          u.1 u.2).toCriticalFourShell.support)
+    (_huOmitted :
+      u.1 ∉
+        ((lateFirstApexSystem R).selectedAt
+          v.1 v.2).toCriticalFourShell.support)
+    (first second :
+      ExactFourMutualOmissionJointDeletion R rho u v)
+    (_hdeletedNe : first.deleted ≠ second.deleted)
+    (_hblockersEq :
+      (lateFirstApexSystem R).centerAt
+          first.deleted.1 first.deleted.2 =
+        (lateFirstApexSystem R).centerAt
+          second.deleted.1 second.deleted.2) :
+    False :=
+  false_of_twoDistinctExactFourMutualOmissionJointDeletions_blockerCollision_frame R
+    ⟨_hcard, surface⟩
+    rho _hrho _hfive u v _huNeV _huClass _hvClass _hvOmitted _huOmitted first second
+    _hdeletedNe _hblockersEq
 
 /-- Two distinct deleted sources cannot lie in one another's actual rows when
 their actual blockers are distinct from each other and from the physical apex. -/
@@ -802,7 +848,7 @@ theorem false_of_exactFourMutualOmission_fourCenterCommonDeletion_survivalSquare
 /-- The normalized four-center common-deletion residue.  The checked finite
 shell split above reduces it to blocker coincidence or a bidirectional
 deletion-survival square. -/
-theorem false_of_exactFourMutualOmission_fourCenterCommonDeletion
+theorem false_of_exactFourMutualOmission_fourCenterCommonDeletion_frame
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
     {F : CriticalPairFrontier D S radius H}
@@ -926,10 +972,84 @@ theorem false_of_exactFourMutualOmission_fourCenterCommonDeletion
         _hsecondBlockerNeU _hsecondBlockerNeV _hsecondBlockerNeApex
         crossPacket (Or.inr (Or.inr (Or.inr hr)))
 
+/-- The normalized four-center common-deletion residue.  The checked finite
+shell split above reduces it to blocker coincidence or a bidirectional
+deletion-survival square.
+This is a compatibility wrapper over
+`false_of_exactFourMutualOmission_fourCenterCommonDeletion_frame`, which
+takes the same hypotheses packaged as a `PostCardElevenSurfaceFrame`. -/
+theorem false_of_exactFourMutualOmission_fourCenterCommonDeletion
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F)
+    (_hcard : 12 ≤ D.A.card)
+    (surface : ExactFourPostCardElevenRobustSurface R)
+    (rho : ℝ)
+    (_hrho : 0 < rho)
+    (_hfive : 5 ≤ (SelectedClass D.A S.oppApex2 rho).card)
+    (u v : CarrierVertex D.A)
+    (_huNeV : u ≠ v)
+    (_huClass :
+      u.1 ∈ SelectedClass D.A S.oppApex2 rho)
+    (_hvClass :
+      v.1 ∈ SelectedClass D.A S.oppApex2 rho)
+    (_hvOmitted :
+      v.1 ∉
+        ((lateFirstApexSystem R).selectedAt
+          u.1 u.2).toCriticalFourShell.support)
+    (_huOmitted :
+      u.1 ∉
+        ((lateFirstApexSystem R).selectedAt
+          v.1 v.2).toCriticalFourShell.support)
+    (first second :
+      ExactFourMutualOmissionJointDeletion R rho u v)
+    (_hdeletedNe : first.deleted ≠ second.deleted)
+    (_hdeletedBlockersNe :
+      (lateFirstApexSystem R).centerAt
+          first.deleted.1 first.deleted.2 ≠
+        (lateFirstApexSystem R).centerAt
+          second.deleted.1 second.deleted.2)
+    (_hfirstBlockerNeU :
+      (lateFirstApexSystem R).centerAt
+          first.deleted.1 first.deleted.2 ≠
+        (lateFirstApexSystem R).centerAt u.1 u.2)
+    (_hfirstBlockerNeV :
+      (lateFirstApexSystem R).centerAt
+          first.deleted.1 first.deleted.2 ≠
+        (lateFirstApexSystem R).centerAt v.1 v.2)
+    (_hfirstBlockerNeApex :
+      (lateFirstApexSystem R).centerAt
+          first.deleted.1 first.deleted.2 ≠ S.oppApex2)
+    (_hsecondBlockerNeU :
+      (lateFirstApexSystem R).centerAt
+          second.deleted.1 second.deleted.2 ≠
+        (lateFirstApexSystem R).centerAt u.1 u.2)
+    (_hsecondBlockerNeV :
+      (lateFirstApexSystem R).centerAt
+          second.deleted.1 second.deleted.2 ≠
+        (lateFirstApexSystem R).centerAt v.1 v.2)
+    (_hsecondBlockerNeApex :
+      (lateFirstApexSystem R).centerAt
+          second.deleted.1 second.deleted.2 ≠ S.oppApex2)
+    (crossPacket :
+      CommonDeletionTwoCenterPacket
+        D (lateFirstApexSystem R) first.deleted.1
+        ((lateFirstApexSystem R).centerAt
+          second.deleted.1 second.deleted.2)
+        S.oppApex2) :
+    False :=
+  false_of_exactFourMutualOmission_fourCenterCommonDeletion_frame R
+    ⟨_hcard, surface⟩
+    rho _hrho _hfive u v _huNeV _huClass _hvClass _hvOmitted _huOmitted first second
+    _hdeletedNe _hdeletedBlockersNe _hfirstBlockerNeU _hfirstBlockerNeV
+    _hfirstBlockerNeApex _hsecondBlockerNeU _hsecondBlockerNeV _hsecondBlockerNeApex
+    crossPacket
+
 /-- A directed cross-omission produces an exact q-deleted four-point row at
 the other deletion's blocker.  Together with the two existing packets this
 is the four-center common-deletion residue above. -/
-theorem false_of_twoDistinctExactFourMutualOmissionJointDeletions_oneWayCrossOmission
+theorem false_of_twoDistinctExactFourMutualOmissionJointDeletions_oneWayCrossOmission_frame
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
     {F : CriticalPairFrontier D S radius H}
@@ -1013,7 +1133,7 @@ theorem false_of_twoDistinctExactFourMutualOmissionJointDeletions_oneWayCrossOmi
         first.uPacket.survives₂ with
     ⟨crossPacket⟩
   exact
-    false_of_exactFourMutualOmission_fourCenterCommonDeletion
+    false_of_exactFourMutualOmission_fourCenterCommonDeletion_frame
       R ⟨hcard, surface⟩ rho hrho hfive u v huNeV
       huClass hvClass hvOmitted huOmitted first second
       hdeletedNe hdeletedBlockersNe
@@ -1021,9 +1141,81 @@ theorem false_of_twoDistinctExactFourMutualOmissionJointDeletions_oneWayCrossOmi
       hsecondBlockerNeU hsecondBlockerNeV hsecondBlockerNeApex
       crossPacket
 
+/-- A directed cross-omission produces an exact q-deleted four-point row at
+the other deletion's blocker.  Together with the two existing packets this
+is the four-center common-deletion residue above.
+This is a compatibility wrapper over
+`false_of_twoDistinctExactFourMutualOmissionJointDeletions_oneWayCrossOmission_frame`,
+which takes the same hypotheses packaged as a
+`PostCardElevenSurfaceFrame`. -/
+theorem false_of_twoDistinctExactFourMutualOmissionJointDeletions_oneWayCrossOmission
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F)
+    (hcard : 12 ≤ D.A.card)
+    (surface : ExactFourPostCardElevenRobustSurface R)
+    (rho : ℝ)
+    (hrho : 0 < rho)
+    (hfive : 5 ≤ (SelectedClass D.A S.oppApex2 rho).card)
+    (u v : CarrierVertex D.A)
+    (huNeV : u ≠ v)
+    (huClass :
+      u.1 ∈ SelectedClass D.A S.oppApex2 rho)
+    (hvClass :
+      v.1 ∈ SelectedClass D.A S.oppApex2 rho)
+    (hvOmitted :
+      v.1 ∉
+        ((lateFirstApexSystem R).selectedAt
+          u.1 u.2).toCriticalFourShell.support)
+    (huOmitted :
+      u.1 ∉
+        ((lateFirstApexSystem R).selectedAt
+          v.1 v.2).toCriticalFourShell.support)
+    (first second :
+      ExactFourMutualOmissionJointDeletion R rho u v)
+    (hdeletedNe : first.deleted ≠ second.deleted)
+    (hdeletedBlockersNe :
+      (lateFirstApexSystem R).centerAt
+          first.deleted.1 first.deleted.2 ≠
+        (lateFirstApexSystem R).centerAt
+          second.deleted.1 second.deleted.2)
+    (hfirstBlockerNeU :
+      (lateFirstApexSystem R).centerAt
+          first.deleted.1 first.deleted.2 ≠
+        (lateFirstApexSystem R).centerAt u.1 u.2)
+    (hfirstBlockerNeV :
+      (lateFirstApexSystem R).centerAt
+          first.deleted.1 first.deleted.2 ≠
+        (lateFirstApexSystem R).centerAt v.1 v.2)
+    (hfirstBlockerNeApex :
+      (lateFirstApexSystem R).centerAt
+          first.deleted.1 first.deleted.2 ≠ S.oppApex2)
+    (hsecondBlockerNeU :
+      (lateFirstApexSystem R).centerAt
+          second.deleted.1 second.deleted.2 ≠
+        (lateFirstApexSystem R).centerAt u.1 u.2)
+    (hsecondBlockerNeV :
+      (lateFirstApexSystem R).centerAt
+          second.deleted.1 second.deleted.2 ≠
+        (lateFirstApexSystem R).centerAt v.1 v.2)
+    (hsecondBlockerNeApex :
+      (lateFirstApexSystem R).centerAt
+          second.deleted.1 second.deleted.2 ≠ S.oppApex2)
+    (hfirstNotMemSecondRow :
+      first.deleted.1 ∉
+        ((lateFirstApexSystem R).selectedAt
+          second.deleted.1 second.deleted.2).toCriticalFourShell.support) :
+    False :=
+  false_of_twoDistinctExactFourMutualOmissionJointDeletions_oneWayCrossOmission_frame R
+    ⟨hcard, surface⟩
+    rho hrho hfive u v huNeV huClass hvClass hvOmitted huOmitted first second hdeletedNe
+    hdeletedBlockersNe hfirstBlockerNeU hfirstBlockerNeV hfirstBlockerNeApex
+    hsecondBlockerNeU hsecondBlockerNeV hsecondBlockerNeApex hfirstNotMemSecondRow
+
 /-- The fresh-blocker arm reduces, by the checked blocker-two-cycle
 contradiction and symmetry, to one directed cross-omission residue. -/
-theorem false_of_twoDistinctExactFourMutualOmissionJointDeletions_fiveCenters
+theorem false_of_twoDistinctExactFourMutualOmissionJointDeletions_fiveCenters_frame
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
     {F : CriticalPairFrontier D S radius H}
@@ -1082,20 +1274,87 @@ theorem false_of_twoDistinctExactFourMutualOmissionJointDeletions_fiveCenters
       hdeletedBlockersNe hfirstBlockerNeApex hsecondBlockerNeApex with
     hfirstNotMem | hsecondNotMem
   · exact
-      false_of_twoDistinctExactFourMutualOmissionJointDeletions_oneWayCrossOmission
+      false_of_twoDistinctExactFourMutualOmissionJointDeletions_oneWayCrossOmission_frame
         R ⟨hcard, surface⟩ rho hrho hfive u v huNeV huClass hvClass
         hvOmitted huOmitted first second hdeletedNe hdeletedBlockersNe
         hfirstBlockerNeU hfirstBlockerNeV hfirstBlockerNeApex
         hsecondBlockerNeU hsecondBlockerNeV hsecondBlockerNeApex
         hfirstNotMem
   · exact
-      false_of_twoDistinctExactFourMutualOmissionJointDeletions_oneWayCrossOmission
+      false_of_twoDistinctExactFourMutualOmissionJointDeletions_oneWayCrossOmission_frame
         R ⟨hcard, surface⟩ rho hrho hfive u v huNeV huClass hvClass
         hvOmitted huOmitted second first hdeletedNe.symm
         hdeletedBlockersNe.symm
         hsecondBlockerNeU hsecondBlockerNeV hsecondBlockerNeApex
         hfirstBlockerNeU hfirstBlockerNeV hfirstBlockerNeApex
         hsecondNotMem
+
+/-- The fresh-blocker arm reduces, by the checked blocker-two-cycle
+contradiction and symmetry, to one directed cross-omission residue.
+This is a compatibility wrapper over
+`false_of_twoDistinctExactFourMutualOmissionJointDeletions_fiveCenters_frame`,
+which takes the same hypotheses packaged as a
+`PostCardElevenSurfaceFrame`. -/
+theorem false_of_twoDistinctExactFourMutualOmissionJointDeletions_fiveCenters
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F)
+    (hcard : 12 ≤ D.A.card)
+    (surface : ExactFourPostCardElevenRobustSurface R)
+    (rho : ℝ)
+    (hrho : 0 < rho)
+    (hfive : 5 ≤ (SelectedClass D.A S.oppApex2 rho).card)
+    (u v : CarrierVertex D.A)
+    (huNeV : u ≠ v)
+    (huClass :
+      u.1 ∈ SelectedClass D.A S.oppApex2 rho)
+    (hvClass :
+      v.1 ∈ SelectedClass D.A S.oppApex2 rho)
+    (hvOmitted :
+      v.1 ∉
+        ((lateFirstApexSystem R).selectedAt
+          u.1 u.2).toCriticalFourShell.support)
+    (huOmitted :
+      u.1 ∉
+        ((lateFirstApexSystem R).selectedAt
+          v.1 v.2).toCriticalFourShell.support)
+    (first second :
+      ExactFourMutualOmissionJointDeletion R rho u v)
+    (hdeletedNe : first.deleted ≠ second.deleted)
+    (hdeletedBlockersNe :
+      (lateFirstApexSystem R).centerAt
+          first.deleted.1 first.deleted.2 ≠
+        (lateFirstApexSystem R).centerAt
+          second.deleted.1 second.deleted.2)
+    (hfirstBlockerNeU :
+      (lateFirstApexSystem R).centerAt
+          first.deleted.1 first.deleted.2 ≠
+        (lateFirstApexSystem R).centerAt u.1 u.2)
+    (hfirstBlockerNeV :
+      (lateFirstApexSystem R).centerAt
+          first.deleted.1 first.deleted.2 ≠
+        (lateFirstApexSystem R).centerAt v.1 v.2)
+    (hfirstBlockerNeApex :
+      (lateFirstApexSystem R).centerAt
+          first.deleted.1 first.deleted.2 ≠ S.oppApex2)
+    (hsecondBlockerNeU :
+      (lateFirstApexSystem R).centerAt
+          second.deleted.1 second.deleted.2 ≠
+        (lateFirstApexSystem R).centerAt u.1 u.2)
+    (hsecondBlockerNeV :
+      (lateFirstApexSystem R).centerAt
+          second.deleted.1 second.deleted.2 ≠
+        (lateFirstApexSystem R).centerAt v.1 v.2)
+    (hsecondBlockerNeApex :
+      (lateFirstApexSystem R).centerAt
+          second.deleted.1 second.deleted.2 ≠ S.oppApex2) :
+    False :=
+  false_of_twoDistinctExactFourMutualOmissionJointDeletions_fiveCenters_frame R
+    ⟨hcard, surface⟩
+    rho hrho hfive u v huNeV huClass hvClass hvOmitted huOmitted first second hdeletedNe
+    hdeletedBlockersNe hfirstBlockerNeU hfirstBlockerNeV hfirstBlockerNeApex
+    hsecondBlockerNeU hsecondBlockerNeV hsecondBlockerNeApex
 
 /-- The two-deletion exact-four residue is exhaustively narrowed according to
 whether the deleted sources have equal actual blockers.  In the collision arm
@@ -1136,11 +1395,11 @@ theorem false_of_twoDistinctExactFourMutualOmissionJointDeletions
       Hlate.centerAt first.deleted.1 first.deleted.2 =
         Hlate.centerAt second.deleted.1 second.deleted.2
   · exact
-      false_of_twoDistinctExactFourMutualOmissionJointDeletions_blockerCollision
+      false_of_twoDistinctExactFourMutualOmissionJointDeletions_blockerCollision_frame
         R ⟨hcard, surface⟩ rho hrho hfive u v huNeV huClass hvClass
           hvOmitted huOmitted first second hdeletedNe hblockersEq
   · exact
-      false_of_twoDistinctExactFourMutualOmissionJointDeletions_fiveCenters
+      false_of_twoDistinctExactFourMutualOmissionJointDeletions_fiveCenters_frame
         R ⟨hcard, surface⟩ rho hrho hfive u v huNeV huClass hvClass
           hvOmitted huOmitted first second hdeletedNe
           (by simpa [Hlate] using hblockersEq)
