@@ -480,7 +480,7 @@
           "producer": "Problem97.ATailFrontierLiveClosure.twoDeletionOutcome_of_ingress"
         },
         "schema": "p97-factorization/v2",
-        "verified_at_build": "c596f2adbf3acdbf172de7a731cfec319e0f0f9d0ed67f43392e1f07db51d00f"
+        "verified_at_build": "d06f12a265f43ca954fa1d06a529e542b345d13370528ea37f2e002e57e3ae8a"
       },
       "id": "P97-TD-BLOCKERCOINCIDENCE",
       "implementation_effect": "bypass",
@@ -514,7 +514,7 @@
           "producer": "Problem97.ATailFrontierLiveClosure.twoDeletionOutcome_of_ingress"
         },
         "schema": "p97-factorization/v2",
-        "verified_at_build": "c596f2adbf3acdbf172de7a731cfec319e0f0f9d0ed67f43392e1f07db51d00f"
+        "verified_at_build": "d06f12a265f43ca954fa1d06a529e542b345d13370528ea37f2e002e57e3ae8a"
       },
       "id": "P97-TD-GLOBALGAPORCLOSED",
       "implementation_effect": "bypass",
@@ -548,7 +548,7 @@
           "producer": "Problem97.ATailFrontierLiveClosure.twoDeletionOutcome_of_ingress"
         },
         "schema": "p97-factorization/v2",
-        "verified_at_build": "c596f2adbf3acdbf172de7a731cfec319e0f0f9d0ed67f43392e1f07db51d00f"
+        "verified_at_build": "d06f12a265f43ca954fa1d06a529e542b345d13370528ea37f2e002e57e3ae8a"
       },
       "id": "P97-TD-SURVIVALSQUARE",
       "implementation_effect": "bypass",

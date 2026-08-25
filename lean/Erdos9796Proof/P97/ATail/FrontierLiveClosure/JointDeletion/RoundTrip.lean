@@ -1072,15 +1072,7 @@ def TwoSourceJointDeletionProvenance.ofCrossRadiusJointDeletion
       P.sourceRadius = smallRadius ∨ P.sourceRadius = largeRadius)
     (hdeletedRadius :
       P.deletedRadius = smallRadius ∨ P.deletedRadius = largeRadius)
-    (dangerousFirst dangerousSecond dangerousThird : ℝ²)
-    (hd₁₂ : dangerousFirst ≠ dangerousSecond)
-    (hd₁₃ : dangerousFirst ≠ dangerousThird)
-    (hd₂₃ : dangerousSecond ≠ dangerousThird)
-    (dangerousTriple : Finset ℝ²)
-    (htriple : dangerousTriple =
-      ({dangerousFirst, dangerousSecond, dangerousThird} : Finset ℝ²))
-    (htripleSubset : dangerousTriple ⊆ smallClass ∪ largeClass)
-    (hdeletedTriple : P.deleted.1 ∈ dangerousTriple)
+    (hsourceLarge : P.source.1 ∈ largeClass)
     (retainedTrace : Finset ℝ²)
     (htrace : retainedTrace =
       P.exactSourceRow.toCriticalFourShell.support ∩
@@ -1099,16 +1091,7 @@ def TwoSourceJointDeletionProvenance.ofCrossRadiusJointDeletion
   largeClass_card_eq_four := hlargeCard
   sourceRadius_eq_small_or_large := hsourceRadius
   deletedRadius_eq_small_or_large := hdeletedRadius
-  dangerousFirst := dangerousFirst
-  dangerousSecond := dangerousSecond
-  dangerousThird := dangerousThird
-  dangerousFirst_ne_dangerousSecond := hd₁₂
-  dangerousFirst_ne_dangerousThird := hd₁₃
-  dangerousSecond_ne_dangerousThird := hd₂₃
-  dangerousTriple := dangerousTriple
-  dangerousTriple_eq := htriple
-  dangerousTriple_subset := htripleSubset
-  deleted_mem_dangerousTriple := hdeletedTriple
+  source_mem_largeClass := hsourceLarge
   retainedTrace := retainedTrace
   retainedTrace_eq := htrace
 
@@ -1126,25 +1109,15 @@ cross-radius arm and projecting back returns that arm. -/
       P.sourceRadius = smallRadius ∨ P.sourceRadius = largeRadius)
     (hdeletedRadius :
       P.deletedRadius = smallRadius ∨ P.deletedRadius = largeRadius)
-    (dangerousFirst dangerousSecond dangerousThird : ℝ²)
-    (hd₁₂ : dangerousFirst ≠ dangerousSecond)
-    (hd₁₃ : dangerousFirst ≠ dangerousThird)
-    (hd₂₃ : dangerousSecond ≠ dangerousThird)
-    (dangerousTriple : Finset ℝ²)
-    (htriple : dangerousTriple =
-      ({dangerousFirst, dangerousSecond, dangerousThird} : Finset ℝ²))
-    (htripleSubset : dangerousTriple ⊆ smallClass ∪ largeClass)
-    (hdeletedTriple : P.deleted.1 ∈ dangerousTriple)
+    (hsourceLarge : P.source.1 ∈ largeClass)
     (retainedTrace : Finset ℝ²)
     (htrace : retainedTrace =
       P.exactSourceRow.toCriticalFourShell.support ∩
         (smallClass ∪ largeClass)) :
     (TwoSourceJointDeletionProvenance.ofCrossRadiusJointDeletion P smallRadius
         largeRadius hsmallPos hlt smallClass largeClass hsmallClass hlargeClass
-        hsmallCard hlargeCard hsourceRadius hdeletedRadius dangerousFirst
-        dangerousSecond dangerousThird hd₁₂ hd₁₃ hd₂₃ dangerousTriple htriple
-        htripleSubset hdeletedTriple retainedTrace
-        htrace).toCrossRadiusJointDeletion = P := rfl
+        hsmallCard hlargeCard hsourceRadius hdeletedRadius hsourceLarge
+        retainedTrace htrace).toCrossRadiusJointDeletion = P := rfl
 
 /-- Round trip for the two-source extension: projecting to the cross-radius arm
 and reassembling with the record's own extra data returns the original. -/
@@ -1155,11 +1128,7 @@ theorem TwoSourceJointDeletionProvenance.ofCrossRadiusJointDeletion_eta
         J.smallRadius_pos J.radii_lt J.smallClass J.largeClass J.smallClass_eq
         J.largeClass_eq J.smallClass_card_eq_four J.largeClass_card_eq_four
         J.sourceRadius_eq_small_or_large J.deletedRadius_eq_small_or_large
-        J.dangerousFirst J.dangerousSecond J.dangerousThird
-        J.dangerousFirst_ne_dangerousSecond J.dangerousFirst_ne_dangerousThird
-        J.dangerousSecond_ne_dangerousThird J.dangerousTriple
-        J.dangerousTriple_eq J.dangerousTriple_subset
-        J.deleted_mem_dangerousTriple J.retainedTrace J.retainedTrace_eq =
+        J.source_mem_largeClass J.retainedTrace J.retainedTrace_eq =
       J := rfl
 
 end ModeRoundTrip

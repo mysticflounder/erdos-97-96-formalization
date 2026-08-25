@@ -27,9 +27,8 @@ attached to each such escape point.
 The two-source caller works with two concentric classes at one apex, so it
 extends `CrossRadiusJointDeletion` rather than the bare core.  It adds the
 ordered pair of radii, the two exact four-point classes as named finite sets,
-the three-point set the closure argument treats as dangerous — recorded by its
-three members, not by a cardinality — and the trace the source row leaves on
-the union of the two classes.
+the membership that puts the source on the large class, and the trace the
+source row leaves on the union of the two classes.
 
 ## Types deliberately kept as parameters
 
@@ -54,19 +53,22 @@ nothing is lost, and the records stay importable from the shared layer.
 
 ## Obligations left to the producer port (W2b)
 
-Two identities are parameters here and are not yet bound by any constructor.
+One identity is still a parameter here and is not yet bound by any constructor.
 
 * `TriApexJointDeletionProvenance` accepts any `apexes : Fin 3 → ℝ²`; nothing
   in the record forces them to be the Moser triple of the ambient surplus
   packet.  `surplusTriApexes` names the intended triple, and the caller
   constructor written in the producer port must instantiate `apexes` with it.
-* `TwoSourceJointDeletionProvenance.dangerousTriple` is a named three-element
-  subset of the two classes containing the deletion; the record does not
-  identify its other two members with the points the closure argument treats
-  as dangerous.  The producer port must bind that identity in the constructor.
 
-Until those constructors exist the two records certify only the data they
-carry; neither is a proof that a cluster caller's provenance has been ported.
+The second obligation, on the two-source dangerous triple, is discharged in
+this module.  `TwoSourceJointDeletionProvenance.dangerousTriple` is no longer a
+field: it is the derived `largeClass.erase source.1`, and `dangerousTriple_card`
+computes its three-point cardinality from `largeClass_card_eq_four` and the
+field `source_mem_largeClass`.  That membership is the single datum the producer
+port supplies for the triple.
+
+Until the tri-apex constructor exists that record certifies only the data it
+carries; it is not a proof that a cluster caller's provenance has been ported.
 -/
 
 namespace Problem97
@@ -227,14 +229,16 @@ end TriApexJointDeletionProvenance
 
 The two-source closure argument works at one apex with two concentric exact
 four-point classes.  This record extends the cross-radius arm with the ordered
-radius pair, both classes as named finite sets, the three-point set the closure
-treats as dangerous, and the trace the source row leaves on the union of the
-two classes.
+radius pair, both classes as named finite sets, the membership that puts the
+source on the large class, and the trace the source row leaves on the union of
+the two classes.
 
-The dangerous triple is recorded by its three named members with their pairwise
-distinctness, so `dangerousTriple_card` is a consequence rather than an
-assumption: no provenance in this record rests on a cardinality standing in for
-a witness. -/
+The set the closure argument treats as dangerous is not recorded.  It is the
+derived `TwoSourceJointDeletionProvenance.dangerousTriple`, namely the large
+class with the source erased, and its three-point cardinality
+`dangerousTriple_card` is computed from `largeClass_card_eq_four` and
+`source_mem_largeClass`.  No provenance in this record rests on a cardinality
+standing in for a witness. -/
 structure TwoSourceJointDeletionProvenance
     (D : CounterexampleData) (L : CriticalShellSystem D.A) (apex : ℝ²)
     extends CrossRadiusJointDeletion D L apex where
@@ -264,25 +268,10 @@ structure TwoSourceJointDeletionProvenance
   /-- The deletion sits on one of the two recorded radii. -/
   deletedRadius_eq_small_or_large :
     deletedRadius = smallRadius ∨ deletedRadius = largeRadius
-  /-- First member of the dangerous triple. -/
-  dangerousFirst : ℝ²
-  /-- Second member of the dangerous triple. -/
-  dangerousSecond : ℝ²
-  /-- Third member of the dangerous triple. -/
-  dangerousThird : ℝ²
-  dangerousFirst_ne_dangerousSecond : dangerousFirst ≠ dangerousSecond
-  dangerousFirst_ne_dangerousThird : dangerousFirst ≠ dangerousThird
-  dangerousSecond_ne_dangerousThird : dangerousSecond ≠ dangerousThird
-  /-- The dangerous triple as a finite set. -/
-  dangerousTriple : Finset ℝ²
-  /-- The dangerous triple is exactly its three named members. -/
-  dangerousTriple_eq :
-    dangerousTriple = ({dangerousFirst, dangerousSecond, dangerousThird} :
-      Finset ℝ²)
-  /-- The dangerous triple lies on the two recorded classes. -/
-  dangerousTriple_subset : dangerousTriple ⊆ smallClass ∪ largeClass
-  /-- The recorded deletion is one of the dangerous points. -/
-  deleted_mem_dangerousTriple : deleted.1 ∈ dangerousTriple
+  /-- The source is one of the four points of the large class.  This is what
+  makes the dangerous triple derivable: it is the large class with the source
+  erased. -/
+  source_mem_largeClass : source.1 ∈ largeClass
   /-- The trace the source row leaves on the two classes. -/
   retainedTrace : Finset ℝ²
   /-- That trace is exactly the row's intersection with the two classes. -/
@@ -293,6 +282,30 @@ structure TwoSourceJointDeletionProvenance
 namespace TwoSourceJointDeletionProvenance
 
 variable {D : CounterexampleData} {L : CriticalShellSystem D.A} {apex : ℝ²}
+
+/-- The three-point set the two-source closure argument treats as dangerous:
+the large apex class with the source erased.
+
+This is a definition, not a record field.  The source lies on the large class
+by `source_mem_largeClass`, so erasing it from a four-point class leaves three
+points, and `dangerousTriple_card` proves that rather than assuming it. -/
+noncomputable def dangerousTriple
+    (J : TwoSourceJointDeletionProvenance D L apex) : Finset ℝ² :=
+  J.largeClass.erase J.source.1
+
+/-- The dangerous triple has three points.  This is computed from the large
+class's exact cardinality and the source's membership, not assumed. -/
+theorem dangerousTriple_card (J : TwoSourceJointDeletionProvenance D L apex) :
+    J.dangerousTriple.card = 3 := by
+  unfold dangerousTriple
+  rw [Finset.card_erase_of_mem J.source_mem_largeClass,
+    J.largeClass_card_eq_four]
+
+/-- The dangerous triple lies on the two recorded classes. -/
+theorem dangerousTriple_subset
+    (J : TwoSourceJointDeletionProvenance D L apex) :
+    J.dangerousTriple ⊆ J.smallClass ∪ J.largeClass :=
+  (Finset.erase_subset J.source.1 J.largeClass).trans Finset.subset_union_right
 
 /-- The two recorded radii are distinct. -/
 theorem smallRadius_ne_largeRadius
@@ -318,14 +331,36 @@ theorem classes_disjoint (J : TwoSourceJointDeletionProvenance D L apex) :
   exact J.smallRadius_ne_largeRadius
     ((mem_selectedClass.mp hz₁).2.symm.trans (mem_selectedClass.mp hz₂).2)
 
-/-- The dangerous triple has three points.  This is derived from the three
-named members, not assumed. -/
-theorem dangerousTriple_card (J : TwoSourceJointDeletionProvenance D L apex) :
-    J.dangerousTriple.card = 3 :=
-  Finset.card_eq_three.mpr
-    ⟨J.dangerousFirst, J.dangerousSecond, J.dangerousThird,
-      J.dangerousFirst_ne_dangerousSecond, J.dangerousFirst_ne_dangerousThird,
-      J.dangerousSecond_ne_dangerousThird, J.dangerousTriple_eq⟩
+/-- The source sits on the large radius: it lies on the large class. -/
+theorem sourceRadius_eq_largeRadius
+    (J : TwoSourceJointDeletionProvenance D L apex) :
+    J.sourceRadius = J.largeRadius := by
+  have hlarge : J.source.1 ∈ SelectedClass D.A apex J.largeRadius := by
+    rw [← J.largeClass_eq]
+    exact J.source_mem_largeClass
+  exact (mem_selectedClass.mp J.source_mem_sourceClass).2.symm.trans
+    (mem_selectedClass.mp hlarge).2
+
+/-- The deletion therefore sits on the small radius. -/
+theorem deletedRadius_eq_smallRadius
+    (J : TwoSourceJointDeletionProvenance D L apex) :
+    J.deletedRadius = J.smallRadius := by
+  rcases J.deletedRadius_eq_small_or_large with h | h
+  · exact h
+  · exact absurd (J.sourceRadius_eq_largeRadius.trans h.symm) J.radii_ne
+
+/-- The recorded deletion is never one of the dangerous points: it sits on the
+small class and the dangerous triple sits on the large one. -/
+theorem deleted_not_mem_dangerousTriple
+    (J : TwoSourceJointDeletionProvenance D L apex) :
+    J.deleted.1 ∉ J.dangerousTriple := by
+  intro hmem
+  unfold dangerousTriple at hmem
+  have hlarge : J.deleted.1 ∈ J.largeClass := Finset.mem_of_mem_erase hmem
+  have hsmall : J.deleted.1 ∈ J.smallClass := by
+    rw [J.smallClass_eq, ← J.deletedRadius_eq_smallRadius]
+    exact J.deleted_mem_deletedClass
+  exact Finset.disjoint_left.mp J.classes_disjoint hsmall hlarge
 
 /-- The source and the deletion occupy the two recorded radii in one of the
 two possible orders. -/
@@ -368,8 +403,14 @@ theorem deleted_not_mem_retainedTrace
 /-- The recorded deletion lies on one of the two classes. -/
 theorem deleted_mem_classes_union
     (J : TwoSourceJointDeletionProvenance D L apex) :
-    J.deleted.1 ∈ J.smallClass ∪ J.largeClass :=
-  J.dangerousTriple_subset J.deleted_mem_dangerousTriple
+    J.deleted.1 ∈ J.smallClass ∪ J.largeClass := by
+  rcases J.deletedRadius_eq_small_or_large with h | h
+  · refine Finset.mem_union_left _ ?_
+    rw [J.smallClass_eq, ← h]
+    exact J.deleted_mem_deletedClass
+  · refine Finset.mem_union_right _ ?_
+    rw [J.largeClass_eq, ← h]
+    exact J.deleted_mem_deletedClass
 
 /-- Read the two-source record as an apex radius mode.  It is always the
 cross-radius arm. -/

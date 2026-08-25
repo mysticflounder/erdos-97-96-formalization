@@ -56,15 +56,16 @@ The core handed in is enlarged, not replaced: its survivals gain the three Moser
 apexes and its omissions gain the escape set, while its source, blocker, exact
 row and deletion are carried through unchanged.
 
-## The two-source dangerous triple is deferred to W3, with its meaning fixed
+## The two-source dangerous triple, as W3-A left it
 
-`TwoSourceJointDeletionProvenance.dangerousTriple` is the second identity
-`CallerProvenance` lists as an obligation, and no constructor for it is written
-here.  Its meaning has been decided by the project owner: the dangerous triple
-is `largeClass.erase J.source`, where `largeClass` is the larger-radius exact
-first-apex four-point class and `J.source` is a chosen member of that class
-outside the strict first cap.  Writing `largeClass = largeInside ∪ {z, w}` with
-`J.source = z`, the triple is `largeInside ∪ {w}`; under `radius < ρ` the large
+`TwoSourceJointDeletionProvenance.dangerousTriple` was the second identity
+`CallerProvenance` listed as an obligation.  W3-A discharged it by making the
+decided meaning the definition: the dangerous triple is now the derived
+`largeClass.erase J.source.1`, where `largeClass` is the larger-radius exact
+first-apex four-point class, and `dangerousTriple_card` proves its three-point
+cardinality from `largeClass_card_eq_four` and the record field
+`source_mem_largeClass`.  Writing `largeClass = largeInside ∪ {z, w}` with
+`J.source.1 = z`, the triple is `largeInside ∪ {w}`; under `radius < ρ` the large
 class is the class at `ρ` with inside pair `{Pρ.source₁, Pρ.source₂}`, and under
 `ρ < radius` it is the class at `radius` with inside pair
 `{P.source₁, P.source₂}`.  The mixed candidate `{P.source₁, P.source₂, Pρ.source₁}`
@@ -73,13 +74,14 @@ large class, since the localization identity `LPρ.fresh = Pρ.source₁` places
 fresh point in a source-return omission cycle, not in the other collision's
 class.  The fixed-circle triple of the U3 audit frame is an unrelated object.
 
-Construction is deferred to W3, which adds the triple to the downstream
-joint-deletion provenance packet only after splitting the radius order,
-identifying the small and large classes, constructing `J`, and proving
-`J.source ∈ largeClass \ largeInside` — as the derived definition
-`largeClass.erase J.source` with a proved three-point cardinality, replacing the
-independent `dangerousFirst`, `dangerousSecond`, `dangerousThird` fields that
-`TwoSourceJointDeletionProvenance` carries today.
+No constructor for the two-source record is written here.  A producer now owes
+`source_mem_largeClass` and nothing else for the triple, and that one field
+fixes the radius order: it puts the source on the large radius, and `radii_ne`
+then puts the deletion on the small one, by
+`TwoSourceJointDeletionProvenance.sourceRadius_eq_largeRadius` and
+`TwoSourceJointDeletionProvenance.deletedRadius_eq_smallRadius`.  A constructor
+must split the radius order that way, identify the small and large classes, and
+prove `J.source.1 ∈ largeClass \ largeInside`.
 -/
 
 namespace Problem97
