@@ -29,6 +29,14 @@ is generated; do not hand-edit generated files.
   `source_head_matches_git_head` report-only — the registry is regenerated only
   on an intentional roster change, so a `source_head` behind HEAD is expected
   and is not a failure.
+  The same directory holds the per-wave gate receipts (`p97-gate-receipt/v1`,
+  e.g. `w1c-gate-receipt.json`): one record per refactor wave binding git HEAD,
+  the working-tree sha256 of every changed Lean file and script, the toolchain
+  digest, the blueprint build id, and each gate's verdict. `w1c-gate-receipt.json`
+  supersedes the Phase 0 gate (`phase0-gate-resolution.json` points at it). The
+  strict `--require-fresh-refs` FAIL recorded there is a documented
+  proof-blueprint miner exception (36 stale + 1 never-mined symbols, unchanged
+  since the baseline and after a forced re-mine), not wave drift.
 - `cluster-import-edges.json` / `import-waivers.json` — frozen import graph of
   `FrontierLiveClosure/` and the waived pre-existing forbidden edges (with
   planned retirement phases).
@@ -52,6 +60,16 @@ uv run python scripts/gen_obligation_registry.py check --baseline proof-status/b
 
 uv run python scripts/lint_cluster_imports.py
 # exit 0 = no NEW cross-cluster import under FrontierLiveClosure/ (existing edges are waived)
+# The scanner reads only the import header of each module (blank, comment, and
+# import lines up to the first other command), tolerates leading whitespace and
+# trailing `--` comments, and ignores prose inside docstrings.  Every waiver in
+# import-waivers.json is authenticated: its (from, to) pair must exist in the
+# frozen cluster-import-edges.json, its `reason` must be non-empty, its
+# `planned_retirement` must be one of W1b/W2/W3/W4/unassigned, and the
+# `summary` counts must match.  A waiver for an edge that is no longer live
+# (stale), an unknown pair, a duplicate row, or a summary mismatch is exit 1.
+# --waivers FILE substitutes another waiver file; --scan-file PATH prints the
+# header imports the scanner sees for one file (diagnostic).
 ```
 
 ### Metadata validation
