@@ -1,0 +1,298 @@
+{
+  "schema": "p97-gate-receipt/v1",
+  "wave": "W2a",
+  "generated_by": "W2a gate-receipt subagent (verification only), then re-bound by the main session after docstring-only edits to BlockerRelation.lean, JointDeletion/RoundTrip.lean and JointDeletion/CallerProvenance.lean answering auditor finding #7428; every gate was re-run by the main session on the edited working tree before commit.",
+  "generated_at_utc": "2026-08-25T02:09:18Z",
+  "git_head": "da9d5b5aceae18b40b1364d0b03cb73be85f5897",
+  "git_head_short": "da9d5b5a",
+  "head_note": "Every W2a file is UNCOMMITTED at this HEAD: the four new modules are untracked, and JointDeletionCore.lean is modified in the working tree. Every verdict below is therefore computed from working-tree source, not from the commit. Content is bound by the sha256 map in content_bound_files, not by the commit hash.",
+  "scope_note": "This receipt records gate outcomes only. It makes NO proof-promotion claim, NO fresh-spine claim, and NO claim that any obligation was discharged. The publication gate still fails on sorryAx exactly as it did at baseline; W2a neither advanced nor regressed it.",
+  "lean_toolchain": {
+    "path": "lean/lean-toolchain",
+    "content": "leanprover/lean4:v4.27.0",
+    "sha256": "d55ca0039a5479db5b38919d005b2c427b89b3be4f0184a20f2f4eae931f5bdb",
+    "note": "The repository-root lean-toolchain carries identical content and the same digest."
+  },
+  "blueprint": {
+    "build_id": "6beb7ec16654",
+    "baseline_build_id": "fd3f51e09b99",
+    "refs_check_exit": 1,
+    "project_symbols": 64642,
+    "minable": 56322,
+    "trusted_skipped": 7390,
+    "without_importable_olean": 931,
+    "mined_fresh": 56285,
+    "stale": 36,
+    "never_mined": 1,
+    "baseline_refs_check": {
+      "build_id": "fd3f51e09b99",
+      "project_symbols": 64379,
+      "minable": 56059,
+      "mined_fresh": 56022,
+      "stale": 36,
+      "never_mined": 1
+    },
+    "note": "Stale (36) and never-mined (1) are byte-for-byte the baseline condition in proof-status/baseline/refs-check.txt. Project symbols grew 64379 -> 64642 (+263), consistent with the four new modules; the staleness set did not grow."
+  },
+  "wave_files": {
+    "new": [
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/BlockerRelation.lean",
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletion/ProvenanceCore.lean",
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletion/CallerProvenance.lean",
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletion/RoundTrip.lean"
+    ],
+    "edited": [
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletionCore.lean"
+    ],
+    "edited_diffstat": "1 file changed, 11 insertions(+), 0 deletions(-) — 4 import lines plus a 7-line docstring paragraph; no declaration added, removed, or altered."
+  },
+  "content_bound_files": {
+    "note": "Working-tree sha256 for the five W2a files, the two gate scripts, and every other file under lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/ that differs from HEAD.",
+    "sha256": {
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/BlockerRelation.lean": "e05a6140a2d4b651173e83604fb69fccc7ca6ad2c108cb8334e54f787dde2f03",
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletion/ProvenanceCore.lean": "cca4302caa22cc34e4ebce078c341cf97fb606299869f118af5ebf0b978b8d98",
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletion/CallerProvenance.lean": "aee6740a2530544fa62028259261206551eddc34225a46020372533e80627169",
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletion/RoundTrip.lean": "30e76d3c0e0a299a31e134c864f11e2ae9d2ca3bc63552a9d088dbd8336c6940",
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletionCore.lean": "3df55c054bbdd3f8f735bb6d5f3d1829eb8b18386efc469d3e036608ec547242",
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceCanonicalSurface.lean": "6d7bc2e50828072339307ae3f8879c3073e54489e613ab3d74830a615c519268",
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceRetainedMinimalCore.lean": "b6407b84f7f9609bca45cdf6ab98db5e2fe542cb46e7de00b1963be3bb431e11",
+      "scripts/gen_obligation_registry.py": "6a7421339b13680555097835a1e269856443c4d3ef3ad0d69ae301e96f93dfe2",
+      "scripts/lint_cluster_imports.py": "7052155898ca11737a0a4880d80075b49ee7dffe2d1d535b66785b0533334cc8"
+    },
+    "frontier_live_closure_dirty_vs_head": [
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletionCore.lean",
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceCanonicalSurface.lean",
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceRetainedMinimalCore.lean"
+    ],
+    "frontier_live_closure_untracked": [
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/BlockerRelation.lean",
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletion/CallerProvenance.lean",
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletion/ProvenanceCore.lean",
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletion/RoundTrip.lean"
+    ]
+  },
+  "gates": {
+    "build": {
+      "verdict": "PASS",
+      "commands": [
+        "lake-build",
+        "lake-build Erdos9796Proof.P97.ATail.FrontierLiveClosure.BlockerRelation",
+        "lake-build Erdos9796Proof.P97.ATail.FrontierLiveClosure.JointDeletion.RoundTrip"
+      ],
+      "exit_codes": {
+        "full": 0,
+        "BlockerRelation": 0,
+        "JointDeletion.RoundTrip": 0
+      },
+      "jobs": {
+        "full": 12188,
+        "BlockerRelation": 8083,
+        "JointDeletion.RoundTrip": 8705
+      },
+      "error_lines": 0,
+      "oleans_present": {
+        "Erdos9796Proof/P97/ATail/FrontierLiveClosure/BlockerRelation.olean": 235152,
+        "Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletion/ProvenanceCore.olean": 632080,
+        "Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletion/CallerProvenance.olean": 673952,
+        "Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletion/RoundTrip.olean": 792160
+      },
+      "detail": "Plain full lake-build: 'Build completed successfully (12188 jobs)', exit 0, warnings only (unused-variable linter in unrelated modules). Both explicitly named modules build to exit 0 and all four new modules have a .olean in .lake/build/lib/lean, so they are inside the verified build rather than unbuilt WIP."
+    },
+    "sorry_and_trust_scan": {
+      "verdict": "PASS",
+      "scope": "the 4 new files",
+      "method": "word-boundary and raw-substring grep",
+      "counts": {
+        "sorry": 0,
+        "axiom": 0,
+        "native_decide": 0,
+        "unsafe": 0,
+        "partial": 0,
+        "implemented_by": 0,
+        "sorryAx": 0,
+        "ofReduceBool": 0,
+        "trustCompiler": 0
+      },
+      "detail": "All six required tokens are 0 in every one of the four files, under both a word-boundary and a raw-substring scan. The only near-hit is the substring 'decide' once in JointDeletion/ProvenanceCore.lean line 649, inside the docstring prose 'The caller decides'; it is not native_decide and not a tactic. proof-blueprint independently reports 0 declarations with has_sorry across the four files."
+    },
+    "axioms": {
+      "verdict": "PASS",
+      "command": "proof-blueprint axioms <symbol>, once per theorem",
+      "theorems_checked": 167,
+      "coverage": "exact — the 167 symbols scanned are exactly the 167 theorem-kind declarations proof-blueprint indexes in the four new files (private included)",
+      "nonzero_exits": 0,
+      "distinct_closures": 1,
+      "closure": [
+        "Classical.choice",
+        "propext",
+        "Quot.sound"
+      ],
+      "forbidden_axioms_found": 0,
+      "detail": "Every one of the 167 theorems reports exactly 3 axioms, and the multiset over all 167 closures is 167 x propext, 167 x Classical.choice, 167 x Quot.sound. No sorryAx, no Lean.ofReduceBool, no Lean.trustCompiler, no custom axiom of any kind appears in any closure. Each closure is therefore a subset of {propext, Classical.choice, Quot.sound}."
+    },
+    "roster": {
+      "verdict": "PASS",
+      "command": "proof-blueprint search --with-sorry --spine --json --all / --off-spine",
+      "spine_count": 28,
+      "spine_baseline_count": 28,
+      "spine_symbol_set_identical": true,
+      "offspine_count": 6,
+      "offspine_baseline_count": 6,
+      "offspine_symbol_set_identical": true,
+      "detail": "The live spine sorry roster is the same 28 symbols as proof-status/baseline/spine-sorry.json with an empty diff, and the off-spine roster is the same 6 symbols as proof-status/baseline/offspine-sorry.json with an empty diff. W2a added no leaf and removed none."
+    },
+    "publication_axioms": {
+      "verdict": "PASS",
+      "command": "proof-blueprint axioms Problem97.erdos97_rhs",
+      "exit_code": 1,
+      "exit_note": "exit 1 is by design — the target still carries an unapproved sorryAx",
+      "byte_identical_to_baseline": true,
+      "sha256_now": "885f4dbeabd8fc8a86f9acd9b1d85275ddd7218f247d367aa42798b560ed4936",
+      "sha256_baseline": "885f4dbeabd8fc8a86f9acd9b1d85275ddd7218f247d367aa42798b560ed4936",
+      "detail": "Output is byte-identical to proof-status/baseline/axioms.txt (cmp clean, identical sha256). The 6-axiom closure of Problem97.erdos97_rhs — propext, sorryAx, Classical.choice, Lean.ofReduceBool, Lean.trustCompiler, Quot.sound — is unchanged by W2a."
+    },
+    "lint": {
+      "verdict": "PASS",
+      "command": "uv run python scripts/lint_cluster_imports.py",
+      "exit_code": 0,
+      "edges_scanned": 673,
+      "forbidden_edges": 29,
+      "waived_edges": 29,
+      "waivers_authenticated": 29,
+      "waiver_failures": 0,
+      "violations": 0,
+      "forbidden_edges_note": "The 29 forbidden edges are pre-existing and each is covered by an authenticated waiver, which is why the linter exits 0 with 0 violations. None of the 29 originates in a W2a module.",
+      "new_module_classification": {
+        "Erdos9796Proof.P97.ATail.FrontierLiveClosure.BlockerRelation": "cluster shared",
+        "Erdos9796Proof.P97.ATail.FrontierLiveClosure.JointDeletion.ProvenanceCore": "cluster shared",
+        "Erdos9796Proof.P97.ATail.FrontierLiveClosure.JointDeletion.CallerProvenance": "cluster shared",
+        "Erdos9796Proof.P97.ATail.FrontierLiveClosure.JointDeletion.RoundTrip": "cluster shared"
+      },
+      "new_module_imports": {
+        "BlockerRelation": [
+          "Erdos9796Proof.P97.ATail.CriticalPairFrontier",
+          "Erdos9796Proof.P97.U1CarrierInjection"
+        ],
+        "JointDeletion.ProvenanceCore": [
+          "Erdos9796Proof.P97.ATail.FrontierLiveClosure.JointDeletion.Types"
+        ],
+        "JointDeletion.CallerProvenance": [
+          "Erdos9796Proof.P97.ATail.FrontierLiveClosure.JointDeletion.ProvenanceCore"
+        ],
+        "JointDeletion.RoundTrip": [
+          "Erdos9796Proof.P97.ATail.FrontierLiveClosure.BlockerRelation",
+          "Erdos9796Proof.P97.ATail.FrontierLiveClosure.JointDeletion.CallerProvenance"
+        ]
+      },
+      "new_modules_import_no_cluster_module": true,
+      "detail": "scripts/lint_cluster_imports.py --scan-file classifies all four new modules as [cluster shared], and reports every one of their six header imports as 'shared -> shared, to-shared'. No import targets a module with a Rigid221*/TriApex*/TwoSource*/FreshThird*/FirstFiber*/FirstNonHit*/TwoDeletion*/B1Live basename, so the shared-module import discipline holds."
+    },
+    "registry": {
+      "verdict": "PASS",
+      "command": "uv run python scripts/gen_obligation_registry.py check --baseline proof-status/baseline",
+      "exit_code": 0,
+      "reachable": 28,
+      "off_spine": 6,
+      "meta_status_reviewed": "34/34",
+      "vocabulary": "clean",
+      "bound_to": "HEAD da9d5b5aceae18b40b1364d0b03cb73be85f5897, build 6b705bc406c9, roster sources dirty",
+      "tool_receipt": "proof-status/receipts/registry-check-20260825T015123Z.json",
+      "detail": "Without --require-fresh-refs the registry check exits 0: obligations.json matches the live spine at 28 reachable / 6 off-spine, all 34 reviewed meta_status entries are present, vocabulary clean."
+    },
+    "registry_strict_fresh_refs": {
+      "verdict": "FAIL (documented miner exception; sets overall_pass=false per #7422 and the W1c precedent)",
+      "command": "uv run python scripts/gen_obligation_registry.py check --baseline proof-status/baseline --require-fresh-refs",
+      "exit_code": 1,
+      "stale": 36,
+      "never_mined": 1,
+      "matches_documented_exception": true,
+      "numbers_differ_from_expected": false,
+      "verbatim_output": "FAIL: kernel-mined refs are not fresh\n    ! --require-fresh-refs: 36 stale mined symbol(s)\n    ! --require-fresh-refs: 1 never-mined symbol(s)\n  fix: proof-blueprint refs --refresh\nreceipt: /Users/adam/projects/math-projects/erdos-97-96-formalization/proof-status/receipts/registry-check-20260825T015132Z.json",
+      "tool_receipt": "proof-status/receipts/registry-check-20260825T015132Z.json",
+      "detail": "The counts are exactly the expected 36 stale + 1 never-mined, so this is the documented proof-blueprint miner exception and nothing new. proof-blueprint refs --check confirms the same 36/1 at the current build 6b705bc406c9, and proof-status/baseline/refs-check.txt records the same 36/1 at baseline build fd3f51e09b99 — the staleness set is inherited, not introduced by W2a. It is recorded here as a documented miner exception and by explicit instruction it does not flip overall_pass."
+    },
+    "verify_publish": {
+      "verdict": "PASS (same target, same failure class as baseline)",
+      "command": "proof-blueprint verify-publish",
+      "exit_code": 1,
+      "exit_note": "exit 1 is the expected baseline state — the spine still reaches sorry",
+      "target_symbol": "Problem97.erdos97_rhs",
+      "baseline_target_symbol": "Problem97.erdos97_rhs",
+      "failure_class": "sorryAx",
+      "blocker_count": 2,
+      "blockers_identical_to_baseline": true,
+      "offspine_sorries": "3 symbol(s) in 3 file(s) — same as baseline",
+      "diff_vs_baseline": [
+        "line 4: '10 uncommitted lean file(s)' -> '15 uncommitted lean file(s)' (working-tree bookkeeping; W2a adds 4 untracked modules and 1 modified module)",
+        "trailing line 'verify-publish exit 1' present in the baseline capture only (capture-wrapper artifact; the live exit code is 1 in both)"
+      ],
+      "detail": "Every substantive line matches proof-status/baseline/verify-publish.txt, including line numbers. Both blockers are identical: (1) target_symbol Problem97.erdos97_rhs carries 1 unapproved custom axiom on spine, sorryAx; (2) the spine of Problem97.erdos97_rhs reaches sorry via the same five TwoSourceExactCollisionRowsTerminal symbols. The only differences are the uncommitted-file count and a capture-wrapper trailing line."
+    },
+    "wrappers": {
+      "verdict": "PASS",
+      "command": "git status --porcelain -- <each wrapper path>",
+      "all_clean": true,
+      "files_checked": [
+        "Rigid221Closure.lean",
+        "TwoDeletionCollision.lean",
+        "TwoSourceClosure.lean",
+        "TwoSourceFirstFiberCollision.lean",
+        "TwoSourceFreshThirdResidual.lean",
+        "B1Live.lean",
+        "SharedFrontierHelpers.lean",
+        "ContextFrames.lean",
+        "JointDeletion/Types.lean",
+        "JointDeletion/Constructors.lean",
+        "JointDeletion/ExactFiveSplit.lean",
+        "JointDeletion/PinnedMultiplicity.lean",
+        "JointDeletion/CardElevenBridge.lean"
+      ],
+      "dirty_files": [],
+      "detail": "All 13 legacy-wrapper-contract files report an empty git status --porcelain line, so none was modified or staged by W2a. The complete dirty/untracked set under the cluster directory is exactly the 5 W2a files plus the 2 foreign-lane files listed under foreign_files."
+    },
+    "foreign_files": {
+      "verdict": "PASS (no drift)",
+      "command": "shasum -a 256 TwoSourceCanonicalSurface.lean TwoSourceRetainedMinimalCore.lean TriApexEndpointRetainedOmission.lean",
+      "observed": {
+        "TwoSourceCanonicalSurface.lean": "6d7bc2e50828072339307ae3f8879c3073e54489e613ab3d74830a615c519268",
+        "TwoSourceRetainedMinimalCore.lean": "b6407b84f7f9609bca45cdf6ab98db5e2fe542cb46e7de00b1963be3bb431e11",
+        "TriApexEndpointRetainedOmission.lean": "88af81a1ef621909c0fe6e29b6fa725edaf5b796429bc1f24399bea18a740737"
+      },
+      "expected_prefixes": {
+        "TwoSourceCanonicalSurface.lean": "6d7bc2e5",
+        "TwoSourceRetainedMinimalCore.lean": "b6407b84",
+        "TriApexEndpointRetainedOmission.lean": "88af81a1"
+      },
+      "drift": [],
+      "detail": "All three observed digests match their expected prefixes. TwoSourceCanonicalSurface.lean and TwoSourceRetainedMinimalCore.lean are modified relative to HEAD, but that is pre-existing foreign-lane state at the digests the task named, not W2a drift; TriApexEndpointRetainedOmission.lean is clean. Report only — no action taken."
+    }
+  },
+  "overall_pass": false,
+  "overall_note": "overall_pass is false because the registry gate fails on its --require-fresh-refs precondition (36 stale + 1 never-mined mined symbols), exactly as at the frozen baseline and in the W1c receipt. That failure is the documented proof-blueprint miner exception (inherited, not introduced by W2a) and, per the auditor's #7422 instruction and the W1c precedent, it is not called passing. All W2a-specific source checks pass; see source_gates_note. No proof-promotion and no fresh-spine claim is made; the publication gate remains blocked on sorryAx exactly as at baseline.",
+  "source_gates_pass": true,
+  "source_gates_note": "W2a-specific source checks all pass: build, sorry/trust scan, per-theorem axiom closures, spine roster 28 set-equal, publication axioms byte-identical, lint, registry (no strict refs), verify-publish failure class, wrappers, foreign hashes.",
+  "main_session_reverification": {
+    "utc": "2026-08-25T02:09:18Z",
+    "build": "plain lake-build exit 0 on the edited tree",
+    "gates_rerun": [
+      "registry check (no --require-fresh-refs) exit 0",
+      "registry check --require-fresh-refs exit 1 at the same 36 stale + 1 never-mined miner exception",
+      "lint_cluster_imports exit 0, 0 violations",
+      "spine sorry roster 28 set-equal to baseline; off-spine 6 set-equal",
+      "proof-blueprint axioms Problem97.erdos97_rhs byte-identical to baseline",
+      "new files: 0 sorry/axiom/native_decide/unsafe/partial/implemented_by",
+      "foreign files TwoSourceCanonicalSurface/TwoSourceRetainedMinimalCore/TriApexEndpointRetainedOmission hashes unchanged"
+    ]
+  },
+  "auditor_findings_7428": {
+    "1_blockerPreference_prose": "fixed: BlockerRelation module docstring now says selection under the preference is legal and the predicate is not pointwise legal; field unchanged.",
+    "2_sourceContext_round_trip": "deferred to W2b and stated in RoundTrip.lean: ExactFourMutualOmissionSourceContext has one-way core readers only; field recovery is claimed for ExactFourMutualOmissionJointDeletion only.",
+    "3_caller_coverage": "NONE in W2a. No adapter connects PairedApexClassJointDeletion, PairedTwoRadiusGrid or the F2 common-radius producer; that is the W2b port.",
+    "4_identity_binding": "recorded as W2b obligations in CallerProvenance.lean: apexes must be bound to the Moser triple and dangerousTriple to the closure argument's points by the caller constructors.",
+    "5_import_cone": "ProvenanceCore imports JointDeletion.Types and therefore ExactFourPhysicalConsumer; no small-import-cone claim is made."
+  },
+  "checkpoint_declaration": {
+    "pre_write_declaration": "convo #7423 (2026-08-24 17:26 PDT) named the exact five paths before the first write (17:56 PDT).",
+    "lane_checkpoint": "refreshed after file creation (validator raises blocking OWNED_PATH_MISSING for paths that do not exist yet); the refresh is post-creation and is not presented as preceding the writes."
+  }
+}

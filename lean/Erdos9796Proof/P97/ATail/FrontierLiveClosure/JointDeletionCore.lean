@@ -45,6 +45,10 @@ import Erdos9796Proof.P97.ATail.FrontierLiveClosure.JointDeletion.Constructors
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.JointDeletion.ExactFiveSplit
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.JointDeletion.PinnedMultiplicity
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.JointDeletion.Types
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure.BlockerRelation
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure.JointDeletion.ProvenanceCore
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure.JointDeletion.CallerProvenance
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure.JointDeletion.RoundTrip
 
 /-!
 # Joint-deletion core (re-export)
@@ -57,6 +61,13 @@ layered `JointDeletion` modules:
 * `JointDeletion.ExactFiveSplit` — the finite exact-five classifications;
 * `JointDeletion.PinnedMultiplicity` — pinned-multiplicity ingress/projections;
 * `JointDeletion.CardElevenBridge` — the card-eleven certificate adapter.
+
+It also re-exports the provenance and blocker layers — `BlockerRelation`,
+`JointDeletion.ProvenanceCore`, `JointDeletion.CallerProvenance` and
+`JointDeletion.RoundTrip` — so a consumer of this module reaches the
+provenance-preserving core, its radius-mode and caller extensions, the
+choice-free blocker relation, and the round-trip lemmas relating them to the
+historical packet without adding imports of its own.
 
 The original import block is retained above so that every existing importer of
 this module keeps the same transitive import closure and elaborates unchanged.
