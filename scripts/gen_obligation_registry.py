@@ -154,6 +154,35 @@ Canonical registry materialization (W3-0b)
     block, a drifted field or a ``verified_at_build`` that is not the current
     build is registry drift and exits 1 naming the id and the differing key.
 
+Hard generator gate (W3-0c)
+    ``generate`` treats an ALIAS-MIGRATION violation and a FACTORIZATION
+    violation as a hard error in EVERY mode, ``--strict-meta`` or not, and the
+    gate is TRANSACTIONAL: the command validates first and writes nothing at
+    all when the gate fails.  ``obligations.json``, ``id-assignments.json`` and
+    ``frontier-table.generated.md`` keep the bytes they had, and a file that did
+    not exist is not created.  Each violation is printed to stderr as
+    ``ERROR: factorization: <reason>``, followed by a one-line refusal summary,
+    and the exit code is 1.  (Under ``--fresh`` the output directory itself is
+    still created before the gate runs, because it is the scratch parent the
+    live re-export needs; none of the three generated files is written there.)
+
+    ``--strict-meta`` therefore controls ONE thing only: whether the ORDINARY
+    reviewed-metadata join warnings from ``validate_meta`` (a missing meta
+    entry, an orphan entry, an unknown ``prose_status``, a cluster disagreement)
+    are a warning that still writes or an exit 1 after writing.  It has no say
+    over the factorization gate, which was the auditor's finding #7468: a
+    rejected rename used to be written first and downgraded to that soft path,
+    so a default-mode ``generate`` exited 0 after retiring the old id and
+    allocating a new one.
+
+    Materialization follows the same rule.  ``build_registry`` takes a
+    ``verified_ids`` argument, and ``generate`` passes exactly the set
+    ``check_factorizations`` reports as VERIFIED, so a ``verified_at_build``
+    stamp is only ever written onto a block that passed live validation.  With
+    ``verified_ids=None`` (the default, used by ``check`` for its throwaway
+    comparison registry and by the unit tests) every v2 block is materialized,
+    which is the pre-W3-0c behaviour.
+
 Statement digest
     ``sha256`` of the index record's ``signature`` string after collapsing every
     whitespace run to one space and stripping leading/trailing whitespace
@@ -2267,6 +2296,7 @@ def build_registry(
     ledger: dict,
     meta: dict | None = None,
     build_id: str | None = None,
+    verified_ids: list[str] | None = None,
 ) -> tuple[dict, dict]:
     """Canonical registry plus the updated id ledger.
 
@@ -2275,10 +2305,20 @@ def build_registry(
     whose reviewed metadata carries no ``p97-factorization/v2`` block gets no
     ``factorization`` key at all, so a registry with no factorization entries is
     byte-identical to one built before this key existed.
+
+    ``verified_ids`` (W3-0c) restricts materialization to the obligation ids
+    whose block PASSED live validation - exactly the ``verified_ids`` list
+    ``check_factorizations`` returns.  ``generate`` always passes it, so a
+    ``verified_at_build`` stamp can never be written onto a block that did not
+    verify.  ``None`` means "do not restrict" and materializes every reviewed v2
+    block; that is the default because ``check`` builds a throwaway registry for
+    the roster comparison alone (its factorization keys are never read) and the
+    unit tests build one to exercise the normalization itself.
     """
     records = normalize_records(spine, offspine)
     ids, updated_ledger = assign_ids(records, ledger, source_head)
     meta = meta or {}
+    verified = None if verified_ids is None else set(verified_ids)
 
     obligations = []
     for record in records:
@@ -2304,7 +2344,7 @@ def build_registry(
         materialized = normalized_factorization_block(
             reviewed.get(FACTORIZATION_KEY), build_id
         )
-        if materialized is not None:
+        if materialized is not None and (verified is None or obligation_id in verified):
             obligation[FACTORIZATION_KEY] = materialized
         obligations.append(obligation)
     obligations.sort(key=lambda item: item["id"])
@@ -2598,6 +2638,16 @@ def gather_exports(
 def command_generate(
     args: argparse.Namespace, backend_factory=None, export_source=None
 ) -> int:
+    """Build the registry, but only ever write a registry that passed the gate.
+
+    The order is load, plan, build IN MEMORY, validate, and only then write.
+    An alias-migration or factorization violation is a HARD error in every mode
+    (W3-0c, auditor #7468) and returns before any file is touched, so a rejected
+    rename cannot retire an id, allocate a new one, or leave an unverified
+    ``p97-factorization/v2`` block stamped ``verified_at_build`` behind.  Only
+    the ordinary reviewed-metadata join violations keep the soft path, where
+    ``--strict-meta`` decides between a warning and exit 1.
+    """
     out_dir = Path(args.out).resolve()
     baseline_dir = Path(args.baseline).resolve() if args.baseline else None
 
@@ -2617,17 +2667,56 @@ def command_generate(
     backend = make_backend(meta, backend_factory)
     build_id = current_build_id(backend)
     migrations, migration_violations = plan_alias_migrations(ledger, meta, backend)
-    ledger = apply_alias_migrations(ledger, migrations, git_head_short())
-    registry, updated_ledger = build_registry(
-        spine, offspine, source_head, ledger, meta, build_id
+    migrated_ledger = apply_alias_migrations(ledger, migrations, git_head_short())
+
+    # PROVISIONAL and in memory only.  Nothing is written until the hard gate
+    # below has passed; this registry exists so the live factorization check has
+    # the entry (id, lean_decl, reachable) it validates each block against.
+    provisional, _provisional_ledger = build_registry(
+        spine, offspine, source_head, migrated_ledger, meta, build_id
     )
 
-    violations = validate_meta(registry, meta)
-    factorization = check_factorizations(registry, meta, backend)
-    violations = violations + [
+    meta_violations = validate_meta(provisional, meta)
+    factorization = check_factorizations(provisional, meta, backend)
+    hard_violations = [
         "factorization: " + reason
         for reason in migration_violations + factorization["summary"]["violations"]
     ]
+
+    if hard_violations:
+        # HARD, TRANSACTIONAL gate (W3-0c).  Independent of --strict-meta, and
+        # taken BEFORE any write: the three generated files keep the bytes they
+        # had, and one that does not exist yet is not created.
+        for reason in hard_violations:
+            print("ERROR: " + reason, file=sys.stderr)
+        print(
+            "FAIL: refusing to write "
+            + str(out_dir)
+            + ": "
+            + str(len(hard_violations))
+            + " alias/factorization violation(s); "
+            + REGISTRY_NAME
+            + ", "
+            + ID_ASSIGNMENTS_NAME
+            + " and "
+            + FRONTIER_TABLE_NAME
+            + " are unchanged",
+            file=sys.stderr,
+        )
+        return 1
+
+    # Past the gate: materialize ONLY the blocks that passed live validation, so
+    # a verified_at_build stamp is never written onto an unverified block.
+    registry, updated_ledger = build_registry(
+        spine,
+        offspine,
+        source_head,
+        migrated_ledger,
+        meta,
+        build_id,
+        verified_ids=factorization["verified_ids"],
+    )
+    violations = meta_violations
 
     out_dir.mkdir(parents=True, exist_ok=True)
     (out_dir / REGISTRY_NAME).write_text(dump_canonical(registry), encoding="utf-8")
@@ -2803,6 +2892,10 @@ def command_check(
         build_id = current_build_id(backend)
         migrations, migration_violations = plan_alias_migrations(ledger, meta, backend)
         ledger = apply_alias_migrations(ledger, migrations, git_head_short())
+        # Throwaway: only the roster fields of this registry are read (added /
+        # removed / CHECKED_FIELDS).  Its factorization keys are never compared,
+        # so no ``verified_ids`` restriction is needed - the COMMITTED registry
+        # is what ``compare_registry_factorizations`` audits below.
         fresh_registry, _ = build_registry(
             spine, offspine, committed_head or "unknown", ledger, meta, build_id
         )

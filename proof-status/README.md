@@ -109,13 +109,56 @@ Regenerate after an intentional roster change:
 
 ```bash
 uv run python scripts/gen_obligation_registry.py generate --baseline proof-status/baseline --out proof-status
-# warns on metadata violations but still writes, so a new obligation can be
-# reviewed afterwards; --strict-meta turns those warnings into exit 1
+# warns on METADATA JOIN violations but still writes, so a new obligation can be
+# reviewed afterwards; --strict-meta turns those warnings into exit 1.
+# An alias-migration or factorization violation is NOT on that path: it is a
+# hard error in both modes and nothing is written (see "Generator gate").
 ```
 
 A new obligation therefore needs two edits: regenerate (which assigns its ID),
 then add the reviewed `obligations-meta.json` entry for that ID. `check` stays
 red until both are done.
+
+### Generator gate (W3-0c)
+
+`generate` validates before it writes, and it writes only a registry that
+passed. The order is: load the exports and the reviewed metadata, PLAN the
+alias migrations, build the registry in memory, run `validate_meta` and the
+live factorization check, and only then touch disk.
+
+Two classes of violation, two behaviours:
+
+- **Alias-migration and factorization violations are HARD errors in every
+  mode.** `--strict-meta` has no say over them. Each is printed to stderr as
+  `ERROR: factorization: <reason>`, followed by a one-line refusal summary, and
+  the exit code is 1.
+- **Ordinary reviewed-metadata join violations keep the soft path.** A missing
+  meta entry, an orphan entry, a missing or unknown `prose_status` and a
+  cluster disagreement are warnings that still write, and `--strict-meta` is
+  the only thing that turns them into exit 1. That is the whole scope of the
+  flag.
+
+The hard gate is TRANSACTIONAL. When it fails, `obligations.json`,
+`id-assignments.json` and `frontier-table.generated.md` keep the bytes they
+had, and one that does not exist yet is not created — so a rejected rename
+cannot retire an ID, cannot allocate a new one, and cannot leave a
+half-migrated ledger behind. (Under `--fresh` the output directory itself is
+still created before the gate runs, because it is the scratch parent the live
+re-export writes into; none of the three generated files is written there.)
+
+Materialization obeys the same rule: `build_registry` takes a `verified_ids`
+argument and `generate` passes exactly the set the live check reports as
+VERIFIED, so a `verified_at_build` stamp is only ever written onto a block that
+passed live validation. An unverified block is never written to the registry.
+
+This closes auditor finding #7468: before W3-0c the three files were written
+BEFORE the violations were inspected, and the violations then shared the soft
+warning path, so a default-mode `generate` exited 0 after retiring the old ID
+and allocating a new one, or after stamping a block whose producer closure
+carried `Lean.ofReduceNat`. The command-level fixtures in
+`scripts/test_gen_obligation_registry_factorization.py` pin both scenarios in
+both modes, with the ACTUAL renamed exports, comparing file bytes around the
+call.
 
 ## Factorization entries (W3-0)
 
@@ -247,6 +290,10 @@ entry:
   key, and a v1 block is never materialized (it is never a verified
   factorization). Today no entry carries a block, so `obligations.json`
   regenerates byte-identical.
+- Only a block that PASSED the live check of sections 3 and 4 is materialized
+  (W3-0c): `generate` hands `build_registry` the VERIFIED ID set, and an
+  unverified block fails the generator gate rather than reaching the registry
+  with a `verified_at_build` stamp.
 
 `check` then compares the materialized block on the COMMITTED registry entry
 with the normalized reviewed block stamped with the CURRENT build. Each of the
@@ -419,6 +466,11 @@ fixture pins the same rename with a `legacy_wrapper` that is not the old name
 and asserts exit 1 with `would allocate a new id` and an unchanged ledger.
 Every receipt those fixtures write lands inside the copy.
 
+The W3-0c fixtures reuse the same seams for the hard generator gate: a rejected
+wrapper and a producer whose axiom closure carries `Lean.ofReduceNat`, each run
+BOTH with and without `--strict-meta` over the ACTUAL renamed exports, asserting
+exit 1 and the three generated files byte-unchanged around the call.
+
 ## Legacy import exceptions and dated graph (W3-0)
 
 The Legacy compatibility-wrapper modules introduced by the cluster-coordinator
@@ -429,7 +481,18 @@ W3 lint author implements; the manifest itself is
 
 - **Schema** `legacy-import-exceptions/v1`.
 - **Fields**
-  - `base_head` — 8-hex git HEAD the manifest was authored against.
+  - `base_head` — the git HEAD the manifest was authored against, checked as a
+    claim git can refute (`base_head_binding_failure` in
+    `scripts/lint_cluster_imports.py`): 8 lowercase hex characters, naming a
+    commit that EXISTS in this repository (`git cat-file -e <base_head>^{commit}`),
+    and that is an ancestor of — or equal to — HEAD
+    (`git merge-base --is-ancestor <base_head> HEAD`, which is reflexive, so a
+    manifest authored at the current HEAD passes). A `base_head` naming no
+    commit, or naming a commit on a discarded line of history, pins the manifest
+    to nothing; both failures are exit 2, because the manifest cannot be
+    authenticated and the lint then does not run. Git is reached only through
+    the module's `git_status` seam, and a git that cannot be run is a failure,
+    not a pass.
   - `frozen_graph_sha256` — sha256 of the BYTES of
     `proof-status/cluster-import-edges.json`.
   - `exceptions` — a list of objects, each carrying:
@@ -441,8 +504,17 @@ W3 lint author implements; the manifest itself is
       module names, never copied from the manifest);
     - `reason` — non-empty prose;
     - `waiver_pair` — `[from, to]` of the `import-waivers.json` row this
-      exception supersedes, or `null`. When non-null, that row MUST exist in
-      `import-waivers.json`;
+      exception supersedes, or `null`. A non-null pair is a claim with three
+      parts, and `waiver_pair_link_failure` checks all three: the pair must
+      still be a row in `import-waivers.json`; `waiver_pair[0]` must EQUAL this
+      manifest row's own `from` (the cluster module that now reaches the
+      retired target through the wrapper); and `waiver_pair[1]` must be a
+      DIRECT header import of this row's `wrapper_module` (the retired target
+      must really be reached through this wrapper). A wrapper module the tree
+      scan never saw has no imports at all, so the third check fails closed
+      rather than being skipped. Any of the three is exit 1. Only a pair that
+      passes all three is credited with retiring its waiver row, so a
+      misidentified pair cannot rename another wrapper's stale waiver;
     - `added_wave` — `"W3"`.
 - **Exactness.** Every Legacy-module edge in the LIVE tree must be listed
   exactly. An unlisted live Legacy edge is a lint FAILURE. There is no prefix,

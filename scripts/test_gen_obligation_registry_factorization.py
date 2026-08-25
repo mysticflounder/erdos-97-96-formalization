@@ -1365,8 +1365,14 @@ def wrapper_signature_for(symbol: str) -> str:
     return "theorem " + symbol.rsplit(".", 1)[-1] + "\n    (h : Fixture.Hyp) :\n    False"
 
 
-def migration_backend(old_symbol: str) -> gor.MappingBackend:
-    """Kernel-mined truth AFTER the refactor: the old name is the wrapper."""
+def migration_backend(old_symbol: str, *, closure_overrides: dict | None = None
+                      ) -> gor.MappingBackend:
+    """Kernel-mined truth AFTER the refactor: the old name is the wrapper.
+
+    ``closure_overrides`` replaces the recorded axiom closure of individual
+    symbols, which is how the W3-0c fixtures build an otherwise-correct rename
+    whose producer closure is dirty.
+    """
     wrapper_sig = wrapper_signature_for(old_symbol)
     index = {
         old_symbol: [fixture_record(old_symbol, wrapper_sig)],
@@ -1389,6 +1395,7 @@ def migration_backend(old_symbol: str) -> gor.MappingBackend:
         MIGRATED_PRODUCER: list(CLEAN_CLOSURE),
         STRANGER: list(CLEAN_CLOSURE),
     }
+    closures.update(closure_overrides or {})
     mined = {symbol: BUILD for symbol in index}
     return gor.MappingBackend(
         index=index, calls=calls, axiom_closures=closures, mined=mined, build=BUILD
@@ -1588,3 +1595,296 @@ def test_command_level_rename_that_would_allocate_a_new_id_is_rejected(tmp_path,
     still = [item for item in registry["obligations"] if item["id"] == obligation_id]
     assert len(still) == 1
     assert still[0]["lean_decl"] == old_symbol
+
+
+# ---------------------------------------------------------------------------
+# W3-0c: the HARD, TRANSACTIONAL generator gate (auditor #7468)
+#
+# Before W3-0c, ``command_generate`` wrote obligations.json, id-assignments.json
+# and frontier-table.generated.md BEFORE the alias/factorization violations were
+# inspected, and then routed those violations through the SOFT reviewed-metadata
+# warning path, which only exits 1 under --strict-meta.  Two mutations therefore
+# reached disk from a rejected block: a retired id plus a freshly allocated one,
+# and a materialized ``verified_at_build`` block that never verified.
+#
+# These fixtures drive the REAL entry point over a copy of proof-status with the
+# ACTUAL renamed exports, in BOTH modes, and compare file BYTES around the call.
+# ---------------------------------------------------------------------------
+
+GENERATED_OUTPUTS = (
+    gor.REGISTRY_NAME,
+    gor.ID_ASSIGNMENTS_NAME,
+    gor.FRONTIER_TABLE_NAME,
+)
+
+
+def output_bytes(status: Path) -> dict:
+    """The bytes of the three generated files; ``None`` for one that is absent."""
+    return {
+        name: (status / name).read_bytes() if (status / name).is_file() else None
+        for name in GENERATED_OUTPUTS
+    }
+
+
+def assert_outputs_unchanged(status: Path, before: dict) -> None:
+    after = output_bytes(status)
+    for name in GENERATED_OUTPUTS:
+        assert after[name] == before[name], name + " was mutated by a refused generate"
+
+
+def run_generate_default(status: Path, backend_obj, exports) -> int:
+    """The same command WITHOUT --strict-meta: the default mode operators use."""
+    return gor.main(
+        [
+            "generate",
+            "--baseline", str(status / "baseline"),
+            "--out", str(status),
+        ],
+        backend_factory=lambda: backend_obj,
+        export_source=lambda: exports,
+    )
+
+
+def native_axiom_migration_backend(old_symbol: str) -> gor.MappingBackend:
+    """A CORRECT rename whose producer closure carries a native axiom.
+
+    Everything else verifies: the wrapper is the old public name, the chain is
+    intact, the digests are pinned.  Only the producer's kernel closure is
+    dirty, and ``core`` is exactly the tag the tool prints next to it.
+    """
+    return migration_backend(
+        old_symbol,
+        closure_overrides={
+            MIGRATED_PRODUCER: list(CLEAN_CLOSURE) + [CORE_TAGGED_NATIVE]
+        },
+    )
+
+
+def ledger_state(status: Path) -> tuple[dict, dict, dict]:
+    ledger = read_status_json(status, gor.ID_ASSIGNMENTS_NAME)
+    return (
+        ledger.get("assigned") or {},
+        ledger.get("retired") or {},
+        ledger.get("aliases") or {},
+    )
+
+
+def factorization_keys(status: Path) -> set:
+    registry = read_status_json(status, gor.REGISTRY_NAME)
+    return {
+        item["id"]
+        for item in registry["obligations"]
+        if gor.FACTORIZATION_KEY in item
+    }
+
+
+def assert_ledger_untouched(status: Path, obligation_id: str, old_symbol: str,
+                            before: tuple) -> None:
+    """The rejected rename left the id ledger exactly as it was."""
+    assigned, retired, aliases = ledger_state(status)
+    before_assigned, before_retired, before_aliases = before
+    # The old symbol still holds the old id ...
+    assert assigned.get(old_symbol) == obligation_id
+    # ... the new name was never allocated an id ...
+    assert MIGRATED_LEAF not in assigned
+    retired_ids = {
+        entry.get("id") for entry in retired.values() if isinstance(entry, dict)
+    }
+    assert obligation_id not in retired_ids
+    # ... nothing was retired, and no alias record appeared.
+    assert retired == before_retired
+    assert assigned == before_assigned
+    assert aliases == before_aliases
+    assert obligation_id not in aliases
+
+
+def prepare_rejected_wrapper(tmp_path: Path):
+    """Scenario (a): the rename is real, but the wrapper role names a stranger."""
+    status = copy_proof_status(tmp_path)
+    entry = first_reachable_entry(status)
+    old_symbol = entry["lean_decl"]
+    obligation_id = entry["id"]
+    inject_factorization(status, obligation_id, old_symbol, legacy_wrapper=STRANGER)
+    return (
+        status,
+        obligation_id,
+        old_symbol,
+        migration_backend(old_symbol),
+        # The ACTUAL renamed exports: the leaf is gone under its old name, so a
+        # write here would retire the old id and allocate a new one.
+        renamed_exports(status, old_symbol),
+    )
+
+
+def prepare_native_axiom(tmp_path: Path):
+    """Scenario (b): a correct rename whose producer closure is not clean."""
+    status = copy_proof_status(tmp_path)
+    entry = first_reachable_entry(status)
+    old_symbol = entry["lean_decl"]
+    obligation_id = entry["id"]
+    inject_factorization(status, obligation_id, old_symbol)
+    return (
+        status,
+        obligation_id,
+        old_symbol,
+        native_axiom_migration_backend(old_symbol),
+        renamed_exports(status, old_symbol),
+    )
+
+
+@pytest.mark.parametrize("runner", [run_generate, run_generate_default])
+def test_command_level_rejected_wrapper_writes_nothing_in_either_mode(
+    tmp_path, capsys, runner
+):
+    status, obligation_id, old_symbol, backend_obj, exports = prepare_rejected_wrapper(
+        tmp_path
+    )
+    before = output_bytes(status)
+    before_ledger = ledger_state(status)
+    before_blocks = factorization_keys(status)
+
+    # HARD error in BOTH modes: --strict-meta has no say over this gate.
+    assert runner(status, backend_obj, exports) == 1
+    captured = capsys.readouterr()
+    assert "ERROR: factorization: " in captured.err
+    assert "would allocate a new id" in captured.err
+    assert obligation_id in captured.err
+    assert "are unchanged" in captured.err
+
+    # TRANSACTIONAL: not one of the three generated files moved.
+    assert_outputs_unchanged(status, before)
+    assert_ledger_untouched(status, obligation_id, old_symbol, before_ledger)
+    # No entry gained a factorization key it did not carry before.
+    assert factorization_keys(status) == before_blocks
+    # The registry entry still holds its old name and its old id.
+    registry = read_status_json(status, gor.REGISTRY_NAME)
+    still = [item for item in registry["obligations"] if item["id"] == obligation_id]
+    assert len(still) == 1
+    assert still[0]["lean_decl"] == old_symbol
+    assert MIGRATED_LEAF not in {item["lean_decl"] for item in registry["obligations"]}
+
+
+@pytest.mark.parametrize("runner", [run_generate, run_generate_default])
+def test_command_level_native_axiom_producer_writes_nothing_in_either_mode(
+    tmp_path, capsys, runner
+):
+    status, obligation_id, old_symbol, backend_obj, exports = prepare_native_axiom(
+        tmp_path
+    )
+    before = output_bytes(status)
+    before_ledger = ledger_state(status)
+    before_blocks = factorization_keys(status)
+
+    assert runner(status, backend_obj, exports) == 1
+    captured = capsys.readouterr()
+    assert "ERROR: factorization: " in captured.err
+    assert (
+        "producer (" + MIGRATED_PRODUCER + ") axiom closure contains Lean.ofReduceNat"
+    ) in captured.err
+    assert "tool tag 'core', advisory" in captured.err
+    assert obligation_id in captured.err
+
+    # The alias migration itself was legal here, so the pre-W3-0c code applied
+    # it and stamped a verified_at_build block.  Neither may reach disk.
+    assert_outputs_unchanged(status, before)
+    assert_ledger_untouched(status, obligation_id, old_symbol, before_ledger)
+    assert factorization_keys(status) == before_blocks
+    assert gor.FACTORIZATION_KEY not in (status / gor.REGISTRY_NAME).read_text(
+        encoding="utf-8"
+    )
+    assert gor.VERIFIED_AT_BUILD not in (status / gor.REGISTRY_NAME).read_text(
+        encoding="utf-8"
+    )
+
+
+def test_command_level_valid_rename_in_default_mode_writes_and_migrates(tmp_path):
+    """Parity: without --strict-meta a VERIFIED rename still writes and migrates."""
+    status = copy_proof_status(tmp_path)
+    entry = first_reachable_entry(status)
+    old_symbol = entry["lean_decl"]
+    obligation_id = entry["id"]
+
+    inject_factorization(status, obligation_id, old_symbol)
+    backend_obj = migration_backend(old_symbol)
+    exports = renamed_exports(status, old_symbol)
+    before = output_bytes(status)
+
+    assert run_generate_default(status, backend_obj, exports) == 0
+    # The gate passed, so this mode writes exactly what --strict-meta writes.
+    assert output_bytes(status) != before
+
+    registry = read_status_json(status, gor.REGISTRY_NAME)
+    migrated = [item for item in registry["obligations"] if item["id"] == obligation_id]
+    assert len(migrated) == 1
+    assert migrated[0]["lean_decl"] == MIGRATED_LEAF
+    assert migrated[0][gor.FACTORIZATION_KEY][gor.VERIFIED_AT_BUILD] == BUILD
+
+    ledger = read_status_json(status, gor.ID_ASSIGNMENTS_NAME)
+    assert ledger["assigned"][MIGRATED_LEAF] == obligation_id
+    assert old_symbol not in ledger["assigned"]
+    assert old_symbol not in ledger["retired"]
+    assert ledger["aliases"][obligation_id]["renamed_from"] == old_symbol
+
+    # Byte-for-byte the same artifact the strict-mode run produces.
+    strict_status = copy_proof_status(tmp_path / "strict")
+    inject_factorization(strict_status, obligation_id, old_symbol)
+    strict_exports = renamed_exports(strict_status, old_symbol)
+    assert run_generate(strict_status, migration_backend(old_symbol), strict_exports) == 0
+    assert output_bytes(strict_status) == output_bytes(status)
+
+
+def test_command_level_an_unverified_block_is_never_materialized(tmp_path):
+    """There is no "generate succeeded, one block unverified" state to reach.
+
+    Every v2 block that does not verify raises a violation, and a violation is
+    now a hard error, so a partially-materialized registry is unreachable at the
+    command level.  This asserts that unreachability directly, and separately
+    pins the materialization rule the writer relies on: ``build_registry`` given
+    a ``verified_ids`` set that excludes an id writes no block for that id.
+    """
+    status, obligation_id, _old, backend_obj, exports = prepare_native_axiom(tmp_path)
+
+    # The block is declared and the rename is legal, but the block is NOT
+    # verified -> the whole command fails and nothing is materialized anywhere.
+    assert run_generate(status, backend_obj, exports) == 1
+    registry = read_status_json(status, gor.REGISTRY_NAME)
+    assert all(gor.FACTORIZATION_KEY not in item for item in registry["obligations"])
+
+    # The writer's own rule, isolated from the command: an id outside the
+    # verified set is not materialized even though the reviewed block is v2.
+    payload = block()
+    assert gor.FACTORIZATION_KEY in entry_of(generated_registry(payload))
+    rows = [export_record(LEAF)]
+    restricted, _ledger = gor.build_registry(
+        rows, [], "deadbeefdeadbeef", ledger_with({LEAF: OID}),
+        meta_for(payload, OID), BUILD, verified_ids=[],
+    )
+    assert gor.FACTORIZATION_KEY not in entry_of(restricted)
+    # ... and the same call WITH the id in the verified set does materialize it.
+    allowed, _ledger = gor.build_registry(
+        rows, [], "deadbeefdeadbeef", ledger_with({LEAF: OID}),
+        meta_for(payload, OID), BUILD, verified_ids=[OID],
+    )
+    assert allowed["obligations"] == generated_registry(payload)["obligations"]
+
+
+def test_command_level_refused_generate_creates_no_output_file(tmp_path):
+    """"Unchanged" includes "still absent": the gate creates nothing."""
+    status, obligation_id, old_symbol, backend_obj, exports = prepare_rejected_wrapper(
+        tmp_path
+    )
+    # The id ledger stays (it is the input the rename is planned against); the
+    # two other generated files are removed so that any write shows up as a
+    # created file rather than as changed bytes.
+    (status / gor.REGISTRY_NAME).unlink()
+    (status / gor.FRONTIER_TABLE_NAME).unlink()
+    before = output_bytes(status)
+    assert before[gor.REGISTRY_NAME] is None
+    assert before[gor.FRONTIER_TABLE_NAME] is None
+    before_ledger = ledger_state(status)
+
+    assert run_generate_default(status, backend_obj, exports) == 1
+    assert not (status / gor.REGISTRY_NAME).exists()
+    assert not (status / gor.FRONTIER_TABLE_NAME).exists()
+    assert_outputs_unchanged(status, before)
+    assert_ledger_untouched(status, obligation_id, old_symbol, before_ledger)
