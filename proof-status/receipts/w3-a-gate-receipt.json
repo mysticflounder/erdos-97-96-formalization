@@ -1,0 +1,530 @@
+{
+  "audit_item": "A6",
+  "author_claims_checked": [
+    {
+      "claim": "Field count 24 -> 15, ten removed, one added, net -9, parent projection excluded from both counts",
+      "evidence": "Field lines extracted mechanically from `git show HEAD:<path>` and the working tree: 24 and 15, removed set = the authorized ten exactly, added set = {source_mem_largeClass}.",
+      "verdict": "CONFIRMED"
+    },
+    {
+      "claim": "ofCrossRadiusJointDeletion explicit inputs 25 -> 16 including the arm P; both round trips still close by rfl with unchanged proof text",
+      "evidence": "Top-level binder groups parsed from both versions: 25 and 16, P first in both. Both round-trip theorems still end `:= rfl`.",
+      "verdict": "CONFIRMED"
+    },
+    {
+      "claim": "sourceRadius_eq_small_or_large kept; removal deferred",
+      "evidence": "Still field 11 of 15 in the working tree.",
+      "verdict": "CONFIRMED"
+    },
+    {
+      "claim": "deleted_mem_classes_union statement kept, proof rebuilt",
+      "evidence": "The two statement lines are byte-identical to HEAD; the only textual difference on the signature line is the proof-mode marker `:=` becoming `:= by`. The proof body is new (rcases on deletedRadius_eq_small_or_large plus deleted_mem_deletedClass).",
+      "verdict": "CONFIRMED"
+    },
+    {
+      "claim": "dangerousTriple_subset statement text unchanged, field demoted to theorem, proved without convert/simpa",
+      "evidence": "theorem body is `(Finset.erase_subset J.source.1 J.largeClass).trans Finset.subset_union_right`.",
+      "verdict": "CONFIRMED"
+    },
+    {
+      "claim": "dangerousTriple_card statement text unchanged from the old lemma; proof replaced",
+      "evidence": "Statement text identical. QUALIFIED: the elaborated type is NOT the same proposition, because `dangerousTriple` now denotes a different constant. The old lemma was about an arbitrary recorded triple pinned by dangerousTriple_eq; the new one is about largeClass.erase source.1.",
+      "verdict": "CONFIRMED AS TEXT, needs the qualification above"
+    },
+    {
+      "claim": "CallerConstructors.lean docstring only -- no Lean term in that file touched the removed fields",
+      "evidence": "The whole diff of that file is two prose hunks inside the module docstring; no declaration line changed.",
+      "verdict": "CONFIRMED"
+    },
+    {
+      "claim": "rg over lean/ for TwoSourceJointDeletionProvenance returns only my three files; external dangerous* hits are the unrelated U5DangerousTriple family",
+      "evidence": "Confirmed at HEAD and in the working tree. The external hits in U3ToU5Terminal.lean, U1LargeCapRouteBTail.lean, RetainedMatchingSourceReturnRadiusSplit.lean, TwoSourceClosure.lean and TwoSourceU3Ingress.lean all belong to namespace U5DangerousTriple / U3LocalizedNoQFreePacket.",
+      "verdict": "CONFIRMED"
+    },
+    {
+      "claim": "All six builds green, zero errors, zero warnings in the three files",
+      "evidence": "I did not re-run the author's six staged builds; the root build I ran had nothing left to rebuild, which entails all of them succeeded. 0 error lines, and zero diagnostics naming the three files.",
+      "verdict": "CONFIRMED (root build subsumes the staged builds)"
+    },
+    {
+      "claim": "TwoSourceCanonicalSurface.lean and TwoSourceRetainedMinimalCore.lean were already foreign-dirty at session start",
+      "evidence": "Both listed in proof-status/baseline/dirty-files.txt; mtime 2026-08-23 21:14:41 vs 2026-08-25 14:44-14:46 for the W3-A files; TwoSourceCanonicalSurface.lean matches its W3-TD hash pin.",
+      "verdict": "CONFIRMED"
+    },
+    {
+      "claim": "proof-blueprint spine reports 28 open obligations and the axiom closure is byte-identical",
+      "evidence": "Both reproduced independently.",
+      "verdict": "CONFIRMED"
+    }
+  ],
+  "baseline_reference": {
+    "base_head": "f3063069939cfb6dc2a8a9b20d9a7ef660c86fdf",
+    "dir": "proof-status/baseline",
+    "offspine_sorry": 6,
+    "refs_check": "36 stale, 1 never mined, at build fd3f51e09b99",
+    "spine_sorry": 28
+  },
+  "blockers": [],
+  "build": {
+    "build_fingerprint": "d06f12a265f4",
+    "errors": 0,
+    "exit_code": 0,
+    "final_line": "Build completed successfully (12194 jobs).",
+    "log_path": "/private/tmp/claude-1000/-Users-adam-projects-math-projects-erdos-97-96-formalization/a3ca4806-7395-4cba-bc60-1bc108a7653a/scratchpad/w3-a-verifier/root-build.log",
+    "modules_rebuilt": 0,
+    "modules_replayed": 546,
+    "note": "The root build was already current before I ran it: 0 Built lines. No build of my own was required, and the 'something to rebuild would itself be a finding' condition did not trigger. Log retained at <scratchpad>/w3-a-verifier/root-build.log.",
+    "target": "Erdos9796Proof (root)",
+    "warning_scan": "grep of the full 16603-line log for 'JointDeletion/CallerProvenance.lean', 'JointDeletion/RoundTrip.lean' and 'JointDeletion/CallerConstructors.lean' returns nothing, and no module line names those three modules -- they replayed silently. The only JointDeletion diagnostics in the whole log come from the untouched ExactFiveSplit.lean (two pre-existing 'try simp instead of simpa' lints).",
+    "warnings_attributable_to_W3_A_files": 0,
+    "wrapper": "lake-build"
+  },
+  "build_fingerprint": "d06f12a265f43ca954fa1d06a529e542b345d13370528ea37f2e002e57e3ae8a",
+  "claim_scope": "preparatory infrastructure; ROI conditional on the later authorized TwoSource coordinator constructing and consuming this packet; no proof-progress or closure claim",
+  "content_bound_files": {
+    "note": "sha256 of every path committed at 7e440444 (git show 7e440444:<path>)",
+    "sha256": {
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletion/CallerConstructors.lean": "41024a5072c4af17f4ab05c5c0771631a2a8983f13862bac1f032d995303bd26",
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletion/CallerProvenance.lean": "352686ad2469722107650ed295af38e1c4f74910c220bc32574d216866c16a67",
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletion/RoundTrip.lean": "5e9dad2160f9292d593104af55c9467b462f1ee484c65d05322b68646b3f9f0c",
+      "proof-status/obligations.json": "2fd1ffd430c847b72ba3128643846c63ed870ee7a3e11b95806c995e10e62108"
+    }
+  },
+  "files_written_by_this_verifier": [
+    "proof-status/receipts/w3-a-gate-receipt.json",
+    "proof-status/obligations.json  (only via `gen_obligation_registry.py generate`)",
+    "proof-status/receipts/registry-check-20260825T220828Z.json  (emitted by check)",
+    "proof-status/receipts/registry-check-20260825T220904Z.json  (emitted by check)",
+    "proof-status/receipts/registry-check-20260825T220947Z.json  (emitted by check)"
+  ],
+  "gates": [
+    {
+      "commands": [
+        {
+          "command": "lake-build   (root wrapper, from the repository root)",
+          "exit_code": 0,
+          "final_line": "Build completed successfully (12194 jobs)."
+        }
+      ],
+      "detail": "0 `Built` lines and 546 `Replayed` lines in the 16603-line log; 0 lines beginning `error`. Nothing was left to rebuild, so no build of my own was needed and the 'something to rebuild' finding does not apply. The wrapper's trailing sync reported `already fresh -- 4088 module(s) unchanged at build d06f12a265f4`, so every proof-blueprint gate below reads the same build that contains the working-tree edits. Zero diagnostics name CallerProvenance.lean, RoundTrip.lean or CallerConstructors.lean anywhere in the log, which confirms the author's warnings_in_own_files=0. The wrapper also rewrote docs/live-blueprint.md and ran `proof-blueprint refs --refresh` internally (it reported 'No Lean invocation needed'); live-blueprint.md was already foreign-dirty before this wave.",
+      "name": "root build is current: nothing left to rebuild",
+      "step": 0,
+      "verdict": "PASS"
+    },
+    {
+      "commands": [
+        {
+          "command": "proof-blueprint search --with-sorry --spine --json | jq -r .symbol | sort | diff - <baseline>",
+          "exit_code": 0,
+          "final_line": "28 symbols; diff against proof-status/baseline/spine-sorry.json is empty"
+        },
+        {
+          "command": "proof-blueprint search --off-spine --with-sorry --json | jq -r .symbol | sort | diff - <baseline>",
+          "exit_code": 0,
+          "final_line": "6 symbols; diff against proof-status/baseline/offspine-sorry.json is empty"
+        }
+      ],
+      "detail": "Symbol SETS compared, not cardinalities: both sorted symbol lists are byte-identical to the baseline. 28 reachable open leaves, 6 off-spine. No leaf added, removed or renamed.",
+      "name": "spine and off-spine sorry rosters are unchanged",
+      "step": 1,
+      "verdict": "PASS"
+    },
+    {
+      "commands": [
+        {
+          "command": "proof-blueprint axioms Problem97.erdos97_rhs | diff proof-status/baseline/axioms.txt -",
+          "exit_code": 1,
+          "final_line": "diff empty; the CLI itself exits 1 in the baseline and now, for the same pre-existing unapproved spine sorryAx"
+        }
+      ],
+      "detail": "Reported set unchanged: propext, sorryAx, Classical.choice, Lean.ofReduceBool, Lean.trustCompiler, Quot.sound. The nonzero exit is the inherited 'sorry on the spine' refusal that the baseline file already records; the axiom text differs from the baseline in zero bytes.",
+      "name": "publication axiom closure of Problem97.erdos97_rhs is byte-identical to the baseline",
+      "step": 2,
+      "verdict": "PASS"
+    },
+    {
+      "commands": [
+        {
+          "command": "git diff HEAD --numstat -- lean/",
+          "exit_code": 0,
+          "final_line": "5 tracked lean/ files: the 3 JointDeletion/ files plus TwoSourceCanonicalSurface.lean and TwoSourceRetainedMinimalCore.lean"
+        },
+        {
+          "command": "git grep -n TwoSourceJointDeletionProvenance HEAD -- lean/ | grep -v JointDeletion/",
+          "exit_code": 1,
+          "final_line": "no match: nothing outside JointDeletion/ named the structure even at HEAD"
+        },
+        {
+          "command": "proof-blueprint search --uses <sym> --all --json  (14 symbols)",
+          "exit_code": 0,
+          "final_line": "every caller of every changed/removed declaration lies in JointDeletion/CallerProvenance.lean or JointDeletion/RoundTrip.lean"
+        }
+      ],
+      "detail": "The two TwoSource*.lean files that appear in `git diff HEAD` are FOREIGN-DIRTY, not W3-A edits: both are listed as modified in proof-status/baseline/dirty-files.txt (lines 8-9), both have mtime 2026-08-23 21:14:41 against 2026-08-25 14:44-14:46 for the three W3-A files, and their diffs are unrelated (one docstring paragraph in TwoSourceRetainedMinimalCore.lean; two private helpers oppApex1_mem_A_local and collision_btw_sep in TwoSourceCanonicalSurface.lean). `git status --porcelain` adds no new modified path outside JointDeletion/ relative to HEAD other than the regenerated proof-status/obligations.json and this receipt. Baseline also listed ExactTwelveRigid221PhysicalClassCell6PositiveCuts.lean as dirty; it is now clean (committed by an earlier wave), a reduction, not an addition. PRECONDITION CONFIRMED: no declaration outside JointDeletion/ consumes a removed field, the changed constructors, or any lemma whose statement changed.",
+      "name": "no consumer outside JointDeletion/ was changed or is affected",
+      "step": 3,
+      "verdict": "PASS"
+    },
+    {
+      "commands": [
+        {
+          "command": "rg -n 'dangerousFirst|dangerousSecond|dangerousThird|dangerousTriple_eq' lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletion/",
+          "exit_code": 1,
+          "final_line": "NO MATCHES -- not even in historical docstring prose"
+        },
+        {
+          "command": "proof-blueprint axioms  (10 declarations)",
+          "exit_code": 0,
+          "final_line": "propext, Classical.choice, Quot.sound on every one; no sorryAx"
+        }
+      ],
+      "detail": "The four removed names occur nowhere under JointDeletion/, in code or in prose, so the author's 'except historical docstring prose' allowance was not needed. The canonical definition now reads `noncomputable def dangerousTriple (J : ...) : Finset ℝ² := J.largeClass.erase J.source.1` (CallerProvenance.lean:292). STATEMENT of the card lemma (CallerProvenance.lean:298-303): `theorem dangerousTriple_card (J : TwoSourceJointDeletionProvenance D L apex) : J.dangerousTriple.card = 3`, proved by `unfold dangerousTriple; rw [Finset.card_erase_of_mem J.source_mem_largeClass, J.largeClass_card_eq_four]` -- a real proof from the card-4 field, not an assumption. `proof-blueprint axioms` is clean on dangerousTriple, dangerousTriple_card, dangerousTriple_subset, ofCrossRadiusJointDeletion, ofCrossRadiusJointDeletion_eta, sourceRadius_eq_largeRadius, deletedRadius_eq_smallRadius, deleted_not_mem_dangerousTriple and deleted_mem_classes_union. CAVEAT recorded honestly: `ofCrossRadiusJointDeletion_toCrossRadiusJointDeletion` is not in the proof-blueprint index, so `axioms` on it exits 3 (unknown module prefix) rather than reporting a set. The cause is the indexer skipping an `@[simp] theorem` whose name sits on a continuation line -- the identical layout exists at HEAD, so this is a pre-existing indexing gap, NOT a W3-A regression. Its trust is instead established by the token scan of gate 5, by its `:= rfl` proof, and by the unchanged off-spine sorry roster of gate 1.",
+      "name": "removed fields are gone; dangerousTriple is derived and dangerousTriple_card is proved",
+      "step": 4,
+      "verdict": "PASS"
+    },
+    {
+      "commands": [
+        {
+          "command": "rg -n 'sorry|axiom|native_decide|maxHeartbeats|unsafe|\\bdecide\\b' <the 3 edited files>",
+          "exit_code": 1,
+          "final_line": "NO TRUST TOKENS"
+        }
+      ],
+      "detail": "Zero matches across CallerProvenance.lean, RoundTrip.lean and CallerConstructors.lean. The banned word 'equivalent' also appears nowhere in the three files (case-insensitive rg for 'equivalen').",
+      "name": "trust: no new sorry / axiom / native_decide / maxHeartbeats / unsafe / decide token",
+      "step": 5,
+      "verdict": "PASS"
+    },
+    {
+      "commands": [
+        {
+          "command": "uv run python scripts/lint_cluster_imports.py",
+          "exit_code": 0,
+          "final_line": "lint_cluster_imports: OK -- 688 import edges scanned, 28 forbidden edges, all waived by 28 authenticated waivers; 3 legacy edges, all listed."
+        },
+        {
+          "command": "uv run python scripts/lint_cluster_imports.py --list-legacy",
+          "exit_code": 0,
+          "final_line": "same OK line; the 3 legacy edges are the two Legacy.TwoDeletionWrappers intra-cluster edges and the Rigid221Placement cross-cluster edge"
+        }
+      ],
+      "detail": "688 edges / 28 waivers / 3 legacy, exactly the required numbers. W3-A added no import.",
+      "name": "cluster import lint unchanged",
+      "step": 6,
+      "verdict": "PASS"
+    },
+    {
+      "commands": [
+        {
+          "command": "uv run python scripts/gen_obligation_registry.py generate --baseline proof-status/baseline --out proof-status",
+          "exit_code": 0,
+          "final_line": "wrote proof-status/obligations.json: 28 reachable, 6 off-spine, 34/34 with reviewed meta_status; factorized 3/28 reachable leaves"
+        },
+        {
+          "command": "git diff -- proof-status/obligations.json",
+          "exit_code": 0,
+          "final_line": "3 added / 3 removed lines, all of them verified_at_build"
+        },
+        {
+          "command": "uv run python scripts/gen_obligation_registry.py check --baseline proof-status/baseline",
+          "exit_code": 0,
+          "final_line": "OK ... 28 reachable, 6 off-spine; 34/34 reviewed meta_status, vocabulary clean; factorized 3/28"
+        },
+        {
+          "command": "uv run python scripts/gen_obligation_registry.py check --baseline proof-status/baseline --require-factorized TD",
+          "exit_code": 0,
+          "final_line": "OK ... factorized 3/28 reachable leaves (required: TD)"
+        },
+        {
+          "command": "uv run python scripts/gen_obligation_registry.py check --baseline proof-status/baseline --require-fresh-refs",
+          "exit_code": 1,
+          "final_line": "FAIL: kernel-mined refs are not fresh -- 36 stale mined symbol(s), 1 never-mined symbol(s)"
+        }
+      ],
+      "detail": "The generator did NOT refuse: it exited 0 with no ERROR line, so all three materialized P97-TD blocks passed live validation. The whole registry diff is exactly three `verified_at_build` values moving from c596f2adbf3acdbf172de7a731cfec319e0f0f9d0ed67f43392e1f07db51d00f to d06f12a265f43ca954fa1d06a529e542b345d13370528ea37f2e002e57e3ae8a, on P97-TD-BLOCKERCOINCIDENCE, P97-TD-GLOBALGAPORCLOSED and P97-TD-SURVIVALSQUARE. Nothing else in the file changed. The generator also rewrote proof-status/id-assignments.json and proof-status/frontier-table.generated.md; both came out byte-identical to their committed content (git reports them clean), so obligations.json is the only registry file this verifier changed. STRICT REFS: exit 1 with 36 stale + 1 never-mined -- the SAME counts as proof-status/baseline/refs-check.txt (36 stale, 1 never mined), so the inherited failure is unchanged and no finding is raised. `proof-blueprint refs --check` confirms the same 36/1 at build d06f12a265f4. The CLI offers no way to list the stale symbols (--verbose changes nothing), so the naming half of the gate is answered indirectly: the JointDeletion modules are demonstrably freshly mined, because the call graph already resolves the NEW def `TwoSourceJointDeletionProvenance.dangerousTriple` and its callers. `proof-blueprint refs --refresh` was never run by me.",
+      "name": "obligation registry: regenerate, roster, factorization, refs freshness",
+      "step": 7,
+      "verdict": "PASS (strict-refs sub-check inherits the pre-existing failure at unchanged counts)"
+    },
+    {
+      "commands": [
+        {
+          "command": "uv run python -m pytest scripts/test_gen_obligation_registry_factorization.py scripts/test_lint_cluster_imports_legacy.py -q",
+          "exit_code": 0,
+          "final_line": "101 passed in 3.71s"
+        }
+      ],
+      "detail": "101 passed, 0 failed. The six failures the W3-TD verifier saw pre-commit are gone, as its tests_history predicted.",
+      "name": "focused tests",
+      "step": 8,
+      "verdict": "PASS"
+    },
+    {
+      "commands": [
+        {
+          "command": "git diff --check HEAD -- <the 3 edited files>",
+          "exit_code": 0,
+          "final_line": "no output"
+        }
+      ],
+      "detail": "Clean on all three files. Repo-wide `git diff --check HEAD` exits 2, but every reported line is trailing whitespace inside the foreign-dirty scratch/frontier-live-current.diff, which W3-A did not touch.",
+      "name": "whitespace hygiene of the touched files",
+      "step": 9,
+      "verdict": "PASS"
+    },
+    {
+      "commands": [
+        {
+          "command": "shasum -a 256 -c <scratchpad>/w3-td-baseline/module-hashes.txt",
+          "exit_code": 1,
+          "final_line": "5 OK, 2 FAILED (WARNING: 2 computed checksums did NOT match)"
+        }
+      ],
+      "detail": "OK: Rigid221SourceHeavy.lean, Rigid221Closure.lean, TriApexEndpointRetainedOmission.lean, TwoSourceCanonicalSurface.lean, B1Live.lean. FAILED: TwoDeletionCollision.lean and Rigid221Placement.lean -- both expected, they were changed by W3-TD, which is committed at HEAD 2fb26644 and therefore no longer matches a pre-W3-TD pin. Exactly the outcome the gate specifies. TwoSourceRetainedMinimalCore.lean is not in that pin file; gate 3 shows independently that it is foreign-dirty and untouched by W3-A.",
+      "name": "foreign module hashes unchanged",
+      "step": 10,
+      "verdict": "PASS"
+    },
+    {
+      "commands": [
+        {
+          "command": "git show HEAD:.../CallerProvenance.lean  vs working tree, field lines extracted mechanically",
+          "exit_code": 0,
+          "final_line": "24 own fields at HEAD, 15 in the working tree; removed 10, added 1, net -9"
+        },
+        {
+          "command": "binder groups of ofCrossRadiusJointDeletion counted mechanically in both versions",
+          "exit_code": 0,
+          "final_line": "25 explicit inputs at HEAD, 16 in the working tree, P included in both"
+        }
+      ],
+      "detail": "Every number in the `roi` object below was recomputed from `git show HEAD:<path>` and the working tree by this verifier. The removed set matches the authorized ten EXACTLY, and the added set is exactly {source_mem_largeClass}. `sourceRadius_eq_small_or_large` is still field 11 of 15, so the deferred removal really was deferred. No hand-written declaration was removed.",
+      "name": "ROI accounting verified from source, not from the author",
+      "step": 11,
+      "verdict": "PASS"
+    }
+  ],
+  "generated_at_utc": "2026-08-25T22:12:18Z",
+  "generated_by": "W3-A gate verifier (opus), independent of the W3-A author",
+  "git_head": "7e440444b36b1194f537d9bd1958066bd7ee9831",
+  "git_head_short": "7e440444",
+  "head_note": "Bound to commit 7e440444b36b1194f537d9bd1958066bd7ee9831. content_bound_files holds the sha256 of every path committed at 7e440444 (`git show 7e440444:<path>`). The gate verifier's pre-commit draft (working-tree hashes at HEAD d8c10c44) is kept, labeled, under content_bound_files_working_tree; its gates section is that pre-commit snapshot.",
+  "new_receipts_written_by_this_check": [
+    "proof-status/receipts/registry-check-20260825T220828Z.json",
+    "proof-status/receipts/registry-check-20260825T220904Z.json",
+    "proof-status/receipts/registry-check-20260825T220947Z.json"
+  ],
+  "notes_for_main_session": [
+    "W3-A is source-clean. Nothing blocks the wave commit.",
+    "Commit exactly four paths: the three JointDeletion/ files, the regenerated proof-status/obligations.json, and (as a receipt-only child commit, matching W3-0 and W3-TD) this receipt plus the three registry-check receipts.",
+    "Do NOT stage TwoSourceCanonicalSurface.lean or TwoSourceRetainedMinimalCore.lean; both are foreign-dirty from 2026-08-23 and belong to another lane.",
+    "docs/live-blueprint.md was rewritten by the lake-build wrapper. It was already foreign-dirty before this wave; treat it as render drift.",
+    "After the wave commit lands, rebind content_bound_files here to `git show <commit>:<path>` hashes -- the values in this receipt are pre-commit working-tree hashes and are labeled as such.",
+    "OBS-1 is the one item worth a human read: the packet is now strictly narrower than at HEAD, because source_mem_largeClass forces the source onto the large radius and therefore makes the old deleted_mem_dangerousTriple assumption refutable rather than merely unrecorded. Authorized by the target, but it constrains what the future coordinator may hand in.",
+    "The registry regenerate moved exactly three verified_at_build values (the P97-TD blocks) to build d06f12a265f4. The generator did not refuse; there were no ERROR lines.",
+    "The strict-refs gate stays red at 36 stale + 1 never-mined, unchanged from the baseline. It needs `proof-blueprint refs --refresh`, which no gate verifier is allowed to run."
+  ],
+  "observations_not_blocking": [
+    {
+      "detail": "The dropped field deleted_mem_dangerousTriple asserted `deleted.1 ∈ dangerousTriple`. Under the new derived definition that proposition is not merely unrecorded, it is REFUTABLE: the wave's own new theorem deleted_not_mem_dangerousTriple proves `J.deleted.1 ∉ J.dangerousTriple`. The reason is that source_mem_largeClass pins the source to the large radius (sourceRadius_eq_largeRadius), radii_ne then pins the deletion to the small radius (deletedRadius_eq_smallRadius), and classes_disjoint separates the two classes. So the record can no longer describe the arm in which the source sits on the small radius; the left disjunct of radii_split and of sourceRadius_eq_small_or_large is now unreachable. This is exactly what the W3-A target directs and what the project owner's decision recorded in the HEAD CallerConstructors docstring says, so it is authorized. It is logged because a future coordinator must supply a configuration in which the source is on the LARGE class, and because the docstring line 'the second obligation is discharged' is true of the identity of the triple while the old deletion-in-triple assumption was not discharged but inverted.",
+      "id": "OBS-1",
+      "severity": "informational",
+      "title": "The reshape is a semantic narrowing, not only a bookkeeping simplification"
+    },
+    {
+      "detail": "sourceRadius_eq_small_or_large is strictly derivable from the new field, as the wave's own sourceRadius_eq_largeRadius demonstrates. The instruction deferred its removal; a later authorized wave can take the extra -1 and simplify radii_split at the same time.",
+      "id": "OBS-2",
+      "severity": "informational",
+      "title": "One further field removal is now available"
+    },
+    {
+      "detail": "(a) The `@[simp] theorem` whose name sits on a continuation line, ofCrossRadiusJointDeletion_toCrossRadiusJointDeletion, is absent from the index, so `proof-blueprint axioms` on it exits 3. The layout is identical at HEAD, so this is pre-existing, not a W3-A regression. (b) The index carries NO structure field projections at all -- largeClass_card_eq_four, smallClass_eq and retainedTrace_eq are equally absent. Therefore 'dangerousFirst is absent from the index' is NOT evidence of removal, and this receipt does not use it as such: gate 4 rests on the source-level rg and the green build.",
+      "id": "OBS-3",
+      "severity": "informational",
+      "title": "Two proof-blueprint indexing gaps that limit what the tooling can attest"
+    }
+  ],
+  "overall_note": "false ONLY because `check --require-fresh-refs` still exits 1. That failure is inherited, not caused by W3-A: the counts are 36 stale + 1 never-mined, identical to proof-status/baseline/refs-check.txt, and its fix (`proof-blueprint refs --refresh`) is forbidden to this verifier. source_gates_pass carries the W3-A source verdict and is true.",
+  "overall_pass": false,
+  "promotion_claim": "none",
+  "promotion_note": "Nothing is promoted. TwoSourceJointDeletionProvenance is not spine-reachable (`proof-blueprint search --spine --name '*TwoSourceJointDeletionProvenance*'` returns nothing) and has no producer and no consumer anywhere in lean/. The 28 open spine leaves are untouched.",
+  "roi": {
+    "canonical_definition": "noncomputable def dangerousTriple (J : TwoSourceJointDeletionProvenance D L apex) : Finset ℝ² := J.largeClass.erase J.source.1",
+    "constructor_inputs_after": 16,
+    "constructor_inputs_before": 25,
+    "constructor_inputs_note": "Explicit binders of TwoSourceJointDeletionProvenance.ofCrossRadiusJointDeletion, counted in both versions with the arm P included. Removed: dangerousFirst, dangerousSecond, dangerousThird, hd12, hd13, hd23, dangerousTriple, htriple, htripleSubset, hdeletedTriple. Added: hsourceLarge : P.source.1 ∈ largeClass.",
+    "declarations_added": [
+      "Problem97.ATailFrontierLiveClosure.TwoSourceJointDeletionProvenance.dangerousTriple  (noncomputable def)",
+      "Problem97.ATailFrontierLiveClosure.TwoSourceJointDeletionProvenance.dangerousTriple_subset  (theorem; field demoted)",
+      "Problem97.ATailFrontierLiveClosure.TwoSourceJointDeletionProvenance.sourceRadius_eq_largeRadius  (theorem)",
+      "Problem97.ATailFrontierLiveClosure.TwoSourceJointDeletionProvenance.deletedRadius_eq_smallRadius  (theorem)",
+      "Problem97.ATailFrontierLiveClosure.TwoSourceJointDeletionProvenance.deleted_not_mem_dangerousTriple  (theorem)"
+    ],
+    "declarations_added_note": "The namespace grew from 12 hand-written declarations at HEAD to 17. All 12 originals survive by name.",
+    "declarations_changed": [
+      "Problem97.ATailFrontierLiveClosure.TwoSourceJointDeletionProvenance.ofCrossRadiusJointDeletion",
+      "Problem97.ATailFrontierLiveClosure.TwoSourceJointDeletionProvenance.ofCrossRadiusJointDeletion_toCrossRadiusJointDeletion",
+      "Problem97.ATailFrontierLiveClosure.TwoSourceJointDeletionProvenance.ofCrossRadiusJointDeletion_eta"
+    ],
+    "declarations_changed_note": "Exactly the three the gate expects, and both round trips still close by an unchanged `:= rfl`. Two further declarations need a qualification the author did not make. (a) dangerousTriple_card and dangerousTriple_subset have statement TEXT byte-identical to their HEAD counterparts, but their ELABORATED types changed, because the constant `dangerousTriple` they mention is no longer the same object: at HEAD it was a structure field of type Finset ℝ² constrained by dangerousTriple_eq, and it is now the def largeClass.erase source.1. (b) deleted_mem_classes_union keeps a statement that is byte-identical to HEAD apart from the proof-mode marker (`:=` became `:= by`); its proof was rebuilt on deletedRadius_eq_small_or_large and deleted_mem_deletedClass because the field it used to apply is gone.",
+    "declarations_removed": [],
+    "declarations_removed_note": "None. Every name that disappeared was a structure field projection, not a hand-written declaration. dangerousTriple and dangerousTriple_subset survive as a def and a theorem with the same fully qualified names.",
+    "deferred": [
+      "sourceRadius_eq_small_or_large"
+    ],
+    "deferred_note": "Verified still present as a field. It is now strictly redundant: the new theorem sourceRadius_eq_largeRadius derives sourceRadius = largeRadius from source_mem_largeClass, largeClass_eq and the inherited source_mem_sourceClass, which implies the disjunction. Removing it is a further -1 available to a later authorized wave.",
+    "diff_stat": {
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletion/CallerConstructors.lean": {
+        "added": 18,
+        "removed": 16
+      },
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletion/CallerProvenance.lean": {
+        "added": 88,
+        "removed": 47
+      },
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletion/RoundTrip.lean": {
+        "added": 6,
+        "removed": 37
+      }
+    },
+    "diff_stat_total": {
+      "added": 112,
+      "files": 3,
+      "removed": 100
+    },
+    "fields_added": [
+      "source_mem_largeClass"
+    ],
+    "fields_after": 15,
+    "fields_after_split": {
+      "data": 5,
+      "proof": 10
+    },
+    "fields_before": 24,
+    "fields_before_split": {
+      "data": 9,
+      "proof": 15
+    },
+    "fields_removed": [
+      "dangerousFirst",
+      "dangerousSecond",
+      "dangerousThird",
+      "dangerousFirst_ne_dangerousSecond",
+      "dangerousFirst_ne_dangerousThird",
+      "dangerousSecond_ne_dangerousThird",
+      "dangerousTriple",
+      "dangerousTriple_eq",
+      "dangerousTriple_subset",
+      "deleted_mem_dangerousTriple"
+    ],
+    "net": -9,
+    "parent_projection_note": "The inherited CrossRadiusJointDeletion projection toCrossRadiusJointDeletion is counted in neither 24 nor 15, matching the author's convention.",
+    "proved": [
+      "dangerousTriple_card : J.dangerousTriple.card = 3   [Finset.card_erase_of_mem J.source_mem_largeClass, then J.largeClass_card_eq_four]",
+      "dangerousTriple_subset : J.dangerousTriple ⊆ J.smallClass ∪ J.largeClass   [(Finset.erase_subset _ _).trans Finset.subset_union_right]",
+      "sourceRadius_eq_largeRadius : J.sourceRadius = J.largeRadius",
+      "deletedRadius_eq_smallRadius : J.deletedRadius = J.smallRadius",
+      "deleted_not_mem_dangerousTriple : J.deleted.1 ∉ J.dangerousTriple",
+      "deleted_mem_classes_union : J.deleted.1 ∈ J.smallClass ∪ J.largeClass   [statement preserved, proof rebuilt]"
+    ]
+  },
+  "schema": "p97-gate-receipt/v1",
+  "source_gates_note": "Every source gate passes: root build current with 0 rebuilds and 0 errors, spine and off-spine sorry rosters byte-identical to the baseline, axiom closure byte-identical, no consumer outside JointDeletion/, the ten removed fields gone from source with the derived dangerousTriple and a real proof of dangerousTriple_card, no new trust token, cluster lint unchanged at 688/28/3, registry roster and TD factorization clean, 101 tests passing, whitespace clean, foreign module pins intact, and the ROI numbers reproduced from source.",
+  "source_gates_pass": true,
+  "state": "FINAL — bound to W3-A wave commit 7e440444; this receipt ships in the receipt-only child commit of 7e440444",
+  "tests": {
+    "command": "uv run python -m pytest scripts/test_gen_obligation_registry_factorization.py scripts/test_lint_cluster_imports_legacy.py -q",
+    "exit_code": 0,
+    "expected_passed": 101,
+    "failed": 0,
+    "final_line": "101 passed in 3.71s",
+    "passed": 101
+  },
+  "wave": "W3-A",
+  "content_bound_files_working_tree": {
+    "hash_kind": "working-tree",
+    "note": "HISTORICAL — working-tree hashes taken by the gate verifier before the wave commit (HEAD d8c10c44). WORKING-TREE sha256 (`shasum -a 256` of the file on disk at 2026-08-25T22:12:18Z, HEAD d8c10c44, PRE-COMMIT). These are NOT commit-object hashes. The main session must recompute them with `git show <commit>:<path>` after the W3-A wave commit lands and rebind this receipt.",
+    "sha256": {
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletion/CallerConstructors.lean": "41024a5072c4af17f4ab05c5c0771631a2a8983f13862bac1f032d995303bd26",
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletion/CallerProvenance.lean": "352686ad2469722107650ed295af38e1c4f74910c220bc32574d216866c16a67",
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletion/RoundTrip.lean": "5e9dad2160f9292d593104af55c9467b462f1ee484c65d05322b68646b3f9f0c",
+      "proof-status/frontier-table.generated.md": "0cb5d00f2c542ce082e59b11b7fe9268b22115753f16b07c68772446d8bfbd07",
+      "proof-status/id-assignments.json": "4c1c0a5bfa5956904c1b4266d7a8b4bda4454d3ff1f85b663eae88197d364313",
+      "proof-status/obligations-meta.json": "e396ac952e49a6b307037a105ab252b3b092de213ff50fe9bbf635ca4bfe1cc0",
+      "proof-status/obligations.json": "2fd1ffd430c847b72ba3128643846c63ed870ee7a3e11b95806c995e10e62108",
+      "proof-status/receipts/registry-check-20260825T220828Z.json": "b4874ef45ee018151a74e211c5cbdf27a157642761527e392b641f7772ff1d17",
+      "proof-status/receipts/registry-check-20260825T220904Z.json": "ea861b04b7eacc2d71bb3f79a89739ee1363eff1ea21ffcaa93b094ac44dd38b",
+      "proof-status/receipts/registry-check-20260825T220947Z.json": "7bfd1ff9fbc84a0ee6e1c961bb0016b3c9c394c7e8b1ad055e818495848e4813"
+    }
+  },
+  "wave_commit": {
+    "sha": "7e440444b36b1194f537d9bd1958066bd7ee9831",
+    "paths": [
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletion/CallerConstructors.lean",
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletion/CallerProvenance.lean",
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletion/RoundTrip.lean",
+      "proof-status/obligations.json"
+    ]
+  },
+  "note_resolutions": [
+    {
+      "note_index": 1,
+      "status": "resolved",
+      "resolution": "wave commit 7e440444 contains exactly the four paths; receipt-only child commit carries this receipt and the six registry-check receipts (three from the verifier, three from the main-session re-run)"
+    },
+    {
+      "note_index": 2,
+      "status": "honored",
+      "resolution": "TwoSourceCanonicalSurface.lean and TwoSourceRetainedMinimalCore.lean were not staged"
+    },
+    {
+      "note_index": 4,
+      "status": "resolved",
+      "resolution": "content_bound_files rebound to git show 7e440444:<path>; the verifier's working-tree hashes kept under content_bound_files_working_tree"
+    },
+    {
+      "note_index": 5,
+      "status": "reported",
+      "resolution": "OBS-1 (semantic narrowing: source pinned to the large radius, deleted_mem_dangerousTriple refutable) reported to Adam and the Spine Gate Auditor in the W3-A checkpoint post; authorized by #7486"
+    },
+    {
+      "note_index": 7,
+      "status": "inherited",
+      "resolution": "strict refs 36 stale + 1 never-mined unchanged from baseline; refs --refresh not run (not permitted for this lane)"
+    }
+  ],
+  "auditor_7486_accounting": {
+    "wording": "10 current fields removed + 1 field added (source_mem_largeClass) = 9 net fewer; own fields 24 -> 15; ofCrossRadiusJointDeletion inputs 25 -> 16 including P",
+    "removed_deleted_mem_dangerousTriple": "yes — contradictory under the canonical largeClass.erase source representation; deleted_mem_classes_union statement preserved with a new proof",
+    "deferred": [
+      "sourceRadius_eq_small_or_large removal",
+      "any further redundant-field cleanup"
+    ],
+    "containment": "edits only in JointDeletion/; no TwoSource edit; no external shim",
+    "claim_scope": "preparatory infrastructure; ROI conditional on the later authorized TwoSource coordinator constructing and consuming this packet; no proof-progress or closure claim"
+  },
+  "main_session_reverification": {
+    "utc": "2026-08-25T22:22:59Z",
+    "on": "the staged tree that became 7e440444 (byte-identical to the commit)",
+    "results": {
+      "spine": "proof-blueprint spine: open obligations (28); spine sorry symbol set diff vs proof-status/baseline/spine-sorry.json empty (28); off-spine set diff vs offspine-sorry.json empty (6)",
+      "axioms": "proof-blueprint axioms Problem97.erdos97_rhs byte-identical to proof-status/baseline/axioms.txt (diff empty)",
+      "lint": "lint_cluster_imports plain and --list-legacy: OK -- 688 import edges, 28 forbidden all waived, 3 legacy edges all listed",
+      "registry": "check --baseline exit 0 (receipt registry-check-20260825T221815Z); check --require-factorized TD exit 0 (registry-check-20260825T221855Z); check --require-fresh-refs exit 1: 36 stale mined symbol(s) + 1 never-mined, inherited, unchanged (registry-check-20260825T222026Z)",
+      "tests": "pytest scripts/test_gen_obligation_registry_factorization.py scripts/test_lint_cluster_imports_legacy.py: 101 passed",
+      "diff_check": "git diff --check HEAD on the three JointDeletion files and proof-status/obligations.json: clean",
+      "tokens": "rg sorry|axiom|native_decide|maxHeartbeats|unsafe|equivalen over the three edited files: no matches",
+      "roi_from_source": "own fields of TwoSourceJointDeletionProvenance counted from source: 24 at d8c10c44 -> 15 in the wave; ofCrossRadiusJointDeletion explicit binder names 25 -> 16 including P (grouped binders expanded); sourceRadius_eq_small_or_large still a field; obligations.json diff = 3 verified_at_build values only",
+      "consumers": "search --uses on the structure type: 15 callers (CallerProvenance.lean 12, RoundTrip.lean 3); search --spine mentions 0; repo-wide textual mentions only the 3 JointDeletion files + w2b receipt + audit doc",
+      "hygiene": "check_worktree_hygiene check --lane consolidation-refactor-20260823 --staged: blocking=false, issues=0 (4 wave paths staged)"
+    }
+  },
+  "metadata_corrections": [
+    {
+      "utc": "2026-08-25T22:22:59Z",
+      "kind": "receipt re-bound to the wave commit; #7486 accounting confirmation, note resolutions and main-session reverification added; metadata only",
+      "unchanged": "overall_pass=false (inherited strict refs 36+1), source_gates_pass=true, promotion_claim none, claim_scope unchanged"
+    }
+  ]
+}
