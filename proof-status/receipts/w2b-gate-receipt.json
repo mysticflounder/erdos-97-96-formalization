@@ -2,9 +2,9 @@
   "schema": "p97-gate-receipt/v1",
   "wave": "W2b",
   "generated_by": "W2b gate-receipt subagent (verification only), then re-bound by the main session after (a) the docstring-only rewrite of the dangerous-triple paragraph in JointDeletion/CallerConstructors.lean (auditor #7438) and (b) the type-level origin binding of PairedCommonDeletionProvenance in JointDeletion/Producers.lean (auditor #7437); every gate was re-run by the main session on the edited working tree before commit.",
-  "generated_at_utc": "2026-08-25T03:43:29Z",
-  "git_head": "c578afd1e8c720a84ffa651b354804798f1cb8f4",
-  "git_head_short": "c578afd1",
+  "generated_at_utc": "2026-08-25T04:08:08Z",
+  "git_head": "09ecc5611f5b00673dbfebcb5d741993b30790eb",
+  "git_head_short": "09ecc561",
   "head_note": "Every W2b change is UNCOMMITTED at this HEAD: Producers.lean and CallerConstructors.lean are untracked, RoundTrip.lean and JointDeletionCore.lean are modified in the working tree. Every verdict below is computed from working-tree source, not from the commit. Content is bound by the sha256 map in content_bound_files, not by the commit hash.",
   "scope_note": "This receipt records gate outcomes only. It makes NO proof-promotion claim, NO fresh-spine claim, and NO claim that any obligation was discharged. The publication gate still fails on sorryAx exactly as it did at baseline; W2b neither advanced nor regressed it.",
   "lean_toolchain": {
@@ -18,11 +18,11 @@
     "w2a_build_id": "6beb7ec16654",
     "baseline_build_id": "fd3f51e09b99",
     "refs_check_exit": 1,
-    "project_symbols": 64766,
-    "minable": 56446,
+    "project_symbols": 64783,
+    "minable": 56463,
     "trusted_skipped": 7390,
     "without_importable_olean": 931,
-    "mined_fresh": 56409,
+    "mined_fresh": 56426,
     "stale": 36,
     "never_mined": 1,
     "baseline_refs_check": {
@@ -33,7 +33,7 @@
       "stale": 36,
       "never_mined": 1
     },
-    "note": "Stale (36) and never-mined (1) are byte-for-byte the baseline condition in proof-status/baseline/refs-check.txt and the W2a condition. Project symbols grew 64642 -> 64766 (+124) across W2a -> W2b, consistent with the two new modules and the RoundTrip additions; the staleness set did not grow."
+    "note": "Stale (36) and never-mined (1) are byte-for-byte the baseline condition in proof-status/baseline/refs-check.txt and the W2a condition; the staleness set did not grow. Project symbols at build f80c3204eef5 as reported by proof-blueprint refs --check on 2026-08-25T04:08:08Z."
   },
   "wave_files": {
     "new": [
@@ -46,8 +46,8 @@
     ],
     "edited_diffstat": "2 files changed, 397 insertions(+), 0 deletions(-) — RoundTrip.lean +390 in two hunks (12 prose lines inside the module docstring at 65-76, and 378 appended lines at 1226-1603); JointDeletionCore.lean +7 (2 import lines plus a 5-line one-sentence docstring paragraph). No line removed anywhere.",
     "new_file_sizes": {
-      "Producers.lean": 867,
-      "CallerConstructors.lean": 543
+      "Producers.lean": 1112,
+      "CallerConstructors.lean": 552
     }
   },
   "content_bound_files": {
@@ -82,12 +82,12 @@
       "final_line": "Build completed successfully (12190 jobs).",
       "error_lines": 0,
       "oleans_present": {
-        "Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletion/Producers.olean": 668360,
-        "Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletion/CallerConstructors.olean": 299288,
+        "Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletion/Producers.olean": 770728,
+        "Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletion/CallerConstructors.olean": 299944,
         "Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletion/RoundTrip.olean": 944664,
         "Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletionCore.olean": 51456
       },
-      "detail": "Plain full lake-build exits 0 with 12190 jobs and zero error lines (warnings only, from the unused-variable linter in unrelated modules). Both new modules have a .olean under lean/.lake/build/lib/lean, each newer than its source, so they are inside the verified build rather than unbuilt WIP. The post-build proof-blueprint sync mined 19 changed modules / 1020 symbols and reported 'sync complete — index and kernel call graph match the current build' at build e1761ec1c169."
+      "detail": "Plain full lake-build exits 0 with 12190 jobs and zero error lines (warnings only, from the unused-variable linter in unrelated modules). Both new modules have a .olean under lean/.lake/build/lib/lean, each newer than its committed source, so they are inside the verified build rather than unbuilt WIP. The post-build proof-blueprint sync reported 'sync complete — index and kernel call graph match the current build'; the build of the committed bytes is f80c3204eef5 (the earlier detail id e1761ec1c169 was the pre-#7437 snapshot and is superseded)."
     },
     "sorry_and_trust_scan": {
       "gate": 2,
@@ -119,13 +119,13 @@
       "gate": 3,
       "verdict": "PASS",
       "command": "proof-blueprint axioms <symbol>, once per theorem",
-      "theorems_checked": 103,
+      "theorems_checked": 117,
       "breakdown": {
-        "Producers.lean": 47,
+        "Producers.lean": 61,
         "CallerConstructors.lean": 39,
         "RoundTrip.lean_added_lines": 17
       },
-      "coverage": "exact — 47 and 39 are every theorem-kind declaration proof-blueprint indexes in the two new files (private included); 17 is every theorem-kind declaration at line >= 1226 in RoundTrip.lean, which is exactly the appended hunk (the other hunk, lines 65-76, lies inside the module docstring and adds no declaration)",
+      "coverage": "exact — 61 and 39 are every theorem-kind declaration proof-blueprint indexes in the two committed new files (private included); 17 is every theorem-kind declaration at line >= 1226 in RoundTrip.lean, which is exactly the appended hunk (the other hunk, lines 65-76, lies inside the module docstring and adds no declaration)",
       "nonzero_exits": 0,
       "distinct_closures": 1,
       "closure": [
@@ -134,7 +134,8 @@
         "Quot.sound"
       ],
       "forbidden_axioms_found": 0,
-      "detail": "Every one of the 103 theorems reports exactly 3 axioms, and all 309 axiom lines carry the 'core' tag. No sorryAx, no Lean.ofReduceBool, no Lean.trustCompiler, no custom axiom appears in any closure. Each closure is therefore a subset of {propext, Classical.choice, Quot.sound}."
+      "detail": "Every one of the 117 theorems reports exactly the 3 core axioms (351 axiom lines in total). No sorryAx, no Lean.ofReduceBool, no Lean.trustCompiler, no custom axiom appears in any closure. Each closure is therefore a subset of {propext, Classical.choice, Quot.sound}. This is the main-session re-run of the per-theorem loop against the committed bytes of 09ecc561 at build f80c3204eef5; it covers the 14 Producer theorems added by the #7437 origin binding.",
+      "rerun_utc": "2026-08-25T04:08:08Z"
     },
     "roster": {
       "gate": 4,
@@ -198,8 +199,8 @@
       "off_spine": 6,
       "meta_status_reviewed": "34/34",
       "vocabulary": "clean",
-      "bound_to": "HEAD c578afd1e8c720a84ffa651b354804798f1cb8f4, build e1761ec1c169, roster sources dirty",
-      "tool_receipt": "proof-status/receipts/registry-check-20260825T032006Z.json",
+      "bound_to": "HEAD 09ecc5611f5b00673dbfebcb5d741993b30790eb, build f80c3204eef5, roster sources dirty",
+      "tool_receipt": "proof-status/receipts/registry-check-20260825T040631Z.json",
       "detail": "Without --require-fresh-refs the registry check exits 0: obligations.json matches the live spine at 28 reachable / 6 off-spine, all 34 reviewed meta_status entries are present, vocabulary clean."
     },
     "registry_strict_fresh_refs": {
@@ -212,8 +213,8 @@
       "matches_documented_exception": true,
       "numbers_differ_from_expected": false,
       "verbatim_output": "FAIL: kernel-mined refs are not fresh\n    ! --require-fresh-refs: 36 stale mined symbol(s)\n    ! --require-fresh-refs: 1 never-mined symbol(s)\n  fix: proof-blueprint refs --refresh\nreceipt: /Users/adam/projects/math-projects/erdos-97-96-formalization/proof-status/receipts/registry-check-20260825T032012Z.json",
-      "tool_receipt": "proof-status/receipts/registry-check-20260825T032012Z.json",
-      "detail": "The counts are exactly the expected 36 stale + 1 never-mined, so this is the documented proof-blueprint miner exception and nothing new. proof-blueprint refs --check reports the same 36/1 at the current build e1761ec1c169, and proof-status/baseline/refs-check.txt records the same 36/1 at baseline build fd3f51e09b99 — the staleness set is inherited, not introduced by W2b. No other numbers appear. Per #7422 and the W1c/W2a precedent this inherited FAIL sets overall_pass=false; the W2b-specific source checks are reported separately as source_gates_pass."
+      "tool_receipt": "proof-status/receipts/registry-check-20260825T040632Z.json",
+      "detail": "The counts are exactly the expected 36 stale + 1 never-mined, so this is the documented proof-blueprint miner exception and nothing new. proof-blueprint refs --check reports the same 36/1 at the current build f80c3204eef5, and proof-status/baseline/refs-check.txt records the same 36/1 at baseline build fd3f51e09b99 — the staleness set is inherited, not introduced by W2b. No other numbers appear. Per #7422 and the W1c/W2a precedent this inherited FAIL sets overall_pass=false; the W2b-specific source checks are reported separately as source_gates_pass."
     },
     "verify_publish": {
       "gate": 8,
@@ -255,7 +256,7 @@
     "w2_gate_reconstruction": {
       "gate": "9(b)",
       "verdict": "PASS",
-      "note": "Every lemma listed below is present in a built module (proof-blueprint indexes it from the current build e1761ec1c169, and its module has a .olean).",
+      "note": "Every lemma listed below is present in a built module (proof-blueprint indexes it from the current build f80c3204eef5, and its module has a .olean).",
       "historical_packet_round_trip": {
         "file": "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletion/RoundTrip.lean",
         "section": "HistoricalRoundTrip (lines 570-907), pre-existing from W2a",
@@ -589,5 +590,21 @@
     "A6 dangerous triple (decided meaning above)",
     "A7 consumer routing: TwoDeletionCollision/Rigid221* callers of ExactFourMutualOmissionSourceContext still use the one-way reader; the reverse round trip is delivered unconsumed",
     "Rigid221Placement -> TwoDeletionCollision waived import edge (W3 retirement)"
+  ],
+  "metadata_corrections": [
+    {
+      "utc": "2026-08-25T04:08:08Z",
+      "auditor_finding": "#7442",
+      "kind": "metadata/evidence correction, bound to the committed bytes of 09ecc561; no source change",
+      "corrected": [
+        "wave_files.new_file_sizes 867/543 -> 1112/552",
+        "gates.build.oleans_present Producers 668360 -> 770728, CallerConstructors 299288 -> 299944",
+        "detail build id e1761ec1c169 -> f80c3204eef5 in gates.build, gates.fresh_refs and the theorem-presence note",
+        "gates.axioms 47+39+17=103 -> 61+39+17=117, re-run per theorem on the committed bytes",
+        "blueprint.project_symbols/minable/mined_fresh re-read from refs --check at f80c3204eef5",
+        "registry gate receipts re-run on the committed tree: proof-status/receipts/registry-check-20260825T040631Z.json (exit 0) and proof-status/receipts/registry-check-20260825T040632Z.json (--require-fresh-refs exit 1, 36+1)"
+      ],
+      "unchanged": "overall_pass=false (strict --require-fresh-refs 36 stale + 1 never-mined miner exception), source_gates_pass=true, spine roster 28, publication axiom closure"
+    }
   ]
 }
