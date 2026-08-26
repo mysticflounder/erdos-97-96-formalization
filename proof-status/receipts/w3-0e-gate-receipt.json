@@ -1,12 +1,12 @@
 {
   "schema": "p97-gate-receipt/v1",
   "wave": "W3-0e",
-  "state": "COMPLETE — pre-commit, working-tree hashes",
+  "state": "FINAL — bound to W3-0e wave commit 65a8952c; this receipt ships in the receipt-only child commit of 65a8952c",
   "generated_by": "W3-0e gate verifier (independent of the wave author); every gate reproduced from source, no author output trusted. The three live dry-run copies of proof-status were built and run by this verifier, not reused from the author.",
   "generated_at_utc": "2026-08-26T07:09:25Z",
-  "git_head": "b5adb609969ae6e1ae2b64a6dec969ef0a608485",
-  "git_head_short": "b5adb609",
-  "head_note": "UNCOMMITTED; working-tree hashes. The wave base is b5adb609969ae6e1ae2b64a6dec969ef0a608485, the HEAD every gate ran against. A FOREIGN docs-only commit landed mid-verification: b363766af1599b9a84037821596686327d95db3a 'docs: harden cap-configuration CE search plan', one file (docs/plans/2026-08-23-cap-configuration-piqd-census-plan.md), 771 insertions / 191 deletions. `git diff --stat b5adb609 b363766af -- scripts proof-status lean` is empty, so no gate result changes; the registry-check receipts written during this verification bind HEAD b5adb609 because they ran before that commit.",
+  "git_head": "65a8952c07cbbda8d8b1edde2915fb21373c32e1",
+  "git_head_short": "65a8952c",
+  "head_note": "Bound to commit 65a8952c07cbbda8d8b1edde2915fb21373c32e1. content_bound_files holds the sha256 of every path committed at 65a8952c (`git show 65a8952c:<path>`). The gate verifier's pre-commit draft (working-tree hashes at HEAD b5adb609) is kept, labeled, under content_bound_files_working_tree; its gates section is that pre-commit snapshot.",
   "baseline_reference": "proof-status/baseline (axioms.txt = the `proof-blueprint axioms` export of Problem97.erdos97_rhs, tracked since ec4b95ab8 and clean vs HEAD; the six names it records are propext, sorryAx, Classical.choice, Lean.ofReduceBool, Lean.trustCompiler, Quot.sound)",
   "build_fingerprint": "33f2659d3428b288434253557166c4e28c9075d909ee46318276d713d955d34b",
   "build_fingerprint_source": "proof-status/obligations.json -> factorization.verified_at_build (identical on all four materialized blocks); the live check reports the same build 33f2659d3428",
@@ -113,17 +113,18 @@
     }
   ],
   "content_bound_files": {
-    "scripts/gen_obligation_registry.py": {
-      "sha256": "3921bd14ab1468db84c7fc408d6b9d6c52aaf8211513ff95f91159d86f2d8655",
-      "note": "working-tree hash at verification time (UNCOMMITTED); the gate implementation"
-    },
-    "scripts/test_gen_obligation_registry_factorization.py": {
-      "sha256": "9536261acbbf62d484ae93c63568674e8a3de33f2bf9a78072f016dd2cf26dbc",
-      "note": "working-tree hash at verification time (UNCOMMITTED); section 5 adds 22 test functions"
-    },
-    "proof-status/README.md": {
-      "sha256": "71b566f21593ac14b82f5dfcd5bd90a2fa52b6ccc7bdc9e52c24823398bd57a5",
-      "note": "working-tree hash at verification time (UNCOMMITTED); schema block and Trust boundary section"
+    "note": "sha256 of every path committed at 65a8952c (git show 65a8952c:<path>)",
+    "sha256": {
+      "proof-status/README.md": "71b566f21593ac14b82f5dfcd5bd90a2fa52b6ccc7bdc9e52c24823398bd57a5",
+      "proof-status/receipts/registry-check-20260826T064014Z.json": "c04ce69f3a0b7cd92a38eb7a85a1b5b58e69ca7a04616749858511a73905794f",
+      "proof-status/receipts/registry-check-20260826T064844Z.json": "6401fa7aa5226c2e6445aa85e3c18c48d5b9595c079f7c132aa48c98aa0dcc2a",
+      "proof-status/receipts/registry-check-20260826T065158Z.json": "682dca1baff8e3cba1085e88dc0f2a761f28efcf3c29266ecc051005f6f7ba14",
+      "proof-status/receipts/registry-check-20260826T065323Z.json": "a5d690333621bf0e3aa52320a14b2614cde32480305e5b2135ec60746f2c84cb",
+      "proof-status/receipts/registry-check-20260826T065500Z.json": "4c93f8d5333b9e708f21bf57a9afe302e707959033d52c11ea2d35d0fc665c2e",
+      "proof-status/receipts/registry-check-20260826T071540Z.json": "ce1d67df8f0a209b6c6d1feb1f8ca7c9a7e39a9fdad06315bab1e20a852678da",
+      "proof-status/receipts/w3-0e-gate-receipt.json": "8d7ac748097b4df6682120aee9cae58f8d210b5883658bfafe8681d7f30aa3f8",
+      "scripts/gen_obligation_registry.py": "3921bd14ab1468db84c7fc408d6b9d6c52aaf8211513ff95f91159d86f2d8655",
+      "scripts/test_gen_obligation_registry_factorization.py": "9536261acbbf62d484ae93c63568674e8a3de33f2bf9a78072f016dd2cf26dbc"
     }
   },
   "author_claims_checked": [
@@ -190,6 +191,11 @@
     {
       "field": "author report / tests_line",
       "correction": "'the factorization file alone is 97 tests, 70 before' counts collected items including parametrization; the file defines 90 test functions now and 68 at HEAD. The reported totals (151 now, 124 before) are correct and reproduced."
+    },
+    {
+      "utc": "2026-08-26T07:18:22Z",
+      "kind": "receipt re-bound to the wave commit; claim reference, note resolutions and main-session reverification added; metadata only",
+      "unchanged": "overall_pass=true, source_gates_pass=true, promotion_claim none, claim_scope unchanged"
     }
   ],
   "observations_not_blocking": [
@@ -222,19 +228,67 @@
   "content_bound_files_working_tree": {
     "scripts/gen_obligation_registry.py": {
       "sha256": "3921bd14ab1468db84c7fc408d6b9d6c52aaf8211513ff95f91159d86f2d8655",
-      "note": "same working-tree hash; recorded twice because this receipt is pre-commit"
+      "note": "working-tree hash at verification time (UNCOMMITTED); the gate implementation"
     },
     "scripts/test_gen_obligation_registry_factorization.py": {
       "sha256": "9536261acbbf62d484ae93c63568674e8a3de33f2bf9a78072f016dd2cf26dbc",
-      "note": "same working-tree hash; recorded twice because this receipt is pre-commit"
+      "note": "working-tree hash at verification time (UNCOMMITTED); section 5 adds 22 test functions"
     },
     "proof-status/README.md": {
       "sha256": "71b566f21593ac14b82f5dfcd5bd90a2fa52b6ccc7bdc9e52c24823398bd57a5",
-      "note": "same working-tree hash; recorded twice because this receipt is pre-commit"
-    }
+      "note": "working-tree hash at verification time (UNCOMMITTED); schema block and Trust boundary section"
+    },
+    "note": "HISTORICAL — working-tree hashes taken by the gate verifier before the wave commit (HEAD b5adb609). "
   },
-  "wave_commit": null,
-  "note_resolutions": [],
-  "claim_reference": "#7506 (authorization: Adam, option A of #7498)",
-  "main_session_reverification": null
+  "wave_commit": {
+    "sha": "65a8952c07cbbda8d8b1edde2915fb21373c32e1",
+    "paths": [
+      "proof-status/README.md",
+      "proof-status/receipts/registry-check-20260826T064014Z.json",
+      "proof-status/receipts/registry-check-20260826T064844Z.json",
+      "proof-status/receipts/registry-check-20260826T065158Z.json",
+      "proof-status/receipts/registry-check-20260826T065323Z.json",
+      "proof-status/receipts/registry-check-20260826T065500Z.json",
+      "proof-status/receipts/registry-check-20260826T071540Z.json",
+      "proof-status/receipts/w3-0e-gate-receipt.json",
+      "scripts/gen_obligation_registry.py",
+      "scripts/test_gen_obligation_registry_factorization.py"
+    ]
+  },
+  "note_resolutions": [
+    {
+      "note": "HEAD moved to b363766af during verification through a foreign docs-only commit (docs/plans/2026-08-23-cap-configuration-piqd-census-plan.md); rebind after the three files land",
+      "resolution": "Rebound to the wave commit 65a8952c07cbbda8d8b1edde2915fb21373c32e1 (parent b363766af); git diff --stat b5adb609 b363766af -- scripts proof-status lean is empty, so every gate result holds."
+    },
+    {
+      "note": "Author deviation: command_generate printed its own inline census line; replaced by one call to factorization_line",
+      "resolution": "Accepted: the live generate line is byte-for-byte the old one (v1_warnings 0); required for the D5 suffix to appear on generate."
+    },
+    {
+      "note": "Author deviation: the 'cannot verify consumer_trust' line is emitted once per listed name and carries no name",
+      "resolution": "Accepted as written (per-name order kept exact); a later cleanup may deduplicate it. Not reachable on the live tree while proof-status/baseline/axioms.txt is present."
+    },
+    {
+      "note": "Author deviation: one existing test (test_generation_materializes_the_reviewed_block_on_the_registry_entry) minimally edited for the grown MATERIALIZED_KEYS",
+      "resolution": "Accepted: intent preserved; all 124 prior tests still pass."
+    },
+    {
+      "note": "Wording W3-TS-b must use: declared consumer-side trust that the publish target's recorded closure already carries, recorded per block; not a widening of ALLOWED_AXIOMS, not proof progress, not a closure claim",
+      "resolution": "Adopted for the W3-TS-b wave, commit message and checkpoint post."
+    }
+  ],
+  "claim_reference": "#7506 (file claim + ROI, posted before any write); authorization: Adam, option A of #7498 (2026-08-25)",
+  "main_session_reverification": {
+    "utc": "2026-08-26T07:18:22Z",
+    "on": "the staged tree that became 65a8952c (byte-identical to the commit)",
+    "results": {
+      "tests": "151 passed (uv run python -m pytest -q scripts/test_gen_obligation_registry_factorization.py scripts/test_lint_cluster_imports_legacy.py); 124 before, +22 test functions in section 5 'declared consumer trust (W3-0e)'",
+      "registry_check": "OK: obligations.json matches the live spine (28 reachable, 6 off-spine); 34/34 reviewed meta_status; factorized 4/28 reachable leaves (no declared-trust suffix); bound to build 33f2659d3428; exit 0; receipt registry-check-20260826T071540Z.json",
+      "registry_byte_identity": "git diff --quiet HEAD -- proof-status/obligations-meta.json obligations.json id-assignments.json frontier-table.generated.md: exit 0 (byte-identical to b5adb609 / b363766af)",
+      "lint": "lint_cluster_imports: OK -- 691 import edges scanned, 27 forbidden edges, all waived by 27 authenticated waivers; 3 retired; 5 legacy edges, all listed. (exit 0)",
+      "code_review": "main session read the hop-audit hunk: producer path still audited with is_clean_closure(closure) (no declared_trust argument); consumer hops and the open_leaf audited with is_consumer_ok_closure(closure, declared_trust); carried_trust collected on consumer-side closures only; unused-declaration check gated on consumer_closures_readable",
+      "lean": "no Lean file changed (git diff --stat HEAD -- lean empty); no build run; spine 28 / off-spine 6 set-equal and axiom closure byte-identical per the verifier's roster gate",
+      "strict_refs": "not run (inherited 36 stale + 1 never-mined per proof-status/baseline/refs-check.txt)"
+    }
+  }
 }
