@@ -72,6 +72,46 @@
   "P97-R221-BLOCKERDELETED": {
     "cluster": "Rigid221",
     "evidence_note": "Section 16.5.B2 of docs/erdos-97-descent-prose-proof-atomic.md names this declaration and records **Status.** [OPEN].",
+    "factorization": {
+      "consumer_trust": [
+        "Lean.ofReduceBool",
+        "Lean.trustCompiler"
+      ],
+      "note": "W3-R221-a: the coordinator false_of_exactFourMutualOmissionRigid221_physicalApex_sourceBlockerInClass_frame (Rigid221Closure.lean:108) consumes the kernel-clean producer exactFourRigid221_sourceBlockerInClass_placement (Rigid221Placement.lean:591), whose conclusion is the source-blocker placement disjunction, and passes its u = source arm to false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU (Rigid221SourceHeavy.lean:18355); that eliminator rcases the disjunction at Rigid221SourceHeavy.lean:18425 and reaches this open leaf on the deleted-blocker arm. Native trust enters this cluster at the single native_decide of Rigid221SourceHeavy.lean:11501, inside exists_exactSeventeenSourceRealization_of_exactCover (Rigid221SourceHeavy.lean:11099), which the separate P97-R221-SECONDCAPNINE leaf calls; Lean.ofReduceBool and Lean.trustCompiler propagate from false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU (Rigid221SourceHeavy.lean:18355) up the Rigid221Closure frame ladder to the legacy wrapper, so the consumer side declares both names. Producer, leaf and this block's other roles are audited on the standard boundary.",
+      "obligation_id": "P97-R221-BLOCKERDELETED",
+      "pinned": {
+        "legacy_wrapper_statement_sha256": "cd45d699f4df97bd5c86c847a42139f4d951229cfa822d770ccffa06619b3f14",
+        "open_leaf_statement_sha256": "b2bb7019c1234819ddf1b0cad3594bd4ce4e06902f63c73aca0ee7bd27ef75cc"
+      },
+      "roles": {
+        "coordinator": "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceBlockerInClass_frame",
+        "eliminator": "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU",
+        "legacy_wrapper": "Problem97.ATailFrontierLiveClosure.false_of_originalFrontierUniqueRadiusArm",
+        "open_leaf": "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerDeleted",
+        "producer": "Problem97.ATailFrontierLiveClosure.exactFourRigid221_sourceBlockerInClass_placement"
+      },
+      "schema": "p97-factorization/v2",
+      "transitive": [
+        {
+          "from": "legacy_wrapper",
+          "to": "coordinator",
+          "via": [
+            "Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFourResidual",
+            "Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFourResidual_of_carrierCard_ge_twelve",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourPhysicalConsumerRobustOutcome",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenRobustSurface_frame",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionBranch_frame",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionLowCrossBranch_frame",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionOmittedPeerBranch_frame",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionMutualOmissionBranch_frame",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionJointDeletion_frame",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_frame",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_globalDeletion_frame",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_frame"
+          ]
+        }
+      ]
+    },
     "implementation_effect": "branch-closer",
     "latest_checkpoint": "docs/erdos-97-descent-prose-proof-atomic.md",
     "legacy_labels": [
@@ -97,6 +137,26 @@
   "P97-R221-EXACTFOURPHYSICAL": {
     "cluster": "Rigid221",
     "evidence_note": "Section 16.5.C4 of docs/erdos-97-descent-prose-proof-atomic.md names this declaration and records **Status.** [OPEN].",
+    "factorization": {
+      "consumer_trust": [
+        "Lean.ofReduceBool",
+        "Lean.trustCompiler"
+      ],
+      "note": "W3-R221-a: the coordinator false_of_firstApexUniqueRadiusExactFourResidual (Rigid221Closure.lean:1317) consumes the kernel-clean producer carrier_card_ge_eleven_of_original_unique_four_residual (ATail/ExactFourPhysicalConsumer.lean:316), the carrier bound its card dispatch rests on, and calls false_of_firstApexUniqueRadiusExactFourResidual_of_carrierCard_ge_twelve (Rigid221Closure.lean:1294); that eliminator cases the ExactFourPhysicalConsumerOutcome inductive at Rigid221Closure.lean:1301-1311 and reaches this open leaf on the swapped-unique-four arm. All four chain edges are direct. Native trust enters this cluster at the single native_decide of Rigid221SourceHeavy.lean:11501, inside exists_exactSeventeenSourceRealization_of_exactCover (Rigid221SourceHeavy.lean:11099), which the separate P97-R221-SECONDCAPNINE leaf calls; Lean.ofReduceBool and Lean.trustCompiler propagate from false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU (Rigid221SourceHeavy.lean:18355) up the Rigid221Closure frame ladder to the legacy wrapper, so the consumer side declares both names. Producer, leaf and this block's other roles are audited on the standard boundary.",
+      "obligation_id": "P97-R221-EXACTFOURPHYSICAL",
+      "pinned": {
+        "legacy_wrapper_statement_sha256": "cd45d699f4df97bd5c86c847a42139f4d951229cfa822d770ccffa06619b3f14",
+        "open_leaf_statement_sha256": "6ceada9790979ddfa694d90e9c515c515eb460d4e22c9ed7f58972b1e3d959da"
+      },
+      "roles": {
+        "coordinator": "Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFourResidual",
+        "eliminator": "Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFourResidual_of_carrierCard_ge_twelve",
+        "legacy_wrapper": "Problem97.ATailFrontierLiveClosure.false_of_originalFrontierUniqueRadiusArm",
+        "open_leaf": "Problem97.ATailFrontierLiveClosure.false_of_exactFourPhysicalConsumerSwappedUniqueFourOutcome",
+        "producer": "Problem97.ATailExactFourPhysicalConsumer.carrier_card_ge_eleven_of_original_unique_four_residual"
+      },
+      "schema": "p97-factorization/v2"
+    },
     "implementation_effect": "branch-closer",
     "latest_checkpoint": "docs/erdos-97-descent-prose-proof-atomic.md",
     "legacy_labels": [
@@ -110,6 +170,36 @@
   "P97-R221-EXACTFOURPOSTCARD": {
     "cluster": "Rigid221",
     "evidence_note": "Section 16.5.C3 of docs/erdos-97-descent-prose-proof-atomic.md names this declaration and records **Status.** [OPEN].",
+    "factorization": {
+      "consumer_trust": [
+        "Lean.ofReduceBool",
+        "Lean.trustCompiler"
+      ],
+      "note": "W3-R221-a: the coordinator false_of_exactFourPhysicalConsumerRobustOutcome (Rigid221Closure.lean:1240) consumes the kernel-clean producer nonempty_postCardElevenRobustSurface_of_robust (ATail/ExactFourRobustCapExpansion.lean:1462) and hands the robust surface to false_of_exactFourPostCardElevenRobustSurface_frame (Rigid221Closure.lean:1196), which rcases interiorPairGood_or_twoDistinctExactFourInteriorRows at Rigid221Closure.lean:1203-1217 and reaches this open leaf on the two-radius arm. The producer role names the surface packet the coordinator builds; the interior-row disjunction the eliminator splits is called inside the eliminator itself. Native trust enters this cluster at the single native_decide of Rigid221SourceHeavy.lean:11501, inside exists_exactSeventeenSourceRealization_of_exactCover (Rigid221SourceHeavy.lean:11099), which the separate P97-R221-SECONDCAPNINE leaf calls; Lean.ofReduceBool and Lean.trustCompiler propagate from false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU (Rigid221SourceHeavy.lean:18355) up the Rigid221Closure frame ladder to the legacy wrapper, so the consumer side declares both names. Producer, leaf and this block's other roles are audited on the standard boundary.",
+      "obligation_id": "P97-R221-EXACTFOURPOSTCARD",
+      "pinned": {
+        "legacy_wrapper_statement_sha256": "cd45d699f4df97bd5c86c847a42139f4d951229cfa822d770ccffa06619b3f14",
+        "open_leaf_statement_sha256": "e022f5aafc12300f3f9722be54ba3f2d05dccc3c95a3e7839e3cfe533d3747e7"
+      },
+      "roles": {
+        "coordinator": "Problem97.ATailFrontierLiveClosure.false_of_exactFourPhysicalConsumerRobustOutcome",
+        "eliminator": "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenRobustSurface_frame",
+        "legacy_wrapper": "Problem97.ATailFrontierLiveClosure.false_of_originalFrontierUniqueRadiusArm",
+        "open_leaf": "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenTwoRadiusBranch",
+        "producer": "Problem97.ATailExactFourRobustCapExpansion.nonempty_postCardElevenRobustSurface_of_robust"
+      },
+      "schema": "p97-factorization/v2",
+      "transitive": [
+        {
+          "from": "legacy_wrapper",
+          "to": "coordinator",
+          "via": [
+            "Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFourResidual",
+            "Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFourResidual_of_carrierCard_ge_twelve"
+          ]
+        }
+      ]
+    },
     "implementation_effect": "branch-closer",
     "latest_checkpoint": "docs/erdos-97-descent-prose-proof-atomic.md",
     "legacy_labels": [
@@ -136,6 +226,43 @@
   "P97-R221-MINIMALCORE": {
     "cluster": "Rigid221",
     "evidence_note": "Section 16.5.B1 of docs/erdos-97-descent-prose-proof-atomic.md names this declaration and records **Status.** [OPEN].",
+    "factorization": {
+      "consumer_trust": [
+        "Lean.ofReduceBool",
+        "Lean.trustCompiler"
+      ],
+      "note": "W3-R221-a: the coordinator false_of_exactFourMutualOmissionRigid221_frame (Rigid221Closure.lean:478) consumes the kernel-clean packet producer exactFourMutualOmissionRigid221_globalDeletion (Rigid221Placement.lean:91) and hands the packet to false_of_exactFourMutualOmissionRigid221_globalDeletion_frame (Rigid221Closure.lean:373), which cases the packet on globalDeletion.center = S.oppApex2 and on the geometry field, reaching this open leaf on the minimal-core arm. The transitive row records the public route down the Rigid221Closure frame ladder from the legacy wrapper. The leaf has a second public caller, false_of_exactFourMutualOmissionRigid221_physicalApex_frame (Rigid221Closure.lean:219), which this block does not name; routing that arm through the eliminator is a proof-text change, not a new declaration. Native trust enters this cluster at the single native_decide of Rigid221SourceHeavy.lean:11501, inside exists_exactSeventeenSourceRealization_of_exactCover (Rigid221SourceHeavy.lean:11099), which the separate P97-R221-SECONDCAPNINE leaf calls; Lean.ofReduceBool and Lean.trustCompiler propagate from false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU (Rigid221SourceHeavy.lean:18355) up the Rigid221Closure frame ladder to the legacy wrapper, so the consumer side declares both names. Producer, leaf and this block's other roles are audited on the standard boundary.",
+      "obligation_id": "P97-R221-MINIMALCORE",
+      "pinned": {
+        "legacy_wrapper_statement_sha256": "cd45d699f4df97bd5c86c847a42139f4d951229cfa822d770ccffa06619b3f14",
+        "open_leaf_statement_sha256": "2eab50fe3a3292cedf3128a6ebc4c07f5c9168ddb5cad5c9887d9970e02076b2"
+      },
+      "roles": {
+        "coordinator": "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_frame",
+        "eliminator": "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_globalDeletion_frame",
+        "legacy_wrapper": "Problem97.ATailFrontierLiveClosure.false_of_originalFrontierUniqueRadiusArm",
+        "open_leaf": "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_minimalCore",
+        "producer": "Problem97.ATailFrontierLiveClosure.exactFourMutualOmissionRigid221_globalDeletion"
+      },
+      "schema": "p97-factorization/v2",
+      "transitive": [
+        {
+          "from": "legacy_wrapper",
+          "to": "coordinator",
+          "via": [
+            "Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFourResidual",
+            "Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFourResidual_of_carrierCard_ge_twelve",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourPhysicalConsumerRobustOutcome",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenRobustSurface_frame",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionBranch_frame",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionLowCrossBranch_frame",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionOmittedPeerBranch_frame",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionMutualOmissionBranch_frame",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionJointDeletion_frame"
+          ]
+        }
+      ]
+    },
     "implementation_effect": "branch-closer",
     "latest_checkpoint": "docs/erdos-97-descent-prose-proof-atomic.md",
     "legacy_labels": [
@@ -148,6 +275,62 @@
   "P97-R221-MISSINGINCIDENCE": {
     "cluster": "Rigid221",
     "evidence_note": "Section 16.5.A5 of docs/erdos-97-descent-prose-proof-atomic.md names this declaration and closes with **Status.** [PARTIALLY CLOSED: `Bxu` PROVED IMPOSSIBLE; FOUR STRUCTURAL FAMILIES / TWENTY-FOUR COARSE SOURCE-TAGGED CELLS REMAIN], and its Section 16.7 ledger row records the parent as still open.",
+    "factorization": {
+      "consumer_trust": [
+        "Lean.ofReduceBool",
+        "Lean.trustCompiler"
+      ],
+      "note": "W3-R221-a: the coordinator false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker (Rigid221SourceHeavy.lean:16701) consumes the kernel-clean producer pentagonOffClassBlocker_threeCenterDeletion_or_card_eq_twelve (Rigid221SourceHeavy.lean:13239) at :16791 and takes its card = 12 arm through ..._exactTwelve (:16071) and ..._exactTwelve_interiorDeletion (:15946), the two hops of the coordinator-to-eliminator row, to ..._physicalRadius (:15877); that eliminator rcases pentagonOffClassBlocker_xu_commonDeletionFans_or_nextRow_onlyHit (:14280) at :15913 and reaches this open leaf on the common-deletion arm where the tetrahedron incidences fail. The producer role names the disjunction the coordinator consumes; :14280 is the disjunction of the eliminator's own split and is called by the eliminator, not by the coordinator. Native trust enters this cluster at the single native_decide of Rigid221SourceHeavy.lean:11501, inside exists_exactSeventeenSourceRealization_of_exactCover (Rigid221SourceHeavy.lean:11099), which the separate P97-R221-SECONDCAPNINE leaf calls; Lean.ofReduceBool and Lean.trustCompiler propagate from false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU (Rigid221SourceHeavy.lean:18355) up the Rigid221Closure frame ladder to the legacy wrapper, so the consumer side declares both names. Producer, leaf and this block's other roles are audited on the standard boundary.",
+      "obligation_id": "P97-R221-MISSINGINCIDENCE",
+      "pinned": {
+        "legacy_wrapper_statement_sha256": "cd45d699f4df97bd5c86c847a42139f4d951229cfa822d770ccffa06619b3f14",
+        "open_leaf_statement_sha256": "851cc1f4c10dd9267d4e7a0ea200d3d2273bffa2310bf73803f44e2664902d01"
+      },
+      "roles": {
+        "coordinator": "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker",
+        "eliminator": "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_exactTwelve_interiorDeletion_physicalRadius",
+        "legacy_wrapper": "Problem97.ATailFrontierLiveClosure.false_of_originalFrontierUniqueRadiusArm",
+        "open_leaf": "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_exactTwelve_interiorDeletion_physicalRadius_commonDeletion_missingIncidence",
+        "producer": "Problem97.ATailFrontierLiveClosure.pentagonOffClassBlocker_threeCenterDeletion_or_card_eq_twelve"
+      },
+      "schema": "p97-factorization/v2",
+      "transitive": [
+        {
+          "from": "legacy_wrapper",
+          "to": "coordinator",
+          "via": [
+            "Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFourResidual",
+            "Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFourResidual_of_carrierCard_ge_twelve",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourPhysicalConsumerRobustOutcome",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenRobustSurface_frame",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionBranch_frame",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionLowCrossBranch_frame",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionOmittedPeerBranch_frame",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionMutualOmissionBranch_frame",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionJointDeletion_frame",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_frame",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_globalDeletion_frame",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_frame",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceBlockerInClass_frame",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRowOther",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRowOther_sourceRowHeavy",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_deletedXuRow",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_fiveCycle",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagon"
+          ]
+        },
+        {
+          "from": "coordinator",
+          "to": "eliminator",
+          "via": [
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_exactTwelve",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_exactTwelve_interiorDeletion"
+          ]
+        }
+      ]
+    },
     "implementation_effect": "branch-closer",
     "latest_checkpoint": "docs/erdos-97-descent-prose-proof-atomic.md",
     "legacy_labels": [
@@ -161,6 +344,54 @@
   "P97-R221-MISSINGINCIDENCE-2": {
     "cluster": "Rigid221",
     "evidence_note": "Section 16.5.A8 of docs/erdos-97-descent-prose-proof-atomic.md names this declaration and records **Status.** [PARTIALLY REDUCED: canonical reduction PROVED in prose; five cap-sensitive continuation arms OPEN].",
+    "factorization": {
+      "consumer_trust": [
+        "Lean.ofReduceBool",
+        "Lean.trustCompiler"
+      ],
+      "note": "W3-R221-a: the same coordinator and producer as the outside-three-rows entry. The coordinator hands the deletion-identity disjunction to the eliminator ..._threeCenterDeletion (Rigid221SourceHeavy.lean:16610), which rcases it at :16655 and, on the xv arm where the tetrahedron incidences fail (by_cases at :16669), reaches this open leaf. Native trust enters this cluster at the single native_decide of Rigid221SourceHeavy.lean:11501, inside exists_exactSeventeenSourceRealization_of_exactCover (Rigid221SourceHeavy.lean:11099), which the separate P97-R221-SECONDCAPNINE leaf calls; Lean.ofReduceBool and Lean.trustCompiler propagate from false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU (Rigid221SourceHeavy.lean:18355) up the Rigid221Closure frame ladder to the legacy wrapper, so the consumer side declares both names. Producer, leaf and this block's other roles are audited on the standard boundary.",
+      "obligation_id": "P97-R221-MISSINGINCIDENCE-2",
+      "pinned": {
+        "legacy_wrapper_statement_sha256": "cd45d699f4df97bd5c86c847a42139f4d951229cfa822d770ccffa06619b3f14",
+        "open_leaf_statement_sha256": "c9b1c8c7b08f1ef006450f2b5f3ed905467ce38436252a5190b54165f5357351"
+      },
+      "roles": {
+        "coordinator": "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker",
+        "eliminator": "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_threeCenterDeletion",
+        "legacy_wrapper": "Problem97.ATailFrontierLiveClosure.false_of_originalFrontierUniqueRadiusArm",
+        "open_leaf": "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_threeCenterDeletion_xv_missingIncidence",
+        "producer": "Problem97.ATailFrontierLiveClosure.pentagonOffClassBlocker_threeCenterDeletion_or_card_eq_twelve"
+      },
+      "schema": "p97-factorization/v2",
+      "transitive": [
+        {
+          "from": "legacy_wrapper",
+          "to": "coordinator",
+          "via": [
+            "Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFourResidual",
+            "Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFourResidual_of_carrierCard_ge_twelve",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourPhysicalConsumerRobustOutcome",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenRobustSurface_frame",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionBranch_frame",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionLowCrossBranch_frame",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionOmittedPeerBranch_frame",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionMutualOmissionBranch_frame",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionJointDeletion_frame",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_frame",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_globalDeletion_frame",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_frame",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceBlockerInClass_frame",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRowOther",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRowOther_sourceRowHeavy",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_deletedXuRow",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_fiveCycle",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagon"
+          ]
+        }
+      ]
+    },
     "implementation_effect": "branch-closer",
     "latest_checkpoint": "docs/erdos-97-descent-prose-proof-atomic.md",
     "legacy_labels": [
@@ -174,6 +405,62 @@
   "P97-R221-NEXTROWONLYHIT": {
     "cluster": "Rigid221",
     "evidence_note": "Section 16.5.A6 of docs/erdos-97-descent-prose-proof-atomic.md names this declaration and records **Status.** [OPEN].",
+    "factorization": {
+      "consumer_trust": [
+        "Lean.ofReduceBool",
+        "Lean.trustCompiler"
+      ],
+      "note": "W3-R221-a: the same coordinator, producer and eliminator as the common-deletion missing-incidence entry; this open leaf is the next-row-only-hit arm of the same rcases at Rigid221SourceHeavy.lean:15913. Native trust enters this cluster at the single native_decide of Rigid221SourceHeavy.lean:11501, inside exists_exactSeventeenSourceRealization_of_exactCover (Rigid221SourceHeavy.lean:11099), which the separate P97-R221-SECONDCAPNINE leaf calls; Lean.ofReduceBool and Lean.trustCompiler propagate from false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU (Rigid221SourceHeavy.lean:18355) up the Rigid221Closure frame ladder to the legacy wrapper, so the consumer side declares both names. Producer, leaf and this block's other roles are audited on the standard boundary.",
+      "obligation_id": "P97-R221-NEXTROWONLYHIT",
+      "pinned": {
+        "legacy_wrapper_statement_sha256": "cd45d699f4df97bd5c86c847a42139f4d951229cfa822d770ccffa06619b3f14",
+        "open_leaf_statement_sha256": "9318da17fe0bc4bf7202b3f83e00ea1b2c0e5e274733ded28800eb66c8793641"
+      },
+      "roles": {
+        "coordinator": "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker",
+        "eliminator": "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_exactTwelve_interiorDeletion_physicalRadius",
+        "legacy_wrapper": "Problem97.ATailFrontierLiveClosure.false_of_originalFrontierUniqueRadiusArm",
+        "open_leaf": "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_exactTwelve_interiorDeletion_physicalRadius_nextRowOnlyHit",
+        "producer": "Problem97.ATailFrontierLiveClosure.pentagonOffClassBlocker_threeCenterDeletion_or_card_eq_twelve"
+      },
+      "schema": "p97-factorization/v2",
+      "transitive": [
+        {
+          "from": "legacy_wrapper",
+          "to": "coordinator",
+          "via": [
+            "Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFourResidual",
+            "Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFourResidual_of_carrierCard_ge_twelve",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourPhysicalConsumerRobustOutcome",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenRobustSurface_frame",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionBranch_frame",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionLowCrossBranch_frame",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionOmittedPeerBranch_frame",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionMutualOmissionBranch_frame",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionJointDeletion_frame",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_frame",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_globalDeletion_frame",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_frame",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceBlockerInClass_frame",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRowOther",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRowOther_sourceRowHeavy",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_deletedXuRow",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_fiveCycle",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagon"
+          ]
+        },
+        {
+          "from": "coordinator",
+          "to": "eliminator",
+          "via": [
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_exactTwelve",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_exactTwelve_interiorDeletion"
+          ]
+        }
+      ]
+    },
     "implementation_effect": "branch-closer",
     "latest_checkpoint": "docs/erdos-97-descent-prose-proof-atomic.md",
     "legacy_labels": [
@@ -187,6 +474,43 @@
   "P97-R221-NONPHYSICALCOLLISION": {
     "cluster": "Rigid221",
     "evidence_note": "Section 16.5.C2 of docs/erdos-97-descent-prose-proof-atomic.md names this declaration and records **Status.** [OPEN].",
+    "factorization": {
+      "consumer_trust": [
+        "Lean.ofReduceBool",
+        "Lean.trustCompiler"
+      ],
+      "note": "W3-R221-a: the same coordinator, producer and eliminator as the minimal-core entry; this open leaf is the non-physical collision disjunct of the geometry field of ExactFourMutualOmissionRigid221GlobalDeletion (Rigid221Placement.lean:83-87), which the producer builds and false_of_exactFourMutualOmissionRigid221_globalDeletion_frame (Rigid221Closure.lean:373) rcases. Native trust enters this cluster at the single native_decide of Rigid221SourceHeavy.lean:11501, inside exists_exactSeventeenSourceRealization_of_exactCover (Rigid221SourceHeavy.lean:11099), which the separate P97-R221-SECONDCAPNINE leaf calls; Lean.ofReduceBool and Lean.trustCompiler propagate from false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU (Rigid221SourceHeavy.lean:18355) up the Rigid221Closure frame ladder to the legacy wrapper, so the consumer side declares both names. Producer, leaf and this block's other roles are audited on the standard boundary.",
+      "obligation_id": "P97-R221-NONPHYSICALCOLLISION",
+      "pinned": {
+        "legacy_wrapper_statement_sha256": "cd45d699f4df97bd5c86c847a42139f4d951229cfa822d770ccffa06619b3f14",
+        "open_leaf_statement_sha256": "d4865dcf1f52e7dca9b6b791ac0adb4db2697729d275df7ff2fe19e1bc1764eb"
+      },
+      "roles": {
+        "coordinator": "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_frame",
+        "eliminator": "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_globalDeletion_frame",
+        "legacy_wrapper": "Problem97.ATailFrontierLiveClosure.false_of_originalFrontierUniqueRadiusArm",
+        "open_leaf": "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_nonphysicalCollision",
+        "producer": "Problem97.ATailFrontierLiveClosure.exactFourMutualOmissionRigid221_globalDeletion"
+      },
+      "schema": "p97-factorization/v2",
+      "transitive": [
+        {
+          "from": "legacy_wrapper",
+          "to": "coordinator",
+          "via": [
+            "Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFourResidual",
+            "Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFourResidual_of_carrierCard_ge_twelve",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourPhysicalConsumerRobustOutcome",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenRobustSurface_frame",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionBranch_frame",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionLowCrossBranch_frame",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionOmittedPeerBranch_frame",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionMutualOmissionBranch_frame",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionJointDeletion_frame"
+          ]
+        }
+      ]
+    },
     "implementation_effect": "branch-closer",
     "latest_checkpoint": "docs/erdos-97-descent-prose-proof-atomic.md",
     "legacy_labels": [
@@ -200,6 +524,53 @@
   "P97-R221-OPPOSITEROWHEAVY": {
     "cluster": "Rigid221",
     "evidence_note": "Section 16.5.B4 of docs/erdos-97-descent-prose-proof-atomic.md names this declaration and records **Status.** [OPEN].",
+    "factorization": {
+      "consumer_trust": [
+        "Lean.ofReduceBool",
+        "Lean.trustCompiler"
+      ],
+      "note": "W3-R221-a: the same coordinator, producer and eliminator as the source-row-heavy entry; this open leaf is the opposite-row-heavy arm of the same counter split. The leaf has a second public caller, false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRowOther (Rigid221SourceHeavy.lean:18325), which runs the same two by_cases; the block names the blockerV route. Native trust enters this cluster at the single native_decide of Rigid221SourceHeavy.lean:11501, inside exists_exactSeventeenSourceRealization_of_exactCover (Rigid221SourceHeavy.lean:11099), which the separate P97-R221-SECONDCAPNINE leaf calls; Lean.ofReduceBool and Lean.trustCompiler propagate from false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU (Rigid221SourceHeavy.lean:18355) up the Rigid221Closure frame ladder to the legacy wrapper, so the consumer side declares both names. Producer, leaf and this block's other roles are audited on the standard boundary.",
+      "obligation_id": "P97-R221-OPPOSITEROWHEAVY",
+      "pinned": {
+        "legacy_wrapper_statement_sha256": "cd45d699f4df97bd5c86c847a42139f4d951229cfa822d770ccffa06619b3f14",
+        "open_leaf_statement_sha256": "aaa453427d49f66ae836382f938f8877beeb7c72ab056e24317dbc75d34ce369"
+      },
+      "roles": {
+        "coordinator": "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceBlockerInClass_frame",
+        "eliminator": "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerV",
+        "legacy_wrapper": "Problem97.ATailFrontierLiveClosure.false_of_originalFrontierUniqueRadiusArm",
+        "open_leaf": "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRow_oppositeRowHeavy",
+        "producer": "Problem97.ATailFrontierLiveClosure.exactFourRigid221_sourceBlockerInClass_placement"
+      },
+      "schema": "p97-factorization/v2",
+      "transitive": [
+        {
+          "from": "legacy_wrapper",
+          "to": "coordinator",
+          "via": [
+            "Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFourResidual",
+            "Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFourResidual_of_carrierCard_ge_twelve",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourPhysicalConsumerRobustOutcome",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenRobustSurface_frame",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionBranch_frame",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionLowCrossBranch_frame",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionOmittedPeerBranch_frame",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionMutualOmissionBranch_frame",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionJointDeletion_frame",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_frame",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_globalDeletion_frame",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_frame"
+          ]
+        },
+        {
+          "from": "coordinator",
+          "to": "eliminator",
+          "via": [
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU"
+          ]
+        }
+      ]
+    },
     "implementation_effect": "branch-closer",
     "latest_checkpoint": "docs/erdos-97-descent-prose-proof-atomic.md",
     "legacy_labels": [
@@ -212,6 +583,62 @@
   "P97-R221-OUTSIDETHREEROWS": {
     "cluster": "Rigid221",
     "evidence_note": "Section 16.5.A7 of docs/erdos-97-descent-prose-proof-atomic.md records **Status.** [PARTIALLY REDUCED: canonical reduction PROVED in prose; unbounded five-arm continuation theorem OPEN], and docs/live-blueprint.md anchors this leaf as that A7 typed five-way continuation terminal.",
+    "factorization": {
+      "consumer_trust": [
+        "Lean.ofReduceBool",
+        "Lean.trustCompiler"
+      ],
+      "note": "W3-R221-a: the coordinator false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker (Rigid221SourceHeavy.lean:16701) consumes the kernel-clean producer pentagonOffClassBlocker_threeCenterDeletion_or_card_eq_twelve (:13239) and takes its 13 <= card arm through ..._threeCenterDeletion (:16610) and ..._threeCenterDeletion_u (:16492), the two hops of the coordinator-to-eliminator row, to ..._uDeletion_fixedPhysicalPair_missingIncidence (:16447); that eliminator destructures pentagonOffClassBlocker_fixedPhysicalPair_uDeletion_exists_source_outside_threeRows (:16236) at :16473 and reaches this open leaf. The existential packet :16236 is called by the eliminator, not by the coordinator, so the producer role names the disjunction the coordinator consumes. Native trust enters this cluster at the single native_decide of Rigid221SourceHeavy.lean:11501, inside exists_exactSeventeenSourceRealization_of_exactCover (Rigid221SourceHeavy.lean:11099), which the separate P97-R221-SECONDCAPNINE leaf calls; Lean.ofReduceBool and Lean.trustCompiler propagate from false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU (Rigid221SourceHeavy.lean:18355) up the Rigid221Closure frame ladder to the legacy wrapper, so the consumer side declares both names. Producer, leaf and this block's other roles are audited on the standard boundary.",
+      "obligation_id": "P97-R221-OUTSIDETHREEROWS",
+      "pinned": {
+        "legacy_wrapper_statement_sha256": "cd45d699f4df97bd5c86c847a42139f4d951229cfa822d770ccffa06619b3f14",
+        "open_leaf_statement_sha256": "92304e7cc8157fd50c94b6f665650d0fecb02b8929c581b71ff8dd010324d7ba"
+      },
+      "roles": {
+        "coordinator": "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker",
+        "eliminator": "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_uDeletion_fixedPhysicalPair_missingIncidence",
+        "legacy_wrapper": "Problem97.ATailFrontierLiveClosure.false_of_originalFrontierUniqueRadiusArm",
+        "open_leaf": "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_uDeletion_fixedPhysicalPair_outsideThreeRows",
+        "producer": "Problem97.ATailFrontierLiveClosure.pentagonOffClassBlocker_threeCenterDeletion_or_card_eq_twelve"
+      },
+      "schema": "p97-factorization/v2",
+      "transitive": [
+        {
+          "from": "legacy_wrapper",
+          "to": "coordinator",
+          "via": [
+            "Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFourResidual",
+            "Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFourResidual_of_carrierCard_ge_twelve",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourPhysicalConsumerRobustOutcome",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenRobustSurface_frame",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionBranch_frame",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionLowCrossBranch_frame",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionOmittedPeerBranch_frame",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionMutualOmissionBranch_frame",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionJointDeletion_frame",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_frame",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_globalDeletion_frame",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_frame",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceBlockerInClass_frame",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRowOther",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRowOther_sourceRowHeavy",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_deletedXuRow",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_fiveCycle",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagon"
+          ]
+        },
+        {
+          "from": "coordinator",
+          "to": "eliminator",
+          "via": [
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_threeCenterDeletion",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_threeCenterDeletion_u"
+          ]
+        }
+      ]
+    },
     "implementation_effect": "branch-closer",
     "latest_checkpoint": "docs/erdos-97-descent-prose-proof-atomic.md",
     "legacy_labels": [
@@ -264,6 +691,53 @@
   "P97-R221-SOURCEROWHEAVY": {
     "cluster": "Rigid221",
     "evidence_note": "Section 16.5.B3 of docs/erdos-97-descent-prose-proof-atomic.md names this declaration and records **Status.** [OPEN].",
+    "factorization": {
+      "consumer_trust": [
+        "Lean.ofReduceBool",
+        "Lean.trustCompiler"
+      ],
+      "note": "W3-R221-a: the same coordinator and producer as the deleted-blocker entry. The eliminator false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerV (Rigid221Placement.lean:970) is reached from the coordinator through ..._physicalApex_sourceEqU (Rigid221SourceHeavy.lean:18355), the single hop of the coordinator-to-eliminator row, and splits on the two row-interior counters (Rigid221Placement.lean:988-1000, by_cases on sourceRowInteriorCount = 2 and on oppositeRowInteriorCount = 2), reaching this open leaf on the source-row-heavy arm. The producer named here supplies the placement disjunction one level above that counter split; no declaration in the tree today produces the counter split itself. Native trust enters this cluster at the single native_decide of Rigid221SourceHeavy.lean:11501, inside exists_exactSeventeenSourceRealization_of_exactCover (Rigid221SourceHeavy.lean:11099), which the separate P97-R221-SECONDCAPNINE leaf calls; Lean.ofReduceBool and Lean.trustCompiler propagate from false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU (Rigid221SourceHeavy.lean:18355) up the Rigid221Closure frame ladder to the legacy wrapper, so the consumer side declares both names. Producer, leaf and this block's other roles are audited on the standard boundary.",
+      "obligation_id": "P97-R221-SOURCEROWHEAVY",
+      "pinned": {
+        "legacy_wrapper_statement_sha256": "cd45d699f4df97bd5c86c847a42139f4d951229cfa822d770ccffa06619b3f14",
+        "open_leaf_statement_sha256": "3eda8fba11e248054a3e2a7ed2b2edf970da13ae0c8e3b5b0685930c6329e31c"
+      },
+      "roles": {
+        "coordinator": "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceBlockerInClass_frame",
+        "eliminator": "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerV",
+        "legacy_wrapper": "Problem97.ATailFrontierLiveClosure.false_of_originalFrontierUniqueRadiusArm",
+        "open_leaf": "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerV_sourceRowHeavy",
+        "producer": "Problem97.ATailFrontierLiveClosure.exactFourRigid221_sourceBlockerInClass_placement"
+      },
+      "schema": "p97-factorization/v2",
+      "transitive": [
+        {
+          "from": "legacy_wrapper",
+          "to": "coordinator",
+          "via": [
+            "Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFourResidual",
+            "Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFourResidual_of_carrierCard_ge_twelve",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourPhysicalConsumerRobustOutcome",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenRobustSurface_frame",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionBranch_frame",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionLowCrossBranch_frame",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionOmittedPeerBranch_frame",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionMutualOmissionBranch_frame",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionJointDeletion_frame",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_frame",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_globalDeletion_frame",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_frame"
+          ]
+        },
+        {
+          "from": "coordinator",
+          "to": "eliminator",
+          "via": [
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU"
+          ]
+        }
+      ]
+    },
     "implementation_effect": "branch-closer",
     "latest_checkpoint": "docs/erdos-97-descent-prose-proof-atomic.md",
     "legacy_labels": [
@@ -276,6 +750,53 @@
   "P97-R221-SPARSEROWS": {
     "cluster": "Rigid221",
     "evidence_note": "Section 16.5.B5 of docs/erdos-97-descent-prose-proof-atomic.md names this declaration and records **Status.** [OPEN].",
+    "factorization": {
+      "consumer_trust": [
+        "Lean.ofReduceBool",
+        "Lean.trustCompiler"
+      ],
+      "note": "W3-R221-a: the same coordinator, producer and eliminator as the source-row-heavy entry; this open leaf is the arm where neither row-interior counter equals 2. As with the opposite-row-heavy entry the leaf also has the public caller false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRowOther (Rigid221SourceHeavy.lean:18325). Native trust enters this cluster at the single native_decide of Rigid221SourceHeavy.lean:11501, inside exists_exactSeventeenSourceRealization_of_exactCover (Rigid221SourceHeavy.lean:11099), which the separate P97-R221-SECONDCAPNINE leaf calls; Lean.ofReduceBool and Lean.trustCompiler propagate from false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU (Rigid221SourceHeavy.lean:18355) up the Rigid221Closure frame ladder to the legacy wrapper, so the consumer side declares both names. Producer, leaf and this block's other roles are audited on the standard boundary.",
+      "obligation_id": "P97-R221-SPARSEROWS",
+      "pinned": {
+        "legacy_wrapper_statement_sha256": "cd45d699f4df97bd5c86c847a42139f4d951229cfa822d770ccffa06619b3f14",
+        "open_leaf_statement_sha256": "8f351711a5f294909ac1963a2a711712b925972b4ade060608c46cba11eea55c"
+      },
+      "roles": {
+        "coordinator": "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceBlockerInClass_frame",
+        "eliminator": "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerV",
+        "legacy_wrapper": "Problem97.ATailFrontierLiveClosure.false_of_originalFrontierUniqueRadiusArm",
+        "open_leaf": "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRow_sparseRows",
+        "producer": "Problem97.ATailFrontierLiveClosure.exactFourRigid221_sourceBlockerInClass_placement"
+      },
+      "schema": "p97-factorization/v2",
+      "transitive": [
+        {
+          "from": "legacy_wrapper",
+          "to": "coordinator",
+          "via": [
+            "Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFourResidual",
+            "Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFourResidual_of_carrierCard_ge_twelve",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourPhysicalConsumerRobustOutcome",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenRobustSurface_frame",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionBranch_frame",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionLowCrossBranch_frame",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionOmittedPeerBranch_frame",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionMutualOmissionBranch_frame",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionJointDeletion_frame",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_frame",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_globalDeletion_frame",
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_frame"
+          ]
+        },
+        {
+          "from": "coordinator",
+          "to": "eliminator",
+          "via": [
+            "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU"
+          ]
+        }
+      ]
+    },
     "implementation_effect": "branch-closer",
     "latest_checkpoint": "docs/erdos-97-descent-prose-proof-atomic.md",
     "legacy_labels": [

@@ -111,6 +111,45 @@
     {
       "cluster": "Rigid221",
       "evidence_note": "Section 16.5.B2 of docs/erdos-97-descent-prose-proof-atomic.md names this declaration and records **Status.** [OPEN].",
+      "factorization": {
+        "consumer_trust": [
+          "Lean.ofReduceBool",
+          "Lean.trustCompiler"
+        ],
+        "pinned": {
+          "legacy_wrapper_statement_sha256": "cd45d699f4df97bd5c86c847a42139f4d951229cfa822d770ccffa06619b3f14",
+          "open_leaf_statement_sha256": "b2bb7019c1234819ddf1b0cad3594bd4ce4e06902f63c73aca0ee7bd27ef75cc"
+        },
+        "roles": {
+          "coordinator": "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceBlockerInClass_frame",
+          "eliminator": "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU",
+          "legacy_wrapper": "Problem97.ATailFrontierLiveClosure.false_of_originalFrontierUniqueRadiusArm",
+          "open_leaf": "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerDeleted",
+          "producer": "Problem97.ATailFrontierLiveClosure.exactFourRigid221_sourceBlockerInClass_placement"
+        },
+        "schema": "p97-factorization/v2",
+        "transitive": [
+          {
+            "from": "legacy_wrapper",
+            "to": "coordinator",
+            "via": [
+              "Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFourResidual",
+              "Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFourResidual_of_carrierCard_ge_twelve",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourPhysicalConsumerRobustOutcome",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenRobustSurface_frame",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionBranch_frame",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionLowCrossBranch_frame",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionOmittedPeerBranch_frame",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionMutualOmissionBranch_frame",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionJointDeletion_frame",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_frame",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_globalDeletion_frame",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_frame"
+            ]
+          }
+        ],
+        "verified_at_build": "33f2659d3428b288434253557166c4e28c9075d909ee46318276d713d955d34b"
+      },
       "id": "P97-R221-BLOCKERDELETED",
       "implementation_effect": "branch-closer",
       "kind": "theorem",
@@ -148,6 +187,25 @@
     {
       "cluster": "Rigid221",
       "evidence_note": "Section 16.5.C4 of docs/erdos-97-descent-prose-proof-atomic.md names this declaration and records **Status.** [OPEN].",
+      "factorization": {
+        "consumer_trust": [
+          "Lean.ofReduceBool",
+          "Lean.trustCompiler"
+        ],
+        "pinned": {
+          "legacy_wrapper_statement_sha256": "cd45d699f4df97bd5c86c847a42139f4d951229cfa822d770ccffa06619b3f14",
+          "open_leaf_statement_sha256": "6ceada9790979ddfa694d90e9c515c515eb460d4e22c9ed7f58972b1e3d959da"
+        },
+        "roles": {
+          "coordinator": "Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFourResidual",
+          "eliminator": "Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFourResidual_of_carrierCard_ge_twelve",
+          "legacy_wrapper": "Problem97.ATailFrontierLiveClosure.false_of_originalFrontierUniqueRadiusArm",
+          "open_leaf": "Problem97.ATailFrontierLiveClosure.false_of_exactFourPhysicalConsumerSwappedUniqueFourOutcome",
+          "producer": "Problem97.ATailExactFourPhysicalConsumer.carrier_card_ge_eleven_of_original_unique_four_residual"
+        },
+        "schema": "p97-factorization/v2",
+        "verified_at_build": "33f2659d3428b288434253557166c4e28c9075d909ee46318276d713d955d34b"
+      },
       "id": "P97-R221-EXACTFOURPHYSICAL",
       "implementation_effect": "branch-closer",
       "kind": "theorem",
@@ -167,6 +225,35 @@
     {
       "cluster": "Rigid221",
       "evidence_note": "Section 16.5.C3 of docs/erdos-97-descent-prose-proof-atomic.md names this declaration and records **Status.** [OPEN].",
+      "factorization": {
+        "consumer_trust": [
+          "Lean.ofReduceBool",
+          "Lean.trustCompiler"
+        ],
+        "pinned": {
+          "legacy_wrapper_statement_sha256": "cd45d699f4df97bd5c86c847a42139f4d951229cfa822d770ccffa06619b3f14",
+          "open_leaf_statement_sha256": "e022f5aafc12300f3f9722be54ba3f2d05dccc3c95a3e7839e3cfe533d3747e7"
+        },
+        "roles": {
+          "coordinator": "Problem97.ATailFrontierLiveClosure.false_of_exactFourPhysicalConsumerRobustOutcome",
+          "eliminator": "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenRobustSurface_frame",
+          "legacy_wrapper": "Problem97.ATailFrontierLiveClosure.false_of_originalFrontierUniqueRadiusArm",
+          "open_leaf": "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenTwoRadiusBranch",
+          "producer": "Problem97.ATailExactFourRobustCapExpansion.nonempty_postCardElevenRobustSurface_of_robust"
+        },
+        "schema": "p97-factorization/v2",
+        "transitive": [
+          {
+            "from": "legacy_wrapper",
+            "to": "coordinator",
+            "via": [
+              "Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFourResidual",
+              "Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFourResidual_of_carrierCard_ge_twelve"
+            ]
+          }
+        ],
+        "verified_at_build": "33f2659d3428b288434253557166c4e28c9075d909ee46318276d713d955d34b"
+      },
       "id": "P97-R221-EXACTFOURPOSTCARD",
       "implementation_effect": "branch-closer",
       "kind": "theorem",
@@ -205,6 +292,42 @@
     {
       "cluster": "Rigid221",
       "evidence_note": "Section 16.5.B1 of docs/erdos-97-descent-prose-proof-atomic.md names this declaration and records **Status.** [OPEN].",
+      "factorization": {
+        "consumer_trust": [
+          "Lean.ofReduceBool",
+          "Lean.trustCompiler"
+        ],
+        "pinned": {
+          "legacy_wrapper_statement_sha256": "cd45d699f4df97bd5c86c847a42139f4d951229cfa822d770ccffa06619b3f14",
+          "open_leaf_statement_sha256": "2eab50fe3a3292cedf3128a6ebc4c07f5c9168ddb5cad5c9887d9970e02076b2"
+        },
+        "roles": {
+          "coordinator": "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_frame",
+          "eliminator": "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_globalDeletion_frame",
+          "legacy_wrapper": "Problem97.ATailFrontierLiveClosure.false_of_originalFrontierUniqueRadiusArm",
+          "open_leaf": "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_minimalCore",
+          "producer": "Problem97.ATailFrontierLiveClosure.exactFourMutualOmissionRigid221_globalDeletion"
+        },
+        "schema": "p97-factorization/v2",
+        "transitive": [
+          {
+            "from": "legacy_wrapper",
+            "to": "coordinator",
+            "via": [
+              "Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFourResidual",
+              "Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFourResidual_of_carrierCard_ge_twelve",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourPhysicalConsumerRobustOutcome",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenRobustSurface_frame",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionBranch_frame",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionLowCrossBranch_frame",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionOmittedPeerBranch_frame",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionMutualOmissionBranch_frame",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionJointDeletion_frame"
+            ]
+          }
+        ],
+        "verified_at_build": "33f2659d3428b288434253557166c4e28c9075d909ee46318276d713d955d34b"
+      },
       "id": "P97-R221-MINIMALCORE",
       "implementation_effect": "branch-closer",
       "kind": "theorem",
@@ -223,6 +346,61 @@
     {
       "cluster": "Rigid221",
       "evidence_note": "Section 16.5.A5 of docs/erdos-97-descent-prose-proof-atomic.md names this declaration and closes with **Status.** [PARTIALLY CLOSED: `Bxu` PROVED IMPOSSIBLE; FOUR STRUCTURAL FAMILIES / TWENTY-FOUR COARSE SOURCE-TAGGED CELLS REMAIN], and its Section 16.7 ledger row records the parent as still open.",
+      "factorization": {
+        "consumer_trust": [
+          "Lean.ofReduceBool",
+          "Lean.trustCompiler"
+        ],
+        "pinned": {
+          "legacy_wrapper_statement_sha256": "cd45d699f4df97bd5c86c847a42139f4d951229cfa822d770ccffa06619b3f14",
+          "open_leaf_statement_sha256": "851cc1f4c10dd9267d4e7a0ea200d3d2273bffa2310bf73803f44e2664902d01"
+        },
+        "roles": {
+          "coordinator": "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker",
+          "eliminator": "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_exactTwelve_interiorDeletion_physicalRadius",
+          "legacy_wrapper": "Problem97.ATailFrontierLiveClosure.false_of_originalFrontierUniqueRadiusArm",
+          "open_leaf": "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_exactTwelve_interiorDeletion_physicalRadius_commonDeletion_missingIncidence",
+          "producer": "Problem97.ATailFrontierLiveClosure.pentagonOffClassBlocker_threeCenterDeletion_or_card_eq_twelve"
+        },
+        "schema": "p97-factorization/v2",
+        "transitive": [
+          {
+            "from": "coordinator",
+            "to": "eliminator",
+            "via": [
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_exactTwelve",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_exactTwelve_interiorDeletion"
+            ]
+          },
+          {
+            "from": "legacy_wrapper",
+            "to": "coordinator",
+            "via": [
+              "Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFourResidual",
+              "Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFourResidual_of_carrierCard_ge_twelve",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourPhysicalConsumerRobustOutcome",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenRobustSurface_frame",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionBranch_frame",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionLowCrossBranch_frame",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionOmittedPeerBranch_frame",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionMutualOmissionBranch_frame",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionJointDeletion_frame",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_frame",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_globalDeletion_frame",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_frame",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceBlockerInClass_frame",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRowOther",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRowOther_sourceRowHeavy",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_deletedXuRow",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_fiveCycle",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagon"
+            ]
+          }
+        ],
+        "verified_at_build": "33f2659d3428b288434253557166c4e28c9075d909ee46318276d713d955d34b"
+      },
       "id": "P97-R221-MISSINGINCIDENCE",
       "implementation_effect": "branch-closer",
       "kind": "theorem",
@@ -242,6 +420,53 @@
     {
       "cluster": "Rigid221",
       "evidence_note": "Section 16.5.A8 of docs/erdos-97-descent-prose-proof-atomic.md names this declaration and records **Status.** [PARTIALLY REDUCED: canonical reduction PROVED in prose; five cap-sensitive continuation arms OPEN].",
+      "factorization": {
+        "consumer_trust": [
+          "Lean.ofReduceBool",
+          "Lean.trustCompiler"
+        ],
+        "pinned": {
+          "legacy_wrapper_statement_sha256": "cd45d699f4df97bd5c86c847a42139f4d951229cfa822d770ccffa06619b3f14",
+          "open_leaf_statement_sha256": "c9b1c8c7b08f1ef006450f2b5f3ed905467ce38436252a5190b54165f5357351"
+        },
+        "roles": {
+          "coordinator": "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker",
+          "eliminator": "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_threeCenterDeletion",
+          "legacy_wrapper": "Problem97.ATailFrontierLiveClosure.false_of_originalFrontierUniqueRadiusArm",
+          "open_leaf": "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_threeCenterDeletion_xv_missingIncidence",
+          "producer": "Problem97.ATailFrontierLiveClosure.pentagonOffClassBlocker_threeCenterDeletion_or_card_eq_twelve"
+        },
+        "schema": "p97-factorization/v2",
+        "transitive": [
+          {
+            "from": "legacy_wrapper",
+            "to": "coordinator",
+            "via": [
+              "Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFourResidual",
+              "Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFourResidual_of_carrierCard_ge_twelve",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourPhysicalConsumerRobustOutcome",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenRobustSurface_frame",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionBranch_frame",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionLowCrossBranch_frame",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionOmittedPeerBranch_frame",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionMutualOmissionBranch_frame",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionJointDeletion_frame",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_frame",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_globalDeletion_frame",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_frame",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceBlockerInClass_frame",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRowOther",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRowOther_sourceRowHeavy",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_deletedXuRow",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_fiveCycle",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagon"
+            ]
+          }
+        ],
+        "verified_at_build": "33f2659d3428b288434253557166c4e28c9075d909ee46318276d713d955d34b"
+      },
       "id": "P97-R221-MISSINGINCIDENCE-2",
       "implementation_effect": "branch-closer",
       "kind": "theorem",
@@ -261,6 +486,61 @@
     {
       "cluster": "Rigid221",
       "evidence_note": "Section 16.5.A6 of docs/erdos-97-descent-prose-proof-atomic.md names this declaration and records **Status.** [OPEN].",
+      "factorization": {
+        "consumer_trust": [
+          "Lean.ofReduceBool",
+          "Lean.trustCompiler"
+        ],
+        "pinned": {
+          "legacy_wrapper_statement_sha256": "cd45d699f4df97bd5c86c847a42139f4d951229cfa822d770ccffa06619b3f14",
+          "open_leaf_statement_sha256": "9318da17fe0bc4bf7202b3f83e00ea1b2c0e5e274733ded28800eb66c8793641"
+        },
+        "roles": {
+          "coordinator": "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker",
+          "eliminator": "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_exactTwelve_interiorDeletion_physicalRadius",
+          "legacy_wrapper": "Problem97.ATailFrontierLiveClosure.false_of_originalFrontierUniqueRadiusArm",
+          "open_leaf": "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_exactTwelve_interiorDeletion_physicalRadius_nextRowOnlyHit",
+          "producer": "Problem97.ATailFrontierLiveClosure.pentagonOffClassBlocker_threeCenterDeletion_or_card_eq_twelve"
+        },
+        "schema": "p97-factorization/v2",
+        "transitive": [
+          {
+            "from": "coordinator",
+            "to": "eliminator",
+            "via": [
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_exactTwelve",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_exactTwelve_interiorDeletion"
+            ]
+          },
+          {
+            "from": "legacy_wrapper",
+            "to": "coordinator",
+            "via": [
+              "Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFourResidual",
+              "Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFourResidual_of_carrierCard_ge_twelve",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourPhysicalConsumerRobustOutcome",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenRobustSurface_frame",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionBranch_frame",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionLowCrossBranch_frame",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionOmittedPeerBranch_frame",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionMutualOmissionBranch_frame",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionJointDeletion_frame",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_frame",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_globalDeletion_frame",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_frame",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceBlockerInClass_frame",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRowOther",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRowOther_sourceRowHeavy",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_deletedXuRow",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_fiveCycle",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagon"
+            ]
+          }
+        ],
+        "verified_at_build": "33f2659d3428b288434253557166c4e28c9075d909ee46318276d713d955d34b"
+      },
       "id": "P97-R221-NEXTROWONLYHIT",
       "implementation_effect": "branch-closer",
       "kind": "theorem",
@@ -280,6 +560,42 @@
     {
       "cluster": "Rigid221",
       "evidence_note": "Section 16.5.C2 of docs/erdos-97-descent-prose-proof-atomic.md names this declaration and records **Status.** [OPEN].",
+      "factorization": {
+        "consumer_trust": [
+          "Lean.ofReduceBool",
+          "Lean.trustCompiler"
+        ],
+        "pinned": {
+          "legacy_wrapper_statement_sha256": "cd45d699f4df97bd5c86c847a42139f4d951229cfa822d770ccffa06619b3f14",
+          "open_leaf_statement_sha256": "d4865dcf1f52e7dca9b6b791ac0adb4db2697729d275df7ff2fe19e1bc1764eb"
+        },
+        "roles": {
+          "coordinator": "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_frame",
+          "eliminator": "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_globalDeletion_frame",
+          "legacy_wrapper": "Problem97.ATailFrontierLiveClosure.false_of_originalFrontierUniqueRadiusArm",
+          "open_leaf": "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_nonphysicalCollision",
+          "producer": "Problem97.ATailFrontierLiveClosure.exactFourMutualOmissionRigid221_globalDeletion"
+        },
+        "schema": "p97-factorization/v2",
+        "transitive": [
+          {
+            "from": "legacy_wrapper",
+            "to": "coordinator",
+            "via": [
+              "Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFourResidual",
+              "Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFourResidual_of_carrierCard_ge_twelve",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourPhysicalConsumerRobustOutcome",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenRobustSurface_frame",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionBranch_frame",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionLowCrossBranch_frame",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionOmittedPeerBranch_frame",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionMutualOmissionBranch_frame",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionJointDeletion_frame"
+            ]
+          }
+        ],
+        "verified_at_build": "33f2659d3428b288434253557166c4e28c9075d909ee46318276d713d955d34b"
+      },
       "id": "P97-R221-NONPHYSICALCOLLISION",
       "implementation_effect": "branch-closer",
       "kind": "theorem",
@@ -299,6 +615,52 @@
     {
       "cluster": "Rigid221",
       "evidence_note": "Section 16.5.B4 of docs/erdos-97-descent-prose-proof-atomic.md names this declaration and records **Status.** [OPEN].",
+      "factorization": {
+        "consumer_trust": [
+          "Lean.ofReduceBool",
+          "Lean.trustCompiler"
+        ],
+        "pinned": {
+          "legacy_wrapper_statement_sha256": "cd45d699f4df97bd5c86c847a42139f4d951229cfa822d770ccffa06619b3f14",
+          "open_leaf_statement_sha256": "aaa453427d49f66ae836382f938f8877beeb7c72ab056e24317dbc75d34ce369"
+        },
+        "roles": {
+          "coordinator": "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceBlockerInClass_frame",
+          "eliminator": "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerV",
+          "legacy_wrapper": "Problem97.ATailFrontierLiveClosure.false_of_originalFrontierUniqueRadiusArm",
+          "open_leaf": "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRow_oppositeRowHeavy",
+          "producer": "Problem97.ATailFrontierLiveClosure.exactFourRigid221_sourceBlockerInClass_placement"
+        },
+        "schema": "p97-factorization/v2",
+        "transitive": [
+          {
+            "from": "coordinator",
+            "to": "eliminator",
+            "via": [
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU"
+            ]
+          },
+          {
+            "from": "legacy_wrapper",
+            "to": "coordinator",
+            "via": [
+              "Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFourResidual",
+              "Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFourResidual_of_carrierCard_ge_twelve",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourPhysicalConsumerRobustOutcome",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenRobustSurface_frame",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionBranch_frame",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionLowCrossBranch_frame",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionOmittedPeerBranch_frame",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionMutualOmissionBranch_frame",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionJointDeletion_frame",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_frame",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_globalDeletion_frame",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_frame"
+            ]
+          }
+        ],
+        "verified_at_build": "33f2659d3428b288434253557166c4e28c9075d909ee46318276d713d955d34b"
+      },
       "id": "P97-R221-OPPOSITEROWHEAVY",
       "implementation_effect": "branch-closer",
       "kind": "theorem",
@@ -317,6 +679,61 @@
     {
       "cluster": "Rigid221",
       "evidence_note": "Section 16.5.A7 of docs/erdos-97-descent-prose-proof-atomic.md records **Status.** [PARTIALLY REDUCED: canonical reduction PROVED in prose; unbounded five-arm continuation theorem OPEN], and docs/live-blueprint.md anchors this leaf as that A7 typed five-way continuation terminal.",
+      "factorization": {
+        "consumer_trust": [
+          "Lean.ofReduceBool",
+          "Lean.trustCompiler"
+        ],
+        "pinned": {
+          "legacy_wrapper_statement_sha256": "cd45d699f4df97bd5c86c847a42139f4d951229cfa822d770ccffa06619b3f14",
+          "open_leaf_statement_sha256": "92304e7cc8157fd50c94b6f665650d0fecb02b8929c581b71ff8dd010324d7ba"
+        },
+        "roles": {
+          "coordinator": "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker",
+          "eliminator": "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_uDeletion_fixedPhysicalPair_missingIncidence",
+          "legacy_wrapper": "Problem97.ATailFrontierLiveClosure.false_of_originalFrontierUniqueRadiusArm",
+          "open_leaf": "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_uDeletion_fixedPhysicalPair_outsideThreeRows",
+          "producer": "Problem97.ATailFrontierLiveClosure.pentagonOffClassBlocker_threeCenterDeletion_or_card_eq_twelve"
+        },
+        "schema": "p97-factorization/v2",
+        "transitive": [
+          {
+            "from": "coordinator",
+            "to": "eliminator",
+            "via": [
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_threeCenterDeletion",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_threeCenterDeletion_u"
+            ]
+          },
+          {
+            "from": "legacy_wrapper",
+            "to": "coordinator",
+            "via": [
+              "Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFourResidual",
+              "Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFourResidual_of_carrierCard_ge_twelve",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourPhysicalConsumerRobustOutcome",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenRobustSurface_frame",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionBranch_frame",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionLowCrossBranch_frame",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionOmittedPeerBranch_frame",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionMutualOmissionBranch_frame",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionJointDeletion_frame",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_frame",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_globalDeletion_frame",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_frame",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceBlockerInClass_frame",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRowOther",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRowOther_sourceRowHeavy",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_deletedXuRow",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_fiveCycle",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagon"
+            ]
+          }
+        ],
+        "verified_at_build": "33f2659d3428b288434253557166c4e28c9075d909ee46318276d713d955d34b"
+      },
       "id": "P97-R221-OUTSIDETHREEROWS",
       "implementation_effect": "branch-closer",
       "kind": "theorem",
@@ -393,6 +810,52 @@
     {
       "cluster": "Rigid221",
       "evidence_note": "Section 16.5.B3 of docs/erdos-97-descent-prose-proof-atomic.md names this declaration and records **Status.** [OPEN].",
+      "factorization": {
+        "consumer_trust": [
+          "Lean.ofReduceBool",
+          "Lean.trustCompiler"
+        ],
+        "pinned": {
+          "legacy_wrapper_statement_sha256": "cd45d699f4df97bd5c86c847a42139f4d951229cfa822d770ccffa06619b3f14",
+          "open_leaf_statement_sha256": "3eda8fba11e248054a3e2a7ed2b2edf970da13ae0c8e3b5b0685930c6329e31c"
+        },
+        "roles": {
+          "coordinator": "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceBlockerInClass_frame",
+          "eliminator": "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerV",
+          "legacy_wrapper": "Problem97.ATailFrontierLiveClosure.false_of_originalFrontierUniqueRadiusArm",
+          "open_leaf": "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerV_sourceRowHeavy",
+          "producer": "Problem97.ATailFrontierLiveClosure.exactFourRigid221_sourceBlockerInClass_placement"
+        },
+        "schema": "p97-factorization/v2",
+        "transitive": [
+          {
+            "from": "coordinator",
+            "to": "eliminator",
+            "via": [
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU"
+            ]
+          },
+          {
+            "from": "legacy_wrapper",
+            "to": "coordinator",
+            "via": [
+              "Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFourResidual",
+              "Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFourResidual_of_carrierCard_ge_twelve",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourPhysicalConsumerRobustOutcome",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenRobustSurface_frame",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionBranch_frame",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionLowCrossBranch_frame",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionOmittedPeerBranch_frame",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionMutualOmissionBranch_frame",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionJointDeletion_frame",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_frame",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_globalDeletion_frame",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_frame"
+            ]
+          }
+        ],
+        "verified_at_build": "33f2659d3428b288434253557166c4e28c9075d909ee46318276d713d955d34b"
+      },
       "id": "P97-R221-SOURCEROWHEAVY",
       "implementation_effect": "branch-closer",
       "kind": "theorem",
@@ -411,6 +874,52 @@
     {
       "cluster": "Rigid221",
       "evidence_note": "Section 16.5.B5 of docs/erdos-97-descent-prose-proof-atomic.md names this declaration and records **Status.** [OPEN].",
+      "factorization": {
+        "consumer_trust": [
+          "Lean.ofReduceBool",
+          "Lean.trustCompiler"
+        ],
+        "pinned": {
+          "legacy_wrapper_statement_sha256": "cd45d699f4df97bd5c86c847a42139f4d951229cfa822d770ccffa06619b3f14",
+          "open_leaf_statement_sha256": "8f351711a5f294909ac1963a2a711712b925972b4ade060608c46cba11eea55c"
+        },
+        "roles": {
+          "coordinator": "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceBlockerInClass_frame",
+          "eliminator": "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerV",
+          "legacy_wrapper": "Problem97.ATailFrontierLiveClosure.false_of_originalFrontierUniqueRadiusArm",
+          "open_leaf": "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRow_sparseRows",
+          "producer": "Problem97.ATailFrontierLiveClosure.exactFourRigid221_sourceBlockerInClass_placement"
+        },
+        "schema": "p97-factorization/v2",
+        "transitive": [
+          {
+            "from": "coordinator",
+            "to": "eliminator",
+            "via": [
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU"
+            ]
+          },
+          {
+            "from": "legacy_wrapper",
+            "to": "coordinator",
+            "via": [
+              "Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFourResidual",
+              "Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFourResidual_of_carrierCard_ge_twelve",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourPhysicalConsumerRobustOutcome",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenRobustSurface_frame",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionBranch_frame",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionLowCrossBranch_frame",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionOmittedPeerBranch_frame",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionMutualOmissionBranch_frame",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionJointDeletion_frame",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_frame",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_globalDeletion_frame",
+              "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_frame"
+            ]
+          }
+        ],
+        "verified_at_build": "33f2659d3428b288434253557166c4e28c9075d909ee46318276d713d955d34b"
+      },
       "id": "P97-R221-SPARSEROWS",
       "implementation_effect": "branch-closer",
       "kind": "theorem",

@@ -1,0 +1,420 @@
+{
+  "schema": "p97-gate-receipt/v1",
+  "wave": "W3-R221-a",
+  "state": "COMPLETE — pre-commit, working-tree hashes",
+  "generated_by": "W3-R221-a gate verifier, independent of the author session. Every gate reproduced from source: the meta and registry diffs recomputed structurally from `git show HEAD:<path>`; all 46 role and via symbols re-resolved with `proof-blueprint search --name <FQ> --json --all --private` filtered to an exact fully-qualified match; both pinned digests per block recomputed from the live index signature by the README recipe; all 45 chain edges re-decided from `proof-blueprint search --uses`; per-block cycle detection rerun over roles UNION via; per-symbol freshness re-read read-only from data/proof-blueprint.db (symbol_mined.file_hash, module_mined.global_fp); all 46 axiom closures re-read from `proof-blueprint axioms`; the live spine and off-spine rosters re-exported; and all five registry checks re-run by this verifier. No author output was trusted.",
+  "generated_at_utc": "2026-08-26T11:10:22Z",
+  "git_head": "9f3cc3002f811d8d8d0adbc18031d2ea9f6a7471",
+  "git_head_short": "9f3cc300",
+  "head_note": "UNCOMMITTED; working-tree hashes. The wave is not committed at the time of this receipt: content_bound_files holds the sha256 of the working-tree bytes of the two edited files, and content_bound_files_working_tree repeats them. Rebind to the wave commit when it lands.",
+  "baseline_reference": "proof-status/baseline. axioms.txt is the `proof-blueprint axioms` export of Problem97.erdos97_rhs; this verifier re-ran that export and the diff against axioms.txt is EMPTY. Its six names are propext, sorryAx, Classical.choice, Lean.ofReduceBool, Lean.trustCompiler, Quot.sound, so both declared consumer_trust names are carried by the publish target's recorded closure. Roster baselines: spine-sorry.json (28 symbols, set-equal to the live export) and offspine-sorry.json (6, set-equal). refs-check.txt records the inherited 36 stale + 1 never-mined condition.",
+  "build_fingerprint": "33f2659d3428b288434253557166c4e28c9075d909ee46318276d713d955d34b",
+  "build_fingerprint_source": "module_mined.global_fp in data/proof-blueprint.db, opened read-only; exactly one full fingerprint matches the short prefix 33f2659d3428, and all 46 block symbols carry that same value in symbol_mined.file_hash (zero never-mined, zero stale). It is also the verified_at_build stamped on all 22 materialized blocks and the build_id reported in every check receipt of this verification.",
+  "claim_reference": "#7509 + #7510 (count correction); authorization: standing W3 queue; consumer_trust per #7498 option A",
+  "claim_scope": "registry bookkeeping: Rigid221 p97-factorization/v2 blocks with declared consumer-side trust the publish target's recorded closure already carries; no obligation, statement, axiom, import or Lean change; not a widening of ALLOWED_AXIOMS; no proof-progress or closure claim",
+  "promotion_claim": "none",
+  "source_gates_pass": true,
+  "source_gates_note": "Gates 0-8 all PASS. The strict-refs gate (`--require-fresh-refs`) was deliberately NOT run and is NOT counted: it is the inherited 36 stale + 1 never-mined condition recorded in proof-status/baseline/refs-check.txt, repaired only by `proof-blueprint refs --refresh`, which this wave and this verifier may not run.",
+  "overall_pass": true,
+  "overall_note": "All nine gates pass on the pre-commit working tree. The change adds one 'factorization' key to each of twelve obligations-meta.json entries and its materialized copy to the matching twelve obligations.json entries; nothing else in either file moved, and no Lean, script, waiver or id-assignment file changed. Twelve blocks were written and none was dropped. Every producer path is kernel clean with no opt-in; every open leaf carries exactly the three core axioms plus sorryAx; both declared consumer_trust names are carried on consumer-side hops of every block; the twelve leaves stay OPEN.",
+  "blockers": [],
+  "gates": [
+    {
+      "name": "0 scope: only proof-status/obligations-meta.json, proof-status/obligations.json and registry-check receipts are attributable to this wave",
+      "line": "`git status --porcelain` vs scratchpad/w3-r221-a-status-before.txt differs by exactly ' M proof-status/obligations-meta.json', ' M proof-status/obligations.json' and ten untracked proof-status/receipts/registry-check-*.json: 20260826T083635Z, 084508Z, 090706Z, 091507Z, 093726Z (the AUTHOR's five runs) and 20260826T100938Z, 102030Z, 103334Z, 104428Z, 105543Z (this verifier's five gate-4 runs; attribution by factorization.required_clusters and generated_at_utc against this verifier's own logs). `git diff --quiet HEAD -- proof-status/id-assignments.json proof-status/frontier-table.generated.md proof-status/import-waivers.json proof-status/legacy-import-exceptions.json scripts` EXIT=0, so the author's `generate` rewrote id-assignments.json and frontier-table.generated.md byte-identically. `git diff --stat HEAD -- lean` is NOT empty and cannot be: it lists exactly the two PRE-EXISTING FOREIGN files, ' .../TwoSourceCanonicalSurface.lean | 28 ++++++++++++++++++++++' and ' .../TwoSourceRetainedMinimalCore.lean | 8 ++++---', '2 files changed, 33 insertions(+), 3 deletions(-)'. Both are byte-for-byte the diffs this gate pins: `git diff HEAD -- <file> | shasum -a 256` gives 4c4267daab681bb3f897385b41db745c174733461a27be172e2b8e9baca36b12 and 64711158044d921c6176cb4ca3059f68f92c64dcc08b014a7035abc55d309aaa, prefixes 4c4267daab681bb3 and 64711158044d921c as recorded. No Lean file was changed by this wave. Re-checked after all five of this verifier's check runs: identical.",
+      "pass": true
+    },
+    {
+      "name": "1 meta diff: exactly twelve p97-factorization/v2 blocks added to obligations-meta.json, nothing else",
+      "line": "`git diff --numstat HEAD -- proof-status/obligations-meta.json` = '521 0', i.e. 521 added lines and ZERO deleted lines. Structural jq/json compare of `git show HEAD:proof-status/obligations-meta.json` against the working tree: the top-level key sets are IDENTICAL (`jq -S keys` diff empty), exactly 12 entries differ, and each differs ONLY by adding the key 'factorization' (added=['factorization'] removed=[] modified=[] for every one): P97-R221-BLOCKERDELETED, EXACTFOURPHYSICAL, EXACTFOURPOSTCARD, MINIMALCORE, MISSINGINCIDENCE, MISSINGINCIDENCE-2, NEXTROWONLYHIT, NONPHYSICALCOLLISION, OPPOSITEROWHEAVY, OUTSIDETHREEROWS, SOURCEROWHEAVY, SPARSEROWS — the twelve ids the task names, no more and no fewer. Every block: schema 'p97-factorization/v2'; obligation_id == its own entry ID; consumer_trust exactly ['Lean.ofReduceBool', 'Lean.trustCompiler']; roles.legacy_wrapper == Problem97.ATailFrontierLiveClosure.false_of_originalFrontierUniqueRadiusArm in all twelve; block key set within {schema, obligation_id, roles, pinned, transitive, consumer_trust, note} with no unknown key. Serialization preserved: json.dumps(indent=2, sort_keys=True)+'\\n' round-trips the file BYTE-IDENTICALLY (SERIALIZATION_MATCH True), exactly one trailing newline (0x0a), `git diff --check` clean.",
+      "pass": true
+    },
+    {
+      "name": "2 registry diff: exactly the twelve materialized blocks added to obligations.json, ten pre-existing blocks untouched",
+      "line": "`git diff --numstat HEAD -- proof-status/obligations.json` = '509 0' — additions only, zero deletions. Structural compare of `git show HEAD:proof-status/obligations.json` against the working tree: the seven top-level keys are unchanged (schema, generated_by, meta_source, prose_status_vocabulary, publish_target, source_head, obligations) with source_head unchanged; 34 entries before and after, same id set; exactly the same 12 entries differ and each only by adding 'factorization'. The 10 pre-existing blocks (P97-TA-TRIAPEXALLLARGECORE, P97-TD-BLOCKERCOINCIDENCE/GLOBALGAPORCLOSED/SURVIVALSQUARE, P97-TS-ACYCLICHARDRESIDUAL/ALIGNEDRETAINED/COMMONRADIUS/CROSSBLOCKER/NONCANONICAL/OUTSIDEPAIRDELETION) compare EQUAL block-for-block, so none was restamped. Each new materialized block: keys sorted; no obligation_id and no note; schema p97-factorization/v2; roles and pinned equal to the reviewed block; transitive rows sorted and equal as a set to the reviewed rows with via order preserved; consumer_trust sorted ['Lean.ofReduceBool','Lean.trustCompiler']; verified_at_build 33f2659d3428b288434253557166c4e28c9075d909ee46318276d713d955d34b. The set of distinct verified_at_build values in the whole file is exactly {that one fingerprint}, so all 22 blocks are stamped at the current build. Total factorization blocks 10 -> 22.",
+      "pass": true
+    },
+    {
+      "name": "3 per-block audit (all twelve written blocks): roles, via hops, edges, digests, leaf identity, producer cleanliness, consumer trust, honesty",
+      "line": "(a) 46 distinct symbols across the twelve blocks; every one resolved with `proof-blueprint search --name <FQ> --json --all --private` filtered to an exact fully-qualified match: 46/46 EXACTLY ONE record, 46/46 private == false; each block's five roles are distinct and the role key set is exactly {legacy_wrapper, coordinator, producer, eliminator, open_leaf}. (b) every via hop resolves to exactly one public record and NO via hop equals any of its block's five roles; every transitive row names one of the four chain pairs, no row has an empty via, no pair is repeated; per-block cycle detection over roles UNION via (direct-call relation from `--uses`) found ZERO cycles and zero self-loops. (c) all 45 consecutive chain edges (including every consecutive via hop) hold under `proof-blueprint search --uses <callee> --json --all --private`: 45 edges, 45 distinct callees, MISSING 0. (d) both pinned digests recomputed by this verifier per the README recipe (sha256 of ' '.join(signature.split()), UTF-8, lowercase hex) from the live index record: 24/24 EQUAL to the pinned values; pinned key set is exactly {legacy_wrapper_statement_sha256, open_leaf_statement_sha256}. (e) open_leaf == the registry entry's lean_decl for all twelve, and has_sorry == true for all twelve. (f) producer path CLEAN: no block declares a coordinator -> producer transitive row, so the path is the producer itself; the five distinct producers (Rigid221Placement.lean:91, Rigid221Placement.lean:591, Rigid221SourceHeavy.lean:13239, ExactFourRobustCapExpansion.lean:1462, ExactFourPhysicalConsumer.lean:316) each report EXACTLY {propext, Classical.choice, Quot.sound} from `proof-blueprint axioms`, with the printed header count matching the parsed count. (g) consumer side: every consumer-side hop of every block carries only ALLOWED_AXIOMS, sorryAx and the declared native pair — zero forbidden names anywhere; each block has at least one hop carrying BOTH Lean.ofReduceBool and Lean.trustCompiler (per block, native-carrying / total consumer hops: BLOCKERDELETED 15/15, EXACTFOURPHYSICAL 3/3, EXACTFOURPOSTCARD 5/5, MINIMALCORE 12/12, MISSINGINCIDENCE 21/25, MISSINGINCIDENCE-2 21/23, NEXTROWONLYHIT 21/25, NONPHYSICALCOLLISION 12/12, OPPOSITEROWHEAVY 15/16, OUTSIDETHREEROWS 21/25, SOURCEROWHEAVY 15/16, SPARSEROWS 15/16), so neither declared name is an uncarried blanket widening; all twelve open leaves carry exactly {propext, Classical.choice, Quot.sound, sorryAx}; and an independent bounded backwards walk from each open leaf over `callers` restricted to that block's role and via symbols found ZERO consumer hops carrying sorryAx without reaching the leaf. (h) HONESTY — each producer is the declaration that yields the split its coordinator dispatches on, read from the Lean source: MINIMALCORE and NONPHYSICALCOLLISION — coordinator false_of_exactFourMutualOmissionRigid221_frame (Rigid221Closure.lean:478) runs `rcases exactFourMutualOmissionRigid221_globalDeletion … with ⟨globalDeletion⟩` at Rigid221Closure.lean:521-523 and hands that packet to the eliminator ..._globalDeletion_frame at :525-528. BLOCKERDELETED, SOURCEROWHEAVY, OPPOSITEROWHEAVY, SPARSEROWS — coordinator ..._physicalApex_sourceBlockerInClass_frame (Rigid221Closure.lean:108) runs `rcases exactFourRigid221_sourceBlockerInClass_placement … with ⟨huSource, hplacement⟩ | ⟨huNeSource, hplacement⟩` at Rigid221Closure.lean:148-151 and the u = source arm calls ..._physicalApex_sourceEqU (Rigid221SourceHeavy.lean:18355) at :152-157. EXACTFOURPOSTCARD — coordinator false_of_exactFourPhysicalConsumerRobustOutcome (Rigid221Closure.lean:1240) runs `rcases nonempty_postCardElevenRobustSurface_of_robust _hcard _ingress _secondApex_robust with ⟨surface⟩` at :1249-1250 and passes that surface to the eliminator ..._RobustSurface_frame at :1251. EXACTFOURPHYSICAL — coordinator false_of_firstApexUniqueRadiusExactFourResidual (Rigid221Closure.lean:1317) obtains `hge11 : 11 ≤ D.A.card` from carrier_card_ge_eleven_of_original_unique_four_residual at :1323-1325, and that bound is what its `by_cases hcard11 : D.A.card = 11` at :1326 dispatches on; the negative arm derives 12 ≤ card `(by omega)` and calls the eliminator ..._of_carrierCard_ge_twelve at :1330-1332. MISSINGINCIDENCE, NEXTROWONLYHIT, OUTSIDETHREEROWS, MISSINGINCIDENCE-2 — coordinator ..._pentagonOffClassBlocker (Rigid221SourceHeavy.lean:16701) runs `rcases pentagonOffClassBlocker_threeCenterDeletion_or_card_eq_twelve P _packet hxvA _huXvRow with hcardTwelve | hthree` at Rigid221SourceHeavy.lean:16791-16792; the card = 12 arm calls ..._exactTwelve (:16071) at :16796-16799 and the 13 ≤ card arm calls ..._threeCenterDeletion (:16610) at :16805-16809, and those are exactly the declared coordinator -> eliminator routes. NO block's producer is a semantically unrelated kernel-clean lemma.",
+      "pass": true
+    },
+    {
+      "name": "4 registry checks (live, re-run by this verifier)",
+      "line": "plain `uv run python scripts/gen_obligation_registry.py check --baseline proof-status/baseline` EXIT 0: 'OK: .../proof-status/obligations.json matches the live spine (28 reachable, 6 off-spine); 34/34 reviewed meta_status, vocabulary clean' / 'factorized 22/28 reachable leaves (18 with declared consumer_trust (Lean.ofReduceBool, Lean.trustCompiler))' / 'bound to: HEAD 9f3cc3002f811d8d8d0adbc18031d2ea9f6a7471, build 33f2659d3428, roster sources dirty'; receipt registry-check-20260826T100938Z.json, factorization section: checked 22, verified 22, missing 6, v1_warnings 0, violations [], registry_drift [], required_clusters [], schema_versions {p97-factorization/v2: 22}, declared_trust {blocks 18, axioms [Lean.ofReduceBool, Lean.trustCompiler]}, build_id 33f2659d3428b288434253557166c4e28c9075d909ee46318276d713d955d34b. --require-factorized TD: receipt registry-check-20260826T102030Z.json verdict 'pass', reasons [], required_clusters ['TD'], same census line with '(required: TD; …)'. --require-factorized TA EXIT=0, receipt registry-check-20260826T103334Z.json, 'factorized 22/28 reachable leaves (required: TA; 18 with declared consumer_trust (Lean.ofReduceBool, Lean.trustCompiler))'. --require-factorized TS EXIT=0, receipt registry-check-20260826T104428Z.json, same line with '(required: TS; …)'. --require-factorized R221 EXIT=1, receipt registry-check-20260826T105543Z.json verdict 'fail': 'FAIL: factorization entries are not verified (6):' naming EXACTLY P97-R221-CARDEIGHTEEN, P97-R221-FIRSTAPEXUNIQUE, P97-R221-PENTAGONBLOCKER, P97-R221-SECONDCAPNINE, P97-R221-SOURCENEU, P97-R221-VROWBLOCKEROFFCLASS, each 'has no p97-factorization/v2 factorization block', with the census line 'factorized 22/28 reachable leaves (required: R221; 18 with declared consumer_trust (Lean.ofReduceBool, Lean.trustCompiler))'. That is exactly the six ids this wave deliberately leaves for W3-R221-b and NO dropped block, because no block was dropped. `--require-fresh-refs` deliberately not run.",
+      "pass": true
+    },
+    {
+      "name": "5 tests + lint",
+      "line": "`uv run python -m pytest -q scripts/test_gen_obligation_registry_factorization.py scripts/test_lint_cluster_imports_legacy.py` EXIT 0, final line '151 passed in 8.65s'. `uv run python scripts/lint_cluster_imports.py` EXIT 0, final line 'lint_cluster_imports: OK -- 691 import edges scanned, 27 forbidden edges, all waived by 27 authenticated waivers; 3 retired; 5 legacy edges, all listed.'",
+      "pass": true
+    },
+    {
+      "name": "6 roster (no build)",
+      "line": "`proof-blueprint search --with-sorry --spine --json` exported 28 records and its symbol set is SET-EQUAL to proof-status/baseline/spine-sorry.json (diff empty, 28 lines). `proof-blueprint search --with-sorry --off-spine --json` exported 6 records, set-equal to proof-status/baseline/offspine-sorry.json. `proof-blueprint axioms Problem97.erdos97_rhs` (tool exit 1 by design on the unapproved sorryAx) diffs EMPTY against proof-status/baseline/axioms.txt. Freshness read-only from data/proof-blueprint.db: all 46 block symbols have symbol_mined.file_hash == 33f2659d3428b288434253557166c4e28c9075d909ee46318276d713d955d34b (zero never-mined), and exactly one module_mined.global_fp matches the short prefix 33f2659d3428. No lake, lean or build command was run.",
+      "pass": true
+    },
+    {
+      "name": "7 hygiene",
+      "line": "`git diff --check HEAD -- proof-status/obligations-meta.json proof-status/obligations.json` EXIT 0 (no whitespace error). Both files end in exactly one 0x0a byte. obligations-meta.json round-trips byte-identically under json.dumps(indent=2, sort_keys=True)+'\\n'. A case-insensitive scan of the twelve notes for the four banned interderivability words (the adjective, the noun, the phrase 'logically the same', and prose 'iff') returns zero hits, and there is no proof-progress or closure wording: the 24 occurrences of the string 'closure' are all the module name (13 'Rigid221Closure', 11 'Rigid221Closure.lean'); 'closed', 'proved', 'proven', 'resolves', 'discharged', 'complete', 'milestone' and 'progress' occur zero times.",
+      "pass": true
+    },
+    {
+      "name": "8 ROI",
+      "line": "factorized 10/28 reachable leaves at HEAD 9f3cc300 -> 22/28 in the working tree (n = 12; the check receipt census line reads 'factorized 22/28 reachable leaves (18 with declared consumer_trust (Lean.ofReduceBool, Lean.trustCompiler))', 18 = the 6 W3-TS blocks + these 12). Blocks DROPPED: none — all twelve authored blocks verified, so there is no dropped-block evidence to re-check. The six Rigid221 ids left without a block are the ones the task excludes for W3-R221-b, and they are exactly the --require-factorized R221 failures.",
+      "pass": true
+    }
+  ],
+  "roi": {
+    "factorized_live_before": "10/28 reachable leaves (4 TD/TA + 6 TS), 6 with declared consumer_trust",
+    "factorized_live_after": "22/28 reachable leaves, 18 with declared consumer_trust; delta +12 blocks, all Rigid221",
+    "blocks_written": 12,
+    "blocks_dropped": [],
+    "declared_names": [
+      "Lean.ofReduceBool",
+      "Lean.trustCompiler"
+    ],
+    "declared_names_precondition": "both names appear in proof-status/baseline/axioms.txt, the recorded closure of the publish target Problem97.erdos97_rhs, which this verifier re-exported with an empty diff; neither is sorryAx and neither is in ALLOWED_AXIOMS",
+    "native_pair_entry_point": "Rigid221Closure.lean, Rigid221Placement.lean and Rigid221SourceHeavyCommonDeletion.lean contain zero `native_decide`; Rigid221SourceHeavy.lean contains exactly one, at line 11501 inside exists_exactSeventeenSourceRealization_of_exactCover (Rigid221SourceHeavy.lean:11099), whose ONLY caller under `proof-blueprint search --uses` is the P97-R221-SECONDCAPNINE open leaf — the leaf this wave does not factor. Measured propagation agrees: ..._physicalApex_sourceEqU (Rigid221SourceHeavy.lean:18355) carries Lean.ofReduceBool and Lean.trustCompiler and every Rigid221Closure frame hop above it carries them up to the legacy wrapper false_of_originalFrontierUniqueRadiusArm (Rigid221Closure.lean:1632), while all twelve open leaves and all five producers are clean of the pair.",
+    "per_block": [
+      {
+        "obligation_id": "P97-R221-MINIMALCORE",
+        "coordinator": "false_of_exactFourMutualOmissionRigid221_frame (Rigid221Closure.lean:478)",
+        "producer": "exactFourMutualOmissionRigid221_globalDeletion (Rigid221Placement.lean:91)",
+        "eliminator": "false_of_exactFourMutualOmissionRigid221_globalDeletion_frame (Rigid221Closure.lean:373)",
+        "open_leaf": "false_of_exactFourMutualOmissionRigid221_minimalCore (Rigid221Placement.lean:543)",
+        "legacy_wrapper": "Problem97.ATailFrontierLiveClosure.false_of_originalFrontierUniqueRadiusArm (Rigid221Closure.lean:1632)",
+        "transitive_rows": {
+          "legacy_wrapper->coordinator": 9
+        },
+        "via_hops_total": 9,
+        "native_pair_hops_over_consumer_hops": "12/12",
+        "producer_closure": "propext, Classical.choice, Quot.sound (CLEAN)",
+        "open_leaf_closure": "propext, Classical.choice, Quot.sound, sorryAx (CONSUMER-OK, still OPEN)",
+        "pinned_digests_recomputed_equal": true,
+        "honesty": "The coordinator rcases the producer at Rigid221Closure.lean:521-523 and hands the resulting global-deletion packet straight to the eliminator at :525-528."
+      },
+      {
+        "obligation_id": "P97-R221-NONPHYSICALCOLLISION",
+        "coordinator": "false_of_exactFourMutualOmissionRigid221_frame (Rigid221Closure.lean:478)",
+        "producer": "exactFourMutualOmissionRigid221_globalDeletion (Rigid221Placement.lean:91)",
+        "eliminator": "false_of_exactFourMutualOmissionRigid221_globalDeletion_frame (Rigid221Closure.lean:373)",
+        "open_leaf": "false_of_exactFourMutualOmissionRigid221_nonphysicalCollision (Rigid221Closure.lean:324)",
+        "legacy_wrapper": "Problem97.ATailFrontierLiveClosure.false_of_originalFrontierUniqueRadiusArm (Rigid221Closure.lean:1632)",
+        "transitive_rows": {
+          "legacy_wrapper->coordinator": 9
+        },
+        "via_hops_total": 9,
+        "native_pair_hops_over_consumer_hops": "12/12",
+        "producer_closure": "propext, Classical.choice, Quot.sound (CLEAN)",
+        "open_leaf_closure": "propext, Classical.choice, Quot.sound, sorryAx (CONSUMER-OK, still OPEN)",
+        "pinned_digests_recomputed_equal": true,
+        "honesty": "Same rcases at Rigid221Closure.lean:521-523: the producer builds the packet whose geometry field the eliminator splits, and this leaf is its non-physical-collision disjunct."
+      },
+      {
+        "obligation_id": "P97-R221-BLOCKERDELETED",
+        "coordinator": "false_of_exactFourMutualOmissionRigid221_physicalApex_sourceBlockerInClass_frame (Rigid221Closure.lean:108)",
+        "producer": "exactFourRigid221_sourceBlockerInClass_placement (Rigid221Placement.lean:591)",
+        "eliminator": "false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU (Rigid221SourceHeavy.lean:18355)",
+        "open_leaf": "false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerDeleted (Rigid221Placement.lean:749)",
+        "legacy_wrapper": "Problem97.ATailFrontierLiveClosure.false_of_originalFrontierUniqueRadiusArm (Rigid221Closure.lean:1632)",
+        "transitive_rows": {
+          "legacy_wrapper->coordinator": 12
+        },
+        "via_hops_total": 12,
+        "native_pair_hops_over_consumer_hops": "15/15",
+        "producer_closure": "propext, Classical.choice, Quot.sound (CLEAN)",
+        "open_leaf_closure": "propext, Classical.choice, Quot.sound, sorryAx (CONSUMER-OK, still OPEN)",
+        "pinned_digests_recomputed_equal": true,
+        "honesty": "The coordinator rcases the producer's two-arm placement disjunction at Rigid221Closure.lean:148-151 and its u = source arm calls this eliminator at :152-157."
+      },
+      {
+        "obligation_id": "P97-R221-SOURCEROWHEAVY",
+        "coordinator": "false_of_exactFourMutualOmissionRigid221_physicalApex_sourceBlockerInClass_frame (Rigid221Closure.lean:108)",
+        "producer": "exactFourRigid221_sourceBlockerInClass_placement (Rigid221Placement.lean:591)",
+        "eliminator": "false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerV (Rigid221Placement.lean:970)",
+        "open_leaf": "false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerV_sourceRowHeavy (Rigid221Placement.lean:903)",
+        "legacy_wrapper": "Problem97.ATailFrontierLiveClosure.false_of_originalFrontierUniqueRadiusArm (Rigid221Closure.lean:1632)",
+        "transitive_rows": {
+          "legacy_wrapper->coordinator": 12,
+          "coordinator->eliminator": 1
+        },
+        "via_hops_total": 13,
+        "native_pair_hops_over_consumer_hops": "15/16",
+        "producer_closure": "propext, Classical.choice, Quot.sound (CLEAN)",
+        "open_leaf_closure": "propext, Classical.choice, Quot.sound, sorryAx (CONSUMER-OK, still OPEN)",
+        "pinned_digests_recomputed_equal": true,
+        "honesty": "Same coordinator rcases at Rigid221Closure.lean:148-151; the u = source arm reaches this eliminator through the declared hop ..._physicalApex_sourceEqU, and the eliminator's own by_cases on the row-interior counters (Rigid221Placement.lean:989, :995) selects this leaf."
+      },
+      {
+        "obligation_id": "P97-R221-OPPOSITEROWHEAVY",
+        "coordinator": "false_of_exactFourMutualOmissionRigid221_physicalApex_sourceBlockerInClass_frame (Rigid221Closure.lean:108)",
+        "producer": "exactFourRigid221_sourceBlockerInClass_placement (Rigid221Placement.lean:591)",
+        "eliminator": "false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerV (Rigid221Placement.lean:970)",
+        "open_leaf": "false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRow_oppositeRowHeavy (Rigid221Placement.lean:926)",
+        "legacy_wrapper": "Problem97.ATailFrontierLiveClosure.false_of_originalFrontierUniqueRadiusArm (Rigid221Closure.lean:1632)",
+        "transitive_rows": {
+          "legacy_wrapper->coordinator": 12,
+          "coordinator->eliminator": 1
+        },
+        "via_hops_total": 13,
+        "native_pair_hops_over_consumer_hops": "15/16",
+        "producer_closure": "propext, Classical.choice, Quot.sound (CLEAN)",
+        "open_leaf_closure": "propext, Classical.choice, Quot.sound, sorryAx (CONSUMER-OK, still OPEN)",
+        "pinned_digests_recomputed_equal": true,
+        "honesty": "Same coordinator rcases and same eliminator counter split; this leaf is the opposite-row-heavy arm. Its second public caller ..._sourceEqU_blockerVRowOther (Rigid221SourceHeavy.lean:18325) exists and is recorded in the note."
+      },
+      {
+        "obligation_id": "P97-R221-SPARSEROWS",
+        "coordinator": "false_of_exactFourMutualOmissionRigid221_physicalApex_sourceBlockerInClass_frame (Rigid221Closure.lean:108)",
+        "producer": "exactFourRigid221_sourceBlockerInClass_placement (Rigid221Placement.lean:591)",
+        "eliminator": "false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerV (Rigid221Placement.lean:970)",
+        "open_leaf": "false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRow_sparseRows (Rigid221Placement.lean:951)",
+        "legacy_wrapper": "Problem97.ATailFrontierLiveClosure.false_of_originalFrontierUniqueRadiusArm (Rigid221Closure.lean:1632)",
+        "transitive_rows": {
+          "legacy_wrapper->coordinator": 12,
+          "coordinator->eliminator": 1
+        },
+        "via_hops_total": 13,
+        "native_pair_hops_over_consumer_hops": "15/16",
+        "producer_closure": "propext, Classical.choice, Quot.sound (CLEAN)",
+        "open_leaf_closure": "propext, Classical.choice, Quot.sound, sorryAx (CONSUMER-OK, still OPEN)",
+        "pinned_digests_recomputed_equal": true,
+        "honesty": "Same coordinator rcases and same eliminator counter split; this leaf is the arm where neither counter equals 2. Its second public caller ..._sourceEqU_blockerVRowOther (Rigid221SourceHeavy.lean:18325) exists and is recorded in the note."
+      },
+      {
+        "obligation_id": "P97-R221-EXACTFOURPOSTCARD",
+        "coordinator": "false_of_exactFourPhysicalConsumerRobustOutcome (Rigid221Closure.lean:1240)",
+        "producer": "Problem97.ATailExactFourRobustCapExpansion.nonempty_postCardElevenRobustSurface_of_robust (ExactFourRobustCapExpansion.lean:1462)",
+        "eliminator": "false_of_exactFourPostCardElevenRobustSurface_frame (Rigid221Closure.lean:1196)",
+        "open_leaf": "false_of_exactFourPostCardElevenTwoRadiusBranch (Rigid221Closure.lean:1174)",
+        "legacy_wrapper": "Problem97.ATailFrontierLiveClosure.false_of_originalFrontierUniqueRadiusArm (Rigid221Closure.lean:1632)",
+        "transitive_rows": {
+          "legacy_wrapper->coordinator": 2
+        },
+        "via_hops_total": 2,
+        "native_pair_hops_over_consumer_hops": "5/5",
+        "producer_closure": "propext, Classical.choice, Quot.sound (CLEAN)",
+        "open_leaf_closure": "propext, Classical.choice, Quot.sound, sorryAx (CONSUMER-OK, still OPEN)",
+        "pinned_digests_recomputed_equal": true,
+        "honesty": "The coordinator rcases the producer at Rigid221Closure.lean:1249-1250 and the surface it yields is the sole argument it hands the eliminator at :1251; the interior-row disjunction the eliminator then splits is called inside the eliminator, as the note states."
+      },
+      {
+        "obligation_id": "P97-R221-EXACTFOURPHYSICAL",
+        "coordinator": "false_of_firstApexUniqueRadiusExactFourResidual (Rigid221Closure.lean:1317)",
+        "producer": "Problem97.ATailExactFourPhysicalConsumer.carrier_card_ge_eleven_of_original_unique_four_residual (ExactFourPhysicalConsumer.lean:316)",
+        "eliminator": "false_of_firstApexUniqueRadiusExactFourResidual_of_carrierCard_ge_twelve (Rigid221Closure.lean:1294)",
+        "open_leaf": "false_of_exactFourPhysicalConsumerSwappedUniqueFourOutcome (Rigid221Closure.lean:1257)",
+        "legacy_wrapper": "Problem97.ATailFrontierLiveClosure.false_of_originalFrontierUniqueRadiusArm (Rigid221Closure.lean:1632)",
+        "transitive_rows": {},
+        "via_hops_total": 0,
+        "native_pair_hops_over_consumer_hops": "3/3",
+        "producer_closure": "propext, Classical.choice, Quot.sound (CLEAN)",
+        "open_leaf_closure": "propext, Classical.choice, Quot.sound, sorryAx (CONSUMER-OK, still OPEN)",
+        "pinned_digests_recomputed_equal": true,
+        "honesty": "The producer supplies hge11 : 11 ≤ D.A.card at Rigid221Closure.lean:1323-1325, the bound the coordinator's by_cases hcard11 at :1326 dispatches on; the negative arm derives 12 ≤ card by omega and calls the eliminator at :1330-1332. All four chain edges are direct."
+      },
+      {
+        "obligation_id": "P97-R221-MISSINGINCIDENCE",
+        "coordinator": "false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker (Rigid221SourceHeavy.lean:16701)",
+        "producer": "pentagonOffClassBlocker_threeCenterDeletion_or_card_eq_twelve (Rigid221SourceHeavy.lean:13239)",
+        "eliminator": "..._pentagonOffClassBlocker_exactTwelve_interiorDeletion_physicalRadius (Rigid221SourceHeavy.lean:15877)",
+        "open_leaf": "..._physicalRadius_commonDeletion_missingIncidence (Rigid221SourceHeavy.lean:15754)",
+        "legacy_wrapper": "Problem97.ATailFrontierLiveClosure.false_of_originalFrontierUniqueRadiusArm (Rigid221Closure.lean:1632)",
+        "transitive_rows": {
+          "legacy_wrapper->coordinator": 20,
+          "coordinator->eliminator": 2
+        },
+        "via_hops_total": 22,
+        "native_pair_hops_over_consumer_hops": "21/25",
+        "producer_closure": "propext, Classical.choice, Quot.sound (CLEAN)",
+        "open_leaf_closure": "propext, Classical.choice, Quot.sound, sorryAx (CONSUMER-OK, still OPEN)",
+        "pinned_digests_recomputed_equal": true,
+        "honesty": "The coordinator rcases the producer's disjunction at Rigid221SourceHeavy.lean:16791-16792 and its card = 12 arm calls ..._exactTwelve (:16071) at :16796-16799, the first hop of the declared coordinator -> eliminator row."
+      },
+      {
+        "obligation_id": "P97-R221-NEXTROWONLYHIT",
+        "coordinator": "false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker (Rigid221SourceHeavy.lean:16701)",
+        "producer": "pentagonOffClassBlocker_threeCenterDeletion_or_card_eq_twelve (Rigid221SourceHeavy.lean:13239)",
+        "eliminator": "..._pentagonOffClassBlocker_exactTwelve_interiorDeletion_physicalRadius (Rigid221SourceHeavy.lean:15877)",
+        "open_leaf": "..._physicalRadius_nextRowOnlyHit (Rigid221SourceHeavy.lean:15819)",
+        "legacy_wrapper": "Problem97.ATailFrontierLiveClosure.false_of_originalFrontierUniqueRadiusArm (Rigid221Closure.lean:1632)",
+        "transitive_rows": {
+          "legacy_wrapper->coordinator": 20,
+          "coordinator->eliminator": 2
+        },
+        "via_hops_total": 22,
+        "native_pair_hops_over_consumer_hops": "21/25",
+        "producer_closure": "propext, Classical.choice, Quot.sound (CLEAN)",
+        "open_leaf_closure": "propext, Classical.choice, Quot.sound, sorryAx (CONSUMER-OK, still OPEN)",
+        "pinned_digests_recomputed_equal": true,
+        "honesty": "Same coordinator rcases at Rigid221SourceHeavy.lean:16791-16792 and same eliminator; this leaf is the other arm of the eliminator's own rcases at :15913."
+      },
+      {
+        "obligation_id": "P97-R221-OUTSIDETHREEROWS",
+        "coordinator": "false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker (Rigid221SourceHeavy.lean:16701)",
+        "producer": "pentagonOffClassBlocker_threeCenterDeletion_or_card_eq_twelve (Rigid221SourceHeavy.lean:13239)",
+        "eliminator": "..._pentagonOffClassBlocker_uDeletion_fixedPhysicalPair_missingIncidence (Rigid221SourceHeavy.lean:16447)",
+        "open_leaf": "..._uDeletion_fixedPhysicalPair_outsideThreeRows (Rigid221SourceHeavy.lean:16385)",
+        "legacy_wrapper": "Problem97.ATailFrontierLiveClosure.false_of_originalFrontierUniqueRadiusArm (Rigid221Closure.lean:1632)",
+        "transitive_rows": {
+          "legacy_wrapper->coordinator": 20,
+          "coordinator->eliminator": 2
+        },
+        "via_hops_total": 22,
+        "native_pair_hops_over_consumer_hops": "21/25",
+        "producer_closure": "propext, Classical.choice, Quot.sound (CLEAN)",
+        "open_leaf_closure": "propext, Classical.choice, Quot.sound, sorryAx (CONSUMER-OK, still OPEN)",
+        "pinned_digests_recomputed_equal": true,
+        "honesty": "Same coordinator rcases at Rigid221SourceHeavy.lean:16791-16792; its 13 ≤ card arm calls ..._threeCenterDeletion (:16610) at :16805-16809, the first hop of the declared coordinator -> eliminator row."
+      },
+      {
+        "obligation_id": "P97-R221-MISSINGINCIDENCE-2",
+        "coordinator": "false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker (Rigid221SourceHeavy.lean:16701)",
+        "producer": "pentagonOffClassBlocker_threeCenterDeletion_or_card_eq_twelve (Rigid221SourceHeavy.lean:13239)",
+        "eliminator": "..._pentagonOffClassBlocker_threeCenterDeletion (Rigid221SourceHeavy.lean:16610)",
+        "open_leaf": "..._threeCenterDeletion_xv_missingIncidence (Rigid221SourceHeavy.lean:16551)",
+        "legacy_wrapper": "Problem97.ATailFrontierLiveClosure.false_of_originalFrontierUniqueRadiusArm (Rigid221Closure.lean:1632)",
+        "transitive_rows": {
+          "legacy_wrapper->coordinator": 20
+        },
+        "via_hops_total": 20,
+        "native_pair_hops_over_consumer_hops": "21/23",
+        "producer_closure": "propext, Classical.choice, Quot.sound (CLEAN)",
+        "open_leaf_closure": "propext, Classical.choice, Quot.sound, sorryAx (CONSUMER-OK, still OPEN)",
+        "pinned_digests_recomputed_equal": true,
+        "honesty": "Same coordinator rcases at Rigid221SourceHeavy.lean:16791-16792; its 13 ≤ card arm calls this eliminator DIRECTLY at :16805-16809, and the eliminator's rcases at :16655 plus by_cases at :16669 reach this leaf."
+      }
+    ]
+  },
+  "tests": [
+    {
+      "command": "uv run python -m pytest -q scripts/test_gen_obligation_registry_factorization.py scripts/test_lint_cluster_imports_legacy.py",
+      "exit_code": 0,
+      "final_line": "151 passed in 8.65s",
+      "total_passed": 151,
+      "failed": 0,
+      "run_by": "this verifier, from the repository root"
+    },
+    {
+      "command": "uv run python scripts/lint_cluster_imports.py",
+      "exit_code": 0,
+      "final_line": "lint_cluster_imports: OK -- 691 import edges scanned, 27 forbidden edges, all waived by 27 authenticated waivers; 3 retired; 5 legacy edges, all listed.",
+      "total_passed": null,
+      "failed": 0,
+      "run_by": "this verifier, from the repository root"
+    },
+    {
+      "command": "uv run python scripts/gen_obligation_registry.py check --baseline proof-status/baseline",
+      "exit_code": 0,
+      "final_line": "factorized 22/28 reachable leaves (18 with declared consumer_trust (Lean.ofReduceBool, Lean.trustCompiler))",
+      "total_passed": null,
+      "failed": 0,
+      "run_by": "this verifier; receipt registry-check-20260826T100938Z.json"
+    },
+    {
+      "command": "uv run python scripts/gen_obligation_registry.py check --baseline proof-status/baseline --require-factorized TD",
+      "exit_code": 0,
+      "final_line": "factorized 22/28 reachable leaves (required: TD; 18 with declared consumer_trust (Lean.ofReduceBool, Lean.trustCompiler))",
+      "total_passed": null,
+      "failed": 0,
+      "run_by": "this verifier; receipt registry-check-20260826T102030Z.json, verdict 'pass', reasons []"
+    },
+    {
+      "command": "uv run python scripts/gen_obligation_registry.py check --baseline proof-status/baseline --require-factorized TA",
+      "exit_code": 0,
+      "final_line": "factorized 22/28 reachable leaves (required: TA; 18 with declared consumer_trust (Lean.ofReduceBool, Lean.trustCompiler))",
+      "total_passed": null,
+      "failed": 0,
+      "run_by": "this verifier; receipt registry-check-20260826T103334Z.json"
+    },
+    {
+      "command": "uv run python scripts/gen_obligation_registry.py check --baseline proof-status/baseline --require-factorized TS",
+      "exit_code": 0,
+      "final_line": "factorized 22/28 reachable leaves (required: TS; 18 with declared consumer_trust (Lean.ofReduceBool, Lean.trustCompiler))",
+      "total_passed": null,
+      "failed": 0,
+      "run_by": "this verifier; receipt registry-check-20260826T104428Z.json"
+    },
+    {
+      "command": "uv run python scripts/gen_obligation_registry.py check --baseline proof-status/baseline --require-factorized R221",
+      "exit_code": 1,
+      "final_line": "factorized 22/28 reachable leaves (required: R221; 18 with declared consumer_trust (Lean.ofReduceBool, Lean.trustCompiler))",
+      "total_passed": null,
+      "failed": 0,
+      "run_by": "this verifier; receipt registry-check-20260826T105543Z.json, verdict 'fail'; EXIT 1 is the EXPECTED outcome — the six ids W3-R221-b will carry are listed and nothing else"
+    },
+    {
+      "command": "proof-blueprint axioms Problem97.erdos97_rhs",
+      "exit_code": 1,
+      "final_line": "diff against proof-status/baseline/axioms.txt is EMPTY; the tool's exit 1 is its standing verdict on the unapproved sorryAx and is unchanged from the baseline",
+      "total_passed": null,
+      "failed": 0,
+      "run_by": "this verifier, from the lake root lean/"
+    }
+  ],
+  "content_bound_files": {
+    "proof-status/obligations-meta.json": {
+      "sha256": "4648e2aaf5b87d068e17e7f0ce5b0f687765723cab5224360cf2c6c7b3c72ee8",
+      "note": "working-tree bytes at HEAD 9f3cc300, UNCOMMITTED; +521/-0 against HEAD; the twelve reviewed factorization blocks"
+    },
+    "proof-status/obligations.json": {
+      "sha256": "426a33521cead609da944d2416d691f457e43d5c8b1cf550bc79a3988d06bb3c",
+      "note": "working-tree bytes at HEAD 9f3cc300, UNCOMMITTED; +509/-0 against HEAD; the twelve materialized blocks, source_head unchanged"
+    }
+  },
+  "content_bound_files_working_tree": {
+    "proof-status/obligations-meta.json": {
+      "sha256": "4648e2aaf5b87d068e17e7f0ce5b0f687765723cab5224360cf2c6c7b3c72ee8",
+      "note": "working-tree bytes at HEAD 9f3cc300, UNCOMMITTED; +521/-0 against HEAD; the twelve reviewed factorization blocks"
+    },
+    "proof-status/obligations.json": {
+      "sha256": "426a33521cead609da944d2416d691f457e43d5c8b1cf550bc79a3988d06bb3c",
+      "note": "working-tree bytes at HEAD 9f3cc300, UNCOMMITTED; +509/-0 against HEAD; the twelve materialized blocks, source_head unchanged"
+    }
+  },
+  "files_written_by_this_verifier": [
+    "proof-status/receipts/w3-r221-a-gate-receipt.json"
+  ],
+  "new_receipts_written_by_this_check": [
+    "proof-status/receipts/registry-check-20260826T100938Z.json",
+    "proof-status/receipts/registry-check-20260826T102030Z.json",
+    "proof-status/receipts/registry-check-20260826T103334Z.json",
+    "proof-status/receipts/registry-check-20260826T104428Z.json",
+    "proof-status/receipts/registry-check-20260826T105543Z.json"
+  ],
+  "git_operations_performed": [
+    "read-only only: status, diff, show, rev-parse, symbolic-ref. No add, commit, checkout, stash, reset, restore, push, rebase or merge. Nothing staged.",
+    "No lake, lean, `gen_obligation_registry.py generate` or `proof-blueprint refs --refresh` was run; read-only `proof-blueprint search` and `proof-blueprint axioms` only, plus `gen_obligation_registry.py check`. No Lean file was edited; data/proof-blueprint.db was opened read-only (mode=ro URI)."
+  ],
+  "author_claims_checked": [
+    "'46 symbols, each exactly one record, each private: false' — CONFIRMED independently: 46 distinct role and via symbols, 46 exact fully-qualified single-record resolutions, zero private.",
+    "'45 caller/callee pairs, zero missing' — CONFIRMED: 45 consecutive chain edges over 45 distinct callees, all held under `proof-blueprint search --uses`.",
+    "'the five producers (Rigid221Placement:91, Rigid221Placement:591, Rigid221SourceHeavy:13239, ExactFourRobustCapExpansion:1462, ExactFourPhysicalConsumer:316) are kernel CLEAN' — CONFIRMED: those exact five file:line locations, each closure exactly {propext, Classical.choice, Quot.sound}.",
+    "'all twelve open leaves are CONSUMER-OK (adding only sorryAx)' — CONFIRMED: each leaf closure is exactly {propext, Classical.choice, Quot.sound, sorryAx}, and each leaf has has_sorry true and equals its entry's lean_decl.",
+    "'the legacy wrapper false_of_originalFrontierUniqueRadiusArm (Rigid221Closure.lean:1632) carries Lean.ofReduceBool and Lean.trustCompiler' — CONFIRMED, and every block has at least one consumer-side hop carrying both.",
+    "'all 46 symbols mined against build 33f2659d3428' — CONFIRMED by a read-only query of data/proof-blueprint.db: one distinct symbol_mined.file_hash value across all 46, equal to the single module_mined.global_fp matching that prefix and to the verified_at_build stamped on the twelve blocks.",
+    "'generate exited 0 ... obligations.json gained exactly twelve materialized factorization blocks ... zero deletions ... id-assignments.json and frontier-table.generated.md byte-identical to HEAD' — the `generate` run itself was NOT reproduced (this verifier may not run generate), but its RESULT was: +521/-0 and +509/-0, the twelve added blocks and nothing else, `git diff --quiet HEAD` silent for id-assignments.json and frontier-table.generated.md, source_head unchanged.",
+    "'--require-factorized R221 exited 1 naming exactly the six ids this wave deliberately leaves without a block' — CONFIRMED by this verifier's own rerun (receipt registry-check-20260826T105543Z.json).",
+    "Deviation 1 (row leaves take the ..._sourceEqU_blockerV eliminator with a one-hop coordinator -> eliminator row) — CONFIRMED as written and verified; :970 is the declaration that actually calls each row leaf, and :18355 is a public non-role hop.",
+    "Deviation 2 (SourceHeavy leaves 5/6/7 name :13239 rather than :14280 / :16236 as producer) — CONFIRMED honest: :13239 is the disjunction the coordinator itself rcases at Rigid221SourceHeavy.lean:16791-16792, and :14280 / :16236 are called by the ELIMINATORS, so routing them as producer would need a coordinator -> producer path through the block's own eliminator role.",
+    "Deviation 3 (MINIMALCORE leaf keeps a second public caller ..._physicalApex_frame at Rigid221Closure.lean:219) — CONFIRMED: `--uses` on the leaf returns exactly ..._globalDeletion_frame and ..._physicalApex_frame.",
+    "Deviation 4 (EXACTFOURPOSTCARD / EXACTFOURPHYSICAL coordinators sit one level above the split site) — CONFIRMED from the Lean source; in both the producer is still the declaration whose result the coordinator destructures or dispatches on.",
+    "'the first R221 attempt was killed ... it was rerun standalone' — not reproducible from the repository, and irrelevant: this verifier ran its own R221 check from scratch."
+  ],
+  "metadata_corrections": [],
+  "observations_not_blocking": [
+    "Gate 0 as written asks for `git diff --stat HEAD -- lean` to list ONLY the two pre-existing foreign files; that is how it was read and how it holds. The output is not empty and cannot be, because those two foreign files are dirty in the shared worktree from another lane; both diff digests match the pinned prefixes byte for byte.",
+    "The twelve notes say native trust enters 'this cluster' at the single native_decide of Rigid221SourceHeavy.lean:11501. That count is exact for the four Rigid221*.lean files (Closure, Placement, SourceHeavy, SourceHeavyCommonDeletion contain 1 native_decide in total, at that line). Other modules under FrontierLiveClosure/ — the ExactTwelveRigid221*Cnf certificate files — contain further native_decide uses, so the sentence should be read as scoped to the Rigid221 source files, not to every module the cluster imports. The wording is the one the task prescribed; recorded so a future wave can tighten it.",
+    "Each transitive row's `via` list is long on the SourceHeavy blocks (20 hops from the legacy wrapper to the coordinator). Every one of those hops was resolved, freshness-checked, trust-checked and edge-checked individually, so the length is a cost of the current frame ladder rather than an unchecked shortcut.",
+    "Two producers (nonempty_postCardElevenRobustSurface_of_robust, carrier_card_ge_eleven_of_original_unique_four_residual) live outside FrontierLiveClosure/, in ATail/ExactFourRobustCapExpansion.lean and ATail/ExactFourPhysicalConsumer.lean. Both resolve to a single public record and both are kernel clean; no import or waiver state changed."
+  ],
+  "notes_for_main_session": [
+    "Pre-commit receipt. When the wave commit lands, rebind: set wave_commit, and recompute content_bound_files from `git show <sha>:<path>` while keeping the working-tree block under content_bound_files_working_tree.",
+    "Ten untracked registry-check receipts are present, five from the author and five from this verifier; the commit should carry the ones the wave intends to keep and nothing else. Attribution is in gate 0.",
+    "The six Rigid221 ids without a block (PENTAGONBLOCKER, SECONDCAPNINE, CARDEIGHTEEN, VROWBLOCKEROFFCLASS, SOURCENEU, FIRSTAPEXUNIQUE) are the standing --require-factorized R221 failures and are the W3-R221-b scope."
+  ],
+  "note_resolutions": [],
+  "main_session_reverification": null,
+  "wave_commit": null
+}
