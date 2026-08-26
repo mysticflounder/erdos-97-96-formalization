@@ -35,9 +35,9 @@
       "class": "cross-cluster",
       "from": "Erdos9796Proof.P97.ATail.FrontierLiveClosure.TriApexEndpointRetainedOmission",
       "planned_retirement": "W3",
-      "reason": "pre-existing at base_head 222809b9",
+      "reason": "pre-existing at base_head 222809b9 Rebound in the receipt-only child commit: retired_head now names the wave commit 86d42cc0 that removed the edge.",
       "retired_by_wrapper": "Erdos9796Proof.P97.ATail.FrontierLiveClosure.Legacy.Rigid221Wrappers",
-      "retired_head": "09434d78",
+      "retired_head": "86d42cc0",
       "retired_wave": "W3",
       "to": "Erdos9796Proof.P97.ATail.FrontierLiveClosure.Rigid221Closure"
     }

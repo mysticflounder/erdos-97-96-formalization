@@ -1,0 +1,315 @@
+{
+  "author_claims_checked": [
+    {
+      "claim": "L1: Rigid221Wrappers.lean (82 lines) restates false_of_originalFrontierUniqueRadiusArm binder-for-binder and is proved by the Rigid221Closure theorem of the same name.",
+      "evidence": "The 7 binder lines are `cmp` byte-identical to Rigid221Closure.lean:1633-1639; the conclusion line differs only as `False :=` vs `False := by`. `lake env lean` on the file exits 0 with no output. Gate 4 shows the two elaborated types print identically apart from the name.",
+      "verdict": "reproduced"
+    },
+    {
+      "claim": "L2: line 7 import swapped, three call sites each gained one `Legacy.` token, coordinator inserted verbatim, wrapper proof reduced to the two-line delegation, leaf and wrapper statement byte-identical.",
+      "evidence": "The gate-3d reconstruction from HEAD plus exactly those four edits equals the working file byte-for-byte. The coordinator's inserted text matches the design with no adjustment to `cap_card_ge_six`.",
+      "verdict": "reproduced"
+    },
+    {
+      "claim": "L3: four lake-build runs, all exit 0, zero errors.",
+      "evidence": "The author's build runs are not re-runnable by this verifier (only one bare `lake-build` is permitted). That run exits 0, rebuilds nothing (0 `Built` lines, \"already fresh -- 4089 module(s) unchanged at build c76a7b909fa4\") and reports 0 errors, which is only possible if the tree, including Coordinator.lean and the aggregator, was already built clean from this working tree.",
+      "verdict": "not reproduced as stated; consistent with what is observable"
+    },
+    {
+      "claim": "Author note 1: the brief's build target `Erdos9796Proof.P97.ATail.FrontierLiveClosure.FrontierLiveClosure` does not exist; the aggregator is `Erdos9796Proof.P97.ATail.FrontierLiveClosure`.",
+      "evidence": "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean is the aggregator; there is no FrontierLiveClosure/FrontierLiveClosure.lean. The bare root build covers it either way.",
+      "verdict": "reproduced"
+    },
+    {
+      "claim": "Author note 2: live waiver rows carry no `class` key, so the retired row's class was taken from the frozen record, which records `cross-cluster` for the pair.",
+      "evidence": "The removed HEAD row has keys from/planned_retirement/reason/to only. proof-status/cluster-import-edges.json `.edges[]` for the pair carries \"class\": \"cross-cluster\" (from_cluster TriApex, to_cluster Rigid221). proof-status/README.md requires exactly that source: \"`class` must be the class the FROZEN record recorded for the pair\".",
+      "verdict": "reproduced"
+    },
+    {
+      "claim": "Author note 3: legacy-import-exceptions.json base_head moved 22694fa3 -> 09434d78; frozen_graph_sha256 untouched.",
+      "evidence": "The diff shows exactly that one base_head change; frozen_graph_sha256 stays 14a8ee55... and equals the shasum of the frozen record. 09434d78 is an ancestor of (here, equal to) HEAD.",
+      "verdict": "reproduced"
+    },
+    {
+      "claim": "Author note 4: 33 TriApex warnings, all at lines <= 5327, none at the edited or inserted lines, none for the wrapper.",
+      "evidence": "The root build's replayed diagnostics give exactly 33 warnings for the file, maximum line 5327, none at 7/122/194/227 or in 5362-5400, and 0 mentions of Legacy/Rigid221Wrappers.lean. Combined with the gate-3d reconstruction (working lines 1-5363 are HEAD text with four single-token substitutions that shift no line number) this establishes that no warning is new, which is a stronger statement than the author's baseline-recovery limitation allowed.",
+      "verdict": "reproduced"
+    },
+    {
+      "claim": "Author note 5: six chain edges hold; producer axiom closure is the three core axioms; the other roles and via hops add sorryAx.",
+      "evidence": "All six `--uses` edges reproduced independently; `proof-blueprint axioms` on the producer reports exactly propext, Classical.choice, Quot.sound; the open leaf's index record has has_sorry true.",
+      "verdict": "reproduced"
+    },
+    {
+      "claim": "Author note 6: `generate` reports factorized 4/28; id-assignments.json and frontier-table.generated.md rewritten with no content change; obligations.json gained the TA block and restamped the three TD verified_at_build values.",
+      "evidence": "The three `check` variants all report \"factorized 4/28 reachable leaves\". id-assignments.json and frontier-table.generated.md hash equal to their HEAD blobs. The obligations.json diff is exactly the TA block plus the three restamps.",
+      "verdict": "reproduced"
+    },
+    {
+      "claim": "Author note 8 / call-site count: Coordinator.lean has \"five, not the four the brief named\" call sites of the legacy wrapper.",
+      "evidence": "Coordinator.lean has 5 textual occurrences of the identifier (:356, :467, :527, :535, :594) inside 4 calling declarations, whose declaration lines are the :81, :443, :510, :578 the brief named (the declaration at :510 mentions it twice). `proof-blueprint search --uses` returns exactly those 4 caller theorems. Both counts are correct about different things.",
+      "verdict": "reconciled — not a discrepancy"
+    },
+    {
+      "claim": "No git write command was run and no file outside the declared set was edited.",
+      "evidence": "`git diff --cached --name-only` is empty; the only working-tree changes attributable to this wave are the two Lean paths, the four proof-status records, and untracked receipts. Whether the author ran a write command cannot be established from the tree alone; nothing in the tree contradicts the claim.",
+      "verdict": "consistent with the observable state"
+    }
+  ],
+  "baseline_reference": "proof-status/baseline (base-head f3063069939cfb6dc2a8a9b20d9a7ef660c86fdf, refs-check 36 stale + 1 never-mined)",
+  "blockers": [],
+  "build_fingerprint": "c76a7b909fa4fd579187f4091b1f3e7d61b5ef199eafb25157aa0a0e612fb8a9",
+  "build_fingerprint_source": "proof-status/obligations.json -> verified_at_build; the bare lake-build at this working tree reports the same build c76a7b909fa4 and rebuilt nothing",
+  "claim_scope": "proof-preserving restructure plus bookkeeping: TriApex coordinator theorem and Legacy wrapper, W3 edge retired with a machine-linked retired_waivers row, factorization entry for P97-TA-TRIAPEXALLLARGECORE; no obligation, statement, axiom or math change; no proof-progress or closure claim",
+  "content_bound_files": {
+    "note": "sha256 of every path committed at 86d42cc0 (git show 86d42cc0:<path>)",
+    "sha256": {
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Legacy/Rigid221Wrappers.lean": "3c7f5ee04c4f79c87d4313f3ccdb7c78e414cd02189aa80f7260d5280b04fd30",
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TriApexEndpointRetainedOmission.lean": "7b0abbd7938506f250b994cabe42c38115b337aa472f3e32a5c33ff44fe49e57",
+      "proof-status/import-waivers.json": "06b96eefbfb34f029da90614533a4ab4c1e47d27244093e9a8f459b55e7b4534",
+      "proof-status/legacy-import-exceptions.json": "0acbf003ef189d37359d3c23536a38653e24cc2482e5709f38146867c974913e",
+      "proof-status/obligations-meta.json": "b7c89d009c929aab4a97cba173e419346b30dcd70c0040222415f811f6db5782",
+      "proof-status/obligations.json": "cd1290f6d3fe4375f95ae87b39023df994cff8dfdfc5dea1532630217d0278e5"
+    }
+  },
+  "files_written_by_this_verifier": [
+    "proof-status/receipts/w3-ta-gate-receipt.json"
+  ],
+  "gates": [
+    {
+      "line": "`git diff --name-only HEAD -- lean/` lists exactly TriApexEndpointRetainedOmission.lean, TwoSourceCanonicalSurface.lean, TwoSourceRetainedMinimalCore.lean (the last two foreign-dirty, both recorded in proof-status/baseline/dirty-files.txt); `git status --porcelain lean/` shows `?? lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Legacy/Rigid221Wrappers.lean`; proof-status carries 4 modified records (import-waivers, legacy-import-exceptions, obligations-meta, obligations), id-assignments.json and frontier-table.generated.md byte-unchanged vs HEAD, and untracked receipts only; `git diff --cached --name-only` is empty.",
+      "name": "0 scope: only this wave's files, the generator outputs, the receipt stub and registry-check receipts are attributable",
+      "pass": true
+    },
+    {
+      "line": "Build completed successfully (12195 jobs). -- exit 0, `grep -c \"Built\"` = 0, `grep -ni error` = 0; wrapper then reported \"already fresh -- 4089 module(s) unchanged at build c76a7b909fa4. No Lean invocation needed.\"",
+      "name": "1 build current: bare lake-build exit 0, no Built line, 0 errors",
+      "pass": true
+    },
+    {
+      "line": "spine base=28 now=28, `diff` empty; off-spine base=6 now=6, `diff` empty; `diff proof-status/baseline/axioms.txt <(proof-blueprint axioms Problem97.erdos97_rhs)` empty (6 axioms: propext, sorryAx, Classical.choice, Lean.ofReduceBool, Lean.trustCompiler, Quot.sound).",
+      "name": "2 roster: spine and off-spine sorry sets set-equal to the baseline; erdos97_rhs axiom closure unchanged",
+      "pass": true
+    },
+    {
+      "line": "Name-anchored extraction of false_of_pairedCommonDeletion_fiveSurviveOneFail_triApexAllLarge_core from `git show HEAD:<file>` and the working file: `cmp` -> identical (19 lines, theorem at :2858 in both, one `sorry`); the positional range 2852-2883 also `cmp`-identical.",
+      "name": "3a byte-identity: the TA leaf declaration (docstring through proof) identical to HEAD",
+      "pass": true
+    },
+    {
+      "line": "false_of_retainedInteriorDirectedOmission_and_all_low_hits statement, HEAD :5365-5375 vs working :5383-5393 -- `cmp` identical (11 lines, ending `    False := by`).",
+      "name": "3b byte-identity: the legacy wrapper STATEMENT (theorem line through `False := by`) identical to HEAD",
+      "pass": true
+    },
+    {
+      "line": "RAW: the 7 binder lines (Rigid221Closure.lean:1633-1639 vs Rigid221Wrappers.lean:69-75) are `cmp` byte-identical; the 8th line differs only as `    False := by` vs `    False :=` (tactic vs term proof). NORMALIZED (whitespace runs collapsed): identical after the same `by` difference; identical outright once `:= by` is normalized to `:=`. Gate 4 confirms the elaborated types print identically.",
+      "name": "3c byte-identity: the restated Legacy statement matches Rigid221Closure's",
+      "pass": true
+    },
+    {
+      "line": "Reconstruction test: HEAD text + (line 7 import swap) + (one `Legacy.` token at :122, :194, :227) + (insert working lines 5364-5381) + (replace HEAD :5376-5382 by working :5394) == the working file, exactly (`RECONSTRUCTION MATCHES WORKING FILE: True`). 6092 -> 6104 lines, +18 -7 +1 = +12. `git diff -U0` shows 5 hunks and no others.",
+      "name": "3d byte-identity: the whole TriApex diff is exactly the four described edits and nothing else",
+      "pass": true
+    },
+    {
+      "line": "`git diff --quiet HEAD -- <path>` returns 0 for all four.",
+      "name": "3e byte-identity: Rigid221Closure, Coordinator, Rigid221SourceHeavy, Rigid221Placement unchanged",
+      "pass": true
+    },
+    {
+      "line": "`lake env lean Check.lean` exit 0; all four #checks resolve; the normalized types of Problem97.ATailFrontierLiveClosure.false_of_originalFrontierUniqueRadiusArm and ...Legacy.false_of_originalFrontierUniqueRadiusArm compare equal (`TYPES IDENTICAL apart from the name: True`). Only diagnostic: the scratch file's own missing-module-docstring warning.",
+      "name": "4 visibility: both names resolve under the tri-apex + Coordinator imports and print the same type",
+      "pass": true
+    },
+    {
+      "line": "lint_cluster_imports: OK -- 689 import edges scanned, 27 forbidden edges, all waived by 27 authenticated waivers; 3 retired; 5 legacy edges, all listed.  (exit 0 on all four invocations.) --list-waived retired section has 3 rows including `TriApexEndpointRetainedOmission -> Rigid221Closure  [W3 at 09434d78]  wrapper=...Legacy.Rigid221Wrappers`; --list-legacy prints exactly 5 edges (3 prior + TriApex -> Legacy.Rigid221Wrappers + Legacy.Rigid221Wrappers -> Rigid221Closure). Closed world by jq: frozen forbidden 30 == live 27 + retired 3, disjoint (0 duplicates). Both records canonical (2-space, sorted keys, one trailing newline). base_head 09434d78 is-ancestor-or-equal of HEAD; frozen_graph_sha256 14a8ee55... == shasum of proof-status/cluster-import-edges.json. `jq -S` shows the 27 live rows equal HEAD's 28 minus the TriApex row. The retired row's from/to/reason/planned_retirement are verbatim from the removed row; its `class` \"cross-cluster\" is the class the FROZEN record's edges entry carries for the pair, as proof-status/README.md requires (the removed live row carried no class key).",
+      "name": "5 lint: plain/--list-waived/--list-legacy/--json green; closed world, canonical records, verbatim retired row",
+      "pass": true
+    },
+    {
+      "line": "(a) TriApex row restored to live waivers -> exit 1, \"the pair is also a live waiver row; a pair is either waived or retired, never both\" + stale-waiver + summary mismatch (3 problems). (b) retired row dropped -> exit 1, \"frozen forbidden pair ... is neither waived nor retired\". (c) ingress waiver_pair -> null -> exit 1, \"names wrapper ...Legacy.Rigid221Wrappers but no Legacy exception row links back\". (d) retired_by_wrapper -> null -> exit 1, \"names a retired_waivers row whose 'retired_by_wrapper' is null, not this row's wrapper_module\". The real records were never passed to a mutating command.",
+      "name": "6 mutations: four negative controls on scratch copies each exit 1",
+      "pass": true
+    },
+    {
+      "line": "check exit 0 (\"28 reachable, 6 off-spine; 34/34 reviewed meta_status\", \"factorized 4/28 reachable leaves\", build c76a7b909fa4); --require-factorized TD exit 0; --require-factorized TA exit 0 (receipt block: checked 4, verified 4, v1_warnings 0, missing 24, violations [], registry_drift []); (--require-fresh-refs is gate 7d.) `git diff HEAD -- proof-status/obligations.json` is exactly the materialized TA factorization block (roles, pinned, schema, transitive, verified_at_build; the meta `note` is dropped by the generator's normalization, as in the TD blocks) plus the three TD verified_at_build restamps 4836034d7c65 -> c76a7b909fa4, and nothing else. Independently: all 5 roles and both via hops resolve to exactly one public index record each (open_leaf has_sorry true), the 5 roles are distinct and disjoint from the via hops; recomputed digests reproduce the pins exactly (legacy_wrapper 44a12c8bb75d..., open_leaf f88b7c480d67...); all six chain edges hold in `proof-blueprint search --uses` (legacy_wrapper->coordinator, coordinator->producer, coordinator->eliminator, eliminator->via[0], via[0]->via[1], via[1]->open_leaf), and the direct eliminator->open_leaf edge is absent, so the transitive row is required; the producer's axiom closure is exactly propext, Classical.choice, Quot.sound.",
+      "name": "7a-7c registry: check, --require-factorized TD and --require-factorized TA all exit 0; roles, digests and chain reproduced",
+      "pass": true
+    },
+    {
+      "line": "check --baseline proof-status/baseline --require-fresh-refs -> exit 1: \"FAIL: kernel-mined refs are not fresh / ! --require-fresh-refs: 36 stale mined symbol(s) / ! --require-fresh-refs: 1 never-mined symbol(s) / fix: proof-blueprint refs --refresh\". These are the counts proof-status/baseline/refs-check.txt already records (\"stale: 36 (mined against an older build)\"); the repair is `proof-blueprint refs --refresh`, which this wave and this verifier may not run. Receipt: proof-status/receipts/registry-check-20260826T023143Z.json.",
+      "name": "7d registry strict refs (INHERITED FAILING, not caused by this wave)",
+      "pass": false
+    },
+    {
+      "line": "uv run python -m pytest -q scripts/test_gen_obligation_registry_factorization.py scripts/test_lint_cluster_imports_legacy.py -> \"124 passed in 5.35s\" (exit 0).",
+      "name": "8 tests: the 124 focused tests pass",
+      "pass": true
+    },
+    {
+      "line": "The root build's replayed diagnostics carry 33 warnings for TriApexEndpointRetainedOmission.lean, every one at a line <= 5327, and none at 7, 122, 194, 227 or anywhere in 5362-5400; since the reconstruction of gate 3d proves working lines 1-5363 are HEAD lines 1-5363 with four single-token substitutions that shift no line number, every replayed warning maps to unchanged HEAD text and neither the inserted coordinator (5364-5381) nor the rewritten wrapper proof (5394-5395) contributes one. Legacy/Rigid221Wrappers.lean produces no diagnostic at all: it appears 0 times in the build log, and `lake env lean` on it exits 0 with 0 bytes of output. Token counts HEAD vs now in TriApex: sorry 1 -> 1, axiom 0 -> 0, native_decide 0 -> 0, maxHeartbeats 0 -> 0, unsafe 0 -> 0, set_option 0 -> 0, decide 6 -> 6; the wrapper file has 0 of every one of these.",
+      "name": "9 warnings and tokens: no new warning, no new trust token",
+      "pass": true
+    },
+    {
+      "line": "`git diff --check HEAD` clean on the changed Lean file and proof-status; all six changed/new files end with exactly one newline. Against proof-status/baseline/module-hashes.txt (frozen at base-head f3063069, 284 rows) the glob set lean/.../FrontierLiveClosure.lean + FrontierLiveClosure/*.lean has 9 mismatches and 3 new files: TriApexEndpointRetainedOmission.lean is (i) this wave (working-tree modified) on top of committed 0cac5ce9a; B1Live, JointDeletionCore, Rigid221Closure, Rigid221Placement, TwoDeletionCollision, TwoSourceClosure, TwoSourceFirstFiberCollision, TwoSourceFreshThirdResidual and the 3 new files are (ii) committed prior waves (4b1c21b8, 09ecc561, 2b1cb26d, 2fb26644, 236e6413), all clean in the working tree. Recursively, Legacy/Rigid221Wrappers.lean is the only untracked-or-dirty file among the 87 files new since the baseline, and it is (i) this wave. The foreign-dirty TwoSourceCanonicalSurface.lean and TwoSourceRetainedMinimalCore.lean match the baseline hashes because they were already dirty when the baseline was taken (proof-status/baseline/dirty-files.txt). Nothing is unaccounted for.",
+      "name": "10 hygiene: whitespace clean, one trailing newline, every module-hash mismatch classified",
+      "pass": true
+    },
+    {
+      "line": "live waivers 28 -> 27; retired_waivers 2 -> 3; Legacy exception rows 3 -> 5 and lint-reported legacy edges 3 -> 5; factorized reachable leaves 3/28 -> 4/28 (from the TA check receipt: checked 4, verified 4, missing 24); TriApex 6092 -> 6104 lines (+12); Legacy/Rigid221Wrappers.lean 82 lines; call sites rewritten 3; coordinator 17 lines (4 docstring + 13 theorem).",
+      "name": "11 ROI recomputed from source",
+      "pass": true
+    }
+  ],
+  "generated_at_utc": "2026-08-26T02:33:15Z",
+  "generated_by": "W3-TA gate verifier (independent of the wave author); every gate reproduced from source, no author output trusted",
+  "git_head": "86d42cc02ee81082a18b486b1d8f022573ed6a91",
+  "git_head_short": "86d42cc0",
+  "git_operations_performed": [
+    "read-only only: status, diff, show, log, rev-parse, merge-base. No add, commit, checkout, stash, reset, restore, push, rebase or merge. Nothing staged.",
+    "One bare `lake-build` (root) to confirm the tree is fully built; it rebuilt nothing. `lake env lean` was used twice for single-file #check-style visibility and for the wrapper's diagnostics. `proof-blueprint refs --refresh` was NOT run."
+  ],
+  "head_note": "Bound to commit 86d42cc02ee81082a18b486b1d8f022573ed6a91. content_bound_files holds the sha256 of every path committed at 86d42cc0 (`git show 86d42cc0:<path>`). The gate verifier's pre-commit draft (working-tree hashes at HEAD 09434d78) is kept, labeled, under content_bound_files_working_tree; its gates section is that pre-commit snapshot.",
+  "metadata_corrections": [
+    {
+      "utc": "2026-08-26T02:53:10Z",
+      "kind": "receipt re-bound to the wave commit; claim reference, note resolutions and main-session reverification added; metadata only",
+      "unchanged": "overall_pass=false (inherited strict refs 36+1), source_gates_pass=true, promotion_claim none, claim_scope unchanged"
+    }
+  ],
+  "new_receipts_written_by_this_check": [
+    "proof-status/receipts/registry-check-20260826T022654Z.json",
+    "proof-status/receipts/registry-check-20260826T022903Z.json",
+    "proof-status/receipts/registry-check-20260826T023023Z.json",
+    "proof-status/receipts/registry-check-20260826T023143Z.json"
+  ],
+  "notes_for_main_session": [
+    "retired_head in proof-status/import-waivers.json is 09434d78, the authoring HEAD, because the wave commit does not exist yet. It MUST be rebound to the wave commit in the receipt-only child commit, together with the notes sentence that announces the rebinding.",
+    "legacy-import-exceptions.json `base_head` is likewise 09434d78 and should be reviewed against whatever base the wave commit records.",
+    "content_bound_files holds working-tree hashes. Rehash every listed path from the wave commit (`git show <wave>:<path>`) when the receipt is rebound, and set state/head_note accordingly.",
+    "overall_pass=false is carried solely by the inherited `--require-fresh-refs` item (36 stale + 1 never-mined), the same condition every prior wave receipt records; source_gates_pass=true.",
+    "The wave commit should stage exactly: lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TriApexEndpointRetainedOmission.lean, lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Legacy/Rigid221Wrappers.lean, proof-status/import-waivers.json, proof-status/legacy-import-exceptions.json, proof-status/obligations-meta.json, proof-status/obligations.json. id-assignments.json and frontier-table.generated.md are byte-unchanged and need no staging; the foreign-dirty TwoSource files and docs/live-blueprint.md are not this wave's."
+  ],
+  "observations_not_blocking": [
+    "The brief and the author count the Coordinator.lean call sites differently: 4 calling declarations (:81, :443, :510, :578) versus 5 textual occurrences (:356, :467, :527, :535, :594). Both are correct; the author's phrasing (\"five, not the four the brief named\") reads as a correction where there is none.",
+    "The materialized factorization block in obligations.json omits the meta block's `note` and adds `verified_at_build`. That is the generator's normalization and matches the three TD blocks.",
+    "docs/live-blueprint.md is rewritten by the lake-build wrapper on every successful build. It was already dirty before this wave (it appears in proof-status/baseline/dirty-files.txt) and is not this wave's to stage.",
+    "The author's four registry-check receipts (registry-check-20260826T0212/0213/0214/0216Z) predate this verification and are untracked; this verifier's four are listed under new_receipts_written_by_this_check."
+  ],
+  "overall_note": "overall_pass=false solely because gate 7d (--require-fresh-refs) exits 1 at 36 stale + 1 never-mined, the same counts as proof-status/baseline/refs-check.txt. Every gate that carries the source verdict for this wave passes; source_gates_pass=true.",
+  "overall_pass": false,
+  "promotion_claim": "none",
+  "roi": {
+    "call_sites_rewritten": 3,
+    "closed_world": "30 == 27 + 3, the two lists disjoint; verified independently with jq and again by the lint's own recomputation",
+    "coordinator_lines": 17,
+    "coordinator_theorem_lines": 13,
+    "factorization_receipt_counts": {
+      "checked": 4,
+      "missing": 24,
+      "registry_drift": 0,
+      "v1_warnings": 0,
+      "verified": 4,
+      "violations": 0
+    },
+    "factorized_reachable_leaves_after": "4/28",
+    "factorized_reachable_leaves_before": "3/28",
+    "frozen_forbidden_pairs": 30,
+    "import_edges_scanned_after": 689,
+    "import_edges_scanned_before": 688,
+    "legacy_edges_reported_by_lint_after": 5,
+    "legacy_edges_reported_by_lint_before": 3,
+    "legacy_exception_rows_after": 5,
+    "legacy_exception_rows_before": 3,
+    "legacy_wrapper_file_lines": 82,
+    "live_waiver_rows_after": 27,
+    "live_waiver_rows_before": 28,
+    "retired_waiver_rows_after": 3,
+    "retired_waiver_rows_before": 2,
+    "triapex_line_delta": 12,
+    "triapex_lines_after": 6104,
+    "triapex_lines_before": 6092
+  },
+  "schema": "p97-gate-receipt/v1",
+  "source_gates_note": "Gates 0-6, 7a-7c and 8-11 all PASS. The single red gate (7d, --require-fresh-refs) is the pre-existing 36 stale + 1 never-mined condition recorded in proof-status/baseline/refs-check.txt; it is repaired only by `proof-blueprint refs --refresh`, which this wave and this verifier may not run.",
+  "source_gates_pass": true,
+  "state": "FINAL — bound to W3-TA wave commit 86d42cc0; this receipt ships in the receipt-only child commit of 86d42cc0",
+  "tests": {
+    "command": "uv run python -m pytest -q scripts/test_gen_obligation_registry_factorization.py scripts/test_lint_cluster_imports_legacy.py",
+    "exit_code": 0,
+    "failed": 0,
+    "final_line": "124 passed in 5.35s",
+    "run_by": "this verifier, from the repository root",
+    "total_passed": 124
+  },
+  "wave": "W3-TA",
+  "content_bound_files_working_tree": {
+    "hash_kind": "working-tree",
+    "note": "HISTORICAL — working-tree hashes taken by the gate verifier before the wave commit (HEAD 09434d78). sha256 of each path as it stands in the working tree at HEAD 09434d78; cluster-import-edges.json is the IMMUTABLE frozen record, included unchanged as the authentication basis",
+    "sha256": {
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Legacy/Rigid221Wrappers.lean": "3c7f5ee04c4f79c87d4313f3ccdb7c78e414cd02189aa80f7260d5280b04fd30",
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TriApexEndpointRetainedOmission.lean": "7b0abbd7938506f250b994cabe42c38115b337aa472f3e32a5c33ff44fe49e57",
+      "proof-status/cluster-import-edges.json": "14a8ee5529e3b8eae1f8e617f1de447045b7d4199df2a4f3b0e85c016224066a",
+      "proof-status/frontier-table.generated.md": "0cb5d00f2c542ce082e59b11b7fe9268b22115753f16b07c68772446d8bfbd07",
+      "proof-status/id-assignments.json": "4c1c0a5bfa5956904c1b4266d7a8b4bda4454d3ff1f85b663eae88197d364313",
+      "proof-status/import-waivers.json": "06b96eefbfb34f029da90614533a4ab4c1e47d27244093e9a8f459b55e7b4534",
+      "proof-status/legacy-import-exceptions.json": "0acbf003ef189d37359d3c23536a38653e24cc2482e5709f38146867c974913e",
+      "proof-status/obligations-meta.json": "b7c89d009c929aab4a97cba173e419346b30dcd70c0040222415f811f6db5782",
+      "proof-status/obligations.json": "cd1290f6d3fe4375f95ae87b39023df994cff8dfdfc5dea1532630217d0278e5"
+    }
+  },
+  "wave_commit": {
+    "sha": "86d42cc02ee81082a18b486b1d8f022573ed6a91",
+    "paths": [
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Legacy/Rigid221Wrappers.lean",
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TriApexEndpointRetainedOmission.lean",
+      "proof-status/import-waivers.json",
+      "proof-status/legacy-import-exceptions.json",
+      "proof-status/obligations-meta.json",
+      "proof-status/obligations.json"
+    ]
+  },
+  "note_resolutions": [
+    {
+      "id": "author-note-1",
+      "resolution": "brief named a non-existent module FrontierLiveClosure.FrontierLiveClosure; the aggregator Erdos9796Proof.P97.ATail.FrontierLiveClosure was built instead. Brief-text error, no file change."
+    },
+    {
+      "id": "author-note-2",
+      "resolution": "live waiver rows carry no class key; the retired row's class was taken from the frozen record (cross-cluster), as the README retired-row rule requires."
+    },
+    {
+      "id": "author-note-4",
+      "resolution": "no HEAD build log for a warning diff; the verifier closed this from the byte-identity of every line <= 5361 and the absence of warnings at the six edited regions and in the wrapper (gate 9)."
+    },
+    {
+      "id": "verifier-correction-1",
+      "resolution": "Coordinator.lean has 4 calling declarations (blueprint --uses) with 5 textual sites; the author's 'five, not four' was a non-discrepancy."
+    },
+    {
+      "id": "retired_head",
+      "resolution": "the wave commit recorded retired_head 09434d78 (authoring HEAD); this receipt-only child commit rebinds it to the wave commit sha and the lint passes in both states."
+    }
+  ],
+  "claim_reference": "convo #7495 (claim + ROI posted before any write; Adam's go-ahead for the W3 queue 2026-08-25; foreign claims on TriApexEndpointRetainedOmission.lean released 2026-08-24)",
+  "main_session_reverification": {
+    "utc": "2026-08-26T02:53:10Z",
+    "on": "the staged tree that became 86d42cc0 (byte-identical to the commit)",
+    "results": {
+      "roster_axioms": "spine 28 set-equal, off-spine 6 set-equal, axiom closure diff empty",
+      "byte_identity": "TA leaf 2852-2883 identical (79c11a51); wrapper statement identical (d7c72640); Legacy restatement binder block identical to Rigid221Closure's (8 lines, diff empty); TriApex diff = import line + 3 one-token call sites + 18-line coordinator block + wrapper body (23+/11-)",
+      "tokens": "sorry 1 -> 1 in TriApex, 0 in the wrapper (82 lines)",
+      "lint": "689 import edges scanned, 27 forbidden edges, all waived by 27 authenticated waivers; 3 retired; 5 legacy edges, all listed (exit 0, before and after the retired_head rebind)",
+      "records": "closed world 30 = 27 + 3; retired row TriApex -> Rigid221Closure W3, wrapper Legacy.Rigid221Wrappers; manifest rows Rigid221Wrappers -> Rigid221Closure (null) and TriApex -> Rigid221Wrappers (waiver_pair [TriApex, Rigid221Closure]); base_head 09434d78",
+      "registry_check": "exit 0, receipt registry-check-20260826T024226Z.json",
+      "registry_require_factorized_TD": "exit 0, receipt registry-check-20260826T024857Z.json",
+      "registry_require_factorized_TA": "exit 0, receipt registry-check-20260826T025055Z.json (factorized 4/28)",
+      "registry_require_fresh_refs": "exit 1, 36 stale + 1 never-mined (inherited, unchanged), receipt registry-check-20260826T024154Z.json",
+      "tests": "124 passed (54 lint + 70 registry)",
+      "lean_tree": "git diff --name-only HEAD -- lean/ lists TriApexEndpointRetainedOmission.lean plus the two foreign-dirty TwoSource files; untracked Lean files other than the new wrapper predate the wave (2026-08-17/18)",
+      "whitespace_hygiene": "git diff --check clean; staged hygiene blocking=false issues=0 on both commits",
+      "load_note": "a foreign schur-numbers Lean build loaded the machine (load 24-30) during the main-session gates; foreground 2-minute runs timed out and were repeated in the background with 600 s timeouts"
+    }
+  }
+}
