@@ -21,11 +21,29 @@
   ],
   "build_fingerprint": "33f2659d3428b288434253557166c4e28c9075d909ee46318276d713d955d34b",
   "build_fingerprint_source": "proof-status/obligations.json -> verified_at_build; the bare lake-build at this working tree reports `already fresh — 4090 module(s) unchanged at build 33f2659d3428` and rebuilt nothing",
-  "claim_reference": "#7497",
+  "claim_reference": "#7497 (file claim + ROI, posted before any write); trust-rule finding and decision request #7498",
   "claim_scope": "proof-preserving restructure plus bookkeeping: CROSSBLOCKER eliminator extracted from the two-source dispatch in TwoSourceAlignedLowHits.lean, W3-A packet constructor module; no obligation, statement, axiom or math change; no proof-progress or closure claim; the six P97-TS-* factorization entries are DEFERRED (trust-rule decision pending), obligations-meta.json unchanged",
   "content_bound_files": {
+    "note": "sha256 of every path committed at 1b6e910f (git show 1b6e910f:<path>)",
+    "sha256": {
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSource/Provenance.lean": "898bdd1462bbe0f91f1540e7fd532c464c8bf02d8ab70744f30af9ec356bfe04",
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceAlignedLowHits.lean": "53a5af0874dde963eb38c02840136a7980ac6815b563a0ee0869967c35b45e33",
+      "proof-status/obligations.json": "05e3e44b2d981b3a76f0830fd24e21f0dfa248438dec24a7cda073a4192f7903",
+      "proof-status/receipts/registry-check-20260826T042821Z.json": "eed6df377540870ef925fe1628b0994b3e56603df21061057d21b1e800378e8c",
+      "proof-status/receipts/registry-check-20260826T043139Z.json": "108590ee241a0c82b22535ae12040393497fdbc0ae31c1e65b599dc51dc915ea",
+      "proof-status/receipts/registry-check-20260826T043320Z.json": "57f5b9047489f96848745c38064a66a7b2c6544069568cb475b819293a8597b1",
+      "proof-status/receipts/registry-check-20260826T044338Z.json": "9ecfc4547f9ac01c735dda3e7f57105e1afa55f9fc8a80ad5fa7125bf8582ac2",
+      "proof-status/receipts/registry-check-20260826T044505Z.json": "6f64c5d2ac5af97daf58a3fcd23712206865bebf3cfb9ec626e9be2f79813fcf",
+      "proof-status/receipts/registry-check-20260826T044633Z.json": "35195c0c1945c84a3f51ff2584a26dc5c1692a235273de3f412cc0857494e739",
+      "proof-status/receipts/registry-check-20260826T044758Z.json": "19b938155838e1c2578e129dbc677cd47c55c4338715a85eccf636da33e707b8",
+      "proof-status/receipts/registry-check-20260826T044926Z.json": "2d1b445b7c21013aa11ae02e638f833748862085cbc47919a00e97fd96ebdf05",
+      "proof-status/receipts/registry-check-20260826T050210Z.json": "def4d5b06e2b76dcc312728f03e624090476d611aeb7c651642ec39308fd84c6",
+      "proof-status/receipts/w3-ts-gate-receipt.json": "5916a8fbfd5920c3087937314247cbb300bffa6142eeff513fe7a4e29154d37a"
+    }
+  },
+  "content_bound_files_working_tree": {
     "hash_kind": "working-tree",
-    "note": "sha256 of each path as it stands in the working tree at HEAD 4f3163d3, pre-commit. obligations-meta.json, id-assignments.json and frontier-table.generated.md are listed because the wave's write set includes them; their hashes are the HEAD hashes (unchanged).",
+    "note": "HISTORICAL — working-tree hashes taken by the gate verifier before the wave commit (HEAD 4f3163d3). sha256 of each path as it stands in the working tree at HEAD 4f3163d3, pre-commit. obligations-meta.json, id-assignments.json and frontier-table.generated.md are listed because the wave's write set includes them; their hashes are the HEAD hashes (unchanged).",
     "sha256": {
       "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSource/Provenance.lean": "898bdd1462bbe0f91f1540e7fd532c464c8bf02d8ab70744f30af9ec356bfe04",
       "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceAlignedLowHits.lean": "53a5af0874dde963eb38c02840136a7980ac6815b563a0ee0869967c35b45e33",
@@ -35,7 +53,6 @@
       "proof-status/obligations.json": "05e3e44b2d981b3a76f0830fd24e21f0dfa248438dec24a7cda073a4192f7903"
     }
   },
-  "content_bound_files_working_tree": null,
   "files_written_by_this_verifier": [
     "proof-status/receipts/w3-ts-gate-receipt.json (this file; the 125-byte stub was overwritten)",
     "proof-status/receipts/registry-check-20260826T044338Z.json",
@@ -143,15 +160,34 @@
   ],
   "generated_at_utc": "2026-08-26T04:56:00Z",
   "generated_by": "W3-TS gate verifier (independent of the wave author); every gate reproduced from source, no author output trusted",
-  "git_head": "4f3163d35c661541125036171efdf4f77d276852",
-  "git_head_short": "4f3163d3",
+  "git_head": "1b6e910f6585dae3746d9ed328f611068f1a5ac5",
+  "git_head_short": "1b6e910f",
   "git_operations_performed": [
     "read-only only: status, diff, show, log, rev-parse, shasum. No add, commit, checkout, stash, reset, restore, push, rebase or merge. Nothing staged.",
     "One bare `lake-build` (root) to confirm the tree is fully built; it rebuilt nothing. `lake env lean` was used three times for single-file elaboration (a #check-style visibility file, TwoSource/Provenance.lean, and the working and HEAD copies of TwoSourceAlignedLowHits.lean for a differential warning read). `proof-blueprint refs --refresh` was NOT run."
   ],
-  "head_note": "UNCOMMITTED; working-tree hashes. Nothing from this wave is committed: content_bound_files holds the sha256 of each path as it stands in the working tree at HEAD 4f3163d3. The tree also carries foreign uncommitted changes this wave did not touch (TwoSourceCanonicalSurface.lean, TwoSourceRetainedMinimalCore.lean, several docs/ and scratch/ paths, untracked lean/Erdos9796Proof/TestCrossTmp.lean and others).",
-  "main_session_reverification": null,
-  "metadata_corrections": [],
+  "head_note": "Bound to commit 1b6e910f6585dae3746d9ed328f611068f1a5ac5. content_bound_files holds the sha256 of every path committed at 1b6e910f (`git show 1b6e910f:<path>`). The gate verifier's pre-commit draft (working-tree hashes at HEAD 4f3163d3) is kept, labeled, under content_bound_files_working_tree; its gates section is that pre-commit snapshot.",
+  "main_session_reverification": {
+    "utc": "2026-08-26T05:05:00Z",
+    "on": "the staged tree that became 1b6e910f (byte-identical to the commit)",
+    "results": {
+      "registry_check": "OK: obligations.json matches the live spine (28 reachable, 6 off-spine); 34/34 reviewed meta_status; factorized 4/28 reachable leaves (required: TD, TA); bound to build 33f2659d3428; exit 0; receipt registry-check-20260826T050210Z.json",
+      "lint": "lint_cluster_imports: OK -- 691 import edges scanned, 27 forbidden edges, all waived by 27 authenticated waivers; 3 retired; 5 legacy edges, all listed. (exit 0; 689 -> 691 = the two to-shared imports of TwoSource/Provenance.lean)",
+      "tests": "124 passed (scripts/test_gen_obligation_registry_factorization.py + scripts/test_lint_cluster_imports_legacy.py)",
+      "roster": "spine sorry symbols set-equal to proof-status/baseline/spine-sorry.json (28); off-spine set-equal (6); proof-blueprint axioms Problem97.erdos97_rhs byte-identical to proof-status/baseline/axioms.txt",
+      "provenance_axioms": "Problem97.ATailFrontierLiveClosure.TwoSourceJointDeletionProvenance.nonempty_of_twoSourceCollisionFrame: propext, Classical.choice, Quot.sound (3)",
+      "byte_identity": "TwoSourceAlignedLowHits.lean: HEAD 1-247 == work 1-247; HEAD 248-335 == work 333-420 (docstring, omit, statement and first arm of exists_three_hit_or_collision_crossHit_of_two_sourceExactCollisionRows); HEAD 365-771 == work 435-841 (cmp exit 0 on all three ranges); obligations-meta.json, id-assignments.json, frontier-table.generated.md byte-identical to HEAD 4f3163d3",
+      "tree_delta": "git status --porcelain vs the pre-wave snapshot differs exactly by TwoSourceAlignedLowHits.lean, obligations.json, the untracked TwoSource/ directory and the registry-check receipts; foreign diffs of TwoSourceCanonicalSurface.lean (4c4267daab681bb3) and TwoSourceRetainedMinimalCore.lean (64711158044d921c) unchanged",
+      "strict_refs": "not re-run by the main session; verifier gate 6e: exit 1 with 36 stale + 1 never-mined, identical to proof-status/baseline/refs-check.txt (inherited)"
+    }
+  },
+  "metadata_corrections": [
+    {
+      "utc": "2026-08-26T05:05:00Z",
+      "kind": "receipt re-bound to the wave commit; claim reference, note resolutions and main-session reverification added; metadata only",
+      "unchanged": "overall_pass=false (inherited strict refs 36+1), source_gates_pass=true, promotion_claim none, claim_scope unchanged"
+    }
+  ],
   "new_receipts_written_by_this_check": [
     "proof-status/receipts/registry-check-20260826T044338Z.json (plain check, exit 0)",
     "proof-status/receipts/registry-check-20260826T044505Z.json (--require-factorized TD, exit 0)",
@@ -159,7 +195,40 @@
     "proof-status/receipts/registry-check-20260826T044758Z.json (--require-factorized TS, exit 1 — six P97-TS-* ids, expected while R1 is deferred)",
     "proof-status/receipts/registry-check-20260826T044926Z.json (--require-fresh-refs, exit 1 — 36 stale + 1 never-mined, inherited)"
   ],
-  "note_resolutions": [],
+  "note_resolutions": [
+    {
+      "note": "TRUST-RULE FINDING (R1 blocker): eight symbols on the TwoSource wrapper-side chain carry Lean.ofReduceBool + Lean.trustCompiler; the W3-0b consumer rule rejects them",
+      "resolution": "Confirmed by the main session with a callee-by-callee probe: the native pair enters at TwoSourceClosure.lean:2378 twoCapSourcesSixCenterSourceProvenanceFixedTripleAuditBoundary_of_boundary via SixSurvivorExactRowsBoundary.exists_u3ExactRadiusAuditObstruction (the U3 exact-radius audit certificate), below :3435; the publish target's baseline closure already carries the pair as core-allowed. Posted as convo #7498 with options A (per-block consumer_trust opt-in verified against proof-status/baseline/axioms.txt, producer path stays CLEAN), B (exempt TwoSource) and C (not proposed). No gate rule is changed in this wave; the six blocks are deferred to W3-TS-b after the decision."
+    },
+    {
+      "note": "The six authored blocks are preserved in the author's scratch directory and were not verified by this verifier",
+      "resolution": "Acknowledged. authored-ts-factorization-blocks.json + edit_meta.py + generate-full.log are retained in the lane scratchpad (w3-ts-author/); W3-TS-b re-applies them and the verifier then runs the role / via / digest checks that are N/A here."
+    },
+    {
+      "note": "Any Lean edit invalidates the four verified_at_build stamps; the regenerate is already in the tree",
+      "resolution": "The four-restamp obligations.json (c76a7b909fa4 -> 33f2659d3428 on the TA and three TD blocks; nothing else) is part of the wave commit."
+    },
+    {
+      "note": "The W3 waiver TwoSourceCanonicalSurface -> TriApexEndpointRetainedOmission is NOT retired in this wave",
+      "resolution": "Deferred per #7497: retirement needs an import-line edit plus six call-site edits in the blacklisted TwoSourceCanonicalSurface.lean; waits for the foreign diff to be committed or reverted (Adam). import-waivers.json and legacy-import-exceptions.json are byte-identical to HEAD."
+    },
+    {
+      "note": "TwoSourceCanonicalSurface.lean and TwoSourceRetainedMinimalCore.lean remain foreign-dirty and untouched",
+      "resolution": "Confirmed by the main session: their diff hashes equal the pre-wave snapshot values (4c4267daab681bb3, 64711158044d921c); neither is staged."
+    },
+    {
+      "note": "Stage exactly TwoSourceAlignedLowHits.lean, TwoSource/Provenance.lean and obligations.json (plus receipts); obligations-meta.json, id-assignments.json and frontier-table.generated.md stay at HEAD",
+      "resolution": "Followed: the wave commit stages exactly those three paths plus this receipt and the nine registry-check receipts of this wave (3 author, 5 verifier, 1 main session); the three unchanged registry files are not in the commit."
+    },
+    {
+      "note": "Author-claim correction: the eliminator docstring replaces the mandated registry-entry sentence with a sole-consumer statement",
+      "resolution": "Accepted by the main session: the mandated sentence would assert a registry state that is not in the tree while R1 is deferred; the sole-consumer statement is verified by --uses. Re-read when the P97-TS-CROSSBLOCKER block lands."
+    },
+    {
+      "note": "Author-claim correction: L2 shipped two public theorems (helper nonempty_of_localizedCollisionCommonDeletion and nonempty_of_twoSourceCollisionFrame)",
+      "resolution": "Accepted: the design permits public helpers with docstrings; both carry one and both have the three-core-axiom closure."
+    }
+  ],
   "notes_for_main_session": [
     "TRUST-RULE FINDING (R1 blocker, independently confirmed): the registry factorization checker's ALLOWED_AXIOMS boundary (proof-status/README.md 'Trust boundary (W3-0b)'; scripts/gen_obligation_registry.py) lets a consumer hop add nothing beyond propext, Classical.choice, Quot.sound and sorryAx. Eight symbols on the mandated TwoSource chain carry Lean.ofReduceBool and Lean.trustCompiler as well: false_of_two_exactFourInteriorTwo_distinctRadiusBlockerCollisions_and_all_low_hits (the mandated legacy_wrapper), exists_three_hit_of_two_exactFourInteriorTwo_distinctRadiusBlockerCollisions, exists_three_hit_of_two_collisionRows_capCross_normalForm, exists_three_hit_or_collision_crossHit_of_two_sourceExactCollisionRows, false_of_twoCollisionGlobalSplit, false_of_capSourceThirdCanonicalRowSurface, false_of_twoCapSources_freshOutsideFirstBlockerFiber_viaAcyclicIngress and false_of_twoCapSources_freshOutsideFirstBlockerFiber_acyclicIngress_frame. The native pair enters at TwoSourceClosure.lean:3435 (…_acyclicIngress_frame), which is clean vs HEAD, so it is inherited and not introduced by this wave; the frames below it (:2192, :3025, :11163, :3419) and all three producers are clean. A decision is needed before the six P97-TS-* blocks can land: widen ALLOWED_AXIOMS for native reduction (a scripts/ change), remove the native dependency under TwoSourceClosure.lean:3435 (a blacklisted file), or exempt the TwoSource cluster from the Phase 3 factorization gate.",
     "The six authored blocks and their applier are preserved in the author's scratch directory (authored-ts-factorization-blocks.json, edit_meta.py, generate-full.log). This verifier did not read them into the repository and did not verify their roles, via lists or pinned digests: no P97-TS-* factorization block exists in the gated tree, so those checks are N/A here and must be re-run when the blocks land.",
@@ -198,7 +267,7 @@
   "schema": "p97-gate-receipt/v1",
   "source_gates_note": "Gates 0, 1, 2, 3a-3e, 4, 5, 6a-6d, 7, 8, 9 and 10 all PASS. The single red item (6e, --require-fresh-refs) is the pre-existing 36 stale + 1 never-mined condition recorded in proof-status/baseline/refs-check.txt; it is repaired only by `proof-blueprint refs --refresh`, which this wave and this verifier may not run.",
   "source_gates_pass": true,
-  "state": "COMPLETE — pre-commit, working-tree hashes; R1 deferred",
+  "state": "FINAL — bound to W3-TS wave commit 1b6e910f; this receipt ships in the receipt-only child commit of 1b6e910f",
   "tests": [
     {
       "command": "uv run python -m pytest -q scripts/test_gen_obligation_registry_factorization.py scripts/test_lint_cluster_imports_legacy.py",
@@ -234,5 +303,22 @@
     }
   ],
   "wave": "W3-TS-a",
-  "wave_commit": null
+  "wave_commit": {
+    "sha": "1b6e910f6585dae3746d9ed328f611068f1a5ac5",
+    "paths": [
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSource/Provenance.lean",
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceAlignedLowHits.lean",
+      "proof-status/obligations.json",
+      "proof-status/receipts/registry-check-20260826T042821Z.json",
+      "proof-status/receipts/registry-check-20260826T043139Z.json",
+      "proof-status/receipts/registry-check-20260826T043320Z.json",
+      "proof-status/receipts/registry-check-20260826T044338Z.json",
+      "proof-status/receipts/registry-check-20260826T044505Z.json",
+      "proof-status/receipts/registry-check-20260826T044633Z.json",
+      "proof-status/receipts/registry-check-20260826T044758Z.json",
+      "proof-status/receipts/registry-check-20260826T044926Z.json",
+      "proof-status/receipts/registry-check-20260826T050210Z.json",
+      "proof-status/receipts/w3-ts-gate-receipt.json"
+    ]
+  }
 }
