@@ -1,12 +1,12 @@
 {
   "schema": "p97-gate-receipt/v1",
   "wave": "W3-0e-fix",
-  "state": "FINAL — bound to W3-0e-fix wave commit 00f0d377; this receipt ships in the receipt-only child commit of 00f0d377",
+  "state": "FINAL — bound to W3-0e-fix wave commit 00f0d377; this receipt ships in a receipt-only DESCENDANT commit of 00f0d377 (ancestry 00f0d377 -> 3a184355 -> f695bdb6), not its direct child",
   "generated_by": "W3-0e-fix re-verifier (independent of the fix author and of the earlier verifier; no build rights, no lake, no `proof-blueprint refs --refresh`, no `proof-blueprint sync`).  Every gate was re-run from source; no author output and no earlier-verifier output was reused as evidence. All three end-to-end `generate` runs were made by this verifier on its OWN copies of proof-status, never on proof-status itself.  FINAL PASS (2026-08-26T17:12:02Z), by a third checker independent of the fix author and of both earlier verifiers: `git diff -- scripts/gen_obligation_registry.py proof-status/README.md` was read in full; the four documentation defects were each re-decided by reading the current text at its new line numbers and by importing scripts/gen_obligation_registry.py and probing it directly (parse_consumer_trust with an absent key and with a present null; export_live_closure against a target_dir that is a FILE; the two docstrings by inspection of __doc__ and inspect.getsource); the three fix files were re-hashed; pytest and the import lint were re-run; and `ruff check` was compared between HEAD's copy of the script and the working tree.  No `lake-build`, no `proof-blueprint refs --refresh`, no `proof-blueprint sync`, and no `gen_obligation_registry.py generate` or `check` run of any kind — the end-to-end evidence in gates 1-5 is the previous verifier's and is carried forward, not re-derived.",
   "generated_at_utc": "2026-08-26T17:12:02Z",
-  "git_head": "00f0d377f",
+  "git_head": "00f0d377f860556d6b5fca343bfa817c67eb1724",
   "git_head_short": "00f0d377",
-  "head_note": "Bound to commit 00f0d377f. content_bound_files holds the sha256 of every path committed at 00f0d377 (`git show 00f0d377:<path>`). The gate verifier's pre-commit draft (working-tree hashes at HEAD fad368f6) is kept, labeled, under content_bound_files_working_tree; its gates section is that pre-commit snapshot.",
+  "head_note": "Bound to commit 00f0d377f860556d6b5fca343bfa817c67eb1724. content_bound_files holds the sha256 of every path committed at 00f0d377 (`git show 00f0d377:<path>`). The gate verifier's pre-commit draft (working-tree hashes at HEAD fad368f6) is kept, labeled, under content_bound_files_working_tree; its gates section is that pre-commit snapshot.",
   "baseline_reference": "proof-status/baseline (axioms.txt = the `proof-blueprint axioms Problem97.erdos97_rhs` export; the six names it records are propext, sorryAx, Classical.choice, Lean.ofReduceBool, Lean.trustCompiler, Quot.sound, and base-head.txt is f3063069, the source_head the live registry carries).  This verifier did not re-run the export directly; the end-to-end --fresh run in gate 4 ran it through export_live_closure and accepted all 24 declarations from its output.",
   "build_fingerprint": "5902ba928947b2ac2fda7b3cc06ff430f9e95f86f9046c96043581865b0a536c",
   "build_fingerprint_source": "The live backend build id as stamped by this verifier's end-to-end `generate --fresh` AND `generate --baseline` runs on its copies; identical to the build id every materialized block in the live proof-status/obligations.json already carries.",
@@ -254,6 +254,10 @@
       "utc": "2026-08-26T17:10:00Z",
       "kind": "receipt re-bound to the wave commit; claim reference, note resolutions and main-session reverification added; metadata only",
       "unchanged": "overall_pass=true, source_gates_pass=true, promotion_claim none, claim_scope unchanged"
+    },
+    {
+      "utc": "2026-08-26T18:05:00Z",
+      "kind": "receipt framing correction (auditor #7524): git_head and wave_commit.sha now the full 40-character wave SHA; state says descendant, not direct child; ancestry 00f0d377 -> 3a184355 -> f695bdb6; content_bound_files unchanged"
     }
   ],
   "observations_not_blocking": [
@@ -292,7 +296,7 @@
     }
   },
   "wave_commit": {
-    "sha": "00f0d377f",
+    "sha": "00f0d377f860556d6b5fca343bfa817c67eb1724",
     "paths": [
       "proof-status/README.md",
       "proof-status/receipts/w3-0e-fix-gate-receipt.json",
