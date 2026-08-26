@@ -302,8 +302,10 @@ entry:
   block sits on, and prose is not machine-checkable.
 - An entry whose reviewed metadata carries no v2 block gets NO `factorization`
   key, and a v1 block is never materialized (it is never a verified
-  factorization). Today no entry carries a block, so `obligations.json`
-  regenerates byte-identical.
+  factorization). An entry whose block PASSED the live check of sections 3
+  and 4 carries the materialized copy described in this section; the census
+  line of `check` (section 5) reports how many reachable leaves are
+  factorized.
 - Only a block that PASSED the live check of sections 3 and 4 is materialized
   (W3-0c): `generate` hands `build_registry` the VERIFIED ID set, and an
   unverified block fails the generator gate rather than reaching the registry
@@ -322,6 +324,10 @@ following is registry drift and exits 1 naming the ID and the differing key:
 
 The fix is always to regenerate:
 `uv run python scripts/gen_obligation_registry.py generate --fresh --out proof-status`.
+That run re-exports the roster AND the publish target's axiom closure live, so a
+`consumer_trust` declaration is gated against the closure of the tree being
+regenerated; `--fresh` never reads `proof-status/baseline/axioms.txt`, which is
+what `--baseline` and `check` read instead.
 
 ### 3. Stable identity and the alias migration
 
@@ -411,17 +417,26 @@ clean`.
 
 **Declared consumer trust (W3-0e).** A v2 block MAY carry one optional key,
 `"consumer_trust": [<axiom name>, ...]` — a non-empty list of unique non-empty
-strings; anything else is `<ID>: consumer_trust must be a non-empty list of
-unique axiom names`. A listed name is ACCEPTED only when all of the following
+strings. Only an ABSENT key declares nothing; a key that is present with any
+other value, an explicit `null` included, is `<ID>: consumer_trust must be a
+non-empty list of unique axiom names` (auditor #7518). A listed name is ACCEPTED only when all of the following
 hold, and each failure prints its own violation line naming the ID and the
 name:
 
 - it is not `sorryAx` — an open obligation is never declarable trust;
 - it is not already in `ALLOWED_AXIOMS` — such a name declares nothing;
-- the publish target's RECORDED closure carries it. That closure is
-  `proof-status/baseline/axioms.txt`, the `proof-blueprint axioms` export for
-  `Problem97.erdos97_rhs`, parsed by the same reader the gate uses everywhere
-  else. A file that is absent or does not parse is reported as
+- the publish target's closure carries it. WHICH closure is read follows the
+  source mode, and both are a `proof-blueprint axioms` export of
+  `Problem97.erdos97_rhs` under the name `axioms.txt`, parsed by the same reader
+  the gate uses everywhere else:
+  - `generate --baseline` and every `check` read the RECORDED export kept with
+    the baseline, `proof-status/baseline/axioms.txt` for the committed one;
+  - `generate --fresh`, which cannot be given a baseline directory at all, reads
+    the LIVE export the run itself makes, written into the same throwaway export
+    directory as the two roster exports.
+
+  A closure that could not be read — an absent or unparseable baseline file, or
+  a live axioms export that could not be run or did not parse — is reported as
   `<ID>: cannot verify consumer_trust: the publish target's recorded closure
   (baseline axioms.txt) could not be read` and accepts nothing — the rule is
   fail-closed, exactly like an unreadable build fingerprint.

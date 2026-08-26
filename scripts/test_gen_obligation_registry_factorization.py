@@ -26,7 +26,9 @@ The W3-0b sections cover, in order:
    receipts included, inside the copy;
 5. declared consumer trust (W3-0e) - the optional ``consumer_trust`` key, which
    widens the boundary on CONSUMER-SIDE hops only, only for names the publish
-   target's recorded closure already carries, and never for the producer path.
+   target's closure already carries (the RECORDED baseline export under
+   ``--baseline`` and every ``check``, the run's own LIVE export under
+   ``--fresh``), and never for the producer path.
 
 Run with::
 
@@ -1929,8 +1931,10 @@ def test_command_level_refused_generate_creates_no_output_file(tmp_path):
 #
 # A v2 block MAY carry the optional ``consumer_trust`` key.  A listed name is
 # ACCEPTED only when it is not ``sorryAx``, is not already in ALLOWED_AXIOMS,
-# and IS carried by the publish target's RECORDED closure
-# (proof-status/baseline/axioms.txt, read by ``read_declarable_trust``).  An
+# and IS carried by the publish target's closure, read by
+# ``read_declarable_trust`` from the RECORDED baseline export
+# (proof-status/baseline/axioms.txt) under ``--baseline`` and every ``check``,
+# and from the run's own LIVE axioms export under ``--fresh``.  An
 # accepted name is acceptable on CONSUMER-SIDE hops - the open leaf included -
 # and NEVER on the producer path, and a name no consumer-side hop carries is
 # itself a violation, so the key can never be a blanket widening.
@@ -1994,6 +1998,31 @@ def test_read_declarable_trust_reads_the_recorded_closure_or_fails_closed(tmp_pa
         "no header here\n", encoding="utf-8"
     )
     assert gor.read_declarable_trust(tmp_path) is None
+    # Undecodable bytes fail closed the same way (auditor #7518, non-blocking).
+    (tmp_path / gor.BASELINE_AXIOMS_FILE).write_bytes(b"\xff\xfe\x00axioms")
+    assert gor.read_declarable_trust(tmp_path) is None
+
+
+def test_an_explicit_null_consumer_trust_is_present_not_absent():
+    """Auditor #7518 blocker 2: ``"consumer_trust": null`` must not verify.
+
+    Key ABSENCE declares nothing; a PRESENT null is the shape violation, so a
+    block carrying it is never verified and never materialized.
+    """
+    assert gor.parse_consumer_trust(OID, {}, RECORDED_CLOSURE) == ([], [])
+    accepted, violations = gor.parse_consumer_trust(
+        OID, {gor.CONSUMER_TRUST_KEY: None}, RECORDED_CLOSURE
+    )
+    assert accepted == []
+    assert violations == [
+        OID + ": consumer_trust must be a non-empty list of unique axiom names"
+    ]
+    result = run(
+        block(consumer_trust=None),
+        backend(closures=closures_with(COORDINATOR)),
+        declarable=RECORDED_CLOSURE,
+    )
+    assert result["verified_ids"] == []
 
 
 def test_native_trust_on_a_consumer_hop_without_the_key_is_still_rejected():
@@ -2192,6 +2221,9 @@ def test_an_unreadable_recorded_closure_is_cannot_verify_not_accepted():
         [""],
         [NATIVE_TRUST, 7],
         {},
+        # An explicit null is a PRESENT malformed value, not key absence
+        # (auditor #7518).
+        None,
     ],
 )
 def test_a_malformed_consumer_trust_value_is_one_shape_violation(value):
@@ -2389,3 +2421,140 @@ def test_command_level_generate_refuses_a_declaration_without_a_recorded_closure
     # recorded closure only ever refuses a block that declares trust.
     drop_consumer_trust(status, obligation_id)
     assert run_generate(status, migration_backend(old_symbol), exports) == 0
+
+
+# -- the FRESH mode of the same command (W3-0e, auditor #7513) ---------------
+#
+# ``generate --fresh`` is the documented regeneration command, and --fresh and
+# --baseline are mutually exclusive: there is NO baseline directory to read a
+# recorded closure from.  The closure therefore travels with the roster records
+# through the ``export_source`` seam, which the live run fills from the axioms
+# export ``export_fresh`` makes into the same throwaway directory as the two
+# roster exports.  A seam that hands back only ``(spine, offspine)`` carries no
+# closure at all and is fail-closed.
+
+
+def fresh_exports(status: Path, old_symbol: str, closure: set) -> tuple:
+    """The 3-tuple a live ``--fresh`` gather produces: rosters + live closure."""
+    spine, offspine = renamed_exports(status, old_symbol)
+    return spine, offspine, set(closure)
+
+
+def run_generate_fresh(status: Path, backend_obj, exports) -> int:
+    """The documented regeneration command: ``generate --fresh --out <dir>``."""
+    return gor.main(
+        [
+            "generate",
+            "--fresh",
+            "--out", str(status),
+            "--strict-meta",
+        ],
+        backend_factory=lambda: backend_obj,
+        export_source=lambda: exports,
+    )
+
+
+def coordinator_trust_backend(old_symbol: str, axiom=NATIVE_TAGGED) -> gor.MappingBackend:
+    """One consumer-side carrier, so ONE declared name pays for itself."""
+    return migration_backend(
+        old_symbol,
+        closure_overrides={MIGRATED_COORDINATOR: list(CONSUMER_CLOSURE) + [axiom]},
+    )
+
+
+def test_w3_0e_fresh_generate_accepts_a_name_the_live_closure_carries(
+    tmp_path, capsys
+):
+    status = copy_proof_status(tmp_path)
+    entry = first_reachable_entry(status)
+    old_symbol = entry["lean_decl"]
+    obligation_id = entry["id"]
+
+    inject_factorization(status, obligation_id, old_symbol)
+    declare_consumer_trust(status, obligation_id, [NATIVE_TRUST])
+    # The RECORDED file is removed: --fresh never reads it, so acceptance here
+    # can only come from the LIVE closure the run itself exported.
+    (status / "baseline" / gor.BASELINE_AXIOMS_FILE).unlink()
+    backend_obj = coordinator_trust_backend(old_symbol)
+    exports = fresh_exports(status, old_symbol, RECORDED_CLOSURE)
+
+    assert run_generate_fresh(status, backend_obj, exports) == 0
+    out = capsys.readouterr().out
+    assert "1 with declared consumer_trust (" + NATIVE_TRUST + ")" in out
+
+    # The registry WAS written, and it carries the materialized declaration.
+    registry = read_status_json(status, gor.REGISTRY_NAME)
+    migrated = [item for item in registry["obligations"] if item["id"] == obligation_id]
+    assert len(migrated) == 1
+    assert migrated[0][gor.FACTORIZATION_KEY][gor.CONSUMER_TRUST_KEY] == [NATIVE_TRUST]
+
+
+def test_w3_0e_fresh_generate_rejects_a_name_the_live_closure_does_not_carry(
+    tmp_path, capsys
+):
+    status = copy_proof_status(tmp_path)
+    entry = first_reachable_entry(status)
+    old_symbol = entry["lean_decl"]
+    obligation_id = entry["id"]
+
+    inject_factorization(status, obligation_id, old_symbol)
+    declare_consumer_trust(status, obligation_id, [CORE_TAGGED_NATIVE[1]])
+    backend_obj = coordinator_trust_backend(old_symbol, axiom=CORE_TAGGED_NATIVE)
+    # The live closure carries the OTHER native name, not the declared one.
+    exports = fresh_exports(status, old_symbol, RECORDED_CLOSURE)
+    before = output_bytes(status)
+
+    assert run_generate_fresh(status, backend_obj, exports) == 1
+    err = capsys.readouterr().err
+    assert (
+        obligation_id + ": consumer_trust lists " + CORE_TAGGED_NATIVE[1]
+        + ", which the publish target's recorded closure does not carry"
+    ) in err
+    # Not accepted, so the hop carrying it is refused as well, and nothing was
+    # written: the hard gate is taken before any output file is touched.
+    assert "axiom closure contains " + CORE_TAGGED_NATIVE[1] in err
+    assert_outputs_unchanged(status, before)
+
+
+def test_w3_0e_fresh_generate_without_a_live_closure_is_cannot_verify(
+    tmp_path, capsys
+):
+    """A 2-tuple seam carries no closure, and --fresh must NOT fall back."""
+    status = copy_proof_status(tmp_path)
+    entry = first_reachable_entry(status)
+    old_symbol = entry["lean_decl"]
+    obligation_id = entry["id"]
+
+    inject_factorization(status, obligation_id, old_symbol)
+    declare_consumer_trust(status, obligation_id, [NATIVE_TRUST])
+    backend_obj = coordinator_trust_backend(old_symbol)
+    # The copy's RECORDED baseline file is left in place and DOES carry the
+    # declared name; a fresh run that read it would wrongly accept.
+    recorded = gor.read_declarable_trust(status / "baseline")
+    assert recorded is not None and NATIVE_TRUST in recorded
+    exports = renamed_exports(status, old_symbol)
+    assert len(exports) == 2
+    before = output_bytes(status)
+
+    assert run_generate_fresh(status, backend_obj, exports) == 1
+    err = capsys.readouterr().err
+    assert "cannot verify consumer_trust" in err
+    assert obligation_id in err
+    assert_outputs_unchanged(status, before)
+
+    # The SAME fresh run with no declaration still generates: a closure that
+    # could not be read only ever refuses a block that declares trust.
+    drop_consumer_trust(status, obligation_id)
+    assert run_generate_fresh(status, migration_backend(old_symbol), exports) == 0
+
+
+def test_w3_0e_normalize_exports_is_fail_closed_on_the_two_tuple_seam():
+    spine, offspine = [{"symbol": "A"}], [{"symbol": "B"}]
+    assert gor.normalize_exports((spine, offspine)) == gor.ExportBundle(
+        spine, offspine, None
+    )
+    assert gor.normalize_exports((spine, offspine, RECORDED_CLOSURE)) == (
+        gor.ExportBundle(spine, offspine, RECORDED_CLOSURE)
+    )
+    with pytest.raises(gor.RegistryError):
+        gor.normalize_exports((spine,))

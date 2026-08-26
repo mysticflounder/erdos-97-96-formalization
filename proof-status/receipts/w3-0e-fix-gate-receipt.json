@@ -1,0 +1,333 @@
+{
+  "schema": "p97-gate-receipt/v1",
+  "wave": "W3-0e-fix",
+  "state": "PRE-COMMIT - every gate reproduced from source by a SECOND, independent re-verifier against the WORKING TREE at git_head fad368f6; nothing is committed and wave_commit is null.  This receipt REPLACES the earlier W3-0e-fix receipt, which was written at 16:15:07Z, BEFORE the main session's auditor-#7518 follow-up edits (script 16:20:45Z, README 16:21:16Z, tests 16:22:50Z).  Every number in it that the follow-up moved - the three content hashes, the 155-test count, the 15/3/2 hunk counts - is superseded here.  FINAL PASS 2026-08-26T17:12:02Z: the FOUR non-blocking documentation defects this receipt recorded in metadata_corrections have been FIXED by the main session and re-checked here from source; each is now marked RESOLVED with what was checked.  All five gates stay PASS, tests stay 157, and the content hashes of scripts/gen_obligation_registry.py and proof-status/README.md have moved with the fix (the test file is unmoved).  wave_commit is still null and nothing is committed or staged.",
+  "generated_by": "W3-0e-fix re-verifier (independent of the fix author and of the earlier verifier; no build rights, no lake, no `proof-blueprint refs --refresh`, no `proof-blueprint sync`).  Every gate was re-run from source; no author output and no earlier-verifier output was reused as evidence. All three end-to-end `generate` runs were made by this verifier on its OWN copies of proof-status, never on proof-status itself.  FINAL PASS (2026-08-26T17:12:02Z), by a third checker independent of the fix author and of both earlier verifiers: `git diff -- scripts/gen_obligation_registry.py proof-status/README.md` was read in full; the four documentation defects were each re-decided by reading the current text at its new line numbers and by importing scripts/gen_obligation_registry.py and probing it directly (parse_consumer_trust with an absent key and with a present null; export_live_closure against a target_dir that is a FILE; the two docstrings by inspection of __doc__ and inspect.getsource); the three fix files were re-hashed; pytest and the import lint were re-run; and `ruff check` was compared between HEAD's copy of the script and the working tree.  No `lake-build`, no `proof-blueprint refs --refresh`, no `proof-blueprint sync`, and no `gen_obligation_registry.py generate` or `check` run of any kind — the end-to-end evidence in gates 1-5 is the previous verifier's and is carried forward, not re-derived.",
+  "generated_at_utc": "2026-08-26T17:12:02Z",
+  "git_head": "fad368f6930f3f048586bb99bf8db0034f0bb1cc",
+  "git_head_short": "fad368f6",
+  "head_note": "HEAD did not move during verification (re-checked at the end).  The fix is UNCOMMITTED and nothing is staged: content_bound_files holds the sha256 of the working-tree bytes of the three files in scope.  The worktree carries about 408 dirty files from other lanes; two of them (proof-status/obligations.json, proof-status/obligations-meta.json) are generated registry files and are attributed to the W3-R221-b registry lane, not to this fix.",
+  "baseline_reference": "proof-status/baseline (axioms.txt = the `proof-blueprint axioms Problem97.erdos97_rhs` export; the six names it records are propext, sorryAx, Classical.choice, Lean.ofReduceBool, Lean.trustCompiler, Quot.sound, and base-head.txt is f3063069, the source_head the live registry carries).  This verifier did not re-run the export directly; the end-to-end --fresh run in gate 4 ran it through export_live_closure and accepted all 24 declarations from its output.",
+  "build_fingerprint": "5902ba928947b2ac2fda7b3cc06ff430f9e95f86f9046c96043581865b0a536c",
+  "build_fingerprint_source": "The live backend build id as stamped by this verifier's end-to-end `generate --fresh` AND `generate --baseline` runs on its copies; identical to the build id every materialized block in the live proof-status/obligations.json already carries.",
+  "promotion_claim": "none",
+  "claim_scope": "registry tooling only: (a) which axiom-closure export the optional consumer_trust gate reads under `generate --fresh` (auditor #7513), and (b) how a PRESENT consumer_trust key is distinguished from an ABSENT one, plus two fail-closed hardenings (auditor #7518).  No obligation, statement, axiom, import, Lean source or proof-progress claim.  No gate rule, no violation string, no schema key and no CLI flag changed; the only new behaviour is that an explicit null now takes the EXISTING shape-violation branch instead of being read as key absence.",
+  "source_gates_pass": true,
+  "source_gates_note": "Gates 1-5 all PASS.  The strict-refs gate (--require-fresh-refs) was deliberately NOT run and is NOT counted: it is the inherited stale-refs condition recorded in proof-status/baseline/refs-check.txt, repaired only by `proof-blueprint refs --refresh`, which this verifier may not run.  A whole-scripts/ pytest sweep was started as a bonus check and was killed by its own 900 s timeout before finishing; it is NOT counted as evidence in either direction.",
+  "overall_pass": true,
+  "overall_note": "Both findings are REAL and both are FIXED, and the fix is confined to what was asked.  #7513: `generate --fresh` now exits 0 end to end on a copy of the current proof-status and reports `factorized 28/28 reachable leaves (24 with declared consumer_trust (Lean.ofReduceBool, Lean.trustCompiler))`.  #7518: `parse_consumer_trust` now returns ([], []) ONLY for key absence, and an explicit null takes the shape-violation branch - verified by direct probe and, end to end, by a third copy in which one block's consumer_trust was set to null: exit 1, the first violation is `P97-TS-CROSSBLOCKER: consumer_trust must be a non-empty list of unique axiom names`, and no output file was written.  The --baseline path is bit-for-bit unchanged: a `generate --baseline proof-status/baseline` run on a second copy produced an obligations.json BYTE-IDENTICAL to the live one, with id-assignments.json and frontier-table.generated.md identical as well.  Three documentation defects were found (see metadata_corrections); none of them changes behaviour and none blocks the commit.  FINAL PASS 2026-08-26T17:12:02Z: all four of those documentation defects have since been fixed by the main session and re-verified here from source; see note_resolutions and the `resolution` field added to each metadata_corrections entry.  No gate verdict changes: gates 1-5 still PASS, the 157-test count reproduces, and the fix is documentation-only — `parse_consumer_trust`, `normalized_factorization_block` and `read_declarable_trust` behave exactly as this receipt recorded, re-confirmed by direct probe.",
+  "blockers": [],
+  "gates": [
+    {
+      "name": "1 source review: both findings are addressed, nothing beyond the #7513 fix and the #7518 follow-up changed, and no gate rule, violation string, schema key, CLI flag or --baseline behaviour moved",
+      "pass": true,
+      "line": "Full `git diff` read for all three files: 17 hunks in gen_obligation_registry.py, 5 in the test file, 3 in proof-status/README.md (was 15/3/2 before the follow-up).  Every hunk is accounted for by #7513 or #7518.  #7518 ITEMS ALL PRESENT. (a) parse_consumer_trust :1780-1783 now reads `if CONSUMER_TRUST_KEY not in block: return [], []` then `value = block[CONSUMER_TRUST_KEY]`, replacing the old `value = block.get(...)` / `if value is None` pair, so a PRESENT null falls through to the UNCHANGED well_formed test and the UNCHANGED violation string.  (b) normalized_factorization_block :1465-1475 now keys on `if CONSUMER_TRUST_KEY in block` and assigns `sorted(declared)` only when the value is a list of str, else the value itself, so any PRESENT value is carried through.  (c) read_declarable_trust :1062-1065 catches `(OSError, UnicodeDecodeError)`.  (d) export_live_closure :596-611 has the `write_text` INSIDE the `try` whose `except OSError` returns.  (e) README: the stale sentence `Today no entry carries a block, so obligations.json regenerates byte-identical` is gone (hunk @@ -305,2 +305,3 @@), and the section-4 paragraph now says `Only an ABSENT key declares nothing; a key that is present with any other value, an explicit null included, is <ID>: consumer_trust must be a non-empty list of unique axiom names (auditor #7518)`.  (f) tests: `None` added to the malformed parametrization (6 -> 7 cases), an undecodable-bytes assertion appended to test_read_declarable_trust_reads_the_recorded_closure_or_fails_closed :1987, and a new test_an_explicit_null_consumer_trust_is_present_not_absent :2006. NOTHING ELSE CHANGED, proved structurally rather than by eye.  A non-docstring STRING-LITERAL diff of the whole module (ast walk, docstrings excluded) removes ZERO literals and adds exactly two, both inside normalize_exports' new RegistryError (`export_source must return (spine, offspine) or (spine, offspine, declarable_trust), got ` and ` value(s)`): no violation string, no schema key value and no flag string moved.  A per-top-level-object structural diff (ast unparse, docstrings stripped) shows ONLY: three new objects (ExportBundle, export_live_closure, normalize_exports), seven changed bodies (command_check, command_generate, export_fresh, gather_exports, normalized_factorization_block, parse_consumer_trust, read_declarable_trust), and two new module statements (`from typing import NamedTuple`, `AXIOMS_ARGS = ['axioms', PUBLISH_TARGET]`). Nothing was removed.  build_parser is IDENTICAL, so the argparse surface is untouched; check_factorizations, parse_axioms_output and compare_registry_factorizations are IDENTICAL, so the four consumer_trust checks, their order and the per-hop rules are untouched.  In the test file the same diff shows five added test functions plus three helpers, one changed body (test_read_declarable_trust_..., additive only) and one changed decorator (the `None` parametrize case); no test was removed or weakened.  --BASELINE UNCHANGED: --fresh/--baseline is still a required mutually exclusive group, and command_generate now computes `exports.declarable_trust if args.fresh else read_declarable_trust(baseline_dir)`, so the --baseline value is the identical pre-fix call; command_check :3339 still passes read_declarable_trust(baseline_dir) from its REQUIRED --baseline. gather_exports' --baseline branch performs one EXTRA read_declarable_trust(baseline_dir) whose result command_generate discards; the function is pure and cannot raise past its own handlers, so it cannot change --baseline behaviour - confirmed byte-for-byte by gate 4.  LINT: `ruff check` reports the SAME five findings (EXE001, DTZ007, UP017, FURB188, RUF059) on the worktree as on HEAD, so the follow-up adds no new lint finding; the repository is not `ruff format` clean at HEAD either."
+    },
+    {
+      "name": "2 direct probes: absence vs present null, undecodable bytes, and an export target that cannot be written",
+      "pass": true,
+      "line": "All four probes run by this verifier with `uv run python -c`, importing scripts/gen_obligation_registry.py by file path. (1) parse_consumer_trust('P97-TS-CROSSBLOCKER', {}, closure) -> ([], []) exactly.  (2) parse_consumer_trust('P97-TS-CROSSBLOCKER', {'consumer_trust': None}, closure) -> ([], ['P97-TS-CROSSBLOCKER: consumer_trust must be a non-empty list of unique axiom names']) - the PRE-EXISTING shape string, unmodified, and accepted == [].  A control with a well-formed list still accepts: {'consumer_trust': ['Lean.ofReduceBool']} -> (['Lean.ofReduceBool'], []).  (3) read_declarable_trust on a temp directory whose axioms.txt is the raw bytes b'\\xff\\xfe' -> None (pre-fix it raised UnicodeDecodeError).  (4) export_live_closure on a target_dir that is a FILE, not a directory -> returned None with NO exception (the write_text raises NotADirectoryError, an OSError, and is now caught); pre-fix that write sat outside the try.  Two extra materializer probes: normalized_factorization_block on a v2 block with 'consumer_trust': None yields a materialized dict CARRYING 'consumer_trust': None, and on a block without the key yields a dict with NO consumer_trust key.  A v1 block still materializes to None, so the v1 rule is untouched."
+    },
+    {
+      "name": "3 tests: 157 pass, and the three new/changed #7518 tests fail against the pre-fix script exactly where they claim to",
+      "pass": true,
+      "line": "`uv run python -m pytest -q scripts/test_gen_obligation_registry_factorization.py scripts/test_lint_cluster_imports_legacy.py` -> `157 passed in 6.53s`, exit 0, run by this verifier.  The count is 155 + 2, and the +2 is structurally accounted for: exactly one new test function (test_an_explicit_null_consumer_trust_is_present_not_absent) plus exactly one new parametrize case (`None` added to test_a_malformed_consumer_trust_value_is_one_shape_violation, 6 -> 7); the undecodable-bytes evidence was appended to an EXISTING test function, so it adds no test id.  REGRESSION TIGHTNESS, #7518: the NEW test file was run against `git show HEAD:scripts/gen_obligation_registry.py` in a scratch scripts/ tree (HEAD script + the new tests + symlinked proof-status and lean) -> `3 failed, 6 passed, 94 deselected in 0.47s` for -k 'explicit_null or read_declarable_trust_reads or malformed_consumer_trust'.  The three failures are exactly the three claimed: test_read_declarable_trust_reads_the_recorded_closure_or_fails_closed (UnicodeDecodeError: 'utf-8' codec can't decode byte 0xff in position 0), test_an_explicit_null_consumer_trust_is_present_not_absent (AssertionError: assert [] == ['FIXTURE-TD-...axiom names'], i.e. the pre-fix reader treated the null as absence and raised no violation), and test_a_malformed_consumer_trust_value_is_one_shape_violation[None] (the shape line is absent from the messages).  The six OTHER parametrized malformed cases pass pre-fix, so the parametrization was widened, not rewritten.  REGRESSION TIGHTNESS, #7513 (re-run, matching the earlier receipt): -k 'w3_0e_fresh or normalize_exports' -> `3 failed, 1 passed, 99 deselected in 0.38s`; the two command-level fresh tests fail with `ValueError: too many values to unpack (expected 2)` at the pre-fix seam and the seam test with `AttributeError: module 'gen_obligation_registry' has no attribute 'normalize_exports'`, while test_w3_0e_fresh_generate_without_a_live_closure_is_cannot_verify passes pre-fix by construction - it is a wrong-fix guard (against a silent baseline fallback), not a #7513 regression test.  The pre-fix scratch tree was deleted after use."
+    },
+    {
+      "name": "4 end-to-end on COPIES: `generate --fresh` exits 0 with all 24 declarations accepted, and `generate --baseline` reproduces the live registry byte-identically",
+      "pass": true,
+      "line": "FRESH.  cp -R proof-status <scratch>/proof-status-copy, then, detached, `timeout 3000 uv run python scripts/gen_obligation_registry.py generate --fresh --out <scratch>/proof-status-copy`; EXIT=0 after 11m44s (16:25:08Z -> 16:36:52Z).  stderr was EMPTY (0 bytes) and stdout had no occurrence of `cannot verify`, `ERROR`, `FAIL` or `WARNING`.  The four stdout lines were `wrote <copy>/obligations.json: 28 reachable, 6 off-spine, 34/34 with reviewed meta_status`, `wrote <copy>/id-assignments.json`, `wrote <copy>/frontier-table.generated.md`, and the census line `factorized 28/28 reachable leaves (24 with declared consumer_trust (Lean.ofReduceBool, Lean.trustCompiler))`.  24 is the full set: the live obligations-meta.json carries 28 factorization blocks of which exactly 24 declare consumer_trust, so every declaration was accepted from the LIVE export, through the real path export_fresh -> export_live_closure -> read_declarable_trust(temp_dir) that no unit test reaches.  COMPARISON with the live registry, `jq -S` after dropping .source_head and every .obligations[].factorization.verified_at_build: 20 of the 34 entries differ, and in EVERY case the only differing key is `line`; an entry-by-entry diff shows no other key anywhere and no top-level key other than .obligations.  Those 20 line stamps moved because the live registry was generated at source_head f3063069 while other lanes have since edited Lean files in the worktree (for example P97-R221-EXACTFOURPHYSICAL 778 -> 1325, P97-TD-SURVIVALSQUARE 704 -> 647).  Stamps: copy source_head fad368f6 (current HEAD) vs live f3063069; verified_at_build is the SAME 5902ba928947b2ac2fda7b3cc06ff430f9e95f86f9046c96043581865b0a536c on both.  id-assignments.json is byte-identical to the live one; frontier-table.generated.md differs in ONE line only, its `- Source head:` field.  BASELINE.  A second copy, then `generate --baseline proof-status/baseline --out <scratch>/proof-status-copy2`; EXIT=0 (16:36:52Z -> 16:46:44Z), stderr EMPTY, the same census line `factorized 28/28 reachable leaves (24 with declared consumer_trust (Lean.ofReduceBool, Lean.trustCompiler))`, and the written obligations.json is BYTE-IDENTICAL to the live proof-status/obligations.json (`cmp` clean; sha256 5b58c74583079cef0c72269bdbb2e1c94c171acaac94fc56d4b327c8cf8ead6d on both), with id-assignments.json and frontier-table.generated.md byte-identical as well.  That is the strongest available evidence that the --baseline path did not move.  Nothing was written outside the copies: command_generate writes only obligations.json, id-assignments.json and frontier-table.generated.md under --out, and `generate` writes no receipt."
+    },
+    {
+      "name": "5 explicit-null end to end: one PRESENT null fails the run with the shape violation naming its ID, and writes nothing",
+      "pass": true,
+      "line": "A THIRD copy of proof-status, with `jq '.[\"P97-TS-CROSSBLOCKER\"].factorization.consumer_trust = null'` applied to its obligations-meta.json (the block otherwise unchanged; it previously declared [Lean.ofReduceBool, Lean.trustCompiler]).  The generator reads reviewed metadata from the --out directory (load_meta(out_dir) via meta_path), so the copy's edited file is the one under test.  `generate --baseline proof-status/baseline --out <copy3>` -> EXIT=1 (16:46:44Z -> 16:56:3xZ), stdout EMPTY.  The FIRST stderr line is exactly `ERROR: factorization: P97-TS-CROSSBLOCKER: consumer_trust must be a non-empty list of unique axiom names` - the shape violation, naming that ID.  Ten further violations follow, and they are the correct downstream consequence: with nothing accepted, every consumer-side hop of that block (legacy_wrapper, coordinator, eliminator and both `via` hops, each for Lean.ofReduceBool and Lean.trustCompiler) is refused by the UNCHANGED per-hop rule.  The run ended with `FAIL: refusing to write <copy3>: 11 alias/factorization violation(s); obligations.json, id-assignments.json and frontier-table.generated.md are unchanged`. NOTHING WAS WRITTEN, checked by sha256 taken before the run and after: obligations.json 5b58c74583079cef0c72269bdbb2e1c94c171acaac94fc56d4b327c8cf8ead6d, id-assignments.json 4c1c0a5bfa5956904c1b4266d7a8b4bda4454d3ff1f85b663eae88197d364313 and frontier-table.generated.md 0cb5d00f2c542ce082e59b11b7fe9268b22115753f16b07c68772446d8bfbd07 are unchanged and equal to the live files.  Against the pre-fix script this same edit would have been read as key ABSENCE: the block would have declared nothing, the ten native-trust hops would still have failed, but the shape violation naming the ID - the one line that tells a reviewer the reviewed value is malformed rather than absent - would NOT have been printed."
+    }
+  ],
+  "roi": {
+    "defects": [
+      "#7513 - `generate --fresh` could never accept a consumer_trust declaration, because the declarable closure was read only from <baseline>/axioms.txt and --fresh forbids --baseline.",
+      "#7518 - `\"consumer_trust\": null` was read as key ABSENCE, so a malformed reviewed value declared nothing silently instead of failing the shape check; read_declarable_trust raised UnicodeDecodeError on non-UTF-8 axioms.txt bytes instead of failing closed; and export_live_closure's write sat outside its try/except OSError."
+    ],
+    "blast_radius_before_the_fix": "#7513: 24 of the 28 materialized factorization blocks in the live registry declare consumer_trust, so the documented regeneration command `generate --fresh --out proof-status` hard-failed with 48 `cannot verify` violations and exit 1, writing nothing.  #7518: a reviewed block whose consumer_trust was set to null passed the shape check silently; the two hardenings were latent crash/raise paths rather than trust holes.",
+    "state_after_the_fix": "generate --fresh exits 0 and reports factorized 28/28 reachable leaves, 24 with declared consumer_trust (Lean.ofReduceBool, Lean.trustCompiler); generate --baseline reproduces the live obligations.json byte-identically; an explicit null exits 1 with the shape violation and writes nothing.",
+    "declared_names_the_live_closure_makes_available": [
+      "Lean.ofReduceBool",
+      "Lean.trustCompiler"
+    ],
+    "declarable_surface_note": "The live closure the --fresh run exported accepted exactly the two native-reduction names the recorded baseline carries; sorryAx and the three ALLOWED_AXIOMS are rejected by construction, so those two names are the entire declarable surface under either mode.",
+    "gen_obligation_registry_py": {
+      "added": 176,
+      "removed": 43,
+      "lines_before": 3469,
+      "lines_after": 3602,
+      "hunks": 17
+    },
+    "test_gen_obligation_registry_factorization_py": {
+      "added": 172,
+      "removed": 3,
+      "lines_before": 2391,
+      "lines_after": 2560,
+      "hunks": 5
+    },
+    "proof_status_readme_md": {
+      "added": 22,
+      "removed": 8,
+      "lines_before": 651,
+      "lines_after": 665,
+      "hunks": 3
+    },
+    "tests_before": 151,
+    "tests_after": 157,
+    "new_test_functions": 5,
+    "new_parametrize_cases": 1,
+    "removed_test_functions": 0,
+    "existing_tests_edited": 1,
+    "existing_tests_weakened": 0,
+    "note_on_counts": "151 is the count at git HEAD, 155 the count the earlier W3-0e-fix receipt recorded after the #7513 fix alone, and 157 the count now. The +2 is one new test function plus one new parametrize case."
+  },
+  "tests": [
+    {
+      "command": "uv run python -m pytest -q scripts/test_gen_obligation_registry_factorization.py scripts/test_lint_cluster_imports_legacy.py",
+      "exit_code": 0,
+      "final_line": "157 passed in 6.53s",
+      "total_passed": 157,
+      "failed": 0,
+      "run_by": "this verifier"
+    },
+    {
+      "command": "uv run python -m pytest -q <scratch>/prefix/scripts/test_gen_obligation_registry_factorization.py -k 'explicit_null or read_declarable_trust_reads or malformed_consumer_trust'  (the NEW test file against HEAD's PRE-FIX gen_obligation_registry.py)",
+      "exit_code": 1,
+      "final_line": "3 failed, 6 passed, 94 deselected in 0.47s",
+      "total_passed": 6,
+      "failed": 3,
+      "run_by": "this verifier; scratch tree deleted afterwards"
+    },
+    {
+      "command": "uv run python -m pytest -q <scratch>/prefix/scripts/test_gen_obligation_registry_factorization.py -k 'w3_0e_fresh or normalize_exports'  (the NEW test file against HEAD's PRE-FIX gen_obligation_registry.py)",
+      "exit_code": 1,
+      "final_line": "3 failed, 1 passed, 99 deselected in 0.38s",
+      "total_passed": 1,
+      "failed": 3,
+      "run_by": "this verifier; scratch tree deleted afterwards"
+    },
+    {
+      "command": "uv run python scripts/gen_obligation_registry.py generate --fresh --out <scratch>/proof-status-copy   (end-to-end, detached, on a COPY)",
+      "exit_code": 0,
+      "final_line": "factorized 28/28 reachable leaves (24 with declared consumer_trust (Lean.ofReduceBool, Lean.trustCompiler))",
+      "total_passed": null,
+      "failed": 0,
+      "run_by": "this verifier; proof-status itself was never the --out target"
+    },
+    {
+      "command": "uv run python scripts/gen_obligation_registry.py generate --baseline proof-status/baseline --out <scratch>/proof-status-copy2   (end-to-end, detached, on a COPY)",
+      "exit_code": 0,
+      "final_line": "factorized 28/28 reachable leaves (24 with declared consumer_trust (Lean.ofReduceBool, Lean.trustCompiler)); obligations.json byte-identical to the live one",
+      "total_passed": null,
+      "failed": 0,
+      "run_by": "this verifier; proof-status itself was never the --out target"
+    },
+    {
+      "command": "uv run python scripts/gen_obligation_registry.py generate --baseline proof-status/baseline --out <scratch>/proof-status-copy3   (COPY with \"consumer_trust\": null on P97-TS-CROSSBLOCKER)",
+      "exit_code": 1,
+      "final_line": "FAIL: refusing to write <copy3>: 11 alias/factorization violation(s); obligations.json, id-assignments.json and frontier-table.generated.md are unchanged",
+      "total_passed": null,
+      "failed": 1,
+      "run_by": "this verifier; the refusal is the EXPECTED result of gate 5"
+    },
+    {
+      "command": "uv run python -m pytest -q scripts/test_gen_obligation_registry_factorization.py scripts/test_lint_cluster_imports_legacy.py",
+      "exit_code": 0,
+      "final_line": "157 passed in 6.33s",
+      "total_passed": 157,
+      "failed": 0,
+      "run_by": "FINAL PASS re-checker, from the repository root, against the DOCUMENTATION-FIXED scripts/gen_obligation_registry.py (bccc6412…); unchanged from the 157 this receipt already recorded, as expected for a documentation-only fix"
+    },
+    {
+      "command": "uv run python scripts/lint_cluster_imports.py",
+      "exit_code": 0,
+      "final_line": "lint_cluster_imports: OK -- 691 import edges scanned, 27 forbidden edges, all waived by 27 authenticated waivers; 3 retired; 5 legacy edges, all listed.",
+      "total_passed": null,
+      "failed": 0,
+      "run_by": "FINAL PASS re-checker, from the repository root"
+    },
+    {
+      "command": "uv run python -c 'import scripts/gen_obligation_registry.py by spec; probe parse_consumer_trust and export_live_closure'",
+      "exit_code": 0,
+      "final_line": "parse_consumer_trust(id, {}, {'x'}) == ([], []); parse_consumer_trust(id, {'consumer_trust': None}, {'x'}) == ([], [\"P97-X: consumer_trust must be a non-empty list of unique axiom names\"]); export_live_closure(Path(<a FILE path>)) -> None, no exception",
+      "total_passed": null,
+      "failed": 0,
+      "run_by": "FINAL PASS re-checker; direct probes confirming the documentation fix changed no behaviour"
+    }
+  ],
+  "content_bound_files": {
+    "note": "wave_commit is null - nothing is committed - so this map is the sha256 of the WORKING TREE bytes at git_head fad368f6, re-read after the last gate and unchanged throughout.  All three hashes DIFFER from the ones in the earlier W3-0e-fix receipt, because the auditor-#7518 follow-up edited all three files after that receipt was written.  REFRESHED by the FINAL PASS at 2026-08-26T17:12:02Z: scripts/gen_obligation_registry.py moved 7b475552… -> bccc6412… and proof-status/README.md moved ed635a7f… -> 685edd43…, both because of the documentation fix that resolves the four metadata_corrections below; scripts/test_gen_obligation_registry_factorization.py is UNCHANGED at 841af709…, which is why the test count is still 157.  Still the WORKING-TREE bytes at git_head fad368f6, still uncommitted and unstaged.",
+    "sha256": {
+      "scripts/gen_obligation_registry.py": "bccc6412f9ed858e79951241a74f07f1d34550d6011b37a3ae0a7d45a4291ef8",
+      "scripts/test_gen_obligation_registry_factorization.py": "841af709cb1d776febcc48ef2b88696cf532ea916cc4e2c5be031290bc7a50b7",
+      "proof-status/README.md": "685edd43fe25b5ebd770841525b69eeec68c811e3a99ff1f0b8e8d0f47f1f85a"
+    }
+  },
+  "author_claims_checked": [
+    {
+      "claim": "parse_consumer_trust distinguishes key ABSENCE (declares nothing) from a PRESENT null (shape violation `must be a non-empty list of unique axiom names`).",
+      "verdict": "reproduced",
+      "evidence": ":1780-1783 uses `if CONSUMER_TRUST_KEY not in block` and then indexes the key.  Direct probe: {} -> ([], []); {'consumer_trust': None} -> ([], ['P97-TS-CROSSBLOCKER: consumer_trust must be a non-empty list of unique axiom names']).  The violation string itself is unchanged (string-literal diff removes zero literals)."
+    },
+    {
+      "claim": "The materializer carries any PRESENT consumer_trust key through.",
+      "verdict": "reproduced with a scope note",
+      "evidence": "normalized_factorization_block :1465-1475 keys on `in block`, so a present null, string, [] or {} is all carried through; probed directly.  SCOPE NOTE: the new comment says the carry-through makes `the comparison report drift instead of hiding a malformed reviewed value behind an absent key`, and that holds for every present value EXCEPT null.  compare_registry_factorizations compares `want.get(key) == got.get(key)`, so a meta null against a registry with no such key compares None == None and reports NO drift; probed directly ('Lean.ofReduceBool', [] and {} each DO produce `materialized factorization key 'consumer_trust' is None on the registry but ... in the reviewed metadata`, while None produces []. The null case is still caught, by the shape violation, in BOTH `generate` and `check` (check_factorizations runs parse_consumer_trust over the reviewed blocks), so nothing is trusted that should not be - but the drift half of the rationale does not hold for null.",
+      "followup": "FINAL PASS 2026-08-26T17:12:02Z: the SCOPE NOTE is DISCHARGED — the false drift rationale was removed from the comment (the string 'reports drift instead of hiding a malformed reviewed value behind an absent key' returns zero hits), and the replacement comment at :1467-1472 attributes the rejection to parse_consumer_trust's shape violation, which is the mechanism this entry identified. The CLAIM itself is unchanged and still reproduces: `if CONSUMER_TRUST_KEY in block` at :1466 carries any present value through, probed directly."
+    },
+    {
+      "claim": "read_declarable_trust catches UnicodeDecodeError as well as OSError, so undecodable bytes are `cannot verify` rather than a crash.",
+      "verdict": "reproduced",
+      "evidence": ":1062-1065 `except (OSError, UnicodeDecodeError): return None`.  Probe: an axioms.txt of b'\\xff\\xfe' -> None post-fix; the same input raises UnicodeDecodeError against HEAD's script."
+    },
+    {
+      "claim": "export_live_closure now has the file write INSIDE its try/except OSError, so it really never raises.",
+      "verdict": "corrected",
+      "evidence": "The write IS inside the try now (:596-611), and the specific auditor item is fixed: probed with a target_dir that is a FILE, the call returns None with no exception, where the pre-follow-up code let NotADirectoryError escape.  `never raises` is still not literally true: `subprocess.run(..., text=True)` decodes the child's output with errors='strict' and raises UnicodeDecodeError - a ValueError, NOT an OSError - if `proof-blueprint axioms` ever emits non-UTF-8 bytes.  Verified empirically in this environment (a child writing b'abc\\xffdef' makes subprocess.run raise `UnicodeDecodeError: 'utf-8' codec can't decode byte 0xff in position 3`).  The gate stays fail-closed in effect - the run aborts before any output file is touched and nothing is accepted - so this is a docstring accuracy defect, not a trust hole, and it is far narrower than the write path the follow-up closed.",
+      "followup": "FINAL PASS 2026-08-26T17:12:02Z: DISCHARGED. The except clause now reads `except (OSError, UnicodeDecodeError):` at :608, so the UnicodeDecodeError path this entry found is caught, and the docstring at :591-592 now says an export 'that could not be run, decoded or written leaves NO file behind'. Re-probed: export_live_closure against a target_dir that is a FILE returns None with no exception. The residual is cosmetic only (a 93-character line, and 'Both cases' now heading a three-item list); no path of the function raises."
+    },
+    {
+      "claim": "README: the stale `Today no entry carries a block` sentence is replaced, and the consumer_trust paragraph states that a present null is a shape violation.",
+      "verdict": "reproduced with a scope note",
+      "evidence": "Both are in the diff (hunks @@ -305,2 +305,3 @@ and @@ -421,4 +427,12 @@).  The replacement is accurate on the facts: the live registry does carry 28 materialized blocks, and `check` does print `factorized k/n reachable leaves`.  SCOPE NOTE: the replacement's parenthetical `(section 5 below)` sits immediately after `carries the materialized copy`, but section 5 is `Per-cluster requirement (fail-closed)`; materialization is documented in section 2 itself and the live check in sections 3 and 4, which the very next bullet cites correctly. Section 5 IS where the census line is documented, which is the sentence's second clause, so the reference is misplaced rather than simply wrong.",
+      "followup": "FINAL PASS 2026-08-26T17:12:02Z: the SCOPE NOTE is DISCHARGED. 'section 5 below' returns zero hits in proof-status/README.md; the sentence now reads 'An entry whose block PASSED the live check of sections 3 and 4 carries the materialized copy described in this section; the census line of `check` (section 5) reports how many reachable leaves are factorized', so each cross-reference sits on the clause it belongs to. Confirmed against the document's own headings at :279 (section 2), :332 (3), :359 (4) and :486 (5). The rest of the claim is unchanged and still reproduces."
+    },
+    {
+      "claim": "Tests: None added to the malformed parametrization, an undecodable-bytes assertion, and test_an_explicit_null_consumer_trust_is_present_not_absent.",
+      "verdict": "reproduced",
+      "evidence": "Decorator diff shows exactly one changed decorator, the parametrize list going from 6 to 7 values with `None` appended.  The undecodable-bytes assertion is two ADDED lines inside test_read_declarable_trust_reads_the_recorded_closure_or_fails_closed :1987 with no removals.  The new function is at :2006 and asserts both halves (absence -> ([], []), present null -> the shape violation) plus a command-level `verified_ids == []`.  All three fail against HEAD's pre-fix script."
+    },
+    {
+      "claim": "No gate rule, violation wording, schema key or CLI flag changed, and the --baseline path is unchanged.",
+      "verdict": "reproduced",
+      "evidence": "String-literal diff (docstrings excluded): zero literals removed, two added, both in normalize_exports' new error.  Structural diff: build_parser, check_factorizations, parse_axioms_output and compare_registry_factorizations are all IDENTICAL.  End to end, `generate --baseline proof-status/baseline` on a copy reproduced the live obligations.json BYTE-IDENTICALLY, along with id-assignments.json and frontier-table.generated.md."
+    },
+    {
+      "claim": "Earlier W3-0e-fix receipt: `155 passed`, three content hashes d6c5a654 / 0b472b6d / d937fe2f, 15/3/2 hunks.",
+      "verdict": "superseded",
+      "evidence": "That receipt was written at 16:15:07Z; the follow-up edited gen_obligation_registry.py at 16:20:45Z, README.md at 16:21:16Z and the test file at 16:22:50Z.  Current state: `157 passed in 6.53s`, hashes 7b475552 / 841af709 / ed635a7f, 17/5/3 hunks.  Its #7513 findings were re-derived independently here and still hold; only its counts and hashes are stale."
+    },
+    {
+      "claim": "The registry-check receipt proof-status/receipts/registry-check-20260826T155930Z.json shows a clean 28-verified, 24-declared-trust, zero-violation check.",
+      "verdict": "not usable as evidence for this wave",
+      "evidence": "It is the W3-R221-b lane's artifact and it was written at 16:10Z, BEFORE all three follow-up edits, so it exercised the pre-follow-up code.  Two more `check` receipts (162435Z, 162456Z, both verdict `pass`, 28/28 verified, 24 declared-trust blocks, zero violations and zero drift, at git_head fad368f6) appeared in the tree from the same lane WHILE this verification was running; their timestamp is the moment the run FINISHED, so neither can be shown to have loaded the post-follow-up script.  All four are recorded here only so a reader does not mistake any of them for a post-follow-up `check` this verifier ran."
+    },
+    {
+      "claim": "The author did not commit or stage anything.",
+      "verdict": "reproduced",
+      "evidence": "`git diff --cached --name-only` is empty and HEAD is still fad368f6, re-checked after the last gate."
+    }
+  ],
+  "metadata_corrections": [
+    {
+      "field": "gen_obligation_registry.py :1427-1431, normalized_factorization_block docstring",
+      "correction": "STALE, introduced by this follow-up.  It still reads `consumer_trust (W3-0e) is sorted and is omitted when the reviewed block carries no list value`.  After the change the key is omitted ONLY when it is ABSENT; a present non-list value (null, a string, {}) is now carried through verbatim.  The comment inside the function body is correct; only the docstring above it contradicts the code.",
+      "resolution": "RESOLVED 2026-08-26T17:12:02Z.  The docstring of normalized_factorization_block (now :1428-1434) reads '``consumer_trust`` (W3-0e) is omitted only when the reviewed block has no such key; a present well-formed list is sorted, and any other present value (an explicit null included, auditor #7518) is carried through verbatim - the shape violation is what rejects such a block'.  That is what the code does: `if CONSUMER_TRUST_KEY in block` at :1466, `sorted(declared)` only when it is a list of str, `else declared` at :1478.  Checked by importing the module and reading `normalized_factorization_block.__doc__`; the old string 'carries no list value' returns zero hits in the file."
+    },
+    {
+      "field": "gen_obligation_registry.py :1465-1471, the new comment's drift rationale",
+      "correction": "`so the comparison reports drift instead of hiding a malformed reviewed value behind an absent key` is true for a present string, [] or {}, and FALSE for a present null: compare_registry_factorizations uses `want.get(key) == got.get(key)`, which cannot tell a materialized null from a missing key.  The null case is caught by the shape violation instead, in both `generate` and `check`, so no trust is misplaced.",
+      "resolution": "RESOLVED 2026-08-26T17:12:02Z.  The false drift rationale is GONE: the string 'reports drift instead of hiding a malformed reviewed value behind an absent key' returns zero hits in the file.  The replacement comment (:1467-1472) makes no drift claim for null at all — it says the materialization mirrors the reviewed value, never turns a present malformed value into key absence, and that 'the shape violation of parse_consumer_trust is what rejects such a block', which is the mechanism this receipt identified as the real one.  The surviving sentence about a malformed LIST being copied unsorted is unchanged and was already correct."
+    },
+    {
+      "field": "gen_obligation_registry.py :589-593, export_live_closure docstring",
+      "correction": "`This export FAILS CLOSED and never raises` is now much closer to true - the write is inside the try - but not literally true: subprocess.run(text=True) raises UnicodeDecodeError, not an OSError, on non-UTF-8 child output.  Also note the docstring's third sentence runs to 111 characters, past the surrounding style.",
+      "resolution": "RESOLVED 2026-08-26T17:12:02Z for the raise, with the docstring wording corrected rather than the claim dropped.  The except clause at :608 now reads `except (OSError, UnicodeDecodeError):`, so the UnicodeDecodeError that `subprocess.run(..., text=True)` can raise on non-UTF-8 child output is caught, and the docstring (:591-592) now says an export 'that could not be run, decoded or written leaves NO file behind'.  Probed: `export_live_closure(Path(<a FILE path>))` returns None with no exception.  RESIDUAL, cosmetic only: line 592 is 93 characters, and the sentence still opens 'This export FAILS CLOSED and never raises' followed by 'Both cases read back as None' where three failure modes are now listed — a wording nit, not a behaviour claim; the function has no remaining path that raises."
+    },
+    {
+      "field": "proof-status/README.md, section 2, the replacement sentence",
+      "correction": "`carries the materialized copy (section 5 below)` points at `Per-cluster requirement (fail-closed)`.  Materialization is documented in section 2 itself, the live check in sections 3 and 4. Section 5 documents the census line, which is the sentence's second clause, so the parenthetical belongs after that clause instead.",
+      "resolution": "RESOLVED 2026-08-26T17:12:02Z.  'section 5 below' returns zero hits in proof-status/README.md.  The section-2 sentence now reads (:305-308) 'An entry whose block PASSED the live check of sections 3 and 4 carries the materialized copy described in this section; the census line of `check` (section 5) reports how many reachable leaves are factorized.'  Verified against the document's own headings: section 2 'What the canonical registry carries (W3-0b)' at :279 contains the sentence, section 3 'Stable identity and the alias migration' at :332 and section 4 'Freshness and trust' at :359 are the live check the very next bullet also cites, and section 5 'Per-cluster requirement (fail-closed)' at :486 is where 'the check prints `factorized k/n reachable leaves`' is documented.  Both cross-references now point at the clause they belong to."
+    },
+    {
+      "field": "proof-status/README.md section 4 and parse_consumer_trust's docstring: line length",
+      "correction": "Cosmetic only.  The follow-up leaves one 111-character README line and one 122-character docstring line.  `ruff check` reports the same five findings on the worktree as on HEAD, so no lint gate is broken; the repository is not `ruff format` clean at HEAD either.",
+      "resolution": "PARTIALLY RESOLVED 2026-08-26T17:12:02Z, cosmetic only and never a blocker.  The 122-character docstring line in parse_consumer_trust is still there (now :1776), and README.md still has one 111-character line (:422) plus five other long lines that predate this wave.  The line-length claim about the LINT GATE is re-confirmed with a correction to its count: `ruff check` reports 4 errors on scripts/gen_obligation_registry.py in the working tree and the SAME 4 on HEAD's copy of the file, so the fix breaks no lint gate — the earlier 'five findings' figure did not reproduce for this file and is superseded."
+    }
+  ],
+  "observations_not_blocking": [
+    "The violation string still reads `cannot verify consumer_trust: the publish target's recorded closure (baseline axioms.txt) could not be read`, and proof-status/README.md still quotes it verbatim.  Under --fresh the unreadable file is the run's own live export, not a baseline file, so that message names the wrong artifact.  Kept deliberately (no string change); wording accuracy only.  Carried forward from the earlier receipt and still true.",
+    "Under --fresh the declarable surface is no longer pinned to a reviewed repository file; it is whatever the live publish-target closure carries. The backstop is `check --baseline`, which still reads the RECORDED closure, so a declaration a fresh generate accepted and proof-status/baseline/axioms.txt does not carry would fail the audit gate.  Today the two agree.  Carried forward from the earlier receipt.",
+    "`proof-blueprint axioms` runs `#print axioms` through the Lean kernel against the BUILT .olean tree, so the `live` closure reflects the last build, not necessarily current source.  Carried forward.",
+    "For --baseline, gather_exports performs a read_declarable_trust(baseline_dir) whose result command_generate discards and recomputes. Harmless duplicate file read; the byte-identical gate-4 baseline run proves it changes nothing.",
+    "`check` still makes one extra `proof-blueprint axioms` invocation per run whose result it discards.  Runtime cost only.",
+    "A `check --baseline proof-status/baseline` against the LIVE registry was NOT run by this verifier: it is not in the gate list, it takes about ten minutes, and the only post-follow-up evidence for it would duplicate the byte-identical --baseline generate of gate 4.  Four untracked registry-check receipts sit in proof-status/receipts/ from the W3-R221-b lane (16:10Z via 155930Z, 154659Z, and two written at 16:24:35Z and 16:24:56Z), all verdict `pass` with 28/28 verified, 24 declared-trust blocks and zero violations or drift.  None of them is credited here: the first two were written before the follow-up edits, and for the two later ones the receipt records only when the run FINISHED, so - a ten-minute `check` being the norm - neither can be shown to have loaded the post-follow-up script.  They are another lane's artifacts and this verifier neither produced nor supervised them.",
+    "A whole-`scripts/` pytest sweep was attempted as a bonus and was killed by its own 900 s timeout during collection/execution.  It produced no failure and no pass count and is not counted as evidence."
+  ],
+  "files_written_by_this_verifier": [
+    "proof-status/receipts/w3-0e-fix-gate-receipt.json"
+  ],
+  "new_receipts_written_by_this_check": [],
+  "git_operations_performed": [
+    "read-only only: rev-parse, status, diff, show, numstat.  No add, commit, checkout, stash, reset, restore, push, rebase or merge.  Nothing staged (`git diff --cached --name-only` empty before and after).",
+    "No lake, no lean, no `proof-blueprint refs --refresh`, no `proof-blueprint sync`.  `proof-blueprint` ran only as a child of the three end-to-end `generate` runs on COPIES.  No Lean file was read for edit or edited.",
+    "The only repository file written is proof-status/receipts/w3-0e-fix-gate-receipt.json; proof-status itself was never a --out target."
+  ],
+  "notes_for_main_session": [
+    "FINAL PASS 2026-08-26T17:12:02Z: the four documentation defects recorded in metadata_corrections are FIXED and re-verified from source; each metadata_corrections entry now carries a `resolution` field and note_resolutions carries a matching pair.  The third note below ('two are cheap to fix while the files are open') is DONE — all four were fixed, not two.  Working-tree hashes refreshed: scripts/gen_obligation_registry.py bccc6412f9ed858e79951241a74f07f1d34550d6011b37a3ae0a7d45a4291ef8, proof-status/README.md 685edd43fe25b5ebd770841525b69eeec68c811e3a99ff1f0b8e8d0f47f1f85a, scripts/test_gen_obligation_registry_factorization.py 841af709cb1d776febcc48ef2b88696cf532ea916cc4e2c5be031290bc7a50b7 (unmoved).  pytest is still `157 passed`, the import lint still prints its OK line, and `ruff check` on the script reports the same 4 errors as HEAD's copy.  No gate verdict changed; wave_commit is still null.  The end-to-end `generate --fresh` / `--baseline` / null-injection evidence in gates 1-5 was NOT re-run by this pass and is carried forward from the previous verifier — the fix is documentation-only, and the direct probes of parse_consumer_trust and export_live_closure reproduce the behaviour those gates recorded.",
+    "pytest: `157 passed in 6.53s` for scripts/test_gen_obligation_registry_factorization.py plus scripts/test_lint_cluster_imports_legacy.py (151 at HEAD, 155 after the #7513 fix alone, 157 now: +1 test function, +1 parametrize case).",
+    "`generate --fresh` on a copy took 11m44s and exited 0 with the census line `factorized 28/28 reachable leaves (24 with declared consumer_trust (Lean.ofReduceBool, Lean.trustCompiler))`; `generate --baseline` on a second copy took 9m52s, exited 0 and reproduced the live obligations.json BYTE-IDENTICALLY.",
+    "Four documentation defects are recorded in metadata_corrections; none blocks the commit, but two are cheap to fix while the files are open: normalized_factorization_block's docstring now contradicts its own code, and the README's new `(section 5 below)` points at the wrong section.",
+    "The drift rationale in the new materializer comment does not hold for null specifically (`.get()` cannot separate a materialized null from a missing key).  The auditor's actual requirement - that a present null never verifies - IS met, by the shape violation, in both `generate` and `check`.",
+    "Evidence kept by this verifier under scratchpad/w3-0e-fix-reverify/: fresh.out/err, baseline.out/err, null.out/err and the three .exit files, pytest.log, results.txt, script.diff, compare.sh, the ast diff helpers, null-probe-obligations-meta.json (the edited meta of the gate-5 copy) and proof-status-copy/ (the --fresh output).  The pre-fix regression tree and the two other proof-status copies were deleted after use.",
+    "Still NOT done, unchanged from the earlier receipt: `generate --fresh --out proof-status` against the real tree, which would overwrite the W3-R221-b lane's in-flight registry work.  Sequence it after that lane lands."
+  ],
+  "content_bound_files_working_tree": {
+    "note": "Same map as content_bound_files; the key is kept for parity with proof-status/receipts/w3-0e-gate-receipt.json, where it held the pre-commit draft separately from the commit-bound hashes.  REFRESHED by the FINAL PASS at 2026-08-26T17:12:02Z: scripts/gen_obligation_registry.py moved 7b475552… -> bccc6412… and proof-status/README.md moved ed635a7f… -> 685edd43…, both because of the documentation fix that resolves the four metadata_corrections below; scripts/test_gen_obligation_registry_factorization.py is UNCHANGED at 841af709…, which is why the test count is still 157.  Still the WORKING-TREE bytes at git_head fad368f6, still uncommitted and unstaged.",
+    "sha256": {
+      "scripts/gen_obligation_registry.py": "bccc6412f9ed858e79951241a74f07f1d34550d6011b37a3ae0a7d45a4291ef8",
+      "scripts/test_gen_obligation_registry_factorization.py": "841af709cb1d776febcc48ef2b88696cf532ea916cc4e2c5be031290bc7a50b7",
+      "proof-status/README.md": "685edd43fe25b5ebd770841525b69eeec68c811e3a99ff1f0b8e8d0f47f1f85a"
+    }
+  },
+  "wave_commit": null,
+  "note_resolutions": [
+    {
+      "note": "#7513 - `generate --fresh` can never accept a consumer_trust declaration because the declarable closure is read only from <baseline>/axioms.txt and --fresh excludes --baseline.",
+      "resolution": "RESOLVED, re-verified independently.  Against HEAD's pre-fix script the two command-level fresh tests fail at the 2-tuple seam; with the fix, `generate --fresh` on a copy of the CURRENT proof-status exits 0 and accepts all 24 declarations from the live export."
+    },
+    {
+      "note": "#7518 blocker - `\"consumer_trust\": null` is read as key absence, so a malformed reviewed value declares nothing silently instead of failing the shape check.",
+      "resolution": "RESOLVED.  parse_consumer_trust returns ([], []) only for key absence; a present null takes the existing shape-violation branch.  End to end on a copy: exit 1, first violation `P97-TS-CROSSBLOCKER: consumer_trust must be a non-empty list of unique axiom names`, no output file written."
+    },
+    {
+      "note": "#7518 non-blocking - read_declarable_trust catches OSError and RegistryError but not UnicodeDecodeError.",
+      "resolution": "RESOLVED.  `except (OSError, UnicodeDecodeError)` at :1062-1065; b'\\xff\\xfe' now returns None where HEAD raises."
+    },
+    {
+      "note": "#7518 non-blocking - export_live_closure's write_text sat outside its try/except OSError, so a write failure raised out of export_fresh.",
+      "resolution": "RESOLVED for every OSError.  Probed with a target_dir that is a file: returns None, no exception.  A residual non-OSError path remains (subprocess.run(text=True) on non-UTF-8 child output raises UnicodeDecodeError), so the docstring's `never raises` is still an overstatement; recorded in metadata_corrections, not a blocker."
+    },
+    {
+      "note": "#7518 - the README's `Today no entry carries a block, so obligations.json regenerates byte-identical` was stale.",
+      "resolution": "RESOLVED.  Replaced with a statement that matches the live registry (28 materialized blocks) and the census line.  One misplaced cross-reference remains; see metadata_corrections."
+    },
+    {
+      "note": "#7518 documentation defect 1 - normalized_factorization_block's docstring still said `consumer_trust is sorted and is omitted when the reviewed block carries no list value`, contradicting its own code.",
+      "resolution": "RESOLVED 2026-08-26T17:12:02Z.  The docstring of normalized_factorization_block (now :1428-1434) reads '``consumer_trust`` (W3-0e) is omitted only when the reviewed block has no such key; a present well-formed list is sorted, and any other present value (an explicit null included, auditor #7518) is carried through verbatim - the shape violation is what rejects such a block'.  That is what the code does: `if CONSUMER_TRUST_KEY in block` at :1466, `sorted(declared)` only when it is a list of str, `else declared` at :1478.  Checked by importing the module and reading `normalized_factorization_block.__doc__`; the old string 'carries no list value' returns zero hits in the file."
+    },
+    {
+      "note": "#7518 documentation defect 2 - the new materializer comment's drift rationale did not hold for a present null, because compare_registry_factorizations uses want.get(key) == got.get(key).",
+      "resolution": "RESOLVED 2026-08-26T17:12:02Z.  The false drift rationale is GONE: the string 'reports drift instead of hiding a malformed reviewed value behind an absent key' returns zero hits in the file.  The replacement comment (:1467-1472) makes no drift claim for null at all — it says the materialization mirrors the reviewed value, never turns a present malformed value into key absence, and that 'the shape violation of parse_consumer_trust is what rejects such a block', which is the mechanism this receipt identified as the real one.  The surviving sentence about a malformed LIST being copied unsorted is unchanged and was already correct."
+    },
+    {
+      "note": "#7518 documentation defect 3 - export_live_closure's docstring claimed it `never raises`, but subprocess.run(text=True) raises UnicodeDecodeError (a ValueError, not an OSError) on non-UTF-8 child output.",
+      "resolution": "RESOLVED 2026-08-26T17:12:02Z for the raise, with the docstring wording corrected rather than the claim dropped.  The except clause at :608 now reads `except (OSError, UnicodeDecodeError):`, so the UnicodeDecodeError that `subprocess.run(..., text=True)` can raise on non-UTF-8 child output is caught, and the docstring (:591-592) now says an export 'that could not be run, decoded or written leaves NO file behind'.  Probed: `export_live_closure(Path(<a FILE path>))` returns None with no exception.  RESIDUAL, cosmetic only: line 592 is 93 characters, and the sentence still opens 'This export FAILS CLOSED and never raises' followed by 'Both cases read back as None' where three failure modes are now listed — a wording nit, not a behaviour claim; the function has no remaining path that raises."
+    },
+    {
+      "note": "#7518 documentation defect 4 - the README's replacement sentence in section 2 put `(section 5 below)` after `carries the materialized copy`, but section 5 is `Per-cluster requirement (fail-closed)`.",
+      "resolution": "RESOLVED 2026-08-26T17:12:02Z.  'section 5 below' returns zero hits in proof-status/README.md.  The section-2 sentence now reads (:305-308) 'An entry whose block PASSED the live check of sections 3 and 4 carries the materialized copy described in this section; the census line of `check` (section 5) reports how many reachable leaves are factorized.'  Verified against the document's own headings: section 2 'What the canonical registry carries (W3-0b)' at :279 contains the sentence, section 3 'Stable identity and the alias migration' at :332 and section 4 'Freshness and trust' at :359 are the live check the very next bullet also cites, and section 5 'Per-cluster requirement (fail-closed)' at :486 is where 'the check prints `factorized k/n reachable leaves`' is documented.  Both cross-references now point at the clause they belong to."
+    },
+    {
+      "note": "#7518 documentation defect 5 (cosmetic) - long lines left by the follow-up in parse_consumer_trust's docstring and in README section 4.",
+      "resolution": "PARTIALLY RESOLVED 2026-08-26T17:12:02Z, cosmetic only and never a blocker.  The 122-character docstring line in parse_consumer_trust is still there (now :1776), and README.md still has one 111-character line (:422) plus five other long lines that predate this wave.  The line-length claim about the LINT GATE is re-confirmed with a correction to its count: `ruff check` reports 4 errors on scripts/gen_obligation_registry.py in the working tree and the SAME 4 on HEAD's copy of the file, so the fix breaks no lint gate — the earlier 'five findings' figure did not reproduce for this file and is superseded."
+    }
+  ],
+  "claim_reference": "#7513 + #7518",
+  "main_session_reverification": null
+}

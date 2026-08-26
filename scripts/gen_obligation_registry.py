@@ -141,12 +141,23 @@ Declared consumer trust (W3-0e)
 
     A listed name is ACCEPTED only when it is not ``sorryAx`` (an open
     obligation is never declarable trust), is not already in ``ALLOWED_AXIOMS``,
-    and IS carried by the PUBLISH TARGET's recorded closure - the
-    ``proof-blueprint axioms`` export kept at ``<baseline>/axioms.txt`` and
-    parsed by ``parse_axioms_output`` (``read_declarable_trust``).  A name that
-    closure does not carry is rejected; a closure that could not be read at all
-    is reported as "cannot verify" and accepts nothing.  Each rejected name
-    prints its own violation line naming the id and the name.
+    and IS carried by the PUBLISH TARGET's closure: a ``proof-blueprint axioms``
+    export of ``PUBLISH_TARGET`` parsed by ``parse_axioms_output``
+    (``read_declarable_trust``).  WHICH closure that is follows the run's source
+    mode (W3-0e, auditor #7513):
+
+    * ``generate --baseline`` and every ``check`` read the RECORDED export kept
+      with the baseline at ``<baseline>/axioms.txt``;
+    * ``generate --fresh`` reads the LIVE export ``export_fresh`` writes under
+      the same name into the throwaway export directory of that run, beside the
+      two roster exports, so a fresh run gates against the closure of the tree
+      it just exported instead of failing on a baseline it was told not to read.
+
+    A name the closure does not carry is rejected; a closure that could not be
+    read at all - an absent or unparseable baseline file, or an axioms export
+    that could not be run or did not parse - is reported as "cannot verify" and
+    accepts nothing.  Each rejected name prints its own violation line naming
+    the id and the name.
 
     An ACCEPTED name is acceptable on CONSUMER-SIDE hops ONLY: ``legacy_wrapper``,
     ``coordinator``, ``eliminator``, every ``via`` on the three consumer rows,
@@ -267,6 +278,7 @@ import sys
 import tempfile
 import tomllib
 from pathlib import Path
+from typing import NamedTuple
 
 SCHEMA = "p97-obligation-registry/v1"
 ID_SCHEMA = "p97-obligation-id-assignments/v1"
@@ -280,9 +292,12 @@ LEAN_ROOT = REPO_ROOT / "lean"
 SPINE_EXPORT = "spine-sorry.json"
 OFFSPINE_EXPORT = "offspine-sorry.json"
 BASE_HEAD_FILE = "base-head.txt"
-# The publish target's RECORDED axiom closure, kept with the baseline exports as
-# the `proof-blueprint axioms` text format.  It is the ONLY source of declarable
-# consumer trust (W3-0e).
+# The publish target's axiom closure in the `proof-blueprint axioms` text
+# format: the RECORDED export kept with the baseline exports, and - under
+# --fresh - the LIVE export `export_fresh` writes under the same name into the
+# throwaway export directory of the run.  Either one is the only source of
+# declarable consumer trust (W3-0e), and both are read by
+# `read_declarable_trust`.
 BASELINE_AXIOMS_FILE = "axioms.txt"
 REGISTRY_NAME = "obligations.json"
 ID_ASSIGNMENTS_NAME = "id-assignments.json"
@@ -302,6 +317,8 @@ TOOLCHAIN_CANDIDATES = ("lean/lean-toolchain", "lean-toolchain")
 BLUEPRINT_CMD = "proof-blueprint"
 SPINE_ARGS = ["search", "--with-sorry", "--spine", "--json"]
 OFFSPINE_ARGS = ["search", "--with-sorry", "--off-spine", "--json"]
+# The publish target's live axiom closure, exported by --fresh (W3-0e).
+AXIOMS_ARGS = ["axioms", PUBLISH_TARGET]
 REFS_CHECK_ARGS = ["refs", "--check"]
 
 # ---------------------------------------------------------------------------
@@ -562,8 +579,46 @@ def read_base_head(baseline_dir: Path | None, out_dir: Path | None) -> str:
     return "unknown"
 
 
+def export_live_closure(target_dir: Path) -> None:
+    """Write the publish target's LIVE axiom closure into target_dir, or not.
+
+    The file is written under ``BASELINE_AXIOMS_FILE``, so ``--fresh`` reads it
+    back through the same ``read_declarable_trust`` parser the RECORDED baseline
+    file goes through (W3-0e, auditor #7513).
+
+    This export FAILS CLOSED and never raises.  The exit code of ``axioms`` is
+    deliberately not trusted (see ``parse_axioms_output``), so the captured text
+    is written as-is and left for the parser to accept or reject, and an export
+    that could not be run, decoded or written leaves NO file behind.  Both cases read back as
+    None - "cannot verify" on every block that declares consumer trust - so
+    neither can silently accept a declaration.
+    """
+    command = [BLUEPRINT_CMD] + AXIOMS_ARGS
+    try:
+        result = subprocess.run(
+            command,
+            cwd=str(REPO_ROOT),
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        (target_dir / BASELINE_AXIOMS_FILE).write_text(
+            result.stdout + result.stderr, encoding="utf-8"
+        )
+    except (OSError, UnicodeDecodeError):
+        # A closure that could not be run, decoded (text=True decodes the
+        # child's output strictly) or written leaves no file behind; all read
+        # back as None ("cannot verify").
+        return
+
+
 def export_fresh(target_dir: Path) -> Path:
-    """Run proof-blueprint twice, writing the two exports into target_dir."""
+    """Run proof-blueprint three times, writing the exports into target_dir.
+
+    The two roster exports are HARD - a failure there fails the run - and the
+    publish target's axiom closure is exported third, fail-closed, by
+    ``export_live_closure`` (W3-0e).
+    """
     target_dir.mkdir(parents=True, exist_ok=True)
     for args, name in ((SPINE_ARGS, SPINE_EXPORT), (OFFSPINE_ARGS, OFFSPINE_EXPORT)):
         command = [BLUEPRINT_CMD] + args
@@ -591,6 +646,7 @@ def export_fresh(target_dir: Path) -> Path:
                 + detail
             )
         (target_dir / name).write_text(result.stdout, encoding="utf-8")
+    export_live_closure(target_dir)
     return target_dir
 
 
@@ -988,21 +1044,31 @@ def parse_axioms_output(text: str) -> list[tuple[str, str]]:
     return entries
 
 
-def read_declarable_trust(baseline_dir: Path | None) -> set[str] | None:
-    """Axiom names the PUBLISH TARGET's recorded closure carries, or None.
+def read_declarable_trust(export_dir: Path | None) -> set[str] | None:
+    """Axiom names the PUBLISH TARGET's closure carries, or None.
 
-    The recorded closure is ``<baseline>/axioms.txt``: the ``proof-blueprint
-    axioms`` text export of ``PUBLISH_TARGET`` kept with the baseline, parsed by
-    ``parse_axioms_output``.  None means the file is absent or does not parse,
+    ``export_dir`` is a directory holding a ``proof-blueprint axioms`` text
+    export of ``PUBLISH_TARGET`` under ``BASELINE_AXIOMS_FILE``, parsed by
+    ``parse_axioms_output``.  The CALLER decides which closure that is, and the
+    two source modes differ (W3-0e, auditor #7513):
+
+    * ``generate --baseline`` and every ``check`` pass the baseline directory,
+      so the closure is the RECORDED one kept at ``<baseline>/axioms.txt``;
+    * ``generate --fresh`` passes the throwaway export directory of the run,
+      where ``export_fresh`` has just written the LIVE closure of the same tree
+      it exported the roster from.
+
+    None means no directory was given, the file is absent, or it does not parse,
     and the gate turns that into a "cannot verify" violation on every block that
     declares consumer trust - a declaration is never accepted against a closure
     that could not be read.
     """
-    if baseline_dir is None:
+    if export_dir is None:
         return None
     try:
-        text = (baseline_dir / BASELINE_AXIOMS_FILE).read_text(encoding="utf-8")
-    except OSError:
+        text = (export_dir / BASELINE_AXIOMS_FILE).read_text(encoding="utf-8")
+    except (OSError, UnicodeDecodeError):
+        # Unreadable or undecodable bytes are "cannot verify" (auditor #7518).
         return None
     try:
         closure = parse_axioms_output(text)
@@ -1359,10 +1425,13 @@ def normalized_factorization_block(block: object, build_id: str | None) -> dict 
     of the entry the block sits on, and prose is not machine-checkable.
     ``transitive`` is sorted (and omitted when empty) so the materialization is
     a function of the reviewed block alone; ``via`` order inside a row is the
-    path and is preserved.  ``consumer_trust`` (W3-0e) is sorted and is omitted
-    when the reviewed block carries no list value, so the registry carries every
-    declared trust name and ``check`` reports a drifted, added or removed
-    declaration exactly like any other materialized field.
+    path and is preserved.  ``consumer_trust`` (W3-0e) is omitted only when the
+    reviewed block has no such key; a present well-formed list is sorted, and
+    any other present value (an explicit null included, auditor #7518) is
+    carried through verbatim - the shape violation is what rejects such a
+    block - so the registry carries every declared trust name and ``check``
+    reports a drifted, added or removed declaration exactly like any other
+    materialized field.
     """
     if not isinstance(block, dict):
         return None
@@ -1394,16 +1463,19 @@ def normalized_factorization_block(block: object, build_id: str | None) -> dict 
     if normalized_rows:
         materialized["transitive"] = normalized_rows
 
-    declared = block.get(CONSUMER_TRUST_KEY)
-    if isinstance(declared, list):
-        # A malformed list (a non-string member) is a shape violation the gate
-        # reports; it is copied through unsorted rather than sorted, because
-        # sorting mixed types raises and the comparison must report drift, not
-        # crash on reviewed input.
+    if CONSUMER_TRUST_KEY in block:
+        # A PRESENT key is always carried through, an explicit null included
+        # (auditor #7518): the materialization mirrors the reviewed value and
+        # never turns a present malformed value into key absence; the shape
+        # violation of parse_consumer_trust is what rejects such a block.  A
+        # malformed list (a non-string member) is copied unsorted, because
+        # sorting mixed types raises on reviewed input.
+        declared = block[CONSUMER_TRUST_KEY]
         materialized[CONSUMER_TRUST_KEY] = (
             sorted(declared)
-            if all(isinstance(name, str) for name in declared)
-            else list(declared)
+            if isinstance(declared, list)
+            and all(isinstance(name, str) for name in declared)
+            else declared
         )
     return materialized
 
@@ -1698,18 +1770,19 @@ def parse_consumer_trust(
 ) -> tuple[list[str], list[str]]:
     """ACCEPTED ``consumer_trust`` declarations of one v2 block (W3-0e).
 
-    Returns ``(accepted, violations)``.  The value must be a non-empty list of
-    unique non-empty strings; anything else is one shape violation and accepts
-    nothing.  Each listed name is then checked in this order, each failure its
+    Returns ``(accepted, violations)``.  Only an ABSENT key declares nothing.
+    A key that is present must hold a non-empty list of unique non-empty
+    strings; any other present value - an explicit ``null`` included (auditor
+    #7518) - is one shape violation and accepts nothing.  Each listed name is then checked in this order, each failure its
     own violation line: ``sorryAx`` is never declarable (an open obligation is
     not trust), a name already in ``ALLOWED_AXIOMS`` declares nothing, an
     unreadable recorded closure is "cannot verify", and a name the publish
     target's recorded closure does not carry is rejected.  Only a name that
     passes all four is ACCEPTED.
     """
-    value = block.get(CONSUMER_TRUST_KEY)
-    if value is None:
+    if CONSUMER_TRUST_KEY not in block:
         return [], []
+    value = block[CONSUMER_TRUST_KEY]
     well_formed = (
         isinstance(value, list)
         and bool(value)
@@ -2265,10 +2338,12 @@ def check_factorizations(
     Returns ``{"summary": <receipt section>, "verified_ids": [...],
     "missing_ids": [...]}``.  ``summary`` carries exactly the receipt keys.
 
-    ``declarable_trust`` is the publish target's recorded closure, read by
-    ``read_declarable_trust`` from the baseline directory (W3-0e); None means it
-    could not be read, and every block that declares consumer trust is then
-    reported as "cannot verify" instead of being accepted.
+    ``declarable_trust`` is the publish target's closure, read by
+    ``read_declarable_trust`` from the baseline directory (``--baseline`` and
+    every ``check``) or from the run's own live axioms export (``--fresh``,
+    W3-0e); None means it could not be read, and every block that declares
+    consumer trust is then reported as "cannot verify" instead of being
+    accepted.
     """
     by_id = {item["id"]: item for item in registry.get("obligations", [])}
     blocks = factorization_blocks(meta)
@@ -2867,9 +2942,53 @@ def write_receipt(receipts_dir: Path, receipt: dict) -> Path:
 # ---------------------------------------------------------------------------
 
 
+class ExportBundle(NamedTuple):
+    """One source of roster records PLUS the closure they are gated against.
+
+    ``declarable_trust`` is the publish target's closure as
+    ``read_declarable_trust`` read it from the SAME source as the rosters, and
+    None is the fail-closed value (W3-0e, auditor #7513).
+    """
+
+    spine: list[dict]
+    offspine: list[dict]
+    declarable_trust: set[str] | None
+
+
+def normalize_exports(result) -> ExportBundle:
+    """Accept the 2-tuple the pre-W3-0e ``export_source`` seam returns.
+
+    ``(spine, offspine)`` carries NO closure, so its declarable trust is None -
+    the fail-closed value that reports "cannot verify" on every block declaring
+    consumer trust.  ``(spine, offspine, declarable_trust)`` and an
+    ``ExportBundle`` pass through unchanged.
+    """
+    items = tuple(result)
+    if len(items) == 2:
+        return ExportBundle(items[0], items[1], None)
+    if len(items) == 3:
+        return ExportBundle(items[0], items[1], items[2])
+    raise RegistryError(
+        "export_source must return (spine, offspine) or"
+        " (spine, offspine, declarable_trust), got "
+        + str(len(items))
+        + " value(s)"
+    )
+
+
 def gather_exports(
     baseline_dir: Path | None, fresh: bool, scratch_parent: Path
-) -> tuple[list[dict], list[dict]]:
+) -> ExportBundle:
+    """The roster records and the declarable-trust closure of ONE source.
+
+    ``--baseline`` reads all three from the recorded baseline directory.
+    ``--fresh`` re-exports all three live: ``export_fresh`` writes the publish
+    target's ``proof-blueprint axioms`` export into the same throwaway
+    directory as the two rosters, under ``BASELINE_AXIOMS_FILE``, and it is read
+    back with the same parser (W3-0e, auditor #7513).  An axioms export that
+    failed or does not parse reads back as None, which the gate reports as
+    "cannot verify"; it is never silently accepted.
+    """
     if fresh:
         scratch_parent.mkdir(parents=True, exist_ok=True)
         temp_dir = Path(tempfile.mkdtemp(prefix=".fresh-export-", dir=str(scratch_parent)))
@@ -2877,13 +2996,15 @@ def gather_exports(
             export_fresh(temp_dir)
             spine = read_records(temp_dir / SPINE_EXPORT)
             offspine = read_records(temp_dir / OFFSPINE_EXPORT)
+            declarable_trust = read_declarable_trust(temp_dir)
         finally:
             shutil.rmtree(temp_dir, ignore_errors=True)
-        return spine, offspine
+        return ExportBundle(spine, offspine, declarable_trust)
     assert baseline_dir is not None
-    return (
+    return ExportBundle(
         read_records(baseline_dir / SPINE_EXPORT),
         read_records(baseline_dir / OFFSPINE_EXPORT),
+        read_declarable_trust(baseline_dir),
     )
 
 
@@ -2903,10 +3024,19 @@ def command_generate(
     out_dir = Path(args.out).resolve()
     baseline_dir = Path(args.baseline).resolve() if args.baseline else None
 
-    spine, offspine = (
+    exports = normalize_exports(
         gather_exports(baseline_dir, args.fresh, out_dir)
         if export_source is None
         else export_source()
+    )
+    spine, offspine = exports.spine, exports.offspine
+    # WHICH closure declarable consumer trust is checked against follows the
+    # source mode (W3-0e, auditor #7513).  --baseline reads the RECORDED file;
+    # --fresh has no baseline directory to read at all, so it uses the LIVE
+    # closure exported by this run.  Either one being None is fail-closed:
+    # every declaring block is reported as "cannot verify".
+    declarable_trust = (
+        exports.declarable_trust if args.fresh else read_declarable_trust(baseline_dir)
     )
 
     if args.fresh:
@@ -2933,7 +3063,7 @@ def command_generate(
         provisional,
         meta,
         backend,
-        declarable_trust=read_declarable_trust(baseline_dir),
+        declarable_trust=declarable_trust,
     )
     hard_violations = [
         "factorization: " + reason
@@ -3136,11 +3266,12 @@ def command_check(
     receipt["blueprint_refs"] = refs_check_state()
 
     try:
-        spine, offspine = (
+        exports = normalize_exports(
             gather_exports(None, True, status_dir)
             if export_source is None
             else export_source()
         )
+        spine, offspine = exports.spine, exports.offspine
         ledger = load_id_assignments(status_dir / ID_ASSIGNMENTS_NAME)
         meta = load_meta(status_dir)
         backend = make_backend(meta, backend_factory)
@@ -3208,6 +3339,9 @@ def command_check(
     # Factorization blocks are validated against the COMMITTED registry for the
     # same reason the reviewed metadata is: that file is what consumers read.
     required_clusters = tuple(args.require_factorized or ())
+    # ``check`` audits the COMMITTED registry against the RECORDED closure kept
+    # with its required baseline, unchanged by W3-0e: the live re-export above
+    # decides roster drift, not declarable trust.
     factorization = check_factorizations(
         committed,
         meta,
@@ -3452,8 +3586,11 @@ def main(argv: list[str] | None = None, backend_factory=None, export_source=None
     * ``backend_factory()`` returns a ``FactorizationBackend`` (a
       ``MappingBackend`` in the tests) and is consulted only when a reviewed
       factorization block actually needs a backend;
-    * ``export_source()`` returns the ``(spine, offspine)`` record lists that
-      would otherwise be read or re-exported.
+    * ``export_source()`` returns the record lists that would otherwise be read
+      or re-exported, either as ``(spine, offspine)`` or, since W3-0e, as
+      ``(spine, offspine, declarable_trust)``.  The 2-tuple carries no closure,
+      so under ``--fresh`` it is fail-closed: the declarable trust is None and
+      every block declaring consumer trust is reported as "cannot verify".
     """
     args = build_parser().parse_args(argv)
     try:
