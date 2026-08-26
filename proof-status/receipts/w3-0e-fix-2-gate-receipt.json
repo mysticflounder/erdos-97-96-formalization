@@ -1,0 +1,300 @@
+{
+  "schema": "p97-gate-receipt/v1",
+  "wave": "W3-0e-fix-2",
+  "state": "PRE-COMMIT — wave_commit is null.  All five gates were re-run from source by this verifier against the WORKING TREE at git_head e0947a71; nothing is committed and nothing is staged.  Rebind content_bound_files to the wave commit when it exists.",
+  "generated_by": "W3-0e-fix-2 independent gate verifier (no build rights; no lake, no lake-build, no `proof-blueprint sync`, no `proof-blueprint refs --refresh`, no `generate --out proof-status`).  Every gate was re-derived from source: no author output, log or artifact was reused as evidence.  All four end-to-end `generate` runs were made by this verifier on its OWN copies of proof-status; the single `check` ran against the live tree read-only apart from its own registry-check receipt.  `proof-blueprint` ran only as a child of those five runs.",
+  "generated_at_utc": "2026-08-26T22:26:57Z",
+  "git_head": "e0947a71f8b854ffcd37ae015433fc5b202fe49e",
+  "git_head_short": "e0947a71",
+  "head_note": "wave_commit is null: nothing is committed.  content_bound_files_working_tree holds the sha256 of the WORKING-TREE bytes of the three owned files at git_head e0947a71, read after the last gate and unchanged throughout every gate.  content_bound_files repeats them and must be rebound to `git show <wave commit>:<path>` once the wave lands.",
+  "baseline_reference": "proof-status/baseline.  axioms.txt is the reviewed `proof-blueprint axioms Problem97.erdos97_rhs` export; this verifier parsed it directly and it records exactly six names - propext, sorryAx, Classical.choice, Lean.ofReduceBool, Lean.trustCompiler, Quot.sound - of which the declarable surface is the two native-reduction names (sorryAx and the three ALLOWED_AXIOMS are rejected by construction).  base-head.txt is f3063069, the source_head the committed registry carries.  Under W3-0e-fix-2 this file is the trust authority in BOTH source modes; no live axioms export is consulted anywhere.",
+  "build_fingerprint": "5902ba928947b2ac2fda7b3cc06ff430f9e95f86f9046c96043581865b0a536c",
+  "build_fingerprint_source": "The live mined build id as stamped by this verifier's `generate --fresh` run on its copy and reported by its live `check` (`build 5902ba928947`); identical to the id every materialized block in the committed proof-status/obligations.json already carries.",
+  "promotion_claim": "none: registry tooling; no proof progress",
+  "claim_scope": "registry tooling only: (a) WHICH axiom closure authorizes an optional consumer_trust declaration under `generate --fresh` (auditor #7524 blocker - it is now the RECORDED closure in both modes and the live export is deleted, not merely unused); (b) the strictness of the `proof-blueprint axioms` text parse (auditor #7521); (c) optional-key PRESENCE in registry-drift comparison, and the source-neutral wording of the unreadable-closure violation (auditor #7524 non-blocking).  No obligation, statement, axiom, import, Lean source or proof-progress claim.  No gate rule, no other violation string, no schema key and no CLI flag changed.",
+  "source_gates_pass": true,
+  "source_gates_note": "Gates 1, 2, 3 and 5 - the source review, the direct probes, both test suites with the pre-fix regression demonstration, and the tree/staging/lint delta - all PASS.  `--require-fresh-refs` was deliberately NOT run and is NOT counted; no Lean build was performed and none is claimed.",
+  "overall_pass": true,
+  "overall_note": "Auditor #7524's blocker is really fixed and the fix is confined to what was asked.  The live-closure seam is DELETED (export_live_closure, AXIOMS_ARGS, ExportBundle, normalize_exports all gone; a 3-tuple export_source now raises), so the recorded proof-status/baseline/axioms.txt is the sole trust authority in both modes; a fresh run on a copy whose recorded closure drops one name refuses exactly the 24 blocks that declare it while the live tree still carries it, and a fresh run with no recorded closure refuses everything and writes nothing.  Auditor #7521's three parser holes (unchecked target, optional count, any-2-token entry line) are closed and fail closed, and the tag set was checked against the installed binary's own vocabulary.  The two #7524 non-blocking items (presence-aware drift, source-neutral message) are done and the unused live export in `check` is gone.  The regenerated registry still reproduces the committed one apart from source_head and `line` stamps that the ~400 foreign dirty files explain.  One accuracy note, not a defect: the author's flagship regression test fails pre-fix on the violation MESSAGE rather than on accept-vs-refuse, because its injected 2-tuple seam was already fail-closed pre-fix; this verifier wrote an independent probe that drives the pre-fix 3-tuple seam and confirms 00f0d377 ACCEPTED and WROTE a live-only declaration, so the defect and its removal are both demonstrated.",
+  "blockers": [],
+  "gates": [
+    {
+      "name": "1. Source review (full diff + per-top-level-object AST diff of the three owned files vs HEAD e0947a71)",
+      "pass": true,
+      "line": "Full `git diff e0947a71 --` read for all three files (31 hunks in gen_obligation_registry.py, 15 in the test file, 3 in proof-status/README.md; +232/-189, +242/-52, +37/-22).  LIVE EXPORT GONE: a repository-wide grep for `export_live_closure|AXIOMS_ARGS|ExportBundle|normalize_exports|parenthesized_count` over *.py/*.md/*.json returns hits ONLY in scripts/test_gen_obligation_registry_factorization.py:2746-2747 (the assertion that they are absent) and in the historical proof-status/receipts/w3-0e-fix-gate-receipt.json; zero hits in scripts/gen_obligation_registry.py.  `PUBLISH_TARGET` now appears at four places only - the constant (:285), two docstrings (:147, :1099) and `parse_axioms_output(text, PUBLISH_TARGET)` (:1121) - and at NO subprocess site: the only `[BLUEPRINT_CMD] + args` calls are export_fresh (:608, SPINE_ARGS/OFFSPINE_ARGS only), BlueprintBackend._run (:1271) and refs_check_state (:2956, REFS_CHECK_ARGS).  The only surviving `\"axioms\"` argv literal is BlueprintBackend.axioms' per-symbol `self._run(['axioms', symbol])` (:1350), which is the kernel-mined hop boundary and is unchanged apart from passing `symbol` to the parser.  FRESH MODE: command_generate :3079 computes `recorded_dir = (out_dir / BASELINE_DIR_NAME) if args.fresh else baseline_dir` and :3080 `declarable_trust = read_declarable_trust(recorded_dir)`; BASELINE_DIR_NAME = 'baseline' is a NEW module constant and read_base_head now uses it in place of the bare literal.  --BASELINE MODE UNCHANGED: for `args.fresh` false the expression is exactly the pre-fix `read_declarable_trust(baseline_dir)`.  CHECK RUNS NO EXPORT: export_fresh's loop is over the two roster arg tuples only and the `export_live_closure(target_dir)` call is deleted, so command_check's `gather_exports(None, True, status_dir)` runs proof-blueprint exactly twice; its trust still comes from `read_declarable_trust(baseline_dir)` (:3392).  PARSER (auditor #7521): parse_axioms_output(text, expected_target) now requires the header to start with AXIOMS_HEADER_PREFIX and end with AXIOMS_HEADER_SUFFIX ('):'), splits on AXIOMS_HEADER_INFIX ('` ('), RAISES when the named target != expected_target (naming both), RAISES when the count is missing or non-integer, requires each entry line to be indented with 2 or 3 tokens whose `tokens[-2].lower()` is in AXIOMS_TAGS=('core','core*','custom') and whose `tokens[-1]` passes is_axiom_name, RAISES on any other indented line inside the block, and RAISES unless `expected == len(entries)` (the old `expected is not None and` escape is gone).  The tag set is COMPLETE for the installed binary: `strings /Users/adam/.local/bin/proof-blueprint` shows the tag column vocabulary as exactly '    core   core*' plus ' CUSTOM'.  No regex anywhere (str.isalnum / membership only).  PRESENCE COMPARISON: compare_registry_factorizations' skip condition is now `(key in want) == (key in got) and want.get(key) == got.get(key)` and both branches render sides through the new present_repr, which prints '(absent)'.  MESSAGE: the only violation literal removed anywhere in the module is the \": the publish target's recorded closure (baseline \" / \") could not be read\" pair, replaced by \": the recorded closure \" + closure_path + \" could not be read\"; `closure_path` is threaded as a DEFAULTED keyword (default BASELINE_AXIOMS_FILE) check_factorizations -> check_v2_block -> parse_consumer_trust, and recorded_closure_path(dir) builds it.  NOTHING ELSE MOVED, proved structurally: a content-keyed per-top-level-object AST diff (docstrings stripped, ast.unparse) shows REMOVED = {ExportBundle, export_live_closure, normalize_exports, parenthesized_count}, ADDED = {is_axiom_name, present_repr, recorded_closure_path}, CHANGED = {BlueprintBackend, check_factorizations, check_v2_block, command_check, command_generate, compare_registry_factorizations, export_fresh, gather_exports, parse_axioms_output, parse_consumer_trust, read_base_head, read_declarable_trust}, module statements removed = {AXIOMS_ARGS, `from typing import NamedTuple`} and added = {BASELINE_DIR_NAME, the four AXIOMS_HEADER_* constants, AXIOMS_TAGS, AXIOM_NAME_PUNCTUATION}.  build_parser is IDENTICAL, so there is NO new CLI flag; the per-function unparse diffs of check_factorizations, check_v2_block and parse_consumer_trust are the signature/pass-through of closure_path plus, in parse_consumer_trust, the single message line - the four accept/reject rules, their order, ALLOWED_AXIOMS, SORRY_AXIOM, the consumer-side-only rule, the producer-clean rule, MATERIALIZED_KEYS and every other schema key are byte-identical.  A non-docstring string-literal diff of the whole module removes 9 literals (all of them belonging to the four deleted objects plus the one replaced 'cannot verify' pair) and adds 23, all of them the new parser errors, the new 'cannot verify' halves, '(absent)', and the new constants: no other violation string, schema key value or flag string moved.  README: the regeneration sentence, both source-mode bullet lists, the quoted violation text, the registry-drift bullet ('(absent)') and the axioms-parsing paragraph are rewritten to match the code, citing #7524 (x3) and #7521 (x1)."
+    },
+    {
+      "name": "2. Direct probes (uv run python, module loaded by file path)",
+      "pass": true,
+      "line": "All eleven probes run by this verifier against the working-tree script.  (1) parse_axioms_output(proof-status/baseline/axioms.txt, 'Problem97.erdos97_rhs') -> exactly 6 pairs [('core','propext'), ('custom','sorryAx'), ('core','Classical.choice'), ('core*','Lean.ofReduceBool'), ('core*','Lean.trustCompiler'), ('core','Quot.sound')].  (2) same text with expected_target 'Evil' -> RegistryError \"`proof-blueprint axioms` reported the closure of 'Problem97.erdos97_rhs' but 'Evil' was queried\" (names BOTH).  (3) header without a count -> RegistryError \"unrecognised `proof-blueprint axioms` header line: 'axioms reported by `#print axioms Problem97.erdos97_rhs`:'\"; parenthesized non-integer '(x)' -> RegistryError \"`proof-blueprint axioms` header line names no axiom count: ...\" (a missing count is NOT 'unknown, accept').  (4) header '(1)' followed by '  bogus X' -> RegistryError \"unrecognised `proof-blueprint axioms` entry line: '  bogus X'\".  (5) compare_registry_factorizations with a registry-only 'consumer_trust': null against reviewed metadata that omits the key -> EXACTLY ONE drift line, \"P97-X: materialized factorization key 'consumer_trust' is None on the registry but (absent) in the reviewed metadata\"; the mirror case gives \"... is (absent) on the registry but None in the reviewed metadata\".  (6) read_declarable_trust on a directory whose axioms.txt is the raw bytes b'\\xff\\xfe' -> None (fail-closed, no exception).  (7) parse_consumer_trust(id, {'consumer_trust': None}, closure) -> ([], ['P97-X: consumer_trust must be a non-empty list of unique axiom names']) - the PRE-EXISTING shape string, unchanged.  (8) parse_consumer_trust(id, {}, closure) == ([], []) exactly.  (9) parse_consumer_trust with declarable_trust None and closure_path '/abs/baseline/axioms.txt' -> ['P97-X: cannot verify consumer_trust: the recorded closure /abs/baseline/axioms.txt could not be read'] - source-neutral and naming the file.  (10) the same call with the DEFAULT closure_path -> '... the recorded closure axioms.txt could not be read'; recorded_closure_path(None) == 'axioms.txt'.  (11) command_generate with a 3-tuple export_source raises ValueError('too many values to unpack (expected 2)') - the seam is fail-fast, not silently re-admitted."
+    },
+    {
+      "name": "3. Tests (both suites; plus the #7524 regression demonstrated against the 00f0d377 script)",
+      "pass": true,
+      "line": "`uv run python -m pytest -q scripts/test_gen_obligation_registry_factorization.py scripts/test_lint_cluster_imports_legacy.py` -> `165 passed in 6.09s`, exit 0, run by this verifier (111 + 54 by --collect-only).  That is 157 -> 165, and the arithmetic is structurally accounted for by a content-keyed AST diff of the test module: 14 named objects ADDED of which 2 are helpers (axioms_text, write_recorded_closure) = 12 new test functions, 5 REMOVED of which 1 is a helper (fresh_exports) = 4 removed test functions (three of them RENAMED live_closure -> recorded_closure variants, one genuinely dropped: test_w3_0e_normalize_exports_is_fail_closed_on_the_two_tuple_seam); 157 + 12 - 4 = 165.  No test was weakened: the three CHANGED bodies are test_parse_axioms_output_reads_tag_and_name and _rejects_a_count_mismatch (now pass the expected target) and test_an_unreadable_recorded_closure_is_cannot_verify_not_accepted (the new message), each an additive/parameter change with every existing assertion kept.  REGRESSION TIGHTNESS: the NEW test file was run against `git show 00f0d377:scripts/gen_obligation_registry.py` (sha256 bccc6412f9ed858e79951241a74f07f1d34550d6011b37a3ae0a7d45a4291ef8, the sha the W3-0e-fix receipt binds) in a scratch scripts/ tree with proof-status, lean and .blueprint.toml symlinked -> `15 failed, 96 deselected` for -k 'w3_0e or parse_axioms or per_symbol_parse or registry_drift_when_the_registry_declares_a_null or unreadable_recorded'.  The REQUIRED regression test test_w3_0e_fresh_generate_never_trusts_a_live_consumer_closure EXISTS (live consumer hop carries Lean.ofReduceBool, OUT/baseline/axioms.txt is rewritten without it, the block declares it, --fresh must exit 1 and leave the three outputs byte-identical to a prior successful --fresh run) and FAILS against 00f0d377.  ACCURACY NOTE, recorded rather than waved through: its pre-fix failure is on the violation MESSAGE ('cannot verify ...' instead of '... does not carry'), not on accept-vs-refuse, because an injected 2-tuple export_source made the pre-fix --fresh path fail-closed and never reach export_live_closure.  This verifier therefore ADDED an independent probe in the same pre-fix tree that drives the pre-fix 3-tuple seam directly - recorded closure WITHOUT Lean.ofReduceBool, live closure WITH it, block declaring it - and 00f0d377 exits 0, writes all three files and prints 'factorized 1/28 reachable leaves (1 with declared consumer_trust (Lean.ofReduceBool))'.  The #7524 defect is REAL and the accept-vs-refuse difference is demonstrated; the structural regression test_w3_0e_the_live_axioms_export_seam_is_gone also fails pre-fix ('export_live_closure must be removed').  The pre-fix scratch tree and the probe were deleted afterwards.  `uv run python scripts/lint_cluster_imports.py` -> exit 0."
+    },
+    {
+      "name": "4. End-to-end on COPIES of proof-status (five runs, all detached and awaited on the runner pid; proof-status itself was never an --out target)",
+      "pass": true,
+      "line": "(a) FRESH, CLEAN COPY.  `cp -R proof-status <scratch>/c1`, then `generate --fresh --out <scratch>/c1` -> EXIT 0.  The merged stream is exactly four lines - the three `wrote` lines and `factorized 28/28 reachable leaves (24 with declared consumer_trust (Lean.ofReduceBool, Lean.trustCompiler))` - with zero occurrences of WARNING, ERROR, FAIL or 'cannot verify'.  That census line is the required string verbatim.  All 24 declaring blocks were accepted against OUT/baseline/axioms.txt, and the strict parser (auditor #7521) survived every real per-symbol `proof-blueprint axioms` output the run made (the run was observed mid-flight spending its time in `proof-blueprint axioms <hop>` -> `lake env lean` and NEVER in `proof-blueprint axioms Problem97.erdos97_rhs`).  COMPARISON with the live registry: ids are identical (34/34, none only on either side); 20 of 34 entries differ and in EVERY case the ONLY differing key is `line`; the only top-level difference is source_head (live f3063069939cfb6dc2a8a9b20d9a7ef660c86fdf vs copy e0947a71f8b854ffcd37ae015433fc5b202fe49e).  After `jq -S` with .source_head and every .obligations[].line normalized the two files are IDENTICAL - so every factorization block, every consumer_trust list and every verified_at_build agrees (the single mined build id 5902ba928947b2ac2fda7b3cc06ff430f9e95f86f9046c96043581865b0a536c on both).  id-assignments.json is BYTE-IDENTICAL to the live one; frontier-table.generated.md differs in one line only, `- Source head:`.  The `line` drift is expected: the live registry was generated at f3063069 and the worktree carries ~400 dirty files from other lanes.  (b) FRESH, NO RECORDED CLOSURE.  c2 = the same copy with baseline/axioms.txt REMOVED -> EXIT 1, 768 violations, 48 of them (24 declaring blocks x 2 declared names) reading `<ID>: cannot verify consumer_trust: the recorded closure <scratch>/c2/baseline/axioms.txt could not be read` - source-neutral and naming the FULL path - and the final line `FAIL: refusing to write <scratch>/c2: 768 alias/factorization violation(s); obligations.json, id-assignments.json and frontier-table.generated.md are unchanged`.  obligations.json, id-assignments.json and frontier-table.generated.md are BYTE-IDENTICAL to their pre-run sha256s, and a find(1) diff shows the run created no file at all.  (c) FRESH, CLOSURE MISSING ONE NAME.  c3 = a copy whose baseline/axioms.txt has the `core*  Lean.trustCompiler` row deleted and the header count decremented to (5) -> EXIT 1, 384 violations, of which EXACTLY 24 are `<ID>: consumer_trust lists Lean.trustCompiler, which the publish target's recorded closure does not carry` - one per declaring block - and ZERO 'does not carry' lines mention Lean.ofReduceBool, which that closure still records.  The three outputs are BYTE-IDENTICAL to their pre-run sha256s and the file set is unchanged.  (d) BASELINE, EXPLICIT NULL.  c4 = a copy with `\"consumer_trust\": null` on P97-TS-CROSSBLOCKER in obligations-meta.json, run as `generate --baseline proof-status/baseline --out <scratch>/c4` -> EXIT 1 with `P97-TS-CROSSBLOCKER: consumer_trust must be a non-empty list of unique axiom names` (the pre-existing shape violation, once) plus the ten hop refusals it implies, 11 violations total, and the three outputs BYTE-IDENTICAL to their pre-run sha256s.  (e) CHECK ON THE LIVE TREE.  `check --baseline proof-status/baseline --require-factorized TD --require-factorized TA --require-factorized TS --require-factorized R221` -> EXIT 0: `OK: .../proof-status/obligations.json matches the live spine (28 reachable, 6 off-spine); 34/34 reviewed meta_status, vocabulary clean` / `factorized 28/28 reachable leaves (required: TD, TA, TS, R221; 24 with declared consumer_trust (Lean.ofReduceBool, Lean.trustCompiler))` / `bound to: HEAD e0947a71f8b854ffcd37ae015433fc5b202fe49e, build 5902ba928947, roster sources dirty`.  Its only write is the receipt proof-status/receipts/registry-check-20260826T221651Z.json; the live obligations.json, id-assignments.json and frontier-table.generated.md kept their committed sha256s (5b58c745..., 4c1c0a5b..., 0cb5d00f...).  --require-fresh-refs was deliberately NOT passed and is not claimed."
+    },
+    {
+      "name": "5. Tree delta, staging and import lint",
+      "pass": true,
+      "line": "`git status --porcelain` before this check had 397 lines (the pre-existing foreign dirt snapshot at <scratch>/w3-r221-b-status-before.txt) and has 400 now; the diff of the two sorted listings is EXACTLY four lines and no more: ` M proof-status/README.md`, ` M scripts/gen_obligation_registry.py`, ` M scripts/test_gen_obligation_registry_factorization.py` and `?? proof-status/receipts/registry-check-20260826T221651Z.json` (the receipt gate 4(e)'s `check` wrote).  No foreign path changed state, nothing was deleted, and `git diff --cached --name-only` is EMPTY - nothing is staged.  The three owned files kept the same sha256 before and after every gate.  `uv run python scripts/lint_cluster_imports.py` -> exit 0, final line `lint_cluster_imports: OK -- 691 import edges scanned, 27 forbidden edges, all waived by 27 authenticated waivers; 3 retired; 5 legacy edges, all listed.` - the required line verbatim.  `ruff check` on the two edited Python files reports `Found 5 errors` (EXE001, DTZ007, UP017, FURB188, RUF059), the SAME five, on HEAD's copies and on the working tree: the wave adds no new lint finding.  This receipt adds a fifth untracked path, proof-status/receipts/w3-0e-fix-2-gate-receipt.json."
+    }
+  ],
+  "roi": {
+    "defects": [
+      "#7524 (blocker) - `generate --fresh` authorized consumer_trust declarations against a LIVE `proof-blueprint axioms Problem97.erdos97_rhs` export instead of the RECORDED closure, so a name the reviewed baseline does not carry could be accepted and materialized.  Demonstrated directly against 00f0d377 by this verifier: exit 0, registry written, `1 with declared consumer_trust (Lean.ofReduceBool)`.",
+      "#7521 - parse_axioms_output accepted any header containing 'axioms reported by' without checking the target it named, treated a missing count as unknown and accepted it, and accepted any indented line with >= 2 tokens as an entry.",
+      "#7524 (non-blocking) - compare_registry_factorizations used want.get/got.get, so a registry-only \"consumer_trust\": null was not drift; `check` ran an unused live axioms export; the unreadable-closure message named a source mode rather than the file."
+    ],
+    "blast_radius_before_the_fix": "#7524 blocker: 24 of the 28 materialized factorization blocks declare consumer_trust, so the documented regeneration command was gating all 48 declared names against a closure nobody reviewed - a trust hole exactly as wide as the live tree's axiom drift.  #7521: a changed `proof-blueprint axioms` output format could have been read as a DIFFERENT closure (wrong symbol, silently truncated list, prose parsed as an axiom name) and turned into a false clean verdict.  The non-blocking items were a missed drift class and cosmetics.",
+    "state_after_the_fix": "generate --fresh on a clean copy exits 0 and reports factorized 28/28 reachable leaves, 24 with declared consumer_trust (Lean.ofReduceBool, Lean.trustCompiler), reproducing the committed registry apart from source_head and line stamps; removing the recorded closure, or one name from it, refuses and writes nothing; an explicit null still exits 1 on the pre-existing shape violation; live `check` exits 0 with 28/28 and the four required clusters.",
+    "declarable_names_the_recorded_closure_makes_available": [
+      "Lean.ofReduceBool",
+      "Lean.trustCompiler"
+    ],
+    "declarable_surface_note": "The recorded closure records six names; sorryAx and the three ALLOWED_AXIOMS (propext, Classical.choice, Quot.sound) are rejected by construction, so those two native-reduction names are the entire declarable surface - and under W3-0e-fix-2 that is now true in both source modes, because no other closure is ever consulted.",
+    "gen_obligation_registry_py": {
+      "added": 232,
+      "removed": 189,
+      "lines_before": 3606,
+      "lines_after": 3649,
+      "hunks": 31
+    },
+    "test_gen_obligation_registry_factorization_py": {
+      "added": 242,
+      "removed": 52,
+      "lines_before": 2560,
+      "lines_after": 2750,
+      "hunks": 15
+    },
+    "proof_status_readme_md": {
+      "added": 37,
+      "removed": 22,
+      "lines_before": 666,
+      "lines_after": 681,
+      "hunks": 3
+    },
+    "tests_before": 157,
+    "tests_after": 165,
+    "new_test_functions": 12,
+    "removed_test_functions": 4,
+    "existing_tests_edited": 3,
+    "existing_tests_weakened": 0,
+    "note_on_counts": "157 is the count at git HEAD e0947a71 (103 + 54 by the author, 111 + 54 now).  Of the 4 removed test functions, 3 are live_closure -> recorded_closure renames the author reports as reworked and 1 (test_w3_0e_normalize_exports_is_fail_closed_on_the_two_tuple_seam) is genuinely dropped because the seam it guarded no longer exists; 157 + 12 - 4 = 165.  Two helpers were added (axioms_text, write_recorded_closure) and one removed (fresh_exports); helpers carry no test id."
+  },
+  "tests": [
+    {
+      "command": "uv run python -m pytest -q scripts/test_gen_obligation_registry_factorization.py scripts/test_lint_cluster_imports_legacy.py",
+      "exit_code": 0,
+      "final_line": "165 passed in 6.09s",
+      "total_passed": 165,
+      "failed": 0,
+      "run_by": "this verifier, from the repository root"
+    },
+    {
+      "command": "uv run python -m pytest -q <scratch>/prefix/scripts/test_gen_obligation_registry_factorization.py -k 'w3_0e or parse_axioms or per_symbol_parse or registry_drift_when_the_registry_declares_a_null or unreadable_recorded'  (the NEW test file against the 00f0d377 PRE-FIX script)",
+      "exit_code": 1,
+      "final_line": "15 failed, 96 deselected in 0.85s",
+      "total_passed": 0,
+      "failed": 15,
+      "run_by": "this verifier; includes the required test_w3_0e_fresh_generate_never_trusts_a_live_consumer_closure and test_w3_0e_the_live_axioms_export_seam_is_gone; scratch tree deleted afterwards"
+    },
+    {
+      "command": "uv run python -m pytest -q <scratch>/prefix/scripts/test_prefix_defect_probe.py -s  (VERIFIER-WRITTEN probe: does 00f0d377 accept a name only the LIVE closure carries?)",
+      "exit_code": 0,
+      "final_line": "RC= 0; 'factorized 1/28 reachable leaves (1 with declared consumer_trust (Lean.ofReduceBool))' - the pre-fix script ACCEPTED and WROTE against a live-only declaration whose recorded closure lacked the name",
+      "total_passed": 1,
+      "failed": 0,
+      "run_by": "this verifier; this is the direct accept-vs-refuse demonstration of the #7524 defect; probe deleted afterwards"
+    },
+    {
+      "command": "uv run python scripts/gen_obligation_registry.py generate --fresh --out <scratch>/c1   (end-to-end, detached, on a COPY)",
+      "exit_code": 0,
+      "final_line": "factorized 28/28 reachable leaves (24 with declared consumer_trust (Lean.ofReduceBool, Lean.trustCompiler))",
+      "total_passed": null,
+      "failed": 0,
+      "run_by": "this verifier"
+    },
+    {
+      "command": "uv run python scripts/gen_obligation_registry.py generate --fresh --out <scratch>/c2   (COPY with baseline/axioms.txt REMOVED)",
+      "exit_code": 1,
+      "final_line": "FAIL: refusing to write <scratch>/c2: 768 alias/factorization violation(s); obligations.json, id-assignments.json and frontier-table.generated.md are unchanged",
+      "total_passed": null,
+      "failed": 1,
+      "run_by": "this verifier; the refusal is the EXPECTED result, 48 'cannot verify' lines naming the full path"
+    },
+    {
+      "command": "uv run python scripts/gen_obligation_registry.py generate --fresh --out <scratch>/c3   (COPY whose recorded closure drops Lean.trustCompiler, header count (5))",
+      "exit_code": 1,
+      "final_line": "FAIL: refusing to write <scratch>/c3: 384 alias/factorization violation(s); obligations.json, id-assignments.json and frontier-table.generated.md are unchanged",
+      "total_passed": null,
+      "failed": 1,
+      "run_by": "this verifier; EXPECTED, with exactly 24 'consumer_trust lists Lean.trustCompiler, which the publish target's recorded closure does not carry' lines and none for Lean.ofReduceBool"
+    },
+    {
+      "command": "uv run python scripts/gen_obligation_registry.py generate --baseline proof-status/baseline --out <scratch>/c4   (COPY with \"consumer_trust\": null on P97-TS-CROSSBLOCKER)",
+      "exit_code": 1,
+      "final_line": "FAIL: refusing to write <scratch>/c4: 11 alias/factorization violation(s); obligations.json, id-assignments.json and frontier-table.generated.md are unchanged",
+      "total_passed": null,
+      "failed": 1,
+      "run_by": "this verifier; EXPECTED - the pre-existing shape violation, nothing written"
+    },
+    {
+      "command": "uv run python scripts/gen_obligation_registry.py check --baseline proof-status/baseline --require-factorized TD --require-factorized TA --require-factorized TS --require-factorized R221   (on the LIVE proof-status)",
+      "exit_code": 0,
+      "final_line": "factorized 28/28 reachable leaves (required: TD, TA, TS, R221; 24 with declared consumer_trust (Lean.ofReduceBool, Lean.trustCompiler)); receipt: proof-status/receipts/registry-check-20260826T221651Z.json",
+      "total_passed": null,
+      "failed": 0,
+      "run_by": "this verifier; read-only apart from its own receipt"
+    },
+    {
+      "command": "uv run python scripts/lint_cluster_imports.py",
+      "exit_code": 0,
+      "final_line": "lint_cluster_imports: OK -- 691 import edges scanned, 27 forbidden edges, all waived by 27 authenticated waivers; 3 retired; 5 legacy edges, all listed.",
+      "total_passed": null,
+      "failed": 0,
+      "run_by": "this verifier"
+    },
+    {
+      "command": "uv run ruff check <HEAD copies> vs uv run ruff check scripts/gen_obligation_registry.py scripts/test_gen_obligation_registry_factorization.py",
+      "exit_code": 1,
+      "final_line": "Found 5 errors. (identical set on both sides: EXE001, DTZ007, UP017, FURB188, RUF059)",
+      "total_passed": null,
+      "failed": 5,
+      "run_by": "this verifier; pre-existing, unchanged by the wave"
+    }
+  ],
+  "content_bound_files": {
+    "note": "wave_commit is null - nothing is committed.  These are the WORKING-TREE sha256s at git_head e0947a71, the same map as content_bound_files_working_tree; rebind to `git show <wave commit>:<path>` when the wave lands.",
+    "sha256": {
+      "scripts/gen_obligation_registry.py": "ee48928c08c21fa4ba82e3542baddb7bd8606818d12b14a27ce48d6f4f30c775",
+      "scripts/test_gen_obligation_registry_factorization.py": "9f1efb0482b6567d7a6297aa168a612ecafdb77c0734921395de80a2d81fc138",
+      "proof-status/README.md": "4de10edd5d8cecdaf329adefa83a57d4d28eddda55b1e65475f2022e7c0ea06a"
+    }
+  },
+  "author_claims_checked": [
+    {
+      "claim": "Trust authority is the RECORDED closure in BOTH modes: command_generate computes recorded_dir = (out_dir / BASELINE_DIR_NAME) when --fresh, else baseline_dir, and calls read_declarable_trust(recorded_dir); command_check still reads read_declarable_trust(baseline_dir). No live axioms export is consulted for trust anywhere.",
+      "verdict": "CONFIRMED",
+      "evidence": "gen_obligation_registry.py:3079-3080 and :3392 read as claimed; the per-function unparse diff shows the --baseline branch of command_generate is the identical pre-fix call. Grep: zero `export_live_closure`/`AXIOMS_ARGS` in the module, and PUBLISH_TARGET is never a subprocess argument. End to end, gate 4(c) proves the authority is the recorded file: deleting one row from <out>/baseline/axioms.txt refuses exactly the 24 blocks that declare it, on a tree whose live closure still carries the name."
+    },
+    {
+      "claim": "Added BASELINE_DIR_NAME = \"baseline\" next to BASELINE_AXIOMS_FILE (the script had no such constant); read_base_head now uses it instead of the bare \"baseline\" literal.",
+      "verdict": "CONFIRMED",
+      "evidence": "Module-statement AST diff adds exactly `BASELINE_DIR_NAME = 'baseline'`; `git show e0947a71:scripts/gen_obligation_registry.py` has no such name. read_base_head's only change is the literal -> constant substitution."
+    },
+    {
+      "claim": "export_fresh now runs proof-blueprint exactly twice (the two roster exports); check therefore runs no publish-target axioms export at all. Per-symbol BlueprintBackend.axioms calls for hop trust are unchanged.",
+      "verdict": "CONFIRMED",
+      "evidence": "export_fresh's loop is `for args, name in ((SPINE_ARGS, SPINE_EXPORT), (OFFSPINE_ARGS, OFFSPINE_EXPORT))` and the trailing export_live_closure call is deleted. BlueprintBackend.axioms' `self._run(['axioms', symbol])` is unchanged apart from passing `symbol` to the parser; a mid-flight `ps` during gate 4(a) showed only per-symbol `proof-blueprint axioms <hop>` children, never one for Problem97.erdos97_rhs."
+    },
+    {
+      "claim": "parse_axioms_output(text, expected_target) hardened (auditor #7521): strict header with mandatory integer count and target check; strict entry grammar over AXIOMS_TAGS plus a Lean identifier; exact count; no regex.",
+      "verdict": "CONFIRMED",
+      "evidence": "Read in full at :974-1085 and probed (gate 2 probes 1-4). The `expected is not None and` escape that made a missing count 'accept' is gone. AXIOMS_TAGS matches the installed binary's tag vocabulary ('    core   core*', ' CUSTOM') found by `strings`. is_axiom_name uses str.isalnum plus AXIOM_NAME_PUNCTUATION - no `re` import is added anywhere. The strict parser then survived every real per-symbol output of the 28-block end-to-end run in gate 4(a)."
+    },
+    {
+      "claim": "Callers pass the queried symbol: read_declarable_trust passes PUBLISH_TARGET; BlueprintBackend.axioms passes the symbol it queried.",
+      "verdict": "CONFIRMED",
+      "evidence": ":1121 `parse_axioms_output(text, PUBLISH_TARGET)`; :1351 `parse_axioms_output(stdout + stderr, symbol)`. Those are the only two call sites in the module."
+    },
+    {
+      "claim": "Unreadable-closure violation is now source-neutral and names the file; new helper recorded_closure_path(dir); closure_path threaded as a defaulted keyword (default BASELINE_AXIOMS_FILE).",
+      "verdict": "CONFIRMED",
+      "evidence": "Probes 9 and 10, plus gate 4(b), where the live run printed the FULL path `<scratch>/c2/baseline/axioms.txt`. The string-literal diff shows the old pair is the only violation literal removed in the module."
+    },
+    {
+      "claim": "compare_registry_factorizations now compares optional-key PRESENCE as well as value; present_repr renders an absent side as \"(absent)\".",
+      "verdict": "CONFIRMED",
+      "evidence": "Probe 5 and its mirror produce exactly one drift line each with '(absent)' on the correct side; the unparse diff shows the skip condition is `(key in want) == (key in got) and want.get(key) == got.get(key)` and both message branches now route through present_repr."
+    },
+    {
+      "claim": "Removed: export_live_closure, AXIOMS_ARGS, ExportBundle (and the NamedTuple import), normalize_exports and both call sites, parenthesized_count, and the two live-closure test artefacts.",
+      "verdict": "CONFIRMED",
+      "evidence": "The content-keyed AST diff lists exactly those four named objects and those two module statements as removed, and a repository-wide grep finds the names only in the assertion that they are absent and in the historical W3-0e-fix receipt. A 3-tuple export_source now raises ValueError at the unpack (probe 11)."
+    },
+    {
+      "claim": "tests_total 165, tests_passed 165; nine tests added, one removed.",
+      "verdict": "CONFIRMED",
+      "evidence": "`165 passed in 6.09s` (111 in the factorization suite + 54 in the import-lint suite by --collect-only). The AST diff accounts for it as 12 new test functions and 4 removed, three of the four being live_closure -> recorded_closure renames the author reports as reworked; 157 + 12 - 4 = 165. No surviving test was weakened."
+    },
+    {
+      "claim": "fresh_copy_run: exit 0 - factorized 28/28 reachable leaves (24 with declared consumer_trust (Lean.ofReduceBool, Lean.trustCompiler)).",
+      "verdict": "CONFIRMED",
+      "evidence": "Independently re-run by this verifier on its own copy: exit 0, that census line verbatim, four output lines, no WARNING/ERROR/FAIL/'cannot verify'."
+    },
+    {
+      "claim": "Regenerated registry vs committed differs only in source_head and in `line` fields; no factorization or consumer_trust differences.",
+      "verdict": "CONFIRMED",
+      "evidence": "Independently reproduced: 20 of 34 entries differ and `line` is the ONLY differing key on every one of them; the only top-level difference is source_head; after normalizing those two the files are byte-identical under `jq -S`, which also pins verified_at_build equal (5902ba92...) on both. id-assignments.json byte-identical; frontier-table.generated.md differs in its `- Source head:` line only."
+    },
+    {
+      "claim": "No gate rule, violation wording, schema key or CLI flag changed beyond the unreadable-closure message and the '(absent)' drift rendering; ALLOWED_AXIOMS, the consumer-side-only rule and the producer-clean rule are unchanged.",
+      "verdict": "CONFIRMED",
+      "evidence": "build_parser is byte-identical under ast.unparse, so there is no new flag; the non-docstring string-literal diff removes no violation literal except the replaced 'cannot verify' pair; MATERIALIZED_KEYS, ALLOWED_AXIOMS, SORRY_AXIOM, CONSUMER_TRUST_KEY and every FACTORIZATION_* constant are untouched module statements; the four accept/reject rules inside parse_consumer_trust are unchanged apart from that one message line."
+    },
+    {
+      "claim": "ruff on both edited files reports the same 5 pre-existing findings as HEAD; no new ones.",
+      "verdict": "CONFIRMED",
+      "evidence": "`ruff check` on `git show e0947a71:` copies and on the working tree both end `Found 5 errors` with the same rule ids (EXE001, DTZ007, UP017, FURB188, RUF059)."
+    },
+    {
+      "claim": "No git operations were run; the working tree shows exactly the three owned files modified.",
+      "verdict": "CONFIRMED with one addition the author could not have anticipated",
+      "evidence": "The status delta against the 397-line pre-existing dirt snapshot is exactly the three owned files, plus the registry-check receipt this verifier's gate 4(e) `check` wrote and this receipt itself. Nothing is staged. This verifier ran only read-only git (rev-parse, status, diff, show, numstat)."
+    },
+    {
+      "claim": "Item 2's parenthetical '(reworded per item 5)' was not applied to the '... does not carry' line, because item 5 scopes the rewording to the unreadable-closure violation only.",
+      "verdict": "CONFIRMED as stated",
+      "evidence": "The string-literal diff shows the 'does not carry' message is byte-identical to HEAD, and it is already source-neutral. Live evidence in gate 4(c): the line reads `<ID>: consumer_trust lists Lean.trustCompiler, which the publish target's recorded closure does not carry`, which names the recorded closure and no mode."
+    },
+    {
+      "claim": "The required regression test FAILS against 00f0d377, demonstrating the #7524 defect.",
+      "verdict": "CONFIRMED, but its pre-fix failure is on the MESSAGE, not on accept-vs-refuse; the accept-vs-refuse demonstration needed a probe this verifier wrote",
+      "evidence": "Against 00f0d377 the test fails with `assert '... which the publish target's recorded closure does not carry' in \"ERROR: ... cannot verify consumer_trust: the publish target's recorded closure (b...\"` - the pre-fix run still exited 1 and still wrote nothing, because the test injects a 2-tuple export_source and the pre-fix --fresh path was fail-closed on that seam and never reached export_live_closure. To settle the defect this verifier drove the pre-fix 3-tuple seam directly (recorded closure without Lean.ofReduceBool, live closure with it, block declaring it): 00f0d377 exits 0 and writes the registry with the declaration materialized. The defect is real and the fix removes it; the author's test does fail pre-fix as required, and test_w3_0e_the_live_axioms_export_seam_is_gone fails pre-fix decisively."
+    }
+  ],
+  "metadata_corrections": [],
+  "observations_not_blocking": [
+    "The author's flagship regression test test_w3_0e_fresh_generate_never_trusts_a_live_consumer_closure does fail against 00f0d377, but on the violation MESSAGE ('cannot verify ...' vs '... does not carry'), not on accept-vs-refuse: because it injects a 2-tuple export_source, the pre-fix --fresh path never reached export_live_closure and was already fail-closed.  Its docstring sentence 'W3-0e-fix ... would have ACCEPTED this block' is true of the real --fresh path but not of this test's own configuration.  This verifier supplied the missing accept-vs-refuse evidence with an independent probe (recorded closure without Lean.ofReduceBool, pre-fix 3-tuple live closure with it): 00f0d377 exits 0 and writes the registry with the declaration materialized.  No change is required; the note exists so the test is not later cited for more than it proves.",
+    "Under `generate --fresh --out OUT` the trust authority is OUT/baseline/axioms.txt, i.e. the closure kept with whatever tree is named by --out.  That is exactly the specified design (and gate 4(c) exploits it deliberately), but it means a run pointed at a COPY is gated by that copy's closure, not by the repository's proof-status/baseline.  Only `generate --fresh --out proof-status`, the documented command, gates against the reviewed committed file.",
+    "is_axiom_name accepts letters, digits and `_ . ' ! ?` only, so a Lean identifier written with «…» escapes in an axiom column would be refused.  That is fail-closed ('cannot verify', never a false accept) and no such name appears in the current closures - the strict parser survived every real per-symbol `proof-blueprint axioms` output of the 28-block end-to-end run - so this is a note about a future format, not a present defect.",
+    "AXIOMS_TAGS = ('core', 'core*', 'custom') matches the installed proof-blueprint binary's tag vocabulary exactly ('    core   core*' and ' CUSTOM' in its string table).  A future tool release that adds a tag would surface as 'cannot verify' rather than as a wrong closure, which is the intended direction.",
+    "The `check` run of gate 4(e) reports `roster sources dirty`, as expected on a worktree carrying ~400 foreign dirty files; it did not affect the 28/28 verdict.  `--require-fresh-refs` was not run and nothing about refs freshness is claimed."
+  ],
+  "files_written_by_this_verifier": [
+    "proof-status/receipts/w3-0e-fix-2-gate-receipt.json",
+    "proof-status/receipts/registry-check-20260826T221651Z.json  (written by the gate 4(e) `check` run itself, not by hand)"
+  ],
+  "new_receipts_written_by_this_check": [
+    "proof-status/receipts/registry-check-20260826T221651Z.json"
+  ],
+  "git_operations_performed": [
+    "read-only only: rev-parse, status --porcelain, diff, diff --numstat, diff --cached --name-only, show.  No add, commit, checkout, stash, reset, restore, rm, push, rebase or merge, and nothing was staged at any point.",
+    "No lake, no lake-build, no `proof-blueprint sync`, no `proof-blueprint refs --refresh`.  `proof-blueprint` ran only as a child of the four `generate` runs on COPIES and the one live `check`.  No Lean file was read for edit or edited.",
+    "proof-status was never an --out target.  The only repository files this check produced are its own gate receipt and the registry-check receipt the `check` subcommand writes by design."
+  ],
+  "notes_for_main_session": [
+    "All five gates PASS and there are no blockers.  The #7524 blocker is genuinely fixed at the level the auditor asked for: the live-closure export is DELETED rather than bypassed, so no future edit can re-authorize it by flipping a flag, and a 3-tuple export_source now raises instead of being silently re-admitted.",
+    "The strongest end-to-end evidence is gate 4(c): on a copy whose RECORDED closure has the `core*  Lean.trustCompiler` row removed and the header count decremented, `generate --fresh` refuses with exactly 24 'consumer_trust lists Lean.trustCompiler, which the publish target's recorded closure does not carry' lines and zero for Lean.ofReduceBool - while the live tree still carries both.  That is the recorded closure deciding, on real data.",
+    "When the wave is committed, rebind content_bound_files (and state/head_note) to the wave commit; wave_commit is null in this receipt and content_bound_files currently repeats the working-tree hashes.",
+    "The registry-check receipt proof-status/receipts/registry-check-20260826T221651Z.json is a by-product of gate 4(e) and is currently untracked; commit or discard it with the wave as the lane prefers.",
+    "One accuracy note worth carrying into the reply to #7524: the author's flagship regression test fails pre-fix on the message, not on accept-vs-refuse.  This verifier's independent probe supplies the accept-vs-refuse demonstration (00f0d377 exits 0 and writes the registry for a live-only declaration).  If the claim text says the test proves the pre-fix would have accepted the block, soften it to what the test actually pins and cite test_w3_0e_the_live_axioms_export_seam_is_gone for the structural half."
+  ],
+  "content_bound_files_working_tree": {
+    "note": "sha256 of the WORKING-TREE bytes of the three owned files at git_head e0947a71f8b854ffcd37ae015433fc5b202fe49e, read after the last gate.  Unchanged across every gate of this check; uncommitted and unstaged.",
+    "sha256": {
+      "scripts/gen_obligation_registry.py": "ee48928c08c21fa4ba82e3542baddb7bd8606818d12b14a27ce48d6f4f30c775",
+      "scripts/test_gen_obligation_registry_factorization.py": "9f1efb0482b6567d7a6297aa168a612ecafdb77c0734921395de80a2d81fc138",
+      "proof-status/README.md": "4de10edd5d8cecdaf329adefa83a57d4d28eddda55b1e65475f2022e7c0ea06a"
+    }
+  },
+  "wave_commit": null,
+  "note_resolutions": [],
+  "claim_reference": "#7534 (claim/reply to #7524, #7521, #7522)",
+  "main_session_reverification": null
+}

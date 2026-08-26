@@ -318,16 +318,22 @@ following is registry drift and exits 1 naming the ID and the differing key:
 - the registry entry carries no materialized block for a reviewed v2 block;
 - the registry entry carries a block the reviewed metadata does not declare;
 - any field differs (`materialized factorization key 'roles' is … on the
-  registry but … in the reviewed metadata`);
+  registry but … in the reviewed metadata`) — PRESENCE counts as well as value,
+  so an optional key (`transitive`, `consumer_trust`) that only one side carries
+  is drift even when both sides read back as `null`, and the side that does not
+  carry the key at all is rendered `(absent)` (auditor #7524);
 - `verified_at_build` is not the current mined build — including the case where
   the current build cannot be read at all, which is never treated as fresh.
 
 The fix is always to regenerate:
 `uv run python scripts/gen_obligation_registry.py generate --fresh --out proof-status`.
-That run re-exports the roster AND the publish target's axiom closure live, so a
-`consumer_trust` declaration is gated against the closure of the tree being
-regenerated; `--fresh` never reads `proof-status/baseline/axioms.txt`, which is
-what `--baseline` and `check` read instead.
+That run re-exports the ROSTER live and nothing else. The trust authority for a
+`consumer_trust` declaration is the RECORDED closure in BOTH modes (auditor
+#7524): `generate --baseline DIR` and `check` read `DIR/axioms.txt`, and
+`generate --fresh --out OUT` reads `OUT/baseline/axioms.txt` — so the command
+above gates against the reviewed `proof-status/baseline/axioms.txt`. No live
+axioms export is ever consulted for trust, and a recorded closure that cannot be
+read refuses the run BEFORE anything is written.
 
 ### 3. Stable identity and the alias migration
 
@@ -425,21 +431,23 @@ name:
 
 - it is not `sorryAx` — an open obligation is never declarable trust;
 - it is not already in `ALLOWED_AXIOMS` — such a name declares nothing;
-- the publish target's closure carries it. WHICH closure is read follows the
-  source mode, and both are a `proof-blueprint axioms` export of
-  `Problem97.erdos97_rhs` under the name `axioms.txt`, parsed by the same reader
-  the gate uses everywhere else:
-  - `generate --baseline` and every `check` read the RECORDED export kept with
-    the baseline, `proof-status/baseline/axioms.txt` for the committed one;
-  - `generate --fresh`, which cannot be given a baseline directory at all, reads
-    the LIVE export the run itself makes, written into the same throwaway export
-    directory as the two roster exports.
+- the publish target's RECORDED closure carries it. The trust authority is the
+  reviewed `proof-blueprint axioms` export of `Problem97.erdos97_rhs`, kept in
+  the repository under the name `axioms.txt`, in BOTH source modes (auditor
+  #7524) — no live export is ever consulted for trust:
+  - `generate --baseline DIR` and every `check` read `DIR/axioms.txt`
+    (`proof-status/baseline/axioms.txt` for the committed baseline);
+  - `generate --fresh --out OUT`, which cannot be given a baseline directory at
+    all, reads `OUT/baseline/axioms.txt` — the same reviewed file, kept with the
+    output tree the run is regenerating.
 
-  A closure that could not be read — an absent or unparseable baseline file, or
-  a live axioms export that could not be run or did not parse — is reported as
-  `<ID>: cannot verify consumer_trust: the publish target's recorded closure
-  (baseline axioms.txt) could not be read` and accepts nothing — the rule is
-  fail-closed, exactly like an unreadable build fingerprint.
+  A closure that could not be read — an absent or unparseable recorded file — is
+  reported as `<ID>: cannot verify consumer_trust: the recorded closure
+  <path>/axioms.txt could not be read` and accepts nothing. The message names
+  the file and is the same in both modes. The rule is fail-closed, exactly like
+  an unreadable build fingerprint, and under `generate` the hard gate refuses
+  before `obligations.json`, `id-assignments.json` or
+  `frontier-table.generated.md` is written.
 
 An ACCEPTED name is acceptable on CONSUMER-SIDE hops ONLY: `legacy_wrapper`,
 `coordinator`, `eliminator`, every `via` hop on the three consumer rows, and the
@@ -472,8 +480,15 @@ side only, instead of widening `ALLOWED_AXIOMS` for every hop of every cluster.
 A `has_sorry` source scan is deliberately NOT used anywhere and is not
 sufficient: it cannot see a `sorry` reached through a helper. The `axioms` exit
 code is not trusted either — the tool exits nonzero for some symbols by design
-— the printed closure lines are parsed instead, and a header count that
-disagrees with the parsed lines is reported as "cannot verify".
+— the printed closure lines are parsed instead, and that parse is STRICT
+(auditor #7521): the header must be exactly
+``axioms reported by `#print axioms <the symbol that was queried>` (<N>):`` with
+a mandatory integer count, and exactly `N` indented entry lines must follow,
+each an optional marker token plus a `core` / `core*` / `custom` tag plus a Lean
+identifier, terminated by a blank line, an unindented line or EOF. A header
+naming another symbol, a missing count, an entry line that does not match, and a
+count that disagrees with the parsed lines are all refused and reported as
+"cannot verify" rather than accepted as a closure.
 
 All of this is read through one injectable seam (`FactorizationBackend`:
 `resolve`, `callers`, `axioms`, `mined_build`, `current_build`).

@@ -26,9 +26,12 @@ The W3-0b sections cover, in order:
    receipts included, inside the copy;
 5. declared consumer trust (W3-0e) - the optional ``consumer_trust`` key, which
    widens the boundary on CONSUMER-SIDE hops only, only for names the publish
-   target's closure already carries (the RECORDED baseline export under
-   ``--baseline`` and every ``check``, the run's own LIVE export under
-   ``--fresh``), and never for the producer path.
+   target's RECORDED closure already carries, and never for the producer path.
+   The RECORDED closure is the authority in BOTH source modes (W3-0e-fix-2,
+   auditor #7524): ``<baseline>/axioms.txt`` under ``--baseline`` and every
+   ``check``, ``<out>/baseline/axioms.txt`` under ``--fresh``.  No live axioms
+   export is ever consulted for trust, and the strict header/entry parser
+   (auditor #7521) refuses a closure whose format changed.
 
 Run with::
 
@@ -252,6 +255,29 @@ def test_statement_digest_collapses_whitespace_runs_and_strips():
     assert digest(LEAF) != gor.statement_digest(changed)
 
 
+def axioms_text(target: str, header_count, entries: list[str]) -> str:
+    """A ``proof-blueprint axioms`` transcript, header count given explicitly.
+
+    ``header_count`` is interpolated verbatim, so a test can hand back a header
+    with no count at all.
+    """
+    header = (
+        "axioms reported by `#print axioms "
+        + target
+        + "` ("
+        + str(header_count)
+        + "):\n"
+    )
+    return header + "".join(line + "\n" for line in entries) + "\n"
+
+
+AXIOMS_ENTRIES = [
+    "      core  propext",
+    "  \U0001FAB6 CUSTOM  sorryAx",
+    "      core  Quot.sound",
+]
+
+
 def test_parse_axioms_output_reads_tag_and_name():
     text = (
         "axioms reported by `#print axioms Fixture.f` (3):\n"
@@ -262,7 +288,7 @@ def test_parse_axioms_output_reads_tag_and_name():
         "\N{CROSS MARK} 1 unapproved custom axiom(s) on spine:\n"
         "  - sorryAx  (a sorry on the spine)\n"
     )
-    assert gor.parse_axioms_output(text) == [
+    assert gor.parse_axioms_output(text, "Fixture.f") == [
         ("core", "propext"),
         ("custom", "sorryAx"),
         ("core", "Quot.sound"),
@@ -272,7 +298,83 @@ def test_parse_axioms_output_reads_tag_and_name():
 def test_parse_axioms_output_rejects_a_count_mismatch():
     text = "axioms reported by `#print axioms Fixture.f` (2):\n      core  propext\n"
     with pytest.raises(gor.RegistryError):
-        gor.parse_axioms_output(text)
+        gor.parse_axioms_output(text, "Fixture.f")
+
+
+# -- strict header and entry grammar (auditor #7521) ------------------------
+#
+# The pre-hardening parser accepted ANY "axioms reported by" header without
+# checking the target, treated a missing count as unknown and accepted it, and
+# accepted any indented line with >= 2 tokens as an entry.  Each of those is a
+# way for a changed output format to become a silently wrong closure.
+
+
+def test_parse_axioms_output_rejects_a_header_naming_another_target():
+    text = axioms_text("Fixture.other", 3, AXIOMS_ENTRIES)
+    with pytest.raises(gor.RegistryError) as excinfo:
+        gor.parse_axioms_output(text, "Fixture.f")
+    assert "Fixture.other" in str(excinfo.value)
+    assert "Fixture.f" in str(excinfo.value)
+
+
+def test_parse_axioms_output_rejects_a_header_without_a_count():
+    missing = "axioms reported by `#print axioms Fixture.f`:\n      core  propext\n"
+    with pytest.raises(gor.RegistryError):
+        gor.parse_axioms_output(missing, "Fixture.f")
+    # A parenthesized NON-integer is the same refusal, not "unknown, accept".
+    with pytest.raises(gor.RegistryError):
+        gor.parse_axioms_output(
+            axioms_text("Fixture.f", "many", AXIOMS_ENTRIES), "Fixture.f"
+        )
+
+
+def test_parse_axioms_output_rejects_a_bogus_entry_line():
+    text = axioms_text("Fixture.f", 3, AXIOMS_ENTRIES[:2] + ["  bogus X"])
+    with pytest.raises(gor.RegistryError) as excinfo:
+        gor.parse_axioms_output(text, "Fixture.f")
+    assert "bogus" in str(excinfo.value)
+    # A well-tagged line whose NAME is not a Lean identifier is refused too.
+    with pytest.raises(gor.RegistryError):
+        gor.parse_axioms_output(
+            axioms_text("Fixture.f", 3, AXIOMS_ENTRIES[:2] + ["      core  bad-name"]),
+            "Fixture.f",
+        )
+
+
+def test_parse_axioms_output_rejects_an_extra_entry_line():
+    text = axioms_text(
+        "Fixture.f", 3, AXIOMS_ENTRIES + ["     core*  Lean.ofReduceBool"]
+    )
+    with pytest.raises(gor.RegistryError):
+        gor.parse_axioms_output(text, "Fixture.f")
+    # ... and one entry short of the header count is refused as well.
+    with pytest.raises(gor.RegistryError):
+        gor.parse_axioms_output(
+            axioms_text("Fixture.f", 3, AXIOMS_ENTRIES[:2]), "Fixture.f"
+        )
+
+
+def test_parse_axioms_output_reads_the_real_recorded_closure():
+    """The committed proof-status/baseline/axioms.txt must still parse.
+
+    ``PROOF_STATUS`` is defined further down with the command-level fixtures;
+    this reads the real file only, and writes nothing.
+    """
+    text = (PROOF_STATUS / "baseline" / gor.BASELINE_AXIOMS_FILE).read_text(
+        encoding="utf-8"
+    )
+    closure = gor.parse_axioms_output(text, gor.PUBLISH_TARGET)
+    assert len(closure) == 6
+    assert ("custom", "sorryAx") in closure
+    assert ("core*", "Lean.ofReduceBool") in closure
+
+
+def test_a_per_symbol_parse_rejects_a_header_naming_another_symbol():
+    """``BlueprintBackend.axioms`` parses against the symbol it queried."""
+    text = axioms_text(gor.PUBLISH_TARGET, 3, AXIOMS_ENTRIES)
+    assert gor.parse_axioms_output(text, gor.PUBLISH_TARGET)
+    with pytest.raises(gor.RegistryError):
+        gor.parse_axioms_output(text, "Fixture.some_hop")
 
 
 # ---------------------------------------------------------------------------
@@ -1931,13 +2033,14 @@ def test_command_level_refused_generate_creates_no_output_file(tmp_path):
 #
 # A v2 block MAY carry the optional ``consumer_trust`` key.  A listed name is
 # ACCEPTED only when it is not ``sorryAx``, is not already in ALLOWED_AXIOMS,
-# and IS carried by the publish target's closure, read by
-# ``read_declarable_trust`` from the RECORDED baseline export
-# (proof-status/baseline/axioms.txt) under ``--baseline`` and every ``check``,
-# and from the run's own LIVE axioms export under ``--fresh``.  An
-# accepted name is acceptable on CONSUMER-SIDE hops - the open leaf included -
-# and NEVER on the producer path, and a name no consumer-side hop carries is
-# itself a violation, so the key can never be a blanket widening.
+# and IS carried by the publish target's RECORDED closure, read by
+# ``read_declarable_trust`` from ``<baseline>/axioms.txt`` under ``--baseline``
+# and every ``check``, and from ``<out>/baseline/axioms.txt`` under ``--fresh``.
+# The RECORDED closure is the authority in BOTH modes and no live axioms export
+# is ever consulted for trust (W3-0e-fix-2, auditor #7524).  An accepted name is
+# acceptable on CONSUMER-SIDE hops - the open leaf included - and NEVER on the
+# producer path, and a name no consumer-side hop carries is itself a violation,
+# so the key can never be a blanket widening.
 #
 # Every case here is synthetic: the recorded closure is injected as a set,
 # exactly like the kernel-mined backend.
@@ -2201,9 +2304,11 @@ def test_an_unreadable_recorded_closure_is_cannot_verify_not_accepted():
         declarable=None,
     )
     assert result["verified_ids"] == []
+    # SOURCE-NEUTRAL and it NAMES the file (auditor #7524).
     assert (
-        OID + ": cannot verify consumer_trust: the publish target's recorded"
-        + " closure (baseline axioms.txt) could not be read"
+        OID + ": cannot verify consumer_trust: the recorded closure "
+        + gor.BASELINE_AXIOMS_FILE
+        + " could not be read"
     ) in messages(result)
     # Nothing was accepted, so the hop is refused too.
     assert "axiom closure contains " + NATIVE_TRUST in joined(result)
@@ -2296,6 +2401,33 @@ def test_registry_drift_when_the_materialized_declaration_is_missing_or_extra():
     drift = gor.compare_registry_factorizations(registry, meta_for(plain), BUILD)
     assert len(drift) == 1
     assert "'consumer_trust'" in drift[0] and NATIVE_TRUST in drift[0]
+
+
+def test_registry_drift_when_the_registry_declares_a_null_the_metadata_omits():
+    """Auditor #7524: optional-key PRESENCE is compared, not only the value.
+
+    ``want.get(key) == got.get(key)`` read a registry-only
+    ``"consumer_trust": null`` as agreement with an absent key, because both
+    sides answered None.  A materialized key only one side carries is drift.
+    """
+    plain = block()
+    registry = generated_registry(plain)
+    assert gor.CONSUMER_TRUST_KEY not in entry_of(registry)[gor.FACTORIZATION_KEY]
+    entry_of(registry)[gor.FACTORIZATION_KEY][gor.CONSUMER_TRUST_KEY] = None
+    drift = gor.compare_registry_factorizations(registry, meta_for(plain), BUILD)
+    assert len(drift) == 1
+    assert "'" + gor.CONSUMER_TRUST_KEY + "'" in drift[0]
+    assert "(absent)" in drift[0]
+
+    # ... and the mirror image: a metadata-only declaration the registry omits.
+    declaring_payload = block(consumer_trust=[NATIVE_TRUST])
+    registry = generated_registry(declaring_payload)
+    del entry_of(registry)[gor.FACTORIZATION_KEY][gor.CONSUMER_TRUST_KEY]
+    drift = gor.compare_registry_factorizations(
+        registry, meta_for(declaring_payload), BUILD
+    )
+    assert len(drift) == 1
+    assert "(absent)" in drift[0] and NATIVE_TRUST in drift[0]
 
 
 def test_the_console_line_reports_declared_trust_only_when_there_is_some():
@@ -2423,21 +2555,15 @@ def test_command_level_generate_refuses_a_declaration_without_a_recorded_closure
     assert run_generate(status, migration_backend(old_symbol), exports) == 0
 
 
-# -- the FRESH mode of the same command (W3-0e, auditor #7513) ---------------
+# -- the FRESH mode of the same command (W3-0e-fix-2, auditor #7524) --------
 #
 # ``generate --fresh`` is the documented regeneration command, and --fresh and
-# --baseline are mutually exclusive: there is NO baseline directory to read a
-# recorded closure from.  The closure therefore travels with the roster records
-# through the ``export_source`` seam, which the live run fills from the axioms
-# export ``export_fresh`` makes into the same throwaway directory as the two
-# roster exports.  A seam that hands back only ``(spine, offspine)`` carries no
-# closure at all and is fail-closed.
-
-
-def fresh_exports(status: Path, old_symbol: str, closure: set) -> tuple:
-    """The 3-tuple a live ``--fresh`` gather produces: rosters + live closure."""
-    spine, offspine = renamed_exports(status, old_symbol)
-    return spine, offspine, set(closure)
+# --baseline are mutually exclusive: the command is never TOLD a baseline
+# directory.  It nevertheless gates declared trust against the RECORDED closure,
+# read from the reviewed copy kept with the OUTPUT tree at
+# ``<out>/baseline/axioms.txt``.  Nothing travels with the roster records: the
+# ``export_source`` seam is a 2-tuple in every mode, and no live axioms export
+# is run by ``generate --fresh`` or by ``check`` at all.
 
 
 def run_generate_fresh(status: Path, backend_obj, exports) -> int:
@@ -2454,6 +2580,21 @@ def run_generate_fresh(status: Path, backend_obj, exports) -> int:
     )
 
 
+def write_recorded_closure(status: Path, names: list) -> None:
+    """Replace the copy's RECORDED closure with exactly ``names``."""
+    lines = [
+        "axioms reported by `#print axioms "
+        + gor.PUBLISH_TARGET
+        + "` ("
+        + str(len(names))
+        + "):"
+    ]
+    lines.extend("      core  " + name for name in names)
+    (status / "baseline" / gor.BASELINE_AXIOMS_FILE).write_text(
+        "\n".join(lines) + "\n\n", encoding="utf-8"
+    )
+
+
 def coordinator_trust_backend(old_symbol: str, axiom=NATIVE_TAGGED) -> gor.MappingBackend:
     """One consumer-side carrier, so ONE declared name pays for itself."""
     return migration_backend(
@@ -2462,7 +2603,7 @@ def coordinator_trust_backend(old_symbol: str, axiom=NATIVE_TAGGED) -> gor.Mappi
     )
 
 
-def test_w3_0e_fresh_generate_accepts_a_name_the_live_closure_carries(
+def test_w3_0e_fresh_generate_accepts_a_name_the_recorded_closure_carries(
     tmp_path, capsys
 ):
     status = copy_proof_status(tmp_path)
@@ -2472,11 +2613,13 @@ def test_w3_0e_fresh_generate_accepts_a_name_the_live_closure_carries(
 
     inject_factorization(status, obligation_id, old_symbol)
     declare_consumer_trust(status, obligation_id, [NATIVE_TRUST])
-    # The RECORDED file is removed: --fresh never reads it, so acceptance here
-    # can only come from the LIVE closure the run itself exported.
-    (status / "baseline" / gor.BASELINE_AXIOMS_FILE).unlink()
+    # The RECORDED closure kept with the OUTPUT tree is what --fresh reads, and
+    # the committed proof-status/baseline/axioms.txt does carry the name.
+    recorded = gor.read_declarable_trust(status / "baseline")
+    assert recorded is not None and NATIVE_TRUST in recorded
     backend_obj = coordinator_trust_backend(old_symbol)
-    exports = fresh_exports(status, old_symbol, RECORDED_CLOSURE)
+    exports = renamed_exports(status, old_symbol)
+    assert len(exports) == 2
 
     assert run_generate_fresh(status, backend_obj, exports) == 0
     out = capsys.readouterr().out
@@ -2489,7 +2632,7 @@ def test_w3_0e_fresh_generate_accepts_a_name_the_live_closure_carries(
     assert migrated[0][gor.FACTORIZATION_KEY][gor.CONSUMER_TRUST_KEY] == [NATIVE_TRUST]
 
 
-def test_w3_0e_fresh_generate_rejects_a_name_the_live_closure_does_not_carry(
+def test_w3_0e_fresh_generate_rejects_a_name_the_recorded_closure_does_not_carry(
     tmp_path, capsys
 ):
     status = copy_proof_status(tmp_path)
@@ -2500,8 +2643,10 @@ def test_w3_0e_fresh_generate_rejects_a_name_the_live_closure_does_not_carry(
     inject_factorization(status, obligation_id, old_symbol)
     declare_consumer_trust(status, obligation_id, [CORE_TAGGED_NATIVE[1]])
     backend_obj = coordinator_trust_backend(old_symbol, axiom=CORE_TAGGED_NATIVE)
-    # The live closure carries the OTHER native name, not the declared one.
-    exports = fresh_exports(status, old_symbol, RECORDED_CLOSURE)
+    # The recorded closure carries the OTHER native name, not the declared one.
+    recorded = gor.read_declarable_trust(status / "baseline")
+    assert recorded is not None and CORE_TAGGED_NATIVE[1] not in recorded
+    exports = renamed_exports(status, old_symbol)
     before = output_bytes(status)
 
     assert run_generate_fresh(status, backend_obj, exports) == 1
@@ -2516,10 +2661,58 @@ def test_w3_0e_fresh_generate_rejects_a_name_the_live_closure_does_not_carry(
     assert_outputs_unchanged(status, before)
 
 
-def test_w3_0e_fresh_generate_without_a_live_closure_is_cannot_verify(
+def test_w3_0e_fresh_generate_never_trusts_a_live_consumer_closure(
     tmp_path, capsys
 ):
-    """A 2-tuple seam carries no closure, and --fresh must NOT fall back."""
+    """Auditor #7524 blocker: --fresh must gate on the RECORDED closure ONLY.
+
+    The LIVE closure of this run is exactly what the injected backend reports,
+    and a consumer-side hop of it carries ``Lean.ofReduceBool``.  The RECORDED
+    closure does NOT, so the declaration is refused even though the tree being
+    regenerated really does carry the axiom.  W3-0e-fix (00f0d377) authorized
+    declarations against a live ``proof-blueprint axioms`` export and, driven
+    through that live-export seam, accepted and materialized such a block
+    (verifier probe).  This test injects the two-tuple export seam, so against
+    00f0d377 it fails on the violation message, not on an acceptance; the
+    decisive pre-fix failure is the seam-is-gone test below.
+    """
+    status = copy_proof_status(tmp_path)
+    entry = first_reachable_entry(status)
+    old_symbol = entry["lean_decl"]
+    obligation_id = entry["id"]
+
+    inject_factorization(status, obligation_id, old_symbol)
+    exports = renamed_exports(status, old_symbol)
+    assert len(exports) == 2
+
+    # Pre-seed the OUT tree with a registry THIS tool wrote, so the byte
+    # comparison below is against a prior successful --fresh run.
+    assert run_generate_fresh(status, migration_backend(old_symbol), exports) == 0
+    capsys.readouterr()
+
+    # LIVE: the consumer-side coordinator carries the axiom.
+    backend_obj = coordinator_trust_backend(old_symbol)
+    assert NATIVE_TAGGED in backend_obj.axioms(MIGRATED_COORDINATOR)
+    # RECORDED: it does not.
+    write_recorded_closure(status, ["propext", "Classical.choice", "Quot.sound"])
+    recorded = gor.read_declarable_trust(status / "baseline")
+    assert recorded is not None and NATIVE_TRUST not in recorded
+    declare_consumer_trust(status, obligation_id, [NATIVE_TRUST])
+    before = output_bytes(status)
+
+    assert run_generate_fresh(status, backend_obj, exports) == 1
+    err = capsys.readouterr().err
+    assert (
+        obligation_id + ": consumer_trust lists " + NATIVE_TRUST
+        + ", which the publish target's recorded closure does not carry"
+    ) in err
+    assert_outputs_unchanged(status, before)
+
+
+def test_w3_0e_fresh_generate_without_a_recorded_closure_is_cannot_verify(
+    tmp_path, capsys
+):
+    """No <out>/baseline/axioms.txt: "cannot verify", and nothing is written."""
     status = copy_proof_status(tmp_path)
     entry = first_reachable_entry(status)
     old_symbol = entry["lean_decl"]
@@ -2527,18 +2720,16 @@ def test_w3_0e_fresh_generate_without_a_live_closure_is_cannot_verify(
 
     inject_factorization(status, obligation_id, old_symbol)
     declare_consumer_trust(status, obligation_id, [NATIVE_TRUST])
+    (status / "baseline" / gor.BASELINE_AXIOMS_FILE).unlink()
     backend_obj = coordinator_trust_backend(old_symbol)
-    # The copy's RECORDED baseline file is left in place and DOES carry the
-    # declared name; a fresh run that read it would wrongly accept.
-    recorded = gor.read_declarable_trust(status / "baseline")
-    assert recorded is not None and NATIVE_TRUST in recorded
     exports = renamed_exports(status, old_symbol)
-    assert len(exports) == 2
     before = output_bytes(status)
 
     assert run_generate_fresh(status, backend_obj, exports) == 1
     err = capsys.readouterr().err
     assert "cannot verify consumer_trust" in err
+    # The message is source-neutral and NAMES the file it could not read.
+    assert str(status / "baseline" / gor.BASELINE_AXIOMS_FILE) in err
     assert obligation_id in err
     assert_outputs_unchanged(status, before)
 
@@ -2548,13 +2739,15 @@ def test_w3_0e_fresh_generate_without_a_live_closure_is_cannot_verify(
     assert run_generate_fresh(status, migration_backend(old_symbol), exports) == 0
 
 
-def test_w3_0e_normalize_exports_is_fail_closed_on_the_two_tuple_seam():
-    spine, offspine = [{"symbol": "A"}], [{"symbol": "B"}]
-    assert gor.normalize_exports((spine, offspine)) == gor.ExportBundle(
-        spine, offspine, None
-    )
-    assert gor.normalize_exports((spine, offspine, RECORDED_CLOSURE)) == (
-        gor.ExportBundle(spine, offspine, RECORDED_CLOSURE)
-    )
-    with pytest.raises(gor.RegistryError):
-        gor.normalize_exports((spine,))
+def test_w3_0e_the_live_axioms_export_seam_is_gone(tmp_path):
+    """The whole live-closure export is REMOVED, not merely unused (#7524).
+
+    ``gather_exports`` hands back the two roster record lists and nothing else,
+    in both modes, so neither ``generate --fresh`` nor ``check`` can run
+    ``proof-blueprint axioms`` for the publish target.
+    """
+    for name in ("export_live_closure", "AXIOMS_ARGS", "ExportBundle",
+                 "normalize_exports"):
+        assert not hasattr(gor, name), name + " must be removed"
+    spine, offspine = gor.gather_exports(PROOF_STATUS / "baseline", False, tmp_path)
+    assert isinstance(spine, list) and isinstance(offspine, list)
