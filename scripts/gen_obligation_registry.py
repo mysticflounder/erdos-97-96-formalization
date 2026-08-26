@@ -62,6 +62,7 @@ machine-checked factorization entry in the obligation registry*)::
       "transitive": [{"from": "<role>", "to": "<role>", "via": [Sym, ...]}],
       "pinned": {"legacy_wrapper_statement_sha256": <hex>,
                  "open_leaf_statement_sha256": <hex>},
+      "consumer_trust": [<axiom name>, ...],   # OPTIONAL (W3-0e); see below
       "note": "<free prose>"
     }
 
@@ -131,6 +132,35 @@ Trust boundary (W3-0b)
     justification there: the leaf is the open leaf a consumer hop would have to
     reach, so it consumes itself.  Every other consumer hop still has to reach
     it.
+
+Declared consumer trust (W3-0e)
+    A v2 block MAY carry ONE optional key, ``consumer_trust``: a non-empty JSON
+    list of unique non-empty axiom names.  Anything else is a violation
+    ("<id>: consumer_trust must be a non-empty list of unique axiom names"), and
+    the key inside a v1 block is an unknown key.
+
+    A listed name is ACCEPTED only when it is not ``sorryAx`` (an open
+    obligation is never declarable trust), is not already in ``ALLOWED_AXIOMS``,
+    and IS carried by the PUBLISH TARGET's recorded closure - the
+    ``proof-blueprint axioms`` export kept at ``<baseline>/axioms.txt`` and
+    parsed by ``parse_axioms_output`` (``read_declarable_trust``).  A name that
+    closure does not carry is rejected; a closure that could not be read at all
+    is reported as "cannot verify" and accepts nothing.  Each rejected name
+    prints its own violation line naming the id and the name.
+
+    An ACCEPTED name is acceptable on CONSUMER-SIDE hops ONLY: ``legacy_wrapper``,
+    ``coordinator``, ``eliminator``, every ``via`` on the three consumer rows,
+    and the ``open_leaf`` audit.  The producer path is unchanged - it must be
+    CLEAN with no opt-in, and its violation line says that
+    ``consumer_trust`` does not apply there.  A declaration that NO consumer-side
+    hop actually carries is itself a violation ("<id>: consumer_trust declares
+    <name> but no consumer-side hop carries it"), so the key can never be a
+    blanket widening.
+
+    The key is MATERIALIZED onto the registry entry (sorted), so an added,
+    removed or drifted declaration is registry drift like any other field, and
+    ``check_factorizations`` reports ``"declared_trust": {"blocks": <n>,
+    "axioms": [...]}`` in its summary, its receipt and the console census line.
 
 Canonical registry materialization (W3-0b)
     ``build_registry`` copies every reviewed v2 block onto its own registry
@@ -250,6 +280,10 @@ LEAN_ROOT = REPO_ROOT / "lean"
 SPINE_EXPORT = "spine-sorry.json"
 OFFSPINE_EXPORT = "offspine-sorry.json"
 BASE_HEAD_FILE = "base-head.txt"
+# The publish target's RECORDED axiom closure, kept with the baseline exports as
+# the `proof-blueprint axioms` text format.  It is the ONLY source of declarable
+# consumer trust (W3-0e).
+BASELINE_AXIOMS_FILE = "axioms.txt"
 REGISTRY_NAME = "obligations.json"
 ID_ASSIGNMENTS_NAME = "id-assignments.json"
 FRONTIER_TABLE_NAME = "frontier-table.generated.md"
@@ -765,9 +799,20 @@ def validate_meta(registry: dict, meta: dict) -> list[str]:
 FACTORIZATION_KEY = "factorization"
 # Key of the build fingerprint stamped onto a MATERIALIZED registry block.
 VERIFIED_AT_BUILD = "verified_at_build"
+# Optional v2 block key (W3-0e): the axiom names the block DECLARES as
+# consumer-side trust.  It is materialized like every other reviewed field.
+CONSUMER_TRUST_KEY = "consumer_trust"
 # Keys of the materialized block, in the canonical registry.  ``transitive`` is
-# omitted when the reviewed block declares no rows.
-MATERIALIZED_KEYS = ("schema", "roles", "transitive", "pinned", VERIFIED_AT_BUILD)
+# omitted when the reviewed block declares no rows and ``consumer_trust`` is
+# omitted when it declares no trust.
+MATERIALIZED_KEYS = (
+    "schema",
+    "roles",
+    "transitive",
+    "pinned",
+    CONSUMER_TRUST_KEY,
+    VERIFIED_AT_BUILD,
+)
 FACTORIZATION_SCHEMA_V1 = "p97-factorization/v1"
 FACTORIZATION_SCHEMA_V2 = "p97-factorization/v2"
 FACTORIZATION_SCHEMAS = (FACTORIZATION_SCHEMA_V1, FACTORIZATION_SCHEMA_V2)
@@ -799,9 +844,18 @@ PINNED_LEGACY_WRAPPER = "legacy_wrapper_statement_sha256"
 PINNED_OPEN_LEAF = "open_leaf_statement_sha256"
 PINNED_KEYS = (PINNED_LEGACY_WRAPPER, PINNED_OPEN_LEAF)
 
-BLOCK_KEYS_V2 = ("schema", "obligation_id", "roles", "transitive", "pinned", "note")
+BLOCK_KEYS_V2 = (
+    "schema",
+    "obligation_id",
+    "roles",
+    "transitive",
+    "pinned",
+    "note",
+    CONSUMER_TRUST_KEY,
+)
 # v1 is the same block WITHOUT pinned digests: a ``pinned`` key in a v1 block is
-# an unknown key, not a silent upgrade.
+# an unknown key, not a silent upgrade.  ``consumer_trust`` is absent here for
+# the same reason: the key inside a v1 block is an unknown key.
 BLOCK_KEYS_V1 = ("schema", "obligation_id", "roles", "transitive", "note")
 
 TRANSITIVE_KEYS = ("from", "to", "via")
@@ -822,10 +876,18 @@ def is_clean_closure(closure: list[tuple[str, str]]) -> bool:
     return all(axiom in ALLOWED_AXIOMS for _tag, axiom in closure)
 
 
-def is_consumer_ok_closure(closure: list[tuple[str, str]]) -> bool:
-    """CONSUMER-OK: every axiom is in the allowed baseline or is ``sorryAx``."""
+def is_consumer_ok_closure(
+    closure: list[tuple[str, str]], declared: list[str] | tuple[str, ...] = ()
+) -> bool:
+    """CONSUMER-OK: baseline, ``sorryAx``, or an ACCEPTED declaration (W3-0e).
+
+    ``declared`` is the block's ACCEPTED ``consumer_trust`` list - the names
+    that passed every check in ``parse_consumer_trust``.  It defaults to empty,
+    so a caller that declares nothing gets exactly the W3-0b rule.
+    """
     return all(
-        axiom in ALLOWED_AXIOMS or axiom == SORRY_AXIOM for _tag, axiom in closure
+        axiom in ALLOWED_AXIOMS or axiom == SORRY_AXIOM or axiom in declared
+        for _tag, axiom in closure
     )
 
 
@@ -924,6 +986,29 @@ def parse_axioms_output(text: str) -> list[tuple[str, str]]:
             + " line(s) parsed"
         )
     return entries
+
+
+def read_declarable_trust(baseline_dir: Path | None) -> set[str] | None:
+    """Axiom names the PUBLISH TARGET's recorded closure carries, or None.
+
+    The recorded closure is ``<baseline>/axioms.txt``: the ``proof-blueprint
+    axioms`` text export of ``PUBLISH_TARGET`` kept with the baseline, parsed by
+    ``parse_axioms_output``.  None means the file is absent or does not parse,
+    and the gate turns that into a "cannot verify" violation on every block that
+    declares consumer trust - a declaration is never accepted against a closure
+    that could not be read.
+    """
+    if baseline_dir is None:
+        return None
+    try:
+        text = (baseline_dir / BASELINE_AXIOMS_FILE).read_text(encoding="utf-8")
+    except OSError:
+        return None
+    try:
+        closure = parse_axioms_output(text)
+    except RegistryError:
+        return None
+    return {axiom for _tag, axiom in closure}
 
 
 class FactorizationBackend:
@@ -1274,7 +1359,10 @@ def normalized_factorization_block(block: object, build_id: str | None) -> dict 
     of the entry the block sits on, and prose is not machine-checkable.
     ``transitive`` is sorted (and omitted when empty) so the materialization is
     a function of the reviewed block alone; ``via`` order inside a row is the
-    path and is preserved.
+    path and is preserved.  ``consumer_trust`` (W3-0e) is sorted and is omitted
+    when the reviewed block carries no list value, so the registry carries every
+    declared trust name and ``check`` reports a drifted, added or removed
+    declaration exactly like any other materialized field.
     """
     if not isinstance(block, dict):
         return None
@@ -1305,6 +1393,18 @@ def normalized_factorization_block(block: object, build_id: str | None) -> dict 
     )
     if normalized_rows:
         materialized["transitive"] = normalized_rows
+
+    declared = block.get(CONSUMER_TRUST_KEY)
+    if isinstance(declared, list):
+        # A malformed list (a non-string member) is a shape violation the gate
+        # reports; it is copied through unsorted rather than sorted, because
+        # sorting mixed types raises and the comparison must report drift, not
+        # crash on reviewed input.
+        materialized[CONSUMER_TRUST_KEY] = (
+            sorted(declared)
+            if all(isinstance(name, str) for name in declared)
+            else list(declared)
+        )
     return materialized
 
 
@@ -1593,12 +1693,91 @@ def _calls_directly(
     return caller in backend.callers(callee)
 
 
+def parse_consumer_trust(
+    obligation_id: str, block: dict, declarable_trust: set[str] | None
+) -> tuple[list[str], list[str]]:
+    """ACCEPTED ``consumer_trust`` declarations of one v2 block (W3-0e).
+
+    Returns ``(accepted, violations)``.  The value must be a non-empty list of
+    unique non-empty strings; anything else is one shape violation and accepts
+    nothing.  Each listed name is then checked in this order, each failure its
+    own violation line: ``sorryAx`` is never declarable (an open obligation is
+    not trust), a name already in ``ALLOWED_AXIOMS`` declares nothing, an
+    unreadable recorded closure is "cannot verify", and a name the publish
+    target's recorded closure does not carry is rejected.  Only a name that
+    passes all four is ACCEPTED.
+    """
+    value = block.get(CONSUMER_TRUST_KEY)
+    if value is None:
+        return [], []
+    well_formed = (
+        isinstance(value, list)
+        and bool(value)
+        and all(isinstance(name, str) and name.strip() for name in value)
+        and len(set(value)) == len(value)
+    )
+    if not well_formed:
+        return [], [
+            obligation_id
+            + ": "
+            + CONSUMER_TRUST_KEY
+            + " must be a non-empty list of unique axiom names"
+        ]
+
+    accepted: list[str] = []
+    violations: list[str] = []
+    for name in value:
+        if name == SORRY_AXIOM:
+            violations.append(
+                obligation_id
+                + ": "
+                + CONSUMER_TRUST_KEY
+                + " lists "
+                + SORRY_AXIOM
+                + "; an open obligation is never declarable trust"
+            )
+            continue
+        if name in ALLOWED_AXIOMS:
+            violations.append(
+                obligation_id
+                + ": "
+                + CONSUMER_TRUST_KEY
+                + " lists "
+                + name
+                + ", which is already in ALLOWED_AXIOMS"
+            )
+            continue
+        if declarable_trust is None:
+            violations.append(
+                obligation_id
+                + ": cannot verify "
+                + CONSUMER_TRUST_KEY
+                + ": the publish target's recorded closure (baseline "
+                + BASELINE_AXIOMS_FILE
+                + ") could not be read"
+            )
+            continue
+        if name not in declarable_trust:
+            violations.append(
+                obligation_id
+                + ": "
+                + CONSUMER_TRUST_KEY
+                + " lists "
+                + name
+                + ", which the publish target's recorded closure does not carry"
+            )
+            continue
+        accepted.append(name)
+    return accepted, violations
+
+
 def check_v2_block(
     obligation_id: str,
     block: dict,
     roles: dict,
     registry_entry: dict | None,
     backend: FactorizationBackend | None,
+    declarable_trust: set[str] | None = None,
 ) -> list[str]:
     """Live checks for one well-formed v2 block; empty list means verified."""
     violations: list[str] = []
@@ -1610,6 +1789,18 @@ def check_v2_block(
 
     role_symbol = {role: roles.get(role) for role in FACTORIZATION_ROLES}
     leaf = role_symbol[ROLE_OPEN_LEAF]
+
+    # -- declared consumer trust (W3-0e), read FIRST -------------------------
+    # ``declared_trust`` is the ACCEPTED subset; every rejected name is already
+    # a violation here.  ``carried_trust`` collects the accepted names a
+    # consumer-side hop (the open leaf included) actually carries, which is what
+    # the no-blanket-declaration audit at the end of this function reads.
+    declared_trust, trust_violations = parse_consumer_trust(
+        obligation_id, block, declarable_trust
+    )
+    violations.extend(trust_violations)
+    carried_trust: set[str] = set()
+    consumer_closures_readable = True
 
     # -- transitive rows, read FIRST -----------------------------------------
     # Every declared via hop is a first-class vertex of this block: it is
@@ -1926,6 +2117,8 @@ def check_v2_block(
         try:
             closure = backend.axioms(symbol)
         except RegistryError as exc:
+            if consumer:
+                consumer_closures_readable = False
             violations.append(
                 obligation_id
                 + ": cannot verify the axiom closure of "
@@ -1936,14 +2129,22 @@ def check_v2_block(
                 + str(exc)
             )
             continue
+        if consumer:
+            for _tag, axiom in closure:
+                if axiom in declared_trust:
+                    carried_trust.add(axiom)
         acceptable = (
-            is_consumer_ok_closure(closure) if consumer else is_clean_closure(closure)
+            is_consumer_ok_closure(closure, declared_trust)
+            if consumer
+            else is_clean_closure(closure)
         )
         if not acceptable:
             for tag, axiom in closure:
                 if axiom in ALLOWED_AXIOMS:
                     continue
                 if axiom == SORRY_AXIOM and consumer:
+                    continue
+                if consumer and axiom in declared_trust:
                     continue
                 violations.append(
                     obligation_id
@@ -1961,8 +2162,12 @@ def check_v2_block(
                         + ", ".join(ALLOWED_AXIOMS)
                         + " and "
                         + SORRY_AXIOM
+                        + " unless the block declares it in "
+                        + CONSUMER_TRUST_KEY
                         if consumer
-                        else "; the producer path must be kernel clean"
+                        else "; the producer path must be kernel clean; "
+                        + CONSUMER_TRUST_KEY
+                        + " does not apply to the producer path"
                     )
                 )
         if not (consumer and any(axiom == SORRY_AXIOM for _tag, axiom in closure)):
@@ -1998,6 +2203,7 @@ def check_v2_block(
         try:
             leaf_closure = backend.axioms(leaf)
         except RegistryError as exc:
+            consumer_closures_readable = False
             violations.append(
                 obligation_id
                 + ": cannot verify the axiom closure of "
@@ -2008,9 +2214,14 @@ def check_v2_block(
                 + str(exc)
             )
         else:
-            if not is_consumer_ok_closure(leaf_closure):
+            for _tag, axiom in leaf_closure:
+                if axiom in declared_trust:
+                    carried_trust.add(axiom)
+            if not is_consumer_ok_closure(leaf_closure, declared_trust):
                 for _tag, axiom in leaf_closure:
                     if axiom in ALLOWED_AXIOMS or axiom == SORRY_AXIOM:
+                        continue
+                    if axiom in declared_trust:
                         continue
                     violations.append(
                         obligation_id
@@ -2021,6 +2232,24 @@ def check_v2_block(
                         + ") carries forbidden axiom "
                         + axiom
                     )
+
+    # -- no blanket declarations (W3-0e) -------------------------------------
+    # A declaration no consumer-side hop carries widens the boundary for
+    # nothing, so it is a violation.  The audit is skipped only when a
+    # consumer-side closure could not be read at all: that case already reports
+    # "cannot verify", and the block is not verified either way.
+    if consumer_closures_readable:
+        for name in declared_trust:
+            if name in carried_trust:
+                continue
+            violations.append(
+                obligation_id
+                + ": "
+                + CONSUMER_TRUST_KEY
+                + " declares "
+                + name
+                + " but no consumer-side hop carries it"
+            )
     return violations
 
 
@@ -2029,11 +2258,17 @@ def check_factorizations(
     meta: dict,
     backend: FactorizationBackend | None,
     required_clusters: tuple[str, ...] = (),
+    declarable_trust: set[str] | None = None,
 ) -> dict:
     """Validate every factorization block against kernel-mined truth.
 
     Returns ``{"summary": <receipt section>, "verified_ids": [...],
     "missing_ids": [...]}``.  ``summary`` carries exactly the receipt keys.
+
+    ``declarable_trust`` is the publish target's recorded closure, read by
+    ``read_declarable_trust`` from the baseline directory (W3-0e); None means it
+    could not be read, and every block that declares consumer trust is then
+    reported as "cannot verify" instead of being accepted.
     """
     by_id = {item["id"]: item for item in registry.get("obligations", [])}
     blocks = factorization_blocks(meta)
@@ -2042,6 +2277,8 @@ def check_factorizations(
     schema_versions: dict[str, int] = {}
     verified_ids: list[str] = []
     v1_warnings = 0
+    declared_trust_blocks = 0
+    declared_trust_axioms: set[str] = set()
 
     for obligation_id in sorted(blocks):
         block = blocks[obligation_id]
@@ -2055,11 +2292,22 @@ def check_factorizations(
         if schema != FACTORIZATION_SCHEMA_V2 or roles is None or structural:
             continue
         live = check_v2_block(
-            obligation_id, block, roles, by_id.get(obligation_id), backend
+            obligation_id,
+            block,
+            roles,
+            by_id.get(obligation_id),
+            backend,
+            declarable_trust,
         )
         violations.extend(live)
         if not live:
             verified_ids.append(obligation_id)
+            # A VERIFIED block reported no violation, so every name it lists is
+            # an ACCEPTED declaration carried by a consumer-side hop.
+            declared = block.get(CONSUMER_TRUST_KEY)
+            if isinstance(declared, list) and declared:
+                declared_trust_blocks += 1
+                declared_trust_axioms.update(declared)
 
     reachable_ids = sorted(
         item["id"] for item in registry.get("obligations", []) if item.get("reachable")
@@ -2105,6 +2353,10 @@ def check_factorizations(
         "schema_versions": {name: schema_versions[name] for name in sorted(schema_versions)},
         "checked": len(blocks),
         "verified": len(verified_ids),
+        "declared_trust": {
+            "blocks": declared_trust_blocks,
+            "axioms": sorted(declared_trust_axioms),
+        },
         "v1_warnings": v1_warnings,
         "missing": len(missing_ids),
         "required_clusters": list(required_clusters),
@@ -2677,7 +2929,12 @@ def command_generate(
     )
 
     meta_violations = validate_meta(provisional, meta)
-    factorization = check_factorizations(provisional, meta, backend)
+    factorization = check_factorizations(
+        provisional,
+        meta,
+        backend,
+        declarable_trust=read_declarable_trust(baseline_dir),
+    )
     hard_violations = [
         "factorization: " + reason
         for reason in migration_violations + factorization["summary"]["violations"]
@@ -2744,18 +3001,7 @@ def command_generate(
     )
     print("wrote " + str(out_dir / ID_ASSIGNMENTS_NAME))
     print("wrote " + str(out_dir / FRONTIER_TABLE_NAME))
-    print(
-        "factorized "
-        + str(factorization["summary"]["verified"])
-        + "/"
-        + str(len(factorization["reachable_ids"]))
-        + " reachable leaves"
-        + (
-            " (" + str(factorization["summary"]["v1_warnings"]) + " legacy v1 block(s))"
-            if factorization["summary"]["v1_warnings"]
-            else ""
-        )
-    )
+    print(factorization_line(factorization))
     for migration in migrations:
         print(
             "  alias migration: "
@@ -2800,6 +3046,15 @@ def factorization_line(factorization: dict) -> str:
         extras.append(str(summary["v1_warnings"]) + " legacy v1 block(s), never verified")
     if summary["required_clusters"]:
         extras.append("required: " + ", ".join(summary["required_clusters"]))
+    if summary["declared_trust"]["blocks"]:
+        extras.append(
+            str(summary["declared_trust"]["blocks"])
+            + " with declared "
+            + CONSUMER_TRUST_KEY
+            + " ("
+            + ", ".join(summary["declared_trust"]["axioms"])
+            + ")"
+        )
     if extras:
         line = line + " (" + "; ".join(extras) + ")"
     return line
@@ -2954,7 +3209,11 @@ def command_check(
     # same reason the reviewed metadata is: that file is what consumers read.
     required_clusters = tuple(args.require_factorized or ())
     factorization = check_factorizations(
-        committed, meta, backend, required_clusters
+        committed,
+        meta,
+        backend,
+        required_clusters,
+        declarable_trust=read_declarable_trust(baseline_dir),
     )
     factorization_violations = (
         migration_violations + factorization["summary"]["violations"]

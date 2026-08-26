@@ -23,7 +23,10 @@ The W3-0b sections cover, in order:
    ``check`` entry point driven over a COPY of proof-status in ``tmp_path``
    through the documented ``backend_factory`` / ``export_source`` seams.  Those
    fixtures use the real obligation ids OF THE COPY and write every artifact,
-   receipts included, inside the copy.
+   receipts included, inside the copy;
+5. declared consumer trust (W3-0e) - the optional ``consumer_trust`` key, which
+   widens the boundary on CONSUMER-SIDE hops only, only for names the publish
+   target's recorded closure already carries, and never for the producer path.
 
 Run with::
 
@@ -210,12 +213,19 @@ def registry_for(lean_decl: str = LEAF, obligation_id: str = OID,
     return {"schema": gor.SCHEMA, "obligations": obligations}
 
 
-def run(payload, backend_obj=None, registry=None, required=()):
+def run(payload, backend_obj=None, registry=None, required=(), declarable=None):
+    """``check_factorizations`` over one fixture block.
+
+    ``declarable`` is the publish target's RECORDED closure (W3-0e), injected
+    as a set exactly like the backend; None is the fail-closed default and is
+    what every pre-W3-0e case runs with.
+    """
     return gor.check_factorizations(
         registry_for() if registry is None else registry,
         meta_for(payload),
         backend() if backend_obj is None else backend_obj,
         required,
+        declarable_trust=declarable,
     )
 
 
@@ -947,9 +957,12 @@ def test_generation_materializes_the_reviewed_block_on_the_registry_entry():
     )
     materialized = entry_of(generated_registry(payload))[gor.FACTORIZATION_KEY]
 
-    assert set(materialized) == set(gor.MATERIALIZED_KEYS)
+    # ``consumer_trust`` is optional and this block declares none, so the
+    # materialization carries every other key of the tuple.
+    assert set(materialized) == set(gor.MATERIALIZED_KEYS) - {gor.CONSUMER_TRUST_KEY}
     assert set(gor.MATERIALIZED_KEYS) == {
-        "schema", "roles", "pinned", "transitive", gor.VERIFIED_AT_BUILD
+        "schema", "roles", "pinned", "transitive", gor.CONSUMER_TRUST_KEY,
+        gor.VERIFIED_AT_BUILD
     }
     assert materialized["schema"] == gor.FACTORIZATION_SCHEMA_V2
     assert materialized["roles"] == payload["roles"]
@@ -1909,3 +1922,470 @@ def test_command_level_refused_generate_creates_no_output_file(tmp_path):
     assert not (status / gor.FRONTIER_TABLE_NAME).exists()
     assert_outputs_unchanged(status, before)
     assert_ledger_untouched(status, obligation_id, old_symbol, before_ledger)
+
+
+# ---------------------------------------------------------------------------
+# 5. declared consumer trust (W3-0e)
+#
+# A v2 block MAY carry the optional ``consumer_trust`` key.  A listed name is
+# ACCEPTED only when it is not ``sorryAx``, is not already in ALLOWED_AXIOMS,
+# and IS carried by the publish target's RECORDED closure
+# (proof-status/baseline/axioms.txt, read by ``read_declarable_trust``).  An
+# accepted name is acceptable on CONSUMER-SIDE hops - the open leaf included -
+# and NEVER on the producer path, and a name no consumer-side hop carries is
+# itself a violation, so the key can never be a blanket widening.
+#
+# Every case here is synthetic: the recorded closure is injected as a set,
+# exactly like the kernel-mined backend.
+# ---------------------------------------------------------------------------
+
+NATIVE_TRUST = "Lean.ofReduceBool"
+SECOND_NATIVE_TRUST = "Lean.trustCompiler"
+# The tool prints ``core*`` next to a native-reduction axiom.  That tag is
+# advisory here exactly as everywhere else: the DECLARATION buys the trust, not
+# the tag.
+NATIVE_TAGGED = ("core*", NATIVE_TRUST)
+SECOND_NATIVE_TAGGED = ("core*", SECOND_NATIVE_TRUST)
+# What proof-status/baseline/axioms.txt records for Problem97.erdos97_rhs.
+RECORDED_CLOSURE = {
+    "propext",
+    "Classical.choice",
+    "Quot.sound",
+    "sorryAx",
+    NATIVE_TRUST,
+    SECOND_NATIVE_TRUST,
+}
+
+AXIOMS_TEXT = (
+    "axioms reported by `#print axioms Problem97.erdos97_rhs` (3):\n"
+    "      core  propext\n"
+    "     core*  Lean.ofReduceBool\n"
+    "  \U0001fab6 CUSTOM  sorryAx\n"
+    "\n"
+    "  * native-reduction trust (1)\n"
+)
+
+
+def declaring(payload: dict, names: list) -> dict:
+    """One fixture block with a ``consumer_trust`` declaration added."""
+    payload[gor.CONSUMER_TRUST_KEY] = list(names)
+    return payload
+
+
+def closures_with(*symbols, axiom=NATIVE_TAGGED, closures=None):
+    """The base closures with one extra axiom on each named symbol."""
+    result = base_closures() if closures is None else closures
+    for symbol in symbols:
+        result[symbol] = list(result[symbol]) + [axiom]
+    return result
+
+
+def test_read_declarable_trust_reads_the_recorded_closure_or_fails_closed(tmp_path):
+    (tmp_path / gor.BASELINE_AXIOMS_FILE).write_text(AXIOMS_TEXT, encoding="utf-8")
+    assert gor.read_declarable_trust(tmp_path) == {
+        "propext", NATIVE_TRUST, "sorryAx"
+    }
+    # No baseline directory, no file, and an unparseable file are all None -
+    # never an empty set, which would read as "nothing is declarable" instead of
+    # "the closure could not be read".
+    assert gor.read_declarable_trust(None) is None
+    assert gor.read_declarable_trust(tmp_path / "absent") is None
+    (tmp_path / gor.BASELINE_AXIOMS_FILE).write_text(
+        "no header here\n", encoding="utf-8"
+    )
+    assert gor.read_declarable_trust(tmp_path) is None
+
+
+def test_native_trust_on_a_consumer_hop_without_the_key_is_still_rejected():
+    result = run(
+        block(),
+        backend(closures=closures_with(COORDINATOR)),
+        declarable=RECORDED_CLOSURE,
+    )
+    assert result["verified_ids"] == []
+    text = joined(result)
+    assert (
+        "coordinator (" + COORDINATOR + ") axiom closure contains " + NATIVE_TRUST
+    ) in text
+    # The refusal now says how the block could declare it.
+    assert "unless the block declares it in consumer_trust" in text
+
+
+def test_declared_native_trust_on_a_consumer_hop_verifies():
+    result = run(
+        block(consumer_trust=[NATIVE_TRUST]),
+        backend(closures=closures_with(COORDINATOR)),
+        declarable=RECORDED_CLOSURE,
+    )
+    assert messages(result) == []
+    assert result["verified_ids"] == [OID]
+    assert result["summary"]["declared_trust"] == {
+        "blocks": 1,
+        "axioms": [NATIVE_TRUST],
+    }
+
+
+def test_declared_native_trust_on_every_consumer_side_role_verifies():
+    closures = closures_with(WRAPPER, COORDINATOR, ELIMINATOR)
+    result = run(
+        block(consumer_trust=[NATIVE_TRUST]),
+        backend(closures=closures),
+        declarable=RECORDED_CLOSURE,
+    )
+    assert messages(result) == []
+    assert result["verified_ids"] == [OID]
+
+
+def test_declared_native_trust_on_a_consumer_via_hop_verifies():
+    closures = closures_with(HOP, COORDINATOR)
+    result = run(
+        declaring(transitive_block(), [NATIVE_TRUST]),
+        backend(calls=transitive_calls(), closures=closures),
+        declarable=RECORDED_CLOSURE,
+    )
+    assert messages(result) == []
+    assert result["verified_ids"] == [OID]
+
+
+def test_declared_native_trust_on_the_open_leaf_verifies():
+    closures = closures_with(LEAF)
+    refused = run(block(), backend(closures=closures), declarable=RECORDED_CLOSURE)
+    assert (
+        OID + ": open_leaf (" + LEAF + ") carries forbidden axiom " + NATIVE_TRUST
+    ) in messages(refused)
+
+    accepted = run(
+        block(consumer_trust=[NATIVE_TRUST]),
+        backend(closures=closures),
+        declarable=RECORDED_CLOSURE,
+    )
+    assert messages(accepted) == []
+    assert accepted["verified_ids"] == [OID]
+
+
+def test_a_declaration_never_reaches_the_producer():
+    result = run(
+        block(consumer_trust=[NATIVE_TRUST]),
+        backend(closures=closures_with(PRODUCER, COORDINATOR)),
+        declarable=RECORDED_CLOSURE,
+    )
+    assert result["verified_ids"] == []
+    # Exactly one violation: the producer's.  The coordinator carries the same
+    # axiom and IS covered by the declaration.
+    assert len(messages(result)) == 1
+    text = joined(result)
+    assert (
+        "producer (" + PRODUCER + ") axiom closure contains " + NATIVE_TRUST
+    ) in text
+    assert "the producer path must be kernel clean" in text
+    assert "consumer_trust does not apply to the producer path" in text
+
+
+def test_a_declaration_never_reaches_a_coordinator_to_producer_via_hop():
+    closures = closures_with(COORDINATOR)
+    closures[HOP] = list(CLEAN_CLOSURE) + [NATIVE_TAGGED]
+    result = run(
+        declaring(transitive_block("producer"), [NATIVE_TRUST]),
+        backend(calls=transitive_calls("producer"), closures=closures),
+        declarable=RECORDED_CLOSURE,
+    )
+    assert result["verified_ids"] == []
+    assert len(messages(result)) == 1
+    text = joined(result)
+    assert ("via[0] (" + HOP + ") axiom closure contains " + NATIVE_TRUST) in text
+    assert "consumer_trust does not apply to the producer path" in text
+
+
+def test_a_name_the_recorded_closure_does_not_carry_is_rejected():
+    result = run(
+        block(consumer_trust=["Lean.ofReduceNat"]),
+        backend(closures=closures_with(COORDINATOR, axiom=CORE_TAGGED_NATIVE)),
+        declarable=RECORDED_CLOSURE,
+    )
+    assert result["verified_ids"] == []
+    assert (
+        OID + ": consumer_trust lists Lean.ofReduceNat, which the publish target's"
+        + " recorded closure does not carry"
+    ) in messages(result)
+    # The name was NOT accepted, so the hop carrying it is refused as before.
+    assert "axiom closure contains Lean.ofReduceNat" in joined(result)
+
+
+def test_sorry_ax_is_never_declarable():
+    result = run(block(consumer_trust=[gor.SORRY_AXIOM]), declarable=RECORDED_CLOSURE)
+    assert result["verified_ids"] == []
+    assert messages(result) == [
+        OID + ": consumer_trust lists sorryAx; an open obligation is never"
+        + " declarable trust"
+    ]
+
+
+def test_an_already_allowed_name_is_rejected():
+    result = run(block(consumer_trust=["propext"]), declarable=RECORDED_CLOSURE)
+    assert result["verified_ids"] == []
+    assert messages(result) == [
+        OID + ": consumer_trust lists propext, which is already in ALLOWED_AXIOMS"
+    ]
+
+
+def test_a_declaration_no_consumer_side_hop_carries_is_rejected():
+    """No blanket declarations: the key must pay for an axiom that is there."""
+    result = run(
+        block(consumer_trust=[NATIVE_TRUST]), declarable=RECORDED_CLOSURE
+    )
+    assert result["verified_ids"] == []
+    assert messages(result) == [
+        OID + ": consumer_trust declares " + NATIVE_TRUST
+        + " but no consumer-side hop carries it"
+    ]
+
+    # A producer-only carrier does not justify the declaration either.
+    producer_only = run(
+        block(consumer_trust=[NATIVE_TRUST]),
+        backend(closures=closures_with(PRODUCER)),
+        declarable=RECORDED_CLOSURE,
+    )
+    assert (
+        OID + ": consumer_trust declares " + NATIVE_TRUST
+        + " but no consumer-side hop carries it"
+    ) in messages(producer_only)
+
+
+def test_an_unused_declaration_is_not_reported_when_a_closure_cannot_be_read():
+    """The block already reports "cannot verify"; a second line would mislead."""
+    closures = closures_with(COORDINATOR)
+    del closures[WRAPPER]
+    result = run(
+        block(consumer_trust=[NATIVE_TRUST, SECOND_NATIVE_TRUST]),
+        backend(closures=closures),
+        declarable=RECORDED_CLOSURE,
+    )
+    assert result["verified_ids"] == []
+    assert "cannot verify the axiom closure of legacy_wrapper" in joined(result)
+    assert "but no consumer-side hop carries it" not in joined(result)
+
+
+def test_an_unreadable_recorded_closure_is_cannot_verify_not_accepted():
+    result = run(
+        block(consumer_trust=[NATIVE_TRUST]),
+        backend(closures=closures_with(COORDINATOR)),
+        declarable=None,
+    )
+    assert result["verified_ids"] == []
+    assert (
+        OID + ": cannot verify consumer_trust: the publish target's recorded"
+        + " closure (baseline axioms.txt) could not be read"
+    ) in messages(result)
+    # Nothing was accepted, so the hop is refused too.
+    assert "axiom closure contains " + NATIVE_TRUST in joined(result)
+    # WITHOUT the key an unreadable recorded closure changes nothing.
+    assert messages(run(block(), declarable=None)) == []
+    assert run(block(), declarable=None)["verified_ids"] == [OID]
+
+
+@pytest.mark.parametrize(
+    "value",
+    [
+        NATIVE_TRUST,
+        [],
+        [NATIVE_TRUST, NATIVE_TRUST],
+        [""],
+        [NATIVE_TRUST, 7],
+        {},
+    ],
+)
+def test_a_malformed_consumer_trust_value_is_one_shape_violation(value):
+    result = run(
+        block(consumer_trust=value),
+        backend(closures=closures_with(COORDINATOR)),
+        declarable=RECORDED_CLOSURE,
+    )
+    assert result["verified_ids"] == []
+    assert (
+        OID + ": consumer_trust must be a non-empty list of unique axiom names"
+    ) in messages(result)
+
+
+def test_consumer_trust_in_a_v1_block_is_an_unknown_key():
+    payload = {
+        "schema": gor.FACTORIZATION_SCHEMA_V1,
+        "obligation_id": OID,
+        "roles": block()["roles"],
+        "consumer_trust": [NATIVE_TRUST],
+        "note": "pre-pin legacy record",
+    }
+    result = run(payload, declarable=RECORDED_CLOSURE)
+    assert result["verified_ids"] == []
+    assert (
+        OID + ": unknown key 'consumer_trust' in the " + gor.FACTORIZATION_SCHEMA_V1
+        + " factorization block"
+    ) in messages(result)
+
+
+def test_declared_trust_is_materialized_sorted_and_omitted_when_absent():
+    payload = block(consumer_trust=[SECOND_NATIVE_TRUST, NATIVE_TRUST])
+    materialized = entry_of(generated_registry(payload))[gor.FACTORIZATION_KEY]
+    assert materialized[gor.CONSUMER_TRUST_KEY] == [NATIVE_TRUST, SECOND_NATIVE_TRUST]
+    # A block that declares nothing carries no key, so a registry with no
+    # declaration regenerates byte-identical.
+    plain = entry_of(generated_registry(block()))[gor.FACTORIZATION_KEY]
+    assert gor.CONSUMER_TRUST_KEY not in plain
+
+
+def test_registry_drift_when_the_materialized_declaration_differs():
+    payload = block(consumer_trust=[NATIVE_TRUST])
+    registry = generated_registry(payload)
+    assert gor.compare_registry_factorizations(registry, meta_for(payload), BUILD) == []
+
+    entry_of(registry)[gor.FACTORIZATION_KEY][gor.CONSUMER_TRUST_KEY] = [
+        SECOND_NATIVE_TRUST
+    ]
+    drift = gor.compare_registry_factorizations(registry, meta_for(payload), BUILD)
+    assert len(drift) == 1
+    assert drift[0].startswith(
+        OID + ": materialized factorization key 'consumer_trust'"
+    )
+    assert SECOND_NATIVE_TRUST in drift[0] and NATIVE_TRUST in drift[0]
+
+
+def test_registry_drift_when_the_materialized_declaration_is_missing_or_extra():
+    payload = block(consumer_trust=[NATIVE_TRUST])
+    registry = generated_registry(payload)
+    del entry_of(registry)[gor.FACTORIZATION_KEY][gor.CONSUMER_TRUST_KEY]
+    drift = gor.compare_registry_factorizations(registry, meta_for(payload), BUILD)
+    assert len(drift) == 1
+    assert "'consumer_trust'" in drift[0] and NATIVE_TRUST in drift[0]
+
+    # ... and a declaration on the registry that the reviewed block does not
+    # make is drift in the other direction.
+    plain = block()
+    registry = generated_registry(plain)
+    entry_of(registry)[gor.FACTORIZATION_KEY][gor.CONSUMER_TRUST_KEY] = [NATIVE_TRUST]
+    drift = gor.compare_registry_factorizations(registry, meta_for(plain), BUILD)
+    assert len(drift) == 1
+    assert "'consumer_trust'" in drift[0] and NATIVE_TRUST in drift[0]
+
+
+def test_the_console_line_reports_declared_trust_only_when_there_is_some():
+    declared = run(
+        block(consumer_trust=[NATIVE_TRUST]),
+        backend(closures=closures_with(COORDINATOR)),
+        declarable=RECORDED_CLOSURE,
+    )
+    assert "1 with declared consumer_trust (" + NATIVE_TRUST + ")" in (
+        gor.factorization_line(declared)
+    )
+
+    plain = run(block(), declarable=RECORDED_CLOSURE)
+    assert plain["summary"]["declared_trust"] == {"blocks": 0, "axioms": []}
+    assert "declared consumer_trust" not in gor.factorization_line(plain)
+
+
+# -- the same thing at the COMMAND level, over a copy of proof-status --------
+
+
+def declare_consumer_trust(status: Path, obligation_id: str, names: list) -> None:
+    """Add a ``consumer_trust`` declaration to the injected block on the copy."""
+    path = status / gor.META_NAME
+    meta = json.loads(path.read_text(encoding="utf-8"))
+    meta[obligation_id][gor.FACTORIZATION_KEY][gor.CONSUMER_TRUST_KEY] = list(names)
+    path.write_text(
+        json.dumps(meta, indent=2, sort_keys=True, ensure_ascii=False) + "\n",
+        encoding="utf-8",
+    )
+
+
+def drop_consumer_trust(status: Path, obligation_id: str) -> None:
+    path = status / gor.META_NAME
+    meta = json.loads(path.read_text(encoding="utf-8"))
+    meta[obligation_id][gor.FACTORIZATION_KEY].pop(gor.CONSUMER_TRUST_KEY, None)
+    path.write_text(
+        json.dumps(meta, indent=2, sort_keys=True, ensure_ascii=False) + "\n",
+        encoding="utf-8",
+    )
+
+
+def native_trust_backend(old_symbol: str) -> gor.MappingBackend:
+    """Both declared names on consumer-side hops of the migrated fixture."""
+    return migration_backend(
+        old_symbol,
+        closure_overrides={
+            MIGRATED_COORDINATOR: list(CONSUMER_CLOSURE) + [NATIVE_TAGGED],
+            MIGRATED_ELIMINATOR: list(CONSUMER_CLOSURE) + [SECOND_NATIVE_TAGGED],
+        },
+    )
+
+
+def test_command_level_declared_trust_generates_and_is_drift_checked(tmp_path, capsys):
+    status = copy_proof_status(tmp_path)
+    entry = first_reachable_entry(status)
+    old_symbol = entry["lean_decl"]
+    obligation_id = entry["id"]
+
+    inject_factorization(status, obligation_id, old_symbol)
+    # Both names ARE in the copy's own baseline/axioms.txt.
+    recorded = gor.read_declarable_trust(status / "baseline")
+    assert recorded is not None
+    assert {NATIVE_TRUST, SECOND_NATIVE_TRUST} <= recorded
+    declare_consumer_trust(
+        status, obligation_id, [SECOND_NATIVE_TRUST, NATIVE_TRUST]
+    )
+    backend_obj = native_trust_backend(old_symbol)
+    exports = renamed_exports(status, old_symbol)
+
+    assert run_generate(status, backend_obj, exports) == 0
+    out = capsys.readouterr().out
+    # ONE block declaring TWO names.
+    assert (
+        "1 with declared consumer_trust ("
+        + NATIVE_TRUST + ", " + SECOND_NATIVE_TRUST + ")"
+    ) in out
+
+    registry = read_status_json(status, gor.REGISTRY_NAME)
+    migrated = [item for item in registry["obligations"] if item["id"] == obligation_id]
+    assert len(migrated) == 1
+    assert migrated[0][gor.FACTORIZATION_KEY][gor.CONSUMER_TRUST_KEY] == [
+        NATIVE_TRUST, SECOND_NATIVE_TRUST
+    ]
+    assert run_command_check(status, backend_obj, exports) == 0
+    capsys.readouterr()
+
+    # Editing the MATERIALIZED list on the committed registry is drift.
+    registry = read_status_json(status, gor.REGISTRY_NAME)
+    for item in registry["obligations"]:
+        if item["id"] == obligation_id:
+            item[gor.FACTORIZATION_KEY][gor.CONSUMER_TRUST_KEY] = [NATIVE_TRUST]
+    (status / gor.REGISTRY_NAME).write_text(
+        gor.dump_canonical(registry), encoding="utf-8"
+    )
+    assert run_command_check(status, backend_obj, exports) == 1
+    out = capsys.readouterr().out
+    assert obligation_id in out
+    assert gor.CONSUMER_TRUST_KEY in out
+
+
+def test_command_level_generate_refuses_a_declaration_without_a_recorded_closure(
+    tmp_path, capsys
+):
+    status = copy_proof_status(tmp_path)
+    entry = first_reachable_entry(status)
+    old_symbol = entry["lean_decl"]
+    obligation_id = entry["id"]
+
+    inject_factorization(status, obligation_id, old_symbol)
+    declare_consumer_trust(status, obligation_id, [NATIVE_TRUST])
+    (status / "baseline" / gor.BASELINE_AXIOMS_FILE).unlink()
+    backend_obj = native_trust_backend(old_symbol)
+    exports = renamed_exports(status, old_symbol)
+    before = output_bytes(status)
+
+    assert run_generate(status, backend_obj, exports) == 1
+    err = capsys.readouterr().err
+    assert "cannot verify consumer_trust" in err
+    assert obligation_id in err
+    assert_outputs_unchanged(status, before)
+
+    # The SAME copy, with no declaration, still generates: an unreadable
+    # recorded closure only ever refuses a block that declares trust.
+    drop_consumer_trust(status, obligation_id)
+    assert run_generate(status, migration_backend(old_symbol), exports) == 0

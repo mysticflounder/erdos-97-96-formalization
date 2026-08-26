@@ -203,15 +203,17 @@ carries every verified factorization itself.
     "legacy_wrapper_statement_sha256": "<64 lowercase hex>",
     "open_leaf_statement_sha256": "<64 lowercase hex>"
   },
+  "consumer_trust": ["Lean.ofReduceBool"],
   "note": "free prose"
 }
 ```
 
 - `obligation_id` must name the entry's own ID.
-- `transitive` and `note` are optional; `schema`, `obligation_id`, `roles` and
-  `pinned` are required. Any other key inside the block — or inside `roles`,
-  `pinned` or a `transitive` row — is a metadata violation, as is an unknown
-  `schema`.
+- `transitive`, `consumer_trust` and `note` are optional; `schema`,
+  `obligation_id`, `roles` and `pinned` are required. Any other key inside the
+  block — or inside `roles`, `pinned` or a `transitive` row — is a metadata
+  violation, as is an unknown `schema`. `consumer_trust` (W3-0e) is a v2 key
+  only: inside a v1 block it is an unknown key.
 - **Legacy v1.** A meta file with NO factorization block loads exactly as
   before. A block marked `"schema": "p97-factorization/v1"` is the same block
   WITHOUT the `pinned` digests: it still loads, it is counted as a WARNING
@@ -406,6 +408,51 @@ clean`.
   permitted there and is the one consumer-side case that needs no consumption
   justification: the leaf IS the open leaf every other consumer hop has to
   reach, so it consumes itself.
+
+**Declared consumer trust (W3-0e).** A v2 block MAY carry one optional key,
+`"consumer_trust": [<axiom name>, ...]` — a non-empty list of unique non-empty
+strings; anything else is `<ID>: consumer_trust must be a non-empty list of
+unique axiom names`. A listed name is ACCEPTED only when all of the following
+hold, and each failure prints its own violation line naming the ID and the
+name:
+
+- it is not `sorryAx` — an open obligation is never declarable trust;
+- it is not already in `ALLOWED_AXIOMS` — such a name declares nothing;
+- the publish target's RECORDED closure carries it. That closure is
+  `proof-status/baseline/axioms.txt`, the `proof-blueprint axioms` export for
+  `Problem97.erdos97_rhs`, parsed by the same reader the gate uses everywhere
+  else. A file that is absent or does not parse is reported as
+  `<ID>: cannot verify consumer_trust: the publish target's recorded closure
+  (baseline axioms.txt) could not be read` and accepts nothing — the rule is
+  fail-closed, exactly like an unreadable build fingerprint.
+
+An ACCEPTED name is acceptable on CONSUMER-SIDE hops ONLY: `legacy_wrapper`,
+`coordinator`, `eliminator`, every `via` hop on the three consumer rows, and the
+`open_leaf` audit. The producer path is UNCHANGED — the `producer` and every
+`via` hop on the `coordinator -> producer` row must be CLEAN with no opt-in, and
+the refusal there says `the producer path must be kernel clean; consumer_trust
+does not apply to the producer path`. A consumer-hop refusal names the hop and
+the axiom exactly as before and adds `unless the block declares it in
+consumer_trust`. A declaration that NO consumer-side hop actually carries is
+itself a violation (`<ID>: consumer_trust declares <name> but no consumer-side
+hop carries it`), so the key cannot be a blanket widening; that one audit is
+skipped only for a block whose consumer-side closure could not be read, which
+already reports "cannot verify".
+
+The key is MATERIALIZED onto the registry entry (sorted, omitted when the
+reviewed block declares none), so an added, removed or drifted declaration is
+registry drift like any other materialized field. `check_factorizations`
+reports `"declared_trust": {"blocks": <n>, "axioms": [...]}` in its summary and
+in the check receipt, and the console census line appends
+`; <n> with declared consumer_trust (<names>)` when `n > 0`.
+
+Why the key exists: the TwoSource consumer chain carries `Lean.ofReduceBool` and
+`Lean.trustCompiler`, which enter it at `TwoSourceClosure.lean:2378` through the
+U3 exact-radius audit certificate and propagate up to the legacy wrapper. The
+publish target's recorded closure already carries both as core-allowed
+native-reduction trust, while the producers and the open leaves of that cluster
+are clean of the pair. `consumer_trust` records that per block, on the consumer
+side only, instead of widening `ALLOWED_AXIOMS` for every hop of every cluster.
 
 A `has_sorry` source scan is deliberately NOT used anywhere and is not
 sufficient: it cannot see a `sorry` reached through a helper. The `axioms` exit

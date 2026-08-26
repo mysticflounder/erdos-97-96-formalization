@@ -1,0 +1,240 @@
+{
+  "schema": "p97-gate-receipt/v1",
+  "wave": "W3-0e",
+  "state": "COMPLETE — pre-commit, working-tree hashes",
+  "generated_by": "W3-0e gate verifier (independent of the wave author); every gate reproduced from source, no author output trusted. The three live dry-run copies of proof-status were built and run by this verifier, not reused from the author.",
+  "generated_at_utc": "2026-08-26T07:09:25Z",
+  "git_head": "b5adb609969ae6e1ae2b64a6dec969ef0a608485",
+  "git_head_short": "b5adb609",
+  "head_note": "UNCOMMITTED; working-tree hashes. The wave base is b5adb609969ae6e1ae2b64a6dec969ef0a608485, the HEAD every gate ran against. A FOREIGN docs-only commit landed mid-verification: b363766af1599b9a84037821596686327d95db3a 'docs: harden cap-configuration CE search plan', one file (docs/plans/2026-08-23-cap-configuration-piqd-census-plan.md), 771 insertions / 191 deletions. `git diff --stat b5adb609 b363766af -- scripts proof-status lean` is empty, so no gate result changes; the registry-check receipts written during this verification bind HEAD b5adb609 because they ran before that commit.",
+  "baseline_reference": "proof-status/baseline (axioms.txt = the `proof-blueprint axioms` export of Problem97.erdos97_rhs, tracked since ec4b95ab8 and clean vs HEAD; the six names it records are propext, sorryAx, Classical.choice, Lean.ofReduceBool, Lean.trustCompiler, Quot.sound)",
+  "build_fingerprint": "33f2659d3428b288434253557166c4e28c9075d909ee46318276d713d955d34b",
+  "build_fingerprint_source": "proof-status/obligations.json -> factorization.verified_at_build (identical on all four materialized blocks); the live check reports the same build 33f2659d3428",
+  "promotion_claim": "none",
+  "claim_scope": "registry tooling: optional consumer_trust key in the p97-factorization/v2 gate; no obligation, statement, axiom, import or Lean change; no proof-progress or closure claim",
+  "source_gates_pass": true,
+  "source_gates_note": "Gates 0-9 all PASS. The strict-refs gate (--require-fresh-refs) was deliberately NOT run and is NOT counted: it is the inherited 36 stale + 1 never-mined condition recorded in proof-status/baseline/refs-check.txt, repaired only by `proof-blueprint refs --refresh`, which this wave and this verifier may not run.",
+  "overall_pass": true,
+  "overall_note": "Every gate this verifier ran passes. The live registry census is unchanged at factorized 4/28 with no declared-trust suffix, and the four generated proof-status files are byte-identical to HEAD after a full generate.",
+  "blockers": [],
+  "gates": [
+    {
+      "name": "0 scope: only the three owned files and registry-check receipts are attributable to this wave",
+      "pass": true,
+      "line": "git status --porcelain vs scratchpad/w3-0e-status-before.txt differs by exactly ' M scripts/gen_obligation_registry.py', ' M scripts/test_gen_obligation_registry_factorization.py', ' M proof-status/README.md' and five untracked receipts (registry-check-20260826T064014Z.json from the author; 064844Z, 065158Z, 065323Z, 065500Z from this verifier's four check runs). `git diff --quiet HEAD -- proof-status/obligations-meta.json obligations.json id-assignments.json frontier-table.generated.md import-waivers.json legacy-import-exceptions.json` EXIT=0. `git diff --cached --name-only` empty. The two foreign lean diffs are unchanged: TwoSourceCanonicalSurface.lean 4c4267daab681bb3, TwoSourceRetainedMinimalCore.lean 64711158044d921c (16-char prefixes of `git diff HEAD -- <file> | shasum -a 256`); `git diff --stat HEAD -- lean` lists only those two, both pre-existing and foreign."
+    },
+    {
+      "name": "1 code review: D1-D5 confirmed line by line, no bypass, no undisclosed behavior change",
+      "pass": true,
+      "line": "D1 CONSUMER_TRUST_KEY :804 and BLOCK_KEYS_V2 :847-855 (BLOCK_KEYS_V1 :859 unchanged, so the key in a v1 block hits the unknown-key loop at :1541-1550). D2 read_declarable_trust :991-1013 reads <baseline>/axioms.txt (BASELINE_AXIOMS_FILE :286) through parse_axioms_output and returns None on OSError or RegistryError; parse_consumer_trust :1696-1771 applies the four checks in the stated order. Run on the live baseline it returns exactly {Classical.choice, Lean.ofReduceBool, Lean.trustCompiler, Quot.sound, propext, sorryAx}; None for a missing directory and for None. D3 the consumer flag is unchanged (trust_hops :2103-2116: producer role and every via whose pair is (coordinator, producer) are consumer=False), the declaration is consulted only under `if consumer` (:2134-2137, :2147-2148) and in is_consumer_ok_closure :879-890, so it can never reach the producer path; the open_leaf audit :2218-2232 reads it too. D3b :2236-2251. D4 normalized_factorization_block :1396-1407 emits sorted(list) and omits the key otherwise; compare_registry_factorizations already iterates sorted(set(want) | set(got)) :1461, so added, removed and drifted declarations are reported with no change there. D5 summary :2356-2359 and factorization_line :3046-3055. Direct probe: sorryAx, an ALLOWED name, an unlisted name and four malformed values each produce exactly the specified line and accept nothing; a valid pair is accepted; materialization sorts strings, copies a mixed list unsorted and omits the key when absent. Other behavior changes in the diff, all disclosed by the author: command_generate now calls factorization_line instead of its own inline census line (needed for D5 on generate; the only wording change is the v1 parenthesis, and v1_warnings is 0 today so the live generate line is byte-for-byte the old one), is_consumer_ok_closure gained a defaulted second parameter, and 'declared_trust' is inserted into the summary between 'verified' and 'v1_warnings'. MATERIALIZED_KEYS is read only as a set (definition plus the tests), so its new member changes no output ordering."
+    },
+    {
+      "name": "2 tests: both focused files pass; 22 new test functions cover every D7 case",
+      "pass": true,
+      "line": "uv run python -m pytest -q scripts/test_gen_obligation_registry_factorization.py scripts/test_lint_cluster_imports_legacy.py -> '151 passed in 6.27s', exit 0 (124 before). `^def test_` in the factorization file: 68 -> 90, none removed; the +27 collected items come from one parametrized case with six values. Section 5 'declared consumer trust (W3-0e)' names each D7 case: read_declarable_trust_reads_the_recorded_closure_or_fails_closed, native_trust_on_a_consumer_hop_without_the_key_is_still_rejected, declared_native_trust_on_a_consumer_hop_verifies, ..._on_every_consumer_side_role_verifies, ..._on_a_consumer_via_hop_verifies, ..._on_the_open_leaf_verifies, a_declaration_never_reaches_the_producer, a_declaration_never_reaches_a_coordinator_to_producer_via_hop, a_name_the_recorded_closure_does_not_carry_is_rejected, sorry_ax_is_never_declarable, an_already_allowed_name_is_rejected, a_declaration_no_consumer_side_hop_carries_is_rejected, an_unused_declaration_is_not_reported_when_a_closure_cannot_be_read, an_unreadable_recorded_closure_is_cannot_verify_not_accepted (which also asserts the no-key case is unaffected), a_malformed_consumer_trust_value_is_one_shape_violation[6 values], consumer_trust_in_a_v1_block_is_an_unknown_key, declared_trust_is_materialized_sorted_and_omitted_when_absent, registry_drift_when_the_materialized_declaration_differs, registry_drift_when_the_materialized_declaration_is_missing_or_extra, the_console_line_reports_declared_trust_only_when_there_is_some, and the two command-level cases command_level_declared_trust_generates_and_is_drift_checked and command_level_generate_refuses_a_declaration_without_a_recorded_closure."
+    },
+    {
+      "name": "3 live registry: check, generate, byte identity, and the three --require-factorized runs",
+      "pass": true,
+      "line": "check --baseline proof-status/baseline -> EXIT=0, 'OK: .../proof-status/obligations.json matches the live spine (28 reachable, 6 off-spine); 34/34 reviewed meta_status, vocabulary clean' + '  factorized 4/28 reachable leaves' (no parenthesis, no declared-trust suffix) + '  bound to: HEAD b5adb609969ae6e1ae2b64a6dec969ef0a608485, build 33f2659d3428, roster sources dirty'; its receipt records {\"verified\": 4, \"declared_trust\": {\"axioms\": [], \"blocks\": 0}}. generate --baseline proof-status/baseline --out proof-status -> EXIT=0 with 'factorized 4/28 reachable leaves', then `git diff --quiet HEAD -- obligations.json id-assignments.json frontier-table.generated.md obligations-meta.json` EXIT=0; the four sha256 are unchanged (obligations.json 05e3e44b2d981b3a..., meta b7c89d009c929aab..., id-assignments 4c1c0a5bfa595690..., frontier-table 0cb5d00f2c542ce0...), so verified_at_build was NOT restamped. --require-factorized TD EXIT=0 ('factorized 4/28 reachable leaves (required: TD)'), TA EXIT=0, TS EXIT=1 listing exactly P97-TS-ACYCLICHARDRESIDUAL, P97-TS-ALIGNEDRETAINED, P97-TS-COMMONRADIUS, P97-TS-CROSSBLOCKER, P97-TS-NONCANONICAL, P97-TS-OUTSIDEPAIRDELETION, each 'has no p97-factorization/v2 factorization block' (unchanged in this wave). --require-fresh-refs NOT run: inherited 36 stale + 1 never-mined from proof-status/baseline/refs-check.txt."
+    },
+    {
+      "name": "4 dry runs (D8) reproduced independently in this verifier's own copies of proof-status",
+      "pass": true,
+      "line": "Three `cp -R proof-status` copies under the verifier scratch directory, each given the six preserved P97-TS-* blocks by this verifier's own applier (apply_ts_blocks.py, reading w3-ts-author/authored-ts-factorization-blocks.json verbatim). WITH the key: generate EXIT=0, 'factorized 10/28 reachable leaves (6 with declared consumer_trust (Lean.ofReduceBool, Lean.trustCompiler))'; check --require-factorized TS on the copy EXIT=0 with '  factorized 10/28 reachable leaves (required: TS; 6 with declared consumer_trust (Lean.ofReduceBool, Lean.trustCompiler))'; jq shows \"consumer_trust\": [\"Lean.ofReduceBool\", \"Lean.trustCompiler\"] on exactly the six P97-TS-* entries and on none of the four pre-existing ones (10 factorized entries in all). WITHOUT the key: generate EXIT=1, '90 alias/factorization violation(s)', nothing written; the 90 sorted ERROR lines, after stripping the suffix ' unless the block declares it in consumer_trust' (which all 90 and only those gained), diff EMPTY against the sorted ERROR lines of scratchpad/w3-ts-author/generate-full.log. PARTIAL key (P97-TS-ACYCLICHARDRESIDUAL declaring [\"Lean.ofReduceBool\"] only): generate EXIT=1 with 8 violations, all 8 on that id, all 8 naming Lean.trustCompiler and 0 not naming it, one per consumer-side hop (legacy_wrapper, coordinator, eliminator, via[0..4]). Receipt accounting: generate writes no receipt; only `check` does, into <registry dir>/receipts. The live proof-status/receipts gained exactly the four receipts of this verifier's four live check runs; the copy's check receipt landed inside copy-with-key/receipts (registry-check-20260826T065526Z.json), and copy-no-key / copy-partial-key gained none. No dry-run receipt reached the live tree."
+    },
+    {
+      "name": "5 roster: spine, off-spine and the publish target's axiom closure unchanged",
+      "pass": true,
+      "line": "`proof-blueprint search --with-sorry --spine --json | jq -r 'select(type==\"object\")|.symbol' | sort` is 28 symbols, diff EMPTY against proof-status/baseline/spine-sorry.json; the off-spine roster is 6 symbols, diff EMPTY against offspine-sorry.json; `proof-blueprint axioms Problem97.erdos97_rhs` output diffs EMPTY against proof-status/baseline/axioms.txt (its exit 1 is the by-design unapproved-sorryAx exit, not a roster change)."
+    },
+    {
+      "name": "6 lint: cluster import lint unchanged",
+      "pass": true,
+      "line": "uv run python scripts/lint_cluster_imports.py -> EXIT=0, 'lint_cluster_imports: OK -- 691 import edges scanned, 27 forbidden edges, all waived by 27 authenticated waivers; 3 retired; 5 legacy edges, all listed.'"
+    },
+    {
+      "name": "7 docs: README and module docstring state every rule, and the banned word is absent",
+      "pass": true,
+      "line": "proof-status/README.md: the v2 schema block gained '\"consumer_trust\": [\"Lean.ofReduceBool\"],' and the key list now reads 'transitive, consumer_trust and note are optional' plus 'consumer_trust (W3-0e) is a v2 key only: inside a v1 block it is an unknown key'; the new paragraph '**Declared consumer trust (W3-0e).**' (README.md:412-455) states the shape rule, the four per-name checks with their exact violation text, consumer-side-only application including the open_leaf audit, the unchanged producer path with its refusal text, the no-blanket-declaration rule and its one skip, the sorted materialization and drift, the summary/receipt keys and the console suffix, and the reason (the pair the publish target's recorded closure already carries, entering the TwoSource consumer chain at TwoSourceClosure.lean:2378). The module docstring gained the same key in its schema block (:65) and a 'Declared consumer trust (W3-0e)' section (:136-164). No occurrence of the banned word 'equivalent' in any added line of the three files."
+    },
+    {
+      "name": "8 hygiene: whitespace, trailing newline, parse",
+      "pass": true,
+      "line": "`git diff --check HEAD -- scripts/gen_obligation_registry.py scripts/test_gen_obligation_registry_factorization.py proof-status/README.md` clean (exit 0). Each file ends with exactly one newline (last two bytes 0x29 0x0a, 0x30 0x0a, 0x2e 0x0a). ast.parse succeeds on both Python files."
+    },
+    {
+      "name": "9 ROI recomputed from source",
+      "pass": true,
+      "line": "Live factorized census 4/28 reachable leaves, unchanged by this wave, with declared_trust {blocks: 0, axioms: []} in the check receipt. The verifier's own dry run proves 10/28 with the six P97-TS-* blocks once W3-TS-b lands them, at the cost of exactly two declared names on the consumer side of those six blocks. git diff --numstat HEAD: scripts/gen_obligation_registry.py +285/-26 (3210 -> 3469 lines), scripts/test_gen_obligation_registry_factorization.py +484/-4 (1911 -> 2391), proof-status/README.md +51/-4 (604 -> 651). Tests 124 -> 151."
+    }
+  ],
+  "roi": {
+    "factorized_live_before": "4/28 reachable leaves",
+    "factorized_live_after": "4/28 reachable leaves (unchanged; this wave lands no factorization block)",
+    "factorized_after_w3_ts_b_dry_run": "10/28 reachable leaves, 6 blocks with declared consumer_trust",
+    "declared_names_the_recorded_closure_makes_available": [
+      "Lean.ofReduceBool",
+      "Lean.trustCompiler"
+    ],
+    "declarable_surface_note": "The recorded closure carries six names; sorryAx and the three ALLOWED_AXIOMS are rejected by construction, so the two native-reduction names above are the entire declarable surface today.",
+    "gen_obligation_registry_py": {
+      "added": 285,
+      "removed": 26,
+      "lines_before": 3210,
+      "lines_after": 3469
+    },
+    "test_gen_obligation_registry_factorization_py": {
+      "added": 484,
+      "removed": 4,
+      "lines_before": 1911,
+      "lines_after": 2391
+    },
+    "proof_status_readme_md": {
+      "added": 51,
+      "removed": 4,
+      "lines_before": 604,
+      "lines_after": 651
+    },
+    "tests_before": 124,
+    "tests_after": 151,
+    "new_test_functions": 22,
+    "removed_test_functions": 0,
+    "existing_tests_edited": 1
+  },
+  "tests": [
+    {
+      "command": "uv run python -m pytest -q scripts/test_gen_obligation_registry_factorization.py scripts/test_lint_cluster_imports_legacy.py",
+      "exit_code": 0,
+      "final_line": "151 passed in 6.27s",
+      "total_passed": 151,
+      "failed": 0,
+      "run_by": "this verifier, from the repository root"
+    }
+  ],
+  "content_bound_files": {
+    "scripts/gen_obligation_registry.py": {
+      "sha256": "3921bd14ab1468db84c7fc408d6b9d6c52aaf8211513ff95f91159d86f2d8655",
+      "note": "working-tree hash at verification time (UNCOMMITTED); the gate implementation"
+    },
+    "scripts/test_gen_obligation_registry_factorization.py": {
+      "sha256": "9536261acbbf62d484ae93c63568674e8a3de33f2bf9a78072f016dd2cf26dbc",
+      "note": "working-tree hash at verification time (UNCOMMITTED); section 5 adds 22 test functions"
+    },
+    "proof-status/README.md": {
+      "sha256": "71b566f21593ac14b82f5dfcd5bd90a2fa52b6ccc7bdc9e52c24823398bd57a5",
+      "note": "working-tree hash at verification time (UNCOMMITTED); schema block and Trust boundary section"
+    }
+  },
+  "author_claims_checked": [
+    {
+      "claim": "D1: ONE optional key CONSUMER_TRUST_KEY = 'consumer_trust' added to BLOCK_KEYS_V2 only; a v1 block with the key keeps failing as an unknown key.",
+      "verdict": "reproduced",
+      "evidence": "Constant :804, BLOCK_KEYS_V2 :847-855, BLOCK_KEYS_V1 :859 unchanged; check_block_structure :1541-1550 selects the v1 tuple for a v1 block. Test test_consumer_trust_in_a_v1_block_is_an_unknown_key asserts the message."
+    },
+    {
+      "claim": "D2: read_declarable_trust parses <baseline>/axioms.txt with parse_axioms_output, returns None when absent or unparseable, and is threaded through check_factorizations into check_v2_block; command_generate passes None with no --baseline.",
+      "verdict": "reproduced",
+      "evidence": "read_declarable_trust :991-1013; threading :2261 / :2294-2301 and :2936 (generate, baseline_dir may be None :2904) and :3216 (check, baseline required :3066). Executed against the live baseline it returns the six recorded names; None for a missing directory and for None. The four per-name checks fire in the stated order with the stated text (direct probe)."
+    },
+    {
+      "claim": "D3/D3b: an accepted name is acceptable on consumer-side hops and the open_leaf audit only; the producer path is unchanged and its refusal adds '; consumer_trust does not apply to the producer path'; a declaration no consumer-side hop carries is a violation, skipped only when a consumer-side closure could not be read.",
+      "verdict": "reproduced",
+      "evidence": "trust_hops :2103-2116 (consumer = role != producer, and pair != (coordinator, producer)); declaration consulted only under `if consumer` :2132-2137, :2147-2148 and in is_consumer_ok_closure :879-890; leaf audit :2216-2232; blanket audit :2236-2251 guarded by consumer_closures_readable, set False at :2121 and :2206. The live partial-key dry run shows the eight consumer-side hops of one block refused for the undeclared name and nothing else."
+    },
+    {
+      "claim": "D4: the key is materialized sorted, MATERIALIZED_KEYS gained it, and compare_registry_factorizations needed no change because it enumerates set(want) | set(got).",
+      "verdict": "reproduced",
+      "evidence": "normalized_factorization_block :1396-1408; MATERIALIZED_KEYS :808-815; the comparison loop at :1461. A block declaring nothing materializes no key, which is why the live registry regenerates byte-identical. Drift in both directions is covered by two tests."
+    },
+    {
+      "claim": "D5: the summary gained declared_trust {blocks, axioms} and factorization_line appends the suffix only when blocks > 0; every existing receipt key is kept.",
+      "verdict": "reproduced",
+      "evidence": "Summary :2356-2359, line :3046-3055. The live check receipt carries {\"verified\": 4, \"declared_trust\": {\"axioms\": [], \"blocks\": 0}} next to checked, v1_warnings, missing, required_clusters, registry_drift, schema_versions and violations; the copy's check receipt carries {\"verified\": 10, \"declared_trust\": {\"axioms\": [\"Lean.ofReduceBool\", \"Lean.trustCompiler\"], \"blocks\": 6}}."
+    },
+    {
+      "claim": "D8 numbers: 10/28 with the key, 90 identical violations without it, 8 violations all naming Lean.trustCompiler with the partial key.",
+      "verdict": "reproduced independently",
+      "evidence": "This verifier built its own three copies and its own applier and got exactly those results; the 90 sorted lines diff EMPTY against the W3-TS reference log after stripping the new suffix, which all 90 gained."
+    },
+    {
+      "claim": "Disclosed deviation: command_generate printed its own inline census line, so it was replaced by a call to factorization_line; the only wording change is the v1 parenthesis.",
+      "verdict": "reproduced; the change is needed for D5 and is inert today",
+      "evidence": "The removed inline block is now the single call at :3004. v1_warnings is 0 on the live tree (check receipt), so the live generate line 'factorized 4/28 reachable leaves' is byte-for-byte the HEAD line, and the generated files are byte-identical."
+    },
+    {
+      "claim": "Disclosed deviation: one existing test edited minimally (test_generation_materializes_the_reviewed_block_on_the_registry_entry).",
+      "verdict": "reproduced",
+      "evidence": "The two assertions now read set(materialized) == set(MATERIALIZED_KEYS) - {CONSUMER_TRUST_KEY} and the literal set with CONSUMER_TRUST_KEY added; the rest of the test is unchanged, no test function was removed, and all 151 tests pass."
+    },
+    {
+      "claim": "Disclosed deviation: the 'cannot verify consumer_trust' line is emitted per listed name and carries no name, so it can repeat.",
+      "verdict": "reproduced",
+      "evidence": "A direct probe with two names and an unreadable closure returns the identical line twice. It follows D2's per-name ordering literally; cosmetic only, since the block is refused either way."
+    },
+    {
+      "claim": "Only one file was created inside the repository by the author (proof-status/receipts/registry-check-20260826T064014Z.json).",
+      "verdict": "reproduced",
+      "evidence": "git status shows that one untracked receipt from the author's run plus this verifier's four; nothing else outside the three modified files."
+    }
+  ],
+  "metadata_corrections": [
+    {
+      "field": "git_head",
+      "correction": "The brief and the author's report bind HEAD b5adb609. That is still the base every gate ran against, but the repository HEAD moved to b363766af1599b9a84037821596686327d95db3a during verification through a foreign docs-only commit. No file under scripts/, proof-status/ or lean/ differs between the two commits."
+    },
+    {
+      "field": "author report / files_created: docs/plans/2026-08-23-cap-configuration-piqd-census-plan.md",
+      "correction": "The author reported this file as foreign and dirty (604 insertions at 23:43 local). It has since been committed by its own lane as b363766af with 771 insertions / 191 deletions and is no longer dirty. It was never in the W3-0e write set and no W3-0e gate depends on it."
+    },
+    {
+      "field": "author report / tests_line",
+      "correction": "'the factorization file alone is 97 tests, 70 before' counts collected items including parametrization; the file defines 90 test functions now and 68 at HEAD. The reported totals (151 now, 124 before) are correct and reproduced."
+    }
+  ],
+  "observations_not_blocking": [
+    "The declarable surface is defined by a repository file, proof-status/baseline/axioms.txt. The gate is fail-closed against it (a missing or unparseable file accepts nothing), but a future wave that rebaselines that export also changes what may be declared. Today the file is tracked, clean against HEAD, dated to ec4b95ab8, and leaves exactly Lean.ofReduceBool and Lean.trustCompiler declarable after sorryAx and the three ALLOWED_AXIOMS are removed.",
+    "read_declarable_trust catches OSError and RegistryError. A baseline axioms.txt that exists but is not valid UTF-8 would raise UnicodeDecodeError out of read_text instead of returning None. Not reachable from any gate path exercised here; noted for a later hardening pass.",
+    "The producer-path refusal text ('; the producer path must be kernel clean; consumer_trust does not apply to the producer path') is covered by two synthetic tests but is not exercised live: no producer or coordinator -> producer via hop in the live tree carries a forbidden axiom.",
+    "A block declaring N names against an unreadable recorded closure prints the same 'cannot verify' line N times, because the line names no axiom. Cosmetic; the block is refused either way.",
+    "The four registry-check receipts this verification wrote bind HEAD b5adb609. After the wave commit lands, a fresh check will bind the new HEAD; the receipts are timestamped by design and are not compared byte-wise."
+  ],
+  "files_written_by_this_verifier": [
+    "proof-status/receipts/w3-0e-gate-receipt.json"
+  ],
+  "new_receipts_written_by_this_check": [
+    "proof-status/receipts/registry-check-20260826T064844Z.json",
+    "proof-status/receipts/registry-check-20260826T065158Z.json",
+    "proof-status/receipts/registry-check-20260826T065323Z.json",
+    "proof-status/receipts/registry-check-20260826T065500Z.json"
+  ],
+  "git_operations_performed": [
+    "read-only only: status, diff, show, log, rev-parse. No add, commit, checkout, stash, reset, restore, push, rebase or merge. Nothing staged.",
+    "No lake, lean or `proof-blueprint refs --refresh` was run; read-only proof-blueprint search and axioms only. No Lean file was edited."
+  ],
+  "notes_for_main_session": [
+    "pytest: '151 passed in 6.27s' for scripts/test_gen_obligation_registry_factorization.py plus scripts/test_lint_cluster_imports_legacy.py (124 before; +22 test functions, one of them parametrized six ways).",
+    "Dry-run evidence kept by this verifier under scratchpad/w3-0e-verifier/: dry-runs.log (the three generate runs and the copy check), live-gates.log (check, generate, TD, TA, TS, lint), roster.log with spine-live.txt / offspine-live.txt / axioms-live.txt, b3-errors.txt and the sorted stripped comparison files, apply_ts_blocks.py (this verifier's own applier), and copy-with-key / copy-no-key / copy-partial-key.",
+    "No dry-run receipt landed under the live proof-status/receipts. `generate` writes no receipt at all; `check` writes one into <registry dir>/receipts, which for a copy is the copy's own directory. The four new live receipts are this verifier's four live check runs, plus the author's single registry-check-20260826T064014Z.json.",
+    "Wording W3-TS-b must use: each of the six P97-TS-* v2 blocks carries \"consumer_trust\": [\"Lean.ofReduceBool\", \"Lean.trustCompiler\"], and the census line to expect is 'factorized 10/28 reachable leaves (6 with declared consumer_trust (Lean.ofReduceBool, Lean.trustCompiler))'. Describe it as declared consumer-side trust that the publish target's recorded closure already carries, recorded per block and materialized onto the registry entry - not as a widening of ALLOWED_AXIOMS, not as proof progress, and not as a closure claim. The producer path of every one of those blocks stays kernel clean, and the six open leaves stay open.",
+    "HEAD moved to b363766af during verification through a foreign docs-only commit (docs/plans/2026-08-23-cap-configuration-piqd-census-plan.md). Nothing under scripts/, proof-status/ or lean/ changed, so this receipt's gates hold; rebind it to the wave commit after the three files land, the way the W3-0d and W3-TS receipts were re-issued."
+  ],
+  "content_bound_files_working_tree": {
+    "scripts/gen_obligation_registry.py": {
+      "sha256": "3921bd14ab1468db84c7fc408d6b9d6c52aaf8211513ff95f91159d86f2d8655",
+      "note": "same working-tree hash; recorded twice because this receipt is pre-commit"
+    },
+    "scripts/test_gen_obligation_registry_factorization.py": {
+      "sha256": "9536261acbbf62d484ae93c63568674e8a3de33f2bf9a78072f016dd2cf26dbc",
+      "note": "same working-tree hash; recorded twice because this receipt is pre-commit"
+    },
+    "proof-status/README.md": {
+      "sha256": "71b566f21593ac14b82f5dfcd5bd90a2fa52b6ccc7bdc9e52c24823398bd57a5",
+      "note": "same working-tree hash; recorded twice because this receipt is pre-commit"
+    }
+  },
+  "wave_commit": null,
+  "note_resolutions": [],
+  "claim_reference": "#7506 (authorization: Adam, option A of #7498)",
+  "main_session_reverification": null
+}
