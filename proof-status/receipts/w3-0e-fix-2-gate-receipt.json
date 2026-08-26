@@ -1,12 +1,12 @@
 {
   "schema": "p97-gate-receipt/v1",
   "wave": "W3-0e-fix-2",
-  "state": "PRE-COMMIT — wave_commit is null.  All five gates were re-run from source by this verifier against the WORKING TREE at git_head e0947a71; nothing is committed and nothing is staged.  Rebind content_bound_files to the wave commit when it exists.",
+  "state": "FINAL — bound to W3-0e-fix-2 wave commit b9578ed3; this receipt ships in a receipt-only descendant commit of b9578ed3",
   "generated_by": "W3-0e-fix-2 independent gate verifier (no build rights; no lake, no lake-build, no `proof-blueprint sync`, no `proof-blueprint refs --refresh`, no `generate --out proof-status`).  Every gate was re-derived from source: no author output, log or artifact was reused as evidence.  All four end-to-end `generate` runs were made by this verifier on its OWN copies of proof-status; the single `check` ran against the live tree read-only apart from its own registry-check receipt.  `proof-blueprint` ran only as a child of those five runs.",
   "generated_at_utc": "2026-08-26T22:26:57Z",
-  "git_head": "e0947a71f8b854ffcd37ae015433fc5b202fe49e",
-  "git_head_short": "e0947a71",
-  "head_note": "wave_commit is null: nothing is committed.  content_bound_files_working_tree holds the sha256 of the WORKING-TREE bytes of the three owned files at git_head e0947a71, read after the last gate and unchanged throughout every gate.  content_bound_files repeats them and must be rebound to `git show <wave commit>:<path>` once the wave lands.",
+  "git_head": "b9578ed37b58bf1194b56a11d0876c977c0e6e17",
+  "git_head_short": "b9578ed3",
+  "head_note": "Bound to commit b9578ed37b58bf1194b56a11d0876c977c0e6e17. content_bound_files holds the sha256 of every path committed at b9578ed3 (`git show b9578ed3:<path>`). The gate verifier's pre-commit draft (working-tree hashes at HEAD e0947a71) is kept, labeled, under content_bound_files_working_tree; its gates section is that pre-commit snapshot.",
   "baseline_reference": "proof-status/baseline.  axioms.txt is the reviewed `proof-blueprint axioms Problem97.erdos97_rhs` export; this verifier parsed it directly and it records exactly six names - propext, sorryAx, Classical.choice, Lean.ofReduceBool, Lean.trustCompiler, Quot.sound - of which the declarable surface is the two native-reduction names (sorryAx and the three ALLOWED_AXIOMS are rejected by construction).  base-head.txt is f3063069, the source_head the committed registry carries.  Under W3-0e-fix-2 this file is the trust authority in BOTH source modes; no live axioms export is consulted anywhere.",
   "build_fingerprint": "5902ba928947b2ac2fda7b3cc06ff430f9e95f86f9046c96043581865b0a536c",
   "build_fingerprint_source": "The live mined build id as stamped by this verifier's `generate --fresh` run on its copy and reported by its live `check` (`build 5902ba928947`); identical to the id every materialized block in the committed proof-status/obligations.json already carries.",
@@ -169,11 +169,14 @@
     }
   ],
   "content_bound_files": {
-    "note": "wave_commit is null - nothing is committed.  These are the WORKING-TREE sha256s at git_head e0947a71, the same map as content_bound_files_working_tree; rebind to `git show <wave commit>:<path>` when the wave lands.",
+    "note": "sha256 of every path committed at b9578ed3 (git show b9578ed3:<path>)",
     "sha256": {
+      "proof-status/README.md": "4de10edd5d8cecdaf329adefa83a57d4d28eddda55b1e65475f2022e7c0ea06a",
+      "proof-status/receipts/registry-check-20260826T221651Z.json": "ee494ffa8e434de34195a23d263b03d378fea156444163fb28f4f995abd287a9",
+      "proof-status/receipts/registry-check-20260826T223250Z.json": "f3c55a47e2603431ac06055405e84546d9e81db1f66d8374957e1c4524508792",
+      "proof-status/receipts/w3-0e-fix-2-gate-receipt.json": "c5ca2c896b68cb92aa5fe64cd6f181638dee6021d9e40e736352fa47ff228f19",
       "scripts/gen_obligation_registry.py": "ee48928c08c21fa4ba82e3542baddb7bd8606818d12b14a27ce48d6f4f30c775",
-      "scripts/test_gen_obligation_registry_factorization.py": "9f1efb0482b6567d7a6297aa168a612ecafdb77c0734921395de80a2d81fc138",
-      "proof-status/README.md": "4de10edd5d8cecdaf329adefa83a57d4d28eddda55b1e65475f2022e7c0ea06a"
+      "scripts/test_gen_obligation_registry_factorization.py": "9724594fe222260b561f0e0cd6618fb3e42fd4abd2c6e8e4546b458980a6cfc7"
     }
   },
   "author_claims_checked": [
@@ -258,7 +261,13 @@
       "evidence": "Against 00f0d377 the test fails with `assert '... which the publish target's recorded closure does not carry' in \"ERROR: ... cannot verify consumer_trust: the publish target's recorded closure (b...\"` - the pre-fix run still exited 1 and still wrote nothing, because the test injects a 2-tuple export_source and the pre-fix --fresh path was fail-closed on that seam and never reached export_live_closure. To settle the defect this verifier drove the pre-fix 3-tuple seam directly (recorded closure without Lean.ofReduceBool, live closure with it, block declaring it): 00f0d377 exits 0 and writes the registry with the declaration materialized. The defect is real and the fix removes it; the author's test does fail pre-fix as required, and test_w3_0e_the_live_axioms_export_seam_is_gone fails pre-fix decisively."
     }
   ],
-  "metadata_corrections": [],
+  "metadata_corrections": [
+    {
+      "utc": "2026-08-26T22:40:00Z",
+      "kind": "receipt re-bound to the wave commit; claim reference, note resolutions and main-session reverification added; metadata only",
+      "unchanged": "overall_pass=true, source_gates_pass=true, promotion_claim none: registry tooling; no proof progress, claim_scope unchanged"
+    }
+  ],
   "observations_not_blocking": [
     "The author's flagship regression test test_w3_0e_fresh_generate_never_trusts_a_live_consumer_closure does fail against 00f0d377, but on the violation MESSAGE ('cannot verify ...' vs '... does not carry'), not on accept-vs-refuse: because it injects a 2-tuple export_source, the pre-fix --fresh path never reached export_live_closure and was already fail-closed.  Its docstring sentence 'W3-0e-fix ... would have ACCEPTED this block' is true of the real --fresh path but not of this test's own configuration.  This verifier supplied the missing accept-vs-refuse evidence with an independent probe (recorded closure without Lean.ofReduceBool, pre-fix 3-tuple live closure with it): 00f0d377 exits 0 and writes the registry with the declaration materialized.  No change is required; the note exists so the test is not later cited for more than it proves.",
     "Under `generate --fresh --out OUT` the trust authority is OUT/baseline/axioms.txt, i.e. the closure kept with whatever tree is named by --out.  That is exactly the specified design (and gate 4(c) exploits it deliberately), but it means a run pointed at a COPY is gated by that copy's closure, not by the repository's proof-status/baseline.  Only `generate --fresh --out proof-status`, the documented command, gates against the reviewed committed file.",
@@ -286,15 +295,58 @@
     "One accuracy note worth carrying into the reply to #7524: the author's flagship regression test fails pre-fix on the message, not on accept-vs-refuse.  This verifier's independent probe supplies the accept-vs-refuse demonstration (00f0d377 exits 0 and writes the registry for a live-only declaration).  If the claim text says the test proves the pre-fix would have accepted the block, soften it to what the test actually pins and cite test_w3_0e_the_live_axioms_export_seam_is_gone for the structural half."
   ],
   "content_bound_files_working_tree": {
-    "note": "sha256 of the WORKING-TREE bytes of the three owned files at git_head e0947a71f8b854ffcd37ae015433fc5b202fe49e, read after the last gate.  Unchanged across every gate of this check; uncommitted and unstaged.",
+    "note": "HISTORICAL — working-tree hashes taken by the gate verifier before the wave commit (HEAD e0947a71). wave_commit is null - nothing is committed.  These are the WORKING-TREE sha256s at git_head e0947a71, the same map as content_bound_files_working_tree; rebind to `git show <wave commit>:<path>` when the wave lands.",
     "sha256": {
       "scripts/gen_obligation_registry.py": "ee48928c08c21fa4ba82e3542baddb7bd8606818d12b14a27ce48d6f4f30c775",
       "scripts/test_gen_obligation_registry_factorization.py": "9f1efb0482b6567d7a6297aa168a612ecafdb77c0734921395de80a2d81fc138",
       "proof-status/README.md": "4de10edd5d8cecdaf329adefa83a57d4d28eddda55b1e65475f2022e7c0ea06a"
     }
   },
-  "wave_commit": null,
-  "note_resolutions": [],
-  "claim_reference": "#7534 (claim/reply to #7524, #7521, #7522)",
-  "main_session_reverification": null
+  "wave_commit": {
+    "sha": "b9578ed37b58bf1194b56a11d0876c977c0e6e17",
+    "paths": [
+      "proof-status/README.md",
+      "proof-status/receipts/registry-check-20260826T221651Z.json",
+      "proof-status/receipts/registry-check-20260826T223250Z.json",
+      "proof-status/receipts/w3-0e-fix-2-gate-receipt.json",
+      "scripts/gen_obligation_registry.py",
+      "scripts/test_gen_obligation_registry_factorization.py"
+    ]
+  },
+  "note_resolutions": [
+    {
+      "note": "Regression-test strength (verifier): test_w3_0e_fresh_generate_never_trusts_a_live_consumer_closure injects the two-tuple export seam, so against 00f0d377 it fails on the violation message rather than on an acceptance; the verifier supplied the accept-path probe independently",
+      "resolution": "Accepted; the test's docstring was corrected by the main session after verification to state exactly this (docstring-only edit; tests re-run: 165 passed). The decisive pre-fix failure is test_w3_0e_the_live_axioms_export_seam_is_gone."
+    },
+    {
+      "note": "Test-count framing (verifier): 12 added / 4 removed rather than the author's 9 / 1",
+      "resolution": "Accepted; net 157 -> 165 unchanged."
+    },
+    {
+      "note": "One wording change beyond item 5: a drift line for a key only one side carries renders that side as '(absent)'",
+      "resolution": "Accepted as required by the presence comparison (#7524 non-blocking item); keys present on both sides render as before; README documents it."
+    },
+    {
+      "note": "The 'does not carry' violation line was not reworded",
+      "resolution": "Correct: item 5 scoped the rewording to the unreadable-closure violation; the line is already source-neutral."
+    },
+    {
+      "note": "Post-gate non-atomic writes (#7522)",
+      "resolution": "Not in this wave; handed to the new owner per #7535."
+    }
+  ],
+  "claim_reference": "#7534 (claim/reply to auditor #7524, #7521, #7522); handoff instruction #7535 (complete and push only this wave, then stop)",
+  "main_session_reverification": {
+    "utc": "2026-08-26T22:40:00Z",
+    "on": "the staged tree that became b9578ed3 (byte-identical to the commit)",
+    "results": {
+      "tests": "165 passed (scripts/test_gen_obligation_registry_factorization.py + scripts/test_lint_cluster_imports_legacy.py); 157 before the wave: 12 test functions added, 4 removed (three renamed live_closure -> recorded_closure), none weakened (verifier AST accounting)",
+      "trust_authority": "verifier: live export deleted (export_live_closure, AXIOMS_ARGS, ExportBundle, normalize_exports, parenthesized_count gone; PUBLISH_TARGET never a subprocess argument; check runs no publish-target export); generate --fresh reads read_declarable_trust(OUT/baseline); --baseline path unchanged",
+      "end_to_end": "verifier, on copies: (a) generate --fresh exit 0, factorized 28/28 (24 with declared consumer_trust); (b) copy without baseline/axioms.txt: exit 1 'cannot verify' naming the path, outputs byte-unchanged; (c) copy whose recorded closure lacks Lean.trustCompiler: exit 1 'does not carry', outputs byte-unchanged; (d) explicit null: exit 1 shape violation, nothing written; (e) check --baseline with TD/TA/TS/R221 on the live proof-status: exit 0, factorized 28/28 (receipt registry-check-20260826T221651Z.json)",
+      "pre_fix_probe": "verifier: 00f0d377 driven through its live-export seam (recorded closure without Lean.ofReduceBool, live closure with it) exits 0 and materializes the declaration — the #7524 defect reproduced; removed by this wave",
+      "parser": "parse_axioms_output(text, expected_target): real proof-status/baseline/axioms.txt -> 6 pairs; wrong target, missing count, bogus entry, extra/missing entry all raise; per-symbol backend passes the queried symbol",
+      "lint": "lint_cluster_imports: OK -- 691 import edges scanned, 27 forbidden edges, all waived by 27 authenticated waivers; 3 retired; 5 legacy edges, all listed.",
+      "registry_check": "main session, detached, on the final tree: OK, factorized 28/28 reachable leaves (required TD, TA, TS, R221; 24 with declared consumer_trust), receipt registry-check-20260826T223250Z.json; verifier run registry-check-20260826T221651Z.json same verdict"
+    }
+  }
 }
