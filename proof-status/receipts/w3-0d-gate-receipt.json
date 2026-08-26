@@ -1,0 +1,320 @@
+{
+  "schema": "p97-gate-receipt/v1",
+  "wave": "W3-0d",
+  "state": "FINAL — bound to W3-0d wave commit e6f94d51; this receipt ships in the receipt-only child commit of e6f94d51",
+  "generated_by": "W3-0d gate verifier (independent of the wave author); every gate reproduced from source, no author output trusted",
+  "generated_at_utc": "2026-08-26T01:38:44Z",
+  "git_head": "e6f94d512720519b09d87c073fb5be7a0d7b2ab1",
+  "git_head_short": "e6f94d51",
+  "head_note": "Bound to commit e6f94d512720519b09d87c073fb5be7a0d7b2ab1. content_bound_files holds the sha256 of every path committed at e6f94d51 (`git show e6f94d51:<path>`). The gate verifier's pre-commit draft (working-tree hashes at HEAD 22694fa3) is kept, labeled, under content_bound_files_working_tree; its gates section is that pre-commit snapshot.",
+  "baseline_reference": "proof-status/baseline (base-head f3063069939cfb6dc2a8a9b20d9a7ef660c86fdf, build fd3f51e09b99)",
+  "build_fingerprint": "4836034d7c65aff561b81e888f67fbaff80d8b0a18d0dfaad9d8e34e325c00c9",
+  "build_fingerprint_source": "proof-status/obligations.json -> verified_at_build; the registry check at HEAD reports the same build 4836034d7c65",
+  "promotion_claim": "none",
+  "claim_scope": "bookkeeping/tooling; retired-waiver record and lint invariant; no obligation, statement, axiom, import or Lean change; no proof-progress or closure claim",
+  "source_gates_pass": true,
+  "source_gates_note": "Gates 0-7 and 8a-8c, 9-11 all PASS. The single red gate (8d, --require-fresh-refs) is the pre-existing 36 stale + 1 never-mined condition recorded byte-for-byte in proof-status/baseline/refs-check.txt; it is repaired only by `proof-blueprint refs --refresh`, which this wave and this verifier may not run.",
+  "overall_pass": false,
+  "overall_note": "overall_pass=false solely because gate 8d (--require-fresh-refs) exits 1 at 36 stale + 1 never-mined, the same counts as the baseline. Every gate that carries the source verdict for this wave passes; source_gates_pass=true.",
+  "blockers": [],
+  "gates": [
+    {
+      "name": "0 scope: only the five owned files, the receipt stub and registry-check receipts are attributable to this wave",
+      "pass": true,
+      "line": "git status --porcelain: modified proof-status/README.md, proof-status/import-waivers.json, proof-status/legacy-import-exceptions.json, scripts/lint_cluster_imports.py, scripts/test_lint_cluster_imports_legacy.py; untracked proof-status/receipts/w3-0d-gate-receipt.json. `git diff --name-only HEAD -- lean/` lists exactly TwoSourceCanonicalSurface.lean and TwoSourceRetainedMinimalCore.lean (both foreign, pre-existing). `git diff --cached --name-only` is empty."
+    },
+    {
+      "name": "1a lint: plain run exit 0 with the expected OK line",
+      "pass": true,
+      "line": "lint_cluster_imports: OK -- 688 import edges scanned, 28 forbidden edges, all waived by 28 authenticated waivers; 2 retired; 3 legacy edges, all listed.  (EXIT=0)"
+    },
+    {
+      "name": "1b lint: --list-waived retired section carries exactly R1 and R2",
+      "pass": true,
+      "line": "retired waivers (2): '...TwoDeletionCollision -> ...B1Live  [W1b at 4b1c21b8]  wrapper=-' and '...Rigid221Placement -> ...TwoDeletionCollision  [W3 at 2fb26644]  wrapper=...Legacy.TwoDeletionWrappers'  (EXIT=0)"
+    },
+    {
+      "name": "1c lint: --list-legacy is exactly 3 edges; --fail-on-legacy exits 1 naming all three",
+      "pass": true,
+      "line": "'legacy edges (3):' then EXIT=0; --fail-on-legacy: 'lint_cluster_imports: FAIL -- 3 Legacy-exception problems against proof-status/legacy-import-exceptions.json' with the three TwoDeletionWrappers.lean:7, :8 and Rigid221Placement.lean:7 edges  (EXIT=1)"
+    },
+    {
+      "name": "1d lint: --json exit 0 and carries retired_waivers with 2 entries",
+      "pass": true,
+      "line": "jq '.retired_waivers | length' = 2; keys include retired_waivers and retired_waivers_authenticated; both rows carry the R1/R2 field values  (EXIT=0)"
+    },
+    {
+      "name": "1e lint: --write-record byte-identical to the record written by the HEAD version of the script",
+      "pass": true,
+      "line": "`git show HEAD:scripts/lint_cluster_imports.py` executed through its own configure_paths against this repository: cmp reports the two records BYTE-IDENTICAL, sha256 05a974dfe8fd8018cbea0d01c63c1fc23b46739af9cd1ac61bf1d22e44eef571 for both (688 edges from HEAD 22694fa3). The dated record proof-status/cluster-import-edges-live-2026-08-24.json is 679 edges at generated_from_head f747d0ef and is NOT expected to match; confirmed, and it is unchanged vs HEAD."
+    },
+    {
+      "name": "2a records: import-waivers.json is v2 with the exact top-level key set and the 28 live rows byte-identical to HEAD",
+      "pass": true,
+      "line": "schema 'import-waivers/v2'; keys exactly base_head, enforced_by, graph_record, notes, retired_waivers, schema, summary, waivers; `diff <(jq -S .waivers HEAD) <(jq -S .waivers worktree)` empty (28 rows unchanged); notes[4] replaced the W3-TD prose note with the retired_waivers note, the other four notes unchanged."
+    },
+    {
+      "name": "2b records: retired rows are exactly R1 and R2 with the specified values, both retired_head ancestors of HEAD",
+      "pass": true,
+      "line": "Both rows carry exactly the eight keys class, from, planned_retirement, reason, retired_by_wrapper, retired_head, retired_wave, to. R1 TwoDeletionCollision -> B1Live (W1b, 4b1c21b8, wrapper null); R2 Rigid221Placement -> TwoDeletionCollision (W3, 2fb26644, wrapper ...Legacy.TwoDeletionWrappers). `git merge-base --is-ancestor` succeeds for 4b1c21b8 and 2fb26644. from/to/reason/planned_retirement are verbatim the rows at 4b1c21b8^ and 2fb26644^ (git show + jq), and the row-count walk is 30 (ec4b95ab) -> 29 (4b1c21b8) -> 28 (2fb26644). Both classes are 'cross-cluster' in the frozen record. summary.retired_waivers=2, summary.by_retired_wave={W1b:1, W3:1}."
+    },
+    {
+      "name": "2c records: legacy manifest waiver_pair, egress nulls, base_head, frozen digest and schema",
+      "pass": true,
+      "line": "Rigid221Placement row waiver_pair == [Erdos9796Proof.P97.ATail.FrontierLiveClosure.Rigid221Placement, Erdos9796Proof.P97.ATail.FrontierLiveClosure.TwoDeletionCollision]; the two TwoDeletionWrappers egress rows keep waiver_pair null; base_head 22694fa3 (== HEAD); frozen_graph_sha256 14a8ee5529e3b8ea...4066a equals `shasum -a 256 proof-status/cluster-import-edges.json`; schema still 'legacy-import-exceptions/v1'. `git diff --quiet HEAD` passes for the frozen record and for the dated live record."
+    },
+    {
+      "name": "3 closed world computed independently with jq",
+      "pass": true,
+      "line": "Frozen forbidden pairs (class cross-cluster or from-shared-to-cluster) = 30; live waiver pairs = 28; retired pairs = 2; sorted union = 30 and `diff` against the frozen set is empty; `comm -12` of live and retired is empty (disjoint); F \\ L is exactly R1 and R2. 0 of the 30 frozen forbidden pairs has an endpoint under Erdos9796Proof.P97.ATail.FrontierLiveClosure.Legacy."
+    },
+    {
+      "name": "4 adversarial mutations on scratch copies (a)-(j), plus an extra live-again case",
+      "pass": true,
+      "line": "All ten specified mutations behave as designed; the real records were never edited. (a) drop R1 -> exit 1 'frozen forbidden pair ...TwoDeletionCollision -> ...B1Live is neither waived nor retired'. (b) R2 also as a live row -> exit 1, BOTH messages appear: the stale message ('...is stale: edge retired through Legacy wrapper ...; move the row to retired_waivers...') and 'the pair is also a live waiver row; a pair is either waived or retired, never both'. (c) retired_head='deadbeef' -> exit 1 'retired_head deadbeef is not a commit'. (d) retired_head=16db9b12 (a real commit object from the reflog, confirmed NOT an ancestor of HEAD) -> exit 1 'retired_head 16db9b12 is not an ancestor of HEAD'. (e) retired_by_wrapper set to a non-Legacy module -> exit 1 \"'retired_by_wrapper' \\\"...TwoDeletionCollision\\\" is not under ...FrontierLiveClosure.Legacy\" plus the manifest-side mismatch. (f) retired_by_wrapper=null while the manifest still links -> exit 1 \"'waiver_pair' ... names a retired_waivers row whose 'retired_by_wrapper' is null, not this row's wrapper_module\". (g) manifest waiver_pair back to null -> exit 1 '... names wrapper ...TwoDeletionWrappers but no Legacy exception row links back'. (h) schema 'import-waivers/v1' -> EXIT 2 \"'schema' is \\\"import-waivers/v1\\\"; expected \\\"import-waivers/v2\\\"\". (i) summary.retired_waivers=3 -> exit 1 'summary.retired_waivers: recorded 3, recomputed 2'. (j) retired_wave='unassigned' -> exit 1 \"'retired_wave' is \\\"unassigned\\\"; allowed values are W1b, W2, W3, W4\". EXTRA (not required): moving a live waiver whose edge is still in the tree into retired_waivers -> exit 1 'retired at 2fb26644 (W3) but the edge is present again in the live tree at lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:8'."
+    },
+    {
+      "name": "5 tests: both suites green; new tests assert the failure message, not merely a nonzero exit",
+      "pass": true,
+      "line": "scripts/test_lint_cluster_imports_legacy.py: '54 passed in 2.58s' (31 -> 54, +23 new, none removed). scripts/test_gen_obligation_registry_factorization.py: '70 passed in 2.24s'. 124 total. Each of the 23 new tests was read: every rejection test asserts a substring of the specific failure message (for example 'retired_head deadbeef is not a commit', 'the pair is also a live waiver row', 'names wrapper %s but no Legacy exception row links back'), and the live-again test builds the expected 'file:line' from its own scan rather than hard-coding it. Design mapping: D1 -> test_waiver_schema_v1_exits_2, test_retired_waivers_must_be_a_list, test_retired_row_key_set_is_exact, test_retired_wave_unassigned_is_rejected, the three retired_head tests, test_summary_retired_counts_must_match; D2 -> test_retired_pair_absent_from_the_frozen_record_is_rejected, test_retired_pair_whose_edge_is_live_again_is_rejected, test_a_pair_that_is_both_waived_and_retired_is_rejected, test_frozen_forbidden_pair_in_neither_list_is_rejected, test_duplicate_retired_rows_are_rejected, the four retired_by_wrapper tests; D3 -> test_waiver_pair_naming_a_retired_row_is_accepted, test_retired_row_naming_another_wrapper_than_the_manifest_is_rejected, test_retired_by_wrapper_without_a_manifest_back_link_is_rejected, test_two_manifest_rows_linking_one_retirement_are_rejected; D4 -> test_list_waived_prints_the_retired_section, test_json_report_carries_the_retired_rows, test_write_record_ignores_the_retired_list, and the OK-line assertion inside test_waiver_pair_naming_a_retired_row_is_accepted."
+    },
+    {
+      "name": "6 code review of the lint diff",
+      "pass": true,
+      "line": "`git diff HEAD -- scripts/lint_cluster_imports.py` adds no import: the module still imports only argparse, hashlib, json, os, subprocess, sys. No `import re`, fnmatch or glob anywhere in the file or in the test file. No added line contains startswith/endswith: the only prefix tests are the pre-existing is_legacy_module (namespace membership) and path/extension handling; retired-row matching is on exact (from, to) tuples and exact wrapper-module string identity throughout. Git is reached only through the existing git_status seam: retired_head is bound by base_head_binding_failure(head, 'retired_head'), which is the manifest's own check with a field label so the manifest's message stays byte-for-byte what it was. Module docstring updated: 'Retired waivers and the closed world' section, the v2 schema, the row fields, the closed world, the two-way link, and the exit-status table now lists the retired-row and closed-world causes under exit 1 and the v2 schema / non-list retired_waivers under exit 2."
+    },
+    {
+      "name": "7 README: each new sentence is backed by a lint line",
+      "pass": true,
+      "line": "Closed-world invariant: README 'Closed world' bullet <- scripts/lint_cluster_imports.py:1613-1622 (loop over frozen forbidden pairs, message 'frozen forbidden pair ... is neither waived nor retired') and the both-lists failure at :1387-1391. Back-link rule: README 'retired_by_wrapper' bullet and the waiver_pair bullet <- :1447-1469 (_retired_wrapper_failures: exactly one linking manifest row; zero and >=2 both fail) and :985-991 (retired row's retired_by_wrapper must equal this manifest row's wrapper_module). Exit-2 schema rule: README 'any other `schema` value is exit 2' <- :1154 WAIVER_SCHEMA = 'import-waivers/v2' and :1186-1190 (raise), plus :1193-1194 for the non-list retired_waivers. Stale-message change: README 'the stale-waiver message says so ... instead of telling the author to delete the row' <- :1580-1585 (no wrapper) and :1586-1591 (wrapper named), both now saying \"move the row to 'retired_waivers' with 'retired_wave', 'retired_head' and 'retired_by_wrapper'\". Summary bullet <- :1625-1641; reporting bullet <- :2101 (OK line), :2018 ('retired waivers (%d):'), :1963-1964 (--json retired_waivers and retired_waivers_authenticated), :1895-1912 (--write-record path never opens the waiver file). Recorded-retirements bullet matches the two rows verified in gate 2b. 'no test reads this repository's records' is true: every fixture path is rooted at the test's own tmp directory."
+    },
+    {
+      "name": "8a registry: check --baseline proof-status/baseline",
+      "pass": true,
+      "line": "OK: proof-status/obligations.json matches the live spine (28 reachable, 6 off-spine); 34/34 reviewed meta_status, vocabulary clean; bound to HEAD 22694fa3..., build 4836034d7c65  (EXIT=0)"
+    },
+    {
+      "name": "8b registry: check --require-factorized TD",
+      "pass": true,
+      "line": "OK: ... factorized 3/28 reachable leaves (required: TD)  (EXIT=0)"
+    },
+    {
+      "name": "8c registry: obligations.json and the other frozen registry inputs unchanged vs HEAD",
+      "pass": true,
+      "line": "`git diff --quiet HEAD --` passes for proof-status/obligations.json, proof-status/id-assignments.json, proof-status/frontier-table.generated.md and scripts/gen_obligation_registry.py."
+    },
+    {
+      "name": "8d registry: check --require-fresh-refs (INHERITED FAILURE)",
+      "pass": false,
+      "line": "FAIL: kernel-mined refs are not fresh / ! --require-fresh-refs: 36 stale mined symbol(s) / ! --require-fresh-refs: 1 never-mined symbol(s)  (EXIT=1). Exactly the counts recorded in proof-status/baseline/refs-check.txt ('stale: 36 (mined against an older build)', 'never mined: 1'). Inherited, not caused by this wave, which changes no Lean file."
+    },
+    {
+      "name": "9 roster and axioms unchanged",
+      "pass": true,
+      "line": "proof-blueprint search --with-sorry --spine --json | jq symbols | sort: 28 symbols, `diff` against proof-status/baseline/spine-sorry.json empty. Off-spine: 6 symbols, `diff` against proof-status/baseline/offspine-sorry.json empty. proof-blueprint axioms Problem97.erdos97_rhs: `diff` against proof-status/baseline/axioms.txt empty (command exit 1 is the pre-existing sorryAx report)."
+    },
+    {
+      "name": "10 hygiene: whitespace, trailing newline, JSON serialization",
+      "pass": true,
+      "line": "`git diff --check HEAD --` over the five files exits 0 with no output. Each of the five files and the frozen record ends with exactly one newline (`tail -c 2 | od -c`). For both rewritten JSON records `jq -S --indent 2 . FILE | diff - FILE` is empty, and neither file contains a non-ASCII byte, so sorted keys, 2-space indent and ensure_ascii are preserved."
+    },
+    {
+      "name": "11 ROI recomputed from source",
+      "pass": true,
+      "line": "Frozen forbidden pairs 30 = 28 live + 2 retired (jq). Legacy manifest rows with non-null waiver_pair: 0 at HEAD -> 1 now. scripts/lint_cluster_imports.py 1634 -> 2117 lines (+483); scripts/test_lint_cluster_imports_legacy.py 998 -> 1570 lines (+572); proof-status/README.md 527 -> 604 lines (+77). Lint tests 31 -> 54 (+23 new, 0 removed); registry tests 70 unchanged; 124 total."
+    }
+  ],
+  "roi": {
+    "frozen_forbidden_pairs": 30,
+    "live_waiver_rows": 28,
+    "retired_waiver_rows": 2,
+    "closed_world": "30 == 28 + 2, the two lists disjoint; verified independently with jq and again by the lint's own recomputation",
+    "manifest_rows_with_non_null_waiver_pair_before": 0,
+    "manifest_rows_with_non_null_waiver_pair_after": 1,
+    "manifest_rows_with_non_null_waiver_pair_note": "The auditor's #7475 item 1 limitation was that the one cross-cluster Legacy exception row could not name the waiver it superseded, because that waiver row had been deleted. It now names the retired_waivers row, and the link is machine-checked in both directions.",
+    "lint_lines_before": 1634,
+    "lint_lines_after": 2117,
+    "test_lines_before": 998,
+    "test_lines_after": 1570,
+    "readme_lines_before": 527,
+    "readme_lines_after": 604,
+    "lint_tests_before": 31,
+    "lint_tests_after": 54,
+    "new_tests": 23,
+    "removed_tests": 0,
+    "registry_tests": 70,
+    "total_tests": 124
+  },
+  "tests": {
+    "lint_command": "uv run python -m pytest -q scripts/test_lint_cluster_imports_legacy.py",
+    "lint_final_line": "54 passed in 2.58s",
+    "lint_exit_code": 0,
+    "registry_command": "uv run python -m pytest -q scripts/test_gen_obligation_registry_factorization.py",
+    "registry_final_line": "70 passed in 2.24s",
+    "registry_exit_code": 0,
+    "total_passed": 124,
+    "failed": 0,
+    "run_by": "this verifier, from the repository root"
+  },
+  "content_bound_files": {
+    "note": "sha256 of every path committed at e6f94d51 (git show e6f94d51:<path>)",
+    "sha256": {
+      "proof-status/README.md": "7030e396cecb893409cc37fda6ad3351a7c539a3b1f4fa91d3a4fa5730c30772",
+      "proof-status/import-waivers.json": "b556330937e8021200d9ae22f3011a2aced551ec81d01334f37d34e34baae9f5",
+      "proof-status/legacy-import-exceptions.json": "bb7d1eac686b7385f21c92add1a8ea922986a432e3df3444fd3c74565386b6f3",
+      "scripts/lint_cluster_imports.py": "16629ead4b34361e96e52e98cfe240c2c98e9d0ccb13d2560f7d91cbca4beca5",
+      "scripts/test_lint_cluster_imports_legacy.py": "ee7f710f6d8ced588f84253a97bf70fb20fd24799e321d05d42abf09f2f7c15e"
+    }
+  },
+  "author_claims_checked": [
+    {
+      "claim": "D1: schema import-waivers/v2 required, RETIRED_ROW_KEYS pins an eight-key row, ALLOWED_RETIRED_WAVES is W1b/W2/W3/W4 with no 'unassigned', retired_head bound through base_head_binding_failure -> git_status as a ROW failure, summary gains retired_waivers and by_retired_wave.",
+      "verdict": "reproduced",
+      "evidence": "Constants at :308, :1154, :1158; loader raise at :1186-1194; binding at :1358-1367; summary recompute and comparison at :1625-1641. Mutations (c), (d), (h), (i), (j) exercise each and produce exit 1 (exit 2 for the schema)."
+    },
+    {
+      "claim": "D2: closed world implemented in validate_retired_waivers plus the tail of validate_waivers, covering all seven failure kinds.",
+      "verdict": "reproduced",
+      "evidence": "validate_retired_waivers at :1270-1417 and the closed-world loop at :1609-1622. Mutations (a), (b), (e) and the extra live-again case reproduce four of them against the REAL records; the other three are covered by tests that assert their messages."
+    },
+    {
+      "claim": "D3: waiver_pair may name a live OR a retired row, with the fourth part for retired rows, and the back-link is a bijection.",
+      "verdict": "reproduced",
+      "evidence": "waiver_pair_link_failure at :924-990; back-link count at :1450-1469. Mutations (f) and (g) produce the two directions; test_two_manifest_rows_linking_one_retirement_are_rejected covers the >=2 case."
+    },
+    {
+      "claim": "D4: both stale texts say MOVE; OK line gained '; M retired'; --list-waived prints a retired section; --json gained retired_waivers and retired_waivers_authenticated; --write-record untouched.",
+      "verdict": "reproduced",
+      "evidence": "Stale texts at :1580-1591 (both); OK line at :2101; retired section at :2018; JSON keys at :1963-1964. --write-record output is byte-identical to the HEAD script's, sha256 05a974df...ef571."
+    },
+    {
+      "claim": "D5: R1 and R2 written with from/to/reason/planned_retirement verbatim from the historical rows; manifest waiver_pair set, reason rewritten, base_head re-pinned to 22694fa3, frozen digest and the two null egress rows unchanged.",
+      "verdict": "reproduced",
+      "evidence": "Verbatim comparison against `git show 4b1c21b8^:proof-status/import-waivers.json` and `git show 2fb26644^:...`; the manifest diff changes exactly base_head, one reason and one waiver_pair."
+    },
+    {
+      "claim": "D6: README lint paragraph, waiver_pair bullet, Files bullet and a new 'Retired waivers (W3-0d)' subsection; every sentence backed by a lint line.",
+      "verdict": "reproduced",
+      "evidence": "Gate 7. Every checked claim resolves to a specific lint line; no sentence asserts behaviour the lint does not implement."
+    },
+    {
+      "claim": "D7: 23 new tests in the existing Fixture style; no existing test FUNCTION body changed; all 31 pre-existing tests pass unmodified.",
+      "verdict": "reproduced",
+      "evidence": "The test diff has five hunks: the module docstring, Fixture.freeze, Fixture.waivers, and one 532-line append after line 997. `comm` over the test-name sets shows 23 added and 0 removed. 54 passed."
+    },
+    {
+      "claim": "fixtures_changed: Fixture.waivers required by D1 (a v1 file is exit 2 under the v2 loader) and Fixture.freeze required by the D2 closed-world rule (a frozen forbidden Legacy pair can be covered by neither list).",
+      "verdict": "reproduced",
+      "evidence": "Both rationales hold against the code: the loader rejects v1 at :1186, and main() removes Legacy edges from the forbidden set at :1900-1912 before waivers are considered, so a frozen forbidden Legacy pair would be reported stale as a waiver and 'never happened' as a retirement. The claim that the real freeze has no Legacy pair is true: 0 of 30."
+    },
+    {
+      "claim": "Blocker 1: --write-record output is not identical to the dated record proof-status/cluster-import-edges-live-2026-08-24.json, and was not before this wave either; the author proved the requirement by running the HEAD script instead.",
+      "verdict": "reproduced",
+      "evidence": "The dated record carries generated_from_head f747d0ef4a48ef94118d6f4a970bda36b66ed527 and 679 edges; the live tree at 22694fa3 yields 688. Running the HEAD script through its own configure_paths reproduces the current script's record byte for byte. This is a method correction to the gate wording, not a defect in the wave."
+    },
+    {
+      "claim": "Blocker 2: the closed-world quantifier and the live-again check have no Legacy carve-out, so a frozen forbidden Legacy pair could be covered by neither list and a pair returning as a Legacy edge is not seen by the live-again check; neither case exists in this repository.",
+      "verdict": "reproduced",
+      "evidence": "live_edge_by_pair at :1912 is built from `forbidden`, which already excludes Legacy-endpoint edges, so the second half of the claim is exact. 0 of the 30 frozen forbidden pairs names a Legacy module, so both cases are vacuous today. The implementation matches D2 as specified; widening it would change the specified rule and needs sign-off."
+    },
+    {
+      "claim": "Blocker 3: the untracked receipt stub is not the author's; nothing staged; no modified path outside the five.",
+      "verdict": "reproduced",
+      "evidence": "The stub (166 bytes, state 'STUB - pre-declared in the lane checkpoint for hygiene') was present before this check and is the file this verifier overwrites. `git diff --cached --name-only` is empty."
+    },
+    {
+      "claim": "lint_ok_line and closed_world_counts as reported.",
+      "verdict": "reproduced",
+      "evidence": "The OK line matches character for character; the counts match the independent jq computation in gate 3."
+    }
+  ],
+  "metadata_corrections": [
+    {
+      "utc": "2026-08-26T01:46:43Z",
+      "kind": "receipt re-bound to the wave commit; claim reference, note resolutions and main-session reverification added; metadata only",
+      "unchanged": "overall_pass=false (inherited strict refs 36+1), source_gates_pass=true, promotion_claim none, claim_scope unchanged"
+    }
+  ],
+  "observations_not_blocking": [
+    "The closed-world rule and the live-again check are literal over the frozen record's forbidden pairs and over the LIVE FORBIDDEN edge set, which excludes Legacy-endpoint edges (scripts/lint_cluster_imports.py:1900-1912). A frozen forbidden pair that was a Legacy edge could therefore be covered by neither list, and a retired pair whose edge returns AS A LEGACY EDGE would not be reported by the live-again check -- it would be caught by the Legacy manifest instead, but not by the retirement. Both cases are vacuous at 22694fa3: 0 of the 30 frozen forbidden pairs names a module under ...FrontierLiveClosure.Legacy, because the Phase 0 freeze predates every wrapper. The interaction is handled in the test fixture (freeze() omits Legacy-endpoint rows by default) rather than in the lint. Widening the lint would change the rule D2 specifies, so it is left for a wave that is authorized to change it.",
+    "Gate 1's method step 'run the HEAD version of the script from the repository root' cannot work as literally written: the script derives every path from its own file location (SCRIPT_DIR at :145, configure_paths at :188), so a copy in a scratch directory looks for a Lean tree beside itself. This verifier loaded the HEAD copy as a module, called its own configure_paths(<repo root>) and then its main(['--write-record', ...]); the records are byte-identical. Same conclusion as the author's, reached independently.",
+    "The three registry-check receipts listed under new_receipts_written_by_this_check were written by scripts/gen_obligation_registry.py as a side effect of gate 8; this verifier did not author their content."
+  ],
+  "files_written_by_this_verifier": [
+    "proof-status/receipts/w3-0d-gate-receipt.json"
+  ],
+  "new_receipts_written_by_this_check": [
+    "proof-status/receipts/registry-check-20260826T013442Z.json",
+    "proof-status/receipts/registry-check-20260826T013553Z.json",
+    "proof-status/receipts/registry-check-20260826T013642Z.json"
+  ],
+  "git_operations_performed": [
+    "read-only only: status, diff, show, log, rev-parse, rev-list, reflog, cat-file, merge-base. No add, commit, checkout, stash, reset, restore, push, rebase or merge. Nothing staged.",
+    "No lake, lean or `proof-blueprint refs --refresh` was run; this wave changes no Lean file."
+  ],
+  "notes_for_main_session": [
+    "All source gates pass. The wave is verified UNCOMMITTED at HEAD 22694fa3: content_bound_files holds working-tree hashes. Re-bind this receipt to the wave commit after the five files land, the way the W3-TD receipts were re-issued.",
+    "The one red gate is 8d (--require-fresh-refs, 36 stale + 1 never-mined), inherited byte-for-byte from proof-status/baseline/refs-check.txt.",
+    "Two observations are recorded for the auditor rather than as blockers: the Legacy carve-out question in the closed-world rule (vacuous today, 0 of 30), and the gate-1 method correction about the dated record. Neither changes a verdict.",
+    "The auditor's #7475 item 1 limitation is addressed in the record: the Legacy exception row's waiver_pair now names a retired_waivers row, and the lint checks the link in both directions. This is bookkeeping and tooling only; no obligation, statement, axiom or import changed, and no proof-progress or closure claim is made."
+  ],
+  "content_bound_files_working_tree": {
+    "hash_kind": "working-tree",
+    "note": "HISTORICAL — working-tree hashes taken by the gate verifier before the wave commit (HEAD 22694fa3). sha256 of each path as it stands in the working tree at HEAD 22694fa3, BEFORE the wave is committed.",
+    "scripts/lint_cluster_imports.py": "16629ead4b34361e96e52e98cfe240c2c98e9d0ccb13d2560f7d91cbca4beca5",
+    "scripts/test_lint_cluster_imports_legacy.py": "ee7f710f6d8ced588f84253a97bf70fb20fd24799e321d05d42abf09f2f7c15e",
+    "proof-status/README.md": "7030e396cecb893409cc37fda6ad3351a7c539a3b1f4fa91d3a4fa5730c30772",
+    "proof-status/import-waivers.json": "b556330937e8021200d9ae22f3011a2aced551ec81d01334f37d34e34baae9f5",
+    "proof-status/legacy-import-exceptions.json": "bb7d1eac686b7385f21c92add1a8ea922986a432e3df3444fd3c74565386b6f3",
+    "proof-status/cluster-import-edges.json": "14a8ee5529e3b8eae1f8e617f1de447045b7d4199df2a4f3b0e85c016224066a",
+    "proof-status/cluster-import-edges-live-2026-08-24.json": "63cb7b29c034a5005c248d0c01e3d7f9fa13bd47ff8b8f45be8b2e0a47a334e5",
+    "frozen_record_note": "cluster-import-edges.json and the dated live record are listed as unchanged anchors; both pass `git diff --quiet HEAD`, and the frozen digest equals the manifest's frozen_graph_sha256."
+  },
+  "wave_commit": {
+    "sha": "e6f94d512720519b09d87c073fb5be7a0d7b2ab1",
+    "paths": [
+      "proof-status/README.md",
+      "proof-status/import-waivers.json",
+      "proof-status/legacy-import-exceptions.json",
+      "scripts/lint_cluster_imports.py",
+      "scripts/test_lint_cluster_imports_legacy.py"
+    ]
+  },
+  "note_resolutions": [
+    {
+      "id": "author-note-1",
+      "resolution": "the brief assumed proof-status/cluster-import-edges-live-2026-08-24.json matches --write-record; it was generated at f747d0ef with 679 edges (before W3-TD's 10 added / 1 removed edges). The D4 requirement was proved instead by cmp of --write-record output between the HEAD script and the new script (byte-identical; verifier gate 1e). No file change."
+    },
+    {
+      "id": "author-note-2",
+      "resolution": "the closed-world rule is implemented literally over the frozen record's forbidden pairs with no Legacy carve-out, and the live-again check uses the live forbidden edge set. The case (a frozen forbidden pair with a Legacy endpoint) does not exist: 0 of the 30 frozen forbidden pairs names a Legacy module (verifier gate 3). Widening the rule needs a separate sign-off; recorded for the auditor."
+    },
+    {
+      "id": "author-note-3",
+      "resolution": "the untracked receipt stub w3-0d-gate-receipt.json was created by the main session before the launch (hygiene pre-declaration); not an author artifact."
+    },
+    {
+      "id": "fixtures",
+      "resolution": "two fixture helpers changed as v2 and the closed-world rule require (Fixture.waivers writes v2 + retired rows; Fixture.freeze omits Legacy-endpoint rows by default, matching the real frozen record); no pre-existing test function body changed; all 31 pre-existing tests pass."
+    }
+  ],
+  "claim_reference": "convo #7493 (claim + ROI posted before any write; Adam's go-ahead for the queue on 2026-08-25); closes the W3-0 schema follow-up retained in #7475 item 1 and in the W3-TD receipt",
+  "main_session_reverification": {
+    "utc": "2026-08-26T01:46:43Z",
+    "on": "the staged tree that became e6f94d51 (byte-identical to the commit)",
+    "results": {
+      "lint": "plain exit 0: 688 import edges scanned, 28 forbidden edges, all waived by 28 authenticated waivers; 2 retired; 3 legacy edges, all listed. --list-waived retired section = R1, R2; --json retired_waivers 2 / retired_waivers_authenticated 2",
+      "records": "import-waivers.json schema v2, top-level keys exact, summary {waivers 28, retired_waivers 2, by_retired_wave {W1b 1, W3 1}}; legacy manifest base_head 22694fa3, Rigid221Placement row waiver_pair [Rigid221Placement, TwoDeletionCollision], egress rows null; frozen_graph_sha256 == sha256(cluster-import-edges.json) = 14a8ee5529e3b8ea...; both records canonical (2-space, sorted keys, one trailing newline)",
+      "mutations_main_session": "drop R1 -> exit 1 'neither waived nor retired'; retired_by_wrapper null on R2 -> exit 1 (manifest link); schema v1 -> exit 2",
+      "tests": "124 passed (54 lint + 70 registry)",
+      "registry_check": "exit 0, receipt registry-check-20260826T014323Z.json",
+      "registry_require_factorized_TD": "exit 0, receipt registry-check-20260826T014410Z.json",
+      "registry_require_fresh_refs": "exit 1, 36 stale + 1 never-mined (inherited, unchanged), receipt registry-check-20260826T014511Z.json",
+      "registry_inputs_and_graph_records": "obligations.json, obligations-meta.json, id-assignments.json, frontier-table.generated.md, cluster-import-edges.json, cluster-import-edges-live-2026-08-24.json unchanged vs 22694fa3",
+      "roster_axioms": "spine 28 set-equal, off-spine 6 set-equal, axiom closure diff empty (no Lean changed)",
+      "lean_tree": "git diff --name-only HEAD -- lean/ lists only the two foreign-dirty TwoSource files",
+      "whitespace_hygiene": "git diff --check clean; staged hygiene blocking=false issues=0 on the wave commit and the receipt commit; no banned word in the added prose",
+      "banned_word_scan": "0 occurrences of the banned word in the added lines of the five files"
+    }
+  }
+}
