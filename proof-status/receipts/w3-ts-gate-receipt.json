@@ -1,0 +1,238 @@
+{
+  "author_claims_checked": [
+    "CONFIRMED — false_of_twoCollisionGlobalSplit is at TwoSourceAlignedLowHits.lean:261 with its `omit` line at :248 (blueprint index record; public, has_sorry false).",
+    "CONFIRMED — the author's byte-identity ranges (HEAD 1-247 == work 1-247; HEAD 248-335 == work 333-420; HEAD 365-771 == work 435-841). Reproduced independently by name-based declaration extraction plus cmp, and by the two-hunk `git diff -U0`.",
+    "CONFIRMED — diffstat 99 insertions / 29 deletions in exactly one Lean file.",
+    "CONFIRMED — the :265 statement (docstring, `omit` line, theorem line through `:= by`) is byte-identical to HEAD, and :384/:515/:724 are byte-identical.",
+    "CONFIRMED — the accepted `--require-factorized` spellings are the cluster CODES B1, R221, TA, TD, TS, X (from `check --help`); 'TwoSource' is the label, not the accepted argument.",
+    "CONFIRMED — obligations.json differs from HEAD only by the four verified_at_build restamps c76a7b909fa4… -> 33f2659d3428…; obligations-meta.json, id-assignments.json and frontier-table.generated.md are byte-identical to HEAD.",
+    "CONFIRMED — lint OK line 691 / 27 / 3 / 5 at exit 0, and 124 focused tests pass.",
+    "CONFIRMED — L2: both public theorems in TwoSource/Provenance.lean have axiom closure exactly propext / Classical.choice / Quot.sound, are public, are sorry-free, and the module elaborates with zero warnings.",
+    "CONFIRMED — the docstring's sole-consumer claim: `--uses` on false_of_capSourceThirdCanonicalRowSurface and on false_of_crossBlockerCoincidence each return exactly false_of_twoCollisionGlobalSplit, and `--uses` on false_of_twoCollisionGlobalSplit returns exactly exists_three_hit_or_collision_crossHit_of_two_sourceExactCollisionRows.",
+    "CONFIRMED — warnings_new is empty: a differential single-file elaboration of the working and HEAD copies produces the same 7 warnings, all in text this wave did not change.",
+    "CONFIRMED — the refs counts are the inherited 36 stale + 1 never-mined, matching proof-status/baseline/refs-check.txt.",
+    "CONFIRMED — the module name given in the task, Erdos9796Proof.P97.ATail.FrontierLiveClosure.FrontierLiveClosure, does not exist; the aggregator is lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean.",
+    "CONFIRMED (the axiom facts, independently) — the trust finding: false_of_two_exactFourInteriorTwo_distinctRadiusBlockerCollisions_and_all_low_hits, exists_three_hit_of_two_exactFourInteriorTwo_distinctRadiusBlockerCollisions, exists_three_hit_of_two_collisionRows_capCross_normalForm, exists_three_hit_or_collision_crossHit_of_two_sourceExactCollisionRows, false_of_twoCollisionGlobalSplit, false_of_capSourceThirdCanonicalRowSurface, false_of_twoCapSources_freshOutsideFirstBlockerFiber_viaAcyclicIngress and false_of_twoCapSources_freshOutsideFirstBlockerFiber_acyclicIngress_frame each report 6 axioms including Lean.ofReduceBool and Lean.trustCompiler, while false_of_twoCapSources_commonRadius_mutualCrossMembership_frame, false_of_twoCapSources_sameBlockerAllEndpointOmission, false_of_twoCapSources_freshThirdBlockerFiber_normalized_residual and false_of_twoCapSources_freshThirdBlockerFiber_normalized_remaining report 4 (no native pair). The contamination therefore enters at TwoSourceClosure.lean:3435, a file clean vs HEAD.",
+    "NOT REPRODUCED BY DESIGN — the author's '90 alias/factorization violations' from `generate` with the six TS blocks present. The blocks were rolled back before this gate ran and obligations-meta.json is byte-identical to HEAD; writing them back to re-run `generate` is outside a verifier's mandate. The underlying axiom facts the refusal rests on are independently confirmed above."
+  ],
+  "baseline_reference": "proof-status/baseline (base-head f3063069939cfb6dc2a8a9b20d9a7ef660c86fdf, refs-check 36 stale + 1 never-mined, spine-sorry 28, offspine-sorry 6)",
+  "blockers": [
+    "R1 (the six P97-TS-* p97-factorization/v2 entries) cannot land at this HEAD: `generate` refuses on the ALLOWED_AXIOMS trust rule for every arrangement that keeps the mandated legacy wrapper, because the TwoSource consumer chain inherits Lean.ofReduceBool / Lean.trustCompiler from TwoSourceClosure.lean:3435. Needs a decision (widen the boundary in scripts/, remove the native dependency in a blacklisted file, or exempt the cluster). L1 and L2 are unaffected and green."
+  ],
+  "build_fingerprint": "33f2659d3428b288434253557166c4e28c9075d909ee46318276d713d955d34b",
+  "build_fingerprint_source": "proof-status/obligations.json -> verified_at_build; the bare lake-build at this working tree reports `already fresh — 4090 module(s) unchanged at build 33f2659d3428` and rebuilt nothing",
+  "claim_reference": "#7497",
+  "claim_scope": "proof-preserving restructure plus bookkeeping: CROSSBLOCKER eliminator extracted from the two-source dispatch in TwoSourceAlignedLowHits.lean, W3-A packet constructor module; no obligation, statement, axiom or math change; no proof-progress or closure claim; the six P97-TS-* factorization entries are DEFERRED (trust-rule decision pending), obligations-meta.json unchanged",
+  "content_bound_files": {
+    "hash_kind": "working-tree",
+    "note": "sha256 of each path as it stands in the working tree at HEAD 4f3163d3, pre-commit. obligations-meta.json, id-assignments.json and frontier-table.generated.md are listed because the wave's write set includes them; their hashes are the HEAD hashes (unchanged).",
+    "sha256": {
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSource/Provenance.lean": "898bdd1462bbe0f91f1540e7fd532c464c8bf02d8ab70744f30af9ec356bfe04",
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceAlignedLowHits.lean": "53a5af0874dde963eb38c02840136a7980ac6815b563a0ee0869967c35b45e33",
+      "proof-status/frontier-table.generated.md": "0cb5d00f2c542ce082e59b11b7fe9268b22115753f16b07c68772446d8bfbd07",
+      "proof-status/id-assignments.json": "4c1c0a5bfa5956904c1b4266d7a8b4bda4454d3ff1f85b663eae88197d364313",
+      "proof-status/obligations-meta.json": "b7c89d009c929aab4a97cba173e419346b30dcd70c0040222415f811f6db5782",
+      "proof-status/obligations.json": "05e3e44b2d981b3a76f0830fd24e21f0dfa248438dec24a7cda073a4192f7903"
+    }
+  },
+  "content_bound_files_working_tree": null,
+  "files_written_by_this_verifier": [
+    "proof-status/receipts/w3-ts-gate-receipt.json (this file; the 125-byte stub was overwritten)",
+    "proof-status/receipts/registry-check-20260826T044338Z.json",
+    "proof-status/receipts/registry-check-20260826T044505Z.json",
+    "proof-status/receipts/registry-check-20260826T044633Z.json",
+    "proof-status/receipts/registry-check-20260826T044758Z.json",
+    "proof-status/receipts/registry-check-20260826T044926Z.json"
+  ],
+  "gates": [
+    {
+      "line": "`git status --porcelain` differs from the pre-wave snapshot by exactly 6 added lines: ' M lean/.../TwoSourceAlignedLowHits.lean', ' M proof-status/obligations.json', '?? lean/.../FrontierLiveClosure/TwoSource/' and three '?? proof-status/receipts/registry-check-*.json'; `git diff --name-only HEAD -- lean/` lists TwoSourceAlignedLowHits.lean plus the two foreign-dirty files; foreign diff hashes unchanged (TwoSourceCanonicalSurface 4c4267daab681bb3…, TwoSourceRetainedMinimalCore 64711158044d921c…); obligations-meta.json, id-assignments.json and frontier-table.generated.md are byte-identical to HEAD, as the deferred-R1 state requires.",
+      "name": "0 scope",
+      "pass": true
+    },
+    {
+      "line": "bare `lake-build` exit 0; 0 'Built' lines and 0 'error' lines in a 16567-line log (546 'Replayed'); tail reads '✅ already fresh — 4090 module(s) unchanged at build 33f2659d3428' and '✅ sync complete — index and kernel call graph match the current build.'",
+      "name": "1 build current",
+      "pass": true
+    },
+    {
+      "line": "`proof-blueprint search --with-sorry --spine --json | jq .symbol | sort` = 28 symbols, diff against proof-status/baseline/spine-sorry.json empty; off-spine 6, diff empty; `proof-blueprint axioms Problem97.erdos97_rhs` diff against proof-status/baseline/axioms.txt empty (6: propext, sorryAx, Classical.choice, Lean.ofReduceBool, Lean.trustCompiler, Quot.sound).",
+      "name": "2 roster",
+      "pass": true
+    },
+    {
+      "line": "declarations extracted by name and compared with cmp: HEAD :105, :137, :163, :193, :227(226), :384, :515, :724 all IDENTICAL to the working file (the last four relocated by +70 lines to :454, :585, :794); HEAD lines 1-247 == working lines 1-247 (cmp exit 0).",
+      "name": "3a byte-identity — untouched declarations",
+      "pass": true
+    },
+    {
+      "line": "HEAD 248-264 (the `omit …` line plus the 16-line docstring) == working 333-349 (cmp exit 0); the theorem line through `:= by` compares IDENTICAL, so the statement of exists_three_hit_or_collision_crossHit_of_two_sourceExactCollisionRows is unchanged.",
+      "name": "3b byte-identity — :265 statement",
+      "pass": true
+    },
+    {
+      "line": "`git diff HEAD -U0` on TwoSourceAlignedLowHits.lean = exactly two hunks and nothing else: '@@ -247,0 +248,85 @@' (pure insertion — `omit` line :248, docstring :249-260, theorem false_of_twoCollisionGlobalSplit :261-331, blank separator :332) and '@@ -336,29 +421,14 @@' (the second arm of :265 only: the inner `rcases hglobalCapSplit` and its two `False.elim` blocks, 29 lines, replaced by 14 lines that delegate to false_of_twoCollisionGlobalSplit with the same named-argument spelling). Diffstat 99 insertions / 29 deletions.",
+      "name": "3c byte-identity — diff hunks",
+      "pass": true
+    },
+    {
+      "line": "`git diff --quiet HEAD` over every FrontierLiveClosure/*.lean, FrontierLiveClosure.lean, JointDeletion/*.lean, Legacy/*.lean and TwoDeletion/*.lean reports only TwoSourceAlignedLowHits.lean (this wave) and the two foreign-dirty files TwoSourceCanonicalSurface.lean and TwoSourceRetainedMinimalCore.lean.",
+      "name": "3d byte-identity — cluster files",
+      "pass": true
+    },
+    {
+      "line": "leaves located by declaration name: TwoSourceClosure.lean:3422, TwoSourceFirstFiberCollision.lean:2651, TwoSourceFreshThirdResidual.lean:3079/:3097/:3347 — all three files clean vs HEAD; TwoSourceCanonicalSurface.lean:132 sits in a file whose entire diff hashes 4c4267daab681bb3…, the pre-wave foreign text, so the CROSSBLOCKER leaf is untouched.",
+      "name": "3e byte-identity — six leaf declarations",
+      "pass": true
+    },
+    {
+      "line": "`lake env lean scratchpad/w3-ts-verifier/Check.lean` (imports Coordinator and TwoSource.Provenance) exit 0, 0 errors; all five `#check` lines printed — false_of_twoCollisionGlobalSplit, exists_three_hit_or_collision_crossHit_of_two_sourceExactCollisionRows, false_of_two_exactFourInteriorTwo_distinctRadiusBlockerCollisions_and_all_low_hits, false_of_exactFourCollision_interior_eq_two_secondRadius_and_all_low_hits (Coordinator.lean:81) and TwoSourceJointDeletionProvenance.nonempty_of_twoSourceCollisionFrame.",
+      "name": "4 visibility",
+      "pass": true
+    },
+    {
+      "line": "`lint_cluster_imports: OK -- 691 import edges scanned, 27 forbidden edges, all waived by 27 authenticated waivers; 3 retired; 5 legacy edges, all listed.` (exit 0; 689 + the 2 import lines of TwoSource/Provenance.lean); --json exit 0 with violations 0, waivers_authenticated 27, legacy_edges 5, retired 3; import-waivers.json, legacy-import-exceptions.json and both cluster-import-edges files byte-identical to HEAD. cluster_of() puts the new module in cluster TwoSource by the CLUSTER_DIR_COMPONENTS rule, is_legacy_module false, and both of its edges (→ ContextFrames, → JointDeletionCore) classify `to-shared`, which is always permitted.",
+      "name": "5 lint",
+      "pass": true
+    },
+    {
+      "line": "plain check exit 0: 'OK: … matches the live spine (28 reachable, 6 off-spine); 34/34 reviewed meta_status, vocabulary clean', 'factorized 4/28 reachable leaves', 'bound to: HEAD 4f3163d35c66…, build 33f2659d3428, roster sources dirty'; --require-factorized TD exit 0; --require-factorized TA exit 0. The accepted spelling is the cluster CODE, not the label: `check --help` reads '(B1, R221, TA, TD, TS, X)'.",
+      "name": "6a registry — check, --require-factorized TD, --require-factorized TA",
+      "pass": true
+    },
+    {
+      "line": "exit 1 with 'FAIL: factorization entries are not verified (6)' listing exactly P97-TS-ACYCLICHARDRESIDUAL, P97-TS-ALIGNEDRETAINED, P97-TS-COMMONRADIUS, P97-TS-CROSSBLOCKER, P97-TS-NONCANONICAL and P97-TS-OUTSIDEPAIRDELETION as having no p97-factorization/v2 block, then 'factorized 4/28 reachable leaves (required: TS)' — the exact state the main session's deferral predicts.",
+      "name": "6b registry — --require-factorized TS (expected fail while R1 is deferred)",
+      "pass": true
+    },
+    {
+      "line": "`git diff HEAD -- proof-status/obligations.json` = 4 insertions / 4 deletions and nothing else: the four materialized `verified_at_build` values move from c76a7b909fa4… to 33f2659d3428… in P97-TA-TRIAPEXALLLARGECORE, P97-TD-BLOCKERCOINCIDENCE, P97-TD-GLOBALGAPORCLOSED and P97-TD-SURVIVALSQUARE. The six-block role/via/digest checks are N/A: no P97-TS-* factorization block exists in this tree.",
+      "name": "6c registry — obligations.json diff",
+      "pass": true
+    },
+    {
+      "line": "`proof-blueprint axioms` on the new eliminator false_of_twoCollisionGlobalSplit reports 6 axioms — propext, sorryAx, Classical.choice, Lean.ofReduceBool, Lean.trustCompiler, Quot.sound; false_of_twoCapSources_freshOutsideFirstBlockerFiber_acyclicIngress_frame (TwoSourceClosure.lean:3435, `git diff --quiet HEAD` clean) reports the same 6, so the native pair is inherited from HEAD and not introduced here; the three producers collisionRows_sourceCleanMultiplicityIngress, freshThird_acyclic_canonical_consumerPacket and firstFiberOutsidePair_exactRows_or_crossedThreeRows are CLEAN (exactly propext, Classical.choice, Quot.sound).",
+      "name": "6d registry — axiom-trust probe (substitute for the N/A block checks)",
+      "pass": true
+    },
+    {
+      "line": "exit 1: 'FAIL: kernel-mined refs are not fresh', '36 stale mined symbol(s)', '1 never-mined symbol(s)' — the same counts as proof-status/baseline/refs-check.txt (stale 36, never mined 1). Repaired only by `proof-blueprint refs --refresh`, which this wave and this verifier may not run.",
+      "name": "6e registry — --require-fresh-refs (inherited fail)",
+      "pass": false
+    },
+    {
+      "line": "`uv run python -m pytest -q scripts/test_gen_obligation_registry_factorization.py scripts/test_lint_cluster_imports_legacy.py` -> '124 passed in 5.36s'.",
+      "name": "7 tests",
+      "pass": true
+    },
+    {
+      "line": "token counts sorry/axiom/native_decide/maxHeartbeats/unsafe/set_option are 0 -> 0 in TwoSourceAlignedLowHits.lean and 0 throughout TwoSource/Provenance.lean; `lake env lean` on Provenance.lean exits 0 with zero output; `proof-blueprint axioms …nonempty_of_twoSourceCollisionFrame` exits 0 with exactly propext, Classical.choice, Quot.sound (the public helper …nonempty_of_localizedCollisionCommonDeletion likewise); a differential `lake env lean` on the working file and on the HEAD copy gives the same 7 warnings each — 4 moduleDocstring-linter notes in the unchanged import/open region and unused variables `hsingleton`, `haligned`, `hsecondNe` at :109/:113/:116 inside the theorem at :105 that compares byte-identical to HEAD — so this wave's code adds no warning.",
+      "name": "8 warnings and tokens",
+      "pass": true
+    },
+    {
+      "line": "`git diff --check HEAD` on the changed files is clean; TwoSourceAlignedLowHits.lean, TwoSource/Provenance.lean and obligations.json each end with exactly one newline, and obligations.json round-trips at indent=2 / sort_keys / one trailing newline; 10 of 284 baseline module hashes mismatch — TwoSourceAlignedLowHits.lean is class (i) this wave (its HEAD hash 38f4d710… still equals the baseline entry), and B1Live, JointDeletionCore, Rigid221Closure, Rigid221Placement, TriApexEndpointRetainedOmission, TwoDeletionCollision, TwoSourceClosure, TwoSourceFirstFiberCollision and TwoSourceFreshThirdResidual are all class (ii) committed prior waves (clean vs HEAD; last commits 4b1c21b8, 09ecc561, 2b1cb26d, 2fb26644, 86d42cc0, 236e6413). No third class appears; TwoSourceCanonicalSurface.lean and TwoSourceRetainedMinimalCore.lean do not mismatch because the baseline was taken with those foreign edits already in the tree (both are listed in proof-status/baseline/dirty-files.txt).",
+      "name": "9 hygiene",
+      "pass": true
+    },
+    {
+      "line": "factorized leaves 4/28, unchanged — R1 deferred; TwoSourceAlignedLowHits.lean 771 -> 841 lines (+70; 99 insertions / 29 deletions), the new eliminator block 84 lines (omit :248, docstring :249-260, theorem :261-331); TwoSource/Provenance.lean 146 lines with 2 public sorry-free theorems; live waivers 27 / retired 3 / legacy 5 unchanged (import edges 689 -> 691); leaf-bearing files untouched by this wave — TwoSourceClosure.lean, TwoSourceFirstFiberCollision.lean and TwoSourceFreshThirdResidual.lean clean vs HEAD, TwoSourceCanonicalSurface.lean and TwoSourceRetainedMinimalCore.lean carrying only their pre-wave foreign diffs.",
+      "name": "10 ROI recomputed from source",
+      "pass": true
+    }
+  ],
+  "generated_at_utc": "2026-08-26T04:56:00Z",
+  "generated_by": "W3-TS gate verifier (independent of the wave author); every gate reproduced from source, no author output trusted",
+  "git_head": "4f3163d35c661541125036171efdf4f77d276852",
+  "git_head_short": "4f3163d3",
+  "git_operations_performed": [
+    "read-only only: status, diff, show, log, rev-parse, shasum. No add, commit, checkout, stash, reset, restore, push, rebase or merge. Nothing staged.",
+    "One bare `lake-build` (root) to confirm the tree is fully built; it rebuilt nothing. `lake env lean` was used three times for single-file elaboration (a #check-style visibility file, TwoSource/Provenance.lean, and the working and HEAD copies of TwoSourceAlignedLowHits.lean for a differential warning read). `proof-blueprint refs --refresh` was NOT run."
+  ],
+  "head_note": "UNCOMMITTED; working-tree hashes. Nothing from this wave is committed: content_bound_files holds the sha256 of each path as it stands in the working tree at HEAD 4f3163d3. The tree also carries foreign uncommitted changes this wave did not touch (TwoSourceCanonicalSurface.lean, TwoSourceRetainedMinimalCore.lean, several docs/ and scratch/ paths, untracked lean/Erdos9796Proof/TestCrossTmp.lean and others).",
+  "main_session_reverification": null,
+  "metadata_corrections": [],
+  "new_receipts_written_by_this_check": [
+    "proof-status/receipts/registry-check-20260826T044338Z.json (plain check, exit 0)",
+    "proof-status/receipts/registry-check-20260826T044505Z.json (--require-factorized TD, exit 0)",
+    "proof-status/receipts/registry-check-20260826T044633Z.json (--require-factorized TA, exit 0)",
+    "proof-status/receipts/registry-check-20260826T044758Z.json (--require-factorized TS, exit 1 — six P97-TS-* ids, expected while R1 is deferred)",
+    "proof-status/receipts/registry-check-20260826T044926Z.json (--require-fresh-refs, exit 1 — 36 stale + 1 never-mined, inherited)"
+  ],
+  "note_resolutions": [],
+  "notes_for_main_session": [
+    "TRUST-RULE FINDING (R1 blocker, independently confirmed): the registry factorization checker's ALLOWED_AXIOMS boundary (proof-status/README.md 'Trust boundary (W3-0b)'; scripts/gen_obligation_registry.py) lets a consumer hop add nothing beyond propext, Classical.choice, Quot.sound and sorryAx. Eight symbols on the mandated TwoSource chain carry Lean.ofReduceBool and Lean.trustCompiler as well: false_of_two_exactFourInteriorTwo_distinctRadiusBlockerCollisions_and_all_low_hits (the mandated legacy_wrapper), exists_three_hit_of_two_exactFourInteriorTwo_distinctRadiusBlockerCollisions, exists_three_hit_of_two_collisionRows_capCross_normalForm, exists_three_hit_or_collision_crossHit_of_two_sourceExactCollisionRows, false_of_twoCollisionGlobalSplit, false_of_capSourceThirdCanonicalRowSurface, false_of_twoCapSources_freshOutsideFirstBlockerFiber_viaAcyclicIngress and false_of_twoCapSources_freshOutsideFirstBlockerFiber_acyclicIngress_frame. The native pair enters at TwoSourceClosure.lean:3435 (…_acyclicIngress_frame), which is clean vs HEAD, so it is inherited and not introduced by this wave; the frames below it (:2192, :3025, :11163, :3419) and all three producers are clean. A decision is needed before the six P97-TS-* blocks can land: widen ALLOWED_AXIOMS for native reduction (a scripts/ change), remove the native dependency under TwoSourceClosure.lean:3435 (a blacklisted file), or exempt the TwoSource cluster from the Phase 3 factorization gate.",
+    "The six authored blocks and their applier are preserved in the author's scratch directory (authored-ts-factorization-blocks.json, edit_meta.py, generate-full.log). This verifier did not read them into the repository and did not verify their roles, via lists or pinned digests: no P97-TS-* factorization block exists in the gated tree, so those checks are N/A here and must be re-run when the blocks land.",
+    "Any Lean edit invalidates the four materialized verified_at_build stamps in obligations.json, so a plain `check` fails with registry drift until `generate` is re-run. That regenerate is already in this tree (4 insertions / 4 deletions; id-assignments.json and frontier-table.generated.md byte-unchanged), which is why `check` now exits 0.",
+    "The W3 waiver TwoSourceCanonicalSurface -> TriApexEndpointRetainedOmission is NOT retired in this wave; it is deferred per #7497. import-waivers.json is byte-identical to HEAD and still carries 27 live / 3 retired rows.",
+    "TwoSourceCanonicalSurface.lean and TwoSourceRetainedMinimalCore.lean remain foreign-dirty and untouched; their diff hashes are unchanged from the pre-wave snapshot. The CROSSBLOCKER leaf lives in the first of them.",
+    "Nothing from this wave is committed. When the wave commit is made, stage exactly lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceAlignedLowHits.lean, lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSource/Provenance.lean and proof-status/obligations.json (plus receipts); obligations-meta.json, id-assignments.json and frontier-table.generated.md must stay at their HEAD content while R1 is deferred."
+  ],
+  "observations_not_blocking": [
+    "Docstring deviation from the exact design text: the mandated sentence 'the registry factorization entry for P97-TS-CROSSBLOCKER uses this theorem as the eliminator' was replaced by 'it is the sole consumer of the cap-source surface eliminator and of the cross-blocker coincidence leaf, which is the eliminator role a cluster factorization for `P97-TS-CROSSBLOCKER` needs'. With R1 deferred the original wording would assert a registry state absent from the tree; the replacement is factually verified by `--uses` and stays true after the blocks land.",
+    "L2 shipped two public theorems rather than the single theorem the design names: the symmetric helper …nonempty_of_localizedCollisionCommonDeletion carries both orientation arms. The design permits public helpers with docstrings; both have one.",
+    "The moduleDocstring linter reported its four notes at lines 12/19/21/27 in one elaboration and 14/17/30/33 in another over a byte-identical import/open region — an elaboration-batching artifact of the linter, not a content difference.",
+    "The blueprint index records has_sorry=false for false_of_twoCollisionGlobalSplit while its axiom closure carries sorryAx; the index field is syntactic (a `sorry` token in the declaration), not a closure property.",
+    "proof-status/baseline/module-hashes.txt already matches the foreign-dirty text of TwoSourceCanonicalSurface.lean and TwoSourceRetainedMinimalCore.lean (both appear in proof-status/baseline/dirty-files.txt), so those two files do not show as hash mismatches even though they differ from HEAD.",
+    "The baseline's module-hashes list predates the consolidation refactor: TwoSource/Provenance.lean, ContextFrames.lean, JointDeletion/*, Legacy/* and TwoDeletion/* are all absent from it. Only TwoSource/Provenance.lean among those is new in this wave."
+  ],
+  "overall_note": "overall_pass=false solely because gate 6e (--require-fresh-refs) exits 1 at 36 stale + 1 never-mined, the same counts as proof-status/baseline/refs-check.txt, as in every prior W3 receipt. Every gate that carries the source verdict for the gated state passes; source_gates_pass=true. The gated state is L1 + L2 only: R1 (the six P97-TS-* factorization entries) was rolled back by the author and deferred by the main session pending a trust-rule decision, and obligations-meta.json is byte-identical to HEAD.",
+  "overall_pass": false,
+  "promotion_claim": "none",
+  "roi": {
+    "eliminator": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCollisionGlobalSplit — TwoSourceAlignedLowHits.lean:261, public, sorry-free source, 84-line block (omit :248, docstring :249-260, theorem :261-331)",
+    "factorized_leaves": "4/28 reachable leaves, unchanged (R1 deferred; the TS blocks would have taken it to 10/28)",
+    "import_edges": "689 -> 691 (the new module's two to-shared edges)",
+    "leaf_files_untouched": [
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceClosure.lean (git diff --quiet HEAD: clean)",
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFirstFiberCollision.lean (clean)",
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean (clean)",
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceCanonicalSurface.lean (foreign diff only, hash 4c4267daab681bb3…)",
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceRetainedMinimalCore.lean (foreign diff only, hash 64711158044d921c…)"
+    ],
+    "provenance_module_lines": "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSource/Provenance.lean — 146 lines, 2 public theorems (nonempty_of_localizedCollisionCommonDeletion :61, nonempty_of_twoSourceCollisionFrame :120), axiom closure propext / Classical.choice / Quot.sound",
+    "roster": "spine sorry 28, off-spine 6 — both set-equal to the baseline; no obligation moved",
+    "two_source_aligned_low_hits_lines": "771 -> 841 (+70); git diff 99 insertions / 29 deletions",
+    "waivers": "live 27 / retired 3 / legacy 5 — unchanged"
+  },
+  "schema": "p97-gate-receipt/v1",
+  "source_gates_note": "Gates 0, 1, 2, 3a-3e, 4, 5, 6a-6d, 7, 8, 9 and 10 all PASS. The single red item (6e, --require-fresh-refs) is the pre-existing 36 stale + 1 never-mined condition recorded in proof-status/baseline/refs-check.txt; it is repaired only by `proof-blueprint refs --refresh`, which this wave and this verifier may not run.",
+  "source_gates_pass": true,
+  "state": "COMPLETE — pre-commit, working-tree hashes; R1 deferred",
+  "tests": [
+    {
+      "command": "uv run python -m pytest -q scripts/test_gen_obligation_registry_factorization.py scripts/test_lint_cluster_imports_legacy.py",
+      "exit_code": 0,
+      "failed": 0,
+      "final_line": "124 passed in 5.36s",
+      "run_by": "W3-TS gate verifier",
+      "total_passed": 124
+    },
+    {
+      "command": "uv run python scripts/lint_cluster_imports.py",
+      "exit_code": 0,
+      "failed": 0,
+      "final_line": "lint_cluster_imports: OK -- 691 import edges scanned, 27 forbidden edges, all waived by 27 authenticated waivers; 3 retired; 5 legacy edges, all listed.",
+      "run_by": "W3-TS gate verifier",
+      "total_passed": null
+    },
+    {
+      "command": "lake env lean <scratchpad>/w3-ts-verifier/Check.lean",
+      "exit_code": 0,
+      "failed": 0,
+      "final_line": "five #check lines printed, 0 errors",
+      "run_by": "W3-TS gate verifier",
+      "total_passed": null
+    },
+    {
+      "command": "lake-build (bare, root)",
+      "exit_code": 0,
+      "failed": 0,
+      "final_line": "✅ already fresh — 4090 module(s) unchanged at build 33f2659d3428. No Lean invocation needed.",
+      "run_by": "W3-TS gate verifier",
+      "total_passed": null
+    }
+  ],
+  "wave": "W3-TS-a",
+  "wave_commit": null
+}

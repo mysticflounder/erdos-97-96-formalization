@@ -246,6 +246,91 @@ theorem false_of_capSource_freshOutsideSecondBlockerFiber
     (hsecond.map FreshOutsideSecondBlockerFiber.toSwappedFirst)
 
 omit D S radius ρ H F R P Fρ Rρ Pρ hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq B L N T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- The two-collision global split is contradictory under the geometric
+multiplicity residual.
+
+The split offers a cap-source third canonical row surface or a cross-blocker
+coincidence.  Under the geometric multiplicity residual the first arm is
+closed by the cap-source surface eliminator and the second by the
+cross-blocker coincidence leaf, so no arm survives.  This theorem isolates
+that two-arm elimination from the positive producer above it: it is the sole
+consumer of the cap-source surface eliminator and of the cross-blocker
+coincidence leaf, which is the eliminator role a cluster factorization for
+`P97-TS-CROSSBLOCKER` needs, and the collision-row coordinator below now
+delegates its whole residual branch here. -/
+theorem false_of_twoCollisionGlobalSplit
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius ρ : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    (P : RetainedInteriorBlockerCollision R)
+    {Fρ : CriticalPairFrontier D S ρ H}
+    {Rρ : FrontierCommonDeletionParentResidual Fρ}
+    (Pρ : RetainedInteriorBlockerCollision Rρ)
+    (hρne : ρ ≠ radius)
+    (hfrontierFour :
+      (SelectedClass D.A S.oppApex1 radius).card = 4)
+    (hρfour :
+      (SelectedClass D.A S.oppApex1 ρ).card = 4)
+    (hfrontierInteriorEq :
+      SelectedClass D.A S.oppApex1 radius ∩
+          S.capInteriorByIndex S.oppIndex1 =
+        {P.source₁, P.source₂})
+    (hρInteriorEq :
+      SelectedClass D.A S.oppApex1 ρ ∩
+          S.capInteriorByIndex S.oppIndex1 =
+        {Pρ.source₁, Pρ.source₂})
+    {B : FrontierBiApexRobustResidual R}
+    {L : FrontierLargeOppositeCapsBiApexRobustResidual B}
+    {N : FrontierAllLargeCapsBiApexRobustResidual L}
+    (T : FrontierAllLargeCapsTriApexRobustResidual N)
+    (hpairsDisjoint :
+      Disjoint
+        ({P.source₁, P.source₂} : Finset ℝ²)
+        {Pρ.source₁, Pρ.source₂})
+    (hblockersNe :
+      H.centerAt Pρ.source₁ Pρ.source₁_mem_A ≠
+        H.centerAt P.source₁ P.source₁_mem_A)
+    (LPρ : LocalizedCollisionCommonDeletion P)
+    (hLPρ : LPρ.fresh = Pρ.source₁)
+    (MPρ : LocalizedCollisionMutualOmissionCycle P LPρ)
+    (LP : LocalizedCollisionCommonDeletion Pρ)
+    (hLP : LP.fresh = P.source₁)
+    (MP : LocalizedCollisionMutualOmissionCycle Pρ LP)
+    (hsplit : TwoCollisionGlobalSplit P Pρ)
+    (hresidual : GeometricMultiplicityResidual P Pρ) :
+    False := by
+  rcases hsplit with hcapSource | hcoincidence
+  · exact
+      TwoSourceExactCollisionRowsTerminal.false_of_capSourceThirdCanonicalRowSurface
+        (P := P) (Pρ := Pρ)
+        (hρne := hρne)
+        (hfrontierFour := hfrontierFour)
+        (hρfour := hρfour)
+        (hfrontierInteriorEq := hfrontierInteriorEq)
+        (hρInteriorEq := hρInteriorEq)
+        (T := T)
+        (hpairsDisjoint := hpairsDisjoint)
+        (hblockersNe := hblockersNe)
+        (LPρ := LPρ) (hLPρ := hLPρ) (MPρ := MPρ)
+        (LP := LP) (hLP := hLP) (MP := MP)
+        hcapSource hresidual
+  · exact
+      TwoSourceExactCollisionRowsTerminal.false_of_crossBlockerCoincidence
+        (P := P) (Pρ := Pρ)
+        (hρne := hρne)
+        (hfrontierFour := hfrontierFour)
+        (hρfour := hρfour)
+        (hfrontierInteriorEq := hfrontierInteriorEq)
+        (hρInteriorEq := hρInteriorEq)
+        (T := T)
+        (hpairsDisjoint := hpairsDisjoint)
+        (hblockersNe := hblockersNe)
+        (LPρ := LPρ) (hLPρ := hLPρ) (MPρ := MPρ)
+        (LP := LP) (hLP := hLP) (MP := MP)
+        hcoincidence hresidual
+
+omit D S radius ρ H F R P Fρ Rρ Pρ hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq B L N T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
 /-- Source-exact collision rows force either the desired three-hit shell or
 one concrete cross-row incidence.
 
@@ -333,35 +418,20 @@ theorem exists_three_hit_or_collision_crossHit_of_two_sourceExactCollisionRows
   rcases hproducer with
     hcross | ⟨hresidual, hglobalCapSplit⟩
   · exact Or.inr hcross
-  · rcases hglobalCapSplit with hcapSource | hcoincidence
-    · exact False.elim
-        (TwoSourceExactCollisionRowsTerminal.false_of_capSourceThirdCanonicalRowSurface
-            (P := P) (Pρ := Pρ)
-            (hρne := hρne)
-            (hfrontierFour := hfrontierFour)
-            (hρfour := hρfour)
-            (hfrontierInteriorEq := hfrontierInteriorEq)
-            (hρInteriorEq := hρInteriorEq)
-            (T := T)
-            (hpairsDisjoint := hpairsDisjoint)
-            (hblockersNe := hblockersNe)
-            (LPρ := LPρ) (hLPρ := hLPρ) (MPρ := MPρ)
-            (LP := LP) (hLP := hLP) (MP := MP)
-            hcapSource hresidual)
-    · exact False.elim
-        (TwoSourceExactCollisionRowsTerminal.false_of_crossBlockerCoincidence
-            (P := P) (Pρ := Pρ)
-            (hρne := hρne)
-            (hfrontierFour := hfrontierFour)
-            (hρfour := hρfour)
-            (hfrontierInteriorEq := hfrontierInteriorEq)
-            (hρInteriorEq := hρInteriorEq)
-            (T := T)
-            (hpairsDisjoint := hpairsDisjoint)
-            (hblockersNe := hblockersNe)
-            (LPρ := LPρ) (hLPρ := hLPρ) (MPρ := MPρ)
-            (LP := LP) (hLP := hLP) (MP := MP)
-            hcoincidence hresidual)
+  · exact False.elim
+      (false_of_twoCollisionGlobalSplit
+          (P := P) (Pρ := Pρ)
+          (hρne := hρne)
+          (hfrontierFour := hfrontierFour)
+          (hρfour := hρfour)
+          (hfrontierInteriorEq := hfrontierInteriorEq)
+          (hρInteriorEq := hρInteriorEq)
+          (T := T)
+          (hpairsDisjoint := hpairsDisjoint)
+          (hblockersNe := hblockersNe)
+          (LPρ := LPρ) (hLPρ := hLPρ) (MPρ := MPρ)
+          (LP := LP) (hLP := hLP) (MP := MP)
+          hglobalCapSplit hresidual)
 
 
 omit D S radius ρ H F R P Fρ Rρ Pρ hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq B L N T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
