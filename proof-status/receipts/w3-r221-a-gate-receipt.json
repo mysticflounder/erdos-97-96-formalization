@@ -1,16 +1,16 @@
 {
   "schema": "p97-gate-receipt/v1",
   "wave": "W3-R221-a",
-  "state": "COMPLETE — pre-commit, working-tree hashes",
+  "state": "FINAL — bound to W3-R221-a wave commit f0278365; this receipt ships in the receipt-only child commit of f0278365",
   "generated_by": "W3-R221-a gate verifier, independent of the author session. Every gate reproduced from source: the meta and registry diffs recomputed structurally from `git show HEAD:<path>`; all 46 role and via symbols re-resolved with `proof-blueprint search --name <FQ> --json --all --private` filtered to an exact fully-qualified match; both pinned digests per block recomputed from the live index signature by the README recipe; all 45 chain edges re-decided from `proof-blueprint search --uses`; per-block cycle detection rerun over roles UNION via; per-symbol freshness re-read read-only from data/proof-blueprint.db (symbol_mined.file_hash, module_mined.global_fp); all 46 axiom closures re-read from `proof-blueprint axioms`; the live spine and off-spine rosters re-exported; and all five registry checks re-run by this verifier. No author output was trusted.",
   "generated_at_utc": "2026-08-26T11:10:22Z",
-  "git_head": "9f3cc3002f811d8d8d0adbc18031d2ea9f6a7471",
-  "git_head_short": "9f3cc300",
-  "head_note": "UNCOMMITTED; working-tree hashes. The wave is not committed at the time of this receipt: content_bound_files holds the sha256 of the working-tree bytes of the two edited files, and content_bound_files_working_tree repeats them. Rebind to the wave commit when it lands.",
+  "git_head": "f02783654d139033ece6f2c19022c6dfbfa0c5eb",
+  "git_head_short": "f0278365",
+  "head_note": "Bound to commit f02783654d139033ece6f2c19022c6dfbfa0c5eb. content_bound_files holds the sha256 of every path committed at f0278365 (`git show f0278365:<path>`). The gate verifier's pre-commit draft (working-tree hashes at HEAD 9f3cc300) is kept, labeled, under content_bound_files_working_tree; its gates section is that pre-commit snapshot.",
   "baseline_reference": "proof-status/baseline. axioms.txt is the `proof-blueprint axioms` export of Problem97.erdos97_rhs; this verifier re-ran that export and the diff against axioms.txt is EMPTY. Its six names are propext, sorryAx, Classical.choice, Lean.ofReduceBool, Lean.trustCompiler, Quot.sound, so both declared consumer_trust names are carried by the publish target's recorded closure. Roster baselines: spine-sorry.json (28 symbols, set-equal to the live export) and offspine-sorry.json (6, set-equal). refs-check.txt records the inherited 36 stale + 1 never-mined condition.",
   "build_fingerprint": "33f2659d3428b288434253557166c4e28c9075d909ee46318276d713d955d34b",
   "build_fingerprint_source": "module_mined.global_fp in data/proof-blueprint.db, opened read-only; exactly one full fingerprint matches the short prefix 33f2659d3428, and all 46 block symbols carry that same value in symbol_mined.file_hash (zero never-mined, zero stale). It is also the verified_at_build stamped on all 22 materialized blocks and the build_id reported in every check receipt of this verification.",
-  "claim_reference": "#7509 + #7510 (count correction); authorization: standing W3 queue; consumer_trust per #7498 option A",
+  "claim_reference": "#7509 + #7510 (file claim, ROI, count correction, two decision requests; posted before any write); authorization: standing W3 queue (Adam); consumer_trust per #7498 option A",
   "claim_scope": "registry bookkeeping: Rigid221 p97-factorization/v2 blocks with declared consumer-side trust the publish target's recorded closure already carries; no obligation, statement, axiom, import or Lean change; not a widening of ALLOWED_AXIOMS; no proof-progress or closure claim",
   "promotion_claim": "none",
   "source_gates_pass": true,
@@ -354,13 +354,21 @@
     }
   ],
   "content_bound_files": {
-    "proof-status/obligations-meta.json": {
-      "sha256": "4648e2aaf5b87d068e17e7f0ce5b0f687765723cab5224360cf2c6c7b3c72ee8",
-      "note": "working-tree bytes at HEAD 9f3cc300, UNCOMMITTED; +521/-0 against HEAD; the twelve reviewed factorization blocks"
-    },
-    "proof-status/obligations.json": {
-      "sha256": "426a33521cead609da944d2416d691f457e43d5c8b1cf550bc79a3988d06bb3c",
-      "note": "working-tree bytes at HEAD 9f3cc300, UNCOMMITTED; +509/-0 against HEAD; the twelve materialized blocks, source_head unchanged"
+    "note": "sha256 of every path committed at f0278365 (git show f0278365:<path>)",
+    "sha256": {
+      "proof-status/obligations-meta.json": "4648e2aaf5b87d068e17e7f0ce5b0f687765723cab5224360cf2c6c7b3c72ee8",
+      "proof-status/obligations.json": "426a33521cead609da944d2416d691f457e43d5c8b1cf550bc79a3988d06bb3c",
+      "proof-status/receipts/registry-check-20260826T083635Z.json": "44ddbaeb5203ba3a7ed1c1b6934a4c90c56ce74b4b66a75e6014b93edaba1de4",
+      "proof-status/receipts/registry-check-20260826T084508Z.json": "34792bd06449cb4028d24153ebcf227ba37ae996f84f00c588d41a88e5910c12",
+      "proof-status/receipts/registry-check-20260826T090706Z.json": "94d5c3c59a8f4596cf718097d54153cc8b0627f2ada3a404cedb9f3aa04767e3",
+      "proof-status/receipts/registry-check-20260826T091507Z.json": "b8f0cec006a50f77676c800e6488032bff80048b8ad8824a89f576a9d7a9d472",
+      "proof-status/receipts/registry-check-20260826T093726Z.json": "907683f524ace2cdeb2ac1dec970b9a9db2d68e7f3938100cf0178eb47a6d872",
+      "proof-status/receipts/registry-check-20260826T100938Z.json": "2ea718d0e5191f5a9d6613dd672c131aa37b5bf593ea892ea228f350ca33afde",
+      "proof-status/receipts/registry-check-20260826T102030Z.json": "df1d284d71a9b27a99ec1a3808cc672d2b8228ced48d8360b08c9d5d2703e7ac",
+      "proof-status/receipts/registry-check-20260826T103334Z.json": "874fb3a32a6d43c2d74a145a771a5a7339757e68551ecb1299b3db71d1671eba",
+      "proof-status/receipts/registry-check-20260826T104428Z.json": "0a04d7407374f7c93b1b382cee3da955eabc2b269830702505a40e65eae2b5d0",
+      "proof-status/receipts/registry-check-20260826T105543Z.json": "bd5748ceb4b44fbe52a52acd5b28e605045a409c04f1291eb5b9ce6e85e3873f",
+      "proof-status/receipts/w3-r221-a-gate-receipt.json": "2a8e05ec84db36f43086053c8af567897f80273caa0078a1fa563a4bae4e311b"
     }
   },
   "content_bound_files_working_tree": {
@@ -371,7 +379,8 @@
     "proof-status/obligations.json": {
       "sha256": "426a33521cead609da944d2416d691f457e43d5c8b1cf550bc79a3988d06bb3c",
       "note": "working-tree bytes at HEAD 9f3cc300, UNCOMMITTED; +509/-0 against HEAD; the twelve materialized blocks, source_head unchanged"
-    }
+    },
+    "note": "HISTORICAL — working-tree hashes taken by the gate verifier before the wave commit (HEAD 9f3cc300). "
   },
   "files_written_by_this_verifier": [
     "proof-status/receipts/w3-r221-a-gate-receipt.json"
@@ -402,7 +411,13 @@
     "Deviation 4 (EXACTFOURPOSTCARD / EXACTFOURPHYSICAL coordinators sit one level above the split site) — CONFIRMED from the Lean source; in both the producer is still the declaration whose result the coordinator destructures or dispatches on.",
     "'the first R221 attempt was killed ... it was rerun standalone' — not reproducible from the repository, and irrelevant: this verifier ran its own R221 check from scratch."
   ],
-  "metadata_corrections": [],
+  "metadata_corrections": [
+    {
+      "utc": "2026-08-26T11:26:06Z",
+      "kind": "receipt re-bound to the wave commit; claim reference, note resolutions and main-session reverification added; metadata only",
+      "unchanged": "overall_pass=true, source_gates_pass=true, promotion_claim none, claim_scope unchanged"
+    }
+  ],
   "observations_not_blocking": [
     "Gate 0 as written asks for `git diff --stat HEAD -- lean` to list ONLY the two pre-existing foreign files; that is how it was read and how it holds. The output is not empty and cannot be, because those two foreign files are dirty in the shared worktree from another lane; both diff digests match the pinned prefixes byte for byte.",
     "The twelve notes say native trust enters 'this cluster' at the single native_decide of Rigid221SourceHeavy.lean:11501. That count is exact for the four Rigid221*.lean files (Closure, Placement, SourceHeavy, SourceHeavyCommonDeletion contain 1 native_decide in total, at that line). Other modules under FrontierLiveClosure/ — the ExactTwelveRigid221*Cnf certificate files — contain further native_decide uses, so the sentence should be read as scoped to the Rigid221 source files, not to every module the cluster imports. The wording is the one the task prescribed; recorded so a future wave can tighten it.",
@@ -414,7 +429,56 @@
     "Ten untracked registry-check receipts are present, five from the author and five from this verifier; the commit should carry the ones the wave intends to keep and nothing else. Attribution is in gate 0.",
     "The six Rigid221 ids without a block (PENTAGONBLOCKER, SECONDCAPNINE, CARDEIGHTEEN, VROWBLOCKEROFFCLASS, SOURCENEU, FIRSTAPEXUNIQUE) are the standing --require-factorized R221 failures and are the W3-R221-b scope."
   ],
-  "note_resolutions": [],
-  "main_session_reverification": null,
-  "wave_commit": null
+  "note_resolutions": [
+    {
+      "note": "Pre-commit receipt; rebind after the wave commit",
+      "resolution": "Done by this rebind (content_bound_files via git show, wave_commit set, working-tree block kept)."
+    },
+    {
+      "note": "Ten untracked registry-check receipts (five author, five verifier); commit the ones the wave keeps",
+      "resolution": "All ten plus the main session's plain-check receipt ship in the wave commit as check evidence."
+    },
+    {
+      "note": "Six Rigid221 ids without a block are the standing --require-factorized R221 failures and the W3-R221-b scope",
+      "resolution": "Recorded in the commit message and checkpoint post; W3-R221-b (Lean extractions) gets its own claim."
+    },
+    {
+      "note": "Deviation 3: the MINIMALCORE leaf keeps a second public caller ..._physicalApex_frame (Rigid221Closure.lean:219) beside its eliminator",
+      "resolution": "Accepted: the gate requires the eliminator -> open_leaf edge, not sole consumption; the second caller is recorded here and in the block note for W3-R221-b to revisit."
+    },
+    {
+      "note": "Deviation 2: SourceHeavy leaves 5/6/7 name :13239 as producer rather than :14280 / :16236",
+      "resolution": "Accepted as the honest shape: :13239 is the disjunction the coordinator itself destructures (SourceHeavy:16791-16792); :14280 / :16236 are consumed by the eliminators."
+    }
+  ],
+  "main_session_reverification": {
+    "utc": "2026-08-26T11:26:06Z",
+    "on": "the staged tree that became f0278365 (byte-identical to the commit)",
+    "results": {
+      "registry_check": "main-session plain check exit 0: OK 28 reachable / 6 off-spine, 34/34; 'factorized 22/28 reachable leaves (18 with declared consumer_trust (Lean.ofReduceBool, Lean.trustCompiler))' (detached rerun after the 600 s foreground limit; receipt registry-check-20260826T112633Z.json, bound to the pre-commit HEAD 9f3cc300 it started from); verifier reran plain/TD/TA/TS exit 0 and R221 exit 1 listing exactly the six W3-R221-b ids",
+      "diff": "git diff --numstat HEAD -- proof-status/: obligations-meta.json +521/-0, obligations.json +509/-0; twelve materialized blocks, verified_at_build 33f2659d3428, zero deletions; id-assignments.json and frontier-table.generated.md byte-identical to HEAD",
+      "per_block": "verifier: 46 role/via symbols each one public record; 45 chain edges hold under --uses; both digests recomputed and equal for all twelve; five producers kernel clean (Placement:91, Placement:591, SourceHeavy:13239, ExactFourRobustCapExpansion:1462, ExactFourPhysicalConsumer:316); twelve leaves core+sorryAx only; every block has a consumer-side hop carrying both declared names; all 46 symbols mined at build 33f2659d3428",
+      "tests_lint": "151 passed; lint_cluster_imports OK 691/27/3/5 (main session rerun)",
+      "lean": "no Lean file changed; no build run",
+      "strict_refs": "not run (inherited 36 stale + 1 never-mined)"
+    }
+  },
+  "wave_commit": {
+    "sha": "f02783654d139033ece6f2c19022c6dfbfa0c5eb",
+    "paths": [
+      "proof-status/obligations-meta.json",
+      "proof-status/obligations.json",
+      "proof-status/receipts/registry-check-20260826T083635Z.json",
+      "proof-status/receipts/registry-check-20260826T084508Z.json",
+      "proof-status/receipts/registry-check-20260826T090706Z.json",
+      "proof-status/receipts/registry-check-20260826T091507Z.json",
+      "proof-status/receipts/registry-check-20260826T093726Z.json",
+      "proof-status/receipts/registry-check-20260826T100938Z.json",
+      "proof-status/receipts/registry-check-20260826T102030Z.json",
+      "proof-status/receipts/registry-check-20260826T103334Z.json",
+      "proof-status/receipts/registry-check-20260826T104428Z.json",
+      "proof-status/receipts/registry-check-20260826T105543Z.json",
+      "proof-status/receipts/w3-r221-a-gate-receipt.json"
+    ]
+  }
 }
