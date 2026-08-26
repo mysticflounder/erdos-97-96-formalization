@@ -1,5 +1,5 @@
 {
-  "base_head": "22694fa3",
+  "base_head": "09434d78",
   "exceptions": [
     {
       "added_wave": "W3",
@@ -30,6 +30,27 @@
         "Erdos9796Proof.P97.ATail.FrontierLiveClosure.TwoDeletionCollision"
       ],
       "wrapper_module": "Erdos9796Proof.P97.ATail.FrontierLiveClosure.Legacy.TwoDeletionWrappers"
+    },
+    {
+      "added_wave": "W3",
+      "class": "intra-cluster",
+      "from": "Erdos9796Proof.P97.ATail.FrontierLiveClosure.Legacy.Rigid221Wrappers",
+      "reason": "W3-TA: the restated theorem Problem97.ATailFrontierLiveClosure.Legacy.false_of_originalFrontierUniqueRadiusArm is proved by the Rigid221Closure theorem of the same name, so this wrapper imports that module. The import closure of the tri-apex module is therefore unchanged by the retirement of its direct edge.",
+      "to": "Erdos9796Proof.P97.ATail.FrontierLiveClosure.Rigid221Closure",
+      "waiver_pair": null,
+      "wrapper_module": "Erdos9796Proof.P97.ATail.FrontierLiveClosure.Legacy.Rigid221Wrappers"
+    },
+    {
+      "added_wave": "W3",
+      "class": "cross-cluster",
+      "from": "Erdos9796Proof.P97.ATail.FrontierLiveClosure.TriApexEndpointRetainedOmission",
+      "reason": "W3-TA: false_of_originalFrontierUniqueRadiusArm is the one Rigid221 declaration the tri-apex module consumes, and it now lives in this Legacy wrapper module. waiver_pair names the retired_waivers row Erdos9796Proof.P97.ATail.FrontierLiveClosure.TriApexEndpointRetainedOmission -> Erdos9796Proof.P97.ATail.FrontierLiveClosure.Rigid221Closure of proof-status/import-waivers.json, retired together with the direct import edge it covered; that row's retired_by_wrapper is this row's wrapper_module, so the retirement and the wrapper are linked in both directions.",
+      "to": "Erdos9796Proof.P97.ATail.FrontierLiveClosure.Legacy.Rigid221Wrappers",
+      "waiver_pair": [
+        "Erdos9796Proof.P97.ATail.FrontierLiveClosure.TriApexEndpointRetainedOmission",
+        "Erdos9796Proof.P97.ATail.FrontierLiveClosure.Rigid221Closure"
+      ],
+      "wrapper_module": "Erdos9796Proof.P97.ATail.FrontierLiveClosure.Legacy.Rigid221Wrappers"
     }
   ],
   "frozen_graph_sha256": "14a8ee5529e3b8eae1f8e617f1de447045b7d4199df2a4f3b0e85c016224066a",

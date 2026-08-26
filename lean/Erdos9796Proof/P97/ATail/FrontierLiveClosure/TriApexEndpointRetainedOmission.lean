@@ -4,7 +4,7 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Adam McKenna
 -/
 
-import Erdos9796Proof.P97.ATail.FrontierLiveClosure.Rigid221Closure
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure.Legacy.Rigid221Wrappers
 import Erdos9796Proof.P97.ATail.ExactFourAdjacentGridKalmanson
 import Erdos9796Proof.P97.ATail.FourVertexLowSpan
 import Erdos9796Proof.P97.ATail.PairedCommonDeletionNormalForm
@@ -119,7 +119,7 @@ theorem false_of_frontierBiApexRobustExactFiveSecondCapResidual
     exists_criticalPairFrontier_of_K4 D T H
   apply CriticalPairFrontier.false_of_parentResidualConsumers
     freshFrontier R.minimal R.noM44 R.carrier_card_gt_nine hfreshFour
-  · exact false_of_originalFrontierUniqueRadiusArm freshFrontier
+  · exact Legacy.false_of_originalFrontierUniqueRadiusArm freshFrontier
       R.minimal R.noM44 R.carrier_card_gt_nine
   · intro freshParent
     have hsix : 6 ≤ T.oppCap1.card := first_oppCap_card_ge_six freshParent
@@ -191,7 +191,7 @@ theorem surplusCap_card_ge_six_of_largeOppositeCaps
     exists_criticalPairFrontier_of_K4 D T H
   apply CriticalPairFrontier.false_of_parentResidualConsumers
     freshFrontier R.minimal R.noM44 R.carrier_card_gt_nine hfreshFour
-  · exact false_of_originalFrontierUniqueRadiusArm freshFrontier
+  · exact Legacy.false_of_originalFrontierUniqueRadiusArm freshFrontier
       R.minimal R.noM44 R.carrier_card_gt_nine
   · intro freshParent
     have hsix : 6 ≤ T.oppCap1.card := first_oppCap_card_ge_six freshParent
@@ -224,7 +224,7 @@ theorem false_of_physicalSecondApexCriticalResidual
     False := by
   rcases physicalSecondCritical_reorients_to_swappedUniqueFour
       (H := H) P.shell P.deletion_blocked with ⟨U⟩
-  apply false_of_originalFrontierUniqueRadiusArm (H := H)
+  apply Legacy.false_of_originalFrontierUniqueRadiusArm (H := H)
     U.frontier R.minimal R.noM44 R.carrier_card_gt_nine
   exact ⟨Or.inl U.firstClass_card_eq_four, U.firstClass_unique_radius⟩
 
@@ -5361,6 +5361,24 @@ theorem false_of_retainedOmission_triApexAllLarge_core
           reverseShell_inter_cap_eq fresh fresh_mem_capInterior fresh_ne_kept
           fresh_ne_deleted fresh_not_mem_reverseShell freshPacket G
 
+/-- The TriApex cluster coordinator: from a retained interior directed
+omission and the all-large tri-apex context, produce the normal form and
+eliminate it.  The compatibility wrapper below and the registry
+factorization entry for the TriApex leaf route through this theorem. -/
+theorem false_of_retainedInteriorDirectedOmission_triApexAllLargeContext
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : FrontierCommonDeletionParentResidual F)
+    (P : RetainedInteriorDirectedOmission R)
+    (G : TriApexAllLargeContext D S) :
+    False := by
+  have hfirstLarge : 5 ≤ (S.capByIndex S.oppIndex1).card := by
+    have hcap := G.cap_card_ge_six S.oppIndex1
+    omega
+  rcases nonempty_retainedOmissionAllLargeNormalForm P hfirstLarge with ⟨Q⟩
+  exact false_of_retainedOmission_triApexAllLarge_core (P := P) R Q G
+
 /- Compatibility wrapper retaining the old public theorem and caller API. -/
 theorem false_of_retainedInteriorDirectedOmission_and_all_low_hits
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
@@ -5373,13 +5391,7 @@ theorem false_of_retainedInteriorDirectedOmission_and_all_low_hits
     (N : FrontierAllLargeCapsBiApexRobustResidual L)
     (T : FrontierAllLargeCapsTriApexRobustResidual N) :
     False := by
-  have hfirstLarge : 5 ≤ (S.capByIndex S.oppIndex1).card := by
-    have hcap :=
-      (triApexAllLargeContext_of_residuals L N T).cap_card_ge_six
-        S.oppIndex1
-    omega
-  rcases nonempty_retainedOmissionAllLargeNormalForm P hfirstLarge with ⟨Q⟩
-  exact false_of_retainedOmission_triApexAllLarge_core (P := P) R Q
+  exact false_of_retainedInteriorDirectedOmission_triApexAllLargeContext R P
     (triApexAllLargeContext_of_residuals L N T)
 
 /-- A strict first-cap point on a radius distinct from the retained frontier

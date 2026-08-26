@@ -448,6 +448,31 @@
     {
       "cluster": "TriApex",
       "evidence_note": "docs/audits/2026-08-22-f1-triapex-checkpoint4-review.md states that the twelve-witness five-survive/one-fail producer is kernel-checked while its geometric consumer remains mathematically open, and that v87 is a bounded-terminal classification rather than D1 closure.",
+      "factorization": {
+        "pinned": {
+          "legacy_wrapper_statement_sha256": "44a12c8bb75df8c1b2ed89533457b8834cf8c63e87a718be76911c8dd0962d0f",
+          "open_leaf_statement_sha256": "f88b7c480d6774a357b71f51a6d569d8608de6850a8b3452687546a0cf044872"
+        },
+        "roles": {
+          "coordinator": "Problem97.ATailFrontierLiveClosure.false_of_retainedInteriorDirectedOmission_triApexAllLargeContext",
+          "eliminator": "Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_triApexAllLarge_core",
+          "legacy_wrapper": "Problem97.ATailFrontierLiveClosure.false_of_retainedInteriorDirectedOmission_and_all_low_hits",
+          "open_leaf": "Problem97.ATailFrontierLiveClosure.false_of_pairedCommonDeletion_fiveSurviveOneFail_triApexAllLarge_core",
+          "producer": "Problem97.ATailFrontierLiveClosure.nonempty_retainedOmissionAllLargeNormalForm"
+        },
+        "schema": "p97-factorization/v2",
+        "transitive": [
+          {
+            "from": "eliminator",
+            "to": "open_leaf",
+            "via": [
+              "Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_pairedCommonDeletion_triApexAllLarge_core",
+              "Problem97.ATailFrontierLiveClosure.false_of_pairedCommonDeletion_apexClassJointDeletion_triApexAllLarge_core"
+            ]
+          }
+        ],
+        "verified_at_build": "c76a7b909fa4fd579187f4091b1f3e7d61b5ef199eafb25157aa0a0e612fb8a9"
+      },
       "id": "P97-TA-TRIAPEXALLLARGECORE",
       "implementation_effect": "branch-closer",
       "kind": "theorem",
@@ -480,7 +505,7 @@
           "producer": "Problem97.ATailFrontierLiveClosure.twoDeletionOutcome_of_ingress"
         },
         "schema": "p97-factorization/v2",
-        "verified_at_build": "4836034d7c65aff561b81e888f67fbaff80d8b0a18d0dfaad9d8e34e325c00c9"
+        "verified_at_build": "c76a7b909fa4fd579187f4091b1f3e7d61b5ef199eafb25157aa0a0e612fb8a9"
       },
       "id": "P97-TD-BLOCKERCOINCIDENCE",
       "implementation_effect": "bypass",
@@ -514,7 +539,7 @@
           "producer": "Problem97.ATailFrontierLiveClosure.twoDeletionOutcome_of_ingress"
         },
         "schema": "p97-factorization/v2",
-        "verified_at_build": "4836034d7c65aff561b81e888f67fbaff80d8b0a18d0dfaad9d8e34e325c00c9"
+        "verified_at_build": "c76a7b909fa4fd579187f4091b1f3e7d61b5ef199eafb25157aa0a0e612fb8a9"
       },
       "id": "P97-TD-GLOBALGAPORCLOSED",
       "implementation_effect": "bypass",
@@ -548,7 +573,7 @@
           "producer": "Problem97.ATailFrontierLiveClosure.twoDeletionOutcome_of_ingress"
         },
         "schema": "p97-factorization/v2",
-        "verified_at_build": "4836034d7c65aff561b81e888f67fbaff80d8b0a18d0dfaad9d8e34e325c00c9"
+        "verified_at_build": "c76a7b909fa4fd579187f4091b1f3e7d61b5ef199eafb25157aa0a0e612fb8a9"
       },
       "id": "P97-TD-SURVIVALSQUARE",
       "implementation_effect": "bypass",

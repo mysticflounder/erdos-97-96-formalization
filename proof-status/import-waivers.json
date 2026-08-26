@@ -7,7 +7,8 @@
     "Waivers are keyed on the (from, to) module pair, not on a line number, so an unrelated edit above the import does not stale a waiver.",
     "The parent coordinator module Erdos9796Proof.P97.ATail.FrontierLiveClosure is an aggregator: it re-exports the whole tree, so its imports of cluster modules are from-shared-to-cluster by the classification rule and are all waived as unassigned. They retire with whatever wave restructures the aggregator, not with a cluster untangling wave.",
     "planned_retirement values: W1b and W3 are the two recorded chains; 'unassigned' means no wave owns the edge yet.",
-    "W3-0d (2026-08-25): a retired waiver row is MOVED here, not deleted. Each retired_waivers row keeps the waiver as it stood (from, to, class, reason, planned_retirement) and adds retired_wave, retired_head -- the commit that removed the edge, bound to history by scripts/lint_cluster_imports.py -- and retired_by_wrapper, the Legacy wrapper the edge now runs through or null when the edge was simply deleted. The two lists are a closed world over proof-status/cluster-import-edges.json: every forbidden pair of the frozen record appears in exactly one of them, and a retired pair whose edge is present again in the live tree is a lint failure. The Rigid221Placement -> TwoDeletionCollision retirement is linked to Erdos9796Proof.P97.ATail.FrontierLiveClosure.Legacy.TwoDeletionWrappers in both directions, through waiver_pair in proof-status/legacy-import-exceptions.json and through retired_by_wrapper here."
+    "W3-0d (2026-08-25): a retired waiver row is MOVED here, not deleted. Each retired_waivers row keeps the waiver as it stood (from, to, class, reason, planned_retirement) and adds retired_wave, retired_head -- the commit that removed the edge, bound to history by scripts/lint_cluster_imports.py -- and retired_by_wrapper, the Legacy wrapper the edge now runs through or null when the edge was simply deleted. The two lists are a closed world over proof-status/cluster-import-edges.json: every forbidden pair of the frozen record appears in exactly one of them, and a retired pair whose edge is present again in the live tree is a lint failure. The Rigid221Placement -> TwoDeletionCollision retirement is linked to Erdos9796Proof.P97.ATail.FrontierLiveClosure.Legacy.TwoDeletionWrappers in both directions, through waiver_pair in proof-status/legacy-import-exceptions.json and through retired_by_wrapper here.",
+    "W3-TA (2026-08-25): the Erdos9796Proof.P97.ATail.FrontierLiveClosure.TriApexEndpointRetainedOmission -> Erdos9796Proof.P97.ATail.FrontierLiveClosure.Rigid221Closure waiver is retired. The tri-apex module consumes one Rigid221 declaration, false_of_originalFrontierUniqueRadiusArm, and now reaches it through Erdos9796Proof.P97.ATail.FrontierLiveClosure.Legacy.Rigid221Wrappers, which is named back through waiver_pair in proof-status/legacy-import-exceptions.json, so the retirement and the wrapper are linked in both directions. The retired_head 09434d78 recorded here is the HEAD this retirement was authored against, not the wave commit, which does not exist yet; the receipt-only child commit of the wave commit rebinds it to the wave commit."
   ],
   "retired_waivers": [
     {
@@ -29,24 +30,34 @@
       "retired_head": "2fb26644",
       "retired_wave": "W3",
       "to": "Erdos9796Proof.P97.ATail.FrontierLiveClosure.TwoDeletionCollision"
+    },
+    {
+      "class": "cross-cluster",
+      "from": "Erdos9796Proof.P97.ATail.FrontierLiveClosure.TriApexEndpointRetainedOmission",
+      "planned_retirement": "W3",
+      "reason": "pre-existing at base_head 222809b9",
+      "retired_by_wrapper": "Erdos9796Proof.P97.ATail.FrontierLiveClosure.Legacy.Rigid221Wrappers",
+      "retired_head": "09434d78",
+      "retired_wave": "W3",
+      "to": "Erdos9796Proof.P97.ATail.FrontierLiveClosure.Rigid221Closure"
     }
   ],
   "schema": "import-waivers/v2",
   "summary": {
     "by_class": {
-      "cross-cluster": 3,
+      "cross-cluster": 2,
       "from-shared-to-cluster": 25
     },
     "by_planned_retirement": {
-      "W3": 2,
+      "W3": 1,
       "unassigned": 26
     },
     "by_retired_wave": {
       "W1b": 1,
-      "W3": 1
+      "W3": 2
     },
-    "retired_waivers": 2,
-    "waivers": 28
+    "retired_waivers": 3,
+    "waivers": 27
   },
   "waivers": [
     {
@@ -204,12 +215,6 @@
       "planned_retirement": "unassigned",
       "reason": "pre-existing at base_head 222809b9",
       "to": "Erdos9796Proof.P97.ATail.FrontierLiveClosure.TriApexEndpointRetainedOmission"
-    },
-    {
-      "from": "Erdos9796Proof.P97.ATail.FrontierLiveClosure.TriApexEndpointRetainedOmission",
-      "planned_retirement": "W3",
-      "reason": "pre-existing at base_head 222809b9",
-      "to": "Erdos9796Proof.P97.ATail.FrontierLiveClosure.Rigid221Closure"
     },
     {
       "from": "Erdos9796Proof.P97.ATail.FrontierLiveClosure.TwoSourceCanonicalSurface",

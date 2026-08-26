@@ -301,6 +301,32 @@
   "P97-TA-TRIAPEXALLLARGECORE": {
     "cluster": "TriApex",
     "evidence_note": "docs/audits/2026-08-22-f1-triapex-checkpoint4-review.md states that the twelve-witness five-survive/one-fail producer is kernel-checked while its geometric consumer remains mathematically open, and that v87 is a bounded-terminal classification rather than D1 closure.",
+    "factorization": {
+      "note": "W3-TA: the tri-apex cluster coordinator. The producer nonempty_retainedOmissionAllLargeNormalForm builds the two-arm normal form from a retained interior directed omission and the large first cap with a kernel-clean case split; the eliminator false_of_retainedOmission_triApexAllLarge_core consumes that normal form and reaches the open leaf through the paired common-deletion and apex-class joint-deletion hops of the transitive row; the legacy wrapper false_of_retainedInteriorDirectedOmission_and_all_low_hits keeps its statement and reaches both through the coordinator.",
+      "obligation_id": "P97-TA-TRIAPEXALLLARGECORE",
+      "pinned": {
+        "legacy_wrapper_statement_sha256": "44a12c8bb75df8c1b2ed89533457b8834cf8c63e87a718be76911c8dd0962d0f",
+        "open_leaf_statement_sha256": "f88b7c480d6774a357b71f51a6d569d8608de6850a8b3452687546a0cf044872"
+      },
+      "roles": {
+        "coordinator": "Problem97.ATailFrontierLiveClosure.false_of_retainedInteriorDirectedOmission_triApexAllLargeContext",
+        "eliminator": "Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_triApexAllLarge_core",
+        "legacy_wrapper": "Problem97.ATailFrontierLiveClosure.false_of_retainedInteriorDirectedOmission_and_all_low_hits",
+        "open_leaf": "Problem97.ATailFrontierLiveClosure.false_of_pairedCommonDeletion_fiveSurviveOneFail_triApexAllLarge_core",
+        "producer": "Problem97.ATailFrontierLiveClosure.nonempty_retainedOmissionAllLargeNormalForm"
+      },
+      "schema": "p97-factorization/v2",
+      "transitive": [
+        {
+          "from": "eliminator",
+          "to": "open_leaf",
+          "via": [
+            "Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_pairedCommonDeletion_triApexAllLarge_core",
+            "Problem97.ATailFrontierLiveClosure.false_of_pairedCommonDeletion_apexClassJointDeletion_triApexAllLarge_core"
+          ]
+        }
+      ]
+    },
     "implementation_effect": "branch-closer",
     "latest_checkpoint": "docs/audits/2026-08-22-f1-triapex-checkpoint4-review.md",
     "legacy_labels": [
