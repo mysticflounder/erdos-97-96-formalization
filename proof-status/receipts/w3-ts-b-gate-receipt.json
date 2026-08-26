@@ -1,0 +1,572 @@
+{
+  "schema": "p97-gate-receipt/v1",
+  "wave": "W3-TS-b",
+  "state": "COMPLETE — pre-commit, working-tree hashes",
+  "generated_by": "W3-TS-b gate verifier (independent of the main session that applied the change). Every gate reproduced from source: the meta and registry diffs recomputed structurally from `git show HEAD:<path>`, all 27 block symbols re-resolved and both pinned digests recomputed from the live index, all 83 chain edges re-decided from `proof-blueprint search --uses`, all axiom closures re-read from `proof-blueprint axioms`, and all four registry checks re-run by this verifier. No author or main-session output was trusted.",
+  "generated_at_utc": "2026-08-26T07:50:12Z",
+  "git_head": "6cdb3fc0047abadd4a6f95aa9265a592e35a3510",
+  "git_head_short": "6cdb3fc0",
+  "head_note": "UNCOMMITTED; working-tree hashes. The change under gate is not committed: HEAD is 6cdb3fc0 (W3-0e receipt, child of 65a8952c) and the two edited files are dirty against it. content_bound_files and content_bound_files_working_tree therefore both hold working-tree sha256 values, taken at verification time and re-confirmed unchanged after the concurrent main-session check runs finished.",
+  "baseline_reference": "proof-status/baseline (axioms.txt = the `proof-blueprint axioms` export of Problem97.erdos97_rhs; the six names it records are propext, sorryAx, Classical.choice, Lean.ofReduceBool, Lean.trustCompiler, Quot.sound — both declared consumer_trust names are among them). Roster baselines: spine-sorry.json (28), offspine-sorry.json (6). refs-check.txt records the inherited 36 stale + 1 never-mined condition.",
+  "build_fingerprint": "33f2659d3428b288434253557166c4e28c9075d909ee46318276d713d955d34b",
+  "build_fingerprint_source": "proof-status/obligations.json — the verified_at_build of all ten materialized factorization blocks; short form 33f2659d3428 as printed by every check run's 'bound to:' line",
+  "claim_reference": "#7506 (authorization: Adam, option A of #7498); W3-0e checkpoint #7507",
+  "claim_scope": "registry bookkeeping: six P97-TS-* p97-factorization/v2 blocks with declared consumer-side trust that the publish target's recorded closure already carries, recorded per block and materialized onto the registry entries; no obligation, statement, axiom, import or Lean change; not a widening of ALLOWED_AXIOMS; no proof-progress or closure claim",
+  "promotion_claim": "none",
+  "source_gates_pass": true,
+  "source_gates_note": "Gates 0-8 all PASS. The strict-refs gate (`--require-fresh-refs`) was deliberately NOT run and is NOT counted: it is the inherited 36 stale + 1 never-mined condition recorded in proof-status/baseline/refs-check.txt, repaired only by `proof-blueprint refs --refresh`, which this wave and this verifier may not run.",
+  "overall_pass": true,
+  "overall_note": "All nine gates pass on the pre-commit working tree. The change adds one 'factorization' key to each of six obligations-meta.json entries and its materialized copy to the matching six obligations.json entries; nothing else in either file moved, and no Lean, script, waiver or id-assignment file changed. The producer path of every block is kernel clean with no opt-in; the declared consumer trust is carried on consumer-side hops only, both names are carried by at least one hop of every block, and all six open leaves carry only the three core axioms plus sorryAx.",
+  "blockers": [],
+  "gates": [
+    {
+      "name": "0 scope: only proof-status/obligations-meta.json, proof-status/obligations.json and registry-check receipts are attributable to this wave",
+      "line": "`git status --porcelain` vs scratchpad/w3-ts-b-status-before.txt differs by exactly ' M proof-status/obligations-meta.json', ' M proof-status/obligations.json' and eight untracked proof-status/receipts/registry-check-*.json: 20260826T072345Z, 072803Z, 073159Z, 073624Z (written by the MAIN SESSION, running its own plain/TD/TA/TS check series concurrently) and 20260826T072938Z, 073354Z, 073822Z, 074231Z (this verifier's four gate-4 runs; attribution by factorization.required_clusters and generated_at_utc against this verifier's own logs). `git diff --quiet HEAD -- proof-status/id-assignments.json proof-status/frontier-table.generated.md proof-status/import-waivers.json proof-status/legacy-import-exceptions.json scripts` EXIT=0, so the author's `generate` rewrote id-assignments.json and frontier-table.generated.md byte-identically. `git diff --cached --name-only` empty. `git diff --stat HEAD -- lean` is NOT empty and cannot be: it lists exactly the two PRE-EXISTING FOREIGN files, ' .../TwoSourceCanonicalSurface.lean | 28 ++++' and ' .../TwoSourceRetainedMinimalCore.lean | 8 +++---', 2 files changed, 33 insertions(+), 3 deletions(-). Both are byte-for-byte the diffs this gate pins: `git diff HEAD -- <file> | shasum -a 256` gives 4c4267daab681bb3f897385b41db745c174733461a27be172e2b8e9baca36b12 and 64711158044d921c6176cb4ca3059f68f92c64dcc08b014a7035abc55d309aaa, prefixes 4c4267daab681bb3 and 64711158044d921c as recorded. No Lean file was changed by this wave. proof-status/obligations-meta.json and obligations.json were byte-stable (sha256 3ba78a2028effc3f... and 37a9228ad9aab9ba...) across the whole verification, re-hashed after the concurrent main-session runs finished.",
+      "pass": true
+    },
+    {
+      "name": "1 meta diff: exactly six p97-factorization/v2 blocks added to obligations-meta.json, nothing else",
+      "line": "`git diff HEAD -- proof-status/obligations-meta.json` = 285 lines, 239 added lines, ZERO deleted lines. Structural jq diff of `git show HEAD:proof-status/obligations-meta.json` against the working tree: 34 top-level keys before and after, keys_added [] and keys_removed []; exactly six entries differ — P97-TS-ACYCLICHARDRESIDUAL, ALIGNEDRETAINED, COMMONRADIUS, CROSSBLOCKER, NONCANONICAL, OUTSIDEPAIRDELETION — and each differs ONLY by adding the key 'factorization' (added ['factorization'], removed [], modified []). Every block: schema 'p97-factorization/v2'; obligation_id == its own entry ID; consumer_trust exactly ['Lean.ofReduceBool', 'Lean.trustCompiler']; roles.legacy_wrapper == Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_two_exactFourInteriorTwo_distinctRadiusBlockerCollisions_and_all_low_hits in all six. Against the preserved W3-TS-a file scratchpad/w3-ts-author/authored-ts-factorization-blocks.json, `(block | del(.consumer_trust)) == (authored | del(.consumer_trust))` is TRUE for all six, and the authored file itself carries no consumer_trust key (authored keys: note, obligation_id, pinned, roles, schema, transitive) — so roles, transitive, pinned and note are unchanged and consumer_trust is the only addition. Serialization preserved: json.dumps(indent=2, ensure_ascii=False, sort_keys=True)+'\\n' round-trips byte-identically, exactly one trailing newline, no CRLF.",
+      "pass": true
+    },
+    {
+      "name": "2 registry diff: exactly the six materialized blocks on obligations.json, no restamp, no other key",
+      "line": "`git diff HEAD -- proof-status/obligations.json` = 279 lines, 233 added lines, ZERO deleted lines. Top-level keys identical (generated_by, meta_source, obligations, prose_status_vocabulary, publish_target, schema, source_head) and every non-'obligations' top key byte-equal to HEAD. obligations array: 34 entries before and after, `[$H[].id] == [$W[].id]` TRUE (order preserved); exactly the same six IDs differ, each by keys_added ['factorization'], keys_removed [], keys_modified []. Each materialized block has keys exactly [consumer_trust, pinned, roles, schema, transitive, verified_at_build] — obligation_id ABSENT, note ABSENT — schema 'p97-factorization/v2', consumer_trust ['Lean.ofReduceBool','Lean.trustCompiler'] (already sorted), transitive already sorted and content-equal to the reviewed block, roles and pinned equal to the reviewed block, verified_at_build '33f2659d3428b288434253557166c4e28c9075d909ee46318276d713d955d34b'. The four pre-existing blocks (P97-TA-TRIAPEXALLLARGECORE, P97-TD-BLOCKERCOINCIDENCE, P97-TD-GLOBALGAPORCLOSED, P97-TD-SURVIVALSQUARE) are absent from the changed set entirely and their verified_at_build is the same single value 33f2659d3428b288... at HEAD and in the working tree — no restamp.",
+      "pass": true
+    },
+    {
+      "name": "3 per-block verification of all six blocks against the live index and call graph",
+      "line": "27 distinct symbols across the six blocks (5 roles + all via hops). (a)+(b) `cd lean && proof-blueprint search --name <FQ> --json --all --private`, filtered to an exact symbol match, returns exactly ONE record with private==false for all 27; every block's five roles are distinct; no via hop equals any of its block's five roles and no via is repeated within a row. (c) 83 chain edges checked in total (9 ACYCLICHARDRESIDUAL, 19 ALIGNEDRETAINED, 19 COMMONRADIUS, 6 CROSSBLOCKER, 18 NONCANONICAL, 12 OUTSIDEPAIRDELETION), each decided by `proof-blueprint search --uses <callee>` containing the caller; every consecutive hop of each transitive row and every remaining direct edge holds — ZERO failures. (d) both pinned digests recomputed independently per README 'Statement digest' (sha256 of ' '.join(signature.split()), UTF-8, lowercase hex) and equal to the block for all six: legacy_wrapper 8d99392864b2b0adf8f200b2816c06a2fb60d8956a2b583ad97fdf1f5019af2e in all six; open_leaf a38e490a..., b4b745ba..., 7373753b..., 16d3fc22..., 7729434c..., 2af348f3... . (e) each open_leaf equals its registry entry's lean_decl and has_sorry==true. (f) `proof-blueprint axioms` on the three producers — collisionRows_sourceCleanMultiplicityIngress, freshThird_acyclic_canonical_consumerPacket, firstFiberOutsidePair_exactRows_or_crossedThreeRows — each reports exactly (3): propext, Classical.choice, Quot.sound; NO block declares a coordinator->producer transitive row, so the producer path is those three symbols alone and is CLEAN. (g) exactly eight consumer-side symbols carry the native pair, and they are precisely the prefix of the chain from the legacy wrapper down to false_of_twoCapSources_freshOutsideFirstBlockerFiber_acyclicIngress_frame: false_of_two_exactFourInteriorTwo_distinctRadiusBlockerCollisions_and_all_low_hits, exists_three_hit_of_two_exactFourInteriorTwo_distinctRadiusBlockerCollisions, exists_three_hit_of_two_collisionRows_capCross_normalForm, exists_three_hit_or_collision_crossHit_of_two_sourceExactCollisionRows, false_of_twoCollisionGlobalSplit, false_of_capSourceThirdCanonicalRowSurface, false_of_twoCapSources_freshOutsideFirstBlockerFiber_viaAcyclicIngress, false_of_twoCapSources_freshOutsideFirstBlockerFiber_acyclicIngress_frame. Every block has at least one consumer-side hop carrying BOTH declared names, so neither declaration is unused. No consumer-side hop of any block carries an axiom outside {propext, Classical.choice, Quot.sound, Lean.ofReduceBool, Lean.trustCompiler, sorryAx}. All six open leaves report exactly (4): propext, sorryAx, Classical.choice, Quot.sound — core three plus sorryAx, no native pair. Both declared names appear in proof-status/baseline/axioms.txt (the recorded `#print axioms Problem97.erdos97_rhs` export, 6 names). (h) `proof-blueprint axioms Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.twoCapSourcesSixCenterSourceProvenanceFixedTripleAuditBoundary_of_boundary` reports (5): propext, Classical.choice, Lean.ofReduceBool, Lean.trustCompiler, Quot.sound; the declaration is at lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceClosure.lean:2378 and its proof body applies `B.exists_u3ExactRadiusAuditObstruction hcard` in both Or arms. Its ONLY theorem callee per `proof-blueprint search --used-by` is Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.SixSurvivorExactRowsBoundary.exists_u3ExactRadiusAuditObstruction (TwoSourceClosure.lean:1281), which reports the same (5) with the native pair; two clean callees of the same theorem — the abbrev SixSurvivorU3ExactRadiusAuditObstruction (:1241) and Problem97.CriticalShellSystem.centerAt — each report exactly (3) core axioms, so the pair enters on the U3 route and not through the surrounding structure. `git diff --quiet HEAD -- lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceClosure.lean` EXIT=0: the entry point is inherited at HEAD, untouched by this wave.",
+      "pass": true
+    },
+    {
+      "name": "4 registry checks (live, this verifier's own runs)",
+      "line": "All four exit 0. Plain `uv run python scripts/gen_obligation_registry.py check --baseline proof-status/baseline`: 'OK: .../proof-status/obligations.json matches the live spine (28 reachable, 6 off-spine); 34/34 reviewed meta_status, vocabulary clean' / '  factorized 10/28 reachable leaves (6 with declared consumer_trust (Lean.ofReduceBool, Lean.trustCompiler))' / '  bound to: HEAD 6cdb3fc0047abadd4a6f95aa9265a592e35a3510, build 33f2659d3428, roster sources dirty' — receipt registry-check-20260826T072938Z.json. `--require-factorized TD` exit 0 (receipt 073354Z), `--require-factorized TA` exit 0 (receipt 073822Z), `--require-factorized TS` exit 0 (receipt 074231Z), TS census line: '  factorized 10/28 reachable leaves (required: TS; 6 with declared consumer_trust (Lean.ofReduceBool, Lean.trustCompiler))'. The TS receipt's factorization section: build_id 33f2659d3428b288434253557166c4e28c9075d909ee46318276d713d955d34b, checked 10, verified 10, missing 18, declared_trust {'blocks': 6, 'axioms': ['Lean.ofReduceBool','Lean.trustCompiler']}, required_clusters ['TS'], registry_drift [], violations [], v1_warnings 0, schema_versions {'p97-factorization/v2': 10}; verdict 'pass', exit_code 0, require_fresh_refs false. `--require-fresh-refs` deliberately NOT run.",
+      "pass": true
+    },
+    {
+      "name": "5 tests + lint",
+      "line": "`uv run python -m pytest -q scripts/test_gen_obligation_registry_factorization.py scripts/test_lint_cluster_imports_legacy.py` -> '151 passed in 6.48s', exit 0. `uv run python scripts/lint_cluster_imports.py` -> 'lint_cluster_imports: OK -- 691 import edges scanned, 27 forbidden edges, all waived by 27 authenticated waivers; 3 retired; 5 legacy edges, all listed.', exit 0.",
+      "pass": true
+    },
+    {
+      "name": "6 obligation roster and publish-target axiom closure unchanged (no build)",
+      "line": "`cd lean && proof-blueprint search --with-sorry --spine --json --all --private --no-refresh` returns 28 records; the symbol set is set-equal to proof-status/baseline/spine-sorry.json (28 records) — `diff` of the two sorted symbol lists is empty. `--off-spine` returns 6 records, set-equal to proof-status/baseline/offspine-sorry.json (6 records) — diff empty. `cd lean && proof-blueprint axioms Problem97.erdos97_rhs` vs proof-status/baseline/axioms.txt: `diff` EXIT=0, byte-identical (6 names: propext, sorryAx, Classical.choice, Lean.ofReduceBool, Lean.trustCompiler, Quot.sound). No lake, lean or build was run; no `proof-blueprint refs --refresh`.",
+      "pass": true
+    },
+    {
+      "name": "7 hygiene: whitespace, newline, note wording",
+      "line": "`git diff --check HEAD -- proof-status/obligations-meta.json proof-status/obligations.json` EXIT=0, no output. Both files end in exactly one '\\n' (tail -c 1 | od -c gives '\\n'; no CRLF anywhere). The six notes were extracted with jq and scanned case-insensitively: no hit for 'equivalent', 'equivalence' or 'logically the same' (grep exit 1), and no hit for proof-progress wording ('proven', 'closed the', 'closure achieved', 'discharged', 'solves', 'resolves the problem', 'milestone', 'complete proof', 'breakthrough'; grep exit 1). The notes describe role structure and routing only.",
+      "pass": true
+    },
+    {
+      "name": "8 ROI recomputed from source (report-only)",
+      "line": "Before: `git show HEAD:proof-status/obligations.json` carries exactly FOUR factorization blocks — P97-TA-TRIAPEXALLLARGECORE, P97-TD-BLOCKERCOINCIDENCE, P97-TD-GLOBALGAPORCLOSED, P97-TD-SURVIVALSQUARE — and the HEAD-era check receipt registry-check-20260826T071540Z.json records checked 4, verified 4, missing 24, declared_trust {'blocks': 0, 'axioms': []}. After: TEN blocks, and receipt registry-check-20260826T074231Z.json records checked 10, verified 10, missing 18, declared_trust {'blocks': 6, 'axioms': ['Lean.ofReduceBool','Lean.trustCompiler']}. So factorized 4/28 -> 10/28 and 0 -> 6 blocks with declared trust. The P97-TS-CROSSBLOCKER eliminator Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCollisionGlobalSplit now appears in obligations.json as that entry's materialized eliminator role. Its docstring at lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceAlignedLowHits.lean:249-260 states it 'is the sole consumer of the cap-source surface eliminator and of the cross-blocker coincidence leaf, which is the eliminator role a cluster factorization for `P97-TS-CROSSBLOCKER` needs, and the collision-row coordinator below now delegates its whole residual branch here.' That statement is STILL ACCURATE per the live call graph: `proof-blueprint search --uses false_of_capSourceThirdCanonicalRowSurface` returns exactly one caller, false_of_twoCollisionGlobalSplit; `--uses false_of_crossBlockerCoincidence` returns exactly one caller, false_of_twoCollisionGlobalSplit; and `--uses false_of_twoCollisionGlobalSplit` returns exactly one caller, the collision-row coordinator exists_three_hit_or_collision_crossHit_of_two_sourceExactCollisionRows. No edit was made to that file or docstring (`git diff --quiet HEAD -- .../TwoSourceAlignedLowHits.lean` EXIT=0).",
+      "pass": true
+    }
+  ],
+  "roi": {
+    "factorized_live_before": "4/28 reachable leaves; 0 blocks with declared consumer_trust. Recomputed from HEAD: `git show HEAD:proof-status/obligations.json` carries exactly four factorization blocks (P97-TA-TRIAPEXALLLARGECORE, P97-TD-BLOCKERCOINCIDENCE, P97-TD-GLOBALGAPORCLOSED, P97-TD-SURVIVALSQUARE); HEAD-era receipt registry-check-20260826T071540Z.json records checked 4, verified 4, missing 24, declared_trust {'blocks': 0, 'axioms': []}.",
+    "factorized_live_after": "10/28 reachable leaves; 6 blocks with declared consumer_trust (Lean.ofReduceBool, Lean.trustCompiler). This verifier's receipt registry-check-20260826T074231Z.json records checked 10, verified 10, missing 18, registry_drift [], violations [], v1_warnings 0.",
+    "declared_names": [
+      "Lean.ofReduceBool",
+      "Lean.trustCompiler"
+    ],
+    "declared_names_precondition": "Both names appear in proof-status/baseline/axioms.txt, the publish target's recorded closure; neither is sorryAx and neither is in ALLOWED_AXIOMS (propext, Classical.choice, Quot.sound).",
+    "native_pair_entry_point": "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceClosure.lean:2378, theorem twoCapSourcesSixCenterSourceProvenanceFixedTripleAuditBoundary_of_boundary, whose only theorem callee is SixSurvivorExactRowsBoundary.exists_u3ExactRadiusAuditObstruction (TwoSourceClosure.lean:1281). Both carry the pair; the abbrev SixSurvivorU3ExactRadiusAuditObstruction and Problem97.CriticalShellSystem.centerAt, two clean callees of the same theorem, do not. Inherited at HEAD, untouched by this wave.",
+    "per_block": [
+      {
+        "obligation_id": "P97-TS-ACYCLICHARDRESIDUAL",
+        "roles": {
+          "coordinator": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_freshOutsideFirstBlockerFiber_viaAcyclicIngress",
+          "eliminator": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_freshOutsideFirstBlockerFiber_acyclicIngress_frame",
+          "legacy_wrapper": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_two_exactFourInteriorTwo_distinctRadiusBlockerCollisions_and_all_low_hits",
+          "open_leaf": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_freshOutsideFirstBlockerFiber_acyclicHardResidual",
+          "producer": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.freshThird_acyclic_canonical_consumerPacket"
+        },
+        "roles_distinct_public_single_record": true,
+        "via_hops": 5,
+        "via_hops_public_single_record_and_disjoint_from_roles": true,
+        "chain_edges_checked": 9,
+        "chain_edges_all_hold": true,
+        "producer_path": [
+          "freshThird_acyclic_canonical_consumerPacket"
+        ],
+        "producer_path_axiom_closure": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "producer_path_clean": true,
+        "consumer_hops": 8,
+        "consumer_hops_carrying_native_pair": [
+          "exists_three_hit_of_two_collisionRows_capCross_normalForm",
+          "exists_three_hit_of_two_exactFourInteriorTwo_distinctRadiusBlockerCollisions",
+          "exists_three_hit_or_collision_crossHit_of_two_sourceExactCollisionRows",
+          "false_of_capSourceThirdCanonicalRowSurface",
+          "false_of_twoCapSources_freshOutsideFirstBlockerFiber_acyclicIngress_frame",
+          "false_of_twoCapSources_freshOutsideFirstBlockerFiber_viaAcyclicIngress",
+          "false_of_twoCollisionGlobalSplit",
+          "false_of_two_exactFourInteriorTwo_distinctRadiusBlockerCollisions_and_all_low_hits"
+        ],
+        "consumer_hops_clean_of_native_pair": [],
+        "at_least_one_consumer_hop_carries_both_declared_names": true,
+        "consumer_hops_carrying_a_forbidden_axiom": {},
+        "open_leaf": "false_of_twoCapSources_freshOutsideFirstBlockerFiber_acyclicHardResidual",
+        "open_leaf_location": "Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceClosure.lean:3422",
+        "open_leaf_is_registry_lean_decl": true,
+        "open_leaf_has_sorry": true,
+        "open_leaf_axiom_closure": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext",
+          "sorryAx"
+        ],
+        "digests_recomputed_ok": {
+          "legacy_wrapper_statement_sha256": true,
+          "open_leaf_statement_sha256": true,
+          "recomputed_legacy_wrapper": "8d99392864b2b0adf8f200b2816c06a2fb60d8956a2b583ad97fdf1f5019af2e",
+          "recomputed_open_leaf": "a38e490a6bb7739dd2808d9ff28708f97cac8b2cdee96c49cfcab10ca4820030"
+        }
+      },
+      {
+        "obligation_id": "P97-TS-ALIGNEDRETAINED",
+        "roles": {
+          "coordinator": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_freshThirdBlockerFiber_normalized_residual",
+          "eliminator": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_freshThird_firstNonHit_frame",
+          "legacy_wrapper": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_two_exactFourInteriorTwo_distinctRadiusBlockerCollisions_and_all_low_hits",
+          "open_leaf": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_freshThird_firstNonHit_alignedRetained",
+          "producer": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.freshThird_acyclic_canonical_consumerPacket"
+        },
+        "roles_distinct_public_single_record": true,
+        "via_hops": 15,
+        "via_hops_public_single_record_and_disjoint_from_roles": true,
+        "chain_edges_checked": 19,
+        "chain_edges_all_hold": true,
+        "producer_path": [
+          "freshThird_acyclic_canonical_consumerPacket"
+        ],
+        "producer_path_axiom_closure": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "producer_path_clean": true,
+        "consumer_hops": 18,
+        "consumer_hops_carrying_native_pair": [
+          "exists_three_hit_of_two_collisionRows_capCross_normalForm",
+          "exists_three_hit_of_two_exactFourInteriorTwo_distinctRadiusBlockerCollisions",
+          "exists_three_hit_or_collision_crossHit_of_two_sourceExactCollisionRows",
+          "false_of_capSourceThirdCanonicalRowSurface",
+          "false_of_twoCapSources_freshOutsideFirstBlockerFiber_acyclicIngress_frame",
+          "false_of_twoCapSources_freshOutsideFirstBlockerFiber_viaAcyclicIngress",
+          "false_of_twoCollisionGlobalSplit",
+          "false_of_two_exactFourInteriorTwo_distinctRadiusBlockerCollisions_and_all_low_hits"
+        ],
+        "consumer_hops_clean_of_native_pair": [
+          "false_of_capSource_firstFiber_collisionFiveCenterDeletion",
+          "false_of_capSource_firstFiber_crossedSeventhBlockerFaithfulResidual_frame",
+          "false_of_capSource_firstFiber_crossedThreeRowExactSupports_frame",
+          "false_of_capSource_freshThirdBlockerFiber_normalizedOnly",
+          "false_of_freshCanonicalRowOverride",
+          "false_of_freshThird_firstNonHit_frame",
+          "false_of_twoCapSources_commonRadius_mutualCrossMembership_frame",
+          "false_of_twoCapSources_freshThirdBlockerFiber_normalized_remaining",
+          "false_of_twoCapSources_freshThirdBlockerFiber_normalized_residual",
+          "false_of_twoCapSources_sameBlockerAllEndpointOmission"
+        ],
+        "at_least_one_consumer_hop_carries_both_declared_names": true,
+        "consumer_hops_carrying_a_forbidden_axiom": {},
+        "open_leaf": "false_of_freshThird_firstNonHit_alignedRetained",
+        "open_leaf_location": "Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:3079",
+        "open_leaf_is_registry_lean_decl": true,
+        "open_leaf_has_sorry": true,
+        "open_leaf_axiom_closure": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext",
+          "sorryAx"
+        ],
+        "digests_recomputed_ok": {
+          "legacy_wrapper_statement_sha256": true,
+          "open_leaf_statement_sha256": true,
+          "recomputed_legacy_wrapper": "8d99392864b2b0adf8f200b2816c06a2fb60d8956a2b583ad97fdf1f5019af2e",
+          "recomputed_open_leaf": "b4b745bac83ff2c7af315c28e677dead19a43de41b75f5f74337b181c59d4d83"
+        }
+      },
+      {
+        "obligation_id": "P97-TS-COMMONRADIUS",
+        "roles": {
+          "coordinator": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_freshThirdBlockerFiber_normalized_residual",
+          "eliminator": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_freshThird_firstNonHit_frame",
+          "legacy_wrapper": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_two_exactFourInteriorTwo_distinctRadiusBlockerCollisions_and_all_low_hits",
+          "open_leaf": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_freshThird_firstNonHit_commonRadius",
+          "producer": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.freshThird_acyclic_canonical_consumerPacket"
+        },
+        "roles_distinct_public_single_record": true,
+        "via_hops": 15,
+        "via_hops_public_single_record_and_disjoint_from_roles": true,
+        "chain_edges_checked": 19,
+        "chain_edges_all_hold": true,
+        "producer_path": [
+          "freshThird_acyclic_canonical_consumerPacket"
+        ],
+        "producer_path_axiom_closure": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "producer_path_clean": true,
+        "consumer_hops": 18,
+        "consumer_hops_carrying_native_pair": [
+          "exists_three_hit_of_two_collisionRows_capCross_normalForm",
+          "exists_three_hit_of_two_exactFourInteriorTwo_distinctRadiusBlockerCollisions",
+          "exists_three_hit_or_collision_crossHit_of_two_sourceExactCollisionRows",
+          "false_of_capSourceThirdCanonicalRowSurface",
+          "false_of_twoCapSources_freshOutsideFirstBlockerFiber_acyclicIngress_frame",
+          "false_of_twoCapSources_freshOutsideFirstBlockerFiber_viaAcyclicIngress",
+          "false_of_twoCollisionGlobalSplit",
+          "false_of_two_exactFourInteriorTwo_distinctRadiusBlockerCollisions_and_all_low_hits"
+        ],
+        "consumer_hops_clean_of_native_pair": [
+          "false_of_capSource_firstFiber_collisionFiveCenterDeletion",
+          "false_of_capSource_firstFiber_crossedSeventhBlockerFaithfulResidual_frame",
+          "false_of_capSource_firstFiber_crossedThreeRowExactSupports_frame",
+          "false_of_capSource_freshThirdBlockerFiber_normalizedOnly",
+          "false_of_freshCanonicalRowOverride",
+          "false_of_freshThird_firstNonHit_frame",
+          "false_of_twoCapSources_commonRadius_mutualCrossMembership_frame",
+          "false_of_twoCapSources_freshThirdBlockerFiber_normalized_remaining",
+          "false_of_twoCapSources_freshThirdBlockerFiber_normalized_residual",
+          "false_of_twoCapSources_sameBlockerAllEndpointOmission"
+        ],
+        "at_least_one_consumer_hop_carries_both_declared_names": true,
+        "consumer_hops_carrying_a_forbidden_axiom": {},
+        "open_leaf": "false_of_freshThird_firstNonHit_commonRadius",
+        "open_leaf_location": "Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:3097",
+        "open_leaf_is_registry_lean_decl": true,
+        "open_leaf_has_sorry": true,
+        "open_leaf_axiom_closure": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext",
+          "sorryAx"
+        ],
+        "digests_recomputed_ok": {
+          "legacy_wrapper_statement_sha256": true,
+          "open_leaf_statement_sha256": true,
+          "recomputed_legacy_wrapper": "8d99392864b2b0adf8f200b2816c06a2fb60d8956a2b583ad97fdf1f5019af2e",
+          "recomputed_open_leaf": "7373753b491176636cfccce51b3d20369ce014efe03a47dde9561e612b9cfd10"
+        }
+      },
+      {
+        "obligation_id": "P97-TS-CROSSBLOCKER",
+        "roles": {
+          "coordinator": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.exists_three_hit_or_collision_crossHit_of_two_sourceExactCollisionRows",
+          "eliminator": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCollisionGlobalSplit",
+          "legacy_wrapper": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_two_exactFourInteriorTwo_distinctRadiusBlockerCollisions_and_all_low_hits",
+          "open_leaf": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_crossBlockerCoincidence",
+          "producer": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.collisionRows_sourceCleanMultiplicityIngress"
+        },
+        "roles_distinct_public_single_record": true,
+        "via_hops": 2,
+        "via_hops_public_single_record_and_disjoint_from_roles": true,
+        "chain_edges_checked": 6,
+        "chain_edges_all_hold": true,
+        "producer_path": [
+          "collisionRows_sourceCleanMultiplicityIngress"
+        ],
+        "producer_path_axiom_closure": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "producer_path_clean": true,
+        "consumer_hops": 5,
+        "consumer_hops_carrying_native_pair": [
+          "exists_three_hit_of_two_collisionRows_capCross_normalForm",
+          "exists_three_hit_of_two_exactFourInteriorTwo_distinctRadiusBlockerCollisions",
+          "exists_three_hit_or_collision_crossHit_of_two_sourceExactCollisionRows",
+          "false_of_twoCollisionGlobalSplit",
+          "false_of_two_exactFourInteriorTwo_distinctRadiusBlockerCollisions_and_all_low_hits"
+        ],
+        "consumer_hops_clean_of_native_pair": [],
+        "at_least_one_consumer_hop_carries_both_declared_names": true,
+        "consumer_hops_carrying_a_forbidden_axiom": {},
+        "open_leaf": "false_of_crossBlockerCoincidence",
+        "open_leaf_location": "Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceCanonicalSurface.lean:132",
+        "open_leaf_is_registry_lean_decl": true,
+        "open_leaf_has_sorry": true,
+        "open_leaf_axiom_closure": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext",
+          "sorryAx"
+        ],
+        "digests_recomputed_ok": {
+          "legacy_wrapper_statement_sha256": true,
+          "open_leaf_statement_sha256": true,
+          "recomputed_legacy_wrapper": "8d99392864b2b0adf8f200b2816c06a2fb60d8956a2b583ad97fdf1f5019af2e",
+          "recomputed_open_leaf": "16d3fc229b8e88a56007e4df22410d112793536aa331218815dbb5a441f3d90d"
+        }
+      },
+      {
+        "obligation_id": "P97-TS-NONCANONICAL",
+        "roles": {
+          "coordinator": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_freshThirdBlockerFiber_normalized_residual",
+          "eliminator": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_freshThirdBlockerFiber_normalized_remaining",
+          "legacy_wrapper": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_two_exactFourInteriorTwo_distinctRadiusBlockerCollisions_and_all_low_hits",
+          "open_leaf": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_freshThirdEqualCenter_noncanonicalInteractions",
+          "producer": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.freshThird_acyclic_canonical_consumerPacket"
+        },
+        "roles_distinct_public_single_record": true,
+        "via_hops": 14,
+        "via_hops_public_single_record_and_disjoint_from_roles": true,
+        "chain_edges_checked": 18,
+        "chain_edges_all_hold": true,
+        "producer_path": [
+          "freshThird_acyclic_canonical_consumerPacket"
+        ],
+        "producer_path_axiom_closure": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "producer_path_clean": true,
+        "consumer_hops": 17,
+        "consumer_hops_carrying_native_pair": [
+          "exists_three_hit_of_two_collisionRows_capCross_normalForm",
+          "exists_three_hit_of_two_exactFourInteriorTwo_distinctRadiusBlockerCollisions",
+          "exists_three_hit_or_collision_crossHit_of_two_sourceExactCollisionRows",
+          "false_of_capSourceThirdCanonicalRowSurface",
+          "false_of_twoCapSources_freshOutsideFirstBlockerFiber_acyclicIngress_frame",
+          "false_of_twoCapSources_freshOutsideFirstBlockerFiber_viaAcyclicIngress",
+          "false_of_twoCollisionGlobalSplit",
+          "false_of_two_exactFourInteriorTwo_distinctRadiusBlockerCollisions_and_all_low_hits"
+        ],
+        "consumer_hops_clean_of_native_pair": [
+          "false_of_capSource_firstFiber_collisionFiveCenterDeletion",
+          "false_of_capSource_firstFiber_crossedSeventhBlockerFaithfulResidual_frame",
+          "false_of_capSource_firstFiber_crossedThreeRowExactSupports_frame",
+          "false_of_capSource_freshThirdBlockerFiber_normalizedOnly",
+          "false_of_freshCanonicalRowOverride",
+          "false_of_twoCapSources_commonRadius_mutualCrossMembership_frame",
+          "false_of_twoCapSources_freshThirdBlockerFiber_normalized_remaining",
+          "false_of_twoCapSources_freshThirdBlockerFiber_normalized_residual",
+          "false_of_twoCapSources_sameBlockerAllEndpointOmission"
+        ],
+        "at_least_one_consumer_hop_carries_both_declared_names": true,
+        "consumer_hops_carrying_a_forbidden_axiom": {},
+        "open_leaf": "false_of_freshThirdEqualCenter_noncanonicalInteractions",
+        "open_leaf_location": "Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:3347",
+        "open_leaf_is_registry_lean_decl": true,
+        "open_leaf_has_sorry": true,
+        "open_leaf_axiom_closure": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext",
+          "sorryAx"
+        ],
+        "digests_recomputed_ok": {
+          "legacy_wrapper_statement_sha256": true,
+          "open_leaf_statement_sha256": true,
+          "recomputed_legacy_wrapper": "8d99392864b2b0adf8f200b2816c06a2fb60d8956a2b583ad97fdf1f5019af2e",
+          "recomputed_open_leaf": "7729434c66d86ad3ae25cd908d0c9a76af22265d26998a8fbb81f92ce28195ea"
+        }
+      },
+      {
+        "obligation_id": "P97-TS-OUTSIDEPAIRDELETION",
+        "roles": {
+          "coordinator": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_sameBlockerAllEndpointOmission",
+          "eliminator": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_capSource_firstFiber_collisionFiveCenterDeletion",
+          "legacy_wrapper": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_two_exactFourInteriorTwo_distinctRadiusBlockerCollisions_and_all_low_hits",
+          "open_leaf": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_capSource_firstFiber_outsidePairDeletionExactRows",
+          "producer": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.firstFiberOutsidePair_exactRows_or_crossedThreeRows"
+        },
+        "roles_distinct_public_single_record": true,
+        "via_hops": 8,
+        "via_hops_public_single_record_and_disjoint_from_roles": true,
+        "chain_edges_checked": 12,
+        "chain_edges_all_hold": true,
+        "producer_path": [
+          "firstFiberOutsidePair_exactRows_or_crossedThreeRows"
+        ],
+        "producer_path_axiom_closure": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "producer_path_clean": true,
+        "consumer_hops": 11,
+        "consumer_hops_carrying_native_pair": [
+          "exists_three_hit_of_two_collisionRows_capCross_normalForm",
+          "exists_three_hit_of_two_exactFourInteriorTwo_distinctRadiusBlockerCollisions",
+          "exists_three_hit_or_collision_crossHit_of_two_sourceExactCollisionRows",
+          "false_of_capSourceThirdCanonicalRowSurface",
+          "false_of_twoCapSources_freshOutsideFirstBlockerFiber_acyclicIngress_frame",
+          "false_of_twoCapSources_freshOutsideFirstBlockerFiber_viaAcyclicIngress",
+          "false_of_twoCollisionGlobalSplit",
+          "false_of_two_exactFourInteriorTwo_distinctRadiusBlockerCollisions_and_all_low_hits"
+        ],
+        "consumer_hops_clean_of_native_pair": [
+          "false_of_capSource_firstFiber_collisionFiveCenterDeletion",
+          "false_of_twoCapSources_commonRadius_mutualCrossMembership_frame",
+          "false_of_twoCapSources_sameBlockerAllEndpointOmission"
+        ],
+        "at_least_one_consumer_hop_carries_both_declared_names": true,
+        "consumer_hops_carrying_a_forbidden_axiom": {},
+        "open_leaf": "false_of_capSource_firstFiber_outsidePairDeletionExactRows",
+        "open_leaf_location": "Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFirstFiberCollision.lean:2651",
+        "open_leaf_is_registry_lean_decl": true,
+        "open_leaf_has_sorry": true,
+        "open_leaf_axiom_closure": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext",
+          "sorryAx"
+        ],
+        "digests_recomputed_ok": {
+          "legacy_wrapper_statement_sha256": true,
+          "open_leaf_statement_sha256": true,
+          "recomputed_legacy_wrapper": "8d99392864b2b0adf8f200b2816c06a2fb60d8956a2b583ad97fdf1f5019af2e",
+          "recomputed_open_leaf": "2af348f3818edb84934e68c1fca8d5c444c1b168fb8fb45fef6289829ee2e9a1"
+        }
+      }
+    ],
+    "crossblocker_eliminator_docstring_review": {
+      "symbol": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCollisionGlobalSplit",
+      "location": "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceAlignedLowHits.lean:249-260 (docstring), theorem at :261",
+      "registry_entry_now_present": "yes — materialized as the eliminator role of P97-TS-CROSSBLOCKER in proof-status/obligations.json",
+      "sole_consumer_statement_still_accurate": true,
+      "evidence": "`proof-blueprint search --uses false_of_capSourceThirdCanonicalRowSurface` -> exactly one caller: false_of_twoCollisionGlobalSplit. `--uses false_of_crossBlockerCoincidence` -> exactly one caller: false_of_twoCollisionGlobalSplit. `--uses false_of_twoCollisionGlobalSplit` -> exactly one caller: exists_three_hit_or_collision_crossHit_of_two_sourceExactCollisionRows, the collision-row coordinator, matching the docstring's 'delegates its whole residual branch here'.",
+      "action": "report only; no edit made"
+    }
+  },
+  "tests": [
+    {
+      "command": "uv run python -m pytest -q scripts/test_gen_obligation_registry_factorization.py scripts/test_lint_cluster_imports_legacy.py",
+      "exit_code": 0,
+      "final_line": "151 passed in 6.48s",
+      "total_passed": 151,
+      "failed": 0,
+      "run_by": "this verifier, from the repository root"
+    },
+    {
+      "command": "uv run python scripts/lint_cluster_imports.py",
+      "exit_code": 0,
+      "final_line": "lint_cluster_imports: OK -- 691 import edges scanned, 27 forbidden edges, all waived by 27 authenticated waivers; 3 retired; 5 legacy edges, all listed.",
+      "total_passed": null,
+      "failed": 0,
+      "run_by": "this verifier, from the repository root"
+    },
+    {
+      "command": "uv run python scripts/gen_obligation_registry.py check --baseline proof-status/baseline",
+      "exit_code": 0,
+      "final_line": "factorized 10/28 reachable leaves (6 with declared consumer_trust (Lean.ofReduceBool, Lean.trustCompiler))",
+      "total_passed": null,
+      "failed": 0,
+      "run_by": "this verifier; receipt registry-check-20260826T072938Z.json"
+    },
+    {
+      "command": "uv run python scripts/gen_obligation_registry.py check --baseline proof-status/baseline --require-factorized TD",
+      "exit_code": 0,
+      "final_line": "factorized 10/28 reachable leaves (required: TD; 6 with declared consumer_trust (Lean.ofReduceBool, Lean.trustCompiler))",
+      "total_passed": null,
+      "failed": 0,
+      "run_by": "this verifier; receipt registry-check-20260826T073354Z.json"
+    },
+    {
+      "command": "uv run python scripts/gen_obligation_registry.py check --baseline proof-status/baseline --require-factorized TA",
+      "exit_code": 0,
+      "final_line": "factorized 10/28 reachable leaves (required: TA; 6 with declared consumer_trust (Lean.ofReduceBool, Lean.trustCompiler))",
+      "total_passed": null,
+      "failed": 0,
+      "run_by": "this verifier; receipt registry-check-20260826T073822Z.json"
+    },
+    {
+      "command": "uv run python scripts/gen_obligation_registry.py check --baseline proof-status/baseline --require-factorized TS",
+      "exit_code": 0,
+      "final_line": "factorized 10/28 reachable leaves (required: TS; 6 with declared consumer_trust (Lean.ofReduceBool, Lean.trustCompiler))",
+      "total_passed": null,
+      "failed": 0,
+      "run_by": "this verifier; receipt registry-check-20260826T074231Z.json"
+    }
+  ],
+  "content_bound_files": {
+    "proof-status/obligations-meta.json": {
+      "sha256": "3ba78a2028effc3f335ea68ac8d11f4feb7fb4504cbb5b36621f66bf6578ee62",
+      "note": "working-tree hash at verification time (UNCOMMITTED); the reviewed metadata file carrying the six p97-factorization/v2 blocks"
+    },
+    "proof-status/obligations.json": {
+      "sha256": "37a9228ad9aab9ba47539b7312b2252d64ff241010e708e0b2e430d81157f89a",
+      "note": "working-tree hash at verification time (UNCOMMITTED); the canonical registry carrying the six materialized blocks"
+    }
+  },
+  "content_bound_files_working_tree": {
+    "proof-status/obligations-meta.json": {
+      "sha256": "3ba78a2028effc3f335ea68ac8d11f4feb7fb4504cbb5b36621f66bf6578ee62",
+      "note": "same values as content_bound_files — this receipt is entirely pre-commit, so there is no committed variant to distinguish"
+    },
+    "proof-status/obligations.json": {
+      "sha256": "37a9228ad9aab9ba47539b7312b2252d64ff241010e708e0b2e430d81157f89a",
+      "note": "same values as content_bound_files — this receipt is entirely pre-commit, so there is no committed variant to distinguish"
+    }
+  },
+  "files_written_by_this_verifier": [
+    "proof-status/receipts/w3-ts-b-gate-receipt.json"
+  ],
+  "new_receipts_written_by_this_check": [
+    "proof-status/receipts/registry-check-20260826T072938Z.json",
+    "proof-status/receipts/registry-check-20260826T073354Z.json",
+    "proof-status/receipts/registry-check-20260826T073822Z.json",
+    "proof-status/receipts/registry-check-20260826T074231Z.json"
+  ],
+  "git_operations_performed": [
+    "read-only only: status, diff, show, log, rev-parse, check-ignore, ls-files. No add, commit, checkout, stash, reset, restore, push, rebase or merge. Nothing staged.",
+    "No lake, lean, `gen_obligation_registry.py generate` or `proof-blueprint refs --refresh` was run; read-only `proof-blueprint search` and `proof-blueprint axioms` only, plus `gen_obligation_registry.py check`. No Lean file was edited."
+  ],
+  "main_claims_checked": [
+    {
+      "claim": "the apply script added a p97-factorization/v2 block with consumer_trust ['Lean.ofReduceBool','Lean.trustCompiler'] to each of the six P97-TS-* entries",
+      "verdict": "CONFIRMED",
+      "evidence": "gate 1 — structural jq diff shows exactly those six entries changed, each by adding only 'factorization', with that exact consumer_trust list"
+    },
+    {
+      "claim": "the blocks are the W3-TS-a blocks preserved unchanged plus the key",
+      "verdict": "CONFIRMED",
+      "evidence": "gate 1 — `del(.consumer_trust)` equality against scratchpad/w3-ts-author/authored-ts-factorization-blocks.json holds for all six; the authored file carries no consumer_trust key"
+    },
+    {
+      "claim": "`generate` exited 0 with census line 'factorized 10/28 reachable leaves (6 with declared consumer_trust (Lean.ofReduceBool, Lean.trustCompiler))'",
+      "verdict": "CONFIRMED (independently)",
+      "evidence": "this verifier's own plain `check` run reproduces that exact census line; the author's generate.log also records it, and the id-assignments.json / frontier-table.generated.md it rewrote are byte-identical to HEAD"
+    },
+    {
+      "claim": "no Lean change; the two dirty Lean files are foreign",
+      "verdict": "CONFIRMED",
+      "evidence": "gate 0 — `git diff --stat HEAD -- lean` lists only TwoSourceCanonicalSurface.lean and TwoSourceRetainedMinimalCore.lean, whose diff sha256 values are the pinned 4c4267daab681bb3... and 64711158044d921c..."
+    },
+    {
+      "claim": "the note on P97-TS-NONCANONICAL that the leaf declaration carries two sorrys at TwoSourceFreshThirdResidual.lean:3375 and :3411 inside one case split",
+      "verdict": "CONFIRMED",
+      "evidence": "grep for a bare `sorry` line between the theorem header at :3347 and the next declaration returns exactly lines 3375 and 3411, both inside the `secondInteraction` case split of false_of_freshThirdEqualCenter_noncanonicalInteractions"
+    }
+  ],
+  "metadata_corrections": [],
+  "observations_not_blocking": [
+    "Gate 0 as written asks for '`git diff --stat HEAD -- lean` empty' AND for the two foreign Lean diffs to hash to specific prefixes. Those two sub-clauses cannot both hold literally. The gate was read in its internally consistent sense — no Lean file changed BEYOND the two pinned foreign ones — and that reading is satisfied exactly: the --stat output lists those two files and nothing else, and both diff digests match the recorded prefixes byte for byte. Recorded here so the wording can be repaired for the next wave rather than silently reinterpreted again.",
+    "The main session ran its own plain/TD/TA/TS check series CONCURRENTLY with this verification, interleaving four further untracked receipts into proof-status/receipts (20260826T072345Z, 072803Z, 073159Z, 073624Z). They are attributed by factorization.required_clusters and generated_at_utc and are NOT listed as this verifier's. Concurrency did not disturb the gate: proof-status/obligations-meta.json and obligations.json were re-hashed after the last concurrent run finished and are byte-identical to the values hashed at the start (3ba78a2028effc3f... and 37a9228ad9aab9ba...), with mtimes 07:18:39Z and 07:22:55Z, both earlier than any check run.",
+    "ALIGNEDRETAINED and COMMONRADIUS share their coordinator, producer and eliminator; NONCANONICAL uses the ALIGNEDRETAINED coordinator->eliminator via hop (false_of_twoCapSources_freshThirdBlockerFiber_normalized_remaining) as its own eliminator role. Both are legal — the distinctness and via-disjointness rules are per block — and each block's five roles are distinct and no via equals a role of its own block.",
+    "No block declares a coordinator->producer transitive row, so each producer path is a single symbol and there was no producer via hop to audit under gate 3(f).",
+    "ACYCLICHARDRESIDUAL and CROSSBLOCKER have every consumer-side hop carrying the native pair (8 of 8 and 5 of 5); the other four blocks have consumer hops both with and without it. In all six the open leaf itself is free of the pair."
+  ],
+  "notes_for_main_session": [
+    "This receipt is pre-commit. If the wave is committed, re-issue it bound to the wave commit, replace content_bound_files with `git show <sha>:<path>` hashes, and set wave_commit; keep the working-tree block under content_bound_files_working_tree as this receipt already does.",
+    "Four registry-check receipts written by this verifier (20260826T072938Z, 073354Z, 073822Z, 074231Z) are untracked and belong with the wave commit if that commit ships its check evidence. The four concurrent main-session receipts (072345Z, 072803Z, 073159Z, 073624Z) are the main session's to decide on.",
+    "The strict-refs gate was not run and this receipt makes no claim about reference freshness.",
+    "No proof-progress or closure claim is made or implied by this receipt: the six leaves remain open, each carrying sorryAx, and the spine sorry roster is unchanged at 28."
+  ],
+  "note_resolutions": [],
+  "main_session_reverification": null,
+  "wave_commit": null
+}

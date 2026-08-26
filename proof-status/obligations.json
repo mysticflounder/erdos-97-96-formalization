@@ -594,6 +594,38 @@
     {
       "cluster": "TwoSource",
       "evidence_note": "docs/audits/2026-08-22-f2-twosource-checkpoint36-synthesis.md records the checkpoint-36 all-blockers reduction as prose-complete with its Root A and Root B terminal consumers still open, and keeps this old built leaf live until a separately verified spine change bypasses it.",
+      "factorization": {
+        "consumer_trust": [
+          "Lean.ofReduceBool",
+          "Lean.trustCompiler"
+        ],
+        "pinned": {
+          "legacy_wrapper_statement_sha256": "8d99392864b2b0adf8f200b2816c06a2fb60d8956a2b583ad97fdf1f5019af2e",
+          "open_leaf_statement_sha256": "a38e490a6bb7739dd2808d9ff28708f97cac8b2cdee96c49cfcab10ca4820030"
+        },
+        "roles": {
+          "coordinator": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_freshOutsideFirstBlockerFiber_viaAcyclicIngress",
+          "eliminator": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_freshOutsideFirstBlockerFiber_acyclicIngress_frame",
+          "legacy_wrapper": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_two_exactFourInteriorTwo_distinctRadiusBlockerCollisions_and_all_low_hits",
+          "open_leaf": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_freshOutsideFirstBlockerFiber_acyclicHardResidual",
+          "producer": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.freshThird_acyclic_canonical_consumerPacket"
+        },
+        "schema": "p97-factorization/v2",
+        "transitive": [
+          {
+            "from": "legacy_wrapper",
+            "to": "coordinator",
+            "via": [
+              "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.exists_three_hit_of_two_exactFourInteriorTwo_distinctRadiusBlockerCollisions",
+              "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.exists_three_hit_of_two_collisionRows_capCross_normalForm",
+              "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.exists_three_hit_or_collision_crossHit_of_two_sourceExactCollisionRows",
+              "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCollisionGlobalSplit",
+              "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_capSourceThirdCanonicalRowSurface"
+            ]
+          }
+        ],
+        "verified_at_build": "33f2659d3428b288434253557166c4e28c9075d909ee46318276d713d955d34b"
+      },
       "id": "P97-TS-ACYCLICHARDRESIDUAL",
       "implementation_effect": "bypass",
       "kind": "theorem",
@@ -612,6 +644,54 @@
     {
       "cluster": "TwoSource",
       "evidence_note": "docs/audits/2026-08-22-f2-twosource-checkpoint36-synthesis.md records the checkpoint-36 all-blockers reduction as prose-complete with its Root A and Root B terminal consumers still open, and keeps this old built leaf live until a separately verified spine change bypasses it.",
+      "factorization": {
+        "consumer_trust": [
+          "Lean.ofReduceBool",
+          "Lean.trustCompiler"
+        ],
+        "pinned": {
+          "legacy_wrapper_statement_sha256": "8d99392864b2b0adf8f200b2816c06a2fb60d8956a2b583ad97fdf1f5019af2e",
+          "open_leaf_statement_sha256": "b4b745bac83ff2c7af315c28e677dead19a43de41b75f5f74337b181c59d4d83"
+        },
+        "roles": {
+          "coordinator": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_freshThirdBlockerFiber_normalized_residual",
+          "eliminator": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_freshThird_firstNonHit_frame",
+          "legacy_wrapper": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_two_exactFourInteriorTwo_distinctRadiusBlockerCollisions_and_all_low_hits",
+          "open_leaf": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_freshThird_firstNonHit_alignedRetained",
+          "producer": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.freshThird_acyclic_canonical_consumerPacket"
+        },
+        "schema": "p97-factorization/v2",
+        "transitive": [
+          {
+            "from": "coordinator",
+            "to": "eliminator",
+            "via": [
+              "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_freshThirdBlockerFiber_normalized_remaining"
+            ]
+          },
+          {
+            "from": "legacy_wrapper",
+            "to": "coordinator",
+            "via": [
+              "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.exists_three_hit_of_two_exactFourInteriorTwo_distinctRadiusBlockerCollisions",
+              "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.exists_three_hit_of_two_collisionRows_capCross_normalForm",
+              "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.exists_three_hit_or_collision_crossHit_of_two_sourceExactCollisionRows",
+              "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCollisionGlobalSplit",
+              "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_capSourceThirdCanonicalRowSurface",
+              "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_freshOutsideFirstBlockerFiber_viaAcyclicIngress",
+              "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_freshOutsideFirstBlockerFiber_acyclicIngress_frame",
+              "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_commonRadius_mutualCrossMembership_frame",
+              "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_sameBlockerAllEndpointOmission",
+              "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_capSource_firstFiber_collisionFiveCenterDeletion",
+              "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_capSource_firstFiber_crossedThreeRowExactSupports_frame",
+              "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_capSource_firstFiber_crossedSeventhBlockerFaithfulResidual_frame",
+              "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_freshCanonicalRowOverride",
+              "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_capSource_freshThirdBlockerFiber_normalizedOnly"
+            ]
+          }
+        ],
+        "verified_at_build": "33f2659d3428b288434253557166c4e28c9075d909ee46318276d713d955d34b"
+      },
       "id": "P97-TS-ALIGNEDRETAINED",
       "implementation_effect": "bypass",
       "kind": "theorem",
@@ -630,6 +710,54 @@
     {
       "cluster": "TwoSource",
       "evidence_note": "docs/audits/2026-08-22-f2-twosource-checkpoint36-synthesis.md records the checkpoint-36 all-blockers reduction as prose-complete with its Root A and Root B terminal consumers still open, and keeps this old built leaf live until a separately verified spine change bypasses it.",
+      "factorization": {
+        "consumer_trust": [
+          "Lean.ofReduceBool",
+          "Lean.trustCompiler"
+        ],
+        "pinned": {
+          "legacy_wrapper_statement_sha256": "8d99392864b2b0adf8f200b2816c06a2fb60d8956a2b583ad97fdf1f5019af2e",
+          "open_leaf_statement_sha256": "7373753b491176636cfccce51b3d20369ce014efe03a47dde9561e612b9cfd10"
+        },
+        "roles": {
+          "coordinator": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_freshThirdBlockerFiber_normalized_residual",
+          "eliminator": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_freshThird_firstNonHit_frame",
+          "legacy_wrapper": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_two_exactFourInteriorTwo_distinctRadiusBlockerCollisions_and_all_low_hits",
+          "open_leaf": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_freshThird_firstNonHit_commonRadius",
+          "producer": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.freshThird_acyclic_canonical_consumerPacket"
+        },
+        "schema": "p97-factorization/v2",
+        "transitive": [
+          {
+            "from": "coordinator",
+            "to": "eliminator",
+            "via": [
+              "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_freshThirdBlockerFiber_normalized_remaining"
+            ]
+          },
+          {
+            "from": "legacy_wrapper",
+            "to": "coordinator",
+            "via": [
+              "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.exists_three_hit_of_two_exactFourInteriorTwo_distinctRadiusBlockerCollisions",
+              "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.exists_three_hit_of_two_collisionRows_capCross_normalForm",
+              "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.exists_three_hit_or_collision_crossHit_of_two_sourceExactCollisionRows",
+              "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCollisionGlobalSplit",
+              "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_capSourceThirdCanonicalRowSurface",
+              "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_freshOutsideFirstBlockerFiber_viaAcyclicIngress",
+              "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_freshOutsideFirstBlockerFiber_acyclicIngress_frame",
+              "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_commonRadius_mutualCrossMembership_frame",
+              "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_sameBlockerAllEndpointOmission",
+              "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_capSource_firstFiber_collisionFiveCenterDeletion",
+              "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_capSource_firstFiber_crossedThreeRowExactSupports_frame",
+              "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_capSource_firstFiber_crossedSeventhBlockerFaithfulResidual_frame",
+              "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_freshCanonicalRowOverride",
+              "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_capSource_freshThirdBlockerFiber_normalizedOnly"
+            ]
+          }
+        ],
+        "verified_at_build": "33f2659d3428b288434253557166c4e28c9075d909ee46318276d713d955d34b"
+      },
       "id": "P97-TS-COMMONRADIUS",
       "implementation_effect": "bypass",
       "kind": "theorem",
@@ -648,6 +776,35 @@
     {
       "cluster": "TwoSource",
       "evidence_note": "docs/audits/2026-08-22-f2-twosource-checkpoint36-synthesis.md records the checkpoint-36 all-blockers reduction as prose-complete with its Root A and Root B terminal consumers still open, and keeps this old built leaf live until a separately verified spine change bypasses it.",
+      "factorization": {
+        "consumer_trust": [
+          "Lean.ofReduceBool",
+          "Lean.trustCompiler"
+        ],
+        "pinned": {
+          "legacy_wrapper_statement_sha256": "8d99392864b2b0adf8f200b2816c06a2fb60d8956a2b583ad97fdf1f5019af2e",
+          "open_leaf_statement_sha256": "16d3fc229b8e88a56007e4df22410d112793536aa331218815dbb5a441f3d90d"
+        },
+        "roles": {
+          "coordinator": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.exists_three_hit_or_collision_crossHit_of_two_sourceExactCollisionRows",
+          "eliminator": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCollisionGlobalSplit",
+          "legacy_wrapper": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_two_exactFourInteriorTwo_distinctRadiusBlockerCollisions_and_all_low_hits",
+          "open_leaf": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_crossBlockerCoincidence",
+          "producer": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.collisionRows_sourceCleanMultiplicityIngress"
+        },
+        "schema": "p97-factorization/v2",
+        "transitive": [
+          {
+            "from": "legacy_wrapper",
+            "to": "coordinator",
+            "via": [
+              "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.exists_three_hit_of_two_exactFourInteriorTwo_distinctRadiusBlockerCollisions",
+              "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.exists_three_hit_of_two_collisionRows_capCross_normalForm"
+            ]
+          }
+        ],
+        "verified_at_build": "33f2659d3428b288434253557166c4e28c9075d909ee46318276d713d955d34b"
+      },
       "id": "P97-TS-CROSSBLOCKER",
       "implementation_effect": "bypass",
       "kind": "theorem",
@@ -666,6 +823,47 @@
     {
       "cluster": "TwoSource",
       "evidence_note": "docs/audits/2026-08-22-f2-twosource-checkpoint36-synthesis.md records the checkpoint-36 all-blockers reduction as prose-complete with its Root A and Root B terminal consumers still open, and keeps this old built leaf live until a separately verified spine change bypasses it.",
+      "factorization": {
+        "consumer_trust": [
+          "Lean.ofReduceBool",
+          "Lean.trustCompiler"
+        ],
+        "pinned": {
+          "legacy_wrapper_statement_sha256": "8d99392864b2b0adf8f200b2816c06a2fb60d8956a2b583ad97fdf1f5019af2e",
+          "open_leaf_statement_sha256": "7729434c66d86ad3ae25cd908d0c9a76af22265d26998a8fbb81f92ce28195ea"
+        },
+        "roles": {
+          "coordinator": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_freshThirdBlockerFiber_normalized_residual",
+          "eliminator": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_freshThirdBlockerFiber_normalized_remaining",
+          "legacy_wrapper": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_two_exactFourInteriorTwo_distinctRadiusBlockerCollisions_and_all_low_hits",
+          "open_leaf": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_freshThirdEqualCenter_noncanonicalInteractions",
+          "producer": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.freshThird_acyclic_canonical_consumerPacket"
+        },
+        "schema": "p97-factorization/v2",
+        "transitive": [
+          {
+            "from": "legacy_wrapper",
+            "to": "coordinator",
+            "via": [
+              "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.exists_three_hit_of_two_exactFourInteriorTwo_distinctRadiusBlockerCollisions",
+              "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.exists_three_hit_of_two_collisionRows_capCross_normalForm",
+              "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.exists_three_hit_or_collision_crossHit_of_two_sourceExactCollisionRows",
+              "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCollisionGlobalSplit",
+              "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_capSourceThirdCanonicalRowSurface",
+              "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_freshOutsideFirstBlockerFiber_viaAcyclicIngress",
+              "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_freshOutsideFirstBlockerFiber_acyclicIngress_frame",
+              "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_commonRadius_mutualCrossMembership_frame",
+              "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_sameBlockerAllEndpointOmission",
+              "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_capSource_firstFiber_collisionFiveCenterDeletion",
+              "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_capSource_firstFiber_crossedThreeRowExactSupports_frame",
+              "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_capSource_firstFiber_crossedSeventhBlockerFaithfulResidual_frame",
+              "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_freshCanonicalRowOverride",
+              "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_capSource_freshThirdBlockerFiber_normalizedOnly"
+            ]
+          }
+        ],
+        "verified_at_build": "33f2659d3428b288434253557166c4e28c9075d909ee46318276d713d955d34b"
+      },
       "id": "P97-TS-NONCANONICAL",
       "implementation_effect": "bypass",
       "kind": "theorem",
@@ -684,6 +882,41 @@
     {
       "cluster": "TwoSource",
       "evidence_note": "docs/audits/2026-08-22-f2-twosource-checkpoint36-synthesis.md records the checkpoint-36 all-blockers reduction as prose-complete with its Root A and Root B terminal consumers still open, and keeps this old built leaf live until a separately verified spine change bypasses it.",
+      "factorization": {
+        "consumer_trust": [
+          "Lean.ofReduceBool",
+          "Lean.trustCompiler"
+        ],
+        "pinned": {
+          "legacy_wrapper_statement_sha256": "8d99392864b2b0adf8f200b2816c06a2fb60d8956a2b583ad97fdf1f5019af2e",
+          "open_leaf_statement_sha256": "2af348f3818edb84934e68c1fca8d5c444c1b168fb8fb45fef6289829ee2e9a1"
+        },
+        "roles": {
+          "coordinator": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_sameBlockerAllEndpointOmission",
+          "eliminator": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_capSource_firstFiber_collisionFiveCenterDeletion",
+          "legacy_wrapper": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_two_exactFourInteriorTwo_distinctRadiusBlockerCollisions_and_all_low_hits",
+          "open_leaf": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_capSource_firstFiber_outsidePairDeletionExactRows",
+          "producer": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.firstFiberOutsidePair_exactRows_or_crossedThreeRows"
+        },
+        "schema": "p97-factorization/v2",
+        "transitive": [
+          {
+            "from": "legacy_wrapper",
+            "to": "coordinator",
+            "via": [
+              "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.exists_three_hit_of_two_exactFourInteriorTwo_distinctRadiusBlockerCollisions",
+              "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.exists_three_hit_of_two_collisionRows_capCross_normalForm",
+              "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.exists_three_hit_or_collision_crossHit_of_two_sourceExactCollisionRows",
+              "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCollisionGlobalSplit",
+              "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_capSourceThirdCanonicalRowSurface",
+              "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_freshOutsideFirstBlockerFiber_viaAcyclicIngress",
+              "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_freshOutsideFirstBlockerFiber_acyclicIngress_frame",
+              "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_commonRadius_mutualCrossMembership_frame"
+            ]
+          }
+        ],
+        "verified_at_build": "33f2659d3428b288434253557166c4e28c9075d909ee46318276d713d955d34b"
+      },
       "id": "P97-TS-OUTSIDEPAIRDELETION",
       "implementation_effect": "bypass",
       "kind": "theorem",
