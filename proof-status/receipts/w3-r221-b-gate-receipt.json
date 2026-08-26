@@ -1,0 +1,304 @@
+{
+  "schema": "p97-gate-receipt/v1",
+  "wave": "W3-R221-b",
+  "state": "PRE-COMMIT — independent RE-VERIFICATION of W3-R221-b after the main session's follow-up note edits; bound to the working tree at HEAD fad368f6, wave_commit is null and must be set by the main session when the wave commit lands  FINAL PASS 2026-08-26T17:12:02Z: gate 1 was RE-DECIDED by a third, independent checker over the working tree AS IT NOW STANDS, after the main session restored obligations-meta.json from the pre-notes copy and re-applied the citation refresh with a corrected script; gate 1 now PASSES and source_gates_pass is true.",
+  "generated_by": "W3-R221-b gate RE-VERIFIER, independent of both author sessions and of the earlier gate verifier whose receipt this replaces. This pass re-decides the gates over the tree AS IT NOW STANDS, after (1) the citation refresh applied to the prose `note` of the twelve W3-R221-a factorization blocks and (2) the parallel #7518 edits to scripts/gen_obligation_registry.py, its test file and proof-status/README.md. No author output and no figure from the earlier receipt was trusted except where this receipt says it re-derived and matched it. Method: the two owned Lean files re-hashed against the earlier receipt's pins instead of a rebuild (lake-build was forbidden here); the obligations-meta.json delta decided structurally by loading the pre-edit copy and the working-tree copy as JSON and comparing every block with `.factorization.note` deleted; every line citation in all twelve refreshed notes re-decided against an independent difflib HEAD-to-working-tree line map of both Lean files and then spot-confirmed with `sed -n <N>p`; role distinctness recomputed from the meta; the FIRSTAPEXUNIQUE legacy_wrapper and coordinator re-resolved with `proof-blueprint search --name <FQ> --json --all --private`, their edge re-decided with `proof-blueprint search --uses`, and the call read directly out of the wrapper's source; the registry check re-run detached by this re-verifier; the spine and off-spine rosters re-exported and the publish target's axiom closure re-exported from the lake root; and pytest, the import lint, the tree delta and the two foreign diff hashes re-run.  FINAL PASS (2026-08-26T17:12:02Z), by a third checker independent of the two earlier verifiers and of the main session: obligations-meta.json was diffed against the same pre-notes copy (sha256 295e94e47cbf5ae53c0508ffab9a81a636cb60821550491c77663d7439009e39, re-hashed here and matching the pin) both textually and structurally (every block re-serialized with `.factorization.note` deleted); ALL 80 line citations in the twelve refreshed notes were re-extracted by a character scanner (no regex), bare ':N' resolved to the most recently named file in the same note, and each one re-checked against the WORKING TREE with awk/sed - declarations at their `theorem <name>` line, non-declaration sites by reading the surrounding lines AND by confirming the enclosing declaration; the same extractor was run over the pre-notes copy so the pre->post citation delta is exhibited line by line; the four #7518 documentation defects were re-read from `git diff` and re-probed by importing the script; and pytest, the import lint, the content hashes, the two foreign diff hashes and the staged count were re-run.  No `lake-build`, no `proof-blueprint refs --refresh`, no `proof-blueprint sync`, no `gen_obligation_registry.py generate`, and no registry `check` (the gate-3 evidence below is the earlier pass's detached run, whose obligations.json pin this pass re-hashed and matched).",
+  "generated_at_utc": "2026-08-26T17:12:02Z",
+  "git_head": "fad368f6930f3f048586bb99bf8db0034f0bb1cc",
+  "git_head_short": "fad368f6",
+  "head_note": "Working tree at HEAD fad368f6930f3f048586bb99bf8db0034f0bb1cc; nothing staged, no commit and no Lean, registry, script or doc edit made by this re-verifier — the only repository file it wrote is this receipt, plus the registry-check receipt its own detached check emitted. content_bound_files_working_tree holds freshly recomputed sha256 of the working-tree bytes. obligations-meta.json hashed 58f3579b… at the previous pass and now hashes 7b686118…, because the main session restored it from the pre-notes copy (295e94e4…) and re-applied the citation refresh with a corrected script; that single file is the note refresh audited in gate 1, which the FINAL PASS of 2026-08-26T17:12:02Z re-decided as PASS. Neither the previous pass nor the FINAL PASS committed, staged or edited anything but this receipt. wave_commit is null; the main session rebinds it and should then recompute the hashes from `git show <sha>:<path>`.",
+  "baseline_reference": "proof-status/baseline. axioms.txt is the `proof-blueprint axioms` export of Problem97.erdos97_rhs; this re-verifier re-ran that export from the lake root and the diff against axioms.txt is EMPTY, both files hashing 885f4dbeabd8fc8a86f9acd9b1d85275ddd7218f247d367aa42798b560ed4936 (tool exit 1, the standing unapproved-sorryAx verdict the baseline file itself records). Its six names are propext, sorryAx, Classical.choice, Lean.ofReduceBool, Lean.trustCompiler, Quot.sound, so both declared consumer_trust names are carried by the publish target's recorded closure. Roster baselines: spine-sorry.json (28 symbols, set-equal to the live export) and offspine-sorry.json (6, set-equal). refs-check.txt records the inherited 36 stale + 1 never-mined condition, which this re-verifier re-observed unchanged.",
+  "build_fingerprint": "5902ba928947b2ac2fda7b3cc06ff430f9e95f86f9046c96043581865b0a536c",
+  "build_fingerprint_source": "`proof-blueprint refs --check` reports 'current build: 5902ba928947', and the same short id is the build_id recorded in this re-verifier's own registry-check receipt proof-status/receipts/registry-check-20260826T162435Z.json, whose factorization section carries the full value 5902ba928947b2ac2fda7b3cc06ff430f9e95f86f9046c96043581865b0a536c as the verified_at_build of all 28 materialized blocks. lake-build was NOT run by this pass; build currency is instead established by the two owned Lean files hashing to the earlier receipt's pins (gate 0).",
+  "claim_reference": "#7512",
+  "claim_scope": "Unchanged from the wave as originally claimed — body-only Lean extractions plus registry bookkeeping — PLUS the follow-up prose edit this pass was spawned to re-verify: the `note` field of the twelve W3-R221-a factorization blocks had its File.lean:N citations rewritten to post-wave line numbers. That edit is prose only; it moves no role, no pinned digest, no transitive row and no consumer_trust entry, and it is not machine-checked by `gen_obligation_registry.py check`. The parallel #7518 edits to scripts/gen_obligation_registry.py, its test file and proof-status/README.md are OUTSIDE this claim and are verified by another agent; they are listed here only because this pass's registry check and pytest run executed against them.",
+  "promotion_claim": "none: registry bookkeeping and body-only Lean extractions; no proof progress",
+  "source_gates_pass": true,
+  "source_gates_note": "ALL source gates now pass. Gates 0, 1, 2, 3, 4 and 5 pass; gate 1, which the previous version of this receipt failed, was re-decided at 2026-08-26T17:12:02Z over the corrected obligations-meta.json and PASSES — both range ends are right, all sixteen short-form ':N' citations were rewritten, and every one of the 80 citations in the twelve refreshed notes resolves in the working tree. Gate 6 is the inherited blueprint-refs staleness (36 stale, 1 never mined), the one failure the brief allows and the only reason overall_pass stays false.",
+  "overall_pass": false,
+  "overall_note": "The wave's machine-checked substance is intact and re-confirmed a second time: both owned Lean files hash to the pinned values, obligations.json is byte-identical to its pin, the registry check (run detached by the previous pass) passes 28/28 with zero violations and zero drift, the spine and off-spine rosters are set-equal to baseline, the publish target's axiom closure is byte-identical to baseline, 157 tests pass, the import lint prints its expected OK line, both foreign diff hashes match and nothing is staged. Role distinctness holds for all eighteen P97-R221-* blocks. The prose defect that failed gate 1 in the previous version of this receipt is REPAIRED and independently re-checked: the two inverted ranges are now 1369-1379 and 1271-1285, the sixteen stale ':N' citations were remapped, and the structural comparison shows the repair touched only the twelve W3-R221-a `note` strings — every other byte of obligations-meta.json, and the six W3-R221-b notes, are unchanged. overall_pass stays FALSE for gate 6 alone: the inherited `proof-blueprint refs --check` staleness, which clears only under `refs --refresh`, a command this lane may not run. The six leaves stay OPEN; this wave still claims no proof progress.",
+  "blockers": [],
+  "gates": [
+    {
+      "name": "0 build currency: no Lean file moved since the earlier receipt; the build id is still 5902ba928947",
+      "pass": true,
+      "line": "`lake-build` was NOT run, as this task forbids. Currency is established instead by re-hashing the two owned Lean files from the working tree: lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221SourceHeavy.lean = dbe0e37c1b6562249ff41d0754bed606c58fe70efe93ed267230d0b773318c99 and .../Rigid221Closure.lean = cafeac3e4bbcabfbe6ffcf1443e4d9b93c717627e5144c6158040aff5676efa8, both EQUAL to the content_bound_files_working_tree values the earlier verifier pinned after its own zero-recompile build, so the tree the build was reproduced on has not moved. `git diff --numstat` on the pair is unchanged too (+104/-18 and +430/-181). `proof-blueprint refs --check | head -5` (exit 1, the standing verdict) reports 'current build: 5902ba928947' / 'project symbols: 64804  (56484 minable; 7390 trusted (locked), 931 without an importable olean)' / '  mined (fresh):  56447' / '  stale:          36 (mined against an older build)' / '  never mined:    1'. The same short build id is the build_id in this re-verifier's own registry-check receipt. `refs --refresh` was NOT run."
+    },
+    {
+      "name": "1 meta diff: the edit's SCOPE is exactly right and ALL 80 line citations in the twelve refreshed notes resolve in the working tree — PASS (re-decided after the corrected refresh)",
+      "pass": true,
+      "line": "SCOPE (passes, re-derived). `diff` of the pre-edit copy scratchpad/w3-r221-b-main/obligations-meta.pre-notes.json (sha256 295e94e4…, re-hashed here and equal to the pin) against the working-tree proof-status/obligations-meta.json is 48 lines: twelve changed lines and their twelve replacements, and a key scan of every changed line shows all 24 are '\"note\":' lines — zero non-note lines differ. Structurally, loading both as JSON: the 34-key top-level set is unchanged AND in the same order; exactly TWELVE blocks differ and they are exactly P97-R221-{MINIMALCORE, NONPHYSICALCOLLISION, BLOCKERDELETED, SOURCEROWHEAVY, OPPOSITEROWHEAVY, SPARSEROWS, EXACTFOURPOSTCARD, EXACTFOURPHYSICAL, MISSINGINCIDENCE, NEXTROWONLYHIT, OUTSIDETHREEROWS, MISSINGINCIDENCE-2}; with `.factorization.note` deleted, ALL 34 blocks compare byte-for-byte under a sorted JSON dump (zero differing blocks), and no block's key list changed. The SIX blocks W3-R221-b wrote itself — CARDEIGHTEEN, FIRSTAPEXUNIQUE, PENTAGONBLOCKER, SECONDCAPNINE, SOURCENEU, VROWBLOCKEROFFCLASS — are byte-identical to the pre-notes copy, notes included, since they are not among the twelve that differ at all. CITATIONS (now pass). A character scanner (no regex) extracted every 'File.lean:N', 'File.lean:N-M' and bare ':N' citation from the twelve notes, resolving each bare form to the most recently named file in the same note: 80 citations, of which 66 are full-form and 14 bare, and EVERY bare one resolves to Rigid221SourceHeavy.lean. The same extractor over the pre-notes copy yields 80 citations with the identical block/form/file sequence, so the refresh moved line numbers only — it added, dropped and re-targeted nothing. Each citation was then checked against the WORKING TREE. All 34 declaration citations land on their `theorem <name>` line: Rigid221Closure.lean 546 false_of_exactFourMutualOmissionRigid221_frame, 441 …_globalDeletion_frame, 287 …_physicalApex_frame, 185 …_physicalApex_sourceBlockerInClass_frame, 1308 false_of_exactFourPhysicalConsumerRobustOutcome, 1264 false_of_exactFourPostCardElevenRobustSurface_frame, 1385 false_of_firstApexUniqueRadiusExactFourResidual, 1362 …_of_carrierCard_ge_twelve; Rigid221Placement.lean 91 exactFourMutualOmissionRigid221_globalDeletion, 591 exactFourRigid221_sourceBlockerInClass_placement, 970 …_sourceEqU_blockerV; Rigid221SourceHeavy.lean 11099 exists_exactSeventeenSourceRealization_of_exactCover, 18604 …_physicalApex_sourceEqU, 18574 …_sourceEqU_blockerVRowOther, 16841 …_secondOppositeLarge_pentagonOffClassBlocker, 13379 pentagonOffClassBlocker_threeCenterDeletion_or_card_eq_twelve, 16211 …_exactTwelve, 16086 …_exactTwelve_interiorDeletion, 16017 …_exactTwelve_interiorDeletion_physicalRadius, 14420 pentagonOffClassBlocker_xu_commonDeletionFans_or_nextRow_onlyHit, 16750 …_threeCenterDeletion, 16632 …_threeCenterDeletion_u, 16587 …_uDeletion_fixedPhysicalPair_missingIncidence, 16376 pentagonOffClassBlocker_fixedPhysicalPair_uDeletion_exists_source_outside_threeRows; ATail/ExactFourRobustCapExpansion.lean:1462 nonempty_postCardElevenRobustSurface_of_robust; ATail/ExactFourPhysicalConsumer.lean:316 carrier_card_ge_eleven_of_original_unique_four_residual. Every NON-declaration citation was read out of the file: Rigid221SourceHeavy.lean:11501 is `have hlabelsCard : secondCapLabels.card = 9 := by native_decide`; :18674 `rcases _hsourceBlockerPlacement with hdeleted | hvRow`; :16931 `rcases pentagonOffClassBlocker_threeCenterDeletion_or_card_eq_twelve`; :16053 `rcases pentagonOffClassBlocker_xu_commonDeletionFans_or_nextRow_onlyHit Q with`; :16613 `rcases` opening the …_exists_source_outside_threeRows destructuring on 16614; :16795 `rcases _hdeleted with hdeletedU | hdeletedXv`; :16809 `by_cases hincidences :` on the xv arm (the `· subst deleted` at 16802). Each of those six sites was also confirmed to sit INSIDE the declaration the note says owns it, by locating the enclosing and next declaration starts: 16931 in 16841 (next 16958), 16053 in 16017 (next 16086), 16613 in 16587 (next 16632), 16795 and 16809 in 16750 (next 16841), 18674 in 18604 (last). BOTH ranges are now correct and no longer inverted: P97-R221-EXACTFOURPHYSICAL reads Rigid221Closure.lean:1369-1379, which is exactly the proof body of false_of_firstApexUniqueRadiusExactFourResidual_of_carrierCard_ge_twelve (1362) — `let original := …` at 1369, `cases outcome with` on the ExactFourPhysicalConsumerOutcome inductive at 1371, last proof line 1379, blank at 1380; P97-R221-EXACTFOURPOSTCARD reads Rigid221Closure.lean:1271-1285, exactly the proof body of false_of_exactFourPostCardElevenRobustSurface_frame (1264) — `obtain ⟨hcard, surface⟩ := frame` at 1271, `rcases interiorPairGood_or_twoDistinctExactFourInteriorRows R surface with` at 1272, last proof line 1285, blank at 1286; `git show HEAD:` of the same file confirms 1203-1217 is the byte-identical predecessor of 1271-1285, so the range is a correct +68 remap. ALL SIXTEEN short-form ':N' citations were rewritten and every one matches the earlier verifier's independently derived expectation: MISSINGINCIDENCE :16931, :16211, :16086, :16017, :14420, :16053 (and the second :14420 back-reference); MISSINGINCIDENCE-2 :16795, :16809; OUTSIDETHREEROWS :13379, :16750, :16632, :16587, :16376, :16613 (and the second :16376 back-reference). The cross-note inconsistency the earlier receipt reported is gone: pentagonOffClassBlocker_threeCenterDeletion_or_card_eq_twelve is now :13379 in BOTH MISSINGINCIDENCE and OUTSIDETHREEROWS, …_threeCenterDeletion is :16750 in both OUTSIDETHREEROWS and MISSINGINCIDENCE-2, and the rcases site is :16053 in both MISSINGINCIDENCE and NEXTROWONLYHIT. A literal scan of all twelve notes for the three banned stale values — Rigid221SourceHeavy.lean:18355, :16701 and Rigid221Closure.lean:108 — returns ZERO hits. Rigid221Placement.lean and the two ATail files are untouched by this wave (`git diff` empty), and their citations (91, 83-87, 591, 970, 988-1000, 1462, 316) are unchanged from the pre-notes copy and were re-read: 83-87 is the geometry-field disjunction of ExactFourMutualOmissionRigid221GlobalDeletion and 988-1000 spans the two `by_cases` on sourceRowInteriorCount = 2 (989) and oppositeRowInteriorCount = 2 (994), as the notes say."
+    },
+    {
+      "name": "2 role distinctness: five distinct symbols in every R221 block, FIRSTAPEXUNIQUE included — the earlier receipt's coincidence note is corrected",
+      "pass": true,
+      "line": "For all EIGHTEEN P97-R221-* blocks the five role values are five DISTINCT symbols (18/18, checked by set size over `.factorization.roles`). P97-R221-FIRSTAPEXUNIQUE specifically: legacy_wrapper = Problem97.ATailFrontierLiveClosure.Legacy.false_of_originalFrontierUniqueRadiusArm, coordinator = Problem97.ATailFrontierLiveClosure.false_of_originalFrontierUniqueRadiusArm, producer = Problem97.FirstApexUniqueRadiusResidual.firstApexUniqueRadius_residualCases, eliminator = Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFiveResidual, open_leaf = Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFiveCommonObstructionCenterResidual. The wrapper RESOLVES: `proof-blueprint search --name Problem97.ATailFrontierLiveClosure.Legacy.false_of_originalFrontierUniqueRadiusArm --json --all --private` returns EXACTLY ONE record, kind theorem, private=false, has_sorry=false, non-empty doc, at Erdos9796Proof/P97/ATail/FrontierLiveClosure/Legacy/Rigid221Wrappers.lean:68 — a different module and a different declaration from the coordinator, which resolves to exactly one record at Rigid221Closure.lean:1724. The EDGE holds: `proof-blueprint search --uses Problem97.ATailFrontierLiveClosure.false_of_originalFrontierUniqueRadiusArm` returns 3 callers and the Legacy wrapper is one of them (the others are Coordinator.lean:679 and :778). Read directly from Legacy/Rigid221Wrappers.lean:76-77, the wrapper's whole proof term is `ATailFrontierLiveClosure.false_of_originalFrontierUniqueRadiusArm F hmin hNoM44 hcard hunique`. The earlier receipt's note that this block 'names the SAME declaration as both legacy_wrapper and coordinator, so its five roles are not five distinct symbols' is therefore WRONG and is retracted here; the two names differ by the Legacy namespace and denote two kernel declarations. The obligations-meta.json roles of this block were not touched by the follow-up edit, so the earlier receipt was already reading the same bytes."
+    },
+    {
+      "name": "3 registry check: exit 0, factorized 28/28, zero drift, and obligations.json byte-identical to the earlier receipt's pin",
+      "pass": true,
+      "line": "Detached run (nohup timeout 3000, awaited on the pid) from the repository root of `uv run python scripts/gen_obligation_registry.py check --baseline proof-status/baseline --require-factorized TD --require-factorized TA --require-factorized TS --require-factorized R221`, executed against the #7518-modified script. Output: 'OK: .../proof-status/obligations.json matches the live spine (28 reachable, 6 off-spine); 34/34 reviewed meta_status, vocabulary clean' / '  factorized 28/28 reachable leaves (required: TD, TA, TS, R221; 24 with declared consumer_trust (Lean.ofReduceBool, Lean.trustCompiler))' / '  bound to: HEAD fad368f6930f3f048586bb99bf8db0034f0bb1cc, build 5902ba928947, roster sources dirty'. Its receipt proof-status/receipts/registry-check-20260826T162435Z.json records exit_code 0, verdict 'pass', reasons [], factorization {checked 28, verified 28, missing 0, v1_warnings 0, violations [], registry_drift [], required_clusters [TD, TA, TS, R221], schema_versions {p97-factorization/v2: 28}, declared_trust {blocks 24, axioms [Lean.ofReduceBool, Lean.trustCompiler]}, build_id 5902ba928947b2ac…}, meta {entries 34, registry_entries_with_meta_status 34, violations []}, roster live == committed {total 34, reachable 28, off_spine 6} with added [] / removed [] / changed_fields 0, and lean_toolchain leanprover/lean4:v4.27.0. proof-status/obligations.json hashes 5b58c74583079cef0c72269bdbb2e1c94c171acaac94fc56d4b327c8cf8ead6d BEFORE and AFTER the run — byte-identical to the value the earlier receipt pinned, so the note refresh moved nothing into the materialized registry. proof-status/id-assignments.json and proof-status/frontier-table.generated.md are byte-identical to HEAD (`git diff --quiet HEAD` exit 0), as are import-waivers.json and legacy-import-exceptions.json. A second receipt, registry-check-20260826T162456Z.json, appeared 21 seconds after this one from a CONCURRENT run by another session; it is not this re-verifier's and is recorded only so the tree delta is accounted for (it also reports exit_code 0, verdict 'pass', 28/28, violations [])."
+    },
+    {
+      "name": "4 roster and publish-target axioms unchanged",
+      "pass": true,
+      "line": "`proof-blueprint search --with-sorry --spine --json` exported 28 records; the sorted symbol set is SET-EQUAL to proof-status/baseline/spine-sorry.json (28, `diff` empty). `proof-blueprint search --with-sorry --off-spine --json` exported 6 records, SET-EQUAL to proof-status/baseline/offspine-sorry.json (6, `diff` empty). `proof-blueprint axioms Problem97.erdos97_rhs`, run from the lake root lean/, is BYTE-IDENTICAL to proof-status/baseline/axioms.txt — both files hash 885f4dbeabd8fc8a86f9acd9b1d85275ddd7218f247d367aa42798b560ed4936 and the `diff` is empty; the tool's exit 1 is the standing unapproved-sorryAx verdict the baseline file itself records. The exported closure is the six names propext, sorryAx, Classical.choice, core*-tagged Lean.ofReduceBool and Lean.trustCompiler, and Quot.sound, so the two declared consumer_trust names remain inside the publish target's recorded closure."
+    },
+    {
+      "name": "5 tests, lint and tree delta",
+      "pass": true,
+      "line": "`uv run python -m pytest -q scripts/test_gen_obligation_registry_factorization.py scripts/test_lint_cluster_imports_legacy.py` EXIT 0, final line '157 passed in 6.62s' — collection is 103 + 54, the +2 over the earlier receipt's 155 coming from the #7518 test additions (+172/-3 lines in the factorization test file). `uv run python scripts/lint_cluster_imports.py` EXIT 0, final line 'lint_cluster_imports: OK -- 691 import edges scanned, 27 forbidden edges, all waived by 27 authenticated waivers; 3 retired; 5 legacy edges, all listed.' — the expected line verbatim. TREE DELTA: `git status --porcelain` (410 lines) against scratchpad/w3-r221-b-status-before.txt (397 lines) adds THIRTEEN lines and removes none — ' M lean/.../Rigid221Closure.lean', ' M lean/.../Rigid221SourceHeavy.lean', ' M proof-status/README.md', ' M proof-status/obligations-meta.json', ' M proof-status/obligations.json', ' M scripts/gen_obligation_registry.py', ' M scripts/test_gen_obligation_registry_factorization.py' and six untracked receipts under proof-status/receipts/ (registry-check-20260826T154659Z.json, …T155930Z.json, …T162435Z.json, …T162456Z.json, w3-0e-fix-gate-receipt.json and this receipt). That is exactly the allowed set: the two Lean files, obligations-meta.json, obligations.json, README.md, the two script files and receipts. A transient proof-status/.fresh-export-* directory was present while the check ran and is gone. FOREIGN DIFFS re-hashed after every run of this pass: `git diff -- lean/.../TwoSourceCanonicalSurface.lean | shasum -a 256 | cut -c1-16` = 4c4267daab681bb3 and TwoSourceRetainedMinimalCore.lean = 64711158044d921c, both the pinned values. `git diff --cached --name-only` is EMPTY (nothing staged) and HEAD is still fad368f6930f3f048586bb99bf8db0034f0bb1cc."
+    },
+    {
+      "name": "6 strict refs (INHERITED FAILURE — the one allowed failing gate)",
+      "pass": false,
+      "line": "Reported from this re-verifier's own registry-check receipt registry-check-20260826T162435Z.json, whose blueprint_refs section records {ran true, command 'proof-blueprint refs --check', exit_code 1, build_id 5902ba928947, fresh 56447, STALE 36, NEVER_MINED 1, raw '… mined (fresh):  56447 / stale:          36 (mined against an older build) / never mined:    1 / Run `proof-blueprint refs --refresh` to reconcile.'}; this re-verifier's own direct `proof-blueprint refs --check` printed the identical figures. This is the inherited condition recorded in proof-status/baseline/refs-check.txt, unchanged by this wave and unchanged by the follow-up note edit, and it clears only under `proof-blueprint refs --refresh`, which this lane may not run. The advisory line was NOT acted on."
+    }
+  ],
+  "roi": {
+    "factorized_live_before": "22/28 reachable leaves (4 TD/TA + 6 TS + 12 R221), 18 with declared consumer_trust",
+    "factorized_live_after": "28/28 reachable leaves, 24 with declared consumer_trust; delta +6 blocks, all Rigid221 — the six ids that were the standing --require-factorized R221 failures after W3-R221-a",
+    "blocks_written": 6,
+    "blocks_dropped": [],
+    "lean_declarations_added": 8,
+    "lean_declarations_removed": 0,
+    "coordinators_rewired": 5,
+    "open_leaves_closed": 0,
+    "declared_names": [
+      "Lean.ofReduceBool",
+      "Lean.trustCompiler"
+    ],
+    "declared_names_precondition": "both names appear in proof-status/baseline/axioms.txt, the recorded closure of the publish target Problem97.erdos97_rhs, which this verifier re-exported with an empty diff; neither is sorryAx and neither is in ALLOWED_AXIOMS",
+    "per_block": [
+      {
+        "obligation_id": "P97-R221-PENTAGONBLOCKER",
+        "coordinator": "false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagon (Rigid221SourceHeavy.lean:17137)",
+        "producer": "exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagon_blockerCenterTrichotomy (Rigid221SourceHeavy.lean:16958, NEW)",
+        "eliminator": "false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagon_blockerCenterSplit (Rigid221SourceHeavy.lean:17036, NEW)",
+        "open_leaf": "false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerDeleted (Rigid221SourceHeavy.lean:3448)",
+        "legacy_wrapper": "false_of_originalFrontierUniqueRadiusArm (Rigid221Closure.lean:1724)",
+        "transitive_rows": {
+          "legacy_wrapper->coordinator": 20
+        },
+        "producer_closure": "propext, Classical.choice, Quot.sound (CLEAN)",
+        "eliminator_closure": "propext, sorryAx, Classical.choice, Lean.ofReduceBool, Lean.trustCompiler, Quot.sound",
+        "open_leaf_closure": "propext, Classical.choice, Quot.sound, sorryAx (still OPEN)",
+        "leaf_sole_caller": "the eliminator; leaf statement byte-identical to HEAD",
+        "pinned_digests_recomputed_equal": true
+      },
+      {
+        "obligation_id": "P97-R221-VROWBLOCKEROFFCLASS",
+        "coordinator": "false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV (Rigid221SourceHeavy.lean:12497)",
+        "producer": "exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV_vCenterDichotomy (Rigid221SourceHeavy.lean:12367, NEW)",
+        "eliminator": "false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV_vCenterSplit (Rigid221SourceHeavy.lean:12459, NEW)",
+        "open_leaf": "false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV_vRowBlockerOffClass (Rigid221SourceHeavy.lean:12344)",
+        "legacy_wrapper": "false_of_originalFrontierUniqueRadiusArm (Rigid221Closure.lean:1724)",
+        "transitive_rows": {
+          "legacy_wrapper->coordinator": 22
+        },
+        "producer_closure": "propext, Classical.choice, Quot.sound (CLEAN)",
+        "eliminator_closure": "propext, sorryAx, Classical.choice, Lean.ofReduceBool, Lean.trustCompiler, Quot.sound",
+        "open_leaf_closure": "propext, Classical.choice, Quot.sound, sorryAx (still OPEN)",
+        "leaf_sole_caller": "the eliminator; leaf statement byte-identical to HEAD",
+        "pinned_digests_recomputed_equal": true
+      },
+      {
+        "obligation_id": "P97-R221-SECONDCAPNINE",
+        "coordinator": "false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV_vRowBlockerDeleted_deletedRowBlockerOffClass_card_ge_seventeen (Rigid221SourceHeavy.lean:12173)",
+        "producer": "..._card_ge_seventeen_capTrichotomy (Rigid221SourceHeavy.lean:12044, NEW)",
+        "eliminator": "..._card_ge_seventeen_capSplit (Rigid221SourceHeavy.lean:12110, NEW)",
+        "open_leaf": "..._card_eq_seventeen_secondCapNine (Rigid221SourceHeavy.lean:11946)",
+        "legacy_wrapper": "false_of_originalFrontierUniqueRadiusArm (Rigid221Closure.lean:1724)",
+        "transitive_rows": {
+          "legacy_wrapper->coordinator": 27
+        },
+        "producer_closure": "propext, Classical.choice, Quot.sound (CLEAN)",
+        "eliminator_closure": "propext, sorryAx, Classical.choice, Lean.ofReduceBool, Lean.trustCompiler, Quot.sound",
+        "open_leaf_closure": "propext, Classical.choice, Quot.sound, sorryAx PLUS Lean.ofReduceBool and Lean.trustCompiler (6 names) — the only one of the six leaves carrying the native pair; the block's consumer_trust declares exactly those two names",
+        "leaf_sole_caller": "the eliminator; leaf statement byte-identical to HEAD",
+        "pinned_digests_recomputed_equal": true
+      },
+      {
+        "obligation_id": "P97-R221-CARDEIGHTEEN",
+        "coordinator": "..._card_ge_seventeen (Rigid221SourceHeavy.lean:12173) — same coordinator, producer and eliminator as SECONDCAPNINE; the two leaves are the two arms of the same split",
+        "producer": "..._card_ge_seventeen_capTrichotomy (Rigid221SourceHeavy.lean:12044, NEW)",
+        "eliminator": "..._card_ge_seventeen_capSplit (Rigid221SourceHeavy.lean:12110, NEW)",
+        "open_leaf": "..._card_ge_eighteen (Rigid221SourceHeavy.lean:12003)",
+        "legacy_wrapper": "false_of_originalFrontierUniqueRadiusArm (Rigid221Closure.lean:1724)",
+        "transitive_rows": {
+          "legacy_wrapper->coordinator": 27
+        },
+        "producer_closure": "propext, Classical.choice, Quot.sound (CLEAN)",
+        "eliminator_closure": "propext, sorryAx, Classical.choice, Lean.ofReduceBool, Lean.trustCompiler, Quot.sound",
+        "open_leaf_closure": "propext, Classical.choice, Quot.sound, sorryAx (still OPEN)",
+        "leaf_sole_caller": "the eliminator; leaf statement byte-identical to HEAD",
+        "pinned_digests_recomputed_equal": true
+      },
+      {
+        "obligation_id": "P97-R221-SOURCENEU",
+        "coordinator": "false_of_exactFourMutualOmissionRigid221_physicalApex_sourceBlockerInClass_frame (Rigid221Closure.lean:185)",
+        "producer": "exactFourRigid221_sourceBlockerInClass_placement (Rigid221Placement.lean, PRE-EXISTING)",
+        "eliminator": "false_of_exactFourRigid221_sourceBlockerInClass_placementSplit (Rigid221Closure.lean:110, NEW)",
+        "open_leaf": "false_of_exactFourMutualOmissionRigid221_physicalApex_sourceNeU (Rigid221Closure.lean:53)",
+        "legacy_wrapper": "false_of_originalFrontierUniqueRadiusArm (Rigid221Closure.lean:1724)",
+        "transitive_rows": {
+          "legacy_wrapper->coordinator": 12
+        },
+        "producer_closure": "propext, Classical.choice, Quot.sound (CLEAN)",
+        "eliminator_closure": "propext, sorryAx, Classical.choice, Lean.ofReduceBool, Lean.trustCompiler, Quot.sound",
+        "open_leaf_closure": "propext, Classical.choice, Quot.sound, sorryAx (still OPEN)",
+        "leaf_sole_caller": "the eliminator; leaf statement byte-identical to HEAD",
+        "pinned_digests_recomputed_equal": true
+      },
+      {
+        "obligation_id": "P97-R221-FIRSTAPEXUNIQUE",
+        "coordinator": "false_of_originalFrontierUniqueRadiusArm (Rigid221Closure.lean:1724) — the same declaration the block names as legacy_wrapper; all four role edges are direct kernel edges and the block has NO transitive rows",
+        "producer": "Problem97.FirstApexUniqueRadiusResidual.firstApexUniqueRadius_residualCases (PRE-EXISTING)",
+        "eliminator": "false_of_firstApexUniqueRadiusExactFiveResidual (Rigid221Closure.lean:1703, NEW)",
+        "open_leaf": "false_of_firstApexUniqueRadiusExactFiveCommonObstructionCenterResidual (Rigid221Closure.lean:1690)",
+        "legacy_wrapper": "false_of_originalFrontierUniqueRadiusArm (Rigid221Closure.lean:1724)",
+        "transitive_rows": {},
+        "producer_closure": "propext, Classical.choice, Quot.sound (CLEAN)",
+        "eliminator_closure": "propext, sorryAx, Classical.choice, Lean.ofReduceBool, Lean.trustCompiler, Quot.sound — the native pair enters through the closed sibling terminal, as the LEAN AUTHOR states, so the block's consumer_trust must and does list both",
+        "open_leaf_closure": "propext, Classical.choice, Quot.sound, sorryAx (still OPEN)",
+        "leaf_sole_caller": "the eliminator; leaf statement byte-identical to HEAD",
+        "pinned_digests_recomputed_equal": true
+      }
+    ]
+  },
+  "tests": [
+    {
+      "command": "proof-blueprint refs --check | head -5",
+      "exit_code": 1,
+      "final_line": "current build: 5902ba928947 / mined (fresh): 56447 / stale: 36 / never mined: 1",
+      "total_passed": null,
+      "failed": 0,
+      "run_by": "this re-verifier, from the repository root; --refresh NOT run"
+    },
+    {
+      "command": "uv run python scripts/gen_obligation_registry.py check --baseline proof-status/baseline --require-factorized TD --require-factorized TA --require-factorized TS --require-factorized R221",
+      "exit_code": 0,
+      "final_line": "factorized 28/28 reachable leaves (required: TD, TA, TS, R221; 24 with declared consumer_trust (Lean.ofReduceBool, Lean.trustCompiler))",
+      "total_passed": null,
+      "failed": 0,
+      "run_by": "this re-verifier, detached (nohup timeout 3000) and awaited on the pid; receipt registry-check-20260826T162435Z.json, exit_code 0, verdict 'pass', reasons []"
+    },
+    {
+      "command": "uv run python -m pytest -q scripts/test_gen_obligation_registry_factorization.py scripts/test_lint_cluster_imports_legacy.py",
+      "exit_code": 0,
+      "final_line": "157 passed in 6.62s",
+      "total_passed": 157,
+      "failed": 0,
+      "run_by": "this re-verifier, from the repository root; collection 103 + 54"
+    },
+    {
+      "command": "uv run python scripts/lint_cluster_imports.py",
+      "exit_code": 0,
+      "final_line": "lint_cluster_imports: OK -- 691 import edges scanned, 27 forbidden edges, all waived by 27 authenticated waivers; 3 retired; 5 legacy edges, all listed.",
+      "total_passed": null,
+      "failed": 0,
+      "run_by": "this re-verifier, from the repository root"
+    },
+    {
+      "command": "proof-blueprint axioms Problem97.erdos97_rhs",
+      "exit_code": 1,
+      "final_line": "diff against proof-status/baseline/axioms.txt is EMPTY (both hash 885f4dbeabd8fc8a…); the tool's exit 1 is its standing verdict on the unapproved sorryAx",
+      "total_passed": null,
+      "failed": 0,
+      "run_by": "this re-verifier, from the lake root lean/"
+    },
+    {
+      "command": "proof-blueprint search --with-sorry --spine --json  /  --off-spine --json",
+      "exit_code": 0,
+      "final_line": "28 spine records set-equal to baseline/spine-sorry.json; 6 off-spine records set-equal to baseline/offspine-sorry.json",
+      "total_passed": null,
+      "failed": 0,
+      "run_by": "this re-verifier, from the repository root"
+    },
+    {
+      "command": "uv run python -m pytest -q scripts/test_gen_obligation_registry_factorization.py scripts/test_lint_cluster_imports_legacy.py",
+      "exit_code": 0,
+      "final_line": "157 passed in 6.33s",
+      "total_passed": 157,
+      "failed": 0,
+      "run_by": "FINAL PASS re-checker, from the repository root; reproduces the 157 of the previous pass against the same #7518-modified script and test file"
+    },
+    {
+      "command": "uv run python scripts/lint_cluster_imports.py",
+      "exit_code": 0,
+      "final_line": "lint_cluster_imports: OK -- 691 import edges scanned, 27 forbidden edges, all waived by 27 authenticated waivers; 3 retired; 5 legacy edges, all listed.",
+      "total_passed": null,
+      "failed": 0,
+      "run_by": "FINAL PASS re-checker, from the repository root; the expected line verbatim"
+    }
+  ],
+  "content_bound_files_working_tree": {
+    "note": "sha256 of the working-tree bytes at HEAD fad368f6, UNCOMMITTED, re-computed by the FINAL PASS re-checker at 2026-08-26T17:12:02Z. The two Lean files, obligations.json, id-assignments.json, frontier-table.generated.md and the registry-check receipt all re-hash to the values pinned by the previous pass. proof-status/obligations-meta.json MOVED (58f3579b… -> 7b686118…) because the main session restored it from the pre-notes copy and re-applied the citation refresh with a corrected script; the new bytes are what gate 1 above audits. The three #7518 files (scripts/gen_obligation_registry.py, scripts/test_gen_obligation_registry_factorization.py, proof-status/README.md) are deliberately NOT bound here: they belong to another agent's claim and are bound in proof-status/receipts/w3-0e-fix-gate-receipt.json. For the record, at 2026-08-26T17:12:02Z they hash bccc6412f9ed858e79951241a74f07f1d34550d6011b37a3ae0a7d45a4291ef8, 841af709cb1d776febcc48ef2b88696cf532ea916cc4e2c5be031290bc7a50b7 and 685edd43fe25b5ebd770841525b69eeec68c811e3a99ff1f0b8e8d0f47f1f85a.",
+    "sha256": {
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221SourceHeavy.lean": "dbe0e37c1b6562249ff41d0754bed606c58fe70efe93ed267230d0b773318c99",
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221Closure.lean": "cafeac3e4bbcabfbe6ffcf1443e4d9b93c717627e5144c6158040aff5676efa8",
+      "proof-status/obligations-meta.json": "7b686118fc436327b4f8a604c5d6e5ef01f4be5af0fa1835bbf1b17e88afd463",
+      "proof-status/obligations.json": "5b58c74583079cef0c72269bdbb2e1c94c171acaac94fc56d4b327c8cf8ead6d",
+      "proof-status/id-assignments.json": "4c1c0a5bfa5956904c1b4266d7a8b4bda4454d3ff1f85b663eae88197d364313",
+      "proof-status/frontier-table.generated.md": "0cb5d00f2c542ce082e59b11b7fe9268b22115753f16b07c68772446d8bfbd07",
+      "proof-status/receipts/registry-check-20260826T162435Z.json": "51f9f3425219a323c6ecb39288c3e966e1e749f6b753ba4ff278b52d2372fad1"
+    }
+  },
+  "files_written_by_this_verifier": [
+    "proof-status/receipts/w3-r221-b-gate-receipt.json"
+  ],
+  "new_receipts_written_by_this_check": [
+    "proof-status/receipts/registry-check-20260826T162435Z.json"
+  ],
+  "git_operations_performed": [
+    "read-only only: status, diff, show, rev-parse, log. No add, commit, checkout, stash, reset, restore, rm, push, rebase or merge. Nothing staged; staged count 0 before and after.",
+    "NO build: `lake-build` was not run by this pass, as the task requires; `proof-blueprint refs --refresh`, `proof-blueprint sync` and `gen_obligation_registry.py generate` were not run either. No Lean, registry, script, doc or configuration file was edited — the only repository file written is this receipt, plus the registry-check receipt emitted by this pass's own detached check."
+  ],
+  "author_claims_checked": [
+    "MAIN SESSION 'only the prose note of the twelve W3-R221-a blocks changed in obligations-meta.json' — CONFIRMED: exactly twelve blocks differ, they are exactly the twelve named, and with `.factorization.note` deleted all 34 blocks are identical to the pre-edit copy.",
+    "MAIN SESSION 'the File.lean:N citations were refreshed to the post-wave line numbers' — PARTIALLY CONFIRMED, and this is the gate-1 failure. Every full-form citation that was rewritten is correct and was confirmed line-by-line, but two range ends (Rigid221Closure.lean:1369-1311 and :1271-1217) and sixteen short-form ':N' citations were left at pre-wave values.",
+    "MAIN SESSION 'the two Lean files, obligations.json, id-assignments.json and frontier-table.generated.md were NOT touched since the earlier receipt' — CONFIRMED by hashing: both Lean files and obligations.json equal the earlier receipt's pins exactly, and `git diff --quiet HEAD` on id-assignments.json and frontier-table.generated.md exits 0.",
+    "MAIN SESSION 'the registry check still passes 28/28 with zero drift' — CONFIRMED by this re-verifier's own detached rerun: exit 0, verdict 'pass', reasons [], checked 28, verified 28, missing 0, violations [], registry_drift [], roster live == committed.",
+    "MAIN SESSION 'expect 157 passed' and 'the lint OK line' — CONFIRMED verbatim by this re-verifier's own runs (157 passed in 6.62s; the 691-edge OK line).",
+    "BRIEF 'the earlier receipt's observation that FIRSTAPEXUNIQUE's legacy_wrapper and coordinator coincide is to be corrected if the meta says otherwise' — the meta says otherwise, and the correction is made: the two are distinct declarations in distinct modules, both resolving to exactly one public record, with a confirmed wrapper-to-coordinator edge.",
+    "EARLIER VERIFIER's build fingerprint 5902ba928947 and its content_bound_files_working_tree Lean hashes — CONFIRMED unchanged, which is what stands in for the forbidden rebuild.",
+    "EARLIER VERIFIER's inherited strict-refs figures (36 stale, 1 never mined at build 5902ba928947) — CONFIRMED unchanged, both directly and from this pass's own check receipt.",
+    "FINAL PASS 2026-08-26T17:12:02Z — SUPERSEDES ENTRY [1] ABOVE. Entry [1] was decided against the FIRST citation refresh. The main session then restored proof-status/obligations-meta.json from the pre-notes copy and re-applied the refresh with a corrected script that handles File.lean:N, File.lean:N-M and the file-less ':N'. MAIN SESSION 'the citations were refreshed to the post-wave line numbers' is now FULLY CONFIRMED against the working tree: all 80 citations in the twelve W3-R221-a notes resolve, both ranges read 1369-1379 and 1271-1285 (no longer inverted), all sixteen short-form ':N' citations were remapped to :16931 :16211 :16086 :16017 :14420 :16053 (MISSINGINCIDENCE), :16795 :16809 (MISSINGINCIDENCE-2) and :13379 :16750 :16632 :16587 :16376 :16613 (OUTSIDETHREEROWS), the banned stale values SourceHeavy:18355, :16701 and Closure:108 appear nowhere, and the six W3-R221-b notes are byte-identical to the pre-notes copy. Entries [0], [2], [4], [6] and [7] were re-checked by this pass and still hold (the pytest final line is now '157 passed in 6.33s' from this pass's own run). Entries [3] and [5] rest on a registry `check` and on `proof-blueprint search`, neither of which this pass ran; they are carried forward from the previous pass unverified here.",
+    "FINAL PASS 2026-08-26T17:12:02Z — #7518 DOCUMENTATION FIXES, re-checked here only because they share the working tree (they are outside claim #7512 and are bound in proof-status/receipts/w3-0e-fix-gate-receipt.json): scripts/gen_obligation_registry.py now hashes bccc6412f9ed858e79951241a74f07f1d34550d6011b37a3ae0a7d45a4291ef8 and proof-status/README.md 685edd43fe25b5ebd770841525b69eeec68c811e3a99ff1f0b8e8d0f47f1f85a, both moved by the main session's documentation fixes; scripts/test_gen_obligation_registry_factorization.py is unmoved at 841af709…. The 157-test run and the lint OK line of this pass executed against those bytes."
+  ],
+  "metadata_corrections": [
+    {
+      "utc": "2026-08-26T16:40:00Z",
+      "kind": "correction to the EARLIER gate receipt this file replaces: its P97-R221-FIRSTAPEXUNIQUE role-coincidence observation is wrong",
+      "detail": "The earlier receipt recorded, in notes_for_main_session, that 'P97-R221-FIRSTAPEXUNIQUE names the SAME declaration (false_of_originalFrontierUniqueRadiusArm) as both legacy_wrapper and coordinator, so its five roles are not five distinct symbols'. The block's roles are Problem97.ATailFrontierLiveClosure.Legacy.false_of_originalFrontierUniqueRadiusArm (legacy_wrapper) and Problem97.ATailFrontierLiveClosure.false_of_originalFrontierUniqueRadiusArm (coordinator): two distinct fully-qualified names, two distinct kernel declarations, in Legacy/Rigid221Wrappers.lean:68 and Rigid221Closure.lean:1724, each resolving to exactly one public record, with the wrapper's proof term applying the coordinator. All five roles of the block are distinct, as in the other seventeen R221 blocks. The suggestion that a future schema tightening 'should decide whether role coincidence is intended' does not arise.",
+      "unchanged": "This correction does not change any gate verdict of the earlier receipt; the block was already accepted by `gen_obligation_registry.py check` and all four of its role edges were already confirmed."
+    },
+    {
+      "utc": "2026-08-26T16:40:00Z",
+      "kind": "supersession of the earlier receipt's pass state, caused by the follow-up note edit rather than by any disagreement about the wave",
+      "detail": "The earlier receipt recorded source_gates_pass true. That verdict was reached before proof-status/obligations-meta.json was edited. This pass re-decides gate 1 over the edited file and finds two rewritten citations wrong and sixteen left stale, so source_gates_pass is now false. Every machine-checked figure the earlier receipt reported that this pass re-ran — the two Lean file hashes, the obligations.json hash, the registry-check verdict and its 28/28 factorization, the two roster set-equalities, the axiom byte-identity, the lint OK line, the two foreign diff hashes and the staged count — reproduced exactly. The pytest total moved 155 -> 157 solely because #7518 added two tests.",
+      "unchanged": "promotion_claim is unaffected; the wave still makes no proof-progress or closure claim."
+    },
+    {
+      "utc": "2026-08-26T17:12:02Z",
+      "kind": "supersession of the SECOND metadata_correction above: source_gates_pass returns to true because the citation defect it recorded has been repaired",
+      "detail": "The entry above records that this receipt lowered source_gates_pass to false when the first citation refresh left two inverted ranges and sixteen stale ':N' citations. Both defects have since been repaired by the main session and re-checked here from source; gate 1 now PASSES, blockers is empty, and source_gates_pass is true. Nothing else in that entry changes: the earlier verifier's machine-checked figures still reproduce, and the 155 -> 157 pytest move is still attributable to #7518 alone. The FIRST metadata_correction above (the P97-R221-FIRSTAPEXUNIQUE role-coincidence retraction) is untouched and still stands; this pass did not re-run the blueprint queries behind it and neither confirms nor disputes it.",
+      "unchanged": "overall_pass stays FALSE, on gate 6 alone. promotion_claim is unaffected; the wave still makes no proof-progress or closure claim."
+    }
+  ],
+  "note_resolutions": [
+    "The earlier receipt's follow-up note — that the reviewed prose notes on the W3-R221-a blocks still cited pre-wave line numbers — was the reason for this edit. It is PARTIALLY resolved: 24 of the 26 line references written in the full 'File.lean:N' form across the twelve notes were rewritten correctly (and the ones that legitimately did not move stayed put), but two range ends and sixteen short-form ':N' references were not, so the note remains open. See the two blockers.",
+    "SUPERSEDES THE ENTRY ABOVE (2026-08-26T17:12:02Z). The citation note is now FULLY RESOLVED. The main session restored proof-status/obligations-meta.json from scratchpad/w3-r221-b-main/obligations-meta.pre-notes.json and re-applied the refresh with a corrected script (scratchpad/w3-r221-b-main/map_notes2.py) that handles all three citation forms — File.lean:N, File.lean:N-M and the file-less ':N'. This FINAL PASS re-extracted all 80 citations from the twelve W3-R221-a notes with an independent character scanner and checked every one against the working tree: 34 declaration citations land on their `theorem <name>` line, 6 tactic-site citations land on the named by_cases / rcases / native_decide line AND inside the declaration the note says owns them, and both ranges (1369-1379 and 1271-1285) span the proof body of the theorem the note names. The two inverted ranges and the sixteen stale ':N' citations reported in the previous version of this receipt are gone, the three banned stale values (SourceHeavy :18355, :16701, Closure:108) appear nowhere, and the six W3-R221-b notes are byte-identical to the pre-notes copy. blockers is now empty and gate 1 passes."
+  ],
+  "notes_for_main_session": [
+    "FINAL PASS 2026-08-26T17:12:02Z: this receipt was re-decided a third time, after the main session restored obligations-meta.json from the pre-notes copy and re-applied the citation refresh with the corrected script. GATE 1 NOW PASSES. The 'TO REPAIR GATE 1' note below is DONE — do not re-apply it; it is kept only as the record of what was wrong. All 80 citations in the twelve W3-R221-a notes were re-extracted and re-resolved against the working tree, the twelve-block scope was re-derived structurally, and the six W3-R221-b notes were confirmed byte-identical to the pre-notes copy. source_gates_pass is now true; overall_pass stays false on the inherited strict-refs gate 6 alone. proof-status/obligations-meta.json now hashes 7b686118fc436327b4f8a604c5d6e5ef01f4be5af0fa1835bbf1b17e88afd463 (was 58f3579b…); every other bound hash is unchanged.",
+    "Pre-commit receipt, and a REPLACEMENT for the earlier W3-R221-b gate receipt at the same path. When the wave commit lands, set wave_commit and recompute the bound hashes from `git show <sha>:<path>`, keeping the working-tree block under content_bound_files_working_tree.",
+    "TO REPAIR GATE 1, prose only, in proof-status/obligations-meta.json: set P97-R221-EXACTFOURPHYSICAL's 'Rigid221Closure.lean:1369-1311' to '…:1369-1379'; set P97-R221-EXACTFOURPOSTCARD's 'Rigid221Closure.lean:1271-1217' to '…:1271-1285'; and remap the sixteen short ':N' citations listed in the blockers by +140 in Rigid221SourceHeavy.lean. Widening the mapping script's pattern to catch a trailing '-(\\d+)' and a file-less ':(\\d+)' would produce all eighteen in one pass. Re-running the registry check after such an edit is cheap insurance but not required by the checker, which does not read these numbers.",
+    "The registry check and the 157-test run were executed against the #7518-modified scripts/gen_obligation_registry.py and its test file. If #7518 is reverted or amended, both should be re-run; the check takes well over ten minutes and must be run detached.",
+    "Two untracked registry-check receipts predate this pass (registry-check-20260826T154659Z.json from the registry author, registry-check-20260826T155930Z.json from the earlier verifier), this pass added registry-check-20260826T162435Z.json, and registry-check-20260826T162456Z.json came from a CONCURRENT run by another session while this pass's own check was in flight. All four bind to HEAD fad368f6 and build 5902ba928947 and all four report verdict 'pass' with 28/28. proof-status/receipts/w3-0e-fix-gate-receipt.json belongs to the #7518 verifier. Commit only the ones the wave intends to keep.",
+    "The earlier receipt's claim that P97-R221-FIRSTAPEXUNIQUE has coincident legacy_wrapper and coordinator roles is retracted; see metadata_corrections. No schema tightening is called for on that account.",
+    "The strict-refs condition (36 stale, 1 never mined) is inherited and unrelated to this wave and to the note edit. It is one of the two failing gates and clears only under `proof-blueprint refs --refresh`, which this lane may not run.",
+    "The six leaves stay OPEN and this wave still adds no proof progress; the follow-up edit is prose only and changes no role, digest, transitive row or trust declaration."
+  ],
+  "wave_commit": null
+}

@@ -101,6 +101,83 @@ theorem false_of_exactFourMutualOmissionRigid221_physicalApex_sourceNeU
     False := by
   sorry
 
+/-- Two-arm eliminator for the checked source-blocker placement of the
+physical-apex rigid `2+2+1` frame.  The arm in which `u` is the contextual
+source goes to the source-row-heavy chain below, and the genuine third
+source-row arm goes to the open `sourceNeU` leaf.  Once the
+`sourceBlockerInClass` coordinator below delegates its whole placement split
+here, this theorem is the sole consumer of that leaf. -/
+theorem false_of_exactFourRigid221_sourceBlockerInClass_placementSplit
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F)
+    (hcard : 12 ≤ D.A.card)
+    (surface : ExactFourPostCardElevenRobustSurface R)
+    (rho : ℝ)
+    (source other : CarrierVertex D.A)
+    (hrho : 0 < rho)
+    (hfive : 5 ≤ (SelectedClass D.A S.oppApex2 rho).card)
+    (u v : CarrierVertex D.A)
+    (huNeV : u ≠ v)
+    (huClass :
+      u.1 ∈ SelectedClass D.A S.oppApex2 rho)
+    (hvClass :
+      v.1 ∈ SelectedClass D.A S.oppApex2 rho)
+    (hvOmitted :
+      v.1 ∉
+        ((lateFirstApexSystem R).selectedAt
+          u.1 u.2).toCriticalFourShell.support)
+    (huOmitted :
+      u.1 ∉
+        ((lateFirstApexSystem R).selectedAt
+          v.1 v.2).toCriticalFourShell.support)
+    (context :
+      ExactFourMutualOmissionSourceContext
+        R rho source other u v)
+    (jointDeletion :
+      ExactFourMutualOmissionJointDeletion R rho u v)
+    (hclassFive :
+      (SelectedClass D.A S.oppApex2 rho).card = 5)
+    (globalDeletion :
+      ExactFourMutualOmissionRigid221GlobalDeletion
+        R rho u v jointDeletion)
+    (hcenter : globalDeletion.center = S.oppApex2)
+    (hsourceBlockerClass :
+      (lateFirstApexSystem R).centerAt source.1 source.2 ∈
+        SelectedClass D.A S.oppApex2 rho)
+    (hplacementCases :
+      (u = source ∧
+        ((lateFirstApexSystem R).centerAt source.1 source.2 =
+            jointDeletion.deleted.1 ∨
+          (lateFirstApexSystem R).centerAt source.1 source.2 ∈
+            ((lateFirstApexSystem R).selectedAt
+                v.1 v.2).toCriticalFourShell.support ∩
+              SelectedClass D.A S.oppApex2 rho)) ∨
+      (u ≠ source ∧
+        ((lateFirstApexSystem R).centerAt source.1 source.2 =
+            jointDeletion.deleted.1 ∨
+          (lateFirstApexSystem R).centerAt source.1 source.2 = u.1 ∨
+          (lateFirstApexSystem R).centerAt source.1 source.2 ∈
+            ((lateFirstApexSystem R).selectedAt
+                v.1 v.2).toCriticalFourShell.support ∩
+              SelectedClass D.A S.oppApex2 rho))) :
+    False := by
+  rcases hplacementCases with
+    ⟨huSource, hplacement⟩ | ⟨huNeSource, hplacement⟩
+  · exact
+      false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU
+        R hcard surface rho source other hrho hfive u v huNeV
+          huClass hvClass hvOmitted huOmitted context jointDeletion
+          hclassFive globalDeletion hcenter hsourceBlockerClass
+          huSource hplacement
+  · exact
+      false_of_exactFourMutualOmissionRigid221_physicalApex_sourceNeU
+        R hcard surface rho source other hrho hfive u v huNeV
+          huClass hvClass hvOmitted huOmitted context jointDeletion
+          hclassFive globalDeletion hcenter hsourceBlockerClass
+          huNeSource hplacement
+
 /-- Strictly narrower physical-apex coordinator: the source's actual blocker
 has been localized into the physical five-class and then into the two
 source-row placements above.  The outside-class arm is discharged into the
@@ -145,22 +222,13 @@ theorem false_of_exactFourMutualOmissionRigid221_physicalApex_sourceBlockerInCla
         SelectedClass D.A S.oppApex2 rho) :
     False := by
   obtain ⟨hcard, surface⟩ := frame
-  rcases
-      exactFourRigid221_sourceBlockerInClass_placement
-        huClass context globalDeletion hsourceBlockerClass with
-    ⟨huSource, hplacement⟩ | ⟨huNeSource, hplacement⟩
-  · exact
-      false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU
-        R hcard surface rho source other hrho hfive u v huNeV
-          huClass hvClass hvOmitted huOmitted context jointDeletion
-          hclassFive globalDeletion hcenter hsourceBlockerClass
-          huSource hplacement
-  · exact
-      false_of_exactFourMutualOmissionRigid221_physicalApex_sourceNeU
-        R hcard surface rho source other hrho hfive u v huNeV
-          huClass hvClass hvOmitted huOmitted context jointDeletion
-          hclassFive globalDeletion hcenter hsourceBlockerClass
-          huNeSource hplacement
+  exact
+    false_of_exactFourRigid221_sourceBlockerInClass_placementSplit
+      R hcard surface rho source other hrho hfive u v huNeV
+        huClass hvClass hvOmitted huOmitted context jointDeletion
+        hclassFive globalDeletion hcenter hsourceBlockerClass
+        (exactFourRigid221_sourceBlockerInClass_placement
+          huClass context globalDeletion hsourceBlockerClass)
 
 /-- Strictly narrower physical-apex coordinator: the source's actual blocker
 has been localized into the physical five-class and then into the two
@@ -1627,6 +1695,30 @@ theorem false_of_firstApexUniqueRadiusExactFiveCommonObstructionCenterResidual
     False := by
   sorry
 
+/-- Two-arm eliminator for the exact-five first-apex unique-radius residual.
+The distinct-obstruction-centers arm goes to the closed exact-five distinct
+terminal, and the common-obstruction-center arm to the open common-center
+residual leaf.  Once the unique-radius arm coordinator below delegates its
+exact-five branch here, this theorem is the sole consumer of that leaf. -/
+theorem false_of_firstApexUniqueRadiusExactFiveResidual
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (hfive :
+      Nonempty
+          (FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual
+            F) ∨
+        Nonempty
+          (FirstApexUniqueRadiusExactFiveCommonObstructionCenterResidual F)) :
+    False := by
+  rcases hfive with hdistinct | hcommon
+  · exact
+      false_of_firstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual
+        hdistinct.some
+  · exact
+      false_of_firstApexUniqueRadiusExactFiveCommonObstructionCenterResidual
+        hcommon.some
+
 /-- The protected exact-four-or-five first-apex radius alternative, with the
 live minimality and no-M44 context retained. -/
 theorem false_of_originalFrontierUniqueRadiusArm
@@ -1642,13 +1734,7 @@ theorem false_of_originalFrontierUniqueRadiusArm
       F hmin hNoM44 hcard hunique with hfourResidual | hfiveResidual
   · exact false_of_firstApexUniqueRadiusExactFourResidual
       hfourResidual.some
-  · rcases hfiveResidual with hdistinct | hcommon
-    · exact
-        false_of_firstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual
-          hdistinct.some
-    · exact
-        false_of_firstApexUniqueRadiusExactFiveCommonObstructionCenterResidual
-          hcommon.some
+  · exact false_of_firstApexUniqueRadiusExactFiveResidual hfiveResidual
 
 
 end ATailFrontierLiveClosure
