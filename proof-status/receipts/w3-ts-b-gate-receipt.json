@@ -1,16 +1,16 @@
 {
   "schema": "p97-gate-receipt/v1",
   "wave": "W3-TS-b",
-  "state": "COMPLETE — pre-commit, working-tree hashes",
+  "state": "FINAL — bound to W3-TS-b wave commit e31b4172; this receipt ships in the receipt-only child commit of e31b4172",
   "generated_by": "W3-TS-b gate verifier (independent of the main session that applied the change). Every gate reproduced from source: the meta and registry diffs recomputed structurally from `git show HEAD:<path>`, all 27 block symbols re-resolved and both pinned digests recomputed from the live index, all 83 chain edges re-decided from `proof-blueprint search --uses`, all axiom closures re-read from `proof-blueprint axioms`, and all four registry checks re-run by this verifier. No author or main-session output was trusted.",
   "generated_at_utc": "2026-08-26T07:50:12Z",
-  "git_head": "6cdb3fc0047abadd4a6f95aa9265a592e35a3510",
-  "git_head_short": "6cdb3fc0",
-  "head_note": "UNCOMMITTED; working-tree hashes. The change under gate is not committed: HEAD is 6cdb3fc0 (W3-0e receipt, child of 65a8952c) and the two edited files are dirty against it. content_bound_files and content_bound_files_working_tree therefore both hold working-tree sha256 values, taken at verification time and re-confirmed unchanged after the concurrent main-session check runs finished.",
+  "git_head": "e31b417253a984f9cb37960fb1f1a53706e7a09f",
+  "git_head_short": "e31b4172",
+  "head_note": "Bound to commit e31b417253a984f9cb37960fb1f1a53706e7a09f. content_bound_files holds the sha256 of every path committed at e31b4172 (`git show e31b4172:<path>`). The gate verifier's pre-commit draft (working-tree hashes at HEAD 6cdb3fc0) is kept, labeled, under content_bound_files_working_tree; its gates section is that pre-commit snapshot.",
   "baseline_reference": "proof-status/baseline (axioms.txt = the `proof-blueprint axioms` export of Problem97.erdos97_rhs; the six names it records are propext, sorryAx, Classical.choice, Lean.ofReduceBool, Lean.trustCompiler, Quot.sound — both declared consumer_trust names are among them). Roster baselines: spine-sorry.json (28), offspine-sorry.json (6). refs-check.txt records the inherited 36 stale + 1 never-mined condition.",
   "build_fingerprint": "33f2659d3428b288434253557166c4e28c9075d909ee46318276d713d955d34b",
   "build_fingerprint_source": "proof-status/obligations.json — the verified_at_build of all ten materialized factorization blocks; short form 33f2659d3428 as printed by every check run's 'bound to:' line",
-  "claim_reference": "#7506 (authorization: Adam, option A of #7498); W3-0e checkpoint #7507",
+  "claim_reference": "#7506 (file claim + ROI, posted before any write); authorization: Adam, option A of #7498 (2026-08-25); W3-0e checkpoint #7507",
   "claim_scope": "registry bookkeeping: six P97-TS-* p97-factorization/v2 blocks with declared consumer-side trust that the publish target's recorded closure already carries, recorded per block and materialized onto the registry entries; no obligation, statement, axiom, import or Lean change; not a widening of ALLOWED_AXIOMS; no proof-progress or closure claim",
   "promotion_claim": "none",
   "source_gates_pass": true,
@@ -493,6 +493,22 @@
     }
   ],
   "content_bound_files": {
+    "note": "sha256 of every path committed at e31b4172 (git show e31b4172:<path>)",
+    "sha256": {
+      "proof-status/obligations-meta.json": "3ba78a2028effc3f335ea68ac8d11f4feb7fb4504cbb5b36621f66bf6578ee62",
+      "proof-status/obligations.json": "37a9228ad9aab9ba47539b7312b2252d64ff241010e708e0b2e430d81157f89a",
+      "proof-status/receipts/registry-check-20260826T072345Z.json": "d67719d60640de37c5456bfd090a923e03752c3dc436710334ce0d87a3bc72cb",
+      "proof-status/receipts/registry-check-20260826T072803Z.json": "1787b6771cb5c8b0666d9fb1cdf3e331c324e41fb42c9f056fedea084a0b765f",
+      "proof-status/receipts/registry-check-20260826T072938Z.json": "fbab1f4dc340048fdc83b85cf70908b594b88aa8d48237c458eb153a406caf6e",
+      "proof-status/receipts/registry-check-20260826T073159Z.json": "74698aa66cdd365b24ed4eac49c278227da976f1a81d9320eb19ce39319decfe",
+      "proof-status/receipts/registry-check-20260826T073354Z.json": "9acff11e0e6b17b36f9359e5134a19490e9aab1df69d583ecc57a37163ad6300",
+      "proof-status/receipts/registry-check-20260826T073624Z.json": "f1ad3230448f1991558b82f6088de3f94e05603372fa28ffb0369c3fbe778081",
+      "proof-status/receipts/registry-check-20260826T073822Z.json": "8eb4df3d31c52150d6b0bdce7cddbdeb4519d70c7530882309eaf688752aadcd",
+      "proof-status/receipts/registry-check-20260826T074231Z.json": "6a873f3c29c636b6b094108b88bc5475de42ccdbda99b8fe2434a5d4524152e9",
+      "proof-status/receipts/w3-ts-b-gate-receipt.json": "f8042556714f442c5038fc9871e250c839769a603f0d5b8010b60b5a629b0dcf"
+    }
+  },
+  "content_bound_files_working_tree": {
     "proof-status/obligations-meta.json": {
       "sha256": "3ba78a2028effc3f335ea68ac8d11f4feb7fb4504cbb5b36621f66bf6578ee62",
       "note": "working-tree hash at verification time (UNCOMMITTED); the reviewed metadata file carrying the six p97-factorization/v2 blocks"
@@ -500,17 +516,8 @@
     "proof-status/obligations.json": {
       "sha256": "37a9228ad9aab9ba47539b7312b2252d64ff241010e708e0b2e430d81157f89a",
       "note": "working-tree hash at verification time (UNCOMMITTED); the canonical registry carrying the six materialized blocks"
-    }
-  },
-  "content_bound_files_working_tree": {
-    "proof-status/obligations-meta.json": {
-      "sha256": "3ba78a2028effc3f335ea68ac8d11f4feb7fb4504cbb5b36621f66bf6578ee62",
-      "note": "same values as content_bound_files — this receipt is entirely pre-commit, so there is no committed variant to distinguish"
     },
-    "proof-status/obligations.json": {
-      "sha256": "37a9228ad9aab9ba47539b7312b2252d64ff241010e708e0b2e430d81157f89a",
-      "note": "same values as content_bound_files — this receipt is entirely pre-commit, so there is no committed variant to distinguish"
-    }
+    "note": "HISTORICAL — working-tree hashes taken by the gate verifier before the wave commit (HEAD 6cdb3fc0). "
   },
   "files_written_by_this_verifier": [
     "proof-status/receipts/w3-ts-b-gate-receipt.json"
@@ -552,7 +559,13 @@
       "evidence": "grep for a bare `sorry` line between the theorem header at :3347 and the next declaration returns exactly lines 3375 and 3411, both inside the `secondInteraction` case split of false_of_freshThirdEqualCenter_noncanonicalInteractions"
     }
   ],
-  "metadata_corrections": [],
+  "metadata_corrections": [
+    {
+      "utc": "2026-08-26T07:53:01Z",
+      "kind": "receipt re-bound to the wave commit; claim reference, note resolutions and main-session reverification added; metadata only",
+      "unchanged": "overall_pass=true, source_gates_pass=true, promotion_claim none, claim_scope unchanged"
+    }
+  ],
   "observations_not_blocking": [
     "Gate 0 as written asks for '`git diff --stat HEAD -- lean` empty' AND for the two foreign Lean diffs to hash to specific prefixes. Those two sub-clauses cannot both hold literally. The gate was read in its internally consistent sense — no Lean file changed BEYOND the two pinned foreign ones — and that reading is satisfied exactly: the --stat output lists those two files and nothing else, and both diff digests match the recorded prefixes byte for byte. Recorded here so the wording can be repaired for the next wave rather than silently reinterpreted again.",
     "The main session ran its own plain/TD/TA/TS check series CONCURRENTLY with this verification, interleaving four further untracked receipts into proof-status/receipts (20260826T072345Z, 072803Z, 073159Z, 073624Z). They are attributed by factorization.required_clusters and generated_at_utc and are NOT listed as this verifier's. Concurrency did not disturb the gate: proof-status/obligations-meta.json and obligations.json were re-hashed after the last concurrent run finished and are byte-identical to the values hashed at the start (3ba78a2028effc3f... and 37a9228ad9aab9ba...), with mtimes 07:18:39Z and 07:22:55Z, both earlier than any check run.",
@@ -566,7 +579,53 @@
     "The strict-refs gate was not run and this receipt makes no claim about reference freshness.",
     "No proof-progress or closure claim is made or implied by this receipt: the six leaves remain open, each carrying sorryAx, and the spine sorry roster is unchanged at 28."
   ],
-  "note_resolutions": [],
-  "main_session_reverification": null,
-  "wave_commit": null
+  "note_resolutions": [
+    {
+      "note": "Pre-commit receipt; re-issue bound to the wave commit with git show hashes and wave_commit",
+      "resolution": "Done by this rebind: content_bound_files = sha256 of every committed path, wave_commit set, the working-tree block kept under content_bound_files_working_tree."
+    },
+    {
+      "note": "Eight untracked registry-check receipts: four by the verifier (072938Z, 073354Z, 073822Z, 074231Z) and four by the concurrent main-session check series (072345Z, 072803Z, 073159Z, 073624Z)",
+      "resolution": "All eight ship in the wave commit as check evidence; both series are attributed in this note."
+    },
+    {
+      "note": "Gate 0 wording asks for an empty `git diff --stat HEAD -- lean` while also pinning two foreign Lean diffs; read in its consistent sense (no Lean change beyond the two pinned foreign files)",
+      "resolution": "Accepted; the two foreign diffs hash to 4c4267daab681bb3 / 64711158044d921c as recorded. The gate wording is repaired in the next wave's brief."
+    },
+    {
+      "note": "Strict refs not run; no reference-freshness claim",
+      "resolution": "Inherited 36 stale + 1 never-mined per proof-status/baseline/refs-check.txt; unchanged."
+    },
+    {
+      "note": "No proof-progress or closure claim: the six leaves remain open with sorryAx; spine roster 28",
+      "resolution": "Adopted in the commit message and the checkpoint post: registry bookkeeping with declared consumer-side trust the publish target already carries; not a widening of ALLOWED_AXIOMS."
+    }
+  ],
+  "main_session_reverification": {
+    "utc": "2026-08-26T07:53:01Z",
+    "on": "the staged tree that became e31b4172 (byte-identical to the commit)",
+    "results": {
+      "registry_check": "plain check exit 0: OK, 28 reachable / 6 off-spine, 34/34 reviewed meta_status; 'factorized 10/28 reachable leaves (6 with declared consumer_trust (Lean.ofReduceBool, Lean.trustCompiler))'; --require-factorized TD, TA, TS each exit 0 with the same census line plus 'required: <code>' (main-session runs, logs scratchpad/w3-ts-b/check-*.log)",
+      "generate": "generate --baseline proof-status/baseline --out proof-status exit 0 (scratchpad/w3-ts-b/generate.log); git diff --numstat HEAD -- proof-status/: obligations-meta.json +239/-0, obligations.json +233/-0 and nothing else; id-assignments.json and frontier-table.generated.md byte-identical to HEAD; obligations.json diff = six materialized blocks (six verified_at_build additions, zero deletions, no restamp of the four pre-existing blocks)",
+      "applier": "scratchpad/w3-ts-b/apply_ts_blocks.py = the W3-TS-a applier (w3-ts-author/edit_meta.py) plus consumer_trust [Lean.ofReduceBool, Lean.trustCompiler] on each of the six blocks; the six ids carrying the key confirmed with jq on obligations-meta.json and obligations.json",
+      "lean": "no Lean file changed; no build run; build fingerprint 33f2659d3428 unchanged",
+      "strict_refs": "not run (inherited 36 stale + 1 never-mined per proof-status/baseline/refs-check.txt)"
+    }
+  },
+  "wave_commit": {
+    "sha": "e31b417253a984f9cb37960fb1f1a53706e7a09f",
+    "paths": [
+      "proof-status/obligations-meta.json",
+      "proof-status/obligations.json",
+      "proof-status/receipts/registry-check-20260826T072345Z.json",
+      "proof-status/receipts/registry-check-20260826T072803Z.json",
+      "proof-status/receipts/registry-check-20260826T072938Z.json",
+      "proof-status/receipts/registry-check-20260826T073159Z.json",
+      "proof-status/receipts/registry-check-20260826T073354Z.json",
+      "proof-status/receipts/registry-check-20260826T073624Z.json",
+      "proof-status/receipts/registry-check-20260826T073822Z.json",
+      "proof-status/receipts/registry-check-20260826T074231Z.json",
+      "proof-status/receipts/w3-ts-b-gate-receipt.json"
+    ]
+  }
 }
