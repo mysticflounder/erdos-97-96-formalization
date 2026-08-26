@@ -1,5 +1,5 @@
 {
-  "base_head": "026eb6ba",
+  "base_head": "22694fa3",
   "exceptions": [
     {
       "added_wave": "W3",
@@ -23,9 +23,12 @@
       "added_wave": "W3",
       "class": "cross-cluster",
       "from": "Erdos9796Proof.P97.ATail.FrontierLiveClosure.Rigid221Placement",
-      "reason": "W3-TD: Rigid221SourceHeavy and Rigid221Closure consume false_of_twoDistinctExactFourMutualOmissionJointDeletions, which now lives in this Legacy wrapper module. This row supersedes the deleted W3-planned import-waivers.json row Erdos9796Proof.P97.ATail.FrontierLiveClosure.Rigid221Placement -> Erdos9796Proof.P97.ATail.FrontierLiveClosure.TwoDeletionCollision, which was removed in the same commit together with the direct import edge it covered; waiver_pair is null because that row no longer exists.",
+      "reason": "W3-TD: Rigid221SourceHeavy and Rigid221Closure consume false_of_twoDistinctExactFourMutualOmissionJointDeletions, which now lives in this Legacy wrapper module. waiver_pair names the retired_waivers row Erdos9796Proof.P97.ATail.FrontierLiveClosure.Rigid221Placement -> Erdos9796Proof.P97.ATail.FrontierLiveClosure.TwoDeletionCollision of proof-status/import-waivers.json, retired at 2fb26644 together with the direct import edge it covered; that row's retired_by_wrapper is this row's wrapper_module, so the retirement and the wrapper are linked in both directions.",
       "to": "Erdos9796Proof.P97.ATail.FrontierLiveClosure.Legacy.TwoDeletionWrappers",
-      "waiver_pair": null,
+      "waiver_pair": [
+        "Erdos9796Proof.P97.ATail.FrontierLiveClosure.Rigid221Placement",
+        "Erdos9796Proof.P97.ATail.FrontierLiveClosure.TwoDeletionCollision"
+      ],
       "wrapper_module": "Erdos9796Proof.P97.ATail.FrontierLiveClosure.Legacy.TwoDeletionWrappers"
     }
   ],

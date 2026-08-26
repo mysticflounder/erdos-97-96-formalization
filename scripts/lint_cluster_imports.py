@@ -23,7 +23,32 @@ pair that the frozen Phase 0 graph record `proof-status/cluster-import-edges.jso
 records as a forbidden edge, and that is still present in the live tree.  A pair
 absent from the frozen record is an unauthenticated waiver (it would license an
 edge that the freeze never observed); a pair whose live edge is gone is a stale
-waiver row that must be deleted with the edge it used to cover.  Both fail.
+waiver row that must be moved to `retired_waivers` (see below).  Both fail.
+
+Retired waivers and the closed world
+------------------------------------
+
+`import-waivers.json` is schema `import-waivers/v2`: beside the live `waivers`
+list it carries `retired_waivers`, one row per waiver that a wave has already
+retired.  A retired row is the waiver row as it stood when the edge went away
+(`from`, `to`, `class`, `reason`, `planned_retirement`) plus three fields that
+record the retirement: `retired_wave` (W1b/W2/W3/W4 -- `unassigned` is not a
+retirement), `retired_head` (the 8-hex commit that removed the edge, bound to
+history exactly as a `base_head` is), and `retired_by_wrapper` (the Legacy
+wrapper the edge now runs through, or `null` when the edge was simply deleted).
+
+The two lists together are a CLOSED WORLD over the frozen record: every
+forbidden pair of the Phase 0 freeze must appear either as a live waiver row or
+as a retired row, and never as both.  Before v2 a deleted waiver row left no
+trace, so the frozen record's forbidden pairs and the waiver file drifted apart
+silently and a retirement was a prose claim in a commit message.  Now a
+retirement is a row: it names the wave and the commit, git can refute the
+commit, and the live tree can refute the retirement itself -- a retired pair
+whose edge is present again in the live tree fails.
+
+Retiring a waiver is therefore a MOVE, not a delete: the row leaves `waivers`
+and arrives in `retired_waivers` with the three retirement fields filled in.
+The stale-waiver message says exactly that.
 
 Import scanning covers the Lean module header only.  Lean 4 requires every
 `import` command to precede any other command, so the header ends at the first
@@ -59,13 +84,23 @@ row that happens to exist:
     module that now reaches the retired target through the wrapper;
   * `waiver_pair[1]` must be a DIRECT header import of `wrapper_module` -- the
     retired target must really be reached through this wrapper;
-  * the pair must still be a waiver row in `proof-status/import-waivers.json`.
+  * the pair must be a row of `proof-status/import-waivers.json`: either a
+    live `waivers` row (the wrapper has landed, the direct edge has not gone
+    yet) or a `retired_waivers` row (the edge is gone).  For a retired row a
+    fourth part holds: that row's `retired_by_wrapper` must be this manifest
+    row's `wrapper_module`, so the two records name the same wrapper.
 
-Without all three, a manifest row could name any real waiver at all and take
-credit for retiring an edge it does not carry.  The stale-waiver rule is
-unchanged: once the wrapper actually retires the direct edge, the waiver row is
-stale and the lint says so, so the waiver row and the manifest row move in one
-commit.
+Without all of them, a manifest row could name any real waiver at all and take
+credit for retiring an edge it does not carry.  The link is checked in both
+directions: every retired row whose `retired_by_wrapper` is non-null must be
+named by exactly one manifest row's `waiver_pair` carrying that wrapper, so a
+wrapper cannot be credited by a row that no longer exists, and a retirement
+cannot claim a wrapper that never mentions it.
+
+The stale-waiver rule is unchanged in force and only changed in wording: once
+the wrapper actually retires the direct edge, the live waiver row is stale and
+the lint says so, so the waiver row moves to `retired_waivers` in the same
+commit that lands the wrapper and the manifest row.
 
 Pinned base_head
 ----------------
@@ -114,17 +149,25 @@ Exit status:
        waiver, every Legacy edge is listed in the Legacy manifest, and the
        waiver file's own metadata and summary are consistent
     1  at least one non-waived forbidden edge; at least one waiver that fails
-       authentication or metadata validation; at least one unlisted, stale,
-       duplicated or misclassified Legacy exception; a `waiver_pair` that does
-       not identify the edge its wrapper retires; a frozen row whose class the
-       live tree recomputes differently; or --fail-on-legacy with a Legacy
-       edge present
+       authentication or metadata validation; at least one retired row that
+       fails its own validation (malformed or unreachable `retired_head`, a
+       pair the freeze never forbade, a pair that is also a live waiver row, a
+       pair whose edge is live again, a duplicate row, a `retired_by_wrapper`
+       that is not a Legacy module of the scanned tree, does not import the
+       retired target, or has no Legacy manifest row linking back); a frozen
+       forbidden pair that is neither waived nor retired; at least one
+       unlisted, stale, duplicated or misclassified Legacy exception; a
+       `waiver_pair` that does not identify the edge its wrapper retires; a
+       frozen row whose class the live tree recomputes differently; or
+       --fail-on-legacy with a Legacy edge present
     2  the lint could not run (missing tree; unreadable waiver, graph or
-       Legacy manifest file; a frozen graph record that fails its own
-       structural validation, including two rows for one `(from, to)` pair; a
-       Legacy manifest whose `base_head` is malformed, names no commit or
-       names a commit that is not an ancestor of HEAD, or whose
-       `frozen_graph_sha256` does not match the graph file in use)
+       Legacy manifest file; a waiver file whose `schema` is not
+       `import-waivers/v2` or whose `waivers` or `retired_waivers` is not a
+       list; a frozen graph record that fails its own structural validation,
+       including two rows for one `(from, to)` pair; a Legacy manifest whose
+       `base_head` is malformed, names no commit or names a commit that is not
+       an ancestor of HEAD, or whose `frozen_graph_sha256` does not match the
+       graph file in use)
 
 Standard library only.  No third-party imports, no regular expressions.
 """
@@ -258,6 +301,11 @@ class HeaderParseError(Exception):
 # The retirement waves a waiver row may name.  An explicit tuple, so a typo or
 # an invented wave label is a failure rather than an unnoticed free-text field.
 ALLOWED_RETIREMENTS = ("W1b", "W2", "W3", "W4", "unassigned")
+
+# The waves a RETIRED row may name in `retired_wave`.  `unassigned` is absent
+# on purpose: a plan may leave a live row unassigned, but a retirement that
+# happened was carried out by some wave, and "unassigned" would record nothing.
+ALLOWED_RETIRED_WAVES = ("W1b", "W2", "W3", "W4")
 
 
 def cluster_of(module: str) -> str:
@@ -585,8 +633,13 @@ def git_status(arguments) -> int:
     return completed.returncode
 
 
-def base_head_binding_failure(base_head: str):
+def base_head_binding_failure(base_head: str, field: str = "base_head"):
     """Why `base_head` does not name a commit at or behind HEAD, or None.
+
+    `field` names the record field under review, so the one binding check
+    serves the Legacy manifest's `base_head` and a retired waiver row's
+    `retired_head` without a second copy of the git questions.  The default
+    keeps the manifest's message byte-for-byte what it was.
 
     Two questions, both asked of git in `REPO_ROOT`:
 
@@ -602,9 +655,9 @@ def base_head_binding_failure(base_head: str):
     into a message is always a plain abbreviated commit id.
     """
     if git_status(["cat-file", "-e", base_head + "^{commit}"]) != 0:
-        return "base_head %s is not a commit" % base_head
+        return "%s %s is not a commit" % (field, base_head)
     if git_status(["merge-base", "--is-ancestor", base_head, "HEAD"]) != 0:
-        return "base_head %s is not an ancestor of HEAD" % base_head
+        return "%s %s is not an ancestor of HEAD" % (field, base_head)
     return None
 
 
@@ -869,14 +922,21 @@ def _legacy_row_failures(entry: dict, label: str) -> list:
 
 
 def waiver_pair_link_failure(
-    entry: dict, pair: tuple, waiver_pairs: set, imports_by_module: dict
+    entry: dict,
+    pair: tuple,
+    waiver_pairs: set,
+    imports_by_module: dict,
+    retired_pairs=frozenset(),
+    retired_wrappers=None,
 ):
     """Why `pair` does not identify the edge this row's wrapper retires, or None.
 
     A `waiver_pair` is a claim with three parts, and all three are checked:
 
-      * the pair is a waiver row in `import-waivers.json` -- otherwise the
-        cross-reference dangles;
+      * the pair is a row of `import-waivers.json` -- either a live `waivers`
+        row (the wrapper has landed and the direct edge is still there) or a
+        `retired_waivers` row (the edge is gone).  A pair in neither list is a
+        dangling cross-reference;
       * `pair[0]` is the manifest row's own `from`, the cluster module that now
         imports the wrapper.  Without this, the row of a wrapper's OUTGOING
         edge could claim a waiver belonging to some unrelated module;
@@ -884,13 +944,23 @@ def waiver_pair_link_failure(
         a wrapper could claim to retire an edge whose target it never reaches,
         and the stale-waiver message would name the wrong wrapper.
 
+    A retired row carries a fourth part: its `retired_by_wrapper` must be this
+    manifest row's `wrapper_module`.  Once the live row is gone, that field is
+    the only thing left tying the retirement to a wrapper, so a manifest row
+    may not take credit for a retirement recorded against a different wrapper.
+
     `imports_by_module` comes from `scan_tree`; a wrapper module absent from it
     (no such file in the scanned tree) has no imports at all, so the third
     check fails closed rather than being skipped.
     """
-    if pair not in waiver_pairs:
-        return "'waiver_pair' %s names no row in import-waivers.json" % json.dumps(
-            list(pair)
+    if retired_wrappers is None:
+        retired_wrappers = {}
+    is_live = pair in waiver_pairs
+    is_retired = pair in retired_pairs
+    if not is_live and not is_retired:
+        return (
+            "'waiver_pair' %s names no row in import-waivers.json: neither a "
+            "live waiver row nor a retired_waivers row" % json.dumps(list(pair))
         )
     source = entry.get("from")
     if pair[0] != source:
@@ -909,29 +979,49 @@ def waiver_pair_link_failure(
             "target is not reached through it"
             % (json.dumps(list(pair)), wrapper, pair[1])
         )
+    if is_retired:
+        recorded = retired_wrappers.get(pair)
+        if recorded != wrapper:
+            return (
+                "'waiver_pair' %s names a retired_waivers row whose "
+                "'retired_by_wrapper' is %s, not this row's wrapper_module %s"
+                % (json.dumps(list(pair)), json.dumps(recorded), json.dumps(wrapper))
+            )
     return None
 
 
 def validate_legacy(
-    document: dict, edges: list, waiver_pairs: set, imports_by_module: dict
+    document: dict,
+    edges: list,
+    waiver_pairs: set,
+    imports_by_module: dict,
+    retired_pairs=frozenset(),
+    retired_wrappers=None,
 ):
     """Match every live Legacy edge against exactly one manifest row.
 
-    Returns `(listed, failures, retired_by_legacy)`:
+    Returns `(listed, failures, retired_by_legacy, retired_links)`:
 
       * `listed` -- `(edge, wrapper_module)` for every live Legacy edge that a
         manifest row covers, in scan order.  These never count as forbidden;
       * `failures` -- human-readable strings, any of which fails the lint;
-      * `retired_by_legacy` -- `{(from, to): wrapper_module}` for the waiver
-        rows that manifest rows claim to retire, handed to the waiver
+      * `retired_by_legacy` -- `{(from, to): wrapper_module}` for the LIVE
+        waiver rows that manifest rows claim to retire, handed to the waiver
         validator so a retired edge's stale waiver names its wrapper.  Only a
         `waiver_pair` that passes `waiver_pair_link_failure` is entered here,
-        so a misidentified pair can never rename someone else's stale waiver.
+        so a misidentified pair can never rename someone else's stale waiver;
+      * `retired_links` -- `{(from, to): [wrapper_module, ...]}` for the
+        `retired_waivers` rows that manifest rows name, again only for pairs
+        that passed the link check.  It is the back-link the retired-row
+        validator counts: a retirement recorded against a wrapper must be
+        claimed by exactly one manifest row carrying that wrapper.
 
     Matching is on the whole triple `(wrapper_module, from, to)` and on nothing
     weaker.  A row is only ever consulted for the exact edge it names, so no
     row can widen into a prefix, a directory or a wildcard.
     """
+    if retired_wrappers is None:
+        retired_wrappers = {}
     failures = []
     entries = document.get("exceptions")
     index_by_key = {}
@@ -1022,6 +1112,7 @@ def validate_legacy(
         )
 
     retired_by_legacy = {}
+    retired_links = {}
     for index, entry in enumerate(entries):
         if not isinstance(entry, dict) or index not in row_labels:
             continue
@@ -1037,14 +1128,22 @@ def validate_legacy(
             continue
         pair = (waiver_pair[0], waiver_pair[1])
         link_failure = waiver_pair_link_failure(
-            entry, pair, waiver_pairs, imports_by_module
+            entry,
+            pair,
+            waiver_pairs,
+            imports_by_module,
+            retired_pairs,
+            retired_wrappers,
         )
         if link_failure is not None:
             failures.append("%s: %s" % (row_labels[index], link_failure))
             continue
-        retired_by_legacy.setdefault(pair, entry.get("wrapper_module"))
+        if pair in waiver_pairs:
+            retired_by_legacy.setdefault(pair, entry.get("wrapper_module"))
+        if pair in retired_pairs:
+            retired_links.setdefault(pair, []).append(entry.get("wrapper_module"))
 
-    return listed, failures, retired_by_legacy
+    return listed, failures, retired_by_legacy, retired_links
 
 
 # --------------------------------------------------------------------------
@@ -1052,11 +1151,47 @@ def validate_legacy(
 # --------------------------------------------------------------------------
 
 
+WAIVER_SCHEMA = "import-waivers/v2"
+
+# The keys a `retired_waivers` row carries, exactly.  Five are the waiver row
+# as it stood when the edge was removed; three record the retirement itself.
+RETIRED_ROW_KEYS = frozenset(
+    (
+        "from",
+        "to",
+        "class",
+        "reason",
+        "planned_retirement",
+        "retired_wave",
+        "retired_head",
+        "retired_by_wrapper",
+    )
+)
+
+
 def load_waiver_document(path: str) -> dict:
+    """The waiver file, with the checks that decide whether the lint can run.
+
+    `ValueError` here is exit 2, the same treatment the Legacy manifest's
+    structural checks get.  A `schema` other than `import-waivers/v2` is one of
+    them: a v1 file has no `retired_waivers` list at all, so the closed-world
+    rule could not be evaluated, and silently reading it as an empty list would
+    report every retired pair as an uncovered forbidden edge.
+    """
     with open(path, "r", encoding="utf-8") as handle:
         document = json.load(handle)
     if not isinstance(document, dict):
         raise ValueError("import-waivers.json: top level must be an object")
+    schema = document.get("schema")
+    if schema != WAIVER_SCHEMA:
+        raise ValueError(
+            "import-waivers.json: 'schema' is %s; expected %s"
+            % (json.dumps(schema), json.dumps(WAIVER_SCHEMA))
+        )
+    if not isinstance(document.get("waivers"), list):
+        raise ValueError("import-waivers.json: 'waivers' must be a list")
+    if not isinstance(document.get("retired_waivers"), list):
+        raise ValueError("import-waivers.json: 'retired_waivers' must be a list")
     return document
 
 
@@ -1088,14 +1223,271 @@ def waiver_pairs_declared(document: dict) -> set:
     return declared
 
 
-def validate_waivers(
-    document: dict, frozen: dict, live_forbidden: set, retired_by_legacy=None
-):
-    """Authenticate every waiver row.
+def retired_pairs_declared(document: dict) -> set:
+    """Every `(from, to)` a `retired_waivers` row names, before any validation.
 
-    Returns `(pairs, failures)`.  `pairs` is the set of `(from, to)` pairs the
-    lint will honour -- only rows that authenticated.  `failures` is a list of
-    human-readable strings; a non-empty list is a lint failure.
+    The counterpart of `waiver_pairs_declared`, and used the same way: to
+    resolve a Legacy manifest's `waiver_pair` cross-reference and to decide the
+    closed-world question, both of which ask whether a row exists at all rather
+    than whether it passes.
+    """
+    declared = set()
+    entries = document.get("retired_waivers")
+    if not isinstance(entries, list):
+        return declared
+    for entry in entries:
+        if not isinstance(entry, dict):
+            continue
+        source = entry.get("from")
+        target = entry.get("to")
+        if isinstance(source, str) and isinstance(target, str) and source and target:
+            declared.add((source, target))
+    return declared
+
+
+def retired_wrapper_by_pair(document: dict) -> dict:
+    """`{(from, to): retired_by_wrapper}` over the `retired_waivers` rows.
+
+    The value is whatever the row records, `null` included, so the Legacy
+    manifest's fourth link check compares against the recorded field rather
+    than against an absence.  A duplicated pair is a failure in its own right;
+    here the first row wins, which is enough to report the duplicate once.
+    """
+    wrappers = {}
+    entries = document.get("retired_waivers")
+    if not isinstance(entries, list):
+        return wrappers
+    for entry in entries:
+        if not isinstance(entry, dict):
+            continue
+        source = entry.get("from")
+        target = entry.get("to")
+        if isinstance(source, str) and isinstance(target, str) and source and target:
+            wrappers.setdefault((source, target), entry.get("retired_by_wrapper"))
+    return wrappers
+
+
+def validate_retired_waivers(
+    document: dict,
+    frozen: dict,
+    live_edge_by_pair: dict,
+    live_waiver_pairs: set,
+    imports_by_module: dict,
+    retired_links: dict,
+):
+    """Authenticate every `retired_waivers` row.
+
+    Returns `(pairs, failures, recomputed)`.  `pairs` is the set of retirements
+    that authenticated; `recomputed` carries the two summary values the waiver
+    file records for this list.
+
+    A retired row is a claim about history and about the live tree, and both
+    can be refuted:
+
+      * the pair must be a FORBIDDEN edge of the frozen Phase 0 record -- a
+        retirement of an edge the freeze never forbade licenses nothing, and a
+        retirement of a permitted edge is a bookkeeping error;
+      * `class` must be the class the frozen record recorded, so the row cannot
+        rewrite the history it claims to preserve;
+      * the pair must not also be a live `waivers` row: one pair is either
+        waived or retired;
+      * the edge must be GONE from the live tree.  A pair recorded as retired
+        whose edge is present again is the failure this list exists to catch:
+        without it a deleted waiver row would be a licence to re-add the edge;
+      * `retired_wave` must be a real wave (`unassigned` is not a retirement)
+        and `retired_head` must be 8 lowercase hex naming a commit of this
+        repository that is an ancestor of, or equal to, HEAD -- the same
+        binding a manifest `base_head` gets, through the same `git_status`
+        seam.  A retired row that fails these is a ROW failure (exit 1): the
+        lint can still run, and the rest of the file is still checked;
+      * `retired_by_wrapper`, when non-null, must be a Legacy module of the
+        scanned tree that DIRECTLY imports the retired target, and exactly one
+        Legacy manifest row must link back to this pair with that wrapper.
+    """
+    failures = []
+    entries = document.get("retired_waivers")
+    if not isinstance(entries, list):
+        raise ValueError("import-waivers.json: 'retired_waivers' must be a list")
+
+    pairs = set()
+    seen = set()
+    wave_tally_input = []
+
+    for index, entry in enumerate(entries):
+        label = "retired waiver %d" % index
+        if not isinstance(entry, dict):
+            failures.append("%s: not an object" % label)
+            continue
+        source = entry.get("from")
+        target = entry.get("to")
+        if not isinstance(source, str) or not isinstance(target, str):
+            failures.append("%s: needs string 'from' and 'to'" % label)
+            continue
+        if not source or not target:
+            failures.append("%s: 'from' and 'to' must be non-empty" % label)
+            continue
+        label = "retired waiver %d (%s -> %s)" % (index, source, target)
+
+        keys = frozenset(entry.keys())
+        if keys != RETIRED_ROW_KEYS:
+            failures.append(
+                "%s: keys are %s; the schema is exactly %s"
+                % (
+                    label,
+                    ", ".join(sorted(keys)) or "(none)",
+                    ", ".join(sorted(RETIRED_ROW_KEYS)),
+                )
+            )
+        reason = entry.get("reason")
+        if not isinstance(reason, str) or not reason.strip():
+            failures.append("%s: 'reason' must be a non-empty string" % label)
+        retirement = entry.get("planned_retirement")
+        if retirement not in ALLOWED_RETIREMENTS:
+            failures.append(
+                "%s: 'planned_retirement' is %s; allowed values are %s"
+                % (label, json.dumps(retirement), ", ".join(ALLOWED_RETIREMENTS))
+            )
+        wave = entry.get("retired_wave")
+        if wave not in ALLOWED_RETIRED_WAVES:
+            failures.append(
+                "%s: 'retired_wave' is %s; allowed values are %s"
+                % (label, json.dumps(wave), ", ".join(ALLOWED_RETIRED_WAVES))
+            )
+        else:
+            wave_tally_input.append(wave)
+        head = entry.get("retired_head")
+        if not is_short_head(head):
+            failures.append(
+                "%s: 'retired_head' is %s; expected 8 lowercase hex characters"
+                % (label, json.dumps(head))
+            )
+        else:
+            binding = base_head_binding_failure(head, "retired_head")
+            if binding is not None:
+                failures.append("%s: %s" % (label, binding))
+
+        failures.extend(
+            _retired_wrapper_failures(entry, label, imports_by_module, retired_links)
+        )
+
+        pair = (source, target)
+        if pair in seen:
+            failures.append("%s: duplicate retired waiver row for this pair" % label)
+            continue
+        seen.add(pair)
+
+        if pair in live_waiver_pairs:
+            failures.append(
+                "%s: the pair is also a live waiver row; a pair is either waived "
+                "or retired, never both" % label
+            )
+            continue
+
+        frozen_class = frozen.get(pair)
+        if frozen_class is None or frozen_class not in FORBIDDEN_CLASSES:
+            failures.append(
+                "%s: pair is NOT a forbidden edge of the frozen graph record; a "
+                "retired waiver may only name an edge the Phase 0 freeze "
+                "observed as forbidden" % label
+            )
+            continue
+        if entry.get("class") != frozen_class:
+            failures.append(
+                "%s: 'class' is %s; the frozen graph record classes this edge '%s'"
+                % (label, json.dumps(entry.get("class")), frozen_class)
+            )
+
+        live_edge = live_edge_by_pair.get(pair)
+        if live_edge is not None:
+            failures.append(
+                "%s: retired at %s (%s) but the edge is present again in the live "
+                "tree at %s:%d"
+                % (
+                    label,
+                    entry.get("retired_head"),
+                    entry.get("retired_wave"),
+                    live_edge["from_file"],
+                    live_edge["line"],
+                )
+            )
+            continue
+        pairs.add(pair)
+
+    recomputed = {
+        "retired_waivers": len(entries),
+        "by_retired_wave": counted(wave_tally_input),
+    }
+    return pairs, failures, recomputed
+
+
+def _retired_wrapper_failures(
+    entry: dict, label: str, imports_by_module: dict, retired_links: dict
+) -> list:
+    """Problems with one retired row's `retired_by_wrapper`, including the back-link.
+
+    A null wrapper is the plain case: the edge was deleted, nothing carries it,
+    and no Legacy manifest row is expected to mention the pair.  A non-null
+    wrapper is a claim about the live tree AND about the manifest, so both are
+    checked: the module must exist in the scanned tree, be a Legacy wrapper,
+    import the retired target directly, and be named by exactly one manifest
+    row's `waiver_pair` for this pair.
+    """
+    wrapper = entry.get("retired_by_wrapper")
+    if wrapper is None:
+        return []
+    if not isinstance(wrapper, str) or not wrapper:
+        return [
+            "%s: 'retired_by_wrapper' is %s; expected null or a module name"
+            % (label, json.dumps(wrapper))
+        ]
+    if not is_legacy_module(wrapper):
+        return [
+            "%s: 'retired_by_wrapper' %s is not under %s; only a module there is "
+            "a Legacy wrapper" % (label, json.dumps(wrapper), LEGACY_NAMESPACE)
+        ]
+    if wrapper not in imports_by_module:
+        return [
+            "%s: 'retired_by_wrapper' %s names no module in the scanned tree"
+            % (label, json.dumps(wrapper))
+        ]
+    target = entry.get("to")
+    if target not in imports_by_module[wrapper]:
+        return [
+            "%s: wrapper %s does not import %s in its module header, so the "
+            "retired edge is not reached through it" % (label, wrapper, target)
+        ]
+    pair = (entry.get("from"), target)
+    linked = [name for name in retired_links.get(pair, []) if name == wrapper]
+    if not linked:
+        return [
+            "%s: names wrapper %s but no Legacy exception row links back; exactly "
+            "one row of legacy-import-exceptions.json must carry waiver_pair %s "
+            "with that wrapper_module"
+            % (label, wrapper, json.dumps([pair[0], pair[1]]))
+        ]
+    if len(linked) > 1:
+        return [
+            "%s: names wrapper %s and %d Legacy exception rows link back; exactly "
+            "one row must carry that waiver_pair" % (label, wrapper, len(linked))
+        ]
+    return []
+
+
+def validate_waivers(
+    document: dict,
+    frozen: dict,
+    live_forbidden: set,
+    retired_by_legacy=None,
+    live_edge_by_pair=None,
+    imports_by_module=None,
+    retired_links=None,
+):
+    """Authenticate every waiver row, live and retired.
+
+    Returns `(pairs, retired, failures)`.  `pairs` is the set of `(from, to)`
+    pairs the lint will honour as waived -- only rows that authenticated;
+    `retired` is the set of retirements that authenticated; `failures` is a
+    list of human-readable strings, and a non-empty list is a lint failure.
 
     Checks, in order of severity:
       * row shape: object with non-empty string `from`, `to`, `reason`;
@@ -1104,16 +1496,27 @@ def validate_waivers(
       * the pair is recorded in the frozen graph (unauthenticated otherwise);
       * the frozen record classes it forbidden (a waiver for a permitted edge
         licenses nothing and is a bookkeeping error);
-      * the edge is still live (a stale row must be deleted with its edge);
-      * `.summary` counts equal the recomputed counts.
+      * the edge is still live (a stale row must MOVE to `retired_waivers`);
+      * every `retired_waivers` row, through `validate_retired_waivers`;
+      * the CLOSED WORLD: every forbidden pair of the frozen record is named by
+        a live waiver row or by a retired row.  Without this the two lists
+        could quietly shrink together and the frozen record would stop being
+        an authentication basis for anything;
+      * `.summary` counts equal the recomputed counts, retirements included.
 
     `retired_by_legacy` maps a `(from, to)` pair to the Legacy wrapper module
     that a manifest row says retires it.  A stale row on such a pair reports
     the wrapper by name, because that is the actionable fact: the wrapper
-    landed, so this waiver row must be deleted in the same commit.
+    landed, so this waiver row moves to `retired_waivers` in the same commit.
     """
     if retired_by_legacy is None:
         retired_by_legacy = {}
+    if live_edge_by_pair is None:
+        live_edge_by_pair = {}
+    if imports_by_module is None:
+        imports_by_module = {}
+    if retired_links is None:
+        retired_links = {}
     failures = []
     entries = document.get("waivers")
     if not isinstance(entries, list):
@@ -1176,26 +1579,66 @@ def validate_waivers(
             if wrapper is None:
                 failures.append(
                     "%s: stale -- the edge is no longer present in the live tree; "
-                    "delete the waiver row with the edge it covered" % label
+                    "move the row to 'retired_waivers' with 'retired_wave', "
+                    "'retired_head' and 'retired_by_wrapper' (null when the edge "
+                    "was simply deleted)" % label
                 )
             else:
                 failures.append(
                     "waiver %s -> %s is stale: edge retired through Legacy "
-                    "wrapper %s" % (source, target, wrapper)
+                    "wrapper %s; move the row to 'retired_waivers' with "
+                    "'retired_wave', 'retired_head' and 'retired_by_wrapper' %s"
+                    % (source, target, wrapper, wrapper)
                 )
             continue
         pairs.add(pair)
+
+    declared_live = waiver_pairs_declared(document)
+    declared_retired = retired_pairs_declared(document)
+
+    retired, retired_failures, retired_recomputed = validate_retired_waivers(
+        document,
+        frozen,
+        live_edge_by_pair,
+        declared_live,
+        imports_by_module,
+        retired_links,
+    )
+    failures.extend(retired_failures)
+
+    # The closed world.  Membership is judged on DECLARED rows, not on rows
+    # that authenticated: a pair whose row is present but faulty is already
+    # reported by that row's own failure, and reporting it a second time as
+    # uncovered would name the same edge twice for one mistake.
+    for pair in sorted(frozen):
+        if frozen[pair] not in FORBIDDEN_CLASSES:
+            continue
+        if pair in declared_live or pair in declared_retired:
+            continue
+        failures.append(
+            "frozen forbidden pair %s -> %s is neither waived nor retired; every "
+            "forbidden edge of the frozen record must be covered by a 'waivers' "
+            "row or a 'retired_waivers' row" % pair
+        )
 
     recomputed = {
         "waivers": len(entries),
         "by_class": counted(class_tally_input),
         "by_planned_retirement": counted(retirement_tally_input),
+        "retired_waivers": retired_recomputed["retired_waivers"],
+        "by_retired_wave": retired_recomputed["by_retired_wave"],
     }
     summary = document.get("summary")
     if not isinstance(summary, dict):
         failures.append("summary: missing or not an object")
     else:
-        for key in ("waivers", "by_class", "by_planned_retirement"):
+        for key in (
+            "waivers",
+            "by_class",
+            "by_planned_retirement",
+            "retired_waivers",
+            "by_retired_wave",
+        ):
             recorded = summary.get(key)
             if recorded != recomputed[key]:
                 failures.append(
@@ -1206,7 +1649,7 @@ def validate_waivers(
                         json.dumps(recomputed[key], sort_keys=True),
                     )
                 )
-    return pairs, failures
+    return pairs, retired, failures
 
 
 # --------------------------------------------------------------------------
@@ -1389,7 +1832,8 @@ def main(argv=None) -> int:
     parser.add_argument(
         "--list-waived",
         action="store_true",
-        help="also list the forbidden edges that a waiver currently covers",
+        help="also list the forbidden edges that a waiver currently covers and "
+        "the retired_waivers rows",
     )
     parser.add_argument(
         "--list-legacy",
@@ -1463,14 +1907,28 @@ def main(argv=None) -> int:
         and not legacy_endpoints(edge["from"], edge["to"])
     ]
     live_forbidden = {(edge["from"], edge["to"]) for edge in forbidden}
+    # The same forbidden edges keyed by pair: a retired row that the live tree
+    # refutes is reported at the file and line where the edge came back.
+    live_edge_by_pair = {(edge["from"], edge["to"]): edge for edge in forbidden}
 
-    listed_legacy, legacy_failures, retired_by_legacy = validate_legacy(
-        legacy_document, edges, waiver_pairs_declared(document), imports_by_module
+    listed_legacy, legacy_failures, retired_by_legacy, retired_links = validate_legacy(
+        legacy_document,
+        edges,
+        waiver_pairs_declared(document),
+        imports_by_module,
+        retired_pairs_declared(document),
+        retired_wrapper_by_pair(document),
     )
 
     try:
-        waived, waiver_failures = validate_waivers(
-            document, frozen, live_forbidden, retired_by_legacy
+        waived, retired, waiver_failures = validate_waivers(
+            document,
+            frozen,
+            live_forbidden,
+            retired_by_legacy,
+            live_edge_by_pair,
+            imports_by_module,
+            retired_links,
         )
     except (ValueError, json.JSONDecodeError) as error:
         sys.stderr.write("lint_cluster_imports: %s\n" % error)
@@ -1491,11 +1949,19 @@ def main(argv=None) -> int:
 
     failed = bool(violations or waiver_failures or legacy_failures or graph_failures)
 
+    retired_rows = [
+        entry
+        for entry in document.get("retired_waivers", [])
+        if isinstance(entry, dict)
+    ]
+
     if arguments.json:
         report = {
             "edges_scanned": len(edges),
             "forbidden_edges": len(forbidden),
             "waivers_authenticated": len(waived),
+            "retired_waivers": retired_rows,
+            "retired_waivers_authenticated": len(retired),
             "waived_edges": len(covered),
             "legacy_edges": len(legacy_live),
             "legacy_edges_listed": len(listed_legacy),
@@ -1545,6 +2011,21 @@ def main(argv=None) -> int:
                     edge["to"],
                     edge["from_cluster"],
                     edge["to_cluster"],
+                )
+            )
+        # Retirements are listed beside the live rows, never mixed into them:
+        # these edges are gone from the tree, so they have no file and line.
+        sys.stdout.write("retired waivers (%d):\n" % len(retired_rows))
+        for entry in retired_rows:
+            wrapper = entry.get("retired_by_wrapper")
+            sys.stdout.write(
+                "  %s -> %s  [%s at %s]  wrapper=%s\n"
+                % (
+                    entry.get("from"),
+                    entry.get("to"),
+                    entry.get("retired_wave"),
+                    entry.get("retired_head"),
+                    wrapper if wrapper else "-",
                 )
             )
 
@@ -1617,12 +2098,14 @@ def main(argv=None) -> int:
 
     sys.stdout.write(
         "lint_cluster_imports: OK -- %d import edges scanned, %d forbidden edges, "
-        "all waived by %d authenticated waiver%s; %d legacy edge%s, all listed.\n"
+        "all waived by %d authenticated waiver%s; %d retired; %d legacy edge%s, "
+        "all listed.\n"
         % (
             len(edges),
             len(forbidden),
             len(waived),
             "" if len(waived) == 1 else "s",
+            len(retired),
             len(legacy_live),
             "" if len(legacy_live) == 1 else "s",
         )

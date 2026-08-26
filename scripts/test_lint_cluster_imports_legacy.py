@@ -1,5 +1,5 @@
-"""W3-0/W3-0b adversarial tests for the Legacy-exception, base_head-binding and
-dated-graph rules of `scripts/lint_cluster_imports.py`.
+"""W3-0/W3-0b/W3-0d adversarial tests for the Legacy-exception, base_head-binding,
+dated-graph and retired-waiver rules of `scripts/lint_cluster_imports.py`.
 
 Every test builds a synthetic Lean tree and synthetic JSON records under
 `tmp_path` and points the lint at them through `configure_paths`.  Nothing here
@@ -20,6 +20,12 @@ could be widened into a general exemption -- a Legacy-looking name at the wrong
 depth, a wrapper importing something nobody approved, a manifest row that
 outlives its edge, a waiver that outlives the wrapper that retired it -- and
 each asserts the lint refuses.
+
+The W3-0d cases extend that to the `retired_waivers` list of the v2 waiver
+file: a retirement pinned to a commit git cannot reach, a retirement of an edge
+the freeze never forbade, a retirement whose edge is back in the live tree, a
+pair claimed by both lists, a forbidden pair claimed by neither, and a
+`retired_by_wrapper` that no Legacy manifest row links back to.
 
 No regular expressions anywhere: JSON is parsed with `json`, and module names
 are compared as whole strings.
@@ -188,10 +194,30 @@ class Fixture:
             handle.write(json.dumps(document, indent=2, sort_keys=True) + "\n")
         return self.path(name)
 
-    def freeze(self, edges=None, extra_rows=(), base_head=FAKE_HEAD):
-        """Write the frozen graph record from the live scan, plus `extra_rows`."""
+    def freeze(
+        self, edges=None, extra_rows=(), base_head=FAKE_HEAD, include_legacy=False
+    ):
+        """Write the frozen graph record from the live scan, plus `extra_rows`.
+
+        Edges touching a Legacy wrapper are left out by default, which is what
+        the real frozen record looks like: the Phase 0 freeze predates every
+        Legacy wrapper module, and none of its 30 forbidden pairs names one.
+        The distinction matters under the closed-world rule.  A Legacy edge is
+        governed by the Legacy manifest and is removed from the forbidden set
+        before waivers are considered, so a frozen forbidden Legacy pair could
+        be covered by neither list: a waiver row for it would be reported stale
+        and a retired row would claim a retirement that never happened.
+        `include_legacy=True` freezes them anyway, for a test that wants that
+        state on purpose.
+        """
         if edges is None:
             edges = self.scan()
+        if not include_legacy:
+            edges = [
+                edge
+                for edge in edges
+                if not lint.legacy_endpoints(edge["from"], edge["to"])
+            ]
         rows = [
             {
                 "class": edge["class"],
@@ -222,9 +248,16 @@ class Fixture:
             classes[(row["from"], row["to"])] = row["class"]
         return classes
 
-    def waivers(self, rows=()):
-        """Write the waiver file with a summary that matches its own rows."""
+    def waivers(self, rows=(), retired=(), summary=None):
+        """Write the waiver file with a summary that matches its own rows.
+
+        Schema `import-waivers/v2`: the file carries the live `waivers` list and
+        the `retired_waivers` list, and the summary counts both.  `summary`
+        overrides the computed block, which is how a test hands the lint a
+        summary that disagrees with the rows.
+        """
         rows = list(rows)
+        retired = list(retired)
         classes = self.frozen_classes()
         by_class = {}
         by_retirement = {}
@@ -234,16 +267,25 @@ class Fixture:
             recorded = classes.get((row["from"], row["to"]))
             if recorded is not None:
                 by_class[recorded] = by_class.get(recorded, 0) + 1
+        by_wave = {}
+        for row in retired:
+            wave = row.get("retired_wave")
+            if wave in lint.ALLOWED_RETIRED_WAVES:
+                by_wave[wave] = by_wave.get(wave, 0) + 1
+        computed = {
+            "by_class": by_class,
+            "by_planned_retirement": by_retirement,
+            "by_retired_wave": by_wave,
+            "retired_waivers": len(retired),
+            "waivers": len(rows),
+        }
         return self.write_json(
             "import-waivers.json",
             {
                 "base_head": FAKE_HEAD,
-                "schema": "import-waivers/v1",
-                "summary": {
-                    "by_class": by_class,
-                    "by_planned_retirement": by_retirement,
-                    "waivers": len(rows),
-                },
+                "retired_waivers": retired,
+                "schema": "import-waivers/v2",
+                "summary": computed if summary is None else summary,
                 "waivers": rows,
             },
         )
@@ -996,3 +1038,533 @@ def test_write_record_never_becomes_an_authentication_basis(repo, capsys):
     # frozen record even if someone points `--graph` at it.
     assert repo.run(["--graph", record]) == 2
     assert "'base_head'" in capsys.readouterr().err
+
+
+# --------------------------------------------------------------------------
+# Retired waivers (W3-0d)
+# --------------------------------------------------------------------------
+
+
+def frozen_row(source, target, line=3, edge_class=None):
+    """A frozen-record row for an edge that the live tree no longer has.
+
+    The Phase 0 record remembers edges that later waves removed, which is
+    exactly the situation a `retired_waivers` row describes, so every retired
+    fixture pairs one of these with a retired row.
+    """
+    return {
+        "class": edge_class
+        or lint.classify(lint.cluster_of(source), lint.cluster_of(target)),
+        "from": source,
+        "from_cluster": lint.cluster_of(source),
+        "from_file": module_path(source),
+        "line": line,
+        "to": target,
+        "to_cluster": lint.cluster_of(target),
+    }
+
+
+def retired_row(
+    repo,
+    source,
+    target,
+    wave="W3",
+    head=None,
+    wrapper=None,
+    retirement="W3",
+    reason="fixture retirement",
+    edge_class=None,
+):
+    """A `retired_waivers` row.
+
+    `head` defaults to the fixture repository's real HEAD, because the lint
+    binds `retired_head` to history the same way it binds a manifest's
+    `base_head`: a made-up value is refused.
+    """
+    return {
+        "class": edge_class
+        or lint.classify(lint.cluster_of(source), lint.cluster_of(target)),
+        "from": source,
+        "planned_retirement": retirement,
+        "reason": reason,
+        "retired_by_wrapper": wrapper,
+        "retired_head": repo.head if head is None else head,
+        "retired_wave": wave,
+        "to": target,
+    }
+
+
+# Sentinel for `retired_wrapper_repo`: `waiver_pair=None` has to mean "the
+# manifest row carries no cross-reference", so "use the linked default" needs a
+# value of its own.
+DEFAULT = object()
+
+
+def retired_wrapper_repo(repo, wrapper=None, waiver_pair=DEFAULT, retired=None):
+    """The state after a wrapper retired the direct edge, fully recorded.
+
+    `RIGID_ALPHA` reaches `TRIAPEX_BETA` only through `LEGACY_BRIDGE`; the
+    frozen record still remembers the direct edge, and the waiver row that
+    covered it now lives in `retired_waivers`.  Both records name the wrapper:
+    the manifest through `waiver_pair`, the retired row through
+    `retired_by_wrapper`.
+    """
+    if wrapper is None:
+        wrapper = LEGACY_BRIDGE
+    if waiver_pair is DEFAULT:
+        waiver_pair = [RIGID_ALPHA, TRIAPEX_BETA]
+    if retired is None:
+        retired = [retired_row(repo, RIGID_ALPHA, TRIAPEX_BETA, wrapper=wrapper)]
+    wrapper_tree(repo, direct_edge=False)
+    repo.freeze(extra_rows=[frozen_row(RIGID_ALPHA, TRIAPEX_BETA)])
+    repo.waivers([], retired=retired)
+    repo.legacy(wrapper_manifest(waiver_pair))
+    return repo
+
+
+def test_waiver_pair_naming_a_retired_row_is_accepted(repo, capsys):
+    """The two-way link: manifest -> retired row, retired row -> wrapper.
+
+    Nothing is stale here and nothing is uncovered: the frozen forbidden pair
+    is named by a retired row, the retired row names the wrapper, and exactly
+    one manifest row names the retired row back.
+    """
+    retired_wrapper_repo(repo)
+
+    assert repo.run() == 0
+    captured = capsys.readouterr()
+    assert "1 retired; 2 legacy edges, all listed." in captured.out
+    assert "is stale" not in captured.err
+    assert "neither waived nor retired" not in captured.err
+
+
+def test_retired_row_key_set_is_exact(repo, capsys):
+    """A retired row carries exactly the eight fields; no extras, none missing."""
+    row = retired_row(repo, RIGID_ALPHA, TRIAPEX_BETA, wrapper=LEGACY_BRIDGE)
+    row["retired_by"] = "someone"
+    retired_wrapper_repo(repo, retired=[row])
+
+    assert repo.run() == 1
+    captured = capsys.readouterr()
+    assert "keys are " in captured.err
+    assert "the schema is exactly " in captured.err
+    assert "retired_by, retired_by_wrapper" in captured.err
+
+
+def test_retired_wave_unassigned_is_rejected(repo, capsys):
+    """`unassigned` records no retirement, so it is not a retired_wave."""
+    row = retired_row(
+        repo, RIGID_ALPHA, TRIAPEX_BETA, wave="unassigned", wrapper=LEGACY_BRIDGE
+    )
+    retired_wrapper_repo(repo, retired=[row])
+
+    assert repo.run() == 1
+    captured = capsys.readouterr()
+    assert "'retired_wave' is \"unassigned\"" in captured.err
+    assert "allowed values are W1b, W2, W3, W4" in captured.err
+
+
+def test_retired_head_that_is_not_8_hex_is_a_row_failure(repo, capsys):
+    """A malformed `retired_head` fails the ROW (exit 1), not the run (exit 2)."""
+    row = retired_row(
+        repo, RIGID_ALPHA, TRIAPEX_BETA, head="HEAD~1", wrapper=LEGACY_BRIDGE
+    )
+    retired_wrapper_repo(repo, retired=[row])
+
+    assert repo.run() == 1
+    captured = capsys.readouterr()
+    assert "'retired_head' is \"HEAD~1\"" in captured.err
+    assert "expected 8 lowercase hex characters" in captured.err
+
+
+def test_retired_head_naming_no_commit_is_a_row_failure(repo, capsys):
+    """8 hex characters is a format, not a pin: `deadbeef` names nothing."""
+    row = retired_row(
+        repo, RIGID_ALPHA, TRIAPEX_BETA, head="deadbeef", wrapper=LEGACY_BRIDGE
+    )
+    retired_wrapper_repo(repo, retired=[row])
+
+    assert repo.run() == 1
+    assert "retired_head deadbeef is not a commit" in capsys.readouterr().err
+
+
+def test_retired_head_off_the_history_is_a_row_failure(repo, capsys):
+    """A real commit object HEAD cannot reach does not pin a retirement either."""
+    wrapper_tree(repo, direct_edge=False)
+    stray = repo.unrelated_commit()
+    row = retired_row(
+        repo, RIGID_ALPHA, TRIAPEX_BETA, head=stray, wrapper=LEGACY_BRIDGE
+    )
+    repo.freeze(extra_rows=[frozen_row(RIGID_ALPHA, TRIAPEX_BETA)])
+    repo.waivers([], retired=[row])
+    repo.legacy(wrapper_manifest([RIGID_ALPHA, TRIAPEX_BETA]))
+
+    assert repo.run() == 1
+    captured = capsys.readouterr()
+    assert ("retired_head %s is not an ancestor of HEAD" % stray) in captured.err
+    assert "is not a commit" not in captured.err
+
+
+def test_retired_pair_absent_from_the_frozen_record_is_rejected(repo, capsys):
+    """A retirement may only name an edge the Phase 0 freeze observed forbidden."""
+    wrapper_tree(repo, direct_edge=False)
+    repo.freeze()  # the direct edge is NOT frozen this time
+    repo.waivers(
+        [], retired=[retired_row(repo, RIGID_ALPHA, TRIAPEX_BETA, wrapper=None)]
+    )
+    repo.legacy(wrapper_manifest(None))
+
+    assert repo.run() == 1
+    captured = capsys.readouterr()
+    assert "pair is NOT a forbidden edge of the frozen graph record" in captured.err
+    assert "observed as forbidden" in captured.err
+
+
+def test_retired_pair_whose_edge_is_live_again_is_rejected(repo, capsys):
+    """A retirement is refuted by the tree: the edge is back at this file:line."""
+    wrapper_tree(repo, direct_edge=True)
+    repo.freeze()
+    repo.waivers(
+        [],
+        retired=[
+            retired_row(repo, RIGID_ALPHA, TRIAPEX_BETA, wrapper=LEGACY_BRIDGE)
+        ],
+    )
+    repo.legacy(wrapper_manifest([RIGID_ALPHA, TRIAPEX_BETA]))
+
+    assert repo.run() == 1
+    captured = capsys.readouterr()
+    live = [
+        edge
+        for edge in repo.scan()
+        if edge["from"] == RIGID_ALPHA and edge["to"] == TRIAPEX_BETA
+    ]
+    assert len(live) == 1
+    assert (
+        "retired at %s (W3) but the edge is present again in the live tree at "
+        "%s:%d" % (repo.head, live[0]["from_file"], live[0]["line"])
+    ) in captured.err
+
+
+def test_a_pair_that_is_both_waived_and_retired_is_rejected(repo, capsys):
+    """One pair, one list: a row cannot be live and retired at the same time."""
+    wrapper_tree(repo, direct_edge=True)
+    repo.freeze()
+    repo.waivers(
+        [waiver_row(RIGID_ALPHA, TRIAPEX_BETA)],
+        retired=[
+            retired_row(repo, RIGID_ALPHA, TRIAPEX_BETA, wrapper=LEGACY_BRIDGE)
+        ],
+    )
+    repo.legacy(wrapper_manifest([RIGID_ALPHA, TRIAPEX_BETA]))
+
+    assert repo.run() == 1
+    captured = capsys.readouterr()
+    assert "the pair is also a live waiver row" in captured.err
+    assert "either waived or retired, never both" in captured.err
+
+
+def test_frozen_forbidden_pair_in_neither_list_is_rejected(repo, capsys):
+    """The closed world: a forbidden pair the freeze recorded cannot vanish.
+
+    The edge is gone from the live tree, so nothing else reports it: before
+    the retired list existed, deleting the waiver row silently ended the
+    frozen record's claim on this pair.
+    """
+    wrapper_tree(repo, direct_edge=False)
+    repo.freeze(extra_rows=[frozen_row(RIGID_ALPHA, TRIAPEX_BETA)])
+    repo.waivers([], retired=[])
+    repo.legacy(wrapper_manifest(None))
+
+    assert repo.run() == 1
+    captured = capsys.readouterr()
+    assert (
+        "frozen forbidden pair %s -> %s is neither waived nor retired"
+        % (RIGID_ALPHA, TRIAPEX_BETA)
+    ) in captured.err
+
+
+def test_duplicate_retired_rows_are_rejected(repo, capsys):
+    """Two rows for one retirement are two answers to one question."""
+    row = retired_row(repo, RIGID_ALPHA, TRIAPEX_BETA, wrapper=LEGACY_BRIDGE)
+    retired_wrapper_repo(repo, retired=[row, dict(row)])
+
+    assert repo.run() == 1
+    assert "duplicate retired waiver row for this pair" in capsys.readouterr().err
+
+
+def test_retired_row_naming_another_wrapper_than_the_manifest_is_rejected(
+    repo, capsys
+):
+    """The manifest row and the retirement must name the SAME wrapper.
+
+    `LEGACY_OTHER` is a genuine Legacy wrapper that genuinely imports the
+    retired target, and its own edges are listed, so every other check passes.
+    It simply is not the wrapper the manifest row credits.
+    """
+    other = LEGACY + ".Rigid221Other"
+    wrapper_tree(repo, direct_edge=False, extra_modules=[(other, [TRIAPEX_BETA])])
+    repo.freeze(extra_rows=[frozen_row(RIGID_ALPHA, TRIAPEX_BETA)])
+    repo.waivers(
+        [], retired=[retired_row(repo, RIGID_ALPHA, TRIAPEX_BETA, wrapper=other)]
+    )
+    repo.legacy(
+        wrapper_manifest([RIGID_ALPHA, TRIAPEX_BETA])
+        + [legacy_row(other, other, TRIAPEX_BETA)]
+    )
+
+    assert repo.run() == 1
+    captured = capsys.readouterr()
+    assert "names a retired_waivers row whose 'retired_by_wrapper' is" in captured.err
+    assert json.dumps(other) in captured.err
+    assert json.dumps(LEGACY_BRIDGE) in captured.err
+
+
+def test_retired_by_wrapper_without_a_manifest_back_link_is_rejected(repo, capsys):
+    """A retirement crediting a wrapper needs the manifest to say so too."""
+    retired_wrapper_repo(repo, waiver_pair=None)
+
+    assert repo.run() == 1
+    captured = capsys.readouterr()
+    assert (
+        "names wrapper %s but no Legacy exception row links back" % LEGACY_BRIDGE
+    ) in captured.err
+
+
+def test_retired_by_wrapper_that_is_not_a_legacy_module_is_rejected(repo, capsys):
+    """`retired_by_wrapper` is a Legacy wrapper or null; nothing else."""
+    row = retired_row(repo, RIGID_ALPHA, TRIAPEX_BETA, wrapper=TRIAPEX_GAMMA)
+    wrapper_tree(
+        repo, direct_edge=False, extra_modules=[(TRIAPEX_GAMMA, [TRIAPEX_BETA])]
+    )
+    repo.freeze(extra_rows=[frozen_row(RIGID_ALPHA, TRIAPEX_BETA)])
+    repo.waivers([], retired=[row])
+    repo.legacy(wrapper_manifest(None))
+
+    assert repo.run() == 1
+    captured = capsys.readouterr()
+    assert (
+        "'retired_by_wrapper' %s is not under %s" % (json.dumps(TRIAPEX_GAMMA), LEGACY)
+    ) in captured.err
+
+
+def test_retired_by_wrapper_the_scan_never_saw_is_rejected(repo, capsys):
+    """A wrapper module with no file has no imports, so the claim fails closed."""
+    missing = LEGACY + ".Rigid221Ghost"
+    row = retired_row(repo, RIGID_ALPHA, TRIAPEX_BETA, wrapper=missing)
+    retired_wrapper_repo(repo, waiver_pair=None, retired=[row])
+
+    assert repo.run() == 1
+    captured = capsys.readouterr()
+    assert (
+        "'retired_by_wrapper' %s names no module in the scanned tree"
+        % json.dumps(missing)
+    ) in captured.err
+
+
+def test_retired_by_wrapper_that_does_not_import_the_target_is_rejected(repo, capsys):
+    """The wrapper must really carry the retired edge's target."""
+    wrapper_tree(repo, direct_edge=False)
+    repo.freeze(
+        extra_rows=[
+            frozen_row(RIGID_ALPHA, TRIAPEX_BETA),
+            frozen_row(RIGID_ALPHA, TRIAPEX_GAMMA, line=4),
+        ]
+    )
+    repo.waivers(
+        [],
+        retired=[
+            retired_row(repo, RIGID_ALPHA, TRIAPEX_BETA, wrapper=LEGACY_BRIDGE),
+            # `LEGACY_BRIDGE` imports TRIAPEX_BETA and nothing else.
+            retired_row(repo, RIGID_ALPHA, TRIAPEX_GAMMA, wrapper=LEGACY_BRIDGE),
+        ],
+    )
+    repo.legacy(wrapper_manifest([RIGID_ALPHA, TRIAPEX_BETA]))
+
+    assert repo.run() == 1
+    captured = capsys.readouterr()
+    assert (
+        "wrapper %s does not import %s in its module header"
+        % (LEGACY_BRIDGE, TRIAPEX_GAMMA)
+    ) in captured.err
+
+
+def test_summary_retired_counts_must_match(repo, capsys):
+    """The summary counts retirements too, and a wrong count is a failure."""
+    row = retired_row(repo, RIGID_ALPHA, TRIAPEX_BETA, wrapper=LEGACY_BRIDGE)
+    wrapper_tree(repo, direct_edge=False)
+    repo.freeze(extra_rows=[frozen_row(RIGID_ALPHA, TRIAPEX_BETA)])
+    repo.waivers(
+        [],
+        retired=[row],
+        summary={
+            "by_class": {},
+            "by_planned_retirement": {},
+            "by_retired_wave": {"W2": 1},
+            "retired_waivers": 0,
+            "waivers": 0,
+        },
+    )
+    repo.legacy(wrapper_manifest([RIGID_ALPHA, TRIAPEX_BETA]))
+
+    assert repo.run() == 1
+    captured = capsys.readouterr()
+    assert "summary.retired_waivers: recorded 0, recomputed 1" in captured.err
+    assert "summary.by_retired_wave: recorded" in captured.err
+
+
+def test_waiver_schema_v1_exits_2(repo, capsys):
+    """A v1 waiver file has no retired list, so the closed world cannot be read."""
+    repo.base_tree()
+    repo.freeze()
+    repo.write_json(
+        "import-waivers.json",
+        {
+            "base_head": FAKE_HEAD,
+            "schema": "import-waivers/v1",
+            "summary": {"by_class": {}, "by_planned_retirement": {}, "waivers": 0},
+            "waivers": [],
+        },
+    )
+    repo.legacy([])
+
+    assert repo.run() == 2
+    captured = capsys.readouterr()
+    assert "'schema' is \"import-waivers/v1\"" in captured.err
+    assert "expected \"import-waivers/v2\"" in captured.err
+
+
+def test_retired_waivers_must_be_a_list(repo, capsys):
+    """A missing `retired_waivers` list is exit 2, like a missing `waivers`."""
+    repo.base_tree()
+    repo.freeze()
+    repo.write_json(
+        "import-waivers.json",
+        {
+            "base_head": FAKE_HEAD,
+            "schema": "import-waivers/v2",
+            "summary": {
+                "by_class": {},
+                "by_planned_retirement": {},
+                "by_retired_wave": {},
+                "retired_waivers": 0,
+                "waivers": 0,
+            },
+            "waivers": [],
+        },
+    )
+    repo.legacy([])
+
+    assert repo.run() == 2
+    assert "'retired_waivers' must be a list" in capsys.readouterr().err
+
+
+def test_list_waived_prints_the_retired_section(repo, capsys):
+    """`--list-waived` reports retirements beside the live waived edges."""
+    deleted = retired_row(
+        repo, TWO_SOURCE_ZETA, RIGID_ALPHA, wave="W1b", wrapper=None
+    )
+    wrapper_tree(repo, direct_edge=False)
+    repo.freeze(
+        extra_rows=[
+            frozen_row(RIGID_ALPHA, TRIAPEX_BETA),
+            frozen_row(TWO_SOURCE_ZETA, RIGID_ALPHA, line=5),
+        ]
+    )
+    repo.waivers(
+        [],
+        retired=[
+            retired_row(repo, RIGID_ALPHA, TRIAPEX_BETA, wrapper=LEGACY_BRIDGE),
+            deleted,
+        ],
+    )
+    repo.legacy(wrapper_manifest([RIGID_ALPHA, TRIAPEX_BETA]))
+
+    assert repo.run(["--list-waived"]) == 0
+    captured = capsys.readouterr()
+    assert "retired waivers (2):" in captured.out
+    assert (
+        "  %s -> %s  [W3 at %s]  wrapper=%s"
+        % (RIGID_ALPHA, TRIAPEX_BETA, repo.head, LEGACY_BRIDGE)
+    ) in captured.out
+    # A deleted edge carries no wrapper, and the column says so rather than
+    # printing `None`.
+    assert (
+        "  %s -> %s  [W1b at %s]  wrapper=-"
+        % (TWO_SOURCE_ZETA, RIGID_ALPHA, repo.head)
+    ) in captured.out
+
+
+def test_json_report_carries_the_retired_rows(repo, capsys):
+    """The machine-readable report exposes the retirements, not just a count."""
+    retired_wrapper_repo(repo)
+
+    assert repo.run(["--json"]) == 0
+    report = json.loads(capsys.readouterr().out)
+    assert report["retired_waivers_authenticated"] == 1
+    assert len(report["retired_waivers"]) == 1
+    row = report["retired_waivers"][0]
+    assert row["from"] == RIGID_ALPHA
+    assert row["to"] == TRIAPEX_BETA
+    assert row["retired_wave"] == "W3"
+    assert row["retired_head"] == repo.head
+    assert row["retired_by_wrapper"] == LEGACY_BRIDGE
+
+
+def test_write_record_ignores_the_retired_list(repo, tmp_path, monkeypatch, capsys):
+    """The generator reads the tree and HEAD alone: same bytes before and after.
+
+    `--write-record` never consults the waiver file, so adding a retired list
+    -- or a waiver file the lint would reject outright -- cannot move a byte of
+    the dated graph.
+    """
+    wrapper_tree(repo, direct_edge=False)
+    repo.activate()
+    monkeypatch.setattr(lint, "current_head", lambda: FAKE_FULL_HEAD)
+
+    before = str(tmp_path / "record-before.json")
+    assert repo.run(["--write-record", before]) == 0
+
+    repo.freeze(extra_rows=[frozen_row(RIGID_ALPHA, TRIAPEX_BETA)])
+    repo.waivers(
+        [],
+        retired=[
+            retired_row(repo, RIGID_ALPHA, TRIAPEX_BETA, wrapper=LEGACY_BRIDGE)
+        ],
+    )
+    repo.legacy(wrapper_manifest([RIGID_ALPHA, TRIAPEX_BETA]))
+    after = str(tmp_path / "record-after.json")
+    assert repo.run(["--write-record", after]) == 0
+    capsys.readouterr()
+
+    with open(before, "rb") as handle:
+        before_bytes = handle.read()
+    with open(after, "rb") as handle:
+        after_bytes = handle.read()
+    assert before_bytes == after_bytes
+
+
+def test_two_manifest_rows_linking_one_retirement_are_rejected(repo, capsys):
+    """Exactly one manifest row may claim a retirement, never two.
+
+    Two rows carrying the same `waiver_pair` and the same `wrapper_module`
+    would let one wrapper be credited twice, and the count is what makes the
+    back-link a bijection rather than a mere existence claim.
+    """
+    manifest = wrapper_manifest([RIGID_ALPHA, TRIAPEX_BETA])
+    manifest.append(dict(manifest[0]))
+    wrapper_tree(repo, direct_edge=False)
+    repo.freeze(extra_rows=[frozen_row(RIGID_ALPHA, TRIAPEX_BETA)])
+    repo.waivers(
+        [],
+        retired=[
+            retired_row(repo, RIGID_ALPHA, TRIAPEX_BETA, wrapper=LEGACY_BRIDGE)
+        ],
+    )
+    repo.legacy(manifest)
+
+    assert repo.run() == 1
+    captured = capsys.readouterr()
+    assert (
+        "names wrapper %s and 2 Legacy exception rows link back" % LEGACY_BRIDGE
+    ) in captured.err

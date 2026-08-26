@@ -42,8 +42,9 @@ is generated; do not hand-edit generated files.
   since the baseline and after a forced re-mine), not wave drift.
 - `cluster-import-edges.json` / `import-waivers.json` — frozen import graph of
   `FrontierLiveClosure/` and the waived pre-existing forbidden edges (with
-  planned retirement phases). The frozen graph is the waiver authentication
-  basis and is IMMUTABLE.
+  planned retirement phases), plus the `retired_waivers` rows for the edges a
+  wave has already removed; see "Retired waivers (W3-0d)". The frozen graph is
+  the waiver authentication basis and is IMMUTABLE.
 - `legacy-import-exceptions.json` / `cluster-import-edges-live-2026-08-24.json`
   — the per-edge Legacy wrapper exception manifest and the dated current graph;
   see "Legacy import exceptions and dated graph (W3-0)".
@@ -77,14 +78,25 @@ uv run python scripts/lint_cluster_imports.py
 # exit 0 = no NEW cross-cluster import under FrontierLiveClosure/ (existing edges are waived)
 # The scanner reads only the import header of each module (blank, comment, and
 # import lines up to the first other command), tolerates leading whitespace and
-# trailing `--` comments, and ignores prose inside docstrings.  Every waiver in
-# import-waivers.json is authenticated: its (from, to) pair must exist in the
-# frozen cluster-import-edges.json, its `reason` must be non-empty, its
-# `planned_retirement` must be one of W1b/W2/W3/W4/unassigned, and the
-# `summary` counts must match.  A waiver for an edge that is no longer live
-# (stale), an unknown pair, a duplicate row, or a summary mismatch is exit 1.
-# --waivers FILE substitutes another waiver file; --scan-file PATH prints the
-# header imports the scanner sees for one file (diagnostic).
+# trailing `--` comments, and ignores prose inside docstrings.  import-waivers.json
+# is schema `import-waivers/v2`: a live `waivers` list plus a `retired_waivers`
+# list, and any other `schema` value is exit 2.  Every waiver is authenticated:
+# its (from, to) pair must exist in the frozen cluster-import-edges.json, its
+# `reason` must be non-empty, its `planned_retirement` must be one of
+# W1b/W2/W3/W4/unassigned, and the `summary` counts (retirements included) must
+# match.  A waiver for an edge that is no longer live (stale), an unknown pair,
+# a duplicate row, or a summary mismatch is exit 1.  The two lists are a CLOSED
+# WORLD over the frozen record: a forbidden pair of cluster-import-edges.json
+# named by neither list is exit 1, and so is a pair named by both, a retired
+# pair whose edge is present again in the live tree, and a retired row whose
+# `retired_head` is malformed, names no commit or names a commit that is not an
+# ancestor of HEAD (a ROW failure, exit 1 -- not the exit 2 the manifest's
+# `base_head` gets).  See "Retired waivers (W3-0d)".
+# --waivers FILE substitutes another waiver file; --list-waived prints the
+# waived edges and the retired rows; --scan-file PATH prints the header imports
+# the scanner sees for one file (diagnostic).
+# The OK line reads: N import edges scanned, F forbidden edges, all waived by W
+# authenticated waivers; R retired; L legacy edges, all listed.
 ```
 
 ### Metadata validation
@@ -505,8 +517,10 @@ W3 lint author implements; the manifest itself is
     - `reason` — non-empty prose;
     - `waiver_pair` — `[from, to]` of the `import-waivers.json` row this
       exception supersedes, or `null`. A non-null pair is a claim with three
-      parts, and `waiver_pair_link_failure` checks all three: the pair must
-      still be a row in `import-waivers.json`; `waiver_pair[0]` must EQUAL this
+      parts, and `waiver_pair_link_failure` checks all three: the pair must be
+      a row of `import-waivers.json` — either a LIVE `waivers` row (the wrapper
+      has landed, the direct edge is still there) or a `retired_waivers` row
+      (the edge is gone); `waiver_pair[0]` must EQUAL this
       manifest row's own `from` (the cluster module that now reaches the
       retired target through the wrapper); and `waiver_pair[1]` must be a
       DIRECT header import of this row's `wrapper_module` (the retired target
@@ -514,7 +528,12 @@ W3 lint author implements; the manifest itself is
       scan never saw has no imports at all, so the third check fails closed
       rather than being skipped. Any of the three is exit 1. Only a pair that
       passes all three is credited with retiring its waiver row, so a
-      misidentified pair cannot rename another wrapper's stale waiver;
+      misidentified pair cannot rename another wrapper's stale waiver. When the
+      pair names a RETIRED row, a fourth part holds: that row's
+      `retired_by_wrapper` must be this row's `wrapper_module`, and the link is
+      checked in the other direction too — a retired row naming a wrapper must
+      be named back by EXACTLY ONE manifest row carrying that `wrapper_module`
+      (zero rows and two rows are both exit 1);
     - `added_wave` — `"W3"`.
 - **Exactness.** Every Legacy-module edge in the LIVE tree must be listed
   exactly. An unlisted live Legacy edge is a lint FAILURE. There is no prefix,
@@ -525,3 +544,61 @@ W3 lint author implements; the manifest itself is
   waiver authentication basis and is IMMUTABLE (the frozen Phase 0 record).
   `proof-status/cluster-import-edges-live-2026-08-24.json` is the dated current
   graph and is DOCUMENTATION ONLY: nothing authenticates against it.
+
+### Retired waivers (W3-0d)
+
+`import-waivers.json` is schema `import-waivers/v2`. Beside `waivers` it
+carries `retired_waivers`, one row per waiver a wave has already retired, so a
+retirement is a machine-checked record rather than prose in a commit message.
+Retiring a waiver is a MOVE, not a delete, and the stale-waiver message says so:
+it names `retired_wave`, `retired_head` and `retired_by_wrapper` instead of
+telling the author to delete the row.
+
+- **Row fields** (exactly these eight; any other key set is exit 1):
+  - `from`, `to`, `class`, `reason`, `planned_retirement` — the waiver row as it
+    stood when the edge was removed. `class` must be the class the FROZEN record
+    recorded for the pair, so a retired row cannot rewrite the history it
+    preserves;
+  - `retired_wave` — one of `W1b`, `W2`, `W3`, `W4`. `unassigned` is rejected:
+    a plan may leave a live row unassigned, but a retirement that happened was
+    carried out by some wave;
+  - `retired_head` — the 8-lowercase-hex commit that removed the edge, bound to
+    history through the same `base_head_binding_failure` and `git_status` seam
+    the Legacy manifest's `base_head` uses (the commit must exist and be an
+    ancestor of, or equal to, HEAD). A malformed, unknown or unreachable value
+    is a ROW failure, exit 1: the lint can still run, so the rest of the file is
+    still checked;
+  - `retired_by_wrapper` — the Legacy wrapper the edge now runs through, or
+    `null` when the edge was simply deleted. A non-null value must be a module
+    under `Erdos9796Proof.P97.ATail.FrontierLiveClosure.Legacy` that the tree
+    scan saw and that DIRECTLY imports the retired `to`, and exactly one
+    `legacy-import-exceptions.json` row must name the pair back through
+    `waiver_pair` with that same `wrapper_module`.
+- **Closed world.** `waivers` and `retired_waivers` together cover the frozen
+  record: every forbidden pair of `cluster-import-edges.json` must appear in
+  exactly one of the two lists. A pair in neither is exit 1
+  (`frozen forbidden pair X -> Y is neither waived nor retired`), and so is a
+  pair in both. Before v2 a deleted waiver row left no trace at all, so the
+  frozen record's forbidden pairs and the waiver file could drift apart in
+  silence.
+- **Refutable by the tree.** A retired pair whose edge is present again in the
+  live tree fails, and the message gives the file and line where it came back.
+  A retirement is therefore not a licence to re-add the edge.
+- **Summary.** `summary.retired_waivers` and `summary.by_retired_wave` are
+  recomputed and compared exactly like `summary.waivers`,
+  `summary.by_class` and `summary.by_planned_retirement`.
+- **Reporting.** The OK line ends `...; R retired; L legacy edges, all listed.`;
+  `--list-waived` prints a `retired waivers (R):` section with each pair, wave,
+  head and wrapper (`-` when null); `--json` carries the rows under
+  `retired_waivers` with the authenticated count in
+  `retired_waivers_authenticated`. `--write-record` is untouched: it reads the
+  tree and HEAD alone and never opens the waiver file.
+- **Recorded retirements.** Two rows, both authenticated by the lint at HEAD
+  `22694fa3`:
+  `TwoDeletionCollision -> B1Live` (W1b, `4b1c21b8`, no wrapper) and
+  `Rigid221Placement -> TwoDeletionCollision` (W3, `2fb26644`, retired through
+  `...FrontierLiveClosure.Legacy.TwoDeletionWrappers`, linked in both
+  directions with that manifest row's `waiver_pair`).
+- **Tests.** `scripts/test_lint_cluster_imports_legacy.py` covers each rule
+  above against synthetic fixture trees and a throwaway fixture git repository;
+  no test reads this repository's records.
