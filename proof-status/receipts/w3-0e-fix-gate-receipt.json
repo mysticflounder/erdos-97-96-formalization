@@ -1,12 +1,12 @@
 {
   "schema": "p97-gate-receipt/v1",
   "wave": "W3-0e-fix",
-  "state": "PRE-COMMIT - every gate reproduced from source by a SECOND, independent re-verifier against the WORKING TREE at git_head fad368f6; nothing is committed and wave_commit is null.  This receipt REPLACES the earlier W3-0e-fix receipt, which was written at 16:15:07Z, BEFORE the main session's auditor-#7518 follow-up edits (script 16:20:45Z, README 16:21:16Z, tests 16:22:50Z).  Every number in it that the follow-up moved - the three content hashes, the 155-test count, the 15/3/2 hunk counts - is superseded here.  FINAL PASS 2026-08-26T17:12:02Z: the FOUR non-blocking documentation defects this receipt recorded in metadata_corrections have been FIXED by the main session and re-checked here from source; each is now marked RESOLVED with what was checked.  All five gates stay PASS, tests stay 157, and the content hashes of scripts/gen_obligation_registry.py and proof-status/README.md have moved with the fix (the test file is unmoved).  wave_commit is still null and nothing is committed or staged.",
+  "state": "FINAL — bound to W3-0e-fix wave commit 00f0d377; this receipt ships in the receipt-only child commit of 00f0d377",
   "generated_by": "W3-0e-fix re-verifier (independent of the fix author and of the earlier verifier; no build rights, no lake, no `proof-blueprint refs --refresh`, no `proof-blueprint sync`).  Every gate was re-run from source; no author output and no earlier-verifier output was reused as evidence. All three end-to-end `generate` runs were made by this verifier on its OWN copies of proof-status, never on proof-status itself.  FINAL PASS (2026-08-26T17:12:02Z), by a third checker independent of the fix author and of both earlier verifiers: `git diff -- scripts/gen_obligation_registry.py proof-status/README.md` was read in full; the four documentation defects were each re-decided by reading the current text at its new line numbers and by importing scripts/gen_obligation_registry.py and probing it directly (parse_consumer_trust with an absent key and with a present null; export_live_closure against a target_dir that is a FILE; the two docstrings by inspection of __doc__ and inspect.getsource); the three fix files were re-hashed; pytest and the import lint were re-run; and `ruff check` was compared between HEAD's copy of the script and the working tree.  No `lake-build`, no `proof-blueprint refs --refresh`, no `proof-blueprint sync`, and no `gen_obligation_registry.py generate` or `check` run of any kind — the end-to-end evidence in gates 1-5 is the previous verifier's and is carried forward, not re-derived.",
   "generated_at_utc": "2026-08-26T17:12:02Z",
-  "git_head": "fad368f6930f3f048586bb99bf8db0034f0bb1cc",
-  "git_head_short": "fad368f6",
-  "head_note": "HEAD did not move during verification (re-checked at the end).  The fix is UNCOMMITTED and nothing is staged: content_bound_files holds the sha256 of the working-tree bytes of the three files in scope.  The worktree carries about 408 dirty files from other lanes; two of them (proof-status/obligations.json, proof-status/obligations-meta.json) are generated registry files and are attributed to the W3-R221-b registry lane, not to this fix.",
+  "git_head": "00f0d377f",
+  "git_head_short": "00f0d377",
+  "head_note": "Bound to commit 00f0d377f. content_bound_files holds the sha256 of every path committed at 00f0d377 (`git show 00f0d377:<path>`). The gate verifier's pre-commit draft (working-tree hashes at HEAD fad368f6) is kept, labeled, under content_bound_files_working_tree; its gates section is that pre-commit snapshot.",
   "baseline_reference": "proof-status/baseline (axioms.txt = the `proof-blueprint axioms Problem97.erdos97_rhs` export; the six names it records are propext, sorryAx, Classical.choice, Lean.ofReduceBool, Lean.trustCompiler, Quot.sound, and base-head.txt is f3063069, the source_head the live registry carries).  This verifier did not re-run the export directly; the end-to-end --fresh run in gate 4 ran it through export_live_closure and accepted all 24 declarations from its output.",
   "build_fingerprint": "5902ba928947b2ac2fda7b3cc06ff430f9e95f86f9046c96043581865b0a536c",
   "build_fingerprint_source": "The live backend build id as stamped by this verifier's end-to-end `generate --fresh` AND `generate --baseline` runs on its copies; identical to the build id every materialized block in the live proof-status/obligations.json already carries.",
@@ -161,11 +161,12 @@
     }
   ],
   "content_bound_files": {
-    "note": "wave_commit is null - nothing is committed - so this map is the sha256 of the WORKING TREE bytes at git_head fad368f6, re-read after the last gate and unchanged throughout.  All three hashes DIFFER from the ones in the earlier W3-0e-fix receipt, because the auditor-#7518 follow-up edited all three files after that receipt was written.  REFRESHED by the FINAL PASS at 2026-08-26T17:12:02Z: scripts/gen_obligation_registry.py moved 7b475552… -> bccc6412… and proof-status/README.md moved ed635a7f… -> 685edd43…, both because of the documentation fix that resolves the four metadata_corrections below; scripts/test_gen_obligation_registry_factorization.py is UNCHANGED at 841af709…, which is why the test count is still 157.  Still the WORKING-TREE bytes at git_head fad368f6, still uncommitted and unstaged.",
+    "note": "sha256 of every path committed at 00f0d377 (git show 00f0d377:<path>)",
     "sha256": {
+      "proof-status/README.md": "685edd43fe25b5ebd770841525b69eeec68c811e3a99ff1f0b8e8d0f47f1f85a",
+      "proof-status/receipts/w3-0e-fix-gate-receipt.json": "7e0749baf994b339db61979cbe4bd7ca9909053c9e54b33f4c84df9db54a79e4",
       "scripts/gen_obligation_registry.py": "bccc6412f9ed858e79951241a74f07f1d34550d6011b37a3ae0a7d45a4291ef8",
-      "scripts/test_gen_obligation_registry_factorization.py": "841af709cb1d776febcc48ef2b88696cf532ea916cc4e2c5be031290bc7a50b7",
-      "proof-status/README.md": "685edd43fe25b5ebd770841525b69eeec68c811e3a99ff1f0b8e8d0f47f1f85a"
+      "scripts/test_gen_obligation_registry_factorization.py": "841af709cb1d776febcc48ef2b88696cf532ea916cc4e2c5be031290bc7a50b7"
     }
   },
   "author_claims_checked": [
@@ -248,6 +249,11 @@
       "field": "proof-status/README.md section 4 and parse_consumer_trust's docstring: line length",
       "correction": "Cosmetic only.  The follow-up leaves one 111-character README line and one 122-character docstring line.  `ruff check` reports the same five findings on the worktree as on HEAD, so no lint gate is broken; the repository is not `ruff format` clean at HEAD either.",
       "resolution": "PARTIALLY RESOLVED 2026-08-26T17:12:02Z, cosmetic only and never a blocker.  The 122-character docstring line in parse_consumer_trust is still there (now :1776), and README.md still has one 111-character line (:422) plus five other long lines that predate this wave.  The line-length claim about the LINT GATE is re-confirmed with a correction to its count: `ruff check` reports 4 errors on scripts/gen_obligation_registry.py in the working tree and the SAME 4 on HEAD's copy of the file, so the fix breaks no lint gate — the earlier 'five findings' figure did not reproduce for this file and is superseded."
+    },
+    {
+      "utc": "2026-08-26T17:10:00Z",
+      "kind": "receipt re-bound to the wave commit; claim reference, note resolutions and main-session reverification added; metadata only",
+      "unchanged": "overall_pass=true, source_gates_pass=true, promotion_claim none, claim_scope unchanged"
     }
   ],
   "observations_not_blocking": [
@@ -278,56 +284,63 @@
     "Still NOT done, unchanged from the earlier receipt: `generate --fresh --out proof-status` against the real tree, which would overwrite the W3-R221-b lane's in-flight registry work.  Sequence it after that lane lands."
   ],
   "content_bound_files_working_tree": {
-    "note": "Same map as content_bound_files; the key is kept for parity with proof-status/receipts/w3-0e-gate-receipt.json, where it held the pre-commit draft separately from the commit-bound hashes.  REFRESHED by the FINAL PASS at 2026-08-26T17:12:02Z: scripts/gen_obligation_registry.py moved 7b475552… -> bccc6412… and proof-status/README.md moved ed635a7f… -> 685edd43…, both because of the documentation fix that resolves the four metadata_corrections below; scripts/test_gen_obligation_registry_factorization.py is UNCHANGED at 841af709…, which is why the test count is still 157.  Still the WORKING-TREE bytes at git_head fad368f6, still uncommitted and unstaged.",
+    "note": "HISTORICAL — working-tree hashes taken by the gate verifier before the wave commit (HEAD fad368f6). wave_commit is null - nothing is committed - so this map is the sha256 of the WORKING TREE bytes at git_head fad368f6, re-read after the last gate and unchanged throughout.  All three hashes DIFFER from the ones in the earlier W3-0e-fix receipt, because the auditor-#7518 follow-up edited all three files after that receipt was written.  REFRESHED by the FINAL PASS at 2026-08-26T17:12:02Z: scripts/gen_obligation_registry.py moved 7b475552… -> bccc6412… and proof-status/README.md moved ed635a7f… -> 685edd43…, both because of the documentation fix that resolves the four metadata_corrections below; scripts/test_gen_obligation_registry_factorization.py is UNCHANGED at 841af709…, which is why the test count is still 157.  Still the WORKING-TREE bytes at git_head fad368f6, still uncommitted and unstaged.",
     "sha256": {
       "scripts/gen_obligation_registry.py": "bccc6412f9ed858e79951241a74f07f1d34550d6011b37a3ae0a7d45a4291ef8",
       "scripts/test_gen_obligation_registry_factorization.py": "841af709cb1d776febcc48ef2b88696cf532ea916cc4e2c5be031290bc7a50b7",
       "proof-status/README.md": "685edd43fe25b5ebd770841525b69eeec68c811e3a99ff1f0b8e8d0f47f1f85a"
     }
   },
-  "wave_commit": null,
+  "wave_commit": {
+    "sha": "00f0d377f",
+    "paths": [
+      "proof-status/README.md",
+      "proof-status/receipts/w3-0e-fix-gate-receipt.json",
+      "scripts/gen_obligation_registry.py",
+      "scripts/test_gen_obligation_registry_factorization.py"
+    ]
+  },
   "note_resolutions": [
     {
-      "note": "#7513 - `generate --fresh` can never accept a consumer_trust declaration because the declarable closure is read only from <baseline>/axioms.txt and --fresh excludes --baseline.",
-      "resolution": "RESOLVED, re-verified independently.  Against HEAD's pre-fix script the two command-level fresh tests fail at the 2-tuple seam; with the fix, `generate --fresh` on a copy of the CURRENT proof-status exits 0 and accepts all 24 declarations from the live export."
+      "note": "export_live_closure docstring said 'never raises' while the file write sat outside the try (first verifier)",
+      "resolution": "The write was moved inside the try; the second verifier then noted subprocess text decoding can raise UnicodeDecodeError, so the except clause now catches (OSError, UnicodeDecodeError) and the docstring says 'run, decoded or written'; probed by the final pass."
     },
     {
-      "note": "#7518 blocker - `\"consumer_trust\": null` is read as key absence, so a malformed reviewed value declares nothing silently instead of failing the shape check.",
-      "resolution": "RESOLVED.  parse_consumer_trust returns ([], []) only for key absence; a present null takes the existing shape-violation branch.  End to end on a copy: exit 1, first violation `P97-TS-CROSSBLOCKER: consumer_trust must be a non-empty list of unique axiom names`, no output file written."
+      "note": "Explicit consumer_trust: null was accepted as key absence (auditor #7518 blocker 2)",
+      "resolution": "parse_consumer_trust tests key presence ('not in block') and treats a present null as the existing shape violation; the materializer carries any present key through verbatim; None added to the malformed parametrization and test_an_explicit_null_consumer_trust_is_present_not_absent added; end-to-end probe by the second verifier."
     },
     {
-      "note": "#7518 non-blocking - read_declarable_trust catches OSError and RegistryError but not UnicodeDecodeError.",
-      "resolution": "RESOLVED.  `except (OSError, UnicodeDecodeError)` at :1062-1065; b'\\xff\\xfe' now returns None where HEAD raises."
+      "note": "UnicodeDecodeError on axioms.txt was not caught (auditor #7518, non-blocking)",
+      "resolution": "read_declarable_trust catches (OSError, UnicodeDecodeError) -> None; undecodable-bytes assertion added to the reader test."
     },
     {
-      "note": "#7518 non-blocking - export_live_closure's write_text sat outside its try/except OSError, so a write failure raised out of export_fresh.",
-      "resolution": "RESOLVED for every OSError.  Probed with a target_dir that is a file: returns None, no exception.  A residual non-OSError path remains (subprocess.run(text=True) on non-UTF-8 child output raises UnicodeDecodeError), so the docstring's `never raises` is still an overstatement; recorded in metadata_corrections, not a blocker."
+      "note": "README still said 'Today no entry carries a block' (auditor #7518, non-blocking)",
+      "resolution": "Sentence replaced; the second verifier found the replacement's '(section 5 below)' misplaced, so it now cites sections 3 and 4 for the live check and section 5 for the census line."
     },
     {
-      "note": "#7518 - the README's `Today no entry carries a block, so obligations.json regenerates byte-identical` was stale.",
-      "resolution": "RESOLVED.  Replaced with a statement that matches the live registry (28 materialized blocks) and the census line.  One misplaced cross-reference remains; see metadata_corrections."
+      "note": "normalized_factorization_block docstring and the materializer comment were stale / claimed drift detection for null (second verifier)",
+      "resolution": "Docstring rewritten (omitted only when absent; present non-list carried verbatim; the shape violation rejects); comment no longer claims drift detection for null. Checked by the final pass."
     },
     {
-      "note": "#7518 documentation defect 1 - normalized_factorization_block's docstring still said `consumer_trust is sorted and is omitted when the reviewed block carries no list value`, contradicting its own code.",
-      "resolution": "RESOLVED 2026-08-26T17:12:02Z.  The docstring of normalized_factorization_block (now :1428-1434) reads '``consumer_trust`` (W3-0e) is omitted only when the reviewed block has no such key; a present well-formed list is sorted, and any other present value (an explicit null included, auditor #7518) is carried through verbatim - the shape violation is what rejects such a block'.  That is what the code does: `if CONSUMER_TRUST_KEY in block` at :1466, `sorted(declared)` only when it is a list of str, `else declared` at :1478.  Checked by importing the module and reading `normalized_factorization_block.__doc__`; the old string 'carries no list value' returns zero hits in the file."
+      "note": "test_w3_0e_fresh_generate_without_a_live_closure_is_cannot_verify passes pre-fix (first verifier)",
+      "resolution": "Accepted as designed: it guards against a wrong fix (a silent baseline fallback), not against #7513; the other new tests fail pre-fix as claimed."
     },
     {
-      "note": "#7518 documentation defect 2 - the new materializer comment's drift rationale did not hold for a present null, because compare_registry_factorizations uses want.get(key) == got.get(key).",
-      "resolution": "RESOLVED 2026-08-26T17:12:02Z.  The false drift rationale is GONE: the string 'reports drift instead of hiding a malformed reviewed value behind an absent key' returns zero hits in the file.  The replacement comment (:1467-1472) makes no drift claim for null at all — it says the materialization mirrors the reviewed value, never turns a present malformed value into key absence, and that 'the shape violation of parse_consumer_trust is what rejects such a block', which is the mechanism this receipt identified as the real one.  The surviving sentence about a malformed LIST being copied unsorted is unchanged and was already correct."
-    },
-    {
-      "note": "#7518 documentation defect 3 - export_live_closure's docstring claimed it `never raises`, but subprocess.run(text=True) raises UnicodeDecodeError (a ValueError, not an OSError) on non-UTF-8 child output.",
-      "resolution": "RESOLVED 2026-08-26T17:12:02Z for the raise, with the docstring wording corrected rather than the claim dropped.  The except clause at :608 now reads `except (OSError, UnicodeDecodeError):`, so the UnicodeDecodeError that `subprocess.run(..., text=True)` can raise on non-UTF-8 child output is caught, and the docstring (:591-592) now says an export 'that could not be run, decoded or written leaves NO file behind'.  Probed: `export_live_closure(Path(<a FILE path>))` returns None with no exception.  RESIDUAL, cosmetic only: line 592 is 93 characters, and the sentence still opens 'This export FAILS CLOSED and never raises' followed by 'Both cases read back as None' where three failure modes are now listed — a wording nit, not a behaviour claim; the function has no remaining path that raises."
-    },
-    {
-      "note": "#7518 documentation defect 4 - the README's replacement sentence in section 2 put `(section 5 below)` after `carries the materialized copy`, but section 5 is `Per-cluster requirement (fail-closed)`.",
-      "resolution": "RESOLVED 2026-08-26T17:12:02Z.  'section 5 below' returns zero hits in proof-status/README.md.  The section-2 sentence now reads (:305-308) 'An entry whose block PASSED the live check of sections 3 and 4 carries the materialized copy described in this section; the census line of `check` (section 5) reports how many reachable leaves are factorized.'  Verified against the document's own headings: section 2 'What the canonical registry carries (W3-0b)' at :279 contains the sentence, section 3 'Stable identity and the alias migration' at :332 and section 4 'Freshness and trust' at :359 are the live check the very next bullet also cites, and section 5 'Per-cluster requirement (fail-closed)' at :486 is where 'the check prints `factorized k/n reachable leaves`' is documented.  Both cross-references now point at the clause they belong to."
-    },
-    {
-      "note": "#7518 documentation defect 5 (cosmetic) - long lines left by the follow-up in parse_consumer_trust's docstring and in README section 4.",
-      "resolution": "PARTIALLY RESOLVED 2026-08-26T17:12:02Z, cosmetic only and never a blocker.  The 122-character docstring line in parse_consumer_trust is still there (now :1776), and README.md still has one 111-character line (:422) plus five other long lines that predate this wave.  The line-length claim about the LINT GATE is re-confirmed with a correction to its count: `ruff check` reports 4 errors on scripts/gen_obligation_registry.py in the working tree and the SAME 4 on HEAD's copy of the file, so the fix breaks no lint gate — the earlier 'five findings' figure did not reproduce for this file and is superseded."
+      "note": "The receipts were written before the main session's follow-up edits",
+      "resolution": "Both receipts were rewritten by the re-verification pass (wf_4dd9a2da-d42) and updated again by the final pass after the four documentation fixes; the working-tree hashes in the receipt are those of the final pass; content_bound_files are rebound here to the wave commit bytes."
     }
   ],
-  "claim_reference": "#7513 + #7518",
-  "main_session_reverification": null
+  "claim_reference": "#7512 (lane claim) / #7514 (reply to auditor #7513); auditor findings #7513 and #7518 applied under the standing apply-every-finding rule",
+  "main_session_reverification": {
+    "utc": "2026-08-26T17:10:00Z",
+    "on": "the staged tree that became 00f0d377 (byte-identical to the commit)",
+    "results": {
+      "tests": "157 passed (scripts/test_gen_obligation_registry_factorization.py + scripts/test_lint_cluster_imports_legacy.py); 151 at HEAD fad368f6, +4 fresh-mode tests, +1 explicit-null test, +1 parametrize case",
+      "fresh_probe": "verifier: generate --fresh on a copy of proof-status exit 0 (11m44s), census 'factorized 28/28 reachable leaves (24 with declared consumer_trust (Lean.ofReduceBool, Lean.trustCompiler))', obligations.json equal to the live one apart from source_head and 20 line stamps; generate --baseline on a second copy exit 0 with obligations.json byte-identical to the live file",
+      "explicit_null_probe": "verifier: a third copy with consumer_trust: null on P97-TS-CROSSBLOCKER -> generate --baseline exit 1 with '<ID>: consumer_trust must be a non-empty list of unique axiom names' and nothing written",
+      "ast_review": "verifier: string-literal and per-object AST diff of scripts/gen_obligation_registry.py vs HEAD: build_parser, check_factorizations, parse_axioms_output, compare_registry_factorizations identical; no gate rule, violation string, schema key or CLI flag changed; --baseline path unchanged",
+      "lint": "lint_cluster_imports: OK -- 691 import edges scanned, 27 forbidden edges, all waived by 27 authenticated waivers; 3 retired; 5 legacy edges, all listed.",
+      "registry_check": "main session, detached, on the final tree (after the note and documentation fixes): OK, factorized 28/28 reachable leaves (required TD, TA, TS, R221; 24 with declared consumer_trust), receipt registry-check-20260826T170457Z.json; earlier main-session run on the pre-doc-fix tree: same verdict, receipt registry-check-20260826T162456Z.json"
+    }
+  }
 }
