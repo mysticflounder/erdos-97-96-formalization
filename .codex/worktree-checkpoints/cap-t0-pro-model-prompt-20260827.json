@@ -1,0 +1,14 @@
+{
+  "base_head": "89a45ba0ca2d09494730a13e5f45928ff86af81b",
+  "created_utc": "2026-08-27T20:34:34Z",
+  "durable_paths": [],
+  "generated_roots": [],
+  "lane_id": "cap-t0-pro-model-prompt-20260827",
+  "manifest_sha256": "ba11d3a753b52c4087624fa147e0e78ee60fe512a8a983ae3ce6e0612a5699df",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/cap-t0-pro-model-prompt-20260827.json",
+    "docs/solve-prompts/2026-08-27-cap-configuration-t0-selection-pro-model.md"
+  ],
+  "owner": "spine-gate-auditor",
+  "schema": "worktree-lane-checkpoint/v1"
+}
