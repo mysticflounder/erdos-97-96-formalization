@@ -33,11 +33,11 @@ Two of the three are finished and kernel-checked. The counting engine and the
 2026-08-18 as exactly `{propext, Classical.choice, Quot.sound}`. The descent
 engine is where the work remains. Its hard core is the removable-vertex lemma,
 which is assembled from a three-way split; two of the three branches are closed, and the third fans out
-through a long sequence of case splits into an open frontier of **28
-`sorry`-carrying leaf theorems** reachable from the publish target, all of them
-in the `ATailFrontierLiveClosure` namespace under
+through a long sequence of case splits into the open frontier recorded in the
+[generated obligation authority](#the-open-frontier), in the
+`ATailFrontierLiveClosure` namespace under
 [`P97/ATail/FrontierLiveClosure/`](lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure).
-Every one of those leaves is a statement of the form "this particular
+Every reachable leaf is a statement of the form "this particular
 combinatorial-geometric configuration is impossible". No leaf has been found to
 be a restatement of the theorem or to be false, but no systematic per-leaf
 non-vacuity audit has been recorded, so treat that as an absence of findings
@@ -166,7 +166,8 @@ built tree on 2026-08-24, at commit `4b1c21b8`:
   [propext, sorryAx, Classical.choice, Lean.ofReduceBool, Lean.trustCompiler, Quot.sound]
 ```
 
-`sorryAx` traces to the 28 leaves below. The kernel mine backing that
+`sorryAx` traces to the reachable declarations in the
+[generated obligation authority](#the-open-frontier). The kernel mine backing that
 statement has a declared boundary — `.blueprint.toml`'s `[mining].skip` excludes
 the generated `EndpointCertificate` / `SurplusCertificate` / `*Export` subtrees,
 which is what the "20 trusted leaves" line below counts. Those subtrees contain
@@ -176,19 +177,15 @@ no bare `sorry`, and `#print axioms` on the targets covers them regardless.
 `Lean.trustCompiler` come from `native_decide` in the generated finite
 certificate banks, allowed under the project's `native_decide` policy (the
 closure is kernel-checked and the evaluated checkers are plain verified Lean,
-with no `unsafe`, `@[implemented_by]`, or `@[extern]`). Once the 28 leaves are
-proved, `sorryAx` drops out and both closures become the core axioms plus those
-two compiler axioms — the declared trust boundary of the certificate
-infrastructure.
+with no `unsafe`, `@[implemented_by]`, or `@[extern]`). If every registered
+reachable leaf is proved, `sorryAx` drops out and both closures become the core
+axioms plus those two compiler axioms — the declared trust boundary of the
+certificate infrastructure.
 
-`proof-blueprint spine`, run against this checkout, reports:
-
-```
-open: 117/37293 node(s)
-trusted leaves: 20 🔒 (certs excluded from mine by [mining].skip; covered by `#print axioms`)
-spine source: 321620 line(s) of lean across 37293 decl(s)
-open obligations (28):   -- 28 reachable sorry-carrying leaves
-```
+The live `proof-blueprint spine` roster and the committed
+`docs/live-blueprint.md` snapshot are checked against the generated authority by
+`gen_obligation_registry.py status --check`; the open-node numerator is not used
+as an obligation count.
 
 The 2026-08-22 prose-library synthesis did not rerun this build-derived
 measurement. The 2026-08-23 TriApex work did: first it proved a source-clean
@@ -231,7 +228,8 @@ on-spine residual. No live theorem packages that classifier yet.
 
 The consolidation refactor
 ([`docs/audits/2026-08-23-consolidation-refactor-audit.md`](docs/audits/2026-08-23-consolidation-refactor-audit.md))
-has run three phases so far, all packaging. Phase 0 (`ec4b95ab`) froze a
+recorded three packaging phases on 2026-08-23/24. On 2026-08-23, Phase 0
+(`ec4b95ab`) froze a
 build-derived baseline and generated
 [`proof-status/obligations.json`](proof-status/obligations.json): a registry of
 the 28 reachable and 6 off-spine `sorry`-carrying declarations with stable IDs,
@@ -259,40 +257,66 @@ the one that means proved.
 
 ### The open frontier
 
-All 28 leaves live in the `Problem97.ATailFrontierLiveClosure` namespace, spread
-over nine modules. They group into four clusters, each a separate line of
-attack — though not fully independent: the roadmap notes that closing the
-TwoSource cluster would terminate the Level-5 and FreshThird branches together
-(see
+The current roster groups the reachable declarations into four clusters, each
+a separate line of attack, though not fully independent: the roadmap notes
+that closing the TwoSource cluster would terminate the Level-5 and FreshThird
+branches together (see
 [`docs/audits/2026-08-17-spine-leverage-analysis-and-roadmap.md`](docs/audits/2026-08-17-spine-leverage-analysis-and-roadmap.md)
-for the cluster split and sequencing; note that audit is a 2026-08-17 snapshot
-reporting 34, superseded by the count below — `proof-blueprint spine` is the
-roster authority):
+for the cluster split and sequencing). The dated audit's roster is historical;
+the marker-delimited block below is the generated current authority.
 
-| Cluster | Module | Open | What the cluster is about |
-|---|---|---:|---|
-| **Rigid221** | `Rigid221SourceHeavy.lean` | 8 | The source-heavy BlockerV residual — exact-cardinality strata, `native_decide` coverage banks, and the exact-12/exact-17 CEGAR lane |
-| | `Rigid221Closure.lean` | 5 | |
-| | `Rigid221Placement.lean` | 5 | |
-| **TriApex** | `TriApexEndpointRetainedOmission.lean` | 1 | Retained-omission configurations with all three apex caps large; D2 is closed, while D1 retains cross-radius, `mu = 0`, and disjoint-`K2,2` residuals |
-| **TwoSource** | `TwoSourceFreshThirdResidual.lean` | 3 | Two cap sources plus a fresh third centre; the FreshThird and FirstFiber lanes |
-| | `TwoSourceCanonicalSurface.lean` | 1 | |
-| | `TwoSourceClosure.lean` | 1 | |
-| | `TwoSourceFirstFiberCollision.lean` | 1 | |
-| **Two-deletion** | `TwoDeletionCollision.lean` | 3 | The B-family (formerly packages B1/B2/B3): mutual-omission and four-centre common-deletion collisions |
-| **Total** | | **28** | |
+<!-- BEGIN GENERATED P97 OBLIGATION STATUS -->
+> **Generated obligation authority — do not edit inside these markers.**
+> Generated by `scripts/gen_obligation_registry.py` from `proof-status/obligations.json`.
+> This is registry bookkeeping, not a proof-progress claim.
 
-[`proof-status/frontier-table.generated.md`](proof-status/frontier-table.generated.md)
-is the generated three-column form of this table, emitted from the registry;
-`proof-status/obligations.json` carries the per-leaf IDs and
-`obligations-meta.json` the reviewed status of each leaf.
+- Publish target: `Problem97.erdos97_rhs`
+- Registry source head: `f3063069939cfb6dc2a8a9b20d9a7ef660c86fdf`
+- Registered declarations: **28 reachable**, **6 off-spine** (34 total)
+- Reviewed status coverage: **34/34** entries
+
+#### Reachable declarations by module
+
+| Cluster | Module | Open |
+|---|---|---:|
+| **Rigid221** | `Rigid221SourceHeavy.lean` | 8 |
+|  | `Rigid221Closure.lean` | 5 |
+|  | `Rigid221Placement.lean` | 5 |
+| **TriApex** | `TriApexEndpointRetainedOmission.lean` | 1 |
+| **TwoSource** | `TwoSourceFreshThirdResidual.lean` | 3 |
+|  | `TwoSourceCanonicalSurface.lean` | 1 |
+|  | `TwoSourceClosure.lean` | 1 |
+|  | `TwoSourceFirstFiberCollision.lean` | 1 |
+| **Two-deletion** | `TwoDeletionCollision.lean` | 3 |
+| **Total** | | **28** |
+
+#### Reviewed status tally
+
+| Reviewed status | Entries |
+|---|---:|
+| `NORMAL_FORM_CLOSED_TERMINAL_OPEN` | 11 |
+| `OPEN_MATHEMATICAL` | 17 |
+| `OFF_SPINE_DIAGNOSTIC` | 6 |
+| **Total** | **34** |
+
+#### Off-spine declarations (6)
+
+- `Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_freshThird_pinnedEndpoint_outsideSeedResidual` — `Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean`
+- `Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_firstFiberDescentResidual` — `Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdFiber.lean`
+- `Problem97.ATailFrontierLiveClosure.false_of_exactFiveDistinct_biApexRobust_postCardEleven` — `Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221Closure.lean`
+- `Problem97.CPackageBankFidelity.fidelity_c1` — `scratch/c-package-bank/FidelityCheck.lean`
+- `Problem97.CPackageBankFidelity.fidelity_c2` — `scratch/c-package-bank/FidelityCheck.lean`
+- `Problem97.EPackageBankFidelity.fidelity_e1` — `scratch/e-package-bank/FidelityCheck.lean`
+
+<!-- END GENERATED P97 OBLIGATION STATUS -->
 
 [`FrontierLiveClosure.lean`](lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean)
 is now a 46-line import-only coordinator; the obligations live in the
 [`FrontierLiveClosure/`](lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure)
 package beside it (359 modules, ~200k lines, most of it generated CNF and
 replay material; the 2026-08-23/24 refactor added the `JointDeletion/`
-subpackage, `ContextFrames.lean`, and `SharedFrontierHelpers.lean`). Six of the 28 sit in the nested
+subpackage, `ContextFrames.lean`, and `SharedFrontierHelpers.lean`). The registry
+identifies which reachable declarations sit in the nested
 `TwoSourceExactCollisionRowsTerminal` namespace.
 
 The table counts **obligations reachable from the publish target**, as reported
@@ -300,25 +324,14 @@ by `proof-blueprint` against the built tree — not raw `sorry` tokens. Regenera
 the spine after any build before quoting these counts; they move as leaves split
 and close.
 
-Six further `sorry`s exist off that spine. Three sit in imported
-`FrontierLiveClosure/` modules, and the blueprint flags them as a policy
-violation ("placeholder sorries are no longer allowed; all live work must be
-wired into the spine"):
-
-- `Rigid221Closure.lean` → `false_of_exactFiveDistinct_biApexRobust_postCardEleven`
-- `TwoSourceFreshThirdFiber.lean` → `TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_firstFiberDescentResidual`
-- `TwoSourceFreshThirdResidual.lean` → `TwoSourceExactCollisionRowsTerminal.false_of_freshThird_pinnedEndpoint_outsideSeedResidual`
-
-The other three are the fidelity checks `fidelity_c1`, `fidelity_c2`, and
-`fidelity_e1` in `lean/scratch/c-package-bank/FidelityCheck.lean` and
-`lean/scratch/e-package-bank/FidelityCheck.lean`, which no lake import chain
-reaches; the blueprint counts them in its "1,226 unimported files (9,435
-symbols, 3 `sorry`)" line. Earlier README snapshots listed a different third
-`FrontierLiveClosure` entry, `DoubleApexOffSurplusSharedRadiusPair` in
+The off-spine roster above includes imported `FrontierLiveClosure/`
+placeholders, which the blueprint flags as policy violations, and fidelity
+checks that no Lake import chain reaches. Earlier README snapshots listed
+`DoubleApexOffSurplusSharedRadiusPair` in
 `U1LargeCapRouteBTail.lean`; that name resolves to no declaration in the live
-index, and the entry was wrong. None of the six affects either published
-claim's axiom closure, because nothing on the spine reaches them; the registry
-lists all six as `OFF_SPINE_DIAGNOSTIC`.
+index, and the entry was wrong. None of the registered off-spine declarations
+affects either published claim's axiom closure, because the spine reaches none
+of them; their reviewed status is reported in the generated tally.
 
 The checked parent coordinators — `false_of_criticalPairFrontier`,
 `false_of_originalFrontierUniqueRadiusArm`,
@@ -680,8 +693,9 @@ pin.
 
 **Note on scale.** `lean/Erdos9796Proof/` is 5,330 `.lean` files and about 1.48M
 lines, most of it generated certificate and replay material; the published spine
-is 321,620 lines across 37,293 declarations. A cold build is correspondingly
-long, and `lake exe cache get` is not optional in practice.
+source/declaration totals are recorded in the generated
+[`docs/live-blueprint.md`](docs/live-blueprint.md) snapshot. A cold build is
+correspondingly long, and `lake exe cache get` is not optional in practice.
 
 ### Python and repository hygiene
 
@@ -701,8 +715,10 @@ python scripts/check_worktree_hygiene.py check  --lane <lane-id> --staged
 # that bank actually depends on.  Needs a built .olean tree.
 uv run python scripts/mine_bank_lean_dependencies.py <bank module> --compare
 
-# Obligation-registry roster gate (needs a built .olean tree) and the
-# cross-cluster import lint for FrontierLiveClosure/.  See proof-status/README.md.
+# Read-only generated-status authority gate, obligation-registry roster gate
+# (both need a built .olean tree), and the FrontierLiveClosure import lint.
+# See proof-status/README.md; use `status --sync` only to refresh the README block.
+uv run python scripts/gen_obligation_registry.py status --check
 uv run python scripts/gen_obligation_registry.py check --baseline proof-status/baseline
 uv run python scripts/lint_cluster_imports.py
 ```
@@ -738,7 +754,7 @@ lean/
       Foundation.lean           -- shared vocabulary + signed-area primitives
       ATail/                    -- the A-tail frontier and its certificate ingress
         FrontierLiveClosure.lean          -- 46-line import-only coordinator
-        FrontierLiveClosure/              -- the 28 open leaves + generated CNF/replay
+        FrontierLiveClosure/              -- open frontier + generated CNF/replay (counts above)
           JointDeletion/                    -- joint-deletion core, split out 2026-08-23
           ContextFrames.lean                -- shared context records (Phase 1a/1b)
           SharedFrontierHelpers.lean        -- helpers moved out of B1Live (Phase 1b)
@@ -770,7 +786,7 @@ comparator/                   -- mathlib-only auditability gate (see its README)
   check-conformance.sh        -- offline pre-flight
 
 proof-status/                 -- generated obligation registry (see its README)
-  obligations.json            -- 28 reachable + 6 off-spine leaves, stable IDs
+  obligations.json            -- canonical reachable/off-spine roster; counts above
   obligations-meta.json       -- the one hand-reviewed overlay (status vocabulary)
   frontier-table.generated.md -- generated form of the frontier table above
   cluster-import-edges.json   -- frozen FrontierLiveClosure/ import graph + waivers
@@ -913,7 +929,7 @@ a final single-apex exhaustion:
 - [`Descent.lean`](lean/Erdos9796Proof/P97/Descent.lean) — packages the two into
   the contradiction-with-minimality shape the induction wrapper consumes.
 
-Everything on the descent path outside the 28 frontier leaves is closed and
+Everything on the descent path outside the registered frontier leaves is closed and
 kernel-audited: the base case `FiniteN9Closure` (axiom closure `propext,
 Classical.choice, Quot.sound`), the cap-sum bridge (`|A| > 9 ⇒ some opposite cap
 is surplus`), the counting bound `counterexample_card_ge_nine`, the surplus-cap

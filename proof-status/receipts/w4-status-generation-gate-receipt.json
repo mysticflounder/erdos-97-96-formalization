@@ -1,0 +1,121 @@
+{
+  "schema": "p97-gate-receipt/v1",
+  "wave": "W4-status-generation",
+  "lane_id": "consolidation-w4-status-generation-20260826",
+  "state": "ready-for-commit",
+  "overall_pass": true,
+  "generated_by": "Codex",
+  "generated_at_utc": "2026-08-27T02:21:38Z",
+  "claim_reference": "nthdegree convo #7551",
+  "base_head": "fd9fbab51bbed10610fb39f309d0a6aa9934daad",
+  "observed_head": "8432de1bbee8e6258eca3c5c4666e3e5ec6ac6d1",
+  "wave_commit": null,
+  "head_note": "The lane began at fd9fbab5. Unrelated reviewed cap-configuration documentation advanced main to 8432de1b while this lane was active; none of its paths overlap this receipt's content-bound files.",
+  "scope": {
+    "before": "The registry check did not validate frontier-table.generated.md, README duplicated its current frontier table and counts by hand, docs/live-blueprint.md was stale at 36 obligations and 37290 declarations, and proof-status/README.md still claimed the TD factorization gate failed.",
+    "after": "The existing registry generator now owns one marker-delimited README status block and a fast fail-closed status gate over canonical registry bytes, generated table bytes, live target/count/declaration identity, and a byte-current live-blueprint snapshot.",
+    "source_changes": "Python tooling, focused tests, README/proof-status documentation, generated live-blueprint snapshot, and receipt only; no Lean source, obligation roster, reviewed metadata, or mathematical statement changed."
+  },
+  "content_bound_files": [
+    {
+      "path": "scripts/gen_obligation_registry.py",
+      "sha256": "380c35ce00b6667f9e67ed130408a1620b3a39507f9632c73058fa003966a816"
+    },
+    {
+      "path": "scripts/test_gen_obligation_registry_status.py",
+      "sha256": "78dd2ac03606f68012152961d52bc51d6a547a9df63bf0356923ca45fb396e03"
+    },
+    {
+      "path": "README.md",
+      "sha256": "09bb83e812defa78d1a7aaeb8ab60fb7e2259fcccc368dc6efdd6c4a68014712"
+    },
+    {
+      "path": "proof-status/README.md",
+      "sha256": "c5e9560db2d85a36c13c091422168d623459a70fed36ab69e8cc281e2bed550e"
+    },
+    {
+      "path": "docs/live-blueprint.md",
+      "sha256": "2c4008ad7202bd773fbf4019e6149ce3ba90f69ec08e48479cb7eeace164f4da"
+    }
+  ],
+  "status_authority": {
+    "publish_target": "Problem97.erdos97_rhs",
+    "registry_source_head": "f3063069939cfb6dc2a8a9b20d9a7ef660c86fdf",
+    "live_check_head": "8432de1bbee8e6258eca3c5c4666e3e5ec6ac6d1",
+    "proof_blueprint_build": "5902ba928947",
+    "reachable_obligations": 28,
+    "off_spine_obligations": 6,
+    "reviewed_entries": 34,
+    "factorized_reachable_entries": 28,
+    "reviewed_status_tally": {
+      "NORMAL_FORM_CLOSED_TERMINAL_OPEN": 11,
+      "OFF_SPINE_DIAGNOSTIC": 6,
+      "OPEN_MATHEMATICAL": 17
+    },
+    "live_blueprint_before": {
+      "open_obligations": 36,
+      "declarations": 37290,
+      "sha256": "08a02b02c45ca0c74f2e3191495866d263d6e3465975c69b830a46cc75bcd66d"
+    },
+    "live_blueprint_after": {
+      "open_obligations": 28,
+      "declarations": 37307,
+      "sha256": "2c4008ad7202bd773fbf4019e6149ce3ba90f69ec08e48479cb7eeace164f4da"
+    }
+  },
+  "gates": [
+    {
+      "command": "uv run pytest -q -p no:cacheprovider scripts/test_gen_obligation_registry_status.py scripts/test_gen_obligation_registry_factorization.py",
+      "exit_code": 0,
+      "result": "143 passed in 4.27s"
+    },
+    {
+      "command": "uv run python scripts/gen_obligation_registry.py status --check",
+      "exit_code": 0,
+      "result": "generated status surfaces and live spine agree"
+    },
+    {
+      "command": "uv run python scripts/gen_obligation_registry.py check --baseline proof-status/baseline --receipts-dir /private/tmp/w4-status-registry-receipts",
+      "exit_code": 0,
+      "result": "28 reachable and 6 off-spine; 34/34 reviewed metadata; 28/28 factorized reachable leaves"
+    },
+    {
+      "command": "uv run --with ruff ruff check --ignore EXE001,FURB188,DTZ007,UP017 scripts/gen_obligation_registry.py scripts/test_gen_obligation_registry_status.py",
+      "exit_code": 0,
+      "result": "All checks passed; the four ignored findings predate this wave"
+    },
+    {
+      "command": "git diff --check -- <five owned implementation/documentation paths>",
+      "exit_code": 0,
+      "result": "no whitespace errors"
+    }
+  ],
+  "adversarial_audit": {
+    "verdict": "go",
+    "blockers": [],
+    "verified_fail_closed_cases": [
+      "canonical JSON and raw-byte CRLF drift",
+      "missing, duplicate, malformed, and reversed README markers",
+      "README sync preservation outside the generated markers",
+      "wrong target, count, duplicate declarations, missing declarations, and unknown declarations",
+      "malformed live-spine grammar and impossible open-node summaries",
+      "unexpected stderr, subprocess failure, and invalid UTF-8",
+      "snapshot drift and frontier-table drift",
+      "atomic replace, stat, and temporary-file failure with no unintended write"
+    ]
+  },
+  "blockers": [],
+  "non_blocking_debt": [
+    "The registry source head remains the deliberate roster snapshot f3063069; status --check separately proves that its target/count/declaration set and generated surfaces match the live index.",
+    "The deep registry receipt reported the foreign dirty roster source lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceCanonicalSurface.lean at working-tree SHA-256 6d7bc2e50828072339307ae3f8879c3073e54489e613ab3d74830a615c519268. This lane did not touch it.",
+    "Global proof-blueprint reference debt remains 36 stale and 1 never mined. This wave does not claim strict global reference freshness.",
+    "Ruff still reports four inherited findings in untouched legacy lines: EXE001, FURB188, DTZ007, and UP017. The W4 delta is clean when those exact findings are excluded.",
+    "Broader prose status appendices and checkpoint-delta migration remain separate W4 work; this slice intentionally generated one bounded README authority surface."
+  ],
+  "roi": {
+    "assessment": "positive",
+    "reason": "One fast command now detects registry/table/README/live-blueprint drift in about two seconds, replacing a manually duplicated current frontier surface while preserving the existing deep registry gate. The implementation adds one subcommand to the canonical generator rather than another status tool and changes no proof source.",
+    "production_delta": "+386/-7 lines in the existing generator",
+    "focused_test_file_lines": 429
+  }
+}

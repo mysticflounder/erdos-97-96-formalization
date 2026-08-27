@@ -10,11 +10,11 @@
 spine rooted at: Problem97.erdos97_rhs
 (this is a [publish] target_symbol — the claim being gated)
 approved axioms: core
-open: 126/37290 node(s)
+open: 123/37307 node(s)
 trusted leaves: 20 🔒 (certs excluded from mine by [mining].skip; covered by `#print axioms`)
-spine source: 320181 line(s) of lean across 37290 decl(s)
+spine source: 321924 line(s) of lean across 37307 decl(s)
 
-open obligations (36):
+open obligations (28):
   💧 Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_capSource_firstFiber_outsidePairDeletionExactRows  [sorry]
   💧 Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_crossBlockerCoincidence  [sorry]
   💧 Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_freshThirdEqualCenter_noncanonicalInteractions  [sorry]
@@ -40,18 +40,10 @@ open obligations (36):
   💧 Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_exactTwelve_interiorDeletion_physicalRadius_commonDeletion_missingIncidence  [sorry]
   💧 Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_exactTwelve_interiorDeletion_physicalRadius_nextRowOnlyHit  [sorry]
   💧 Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_threeCenterDeletion_xv_missingIncidence  [sorry]
-  💧 Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_uDeletion_fixedPhysicalPair_missingIncidence  [sorry]
+  💧 Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_uDeletion_fixedPhysicalPair_outsideThreeRows  [sorry]
   💧 Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFiveCommonObstructionCenterResidual  [sorry]
-  💧 Problem97.ATailFrontierLiveClosure.false_of_pairedCommonDeletion_apexClassJointDeletion_triApexAllLarge_core  [sorry]
-  💧 Problem97.ATailFrontierLiveClosure.false_of_pairedCommonDeletion_twoRadiusGrid_triApexAllLarge_core  [sorry]
-  💧 Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_reverseHitFresh_endpointCommonDeletion_triApexAllLarge_core  [sorry]
-  💧 Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_reverseHitFresh_endpointCrossHit_firstCenterEqFreshSource_triApexAllLarge_core  [sorry]
-  💧 Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_reverseHitFresh_endpointCrossHit_genericRoles_triApexAllLarge_core  [sorry]
-  💧 Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_reverseHitFresh_endpointCrossHit_secondCenterEqFirstSource_triApexAllLarge_core  [sorry]
-  💧 Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_reverseHitFresh_endpointCrossHit_sharedBlocker_JInLeftAdjacentCap_triApexAllLarge_core  [sorry]
-  💧 Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_reverseHitFresh_endpointCrossHit_sharedBlocker_JInRightAdjacentCap_triApexAllLarge_core  [sorry]
-  💧 Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_reverseHitFresh_threeDistinctBlockers_triApexAllLarge_core  [sorry]
-  ❌ Total sorryAx == 36
+  💧 Problem97.ATailFrontierLiveClosure.false_of_pairedCommonDeletion_fiveSurviveOneFail_triApexAllLarge_core  [sorry]
+  ❌ Total sorryAx == 28
 
 (open branches only — closed subtrees collapsed; --full for everything)
 └── Problem97.erdos97_rhs
@@ -67,154 +59,164 @@ open obligations (36):
         │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFourResidual
         │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFourResidual_of_carrierCard_ge_twelve
         │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourPhysicalConsumerRobustOutcome
-        │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenRobustSurface
-        │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionBranch
-        │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionLowCrossBranch
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionOmittedPeerBranch
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionMutualOmissionBranch
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionJointDeletion
+        │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenRobustSurface_frame
+        │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionBranch_frame
+        │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionLowCrossBranch_frame
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionOmittedPeerBranch_frame
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionMutualOmissionBranch_frame
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionJointDeletion_frame
         │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_twoDistinctExactFourMutualOmissionJointDeletions
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_twoDistinctExactFourMutualOmissionJointDeletions_blockerCollision
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.b1_globalGapOrClosedTerminal_of_counterexample  [💧]  ⚓ a5f6e37f — Auditing B-family (B1, B2, B3) mathematical gaps and closure routes
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 6 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 15 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_twoDistinctExactFourMutualOmissionJointDeletions_fiveCenters
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_twoDistinctExactFourMutualOmissionJointDeletions_oneWayCrossOmission
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmission_fourCenterCommonDeletion
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmission_fourCenterCommonDeletion_blockerCoincidence  [💧]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 14 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmission_fourCenterCommonDeletion_survivalSquare  [💧]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 14 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 15 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 16 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 14 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 13 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_globalDeletion
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceBlockerInClass
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerDeleted  [💧]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 8 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerV
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerV_sourceRowHeavy  [💧]
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_twoDeletionIngress
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_twoDeletionOutcome
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.b1_globalGapOrClosedTerminal_of_counterexample  [💧]  ⚓ a5f6e37f — Auditing B-family (B1, B2, B3) mathematical gaps and closure routes
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 6 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmission_fourCenterCommonDeletion_blockerCoincidence  [💧]
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 14 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmission_fourCenterCommonDeletion_survivalSquare  [💧]
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 14 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 11 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 6 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 14 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_frame
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_globalDeletion_frame
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_frame
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceBlockerInClass_frame
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceBlockerInClass_placementSplit
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerDeleted  [💧]
         │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 10 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRow_oppositeRowHeavy  [💧]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 11 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRow_sparseRows  [💧]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 11 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 12 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRowOther
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRowOther_sourceRowHeavy
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_twoDistinctExactFourMutualOmissionJointDeletions (seen)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_vXuRow
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 8 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerV
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerV_sourceRowHeavy  [💧]
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 10 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRow_oppositeRowHeavy  [💧]
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 11 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRow_sparseRows  [💧]
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 11 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 12 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRowOther
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRowOther_sourceRowHeavy
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge
         │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_twoDistinctExactFourMutualOmissionJointDeletions (seen)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 20 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_deletedXuRow
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_fiveCycle
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_vXuRow
         │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_twoDistinctExactFourMutualOmissionJointDeletions (seen)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagon
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerDeleted  [💧]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 15 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV_vRowBlockerDeleted
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV_vRowBlockerDeleted_deletedRowBlockerOffClass
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV_vRowBlockerDeleted_deletedRowBlockerOffClass_card_ge_sixteen
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV_vRowBlockerDeleted_deletedRowBlockerOffClass_card_ge_seventeen
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV_vRowBlockerDeleted_deletedRowBlockerOffClass_card_eq_seventeen_secondCapNine  [💧]  ⚓ 019fab71 — Exact-17/card-9 source-faithful Rigid221 CEGAR terminal
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 23 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV_vRowBlockerDeleted_deletedRowBlockerOffClass_card_ge_eighteen  [💧]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 15 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 23 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 15 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 15 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 15 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV_vRowBlockerOffClass  [💧]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 12 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 21 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker  ⚓ f3cf6135 — Rigid221 pentagon: off-class xv-row blocker residual; exact-oracle mining done, next split gated on frontier growth
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_exactTwelve
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_exactTwelve_interiorDeletion
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_exactTwelve_interiorDeletion_physicalRadius
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_exactTwelve_interiorDeletion_physicalRadius_commonDeletion_missingIncidence  [💧]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 24 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_exactTwelve_interiorDeletion_physicalRadius_nextRowOnlyHit  [💧]  ⚓ 6adbe9fd (YOU) — Exact-12 Rigid221 next-row arm CEGAR lane (user-authorized takeover from arm owner). Active gate: validate FullMembershipPrefixTerminalConsumer, then v9 exact-SHA gate, then one immutable v23 canary via PIQD. Four terminal cells 52/58/65/71 already promoted as finite DimacsUnsatisfiable facts (c1d11453); no aggregate coverage claimed.
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 23 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 26 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 25 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 29 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_threeCenterDeletion
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_threeCenterDeletion_u
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_uDeletion_fixedPhysicalPair_missingIncidence  [💧]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 15 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 16 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_threeCenterDeletion_xv_missingIncidence  [💧]
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 20 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_deletedXuRow
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_fiveCycle
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_twoDistinctExactFourMutualOmissionJointDeletions (seen)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagon
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagon_blockerCenterSplit
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerDeleted  [💧]
         │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
         │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 15 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV_vCenterSplit
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV_vRowBlockerDeleted
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV_vRowBlockerDeleted_deletedRowBlockerOffClass
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV_vRowBlockerDeleted_deletedRowBlockerOffClass_card_ge_sixteen
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV_vRowBlockerDeleted_deletedRowBlockerOffClass_card_ge_seventeen
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV_vRowBlockerDeleted_deletedRowBlockerOffClass_card_ge_seventeen_capSplit
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV_vRowBlockerDeleted_deletedRowBlockerOffClass_card_eq_seventeen_secondCapNine  [💧]  ⚓ 019fab71 — Exact-17/card-9 source-faithful Rigid221 CEGAR terminal
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 23 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV_vRowBlockerDeleted_deletedRowBlockerOffClass_card_ge_eighteen  [💧]
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 15 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 16 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 16 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 15 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 15 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 15 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV_vRowBlockerOffClass  [💧]
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 12 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 12 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 17 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker  ⚓ f3cf6135 — Rigid221 pentagon: off-class xv-row blocker residual; exact-oracle mining done, next split gated on frontier growth
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_exactTwelve
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_exactTwelve_interiorDeletion
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_exactTwelve_interiorDeletion_physicalRadius
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_exactTwelve_interiorDeletion_physicalRadius_commonDeletion_missingIncidence  [💧]
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 24 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_exactTwelve_interiorDeletion_physicalRadius_nextRowOnlyHit  [💧]  ⚓ 6adbe9fd — Exact-12 Rigid221 next-row arm CEGAR lane (user-authorized takeover from arm owner). Active gate: validate FullMembershipPrefixTerminalConsumer, then v9 exact-SHA gate, then one immutable v23 canary via PIQD. Four terminal cells 52/58/65/71 already promoted as finite DimacsUnsatisfiable facts (c1d11453); no aggregate coverage claimed.
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 23 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 26 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 25 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 29 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_threeCenterDeletion
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_threeCenterDeletion_u
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_uDeletion_fixedPhysicalPair_missingIncidence
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_uDeletion_fixedPhysicalPair_outsideThreeRows  [💧]  ⚓ 01a01d64 — A7 CD12 exact-row triangle plus typed five-way continuation terminal
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 17 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 20 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 16 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_threeCenterDeletion_xv_missingIncidence  [💧]
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 15 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 16 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 23 closed dep(s)
         │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 16 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 23 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 20 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 21 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_twoDistinctExactFourMutualOmissionJointDeletions (seen)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 20 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 21 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 25 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRow_oppositeRowHeavy  [💧] (seen)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRow_sparseRows  [💧] (seen)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 11 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 16 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceNeU  [💧]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 14 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 21 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_twoDistinctExactFourMutualOmissionJointDeletions (seen)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 20 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 21 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 25 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRow_oppositeRowHeavy  [💧] (seen)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRow_sparseRows  [💧] (seen)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 11 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 16 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceNeU  [💧]
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 15 closed dep(s)
         │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 15 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 16 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 17 closed dep(s)
         │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_minimalCore  [💧]
         │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
         │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 16 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 17 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 18 closed dep(s)
         │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_nonphysicalCollision  [💧]
         │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
         │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 15 closed dep(s)
         │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_minimalCore  [💧] (seen)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 16 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 16 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 15 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 18 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 18 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 16 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 15 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 17 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 17 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 16 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 19 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 19 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 17 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 16 closed dep(s)
         │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenTwoRadiusBranch  [💧]
         │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
         │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 9 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 16 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 17 closed dep(s)
         │   │   │   │   │   │   │   │   │   │   │   └── ✓ 10 closed dep(s)
         │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourPhysicalConsumerSwappedUniqueFourOutcome  [💧]
         │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
         │   │   │   │   │   │   │   │   │   │   │   └── ✓ 8 closed dep(s)
         │   │   │   │   │   │   │   │   │   │   └── ✓ 13 closed dep(s)
         │   │   │   │   │   │   │   │   │   └── ✓ 7 closed dep(s)
-        │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFiveCommonObstructionCenterResidual  [💧]
-        │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-        │   │   │   │   │   │   │   │   │   └── ✓ 5 closed dep(s)
-        │   │   │   │   │   │   │   │   └── ✓ 12 closed dep(s)
+        │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFiveResidual
+        │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFiveCommonObstructionCenterResidual  [💧]
+        │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
+        │   │   │   │   │   │   │   │   │   │   └── ✓ 5 closed dep(s)
+        │   │   │   │   │   │   │   │   │   └── ✓ 7 closed dep(s)
+        │   │   │   │   │   │   │   │   └── ✓ 11 closed dep(s)
         │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_frontierCommonDeletionPhysicalSecondApex
         │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_frontierBiApexRobustResidual
         │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_frontierBiApexRobustExactFiveSecondCapResidual
-        │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_originalFrontierUniqueRadiusArm (seen)
+        │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.Legacy.false_of_originalFrontierUniqueRadiusArm
+        │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_originalFrontierUniqueRadiusArm (seen)
+        │   │   │   │   │   │   │   │   │   │   │   └── ✓ 7 closed dep(s)
         │   │   │   │   │   │   │   │   │   │   └── ✓ 14 closed dep(s)
         │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_frontierLargeOppositeCapsBiApexRobustResidual
         │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_frontierAllLargeCapsBiApexRobustResidual
@@ -226,48 +228,23 @@ open obligations (36):
         │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_retainedInteriorBlockerCollision_and_all_low_hits
         │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_localizedCollisionMutualOmissionCycle_exactTwo_and_all_low_hits
         │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_retainedInteriorDirectedOmission_and_all_low_hits  ⚓ 019fb8d1 — User-directed anchor move to the original public E1 theorem after normal-form refactor.
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_triApexAllLarge_core  ⚓ 019fd3ab — E1 retained-omission endpoint global-coupling producer after FrontierLiveClosure sharding  ⚓ 019fd3a8 — refactor audit  ⚓ 019fd394 — Post-refactor: seek a source-entitled second-radius blocker producer/consumer bridge  ⚓ 019fbf68 — Auditing derivable positive-overlap bridges and global-count limits for the retained-omission tri-apex core.  ⚓ 019fbf04 — post-core dependency and reordering audit; source-only, no Lean edits  ⚓ 019fbeef — Retargeted from broad higher-n CEGAR to the audited retained-omission tri-apex all-large core; current lane is Q-arm power-rank realizability.  ⚓ 019fbeed — Retargeted from broad higher-n CEGAR to the audited all-large retained-omission core.
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_pairedCommonDeletion_triApexAllLarge_core
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_pairedCommonDeletion_apexClassJointDeletion_triApexAllLarge_core  [💧]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 9 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_pairedCommonDeletion_twoRadiusGrid_triApexAllLarge_core  [💧]  ⚓ a29c9c59 — Grid leaf: Kkept ⊔ Kdel = C ⊔ C', |C|=|C'|=4, four proved sep/reflection identities; needs an order-sensitive metric terminal
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 10 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 21 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_reverseHitFresh_triApexAllLarge_core
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_reverseHitFresh_endpointCriticalFiber_triApexAllLarge_core
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_reverseHitFresh_endpointCrossHit_triApexAllLarge_core
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_reverseHitFresh_endpointCrossHit_firstCenterEqFreshSource_triApexAllLarge_core  [💧]
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_retainedInteriorDirectedOmission_triApexAllLargeContext
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_triApexAllLarge_core  ⚓ 019fd3ab — E1 retained-omission endpoint global-coupling producer after FrontierLiveClosure sharding  ⚓ 019fd3a8 — refactor audit  ⚓ 019fd394 — Post-refactor: seek a source-entitled second-radius blocker producer/consumer bridge  ⚓ 019fbf68 — Auditing derivable positive-overlap bridges and global-count limits for the retained-omission tri-apex core.  ⚓ 019fbf04 — post-core dependency and reordering audit; source-only, no Lean edits  ⚓ 019fbeef — Retargeted from broad higher-n CEGAR to the audited retained-omission tri-apex all-large core; current lane is Q-arm power-rank realizability.  ⚓ 019fbeed — Retargeted from broad higher-n CEGAR to the audited all-large retained-omission core.
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_pairedCommonDeletion_triApexAllLarge_core
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_pairedCommonDeletion_apexClassJointDeletion_triApexAllLarge_core
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_pairedCommonDeletion_fiveSurviveOneFail_triApexAllLarge_core  [💧]  ⚓ 01a024bc — D1 v87 checked five-survive/one-fail producer; geometric consumer frontier
         │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 12 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_reverseHitFresh_endpointCrossHit_sharedBlocker_triApexAllLarge_core
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_reverseHitFresh_endpointCrossHit_sharedBlocker_JOutsideFirstInterior_triApexAllLarge_core
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_reverseHitFresh_endpointCrossHit_sharedBlocker_JInLeftAdjacentCap_triApexAllLarge_core  [💧]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 15 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_reverseHitFresh_endpointCrossHit_sharedBlocker_JInRightAdjacentCap_triApexAllLarge_core  [💧]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 15 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 17 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 15 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_reverseHitFresh_endpointCrossHit_secondCenterEqFirstSource_triApexAllLarge_core  [💧]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 12 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_reverseHitFresh_endpointCrossHit_genericRoles_triApexAllLarge_core  [💧]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 12 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 14 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_reverseHitFresh_endpointCommonDeletion_triApexAllLarge_core  [💧]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 14 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 16 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_reverseHitFresh_threeDistinctBlockers_triApexAllLarge_core  [💧]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 9 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 20 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 16 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 15 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 10 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 11 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 22 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_reverseHitFresh_triApexAllLarge_core
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_reverseHit_jointDeletion_triApexAllLarge_core
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_pairedCommonDeletion_apexClassJointDeletion_triApexAllLarge_core (seen)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 12 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 15 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 16 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 11 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 11 closed dep(s)
         │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourCollision_secondRadius_and_all_low_hits
         │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_retainedInteriorDirectedOmission_and_all_low_hits  ⚓ 019fb8d1 — User-directed anchor move to the original public E1 theorem after normal-form refactor. (seen)
         │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourCollision_interior_eq_two_secondRadius_and_all_low_hits
@@ -276,57 +253,59 @@ open obligations (36):
         │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.exists_three_hit_of_two_exactFourInteriorTwo_distinctRadiusBlockerCollisions
         │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.exists_three_hit_of_two_collisionRows_capCross_normalForm
         │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.exists_three_hit_or_collision_crossHit_of_two_sourceExactCollisionRows
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_capSourceThirdCanonicalRowSurface
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_freshOutsideFirstBlockerFiber_viaAcyclicIngress
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_freshOutsideFirstBlockerFiber_acyclicIngress
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_freshOutsideFirstBlockerFiber_acyclicHardResidual  [💧]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 20 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_commonRadius_mutualCrossMembership
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_sameBlockerAllEndpointOmission
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_capSource_firstFiber_collisionFiveCenterDeletion
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_capSource_firstFiber_outsidePairDeletionExactRows  [💧]  ⚓ 10d7e0f1 — advancing to next Cluster A spine sorry
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 29 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_capSource_firstFiber_crossedThreeRowExactSupports
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_capSource_firstFiber_crossedSeventhBlockerFaithfulResidual
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_freshCanonicalRowOverride
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_capSource_freshThirdBlockerFiber_normalizedOnly
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_freshThirdBlockerFiber_normalized_residual
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_freshThirdBlockerFiber_normalized_remaining
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_freshThird_firstNonHit  ⚓ 019fd280 — FreshThird local two-row order route exhausted. Production exact-three Q-fiber consumer is Lean-green; current source target is one boundary-source fan incidence plus two distinct Q-fiber-image fan incidences, or an existing geometric/cross-deletion terminal. No exact-n or cap/order-only evidence counts as closure.  ⚓ 019fabe9 — Direct FirstNonHit False anchor; compatibility overlap existential is downstream via False.elim. Four-bit quotient is duplicate/no-run unless a new source-clean clause lands.
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_freshThird_firstNonHit_alignedRetained  [💧]
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCollisionGlobalSplit
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_capSourceThirdCanonicalRowSurface
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_freshOutsideFirstBlockerFiber_viaAcyclicIngress
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_freshOutsideFirstBlockerFiber_acyclicIngress_frame
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_freshOutsideFirstBlockerFiber_acyclicHardResidual  [💧]
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 20 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_commonRadius_mutualCrossMembership_frame
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_sameBlockerAllEndpointOmission
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_capSource_firstFiber_collisionFiveCenterDeletion
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_capSource_firstFiber_outsidePairDeletionExactRows  [💧]  ⚓ 10d7e0f1 — advancing to next Cluster A spine sorry
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 29 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_capSource_firstFiber_crossedThreeRowExactSupports_frame
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_capSource_firstFiber_crossedSeventhBlockerFaithfulResidual_frame
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_freshCanonicalRowOverride
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_capSource_freshThirdBlockerFiber_normalizedOnly
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_freshThirdBlockerFiber_normalized_residual
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_freshThirdBlockerFiber_normalized_remaining
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_freshThird_firstNonHit_frame
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_freshThird_firstNonHit_alignedRetained  [💧]
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 22 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_freshThird_firstNonHit_commonRadius  [💧]  ⚓ 01a0096e — derive and validate a source-faithful FreshThird producer; no finite-only closure claim
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 22 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 25 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_freshThird_secondNonHit_frame
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_freshThird_firstNonHit_frame (seen)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 24 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_freshThirdEqualCenter_noncanonicalInteractions  [💧]
         │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 22 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_freshThird_firstNonHit_commonRadius  [💧]  ⚓ 01a0096e — derive and validate a source-faithful FreshThird producer; no finite-only closure claim
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 22 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 24 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_freshThird_secondNonHit
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_freshThird_firstNonHit  ⚓ 019fd280 — FreshThird local two-row order route exhausted. Production exact-three Q-fiber consumer is Lean-green; current source target is one boundary-source fan incidence plus two distinct Q-fiber-image fan incidences, or an existing geometric/cross-deletion terminal. No exact-n or cap/order-only evidence counts as closure.  ⚓ 019fabe9 — Direct FirstNonHit False anchor; compatibility overlap existential is downstream via False.elim. Four-bit quotient is duplicate/no-run unless a new source-clean clause lands. (seen)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 23 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_freshThirdEqualCenter_noncanonicalInteractions  [💧]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 30 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 25 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 31 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 33 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 52 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 31 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 30 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 25 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 31 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 33 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 52 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 32 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 34 closed dep(s)
         │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 33 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 33 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 34 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 34 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 42 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 20 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_freshOutsideSecondBlockerFiber_viaAcyclicIngress
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_freshOutsideFirstBlockerFiber_viaAcyclicIngress (seen)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 22 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 25 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_crossBlockerCoincidence  [💧]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 19 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 27 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 34 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 35 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 43 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 20 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_freshOutsideSecondBlockerFiber_viaAcyclicIngress
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_freshOutsideFirstBlockerFiber_viaAcyclicIngress (seen)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 22 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 25 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_crossBlockerCoincidence  [💧]
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 19 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 21 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 25 closed dep(s)
         │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 21 closed dep(s)
         │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 34 closed dep(s)
         │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 19 closed dep(s)
@@ -341,12 +320,12 @@ open obligations (36):
         │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 9 closed dep(s)
         │   │   │   │   │   │   │   │   │   │   │   └── ✓ 25 closed dep(s)
         │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.surplusCap_card_ge_six_of_largeOppositeCaps
-        │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_originalFrontierUniqueRadiusArm (seen)
+        │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.Legacy.false_of_originalFrontierUniqueRadiusArm (seen)
         │   │   │   │   │   │   │   │   │   │   │   └── ✓ 14 closed dep(s)
         │   │   │   │   │   │   │   │   │   │   └── ✓ 7 closed dep(s)
         │   │   │   │   │   │   │   │   │   └── ✓ 9 closed dep(s)
         │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_physicalSecondApexCriticalResidual
-        │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_originalFrontierUniqueRadiusArm (seen)
+        │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.Legacy.false_of_originalFrontierUniqueRadiusArm (seen)
         │   │   │   │   │   │   │   │   │   └── ✓ 10 closed dep(s)
         │   │   │   │   │   │   │   │   └── ✓ 8 closed dep(s)
         │   │   │   │   │   │   │   └── ✓ 10 closed dep(s)
@@ -358,9 +337,14 @@ open obligations (36):
         │   └── ✓ 3 closed dep(s)
         └── ✓ 2 closed dep(s)
 
+anchors not on this tree (2):
+  ⚓ 019fd280 — FreshThird local two-row order route exhausted. Production exact-three Q-fiber consumer is Lean-green; current source target is one boundary-source fan incidence plus two distinct Q-fiber-image fan incidences, or an existing geometric/cross-deletion terminal. No exact-n or cap/order-only evidence counts as closure.  Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_freshThird_firstNonHit  [not on this spine]
+  ⚓ 019fabe9 — Direct FirstNonHit False anchor; compatibility overlap existential is downstream via False.elim. Four-bit quotient is duplicate/no-run unless a new source-clean clause lands.  Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_freshThird_firstNonHit  [not on this spine]
+  ⚓ a29c9c59 — Grid leaf: Kkept ⊔ Kdel = C ⊔ C', |C|=|C'|=4, four proved sep/reflection identities; needs an order-sensitive metric terminal  Problem97.ATailFrontierLiveClosure.false_of_pairedCommonDeletion_twoRadiusGrid_triApexAllLarge_core  [closed subtree — collapsed; --full shows it]
+
 ❌ NOT kernel-complete — spine of `Problem97.erdos97_rhs` has:
-  - reaches sorry via 36 symbol(s)
-  - unapproved axiom on spine: sorryAx (Total sorryAx == 36)
+  - reaches sorry via 28 symbol(s)
+  - unapproved axiom on spine: sorryAx (Total sorryAx == 28)
 
 ⚠ off-spine sorries (3 symbol(s) in 3 file(s)) — placeholder sorries are no longer allowed; all live work must be wired into the spine:
   Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221Closure.lean  (1 sorry)
@@ -370,11 +354,25 @@ open obligations (36):
   Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean  (1 sorry)
     💧 Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_freshThird_pinnedEndpoint_outsideSeedResidual
 
-unimported files (1166 file(s), 8749 symbol(s), 3 sorry — never reached by any lake import chain) — --full to list
+unimported files (1227 file(s), 9437 symbol(s), 3 sorry — never reached by any lake import chain) — --full to list
 
 name collisions: 82 fully-qualified name(s) declared in ≥2 files
 ⚠  off-spine / identical-copy collisions (82):
-  ⚠ main  (79 distinct bodies across 79 files)
+  ⚠ main  (98 distinct bodies across 98 files)
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenCanaryPerpBisectorRefinementModelRefinementsPhysicalSliceCellExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenCanaryPerpBisectorRefinementPhysicalSliceCellExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenCanaryPerpBisectorRefinementSurvivorRefinementsPhysicalSliceCellExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleRefinementsExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleRefinementsPhysicalSliceCellExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV4CombinedRefinementsPhysicalSliceCellExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV4TwoKalmansonRefinementsExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV5CanaryTwoKalmansonRefinementsPhysicalSliceCellExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV6ModelCoreRefinementsPhysicalSliceCellExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV7TwoKalmansonRefinementsPhysicalSliceCellExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV8TwoKalmansonRefinementsPhysicalSliceCellExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenCanaryPerpBisectorSurvivorTwoKalmansonRefinementsExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenCanaryPerpBisectorSurvivorTwoKalmansonRefinementsPhysicalSliceCellExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenCanaryPerpBisectorSurvivorTwoKalmansonRefinementsV2Export.lean
        Erdos9796Proof/P97/ATail/BlockerVExactSeventeenCocircularPentagonOrderConvexFiveFullBankExport.lean
        Erdos9796Proof/P97/ATail/BlockerVExactSeventeenCocircularPentagonOrderConvexFiveRefinementExport.lean
        Erdos9796Proof/P97/ATail/BlockerVExactSeventeenCocircularPentagonOrderCyclicConvexFiveFullBankExport.lean
@@ -427,7 +425,12 @@ name collisions: 82 fully-qualified name(s) declared in ≥2 files
        Erdos9796Proof/P97/ATail/BlockerVExactSeventeenSourceCnfCdefgEqualK4TwoCircleThreeRowHijkInterleavedExport.lean
        Erdos9796Proof/P97/ATail/BlockerVExactSeventeenSourceCnfCdefgExport.lean
        Erdos9796Proof/P97/ATail/BlockerVExactSeventeenSourceCnfExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisectorEightHitTwoKalmansonCancellationPhysicalSliceCellExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisectorEightHitTwoKalmansonCancellationSixHitBisectorCanaryTwoKalmansonModelRefinementsPhysicalSliceCellExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisectorEightHitTwoKalmansonCancellationSixHitBisectorCanaryTwoKalmansonPhysicalSliceCellExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisectorEightHitTwoKalmansonCancellationSixHitBisectorPhysicalSliceCellExport.lean
        Erdos9796Proof/P97/ATail/BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisectorPhysicalSliceCellExport.lean
+       Erdos9796Proof/P97/ATail/BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisectorTwoKalmansonCancellationPhysicalSliceCellExport.lean
        Erdos9796Proof/P97/ATail/BlockerVExactSeventeenSparseSixPointNextCenterCellExport.lean
        Erdos9796Proof/P97/ATail/BlockerVExactSeventeenSparseSixPointNextCenterPhysicalSliceCellExport.lean
        Erdos9796Proof/P97/ATail/BlockerVExactSeventeenThirtiethModelRefinementsExport.lean

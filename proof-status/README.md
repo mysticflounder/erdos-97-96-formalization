@@ -1,14 +1,17 @@
 # proof-status — generated obligation registry (consolidation refactor)
 
 Program: docs/audits/2026-08-23-consolidation-refactor-audit.md, lane
-`consolidation-refactor-20260823`. Everything here except `obligations-meta.json`
-is generated; do not hand-edit generated files.
+`consolidation-refactor-20260823`. The registry, ID ledger, frontier table, and
+receipts are generated; `obligations-meta.json` is hand-reviewed and this README
+documents their gates. Do not hand-edit files identified below as generated.
 
 ## Files
 
 - `obligations.json` — the obligation registry (`p97-obligation-registry/v1`),
-  generated from the built spine: one entry per open declaration (28 reachable +
-  6 off-spine at the recorded `source_head`), with stable IDs. Each entry also
+  generated from the built spine: one stable-ID entry per registered open
+  declaration. The current reachable/off-spine counts, per-module table,
+  reviewed-status tally, and off-spine FQNs live in the marker-delimited
+  [generated authority block](../README.md#the-open-frontier). Each entry also
   carries the reviewed fields joined from `obligations-meta.json`:
   `meta_status` (the reviewed `prose_status`), `terminal_family`,
   `mathematical_packet`, `latest_checkpoint`, `implementation_effect`,
@@ -56,6 +59,18 @@ is generated; do not hand-edit generated files.
 ## Standing gates (run from repo root)
 
 ```bash
+uv run python scripts/gen_obligation_registry.py status --check
+# strict read-only authority gate: byte-checks frontier-table.generated.md and
+# the README block, validates the live spine target/count/unique reachable FQN
+# set, and requires docs/live-blueprint.md to byte-match `spine --banner`.
+# Exit 0/1 from proof-blueprint is accepted only after strict output parsing.
+# This command writes no files and no receipts.
+
+uv run python scripts/gen_obligation_registry.py status --sync
+# runs the same fail-closed gates, then atomically replaces ONLY the one
+# marker-delimited README block; every byte outside the markers is preserved.
+# A missing, duplicate, reversed, or malformed marker refuses the sync.
+
 uv run python scripts/gen_obligation_registry.py check --baseline proof-status/baseline
 # exit 0 = live roster matches the registry AND the reviewed metadata join is valid
 # exit 1 = roster drift or metadata violation; exit 2 = operational error (retry once)
@@ -73,6 +88,10 @@ uv run python scripts/gen_obligation_registry.py check --baseline proof-status/b
 uv run pytest -q scripts/test_gen_obligation_registry_factorization.py
 # the adversarial factorization suite: synthetic fixtures injected through the
 # FactorizationBackend seam, never the live blueprint database
+
+uv run pytest -q scripts/test_gen_obligation_registry_status.py
+# adversarial status fixtures injected through the command-level spine runner;
+# no live blueprint database, status file, or receipt is touched
 
 uv run python scripts/lint_cluster_imports.py
 # exit 0 = no NEW cross-cluster import under FrontierLiveClosure/ (existing edges are waived)
@@ -508,10 +527,12 @@ uv run python scripts/gen_obligation_registry.py check --baseline proof-status/b
 ```
 
 `--require-factorized` takes a cluster CODE (`R221`, `TA`, `TS`, `TD`, `B1`,
-`X`) and is repeatable. Today `--require-factorized TD` exits 1 naming
-`P97-TD-BLOCKERCOINCIDENCE`, `P97-TD-GLOBALGAPORCLOSED` and
-`P97-TD-SURVIVALSQUARE`. WITHOUT the flag a missing block never fails: it is
-only counted, and the check prints `factorized k/n reachable leaves`.
+`X`) and is repeatable. The committed registry now carries a verified v2 block
+for every reachable TD entry, so `--require-factorized TD` is expected to pass
+when the live roster/build agrees. WITHOUT the flag a missing block never
+fails: it is only counted, and the check prints `factorized k/n reachable
+leaves`. This factorization status is bookkeeping and does not claim a leaf was
+proved.
 
 Every `check` receipt gains:
 

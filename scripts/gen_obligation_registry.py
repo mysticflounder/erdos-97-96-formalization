@@ -272,8 +272,11 @@ import argparse
 import datetime
 import hashlib
 import json
+import os
+import re
 import shutil
 import sqlite3
+import stat
 import subprocess
 import sys
 import tempfile
@@ -306,6 +309,10 @@ BASELINE_DIR_NAME = "baseline"
 REGISTRY_NAME = "obligations.json"
 ID_ASSIGNMENTS_NAME = "id-assignments.json"
 FRONTIER_TABLE_NAME = "frontier-table.generated.md"
+README_STATUS_BEGIN = "<!-- BEGIN GENERATED P97 OBLIGATION STATUS -->"
+README_STATUS_END = "<!-- END GENERATED P97 OBLIGATION STATUS -->"
+README_STATUS_SENTINEL = "GENERATED P97 OBLIGATION STATUS"
+STATUS_SPINE_ARGS = ("spine", "--banner")
 # The reviewed metadata file actually kept in the repository.
 META_NAME = "obligations-meta.json"
 # Historical name, accepted only when META_NAME is absent.
@@ -2819,6 +2826,344 @@ def frontier_table(registry: dict) -> str:
 
 
 # ---------------------------------------------------------------------------
+# generated README authority and live spine status
+# ---------------------------------------------------------------------------
+
+
+LEAN_FQN_RE = re.compile(
+    r"[A-Za-z_][A-Za-z0-9_']*(?:\.[A-Za-z_][A-Za-z0-9_']*)+"
+)
+SPINE_BANNER_LINES = (
+    "<!-- GENERATED FILE — DO NOT EDIT -->",
+    "",
+    "> **Generated artifact — do not edit.**",
+    "> Captured `proof-blueprint spine` output: a point-in-time dump of the",
+    "> kernel-mined spine, not authored prose. Hand edits cannot change proof state —",
+    "> this file is not an `anchor` input and no gate reads it. For live truth, run",
+    "> `proof-blueprint spine`; to refresh the snapshot, re-run the generator",
+    "> (`lake-build` rewrites it after every successful build).",
+    "",
+)
+
+
+def read_utf8_exact(path: Path) -> tuple[bytes, str]:
+    """Read bytes once and decode UTF-8 without newline conversion."""
+    try:
+        raw = path.read_bytes()
+        return raw, raw.decode("utf-8", errors="strict")
+    except (OSError, UnicodeError) as exc:
+        raise RegistryError(f"cannot read UTF-8 status surface {path}: {exc}") from exc
+
+
+def read_status_registry(path: Path) -> dict:
+    """Read canonical generated JSON and reject schema/symbol drift."""
+    try:
+        raw_bytes, raw = read_utf8_exact(path)
+        registry = json.loads(raw)
+    except json.JSONDecodeError as exc:
+        raise RegistryError(f"cannot read status registry {path}: {exc}") from exc
+    if not isinstance(registry, dict) or raw_bytes != dump_canonical(registry).encode("utf-8"):
+        raise RegistryError(f"{path} is not canonical {SCHEMA} JSON")
+    expected = {
+        "schema": SCHEMA,
+        "generated_by": GENERATED_BY,
+        "publish_target": PUBLISH_TARGET,
+        "meta_source": META_NAME,
+        "prose_status_vocabulary": list(PROSE_STATUS_VOCABULARY),
+    }
+    if any(registry.get(key) != value for key, value in expected.items()):
+        raise RegistryError(f"{path} has registry header drift")
+    obligations = registry.get("obligations")
+    if not isinstance(registry.get("source_head"), str) or not isinstance(obligations, list):
+        raise RegistryError(f"{path} has malformed source_head or obligations")
+    declarations: set[str] = set()
+    for index, item in enumerate(obligations):
+        where = f"{path} obligations[{index}]"
+        if not isinstance(item, dict) or not {
+            "lean_decl", "reachable", "source_file", "cluster", "meta_status"
+        } <= set(item):
+            raise RegistryError(where + " has missing generated fields")
+        declaration = item["lean_decl"]
+        if not isinstance(declaration, str) or LEAN_FQN_RE.fullmatch(declaration) is None:
+            raise RegistryError(where + " has a malformed lean_decl")
+        if declaration in declarations:
+            raise RegistryError(where + " has a duplicate lean_decl")
+        valid_row = type(item["reachable"]) is bool and (
+            isinstance(item["source_file"], str)
+            and item["source_file"].endswith(".lean")
+            and item["cluster"] in CLUSTER_LABELS.values()
+            and item["meta_status"] in (None, *PROSE_STATUS_VOCABULARY)
+        )
+        if not valid_row:
+            raise RegistryError(where + " has malformed generated fields")
+        declarations.add(declaration)
+    return registry
+
+
+def readme_status_parts(text: str) -> tuple[str, str, str]:
+    """Return bytes-before/block/bytes-after one exact marker pair."""
+    lines = text.splitlines(keepends=True)
+    contents = [line.removesuffix("\n").removesuffix("\r") for line in lines]
+    begin = [index for index, line in enumerate(contents) if line == README_STATUS_BEGIN]
+    end = [index for index, line in enumerate(contents) if line == README_STATUS_END]
+    malformed = [
+        index + 1 for index, line in enumerate(contents)
+        if README_STATUS_SENTINEL in line and line not in (README_STATUS_BEGIN, README_STATUS_END)
+    ]
+    if malformed:
+        raise RegistryError("README has malformed status marker(s) on line(s) " + ", ".join(map(str, malformed)))
+    if len(begin) != 1 or len(end) != 1:
+        raise RegistryError(
+            "README must contain exactly one status marker pair"
+            f" (found {len(begin)} begin, {len(end)} end)"
+        )
+    if begin[0] >= end[0]:
+        raise RegistryError("README status markers are reversed or overlapping")
+    return (
+        "".join(lines[: begin[0]]),
+        "".join(lines[begin[0] : end[0] + 1]),
+        "".join(lines[end[0] + 1 :]),
+    )
+
+
+def readme_status_block(registry: dict) -> str:
+    obligations = registry["obligations"]
+    reachable = [item for item in obligations if item["reachable"]]
+    offspine = [item for item in obligations if not item["reachable"]]
+    reviewed = [item for item in obligations if item["meta_status"] is not None]
+    table_lines = frontier_table(registry).splitlines()
+    table_start = table_lines.index("| Cluster | Module | Open |")
+    module_table = table_lines[table_start:]
+
+    status_counts = {
+        status: sum(item["meta_status"] == status for item in obligations)
+        for status in PROSE_STATUS_VOCABULARY
+    }
+    lines = [
+        README_STATUS_BEGIN,
+        "> **Generated obligation authority — do not edit inside these markers.**",
+        "> Generated by `" + GENERATED_BY + "` from `proof-status/" + REGISTRY_NAME + "`.",
+        "> This is registry bookkeeping, not a proof-progress claim.",
+        "",
+        "- Publish target: `" + registry["publish_target"] + "`",
+        "- Registry source head: `" + registry["source_head"] + "`",
+        "- Registered declarations: **" + str(len(reachable)) + " reachable**, **"
+        + str(len(offspine)) + " off-spine** (" + str(len(obligations)) + " total)",
+        "- Reviewed status coverage: **" + str(len(reviewed)) + "/"
+        + str(len(obligations)) + "** entries",
+        "",
+        "#### Reachable declarations by module",
+        "",
+        *module_table,
+        "",
+        "#### Reviewed status tally",
+        "",
+        "| Reviewed status | Entries |",
+        "|---|---:|",
+    ]
+    for status in PROSE_STATUS_VOCABULARY:
+        if status_counts[status]:
+            lines.append("| `" + status + "` | " + str(status_counts[status]) + " |")
+    if len(reviewed) != len(obligations):
+        lines.append("| **Unreviewed** | " + str(len(obligations) - len(reviewed)) + " |")
+    lines.extend(
+        [
+            "| **Total** | **" + str(len(obligations)) + "** |",
+            "",
+            "#### Off-spine declarations (" + str(len(offspine)) + ")",
+            "",
+        ]
+    )
+    for item in sorted(offspine, key=lambda row: row["lean_decl"]):
+        lines.append("- `" + item["lean_decl"] + "` — `" + item["source_file"] + "`")
+    if not offspine:
+        lines.append("- None.")
+    lines.extend(["", README_STATUS_END, ""])
+    return "\n".join(lines)
+
+
+def parse_spine_status(text: str) -> dict:
+    """Parse the stable status-bearing prefix and verdict of `spine --banner`."""
+    if not text.endswith("\n"):
+        raise RegistryError("proof-blueprint spine output has no final newline")
+    lines = text.splitlines()
+    if tuple(lines[: len(SPINE_BANNER_LINES)]) != SPINE_BANNER_LINES:
+        raise RegistryError("proof-blueprint spine banner/format drift")
+    cursor = len(SPINE_BANNER_LINES)
+
+    def match(pattern: str, label: str) -> re.Match[str]:
+        nonlocal cursor
+        if cursor >= len(lines) or (result := re.fullmatch(pattern, lines[cursor])) is None:
+            raise RegistryError("malformed proof-blueprint " + label)
+        cursor += 1
+        return result
+
+    root = match(r"spine rooted at: (" + LEAN_FQN_RE.pattern + r")", "root header").group(1)
+    match(r"\(this is a \[publish\] target_symbol — the claim being gated\)", "target header")
+    match(r"approved axioms: .+", "approved-axioms header")
+    nodes = match(r"open: ([0-9]+)/([0-9]+) node\(s\)", "open-node summary")
+    open_nodes, total_nodes = int(nodes.group(1)), int(nodes.group(2))
+    if total_nodes == 0 or open_nodes > total_nodes:
+        raise RegistryError("impossible proof-blueprint open-node summary")
+    if cursor < len(lines) and lines[cursor].startswith("trusted leaves: "):
+        match(r"trusted leaves: [0-9]+ 🔒 \(certs excluded from mine by \[mining\]\.skip; covered by `#print axioms`\)", "trusted-leaf summary")
+    match(r"spine source: ([0-9]+) line\(s\) of lean across ([0-9]+) decl\(s\)", "source summary")
+    match(r"", "header separator")
+    declarations: list[str] = []
+    count = 0
+    if int(nodes.group(1)):
+        count = int(match(r"open obligations \(([0-9]+)\):", "obligation header").group(1))
+        for _index in range(count):
+            entry = match(r"  💧 (" + LEAN_FQN_RE.pattern + r")  \[sorry\]", "obligation entry")
+            declarations.append(entry.group(1))
+        match(r"  ❌ Total sorryAx == " + str(count), "obligation total")
+        match(r"", "obligation separator")
+    match(r"\(open branches only — closed subtrees collapsed; --full for everything\)", "tree header")
+    if len(declarations) != len(set(declarations)):
+        raise RegistryError("proof-blueprint spine lists a duplicate open obligation")
+    if lines.count("spine rooted at: " + root) != 1:
+        raise RegistryError("proof-blueprint spine contains duplicate root headers")
+    verdict = (
+        "❌ NOT kernel-complete — spine of `" + root + "` has:"
+        if count
+        else "✅ kernel-complete: every branch of `" + root + "` closes under the approved set"
+    )
+    count_line_ok = not count or f"  - reaches sorry via {count} symbol(s)" in lines
+    if lines.count(verdict) != 1 or not count_line_ok:
+        raise RegistryError("malformed proof-blueprint kernel verdict")
+    offspine_headers = [
+        line for line in lines
+        if line.startswith("⚠ off-spine sorries (")
+        or line == "off-spine sorries: none — all live work is wired into the spine"
+    ]
+    if len(offspine_headers) != 1 or not any(line.startswith("unimported files (") for line in lines):
+        raise RegistryError("malformed proof-blueprint terminal summaries")
+    return {
+        "target": root,
+        "open_obligations": count,
+        "declarations": set(declarations),
+    }
+
+
+def run_status_spine(command: list[str]) -> subprocess.CompletedProcess[str]:
+    return subprocess.run(
+        command,
+        cwd=str(REPO_ROOT),
+        capture_output=True,
+        text=True,
+        check=False,
+        timeout=60,
+    )
+
+
+def atomic_replace_text(path: Path, text: str) -> None:
+    """Prepare one same-directory file, then replace it atomically."""
+    fd: int | None = None
+    temp_path: Path | None = None
+    try:
+        mode = stat.S_IMODE(path.stat().st_mode)
+        fd, temp_name = tempfile.mkstemp(prefix="." + path.name + ".", dir=str(path.parent))
+        temp_path = Path(temp_name)
+        handle = os.fdopen(fd, "wb")
+        fd = None  # ownership transferred to handle
+        with handle:
+            handle.write(text.encode("utf-8"))
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.chmod(temp_path, mode)
+        os.replace(temp_path, path)
+        temp_path = None
+    except OSError as exc:
+        if fd is not None:
+            try:
+                os.close(fd)
+            except OSError:
+                pass
+        if temp_path is not None:
+            try:
+                temp_path.unlink()
+            except OSError:
+                pass
+        raise RegistryError(f"cannot atomically replace {path}: {exc}") from exc
+
+
+def command_status(
+    args: argparse.Namespace,
+    backend_factory=None,
+    export_source=None,
+    spine_runner=None,
+) -> int:
+    """Gate generated status surfaces; optionally sync README and only README."""
+    del backend_factory, export_source
+    registry_path = Path(args.registry).resolve()
+    table_path = Path(args.frontier_table).resolve()
+    readme_path = Path(args.readme).resolve()
+    snapshot_path = Path(args.live_blueprint).resolve()
+    registry = read_status_registry(registry_path)
+    table_bytes, _table = read_utf8_exact(table_path)
+    _readme_bytes, readme = read_utf8_exact(readme_path)
+    snapshot_bytes, _snapshot = read_utf8_exact(snapshot_path)
+    prefix, current_block, suffix = readme_status_parts(readme)
+    expected_block = readme_status_block(registry)
+
+    command = [BLUEPRINT_CMD, *STATUS_SPINE_ARGS]
+    try:
+        result = (spine_runner or run_status_spine)(command)
+    except (OSError, UnicodeError, subprocess.SubprocessError) as exc:
+        raise RegistryError("cannot run proof-blueprint spine: " + str(exc)) from exc
+    if not isinstance(result.returncode, int) or result.returncode not in (0, 1):
+        raise RegistryError(
+            "proof-blueprint spine failed with exit " + repr(result.returncode)
+            + (": " + result.stderr.strip() if isinstance(result.stderr, str) and result.stderr.strip() else "")
+        )
+    if not isinstance(result.stdout, str) or not isinstance(result.stderr, str):
+        raise RegistryError("proof-blueprint spine returned non-text output")
+    if result.stderr:
+        raise RegistryError("proof-blueprint spine emitted stderr: " + result.stderr.rstrip())
+    live_status = parse_spine_status(result.stdout)
+    if result.returncode != (1 if live_status["open_obligations"] else 0):
+        raise RegistryError("proof-blueprint spine exit code contradicts its open-obligation count")
+
+    failures: list[str] = []
+    expected_table = frontier_table(registry)
+    if table_bytes != expected_table.encode("utf-8"):
+        failures.append(str(table_path) + " differs from frontier_table(registry)")
+    if live_status["target"] != registry["publish_target"]:
+        failures.append(
+            "live spine target " + live_status["target"]
+            + " != registry target " + registry["publish_target"]
+        )
+    reachable = {
+        item["lean_decl"] for item in registry["obligations"] if item["reachable"]
+    }
+    if live_status["open_obligations"] != len(reachable):
+        failures.append(
+            "live open-obligation count " + str(live_status["open_obligations"])
+            + " != registry reachable count " + str(len(reachable))
+        )
+    missing = sorted(reachable - live_status["declarations"])
+    unknown = sorted(live_status["declarations"] - reachable)
+    if missing:
+        failures.append("live spine is missing registry declarations: " + ", ".join(missing))
+    if unknown:
+        failures.append("live spine has unknown declarations: " + ", ".join(unknown))
+    if snapshot_bytes != result.stdout.encode("utf-8"):
+        failures.append(str(snapshot_path) + " differs byte-for-byte from live spine")
+    if args.check and current_block != expected_block:
+        failures.append(str(readme_path) + " generated status block is stale")
+    if failures:
+        for failure in failures:
+            print("FAIL: " + failure)
+        return 1
+    if args.sync and current_block != expected_block:
+        atomic_replace_text(readme_path, prefix + expected_block + suffix)
+        print("synced " + str(readme_path) + " atomically (no other file written)")
+    else:
+        print("OK: generated status surfaces and live spine agree")
+    return 0
+
+
+# ---------------------------------------------------------------------------
 # revision binding (check receipts)
 # ---------------------------------------------------------------------------
 
@@ -3611,14 +3956,44 @@ def build_parser() -> argparse.ArgumentParser:
     )
     check.set_defaults(func=command_check)
 
+    status = subparsers.add_parser(
+        "status",
+        help="gate the generated frontier/status surfaces against the live spine",
+    )
+    mode = status.add_mutually_exclusive_group(required=True)
+    mode.add_argument(
+        "--check",
+        action="store_true",
+        help="strict read-only check; writes neither files nor receipts",
+    )
+    mode.add_argument(
+        "--sync",
+        action="store_true",
+        help="after every check passes, atomically replace only the README block",
+    )
+    status_paths = (
+        ("--registry", REPO_ROOT / "proof-status" / REGISTRY_NAME, "canonical registry"),
+        ("--frontier-table", REPO_ROOT / "proof-status" / FRONTIER_TABLE_NAME, "frontier table"),
+        ("--readme", REPO_ROOT / "README.md", "README authority surface"),
+        ("--live-blueprint", REPO_ROOT / "docs" / "live-blueprint.md", "spine snapshot"),
+    )
+    for option, default, description in status_paths:
+        status.add_argument(option, default=str(default), help="committed " + description)
+    status.set_defaults(func=command_status)
+
     return parser
 
 
-def main(argv: list[str] | None = None, backend_factory=None, export_source=None) -> int:
+def main(
+    argv: list[str] | None = None,
+    backend_factory=None,
+    export_source=None,
+    spine_runner=None,
+) -> int:
     """Command entry point.
 
-    ``backend_factory`` and ``export_source`` are the COMMAND-LEVEL test seams
-    (W3-0b).  Both default to None, which is the live behaviour: the backend is
+    ``backend_factory`` and ``export_source`` are the W3-0b COMMAND-LEVEL seams.
+    Both default to None, which is the live behaviour: the backend is
     a ``BlueprintBackend`` and the roster comes from the recorded baseline
     exports (``generate --baseline``) or a live ``proof-blueprint`` re-export
     (``generate --fresh`` and every ``check``).  The command line cannot set
@@ -3633,13 +4008,17 @@ def main(argv: list[str] | None = None, backend_factory=None, export_source=None
       declarable consumer trust does NOT travel with the rosters, it is read
       from the RECORDED closure by the command itself (W3-0e-fix-2, auditor
       #7524), so a seam that hands back three values is a programming error and
-      unpacking raises.
+      unpacking raises;
+    * ``spine_runner(command)`` is the status command's injectable subprocess
+      seam. It returns a ``CompletedProcess`` and defaults to the live
+      ``proof-blueprint spine --banner`` invocation.
     """
     args = build_parser().parse_args(argv)
     try:
-        return args.func(
-            args, backend_factory=backend_factory, export_source=export_source
-        )
+        kwargs = {"backend_factory": backend_factory, "export_source": export_source}
+        if args.command == "status":
+            kwargs["spine_runner"] = spine_runner
+        return args.func(args, **kwargs)
     except RegistryError as exc:
         print("error: " + str(exc), file=sys.stderr)
         return 2
