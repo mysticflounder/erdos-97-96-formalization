@@ -1,0 +1,90 @@
+{
+  "schema": "p97-gate-receipt/v1",
+  "wave": "W4-checkpoint-delta",
+  "lane_id": "consolidation-w4-checkpoint-delta-20260826",
+  "state": "ready-for-commit",
+  "overall_pass": true,
+  "generated_by": "Codex",
+  "generated_at_utc": "2026-08-27T03:10:16Z",
+  "claim_reference": "nthdegree convo #7559",
+  "base_head": "49850c7a2a7a15415bb638ed5736d9cd34331381",
+  "observed_head": "49850c7a2a7a15415bb638ed5736d9cd34331381",
+  "wave_commit": null,
+  "scope": {
+    "intent": "Add one append-only refactor checkpoint delta, one current pointer, and links from the repository status entry points.",
+    "documented_through": "49850c7a2a7a15415bb638ed5736d9cd34331381",
+    "explicit_predecessor": "0b752f3a2e3ffdb1f25ad0e27a05e18432d8fbfa"
+  },
+  "content_bound_files": [
+    {
+      "path": "README.md",
+      "sha256": "2a05da86aaf97e2b2f87600d8af626027ffeaef272b27c7ef25dc5e0dbb6512a"
+    },
+    {
+      "path": "proof-status/README.md",
+      "sha256": "cdad16febc043ff9088228f0c18abe794a892dead8144ae75fe79127e682592a"
+    },
+    {
+      "path": "docs/proof/CURRENT.md",
+      "sha256": "15045e1790c82f5de72edfba10452d18c785ac8187aabd1c16ead4d5626c9805"
+    },
+    {
+      "path": "docs/proof/checkpoints/consolidation-refactor-w3-w4-2026-08-26.md",
+      "sha256": "3a43ceb9c56b8c9d0d8fb6e16e5508f5e7fae7d4515573379a5e501f25547a35"
+    }
+  ],
+  "gates": [
+    {
+      "command": "uv run python scripts/gen_obligation_registry.py status --check",
+      "exit_code": 0,
+      "result": "generated status surfaces and live spine agree"
+    },
+    {
+      "command": "independent relative Markdown link audit over the four documentation surfaces",
+      "exit_code": 0,
+      "result": "all 110 relative links resolve"
+    },
+    {
+      "command": "independent git/receipt ancestry audit",
+      "exit_code": 0,
+      "result": "all four implementation/seal pairs match parentage and predecessor 0b752f3a is an ancestor of documented head 49850c7a"
+    },
+    {
+      "command": "independent generated-marker comparison against HEAD",
+      "exit_code": 0,
+      "result": "the README generated marker block is unchanged"
+    },
+    {
+      "command": "independent wording and claim-scope audit",
+      "exit_code": 0,
+      "result": "counts, open-target qualifications, trust scope, and excluded wording pass"
+    },
+    {
+      "command": "git diff --check -- <owned documentation and receipt paths>",
+      "exit_code": 0,
+      "result": "no whitespace errors"
+    }
+  ],
+  "adversarial_audit": {
+    "verdict": "go",
+    "verifier": "Codex subagent audit_checkpoint_delta_docs",
+    "blockers": [],
+    "findings": [
+      "The checkpoint contains the required head anchor, changed packets, proof/countermodel delta, obligation delta, implementation impact, performed and omitted validation, and explicit predecessor.",
+      "The current pointer is short and every checkpoint file remains append-only.",
+      "Neither theorem is reported proved, and no mathematical closure or target-wide native-trust removal is claimed.",
+      "The external proof-blueprint banner wording remains disclosed as upstream debt."
+    ]
+  },
+  "blockers": [],
+  "non_blocking_debt": [
+    "The proof-blueprint generated banner still says no gate reads docs/live-blueprint.md, although this repository's status --check now validates it. The emitter is maintained outside this repository and is not changed by this lane.",
+    "Global proof-blueprint reference debt remains 36 stale and 1 never-mined node, with off-spine name-collision warnings.",
+    "The multi-output promotion-writer recovery issue #7522 and proof-blueprint newline theorem-name omission #7509 remain separately scoped follow-ups.",
+    "Historical audit migration, canonical-manuscript rewriting, broader status appendices, and additional bank-family onboarding are excluded by the ROI gate."
+  ],
+  "roi": {
+    "assessment": "positive",
+    "reason": "Two small entry-point edits, one seven-line pointer, and one append-only checkpoint replace stale current-status prose with a receipt-bound predecessor chain. No new generator, historical migration, manuscript rewrite, code change, or proof build was added."
+  }
+}

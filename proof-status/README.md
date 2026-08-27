@@ -4,6 +4,9 @@ Program: docs/audits/2026-08-23-consolidation-refactor-audit.md, lane
 `consolidation-refactor-20260823`. The registry, ID ledger, frontier table, and
 receipts are generated; `obligations-meta.json` is hand-reviewed and this README
 documents their gates. Do not hand-edit files identified below as generated.
+The [current proof checkpoint](../docs/proof/CURRENT.md) is the short pointer to
+the latest accepted refactor delta and its explicit predecessor; this directory
+remains the machine-readable evidence authority.
 
 ## Files
 

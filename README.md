@@ -10,6 +10,8 @@ sets in the plane, in Lean 4, against the canonical statements in
 [`formal-conjectures`](https://github.com/google-deepmind/formal-conjectures).
 **Neither problem is proved yet.** What follows is an honest account of how far
 the argument has been carried, what is machine-checked, and what is still open.
+The short [current proof checkpoint](docs/proof/CURRENT.md) links the latest
+accepted refactor delta to its receipts and explicit predecessor.
 
 Problem 97 asks whether a finite set of points in strictly convex position can
 have the property that every point of the set has four others at a common
@@ -58,13 +60,14 @@ without trusting anything in this tree.
 
 The frontier has grown since the 2026-08-07 README snapshot, which reported 21
 open leaves, because later case splits replaced coarse obligations by sharper
-ones. The 2026-08-23 D2 two-radius-grid formalization is the first closure in
-the present TriApex campaign: it reduced the freshly mined frontier from 29 to
-28, where it stands as of 2026-08-24. The consolidation refactor that followed
-(Phases 0–1b, 2026-08-23/24) re-packaged the frontier modules and added a
-generated obligation registry under [`proof-status/`](proof-status/) without
-changing the roster or the axiom closure. The solver-assisted lanes — SAT,
-CEGAR, PIQD, and the off-spine bank chain
+ones. The 2026-08-23 D2 two-radius-grid formalization reduced the freshly mined
+frontier from 29 to 28. The W1–W4 consolidation refactor completed on
+2026-08-26: it re-packaged the frontier modules, generated the obligation and
+status authorities, added a publication-bank manifest gate, and removed native
+computation from four small on-spine proofs. It did not change the 28-leaf
+roster or close a mathematical obligation; the accepted chain is recorded in
+the [current checkpoint delta](docs/proof/CURRENT.md). The solver-assisted lanes
+— SAT, CEGAR, PIQD, and the off-spine bank chain
 — have separately produced a large body of finite checked artifacts; those
 off-spine artifacts do not count as leaf closures until a kernel-connected
 consumer uses them. Certificate banks already on the published import spine
@@ -1014,9 +1017,9 @@ Other durable entry points:
   status, kernel axiom closures, and a completion matrix. Its content is dated
   2026-07-13; use the current authoritative manuscript above for active work.
 - [`docs/audits/`](docs/audits) — dated analysis snapshots. This is where the
-  live per-lane status actually lives; the 2026-08-16 through 2026-08-23 audits
-  are the current record, with the 2026-08-22 F1/F2/F3 syntheses and the
-  2026-08-23 consolidation-refactor audit the latest.
+  detailed per-lane analysis lives. Use the
+  [current proof checkpoint](docs/proof/CURRENT.md) for the accepted predecessor
+  chain; retain the dated audits as historical evidence.
 - [`proof-status/`](proof-status/) — the generated obligation registry and its
   standing gates; regenerate it after any intentional roster change rather
   than editing the table above by hand.
