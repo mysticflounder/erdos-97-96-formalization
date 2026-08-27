@@ -1,0 +1,30 @@
+{
+  "schema": "p97-rigid221-card18-labeled-projection-axioms/v1",
+  "lane_id": "rigid221-card18-labeled-projection-20260827",
+  "lane_base": "503cab0d03e1365e520912e3666902d8dabec31c",
+  "generated_utc": "2026-08-27T18:35:20Z",
+  "tool": "proof-blueprint axioms",
+  "lean_command": "#print axioms Problem97.ATailFrontierLiveClosure.Rigid221Card18LabeledProjection.rigid221ExactCardEighteenDataAlternativeToLabeled",
+  "lean_module": "Erdos9796Proof.P97.ATail.FrontierLiveClosure.Rigid221Card18LabeledProjection",
+  "source_path": "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221Card18LabeledProjection.lean",
+  "source_sha256": "37927775bbe67598b60d49f32a45cddefea70c14f4aceccaf9dcac596baa1239",
+  "exit_code": 0,
+  "axioms": [
+    {
+      "name": "propext",
+      "classification": "core"
+    },
+    {
+      "name": "Classical.choice",
+      "classification": "core"
+    },
+    {
+      "name": "Quot.sound",
+      "classification": "core"
+    }
+  ],
+  "sorry_ax_present": false,
+  "native_or_external_evidence_present": false,
+  "scope_note": "This receipt records the declaration-level kernel axiom report for the Lean-internal Fin 18 role/support projection. Source custody, external serialization, predicate completeness, Lean/Python equivalence, and solver admission remain separate blocked gates.",
+  "receipt_sha256": "0ceab5d304e81b9cf156f7928f18a22177349860fe20392f7783c0c27b60378b"
+}
