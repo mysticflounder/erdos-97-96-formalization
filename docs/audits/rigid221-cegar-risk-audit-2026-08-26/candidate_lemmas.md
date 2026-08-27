@@ -49,9 +49,13 @@ corpus.
 **Immediate consumer.** The cardinality/cap split beginning at
 `Rigid221SourceHeavy.lean:12110`, with the application near line 12160.
 
-**First missing antecedent.** A cardinality-uniform producer of the needed
-cross-centre incidences, or a theorem forcing `D.A.card ≤ 17`. Current cap
-arithmetic gives only `9 ≤ |oppCap2| ≤ |A| - 6`. The repository's
+**First missing antecedent.** A residual-neutral large-cardinality source-pair
+trichotomy and its adapter into this live `BlockerV` context. The existing
+`pentagonOffClassBlocker_largeCard_threeColor_pair` proof uses its residual only
+through `hxvA` and `huXvRow`; both are fields of Candidate 1's `Q`. After this
+ingress, the remaining antecedents divide into crossed missing-incidence
+eliminators and a bi-survival common-deletion-rectangle consumer. Current cap
+arithmetic alone gives only `9 ≤ |oppCap2| ≤ |A| - 6`, and the repository's
 `RemovableVertexOfLarge` route cannot be used recursively here.
 
 **Stored-model boundary.** No stored model satisfies the hypotheses. The n=16
@@ -63,8 +67,10 @@ scope.
 Plausible reusable inputs are
 `ATailSurvivalCover.actualBlockerFiber_card_le_four`,
 `exists_pair_distinct_actualBlockers_of_five_le_card`, and
-`pentagonOffClassBlocker_largeCard_threeColor_pair`, but they currently have no
-closing consumer for this packet.
+`pentagonOffClassBlocker_largeCard_threeColor_pair`. The last theorem first
+needs a neutral signature taking `hxvA` and `huXvRow` explicitly. Its current
+declaration occurs after Candidate 1, so implementation also requires a
+dependency-closed declaration reorder or earlier neutral helper chain.
 
 **Reuse preflight.** A bounded project-index search for
 `ExactFourRigid221PentagonBlockerVResidual card_ge_eighteen` returned only this
@@ -121,7 +127,7 @@ constructor, and a future refined certificate ingress.
 ## 3. Uniform missing-incidence eliminator
 
 **Name.**
-`false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV_pentagonOffClassBlocker_threeCenterDeletion_xv_missingIncidence`
+`false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_threeCenterDeletion_xv_missingIncidence`
 
 **Status.** CONJECTURED at `Rigid221SourceHeavy.lean:16691`. Confidence is
 low-to-moderate: the positive-incidence terminal is PROVEN, but no producer or
@@ -164,9 +170,11 @@ declaration and an exact-12 open sibling, but no closing theorem.
 
 ## Recommendation
 
-Attack Candidate 1 next, with the first proof milestone phrased as a precise
-cardinality-independent incidence producer. Candidate 2 is a bounded endpoint
-and must not be used as a surrogate for Candidate 1. Candidate 3 is the closest
-existing reusable theorem shape for learning how to produce or eliminate the
-five incidence failures, but closing it alone would not prove the current
-`card_ge_eighteen` leaf.
+Attack Candidate 1 next in four stages: (1) extract the neutral large-pair
+trichotomy, (2) apply it while retaining all live `BlockerV` hypotheses,
+(3) generalize the crossed-row/exact-row/bi-survival exports where their actual
+field dependencies permit, and (4) split only at the five-incidence consumer
+boundary. Candidate 2 is a bounded endpoint and must not be used as a surrogate
+for Candidate 1. Candidate 3 is one crossed missing-incidence family; closing it
+alone would still leave the other crossed family, the bi-survival rectangle,
+and the live `card_ge_eighteen` coordinator.

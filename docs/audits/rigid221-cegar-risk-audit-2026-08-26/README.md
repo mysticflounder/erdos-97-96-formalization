@@ -6,7 +6,8 @@ This bundle answers the 2026-08-26 audit specification for the live
 The primary verdict is `CROSS_CARDINALITY_EVIDENCE_INSUFFICIENT`, with
 `ENCODING_TOO_WEAK` and `ONLY_RELAXED_SURVIVORS_FOUND` as secondary verdicts.
 Start with `EXECUTIVE-SUMMARY.md`; use `REPORT.md` for the source audit and
-argument.
+argument. The theorem-facing work order incorporates the post-audit decision
+review: neutral large-pair ingress first, crossed/bi-survival consumers second.
 
 ## Contents
 

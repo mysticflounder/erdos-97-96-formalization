@@ -32,9 +32,11 @@ terminal is true.
 
 The exact theorem to attack next is the existing open
 `..._card_ge_eighteen` declaration recorded in Candidate 1 of
-`candidate_lemmas.md`. The first useful milestone inside it is a
-cardinality-uniform producer for the missing cross-centre incidences, not a new
-round of exact-17 model cuts.
+`candidate_lemmas.md`. A post-audit decision review refined the first useful
+milestone: extract the existing large-cardinality three-profile source-pair
+producer from its off-class residual wrapper and apply that residual-neutral
+ingress in the live `BlockerV` context. Cross-centre incidence production comes
+after that ingress, not before it. No new exact-17 model-cut wave is warranted.
 
 ## 2. Evidence and source freeze
 
@@ -52,6 +54,11 @@ authority files used here remained byte-identical across those transitions:
 | `Rigid221SourceHeavy.lean` | `dbe0e37c1b6562249ff41d0754bed606c58fe70efe93ed267230d0b773318c99` |
 | `BlockerVExactSeventeenSourceNormalForm.lean` | `92cf2a9ce4e16d27d8d15c15880631eae0f534e377c9d7c4561bd863a6a567ab` |
 | `Rigid221Closure.lean` | `cafeac3e4bbcabfbe6ffcf1443e4d9b93c717627e5144c6158040aff5676efa8` |
+
+A post-audit decision review checked the recommendation against public-main
+head `f9d505042c777db94c8c592683698352604bdf84`.
+`Rigid221SourceHeavy.lean` still had the frozen hash above, so the refinement
+changes the work order but not the source or corpus boundary.
 
 The bundle records every model, report, certificate summary, manifest, or
 source file actually read in `evidence_manifest.csv`, with byte count and
@@ -389,34 +396,67 @@ countermodel boundaries for three targets:
 The project-index searches found no bank theorem closing any target. Candidate
 1 is the required next attack. Candidate 2 can close only a bounded endpoint
 and its current unconditional CNF-UNSAT subgoal should be replaced by a refined
-source-entitled bridge. Candidate 3 is a useful uniform incidence-production
+source-entitled bridge. Candidate 3 is a useful crossed-branch consumer
 laboratory but does not by itself consume Candidate 1.
+
+The decision review identified a residual-neutral ingress that organizes the
+Candidate 1 large-cardinality route. The proof of
+`pentagonOffClassBlocker_largeCard_threeColor_pair` uses its off-class residual
+argument only through `hxvA` and `huXvRow`; its pair-deletion dependency already
+takes those projections explicitly. The live `BlockerV` residual has both
+fields, and `18 <= D.A.card` supplies the theorem's `17 <= D.A.card` bound.
+Thus the first large-branch step is not a new incidence lemma but a neutral API
+extraction and live-leaf adapter.
+
+The dependency claim is PROVEN by direct source inspection, but the neutral
+extraction has not been elaborated or freshly built, and the current off-class
+producer is off-spine. There is also a declaration-order gate: the live leaf
+occurs before the current helper chain. An implementation must either move the
+dependency-closed `BlockerV` cardinality/coordinator block after the extracted
+producer or place neutral versions of the helper chain before the leaf. A
+direct in-place call to the current later declaration cannot elaborate in Lean.
 
 ## 12. Recommended next work
 
 ### Lean work
 
-1. Work directly in the actual Candidate 1 context. Factor the first missing
-   cross-centre producer as a positive structural lemma with the exact five
-   memberships or a smaller sufficient subset.
-2. Reuse the existing tetrahedron consumers only after each incidence is
-   produced from a current packet field or checked upstream theorem.
-3. Keep exact-17 work terminal and bounded. Replace the false base-CNF-UNSAT
+1. Extract a residual-neutral large-cardinality three-profile source-pair
+   theorem from `pentagonOffClassBlocker_largeCard_threeColor_pair`, taking
+   `P`, `packet`, `hxvA`, `huXvRow`, and `17 <= D.A.card` explicitly. Preserve
+   the existing off-class theorem as a wrapper.
+2. Apply that theorem in the actual Candidate 1 `BlockerV` context. Keep the
+   deleted-row blocker identity, second-cap interior/off-class facts, and
+   next-row physical-hit bound in scope in every exported branch.
+3. Generalize the crossed-row, exact-three-row, and bi-survival rectangle
+   exports only where a field-by-field dependency audit confirms that the
+   off-class wrapper is unnecessary.
+4. Split each crossed branch at the genuine consumer boundary: the exact five
+   additional incidences go to the checked tetrahedron terminal; their
+   complements become named source-faithful missing-incidence packets. Treat
+   the bi-survival common-deletion rectangle as a distinct family needing a
+   new consumer.
+5. Keep exact-17 work terminal and bounded. Replace the false base-CNF-UNSAT
    proof obligation with a refined CNF plus a checked `SourceRealization`
    implication.
 
 ### Solver work
 
 No new large solver campaign is justified now. A solver should be used only
-after the missing large theorem shape has an explicit predicate schema.
+after the crossed missing-incidence and bi-survival packet families have exact
+predicate schemas.
 
-If that schema is written, the smallest useful campaign is a source-audited
-falsification suite at `n=18` (then 19 and 20 only if the same schema and
-role-preserving extension question remain meaningful). It must retain actual
-source/blocker identity, canonical row provenance, cap/order data, common-radius
-classes or a checked consequence, prescribed deletion and survival, and the
-relevant minimality/K4 assumptions. Its first output should be one fully
-audited model or one proof-carrying UNSAT cell, not a high-volume model stream.
+Once those schemas exist, the smallest useful campaign is a source-audited
+falsification suite at `n=18`, run separately for the bi-survival rectangle and
+each distinct crossed missing-incidence packet (then 19 and 20 only if the same
+schema and role-preserving extension question remain meaningful). It must
+retain actual source/blocker identity, canonical row
+provenance, cap/order data, common-radius classes or a checked consequence,
+prescribed deletion and survival, the `n=18` cardinality bound, the four
+structural live assumptions (the `v` blocker equals `deleted`, the `deleted`
+blocker is in the second-cap interior and outside the physical class, and the
+next selected row has at most one physical-class support), and the relevant
+minimality/K4 assumptions. Its first output should be one fully audited model
+or one proof-carrying UNSAT cell, not a high-volume model stream.
 
 Further exact-17 pair-cut waves are lower priority until an exhaustive
 occurrence theorem or a checked refined-terminal bridge exists.

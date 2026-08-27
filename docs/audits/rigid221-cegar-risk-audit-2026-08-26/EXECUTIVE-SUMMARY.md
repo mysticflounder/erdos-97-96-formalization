@@ -29,14 +29,19 @@ explicitly record `source_realizable=false`.
    covers every selector.
 3. **Exact theorem to attack next?** The existing open
    `false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV_vRowBlockerDeleted_deletedRowBlockerOffClass_card_ge_eighteen`.
-   Its first milestone should be a cardinality-uniform producer for the missing
-   cross-centre incidences (or a proof forcing the carrier back to at most 17).
+   Its first milestone should be a residual-neutral extraction of the existing
+   large-cardinality three-profile source-pair producer, followed by an adapter
+   from the live `BlockerV` packet. Only then should the crossed branches split
+   on the five-incidence conjunction and its complement; the bi-survival branch
+   instead needs a common-deletion-rectangle consumer.
 4. **What new solver work is necessary?** None immediately. First specify the
-   missing producer against the actual Lean packet. If falsification is then
-   useful, build one source-audited `n=18` encoding carrying actual source and
-   blocker provenance, row identity, cap/order/radius data, prescribed deletion
-   survival, and the relevant minimality/K4 assumptions. Do not launch another
-   broad exact-17 pair-cut wave first.
+   three resulting packet families against the actual Lean context. If
+   falsification is then useful, build separate source-audited `n=18` cells for
+   the bi-survival rectangle and each distinct crossed missing-incidence packet,
+   carrying actual source and blocker provenance, row identity,
+   cap/order/radius data, prescribed deletion survival, and the relevant
+   minimality/K4 assumptions. Do not launch another broad exact-17 pair-cut
+   wave first.
 
 ## Evidence snapshot
 
