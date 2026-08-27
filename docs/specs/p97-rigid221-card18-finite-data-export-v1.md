@@ -64,8 +64,8 @@ existentials, but may not synthesize unrelated replacement rows.
 The bi-survival constructor retains direct, unwrapped values for both committed
 `CommonDeletionTwoCenterPacket`s: the `q = u` packet and the `q = xv` packet.
 The packets continue to carry the source-exact deletions, centres, rows,
-supports, overlaps, and positive-incidence terminal data already checked by
-their Lean types.
+supports, deletion-survival witnesses, blocker-centre separation, and
+overlap-at-most-two facts already checked by their Lean types.
 
 ## 4. Conversion theorem
 
@@ -110,10 +110,11 @@ This checkpoint is complete only after:
 4. the lane's staged hygiene check reports no blocking issue; and
 5. the exact owned and durable paths are committed and pushed.
 
-Passing these gates authorizes design of the checked finite serializer only.
-It does not authorize a solver canary. Solver admission remains blocked until
-the serializer, predicate table, source/representation guards, round-trip
-checks, and independent audit all pass.
+Passing these gates authorizes source-derived finite projections and design of
+a pure finite abstraction. It does not require or authorize serialization of
+the noncomputable source witness. Search remains blocked until Lean defines a
+decidable finite `Valid` surface, proves the source-to-abstraction theorem, and
+establishes the checked correspondence for any finite search or certificate.
 
 ## 7. Checkpoint evidence (2026-08-27)
 
@@ -129,5 +130,7 @@ checks, and independent audit all pass.
 - the lane hygiene report has zero lane-specific issues; the shared worktree's
   unrelated dirty paths remain foreign to this checkpoint.
 
-The next admissible step is a separately governed serializer design and
-predicate-coverage audit. `CANARY AUTHORIZED` remains false.
+The next admissible steps are separately governed predicate coverage followed
+by a pure finite abstraction and source-to-abstraction theorem. External
+serialization and a solver canary remain unauthorized; `CANARY AUTHORIZED`
+remains false.

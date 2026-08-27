@@ -1,6 +1,6 @@
 # P97 Rigid221 card-18 crossed-incidence source custody (v1)
 
-**Status: SOURCE CUSTODY COMPLETE / NO EXTERNAL ADMISSION AUTHORIZED.**
+**Status: SOURCE CUSTODY AND DURABLE COVERAGE V2 COMPLETE.**
 
 Lane: `rigid221-card18-crossed-incidence-custody-20260827`.
 
@@ -193,4 +193,6 @@ On 2026-08-27:
 Canonical readback is byte-identical, and a separate fresh no-follow walk
 attests every bound source row against the live tree. This authenticates only
 the frozen Lean source bytes; no historical custody or axiom receipt expands
-that scope, and coverage-v2 remains a separate blocked checkpoint.
+that scope. The durable coverage-v2 artifact has also been published, read
+back, freshly attested, and independently reviewed. Its twelve-row change is
+coverage metadata only; all external admission remains false.

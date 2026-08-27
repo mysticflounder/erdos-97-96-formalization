@@ -1,6 +1,6 @@
 # P97 Rigid221 card-18 crossed-incidence projection contract (v1)
 
-**Status: LEAN PROJECTION AND AXIOM EVIDENCE COMPLETE / FRESH CUSTODY AND COVERAGE REQUIRED.**
+**Status: PROJECTION, AXIOM, CUSTODY, AND COVERAGE V2 GATES COMPLETE.**
 
 Lane: `rigid221-card18-crossed-incidence-projection-20260827`.
 
@@ -122,9 +122,9 @@ no source existence theorem.
 
 ## 6. Predicate-coverage effect
 
-After a fresh source-custody root includes this module and a reviewed coverage
-manifest binds its declarations, the source bundle
-`profile.crossed_missing_incidence` can move from
+The completed crossed-incidence custody root includes this module, and the
+published, freshly attested coverage-v2 manifest binds its declarations. The
+source bundle `profile.crossed_missing_incidence` has therefore moved from
 `PROP_AVAILABLE_NOT_EMITTED` to finite profile data. It covers exactly these
 twelve candidate predicates:
 
@@ -144,8 +144,9 @@ cross.xv_deletion.incidence.opp_apex_2_in_k2
 ```
 
 This Lean checkpoint does not mutate the frozen predicate-coverage v1
-manifest. Until the separate custody and coverage checkpoints pass, those
-rows retain their current external status.
+manifest. Its projection, axiom, custody, and durable coverage-v2 gates are
+complete. The twelve-row change is limited to coverage status; it does not
+grant source entitlement or any external admission.
 
 Even after this one bundle is upgraded, sixteen Prop-only bundles and all
 seven bundles absent from the labeled export remain blockers. In particular,
@@ -156,6 +157,12 @@ projection are not supplied here.
 All candidate `source_entitled` flags remain false. All `hard_clause_admission`
 flags remain false. Global serializer, solver, and canary admission remain
 false.
+
+The remaining bundle counts are not a requirement to project all 188
+historical packet predicates. The reviewed next proof-facing consumer is a
+pure finite Lean abstraction with a source-to-valid-packet theorem; this
+projection supplies its crossed-incidence input without serializing the
+noncomputable geometric source.
 
 ## 7. Acceptance gates
 
@@ -199,6 +206,8 @@ On 2026-08-27:
   canonical BI/U/XV association, and the no-authorization language; and
 - both owned files have no line longer than 100 characters.
 
-Fresh source custody and revised predicate-coverage evidence do not yet exist
-for this new root. No historical receipt may be reused, and no external status
-is upgraded until those separate checkpoints pass.
+Fresh source custody now exists for this root and has passed its local and
+durable gates. The isolated coverage-v2 artifact also passes canonical
+readback, fresh live attestation, and independent review. No historical
+receipt expands that result, and source entitlement, serialization, solver,
+and canary admission remain false.
