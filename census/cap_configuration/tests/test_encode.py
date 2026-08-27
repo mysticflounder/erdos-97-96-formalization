@@ -66,6 +66,13 @@ def test_exact_fraction_evaluator_covers_each_relation_both_ways(
     assert system.evaluate_enabled({"x": false_value}) == ((f"atom_{relation}", False),)
 
 
+@pytest.mark.parametrize("value", [Fraction(1), Fraction(2)])
+def test_or_ne_accepts_either_nonzero_branch_independently(value: Fraction) -> None:
+    x = sp.Symbol("x")
+    system = _single_atom_system("or_ne", (x - 1, x - 2))
+    assert system.evaluate_enabled({"x": value}) == (("atom_or_ne", True),)
+
+
 def test_sparse_polynomial_is_exact_stable_and_expression_independent() -> None:
     x, y = sp.symbols("x y")
     expanded = _polynomial((x + y) ** 2 - y**2 + Fraction(1, 3), (x, y))
@@ -287,6 +294,17 @@ def test_record_validator_rejects_unknown_keys_bool_powers_and_unreduced_rationa
     coefficient["denominator"] = 2
     with pytest.raises(CapConfigurationEncodingError, match="not a reduced"):
         PolynomialSystem.from_record(unreduced)
+
+
+def test_record_validator_rejects_schema_string_subclasses() -> None:
+    class SchemaSubclass(str):
+        pass
+
+    x = sp.Symbol("x")
+    record = _single_atom_system("eq", (x - 1,)).to_record()
+    record["schema"] = SchemaSubclass(record["schema"])
+    with pytest.raises(CapConfigurationEncodingError, match="schema is unsupported"):
+        PolynomialSystem.from_record(record)
 
 
 def test_assignment_requires_complete_exact_fraction_map() -> None:

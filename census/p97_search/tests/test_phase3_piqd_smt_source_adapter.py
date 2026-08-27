@@ -30,6 +30,32 @@ def _sha(payload: bytes) -> str:
     return hashlib.sha256(payload).hexdigest()
 
 
+def _solve_request_sha(journal: bytes, body: Mapping[str, object]) -> str:
+    commands = journal.count(b"\n")
+    digest = hashlib.sha256(subject.PIQD_SOLVE_REQUEST_DIGEST_VERSION)
+    digest.update(f"\nbase={commands}:{len(journal)}:{_sha(journal)}".encode())
+    digest.update(f"\ntimeout={body['timeout_ms']}\nmodel=true".encode())
+    for name in ("assumptions", "get_values"):
+        values = body[name]
+        assert type(values) is list
+        digest.update(f"\n{name}={len(values)}".encode())
+        for value in values:
+            assert type(value) is str
+            encoded = value.encode()
+            digest.update(f"\n{len(encoded)}:".encode())
+            digest.update(encoded)
+    labels = body.get("assumption_labels", [])
+    assert type(labels) is list
+    if labels:
+        digest.update(f"\nassumption_labels={len(labels)}".encode())
+        for label in labels:
+            assert type(label) is str
+            encoded = label.encode()
+            digest.update(f"\n{len(encoded)}:".encode())
+            digest.update(encoded)
+    return digest.hexdigest()
+
+
 def _packet(
     root: Path,
     *,
@@ -149,7 +175,21 @@ class FakeCurrentPiqd:
         reuse_session_id: bool = False,
         close_status_mismatch: bool = False,
         solve_replayed: object = False,
+        named_replay_value: object = True,
         effective_deadline_tamper: str | None = None,
+        named_receipt_digest_mismatch: bool = False,
+        named_replay_conflict: bool = False,
+        create_transport_loss: bool = False,
+        create_loss_commits: bool = True,
+        listing_variant: str = "exact",
+        listing_transport_losses: int = 0,
+        append_transport_losses: int = 0,
+        append_loss_commits: bool = True,
+        append_divergent_on_loss: bool = False,
+        export_transport_losses: int = 0,
+        close_transport_losses: int = 0,
+        close_loss_commits: bool = True,
+        status_transport_losses: int = 0,
     ) -> None:
         self.statuses = dict(statuses or {"z3": "SAT", "cvc5": "SAT"})
         self.unknown_interruption = unknown_interruption
@@ -170,13 +210,29 @@ class FakeCurrentPiqd:
         self.reuse_session_id = reuse_session_id
         self.close_status_mismatch = close_status_mismatch
         self.solve_replayed = solve_replayed
+        self.named_replay_value = named_replay_value
         self.effective_deadline_tamper = effective_deadline_tamper
+        self.named_receipt_digest_mismatch = named_receipt_digest_mismatch
+        self.named_replay_conflict = named_replay_conflict
+        self.create_transport_loss = create_transport_loss
+        self.create_loss_commits = create_loss_commits
+        self.listing_variant = listing_variant
+        self.listing_transport_losses = listing_transport_losses
+        self.append_transport_losses = append_transport_losses
+        self.append_loss_commits = append_loss_commits
+        self.append_divergent_on_loss = append_divergent_on_loss
+        self.export_transport_losses = export_transport_losses
+        self.close_transport_losses = close_transport_losses
+        self.close_loss_commits = close_loss_commits
+        self.status_transport_losses = status_transport_losses
         self.sessions: dict[str, dict[str, Any]] = {}
         self.calls: list[tuple[str, str, object]] = []
         self.active = 0
         self.max_active = 0
         self.created_solvers: list[str] = []
         self.deleted_session_ids: list[str] = []
+        self.actual_appends = 0
+        self.actual_solves = 0
 
     def request_json(
         self,
@@ -186,6 +242,32 @@ class FakeCurrentPiqd:
     ) -> subject.JsonResponse:
         snap = None if body is None else json.loads(_canonical(body))
         self.calls.append((method, path, snap))
+        if method == "GET" and path == "/sessions":
+            if self.listing_transport_losses:
+                self.listing_transport_losses -= 1
+                raise subject.PiqdTransportLoss("simulated listing response loss")
+            listed = [
+                self._session_snapshot(session_id) for session_id in self.sessions
+            ]
+            if self.listing_variant == "zero":
+                listed = []
+            elif self.listing_variant == "mismatch" and listed:
+                listed[0]["solver_name"] = "z3"
+            elif self.listing_variant == "multiple" and listed:
+                duplicate = dict(listed[0])
+                duplicate["id"] = str(uuid.UUID(int=99))
+                duplicate["journal_path"] = (
+                    f"/daemon/sessions/{duplicate['id']}/journal.smt2"
+                )
+                listed.append(duplicate)
+            assert self.listing_variant in {"exact", "zero", "mismatch", "multiple"}
+            return subject.JsonResponse(
+                200,
+                {
+                    "sessions": listed,
+                    "live": sum(item["state"] == "live" for item in listed),
+                },
+            )
         if method == "POST" and path == "/sessions":
             assert body is not None
             assert set(body) == {"solver", "lane", "label"}
@@ -207,11 +289,13 @@ class FakeCurrentPiqd:
                 "pending_answer": None,
                 "pending_receipt": None,
                 "visibility_delay": 0,
+                "state": "live",
             }
-            self.sessions[session_id] = data
-            self.active += 1
-            self.max_active = max(self.max_active, self.active)
-            self.created_solvers.append(solver)
+            if not self.create_transport_loss or self.create_loss_commits:
+                self.sessions[session_id] = data
+                self.active += 1
+                self.max_active = max(self.max_active, self.active)
+                self.created_solvers.append(solver)
             created = _session(
                 session_id,
                 solver,
@@ -222,6 +306,9 @@ class FakeCurrentPiqd:
             )
             if self.malformed_create:
                 created["unexpected"] = True
+            if self.create_transport_loss:
+                self.create_transport_loss = False
+                raise subject.PiqdTransportLoss("simulated create response loss")
             return subject.JsonResponse(201, created)
 
         session_id, suffix = self._session_route(path)
@@ -232,23 +319,65 @@ class FakeCurrentPiqd:
             assert body["expect_commands"] == 0
             commands = list(body["commands"])
             assert all(type(command) is str for command in commands)
-            data["commands"] = commands
-            data["journal"] = b"".join(command.encode() + b"\n" for command in commands)
+            if not self.append_transport_losses or self.append_loss_commits:
+                data["commands"] = commands
+                data["journal"] = b"".join(
+                    command.encode() + b"\n" for command in commands
+                )
+                self.actual_appends += 1
+                if self.append_divergent_on_loss and self.append_transport_losses:
+                    data["journal"] += b"(assert false)\n"
+            if self.append_transport_losses:
+                self.append_transport_losses -= 1
+                raise subject.PiqdTransportLoss("simulated append response loss")
             return subject.JsonResponse(
                 200, {"added": len(commands), "commands": len(commands)}
             )
         if method == "POST" and suffix == "/solve":
             assert body is not None
-            assert set(body) == {
+            named = "request_id" in body
+            expected_keys = {
                 "assumptions",
                 "timeout_ms",
                 "include_model",
                 "get_values",
             }
+            if named:
+                expected_keys |= {"assumption_labels", "request_id"}
+            assert set(body) == expected_keys
             assert body["include_model"] is True
             assert body["get_values"] == ["x"]
+            if named:
+                assert str(uuid.UUID(str(body["request_id"]))) == body["request_id"]
+                assert type(body["assumption_labels"]) is list
+            if named and data["receipt"] is not None:
+                if self.named_replay_conflict or body != data["solve_request"]:
+                    return subject.JsonResponse(409, {"error": "request_id conflict"})
+                recorded = data["answer"]
+                assert type(recorded) is dict
+                return subject.JsonResponse(
+                    200,
+                    {
+                        **recorded,
+                        "solve_ms": 0,
+                        "solve_index": 1,
+                        "result_sha256": data["receipt"]["result_sha256"],
+                        "effective_deadline_ms": (
+                            body["timeout_ms"]
+                            + subject.PIQD_EFFECTIVE_DEADLINE_GRACE_MS
+                        ),
+                        "replayed": self.named_replay_value,
+                    },
+                )
             data["solve_request"] = dict(body)
+            self.actual_solves += 1
             answer = self._answer(data["solver"])
+            labels = list(body.get("assumption_labels", []))
+            if labels and answer["status"] == "UNSAT":
+                by_term = dict(zip(body["assumptions"], labels, strict=True))
+                answer["core_labels"] = [
+                    by_term.get(member) for member in answer["core"]
+                ]
             digest = subject.piqd_result_digest(answer)
             if self.untrusted_consistent_digest:
                 digest = "d" * 64
@@ -261,9 +390,10 @@ class FakeCurrentPiqd:
                     body["timeout_ms"] + subject.PIQD_EFFECTIVE_DEADLINE_GRACE_MS
                 ),
             }
-            if self.solve_replayed is not _ABSENT:
+            if named:
+                response["replayed"] = False
+            elif self.solve_replayed is not _ABSENT:
                 response["replayed"] = self.solve_replayed
-            terminal = answer.get("terminal_unsat")
             receipt = {
                 "solve_index": 1,
                 "base_commands": len(data["commands"]),
@@ -287,6 +417,15 @@ class FakeCurrentPiqd:
                 "result_sha256": ("f" * 64 if self.receipt_digest_mismatch else digest),
                 "at": 14,
             }
+            if labels:
+                receipt["assumption_labels"] = labels
+            if named:
+                receipt["request_id"] = body["request_id"]
+                receipt["request_sha256"] = (
+                    "a" * 64
+                    if self.named_receipt_digest_mismatch
+                    else _solve_request_sha(data["journal"], body)
+                )
             if self.effective_deadline_tamper == "response_missing":
                 response.pop("effective_deadline_ms")
             elif self.effective_deadline_tamper == "response_extra":
@@ -335,6 +474,9 @@ class FakeCurrentPiqd:
             return subject.JsonResponse(200, response)
         if method == "GET" and suffix == "":
             assert body is None
+            if self.status_transport_losses:
+                self.status_transport_losses -= 1
+                raise subject.PiqdTransportLoss("simulated status response loss")
             if data["pending_answer"] is not None:
                 if data["visibility_delay"] == 0:
                     data["answer"] = data["pending_answer"]
@@ -343,21 +485,7 @@ class FakeCurrentPiqd:
                     data["pending_receipt"] = None
                 else:
                     data["visibility_delay"] -= 1
-            answer = data["answer"] or {}
-            return subject.JsonResponse(
-                200,
-                _session(
-                    session_id,
-                    data["solver"],
-                    data["label"],
-                    commands=len(data["commands"]),
-                    solves=0 if not answer else 1,
-                    status=answer.get("status"),
-                    assumptions=(data["solve_request"] or {}).get("assumptions"),
-                    terminal_unsat=answer.get("terminal_unsat"),
-                    journal_path=self._journal_path(session_id),
-                ),
-            )
+            return subject.JsonResponse(200, self._session_snapshot(session_id))
         if method == "GET" and suffix == "/receipts":
             assert body is None
             receipts = [] if data["receipt"] is None else [data["receipt"]]
@@ -378,33 +506,28 @@ class FakeCurrentPiqd:
             )
         if method == "DELETE" and suffix == "":
             self.deleted_session_ids.append(session_id)
-            answer = data["answer"] or {}
-            status = answer.get("status")
-            terminal = answer.get("terminal_unsat")
-            self.active -= 1
-            return subject.JsonResponse(
-                200,
-                _session(
-                    session_id,
-                    data["solver"],
-                    data["label"],
-                    state="closed",
-                    commands=len(data["commands"]),
-                    solves=0 if status is None else 1,
-                    status=(
-                        "UNKNOWN" if self.close_status_mismatch and status else status
-                    ),
-                    assumptions=(data["solve_request"] or {}).get("assumptions"),
-                    terminal_unsat=terminal,
-                    journal_path=self._journal_path(session_id),
-                ),
-            )
+            if (not self.close_transport_losses or self.close_loss_commits) and data[
+                "state"
+            ] != "closed":
+                data["state"] = "closed"
+                self.active -= 1
+            if self.close_transport_losses:
+                self.close_transport_losses -= 1
+                raise subject.PiqdTransportLoss("simulated close response loss")
+            closed = self._session_snapshot(session_id)
+            closed["state"] = "closed"
+            if self.close_status_mismatch and closed["last_status"] is not None:
+                closed["last_status"] = "UNKNOWN"
+            return subject.JsonResponse(200, closed)
         raise AssertionError(f"adapter invented or misused PIQD route {method} {path}")
 
     def request_bytes(self, method: str, path: str) -> subject.BytesResponse:
         self.calls.append((method, path, None))
         session_id, suffix = self._session_route(path)
         assert method == "GET" and suffix == "/smt2"
+        if self.export_transport_losses:
+            self.export_transport_losses -= 1
+            raise subject.PiqdTransportLoss("simulated export response loss")
         return subject.BytesResponse(
             200, self.sessions[session_id]["journal"] + self.exported_suffix
         )
@@ -420,6 +543,22 @@ class FakeCurrentPiqd:
     def _journal_path(self, session_id: str) -> str:
         parent = "not-sessions" if self.noncanonical_journal_path else "sessions"
         return f"/daemon/{parent}/{session_id}/journal.smt2"
+
+    def _session_snapshot(self, session_id: str) -> dict[str, object]:
+        data = self.sessions[session_id]
+        answer = data["answer"] or {}
+        return _session(
+            session_id,
+            data["solver"],
+            data["label"],
+            state=data["state"],
+            commands=len(data["commands"]),
+            solves=0 if not answer else 1,
+            status=answer.get("status"),
+            assumptions=(data["solve_request"] or {}).get("assumptions"),
+            terminal_unsat=answer.get("terminal_unsat"),
+            journal_path=self._journal_path(session_id),
+        )
 
     def _answer(self, solver: str) -> dict[str, object]:
         status = self.statuses[solver]
@@ -619,6 +758,527 @@ def test_public_authenticated_single_solver_boundary_binds_exact_selection(
             output_fd=-1,
         )
     assert crossed.calls == []
+
+
+def _run_named_single_solver(
+    query: subject.SourceSemanticQuery,
+    fake: FakeCurrentPiqd,
+    output: Path,
+    *,
+    request_id: str = "12345678-1234-4234-9234-123456789abc",
+    assumption_labels: tuple[str, ...] = ("source/source-gate",),
+    resume_policy: str | None = None,
+) -> dict[str, object]:
+    output.mkdir(exist_ok=resume_policy is not None)
+    output_fd = os.open(
+        output, os.O_RDONLY | os.O_DIRECTORY | getattr(os, "O_NOFOLLOW", 0)
+    )
+    try:
+        return subject.run_authenticated_single_solver_query(
+            query,
+            solver="cvc5",
+            descriptor_schema="test-authenticated-single-solver-query/v1",
+            solver_profile_schema="test-authenticated-single-solver-profile/v1",
+            authenticated_journal_commands=query.journal_commands,
+            transport=fake,
+            semantic_verifier=_accepting_verifier,
+            output_fd=output_fd,
+            request_id=request_id,
+            assumption_labels=assumption_labels,
+            resume_policy=resume_policy,
+        )
+    finally:
+        os.close(output_fd)
+
+
+def test_named_single_solver_binds_exact_request_and_receipt(tmp_path: Path) -> None:
+    generic, _ = _load(tmp_path)
+    query = _single_solver_query(generic)
+    fake = FakeCurrentPiqd()
+    output = tmp_path / "named"
+
+    engine = _run_named_single_solver(query, fake, output)
+
+    request_body = next(
+        body
+        for method, path, body in fake.calls
+        if method == "POST" and path.endswith("/solve")
+    )
+    assert type(request_body) is dict
+    expected_sha = _solve_request_sha(query.journal_smt2, request_body)
+    assert (
+        subject.piqd_solve_request_digest(query, ("source/source-gate",))
+        == expected_sha
+    )
+    assert engine["request_id"] == request_body["request_id"]
+    assert engine["request_sha256"] == expected_sha
+    assert engine["assumption_labels"] == ["source/source-gate"]
+    assert engine["request_replay_attempted"] is False
+    assert engine["request_replayed"] is False
+    binding = json.loads((output / "cvc5.solve-request.json").read_bytes())
+    assert binding["request"] == request_body
+    assert binding["request_sha256"] == expected_sha
+    receipt = json.loads((output / "cvc5.receipts.json").read_bytes())["receipts"][0]
+    assert receipt["request_id"] == request_body["request_id"]
+    assert receipt["request_sha256"] == expected_sha
+    assert receipt["assumption_labels"] == ["source/source-gate"]
+    referenced = {artifact["path"] for artifact in engine["artifacts"].values()}
+    assert referenced == {path.name for path in output.iterdir()}
+
+
+def test_named_response_loss_replays_same_request_without_second_solve(
+    tmp_path: Path,
+) -> None:
+    generic, _ = _load(tmp_path)
+    query = _single_solver_query(generic)
+    fake = FakeCurrentPiqd(solve_transport_loss={"cvc5"})
+
+    engine = _run_named_single_solver(query, fake, tmp_path / "replayed")
+
+    requests = [
+        body
+        for method, path, body in fake.calls
+        if method == "POST" and path.endswith("/solve")
+    ]
+    assert len(requests) == 2 and requests[0] == requests[1]
+    assert engine["response_lost"] is True
+    assert engine["request_replay_attempted"] is True
+    assert engine["request_replayed"] is True
+    assert engine["reconciled_from_receipt"] is False
+    assert engine["effective_status"] == "SAT_SEMANTICALLY_REPLAYED"
+    assert len(fake.sessions) == 1
+    assert next(iter(fake.sessions.values()))["receipt"] is not None
+
+
+def test_named_response_loss_replay_false_fails_closed_without_accepting_new_solve(
+    tmp_path: Path,
+) -> None:
+    generic, _ = _load(tmp_path)
+    query = _single_solver_query(generic)
+    fake = FakeCurrentPiqd(solve_transport_loss={"cvc5"}, named_replay_value=False)
+
+    with pytest.raises(subject.SmtSourceAdapterError, match="replay"):
+        _run_named_single_solver(query, fake, tmp_path / "replay-false")
+
+    assert fake.actual_solves == 1
+    assert (
+        len(
+            [
+                call
+                for call in fake.calls
+                if call[0] == "POST" and call[1].endswith("/solve")
+            ]
+        )
+        == 2
+    )
+
+
+def test_named_create_response_loss_reconciles_one_exact_session(
+    tmp_path: Path,
+) -> None:
+    generic, _ = _load(tmp_path)
+    query = _single_solver_query(generic)
+    fake = FakeCurrentPiqd(create_transport_loss=True)
+
+    engine = _run_named_single_solver(query, fake, tmp_path / "create-reconciled")
+
+    create_posts = [
+        call for call in fake.calls if call[0] == "POST" and call[1] == "/sessions"
+    ]
+    assert len(create_posts) == 1
+    assert fake.actual_appends == 1 and fake.actual_solves == 1
+    lifecycle = engine["session_lifecycle"]
+    assert lifecycle["create_response_lost"] is True
+    assert lifecycle["create_reconciled_from_listing"] is True
+    assert lifecycle["session_label"].endswith(
+        "/12345678-1234-4234-9234-123456789abc/"
+        + lifecycle["solver_profile_sha256"][:12]
+    )
+
+
+@pytest.mark.parametrize(
+    ("fake", "message"),
+    [
+        (
+            FakeCurrentPiqd(
+                create_transport_loss=True,
+                create_loss_commits=False,
+                listing_variant="zero",
+            ),
+            "no unique label match",
+        ),
+        (
+            FakeCurrentPiqd(
+                create_transport_loss=True,
+                listing_variant="multiple",
+            ),
+            "no unique label match",
+        ),
+        (
+            FakeCurrentPiqd(
+                create_transport_loss=True,
+                listing_variant="mismatch",
+            ),
+            "session identity mismatch",
+        ),
+        (
+            FakeCurrentPiqd(
+                create_transport_loss=True,
+                listing_transport_losses=1,
+            ),
+            "listing response loss",
+        ),
+    ],
+    ids=("zero", "multiple", "identity-mismatch", "listing-unavailable"),
+)
+def test_named_create_loss_never_guesses_or_replaces_session(
+    tmp_path: Path, fake: FakeCurrentPiqd, message: str
+) -> None:
+    generic, _ = _load(tmp_path)
+    query = _single_solver_query(generic)
+
+    with pytest.raises(subject.SmtSourceAdapterError, match=message):
+        _run_named_single_solver(query, fake, tmp_path / "create-failed")
+
+    assert [
+        call for call in fake.calls if call[0] == "POST" and call[1] == "/sessions"
+    ] == [fake.calls[0]]
+    assert fake.actual_solves == 0
+
+
+@pytest.mark.parametrize(
+    ("commit_lost", "expected_posts", "retried", "from_export"),
+    [
+        (True, 1, False, True),
+        (False, 2, True, False),
+    ],
+    ids=("exact-post", "exact-pre-retry"),
+)
+def test_named_append_loss_reconciles_only_exact_pre_or_post_state(
+    tmp_path: Path,
+    commit_lost: bool,
+    expected_posts: int,
+    retried: bool,
+    from_export: bool,
+) -> None:
+    generic, _ = _load(tmp_path)
+    query = _single_solver_query(generic)
+    fake = FakeCurrentPiqd(
+        append_transport_losses=1,
+        append_loss_commits=commit_lost,
+    )
+
+    engine = _run_named_single_solver(query, fake, tmp_path / "append-reconciled")
+
+    append_posts = [
+        call for call in fake.calls if call[0] == "POST" and call[1].endswith("/assert")
+    ]
+    assert len(append_posts) == expected_posts
+    assert fake.actual_appends == 1 and fake.actual_solves == 1
+    lifecycle = engine["session_lifecycle"]
+    assert lifecycle["append_response_losses"] == 1
+    assert lifecycle["append_retry_attempted"] is retried
+    assert lifecycle["append_reconciled_from_export"] is from_export
+
+
+def test_named_append_loss_rejects_divergent_export_without_solve(
+    tmp_path: Path,
+) -> None:
+    generic, _ = _load(tmp_path)
+    query = _single_solver_query(generic)
+    fake = FakeCurrentPiqd(
+        append_transport_losses=1,
+        append_loss_commits=True,
+        append_divergent_on_loss=True,
+    )
+
+    with pytest.raises(subject.SmtSourceAdapterError, match="divergent journal"):
+        _run_named_single_solver(query, fake, tmp_path / "append-divergent")
+
+    assert fake.actual_appends == 1 and fake.actual_solves == 0
+
+
+def test_named_export_response_loss_gets_one_bounded_read_retry(
+    tmp_path: Path,
+) -> None:
+    generic, _ = _load(tmp_path)
+    query = _single_solver_query(generic)
+    fake = FakeCurrentPiqd(export_transport_losses=1)
+
+    engine = _run_named_single_solver(query, fake, tmp_path / "export-reconciled")
+
+    assert engine["session_lifecycle"]["export_response_losses"] == 1
+    assert fake.actual_appends == 1 and fake.actual_solves == 1
+
+
+def test_legacy_export_response_loss_gets_one_bounded_read_retry(
+    tmp_path: Path,
+) -> None:
+    query, _ = _load(tmp_path)
+    fake = FakeCurrentPiqd(export_transport_losses=1)
+
+    result = subject.run_source_semantic_query(
+        query, tmp_path / "legacy-export-reconciled", fake, _accepting_verifier
+    )
+
+    assert result["overall_status"] == "FINITE_DIAGNOSTIC_COMPLETE"
+    z3_id = str(uuid.UUID(int=1))
+    z3_exports = [
+        call
+        for call in fake.calls
+        if call[0] == "GET" and call[1] == f"/sessions/{z3_id}/smt2"
+    ]
+    assert len(z3_exports) == 2
+
+
+@pytest.mark.parametrize(
+    ("commits", "expected_deletes", "outcome"),
+    [
+        (True, 1, "closed_status"),
+        (False, 2, "closed_after_cleanup"),
+    ],
+    ids=("committed", "cleanup-required"),
+)
+def test_named_close_loss_is_reconciled_with_bounded_authenticated_cleanup(
+    tmp_path: Path,
+    commits: bool,
+    expected_deletes: int,
+    outcome: str,
+) -> None:
+    generic, _ = _load(tmp_path)
+    query = _single_solver_query(generic)
+    fake = FakeCurrentPiqd(
+        close_transport_losses=1,
+        close_loss_commits=commits,
+    )
+
+    engine = _run_named_single_solver(query, fake, tmp_path / "close-reconciled")
+
+    lifecycle = engine["session_lifecycle"]
+    assert lifecycle["close_response_lost"] is True
+    assert lifecycle["close_outcome"] == outcome
+    assert lifecycle["close_cleanup_delete_attempted"] is (not commits)
+    assert lifecycle["close_status_lookups"] == (1 if commits else 2)
+    assert len(fake.deleted_session_ids) == expected_deletes
+    assert fake.active == 0 and fake.actual_solves == 1
+
+
+def test_named_close_status_loss_is_bounded_and_persists_unproven_lifecycle(
+    tmp_path: Path,
+) -> None:
+    generic, _ = _load(tmp_path)
+    query = _single_solver_query(generic)
+    output = tmp_path / "close-status-loss"
+    fake = FakeCurrentPiqd(
+        close_transport_losses=1,
+        close_loss_commits=True,
+        status_transport_losses=2,
+    )
+
+    with pytest.raises(subject.PiqdTransportLoss):
+        _run_named_single_solver(query, fake, output)
+
+    lifecycle = json.loads((output / "cvc5.session-lifecycle.json").read_bytes())
+    assert lifecycle["close_outcome"] == "closure_unproven"
+    assert lifecycle["close_observed_state"] == "unknown"
+    assert lifecycle["close_status_response_losses"] == 2
+    assert not (output / "cvc5.result.json").exists()
+
+
+def test_named_process_and_daemon_restart_resume_existing_fresh_session(
+    tmp_path: Path,
+) -> None:
+    generic, _ = _load(tmp_path)
+    query = _single_solver_query(generic)
+    fake = FakeCurrentPiqd(
+        create_transport_loss=True,
+        listing_transport_losses=1,
+    )
+    output = tmp_path / "resume-fresh"
+    with pytest.raises(subject.PiqdTransportLoss, match="listing response loss"):
+        _run_named_single_solver(query, fake, output)
+    session_id = next(iter(fake.sessions))
+    fake.sessions[session_id]["state"] = "detached"
+    fake.active = 0
+
+    engine = _run_named_single_solver(
+        query,
+        fake,
+        output,
+        resume_policy=subject.PIQD_RESUME_REQUIRE_EXISTING,
+    )
+
+    assert len([call for call in fake.calls if call[:2] == ("POST", "/sessions")]) == 1
+    assert fake.actual_appends == 1 and fake.actual_solves == 1
+    lifecycle = engine["session_lifecycle"]
+    assert lifecycle["resumed_existing_session"] is True
+    assert lifecycle["resume_journal_state"] == "exact_pre"
+
+
+def test_named_restart_rebuilds_result_from_closed_receipt_without_second_solve(
+    tmp_path: Path,
+) -> None:
+    generic, _ = _load(tmp_path)
+    query = _single_solver_query(generic)
+    fake = FakeCurrentPiqd(
+        close_transport_losses=1,
+        close_loss_commits=True,
+        status_transport_losses=2,
+    )
+    output = tmp_path / "resume-receipt"
+    with pytest.raises(subject.PiqdTransportLoss, match="status response loss"):
+        _run_named_single_solver(query, fake, output)
+    assert fake.actual_solves == 1
+    initial_lifecycle_bytes = (output / "cvc5.session-lifecycle.json").read_bytes()
+
+    engine = _run_named_single_solver(
+        query,
+        fake,
+        output,
+        resume_policy=subject.PIQD_RESUME_REQUIRE_EXISTING,
+    )
+
+    assert fake.actual_solves == 1
+    assert engine["resumed_from_receipt"] is True
+    assert engine["session_lifecycle"]["close_outcome"] == "closed_resume_status"
+    assert engine["artifacts"]["solve"]["path"] == "cvc5.solve.json"
+    assert (
+        output / "cvc5.session-lifecycle.json"
+    ).read_bytes() == initial_lifecycle_bytes
+    assert engine["artifacts"]["session_lifecycle"]["path"] == (
+        "cvc5.session-lifecycle.json"
+    )
+    assert engine["artifacts"]["final_session_lifecycle"]["path"] == (
+        "cvc5.session-lifecycle-final.json"
+    )
+    assert (output / "cvc5.session-lifecycle-final.json").is_file()
+
+
+def test_named_resume_creates_only_from_empty_preexisting_adapter_inventory(
+    tmp_path: Path,
+) -> None:
+    generic, _ = _load(tmp_path)
+    query = _single_solver_query(generic)
+    output = tmp_path / "resume-missing"
+    failed = FakeCurrentPiqd(
+        create_transport_loss=True,
+        create_loss_commits=False,
+        listing_variant="zero",
+    )
+    with pytest.raises(subject.SmtSourceAdapterError, match="no unique label match"):
+        _run_named_single_solver(query, failed, output)
+
+    require_existing = FakeCurrentPiqd(listing_variant="zero")
+    with pytest.raises(
+        subject.SmtSourceAdapterError, match="absent during required resume"
+    ):
+        _run_named_single_solver(
+            query,
+            require_existing,
+            output,
+            resume_policy=subject.PIQD_RESUME_REQUIRE_EXISTING,
+        )
+    assert not [
+        call
+        for call in require_existing.calls
+        if call[0] == "POST" and call[1] == "/sessions"
+    ]
+
+    blocked_replacement = FakeCurrentPiqd(listing_variant="zero")
+    with pytest.raises(
+        subject.SmtSourceAdapterError, match="absent during required resume"
+    ):
+        _run_named_single_solver(
+            query,
+            blocked_replacement,
+            output,
+            resume_policy=subject.PIQD_RESUME_ALLOW_CREATE_IF_MISSING,
+        )
+    assert not [
+        call
+        for call in blocked_replacement.calls
+        if call[0] == "POST" and call[1] == "/sessions"
+    ]
+
+    allowed = FakeCurrentPiqd(listing_variant="zero")
+    engine = _run_named_single_solver(
+        query,
+        allowed,
+        tmp_path / "resume-empty-prefix",
+        resume_policy=subject.PIQD_RESUME_ALLOW_CREATE_IF_MISSING,
+    )
+    assert engine["effective_status"] == "SAT_SEMANTICALLY_REPLAYED"
+    assert allowed.actual_solves == 1
+
+
+def test_named_resume_ambiguous_matching_inventory_blocks_without_create(
+    tmp_path: Path,
+) -> None:
+    generic, _ = _load(tmp_path)
+    query = _single_solver_query(generic)
+    fake = FakeCurrentPiqd(
+        create_transport_loss=True,
+        listing_transport_losses=1,
+    )
+    output = tmp_path / "resume-ambiguous"
+    with pytest.raises(subject.PiqdTransportLoss):
+        _run_named_single_solver(query, fake, output)
+    fake.listing_variant = "multiple"
+
+    with pytest.raises(subject.SmtSourceAdapterError, match="ambiguous"):
+        _run_named_single_solver(
+            query,
+            fake,
+            output,
+            resume_policy=subject.PIQD_RESUME_REQUIRE_EXISTING,
+        )
+
+    assert len([call for call in fake.calls if call[:2] == ("POST", "/sessions")]) == 1
+    assert fake.actual_solves == 0
+
+
+@pytest.mark.parametrize(
+    ("fake", "message"),
+    [
+        (FakeCurrentPiqd(named_receipt_digest_mismatch=True), "request identity"),
+        (
+            FakeCurrentPiqd(solve_transport_loss={"cvc5"}, named_replay_conflict=True),
+            "HTTP status mismatch",
+        ),
+    ],
+)
+def test_named_request_digest_or_replay_conflict_fails_closed(
+    tmp_path: Path, fake: FakeCurrentPiqd, message: str
+) -> None:
+    generic, _ = _load(tmp_path)
+    query = _single_solver_query(generic)
+    with pytest.raises(subject.SmtSourceAdapterError, match=message):
+        _run_named_single_solver(query, fake, tmp_path / "rejected")
+    assert fake.active == 0
+
+
+@pytest.mark.parametrize(
+    ("request_id", "labels", "message"),
+    [
+        ("NOT-A-UUID", ("source/source-gate",), "canonical UUID"),
+        ("12345678-1234-4234-9234-123456789abc", (), "label every assumption"),
+    ],
+)
+def test_named_request_validation_precedes_transport(
+    tmp_path: Path, request_id: str, labels: tuple[str, ...], message: str
+) -> None:
+    generic, _ = _load(tmp_path)
+    query = _single_solver_query(generic)
+    fake = FakeCurrentPiqd()
+    with pytest.raises(subject.SmtSourceAdapterError, match=message):
+        _run_named_single_solver(
+            query,
+            fake,
+            tmp_path / "invalid",
+            request_id=request_id,
+            assumption_labels=labels,
+        )
+    assert fake.calls == []
 
 
 @pytest.mark.parametrize(

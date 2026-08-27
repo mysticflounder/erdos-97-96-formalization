@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import hashlib
+import unicodedata
 
 import pytest
 
@@ -84,6 +85,18 @@ def test_canonical_text_rejects_invalid_unicode() -> None:
         canonical_text("bad\ud800", "fixture")
 
 
+def test_unicode_is_utf8_encoded_without_implicit_normalization() -> None:
+    nfc = unicodedata.normalize("NFC", "e\u0301")
+    nfd = unicodedata.normalize("NFD", nfc)
+    assert nfc != nfd
+    nfc_bytes = stored_json_bytes({"value": nfc})
+    nfd_bytes = stored_json_bytes({"value": nfd})
+    assert nfc_bytes != nfd_bytes
+    assert raw_sha256(nfc_bytes) != raw_sha256(nfd_bytes)
+    assert parse_stored_json_bytes(nfc_bytes) == {"value": nfc}
+    assert parse_stored_json_bytes(nfd_bytes) == {"value": nfd}
+
+
 @pytest.mark.parametrize(
     "payload",
     [b"[" * 2000 + b"0" + b"]" * 2000 + b"\n", b"{" + b'"n":' + b"1" * 5000 + b"}\n"],
@@ -94,9 +107,7 @@ def test_hostile_json_inputs_fail_through_the_schema_error(payload: bytes) -> No
         parse_stored_json_bytes(payload)
 
 
-@pytest.mark.parametrize(
-    "value", [10**5000, {"n": 10**5000}], ids=["scalar", "object"]
-)
+@pytest.mark.parametrize("value", [10**5000, {"n": 10**5000}], ids=["scalar", "object"])
 def test_oversized_python_integers_fail_through_the_schema_error(value: object) -> None:
     with pytest.raises(CapConfigurationSchemaError):
         canonical_json_bytes(value)

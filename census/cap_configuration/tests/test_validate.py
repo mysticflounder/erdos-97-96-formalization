@@ -1,0 +1,308 @@
+from __future__ import annotations
+
+import shutil
+from pathlib import Path
+
+import pytest
+
+from census.cap_configuration.campaign import (
+    ATTEMPT_OUTCOME_SCHEMA,
+    ATTEMPT_STAGE_SCHEMA,
+    CELL_RESULT_SCHEMA,
+    CapConfigurationCampaignError,
+    campaign_status,
+)
+from census.cap_configuration.schema import (
+    canonical_json_bytes,
+    parse_stored_json_bytes,
+    raw_sha256,
+    stored_json_bytes,
+    structured_hash,
+)
+from census.cap_configuration.validate import validate_campaign
+
+from .test_campaign import FakeAdapter, execute_fixture, prepare_fixture
+
+
+def test_planned_prefix_validates_offline_as_incomplete(tmp_path: Path) -> None:
+    prepared = prepare_fixture(tmp_path)
+    report = validate_campaign(
+        prepared.manifest_path, prepared.run_root, repo_root=prepared.repo
+    )
+    assert report.coverage_status == "INCOMPLETE"
+    assert report.diagnostic_coverage is False
+    assert len(report.missing_cell_ids) == 3
+    assert report.classification_counts == {}
+    assert report.resume_safe is True
+
+
+def test_missing_result_reconstructs_incomplete_coverage(tmp_path: Path) -> None:
+    prepared = prepare_fixture(tmp_path)
+    execute_fixture(prepared, FakeAdapter())
+    result = next(
+        (prepared.repo / prepared.run_root / "artifacts/results").glob("*/*.json")
+    )
+    result.unlink()
+    report = validate_campaign(
+        prepared.manifest_path, prepared.run_root, repo_root=prepared.repo
+    )
+    assert report.coverage_status == "INCOMPLETE"
+    assert len(report.missing_cell_ids) == 1
+    assert "latest retained coverage differs" in " ".join(report.observations)
+
+
+def test_missing_first_cell_with_later_attempt_is_not_resume_safe(
+    tmp_path: Path,
+) -> None:
+    prepared = prepare_fixture(tmp_path)
+    execute_fixture(prepared, FakeAdapter())
+    first_cell = prepared.plan["ordered_cell_ids"][0]
+    shutil.rmtree(prepared.repo / prepared.run_root / "events/attempts" / first_cell)
+    shutil.rmtree(prepared.repo / prepared.run_root / "artifacts/results" / first_cell)
+    with pytest.raises(
+        CapConfigurationCampaignError, match="authorization consumption"
+    ):
+        validate_campaign(
+            prepared.manifest_path, prepared.run_root, repo_root=prepared.repo
+        )
+
+
+def test_missing_middle_cell_with_later_attempt_is_not_resume_safe(
+    tmp_path: Path,
+) -> None:
+    prepared = prepare_fixture(tmp_path)
+    execute_fixture(prepared, FakeAdapter())
+    middle_cell = prepared.plan["ordered_cell_ids"][1]
+    later_cell = prepared.plan["ordered_cell_ids"][2]
+    shutil.rmtree(prepared.repo / prepared.run_root / "events/attempts" / middle_cell)
+    shutil.rmtree(prepared.repo / prepared.run_root / "artifacts/results" / middle_cell)
+
+    report = validate_campaign(
+        prepared.manifest_path, prepared.run_root, repo_root=prepared.repo
+    )
+    assert report.coverage_status == "INCOMPLETE"
+    assert report.resume_safe is False
+    assert middle_cell in report.missing_cell_ids
+    assert any(later_cell in item for item in report.orphan_attempts)
+
+
+def test_later_attempt_after_nonterminal_cell_is_not_resume_safe(
+    tmp_path: Path,
+) -> None:
+    prepared = prepare_fixture(tmp_path)
+    execute_fixture(prepared, FakeAdapter())
+    first_cell = prepared.plan["ordered_cell_ids"][0]
+    result = next(
+        (prepared.repo / prepared.run_root / "artifacts/results" / first_cell).glob(
+            "*.json"
+        )
+    )
+    result.unlink()
+
+    report = validate_campaign(
+        prepared.manifest_path, prepared.run_root, repo_root=prepared.repo
+    )
+    assert report.coverage_status == "INCOMPLETE"
+    assert report.resume_safe is False
+    assert first_cell in report.nonterminal_cell_ids
+    assert any(
+        prepared.plan["ordered_cell_ids"][1] in item for item in report.orphan_attempts
+    )
+
+
+def test_swapped_result_is_rejected_as_crossed_identity(tmp_path: Path) -> None:
+    prepared = prepare_fixture(tmp_path)
+    execute_fixture(prepared, FakeAdapter())
+    results = sorted(
+        (prepared.repo / prepared.run_root / "artifacts/results").glob("*/*.json")
+    )
+    first_bytes = results[0].read_bytes()
+    results[0].unlink()
+    results[0].write_bytes(results[1].read_bytes())
+    with pytest.raises(CapConfigurationCampaignError, match="crossed identity"):
+        validate_campaign(
+            prepared.manifest_path, prepared.run_root, repo_root=prepared.repo
+        )
+    results[0].unlink()
+    results[0].write_bytes(first_bytes)
+
+
+@pytest.mark.parametrize(
+    ("field", "value"),
+    [("certificate_ref", "certificate/foreign"), ("certificate_status", "CHECKED")],
+)
+def test_cell_result_certificate_projection_must_match_outcome(
+    tmp_path: Path, field: str, value: str
+) -> None:
+    prepared = prepare_fixture(tmp_path)
+    execute_fixture(prepared, FakeAdapter())
+    result_path = next(
+        (prepared.repo / prepared.run_root / "artifacts/results").glob("*/*.json")
+    )
+    result = parse_stored_json_bytes(result_path.read_bytes())
+    result[field] = value
+    body = {key: item for key, item in result.items() if key != "cell_result_sha256"}
+    result["cell_result_sha256"] = structured_hash(CELL_RESULT_SCHEMA, body)
+    result_path.unlink()
+    result_path.write_bytes(stored_json_bytes(result))
+    with pytest.raises(CapConfigurationCampaignError, match="crossed identity"):
+        validate_campaign(
+            prepared.manifest_path, prepared.run_root, repo_root=prepared.repo
+        )
+
+
+@pytest.mark.parametrize(
+    ("field", "value"),
+    [
+        ("admission_policy", "foreign-policy/v1"),
+        ("reason", "first_terminal_attempt"),
+    ],
+)
+def test_cell_result_selection_policy_and_reason_are_frozen(
+    tmp_path: Path, field: str, value: str
+) -> None:
+    prepared = prepare_fixture(tmp_path)
+    execute_fixture(prepared, FakeAdapter())
+    result_path = next(
+        (prepared.repo / prepared.run_root / "artifacts/results").glob("*/*.json")
+    )
+    result = parse_stored_json_bytes(result_path.read_bytes())
+    result["selection"][field] = value
+    body = {key: item for key, item in result.items() if key != "cell_result_sha256"}
+    result["cell_result_sha256"] = structured_hash(CELL_RESULT_SCHEMA, body)
+    result_path.unlink()
+    result_path.write_bytes(stored_json_bytes(result))
+    with pytest.raises(CapConfigurationCampaignError, match="selection mismatch"):
+        validate_campaign(
+            prepared.manifest_path, prepared.run_root, repo_root=prepared.repo
+        )
+
+
+def test_run_manifest_cannot_omit_snapshot_even_after_rehash(tmp_path: Path) -> None:
+    prepared = prepare_fixture(tmp_path)
+    path = prepared.repo / prepared.run_root / "run_manifest.json"
+    value = parse_stored_json_bytes(path.read_bytes())
+    value["input_digests"].pop(next(iter(value["input_digests"])))
+    unsigned = {key: item for key, item in value.items() if key != "manifest_sha256"}
+    value["manifest_sha256"] = raw_sha256(canonical_json_bytes(unsigned))
+    path.unlink()
+    path.write_bytes(stored_json_bytes(value))
+    with pytest.raises(CapConfigurationCampaignError, match="complete plan inventory"):
+        validate_campaign(
+            prepared.manifest_path, prepared.run_root, repo_root=prepared.repo
+        )
+
+
+def test_stage_swap_is_rejected_before_interpretation(tmp_path: Path) -> None:
+    prepared = prepare_fixture(tmp_path)
+    execute_fixture(prepared, FakeAdapter())
+    stages = next(
+        (prepared.repo / prepared.run_root / "events/attempts").glob("*/000000/stages")
+    )
+    stage0 = stages / "000000-resource-attestation.json"
+    stage1 = stages / "000001-request-intent.json"
+    stage0_bytes = stage0.read_bytes()
+    stage0.unlink()
+    stage0.write_bytes(stage1.read_bytes())
+    with pytest.raises(CapConfigurationCampaignError, match="stage chain mismatch"):
+        validate_campaign(
+            prepared.manifest_path, prepared.run_root, repo_root=prepared.repo
+        )
+    stage0.unlink()
+    stage0.write_bytes(stage0_bytes)
+
+
+def test_unreferenced_attempt_artifact_forces_incomplete_orphan_inventory(
+    tmp_path: Path,
+) -> None:
+    prepared = prepare_fixture(tmp_path)
+    execute_fixture(prepared, FakeAdapter())
+    attempt = next(
+        (prepared.repo / prepared.run_root / "events/attempts").glob("*/000000")
+    )
+    (attempt / "unreferenced.json").write_bytes(b"{}\n")
+    report = validate_campaign(
+        prepared.manifest_path, prepared.run_root, repo_root=prepared.repo
+    )
+    assert report.coverage_status == "INCOMPLETE"
+    assert any("unreferenced.json" in item for item in report.orphan_attempts)
+
+
+def test_raw_sat_values_mutation_is_rejected(tmp_path: Path) -> None:
+    prepared = prepare_fixture(tmp_path)
+    execute_fixture(prepared, FakeAdapter())
+    values = next(
+        (prepared.repo / prepared.run_root / "events/attempts").glob(
+            "*/000000/piqd/cap-values.json"
+        )
+    )
+    values.unlink()
+    values.write_bytes(b'{"values":"((x 1) (y 0))"}\n')
+    with pytest.raises(CapConfigurationCampaignError, match="hash mismatch"):
+        validate_campaign(
+            prepared.manifest_path, prepared.run_root, repo_root=prepared.repo
+        )
+
+
+def test_offline_validator_rejects_cross_cell_session_reuse(tmp_path: Path) -> None:
+    prepared = prepare_fixture(tmp_path)
+    execute_fixture(prepared, FakeAdapter())
+    adapter_results = sorted(
+        (prepared.repo / prepared.run_root / "events/attempts").glob(
+            "*/000000/adapter-result.json"
+        )
+    )
+    first = parse_stored_json_bytes(adapter_results[0].read_bytes())
+    second_path = adapter_results[1]
+    second = parse_stored_json_bytes(second_path.read_bytes())
+    second["session_id"] = first["session_id"]
+    second_payload = stored_json_bytes(second)
+    second_path.unlink()
+    second_path.write_bytes(second_payload)
+
+    stage_path = second_path.parent / "stages/000002-adapter-completed.json"
+    stage = parse_stored_json_bytes(stage_path.read_bytes())
+    stage["payload"]["adapter_result_raw_sha256"] = raw_sha256(second_payload)
+    stage_body = {key: value for key, value in stage.items() if key != "stage_sha256"}
+    stage["stage_sha256"] = structured_hash(ATTEMPT_STAGE_SCHEMA, stage_body)
+    stage_path.unlink()
+    stage_path.write_bytes(stored_json_bytes(stage))
+
+    outcome_path = second_path.parent / "outcome.json"
+    outcome = parse_stored_json_bytes(outcome_path.read_bytes())
+    outcome["adapter_result_raw_sha256"] = raw_sha256(second_payload)
+    outcome["previous_sha256"] = stage["stage_sha256"]
+    outcome_body = {
+        key: value for key, value in outcome.items() if key != "outcome_sha256"
+    }
+    outcome["outcome_sha256"] = structured_hash(ATTEMPT_OUTCOME_SCHEMA, outcome_body)
+    outcome_path.unlink()
+    outcome_path.write_bytes(stored_json_bytes(outcome))
+
+    with pytest.raises(CapConfigurationCampaignError, match="reuse a session_id"):
+        validate_campaign(
+            prepared.manifest_path, prepared.run_root, repo_root=prepared.repo
+        )
+
+
+def test_mutated_caller_manifest_cannot_replace_retained_snapshot(
+    tmp_path: Path,
+) -> None:
+    prepared = prepare_fixture(tmp_path)
+    manifest = prepared.repo / prepared.manifest_path
+    manifest.write_bytes(manifest.read_bytes() + b" ")
+    with pytest.raises(
+        CapConfigurationCampaignError, match="differs from planned snapshot"
+    ):
+        validate_campaign(
+            prepared.manifest_path, prepared.run_root, repo_root=prepared.repo
+        )
+
+
+def test_status_never_upgrades_observation_to_validation(tmp_path: Path) -> None:
+    prepared = prepare_fixture(tmp_path)
+    execute_fixture(prepared, FakeAdapter())
+    status = campaign_status(prepared.run_root, repo_root=prepared.repo)
+    assert status["coverage_status"] == "COMPLETE"
+    assert status["validated"] is False
+    assert status["mathematical_claim"] is None

@@ -34,6 +34,10 @@ MANIFEST_SCHEMA = "p97-piqd-smt-source-manifest/v1"
 RESULT_SCHEMA = "p97-piqd-smt-source-adapter-result/v1"
 SOLVER_PROFILE_SCHEMA = "piqd-smt-sequential-z3-cvc5/v1"
 PIQD_RESULT_DIGEST_VERSION = b"piqd-smt-solve-result/v1"
+PIQD_SOLVE_REQUEST_DIGEST_VERSION = b"piqd-smt-solve-request/v1"
+PIQD_SESSION_LIFECYCLE_SCHEMA = "piqd-smt-session-lifecycle/v1"
+PIQD_RESUME_REQUIRE_EXISTING = "require_existing_session"
+PIQD_RESUME_ALLOW_CREATE_IF_MISSING = "allow_create_if_prefix_proves_no_mutation"
 SOLVERS = ("z3", "cvc5")
 
 MAX_DESCRIPTOR_BYTES = 2 * 1024 * 1024
@@ -300,6 +304,16 @@ def _digest(value: object, where: str) -> str:
         len(text) == 64 and all(character in "0123456789abcdef" for character in text),
         f"{where} must be a lowercase SHA-256",
     )
+    return text
+
+
+def _canonical_uuid(value: object, where: str) -> str:
+    text = _string(value, where)
+    try:
+        parsed = uuid.UUID(text)
+    except ValueError as exc:
+        raise SmtSourceAdapterError(f"{where} is not a canonical UUID") from exc
+    _fail(str(parsed) == text, f"{where} is not a canonical UUID")
     return text
 
 
@@ -781,6 +795,42 @@ def _write_immutable(root_fd: int, name: str, payload: bytes) -> dict[str, objec
             os.close(descriptor)
     os.fsync(root_fd)
     return {"path": name, "bytes": len(payload), "sha256": _sha256(payload)}
+
+
+def _write_or_verify_immutable(
+    root_fd: int, name: str, payload: bytes, *, allow_existing: bool
+) -> dict[str, object]:
+    if not allow_existing:
+        return _write_immutable(root_fd, name, payload)
+    try:
+        info = os.stat(name, dir_fd=root_fd, follow_symlinks=False)
+    except FileNotFoundError:
+        return _write_immutable(root_fd, name, payload)
+    except OSError as exc:
+        raise SmtSourceAdapterError(
+            f"cannot inspect immutable artifact {name}"
+        ) from exc
+    _fail(
+        stat.S_ISREG(info.st_mode) and info.st_nlink == 1,
+        f"existing immutable artifact {name} is unsafe",
+    )
+    existing = _read_relative(root_fd, name, MAX_OUTPUT_BYTES, name)
+    _fail(existing == payload, f"existing immutable artifact {name} disagrees")
+    return {"path": name, "bytes": len(payload), "sha256": _sha256(payload)}
+
+
+def _read_existing_output(root_fd: int, name: str) -> bytes | None:
+    try:
+        info = os.stat(name, dir_fd=root_fd, follow_symlinks=False)
+    except FileNotFoundError:
+        return None
+    except OSError as exc:
+        raise SmtSourceAdapterError(f"cannot inspect output artifact {name}") from exc
+    _fail(
+        stat.S_ISREG(info.st_mode) and info.st_nlink == 1,
+        f"existing output artifact {name} is unsafe",
+    )
+    return _read_relative(root_fd, name, MAX_OUTPUT_BYTES, name)
 
 
 def _ascii_space(byte: int) -> bool:
@@ -1413,6 +1463,19 @@ def _json_call(
     *,
     status: int = 200,
 ) -> object:
+    response_status, response_body = _json_call_with_status(
+        transport, method, path, body
+    )
+    _fail(response_status == status, "PIQD HTTP status mismatch")
+    return response_body
+
+
+def _json_call_with_status(
+    transport: PiqdTransport,
+    method: str,
+    path: str,
+    body: Mapping[str, object] | None = None,
+) -> tuple[int, object]:
     try:
         response = transport.request_json(method, path, body)
     except PiqdTransportLoss:
@@ -1422,11 +1485,8 @@ def _json_call(
     except Exception as exc:
         raise PiqdTransportLoss("PIQD JSON transport failed") from exc
     _fail(type(response) is JsonResponse, "PIQD JSON transport returned wrong type")
-    _fail(
-        type(response.status) is int and response.status == status,
-        "PIQD HTTP status mismatch",
-    )
-    return _snapshot_builtin_json(response.body, "PIQD JSON response")
+    _fail(type(response.status) is int, "PIQD JSON HTTP status has wrong type")
+    return response.status, _snapshot_builtin_json(response.body, "PIQD JSON response")
 
 
 def _bytes_call(transport: PiqdTransport, path: str) -> bytes:
@@ -1471,27 +1531,26 @@ _SESSION_KEYS = {
 }
 
 
-def _validate_session(
-    value: object, *, solver: str, label: str, expected_state: str
-) -> dict[str, Any]:
-    obj = _object(value, _SESSION_KEYS, "session")
-    session_id = _string(obj["id"], "session.id")
+def _validate_session_record(value: object, where: str = "session") -> dict[str, Any]:
+    obj = _object(value, _SESSION_KEYS, where)
+    session_id = _string(obj["id"], f"{where}.id")
     try:
         _fail(
-            str(uuid.UUID(session_id)) == session_id, "session.id is not canonical UUID"
+            str(uuid.UUID(session_id)) == session_id,
+            f"{where}.id is not canonical UUID",
         )
     except ValueError as exc:
-        raise SmtSourceAdapterError("session.id is not canonical UUID") from exc
+        raise SmtSourceAdapterError(f"{where}.id is not canonical UUID") from exc
+    _fail(obj["lane"] in {"sat", "smt"}, f"{where}.lane has wrong value")
     _fail(
-        obj["lane"] == "smt"
-        and obj["state"] == expected_state
-        and obj["solver_name"] == solver
-        and obj["label"] == label,
-        "session identity mismatch",
+        obj["state"] in {"live", "detached", "closed"},
+        f"{where}.state has wrong value",
     )
-    _digest(obj["solver_sha256"], "session.solver_sha256")
-    _string(obj["solver_signature"], "session.solver_signature")
-    _string(obj["journal_path"], "session.journal_path")
+    _string(obj["solver_name"], f"{where}.solver_name")
+    _digest(obj["solver_sha256"], f"{where}.solver_sha256")
+    _string(obj["solver_signature"], f"{where}.solver_signature")
+    _string(obj["journal_path"], f"{where}.journal_path")
+    _string(obj["label"], f"{where}.label", allow_empty=True)
     for key in (
         "protocol_version",
         "created_at",
@@ -1500,16 +1559,18 @@ def _validate_session(
         "max_var",
         "solves",
     ):
-        _integer(obj[key], f"session.{key}")
-    _fail(obj["protocol_version"] == 1, "session protocol version mismatch")
-    _fail(obj["updated_at"] >= obj["created_at"], "session timestamps are reversed")
+        _integer(obj[key], f"{where}.{key}")
+    _fail(obj["protocol_version"] == 1, f"{where} protocol version mismatch")
+    _fail(obj["updated_at"] >= obj["created_at"], f"{where} timestamps are reversed")
     for key in ("declared_num_vars", "last_solve_index"):
         _fail(
-            obj[key] is None or type(obj[key]) is int, f"session.{key} has wrong type"
+            obj[key] is None or type(obj[key]) is int,
+            f"{where}.{key} has wrong type",
         )
     for key in ("last_assumption_free", "last_terminal_unsat"):
         _fail(
-            obj[key] is None or type(obj[key]) is bool, f"session.{key} has wrong type"
+            obj[key] is None or type(obj[key]) is bool,
+            f"{where}.{key} has wrong type",
         )
     _fail(
         obj["last_status"] is None
@@ -1517,13 +1578,42 @@ def _validate_session(
             type(obj["last_status"]) is str
             and obj["last_status"] in {"SAT", "UNSAT", "UNKNOWN"}
         ),
-        "session.last_status has wrong type or value",
+        f"{where}.last_status has wrong type or value",
     )
+    if obj["lane"] == "smt":
+        _fail(
+            obj["declared_num_vars"] is None and obj["max_var"] == 0,
+            f"{where} SMT CNF fields mismatch",
+        )
+    return obj
+
+
+def _validate_session(
+    value: object, *, solver: str, label: str, expected_state: str
+) -> dict[str, Any]:
+    obj = _validate_session_record(value)
     _fail(
-        obj["declared_num_vars"] is None and obj["max_var"] == 0,
-        "SMT session CNF fields mismatch",
+        obj["lane"] == "smt"
+        and obj["state"] == expected_state
+        and obj["solver_name"] == solver
+        and obj["label"] == label,
+        "session identity mismatch",
     )
     return obj
+
+
+def _validate_session_listing(value: object) -> list[dict[str, Any]]:
+    listing = _object(value, {"sessions", "live"}, "session listing")
+    live = _integer(listing["live"], "session listing.live")
+    _fail(type(listing["sessions"]) is list, "session listing.sessions is not a list")
+    sessions = [
+        _validate_session_record(item, f"session listing.sessions[{index}]")
+        for index, item in enumerate(listing["sessions"])
+    ]
+    _fail(live <= len(sessions), "session listing live count exceeds inventory")
+    ids = [session["id"] for session in sessions]
+    _fail(len(ids) == len(set(ids)), "session listing repeats an identity")
+    return sessions
 
 
 def _validate_fresh_session(session: Mapping[str, object]) -> None:
@@ -1550,8 +1640,60 @@ def _recover_session_id(value: object) -> str | None:
         return None
 
 
-def _validate_closed_session(
-    closed: Mapping[str, object],
+def _reconcile_lost_create_response(
+    *, transport: PiqdTransport, solver: str, label: str
+) -> dict[str, Any]:
+    sessions = _validate_session_listing(_json_call(transport, "GET", "/sessions"))
+    matching_label = [session for session in sessions if session["label"] == label]
+    _fail(
+        len(matching_label) == 1,
+        "lost PIQD create response has no unique label match",
+    )
+    session = _validate_session(
+        matching_label[0], solver=solver, label=label, expected_state="live"
+    )
+    _validate_fresh_session(session)
+    return session
+
+
+def _discover_named_session(
+    *,
+    transport: PiqdTransport,
+    solver: str,
+    label: str,
+    allow_missing: bool,
+) -> dict[str, Any] | None:
+    sessions = _validate_session_listing(_json_call(transport, "GET", "/sessions"))
+    matching_label = [session for session in sessions if session["label"] == label]
+    _fail(len(matching_label) <= 1, "named PIQD session label is ambiguous")
+    if not matching_label:
+        _fail(allow_missing, "named PIQD session is absent during required resume")
+        return None
+    candidate = matching_label[0]
+    return _validate_session(
+        candidate,
+        solver=solver,
+        label=label,
+        expected_state=candidate["state"],
+    )
+
+
+def _validate_unsolved_session_frontier(
+    session: Mapping[str, object], *, commands: int
+) -> None:
+    _fail(
+        session["clauses"] == commands
+        and session["solves"] == 0
+        and session["last_status"] is None
+        and session["last_solve_index"] is None
+        and session["last_assumption_free"] is None
+        and session["last_terminal_unsat"] is None,
+        "unsolved PIQD session frontier mismatch",
+    )
+
+
+def _validate_session_frontier(
+    observed: Mapping[str, object],
     *,
     created: Mapping[str, object],
     query: SourceSemanticQuery,
@@ -1568,31 +1710,93 @@ def _validate_closed_session(
         "label",
     )
     _fail(
-        all(closed[key] == created[key] for key in identity_keys),
-        "closed PIQD session identity changed",
+        all(observed[key] == created[key] for key in identity_keys),
+        "PIQD session identity changed",
     )
     _fail(
-        closed["clauses"] == len(query.journal_commands),
-        "closed PIQD session command count mismatch",
+        observed["clauses"] == len(query.journal_commands),
+        "PIQD session command count mismatch",
     )
     if solve is None:
         _fail(
-            closed["solves"] == 0
-            and closed["last_status"] is None
-            and closed["last_solve_index"] is None
-            and closed["last_assumption_free"] is None
-            and closed["last_terminal_unsat"] is None,
-            "closed unreceipted PIQD session state mismatch",
+            observed["solves"] == 0
+            and observed["last_status"] is None
+            and observed["last_solve_index"] is None
+            and observed["last_assumption_free"] is None
+            and observed["last_terminal_unsat"] is None,
+            "unreceipted PIQD session state mismatch",
         )
         return
     _fail(
-        closed["solves"] == 1
-        and closed["last_status"] == solve["status"]
-        and closed["last_solve_index"] == solve["solve_index"] == 1
-        and closed["last_assumption_free"] is (not bool(query.assumptions))
-        and closed["last_terminal_unsat"] == solve.get("terminal_unsat"),
-        "closed PIQD session solve state mismatch",
+        observed["solves"] == 1
+        and observed["last_status"] == solve["status"]
+        and observed["last_solve_index"] == solve["solve_index"] == 1
+        and observed["last_assumption_free"] is (not bool(query.assumptions))
+        and observed["last_terminal_unsat"] == solve.get("terminal_unsat"),
+        "PIQD session solve state mismatch",
     )
+
+
+def _validate_closed_session(
+    closed: Mapping[str, object],
+    *,
+    created: Mapping[str, object],
+    query: SourceSemanticQuery,
+    solve: Mapping[str, object] | None,
+) -> None:
+    _fail(closed["state"] == "closed", "closed PIQD session has wrong state")
+    _validate_session_frontier(closed, created=created, query=query, solve=solve)
+
+
+def _validated_assumption_labels(
+    query: SourceSemanticQuery, value: object
+) -> tuple[str, ...]:
+    _fail(type(value) is tuple, "assumption_labels must be an exact tuple")
+    labels: list[str] = []
+    for index, label in enumerate(value):
+        labels.append(_string(label, f"assumption_labels[{index}]"))
+    _fail(
+        len(labels) == len(query.assumptions),
+        "assumption_labels must label every assumption",
+    )
+    return tuple(labels)
+
+
+def piqd_solve_request_digest(
+    query: SourceSemanticQuery, assumption_labels: tuple[str, ...]
+) -> str:
+    """Reproduce current ``smt_receipts::solve_request_digest`` byte-for-byte."""
+
+    _fail(type(query) is SourceSemanticQuery, "request digest query has wrong type")
+    labels = _validated_assumption_labels(query, assumption_labels)
+    timeout_ms = _integer(
+        query.descriptor["solver_profile"]["timeout_ms"],
+        "solver_profile.timeout_ms",
+        minimum=1,
+    )
+    digest = hashlib.sha256(PIQD_SOLVE_REQUEST_DIGEST_VERSION)
+    digest.update(
+        (
+            f"\nbase={len(query.journal_commands)}:{len(query.journal_smt2)}:"
+            f"{_sha256(query.journal_smt2)}"
+        ).encode("ascii")
+    )
+    digest.update(f"\ntimeout={timeout_ms}\nmodel=true".encode("ascii"))
+
+    def text_list(name: str, values: tuple[str, ...]) -> None:
+        digest.update(f"\n{name}={len(values)}".encode("ascii"))
+        for value in values:
+            encoded = value.encode("utf-8")
+            digest.update(f"\n{len(encoded)}:".encode("ascii"))
+            digest.update(encoded)
+
+    text_list("assumptions", query.assumptions)
+    text_list("get_values", query.get_values)
+    # PIQD deliberately omits the labels block when the request is unlabelled,
+    # preserving request digests minted before labels existed.
+    if labels:
+        text_list("assumption_labels", labels)
+    return digest.hexdigest()
 
 
 def piqd_result_digest(result: Mapping[str, object]) -> str:
@@ -1628,6 +1832,18 @@ def piqd_result_digest(result: Mapping[str, object]) -> str:
             digest.update(encoded)
     field("model", result.get("model"))
     field("values", result.get("values"))
+    if "core_labels" in result:
+        labels = result["core_labels"]
+        _fail(type(labels) is list, "core_labels is not a list")
+        digest.update(f"\ncore_labels={len(labels)}".encode())
+        for label in labels:
+            if label is None:
+                digest.update(b"\n-")
+            else:
+                _fail(type(label) is str, "core label is not text or null")
+                encoded = label.encode("utf-8")
+                digest.update(f"\n{len(encoded)}:".encode())
+                digest.update(encoded)
     return digest.hexdigest()
 
 
@@ -1638,11 +1854,24 @@ _SOLVE_REQUIRED = {
     "result_sha256",
     "effective_deadline_ms",
 }
-_SOLVE_OPTIONAL = {"interrupted_by", "core", "terminal_unsat", "model", "values"}
+_SOLVE_OPTIONAL = {
+    "interrupted_by",
+    "core",
+    "core_labels",
+    "terminal_unsat",
+    "model",
+    "values",
+}
 _SOLVE_RESPONSE_OPTIONAL = _SOLVE_OPTIONAL | {"replayed"}
 
 
-def _validate_answer_fields(obj: Mapping[str, object], where: str) -> None:
+def _validate_answer_fields(
+    obj: Mapping[str, object],
+    where: str,
+    *,
+    assumptions: tuple[str, ...],
+    assumption_labels: tuple[str, ...],
+) -> None:
     status = obj["status"]
     _fail(status in {"SAT", "UNSAT", "UNKNOWN"}, f"{where}.status is invalid")
     for key in ("interrupted_by", "model", "values"):
@@ -1662,12 +1891,22 @@ def _validate_answer_fields(obj: Mapping[str, object], where: str) -> None:
             type(obj["terminal_unsat"]) is bool,
             f"{where}.terminal_unsat is not Boolean",
         )
+    if "core_labels" in obj:
+        _fail(type(obj["core_labels"]) is list, f"{where}.core_labels is not a list")
+        for index, label in enumerate(obj["core_labels"]):
+            _fail(
+                label is None or type(label) is str,
+                f"{where}.core_labels[{index}] is not text or null",
+            )
     present = set(obj) & _SOLVE_OPTIONAL
     if status == "SAT":
         _fail(present == {"model", "values"}, f"{where} SAT payload shape mismatch")
     elif status == "UNSAT":
+        expected = {"core", "terminal_unsat"}
+        if assumption_labels:
+            expected.add("core_labels")
         _fail(
-            present == {"core", "terminal_unsat"},
+            present == expected,
             f"{where} UNSAT payload shape mismatch",
         )
         core = obj["core"]
@@ -1676,11 +1915,30 @@ def _validate_answer_fields(obj: Mapping[str, object], where: str) -> None:
             obj["terminal_unsat"] is (len(core) == 0),
             f"{where} terminal_unsat disagrees with unsat assumptions",
         )
+        if assumption_labels:
+            labels = obj["core_labels"]
+            _fail(
+                type(labels) is list and len(labels) == len(core),
+                f"{where} core label count mismatch",
+            )
+            by_term = dict(zip(assumptions, assumption_labels, strict=True))
+            _fail(
+                labels == [by_term.get(member) for member in core],
+                f"{where} core labels disagree with ordered assumption labels",
+            )
     else:
         _fail(present <= {"interrupted_by"}, f"{where} UNKNOWN payload shape mismatch")
 
 
-def _validate_solve(value: object, *, timeout_ms: int) -> dict[str, Any]:
+def _validate_solve(
+    value: object,
+    *,
+    timeout_ms: int,
+    assumptions: tuple[str, ...],
+    assumption_labels: tuple[str, ...],
+    named_request: bool,
+    replay_retry: bool = False,
+) -> dict[str, Any]:
     obj = _object(
         value,
         _SOLVE_REQUIRED,
@@ -1700,12 +1958,22 @@ def _validate_solve(value: object, *, timeout_ms: int) -> dict[str, Any]:
         == effective_deadline_ms(timeout_ms, "solve request timeout_ms"),
         "solve effective deadline does not equal request timeout_ms + 30000",
     )
-    if "replayed" in obj:
+    if named_request:
+        _fail("replayed" in obj, "named solve response lacks replayed")
+        _fail(type(obj["replayed"]) is bool, "solve.replayed is not Boolean")
+        if not replay_retry:
+            _fail(obj["replayed"] is False, "fresh named solve cannot be replayed")
+    elif "replayed" in obj:
         _fail(
             type(obj["replayed"]) is bool and obj["replayed"] is False,
             "solve.replayed must be exact false Boolean without request_id",
         )
-    _validate_answer_fields(obj, "solve")
+    _validate_answer_fields(
+        obj,
+        "solve",
+        assumptions=assumptions,
+        assumption_labels=assumption_labels,
+    )
     return obj
 
 
@@ -1725,6 +1993,11 @@ _RECEIPT_REQUIRED = {
     "solve_ms",
     "result_sha256",
     "at",
+}
+_RECEIPT_OPTIONAL = _SOLVE_OPTIONAL | {
+    "assumption_labels",
+    "request_id",
+    "request_sha256",
 }
 
 
@@ -1752,6 +2025,9 @@ def _validate_receipts(
     query: SourceSemanticQuery,
     solve: Mapping[str, object] | None,
     expected_count: int | None = None,
+    request_id: str | None = None,
+    request_sha256: str | None = None,
+    assumption_labels: tuple[str, ...] = (),
 ) -> tuple[dict[str, Any], dict[str, Any] | None]:
     envelope = _object(
         value,
@@ -1780,7 +2056,7 @@ def _validate_receipts(
         envelope["receipts"][0],
         _RECEIPT_REQUIRED,
         "receipt",
-        optional=_SOLVE_OPTIONAL,
+        optional=_RECEIPT_OPTIONAL,
     )
     for key in ("solve_index", "base_commands", "base_bytes", "solve_ms", "at"):
         _integer(receipt[key], f"receipt.{key}")
@@ -1804,7 +2080,40 @@ def _validate_receipts(
         == effective_deadline_ms(receipt_timeout_ms, "receipt.timeout_ms"),
         "receipt effective deadline does not equal receipt timeout_ms + 30000",
     )
-    _validate_answer_fields(receipt, "receipt")
+    _validate_answer_fields(
+        receipt,
+        "receipt",
+        assumptions=query.assumptions,
+        assumption_labels=assumption_labels,
+    )
+    request_fields = {"request_id", "request_sha256"} & set(receipt)
+    if request_id is None:
+        _fail(
+            not request_fields and "assumption_labels" not in receipt,
+            "unnamed receipt unexpectedly carries request identity",
+        )
+    else:
+        _fail(
+            request_fields == {"request_id", "request_sha256"},
+            "named receipt lacks request identity",
+        )
+        _fail(request_sha256 is not None, "named receipt lacks expected digest")
+        _fail(
+            _canonical_uuid(receipt["request_id"], "receipt.request_id") == request_id
+            and _digest(receipt["request_sha256"], "receipt.request_sha256")
+            == request_sha256,
+            "receipt request identity or digest mismatch",
+        )
+        if assumption_labels:
+            _fail(
+                receipt.get("assumption_labels") == list(assumption_labels),
+                "receipt ordered assumption labels mismatch",
+            )
+        else:
+            _fail(
+                "assumption_labels" not in receipt,
+                "unlabelled receipt unexpectedly carries assumption labels",
+            )
     if solve is not None:
         _fail(
             receipt["effective_deadline_ms"] == solve["effective_deadline_ms"],
@@ -1835,7 +2144,10 @@ def _validate_receipts(
         _fail(
             solve["solve_index"] == 1
             and all(receipt.get(key) == solve.get(key) for key in answer_keys)
-            and receipt["solve_ms"] == solve["solve_ms"]
+            and (
+                (solve.get("replayed") is True and solve["solve_ms"] == 0)
+                or receipt["solve_ms"] == solve["solve_ms"]
+            )
             and receipt["result_sha256"] == solve["result_sha256"],
             "receipt and solve response disagree",
         )
@@ -1847,6 +2159,7 @@ def _solve_from_receipt(receipt: Mapping[str, object]) -> dict[str, object]:
         "status",
         "interrupted_by",
         "core",
+        "core_labels",
         "terminal_unsat",
         "model",
         "values",
@@ -1924,6 +2237,9 @@ def _reconcile_lost_solve_response(
     session: Mapping[str, object],
     query: SourceSemanticQuery,
     receipts_before: dict[str, Any],
+    request_id: str | None,
+    request_sha256: str | None,
+    assumption_labels: tuple[str, ...],
 ) -> tuple[dict[str, Any], dict[str, object] | None, dict[str, Any] | None, int]:
     """Boundedly recover one durable terminal solve without resubmitting it."""
 
@@ -1949,6 +2265,9 @@ def _reconcile_lost_solve_response(
                 session=session,
                 query=query,
                 solve=None,
+                request_id=request_id,
+                request_sha256=request_sha256,
+                assumption_labels=assumption_labels,
             )
         except PiqdTransportLoss:
             continue
@@ -1963,7 +2282,7 @@ def _reconcile_lost_solve_response(
             observed_receipt = candidate_receipt
         if terminal and candidate_receipt is not None:
             solve = _solve_from_receipt(candidate_receipt)
-            _validate_closed_session(live, created=session, query=query, solve=solve)
+            _validate_session_frontier(live, created=session, query=query, solve=solve)
             return receipts, solve, live, attempt
 
     _fail(
@@ -1974,7 +2293,9 @@ def _reconcile_lost_solve_response(
 
 
 def _unsat_assumption_provenance(
-    query: SourceSemanticQuery, solve: Mapping[str, object]
+    query: SourceSemanticQuery,
+    solve: Mapping[str, object],
+    assumption_labels: tuple[str, ...] = (),
 ) -> dict[str, object] | None:
     if solve["status"] != "UNSAT":
         return None
@@ -1993,14 +2314,18 @@ def _unsat_assumption_provenance(
         and set(unsat_assumptions) <= set(query.assumptions),
         "PIQD unsat assumptions contain duplicates or unrequested terms",
     )
-    return {
+    provenance: dict[str, object] = {
         "basis": "get-unsat-assumptions",
-        "named_core_support": False,
+        "named_core_support": bool(assumption_labels),
         "daemon_field": "core",
         "assumption_terms": list(unsat_assumptions),
         "source_atom_ids": [assumption_to_id[term] for term in unsat_assumptions],
         "terminal_unsat": solve["terminal_unsat"],
     }
+    if assumption_labels:
+        provenance["ordered_assumption_labels"] = list(assumption_labels)
+        provenance["core_labels"] = list(solve["core_labels"])
+    return provenance
 
 
 def _validate_unsat_output_boundary(engine: Mapping[str, object]) -> None:
@@ -2080,6 +2405,416 @@ def _semantic_replay(
     return "INCONCLUSIVE_SEMANTIC_REPLAY_REJECTED", replay
 
 
+def _validate_assert_response(value: object, expected_commands: int) -> None:
+    asserted = _object(value, {"added", "commands"}, "assert response")
+    _fail(
+        _integer(asserted["added"], "assert.added") == expected_commands
+        and _integer(asserted["commands"], "assert.commands") == expected_commands,
+        "PIQD assert count mismatch",
+    )
+
+
+def _bounded_smt2_export(
+    transport: PiqdTransport,
+    route: str,
+    lifecycle: dict[str, object],
+) -> bytes:
+    for attempt in range(2):
+        try:
+            return _bytes_call(transport, f"{route}/smt2")
+        except PiqdTransportLoss:
+            losses = _integer(
+                lifecycle["export_response_losses"],
+                "session lifecycle export_response_losses",
+            )
+            lifecycle["export_response_losses"] = losses + 1
+            if attempt == 1:
+                raise
+    raise AssertionError("bounded SMT2 export loop did not return")
+
+
+def _bounded_legacy_smt2_export(transport: PiqdTransport, route: str) -> bytes:
+    """Retry one unnamed export once after a transport-only response loss."""
+
+    for attempt in range(2):
+        try:
+            return _bytes_call(transport, f"{route}/smt2")
+        except PiqdTransportLoss:
+            if attempt == 1:
+                raise
+    raise AssertionError("bounded legacy SMT2 export loop did not return")
+
+
+def _append_named_journal(
+    *,
+    transport: PiqdTransport,
+    route: str,
+    query: SourceSemanticQuery,
+    lifecycle: dict[str, object],
+    pre_exported: bytes,
+) -> bytes:
+    _fail(pre_exported == b"", "fresh named session has nonempty pre-append journal")
+    append_body = {
+        "commands": list(query.journal_commands),
+        "expect_commands": 0,
+    }
+    try:
+        response = _json_call(transport, "POST", f"{route}/assert", append_body)
+    except PiqdTransportLoss:
+        lifecycle["append_response_losses"] = 1
+        observed = _bounded_smt2_export(transport, route, lifecycle)
+        if observed == query.journal_smt2:
+            lifecycle["append_reconciled_from_export"] = True
+            return observed
+        _fail(observed == b"", "lost append response left a divergent journal")
+        lifecycle["append_retry_attempted"] = True
+        try:
+            response = _json_call(transport, "POST", f"{route}/assert", append_body)
+        except PiqdTransportLoss:
+            lifecycle["append_response_losses"] = 2
+            observed = _bounded_smt2_export(transport, route, lifecycle)
+            _fail(
+                observed == query.journal_smt2,
+                "append did not reach exact post-state after bounded retry",
+            )
+            lifecycle["append_reconciled_from_export"] = True
+            return observed
+    _validate_assert_response(response, len(query.journal_commands))
+    exported = _bounded_smt2_export(transport, route, lifecycle)
+    _fail(exported == query.journal_smt2, "GET /smt2 differs from normalized journal")
+    return exported
+
+
+def _validate_absent_session_response(value: object, where: str) -> None:
+    response = _object(value, {"error"}, where)
+    _string(response["error"], f"{where}.error")
+
+
+def _named_session_status(
+    *,
+    transport: PiqdTransport,
+    route: str,
+    solver: str,
+    label: str,
+    created: Mapping[str, object],
+    query: SourceSemanticQuery,
+    solve: Mapping[str, object] | None,
+    lifecycle: dict[str, object],
+) -> dict[str, Any] | None:
+    status, value = _json_call_with_status(transport, "GET", route)
+    _fail(status in {200, 404}, "PIQD session status HTTP mismatch")
+    lifecycle["close_status_lookups"] = (
+        _integer(
+            lifecycle["close_status_lookups"], "session lifecycle close_status_lookups"
+        )
+        + 1
+    )
+    lifecycle["close_status_http"] = status
+    if status == 404:
+        _validate_absent_session_response(value, "absent session status")
+        lifecycle["close_observed_state"] = "absent"
+        return None
+    observed = _validate_session_record(value, "session status")
+    _fail(
+        observed["lane"] == "smt"
+        and observed["solver_name"] == solver
+        and observed["label"] == label,
+        "session status identity mismatch",
+    )
+    _validate_session_frontier(observed, created=created, query=query, solve=solve)
+    lifecycle["close_observed_state"] = observed["state"]
+    return observed
+
+
+def _bounded_named_session_status(
+    *,
+    transport: PiqdTransport,
+    route: str,
+    solver: str,
+    label: str,
+    created: Mapping[str, object],
+    query: SourceSemanticQuery,
+    solve: Mapping[str, object] | None,
+    lifecycle: dict[str, object],
+) -> dict[str, Any] | None:
+    """Bound close-status recovery to one retry and retain loss evidence."""
+
+    for attempt in range(2):
+        try:
+            return _named_session_status(
+                transport=transport,
+                route=route,
+                solver=solver,
+                label=label,
+                created=created,
+                query=query,
+                solve=solve,
+                lifecycle=lifecycle,
+            )
+        except PiqdTransportLoss:
+            lifecycle["close_status_response_losses"] = (
+                _integer(
+                    lifecycle["close_status_response_losses"],
+                    "session lifecycle close_status_response_losses",
+                )
+                + 1
+            )
+            if attempt == 1:
+                lifecycle["close_observed_state"] = "unknown"
+                lifecycle["close_outcome"] = "closure_unproven"
+                raise
+    raise AssertionError("bounded close status loop did not return")
+
+
+def _validate_close_response(
+    *,
+    status: int,
+    value: object,
+    solver: str,
+    label: str,
+    created: Mapping[str, object],
+    query: SourceSemanticQuery,
+    solve: Mapping[str, object] | None,
+) -> dict[str, Any] | None:
+    _fail(status in {200, 404}, "PIQD close HTTP status mismatch")
+    if status == 404:
+        _validate_absent_session_response(value, "absent close response")
+        return None
+    closed = _validate_session(
+        value, solver=solver, label=label, expected_state="closed"
+    )
+    _validate_closed_session(closed, created=created, query=query, solve=solve)
+    return closed
+
+
+_SESSION_LIFECYCLE_KEYS = {
+    "schema",
+    "request_id",
+    "session_id",
+    "session_label",
+    "solver_profile_sha256",
+    "resume_policy",
+    "resumed_existing_session",
+    "resume_journal_state",
+    "resumed_from_receipt",
+    "create_response_lost",
+    "create_reconciled_from_listing",
+    "append_response_losses",
+    "append_retry_attempted",
+    "append_reconciled_from_export",
+    "export_response_losses",
+    "close_delete_attempted",
+    "close_response_lost",
+    "close_status_lookups",
+    "close_status_response_losses",
+    "close_status_http",
+    "close_cleanup_delete_attempted",
+    "close_cleanup_response_lost",
+    "close_observed_state",
+    "close_outcome",
+}
+
+
+def _validate_session_lifecycle(value: object) -> dict[str, Any]:
+    record = _object(value, _SESSION_LIFECYCLE_KEYS, "session lifecycle")
+    _fail(
+        record["schema"] == PIQD_SESSION_LIFECYCLE_SCHEMA,
+        "session lifecycle schema mismatch",
+    )
+    _canonical_uuid(record["request_id"], "session lifecycle.request_id")
+    _canonical_uuid(record["session_id"], "session lifecycle.session_id")
+    _string(record["session_label"], "session lifecycle.session_label")
+    _digest(
+        record["solver_profile_sha256"],
+        "session lifecycle.solver_profile_sha256",
+    )
+    _fail(
+        record["resume_policy"]
+        in {
+            None,
+            PIQD_RESUME_REQUIRE_EXISTING,
+            PIQD_RESUME_ALLOW_CREATE_IF_MISSING,
+        },
+        "session lifecycle resume policy mismatch",
+    )
+    for key in (
+        "resumed_existing_session",
+        "resumed_from_receipt",
+        "create_response_lost",
+        "create_reconciled_from_listing",
+        "append_retry_attempted",
+        "append_reconciled_from_export",
+        "close_delete_attempted",
+        "close_response_lost",
+        "close_cleanup_delete_attempted",
+        "close_cleanup_response_lost",
+    ):
+        _fail(type(record[key]) is bool, f"session lifecycle {key} is not Boolean")
+    for key in (
+        "append_response_losses",
+        "export_response_losses",
+        "close_status_lookups",
+        "close_status_response_losses",
+    ):
+        _integer(record[key], f"session lifecycle.{key}")
+    _fail(
+        record["resume_journal_state"] in {"not_resumed", "exact_pre", "exact_post"},
+        "session lifecycle journal state mismatch",
+    )
+    _fail(
+        record["close_status_http"] in {None, 200, 404},
+        "session lifecycle close HTTP status mismatch",
+    )
+    _fail(
+        record["close_observed_state"] in {"closed", "absent", "unknown"},
+        "session lifecycle close observed state mismatch",
+    )
+    _fail(
+        record["close_outcome"]
+        in {
+            "closed_delete_response",
+            "absent_delete_response",
+            "closed_status",
+            "absent_status",
+            "closed_after_cleanup",
+            "absent_after_cleanup",
+            "closed_resume_status",
+            "closure_unproven",
+        },
+        "session lifecycle close outcome mismatch",
+    )
+    _fail(
+        record["create_reconciled_from_listing"]
+        is (record["create_response_lost"] is True),
+        "session lifecycle create reconciliation mismatch",
+    )
+    _fail(
+        record["append_response_losses"] <= 2,
+        "session lifecycle append loss count exceeds bound",
+    )
+    _fail(
+        record["close_status_lookups"] <= 2,
+        "session lifecycle close lookup count exceeds bound",
+    )
+    _fail(
+        record["close_status_response_losses"] <= 2,
+        "session lifecycle close status loss count exceeds bound",
+    )
+    if record["close_outcome"] == "closure_unproven":
+        _fail(
+            record["close_status_response_losses"] == 2
+            and record["close_observed_state"] == "unknown",
+            "unproven close lifecycle lacks bounded loss evidence",
+        )
+    return record
+
+
+def _close_named_session(
+    *,
+    transport: PiqdTransport,
+    route: str,
+    solver: str,
+    label: str,
+    created: Mapping[str, object],
+    query: SourceSemanticQuery,
+    solve: Mapping[str, object] | None,
+    lifecycle: dict[str, object],
+    already_closed: bool,
+) -> dict[str, Any] | None:
+    if already_closed:
+        observed = _bounded_named_session_status(
+            transport=transport,
+            route=route,
+            solver=solver,
+            label=label,
+            created=created,
+            query=query,
+            solve=solve,
+            lifecycle=lifecycle,
+        )
+        _fail(
+            observed is not None and observed["state"] == "closed",
+            "resumed closed session changed state",
+        )
+        lifecycle["close_outcome"] = "closed_resume_status"
+        return observed
+    lifecycle["close_delete_attempted"] = True
+    try:
+        status, value = _json_call_with_status(transport, "DELETE", route)
+    except PiqdTransportLoss:
+        lifecycle["close_response_lost"] = True
+    else:
+        closed = _validate_close_response(
+            status=status,
+            value=value,
+            solver=solver,
+            label=label,
+            created=created,
+            query=query,
+            solve=solve,
+        )
+        lifecycle["close_observed_state"] = "absent" if closed is None else "closed"
+        lifecycle["close_outcome"] = (
+            "absent_delete_response" if closed is None else "closed_delete_response"
+        )
+        return closed
+
+    observed = _bounded_named_session_status(
+        transport=transport,
+        route=route,
+        solver=solver,
+        label=label,
+        created=created,
+        query=query,
+        solve=solve,
+        lifecycle=lifecycle,
+    )
+    if observed is None or observed["state"] == "closed":
+        lifecycle["close_outcome"] = (
+            "absent_status" if observed is None else "closed_status"
+        )
+        return observed
+    _fail(
+        observed["state"] in {"live", "detached"},
+        "lost close response left an unsupported session state",
+    )
+    lifecycle["close_cleanup_delete_attempted"] = True
+    try:
+        cleanup_status, cleanup_value = _json_call_with_status(
+            transport, "DELETE", route
+        )
+    except PiqdTransportLoss:
+        lifecycle["close_cleanup_response_lost"] = True
+    else:
+        _validate_close_response(
+            status=cleanup_status,
+            value=cleanup_value,
+            solver=solver,
+            label=label,
+            created=created,
+            query=query,
+            solve=solve,
+        )
+    observed = _bounded_named_session_status(
+        transport=transport,
+        route=route,
+        solver=solver,
+        label=label,
+        created=created,
+        query=query,
+        solve=solve,
+        lifecycle=lifecycle,
+    )
+    _fail(
+        observed is None or observed["state"] == "closed",
+        "bounded close cleanup did not prove the session closed",
+    )
+    lifecycle["close_outcome"] = (
+        "absent_after_cleanup" if observed is None else "closed_after_cleanup"
+    )
+    return observed
+
+
 def _run_solver(
     query: SourceSemanticQuery,
     solver: str,
@@ -2087,28 +2822,237 @@ def _run_solver(
     verifier: SemanticVerifier,
     output_fd: int,
     used_session_ids: set[str],
+    request_id: str | None = None,
+    assumption_labels: tuple[str, ...] = (),
+    resume_policy: str | None = None,
 ) -> dict[str, object]:
-    label = (
+    _fail(
+        request_id is not None or not assumption_labels,
+        "assumption_labels require a caller-owned request_id",
+    )
+    if request_id is not None:
+        request_id = _canonical_uuid(request_id, "request_id")
+        assumption_labels = _validated_assumption_labels(query, assumption_labels)
+    else:
+        assumption_labels = ()
+        _fail(resume_policy is None, "resume_policy requires a named request")
+    _fail(
+        resume_policy is None or type(resume_policy) is str,
+        "resume_policy must be an exact string or null",
+    )
+    _fail(
+        resume_policy
+        in {
+            None,
+            PIQD_RESUME_REQUIRE_EXISTING,
+            PIQD_RESUME_ALLOW_CREATE_IF_MISSING,
+        },
+        "unsupported named-session resume policy",
+    )
+    preexisting_output_inventory = tuple(sorted(os.listdir(output_fd)))
+    allow_existing_artifacts = resume_policy is not None
+
+    def write_artifact(name: str, payload: bytes) -> dict[str, object]:
+        return _write_or_verify_immutable(
+            output_fd,
+            name,
+            payload,
+            allow_existing=allow_existing_artifacts,
+        )
+
+    base_label = (
         f"p97-smt-source/{query.descriptor['query_id']}/{solver}/"
         f"{query.descriptor['semantic_sha256'][:12]}"
     )
-    create_body = {"solver": solver, "lane": "smt", "label": label}
-    raw_create = _json_call(transport, "POST", "/sessions", create_body, status=201)
-    recoverable_session_id = _recover_session_id(raw_create)
-    try:
-        session = _validate_session(
-            raw_create, solver=solver, label=label, expected_state="live"
+    solve_request: dict[str, object] = {
+        "assumptions": list(query.assumptions),
+        "timeout_ms": query.descriptor["solver_profile"]["timeout_ms"],
+        "include_model": True,
+        "get_values": list(query.get_values),
+    }
+    request_sha256: str | None = None
+    named_artifacts: dict[str, object] = {}
+    lifecycle: dict[str, object] | None = None
+    if request_id is None:
+        label = base_label
+    else:
+        profile = _snapshot_builtin_json(
+            query.descriptor["solver_profile"], "named solver profile"
         )
-        _validate_fresh_session(session)
-        _fail(session["id"] not in used_session_ids, "PIQD reused a session identity")
-    except BaseException:
-        if recoverable_session_id is not None:
+        profile_sha256 = _sha256(_canonical_json(profile))
+        label = f"{base_label}/{request_id}/{profile_sha256[:12]}"
+        solve_request.update(
+            {
+                "assumption_labels": list(assumption_labels),
+                "request_id": request_id,
+            }
+        )
+        request_sha256 = piqd_solve_request_digest(query, assumption_labels)
+        create_body = {"solver": solver, "lane": "smt", "label": label}
+        named_artifacts["session_create_request"] = write_artifact(
+            f"{solver}.session-create-request.json",
+            _json_artifact(
+                {
+                    "schema": "piqd-smt-session-create-request/v1",
+                    "request": create_body,
+                    "request_id": request_id,
+                    "session_label": label,
+                    "solver_profile": profile,
+                    "solver_profile_sha256": profile_sha256,
+                }
+            ),
+        )
+        named_artifacts["pre_append_smt2"] = write_artifact(
+            f"{solver}.pre-append.smt2", b""
+        )
+        named_artifacts["expected_post_append_smt2"] = write_artifact(
+            f"{solver}.expected-post-append.smt2", query.journal_smt2
+        )
+        append_request = {
+            "commands": list(query.journal_commands),
+            "expect_commands": 0,
+        }
+        named_artifacts["journal_frontiers"] = write_artifact(
+            f"{solver}.journal-frontiers.json",
+            _json_artifact(
+                {
+                    "schema": "piqd-smt-journal-frontiers/v1",
+                    "append_request": append_request,
+                    "pre": {
+                        "commands": 0,
+                        "bytes": 0,
+                        "sha256": _sha256(b""),
+                        "artifact": named_artifacts["pre_append_smt2"],
+                    },
+                    "post": {
+                        "commands": len(query.journal_commands),
+                        "bytes": len(query.journal_smt2),
+                        "sha256": _sha256(query.journal_smt2),
+                        "artifact": named_artifacts["expected_post_append_smt2"],
+                    },
+                }
+            ),
+        )
+        named_artifacts["solve_request"] = write_artifact(
+            f"{solver}.solve-request.json",
+            _json_artifact(
+                {
+                    "schema": "piqd-smt-solve-request/v1",
+                    "journal_frontier": {
+                        "base_commands": len(query.journal_commands),
+                        "base_bytes": len(query.journal_smt2),
+                        "base_sha256": _sha256(query.journal_smt2),
+                    },
+                    "request": solve_request,
+                    "request_id": request_id,
+                    "request_sha256": request_sha256,
+                }
+            ),
+        )
+        lifecycle = {
+            "schema": PIQD_SESSION_LIFECYCLE_SCHEMA,
+            "request_id": request_id,
+            "session_id": None,
+            "session_label": label,
+            "solver_profile_sha256": profile_sha256,
+            "resume_policy": resume_policy,
+            "resumed_existing_session": False,
+            "resume_journal_state": "not_resumed",
+            "resumed_from_receipt": False,
+            "create_response_lost": False,
+            "create_reconciled_from_listing": False,
+            "append_response_losses": 0,
+            "append_retry_attempted": False,
+            "append_reconciled_from_export": False,
+            "export_response_losses": 0,
+            "close_delete_attempted": False,
+            "close_response_lost": False,
+            "close_status_lookups": 0,
+            "close_status_response_losses": 0,
+            "close_status_http": None,
+            "close_cleanup_delete_attempted": False,
+            "close_cleanup_response_lost": False,
+            "close_observed_state": None,
+            "close_outcome": None,
+        }
+
+    create_body = {"solver": solver, "lane": "smt", "label": label}
+    observed_session: dict[str, Any] | None = None
+    resumed_existing_session = False
+    if resume_policy is not None:
+        observed_session = _discover_named_session(
+            transport=transport,
+            solver=solver,
+            label=label,
+            allow_missing=(
+                resume_policy == PIQD_RESUME_ALLOW_CREATE_IF_MISSING
+                and not preexisting_output_inventory
+            ),
+        )
+        resumed_existing_session = observed_session is not None
+        _fail(lifecycle is not None, "named lifecycle is unavailable")
+        lifecycle["resumed_existing_session"] = resumed_existing_session
+    if observed_session is None:
+        try:
+            raw_create = _json_call(
+                transport, "POST", "/sessions", create_body, status=201
+            )
+        except PiqdTransportLoss:
+            if request_id is None:
+                raise
+            _fail(lifecycle is not None, "named lifecycle is unavailable")
+            lifecycle["create_response_lost"] = True
+            observed_session = _reconcile_lost_create_response(
+                transport=transport, solver=solver, label=label
+            )
+            lifecycle["create_reconciled_from_listing"] = True
+        else:
+            recoverable_session_id = _recover_session_id(raw_create)
             try:
-                _json_call(transport, "DELETE", f"/sessions/{recoverable_session_id}")
+                observed_session = _validate_session(
+                    raw_create, solver=solver, label=label, expected_state="live"
+                )
+                _validate_fresh_session(observed_session)
+            except BaseException:
+                if recoverable_session_id is not None:
+                    try:
+                        _json_call(
+                            transport,
+                            "DELETE",
+                            f"/sessions/{recoverable_session_id}",
+                        )
+                    except Exception as cleanup_error:  # noqa: BLE001
+                        _ = cleanup_error
+                raise
+    _fail(observed_session is not None, "PIQD session was not established")
+
+    session = observed_session
+    if resumed_existing_session:
+        existing_session_payload = _read_existing_output(
+            output_fd, f"{solver}.session.json"
+        )
+        if existing_session_payload is not None:
+            session = _validate_session(
+                _strict_json(existing_session_payload, "existing session artifact"),
+                solver=solver,
+                label=label,
+                expected_state="live",
+            )
+            _validate_fresh_session(session)
+    _fail(
+        session["id"] == observed_session["id"],
+        "resumed PIQD session disagrees with retained session identity",
+    )
+    if session["id"] in used_session_ids:
+        if not resumed_existing_session:
+            try:
+                _json_call(transport, "DELETE", f"/sessions/{session['id']}")
             except Exception as cleanup_error:  # noqa: BLE001
                 _ = cleanup_error
-        raise
+        raise SmtSourceAdapterError("PIQD reused a session identity")
     session_id = session["id"]
+    if lifecycle is not None:
+        lifecycle["session_id"] = session_id
     used_session_ids.add(session_id)
     route = f"/sessions/{session_id}"
     primary_error: BaseException | None = None
@@ -2116,52 +3060,217 @@ def _run_solver(
     closed: dict[str, Any] | None = None
     engine: dict[str, object] | None = None
     try:
-        asserted = _object(
-            _json_call(
-                transport,
-                "POST",
-                f"{route}/assert",
-                {"commands": list(query.journal_commands), "expect_commands": 0},
-            ),
-            {"added", "commands"},
-            "assert response",
-        )
-        _fail(
-            _integer(asserted["added"], "assert.added") == len(query.journal_commands)
-            and _integer(asserted["commands"], "assert.commands")
-            == len(query.journal_commands),
-            "PIQD assert count mismatch",
-        )
-        exported = _bytes_call(transport, f"{route}/smt2")
-        _fail(
-            exported == query.journal_smt2, "GET /smt2 differs from normalized journal"
-        )
-        receipts_before, before_receipt = _validate_receipts(
+        if request_id is not None:
+            _fail(lifecycle is not None, "named lifecycle is unavailable")
+            pre_exported = _bounded_smt2_export(transport, route, lifecycle)
+            if resumed_existing_session and pre_exported == query.journal_smt2:
+                lifecycle["resume_journal_state"] = "exact_post"
+                _fail(
+                    observed_session["clauses"] == len(query.journal_commands),
+                    "resumed post-append command count mismatch",
+                )
+                exported = pre_exported
+            else:
+                _fail(
+                    pre_exported == b"",
+                    "PIQD session journal is neither exact pre-state nor exact post-state",
+                )
+                _validate_unsolved_session_frontier(observed_session, commands=0)
+                _fail(
+                    observed_session["state"] != "closed",
+                    "cannot append to a resumed closed PIQD session",
+                )
+                if resumed_existing_session:
+                    lifecycle["resume_journal_state"] = "exact_pre"
+                exported = _append_named_journal(
+                    transport=transport,
+                    route=route,
+                    query=query,
+                    lifecycle=lifecycle,
+                    pre_exported=pre_exported,
+                )
+        else:
+            _validate_assert_response(
+                _json_call(
+                    transport,
+                    "POST",
+                    f"{route}/assert",
+                    {
+                        "commands": list(query.journal_commands),
+                        "expect_commands": 0,
+                    },
+                ),
+                len(query.journal_commands),
+            )
+            exported = _bounded_legacy_smt2_export(transport, route)
+            _fail(
+                exported == query.journal_smt2,
+                "GET /smt2 differs from normalized journal",
+            )
+
+        remote_receipts, remote_receipt = _validate_receipts(
             _json_call(transport, "GET", f"{route}/receipts"),
             session=session,
             query=query,
             solve=None,
-            expected_count=0,
+            expected_count=None if resumed_existing_session else 0,
+            request_id=request_id,
+            request_sha256=request_sha256,
+            assumption_labels=assumption_labels,
         )
-        _fail(before_receipt is None, "fresh session unexpectedly has a receipt")
-        solve_request = {
-            "assumptions": list(query.assumptions),
-            "timeout_ms": query.descriptor["solver_profile"]["timeout_ms"],
-            "include_model": True,
-            "get_values": list(query.get_values),
-        }
-        response_lost = False
-        try:
-            solve = _validate_solve(
-                _json_call(transport, "POST", f"{route}/solve", solve_request),
-                timeout_ms=solve_request["timeout_ms"],
+        existing_receipts_before = (
+            _read_existing_output(output_fd, f"{solver}.receipts-before.json")
+            if resumed_existing_session
+            else None
+        )
+        if existing_receipts_before is None:
+            receipts_before = remote_receipts
+        else:
+            receipts_before, retained_before_receipt = _validate_receipts(
+                _strict_json(
+                    existing_receipts_before, "existing pre-solve receipts artifact"
+                ),
+                session=session,
+                query=query,
+                solve=None,
+                expected_count=0,
+                request_id=request_id,
+                request_sha256=request_sha256,
+                assumption_labels=assumption_labels,
             )
-        except PiqdTransportLoss:
-            response_lost = True
-            solve = None
+            _fail(
+                retained_before_receipt is None,
+                "existing pre-solve receipts artifact is not empty",
+            )
+
+        response_lost = False
+        request_replayed: bool | None = None
+        replay_attempted = False
         reconciliation_session = None
         reconciliation_attempts = 0
-        if response_lost:
+        reconciled_from_receipt = False
+        resumed_from_receipt = False
+        if remote_receipt is not None:
+            _fail(resumed_existing_session, "fresh session unexpectedly has a receipt")
+            derived_solve = _solve_from_receipt(remote_receipt)
+            solve_payloads = {
+                "solve": _read_existing_output(output_fd, f"{solver}.solve.json"),
+                "reconciled_solve": _read_existing_output(
+                    output_fd, f"{solver}.reconciled-solve.json"
+                ),
+            }
+            present = [
+                key for key, payload in solve_payloads.items() if payload is not None
+            ]
+            _fail(len(present) <= 1, "resume has multiple retained solve artifacts")
+            if present:
+                solve_key = present[0]
+                raw_solve = _strict_json(
+                    solve_payloads[solve_key], "existing solve artifact"
+                )
+                if type(raw_solve) is dict and "replayed" in raw_solve:
+                    _fail(
+                        solve_key != "reconciled_solve"
+                        or raw_solve["replayed"] is True,
+                        "retained named retry lacks replay proof",
+                    )
+                    solve = _validate_solve(
+                        raw_solve,
+                        timeout_ms=solve_request["timeout_ms"],
+                        assumptions=query.assumptions,
+                        assumption_labels=assumption_labels,
+                        named_request=True,
+                        replay_retry=raw_solve.get("replayed") is True,
+                    )
+                else:
+                    _fail(
+                        raw_solve == derived_solve,
+                        "retained solve artifact disagrees with receipt",
+                    )
+                    solve = derived_solve
+                response_lost = solve_key == "reconciled_solve"
+            else:
+                solve = derived_solve
+                response_lost = True
+            receipts, receipt = _validate_receipts(
+                remote_receipts,
+                session=session,
+                query=query,
+                solve=solve,
+                request_id=request_id,
+                request_sha256=request_sha256,
+                assumption_labels=assumption_labels,
+            )
+            request_replayed = True
+            reconciled_from_receipt = True
+            resumed_from_receipt = True
+            reconciliation_session = observed_session
+            _fail(lifecycle is not None, "named lifecycle is unavailable")
+            lifecycle["resumed_from_receipt"] = True
+            _validate_session_frontier(
+                observed_session, created=session, query=query, solve=solve
+            )
+        else:
+            if resumed_existing_session:
+                observed_session = _validate_session_record(
+                    _json_call(transport, "GET", route),
+                    "resumed unsolved session status",
+                )
+                _fail(
+                    observed_session["lane"] == "smt"
+                    and observed_session["solver_name"] == solver
+                    and observed_session["label"] == label,
+                    "resumed unsolved session identity mismatch",
+                )
+                _validate_session_frontier(
+                    observed_session,
+                    created=session,
+                    query=query,
+                    solve=None,
+                )
+                _fail(
+                    observed_session["state"] != "closed",
+                    "resumed closed session has no solve receipt",
+                )
+            try:
+                solve = _validate_solve(
+                    _json_call(transport, "POST", f"{route}/solve", solve_request),
+                    timeout_ms=solve_request["timeout_ms"],
+                    assumptions=query.assumptions,
+                    assumption_labels=assumption_labels,
+                    named_request=request_id is not None,
+                )
+            except PiqdTransportLoss:
+                response_lost = True
+                solve = None
+                if request_id is not None:
+                    replay_attempted = True
+                    try:
+                        solve = _validate_solve(
+                            _json_call(
+                                transport, "POST", f"{route}/solve", solve_request
+                            ),
+                            timeout_ms=solve_request["timeout_ms"],
+                            assumptions=query.assumptions,
+                            assumption_labels=assumption_labels,
+                            named_request=True,
+                            replay_retry=True,
+                        )
+                        _fail(
+                            solve["replayed"] is True,
+                            "named solve retry did not prove request replay",
+                        )
+                        request_replayed = solve["replayed"]
+                    except PiqdTransportLoss:
+                        solve = None
+            if (
+                solve is not None
+                and request_id is not None
+                and request_replayed is None
+            ):
+                request_replayed = solve["replayed"]
+
+        if response_lost and solve is None:
             receipts, solve, reconciliation_session, reconciliation_attempts = (
                 _reconcile_lost_solve_response(
                     transport=transport,
@@ -2171,30 +3280,37 @@ def _run_solver(
                     session=session,
                     query=query,
                     receipts_before=receipts_before,
+                    request_id=request_id,
+                    request_sha256=request_sha256,
+                    assumption_labels=assumption_labels,
                 )
             )
+            reconciled_from_receipt = solve is not None
             receipt = None if solve is None else receipts["receipts"][0]
-        else:
+        elif remote_receipt is None:
             receipts, receipt = _validate_receipts(
                 _json_call(transport, "GET", f"{route}/receipts"),
                 session=session,
                 query=query,
                 solve=solve,
+                request_id=request_id,
+                request_sha256=request_sha256,
+                assumption_labels=assumption_labels,
             )
         if solve is None:
             _fail(receipt is None, "receipt reconciliation state is inconsistent")
             artifacts = {
-                "session": _write_immutable(
-                    output_fd, f"{solver}.session.json", _json_artifact(session)
+                **named_artifacts,
+                "session": write_artifact(
+                    f"{solver}.session.json", _json_artifact(session)
                 ),
-                "smt2": _write_immutable(output_fd, f"{solver}.smt2", exported),
-                "receipts_before": _write_immutable(
-                    output_fd,
+                "smt2": write_artifact(f"{solver}.smt2", exported),
+                "receipts_before": write_artifact(
                     f"{solver}.receipts-before.json",
                     _json_artifact(receipts_before),
                 ),
-                "receipts": _write_immutable(
-                    output_fd, f"{solver}.receipts.json", _json_artifact(receipts)
+                "receipts": write_artifact(
+                    f"{solver}.receipts.json", _json_artifact(receipts)
                 ),
             }
             engine = {
@@ -2221,20 +3337,22 @@ def _run_solver(
             effective_status, semantic = _semantic_replay(
                 verifier, query, solver, solve
             )
-            unsat_assumptions = _unsat_assumption_provenance(query, solve)
+            unsat_assumptions = _unsat_assumption_provenance(
+                query, solve, assumption_labels
+            )
             locally_recomputed_digest = piqd_result_digest(solve)
             artifacts = {
-                "session": _write_immutable(
-                    output_fd, f"{solver}.session.json", _json_artifact(session)
+                **named_artifacts,
+                "session": write_artifact(
+                    f"{solver}.session.json", _json_artifact(session)
                 ),
-                "smt2": _write_immutable(output_fd, f"{solver}.smt2", exported),
-                "receipts_before": _write_immutable(
-                    output_fd,
+                "smt2": write_artifact(f"{solver}.smt2", exported),
+                "receipts_before": write_artifact(
                     f"{solver}.receipts-before.json",
                     _json_artifact(receipts_before),
                 ),
-                "receipts": _write_immutable(
-                    output_fd, f"{solver}.receipts.json", _json_artifact(receipts)
+                "receipts": write_artifact(
+                    f"{solver}.receipts.json", _json_artifact(receipts)
                 ),
             }
             solve_artifact = (
@@ -2243,17 +3361,16 @@ def _run_solver(
                 else f"{solver}.solve.json"
             )
             artifacts["reconciled_solve" if response_lost else "solve"] = (
-                _write_immutable(output_fd, solve_artifact, _json_artifact(solve))
+                write_artifact(solve_artifact, _json_artifact(solve))
             )
             if reconciliation_session is not None:
-                artifacts["reconciliation_session"] = _write_immutable(
-                    output_fd,
+                artifacts["reconciliation_session"] = write_artifact(
                     f"{solver}.reconciliation-session.json",
                     _json_artifact(reconciliation_session),
                 )
             if semantic is not None:
-                artifacts["semantic"] = _write_immutable(
-                    output_fd, f"{solver}.semantic.json", _json_artifact(semantic)
+                artifacts["semantic"] = write_artifact(
+                    f"{solver}.semantic.json", _json_artifact(semantic)
                 )
             engine = {
                 "solver": solver,
@@ -2265,7 +3382,7 @@ def _run_solver(
                 "solve_index": solve["solve_index"],
                 "result_sha256": receipt["result_sha256"],
                 "response_lost": response_lost,
-                "reconciled_from_receipt": response_lost,
+                "reconciled_from_receipt": reconciled_from_receipt,
                 "reconciliation_attempts": reconciliation_attempts,
                 "result_digest_advisory": {
                     "algorithm": "piqd-smt-solve-result/v1",
@@ -2278,27 +3395,118 @@ def _run_solver(
                 "artifacts": artifacts,
                 "claims": dict(FALSE_CLAIMS),
             }
+        if request_id is not None:
+            _fail(request_sha256 is not None, "named request lacks expected digest")
+            engine.update(
+                {
+                    "request_id": request_id,
+                    "request_sha256": request_sha256,
+                    "assumption_labels": list(assumption_labels),
+                    "request_replay_attempted": replay_attempted,
+                    "request_replayed": request_replayed,
+                    "resumed_from_receipt": resumed_from_receipt,
+                }
+            )
     except BaseException as exc:
         primary_error = exc
         raise
     finally:
         try:
-            closed = _validate_session(
-                _json_call(transport, "DELETE", route),
-                solver=solver,
-                label=label,
-                expected_state="closed",
-            )
-            _validate_closed_session(
-                closed, created=session, query=query, solve=solve_for_close
-            )
+            if request_id is None:
+                closed = _validate_session(
+                    _json_call(transport, "DELETE", route),
+                    solver=solver,
+                    label=label,
+                    expected_state="closed",
+                )
+                _validate_closed_session(
+                    closed, created=session, query=query, solve=solve_for_close
+                )
+            else:
+                _fail(lifecycle is not None, "named lifecycle is unavailable")
+                closed = _close_named_session(
+                    transport=transport,
+                    route=route,
+                    solver=solver,
+                    label=label,
+                    created=session,
+                    query=query,
+                    solve=solve_for_close,
+                    lifecycle=lifecycle,
+                    already_closed=(
+                        resumed_existing_session
+                        and observed_session["state"] == "closed"
+                    ),
+                )
         except BaseException:
+            if (
+                request_id is not None
+                and lifecycle is not None
+                and lifecycle.get("close_outcome") == "closure_unproven"
+            ):
+                try:
+                    write_artifact(
+                        f"{solver}.session-lifecycle.json",
+                        _json_artifact(lifecycle),
+                    )
+                except Exception:
+                    if primary_error is None:
+                        raise
             if primary_error is None:
                 raise
-    _fail(engine is not None and closed is not None, "PIQD solver run did not complete")
-    engine["artifacts"]["closed_session"] = _write_immutable(
-        output_fd, f"{solver}.closed-session.json", _json_artifact(closed)
+    _fail(
+        engine is not None and (request_id is not None or closed is not None),
+        "PIQD solver run did not complete",
     )
+    if closed is not None:
+        engine["artifacts"]["closed_session"] = write_artifact(
+            f"{solver}.closed-session.json", _json_artifact(closed)
+        )
+    if request_id is not None:
+        _fail(lifecycle is not None, "named lifecycle is unavailable")
+        lifecycle = _validate_session_lifecycle(lifecycle)
+        lifecycle_payload = _json_artifact(lifecycle)
+        existing_lifecycle = _read_existing_output(
+            output_fd, f"{solver}.session-lifecycle.json"
+        )
+        if existing_lifecycle is None:
+            lifecycle_record = lifecycle
+            lifecycle_artifact = write_artifact(
+                f"{solver}.session-lifecycle.json", lifecycle_payload
+            )
+        else:
+            lifecycle_record = _validate_session_lifecycle(
+                _strict_json(existing_lifecycle, "existing session lifecycle"),
+            )
+            for key in (
+                "schema",
+                "request_id",
+                "session_id",
+                "session_label",
+                "solver_profile_sha256",
+            ):
+                _fail(
+                    lifecycle_record[key] == lifecycle[key],
+                    "existing session lifecycle identity disagrees",
+                )
+            lifecycle_artifact = {
+                "path": f"{solver}.session-lifecycle.json",
+                "bytes": len(existing_lifecycle),
+                "sha256": _sha256(existing_lifecycle),
+            }
+            if (
+                lifecycle_record["close_outcome"] == "closure_unproven"
+                and lifecycle["close_outcome"] != "closure_unproven"
+            ):
+                # The first run's loss/identity record is immutable evidence.  A
+                # resumed run publishes its proved close under a distinct name;
+                # never replace or unlink the original record.
+                engine["artifacts"]["final_session_lifecycle"] = write_artifact(
+                    f"{solver}.session-lifecycle-final.json", lifecycle_payload
+                )
+                lifecycle_record = lifecycle
+        engine["session_lifecycle"] = lifecycle_record
+        engine["artifacts"]["session_lifecycle"] = lifecycle_artifact
     _validate_unsat_output_boundary(engine)
     return engine
 
@@ -2314,6 +3522,9 @@ def run_authenticated_single_solver_query(
     semantic_verifier: SemanticVerifier,
     output_fd: int,
     used_session_ids: set[str] | None = None,
+    request_id: str | None = None,
+    assumption_labels: tuple[str, ...] | None = None,
+    resume_policy: str | None = None,
 ) -> dict[str, object]:
     """Run one authenticated solver in one fresh PIQD session and one solve.
 
@@ -2337,6 +3548,20 @@ def run_authenticated_single_solver_query(
         type(output_fd) is int and output_fd >= 0,
         "single-solver output descriptor is invalid",
     )
+    if request_id is None:
+        _fail(
+            assumption_labels is None,
+            "assumption_labels require a caller-owned request_id",
+        )
+        _fail(resume_policy is None, "resume_policy requires a named request")
+        labels: tuple[str, ...] = ()
+    else:
+        request_id = _canonical_uuid(request_id, "request_id")
+        _fail(
+            assumption_labels is not None,
+            "named request requires an exact assumption_labels tuple",
+        )
+        labels = _validated_assumption_labels(query, assumption_labels)
     if used_session_ids is None:
         used_session_ids = set()
     _fail(
@@ -2351,6 +3576,9 @@ def run_authenticated_single_solver_query(
         semantic_verifier,
         output_fd,
         used_session_ids,
+        request_id,
+        labels,
+        resume_policy,
     )
 
 
@@ -2493,6 +3721,10 @@ __all__ = [
     "MANIFEST_SCHEMA",
     "PIQD_EFFECTIVE_DEADLINE_GRACE_MS",
     "PIQD_HTTP_RESPONSE_MARGIN_MS",
+    "PIQD_RESUME_ALLOW_CREATE_IF_MISSING",
+    "PIQD_RESUME_REQUIRE_EXISTING",
+    "PIQD_SESSION_LIFECYCLE_SCHEMA",
+    "PIQD_SOLVE_REQUEST_DIGEST_VERSION",
     "QUERY_SCHEMA",
     "RESULT_SCHEMA",
     "SOLVER_PROFILE_SCHEMA",
@@ -2510,6 +3742,7 @@ __all__ = [
     "load_source_semantic_query",
     "normalize_state_journal",
     "piqd_result_digest",
+    "piqd_solve_request_digest",
     "run_authenticated_single_solver_query",
     "run_source_semantic_query",
     "split_smt2_commands",

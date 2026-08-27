@@ -440,7 +440,10 @@ class PolynomialSystem:
             },
             "system",
         )
-        if system["schema"] != POLYNOMIAL_SYSTEM_SCHEMA:
+        if (
+            type(system["schema"]) is not str
+            or system["schema"] != POLYNOMIAL_SYSTEM_SCHEMA
+        ):
             _fail("system.schema is unsupported")
         raw_variables = _array(system["variable_order"], "system.variable_order")
         variable_order = tuple(
