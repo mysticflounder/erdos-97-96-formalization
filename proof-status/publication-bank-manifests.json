@@ -1,0 +1,206 @@
+{
+  "bank_count": 1,
+  "banks": [
+    {
+      "aggregate_certificate_theorems": [
+        "Problem97.P4CompactAtomBindingScratch.exact_binding_data",
+        "Problem97.P4DirectOuterArcAdapterScratch.directRowArcFiniteData_batch_valid",
+        "CompactWindowedRupReplay.startUnsatisfiable",
+        "WindowedRupReplay.startUnsatisfiable"
+      ],
+      "axiom_closures": [
+        {
+          "axioms": [
+            "Lean.ofReduceBool",
+            "Lean.trustCompiler",
+            "propext"
+          ],
+          "symbol": "Problem97.P4CompactAtomBindingScratch.exact_binding_data"
+        },
+        {
+          "axioms": [
+            "Classical.choice",
+            "Lean.ofReduceBool",
+            "Lean.trustCompiler",
+            "Quot.sound",
+            "propext"
+          ],
+          "symbol": "Problem97.P4DirectOuterArcAdapterScratch.directRowArcFiniteData_batch_valid"
+        },
+        {
+          "axioms": [
+            "Classical.choice",
+            "Lean.ofReduceBool",
+            "Lean.trustCompiler",
+            "Quot.sound",
+            "propext"
+          ],
+          "symbol": "CompactWindowedRupReplay.startUnsatisfiable"
+        },
+        {
+          "axioms": [
+            "Classical.choice",
+            "Lean.ofReduceBool",
+            "Lean.trustCompiler",
+            "Quot.sound",
+            "propext"
+          ],
+          "symbol": "WindowedRupReplay.startUnsatisfiable"
+        },
+        {
+          "axioms": [
+            "Classical.choice",
+            "Lean.ofReduceBool",
+            "Lean.trustCompiler",
+            "Quot.sound",
+            "propext"
+          ],
+          "symbol": "Problem97.ATailUniqueFourCardElevenCertificateScratch.false_of_cardElevenOriginalUniqueFourResidual"
+        },
+        {
+          "axioms": [
+            "Classical.choice",
+            "Lean.ofReduceBool",
+            "Lean.trustCompiler",
+            "Quot.sound",
+            "propext"
+          ],
+          "symbol": "Problem97.ATailCardElevenUniqueFourCertificate.false_of_firstApexUniqueRadiusExactFourResidual"
+        }
+      ],
+      "axiom_union": [
+        "Classical.choice",
+        "Lean.ofReduceBool",
+        "Lean.trustCompiler",
+        "Quot.sound",
+        "propext"
+      ],
+      "bank_id": "card-eleven-unique-four-certificate",
+      "checker_theorem": "Problem97.ATailUniqueFourCardElevenCertificateScratch.false_of_cardElevenOriginalUniqueFourResidual",
+      "coordinator_active_manifest_file_count": 2057,
+      "coordinator_dependency_source_count": 2125,
+      "coordinator_inactive_manifest_files": [
+        {
+          "destination": "lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoSourceBridge/Kalmanson/MissingRetainedOrientations.lean",
+          "module": "Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4ExactTwoSourceBridge.Kalmanson.MissingRetainedOrientations",
+          "promoted_sha256": "66c735529faeeb3661aeb4840562bde200f7a182b73c0c02c3cbda17680f7fdf"
+        },
+        {
+          "destination": "lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4CriticalSupportOccurrenceBridge/Residual55Families.lean",
+          "module": "Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4P4CriticalSupportOccurrenceBridge.Residual55Families",
+          "promoted_sha256": "0373d9a34247de84ba5c40542df73eec67803bad831ae30fc64724d739cbc39e"
+        },
+        {
+          "destination": "lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4PrefixedClosures/P4OccurrenceClosure/Kalmanson/Families.lean",
+          "module": "Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4P4PrefixedClosures.P4OccurrenceClosure.Kalmanson.Families",
+          "promoted_sha256": "a67ca07a6652e77fc4aa89f51b6600c47f476403af30687f0a9023c11e5564aa"
+        },
+        {
+          "destination": "lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_survivor_pair.lean",
+          "module": "Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.UniqueRowProducer.card_five_interior_survivor_pair",
+          "promoted_sha256": "feb8fe8d5a7cfe5d0b12dd71c073561ef1c083018f3d6543ee3b8f34798d7fca"
+        }
+      ],
+      "coordinator_reference_missing_count": 0,
+      "coordinator_reference_module_count": 2125,
+      "coordinator_reference_stale_count": 0,
+      "generated_source_sha256": "4a76be38f745917fb7f1f1bfc99902adedaf5df705482d463111b5f3ef48cfc0",
+      "generator_entrypoint": "scripts/promote_card_eleven_unique_four_certificate.py",
+      "generator_version": {
+        "promotion_manifest": {
+          "bytes": 2454058,
+          "path": "lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/promotion-manifest.json",
+          "sha256": "cb43f11093129a9fbea8d0427c8805dbdfc4a98b2cffc53a08d5b9336c5bfccd"
+        },
+        "promotion_schema": "card-eleven-unique-four-source-promotion-v2",
+        "script": {
+          "bytes": 78696,
+          "path": "scripts/promote_card_eleven_unique_four_certificate.py",
+          "sha256": "2e932aa767ea363a261955d3af610020b69f9cb3be95cd3bd216bfc058880ea2"
+        },
+        "support_amendments": [
+          {
+            "current_import_count": 1,
+            "current_internal_import_count": 0,
+            "current_sha256": "84a528c78982e4f1df6ecd751e042addf7693947e80fb973f78a5f1ab1852c41",
+            "destination": "lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4KalmansonOccurrence/SixRoleKalmansonTriangle.lean",
+            "external_import_deltas": {},
+            "manifest_sha256": "641e6f7346f3fe524352053ba8d7cc0ce85aeeb4f5ac7397ed267645767916c1",
+            "reason": "intentional post-promotion support refactor",
+            "source_commit": "25271543e8558ccde737b55197a45e0fd7b4ba8c"
+          },
+          {
+            "current_import_count": 1,
+            "current_internal_import_count": 0,
+            "current_sha256": "73d7b3d9d934613273d874f82a46aee79bc9f4827fcc667e055699e754ab9468",
+            "destination": "lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueArmRouteAudit/UniqueArmDeletionNormalForm.lean",
+            "external_import_deltas": {},
+            "manifest_sha256": "a87dcf3a8f40487e71d7337cf68e119c8ac077f23290b1475f97f91c0b605754",
+            "reason": "intentional post-promotion support refactor",
+            "source_commit": "a0f73bc1ed1e7e57ec5ccc36fe7ca934ce1adaf6"
+          },
+          {
+            "current_import_count": 2,
+            "current_internal_import_count": 1,
+            "current_sha256": "a5dcab9ed1d2751646fb0c1b7ac6f4e1c16a42f3c64342ab5771f194ff57d403",
+            "destination": "lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_cross_blocker_localization.lean",
+            "external_import_deltas": {},
+            "manifest_sha256": "f6ba77aff5e9d48b8dc66156fef257b17cc3814b54c807ba4d1594037529a2d1",
+            "reason": "intentional post-promotion support refactor",
+            "source_commit": "a0f73bc1ed1e7e57ec5ccc36fe7ca934ce1adaf6"
+          },
+          {
+            "current_import_count": 3,
+            "current_internal_import_count": 1,
+            "current_sha256": "9b7440c4cf94dc1426982e0fd27de2f0398966168c92114b6fcbec08908011df",
+            "destination": "lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueRowProducer/card_five_interior_bisector_localization.lean",
+            "external_import_deltas": {
+              "Erdos9796Proof.P97.CapSelectedRowCounting": -1
+            },
+            "manifest_sha256": "9e665876b45c8f5d743ba0ac0f8d3c55e3a503b1b1d7daf0dbf612de6ac37aa5",
+            "reason": "intentional post-promotion support refactor removing the unused CapSelectedRowCounting import",
+            "source_commit": "a0f73bc1ed1e7e57ec5ccc36fe7ca934ce1adaf6"
+          }
+        ]
+      },
+      "ingress_active_outside_package": {
+        "path": "lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificateIngress.lean",
+        "symbol": "Problem97.ATailCardElevenUniqueFourCertificate.false_of_firstApexUniqueRadiusExactFourResidual"
+      },
+      "input_sha256": "027821037f013728c06a5c6309a1cf121dd8912c9ab794b3c0afe180b4d80474",
+      "last_verified_head": "5fd08c68fe84516d08e4997f61b7fb274ff078c6",
+      "lean_dependency_manifest_sha256": "29a5151dac483770a17dff20cf9ce6bb2b67a35828aa47f0b04bc37b42a4a30d",
+      "manifest_scope_excluded_directory_count": 12,
+      "manifest_scope_excluded_file_count": 756,
+      "manifest_scope_exclusions": [
+        {
+          "absent_from_publish_spine": true,
+          "kind": "directory",
+          "path": "lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Generated/ExactFiveCommonShellV7G3Replay"
+        },
+        {
+          "absent_from_publish_spine": true,
+          "kind": "file",
+          "path": "lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellAdapter.lean"
+        },
+        {
+          "absent_from_publish_spine": true,
+          "kind": "directory",
+          "path": "lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7"
+        }
+      ],
+      "promotion_lean_file_count": 2061,
+      "proof_blueprint_build_fingerprint": "5902ba928947b2ac2fda7b3cc06ff430f9e95f86f9046c96043581865b0a536c",
+      "public_projection_theorems": [
+        "Problem97.ATailUniqueFourCardElevenCertificateScratch.false_of_cardElevenOriginalUniqueFourResidual",
+        "Problem97.ATailCardElevenUniqueFourCertificate.false_of_firstApexUniqueRadiusExactFourResidual"
+      ],
+      "publication_reachable": true,
+      "replay_asset_count": 1656,
+      "trust_mode": "replay"
+    }
+  ],
+  "manifest_sha256": "9ecb209c11cfeb149937a8b90b8b9583893ed79cf58d7da3b1e52476b56fc7ae",
+  "schema": "publication-bank-manifests/v1",
+  "target_symbol": "Problem97.erdos97_rhs"
+}

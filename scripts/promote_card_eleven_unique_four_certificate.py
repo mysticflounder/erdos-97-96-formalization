@@ -15,8 +15,9 @@ Every promoted internal import is rewritten to its fully-qualified production
 module.  Ambiguous basename/suffix resolution is an error unless it appears in
 the explicit resolution table below.  ``--check`` verifies the checked-in
 production tree from its checked-in manifest and does not read the scratch
-provenance; ``--check-source`` additionally reconstructs the promotion from
-that provenance.
+provenance; ``--check-manifest-scope`` applies only the pinned off-manifest
+package exclusions and post-promotion support amendments below;
+``--check-source`` additionally reconstructs the promotion from provenance.
 """
 
 from __future__ import annotations
@@ -31,7 +32,6 @@ from collections import Counter, defaultdict
 from dataclasses import dataclass
 from pathlib import Path
 
-
 REPO_ROOT = Path(__file__).resolve().parents[1]
 SOURCE_BASE = Path("scratch/atail-force")
 SOURCE_LOG = Path("scratch/logs/card11-selected-import-closure-files-2026-07-25.log")
@@ -40,6 +40,20 @@ DEST_ROOT = Path(
 )
 MANIFEST_PATH = DEST_ROOT / "promotion-manifest.json"
 MODULE_PREFIX = "Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate"
+MANIFEST_SCOPE_EXCLUDED_ROOTS = (
+    Path(
+        "lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/"
+        "Generated/ExactFiveCommonShellV7G3Replay"
+    ),
+    Path(
+        "lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/"
+        "Support/ExactFiveCommonShellV7"
+    ),
+    Path(
+        "lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/"
+        "Support/ExactFiveCommonShellAdapter.lean"
+    ),
+)
 
 EXPECTED_LOG_FILE_COUNT = 386
 EXPECTED_LOG_UNRESOLVED_COUNT = 8
@@ -162,6 +176,97 @@ class ImportOccurrence:
     module: str
 
 
+@dataclass(frozen=True)
+class InventoryDrift:
+    failures: tuple[str, ...]
+    excluded_extra_files: tuple[Path, ...]
+    excluded_extra_directories: tuple[Path, ...]
+
+
+@dataclass(frozen=True)
+class ManifestScopeSupportAmendment:
+    manifest_sha256: str
+    current_sha256: str
+    source_commit: str
+    current_import_count: int
+    current_internal_import_count: int
+    external_import_deltas: tuple[tuple[str, int], ...]
+    reason: str
+
+
+MANIFEST_SCOPE_SUPPORT_AMENDMENTS = {
+    DEST_ROOT
+    / "Support/UniqueArmRouteAudit/UniqueArmDeletionNormalForm.lean": (
+        ManifestScopeSupportAmendment(
+            manifest_sha256=(
+                "a87dcf3a8f40487e71d7337cf68e119c8ac077f23290b1475f97f91c0b605754"
+            ),
+            current_sha256=(
+                "73d7b3d9d934613273d874f82a46aee79bc9f4827fcc667e055699e754ab9468"
+            ),
+            source_commit="a0f73bc1ed1e7e57ec5ccc36fe7ca934ce1adaf6",
+            current_import_count=1,
+            current_internal_import_count=0,
+            external_import_deltas=(),
+            reason="intentional post-promotion support refactor",
+        )
+    ),
+    DEST_ROOT
+    / "Support/UniqueRowProducer/card_five_cross_blocker_localization.lean": (
+        ManifestScopeSupportAmendment(
+            manifest_sha256=(
+                "f6ba77aff5e9d48b8dc66156fef257b17cc3814b54c807ba4d1594037529a2d1"
+            ),
+            current_sha256=(
+                "a5dcab9ed1d2751646fb0c1b7ac6f4e1c16a42f3c64342ab5771f194ff57d403"
+            ),
+            source_commit="a0f73bc1ed1e7e57ec5ccc36fe7ca934ce1adaf6",
+            current_import_count=2,
+            current_internal_import_count=1,
+            external_import_deltas=(),
+            reason="intentional post-promotion support refactor",
+        )
+    ),
+    DEST_ROOT
+    / "Support/UniqueRowProducer/card_five_interior_bisector_localization.lean": (
+        ManifestScopeSupportAmendment(
+            manifest_sha256=(
+                "9e665876b45c8f5d743ba0ac0f8d3c55e3a503b1b1d7daf0dbf612de6ac37aa5"
+            ),
+            current_sha256=(
+                "9b7440c4cf94dc1426982e0fd27de2f0398966168c92114b6fcbec08908011df"
+            ),
+            source_commit="a0f73bc1ed1e7e57ec5ccc36fe7ca934ce1adaf6",
+            current_import_count=3,
+            current_internal_import_count=1,
+            external_import_deltas=(
+                ("Erdos9796Proof.P97.CapSelectedRowCounting", -1),
+            ),
+            reason=(
+                "intentional post-promotion support refactor removing the unused "
+                "CapSelectedRowCounting import"
+            ),
+        )
+    ),
+    DEST_ROOT
+    / "Support/Unique4KalmansonOccurrence/SixRoleKalmansonTriangle.lean": (
+        ManifestScopeSupportAmendment(
+            manifest_sha256=(
+                "641e6f7346f3fe524352053ba8d7cc0ce85aeeb4f5ac7397ed267645767916c1"
+            ),
+            current_sha256=(
+                "84a528c78982e4f1df6ecd751e042addf7693947e80fb973f78a5f1ab1852c41"
+            ),
+            source_commit="25271543e8558ccde737b55197a45e0fd7b4ba8c",
+            current_import_count=1,
+            current_internal_import_count=0,
+            external_import_deltas=(),
+            reason="intentional post-promotion support refactor",
+        )
+    ),
+}
+
+
 def sha256_bytes(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
 
@@ -176,6 +281,20 @@ def sha256_file(path: Path) -> str:
 
 def path_text(path: Path) -> str:
     return path.as_posix()
+
+
+def reject_duplicate_json_keys(
+    pairs: list[tuple[str, object]],
+) -> dict[str, object]:
+    """Build one JSON object while rejecting every duplicate key."""
+    result: dict[str, object] = {}
+    for key, value in pairs:
+        if key in result:
+            raise PromotionError(
+                f"promotion manifest JSON contains duplicate key: {key}"
+            )
+        result[key] = value
+    return result
 
 
 def absolute(path: Path) -> Path:
@@ -741,10 +860,10 @@ def validate_replay_asset_references(
     for source in replay_sources:
         text = absolute(source).read_text(encoding="utf-8")
         for reference in iter_include_asset_paths(text):
-            source_asset = (
-                (absolute(source).parent / reference)
-                .resolve()
-                .relative_to(REPO_ROOT)
+            source_asset = repository_relative_replay_include(
+                absolute(source).parent,
+                reference,
+                source,
             )
             expected_destination = asset_destinations.get(source_asset)
             if expected_destination is None:
@@ -752,10 +871,10 @@ def validate_replay_asset_references(
                     f"unpromoted replay asset from {source}: {reference}"
                 )
             promoted_source = DEST_ROOT / source_to_destination[source]
-            actual_destination = (
-                (absolute(promoted_source).parent / reference)
-                .resolve()
-                .relative_to(REPO_ROOT)
+            actual_destination = repository_relative_replay_include(
+                absolute(promoted_source).parent,
+                reference,
+                promoted_source,
             )
             if actual_destination != expected_destination:
                 raise PromotionError(
@@ -765,8 +884,23 @@ def validate_replay_asset_references(
             referenced.add(source_asset)
     unreferenced = set(asset_destinations) - referenced
     if unreferenced:
-        first = sorted(unreferenced)[0]
+        first = min(unreferenced)
         raise PromotionError(f"unreferenced replay asset: {first}")
+
+
+def repository_relative_replay_include(
+    base: Path,
+    reference: str,
+    owner: Path,
+) -> Path:
+    """Resolve one replay include and reject repository escapes without traceback."""
+    try:
+        return (base / reference).resolve().relative_to(REPO_ROOT)
+    except ValueError:
+        raise PromotionError(
+            f"replay include path escapes repository from {path_text(owner)}: "
+            f"{reference}"
+        ) from None
 
 
 def classify_logged_unresolved(
@@ -831,7 +965,7 @@ def build_promotion() -> tuple[
         if len(sources) > 1
     }
     if collisions:
-        first_destination = sorted(collisions)[0]
+        first_destination = min(collisions)
         sources = ", ".join(path_text(path) for path in collisions[first_destination])
         raise PromotionError(
             f"destination collision at {first_destination}: {sources}"
@@ -1079,6 +1213,90 @@ def inventory_directories(paths: set[Path]) -> set[Path]:
     return directories
 
 
+def validate_allowed_extra_roots(
+    allowed_extra_roots: tuple[Path, ...], expected_paths: set[Path]
+) -> tuple[Path, ...]:
+    """Validate narrowly scoped inventory exclusions without touching the filesystem."""
+    validated: list[Path] = []
+    for index, root in enumerate(allowed_extra_roots):
+        label = f"allowed_extra_roots[{index}]"
+        if not isinstance(root, Path):
+            raise PromotionError(f"{label} must be a Path")
+        if root.is_absolute() or not root.parts or ".." in root.parts:
+            raise PromotionError(
+                f"{label} is not a normalized repository-relative path: {root}"
+            )
+        try:
+            relative = root.relative_to(DEST_ROOT)
+        except ValueError as exc:
+            raise PromotionError(f"{label} is outside {DEST_ROOT}: {root}") from exc
+        if not relative.parts or root != DEST_ROOT.joinpath(*relative.parts):
+            raise PromotionError(
+                f"{label} is not a normalized strict descendant of {DEST_ROOT}: {root}"
+            )
+        for expected_path in expected_paths:
+            if expected_path.is_relative_to(root) or root.is_relative_to(expected_path):
+                raise PromotionError(
+                    f"{label} overlaps expected manifest path {expected_path}: {root}"
+                )
+        for previous in validated:
+            if root.is_relative_to(previous) or previous.is_relative_to(root):
+                raise PromotionError(
+                    f"{label} overlaps allowed extra root {previous}: {root}"
+                )
+        validated.append(root)
+    return tuple(validated)
+
+
+def partition_inventory_drift(
+    expected_paths: set[Path],
+    actual_paths: set[Path],
+    actual_directories: set[Path],
+    *,
+    allowed_extra_roots: tuple[Path, ...] = (),
+) -> InventoryDrift:
+    """Partition exact inventory drift from explicit paths and descendants."""
+    allowed_roots = validate_allowed_extra_roots(
+        allowed_extra_roots, expected_paths
+    )
+    expected_directories = inventory_directories(expected_paths)
+    missing_paths = sorted(expected_paths - actual_paths)
+    missing_directories = sorted(expected_directories - actual_directories)
+    extra_files = sorted(actual_paths - expected_paths)
+    extra_directories = sorted(actual_directories - expected_directories)
+
+    def matches_allowed_root(path: Path) -> bool:
+        return any(path == root or path.is_relative_to(root) for root in allowed_roots)
+
+    excluded_extra_files = tuple(
+        path for path in extra_files if matches_allowed_root(path)
+    )
+    excluded_extra_directories = tuple(
+        path for path in extra_directories if matches_allowed_root(path)
+    )
+    rejected_extra_files = sorted(set(extra_files) - set(excluded_extra_files))
+    rejected_extra_directories = sorted(
+        set(extra_directories) - set(excluded_extra_directories)
+    )
+    failures = tuple(
+        [f"missing {path_text(path)}" for path in missing_paths]
+        + [f"unexpected {path_text(path)}" for path in rejected_extra_files]
+        + [
+            f"missing directory {path_text(path)}"
+            for path in missing_directories
+        ]
+        + [
+            f"unexpected directory {path_text(path)}"
+            for path in rejected_extra_directories
+        ]
+    )
+    return InventoryDrift(
+        failures=failures,
+        excluded_extra_files=excluded_extra_files,
+        excluded_extra_directories=excluded_extra_directories,
+    )
+
+
 def check_outputs(
     outputs: dict[Path, bytes],
     assets: list[tuple[Path, Path, str, int]],
@@ -1091,22 +1309,10 @@ def check_outputs(
         | {destination for _source, destination, _digest, _size in assets}
     )
     actual_paths, actual_directories = installed_inventory()
-    expected_directories = inventory_directories(expected_paths)
-    failures: list[str] = []
-    failures.extend(
-        f"missing {path_text(path)}" for path in sorted(expected_paths - actual_paths)
+    drift = partition_inventory_drift(
+        expected_paths, actual_paths, actual_directories
     )
-    failures.extend(
-        f"unexpected {path_text(path)}" for path in sorted(actual_paths - expected_paths)
-    )
-    failures.extend(
-        f"missing directory {path_text(path)}"
-        for path in sorted(expected_directories - actual_directories)
-    )
-    failures.extend(
-        f"unexpected directory {path_text(path)}"
-        for path in sorted(actual_directories - expected_directories)
-    )
+    failures = list(drift.failures)
     for path, data in sorted(expected.items()):
         full_path = absolute(path)
         if not full_path.is_file():
@@ -1171,13 +1377,184 @@ def manifest_counter(value: object, label: str) -> Counter[str]:
     return result
 
 
-def check_installed_promotion() -> dict[str, object]:
+def validate_manifest_scope_support_amendments(
+    amendments: dict[Path, ManifestScopeSupportAmendment],
+    lean_records: dict[Path, tuple[str, str, int, int]],
+) -> dict[Path, ManifestScopeSupportAmendment]:
+    """Bind every scoped support amendment to one exact manifest record."""
+    validated: dict[Path, ManifestScopeSupportAmendment] = {}
+    for index, (destination, amendment) in enumerate(sorted(amendments.items())):
+        label = f"support_amendments[{index}]"
+        if not isinstance(destination, Path):
+            raise PromotionError(f"{label}.destination must be a Path")
+        normalized_destination = manifest_destination(
+            path_text(destination), f"{label}.destination"
+        )
+        if normalized_destination != destination or destination.suffix != ".lean":
+            raise PromotionError(
+                f"{label}.destination is not a normalized Lean source path"
+            )
+        if not isinstance(amendment, ManifestScopeSupportAmendment):
+            raise PromotionError(f"{label} has the wrong record type")
+        manifest_digest = manifest_sha256(
+            amendment.manifest_sha256, f"{label}.manifest_sha256"
+        )
+        current_digest = manifest_sha256(
+            amendment.current_sha256, f"{label}.current_sha256"
+        )
+        if manifest_digest == current_digest:
+            raise PromotionError(f"{label} does not record a digest transition")
+        if not re.fullmatch(r"[0-9a-f]{40}", amendment.source_commit):
+            raise PromotionError(
+                f"{label}.source_commit is not a full lowercase commit SHA"
+            )
+        current_import_count = manifest_nonnegative_int(
+            amendment.current_import_count, f"{label}.current_import_count"
+        )
+        current_internal_import_count = manifest_nonnegative_int(
+            amendment.current_internal_import_count,
+            f"{label}.current_internal_import_count",
+        )
+        if current_internal_import_count > current_import_count:
+            raise PromotionError(
+                f"{label}.current_internal_import_count exceeds current_import_count"
+            )
+        if not amendment.reason.strip():
+            raise PromotionError(f"{label}.reason must be nonempty")
+        record = lean_records.get(destination)
+        if record is None:
+            raise PromotionError(
+                f"{label}.destination is not an expected manifest Lean source"
+            )
+        (
+            recorded_digest,
+            _module,
+            recorded_import_count,
+            recorded_internal_import_count,
+        ) = record
+        if manifest_digest != recorded_digest:
+            raise PromotionError(
+                f"{label}.manifest_sha256 does not match the manifest record"
+            )
+        if current_internal_import_count != recorded_internal_import_count:
+            raise PromotionError(
+                f"{label} changes internal imports without a resolution-kind binding"
+            )
+        external_deltas: Counter[str] = Counter()
+        for delta_index, raw_delta in enumerate(amendment.external_import_deltas):
+            delta_label = f"{label}.external_import_deltas[{delta_index}]"
+            if (
+                not isinstance(raw_delta, tuple)
+                or len(raw_delta) != 2
+                or not isinstance(raw_delta[0], str)
+                or type(raw_delta[1]) is not int
+                or raw_delta[1] == 0
+            ):
+                raise PromotionError(
+                    f"{delta_label} must be a module and nonzero integer"
+                )
+            module, delta = raw_delta
+            if module in external_deltas:
+                raise PromotionError(f"{delta_label} repeats module {module}")
+            if module == MODULE_PREFIX or module.startswith(f"{MODULE_PREFIX}."):
+                raise PromotionError(f"{delta_label} names an internal module")
+            external_deltas[module] = delta
+        expected_external_delta = (
+            current_import_count
+            - recorded_import_count
+            - (current_internal_import_count - recorded_internal_import_count)
+        )
+        if sum(external_deltas.values()) != expected_external_delta:
+            raise PromotionError(
+                f"{label}.external_import_deltas do not bind the import-count change"
+            )
+        validated[destination] = amendment
+    return validated
+
+
+def adjusted_manifest_scope_import_counters(
+    resolution_counts: Counter[str],
+    external_counts: Counter[str],
+    lean_records: dict[Path, tuple[str, str, int, int]],
+    amendments: dict[Path, ManifestScopeSupportAmendment],
+) -> tuple[Counter[str], Counter[str]]:
+    """Apply the exact import deltas bound by validated support amendments."""
+    adjusted_resolution_counts = resolution_counts.copy()
+    adjusted_external_counts = external_counts.copy()
+    for destination, amendment in amendments.items():
+        _digest, _module, recorded_import_count, _recorded_internal = lean_records[
+            destination
+        ]
+        import_delta = amendment.current_import_count - recorded_import_count
+        external_deltas = Counter(dict(amendment.external_import_deltas))
+        if sum(external_deltas.values()) != import_delta:
+            raise PromotionError(
+                f"support amendment import delta mismatch {path_text(destination)}"
+            )
+        adjusted_resolution_counts["preexisting-external"] += import_delta
+        adjusted_external_counts.update(external_deltas)
+    if any(count < 0 for count in adjusted_resolution_counts.values()):
+        raise PromotionError("support amendments make an import resolution count negative")
+    if any(count < 0 for count in adjusted_external_counts.values()):
+        raise PromotionError("support amendments make an external import count negative")
+    return adjusted_resolution_counts, adjusted_external_counts
+
+
+def match_manifest_scope_support_amendment(
+    destination: Path,
+    manifest_digest: str,
+    current_digest: str,
+    amendments: dict[Path, ManifestScopeSupportAmendment],
+) -> ManifestScopeSupportAmendment | None:
+    """Accept an exact pinned support transition or require the manifest digest."""
+    amendment = amendments.get(destination)
+    if amendment is None:
+        if current_digest != manifest_digest:
+            raise PromotionError(f"digest mismatch {path_text(destination)}")
+        return None
+    if amendment.manifest_sha256 != manifest_digest:
+        raise PromotionError(
+            f"support amendment manifest digest mismatch {path_text(destination)}"
+        )
+    if amendment.current_sha256 != current_digest:
+        raise PromotionError(
+            f"support amendment current digest mismatch {path_text(destination)}"
+        )
+    return amendment
+
+
+def manifest_scope_support_amendment_summary(
+    amendments: dict[Path, ManifestScopeSupportAmendment],
+) -> list[dict[str, object]]:
+    return [
+        {
+            "destination": path_text(destination),
+            "manifest_sha256": amendment.manifest_sha256,
+            "current_sha256": amendment.current_sha256,
+            "source_commit": amendment.source_commit,
+            "current_import_count": amendment.current_import_count,
+            "current_internal_import_count": amendment.current_internal_import_count,
+            "external_import_deltas": dict(amendment.external_import_deltas),
+            "reason": amendment.reason,
+        }
+        for destination, amendment in sorted(amendments.items())
+    ]
+
+
+def check_installed_promotion(
+    *,
+    allowed_extra_roots: tuple[Path, ...] = (),
+    support_amendments: dict[Path, ManifestScopeSupportAmendment] | None = None,
+) -> dict[str, object]:
     """Verify the checked-in promotion without consulting its scratch provenance."""
     manifest_full_path = require_regular_file(
         MANIFEST_PATH, "promotion manifest", within=DEST_ROOT
     )
     try:
-        manifest = json.loads(manifest_full_path.read_text(encoding="utf-8"))
+        manifest = json.loads(
+            manifest_full_path.read_text(encoding="utf-8"),
+            object_pairs_hook=reject_duplicate_json_keys,
+        )
     except json.JSONDecodeError as exc:
         raise PromotionError(f"invalid promotion manifest JSON: {exc}") from exc
     if not isinstance(manifest, dict):
@@ -1245,6 +1622,13 @@ def check_installed_promotion() -> dict[str, object]:
         )
         module_to_destination[module] = destination
 
+    requested_support_amendments = (
+        {} if support_amendments is None else support_amendments
+    )
+    validated_support_amendments = validate_manifest_scope_support_amendments(
+        requested_support_amendments, lean_records
+    )
+
     replay_layout = expected_replay_layout()
     expected_data_roots = {data_root for _package, data_root, _sources, _assets in replay_layout}
     asset_records: dict[Path, tuple[str, int]] = {}
@@ -1274,19 +1658,16 @@ def check_installed_promotion() -> dict[str, object]:
 
     expected_paths = set(lean_records) | set(asset_records) | {MANIFEST_PATH}
     actual_paths, actual_directories = installed_inventory()
-    expected_directories = inventory_directories(expected_paths)
-    missing_paths = sorted(expected_paths - actual_paths)
-    extra_paths = sorted(actual_paths - expected_paths)
-    failures = [f"missing {path_text(path)}" for path in missing_paths]
-    failures.extend(f"unexpected {path_text(path)}" for path in extra_paths)
-    failures.extend(
-        f"missing directory {path_text(path)}"
-        for path in sorted(expected_directories - actual_directories)
+    validated_allowed_roots = validate_allowed_extra_roots(
+        allowed_extra_roots, expected_paths
     )
-    failures.extend(
-        f"unexpected directory {path_text(path)}"
-        for path in sorted(actual_directories - expected_directories)
+    drift = partition_inventory_drift(
+        expected_paths,
+        actual_paths,
+        actual_directories,
+        allowed_extra_roots=validated_allowed_roots,
     )
+    failures = list(drift.failures)
 
     source_partition = manifest.get("source_partition")
     if source_partition != {
@@ -1367,6 +1748,15 @@ def check_installed_promotion() -> dict[str, object]:
         manifest.get("preexisting_external_imports"),
         "preexisting_external_imports",
     )
+    (
+        expected_resolution_counts,
+        expected_external_counts,
+    ) = adjusted_manifest_scope_import_counters(
+        resolution_counts,
+        external_counts,
+        lean_records,
+        validated_support_amendments,
+    )
     destination_split = manifest_counter(
         manifest.get("destination_split"), "destination_split"
     )
@@ -1383,19 +1773,35 @@ def check_installed_promotion() -> dict[str, object]:
     actual_import_count = 0
     actual_internal_import_count = 0
     actual_external_counts: Counter[str] = Counter()
+    applied_support_amendments: set[Path] = set()
     for destination, (
-        digest,
+        manifest_digest,
         _module,
-        expected_import_count,
-        expected_internal_import_count,
+        recorded_import_count,
+        recorded_internal_import_count,
     ) in lean_records.items():
         full_path = absolute(destination)
         if not full_path.is_file():
             continue
         data = full_path.read_bytes()
-        if sha256_bytes(data) != digest:
-            failures.append(f"digest mismatch {path_text(destination)}")
+        current_digest = sha256_bytes(data)
+        try:
+            amendment = match_manifest_scope_support_amendment(
+                destination,
+                manifest_digest,
+                current_digest,
+                validated_support_amendments,
+            )
+        except PromotionError as exc:
+            failures.append(str(exc))
             continue
+        if amendment is None:
+            expected_import_count = recorded_import_count
+            expected_internal_import_count = recorded_internal_import_count
+        else:
+            applied_support_amendments.add(destination)
+            expected_import_count = amendment.current_import_count
+            expected_internal_import_count = amendment.current_internal_import_count
         text = data.decode("utf-8")
         imports = [
             occurrence.module for occurrence in iter_import_occurrences(text)
@@ -1459,6 +1865,13 @@ def check_installed_promotion() -> dict[str, object]:
                     f"in {path_text(destination)}"
                 )
 
+    for destination in sorted(
+        set(validated_support_amendments) - applied_support_amendments
+    ):
+        failures.append(
+            f"support amendment was not verified {path_text(destination)}"
+        )
+
     for destination, (digest, expected_size) in asset_records.items():
         full_path = absolute(destination)
         if not full_path.is_file():
@@ -1477,18 +1890,18 @@ def check_installed_promotion() -> dict[str, object]:
 
     expected_internal_import_count = sum(
         count
-        for kind, count in resolution_counts.items()
+        for kind, count in expected_resolution_counts.items()
         if kind.endswith("-internal")
     )
     if expected_internal_import_count != actual_internal_import_count:
         failures.append("internal import resolution summary mismatch")
-    if resolution_counts.get("preexisting-external", 0) != sum(
+    if expected_resolution_counts.get("preexisting-external", 0) != sum(
         actual_external_counts.values()
     ):
         failures.append("external import resolution summary mismatch")
-    if sum(resolution_counts.values()) != actual_import_count:
+    if sum(expected_resolution_counts.values()) != actual_import_count:
         failures.append("total import resolution summary mismatch")
-    if external_counts != actual_external_counts:
+    if expected_external_counts != actual_external_counts:
         failures.append("preexisting external import census mismatch")
 
     if failures:
@@ -1508,11 +1921,27 @@ def check_installed_promotion() -> dict[str, object]:
         "assets": len(asset_records),
         "asset_bytes": actual_asset_bytes,
     }
+    if validated_allowed_roots:
+        summary.update(
+            {
+                "excluded_extra_files": len(drift.excluded_extra_files),
+                "excluded_extra_directories": len(
+                    drift.excluded_extra_directories
+                ),
+                "allowed_extra_roots": [
+                    path_text(root) for root in validated_allowed_roots
+                ],
+            }
+        )
+    if validated_support_amendments:
+        summary["support_amendments"] = manifest_scope_support_amendment_summary(
+            validated_support_amendments
+        )
     print(f"promotion check: ok files={len(expected_paths)}")
     return summary
 
 
-def main() -> None:
+def main(argv: list[str] | None = None) -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     mode = parser.add_mutually_exclusive_group()
     mode.add_argument(
@@ -1528,10 +1957,24 @@ def main() -> None:
         action="store_true",
         help="reconstruct from scratch provenance and compare without writing",
     )
-    args = parser.parse_args()
-    if args.check:
+    mode.add_argument(
+        "--check-manifest-scope",
+        action="store_true",
+        help=(
+            "verify the checked-in manifest while excluding only the declared "
+            "off-manifest package paths"
+        ),
+    )
+    args = parser.parse_args(argv)
+    if args.check or args.check_manifest_scope:
         try:
-            summary = check_installed_promotion()
+            if args.check_manifest_scope:
+                summary = check_installed_promotion(
+                    allowed_extra_roots=MANIFEST_SCOPE_EXCLUDED_ROOTS,
+                    support_amendments=MANIFEST_SCOPE_SUPPORT_AMENDMENTS,
+                )
+            else:
+                summary = check_installed_promotion()
         except (OSError, UnicodeError, PromotionError) as exc:
             print(f"promotion error: {exc}", file=sys.stderr)
             raise SystemExit(2) from exc
@@ -1546,6 +1989,14 @@ def main() -> None:
         else:
             write_outputs(outputs, assets, manifest_bytes)
             check_outputs(outputs, assets, manifest_bytes)
+    scope_summary = ""
+    if args.check_manifest_scope:
+        scope_summary = (
+            f" excluded_extra_files={summary['excluded_extra_files']}"
+            f" excluded_extra_directories={summary['excluded_extra_directories']}"
+            f" allowed_extra_roots={summary['allowed_extra_roots']}"
+            f" support_amendments={json.dumps(summary['support_amendments'], sort_keys=True)}"
+        )
     print(
         "promotion graph: "
         f"promoted={summary['promoted']} "
@@ -1555,6 +2006,7 @@ def main() -> None:
         f"assets={summary['assets']} "
         f"asset_bytes={summary['asset_bytes']} "
         f"preexisting_external={summary['preexisting_external']}"
+        f"{scope_summary}"
     )
 
 

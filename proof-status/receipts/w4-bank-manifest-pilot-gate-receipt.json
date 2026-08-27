@@ -1,0 +1,137 @@
+{
+  "schema": "p97-gate-receipt/v1",
+  "wave": "W4-bank-manifest-pilot",
+  "lane_id": "consolidation-w4-bank-manifest-pilot-20260826",
+  "state": "ready-for-commit",
+  "overall_pass": true,
+  "generated_by": "Codex",
+  "generated_at_utc": "2026-08-27T00:49:32Z",
+  "claim_references": [
+    "nthdegree convo #7545",
+    "nthdegree convo #7546"
+  ],
+  "base_head": "5fd08c68fe84516d08e4997f61b7fb274ff078c6",
+  "observed_head": "57efc3339753f83b2689dae414fe3a80fbe54869",
+  "wave_commit": null,
+  "head_note": "The lane base and manifest last_verified_head remain 5fd08c68. The observed head advanced only through separately owned work; the manifest checker requires the recorded head to be an ancestor of the live head and reproduced the stored artifact successfully.",
+  "scope": {
+    "bank_id": "card-eleven-unique-four-certificate",
+    "target_symbol": "Problem97.erdos97_rhs",
+    "source_changes": "tooling, tests, manifest, and receipt only; no Lean source changed",
+    "before": "No central required-field publication-bank record existed. The historical promotion check rejected later ExactFive files and four reviewed post-promotion support edits.",
+    "after": "One canonical, self-hashed bank record binds the promotion inputs, generated source roster, replay assets, coordinator dependency cone, scoped reference freshness, publication reachability, and six live axiom closures."
+  },
+  "content_bound_files": [
+    {
+      "path": "scripts/audit_publication_bank_manifest.py",
+      "sha256": "fd54b9ff0f455045e753f0f451d36e0ffb2489704bc908dc40067e8ea68b4561"
+    },
+    {
+      "path": "scripts/promote_card_eleven_unique_four_certificate.py",
+      "sha256": "2e932aa767ea363a261955d3af610020b69f9cb3be95cd3bd216bfc058880ea2"
+    },
+    {
+      "path": "scripts/test_audit_publication_bank_manifest.py",
+      "sha256": "f9d319491e3c4734c5a30edcbb7e6abd620ef0164c015406125b9fbbceecbeff"
+    },
+    {
+      "path": "scripts/test_promote_card_eleven_unique_four_certificate_manifest_scope.py",
+      "sha256": "642646075d0a15edddaad5ee806396763476c1563b40d285b9a6bf9c467600ad"
+    },
+    {
+      "path": "proof-status/publication-bank-manifests.json",
+      "sha256": "f08183022948b919bd76c34cdb11909ffb0068ea8fb834b856abb58093cb76d9"
+    }
+  ],
+  "verified_claims": {
+    "schema": "publication-bank-manifests/v1",
+    "manifest_sha256": "9ecb209c11cfeb149937a8b90b8b9583893ed79cf58d7da3b1e52476b56fc7ae",
+    "last_verified_head": "5fd08c68fe84516d08e4997f61b7fb274ff078c6",
+    "proof_blueprint_build_fingerprint": "5902ba928947b2ac2fda7b3cc06ff430f9e95f86f9046c96043581865b0a536c",
+    "promotion_lean_file_count": 2061,
+    "replay_asset_count": 1656,
+    "replay_asset_bytes": 1037782466,
+    "coordinator_active_manifest_file_count": 2057,
+    "coordinator_inactive_manifest_file_count": 4,
+    "coordinator_dependency_source_count": 2125,
+    "coordinator_reference_module_count": 2125,
+    "coordinator_reference_stale_count": 0,
+    "coordinator_reference_missing_count": 0,
+    "manifest_scope_excluded_file_count": 756,
+    "manifest_scope_excluded_directory_count": 12,
+    "support_amendment_count": 4,
+    "axiom_closure_count": 6,
+    "axiom_union": [
+      "Classical.choice",
+      "Lean.ofReduceBool",
+      "Lean.trustCompiler",
+      "Quot.sound",
+      "propext"
+    ],
+    "publication_reachable": true,
+    "ingress_active_outside_package": true
+  },
+  "gates": [
+    {
+      "command": "uv run pytest -q -p no:cacheprovider scripts/test_promote_card_eleven_unique_four_certificate_manifest_scope.py scripts/test_audit_publication_bank_manifest.py",
+      "exit_code": 0,
+      "result": "63 passed in 0.19s"
+    },
+    {
+      "command": "uv run --with ruff ruff check --ignore EXE001 scripts/audit_publication_bank_manifest.py scripts/promote_card_eleven_unique_four_certificate.py scripts/test_audit_publication_bank_manifest.py scripts/test_promote_card_eleven_unique_four_certificate_manifest_scope.py",
+      "exit_code": 0,
+      "result": "All checks passed"
+    },
+    {
+      "command": "git diff --check -- <four owned scripts>",
+      "exit_code": 0,
+      "result": "no whitespace errors"
+    },
+    {
+      "command": "uv run python scripts/promote_card_eleven_unique_four_certificate.py --check-manifest-scope",
+      "exit_code": 0,
+      "result": "files=3718; promoted=2061; assets=1656; excluded files=756; excluded directories=12; support amendments=4"
+    },
+    {
+      "command": "uv run python scripts/audit_publication_bank_manifest.py generate --output proof-status/publication-bank-manifests.json --verified-head 5fd08c68fe84516d08e4997f61b7fb274ff078c6",
+      "exit_code": 0,
+      "result": "canonical manifest generated"
+    },
+    {
+      "command": "uv run python scripts/audit_publication_bank_manifest.py check --manifest proof-status/publication-bank-manifests.json",
+      "exit_code": 0,
+      "result": "live semantic and byte regeneration matched"
+    },
+    {
+      "command": "uv run python scripts/promote_card_eleven_unique_four_certificate.py --check",
+      "exit_code": 1,
+      "expected_nonzero": true,
+      "result": "historical strict snapshot rejects the documented later ExactFive package and post-promotion support drift"
+    }
+  ],
+  "independent_audit": {
+    "verdict": "pass",
+    "blockers": [],
+    "checks": [
+      "Recomputed manifest self-hash 9ecb209c11cfeb149937a8b90b8b9583893ed79cf58d7da3b1e52476b56fc7ae.",
+      "Recomputed generated roster hash 4a76be38f745917fb7f1f1bfc99902adedaf5df705482d463111b5f3ef48cfc0 and dependency hash 29a5151dac483770a17dff20cf9ce6bb2b67a35828aa47f0b04bc37b42a4a30d.",
+      "Found 2125 of 2125 coordinator reference rows with one current fingerprint, 0 stale, and 0 missing.",
+      "Confirmed the 2516-file target spine contains coordinator and ingress, intersects the promoted package in 2057 files, and intersects the three excluded scopes in 0 files.",
+      "Re-ran all six axiom queries and matched the stored closures and approved five-axiom union.",
+      "Confirmed all four amendment hashes and both source commits, plus recursive fail-closed duplicate-key rejection."
+    ]
+  },
+  "blockers": [],
+  "non_blocking_debt": [
+    "The historical direct --check remains intentionally strict and fails on current main; consumers of this pilot must use --check-manifest-scope or the central manifest checker.",
+    "The pre-existing multi-output promotion writer is not transaction-atomic (convo issue #7522); this pilot writes its single central manifest atomically and leaves the broader writer redesign to a separate wave.",
+    "Global proof-blueprint reference debt remains outside this bank: the coordinator cone has 0 stale and 0 missing modules, while the two publish-spine stale modules are trusted/skipped EndpointCertificate modules outside CardEleven and the never-mined item is scratch-only.",
+    "input_sha256 authenticates the normalized checked promotion roster metadata; generated_source_sha256 and lean_dependency_manifest_sha256 separately bind the live promoted output and coordinator dependency content.",
+    "Publication reachability is checked at the Lean-file spine boundary. The live coordinator and ingress theorem checks found no mismatch, but the record is not a declaration-edge graph."
+  ],
+  "roi": {
+    "assessment": "positive",
+    "reason": "A single reproducible gate now covers 2057 publish-active promoted sources, 2125 dependency modules, six trust closures, and about 1.04 GB of replay evidence. Tests account for most of the new surface, and no proof source was churned.",
+    "next_use": "Use this one-bank pilot to validate the manifest schema before onboarding the other publication-bank families."
+  }
+}
