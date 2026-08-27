@@ -1,0 +1,196 @@
+# P97 Rigid221 card-18 crossed-incidence source custody (v1)
+
+**Status: SOURCE CUSTODY COMPLETE / NO EXTERNAL ADMISSION AUTHORIZED.**
+
+Lane: `rigid221-card18-crossed-incidence-custody-20260827`.
+
+Lane base: `89a45ba0ca2d09494730a13e5f45928ff86af81b`.
+
+## 1. Purpose
+
+The crossed-incidence Lean projection computes the five exact `Fin 18`
+membership values for each crossed arm and proves that their conjunction has a
+false cell. This checkpoint authenticates only the repository-local Lean
+source bytes reached by that projection's declarations.
+
+It creates an isolated custody contract. The historical leaf-export and
+labeled-projection custody modules, schemas, APIs, errors, frozen manifests,
+and receipts remain unchanged and are not interchangeable with this contract.
+
+## 2. Narrow source set
+
+The sole root is
+
+```text
+Erdos9796Proof.P97.ATail.FrontierLiveClosure.Rigid221Card18CrossedIncidenceProjection
+```
+
+The source set is mined from the built Lean kernel environment: begin at every
+declaration supplied by the root module, follow declaration references, and
+retain only repository-local modules supplying reached declarations. It is not
+the transitive import closure.
+
+The pre-freeze mine reached 26,866 declarations from 134 root declarations in
+27 repository-local modules. The set is exactly the labeled-projection custody
+set plus the new crossed-incidence root. These counts are evidence rather than
+runtime configuration; a fresh `--compare` must reproduce the committed tuple.
+
+## 3. Frozen configuration
+
+Schema:
+
+```text
+p97-rigid221-card18-crossed-incidence-projection-lean-source-custody/v1
+```
+
+The independent module freezes:
+
+- schema, lane/base metadata, the exact root, the sorted duplicate-free kernel
+  dependency tuple, and all validation-policy and authentication flags;
+- a canonical module/path/byte-count/SHA-256 record for every dependency; and
+- the literal configuration snapshot digest
+  `28f9a2065e5566f2e065adea79ffe8608bb7ac0f0bbf1337387449bc4546bea2`.
+
+The records are immutable internally and exposed only through copied
+dictionaries. Every public validate, build, encode, parse, attest, and frozen
+manifest API first compares the live configuration snapshot and exported
+digest against an independent literal inside the assertion body. Coordinated
+global rebinding, including attempted default/keyword-default tampering, must
+fail closed.
+
+## 4. Filesystem boundary
+
+Live authentication starts from a resolved, nonsymlink repository root and
+uses descriptor-relative traversal. Every directory component and source leaf
+is opened with no-follow protection. Source opens are nonblocking so a FIFO
+cannot hang attestation.
+
+Every authenticated leaf must be a regular file with `st_nlink == 1`. The API
+rejects missing or unreadable files, directories, FIFOs, devices, symlinked
+roots, ancestor or leaf symlinks, inside- or outside-repository hardlink
+aliases, NULs, backslashes, absolute paths, empty/dot components, and `..`
+escapes. It then compares the fresh byte count and SHA-256 with all 27 frozen
+records.
+
+## 5. Canonical receipt
+
+The receipt has exactly seven top-level keys:
+
+```text
+schema
+metadata
+lean_root_modules
+lean_dependency_modules
+lean_source_manifest
+authentication
+receipt_sha256
+```
+
+Source records have exactly `module`, `path`, `bytes`, and `sha256`. Arrays
+must have the exact frozen lengths, element types, duplicate-free canonical
+order, and values. The receipt self-hash covers the canonical body without its
+own field.
+
+Parsing accepts immutable `bytes` only, rejects duplicate object keys and
+NaN/positive infinity/negative infinity, and requires byte-for-byte canonical
+JSON. Unknown, omitted, replaced, reordered, duplicated, malformed, or
+wrongly typed fields reject even if the caller recomputes the self-hash.
+
+## 6. Exact authentication scope
+
+Only
+
+```text
+lean_source_bytes_authenticated = true
+```
+
+is authenticated. Every other exact Boolean is `false`:
+
+```text
+revision_metadata_authenticated
+lean_build_authenticated
+olean_tree_authenticated
+axiom_audit_authenticated
+python_serialization_equivalence_authenticated
+serializer_authenticated
+solver_authenticated
+canary_authenticated
+```
+
+Lane base and repository revision are metadata only. This API does not run or
+authenticate Lean, inspect `.olean` files, validate declaration axioms,
+establish Lean/Python equivalence, provide a serializer, invoke a solver, or
+authorize a canary.
+
+The separate file
+
+```text
+certificates/rigid221_card18_crossed_incidence_projection_axioms_20260827.json
+```
+
+is not embedded, hashed, parsed, or authenticated by this receipt. Its
+existence does not change `axiom_audit_authenticated = false`.
+
+## 7. Durable evidence boundary
+
+The intended durable receipt is
+
+```text
+certificates/rigid221_card18_crossed_incidence_source_custody_v1.json
+```
+
+It must be generated by the root lane only after implementation review. The
+canonical bytes must be parsed, re-encoded byte-identically, and attested in a
+fresh invocation against the live no-follow source read. That is process
+separation, not an independent validator or a proof claim.
+
+## 8. Acceptance gates
+
+This checkpoint is complete only after:
+
+1. kernel mining with `--compare` reports `UNCHANGED 27 modules`;
+2. the focused mutation/filesystem/configuration suite passes;
+3. the combined leaf, labeled-projection, and crossed-incidence custody suites
+   pass without cross-attestation;
+4. Ruff passes for the new implementation and tests;
+5. independent adversarial review confirms exact root scope, all 27 rows,
+   configuration immutability, filesystem defenses, canonical parsing, and
+   honest authentication flags;
+6. the root-generated durable receipt passes canonical readback and live
+   attestation; and
+7. staged hygiene passes for the lane's exact paths.
+
+Passing these gates authenticates source bytes only. It does not authorize a
+predicate-coverage upgrade, source-faithful serializer, solver, or canary.
+`CANARY AUTHORIZED` remains false.
+
+## 9. Checkpoint evidence
+
+On 2026-08-27:
+
+- the final kernel mine reached 26,866 declarations from 134 root
+  declarations and reported `UNCHANGED 27 modules`;
+- all 27 independently listed module/path/byte/SHA-256 rows match the live
+  source tree;
+- the crossed-incidence root is 19,558 bytes with SHA-256
+  `27e356b50f38e974dc44884937d00c03e56c36c2180e3a01c619115576377439`;
+- the frozen source-manifest JSON hash is
+  `fe1ecab611ba041527f0dd753a4f89ef94531a979faeb2adf9f87cc92afa030c`;
+- the immutable configuration digest is
+  `28f9a2065e5566f2e065adea79ffe8608bb7ac0f0bbf1337387449bc4546bea2`;
+- the published durable receipt has exactly 8,958 canonical bytes, file
+  SHA-256
+  `772b0d246070487c4e3e5dc9811581488e49177d21ec4110379e26f5479dfff3`,
+  and body self-hash
+  `cab2d626f0a30dd55a10f4640d13046ae1003b657d1a53e1f81061939747fa3b`;
+- the focused suite reports 70 passing cases, the combined historical leaf,
+  labeled-projection, and crossed-incidence suites report 156 passing cases,
+  and Ruff lint plus format checks pass; and
+- independent adversarial review is **GO** for root scope, all frozen rows,
+  configuration immutability, strict receipt handling, filesystem defenses,
+  cross-contract rejection, and honest nonclaims.
+
+Canonical readback is byte-identical, and a separate fresh no-follow walk
+attests every bound source row against the live tree. This authenticates only
+the frozen Lean source bytes; no historical custody or axiom receipt expands
+that scope, and coverage-v2 remains a separate blocked checkpoint.
