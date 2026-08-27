@@ -1,0 +1,18 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "rigid221-card18-predicate-coverage-v3-20260827",
+  "owner": "ResidualCartographer",
+  "base_head": "2d6eb3ef92ea381990c12b2633a7bfd015e28174",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/rigid221-card18-predicate-coverage-v3-20260827.json",
+    "census/p97_search/rigid221_card18_predicate_coverage_v3.py",
+    "census/p97_search/tests/test_rigid221_card18_predicate_coverage_v3.py",
+    "docs/specs/p97-rigid221-card18-predicate-coverage-v3.md"
+  ],
+  "generated_roots": [],
+  "durable_paths": [
+    "certificates/rigid221_card18_predicate_coverage_v3.json"
+  ],
+  "created_utc": "2026-08-27T21:58:14Z",
+  "manifest_sha256": "0eaa5d39981e23b0167f6510d6e726cf0ca0030d2d90bdcc287b2bd75a5b5e8a"
+}
