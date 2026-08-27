@@ -168,7 +168,7 @@
         "symbol": "Problem97.ATailCardElevenUniqueFourCertificate.false_of_firstApexUniqueRadiusExactFourResidual"
       },
       "input_sha256": "027821037f013728c06a5c6309a1cf121dd8912c9ab794b3c0afe180b4d80474",
-      "last_verified_head": "5fd08c68fe84516d08e4997f61b7fb274ff078c6",
+      "last_verified_head": "ff5da5ac97188db15c52d2b544039ed49f5621f9",
       "lean_dependency_manifest_sha256": "29a5151dac483770a17dff20cf9ce6bb2b67a35828aa47f0b04bc37b42a4a30d",
       "manifest_scope_excluded_directory_count": 12,
       "manifest_scope_excluded_file_count": 756,
@@ -200,7 +200,7 @@
       "trust_mode": "replay"
     }
   ],
-  "manifest_sha256": "9ecb209c11cfeb149937a8b90b8b9583893ed79cf58d7da3b1e52476b56fc7ae",
+  "manifest_sha256": "f3c1b22ec3a8f2d4ab3d3e7aad020252da22ffd47df140c0862d4f7b7f179363",
   "schema": "publication-bank-manifests/v1",
   "target_symbol": "Problem97.erdos97_rhs"
 }

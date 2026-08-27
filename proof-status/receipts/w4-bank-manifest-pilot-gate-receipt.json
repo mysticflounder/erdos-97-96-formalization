@@ -2,18 +2,18 @@
   "schema": "p97-gate-receipt/v1",
   "wave": "W4-bank-manifest-pilot",
   "lane_id": "consolidation-w4-bank-manifest-pilot-20260826",
-  "state": "ready-for-commit",
+  "state": "pass",
   "overall_pass": true,
   "generated_by": "Codex",
-  "generated_at_utc": "2026-08-27T00:49:32Z",
+  "generated_at_utc": "2026-08-27T01:02:43Z",
   "claim_references": [
     "nthdegree convo #7545",
     "nthdegree convo #7546"
   ],
   "base_head": "5fd08c68fe84516d08e4997f61b7fb274ff078c6",
-  "observed_head": "57efc3339753f83b2689dae414fe3a80fbe54869",
-  "wave_commit": null,
-  "head_note": "The lane base and manifest last_verified_head remain 5fd08c68. The observed head advanced only through separately owned work; the manifest checker requires the recorded head to be an ancestor of the live head and reproduced the stored artifact successfully.",
+  "observed_head": "ff5da5ac97188db15c52d2b544039ed49f5621f9",
+  "wave_commit": "ff5da5ac97188db15c52d2b544039ed49f5621f9",
+  "head_note": "The lane began at 5fd08c68. After the implementation commit, the manifest was regenerated with last_verified_head ff5da5ac, which contains the exact verifier version, tests, initial manifest, and receipt. The final child changes only the regenerated manifest and sealed receipt.",
   "scope": {
     "bank_id": "card-eleven-unique-four-certificate",
     "target_symbol": "Problem97.erdos97_rhs",
@@ -40,13 +40,13 @@
     },
     {
       "path": "proof-status/publication-bank-manifests.json",
-      "sha256": "f08183022948b919bd76c34cdb11909ffb0068ea8fb834b856abb58093cb76d9"
+      "sha256": "b2e1c80bfcb9648ba5d58f22512abcc4022c71a62a7b4ffe8fb3ad69b0a62b7a"
     }
   ],
   "verified_claims": {
     "schema": "publication-bank-manifests/v1",
-    "manifest_sha256": "9ecb209c11cfeb149937a8b90b8b9583893ed79cf58d7da3b1e52476b56fc7ae",
-    "last_verified_head": "5fd08c68fe84516d08e4997f61b7fb274ff078c6",
+    "manifest_sha256": "f3c1b22ec3a8f2d4ab3d3e7aad020252da22ffd47df140c0862d4f7b7f179363",
+    "last_verified_head": "ff5da5ac97188db15c52d2b544039ed49f5621f9",
     "proof_blueprint_build_fingerprint": "5902ba928947b2ac2fda7b3cc06ff430f9e95f86f9046c96043581865b0a536c",
     "promotion_lean_file_count": 2061,
     "replay_asset_count": 1656,
@@ -93,7 +93,7 @@
       "result": "files=3718; promoted=2061; assets=1656; excluded files=756; excluded directories=12; support amendments=4"
     },
     {
-      "command": "uv run python scripts/audit_publication_bank_manifest.py generate --output proof-status/publication-bank-manifests.json --verified-head 5fd08c68fe84516d08e4997f61b7fb274ff078c6",
+      "command": "uv run python scripts/audit_publication_bank_manifest.py generate --output proof-status/publication-bank-manifests.json --verified-head ff5da5ac97188db15c52d2b544039ed49f5621f9",
       "exit_code": 0,
       "result": "canonical manifest generated"
     },
@@ -113,7 +113,7 @@
     "verdict": "pass",
     "blockers": [],
     "checks": [
-      "Recomputed manifest self-hash 9ecb209c11cfeb149937a8b90b8b9583893ed79cf58d7da3b1e52476b56fc7ae.",
+      "Recomputed manifest self-hash f3c1b22ec3a8f2d4ab3d3e7aad020252da22ffd47df140c0862d4f7b7f179363 after binding the implementation commit.",
       "Recomputed generated roster hash 4a76be38f745917fb7f1f1bfc99902adedaf5df705482d463111b5f3ef48cfc0 and dependency hash 29a5151dac483770a17dff20cf9ce6bb2b67a35828aa47f0b04bc37b42a4a30d.",
       "Found 2125 of 2125 coordinator reference rows with one current fingerprint, 0 stale, and 0 missing.",
       "Confirmed the 2516-file target spine contains coordinator and ingress, intersects the promoted package in 2057 files, and intersects the three excluded scopes in 0 files.",
