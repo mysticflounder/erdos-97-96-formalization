@@ -8,7 +8,7 @@ Author: Adam McKenna <adam@mysticflounder.ai>
 
 Date: 2026-08-26
 
-Verified revision: `b09f8ca5298d662a9277acceaeb8f61f8fad99c6`
+Verified revision: `ac62aab693b6f4300dbf193b82125855a5d39b2c`
 
 Verified fixture gate (2026-08-27): `351 passed` and
 `CAP_CONFIG_TEST_GATE=PASSED`
