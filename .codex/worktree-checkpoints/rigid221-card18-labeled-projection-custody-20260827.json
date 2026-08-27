@@ -1,0 +1,18 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "rigid221-card18-labeled-projection-custody-20260827",
+  "owner": "ResidualCartographer",
+  "base_head": "a83fd4dbbb3233f5b99496ffde9885d4db095344",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/rigid221-card18-labeled-projection-custody-20260827.json",
+    "census/p97_search/rigid221_card18_labeled_projection_custody.py",
+    "census/p97_search/tests/test_rigid221_card18_labeled_projection_custody.py",
+    "docs/specs/p97-rigid221-card18-labeled-projection-custody-v1.md"
+  ],
+  "generated_roots": [],
+  "durable_paths": [
+    "certificates/rigid221_card18_labeled_projection_source_custody_v1.json"
+  ],
+  "created_utc": "2026-08-27T18:48:33Z",
+  "manifest_sha256": "fad23553b32e731293bb81b73c3f41206e78f9c133621b7cfed1c58d7d0627be"
+}
