@@ -723,9 +723,12 @@ prove the ambient theorem. `UNSAT_DISCOVERY_ONLY` is not a proof. A PIQD receipt
 is not source validation. A replayed SAT model becomes a counterexample only
 after the exact T0 source-witness construction and named consumer accept it.
 
-Under `FIRST_VALID_WITNESS`, an accepted source-level witness may stop the run,
-but coverage remains `INCOMPLETE` and every unattempted cell remains
-inventoried. Under `NEGATIVE_BRANCH_CLOSURE`, no early stop is allowed.
+The shipped fixture-only v1 controller supports only exhaustive fixture
+execution. `FIRST_VALID_WITNESS` and `NEGATIVE_BRANCH_CLOSURE` are future live
+schema requirements, not implemented operator modes. Under a later qualified
+schema, an accepted source-level witness may stop a `FIRST_VALID_WITNESS` run
+only with `INCOMPLETE` coverage and a complete inventory of unattempted cells;
+`NEGATIVE_BRANCH_CLOSURE` permits no early stop.
 
 The operator never performs proof promotion. In particular, an UNSAT-facing
 handoff must separately prove that every source-valid geometry covered by T0

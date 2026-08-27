@@ -291,16 +291,20 @@ The adapter classifications are exactly:
 - `INCONCLUSIVE_TRANSPORT_LOSS`; and
 - `INCONCLUSIVE_CROSS_SOLVER_DISAGREEMENT`.
 
-Attempt indices are unique and monotone. Every admitted attempt remains
-visible. Conflicting decisive classifications yield the disagreement class.
-Otherwise the lowest-index decisive attempt is selected; if none is decisive,
-the highest-index eligible terminal attempt is selected. A nonterminal or
-orphan attempt blocks complete coverage.
+The fixture-only v1 runtime admits exactly one attempt, index `000000`, per
+cell and selects it under the frozen `single_attempt` policy. Extra attempt
+indices, conflicting retained attempts, and reselection are custody failures,
+not fixture classifications. Multi-attempt conflict resolution (including
+lowest-index decisive and highest-index eligible-terminal selection) belongs
+to a future reviewed live schema; this implementation does not provide or
+qualify it. A nonterminal or orphan fixture attempt blocks complete coverage.
 
 Coverage is `COMPLETE` only when every declared cell has one validator-accepted
-diagnostic classification and all identities/stages pass. Early valid-witness
-termination remains `INCOMPLETE` and lists every unattempted cell. Coverage is
-diagnostic and has no promotion-status field.
+diagnostic classification and all identities/stages pass. The fixture-only v1
+controller is exhaustive and implements neither `FIRST_VALID_WITNESS` nor
+`NEGATIVE_BRANCH_CLOSURE`; those termination policies require a future live
+schema and qualification. Coverage is diagnostic and has no promotion-status
+field.
 
 ## Qualification status
 

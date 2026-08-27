@@ -221,6 +221,126 @@ def test_cell_result_certificate_projection_must_match_outcome(
 @pytest.mark.parametrize(
     ("field", "value"),
     [
+        ("kind", "failed"),
+        ("certificate_ref", "certificate/forged"),
+        ("certificate_status", "CHECKED"),
+        ("failure", {"message": "forged", "stage": "adapter"}),
+        ("semantic_replay_sha256", "0" * 64),
+    ],
+)
+def test_synchronized_outcome_and_result_rehash_cannot_forge_projection(
+    tmp_path: Path,
+    field: str,
+    value: object,
+) -> None:
+    prepared = prepare_fixture(tmp_path)
+    execute_fixture(prepared, FakeAdapter())
+    attempt = next(
+        path
+        for path in (prepared.repo / prepared.run_root / "events/attempts").glob(
+            "*/000000"
+        )
+        if parse_stored_json_bytes((path / "outcome.json").read_bytes())[
+            "adapter_classification"
+        ]
+        == "SAT_SEMANTICALLY_REPLAYED"
+    )
+    outcome_path = attempt / "outcome.json"
+    outcome = parse_stored_json_bytes(outcome_path.read_bytes())
+    outcome[field] = value
+    outcome_body = {
+        key: item for key, item in outcome.items() if key != "outcome_sha256"
+    }
+    outcome["outcome_sha256"] = structured_hash(ATTEMPT_OUTCOME_SCHEMA, outcome_body)
+    outcome_path.unlink()
+    outcome_path.write_bytes(stored_json_bytes(outcome))
+
+    admission = parse_stored_json_bytes((attempt / "admission.json").read_bytes())
+    result_path = (
+        prepared.repo
+        / prepared.run_root
+        / "artifacts/results"
+        / admission["identity"]["cell_id"]
+        / f"{admission['attempt_id']}.json"
+    )
+    result = parse_stored_json_bytes(result_path.read_bytes())
+    result["selection"]["outcome_sha256"] = outcome["outcome_sha256"]
+    if field in {"certificate_ref", "certificate_status"}:
+        result[field] = value
+    result_body = {
+        key: item for key, item in result.items() if key != "cell_result_sha256"
+    }
+    result["cell_result_sha256"] = structured_hash(CELL_RESULT_SCHEMA, result_body)
+    result_path.unlink()
+    result_path.write_bytes(stored_json_bytes(result))
+
+    with pytest.raises(
+        CapConfigurationCampaignError, match="attempt outcome projection mismatch"
+    ):
+        validate_campaign(
+            prepared.manifest_path, prepared.run_root, repo_root=prepared.repo
+        )
+
+
+@pytest.mark.parametrize(
+    ("field", "value"),
+    [
+        ("failure", {"message": "RuntimeError", "stage": "adapter"}),
+        ("adapter_result_raw_sha256", "0" * 64),
+    ],
+)
+def test_rehashed_failure_outcome_must_match_failure_stage(
+    tmp_path: Path,
+    field: str,
+    value: object,
+) -> None:
+    class FailureAdapter(FakeAdapter):
+        def __call__(self, **_kwargs: object) -> dict[str, object]:
+            raise ValueError("fixture adapter failure")
+
+    prepared = prepare_fixture(tmp_path)
+    execute_fixture(prepared, FailureAdapter())
+    attempt = next(
+        (prepared.repo / prepared.run_root / "events/attempts").glob("*/000000")
+    )
+    outcome_path = attempt / "outcome.json"
+    outcome = parse_stored_json_bytes(outcome_path.read_bytes())
+    outcome[field] = value
+    outcome_body = {
+        key: item for key, item in outcome.items() if key != "outcome_sha256"
+    }
+    outcome["outcome_sha256"] = structured_hash(ATTEMPT_OUTCOME_SCHEMA, outcome_body)
+    outcome_path.unlink()
+    outcome_path.write_bytes(stored_json_bytes(outcome))
+
+    admission = parse_stored_json_bytes((attempt / "admission.json").read_bytes())
+    result_path = (
+        prepared.repo
+        / prepared.run_root
+        / "artifacts/results"
+        / admission["identity"]["cell_id"]
+        / f"{admission['attempt_id']}.json"
+    )
+    result = parse_stored_json_bytes(result_path.read_bytes())
+    result["selection"]["outcome_sha256"] = outcome["outcome_sha256"]
+    result_body = {
+        key: item for key, item in result.items() if key != "cell_result_sha256"
+    }
+    result["cell_result_sha256"] = structured_hash(CELL_RESULT_SCHEMA, result_body)
+    result_path.unlink()
+    result_path.write_bytes(stored_json_bytes(result))
+
+    with pytest.raises(
+        CapConfigurationCampaignError, match="attempt outcome projection mismatch"
+    ):
+        validate_campaign(
+            prepared.manifest_path, prepared.run_root, repo_root=prepared.repo
+        )
+
+
+@pytest.mark.parametrize(
+    ("field", "value"),
+    [
         ("admission_policy", "foreign-policy/v1"),
         ("reason", "first_terminal_attempt"),
     ],
@@ -260,6 +380,45 @@ def test_run_manifest_cannot_omit_snapshot_even_after_rehash(tmp_path: Path) -> 
         )
 
 
+def test_rehashed_plan_cannot_relocate_snapshot_within_retained_tree(
+    tmp_path: Path,
+) -> None:
+    prepared = prepare_fixture(tmp_path)
+    run = prepared.repo / prepared.run_root
+    plan_path = run / "artifacts/plan.json"
+    plan = parse_stored_json_bytes(plan_path.read_bytes())
+    snapshot = plan["snapshot_files"][0]
+    original_relative = snapshot["retained_path"]
+    relocated_relative = "artifacts/snapshots/noncanonical/relocated.json"
+    relocated_path = run / relocated_relative
+    relocated_path.parent.mkdir(parents=True)
+    (run / original_relative).rename(relocated_path)
+    snapshot["retained_path"] = relocated_relative
+    plan_body = {key: item for key, item in plan.items() if key != "plan_sha256"}
+    plan["plan_sha256"] = structured_hash(plan["schema"], plan_body)
+    plan_path.unlink()
+    plan_path.write_bytes(stored_json_bytes(plan))
+
+    run_manifest_path = run / "run_manifest.json"
+    run_manifest = parse_stored_json_bytes(run_manifest_path.read_bytes())
+    original_key = f"{prepared.run_root}/{original_relative}"
+    relocated_key = f"{prepared.run_root}/{relocated_relative}"
+    run_manifest["input_digests"][relocated_key] = run_manifest["input_digests"].pop(
+        original_key
+    )
+    unsigned = {
+        key: item for key, item in run_manifest.items() if key != "manifest_sha256"
+    }
+    run_manifest["manifest_sha256"] = raw_sha256(canonical_json_bytes(unsigned))
+    run_manifest_path.unlink()
+    run_manifest_path.write_bytes(stored_json_bytes(run_manifest))
+
+    with pytest.raises(CapConfigurationCampaignError, match="noncanonical"):
+        validate_campaign(
+            prepared.manifest_path, prepared.run_root, repo_root=prepared.repo
+        )
+
+
 def test_stage_swap_is_rejected_before_interpretation(tmp_path: Path) -> None:
     prepared = prepare_fixture(tmp_path)
     execute_fixture(prepared, FakeAdapter())
@@ -293,6 +452,43 @@ def test_unreferenced_attempt_artifact_forces_incomplete_orphan_inventory(
     )
     assert report.coverage_status == "INCOMPLETE"
     assert any("unreferenced.json" in item for item in report.orphan_attempts)
+
+
+def test_failure_stage_piqd_artifact_blocks_validation_and_resume(
+    tmp_path: Path,
+) -> None:
+    class ArtifactThenFailureAdapter(FakeAdapter):
+        def __call__(self, **kwargs: object) -> dict[str, object]:
+            output_fd = kwargs["output_fd"]
+            assert type(output_fd) is int
+            descriptor = os.open(
+                "partial-adapter-artifact.json",
+                os.O_WRONLY | os.O_CREAT | os.O_EXCL,
+                0o600,
+                dir_fd=output_fd,
+            )
+            try:
+                os.write(descriptor, b"{}\n")
+            finally:
+                os.close(descriptor)
+            raise RuntimeError("adapter failed after partial publication")
+
+    prepared = prepare_fixture(tmp_path)
+    adapter = ArtifactThenFailureAdapter()
+    coverage = execute_fixture(prepared, adapter)
+    assert coverage["coverage_status"] == "INCOMPLETE"
+
+    report = validate_campaign(
+        prepared.manifest_path, prepared.run_root, repo_root=prepared.repo
+    )
+    assert report.resume_safe is False
+    assert any(
+        "partial-adapter-artifact.json" in item for item in report.orphan_attempts
+    )
+
+    with pytest.raises(CapConfigurationCampaignError) as caught:
+        execute_fixture(prepared, adapter)
+    assert caught.value.code == "BLOCKED_CUSTODY_OR_IDENTITY"
 
 
 def test_raw_sat_values_mutation_is_rejected(tmp_path: Path) -> None:

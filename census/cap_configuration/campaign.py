@@ -923,6 +923,12 @@ def _snapshot_rel(logical: str) -> str:
     return f"artifacts/snapshots/{logical}"
 
 
+def _canonical_snapshot_retained_path(logical: str) -> str:
+    if logical == "authorization.json" or logical.startswith("repo/"):
+        return _snapshot_rel(logical)
+    return _snapshot_rel(f"bundle/{logical}")
+
+
 def _record_snapshot(
     staging_fd: int,
     logical: str,
@@ -1250,8 +1256,18 @@ def _snapshot_map(plan: Mapping[str, Any]) -> dict[str, dict[str, Any]]:
             {"bytes", "logical_path", "raw_sha256", "retained_path"},
             f"plan.snapshot_files[{index}]",
         )
-        logical = _text(item["logical_path"], f"snapshot[{index}].logical_path")
-        _repo_relative(item["retained_path"], f"snapshot[{index}].retained_path")
+        logical = _repo_relative(
+            _text(item["logical_path"], f"snapshot[{index}].logical_path"),
+            f"snapshot[{index}].logical_path",
+        )
+        retained = _repo_relative(
+            item["retained_path"], f"snapshot[{index}].retained_path"
+        )
+        if retained != _canonical_snapshot_retained_path(logical):
+            _fail(
+                "BLOCKED_CUSTODY_OR_IDENTITY",
+                "plan snapshot retained path is noncanonical",
+            )
         _digest(item["raw_sha256"], f"snapshot[{index}].raw_sha256")
         _exact_int(item["bytes"], f"snapshot[{index}].bytes")
         if logical in result:
@@ -2147,6 +2163,7 @@ def run_campaign(
                 attempt_relative = _attempt_relative(cell.cell_id)
                 attempt_directory = _mkdirs_at(run_fd, attempt_relative)
                 os.close(attempt_directory)
+                _crash(crash_after, "attempt_directory")
                 stages_directory = _mkdirs_at(run_fd, f"{attempt_relative}/stages")
                 os.close(stages_directory)
                 result_directory = _mkdirs_at(
@@ -2159,6 +2176,11 @@ def run_campaign(
                     admission = _build_admission(plan, cell, admitted_utc=recorded_utc)
                     _write_json(run_fd, admission_path, admission)
                     admission_was_created = True
+                    if cell.ordinal == 0:
+                        _crash(
+                            crash_after,
+                            "admission_before_authorization_consumption",
+                        )
                 else:
                     admission = loaded_admission[0]
                     admission_was_created = False

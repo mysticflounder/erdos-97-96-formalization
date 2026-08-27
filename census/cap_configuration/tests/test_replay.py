@@ -268,6 +268,19 @@ def test_exact_rational_record_round_trip_and_canonicality() -> None:
     assert mixed_keys.value.code == "malformed_record"
 
 
+def test_exact_rational_constructor_enforces_frozen_integer_boundaries() -> None:
+    ExactRationalReadback("x", 10**4095, 1)
+    ExactRationalReadback("x", 1, 1 << 4095)
+
+    with pytest.raises(CapConfigurationReplayError) as numerator:
+        ExactRationalReadback("x", 10**4096, 1)
+    assert numerator.value.code == "integer_budget_exceeded"
+
+    with pytest.raises(CapConfigurationReplayError) as denominator:
+        ExactRationalReadback("x", 1, 1 << 4096)
+    assert denominator.value.code == "denominator_budget_exceeded"
+
+
 @pytest.mark.parametrize(
     ("relation", "polynomials", "mutated"),
     [

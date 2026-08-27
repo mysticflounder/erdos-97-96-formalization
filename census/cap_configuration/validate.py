@@ -276,11 +276,6 @@ def _validate_consumption(
 ) -> dict[str, Any] | None:
     loaded = _load_if_present(run_fd, "events/authorization-consumption.json")
     if loaded is None:
-        if first_attempt_id is not None:
-            _fail(
-                "attempt exists without authorization consumption",
-                code="BLOCKED_AUTHORIZATION",
-            )
         return None
     value = loaded[0]
     _object(
@@ -540,7 +535,7 @@ def _validate_outcome(
     value: Mapping[str, Any],
     *,
     admission: Mapping[str, Any],
-    previous_sha256: str,
+    previous_stage: Mapping[str, Any],
     adapter_result: Mapping[str, Any] | None,
 ) -> None:
     _object(
@@ -568,17 +563,56 @@ def _validate_outcome(
     )
     if (
         value["attempt_id"] != admission["attempt_id"]
-        or value["previous_sha256"] != previous_sha256
+        or value["previous_sha256"] != previous_stage["stage_sha256"]
     ):
         _fail("attempt outcome chain mismatch")
     _parse_utc(value["recorded_utc"], "outcome.recorded_utc")
-    if (
-        adapter_result is not None
-        and value["adapter_classification"] != adapter_result["classification"]
-    ):
-        _fail("attempt outcome classification mismatch")
-    if adapter_result is None and value["adapter_classification"] is not None:
-        _fail("failure outcome invents an adapter classification")
+    if adapter_result is None:
+        failure_payload = _object(
+            previous_stage["payload"], {"exception"}, "adapter failure payload"
+        )
+        expected_projection = {
+            "adapter_classification": None,
+            "adapter_result_raw_sha256": None,
+            "certificate_ref": None,
+            "certificate_status": "NOT_REQUESTED",
+            "failure": {
+                "message": _text(
+                    failure_payload["exception"], "adapter failure exception"
+                ),
+                "stage": "adapter",
+            },
+            "kind": "failed",
+            "semantic_replay_sha256": None,
+        }
+    else:
+        classification = adapter_result["classification"]
+        replay = adapter_result.get("cap_semantic_replay")
+        expected_projection = {
+            "adapter_classification": classification,
+            "certificate_ref": None,
+            "certificate_status": "NOT_AVAILABLE"
+            if classification == "UNSAT_DISCOVERY_ONLY"
+            else "NOT_REQUESTED",
+            "failure": None
+            if classification
+            in {
+                "SAT_SEMANTICALLY_REPLAYED",
+                "UNSAT_DISCOVERY_ONLY",
+                "INCONCLUSIVE_UNKNOWN",
+            }
+            else classification,
+            "kind": {
+                "SAT_SEMANTICALLY_REPLAYED": "sat",
+                "UNSAT_DISCOVERY_ONLY": "unsat",
+                "INCONCLUSIVE_UNKNOWN": "unknown",
+            }.get(classification, "failed"),
+            "semantic_replay_sha256": None
+            if replay is None
+            else replay["replay_sha256"],
+        }
+    if any(value[field] != expected for field, expected in expected_projection.items()):
+        _fail("attempt outcome projection mismatch")
 
 
 def _validate_cell_result(
@@ -890,6 +924,7 @@ def validate_campaign(
         validated_cell_ids: list[str] = []
         nonterminal: list[str] = []
         adapter_session_ids: set[str] = set()
+        pending_authorization_attempt_id: str | None = None
         retained_prefix_open = True
         attempts_root_present = _optional_directory_present(run_fd, "events/attempts")
         results_root_present = _optional_directory_present(run_fd, "artifacts/results")
@@ -944,6 +979,12 @@ def validate_campaign(
                 run_fd, f"{attempt_relative}/admission.json"
             )
             if admission_loaded is None:
+                if set(attempt_members).issubset({"stages"}) and not stage_names:
+                    observations.append(
+                        f"prepared attempt directory awaits admission: {cell.cell_id}"
+                    )
+                    retained_prefix_open = False
+                    continue
                 _fail(f"attempt directory lacks admission: {cell.cell_id}")
             admission = admission_loaded[0]
             _validate_admission(admission, plan, cell)
@@ -953,6 +994,12 @@ def validate_campaign(
                 run_fd, f"{attempt_relative}/stages/000000-resource-attestation.json"
             )
             if stage0_loaded is None:
+                if (
+                    cell.ordinal == 0
+                    and set(attempt_members) == {"admission.json", "stages"}
+                    and not stage_names
+                ):
+                    pending_authorization_attempt_id = admission["attempt_id"]
                 nonterminal.append(cell.cell_id)
                 retained_prefix_open = False
                 continue
@@ -1054,6 +1101,11 @@ def validate_campaign(
                 )
                 if adapter_loaded is not None:
                     _fail("failed adapter stage has a retained adapter result")
+                observed_piqd = set(_list_directory(run_fd, f"{attempt_relative}/piqd"))
+                orphan_attempts += tuple(
+                    f"{cell.cell_id}/000000/piqd/{name}"
+                    for name in sorted(observed_piqd)
+                )
             elif adapter_loaded is not None:
                 adapter_result, _adapter_held = adapter_loaded
                 _classification, session_id = _validate_adapter_result(
@@ -1128,7 +1180,7 @@ def validate_campaign(
             _validate_outcome(
                 outcome,
                 admission=admission,
-                previous_sha256=stage2["stage_sha256"],
+                previous_stage=stage2,
                 adapter_result=adapter_result,
             )
             if (
@@ -1197,8 +1249,20 @@ def validate_campaign(
         attestation = _validate_attestation(
             run_fd, plan, attempts_exist=bool(admissions)
         )
-        if admissions and (consumption is None or attestation is None):
+        if admissions and attestation is None:
             _fail("attempt prefix lacks run-admission gates")
+        if admissions and consumption is None:
+            if not (
+                len(admissions) == 1
+                and pending_authorization_attempt_id == first_attempt
+            ):
+                _fail(
+                    "attempt exists without authorization consumption",
+                    code="BLOCKED_AUTHORIZATION",
+                )
+            observations.append(
+                "ordinal-zero admission awaits authorization consumption"
+            )
         if attestation is not None:
             for admission in admissions:
                 attempt_relative = _attempt_relative(admission["identity"]["cell_id"])

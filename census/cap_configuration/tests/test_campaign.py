@@ -632,6 +632,52 @@ def test_fake_mixed_campaign_is_complete_and_idempotent(tmp_path: Path) -> None:
 
 
 @pytest.mark.parametrize(
+    ("boundary", "admission_present"),
+    [
+        ("attempt_directory", False),
+        ("admission_before_authorization_consumption", True),
+    ],
+)
+def test_pre_admission_and_pre_consumption_crashes_are_resumable(
+    tmp_path: Path,
+    boundary: str,
+    admission_present: bool,
+) -> None:
+    prepared = prepare_fixture(tmp_path)
+    adapter = FakeAdapter()
+    with pytest.raises(RuntimeError, match="injected crash"):
+        execute_fixture(prepared, adapter, crash_after=boundary)
+
+    attempt = next(
+        (prepared.repo / prepared.run_root / "events/attempts").glob("*/000000")
+    )
+    admission_path = attempt / "admission.json"
+    consumption_path = (
+        prepared.repo / prepared.run_root / "events/authorization-consumption.json"
+    )
+    assert admission_path.exists() is admission_present
+    assert not consumption_path.exists()
+    retained_attempt_id = (
+        parse_stored_json_bytes(admission_path.read_bytes())["attempt_id"]
+        if admission_present
+        else None
+    )
+
+    interrupted = validate_campaign(
+        prepared.manifest_path, prepared.run_root, repo_root=prepared.repo
+    )
+    assert interrupted.coverage_status == "INCOMPLETE"
+    assert interrupted.resume_safe is True
+
+    coverage = execute_fixture(prepared, adapter, now_utc=LATER_TIME)
+    assert coverage["coverage_status"] == "COMPLETE"
+    resumed_admission = parse_stored_json_bytes(admission_path.read_bytes())
+    if retained_attempt_id is not None:
+        assert resumed_admission["attempt_id"] == retained_attempt_id
+    assert len(adapter.calls) == 3
+
+
+@pytest.mark.parametrize(
     "boundary",
     [
         "resource_attestation",

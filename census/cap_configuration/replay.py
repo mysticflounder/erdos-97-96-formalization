@@ -158,6 +158,20 @@ class ExactRationalReadback:
         _identifier(self.identifier, "readback.identifier")
         _exact_int(self.numerator, "readback.numerator")
         _exact_int(self.denominator, "readback.denominator", minimum=1)
+        integer_limit = 10 ** _FROZEN_REPLAY_MAXIMA["max_integer_digits"]
+        if abs(self.numerator) >= integer_limit or self.denominator >= integer_limit:
+            _fail(
+                "integer_budget_exceeded",
+                "readback integer exceeds the frozen digit budget",
+            )
+        if (
+            self.denominator.bit_length()
+            > _FROZEN_REPLAY_MAXIMA["max_denominator_bits"]
+        ):
+            _fail(
+                "denominator_budget_exceeded",
+                "readback denominator exceeds the frozen bit budget",
+            )
         if gcd(abs(self.numerator), self.denominator) != 1:
             _fail("unreduced_rational", "readback rational must be reduced")
 
