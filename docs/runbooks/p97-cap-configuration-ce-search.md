@@ -8,9 +8,9 @@ Author: Adam McKenna <adam@mysticflounder.ai>
 
 Date: 2026-08-26
 
-Verified revision: `57efc3339753f83b2689dae414fe3a80fbe54869`
+Verified revision: `49d5623a7c7c6ec7a10e738ceae116faf9c36028`
 
-Runbook state: `BLOCKED_NOT_IMPLEMENTED`
+Runbook state: `IMPLEMENTED_FIXTURE_ONLY_UNQUALIFIED`
 
 Live search authorized by this document: `false`
 
@@ -24,20 +24,23 @@ authorize a successor wave.
 
 The mathematical and trust contract remains
 [the cap-configuration census implementation plan](../plans/2026-08-23-cap-configuration-piqd-census-plan.md).
-The active closure plan supplies target authorization. A future frozen
-`docs/specs/p97-piqd-cap-configuration-census-v1.md` will supply the protocol
-contract. If those documents disagree, stop and report the disagreement.
+The active closure plan supplies target authorization. The frozen protocol
+contract is [`docs/specs/p97-piqd-cap-configuration-census-v1.md`](../specs/p97-piqd-cap-configuration-census-v1.md).
+If those documents disagree, stop and report the disagreement.
 
-This guide is deliberately fail-closed. On the verified revision, only the
-schema/encoding baseline in [`census/cap_configuration/`](../../census/cap_configuration/)
-is implemented. The universe, symmetry, replay, PIQD adapter, campaign
-controller, standalone validator, frozen spec, and cap-specific launcher tests
-do not yet exist. The readiness command below must therefore print
-`CAP_CONFIG_READINESS=BLOCKED_NOT_IMPLEMENTED` and exit nonzero today. Do not
-route around that result by calling PIQD directly.
+This guide is deliberately fail-closed. The six runtime modules in
+[`census/cap_configuration/`](../../census/cap_configuration/) (`universe`,
+`symmetry`, `replay`, `piqd_adapter`, `campaign`, and `validate`), the frozen
+specification, the cap test suite, and the frozen test wrapper now exist. The
+shipped backend-`none` fixture can be planned and validated offline, and its
+injected-adapter lifecycle is exercised by tests. Live PIQD operation remains
+unqualified: fixture v1 accepts only a JSON-null authorization `parent`, and
+the default CLI `run` has no registered attestor and must fail closed with
+`BLOCKED_RESOURCE_BOUNDARY` before network or session creation. Do not route
+around that result by calling PIQD directly.
 
-The runbook state may be changed to `READY` only in the same reviewed checkpoint
-that implements and tests the command contract in this document.
+The runbook state may change to `READY` only after the live qualification gates
+below pass in a reviewed checkpoint with a recorded implementation commit.
 
 ## Operator rules
 
@@ -61,9 +64,9 @@ that implements and tests the command contract in this document.
 8. Keep one shell for the run. If the shell or host session restarts, rerun the
    environment, input-custody, and checkpoint gates before any resume command.
 
-While `Runbook state` is `BLOCKED_NOT_IMPLEMENTED`, skip directly to
-**Encoding baseline** and then **Implementation readiness**. Do not fabricate
-an assignment packet merely to reach the readiness check.
+While `Runbook state` is `IMPLEMENTED_FIXTURE_ONLY_UNQUALIFIED`, run
+**Encoding baseline** and **Implementation readiness**. Do not fabricate a live
+assignment packet merely to reach the readiness check.
 
 ## Required assignment packet — RUN WHEN READY
 
@@ -383,8 +386,8 @@ env \
     census/cap_configuration/tests
 ```
 
-At the verified revision the expected result is `61 passed`. Any failure is
-`BLOCKED_ENCODING_BASELINE`.
+The cap-configuration test suite must pass (the current implementation runs 236
+tests). Any failure is `BLOCKED_ENCODING_BASELINE`.
 
 Run the byte-contract probe:
 
@@ -433,8 +436,8 @@ the mathematical encoding.
 
 ## Implementation readiness — RUN NOW
 
-Run this in a subshell. On the verified revision it must list missing artifacts
-and exit 20 without closing the operator's shell:
+Run this in a subshell. It must find all six runtime modules, the frozen spec,
+and the wrapper without closing the operator's shell:
 
 ```bash
 (
@@ -455,15 +458,15 @@ and exit 20 without closing the operator's shell:
     fi
   done
   if test "$missing" -ne 0; then
-    printf '%s\n' 'CAP_CONFIG_READINESS=BLOCKED_NOT_IMPLEMENTED'
+    printf '%s\n' 'CAP_CONFIG_READINESS=BLOCKED_IMPLEMENTATION_INCOMPLETE'
     exit 20
   fi
-  printf '%s\n' 'CAP_CONFIG_READINESS=IMPLEMENTATION_FILES_PRESENT'
+  printf '%s\n' 'CAP_CONFIG_READINESS=IMPLEMENTED_FIXTURE_ONLY_UNQUALIFIED'
 )
 ```
 
-`IMPLEMENTATION_FILES_PRESENT` is not enough to run. Before this document can
-say `READY`, all of the following must also be true:
+The implementation presence gate does not qualify live operation. Before this
+document can say `READY`, all of the following must also be true:
 
 - `scripts/test-p97-piqd-cap-configuration-census.sh` exits zero;
 - the exact CLI help and zero-network `plan` tests below pass;
@@ -472,18 +475,19 @@ say `READY`, all of the following must also be true:
   symmetry, deliberate omission, mutations, request replay, lifecycle faults,
   and crash/restart;
 - a reviewed T0/T1 packet exists for the assigned live target;
+- a non-null parent-authorization schema is frozen, implemented, and reviewed;
 - one-process resource enforcement and identity capture pass; and
 - an independent low-level operator runs the exact `fixture_canary` sequence
   below from a clean isolated worktree and reproduces the retained artifacts.
 
-Until then, report `BLOCKED_NOT_IMPLEMENTED` and stop. Do not use a nearby P97
-runner, raw `piqc submit`, a generic SMT script, or direct HTTP calls as a
-substitute.
+Until then, keep the runbook state
+`IMPLEMENTED_FIXTURE_ONLY_UNQUALIFIED`, and stop any live operation with the
+applicable gate code. Do not use a nearby P97 runner, raw `piqc submit`, a
+generic SMT script, or direct HTTP calls as a substitute.
 
 ## Required command contract — RUN WHEN READY
 
-The implementation checkpoint that changes this runbook to `READY` must provide
-this single cap-owned command surface:
+The implemented runtime provides this single cap-owned command surface:
 
 ```text
 python -m census.cap_configuration.campaign plan MANIFEST RUN_ROOT --authorization AUTHORIZATION
@@ -520,6 +524,13 @@ Normative behavior:
   coverage separately, reconstructs identities and exact SAT replay from disk,
   and verifies the descriptor/snapshot/final-recapture custody chain.
 
+The default CLI has no ambient resource/daemon attestor. Therefore a `run`
+invocation without a registered attestor, real qualified manifest, and live
+qualification must return `BLOCKED_RESOURCE_BOUNDARY` before network access or
+PIQD session creation. Tests may inject a fake adapter and attestor at the
+Python boundary for the backend-`none` fixture; that test seam is not live
+authority.
+
 The `run` command must invoke the registered project-side process supervisor,
 verify the manifest-bound supervisor configuration and telemetry sink, and
 print `CAP_CONFIG_RESOURCE_ATTESTATION=PASSED` before creating a PIQD session.
@@ -535,7 +546,7 @@ Use this command matrix; no run kind may borrow another row's shortcuts:
 
 | Run kind | Required gates | Exact command sequence | Additional rule |
 | --- | --- | --- | --- |
-| `fixture_canary` | Accepted diagnostic/off-spine T0 authorization and Phase 0--2 fixture gates | `plan`, `validate`, `run`, `validate`, `status`, hygiene report | Manifest claim flags are all false; no successor |
+| `fixture_canary` | Accepted diagnostic/off-spine T0 authorization and Phase 0--2 fixture gates | `plan`, `validate`, `status`, hygiene report | Backend-`none` fixture only; no CLI PIQD run and no successor; injected adapter/attestor is test-only |
 | `target_preflight` | T0 + T1a bound to the frozen sample; minimum Phase 1/2 slices pass | `plan`, `validate`, `run`, `validate`, `status`, hygiene report | This produces T1b evidence; only the coordinator may accept `PASSED` |
 | `pilot` | Complete matching T0/T1 plus Phase 3/4 gates | `plan`, `validate`, `run`, `validate`, `status`, hygiene report | Surface must match T0; one authorized successor or named pivot only |
 | `campaign` | Complete matching T0/T1, accepted pilot, resource qualification, active authorization | `plan`, `validate`, `run`, `validate`, `status`, hygiene report | Execute only the immutable ordered universe in the manifest |
@@ -601,7 +612,7 @@ ce_require_clean_hygiene || {
 Any validator, hygiene, custody, identity, or coverage-structure failure stops
 the run before PIQD.
 
-## Execute or resume — RUN WHEN READY
+## Execute or resume — RUN WHEN READY (live qualification only)
 
 Before this invocation may make a solver call, confirm that the assignment's
 target and resource gates still hold. In particular:
@@ -617,6 +628,13 @@ target and resource gates still hold. In particular:
   two-process then four-process qualification;
 - production has an external OS CPU/memory supervisor and bound telemetry; and
 - the operator has not changed any input or command argument since `plan`.
+
+In the current `IMPLEMENTED_FIXTURE_ONLY_UNQUALIFIED` state, do not proceed to
+a live invocation. The default CLI `run` is an intentional fail-closed probe:
+without a registered attestor it must return `BLOCKED_RESOURCE_BOUNDARY` before
+network access or PIQD session creation. A backend-`none` fixture execution
+requires the injected adapter/attestor used by the test suite and is not an
+operator-authorized live run.
 
 PIQD service startup, replacement, and upgrades are a separate operations
 responsibility. The coordinator supplies the already-qualified endpoint and
@@ -721,7 +739,8 @@ fixture evidence only and cannot authorize a target campaign.
 Stop immediately and report the first applicable reason:
 
 - `BLOCKED_ASSIGNMENT_INCOMPLETE`: missing or ambiguous assignment field;
-- `BLOCKED_NOT_IMPLEMENTED`: readiness artifacts or command contract absent;
+- `BLOCKED_IMPLEMENTATION_INCOMPLETE`: required runtime artifacts, tests, or
+  command contract absent;
 - `BLOCKED_T0`: no accepted target/polarity/termination/bridge record;
 - `T1_BLOCKED_NO_ORACLE`: no adequate independent source oracle;
 - `BLOCKED_T1_BINDING`: T0, T1a, T1b, manifest, source, or sample mismatch;
@@ -833,13 +852,13 @@ The `explicitly_not_claimed` field must name every unavailable claim, including
 source entitlement, theorem coverage, universal lift, Lean closure, checked
 UNSAT, or complete census coverage as applicable.
 
-## Maintainer gate for changing this runbook to READY
+## Maintainer gate for changing this runbook to READY (live qualification)
 
 Before changing `Runbook state` to `READY`, the implementing reviewer must:
 
 1. replace the verified revision with the tested implementation commit;
 2. freeze the cap protocol under `docs/specs/`;
-3. implement the exact four-command surface above;
+3. verify the implemented exact four-command surface above;
 4. make the readiness, frozen test, help, plan, live fixture, resume, offline
    validation, and hygiene commands pass from a clean isolated worktree;
 5. prove that `uv run --isolated --frozen` leaves no worktree-local `.venv`,
