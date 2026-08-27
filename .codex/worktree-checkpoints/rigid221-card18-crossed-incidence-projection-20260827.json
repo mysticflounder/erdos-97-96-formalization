@@ -1,0 +1,18 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "rigid221-card18-crossed-incidence-projection-20260827",
+  "owner": "ResidualCartographer",
+  "base_head": "68de8b1a7e7560e34c5efcc182d41a5190d48b60",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/rigid221-card18-crossed-incidence-projection-20260827.json",
+    "docs/live-blueprint.md",
+    "docs/specs/p97-rigid221-card18-crossed-incidence-projection-v1.md",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221Card18CrossedIncidenceProjection.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [
+    "certificates/rigid221_card18_crossed_incidence_projection_axioms_20260827.json"
+  ],
+  "created_utc": "2026-08-27T20:09:54Z",
+  "manifest_sha256": "f4a40b606ad34d1eabd8297e03dd3baceabcce01adb6851f791346a607e9c587"
+}

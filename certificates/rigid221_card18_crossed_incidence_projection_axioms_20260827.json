@@ -1,0 +1,40 @@
+{
+  "schema": "p97-rigid221-card18-crossed-incidence-projection-axioms/v1",
+  "lane_id": "rigid221-card18-crossed-incidence-projection-20260827",
+  "lane_base": "68de8b1a7e7560e34c5efcc182d41a5190d48b60",
+  "generated_utc": "2026-08-27T20:23:39Z",
+  "tool": "proof-blueprint axioms",
+  "lean_commands": [
+    "#print axioms Problem97.ATailFrontierLiveClosure.Rigid221Card18CrossedIncidenceProjection.xvDeletionFiveIncidenceProfile_conjunctionHasFalse",
+    "#print axioms Problem97.ATailFrontierLiveClosure.Rigid221Card18CrossedIncidenceProjection.uDeletionFiveIncidenceProfile_conjunctionHasFalse",
+    "#print axioms Problem97.ATailFrontierLiveClosure.Rigid221Card18CrossedIncidenceProjection.rigid221ExactCardEighteenLabeledAlternativeToIncidence"
+  ],
+  "lean_declarations": [
+    "Problem97.ATailFrontierLiveClosure.Rigid221Card18CrossedIncidenceProjection.xvDeletionFiveIncidenceProfile_conjunctionHasFalse",
+    "Problem97.ATailFrontierLiveClosure.Rigid221Card18CrossedIncidenceProjection.uDeletionFiveIncidenceProfile_conjunctionHasFalse",
+    "Problem97.ATailFrontierLiveClosure.Rigid221Card18CrossedIncidenceProjection.rigid221ExactCardEighteenLabeledAlternativeToIncidence"
+  ],
+  "lean_module": "Erdos9796Proof.P97.ATail.FrontierLiveClosure.Rigid221Card18CrossedIncidenceProjection",
+  "source_path": "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221Card18CrossedIncidenceProjection.lean",
+  "source_bytes": 19558,
+  "source_sha256": "27e356b50f38e974dc44884937d00c03e56c36c2180e3a01c619115576377439",
+  "exit_codes": [0, 0, 0],
+  "axioms": [
+    {
+      "name": "propext",
+      "classification": "core"
+    },
+    {
+      "name": "Classical.choice",
+      "classification": "core"
+    },
+    {
+      "name": "Quot.sound",
+      "classification": "core"
+    }
+  ],
+  "sorry_ax_present": false,
+  "native_or_external_evidence_present": false,
+  "scope_note": "This receipt records declaration-level kernel axiom reports for the two exact Fin 18 crossed-incidence missingness theorems and their total provenance-preserving conversion. It does not authenticate source custody, external serialization, Lean/Python equivalence, solver clauses, or a canary.",
+  "receipt_sha256": "f5d2b07cdbddb4fb4d6448f5bcc52ec7e8411659f8512676b4c0e311f5b83e52"
+}
