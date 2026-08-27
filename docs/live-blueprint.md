@@ -364,7 +364,7 @@ anchors not on this tree (2):
   Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean  (1 sorry)
     💧 Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_freshThird_pinnedEndpoint_outsideSeedResidual
 
-unimported files (1228 file(s), 9445 symbol(s), 3 sorry — never reached by any lake import chain) — --full to list
+unimported files (1229 file(s), 9457 symbol(s), 3 sorry — never reached by any lake import chain) — --full to list
 
 name collisions: 82 fully-qualified name(s) declared in ≥2 files
 ⚠  off-spine / identical-copy collisions (82):

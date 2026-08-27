@@ -1,0 +1,18 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "rigid221-card18-finite-data-export-20260827",
+  "owner": "ResidualCartographer",
+  "base_head": "6f0b198eec6792156578d1725f5d97040317af0c",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/rigid221-card18-finite-data-export-20260827.json",
+    "docs/live-blueprint.md",
+    "docs/specs/p97-rigid221-card18-finite-data-export-v1.md",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221Card18FiniteDataExport.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [
+    "certificates/rigid221_card18_finite_data_export_axioms_20260827.json"
+  ],
+  "created_utc": "2026-08-27T17:45:48Z",
+  "manifest_sha256": "5cb1dd5a3ec9194e8f7ffaa496b24ad13e048007693fabea37cc3d41daa85365"
+}

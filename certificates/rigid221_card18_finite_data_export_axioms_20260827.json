@@ -1,0 +1,30 @@
+{
+  "schema": "p97-rigid221-card18-finite-data-export-axioms/v1",
+  "lane_id": "rigid221-card18-finite-data-export-20260827",
+  "lane_base": "6f0b198eec6792156578d1725f5d97040317af0c",
+  "generated_utc": "2026-08-27T18:00:27Z",
+  "tool": "proof-blueprint axioms",
+  "lean_command": "#print axioms Problem97.ATailFrontierLiveClosure.Rigid221Card18FiniteDataExport.rigid221ExactCardEighteenAlternativeToData",
+  "lean_module": "Erdos9796Proof.P97.ATail.FrontierLiveClosure.Rigid221Card18FiniteDataExport",
+  "source_path": "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221Card18FiniteDataExport.lean",
+  "source_sha256": "a701180fa9f38cf5fec9029c49cea0bb03b6ae9f9741046addc8dc4cf0263a53",
+  "exit_code": 0,
+  "axioms": [
+    {
+      "name": "propext",
+      "classification": "core"
+    },
+    {
+      "name": "Classical.choice",
+      "classification": "core"
+    },
+    {
+      "name": "Quot.sound",
+      "classification": "core"
+    }
+  ],
+  "sorry_ax_present": false,
+  "native_or_external_evidence_present": false,
+  "scope_note": "This receipt records the declaration-level kernel axiom report from the current built olean tree. It authenticates the noncomputable source-to-data conversion only; external serialization, source/representation equivalence, and solver admission remain separate blocked gates.",
+  "receipt_sha256": "cda993e1962612fe61c738c56502ad4f444d6693c760ed4299213679b321a850"
+}
