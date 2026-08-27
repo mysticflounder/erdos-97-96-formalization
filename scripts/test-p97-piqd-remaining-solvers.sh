@@ -48,6 +48,8 @@ uv run python scripts/check_p97_sat_generate_piqd.py
 ./scripts/test-p97-piqd-projected-v3.sh
 ./scripts/test-p97-a-core-metric-piqd.sh
 ./scripts/test-p97-piqd-pinned-generalm.sh
+# Off-spine freshness only: this target runs no serializer or solver.
+./scripts/test-p97-rigid221-card18.sh
 ./scripts/test-p97-piqd-rigid221-pentagon.sh
 ./scripts/test-p97-piqd-singular-backend.sh
 ./scripts/test-p97-piqd-certified-frontier-all.sh
