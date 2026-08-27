@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "rigid221-card18-checked-search-correspondence-v1-20260827",
+  "owner": "ResidualCartographer",
+  "base_head": "467b58a186fe1d81b78be8d042d8ab4bf0e585bd",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/rigid221-card18-checked-search-correspondence-v1-20260827.json",
+    "docs/specs/p97-rigid221-card18-checked-search-correspondence-v1.md"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-08-27T23:22:31Z",
+  "manifest_sha256": "d8b83b9b5ff846eedd04768907a78b82e5804dd108e18aeb46b6d9d3872cd004"
+}
