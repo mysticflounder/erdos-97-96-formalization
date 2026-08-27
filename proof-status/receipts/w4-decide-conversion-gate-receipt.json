@@ -1,0 +1,127 @@
+{
+  "schema": "p97-gate-receipt/v1",
+  "wave": "W4-decide-conversion",
+  "lane_id": "consolidation-w4-decide-conversion-20260826",
+  "state": "ready-for-commit",
+  "overall_pass": true,
+  "generated_by": "Codex",
+  "generated_at_utc": "2026-08-27T02:48:06Z",
+  "claim_reference": "nthdegree convo #7557",
+  "base_head": "0a8113e958d2a46f28f15dbfd75a7c8d07f3bdfe",
+  "observed_head": "0a8113e958d2a46f28f15dbfd75a7c8d07f3bdfe",
+  "wave_commit": null,
+  "scope": {
+    "target_files": [
+      "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenSourceNormalForm.lean",
+      "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenSourceCnfCdefg.lean"
+    ],
+    "target_declarations": [
+      "Problem97.ATailBlockerVExactSeventeenSourceNormalForm.label_regions_regression",
+      "Problem97.ATailBlockerVExactSeventeenSourceCnfCdefg.positiveOffsets_pairwise",
+      "Problem97.ATailBlockerVExactSeventeenSourceCnfCdefg.positiveOffsets_pos",
+      "Problem97.ATailBlockerVExactSeventeenSourceCnfCdefg.expectedLabelIndex_placedLabel"
+    ],
+    "intent": "Replace four tractable native_decide proofs with kernel decide while preserving every declaration statement and consumer edge."
+  },
+  "content_bound_files": [
+    {
+      "path": "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenSourceNormalForm.lean",
+      "before_sha256": "92cf2a9ce4e16d27d8d15c15880631eae0f534e377c9d7c4561bd863a6a567ab",
+      "after_sha256": "fc0fc93d72ecda88afb914deb6dc68f581885c3ae50b575ea58c9cc297828c4d"
+    },
+    {
+      "path": "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenSourceCnfCdefg.lean",
+      "before_sha256": "fc16432f11e46ef25d05a7e7b3aea2c248afab112eddc502e9d42bfbe231a4ce",
+      "after_sha256": "44990fdb864163c662812ba1bce131e1983b28241c6bc936f1c007c14c786dd8"
+    },
+    {
+      "path": "docs/live-blueprint.md",
+      "before_sha256": "2c4008ad7202bd773fbf4019e6149ce3ba90f69ec08e48479cb7eeace164f4da",
+      "after_sha256": "2c4008ad7202bd773fbf4019e6149ce3ba90f69ec08e48479cb7eeace164f4da"
+    }
+  ],
+  "trust_delta": {
+    "before": "Each of the four target declaration closures contained Lean.ofReduceBool and Lean.trustCompiler through native_decide.",
+    "after": {
+      "Problem97.ATailBlockerVExactSeventeenSourceNormalForm.label_regions_regression": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "Problem97.ATailBlockerVExactSeventeenSourceCnfCdefg.positiveOffsets_pairwise": [],
+      "Problem97.ATailBlockerVExactSeventeenSourceCnfCdefg.positiveOffsets_pos": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "Problem97.ATailBlockerVExactSeventeenSourceCnfCdefg.expectedLabelIndex_placedLabel": [
+        "propext"
+      ]
+    },
+    "removed_from_all_four": [
+      "Lean.ofReduceBool",
+      "Lean.trustCompiler"
+    ],
+    "absent_after_from_all_four": [
+      "Lean.ofReduceBool",
+      "Lean.ofReduceNat",
+      "Lean.trustCompiler",
+      "sorryAx"
+    ]
+  },
+  "gates": [
+    {
+      "command": "lake-build Erdos9796Proof.P97.ATail.BlockerVExactSeventeenSourceNormalForm",
+      "exit_code": 0,
+      "result": "passed in 29 seconds; one module recompiled"
+    },
+    {
+      "command": "lake-build Erdos9796Proof.P97.ATail.BlockerVExactSeventeenSourceCnfCdefg",
+      "exit_code": 0,
+      "result": "passed in 14 seconds; two modules recompiled"
+    },
+    {
+      "command": "proof-blueprint spine Problem97.erdos97_rhs",
+      "exit_code": 1,
+      "result": "all four changed declarations remain on-spine and locally closed; the target retains 28 unrelated open obligations"
+    },
+    {
+      "command": "proof-blueprint axioms <each of the four target declarations>",
+      "exit_code": 0,
+      "result": "literal closures contain only the listed core axioms and no native-reduction, sorry, or custom axiom"
+    },
+    {
+      "command": "uv run python scripts/gen_obligation_registry.py status --check",
+      "exit_code": 0,
+      "result": "generated status surfaces and live spine agree"
+    },
+    {
+      "command": "git diff --check -- <owned Lean, generated blueprint, and receipt paths>",
+      "exit_code": 0,
+      "result": "no whitespace errors"
+    }
+  ],
+  "adversarial_audit": {
+    "verdict": "go",
+    "verifier": "Codex subagent audit_decide_conversion",
+    "blockers": [],
+    "findings": [
+      "The diff changes only four proof tactics and the adjacent accurate docstring.",
+      "Imports, namespaces, declaration statements, names, and consumer source edges are unchanged.",
+      "All four declarations remain on the Problem97.erdos97_rhs spine.",
+      "No heartbeat or scope override was introduced."
+    ]
+  },
+  "blockers": [],
+  "non_blocking_debt": [
+    "The headline target remains open at 28 unrelated obligations; this lane is a trust cleanup, not mathematical frontier reduction.",
+    "fiveOffsetChoices_length and sixOffsetChoices_length retain native_decide because their larger finite computations were outside the bounded benchmarked scope.",
+    "The final target still inherits native-reduction trust through other declarations, so this lane does not claim target-wide removal.",
+    "The refreshed blueprint reports 36 stale and 1 never-mined node plus 82 off-spine name-collision warnings; none is in the four changed declaration closures.",
+    "The module builds replayed inherited warnings in unchanged dependencies; neither changed file introduced a new warning."
+  ],
+  "roi": {
+    "assessment": "positive",
+    "reason": "Four on-spine declarations shed compiler-trust axioms through four tactic substitutions, with no heartbeat override, statement change, proof expansion, or build regression. The result is intentionally local rather than a target-wide trust claim."
+  }
+}

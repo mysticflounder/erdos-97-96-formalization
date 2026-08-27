@@ -238,7 +238,7 @@ theorem label_regions_regression :
     outsideLabels ∩ secondCapLabels = ∅ ∧
       outsideLabels ∪ secondCapLabels = Finset.univ ∧
       physicalLabels ⊆ secondCapLabels := by
-  native_decide
+  decide
 
 /-- Pull a geometric support back to the canonical seventeen labels. -/
 def pullback {α : Type*} [DecidableEq α]

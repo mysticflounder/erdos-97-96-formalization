@@ -46,15 +46,15 @@ def sixOffsetChoices : List (List Label) :=
   positiveOffsets.sublistsLen 6
 
 /-- The canonical positive offsets occur in strict boundary order.  Keeping
-this as a small finite fact avoids asking `native_decide` to normalize every
-five- or six-element sublist separately. -/
+this as a small finite fact avoids asking `decide` to normalize every five-
+or six-element sublist separately. -/
 theorem positiveOffsets_pairwise : positiveOffsets.Pairwise (· < ·) := by
-  native_decide
+  decide
 
 /-- Every canonical positive offset is genuinely nonzero. -/
 theorem positiveOffsets_pos :
     ∀ x ∈ positiveOffsets, (0 : Label) < x := by
-  native_decide
+  decide
 
 /-- Position in the canonical named order reached in the chosen direction. -/
 def sourcePosition (direction : Orientation) (cut offset : Label) : Label :=
@@ -105,7 +105,7 @@ theorem expectedLabelIndex_placedLabel :
         localPosition sourceOrientation direction offset +
           consumerCut sourceOrientation direction cut := by
   intro sourceOrientation direction
-  cases sourceOrientation <;> cases direction <;> native_decide
+  cases sourceOrientation <;> cases direction <;> decide
 
 /-- A placed source label denotes the boundary point expected by a cyclic
 Kalmanson consumer. -/
