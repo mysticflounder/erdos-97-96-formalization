@@ -12,7 +12,7 @@ spine rooted at: Problem97.erdos97_rhs
 approved axioms: core
 open: 126/37316 node(s)
 trusted leaves: 20 🔒 (certs excluded from mine by [mining].skip; covered by `#print axioms`)
-spine source: 322689 line(s) of lean across 37316 decl(s)
+spine source: 322695 line(s) of lean across 37316 decl(s)
 
 open obligations (30):
   💧 Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_capSource_firstFiber_outsidePairDeletionExactRows  [sorry]
