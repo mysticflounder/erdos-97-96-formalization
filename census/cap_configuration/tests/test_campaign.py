@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import errno
 import os
 import socket
 import subprocess
@@ -19,6 +20,7 @@ from census.cap_configuration.campaign import (
     RESOURCE_ATTESTATION_SCHEMA,
     CapConfigurationCampaignError,
     _load_if_present,
+    _open_directory_at,
     _open_repo,
     _publish_exact,
     build_wave_authorization,
@@ -313,6 +315,59 @@ def test_plan_rejects_linked_manifest(tmp_path: Path, attack: str) -> None:
         )
 
 
+@pytest.mark.skipif(os.name == "nt", reason="descriptor tests require POSIX paths")
+def test_run_rejects_symlinked_attempt_directory_before_adapter(tmp_path: Path) -> None:
+    prepared = prepare_fixture(tmp_path)
+    attempts = prepared.repo / prepared.run_root / "events/attempts"
+    outside = tmp_path / "outside-attempts"
+    outside.mkdir()
+    attempts.mkdir()
+    attempts.rmdir()
+    attempts.symlink_to(outside, target_is_directory=True)
+    with pytest.raises(
+        CapConfigurationCampaignError, match="cannot safely open directory"
+    ):
+        run_campaign(
+            prepared.manifest_path,
+            prepared.run_root,
+            prepared.authorization_path,
+            "memory://piqd",
+            repo_root=prepared.repo,
+            transport=object(),
+            adapter=FakeAdapter(),
+            resource_attestor=fake_attestor,
+            now_utc=PLAN_TIME,
+        )
+
+
+@pytest.mark.skipif(os.name == "nt", reason="permission tests require POSIX paths")
+def test_run_rejects_inaccessible_attempt_directory_before_adapter(
+    tmp_path: Path,
+) -> None:
+    prepared = prepare_fixture(tmp_path)
+    attempts = prepared.repo / prepared.run_root / "events/attempts"
+    attempts.mkdir()
+    original_mode = attempts.stat().st_mode & 0o777
+    attempts.chmod(0)
+    try:
+        with pytest.raises(
+            CapConfigurationCampaignError, match="cannot safely open directory"
+        ):
+            run_campaign(
+                prepared.manifest_path,
+                prepared.run_root,
+                prepared.authorization_path,
+                "memory://piqd",
+                repo_root=prepared.repo,
+                transport=object(),
+                adapter=FakeAdapter(),
+                resource_attestor=fake_attestor,
+                now_utc=PLAN_TIME,
+            )
+    finally:
+        attempts.chmod(original_mode)
+
+
 def test_atomic_publication_never_exposes_partial_final_name(
     tmp_path: Path, monkeypatch: pytest.MonkeyPatch
 ) -> None:
@@ -349,6 +404,73 @@ def test_atomic_publication_never_exposes_partial_final_name(
     os.close(root_fd)
     assert not error
     assert (root / "record.json").read_bytes() == b"0123456789"
+
+
+def test_stat_success_then_open_enoent_is_not_optional_absence(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    root = tmp_path / "race"
+    root.mkdir()
+    root_fd = _open_repo(root)
+    try:
+        _publish_exact(root_fd, "record.json", b"retained")
+        original_open = campaign_module.os.open
+
+        def open_after_stat(path: object, flags: int, *args: object, **kwargs: object):
+            if path == "record.json":
+                raise FileNotFoundError(errno.ENOENT, "simulated unlink after stat")
+            return original_open(path, flags, *args, **kwargs)
+
+        monkeypatch.setattr(campaign_module.os, "open", open_after_stat)
+        with pytest.raises(
+            CapConfigurationCampaignError, match="input disappeared while reading"
+        ):
+            _load_if_present(root_fd, "record.json")
+    finally:
+        os.close(root_fd)
+
+
+@pytest.mark.skipif(os.name == "nt", reason="descriptor tests require POSIX paths")
+def test_directory_open_rejects_missing_intermediate_component(tmp_path: Path) -> None:
+    root = tmp_path / "intermediate"
+    root.mkdir()
+    root_fd = _open_repo(root)
+    try:
+        with pytest.raises(
+            CapConfigurationCampaignError, match="cannot safely open directory"
+        ):
+            _open_directory_at(root_fd, "missing/final")
+    finally:
+        os.close(root_fd)
+
+
+@pytest.mark.skipif(os.name == "nt", reason="descriptor tests require POSIX paths")
+def test_directory_open_rejects_final_post_open_disappearance(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    root = tmp_path / "directory-race"
+    root.mkdir()
+    (root / "child").mkdir()
+    root_fd = _open_repo(root)
+    original_stat = campaign_module.os.stat
+    calls = 0
+
+    def disappear_after_open(path: object, *args: object, **kwargs: object):
+        nonlocal calls
+        if path == "child":
+            calls += 1
+            if calls == 2:
+                raise FileNotFoundError(errno.ENOENT, "simulated rebind")
+        return original_stat(path, *args, **kwargs)
+
+    monkeypatch.setattr(campaign_module.os, "stat", disappear_after_open)
+    try:
+        with pytest.raises(
+            CapConfigurationCampaignError, match="cannot safely open directory"
+        ):
+            _open_directory_at(root_fd, "child")
+    finally:
+        os.close(root_fd)
 
 
 def test_source_snapshot_uses_first_authenticated_read_without_reopen(

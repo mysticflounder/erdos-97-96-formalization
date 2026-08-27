@@ -610,12 +610,12 @@ def _validate_retained_result_impl(
     final_lifecycle = lifecycle
     if "final_session_lifecycle" in descriptors:
         initial_lifecycle = lifecycle
-        _fail(
+        if not (
             initial_lifecycle["close_outcome"] == "closure_unproven"
             and initial_lifecycle["close_observed_state"] == "unknown"
-            and initial_lifecycle["close_status_response_losses"] == 2,
-            "retained initial lifecycle lacks closure-loss evidence",
-        )
+            and initial_lifecycle["close_status_response_losses"] == 2
+        ):
+            _fail("retained initial lifecycle lacks closure-loss evidence")
         final_lifecycle = shared._validate_session_lifecycle(
             _retained_json(
                 payloads["final_session_lifecycle"],

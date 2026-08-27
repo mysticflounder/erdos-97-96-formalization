@@ -1,15 +1,18 @@
 from __future__ import annotations
 
+import os
 import shutil
 from pathlib import Path
 
 import pytest
 
+import census.cap_configuration.validate as validate_module
 from census.cap_configuration.campaign import (
     ATTEMPT_OUTCOME_SCHEMA,
     ATTEMPT_STAGE_SCHEMA,
     CELL_RESULT_SCHEMA,
     CapConfigurationCampaignError,
+    _open_repo,
     campaign_status,
 )
 from census.cap_configuration.schema import (
@@ -19,7 +22,7 @@ from census.cap_configuration.schema import (
     stored_json_bytes,
     structured_hash,
 )
-from census.cap_configuration.validate import validate_campaign
+from census.cap_configuration.validate import _walk_files, validate_campaign
 
 from .test_campaign import FakeAdapter, execute_fixture, prepare_fixture
 
@@ -34,6 +37,70 @@ def test_planned_prefix_validates_offline_as_incomplete(tmp_path: Path) -> None:
     assert len(report.missing_cell_ids) == 3
     assert report.classification_counts == {}
     assert report.resume_safe is True
+
+
+@pytest.mark.skipif(os.name == "nt", reason="descriptor tests require POSIX paths")
+def test_validator_rejects_symlinked_optional_directory(tmp_path: Path) -> None:
+    prepared = prepare_fixture(tmp_path)
+    attempts = prepared.repo / prepared.run_root / "events/attempts"
+    outside = tmp_path / "outside-attempts"
+    outside.mkdir()
+    attempts.mkdir()
+    attempts.rmdir()
+    attempts.symlink_to(outside, target_is_directory=True)
+    with pytest.raises(
+        CapConfigurationCampaignError, match="cannot safely open directory"
+    ):
+        validate_campaign(
+            prepared.manifest_path, prepared.run_root, repo_root=prepared.repo
+        )
+
+
+@pytest.mark.skipif(os.name == "nt", reason="permission tests require POSIX paths")
+def test_validator_rejects_inaccessible_optional_directory(tmp_path: Path) -> None:
+    prepared = prepare_fixture(tmp_path)
+    attempts = prepared.repo / prepared.run_root / "events/attempts"
+    attempts.mkdir()
+    original_mode = attempts.stat().st_mode & 0o777
+    attempts.chmod(0)
+    try:
+        with pytest.raises(
+            CapConfigurationCampaignError, match="cannot safely open directory"
+        ):
+            validate_campaign(
+                prepared.manifest_path, prepared.run_root, repo_root=prepared.repo
+            )
+    finally:
+        attempts.chmod(original_mode)
+
+
+@pytest.mark.skipif(os.name == "nt", reason="descriptor tests require POSIX paths")
+def test_recursive_walk_rejects_nested_directory_rebind(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    root = tmp_path / "walk"
+    root.mkdir()
+    (root / "tree" / "nested").mkdir(parents=True)
+    other = tmp_path / "other"
+    other.mkdir()
+    root_fd = _open_repo(root)
+    original_stat = validate_module.os.stat
+    calls = 0
+
+    def rebind_after_open(path: object, *args: object, **kwargs: object):
+        nonlocal calls
+        if path == "nested":
+            calls += 1
+            if calls == 2:
+                return original_stat(other)
+        return original_stat(path, *args, **kwargs)
+
+    monkeypatch.setattr(validate_module.os, "stat", rebind_after_open)
+    try:
+        with pytest.raises(CapConfigurationCampaignError, match="identity changed"):
+            _walk_files(root_fd, "tree")
+    finally:
+        os.close(root_fd)
 
 
 def test_missing_result_reconstructs_incomplete_coverage(tmp_path: Path) -> None:

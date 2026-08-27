@@ -90,10 +90,19 @@ by the adjacent `path` and `bytes` fields.
 Path-bearing inputs are canonical repository-relative POSIX paths. They are
 ASCII, contain no backslash, empty component, `.` or `..`, and are opened one
 component at a time below a held repository descriptor with `O_NOFOLLOW`.
+Each directory component's pre-open name, opened descriptor, and post-open name
+must have the same device/inode identity before traversal continues.
 Regular-file status and link count one are checked from the held file
 descriptor. Planning copies bytes from held descriptors into create-once
 staging and atomically publishes immutable snapshots. Execution and validation
 consume retained snapshots rather than reopening caller paths as authority.
+
+Optional absence is recognized only when the initial lookup of the final file
+or directory component returns `ENOENT`. A missing intermediate component, a
+symlink or non-directory component, an inaccessible component, an `ENOENT`
+after the final name was first observed, or any other inspection/open failure
+is `BLOCKED_CUSTODY_OR_IDENTITY`. In particular, stat/open and read/recapture
+races fail closed; they are never downgraded to an optional missing artifact.
 
 ## Frozen domains
 

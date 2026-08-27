@@ -36,6 +36,7 @@ from .campaign import (
     _exact_int,
     _load_if_present,
     _load_plan,
+    _MissingFinalDirectory,
     _object,
     _open_directory_at,
     _open_repo,
@@ -115,22 +116,26 @@ def _fail(message: str, *, code: str = "BLOCKED_CUSTODY_OR_IDENTITY") -> None:
 def _list_directory(root_fd: int, relative: str) -> tuple[str, ...]:
     try:
         descriptor = _open_directory_at(root_fd, relative)
-    except CapConfigurationCampaignError as exc:
-        if "unsafe or missing directory" in str(exc):
-            return ()
-        raise
+    except _MissingFinalDirectory:
+        return ()
     try:
-        names = tuple(sorted(os.listdir(descriptor)))
-        for name in names:
-            if name in {"", ".", ".."} or "/" in name or "\\" in name:
-                _fail(f"unsafe directory member in {relative}")
-            info = os.stat(name, dir_fd=descriptor, follow_symlinks=False)
-            if stat.S_ISREG(info.st_mode):
-                if info.st_nlink != 1:
-                    _fail(f"hard-linked retained artifact: {relative}/{name}")
-            elif not stat.S_ISDIR(info.st_mode):
-                _fail(f"special retained artifact: {relative}/{name}")
-        return names
+        try:
+            names = tuple(sorted(os.listdir(descriptor)))
+            for name in names:
+                if name in {"", ".", ".."} or "/" in name or "\\" in name:
+                    _fail(f"unsafe directory member in {relative}")
+                info = os.stat(name, dir_fd=descriptor, follow_symlinks=False)
+                if stat.S_ISREG(info.st_mode):
+                    if info.st_nlink != 1:
+                        _fail(f"hard-linked retained artifact: {relative}/{name}")
+                elif not stat.S_ISDIR(info.st_mode):
+                    _fail(f"special retained artifact: {relative}/{name}")
+            return names
+        except CapConfigurationCampaignError:
+            raise
+        except OSError as exc:
+            _fail(f"cannot safely inspect directory: {relative}")
+            raise AssertionError("unreachable") from exc
     finally:
         os.close(descriptor)
 
@@ -140,32 +145,60 @@ def _walk_files(root_fd: int, relative: str) -> tuple[str, ...]:
 
     try:
         descriptor = _open_directory_at(root_fd, relative)
-    except CapConfigurationCampaignError as exc:
-        if "unsafe or missing directory" in str(exc):
-            return ()
-        raise
+    except _MissingFinalDirectory:
+        return ()
     rows: list[str] = []
 
     def visit(directory_fd: int, prefix: str) -> None:
-        for name in sorted(os.listdir(directory_fd)):
-            info = os.stat(name, dir_fd=directory_fd, follow_symlinks=False)
-            path = f"{prefix}/{name}"
-            if stat.S_ISDIR(info.st_mode):
-                child = os.open(name, _directory_flags(), dir_fd=directory_fd)
-                try:
-                    visit(child, path)
-                finally:
-                    os.close(child)
-            elif stat.S_ISREG(info.st_mode) and info.st_nlink == 1:
-                rows.append(path)
-            else:
-                _fail(f"unsafe retained tree member: {path}")
+        try:
+            names = sorted(os.listdir(directory_fd))
+            for name in names:
+                info = os.stat(name, dir_fd=directory_fd, follow_symlinks=False)
+                path = f"{prefix}/{name}"
+                if stat.S_ISDIR(info.st_mode):
+                    child = -1
+                    try:
+                        child = os.open(name, _directory_flags(), dir_fd=directory_fd)
+                        opened = os.fstat(child)
+                        recaptured = os.stat(
+                            name, dir_fd=directory_fd, follow_symlinks=False
+                        )
+                        if (
+                            not stat.S_ISDIR(opened.st_mode)
+                            or (info.st_dev, info.st_ino)
+                            != (opened.st_dev, opened.st_ino)
+                            or (recaptured.st_dev, recaptured.st_ino)
+                            != (opened.st_dev, opened.st_ino)
+                        ):
+                            _fail(f"directory identity changed: {path}")
+                        visit(child, path)
+                    finally:
+                        if child >= 0:
+                            os.close(child)
+                elif stat.S_ISREG(info.st_mode) and info.st_nlink == 1:
+                    rows.append(path)
+                else:
+                    _fail(f"unsafe retained tree member: {path}")
+        except CapConfigurationCampaignError:
+            raise
+        except OSError as exc:
+            _fail(f"cannot safely inspect directory: {prefix}")
+            raise AssertionError("unreachable") from exc
 
     try:
         visit(descriptor, relative)
     finally:
         os.close(descriptor)
     return tuple(rows)
+
+
+def _optional_directory_present(root_fd: int, relative: str) -> bool:
+    try:
+        descriptor = _open_directory_at(root_fd, relative)
+    except _MissingFinalDirectory:
+        return False
+    os.close(descriptor)
+    return True
 
 
 def _validate_run_manifest(
@@ -858,10 +891,16 @@ def validate_campaign(
         nonterminal: list[str] = []
         adapter_session_ids: set[str] = set()
         retained_prefix_open = True
+        attempts_root_present = _optional_directory_present(run_fd, "events/attempts")
+        results_root_present = _optional_directory_present(run_fd, "artifacts/results")
 
         for cell in universe.cells:
             cell_attempt_root = f"events/attempts/{cell.cell_id}"
-            attempt_names = _list_directory(run_fd, cell_attempt_root)
+            attempt_names = (
+                _list_directory(run_fd, cell_attempt_root)
+                if attempts_root_present
+                else ()
+            )
             if not attempt_names:
                 retained_prefix_open = False
                 continue
@@ -1121,7 +1160,11 @@ def validate_campaign(
             validated_cell_ids.append(cell.cell_id)
 
         expected_result_cells = {cell.cell_id for cell in universe.cells}
-        observed_result_cells = set(_list_directory(run_fd, "artifacts/results"))
+        observed_result_cells = (
+            set(_list_directory(run_fd, "artifacts/results"))
+            if results_root_present
+            else set()
+        )
         orphan_attempts += tuple(
             f"artifacts/results/{name}"
             for name in sorted(observed_result_cells - expected_result_cells)
@@ -1132,6 +1175,8 @@ def validate_campaign(
         for cell in universe.cells:
             observed_names = set(
                 _list_directory(run_fd, f"artifacts/results/{cell.cell_id}")
+                if results_root_present
+                else ()
             )
             admission = admission_by_cell.get(cell.cell_id)
             expected_names = (
@@ -1155,10 +1200,17 @@ def validate_campaign(
         if admissions and (consumption is None or attestation is None):
             _fail("attempt prefix lacks run-admission gates")
         if attestation is not None:
-            for cell in universe.cells:
+            for admission in admissions:
+                attempt_relative = _attempt_relative(admission["identity"]["cell_id"])
+                if not _optional_directory_present(run_fd, attempt_relative):
+                    continue
+                if not _optional_directory_present(
+                    run_fd, f"{attempt_relative}/stages"
+                ):
+                    continue
                 stage0_loaded = _load_if_present(
                     run_fd,
-                    f"{_attempt_relative(cell.cell_id)}/stages/000000-resource-attestation.json",
+                    f"{attempt_relative}/stages/000000-resource-attestation.json",
                 )
                 if stage0_loaded is not None and stage0_loaded[0]["payload"] != {
                     "resource_attestation_sha256": attestation[

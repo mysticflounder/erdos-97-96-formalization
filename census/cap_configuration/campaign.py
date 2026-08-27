@@ -108,6 +108,29 @@ class CapConfigurationCampaignError(RuntimeError):
         self.code = code
 
 
+class _MissingFinalDirectory(CapConfigurationCampaignError):
+    """The requested final directory member does not exist."""
+
+    def __init__(self, relative: str):
+        super().__init__("ABSENT_OPTIONAL_DIRECTORY", f"missing directory: {relative}")
+
+
+class _MissingFinalMember(CapConfigurationCampaignError):
+    """The requested final regular-file member does not exist."""
+
+    def __init__(self, relative: str):
+        super().__init__("ABSENT_OPTIONAL_MEMBER", f"missing member: {relative}")
+
+
+def _optional_directory_present(root_fd: int, relative: str) -> bool:
+    try:
+        descriptor = _open_directory_at(root_fd, relative)
+    except _MissingFinalDirectory:
+        return False
+    os.close(descriptor)
+    return True
+
+
 def _fail(code: str, message: str) -> NoReturn:
     raise CapConfigurationCampaignError(code, message)
 
@@ -254,16 +277,54 @@ def _open_repo(repo_root: Path) -> int:
 def _open_directory_at(root_fd: int, relative: str) -> int:
     current = os.dup(root_fd)
     try:
-        for component in PurePosixPath(relative).parts:
-            child = os.open(component, _directory_flags(), dir_fd=current)
+        parts = PurePosixPath(relative).parts
+        for index, component in enumerate(parts):
+            try:
+                named_before = os.stat(component, dir_fd=current, follow_symlinks=False)
+            except OSError as exc:
+                if exc.errno == errno.ENOENT and index == len(parts) - 1:
+                    raise _MissingFinalDirectory(relative) from exc
+                raise CapConfigurationCampaignError(
+                    "BLOCKED_CUSTODY_OR_IDENTITY",
+                    f"cannot safely open directory: {relative}",
+                ) from exc
+            if not stat.S_ISDIR(named_before.st_mode):
+                raise CapConfigurationCampaignError(
+                    "BLOCKED_CUSTODY_OR_IDENTITY",
+                    f"cannot safely open directory: {relative}",
+                )
+            child = -1
+            adopted = False
+            try:
+                child = os.open(component, _directory_flags(), dir_fd=current)
+                opened = os.fstat(child)
+                named_after = os.stat(component, dir_fd=current, follow_symlinks=False)
+                if (
+                    not stat.S_ISDIR(opened.st_mode)
+                    or (named_before.st_dev, named_before.st_ino)
+                    != (opened.st_dev, opened.st_ino)
+                    or (named_after.st_dev, named_after.st_ino)
+                    != (opened.st_dev, opened.st_ino)
+                ):
+                    raise CapConfigurationCampaignError(
+                        "BLOCKED_CUSTODY_OR_IDENTITY",
+                        f"directory identity changed: {relative}",
+                    )
+                adopted = True
+            except OSError as exc:
+                raise CapConfigurationCampaignError(
+                    "BLOCKED_CUSTODY_OR_IDENTITY",
+                    f"cannot safely open directory: {relative}",
+                ) from exc
+            finally:
+                if child >= 0 and not adopted:
+                    os.close(child)
             os.close(current)
             current = child
         return current
-    except OSError as exc:
+    except CapConfigurationCampaignError:
         os.close(current)
-        raise CapConfigurationCampaignError(
-            "BLOCKED_CUSTODY_OR_IDENTITY", f"unsafe or missing directory: {relative}"
-        ) from exc
+        raise
 
 
 def _mkdirs_at(root_fd: int, relative: str) -> int:
@@ -302,14 +363,22 @@ def _read_regular_at(
     relative = _repo_relative(relative, "input path")
     parts = PurePosixPath(relative).parts
     parent_relative = "/".join(parts[:-1])
-    parent = (
-        os.dup(root_fd)
-        if not parent_relative
-        else _open_directory_at(root_fd, parent_relative)
-    )
+    try:
+        parent = (
+            os.dup(root_fd)
+            if not parent_relative
+            else _open_directory_at(root_fd, parent_relative)
+        )
+    except _MissingFinalDirectory as exc:
+        raise CapConfigurationCampaignError(
+            "BLOCKED_CUSTODY_OR_IDENTITY",
+            f"missing parent directory for input: {relative}",
+        ) from exc
     descriptor = -1
+    name_observed = False
     try:
         named_before = os.stat(parts[-1], dir_fd=parent, follow_symlinks=False)
+        name_observed = True
         descriptor = os.open(parts[-1], _file_flags(), dir_fd=parent)
         before = os.fstat(descriptor)
         if (
@@ -367,8 +436,11 @@ def _read_regular_at(
         payload = b"".join(chunks)
         return HeldBytes(relative, payload, raw_sha256(payload))
     except FileNotFoundError as exc:
+        if not name_observed:
+            raise _MissingFinalMember(relative) from exc
         raise CapConfigurationCampaignError(
-            "BLOCKED_CUSTODY_OR_IDENTITY", f"missing input: {relative}"
+            "BLOCKED_CUSTODY_OR_IDENTITY",
+            f"input disappeared while reading: {relative}",
         ) from exc
     except OSError as exc:
         raise CapConfigurationCampaignError(
@@ -1704,7 +1776,14 @@ def _retained_session_ids(
     backend: str,
 ) -> set[str]:
     retained: set[str] = set()
+    if not _optional_directory_present(run_fd, "events/attempts"):
+        return retained
     for cell in universe.cells:
+        cell_root = f"events/attempts/{cell.cell_id}"
+        if not _optional_directory_present(run_fd, cell_root):
+            continue
+        if not _optional_directory_present(run_fd, _attempt_relative(cell.cell_id)):
+            continue
         loaded = _load_if_present(
             run_fd, f"{_attempt_relative(cell.cell_id)}/adapter-result.json"
         )
@@ -1883,10 +1962,16 @@ def _coverage(
 def _next_coverage_path(run_fd: int) -> str:
     try:
         directory = _open_directory_at(run_fd, "artifacts/coverage")
-    except CapConfigurationCampaignError:
+    except _MissingFinalDirectory:
         directory = _mkdirs_at(run_fd, "artifacts/coverage")
     try:
-        names = sorted(os.listdir(directory))
+        try:
+            names = sorted(os.listdir(directory))
+        except OSError as exc:
+            raise CapConfigurationCampaignError(
+                "BLOCKED_CUSTODY_OR_IDENTITY",
+                "cannot safely inspect coverage directory",
+            ) from exc
     finally:
         os.close(directory)
     for name in names:
@@ -1915,10 +2000,8 @@ def _load_if_present(
 ) -> tuple[dict[str, Any], HeldBytes] | None:
     try:
         return _read_cap_json(run_fd, relative)
-    except CapConfigurationCampaignError as exc:
-        if "missing input" in str(exc) or "unsafe or missing directory" in str(exc):
-            return None
-        raise
+    except _MissingFinalMember:
+        return None
 
 
 def _crash(crash_after: str | None, boundary: str) -> None:
@@ -2062,6 +2145,14 @@ def run_campaign(
 
             for cell in universe.cells:
                 attempt_relative = _attempt_relative(cell.cell_id)
+                attempt_directory = _mkdirs_at(run_fd, attempt_relative)
+                os.close(attempt_directory)
+                stages_directory = _mkdirs_at(run_fd, f"{attempt_relative}/stages")
+                os.close(stages_directory)
+                result_directory = _mkdirs_at(
+                    run_fd, f"artifacts/results/{cell.cell_id}"
+                )
+                os.close(result_directory)
                 admission_path = f"{attempt_relative}/admission.json"
                 loaded_admission = _load_if_present(run_fd, admission_path)
                 if loaded_admission is None:
@@ -2319,10 +2410,16 @@ def run_campaign(
 def _coverage_files(run_fd: int) -> list[str]:
     try:
         directory = _open_directory_at(run_fd, "artifacts/coverage")
-    except CapConfigurationCampaignError:
+    except _MissingFinalDirectory:
         return []
     try:
-        names = sorted(os.listdir(directory))
+        try:
+            names = sorted(os.listdir(directory))
+        except OSError as exc:
+            raise CapConfigurationCampaignError(
+                "BLOCKED_CUSTODY_OR_IDENTITY",
+                "cannot safely inspect coverage directory",
+            ) from exc
     finally:
         os.close(directory)
     if any(re.fullmatch(r"[0-9]{6}\.json", name) is None for name in names):
@@ -2348,9 +2445,18 @@ def campaign_status(
         run_fd, root_relative, lane_id, run_id = _open_run(repo_fd, run_root)
         plan, _ = _load_plan(run_fd)
         observed: dict[str, str] = {}
+        attempts_root_present = _optional_directory_present(run_fd, "events/attempts")
         for cell_id in plan["ordered_cell_ids"]:
             attempt = _attempt_relative(cell_id)
-            if _load_if_present(run_fd, f"{attempt}/outcome.json") is not None:
+            cell_present = attempts_root_present and _optional_directory_present(
+                run_fd, f"events/attempts/{cell_id}"
+            )
+            attempt_present = cell_present and _optional_directory_present(
+                run_fd, attempt
+            )
+            if not attempt_present:
+                observed[cell_id] = "unattempted_observed"
+            elif _load_if_present(run_fd, f"{attempt}/outcome.json") is not None:
                 observed[cell_id] = "terminal_observed"
             elif _load_if_present(run_fd, f"{attempt}/admission.json") is not None:
                 observed[cell_id] = "admitted_nonterminal_observed"

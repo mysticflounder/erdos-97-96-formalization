@@ -104,6 +104,9 @@ class FakeTransport:
         commit_lost_solve: bool = True,
         fail_create: bool = False,
         replay_conflict: bool = False,
+        close_transport_losses: int = 0,
+        close_loss_commits: bool = True,
+        status_transport_losses: int = 0,
     ) -> None:
         self.status = status
         self.values = values
@@ -111,6 +114,9 @@ class FakeTransport:
         self.commit_lost_solve = commit_lost_solve
         self.fail_create = fail_create
         self.replay_conflict = replay_conflict
+        self.close_transport_losses = close_transport_losses
+        self.close_loss_commits = close_loss_commits
+        self.status_transport_losses = status_transport_losses
         self.calls: list[tuple[str, str, object]] = []
         self.actual_solves = 0
         self.commands: list[str] = []
@@ -281,13 +287,16 @@ class FakeTransport:
                 },
             )
         if method == "GET" and suffix == "":
+            if self.status_transport_losses:
+                self.status_transport_losses -= 1
+                raise subject.PiqdTransportLoss("simulated status response loss")
             status = None if self.answer is None else str(self.answer["status"])
             terminal = (
                 None if self.answer is None else self.answer.get("terminal_unsat")
             )
             live = _session(
                 self.session_id,
-                state="live",
+                state="closed" if self.closed else "live",
                 commands=len(self.commands),
                 solves=0 if self.answer is None else 1,
                 status=status,
@@ -296,6 +305,11 @@ class FakeTransport:
             live["label"] = self.label
             return subject.JsonResponse(200, live)
         if method == "DELETE" and suffix == "":
+            if self.close_transport_losses:
+                self.close_transport_losses -= 1
+                if self.close_loss_commits:
+                    self.closed = True
+                raise subject.PiqdTransportLoss("simulated close response loss")
             self.closed = True
             status = None if self.answer is None else str(self.answer["status"])
             terminal = (
@@ -328,7 +342,7 @@ def _run(
 ) -> tuple[dict[str, object], Path]:
     query = _query() if query is None else query
     output = tmp_path / "shared-output"
-    output.mkdir(parents=True)
+    output.mkdir(parents=True, exist_ok=True)
     output_fd = os.open(
         output, os.O_RDONLY | os.O_DIRECTORY | getattr(os, "O_NOFOLLOW", 0)
     )
@@ -500,6 +514,41 @@ def test_offline_validator_reconstructs_retained_transport_loss(
     assert _validate_offline(query, result, output) == result
 
 
+def test_cap_resume_validates_retained_initial_and_final_lifecycle(
+    tmp_path: Path,
+) -> None:
+    query = _query()
+    fake = FakeTransport(
+        close_transport_losses=1,
+        close_loss_commits=True,
+        status_transport_losses=2,
+    )
+    with pytest.raises(
+        subject.CapConfigurationPiqdAdapterError,
+        match="authenticated cap PIQD query failed closed",
+    ):
+        _run(tmp_path, fake, query=query)
+    initial_path = tmp_path / "shared-output" / "cvc5.session-lifecycle.json"
+    initial_bytes = initial_path.read_bytes()
+
+    result, output = _run(
+        tmp_path,
+        fake,
+        query=query,
+        resume_policy=subject.PIQD_RESUME_REQUIRE_EXISTING,
+    )
+
+    assert initial_path.read_bytes() == initial_bytes
+    assert result["session_lifecycle"]["close_outcome"] == "closed_resume_status"
+    assert result["artifacts"]["session_lifecycle"]["path"] == (
+        "cvc5.session-lifecycle.json"
+    )
+    assert result["artifacts"]["final_session_lifecycle"]["path"] == (
+        "cvc5.session-lifecycle-final.json"
+    )
+    assert _validate_offline(query, result, output) == result
+
+
 def test_offline_validator_rejects_result_and_lifecycle_mutation(
     tmp_path: Path,
 ) -> None:
@@ -565,9 +614,26 @@ def test_offline_validator_rejects_substituted_initial_or_final_lifecycle(
     tmp_path: Path,
 ) -> None:
     query = _query()
-    result, output = _run(tmp_path, FakeTransport(), query=query)
+    fake = FakeTransport(
+        close_transport_losses=1,
+        close_loss_commits=True,
+        status_transport_losses=2,
+    )
+    with pytest.raises(
+        subject.CapConfigurationPiqdAdapterError,
+        match="authenticated cap PIQD query failed closed",
+    ):
+        _run(tmp_path, fake, query=query)
+    result, output = _run(
+        tmp_path,
+        fake,
+        query=query,
+        resume_policy=subject.PIQD_RESUME_REQUIRE_EXISTING,
+    )
     lifecycle_path = output / "cvc5.session-lifecycle.json"
     lifecycle = json.loads(lifecycle_path.read_bytes())
+    final_path = output / "cvc5.session-lifecycle-final.json"
+    final_lifecycle = json.loads(final_path.read_bytes())
 
     bad_initial = json.loads(json.dumps(result))
     initial = dict(lifecycle)
@@ -589,10 +655,10 @@ def test_offline_validator_rejects_substituted_initial_or_final_lifecycle(
     lifecycle_payload = stored_json_bytes(lifecycle)
     lifecycle_path.write_bytes(lifecycle_payload)
     bad_final = json.loads(json.dumps(result))
-    final = dict(lifecycle)
+    final = dict(final_lifecycle)
     final["request_id"] = str(uuid.UUID(int=8))
     final_payload = stored_json_bytes(final)
-    final_path = output / "cvc5.session-lifecycle-final.json"
+    final_path.chmod(0o600)
     final_path.write_bytes(final_payload)
     bad_final["artifacts"]["final_session_lifecycle"] = {
         "path": "cvc5.session-lifecycle-final.json",
@@ -604,9 +670,10 @@ def test_offline_validator_rejects_substituted_initial_or_final_lifecycle(
         "bytes": len(lifecycle_payload),
         "sha256": _sha(lifecycle_payload),
     }
+    bad_final["session_lifecycle"] = final
     with pytest.raises(
         subject.CapConfigurationPiqdAdapterError,
-        match="failed offline validation",
+        match="final lifecycle identity",
     ):
         _validate_offline(query, bad_final, output)
 
