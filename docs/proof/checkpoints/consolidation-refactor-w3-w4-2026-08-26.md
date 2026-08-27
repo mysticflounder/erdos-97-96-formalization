@@ -95,3 +95,23 @@ ROI is limited to auditability and local trust hygiene: a recorded closure
 authority, one publication-bank manifest pilot, generated status drift checks,
 and four local tactic substitutions. There is no claim of frontier reduction,
 countermodel discovery, target-wide trust cleanup, or global proof closure.
+
+## Completion qualification — 2026-08-26
+
+The bounded W1–W4 packet is complete under the receipts above. The original
+strict-refactor Phase 2 provenance-and-blocker criterion in the [consolidation audit](../../audits/2026-08-23-consolidation-refactor-audit.md#phase-2--provenance-and-blocker-api),
+at approximately line 798, is **not met**. The strict cluster-isolation cut
+still has the live implementation waivers
+`TwoSourceCanonicalSurface → TriApexEndpointRetainedOmission` and
+`FreshThirdPinnedFanPacket → TriApexEndpointRetainedOmission`.
+
+A sound cut needs a neutral shared API for the blocker, provenance, and
+joint-deletion data consumed across these clusters. Removing the imports without
+that API would break the caller contracts or infer provenance from cardinality.
+Extracting the API, adding compatibility adapters, and migrating the consumers
+is medium-high/high scope, so it remains outside this bounded packet.
+
+The 36 stale and 1 never-mined proof-blueprint references are deferred inherited
+infrastructure debt, not a current implementation failure. This qualification
+does not claim that either live edge is fixed or that the full strict refactor is
+complete.

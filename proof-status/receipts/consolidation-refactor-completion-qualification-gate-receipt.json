@@ -1,0 +1,96 @@
+{
+  "schema": "p97-gate-receipt/v1",
+  "wave": "consolidation-refactor-completion-qualification",
+  "lane_id": "consolidation-refactor-completion-qualification-20260826",
+  "state": "ready-for-commit",
+  "overall_pass": true,
+  "generated_by": "Codex",
+  "generated_at_utc": "2026-08-27T03:38:32Z",
+  "claim_reference": "nthdegree convo #7561",
+  "base_head": "9124ff5df78cd3e96190fc31daa42e91b74b9fb9",
+  "observed_head": "9124ff5df78cd3e96190fc31daa42e91b74b9fb9",
+  "wave_commit": null,
+  "scope": {
+    "intent": "Qualify the refactor completion claim after the final audit found two live cross-cluster implementation waivers.",
+    "source_audit": "Codex subagent audit_refactor_completion plus audit_remaining_import_cut"
+  },
+  "completion_scope": {
+    "bounded_w1_w4_packet": "complete",
+    "strict_original_cluster_isolation": "open",
+    "strict_completion_blockers": [
+      "TwoSourceCanonicalSurface -> TriApexEndpointRetainedOmission",
+      "FreshThirdPinnedFanPacket -> TriApexEndpointRetainedOmission"
+    ],
+    "mathematical_frontier": "28 reachable obligations and 6 deliberately off-spine obligations; neither Problem 97 nor Problem 96 is proved"
+  },
+  "content_bound_files": [
+    {
+      "path": "README.md",
+      "sha256": "6334994d505c28c2375522d1ff2f1c08487376edecfaab3dd2ffaa49590e7eb3"
+    },
+    {
+      "path": "docs/proof/CURRENT.md",
+      "sha256": "e12f2188a10c763a73355433dbb53c2bfe0f7871c92b4a0b84d553ba5a9238bc"
+    },
+    {
+      "path": "docs/proof/checkpoints/consolidation-refactor-w3-w4-2026-08-26.md",
+      "sha256": "3b713c9bddf1bf335dc0df19d0385d11b6a8bc9de01d165807ac7fc6ae28a05b"
+    }
+  ],
+  "gates": [
+    {
+      "command": "independent final W1-W4 completion audit",
+      "exit_code": 0,
+      "result": "bounded packet is sealed; strict original cluster-isolation criterion remains open"
+    },
+    {
+      "command": "independent remaining import-cut audit",
+      "exit_code": 0,
+      "result": "two live waivers confirmed; no sound bounded deletion; neutral shared-API extraction is medium-high/high scope"
+    },
+    {
+      "command": "independent historical false-receipt audit",
+      "exit_code": 0,
+      "result": "current implementation gates are green; 36 stale and 1 never-mined references are inherited deferred infrastructure debt"
+    },
+    {
+      "command": "uv run python scripts/gen_obligation_registry.py status --check",
+      "exit_code": 0,
+      "result": "generated status surfaces and live spine agree"
+    },
+    {
+      "command": "git diff --check -- <three owned documentation paths>",
+      "exit_code": 0,
+      "result": "no whitespace errors"
+    },
+    {
+      "command": "excluded-wording scan over the qualification surfaces",
+      "exit_code": 0,
+      "result": "no excluded wording found"
+    }
+  ],
+  "adversarial_audit": {
+    "verdict": "go",
+    "verifiers": [
+      "Codex subagent audit_refactor_completion",
+      "Codex subagent audit_remaining_import_cut",
+      "Codex subagent audit_historical_false_receipts"
+    ],
+    "blockers": [],
+    "findings": [
+      "The new prose no longer reports the strict original refactor complete.",
+      "Both live cross-cluster implementation waivers are named in the current pointer and append-only checkpoint.",
+      "The bounded packet, strict criterion, inherited reference debt, and mathematical frontier are classified separately."
+    ]
+  },
+  "blockers": [],
+  "non_blocking_debt": [
+    "Global proof-blueprint reference debt remains 36 stale and 1 never-mined node.",
+    "The proof-blueprint generated-banner wording remains upstream documentation debt.",
+    "The multi-output promotion-writer recovery issue #7522 and newline theorem-name omission #7509 remain separately scoped maintenance work."
+  ],
+  "roi": {
+    "assessment": "positive",
+    "reason": "Three small documentation edits prevent a false strict-completion claim. The two-edge neutral shared-API extraction is materially larger and remains an explicit user-visible choice rather than hidden scope expansion."
+  }
+}
