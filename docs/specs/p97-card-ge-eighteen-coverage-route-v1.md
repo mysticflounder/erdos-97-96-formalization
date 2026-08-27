@@ -1,10 +1,11 @@
 # Coverage record: the card-≥18 BlockerV residual (v1)
 
-**Status: NO ROUTE EXISTS.** This document is the closure-plan coverage the rigor
-gate requires for an open publish-reachable `sorry`. It records the obligation,
-demonstrates that the active exact-17 apparatus cannot reach it, inventories what
-is and is not available in its context, and states the exact producer a route
-must deliver. It closes nothing, promotes nothing, and claims no mathematics.
+**Status: PARTIAL ROUTE LANDED / ROUTED, NOT CLOSED — three strict on-spine
+residual leaves remain.** Sections 1–11 are the dated pre-implementation audit
+at the snapshot named below. Section 12 records the source-faithful W1–W4 route
+implemented on 2026-08-26. The route replaces the unconstrained large-cardinality
+leaf by two missing-incidence complements and one bi-survival comparison leaf;
+it does not close the parent theorem or P97.
 
 Lane: `card-ge-eighteen-coverage-20260816`.
 Snapshot: source at `d25317ac`, working tree of 2026-08-16.
@@ -405,3 +406,90 @@ line numbering. The draft is retained here as written:
 > shapes are in `docs/specs/p97-card-ge-eighteen-coverage-route-v1.md`. Status:
 > OPEN, no route. `RemovableVertexOfLarge` must not be cited against this leaf —
 > the leaf is interior to that statement's own proof.
+
+## 12. 2026-08-26 route update — W1–W4
+
+The “no route” finding above remains the historical result at snapshot
+`d25317ac`: no route existed in that tree. The implementation checkpoint of
+2026-08-26 supplies the previously missing cardinality-independent ingress and
+wires it into the live `18 ≤ |A|` child.
+
+Implementation base: `ffc54db5658b39d82cedf3e420f59fbffe031c94`.
+Pre-commit source SHA-256:
+`c5e46308208ac2ae75fdf7e6a21db18fd03825af7f44bed7f3f47ffc630b542b`.
+
+The landed order is:
+
+1. extract the large-cardinality three-colour pair theorem over only the two
+   residual-neutral inputs it actually uses, `hxvA` and `huXvRow`, while keeping
+   the former OffClass API as a compatibility wrapper;
+2. consume that producer in the live `BlockerV` `card_ge_eighteen` theorem;
+3. expose residual-neutral crossed-row, exact-three-row and bi-survival exports;
+4. split each crossed profile on the exact five-incidence conjunction. The
+   positive side is discharged by
+   `U5QDeletedK4Class.three_exact_classes_tetrahedron_incompatibility`; the
+   complement is retained as a named leaf. The bi-survival profile is retained
+   as a named common-deletion comparison leaf.
+
+The split is exhaustive because the neutral producer returns exactly three
+profiles for one pair of sources outside the `xv` row: both fail deleting `u`,
+both fail deleting `xv`, or both survive both deletions. The first two profiles
+produce their crossed exact-row packets before the five-incidence split. The
+third produces two `CommonDeletionTwoCenterPacket`s at the same pair of actual
+centres before reaching its consumer leaf.
+
+The recorded frontier measure is lexicographic in
+
+`(unclassified deletion profile, unresolved crossed-incidence complement,
+unresolved bi-survival comparison)`.
+
+Before W1–W4 the single leaf has measure `(1, 0, 0)`. The two crossed
+complements have measure `(0, 1, 0)`, and the bi-survival leaf has measure
+`(0, 0, 1)`. Thus every surviving child strictly narrows the first coordinate;
+the crossed positive branches terminate immediately and add no leaf. This is
+not the inadmissible cardinality ladder rejected in §2.
+
+No finite solver result, cardinality cap, new axiom, native computation, or
+external proof evidence is used by this route. The changed Lean module is not
+listed in any frozen `LEAN_DEPENDENCY_MODULES` tuple, so this checkpoint does
+not require a narrowed-bank refreeze. The three named leaves remain ordinary
+Lean `sorry` obligations and must stay plan-covered and publish-visible until
+their missing-incidence and comparison consumers are proved.
+
+The three surviving declarations are:
+
+- `false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV_card_ge_eighteen_xvDeletion_missingIncidence`;
+- `false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV_card_ge_eighteen_uDeletion_missingIncidence`; and
+- `false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV_card_ge_eighteen_biSurvival_commonDeletionRectangle`.
+
+Verification on the source hash recorded above:
+
+- governed build
+  `lake-build Erdos9796Proof.P97.ATail.FrontierLiveClosure.Rigid221SourceHeavy`
+  completed all 11,027 jobs and refreshed the proof-blueprint index, kernel
+  call graph, packet facts and `docs/live-blueprint.md`;
+- downstream compatibility build
+  `lake-build Erdos9796Proof.P97.ATail.FrontierLiveClosure.Rigid221SourceHeavyCommonDeletion`
+  completed all 11,028 jobs;
+- the target-rooted spine reports exactly those three open obligations and
+  `Total sorryAx == 3`;
+- the neutral large-pair producer, both neutral tetrahedron consumers and the
+  neutral bi-survival rectangle depend only on `propext`, `Classical.choice`
+  and `Quot.sound`; the live coordinator additionally depends on `sorryAx`
+  precisely through the three named leaves;
+- `proof-blueprint index --check` reports that the index matches source. Its
+  nonzero status comes from 82 pre-existing cross-tree name collisions, not
+  from this lane; the full-project audit likewise remains red because P97 has
+  unsanctioned open `sorryAx` obligations.
+
+The frozen 2026-08-26 CEGAR risk-audit bundle remains the pre-implementation
+evidence record. It was not silently rehashed or rewritten; a current audit
+would require a separately issued bundle.
+
+Snapshot-validation note: that bundle's validator authenticates repository
+evidence at the frozen source boundary, so it is expected to fail closed after
+this implementation changes the three manifested paths above. At base
+`ffc54db5658b39d82cedf3e420f59fbffe031c94`, all three Git blobs still match
+their recorded evidence hashes, and the bundle's internal `SHA256SUMS` check
+passes unchanged. Revalidating the old evidence census therefore requires that
+frozen tree, not silent substitution of the post-route files.

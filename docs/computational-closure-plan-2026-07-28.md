@@ -9249,8 +9249,9 @@ replaces one live leaf by two narrower live leaves, immediate constructor
 fan-out changes from one to two even though the ten- and eleven-cap strata are
 closed.
 
-The second child, `18 ≤ |A|`, received a coverage record on 2026-08-16.  It has
-no route.
+The second child, `18 ≤ |A|`, received a coverage record on 2026-08-16. At that
+dated snapshot it had no route; the 2026-08-26 W1–W4 update below supersedes
+that status without rewriting the historical audit.
 
 **card-≥18 BlockerV residual.** The unbounded continuation
 `false_of_…_deletedRowBlockerOffClass_card_ge_eighteen`
@@ -9271,8 +9272,50 @@ tetrahedron-incidence family at `Rigid221SourceHeavy.lean:15592` and `:13175`
 takes no cardinality hypothesis and is core-axiom-clean — and its producer is
 unbuilt. Full coverage, context, dead ends and the two admissible producer
 shapes are in `docs/specs/p97-card-ge-eighteen-coverage-route-v1.md`. Status:
-OPEN, no route. `RemovableVertexOfLarge` must not be cited against this leaf —
-the leaf is interior to that statement's own proof.
+**at the 2026-08-16 snapshot, OPEN with no route.**
+`RemovableVertexOfLarge` must not be cited against this leaf — the leaf is
+interior to that statement's own proof.
+
+**2026-08-26 W1–W4 update — routed, not closed.** A source audit showed that
+the large-cardinality three-colour pair proof depends on the OffClass residual
+only through `hxvA` and `huXvRow`. That proof and its pair-deletion prerequisites
+are now residual-neutral, with compatibility wrappers retaining the old API.
+The neutral producer is consumed directly by the live `BlockerV`
+`card_ge_eighteen` theorem; it is no longer an orphan helper.
+
+The producer gives one pair of sources outside the `xv` row, with distinct
+actual centres, in exactly one of three deletion profiles. The two crossed
+profiles are exported as exact three-row packets and split on the five
+cross-centre incidences required by
+`U5QDeletedK4Class.three_exact_classes_tetrahedron_incompatibility`. Each
+positive conjunction is a checked terminal. The two negated conjunctions are
+named missing-incidence leaves. The third profile produces the two endpoint
+`CommonDeletionTwoCenterPacket`s at the same centre pair and reaches one named
+bi-survival comparison leaf.
+
+The frontier measure is the lexicographic triple
+`(unclassified deletion profile, unresolved crossed-incidence complement,
+unresolved bi-survival comparison)`. The former leaf has measure `(1, 0, 0)`;
+the two crossed complements have `(0, 1, 0)` and the bi-survival child has
+`(0, 0, 1)`. Every surviving child therefore strictly narrows the first
+coordinate. Immediate live fan-out changes from one unconstrained leaf to three
+source-faithful leaves; neither positive crossed branch survives.
+
+This checkpoint uses no finite solver result, carrier upper bound, new axiom,
+native computation, or external proof evidence. The edited module is absent
+from every frozen `LEAN_DEPENDENCY_MODULES` tuple, so no narrowed-bank refreeze
+is required. The remaining status is **PARTIAL ROUTE LANDED / ROUTED, NOT
+CLOSED**: two missing-incidence complements and one bi-survival comparison
+remain publish-visible `sorry` obligations. The full before/after contract is
+in `docs/specs/p97-card-ge-eighteen-coverage-route-v1.md` §12.
+
+The governed `Rigid221SourceHeavy` build and proof-blueprint resync pass. The
+target-rooted kernel spine contains exactly the named `xvDeletion`, `uDeletion`
+and `biSurvival` children above (`Total sorryAx == 3`); the former coordinator
+leaf itself is checked. Axiom audits of the neutral producer and checked
+consumers contain only `propext`, `Classical.choice` and `Quot.sound`. The
+source/index check is clean apart from the repository's pre-existing
+cross-tree name-collision census.
 
 ## 13.24 FreshThird acyclic hard-residual reduction (2026-08-08)
 
