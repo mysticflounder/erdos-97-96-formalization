@@ -45,6 +45,34 @@ open Census554.GeneralCarrierBridge
 
 attribute [local instance] Classical.propDecidable
 
+/-- The first opposite apex is a carrier point. -/
+private theorem oppApex1_mem_A_local {A : Finset ℝ²} (S : SurplusCapPacket A) :
+    S.oppApex1 ∈ A := by
+  rcases hi : S.surplusIdx with ⟨i, hi3⟩
+  interval_cases i
+  · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v2_mem
+  · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v3_mem
+  · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v1_mem
+
+/-- Standalone helper for cyclic alternation separation on a collision pair. -/
+private theorem collision_btw_sep
+    {A : Finset ℝ²}
+    (B : BoundaryIndexing (A := A))
+    (O A' s₁ s₂ : CriticalShellSystem.CarrierVertex A)
+    (hA_ne_O : A' ≠ O) (hs₂_ne_O : s₂ ≠ O) (hs₂_ne_A : s₂ ≠ A')
+    (hfirstApexEq : dist O.1 s₁.1 = dist O.1 s₂.1)
+    (hcommonBlockerEq : dist A'.1 s₁.1 = dist A'.1 s₂.1)
+    (hsources_ne : s₁.1 ≠ s₂.1) :
+    SurplusCOMPGBank.btw (B.indexOf O) (B.indexOf A') (B.indexOf s₁) ↔
+      ¬ SurplusCOMPGBank.btw (B.indexOf O) (B.indexOf A') (B.indexOf s₂) := by
+  apply SurplusCOMPGBank.btw_sep B.boundary_ccw B.boundary_injective
+  · exact B.index_injective.ne hA_ne_O.symm
+  · exact B.index_injective.ne hs₂_ne_O
+  · exact B.index_injective.ne hs₂_ne_A
+  · simpa only [B.point_eq, pointOf, dist_comm] using hfirstApexEq
+  · simpa only [B.point_eq, pointOf, dist_comm] using hcommonBlockerEq
+  · exact B.boundary_injective.ne (B.index_injective.ne (fun h ↦ hsources_ne (congrArg Subtype.val h)))
+
 namespace TwoSourceExactCollisionRowsTerminal
 
 section
