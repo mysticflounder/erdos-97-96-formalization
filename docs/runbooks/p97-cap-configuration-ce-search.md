@@ -8,9 +8,9 @@ Author: Adam McKenna <adam@mysticflounder.ai>
 
 Date: 2026-08-26
 
-Verified revision: `b1d2779c9ac7f1b13dcdfaeec9c73dd9ee706d1f`
+Verified revision: `b09f8ca5298d662a9277acceaeb8f61f8fad99c6`
 
-Verified fixture gate (2026-08-27): `339 passed` and
+Verified fixture gate (2026-08-27): `351 passed` and
 `CAP_CONFIG_TEST_GATE=PASSED`
 
 Runbook state: `IMPLEMENTED_FIXTURE_ONLY_UNQUALIFIED`
