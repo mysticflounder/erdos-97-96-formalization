@@ -1,0 +1,30 @@
+{
+  "schema": "p97-rigid221-card18-leaf-export-axioms/v1",
+  "lane_id": "rigid221-card18-source-export-20260827",
+  "lane_base": "9988aa98197a2e2d235243d8acc8503dde5bad2c",
+  "generated_utc": "2026-08-27T17:02:59Z",
+  "tool": "proof-blueprint axioms",
+  "lean_command": "#print axioms Problem97.ATailFrontierLiveClosure.exists_rigid221ExactCardEighteenAlternative",
+  "lean_module": "Erdos9796Proof.P97.ATail.FrontierLiveClosure.Rigid221Card18LeafExport",
+  "source_path": "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221Card18LeafExport.lean",
+  "source_sha256": "8de5492a0d41833932413092b7de7eb2ea224494873e7058286412d2e75a791e",
+  "exit_code": 0,
+  "axioms": [
+    {
+      "name": "propext",
+      "classification": "core"
+    },
+    {
+      "name": "Classical.choice",
+      "classification": "core"
+    },
+    {
+      "name": "Quot.sound",
+      "classification": "core"
+    }
+  ],
+  "sorry_ax_present": false,
+  "native_or_external_evidence_present": false,
+  "scope_note": "This receipt records the declaration-level kernel axiom report from the current built olean tree. Source/dependency custody and source-to-finite serialization equivalence are separate gates.",
+  "receipt_sha256": "10b93c347686e5fa7b3528813aeaf0391f14f95125c4a4da9d2ca18419c4b02c"
+}
