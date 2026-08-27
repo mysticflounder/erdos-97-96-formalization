@@ -646,7 +646,7 @@ W3 lint author implements; the manifest itself is
   `proof-status/cluster-import-edges-live-2026-08-24.json` is the dated current
   graph and is DOCUMENTATION ONLY: nothing authenticates against it.
 
-### Retired waivers (W3-0d)
+### Retired waivers
 
 `import-waivers.json` is schema `import-waivers/v2`. Beside `waivers` it
 carries `retired_waivers`, one row per waiver a wave has already retired, so a
@@ -694,12 +694,15 @@ telling the author to delete the row.
   `retired_waivers` with the authenticated count in
   `retired_waivers_authenticated`. `--write-record` is untouched: it reads the
   tree and HEAD alone and never opens the waiver file.
-- **Recorded retirements.** Two rows, both authenticated by the lint at HEAD
-  `22694fa3`:
-  `TwoDeletionCollision -> B1Live` (W1b, `4b1c21b8`, no wrapper) and
-  `Rigid221Placement -> TwoDeletionCollision` (W3, `2fb26644`, retired through
-  `...FrontierLiveClosure.Legacy.TwoDeletionWrappers`, linked in both
-  directions with that manifest row's `waiver_pair`).
+- **Recorded retirements.** Five rows are authenticated by the lint. W1b
+  retired `TwoDeletionCollision -> B1Live`; W3 retired
+  `Rigid221Placement -> TwoDeletionCollision` through
+  `Legacy.TwoDeletionWrappers` and `TriApexEndpointRetainedOmission ->
+  Rigid221Closure` through `Legacy.Rigid221Wrappers`; W4 retired both
+  `FreshThirdPinnedFanPacket -> TriApexEndpointRetainedOmission` directly and
+  `TwoSourceCanonicalSurface -> TriApexEndpointRetainedOmission` through
+  `Legacy.TriApexWrappers`. At source commit `bef49689` the linter authenticates
+  25 live waivers, 5 retired waivers, and all 7 listed Legacy edges.
 - **Tests.** `scripts/test_lint_cluster_imports_legacy.py` covers each rule
   above against synthetic fixture trees and a throwaway fixture git repository;
   no test reads this repository's records.

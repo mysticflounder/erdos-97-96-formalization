@@ -1,0 +1,119 @@
+{
+  "schema": "p97-gate-receipt/v1",
+  "wave": "consolidation-refactor-strict-cluster-isolation",
+  "lane_id": "consolidation-strict-cluster-isolation-20260826",
+  "state": "pass",
+  "overall_pass": true,
+  "generated_by": "Codex",
+  "generated_at_utc": "2026-08-27T11:08:20Z",
+  "claim_reference": "nthdegree convo #7639",
+  "base_head": "ffc54db5658b39d82cedf3e420f59fbffe031c94",
+  "observed_head": "bef49689c0c29b232199107530f715b85da0d729",
+  "wave_commit": "bef49689c0c29b232199107530f715b85da0d729",
+  "head_note": "The child metadata commit binds this receipt and does not alter the implementation tree.",
+  "scope": {
+    "intent": "Seal the strict structural cluster-isolation remainder of the 2026-08 consolidation refactor.",
+    "included": "Four neutral interface modules, one governed Legacy wrapper, two retired direct-import waivers, affected source consumers, and their structural gates.",
+    "excluded": "Rigid221 and cap-solver campaigns, mathematical leaf closure, and concurrent obligation-registry regeneration."
+  },
+  "completion_scope": {
+    "bounded_w1_w4_packet": "complete",
+    "strict_original_cluster_isolation": "complete",
+    "declarations_moved": 38,
+    "neutral_interface_modules": 4,
+    "direct_import_waivers_retired_in_w4": 2,
+    "mathematical_claim": "No obligation was closed; neither Problem 97 nor Problem 96 is proved."
+  },
+  "content_bound_files": [
+    {
+      "path": "README.md",
+      "sha256": "9519fbe9bcaa217c2835804e93cd44682e7486e797aa49fe8aaebbf7e212a95a"
+    },
+    {
+      "path": "docs/proof/CURRENT.md",
+      "sha256": "d74dba5c0bb9b7ec8c75e57d27bfdeb90ec1e8f146426d801c6942a07580fc5a"
+    },
+    {
+      "path": "docs/proof/checkpoints/consolidation-refactor-strict-completion-2026-08-26.md",
+      "sha256": "29c83147be549af44046d0d7c543d1d1eb121e4b555a1f98806107e46c2c04f0"
+    },
+    {
+      "path": "proof-status/README.md",
+      "sha256": "dbf83c28eae283a3bf80d021442cc99fe548e342f5d13bb3c16331d5aa9829ef"
+    },
+    {
+      "path": "proof-status/import-waivers.json",
+      "sha256": "baadeb5fcf47e14f0fe8b84e5a1b8901eefabaa9744420a9e0ab52ba2528ad5a"
+    },
+    {
+      "path": "proof-status/legacy-import-exceptions.json",
+      "sha256": "9484c5b244c82a09119a2a8ed579f05fdf0e005f802d6f521b4f412e818edb4a"
+    },
+    {
+      "path": "proof-status/cluster-import-edges-live-2026-08-26.json",
+      "sha256": "2260f9c36343f239f4bd4c2e662313d752fff30d72ec238c2612e70b3a38c236"
+    }
+  ],
+  "gates": [
+    {
+      "command": "clean-checkout lake-build of Legacy.TriApexWrappers, TwoSourceCanonicalSurface, FrontierLiveClosure.Coordinator, and FrontierLiveClosure",
+      "exit_code": 0,
+      "result": "all four affected-cone targets passed"
+    },
+    {
+      "command": "uv run python scripts/lint_cluster_imports.py --json",
+      "exit_code": 0,
+      "result": "691 edges scanned; 25 live waivers and 5 retired waivers authenticated; all 7 Legacy edges listed; no failures or violations"
+    },
+    {
+      "command": "uv run pytest -q scripts/test_lint_cluster_imports_legacy.py",
+      "exit_code": 0,
+      "result": "54 passed"
+    },
+    {
+      "command": "independent declaration and import-topology audit",
+      "exit_code": 0,
+      "result": "38 moved declarations found exactly once with statement and proof bytes preserved; neutral modules have no direct FrontierLiveClosure imports; no unlisted cross-cluster or Legacy edge"
+    },
+    {
+      "command": "revision-bound independent trust/static audit of bef49689",
+      "exit_code": 0,
+      "result": "git show --check passed; no Rigid221-named path changed; no new sorry or axiom token was added; Legacy.TriApexWrappers is the sole compatibility import into the old tri-apex module"
+    },
+    {
+      "command": "python scripts/check_worktree_hygiene.py check --lane consolidation-strict-cluster-isolation-20260826 --staged",
+      "exit_code": 0,
+      "result": "implementation commit staged check passed with no lane issue"
+    },
+    {
+      "command": "git diff --check -- <strict-refactor owned paths>",
+      "exit_code": 0,
+      "result": "no whitespace errors"
+    }
+  ],
+  "external_status": {
+    "command": "uv run python scripts/gen_obligation_registry.py status --check",
+    "exit_code": 1,
+    "classification": "concurrent out-of-lane drift; excluded from the strict structural gate",
+    "result": "Rigid221 live spine has 30 open leaves while its registry has 28; one superseded registry declaration and three new BlockerV declarations differ; docs/live-blueprint.md is stale"
+  },
+  "proof_blueprint_status": {
+    "classification": "inherited project trust and index state; not a strict structural-refactor gate",
+    "target": "Problem97.erdos97_rhs remains OPEN",
+    "refs_check": "exit 1: 36 stale references and 1 never-mined reference",
+    "spine": "exit 1: 30 rendered sorry leaves; target is not kernel-complete",
+    "axioms": "exit 1: target closure contains sorryAx and reports native compiler trust",
+    "audit": "exit 0 with stale-build, target-closure, and name-collision warnings",
+    "status": "exit 2 against the mixed concurrent worktree: source index and graph are stale"
+  },
+  "blockers": [],
+  "non_blocking_debt": [
+    "The concurrent Rigid221 wave must regenerate and seal its obligation registry and live blueprint.",
+    "Proof-blueprint reference debt remains 36 stale and 1 never-mined node; the theorem target remains open and contains sorryAx.",
+    "Proof-blueprint refresh was intentionally not run against the mixed concurrent worktree."
+  ],
+  "roi": {
+    "assessment": "positive",
+    "reason": "The strict criterion is now mechanically true: both recorded direct cross-cluster imports are retired, shared APIs are isolated, and future regressions fail the authenticated import gate."
+  }
+}

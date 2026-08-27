@@ -64,13 +64,16 @@ ones. The 2026-08-23 D2 two-radius-grid formalization reduced the freshly mined
 frontier from 29 to 28. The bounded W1–W4 consolidation packet completed on
 2026-08-26: it re-packaged the frontier modules, generated the obligation and
 status authorities, added a publication-bank manifest gate, and removed native
-computation from four small on-spine proofs. It did not change the 28-leaf
-roster or close a mathematical obligation; the accepted chain is recorded in
-the [current checkpoint delta](docs/proof/CURRENT.md). The strict original
-refactor remains open: its cluster-isolation gap includes the live implementation
-waivers `TwoSourceCanonicalSurface → TriApexEndpointRetainedOmission` and
-`FreshThirdPinnedFanPacket → TriApexEndpointRetainedOmission` (see the
-[cross-cluster audit](docs/audits/2026-08-23-consolidation-refactor-audit.md#checkpoint-3--cross-cluster-dependency-and-repeated-context-audit)).
+computation from four small on-spine proofs. The strict original
+cluster-isolation refactor then completed at source commit
+`bef49689c0c29b232199107530f715b85da0d729`: four neutral interface modules now
+hold the shared declarations, the two recorded direct imports of
+`TriApexEndpointRetainedOmission` are retired, and the remaining
+coordinator-facing dependency uses the governed `Legacy.TriApexWrappers` seam.
+This was a structural change only; it did not close a mathematical obligation
+or prove either problem. The accepted scope and gates are recorded in the
+[current proof pointer](docs/proof/CURRENT.md) and the
+[strict-completion checkpoint](docs/proof/checkpoints/consolidation-refactor-strict-completion-2026-08-26.md).
 The solver-assisted lanes
 — SAT, CEGAR, PIQD, and the off-spine bank chain
 — have separately produced a large body of finite checked artifacts; those
