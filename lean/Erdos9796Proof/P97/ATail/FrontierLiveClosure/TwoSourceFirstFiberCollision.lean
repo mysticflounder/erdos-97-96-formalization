@@ -7,6 +7,7 @@ Authors: Adam McKenna
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.ContextFrames
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.TwoSourceFreshThirdResidual
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.TwoSourceFreshCanonicalOverride
+import Erdos9796Proof.P97.ATail.FiveCenterDeletionBoundary
 
 namespace Problem97
 namespace ATailFrontierLiveClosure

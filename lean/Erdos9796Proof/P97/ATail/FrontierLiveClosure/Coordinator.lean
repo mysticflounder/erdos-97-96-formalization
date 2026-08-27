@@ -5,6 +5,7 @@ Authors: Adam McKenna
 -/
 
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.TwoSourceAlignedLowHits
+import Erdos9796Proof.P97.ATail.SecondRadiusMutualCrossMembership
 
 namespace Problem97
 namespace ATailFrontierLiveClosure

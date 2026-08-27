@@ -6,6 +6,7 @@ Authors: Adam McKenna
 
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.TwoSourceClosure
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.TwoSourceFreshCanonicalOverride
+import Erdos9796Proof.P97.ATail.EndpointFreshTwoShellSeed
 
 namespace Problem97
 namespace ATailFrontierLiveClosure

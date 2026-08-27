@@ -51,6 +51,27 @@
         "Erdos9796Proof.P97.ATail.FrontierLiveClosure.Rigid221Closure"
       ],
       "wrapper_module": "Erdos9796Proof.P97.ATail.FrontierLiveClosure.Legacy.Rigid221Wrappers"
+    },
+    {
+      "added_wave": "W4",
+      "class": "intra-cluster",
+      "from": "Erdos9796Proof.P97.ATail.FrontierLiveClosure.Legacy.TriApexWrappers",
+      "reason": "W4 strict cut: this import-only compatibility surface keeps the residual coordinator-facing tri-apex API reachable while direct consumers use the extracted shared ATail interfaces.",
+      "to": "Erdos9796Proof.P97.ATail.FrontierLiveClosure.TriApexEndpointRetainedOmission",
+      "waiver_pair": null,
+      "wrapper_module": "Erdos9796Proof.P97.ATail.FrontierLiveClosure.Legacy.TriApexWrappers"
+    },
+    {
+      "added_wave": "W4",
+      "class": "cross-cluster",
+      "from": "Erdos9796Proof.P97.ATail.FrontierLiveClosure.TwoSourceCanonicalSurface",
+      "reason": "W4 strict cut: the direct TriApex import is retired through this governed Legacy surface. waiver_pair names the matching import-waivers row; its retired_by_wrapper field names this wrapper after the source commit is sealed.",
+      "to": "Erdos9796Proof.P97.ATail.FrontierLiveClosure.Legacy.TriApexWrappers",
+      "waiver_pair": [
+        "Erdos9796Proof.P97.ATail.FrontierLiveClosure.TwoSourceCanonicalSurface",
+        "Erdos9796Proof.P97.ATail.FrontierLiveClosure.TriApexEndpointRetainedOmission"
+      ],
+      "wrapper_module": "Erdos9796Proof.P97.ATail.FrontierLiveClosure.Legacy.TriApexWrappers"
     }
   ],
   "frozen_graph_sha256": "14a8ee5529e3b8eae1f8e617f1de447045b7d4199df2a4f3b0e85c016224066a",

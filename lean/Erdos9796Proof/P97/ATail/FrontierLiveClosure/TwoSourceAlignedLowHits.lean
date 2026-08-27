@@ -5,6 +5,7 @@ Authors: Adam McKenna
 -/
 
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.TwoSourceRetainedMinimalCore
+import Erdos9796Proof.P97.ATail.SecondRadiusMutualCrossMembership
 
 namespace Problem97
 namespace ATailFrontierLiveClosure
