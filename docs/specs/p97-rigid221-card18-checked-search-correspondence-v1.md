@@ -1,9 +1,10 @@
 # P97 Rigid221 card-18 checked-search correspondence v1
 
-**Status: DESIGN COMPLETE; EXTERNAL ARTIFACT AND SEARCH GATES CLOSED.**
+**Status: C1 COMPLETE; C2 ARM-CNF CORRESPONDENCE AND EXTERNAL GATES CLOSED.**
 
 Date: 2026-08-27
-Base revision: `467b58a186fe1d81b78be8d042d8ab4bf0e585bd`
+Original design base: `467b58a186fe1d81b78be8d042d8ab4bf0e585bd`
+Current implementation base: `78178bc899595c3a88fe30d17daf2bb4db55398b`
 
 ## 1. Outcome
 
@@ -136,6 +137,25 @@ manifest.
 U and XV use the same crossed layout but remain separate formulas. U orients
 `(deleted, retained)` as `(u, xv)`; XV orients it as `(xv, u)`.
 
+Only composition-required signals receive derived variables. Ordinary
+role-selected support membership and nonmembership atoms use direct clauses.
+The retained zero-gap derived layout is:
+
+| Arm | Derived family | Internal range | Count |
+| --- | --- | ---: | ---: |
+| BI | physical mask | `288 ... 305` | 18 |
+| BI | `deletedCenterRow ∩ physicalFive` | `306 ... 323` | 18 |
+| BI | `uB1 ∩ uB2` | `324 ... 341` | 18 |
+| BI | `xvB1 ∩ xvB2` | `342 ... 359` | 18 |
+| U/XV | physical mask | `288 ... 305` | 18 |
+| U/XV | `deletedCenterRow ∩ physicalFive` | `306 ... 323` | 18 |
+| U/XV | five crossed-incidence signals | `324 ... 328` | 5 |
+
+Thus BI has 72 derived and 360 total internal variables; each crossed arm has
+41 derived and 329 total internal variables. The five crossed signals follow
+the semantic atom order in Section 6.4. U and XV may share typed layout code,
+but remain distinct arm values and formulas.
+
 ## 5. Representation constraints
 
 Every role receives an exactly-one constraint over its eighteen selectors:
@@ -163,19 +183,38 @@ explicit finite construction.
 
 ## 6. Clause correspondence
 
-### 6.1 Role-selected support membership
+### 6.1 Direct role-selected support atoms and retained signals
 
-When a derived variable `m` represents membership of role `r` in support `S`,
-the formula emits, for every label `l`:
+An ordinary positive atom `r ∈ S` emits, for every label `l`, the direct
+clause
+
+```text
+not roleBit(r,l) or supportBit(S,l)
+```
+
+An ordinary negative atom `r ∉ S` emits
+
+```text
+not roleBit(r,l) or not supportBit(S,l)
+```
+
+Under exactly-one role selection, each eighteen-clause family must be proved
+in both directions against membership or nonmembership of the decoded role in
+the decoded support. These atoms receive no witness variable.
+
+When a retained derived variable `m` must represent membership of role `r` in
+support `S` for later Boolean composition, the formula emits, for every label
+`l`:
 
 ```text
 not roleBit(r,l) or not supportBit(S,l) or m
 not roleBit(r,l) or     supportBit(S,l) or not m
 ```
 
-Under exactly-one role selection, these clauses prove
-`m = supportBit(S, selectedLabel r)`. Derived variables are formula witnesses,
-not extra packet choices.
+Under exactly-one role selection, these clauses must prove both directions of
+`m = supportBit(S, selectedLabel r)`. Version 1 uses this gadget only for the
+five crossed-incidence signals that feed the final five-negative clause.
+Derived variables are formula witnesses, not extra packet choices.
 
 ### 6.2 Role inequalities, physical roles, and intersection gadgets
 
@@ -409,15 +448,18 @@ external oracle, `unsafe`, `implemented_by`, or an unapproved custom axiom.
 
 ## 11. Commit order
 
-1. Add typed arm layouts, the 288-variable base map, exactly-one role clauses,
-   and encode/decode proofs.
-2. Add the generic direct cardinality encoder and its full evaluation iff
-   theorems.
-3. Add BI/U/XV formulas and prove both correspondence directions plus
-   `armCnf_sat_iff`.
-4. Add the canonical DIMACS boundary and fail-closed custody; still do not run
+1. Complete: add the typed 288-variable base map, exactly-one role clauses,
+   constructive decode, and base roundtrip proofs.
+2. Complete: add the generic direct cardinality encoder and its full evaluation
+   iff theorems.
+3. Complete: add the reduced typed derived layout, direct membership/nonmembership,
+   role inequality, physical mask, intersection gadgets, and cardinality
+   bridges. Do not define `armCnf` in this checkpoint.
+4. C2: assemble common, BI, and crossed formulas and prove both correspondence
+   directions plus `armCnf_sat_iff` for every arm.
+5. Add the canonical DIMACS boundary and fail-closed custody; still do not run
    a solver.
-5. Run arms separately. Decode SAT models for one-consequence CEGAR refinement,
+6. Run arms separately. Decode SAT models for one-consequence CEGAR refinement,
    or replay a checked UNSAT certificate for an empty arm.
 
 Each commit receives its own lane checkpoint, governed build, declaration-level
@@ -439,8 +481,16 @@ axiom audit, independent semantic review, and exact-path staged hygiene.
 - Independent trust review returned GO for the two-way correspondence gate,
   strict DIMACS readback/custody contract, certificate binding, and CEGAR
   refinement order.
-- No Lean implementation, CNF/DIMACS artifact, model enumeration, solver run,
-  or SAT/UNSAT claim was produced.
+- The later search-base and direct-cardinality checkpoints implement the first
+  two kernel layers. A review against revision `78178bc8` confirmed that direct
+  membership macros preserve every current `Valid` atom and reduce derived
+  allocation to 72 variables for BI and 41 for U/XV.
+- The C1 checkpoint implements that reduced typed layout, the direct and typed
+  gadgets, the canonical physical-five/cardinality bridge, and generic support
+  and derived-family cardinality theorems. Its final ten-import aggregate build,
+  focused tests, independent semantic review, and executable-trust review pass.
+- No complete arm CNF, DIMACS artifact, model enumeration, solver run, or
+  SAT/UNSAT claim has been produced.
 - Exact-path staged hygiene passed with zero issues and no foreign staged path.
 
 ## 13. Nonclaims
@@ -455,6 +505,7 @@ This design does not provide:
 - closure of a BI, U, or XV source alternative; or
 - a lift from exact cardinality eighteen to the live unbounded residual.
 
-Kernel definition and proof of `armCnf` are the next implementation boundary.
-External formula/DIMACS emission, serializer custody, enumeration, and solver
-gates remain closed.
+C1 is complete. Kernel definition of the common, BI, U, and XV formula families
+and proof of both assignment/packet directions are the C2 boundary. External
+formula/DIMACS emission, serializer custody, enumeration, and solver gates
+remain closed.

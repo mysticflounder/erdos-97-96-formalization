@@ -1,6 +1,6 @@
 # P97 Rigid221 card-18 off-spine CEGAR aggregate v1
 
-**Status: COMPLETE AND PUBLISHABLE; SERIALIZER AND SOLVER GATES CLOSED.**
+**Status: COMPLETE AND PUBLISHABLE; ARM-CNF, SERIALIZER, AND SOLVER GATES CLOSED.**
 
 Date: 2026-08-27
 
@@ -24,7 +24,7 @@ The import-only target is:
 Erdos9796Proof.P97.ATail.FrontierLiveClosure.Rigid221Card18Aggregate
 ```
 
-It imports these eight modules explicitly:
+It imports these ten modules explicitly:
 
 1. `Rigid221Card18LeafExport`;
 2. `Rigid221Card18FiniteDataExport`;
@@ -32,8 +32,10 @@ It imports these eight modules explicitly:
 4. `Rigid221Card18CrossedIncidenceProjection`;
 5. `Rigid221Card18LabeledEnrichment`;
 6. `Rigid221Card18AbstractPacket`;
-7. `Rigid221Card18SearchBase`; and
-8. `Rigid221Card18DirectCardinality`.
+7. `Rigid221Card18SearchBase`;
+8. `Rigid221Card18DirectCardinality`;
+9. `Rigid221Card18ArmLayout`; and
+10. `Rigid221Card18ClauseGadgets`.
 
 The aggregate declares no theorem, axiom, finite-search result, serializer, or
 solver entitlement. It remains absent from `FrontierLiveClosure.lean` and the
@@ -97,14 +99,17 @@ claim that a hosted CI service currently executes it.
 
 Passing this target establishes only that:
 
-- all eight off-spine Lean modules still elaborate together;
+- all ten off-spine Lean modules still elaborate together;
 - the frozen source-custody checks still authenticate their declared sources;
-- the three predicate-coverage schemas still reconstruct their artifacts; and
-- the pure abstract packet and its source projection remain buildable; and
+- the three predicate-coverage schemas still reconstruct their artifacts;
+- the pure abstract packet and its source projection remain buildable;
 - the typed 288-variable base representation, role one-hot clauses, and
-  encode/decode bridge remain buildable; and
+  encode/decode bridge remain buildable;
 - the generic direct at-most, at-least, and exact-cardinality CNF layer remains
-  buildable with both semantic directions.
+  buildable with both semantic directions; and
+- the reduced BI/U/XV derived layout and generic role/support, inequality,
+  mask, intersection, and cardinality-bridge gadgets remain buildable with
+  both semantic directions.
 
 It does not establish:
 
@@ -134,7 +139,7 @@ This checkpoint is publishable only after:
 
 The serializer and solver gates remain closed.
 
-### Verification evidence on 2026-08-27
+### Verification evidence through the direct-cardinality checkpoint
 
 - The runner passed `bash -n`, was executable, and had no solver command.
 - Ruff lint passed on all fourteen declared Python files.
@@ -155,9 +160,26 @@ The serializer and solver gates remain closed.
 - Independent review returned GO; exact-path staged hygiene passed with zero
   issues and no foreign staged paths.
 
+### C1 extension evidence on 2026-08-27
+
+- The final ten-import aggregate replay completed all 11,038 Lean jobs.
+- Ruff passed and all seven focused suites passed, totaling 348 tests in
+  31.51 seconds.
+- A governed refresh indexed the two new source files and regenerated the live
+  blueprint. The exact delta is two additional off-spine files and 191 symbols;
+  the off-spine sorry count remains three.
+- The 2,518-file publication spine contains no `Rigid221Card18` path.
+- The new layout and gadget modules have no `sorry`, custom axiom, native or
+  external trust, unsafe runtime hook, DIMACS path, enumerator, or solver call.
+  Independent semantic and executable-trust reviews returned GO.
+- The ten-import aggregate SHA-256 is
+  `ad6a1a4dd3e508d80ac5eaaaa171dbfedcb43431096c02888a2bcc5cf8e1ffae`.
+- Read-only lane hygiene reports zero lane issues. The shared worktree's foreign
+  dirty and unregistered artifacts remain outside this lane's ownership.
+
 ## 7. Next boundary
 
-After this freshness target, design an arm-separated checked-search
-correspondence for `Rigid221Card18AbstractPacket.Valid`. No search run is
-authorized until the Lean validity surface is proved equivalent to the exact
-external formula being checked.
+After the C1 extension, assemble the arm-separated kernel formulas and prove
+both assignment-to-packet and packet-to-assignment directions for
+`Rigid221Card18AbstractPacket.Valid`. No search run is authorized until those
+directions hold for the exact formula being checked.
