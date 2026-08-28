@@ -7,6 +7,7 @@ import json
 import re
 import subprocess
 import sys
+from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
@@ -24,6 +25,10 @@ from census.cap_configuration.schema import (
 TARGET_ID = "p97-capcfg-rigid221-exact17-cap9-exactcover-negative-v1"
 EXPECTED_BASE_HEAD = "38f6b0ced41acbda8b2d2f590f2acf6b1a14a7a4"
 EXPECTED_BRANCH = "cap-a2-t0-packet-20260827"
+EXPECTED_MAIN_BRANCH = "main"
+EXPECTED_PACKET_COMMIT = "64d65e4ebbbf7439b48dc56990fcb0886045e9a6"
+EXPECTED_REQUEST_MAIN_HEAD = "a301d85e2a432b2804cfc98fd9f3e620dc1f0ec5"
+EXPECTED_FORMAL_SOURCE_RELATIVE = Path("FormalConjectures/ErdosProblems/97.lean")
 EXPECTED_PROPOSITION_SHA256 = (
     "0dcf5e74a8c4fe5ee6e6fdd2626f69743d65a7284f755f06c2f14d32a8568c66"
 )
@@ -38,6 +43,9 @@ TARGET_PATH = Path(
 )
 REVIEW_PATH = Path(
     "certificates/cap_configuration_t0_a2_exact17_second_cap9_review_v1.json"
+)
+REQUEST_PATH = Path(
+    "certificates/cap_configuration_t0_a2_exact17_second_cap9_acceptance_request_v1.json"
 )
 ACCEPTANCE_PATH = Path(
     "certificates/cap_configuration_t0_a2_exact17_second_cap9_acceptance_v1.json"
@@ -74,9 +82,14 @@ REVIEW_KEYS = {
     "reviewed_utc", "reviewers", "schema", "status", "target_id",
     "unresolved_blockers", "verdict",
 }
+REQUEST_KEYS = {
+    "authorization", "decision_requested", "evidence", "limitations",
+    "request_sha256", "requested_utc", "requester", "schema",
+    "source_drift_attestation", "status", "target_id",
+}
 ACCEPTANCE_KEYS = {
-    "acceptance_sha256", "accepted_utc", "artifacts", "authorization", "coordinator",
-    "schema", "status", "target_id",
+    "acceptance_sha256", "accepted_utc", "authorization", "coordinator", "decision",
+    "evidence", "schema", "source_drift_attestation", "status", "target_id",
 }
 REVIEW_CHECK_KEYS = {
     "authorization_separation", "bridge_directions_and_nonclaims",
@@ -166,10 +179,51 @@ def _git_bytes(repo_root: Path, revision: str, path: str) -> bytes:
     return completed.stdout
 
 
+def _git_commit(repo_root: Path, revision: str, label: str) -> str:
+    completed = subprocess.run(
+        ["git", "rev-parse", "--verify", f"{revision}^{{commit}}"],
+        cwd=repo_root,
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    if completed.returncode != 0:
+        _fail(f"{label}: cannot resolve commit {revision}")
+    return _require_hex(completed.stdout.strip(), 40, label)
+
+
+def _git_parent(repo_root: Path, commit: str, label: str) -> str:
+    return _git_commit(repo_root, f"{commit}^", label)
+
+
+def _git_is_ancestor(repo_root: Path, ancestor: str, descendant: str, label: str) -> None:
+    completed = subprocess.run(
+        ["git", "merge-base", "--is-ancestor", ancestor, descendant],
+        cwd=repo_root,
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    if completed.returncode != 0:
+        _fail(f"{label}: {ancestor} is not an ancestor of {descendant}")
+
+
 def _verify_raw(claimed: Any, payload: bytes, label: str) -> None:
     actual = raw_sha256(payload)
     if claimed != actual:
         _fail(f"{label}: raw SHA-256 mismatch: claimed={claimed}, actual={actual}")
+
+
+def _parse_utc(value: Any, label: str) -> datetime:
+    text = _require_string(value, label)
+    if re.fullmatch(
+        r"[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z", text
+    ) is None:
+        _fail(f"{label}: must be canonical UTC")
+    try:
+        return datetime.strptime(text, "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=UTC)
+    except ValueError as exc:
+        raise PacketValidationError(f"{label}: invalid UTC timestamp") from exc
 
 
 def _verify_source_identity(
@@ -331,12 +385,21 @@ def _verify_source_identity(
     if len(formal_entries) != 1:
         _fail("source identity: expected exactly one formal_conjectures problem source")
     for item in formal_entries:
-        _, relative = item["path"].split("/", 1)
-        local = (
-            formal_conjectures_root / relative
-            if formal_conjectures_root is not None
-            else repo_root / "lean/.lake/packages/formal_conjectures" / relative
+        expected_external_path = (
+            f"formal_conjectures@{build_identity['formal_conjectures_revision']}/"
+            f"{EXPECTED_FORMAL_SOURCE_RELATIVE}"
         )
+        if item["path"] != expected_external_path:
+            _fail("source identity: imported problem path/revision mismatch")
+        external_root = (
+            formal_conjectures_root
+            if formal_conjectures_root is not None
+            else repo_root / "lean/.lake/packages/formal_conjectures"
+        )
+        external_root = external_root.resolve()
+        local = (external_root / EXPECTED_FORMAL_SOURCE_RELATIVE).resolve()
+        if not local.is_relative_to(external_root):
+            _fail("source identity: imported problem path escapes external source root")
         if local.is_file():
             payload = local.read_bytes()
             if item.get("bytes") != len(payload):
@@ -361,9 +424,7 @@ def _verify_preflight(preflight: dict[str, Any], source: dict[str, Any]) -> None
     if preflight.get("verdict") != "NO_REUSABLE_TARGET_CLOSURE_FOUND":
         _fail("preflight: unexpected verdict")
     _require_string(preflight["first_missing_antecedent"], "preflight first missing antecedent")
-    recorded_utc = _require_string(preflight["recorded_utc"], "preflight recorded_utc")
-    if re.fullmatch(r"[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z", recorded_utc) is None:
-        _fail("preflight: recorded_utc must be canonical UTC")
+    _parse_utc(preflight["recorded_utc"], "preflight recorded_utc")
     verify_structured_record(
         preflight,
         field="preflight_sha256",
@@ -649,9 +710,7 @@ def _verify_review(
     )
     if review["reviewed_base_head"] != source["repository"]["base_head"]:
         _fail("review: reviewed_base_head does not match source base_head")
-    reviewed_utc = _require_string(review["reviewed_utc"], "review reviewed_utc")
-    if re.fullmatch(r"[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z", reviewed_utc) is None:
-        _fail("review: reviewed_utc must be canonical UTC")
+    _parse_utc(review["reviewed_utc"], "review reviewed_utc")
     artifacts = _require_exact_keys(
         review["artifacts"],
         {"human_review", "preflight", "source_identity", "target"},
@@ -758,7 +817,7 @@ def _verify_review(
         _fail("review: coordinator acceptance must be the sole T0 blocker")
 
 
-def _verify_acceptance(
+def _artifact_bindings(
     source_path: Path,
     source: dict[str, Any],
     preflight_path: Path,
@@ -767,28 +826,8 @@ def _verify_acceptance(
     target: dict[str, Any],
     review_path: Path,
     review: dict[str, Any],
-    acceptance: dict[str, Any],
-) -> None:
-    _require_exact_keys(acceptance, ACCEPTANCE_KEYS, "acceptance")
-    if acceptance["schema"] != "cap-configuration-t0-acceptance/v1":
-        _fail("acceptance: wrong schema")
-    if acceptance["target_id"] != TARGET_ID:
-        _fail("acceptance: wrong target_id")
-    accepted_utc = _require_string(acceptance["accepted_utc"], "acceptance accepted_utc")
-    if re.fullmatch(r"[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z", accepted_utc) is None:
-        _fail("acceptance: accepted_utc must be canonical UTC")
-    verify_structured_record(
-        acceptance,
-        field="acceptance_sha256",
-        domain="cap-configuration-t0-acceptance/v1",
-        label="acceptance",
-    )
-    artifacts = _require_exact_keys(
-        acceptance["artifacts"],
-        {"preflight", "review", "source_identity", "target"},
-        "acceptance.artifacts",
-    )
-    expected = {
+) -> dict[str, tuple[str, str, str]]:
+    return {
         "source_identity": (
             str(SOURCE_PATH), source["source_identity_sha256"], raw_sha256(source_path.read_bytes())
         ),
@@ -802,15 +841,297 @@ def _verify_acceptance(
             str(REVIEW_PATH), review["review_sha256"], raw_sha256(review_path.read_bytes())
         ),
     }
+
+
+def _verify_artifacts(
+    artifacts: Any,
+    expected: dict[str, tuple[str, str, str]],
+    *,
+    label: str,
+) -> None:
+    artifacts = _require_exact_keys(artifacts, set(expected), label)
     for key, (path, structured, raw) in expected.items():
         item = _require_exact_keys(
             artifacts[key], {"path", "raw_sha256", "structured_sha256"},
-            f"acceptance.artifacts.{key}",
+            f"{label}.{key}",
         )
         if (item["path"], item["structured_sha256"], item["raw_sha256"]) != (
             path, structured, raw
         ):
-            _fail(f"acceptance: artifacts.{key} binding mismatch")
+            _fail(f"{label}.{key}: binding mismatch")
+
+
+def _verify_packet_binding(
+    repo_root: Path,
+    packet: Any,
+    expected_artifacts: dict[str, tuple[str, str, str]],
+) -> None:
+    packet = _require_exact_keys(
+        packet,
+        {"artifacts", "branch", "commit", "packet_sha256", "parent"},
+        "packet binding",
+    )
+    verify_structured_record(
+        packet,
+        field="packet_sha256",
+        domain="cap-configuration-t0-packet-binding/v1",
+        label="packet binding",
+    )
+    if packet["branch"] != EXPECTED_BRANCH:
+        _fail("packet binding: unexpected branch")
+    commit = _require_hex(packet["commit"], 40, "packet binding commit")
+    if commit != EXPECTED_PACKET_COMMIT:
+        _fail("packet binding: unexpected reviewed packet commit")
+    parent = _require_hex(packet["parent"], 40, "packet binding parent")
+    if parent != EXPECTED_BASE_HEAD:
+        _fail("packet binding: unexpected parent")
+    if _git_commit(repo_root, commit, "packet binding commit") != commit:
+        _fail("packet binding: commit did not resolve exactly")
+    if _git_parent(repo_root, commit, "packet binding parent") != parent:
+        _fail("packet binding: packet parent mismatch")
+    _verify_artifacts(packet["artifacts"], expected_artifacts, label="packet artifacts")
+    for key, (path, _structured, raw) in expected_artifacts.items():
+        _verify_raw(raw, _git_bytes(repo_root, commit, path), f"packet commit artifact {key}")
+
+
+def _reviewer_identities(review: dict[str, Any]) -> list[str]:
+    return sorted(reviewer["reviewer_identity"] for reviewer in review["reviewers"])
+
+
+def _verify_source_at_head(
+    repo_root: Path,
+    source: dict[str, Any],
+    head: str,
+    *,
+    label: str,
+) -> None:
+    for item in source["files"]:
+        path = item["path"]
+        if path.startswith("formal_conjectures@"):
+            continue
+        _verify_raw(
+            item["raw_sha256"],
+            _git_bytes(repo_root, head, path),
+            f"{label}: {path}",
+        )
+    build_identity = source["build_identity"]
+    for key in ("dependency_lock", "lakefile", "lean_toolchain"):
+        item = build_identity[key]
+        _verify_raw(
+            item["raw_sha256"],
+            _git_bytes(repo_root, head, item["path"]),
+            f"{label}: {item['path']}",
+        )
+
+
+def _verify_source_drift_attestation(
+    repo_root: Path,
+    source: dict[str, Any],
+    attestation: Any,
+    *,
+    label: str,
+    expected_checked_head: str | None,
+    require_observed_branch_head: bool,
+) -> str:
+    attestation = _require_exact_keys(
+        attestation,
+        {
+            "base_head", "checked_head", "checked_scope", "external_source_policy",
+            "observed_branch", "status", "verification_scope",
+        },
+        label,
+    )
+    if attestation["base_head"] != EXPECTED_BASE_HEAD:
+        _fail(f"{label}: wrong base_head")
+    checked_head = _require_hex(attestation["checked_head"], 40, f"{label}.checked_head")
+    if expected_checked_head is not None and checked_head != expected_checked_head:
+        _fail(f"{label}: unexpected checked_head")
+    if attestation["observed_branch"] != EXPECTED_MAIN_BRANCH:
+        _fail(f"{label}: wrong observed branch")
+    if attestation["verification_scope"] != "COMMITTED_GIT_OBJECTS_ONLY":
+        _fail(f"{label}: wrong verification scope")
+    if attestation["checked_scope"] != "SOURCE_MANIFEST_FILES_AND_BUILD_IDENTITY":
+        _fail(f"{label}: wrong checked scope")
+    if attestation["external_source_policy"] != "PINNED_REVISION_AND_RAW_SHA256":
+        _fail(f"{label}: wrong external-source policy")
+    if attestation["status"] != "PASS_NO_RELEVANT_SOURCE_DRIFT":
+        _fail(f"{label}: source drift did not pass")
+    if _git_commit(repo_root, checked_head, f"{label}.checked_head") != checked_head:
+        _fail(f"{label}: checked_head did not resolve exactly")
+    if require_observed_branch_head:
+        branch_head = _git_commit(
+            repo_root,
+            f"refs/heads/{EXPECTED_MAIN_BRANCH}",
+            f"{label}.observed_branch",
+        )
+        if branch_head != checked_head:
+            _fail(f"{label}: observed branch ref does not equal checked_head")
+    _git_is_ancestor(repo_root, EXPECTED_BASE_HEAD, checked_head, label)
+    _verify_source_at_head(repo_root, source, checked_head, label=label)
+    return checked_head
+
+
+_REQUEST_LIMITATIONS = [
+    "REQUEST_IS_NOT_COORDINATOR_ACCEPTANCE",
+    "T0_DOES_NOT_AUTHORIZE_PHASE1_LIVE_SEARCH_OR_SOLVER_CAMPAIGNS",
+    "SOURCE_ATTESTATION_COVERS_COMMITTED_GIT_OBJECTS_NOT_SHARED_WORKTREE_BYTES",
+    "KERNEL_MINED_TRANSITIVE_DEPENDENCY_MANIFEST_NOT_AVAILABLE_AT_T0",
+]
+
+
+def _verify_acceptance_request(
+    repo_root: Path,
+    source: dict[str, Any],
+    review: dict[str, Any],
+    expected_artifacts: dict[str, tuple[str, str, str]],
+    request: dict[str, Any],
+    *,
+    require_observed_branch_head: bool = True,
+) -> None:
+    _require_exact_keys(request, REQUEST_KEYS, "acceptance request")
+    if request["schema"] != "cap-configuration-t0-acceptance-request/v1":
+        _fail("acceptance request: wrong schema")
+    if request["target_id"] != TARGET_ID:
+        _fail("acceptance request: wrong target_id")
+    _parse_utc(request["requested_utc"], "acceptance request requested_utc")
+    verify_structured_record(
+        request,
+        field="request_sha256",
+        domain="cap-configuration-t0-acceptance-request/v1",
+        label="acceptance request",
+    )
+    requester = _require_exact_keys(
+        request["requester"], {"identity", "role"}, "acceptance request.requester"
+    )
+    _require_string(requester["identity"], "acceptance request requester identity")
+    if requester["role"] != "T0_PACKET_CUSTODIAN":
+        _fail("acceptance request: wrong requester role")
+    decision_requested = _require_exact_keys(
+        request["decision_requested"],
+        {"allowed_decisions", "coordinator_role", "scope"},
+        "acceptance request.decision_requested",
+    )
+    if decision_requested != {
+        "allowed_decisions": ["ACCEPT", "REJECT"],
+        "coordinator_role": "T0_COORDINATOR",
+        "scope": "T0_TARGET_CONTRACT_ONLY",
+    }:
+        _fail("acceptance request: decision boundary mismatch")
+    evidence = _require_exact_keys(
+        request["evidence"], {"packet", "reviewer_identities"},
+        "acceptance request.evidence",
+    )
+    _verify_packet_binding(repo_root, evidence["packet"], expected_artifacts)
+    if evidence["reviewer_identities"] != _reviewer_identities(review):
+        _fail("acceptance request: reviewer identities mismatch")
+    _verify_source_drift_attestation(
+        repo_root,
+        source,
+        request["source_drift_attestation"],
+        label="acceptance request source drift",
+        expected_checked_head=EXPECTED_REQUEST_MAIN_HEAD,
+        require_observed_branch_head=require_observed_branch_head,
+    )
+    authorization = _require_exact_keys(
+        request["authorization"],
+        {
+            "live_search_authorized", "phase1_authorized",
+            "solver_campaign_authorized", "t0_target_contract_accepted",
+        },
+        "acceptance request.authorization",
+    )
+    if authorization != {
+        "live_search_authorized": False,
+        "phase1_authorized": False,
+        "solver_campaign_authorized": False,
+        "t0_target_contract_accepted": False,
+    }:
+        _fail("acceptance request: authorization must remain entirely false")
+    if request["limitations"] != _REQUEST_LIMITATIONS:
+        _fail("acceptance request: limitations mismatch")
+    if request["status"] != "SUBMITTED_PENDING_COORDINATOR":
+        _fail("acceptance request: status must remain pending coordinator")
+
+
+def _verify_acceptance(
+    repo_root: Path,
+    source_path: Path,
+    source: dict[str, Any],
+    preflight_path: Path,
+    preflight: dict[str, Any],
+    target_path: Path,
+    target: dict[str, Any],
+    review_path: Path,
+    review: dict[str, Any],
+    request_path: Path,
+    request: dict[str, Any],
+    acceptance: dict[str, Any],
+) -> None:
+    canonical_request_path = (repo_root / REQUEST_PATH).resolve()
+    if request_path.resolve() != canonical_request_path:
+        _fail(f"acceptance: request must use canonical repository path {REQUEST_PATH}")
+    stored_request = load_canonical(request_path)
+    if stored_request != request:
+        _fail("acceptance: supplied request object differs from stored request bytes")
+    expected_artifacts = _artifact_bindings(
+        source_path, source, preflight_path, preflight, target_path, target, review_path, review
+    )
+    _verify_acceptance_request(
+        repo_root,
+        source,
+        review,
+        expected_artifacts,
+        request,
+        require_observed_branch_head=False,
+    )
+    _require_exact_keys(acceptance, ACCEPTANCE_KEYS, "acceptance")
+    if acceptance["schema"] != "cap-configuration-t0-acceptance/v1":
+        _fail("acceptance: wrong schema")
+    if acceptance["target_id"] != TARGET_ID:
+        _fail("acceptance: wrong target_id")
+    accepted_utc = _parse_utc(acceptance["accepted_utc"], "acceptance accepted_utc")
+    requested_utc = _parse_utc(request["requested_utc"], "acceptance request requested_utc")
+    if accepted_utc < requested_utc:
+        _fail("acceptance: accepted_utc predates the request")
+    verify_structured_record(
+        acceptance,
+        field="acceptance_sha256",
+        domain="cap-configuration-t0-acceptance/v1",
+        label="acceptance",
+    )
+    evidence = _require_exact_keys(
+        acceptance["evidence"], {"packet", "request", "reviewer_identities"},
+        "acceptance.evidence",
+    )
+    request_binding = _require_exact_keys(
+        evidence["request"], {"path", "raw_sha256", "structured_sha256"},
+        "acceptance.evidence.request",
+    )
+    if request_binding != {
+        "path": str(REQUEST_PATH),
+        "raw_sha256": raw_sha256(request_path.read_bytes()),
+        "structured_sha256": request["request_sha256"],
+    }:
+        _fail("acceptance: request binding mismatch")
+    _verify_packet_binding(repo_root, evidence["packet"], expected_artifacts)
+    if evidence["packet"] != request["evidence"]["packet"]:
+        _fail("acceptance: packet differs from the pending request")
+    identities = _reviewer_identities(review)
+    if evidence["reviewer_identities"] != identities:
+        _fail("acceptance: reviewer identities mismatch")
+    if evidence["reviewer_identities"] != request["evidence"]["reviewer_identities"]:
+        _fail("acceptance: reviewers differ from the pending request")
+    accepted_head = _verify_source_drift_attestation(
+        repo_root,
+        source,
+        acceptance["source_drift_attestation"],
+        label="acceptance source drift",
+        expected_checked_head=request["source_drift_attestation"]["checked_head"],
+        require_observed_branch_head=False,
+    )
+    requested_head = request["source_drift_attestation"]["checked_head"]
+    if accepted_head != requested_head:
+        _fail("acceptance: accepted source head differs from the request")
     coordinator = _require_exact_keys(
         acceptance["coordinator"], {"decision", "identity", "role"},
         "acceptance.coordinator",
@@ -818,17 +1139,23 @@ def _verify_acceptance(
     _require_string(coordinator["identity"], "acceptance coordinator identity")
     if coordinator["role"] != "T0_COORDINATOR" or coordinator["decision"] != "ACCEPT":
         _fail("acceptance: explicit T0 coordinator ACCEPT act is required")
+    if acceptance["decision"] != "ACCEPT":
+        _fail("acceptance: top-level decision must be ACCEPT")
     authorization = _require_exact_keys(
         acceptance["authorization"],
-        {"live_search_authorized", "phase1_authorized", "solver_campaign_authorized"},
+        {
+            "live_search_authorized", "phase1_authorized",
+            "solver_campaign_authorized", "t0_target_contract_accepted",
+        },
         "acceptance.authorization",
     )
-    if authorization["live_search_authorized"] is not False:
-        _fail("acceptance: T0 acceptance cannot authorize live search")
-    if authorization["solver_campaign_authorized"] is not False:
-        _fail("acceptance: T0 acceptance cannot authorize a solver campaign")
-    if type(authorization["phase1_authorized"]) is not bool:
-        _fail("acceptance: phase1_authorized must be explicit Boolean")
+    if authorization != {
+        "live_search_authorized": False,
+        "phase1_authorized": False,
+        "solver_campaign_authorized": False,
+        "t0_target_contract_accepted": True,
+    }:
+        _fail("acceptance: T0 acceptance must not authorize downstream execution")
     if acceptance["status"] != "T0_ACCEPTED_TARGET_CONTRACT_ONLY":
         _fail("acceptance: wrong status")
 
@@ -844,6 +1171,7 @@ def validate_packet(
     preflight_path = repo_root / PREFLIGHT_PATH
     target_path = repo_root / TARGET_PATH
     review_path = repo_root / REVIEW_PATH
+    request_path = repo_root / REQUEST_PATH
     source = load_canonical(source_path)
     preflight = load_canonical(preflight_path)
     target = load_canonical(target_path)
@@ -877,9 +1205,37 @@ def validate_packet(
         )
         result["review_raw_sha256"] = raw_sha256(review_path.read_bytes())
         result["review_sha256"] = review["review_sha256"]
+        request = load_canonical(request_path)
+        expected_artifacts = _artifact_bindings(
+            source_path,
+            source,
+            preflight_path,
+            preflight,
+            target_path,
+            target,
+            review_path,
+            review,
+        )
+        _verify_acceptance_request(
+            repo_root,
+            source,
+            review,
+            expected_artifacts,
+            request,
+            require_observed_branch_head=acceptance_path is None,
+        )
+        result["acceptance_request_raw_sha256"] = raw_sha256(request_path.read_bytes())
+        result["acceptance_request_sha256"] = request["request_sha256"]
         if acceptance_path is not None:
+            canonical_acceptance_path = (repo_root / ACCEPTANCE_PATH).resolve()
+            if acceptance_path.resolve() != canonical_acceptance_path:
+                _fail(
+                    "acceptance: --acceptance must name the canonical repository path "
+                    f"{ACCEPTANCE_PATH}"
+                )
             acceptance = load_canonical(acceptance_path)
             _verify_acceptance(
+                repo_root,
                 source_path,
                 source,
                 preflight_path,
@@ -888,6 +1244,8 @@ def validate_packet(
                 target,
                 review_path,
                 review,
+                request_path,
+                request,
                 acceptance,
             )
             result["acceptance_raw_sha256"] = raw_sha256(acceptance_path.read_bytes())
@@ -903,12 +1261,20 @@ def _parse_args() -> argparse.Namespace:
         type=Path,
         help="materialized formal_conjectures package root; required for a review pass",
     )
-    parser.add_argument(
+    mode = parser.add_mutually_exclusive_group()
+    mode.add_argument(
         "--acceptance",
         type=Path,
-        help="optional separate coordinator acceptance record to authenticate",
+        help=(
+            "optional coordinator acceptance record; must be the canonical "
+            f"repository path {ACCEPTANCE_PATH}"
+        ),
     )
-    parser.add_argument("--target-only", action="store_true", help="validate before the review record exists")
+    mode.add_argument(
+        "--target-only",
+        action="store_true",
+        help="validate before the review record exists",
+    )
     return parser.parse_args()
 
 

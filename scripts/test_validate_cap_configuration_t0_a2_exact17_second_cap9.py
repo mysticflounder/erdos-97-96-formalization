@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import copy
+import sys
 from pathlib import Path
 
 import pytest
@@ -8,11 +9,15 @@ import pytest
 from census.cap_configuration.schema import raw_sha256, structured_hash
 from scripts.validate_cap_configuration_t0_a2_exact17_second_cap9 import (
     PREFLIGHT_PATH,
+    REQUEST_PATH,
     REVIEW_PATH,
     SOURCE_PATH,
     TARGET_PATH,
     PacketValidationError,
+    _artifact_bindings,
+    _parse_args,
     _verify_acceptance,
+    _verify_acceptance_request,
     _verify_preflight,
     _verify_review,
     _verify_source_identity,
@@ -80,6 +85,17 @@ def test_noncanonical_storage_rejected(tmp_path: Path) -> None:
         load_canonical(path)
 
 
+def test_cli_rejects_target_only_with_acceptance(monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        ["validator", "--target-only", "--acceptance", "alternate.json"],
+    )
+    with pytest.raises(SystemExit) as exc_info:
+        _parse_args()
+    assert exc_info.value.code == 2
+
+
 def test_rehashed_source_with_empty_file_manifest_is_rejected() -> None:
     source = copy.deepcopy(load_canonical(REPO_ROOT / SOURCE_PATH))
     source["files"] = []
@@ -93,12 +109,52 @@ def test_rehashed_source_with_empty_file_manifest_is_rejected() -> None:
         )
 
 
+def test_rehashed_source_cannot_rekey_external_revision() -> None:
+    source = copy.deepcopy(load_canonical(REPO_ROOT / SOURCE_PATH))
+    external = next(item for item in source["files"] if item["role"] == "IMPORTED_PROBLEM_SOURCE")
+    external["path"] = external["path"].replace(
+        source["build_identity"]["formal_conjectures_revision"], "0" * 40
+    )
+    _rehash(source, "source_identity_sha256", "cap-configuration-t0-source-identity/v1")
+    with pytest.raises(PacketValidationError, match="path/revision mismatch"):
+        _verify_source_identity(
+            REPO_ROOT,
+            source,
+            formal_conjectures_root=None,
+            require_external_sources=False,
+        )
+
+
+def test_rehashed_source_external_path_cannot_escape_materialized_root() -> None:
+    source = copy.deepcopy(load_canonical(REPO_ROOT / SOURCE_PATH))
+    external = next(item for item in source["files"] if item["role"] == "IMPORTED_PROBLEM_SOURCE")
+    revision = source["build_identity"]["formal_conjectures_revision"]
+    external["path"] = f"formal_conjectures@{revision}//etc/hosts"
+    _rehash(source, "source_identity_sha256", "cap-configuration-t0-source-identity/v1")
+    with pytest.raises(PacketValidationError, match="path/revision mismatch"):
+        _verify_source_identity(
+            REPO_ROOT,
+            source,
+            formal_conjectures_root=Path("/"),
+            require_external_sources=True,
+        )
+
+
 def test_rehashed_preflight_with_wrong_base_is_rejected() -> None:
     source, preflight, _ = _target_inputs()
     preflight = copy.deepcopy(preflight)
     preflight["applicability"]["accepted_base_head"] = "0" * 40
     _rehash(preflight, "preflight_sha256", "cap-configuration-t0-preflight/v1")
     with pytest.raises(PacketValidationError, match="accepted_base_head"):
+        _verify_preflight(preflight, source)
+
+
+def test_rehashed_preflight_rejects_impossible_utc_timestamp() -> None:
+    source, preflight, _ = _target_inputs()
+    preflight = copy.deepcopy(preflight)
+    preflight["recorded_utc"] = "2026-02-31T99:99:99Z"
+    _rehash(preflight, "preflight_sha256", "cap-configuration-t0-preflight/v1")
+    with pytest.raises(PacketValidationError, match="invalid UTC timestamp"):
         _verify_preflight(preflight, source)
 
 
@@ -271,54 +327,33 @@ def test_rehashed_review_requires_distinct_reviewer_identities() -> None:
         )
 
 
-def _acceptance_record(source: dict, preflight: dict, target: dict, review: dict) -> dict:
-    value = {
-        "acceptance_sha256": "PENDING",
-        "accepted_utc": "2026-08-28T02:00:00Z",
-        "artifacts": {
-            "source_identity": {
-                "path": str(SOURCE_PATH),
-                "raw_sha256": raw_sha256((REPO_ROOT / SOURCE_PATH).read_bytes()),
-                "structured_sha256": source["source_identity_sha256"],
-            },
-            "preflight": {
-                "path": str(PREFLIGHT_PATH),
-                "raw_sha256": raw_sha256((REPO_ROOT / PREFLIGHT_PATH).read_bytes()),
-                "structured_sha256": preflight["preflight_sha256"],
-            },
-            "target": {
-                "path": str(TARGET_PATH),
-                "raw_sha256": raw_sha256((REPO_ROOT / TARGET_PATH).read_bytes()),
-                "structured_sha256": target["target_sha256"],
-            },
-            "review": {
-                "path": str(REVIEW_PATH),
-                "raw_sha256": raw_sha256((REPO_ROOT / REVIEW_PATH).read_bytes()),
-                "structured_sha256": review["review_sha256"],
-            },
-        },
-        "authorization": {
-            "live_search_authorized": False,
-            "phase1_authorized": False,
-            "solver_campaign_authorized": False,
-        },
-        "coordinator": {
-            "decision": "ACCEPT",
-            "identity": "test-coordinator",
-            "role": "T0_COORDINATOR",
-        },
-        "schema": "cap-configuration-t0-acceptance/v1",
-        "status": "T0_ACCEPTED_TARGET_CONTRACT_ONLY",
-        "target_id": target["target_id"],
-    }
-    _rehash(value, "acceptance_sha256", "cap-configuration-t0-acceptance/v1")
-    return value
-
-
-def test_separate_acceptance_binding_is_non_circular_and_validatable() -> None:
+def test_rehashed_review_rejects_impossible_utc_timestamp() -> None:
     source, preflight, target, review = _review_inputs()
-    acceptance = _acceptance_record(source, preflight, target, review)
-    _verify_acceptance(
+    review = copy.deepcopy(review)
+    review["reviewed_utc"] = "2026-02-31T99:99:99Z"
+    _rehash(review, "review_sha256", "cap-configuration-t0-review/v1")
+    with pytest.raises(PacketValidationError, match="invalid UTC timestamp"):
+        _verify_review(
+            REPO_ROOT / SOURCE_PATH,
+            source,
+            REPO_ROOT / PREFLIGHT_PATH,
+            preflight,
+            REPO_ROOT / TARGET_PATH,
+            target,
+            review,
+        )
+
+
+def _request_inputs() -> tuple[dict, dict, dict, dict, dict]:
+    source, preflight, target, review = _review_inputs()
+    request = load_canonical(REPO_ROOT / REQUEST_PATH)
+    return source, preflight, target, review, request
+
+
+def _verify_checked_in_request(
+    source: dict, preflight: dict, target: dict, review: dict, request: dict
+) -> None:
+    expected_artifacts = _artifact_bindings(
         REPO_ROOT / SOURCE_PATH,
         source,
         REPO_ROOT / PREFLIGHT_PATH,
@@ -327,17 +362,98 @@ def test_separate_acceptance_binding_is_non_circular_and_validatable() -> None:
         target,
         REPO_ROOT / REVIEW_PATH,
         review,
+    )
+    _verify_acceptance_request(REPO_ROOT, source, review, expected_artifacts, request)
+
+
+def test_checked_in_acceptance_request_is_pending_and_validatable() -> None:
+    source, preflight, target, review, request = _request_inputs()
+    _verify_checked_in_request(source, preflight, target, review, request)
+
+
+def test_rehashed_request_cannot_authorize_phase1() -> None:
+    source, preflight, target, review, request = _request_inputs()
+    request = copy.deepcopy(request)
+    request["authorization"]["phase1_authorized"] = True
+    _rehash(request, "request_sha256", "cap-configuration-t0-acceptance-request/v1")
+    with pytest.raises(PacketValidationError, match="authorization must remain entirely false"):
+        _verify_checked_in_request(source, preflight, target, review, request)
+
+
+def test_rehashed_request_cannot_replace_reviewed_main_head() -> None:
+    source, preflight, target, review, request = _request_inputs()
+    request = copy.deepcopy(request)
+    request["source_drift_attestation"]["checked_head"] = request[
+        "source_drift_attestation"
+    ]["base_head"]
+    _rehash(request, "request_sha256", "cap-configuration-t0-acceptance-request/v1")
+    with pytest.raises(PacketValidationError, match="unexpected checked_head"):
+        _verify_checked_in_request(source, preflight, target, review, request)
+
+
+def _acceptance_record(target: dict, review: dict, request: dict) -> dict:
+    value = {
+        "acceptance_sha256": "PENDING",
+        "accepted_utc": "2026-08-28T06:10:00Z",
+        "authorization": {
+            "live_search_authorized": False,
+            "phase1_authorized": False,
+            "solver_campaign_authorized": False,
+            "t0_target_contract_accepted": True,
+        },
+        "coordinator": {
+            "decision": "ACCEPT",
+            "identity": "test-coordinator",
+            "role": "T0_COORDINATOR",
+        },
+        "decision": "ACCEPT",
+        "evidence": {
+            "packet": copy.deepcopy(request["evidence"]["packet"]),
+            "request": {
+                "path": str(REQUEST_PATH),
+                "raw_sha256": raw_sha256((REPO_ROOT / REQUEST_PATH).read_bytes()),
+                "structured_sha256": request["request_sha256"],
+            },
+            "reviewer_identities": sorted(
+                reviewer["reviewer_identity"] for reviewer in review["reviewers"]
+            ),
+        },
+        "schema": "cap-configuration-t0-acceptance/v1",
+        "source_drift_attestation": copy.deepcopy(request["source_drift_attestation"]),
+        "status": "T0_ACCEPTED_TARGET_CONTRACT_ONLY",
+        "target_id": target["target_id"],
+    }
+    _rehash(value, "acceptance_sha256", "cap-configuration-t0-acceptance/v1")
+    return value
+
+
+def test_separate_acceptance_binding_is_non_circular_and_validatable() -> None:
+    source, preflight, target, review, request = _request_inputs()
+    acceptance = _acceptance_record(target, review, request)
+    _verify_acceptance(
+        REPO_ROOT,
+        REPO_ROOT / SOURCE_PATH,
+        source,
+        REPO_ROOT / PREFLIGHT_PATH,
+        preflight,
+        REPO_ROOT / TARGET_PATH,
+        target,
+        REPO_ROOT / REVIEW_PATH,
+        review,
+        REPO_ROOT / REQUEST_PATH,
+        request,
         acceptance,
     )
 
 
 def test_acceptance_requires_explicit_coordinator_accept() -> None:
-    source, preflight, target, review = _review_inputs()
-    acceptance = _acceptance_record(source, preflight, target, review)
+    source, preflight, target, review, request = _request_inputs()
+    acceptance = _acceptance_record(target, review, request)
     acceptance["coordinator"]["decision"] = "ABSTAIN"
     _rehash(acceptance, "acceptance_sha256", "cap-configuration-t0-acceptance/v1")
     with pytest.raises(PacketValidationError, match="coordinator ACCEPT"):
         _verify_acceptance(
+            REPO_ROOT,
             REPO_ROOT / SOURCE_PATH,
             source,
             REPO_ROOT / PREFLIGHT_PATH,
@@ -346,5 +462,75 @@ def test_acceptance_requires_explicit_coordinator_accept() -> None:
             target,
             REPO_ROOT / REVIEW_PATH,
             review,
+            REPO_ROOT / REQUEST_PATH,
+            request,
+            acceptance,
+        )
+
+
+def test_acceptance_cannot_authorize_phase1() -> None:
+    source, preflight, target, review, request = _request_inputs()
+    acceptance = _acceptance_record(target, review, request)
+    acceptance["authorization"]["phase1_authorized"] = True
+    _rehash(acceptance, "acceptance_sha256", "cap-configuration-t0-acceptance/v1")
+    with pytest.raises(PacketValidationError, match="must not authorize downstream execution"):
+        _verify_acceptance(
+            REPO_ROOT,
+            REPO_ROOT / SOURCE_PATH,
+            source,
+            REPO_ROOT / PREFLIGHT_PATH,
+            preflight,
+            REPO_ROOT / TARGET_PATH,
+            target,
+            REPO_ROOT / REVIEW_PATH,
+            review,
+            REPO_ROOT / REQUEST_PATH,
+            request,
+            acceptance,
+        )
+
+
+def test_acceptance_cannot_substitute_a_different_source_head() -> None:
+    source, preflight, target, review, request = _request_inputs()
+    acceptance = _acceptance_record(target, review, request)
+    acceptance["source_drift_attestation"]["checked_head"] = request["evidence"]["packet"][
+        "commit"
+    ]
+    _rehash(acceptance, "acceptance_sha256", "cap-configuration-t0-acceptance/v1")
+    with pytest.raises(PacketValidationError, match="unexpected checked_head"):
+        _verify_acceptance(
+            REPO_ROOT,
+            REPO_ROOT / SOURCE_PATH,
+            source,
+            REPO_ROOT / PREFLIGHT_PATH,
+            preflight,
+            REPO_ROOT / TARGET_PATH,
+            target,
+            REPO_ROOT / REVIEW_PATH,
+            review,
+            REPO_ROOT / REQUEST_PATH,
+            request,
+            acceptance,
+        )
+
+
+def test_acceptance_reauthenticates_the_stored_pending_request() -> None:
+    source, preflight, target, review, request = _request_inputs()
+    acceptance = _acceptance_record(target, review, request)
+    forged_request = copy.deepcopy(request)
+    forged_request["status"] = "FORGED"
+    with pytest.raises(PacketValidationError, match="differs from stored request bytes"):
+        _verify_acceptance(
+            REPO_ROOT,
+            REPO_ROOT / SOURCE_PATH,
+            source,
+            REPO_ROOT / PREFLIGHT_PATH,
+            preflight,
+            REPO_ROOT / TARGET_PATH,
+            target,
+            REPO_ROOT / REVIEW_PATH,
+            review,
+            REPO_ROOT / REQUEST_PATH,
+            forged_request,
             acceptance,
         )
