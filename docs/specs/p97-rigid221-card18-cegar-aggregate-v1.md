@@ -24,15 +24,16 @@ The import-only target is:
 Erdos9796Proof.P97.ATail.FrontierLiveClosure.Rigid221Card18Aggregate
 ```
 
-It imports these seven modules explicitly:
+It imports these eight modules explicitly:
 
 1. `Rigid221Card18LeafExport`;
 2. `Rigid221Card18FiniteDataExport`;
 3. `Rigid221Card18LabeledProjection`;
 4. `Rigid221Card18CrossedIncidenceProjection`;
 5. `Rigid221Card18LabeledEnrichment`;
-6. `Rigid221Card18AbstractPacket`; and
-7. `Rigid221Card18SearchBase`.
+6. `Rigid221Card18AbstractPacket`;
+7. `Rigid221Card18SearchBase`; and
+8. `Rigid221Card18DirectCardinality`.
 
 The aggregate declares no theorem, axiom, finite-search result, serializer, or
 solver entitlement. It remains absent from `FrontierLiveClosure.lean` and the
@@ -96,19 +97,21 @@ claim that a hosted CI service currently executes it.
 
 Passing this target establishes only that:
 
-- all seven off-spine Lean modules still elaborate together;
+- all eight off-spine Lean modules still elaborate together;
 - the frozen source-custody checks still authenticate their declared sources;
 - the three predicate-coverage schemas still reconstruct their artifacts; and
 - the pure abstract packet and its source projection remain buildable; and
 - the typed 288-variable base representation, role one-hot clauses, and
-  encode/decode bridge remain buildable.
+  encode/decode bridge remain buildable; and
+- the generic direct at-most, at-least, and exact-cardinality CNF layer remains
+  buildable with both semantic directions.
 
 It does not establish:
 
 - existence or nonexistence of a valid abstract packet;
 - an abstract-packet-to-CNF correspondence;
-- any derived validity clause, support-cardinality encoder, or complete arm
-  formula;
+- application of the generic cardinality encoder to any packet support, any
+  derived validity clause, or any complete arm formula;
 - a checked UNSAT certificate;
 - a Euclidean realization for a finite assignment;
 - closure of any exact-card-eighteen arm; or
@@ -135,19 +138,20 @@ The serializer and solver gates remain closed.
 
 - The runner passed `bash -n`, was executable, and had no solver command.
 - Ruff lint passed on all fourteen declared Python files.
-- All seven focused suites passed, totaling 348 tests in 32.26 seconds.
-- The aggregate build completed all 11,035 jobs.
-- A governed refresh added one off-spine source file and 73 indexed symbols to
+- All seven focused suites passed, totaling 348 tests in 31.97 seconds.
+- The aggregate build completed all 11,036 jobs.
+- A governed refresh added one off-spine source file and 51 indexed symbols to
   the live-blueprint census; the sorry count remained three.
 - The 2,518-file publication spine contained no `Rigid221Card18` path.
 - Exact-path whitespace and line-length checks were clean.
 - The Lean aggregate has SHA-256
-  `7859e641dcca2c1e2cf95dfbd6c6af76fb53c422297536fc9f1cc5e24ca073f7`.
+  `0db0af5686f183295328beb237d9bc3f551d2c21c2a1502812407ecea54b0391`.
 - The standalone runner has SHA-256
   `3c675ecbba7f2dd2e1fcf58c53c6d501c3c2df090efbc88cd3df12bf993b1881`.
-- The current search-base lane explicitly owns this aggregate source and spec
-  for the seven-import extension. The predecessor six-import lane is complete
-  and published at `467b58a186fe1d81b78be8d042d8ab4bf0e585bd`.
+- The current direct-cardinality lane explicitly owns this aggregate source and
+  spec for the eight-import extension. The predecessor seven-import lane is
+  published at `38f6b0ced41acbda8b2d2f590f2acf6b1a14a7a4`; the original
+  six-import lane is published at `467b58a186fe1d81b78be8d042d8ab4bf0e585bd`.
 - Independent review returned GO; exact-path staged hygiene passed with zero
   issues and no foreign staged paths.
 

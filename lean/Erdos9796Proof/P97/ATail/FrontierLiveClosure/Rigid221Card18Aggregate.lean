@@ -11,6 +11,7 @@ import Erdos9796Proof.P97.ATail.FrontierLiveClosure.Rigid221Card18CrossedInciden
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.Rigid221Card18LabeledEnrichment
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.Rigid221Card18AbstractPacket
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.Rigid221Card18SearchBase
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure.Rigid221Card18DirectCardinality
 
 /-!
 # Exact-card-eighteen Rigid221 aggregate

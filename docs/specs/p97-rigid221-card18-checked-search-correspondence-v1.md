@@ -236,6 +236,13 @@ atLeastClauses : List Var -> Nat -> Std.Sat.CNF Nat
 cardEqClauses : List Var -> Nat -> Std.Sat.CNF Nat
 ```
 
+The executable v1 implementation canonicalizes the variable universe with
+`xs.toFinset.sort (fun a b => a <= b)` and enumerates combinations with
+`List.sublistsLen`. Every guard and subtraction uses the deduplicated universe
+cardinality. `Finset.toList` is excluded because Mathlib defines it as a
+noncomputable choice operation; `Finset.powersetCard` may be used only in
+propositional cardinality proofs.
+
 For pairwise-distinct input variables, the required kernel theorems are:
 
 ```lean
@@ -420,6 +427,10 @@ axiom audit, independent semantic review, and exact-path staged hygiene.
 
 - The reuse preflight searched the project Lean corpus at revision
   `467b58a18` and found no generic exact-cardinality CNF evaluation iff theorem.
+- The concrete direct-cardinality reuse preflight at `38f6b0ced` again found no
+  full generic theorem. `Census554.CoverCnf.sinz_sat` supplies only the
+  source-to-satisfying direction, so using it here would leave the future
+  model-to-`Valid` direction circularly incomplete.
 - The state audit confirmed 288 base variables in every arm and the correct
   U/XV deletion orientation.
 - Independent semantic review returned GO after requiring exact role-inequality,
