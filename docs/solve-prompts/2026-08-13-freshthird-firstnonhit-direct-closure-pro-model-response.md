@@ -533,14 +533,19 @@ The first must encode every arbitrary-cardinality live instance. The second must
 
 ### Reproducibility artifacts
 
-* [Executable 16-case carrier-recursive model](sandbox:/mnt/data/freshthird_firstnonhit_interface_model.py)
-  SHA-256: `c2fb9da1b11197f17c14b7d7fe60a8c3d59e8e05f089e63492ad232a99edabe0`
+The three original `sandbox:/mnt/data/...` files were not retained in this
+repository, so their dead session-local links have been removed. Only the
+recorded digests survive here:
 
-* [Exact JSON report](sandbox:/mnt/data/freshthird_firstnonhit_interface_model_report.json)
-  SHA-256: `a1f0bf2ee62217982517ac5755abd4e1d71e22fb82ac69f6d5e2e84ace480411`
+* executable 16-case carrier-recursive model:
+  `c2fb9da1b11197f17c14b7d7fe60a8c3d59e8e05f089e63492ad232a99edabe0`;
+* exact JSON report:
+  `a1f0bf2ee62217982517ac5755abd4e1d71e22fb82ac69f6d5e2e84ace480411`;
+* execution log:
+  `e1381de91df003794ce48ec74da95027cdf90c9cc0e2ca04fe8072a39e2823dd`.
 
-* [Execution log](sandbox:/mnt/data/freshthird_firstnonhit_interface_model.log)
-  SHA-256: `e1381de91df003794ce48ec74da95027cdf90c9cc0e2ca04fe8072a39e2823dd`
+These hashes do not make the missing artifacts reproducible. Treat the
+transcribed results as historical diagnostic evidence only.
 
 ## 8. Plan delta
 
@@ -1069,4 +1074,3 @@ The full Euclidean equations can contribute in two precise ways:
 2. **Exact-off-circle closure:** row equalities from several selected classes may force an omitted point onto a circle that exactness says it does not lie on.
 
 For the geometric interaction constructors, the distance equalities are already present; the frontier is a **remainder-order lemma**. For the omission constructors, the frontier is a **role-parametric equality path or newly forced shared pair**. A whole-carrier coordinate model would obscure both of these much smaller proof obligations.
-

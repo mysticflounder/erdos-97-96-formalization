@@ -986,18 +986,17 @@ Reusable geometric machinery imported throughout the above:
 
 ## Where the work happens
 
-Plans and status live in `docs/`, in two layers.
+Plans and status live in `docs/`. The authored source of truth is
+[`docs/computational-closure-plan-2026-07-28.md`](docs/computational-closure-plan-2026-07-28.md),
+which governs the live frontier and solver lanes. The older
+[`closure plan`](docs/closure-plan-full-spec-2026-07-09.md) and
+[`closure matrix`](docs/closure-matrix-2026-07-09.md) are historical strategy
+and execution ledgers; they are retained for provenance and are not dispatch
+authorities.
 
-- [`docs/closure-plan-full-spec-2026-07-09.md`](docs/closure-plan-full-spec-2026-07-09.md)
-  is the declared route plan to `proof-blueprint verify-publish` green —
-  cross-cutting strategy, gates, dispatch specs, and the uncertainty register.
-  [`docs/closure-matrix-2026-07-09.md`](docs/closure-matrix-2026-07-09.md) is its
-  executable task register.
-- [`docs/computational-closure-plan-2026-07-28.md`](docs/computational-closure-plan-2026-07-28.md)
-  (updated 2026-08-14) governs the live frontier work and is the doc to read
-  first for anything touching the solver lanes.
-  [`docs/closure-evidence-status-ledger-2026-08-05.md`](docs/closure-evidence-status-ledger-2026-08-05.md)
-  defines the evidence-status vocabulary it uses.
+The
+[`docs/closure-evidence-status-ledger-2026-08-05.md`](docs/closure-evidence-status-ledger-2026-08-05.md)
+defines the evidence-status vocabulary used by the active plan.
 
 For current truth about what is open, regenerate rather than trust a snapshot:
 

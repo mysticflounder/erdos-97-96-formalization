@@ -1,5 +1,10 @@
 # E round-1 response (deep thinker, 2026-07-28)
 
+> **Status refresh (2026-08-28): HISTORICAL RESPONSE.** Its public wrapper is
+> now source-clean; current TriApex work uses later paired-common-deletion
+> descendants. Preserve the polarity and obstruction findings below, but do
+> not treat the old monolith line or E1 wrapper as a live dispatch target.
+
 Response to `2026-07-27-tri-apex-directed-omission.md` (E package, leaf E1
 `false_of_retainedInteriorDirectedOmission_and_all_low_hits`, now at
 `FrontierLiveClosure.lean:6594` after refactor `a0f73bc1`). Math delimiters

@@ -524,9 +524,10 @@ must not be spliced into a fresh run.
 
 The exact PIQD classifier is also semantically identical to cell 0 journal
 record 0: its selected-assignment, cube, certificate, learned clause, and
-source-job hashes match. The new
-`census/p97_search/phase3_piqd_structural_seed.py` adapter turns that classifier
-into a locally authenticated one-record tagged-v3 journal. It reopens the
+source-job hashes match. The adapter now retained at
+`scratch/rigid221-sourceheavy-anchor/quarantine-2026-08-15/phase3_piqd_structural_seed.py`
+turns that classifier into a locally authenticated one-record tagged-v3
+journal. It reopens the
 classifier, source job, and 5,128,454-byte base CNF with bounded no-follow reads,
 rebuilds the exact job/CNF, checks the selected positive assignment, replays the
 certificate and compiled clause, and publishes a journal, binding sidecar, and

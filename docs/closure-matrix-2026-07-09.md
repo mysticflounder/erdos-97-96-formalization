@@ -4,7 +4,12 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Author: Adam McKenna <adam@mysticflounder.ai>
 -->
 
-# Problem 97/96 closure matrix (2026-07-09)
+# Historical Problem 97/96 closure matrix (2026-07-09)
+> **Status refresh (2026-08-28): HISTORICAL EXECUTION LEDGER.** This matrix is
+> not the current task register. Its counts and `ACTIVE` rows are snapshots.
+> Use `docs/computational-closure-plan-2026-07-28.md` for authored planning and
+> a fresh `proof-blueprint spine` for current kernel-mined obligations.
+>
 > **Structural note (2026-08-05, `9feb86f6`):** `ATail/FrontierLiveClosure.lean`
 > was sharded into 15 files under `ATail/FrontierLiveClosure/` with the original
 > path kept as an umbrella import; namespaces and FQNs are unchanged. Monolith
@@ -12,9 +17,9 @@ Author: Adam McKenna <adam@mysticflounder.ai>
 > current.
 
 
-This is the executable task register for
-`docs/closure-plan-full-spec-2026-07-09.md`. It includes every current
-source-level proof hole and every non-`sorry` prerequisite on a selected
+This was the executable task register for
+`docs/closure-plan-full-spec-2026-07-09.md`. It included every source-level
+proof hole current to its snapshot and every non-`sorry` prerequisite on a selected
 closure route, including non-UNSAT census outcomes and final publication
 gates. “All” does not promote every speculative research idea into an
 obligation: OPTIONAL rows are included only where the existing plan names a
@@ -1897,7 +1902,7 @@ exploring them.
 | MC-EXTRACT | OPTIONAL | Existing `JointClass`, `CapProfile`, and leaf data | Concrete `extractedClass`/`extractedProfile` plus `extractedClass_locallyAdmissible`, proving support, center-use=4, capacity, H1, pair-sharing, and Q3 cuts field by field. | Sorry-free module builds; extraction applies to an actual Front-A hypothesis package. |
 | MC-SURFACE | OPTIONAL | MC-EXTRACT | Instantiate `ProfileRealizationSurface`; prove `GlobalSound` and exact profile occurrence/extension facts. | Existing abstract `localInventory_stepPersistent` applies to the concrete surface. |
 | MC-T1 | OPEN-RESEARCH | MC-SURFACE | `CompletesGlobalFrom` or an equivalent geometric LOCAL-to-GLOBAL upper bound. | Produces a theorem identifying scoped LOCAL codes with geometric GLOBAL realizations above a stated threshold. Representative-surface completeness alone does not pass. |
-| MC-CONSUMER | OPEN-RESEARCH (target fixed 2026-07-13; bridge absent) | MC-T1 plus a selection-robust geometric bridge from the selected-four surface to full exact-radius filters | From the actual K-A-PAIR hypothesis package, with `S := leafSurplusPacket ...`, produce radii `r, ρ` such that the off-surplus intersection of the full exact-radius filters at `S.oppApex1` and `S.oppApex2` has card at least two; equivalently produce `False`. | The target now matches ATAIL-FORCE exactly (`docs/atail-force-producer-plan-2026-07-13.md`), but the 3,375-row representative surface proves only selected-four LOCAL completeness. MC-T1 and the full-filter geometric bridge are both required before an on-spine consumer call; no finite-inventory or persistence theorem alone advances K-A-PAIR. |
+| MC-CONSUMER | OPEN-RESEARCH (target fixed 2026-07-13; bridge absent) | MC-T1 plus a selection-robust geometric bridge from the selected-four surface to full exact-radius filters | From the actual K-A-PAIR hypothesis package, with `S := leafSurplusPacket ...`, produce radii `r, ρ` such that the off-surplus intersection of the full exact-radius filters at `S.oppApex1` and `S.oppApex2` has card at least two; equivalently produce `False`. | The target matched ATAIL-FORCE at this snapshot (`attic/docs-sweep-2026-08-28/docs/atail-force-producer-plan-2026-07-13.md`), but the 3,375-row representative surface proves only selected-four LOCAL completeness. MC-T1 and the full-filter geometric bridge were both required before an on-spine consumer call; no finite-inventory or persistence theorem alone advanced K-A-PAIR. |
 | MC-CONJ | OPTIONAL | A route-specific question such as ERASE-P3 | Full targeted CONJECTURED-tier appendix, not merely n=12..15 smoke. | Artifact and audit note only; no automatic proof status. |
 
 ## Exhaustive textual-hole reconciliation

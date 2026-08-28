@@ -1,5 +1,12 @@
 # Complete-resolution prompt: rigid 2+2+1 physical-apex chain (Family A)
 
+> **Status refresh (2026-08-28): HISTORICAL PROMPT SNAPSHOT.** The monolithic
+> source path and all line numbers below are obsolete, and several listed
+> declarations were closed, renamed, or removed. Related live obligations now
+> reside in `Rigid221Placement.lean`, `Rigid221Closure.lean`, and
+> `Rigid221SourceHeavy.lean`. Reconstruct a fresh packet from
+> `proof-blueprint spine` before dispatch; do not send this document verbatim.
+
 You are working on eight load-bearing theorems in the Lean 4 repository
 `erdos-97-96-formalization`, all in
 `lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean`, namespace

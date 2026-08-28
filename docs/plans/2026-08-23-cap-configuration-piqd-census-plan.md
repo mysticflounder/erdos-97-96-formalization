@@ -1533,7 +1533,7 @@ reason to enlarge PIQD's trust boundary.
 - [`docs/specs/atail-piqd-cvc5-geometry-v1.md`](../specs/atail-piqd-cvc5-geometry-v1.md)
 - [`docs/specs/p97-piqd-global-confinement-metric-cvc5-v1.md`](../specs/p97-piqd-global-confinement-metric-cvc5-v1.md)
 - [`docs/specs/p97-phase3-survivor-metric-piqd-v1.md`](../specs/p97-phase3-survivor-metric-piqd-v1.md)
-- [`docs/false_of_capSource_freshThirdBlockerFiber_without_sameCapCrossRow_refactor_plan_2026-07-31.md`](../false_of_capSource_freshThirdBlockerFiber_without_sameCapCrossRow_refactor_plan_2026-07-31.md)
+- [`false_of_capSource_freshThirdBlockerFiber_without_sameCapCrossRow_refactor_plan_2026-07-31.md`](../../attic/docs-sweep-2026-08-28/docs/false_of_capSource_freshThirdBlockerFiber_without_sameCapCrossRow_refactor_plan_2026-07-31.md)
 
 ## Change control
 

@@ -2,9 +2,10 @@
 
 Date: 2026-07-25.
 
-Status: implemented 2026-07-25, except that the proposed post-card-eleven
-promotion remains `PROMOTION-PENDING` because its preflight found a production
-import cycle. The generated live blueprint was not edited by hand.
+Status: historical policy decision implemented 2026-07-25. The
+`PROMOTION-PENDING` post-card-eleven note and source census below describe the
+2026-07-25 snapshot, not the current frontier. The generated live blueprint
+was not edited by hand.
 
 ## Decision
 
@@ -20,17 +21,17 @@ mathematical frontier strictly more tractable and every new leaf is consumed by
 the publish spine. Promotion may temporarily increase the number of direct
 `sorry` declarations.
 
-The current written discipline is mostly sound. The defect is the gap between
+The written discipline at that snapshot was mostly sound. The defect was the gap between
 that discipline and the de facto promotion rule. That gap has encouraged open
 work to be represented by proposition-valued `def`s, higher-order contradiction
 arguments, `...Closers` structures, or prose-only obligations. Those forms avoid
 `sorryAx`, but they also make genuine open leaves invisible to the kernel-mined
 proof graph.
 
-## Current evidence
+## Audit-baseline evidence (2026-07-25)
 
 The live source and corpus-wide `proof-blueprint symbols --with-sorry` census
-currently agree on two direct production `sorry` declarations:
+at the audit baseline agreed on two direct production `sorry` declarations:
 
 1. `false_of_originalFrontierUniqueRadiusArm`
    (`lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean:43`);
@@ -41,7 +42,7 @@ Target reachability must be checked separately on refreshed
 `proof-blueprint spine` output for both publish targets. The corpus-wide symbol
 census is not a substitute for that check.
 
-The count of two is a correct direct-source census, but it is not the full
+The count of two was a correct direct-source census for that snapshot, but it is not the full
 coordinator-interface frontier. The checked post-card-eleven unique-arm
 coordinator exposes three named contradiction functions:
 

@@ -18,7 +18,7 @@ There are major consolidations worth doing, but the first wave should be archite
 4. migrate F1/F3/F2/Rigid221 to intrinsic typed outcomes behind compatibility wrappers; and
 5. isolate generated certificates, diagnostics, scripts, and prose checkpoints behind authenticated manifests.
 
-The project should retain one stable public mathematical facade—`GlobalNonM44Contradiction` or the equivalent non-`IsM44` removable-vertex theorem—while treating the 28 current leaves as an internal implementation roster. Problem 96 should remain essentially unchanged.
+The project should retain one stable public mathematical facade—`GlobalNonM44Contradiction` or the corresponding non-`IsM44` removable-vertex theorem—while treating the 28 leaves in the audit snapshot as an internal implementation roster. Problem 96 should remain essentially unchanged.
 
 ## Evidence boundary
 
@@ -26,11 +26,11 @@ This is an architecture and proof-interface audit, not a new Lean closure claim.
 
 The full 5,000-plus-file repository was not rebuilt in this runtime, and every generated certificate body was not reread. Build-derived counts are therefore taken from the repository's current measured README/blueprint record, while source-architecture findings come from inspected public-main files and later project checkpoints. Every proposed migration is gated on a pinned-toolchain rebuild, regenerated spine, and axiom mine.
 
-## Current verified repository boundary
+## Verified repository boundary at the 2026-08-23 audit snapshot
 
-The current README states that neither Problem 97 nor Problem 96 is fully proved; both publish targets still reach `sorryAx`. The live publish-spine frontier is measured as 28 reachable leaves in four clusters: Rigid221 (18), TriApex (1), TwoSource (6), and Two-deletion (3). The open-leaf roster must be regenerated from `proof-blueprint spine`, rather than inferred from raw `sorry` counts or prose ledgers.
+At the audit snapshot, the README stated that neither Problem 97 nor Problem 96 was fully proved; both publish targets still reached `sorryAx`. The publish-spine frontier was measured as 28 reachable leaves in four clusters: Rigid221 (18), TriApex (1), TwoSource (6), and Two-deletion (3). These figures are historical; the open-leaf roster must be regenerated from `proof-blueprint spine`, rather than inferred from raw `sorry` counts or prose ledgers.
 
-The repository also reports:
+The audit snapshot also reported:
 
 - a 349-module `FrontierLiveClosure/` package of about 196k lines;
 - 1,279 files unreachable from any Lake import chain, containing 3 off-spine `sorry`s;
@@ -134,7 +134,7 @@ The file library contains many full copies (`authoritative(4)`, `(5)`, `v10`, A5
 
 ### Measured frontier shape
 
-The current README reports 28 reachable `sorry` leaves: 18 Rigid221, 1 TriApex, 6 TwoSource, and 3 TwoDeletion. A direct source scan of the nine named frontier modules found 30 distinct `sorry`-bearing declarations: 19 Rigid221, 1 TriApex, 7 TwoSource, and 3 TwoDeletion. The README separately lists off-spine placeholders, including files outside those nine modules. The exact source-to-spine reconciliation therefore requires a fresh built dependency mine; raw tokens and the current prose roster are not sufficient. This mismatch is itself evidence that the roster must be generated.
+At the audit snapshot, the README reported 28 reachable `sorry` leaves: 18 Rigid221, 1 TriApex, 6 TwoSource, and 3 TwoDeletion. A direct source scan of the nine named frontier modules found 30 distinct `sorry`-bearing declarations: 19 Rigid221, 1 TriApex, 7 TwoSource, and 3 TwoDeletion. The README separately listed off-spine placeholders, including files outside those nine modules. The exact source-to-spine reconciliation therefore requires a fresh built dependency mine; raw tokens and a prose roster are not sufficient. This mismatch is itself evidence that the roster must be generated.
 
 Selected source size:
 
@@ -441,7 +441,7 @@ The repository currently mixes four very different populations under one default
 3. open frontier/research coordinators;
 4. off-spine diagnostics and historical experiments.
 
-The current README reports 5,213 Lean files and roughly 1.46 million lines, while the published spine is roughly 320,000 lines. It also reports 1,279 files and 11,114 symbols unreachable from any Lake import chain. This is not necessarily waste—much of it is retained evidence—but it requires explicit boundaries.
+The README snapshot reported 5,213 Lean files and roughly 1.46 million lines, while the published spine was roughly 320,000 lines. It also reported 1,279 files and 11,114 symbols unreachable from any Lake import chain. This is not necessarily waste—much of it is retained evidence—but it requires explicit boundaries.
 
 Recommended roots:
 

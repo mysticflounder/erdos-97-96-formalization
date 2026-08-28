@@ -1,17 +1,17 @@
 # B-Family Architectural Closure Plan & Technical Specification
 
 **Sector**: Two-Deletion Collision / B-Family  
-**Coordinator Theorem**: [`Problem97.ATailFrontierLiveClosure.false_of_twoDistinctExactFourMutualOmissionJointDeletions`](file:///Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Legacy/TwoDeletionWrappers.lean#L74)
+**Coordinator Theorem**: [`Problem97.ATailFrontierLiveClosure.false_of_twoDistinctExactFourMutualOmissionJointDeletions`](../../lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Legacy/TwoDeletionWrappers.lean#L74)
 **Target Files**:
-- [`lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean`](file:///Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean)
-- [`lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/B1Live.lean`](file:///Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/B1Live.lean)
-- [`lean/Erdos9796Proof/Geometry/ConvexIndepHull.lean`](file:///Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/Geometry/ConvexIndepHull.lean)
-- [`docs/audits/2026-08-18-b-family-adversarial-audit.md`](file:///Users/adam/projects/math-projects/erdos-97-96-formalization/docs/audits/2026-08-18-b-family-adversarial-audit.md)
+- [`lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean`](../../lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean)
+- [`lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/B1Live.lean`](../../lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/B1Live.lean)
+- [`lean/Erdos9796Proof/Geometry/ConvexIndepHull.lean`](../../lean/Erdos9796Proof/Geometry/ConvexIndepHull.lean)
+- [`docs/audits/2026-08-18-b-family-adversarial-audit.md`](../../docs/audits/2026-08-18-b-family-adversarial-audit.md)
 
 **Open Leaves on Spine**:
-1. **B1**: [`Problem97.ATailFrontierLiveClosure.b1_globalGapOrClosedTerminal_of_counterexample`](file:///Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean#L142)
-2. **B2**: [`Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmission_fourCenterCommonDeletion_blockerCoincidence`](file:///Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean#L630)
-3. **B3**: [`Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmission_fourCenterCommonDeletion_survivalSquare`](file:///Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean#L704)
+1. **B1**: [`Problem97.ATailFrontierLiveClosure.b1_globalGapOrClosedTerminal_of_counterexample`](../../lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean#L142)
+2. **B2**: [`Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmission_fourCenterCommonDeletion_blockerCoincidence`](../../lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean#L630)
+3. **B3**: [`Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmission_fourCenterCommonDeletion_survivalSquare`](../../lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean#L704)
 
 ---
 
@@ -84,7 +84,7 @@ graph TD
 
 ## 2. Adversarial Red-Team Audit Summary
 
-The adversarial audit in [`docs/audits/2026-08-18-b-family-adversarial-audit.md`](file:///Users/adam/projects/math-projects/erdos-97-96-formalization/docs/audits/2026-08-18-b-family-adversarial-audit.md) identified the following core constraints:
+The adversarial audit in [`docs/audits/2026-08-18-b-family-adversarial-audit.md`](../../docs/audits/2026-08-18-b-family-adversarial-audit.md) identified the following core constraints:
 
 1. **B2 Cannot Rely on "Center in Convex Set" Alone**:
    A circle center $w$ and 4 points on its circumference lying on an open arc $< 180^\circ$ form a strictly convex pentagon in $\mathbb{R}^2$. The contradiction requires the **2-circle intersection** between $\operatorname{Row}(x)$ (centered at $z_1$) and $\operatorname{SelectedClass}(S.\text{oppApex2}, \rho)$ (centered at $S.\text{oppApex2}$), which contains $z_1, x, u, v$.
@@ -98,7 +98,8 @@ The adversarial audit in [`docs/audits/2026-08-18-b-family-adversarial-audit.md`
 ## 3. Low-Level Step-by-Step Execution Plan
 
 ### STEP 1: Port & Validate B2Arm3 Normal Forms into Production
-**Target File**: [`lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean`](file:///Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean)  
+**Target File**: [`lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean`](../../lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean)
+
 **Location**: Insert directly after line 627 (before `false_of_exactFourMutualOmission_fourCenterCommonDeletion_blockerCoincidence`).
 
 #### Substep 1a: Critical Shell Radius Uniqueness & Selection Equality
@@ -265,7 +266,7 @@ theorem b2_collision_uniform_normalForm
 ```
 
 #### Substep 1e: Refactor B2 Coordinator Leaf
-In [`TwoDeletionCollision.lean:630`](file:///Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean#L630), replace the `sorry` body of `false_of_exactFourMutualOmission_fourCenterCommonDeletion_blockerCoincidence` with:
+In [`TwoDeletionCollision.lean:630`](../../lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean#L630), replace the `sorry` body of `false_of_exactFourMutualOmission_fourCenterCommonDeletion_blockerCoincidence` with:
 ```lean
   obtain ⟨x, hcenter, hnotMem, hunique, hsurvIff⟩ :=
     b2_collision_uniform_normalForm R _hcard _surface rho _hrho _hfive u v
@@ -280,7 +281,7 @@ In [`TwoDeletionCollision.lean:630`](file:///Users/adam/projects/math-projects/e
 ---
 
 ### STEP 2: Formalize Cap Circle Intersection and Angular Bounds
-**Target File**: [`lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean`](file:///Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean)
+**Target File**: [`lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean`](../../lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean)
 
 ```lean
 /-- When `z₁` is the blocker center of `x ∈ SelectedClass(S.oppApex2, ρ)`,
@@ -315,7 +316,7 @@ theorem b2_class_outside_row_card
 ---
 
 ### STEP 3: Close Leaf B2 (`false_of_exactFourMutualOmission_center_in_carrier`)
-**Target File**: [`lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean`](file:///Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean)
+**Target File**: [`lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean`](../../lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean)
 
 ```lean
 /-- A carrier center `z₁ = β(x)` in `SelectedClass(S.oppApex2, ρ)` is incompatible
@@ -350,14 +351,14 @@ theorem false_of_exactFourMutualOmission_center_in_carrier
 ---
 
 ### STEP 4: Close Leaf B1 via Direct Escape-Point Transport
-**Target File**: [`lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean:155`](file:///Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean#L155)
+**Target File**: [`lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean:155`](../../lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean#L155)
 
-Directly wire `b1_live_escape_small_overlap` from [`B1Live.lean`](file:///Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/B1Live.lean) to discharge `false_of_twoDistinctExactFourMutualOmissionJointDeletions_blockerCollision` without routing through the refuted `B1GlobalGapOrClosedTerminal`.
+Directly wire `b1_live_escape_small_overlap` from [`B1Live.lean`](../../lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/B1Live.lean) to discharge `false_of_twoDistinctExactFourMutualOmissionJointDeletions_blockerCollision` without routing through the refuted `B1GlobalGapOrClosedTerminal`.
 
 ---
 
 ### STEP 5: Close Leaf B3 (`survivalSquare`)
-**Target File**: [`lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean:704`](file:///Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean#L704)
+**Target File**: [`lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean:704`](../../lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean#L704)
 
 Formalize the 4-center deletion-survival square infeasibility and complete the proof body.
 

@@ -1,5 +1,12 @@
 # Family E — Tri-apex directed-omission leaf: complete-resolution prompt
 
+> **Status refresh (2026-08-28): LANDED WRAPPER; HISTORICAL PROMPT.** The named
+> theorem is source-clean in
+> `FrontierLiveClosure/TriApexEndpointRetainedOmission.lean`. The related open
+> work has moved to later descendants, including
+> `false_of_pairedCommonDeletion_fiveSurviveOneFail_triApexAllLarge_core`.
+> Do not redispatch this wrapper prompt.
+
 One leaf obligation from
 `lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean` (goal is `False`):
 

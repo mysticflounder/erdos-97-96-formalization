@@ -1,14 +1,20 @@
-# Current Closure Plan — Problem 97/96 (2026-07-09)
+# Historical Closure Plan — Problem 97/96 (2026-07-09)
 
-This is the single active route plan to
+> **Status refresh (2026-08-28): HISTORICAL STRATEGY LEDGER.** The authored
+> source of truth is `docs/computational-closure-plan-2026-07-28.md`; current
+> obligation state comes from a fresh `proof-blueprint spine`. Counts,
+> dispatch rows, and present-tense route claims below are dated evidence and
+> must not be used as current authority.
+
+This was the consolidated route plan to
 `proof-blueprint verify-publish` green on `Problem97.erdos97_rhs` and
 `Problem96.erdos96_rhs`. The executable task register is
 `docs/closure-matrix-2026-07-09.md`; this document owns route rationale and
-dependency order. The full-plan audit is
+dependency order for that historical plan. The full-plan audit is
 `docs/audits/2026-07-09-full-closure-plan-audit.md`.
 
 It consolidates the decision-relevant content of the former 2026-07-06 master
-plan. That detailed record is [archived](../archive/2026-07-10-closure-plan-consolidation/closure-plan-2026-07-06.md)
+plan. That detailed record is [archived](archive/2026-07-10-closure-plan-consolidation/closure-plan-2026-07-06.md)
 and is evidence for rejected routes and dated solver results, not a dispatch
 authority.
 
@@ -4748,7 +4754,7 @@ falsifier gate is guard-banded floating evidence, and the checkpoint does not
 independently replay the 15 hand/Z3 kill proofs. ATAIL-FORCE therefore remains
 open and must use a selection-robust full-filter, order-coupled multi-window,
 or critical-row mechanism. The exact producer target and theorem-bank audit
-are in `docs/atail-force-producer-plan-2026-07-13.md`.
+are in `attic/docs-sweep-2026-08-28/docs/atail-force-producer-plan-2026-07-13.md`.
 
 **Proof-priority decision, refreshed 2026-07-14.** ATAIL-FORCE is one parent-
 level content lane. Census554 and AHEAD CEGAR remain bounded alternate/fallback lanes: their
@@ -6782,7 +6788,7 @@ row subsets across 16 incidence types, with no uniform extraction yet.  Adam exp
 parallel ATAIL research, analysis artifacts, theorem-bank search, and closure
 document updates.  The detailed theorem signatures, branch consumers, counts, and
 deletion order are in
-`docs/atail-force-producer-plan-2026-07-13.md`, section
+`attic/docs-sweep-2026-08-28/docs/atail-force-producer-plan-2026-07-13.md`, section
 “2026-07-14 producer decision after exact-pair coverage.”
 
 ## 2026-07-14 K-A tractability refinement

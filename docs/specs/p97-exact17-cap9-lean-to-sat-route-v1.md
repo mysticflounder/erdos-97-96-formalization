@@ -1,27 +1,15 @@
 # P97 exact-17 cap-nine Lean-to-SAT closure route v1
 
-Date: 2026-08-11
+Date: 2026-08-11; status refreshed 2026-08-28.
 
-Status: active production route. Gates A, B, and D are implemented. Twenty
-Lean-owned successor roots through child 20 have been authenticated, solved,
-and independently replayed `SAT`; each refinement was banked in Lean before
-the next child was generated. Child 21 is the validated 308-variable,
-5,846,200-clause root with SHA-256
-`bc42cd2756d6b3d84c5eb265762bc346a893dbdbc01bbe8ac5dbcb2f53f89720`.
-Immutable PIQD job
-`b676c3ab-2084-4ed4-b0b2-94a6aa1dafda` reported `SAT`, but two simultaneous
-solver processes wrote separate 308-literal assignments into one job log. The
-model endpoint correctly rejects that permanently damaged log on the repaired
-daemon. The response and derived artifacts remain quarantined; no theorem
-mining or successor root is authorized from them. A byte-identical fresh rerun
-is confirmed as job `f3053110-f26e-4166-83f0-b8db5a04651e` under recovery
-manifest SHA-256
-`dc92856c15ca520ecec614ca47e4b56a83888143244ff20160d5b52847e9ec08`
-and repaired daemon SHA-256
-`82187247e58c7b10773d56e190d795bf8f914150d818691c7d22f96f7264b396`.
-It is not authenticated until terminal retrieval supplies exactly one complete,
-duplicate-free assignment and all 5,846,200 clauses replay. PIQD
-terminal-certificate custody and the final aggregate Lean landing remain open.
+Status: **HISTORICAL FINITE-SEARCH ROUTE; DO NOT DISPATCH AS THE CLOSURE
+PLAN.** Commit `6d0fcc389` closes the exact-seventeen/cap-nine A2 terminal by
+the metric theorem `ExactA2CapMetric.false_of_exactA2_boundary_data` and its
+source adapter. The former source-realization and cumulative CNF promotion
+modules are not proof dependencies of the closed coordinator. The child,
+V8/V9, model-replay, custody, and hash records below remain finite-search and
+reproducibility evidence; they neither need completion for A2 nor close the
+separate unbounded `|A| ≥ 18` A3 continuation.
 
 ## Checked implementation checkpoint — 2026-08-11
 

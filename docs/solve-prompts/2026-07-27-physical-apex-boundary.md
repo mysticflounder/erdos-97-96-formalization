@@ -1,5 +1,11 @@
 # Family C — Physical-apex boundary leaves: complete-resolution prompt
 
+> **Status refresh (2026-08-28): HISTORICAL PROMPT SNAPSHOT.** The two named
+> declarations remain relevant, but their current source is
+> `FrontierLiveClosure/Rigid221Closure.lean` (near lines 53 and 392), not the
+> monolith or line anchors below. Refresh statements and spine reachability
+> before dispatch.
+
 Two leaf obligations from
 `lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean` (both goals are
 `False`):

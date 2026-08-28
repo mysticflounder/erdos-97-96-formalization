@@ -10,9 +10,9 @@
 
 **Date**: 2026-08-18  
 **Target Files**:
-- [`lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean`](file:///Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean)
-- [`lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/B1Live.lean`](file:///Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/B1Live.lean)
-- [`docs/plans/2026-08-18-b-family-closure-plan.md`](file:///Users/adam/projects/math-projects/erdos-97-96-formalization/docs/plans/2026-08-18-b-family-closure-plan.md)
+- [`lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean`](../../lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean)
+- [`lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/B1Live.lean`](../../lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/B1Live.lean)
+- [`docs/plans/2026-08-18-b-family-closure-plan.md`](../../docs/plans/2026-08-18-b-family-closure-plan.md)
 
 ---
 
@@ -39,11 +39,11 @@
   ```
 * **Adversarial Audit**:
   1. **Branch 1**: Asserts a 3rd carrier point on the perpendicular bisector $\operatorname{PB}(z_1, z_2)$.
-     *Refutation*: [`b1_live_bisectorSet_eq_pair`](file:///Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/B1Live.lean#L161) proves $\operatorname{PB}(z_1, z_2) \cap D.A = \{b, S.\text{oppApex2}\}$ strictly. Branch 1 is provably **EMPTY**.
+     *Refutation*: [`b1_live_bisectorSet_eq_pair`](../../lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/B1Live.lean#L161) proves $\operatorname{PB}(z_1, z_2) \cap D.A = \{b, S.\text{oppApex2}\}$ strictly. Branch 1 is provably **EMPTY**.
   2. **Branch 2**: Asserts the bisector fiber has cardinality $\ge 3$.
      *Refutation*: By the same theorem, the cardinality is strictly $2$. Branch 2 is provably **FALSE**.
   3. **Branch 3**: Asserts that *every* escape point $t$ has chord overlap $|\operatorname{Row}(t) \cap \operatorname{Row}(z_1)| \ge 3$.
-     *Refutation*: [`b1_live_escape_small_overlap`](file:///Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/B1Live.lean#L394) proves that there *exists* an escape point $t \in C \cap \operatorname{Cap}_2$ with overlap $\le 2$. Since $2 < 3$, Branch 3 is provably **FALSE**.
+     *Refutation*: [`b1_live_escape_small_overlap`](../../lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/B1Live.lean#L394) proves that there *exists* an escape point $t \in C \cap \operatorname{Cap}_2$ with overlap $\le 2$. Since $2 < 3$, Branch 3 is provably **FALSE**.
 * **Decisive Conclusion for B1**:
   `B1GlobalGapOrClosedTerminal C` is an unsatisfiable disjunction ($P_1 \lor P_2 \lor P_3$ where $\neg P_1 \wedge \neg P_2 \wedge \neg P_3$ is proven).
   **Action**: Do NOT attempt to prove `b1_globalGapOrClosedTerminal_of_counterexample` constructively. Instead, prove `False` from the context `C` and discharge `B1GlobalGapOrClosedTerminal C` via `False.elim`.

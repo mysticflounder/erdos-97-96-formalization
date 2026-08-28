@@ -278,7 +278,7 @@ this: it is complete only for selected-four LOCAL representatives. T1 still
 owes geometric LOCAL-to-GLOBAL completion, and a separate selection-robust
 bridge must relate those representatives to the full exact-radius filters.
 Neither persistence nor finite inventory alone is an MC-CONSUMER proof. See
-`docs/atail-force-producer-plan-2026-07-13.md` for the exact epistemic and
+`attic/docs-sweep-2026-08-28/docs/atail-force-producer-plan-2026-07-13.md` for the exact epistemic and
 acceptance gates.
 
 ## Separate PIN-GENERAL probe surface (2026-07-10)

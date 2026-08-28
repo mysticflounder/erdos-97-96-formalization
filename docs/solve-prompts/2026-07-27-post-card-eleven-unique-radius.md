@@ -1,5 +1,10 @@
 # Complete-resolution prompt — Family D: post-card-eleven / unique-radius consumers
 
+> **Status refresh (2026-08-28): HISTORICAL PROMPT SNAPSHOT.** The four named
+> consumers now live in `FrontierLiveClosure/Rigid221Closure.lean`; the
+> monolith locations below are obsolete. Refresh their current statements,
+> proof bodies, and publish-spine membership before reusing this packet.
+
 Date: 2026-07-27.
 Source obligations: four `sorry`-bearing leaf theorems in
 `lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean`, each with goal `False`:

@@ -66,7 +66,7 @@ A second, independent set of annotations records the expected effect of formaliz
 - **[LEAN-BYPASS-CANDIDATE]** The section describes a source-faithful refactor that could remove a current `sorry` from the reachable spine without proving that declaration at its present information-poor boundary. Every downstream root named by the refactor must still be closed.
 - **[LEAN-NOT-A-CLOSER]** The section is a stress model, conditional calculation, scope correction, or negative result. It is useful proof-safety information but should not be assigned as a task to fill a `sorry`.
 
-> **Current audit conclusion.** No remaining open root yet qualifies as `[LEAN-DIRECT-CLOSER]`. The implemented TriApex bypass proves the reverse-hit selector and removes seven endpoint-specific declarations from the reachable frontier by routing them through D1; the independently formalized D2 route removes the two-radius-grid leaf. It does not prove D1. The current publication spine has 28 `sorry` leaves. The newest prose work also adds a complete A5 same-side Cell 7 proof, gives a prose-complete preferred-system proof of the later raw-main FreshThird packet, reduces the old six-leaf F2 architecture to two intrinsic open roots, and closes the finite-set/state calculus underlying a proposed F3 well-founded descent. The latter F2/F3 results are bypass/helper frameworks, not proofs of their terminal roots.
+> **Audit conclusion at the 2026-08-22 synthesis snapshot.** No remaining open root then qualified as `[LEAN-DIRECT-CLOSER]`. The implemented TriApex bypass proves the reverse-hit selector and removes seven endpoint-specific declarations from the reachable frontier by routing them through D1; the independently formalized D2 route removes the two-radius-grid leaf. It does not prove D1. That snapshot's publication spine had 28 `sorry` leaves. The newest prose work also adds a complete A5 same-side Cell 7 proof, gives a prose-complete preferred-system proof of the later raw-main FreshThird packet, reduces the old six-leaf F2 architecture to two intrinsic open roots, and closes the finite-set/state calculus underlying a proposed F3 well-founded descent. The latter F2/F3 results are bypass/helper frameworks, not proofs of their terminal roots. Current counts must be regenerated from `proof-blueprint spine`.
 
 The current positive annotation map is:
 
@@ -92,7 +92,7 @@ The current positive annotation map is:
 
 Sections carrying no Lean-closure annotation retain their ordinary mathematical status only. In particular, `[DERIVED]` does not automatically mean that a current Lean leaf is closed.
 
-The current public README says that neither Problem 97 nor Problem 96 is proved. It reports 28 `sorry`-carrying leaves reachable from the Problem 97 publication target, all below the general non-`IsM44` A-tail contradiction. Those leaves are one refinement tree for a single load-bearing mathematical assertion.
+At the 2026-08-22 synthesis snapshot, the public README said that neither Problem 97 nor Problem 96 was proved and reported 28 `sorry`-carrying leaves reachable from the Problem 97 publication target, all below the general non-`IsM44` A-tail contradiction. Those snapshot leaves formed one refinement tree for a single load-bearing mathematical assertion.
 
 > **Global non-`IsM44` contradiction.** There is no minimal nonempty convexly independent K4 set of cardinality greater than nine that admits a surplus-cap packet but admits no `IsM44` surplus-cap packet.
 
@@ -2003,15 +2003,15 @@ The entire negative branch would be unconditional if the following theorem were 
 
 > **GlobalNonM44Contradiction.** Let `D` be counterexample data. Assume `D` is minimal, `9<|D.A|`, no surplus packet on `D.A` is `IsM44`, and `H` is a critical shell system on `D.A`. Then `False`.
 
-The current 28 leaves are one refinement tree for this theorem. Because unrestricted refactoring is allowed, those theorem boundaries need not be preserved. A different proof of `GlobalNonM44Contradiction`, or a direct removable-vertex theorem under the same hypotheses, would close the same spine.
+The 28 leaves in the 2026-08-22 synthesis snapshot were one refinement tree for this theorem. Because unrestricted refactoring is allowed, those theorem boundaries need not be preserved. A different proof of `GlobalNonM44Contradiction`, or a direct removable-vertex theorem under the same hypotheses, would close the same spine.
 
 **Status:** [OPEN]
 
 ---
 
-## 11. Current decomposition of the open theorem
+## 11. Decomposition at the 2026-08-22 synthesis snapshot
 
-The current README measures 28 `sorry`-carrying leaves reachable from the publication target. They are all descendants of N8 and fall into four clusters.
+The README snapshot synthesized on 2026-08-22 measured 28 `sorry`-carrying leaves reachable from the publication target. They were all descendants of N8 and fell into four clusters; use a fresh generated spine for current membership and counts.
 
 ### F0. Rigid221 cluster - 18 leaves
 
