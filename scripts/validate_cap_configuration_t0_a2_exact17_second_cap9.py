@@ -28,7 +28,26 @@ EXPECTED_BRANCH = "cap-a2-t0-packet-20260827"
 EXPECTED_MAIN_BRANCH = "main"
 EXPECTED_PACKET_COMMIT = "64d65e4ebbbf7439b48dc56990fcb0886045e9a6"
 EXPECTED_REQUEST_MAIN_HEAD = "a301d85e2a432b2804cfc98fd9f3e620dc1f0ec5"
+EXPECTED_DECISION_MAIN_HEAD = "6d0fcc389255ac24be267636abb8f7545d63bcb7"
+EXPECTED_ACCEPTED_UTC = "2026-08-28T16:12:40Z"
 EXPECTED_FORMAL_SOURCE_RELATIVE = Path("FormalConjectures/ErdosProblems/97.lean")
+TARGET_SOURCE_PATH = Path(
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221SourceHeavy.lean"
+)
+POST_REQUEST_DEPENDENCY_PATH = Path(
+    "lean/Erdos9796Proof/P97/ATail/ExactA2CapMetric.lean"
+)
+EXPECTED_DECISION_TARGET_SOURCE_SHA256 = (
+    "f2a5b2bf20dd6063177a2622f86751ce8a3a8549d8c9c386d660193bf4a54530"
+)
+EXPECTED_POST_REQUEST_DEPENDENCY_SHA256 = (
+    "da12070236b41fa8f2d2465894e189ad0dc3b2afe64a2e74965d0e750230bd15"
+)
+TARGET_THEOREM_NAME = (
+    "false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_"
+    "pentagonBlockerV_vRowBlockerDeleted_deletedRowBlockerOffClass_"
+    "card_eq_seventeen_secondCapNine"
+)
 EXPECTED_PROPOSITION_SHA256 = (
     "0dcf5e74a8c4fe5ee6e6fdd2626f69743d65a7284f755f06c2f14d32a8568c66"
 )
@@ -88,8 +107,9 @@ REQUEST_KEYS = {
     "source_drift_attestation", "status", "target_id",
 }
 ACCEPTANCE_KEYS = {
-    "acceptance_sha256", "accepted_utc", "authorization", "coordinator", "decision",
-    "evidence", "schema", "source_drift_attestation", "status", "target_id",
+    "acceptance_scope", "acceptance_sha256", "accepted_utc", "authorization",
+    "coordinator", "decision", "decision_context", "evidence", "schema",
+    "source_drift_attestation", "status", "target_id",
 }
 REVIEW_CHECK_KEYS = {
     "authorization_separation", "bridge_directions_and_nonclaims",
@@ -1053,6 +1073,116 @@ def _verify_acceptance_request(
         _fail("acceptance request: status must remain pending coordinator")
 
 
+def _lean_theorem_statement(
+    repo_root: Path, revision: str, path: Path, theorem_name: str, label: str
+) -> bytes:
+    payload = _git_bytes(repo_root, revision, str(path))
+    marker = f"theorem {theorem_name}\n".encode()
+    if payload.count(marker) != 1:
+        _fail(f"{label}: expected exactly one target theorem declaration")
+    start = payload.index(marker)
+    end_marker = b" := by\n"
+    end = payload.find(end_marker, start)
+    if end < 0:
+        _fail(f"{label}: target theorem statement terminator is missing")
+    return payload[start:end]
+
+
+def _verify_frozen_acceptance_scope(scope: Any) -> None:
+    scope = _require_exact_keys(
+        scope,
+        {
+            "accepted_source_head", "current_main_governed", "mode",
+            "post_request_implementation_authorized", "retroactive_authorization",
+        },
+        "acceptance.scope",
+    )
+    if scope != {
+        "accepted_source_head": EXPECTED_REQUEST_MAIN_HEAD,
+        "current_main_governed": False,
+        "mode": "FROZEN_REQUEST_SNAPSHOT_ONLY",
+        "post_request_implementation_authorized": False,
+        "retroactive_authorization": False,
+    }:
+        _fail("acceptance: frozen-snapshot scope boundary mismatch")
+
+
+def _verify_decision_context(
+    repo_root: Path,
+    source: dict[str, Any],
+    request: dict[str, Any],
+    context: Any,
+) -> None:
+    context = _require_exact_keys(
+        context,
+        {
+            "changed_manifest_paths", "new_relevant_paths", "observed_main_branch",
+            "observed_main_head", "observed_main_worktree_bytes_governed",
+            "post_request_drift_status", "target_statement_preserved",
+        },
+        "acceptance.decision_context",
+    )
+    if context != {
+        "changed_manifest_paths": [str(TARGET_SOURCE_PATH)],
+        "new_relevant_paths": [str(POST_REQUEST_DEPENDENCY_PATH)],
+        "observed_main_branch": EXPECTED_MAIN_BRANCH,
+        "observed_main_head": EXPECTED_DECISION_MAIN_HEAD,
+        "observed_main_worktree_bytes_governed": False,
+        "post_request_drift_status": "MATERIAL_TARGET_SOURCE_DRIFT_REQUIRES_REFRESH",
+        "target_statement_preserved": True,
+    }:
+        _fail("acceptance: decision-context boundary mismatch")
+    decision_head = _git_commit(
+        repo_root, EXPECTED_DECISION_MAIN_HEAD, "acceptance decision main head"
+    )
+    if _git_parent(repo_root, decision_head, "acceptance decision main parent") != request[
+        "source_drift_attestation"
+    ]["checked_head"]:
+        _fail("acceptance: decision main is not the direct child of the request head")
+    changed_paths: list[str] = []
+    for item in source["files"]:
+        path = item["path"]
+        if not path.startswith("lean/"):
+            continue
+        if raw_sha256(_git_bytes(repo_root, decision_head, path)) != item["raw_sha256"]:
+            changed_paths.append(path)
+    if changed_paths != [str(TARGET_SOURCE_PATH)]:
+        _fail("acceptance: post-request manifest drift set mismatch")
+    _verify_raw(
+        EXPECTED_DECISION_TARGET_SOURCE_SHA256,
+        _git_bytes(repo_root, decision_head, str(TARGET_SOURCE_PATH)),
+        "acceptance: decision target source",
+    )
+    _verify_raw(
+        EXPECTED_POST_REQUEST_DEPENDENCY_SHA256,
+        _git_bytes(repo_root, decision_head, str(POST_REQUEST_DEPENDENCY_PATH)),
+        "acceptance: post-request dependency",
+    )
+    for key in ("dependency_lock", "lakefile", "lean_toolchain"):
+        item = source["build_identity"][key]
+        _verify_raw(
+            item["raw_sha256"],
+            _git_bytes(repo_root, decision_head, item["path"]),
+            f"acceptance: decision build identity {key}",
+        )
+    requested_statement = _lean_theorem_statement(
+        repo_root,
+        request["source_drift_attestation"]["checked_head"],
+        TARGET_SOURCE_PATH,
+        TARGET_THEOREM_NAME,
+        "acceptance request target statement",
+    )
+    decision_statement = _lean_theorem_statement(
+        repo_root,
+        decision_head,
+        TARGET_SOURCE_PATH,
+        TARGET_THEOREM_NAME,
+        "acceptance decision target statement",
+    )
+    if requested_statement != decision_statement:
+        _fail("acceptance: target theorem statement changed after the request")
+
+
 def _verify_acceptance(
     repo_root: Path,
     source_path: Path,
@@ -1090,6 +1220,8 @@ def _verify_acceptance(
     if acceptance["target_id"] != TARGET_ID:
         _fail("acceptance: wrong target_id")
     accepted_utc = _parse_utc(acceptance["accepted_utc"], "acceptance accepted_utc")
+    if acceptance["accepted_utc"] != EXPECTED_ACCEPTED_UTC:
+        _fail("acceptance: accepted_utc does not match the coordinator decision event")
     requested_utc = _parse_utc(request["requested_utc"], "acceptance request requested_utc")
     if accepted_utc < requested_utc:
         _fail("acceptance: accepted_utc predates the request")
@@ -1099,6 +1231,8 @@ def _verify_acceptance(
         domain="cap-configuration-t0-acceptance/v1",
         label="acceptance",
     )
+    _verify_frozen_acceptance_scope(acceptance["acceptance_scope"])
+    _verify_decision_context(repo_root, source, request, acceptance["decision_context"])
     evidence = _require_exact_keys(
         acceptance["evidence"], {"packet", "request", "reviewer_identities"},
         "acceptance.evidence",
@@ -1136,7 +1270,9 @@ def _verify_acceptance(
         acceptance["coordinator"], {"decision", "identity", "role"},
         "acceptance.coordinator",
     )
-    _require_string(coordinator["identity"], "acceptance coordinator identity")
+    identity = _require_string(coordinator["identity"], "acceptance coordinator identity")
+    if identity != "Adam McKenna":
+        _fail("acceptance: coordinator identity must match the explicit decision author")
     if coordinator["role"] != "T0_COORDINATOR" or coordinator["decision"] != "ACCEPT":
         _fail("acceptance: explicit T0 coordinator ACCEPT act is required")
     if acceptance["decision"] != "ACCEPT":
