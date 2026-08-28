@@ -1,0 +1,29 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "rigid221-card18-custody-refresh-v2-20260828",
+  "owner": "ResidualCartographer",
+  "base_head": "6d0fcc389255ac24be267636abb8f7545d63bcb7",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/rigid221-card18-custody-refresh-v2-20260828.json",
+    "census/p97_search/rigid221_card18_crossed_incidence_custody_v2.py",
+    "census/p97_search/rigid221_card18_labeled_projection_custody_v2.py",
+    "census/p97_search/rigid221_card18_predicate_coverage_v4.py",
+    "census/p97_search/tests/conftest.py",
+    "census/p97_search/tests/test_rigid221_card18_crossed_incidence_custody_v2.py",
+    "census/p97_search/tests/test_rigid221_card18_labeled_projection_custody_v2.py",
+    "census/p97_search/tests/test_rigid221_card18_predicate_coverage_v4.py",
+    "docs/audits/2026-08-28-rigid221-card18-custody-refresh-v2-review.md",
+    "docs/specs/p97-rigid221-card18-crossed-incidence-custody-v2.md",
+    "docs/specs/p97-rigid221-card18-labeled-projection-custody-v2.md",
+    "docs/specs/p97-rigid221-card18-predicate-coverage-v4.md",
+    "scripts/test-p97-rigid221-card18.sh"
+  ],
+  "generated_roots": [],
+  "durable_paths": [
+    "certificates/rigid221_card18_crossed_incidence_source_custody_v2.json",
+    "certificates/rigid221_card18_labeled_projection_source_custody_v2.json",
+    "certificates/rigid221_card18_predicate_coverage_v4.json"
+  ],
+  "created_utc": "2026-08-28T16:05:23Z",
+  "manifest_sha256": "36aca0dfc16ee3b5f8ba58726124e0fe1bc07336e7d6be364ce57c4033d7b581"
+}
