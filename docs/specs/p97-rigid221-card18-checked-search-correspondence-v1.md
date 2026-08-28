@@ -316,8 +316,13 @@ The public correspondence theorem is:
 
 ```lean
 armCnf_sat_iff :
-  Std.Sat.CNF.Sat (armCnf a) ↔ Nonempty {p : PacketOfArm a // p.Valid}
+  (∃ sigma, Std.Sat.CNF.Sat sigma (armCnf a)) ↔
+    Nonempty {p : PacketOfArm a // p.Valid}
 ```
+
+In Lean 4.27, `Std.Sat.CNF.Sat` is assignment-indexed; it is not itself an
+existential satisfiability predicate. The existential assignment above is part
+of the public theorem statement.
 
 Only after all three instances of this theorem build may a SAT model be called
 an abstract-packet countermodel or an UNSAT certificate contribute to

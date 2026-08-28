@@ -10,6 +10,7 @@ import Erdos9796Proof.P97.ATail.FrontierLiveClosure.Rigid221Card18LabeledProject
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.Rigid221Card18CrossedIncidenceProjection
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.Rigid221Card18LabeledEnrichment
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.Rigid221Card18AbstractPacket
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure.Rigid221Card18SearchBase
 
 /-!
 # Exact-card-eighteen Rigid221 aggregate
