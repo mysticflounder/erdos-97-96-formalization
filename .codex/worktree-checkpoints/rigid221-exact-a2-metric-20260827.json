@@ -1,0 +1,18 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "rigid221-exact-a2-metric-20260827",
+  "owner": "ResidualCartographer",
+  "base_head": "a301d85e2a432b2804cfc98fd9f3e620dc1f0ec5",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/rigid221-exact-a2-metric-20260827.json",
+    "docs/erdos-97-descent-prose-proof-atomic.md",
+    "lean/Erdos9796Proof/P97/ATail/ExactA2CapMetric.lean",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221SourceHeavy.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [
+    "docs/audits/2026-08-28-rigid221-exact-a2-skeptic.md"
+  ],
+  "created_utc": "2026-08-28T06:19:46Z",
+  "manifest_sha256": "023f1e3900616d4c4528745ca07dabbc19f353c053a81f84c0220c9964dc7938"
+}

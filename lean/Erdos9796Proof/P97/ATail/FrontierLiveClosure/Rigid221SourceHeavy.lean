@@ -11,7 +11,7 @@ import Erdos9796Proof.P97.ATail.BlockerVExactFifteenFourRowCoverage
 import Erdos9796Proof.P97.ATail.BlockerVExactSixteenFourRowCoverage
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenSourceNormalForm
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenCocircularPentagonOrder
-import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenCocircularPentagonOrderPromotion
+import Erdos9796Proof.P97.ATail.ExactA2CapMetric
 import Erdos9796Proof.P97.ATail.FiveCenterDeletionBoundary
 import Erdos9796Proof.P97.ATail.RobustApexCommonDeletion
 import Erdos9796Proof.P97.ATail.ThreeCenterCommonDeletion
@@ -29,7 +29,6 @@ open ATailBiApexRobustCapBounds
 open ATailBlockerMultiplicityGeometry
 open ATailBlockerVExactSeventeenSourceNormalForm
 open BlockerVExactSeventeenCocircularPentagonOrder
-open ATailBlockerVExactSeventeenCocircularPentagonOrderPromotion
 open ATailCommonDeletionTwoCenter
 open ATailCriticalFiberClosingCore
 open ATailCriticalFiberRetainedRadiusSelector
@@ -11077,13 +11076,8 @@ theorem exactFourRigid221_blockerV_exactSeventeen_secondCapNine_outsideRows_unus
         slice_eq Kdel.support Kdel.support_subset_A] using hKdelOutside
   exact unused_or_exactCover outside rowSupport houtside hrow
 
-/- Exact-seventeen, second-cap-nine terminal left after the deterministic
-second-cap-ten and second-cap-eleven reductions.  This is the source-faithful
-CEGAR target: the seven named strict-cap points exhaust that strict interior,
-so no anonymous cap point is available for a smaller-bank deletion lift. -/
-/-- Source-authenticated normalization of the exact-seventeen, second-cap-nine
-exact-cover branch.  The result retains the full carrier geometry and the
-explicit label/center correspondence needed by the checked SAT semantics. -/
+/-- The opposite apex is outside its opposite cap, independently of which
+surplus-triangle index names that cap. -/
 private theorem oppApex2_not_mem_capByIndex_oppIndex2_for_exactSeventeen
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex2 ∉ S.capByIndex S.oppIndex2 := by
@@ -11096,7 +11090,14 @@ private theorem oppApex2_not_mem_capByIndex_oppIndex2_for_exactSeventeen
   · simpa [SurplusCapPacket.oppApex2, SurplusCapPacket.oppIndex2,
       SurplusCapPacket.capByIndex, hi] using S.partition.v2_notin_C2
 
-theorem exists_exactSeventeenSourceRealization_of_exactCover
+set_option maxHeartbeats 2000000 in
+-- The finite label normalization and direct metric adapter need extra heartbeats.
+/-- Direct source-authenticated contradiction for the exact-seventeen,
+second-cap-nine exact-cover branch.  The exact incidence cover supplies an
+outside row witness and an apex-row alternative; convex cyclic order and the
+equal-radius fan then discharge every alternative through `ExactA2CapMetric`.
+-/
+theorem false_of_exactSeventeen_secondCapNine_exactCover
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
     {F : CriticalPairFrontier D S radius H}
@@ -11118,7 +11119,7 @@ theorem exists_exactSeventeenSourceRealization_of_exactCover
         SelectedClass D.A S.oppApex2 P.rho)
     (hcard : D.A.card = 17)
     (hcapCard : (S.capByIndex S.oppIndex2).card = 9)
-    (hnextRowPhysicalHits :
+    (_hnextRowPhysicalHits :
       let Hlate := lateFirstApexSystem R
       let c := Hlate.centerAt P.jointDeletion.deleted.1
         P.jointDeletion.deleted.2
@@ -11144,8 +11145,7 @@ theorem exists_exactSeventeenSourceRealization_of_exactCover
         | _ => Kdel.support
       (incidenceBag outside rowSupport).Nodup ∧
         (incidenceBag outside rowSupport).toFinset = outside) :
-    ∃ source : ATailBlockerVExactSeventeenSourceNormalForm.SourceRealization D.A,
-      source.model.order = 0 := by
+    False := by
   classical
   let Hlate := lateFirstApexSystem R
   let Ku := (Hlate.selectedAt P.u.1 P.u.2).toCriticalFourShell
@@ -11452,7 +11452,6 @@ theorem exists_exactSeventeenSourceRealization_of_exactCover
       · exact Finset.mem_inter.mpr ⟨Q.hvDeletedRow, interiorCap hvInterior⟩
       · exact Finset.mem_inter.mpr ⟨Kdel.q_mem_support, interiorCap hdeletedInterior⟩
       · exact hdelNeV.symm
-  obtain ⟨pattern⟩ := exists_faithfulCarrierPattern_of_globalK4 D.K4 P.u.2
   have close
       (orientation : Orientation) (order : NamedOrder)
       (boundary : Fin 17 → ℝ²)
@@ -11472,7 +11471,7 @@ theorem exists_exactSeventeenSourceRealization_of_exactCover
       (hePoint : boundary (labelIndex 12) = e)
       (hcapLabel : ∀ label, label ∈ secondCapLabels →
         boundary (labelIndex label) ∈ cap) :
-      ∃ source : SourceRealization D.A, source.model.order = 0 := by
+      False := by
     let point : Label → ℝ² := fun label => boundary (labelIndex label)
     have hlabelInjective : Function.Injective labelIndex :=
       labelIndex_injective_of_positionEmbedding orientation order labelIndex hposition
@@ -11498,7 +11497,7 @@ theorem exists_exactSeventeenSourceRealization_of_exactCover
         rw [card_pullback_eq point D.A cap hpointInjective hpointImage]
         · simpa only [cap] using hcapCard
         · simpa only [cap] using S.capByIndex_subset S.oppIndex2
-      have hlabelsCard : secondCapLabels.card = 9 := by native_decide
+      have hlabelsCard : secondCapLabels.card = 9 := by decide
       exact (Finset.eq_of_subset_of_card_le hsub (by omega)).symm
     have happA : S.oppApex2 ∈ D.A :=
       P.surface.ingress.packet.center₂_mem_A
@@ -11596,156 +11595,237 @@ theorem exists_exactSeventeenSourceRealization_of_exactCover
                   (by simpa only [hvPoint, huPoint, hxvPoint] using hD.symm)
                   (by simpa only [hdeletedPoint, hvPoint, hxvPoint] using hC)
                   (by simpa only [hePoint, hdeletedPoint, hxuPoint] using hB.symm)
-    have holdRows : ∀ row,
-        selectedOfPattern pattern boundary hboundaryImage labelIndex
-            (oldCenter row) = pullback point (rowSupport row) := by
-      intro row
-      have hsupport :
-          (pattern.classAt (point (oldCenter row))
-            (boundaryLabel_mem boundary hboundaryImage labelIndex
-              (oldCenter row))).support = rowSupport row := by
-        fin_cases row
-        · calc
-            _ = (pattern.classAt (Hlate.centerAt packet.xv Q.hxvA)
-                  (Finset.mem_of_mem_erase
-                    (Hlate.selectedAt packet.xv Q.hxvA).toCriticalFourShell.center_mem)).support :=
-                FaithfulCarrierPattern.classAt_support_congr pattern _ _
-                  (by simpa only [point, oldCenter, hvPoint] using Q.hblockerEqV.symm)
-            _ = Kxv.support := by
-                simpa only [Kxv] using
-                  Hlate.selectedFourClass_support_eq_shell packet.xv Q.hxvA
-                    (pattern.classAt (Hlate.centerAt packet.xv Q.hxvA)
-                      (Finset.mem_of_mem_erase
-                        (Hlate.selectedAt packet.xv Q.hxvA).toCriticalFourShell.center_mem))
-        · calc
-            _ = (pattern.classAt (Hlate.centerAt P.u.1 P.u.2)
-                  (Finset.mem_of_mem_erase
-                    (Hlate.selectedAt P.u.1 P.u.2).toCriticalFourShell.center_mem)).support :=
-                FaithfulCarrierPattern.classAt_support_congr pattern _ _
-                  (by simpa only [point, oldCenter, hxvPoint] using hcenterU.symm)
-            _ = Ku.support := by
-                simpa only [Ku] using
-                  Hlate.selectedFourClass_support_eq_shell P.u.1 P.u.2
-                    (pattern.classAt (Hlate.centerAt P.u.1 P.u.2)
-                      (Finset.mem_of_mem_erase
-                        (Hlate.selectedAt P.u.1 P.u.2).toCriticalFourShell.center_mem))
-        · calc
-            _ = (pattern.classAt (Hlate.centerAt P.v.1 P.v.2)
-                  (Finset.mem_of_mem_erase
-                    (Hlate.selectedAt P.v.1 P.v.2).toCriticalFourShell.center_mem)).support :=
-                FaithfulCarrierPattern.classAt_support_congr pattern _ _
-                  (by simpa only [point, oldCenter, hdeletedPoint] using hcenterV.symm)
-            _ = Kv.support := by
-                simpa only [Kv] using
-                  Hlate.selectedFourClass_support_eq_shell P.v.1 P.v.2
-                    (pattern.classAt (Hlate.centerAt P.v.1 P.v.2)
-                      (Finset.mem_of_mem_erase
-                        (Hlate.selectedAt P.v.1 P.v.2).toCriticalFourShell.center_mem))
-        · calc
-            _ = (pattern.classAt
-                  (Hlate.centerAt P.jointDeletion.deleted.1
-                    P.jointDeletion.deleted.2)
-                  (Finset.mem_of_mem_erase
-                    (Hlate.selectedAt P.jointDeletion.deleted.1
-                      P.jointDeletion.deleted.2).toCriticalFourShell.center_mem)).support :=
-                FaithfulCarrierPattern.classAt_support_congr pattern _ _
-                  (by simp only [point, oldCenter, hcPoint, c])
-            _ = Kdel.support := by
-                simpa only [Kdel] using
-                  Hlate.selectedFourClass_support_eq_shell
-                    P.jointDeletion.deleted.1 P.jointDeletion.deleted.2
-                    (pattern.classAt
-                      (Hlate.centerAt P.jointDeletion.deleted.1
-                        P.jointDeletion.deleted.2)
-                      (Finset.mem_of_mem_erase
-                        (Hlate.selectedAt P.jointDeletion.deleted.1
-                          P.jointDeletion.deleted.2).toCriticalFourShell.center_mem))
-      simpa only [selectedOfPattern, point] using congrArg (pullback point) hsupport
-    have holdCapGeom : ∀ row,
-        rowSupport row ∩ cap =
-          {boundary (labelIndex (oldFixedHit₁ row)),
-            boundary (labelIndex (oldFixedHit₂ row))} := by
-      intro row
-      fin_cases row
-      · simpa only [oldFixedHit₁, oldFixedHit₂, huPoint, hxuPoint, hvPoint,
-          hxvPoint, hdeletedPoint] using holdCapRaw (0 : Fin 4)
-      · simpa only [oldFixedHit₁, oldFixedHit₂, huPoint, hxuPoint, hvPoint,
-          hxvPoint, hdeletedPoint] using holdCapRaw (1 : Fin 4)
-      · simpa only [oldFixedHit₁, oldFixedHit₂, huPoint, hxuPoint, hvPoint,
-          hxvPoint, hdeletedPoint] using holdCapRaw (2 : Fin 4)
-      · simpa only [oldFixedHit₁, oldFixedHit₂, huPoint, hxuPoint, hvPoint,
-          hxvPoint, hdeletedPoint] using holdCapRaw (3 : Fin 4)
-    have hcA : c ∈ D.A := Finset.mem_of_mem_erase
-      (Hlate.selectedAt P.jointDeletion.deleted.1
-        P.jointDeletion.deleted.2).toCriticalFourShell.center_mem
-    let d := Hlate.centerAt c hcA
-    have hdA : d ∈ D.A := Finset.mem_of_mem_erase <| by
-      simpa only [d] using
-        (Hlate.selectedAt c hcA).toCriticalFourShell.center_mem
-    obtain ⟨nextCenter, hnextPoint⟩ : ∃ label, point label = d := by
-      have hdImage : d ∈ Finset.univ.image point := by simpa [hpointImage] using hdA
-      rcases Finset.mem_image.mp hdImage with ⟨label, -, hlabel⟩
+    have hKvOutside : (Kv.support \ cap).card = 2 :=
+      outsideSlice_card_eq_two Kv.support cap P.v.1 packet.xv
+        Kv.support_card (hrowCap 2)
+        (Finset.mem_inter.mpr ⟨Kv.q_mem_support, interiorCap hvInterior⟩)
+        (Finset.mem_inter.mpr ⟨hxvVRow, interiorCap hxvInterior⟩)
+        hvNeXv
+    have hKvOutsidePos : 0 < (Kv.support \ cap).card := by omega
+    obtain ⟨q, hqOutside⟩ := Finset.card_pos.mp hKvOutsidePos
+    have hqKv : q ∈ Kv.support := (Finset.mem_sdiff.mp hqOutside).1
+    have hqNotCap : q ∉ cap := (Finset.mem_sdiff.mp hqOutside).2
+    have hqA : q ∈ D.A := Kv.support_subset_A hqKv
+    obtain ⟨qLabel, hqPoint⟩ : ∃ label, point label = q := by
+      have hqImage : q ∈ Finset.univ.image point := by
+        rw [hpointImage]
+        exact hqA
+      rcases Finset.mem_image.mp hqImage with ⟨label, -, hlabel⟩
       exact ⟨label, hlabel⟩
-    have hnextCenter : point nextCenter =
-        Hlate.centerAt (point 11)
-          (boundaryLabel_mem boundary hboundaryImage labelIndex 11) := by
-      simpa only [d, point, hcPoint] using hnextPoint
-    have hphysicalPullback : pullback point C = physicalLabels := by
-      change pullback point (SelectedClass D.A S.oppApex2 P.rho) =
-        physicalLabels
-      rw [packet.physical_class]
-      rw [← hdeletedPoint, ← huPoint, ← hxuPoint, ← hvPoint,
-        ← hxvPoint]
-      ext label
-      simp only [mem_pullback, physicalLabels, Finset.mem_insert,
-        Finset.mem_union, Finset.mem_singleton]
-      change
-        (point label = point 10 ∨
-            (point label = point 6 ∨ point label = point 7) ∨
-              point label = point 8 ∨ point label = point 9) ↔
-          label = 6 ∨ label = 7 ∨ label = 8 ∨ label = 9 ∨ label = 10
-      simp only [hpointInjective.eq_iff]
-      constructor
-      · intro h
-        rcases h with h10 | hrest
-        · exact Or.inr (Or.inr (Or.inr (Or.inr h10)))
-        · rcases hrest with h67 | h89
-          · rcases h67 with h6 | h7
-            · exact Or.inl h6
-            · exact Or.inr (Or.inl h7)
-          · rcases h89 with h8 | h9
-            · exact Or.inr (Or.inr (Or.inl h8))
-            · exact Or.inr (Or.inr (Or.inr (Or.inl h9)))
-      · intro h
-        rcases h with h6 | h7 | h8 | h9 | h10
-        · exact Or.inr (Or.inl (Or.inl h6))
-        · exact Or.inr (Or.inl (Or.inr h7))
-        · exact Or.inr (Or.inr (Or.inl h8))
-        · exact Or.inr (Or.inr (Or.inr h9))
-        · exact Or.inl h10
-    have hnextSupport :
-        (pattern.classAt (point nextCenter)
-          (boundaryLabel_mem boundary hboundaryImage labelIndex nextCenter)).support =
-          (Hlate.selectedAt c hcA).toCriticalFourShell.support := by
-      calc
-        _ = (pattern.classAt d hdA).support :=
-          FaithfulCarrierPattern.classAt_support_congr pattern _ _ hnextPoint
-        _ = _ := by
-          simpa only [d] using
-            Hlate.selectedFourClass_support_eq_shell c hcA
-              (pattern.classAt d hdA)
-    have hnextPhysicalGeom :
-        ((pattern.classAt (point nextCenter)
-            (boundaryLabel_mem boundary hboundaryImage labelIndex nextCenter)).support ∩
-          C).card ≤ 1 := by
-      rw [hnextSupport]
-      simpa only [Hlate, c, C] using hnextRowPhysicalHits
-    simpa only [horderZero] using
-      (exists_sourceRealization_of_geometricExactCover Hlate D.convex pattern order
-        orientation boundary hboundaryInjective hboundaryImage hboundaryCcw
-        labelIndex hlabelIndex hposition rowSupport holdRows cap hcapPullback holdCapGeom
-        hexactCover'.1 hexactCover'.2 nextCenter hnextCenter C
-        hphysicalPullback hnextPhysicalGeom)
+    have hqBoundary : boundary (labelIndex qLabel) = q := by
+      simpa only [point] using hqPoint
+    have hqLabelNotCap : qLabel ∉ secondCapLabels := by
+      intro hqLabelCap
+      apply hqNotCap
+      have hqPullback : qLabel ∈ pullback point cap := by
+        rw [hcapPullback]
+        exact hqLabelCap
+      simpa only [mem_pullback, hqPoint] using hqPullback
+    have hqPosition : 9 ≤ (position order qLabel).val := by
+      fin_cases order <;> fin_cases qLabel <;>
+        simp [secondCapLabels, position] at hqLabelNotCap ⊢
+    have happNotCap : S.oppApex2 ∉ cap := by
+      simpa only [cap] using
+        oppApex2_not_mem_capByIndex_oppIndex2_for_exactSeventeen S
+    have happOutside : S.oppApex2 ∈ D.A \ cap :=
+      Finset.mem_sdiff.mpr ⟨happA, happNotCap⟩
+    have happBag : S.oppApex2 ∈ incidenceBag (D.A \ cap) rowSupport := by
+      have happSupport :
+          S.oppApex2 ∈
+            (incidenceBag (D.A \ cap) rowSupport).toFinset := by
+        rw [hexactCover'.2]
+        exact happOutside
+      simpa only [Multiset.mem_toFinset] using happSupport
+    have happRow :
+        S.oppApex2 ∈ rowSupport 0 ∨
+        S.oppApex2 ∈ rowSupport 1 ∨
+        S.oppApex2 ∈ rowSupport 2 ∨
+        S.oppApex2 ∈ rowSupport 3 := by
+      simpa only [incidenceBag, Multiset.mem_add, Finset.mem_val,
+        Finset.mem_inter, happOutside, and_true, or_assoc] using happBag
+    have hProw :
+        dist P.v.1 S.oppApex2 = dist P.v.1 P.u.1 ∨
+        dist packet.xv S.oppApex2 = dist packet.xv P.u.1 ∨
+        dist P.jointDeletion.deleted.1 S.oppApex2 =
+            dist P.jointDeletion.deleted.1 P.v.1 ∨
+        dist c S.oppApex2 = dist c P.v.1 := by
+      rcases happRow with hrow | hrow | hrow | hrow
+      · left
+        have hrow' : S.oppApex2 ∈ Kxv.support := by
+          simpa only [rowSupport] using hrow
+        rw [← Q.hblockerEqV]
+        exact (Kxv.support_eq_radius _ hrow').trans
+          (Kxv.support_eq_radius _ Q.huXvRow).symm
+      · right; left
+        have hrow' : S.oppApex2 ∈ Ku.support := by
+          simpa only [rowSupport] using hrow
+        rw [← hcenterU]
+        exact (Ku.support_eq_radius _ hrow').trans
+          (Ku.support_eq_radius _ Ku.q_mem_support).symm
+      · right; right; left
+        have hrow' : S.oppApex2 ∈ Kv.support := by
+          simpa only [rowSupport] using hrow
+        have hraw := (Kv.support_eq_radius _ hrow').trans
+          (Kv.support_eq_radius _ Kv.q_mem_support).symm
+        simpa only [Hlate, hcenterV] using hraw
+      · right; right; right
+        have hrow' : S.oppApex2 ∈ Kdel.support := by
+          simpa only [rowSupport] using hrow
+        simpa only [c, Kdel] using
+          (Kdel.support_eq_radius _ hrow').trans
+            (Kdel.support_eq_radius _ Q.hvDeletedRow).symm
+    have hqRow :
+        dist P.jointDeletion.deleted.1 q =
+          dist P.jointDeletion.deleted.1 P.v.1 := by
+      have hraw := (Kv.support_eq_radius _ hqKv).trans
+        (Kv.support_eq_radius _ Kv.q_mem_support).symm
+      simpa only [Hlate, hcenterV] using hraw
+    have hu_d : OrientedLt orientation labelIndex 6 10 :=
+      hposition 6 10 (by rw [horderZero]; decide)
+    have hd_y : OrientedLt orientation labelIndex 10 7 :=
+      hposition 10 7 (by rw [horderZero]; decide)
+    have hy_q_order : position order 7 < position order qLabel := by
+      have hqPositionZero := hqPosition
+      rw [horderZero] at hqPositionZero ⊢
+      change 7 < (position (0 : NamedOrder) qLabel).val
+      omega
+    have hy_q : OrientedLt orientation labelIndex 7 qLabel :=
+      hposition 7 qLabel hy_q_order
+    have hv_c : OrientedLt orientation labelIndex 8 11 :=
+      hposition 8 11 (by rw [horderZero]; decide)
+    have hc_d : OrientedLt orientation labelIndex 11 10 :=
+      hposition 11 10 (by rw [horderZero]; decide)
+    have hv_d : OrientedLt orientation labelIndex 8 10 :=
+      hposition 8 10 (by rw [horderZero]; decide)
+    have hd_P_order : position order 10 < position order apexLabel := by
+      have hapexPositionZero := hapexPosition
+      rw [horderZero] at hapexPositionZero ⊢
+      change 4 < (position (0 : NamedOrder) apexLabel).val
+      omega
+    have hd_P : OrientedLt orientation labelIndex 10 apexLabel :=
+      hposition 10 apexLabel hd_P_order
+    have hc_sides :
+        (0 < signedArea2 P.v.1 P.jointDeletion.deleted.1 c ∧
+          signedArea2 P.v.1 P.jointDeletion.deleted.1 S.oppApex2 < 0) ∨
+        (0 < signedArea2 P.jointDeletion.deleted.1 P.v.1 c ∧
+          signedArea2 P.jointDeletion.deleted.1 P.v.1 S.oppApex2 < 0) := by
+      cases orientation with
+      | forward =>
+          left
+          have hvcD : signedArea2 P.v.1 c P.jointDeletion.deleted.1 < 0 := by
+            have hraw := hneg_of_ccw hboundaryInjective hboundaryCcw
+              (by simpa only [OrientedLt] using hv_c)
+              (by simpa only [OrientedLt] using hc_d)
+            rw [hvPoint, hcPoint, hdeletedPoint] at hraw
+            exact hraw
+          have hvdP :
+              signedArea2 P.v.1 P.jointDeletion.deleted.1 S.oppApex2 < 0 := by
+            have hraw := hneg_of_ccw hboundaryInjective hboundaryCcw
+              (by simpa only [OrientedLt] using hv_d)
+              (by simpa only [OrientedLt] using hd_P)
+            rw [hvPoint, hdeletedPoint, hapexBoundary] at hraw
+            exact hraw
+          constructor
+          · rw [ExactA2CapMetric.signedArea2_swap]
+            linarith
+          · exact hvdP
+      | reverse =>
+          right
+          have hdcV : signedArea2 P.jointDeletion.deleted.1 c P.v.1 < 0 := by
+            have hraw := hneg_of_ccw hboundaryInjective hboundaryCcw
+              (by simpa only [OrientedLt] using hc_d)
+              (by simpa only [OrientedLt] using hv_c)
+            rw [hdeletedPoint, hcPoint, hvPoint] at hraw
+            exact hraw
+          have hPdV :
+              signedArea2 S.oppApex2 P.jointDeletion.deleted.1 P.v.1 < 0 := by
+            have hraw := hneg_of_ccw hboundaryInjective hboundaryCcw
+              (by simpa only [OrientedLt] using hd_P)
+              (by simpa only [OrientedLt] using hv_d)
+            rw [hapexBoundary, hdeletedPoint, hvPoint] at hraw
+            exact hraw
+          constructor
+          · rw [ExactA2CapMetric.signedArea2_swap]
+            linarith
+          · rw [← ExactA2CapMetric.signedArea2_cyclic]
+            exact hPdV
+    have hqSide :
+        signedArea2 P.u.1 packet.xu P.jointDeletion.deleted.1 *
+            signedArea2 P.u.1 packet.xu q < 0 := by
+      cases orientation with
+      | forward =>
+          have hudY :
+              signedArea2 P.u.1 P.jointDeletion.deleted.1 packet.xu < 0 := by
+            have hraw := hneg_of_ccw hboundaryInjective hboundaryCcw
+              (by simpa only [OrientedLt] using hu_d)
+              (by simpa only [OrientedLt] using hd_y)
+            rw [huPoint, hdeletedPoint, hxuPoint] at hraw
+            exact hraw
+          have huyD :
+              0 < signedArea2 P.u.1 packet.xu P.jointDeletion.deleted.1 := by
+            rw [ExactA2CapMetric.signedArea2_swap]
+            linarith
+          have huyQ : signedArea2 P.u.1 packet.xu q < 0 := by
+            have hraw := hneg_of_ccw hboundaryInjective hboundaryCcw
+              (by simpa only [OrientedLt] using
+                hposition 6 7 (by rw [horderZero]; decide))
+              (by simpa only [OrientedLt] using hy_q)
+            rw [huPoint, hxuPoint, hqBoundary] at hraw
+            exact hraw
+          exact mul_neg_of_pos_of_neg huyD huyQ
+      | reverse =>
+          have hydU :
+              signedArea2 packet.xu P.jointDeletion.deleted.1 P.u.1 < 0 := by
+            have hraw := hneg_of_ccw hboundaryInjective hboundaryCcw
+              (by simpa only [OrientedLt] using hd_y)
+              (by simpa only [OrientedLt] using hu_d)
+            rw [hxuPoint, hdeletedPoint, huPoint] at hraw
+            exact hraw
+          have huyD :
+              signedArea2 P.u.1 packet.xu P.jointDeletion.deleted.1 < 0 := by
+            rw [ExactA2CapMetric.signedArea2_cyclic]
+            exact hydU
+          have hqyU : signedArea2 q packet.xu P.u.1 < 0 := by
+            have hraw := hneg_of_ccw hboundaryInjective hboundaryCcw
+              (by simpa only [OrientedLt] using hy_q)
+              (by simpa only [OrientedLt] using
+                hposition 6 7 (by rw [horderZero]; decide))
+            rw [hqBoundary, hxuPoint, huPoint] at hraw
+            exact hraw
+          have huyQ : 0 < signedArea2 P.u.1 packet.xu q := by
+            rw [ExactA2CapMetric.signedArea2_swap,
+              ExactA2CapMetric.signedArea2_cyclic]
+            linarith
+          exact mul_neg_of_neg_of_pos huyD huyQ
+    have hP_u : dist S.oppApex2 P.u.1 = P.rho :=
+      (mem_selectedClass.mp P.huClass).2
+    have hP_y : dist S.oppApex2 packet.xu = P.rho :=
+      (mem_selectedClass.mp hxuClass).2
+    have hP_x : dist S.oppApex2 packet.xv = P.rho :=
+      (mem_selectedClass.mp hxvClass).2
+    have hP_v : dist S.oppApex2 P.v.1 = P.rho :=
+      (mem_selectedClass.mp P.hvClass).2
+    have hP_d :
+        dist S.oppApex2 P.jointDeletion.deleted.1 = P.rho :=
+      (mem_selectedClass.mp P.jointDeletion.deleted_mem_class).2
+    have hne_P {z : ℝ²} (hz : dist S.oppApex2 z = P.rho) :
+        z ≠ S.oppApex2 := by
+      intro hzP
+      subst z
+      rw [dist_self] at hz
+      linarith [P.hrho]
+    exact ExactA2CapMetric.false_of_exactA2_boundary_data
+      (A := D.A) (P := S.oppApex2) (u := P.u.1) (y := packet.xu)
+      (x := packet.xv) (v := P.v.1)
+      (d := P.jointDeletion.deleted.1) (c := c) (q := q)
+      (radius := P.rho)
+      D.convex happA P.u.2 (mem_selectedClass.mp hxuClass).1
+      (mem_selectedClass.mp hxvClass).1 P.v.2
+      (mem_selectedClass.mp P.jointDeletion.deleted_mem_class).1
+      (hne_P hP_u) (hne_P hP_y) (hne_P hP_x) (hne_P hP_v)
+      (hne_P hP_d) huNeXu huNeXv hvNeXv hdelNeV.symm
+      P.hrho hP_u hP_y hP_x hP_v hP_d hE hD.symm hC hA.symm
+      hc_sides hProw hqSide hqRow
   have closeForward
       (order : NamedOrder)
       (huPos : (position order 6).val = iu.val)
@@ -11755,7 +11835,7 @@ theorem exists_exactSeventeenSourceRealization_of_exactCover
       (hdeletedPos : (position order 10).val = id.val)
       (hcPos : (position order 11).val = ic.val)
       (hePos : (position order 12).val = ie.val) :
-      ∃ source : SourceRealization D.A, source.model.order = 0 := by
+      False := by
     let shifted : Fin B.n → ℝ² := fun point => B.phi (point + B.Block.lo)
     let carrierBoundary : Fin D.A.card → ℝ² := fun point =>
       shifted (Fin.cast B.ambient_card_eq.symm point)
@@ -11838,7 +11918,7 @@ theorem exists_exactSeventeenSourceRealization_of_exactCover
       (hdeletedPos : (position order 10).val + id.val = 8)
       (hcPos : (position order 11).val + ic.val = 8)
       (hePos : (position order 12).val + ie.val = 8) :
-      ∃ source : SourceRealization D.A, source.model.order = 0 := by
+      False := by
     letI : NeZero B.n := ⟨by have hspan := B.block_span; omega⟩
     let cut : Fin B.n := ⟨(B.Block.hi.val + 1) % B.n,
       Nat.mod_lt _ (by have := B.Block.hi.isLt; omega)⟩
@@ -11990,13 +12070,9 @@ theorem false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlock
         (by simpa using hunusedRows (2 : Fin 4))
         (by simpa using hunusedRows (3 : Fin 4))
         hcapCard
-  · refine
-      false_of_sourceRealization_of_extendedCocircularPentagonOrderCnf_unsat
-        (A := D.A) ?_ ?_
-    · exact exists_exactSeventeenSourceRealization_of_exactCover Q hcenterV
-        hcenterDeletedInterior hcenterDeletedOffClass hcard hcapCard
-        _hnextRowPhysicalHits hexactCover
-    · sorry
+  · exact false_of_exactSeventeen_secondCapNine_exactCover Q hcenterV
+      hcenterDeletedInterior hcenterDeletedOffClass hcard hcapCard
+      _hnextRowPhysicalHits hexactCover
 
 theorem pentagonOffClassBlocker_u_ne_xv
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}

@@ -2023,11 +2023,21 @@ Atomic established facts in the described 17-point subbranch include:
 2. each of four rows meets that cap in at most two points;
 3. cap sizes 10 and 11 provide spare interior points outside all four rows;
 4. deleting those spares reduces to checked 16- and 15-point certificate banks;
-5. for cap size 9, either an outside point is unused by all rows, which is closed, or the four rows partition all eight outside points into exact pairs, which is open.
+5. for cap size 9, either an outside point is unused by all rows, which is closed, or the four rows partition all eight outside points into exact pairs; the latter branch is now closed by the direct Exact-A2 metric terminal.
+
+The 27 August 2026 Exact-A2 closure avoids the former source-realization and
+SAT-promotion detour.  The exact cover places the opposite apex on one of the
+four distinguished rows and supplies a point `q` outside the cap on the
+deleted-center row.  Convex cyclic order gives the required opposite-side
+signs for `q` and for the next center.  The five equal-radius points and four
+successive perpendicular-bisector identities then force positive fan
+parameters; each possible apex row contradicts either the fan metric or the
+deleted-center chord clearance.  This closes the exact-17/cap-9 terminal
+directly in Lean.
 
 The route is not unbounded: the current source has no transfer theorem for `|A|≥18` in this branch.
 
-**Status:** [OPEN cluster]
+**Status:** [OPEN cluster; EXACT-17/CAP-9 TERMINAL CLOSED 27 AUGUST 2026]
 
 ### F1. TriApex cluster - 1 root (kernel-mined 23 August 2026)
 
@@ -4664,30 +4674,59 @@ These leaves refine the source-heavy side of an exact `2+2+1` decomposition of a
 
 **Declaration.** `false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV_vRowBlockerDeleted_deletedRowBlockerOffClass_card_eq_seventeen_secondCapNine`
 
-**Source and role.** `Rigid221SourceHeavy.lean`, approximately lines 11710-11757. The theorem has already split the exact-cardinality-seventeen branch into an unused-outside-point arm and an exact-cover arm; the first arm is proved and only the exact-cover arm reaches `sorry`.
+**Source and role.** `Rigid221SourceHeavy.lean`, with the direct exact-cover
+theorem beginning near line 11100 and its coordinator near line 12026.  The
+coordinator splits into an unused-outside-point arm and an exact-cover arm;
+both are now proved.
 
-**Atomic contract.** Assume `|A|=17`, the indexed second cap has cardinality nine, the next blocker is strict-cap interior but outside the physical five-class, and its next row has at most one physical-class hit. The checked splitter says four named exact rows cover all eight carrier points outside the second cap. Prove that this exact cover is impossible.
+**Atomic contract.** Assume `|A|=17`, the indexed second cap has cardinality
+nine, and the next blocker is strict-cap interior but outside the physical
+five-class.  The checked splitter says four named exact rows cover all eight
+carrier points outside the second cap.  Prove that this exact cover is
+impossible.  The retained next-row physical-hit hypothesis is not used by the
+direct terminal.
 
 **Data already proved upstream.** All four rows have cardinality four and retain their centers and source identities. The cap has an exact cyclic boundary model. Every point outside the cap is assigned to at least one of the four rows, and the complementary unused-point alternative has already been closed. The source file already contains certified boundary-order infrastructure for the seventeen-point normalization.
 
-**Exact missing implication.** The unresolved implication is a finite cyclic-order obstruction: no assignment of the eight outside-cap points to the four named rows can satisfy all exact support memberships, center-not-in-support conditions, circle-intersection bounds, and the inherited physical-class omissions.
+**Closure.** Exact cover puts the opposite apex on one of the four rows and
+supplies an outside point `q` on the deleted-center row.  Convex cyclic order
+places `q` and the deleted point on opposite sides of the source chord and
+provides the corresponding side condition for the next center.  The common
+physical circle and the four row equalities yield positive bisector-fan
+parameters.  Apex membership in rows zero, two, or three contradicts a
+positive inner product; row one forces a chord-clearance inequality that the
+outside witness reverses.
 
-**Candidate closure program.**
+**Implemented route.**
 
-1. Extract a minimal finite packet containing the seventeen boundary labels, the nine cap labels, the four row centers, the four exact support sets, and every forced membership and nonmembership. Do not encode arbitrary K4 witnesses not used by the terminal.
+1. `ExactA2CapMetric.false_of_exactA2_boundary_data` proves the
+   source-independent fan and chord terminal.
 
-2. Normalize reflection and rotation symmetries of the boundary order so the certificate searches one representative per dihedral orbit.
+2. `false_of_exactSeventeen_secondCapNine_exactCover` retains the existing
+   source normalization through the order-zero reduction, extracts `q`, and
+   derives the four-way apex-row alternative and both orientation cases.
 
-3. For every candidate support assignment, derive exact orientation or circle-incidence constraints. Reject assignments by a small library of kernel lemmas: distinct-center circles meet in at most two carrier points; a row omits its own center; three collinear carrier points are impossible; and interlacing equal-chord pairs force a convex-hull crossing.
+3. The exact-cardinality coordinator calls that theorem directly.  The former
+   source-realization and cumulative CNF promotion module are not proof
+   dependencies of `Rigid221SourceHeavy`.
 
-4. If the remaining state space is finite, emit a replayable certificate bank keyed by the normalized support assignment. A project-approved `native_decide` endpoint is acceptable here only after the geometric reduction to finite predicates is explicit and audited.
+The metric landing theorem and source adapter have ordinary core axiom
+closures.  The outer coordinator has no `sorryAx`; it retains the
+project-approved native-reduction trust of the pre-existing unused-point
+certificate branch.
 
 
-**Known limits and rejection tests.** A cardinality count alone cannot reject the exact cover: four four-point rows can cover eight points abstractly. The finite checker must encode the branch's exact provenance and geometric predicates, not just an incidence hypergraph. The existing exact rational B2 stress model warns that local two-circle counting plus strict convexity is insufficient.
+**Known limits and rejection tests.** A cardinality count alone cannot reject
+the exact cover: four four-point rows can cover eight points abstractly.  The
+implemented proof crucially uses the common physical circle, successive
+perpendicular-bisector rows, the apex-row alternative, and the signed cyclic
+order.  This result does not close the unbounded continuation A3.
 
-**Immediate consumer.** The exact-seventeen deleted-row off-class coordinator. This is a bounded endpoint and is one of the best candidates for certificate closure without discovering a new unbounded theorem.
+**Immediate consumer.** The exact-seventeen deleted-row off-class cap-split
+coordinator now calls this closed terminal in its cap-nine arm.
 
-**Status.** [OPEN]
+**Status.** [LEAN-CLOSED 28 AUGUST 2026; OUTER TERMINAL HAS NO `sorryAx`;
+UNBOUNDED A3 REMAINS OPEN]
 
 ##### 16.5.A3 - The unbounded deleted-row off-class continuation
 
