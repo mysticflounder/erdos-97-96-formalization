@@ -15,10 +15,12 @@ import Erdos9796Proof.P97.ATail.FrontierLiveClosure.Rigid221Card18DirectCardinal
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.Rigid221Card18ArmLayout
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.Rigid221Card18ClauseGadgets
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.Rigid221Card18ArmCnf
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure.Rigid221Card18PositiveControls
 
 /-!
 # Exact-card-eighteen Rigid221 aggregate
 
-This import-only module keeps the complete Card18 chain buildable off-spine. It
-adds no theorem, serializer, or solver entitlement.
+This import-only module keeps the complete Card18 chain buildable off-spine. It adds no theorem,
+serializer, or solver entitlement. The imported positive controls prove that all three v1 formulas
+are satisfiable, but they do not reconstruct a geometric source.
 -/

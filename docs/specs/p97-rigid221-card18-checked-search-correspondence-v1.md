@@ -1,6 +1,6 @@
 # P97 Rigid221 card-18 checked-search correspondence v1
 
-**Status: C2 COMPLETE AND PUBLISHABLE; DIMACS, CERTIFICATE, AND SOLVER GATES CLOSED.**
+**Status: C2 AND SAT POSITIVE-CONTROL EXTENSION COMPLETE; EXTERNAL GATES CLOSED.**
 
 Date: 2026-08-27
 Original design base: `467b58a186fe1d81b78be8d042d8ab4bf0e585bd`
@@ -20,7 +20,8 @@ selected-support membership kernel-transparent.
 No symmetry quotient or canonical-label assumption is used. C2 defines the
 three kernel formulas and proves exact assignment-to-packet correspondence.
 External CNF/DIMACS emission, model enumeration, certificate generation, and
-solver execution remain blocked until their later custody gates are complete.
+solver execution remain closed. The v1 formulas are now proved satisfiable,
+so no external solver run is justified for this unchanged surface.
 
 ## 2. Existing semantic boundary
 
@@ -456,10 +457,12 @@ external oracle, `unsafe`, `implemented_by`, or an unapproved custom axiom.
    bridges. Do not define `armCnf` in this checkpoint.
 4. Complete: assemble common, BI, and crossed formulas and prove both
    correspondence directions plus `armCnf_sat_iff` for every arm.
-5. Add the canonical DIMACS boundary and fail-closed custody; still do not run
-   a solver.
-6. Run arms separately. Decode SAT models for one-consequence CEGAR refinement,
-   or replay a checked UNSAT certificate for an empty arm.
+5. Complete: add explicit valid BI/U/XV packets and derive formula satisfiability through the
+   checked correspondence.
+6. Strengthen the live bi-survival source packet by one source-derived relation connecting the two
+   fixed-center deletion views.
+7. Only after that relation justifies a v2 projection, revise the formula and reconsider a canonical
+   DIMACS boundary. Solver execution remains a later gate.
 
 Each commit receives its own lane checkpoint, governed build, declaration-level
 axiom audit, independent semantic review, and exact-path staged hygiene.
@@ -492,8 +495,8 @@ axiom audit, independent semantic review, and exact-path staged hygiene.
   proves exact totals of 61,969 clauses for BI and 51,333 for each crossed arm,
   and proves `valid_extends_to_model`, `model_decodes_to_valid`, and the generic
   `armCnf_sat_iff`. Independent semantic and trust review returned GO.
-- No DIMACS artifact, model enumeration, certificate, solver run, or SAT/UNSAT
-  claim has been produced.
+- No DIMACS artifact, model enumeration, certificate, or solver run has been produced. The later
+  positive-control checkpoint proves satisfiability for all three v1 formulas in Lean.
 - Exact-path staged hygiene passed with zero issues and no foreign staged path.
 
 ## 13. Nonclaims
@@ -502,12 +505,13 @@ This design does not provide:
 
 - a generated CNF or variable map;
 - a serialized geometric source witness;
-- a SAT assignment or abstract-packet survivor;
 - an UNSAT result or checked certificate;
 - `no_valid_abstract_packet`;
 - closure of a BI, U, or XV source alternative; or
 - a lift from exact cardinality eighteen to the live unbounded residual.
 
-C2 is complete. The next boundary is a canonical DIMACS serializer and strict
-readback/custody proof for these exact formulas. Enumeration, certificate, and
-solver gates remain closed.
+C2 and the v1 positive controls are complete. The unchanged formulas are checked satisfiable and
+remain useful only as diagnostic CEGAR seeds. The next mathematical boundary is a source-derived
+relation connecting the two fixed-center views in the live bi-survival rectangle. DIMACS,
+enumeration, certificate, and solver gates remain closed unless a justified v2 projection replaces
+the current surface.

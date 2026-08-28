@@ -1,6 +1,6 @@
 # P97 Rigid221 card-18 off-spine CEGAR aggregate v1
 
-**Status: COMPLETE AND PUBLISHABLE; SERIALIZER, CERTIFICATE, AND SOLVER GATES CLOSED.**
+**Status: BASE AND SAT POSITIVE-CONTROL IMPORT COMPLETE; OFF-SPINE.**
 
 Date: 2026-08-27
 
@@ -24,7 +24,7 @@ The import-only target is:
 Erdos9796Proof.P97.ATail.FrontierLiveClosure.Rigid221Card18Aggregate
 ```
 
-It imports these eleven modules explicitly:
+It imports these twelve modules explicitly:
 
 1. `Rigid221Card18LeafExport`;
 2. `Rigid221Card18FiniteDataExport`;
@@ -35,12 +35,14 @@ It imports these eleven modules explicitly:
 7. `Rigid221Card18SearchBase`;
 8. `Rigid221Card18DirectCardinality`;
 9. `Rigid221Card18ArmLayout`;
-10. `Rigid221Card18ClauseGadgets`; and
-11. `Rigid221Card18ArmCnf`.
+10. `Rigid221Card18ClauseGadgets`;
+11. `Rigid221Card18ArmCnf`; and
+12. `Rigid221Card18PositiveControls`.
 
-The aggregate declares no theorem, axiom, finite-search result, serializer, or
-solver entitlement. It remains absent from `FrontierLiveClosure.lean` and the
-public `Erdos9796Proof` root.
+The aggregate itself declares no theorem or axiom. Its positive-control import proves that all three
+v1 formulas have satisfying assignments; it adds no serializer, external finite-search result, or
+solver entitlement. The aggregate remains absent from `FrontierLiveClosure.lean` and the public
+`Erdos9796Proof` root.
 
 The governed build target is:
 
@@ -55,8 +57,8 @@ explicitly and review the exact delta.
 
 ## 3. Python freshness surface
 
-The runner checks the implementation and test file for each of these seven
-layers:
+The runner keeps the seven immutable predecessor layers executable in the
+exact predicate-coverage-v3 source snapshot:
 
 1. source packet;
 2. source custody;
@@ -66,9 +68,11 @@ layers:
 6. predicate coverage v2; and
 7. predicate coverage v3.
 
-It runs Ruff lint checks before the seven focused pytest suites. Pytest plugin
-autoload, bytecode output, cache-provider output, distributed execution, and
-numerical-library worker pools are disabled or capped.
+It separately checks labeled-projection custody v2, crossed-incidence custody
+v2, and predicate coverage v4 against the live source tree. Ruff runs over
+both generations before 348 historical tests and 131 live tests. Pytest
+plugin autoload, bytecode output, cache-provider output, distributed
+execution, and numerical-library worker pools are disabled or capped.
 
 Current Ruff formatting is deliberately not a gate over all fourteen files.
 Six frozen predecessor files predate the current formatter output, and a
@@ -77,8 +81,9 @@ That migration requires a separate review; the aggregate does not hide it by
 rewriting custody-bound inputs.
 
 The runner is deliberately fail-closed. A legitimate change to a pinned Lean
-source or dependency must re-mine and refreeze the affected custody artifact;
-the target must not weaken or bypass the source manifest.
+source or dependency must re-mine and publish a new version of the affected
+custody artifact; the target must not weaken, bypass, or rewrite a historical
+source manifest.
 
 ## 4. Repository wiring
 
@@ -100,9 +105,11 @@ claim that a hosted CI service currently executes it.
 
 Passing this target establishes only that:
 
-- all eleven off-spine Lean modules still elaborate together;
-- the frozen source-custody checks still authenticate their declared sources;
-- the three predicate-coverage schemas still reconstruct their artifacts;
+- all twelve off-spine Lean modules still elaborate together;
+- the frozen historical custody and coverage suites still pass in their exact
+  v3 source snapshot;
+- the active custody-v2 receipts still authenticate the live declared sources;
+- all four predicate-coverage schemas reconstruct their artifacts;
 - the pure abstract packet and its source projection remain buildable;
 - the typed 288-variable base representation, role one-hot clauses, and
   encode/decode bridge remain buildable;
@@ -112,11 +119,13 @@ Passing this target establishes only that:
   mask, intersection, and cardinality-bridge gadgets remain buildable with
   both semantic directions; and
 - the deterministic BI/U/XV formulas, their exact clause totals, and both
-  packet/model correspondence directions remain buildable.
+  packet/model correspondence directions remain buildable; and
+- explicit valid BI/U/XV packets and the resulting three formula-satisfiability theorems remain
+  buildable.
 
 It does not establish:
 
-- existence or nonexistence of a valid abstract packet;
+- a geometric realization of any valid abstract packet;
 - a canonical DIMACS representation or strict serializer readback theorem;
 - a checked UNSAT certificate;
 - a Euclidean realization for a finite assignment;
@@ -198,9 +207,10 @@ The serializer and solver gates remain closed.
 - The new arm-formula module SHA-256 is
   `076abeb793c61aad760e92d4847911979326292962fa2307c69d9f20e2d97011`.
 
-## 7. Next boundary
+## 7. Revised next boundary
 
-After C2, define a canonical DIMACS serializer and strict readback/custody
-theorem for these exact arm formulas. No enumeration, certificate generation,
-or solver run is authorized until that separate gate is reviewed and
-published.
+The v1 formulas are now checked satisfiable and are frozen as positive controls. Do not serialize or
+solve the unchanged formulas. The next mathematical boundary is a source-derived relation connecting
+the two fixed-center deletion views in the live bi-survival rectangle. A canonical DIMACS boundary
+may be reconsidered only for a source-justified v2 projection; enumeration, certificate generation,
+and solver execution remain unauthorized.

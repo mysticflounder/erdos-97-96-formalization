@@ -1,0 +1,21 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "rigid221-card18-v1-positive-controls-20260828",
+  "owner": "ResidualCartographer",
+  "base_head": "6d0fcc389255ac24be267636abb8f7545d63bcb7",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/rigid221-card18-v1-positive-controls-20260828.json",
+    "docs/audits/2026-08-28-rigid221-card18-v1-positive-controls-review.md",
+    "docs/specs/p97-rigid221-card18-abstract-packet-v1.md",
+    "docs/specs/p97-rigid221-card18-arm-cnf-v1.md",
+    "docs/specs/p97-rigid221-card18-cegar-aggregate-v1.md",
+    "docs/specs/p97-rigid221-card18-checked-search-correspondence-v1.md",
+    "docs/specs/p97-rigid221-card18-v1-positive-controls.md",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221Card18Aggregate.lean",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221Card18PositiveControls.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-08-28T15:07:24Z",
+  "manifest_sha256": "b936173b0a683473df70c7bd48a94ade67c616f708ecba9a7270c371e488c128"
+}

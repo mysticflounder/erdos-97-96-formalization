@@ -1,6 +1,6 @@
 # P97 Rigid221 card-18 abstract packet contract (v1)
 
-**Status: COMPLETE AND PUBLISHABLE; SOLVER GATE CLOSED.**
+**Status: BASE AND SAT POSITIVE-CONTROL EXTENSION COMPLETE; SOLVER GATE CLOSED.**
 
 Lane: `rigid221-card18-abstract-packet-v1-20260827`.
 
@@ -179,20 +179,19 @@ dependent source record, or choice operation.
 
 ## 6. Scope and nonclaims
 
-This checkpoint does not provide or authorize:
+The v1 packet checkpoint and its later positive-control extension do not provide or authorize:
 
 - naïve exhaustive enumeration of the derived `Fintype`;
-- a SAT/SMT/CNF encoding or external search run;
-- a `Valid`-to-formula, formula-to-CNF, or certificate correspondence;
-- a model, UNSAT result, checked certificate, or `no_valid_abstract_packet`;
+- an external search run or serializer;
+- a checked certificate or `no_valid_abstract_packet`;
 - symmetry normalization without a preservation theorem;
 - serialization of a geometric source witness; or
 - a lift from exact cardinality eighteen to `18 ≤ D.A.card`.
 
-The pure state contains five support sets in each crossed arm and six in the
-bi arm. Blind enumeration is not expected to be tractable. A future armwise
-encoding or exact-four-support subtype must prove correspondence with this
-`Valid` surface before an UNSAT claim can enter Lean.
+The pure state contains five support sets in each crossed arm and six in the bi arm. Blind
+enumeration is not expected to be tractable. The later armwise encoding proves both packet/model
+directions, and `Rigid221Card18PositiveControls` now proves that every v1 arm formula is satisfiable.
+Version 1 is therefore retained as a checked positive control rather than an impossibility claim.
 
 ## 7. Acceptance gates
 
@@ -227,9 +226,10 @@ The solver gate remains closed.
   `457d944e0d9b0dbeb8871f984ccd7f5873875289bf47b93e570b59fc627dae48`.
 - Exact-path staged hygiene passed with zero issues and no foreign staged paths.
 
-## 8. Next boundary
+## 8. Current boundary
 
-After this theorem, add the dedicated off-spine Rigid221 CEGAR aggregate/build
-target so the projection, enrichment, abstract packet, custody tests, and
-coverage tests cannot silently rot. Then design an arm-separated checked
-search correspondence. Do not run the search before that correspondence gate.
+The aggregate, checked arm formulas, both packet/model directions, and explicit BI/U/XV positive
+controls now exist. Do not serialize or solve the unchanged v1 formulas: their satisfiability is a
+kernel theorem. The next mathematical boundary is one additional source-derived relation connecting
+the two fixed-center deletion views in the live bi-survival rectangle. A stronger v2 finite
+projection requires that source theorem before any revised formula or serializer is justified.

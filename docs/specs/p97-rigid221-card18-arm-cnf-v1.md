@@ -1,6 +1,6 @@
 # P97 Rigid221 card-18 arm CNF v1
 
-**Status: COMPLETE AND PUBLISHABLE; DIMACS, ENUMERATION, CERTIFICATE, AND SOLVER GATES CLOSED.**
+**Status: C2 AND SAT POSITIVE-CONTROL EXTENSION COMPLETE; EXTERNAL GATES CLOSED.**
 
 Date: 2026-08-27
 Base revision: `9119f0c728dd65a2f6a335bee7a3ba7d2391029b`
@@ -82,9 +82,9 @@ U uses `(deleted, retained) = (u, xv)`. XV uses
 | Arm semantics | 39,420 | 28,477 | 28,477 |
 | Total | **61,969** | **51,333** | **51,333** |
 
-Lean proves these totals from the executable definitions. The counts are a
-structural regression gate, not evidence that a formula is satisfiable or
-unsatisfiable.
+Lean proves these totals from the executable definitions. The counts alone are a structural
+regression gate. The later `Rigid221Card18PositiveControls` module separately proves that every v1
+arm formula has a satisfying assignment.
 
 ## 5. Required kernel correspondence
 
@@ -153,8 +153,10 @@ Before publication it requires:
   - `scripts/test-p97-rigid221-card18.sh`:
     `3c675ecbba7f2dd2e1fcf58c53c6d501c3c2df090efbc88cd3df12bf993b1881`.
 
-## 7. Next gate
+## 7. Revised next gate
 
-Only after this C2 checkpoint is published may the lane design the canonical
-DIMACS serializer and strict readback boundary. Solver execution remains a
-later gate after serializer custody is independently audited.
+The explicit v1 positive controls prove that BI, U, and XV are all satisfiable under the published
+finite surface. Freeze these formulas as diagnostic CEGAR seeds. Do not begin DIMACS or solver work
+for unchanged v1. The next mathematical gate is a source-derived relation connecting the two
+fixed-center deletion views in the live bi-survival rectangle. A v2 formula and serializer become
+eligible only after that relation reaches a source-to-v2 theorem.
