@@ -14,6 +14,7 @@ import Erdos9796Proof.P97.ATail.FrontierLiveClosure.Rigid221Card18SearchBase
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.Rigid221Card18DirectCardinality
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.Rigid221Card18ArmLayout
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.Rigid221Card18ClauseGadgets
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure.Rigid221Card18ArmCnf
 
 /-!
 # Exact-card-eighteen Rigid221 aggregate

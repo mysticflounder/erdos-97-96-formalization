@@ -1,6 +1,6 @@
 # P97 Rigid221 card-18 off-spine CEGAR aggregate v1
 
-**Status: COMPLETE AND PUBLISHABLE; ARM-CNF, SERIALIZER, AND SOLVER GATES CLOSED.**
+**Status: COMPLETE AND PUBLISHABLE; SERIALIZER, CERTIFICATE, AND SOLVER GATES CLOSED.**
 
 Date: 2026-08-27
 
@@ -24,7 +24,7 @@ The import-only target is:
 Erdos9796Proof.P97.ATail.FrontierLiveClosure.Rigid221Card18Aggregate
 ```
 
-It imports these ten modules explicitly:
+It imports these eleven modules explicitly:
 
 1. `Rigid221Card18LeafExport`;
 2. `Rigid221Card18FiniteDataExport`;
@@ -34,8 +34,9 @@ It imports these ten modules explicitly:
 6. `Rigid221Card18AbstractPacket`;
 7. `Rigid221Card18SearchBase`;
 8. `Rigid221Card18DirectCardinality`;
-9. `Rigid221Card18ArmLayout`; and
-10. `Rigid221Card18ClauseGadgets`.
+9. `Rigid221Card18ArmLayout`;
+10. `Rigid221Card18ClauseGadgets`; and
+11. `Rigid221Card18ArmCnf`.
 
 The aggregate declares no theorem, axiom, finite-search result, serializer, or
 solver entitlement. It remains absent from `FrontierLiveClosure.lean` and the
@@ -99,7 +100,7 @@ claim that a hosted CI service currently executes it.
 
 Passing this target establishes only that:
 
-- all ten off-spine Lean modules still elaborate together;
+- all eleven off-spine Lean modules still elaborate together;
 - the frozen source-custody checks still authenticate their declared sources;
 - the three predicate-coverage schemas still reconstruct their artifacts;
 - the pure abstract packet and its source projection remain buildable;
@@ -109,14 +110,14 @@ Passing this target establishes only that:
   buildable with both semantic directions; and
 - the reduced BI/U/XV derived layout and generic role/support, inequality,
   mask, intersection, and cardinality-bridge gadgets remain buildable with
-  both semantic directions.
+  both semantic directions; and
+- the deterministic BI/U/XV formulas, their exact clause totals, and both
+  packet/model correspondence directions remain buildable.
 
 It does not establish:
 
 - existence or nonexistence of a valid abstract packet;
-- an abstract-packet-to-CNF correspondence;
-- application of the generic cardinality encoder to any packet support, any
-  derived validity clause, or any complete arm formula;
+- a canonical DIMACS representation or strict serializer readback theorem;
 - a checked UNSAT certificate;
 - a Euclidean realization for a finite assignment;
 - closure of any exact-card-eighteen arm; or
@@ -177,9 +178,29 @@ The serializer and solver gates remain closed.
 - Read-only lane hygiene reports zero lane issues. The shared worktree's foreign
   dirty and unregistered artifacts remain outside this lane's ownership.
 
+### C2 extension evidence on 2026-08-27
+
+- The final eleven-import aggregate replay completed all 11,039 Lean jobs.
+- Ruff passed and all seven focused suites passed, totaling 348 tests in
+  30.58 seconds.
+- A governed refresh indexed the new arm-formula module. The exact generated
+  blueprint delta is one additional off-spine file and 110 symbols; the
+  off-spine sorry count remains three.
+- The 2,518-file publication spine contains no `Rigid221Card18` path.
+- Lean proves exact complete formula totals of 61,969 clauses for BI and 51,333
+  for each crossed arm, plus both packet/model directions and the generic
+  `armCnf_sat_iff` theorem.
+- Source, axiom, generated-IR, import, and independent semantic reviews found no
+  forbidden trust mechanism, external artifact boundary, or semantic gap.
+- Exact-path staged hygiene passed with zero issues and no foreign staged path.
+- The eleven-import aggregate SHA-256 is
+  `a42f831bb78855da36e265ab241df25ba9d31bb3651a93030b192d42f7c912db`.
+- The new arm-formula module SHA-256 is
+  `076abeb793c61aad760e92d4847911979326292962fa2307c69d9f20e2d97011`.
+
 ## 7. Next boundary
 
-After the C1 extension, assemble the arm-separated kernel formulas and prove
-both assignment-to-packet and packet-to-assignment directions for
-`Rigid221Card18AbstractPacket.Valid`. No search run is authorized until those
-directions hold for the exact formula being checked.
+After C2, define a canonical DIMACS serializer and strict readback/custody
+theorem for these exact arm formulas. No enumeration, certificate generation,
+or solver run is authorized until that separate gate is reviewed and
+published.

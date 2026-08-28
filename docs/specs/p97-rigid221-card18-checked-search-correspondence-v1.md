@@ -1,14 +1,14 @@
 # P97 Rigid221 card-18 checked-search correspondence v1
 
-**Status: C1 COMPLETE; C2 ARM-CNF CORRESPONDENCE AND EXTERNAL GATES CLOSED.**
+**Status: C2 COMPLETE AND PUBLISHABLE; DIMACS, CERTIFICATE, AND SOLVER GATES CLOSED.**
 
 Date: 2026-08-27
 Original design base: `467b58a186fe1d81b78be8d042d8ab4bf0e585bd`
-Current implementation base: `78178bc899595c3a88fe30d17daf2bb4db55398b`
+C2 implementation base: `9119f0c728dd65a2f6a335bee7a3ba7d2391029b`
 
 ## 1. Outcome
 
-The first checked-search encoding will use three separate formulas for the BI,
+The checked-search encoding uses three separate formulas for the BI,
 U, and XV constructors of `Rigid221Card18AbstractPacket`. It will encode only
 the pure abstract packet, never the noncomputable geometric source witness.
 
@@ -17,11 +17,10 @@ support. This costs more base variables than a five-bit label encoding, but it
 avoids six invalid bit patterns and makes role equality, inequality, and
 selected-support membership kernel-transparent.
 
-No symmetry quotient, canonical-label assumption, external CNF/DIMACS
-emission, model enumeration, or solver run is authorized by this design. After
-this specification is approved, the commit order may implement kernel-defined
-`armCnf` and its proofs. External artifacts remain blocked until Lean proves
-exact assignment-to-packet correspondence.
+No symmetry quotient or canonical-label assumption is used. C2 defines the
+three kernel formulas and proves exact assignment-to-packet correspondence.
+External CNF/DIMACS emission, model enumeration, certificate generation, and
+solver execution remain blocked until their later custody gates are complete.
 
 ## 2. Existing semantic boundary
 
@@ -455,8 +454,8 @@ external oracle, `unsafe`, `implemented_by`, or an unapproved custom axiom.
 3. Complete: add the reduced typed derived layout, direct membership/nonmembership,
    role inequality, physical mask, intersection gadgets, and cardinality
    bridges. Do not define `armCnf` in this checkpoint.
-4. C2: assemble common, BI, and crossed formulas and prove both correspondence
-   directions plus `armCnf_sat_iff` for every arm.
+4. Complete: assemble common, BI, and crossed formulas and prove both
+   correspondence directions plus `armCnf_sat_iff` for every arm.
 5. Add the canonical DIMACS boundary and fail-closed custody; still do not run
    a solver.
 6. Run arms separately. Decode SAT models for one-consequence CEGAR refinement,
@@ -489,8 +488,12 @@ axiom audit, independent semantic review, and exact-path staged hygiene.
   gadgets, the canonical physical-five/cardinality bridge, and generic support
   and derived-family cardinality theorems. Its final ten-import aggregate build,
   focused tests, independent semantic review, and executable-trust review pass.
-- No complete arm CNF, DIMACS artifact, model enumeration, solver run, or
-  SAT/UNSAT claim has been produced.
+- The C2 checkpoint implements the frozen common, BI, U, and XV block order,
+  proves exact totals of 61,969 clauses for BI and 51,333 for each crossed arm,
+  and proves `valid_extends_to_model`, `model_decodes_to_valid`, and the generic
+  `armCnf_sat_iff`. Independent semantic and trust review returned GO.
+- No DIMACS artifact, model enumeration, certificate, solver run, or SAT/UNSAT
+  claim has been produced.
 - Exact-path staged hygiene passed with zero issues and no foreign staged path.
 
 ## 13. Nonclaims
@@ -505,7 +508,6 @@ This design does not provide:
 - closure of a BI, U, or XV source alternative; or
 - a lift from exact cardinality eighteen to the live unbounded residual.
 
-C1 is complete. Kernel definition of the common, BI, U, and XV formula families
-and proof of both assignment/packet directions are the C2 boundary. External
-formula/DIMACS emission, serializer custody, enumeration, and solver gates
-remain closed.
+C2 is complete. The next boundary is a canonical DIMACS serializer and strict
+readback/custody proof for these exact formulas. Enumeration, certificate, and
+solver gates remain closed.
