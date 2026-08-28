@@ -25,7 +25,9 @@ CARD_HEAD_SCHEMA = _CHECKER.CARD_HEAD_SCHEMA
 CHECKPOINT_SCHEMA = _CHECKER.CHECKPOINT_SCHEMA
 GENERATED_OUTPUT_CLASSES = _CHECKER.GENERATED_OUTPUT_CLASSES
 PUBLICATION_LIMIT_BYTES = _CHECKER.PUBLICATION_LIMIT_BYTES
+REPORT_SCHEMA = _CHECKER.REPORT_SCHEMA
 RUN_MANIFEST_SCHEMA = _CHECKER.RUN_MANIFEST_SCHEMA
+SUMMARY_SCHEMA = _CHECKER.SUMMARY_SCHEMA
 P97_RUN_SCHEMAS = _CHECKER.P97_RUN_SCHEMAS
 canonical_json_bytes = _CHECKER.canonical_json_bytes
 inspect_worktree = _CHECKER.inspect_worktree
@@ -412,7 +414,7 @@ def test_root_spill_is_blocked_even_when_ignored(tmp_path: Path) -> None:
     assert by_path["loose.py"] == "UNTRACKED_ROOT_SPILL"
 
 
-def test_staged_check_reports_foreign_untracked_backlog_without_blocking(
+def test_staged_check_omits_foreign_untracked_backlog(
     tmp_path: Path,
 ) -> None:
     repo = _repo(tmp_path)
@@ -423,9 +425,9 @@ def test_staged_check_reports_foreign_untracked_backlog_without_blocking(
 
     report = inspect_worktree(repo, lane=LANE, staged=True)
 
-    loose = next(row for row in report["entries"] if row["path"] == "Loose.lean")
-    assert loose["reason"] == "UNTRACKED_ROOT_SPILL"
-    assert loose["blocking"] is False
+    by_path = {row["path"]: row for row in report["entries"]}
+    assert "Loose.lean" not in by_path
+    assert by_path["owned.py"]["reason"] == "OWNER_PATH"
     assert report["blocking"] is False
 
 
@@ -943,7 +945,9 @@ def _filesystem_snapshot(repo: Path) -> list[tuple[str, int, int, int, str]]:
     return rows
 
 
-def test_identical_cli_reports_are_byte_identical_and_read_only(tmp_path: Path) -> None:
+def test_identical_verbose_cli_reports_are_byte_identical_and_read_only(
+    tmp_path: Path,
+) -> None:
     repo = _repo(tmp_path)
     _write_checkpoint(repo, owned=["owned.py"])
     before = _filesystem_snapshot(repo)
@@ -955,6 +959,7 @@ def test_identical_cli_reports_are_byte_identical_and_read_only(tmp_path: Path) 
         str(repo),
         "--lane",
         LANE,
+        "--verbose",
     ]
 
     first = subprocess.run(command, check=True, capture_output=True).stdout
@@ -962,6 +967,7 @@ def test_identical_cli_reports_are_byte_identical_and_read_only(tmp_path: Path) 
 
     assert first == second
     assert first == canonical_json_bytes(json.loads(first)) + b"\n"
+    assert json.loads(first)["schema"] == REPORT_SCHEMA
     assert _filesystem_snapshot(repo) == before
 
 
@@ -981,6 +987,8 @@ def test_check_command_exit_status_tracks_blocking_result(tmp_path: Path) -> Non
         [base[0], base[1], "check", *base[2:]], check=False, capture_output=True
     )
     assert clean.returncode == 0
+    assert clean.stdout == b""
+    assert clean.stderr == b""
     (repo / "orphan.log").write_text("spill\n", encoding="utf-8")
     blocked = subprocess.run(
         [base[0], base[1], "check", *base[2:]], check=False, capture_output=True
@@ -989,8 +997,66 @@ def test_check_command_exit_status_tracks_blocking_result(tmp_path: Path) -> Non
         [base[0], base[1], "report", *base[2:]], check=False, capture_output=True
     )
     assert blocked.returncode == 1
+    assert blocked.stdout == b""
+    blocked_summary = json.loads(blocked.stderr)
+    assert blocked_summary["schema"] == SUMMARY_SCHEMA
+    assert blocked_summary["blocking"] is True
+    assert blocked_summary["problems"][0]["reason"] == "UNTRACKED_ROOT_SPILL"
     assert report_only.returncode == 0
-    assert json.loads(blocked.stdout)["blocking"] is True
+    assert report_only.stderr == b""
+    report_summary = json.loads(report_only.stdout)
+    assert report_summary["schema"] == SUMMARY_SCHEMA
+    assert report_summary["blocking"] is True
+
+
+def test_check_command_prints_checker_errors_to_stderr(tmp_path: Path) -> None:
+    repo = _repo(tmp_path)
+    result = subprocess.run(
+        [
+            sys.executable,
+            str(SCRIPT),
+            "check",
+            "--repo-root",
+            str(repo),
+            "--lane",
+            LANE,
+        ],
+        check=False,
+        capture_output=True,
+    )
+
+    assert result.returncode == 1
+    assert result.stdout == b""
+    summary = json.loads(result.stderr)
+    assert summary["schema"] == SUMMARY_SCHEMA
+    assert summary["blocking"] is True
+    assert summary["problems"][0]["reason"] == "CHECKPOINT_INVALID"
+
+
+def test_sparse_summary_bounds_problem_details() -> None:
+    report = {
+        "blocking": True,
+        "checkpoint": ".codex/worktree-checkpoints/lane-a.json",
+        "counts": {"entries": 25, "issues": 0, "reasons": {"SPILL": 25}},
+        "entries": [
+            {
+                "blocking": True,
+                "path": f"spill-{index:02d}",
+                "reason": "SPILL",
+                "status": "??",
+            }
+            for index in range(25)
+        ],
+        "head": "a" * 40,
+        "issues": [],
+        "lane_id": LANE,
+        "staged_check": False,
+    }
+
+    summary = _CHECKER._summary(report)
+
+    assert len(summary["problems"]) == _CHECKER.SUMMARY_PROBLEM_LIMIT
+    assert summary["problems_omitted"] == 5
 
 
 def test_cleanup_plan_is_classified_but_never_executed(tmp_path: Path) -> None:

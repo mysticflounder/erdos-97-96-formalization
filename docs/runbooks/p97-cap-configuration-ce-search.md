@@ -136,7 +136,7 @@ export TZ=UTC
 ce_require_clean_hygiene() (
   set -o pipefail
   uv run --isolated --frozen python scripts/check_worktree_hygiene.py \
-    report --lane "$CE_LANE_ID" |
+    report --lane "$CE_LANE_ID" --verbose |
     jq -s -e \
       --arg lane "$CE_LANE_ID" \
       --arg head "$CE_EXPECTED_HEAD" \
@@ -320,7 +320,7 @@ resume it must contain no issue:
   set -e
   set -o pipefail
   uv run --isolated --frozen python scripts/check_worktree_hygiene.py \
-    report --lane "$CE_LANE_ID" |
+    report --lane "$CE_LANE_ID" --verbose |
     jq -s -e \
       --arg lane "$CE_LANE_ID" \
       --arg head "$CE_EXPECTED_HEAD" \

@@ -2,8 +2,9 @@
 """Read-only, owner-scoped worktree hygiene checks.
 
 The checker deliberately treats Git and the filesystem as untrusted inputs.  It
-never stages, cleans, moves, deletes, or writes a file.  Its only output is one
-canonical JSON document on stdout.
+never stages, cleans, moves, deletes, or writes a file.  Report mode emits a
+bounded canonical summary by default, while a clean check is silent.  Pass
+``--verbose`` for the complete canonical report.
 """
 
 from __future__ import annotations
@@ -26,6 +27,7 @@ from typing import Any
 CHECKPOINT_SCHEMA = "worktree-lane-checkpoint/v1"
 RUN_MANIFEST_SCHEMA = "worktree-run-manifest/v1"
 REPORT_SCHEMA = "worktree-hygiene-report/v1"
+SUMMARY_SCHEMA = "worktree-hygiene-summary/v1"
 CARD_HEAD_SCHEMA = "p97_ahead_head_run_manifest.v1"
 P97_COMMON_ONLY_V7_SCHEMA = "p97-freshthird-firstnonhit-common-only-v7/run/v1"
 P97_RUN_SCHEMAS = frozenset(
@@ -39,6 +41,7 @@ P97_RUN_SCHEMAS = frozenset(
     }
 )
 PUBLICATION_LIMIT_BYTES = 100 * 1024 * 1024
+SUMMARY_PROBLEM_LIMIT = 20
 GENERATED_OUTPUT_CLASSES = ("artifacts", "events", "tmp")
 
 _CHECKPOINT_KEYS = {
@@ -483,16 +486,18 @@ def _base_is_ancestor(repo: Path, base_head: str) -> bool:
     return result.returncode == 0
 
 
-def _status(repo: Path) -> tuple[StatusEntry, ...]:
+def _status(repo: Path, *, staged_check: bool = False) -> tuple[StatusEntry, ...]:
+    arguments = ["status", "--porcelain=v1", "-z"]
+    if staged_check:
+        # Publication checks are owner-scoped.  Declared files and generated roots
+        # are validated independently below, so enumerating the global ignored and
+        # untracked backlog adds no staged safety and dominates large worktrees.
+        arguments.append("--untracked-files=no")
+    else:
+        arguments.extend(["--untracked-files=all", "--ignored=matching"])
     raw = _run_git(
         repo,
-        [
-            "status",
-            "--porcelain=v1",
-            "-z",
-            "--untracked-files=all",
-            "--ignored=matching",
-        ],
+        arguments,
     )
     fields = raw.split(b"\0")
     if not fields or fields[-1] != b"":
@@ -1536,7 +1541,7 @@ def inspect_worktree(
                 "checkpoint base_head is not an ancestor of HEAD",
             )
         )
-    first_status = _status(repo)
+    first_status = _status(repo, staged_check=staged)
     valid_roots: set[str] = set()
     try:
         first_snapshot, first_roots = _scope_snapshot(
@@ -1546,11 +1551,12 @@ def inspect_worktree(
     except HygieneError as exc:
         first_snapshot = None
         issues.append(_issue("DECLARED_SCOPE_INVALID", checkpoint.path, str(exc)))
+    del first_status
 
     if between_scans is not None:
         between_scans()
 
-    second_status = _status(repo)
+    second_status = _status(repo, staged_check=staged)
     try:
         second_snapshot, second_roots = _scope_snapshot(
             repo, checkpoint, second_status, staged=staged
@@ -1683,6 +1689,50 @@ def _finalize_report(
     }
 
 
+def _summary(report: Mapping[str, Any]) -> dict[str, Any]:
+    """Return a deterministic, bounded diagnostic view of a full report."""
+
+    problems: list[dict[str, Any]] = []
+    for issue in report.get("issues", []):
+        problems.append(
+            {
+                "detail": issue["detail"],
+                "path": issue["path"],
+                "reason": issue["reason"],
+            }
+        )
+    for entry in report.get("entries", []):
+        if entry["blocking"]:
+            problem = {
+                "path": entry["path"],
+                "reason": entry["reason"],
+                "status": entry["status"],
+            }
+            if "original_path" in entry:
+                problem["original_path"] = entry["original_path"]
+            problems.append(problem)
+    problems.sort(
+        key=lambda row: (
+            row["reason"],
+            row["path"],
+            row.get("status", ""),
+            row.get("detail", ""),
+        )
+    )
+    omitted = max(0, len(problems) - SUMMARY_PROBLEM_LIMIT)
+    return {
+        "blocking": report["blocking"],
+        "checkpoint": report.get("checkpoint"),
+        "counts": report["counts"],
+        "head": report.get("head"),
+        "lane_id": report["lane_id"],
+        "problems": problems[:SUMMARY_PROBLEM_LIMIT],
+        "problems_omitted": omitted,
+        "schema": SUMMARY_SCHEMA,
+        "staged_check": report["staged_check"],
+    }
+
+
 def _parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("command", choices=("report", "check"))
@@ -1690,6 +1740,11 @@ def _parser() -> argparse.ArgumentParser:
     parser.add_argument("--checkpoint")
     parser.add_argument("--repo-root", type=Path, default=Path.cwd())
     parser.add_argument("--staged", action="store_true")
+    parser.add_argument(
+        "--verbose",
+        action="store_true",
+        help="emit the complete worktree-hygiene-report/v1 document",
+    )
     return parser
 
 
@@ -1720,7 +1775,12 @@ def main(argv: Sequence[str] | None = None) -> int:
             "schema": REPORT_SCHEMA,
             "staged_check": args.staged,
         }
-    sys.stdout.buffer.write(canonical_json_bytes(report) + b"\n")
+    if args.verbose:
+        sys.stdout.buffer.write(canonical_json_bytes(report) + b"\n")
+    elif args.command == "report":
+        sys.stdout.buffer.write(canonical_json_bytes(_summary(report)) + b"\n")
+    elif report["blocking"]:
+        sys.stderr.buffer.write(canonical_json_bytes(_summary(report)) + b"\n")
     return 1 if args.command == "check" and report["blocking"] else 0
 
 

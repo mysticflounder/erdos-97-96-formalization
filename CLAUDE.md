@@ -85,17 +85,19 @@ not the current `HEAD`.  The field records the lane base; the commit a run
 actually executed from belongs in the run's own record and in the closure plan.
 
 Run the read-only hygiene report at a natural checkpoint and before asking
-another agent to take over:
+another agent to take over. Reports are sparse by default; pass `--verbose`
+when a consumer needs the complete `worktree-hygiene-report/v1` document:
 
 ```bash
-python scripts/check_worktree_hygiene.py report --lane <lane-id>
+uv run python scripts/check_worktree_hygiene.py report --lane <lane-id>
 ```
 
 Before staging or committing, stage exact owned paths only and require the
-staged check to pass:
+staged check to pass. A successful check is silent unless `--verbose` is used;
+blocking diagnostics are always printed:
 
 ```bash
-python scripts/check_worktree_hygiene.py check --lane <lane-id> --staged
+uv run python scripts/check_worktree_hygiene.py check --lane <lane-id> --staged
 ```
 
 Foreign dirty paths are reported for coordination.  Foreign staged paths are a
