@@ -1,5 +1,4 @@
-#!/usr/bin/env python3
-"""Normalize the authenticated Child33--Child40 exact-17 mine artifacts.
+"""Normalize the authenticated Child33--Child43 exact-17 mine artifacts.
 
 This is deliberately an artifact-only analysis.  It never opens DIMACS files,
 starts a solver, imports Lean, or treats a missing wave mine as an empty mine.
@@ -12,7 +11,6 @@ import json
 from collections import Counter, defaultdict
 from pathlib import Path
 from typing import Any
-
 
 ROOT = Path(__file__).resolve().parents[3]
 SCRATCH = ROOT / "scratch" / "exact17-lean-to-sat"
@@ -72,6 +70,48 @@ def normalized_support(support: list[list[int]], order: list[int]) -> str:
     return json.dumps(min(variants), separators=(",", ":"))
 
 
+def incidence_wl_signature(support: list[list[int]]) -> str:
+    """Role-preserving, label-independent incidence fingerprint.
+
+    This is an isomorphism invariant (though not a complete graph-isomorphism
+    test): center and point vertices are kept as different roles, while all
+    raw labels and named-order positions are erased.  The cyclic representative
+    remains available separately in ``normalized_support``.
+    """
+    centers = sorted({int(a) for a, _ in support})
+    points = sorted({int(b) for _, b in support})
+    neighbours: dict[tuple[str, int], list[tuple[str, int]]] = {}
+    for c in centers:
+        neighbours[("C", c)] = [("P", p) for a, p in support if int(a) == c]
+    for p in points:
+        neighbours[("P", p)] = [("C", c) for c, b in support if int(b) == p]
+    colors = {
+        vertex: f"{vertex[0]}:{len(neighbours[vertex])}"
+        for vertex in neighbours
+    }
+    for _ in range(len(neighbours) + 1):
+        refined = {
+            vertex: json.dumps(
+                [colors[vertex], sorted(colors[other] for other in neighbours[vertex])],
+                separators=(",", ":"),
+            )
+            for vertex in neighbours
+        }
+        palette = {value: str(index) for index, value in enumerate(sorted(set(refined.values())))}
+        next_colors = {vertex: f"{vertex[0]}:{palette[value]}" for vertex, value in refined.items()}
+        if next_colors == colors:
+            break
+        colors = next_colors
+    return json.dumps(
+        {
+            "edges": len(support),
+            "centers": sorted(Counter(colors[v] for v in colors if v[0] == "C").items()),
+            "points": sorted(Counter(colors[v] for v in colors if v[0] == "P").items()),
+        },
+        separators=(",", ":"),
+    )
+
+
 def order_from_record(record: dict[str, Any], fallback: list[int] | None = None) -> list[int] | None:
     value = record.get("order")
     if isinstance(value, list) and all(isinstance(x, int) for x in value):
@@ -115,6 +155,7 @@ def compact_record(
         result["support"] = sorted([[int(a), int(b)] for a, b in support])
         result["support_size"] = len(support)
         result["normalized_support"] = normalized_support(support, order)
+        result["incidence_wl_signature"] = incidence_wl_signature(support)
         result["order_index"] = record.get("order_index")
     return result
 
@@ -216,20 +257,30 @@ def main() -> None:
             "normalized_support": None,
         })
 
-    # Child39 and Child40 analyses contain explicit support labels and source order.
-    for wave in (39, 40):
-        if wave == 39:
-            path = "scratch/exact17-lean-to-sat/child39-wave-mine/child39-analysis.json"
-        else:
-            path = "scratch/exact17-lean-to-sat/child40-wave-mine/child40-analysis.json"
+    # Child39--Child43 analyses contain explicit support labels and source order.
+    # They are independently authenticated mines; do not infer a missing report
+    # to mean that a wave had no occurrences.
+    for wave in (39, 40, 41, 42, 43):
+        path = f"scratch/exact17-lean-to-sat/child{wave}-wave-mine/child{wave}-analysis.json"
         report = load(path)
+        custody_info = custody(wave)
+        provenance = report.get("provenance", {})
+        replay = report.get("independent_replay", {})
+        model_match = provenance.get("model_sha256") == custody_info["model_sha256"]
+        replay_ok = replay.get("satisfies_all") is True
         reports[wave] = {
             "artifact": path,
             "status": report.get("status"),
-            "provenance": report.get("provenance"),
-            "authenticated_custody": custody(wave),
-            "provenance_model_matches_custody": report.get("provenance", {}).get("model_sha256") == custody(wave)["model_sha256"],
-            "replay": report.get("independent_replay"),
+            "provenance": provenance,
+            "authenticated_custody": custody_info,
+            "provenance_model_matches_custody": model_match,
+            "replay": replay,
+            "authenticated_mine": (
+                report.get("status") == "PASS"
+                and custody_info["authenticated"]
+                and model_match
+                and replay_ok
+            ),
             "support_data": "explicit producer supports",
         }
         for occurrence in report.get("two_kalmanson_occurrences", []):
@@ -248,12 +299,28 @@ def main() -> None:
                         bank_relation=candidate.get("bank_relation"),
                     )
                 )
-        if wave == 39:
-            for item in report.get("diagnostic_only", []):
-                records.append(compact_record(39, "diagnostic_only", item))
+        for item in report.get("diagnostic_only", []):
+            records.append(compact_record(wave, "diagnostic_only", item))
         for scan in report.get("formalized_core_scans", []):
             for item in scan.get("records", []):
                 records.append(compact_record(wave, "formalized_scan", item))
+
+    # Child44 is a source-checked Lean promotion of Child43, not an independent
+    # SAT assignment/mine.  Keep the bank increment visible without double-counting
+    # Child43's 57 occurrences in recurrence or frequency tables.
+    child43_analysis = "scratch/exact17-lean-to-sat/child43-wave-mine/child43-analysis.json"
+    reports[44] = {
+        "artifact": "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenFortyThirdModelRefinements.lean",
+        "export": "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenFortyThirdModelRefinementsExport.lean",
+        "status": "PROMOTION_ONLY_NO_NEW_SAT_MINE",
+        "source_wave": 43,
+        "source_analysis": child43_analysis,
+        "source_analysis_sha256": sha256(ROOT / child43_analysis),
+        "banked_support_count": 57,
+        "banked_clause_count": 228,
+        "support_data": "inherited Child43 supports; not an independent model",
+        "counted_in_occurrence_tables": False,
+    }
 
     # The normalized recurrence table is intentionally restricted to explicit supports.
     explicit = [r for r in records if r.get("normalized_support") is not None]
@@ -288,6 +355,45 @@ def main() -> None:
             "missing_waves_are_untrusted": True,
         })
 
+    structural_by_signature: dict[str, list[dict[str, Any]]] = defaultdict(list)
+    for item in explicit:
+        structural_by_signature[item["incidence_wl_signature"]].append(item)
+    structural_recurrence = []
+    for signature, items in sorted(structural_by_signature.items()):
+        waves = sorted({item["wave"] for item in items})
+        structural_recurrence.append({
+            "incidence_wl_signature": signature,
+            "occurrence_count": len(items),
+            "waves": waves,
+            "first_wave": min(waves),
+            "last_wave": max(waves),
+            "support_sizes": dict(Counter(item["support_size"] for item in items)),
+            "families": dict(Counter(item.get("family") for item in items)),
+        })
+
+    source_valid = [item for item in explicit if item.get("kind") == "source_valid_occurrence"]
+    source_sizes_by_wave = {
+        str(wave): dict(sorted(Counter(item["support_size"] for item in source_valid if item["wave"] == wave).items()))
+        for wave in (39, 40, 41, 42, 43)
+    }
+    incidence_frequency = Counter(
+        (int(center), int(point))
+        for item in source_valid
+        for center, point in item.get("support", [])
+    )
+    coverage = {
+        "source_valid_occurrence_count": len(source_valid),
+        "distinct_raw_support_count": len({json.dumps(item.get("support"), separators=(",", ":"), sort_keys=True) for item in source_valid}),
+        "distinct_cyclic_structural_support_count": len({item["normalized_support"] for item in source_valid}),
+        "distinct_incidence_isomorphism_fingerprint_count": len({item["incidence_wl_signature"] for item in source_valid}),
+        "support_union_incidence_count": len(incidence_frequency),
+        "most_frequent_source_incidence": [
+            {"center": center, "point": point, "occurrences": count}
+            for (center, point), count in sorted(incidence_frequency.items(), key=lambda pair: (-pair[1], pair[0]))[:10]
+        ],
+        "coverage_claim": "NO_PROOF: finite observed supports do not establish a universal SourceRealization hitting theorem",
+    }
+
     for wave, report in reports.items():
         if report.get("status") != "MISSING_WAVE_MINE":
             report["record_count"] = sum(item["wave"] == wave for item in records)
@@ -295,20 +401,25 @@ def main() -> None:
     summary = {
         "schema": "p97-exact17-cross-wave-meta-analysis/v1",
         "status": "PASS_WITH_EXPLICIT_GAPS",
-        "scope": "authenticated Child33--Child40 durable artifacts only",
-        "symmetry": "dihedral rotations and cyclic reversal on each recorded named order; center/point roles retained",
+        "scope": "authenticated Child33--Child43 durable artifacts plus Child44 promotion metadata",
+        "symmetry": "cyclic named-order dihedral normalization plus role-preserving label-independent incidence WL fingerprints",
         "waves": reports,
         "record_counts": dict(Counter(str(item["wave"]) for item in records)),
         "explicit_support_record_count": len(explicit),
         "normalized_support_class_count": len(recurrence),
         "recurring_normalized_supports": [item for item in recurrence if len(item["waves"]) > 1],
         "normalized_supports": recurrence,
+        "structural_isomorphism_recurrence": structural_recurrence,
         "motif_families": families,
+        "source_valid_support_sizes_by_wave": source_sizes_by_wave,
+        "coverage_analysis": coverage,
         "records": records,
         "limitations": [
             "Child33--Child36 reports are core-only for most records; no support is invented.",
             "Child37 has authenticated SAT custody but no durable wave-mine report; it is missing, not zero.",
             "Child38 ledger hit pairs are not raw selected-row support labels, so they are not normalized.",
+            "Child44 is a Lean promotion of Child43, not a new SAT assignment; its 57 supports and 228 clauses are not counted again.",
+            "Incidence WL fingerprints are isomorphism-invariant structural fingerprints, not complete graph-isomorphism certificates.",
             "Observed disappearance means absent from available reports after the last occurrence; it is not a proof of global disappearance.",
             "The analysis reports source-valid producer occurrences separately from diagnostic or lost records.",
         ],

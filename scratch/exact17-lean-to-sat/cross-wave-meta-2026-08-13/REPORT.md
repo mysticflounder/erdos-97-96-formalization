@@ -1,76 +1,113 @@
-# Exact-17 Child33--Child40 normalized wave meta-analysis
+# Exact-17 cross-wave meta-analysis: Child33--Child44
 
-Status: `PASS_WITH_EXPLICIT_GAPS`.  The reproducible analyzer is
-[`analyze.py`](analyze.py); its complete normalized data is
-[`cross-wave-meta.json`](cross-wave-meta.json).  It reads only durable
-artifacts and performs no DIMACS, solver, or Lean operation.
+Status: `PASS_WITH_EXPLICIT_GAPS`.  [`analyze.py`](analyze.py) is an
+artifact-only, reproducible analyzer: it reads JSON/Lean-bank metadata, never
+opens DIMACS, runs a solver, or builds Lean.  Its output is
+[`cross-wave-meta.json`](cross-wave-meta.json).
 
-## Authentication and coverage
+## Scope and authentication
 
-All Child33--Child40 custody model/final pairs are present and each final says
-`SAT`; the analyzer checks the custody model SHA against the final.  Reports
-whose own provenance carries a model SHA are checked against that custody SHA.
-The principal inputs are:
+The normalized occurrence tables contain independently authenticated SAT mines
+from Child39--Child43.  Earlier durable artifacts are retained with their
+known limitations.  Child44 is represented only as a source-checked Lean
+promotion of Child43 and is not counted as a second SAT assignment.
 
-| wave | authenticated mine input | durable result |
+| wave | durable mine input | result / mine count |
 |---|---|---|
-| 33 | `child33-postwave-inventory-candidates-v2-2026-08-13.json` | 5 replay-complete diagnostic candidates; core-only |
-| 34 | `child34-wave-mine/child34-wave-mine.json` | 6 records; core-only |
-| 35 | `child35-wave-mine/child35-wave-mine.json` | 6 records; core-only |
-| 36 | `child36-wave-mine-summary.json` | 2 new and 5 lost records; core-only summary |
-| 37 | no wave-mine report | custody exists, but mining data is missing (not zero) |
-| 38 | `child38-wave-mine/child38-cancellation-bank-ledger.json` | 28 bank entries, 112 clauses; hit-index pairs, not raw supports |
-| 39 | `child39-wave-mine/child39-analysis.json` | replay PASS; 49 explicit source-valid supports, 2 diagnostic records |
-| 40 | `child40-wave-mine/child40-analysis.json` | replay PASS; 84 explicit source-valid supports, 8 formalized scans |
+| 33 | `child33-postwave-inventory-candidates-v2-2026-08-13.json` | 5 diagnostic, core-only |
+| 34 | `child34-wave-mine/child34-wave-mine.json` | 6 core-only records |
+| 35 | `child35-wave-mine/child35-wave-mine.json` | 6 core-only records |
+| 36 | `child36-wave-mine-summary.json` | 2 new + 5 locally lost, core-only |
+| 37 | no durable mine report | authenticated custody, mine missing (not zero) |
+| 38 | `child38-wave-mine/child38-cancellation-bank-ledger.json` | 28 bank entries / 112 clauses; hit indices only |
+| 39 | `child39-wave-mine/child39-analysis.json` | 49 source-valid occurrences |
+| 40 | `child40-wave-mine/child40-analysis.json` | 84 source-valid occurrences |
+| 41 | `child41-wave-mine/child41-analysis.json` | 133 source-valid occurrences |
+| 42 | `child42-wave-mine/child42-analysis.json` | 35 source-valid occurrences |
+| 43 | `child43-wave-mine/child43-analysis.json` | 57 source-valid occurrences |
+| 44 | `BlockerVExactSeventeenFortyThirdModelRefinements.lean` | promotion only: 57 supports / 228 clauses |
 
-The custody lineage is independently evidenced by the per-wave
-`piqd-childNN-core1-custody-{model,final}.json` files.  Child39 replay checks
-5,847,388 clauses; Child40 replay checks 5,847,584 clauses.  Child41 is not in
-scope and was not mined.
+For Child41/42/43, the analyzer checks `status=PASS`, custody final
+`result=SAT`, custody model SHA = analysis provenance model SHA, and
+`independent_replay.satisfies_all=true`.  The authenticated mine inputs have
+these hashes:
 
-## Normalization and recurrence
+* Child41 CNF `fc19386fdd9703f5313e1bf49b164d87c5905c56c727cfea6408dc7d01e78d24`;
+  model `cf1cb831223700ebc376a50048260fc280a32aed7c91723c262b8a1274b5896a`.
+* Child42 CNF `375b7bc42381175119545627ab55c6bacb285fa35e4486f0b11193300620921f`;
+  model `9df868b2160c2e3b1f37cee35212c4cc405f63b3ad2f8671eacd2b6b52419bad`.
+* Child43 CNF `dbfbd84473cfe86a0e596322c0c0af8a077fc830ab5a9976c5efa7ea80a96c76`;
+  model `5a68926a32d5406ffdea187dc4e4c18330799160a4e8596fc463fcc3160530ce`.
 
-For each explicit `(center, point)` support, the analyzer maps labels to the
-recorded named order and takes the lexicographically least representative over
-all cyclic rotations and cyclic reversals.  Center/point roles remain
-distinct.  This produces 133 explicit producer occurrences and 130 normalized
-support classes.  There are three duplicate normalized classes, all twice
-within Child39; there are **zero cross-wave recurring normalized supports**.
-The explicit supports are all forward-oriented producer records (133 forward,
-0 reverse); Child38's reflected hit indices cannot be counted as labelled
-reverse supports.
+Independent replay checked respectively 5,847,920, 5,848,452, and 5,848,592
+clauses over 308 variables, with all clauses satisfied.  The durable mine JSON
+hashes are Child41 `f1861dff33d8412e0bd8b4bfec311c7aa0c7d35b088126a0dfc69edd21e6d354`,
+Child42 `1a93c64bd9b5cbe6d0431b3fd801dba57c515cf1e2423894132dd4d052635c68`,
+and Child43 `c3ed03bc91979563804328675784be47dab81271daf7eeb7c6d5f07e59cd156e`.
 
-Minimal-support sizes are:
+## Structural normalization and counts
 
-* Child39: 49 total — `{4: 1, 6: 33, 8: 8, 10: 7}` across its two orders.
-* Child40: 84 total — `{6: 11, 8: 8, 10: 9, 11: 1, 12: 22, 14: 14,
-  16: 8, 17: 2, 18: 7, 20: 2}`.
+For every explicit source support, labels are first mapped to its recorded
+named order and canonicalized under cyclic rotations and reversal, retaining
+center/point roles.  In addition, the analyzer computes a label-independent,
+role-preserving incidence WL fingerprint: this is an isomorphism invariant,
+not a complete graph-isomorphism decision procedure.  Thus raw labels are not
+used for structural recurrence, while cyclic order remains available for the
+order-sensitive theorem consumer.
 
-The explicit-support records are all the existing
-`equality-convex-two-kalmanson-cancellation` family.  Its first available
-occurrence is Child39 at raw-support resolution (earlier waves have only
-core-level records); its last is Child40.  Two-circle-bisector, convex-five,
-and perpendicular-bisector families recur in the available Child33--Child36
-and Child39--Child40 diagnostic/core-only records, but no source-labelled
-support is available for them here.
+The combined source-valid table has 358 occurrences, 345 distinct raw supports,
+355 cyclic structural classes, and 29 incidence fingerprints.  There are no
+repeated cyclic structural supports across waves (three duplicate classes are
+within Child39 only), but 10 incidence fingerprints recur across waves.  The
+recurring fingerprints are empirical shape recurrence, not theorem recurrence;
+the largest are size-6 (110 occurrences) and size-8 (40), with size-10 (48)
+also present in every mined wave.  The exact source-valid size histograms are:
 
-## Disappearance and failed candidates
+```
+Child39 {4:1, 6:33, 8:8, 10:7}
+Child40 {6:11, 8:8, 10:9, 11:1, 12:22, 14:14, 16:8, 17:2, 18:7, 20:2}
+Child41 {6:19, 8:9, 10:12, 12:21, 13:2, 14:31, 16:20, 17:1, 18:10, 19:3, 20:3, 22:2}
+Child42 {6:18, 8:5, 10:9, 12:1, 14:1, 16:1}
+Child43 {6:29, 8:10, 10:11, 12:4, 14:3}
+```
 
-Child36 records five Child35 records as `lost_records` and two new records;
-this is a local post-clause disappearance, not a claim of global absence.
-Child37's missing mine and Child38's index-only ledger prevent stronger
-disappearance claims.  The report retains rather than suppresses these gaps.
+All 358 source-valid occurrences are instances of the already source-checked
+`equality-convex-two-kalmanson-cancellation` producer family and feed the
+existing `GenericRowNogoodCertificate.false_of_twoKalmansonCancellationData_of_check`
+consumer.  No mined occurrence supplied a new general producer theorem.
 
-Unpromoted/diagnostic material is preserved separately: Child33 has five
-diagnostic candidates (one each from convex-five, two-circle forward/reverse,
-two-Kalmanson, and perpendicular-bisector); Child39 has two diagnostic-only
-two-circle records; Child40 has eight formalized scans (including convex-five,
-two-circle, perpendicular-bisector, exact-off-circle, and duplicate-center).
-These are not counted as source-valid support occurrences.
+## Recurrence, disappearance, and coverage
 
-Conclusion: the only normalized support-level recurrence analysis possible from
-authenticated durable data finds no cross-wave repeated support and no new
-uniform producer beyond the already-banked two-Kalmanson family.  A future
-retrospective using recovered Child34--Child38 raw producer records could
-change the support-level result; this report does not invent those missing
-inputs.
+The source-valid family appears in every independently mined wave 39--43, but
+support-level recurrence is not evidence that one support is unavoidable.  The
+earlier two-circle-bisector, convex-five, perpendicular-bisector, and related
+diagnostics remain diagnostic-only where their support labels are absent or no
+`SourceRealization` bridge is present.  Child36's `lost_records` are only local
+post-clause disappearance.  Child37 has no durable mine, and Child38 has only
+hit-index pairs; neither may be treated as zero or normalized labelled support.
+
+Across the 358 source records, 135 distinct center/point incidences occur in
+the union of supports.  The most frequent incidences are concentrated in the
+model's selected rows, but this is a finite empirical coverage statistic, not a
+universal hitting result.  The analyzer therefore records:
+
+`NO_PROOF: finite observed supports do not establish a universal SourceRealization hitting theorem`.
+
+The strongest concrete uniform theorem candidate remains the conjectural
+coverage statement that every admissible exact-17 `SourceRealization` contains
+at least one checked two-Kalmanson cancellation occurrence (and hence can use
+the existing generic consumer).  Current source hypotheses prove the local
+producer clauses once the selected occurrence's finite row/equality/order
+antecedents are supplied; they do not prove the global “some occurrence exists”
+antecedent.  No finite motif list extracted here changes that gap.
+
+## Fail-closed conclusion
+
+The latest cumulative CNF carries prior clauses, but not prior SAT assignments,
+raw supports, diagnostic scans, normalized identities, frequencies, or failed
+candidate records.  Child44 carries a Lean bank, not a new model.  Consequently
+this refresh adds Child41--43 evidence and the Child44 promotion distinction,
+but does not claim exact-17 closure, UNSAT, or an on-spine proof.  Missing
+Child37 mining and core/index-only Child33--38 artifacts remain explicit gaps.
+
+Analyzer SHA256: `cacea024cae72f23215ea92c0336aa776de8e5924afb883bec483924c4b17ca2`.
