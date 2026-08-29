@@ -1,0 +1,13 @@
+{
+  "bank_sha256": "cedf416274a28e0aaee1fe148986610fe7e0f81ca510cae5a69b43af3aa4348c",
+  "base_cnf_sha256": "8f072d08ada262fcb3ba98012a5fc638297c681509e8355e04dadd4dd350d2d3",
+  "base_n_clauses": 704400,
+  "base_n_variables": 47211,
+  "final_cnf_sha256": "82be51273d21d1377692a288b8d5714fb120792cb2e6565834b79f9b228ebd78",
+  "final_n_clauses": 704481,
+  "final_n_variables": 47211,
+  "installation_sha256": "f6860ff742497fcc34a45dddcb7717cdd4b92c3c653ff790adccfdee973be7f2",
+  "schema": "p97_rigid221_exact12_source_order_positive_bank_installation.v2",
+  "suffix_n_clauses": 81,
+  "suffix_sha256": "9d14cce70d65795c1d826ed316c9a8da43d3d0f81c335817a2f3de29f408507d"
+}

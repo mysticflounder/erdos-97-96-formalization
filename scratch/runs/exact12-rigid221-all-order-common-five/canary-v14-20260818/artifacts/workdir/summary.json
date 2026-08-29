@@ -1,0 +1,177 @@
+{
+  "arm_cell_index": 6,
+  "artifacts": {
+    "adjacent_apex_cross_block_family_bank": {
+      "bytes": 511287,
+      "path": "adjacent_apex_cross_block_family_bank.json",
+      "sha256": "09e5569a51232fc435edfefc9f51e0a84fbdef013dca7ba41e01f458d55a88ee"
+    },
+    "all_order_common_five_family_bank": {
+      "bytes": 36023549,
+      "path": "all_order_common_five_family_bank.json",
+      "sha256": "077ae2712b8fdb10b505763b1a62b152fb14133bc6c15ad214a99e613b5efad6"
+    },
+    "apex_first_opposite_shared_pair_common_five_family_bank": {
+      "bytes": 2391367,
+      "path": "apex_first_opposite_shared_pair_common_five_family_bank.json",
+      "sha256": "ed531923f0e3b3423e0c6c406759053faf2e4a266f4c3aa4bd1b75cf320c1340"
+    },
+    "apex_first_opposite_shared_pair_second_opposite_common_five_family_bank": {
+      "bytes": 2961063,
+      "path": "apex_first_opposite_shared_pair_second_opposite_common_five_family_bank.json",
+      "sha256": "fc3826d1b8ba1561ba8b5790b834d8e9bf3e211b5985af07d7540472354fcb55"
+    },
+    "apex_first_opposite_shared_pair_surplus_common_five_family_bank": {
+      "bytes": 4843607,
+      "path": "apex_first_opposite_shared_pair_surplus_common_five_family_bank.json",
+      "sha256": "ab52abfaa28366ae3324a275ffd370ba5fc9cae1b16c39b3b87c6ac4821bad8c"
+    },
+    "apex_first_surplus_second_common_five_family_bank": {
+      "bytes": 4042977,
+      "path": "apex_first_surplus_second_common_five_family_bank.json",
+      "sha256": "e0ebcbdc13c47679328746a2ee7a6cd43eeb213991a58edc147cdcf86a857f59"
+    },
+    "apex_internal_shared_pair_common_five_family_bank": {
+      "bytes": 2136351,
+      "path": "apex_internal_shared_pair_common_five_family_bank.json",
+      "sha256": "9b0ac725c33166fcb9f63cec7b2e23bfbd5e87135e7f2be590f43f683d091de3"
+    },
+    "apex_pair_cross_block_family_bank": {
+      "bytes": 1506993,
+      "path": "apex_pair_cross_block_family_bank.json",
+      "sha256": "d50c4a6dcc291ccb5de746c93a723fdb9767f4ea0cc5faa7233c6389b52e80ee"
+    },
+    "apex_shared_pair_cross_block_family_bank": {
+      "bytes": 1737260,
+      "path": "apex_shared_pair_cross_block_family_bank.json",
+      "sha256": "104963c33b1b4d8244eaee89a26516760c9c5d71020a2efa87ecbade152558ec"
+    },
+    "apex_triple_surplus_second_opposite_common_five_family_bank": {
+      "bytes": 3260238,
+      "path": "apex_triple_surplus_second_opposite_common_five_family_bank.json",
+      "sha256": "8c90035018ec70876bff6e8ab580016b0e5cba78908a5ef17857cf0fe3b6699d"
+    },
+    "apex_zero_cross_block_family_bank": {
+      "bytes": 1320216,
+      "path": "apex_zero_cross_block_family_bank.json",
+      "sha256": "43aa86b5851161caf4f9e2678f190779351174d8f112c420cb54c03a681f8e8c"
+    },
+    "arm_suffix": {
+      "bytes": 41404,
+      "path": "arm_suffix.json",
+      "sha256": "ea2c73f5e2da39213fceab3b4779623d2d4d8b8a7cf2ef451064f5b13298762c"
+    },
+    "center_exchange_all_order_common_five_family_bank": {
+      "bytes": 46806802,
+      "path": "center_exchange_all_order_common_five_family_bank.json",
+      "sha256": "5717a24abc71867f80fdefc2c6b6f1c1e138d3b94726cb914c0ddd8738e31b48"
+    },
+    "core_pair_all_order_common_five_family_bank": {
+      "bytes": 121948722,
+      "path": "core_pair_all_order_common_five_family_bank.json",
+      "sha256": "5dde98cea97e87961edb081544ee0e8026219cf90e6c06795d76098bcefdbac1"
+    },
+    "discovery_cnf": {
+      "bytes": 14462085,
+      "path": "discovery.cnf",
+      "sha256": "82be51273d21d1377692a288b8d5714fb120792cb2e6565834b79f9b228ebd78"
+    },
+    "first_opposite_pair_surplus_second_opposite_common_five_family_bank": {
+      "bytes": 5744797,
+      "path": "first_opposite_pair_surplus_second_opposite_common_five_family_bank.json",
+      "sha256": "36eddb3a314b70ae39f7aeac4df0d23b7d0fe370df807a1d80dbd1f615aaeb1a"
+    },
+    "job": {
+      "bytes": 43721,
+      "path": "job.json",
+      "sha256": "fd5a31d202e90ad90ec4a99acb12d776af1944418e88eaa81fc4561b5c40aa32"
+    },
+    "positive_membership_bank": {
+      "bytes": 164184,
+      "path": "positive_membership_bank.json",
+      "sha256": "955555b97abc33384f64a8fb8e31cda463a566954797d7c62f942f7b2bd55ec6"
+    },
+    "proof": null,
+    "reciprocal_first_opposite_surplus_second_opposite_common_five_family_bank": {
+      "bytes": 5255657,
+      "path": "reciprocal_first_opposite_surplus_second_opposite_common_five_family_bank.json",
+      "sha256": "3881e31108a5d8fc30e4750310db7e5f1b4cb1b1a7ad0bdfa292de16434553e7"
+    },
+    "second_apex_surplus_second_first_common_five_family_bank": {
+      "bytes": 4447499,
+      "path": "second_apex_surplus_second_first_common_five_family_bank.json",
+      "sha256": "e2ec1821e9bc02a6055fc0fb59d3cc6325f58ea874bfcfa1e4b460dfcb17766d"
+    },
+    "second_cap_apex_surplus_family_bank": {
+      "bytes": 717128,
+      "path": "second_cap_apex_surplus_family_bank.json",
+      "sha256": "7173d937547f4c7055571911ac2960964b453e4d5bf276db76f37ff98b8c6a68"
+    },
+    "second_opposite_triple_surplus_first_opposite_three_triad_family_bank": {
+      "bytes": 6797527,
+      "path": "second_opposite_triple_surplus_first_opposite_three_triad_family_bank.json",
+      "sha256": "22081dcb556ef6ca7f7c1b59f78e8f596ce850e2d3b83249b2e5cf06cfa42aea"
+    },
+    "source_order_bank": {
+      "bytes": 6362792,
+      "path": "source_order_bank.json",
+      "sha256": "a0d8d396da07c31ba4fa19694b4d9b1943126b80de84a7a3fd83190c88780892"
+    },
+    "source_order_installation": {
+      "bytes": 668,
+      "path": "source_order_installation.json",
+      "sha256": "916ca266c4a81a56c09a0044527c2b2ca59ed91d14a35cf8003c2443deaab50a"
+    },
+    "surplus_apex_pair_family_bank": {
+      "bytes": 316156,
+      "path": "surplus_apex_pair_family_bank.json",
+      "sha256": "18a9f6f0d96586f3631e1081e511aa038b300ec9a9a09f78f68946c4900bf16c"
+    },
+    "surplus_pair_second_opposite_apex_pair_common_five_family_bank": {
+      "bytes": 3591706,
+      "path": "surplus_pair_second_opposite_apex_pair_common_five_family_bank.json",
+      "sha256": "264d34f4aa54e086a09f32cdd1bf521e28fc947b60ec75305f28191a27f049da"
+    },
+    "surplus_three_triad_family_bank": {
+      "bytes": 830853,
+      "path": "surplus_three_triad_family_bank.json",
+      "sha256": "2c7d02dc3fb030a0aa23bb6c879020b84a7e66f71a9fbb52eb12c81e416499e9"
+    },
+    "survivor": {
+      "bytes": 309324,
+      "path": "survivor.json",
+      "sha256": "eb6d9ad8f73df521f14e3fcbfa01d758f6a27dc5979e407d0cdcfa2806b08b6b"
+    },
+    "terminal_cnf": null,
+    "zero_center_cross_block_family_bank": {
+      "bytes": 1085387,
+      "path": "zero_center_cross_block_family_bank.json",
+      "sha256": "0ae7fb493c7ddc4168b3629b5a9042453db0672e0641b4c978cb220383cb6070"
+    }
+  },
+  "classification": "UNADMITTED_STRUCTURAL_SURVIVOR",
+  "discovery_stdout_tail": "_unsat\":null,\"decisions\":32990,\"elapsed_s\":1,\"last_line\":\"c exit 10\",\"restarts\":null,\"solver_started\":true,\"solver_version\":null,\"spawn_failure\":null},\"project\":\"p97-exact12-next-row-arm-static-cell6-v14-r1\",\"proof_blob_hash\":null,\"proof_format\":null,\"proof_size_bytes\":null,\"recovery_action\":null,\"requested_core_limit\":1,\"result\":\"SAT\",\"run_epoch\":1,\"running_for_s\":null,\"solver_profile\":\"sat\",\"started_at\":1787102445,\"status\":\"completed\",\"timeout_s\":7200,\"wall_human\":\"1.4s\",\"wall_ms\":1444},\"terminal_status_canonical_sha256\":\"1b1429714d3941f8cf005e1ff26298d94e1b1041bd9eb198fc0946549806e9de\",\"terminal_status_exposed_identity_fields\":[\"backend\",\"cnf_blob_hash\",\"identity_hash\",\"project\",\"solver_profile\"],\"terminal_status_identity_scope\":\"EXPOSED_FIELDS_BOUND\",\"terminal_status_raw_artifact_sha256\":\"a123f462d2befb0e24eed8bc44faf82e886f0a5bdb03d78387e041be08b72e33\",\"terminal_status_raw_sha256\":\"a123f462d2befb0e24eed8bc44faf82e886f0a5bdb03d78387e041be08b72e33\",\"terminal_status_raw_size\":1407}\n\n",
+  "discovery_verdict": "SAT",
+  "error": null,
+  "job_id": "7f45a3e477b26e3a9b1bc02d7440cbab040bb96c6c4d6aa8e5396d05550c8695",
+  "job_sha256": "fd5a31d202e90ad90ec4a99acb12d776af1944418e88eaa81fc4561b5c40aa32",
+  "lean_ingress_theorem": "Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress.FullMembershipPrefixTerminalConsumer.false_of_terminalFullMembershipNamedDeletionArmBank",
+  "lean_terminal_ingress_ready": true,
+  "nice": 10,
+  "replay": {
+    "added_constraints": true,
+    "candidate": true,
+    "canonical_static_extension": true,
+    "exact_cnf": true,
+    "named_deletion_arm": true
+  },
+  "schema": "p97_rigid221_exact12_next_row_arm_static_canary_run.v14",
+  "scope": "one finite exact-12 placement-1 named-arm static canary; no aggregate arm coverage, universal lift, or Lean closure; the typed terminal consumer is ready, but a verified terminal proof must still be converted into a Lean DimacsUnsatisfiable witness",
+  "status": "SAT_WITNESS_REPLAYED",
+  "terminal_promotion_status": "UNSAT_DRAT_VERIFIED_AWAITING_LEAN_TERMINAL_CERTIFICATE",
+  "terminal_proof_authenticated": false,
+  "terminal_proof_verified": false,
+  "terminal_stdout_tail": null,
+  "terminal_verdict": null,
+  "timeout_seconds": 7200
+}

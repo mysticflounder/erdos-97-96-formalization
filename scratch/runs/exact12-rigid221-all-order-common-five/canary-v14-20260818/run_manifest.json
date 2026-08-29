@@ -1,0 +1,24 @@
+{
+  "base_head": "9eb55acf56ed659650807fb1fa9190a586276df2",
+  "created_utc": "2026-08-18T17:20:00Z",
+  "input_digests": {
+    "census/card_head/exact12_center_exchange_all_order_common_five_membership_family_bank.py": "56f50dd1d3aa2c35641641c967ec96174a9eb1a5bf11dd864f9306c74e6ee223",
+    "census/card_head/exact12_core_pair_all_order_common_five_membership_family_bank.py": "486ef817e779205ad9b1742f4d6d62f22890b4e3b1dd7f1d6301aca34e8c0c83"
+  },
+  "lane_id": "exact12-rigid221-all-order-common-five",
+  "manifest_sha256": "0481c9db86aa02a6f8b25f6e73d75668b0815020a9c73c3ec53281188e89a0bd",
+  "output_classes": [
+    "artifacts",
+    "events",
+    "tmp"
+  ],
+  "owner": "terminal-custodian",
+  "root": "scratch/runs/exact12-rigid221-all-order-common-five/canary-v14-20260818",
+  "run_id": "canary-v14-20260818",
+  "schema": "worktree-run-manifest/v1",
+  "source_digests": {
+    "census/card_head/exact12_next_row_arm_static_canary.py": "06497d2f06f30bb3a46a4c89d0b37e07ea5f6f66b69a5f3d8c853ac1b5df55a4",
+    "census/card_head/exact12_next_row_arm_static_piqd.py": "98d71eaecfa259a721043665e26d5838632dd594e9a7b922be3993794b9b521e",
+    "scripts/launch_exact12_arm_canary.sh": "99469533a8c7fd64076693f8de60afc2c3203bda5ed3d73f53295bdefa3f6fb6"
+  }
+}
