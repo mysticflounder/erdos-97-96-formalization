@@ -22,3 +22,11 @@ generated JSON, solver, hygiene, and search payloads were moved into a
 path-preserving quarantine under `/opt/nfs` and captured in a compressed
 archive there. The exact source paths, per-file checksums, content-audit
 summary, and authenticated archive receipt are retained alongside this index.
+
+The final pass retained a unique FirstNonHit source snapshot and its two run
+manifests in this attic. It added exact ignore rules for reproducible
+diagnostics, private local memory exports, and a local template diff containing
+a session pointer; those private local artifacts were deliberately not
+committed or sent to NFS. A separately audited 76-file solver-evidence batch
+was moved into the dated final NFS quarantine after informed approval, with
+its own path list, checksums, and receipt retained here.

@@ -552,3 +552,25 @@ docs/live-blueprint.md.tmp
 /scratch/lean-logs/u3-mixed-spine.txt
 /scratch/searches/*.txt
 /lean/scratch/runs/exact17-forty-ninth-wave-v2-zero-atom-20260817/export-v1/tmp/manual-export-candidate.cnf
+
+# Reproducible one-shot diagnostics and private local memory exports retired by
+# the 2026-08-29 final stale-file sweep. Keep these rules exact; do not broaden
+# them to JSON or text generally.
+/scratch/firstfiber-source-adapter-staged.json
+/scratch/firstnonhit-common-core-bank.json
+/scratch/firstnonhit-commonradius-normalization/current-hunk.txt
+/scratch/firstnonhit-commonradius-normalization/v1-run-head.txt
+/scratch/firstnonhit/agentic-global-row-relocation-2026-08-11.txt
+/scratch/firstnonhit/agentic-ingress-terminal-search-2026-08-11.txt
+/scratch/firstnonhit/agentic-kalmanson-equality-chain-2026-08-11.txt
+/scratch/firstnonhit/agentic-same-blocker-global-producer-2026-08-11.txt
+/scratch/firstnonhit/blocker-fiber-four-bank-2026-08-11.txt
+/scratch/firstnonhit/ingress-refs.txt
+/scratch/firstnonhit/same-blocker-bank.txt
+/scratch/freshthird-lane-history-convos.json
+/scratch/memory-retained.json
+/scratch/nthdegree_4388.json
+/scratch/nthdegree_4412_4413.json
+/scratch/nthdegree_4432_4433.json
+/scratch/nthdegree_digest.json
+/scratch/rigid221-sourceheavy-anchor/canary_v13_template.diff

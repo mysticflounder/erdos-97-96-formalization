@@ -1,0 +1,58 @@
+{
+  "schema": "stale-generated-scratch-archive/v1",
+  "lane_id": "stale-dirty-final-cleanup-20260829",
+  "base_head": "4fa3baee35db43c5f0659bbd299ae315327f57a8",
+  "created_utc": "2026-08-29T07:11:53Z",
+  "source": {
+    "path_list": "attic/stale-dirty-cleanup-2026-08-28/nfs-final-stale-scratch-paths.txt",
+    "path_list_sha256": "19d49bffb30266ef482be351c064ddf18dee498e2a3808e3cdb781d0b0279847",
+    "checksum_manifest": "attic/stale-dirty-cleanup-2026-08-28/nfs-final-stale-scratch-sha256.txt",
+    "checksum_manifest_sha256": "5f80bc9c490d2e137dcda8389f55fc83527aa6554806686eb7fd1d4db61c1696",
+    "file_count": 76,
+    "total_bytes": 144836581,
+    "regular_files": 76,
+    "symlinks": 0,
+    "open_handles_before_archive": 0
+  },
+  "content_audit": {
+    "credential_or_private_key_matches": 0,
+    "email_or_url_matches": 0,
+    "files_with_local_home_paths": 14,
+    "unique_local_home_paths": 2,
+    "piqd_session_uuids": 1,
+    "lean_snapshots": 2,
+    "lean_sorry_occurrences": 10,
+    "classification": "internal project-generated solver evidence and unpublished Lean snapshots",
+    "informed_user_approval": true
+  },
+  "archive": {
+    "path": "/opt/nfs/erdos-97-96-formalization-stale-scratch-20260829-final/final-stale-scratch.tar.gz",
+    "format": "tar+gzip",
+    "file_count": 76,
+    "compressed_bytes": 29229640,
+    "sha256": "a9e5711b70d99caf2a7bf6971288bc6340d66fc746520662ab26a01051dc266d",
+    "gzip_verified": true,
+    "extracted_files_verified_against_manifest": true
+  },
+  "quarantine": {
+    "root": "/opt/nfs/erdos-97-96-formalization-stale-scratch-20260829-final/source-quarantine",
+    "payload_file_count": 76,
+    "files_verified_against_manifest": true,
+    "local_sources_remaining": 0,
+    "owner_group_metadata_preserved": false,
+    "owner_group_warning": "The NFS mount remapped source ownership during cross-filesystem moves; file contents passed the frozen SHA-256 manifest after transfer.",
+    "filesystem_observation": {
+      "observed_utc": "2026-08-29T07:11:53Z",
+      "regular_files_in_payload_root": 169,
+      "manifested_payload_files": 76,
+      "auxiliary_appledouble_files": 93,
+      "auxiliary_appledouble_bytes": 380928
+    }
+  },
+  "root_auxiliary_metadata": {
+    "appledouble_files": 2,
+    "appledouble_bytes": 8192,
+    "note": "The NFS mount generated sidecars for the archive and quarantine root. Auxiliary AppleDouble files are excluded from the authenticated payload manifest."
+  },
+  "status": "complete"
+}

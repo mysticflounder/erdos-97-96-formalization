@@ -1,0 +1,22 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "stale-dirty-final-cleanup-20260829",
+  "owner": "doc-lantern",
+  "base_head": "4fa3baee35db43c5f0659bbd299ae315327f57a8",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/stale-dirty-final-cleanup-20260829.json",
+    ".gitignore",
+    "attic/stale-dirty-cleanup-2026-08-28/README.md"
+  ],
+  "generated_roots": [],
+  "durable_paths": [
+    "attic/stale-dirty-cleanup-2026-08-28/nfs-final-stale-scratch-archive.json",
+    "attic/stale-dirty-cleanup-2026-08-28/nfs-final-stale-scratch-paths.txt",
+    "attic/stale-dirty-cleanup-2026-08-28/nfs-final-stale-scratch-sha256.txt",
+    "attic/stale-dirty-cleanup-2026-08-28/scratch/firstnonhit-fiber-wave-v1/manifest.json",
+    "attic/stale-dirty-cleanup-2026-08-28/scratch/firstnonhit-fiber-wave-v1/source-nonclean/lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean",
+    "attic/stale-dirty-cleanup-2026-08-28/scratch/firstnonhit-fiber-wave-v1/source-nonclean/manifest.json"
+  ],
+  "created_utc": "2026-08-29T05:25:27Z",
+  "manifest_sha256": "3be00a1a5b401c0d3468fce6e4b8a7a766b356ccb69bf166a9cab59db1858bfa"
+}
