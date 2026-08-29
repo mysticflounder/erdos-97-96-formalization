@@ -1,0 +1,35 @@
+{
+  "base_head": "d62bfa4cd80ee0b6d89453ef143904f958735f94",
+  "created_utc": "2026-08-28T23:31:34Z",
+  "durable_paths": [
+    "certificates/scratch_runs_quarantine_20260828_v1.json",
+    "docs/audits/2026-08-28-scratch-runs-quarantine.md",
+    "scratch/runs/scratch-runs-quarantine-20260828/archive-v1/archive-plan.json",
+    "scratch/runs/scratch-runs-quarantine-20260828/archive-v1/candidate-content.jsonl",
+    "scratch/runs/scratch-runs-quarantine-20260828/archive-v1/candidate-plan.jsonl",
+    "scratch/runs/scratch-runs-quarantine-20260828/archive-v1/failed-attempt-zstd-decoder-20260828/archive-plan.json",
+    "scratch/runs/scratch-runs-quarantine-20260828/archive-v1/failed-attempt-zstd-decoder-20260828/candidate-content.jsonl",
+    "scratch/runs/scratch-runs-quarantine-20260828/archive-v1/failed-attempt-zstd-decoder-20260828/candidate-plan.jsonl",
+    "scratch/runs/scratch-runs-quarantine-20260828/archive-v1/failed-attempt-zstd-decoder-20260828/preservation-plan.jsonl",
+    "scratch/runs/scratch-runs-quarantine-20260828/archive-v1/failed-attempt-zstd-decoder-20260828/run_manifest.json",
+    "scratch/runs/scratch-runs-quarantine-20260828/archive-v1/failed-attempt-zstd-decoder-20260828/scratch_runs_quarantine_20260828_v1.json",
+    "scratch/runs/scratch-runs-quarantine-20260828/archive-v1/failed-refreeze-self-reference-20260828/archive-plan.json",
+    "scratch/runs/scratch-runs-quarantine-20260828/archive-v1/failed-refreeze-self-reference-20260828/candidate-plan.jsonl",
+    "scratch/runs/scratch-runs-quarantine-20260828/archive-v1/failed-refreeze-self-reference-20260828/preservation-plan.jsonl",
+    "scratch/runs/scratch-runs-quarantine-20260828/archive-v1/failed-refreeze-self-reference-20260828/run_manifest.json",
+    "scratch/runs/scratch-runs-quarantine-20260828/archive-v1/failed-refreeze-self-reference-20260828/scratch_runs_quarantine_20260828_v1.json",
+    "scratch/runs/scratch-runs-quarantine-20260828/archive-v1/preservation-plan.jsonl",
+    "scratch/runs/scratch-runs-quarantine-20260828/archive-v1/run_manifest.json"
+  ],
+  "generated_roots": [
+    "scratch/runs/scratch-runs-quarantine-20260828/archive-v1"
+  ],
+  "lane_id": "scratch-runs-quarantine-20260828",
+  "manifest_sha256": "d761ca7cc55026cd3b55b2f121c6316b8199c7bc395152322bd64dfb4761d9e3",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/scratch-runs-quarantine-20260828.json",
+    "scripts/quarantine_scratch_runs_20260828.py"
+  ],
+  "owner": "codex-scratch-runs-quarantine",
+  "schema": "worktree-lane-checkpoint/v1"
+}
