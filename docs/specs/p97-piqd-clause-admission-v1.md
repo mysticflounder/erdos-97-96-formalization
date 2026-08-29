@@ -43,7 +43,7 @@ prior receipt batch is subjected to the same literal-domain validation.
 
 The subsumption condition is deliberately stronger than exact deduplication.
 If an existing clause `E` satisfies `E ⊆ C`, then proposed clause `C` cannot
-be credited as a new refinement and the batch is rejected.  This check does
+be credited as a new formula-facing clause addition and the batch is rejected.  This check does
 not claim general logical irredundancy: an arbitrary collection of existing
 clauses may still imply a candidate even when no single clause subsumes it.
 
@@ -68,21 +68,30 @@ relax its live-custody requirement.
 
 ## Promotion boundary
 
-Passing this contract establishes a source-connected finite CEGAR refinement:
-the admitted clauses are tied to a banked consumer, were absent under the
-specified subsumption test, and eliminate the captured model.
+Passing this contract establishes formula-facing clause admission: the
+admitted clauses are tied to the recorded generator and consumer metadata,
+were absent under the specified subsumption test, and eliminate the captured
+assignment. It does not establish source preservation, a source-connected
+refinement, or clause class `SEMANTIC_REFINEMENT`. Those claims require a
+`p97-cegar-semantic-refinement/v1` receipt carrying accepted typed F1--F7
+evidence under `p97-cegar-semantic-contract/v1`.
 
 It does not establish exact-cardinality coverage, a universal theorem, UNSAT,
 proof-producing solver replay, Lean ingress, or closure of a production
 obligation.  Terminal UNSAT still requires a static proof-producing handoff and
 the relevant finite-coverage and source-lift theorems.
 
+Precedence: clause-admission status and receipt fields are custody evidence
+only. If they conflict with a semantic-authority gate or semantic terminal
+receipt, the semantic contract controls, and absent semantic evidence keeps
+source, abstract, and theorem promotion blocked.
+
 The proof-producing handoff must not assume that PIQD session clause positions
 are already LRAT input-clause identifiers.  PIQD currently detautologizes a
 submitted CNF before certificate generation: tautological clauses can be
 dropped and repeated literals can be deduplicated.  The lane therefore requires
 the proof job's explicit session-clause-to-certificate-clause map, including
-dropped entries, before it may bind refinement provenance to certificate clause
+dropped entries, before it may bind candidate-clause provenance to certificate clause
 IDs.  This admission gate rejects tautological and repeated-literal *new cuts*,
 but that does not establish that the frozen root has identity numbering through
 certificate preparation.

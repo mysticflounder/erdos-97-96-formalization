@@ -25,9 +25,9 @@ must first search both:
 The search must include the repository Lean corpus and the complete canonical
 P97 theorem-bank registry.  The result is recorded as either:
 
-- `reusable-theorem`, bound to a named Lean consumer, a source producer, an
-  authenticated source-backed refinement receipt, and the exact successor
-  CNF; or
+- `reusable-theorem`, a candidate-only workflow outcome bound to a named Lean
+  consumer, a source producer, an authenticated formula-facing clause receipt,
+  and the exact successor CNF; or
 - `no-justified-lift`, which records the completed negative review but does
   **not** authorize another solver wave.
 
@@ -160,17 +160,19 @@ not a kernel proof of search completeness.
 
 ## Claim boundary
 
-An authenticated receipt establishes only that a finite CEGAR refinement was
-searched, source-backed, and admitted according to this contract.  It does not
-establish exact-cardinality coverage, a universal lift, a Lean theorem, a
-closed `sorry`, or P97/P96.
+An authenticated receipt establishes only that a finite source-backed candidate
+was searched and admitted according to this custody contract. It does not
+establish F4, F1--F7, source-preserving semantic refinement, or theorem
+promotion; those require the accepted semantic receipts named by
+`p97-cegar-semantic-contract/v1`. It also does not establish exact-cardinality
+coverage, a universal lift, a Lean theorem, a closed `sorry`, or P97/P96.
 
 The child-33 theorem mine on 2026-08-13 makes one additional distinction
 explicit. A motif reported by model analysis is only a **candidate hit**. It may
 enter a successor formula only after a source-valid producer proves the
 corresponding clause from `SourceRealization` and the Lean exporter emits that
 exact clause. In that mine, five motif families were detected, but only paired
-Kalmanson and perpendicular-bisector met this promotion contract. The other
+Kalmanson and perpendicular-bisector met this gate's admission conditions. The other
 three remained diagnostic and supplied no clauses. Post-wave reports and
 receipts must record candidate discovery separately from admitted source-valid
 families.

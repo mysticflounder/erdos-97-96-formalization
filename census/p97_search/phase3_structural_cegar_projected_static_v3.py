@@ -90,6 +90,9 @@ projection_contract = importlib.import_module(
     "census.p97_search.cegar_projection_contract"
 )
 clause_contract = importlib.import_module("census.p97_search.cegar_clause_contract")
+semantic_authority = importlib.import_module(
+    "census.p97_search.cegar_semantic_authority"
+)
 
 
 SCHEMA = "p97-phase3-structural-cegar-v1"
@@ -7879,6 +7882,7 @@ def _manifest(
     productivity_stream: Mapping[str, Any] | None = None,
     survivor_block_contract: Mapping[str, Any] | None = None,
     terminal_clause_contract: Mapping[str, Any] | None = None,
+    semantic_authority_gate: Mapping[str, Any] | None = None,
 ) -> dict[str, Any]:
     bootstrap_count = sum(
         record["origin"]
@@ -8243,6 +8247,16 @@ def _manifest(
         ):
             raise StructuralCegarError("terminal clause contract/count mismatch")
         unsigned["terminal_clause_contract"] = dict(terminal_clause_contract)
+    if semantic_authority_gate is not None:
+        try:
+            semantic_authority.validate_authority_gate(
+                semantic_authority_gate, terminal_clause_contract
+            )
+        except semantic_authority.SemanticAuthorityError as exc:
+            raise StructuralCegarError(
+                f"semantic authority gate failed: {exc}"
+            ) from exc
+        unsigned["semantic_authority_gate"] = dict(semantic_authority_gate)
     if manifest_generation is not None:
         if type(manifest_generation) is not int or manifest_generation <= 0:
             raise StructuralCegarError("manifest generation must be positive")
@@ -8269,6 +8283,7 @@ def _manifest_from_prospective_state(
     productivity_stream: Mapping[str, Any] | None = None,
     survivor_block_contract: Mapping[str, Any] | None = None,
     terminal_clause_contract: Mapping[str, Any] | None = None,
+    semantic_authority_gate: Mapping[str, Any] | None = None,
 ) -> dict[str, Any]:
     """Project the hot manifest from state updated after durable appends."""
 
@@ -8328,6 +8343,18 @@ def _manifest_from_prospective_state(
         unsigned["terminal_clause_contract"] = dict(terminal_clause_contract)
     else:
         unsigned.pop("terminal_clause_contract", None)
+    if semantic_authority_gate is not None:
+        try:
+            semantic_authority.validate_authority_gate(
+                semantic_authority_gate, terminal_clause_contract
+            )
+        except semantic_authority.SemanticAuthorityError as exc:
+            raise StructuralCegarError(
+                f"semantic authority gate failed: {exc}"
+            ) from exc
+        unsigned["semantic_authority_gate"] = dict(semantic_authority_gate)
+    else:
+        unsigned.pop("semantic_authority_gate", None)
     return {**unsigned, "manifest_sha256": _sha256_value(unsigned)}
 
 
@@ -8362,6 +8389,26 @@ def _resume_survivor_block_contract(
     except projection_contract.ProjectionContractError as exc:
         raise StructuralCegarError(str(exc)) from exc
     return dict(stored)
+
+
+def _resume_semantic_authority_enabled(
+    prior_manifest: Mapping[str, Any],
+    terminal_clause_contract: Mapping[str, Any] | None,
+) -> bool:
+    stored = prior_manifest.get("semantic_authority_gate")
+    if stored is None:
+        # Active legacy runs adopt the fail-closed gate before another
+        # publication. Completed legacy artifacts retain exact replay.
+        return prior_manifest.get("status") == "RUNNING"
+    if not isinstance(stored, Mapping):
+        raise StructuralCegarError("resume semantic authority gate is not an object")
+    try:
+        semantic_authority.validate_authority_gate(stored, terminal_clause_contract)
+    except semantic_authority.SemanticAuthorityError as exc:
+        raise StructuralCegarError(
+            f"resume semantic authority gate failed: {exc}"
+        ) from exc
+    return True
 
 
 def _classification_count_cache(
@@ -9784,6 +9831,13 @@ def run_driver(
                     f"resume terminal clause contract failed: {exc}"
                 ) from exc
             terminal_clause_contract = dict(stored_terminal_contract)
+    emit_semantic_authority = (
+        True
+        if prior_manifest is None
+        else _resume_semantic_authority_enabled(
+            prior_manifest, terminal_clause_contract
+        )
+    )
     dynamic_learned_count, raw_count = _classification_count_cache(learned, survivors)
     initial_raw_count = raw_count
     next_manifest_generation = (
@@ -9874,6 +9928,11 @@ def run_driver(
             if productivity_ledger is None
             else productivity_ledger.snapshot().as_dict()
         )
+        semantic_authority_gate = (
+            semantic_authority.build_authority_gate(terminal_clause_contract)
+            if emit_semantic_authority
+            else None
+        )
         if (
             prospective_state is not None
             and not force_recount
@@ -9931,6 +9990,7 @@ def run_driver(
                 productivity_stream=productivity_stream_state,
                 survivor_block_contract=survivor_block_contract,
                 terminal_clause_contract=terminal_clause_contract,
+                semantic_authority_gate=semantic_authority_gate,
             )
         else:
             manifest = _manifest(
@@ -9953,6 +10013,7 @@ def run_driver(
                 productivity_stream=productivity_stream_state,
                 survivor_block_contract=survivor_block_contract,
                 terminal_clause_contract=terminal_clause_contract,
+                semantic_authority_gate=semantic_authority_gate,
             )
         _validate_manifest_count_cache(
             manifest,
@@ -10044,6 +10105,11 @@ def run_driver(
             ),
             survivor_block_contract=survivor_block_contract,
             terminal_clause_contract=terminal_clause_contract,
+            semantic_authority_gate=(
+                semantic_authority.build_authority_gate(terminal_clause_contract)
+                if emit_semantic_authority
+                else None
+            ),
         )
         _validate_manifest_count_cache(
             replayed_manifest,
@@ -10881,12 +10947,19 @@ def verify_shard_coverage(
                 "base_cnf_sha256": manifest["artifact_hashes"]["base.cnf"],
                 "terminal_cnf_sha256": manifest["artifact_hashes"]["terminal.cnf"],
                 "terminal_drat_sha256": manifest["artifact_hashes"]["terminal.drat"],
+                "semantic_authority_gate_sha256": (
+                    manifest["semantic_authority_gate"]["authority_sha256"]
+                    if isinstance(manifest.get("semantic_authority_gate"), Mapping)
+                    else None
+                ),
             }
             for index, (directory, manifest) in sorted(by_index.items())
         ],
+        "semantic_authority_gate": semantic_authority.build_authority_gate(None),
         "result_claim": (
             "all canonical Boolean shards are covered by independently "
-            "replayed and DRAT-rechecked shard-local terminal proofs"
+            "replayed and DRAT-rechecked shard-local terminal proofs; this is "
+            "finite Boolean custody only, with semantic promotion blocked"
         ),
         "trust_boundary": (
             "coverage composition and provenance comparison are checked by "

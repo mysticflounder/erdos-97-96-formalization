@@ -809,6 +809,16 @@ def test_runtime_terminal_publisher_is_wired_fail_closed(tmp_path: Path) -> None
     assert local_calls[0][1] == out / ".solver.drat"
     assert local_calls[0][0].read_bytes() == (out / "terminal.cnf").read_bytes()
     terminal_contract = result["terminal_clause_contract"]
+    authority_gate = result["semantic_authority_gate"]
+    assert authority_gate["operational_status_scope"] == "FINITE_BOOLEAN_CUSTODY_ONLY"
+    assert (
+        authority_gate["terminal_clause_contract_sha256"]
+        == terminal_contract["contract_sha256"]
+    )
+    assert authority_gate["source_promotion"]["status"] == "BLOCKED"
+    assert authority_gate["abstract_promotion"]["status"] == "BLOCKED"
+    assert authority_gate["theorem_promotion"]["status"] == "BLOCKED"
+    assert authority_gate["supports_theorem_promotion"] is False
     assert terminal_contract["promotion_status"] == "FINITE_BOOLEAN_FORMULA_ONLY"
     assert terminal_contract["supports_source_promotion"] is False
     buckets = terminal_contract["source_inventory"]["buckets"]
@@ -824,6 +834,46 @@ def test_runtime_terminal_publisher_is_wired_fail_closed(tmp_path: Path) -> None
     v3.clause_contract.validate_against_cnf(
         terminal_contract, (out / "terminal.cnf").read_bytes()
     )
+
+
+def test_shard_coverage_remains_semantically_blocked(tmp_path: Path) -> None:
+    solver, checker = _verified_unsat_transcript()
+    shards: list[Path] = []
+    manifests: list[dict[str, Any]] = []
+    for shard_index in range(2):
+        out = tmp_path / f"shard-{shard_index}"
+        manifests.append(
+            v3.run_driver(
+                out,
+                timeout_s=5,
+                learned_core_limit=2,
+                survivor_limit=2,
+                bootstrap_results=None,
+                algebraic_bootstrap=None,
+                projected_static_v3=True,
+                shard_depth=1,
+                shard_index=shard_index,
+                solver_runner=solver,
+                checker_runner=checker,
+            )
+        )
+        shards.append(out)
+
+    coverage = v3.verify_shard_coverage(shards, checker_runner=checker)
+
+    assert coverage["status"] == "STRUCTURAL_SHARD_COVERAGE_UNSAT_VERIFIED"
+    gate = coverage["semantic_authority_gate"]
+    assert gate["operational_status_scope"] == "FINITE_BOOLEAN_CUSTODY_ONLY"
+    assert gate["supports_source_promotion"] is False
+    assert gate["supports_abstract_promotion"] is False
+    assert gate["supports_theorem_promotion"] is False
+    assert [
+        shard["semantic_authority_gate_sha256"] for shard in coverage["shards"]
+    ] == [
+        manifest["semantic_authority_gate"]["authority_sha256"]
+        for manifest in manifests
+    ]
+    assert "semantic promotion blocked" in coverage["result_claim"]
 
 
 def test_terminal_publication_closes_before_qualification_finalization(

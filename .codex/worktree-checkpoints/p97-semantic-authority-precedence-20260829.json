@@ -1,0 +1,22 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "p97-semantic-authority-precedence-20260829",
+  "owner": "codex-p97-semantic-authority-precedence",
+  "base_head": "40dbc090b7f3c107cdc42c8c802f531d3a1cdc9e",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/p97-semantic-authority-precedence-20260829.json",
+    "census/p97_search/cegar_semantic_authority.py",
+    "census/p97_search/phase3_structural_cegar_projected_static_v3.py",
+    "census/p97_search/tests/test_cegar_semantic_authority.py",
+    "census/p97_search/tests/test_phase3_structural_cegar_projected_static_v3.py",
+    "docs/specs/p97-cegar-campaign-v1.md",
+    "docs/specs/p97-cegar-semantic-contract-v1.md",
+    "docs/specs/p97-cegar-wave-v1.md",
+    "docs/specs/p97-piqd-clause-admission-v1.md",
+    "docs/specs/p97-piqd-postwave-theorem-search-v1.md"
+  ],
+  "durable_paths": [],
+  "generated_roots": [],
+  "created_utc": "2026-08-29T03:28:56Z",
+  "manifest_sha256": "36c6049cbc8189c866132ce56f7bfc90d48e00f986816bab2b9f923e98dc60ec"
+}

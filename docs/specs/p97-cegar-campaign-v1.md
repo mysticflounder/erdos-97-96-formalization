@@ -1,6 +1,6 @@
 # P97 bounded CEGAR campaign custody contract v2
 
-Status: implemented finite-local source-entitlement remedy. This contract
+Status: implemented source-derived finite-local classification/custody remedy. This contract
 supplies durable ordered custody, source-derived duplicate-center
 classification, and a repeated-survivor stop/pivot gate. It does **not**
 schedule piqd jobs, manage aggregate coverage, establish an ambient-fiber or

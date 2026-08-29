@@ -528,7 +528,7 @@ contract.
 
 | Current artifact | What it establishes | Missing semantic link |
 |---|---|---|
-| `p97-cegar-wave/v1` manifest | source, encoding, execution, and promotion custody | R1--R4 and F4 producers |
+| `p97-cegar-wave/v1` manifest | source, encoding, execution, and intended-promotion custody | R1--R4, F1--F7, survivor discharge, and semantic terminal evidence |
 | attempt journal and seal | exact ordered solver history and artifacts | counterexample disposition |
 | SAT model replay | total model satisfies one exact formula | R3 and R4 unless separately supplied |
 | structural certificate | checked local detector result and clause compilation | source preservation under `Γ` |
@@ -553,6 +553,20 @@ with source and abstract promotion disabled. `LEARNED_CANDIDATE` is not
 `SEMANTIC_REFINEMENT`; only a receipt carrying accepted typed F1--F7 evidence
 may use the latter class. This checkpoint supplies formula custody, not F2 or a
 semantic terminal receipt.
+
+This contract has precedence over older clause-admission, wave-publication,
+and operational terminal-status labels. `CERTIFIED_UNSAT`,
+`STRUCTURAL_UNSAT_VERIFIED`, `P97_EUCLIDEAN_GAUGE_UNSAT_VERIFIED`, and a wave
+`publication_assessment` remain finite Boolean or custody statements unless an
+accepted `p97-cegar-semantic-terminal/v1` receipt supplies the exact semantic
+authority. The maintained runner records this absence with
+`p97-cegar-semantic-authority-gate/v1`; no older label may override a blocked
+gate.
+
+Formula-facing or custody success, including clause admission,
+`reusable-theorem`, `publication_assessment`, and `CERTIFIED_UNSAT`, does not
+establish source-preserving semantic refinement, satisfy R1--R4 or F1--F7, or
+authorize source, abstract, or theorem promotion.
 
 ## 10. Validation and adoption plan
 

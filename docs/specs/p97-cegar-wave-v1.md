@@ -65,8 +65,9 @@ a SAT assignment, replay LRAT, or prove a Lean theorem.
 
 ## Publication gate
 
-The reference `publication_assessment` returns a *publication candidate*, never
-a closure verdict. It fails closed unless:
+The reference `publication_assessment` returns a custody-level *publication
+candidate*, never semantic authority or a closure verdict. It fails closed
+unless:
 
 1. the terminal attempt is `CERTIFIED_UNSAT`;
 2. the journal is sealed by both its expected record count and terminal hash;
@@ -77,6 +78,14 @@ a closure verdict. It fails closed unless:
 
 Kernel-checked ingress, theorem provenance, universal lifting, and the direct
 live consumer remain mandatory downstream gates.
+
+Precedence: `publication_assessment`, evidence classification, query polarity,
+and `CERTIFIED_UNSAT` authenticate wave custody only. They do not satisfy
+R1--R4, F1--F7, survivor discharge, or terminal promotion under
+`p97-cegar-semantic-contract/v1`. A machine consumer must require an accepted
+`p97-cegar-semantic-terminal/v1` receipt; absent that receipt, a
+`p97-cegar-semantic-authority-gate/v1` record keeps source, abstract, and
+theorem promotion blocked.
 
 ## piqd boundary
 
