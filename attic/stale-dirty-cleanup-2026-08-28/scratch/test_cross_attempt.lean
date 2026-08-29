@@ -1,0 +1,39 @@
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure.TwoSourceCanonicalSurface
+
+open scoped EuclideanGeometry
+
+namespace Problem97
+namespace ATailFrontierLiveClosure
+open ATailApexRichClassStructure
+open ATailBiApexBlockerMultiplicity
+open ATailCriticalPairFrontier
+open ATailBiApexRobustCapBounds
+open ATailBlockerMultiplicityGeometry
+open ATailCriticalFiberClosingCore
+open ATailCriticalFiberRetainedRadiusSelector
+open ATailDeletionRobustness
+open ATailExactFourPhysicalConsumer
+open ATailExactFourRobustCapExpansion
+open ATailMinimalUniqueFourCover
+open ATailLargeCapUniqueFive
+open ATailLargeOppositeCapsBiApexSurface
+open ATailLocalizedCollisionMutualOmissionCycle
+open Census554.CapSelectedGeometry
+open ATailPhysicalSecondApexCommonDeletion
+open ATailPhysicalSecondApexSwap
+open ATailOrientedPhysicalApexIngress
+open ATailRetainedMatchingGeometricReduction
+open ATailRetainedMatchingLargeCapConsumer
+open ATailRetainedMatchingCommonDeletionCycle
+open ATailRetainedMatchingEndpointCollisionLocalization
+open ATailRetainedMatchingEndpointContinuation
+open ATailRetainedCollisionCapLocalization
+open ATailRetainedStrictInteriorPairSelector
+open ATailSurvivalCover
+
+attribute [local instance] Classical.propDecidable
+
+-- no theorem here
+
+end ATailFrontierLiveClosure
+end Problem97

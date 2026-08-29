@@ -1,0 +1,58 @@
+{
+  "schema": "stale-generated-scratch-archive/v1",
+  "lane_id": "stale-generated-cleanup-20260828",
+  "base_head": "dfc8fd7dcc9640e2f6241acdd5b0ed91d15a443c",
+  "created_utc": "2026-08-29T04:54:12Z",
+  "source": {
+    "path_list": "attic/stale-dirty-cleanup-2026-08-28/nfs-generated-scratch-paths.txt",
+    "path_list_sha256": "7f7f36f8b4c313c977f3f31f585401882cb29ff48ce24af458a216a7a89728f3",
+    "checksum_manifest": "attic/stale-dirty-cleanup-2026-08-28/nfs-generated-scratch-sha256.txt",
+    "checksum_manifest_sha256": "bf451f4fda69607433ddd7fb04ffa07a01919b32e1c5dc679184fd7848962158",
+    "file_count": 115,
+    "total_bytes": 10282076,
+    "regular_files": 115,
+    "symlinks": 0,
+    "open_handles_before_archive": 0
+  },
+  "content_audit": {
+    "credential_or_private_key_matches": 0,
+    "email_url_or_ip_matches": 0,
+    "files_with_local_home_paths": 23,
+    "piqd_snapshot_files_with_session_metadata": 2,
+    "session_uuid_records_per_piqd_snapshot": 130,
+    "classification": "internal project-generated solver and audit data",
+    "informed_user_approval": true
+  },
+  "archive": {
+    "path": "/opt/nfs/erdos-97-96-formalization-stale-scratch-20260828/generated-scratch.tar.gz",
+    "format": "tar+gzip",
+    "file_count": 115,
+    "compressed_bytes": 478444,
+    "sha256": "f90a8c61ce0539c609041da80da9720a3cc1a1dd208495d0bcd9e7b28a88f8bd",
+    "gzip_verified": true,
+    "extracted_files_verified_against_manifest": true
+  },
+  "quarantine": {
+    "root": "/opt/nfs/erdos-97-96-formalization-stale-scratch-20260828/source-quarantine",
+    "payload_file_count": 115,
+    "files_verified_against_manifest": true,
+    "local_sources_remaining": 0,
+    "owner_group_metadata_preserved": false,
+    "owner_group_warning": "The NFS mount refused source owner/group preservation during cross-filesystem moves; file contents passed the frozen SHA-256 manifest after transfer.",
+    "filesystem_observation": {
+      "observed_utc": "2026-08-29T05:02:30Z",
+      "regular_files_in_payload_root": 249,
+      "manifested_payload_files": 115,
+      "auxiliary_appledouble_files": 134,
+      "auxiliary_appledouble_bytes": 548864
+    }
+  },
+  "transfer_metadata_quarantine": {
+    "root": "/opt/nfs/erdos-97-96-formalization-stale-scratch-20260828/transfer-metadata-quarantine",
+    "regular_files": 10,
+    "appledouble_files": 10,
+    "appledouble_bytes": 40960,
+    "note": "The NFS mount generated AppleDouble sidecars while preserving metadata. A bounded move of existing sidecars generated additional sidecars for destination directories, so the auxiliary metadata is recorded separately and excluded from the authenticated 115-file payload manifest."
+  },
+  "status": "complete"
+}

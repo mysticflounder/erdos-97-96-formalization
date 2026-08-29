@@ -15,3 +15,10 @@ plan. Its tracked inbound reference now points here.
 The still-referenced six-center diagnostic source remains at
 `lean/scratch/firstnonhit-common-sixcenter-math/SixCenterMath.lean`; this sweep
 does not claim that it is publish-reachable or promoted.
+
+A second pass moved additional untracked Lean experiments and plan patches into
+this attic. After a local content audit and informed approval, reproducible
+generated JSON, solver, hygiene, and search payloads were moved into a
+path-preserving quarantine under `/opt/nfs` and captured in a compressed
+archive there. The exact source paths, per-file checksums, content-audit
+summary, and authenticated archive receipt are retained alongside this index.

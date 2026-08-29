@@ -1,0 +1,26 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "stale-generated-cleanup-20260828",
+  "owner": "doc-lantern",
+  "base_head": "dfc8fd7dcc9640e2f6241acdd5b0ed91d15a443c",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/stale-generated-cleanup-20260828.json",
+    "attic/stale-dirty-cleanup-2026-08-28/README.md"
+  ],
+  "generated_roots": [],
+  "durable_paths": [
+    "attic/stale-dirty-cleanup-2026-08-28/nfs-generated-scratch-archive.json",
+    "attic/stale-dirty-cleanup-2026-08-28/nfs-generated-scratch-paths.txt",
+    "attic/stale-dirty-cleanup-2026-08-28/nfs-generated-scratch-sha256.txt",
+    "attic/stale-dirty-cleanup-2026-08-28/scratch/cross-blocker-temp.lean",
+    "attic/stale-dirty-cleanup-2026-08-28/scratch/firstnonhit-plan-frontier-note.patch",
+    "attic/stale-dirty-cleanup-2026-08-28/scratch/firstnonhit-plan-overlap-amendment.patch",
+    "attic/stale-dirty-cleanup-2026-08-28/scratch/quarantine-v5-generator-repair-20260817/BlockerVExactSeventeenFortyNinthWaveV5FiveSize8Promotion.lean",
+    "attic/stale-dirty-cleanup-2026-08-28/scratch/quarantine-v5-generator-repair-20260817/BlockerVExactSeventeenFortyNinthWaveV5FiveSize8PromotionExport.lean",
+    "attic/stale-dirty-cleanup-2026-08-28/scratch/quarantine-v5-generator-repair-20260817/BlockerVExactSeventeenFortyNinthWaveV5FiveSize8Schemas.lean",
+    "attic/stale-dirty-cleanup-2026-08-28/scratch/test_cross.lean",
+    "attic/stale-dirty-cleanup-2026-08-28/scratch/test_cross_attempt.lean"
+  ],
+  "created_utc": "2026-08-29T00:36:13Z",
+  "manifest_sha256": "cfe5769a29f9e2b28f7e2019371c6ac1e1ccd5b20c86c0f1b84b694d4020db1d"
+}

@@ -1,0 +1,57 @@
+diff --git a/docs/computational-closure-plan-2026-07-28.md b/docs/computational-closure-plan-2026-07-28.md
+index 39bdb063..6c433361 100644
+--- a/docs/computational-closure-plan-2026-07-28.md
++++ b/docs/computational-closure-plan-2026-07-28.md
+@@ -11322,6 +12216,52 @@ for `false_of_freshThird_firstNonHit` and must not be counted as progress on
+ this anchor unless an explicit acyclic source bridge is later proved.  This
+ checkpoint closes no load-bearing `sorry`.
+ 
++#### 13.24.1.36 Guarded FirstNonHit ingress split and redundant-wave gate (2026-08-15)
++
++The live FirstNonHit residual is now split source-faithfully at its actual
++acyclic ingress.  `false_of_freshThird_firstNonHit_alignedRetained` receives
++the aligned-retained packet, while
++`false_of_freshThird_firstNonHit_commonRadius` receives the independently
++produced common-radius surface explicitly.  The parent theorem only destructs
++the exhaustive ingress and dispatches to these children.  This is a strict
++lexicographic frontier reduction from one unresolved ingress of width two to
++two residuals of width one; it is not a raw-`sorry` reduction.  The old one
++placeholder becomes two branch placeholders, so the raw count rises by one.
++
++The finite handoff mirrors that split without identifying the independent
++common-radius surface with the named canonical surface.  The retained payload
++records the two endpoint choices, their row omissions, survival of the
++source-center row after deleting both, failure at the first apex, and both
++single-restoration witnesses.  The common-radius payload reindexes its own
++surface and exposes no unsupported relation to the live `C` or `Q`.  The
++coordinator `FirstNonHitFiniteHingressPayload` is a source-clean sum of those
++two payloads.  The branch-specific and combined landing adapters quantify over
++the complete arbitrary carrier assignment; their axiom closure is exactly
++`propext`, `Classical.choice`, and `Quot.sound`.
++
++Neither payload justifies another solver wave by itself.  Independent exact
++replay of the authenticated all-large-cap v4 model shows that it already
++satisfies the complete retained two-deletion payload using the same endpoint
++choice in both canonical rows.  The newly banked arbitrary-carrier clauses
++`firstNonHitFiniteBlockerFiber_card_le_four` and
++`firstNonHitFiniteBlockerMap_eq_iff_row_eq` were absent generically from v4,
++but the same model also satisfies every instance: its largest blocker fiber
++has cardinality four, and its blocker-equality and exact-row-equality relations
++coincide on all 45 source pairs.  A retained-only or blocker-fiber-only v5
++would therefore preserve the authenticated survivor and is forbidden as a
++redundant replay.
++
++The clean finite landing for the desired producer is now explicit:
++`FirstNonHitSourceTotalFiniteAssignment.false_of_row_overlap_card_ge_three`
++turns distinct indexed blockers plus a three-point indexed-row overlap into
++`False` by transporting the overlap to the actual selected shells and applying
++the two-circle bound.  It does not assert that such a row exists.  The next
++material theorem must therefore add positive global synchronization incidence
++that the survivor lacks, or prove one branch directly false.  No new solver
++wave is authorized until a newly proved source adapter adds such a constraint.
++This checkpoint is not FirstNonHit closure, not a source-total UNSAT result,
++and not a finite-to-universal promotion.
++
+ ## 13.25 Exact-17 cap-nine all-core replay correction (2026-08-08)
+ 
+ The source-faithful exact-17 cap-nine Rigid221 exporter previously admitted an
