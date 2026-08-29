@@ -82,7 +82,7 @@ live consumer remain mandatory downstream gates.
 Precedence: `publication_assessment`, evidence classification, query polarity,
 and `CERTIFIED_UNSAT` authenticate wave custody only. They do not satisfy
 R1--R4, F1--F7, survivor discharge, or terminal promotion under
-`p97-cegar-semantic-contract/v1`. A machine consumer must require an accepted
+`p97-cegar-semantic-contract/v2`. A machine consumer must require an accepted
 `p97-cegar-semantic-terminal/v1` receipt; absent that receipt, a
 `p97-cegar-semantic-authority-gate/v1` record keeps source, abstract, and
 theorem promotion blocked.

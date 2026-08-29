@@ -7,6 +7,7 @@ import pytest
 
 authority = importlib.import_module("census.p97_search.cegar_semantic_authority")
 clauses = importlib.import_module("census.p97_search.cegar_clause_contract")
+decoder = importlib.import_module("census.p97_search.cegar_decoder_contract")
 v3 = importlib.import_module(
     "census.p97_search.phase3_structural_cegar_projected_static_v3"
 )
@@ -31,9 +32,11 @@ def test_gate_blocks_every_semantic_authority_without_receipts() -> None:
     gate = authority.build_authority_gate(None)
 
     assert gate["schema"] == authority.SCHEMA
-    assert gate["governing_contract_schema"] == "p97-cegar-semantic-contract/v1"
+    assert gate["governing_contract_schema"] == "p97-cegar-semantic-contract/v2"
     assert gate["operational_status_scope"] == "FINITE_BOOLEAN_CUSTODY_ONLY"
     assert gate["terminal_clause_contract_sha256"] is None
+    assert gate["canonical_decoder_contract_sha256"] is None
+    assert "ASSIGNMENT_DECODING_R3_EVIDENCE_MISSING" in gate["blockers"]
     assert gate["source_promotion"] == {"status": "BLOCKED", "evidence_ref": None}
     assert gate["abstract_promotion"]["status"] == "BLOCKED"
     assert gate["theorem_promotion"]["status"] == "BLOCKED"
@@ -53,6 +56,20 @@ def test_terminal_gate_binds_formula_only_clause_contract() -> None:
     authority.validate_authority_gate(gate, terminal)
 
 
+def test_gate_binds_decoder_functionality_without_claiming_r3() -> None:
+    encoding = v3._phase3_encoding(projected_static_v3=True)
+    decoder_receipt = decoder.build_decoder_contract(encoding)
+    gate = authority.build_authority_gate(None, decoder_receipt)
+
+    assert gate["canonical_decoder_contract_sha256"] == (
+        decoder_receipt["contract_sha256"]
+    )
+    assert "CANONICAL_DECODER_FUNCTIONALITY_CUSTODY_ONLY" in gate["blockers"]
+    assert "ASSIGNMENT_DECODING_R3_EVIDENCE_MISSING" in gate["blockers"]
+    assert gate["supports_abstract_promotion"] is False
+    authority.validate_authority_gate(gate, None, decoder_receipt)
+
+
 def test_gate_rejects_crossed_terminal_contract_and_promotion_tampering() -> None:
     terminal = _terminal_clause_contract()
     gate = authority.build_authority_gate(terminal)
@@ -67,10 +84,15 @@ def test_gate_rejects_crossed_terminal_contract_and_promotion_tampering() -> Non
 
 
 def test_legacy_resume_adopts_only_while_active() -> None:
-    assert v3._resume_semantic_authority_enabled({"status": "RUNNING"}, None) is True
     assert (
         v3._resume_semantic_authority_enabled(
-            {"status": "STRUCTURAL_UNSAT_VERIFIED"}, None
+            {"status": "RUNNING"}, None, None
+        )
+        is True
+    )
+    assert (
+        v3._resume_semantic_authority_enabled(
+            {"status": "STRUCTURAL_UNSAT_VERIFIED"}, None, None
         )
         is False
     )
@@ -84,6 +106,7 @@ def test_legacy_resume_adopts_only_while_active() -> None:
                 "semantic_authority_gate": gate,
             },
             terminal,
+            None,
         )
         is True
     )

@@ -74,7 +74,7 @@ were absent under the specified subsumption test, and eliminate the captured
 assignment. It does not establish source preservation, a source-connected
 refinement, or clause class `SEMANTIC_REFINEMENT`. Those claims require a
 `p97-cegar-semantic-refinement/v1` receipt carrying accepted typed F1--F7
-evidence under `p97-cegar-semantic-contract/v1`.
+evidence under `p97-cegar-semantic-contract/v2`.
 
 It does not establish exact-cardinality coverage, a universal theorem, UNSAT,
 proof-producing solver replay, Lean ingress, or closure of a production

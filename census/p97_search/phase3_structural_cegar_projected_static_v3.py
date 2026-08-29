@@ -89,6 +89,9 @@ incremental_cadical = importlib.import_module(
 projection_contract = importlib.import_module(
     "census.p97_search.cegar_projection_contract"
 )
+decoder_contract = importlib.import_module(
+    "census.p97_search.cegar_decoder_contract"
+)
 clause_contract = importlib.import_module("census.p97_search.cegar_clause_contract")
 semantic_authority = importlib.import_module(
     "census.p97_search.cegar_semantic_authority"
@@ -5155,6 +5158,7 @@ def _dependency_hashes() -> dict[str, str]:
         Path(loader_cache.__file__).resolve(),
         Path(phase3_order_universe.__file__).resolve(),
         Path(shard_optimization.__file__).resolve(),
+        Path(decoder_contract.__file__).resolve(),
         ROOT / "lean/Erdos9796Proof/P97/Census554/ConvexFivePointCore.lean",
         ROOT / "lean/Erdos9796Proof/P97/Census554/ConvexRhombusCore.lean",
         ROOT / "lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean",
@@ -5824,7 +5828,7 @@ def _bootstrap_certificates(
                         "solver learned-record raw SAT index mismatch"
                     )
                 assignment = encoding.assignment_from_record(record)
-                obj = encoding.decode(assignment)
+                obj = decoder_contract.decode_canonical(encoding, assignment)
                 encoding.validate(obj, assignment)
                 rows = _metric_rows(obj)
                 if schema == "structural-row-certificate":
@@ -6264,7 +6268,7 @@ def _load_learned(
         if origin == THREE_RHOMBUS_ORIGIN:
             assignment = encoding.assignment_from_record(record)
             _validate_shard_assignment(assignment, shard_literals, where=where)
-            obj = encoding.decode(assignment)
+            obj = decoder_contract.decode_canonical(encoding, assignment)
             encoding.validate(obj, assignment)
             rows = _metric_rows(obj)
             if _detection(rows) is not None:
@@ -6398,7 +6402,7 @@ def _load_learned(
                 continue
             assignment = encoding.assignment_from_record(record)
             _validate_shard_assignment(assignment, shard_literals, where=where)
-            obj = encoding.decode(assignment)
+            obj = decoder_contract.decode_canonical(encoding, assignment)
             encoding.validate(obj, assignment)
             rows = _metric_rows(obj)
             if is_shared_pair:
@@ -6478,7 +6482,7 @@ def _load_learned(
                 )
             assignment = encoding.assignment_from_record(record)
             _validate_shard_assignment(assignment, shard_literals, where=where)
-            obj = encoding.decode(assignment)
+            obj = decoder_contract.decode_canonical(encoding, assignment)
             encoding.validate(obj, assignment)
             replayed_match = _find_algebraic_match(
                 encoding, assignment, algebraic_templates
@@ -6526,7 +6530,7 @@ def _load_learned(
         if origin in {"solver", STRUCTURAL_PATH_ORIGIN}:
             assignment = encoding.assignment_from_record(record)
             _validate_shard_assignment(assignment, shard_literals, where=where)
-            obj = encoding.decode(assignment)
+            obj = decoder_contract.decode_canonical(encoding, assignment)
             encoding.validate(obj, assignment)
             rows = _metric_rows(obj)
             found = _detection(rows)
@@ -6597,7 +6601,7 @@ def _load_survivors(
             raise StructuralCegarError(f"{where}: survivor identity mismatch")
         assignment = encoding.assignment_from_record(record)
         _validate_shard_assignment(assignment, shard_literals, where=where)
-        obj = encoding.decode(assignment)
+        obj = decoder_contract.decode_canonical(encoding, assignment)
         encoding.validate(obj, assignment)
         rows = _metric_rows(obj)
         if _combined_detection(encoding, rows) is not None:
@@ -6891,7 +6895,7 @@ def _load_cube_batches(
                 assignment = encoding.assignment_from_record(
                     {"semantic_assignment": semantic}
                 )
-                encoding.validate(encoding.decode(assignment), assignment)
+                decoder_contract.decode_canonical(encoding, assignment)
                 if any(
                     not _clause_satisfied(clause, assignment)
                     for clause in snapshot_clauses
@@ -7881,6 +7885,8 @@ def _manifest(
     solver_metadata: Mapping[str, Any] | None = None,
     productivity_stream: Mapping[str, Any] | None = None,
     survivor_block_contract: Mapping[str, Any] | None = None,
+    canonical_decoder_contract: Mapping[str, Any] | None = None,
+    decoder_encoding: Any | None = None,
     terminal_clause_contract: Mapping[str, Any] | None = None,
     semantic_authority_gate: Mapping[str, Any] | None = None,
 ) -> dict[str, Any]:
@@ -8230,6 +8236,20 @@ def _manifest(
         unsigned["productivity_stream"] = dict(productivity_stream)
     if survivor_block_contract is not None:
         unsigned["survivor_block_contract"] = dict(survivor_block_contract)
+    if canonical_decoder_contract is not None:
+        if decoder_encoding is None:
+            raise StructuralCegarError(
+                "canonical decoder contract lacks a live encoding"
+            )
+        try:
+            decoder_contract.validate_decoder_contract(
+                canonical_decoder_contract, decoder_encoding
+            )
+        except decoder_contract.DecoderContractError as exc:
+            raise StructuralCegarError(
+                f"canonical decoder contract failed: {exc}"
+            ) from exc
+        unsigned["canonical_decoder_contract"] = dict(canonical_decoder_contract)
     if terminal_clause_contract is not None:
         terminal_cnf = out / "terminal.cnf"
         if not terminal_cnf.is_file():
@@ -8250,7 +8270,9 @@ def _manifest(
     if semantic_authority_gate is not None:
         try:
             semantic_authority.validate_authority_gate(
-                semantic_authority_gate, terminal_clause_contract
+                semantic_authority_gate,
+                terminal_clause_contract,
+                canonical_decoder_contract,
             )
         except semantic_authority.SemanticAuthorityError as exc:
             raise StructuralCegarError(
@@ -8282,6 +8304,8 @@ def _manifest_from_prospective_state(
     solver_metadata: Mapping[str, Any] | None = None,
     productivity_stream: Mapping[str, Any] | None = None,
     survivor_block_contract: Mapping[str, Any] | None = None,
+    canonical_decoder_contract: Mapping[str, Any] | None = None,
+    decoder_encoding: Any | None = None,
     terminal_clause_contract: Mapping[str, Any] | None = None,
     semantic_authority_gate: Mapping[str, Any] | None = None,
 ) -> dict[str, Any]:
@@ -8333,6 +8357,22 @@ def _manifest_from_prospective_state(
         unsigned["survivor_block_contract"] = dict(survivor_block_contract)
     else:
         unsigned.pop("survivor_block_contract", None)
+    if canonical_decoder_contract is not None:
+        if decoder_encoding is None:
+            raise StructuralCegarError(
+                "canonical decoder contract lacks a live encoding"
+            )
+        try:
+            decoder_contract.validate_decoder_contract(
+                canonical_decoder_contract, decoder_encoding
+            )
+        except decoder_contract.DecoderContractError as exc:
+            raise StructuralCegarError(
+                f"canonical decoder contract failed: {exc}"
+            ) from exc
+        unsigned["canonical_decoder_contract"] = dict(canonical_decoder_contract)
+    else:
+        unsigned.pop("canonical_decoder_contract", None)
     if terminal_clause_contract is not None:
         try:
             clause_contract.validate_bound_contract(terminal_clause_contract)
@@ -8346,7 +8386,9 @@ def _manifest_from_prospective_state(
     if semantic_authority_gate is not None:
         try:
             semantic_authority.validate_authority_gate(
-                semantic_authority_gate, terminal_clause_contract
+                semantic_authority_gate,
+                terminal_clause_contract,
+                canonical_decoder_contract,
             )
         except semantic_authority.SemanticAuthorityError as exc:
             raise StructuralCegarError(
@@ -8394,6 +8436,7 @@ def _resume_survivor_block_contract(
 def _resume_semantic_authority_enabled(
     prior_manifest: Mapping[str, Any],
     terminal_clause_contract: Mapping[str, Any] | None,
+    canonical_decoder_contract: Mapping[str, Any] | None,
 ) -> bool:
     stored = prior_manifest.get("semantic_authority_gate")
     if stored is None:
@@ -8403,12 +8446,41 @@ def _resume_semantic_authority_enabled(
     if not isinstance(stored, Mapping):
         raise StructuralCegarError("resume semantic authority gate is not an object")
     try:
-        semantic_authority.validate_authority_gate(stored, terminal_clause_contract)
+        semantic_authority.validate_authority_gate(
+            stored, terminal_clause_contract, canonical_decoder_contract
+        )
     except semantic_authority.SemanticAuthorityError as exc:
         raise StructuralCegarError(
             f"resume semantic authority gate failed: {exc}"
         ) from exc
     return True
+
+
+def _resume_canonical_decoder_contract(
+    prior_manifest: Mapping[str, Any],
+    encoding: Any,
+    computed_contract: Mapping[str, Any],
+) -> dict[str, Any] | None:
+    stored = prior_manifest.get("canonical_decoder_contract")
+    if stored is None:
+        # Active legacy runs adopt the checked decoder before another
+        # classification. Completed legacy artifacts retain exact replay.
+        return (
+            dict(computed_contract)
+            if prior_manifest.get("status") == "RUNNING"
+            else None
+        )
+    if not isinstance(stored, Mapping):
+        raise StructuralCegarError(
+            "resume canonical decoder contract is not an object"
+        )
+    try:
+        decoder_contract.validate_decoder_contract(stored, encoding)
+    except decoder_contract.DecoderContractError as exc:
+        raise StructuralCegarError(
+            f"resume canonical decoder contract failed: {exc}"
+        ) from exc
+    return dict(stored)
 
 
 def _classification_count_cache(
@@ -8519,7 +8591,7 @@ def _stale_sat_recheck(
         or not 0 <= survivor_snapshot_count <= len(survivor_clauses)
     ):
         raise StructuralCegarError("live cube stale-recheck snapshot count mismatch")
-    obj = encoding.decode(assignment)
+    obj = decoder_contract.decode_canonical(encoding, assignment)
     encoding.validate(obj, assignment)
     for record in learned[learned_snapshot_count:]:
         clause = tuple(int(literal) for literal in record["clause"])
@@ -8627,11 +8699,11 @@ def _commit_sat_classification(
 
     _validate_shard_assignment(assignment, shard_literals, where="live solver result")
     if telemetry is None:
-        obj = encoding.decode(assignment)
+        obj = decoder_contract.decode_canonical(encoding, assignment)
         encoding.validate(obj, assignment)
     else:
         with telemetry.measure("decode_validate"):
-            obj = encoding.decode(assignment)
+            obj = decoder_contract.decode_canonical(encoding, assignment)
             encoding.validate(obj, assignment)
     semantic = encoding.semantic_record(assignment)
     assignment_sha256 = _assignment_hash(encoding, assignment)
@@ -9383,6 +9455,7 @@ def run_driver(
         raise StructuralCegarError(f"bootstrap results do not exist: {bootstrap}")
     encoding = _phase3_encoding(projected_static_v3=projected_static_v3)
     computed_block_scope_contract = projection_contract.build_scope_contract(encoding)
+    computed_decoder_contract = decoder_contract.build_decoder_contract(encoding)
     prefix_bank_data: dict[str, Any] | None = None
     prefix_cache_used = False
     prefix_cache_audit_done = True
@@ -9548,6 +9621,9 @@ def run_driver(
         survivor_block_contract = _resume_survivor_block_contract(
             prior_manifest, encoding, computed_block_scope_contract
         )
+        canonical_decoder_receipt = _resume_canonical_decoder_contract(
+            prior_manifest, encoding, computed_decoder_contract
+        )
         if (out / "failure.json").exists():
             raise StructuralCegarError("failed-closed run cannot be resumed in place")
         if _sha256_file(out / "base.cnf") != base_cnf_sha256:
@@ -9657,6 +9733,7 @@ def run_driver(
             )
     else:
         survivor_block_contract = computed_block_scope_contract
+        canonical_decoder_receipt = computed_decoder_contract
         if out.exists() and any(out.iterdir()):
             raise StructuralCegarError("output directory is nonempty; pass resume=True")
         out.mkdir(
@@ -9835,7 +9912,9 @@ def run_driver(
         True
         if prior_manifest is None
         else _resume_semantic_authority_enabled(
-            prior_manifest, terminal_clause_contract
+            prior_manifest,
+            terminal_clause_contract,
+            canonical_decoder_receipt,
         )
     )
     dynamic_learned_count, raw_count = _classification_count_cache(learned, survivors)
@@ -9929,7 +10008,9 @@ def run_driver(
             else productivity_ledger.snapshot().as_dict()
         )
         semantic_authority_gate = (
-            semantic_authority.build_authority_gate(terminal_clause_contract)
+            semantic_authority.build_authority_gate(
+                terminal_clause_contract, canonical_decoder_receipt
+            )
             if emit_semantic_authority
             else None
         )
@@ -9989,6 +10070,8 @@ def run_driver(
                 solver_metadata=solver_metadata,
                 productivity_stream=productivity_stream_state,
                 survivor_block_contract=survivor_block_contract,
+                canonical_decoder_contract=canonical_decoder_receipt,
+                decoder_encoding=encoding,
                 terminal_clause_contract=terminal_clause_contract,
                 semantic_authority_gate=semantic_authority_gate,
             )
@@ -10012,6 +10095,8 @@ def run_driver(
                 solver_metadata=solver_metadata,
                 productivity_stream=productivity_stream_state,
                 survivor_block_contract=survivor_block_contract,
+                canonical_decoder_contract=canonical_decoder_receipt,
+                decoder_encoding=encoding,
                 terminal_clause_contract=terminal_clause_contract,
                 semantic_authority_gate=semantic_authority_gate,
             )
@@ -10104,9 +10189,13 @@ def run_driver(
                 else productivity_ledger.snapshot().as_dict()
             ),
             survivor_block_contract=survivor_block_contract,
+            canonical_decoder_contract=canonical_decoder_receipt,
+            decoder_encoding=encoding,
             terminal_clause_contract=terminal_clause_contract,
             semantic_authority_gate=(
-                semantic_authority.build_authority_gate(terminal_clause_contract)
+                semantic_authority.build_authority_gate(
+                    terminal_clause_contract, canonical_decoder_receipt
+                )
                 if emit_semantic_authority
                 else None
             ),
@@ -10256,7 +10345,7 @@ def run_driver(
                 if verdict == "SAT":
                     assignment = result.assignment
                     try:
-                        obj = encoding.decode(assignment)
+                        obj = decoder_contract.decode_canonical(encoding, assignment)
                         encoding.validate(obj, assignment)
                         if any(
                             not _clause_satisfied(clause, assignment)
@@ -10931,6 +11020,14 @@ def verify_shard_coverage(
         if conditional
         else "STRUCTURAL_SHARD_COVERAGE_UNSAT_VERIFIED"
     )
+    aggregate_decoder_contract = decoder_contract.build_decoder_contract(
+        _phase3_encoding(projected_static_v3=projected_static_v3)
+    )
+    for directory, manifest in replayed:
+        if manifest.get("canonical_decoder_contract") != aggregate_decoder_contract:
+            raise StructuralCegarError(
+                f"{directory}: shard canonical decoder contract mismatch"
+            )
     unsigned_coverage = {
         "schema": SHARD_COVERAGE_SCHEMA,
         "status": status,
@@ -10952,10 +11049,16 @@ def verify_shard_coverage(
                     if isinstance(manifest.get("semantic_authority_gate"), Mapping)
                     else None
                 ),
+                "canonical_decoder_contract_sha256": manifest[
+                    "canonical_decoder_contract"
+                ]["contract_sha256"],
             }
             for index, (directory, manifest) in sorted(by_index.items())
         ],
-        "semantic_authority_gate": semantic_authority.build_authority_gate(None),
+        "canonical_decoder_contract": aggregate_decoder_contract,
+        "semantic_authority_gate": semantic_authority.build_authority_gate(
+            None, aggregate_decoder_contract
+        ),
         "result_claim": (
             "all canonical Boolean shards are covered by independently "
             "replayed and DRAT-rechecked shard-local terminal proofs; this is "

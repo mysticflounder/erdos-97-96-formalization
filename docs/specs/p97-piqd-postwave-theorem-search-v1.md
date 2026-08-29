@@ -164,7 +164,7 @@ An authenticated receipt establishes only that a finite source-backed candidate
 was searched and admitted according to this custody contract. It does not
 establish F4, F1--F7, source-preserving semantic refinement, or theorem
 promotion; those require the accepted semantic receipts named by
-`p97-cegar-semantic-contract/v1`. It also does not establish exact-cardinality
+`p97-cegar-semantic-contract/v2`. It also does not establish exact-cardinality
 coverage, a universal lift, a Lean theorem, a closed `sorry`, or P97/P96.
 
 The child-33 theorem mine on 2026-08-13 makes one additional distinction

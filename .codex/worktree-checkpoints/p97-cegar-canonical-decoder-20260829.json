@@ -1,0 +1,24 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "p97-cegar-canonical-decoder-20260829",
+  "owner": "codex-p97-canonical-decoder",
+  "base_head": "4fa3baee35db43c5f0659bbd299ae315327f57a8",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/p97-cegar-canonical-decoder-20260829.json",
+    "census/p97_search/cegar_decoder_contract.py",
+    "census/p97_search/cegar_semantic_authority.py",
+    "census/p97_search/phase3_piqd_sat_generate_adapter.py",
+    "census/p97_search/phase3_structural_cegar_projected_static_v3.py",
+    "census/p97_search/tests/test_cegar_decoder_contract.py",
+    "census/p97_search/tests/test_cegar_semantic_authority.py",
+    "census/p97_search/tests/test_phase3_structural_cegar_projected_static_v3.py",
+    "docs/specs/p97-cegar-semantic-contract-v2.md",
+    "docs/specs/p97-cegar-wave-v1.md",
+    "docs/specs/p97-piqd-clause-admission-v1.md",
+    "docs/specs/p97-piqd-postwave-theorem-search-v1.md"
+  ],
+  "durable_paths": [],
+  "generated_roots": [],
+  "created_utc": "2026-08-29T05:59:21Z",
+  "manifest_sha256": "ad5293b8c1aa8417c28ada950939149f229c10bc6da4a9f391af94ad6b6c9e73"
+}

@@ -21,6 +21,7 @@ from typing import Any
 
 from cells import Cell
 
+from census.p97_search import cegar_decoder_contract as decoder_contract
 from census.p97_search import phase3_pinned_multiplicity as pinned_multiplicity
 from census.p97_search import phase3_piqd_incremental_v3 as incremental_v3
 from census.p97_search import phase3_piqd_projected_v3_qualification as qualification
@@ -432,6 +433,7 @@ class SatGeneratePiqdFactory:
         variable_map = [
             [variable, list(key)] for variable, key in sorted(encoding.key_for.items())
         ]
+        canonical_decoder_receipt = decoder_contract.build_decoder_contract(encoding)
         caller = {
             "schema": SCHEMA,
             "production_profile": qualification.PRODUCTION_V3_PROFILE,
@@ -446,6 +448,7 @@ class SatGeneratePiqdFactory:
             "num_vars": encoding.num_vars,
             "num_clauses": len(encoding.clauses),
             "variable_map": variable_map,
+            "canonical_decoder_contract": canonical_decoder_receipt,
             "base_cnf_sha256": hashlib.sha256(base_raw).hexdigest(),
             "source_manifest_sha256": hashlib.sha256(source_manifest).hexdigest(),
             "producer_manifest_sha256": hashlib.sha256(producer_manifest).hexdigest(),
@@ -740,6 +743,9 @@ def _result_manifest(
         "mode": encoding.mode,
         "clause_tags": dict(encoding.clause_counts),
         "semantic_variable_count": len(encoding.semantic_vars),
+        "canonical_decoder_contract": (
+            decoder_contract.build_decoder_contract(encoding)
+        ),
         "base_variable_count": encoding.num_vars,
         "base_clause_count": len(encoding.clauses),
         "terminal_variable_count": (
@@ -877,7 +883,9 @@ def enumerate_cell_with_piqd(
 
             if result.verdict == "SAT":
                 try:
-                    obj = encoding.decode(result.assignment)
+                    obj = decoder_contract.decode_canonical(
+                        encoding, result.assignment
+                    )
                     block = encoding.blocking_clause(result.assignment)
                 except Exception as exc:  # noqa: BLE001
                     status = "UNKNOWN"
@@ -1120,6 +1128,7 @@ def _verify_caller_semantics(
         "num_vars",
         "num_clauses",
         "variable_map",
+        "canonical_decoder_contract",
         "base_cnf_sha256",
         "source_manifest_sha256",
         "producer_manifest_sha256",
@@ -1141,6 +1150,9 @@ def _verify_caller_semantics(
             [variable, list(key)]
             for variable, key in sorted(encoding.key_for.items())
         ],
+        "canonical_decoder_contract": decoder_contract.build_decoder_contract(
+            encoding
+        ),
         "base_cnf_sha256": qualification.PRODUCTION_V3_BASE_SHA256,
         "execution": {
             "workers": 1,
@@ -1238,7 +1250,7 @@ def _verify_model_and_bank_chain(
     try:
         for index, record in enumerate(records):
             assignment = encoding.assignment_from_record(record)
-            obj = encoding.decode(assignment)
+            obj = decoder_contract.decode_canonical(encoding, assignment)
             block = encoding.blocking_clause(assignment)
             raw_key = tuple(assignment[var] for var in encoding.semantic_vars)
             if raw_key in seen:
@@ -1318,6 +1330,7 @@ def verify_production_run_artifacts(
             "mode",
             "clause_tags",
             "semantic_variable_count",
+            "canonical_decoder_contract",
             "base_variable_count",
             "base_clause_count",
             "terminal_variable_count",
@@ -1357,6 +1370,14 @@ def verify_production_run_artifacts(
         for field, expected in expected_scalars.items():
             if manifest.get(field) != expected:
                 raise SatGeneratePiqdError(f"manifest {field} mismatch")
+        try:
+            decoder_contract.validate_decoder_contract(
+                manifest["canonical_decoder_contract"], encoding
+            )
+        except decoder_contract.DecoderContractError as exc:
+            raise SatGeneratePiqdError(
+                f"manifest canonical decoder contract failed: {exc}"
+            ) from exc
         timeout_s = manifest.get("timeout_s")
         model_limit = manifest.get("model_limit")
         if type(timeout_s) is not int or timeout_s <= 0:

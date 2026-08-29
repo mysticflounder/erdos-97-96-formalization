@@ -117,6 +117,20 @@ class DummyEncoding:
         )
 
 
+@pytest.fixture(autouse=True)
+def _preserve_legacy_dummy_decoder(monkeypatch: pytest.MonkeyPatch) -> None:
+    canonical_decode = v3.decoder_contract.decode_canonical
+
+    def decode(encoding: Any, assignment: dict[int, bool]) -> Any:
+        if isinstance(encoding, DummyEncoding):
+            obj = encoding.decode(assignment)
+            encoding.validate(obj, assignment)
+            return obj
+        return canonical_decode(encoding, assignment)
+
+    monkeypatch.setattr(v3.decoder_contract, "decode_canonical", decode)
+
+
 def _assignment() -> dict[int, bool]:
     return {
         v3.three_rhombus.dense_membership_var(center, point): (
@@ -809,12 +823,18 @@ def test_runtime_terminal_publisher_is_wired_fail_closed(tmp_path: Path) -> None
     assert local_calls[0][1] == out / ".solver.drat"
     assert local_calls[0][0].read_bytes() == (out / "terminal.cnf").read_bytes()
     terminal_contract = result["terminal_clause_contract"]
+    decoder_receipt = result["canonical_decoder_contract"]
     authority_gate = result["semantic_authority_gate"]
     assert authority_gate["operational_status_scope"] == "FINITE_BOOLEAN_CUSTODY_ONLY"
     assert (
         authority_gate["terminal_clause_contract_sha256"]
         == terminal_contract["contract_sha256"]
     )
+    assert authority_gate["canonical_decoder_contract_sha256"] == (
+        decoder_receipt["contract_sha256"]
+    )
+    assert decoder_receipt["decoder_functionality_enforced"] is True
+    assert decoder_receipt["r3_assignment_decoding_discharge"] is None
     assert authority_gate["source_promotion"]["status"] == "BLOCKED"
     assert authority_gate["abstract_promotion"]["status"] == "BLOCKED"
     assert authority_gate["theorem_promotion"]["status"] == "BLOCKED"
@@ -863,14 +883,25 @@ def test_shard_coverage_remains_semantically_blocked(tmp_path: Path) -> None:
 
     assert coverage["status"] == "STRUCTURAL_SHARD_COVERAGE_UNSAT_VERIFIED"
     gate = coverage["semantic_authority_gate"]
+    decoder_receipt = coverage["canonical_decoder_contract"]
     assert gate["operational_status_scope"] == "FINITE_BOOLEAN_CUSTODY_ONLY"
     assert gate["supports_source_promotion"] is False
     assert gate["supports_abstract_promotion"] is False
     assert gate["supports_theorem_promotion"] is False
+    assert gate["canonical_decoder_contract_sha256"] == (
+        decoder_receipt["contract_sha256"]
+    )
     assert [
         shard["semantic_authority_gate_sha256"] for shard in coverage["shards"]
     ] == [
         manifest["semantic_authority_gate"]["authority_sha256"]
+        for manifest in manifests
+    ]
+    assert [
+        shard["canonical_decoder_contract_sha256"]
+        for shard in coverage["shards"]
+    ] == [
+        manifest["canonical_decoder_contract"]["contract_sha256"]
         for manifest in manifests
     ]
     assert "semantic promotion blocked" in coverage["result_claim"]
