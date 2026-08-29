@@ -1,0 +1,38 @@
+{
+  "child": {
+    "bytes": 338670182,
+    "clauses": 7198852,
+    "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/runs/exact17-forty-ninth-wave-v9-four-size8-publication-20260817/export-v1/artifacts/exact17-forty-ninth-wave-v9-four-size8-promotion.cnf",
+    "sha256": "9c04a261c129e221830f0c6f25118ec2b3a7e7771ad61a4325e9e28c7bef4d34"
+  },
+  "parent": {
+    "bytes": 338669476,
+    "clauses": 7198836,
+    "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/runs/exact17-forty-ninth-wave-v8-seventeen-size8-publication-20260817/export-v1/artifacts/exact17-forty-ninth-wave-v8-seventeen-size8-promotion.cnf",
+    "sha256": "46b91a6e7013f75838109312604a45c244190bb2998f18f69e0dac4c36602d52"
+  },
+  "parent_subsumption_census": {
+    "complete": true,
+    "parent_subsumed_suffix_clause_count": 3,
+    "parent_subsumed_suffix_clause_indices": [
+      9,
+      10,
+      11
+    ],
+    "witness_counts": [
+      2,
+      3,
+      2
+    ],
+    "witness_total": 7
+  },
+  "schema": "p97-exact17-forty-ninth-wave-v9-four-size8-promotion-export-validation/v1",
+  "status": "PASS",
+  "suffix": {
+    "bytes": 706,
+    "clauses": 16,
+    "clauses_per_occurrence": 4,
+    "occurrences": 4,
+    "sha256": "5bb22bffa5022bc07d873f92b0e489fb1c8a030871371e43091c6677548a3b25"
+  }
+}

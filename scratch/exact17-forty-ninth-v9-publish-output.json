@@ -1,0 +1,95 @@
+{
+  "artifacts": {
+    "audit": {
+      "bytes": 1228,
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/runs/exact17-forty-ninth-wave-v9-four-size8-publication-20260817/export-v1/independent-audit-report.json",
+      "sha256": "163e95d833a098ae7bd3fcd07a4af0a03b46e1cc432ca39ab59d37b4d609023f"
+    },
+    "child_cnf": {
+      "bytes": 338670182,
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/runs/exact17-forty-ninth-wave-v9-four-size8-publication-20260817/export-v1/artifacts/exact17-forty-ninth-wave-v9-four-size8-promotion.cnf",
+      "sha256": "9c04a261c129e221830f0c6f25118ec2b3a7e7771ad61a4325e9e28c7bef4d34"
+    },
+    "coverage_ledger": {
+      "bytes": 2359,
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/runs/exact17-forty-ninth-wave-v9-four-size8-publication-20260817/export-v1/coverage-ledger.json",
+      "sha256": "d2118e2d78b1154fea7aa32a25c2e33491c335665a54a55a870cce470ff47e0c"
+    },
+    "lean_export": {
+      "bytes": 1393,
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenFortyNinthWaveV9FourSize8PromotionExport.lean",
+      "sha256": "de976bc0942539f5d0c0310d27178cd0bca21f12fe727865e037072fb5370ad9"
+    },
+    "lean_root": {
+      "bytes": 3494,
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenFortyNinthWaveV9FourSize8Promotion.lean",
+      "sha256": "7888f4dc048f79d455671c7934e0e922b6e5ccef434a9d59ec2106102baff03d"
+    },
+    "parent_cnf": {
+      "bytes": 338669476,
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/runs/exact17-forty-ninth-wave-v8-seventeen-size8-publication-20260817/export-v1/artifacts/exact17-forty-ninth-wave-v8-seventeen-size8-promotion.cnf",
+      "sha256": "46b91a6e7013f75838109312604a45c244190bb2998f18f69e0dac4c36602d52"
+    },
+    "publisher": {
+      "bytes": 5183,
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scripts/publish_exact17_forty_ninth_wave_v9_four_size8_promotion_root.py",
+      "sha256": "bc92ce087e55f31b655fded86c29f318c03076db467aab1cf74fc1024d023008"
+    },
+    "validator": {
+      "bytes": 12777,
+      "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scripts/validate_exact17_forty_ninth_wave_v9_four_size8_promotion_export.py",
+      "sha256": "3197d619bc07c61961239257d8dfcdeba2670951c2eefa10b80f4d74f1dd7f51"
+    }
+  },
+  "child": {
+    "bytes": 338670182,
+    "clauses": 7198852,
+    "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/runs/exact17-forty-ninth-wave-v9-four-size8-publication-20260817/export-v1/artifacts/exact17-forty-ninth-wave-v9-four-size8-promotion.cnf",
+    "sha256": "9c04a261c129e221830f0c6f25118ec2b3a7e7771ad61a4325e9e28c7bef4d34"
+  },
+  "coverage_ledger_sha256": "d2118e2d78b1154fea7aa32a25c2e33491c335665a54a55a870cce470ff47e0c",
+  "ordered_suffix": {
+    "bytes": 706,
+    "clauses": 16,
+    "clauses_per_occurrence": 4,
+    "occurrences": 4,
+    "sha256": "5bb22bffa5022bc07d873f92b0e489fb1c8a030871371e43091c6677548a3b25"
+  },
+  "parent": {
+    "bytes": 338669476,
+    "clauses": 7198836,
+    "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/runs/exact17-forty-ninth-wave-v8-seventeen-size8-publication-20260817/export-v1/artifacts/exact17-forty-ninth-wave-v8-seventeen-size8-promotion.cnf",
+    "sha256": "46b91a6e7013f75838109312604a45c244190bb2998f18f69e0dac4c36602d52"
+  },
+  "parent_subsumption_census": {
+    "complete": true,
+    "parent_subsumed_suffix_clause_count": 3,
+    "parent_subsumed_suffix_clause_indices": [
+      9,
+      10,
+      11
+    ],
+    "witness_counts": [
+      2,
+      3,
+      2
+    ],
+    "witness_total": 7
+  },
+  "policy": {
+    "complete_parent_subsumption_census": true,
+    "create_once": true,
+    "direct_lean_export": true,
+    "exact_parent_body_prefix": true,
+    "final_child_revalidated": true,
+    "independent_suffix_replay": true
+  },
+  "profile_id": "exact17-forty-ninth-wave-v4-three-zero-atom-promotion",
+  "publication_state": "PROVISIONED",
+  "publisher_source_commit": "aeab6339ac92da157f32421bc3b0612e0655f052",
+  "schema": "p97-exact17-forty-ninth-wave-v9-four-size8-promotion-receipt/v1",
+  "source_baseline_sha256": "7888f4dc048f79d455671c7934e0e922b6e5ccef434a9d59ec2106102baff03d",
+  "source_commit": "389f9696296a562cdaf2e37faaf6a0159592ee9d",
+  "status": "PASS",
+  "validator_source_commit": "a18532c96b320cc2dc25d84163d0f78c9ef55f24"
+}

@@ -1,0 +1,92 @@
+{
+  "schema": "exact17-weighted-kalmanson-successor-model-mine/v1",
+  "status": "PASS",
+  "scope": "Authenticated successor SAT model only; no solver, PIQD, Lean, or Git launch.",
+  "provenance": {
+    "job_id": "226a890a-e290-45be-a9b8-7cbb00d1f4de",
+    "model_artifact_sha256": "132f904adfa093b4133ff5078bddff707b4e3d32ac4c18c6ba11e8f88ab76d02",
+    "model_result": "SAT",
+    "model_backend": "cadical",
+    "model_assignment_sha256": "a1a58f1bd01048e6cdebef5f481e892f5bfad55596df9d157e4cf68f81e6951e",
+    "root": {
+      "sha256": "44572a136c005d62de9c85b3b6fcf01336362bb3a50e5437d786f770a5cecdc6",
+      "bytes": 338646156,
+      "variables": 308,
+      "clauses": 7198420
+    },
+    "cumulative_parent_root": {
+      "sha256": "4c47a61712cd4c1d465ea7984189e938b5a2422553adc3e962b7209ee285430d",
+      "clauses": 7198388
+    },
+    "terminal": {
+      "status": "PASS",
+      "verdict": "SAT",
+      "terminal_status_canonical_sha256": "fa2bd4614da8b98a96636799c4757598e16c50b8a83ddaa0a73c833583782879",
+      "terminal_file_sha256": "f2e21b3918ebc8041e51da87e451dfeac469c344b124671d3b75896dd7b2dc29"
+    },
+    "receipt_file_sha256": "bb78b25ebc35fd3340f99212152aedcd4ba5befdd16864bc0ebcbe329ca16298",
+    "custody_seal_file_sha256": "223299d359894be2a8fddf58f17125cd1b8e3dba43556deb161bcd72e7b6ca24"
+  },
+  "decoded_source_model": {
+    "digest": "ccd1fe5007fd0e19c6b1fe883564172bfead7b9d286a5a1aab6290aa3543fbcb",
+    "next_center": 6,
+    "named_order": 0,
+    "selected_order": [0, 6, 8, 11, 10, 9, 12, 7, 2, 15, 16, 3, 4, 5, 1, 13, 14],
+    "rows": [[1, 3, 5, 10], [0, 2, 6, 12], [3, 4, 7, 16], [5, 13, 14, 16], [1, 2, 8, 9], [1, 10, 11, 15], [0, 4, 11, 13], [2, 4, 12, 15], [5, 6, 9, 16], [1, 6, 7, 15], [3, 8, 9, 13], [4, 8, 10, 14], [3, 11, 14, 15], [0, 8, 10, 16], [3, 6, 8, 11], [9, 10, 12, 14], [5, 7, 11, 12]]
+  },
+  "replay": {
+    "source_predicates": 11,
+    "kalmanson_atom_count": 4760,
+    "kalmanson_equality_class_count": 85,
+    "kalmanson_system_sha256": "72398491276d4bc7691ae030415822c4a713acd3c8cd725df9f83eea53777794",
+    "weighted_exact_replay": {
+      "status": "LINEARLY_INFEASIBLE",
+      "atom_indices": [1469, 1765],
+      "weights": [1, 1],
+      "proposal_sha256": "67788653bc7f016562e1a191bb0a45281754befcb44e3cf52a2e69eda89d4c78",
+      "exact_evidence_sha256": "7ca073b0d78b172473548cb08ed6b009046fe08cf7ba1cdf1cec683adea9fd97",
+      "source_consumer": "Problem97.ATailFrontierLiveClosure.GenericRowNogoodCertificate.false_of_weightedKalmansonCancellationData_of_check"
+    }
+  },
+  "cumulative_source_bank": {
+    "ledger_sha256": "f74c1d59bd287fbadba88dcb5fa179034acbab50464b97fbde99db9aa373a499",
+    "prior_occurrence_count": 8,
+    "orientation_support_count": 16,
+    "prior_root_sha256": "4c47a61712cd4c1d465ea7984189e938b5a2422553adc3e962b7209ee285430d"
+  },
+  "producer_scan": {
+    "matcher": "census.atail_force.producer_bank.enumerate_two_kalmanson_cancellations",
+    "forward_record_count": 36,
+    "reverse_record_count": 36,
+    "forward_distinct_support_count": 22,
+    "reverse_distinct_support_count": 22,
+    "subset_minimal_count": 13,
+    "subset_minimal_size_counts": {"6": 5, "8": 1, "10": 5, "11": 1, "12": 1},
+    "bank_exact_count": 0,
+    "bank_strict_subsumed_count": 0,
+    "new_source_valid_count": 13,
+    "source_consumer": "Problem97.ATailFrontierLiveClosure.GenericRowNogoodCertificate.false_of_twoKalmansonCancellationData_of_check",
+    "new_minimal_motif_supports": [
+      {"support": [[0, 11], [0, 14], [5, 9], [5, 11], [6, 9], [6, 14]], "size": 6, "forward_record_sha256": "e7c8f0e4a595842c4f1df75a4c442d9865abadd0a73995632574a3ea77a3c83a", "reverse_record_sha256": "90feb7eecda45eadbdbcfa9e85aa6b1d03763c4568f08d7e05ff8899b959ddaa"},
+      {"support": [[5, 3], [5, 9], [6, 1], [6, 9], [16, 1], [16, 3]], "size": 6, "forward_record_sha256": "186ad0277712cb3e771ea1cd34202b553cd80a6629b8a6cbae1aa43968657cbe", "reverse_record_sha256": "f4835cb4b9c74ae5a1c32188193ef67d663f567d762ba2341014f9a41eea5851"},
+      {"support": [[5, 3], [5, 9], [6, 9], [6, 14], [13, 3], [13, 14]], "size": 6, "forward_record_sha256": "a0b22e149f5a20afed64274766d8a22f8b5f84385c3cbe527e420faa14bb7126", "reverse_record_sha256": "c702483349988fa17470c25da9b994cdad55a0492d0b7b65ba63c5ffdb2890f9"},
+      {"support": [[6, 7], [6, 9], [7, 5], [7, 9], [10, 5], [10, 7]], "size": 6, "forward_record_sha256": "3dfb4c83aa09d537b401c6a8f04324b2269a72ce4e86897fd24627e788c3bb94", "reverse_record_sha256": "6d22537f82212e44074d602ed044d2b32c1fc00eff0be901344deeee04ba0ad7"},
+      {"support": [[9, 5], [9, 6], [12, 6], [12, 8], [14, 5], [14, 8]], "size": 6, "forward_record_sha256": "d23087e818910449a9507adda4fdef77104dd78a395c0ac55e130e296c1ae4af", "reverse_record_sha256": "8f27ccb87e101564957b3e4db61f0caa7a0613abb2356c7cde3baa6b306b0abb"},
+      {"support": [[7, 8], [7, 12], [8, 7], [8, 12], [10, 5], [10, 7], [14, 5], [14, 8]], "size": 8, "forward_record_sha256": "c4f152bd4c32440998be54583e306b7db89e858930c26edbb93863538503cb65", "reverse_record_sha256": "302ca2988c1f528a832071d56f87d3e15932ae586bc04401c08055df0b56aab5"},
+      {"support": [[0, 11], [0, 14], [6, 7], [6, 14], [7, 5], [7, 8], [8, 7], [8, 11], [14, 5], [14, 8]], "size": 10, "forward_record_sha256": "5c9ffa15a955305b3eb09b57e5bb6d2a77fd6d897a8a0d2b295e7a08020d2990", "reverse_record_sha256": "13bfed45d02acbc586ef51862cdb259956ca8a4a11c5e4bc6cd76b213f41cccc"},
+      {"support": [[2, 6], [2, 13], [6, 9], [6, 14], [9, 5], [9, 6], [10, 5], [10, 13], [13, 9], [13, 14]], "size": 10, "forward_record_sha256": "73d72e7616996dfe67d06a4b364be07fcdda528e01f43b4ea88ee7b22fb33d17", "reverse_record_sha256": "b166ef66b8da66a3546da858041c4b5bae4a78ecfe36d9ba0bff6d18111489a7"},
+      {"support": [[2, 6], [2, 13], [6, 9], [6, 14], [9, 6], [9, 16], [11, 13], [11, 16], [13, 9], [13, 14]], "size": 10, "forward_record_sha256": "7f04a3a3a52e09ba5cce3658256c072b0d2eded4a14fda8e8814329aa988051d", "reverse_record_sha256": "37fa2619e85bd81af94a26fa51302b91e0cb7fb0c860f5a731b97d263999ef77"},
+      {"support": [[4, 6], [4, 11], [5, 9], [5, 11], [6, 1], [6, 9], [9, 5], [9, 6], [14, 1], [14, 5]], "size": 10, "forward_record_sha256": "b3daf5054942e650d2f9b16f334a41c7e4747af879e8c6fac37941e559115e0b", "reverse_record_sha256": "9a02947a1a538c2821bc9d64895f432b68f68970900905a8afa337a1d7bfe7e3"},
+      {"support": [[5, 9], [5, 11], [6, 7], [6, 9], [7, 5], [7, 8], [8, 7], [8, 11], [14, 5], [14, 8]], "size": 10, "forward_record_sha256": "961391cb55172aa16156220179dfe72b46808d246c6c5cff6399dfd34b457d52", "reverse_record_sha256": "405cc5e43626be68ca9a5c9d5ebbe03334f1221cf4974448e31e18e3bd07b56e"},
+      {"support": [[6, 7], [6, 14], [7, 5], [7, 8], [7, 12], [8, 7], [8, 12], [12, 8], [12, 14], [14, 5], [14, 8]], "size": 11, "forward_record_sha256": "e1568d185564477bbd3063363b781e4ed25064013aba8bd56d9c8146cda82628", "reverse_record_sha256": "63f422053da2fdf83f0dc8ed7dbf09fefc2df881c14d2da6484974e8d68f2a22"},
+      {"support": [[6, 7], [6, 9], [7, 5], [7, 8], [7, 9], [7, 12], [8, 7], [8, 12], [9, 5], [9, 6], [12, 6], [12, 8]], "size": 12, "forward_record_sha256": "c8d356d6602df777f6a30dc10236dabccf484106fbc75f1c564095107e4f1180", "reverse_record_sha256": "1213decbe18d6cbfd1b6c43c7bc0b3d2da2e75f9c11c13dacdaab033e81f5afc"}
+    ]
+  },
+  "conclusion": {
+    "new_source_valid_theorem": true,
+    "new_source_valid_occurrences": 13,
+    "new_source_valid_occurrence_clauses_if_banked": 52,
+    "theorem_bank_yield": "Existing generic two-Kalmanson cancellation family only; no new general schema claimed.",
+    "first_lean_consumer": "Problem97.ATailFrontierLiveClosure.GenericRowNogoodCertificate.false_of_twoKalmansonCancellationData_of_check"
+  }
+}
