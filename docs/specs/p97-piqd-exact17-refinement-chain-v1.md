@@ -1,5 +1,11 @@
 # P97 exact-17 PIQD root-refinement lane v1
 
+> **Historical finite-refinement contract (2026-08-10).** Preserve this root
+> and its receipts for replay and regression. Do not extend it as the
+> proof-producing exact-17 route. A new PIQD root may enter production only
+> through the Lean finite-normal-form and checked-export gates in
+> `docs/specs/p97-exact17-cap9-lean-to-sat-route-v1.md`.
+
 ## Purpose
 
 This contract onboards one existing exact-17 Rigid221/BlockerV computation into

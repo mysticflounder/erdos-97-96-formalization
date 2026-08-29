@@ -1,5 +1,11 @@
 # P97 PIQD exact-17 v19 durable runner v1
 
+> **Historical one-case runner (2026-08-10).** This runner remains valid for
+> finite regression and PIQD transport tests. Its Python-pinned input identity
+> is not Lean source entitlement and does not cover every exact-17 placement.
+> The proof-producing successor must enter through
+> `docs/specs/p97-exact17-cap9-lean-to-sat-route-v1.md`.
+
 Status: additive finite-diagnostic infrastructure. The live proof anchor
 `Problem97.ATailFrontierLiveClosure.false_of_criticalPairFrontier` remains open
 and off-spine. This package does not edit, build, or claim closure of Lean.

@@ -1,5 +1,15 @@
 # P97 PIQD exact17 semantic ingress v1
 
+> **Superseded for proof-producing ingress (2026-08-10).** This specification
+> remains the contract for finite Python source custody and semantic replay of
+> the pinned v19 artifact. It is not the source of truth for the exact-17 Lean
+> theorem. The production route is
+> `docs/specs/p97-exact17-cap9-lean-to-sat-route-v1.md`, which requires a proved
+> Lean finite normal form, checked SAT export, and aggregate placement consumer
+> before these PIQD checks can contribute to theorem closure. In particular,
+> the variable map and deterministic center in this v1 adapter are
+> Python-validated, not Lean-proved.
+
 Status: implemented as an off-spine, finite source-custody and semantic-replay
 adapter. The proof-blueprint anchor
 `Problem97.ATailFrontierLiveClosure.false_of_criticalPairFrontier` remains open
