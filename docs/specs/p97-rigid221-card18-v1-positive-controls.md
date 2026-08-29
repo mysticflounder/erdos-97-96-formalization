@@ -100,18 +100,16 @@ independently chosen across deletion views. The next theorem must retain or deri
 source relation connecting the fixed-center views. Only after a source-derived consequence justifies
 a stronger v2 finite projection should the project revise the formula and reconsider serialization.
 
-The concrete first candidate is the bank declaration
-`DPackageBank.criticalShell_erase_survives_iff_not_mem_support` at
-`lean/scratch/d-package-bank/DPackageBank.lean`. At a chosen blocker center it identifies deletion
-survival with absence from the source's canonical four-point shell. Applying its forward direction
-to deletion of both `u` and `xv` shows that the same canonical support survives both views at each
-fixed center. The bank module imports the full live closure and therefore cannot be imported into
-`Rigid221SourceHeavy`; the proof must be promoted into a lower production module or adapted in a new
-acyclic ingress module. Its immediate consumer should be a BI packet carrying the two canonical
-source rows and their four endpoint nonmemberships, followed by the existing open bi-survival
-rectangle consumer. The bank source has no textual `sorry`, but its scratch module has no current
-`.olean`; treat it as a reuse candidate until the proof is adapted and rebuilt against current
-imports.
+The scratch candidate
+`DPackageBank.criticalShell_erase_survives_iff_not_mem_support` led to the already-production theorem
+`ATailCriticalPairFrontier.cross_deletion_survives_iff_not_mem_selected_support`. The 2026-08-28
+follow-up composes its forward direction with the packet-row identification theorems in
+`PhysicalSecondApexCommonDeletion.lean`. The resulting acyclic
+`BiSurvivalCanonicalRows.lean` interface carries both common-deletion packets, identifies the two
+fixed-center row pairs with the same canonical source shells, and records their four endpoint
+nonmemberships. The live bi-survival leaf consumes that stronger value. See
+`docs/specs/p97-rigid221-bi-survival-canonical-rows-v1.md` for its statement, frontier measure, and
+verification gates.
 
 ## 6. Acceptance gates
 

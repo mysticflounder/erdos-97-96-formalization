@@ -5,6 +5,7 @@ Authors: Adam McKenna
 -/
 
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.Rigid221Placement
+import Erdos9796Proof.P97.ATail.BiSurvivalCanonicalRows
 import Erdos9796Proof.P97.ATail.CriticalPairFrontier
 import Erdos9796Proof.P97.ATail.ExactFifteenApexProfile
 import Erdos9796Proof.P97.ATail.BlockerVExactFifteenFourRowCoverage
@@ -23,6 +24,7 @@ namespace ATailFrontierLiveClosure
 
 open scoped EuclideanGeometry
 open ATailApexRichClassStructure
+open ATailBiSurvivalCanonicalRows
 open ATailBiApexBlockerMultiplicity
 open ATailCriticalPairFrontier
 open ATailBiApexRobustCapBounds
@@ -13817,15 +13819,9 @@ theorem false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlock
     (hsurvivesXv₂ :
       HasNEquidistantPointsAt 4 (D.A.erase packet.xv)
         ((lateFirstApexSystem R).centerAt source₂.1 source₂.2))
-    (_hrectangle :
-      Nonempty (CommonDeletionTwoCenterPacket D (lateFirstApexSystem R)
-          P.u.1
-          ((lateFirstApexSystem R).centerAt source₁.1 source₁.2)
-          ((lateFirstApexSystem R).centerAt source₂.1 source₂.2)) ∧
-        Nonempty (CommonDeletionTwoCenterPacket D (lateFirstApexSystem R)
-          packet.xv
-          ((lateFirstApexSystem R).centerAt source₁.1 source₁.2)
-          ((lateFirstApexSystem R).centerAt source₂.1 source₂.2))) :
+    (_hcanonicalRows :
+      Nonempty (BiSurvivalCanonicalRows D (lateFirstApexSystem R)
+        P.u.1 packet.xv source₁ source₂)) :
     False := by
   sorry
 
@@ -13932,13 +13928,16 @@ theorem false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlock
       pentagonOffClassBlocker_biSurvival_commonDeletionRectangle_neutral
         (P := P) (packet := packet) _Q.hxvA source₁ source₂ hcenters
           hsurvivesU₁ hsurvivesU₂ hsurvivesXv₁ hsurvivesXv₂
+    have hcanonicalRows :=
+      nonempty_biSurvivalCanonicalRows (lateFirstApexSystem R)
+        source₁ source₂ hrectangle
     exact
       false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV_card_ge_eighteen_biSurvival_commonDeletionRectangle
         (P := P) (packet := packet) _Q _hcenterV
           _hcenterDeletedInterior _hcenterDeletedOffClass _hcard
           _hnextRowPhysicalHits source₁ source₂ hsource₁Outside
           hsource₂Outside hcenters hsurvivesU₁ hsurvivesU₂
-          hsurvivesXv₁ hsurvivesXv₂ hrectangle
+          hsurvivesXv₁ hsurvivesXv₂ hcanonicalRows
 
 /-- Cardinality and cap trichotomy of the off-class deleted-row `BlockerV`
 residual above seventeen carrier points: either the carrier has exactly

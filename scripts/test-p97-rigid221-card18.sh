@@ -29,27 +29,33 @@ PYTHON_FILES=(
   census/p97_search/rigid221_card18_source_custody.py
   census/p97_search/rigid221_card18_crossed_incidence_custody.py
   census/p97_search/rigid221_card18_crossed_incidence_custody_v2.py
+  census/p97_search/rigid221_card18_crossed_incidence_custody_v3.py
   census/p97_search/rigid221_card18_labeled_projection_custody.py
   census/p97_search/rigid221_card18_labeled_projection_custody_v2.py
+  census/p97_search/rigid221_card18_labeled_projection_custody_v3.py
   census/p97_search/rigid221_card18_predicate_coverage.py
   census/p97_search/rigid221_card18_predicate_coverage_v2.py
   census/p97_search/rigid221_card18_predicate_coverage_v3.py
   census/p97_search/rigid221_card18_predicate_coverage_v4.py
+  census/p97_search/rigid221_card18_predicate_coverage_v5.py
   census/p97_search/tests/test_rigid221_card18_source_packet.py
   census/p97_search/tests/test_rigid221_card18_source_custody.py
   census/p97_search/tests/test_rigid221_card18_crossed_incidence_custody.py
   census/p97_search/tests/test_rigid221_card18_crossed_incidence_custody_v2.py
+  census/p97_search/tests/test_rigid221_card18_crossed_incidence_custody_v3.py
   census/p97_search/tests/test_rigid221_card18_labeled_projection_custody.py
   census/p97_search/tests/test_rigid221_card18_labeled_projection_custody_v2.py
+  census/p97_search/tests/test_rigid221_card18_labeled_projection_custody_v3.py
   census/p97_search/tests/test_rigid221_card18_predicate_coverage.py
   census/p97_search/tests/test_rigid221_card18_predicate_coverage_v2.py
   census/p97_search/tests/test_rigid221_card18_predicate_coverage_v3.py
   census/p97_search/tests/test_rigid221_card18_predicate_coverage_v4.py
+  census/p97_search/tests/test_rigid221_card18_predicate_coverage_v5.py
 )
 
 uv run --with ruff ruff check "${PYTHON_FILES[@]}"
 
-HISTORICAL_HEAD="9abb3417c06fd973dfa502009d5f517f0b25c24c"
+HISTORICAL_HEAD="7cf1e60bde589fe27c246c0edbc7ad20e96d6db3"
 HISTORICAL_TMP_BASE="${TMPDIR:-/tmp}"
 HISTORICAL_TMP_BASE="${HISTORICAL_TMP_BASE%/}"
 HISTORICAL_ROOT="$(mktemp -d "$HISTORICAL_TMP_BASE/p97-rigid221-card18-history.XXXXXX")"
@@ -73,13 +79,16 @@ git archive --format=tar "$HISTORICAL_HEAD" | tar -xf - -C "$HISTORICAL_ROOT"
     census/p97_search/tests/test_rigid221_card18_labeled_projection_custody.py \
     census/p97_search/tests/test_rigid221_card18_predicate_coverage.py \
     census/p97_search/tests/test_rigid221_card18_predicate_coverage_v2.py \
-    census/p97_search/tests/test_rigid221_card18_predicate_coverage_v3.py
+    census/p97_search/tests/test_rigid221_card18_predicate_coverage_v3.py \
+    census/p97_search/tests/test_rigid221_card18_crossed_incidence_custody_v2.py \
+    census/p97_search/tests/test_rigid221_card18_labeled_projection_custody_v2.py \
+    census/p97_search/tests/test_rigid221_card18_predicate_coverage_v4.py
 )
 
 uv run pytest -q -p no:cacheprovider \
-  census/p97_search/tests/test_rigid221_card18_crossed_incidence_custody_v2.py \
-  census/p97_search/tests/test_rigid221_card18_labeled_projection_custody_v2.py \
-  census/p97_search/tests/test_rigid221_card18_predicate_coverage_v4.py
+  census/p97_search/tests/test_rigid221_card18_crossed_incidence_custody_v3.py \
+  census/p97_search/tests/test_rigid221_card18_labeled_projection_custody_v3.py \
+  census/p97_search/tests/test_rigid221_card18_predicate_coverage_v5.py
 
 LAKE_BUILD_NO_REFRESH=1 lake-build \
   Erdos9796Proof.P97.ATail.FrontierLiveClosure.Rigid221Card18Aggregate

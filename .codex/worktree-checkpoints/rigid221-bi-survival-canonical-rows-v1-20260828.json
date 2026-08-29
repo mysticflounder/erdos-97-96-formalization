@@ -1,0 +1,33 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "rigid221-bi-survival-canonical-rows-v1-20260828",
+  "owner": "CanonicalRowCartographer",
+  "base_head": "7cf1e60bde589fe27c246c0edbc7ad20e96d6db3",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/rigid221-bi-survival-canonical-rows-v1-20260828.json",
+    "census/p97_search/rigid221_card18_crossed_incidence_custody_v3.py",
+    "census/p97_search/rigid221_card18_labeled_projection_custody_v3.py",
+    "census/p97_search/rigid221_card18_predicate_coverage_v5.py",
+    "census/p97_search/tests/test_rigid221_card18_crossed_incidence_custody_v3.py",
+    "census/p97_search/tests/test_rigid221_card18_labeled_projection_custody_v3.py",
+    "census/p97_search/tests/test_rigid221_card18_predicate_coverage_v5.py",
+    "certificates/rigid221_card18_crossed_incidence_source_custody_v3.json",
+    "certificates/rigid221_card18_labeled_projection_source_custody_v3.json",
+    "certificates/rigid221_card18_predicate_coverage_v5.json",
+    "docs/audits/2026-08-28-rigid221-bi-survival-canonical-rows-v1-review.md",
+    "docs/computational-closure-plan-2026-07-28.md",
+    "docs/specs/p97-card-ge-eighteen-coverage-route-v1.md",
+    "docs/specs/p97-rigid221-bi-survival-canonical-rows-v1.md",
+    "docs/specs/p97-rigid221-card18-crossed-incidence-custody-v3.md",
+    "docs/specs/p97-rigid221-card18-labeled-projection-custody-v3.md",
+    "docs/specs/p97-rigid221-card18-predicate-coverage-v5.md",
+    "docs/specs/p97-rigid221-card18-v1-positive-controls.md",
+    "lean/Erdos9796Proof/P97/ATail/BiSurvivalCanonicalRows.lean",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221SourceHeavy.lean",
+    "scripts/test-p97-rigid221-card18.sh"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-08-28T00:00:00Z",
+  "manifest_sha256": "c4dfed46c881124fd418d7f2c8e9ee9d4d8ce6ecb1e42583306a13a8cbcfbe73"
+}

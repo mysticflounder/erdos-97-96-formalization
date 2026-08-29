@@ -9317,6 +9317,37 @@ consumers contain only `propext`, `Classical.choice` and `Quot.sound`. The
 source/index check is clean apart from the repository's pre-existing
 cross-tree name-collision census.
 
+**2026-08-28 BI canonical-row update — construction and custody validated.** The
+bi-survival child now receives a `BiSurvivalCanonicalRows` value instead of a
+bare pair of independently exposed common-deletion packets. A lower acyclic
+producer proves that the two deletion views use the same canonical critical
+shell at each fixed source blocker and that both deleted endpoints avoid both
+shells. It uses the production critical-shell survival theorem and the existing
+packet-row identification theorems; the scratch D-package bank remains
+unimported.
+
+For this child, refine the frontier measure to
+`(unclassified deletion profile, unresolved crossed-incidence complement,
+unresolved bi-survival comparison,
+fixed centers lacking certified cross-deletion canonical-row alignment)`.
+The BI interface moves from `(0, 0, 1, 2)` to `(0, 0, 1, 0)` with constructor
+fan-out still one. The same BI `sorry` remains publish-visible: this is a
+source-ingress and tractability reduction, not a contradiction proof. Its next
+consumer must use the aligned canonical rows to derive an incidence/order
+consequence, a metric terminal, or a source-faithful bounded obstruction.
+
+The exact interface and pending verification/custody gates are recorded in
+`docs/specs/p97-rigid221-bi-survival-canonical-rows-v1.md`.
+
+The final lower/source-heavy/aggregate builds pass. Additive custody v3 retains
+the kernel-mined 26- and 27-module tuples, and coverage v5 preserves 188
+candidate rows while refreshing exactly 37 of 38 source custody digests. The
+governed runner reports 131 historical passes with 348 skips, 131 live v3/v5
+passes, and a 10,888-job aggregate rebuild. Official global proof-blueprint
+spine certification remains blocked by unrelated duplicate declaration names
+in pre-existing Exact17 Lean scratch/export sources; the current-fingerprint
+target walk and its 36-node caller subtree are fresh.
+
 ## 13.24 FreshThird acyclic hard-residual reduction (2026-08-08)
 
 The outside-first FreshThird ingress has now been normalized all the way to a

@@ -493,3 +493,40 @@ this implementation changes the three manifested paths above. At base
 their recorded evidence hashes, and the bundle's internal `SHA256SUMS` check
 passes unchanged. Revalidating the old evidence census therefore requires that
 frozen tree, not silent substitution of the post-route files.
+
+## 13. 2026-08-28 bi-survival canonical-row ingress
+
+The next route checkpoint replaces the BI leaf's pair of independently exposed
+common-deletion packets with one `BiSurvivalCanonicalRows` value. The producer
+retains both packets and proves, at each fixed source blocker, that the rows
+chosen after deleting `u` and `xv` are the same canonical ambient critical
+shell. It also records that both endpoints avoid both shells.
+
+The proof reuses the forward direction of
+`cross_deletion_survives_iff_not_mem_selected_support` and the two packet-row
+identification theorems in `PhysicalSecondApexCommonDeletion.lean`. The new
+module imports only that lower production boundary, so `Rigid221SourceHeavy`
+imports it without a cycle. The scratch D-package bank is not imported.
+
+Refine the W1-W4 frontier measure to
+
+`(unclassified deletion profile, unresolved crossed-incidence complement,
+unresolved bi-survival comparison,
+fixed centers lacking certified cross-deletion canonical-row alignment)`.
+
+The BI leaf changes from `(0, 0, 1, 2)` to `(0, 0, 1, 0)`. Constructor fan-out
+remains one. The named BI `sorry` stays on-spine and still requires a consumer
+deriving a contradiction, incidence/order consequence, or source-faithful
+bounded obstruction from the aligned rows. This checkpoint narrows that
+consumer interface; it does not claim the BI leaf is closed.
+
+The exact source, statement, trust, custody, and verification record is
+`docs/specs/p97-rigid221-bi-survival-canonical-rows-v1.md`.
+
+Validation preserves the labeled/crossed kernel-mined dependency tuples at 26
+and 27 modules. Predicate coverage v5 retains all 188 candidates and all 38
+source rows, changing only 37 custody digests. The governed runner passes 131
+historical tests with 348 skips, 131 live v3/v5 tests, and the 10,888-job
+Card18 aggregate build. Global proof-blueprint spine certification remains a
+separate repository-wide gate because unrelated duplicate Exact17 declaration
+names keep its reference cache stale.
