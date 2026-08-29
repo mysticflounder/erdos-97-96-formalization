@@ -504,6 +504,10 @@ model and decoded-object digests; invalidating witness; source-preservation and
 child-bridge producers; compiled clause; F1--F7 validation results; and clause
 class `SEMANTIC_REFINEMENT`.
 
+Each F1--F7 result is a typed evidence reference with exact inputs, checker or
+producer identity, and a validation receipt. Caller-supplied success booleans
+do not discharge these obligations.
+
 Enumeration blocks use a different schema and may not populate the
 source-preservation producer field.
 
@@ -529,7 +533,7 @@ contract.
 | SAT model replay | total model satisfies one exact formula | R3 and R4 unless separately supplied |
 | structural certificate | checked local detector result and clause compilation | source preservation under `Γ` |
 | unresolved survivor block | one semantic projection or projected family will not repeat | projection scope and survivor discharge |
-| structural runner terminal formula | canonical bucketed reconstruction in current code | F2 validator and separation of semantic and enumeration clauses |
+| structural runner terminal formula | authenticated root-static, assumption-control, learned-candidate, and enumeration-control inventory bound to exact solver and terminal CNF bytes | F1--F7 evidence for any learned candidate, an assumption contract where applicable, and semantic parent/child F2 receipts |
 | campaign classifier receipt | one finite source-derived diagnostic family under its recorded packet | F4 producer over the exact `Source Γ` scope |
 | `PIVOT_REQUIRED` | three adjacent finite-local survivors triggered the configured stop | source preservation, coverage, or terminal evidence |
 | post-wave theorem-search receipt | authenticated human review and named source-backed candidate | checked semantic producer for F4 |
@@ -541,6 +545,14 @@ contract.
 The checked-search correspondence pattern is the preferred root-bridge model:
 prove the source-to-assignment direction needed by UNSAT, and separately prove
 the assignment-to-valid-abstract-object direction needed to interpret SAT.
+
+The maintained projected-static-v3 runner emits
+`p97-cegar-solver-formula-clause-contract/v1` records. These authenticate the
+four custody classes above and explicitly report finite-Boolean-formula scope
+with source and abstract promotion disabled. `LEARNED_CANDIDATE` is not
+`SEMANTIC_REFINEMENT`; only a receipt carrying accepted typed F1--F7 evidence
+may use the latter class. This checkpoint supplies formula custody, not F2 or a
+semantic terminal receipt.
 
 ## 10. Validation and adoption plan
 
@@ -556,7 +568,9 @@ the assignment-to-valid-abstract-object direction needed to interpret SAT.
 
 - emit semantic-contract, counterexample-assessment, and refinement receipts
   beside existing v1 artifacts;
-- classify every clause as semantic refinement or enumeration control;
+- classify every clause as root static, assumption control, learned candidate,
+  enumeration control, or accepted semantic refinement; reserve the last class
+  for clauses carrying typed F1--F7 evidence;
 - reject crossed contract, formula, model, source, or variable-map digests; and
 - keep all mathematical claims false.
 

@@ -89,6 +89,7 @@ incremental_cadical = importlib.import_module(
 projection_contract = importlib.import_module(
     "census.p97_search.cegar_projection_contract"
 )
+clause_contract = importlib.import_module("census.p97_search.cegar_clause_contract")
 
 
 SCHEMA = "p97-phase3-structural-cegar-v1"
@@ -1526,6 +1527,54 @@ def _shard_local_formula(
         _render_cnf_clauses(encoding, simplified.residual_clauses),
         simplified.as_dict(),
     )
+
+
+def _typed_solver_formula(
+    encoding: Any,
+    *,
+    shard_clauses: Sequence[Sequence[int]],
+    shard_literals: Sequence[int],
+    learned: Sequence[Mapping[str, Any]],
+    learned_clauses: Sequence[Sequence[int]],
+    survivors: Sequence[Mapping[str, Any]],
+    survivor_clauses: Sequence[Sequence[int]],
+    simplify: bool,
+) -> tuple[bytes, dict[str, Any] | None, dict[str, Any]]:
+    """Render a solver formula only through the authenticated bucket order."""
+
+    source_clauses = (
+        *encoding.clauses,
+        *shard_clauses,
+        *learned_clauses,
+        *survivor_clauses,
+    )
+    rendered_source = _render_cnf_clauses(encoding, source_clauses)
+    try:
+        typed_clauses, source_inventory = clause_contract.build_source_inventory(
+            variable_count=encoding.num_vars,
+            root_clauses=encoding.clauses,
+            assumption_clauses=shard_clauses,
+            learned_records=learned,
+            learned_clauses=learned_clauses,
+            survivor_records=survivors,
+            survivor_clauses=survivor_clauses,
+            rendered_source_cnf=rendered_source,
+        )
+        if simplify:
+            cnf_bytes, simplification = _shard_local_formula(
+                encoding,
+                typed_clauses,
+                shard_literals,
+                enabled=True,
+            )
+        else:
+            cnf_bytes, simplification = rendered_source, None
+        bound_contract = clause_contract.bind_solver_formula(
+            source_inventory, cnf_bytes, simplification
+        )
+    except clause_contract.ClauseContractError as exc:
+        raise StructuralCegarError(f"clause contract failed: {exc}") from exc
+    return cnf_bytes, simplification, bound_contract
 
 
 def _validate_shard_assignment(
@@ -6580,6 +6629,23 @@ def _load_logs(
         previous = record["record_sha256"]
         if record.get("schema") != LOG_SCHEMA or record.get("attempt") != index:
             raise StructuralCegarError(f"{where}: solver log identity mismatch")
+        stored_clause_contract = record.get("clause_contract")
+        if stored_clause_contract is not None:
+            if not isinstance(stored_clause_contract, Mapping):
+                raise StructuralCegarError(
+                    f"{where}: solver clause contract is not an object"
+                )
+            try:
+                clause_contract.validate_bound_contract(stored_clause_contract)
+            except clause_contract.ClauseContractError as exc:
+                raise StructuralCegarError(f"{where}: {exc}") from exc
+            formula_identity = stored_clause_contract["solver_formula"]
+            if record.get("cnf_sha256") != formula_identity.get(
+                "cnf_sha256"
+            ) or record.get("clause_count") != formula_identity.get("clause_count"):
+                raise StructuralCegarError(
+                    f"{where}: solver log/clause contract identity mismatch"
+                )
     return records
 
 
@@ -7812,6 +7878,7 @@ def _manifest(
     solver_metadata: Mapping[str, Any] | None = None,
     productivity_stream: Mapping[str, Any] | None = None,
     survivor_block_contract: Mapping[str, Any] | None = None,
+    terminal_clause_contract: Mapping[str, Any] | None = None,
 ) -> dict[str, Any]:
     bootstrap_count = sum(
         record["origin"]
@@ -8159,6 +8226,23 @@ def _manifest(
         unsigned["productivity_stream"] = dict(productivity_stream)
     if survivor_block_contract is not None:
         unsigned["survivor_block_contract"] = dict(survivor_block_contract)
+    if terminal_clause_contract is not None:
+        terminal_cnf = out / "terminal.cnf"
+        if not terminal_cnf.is_file():
+            raise StructuralCegarError("terminal clause contract requires terminal.cnf")
+        try:
+            clause_contract.validate_against_cnf(
+                terminal_clause_contract, terminal_cnf.read_bytes()
+            )
+        except clause_contract.ClauseContractError as exc:
+            raise StructuralCegarError(
+                f"terminal clause contract failed: {exc}"
+            ) from exc
+        if terminal_clause_contract["solver_formula"]["clause_count"] != (
+            terminal_clause_count
+        ):
+            raise StructuralCegarError("terminal clause contract/count mismatch")
+        unsigned["terminal_clause_contract"] = dict(terminal_clause_contract)
     if manifest_generation is not None:
         if type(manifest_generation) is not int or manifest_generation <= 0:
             raise StructuralCegarError("manifest generation must be positive")
@@ -8184,6 +8268,7 @@ def _manifest_from_prospective_state(
     solver_metadata: Mapping[str, Any] | None = None,
     productivity_stream: Mapping[str, Any] | None = None,
     survivor_block_contract: Mapping[str, Any] | None = None,
+    terminal_clause_contract: Mapping[str, Any] | None = None,
 ) -> dict[str, Any]:
     """Project the hot manifest from state updated after durable appends."""
 
@@ -8233,6 +8318,16 @@ def _manifest_from_prospective_state(
         unsigned["survivor_block_contract"] = dict(survivor_block_contract)
     else:
         unsigned.pop("survivor_block_contract", None)
+    if terminal_clause_contract is not None:
+        try:
+            clause_contract.validate_bound_contract(terminal_clause_contract)
+        except clause_contract.ClauseContractError as exc:
+            raise StructuralCegarError(
+                f"terminal clause contract failed: {exc}"
+            ) from exc
+        unsigned["terminal_clause_contract"] = dict(terminal_clause_contract)
+    else:
+        unsigned.pop("terminal_clause_contract", None)
     return {**unsigned, "manifest_sha256": _sha256_value(unsigned)}
 
 
@@ -9645,6 +9740,50 @@ def run_driver(
         prior_manifest is not None
         and prior_manifest.get("terminal_drat_verified") is True
     )
+    terminal_clause_contract: dict[str, Any] | None = None
+    if prior_manifest is not None:
+        stored_terminal_contract = prior_manifest.get("terminal_clause_contract")
+        if stored_terminal_contract is not None:
+            if not isinstance(stored_terminal_contract, Mapping):
+                raise StructuralCegarError(
+                    "resume terminal clause contract is not an object"
+                )
+            if prior_manifest.get("status") == "RUNNING":
+                raise StructuralCegarError(
+                    "running manifest cannot carry a terminal clause contract"
+                )
+            if not logs or logs[-1].get("clause_contract") != stored_terminal_contract:
+                raise StructuralCegarError(
+                    "resume terminal clause contract does not match the final solver log"
+                )
+            try:
+                replayed_cnf, _replayed_simplification, replayed_contract = (
+                    _typed_solver_formula(
+                        encoding,
+                        shard_clauses=shard_clauses,
+                        shard_literals=shard_literals,
+                        learned=learned,
+                        learned_clauses=learned_clauses,
+                        survivors=survivors,
+                        survivor_clauses=survivor_clauses,
+                        simplify=shard_local_simplification,
+                    )
+                )
+                if replayed_contract != stored_terminal_contract:
+                    raise StructuralCegarError(
+                        "resume terminal clause contract differs from bucket replay"
+                    )
+                clause_contract.validate_against_cnf(
+                    stored_terminal_contract, replayed_cnf
+                )
+                clause_contract.validate_against_cnf(
+                    stored_terminal_contract, (out / "terminal.cnf").read_bytes()
+                )
+            except (OSError, clause_contract.ClauseContractError) as exc:
+                raise StructuralCegarError(
+                    f"resume terminal clause contract failed: {exc}"
+                ) from exc
+            terminal_clause_contract = dict(stored_terminal_contract)
     dynamic_learned_count, raw_count = _classification_count_cache(learned, survivors)
     initial_raw_count = raw_count
     next_manifest_generation = (
@@ -9791,6 +9930,7 @@ def run_driver(
                 solver_metadata=solver_metadata,
                 productivity_stream=productivity_stream_state,
                 survivor_block_contract=survivor_block_contract,
+                terminal_clause_contract=terminal_clause_contract,
             )
         else:
             manifest = _manifest(
@@ -9812,6 +9952,7 @@ def run_driver(
                 solver_metadata=solver_metadata,
                 productivity_stream=productivity_stream_state,
                 survivor_block_contract=survivor_block_contract,
+                terminal_clause_contract=terminal_clause_contract,
             )
         _validate_manifest_count_cache(
             manifest,
@@ -9902,6 +10043,7 @@ def run_driver(
                 else productivity_ledger.snapshot().as_dict()
             ),
             survivor_block_contract=survivor_block_contract,
+            terminal_clause_contract=terminal_clause_contract,
         )
         _validate_manifest_count_cache(
             replayed_manifest,
@@ -10293,11 +10435,17 @@ def run_driver(
 
         solve_path = out / ".solver.cnf"
         proof_tmp = out / ".solver.drat"
-        cnf_bytes, simplification_metadata = _shard_local_formula(
-            encoding,
-            (*encoding.clauses, *extra_clauses),
-            shard_literals,
-            enabled=shard_local_simplification,
+        cnf_bytes, simplification_metadata, solver_clause_contract = (
+            _typed_solver_formula(
+                encoding,
+                shard_clauses=shard_clauses,
+                shard_literals=shard_literals,
+                learned=learned,
+                learned_clauses=learned_clauses,
+                survivors=survivors,
+                survivor_clauses=survivor_clauses,
+                simplify=shard_local_simplification,
+            )
         )
         _atomic_bytes(solve_path, cnf_bytes)
         with contextlib.suppress(FileNotFoundError):
@@ -10326,15 +10474,12 @@ def run_driver(
             "schema": LOG_SCHEMA,
             "attempt": attempt,
             "cnf_sha256": _sha256_bytes(cnf_bytes),
-            "clause_count": (
-                simplification_metadata["residual_clause_count"]
-                if simplification_metadata is not None
-                else len(encoding.clauses) + len(extra_clauses)
-            ),
+            "clause_count": solver_clause_contract["solver_formula"]["clause_count"],
             "verdict": result.verdict,
             "returncode": result.returncode,
             "stdout": result.stdout,
             "stderr": result.stderr,
+            "clause_contract": solver_clause_contract,
         }
         if simplification_metadata is not None:
             log_unsigned["shard_local_simplification"] = simplification_metadata
@@ -10414,11 +10559,9 @@ def run_driver(
                 status = "UNKNOWN"
                 return publish()
         if result.verdict == "UNSAT":
-            terminal_clause_count = (
-                simplification_metadata["residual_clause_count"]
-                if simplification_metadata is not None
-                else len(encoding.clauses) + len(extra_clauses)
-            )
+            terminal_clause_count = solver_clause_contract["solver_formula"][
+                "clause_count"
+            ]
             terminal = terminal_publisher.publish(
                 out=out,
                 cnf_bytes=cnf_bytes,
@@ -10481,6 +10624,7 @@ def run_driver(
                     f"unexpected terminal publication outcome {terminal.outcome!r}"
                 )
             unsat_verified = True
+            terminal_clause_contract = solver_clause_contract
             diagnostic = None
             has_algebraic = any(
                 record["origin"]

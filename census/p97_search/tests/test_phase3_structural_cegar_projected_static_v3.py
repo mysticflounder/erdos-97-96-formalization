@@ -808,6 +808,22 @@ def test_runtime_terminal_publisher_is_wired_fail_closed(tmp_path: Path) -> None
     assert len(local_calls) == 1
     assert local_calls[0][1] == out / ".solver.drat"
     assert local_calls[0][0].read_bytes() == (out / "terminal.cnf").read_bytes()
+    terminal_contract = result["terminal_clause_contract"]
+    assert terminal_contract["promotion_status"] == "FINITE_BOOLEAN_FORMULA_ONLY"
+    assert terminal_contract["supports_source_promotion"] is False
+    buckets = terminal_contract["source_inventory"]["buckets"]
+    assert [bucket["clause_class"] for bucket in buckets] == [
+        "ROOT_STATIC",
+        "ASSUMPTION_CONTROL",
+        "LEARNED_CANDIDATE",
+        "ENUMERATION_CONTROL",
+    ]
+    assert [bucket["clause_count"] for bucket in buckets] == [58314, 0, 0, 0]
+    logs = v3._strict_json_lines(out / "solver-logs.jsonl")
+    assert logs[-1]["clause_contract"] == terminal_contract
+    v3.clause_contract.validate_against_cnf(
+        terminal_contract, (out / "terminal.cnf").read_bytes()
+    )
 
 
 def test_terminal_publication_closes_before_qualification_finalization(
@@ -1138,6 +1154,17 @@ def test_sat_discovery_then_unsat_terminal_rerun_is_proof_free_until_terminal(
     assert block_contract["auxiliary_variable_count"] == 1083
     assert block_contract["source_discharge"] is None
     assert block_contract["abstract_discharge"] is None
+    terminal_contract = result["terminal_clause_contract"]
+    terminal_buckets = terminal_contract["source_inventory"]["buckets"]
+    assert [bucket["clause_count"] for bucket in terminal_buckets] == [
+        58314,
+        0,
+        0,
+        1,
+    ]
+    assert terminal_buckets[-1]["clause_class"] == "ENUMERATION_CONTROL"
+    assert terminal_buckets[-1]["record_identity"]["record_count"] == 1
+    assert terminal_contract["supports_source_promotion"] is False
     assert "semantic-projection blocks" in result["result_claim"]
     assert "supply no source or abstract discharge" in result["result_claim"]
     assert len(calls) == 3
@@ -1957,6 +1984,15 @@ def test_prefix_bank_one_worker_one_raw_smoke_and_resume_pin_binding(
         ]
         == expected_count
     )
+    first_log = v3._strict_json_lines(out / "solver-logs.jsonl")[0]
+    learned_bucket = first_log["clause_contract"]["source_inventory"]["buckets"][2]
+    assert learned_bucket["clause_class"] == "LEARNED_CANDIDATE"
+    assert (
+        learned_bucket["clause_count"]
+        == learned_bucket["record_identity"]["record_count"]
+        == 1
+    )
+    assert learned_bucket["promotion_evidence"] is None
     records = [
         json.loads(line)
         for line in (out / "learned-certificates.jsonl").read_text().splitlines()

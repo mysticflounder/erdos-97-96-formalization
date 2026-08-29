@@ -1,0 +1,18 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "p97-cegar-clause-classification-20260829",
+  "owner": "codex-p97-cegar-clause-classification",
+  "base_head": "dfc8fd7dcc9640e2f6241acdd5b0ed91d15a443c",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/p97-cegar-clause-classification-20260829.json",
+    "census/p97_search/cegar_clause_contract.py",
+    "census/p97_search/phase3_structural_cegar_projected_static_v3.py",
+    "census/p97_search/tests/test_cegar_clause_contract.py",
+    "census/p97_search/tests/test_phase3_structural_cegar_projected_static_v3.py",
+    "docs/specs/p97-cegar-semantic-contract-v1.md"
+  ],
+  "durable_paths": [],
+  "generated_roots": [],
+  "created_utc": "2026-08-29T02:53:35Z",
+  "manifest_sha256": "232781263889dbb505cb5d4f472603cd52df081e7cd48620474ea5ebc58cc42d"
+}
