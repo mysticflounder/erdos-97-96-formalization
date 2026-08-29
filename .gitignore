@@ -574,3 +574,13 @@ docs/live-blueprint.md.tmp
 /scratch/nthdegree_4432_4433.json
 /scratch/nthdegree_digest.json
 /scratch/rigid221-sourceheavy-anchor/canary_v13_template.diff
+
+# exact12-rigid221-all-order-common-five lane: reproducible replay payloads
+# under the lane's generated roots.  Manifests, summaries, receipts, seals,
+# descriptors, certificates, and the survivor are committed; the family-bank
+# snapshots rebuild deterministically from census/card_head and are bound by
+# sha256 in the committed job/summary; tmp/ trees are temporary work.
+/scratch/runs/exact12-rigid221-all-order-common-five/*/artifacts/workdir/*_family_bank.json
+/scratch/runs/exact12-rigid221-all-order-common-five/*/artifacts/workdir/source_order_bank.json
+/scratch/runs/exact12-rigid221-all-order-common-five/*/artifacts/workdir/physical_class_cut_bank.json
+/scratch/runs/exact12-rigid221-all-order-common-five/*/tmp/
