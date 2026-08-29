@@ -1,0 +1,17 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "p97-cegar-projection-discharge-20260828",
+  "owner": "codex-p97-cegar-projection-discharge",
+  "base_head": "d62bfa4cd80ee0b6d89453ef143904f958735f94",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/p97-cegar-projection-discharge-20260828.json",
+    "census/p97_search/cegar_projection_contract.py",
+    "census/p97_search/phase3_structural_cegar_projected_static_v3.py",
+    "census/p97_search/tests/test_cegar_projection_contract.py",
+    "census/p97_search/tests/test_phase3_structural_cegar_projected_static_v3.py"
+  ],
+  "durable_paths": [],
+  "generated_roots": [],
+  "created_utc": "2026-08-28T23:35:16Z",
+  "manifest_sha256": "3dc73cc6602d9ebde8bb2944a98188a25ed3c1a5f04719710147648295fceb2d"
+}

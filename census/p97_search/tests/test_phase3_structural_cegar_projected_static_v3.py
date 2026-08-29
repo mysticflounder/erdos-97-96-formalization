@@ -1095,9 +1095,17 @@ def test_terminal_proof_rerun_rejects_changed_cnf(
 
 def test_sat_discovery_then_unsat_terminal_rerun_is_proof_free_until_terminal(
     tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
 ) -> None:
     calls: list[tuple[Path, Path | None]] = []
     assignment = _first_projected_survivor_assignment()
+    for detector in (
+        "_cap_order_certificate",
+        "_rhombus_cap_order_certificate",
+        "_kalmanson_cap_order_certificate",
+        "_shared_pair_separation_certificate",
+    ):
+        monkeypatch.setattr(v3, detector, lambda *_args, **_kwargs: None)
 
     def solver(cnf: Path, _timeout: int, proof: Path | None) -> Any:
         calls.append((cnf, proof))
@@ -1122,10 +1130,16 @@ def test_sat_discovery_then_unsat_terminal_rerun_is_proof_free_until_terminal(
         checker_runner=lambda *_args: v3.sat.CheckerResult(True, 0, "s VERIFIED\n", ""),
     )
 
-    assert result["status"] in {
-        "STRUCTURAL_UNSAT_VERIFIED",
-        "ENUMERATION_COMPLETE_WITH_SURVIVORS",
-    }
+    assert result["status"] == "ENUMERATION_COMPLETE_WITH_SURVIVORS"
+    block_contract = result["survivor_block_contract"]
+    assert block_contract["clause_class"] == "ENUMERATION_CONTROL"
+    assert block_contract["block_scope"] == "SEMANTIC_PROJECTION"
+    assert block_contract["blocked_variable_count"] == 111
+    assert block_contract["auxiliary_variable_count"] == 1083
+    assert block_contract["source_discharge"] is None
+    assert block_contract["abstract_discharge"] is None
+    assert "semantic-projection blocks" in result["result_claim"]
+    assert "supply no source or abstract discharge" in result["result_claim"]
     assert len(calls) == 3
     assert calls[0][1] is None
     assert calls[1][1] is None

@@ -86,6 +86,9 @@ adaptive_cubing = importlib.import_module("census.p97_search.phase3_adaptive_cub
 incremental_cadical = importlib.import_module(
     "census.p97_search.phase3_incremental_cadical"
 )
+projection_contract = importlib.import_module(
+    "census.p97_search.cegar_projection_contract"
+)
 
 
 SCHEMA = "p97-phase3-structural-cegar-v1"
@@ -6520,8 +6523,14 @@ def _load_survivors(
     encoding: Any,
     shard_literals: Sequence[int] = (),
     stream_scan: cegar_runtime.JournalScan | None = None,
+    block_scope_contract: Mapping[str, Any] | None = None,
 ) -> tuple[list[dict[str, Any]], list[tuple[int, ...]]]:
     _validate_three_rhombus_literal_namespace(encoding)
+    if block_scope_contract is not None:
+        try:
+            projection_contract.validate_scope_contract(block_scope_contract, encoding)
+        except projection_contract.ProjectionContractError as exc:
+            raise StructuralCegarError(str(exc)) from exc
     records = _strict_json_lines(path, scan=stream_scan)
     clauses: list[tuple[int, ...]] = []
     previous: str | None = None
@@ -6546,6 +6555,13 @@ def _load_survivors(
         block = encoding.blocking_clause(assignment)
         if record.get("blocking_clause") != list(block):
             raise StructuralCegarError(f"{where}: survivor block mismatch")
+        if block_scope_contract is not None:
+            try:
+                projection_contract.validate_block_clause(
+                    block_scope_contract, encoding, block
+                )
+            except projection_contract.ProjectionContractError as exc:
+                raise StructuralCegarError(f"{where}: {exc}") from exc
         if record.get("assignment_sha256") != _assignment_hash(encoding, assignment):
             raise StructuralCegarError(f"{where}: survivor assignment hash mismatch")
         clauses.append(block)
@@ -7795,6 +7811,7 @@ def _manifest(
     previous_manifest_sha256: str | None = None,
     solver_metadata: Mapping[str, Any] | None = None,
     productivity_stream: Mapping[str, Any] | None = None,
+    survivor_block_contract: Mapping[str, Any] | None = None,
 ) -> dict[str, Any]:
     bootstrap_count = sum(
         record["origin"]
@@ -7957,10 +7974,29 @@ def _manifest(
             "closure"
         )
     elif status == "ENUMERATION_COMPLETE_WITH_SURVIVORS":
-        claim = (
-            "terminal DRAT verifies coverage by structural cuts plus explicit "
-            "full-assignment blocks for stored structurally unresolved survivors"
-        )
+        if survivor_block_contract is None:
+            claim = (
+                "terminal DRAT verifies coverage by structural cuts plus explicit "
+                "full-assignment blocks for stored structurally unresolved survivors"
+            )
+        elif survivor_block_contract.get("block_scope") == "SEMANTIC_PROJECTION":
+            claim = (
+                "terminal DRAT verifies coverage by structural cuts plus explicit "
+                "semantic-projection blocks for stored structurally unresolved "
+                "survivors; the blocks are enumeration control and supply no "
+                "source or abstract discharge"
+            )
+        elif survivor_block_contract.get("block_scope") == "TOTAL_ASSIGNMENT":
+            claim = (
+                "terminal DRAT verifies coverage by structural cuts plus explicit "
+                "total-assignment blocks for stored structurally unresolved "
+                "survivors; the blocks are enumeration control and supply no "
+                "source or abstract discharge"
+            )
+        else:
+            raise StructuralCegarError(
+                "survivor-block contract has an invalid block scope"
+            )
     else:
         claim = (
             "bounded structural CEGAR checkpoint only; no Euclidean, P97-realizable, "
@@ -8121,6 +8157,8 @@ def _manifest(
         }
     if productivity_stream is not None:
         unsigned["productivity_stream"] = dict(productivity_stream)
+    if survivor_block_contract is not None:
+        unsigned["survivor_block_contract"] = dict(survivor_block_contract)
     if manifest_generation is not None:
         if type(manifest_generation) is not int or manifest_generation <= 0:
             raise StructuralCegarError("manifest generation must be positive")
@@ -8145,6 +8183,7 @@ def _manifest_from_prospective_state(
     state: ManifestProspectiveState,
     solver_metadata: Mapping[str, Any] | None = None,
     productivity_stream: Mapping[str, Any] | None = None,
+    survivor_block_contract: Mapping[str, Any] | None = None,
 ) -> dict[str, Any]:
     """Project the hot manifest from state updated after durable appends."""
 
@@ -8190,6 +8229,10 @@ def _manifest_from_prospective_state(
     )
     if productivity_stream is not None:
         unsigned["productivity_stream"] = dict(productivity_stream)
+    if survivor_block_contract is not None:
+        unsigned["survivor_block_contract"] = dict(survivor_block_contract)
+    else:
+        unsigned.pop("survivor_block_contract", None)
     return {**unsigned, "manifest_sha256": _sha256_value(unsigned)}
 
 
@@ -8201,6 +8244,29 @@ def _solver_manifest_metadata(backend: Any) -> dict[str, Any] | None:
     if not isinstance(value, Mapping):
         raise StructuralCegarError("incremental solver metadata must be a JSON object")
     return {str(key): value[key] for key in value}
+
+
+def _resume_survivor_block_contract(
+    prior_manifest: Mapping[str, Any],
+    encoding: Any,
+    computed_contract: Mapping[str, Any],
+) -> dict[str, Any] | None:
+    stored = prior_manifest.get("survivor_block_contract")
+    if stored is None:
+        # Completed legacy artifacts retain byte-for-byte replay. An active
+        # legacy run adopts the checked scope before it can append another block.
+        return (
+            dict(computed_contract)
+            if prior_manifest.get("status") == "RUNNING"
+            else None
+        )
+    if not isinstance(stored, Mapping):
+        raise StructuralCegarError("resume survivor-block contract is not an object")
+    try:
+        projection_contract.validate_scope_contract(stored, encoding)
+    except projection_contract.ProjectionContractError as exc:
+        raise StructuralCegarError(str(exc)) from exc
+    return dict(stored)
 
 
 def _classification_count_cache(
@@ -8353,6 +8419,7 @@ def _commit_sat_classification(
     productivity_ledger: productivity.ProductivityLedger | None = None,
     productivity_records: list[dict[str, Any]] | None = None,
     ingress_contract: Mapping[str, Any] | None = None,
+    block_scope_contract: Mapping[str, Any] | None = None,
 ) -> dict[str, Any]:
     if (productivity_ledger is None) != (productivity_path is None):
         raise StructuralCegarError(
@@ -8706,6 +8773,13 @@ def _commit_sat_classification(
         if algebraic_match is None:
             block = encoding.blocking_clause(assignment)
             _clause_false(block, assignment)
+            if block_scope_contract is not None:
+                try:
+                    projection_contract.validate_block_clause(
+                        block_scope_contract, encoding, block
+                    )
+                except projection_contract.ProjectionContractError as exc:
+                    raise StructuralCegarError(str(exc)) from exc
             record = _with_record_hash(
                 {
                     "schema": _survivor_schema(encoding),
@@ -9166,6 +9240,7 @@ def run_driver(
     if bootstrap is not None and not bootstrap.is_file():
         raise StructuralCegarError(f"bootstrap results do not exist: {bootstrap}")
     encoding = _phase3_encoding(projected_static_v3=projected_static_v3)
+    computed_block_scope_contract = projection_contract.build_scope_contract(encoding)
     prefix_bank_data: dict[str, Any] | None = None
     prefix_cache_used = False
     prefix_cache_audit_done = True
@@ -9328,6 +9403,9 @@ def run_driver(
         _validate_manifest_generation(out, manifest_path, prior_manifest)
         if prior_manifest.get("configuration") != configuration:
             raise StructuralCegarError("resume configuration/dependency mismatch")
+        survivor_block_contract = _resume_survivor_block_contract(
+            prior_manifest, encoding, computed_block_scope_contract
+        )
         if (out / "failure.json").exists():
             raise StructuralCegarError("failed-closed run cannot be resumed in place")
         if _sha256_file(out / "base.cnf") != base_cnf_sha256:
@@ -9404,7 +9482,14 @@ def run_driver(
             encoding,
             shard_literals,
             stream_scan=survivor_scan,
+            block_scope_contract=survivor_block_contract,
         )
+        try:
+            projection_contract.validate_survivor_stream_contract(
+                survivor_block_contract, encoding, len(survivors)
+            )
+        except projection_contract.ProjectionContractError as exc:
+            raise StructuralCegarError(str(exc)) from exc
         logs = _load_logs(logs_path, stream_scan=logs_scan)
         cube_batches = _load_cube_batches(
             cube_batches_path,
@@ -9429,6 +9514,7 @@ def run_driver(
                 "disabled productivity telemetry has an unexpected artifact"
             )
     else:
+        survivor_block_contract = computed_block_scope_contract
         if out.exists() and any(out.iterdir()):
             raise StructuralCegarError("output directory is nonempty; pass resume=True")
         out.mkdir(
@@ -9704,6 +9790,7 @@ def run_driver(
                 state=prospective_state,
                 solver_metadata=solver_metadata,
                 productivity_stream=productivity_stream_state,
+                survivor_block_contract=survivor_block_contract,
             )
         else:
             manifest = _manifest(
@@ -9724,6 +9811,7 @@ def run_driver(
                 previous_manifest_sha256=previous_manifest_sha256,
                 solver_metadata=solver_metadata,
                 productivity_stream=productivity_stream_state,
+                survivor_block_contract=survivor_block_contract,
             )
         _validate_manifest_count_cache(
             manifest,
@@ -9813,6 +9901,7 @@ def run_driver(
                 if productivity_ledger is None
                 else productivity_ledger.snapshot().as_dict()
             ),
+            survivor_block_contract=survivor_block_contract,
         )
         _validate_manifest_count_cache(
             replayed_manifest,
@@ -10080,6 +10169,7 @@ def run_driver(
                                 productivity_ledger=productivity_ledger,
                                 productivity_records=productivity_records,
                                 ingress_contract=ingress_contract,
+                                block_scope_contract=survivor_block_contract,
                             )
                             classification = str(committed["classification"])
                             committed_record_sha256 = str(committed["record_sha256"])
@@ -10296,6 +10386,7 @@ def run_driver(
                     productivity_ledger=productivity_ledger,
                     productivity_records=productivity_records,
                     ingress_contract=ingress_contract,
+                    block_scope_contract=survivor_block_contract,
                 )
                 observe_classification_delta(learned_before, survivors_before)
                 dynamic_delta, raw_delta = _committed_classification_delta(
