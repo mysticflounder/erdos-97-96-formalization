@@ -4730,61 +4730,102 @@ UNBOUNDED A3 REMAINS OPEN]
 
 ##### 16.5.A3 - The unbounded deleted-row off-class continuation
 
-**Declaration.** `false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV_vRowBlockerDeleted_deletedRowBlockerOffClass_card_ge_eighteen`
+**Exact target.** From
+`Q : ExactFourRigid221PentagonBlockerVResidual P packet`, the equality
+`centerAt v = deleted`, strict-second-cap membership of the blocker selected at
+`deleted`, and exclusion of that blocker from the physical five-class, derive
+`False`.  The declaration
+`false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV_vRowBlockerDeleted_deletedRowBlockerOffClass_wedge`
+proves this statement.  It is stronger than the former `18 <= |A|` leaf because
+it assumes no carrier-cardinality bound.
 
-**Source and role.** `Rigid221SourceHeavy.lean`, approximately lines 11760-11791. The source comment explicitly identifies this as the unbounded continuation after the exact-seventeen stratum is isolated.
+**PROVEN (Lean-formalized).**  Put `c := centerAt deleted`.  The retained
+strict-cap order is
 
-**Atomic contract.** Under the same rigid pentagon and deleted-row off-class hypotheses, but with `18 <= |A|`, prove `False`.
+```text
+u < v < c < deleted < xv
+```
 
-**Data already proved upstream.** The physical five-class, prescribed deletion, interior next blocker, off-class condition, and next-row physical-intersection bound are all available. Exact-cardinality fifteen, sixteen, and the cap-ten/cap-eleven portions of seventeen have separate finite closures. No upper bound on the carrier is available here.
+or its reversal.  The equal-chord rows express `deleted`, `v`, and `c` as
+successive positive perpendicular-bisector combinations.  The theorem
+`A3GlobalCircleWedge.two_clearances_of_nested_fan` then proves that the circle
+centered at `c` through `deleted` has strict clearance from both outer wedge
+lines.
 
-**Exact missing implication.** A cardinality-independent contradiction is missing. No finite label enumeration can prove this theorem unless one first establishes a bounded-obstruction reduction that preserves every hypothesis needed by the endpoint certificate.
+The selected row centered at `c` has four support points.  Its intersection
+with the closed second cap has cardinality at most two, so two support points
+lie outside that cap; one can be chosen distinct from the opposite apex.  The
+global cap-order lemmas in `A3GlobalCircleWedge` put this point on the forbidden
+side of at least one outer wedge line.  Row-radius equality says that the point
+lies on the circle centered at `c`, contradicting the corresponding strict
+clearance through `ExactA2CapMetric.false_of_clearance_and_outside_hit`.
 
-**Candidate closure program.**
+| Obligation | Label | Status | Evidence |
+|---|---|---|---|
+| Extract both strict-cap orders | PROVEN (Lean-formalized) | ✅ done | A3 source adapter |
+| Prove the two circle clearances | PROVEN (Lean-formalized) | ✅ done | `A3GlobalCircleWedge.two_clearances_of_nested_fan` |
+| Select a non-apex support outside the cap | PROVEN (Lean-formalized) | ✅ done | exact-four support and cap-intersection bounds |
+| Convert outside-cap order to a failed wedge side | PROVEN (Lean-formalized) | ✅ done | `A3GlobalCircleWedge.outside_cap_opposite_wedge_side` |
+| Derive the row-circle contradiction | PROVEN (Lean-formalized) | ✅ done | A3 source wedge theorem |
 
-1. Attempt a cap-weighted all-blockers inequality. Count incidences from sources outside the physical second cap into canonical four-rows, but weight a row by the number of its support points forced outside that cap. The current branch supplies a row with at most one physical-class hit and should force at least three supports elsewhere.
+**Immediate consumers.** The three former cardinality-eighteen leaves and
+their coordinator apply the cardinality-free theorem directly.  Their retained
+hypotheses are compatibility parameters, not deferred obligations.
 
-2. Combine this lower bound with an order-sensitive upper bound: for centers in a fixed cap interval, canonical rows should not be able to use too many separated outside-cap pairs without producing interlacing chords or a repeated source pair. Pure pair-codegree at most two is too weak; the upper bound must use boundary intervals.
-
-3. As an alternative, prove a genuine bounded-obstruction theorem: from any realization of the unbounded residual, select a bounded set of named centers and supports that itself violates a generic Euclidean lemma. This must not delete arbitrary carrier points or assume K4 is hereditary under taking subsets.
-
-4. Only after one of those global reductions is proved should the exact-seventeen certificate be considered as a terminal for the unbounded branch.
-
-
-**Known limits and rejection tests.** The tempting statement 'four rows have at most sixteen points, so an eighteenth point is unused' is invalid: the relevant rows need not cover the whole carrier, and an unused point can still be blocked by another canonical center. Deleting that point is not justified. This leaf is the clearest evidence that the current route needs a scalable invariant rather than more finite splitting.
-
-**Immediate consumer.** The `card_ge_seventeen` coordinator and, transitively, the source-heavy pentagon route. This is the highest-risk single leaf in the current Rigid221 cluster.
-
-**Status.** [OPEN]
+**Status.** [LEAN-CLOSED 29 AUGUST 2026; NO `sorryAx` OR CUSTOM AXIOM]
 
 ##### 16.5.A4 - The blocker centered at `v` lies off the physical class
 
-**Declaration.** `false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV_vRowBlockerOffClass`
+**Exact target.** From the unsplit residual
+`Q : ExactFourRigid221PentagonBlockerVResidual P packet`, derive `False`.
+The declaration
+`false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV_vRowCircleWedge`
+proves this stronger statement.  In particular, it does not assume that the
+blocker selected at `v` lies outside the physical class, nor that it equals the
+joint-deletion point.
 
-**Source and role.** `Rigid221SourceHeavy.lean`, approximately lines 12004-12019. All named physical-class placements of the next blocker have already been split; center-not-in-row, equilateral, and ordered-betweenness arguments close the other physical alternatives.
+**PROVEN (Lean-formalized).**  Let `b := centerAt v`.  The physical pair
+`{v,xv}` lies in the selected row centered at `b` and in the strict second cap.
+The common-pair cap-localization lemma therefore places `b` in that cap.  The
+strict cap order is
 
-**Atomic contract.** Given the complete pentagon residual and the fact that the blocker selected at `v` is not in the exact physical five-class, derive `False`.
+```text
+u < v < b < xv < xu
+```
 
-**Data already proved upstream.** The preceding packet identifies the physical five-class and its `2+2+1` row decomposition, the blocker chain through `u` and `xv`, cap-interior positions for the first two fresh blockers, and all row omissions. The only new center is the blocker of `v`, known to be a carrier point and the center of a canonical four-row.
+or its reversal.  With opposite apex `O`, the three equal-chord rows give
+positive parameters `tx`, `tv`, and `T` satisfying
 
-**Exact missing implication.** The missing theorem must localize an off-circle blocker strongly enough to force either a previously closed physical placement, a forbidden row intersection, or a convex-order violation.
+```text
+xv - O = tx * ((u - O) + (xu - O)),
+v  - O = tv * ((u - O) + (xv - O)),
+b  - O = T  * ((v - O) + (xv - O)),   T > 1/2.
+```
 
-**Candidate closure program.**
+`A4GlobalCircleWedge.two_clearances_of_four_point_fan` proves strict clearance
+of the circle centered at `b` through `v` from both outer lines `O-u` and
+`xu-O`.  The selected row centered at `b` has four supports and meets the
+closed second cap in at most two points.  Hence it has an outside-cap support
+`q` distinct from `O`.  The A3 global wedge-order lemma puts `q` on the
+forbidden side of one outer line, while row-radius equality puts `q` on the
+circle centered at `b`.  The matching clearance contradiction proves `False`.
 
-1. Use each pair of physical-class support points in the `v` row to place the new blocker on a named perpendicular bisector. Derive a second independent bisector from another forced pair in its row or from a common-deletion support; one bisector alone leaves a one-dimensional family.
+| Obligation | Label | Status | Evidence |
+|---|---|---|---|
+| Localize `b` in the strict cap and extract both orders | PROVEN (Lean-formalized) | ✅ done | A4 source adapter |
+| Construct `tx > 0`, `tv > 0`, and `T > 1/2` | PROVEN (Lean-formalized) | ✅ done | `A4GlobalCircleWedge.exists_four_point_fan_parameters` |
+| Prove both outer-line clearances | PROVEN (Lean-formalized) | ✅ done | `A4GlobalCircleWedge.two_clearances_of_four_point_fan` |
+| Select an outside-cap support and obtain a failed wedge side | PROVEN (Lean-formalized) | ✅ done | exact-four/cap bounds and the A3 wedge-order lemma |
+| Eliminate the unsplit residual `Q` | PROVEN (Lean-formalized) | ✅ done | A4 source circle-wedge theorem |
 
-2. Prove a cap-localization lemma for the intersection of two such bisectors relative to the strict second-cap arc. The desired conclusion is that the intersection is either one of the named physical points, outside the convex hull, or in a cap region incompatible with the inherited blocker localization.
+**Immediate consumers.** The former off-class and joint-deletion leaves and the
+two-arm split remain as compatibility wrappers.  The live `BlockerV` pentagon
+coordinator applies the Q-only circle-wedge theorem directly, so bypassing the
+split discharges both obligations rather than moving them elsewhere.
+Later outer source-heavy coordinators still reach separate sibling leaves;
+their remaining obligations are not part of A4.
 
-3. If only one physical pair is currently retained, strengthen the upstream packet additively with the exact second pair before restating the terminal. Do not guess it from an existential K4 witness.
-
-4. Share the resulting `offPhysicalCircle_twoPinnedPairs` lemma with the nonphysical-collision and generic source-ne-`u` leaves.
-
-
-**Known limits and rejection tests.** An off-class blocker is not impossible by itself; a point off one circle can be the center of a circle through two points on it. The proof needs two independent pair constraints or a global order condition. It must also preserve the independent radii of different selected rows unless equality is separately derived.
-
-**Immediate consumer.** The `BlockerV` pentagon coordinator. A successful two-bisector localization theorem could also reduce leaves C1 and C2.
-
-**Status.** [OPEN]
+**Status.** [LEAN-CLOSED 29 AUGUST 2026; NO `sorryAx` OR CUSTOM AXIOM]
 
 ##### 16.5.A5 - Exact-twelve common-deletion residue: refined source-level analysis
 
