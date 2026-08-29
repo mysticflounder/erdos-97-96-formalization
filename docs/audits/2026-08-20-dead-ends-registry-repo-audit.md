@@ -150,9 +150,10 @@ cases (`H.centerAt P.source₁ = Pρ.source₁`, `= Pρ.source₂`, and the two 
 `Pρ` cases), with zero `sorry`. `git log -L` over the theorem shows the committed
 text has been `sorry` since the module was created in `9feb86f6`, so no
 intermediate closed state ever entered history. No stash holds it. The other
-dangling blobs carrying this file are all earlier `sorry` versions, and the four
-untracked `lean/**/TestCross*.lean` and `lean/test_cross.lean` probes are
-`aesop` one-liners, not the proof.
+dangling blobs carrying this file are all earlier `sorry` versions. The four
+formerly untracked `lean/**/TestCross*.lean` and `lean/test_cross.lean` probes,
+now under `attic/stale-dirty-cleanup-2026-08-28/lean/`, are `aesop` one-liners,
+not the proof.
 
 **The refactoring in flight.** The uncommitted working-tree diff on
 `TwoSourceCanonicalSurface.lean` adds two `private` helpers at `:50` and `:59`,
@@ -339,11 +340,14 @@ retired vocabulary — and `EQUIVALENT_TO_FULL_PROBLEM` uses the banned word.
    bodies across 2 files". The shadowing files are four untracked probes:
    `scratch/exact_twelve_branch_equivariance_probe.lean`,
    `scratch/exact_twelve_placement_orbit_probe.lean`,
-   `scratch/firstnonhit-retained-escape-math/RetainedEscape.lean`,
+   `lean/scratch/firstnonhit-retained-escape-math/RetainedEscape.lean`,
    `scratch/freshthird-firstnonhit-qfiber-three/QFiberThreeBoundary.lean`.
    This bears directly on the registry's verification model, which is "locate the
    declaration by name": a name search can land on the scratch body instead of
-   the spine body.
+   the spine body. The retained-escape copy was moved to
+   `attic/stale-dirty-cleanup-2026-08-28/lean/scratch/firstnonhit-retained-escape-math/RetainedEscape.lean`
+   on 2026-08-28, removing that one duplicate-name collision; the other listed
+   probes require their own current-state check.
 6. **The registry is not wired into agent instructions.** `CLAUDE.md` contains
    zero references to `dead-ends.md`, so its "do not retry" force depends on an
    agent independently discovering it. `README.md:885` additionally describes it

@@ -12,7 +12,8 @@ via `false_of_freshCanonicalRowOverride` and `|A| ≥ 17` (see the
 finding").
 
 This note records (1) an assessment of
-`docs/solve-prompts/gpt-pinned-multiplicity-08-16-2026.md` against the leaf,
+`attic/stale-dirty-cleanup-2026-08-28/docs/solve-prompts/gpt-pinned-multiplicity-08-16-2026.md`
+against the leaf,
 (2) an explicit numeric realization of the *named metric fragment* of level 5,
 and (3) the resulting constraints on any closing argument. Nothing here closes
 a `sorry`. Numeric statements are labelled; none is a proof.

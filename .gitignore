@@ -543,3 +543,12 @@ docs/live-blueprint.md.tmp
 /lean/scratch/**/*.stderr
 /lean/scratch/**/*.stdout
 /lean/scratch/**/*.lock
+
+# Reproducible one-shot diagnostics retired by the 2026-08-28 stale-file sweep.
+# Keep the rules exact: nearby Lean, JSON, and Markdown remain visible for audit.
+/scratch/checks/ax_check.lean
+/scratch_trace_*.txt
+/scratch/lean-logs/u3-frame-source.txt
+/scratch/lean-logs/u3-mixed-spine.txt
+/scratch/searches/*.txt
+/lean/scratch/runs/exact17-forty-ninth-wave-v2-zero-atom-20260817/export-v1/tmp/manual-export-candidate.cnf

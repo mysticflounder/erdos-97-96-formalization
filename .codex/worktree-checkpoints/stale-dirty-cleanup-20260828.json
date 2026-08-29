@@ -1,0 +1,38 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "stale-dirty-cleanup-20260828",
+  "owner": "doc-lantern",
+  "base_head": "d446b3240ce48eb3ae9d792ab53cf81550439766",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/stale-dirty-cleanup-20260828.json",
+    ".gitignore",
+    "attic/stale-dirty-cleanup-2026-08-28/README.md",
+    "docs/audits/2026-08-16-l5-named-fragment-realizability.md",
+    "docs/audits/2026-08-16-scratch-computational-output-pattern-audit.md",
+    "docs/audits/2026-08-17-freshthird-branch-audit-and-capacity-analysis.md",
+    "docs/audits/2026-08-18-firstfiber-consumer-bridge-audit.md",
+    "docs/audits/2026-08-20-dead-ends-registry-repo-audit.md",
+    "lean/scratch/firstnonhit-common-sixcenter-math/SixCenterMath.lean",
+    "scratch/checks/ax_check.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [
+    "attic/stale-dirty-cleanup-2026-08-28/docs/solve-prompts/gpt-pinned-multiplicity-08-16-2026.md",
+    "attic/stale-dirty-cleanup-2026-08-28/lean/Erdos9796Proof/TestCrossTmp.lean",
+    "attic/stale-dirty-cleanup-2026-08-28/lean/TestCrossTmp.lean",
+    "attic/stale-dirty-cleanup-2026-08-28/lean/scratch/GlobalCenterCapacityObstruction.lean",
+    "attic/stale-dirty-cleanup-2026-08-28/lean/scratch/TestCrossTmp2.lean",
+    "attic/stale-dirty-cleanup-2026-08-28/lean/scratch/firstfiber_order_api.lean",
+    "attic/stale-dirty-cleanup-2026-08-28/lean/scratch/firstnonhit-common-exacttrace-math/ExactTraceMath.lean",
+    "attic/stale-dirty-cleanup-2026-08-28/lean/scratch/firstnonhit-commonradius-direct-v2/CommonRadiusDirect.lean",
+    "attic/stale-dirty-cleanup-2026-08-28/lean/scratch/firstnonhit-escape-actualrow-math/ActualRowMath.lean",
+    "attic/stale-dirty-cleanup-2026-08-28/lean/scratch/firstnonhit-retained-direct-v2/PositiveSecondReduction.lean",
+    "attic/stale-dirty-cleanup-2026-08-28/lean/scratch/firstnonhit-retained-escape-math/RetainedEscape.lean",
+    "attic/stale-dirty-cleanup-2026-08-28/lean/scratch/firstnonhit-source-total-card17/Card17.lean",
+    "attic/stale-dirty-cleanup-2026-08-28/lean/scratch/test_mutual.lean",
+    "attic/stale-dirty-cleanup-2026-08-28/lean/scratch/test_where.lean",
+    "attic/stale-dirty-cleanup-2026-08-28/lean/test_cross.lean"
+  ],
+  "created_utc": "2026-08-29T00:21:00Z",
+  "manifest_sha256": "0409f3f964212dd2768f413eeb61674a6dffa28a76c4120a55073567855adce3"
+}
