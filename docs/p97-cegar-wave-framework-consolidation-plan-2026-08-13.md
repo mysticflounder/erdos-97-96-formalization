@@ -714,21 +714,12 @@ inventory drift, or a staged blob at or above the publication limit.  A passing
 lane check authorizes only that lane's exact-path commit; it never authorizes a
 directory-wide stage, cleanup, or deletion.
 
-The repository-root `scratch/**` tree is ignored by default.  Explicit
-`.gitignore` `!` pairs re-include each direct scratch subdirectory that already
-contains tracked files; new files there are visible unless a later, narrower
-rule ignores them.  Root-level files and new direct subdirectories remain
-ignored, and existing tracked files remain tracked.  When a new direct scratch
-directory first gains a committed file, add its exception pair in that commit.
-Because `scratch/runs/` is established, new run subtrees there are visible
-unless a later rule ignores them; run-manifest and hygiene requirements still
-apply.  This is only a Git visibility policy, not a durability classification.
-
+The root `scratch/**` tree is ignored by default; existing tracked files remain
+tracked.  This is only a Git visibility policy, not a durability classification.
 A new scratch file may be published only after the checkpoint declares its
-exact path as owned source or durable evidence and the file is authenticated.
-Stage a visible file normally; for an ignored file, use
-`git add -f -- scratch/...` on that exact file.  Never force-add a directory or
-generated root.
+exact path as owned source or durable evidence and the file is authenticated;
+stage that file with `git add -f -- scratch/...`, never a directory or generated
+root.
 
 The generated-root manifest distinguishes disposable runtime payloads from
 retained evidence.  Durable evidence becomes tracked through that exact-path
