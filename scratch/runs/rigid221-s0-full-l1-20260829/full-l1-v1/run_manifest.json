@@ -1,0 +1,36 @@
+{
+  "schema": "worktree-run-manifest/v1",
+  "lane_id": "rigid221-s0-full-l1-20260829",
+  "run_id": "full-l1-v1",
+  "root": "scratch/runs/rigid221-s0-full-l1-20260829/full-l1-v1",
+  "owner": "codex-s0-full-l1-computation",
+  "base_head": "914396eaca79981b03f7b46b40dbb88d22f79ab5",
+  "output_classes": [
+    "artifacts",
+    "events",
+    "tmp"
+  ],
+  "source_digests": {
+    "lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4LateChoiceTerminal/UniqueFourLateChoiceTerminal.lean": "f275a2caa634d3950dfc81dd86d48f7949d54df24c6c4e88c1a16559bdac24ee",
+    "lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueArmRouteAudit/OriginalUniqueResidualDispatch.lean": "b8f7c43a89bfbd52718f313407fbf7e41b53c71a56d9d435abc7732c2d2f5bb7",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletion/Types.lean": "8cd091cf7b62c2236798390585e38184df8f366570b4c1d69892e01233b84587",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221Placement.lean": "2f8c444d6269de79c7a672700a9f80e6744fdaddb48263d61239cdbf99cd8210",
+    "lean/Erdos9796Proof/P97/Cap/PartitionFromMEC.lean": "69aac1234035af3fa8af657a4988a612aec3ba9c13049ddb51dde5c8d2b5144f",
+    "lean/Erdos9796Proof/P97/Cap/Structure.lean": "c37032098ca734b3732823b68f086b864f33a605fab97f4d15fc1010f9faeb11",
+    "lean/Erdos9796Proof/P97/Foundation.lean": "a391c93c43d33614d2c04166d97d6a5d88b750a5691b6c682233c1d1c9de9bd3",
+    "lean/Erdos9796Proof/P97/Moser/Triangle.lean": "7c78d8a21f64e82cf408a3c1b2e026298d6173838f6b91484d8386f31cf2a392",
+    "lean/Erdos9796Proof/P97/Moser/TriangleNonObtuse.lean": "1c8cbee10abf2c5ab422910550a83d49c3628c88196f7f6fa5da4f9ed74ebeaa",
+    "lean/Erdos9796Proof/P97/U1CarrierInjection.lean": "0763edd41bef51f9b5ca0c7d98d3178efdbe45f7ad130c723e672f6671379fc2",
+    "lean/Erdos9796Proof/P97/U1TwoShortCapReduction.lean": "30e455b737277a88b477e5d24fed5f2ad3e0d2af8f239ccb535bb4d892600298",
+    "lean/Erdos9796Proof/P97/WitnessPacketInterface.lean": "da61a9053f423bf45bce7d80e56f7a05c5cee334a242b9a389be3d3e20220f04",
+    "scripts/rigid221_s0_full_l1.py": "0b131fda6cd4f10ec678e747bff9377405b6e529321169d9db7751669ff3b174",
+    "scripts/test_rigid221_s0_full_l1.py": "a893074b0bb1d40c7cf878afcad09c835c33c9b57d51c3970945f09f2328e123"
+  },
+  "input_digests": {
+    "docs/audits/2026-08-29-rigid221-s0-full-l1-source-constraint-manifest.md": "ef9a87dc8f55b89b49659623ede83bcbc05b57339fbc8933b0faa46613486096",
+    "docs/specs/p97-rigid221-s0-coupled-two-row-computational-spec-v1.md": "999087c43a9da08ab633ddf92eab0ac4860606fb84361c4c3b9a79ca0211f6f0",
+    "scratch/runs/rigid221-s0-full-l1-20260829/full-l1-v1/cell_manifest.json": "1417017ff027f69e8f6302ff4661f0c370a51b98339988ecb0f97442fd9b9588"
+  },
+  "created_utc": "2026-08-30T06:25:10Z",
+  "manifest_sha256": "dd0ad43c092bc77c5e396ef11f2d6bbf31bf732edcbb8256441bf294155d87df"
+}

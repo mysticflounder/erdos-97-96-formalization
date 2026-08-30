@@ -1,0 +1,48 @@
+{
+  "schema": "rigid221-s0-full-l1-launch-state/v1",
+  "lane_id": "rigid221-s0-full-l1-20260829",
+  "run_id": "full-l1-v1",
+  "state": "RUNNING",
+  "mathematical_status": "NO_VERDICT",
+  "scope": "BOUNDED_SOURCE_MAPPED_L1_M0_FIXED_ORDER_CANARY_ONLY",
+  "launched_utc": "2026-08-30T06:28:16Z",
+  "observed_live_utc": "2026-08-30T06:28:16Z",
+  "executed_commit": "bd86913fd06a9454e9e1cc6b7286627739ead391",
+  "terminal_session_id": 82463,
+  "launcher_pid": 92665,
+  "python_pid": 92719,
+  "command": [
+    "uv",
+    "run",
+    "python",
+    "scripts/rigid221_s0_full_l1.py",
+    "--output-dir",
+    "scratch/runs/rigid221-s0-full-l1-20260829/full-l1-v1/artifacts/primary",
+    "--workers",
+    "20",
+    "--timeout-ms",
+    "600000"
+  ],
+  "resources": {
+    "workers_requested": 20,
+    "effective_cell_workers": 2,
+    "encoded_cells": 2,
+    "timeout_ms_per_backend_per_cell": 600000,
+    "primary_solver": "z3",
+    "fallback_solver": "cvc5 --nl-cov"
+  },
+  "digests": {
+    "script_sha256": "0b131fda6cd4f10ec678e747bff9377405b6e529321169d9db7751669ff3b174",
+    "cell_manifest_raw_sha256": "1417017ff027f69e8f6302ff4661f0c370a51b98339988ecb0f97442fd9b9588",
+    "run_manifest_raw_sha256": "beaa36c2ccd055dd629c084b3a402ca395c65186b9cefb23830635378d420ce0"
+  },
+  "claims": {
+    "bounded_l1_cell_sat": false,
+    "full_L1_claim": false,
+    "exhaustive_unsat": false,
+    "source_universal": false,
+    "lean_proved": false,
+    "promotion_ready": false
+  },
+  "final_result": null
+}

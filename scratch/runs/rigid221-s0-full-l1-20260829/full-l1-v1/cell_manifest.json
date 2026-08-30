@@ -1,0 +1,49 @@
+{
+  "schema": "rigid221-s0-full-l1-cell-manifest/v1",
+  "lane_id": "rigid221-s0-full-l1-20260829",
+  "run_id": "full-l1-v1",
+  "base_head": "914396eaca79981b03f7b46b40dbb88d22f79ab5",
+  "executed_commit": "bd86913fd06a9454e9e1cc6b7286627739ead391",
+  "encoding_version": "rigid221-s0-full-l1-m0-distinct-2026-08-29.6",
+  "claim_scope": "BOUNDED_SOURCE_MAPPED_L1_M0_FIXED_ORDER_CANARY_ONLY",
+  "fixed_cardinality": 14,
+  "cells": [
+    {
+      "cell_id": "m0-distinct-s0-i",
+      "branch": "S0-I",
+      "overlap_cell": "M0",
+      "equality_cell": "all-distinct",
+      "order_template": "M0-I-v1",
+      "order": [
+        "O", "au", "av", "v", "delta", "m1", "u", "cv", "cu",
+        "xu", "m2", "xv", "bv", "bu"
+      ]
+    },
+    {
+      "cell_id": "m0-distinct-s0-n",
+      "branch": "S0-N",
+      "overlap_cell": "M0",
+      "equality_cell": "all-distinct",
+      "order_template": "M0-N-v1",
+      "order": [
+        "O", "au", "av", "v", "delta", "m1", "u", "cv", "cu",
+        "m2", "xu", "xv", "bv", "bu"
+      ]
+    }
+  ],
+  "unsupported_cells": [
+    "other M0 cyclic orders",
+    "M1/M2 overlap cells",
+    "source-legal center/auxiliary quotient cells",
+    "source-legal Moser-endpoint identification cells"
+  ],
+  "resources": {
+    "workers_requested": 20,
+    "effective_max_workers": 2,
+    "timeout_ms_per_engine": 600000,
+    "z3_primary": true,
+    "cvc5_nl_cov_fallback": true
+  },
+  "created_utc": "2026-08-30T06:23:53Z",
+  "manifest_sha256": "01893f08d9ff24401a538392410ec361dfa6d6abcbeb55911eeb02743b0f449c"
+}

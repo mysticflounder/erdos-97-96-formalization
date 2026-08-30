@@ -1,0 +1,24 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "rigid221-s0-full-l1-20260829",
+  "owner": "codex-s0-full-l1-computation",
+  "base_head": "914396eaca79981b03f7b46b40dbb88d22f79ab5",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/rigid221-s0-full-l1-20260829.json",
+    "docs/audits/2026-08-29-rigid221-s0-full-l1-computation.md",
+    "docs/audits/2026-08-29-rigid221-s0-full-l1-source-constraint-manifest.md",
+    "scripts/rigid221_s0_full_l1.py",
+    "scripts/test_rigid221_s0_full_l1.py"
+  ],
+  "generated_roots": [
+    "scratch/runs/rigid221-s0-full-l1-20260829/full-l1-v1"
+  ],
+  "durable_paths": [
+    "scratch/runs/rigid221-s0-full-l1-20260829/full-l1-v1/REPORT.md",
+    "scratch/runs/rigid221-s0-full-l1-20260829/full-l1-v1/cell_manifest.json",
+    "scratch/runs/rigid221-s0-full-l1-20260829/full-l1-v1/results.json",
+    "scratch/runs/rigid221-s0-full-l1-20260829/full-l1-v1/run_manifest.json"
+  ],
+  "created_utc": "2026-08-30T05:33:59Z",
+  "manifest_sha256": "b9f17c36dc75910f998f1fa603381a8eb3d456f6b4887e76012affe654341fa4"
+}
