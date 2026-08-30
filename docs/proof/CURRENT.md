@@ -15,13 +15,14 @@ coordinator-facing dependency through the governed `Legacy.TriApexWrappers`
 seam. The import linter authenticates 25 live waivers, 5 retired waivers, and
 all 7 Legacy edges.
 
-This completion claim is structural only. No mathematical obligation was
-closed, and neither Problem 97 nor Problem 96 is proved. The live frontier is
-separately governed by the obligation registry and proof-blueprint surfaces.
-At this checkpoint their global status check is temporarily stale because a
-concurrent Rigid221 source wave changed the live leaves without sealing its
-registry and generated status surfaces; that external drift is not counted as
-a strict-refactor gate result.
+This consolidation completion claim is structural only; neither Problem 97 nor
+Problem 96 is proved. The live frontier is separately governed by the
+obligation registry and proof-blueprint surfaces. Those surfaces were
+re-anchored at `eb6a12039aba1e3c4cc48baa9f1299337fc6a2ac` after the subsequent
+Rigid221 and B1 source closures. The current registry records 25 reachable and
+6 off-spine declarations, with all 25 reachable leaves carrying validated
+factorization records. This later frontier update does not alter the recorded
+strict-refactor result above.
 
 For machine/live status, see
 [proof-status/README.md](../../proof-status/README.md) and the

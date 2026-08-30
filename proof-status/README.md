@@ -139,15 +139,33 @@ generator: `KERNEL_CLEAN`, `CERTIFIED_APPROVED_TRUST`,
 `REFUTED_LOCAL_STATEMENT`, `OFF_SPINE_DIAGNOSTIC`, `SUPERSEDED`. Extend the
 tuple only together with that audit section.
 
-Regenerate after an intentional roster change:
+Regenerate from the live roster after an intentional roster change:
 
 ```bash
-uv run python scripts/gen_obligation_registry.py generate --baseline proof-status/baseline --out proof-status
+uv run python scripts/gen_obligation_registry.py generate --fresh --out proof-status
 # warns on METADATA JOIN violations but still writes, so a new obligation can be
 # reviewed afterwards; --strict-meta turns those warnings into exit 1.
 # An alias-migration or factorization violation is NOT on that path: it is a
 # hard error in both modes and nothing is written (see "Generator gate").
 ```
+
+Once the live result is reviewed, refresh only the recorded roster exports and
+their head anchor, then prove that the deterministic baseline replay reproduces
+the same three generated files:
+
+```bash
+proof-blueprint search --with-sorry --spine --json --all \
+  > proof-status/baseline/spine-sorry.json
+proof-blueprint search --with-sorry --off-spine --json --all \
+  > proof-status/baseline/offspine-sorry.json
+git rev-parse HEAD > proof-status/baseline/base-head.txt
+uv run python scripts/gen_obligation_registry.py generate \
+  --baseline proof-status/baseline --out proof-status --strict-meta
+```
+
+This roster re-anchor does not refresh `baseline/axioms.txt`; that file is the
+separately reviewed consumer-trust authority and moves only when the publish
+target's accepted axiom closure intentionally changes.
 
 A new obligation therefore needs two edits: regenerate (which assigns its ID),
 then add the reviewed `obligations-meta.json` entry for that ID. `check` stays

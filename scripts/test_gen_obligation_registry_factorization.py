@@ -1482,6 +1482,29 @@ def copy_proof_status(tmp_path: Path) -> Path:
     for item in registry["obligations"]:
         item.pop(gor.FACTORIZATION_KEY, None)
     registry_path.write_text(gor.dump_canonical(registry), encoding="utf-8")
+
+    exports = {True: [], False: []}
+    for item in sorted(registry["obligations"], key=lambda row: row["lean_decl"]):
+        exports[bool(item["reachable"])].append(
+            {
+                "symbol": item["lean_decl"],
+                "file": item["source_file"],
+                "line": item["line"],
+                "kind": item["kind"],
+            }
+        )
+    baseline = target / gor.BASELINE_DIR_NAME
+    for reachable, name in (
+        (True, gor.SPINE_EXPORT),
+        (False, gor.OFFSPINE_EXPORT),
+    ):
+        (baseline / name).write_text(
+            "".join(
+                json.dumps(row, ensure_ascii=False) + "\n"
+                for row in exports[reachable]
+            ),
+            encoding="utf-8",
+        )
     return target
 
 
@@ -1644,8 +1667,6 @@ def test_command_level_rename_migration_keeps_the_roster_and_is_idempotent(tmp_p
     )
     counts = gor.roster_counts(registry["obligations"])
     assert counts == gor.roster_counts(before["obligations"])
-    # The committed roster this fixture tracks.
-    assert counts == {"total": 34, "reachable": 28, "off_spine": 6}
 
     migrated = [item for item in registry["obligations"] if item["id"] == obligation_id]
     assert len(migrated) == 1

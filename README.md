@@ -282,33 +282,33 @@ the marker-delimited block below is the generated current authority.
 > This is registry bookkeeping, not a proof-progress claim.
 
 - Publish target: `Problem97.erdos97_rhs`
-- Registry source head: `f3063069939cfb6dc2a8a9b20d9a7ef660c86fdf`
-- Registered declarations: **28 reachable**, **6 off-spine** (34 total)
-- Reviewed status coverage: **34/34** entries
+- Registry source head: `eb6a12039aba1e3c4cc48baa9f1299337fc6a2ac`
+- Registered declarations: **25 reachable**, **6 off-spine** (31 total)
+- Reviewed status coverage: **31/31** entries
 
 #### Reachable declarations by module
 
 | Cluster | Module | Open |
 |---|---|---:|
-| **Rigid221** | `Rigid221SourceHeavy.lean` | 8 |
-|  | `Rigid221Closure.lean` | 5 |
+| **Rigid221** | `Rigid221Closure.lean` | 5 |
 |  | `Rigid221Placement.lean` | 5 |
+|  | `Rigid221SourceHeavy.lean` | 5 |
 | **TriApex** | `TriApexEndpointRetainedOmission.lean` | 1 |
 | **TwoSource** | `TwoSourceFreshThirdResidual.lean` | 3 |
 |  | `TwoSourceCanonicalSurface.lean` | 1 |
 |  | `TwoSourceClosure.lean` | 1 |
 |  | `TwoSourceFirstFiberCollision.lean` | 1 |
 | **Two-deletion** | `TwoDeletionCollision.lean` | 3 |
-| **Total** | | **28** |
+| **Total** | | **25** |
 
 #### Reviewed status tally
 
 | Reviewed status | Entries |
 |---|---:|
 | `NORMAL_FORM_CLOSED_TERMINAL_OPEN` | 11 |
-| `OPEN_MATHEMATICAL` | 17 |
+| `OPEN_MATHEMATICAL` | 14 |
 | `OFF_SPINE_DIAGNOSTIC` | 6 |
-| **Total** | **34** |
+| **Total** | **31** |
 
 #### Off-spine declarations (6)
 

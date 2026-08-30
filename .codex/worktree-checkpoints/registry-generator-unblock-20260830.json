@@ -1,0 +1,30 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "registry-generator-unblock-20260830",
+  "owner": "codex-registry-unblock",
+  "base_head": "eb6a12039aba1e3c4cc48baa9f1299337fc6a2ac",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/registry-generator-unblock-20260830.json",
+    "README.md",
+    "docs/proof/CURRENT.md",
+    "proof-status/README.md",
+    "proof-status/baseline/base-head.txt",
+    "proof-status/baseline/offspine-sorry.json",
+    "proof-status/baseline/rebaseline-note.md",
+    "proof-status/baseline/spine-sorry.json",
+    "proof-status/frontier-table.generated.md",
+    "proof-status/id-assignments.json",
+    "proof-status/obligations-meta.json",
+    "proof-status/obligations.json",
+    "scripts/test_gen_obligation_registry_factorization.py"
+  ],
+  "generated_roots": [
+    "scratch/runs/registry-generator-unblock-20260830/verification-v1"
+  ],
+  "durable_paths": [
+    "scratch/runs/registry-generator-unblock-20260830/verification-v1/registry-check-20260830T151205Z.json",
+    "scratch/runs/registry-generator-unblock-20260830/verification-v1/run_manifest.json"
+  ],
+  "created_utc": "2026-08-30T14:47:31Z",
+  "manifest_sha256": "11cb4ca29caadbb90824c5713e4d3dfbeb59eed2955af19dd15334415b26e442"
+}

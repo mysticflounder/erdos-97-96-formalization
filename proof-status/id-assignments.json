@@ -31,9 +31,6 @@
     "Problem97.ATailFrontierLiveClosure.false_of_exactFourPhysicalConsumerSwappedUniqueFourOutcome": "P97-R221-EXACTFOURPHYSICAL",
     "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenTwoRadiusBranch": "P97-R221-EXACTFOURPOSTCARD",
     "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerDeleted": "P97-R221-PENTAGONBLOCKER",
-    "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV_vRowBlockerDeleted_deletedRowBlockerOffClass_card_eq_seventeen_secondCapNine": "P97-R221-SECONDCAPNINE",
-    "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV_vRowBlockerDeleted_deletedRowBlockerOffClass_card_ge_eighteen": "P97-R221-CARDEIGHTEEN",
-    "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV_vRowBlockerOffClass": "P97-R221-VROWBLOCKEROFFCLASS",
     "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_exactTwelve_interiorDeletion_physicalRadius_commonDeletion_missingIncidence": "P97-R221-MISSINGINCIDENCE",
     "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_exactTwelve_interiorDeletion_physicalRadius_nextRowOnlyHit": "P97-R221-NEXTROWONLYHIT",
     "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_threeCenterDeletion_xv_missingIncidence": "P97-R221-MISSINGINCIDENCE-2",
@@ -44,6 +41,19 @@
     "Problem97.CPackageBankFidelity.fidelity_c2": "P97-OFF-X-FIDELITYC2",
     "Problem97.EPackageBankFidelity.fidelity_e1": "P97-OFF-X-FIDELITYE1"
   },
-  "retired": {},
+  "retired": {
+    "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV_vRowBlockerDeleted_deletedRowBlockerOffClass_card_eq_seventeen_secondCapNine": {
+      "id": "P97-R221-SECONDCAPNINE",
+      "retired_at_head": "eb6a12039aba1e3c4cc48baa9f1299337fc6a2ac"
+    },
+    "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV_vRowBlockerDeleted_deletedRowBlockerOffClass_card_ge_eighteen": {
+      "id": "P97-R221-CARDEIGHTEEN",
+      "retired_at_head": "eb6a12039aba1e3c4cc48baa9f1299337fc6a2ac"
+    },
+    "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV_vRowBlockerOffClass": {
+      "id": "P97-R221-VROWBLOCKEROFFCLASS",
+      "retired_at_head": "eb6a12039aba1e3c4cc48baa9f1299337fc6a2ac"
+    }
+  },
   "schema": "p97-obligation-id-assignments/v1"
 }

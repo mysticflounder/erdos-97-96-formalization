@@ -11,7 +11,7 @@
       "latest_checkpoint": "README.md",
       "lean_decl": "Problem97.ATailFrontierLiveClosure.false_of_exactFiveDistinct_biApexRobust_postCardEleven",
       "legacy_labels": [],
-      "line": 968,
+      "line": 1515,
       "mathematical_packet": null,
       "meta_status": "OFF_SPINE_DIAGNOSTIC",
       "reachable": false,
@@ -29,7 +29,7 @@
       "legacy_labels": [
         "F2"
       ],
-      "line": 836,
+      "line": 822,
       "mathematical_packet": null,
       "meta_status": "OFF_SPINE_DIAGNOSTIC",
       "reachable": false,
@@ -47,7 +47,7 @@
       "legacy_labels": [
         "F2"
       ],
-      "line": 9424,
+      "line": 9598,
       "mathematical_packet": null,
       "meta_status": "OFF_SPINE_DIAGNOSTIC",
       "reachable": false,
@@ -155,7 +155,7 @@
             ]
           }
         ],
-        "verified_at_build": "5902ba928947b2ac2fda7b3cc06ff430f9e95f86f9046c96043581865b0a536c"
+        "verified_at_build": "e373ee04253226e8fb4590c756ca290027f69b31e5eb643e55e6cad7b5caef9f"
       },
       "id": "P97-R221-BLOCKERDELETED",
       "implementation_effect": "branch-closer",
@@ -171,79 +171,6 @@
       "reachable": true,
       "source_file": "Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221Placement.lean",
       "terminal_family": "source blocker is the rigid singleton deletion"
-    },
-    {
-      "cluster": "Rigid221",
-      "evidence_note": "Section 16.5.A3 of docs/erdos-97-descent-prose-proof-atomic.md names this declaration and records **Status.** [OPEN].",
-      "factorization": {
-        "consumer_trust": [
-          "Lean.ofReduceBool",
-          "Lean.trustCompiler"
-        ],
-        "pinned": {
-          "legacy_wrapper_statement_sha256": "cd45d699f4df97bd5c86c847a42139f4d951229cfa822d770ccffa06619b3f14",
-          "open_leaf_statement_sha256": "33ef0e23ba9872cfc2e1197f169c6fc5a9f2fb8e5ea39f5be36c588353ec5300"
-        },
-        "roles": {
-          "coordinator": "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV_vRowBlockerDeleted_deletedRowBlockerOffClass_card_ge_seventeen",
-          "eliminator": "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV_vRowBlockerDeleted_deletedRowBlockerOffClass_card_ge_seventeen_capSplit",
-          "legacy_wrapper": "Problem97.ATailFrontierLiveClosure.false_of_originalFrontierUniqueRadiusArm",
-          "open_leaf": "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV_vRowBlockerDeleted_deletedRowBlockerOffClass_card_ge_eighteen",
-          "producer": "Problem97.ATailFrontierLiveClosure.exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV_vRowBlockerDeleted_deletedRowBlockerOffClass_card_ge_seventeen_capTrichotomy"
-        },
-        "schema": "p97-factorization/v2",
-        "transitive": [
-          {
-            "from": "legacy_wrapper",
-            "to": "coordinator",
-            "via": [
-              "Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFourResidual",
-              "Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFourResidual_of_carrierCard_ge_twelve",
-              "Problem97.ATailFrontierLiveClosure.false_of_exactFourPhysicalConsumerRobustOutcome",
-              "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenRobustSurface_frame",
-              "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionBranch_frame",
-              "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionLowCrossBranch_frame",
-              "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionOmittedPeerBranch_frame",
-              "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionMutualOmissionBranch_frame",
-              "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionJointDeletion_frame",
-              "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_frame",
-              "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_globalDeletion_frame",
-              "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_frame",
-              "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceBlockerInClass_frame",
-              "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceBlockerInClass_placementSplit",
-              "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU",
-              "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRowOther",
-              "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRowOther_sourceRowHeavy",
-              "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge",
-              "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_deletedXuRow",
-              "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_fiveCycle",
-              "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagon",
-              "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagon_blockerCenterSplit",
-              "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV",
-              "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV_vCenterSplit",
-              "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV_vRowBlockerDeleted",
-              "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV_vRowBlockerDeleted_deletedRowBlockerOffClass",
-              "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV_vRowBlockerDeleted_deletedRowBlockerOffClass_card_ge_sixteen"
-            ]
-          }
-        ],
-        "verified_at_build": "5902ba928947b2ac2fda7b3cc06ff430f9e95f86f9046c96043581865b0a536c"
-      },
-      "id": "P97-R221-CARDEIGHTEEN",
-      "implementation_effect": "branch-closer",
-      "kind": "theorem",
-      "latest_checkpoint": "docs/erdos-97-descent-prose-proof-atomic.md",
-      "lean_decl": "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV_vRowBlockerDeleted_deletedRowBlockerOffClass_card_ge_eighteen",
-      "legacy_labels": [
-        "16.5.A3",
-        "A3"
-      ],
-      "line": 12003,
-      "mathematical_packet": "cardinality-at-least-18 source-heavy transport root",
-      "meta_status": "OPEN_MATHEMATICAL",
-      "reachable": true,
-      "source_file": "Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221SourceHeavy.lean",
-      "terminal_family": "unbounded deleted-row off-class continuation at |A| >= 18"
     },
     {
       "cluster": "Rigid221",
@@ -265,7 +192,7 @@
           "producer": "Problem97.ATailExactFourPhysicalConsumer.carrier_card_ge_eleven_of_original_unique_four_residual"
         },
         "schema": "p97-factorization/v2",
-        "verified_at_build": "5902ba928947b2ac2fda7b3cc06ff430f9e95f86f9046c96043581865b0a536c"
+        "verified_at_build": "e373ee04253226e8fb4590c756ca290027f69b31e5eb643e55e6cad7b5caef9f"
       },
       "id": "P97-R221-EXACTFOURPHYSICAL",
       "implementation_effect": "branch-closer",
@@ -276,7 +203,7 @@
         "16.5.C4",
         "C4"
       ],
-      "line": 778,
+      "line": 1325,
       "mathematical_packet": null,
       "meta_status": "OPEN_MATHEMATICAL",
       "reachable": true,
@@ -313,7 +240,7 @@
             ]
           }
         ],
-        "verified_at_build": "5902ba928947b2ac2fda7b3cc06ff430f9e95f86f9046c96043581865b0a536c"
+        "verified_at_build": "e373ee04253226e8fb4590c756ca290027f69b31e5eb643e55e6cad7b5caef9f"
       },
       "id": "P97-R221-EXACTFOURPOSTCARD",
       "implementation_effect": "branch-closer",
@@ -324,7 +251,7 @@
         "16.5.C3",
         "C3"
       ],
-      "line": 713,
+      "line": 1242,
       "mathematical_packet": "post-card-eleven/two-radius residual root",
       "meta_status": "OPEN_MATHEMATICAL",
       "reachable": true,
@@ -351,7 +278,7 @@
           "producer": "Problem97.FirstApexUniqueRadiusResidual.firstApexUniqueRadius_residualCases"
         },
         "schema": "p97-factorization/v2",
-        "verified_at_build": "5902ba928947b2ac2fda7b3cc06ff430f9e95f86f9046c96043581865b0a536c"
+        "verified_at_build": "e373ee04253226e8fb4590c756ca290027f69b31e5eb643e55e6cad7b5caef9f"
       },
       "id": "P97-R221-FIRSTAPEXUNIQUE",
       "implementation_effect": "branch-closer",
@@ -362,7 +289,7 @@
         "16.5.C5",
         "C5"
       ],
-      "line": 1143,
+      "line": 1690,
       "mathematical_packet": null,
       "meta_status": "OPEN_MATHEMATICAL",
       "reachable": true,
@@ -406,7 +333,7 @@
             ]
           }
         ],
-        "verified_at_build": "5902ba928947b2ac2fda7b3cc06ff430f9e95f86f9046c96043581865b0a536c"
+        "verified_at_build": "e373ee04253226e8fb4590c756ca290027f69b31e5eb643e55e6cad7b5caef9f"
       },
       "id": "P97-R221-MINIMALCORE",
       "implementation_effect": "branch-closer",
@@ -481,7 +408,7 @@
             ]
           }
         ],
-        "verified_at_build": "5902ba928947b2ac2fda7b3cc06ff430f9e95f86f9046c96043581865b0a536c"
+        "verified_at_build": "e373ee04253226e8fb4590c756ca290027f69b31e5eb643e55e6cad7b5caef9f"
       },
       "id": "P97-R221-MISSINGINCIDENCE",
       "implementation_effect": "branch-closer",
@@ -492,7 +419,7 @@
         "16.5.A5",
         "A5"
       ],
-      "line": 15754,
+      "line": 17253,
       "mathematical_packet": "exact-12 late-choice/A5 escape root",
       "meta_status": "OPEN_MATHEMATICAL",
       "reachable": true,
@@ -549,7 +476,7 @@
             ]
           }
         ],
-        "verified_at_build": "5902ba928947b2ac2fda7b3cc06ff430f9e95f86f9046c96043581865b0a536c"
+        "verified_at_build": "e373ee04253226e8fb4590c756ca290027f69b31e5eb643e55e6cad7b5caef9f"
       },
       "id": "P97-R221-MISSINGINCIDENCE-2",
       "implementation_effect": "branch-closer",
@@ -560,7 +487,7 @@
         "16.5.A8",
         "A8"
       ],
-      "line": 16551,
+      "line": 18050,
       "mathematical_packet": "source-heavy pentagon/off-class root",
       "meta_status": "NORMAL_FORM_CLOSED_TERMINAL_OPEN",
       "reachable": true,
@@ -625,7 +552,7 @@
             ]
           }
         ],
-        "verified_at_build": "5902ba928947b2ac2fda7b3cc06ff430f9e95f86f9046c96043581865b0a536c"
+        "verified_at_build": "e373ee04253226e8fb4590c756ca290027f69b31e5eb643e55e6cad7b5caef9f"
       },
       "id": "P97-R221-NEXTROWONLYHIT",
       "implementation_effect": "branch-closer",
@@ -636,7 +563,7 @@
         "16.5.A6",
         "A6"
       ],
-      "line": 15819,
+      "line": 17318,
       "mathematical_packet": "exact-12 late-choice/A5 escape root",
       "meta_status": "OPEN_MATHEMATICAL",
       "reachable": true,
@@ -680,7 +607,7 @@
             ]
           }
         ],
-        "verified_at_build": "5902ba928947b2ac2fda7b3cc06ff430f9e95f86f9046c96043581865b0a536c"
+        "verified_at_build": "e373ee04253226e8fb4590c756ca290027f69b31e5eb643e55e6cad7b5caef9f"
       },
       "id": "P97-R221-NONPHYSICALCOLLISION",
       "implementation_effect": "branch-closer",
@@ -691,7 +618,7 @@
         "16.5.C2",
         "C2"
       ],
-      "line": 224,
+      "line": 392,
       "mathematical_packet": "global placement/nonphysical collision root",
       "meta_status": "OPEN_MATHEMATICAL",
       "reachable": true,
@@ -746,7 +673,7 @@
             ]
           }
         ],
-        "verified_at_build": "5902ba928947b2ac2fda7b3cc06ff430f9e95f86f9046c96043581865b0a536c"
+        "verified_at_build": "e373ee04253226e8fb4590c756ca290027f69b31e5eb643e55e6cad7b5caef9f"
       },
       "id": "P97-R221-OPPOSITEROWHEAVY",
       "implementation_effect": "branch-closer",
@@ -821,7 +748,7 @@
             ]
           }
         ],
-        "verified_at_build": "5902ba928947b2ac2fda7b3cc06ff430f9e95f86f9046c96043581865b0a536c"
+        "verified_at_build": "e373ee04253226e8fb4590c756ca290027f69b31e5eb643e55e6cad7b5caef9f"
       },
       "id": "P97-R221-OUTSIDETHREEROWS",
       "implementation_effect": "branch-closer",
@@ -832,7 +759,7 @@
         "16.5.A7",
         "A7"
       ],
-      "line": 16385,
+      "line": 17884,
       "mathematical_packet": "source-heavy pentagon/off-class root",
       "meta_status": "OPEN_MATHEMATICAL",
       "reachable": true,
@@ -887,7 +814,7 @@
             ]
           }
         ],
-        "verified_at_build": "5902ba928947b2ac2fda7b3cc06ff430f9e95f86f9046c96043581865b0a536c"
+        "verified_at_build": "e373ee04253226e8fb4590c756ca290027f69b31e5eb643e55e6cad7b5caef9f"
       },
       "id": "P97-R221-PENTAGONBLOCKER",
       "implementation_effect": "branch-closer",
@@ -898,85 +825,12 @@
         "16.5.A1",
         "A1"
       ],
-      "line": 3448,
+      "line": 3451,
       "mathematical_packet": "source-heavy pentagon/off-class root",
       "meta_status": "OPEN_MATHEMATICAL",
       "reachable": true,
       "source_file": "Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221SourceHeavy.lean",
       "terminal_family": "pentagon blocker is the distinguished deleted point"
-    },
-    {
-      "cluster": "Rigid221",
-      "evidence_note": "Section 16.5.A2 of docs/erdos-97-descent-prose-proof-atomic.md names this declaration and records **Status.** [OPEN].",
-      "factorization": {
-        "consumer_trust": [
-          "Lean.ofReduceBool",
-          "Lean.trustCompiler"
-        ],
-        "pinned": {
-          "legacy_wrapper_statement_sha256": "cd45d699f4df97bd5c86c847a42139f4d951229cfa822d770ccffa06619b3f14",
-          "open_leaf_statement_sha256": "f61b721bfa13fa9d7d455270d6a42516e7541d2f4ee588025eca18bb88c42f85"
-        },
-        "roles": {
-          "coordinator": "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV_vRowBlockerDeleted_deletedRowBlockerOffClass_card_ge_seventeen",
-          "eliminator": "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV_vRowBlockerDeleted_deletedRowBlockerOffClass_card_ge_seventeen_capSplit",
-          "legacy_wrapper": "Problem97.ATailFrontierLiveClosure.false_of_originalFrontierUniqueRadiusArm",
-          "open_leaf": "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV_vRowBlockerDeleted_deletedRowBlockerOffClass_card_eq_seventeen_secondCapNine",
-          "producer": "Problem97.ATailFrontierLiveClosure.exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV_vRowBlockerDeleted_deletedRowBlockerOffClass_card_ge_seventeen_capTrichotomy"
-        },
-        "schema": "p97-factorization/v2",
-        "transitive": [
-          {
-            "from": "legacy_wrapper",
-            "to": "coordinator",
-            "via": [
-              "Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFourResidual",
-              "Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFourResidual_of_carrierCard_ge_twelve",
-              "Problem97.ATailFrontierLiveClosure.false_of_exactFourPhysicalConsumerRobustOutcome",
-              "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenRobustSurface_frame",
-              "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionBranch_frame",
-              "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionLowCrossBranch_frame",
-              "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionOmittedPeerBranch_frame",
-              "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionMutualOmissionBranch_frame",
-              "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionJointDeletion_frame",
-              "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_frame",
-              "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_globalDeletion_frame",
-              "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_frame",
-              "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceBlockerInClass_frame",
-              "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceBlockerInClass_placementSplit",
-              "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU",
-              "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRowOther",
-              "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRowOther_sourceRowHeavy",
-              "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge",
-              "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_deletedXuRow",
-              "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_fiveCycle",
-              "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagon",
-              "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagon_blockerCenterSplit",
-              "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV",
-              "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV_vCenterSplit",
-              "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV_vRowBlockerDeleted",
-              "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV_vRowBlockerDeleted_deletedRowBlockerOffClass",
-              "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV_vRowBlockerDeleted_deletedRowBlockerOffClass_card_ge_sixteen"
-            ]
-          }
-        ],
-        "verified_at_build": "5902ba928947b2ac2fda7b3cc06ff430f9e95f86f9046c96043581865b0a536c"
-      },
-      "id": "P97-R221-SECONDCAPNINE",
-      "implementation_effect": "branch-closer",
-      "kind": "theorem",
-      "latest_checkpoint": "docs/erdos-97-descent-prose-proof-atomic.md",
-      "lean_decl": "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV_vRowBlockerDeleted_deletedRowBlockerOffClass_card_eq_seventeen_secondCapNine",
-      "legacy_labels": [
-        "16.5.A2",
-        "A2"
-      ],
-      "line": 11946,
-      "mathematical_packet": "exact-17 / cap-9 exact-cover root",
-      "meta_status": "OPEN_MATHEMATICAL",
-      "reachable": true,
-      "source_file": "Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221SourceHeavy.lean",
-      "terminal_family": "exact-seventeen second-cap-nine four-row exact cover"
     },
     {
       "cluster": "Rigid221",
@@ -1018,7 +872,7 @@
             ]
           }
         ],
-        "verified_at_build": "5902ba928947b2ac2fda7b3cc06ff430f9e95f86f9046c96043581865b0a536c"
+        "verified_at_build": "e373ee04253226e8fb4590c756ca290027f69b31e5eb643e55e6cad7b5caef9f"
       },
       "id": "P97-R221-SOURCENEU",
       "implementation_effect": "branch-closer",
@@ -1029,7 +883,7 @@
         "16.5.C1",
         "C1"
       ],
-      "line": 52,
+      "line": 53,
       "mathematical_packet": "PostCardElevenSurfaceFrame",
       "meta_status": "OPEN_MATHEMATICAL",
       "reachable": true,
@@ -1084,7 +938,7 @@
             ]
           }
         ],
-        "verified_at_build": "5902ba928947b2ac2fda7b3cc06ff430f9e95f86f9046c96043581865b0a536c"
+        "verified_at_build": "e373ee04253226e8fb4590c756ca290027f69b31e5eb643e55e6cad7b5caef9f"
       },
       "id": "P97-R221-SOURCEROWHEAVY",
       "implementation_effect": "branch-closer",
@@ -1149,7 +1003,7 @@
             ]
           }
         ],
-        "verified_at_build": "5902ba928947b2ac2fda7b3cc06ff430f9e95f86f9046c96043581865b0a536c"
+        "verified_at_build": "e373ee04253226e8fb4590c756ca290027f69b31e5eb643e55e6cad7b5caef9f"
       },
       "id": "P97-R221-SPARSEROWS",
       "implementation_effect": "branch-closer",
@@ -1165,74 +1019,6 @@
       "reachable": true,
       "source_file": "Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221Placement.lean",
       "terminal_family": "exceptional sparse 1+1+1 row pattern"
-    },
-    {
-      "cluster": "Rigid221",
-      "evidence_note": "Section 16.5.A4 of docs/erdos-97-descent-prose-proof-atomic.md names this declaration and records **Status.** [OPEN].",
-      "factorization": {
-        "consumer_trust": [
-          "Lean.ofReduceBool",
-          "Lean.trustCompiler"
-        ],
-        "pinned": {
-          "legacy_wrapper_statement_sha256": "cd45d699f4df97bd5c86c847a42139f4d951229cfa822d770ccffa06619b3f14",
-          "open_leaf_statement_sha256": "f120eb37825acb069e9ab40e52a5ffb21ffbd59ac0530923a398ab6ffb0b255b"
-        },
-        "roles": {
-          "coordinator": "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV",
-          "eliminator": "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV_vCenterSplit",
-          "legacy_wrapper": "Problem97.ATailFrontierLiveClosure.false_of_originalFrontierUniqueRadiusArm",
-          "open_leaf": "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV_vRowBlockerOffClass",
-          "producer": "Problem97.ATailFrontierLiveClosure.exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV_vCenterDichotomy"
-        },
-        "schema": "p97-factorization/v2",
-        "transitive": [
-          {
-            "from": "legacy_wrapper",
-            "to": "coordinator",
-            "via": [
-              "Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFourResidual",
-              "Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFourResidual_of_carrierCard_ge_twelve",
-              "Problem97.ATailFrontierLiveClosure.false_of_exactFourPhysicalConsumerRobustOutcome",
-              "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenRobustSurface_frame",
-              "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionBranch_frame",
-              "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionLowCrossBranch_frame",
-              "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionOmittedPeerBranch_frame",
-              "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionMutualOmissionBranch_frame",
-              "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionJointDeletion_frame",
-              "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_frame",
-              "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_globalDeletion_frame",
-              "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_frame",
-              "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceBlockerInClass_frame",
-              "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceBlockerInClass_placementSplit",
-              "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU",
-              "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRowOther",
-              "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRowOther_sourceRowHeavy",
-              "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge",
-              "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_deletedXuRow",
-              "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_fiveCycle",
-              "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagon",
-              "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagon_blockerCenterSplit"
-            ]
-          }
-        ],
-        "verified_at_build": "5902ba928947b2ac2fda7b3cc06ff430f9e95f86f9046c96043581865b0a536c"
-      },
-      "id": "P97-R221-VROWBLOCKEROFFCLASS",
-      "implementation_effect": "branch-closer",
-      "kind": "theorem",
-      "latest_checkpoint": "docs/erdos-97-descent-prose-proof-atomic.md",
-      "lean_decl": "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV_vRowBlockerOffClass",
-      "legacy_labels": [
-        "16.5.A4",
-        "A4"
-      ],
-      "line": 12256,
-      "mathematical_packet": "source-heavy pentagon/off-class root",
-      "meta_status": "OPEN_MATHEMATICAL",
-      "reachable": true,
-      "source_file": "Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221SourceHeavy.lean",
-      "terminal_family": "blocker centred at v lies off the physical class"
     },
     {
       "cluster": "TriApex",
@@ -1260,7 +1046,7 @@
             ]
           }
         ],
-        "verified_at_build": "5902ba928947b2ac2fda7b3cc06ff430f9e95f86f9046c96043581865b0a536c"
+        "verified_at_build": "e373ee04253226e8fb4590c756ca290027f69b31e5eb643e55e6cad7b5caef9f"
       },
       "id": "P97-TA-TRIAPEXALLLARGECORE",
       "implementation_effect": "branch-closer",
@@ -1271,7 +1057,7 @@
         "D1",
         "F1"
       ],
-      "line": 2858,
+      "line": 2028,
       "mathematical_packet": "TriApexJointDeletionOutcome",
       "meta_status": "NORMAL_FORM_CLOSED_TERMINAL_OPEN",
       "reachable": true,
@@ -1294,7 +1080,7 @@
           "producer": "Problem97.ATailFrontierLiveClosure.twoDeletionOutcome_of_ingress"
         },
         "schema": "p97-factorization/v2",
-        "verified_at_build": "5902ba928947b2ac2fda7b3cc06ff430f9e95f86f9046c96043581865b0a536c"
+        "verified_at_build": "e373ee04253226e8fb4590c756ca290027f69b31e5eb643e55e6cad7b5caef9f"
       },
       "id": "P97-TD-BLOCKERCOINCIDENCE",
       "implementation_effect": "bypass",
@@ -1305,7 +1091,7 @@
         "B2",
         "F3"
       ],
-      "line": 630,
+      "line": 557,
       "mathematical_packet": null,
       "meta_status": "NORMAL_FORM_CLOSED_TERMINAL_OPEN",
       "reachable": true,
@@ -1362,7 +1148,7 @@
           "producer": "Problem97.ATailFrontierLiveClosure.twoDeletionOutcome_of_ingress"
         },
         "schema": "p97-factorization/v2",
-        "verified_at_build": "5902ba928947b2ac2fda7b3cc06ff430f9e95f86f9046c96043581865b0a536c"
+        "verified_at_build": "e373ee04253226e8fb4590c756ca290027f69b31e5eb643e55e6cad7b5caef9f"
       },
       "id": "P97-TD-SURVIVALSQUARE",
       "implementation_effect": "bypass",
@@ -1373,7 +1159,7 @@
         "B3",
         "F3"
       ],
-      "line": 704,
+      "line": 631,
       "mathematical_packet": null,
       "meta_status": "NORMAL_FORM_CLOSED_TERMINAL_OPEN",
       "reachable": true,
@@ -1413,7 +1199,7 @@
             ]
           }
         ],
-        "verified_at_build": "5902ba928947b2ac2fda7b3cc06ff430f9e95f86f9046c96043581865b0a536c"
+        "verified_at_build": "e373ee04253226e8fb4590c756ca290027f69b31e5eb643e55e6cad7b5caef9f"
       },
       "id": "P97-TS-ACYCLICHARDRESIDUAL",
       "implementation_effect": "bypass",
@@ -1423,7 +1209,7 @@
       "legacy_labels": [
         "F2"
       ],
-      "line": 3205,
+      "line": 3422,
       "mathematical_packet": "TwoSourceCollisionFrame",
       "meta_status": "NORMAL_FORM_CLOSED_TERMINAL_OPEN",
       "reachable": true,
@@ -1479,7 +1265,7 @@
             ]
           }
         ],
-        "verified_at_build": "5902ba928947b2ac2fda7b3cc06ff430f9e95f86f9046c96043581865b0a536c"
+        "verified_at_build": "e373ee04253226e8fb4590c756ca290027f69b31e5eb643e55e6cad7b5caef9f"
       },
       "id": "P97-TS-ALIGNEDRETAINED",
       "implementation_effect": "bypass",
@@ -1489,7 +1275,7 @@
       "legacy_labels": [
         "F2"
       ],
-      "line": 2974,
+      "line": 3079,
       "mathematical_packet": "TwoSourceCollisionFrame",
       "meta_status": "NORMAL_FORM_CLOSED_TERMINAL_OPEN",
       "reachable": true,
@@ -1545,7 +1331,7 @@
             ]
           }
         ],
-        "verified_at_build": "5902ba928947b2ac2fda7b3cc06ff430f9e95f86f9046c96043581865b0a536c"
+        "verified_at_build": "e373ee04253226e8fb4590c756ca290027f69b31e5eb643e55e6cad7b5caef9f"
       },
       "id": "P97-TS-COMMONRADIUS",
       "implementation_effect": "bypass",
@@ -1555,7 +1341,7 @@
       "legacy_labels": [
         "F2"
       ],
-      "line": 2992,
+      "line": 3097,
       "mathematical_packet": "TwoSourceCollisionFrame",
       "meta_status": "NORMAL_FORM_CLOSED_TERMINAL_OPEN",
       "reachable": true,
@@ -1592,7 +1378,7 @@
             ]
           }
         ],
-        "verified_at_build": "5902ba928947b2ac2fda7b3cc06ff430f9e95f86f9046c96043581865b0a536c"
+        "verified_at_build": "e373ee04253226e8fb4590c756ca290027f69b31e5eb643e55e6cad7b5caef9f"
       },
       "id": "P97-TS-CROSSBLOCKER",
       "implementation_effect": "bypass",
@@ -1602,7 +1388,7 @@
       "legacy_labels": [
         "F2"
       ],
-      "line": 132,
+      "line": 131,
       "mathematical_packet": "CanonicalBlockerRelation",
       "meta_status": "NORMAL_FORM_CLOSED_TERMINAL_OPEN",
       "reachable": true,
@@ -1651,7 +1437,7 @@
             ]
           }
         ],
-        "verified_at_build": "5902ba928947b2ac2fda7b3cc06ff430f9e95f86f9046c96043581865b0a536c"
+        "verified_at_build": "e373ee04253226e8fb4590c756ca290027f69b31e5eb643e55e6cad7b5caef9f"
       },
       "id": "P97-TS-NONCANONICAL",
       "implementation_effect": "bypass",
@@ -1661,7 +1447,7 @@
       "legacy_labels": [
         "F2"
       ],
-      "line": 3165,
+      "line": 3347,
       "mathematical_packet": "TwoSourceCollisionFrame",
       "meta_status": "NORMAL_FORM_CLOSED_TERMINAL_OPEN",
       "reachable": true,
@@ -1704,7 +1490,7 @@
             ]
           }
         ],
-        "verified_at_build": "5902ba928947b2ac2fda7b3cc06ff430f9e95f86f9046c96043581865b0a536c"
+        "verified_at_build": "e373ee04253226e8fb4590c756ca290027f69b31e5eb643e55e6cad7b5caef9f"
       },
       "id": "P97-TS-OUTSIDEPAIRDELETION",
       "implementation_effect": "bypass",
@@ -1714,7 +1500,7 @@
       "legacy_labels": [
         "F2"
       ],
-      "line": 2650,
+      "line": 2652,
       "mathematical_packet": "TwoSourceCollisionFrame",
       "meta_status": "NORMAL_FORM_CLOSED_TERMINAL_OPEN",
       "reachable": true,
@@ -1735,5 +1521,5 @@
   ],
   "publish_target": "Problem97.erdos97_rhs",
   "schema": "p97-obligation-registry/v1",
-  "source_head": "f3063069939cfb6dc2a8a9b20d9a7ef660c86fdf"
+  "source_head": "eb6a12039aba1e3c4cc48baa9f1299337fc6a2ac"
 }
