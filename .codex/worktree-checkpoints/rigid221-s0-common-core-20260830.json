@@ -1,0 +1,53 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "rigid221-s0-common-core-20260830",
+  "owner": "codex-rigid221-s0-common-core",
+  "base_head": "0d56e79a7a2974bf0d6097f0642b8eae708712b3",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/rigid221-s0-common-core-20260830.json",
+    "docs/audits/2026-08-30-rigid221-s0-common-core-theorem-extraction.md",
+    "scripts/rigid221_s0_common_core.py",
+    "scripts/rigid221_s0_common_core_piqd.py",
+    "scripts/test_rigid221_s0_common_core.py",
+    "scripts/test_rigid221_s0_common_core_piqd.py"
+  ],
+  "generated_roots": [
+    "scratch/runs/rigid221-s0-common-core-20260830/common-core-v1"
+  ],
+  "durable_paths": [
+    "certificates/rigid221_s0_common_core_v1/PIQD_SHA256SUMS",
+    "certificates/rigid221_s0_common_core_v1/SHA256SUMS",
+    "certificates/rigid221_s0_common_core_v1/assertion_ledger.jsonl",
+    "certificates/rigid221_s0_common_core_v1/common.smt2",
+    "certificates/rigid221_s0_common_core_v1/i_only.smt2",
+    "certificates/rigid221_s0_common_core_v1/legacy_common_initial_journal.smt2",
+    "certificates/rigid221_s0_common_core_v1/legacy_common_initial_necessity.json",
+    "certificates/rigid221_s0_common_core_v1/legacy_common_initial_piqd_result.json",
+    "certificates/rigid221_s0_common_core_v1/manifest.json",
+    "certificates/rigid221_s0_common_core_v1/n_only.smt2",
+    "certificates/rigid221_s0_common_core_v1/piqd_receipts.json",
+    "certificates/rigid221_s0_common_core_v1/retained_common.smt2",
+    "certificates/rigid221_s0_common_core_v1/retained_common_initial_journal.smt2",
+    "certificates/rigid221_s0_common_core_v1/retained_common_initial_necessity.json",
+    "certificates/rigid221_s0_common_core_v1/retained_common_initial_piqd_result.json",
+    "certificates/rigid221_s0_common_core_v1/retained_common_minimal12.smt2",
+    "certificates/rigid221_s0_common_core_v1/retained_common_minimal12_cvc5.smt2",
+    "certificates/rigid221_s0_common_core_v1/retained_common_minimal12_necessity.json",
+    "certificates/rigid221_s0_common_core_v1/retained_common_minimal12_piqd_result.json",
+    "certificates/rigid221_s0_common_core_v1/retained_common_shrink_pass1.smt2",
+    "certificates/rigid221_s0_common_core_v1/retained_common_shrink_pass1_necessity.json",
+    "certificates/rigid221_s0_common_core_v1/retained_common_shrink_pass1_piqd_result.json",
+    "certificates/rigid221_s0_common_core_v1/retained_i_only.smt2",
+    "certificates/rigid221_s0_common_core_v1/retained_n_only.smt2",
+    "certificates/rigid221_s0_common_core_v1/s0_i_physical_min.smt2",
+    "certificates/rigid221_s0_common_core_v1/s0_i_retained_only.smt2",
+    "certificates/rigid221_s0_common_core_v1/s0_n_physical_min.smt2",
+    "certificates/rigid221_s0_common_core_v1/s0_n_retained_only.smt2",
+    "scratch/runs/rigid221-s0-common-core-20260830/common-core-v1/REPORT.md",
+    "scratch/runs/rigid221-s0-common-core-20260830/common-core-v1/RUN_SHA256SUMS",
+    "scratch/runs/rigid221-s0-common-core-20260830/common-core-v1/results.json",
+    "scratch/runs/rigid221-s0-common-core-20260830/common-core-v1/run_manifest.json"
+  ],
+  "created_utc": "2026-08-30T21:20:30Z",
+  "manifest_sha256": "7c23309500a60d9a53ff8cd6e73f33a455c56926db71980cfccba4c1818610c0"
+}

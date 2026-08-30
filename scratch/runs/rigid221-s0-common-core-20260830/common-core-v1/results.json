@@ -1,0 +1,83 @@
+{
+  "schema": "rigid221-s0-common-core-run-summary/v1",
+  "lane_id": "rigid221-s0-common-core-20260830",
+  "run_id": "common-core-v1",
+  "base_head": "0d56e79a7a2974bf0d6097f0642b8eae708712b3",
+  "claim_scope": "BOUNDED_FIXED_ORDER_SOURCE_SUBSETS_ONLY",
+  "findings": {
+    "retained_common": {
+      "assertions": 68,
+      "input_sha256": "8344d98d6b705a4291b5539dd6a1bf76d047ba64f988371ce3b739f562a139b1",
+      "piqd_journal_sha256": "473922d0a24715e51bf7189fb20cc757429eb1b559763f36b930e5426e090a67",
+      "session_id": "716fd1b2-c7e3-4427-bf94-437536b19d38",
+      "status": "UNSAT"
+    },
+    "legacy_common": {
+      "assertions": 170,
+      "input_sha256": "2734ca487209022cce06418130ee099c701c5049f286506acfcf49a3b99f994d",
+      "piqd_journal_sha256": "903dbcec5481ce209e2157a353d16fc3865cce568f5f69ab3aa1987640022d1e",
+      "session_id": "a3488d2a-4f35-46f6-9c39-73b1958d8d25",
+      "status": "UNSAT"
+    },
+    "minimal12": {
+      "assertions": 12,
+      "source_assertion_indices": [
+        0,
+        3,
+        4,
+        5,
+        115,
+        118,
+        148,
+        156,
+        158,
+        198,
+        213,
+        349
+      ],
+      "roles": [
+        "O",
+        "m1",
+        "m2",
+        "delta",
+        "v"
+      ],
+      "piqd_journal_sha256": "b9483a6e92b5fff90cc127ebda3a2459d2c88259465b99975b72e72966c5e0f2",
+      "authenticated_unsat_session_id": "a255527c-581e-4f79-a431-658caa616f06",
+      "all_single_assertion_omissions": "SAT",
+      "locally_irredundant": true,
+      "status": "MINIMIZED_UNSAT"
+    },
+    "cvc5_crosscheck": {
+      "journal_sha256": "778a2a992695cbe54208314da8a547fcb35d0fda7a8440af58a6d51b39aa5f86",
+      "session_id": "cdd619f1-6869-425d-8eb3-5edc3a4483e4",
+      "solve_ms": 330015,
+      "status": "UNKNOWN"
+    }
+  },
+  "minimization": {
+    "pass1": {
+      "calls": 83,
+      "elapsed_ms": 1450857,
+      "initial_assertions": 68,
+      "retained_assertions": 14,
+      "status": "NECESSITY_INCONSISTENT_FAIL_CLOSED"
+    },
+    "pass2": {
+      "calls": 27,
+      "elapsed_ms": 244469,
+      "initial_assertions": 14,
+      "retained_assertions": 12,
+      "status": "MINIMIZED_UNSAT"
+    }
+  },
+  "promoted_evidence": {
+    "directory": "certificates/rigid221_s0_common_core_v1",
+    "base_checksums": "certificates/rigid221_s0_common_core_v1/SHA256SUMS",
+    "piqd_checksums": "certificates/rigid221_s0_common_core_v1/PIQD_SHA256SUMS",
+    "receipts": "certificates/rigid221_s0_common_core_v1/piqd_receipts.json"
+  },
+  "next_theorem": "formalize the twelve-clause real-coordinate contradiction and then prove its fixed-cell source ingress",
+  "source_universal_claim": false,
+  "lean_claim": false
+}

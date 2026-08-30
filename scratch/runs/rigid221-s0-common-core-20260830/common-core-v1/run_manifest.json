@@ -1,0 +1,30 @@
+{
+  "schema": "worktree-run-manifest/v1",
+  "lane_id": "rigid221-s0-common-core-20260830",
+  "run_id": "common-core-v1",
+  "root": "scratch/runs/rigid221-s0-common-core-20260830/common-core-v1",
+  "owner": "codex-rigid221-s0-common-core",
+  "base_head": "0d56e79a7a2974bf0d6097f0642b8eae708712b3",
+  "output_classes": [
+    "artifacts",
+    "events",
+    "tmp"
+  ],
+  "source_digests": {
+    ".codex/worktree-checkpoints/rigid221-s0-common-core-20260830.json": "cf81c3232000ceca346c4bcc94d1b51c593ebc0fb151139548ee6a838901da0e",
+    "certificates/rigid221_s0_common_core_v1/manifest.json": "37ad99d2b0f216e273ac78202d280b416d9ef22e5c5a8618d443b9f73e5e7109",
+    "scripts/rigid221_s0_common_core.py": "ade1f4c4d96b6ece3f286815f1ca9a4df3e0e66555c40345027eacfd535febaf",
+    "scripts/rigid221_s0_common_core_piqd.py": "847f2ac1b3cea173c38615d9879090fed62a1bdc2a31d45fefacf9c18bef35e2",
+    "scripts/rigid221_s0_full_l1.py": "0b131fda6cd4f10ec678e747bff9377405b6e529321169d9db7751669ff3b174"
+  },
+  "input_digests": {
+    "certificates/rigid221_s0_common_core_v1/common.smt2": "2734ca487209022cce06418130ee099c701c5049f286506acfcf49a3b99f994d",
+    "certificates/rigid221_s0_common_core_v1/retained_common.smt2": "8344d98d6b705a4291b5539dd6a1bf76d047ba64f988371ce3b739f562a139b1",
+    "certificates/rigid221_s0_common_core_v1/s0_i_physical_min.smt2": "c5a4347c5cf9e70e8c77e34a3039dbaac4a74bbe2186a3ca0099abf7359a031b",
+    "certificates/rigid221_s0_common_core_v1/s0_i_retained_only.smt2": "69a4853784460ecd59bfaffbd65b3b54bcbca975772819dbac7624de9979401a",
+    "certificates/rigid221_s0_common_core_v1/s0_n_physical_min.smt2": "96ca6876fbdee6c287e3ffcc6ddbf7711662a46ad07f8867fa412b11c2d8683c",
+    "certificates/rigid221_s0_common_core_v1/s0_n_retained_only.smt2": "37cf046c4a2975c47abddecc8a6c84251e9b08ff16716c68426e015aee985e27"
+  },
+  "created_utc": "2026-08-30T21:47:49Z",
+  "manifest_sha256": "2fc116fba2465edf1a5105bf1ce79b150b75be6647f75dba9dbd611bd87d1316"
+}

@@ -1,0 +1,169 @@
+{
+  "claim_scope": "BOUNDED_FIXED_ORDER_SOURCE_SUBSETS_ONLY",
+  "files": {
+    "assertion_ledger.jsonl": {
+      "bytes": 990451,
+      "sha256": "11ba089a5fa9d0716a4dbe6b43374a4385e3701e1d3b38e4a4f89da88bda32f7"
+    },
+    "common.smt2": {
+      "bytes": 45429,
+      "sha256": "2734ca487209022cce06418130ee099c701c5049f286506acfcf49a3b99f994d"
+    },
+    "i_only.smt2": {
+      "bytes": 14286,
+      "sha256": "07ff69331e4590d6d7c4e965e5921f4ef49d81577d608cb08fbce2778e1f3e69"
+    },
+    "n_only.smt2": {
+      "bytes": 9822,
+      "sha256": "92573455cbfaa08d5f647a5d792122f26ae97f0582a09e0a7e5edf1703a4fc9b"
+    },
+    "retained_common.smt2": {
+      "bytes": 20503,
+      "sha256": "8344d98d6b705a4291b5539dd6a1bf76d047ba64f988371ce3b739f562a139b1"
+    },
+    "retained_i_only.smt2": {
+      "bytes": 3942,
+      "sha256": "d5a17a1361c44c930f1311e410f00a99115d00cda163993ffae5f007999aceba"
+    },
+    "retained_n_only.smt2": {
+      "bytes": 3942,
+      "sha256": "c4f8981391c8a79dd606fd1f8cca6a7ea17776433dab752f96fa9aaeaea7496c"
+    },
+    "s0_i_physical_min.smt2": {
+      "bytes": 64498,
+      "sha256": "c5a4347c5cf9e70e8c77e34a3039dbaac4a74bbe2186a3ca0099abf7359a031b"
+    },
+    "s0_i_retained_only.smt2": {
+      "bytes": 26960,
+      "sha256": "69a4853784460ecd59bfaffbd65b3b54bcbca975772819dbac7624de9979401a"
+    },
+    "s0_n_physical_min.smt2": {
+      "bytes": 59152,
+      "sha256": "96ca6876fbdee6c287e3ffcc6ddbf7711662a46ad07f8867fa412b11c2d8683c"
+    },
+    "s0_n_retained_only.smt2": {
+      "bytes": 26960,
+      "sha256": "37cf046c4a2975c47abddecc8a6c84251e9b08ff16716c68426e015aee985e27"
+    }
+  },
+  "generator": {
+    "encoding_version": "rigid221-s0-full-l1-m0-distinct-2026-08-29.6",
+    "full_l1_script_sha256": "0b131fda6cd4f10ec678e747bff9377405b6e529321169d9db7751669ff3b174",
+    "script": "scripts/rigid221_s0_common_core.py",
+    "script_sha256": "ade1f4c4d96b6ece3f286815f1ca9a4df3e0e66555c40345027eacfd535febaf",
+    "solver_calls": 0
+  },
+  "ledger": {
+    "file": "assertion_ledger.jsonl",
+    "rows": 589,
+    "sha256": "11ba089a5fa9d0716a4dbe6b43374a4385e3701e1d3b38e4a4f89da88bda32f7"
+  },
+  "schema": "rigid221-s0-common-core-custody/v1",
+  "source_cells": {
+    "m0-distinct-s0-i": {
+      "assertions": 1365,
+      "branch": "S0-I",
+      "sha256": "708bf91a0afb0a573b7fb33da517296bfd47e52acea6b8f1040c6660f1f0adcf"
+    },
+    "m0-distinct-s0-n": {
+      "assertions": 1365,
+      "branch": "S0-N",
+      "sha256": "d91c12d084ec6d7313607152519e18d463220c0bd7dec1eb24eb5ef90583c7a7"
+    }
+  },
+  "split_contract": {
+    "common_file": "set-logic + declarations + common assertions; no check-sat",
+    "only_file": "branch-only assertions + terminal check-sat; no declarations",
+    "reconstruction": "concatenate common bytes and selected branch-only bytes",
+    "symbol_namespace": "rigid221_s0_common"
+  },
+  "surfaces": {
+    "legacy_decisive": {
+      "cell_assertion_counts": {
+        "S0-I": 217,
+        "S0-N": 208
+      },
+      "cell_files": {
+        "S0-I": "s0_i_physical_min.smt2",
+        "S0-N": "s0_n_physical_min.smt2"
+      },
+      "decomposition": {
+        "common_count": 170,
+        "common_file": "common.smt2",
+        "composition": "common prefix + branch suffix; suffix ends with check-sat",
+        "i_only_count": 47,
+        "i_only_file": "i_only.smt2",
+        "n_only_count": 38,
+        "n_only_file": "n_only.smt2",
+        "namespace": "rigid221_s0_common"
+      },
+      "file_sha256": {
+        "common": "2734ca487209022cce06418130ee099c701c5049f286506acfcf49a3b99f994d",
+        "i": "c5a4347c5cf9e70e8c77e34a3039dbaac4a74bbe2186a3ca0099abf7359a031b",
+        "i_only": "07ff69331e4590d6d7c4e965e5921f4ef49d81577d608cb08fbce2778e1f3e69",
+        "n": "96ca6876fbdee6c287e3ffcc6ddbf7711662a46ad07f8867fa412b11c2d8683c",
+        "n_only": "92573455cbfaa08d5f647a5d792122f26ae97f0582a09e0a7e5edf1703a4fc9b"
+      },
+      "known_selection_bugs": {
+        "S0-I": {
+          "auxiliary_cap_offset_leaks": 9,
+          "auxiliary_orientation_leaks": 126
+        },
+        "S0-N": {
+          "auxiliary_cap_offset_leaks": 0,
+          "auxiliary_orientation_leaks": 126
+        },
+        "orientation_predicate": "selected when any retained role occurred; the subset test was tautological",
+        "s0_i_cap_predicate": "indexed non-Moser cap blocks with ROLE_ORDER offsets including Moser roles"
+      }
+    },
+    "retained_only": {
+      "cell_assertion_counts": {
+        "S0-I": 82,
+        "S0-N": 82
+      },
+      "cell_files": {
+        "S0-I": "s0_i_retained_only.smt2",
+        "S0-N": "s0_n_retained_only.smt2"
+      },
+      "decomposition": {
+        "common_count": 68,
+        "common_file": "retained_common.smt2",
+        "composition": "common prefix + branch suffix; suffix ends with check-sat",
+        "i_only_count": 14,
+        "i_only_file": "retained_i_only.smt2",
+        "n_only_count": 14,
+        "n_only_file": "retained_n_only.smt2",
+        "namespace": "rigid221_s0_common"
+      },
+      "file_sha256": {
+        "common": "8344d98d6b705a4291b5539dd6a1bf76d047ba64f988371ce3b739f562a139b1",
+        "i": "69a4853784460ecd59bfaffbd65b3b54bcbca975772819dbac7624de9979401a",
+        "i_only": "d5a17a1361c44c930f1311e410f00a99115d00cda163993ffae5f007999aceba",
+        "n": "37cf046c4a2975c47abddecc8a6c84251e9b08ff16716c68426e015aee985e27",
+        "n_only": "c4f8981391c8a79dd606fd1f8cca6a7ea17776433dab752f96fa9aaeaea7496c"
+      },
+      "selection_invariants": {
+        "allowed_roles": [
+          "O",
+          "m1",
+          "m2",
+          "u",
+          "xu",
+          "delta",
+          "v",
+          "xv"
+        ],
+        "auxiliary_role_occurrences": 0,
+        "cap_arm_subject_roles": [
+          "u",
+          "xu",
+          "delta",
+          "v",
+          "xv"
+        ],
+        "orientation_assertions_per_cell": 30
+      }
+    }
+  }
+}
