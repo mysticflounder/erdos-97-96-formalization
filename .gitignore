@@ -590,3 +590,4 @@ docs/live-blueprint.md.tmp
 # are ignored until a lane declares an exact owned or durable path and force-adds
 # that file (`git add -f -- scratch/...`); never force-add a directory.
 /scratch/**
+docs/live-blueprint.md
