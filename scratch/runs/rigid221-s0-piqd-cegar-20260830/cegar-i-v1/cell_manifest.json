@@ -1,0 +1,74 @@
+{
+  "schema": "rigid221-s0-piqd-cegar-smt-cell-manifest/v1",
+  "lane_id": "rigid221-s0-piqd-cegar-20260830",
+  "run_id": "cegar-i-v1",
+  "base_head": "5413bd4f40b0d1e681bafc6a5f108d5d36d51128",
+  "claim_scope": "BOUNDED_SOURCE_MAPPED_L1_M0_FIXED_ORDER_CANARY_ONLY",
+  "source_formula": {
+    "cell_id": "m0-distinct-s0-i",
+    "original_input": "scratch/runs/rigid221-s0-full-l1-20260829/full-l1-v1/artifacts/primary/cells/m0-distinct-s0-i/input.smt2",
+    "original_sha256": "708bf91a0afb0a573b7fb33da517296bfd47e52acea6b8f1040c6660f1f0adcf",
+    "relaxed_input": "scratch/runs/rigid221-s0-piqd-cegar-20260830/cegar-i-v1/tmp/m0-distinct-s0-i-no-orientation.smt2",
+    "relaxed_sha256": "47816fa766290c1918075d89057f5c0ec0e41d3b62979e3a1229c9458b29a872",
+    "transformation": "removed only strict orientation assertions 162..329 and terminal check-sat; all other assertions and declarations unchanged",
+    "relaxed_assertions": 1197,
+    "relaxed_session_id": "17a5ec99-3a0a-4515-9d32-db9a65949f94"
+  },
+  "cegar": {
+    "orientation_assertion_range": [162, 330],
+    "orientation_count": 168,
+    "wave1": {
+      "violated_indices": [0, 1, 12, 39, 51, 84, 91, 92, 93, 94, 95, 103, 144, 166, 167],
+      "value_query": "scratch/runs/rigid221-s0-piqd-cegar-20260830/cegar-i-v1/tmp/m0-distinct-s0-i-orientation-bools.json",
+      "value_query_sha256": "b3a0e33acd0f4e1ae130f56819c0c30c3ad6cb45e7fd2ed311ae25eb6e13295a",
+      "cuts_input": "scratch/runs/rigid221-s0-piqd-cegar-20260830/cegar-i-v1/tmp/m0-distinct-s0-i-wave1-cuts.smt2",
+      "cuts_sha256": "3af0970ded9e6f680a354a810e235b86c04ea2172f8adb8e11b783c3ef410369",
+      "cuts_added": 15,
+      "session_id": "a6d5a1c0-2409-4ba8-ae15-1355d3e563d5",
+      "status": "UNKNOWN",
+      "solve_ms": 132003,
+      "effective_deadline_ms": 150000,
+      "result_sha256": "a3bfe134a25a1170ba0ad0ff4529cbc84061e3456e3384cc0272c2eea6f48ddf"
+    }
+  },
+  "physical_minimal": {
+    "construction": "verbatim subsets of frozen source assertions; fixed O,m1,m2/Moser geometry, physical equalities for u,xu,delta,v,xv, MEC enclosure, retained-role cap arms, and retained-role global orientations; no row-fiber/no-four/distinct assertions",
+    "provenance_check": "all generated assertions matched the corresponding frozen source cell assertion sexpr; no synthetic constraints",
+    "S0-I": {
+      "input": "scratch/runs/rigid221-s0-piqd-cegar-20260830/cegar-i-v1/tmp/m0-distinct-s0-i-physical-min.smt2",
+      "input_sha256": "c5a4347c5cf9e70e8c77e34a3039dbaac4a74bbe2186a3ca0099abf7359a031b",
+      "assertions": 217,
+      "z3_session": "16fdba54-ff75-4e75-83c1-532550567b25",
+      "z3_status": "UNSAT",
+      "z3_solve_ms": 194,
+      "z3_result_sha256": "263c80e04403ba263e76bb8855a11960feb3a9e8341fd6e577c0a8b6e4104dcf",
+      "cvc5_session": "7577bcbc-238e-452c-8d55-99cc436fbec8",
+      "cvc5_status": "UNKNOWN",
+      "cvc5_solve_ms": 210013,
+      "cvc5_result_sha256": "beff21f8ac8e0d1f15e4f2fc020b3c717ba7b520cb91e001e49ac8d2f5096f3a"
+    },
+    "S0-N": {
+      "input": "scratch/runs/rigid221-s0-piqd-cegar-20260830/cegar-i-v1/tmp/m0-distinct-s0-n-physical-min.smt2",
+      "input_sha256": "96ca6876fbdee6c287e3ffcc6ddbf7711662a46ad07f8867fa412b11c2d8683c",
+      "assertions": 208,
+      "z3_session": "3d098a6a-b98d-43b7-8815-d41d5baac910",
+      "z3_status": "UNSAT",
+      "z3_solve_ms": 295,
+      "z3_result_sha256": "263c80e04403ba263e76bb8855a11960feb3a9e8341fd6e577c0a8b6e4104dcf"
+    },
+    "logical_implication": "UNSAT of each verbatim assertion subset entails UNSAT of its corresponding frozen fixed-cell formula; this does not establish the full source-universal theorem"
+  },
+  "solver": {
+    "daemon_version": "0.1.0",
+    "daemon_sha256": "f89994bc10fcad69a264d8efbd7d76b8203c94c08f22b4536d3b473a12cee089",
+    "signature": "z3-4.17.0",
+    "sha256": "b7a02cb75cccb7f35385c551c10453f32c12da23a7656e24233bc4b25d0f5a9a"
+  },
+  "unsupported": [
+    "other placement and q/w survival cells",
+    "source-legal equality and overlap cells",
+    "additional cyclic orders",
+    "full source context, joint-deletion packet, robust surface, and universal carrier"
+  ],
+  "manifest_sha256": "4a186da0921ede9b411fb58ebfeb50f12af9011e9e17af7627d5cf2fc49a0b4a"
+}

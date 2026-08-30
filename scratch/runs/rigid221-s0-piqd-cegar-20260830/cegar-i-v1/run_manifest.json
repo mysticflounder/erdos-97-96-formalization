@@ -1,0 +1,24 @@
+{
+  "schema": "worktree-run-manifest/v1",
+  "lane_id": "rigid221-s0-piqd-cegar-20260830",
+  "run_id": "cegar-i-v1",
+  "root": "scratch/runs/rigid221-s0-piqd-cegar-20260830/cegar-i-v1",
+  "owner": "codex-s0-piqd-cegar",
+  "base_head": "5413bd4f40b0d1e681bafc6a5f108d5d36d51128",
+  "output_classes": ["artifacts", "events", "tmp"],
+  "source_digests": {
+    "scripts/rigid221_s0_full_l1.py": "0b131fda6cd4f10ec678e747bff9377405b6e529321169d9db7751669ff3b174",
+    "scratch/runs/rigid221-s0-full-l1-20260829/full-l1-v1/artifacts/primary/cells/m0-distinct-s0-i/input.smt2": "708bf91a0afb0a573b7fb33da517296bfd47e52acea6b8f1040c6660f1f0adcf",
+    "scratch/runs/rigid221-s0-full-l1-20260829/full-l1-v1/artifacts/primary/cells/m0-distinct-s0-n/input.smt2": "d91c12d084ec6d7313607152519e18d463220c0bd7dec1eb24eb5ef90583c7a7",
+    "scratch/runs/rigid221-s0-piqd-cegar-20260830/cegar-i-v1/tmp/build_physical_n.py": "ff5a5713fd504048b41d8b0441442bb77ae3690bb9e4a2e448f1cf0380f3904b"
+  },
+  "input_digests": {
+    "scratch/runs/rigid221-s0-piqd-cegar-20260830/cegar-i-v1/tmp/m0-distinct-s0-i-no-orientation.smt2": "47816fa766290c1918075d89057f5c0ec0e41d3b62979e3a1229c9458b29a872",
+    "scratch/runs/rigid221-s0-piqd-cegar-20260830/cegar-i-v1/tmp/m0-distinct-s0-i-orientation-bools.json": "b3a0e33acd0f4e1ae130f56819c0c30c3ad6cb45e7fd2ed311ae25eb6e13295a",
+    "scratch/runs/rigid221-s0-piqd-cegar-20260830/cegar-i-v1/tmp/m0-distinct-s0-i-wave1-cuts.smt2": "3af0970ded9e6f680a354a810e235b86c04ea2172f8adb8e11b783c3ef410369",
+    "scratch/runs/rigid221-s0-piqd-cegar-20260830/cegar-i-v1/tmp/m0-distinct-s0-i-physical-min.smt2": "c5a4347c5cf9e70e8c77e34a3039dbaac4a74bbe2186a3ca0099abf7359a031b",
+    "scratch/runs/rigid221-s0-piqd-cegar-20260830/cegar-i-v1/tmp/m0-distinct-s0-n-physical-min.smt2": "96ca6876fbdee6c287e3ffcc6ddbf7711662a46ad07f8867fa412b11c2d8683c"
+  },
+  "created_utc": "2026-08-30T09:34:00Z",
+  "manifest_sha256": "51a4d4217f5acd494a0aa0b807776f7dd92c2c7bb4dfc94faafb4346a0b8b72e"
+}

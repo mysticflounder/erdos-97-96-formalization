@@ -1,0 +1,20 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "rigid221-s0-piqd-cegar-20260830",
+  "owner": "codex-s0-piqd-cegar",
+  "base_head": "5413bd4f40b0d1e681bafc6a5f108d5d36d51128",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/rigid221-s0-piqd-cegar-20260830.json"
+  ],
+  "generated_roots": [
+    "scratch/runs/rigid221-s0-piqd-cegar-20260830/cegar-i-v1"
+  ],
+  "durable_paths": [
+    "scratch/runs/rigid221-s0-piqd-cegar-20260830/cegar-i-v1/REPORT.md",
+    "scratch/runs/rigid221-s0-piqd-cegar-20260830/cegar-i-v1/cell_manifest.json",
+    "scratch/runs/rigid221-s0-piqd-cegar-20260830/cegar-i-v1/results.json",
+    "scratch/runs/rigid221-s0-piqd-cegar-20260830/cegar-i-v1/run_manifest.json"
+  ],
+  "created_utc": "2026-08-30T09:34:00Z",
+  "manifest_sha256": "6044a8df26fe8fc1162cd36727ae8ad44310aeabddbf843e0e7b7adf30e62209"
+}
