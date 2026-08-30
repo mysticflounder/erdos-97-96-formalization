@@ -1,4 +1,13 @@
 {
+  "aliases": {
+    "P97-TD-GLOBALGAPORCLOSED": {
+      "aliases": [
+        "Problem97.ATailFrontierLiveClosure.b1_globalGapOrClosedTerminal_of_counterexample"
+      ],
+      "renamed_at_head": "5413bd4f4",
+      "renamed_from": "Problem97.ATailFrontierLiveClosure.b1_globalGapOrClosedTerminal_of_counterexample"
+    }
+  },
   "assigned": {
     "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_capSource_firstFiber_outsidePairDeletionExactRows": "P97-TS-OUTSIDEPAIRDELETION",
     "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_crossBlockerCoincidence": "P97-TS-CROSSBLOCKER",
@@ -8,7 +17,7 @@
     "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_freshThird_pinnedEndpoint_outsideSeedResidual": "P97-OFF-TS-OUTSIDESEEDRESIDUAL",
     "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_firstFiberDescentResidual": "P97-OFF-TS-FIRSTFIBERDESCENT",
     "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_freshOutsideFirstBlockerFiber_acyclicHardResidual": "P97-TS-ACYCLICHARDRESIDUAL",
-    "Problem97.ATailFrontierLiveClosure.b1_globalGapOrClosedTerminal_of_counterexample": "P97-TD-GLOBALGAPORCLOSED",
+    "Problem97.ATailFrontierLiveClosure.false_of_b1PhysicalClassFiveSixNormalForm": "P97-TD-GLOBALGAPORCLOSED",
     "Problem97.ATailFrontierLiveClosure.false_of_exactFiveDistinct_biApexRobust_postCardEleven": "P97-OFF-R221-POSTCARDELEVEN",
     "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_minimalCore": "P97-R221-MINIMALCORE",
     "Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_nonphysicalCollision": "P97-R221-NONPHYSICALCOLLISION",

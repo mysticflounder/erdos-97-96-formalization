@@ -1314,37 +1314,37 @@
     },
     {
       "cluster": "Two-deletion",
-      "evidence_note": "docs/audits/2026-08-22-f3-twodeletion-third-pass-synthesis.md records the third-pass trace/graph/fan normal forms as prose-closed while this declaration remains one of the three live unresolved TwoDeletion leaves with five metric roots open.",
+      "evidence_note": "docs/plans/2026-08-29-b1-global-continuation.md records the source-clean third-deletion/five-six split. Distinct third deletions reduce to the two existing four-center leaves; the sole B1 residual is the full transport context with an exact five- or six-point physical class covered by the deleted pair and two live-row slices.",
       "factorization": {
         "pinned": {
-          "legacy_wrapper_statement_sha256": "32c15396d850f5f3fbd7539c7d0d43016034e4e17553f4ce92fc5ddbec19b60e",
-          "open_leaf_statement_sha256": "356d2a888861ce9c3a6eaa9c7cdcc036d5f20f21a0adefce39a8bc521e93a9a1"
+          "legacy_wrapper_statement_sha256": "356d2a888861ce9c3a6eaa9c7cdcc036d5f20f21a0adefce39a8bc521e93a9a1",
+          "open_leaf_statement_sha256": "6915248b7b84b9a2a0807b087c657188add3fa722029efe4f6e71e014d44168a"
         },
         "roles": {
-          "coordinator": "Problem97.ATailFrontierLiveClosure.false_of_twoDeletionIngress",
-          "eliminator": "Problem97.ATailFrontierLiveClosure.false_of_twoDeletionOutcome",
-          "legacy_wrapper": "Problem97.ATailFrontierLiveClosure.false_of_twoDistinctExactFourMutualOmissionJointDeletions",
-          "open_leaf": "Problem97.ATailFrontierLiveClosure.b1_globalGapOrClosedTerminal_of_counterexample",
-          "producer": "Problem97.ATailFrontierLiveClosure.twoDeletionOutcome_of_ingress"
+          "coordinator": "Problem97.ATailFrontierLiveClosure.false_of_b1GlobalTransportContext",
+          "eliminator": "Problem97.ATailFrontierLiveClosure.false_of_b1ThirdJointDeletionOrPhysicalClassFiveSixNormalForm",
+          "legacy_wrapper": "Problem97.ATailFrontierLiveClosure.b1_globalGapOrClosedTerminal_of_counterexample",
+          "open_leaf": "Problem97.ATailFrontierLiveClosure.false_of_b1PhysicalClassFiveSixNormalForm",
+          "producer": "Problem97.ATailFrontierLiveClosure.b1_thirdJointDeletion_or_physicalClassFiveSixNormalForm"
         },
         "schema": "p97-factorization/v2",
-        "verified_at_build": "5902ba928947b2ac2fda7b3cc06ff430f9e95f86f9046c96043581865b0a536c"
+        "verified_at_build": "e373ee04253226e8fb4590c756ca290027f69b31e5eb643e55e6cad7b5caef9f"
       },
       "id": "P97-TD-GLOBALGAPORCLOSED",
       "implementation_effect": "bypass",
       "kind": "theorem",
-      "latest_checkpoint": "docs/audits/2026-08-22-f3-twodeletion-third-pass-synthesis.md",
-      "lean_decl": "Problem97.ATailFrontierLiveClosure.b1_globalGapOrClosedTerminal_of_counterexample",
+      "latest_checkpoint": "docs/plans/2026-08-29-b1-global-continuation.md",
+      "lean_decl": "Problem97.ATailFrontierLiveClosure.false_of_b1PhysicalClassFiveSixNormalForm",
       "legacy_labels": [
         "B1",
         "F3"
       ],
-      "line": 142,
+      "line": 902,
       "mathematical_packet": null,
       "meta_status": "NORMAL_FORM_CLOSED_TERMINAL_OPEN",
       "reachable": true,
       "source_file": "Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean",
-      "terminal_family": "B1 global-gap-or-closed positive terminal producer"
+      "terminal_family": "B1 exact-five/six physical-class live-row consumer"
     },
     {
       "cluster": "Two-deletion",

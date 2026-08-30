@@ -8,10 +8,13 @@
     "docs/plans/2026-08-29-b1-global-continuation.md",
     "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/EqualBlockerContinuation.lean",
     "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean",
+    "proof-status/frontier-table.generated.md",
+    "proof-status/id-assignments.json",
+    "proof-status/obligations-meta.json",
     "proof-status/obligations.json"
   ],
   "generated_roots": [],
   "durable_paths": [],
   "created_utc": "2026-08-30T06:10:00Z",
-  "manifest_sha256": "09af86d4aa1f37ab2750ee61d1b481cc8b2cbdc08e1731ab019177a46249f9d1"
+  "manifest_sha256": "cf7dfb09cb32fb1ce76e88039e5338c1e5a380a4536bc0d98a7f790c1066522e"
 }

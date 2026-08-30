@@ -1175,32 +1175,32 @@
   },
   "P97-TD-GLOBALGAPORCLOSED": {
     "cluster": "Two-deletion",
-    "evidence_note": "docs/audits/2026-08-22-f3-twodeletion-third-pass-synthesis.md records the third-pass trace/graph/fan normal forms as prose-closed while this declaration remains one of the three live unresolved TwoDeletion leaves with five metric roots open.",
+    "evidence_note": "docs/plans/2026-08-29-b1-global-continuation.md records the source-clean third-deletion/five-six split. Distinct third deletions reduce to the two existing four-center leaves; the sole B1 residual is the full transport context with an exact five- or six-point physical class covered by the deleted pair and two live-row slices.",
     "factorization": {
-      "note": "W3-TD: the two-deletion cluster coordinator. The producer twoDeletionOutcome_of_ingress narrows a two-deletion ingress to the three open terminals with a kernel-clean case split; the eliminator false_of_twoDeletionOutcome is the only consumer of the three open leaves, and the legacy wrapper reaches both through the coordinator.",
+      "note": "The former B1 open leaf is now a compatibility wrapper. The B1 coordinator invokes the exact third-deletion/five-six producer and its eliminator; only the exact-five/six full-context consumer remains open.",
       "obligation_id": "P97-TD-GLOBALGAPORCLOSED",
       "pinned": {
-        "legacy_wrapper_statement_sha256": "32c15396d850f5f3fbd7539c7d0d43016034e4e17553f4ce92fc5ddbec19b60e",
-        "open_leaf_statement_sha256": "356d2a888861ce9c3a6eaa9c7cdcc036d5f20f21a0adefce39a8bc521e93a9a1"
+        "legacy_wrapper_statement_sha256": "356d2a888861ce9c3a6eaa9c7cdcc036d5f20f21a0adefce39a8bc521e93a9a1",
+        "open_leaf_statement_sha256": "6915248b7b84b9a2a0807b087c657188add3fa722029efe4f6e71e014d44168a"
       },
       "roles": {
-        "coordinator": "Problem97.ATailFrontierLiveClosure.false_of_twoDeletionIngress",
-        "eliminator": "Problem97.ATailFrontierLiveClosure.false_of_twoDeletionOutcome",
-        "legacy_wrapper": "Problem97.ATailFrontierLiveClosure.false_of_twoDistinctExactFourMutualOmissionJointDeletions",
-        "open_leaf": "Problem97.ATailFrontierLiveClosure.b1_globalGapOrClosedTerminal_of_counterexample",
-        "producer": "Problem97.ATailFrontierLiveClosure.twoDeletionOutcome_of_ingress"
+        "coordinator": "Problem97.ATailFrontierLiveClosure.false_of_b1GlobalTransportContext",
+        "eliminator": "Problem97.ATailFrontierLiveClosure.false_of_b1ThirdJointDeletionOrPhysicalClassFiveSixNormalForm",
+        "legacy_wrapper": "Problem97.ATailFrontierLiveClosure.b1_globalGapOrClosedTerminal_of_counterexample",
+        "open_leaf": "Problem97.ATailFrontierLiveClosure.false_of_b1PhysicalClassFiveSixNormalForm",
+        "producer": "Problem97.ATailFrontierLiveClosure.b1_thirdJointDeletion_or_physicalClassFiveSixNormalForm"
       },
       "schema": "p97-factorization/v2"
     },
     "implementation_effect": "bypass",
-    "latest_checkpoint": "docs/audits/2026-08-22-f3-twodeletion-third-pass-synthesis.md",
+    "latest_checkpoint": "docs/plans/2026-08-29-b1-global-continuation.md",
     "legacy_labels": [
       "F3",
       "B1"
     ],
     "mathematical_packet": null,
     "prose_status": "NORMAL_FORM_CLOSED_TERMINAL_OPEN",
-    "terminal_family": "B1 global-gap-or-closed positive terminal producer"
+    "terminal_family": "B1 exact-five/six physical-class live-row consumer"
   },
   "P97-TD-SURVIVALSQUARE": {
     "cluster": "Two-deletion",

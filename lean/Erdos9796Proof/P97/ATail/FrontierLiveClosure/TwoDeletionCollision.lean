@@ -134,23 +134,6 @@ theorem exists_exactFourMutualOmissionSourceContext_of_fivePointInteriorSource
     ⟨other, u, v, jointDeletion, huNeV, huClass, hvClass,
       hvOmitted, huOmitted, context⟩
 
-/-- **Load-bearing B1 producer.**  The local blocker-collision normal form is
-already source-clean.  `b1ContinuationCase_of_counterexample` now also
-produces the strict-cap escape, an omitted original deletion, its source-exact
-common-deletion packet, and the exhaustive nine-way continuation.
-
-The remaining global step must consume those continuation cases.  Until that
-consumer is proved, this positive terminal remains the single live B1 leaf
-used immediately below. -/
-theorem b1_globalGapOrClosedTerminal_of_counterexample
-    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
-    {H : CriticalShellSystem D.A}
-    {F : CriticalPairFrontier D S radius H}
-    (C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
-      (H := H) (F := F)) :
-    B1GlobalGapOrClosedTerminal C := by
-  sorry
-
 /-- Two distinct deleted sources cannot lie in one another's actual rows when
 their actual blockers are distinct from each other and from the physical apex. -/
 theorem false_of_exactFour_twoDeletion_blockerTwoCycle
@@ -740,6 +723,246 @@ theorem false_of_exactFourMutualOmission_fourCenterCommonDeletion_survivalSquare
             first.deleted.1 first.deleted.2))) :
     False := by
   sorry
+
+/-- Consume one directed cross-omission between two joint deletions with
+distinct actual blockers.  The omitted deletion builds the common-deletion
+packet used by the two existing four-center terminal leaves. -/
+private theorem false_of_b1_oneWayCrossOmission
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F))
+    (first second : ExactFourMutualOmissionJointDeletion
+      C.R C.rho C.u C.v)
+    (hdeletedNe : first.deleted ≠ second.deleted)
+    (hdeletedBlockersNe :
+      (lateFirstApexSystem C.R).centerAt
+          first.deleted.1 first.deleted.2 ≠
+        (lateFirstApexSystem C.R).centerAt
+          second.deleted.1 second.deleted.2)
+    (hfirstNotMemSecondRow :
+      first.deleted.1 ∉
+        ((lateFirstApexSystem C.R).selectedAt
+          second.deleted.1 second.deleted.2).toCriticalFourShell.support) :
+    False := by
+  have hsecondBlockerA :
+      (lateFirstApexSystem C.R).centerAt
+          second.deleted.1 second.deleted.2 ∈ D.A := by
+    exact
+      (Finset.mem_erase.mp
+        ((lateFirstApexSystem C.R).selectedAt
+          second.deleted.1 second.deleted.2).toCriticalFourShell.center_mem).2
+  have hcrossSurvives :
+      HasNEquidistantPointsAt 4 (D.A.erase first.deleted.1)
+        ((lateFirstApexSystem C.R).centerAt
+          second.deleted.1 second.deleted.2) :=
+    (cross_deletion_survives_iff_not_mem_selected_support
+      (lateFirstApexSystem C.R) second.deleted.2).mpr
+        hfirstNotMemSecondRow
+  rcases
+      nonempty_commonDeletionTwoCenterPacket
+        (lateFirstApexSystem C.R)
+        first.uPacket.q_mem_A
+        hsecondBlockerA
+        first.uPacket.center₂_mem_A
+        second.uPacket.actual_blocker_ne_center₂
+        hcrossSurvives
+        first.uPacket.survives₂ with
+    ⟨crossPacket⟩
+  have hsplit :=
+    exactFour_fourSurvivingCenters_survivalSquare_split
+      C.hrho first second
+      second.uPacket.actual_blocker_ne_center₁
+      second.vPacket.actual_blocker_ne_center₁
+      second.uPacket.actual_blocker_ne_center₂
+      crossPacket
+  rcases hsplit with hqu | hqv | hqr | ha | hu | hv | hr
+  · exact
+      false_of_exactFourMutualOmission_fourCenterCommonDeletion_blockerCoincidence
+        C.R C.hcard C.surface C.rho C.hrho C.hfive C.u C.v C.huNeV
+        C.huClass C.hvClass C.hvOmitted C.huOmitted first second
+        hdeletedNe hdeletedBlockersNe
+        first.uPacket.actual_blocker_ne_center₁
+        first.vPacket.actual_blocker_ne_center₁
+        first.uPacket.actual_blocker_ne_center₂
+        second.uPacket.actual_blocker_ne_center₁
+        second.vPacket.actual_blocker_ne_center₁
+        second.uPacket.actual_blocker_ne_center₂
+        crossPacket (Or.inl hqu)
+  · exact
+      false_of_exactFourMutualOmission_fourCenterCommonDeletion_blockerCoincidence
+        C.R C.hcard C.surface C.rho C.hrho C.hfive C.u C.v C.huNeV
+        C.huClass C.hvClass C.hvOmitted C.huOmitted first second
+        hdeletedNe hdeletedBlockersNe
+        first.uPacket.actual_blocker_ne_center₁
+        first.vPacket.actual_blocker_ne_center₁
+        first.uPacket.actual_blocker_ne_center₂
+        second.uPacket.actual_blocker_ne_center₁
+        second.vPacket.actual_blocker_ne_center₁
+        second.uPacket.actual_blocker_ne_center₂
+        crossPacket (Or.inr (Or.inl hqv))
+  · exact
+      false_of_exactFourMutualOmission_fourCenterCommonDeletion_blockerCoincidence
+        C.R C.hcard C.surface C.rho C.hrho C.hfive C.u C.v C.huNeV
+        C.huClass C.hvClass C.hvOmitted C.huOmitted first second
+        hdeletedNe hdeletedBlockersNe
+        first.uPacket.actual_blocker_ne_center₁
+        first.vPacket.actual_blocker_ne_center₁
+        first.uPacket.actual_blocker_ne_center₂
+        second.uPacket.actual_blocker_ne_center₁
+        second.vPacket.actual_blocker_ne_center₁
+        second.uPacket.actual_blocker_ne_center₂
+        crossPacket (Or.inr (Or.inr hqr))
+  · exact
+      false_of_exactFourMutualOmission_fourCenterCommonDeletion_survivalSquare
+        C.R C.hcard C.surface C.rho C.hrho C.hfive C.u C.v C.huNeV
+        C.huClass C.hvClass C.hvOmitted C.huOmitted first second
+        hdeletedNe hdeletedBlockersNe
+        first.uPacket.actual_blocker_ne_center₁
+        first.vPacket.actual_blocker_ne_center₁
+        first.uPacket.actual_blocker_ne_center₂
+        second.uPacket.actual_blocker_ne_center₁
+        second.vPacket.actual_blocker_ne_center₁
+        second.uPacket.actual_blocker_ne_center₂
+        crossPacket (Or.inl ha)
+  · exact
+      false_of_exactFourMutualOmission_fourCenterCommonDeletion_survivalSquare
+        C.R C.hcard C.surface C.rho C.hrho C.hfive C.u C.v C.huNeV
+        C.huClass C.hvClass C.hvOmitted C.huOmitted first second
+        hdeletedNe hdeletedBlockersNe
+        first.uPacket.actual_blocker_ne_center₁
+        first.vPacket.actual_blocker_ne_center₁
+        first.uPacket.actual_blocker_ne_center₂
+        second.uPacket.actual_blocker_ne_center₁
+        second.vPacket.actual_blocker_ne_center₁
+        second.uPacket.actual_blocker_ne_center₂
+        crossPacket (Or.inr (Or.inl hu))
+  · exact
+      false_of_exactFourMutualOmission_fourCenterCommonDeletion_survivalSquare
+        C.R C.hcard C.surface C.rho C.hrho C.hfive C.u C.v C.huNeV
+        C.huClass C.hvClass C.hvOmitted C.huOmitted first second
+        hdeletedNe hdeletedBlockersNe
+        first.uPacket.actual_blocker_ne_center₁
+        first.vPacket.actual_blocker_ne_center₁
+        first.uPacket.actual_blocker_ne_center₂
+        second.uPacket.actual_blocker_ne_center₁
+        second.vPacket.actual_blocker_ne_center₁
+        second.uPacket.actual_blocker_ne_center₂
+        crossPacket (Or.inr (Or.inr (Or.inl hv)))
+  · exact
+      false_of_exactFourMutualOmission_fourCenterCommonDeletion_survivalSquare
+        C.R C.hcard C.surface C.rho C.hrho C.hfive C.u C.v C.huNeV
+        C.huClass C.hvClass C.hvOmitted C.huOmitted first second
+        hdeletedNe hdeletedBlockersNe
+        first.uPacket.actual_blocker_ne_center₁
+        first.vPacket.actual_blocker_ne_center₁
+        first.uPacket.actual_blocker_ne_center₂
+        second.uPacket.actual_blocker_ne_center₁
+        second.vPacket.actual_blocker_ne_center₁
+        second.uPacket.actual_blocker_ne_center₂
+        crossPacket (Or.inr (Or.inr (Or.inr hr)))
+
+/-- Any two joint deletions with distinct deleted sources and distinct actual
+blockers reduce to the two existing four-center terminal leaves. -/
+theorem false_of_b1_distinctBlocker_jointDeletions
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F))
+    (first second : ExactFourMutualOmissionJointDeletion
+      C.R C.rho C.u C.v)
+    (hdeletedNe : first.deleted ≠ second.deleted)
+    (hdeletedBlockersNe :
+      (lateFirstApexSystem C.R).centerAt
+          first.deleted.1 first.deleted.2 ≠
+        (lateFirstApexSystem C.R).centerAt
+          second.deleted.1 second.deleted.2) :
+    False := by
+  rcases
+      exactFour_twoDeletion_crossOmission first second hdeletedNe
+        hdeletedBlockersNe
+        first.uPacket.actual_blocker_ne_center₂
+        second.uPacket.actual_blocker_ne_center₂ with
+    hfirstNotMem | hsecondNotMem
+  · exact false_of_b1_oneWayCrossOmission C first second
+      hdeletedNe hdeletedBlockersNe hfirstNotMem
+  · exact false_of_b1_oneWayCrossOmission C second first
+      hdeletedNe.symm hdeletedBlockersNe.symm hsecondNotMem
+
+/-- **Remaining B1 consumer.**  The source-clean producer has removed every
+case with a third joint deletion.  What remains is the full B1 context together
+with an exact five- or six-point physical class exhausted by the two known
+deletions and the two live-row slices.
+
+The cardinality and cover alone are not contradictory: the unresolved input is
+the global incidence or boundary-order consequence forced by the surrounding
+counterexample context. -/
+theorem false_of_b1PhysicalClassFiveSixNormalForm
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F))
+    (_hnormal : B1PhysicalClassFiveSixNormalForm C) :
+    False := by
+  sorry
+
+/-- Consume the exact producer split.  A third joint deletion has an actual
+blocker distinct from the common blocker and therefore reduces to the checked
+distinct-blocker split and the two existing four-center terminal leaves. -/
+theorem false_of_b1ThirdJointDeletionOrPhysicalClassFiveSixNormalForm
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F))
+    (houtcome :
+      (∃ third : ExactFourMutualOmissionJointDeletion
+            C.R C.rho C.u C.v,
+          third.deleted ≠ C.first.deleted ∧
+          third.deleted ≠ C.second.deleted ∧
+          (lateFirstApexSystem C.R).centerAt
+              third.deleted.1 third.deleted.2 ≠
+            b1CommonBlocker C) ∨
+        B1PhysicalClassFiveSixNormalForm C) :
+    False := by
+  rcases houtcome with
+    ⟨third, hthirdFirst, _hthirdSecond, hthirdBlockerNe⟩ | hnormal
+  · have hfirstThirdBlockersNe :
+        (lateFirstApexSystem C.R).centerAt
+            C.first.deleted.1 C.first.deleted.2 ≠
+          (lateFirstApexSystem C.R).centerAt
+            third.deleted.1 third.deleted.2 := by
+      intro hblockers
+      apply hthirdBlockerNe
+      simpa [b1CommonBlocker] using hblockers.symm
+    exact false_of_b1_distinctBlocker_jointDeletions
+      C C.first third hthirdFirst.symm hfirstThirdBlockersNe
+  · exact false_of_b1PhysicalClassFiveSixNormalForm C hnormal
+
+/-- The B1 coordinator composes the exhaustive producer with its consumer. -/
+theorem false_of_b1GlobalTransportContext
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F)) :
+    False :=
+  false_of_b1ThirdJointDeletionOrPhysicalClassFiveSixNormalForm C
+    (b1_thirdJointDeletion_or_physicalClassFiveSixNormalForm C)
+
+/-- **Source-closed B1 adapter.**  The former open declaration now delegates
+to the strictly narrower exact-five/six coordinator. -/
+theorem b1_globalGapOrClosedTerminal_of_counterexample
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F)) :
+    B1GlobalGapOrClosedTerminal C :=
+  (false_of_b1GlobalTransportContext C).elim
 
 end ATailFrontierLiveClosure
 end Problem97
