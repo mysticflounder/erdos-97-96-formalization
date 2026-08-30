@@ -1,0 +1,51 @@
+{
+  "schema": "rigid221-s0-role-cell-enumeration/v2",
+  "lane_id": "rigid221-s0-coupled-two-row-l1-20260829",
+  "run_id": "l1-v1",
+  "base_head": "55687ab3e1d47a0f8a5a3646031faf912e28ac80",
+  "roles": {
+    "modeled_carrier": ["O", "u", "xu", "delta", "v", "xv", "cu", "au", "bu", "cv", "av", "bv"],
+    "physical_class": ["u", "xu", "delta", "v", "xv"],
+    "u_row": ["u", "xu", "au", "bu"],
+    "v_row": ["v", "xv", "av", "bv"],
+    "fixed_identifications": {
+      "source": "u",
+      "physical_center": "O",
+      "u_row_center": "cu",
+      "v_row_center": "cv",
+      "joint_deletion": "delta"
+    }
+  },
+  "positive_control_assumptions": [
+    "the modeled carrier contains exactly the twelve listed roles",
+    "all listed roles are pairwise distinct",
+    "off-row support overlap and center-role equality cells are excluded",
+    "the cyclic order and nine-point seed are fixed",
+    "only cv,av,bv vary over the recorded bounded rational grid"
+  ],
+  "cells": [
+    {
+      "cell_id": "PC-12-DISTINCT-SEED-EXTENSION",
+      "layer": "positive-control",
+      "status": "SAT_12_ROLE_POSITIVE_CONTROL_EXACT",
+      "cap_cell": "OMITTED",
+      "survival_cell": "OMITTED",
+      "active_modeled_constraints": ["RC-01", "RC-02", "RC-03", "RC-04", "RC-05", "RC-06", "RC-07", "RC-08", "RC-09"],
+      "added_restrictions": ["PC-01", "PC-02", "PC-03", "PC-04"],
+      "omitted_constraints": ["OM-01", "OM-02", "OM-03", "OM-04", "OM-05", "OM-06", "OM-07"],
+      "result_path": "artifacts/accepted-primary/positive_control_result.json"
+    },
+    {
+      "cell_id": "L1-S0-I",
+      "layer": "L1",
+      "status": "ENCODING_BLOCKED",
+      "blocker": "actual CapTriple/capInteriorByIndex, ambient carrier, and legal incidence-cell encoding absent"
+    },
+    {
+      "cell_id": "L1-S0-N",
+      "layer": "L1",
+      "status": "ENCODING_BLOCKED",
+      "blocker": "actual CapTriple/capInteriorByIndex, ambient carrier, and legal incidence-cell encoding absent"
+    }
+  ]
+}

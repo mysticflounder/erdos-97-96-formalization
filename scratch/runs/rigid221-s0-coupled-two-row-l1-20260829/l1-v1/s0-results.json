@@ -1,0 +1,100 @@
+{
+  "schema": "rigid221-s0-computation-results/v2",
+  "lane_id": "rigid221-s0-coupled-two-row-l1-20260829",
+  "run_id": "l1-v1",
+  "base_head": "55687ab3e1d47a0f8a5a3646031faf912e28ac80",
+  "executed_git_head": "55687ab3e1d47a0f8a5a3646031faf912e28ac80",
+  "status": "POSITIVE_CONTROL_COMPLETE",
+  "l1_status": "ENCODING_BLOCKED",
+  "s0_status": "ENCODING_BLOCKED",
+  "epistemic_status": "EMPIRICALLY_VERIFIED",
+  "claim_scope": "FIXED_DISTINCT_12_ROLE_POSITIVE_CONTROL_ONLY",
+  "full_L1_claim": false,
+  "s0_claim": false,
+  "promotion_claim": false,
+  "results": [
+    {
+      "cell_id": "PC-12-DISTINCT-SEED-EXTENSION",
+      "verdict": "SAT_12_ROLE_POSITIVE_CONTROL_EXACT",
+      "search": {
+        "method": "exhaustive bounded rational perpendicular-bisector/rotation grid",
+        "attempted": 4059,
+        "exact_survivors": 1904,
+        "selected_parameters": {
+          "cv_x": "79/100",
+          "av_rotation": "-1/4",
+          "bv_rotation": "-14/5"
+        }
+      },
+      "verification": {
+        "arithmetic": "fractions.Fraction; exact, no tolerance",
+        "edge_nonincident_checks": 120,
+        "edge_nonincident_global_minimum": "2/5525",
+        "physical_radius_squared": "1",
+        "Ku_radius_squared": "17/25",
+        "Kv_radius_squared": "53649709/67240000",
+        "post_u_deletion_max_positive_multiplicity_at_cu": 3,
+        "post_v_deletion_max_positive_multiplicity_at_cv": 3,
+        "serialized_replay": true,
+        "independent_fraction_replay": true,
+        "cvc5_coordinate_matches": 24
+      },
+      "solver_checks": [
+        {
+          "engine": "z3",
+          "version": "python package pinned by project environment",
+          "logic": "QF_NRA",
+          "verdict": "sat",
+          "timeout_ms": 30000,
+          "exact_rational_model_readback": true
+        },
+        {
+          "engine": "cvc5",
+          "version": "1.3.3",
+          "logic": "QF_NRA",
+          "options": ["--nl-cov", "--tlimit=30000"],
+          "verdict": "sat",
+          "exact_coordinate_model_match": true
+        }
+      ],
+      "deterministic_repeat": {
+        "result_digest_match": true,
+        "smt2_digest_match": true
+      },
+      "timing_seconds": {
+        "primary_real": 1.958,
+        "primary_user": 1.937,
+        "primary_sys": 0.017,
+        "cvc5_real": 0.074
+      },
+      "artifacts": {
+        "primary_result": {
+          "path": "artifacts/accepted-primary/positive_control_result.json",
+          "sha256": "8f007b55fb95aa636fbf62e17e40dee7a6b8771e94bba8af5a62076ca55cf854"
+        },
+        "primary_smt2": {
+          "path": "artifacts/accepted-primary/positive_control_query.smt2",
+          "sha256": "b4a282978c443091cdf22d7476a497a26f2a7faa347094c8aa0de653d388c9e9"
+        },
+        "cvc5_output": {
+          "path": "artifacts/accepted-secondary/cvc5-output.txt",
+          "sha256": "22382bfc5cef4c06046a060e3d96a61320ec310d3bbe3603996bb536330030aa"
+        }
+      }
+    }
+  ],
+  "assumptions": [
+    "the modeled carrier is exactly the twelve named roles",
+    "all twelve modeled roles are pairwise distinct",
+    "off-row supports are therefore disjoint and center-role identification cells are excluded",
+    "one cyclic order and a bounded rational parameter grid are fixed"
+  ],
+  "omitted": [
+    "lift to the possibly larger source carrier",
+    "source-permitted support overlap and role-identification cells",
+    "CapTriple and cap-complete L1 geometry",
+    "S0-I and S0-N",
+    "q/w/source-context/common-deletion/robust-surface data",
+    "Lean proof or promotion bridge"
+  ]
+}
