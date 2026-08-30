@@ -105,8 +105,9 @@ __pycache__/
 
 # unique-row-producer generated certificate/verification payloads (tens of
 # MB each, hundreds of MB total). Replayable from the committed generator
-# scripts; digests live in that dir's REPORT.md. Scripts, REPORT.md, and
-# small .md/.py summaries stay tracked.
+# scripts; digests live in that dir's REPORT.md. Already tracked scripts,
+# REPORT.md, and small .md/.py summaries stay tracked; new durable files use
+# the exact-path promotion policy at the end of this file.
 /scratch/atail-force/unique-row-producer/*_certificate.json
 /scratch/atail-force/unique-row-producer/*_certificate.lean
 /scratch/atail-force/unique-row-producer/*_verification.json
@@ -243,8 +244,8 @@ scratch/atail-force/exact7-role-coverage-gate/probe_l2u_stageb_results.json
 /scratch/singular-liftstd-x9-20260729/run.stderr.txt
 
 # Root-level agent/search transcripts and bounded context snapshots are
-# regenerable diagnostics. Keep curated reports and plans visible; existing
-# tracked files remain tracked even when a pattern below matches them.
+# regenerable diagnostics. Existing tracked reports and plans remain tracked;
+# new durable files use the exact-path promotion policy at the end of this file.
 /scratch/agentic-*.txt
 /scratch/agentic_*.txt
 /scratch/agentic-*.err
@@ -529,10 +530,10 @@ docs/live-blueprint.md.tmp
 /scratch/p97-freshthird-qfiber-three-carrier-v1/wave-row-deletion-0001/mine.stdout.json
 /scratch/p97-freshthird-qfiber-three-carrier-v1/wave-row-overlap-0001/cell-*.json
 
-# Generic scratch runtime state. Cache/work trees are disposable by contract;
-# source, manifests, reports, certificates, and other durable files elsewhere
-# in scratch remain visible. Do not generalize this to runs/, out/, artifacts/,
-# or logs/: this repository retains durable evidence under those names.
+# Generic scratch runtime state. Cache/work trees are disposable by contract.
+# Existing tracked source, manifests, reports, certificates, and other durable
+# files remain tracked; new durable files use the exact-path promotion policy
+# at the end of this file.
 /scratch/**/cache/
 /scratch/**/.work/
 
@@ -584,3 +585,8 @@ docs/live-blueprint.md.tmp
 /scratch/runs/exact12-rigid221-all-order-common-five/*/artifacts/workdir/source_order_bank.json
 /scratch/runs/exact12-rigid221-all-order-common-five/*/artifacts/workdir/physical_class_cut_bank.json
 /scratch/runs/exact12-rigid221-all-order-common-five/*/tmp/
+
+# Default root scratch policy. Existing tracked files remain tracked. New files
+# are ignored until a lane declares an exact owned or durable path and force-adds
+# that file (`git add -f -- scratch/...`); never force-add a directory.
+/scratch/**

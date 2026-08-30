@@ -106,13 +106,16 @@ use a separately reviewed exact-path commit after ownership is resolved.  Do
 not use `git add .`, `git add -A`, directory pathspecs, or bulk formatting in a
 shared worktree.
 
-Runtime payloads are not made durable merely by living under `scratch/`.
-Promote only authenticated manifests, receipts, reports, certificates, and
-source needed for replay; put reproducible logs, caches, solver streams, and
-temporary work below the declared generated root.  Cleanup is move-only
-quarantine after a fresh reference/writer scan.  Never bulk-delete or
-blanket-ignore JSON, Python, Lean, Markdown, manifests, receipts, or
-certificates to make `git status` quiet.
+Root `scratch/**` is ignored by default; existing tracked files remain tracked.
+The ignore rule is only a Git visibility policy and does not make a payload
+durable or disposable.  To publish a new scratch file, declare its exact path
+as owned source or durable evidence, authenticate it, and stage only that file
+with `git add -f -- scratch/...`; never force-add a directory or generated
+root.  Promote only manifests, receipts, reports, certificates, and source
+needed for replay; put reproducible logs, caches, solver streams, and temporary
+work below the declared generated root.  Cleanup is move-only quarantine after
+a fresh reference/writer scan.  Never bulk-delete evidence merely to make
+`git status` quiet.
 
 ## Proof obligations and promotion
 

@@ -714,13 +714,20 @@ inventory drift, or a staged blob at or above the publication limit.  A passing
 lane check authorizes only that lane's exact-path commit; it never authorizes a
 directory-wide stage, cleanup, or deletion.
 
+The root `scratch/**` tree is ignored by default; existing tracked files remain
+tracked.  This is only a Git visibility policy, not a durability classification.
+A new scratch file may be published only after the checkpoint declares its
+exact path as owned source or durable evidence and the file is authenticated;
+stage that file with `git add -f -- scratch/...`, never a directory or generated
+root.
+
 The generated-root manifest distinguishes disposable runtime payloads from
-retained evidence.  Durable evidence is promoted explicitly and remains
-visible to Git; reproducible runtime state is kept under the generated root or
-a narrowly ignored cache/work subtree.  Cleanup remains a separately reviewed,
-move-only quarantine operation with fresh reference and writer scans.  This
-gate prevents script consolidation from merely replacing thousands of Python
-entrypoints with thousands of anonymous unowned artifacts.
+retained evidence.  Durable evidence becomes tracked through that exact-path
+promotion; reproducible runtime state stays below the generated root.  Cleanup
+remains a separately reviewed, move-only quarantine operation with fresh
+reference and writer scans.  This gate prevents script consolidation from
+merely replacing thousands of Python entrypoints with thousands of anonymous
+unowned artifacts.
 
 Exit gate: no active or externally invoked script is unclassified.
 
