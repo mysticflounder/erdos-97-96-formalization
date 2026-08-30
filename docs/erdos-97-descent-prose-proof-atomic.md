@@ -1,19 +1,19 @@
 ---
 title: "The Erdős 97 Descent Argument"
-subtitle: "Authoritative merged atomic prose proof, blocker reformulation, and exact open frontier"
+subtitle: "Authoritative merged atomic prose proof and 23 August frontier snapshot"
 author: "Working proof manuscript"
 date: "23 August 2026"
 ---
 
 **Repository:** `mysticflounder/erdos-97-96-formalization`
 **Git repository:** `https://github.com/mysticflounder/erdos-97-96-formalization`
-**Built-spine status measurement:** refreshed kernel mine of 23 August 2026
+**Built-spine status measurement:** historical kernel mine of 23 August 2026
 **Source-read anchor used for the late-first-apex API:** commit `bc4c04db398979c57edaf4af9c60e1eae984f436` (20 August 2026)
 **Authoritative consolidation:** 22 August 2026
 **Latest companion-agent merge:** A5 same-side metric-cell audit, F1 checkpoint-4/D1-v23/D8 reconciliation, F2 checkpoint 36, FreshThird preferred-choice patch kit, and the F3 third-pass trace-system correction, 22 August 2026
 **Latest theorem-discovery checkpoint:** universal physical-source (`∀v`) trace, blocker-fiber, deletion-fan, sparse-graph, and survival-amplification package extracted from the F3 trace-digraph pass, 22 August 2026
-**Current Lean-frontier annotation audit:** live source and all 117 archive files reconciled on 22 August 2026; the F1 reverse-hit refactor and D2 two-radius-grid closure were built and kernel-mined on 23 August 2026, reducing the global reachable frontier from 36 to 28 and TriApex from nine roots to D1 alone
-**Document status:** Authoritative merged research manuscript. It consolidates the latest A5 escape metric-cell audit, the source-audited TriApex specification, implemented reverse-hit-to-D1 bypass, and kernel-checked D2 closure, the intrinsic F2 all-blockers/late-choice reduction through checkpoint 36, the preferred-first-cap FreshThird compatibility proof, the corrected nonrecursive F3 physical-trace program, and the universal physical-source (`∀v`) theorem package. The elementary descent, packet extraction, and `IsM44` branch are reconstructed in full. A5 same-side Cell 7 and the rebased raw-main FreshThird route are locally prose-closed as stated below; the TriApex D1 consumer, four intrinsic F2 terminals and F8 adapter, five F3 metric roots, and the general non-`IsM44` theorem remain open.
+**23 August Lean-frontier annotation audit:** live source and all 117 archive files reconciled on 22 August 2026; the F1 reverse-hit refactor and D2 two-radius-grid closure were built and kernel-mined on 23 August 2026, reducing that snapshot's global reachable frontier from 36 to 28 and TriApex from nine roots to D1 alone
+**Document status:** Authoritative merged research manuscript for the 23 August 2026 synthesis, not the live obligation roster. It consolidates the A5 escape metric-cell audit, source-audited TriApex specification, implemented reverse-hit-to-D1 bypass, kernel-checked D2 closure, intrinsic F2 reduction through checkpoint 36, corrected F3 physical-trace program, and universal physical-source (`∀v`) theorem package. It does not prove Erdős Problem 97. The 30 August registry records 25 reachable and 6 off-spine declarations; use `proof-blueprint spine` and `proof-status/` for current status.
 
 > **Merge authority and verification boundary.** This file supersedes the prior authoritative merge and incorporates the A5 escape-refactor audit, the F1 checkpoint-4 continuation and D1-v23 ingress, F2 checkpoint 36, the FreshThird preferred-choice v2 patch kit, the third-pass correction to the F3 program, and the universal physical-source checkpoint. The A5 finite audit was replayed by exact scripts; the FreshThird patch passed static source and `git apply --check` audits; and the F1/F2/F3 source declarations were read in the live checkout. The 23 August F1 refactor and D2 closure additionally passed focused `lake-build` checks, refreshed kernel reference mining, and direct axiom audits. The reverse-hit selector and D2 declaration are kernel-clean, but the publication target still reaches `sorryAx` through D1 and the other clusters. Prose-complete reductions, static patches, source-clean helpers, frontier reductions, and kernel-verified closure are therefore kept separate throughout.
 >
@@ -4622,22 +4622,40 @@ Afterward, `#print axioms Problem97.erdos97_rhs` must contain no `sorryAx`.
 
 ### 16.5 The open theorem decomposed into its reachable leaves
 
-The single prose statement `GlobalNonM44Contradiction` is not a single unstructured gap in the current Lean development. In the 23 August 2026 kernel-mined dependency spine it reaches twenty-eight declarations containing `sorry`. This subsection retains the detailed historical contracts while marking declarations removed from the active frontier by later refactors. The purpose is to prevent a source-clean coordinator, an exhaustive case split, or a stronger-looking packet type from being mistaken for a proof of its unresolved terminal.
+In the 23 August 2026 kernel-mined snapshot, the single prose statement
+`GlobalNonM44Contradiction` is not a single unstructured gap: it reaches
+twenty-eight declarations containing `sorry`. This subsection retains the
+detailed historical contracts while marking declarations removed from the
+active frontier by later refactors. The purpose is to prevent a source-clean
+coordinator, an exhaustive case split, or a stronger-looking packet type from
+being mistaken for a proof of its unresolved terminal.
 
 #### 16.5.0 Roster authority, snapshot discipline, and counting rule
 
-The current roster follows the refreshed `proof-blueprint spine` measurement: twenty-eight reachable leaves below `Problem97.erdos97_rhs`. This is the reachability authority for this manuscript. A raw grep for `sorry` is not equivalent to a dependency-spine measurement: raw source may contain newly added placeholders not yet present in a build, old declarations that have become unreachable, and explicitly parked off-spine declarations.
+The roster in this section follows the 23 August `proof-blueprint spine`
+measurement: twenty-eight reachable leaves below `Problem97.erdos97_rhs`.
+It is the authority for this dated manuscript snapshot, not for the live
+checkout. The 30 August registry instead has 25 reachable declarations and 6
+off-spine declarations: 15 Rigid221, 1 TriApex, 6 TwoSource, and 3
+two-deletion declarations on the P97 spine. A raw grep for `sorry` and a
+dependency-spine measurement answer different questions: raw source may
+contain newly added placeholders not yet present in a build, old declarations
+that have become unreachable, and explicitly parked off-spine declarations.
 
-The seven former TriApex D3--D9 terminals are also excluded from the current count: their declarations remain source-clean compatibility wrappers, but the active reverse-hit coordinator now routes directly through D1. Historical sections below remain useful descriptions of their stronger endpoint geometry, not current independent obligations.
+The seven former TriApex D3--D9 terminals are also excluded from the 23 August
+count: their declarations remain source-clean compatibility wrappers, but the
+active reverse-hit coordinator routes directly through D1. Historical sections
+below remain useful descriptions of their stronger endpoint geometry, not
+current independent obligations.
 
 For each numbered leaf, five distinctions are maintained. The *contract* is what the theorem actually assumes and concludes. The *available data* are facts already produced by callers. The *missing implication* is the smallest presently unproved mathematical step. The *candidate closure program* is a research route, not a claim of proof. The *rejection tests* identify shortcuts that would be unsound or contradicted by known realizable local models.
 
-**Status.** [OPEN-ROSTER; 28 BUILT-SPINE LEAVES; TRIAPEX ROOT D1]
+**Status.** [DATED 23-AUGUST SNAPSHOT; 28 BUILT-SPINE LEAVES; TRIAPEX ROOT D1]
 
 **Merged frontier progress.** The robust-apex tetrahedron-or-continuation theorem in §16.5.38 remains a valid generic reduction for A7 and A8. A5 retains the exact late-first-apex `5+4+3` partition, boundary-separation certificates, and the exact ten-cell same-side classifier; Cell 7 is midpoint-impossible, while nine full-A5 same-side cells and the opposite-side family remain. TriApex now has one independent root: the kernel-clean reverse-hit selector routes D3--D9 through open D1, while D2 is kernel-clean. F2 is reorganized intrinsically: the old six-leaf tree is bypassed in prose by a four-packet reduction with two open roots, checkpoint 36 adds a cross-radius cycle producer, and F8 remains separate. F3 preserves its local joint-locus calculus but replaces the unsupported recursive state framework by the third-pass physical-trace, sparse-graph, amplified-fan, bounded, grid, and diagonal program with five open metric roots.
 
 
-#### 16.5.A `Rigid221SourceHeavy.lean` - eight reachable leaves
+#### 16.5.A `Rigid221SourceHeavy.lean` - eight reachable leaves (23 August snapshot)
 
 These leaves refine the source-heavy side of an exact `2+2+1` decomposition of a five-point physical radius class. They retain unusually rich provenance: named row companions, exact physical-class traces, cap-interior placement, actual blocker identities, and prescribed deletions. The main opportunity is to replace repeated local case trees by one or two order-sensitive lemmas on points lying on a common physical circle.
 

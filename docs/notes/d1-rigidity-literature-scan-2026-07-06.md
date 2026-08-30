@@ -519,9 +519,9 @@ technique if D3 reaches lemma-formulation stage; its class does not contain the 
 
 Adam flagged after the scan: the bisector-energy area has an **in-house,
 kernel-checked** result the scan's NO-LEAD verdict did not account for — the
-**Near Enemy Theorem for Bisector Energy**
-(`../lean-formalizations/lean/LeanFormalizations/Geometry/Euclidean/NearEnemyTheorem.lean`;
-headline lemmas comparator-audited per that repo's `docs/AUDIT_MATRIX.md`).
+**Near Enemy Theorem for Bisector Energy**, in the external
+`lean-formalizations` checkout; its headline lemmas were comparator-audited in
+that repository. Neither source file is part of this checkout.
 Label: **PROVEN-in-Lean** (stronger than PROVEN-in-literature).
 
 What it establishes (verified in source, 2026-07-06): with

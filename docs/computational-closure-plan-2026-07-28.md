@@ -1,7 +1,20 @@
-# Computational closure plan — remaining frontier (updated 2026-08-14)
+# Computational closure plan — remaining frontier (updated 2026-08-30)
 
 Evidence-status terms in this plan follow the
 [closure evidence status ledger](closure-evidence-status-ledger-2026-08-05.md).
+
+> **Current authority snapshot (2026-08-30).** The obligation registry at
+> source head `eb6a12039aba1e3c4cc48baa9f1299337fc6a2ac` records 25
+> publish-reachable declarations and 6 off-spine declarations: 15 Rigid221,
+> 1 TriApex, 6 TwoSource, and 3 two-deletion declarations on the P97 spine.
+> The cached reference mine at build `e373ee042532` has one stale reference,
+> so these are registry-backed cached-build counts, not a claim about newer
+> unbuilt source. Use `proof-blueprint spine` and the
+> [obligation registry](../proof-status/README.md) for live status. The current
+> B1 residual is documented in the
+> [2026-08-29 continuation plan](plans/2026-08-29-b1-global-continuation.md).
+> Fixed counts and “current” labels inside dated sections below describe their
+> own checkpoints unless this summary explicitly adopts them.
 
 Operating premise (audited 2026-08-04): computation is the certified
 theorem-mining and finite-coverage substrate, not a self-contained replacement
@@ -6939,10 +6952,11 @@ the Class-A cascade and terminal trust boundary remain unchanged.
 
 ## 13. 2026-08-04 universal-ingress and producer gate
 
-The current production target is the 30 load-bearing spine `sorry` theorems
-reported by the live blueprint, plus the induced `sorryAx`; older coordinator
-counts such as 18 and the superseded 28-leaf snapshot are historical
-bookkeeping and must not be used as the kernel closure count.
+At the 2026-08-04 checkpoint, the production target was the 30 load-bearing
+spine `sorry` theorems then reported by the live blueprint, plus the induced
+`sorryAx`. That count, the older coordinator count of 18, and the 28-leaf
+snapshot are historical bookkeeping; use the current authority snapshot above
+for the present registry count.
 
 Every future computational campaign must declare its Lean ingress contract
 before the solver run.  The contract must identify (a) the live universal
@@ -11002,10 +11016,10 @@ not call the generic core that previously created a dependency cycle.
 
 The resulting classification is source closure, not unconditional closure.
 The crossed-seventh U3 child and its anchored `sorry` are gone, while the
-already-existing normalized FreshThird leaves remain load-bearing.  A locked
-Lean 4.27 target build of `TwoSourceFirstFiberCollision` succeeds.  A fresh
-`proof-blueprint sync` at build hash `7dea73d9a2c3` reports matching source and
-kernel call graphs, 35 on-spine open symbols, and 41 effective declarations
+already-existing normalized FreshThird leaves remain load-bearing. A locked
+Lean 4.27 target build of `TwoSourceFirstFiberCollision` succeeded at that
+checkpoint. A `proof-blueprint sync` at build hash `7dea73d9a2c3` reported
+matching source and kernel call graphs, 35 on-spine open symbols, and 41 effective declarations
 with `sorry`, down from 42 before this change.  The U3 mixed-row and cycle
 packets remain valid theorem-bank results, but are no longer a prerequisite for
 this live branch.

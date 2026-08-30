@@ -1,5 +1,10 @@
 # B-Family Architectural Closure Plan & Technical Specification
 
+> **Status (2026-08-30): partially superseded.** The B2/B3 analysis remains
+> useful background. The B1 producer and fixed frontier-count expectations are
+> historical; current B1 work is governed by the
+> [equal-blocker continuation plan](2026-08-29-b1-global-continuation.md).
+
 **Sector**: Two-Deletion Collision / B-Family  
 **Coordinator Theorem**: [`Problem97.ATailFrontierLiveClosure.false_of_twoDistinctExactFourMutualOmissionJointDeletions`](../../lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Legacy/TwoDeletionWrappers.lean#L74)
 **Target Files**:
@@ -9,24 +14,29 @@
 - [`docs/audits/2026-08-18-b-family-adversarial-audit.md`](../../docs/audits/2026-08-18-b-family-adversarial-audit.md)
 
 **Open Leaves on Spine**:
-1. **B1**: [`Problem97.ATailFrontierLiveClosure.b1_globalGapOrClosedTerminal_of_counterexample`](../../lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean#L142)
+1. **B1**: [`Problem97.ATailFrontierLiveClosure.false_of_b1PhysicalClassFiveSixNormalForm`](../../lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean#L902)
 2. **B2**: [`Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmission_fourCenterCommonDeletion_blockerCoincidence`](../../lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean#L630)
 3. **B3**: [`Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmission_fourCenterCommonDeletion_survivalSquare`](../../lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean#L704)
 
 ---
 
 > **Revision 4 authority (22 August 2026).** The v4 source audit is the
-> current B-family contract. The direct-False recommendation in the older
-> red-team summary below is retained as historical analysis, but is not a
-> proved reduction. B1, B2, and B3 remain open mathematical leaves.
+> historical foundation for the B2/B3 contract. The direct-False
+> recommendation in the older red-team summary below is retained as historical
+> analysis, but is not a proved reduction. B1, B2, and B3 remain open
+> mathematical leaves, with B1 now narrowed to the exact-five/six residual.
 
-## Revision 4 — current contracts and execution boundary
+## Revision 4 — historical contracts and execution boundary
 
 Revision 4 is an execution-complete, certificate-first plan for discovery,
 gap certification, refactoring, and integration; it is not a proof certificate
 and gives no top-level P97/P96 refutation.
 
 ### B1 contract
+
+The remainder of this subsection records the superseded Revision 4 B1
+contract. For the current source-clean split and exact remaining residual, use
+the 2026-08-29 continuation plan linked above.
 
 The producer must establish `B1GlobalGapOrClosedTerminal C`, or derive a direct
 contradiction from the same context `C`. The existing consumer only refutes a
@@ -381,4 +391,5 @@ After completing each step:
    ```bash
    proof-blueprint spine
    ```
-   Confirm open spine obligations reduce from 37 to 34 upon full closure.
+   Confirm that the three current two-deletion declarations are absent after
+   full closure; do not infer progress from a fixed global count.

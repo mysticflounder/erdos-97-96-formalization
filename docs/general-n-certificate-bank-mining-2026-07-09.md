@@ -611,8 +611,9 @@ does not classify or produce any live incidence packet.
 
 ### Apparent finite closure
 
-This archive is not an unconditional finite-N9 proof. Its current
-`lean/FiniteN9Closure.lean` source defines
+This sibling-project archive is not an unconditional finite-N9 proof. Its
+historical `FiniteN9Closure.lean` source, which is not present in this checkout,
+defines
 `finiteN9ClosureGeometricSources` by asking `exact?` to synthesize three
 source producers:
 
@@ -671,9 +672,9 @@ Lean kernel theorem. Porting it would still require a theorem-level encoding,
 a sound chart-exhaustiveness bridge, and a producer showing that a live
 general-`n` branch enters that fixed packet.
 
-Finally, the archive preserves an important negative audit result:
-`~/erdos-general-theorem/docs/97-audit-2026-04-27.md` (that worktree, not this
-repo) retracts the purported uniform cap-sum closure.
+Finally, the archive preserves an important negative audit result in the
+external `erdos-general-theorem` checkout's 2026-04-27 P97 audit (not in this
+repository), which retracts the purported uniform cap-sum closure.
 That artifact summed a positive feasible margin with already excluded
 negative margins and did not prove infeasibility. The later May prose
 surplus-removal assembly should therefore be read as a proposed route, not as

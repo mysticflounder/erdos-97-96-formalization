@@ -19,10 +19,10 @@ generated source files were changed as part of the audit.
 The proof-blueprint reports five live leaf declarations, but the source contains
 87 code-level `sorry` terms:
 
-- `U1LargeCapRouteBTail.lean`: 81 occurrences, of which 80 are code terms and one is a docstring mention. The main concentration is the live theorem at [line 3525](../../lean/Erdos9796Proof/P97/U1LargeCapRouteBTail.lean#L3525), with branch-local holes such as [line 3792](../../lean/Erdos9796Proof/P97/U1LargeCapRouteBTail.lean#L3792).
-- `RemovableVertexAxiom/Base.lean`: 2 code terms inside [the endpoint residual theorem](../../lean/Erdos9796Proof/P97/RemovableVertexAxiom/Base.lean#L10055).
-- `RemovableVertexAxiom/Continuation.lean`: 4 code terms inside [the erased-pin residual theorem](../../lean/Erdos9796Proof/P97/RemovableVertexAxiom/Continuation.lean#L107).
-- `RemovableVertexAxiom/PinnedSurplusProducer.lean`: 1 code term inside [the pinned-surplus producer](../../lean/Erdos9796Proof/P97/RemovableVertexAxiom/PinnedSurplusProducer.lean#L300).
+- `U1LargeCapRouteBTail.lean`: 81 occurrences, of which 80 are code terms and one is a docstring mention. The main concentration is the live theorem at [line 3525](../../../../lean/Erdos9796Proof/P97/U1LargeCapRouteBTail.lean#L3525), with branch-local holes such as [line 3792](../../../../lean/Erdos9796Proof/P97/U1LargeCapRouteBTail.lean#L3792).
+- `RemovableVertexAxiom/Base.lean`: 2 code terms inside [the endpoint residual theorem](../../../../lean/Erdos9796Proof/P97/RemovableVertexAxiom/Base.lean#L10055).
+- `RemovableVertexAxiom/Continuation.lean`: 4 code terms inside [the erased-pin residual theorem](../../../../lean/Erdos9796Proof/P97/RemovableVertexAxiom/Continuation.lean#L107).
+- `RemovableVertexAxiom/PinnedSurplusProducer.lean`: 1 code term inside [the pinned-surplus producer](../../../../lean/Erdos9796Proof/P97/RemovableVertexAxiom/PinnedSurplusProducer.lean#L300).
 
 The five-leaf metric remains useful for aggregate tractability, but branch-local
 holes are not independently auditable or directly mineable. The recommended
@@ -55,7 +55,7 @@ At audit time, the live blueprint anchor was still
 was `Problem97.isM44PinnedSurplusNonVExactShapeProducer`. The README and several
 working documents used the old name. The root module also claimed that the
 proof reached a single remaining `sorry` at
-[line 10](../../lean/Erdos9796Proof.lean#L10).
+[line 10](../../../../lean/Erdos9796Proof.lean#L10).
 
 The current pinned-surplus anchor should be the general-m residual above, not
 either of the two superseded producer names.
@@ -92,8 +92,8 @@ The full proof-blueprint spine reports 50 unimported Lean files containing 1,319
 symbols. These files compile only when targeted and are not covered by the
 default published-theorem build. Examples include:
 
-- [Census554/Bank/Pat05043.lean](../../lean/Erdos9796Proof/P97/Census554/Bank/Pat05043.lean), an untracked 7.1 MB generated file.
-- [MultiCenter/Certificate/ProfileClassIncidence.lean](../../lean/Erdos9796Proof/P97/MultiCenter/Certificate/ProfileClassIncidence.lean), approximately 1.6 MB and unimported from the root closure.
+- [Census554/Bank/Pat05043.lean](../../../../lean/Erdos9796Proof/P97/Census554/Bank/Pat05043.lean), an untracked 7.1 MB generated file.
+- [MultiCenter/Certificate/ProfileClassIncidence.lean](../../../../lean/Erdos9796Proof/P97/MultiCenter/Certificate/ProfileClassIncidence.lean), approximately 1.6 MB and unimported from the root closure.
 - `ErasedPinOrderedProducer.lean` and the remaining MultiCenter and Census554 branches.
 
 Each active branch should either receive an explicit build/CI target or be moved
@@ -102,8 +102,8 @@ accidentally.
 
 ### P2: Mining exclusions are broader than generated data
 
-The globs at [.blueprint.toml:35](../../.blueprint.toml#L35) and
-[.blueprint.toml:36](../../.blueprint.toml#L36) exclude entire
+The globs at [.blueprint.toml:35](../../../../.blueprint.toml#L35) and
+[.blueprint.toml:36](../../../../.blueprint.toml#L36) exclude entire
 `EndpointCertificate` and `SurplusCertificate` namespaces. That includes
 hand-written checker, geometry, and soundness modules as well as generated
 payload shards. The status report consequently places 7,683 symbols outside the
@@ -118,11 +118,11 @@ spine is the expected `sorryAx`.
 ### P2: Direct simplification and DRY opportunities
 
 - The U1 leaf manually repeats the same four-label support/permutation cases.
-  A generic finite-support permutation lemma around [U1LargeCapRouteBTail.lean:3715](../../lean/Erdos9796Proof/P97/U1LargeCapRouteBTail.lean#L3715) should replace the branch enumeration.
+  A generic finite-support permutation lemma around [U1LargeCapRouteBTail.lean:3715](../../../../lean/Erdos9796Proof/P97/U1LargeCapRouteBTail.lean#L3715) should replace the branch enumeration.
 - `interior1/2/3_card_ge_two` and `interior1/2/3_card_add_two` repeat the same
-  proof shape in [U1OppositeCapLowerBounds.lean:107](../../lean/Erdos9796Proof/P97/U1OppositeCapLowerBounds.lean#L107), [line 193](../../lean/Erdos9796Proof/P97/U1OppositeCapLowerBounds.lean#L193), and [line 279](../../lean/Erdos9796Proof/P97/U1OppositeCapLowerBounds.lean#L279). An indexed/cyclic helper would remove most of this duplication.
+  proof shape in [U1OppositeCapLowerBounds.lean:107](../../../../lean/Erdos9796Proof/P97/U1OppositeCapLowerBounds.lean#L107), [line 193](../../../../lean/Erdos9796Proof/P97/U1OppositeCapLowerBounds.lean#L193), and [line 279](../../../../lean/Erdos9796Proof/P97/U1OppositeCapLowerBounds.lean#L279). An indexed/cyclic helper would remove most of this duplication.
 - `SurplusCOMPGBankGeometry.lean` has right, left, and reflected theorem families
-  despite already defining relabelling maps at [line 50](../../lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean#L50) and [line 69](../../lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean#L69). A generic relabel-transport theorem should replace the repeated bodies.
+  despite already defining relabelling maps at [line 50](../../../../lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean#L50) and [line 69](../../../../lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean#L69). A generic relabel-transport theorem should replace the repeated bodies.
 - `ErasedPinFixedSeedDFS.lean` and `ErasedPinOrderedProducer.lean` contain
   generated left/right row schemas and one corollary per row. The generator
   should emit a parameterized row schema and shared corollaries instead of
@@ -130,7 +130,7 @@ spine is the expected `sorryAx`.
 
 ### P2: Dead compatibility wrappers
 
-The namespace beginning at [U1LargeCapRouteBTail.lean:6073](../../lean/Erdos9796Proof/P97/U1LargeCapRouteBTail.lean#L6073) repeats three giant theorem statements as `simpa` wrappers. No references to this namespace were found elsewhere in the Lean tree. Remove it or move it into an explicitly named compatibility module if external consumers still require it.
+The namespace beginning at [U1LargeCapRouteBTail.lean:6073](../../../../lean/Erdos9796Proof/P97/U1LargeCapRouteBTail.lean#L6073) repeats three giant theorem statements as `simpa` wrappers. No references to this namespace were found elsewhere in the Lean tree. Remove it or move it into an explicitly named compatibility module if external consumers still require it.
 
 ### P2: Warning noise and unbounded proof settings
 

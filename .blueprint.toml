@@ -10,11 +10,11 @@ lean_lib    = "lean"
 root_slug = "root"
 
 [publish]
-# P97 primary; P96 is the sibling publish target. Both currently inherit the
-# same open proof frontier. Counts are deliberately not hard-coded here:
-# query `proof-blueprint symbols --with-sorry` for the corpus census, and
-# refresh refs plus both publish-target spines for reachability before reporting
-# or publishing.
+# P97 is the only configured publish target. P96 is a separately checked
+# theorem root that currently inherits the same open proof frontier; it is not
+# included in Proof Blueprint publication commands unless this list changes.
+# Counts are deliberately not hard-coded here: query the live spine and refresh
+# references before reporting or publishing.
 target_symbol = ["Problem97.erdos97_rhs"]
 state = "wip"  # "wip" | "complete" — config compat; affects no verdict (sorry is always open work)
 

@@ -64,7 +64,7 @@ git rev-parse origin/main
 ```
 
 The relevant source declarations are in
-[`FrontierLiveClosure.lean`](../../lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean):
+[`FrontierLiveClosure.lean`](../../../../lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean):
 
 - the unique-radius arm has its direct `sorry` near line 41;
 - the exact-five source route near lines 121–148 is textually closed;
@@ -106,8 +106,8 @@ not a missing terminal theorem.
 
 The maintained strategy documents are:
 
-- [`closure plan`](../closure-plan-full-spec-2026-07-09.md);
-- [`closure matrix`](../closure-matrix-2026-07-09.md).
+- [`closure plan`](../../../closure-plan-full-spec-2026-07-09.md);
+- [`closure matrix`](../../../closure-matrix-2026-07-09.md).
 
 ## 3. Pushed p5 checkpoint
 

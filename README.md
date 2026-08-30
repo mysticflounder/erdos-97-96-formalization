@@ -167,8 +167,9 @@ convex `A`
 
 ## Proof status
 
-**Both published claims still reach `sorryAx`.** Measured directly against a
-built tree on 2026-08-24, at commit `4b1c21b8`:
+**Both theorem roots still reach `sorryAx`.** The following axiom output is the
+last committed direct measurement, from a built tree on 2026-08-24 at commit
+`4b1c21b8`; treat it as a historical trust snapshot, not a fresh build claim:
 
 ```
 'Problem97.erdos97_rhs' depends on axioms:
@@ -193,10 +194,17 @@ reachable leaf is proved, `sorryAx` drops out and both closures become the core
 axioms plus those two compiler axioms — the declared trust boundary of the
 certificate infrastructure.
 
-The live `proof-blueprint spine` roster and the committed
-`docs/live-blueprint.md` snapshot are checked against the generated authority by
-`gen_obligation_registry.py status --check`; the open-node numerator is not used
-as an obligation count.
+The live `proof-blueprint spine` roster is the current reachability surface.
+The committed `docs/live-blueprint.md` is generator-owned and may lag it. As of
+2026-08-30, `gen_obligation_registry.py status --check` fails because that file
+differs byte-for-byte from the live spine; do not hand-edit it. The open-node
+numerator is not used as an obligation count.
+
+The current registry records 25 publish-reachable and 6 off-spine declarations:
+15 Rigid221, 1 TriApex, 6 TwoSource, and 3 two-deletion declarations on the P97
+spine. The cached reference mine at build `e373ee042532` has one stale
+reference, so refresh before making a claim about newer source. The detailed
+2026-08-22 through 2026-08-24 narrative below is retained as checkpoint history.
 
 The 2026-08-22 prose-library synthesis did not rerun this build-derived
 measurement. The 2026-08-23 TriApex work did: first it proved a source-clean
@@ -242,8 +250,8 @@ The consolidation refactor
 recorded three packaging phases on 2026-08-23/24. On 2026-08-23, Phase 0
 (`ec4b95ab`) froze a
 build-derived baseline and generated
-[`proof-status/obligations.json`](proof-status/obligations.json): a registry of
-the 28 reachable and 6 off-spine `sorry`-carrying declarations with stable IDs,
+[`proof-status/obligations.json`](proof-status/obligations.json): a historical
+Phase 0 registry of 28 reachable and 6 off-spine `sorry`-carrying declarations with stable IDs,
 a reviewed overlay that classifies the 34 as 17 `OPEN_MATHEMATICAL`, 11
 `NORMAL_FORM_CLOSED_TERMINAL_OPEN`, and 6 `OFF_SPINE_DIAGNOSTIC`, and a frozen
 import graph of `FrontierLiveClosure/` with a lint that blocks new
@@ -253,10 +261,11 @@ retirements). Phase 1a (`b6010c38`) split `JointDeletionCore.lean` into a
 Phase 1b (`4b1c21b8`) moved the thirteen declarations `TwoDeletionCollision`
 took from `B1Live` into `SharedFrontierHelpers.lean`, retiring that
 cross-cluster edge (29 waived edges remain), and adopted the two context
-frames at 36 sites. Each phase gate re-checked that the roster is set-equal
+frames at 36 sites. Each phase gate re-checked that the roster was set-equal
 and the axiom closure byte-identical, and both standing gates —
-`gen_obligation_registry.py check` and `lint_cluster_imports.py` — pass
-against this checkout.
+`gen_obligation_registry.py check` and `lint_cluster_imports.py` — passed
+against that captured checkout. The current registry status limitation is
+reported above.
 
 Three status terms recur below and are worth pinning down, since they are what
 separates "proved" from "not proved" in this document. **Source-clean** means the
@@ -518,7 +527,8 @@ lake env lean ../scratch/checks/ax_check.lean
 
 ## Headline theorems
 
-Both publish targets are open, but a substantial body of results below them is
+Both theorem roots are open, but only `Problem97.erdos97_rhs` is configured as
+the Proof Blueprint publish target. A substantial body of results below them is
 not. Everything in this section is **unconditionally proved** — axiom closure
 exactly `{propext, Classical.choice, Quot.sound}`, no `sorryAx`, no custom
 axioms, no `native_decide` — except the two rows in *Erdős 97 ⟹ Erdős 96*, which
@@ -823,8 +833,12 @@ scripts/                      -- 499 entries; the ones a newcomer needs:
   surplus-compg-shadow.py          -- COMP-G shadow/bank generator
 
 docs/
-  audits/                     -- dated analysis snapshots (the live status record)
-  plans/  specs/              -- active closure plans and lane specifications
+  README.md                   -- documentation authority and navigation map
+  proof/                      -- short current pointer + immutable checkpoints
+  audits/                     -- dated analysis and evidence snapshots
+  plans/  specs/              -- active plans and lane specifications
+  runbooks/                   -- fail-closed operator procedures
+  notes/  assets/             -- research notes and reader-facing assets
   archive/                    -- superseded plans and ledgers
   references/                 -- mirrored papers
   solve-prompts/  census/  multi-center/
@@ -986,9 +1000,11 @@ Reusable geometric machinery imported throughout the above:
 
 ## Where the work happens
 
-Plans and status live in `docs/`. The authored source of truth is
+Start with the [documentation map](docs/README.md). The authored closure-program
+ledger is
 [`docs/computational-closure-plan-2026-07-28.md`](docs/computational-closure-plan-2026-07-28.md),
-which governs the live frontier and solver lanes. The older
+whose top-level snapshot routes readers to the current machine registry and
+active lane plans. The older
 [`closure plan`](docs/closure-plan-full-spec-2026-07-09.md) and
 [`closure matrix`](docs/closure-matrix-2026-07-09.md) are historical strategy
 and execution ledgers; they are retained for provenance and are not dispatch

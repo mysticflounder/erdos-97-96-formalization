@@ -3189,10 +3189,10 @@ three distinct physical class points:
 the packet's distinctness and class-membership facts, so the pentagon
 parent is unchanged.  The generic form is what closes a blocker sub-case
 whose two identifications share a point — e.g. `centerAt xv = v` together
-with `centerAt v = u` makes `{u, v, xv}` equilateral.  See
-`docs/rigid221-pentagon-arc-coordinate-plan-2026-08-05.md` §4.  Module
-build green; on-spine reaches-`sorry` 27 and module `sorry` count 3 both
-unchanged.
+with `centerAt v = u` makes `{u, v, xv}` equilateral. The cited pentagon-arc
+coordinate plan was not retained in this repository; this historical matrix
+preserves the checkpoint result itself. Module build green; on-spine
+reaches-`sorry` 27 and module `sorry` count 3 both unchanged at that checkpoint.
 
 ### POST-V49 global-producer route (2026-08-17)
 

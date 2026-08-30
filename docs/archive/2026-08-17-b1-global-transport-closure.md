@@ -2,32 +2,36 @@
 
 > [!CAUTION]
 > **STATUS: REFUTED / REJECTED (2026-08-17)**
-> This plan is mathematically defective as reviewed in [`docs/plans/2026-08-17-b1-global-transport-closure-review.md`](file:///Users/adam/projects/math-projects/erdos-97-96-formalization/docs/plans/2026-08-17-b1-global-transport-closure-review.md).
+> This plan is mathematically defective as reviewed in the
+> [dated B1 audit](../audits/2026-08-17-b1-global-transport-closure-review.md).
 > 
 > **Reasons for Refutation**:
 > 1. **Branches 1 & 2 are provably empty/false**: `b1_live_bisectorSet_eq_pair` (`B1Live.lean:161`) proves that the set of carriers on the perpendicular bisector $\operatorname{PB}(q_1, q_2)$ is strictly equal to $\{\text{blocker}, S.\text{oppApex2}\}$. No third carrier on the bisector exists, and the fiber cardinality is exactly 2.
-> 2. **Branch 3 is logically equivalent to the full theorem**: `b1_live_escape_small_overlap` constructs an escape point with overlap $\le 2$, so asserting Branch 3 (overlap $\ge 3$) implies `False`. Proving Branch 3 from B1 binders is logically equivalent to proving `False` directly from the B1 binders.
+> 2. **Branch 3 already carries the full contradiction**: `b1_live_escape_small_overlap` constructs an escape point with overlap $\le 2$, so asserting Branch 3 (overlap $\ge 3$) implies `False`. Conversely, `False.elim` produces Branch 3 from `False` under the same B1 binders. The proposed split therefore does not narrow the obligation.
 > 3. The proposed Phase 2 split moved the `sorry` into the unproved branch without resolving the core open problem.
 > 
 > Retained in `docs/archive/` for historical record.
 
 ---
 
-**Date**: 2026-08-17  
-**Target Declaration**: [`Problem97.ATailFrontierLiveClosure.b1_globalGapOrClosedTerminal_of_counterexample`](file:///Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean#L142)  
-**File**: [`lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean:142`](file:///Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean#L142)  
-**Publication Root**: [`Problem97.erdos97_rhs`](file:///Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/Erdos9796.lean)  
+**Date**: 2026-08-17
+
+**Target Declaration**: [`Problem97.ATailFrontierLiveClosure.b1_globalGapOrClosedTerminal_of_counterexample`](../../lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean#L142)
+
+**File**: [`lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean:142`](../../lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean#L142)
+
+**Publication Root**: [`Problem97.erdos97_rhs`](../../lean/Erdos9796.lean)
 
 ---
 
 ## 1. Executive Summary & Frontier Context
 
 The live proof spine rooted at `Problem97.erdos97_rhs` comprises **37 open on-spine obligations** across 5 primary structural clusters:
-1. **B1 / B-Family Collision**: [`TwoDeletionCollision.lean`](file:///Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean) (3 sorries)
-2. **Rigid 2+2+1 Placement & Source-Heavy**: [`Rigid221Placement.lean`](file:///Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221Placement.lean), [`Rigid221Closure.lean`](file:///Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221Closure.lean), [`Rigid221SourceHeavy.lean`](file:///Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221SourceHeavy.lean) (15 sorries)
-3. **Tri-Apex Retained Omission Core**: [`TriApexEndpointRetainedOmission.lean`](file:///Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TriApexEndpointRetainedOmission.lean) (9 sorries)
-4. **Two-Source Canonical Surface & Fresh-Third**: [`TwoSourceCanonicalSurface.lean`](file:///Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceCanonicalSurface.lean), [`TwoSourceFreshThirdResidual.lean`](file:///Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean) (6 sorries)
-5. **Post-Card-11 & Swapped Residuals**: [`Rigid221Closure.lean`](file:///Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221Closure.lean) (4 sorries)
+1. **B1 / B-Family Collision**: [`TwoDeletionCollision.lean`](../../lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean) (3 sorries)
+2. **Rigid 2+2+1 Placement & Source-Heavy**: [`Rigid221Placement.lean`](../../lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221Placement.lean), [`Rigid221Closure.lean`](../../lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221Closure.lean), [`Rigid221SourceHeavy.lean`](../../lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221SourceHeavy.lean) (15 sorries)
+3. **Tri-Apex Retained Omission Core**: [`TriApexEndpointRetainedOmission.lean`](../../lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TriApexEndpointRetainedOmission.lean) (9 sorries)
+4. **Two-Source Canonical Surface & Fresh-Third**: [`TwoSourceCanonicalSurface.lean`](../../lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceCanonicalSurface.lean), [`TwoSourceFreshThirdResidual.lean`](../../lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean) (6 sorries)
+5. **Post-Card-11 & Swapped Residuals**: [`Rigid221Closure.lean`](../../lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221Closure.lean) (4 sorries)
 
 ---
 
@@ -45,7 +49,7 @@ theorem b1_globalGapOrClosedTerminal_of_counterexample
 ```
 
 ### Definition of `B1GlobalGapOrClosedTerminal`
-From [`B1Live.lean:723`](file:///Users/adam/projects/math-projects/erdos-97-96-formalization/lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/B1Live.lean#L723):
+From [`B1Live.lean:723`](../../lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/B1Live.lean#L723):
 ```lean
 def B1GlobalGapOrClosedTerminal
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}

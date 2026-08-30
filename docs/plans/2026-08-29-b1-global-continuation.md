@@ -103,17 +103,19 @@ proof-blueprint axioms Problem97.erdos97_rhs
 uv run python scripts/check_worktree_hygiene.py report --lane b1-global-continuation-20260829
 ```
 
-All three targeted builds and the full 12,052-job repository build pass at
-proof-blueprint build `e373ee042532`.
-The producer reports only the three core axioms.  The old public target reports
-`sorryAx` only through the new exact-five/six leaf, which is the sole B1 open
-obligation shown by `proof-blueprint spine`.
+All three targeted builds and the full 12,052-job repository build passed at
+proof-blueprint build `e373ee042532`. The producer reported only the three core
+axioms. The old public target reached `sorryAx` only through the new
+exact-five/six leaf, which was the sole B1 open obligation shown by that spine.
+As of 2026-08-30 the cached reference mine has one stale reference; refresh it
+before treating this paragraph as evidence about newer source.
 
 The B1-only invocation of the registry's own `BlueprintBackend`, alias planner,
 and factorization checker accepts the stable-ID migration and verifies the five
 roles with zero violations.  The canonical all-project generator currently
-refuses transactionally because of 83 pre-existing Rigid221 factorization
-violations; it wrote none of its three generated files.  The independently
-verified B1 registry and ID-assignment delta is therefore applied narrowly,
-without modifying the unrelated Rigid221 entries.  Historical receipts remain
+refused transactionally at this checkpoint because of 83 then-pre-existing
+Rigid221 factorization violations; it wrote none of its three generated files.
+The independently verified B1 registry and ID-assignment delta was therefore
+applied narrowly. The 2026-08-30 registry re-anchor subsequently incorporated
+the validated B1 and Rigid221 factorization records. Historical receipts remain
 immutable.

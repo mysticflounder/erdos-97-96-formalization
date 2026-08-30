@@ -3,7 +3,7 @@
 > **Historical record — archived 2026-07-16.** One-time import changelog;
 > long superseded by the consolidated parent-route state in
 > [`closure-matrix-2026-07-09.md`](../../../closure-matrix-2026-07-09.md) and
-> [`atail-force-producer-plan-2026-07-13.md`](../../../atail-force-producer-plan-2026-07-13.md).
+> [`atail-force-producer-plan-2026-07-13.md`](../../../../attic/docs-sweep-2026-08-28/docs/atail-force-producer-plan-2026-07-13.md).
 > Retained for the import provenance.
 
 ## What landed
