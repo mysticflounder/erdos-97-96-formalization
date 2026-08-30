@@ -1,0 +1,22 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "rigid221-s0-cap-semantics-pc-20260829",
+  "owner": "codex-s0-cap-semantics",
+  "base_head": "55687ab3e1d47a0f8a5a3646031faf912e28ac80",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/rigid221-s0-cap-semantics-pc-20260829.json",
+    "docs/audits/2026-08-29-rigid221-s0-cap-semantics-computation.md",
+    "scripts/rigid221_s0_cap_semantics.py",
+    "scripts/test_rigid221_s0_cap_semantics.py"
+  ],
+  "generated_roots": [
+    "scratch/runs/rigid221-s0-cap-semantics-pc-20260829/cap-pc-v1"
+  ],
+  "durable_paths": [
+    "scratch/runs/rigid221-s0-cap-semantics-pc-20260829/cap-pc-v1/REPORT.md",
+    "scratch/runs/rigid221-s0-cap-semantics-pc-20260829/cap-pc-v1/cap-semantics-results.json",
+    "scratch/runs/rigid221-s0-cap-semantics-pc-20260829/cap-pc-v1/run_manifest.json"
+  ],
+  "created_utc": "2026-08-30T00:34:07Z",
+  "manifest_sha256": "02b8f5b3f0c52ea000d9d118743e09debd0ac8e1d354462b8c330b6a4e5edca8"
+}

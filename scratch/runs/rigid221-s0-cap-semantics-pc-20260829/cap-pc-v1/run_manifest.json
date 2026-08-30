@@ -1,0 +1,26 @@
+{
+  "schema": "worktree-run-manifest/v1",
+  "lane_id": "rigid221-s0-cap-semantics-pc-20260829",
+  "run_id": "cap-pc-v1",
+  "root": "scratch/runs/rigid221-s0-cap-semantics-pc-20260829/cap-pc-v1",
+  "owner": "codex-s0-cap-semantics",
+  "base_head": "55687ab3e1d47a0f8a5a3646031faf912e28ac80",
+  "output_classes": ["artifacts", "events", "tmp"],
+  "source_digests": {
+    "lean/Erdos9796Proof/P97/Foundation.lean": "a391c93c43d33614d2c04166d97d6a5d88b750a5691b6c682233c1d1c9de9bd3",
+    "lean/Erdos9796Proof/P97/Cap/Structure.lean": "c37032098ca734b3732823b68f086b864f33a605fab97f4d15fc1010f9faeb11",
+    "lean/Erdos9796Proof/P97/Cap/PartitionFromMEC.lean": "69aac1234035af3fa8af657a4988a612aec3ba9c13049ddb51dde5c8d2b5144f",
+    "lean/Erdos9796Proof/P97/Moser/Triangle.lean": "7c78d8a21f64e82cf408a3c1b2e026298d6173838f6b91484d8386f31cf2a392",
+    "lean/Erdos9796Proof/P97/Moser/TriangleNonObtuse.lean": "1c8cbee10abf2c5ab422910550a83d49c3628c88196f7f6fa5da4f9ed74ebeaa",
+    "lean/Erdos9796Proof/P97/ConvexCyclicOrder/Construct.lean": "5649503a123a53fb2919f7cbfaa071d91539bb1f638d75679ca80ab5afe7b648",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletion/Types.lean": "8cd091cf7b62c2236798390585e38184df8f366570b4c1d69892e01233b84587",
+    "scripts/rigid221_s0_cap_semantics.py": "be67ca9522341a1afe987fffc713add54972250307684ed05fd56f78905f4b7d",
+    "scripts/test_rigid221_s0_cap_semantics.py": "ab5b3b8bea2e6e030c61ed0f98fb0db4702dd5fb8b5c5c51255fcf354b70881f"
+  },
+  "input_digests": {
+    "docs/audits/2026-08-29-rigid221-s0-cap-semantics-computation.md": "9486b1206ae23b5a0547de8bd9fa535aacfdcf02095cadba690b2d07ef6d4e11",
+    "docs/specs/p97-rigid221-s0-coupled-two-row-computational-spec-v1.md": "999087c43a9da08ab633ddf92eab0ac4860606fb84361c4c3b9a79ca0211f6f0"
+  },
+  "created_utc": "2026-08-30T00:34:07Z",
+  "manifest_sha256": "b28efef59b5a8db968bf4ff85b6ea515f4a9d6c8d075bbacb2b1aff66b2525be"
+}

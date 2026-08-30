@@ -1,0 +1,79 @@
+{
+  "schema": "rigid221-cap-semantics-results/v2",
+  "lane_id": "rigid221-s0-cap-semantics-pc-20260829",
+  "run_id": "cap-pc-v1",
+  "base_head": "55687ab3e1d47a0f8a5a3646031faf912e28ac80",
+  "executed_git_head": "55687ab3e1d47a0f8a5a3646031faf912e28ac80",
+  "status": "POSITIVE_CONTROL_COMPLETE",
+  "verdict": "CAP_SEMANTICS_POSITIVE_CONTROL_EXACT",
+  "epistemic_status": "EMPIRICALLY_VERIFIED",
+  "claim_scope": "FINITE_CAP_PREDICATE_POSITIVE_CONTROL_ONLY",
+  "full_L1_claim": false,
+  "s0_claim": false,
+  "source_binding_claim": false,
+  "promotion_claim": false,
+  "fixture_metrics": {
+    "carrier_cardinality": 12,
+    "coordinate_quotient_cardinality": 12,
+    "cap_sizes": [7, 4, 4],
+    "cap_interiors": [
+      ["top", "upper_left_shallow", "upper_left_steep", "upper_right_shallow", "upper_right_steep"],
+      ["lower_left_shallow", "lower_left_steep"],
+      ["lower_right_shallow", "lower_right_steep"]
+    ],
+    "non_moser_membership_counts": {
+      "lower_left_shallow": 1,
+      "lower_left_steep": 1,
+      "lower_right_shallow": 1,
+      "lower_right_steep": 1,
+      "top": 1,
+      "upper_left_shallow": 1,
+      "upper_left_steep": 1,
+      "upper_right_shallow": 1,
+      "upper_right_steep": 1
+    },
+    "surplus_idx": 0,
+    "opp_index2": 2,
+    "opposite_apex": "v3",
+    "selected_J": ["lower_right_shallow", "lower_right_steep"],
+    "mec_center": ["0", "0"],
+    "mec_radius_squared": "1",
+    "all_carrier_radius_squared": "1",
+    "moser_dot_products": ["0", "2", "2"],
+    "edge_nonincident_checks": 120,
+    "minimum_edge_area2": "2/25"
+  },
+  "verification": {
+    "arithmetic": "fractions.Fraction; exact, no tolerance",
+    "serialized_replay": true,
+    "independent_fraction_replay": true,
+    "diagnostic_controls_passed": 11,
+    "diagnostic_controls_total": 11,
+    "focused_tests_passed": 29,
+    "ruff_lint": "passed",
+    "ruff_format": "passed",
+    "deterministic_repeat": true
+  },
+  "runtime": {
+    "real_seconds": 0.062,
+    "user_seconds": 0.043,
+    "sys_seconds": 0.014
+  },
+  "artifact": {
+    "path": "artifacts/accepted-primary/cap_semantics_result.json",
+    "sha256": "931ea6bf7f1f782038f89ac7b922d244a475f14214d12e22cf3b75106b6512e4",
+    "repeat_path": "artifacts/accepted-repeat/cap_semantics_result.json",
+    "repeat_sha256": "931ea6bf7f1f782038f89ac7b922d244a475f14214d12e22cf3b75106b6512e4"
+  },
+  "script": {
+    "path": "scripts/rigid221_s0_cap_semantics.py",
+    "sha256": "be67ca9522341a1afe987fffc713add54972250307684ed05fd56f78905f4b7d"
+  },
+  "boundary": [
+    "the MEC check validates the supplied finite certificate, not identity with source mec(A,hA)",
+    "the fixture is not the coupled-row carrier",
+    "legal row-support overlap and center-identification cells are not instantiated",
+    "no L1 or S0 satisfiability conclusion is drawn",
+    "no Lean theorem bridge or kernel proof is present"
+  ]
+}
