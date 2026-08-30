@@ -5,6 +5,7 @@ Authors: Adam McKenna
 -/
 
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.ContextFrames
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure.EqualBlockerContinuation
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.JointDeletionCore
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.SharedFrontierHelpers
 
@@ -134,13 +135,13 @@ theorem exists_exactFourMutualOmissionSourceContext_of_fivePointInteriorSource
       hvOmitted, huOmitted, context⟩
 
 /-- **Load-bearing B1 producer.**  The local blocker-collision normal form is
-already source-clean; the remaining global step must force one of the checked
-third-bisector, fiber-cardinality, or escaped-overlap terminals packaged by
-`B1GlobalGapOrClosedTerminal`.
+already source-clean.  `b1ContinuationCase_of_counterexample` now also
+produces the strict-cap escape, an omitted original deletion, its source-exact
+common-deletion packet, and the exhaustive nine-way continuation.
 
-This theorem is the positive producer obligation consumed immediately below.
-It does not assert that the existing local B1 geometry already supplies the
-global gap. -/
+The remaining global step must consume those continuation cases.  Until that
+consumer is proved, this positive terminal remains the single live B1 leaf
+used immediately below. -/
 theorem b1_globalGapOrClosedTerminal_of_counterexample
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
