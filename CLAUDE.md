@@ -106,16 +106,24 @@ use a separately reviewed exact-path commit after ownership is resolved.  Do
 not use `git add .`, `git add -A`, directory pathspecs, or bulk formatting in a
 shared worktree.
 
-Root `scratch/**` is ignored by default; existing tracked files remain tracked.
-The ignore rule is only a Git visibility policy and does not make a payload
-durable or disposable.  To publish a new scratch file, declare its exact path
-as owned source or durable evidence, authenticate it, and stage only that file
-with `git add -f -- scratch/...`; never force-add a directory or generated
-root.  Promote only manifests, receipts, reports, certificates, and source
-needed for replay; put reproducible logs, caches, solver streams, and temporary
-work below the declared generated root.  Cleanup is move-only quarantine after
-a fresh reference/writer scan.  Never bulk-delete evidence merely to make
-`git status` quiet.
+Repository-root `scratch/**` is ignored by default.  Explicit `.gitignore` `!`
+pairs re-include each direct scratch subdirectory that already contains tracked
+files; new files there are visible unless a later, narrower rule ignores them.
+Root-level files and new direct subdirectories remain ignored, and existing
+tracked files remain tracked.  When a new direct scratch directory first gains
+a committed file, add its exception pair in that commit.  Because
+`scratch/runs/` is established, new run subtrees there are visible unless a
+later rule ignores them; run-manifest and hygiene requirements still apply.
+
+Ignore state is only a Git visibility policy and does not make a payload durable
+or disposable.  To publish a new scratch file, declare its exact path as owned
+source or durable evidence and authenticate it.  Stage a visible file normally;
+for an ignored file, use `git add -f -- scratch/...` on that exact file.  Never
+force-add a directory or generated root.  Promote only manifests, receipts,
+reports, certificates, and source needed for replay; put reproducible logs,
+caches, solver streams, and temporary work below the declared generated root.
+Cleanup is move-only quarantine after a fresh reference/writer scan.  Never
+bulk-delete evidence merely to make `git status` quiet.
 
 ## Proof obligations and promotion
 
