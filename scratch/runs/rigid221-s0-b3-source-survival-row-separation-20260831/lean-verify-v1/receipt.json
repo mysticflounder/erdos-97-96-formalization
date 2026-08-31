@@ -1,0 +1,18 @@
+{
+  "schema": "rigid221-b3-source-survival-row-separation-receipt/v1",
+  "lane_id": "rigid221-s0-b3-source-survival-row-separation-20260831",
+  "run_id": "lean-verify-v1",
+  "base_head": "9b19f3abf14f3dcd8076a24103588f2de5c494e2",
+  "executed_head": "9b19f3abf14f3dcd8076a24103588f2de5c494e2",
+  "run_manifest_sha256": "35a2fa4118cd3ea50eb86f089705eb6854b096f189a4f969dfb38c9447c5dcc7",
+  "check_source_sha256": "f50f13ed4ededba4df64e7d14b0622d89305fe0289b125c152315cf22af0fa18",
+  "scratch_elaboration": {
+    "command": "lake env lean ../scratch/runs/rigid221-s0-b3-source-survival-row-separation-20260831/lean-verify-v1/SourceSurvivalRowSeparation.lean",
+    "working_directory": "lean",
+    "exit_code": 0,
+    "wall_time_seconds": 4.66,
+    "result": "ELABORATED"
+  },
+  "claim_boundary": "The scratch example proves that the v-indexed row has a center distinct from v, that hblocker separates the source and v-indexed row centers, and that source survival yields one residual omission only from the source row. It does not close B3 or supply an omission from the v-indexed row.",
+  "created_utc": "2026-08-31T13:53:00Z"
+}

@@ -1,0 +1,20 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "rigid221-s0-b3-source-survival-row-separation-20260831",
+  "owner": "codex-rigid221-s0-b3-source-survival-row-separation",
+  "base_head": "9b19f3abf14f3dcd8076a24103588f2de5c494e2",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/rigid221-s0-b3-source-survival-row-separation-20260831.json",
+    "docs/audits/2026-08-31-rigid221-s0-b3-source-survival-row-separation.md"
+  ],
+  "generated_roots": [
+    "scratch/runs/rigid221-s0-b3-source-survival-row-separation-20260831/lean-verify-v1"
+  ],
+  "durable_paths": [
+    "scratch/runs/rigid221-s0-b3-source-survival-row-separation-20260831/lean-verify-v1/SourceSurvivalRowSeparation.lean",
+    "scratch/runs/rigid221-s0-b3-source-survival-row-separation-20260831/lean-verify-v1/receipt.json",
+    "scratch/runs/rigid221-s0-b3-source-survival-row-separation-20260831/lean-verify-v1/run_manifest.json"
+  ],
+  "created_utc": "2026-08-31T14:10:00Z",
+  "manifest_sha256": "09d0fb3306323006cd2826ddd88c5592944a5dc6172c38048105f492a7181905"
+}

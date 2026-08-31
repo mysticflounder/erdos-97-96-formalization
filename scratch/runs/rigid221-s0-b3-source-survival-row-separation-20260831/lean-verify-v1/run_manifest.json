@@ -1,0 +1,25 @@
+{
+  "schema": "worktree-run-manifest/v1",
+  "lane_id": "rigid221-s0-b3-source-survival-row-separation-20260831",
+  "run_id": "lean-verify-v1",
+  "root": "scratch/runs/rigid221-s0-b3-source-survival-row-separation-20260831/lean-verify-v1",
+  "owner": "codex-rigid221-s0-b3-source-survival-row-separation",
+  "base_head": "9b19f3abf14f3dcd8076a24103588f2de5c494e2",
+  "output_classes": [
+    "artifacts",
+    "events",
+    "tmp"
+  ],
+  "source_digests": {
+    "scratch/runs/rigid221-s0-b3-source-survival-row-separation-20260831/lean-verify-v1/SourceSurvivalRowSeparation.lean": "f50f13ed4ededba4df64e7d14b0622d89305fe0289b125c152315cf22af0fa18",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221Placement.lean": "2f8c444d6269de79c7a672700a9f80e6744fdaddb48263d61239cdbf99cd8210",
+    "lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean": "2b2b381d0833292df28a1fd9d0316999a221623a23ed0cdb5f97c7f98547b959",
+    "lean/Erdos9796Proof/P97/ATail/SurvivalCover.lean": "015941fc0b69014bd90a101d3f0b68e5fec4ec8e8b9c0e62b1e0b83c0f05851a",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletion/Types.lean": "8cd091cf7b62c2236798390585e38184df8f366570b4c1d69892e01233b84587"
+  },
+  "input_digests": {
+    "docs/audits/2026-08-31-rigid221-s0-b3-ingress-compatibility.md": "8defc6aedc0672e39104b56f2bcb6ec9aafed399f1f086e7a6c47037f2dbf384"
+  },
+  "created_utc": "2026-08-31T14:12:00Z",
+  "manifest_sha256": "35a2fa4118cd3ea50eb86f089705eb6854b096f189a4f969dfb38c9447c5dcc7"
+}
