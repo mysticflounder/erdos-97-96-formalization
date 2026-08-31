@@ -74,7 +74,7 @@ used by the publisher and validator, the preceding-wave CNF input, and the
 retained export evidence. The manifests describe existing artifacts; no
 publisher or solver was rerun.
 
-## Remaining blocker
+## Remaining blocker and replay scope
 
 The refrozen V8 root is still the canonical next-run target, so removing its
 declaration would erase useful custody intent. Its runner creates the campaign
@@ -82,9 +82,23 @@ and per-cell records together with the run manifest; creating only a manifest
 would falsely claim that those outputs exist.
 
 The missing 228 dependencies account for about 26.3 GB of source packet data.
-A source recovery followed by the full portfolio replay would require roughly
-52 GB across restored inputs and regenerated outputs. That recovery is a
-separate storage and execution decision, not a manifest-only repair.
+Restoring that packet and rebuilding the governed 76-cell portfolio would use
+roughly 52 GB across inputs and generated outputs. This is portfolio
+reconstruction, not a requirement to solve or replay all 76 cells.
+
+The immediate authorized execution is one fresh official center-2,
+physical-`none` V8 canary under the repaired and refrozen identities. If that
+canary returns a SAT assignment, independent exact replay must check the
+assignment against all 7,409,845 physical-cell clauses. A complete official
+wave-only theorem mine must then run on the accepted result. Only those gates
+may authorize V9 promotion or execution of the other 75 V8 cells.
+
+The earlier V8-labelled diagnostic canary already passed its clause replay,
+but its pre-repair miner did not bind the V8 runner's private base-module
+contract. It therefore remains theorem-discovery material rather than
+production evidence. Source recovery, portfolio reconstruction, the single
+official canary, its independent replay, and the wave-only mine are a separate
+storage and execution decision, not a manifest-only repair.
 
 ## Validation
 
