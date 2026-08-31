@@ -1,0 +1,23 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "rigid221-card18-predicate-v6-20260831",
+  "owner": "codex-rigid221-card18-predicate-v6",
+  "base_head": "ff935411514804caf003171164807f79d16a341e",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/rigid221-card18-predicate-v6-20260831.json",
+    "census/p97_search/rigid221_card18_predicate_coverage_v6.py",
+    "census/p97_search/tests/test_rigid221_card18_predicate_coverage_v6.py",
+    "certificates/rigid221_card18_predicate_coverage_v6.json",
+    "docs/specs/p97-rigid221-card18-predicate-coverage-v6.md",
+    "scripts/test-p97-rigid221-card18.sh"
+  ],
+  "generated_roots": [
+    "scratch/runs/rigid221-card18-predicate-v6-20260831/coverage-v6-build"
+  ],
+  "durable_paths": [
+    "scratch/runs/rigid221-card18-predicate-v6-20260831/coverage-v6-build/receipt.json",
+    "scratch/runs/rigid221-card18-predicate-v6-20260831/coverage-v6-build/run_manifest.json"
+  ],
+  "created_utc": "2026-08-31T15:24:54Z",
+  "manifest_sha256": "73b606c12d56a0df82d32d4f292a1a8a93ddaa5b609fdabe718d117937226bec"
+}

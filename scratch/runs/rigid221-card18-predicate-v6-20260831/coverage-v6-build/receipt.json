@@ -1,0 +1,45 @@
+{
+  "schema": "rigid221-card18-predicate-coverage-v6-receipt/v1",
+  "lane_id": "rigid221-card18-predicate-v6-20260831",
+  "run_id": "coverage-v6-build",
+  "base_head": "ff935411514804caf003171164807f79d16a341e",
+  "executed_head": "ff935411514804caf003171164807f79d16a341e",
+  "run_manifest_sha256": "1cfa80459744b58101b669579c65b54fba22c4687a427a716ed06989a8d67d1e",
+  "coverage_v6": {
+    "module": {
+      "path": "census/p97_search/rigid221_card18_predicate_coverage_v6.py",
+      "bytes": 25086,
+      "sha256": "c0eaf23a98de062aeb148d1737a745479edd9cff0e6cb3c967c3dc8c6a2eb240"
+    },
+    "certificate": {
+      "path": "certificates/rigid221_card18_predicate_coverage_v6.json",
+      "bytes": 149490,
+      "file_sha256": "1f5367af16a781b4edd0698ed5bdf90e61d462a2b47e13c15925f96c14cb6579",
+      "manifest_sha256": "95519eba17be4bcbe4205ed1a9d919e0c8d428f1cbace337aa905afa06227bb6",
+      "configuration_sha256": "36308a91099a1cdd7721fa6139ca3e580955646f35118e7115bfd49ceced5c41"
+    }
+  },
+  "focused_v6_pytest": {
+    "command": "PYTHONPATH=. uv run pytest -q -p no:cacheprovider census/p97_search/tests/test_rigid221_card18_predicate_coverage_v6.py",
+    "exit_code": 0,
+    "result": "10 passed",
+    "duration_seconds": 1493.46
+  },
+  "ruff": {
+    "command": "uv run --with ruff ruff check census/p97_search/rigid221_card18_predicate_coverage_v6.py census/p97_search/tests/test_rigid221_card18_predicate_coverage_v6.py",
+    "exit_code": 0,
+    "result": "All checks passed"
+  },
+  "governed_card18_runner": {
+    "command": "bash scripts/test-p97-rigid221-card18.sh",
+    "log": "scratch/runs/rigid221-card18-predicate-v6-20260831/coverage-v6-build/events/card18-runner.log",
+    "exit_code": 0,
+    "ruff_result": "All checks passed",
+    "historical_v2_result": "131 passed, 348 skipped in 287.20s",
+    "historical_v3_result": "131 passed in 753.02s",
+    "live_v4_v6_result": "133 passed in 1435.28s",
+    "aggregate_result": "Rigid221Card18Aggregate built successfully (10891 jobs)"
+  },
+  "claim_boundary": "This receipt authenticates custody bookkeeping and its checks. It does not establish a Lean proof, a solver result, or a closure of the B3 target.",
+  "created_utc": "2026-08-31T17:19:07Z"
+}

@@ -1,0 +1,31 @@
+{
+  "schema": "worktree-run-manifest/v1",
+  "lane_id": "rigid221-card18-predicate-v6-20260831",
+  "run_id": "coverage-v6-build",
+  "root": "scratch/runs/rigid221-card18-predicate-v6-20260831/coverage-v6-build",
+  "owner": "codex-rigid221-card18-predicate-v6",
+  "base_head": "ff935411514804caf003171164807f79d16a341e",
+  "output_classes": [
+    "artifacts",
+    "events",
+    "tmp"
+  ],
+  "source_digests": {
+    "census/p97_search/rigid221_card18_predicate_coverage_v6.py": "c0eaf23a98de062aeb148d1737a745479edd9cff0e6cb3c967c3dc8c6a2eb240",
+    "census/p97_search/tests/test_rigid221_card18_predicate_coverage_v6.py": "8da6f12e16486b525d31968a5de0f3d8d1f842faeaa25ecf996fa858dd603a24",
+    "scripts/test-p97-rigid221-card18.sh": "e4833bdc1f3d5fcbad4cdc284d94a246917d25adbf899118f730d2fc495ff4bb"
+  },
+  "input_digests": {
+    "certificates/rigid221_card18_predicate_coverage_v6.json": "1f5367af16a781b4edd0698ed5bdf90e61d462a2b47e13c15925f96c14cb6579",
+    "census/p97_search/rigid221_card18_predicate_coverage_v5.py": "e995294e6488218a45df6ff8e2f053a338c899d58ff108a957c57c1e9ebbbd7d",
+    "certificates/rigid221_card18_predicate_coverage_v5.json": "99e04c4d086058de9de9de1b1c29bc0bca5eac418081792467dfc959dc77fd31",
+    "census/p97_search/rigid221_card18_labeled_projection_custody_v4.py": "6df7fdac2ff0be6e7747f85c60509ee651f535a5357266bbd624818031a8c9b8",
+    "certificates/rigid221_card18_labeled_projection_source_custody_v4.json": "c29f76c8f38d170c8efe1b94a96fdd5ebc9872045cdaeef66c2fec3c9135b6a9",
+    "census/p97_search/rigid221_card18_crossed_incidence_custody_v4.py": "ba8293e381c892158b3139dd8827b4a19c36cb6d4c1ebd0af2773d2936f2718c",
+    "certificates/rigid221_card18_crossed_incidence_source_custody_v4.json": "5cb27295383c3f4f44ecce722dcf6a2d53407149168764d0edde32f2e1e60d34",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221Placement.lean": "49c8c3d6b8ed71c44b4f4287ce923fe63ac477432063db7875ca430753be1ea8",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221SourceHeavy.lean": "2f791217320ef4e3e522ab9f3cdcbb285035bd77a85d3d996a13ec2acb9c4698"
+  },
+  "created_utc": "2026-08-31T16:34:44Z",
+  "manifest_sha256": "1cfa80459744b58101b669579c65b54fba22c4687a427a716ed06989a8d67d1e"
+}
