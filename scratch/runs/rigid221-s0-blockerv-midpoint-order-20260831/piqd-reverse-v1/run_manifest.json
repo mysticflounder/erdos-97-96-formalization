@@ -1,0 +1,23 @@
+{
+  "schema": "worktree-run-manifest/v1",
+  "lane_id": "rigid221-s0-blockerv-midpoint-order-20260831",
+  "run_id": "piqd-reverse-v1",
+  "root": "scratch/runs/rigid221-s0-blockerv-midpoint-order-20260831/piqd-reverse-v1",
+  "owner": "codex-rigid221-s0-blockerv-midpoint-order",
+  "base_head": "89740da794f4eff13df74554d2baedbef6e71fca",
+  "output_classes": [
+    "artifacts",
+    "events",
+    "tmp"
+  ],
+  "source_digests": {
+    "scripts/rigid221_s0_blockerv_exactfive_probe.py": "7010c0841e34a7aa6282680b26b24830c626d04c8b1584bda80b89bc7f3b14d7",
+    "scripts/rigid221_s0_blockerv_midpoint_order_probe.py": "71242016499f7f4bfae138dcf01494b22ca7d7f6b8f55dba8b9c00a72893450e",
+    "scripts/rigid221_s0_common_core_piqd.py": "847f2ac1b3cea173c38615d9879090fed62a1bdc2a31d45fefacf9c18bef35e2"
+  },
+  "input_digests": {
+    "docs/specs/p97-rigid221-s0-blockerv-midpoint-order-probe-v1.md": "b17183419a9ffc1177574b5a26d4b7a91b1b8550704b18ed8c837ac84caab6a3"
+  },
+  "created_utc": "2026-08-31T10:04:43Z",
+  "manifest_sha256": "8e5f0a36a26527952d9c859fed8ba37842d0c7bde725ced71ecf0d4f0c0d4267"
+}

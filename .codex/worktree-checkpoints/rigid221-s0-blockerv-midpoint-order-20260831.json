@@ -1,0 +1,23 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "rigid221-s0-blockerv-midpoint-order-20260831",
+  "owner": "codex-rigid221-s0-blockerv-midpoint-order",
+  "base_head": "89740da794f4eff13df74554d2baedbef6e71fca",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/rigid221-s0-blockerv-midpoint-order-20260831.json",
+    "docs/audits/2026-08-31-rigid221-s0-blockerv-midpoint-order-probe.md",
+    "docs/specs/p97-rigid221-s0-blockerv-midpoint-order-probe-v1.md",
+    "scripts/rigid221_s0_blockerv_midpoint_order_probe.py",
+    "scripts/test_rigid221_s0_blockerv_midpoint_order_probe.py"
+  ],
+  "generated_roots": [
+    "scratch/runs/rigid221-s0-blockerv-midpoint-order-20260831/piqd-forward-v1",
+    "scratch/runs/rigid221-s0-blockerv-midpoint-order-20260831/piqd-reverse-v1"
+  ],
+  "durable_paths": [
+    "scratch/runs/rigid221-s0-blockerv-midpoint-order-20260831/piqd-forward-v1/run_manifest.json",
+    "scratch/runs/rigid221-s0-blockerv-midpoint-order-20260831/piqd-reverse-v1/run_manifest.json"
+  ],
+  "created_utc": "2026-08-31T10:00:35Z",
+  "manifest_sha256": "b3d377c189470993369f92986ec56e2270a7eb1cd06dd160b5e3d7ebd9fe9462"
+}
