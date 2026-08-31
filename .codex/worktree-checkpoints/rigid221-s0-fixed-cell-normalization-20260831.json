@@ -1,0 +1,16 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "rigid221-s0-fixed-cell-normalization-20260831",
+  "owner": "SimilarityCartographer",
+  "base_head": "299be31ce982c1c0b0dee15bb92f68c9e467e1b2",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/rigid221-s0-fixed-cell-normalization-20260831.json",
+    "docs/audits/2026-08-31-rigid221-s0-fixed-cell-normalization.md",
+    "intent/offspine.toml",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactTwelveRigid221FixedCellNormalization.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-08-31T03:03:40Z",
+  "manifest_sha256": "a415493da4b636665e86dba7efb4d946d10098c754ad5c44d6f8b9aa1867b83a"
+}

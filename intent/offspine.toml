@@ -11,3 +11,24 @@ category = "diagnostic"
 reason = "Bounded 12-clause fixed-coordinate adapter; source normalization and order coverage are intentionally still open"
 registered_at = "2026-08-31T00:07:48+00:00"
 updated_at = "2026-08-31T00:07:48+00:00"
+
+[[offspine]]
+symbol = "Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress.false_of_fixedCellNormalization"
+category = "infra"
+reason = "Bounded orientation-preserving similarity bridge for the experimental fixed-coordinate cells; live shape and order ingress remain open"
+registered_at = "2026-08-31T03:18:20+00:00"
+updated_at = "2026-08-31T03:18:20+00:00"
+
+[[offspine]]
+symbol = "Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress.false_of_m0DistinctS0I_fixedCell"
+category = "compat"
+reason = "Compatibility-only name for the experimental m0-distinct-s0-i cell after common-core canonicalization; no live coverage claim"
+registered_at = "2026-08-31T03:18:21+00:00"
+updated_at = "2026-08-31T03:18:21+00:00"
+
+[[offspine]]
+symbol = "Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress.false_of_m0DistinctS0N_fixedCell"
+category = "compat"
+reason = "Compatibility-only name for the experimental m0-distinct-s0-n cell after common-core canonicalization; no live coverage claim"
+registered_at = "2026-08-31T03:18:22+00:00"
+updated_at = "2026-08-31T03:18:22+00:00"
