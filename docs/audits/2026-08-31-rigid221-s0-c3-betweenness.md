@@ -34,6 +34,24 @@ the blocker identity, and `sourceRowInteriorCount = 2`.  It produces a point
 This is a source-entitled theorem.  It assumes no fixed coordinates, cyclic
 order cell, solver result, or neighboring-cap condition.
 
+The same module also proves
+
+```text
+Problem97.ATailFrontierLiveClosure.
+  exists_oppositeRow_partner_with_other_classification
+```
+
+from `P` alone.  It names the unique point other than `P.v.1` in the
+opposite-row support/physical-class intersection and proves the exhaustive
+classification
+
+```text
+P.other.1 = deleted ∨ P.other.1 = P.v.1 ∨ P.other.1 = oppositePartner.
+```
+
+In particular, equality `P.other.1 = P.v.1` is allowed by the current live
+interface; only equality with the source is excluded there.
+
 ## Proof decomposition
 
 Let `K` be the source critical four-shell, `C` the physical selected class, and
@@ -59,6 +77,13 @@ Let `K` be the source critical four-shell, `C` the physical selected class, and
 The bounded theorem-bank preflight found
 `CGN.index_strictly_between_of_equidistant` as the exact terminal producer; no
 existing declaration packages the live Rigid221 source-row extraction.
+
+For the opposite-row classification, `globalDeletion.rigid` gives a
+two-element opposite trace and the `2+2+1` physical-class cover.  The context's
+`other_not_mem_source_row`, transported through `P.huSource`, eliminates the
+source-row arm of that cover.  The two-point opposite trace leaves exactly the
+blocker point or its unique partner, in addition to the distinguished deleted
+point.
 
 ## Source and custody boundary
 
@@ -98,8 +123,10 @@ LAKE_BUILD_NO_REFRESH=1 lake-build \
 
 The build completed successfully with 10861 jobs and no warning in the new
 module.  The verifier independently checked the cardinality/uniqueness proof,
-cap inclusions, distance rewrite, index distinctness, and both orientations of
-the CGN betweenness theorem.
+cap inclusions, distance rewrite, index distinctness, both orientations of the
+CGN betweenness theorem, and the opposite-row cover classification.  It
+confirmed that the latter takes only `P` and intentionally permits
+`other = v`.
 
 Literal kernel inspection reports exactly
 
@@ -108,5 +135,6 @@ propext, Classical.choice, Quot.sound
 ```
 
 with no `sorryAx`, custom axiom, native/runtime reduction, external
-implementation, or solver evidence.  The module is not yet imported by a
-consumer, so the publication spine remains unchanged.
+implementation, or solver evidence for either public theorem.  Both are
+registered as deliberate off-spine compatibility results.  The module is not
+yet imported by a consumer, so the publication spine remains unchanged.

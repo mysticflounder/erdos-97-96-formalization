@@ -186,5 +186,100 @@ theorem exists_sourceRow_partner_with_blocker_index_strictly_between
         B.Packet B.Hside B.Hord hgt hblockerIndexNePartner
           hblockerIndexNeSource hindexEquidistant.symm
 
+/-- The rigid opposite row has a unique member other than `v` in the physical
+five-class.  The contextual point `other` is therefore the distinguished
+deleted point, `v`, or this opposite-row partner. -/
+theorem exists_oppositeRow_partner_with_other_classification
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F}
+    (P : ExactFourRigid221PhysicalApexSourceEqUContext R) :
+    ∃ partner : ℝ²,
+      partner ≠ P.v.1 ∧
+      partner ∈
+        ((lateFirstApexSystem R).selectedAt
+          P.v.1 P.v.2).toCriticalFourShell.support ∧
+      partner ∈ SelectedClass D.A S.oppApex2 P.rho ∧
+      (∀ z,
+        z ∈
+            ((lateFirstApexSystem R).selectedAt
+              P.v.1 P.v.2).toCriticalFourShell.support →
+          z ∈ SelectedClass D.A S.oppApex2 P.rho →
+          z ≠ P.v.1 → z = partner) ∧
+      (P.other.1 = P.jointDeletion.deleted.1 ∨
+        P.other.1 = P.v.1 ∨ P.other.1 = partner) := by
+  classical
+  let Ku :=
+    ((lateFirstApexSystem R).selectedAt
+      P.u.1 P.u.2).toCriticalFourShell
+  let Kv :=
+    ((lateFirstApexSystem R).selectedAt
+      P.v.1 P.v.2).toCriticalFourShell
+  let C := SelectedClass D.A S.oppApex2 P.rho
+  let Iu := Ku.support ∩ C
+  let Iv := Kv.support ∩ C
+  have hIvCard : Iv.card = 2 := by
+    rcases P.globalDeletion.rigid with
+      ⟨_hIuCard, hIvCard, _hdisjoint, _hcover⟩
+    simpa [Iv, Kv, C] using hIvCard
+  have hvIv : P.v.1 ∈ Iv := by
+    refine Finset.mem_inter.mpr ⟨?_, ?_⟩
+    · simpa [Kv] using Kv.q_mem_support
+    · simpa [C] using P.hvClass
+  obtain ⟨partner, hpartnerIv, hpartnerNeV⟩ :=
+    Finset.exists_mem_ne (by omega : 1 < Iv.card) P.v.1
+  have hpairEqIv : ({P.v.1, partner} : Finset ℝ²) = Iv := by
+    apply Finset.eq_of_subset_of_card_le
+    · intro z hz
+      simp only [Finset.mem_insert, Finset.mem_singleton] at hz
+      rcases hz with rfl | rfl
+      · exact hvIv
+      · exact hpartnerIv
+    · rw [Finset.card_pair hpartnerNeV.symm]
+      omega
+  have hpartnerData := Finset.mem_inter.mp hpartnerIv
+  have hpartnerUnique :
+      ∀ z, z ∈ Kv.support → z ∈ C → z ≠ P.v.1 → z = partner := by
+    intro z hzSupport hzClass hzNeV
+    have hzIv : z ∈ Iv := Finset.mem_inter.mpr ⟨hzSupport, hzClass⟩
+    rw [← hpairEqIv] at hzIv
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hzIv
+    rcases hzIv with hzV | hzPartner
+    · exact False.elim (hzNeV hzV)
+    · exact hzPartner
+  have hcover :
+      C = insert P.jointDeletion.deleted.1 (Iu ∪ Iv) := by
+    have hrigid := P.globalDeletion.rigid
+    simpa [C, Iu, Iv, Ku, Kv] using hrigid.2.2.2
+  have hotherC : P.other.1 ∈ C := by
+    simpa [C] using P.context.other_mem_class
+  rw [hcover] at hotherC
+  simp only [Finset.mem_insert, Finset.mem_union] at hotherC
+  have hclassification :
+      P.other.1 = P.jointDeletion.deleted.1 ∨
+        P.other.1 = P.v.1 ∨ P.other.1 = partner := by
+    rcases hotherC with hdeleted | hIu | hIv
+    · exact Or.inl hdeleted
+    · have hotherSourceRow :
+          P.other.1 ∈
+            ((lateFirstApexSystem R).selectedAt
+              P.source.1 P.source.2).toCriticalFourShell.support := by
+        have hotherIu := hIu
+        change P.other.1 ∈
+          (((lateFirstApexSystem R).selectedAt
+              P.u.1 P.u.2).toCriticalFourShell.support ∩
+            SelectedClass D.A S.oppApex2 P.rho) at hotherIu
+        rw [P.huSource] at hotherIu
+        exact (Finset.mem_inter.mp hotherIu).1
+      exact False.elim (P.context.other_not_mem_source_row hotherSourceRow)
+    · rcases Finset.mem_inter.mp hIv with ⟨hotherKv, hotherClass⟩
+      by_cases hotherV : P.other.1 = P.v.1
+      · exact Or.inr (Or.inl hotherV)
+      · exact Or.inr (Or.inr
+          (hpartnerUnique P.other.1 hotherKv hotherClass hotherV))
+  exact ⟨partner, hpartnerNeV, hpartnerData.1, hpartnerData.2,
+    hpartnerUnique, hclassification⟩
+
 end ATailFrontierLiveClosure
 end Problem97

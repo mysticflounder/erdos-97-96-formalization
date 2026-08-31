@@ -34,6 +34,13 @@ registered_at = "2026-08-31T03:18:22+00:00"
 updated_at = "2026-08-31T03:18:22+00:00"
 
 [[offspine]]
+symbol = "Problem97.ATailFrontierLiveClosure.exists_oppositeRow_partner_with_other_classification"
+category = "compat"
+reason = "Source-entitled rigid 2+2+1 classification of the contextual other point into deleted, blocker, or unique opposite-row partner."
+registered_at = "2026-08-31T05:29:03+00:00"
+updated_at = "2026-08-31T05:29:03+00:00"
+
+[[offspine]]
 symbol = "Problem97.ATailFrontierLiveClosure.exists_sourceRow_partner_with_blocker_index_strictly_between"
 category = "compat"
 reason = "Source-entitled C3 extraction: the blocker index lies between the unique same-row physical-radius partner pair."
