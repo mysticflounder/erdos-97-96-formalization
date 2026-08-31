@@ -1,0 +1,22 @@
+{
+  "schema": "worktree-run-manifest/v1",
+  "lane_id": "rigid221-s0-blockerv-midpoint-core-control-20260831",
+  "run_id": "piqd-forward-v1",
+  "root": "scratch/runs/rigid221-s0-blockerv-midpoint-core-control-20260831/piqd-forward-v1",
+  "owner": "codex-rigid221-s0-blockerv-midpoint-core-control",
+  "base_head": "4cb16f702fe28d050b1a1057e40c82da28df7b62",
+  "output_classes": [
+    "artifacts",
+    "events",
+    "tmp"
+  ],
+  "source_digests": {
+    "scripts/rigid221_s0_blockerv_midpoint_core_control.py": "105d5b73071b1d40a04cbf4b8b1badb3433d366292ac99d1bdae947894824216",
+    "scripts/rigid221_s0_common_core_piqd.py": "847f2ac1b3cea173c38615d9879090fed62a1bdc2a31d45fefacf9c18bef35e2"
+  },
+  "input_digests": {
+    "docs/specs/p97-rigid221-s0-blockerv-midpoint-core-control-v1.md": "c1c4710789762aba1b307e9acdd885b8859526471aee41515b9e4ff4739fbc8b"
+  },
+  "created_utc": "2026-08-31T10:24:21Z",
+  "manifest_sha256": "03932f45510d8d9086d5c57384efe99b9a12d488c95b097ba822c86884123f60"
+}

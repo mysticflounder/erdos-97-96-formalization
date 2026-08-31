@@ -1,0 +1,46 @@
+{
+  "assertions": 56,
+  "cell": "reverse",
+  "direct_z3": {
+    "reference_witness": {
+      "c3_members": [
+        "m1",
+        "m2",
+        "u",
+        "v",
+        "xu"
+      ],
+      "cell": "reverse",
+      "first_turn": "-1156/1625",
+      "midpoint_distance2": "289/1625",
+      "physical_radius2": "289/100",
+      "second_turn": "-1156/1625"
+    },
+    "status": "SAT"
+  },
+  "excluded_source_edges": [
+    "opposite-row",
+    "next-blocker",
+    "deletion-multiplicity"
+  ],
+  "formula_bytes": 18257,
+  "formula_sha256": "106c4c2e1387be69d2e4d24cc15c22c6f2e4c68ef7ed772b1f353b6e7e228acd",
+  "reference_witness": {
+    "c3_members": [
+      "m1",
+      "m2",
+      "u",
+      "v",
+      "xu"
+    ],
+    "cell": "reverse",
+    "first_turn": "-1156/1625",
+    "midpoint_distance2": "289/1625",
+    "physical_radius2": "289/100",
+    "second_turn": "-1156/1625"
+  },
+  "schema": "rigid221-s0-blockerv-midpoint-core-control/v1",
+  "scope": "reduced-source-faithful-midpoint-positive-control",
+  "session_formula_bytes": 18245,
+  "session_formula_sha256": "656764994ff5ff418173d1f5390e9f2fa71a31e3291b727ad9cdb87333b82e1d"
+}

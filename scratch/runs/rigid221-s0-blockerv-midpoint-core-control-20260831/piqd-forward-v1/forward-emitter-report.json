@@ -1,0 +1,46 @@
+{
+  "assertions": 56,
+  "cell": "forward",
+  "direct_z3": {
+    "reference_witness": {
+      "c3_members": [
+        "m1",
+        "m2",
+        "u",
+        "v",
+        "xu"
+      ],
+      "cell": "forward",
+      "first_turn": "1156/1625",
+      "midpoint_distance2": "289/1625",
+      "physical_radius2": "289/100",
+      "second_turn": "1156/1625"
+    },
+    "status": "SAT"
+  },
+  "excluded_source_edges": [
+    "opposite-row",
+    "next-blocker",
+    "deletion-multiplicity"
+  ],
+  "formula_bytes": 18257,
+  "formula_sha256": "4270cc6c5e65adccbed8dc5af28bbc6a21dfb700332eaf39374303a51e710a99",
+  "reference_witness": {
+    "c3_members": [
+      "m1",
+      "m2",
+      "u",
+      "v",
+      "xu"
+    ],
+    "cell": "forward",
+    "first_turn": "1156/1625",
+    "midpoint_distance2": "289/1625",
+    "physical_radius2": "289/100",
+    "second_turn": "1156/1625"
+  },
+  "schema": "rigid221-s0-blockerv-midpoint-core-control/v1",
+  "scope": "reduced-source-faithful-midpoint-positive-control",
+  "session_formula_bytes": 18245,
+  "session_formula_sha256": "6b3138af4a69eea2636bceb68a6650d9dba652ac6f067b02858dec25415b4188"
+}

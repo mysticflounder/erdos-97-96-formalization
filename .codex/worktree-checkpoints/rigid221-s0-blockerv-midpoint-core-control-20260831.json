@@ -1,0 +1,33 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "rigid221-s0-blockerv-midpoint-core-control-20260831",
+  "owner": "codex-rigid221-s0-blockerv-midpoint-core-control",
+  "base_head": "4cb16f702fe28d050b1a1057e40c82da28df7b62",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/rigid221-s0-blockerv-midpoint-core-control-20260831.json",
+    "docs/audits/2026-08-31-rigid221-s0-blockerv-midpoint-core-control.md",
+    "docs/specs/p97-rigid221-s0-blockerv-midpoint-core-control-v1.md",
+    "scripts/rigid221_s0_blockerv_midpoint_core_control.py",
+    "scripts/test_rigid221_s0_blockerv_midpoint_core_control.py"
+  ],
+  "generated_roots": [
+    "scratch/runs/rigid221-s0-blockerv-midpoint-core-control-20260831/piqd-forward-v1",
+    "scratch/runs/rigid221-s0-blockerv-midpoint-core-control-20260831/piqd-reverse-v1"
+  ],
+  "durable_paths": [
+    "scratch/runs/rigid221-s0-blockerv-midpoint-core-control-20260831/piqd-forward-v1/forward-driver-receipt.json",
+    "scratch/runs/rigid221-s0-blockerv-midpoint-core-control-20260831/piqd-forward-v1/forward-emitter-report.json",
+    "scratch/runs/rigid221-s0-blockerv-midpoint-core-control-20260831/piqd-forward-v1/forward-necessity-ledger.json",
+    "scratch/runs/rigid221-s0-blockerv-midpoint-core-control-20260831/piqd-forward-v1/forward-normalized.smt2",
+    "scratch/runs/rigid221-s0-blockerv-midpoint-core-control-20260831/piqd-forward-v1/forward-source.session.smt2",
+    "scratch/runs/rigid221-s0-blockerv-midpoint-core-control-20260831/piqd-forward-v1/run_manifest.json",
+    "scratch/runs/rigid221-s0-blockerv-midpoint-core-control-20260831/piqd-reverse-v1/reverse-driver-receipt.json",
+    "scratch/runs/rigid221-s0-blockerv-midpoint-core-control-20260831/piqd-reverse-v1/reverse-emitter-report.json",
+    "scratch/runs/rigid221-s0-blockerv-midpoint-core-control-20260831/piqd-reverse-v1/reverse-necessity-ledger.json",
+    "scratch/runs/rigid221-s0-blockerv-midpoint-core-control-20260831/piqd-reverse-v1/reverse-normalized.smt2",
+    "scratch/runs/rigid221-s0-blockerv-midpoint-core-control-20260831/piqd-reverse-v1/reverse-source.session.smt2",
+    "scratch/runs/rigid221-s0-blockerv-midpoint-core-control-20260831/piqd-reverse-v1/run_manifest.json"
+  ],
+  "created_utc": "2026-08-31T10:15:05Z",
+  "manifest_sha256": "d4947ea9ddcb06ef2b954ec0debbf1960803c177e068ce501f4ded112127893f"
+}
