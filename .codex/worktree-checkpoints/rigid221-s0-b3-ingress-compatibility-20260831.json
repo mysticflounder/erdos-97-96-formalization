@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "rigid221-s0-b3-ingress-compatibility-20260831",
+  "owner": "codex-rigid221-s0-b3-ingress-compatibility",
+  "base_head": "dcfc4b63ba31b0769f45d81f87aedf740357d491",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/rigid221-s0-b3-ingress-compatibility-20260831.json",
+    "docs/audits/2026-08-31-rigid221-s0-b3-ingress-compatibility.md"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-08-31T12:53:53Z",
+  "manifest_sha256": "c767614fff6f77b4a51e6e4d2c2045c208d5102b9e34e305025f61237a5f591b"
+}
