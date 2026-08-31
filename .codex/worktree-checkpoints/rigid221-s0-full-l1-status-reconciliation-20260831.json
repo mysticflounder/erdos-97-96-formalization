@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "rigid221-s0-full-l1-status-reconciliation-20260831",
+  "owner": "codex-rigid221-s0-full-l1-status-reconciliation",
+  "base_head": "712bff5020c2b9f7f6a6ae9545061af0aa33d726",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/rigid221-s0-full-l1-status-reconciliation-20260831.json",
+    "docs/audits/2026-08-29-rigid221-s0-full-l1-computation.md"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-08-31T11:44:45Z",
+  "manifest_sha256": "645a185ccd6b97cd44753a4799027a30ec4c365078e174a7af8379cc34d7fbff"
+}

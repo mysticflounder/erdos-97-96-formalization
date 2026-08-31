@@ -1,21 +1,23 @@
-# Rigid221 S0 bounded full-L1 computation launch record
+# Rigid221 S0 bounded full-L1 computation record
 
 **Date:** 2026-08-29  
 **Lane:** `rigid221-s0-full-l1-20260829`  
 **Run:** `full-l1-v1`  
 **Lane base:** `914396eaca79981b03f7b46b40dbb88d22f79ab5`  
-**Operational state:** RUNNING  
-**Mathematical state:** NO VERDICT
+**Operational state:** COMPLETE (terminal artifacts reconciled 2026-08-31)<br>
+**Mathematical state:** UNKNOWN (both encoded cells timed out)
 
-The governed two-cell computation was launched at `2026-08-30T06:28:16Z` and
-observed live under launcher PID `92665` (Python PID `92719`, terminal session
-`82463`). There is no solver verdict or accepted witness yet. “Running” here
-means only that this bounded M0 fixed-order canary is underway; it does not
-mean that the unencoded exhaustive L1 partition has been launched.
+The governed two-cell computation launched at `2026-08-30T06:28:16Z` under
+launcher PID `92665` (Python PID `92719`, terminal session `82463`). Its
+authenticated terminal record reports `UNKNOWN`: both fixed cells have
+`UNKNOWN_TIMEOUT`, with Z3 timing out and the cvc5 fallback interrupted by its
+timeout.  There is no rational witness, exact replay, UNSAT certificate, or
+mathematical conclusion.  The terminal run record does not retain an end
+timestamp or aggregate CPU time.
 
 ## Objective and boundary
 
-The first launch will test the two fixed fourteen-role, all-distinct `M0`
+The completed launch tested the two fixed fourteen-role, all-distinct `M0`
 canary cells documented in
 `2026-08-29-rigid221-s0-full-l1-source-constraint-manifest.md`:
 
@@ -38,8 +40,8 @@ prerequisites only:
   cap predicate positive/negative controls, not a coupled-row L1 result.
 
 Combining their code paths does not retroactively upgrade either prior result.
-Only a fresh governed run against the active manifest can produce a bounded
-L1-cell verdict.
+Only a fresh governed run against the active manifest can produce an accepted
+bounded L1-cell verdict.
 
 ## Governed paths
 
@@ -92,9 +94,11 @@ belong in the run record and results; none is filled in here before launch.
 8. Focused tests, lint, the lane hygiene report, and the pre-existing
    `run_manifest.json` all pass before launch.
 
-## Expected commands
+## Launch commands
 
-These are launch-plan commands, not a record that they have run:
+The third command below is the recorded primary run.  The smoke and test
+commands remain launch-plan checks; this record does not use them as evidence
+of a solver result.
 
 ```bash
 uv run python scripts/rigid221_s0_full_l1.py \
@@ -120,8 +124,8 @@ twenty cores are active.
 
 | Cell family | Operational state | Mathematical status | Coverage note |
 |---|---|---|---|
-| `m0-distinct-s0-i` / `M0-I-v1` | RUNNING | no verdict | supported fixed canary |
-| `m0-distinct-s0-n` / `M0-N-v1` | RUNNING | no verdict | supported fixed canary |
+| `m0-distinct-s0-i` / `M0-I-v1` | complete | `UNKNOWN_TIMEOUT` | supported fixed canary; Z3 and cvc5 supplied no usable verdict |
+| `m0-distinct-s0-n` / `M0-N-v1` | complete | `UNKNOWN_TIMEOUT` | supported fixed canary; Z3 and cvc5 supplied no usable verdict |
 | Other cyclic orders in M0 | no encoder cell | `ENCODING_BLOCKED` | required for negative exhaustiveness |
 | M1 and M2 auxiliary-overlap cells | no encoder cell | `ENCODING_BLOCKED` | source-legal |
 | Legal `cu`/`cv` placement cells | no encoder cell | `ENCODING_BLOCKED` | source-legal |
@@ -151,7 +155,7 @@ name remains for schema compatibility, its prose meaning must say “all active
 constraints hold for this serialized bounded cell,” and separate booleans must
 remain false for exhaustive, source-universal, Lean, and promotion claims.
 
-## Launch record
+## Terminal record
 
 ```text
 executed commit:       bd86913fd06a9454e9e1cc6b7286627739ead391
@@ -160,10 +164,16 @@ launch command:        uv run python scripts/rigid221_s0_full_l1.py --output-dir
 PID / terminal session:92665 / 82463
 start timestamp:       2026-08-30T06:28:16Z
 end timestamp:         NONE
-wall / CPU time:       NONE
-cell verdicts:         NONE
-accepted result hashes:NONE
+wall / CPU time:       not recorded by the terminal run record
+cell verdicts:         m0-distinct-s0-i: UNKNOWN_TIMEOUT; m0-distinct-s0-n: UNKNOWN_TIMEOUT
+accepted result hashes:none
+terminal run status:   UNKNOWN
+terminal run SHA-256:  9f2bbc32c05fab707503a3ef3a64cf3b1998e754cee588414ed20f9c6cdea569
+cell result SHA-256:   i fc336f28c34e81d141c9a6ffc3180697be90286ff8a8841b1e1277e538756c94
+                        n f8466d9dcec6cc47ecb9c3838217d4d2fc312bb72d07ce6884fe4979342b6d85
 ```
 
-This is a launch snapshot, not a mathematical result. Final fields must be
-replaced from authenticated run data after process completion.
+The terminal data are in
+`scratch/runs/rigid221-s0-full-l1-20260829/full-l1-v1/artifacts/primary/`.
+For each cell, Z3 reported a timeout and cvc5 reported `unknown` with
+`returncode: -6` after its timeout.  This is not a mathematical result.
