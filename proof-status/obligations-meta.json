@@ -1,73 +1,25 @@
 {
   "P97-OFF-R221-POSTCARDELEVEN": {
     "cluster": "Rigid221",
-    "evidence_note": "README.md's open-frontier section lists this declaration among the three off-spine placeholder `sorry`s that no publish-spine path reaches, matching `reachable: false` in proof-status/obligations.json.",
-    "implementation_effect": "unknown",
-    "latest_checkpoint": "README.md",
+    "evidence_note": "The public consumer Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual reaches this leaf through the private helper Problem97.ATailFrontierLiveClosure.false_of_exactFiveDistinct_commonDeletion. `proof-blueprint axioms` for that consumer includes `sorryAx`; the reviewed private-edge manifest therefore promotes this exact-five residual into the generated reachable set while leaving it OPEN_MATHEMATICAL.",
+    "implementation_effect": "branch-closer",
+    "latest_checkpoint": "proof-status/private-edge-reachability.json",
     "legacy_labels": [],
     "mathematical_packet": null,
-    "prose_status": "OFF_SPINE_DIAGNOSTIC",
+    "prose_status": "OPEN_MATHEMATICAL",
     "terminal_family": "exact-five distinct-center bi-apex-robust post-card-eleven arm"
-  },
-  "P97-OFF-TS-FIRSTFIBERDESCENT": {
-    "cluster": "TwoSource",
-    "evidence_note": "README.md's open-frontier section lists this declaration among the three off-spine placeholder `sorry`s that no publish-spine path reaches, matching `reachable: false` in proof-status/obligations.json.",
-    "implementation_effect": "unknown",
-    "latest_checkpoint": "README.md",
-    "legacy_labels": [
-      "F2"
-    ],
-    "mathematical_packet": null,
-    "prose_status": "OFF_SPINE_DIAGNOSTIC",
-    "terminal_family": "two cap sources first-fiber descent residual"
   },
   "P97-OFF-TS-OUTSIDESEEDRESIDUAL": {
     "cluster": "TwoSource",
-    "evidence_note": "docs/audits/2026-08-22-f2-twosource-checkpoint36-synthesis.md counts the pinned-endpoint residual among the five bare `sorry`s in TwoSourceFreshThirdResidual.lean, and proof-status/obligations.json records this declaration as unreachable from the publish target.",
-    "implementation_effect": "unknown",
-    "latest_checkpoint": "docs/audits/2026-08-22-f2-twosource-checkpoint36-synthesis.md",
+    "evidence_note": "The public consumer Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_freshThirdBlockerFiber reaches this leaf through the reviewed private/public chain recorded in proof-status/private-edge-reachability.json, from on_commonRadius_surface and core_commonRadius through the surviving-row and pinned-endpoint frame wrappers. `proof-blueprint axioms` for that consumer includes `sorryAx`; the manifest promotes this pinned-endpoint residual into the generated reachable set.",
+    "implementation_effect": "bypass",
+    "latest_checkpoint": "proof-status/private-edge-reachability.json",
     "legacy_labels": [
       "F2"
     ],
     "mathematical_packet": null,
-    "prose_status": "OFF_SPINE_DIAGNOSTIC",
+    "prose_status": "NORMAL_FORM_CLOSED_TERMINAL_OPEN",
     "terminal_family": "FreshThird pinned-endpoint outside-seed residual"
-  },
-  "P97-OFF-X-FIDELITYC1": {
-    "cluster": "Other",
-    "evidence_note": "The module docstring of lean/scratch/c-package-bank/FidelityCheck.lean states the file is an elaboration check harness that deliberately contains `sorry`, and proof-status/obligations.json records it as unreachable from the publish target.",
-    "implementation_effect": "helper",
-    "latest_checkpoint": null,
-    "legacy_labels": [
-      "C1"
-    ],
-    "mathematical_packet": null,
-    "prose_status": "OFF_SPINE_DIAGNOSTIC",
-    "terminal_family": "C-package bank leaf C1 binder fidelity harness"
-  },
-  "P97-OFF-X-FIDELITYC2": {
-    "cluster": "Other",
-    "evidence_note": "The module docstring of lean/scratch/c-package-bank/FidelityCheck.lean states the file is an elaboration check harness that deliberately contains `sorry`, and proof-status/obligations.json records it as unreachable from the publish target.",
-    "implementation_effect": "helper",
-    "latest_checkpoint": null,
-    "legacy_labels": [
-      "C2"
-    ],
-    "mathematical_packet": null,
-    "prose_status": "OFF_SPINE_DIAGNOSTIC",
-    "terminal_family": "C-package bank leaf C2 binder fidelity harness"
-  },
-  "P97-OFF-X-FIDELITYE1": {
-    "cluster": "Other",
-    "evidence_note": "The module docstring of lean/scratch/e-package-bank/FidelityCheck.lean marks the file PARKED-SPEC and states its one `sorry` is not an obligation and is not wired to any publish target, matching `reachable: false` in proof-status/obligations.json.",
-    "implementation_effect": "helper",
-    "latest_checkpoint": null,
-    "legacy_labels": [
-      "E1"
-    ],
-    "mathematical_packet": null,
-    "prose_status": "OFF_SPINE_DIAGNOSTIC",
-    "terminal_family": "E-package bank leaf E1 binder fidelity harness"
   },
   "P97-R221-BLOCKERDELETED": {
     "cluster": "Rigid221",

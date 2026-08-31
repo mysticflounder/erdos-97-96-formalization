@@ -317,6 +317,52 @@ STATUS_SPINE_ARGS = ("spine", "--banner")
 META_NAME = "obligations-meta.json"
 # Historical name, accepted only when META_NAME is absent.
 META_OVERLAY_NAME = "meta-status.overlay.json"
+PRIVATE_EDGE_REACHABILITY_NAME = "private-edge-reachability.json"
+PRIVATE_EDGE_SCHEMA = "p97-private-edge-reachability/v1"
+
+# The current public ``proof-blueprint`` call graph omits these private-helper
+# edges. These are the only reviewed hidden paths permitted to promote an
+# off-spine export row into the generated reachable set.
+PRIVATE_EDGE_REACHABILITY = {
+    "Problem97.ATailFrontierLiveClosure.false_of_exactFiveDistinct_biApexRobust_postCardEleven": {
+        "consumer": "Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual",
+        "path": [
+            {
+                "declaration": "Problem97.ATailFrontierLiveClosure.false_of_exactFiveDistinct_commonDeletion",
+                "visibility": "private",
+            }
+        ],
+    },
+    "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_freshThird_pinnedEndpoint_outsideSeedResidual": {
+        "consumer": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_freshThirdBlockerFiber",
+        "path": [
+            {
+                "declaration": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_freshThirdBlockerFiber_on_commonRadius_surface",
+                "visibility": "private",
+            },
+            {
+                "declaration": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_freshThirdBlockerFiber_core_commonRadius",
+                "visibility": "public",
+            },
+            {
+                "declaration": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_freshThirdBlockerFiber_normalized_remaining_commonRadius",
+                "visibility": "private",
+            },
+            {
+                "declaration": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.exists_freshThird_commonRadius_distinctCaps_survivingRow_oneArcSharedPairObstruction_frame",
+                "visibility": "public",
+            },
+            {
+                "declaration": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_freshThird_commonRadius_distinctCaps_survivingRow_frame",
+                "visibility": "public",
+            },
+            {
+                "declaration": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_freshThird_pinnedEndpoint_globalResidual_frame",
+                "visibility": "public",
+            },
+        ],
+    },
+}
 
 RECEIPTS_DIRNAME = "receipts"
 RECEIPT_SCHEMA = "p97-registry-check-receipt/v1"
@@ -731,8 +777,114 @@ def assign_ids(records: list[dict], ledger: dict, source_head: str) -> tuple[dic
 # ---------------------------------------------------------------------------
 
 
-def normalize_records(spine: list[dict], offspine: list[dict]) -> list[dict]:
+def load_private_edge_reachability(status_dir: Path | None) -> list[dict]:
+    """Load the strict reviewed private-edge reachability manifest.
+
+    An absent manifest is the backwards-compatible empty override set.  When
+    present, the manifest is a closed-world declaration: exactly the two
+    reviewed leaves and their exact visibility paths must be named.
+    """
+    if status_dir is None:
+        return []
+    path = status_dir / PRIVATE_EDGE_REACHABILITY_NAME
+    if not path.is_file():
+        return []
+    data = read_json(path)
+    if not isinstance(data, dict) or set(data) != {"schema", "entries"}:
+        raise RegistryError(
+            "private edge reachability must have exactly schema and entries: "
+            + str(path)
+        )
+    if data.get("schema") != PRIVATE_EDGE_SCHEMA or not isinstance(data.get("entries"), list):
+        raise RegistryError("private edge reachability has malformed schema: " + str(path))
+    entries = data["entries"]
+    expected = PRIVATE_EDGE_REACHABILITY
+    if len(entries) != len(expected):
+        raise RegistryError(
+            "private edge reachability must contain exactly "
+            + str(len(expected))
+            + " entries"
+        )
+    seen: set[str] = set()
+    normalized: list[dict] = []
+    for index, entry in enumerate(entries):
+        if not isinstance(entry, dict) or set(entry) != {"leaf", "consumer", "path"}:
+            raise RegistryError("private edge entry " + str(index) + " has malformed keys")
+        leaf = entry.get("leaf")
+        consumer = entry.get("consumer")
+        path_rows = entry.get("path")
+        if not isinstance(leaf, str) or LEAN_FQN_RE.fullmatch(leaf) is None:
+            raise RegistryError("private edge entry " + str(index) + " has malformed leaf")
+        if leaf in seen:
+            raise RegistryError("private edge reachability has duplicate leaf " + leaf)
+        seen.add(leaf)
+        if not isinstance(consumer, str) or LEAN_FQN_RE.fullmatch(consumer) is None:
+            raise RegistryError("private edge entry " + leaf + " has malformed consumer")
+        if not isinstance(path_rows, list) or not path_rows:
+            raise RegistryError("private edge entry " + leaf + " has malformed path")
+        for row in path_rows:
+            if not isinstance(row, dict) or set(row) != {"declaration", "visibility"}:
+                raise RegistryError("private edge entry " + leaf + " has malformed path row")
+            if (
+                not isinstance(row["declaration"], str)
+                or LEAN_FQN_RE.fullmatch(row["declaration"]) is None
+                or row["visibility"] not in {"private", "public"}
+            ):
+                raise RegistryError("private edge entry " + leaf + " has malformed path row")
+        expected_entry = expected.get(leaf)
+        if expected_entry is None or {
+            "consumer": consumer,
+            "path": path_rows,
+        } != expected_entry:
+            raise RegistryError("private edge entry is not an authenticated reviewed path: " + leaf)
+        normalized.append({"leaf": leaf, "consumer": consumer, "path": path_rows})
+    if set(seen) != set(expected):
+        raise RegistryError("private edge reachability does not name the authenticated leaves")
+    return normalized
+
+
+def validate_private_edge_overrides(
+    spine: list[dict], offspine: list[dict], overrides: list[dict] | None = None
+) -> list[str]:
+    """Validate that every override leaf is exclusively in off-spine exports."""
+    overrides = overrides or []
+    spine_counts: dict[str, int] = {}
+    offspine_counts: dict[str, int] = {}
+    for record in spine:
+        symbol = record.get("symbol")
+        if symbol:
+            spine_counts[symbol] = spine_counts.get(symbol, 0) + 1
+    for record in offspine:
+        symbol = record.get("symbol")
+        if symbol:
+            offspine_counts[symbol] = offspine_counts.get(symbol, 0) + 1
+    violations: list[str] = []
+    seen: set[str] = set()
+    for entry in overrides:
+        leaf = entry.get("leaf") if isinstance(entry, dict) else None
+        if not isinstance(leaf, str):
+            violations.append("private edge override has no leaf")
+            continue
+        if leaf in seen:
+            violations.append("private edge override is duplicated: " + leaf)
+        seen.add(leaf)
+        if spine_counts.get(leaf):
+            violations.append("private edge override is already-spine/redundant: " + leaf)
+        if offspine_counts.get(leaf, 0) == 0:
+            violations.append("private edge override leaf is missing from off-spine export: " + leaf)
+        elif offspine_counts[leaf] != 1:
+            violations.append("private edge override leaf is duplicated in off-spine export: " + leaf)
+    return violations
+
+
+def normalize_records(
+    spine: list[dict], offspine: list[dict], private_edge_overrides: list[dict] | None = None
+) -> list[dict]:
     """Flatten the two exports into raw obligation records."""
+    violations = validate_private_edge_overrides(spine, offspine, private_edge_overrides)
+    if violations:
+        raise RegistryError("; ".join(violations))
+    promoted = {entry["leaf"] for entry in (private_edge_overrides or [])}
     seen: dict[str, dict] = {}
     for records, reachable in ((spine, True), (offspine, False)):
         for record in records:
@@ -742,7 +894,7 @@ def normalize_records(spine: list[dict], offspine: list[dict]) -> list[dict]:
             source_file = record.get("file") or ""
             entry = {
                 "symbol": symbol,
-                "reachable": reachable,
+                "reachable": reachable or symbol in promoted,
                 "source_file": source_file,
                 "line": record.get("line"),
                 "kind": record.get("kind") or "theorem",
@@ -2708,6 +2860,7 @@ def build_registry(
     meta: dict | None = None,
     build_id: str | None = None,
     verified_ids: list[str] | None = None,
+    private_edge_overrides: list[dict] | None = None,
 ) -> tuple[dict, dict]:
     """Canonical registry plus the updated id ledger.
 
@@ -2726,7 +2879,7 @@ def build_registry(
     the roster comparison alone (its factorization keys are never read) and the
     unit tests build one to exercise the normalization itself.
     """
-    records = normalize_records(spine, offspine)
+    records = normalize_records(spine, offspine, private_edge_overrides)
     ids, updated_ledger = assign_ids(records, ledger, source_head)
     meta = meta or {}
     verified = None if verified_ids is None else set(verified_ids)
@@ -3100,6 +3253,7 @@ def command_status(
     readme_path = Path(args.readme).resolve()
     snapshot_path = Path(args.live_blueprint).resolve()
     registry = read_status_registry(registry_path)
+    private_edge_overrides = load_private_edge_reachability(registry_path.parent)
     table_bytes, _table = read_utf8_exact(table_path)
     _readme_bytes, readme = read_utf8_exact(readme_path)
     snapshot_bytes, _snapshot = read_utf8_exact(snapshot_path)
@@ -3136,17 +3290,41 @@ def command_status(
     reachable = {
         item["lean_decl"] for item in registry["obligations"] if item["reachable"]
     }
-    if live_status["open_obligations"] != len(reachable):
+    visible = set(live_status["declarations"])
+    hidden_private = {entry["leaf"] for entry in private_edge_overrides}
+    for leaf in sorted(hidden_private):
+        if leaf in visible:
+            failures.append(
+                "private edge override is already visible/redundant in live spine: " + leaf
+            )
+        if leaf not in reachable:
+            failures.append(
+                "private edge override is not a reachable registry row: " + leaf
+            )
+    if live_status["open_obligations"] != len(visible):
         failures.append(
             "live open-obligation count " + str(live_status["open_obligations"])
-            + " != registry reachable count " + str(len(reachable))
+            + " != live spine declaration count " + str(len(visible))
         )
-    missing = sorted(reachable - live_status["declarations"])
-    unknown = sorted(live_status["declarations"] - reachable)
+    expected_reachable = visible | hidden_private
+    missing = sorted(expected_reachable - reachable)
+    unknown = sorted(visible - reachable)
+    unreviewed_reachable = sorted(reachable - expected_reachable)
     if missing:
         failures.append("live spine is missing registry declarations: " + ", ".join(missing))
     if unknown:
         failures.append("live spine has unknown declarations: " + ", ".join(unknown))
+    if unreviewed_reachable:
+        failures.append(
+            "registry reachable declarations are neither live nor reviewed hidden-private leaves: "
+            + ", ".join(unreviewed_reachable)
+        )
+    if len(reachable) != len(expected_reachable):
+        failures.append(
+            "registry reachable count " + str(len(reachable))
+            + " != live spine plus reviewed hidden-private count "
+            + str(len(expected_reachable))
+        )
     if snapshot_bytes != result.stdout.encode("utf-8"):
         failures.append(str(snapshot_path) + " differs byte-for-byte from live spine")
     if args.check and current_block != expected_block:
@@ -3408,6 +3586,7 @@ def command_generate(
     """
     out_dir = Path(args.out).resolve()
     baseline_dir = Path(args.baseline).resolve() if args.baseline else None
+    private_edge_overrides = load_private_edge_reachability(out_dir)
 
     spine, offspine = (
         gather_exports(baseline_dir, args.fresh, out_dir)
@@ -3440,7 +3619,13 @@ def command_generate(
     # below has passed; this registry exists so the live factorization check has
     # the entry (id, lean_decl, reachable) it validates each block against.
     provisional, _provisional_ledger = build_registry(
-        spine, offspine, source_head, migrated_ledger, meta, build_id
+        spine,
+        offspine,
+        source_head,
+        migrated_ledger,
+        meta,
+        build_id,
+        private_edge_overrides=private_edge_overrides,
     )
 
     meta_violations = validate_meta(provisional, meta)
@@ -3488,6 +3673,7 @@ def command_generate(
         meta,
         build_id,
         verified_ids=factorization["verified_ids"],
+        private_edge_overrides=private_edge_overrides,
     )
     violations = meta_violations
 
@@ -3659,6 +3845,7 @@ def command_check(
         )
         ledger = load_id_assignments(status_dir / ID_ASSIGNMENTS_NAME)
         meta = load_meta(status_dir)
+        private_edge_overrides = load_private_edge_reachability(status_dir)
         backend = make_backend(meta, backend_factory)
         build_id = current_build_id(backend)
         migrations, migration_violations = plan_alias_migrations(ledger, meta, backend)
@@ -3668,7 +3855,13 @@ def command_check(
         # so no ``verified_ids`` restriction is needed - the COMMITTED registry
         # is what ``compare_registry_factorizations`` audits below.
         fresh_registry, _ = build_registry(
-            spine, offspine, committed_head or "unknown", ledger, meta, build_id
+            spine,
+            offspine,
+            committed_head or "unknown",
+            ledger,
+            meta,
+            build_id,
+            private_edge_overrides=private_edge_overrides,
         )
     except RegistryError as exc:
         print("error: " + str(exc), file=sys.stderr)

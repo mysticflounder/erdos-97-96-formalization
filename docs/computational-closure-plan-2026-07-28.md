@@ -4,12 +4,13 @@ Evidence-status terms in this plan follow the
 [closure evidence status ledger](closure-evidence-status-ledger-2026-08-05.md).
 
 > **Current authority snapshot (2026-08-30).** The obligation registry at
-> source head `eb6a12039aba1e3c4cc48baa9f1299337fc6a2ac` records 25
-> publish-reachable declarations and 6 off-spine declarations: 15 Rigid221,
-> 1 TriApex, 6 TwoSource, and 3 two-deletion declarations on the P97 spine.
-> The cached reference mine at build `e373ee042532` has one stale reference,
-> so these are registry-backed cached-build counts, not a claim about newer
-> unbuilt source. Use `proof-blueprint spine` and the
+> source head `020e43bfc328879dfdc7d8a558a80fbdbdff2438` records 27
+> publish-reachable declarations and no off-spine declarations: 16 Rigid221,
+> 1 TriApex, 7 TwoSource, and 3 two-deletion declarations on the P97 spine.
+> The count combines the visible `proof-blueprint spine` with the two audited
+> private-helper paths in `proof-status/private-edge-reachability.json`; the
+> archived fidelity and first-fiber diagnostics are outside normal Lake source.
+> Use `proof-blueprint spine` and the
 > [obligation registry](../proof-status/README.md) for live status. The current
 > B1 residual is documented in the
 > [2026-08-29 continuation plan](plans/2026-08-29-b1-global-continuation.md).

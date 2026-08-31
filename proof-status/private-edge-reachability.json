@@ -1,0 +1,45 @@
+{
+  "entries": [
+    {
+      "consumer": "Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual",
+      "leaf": "Problem97.ATailFrontierLiveClosure.false_of_exactFiveDistinct_biApexRobust_postCardEleven",
+      "path": [
+        {
+          "declaration": "Problem97.ATailFrontierLiveClosure.false_of_exactFiveDistinct_commonDeletion",
+          "visibility": "private"
+        }
+      ]
+    },
+    {
+      "consumer": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_freshThirdBlockerFiber",
+      "leaf": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_freshThird_pinnedEndpoint_outsideSeedResidual",
+      "path": [
+        {
+          "declaration": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_freshThirdBlockerFiber_on_commonRadius_surface",
+          "visibility": "private"
+        },
+        {
+          "declaration": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_freshThirdBlockerFiber_core_commonRadius",
+          "visibility": "public"
+        },
+        {
+          "declaration": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_freshThirdBlockerFiber_normalized_remaining_commonRadius",
+          "visibility": "private"
+        },
+        {
+          "declaration": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.exists_freshThird_commonRadius_distinctCaps_survivingRow_oneArcSharedPairObstruction_frame",
+          "visibility": "public"
+        },
+        {
+          "declaration": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_freshThird_commonRadius_distinctCaps_survivingRow_frame",
+          "visibility": "public"
+        },
+        {
+          "declaration": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_freshThird_pinnedEndpoint_globalResidual_frame",
+          "visibility": "public"
+        }
+      ]
+    }
+  ],
+  "schema": "p97-private-edge-reachability/v1"
+}

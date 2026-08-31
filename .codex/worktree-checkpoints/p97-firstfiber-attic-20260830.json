@@ -1,0 +1,21 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "p97-firstfiber-attic-20260830",
+  "owner": "codex-p97-firstfiber-attic",
+  "base_head": "beb71db498ad47cca5c343a76a359423ff47f9e2",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/p97-firstfiber-attic-20260830.json",
+    "attic/p97-firstfiber-compatibility-2026-08-30/README.md",
+    "attic/p97-firstfiber-compatibility-2026-08-30/TwoSourceAlignedLowHits.lean",
+    "attic/p97-firstfiber-compatibility-2026-08-30/TwoSourceClosure.lean",
+    "attic/p97-firstfiber-compatibility-2026-08-30/TwoSourceFreshThirdFiber.lean",
+    "docs/dead-ends.md",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceAlignedLowHits.lean",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceClosure.lean",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdFiber.lean"
+  ],
+  "durable_paths": [],
+  "generated_roots": [],
+  "created_utc": "2026-08-31T02:48:00Z",
+  "manifest_sha256": "a57738b34bcaf2d5ee09cbe6d23121b6dc8a05d478688727bcdd6a6120cd5f31"
+}

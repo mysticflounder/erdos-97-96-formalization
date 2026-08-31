@@ -4,109 +4,37 @@
   "obligations": [
     {
       "cluster": "Rigid221",
-      "evidence_note": "README.md's open-frontier section lists this declaration among the three off-spine placeholder `sorry`s that no publish-spine path reaches, matching `reachable: false` in proof-status/obligations.json.",
+      "evidence_note": "The public consumer Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual reaches this leaf through the private helper Problem97.ATailFrontierLiveClosure.false_of_exactFiveDistinct_commonDeletion. `proof-blueprint axioms` for that consumer includes `sorryAx`; the reviewed private-edge manifest therefore promotes this exact-five residual into the generated reachable set while leaving it OPEN_MATHEMATICAL.",
       "id": "P97-OFF-R221-POSTCARDELEVEN",
-      "implementation_effect": "unknown",
+      "implementation_effect": "branch-closer",
       "kind": "theorem",
-      "latest_checkpoint": "README.md",
+      "latest_checkpoint": "proof-status/private-edge-reachability.json",
       "lean_decl": "Problem97.ATailFrontierLiveClosure.false_of_exactFiveDistinct_biApexRobust_postCardEleven",
       "legacy_labels": [],
       "line": 1515,
       "mathematical_packet": null,
-      "meta_status": "OFF_SPINE_DIAGNOSTIC",
-      "reachable": false,
+      "meta_status": "OPEN_MATHEMATICAL",
+      "reachable": true,
       "source_file": "Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221Closure.lean",
       "terminal_family": "exact-five distinct-center bi-apex-robust post-card-eleven arm"
     },
     {
       "cluster": "TwoSource",
-      "evidence_note": "README.md's open-frontier section lists this declaration among the three off-spine placeholder `sorry`s that no publish-spine path reaches, matching `reachable: false` in proof-status/obligations.json.",
-      "id": "P97-OFF-TS-FIRSTFIBERDESCENT",
-      "implementation_effect": "unknown",
-      "kind": "theorem",
-      "latest_checkpoint": "README.md",
-      "lean_decl": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_firstFiberDescentResidual",
-      "legacy_labels": [
-        "F2"
-      ],
-      "line": 822,
-      "mathematical_packet": null,
-      "meta_status": "OFF_SPINE_DIAGNOSTIC",
-      "reachable": false,
-      "source_file": "Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdFiber.lean",
-      "terminal_family": "two cap sources first-fiber descent residual"
-    },
-    {
-      "cluster": "TwoSource",
-      "evidence_note": "docs/audits/2026-08-22-f2-twosource-checkpoint36-synthesis.md counts the pinned-endpoint residual among the five bare `sorry`s in TwoSourceFreshThirdResidual.lean, and proof-status/obligations.json records this declaration as unreachable from the publish target.",
+      "evidence_note": "The public consumer Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_freshThirdBlockerFiber reaches this leaf through the reviewed private/public chain recorded in proof-status/private-edge-reachability.json, from on_commonRadius_surface and core_commonRadius through the surviving-row and pinned-endpoint frame wrappers. `proof-blueprint axioms` for that consumer includes `sorryAx`; the manifest promotes this pinned-endpoint residual into the generated reachable set.",
       "id": "P97-OFF-TS-OUTSIDESEEDRESIDUAL",
-      "implementation_effect": "unknown",
+      "implementation_effect": "bypass",
       "kind": "theorem",
-      "latest_checkpoint": "docs/audits/2026-08-22-f2-twosource-checkpoint36-synthesis.md",
+      "latest_checkpoint": "proof-status/private-edge-reachability.json",
       "lean_decl": "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_freshThird_pinnedEndpoint_outsideSeedResidual",
       "legacy_labels": [
         "F2"
       ],
       "line": 9598,
       "mathematical_packet": null,
-      "meta_status": "OFF_SPINE_DIAGNOSTIC",
-      "reachable": false,
+      "meta_status": "NORMAL_FORM_CLOSED_TERMINAL_OPEN",
+      "reachable": true,
       "source_file": "Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean",
       "terminal_family": "FreshThird pinned-endpoint outside-seed residual"
-    },
-    {
-      "cluster": "Other",
-      "evidence_note": "The module docstring of lean/scratch/c-package-bank/FidelityCheck.lean states the file is an elaboration check harness that deliberately contains `sorry`, and proof-status/obligations.json records it as unreachable from the publish target.",
-      "id": "P97-OFF-X-FIDELITYC1",
-      "implementation_effect": "helper",
-      "kind": "theorem",
-      "latest_checkpoint": null,
-      "lean_decl": "Problem97.CPackageBankFidelity.fidelity_c1",
-      "legacy_labels": [
-        "C1"
-      ],
-      "line": 38,
-      "mathematical_packet": null,
-      "meta_status": "OFF_SPINE_DIAGNOSTIC",
-      "reachable": false,
-      "source_file": "scratch/c-package-bank/FidelityCheck.lean",
-      "terminal_family": "C-package bank leaf C1 binder fidelity harness"
-    },
-    {
-      "cluster": "Other",
-      "evidence_note": "The module docstring of lean/scratch/c-package-bank/FidelityCheck.lean states the file is an elaboration check harness that deliberately contains `sorry`, and proof-status/obligations.json records it as unreachable from the publish target.",
-      "id": "P97-OFF-X-FIDELITYC2",
-      "implementation_effect": "helper",
-      "kind": "theorem",
-      "latest_checkpoint": null,
-      "lean_decl": "Problem97.CPackageBankFidelity.fidelity_c2",
-      "legacy_labels": [
-        "C2"
-      ],
-      "line": 122,
-      "mathematical_packet": null,
-      "meta_status": "OFF_SPINE_DIAGNOSTIC",
-      "reachable": false,
-      "source_file": "scratch/c-package-bank/FidelityCheck.lean",
-      "terminal_family": "C-package bank leaf C2 binder fidelity harness"
-    },
-    {
-      "cluster": "Other",
-      "evidence_note": "The module docstring of lean/scratch/e-package-bank/FidelityCheck.lean marks the file PARKED-SPEC and states its one `sorry` is not an obligation and is not wired to any publish target, matching `reachable: false` in proof-status/obligations.json.",
-      "id": "P97-OFF-X-FIDELITYE1",
-      "implementation_effect": "helper",
-      "kind": "theorem",
-      "latest_checkpoint": null,
-      "lean_decl": "Problem97.EPackageBankFidelity.fidelity_e1",
-      "legacy_labels": [
-        "E1"
-      ],
-      "line": 47,
-      "mathematical_packet": null,
-      "meta_status": "OFF_SPINE_DIAGNOSTIC",
-      "reachable": false,
-      "source_file": "scratch/e-package-bank/FidelityCheck.lean",
-      "terminal_family": "E-package bank leaf E1 binder fidelity harness"
     },
     {
       "cluster": "Rigid221",
@@ -155,7 +83,7 @@
             ]
           }
         ],
-        "verified_at_build": "e373ee04253226e8fb4590c756ca290027f69b31e5eb643e55e6cad7b5caef9f"
+        "verified_at_build": "4b06490c8812c28b77ee7668be47d0bb7f1ea94110471633ea2ebe5bfd238d87"
       },
       "id": "P97-R221-BLOCKERDELETED",
       "implementation_effect": "branch-closer",
@@ -192,7 +120,7 @@
           "producer": "Problem97.ATailExactFourPhysicalConsumer.carrier_card_ge_eleven_of_original_unique_four_residual"
         },
         "schema": "p97-factorization/v2",
-        "verified_at_build": "e373ee04253226e8fb4590c756ca290027f69b31e5eb643e55e6cad7b5caef9f"
+        "verified_at_build": "4b06490c8812c28b77ee7668be47d0bb7f1ea94110471633ea2ebe5bfd238d87"
       },
       "id": "P97-R221-EXACTFOURPHYSICAL",
       "implementation_effect": "branch-closer",
@@ -240,7 +168,7 @@
             ]
           }
         ],
-        "verified_at_build": "e373ee04253226e8fb4590c756ca290027f69b31e5eb643e55e6cad7b5caef9f"
+        "verified_at_build": "4b06490c8812c28b77ee7668be47d0bb7f1ea94110471633ea2ebe5bfd238d87"
       },
       "id": "P97-R221-EXACTFOURPOSTCARD",
       "implementation_effect": "branch-closer",
@@ -278,7 +206,7 @@
           "producer": "Problem97.FirstApexUniqueRadiusResidual.firstApexUniqueRadius_residualCases"
         },
         "schema": "p97-factorization/v2",
-        "verified_at_build": "e373ee04253226e8fb4590c756ca290027f69b31e5eb643e55e6cad7b5caef9f"
+        "verified_at_build": "4b06490c8812c28b77ee7668be47d0bb7f1ea94110471633ea2ebe5bfd238d87"
       },
       "id": "P97-R221-FIRSTAPEXUNIQUE",
       "implementation_effect": "branch-closer",
@@ -333,7 +261,7 @@
             ]
           }
         ],
-        "verified_at_build": "e373ee04253226e8fb4590c756ca290027f69b31e5eb643e55e6cad7b5caef9f"
+        "verified_at_build": "4b06490c8812c28b77ee7668be47d0bb7f1ea94110471633ea2ebe5bfd238d87"
       },
       "id": "P97-R221-MINIMALCORE",
       "implementation_effect": "branch-closer",
@@ -408,7 +336,7 @@
             ]
           }
         ],
-        "verified_at_build": "e373ee04253226e8fb4590c756ca290027f69b31e5eb643e55e6cad7b5caef9f"
+        "verified_at_build": "4b06490c8812c28b77ee7668be47d0bb7f1ea94110471633ea2ebe5bfd238d87"
       },
       "id": "P97-R221-MISSINGINCIDENCE",
       "implementation_effect": "branch-closer",
@@ -476,7 +404,7 @@
             ]
           }
         ],
-        "verified_at_build": "e373ee04253226e8fb4590c756ca290027f69b31e5eb643e55e6cad7b5caef9f"
+        "verified_at_build": "4b06490c8812c28b77ee7668be47d0bb7f1ea94110471633ea2ebe5bfd238d87"
       },
       "id": "P97-R221-MISSINGINCIDENCE-2",
       "implementation_effect": "branch-closer",
@@ -552,7 +480,7 @@
             ]
           }
         ],
-        "verified_at_build": "e373ee04253226e8fb4590c756ca290027f69b31e5eb643e55e6cad7b5caef9f"
+        "verified_at_build": "4b06490c8812c28b77ee7668be47d0bb7f1ea94110471633ea2ebe5bfd238d87"
       },
       "id": "P97-R221-NEXTROWONLYHIT",
       "implementation_effect": "branch-closer",
@@ -607,7 +535,7 @@
             ]
           }
         ],
-        "verified_at_build": "e373ee04253226e8fb4590c756ca290027f69b31e5eb643e55e6cad7b5caef9f"
+        "verified_at_build": "4b06490c8812c28b77ee7668be47d0bb7f1ea94110471633ea2ebe5bfd238d87"
       },
       "id": "P97-R221-NONPHYSICALCOLLISION",
       "implementation_effect": "branch-closer",
@@ -673,7 +601,7 @@
             ]
           }
         ],
-        "verified_at_build": "e373ee04253226e8fb4590c756ca290027f69b31e5eb643e55e6cad7b5caef9f"
+        "verified_at_build": "4b06490c8812c28b77ee7668be47d0bb7f1ea94110471633ea2ebe5bfd238d87"
       },
       "id": "P97-R221-OPPOSITEROWHEAVY",
       "implementation_effect": "branch-closer",
@@ -748,7 +676,7 @@
             ]
           }
         ],
-        "verified_at_build": "e373ee04253226e8fb4590c756ca290027f69b31e5eb643e55e6cad7b5caef9f"
+        "verified_at_build": "4b06490c8812c28b77ee7668be47d0bb7f1ea94110471633ea2ebe5bfd238d87"
       },
       "id": "P97-R221-OUTSIDETHREEROWS",
       "implementation_effect": "branch-closer",
@@ -814,7 +742,7 @@
             ]
           }
         ],
-        "verified_at_build": "e373ee04253226e8fb4590c756ca290027f69b31e5eb643e55e6cad7b5caef9f"
+        "verified_at_build": "4b06490c8812c28b77ee7668be47d0bb7f1ea94110471633ea2ebe5bfd238d87"
       },
       "id": "P97-R221-PENTAGONBLOCKER",
       "implementation_effect": "branch-closer",
@@ -872,7 +800,7 @@
             ]
           }
         ],
-        "verified_at_build": "e373ee04253226e8fb4590c756ca290027f69b31e5eb643e55e6cad7b5caef9f"
+        "verified_at_build": "4b06490c8812c28b77ee7668be47d0bb7f1ea94110471633ea2ebe5bfd238d87"
       },
       "id": "P97-R221-SOURCENEU",
       "implementation_effect": "branch-closer",
@@ -938,7 +866,7 @@
             ]
           }
         ],
-        "verified_at_build": "e373ee04253226e8fb4590c756ca290027f69b31e5eb643e55e6cad7b5caef9f"
+        "verified_at_build": "4b06490c8812c28b77ee7668be47d0bb7f1ea94110471633ea2ebe5bfd238d87"
       },
       "id": "P97-R221-SOURCEROWHEAVY",
       "implementation_effect": "branch-closer",
@@ -1003,7 +931,7 @@
             ]
           }
         ],
-        "verified_at_build": "e373ee04253226e8fb4590c756ca290027f69b31e5eb643e55e6cad7b5caef9f"
+        "verified_at_build": "4b06490c8812c28b77ee7668be47d0bb7f1ea94110471633ea2ebe5bfd238d87"
       },
       "id": "P97-R221-SPARSEROWS",
       "implementation_effect": "branch-closer",
@@ -1046,7 +974,7 @@
             ]
           }
         ],
-        "verified_at_build": "e373ee04253226e8fb4590c756ca290027f69b31e5eb643e55e6cad7b5caef9f"
+        "verified_at_build": "4b06490c8812c28b77ee7668be47d0bb7f1ea94110471633ea2ebe5bfd238d87"
       },
       "id": "P97-TA-TRIAPEXALLLARGECORE",
       "implementation_effect": "branch-closer",
@@ -1080,7 +1008,7 @@
           "producer": "Problem97.ATailFrontierLiveClosure.twoDeletionOutcome_of_ingress"
         },
         "schema": "p97-factorization/v2",
-        "verified_at_build": "e373ee04253226e8fb4590c756ca290027f69b31e5eb643e55e6cad7b5caef9f"
+        "verified_at_build": "4b06490c8812c28b77ee7668be47d0bb7f1ea94110471633ea2ebe5bfd238d87"
       },
       "id": "P97-TD-BLOCKERCOINCIDENCE",
       "implementation_effect": "bypass",
@@ -1114,7 +1042,7 @@
           "producer": "Problem97.ATailFrontierLiveClosure.b1_thirdJointDeletion_or_physicalClassFiveSixNormalForm"
         },
         "schema": "p97-factorization/v2",
-        "verified_at_build": "e373ee04253226e8fb4590c756ca290027f69b31e5eb643e55e6cad7b5caef9f"
+        "verified_at_build": "4b06490c8812c28b77ee7668be47d0bb7f1ea94110471633ea2ebe5bfd238d87"
       },
       "id": "P97-TD-GLOBALGAPORCLOSED",
       "implementation_effect": "bypass",
@@ -1148,7 +1076,7 @@
           "producer": "Problem97.ATailFrontierLiveClosure.twoDeletionOutcome_of_ingress"
         },
         "schema": "p97-factorization/v2",
-        "verified_at_build": "e373ee04253226e8fb4590c756ca290027f69b31e5eb643e55e6cad7b5caef9f"
+        "verified_at_build": "4b06490c8812c28b77ee7668be47d0bb7f1ea94110471633ea2ebe5bfd238d87"
       },
       "id": "P97-TD-SURVIVALSQUARE",
       "implementation_effect": "bypass",
@@ -1199,7 +1127,7 @@
             ]
           }
         ],
-        "verified_at_build": "e373ee04253226e8fb4590c756ca290027f69b31e5eb643e55e6cad7b5caef9f"
+        "verified_at_build": "4b06490c8812c28b77ee7668be47d0bb7f1ea94110471633ea2ebe5bfd238d87"
       },
       "id": "P97-TS-ACYCLICHARDRESIDUAL",
       "implementation_effect": "bypass",
@@ -1209,7 +1137,7 @@
       "legacy_labels": [
         "F2"
       ],
-      "line": 3422,
+      "line": 3278,
       "mathematical_packet": "TwoSourceCollisionFrame",
       "meta_status": "NORMAL_FORM_CLOSED_TERMINAL_OPEN",
       "reachable": true,
@@ -1265,7 +1193,7 @@
             ]
           }
         ],
-        "verified_at_build": "e373ee04253226e8fb4590c756ca290027f69b31e5eb643e55e6cad7b5caef9f"
+        "verified_at_build": "4b06490c8812c28b77ee7668be47d0bb7f1ea94110471633ea2ebe5bfd238d87"
       },
       "id": "P97-TS-ALIGNEDRETAINED",
       "implementation_effect": "bypass",
@@ -1331,7 +1259,7 @@
             ]
           }
         ],
-        "verified_at_build": "e373ee04253226e8fb4590c756ca290027f69b31e5eb643e55e6cad7b5caef9f"
+        "verified_at_build": "4b06490c8812c28b77ee7668be47d0bb7f1ea94110471633ea2ebe5bfd238d87"
       },
       "id": "P97-TS-COMMONRADIUS",
       "implementation_effect": "bypass",
@@ -1378,7 +1306,7 @@
             ]
           }
         ],
-        "verified_at_build": "e373ee04253226e8fb4590c756ca290027f69b31e5eb643e55e6cad7b5caef9f"
+        "verified_at_build": "4b06490c8812c28b77ee7668be47d0bb7f1ea94110471633ea2ebe5bfd238d87"
       },
       "id": "P97-TS-CROSSBLOCKER",
       "implementation_effect": "bypass",
@@ -1437,7 +1365,7 @@
             ]
           }
         ],
-        "verified_at_build": "e373ee04253226e8fb4590c756ca290027f69b31e5eb643e55e6cad7b5caef9f"
+        "verified_at_build": "4b06490c8812c28b77ee7668be47d0bb7f1ea94110471633ea2ebe5bfd238d87"
       },
       "id": "P97-TS-NONCANONICAL",
       "implementation_effect": "bypass",
@@ -1490,7 +1418,7 @@
             ]
           }
         ],
-        "verified_at_build": "e373ee04253226e8fb4590c756ca290027f69b31e5eb643e55e6cad7b5caef9f"
+        "verified_at_build": "4b06490c8812c28b77ee7668be47d0bb7f1ea94110471633ea2ebe5bfd238d87"
       },
       "id": "P97-TS-OUTSIDEPAIRDELETION",
       "implementation_effect": "bypass",
@@ -1521,5 +1449,5 @@
   ],
   "publish_target": "Problem97.erdos97_rhs",
   "schema": "p97-obligation-registry/v1",
-  "source_head": "eb6a12039aba1e3c4cc48baa9f1299337fc6a2ac"
+  "source_head": "020e43bfc328879dfdc7d8a558a80fbdbdff2438"
 }

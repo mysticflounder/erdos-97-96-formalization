@@ -15,7 +15,6 @@
     "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_freshThird_firstNonHit_alignedRetained": "P97-TS-ALIGNEDRETAINED",
     "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_freshThird_firstNonHit_commonRadius": "P97-TS-COMMONRADIUS",
     "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_freshThird_pinnedEndpoint_outsideSeedResidual": "P97-OFF-TS-OUTSIDESEEDRESIDUAL",
-    "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_firstFiberDescentResidual": "P97-OFF-TS-FIRSTFIBERDESCENT",
     "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_freshOutsideFirstBlockerFiber_acyclicHardResidual": "P97-TS-ACYCLICHARDRESIDUAL",
     "Problem97.ATailFrontierLiveClosure.false_of_b1PhysicalClassFiveSixNormalForm": "P97-TD-GLOBALGAPORCLOSED",
     "Problem97.ATailFrontierLiveClosure.false_of_exactFiveDistinct_biApexRobust_postCardEleven": "P97-OFF-R221-POSTCARDELEVEN",
@@ -36,12 +35,13 @@
     "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_threeCenterDeletion_xv_missingIncidence": "P97-R221-MISSINGINCIDENCE-2",
     "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_uDeletion_fixedPhysicalPair_outsideThreeRows": "P97-R221-OUTSIDETHREEROWS",
     "Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFiveCommonObstructionCenterResidual": "P97-R221-FIRSTAPEXUNIQUE",
-    "Problem97.ATailFrontierLiveClosure.false_of_pairedCommonDeletion_fiveSurviveOneFail_triApexAllLarge_core": "P97-TA-TRIAPEXALLLARGECORE",
-    "Problem97.CPackageBankFidelity.fidelity_c1": "P97-OFF-X-FIDELITYC1",
-    "Problem97.CPackageBankFidelity.fidelity_c2": "P97-OFF-X-FIDELITYC2",
-    "Problem97.EPackageBankFidelity.fidelity_e1": "P97-OFF-X-FIDELITYE1"
+    "Problem97.ATailFrontierLiveClosure.false_of_pairedCommonDeletion_fiveSurviveOneFail_triApexAllLarge_core": "P97-TA-TRIAPEXALLLARGECORE"
   },
   "retired": {
+    "Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_firstFiberDescentResidual": {
+      "id": "P97-OFF-TS-FIRSTFIBERDESCENT",
+      "retired_at_head": "b1002c756d483d588a709fef7177c5f1e038545f"
+    },
     "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV_vRowBlockerDeleted_deletedRowBlockerOffClass_card_eq_seventeen_secondCapNine": {
       "id": "P97-R221-SECONDCAPNINE",
       "retired_at_head": "eb6a12039aba1e3c4cc48baa9f1299337fc6a2ac"
@@ -53,6 +53,18 @@
     "Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV_vRowBlockerOffClass": {
       "id": "P97-R221-VROWBLOCKEROFFCLASS",
       "retired_at_head": "eb6a12039aba1e3c4cc48baa9f1299337fc6a2ac"
+    },
+    "Problem97.CPackageBankFidelity.fidelity_c1": {
+      "id": "P97-OFF-X-FIDELITYC1",
+      "retired_at_head": "b1002c756d483d588a709fef7177c5f1e038545f"
+    },
+    "Problem97.CPackageBankFidelity.fidelity_c2": {
+      "id": "P97-OFF-X-FIDELITYC2",
+      "retired_at_head": "b1002c756d483d588a709fef7177c5f1e038545f"
+    },
+    "Problem97.EPackageBankFidelity.fidelity_e1": {
+      "id": "P97-OFF-X-FIDELITYE1",
+      "retired_at_head": "b1002c756d483d588a709fef7177c5f1e038545f"
     }
   },
   "schema": "p97-obligation-id-assignments/v1"

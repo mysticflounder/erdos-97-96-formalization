@@ -12,7 +12,8 @@ in `FrontierLiveClosure.lean`, landed tree `a0f73bc1`.
 
 - `CPackageBank.lean` — 18 kernel-checked, `sorry`-free theorems. All eight
   requested targets landed; none dropped or weakened.
-- `FidelityCheck.lean` — harness, NOT a bank deliverable, deliberately
+- [`FidelityCheck.lean`](../../../attic/p97-package-bank-fidelity-2026-08-30/c-package-bank/FidelityCheck.lean)
+  — archived harness, NOT a bank deliverable, deliberately
   contains two `sorry`s: two `False`-goal theorems whose binder lists are
   copied character-for-character from the two leaves; each body applies every
   bank theorem of its leaf. It compiles, which is machine proof that every

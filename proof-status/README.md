@@ -2,7 +2,8 @@
 
 Program: docs/audits/2026-08-23-consolidation-refactor-audit.md, lane
 `consolidation-refactor-20260823`. The registry, ID ledger, frontier table, and
-receipts are generated; `obligations-meta.json` is hand-reviewed and this README
+receipts are generated; `obligations-meta.json` and
+`private-edge-reachability.json` are hand-reviewed inputs, and this README
 documents their gates. Do not hand-edit files identified below as generated.
 The [current proof checkpoint](../docs/proof/CURRENT.md) is the short pointer to
 the latest accepted refactor delta and its explicit predecessor; this directory
@@ -22,8 +23,10 @@ remains the machine-readable evidence authority.
 - `id-assignments.json` — authoritative symbol→ID ledger. IDs never change or get
   reissued; vanished symbols move to its `retired` map. A W3-0 factorization
   rename adds an `aliases` map (see "Factorization entries (W3-0)"); the key is
-  written only when it is non-empty.
-- `obligations-meta.json` — the ONE hand-reviewed file (a JSON object keyed by
+  written only when it is non-empty. A reachability correction likewise does
+  not rename an ID, so the two promoted private-edge leaves retain their
+  historical `P97-OFF-` prefixes.
+- `obligations-meta.json` — the reviewed metadata file (a JSON object keyed by
   obligation ID): per-ID cluster, packet, controlled `prose_status` vocabulary,
   citations. The generator reads this file by name; the join is validated on
   every `check` (see "Metadata validation" below). An entry MAY also carry an
@@ -56,6 +59,13 @@ remains the machine-readable evidence authority.
   see "Legacy import exceptions and dated graph (W3-0)".
 - `baseline/` — frozen Phase 0 measurement (spine/off-spine exports, axioms,
   module hashes, dirty snapshot, re-anchor note).
+- `private-edge-reachability.json` — reviewed `p97-private-edge-reachability/v1`
+  manifest for the two private-helper call paths that the public
+  `proof-blueprint` spine export cannot see. It is a closed-world, fail-closed
+  override: generation accepts exactly the authenticated leaves and only when
+  each appears once in the off-spine export. A missing entry, duplicate,
+  already-visible, malformed, or unregistered override fails generation,
+  checking, and the status gate; overrides never mask unrelated roster drift.
 - `phase0-gate.json` / `phase0-gate-resolution.json` — the independent Phase 0
   gate report and the main-session resolution record.
 

@@ -1,0 +1,140 @@
+{
+  "blueprint_refs": {
+    "build_id": "4b06490c8812",
+    "command": "proof-blueprint refs --check",
+    "exit_code": 1,
+    "fresh": 57159,
+    "never_mined": 0,
+    "ran": true,
+    "raw": "current build: 4b06490c8812\nproject symbols: 65460  (57160 minable; 7410 trusted 🔒, 891 without an importable olean)\n  mined (fresh):  57159\n  stale:          1 (mined against an older build)\n  never mined:    0\n\nRun `proof-blueprint refs --refresh` to reconcile.",
+    "stale": 1
+  },
+  "command": "check",
+  "exit_code": 0,
+  "factorization": {
+    "build_id": "4b06490c8812c28b77ee7668be47d0bb7f1ea94110471633ea2ebe5bfd238d87",
+    "checked": 25,
+    "declared_trust": {
+      "axioms": [
+        "Lean.ofReduceBool",
+        "Lean.trustCompiler"
+      ],
+      "blocks": 21
+    },
+    "missing": 2,
+    "registry_drift": [],
+    "required_clusters": [],
+    "schema_versions": {
+      "p97-factorization/v2": 25
+    },
+    "v1_warnings": 0,
+    "verified": 25,
+    "violations": []
+  },
+  "generated_at_utc": "2026-08-31T04:27:53Z",
+  "generated_by": "scripts/gen_obligation_registry.py",
+  "git_head": "3d8902584d0b26baf91c7e0336a27de48644fb62",
+  "lean_toolchain": {
+    "content": "leanprover/lean4:v4.27.0",
+    "other_pins": [
+      {
+        "content": "leanprover/lean4:v4.27.0",
+        "path": "lean-toolchain",
+        "sha256": "d55ca0039a5479db5b38919d005b2c427b89b3be4f0184a20f2f4eae931f5bdb"
+      }
+    ],
+    "path": "lean/lean-toolchain",
+    "sha256": "d55ca0039a5479db5b38919d005b2c427b89b3be4f0184a20f2f4eae931f5bdb"
+  },
+  "meta": {
+    "entries": 27,
+    "file": "obligations-meta.json",
+    "registry_entries_with_meta_status": 27,
+    "violations": [],
+    "vocabulary": [
+      "KERNEL_CLEAN",
+      "CERTIFIED_APPROVED_TRUST",
+      "SOURCE_CLEAN_TRANSITIVELY_OPEN",
+      "PROSE_CLOSED_LEAN_UNIMPLEMENTED",
+      "NORMAL_FORM_CLOSED_TERMINAL_OPEN",
+      "OPEN_MATHEMATICAL",
+      "REFUTED_LOCAL_STATEMENT",
+      "OFF_SPINE_DIAGNOSTIC",
+      "SUPERSEDED"
+    ]
+  },
+  "reasons": [],
+  "registry": "proof-status/obligations.json",
+  "registry_source_head": "020e43bfc328879dfdc7d8a558a80fbdbdff2438",
+  "require_fresh_refs": false,
+  "roster": {
+    "added": [],
+    "changed_fields": 0,
+    "committed": {
+      "off_spine": 0,
+      "reachable": 27,
+      "total": 27
+    },
+    "live": {
+      "off_spine": 0,
+      "reachable": 27,
+      "total": 27
+    },
+    "removed": []
+  },
+  "schema": "p97-registry-check-receipt/v1",
+  "source_files": {
+    "any_dirty": true,
+    "count": 9,
+    "files": {
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221Closure.lean": {
+        "dirty": false,
+        "present": true,
+        "sha256": "cafeac3e4bbcabfbe6ffcf1443e4d9b93c717627e5144c6158040aff5676efa8"
+      },
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221Placement.lean": {
+        "dirty": false,
+        "present": true,
+        "sha256": "2f8c444d6269de79c7a672700a9f80e6744fdaddb48263d61239cdbf99cd8210"
+      },
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221SourceHeavy.lean": {
+        "dirty": false,
+        "present": true,
+        "sha256": "2f791217320ef4e3e522ab9f3cdcbb285035bd77a85d3d996a13ec2acb9c4698"
+      },
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TriApexEndpointRetainedOmission.lean": {
+        "dirty": false,
+        "present": true,
+        "sha256": "816ad0f8f0c00cba5bb3f7611d68c1d8f1a5b1661843dce13be136ceda560f26"
+      },
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean": {
+        "dirty": false,
+        "present": true,
+        "sha256": "ae10256ac52a68d4d502df688b53dec71f4d4c98ca8ee7ba2fedb8360f5376ee"
+      },
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceCanonicalSurface.lean": {
+        "dirty": false,
+        "present": true,
+        "sha256": "6bd5440d4fc0007e2f64bd6ae9b0f73ec166be044d44722b5429717c32455137"
+      },
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceClosure.lean": {
+        "dirty": true,
+        "present": true,
+        "sha256": "42216c92a19f676f5c81deef307c3afb2add97b36b1ea246c0fc261d194fdcf5"
+      },
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFirstFiberCollision.lean": {
+        "dirty": false,
+        "present": true,
+        "sha256": "9a9e0dee6fe04cff01dfbddb1f715b3c58a0cac65c18860ddeaa1546c1fae1ca"
+      },
+      "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean": {
+        "dirty": false,
+        "present": true,
+        "sha256": "3b7a59caac9924d277e8aa8335e6bd86856c9e5bf4b30ecc5c0c354431941fb2"
+      }
+    },
+    "missing": []
+  },
+  "source_head_matches_git_head": false,
+  "verdict": "pass"
+}

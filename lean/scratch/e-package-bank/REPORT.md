@@ -11,11 +11,13 @@ report of record, 2026-07-28). Source math:
 
 - `EPackageBank.lean` — 27 kernel-checked, sorry-free theorems; all four
   targets landed, nothing weakened.
-- `FidelityCheck.lean` — PARKED-SPEC harness (one intentional `sorry`): a
+- [`FidelityCheck.lean`](../../../attic/p97-package-bank-fidelity-2026-08-30/e-package-bank/FidelityCheck.lean)
+  — archived PARKED-SPEC harness (one intentional `sorry`): a
   False-goal theorem with the E1 binder block character-for-character,
   applying all 19 E1-indexed bank theorems. Compiles ⇒ every bank hypothesis
-  instantiates verbatim in the leaf context. Build recipe at file head
-  (needs the bank's .olean; gitignored artifact).
+  instantiates verbatim in the leaf context. The
+  [archive README](../../../attic/p97-package-bank-fidelity-2026-08-30/README.md#manual-replay)
+  records the current manual replay recipe.
 
 ## Validation (independent re-run by orchestrator)
 

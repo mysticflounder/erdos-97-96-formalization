@@ -1,0 +1,20 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "p97-fidelity-attic-20260830",
+  "owner": "codex-p97-fidelity-attic",
+  "base_head": "beb71db498ad47cca5c343a76a359423ff47f9e2",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/p97-fidelity-attic-20260830.json",
+    "attic/p97-package-bank-fidelity-2026-08-30/README.md",
+    "attic/p97-package-bank-fidelity-2026-08-30/c-package-bank/FidelityCheck.lean",
+    "attic/p97-package-bank-fidelity-2026-08-30/e-package-bank/FidelityCheck.lean",
+    "lean/scratch/c-package-bank/FidelityCheck.lean",
+    "lean/scratch/c-package-bank/REPORT.md",
+    "lean/scratch/e-package-bank/FidelityCheck.lean",
+    "lean/scratch/e-package-bank/REPORT.md"
+  ],
+  "durable_paths": [],
+  "generated_roots": [],
+  "created_utc": "2026-08-31T02:48:00Z",
+  "manifest_sha256": "37e53aaaa8af9593244e8dfc7261f5986598cb0656b8f194aa38da02bb6d536a"
+}

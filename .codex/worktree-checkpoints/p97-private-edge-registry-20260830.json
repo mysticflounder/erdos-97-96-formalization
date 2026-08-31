@@ -1,0 +1,29 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "p97-private-edge-registry-20260830",
+  "owner": "codex-p97-private-edge-registry",
+  "base_head": "7f005b39322c42039ac854baa37ff5b89585e4ce",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/p97-private-edge-registry-20260830.json",
+    "README.md",
+    "docs/computational-closure-plan-2026-07-28.md",
+    "proof-status/README.md",
+    "proof-status/baseline/base-head.txt",
+    "proof-status/baseline/offspine-sorry.json",
+    "proof-status/baseline/spine-sorry.json",
+    "proof-status/frontier-table.generated.md",
+    "proof-status/id-assignments.json",
+    "proof-status/obligations-meta.json",
+    "proof-status/obligations.json",
+    "proof-status/private-edge-reachability.json",
+    "scripts/gen_obligation_registry.py",
+    "scripts/test_gen_obligation_registry_factorization.py",
+    "scripts/test_gen_obligation_registry_reachability.py"
+  ],
+  "durable_paths": [
+    "proof-status/receipts/registry-check-20260831T042753Z.json"
+  ],
+  "generated_roots": [],
+  "created_utc": "2026-08-31T02:53:20Z",
+  "manifest_sha256": "2c34cb8a436bd5625e85d5db76da30defaef195304bd3859b93a1028f1616dd3"
+}

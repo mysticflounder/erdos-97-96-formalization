@@ -1673,6 +1673,34 @@ the MEC-cap bridge remain possible stronger routes.
 `CapWitness` and MEC bridge, prove the orientation/order adapters, replay the
 result in Lean or an exact certificate, and record the resulting axiom boundary.
 
+### 11.6 First-fiber compatibility island attic extraction
+
+**Exact target:** The 11 compatibility declarations removed from
+`TwoSourceFreshThirdFiber.lean:819-882`, `TwoSourceClosure.lean:2044-2186`,
+and `TwoSourceAlignedLowHits.lean:94-247` at base HEAD
+`beb71db498ad47cca5c343a76a359423ff47f9e2`.
+
+**Assessment:** `STALE_STATUS`.
+
+**Evidence:** `SOURCE_CHECKED` — the declaration blocks and their doc comments
+are preserved in `attic/p97-firstfiber-compatibility-2026-08-30/`.
+
+**Project relevance:** `OFF_SPINE_AT_BASELINE` — these are compatibility
+adapters around `false_of_twoCapSources_firstFiberDescentResidual`. Their
+containing modules remain production imports, but no current production
+declaration or published proof closure calls the archived island.
+
+**Exact scope:** This retires the compatibility island from normal Lake source
+without claiming that its propositions are false or that the first-fiber route
+is mathematically impossible.
+
+**Not ruled out:** A future diagnostic replay may restore the source context,
+adapt names/imports, and test a stronger first-fiber route.
+
+**Reopen condition:** Perform that explicit diagnostic replay and re-audit
+reachability and `#print axioms`; the attic is historical evidence only, not
+theorem-bank or promotion authority. No Lake build was run for this extraction.
+
 ## 12. Maintenance rules and durable reopen conditions
 
 ### 12.1 Statements safely barred now

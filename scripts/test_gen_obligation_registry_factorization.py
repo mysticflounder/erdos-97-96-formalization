@@ -1483,9 +1483,19 @@ def copy_proof_status(tmp_path: Path) -> Path:
         item.pop(gor.FACTORIZATION_KEY, None)
     registry_path.write_text(gor.dump_canonical(registry), encoding="utf-8")
 
+    # The logical registry now promotes two leaves through reviewed private
+    # edges, but the physical blueprint miner still emits those declarations
+    # in the off-spine export.  Reconstruct that source split explicitly so
+    # command-level fixtures exercise the same fail-closed override path as
+    # production generation.
+    hidden_private = set(gor.PRIVATE_EDGE_REACHABILITY)
     exports = {True: [], False: []}
     for item in sorted(registry["obligations"], key=lambda row: row["lean_decl"]):
-        exports[bool(item["reachable"])].append(
+        physical_reachable = (
+            bool(item["reachable"])
+            and item["lean_decl"] not in hidden_private
+        )
+        exports[physical_reachable].append(
             {
                 "symbol": item["lean_decl"],
                 "file": item["source_file"],
@@ -1514,8 +1524,13 @@ def read_status_json(status: Path, name: str) -> dict:
 
 def first_reachable_entry(status: Path) -> dict:
     registry = read_status_json(status, gor.REGISTRY_NAME)
+    hidden_private = set(gor.PRIVATE_EDGE_REACHABILITY)
     reachable = sorted(
-        (item for item in registry["obligations"] if item.get("reachable")),
+        (
+            item
+            for item in registry["obligations"]
+            if item.get("reachable") and item["lean_decl"] not in hidden_private
+        ),
         key=lambda item: item["id"],
     )
     assert reachable

@@ -194,17 +194,19 @@ reachable leaf is proved, `sorryAx` drops out and both closures become the core
 axioms plus those two compiler axioms — the declared trust boundary of the
 certificate infrastructure.
 
-The live `proof-blueprint spine` roster is the current reachability surface.
-The committed `docs/live-blueprint.md` is generator-owned and may lag it. As of
-2026-08-30, `gen_obligation_registry.py status --check` fails because that file
-differs byte-for-byte from the live spine; do not hand-edit it. The open-node
+The live `proof-blueprint spine` roster is the primary mined reachability
+surface. Its current public graph omits two audited private-helper paths, so the
+registry augments that roster with the closed-world reviewed manifest at
+`proof-status/private-edge-reachability.json`; `#print axioms` on the two public
+consumers confirms that both paths still carry `sorryAx`. The committed
+`docs/live-blueprint.md` is generator-owned, and `status --check` requires it to
+match the visible spine byte-for-byte; do not hand-edit it. The open-node
 numerator is not used as an obligation count.
 
-The current registry records 25 publish-reachable and 6 off-spine declarations:
-15 Rigid221, 1 TriApex, 6 TwoSource, and 3 two-deletion declarations on the P97
-spine. The cached reference mine at build `e373ee042532` has one stale
-reference, so refresh before making a claim about newer source. The detailed
-2026-08-22 through 2026-08-24 narrative below is retained as checkpoint history.
+The current registry records 27 publish-reachable and no off-spine
+declarations: 16 Rigid221, 1 TriApex, 7 TwoSource, and 3 two-deletion
+declarations on the P97 spine. The detailed 2026-08-22 through 2026-08-24
+narrative below is retained as checkpoint history.
 
 The 2026-08-22 prose-library synthesis did not rerun this build-derived
 measurement. The 2026-08-23 TriApex work did: first it proved a source-clean
@@ -291,42 +293,36 @@ the marker-delimited block below is the generated current authority.
 > This is registry bookkeeping, not a proof-progress claim.
 
 - Publish target: `Problem97.erdos97_rhs`
-- Registry source head: `eb6a12039aba1e3c4cc48baa9f1299337fc6a2ac`
-- Registered declarations: **25 reachable**, **6 off-spine** (31 total)
-- Reviewed status coverage: **31/31** entries
+- Registry source head: `020e43bfc328879dfdc7d8a558a80fbdbdff2438`
+- Registered declarations: **27 reachable**, **0 off-spine** (27 total)
+- Reviewed status coverage: **27/27** entries
 
 #### Reachable declarations by module
 
 | Cluster | Module | Open |
 |---|---|---:|
-| **Rigid221** | `Rigid221Closure.lean` | 5 |
+| **Rigid221** | `Rigid221Closure.lean` | 6 |
 |  | `Rigid221Placement.lean` | 5 |
 |  | `Rigid221SourceHeavy.lean` | 5 |
 | **TriApex** | `TriApexEndpointRetainedOmission.lean` | 1 |
-| **TwoSource** | `TwoSourceFreshThirdResidual.lean` | 3 |
+| **TwoSource** | `TwoSourceFreshThirdResidual.lean` | 4 |
 |  | `TwoSourceCanonicalSurface.lean` | 1 |
 |  | `TwoSourceClosure.lean` | 1 |
 |  | `TwoSourceFirstFiberCollision.lean` | 1 |
 | **Two-deletion** | `TwoDeletionCollision.lean` | 3 |
-| **Total** | | **25** |
+| **Total** | | **27** |
 
 #### Reviewed status tally
 
 | Reviewed status | Entries |
 |---|---:|
-| `NORMAL_FORM_CLOSED_TERMINAL_OPEN` | 11 |
-| `OPEN_MATHEMATICAL` | 14 |
-| `OFF_SPINE_DIAGNOSTIC` | 6 |
-| **Total** | **31** |
+| `NORMAL_FORM_CLOSED_TERMINAL_OPEN` | 12 |
+| `OPEN_MATHEMATICAL` | 15 |
+| **Total** | **27** |
 
-#### Off-spine declarations (6)
+#### Off-spine declarations (0)
 
-- `Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_freshThird_pinnedEndpoint_outsideSeedResidual` — `Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean`
-- `Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_firstFiberDescentResidual` — `Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdFiber.lean`
-- `Problem97.ATailFrontierLiveClosure.false_of_exactFiveDistinct_biApexRobust_postCardEleven` — `Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221Closure.lean`
-- `Problem97.CPackageBankFidelity.fidelity_c1` — `scratch/c-package-bank/FidelityCheck.lean`
-- `Problem97.CPackageBankFidelity.fidelity_c2` — `scratch/c-package-bank/FidelityCheck.lean`
-- `Problem97.EPackageBankFidelity.fidelity_e1` — `scratch/e-package-bank/FidelityCheck.lean`
+- None.
 
 <!-- END GENERATED P97 OBLIGATION STATUS -->
 
@@ -339,19 +335,20 @@ subpackage, `ContextFrames.lean`, and `SharedFrontierHelpers.lean`). The registr
 identifies which reachable declarations sit in the nested
 `TwoSourceExactCollisionRowsTerminal` namespace.
 
-The table counts **obligations reachable from the publish target**, as reported
-by `proof-blueprint` against the built tree — not raw `sorry` tokens. Regenerate
-the spine after any build before quoting these counts; they move as leaves split
-and close.
+The table counts **obligations reachable from the publish target**, using the
+live `proof-blueprint` graph plus the two reviewed private-helper paths — not
+raw `sorry` tokens. Regenerate the spine after any build before quoting these
+counts; they move as leaves split and close.
 
-The off-spine roster above includes imported `FrontierLiveClosure/`
-placeholders, which the blueprint flags as policy violations, and fidelity
-checks that no Lake import chain reaches. Earlier README snapshots listed
-`DoubleApexOffSurplusSharedRadiusPair` in
+There are currently no registered off-spine declarations. The deliberate C/E
+fidelity harnesses and the dead first-fiber compatibility island now live under
+`attic/`, outside normal Lake source. The exact-five post-card-eleven and
+pinned-endpoint residuals formerly listed as off-spine are instead live
+obligations: public consumers reach them through private helpers, as recorded
+by the reviewed manifest and confirmed by their `sorryAx` closures. Earlier
+README snapshots listed `DoubleApexOffSurplusSharedRadiusPair` in
 `U1LargeCapRouteBTail.lean`; that name resolves to no declaration in the live
-index, and the entry was wrong. None of the registered off-spine declarations
-affects either published claim's axiom closure, because the spine reaches none
-of them; their reviewed status is reported in the generated tally.
+index, and the entry was wrong.
 
 The checked parent coordinators — `false_of_criticalPairFrontier`,
 `false_of_originalFrontierUniqueRadiusArm`,
