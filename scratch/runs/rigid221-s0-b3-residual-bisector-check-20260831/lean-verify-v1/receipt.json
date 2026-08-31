@@ -1,0 +1,31 @@
+{
+  "schema": "rigid221-b3-residual-bisector-check-receipt/v1",
+  "lane_id": "rigid221-s0-b3-residual-bisector-check-20260831",
+  "run_id": "lean-verify-v1",
+  "base_head": "71ba38cfc6072185d5b001ac9ccfbb9a8c26aa36",
+  "executed_head": "71ba38cfc6072185d5b001ac9ccfbb9a8c26aa36",
+  "run_manifest_sha256": "d0455e482a1bed44223ca720722f9607908ee01c42cdbf03e7e38f1979327fc1",
+  "check_source_sha256": "3e44f91f4545abeb98cc37cf2ba5fc2bc5ad5de06b71775a5d607acb1ca4bf24",
+  "initial_attempt": {
+    "command": "lake env lean scratch/runs/.../ResidualBisectorCheck.lean",
+    "exit_code": 1,
+    "classification": "environment invocation error",
+    "diagnostic": "repository module prefix was absent from the root-level Lean search path"
+  },
+  "scratch_elaboration": {
+    "command": "lake env lean ../scratch/runs/.../ResidualBisectorCheck.lean",
+    "working_directory": "lean",
+    "exit_code": 0,
+    "wall_time_seconds": 6.36,
+    "result": "ELABORATED"
+  },
+  "governed_target_build": {
+    "command": "LAKE_BUILD_NO_REFRESH=1 lake-build Erdos9796Proof.P97.ATail.FrontierLiveClosure.Rigid221Placement",
+    "exit_code": 0,
+    "wall_time_seconds": 4.58,
+    "result": "BUILD_COMPLETED",
+    "qualification": "the existing target still contains declared sorries; this build validates import coherence only"
+  },
+  "claim_boundary": "The scratch example proves the residual-pair distance inequality from the B3 inputs. It does not close B3, supply a terminal consumer, or promote a new declaration.",
+  "created_utc": "2026-08-31T13:26:00Z"
+}

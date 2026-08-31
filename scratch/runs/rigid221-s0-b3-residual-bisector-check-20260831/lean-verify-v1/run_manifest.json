@@ -1,0 +1,24 @@
+{
+  "schema": "worktree-run-manifest/v1",
+  "lane_id": "rigid221-s0-b3-residual-bisector-check-20260831",
+  "run_id": "lean-verify-v1",
+  "root": "scratch/runs/rigid221-s0-b3-residual-bisector-check-20260831/lean-verify-v1",
+  "owner": "codex-rigid221-s0-b3-residual-bisector-check",
+  "base_head": "71ba38cfc6072185d5b001ac9ccfbb9a8c26aa36",
+  "output_classes": [
+    "artifacts",
+    "events",
+    "tmp"
+  ],
+  "source_digests": {
+    "scratch/runs/rigid221-s0-b3-residual-bisector-check-20260831/lean-verify-v1/ResidualBisectorCheck.lean": "3e44f91f4545abeb98cc37cf2ba5fc2bc5ad5de06b71775a5d607acb1ca4bf24",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221Placement.lean": "2f8c444d6269de79c7a672700a9f80e6744fdaddb48263d61239cdbf99cd8210",
+    "lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueArmRouteAudit/OriginalUniqueResidualDispatch.lean": "b8f7c43a89bfbd52718f313407fbf7e41b53c71a56d9d435abc7732c2d2f5bb7",
+    "lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean": "9be1f834138ec1d1e3656e26ea3d89752e73673ea35bfc631b826c70d1794f19"
+  },
+  "input_digests": {
+    "docs/audits/2026-08-31-rigid221-s0-b3-ingress-compatibility.md": "8defc6aedc0672e39104b56f2bcb6ec9aafed399f1f086e7a6c47037f2dbf384"
+  },
+  "created_utc": "2026-08-31T13:24:00Z",
+  "manifest_sha256": "d0455e482a1bed44223ca720722f9607908ee01c42cdbf03e7e38f1979327fc1"
+}

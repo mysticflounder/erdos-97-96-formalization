@@ -1,0 +1,20 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "rigid221-s0-b3-residual-bisector-check-20260831",
+  "owner": "codex-rigid221-s0-b3-residual-bisector-check",
+  "base_head": "71ba38cfc6072185d5b001ac9ccfbb9a8c26aa36",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/rigid221-s0-b3-residual-bisector-check-20260831.json",
+    "docs/audits/2026-08-31-rigid221-s0-b3-residual-bisector-check.md"
+  ],
+  "generated_roots": [
+    "scratch/runs/rigid221-s0-b3-residual-bisector-check-20260831/lean-verify-v1"
+  ],
+  "durable_paths": [
+    "scratch/runs/rigid221-s0-b3-residual-bisector-check-20260831/lean-verify-v1/ResidualBisectorCheck.lean",
+    "scratch/runs/rigid221-s0-b3-residual-bisector-check-20260831/lean-verify-v1/receipt.json",
+    "scratch/runs/rigid221-s0-b3-residual-bisector-check-20260831/lean-verify-v1/run_manifest.json"
+  ],
+  "created_utc": "2026-08-31T13:23:00Z",
+  "manifest_sha256": "950331d73da74b17a135313c42d38278daf6e94213026372d1837456fe332859"
+}
