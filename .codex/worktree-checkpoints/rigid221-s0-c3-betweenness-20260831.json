@@ -1,0 +1,16 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "rigid221-s0-c3-betweenness-20260831",
+  "owner": "C3BetweennessCartographer",
+  "base_head": "3d8902584d0b26baf91c7e0336a27de48644fb62",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/rigid221-s0-c3-betweenness-20260831.json",
+    "docs/audits/2026-08-31-rigid221-s0-c3-betweenness.md",
+    "intent/offspine.toml",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221SourceRowCapBetweenness.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-08-31T04:24:08Z",
+  "manifest_sha256": "81b21ee757b96624460287e8f5829665cc3c048d9ed24e2d686502194020daa9"
+}
