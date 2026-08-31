@@ -98,14 +98,38 @@ and intended consumer identities are exact. It is not yet a
 `p97-cegar-semantic-contract/v2` receipt: that schema requires accepted R1--R3
 producer references, which are Phase 4 outputs.
 
+The frozen draft schema is `p97-cegar-semantic-contract-input/v1`, implemented
+by `census/p97_search/cegar_semantic_contract.py` and specified in Section 8
+of the v2 contract specification. It has a closed one-arm shape, permits only
+`CANONICAL_PROJECTION_FUNCTION`, forbids aggregate coverage, and derives the
+exact input-digest list for each producer role from a closed dependency matrix.
+Its R1--R3 records state the quantified obligations and desired producer
+identities; they do not claim that a producer has been resolved, run, or
+accepted. The future accepted producer reference's `input_digests` must equal
+the draft requirement's derived `dependency_bindings`.
+
+`contract_id` hashes the complete draft identity excluding only the two
+top-level hash fields. `contract_input_sha256` hashes that same object with the
+derived `contract_id` present, excluding only itself. Requirement and root-
+obligation self-hashes exclude only their respective self-hash fields. All
+structured preimages use canonical JSON without the storage newline; stored
+artifacts use canonical JSON with exactly one final newline and create-once,
+no-follow regular-file custody.
+
+Production instantiation is separate from implementing this schema and requires
+the selected v4 source/encoding descriptor plus real producer requirements.
+The Phase-0 module provides no authoritative v2 builder, validator, or
+publisher.
+
 Exit criterion: the draft identity is immutable and sufficient to state the
 R1--R3 obligations without circularity. The authoritative v2 receipt is issued
 only at the end of Phase 4.
 
 ## 4. Phase 1: artifact and verifier library
 
-Add focused modules under `census/p97_search/`. These names are proposed; they
-do not exist at the time of this plan.
+Add focused modules under `census/p97_search/`. The producer-reference, Lean
+declaration-export, and Phase-0 contract-input modules now exist; the remaining
+names are planned.
 
 - `cegar_producer_ref.py`
 - `cegar_lean_declaration_export.py`
@@ -117,11 +141,15 @@ do not exist at the time of this plan.
 - `cegar_semantic_verifier.py`
 
 Implement these schemas. `p97-cegar-semantic-contract/v2` is already used as a
-governing identifier by the decoder and authority modules; this phase adds its
-actual parser, builder, and validator rather than inventing another identifier.
+governing identifier by the decoder and authority modules. The separate
+Phase-0 input schema is implemented first so draft identity cannot be confused
+with accepted v2 evidence. The authoritative v2 parser, builder, validator,
+and publisher are added only with the Phase-4 resolver and accepted R1--R3
+producer references.
 
 - `p97-cegar-producer-ref/v1`;
 - `p97-cegar-lean-declaration-receipt/v1`;
+- `p97-cegar-semantic-contract-input/v1`;
 - `p97-cegar-semantic-contract/v2`;
 - `p97-cegar-counterexample-assessment/v2`;
 - `p97-cegar-semantic-refinement/v2`;
@@ -133,12 +161,14 @@ actual parser, builder, and validator rather than inventing another identifier.
 
 `p97-cegar-terminal-promotion/v2` is the v2 successor to the historical
 `p97-cegar-semantic-terminal/v1` schema. Keep the v1 schema unchanged and record
-the successor relation in v2 and the wave-contract documentation. The two
-proposed schema names above remain unfrozen design inputs until Phase 0 review.
+the successor relation in v2 and the wave-contract documentation. The
+survivor-discharge and bundle-index schema names remain unfrozen design inputs
+until their owning phases are reviewed.
 
 Phase 1 may parse and build the immutable Phase 0 draft input, but its
-authoritative contract builder must reject issuance until accepted R1--R3
-producer references are present. The counterexample-assessment schema
+authoritative contract machinery must not exist as a draft-only shortcut and
+must reject issuance until accepted R1--R3 producer references are present.
+The counterexample-assessment schema
 enumerates exactly `INVALID_ENCODING_MODEL`, `CONCRETE_COUNTEREXAMPLE`,
 `SPURIOUS_WITH_REFINEMENT`, and `UNRESOLVED_ABSTRACT_MODEL`.
 
@@ -284,6 +314,18 @@ Existing Card18 candidates include `source_to_abstract_packet`,
 discharge this interface. The source theorem lacks a public `Represents`
 result, and the decoder theorem returns an existential packet instead of the
 required public canonical decode result.
+
+Before v2 issuance, an independent resolver receives the expected Phase-0
+`contract_id` and `contract_input_sha256` from the authenticated lane manifest;
+loading a self-consistent draft from a path is not enough. For every role, it
+must resolve one accepted `p97-cegar-producer-ref/v1` and compare the complete
+requirement: typed producer identity, normalized statement, hypothesis,
+imports, transitive source, repository-policy result, toolchain, trust-registry
+entry, validation-receipt schema and digest, and reachability-policy result.
+The producer reference's sorted `input_digests` must equal the requirement's
+derived `dependency_bindings` by both name and digest, with no added, omitted,
+or renamed input. Matching only a role name, declaration name, or dependency
+name set is insufficient.
 
 Record each accepted declaration through `p97-cegar-producer-ref/v1`. Run
 targeted Lean builds, axiom audits, producer/consumer searches, and
@@ -486,6 +528,12 @@ are structurally incapable of deriving positive authority.
 
 Required adversarial mutations include:
 
+- the Phase-0 input's fixed draft status, schema pointers, paired Lean-consumer
+  requirements, and one-arm aggregate prohibition;
+- every Phase-0 producer requirement at its exact role location, including the
+  closed dependency-name matrix and its future `input_digests` conversion;
+- requirement, root-obligation, contract-identity, and stored-input hash
+  preimages, including role swaps and forbidden hash cycles;
 - every contract, hash, arm, scope, model, map, decoder, producer, and consumer
   field;
 - cross-contract, cross-arm, cross-wave, and cross-cardinality swaps;
