@@ -1,0 +1,21 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "rigid221-card18-crossed-custody-v4-20260831",
+  "owner": "rigid221-card18-crossed-custody-v4-20260831",
+  "base_head": "ff935411514804caf003171164807f79d16a341e",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/rigid221-card18-crossed-custody-v4-20260831.json",
+    "census/p97_search/rigid221_card18_crossed_incidence_custody_v4.py",
+    "census/p97_search/tests/test_rigid221_card18_crossed_incidence_custody_v4.py",
+    "certificates/rigid221_card18_crossed_incidence_source_custody_v4.json",
+    "docs/specs/p97-rigid221-card18-crossed-incidence-custody-v4.md"
+  ],
+  "generated_roots": [
+    "scratch/runs/rigid221-card18-crossed-custody-v4-20260831/20260831T153708Z"
+  ],
+  "durable_paths": [
+    "scratch/runs/rigid221-card18-crossed-custody-v4-20260831/20260831T153708Z/evidence.json"
+  ],
+  "created_utc": "2026-08-31T15:37:08Z",
+  "manifest_sha256": "432d7b02bdf1ec70d50ec979ffa946bc30ccd21fec7959b703220ef89063ca07"
+}
