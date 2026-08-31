@@ -1,0 +1,22 @@
+{
+  "schema": "worktree-run-manifest/v1",
+  "lane_id": "rigid221-s0-c3-two-row-relational-probe-20260831",
+  "run_id": "piqd-v1",
+  "root": "scratch/runs/rigid221-s0-c3-two-row-relational-probe-20260831/piqd-v1",
+  "owner": "codex-rigid221-s0-c3-two-row-relational-probe",
+  "base_head": "36f6bcf59d95ec323b1612ced1384b39496157e7",
+  "output_classes": [
+    "artifacts",
+    "events",
+    "tmp"
+  ],
+  "source_digests": {
+    "scripts/rigid221_s0_c3_two_row_relational_probe.py": "f3a52874c4758f13e5181522af557398556c5e4fb0a901ad184ae6db997f1483",
+    "scripts/rigid221_s0_common_core_piqd.py": "847f2ac1b3cea173c38615d9879090fed62a1bdc2a31d45fefacf9c18bef35e2"
+  },
+  "input_digests": {
+    "docs/specs/p97-rigid221-s0-c3-two-row-relational-probe-v1.md": "bf85e3d34eb58442357a1b63ad24b92c1290e1cba0d0f70ed5110e7f91e898c4"
+  },
+  "created_utc": "2026-08-31T12:27:47Z",
+  "manifest_sha256": "4e15c3194db1f9886dc31a32ec8808a457560c499d6db1b780e6648d0c857c6c"
+}

@@ -1,0 +1,31 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "rigid221-s0-c3-two-row-relational-probe-20260831",
+  "owner": "codex-rigid221-s0-c3-two-row-relational-probe",
+  "base_head": "36f6bcf59d95ec323b1612ced1384b39496157e7",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/rigid221-s0-c3-two-row-relational-probe-20260831.json",
+    "docs/audits/2026-08-31-rigid221-s0-c3-two-row-relational-probe.md",
+    "docs/specs/p97-rigid221-s0-c3-two-row-relational-probe-v1.md",
+    "scripts/rigid221_s0_c3_two_row_relational_probe.py",
+    "scripts/test_rigid221_s0_c3_two_row_relational_probe.py"
+  ],
+  "generated_roots": [
+    "scratch/runs/rigid221-s0-c3-two-row-relational-probe-20260831/piqd-v1"
+  ],
+  "durable_paths": [
+    "scratch/runs/rigid221-s0-c3-two-row-relational-probe-20260831/piqd-v1/forward-driver-receipt.json",
+    "scratch/runs/rigid221-s0-c3-two-row-relational-probe-20260831/piqd-v1/forward-emitter-report.json",
+    "scratch/runs/rigid221-s0-c3-two-row-relational-probe-20260831/piqd-v1/forward-necessity-ledger.json",
+    "scratch/runs/rigid221-s0-c3-two-row-relational-probe-20260831/piqd-v1/forward-normalized.smt2",
+    "scratch/runs/rigid221-s0-c3-two-row-relational-probe-20260831/piqd-v1/forward-source.session.smt2",
+    "scratch/runs/rigid221-s0-c3-two-row-relational-probe-20260831/piqd-v1/reverse-driver-receipt.json",
+    "scratch/runs/rigid221-s0-c3-two-row-relational-probe-20260831/piqd-v1/reverse-emitter-report.json",
+    "scratch/runs/rigid221-s0-c3-two-row-relational-probe-20260831/piqd-v1/reverse-necessity-ledger.json",
+    "scratch/runs/rigid221-s0-c3-two-row-relational-probe-20260831/piqd-v1/reverse-normalized.smt2",
+    "scratch/runs/rigid221-s0-c3-two-row-relational-probe-20260831/piqd-v1/reverse-source.session.smt2",
+    "scratch/runs/rigid221-s0-c3-two-row-relational-probe-20260831/piqd-v1/run_manifest.json"
+  ],
+  "created_utc": "2026-08-31T12:14:08Z",
+  "manifest_sha256": "430a7f79816b47774c9f38852da0f88ecfb733f1b1b52c82d13a17e50a3f4c10"
+}

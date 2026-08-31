@@ -1,0 +1,77 @@
+{
+  "assertions": 147,
+  "cell": "forward",
+  "direct_z3": {
+    "reference_witness": {
+      "c3_orientation": "64/25",
+      "cell": "forward",
+      "first_turn": "1156/1625",
+      "ku_fiber": [
+        "u",
+        "xu",
+        "au",
+        "bu"
+      ],
+      "ku_radius2": "289/1625",
+      "kv_fiber": [
+        "v",
+        "xv",
+        "av",
+        "bv"
+      ],
+      "kv_radius2": "221/400",
+      "midpoint_distance2": "289/1625",
+      "physical_fiber": [
+        "u",
+        "xu",
+        "delta",
+        "v",
+        "xv"
+      ],
+      "physical_radius2": "289/100",
+      "second_turn": "1156/1625"
+    },
+    "status": "SAT"
+  },
+  "formula_bytes": 48712,
+  "formula_sha256": "ed636cd7b1e498ea010a0608e1e4dc0433c6f48bbc173a9ea4d708804eb5f470",
+  "omitted_source_facts": [
+    "complete-carrier realization",
+    "source coverage",
+    "unmodeled incidence relations",
+    "deletion-multiplicity obligations"
+  ],
+  "reference_witness": {
+    "c3_orientation": "64/25",
+    "cell": "forward",
+    "first_turn": "1156/1625",
+    "ku_fiber": [
+      "u",
+      "xu",
+      "au",
+      "bu"
+    ],
+    "ku_radius2": "289/1625",
+    "kv_fiber": [
+      "v",
+      "xv",
+      "av",
+      "bv"
+    ],
+    "kv_radius2": "221/400",
+    "midpoint_distance2": "289/1625",
+    "physical_fiber": [
+      "u",
+      "xu",
+      "delta",
+      "v",
+      "xv"
+    ],
+    "physical_radius2": "289/100",
+    "second_turn": "1156/1625"
+  },
+  "schema": "rigid221-s0-c3-two-row-relational-probe/v1",
+  "scope": "formula-scoped bounded relational positive-control; NOT a source realization or S0 proof",
+  "session_formula_bytes": 48700,
+  "session_formula_sha256": "7af9442f918999534d118ec9f39b18047600a2494cae9e85a18f260bb42407b5"
+}
