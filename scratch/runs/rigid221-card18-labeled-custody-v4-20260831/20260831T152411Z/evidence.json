@@ -1,0 +1,52 @@
+{
+  "schema": "rigid221-card18-labeled-projection-custody-v4/evidence/v1",
+  "lane_id": "rigid221-card18-labeled-custody-v4-20260831",
+  "run_id": "20260831T152411Z",
+  "base_head": "ff935411514804caf003171164807f79d16a341e",
+  "created_utc": "2026-08-31T15:31:16Z",
+  "source_snapshot": "CONTENT_ADDRESSED_LEAN_SOURCE_SET_ABOVE_LANE_BASE",
+  "receipt": {
+    "path": "certificates/rigid221_card18_labeled_projection_source_custody_v4.json",
+    "bytes": 8499,
+    "sha256": "c29f76c8f38d170c8efe1b94a96fdd5ebc9872045cdaeef66c2fec3c9135b6a9",
+    "receipt_sha256": "547a82012de5572f879bc30bf5306de456cc4086305f5ac572db2e286db7f40f",
+    "source_manifest_sha256": "5248f7ac37b12e3b623059959d7f6f3c541297569c128aa7d192da93cdb39900"
+  },
+  "v3_live_drift": [
+    {
+      "module": "Erdos9796Proof.P97.ATail.FrontierLiveClosure.Rigid221Placement",
+      "bytes": 44313,
+      "sha256": "49c8c3d6b8ed71c44b4f4287ce923fe63ac477432063db7875ca430753be1ea8"
+    },
+    {
+      "module": "Erdos9796Proof.P97.ATail.FrontierLiveClosure.Rigid221SourceHeavy",
+      "bytes": 907296,
+      "sha256": "2f791217320ef4e3e522ab9f3cdcbb285035bd77a85d3d996a13ec2acb9c4698"
+    }
+  ],
+  "checks": [
+    {
+      "name": "focused_pytest",
+      "command": "PYTHONPATH=. uv run pytest census/p97_search/tests/test_rigid221_card18_labeled_projection_custody_v4.py",
+      "status": "PASS",
+      "result": "50 passed in 0.28s"
+    },
+    {
+      "name": "ruff",
+      "command": "uv run --with ruff ruff check census/p97_search/rigid221_card18_labeled_projection_custody_v4.py census/p97_search/tests/test_rigid221_card18_labeled_projection_custody_v4.py",
+      "status": "PASS",
+      "result": "All checks passed!"
+    },
+    {
+      "name": "receipt_protocol",
+      "status": "PASS",
+      "result": "canonical encode, strict parse, canonical re-encode, and fresh live attestation succeeded"
+    }
+  ],
+  "hygiene": {
+    "command": "uv run python scripts/check_worktree_hygiene.py report --lane rigid221-card18-labeled-custody-v4-20260831",
+    "lane_issues": 0,
+    "shared_worktree_blocking": true,
+    "shared_worktree_blocker": "foreign durable-untracked and generated-root entries already present outside this lane"
+  }
+}
