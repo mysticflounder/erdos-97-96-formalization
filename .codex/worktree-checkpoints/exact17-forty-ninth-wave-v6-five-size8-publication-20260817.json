@@ -8,10 +8,8 @@
     "scripts/publish_exact17_forty_ninth_wave_v6_five_size8_promotion_root.py",
     "scripts/validate_exact17_forty_ninth_wave_v6_five_size8_promotion_export.py"
   ],
-  "generated_roots": [
-    "scratch/runs/exact17-forty-ninth-wave-v6-five-size8-20260817/export-v1"
-  ],
+  "generated_roots": [],
   "durable_paths": [],
   "created_utc": "2026-08-17T00:00:00Z",
-  "manifest_sha256": "ab0fd208d032b1cc54c83eb1d71bfd5ad586b90433ba5cad8754d4528e9e44ec"
+  "manifest_sha256": "0f7806ad378ec6d393d80ee28b6c389f75027e5f8c89fe5bac4a3ef0838beeaa"
 }

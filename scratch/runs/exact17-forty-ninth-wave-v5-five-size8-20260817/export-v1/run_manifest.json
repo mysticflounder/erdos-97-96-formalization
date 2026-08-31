@@ -1,0 +1,25 @@
+{
+  "schema": "worktree-run-manifest/v1",
+  "lane_id": "exact17-forty-ninth-wave-v5-five-size8-20260817",
+  "run_id": "export-v1",
+  "root": "scratch/runs/exact17-forty-ninth-wave-v5-five-size8-20260817/export-v1",
+  "owner": "exact17-forty-ninth-wave-v5-five-size8",
+  "base_head": "1e0b4234b1c21835548b0079bfa52bc84e620451",
+  "output_classes": [
+    "artifacts",
+    "events",
+    "tmp"
+  ],
+  "source_digests": {
+    "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenFortyNinthWaveV5FiveSize8Promotion.lean": "cdee8c853a5c8a5160703c69287e4a78c7caa7685bc75e8c65911e56db429c42",
+    "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenFortyNinthWaveV5FiveSize8PromotionExport.lean": "7b713089e6fb2c5f41879c3dc0b02b21118885a96646e3c82e20173b71e876cf",
+    "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenFortyNinthWaveV5FiveSize8Schemas.lean": "4836d7e46ef8433af5bb1de972df7fd08be7778595e690842fa45f7feedcfa1d",
+    "scripts/publish_exact17_forty_ninth_wave_v5_five_size8_promotion_root.py": "22bea3fda27bda0dd00a2d83367b105672d440c85ee68a2e981c08247aa1e728",
+    "scripts/validate_exact17_forty_ninth_wave_v5_five_size8_promotion_export.py": "13c63ecde0e633c07027c323fcccb3224e029a574610afbdc4484e48d8f9c3b3"
+  },
+  "input_digests": {
+    "scratch/runs/exact17-forty-ninth-wave-v4-three-zero-atoms-20260817/export-v1/artifacts/exact17-forty-ninth-wave-v4-three-zero-atoms-promotion.cnf": "1245397a6da8f74ee909a0efb162dfcea2c34e38d7d118403060515ff7d3c4f6"
+  },
+  "created_utc": "2026-08-31T00:00:41Z",
+  "manifest_sha256": "97a0641267eedf15b8c5e4e54f1008ad542c27c36c8983858516114b7644742b"
+}

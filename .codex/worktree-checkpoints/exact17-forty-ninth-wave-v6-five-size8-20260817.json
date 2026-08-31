@@ -10,8 +10,14 @@
   "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenFortyNinthWaveV6FiveSize8Schemas.lean",
   "scripts/generate_exact17_forty_ninth_wave_v6_five_size8_bank.py"
  ],
- "generated_roots": [],
- "durable_paths": [],
+  "generated_roots": [
+    "scratch/runs/exact17-forty-ninth-wave-v6-five-size8-20260817/export-v1"
+  ],
+  "durable_paths": [
+    "scratch/runs/exact17-forty-ninth-wave-v6-five-size8-20260817/export-v1/coverage-ledger.json",
+    "scratch/runs/exact17-forty-ninth-wave-v6-five-size8-20260817/export-v1/export-receipt.json",
+    "scratch/runs/exact17-forty-ninth-wave-v6-five-size8-20260817/export-v1/independent-audit-report.json"
+  ],
  "created_utc": "2026-08-17T00:00:00Z",
- "manifest_sha256": "908ee659d0e2081a95d4e371d21dc57a14d527d1e414ecc9787e9171e79e8fec"
+  "manifest_sha256": "3979345add4a4a3c57115ff794668b88d2ffdedc296087057df3f168fecbadd7"
 }

@@ -10,7 +10,11 @@
  "generated_roots": [
   "scratch/runs/exact17-forty-ninth-wave-v5-five-size8-20260817/export-v1"
  ],
- "durable_paths": [],
+  "durable_paths": [
+    "scratch/runs/exact17-forty-ninth-wave-v5-five-size8-20260817/export-v1/coverage-ledger.json",
+    "scratch/runs/exact17-forty-ninth-wave-v5-five-size8-20260817/export-v1/export-receipt.json",
+    "scratch/runs/exact17-forty-ninth-wave-v5-five-size8-20260817/export-v1/independent-audit-report.json"
+  ],
  "created_utc": "2026-08-17T00:00:00Z",
- "manifest_sha256": "61e06105bb3309221c5633fed2a92cffaaa72ae23eff4753a0fcfa966367edc9"
+  "manifest_sha256": "8a8e49298a048f037262fb7f069f98f84acecb0ab2475bbf7941efef234b219f"
 }
