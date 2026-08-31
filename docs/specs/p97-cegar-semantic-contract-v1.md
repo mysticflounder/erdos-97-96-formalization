@@ -480,6 +480,77 @@ producer reference binds:
 - a receipt showing that the declaration is reachable and was checked in that
   exact environment.
 
+The frozen stored representation of `p97-cegar-producer-ref/v1` is:
+
+```json
+{
+  "schema": "p97-cegar-producer-ref/v1",
+  "producer": {
+    "kind": "LEAN_DECLARATION",
+    "qualified_name": "Fully.Qualified.declaration"
+  },
+  "normalized_statement_sha256": "sha256",
+  "hypothesis_sha256": "sha256",
+  "import_sha256": "sha256",
+  "transitive_source_sha256": "sha256",
+  "repository": {
+    "revision": "40-or-64-lowercase-hex",
+    "dirty_state": "CLEAN or DIRTY",
+    "dirty_state_sha256": null
+  },
+  "toolchain": {
+    "kind": "LEAN",
+    "identity_sha256": "sha256"
+  },
+  "trust_classification": "UPPERCASE_REGISTRY_TOKEN",
+  "input_digests": [
+    {"name": "canonical-input-name", "sha256": "sha256"}
+  ],
+  "validation_receipt_sha256": "sha256",
+  "consumer_reachability": null,
+  "producer_ref_sha256": "sha256"
+}
+```
+
+An external producer replaces `producer` with
+`{"kind":"EXTERNAL_CHECKER","registry_id":"closed-registry-id",
+"executable_sha256":"sha256"}` and uses toolchain kind `EXTERNAL`.
+`input_digests` is a unique list sorted by `name`. A clean repository has a
+null `dirty_state_sha256`; a dirty repository binds a non-null digest of the
+canonical dirty-state manifest. Publication-bound references replace null
+`consumer_reachability` with:
+
+```json
+{
+  "consumer_producer_ref_sha256": "sha256",
+  "reachability_receipt_sha256": "sha256"
+}
+```
+
+Stored producer references use UTF-8 canonical JSON with sorted object keys,
+no insignificant whitespace, no floating-point values, and exactly one final
+newline. `producer_ref_sha256` is SHA-256 of the canonical JSON unsigned
+payload, without the self-hash field or storage newline. Validators reject
+unknown or missing keys, duplicate keys, alternate encodings, malformed
+digests, oversized inputs, and unsorted or duplicate input names. Publication
+uses absolute, lexically canonical, exclusive create-once paths; readers reject
+symlinks, hardlinks, non-regular files, path replacement, and mutation during
+read. Custody I/O is POSIX-only and fails closed unless component-wise
+directory-descriptor and no-follow operations are available. A returned path
+is not a persistent lock; later consumers reopen and revalidate the artifact by
+digest.
+
+A valid producer reference authenticates typed identity and custody only. The
+trust token is a closed-registry lookup key, not a caller-controlled success
+flag. R1--R4, F1--F7, and promotion remain false until the independent verifier
+accepts the referenced validation and reachability receipts in the complete
+semantic-contract graph.
+
+The structural parser requires a nonempty canonical Lean declaration name but
+does not decide whether that name resolves. The pinned declaration exporter and
+its validation receipt establish elaboration, normalized statement identity,
+and reachability in the recorded environment.
+
 The canonical semantic contract has a self-hash over its unsigned payload. A
 future authoritative wave-manifest schema binds that digest directly. During a
 shadow migration, an explicit typed cross-record binds the existing v1 wave
