@@ -1,0 +1,21 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "rigid221-s0-normalized-fivepoint-20260830",
+  "owner": "CoordinateCartographer",
+  "base_head": "c5b7259dced01866935a38de2c1e2994e5786ee8",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/rigid221-s0-normalized-fivepoint-20260830.json",
+    "docs/audits/2026-08-30-rigid221-s0-minimal12-lean-factorization.md",
+    "intent/axiom_sanctions.toml",
+    "intent/labels.toml",
+    "intent/literature.toml",
+    "intent/notes.toml",
+    "intent/offspine.toml",
+    "lean/Erdos9796Proof/Geometry/EqualRadiusDeterminantCone.lean",
+    "lean/Erdos9796Proof/Geometry/NormalizedFivePointOrientation.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-08-30T23:48:32Z",
+  "manifest_sha256": "3dd9c85dcdeac222f8241dd95b84b2dcc55334610ce2ebe04d6aa153a024fd77"
+}

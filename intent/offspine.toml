@@ -1,0 +1,13 @@
+[[offspine]]
+symbol = "Erdos9796Proof.Geometry.false_of_equalRadius_detCone"
+category = "infra"
+reason = "Source-independent determinant-cone kernel planned for the Rigid221 fixed-cell adapters; not yet reached by the publication spine"
+registered_at = "2026-08-31T00:07:48+00:00"
+updated_at = "2026-08-31T00:07:48+00:00"
+
+[[offspine]]
+symbol = "Erdos9796Proof.Geometry.normalizedFivePoint_orientation_incompatibility"
+category = "diagnostic"
+reason = "Bounded 12-clause fixed-coordinate adapter; source normalization and order coverage are intentionally still open"
+registered_at = "2026-08-31T00:07:48+00:00"
+updated_at = "2026-08-31T00:07:48+00:00"
