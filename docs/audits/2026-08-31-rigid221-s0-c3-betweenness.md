@@ -52,6 +52,69 @@ P.other.1 = deleted ∨ P.other.1 = P.v.1 ∨ P.other.1 = oppositePartner.
 In particular, equality `P.other.1 = P.v.1` is allowed by the current live
 interface; only equality with the source is excluded there.
 
+The exact-row boundary is now recorded by
+
+```text
+dist_sourceBlocker_other_ne_dist_sourceBlocker_source
+dist_v_other_ne_dist_v_source_of_sourceBlocker_eq_v
+```
+
+The first theorem needs only `P`: because `other` is an ambient carrier point
+outside the complete source shell, it cannot have the source-shell radius.
+The second rewrites the actual blocker as `v` and concludes
+
+```text
+dist P.v.1 P.other.1 ≠ dist P.v.1 P.source.1.
+```
+
+Finally,
+
+```text
+blockerV_sourceRowHeavy_deletedInterior_or_otherEqV_or_oppositeRowHeavy
+```
+
+turns the opposite-row classification into the source-faithful trichotomy
+
+```text
+deleted ∈ secondCapInterior
+  ∨ other = v
+  ∨ (oppositeRowInteriorCount = 2 ∧ 6 ≤ secondCap.card).
+```
+
+The cardinality conclusion uses the supporting lemma
+`secondCap_card_ge_six_of_both_rigid_rows_heavy`: two disjoint two-point rigid
+traces in the strict cap contribute four points, while the closed cap adds its
+two Moser endpoints.
+
+The deleted-point branch has the same cardinality consequence: its two heavy
+source-row points, `v`, and `deleted` are four distinct strict-cap points.  The
+public corollary
+
+```text
+blockerV_sourceRowHeavy_otherEqV_or_secondCap_card_ge_six
+```
+
+therefore reduces the full classification to
+
+```text
+other = v ∨ 6 ≤ secondCap.card.
+```
+
+In particular, an exact five-point second cap forces `other = v`.
+This final specialization is exposed as
+`blockerV_sourceRowHeavy_other_eq_v_of_secondCap_card_eq_five`.
+Using the live lower bound `5 ≤ secondCap.card`, the dispatcher
+
+```text
+blockerV_sourceRowHeavy_exactFiveOtherEqV_or_secondCap_card_ge_six
+```
+
+packages the exhaustive split
+
+```text
+(secondCap.card = 5 ∧ other = v) ∨ 6 ≤ secondCap.card.
+```
+
 ## Proof decomposition
 
 Let `K` be the source critical four-shell, `C` the physical selected class, and
@@ -85,6 +148,14 @@ source-row arm of that cover.  The two-point opposite trace leaves exactly the
 blocker point or its unique partner, in addition to the distinguished deleted
 point.
 
+Exact-shell completeness also turns `other_not_mem_source_row` into a strict
+distance inequality: membership in the ambient carrier plus equality with the
+source radius would put `other` back in the source support.  If `other` is the
+opposite-row partner, its inherited strict-cap membership and the already
+proved strict-cap membership of `v` exhaust the two-point opposite trace.
+Combining that trace with the disjoint heavy source trace forces the stated
+six-point closed-cap lower bound.
+
 ## Source and custody boundary
 
 `Rigid221Placement.lean` is pinned by existing Rigid221 custody source
@@ -96,15 +167,39 @@ the normal way.
 
 The theorem is not a contradiction.  The current live packet has no cap/order
 placement for `delta` or the two off-physical-class source-shell points, and no
-second row-distance equality that would force an incompatible betweenness.
-The first concrete missing candidate recorded by the source trace is
+independent cross-row metric or incidence relation that would force an
+incompatible betweenness.
+
+An earlier source trace proposed
 
 ```text
 dist P.v.1 P.other.1 = dist P.v.1 P.source.1
 ```
 
-or an equivalent second `v`-centered constraint.  A separate candidate would
-be a source-entitled C3/order placement for `delta` or another shell point.
+as the first missing candidate.  This audit now corrects that claim: the exact
+source shell proves the negation of this equality in every classification
+case.  It is therefore not a valid target producer.  The remaining frontier
+must instead supply a genuinely independent relation, such as a source-entitled
+C3/order placement for `delta`, a reciprocal cross-row membership, or another
+shell point whose equidistance does not assert that `other` lies on the source
+row.
+
+The sharpened structural frontier is now the dichotomy `other = v` versus a
+closed second cap of cardinality at least six.  The field `P.hclassFive` is an
+exact cardinality statement about the physical radius class, not about this
+cap, so it does not eliminate the large-cap arm.  Closing the leaf therefore
+requires either a genuine cap upper bound, a large-cap consumer valid for the
+blocker-`v`/source-heavy interface, or an independent exclusion of `other = v`.
+
+A bounded consumer audit found no existing adapter for the large-cap arm.
+Despite their names, the current `secondOppositeLarge` source-heavy theorems in
+`Rigid221SourceHeavy.lean` take
+`ExactFourRigid221SourceEqUBlockerVRowOtherSourceHeavyPacket`, whose source
+blocker is an opposite-row partner `xv` with `xv ≠ v`.  The live branch has the
+literal equality `sourceBlocker = v`; constructing that packet would therefore
+already be contradictory, not an interface conversion.  The large-cap arm
+needs a new source-entitled packet/consumer specialized to the literal
+blocker-`v` geometry.
 
 An attempted coordinate model for local consistency passed the radius and cap
 half-plane checks but failed convex position: two proposed shell points were
@@ -128,6 +223,16 @@ CGN betweenness theorem, and the opposite-row cover classification.  It
 confirmed that the latter takes only `P` and intentionally permits
 `other = v`.
 
+After the metric boundary and cap-cardinality dispatchers were added, the same
+governed build completed again with 10861 jobs and no warning in the modified
+module.  Separate read-only audits checked the exact-row distance inequality,
+both four-point strict-cap cardinality arguments, all three classification
+branches, the `other = v ∨ cap.card ≥ 6` reduction, and the exact-five/large-cap
+dispatcher.  The proof index mined all ten declarations and 37 dependency
+edges, with zero edges into axioms.  Its nonzero global report status remains
+the repository's pre-existing duplicate-name diagnostics, not a finding about
+this module.
+
 Literal kernel inspection reports exactly
 
 ```text
@@ -135,6 +240,7 @@ propext, Classical.choice, Quot.sound
 ```
 
 with no `sorryAx`, custom axiom, native/runtime reduction, external
-implementation, or solver evidence for either public theorem.  Both are
-registered as deliberate off-spine compatibility results.  The module is not
-yet imported by a consumer, so the publication spine remains unchanged.
+implementation, or solver evidence for any of the ten public theorems.  All
+ten are registered as deliberate off-spine compatibility or infrastructure
+results.  The module is not yet imported by a consumer, so the publication
+spine remains unchanged.

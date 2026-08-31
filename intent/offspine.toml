@@ -34,6 +34,48 @@ registered_at = "2026-08-31T03:18:22+00:00"
 updated_at = "2026-08-31T03:18:22+00:00"
 
 [[offspine]]
+symbol = "Problem97.ATailFrontierLiveClosure.blockerV_sourceRowHeavy_deletedInterior_or_otherEqV_or_oppositeRowHeavy"
+category = "compat"
+reason = "Source-entitled blocker-v classification into deleted interior, other equals v, or simultaneous opposite-row heaviness."
+registered_at = "2026-08-31T06:04:19+00:00"
+updated_at = "2026-08-31T06:04:19+00:00"
+
+[[offspine]]
+symbol = "Problem97.ATailFrontierLiveClosure.blockerV_sourceRowHeavy_exactFiveOtherEqV_or_secondCap_card_ge_six"
+category = "compat"
+reason = "Exhaustive source-entitled dispatcher between exact-five other-equals-v and genuinely large second cap."
+registered_at = "2026-08-31T06:04:22+00:00"
+updated_at = "2026-08-31T06:04:22+00:00"
+
+[[offspine]]
+symbol = "Problem97.ATailFrontierLiveClosure.blockerV_sourceRowHeavy_otherEqV_or_secondCap_card_ge_six"
+category = "compat"
+reason = "Source-entitled reduction of all non-v contextual-peer cases to the large second-cap arm."
+registered_at = "2026-08-31T06:04:20+00:00"
+updated_at = "2026-08-31T06:04:20+00:00"
+
+[[offspine]]
+symbol = "Problem97.ATailFrontierLiveClosure.blockerV_sourceRowHeavy_other_eq_v_of_secondCap_card_eq_five"
+category = "compat"
+reason = "Exact-five closed-cap specialization of the blocker-v contextual-peer dichotomy."
+registered_at = "2026-08-31T06:04:21+00:00"
+updated_at = "2026-08-31T06:04:21+00:00"
+
+[[offspine]]
+symbol = "Problem97.ATailFrontierLiveClosure.dist_sourceBlocker_other_ne_dist_sourceBlocker_source"
+category = "infra"
+reason = "Exact-shell boundary: the contextual carrier point outside the complete source row has a different blocker radius."
+registered_at = "2026-08-31T06:04:15+00:00"
+updated_at = "2026-08-31T06:04:15+00:00"
+
+[[offspine]]
+symbol = "Problem97.ATailFrontierLiveClosure.dist_v_other_ne_dist_v_source_of_sourceBlocker_eq_v"
+category = "compat"
+reason = "Live blocker-v specialization refuting the previously proposed second v-centered equality."
+registered_at = "2026-08-31T06:04:16+00:00"
+updated_at = "2026-08-31T06:04:16+00:00"
+
+[[offspine]]
 symbol = "Problem97.ATailFrontierLiveClosure.exists_oppositeRow_partner_with_other_classification"
 category = "compat"
 reason = "Source-entitled rigid 2+2+1 classification of the contextual other point into deleted, blocker, or unique opposite-row partner."
@@ -46,6 +88,20 @@ category = "compat"
 reason = "Source-entitled C3 extraction: the blocker index lies between the unique same-row physical-radius partner pair."
 registered_at = "2026-08-31T04:54:15+00:00"
 updated_at = "2026-08-31T04:54:15+00:00"
+
+[[offspine]]
+symbol = "Problem97.ATailFrontierLiveClosure.secondCap_card_ge_six_of_both_rigid_rows_heavy"
+category = "infra"
+reason = "Finite cap-cardinality bridge from two disjoint heavy rigid traces."
+registered_at = "2026-08-31T06:04:17+00:00"
+updated_at = "2026-08-31T06:04:17+00:00"
+
+[[offspine]]
+symbol = "Problem97.ATailFrontierLiveClosure.secondCap_card_ge_six_of_sourceRowHeavy_of_v_deleted_interior"
+category = "infra"
+reason = "Finite cap-cardinality bridge from the heavy source trace plus distinct blocker and deleted interior points."
+registered_at = "2026-08-31T06:04:18+00:00"
+updated_at = "2026-08-31T06:04:18+00:00"
 
 [[offspine]]
 symbol = "Problem97.CircumscribedMECPacket.false_of_equalRadius_detCone_of_onArcOpposite"
