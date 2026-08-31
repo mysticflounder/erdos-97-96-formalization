@@ -1,0 +1,48 @@
+{
+  "schema": "p97-exact17-historical-live-status-provenance/v1",
+  "classification": "HISTORICAL_OBSERVATION_ONLY",
+  "imported_utc": "2026-08-31T06:40:17Z",
+  "source": {
+    "repository": "rustprojects",
+    "repository_path": "/Users/adam/projects/rustprojects",
+    "relative_path": "scratch/live-exact17-detail.jsonl",
+    "tracked_by_source_repository": false,
+    "source_manifest_present": false,
+    "mtime_utc": "2026-08-13T08:50:22Z",
+    "bytes": 5751,
+    "lines": 4,
+    "sha256": "573420715835c38bade736706525ee2c871a07f8d35c25d6d5220af6f25998b0"
+  },
+  "retained": {
+    "path": "docs/audits/2026-08-30-p97-exact17-child32-live-status/live-exact17-detail.jsonl",
+    "bytes": 5751,
+    "lines": 4,
+    "sha256": "573420715835c38bade736706525ee2c871a07f8d35c25d6d5220af6f25998b0"
+  },
+  "source_cross_check": {
+    "source_relative_path": "scratch/live-jobs.json",
+    "retained_in_full": false,
+    "bytes": 10894,
+    "sha256": "c5f4b7666dbc18d308c8a6d7b79cc4d32364c1135dc082af5205da43a693d473",
+    "retained_record": {
+      "source_json_pointer": "/jobs/36",
+      "job_id": "ee45af01-c366-4cfd-8737-cdad428e262a",
+      "path": "docs/audits/2026-08-30-p97-exact17-child32-live-status/adjacent-child25-live-job-summary.json",
+      "bytes": 219,
+      "sha256": "4f4e6fcdb702120db3597176d67f2deab6d3e205094362bae2c86e80c061df29"
+    }
+  },
+  "job_ids_in_source_order": [
+    "547cca82-e479-468c-abe1-fb318d7004e6",
+    "2506986e-0445-465f-9b05-eff6bb9a5983",
+    "ab289b3f-a306-4de7-a52f-619ea4dbe049",
+    "32519563-315b-49a7-a3c0-5c78955ef00e"
+  ],
+  "claims": {
+    "proof_evidence": false,
+    "source_coverage": false,
+    "theorem_closure": false,
+    "promotion_authority": false,
+    "v8_packet_recovery": false
+  }
+}
