@@ -54,14 +54,36 @@ either `P.other.1 = P.v.1` or a second-cap cardinality of at least six.  The
 order, or incidence relation.  This dispatch does not feed the normalized
 geometry result and has no downstream B3 consumer.
 
+## Literal-blocker source relation mine
+
+The full source context in `JointDeletion/Types.lean:75` deliberately permits
+`P.other.1 = P.v.1`.  It supplies no relation that identifies `other` with the
+joint-deletion point, excludes that equality, or places an opposite-row
+partner at a prescribed distance from `v`.  The joint-deletion packet in
+`JointDeletion/Types.lean:42` adds two deletion-survival packets but no link
+from its deleted point to `other` or to a new opposite-row metric relation.
+
+One further source consequence is available.  The retained disjunction
+`P.context.source_survives_q_or_w`, together with
+`cross_deletion_survives_iff_not_mem_selected_support` in
+`CriticalPairFrontier.lean:781`, shows that at least one of the residual
+interior points is absent from the literal source row.  This is a genuine
+cross-omission fact, but the current B3 terminals do not take it as an
+antecedent and it does not construct a second joint-deletion packet by itself.
+
+The source-row cap dispatchers are used only inside
+`Rigid221SourceRowCapBetweenness.lean`.  The downstream source-heavy packet
+instead assumes a source blocker in the `v` row that is distinct from `v`, so
+it cannot consume B3's literal blocker identity.
+
 ## Consequence
 
 Do not add another hypothesis-only adapter.  The first viable Lean statement
 must be an upstream, source-faithful producer for the literal-blocker-`v`
 branch: either a construction of a new geometric relation that B3 can consume,
 or a source normalization theorem with a complete twelve-hypothesis map.
-The initial task is to identify the missing source assertion or relation, not
-to assert it as a new `sorry`-backed wrapper.
+The initial task is to derive a second literal-blocker relation with a named
+B3 consumer, not to assert it as a new `sorry`-backed wrapper.
 
 The proof-blueprint graph was stale during this audit because unrelated Lean
 changes were present in the shared worktree.  The source and import checks
