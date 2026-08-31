@@ -46,6 +46,18 @@ ROW_SPECS = (
     ("Bv", "v0", "v1", "vL", "vR"),
 )
 DIMENSION = 14
+PARAMETER_NAMES = (
+    *PHYSICAL_FREE,
+    "k_Bc",
+    "theta_cR",
+    "theta_cL",
+    "k_Bu",
+    "theta_uR",
+    "theta_uL",
+    "k_Bv",
+    "theta_vL",
+    "theta_vR",
+)
 DEFAULT_ROOT = Path("scratch/runs/b1-normalform-order-20260831/wave-7")
 RESULT_REL = Path("artifacts/b1-wave7-stagea-order-cell-result.json")
 EVENT_REL = Path("events/b1-wave7-stagea-order-cell.json")
@@ -67,7 +79,11 @@ CLAIM_BOUNDARY = {
 
 def canonical_json_bytes(value: Any) -> bytes:
     return json.dumps(
-        value, ensure_ascii=True, sort_keys=True, separators=(",", ":")
+        value,
+        allow_nan=False,
+        ensure_ascii=True,
+        sort_keys=True,
+        separators=(",", ":"),
     ).encode("utf-8") + b"\n"
 
 
@@ -227,17 +243,22 @@ def run_optimization(
 def build_documents(
     records: Sequence[dict[str, Any]], *, seeds: Sequence[int], iterations: int, popsize: int
 ) -> dict[Path, bytes]:
-    best = max((float(record["margin"]) for record in records), default=float("-inf"))
+    best = max((float(record["margin"]) for record in records), default=None)
     result = {
         "schema": SCHEMA,
         "order": list(ORDER),
         "physical_free_parameters": list(PHYSICAL_FREE),
         "physical_rotation_gauge": {"u1": 0.0},
         "parameter_dimension": DIMENSION,
+        "parameter_names": list(PARAMETER_NAMES),
         "claim_boundary": CLAIM_BOUNDARY,
         "search": {"seeds": [int(seed) for seed in seeds], "iterations": iterations, "popsize": popsize},
         "best_margin": best,
-        "claim_status": "NUMERICAL_SAT_CANDIDATE" if best > 0.0 else "UNKNOWN",
+        "claim_status": (
+            "NUMERICAL_SAT_CANDIDATE"
+            if best is not None and best > 0.0
+            else "UNKNOWN"
+        ),
         "records": list(records),
     }
     result_bytes = canonical_json_bytes(result)
@@ -280,9 +301,20 @@ def verify_checksum_ledger(output_root: Path) -> None:
     if not ledger.is_file():
         raise AssertionError(f"missing:{ledger}")
     mismatches = []
+    seen: set[Path] = set()
+    expected_paths = {RESULT_REL, EVENT_REL, SOURCE_REL}
     for line in ledger.read_text(encoding="ascii").splitlines():
-        digest, relative = line.split("  ", 1)
-        target = output_root / Path(relative)
+        try:
+            digest, relative = line.split("  ", 1)
+        except ValueError as error:
+            raise AssertionError("malformed checksum ledger line") from error
+        relative_path = Path(relative)
+        if relative_path in seen:
+            raise AssertionError(f"duplicate checksum entry: {relative}")
+        if relative_path not in expected_paths:
+            raise AssertionError(f"unexpected checksum entry: {relative}")
+        seen.add(relative_path)
+        target = output_root / relative_path
         if not target.is_relative_to(output_root):
             raise AssertionError(f"artifact escapes output root: {relative}")
         if not target.is_file():
@@ -291,6 +323,9 @@ def verify_checksum_ledger(output_root: Path) -> None:
             mismatches.append(f"mismatch:{target}")
     if mismatches:
         raise AssertionError("; ".join(mismatches))
+    if seen != expected_paths:
+        missing = ", ".join(str(path) for path in sorted(expected_paths - seen))
+        raise AssertionError(f"missing checksum entries: {missing}")
 
 
 def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
