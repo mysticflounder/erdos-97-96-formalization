@@ -55,11 +55,32 @@ registered_at = "2026-08-31T03:50:16+00:00"
 updated_at = "2026-08-31T03:50:16+00:00"
 
 [[offspine]]
+symbol = "Problem97.SurplusCapPacket.not_onArcOpposite_oppIndex1_of_mem_oppIndex2Interior"
+category = "compat"
+reason = "Source boundary: physical second-cap interior rules out the neighboring first-opposite cap predicate."
+registered_at = "2026-08-31T04:09:59+00:00"
+updated_at = "2026-08-31T04:09:59+00:00"
+
+[[offspine]]
 symbol = "Problem97.SurplusCapPacket.radialSupport_of_mem_capByIndex"
 category = "infra"
 reason = "Indexed-cap wrapper that preserves the exact controlled chord in its conclusion."
 registered_at = "2026-08-31T03:50:15+00:00"
 updated_at = "2026-08-31T03:50:15+00:00"
+
+[[offspine]]
+symbol = "Problem97.SurplusCapPacket.signedArea2_mul_pos_at_oppIndex1_of_mem_oppIndex2Interior"
+category = "compat"
+reason = "Physical second-cap interior gives the strict neighboring first-opposite sign needed to audit S0 cells."
+registered_at = "2026-08-31T04:09:58+00:00"
+updated_at = "2026-08-31T04:09:58+00:00"
+
+[[offspine]]
+symbol = "Problem97.SurplusCapPacket.signedArea2_mul_pos_of_mem_capInteriorByIndex_of_ne"
+category = "infra"
+reason = "Strict indexed-cap separation as a positive signed-area product for every different cap frame."
+registered_at = "2026-08-31T04:09:57+00:00"
+updated_at = "2026-08-31T04:09:57+00:00"
 
 [[offspine]]
 symbol = "Problem97.radialSupport_of_cap_region_thales"

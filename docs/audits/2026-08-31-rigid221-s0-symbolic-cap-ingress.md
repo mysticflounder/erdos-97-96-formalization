@@ -28,6 +28,9 @@ has a coordinate-free cap interpretation.  The new module
 The companion module
 `P97/SurplusM44Packet/OrientedCapDeterminantCone.lean` supplies indexed wrappers:
 
+- `Problem97.SurplusCapPacket.signedArea2_mul_pos_of_mem_capInteriorByIndex_of_ne`;
+- `Problem97.SurplusCapPacket.signedArea2_mul_pos_at_oppIndex1_of_mem_oppIndex2Interior`;
+- `Problem97.SurplusCapPacket.not_onArcOpposite_oppIndex1_of_mem_oppIndex2Interior`;
 - `Problem97.SurplusCapPacket.radialSupport_of_mem_capByIndex`; and
 - `Problem97.SurplusCapPacket.false_of_equalRadius_detCone_of_mem_capByIndex`.
 
@@ -63,9 +66,13 @@ the two relevant indexed frames are different:
 | `2 = oppIndex2` | `(O, m1, m2)` | `m1 -- m2` |
 
 The invariant determinant kernel needs radial support from base `O` toward
-`m1`, hence the index-`1`/`C2` cap.  The live source-row-heavy theorem currently
-supplies `v` in the physical second cap, index `2`/`C3`, which yields radial
-support only for chord `m1 -- m2`.  It does **not** supply index-`1` membership.
+`m1`, hence the index-`1`/`C2` cap.  The live source-row-heavy theorem supplies
+`v` in the **strict interior** of the physical second cap, index `2`/`C3`.
+Existing cap separation therefore proves that `v` is not in either neighboring
+closed cap.  The new indexed strict-sign wrapper states the relevant
+consequence directly: the index-`1` signed-area product is strictly positive.
+Thus source-heavy data proves the negation of the index-`1` cap condition; it
+does not merely fail to supply it.
 
 The minimized fixed-cell assertion at source index `349` is exactly the
 index-`1` cap product
@@ -75,9 +82,11 @@ signedArea2 v O m1 * signedArea2 m2 O m1 <= 0.
 ```
 
 Its assertion ledger classifies it as a `CELL_RESTRICTION`, not a
-source-universal consequence.  The new theorem therefore keeps the neighboring
-cap membership and positive orientation explicit; it makes no live ingress
-claim.
+source-universal consequence.  When combined with the source-derived strict
+`C3` interior fact, it contradicts cap separation before any metric algebra.
+Consequently these experimental `C2` fixed cells are not viable cells of the
+source-row-heavy branch.  The determinant theorem remains valid reusable
+infrastructure, but it is not a live ingress for this branch.
 
 ## Counterexample audit
 
@@ -106,10 +115,13 @@ The named eventual live consumer remains
 false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerV_sourceRowHeavy.
 ```
 
-Its first missing antecedent for this route is a source-faithful producer of
-the neighboring index-`1` cap condition (or an exhaustive shape split that
-handles its failure), together with the matching positive triangle
-orientation.  Physical second-cap membership alone is insufficient.
+This route is now refuted for the source-row-heavy branch rather than merely
+blocked: that branch proves the neighboring index-`1` cap condition false.
+Using the actual index-`2` cap changes the determinant base from physical `O`
+to `surplusApex`, so the selected-class equal-radius producer no longer matches.
+The live context also supplies neither triangle polarity nor either strict turn.
+The next source route must therefore use the actual `C3` geometry (or a
+different invariant kernel), not seek an index-`1` membership producer.
 
 ## Build, trust, and frontier accounting
 
@@ -117,7 +129,7 @@ Both focused builds pass with `LAKE_BUILD_NO_REFRESH=1`; the generic module
 built in 3.9 seconds and the indexed wrapper in 3.6 seconds on the warm tree.
 The only build warnings are inherited from imported modules.
 
-All five declarations are registered as deliberate off-spine infrastructure
+All eight declarations are registered as deliberate off-spine infrastructure
 or compatibility results.  The refreshed call-graph mine verified them
 off-spine against `Problem97.erdos97_rhs`.  The repository-wide refs command
 still exits nonzero because of pre-existing duplicate-name diagnostics outside
