@@ -1,0 +1,20 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "rigid221-s0-b3-next-blocker-classification-20260831",
+  "owner": "codex-rigid221-s0-b3-next-blocker-classification",
+  "base_head": "3973a7d52b50a447af947e46adb35c33f97a101b",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/rigid221-s0-b3-next-blocker-classification-20260831.json",
+    "docs/audits/2026-08-31-rigid221-s0-b3-next-blocker-classification.md"
+  ],
+  "generated_roots": [
+    "scratch/runs/rigid221-s0-b3-next-blocker-classification-20260831/lean-verify-v1"
+  ],
+  "durable_paths": [
+    "scratch/runs/rigid221-s0-b3-next-blocker-classification-20260831/lean-verify-v1/NextBlockerClassificationCheck.lean",
+    "scratch/runs/rigid221-s0-b3-next-blocker-classification-20260831/lean-verify-v1/receipt.json",
+    "scratch/runs/rigid221-s0-b3-next-blocker-classification-20260831/lean-verify-v1/run_manifest.json"
+  ],
+  "created_utc": "2026-08-31T14:25:00Z",
+  "manifest_sha256": "62a82c945e3ca40430e75de99c43984b26cc9e1f2655d5f313de8b39f3397df5"
+}

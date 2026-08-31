@@ -1,0 +1,18 @@
+{
+  "schema": "rigid221-b3-next-blocker-classification-receipt/v1",
+  "lane_id": "rigid221-s0-b3-next-blocker-classification-20260831",
+  "run_id": "lean-verify-v1",
+  "base_head": "3973a7d52b50a447af947e46adb35c33f97a101b",
+  "executed_head": "3973a7d52b50a447af947e46adb35c33f97a101b",
+  "run_manifest_sha256": "2a6fc198e6f132648c552d7e9eb709e4817d5adf60eade305069e45ed97dbaa7",
+  "check_source_sha256": "439a9eca6d86e4f783f4f565f6642feead601dedf4696ecb11fa220fd8f47030",
+  "scratch_elaboration": {
+    "command": "lake env lean ../scratch/runs/rigid221-s0-b3-next-blocker-classification-20260831/lean-verify-v1/NextBlockerClassificationCheck.lean",
+    "working_directory": "lean",
+    "exit_code": 0,
+    "wall_time_seconds": 6.11,
+    "result": "ELABORATED"
+  },
+  "claim_boundary": "Given the additional antecedent that the v-indexed row's actual blocker belongs to the physical second-apex class, the exact rigid 2+2+1 cover classifies that blocker as the deleted point, u, or the other member of the source-row physical block. The live B3 interface supplies no such class-membership antecedent, so this scratch result does not close B3 or justify a production helper.",
+  "created_utc": "2026-08-31T14:31:00Z"
+}

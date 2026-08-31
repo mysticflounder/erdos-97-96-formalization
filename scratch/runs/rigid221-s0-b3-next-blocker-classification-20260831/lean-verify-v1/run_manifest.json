@@ -1,0 +1,25 @@
+{
+  "schema": "worktree-run-manifest/v1",
+  "lane_id": "rigid221-s0-b3-next-blocker-classification-20260831",
+  "run_id": "lean-verify-v1",
+  "root": "scratch/runs/rigid221-s0-b3-next-blocker-classification-20260831/lean-verify-v1",
+  "owner": "codex-rigid221-s0-b3-next-blocker-classification",
+  "base_head": "3973a7d52b50a447af947e46adb35c33f97a101b",
+  "output_classes": [
+    "artifacts",
+    "events",
+    "tmp"
+  ],
+  "source_digests": {
+    "scratch/runs/rigid221-s0-b3-next-blocker-classification-20260831/lean-verify-v1/NextBlockerClassificationCheck.lean": "439a9eca6d86e4f783f4f565f6642feead601dedf4696ecb11fa220fd8f47030",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221Placement.lean": "2f8c444d6269de79c7a672700a9f80e6744fdaddb48263d61239cdbf99cd8210",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletion/Types.lean": "8cd091cf7b62c2236798390585e38184df8f366570b4c1d69892e01233b84587",
+    "lean/Erdos9796Proof/P97/U1CarrierInjection.lean": "0763edd41bef51f9b5ca0c7d98d3178efdbe45f7ad130c723e672f6671379fc2"
+  },
+  "input_digests": {
+    "docs/erdos-97-descent-prose-proof-atomic.md": "39e5eb3e3175ce3f0374e30a5ed5bd56d5abf91654ac0c0c26340453c8c1b3fd",
+    "docs/audits/2026-08-31-rigid221-s0-b3-ingress-compatibility.md": "8defc6aedc0672e39104b56f2bcb6ec9aafed399f1f086e7a6c47037f2dbf384"
+  },
+  "created_utc": "2026-08-31T14:29:00Z",
+  "manifest_sha256": "2a6fc198e6f132648c552d7e9eb709e4817d5adf60eade305069e45ed97dbaa7"
+}
