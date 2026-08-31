@@ -1,6 +1,7 @@
 # P97 CEGAR semantic contract v1
 
-Status: design contract; no implementation or mathematical closure claim.
+Status: design contract with producer-reference and Lean declaration-receipt
+custody checkpoints implemented; no semantic or mathematical closure claim.
 
 Date: 2026-08-28
 
@@ -550,6 +551,77 @@ The structural parser requires a nonempty canonical Lean declaration name but
 does not decide whether that name resolves. The pinned declaration exporter and
 its validation receipt establish elaboration, normalized statement identity,
 and reachability in the recorded environment.
+
+#### 8.1.1 Lean declaration validation receipt
+
+Implemented checkpoint: p97-cegar-lean-declaration-receipt/v1.
+
+The declaration exporter is a closed-registry verifier. It never accepts an
+import module, declaration name, trust classification, executable, or command
+line supplied by a candidate artifact. The initial registry contains only the
+off-spine control:
+
+    lean-core-eq-trans-control-v1
+      import: Init.Prelude
+      declaration: Eq.trans
+      trust: LEAN_KERNEL_STATEMENT_CONTROL_ONLY
+
+This control demonstrates statement custody and replay. It is not a P97
+producer and cannot discharge R1--R4, F1--F7, consumer reachability, axiom
+closure, or promotion.
+
+The embedded p97-cegar-lean-declaration-export/v1 object records exact registry
+identity, defining module, declaration kind, unsafe and partial flags, ordered
+universe parameters, the elaborated type, its complete leading forall
+telescope, all constant occurrences deduplicated by canonical descriptor, and
+the sorted transitive import set. Levels use the closed tags ZERO, SUCC, MAX,
+IMAX, and PARAM. Expressions use the closed tags BVAR, SORT, CONST, APP, LAM,
+FORALL, LET, NAT_LITERAL, STRING_LITERAL, and PROJ. Metavariables and free
+variables fail closed; de Bruijn indices are checked against binder scope.
+The normalized-statement digest is the canonical elaborated syntax after
+alpha-normalizing universe parameters and binder names. It is not a claim that
+Lean performed delta, beta, iota, or zeta reduction.
+
+The receipt authenticates these component digests:
+
+- the complete canonical export;
+- the elaborated statement;
+- universe parameters;
+- constants;
+- hypotheses; and
+- imports.
+
+It also binds a canonical manifest of the Python exporter, Lean serializer,
+canonical-JSON implementation, and POSIX custody implementation; hashes of
+lean-toolchain, lakefile.toml, and lake-manifest.json; hashes and version output
+of the PATH-selected Lake launcher and selected Lean and Lake executables; and
+the exact invocation. The verifier accepts only the exact
+leanprover/lean4:v4.27.0 pin, Lean commit
+db93fe1608548721853390a10cd40580fe7d22ae, and its matching Lake release.
+Under Lean 4.27 the executable invocation is:
+
+    lake env lean --run ../census/p97_search/cegar_lean_declaration_serializer.lean \
+      lean-core-eq-trans-control-v1 Init.Prelude Eq.trans
+
+The invocation records repository-relative cwd lean, fixed C locale and UTC
+timezone, and the inherited PATH. The selected binaries are resolved through
+lake env which and bound by digest before and after execution. Serializer
+sources and toolchain identity are likewise checked before and after export
+and replay.
+
+Stored receipts use the same strict canonical-JSON and POSIX create-once
+custody rules as producer references. receipt_sha256 hashes the canonical
+unsigned receipt without the storage newline. Replay requires the current
+source manifest, toolchain, invocation environment, and newly serialized
+export to match the receipt exactly.
+
+producer_ref_inputs first performs independent replay and then returns only the
+statement, hypothesis, import, export, serializer, universe, constants,
+toolchain, trust, and validation-receipt identities established here. It omits
+repository custody, transitive-source custody, consumer reachability, and every
+semantic or promotion flag. Those missing fields must be supplied by later
+independent receipts before a complete p97-cegar-producer-ref/v1 can be
+published.
 
 The canonical semantic contract has a self-hash over its unsigned payload. A
 future authoritative wave-manifest schema binds that digest directly. During a
