@@ -1,0 +1,21 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "rigid221-s0-b3-opposite-row-edge-20260831",
+  "owner": "codex-rigid221-s0-b3-opposite-row-edge",
+  "base_head": "ff935411514804caf003171164807f79d16a341e",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/rigid221-s0-b3-opposite-row-edge-20260831.json",
+    "docs/audits/2026-08-31-rigid221-s0-b3-opposite-row-edge.md",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221Placement.lean"
+  ],
+  "generated_roots": [
+    "scratch/runs/rigid221-s0-b3-opposite-row-edge-20260831/lean-verify-v1"
+  ],
+  "durable_paths": [
+    "scratch/runs/rigid221-s0-b3-opposite-row-edge-20260831/lean-verify-v1/OppositeRowPartnerEdgeCheck.lean",
+    "scratch/runs/rigid221-s0-b3-opposite-row-edge-20260831/lean-verify-v1/receipt.json",
+    "scratch/runs/rigid221-s0-b3-opposite-row-edge-20260831/lean-verify-v1/run_manifest.json"
+  ],
+  "created_utc": "2026-08-31T14:57:00Z",
+  "manifest_sha256": "dd45aa0b9c18ca7c3164442062bb07da4fb69e604917fba59a242c0111c3d7ab"
+}

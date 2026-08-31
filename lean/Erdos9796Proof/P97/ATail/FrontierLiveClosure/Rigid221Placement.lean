@@ -896,10 +896,79 @@ theorem blockerV_sourceRowHeavy_v_mem_secondCapInterior
         (mem_selectedClass.mp P.context.source_mem_class).2.trans
           (mem_selectedClass.mp hpartnerData.2).2.symm
 
+/-- The rigid physical block of the `v` row has a named companion.  Both `v`
+and that companion lie on the shell centred at the actual
+blocker of the `v` row, yielding the next source-entitled equal-distance edge
+available to the literal-blocker B3 branch.
+
+This does not put the companion in the strict second cap, so it does not by
+itself complete the B3 ordered-cap cycle. -/
+theorem exactFourRigid221_sourceEqU_oppositeRowPartner
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F}
+    (P : ExactFourRigid221PhysicalApexSourceEqUContext R) :
+    ∃ xv : ℝ²,
+      xv ≠ P.v.1 ∧
+        (((lateFirstApexSystem R).selectedAt
+            P.v.1 P.v.2).toCriticalFourShell.support ∩
+          SelectedClass D.A S.oppApex2 P.rho = {P.v.1, xv}) ∧
+        dist ((lateFirstApexSystem R).centerAt P.v.1 P.v.2) P.v.1 =
+          dist ((lateFirstApexSystem R).centerAt P.v.1 P.v.2) xv := by
+  classical
+  let Kv :=
+    ((lateFirstApexSystem R).selectedAt P.v.1 P.v.2).toCriticalFourShell
+  let C := SelectedClass D.A S.oppApex2 P.rho
+  let Iv := Kv.support ∩ C
+  have hIvCard : Iv.card = 2 := by
+    rcases P.globalDeletion.rigid with ⟨_hIuCard, hIvCard, _hdisjoint, _hcover⟩
+    simpa [Iv, Kv, C] using hIvCard
+  have hvIv : P.v.1 ∈ Iv := by
+    exact Finset.mem_inter.mpr ⟨
+      by simpa [Iv, Kv] using Kv.q_mem_support,
+      by simpa [Iv, C] using P.hvClass⟩
+  obtain ⟨a, b, hab, hIvEq⟩ := Finset.card_eq_two.mp hIvCard
+  have hvCases : P.v.1 = a ∨ P.v.1 = b := by
+    rw [hIvEq] at hvIv
+    simpa only [Finset.mem_insert, Finset.mem_singleton] using hvIv
+  rcases hvCases with hvEq | hvEq
+  · subst a
+    refine ⟨b, Ne.symm hab, ?_, ?_⟩
+    · simpa [Iv, Kv, C] using hIvEq
+    · have hvSupport : P.v.1 ∈ Kv.support := by
+        simpa [Kv] using Kv.q_mem_support
+      have hbIv : b ∈ Iv := by
+        rw [hIvEq]
+        simp
+      have hbSupport : b ∈ Kv.support := (Finset.mem_inter.mp hbIv).1
+      exact
+        (Kv.support_eq_radius P.v.1 hvSupport).trans
+          (Kv.support_eq_radius b hbSupport).symm
+  · subst b
+    refine ⟨a, hab, ?_, ?_⟩
+    · change Iv = {P.v.1, a}
+      rw [hIvEq]
+      ext z
+      simp only [Finset.mem_insert, Finset.mem_singleton]
+      tauto
+    · have hvSupport : P.v.1 ∈ Kv.support := by
+        simpa [Kv] using Kv.q_mem_support
+      have haIv : a ∈ Iv := by
+        rw [hIvEq]
+        simp
+      have haSupport : a ∈ Kv.support := (Finset.mem_inter.mp haIv).1
+      exact
+        (Kv.support_eq_radius P.v.1 hvSupport).trans
+          (Kv.support_eq_radius a haSupport).symm
+
 /-- Source-row-heavy blocker-`v` arm.  This is a strict child of the former
 monolithic blocker-`v` obligation: the source row contributes both members of
 its rigid two-point physical block to the strict second cap, and the checked
-normalization above places `v` in that cap as well. -/
+normalization above places `v` in that cap as well.  The opposite-row shell
+edge is supplied by `exactFourRigid221_sourceEqU_oppositeRowPartner`; what
+remains is a source proof that its companion or its center has the further
+strict-cap placement needed by the ordered-cap terminal. -/
 theorem false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerV_sourceRowHeavy
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -911,6 +980,8 @@ theorem false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerV
     (_hsourceRowHeavy : P.sourceRowInteriorCount = 2)
     (_hvInterior : P.v.1 ∈ S.capInteriorByIndex S.oppIndex2) :
     False := by
+  obtain ⟨xv, hxvNeV, hvRow, hnextEdge⟩ :=
+    exactFourRigid221_sourceEqU_oppositeRowPartner P
   sorry
 
 /-- Generic opposite-row-heavy arm when the actual source blocker lies in the

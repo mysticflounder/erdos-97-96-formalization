@@ -1,0 +1,23 @@
+{
+  "schema": "worktree-run-manifest/v1",
+  "lane_id": "rigid221-s0-b3-opposite-row-edge-20260831",
+  "run_id": "lean-verify-v1",
+  "root": "scratch/runs/rigid221-s0-b3-opposite-row-edge-20260831/lean-verify-v1",
+  "owner": "codex-rigid221-s0-b3-opposite-row-edge",
+  "base_head": "ff935411514804caf003171164807f79d16a341e",
+  "output_classes": [
+    "artifacts",
+    "events",
+    "tmp"
+  ],
+  "source_digests": {
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221Placement.lean": "49c8c3d6b8ed71c44b4f4287ce923fe63ac477432063db7875ca430753be1ea8",
+    "scratch/runs/rigid221-s0-b3-opposite-row-edge-20260831/lean-verify-v1/OppositeRowPartnerEdgeCheck.lean": "f108f33e8079c5b6af1896fd94f47ff9297791699d5c8e1055b7a645a379e885"
+  },
+  "input_digests": {
+    "docs/erdos-97-descent-prose-proof-atomic.md": "39e5eb3e3175ce3f0374e30a5ed5bd56d5abf91654ac0c0c26340453c8c1b3fd",
+    "docs/audits/2026-08-31-rigid221-s0-b3-next-blocker-classification.md": "ff4b136803152114c69acc8abcacce39679b8fa54f9d0f7e3a8dc055d2d6e244"
+  },
+  "created_utc": "2026-08-31T15:27:28Z",
+  "manifest_sha256": "5f4fd31fe8541231988f94f7db260aa20e3244dfce43c876181076f0550164b4"
+}

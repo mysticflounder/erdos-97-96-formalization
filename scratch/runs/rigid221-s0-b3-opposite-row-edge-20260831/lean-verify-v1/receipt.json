@@ -1,0 +1,25 @@
+{
+  "schema": "rigid221-b3-opposite-row-edge-receipt/v1",
+  "lane_id": "rigid221-s0-b3-opposite-row-edge-20260831",
+  "run_id": "lean-verify-v1",
+  "base_head": "ff935411514804caf003171164807f79d16a341e",
+  "executed_head": "ff935411514804caf003171164807f79d16a341e",
+  "run_manifest_sha256": "5f4fd31fe8541231988f94f7db260aa20e3244dfce43c876181076f0550164b4",
+  "check_source_sha256": "f108f33e8079c5b6af1896fd94f47ff9297791699d5c8e1055b7a645a379e885",
+  "source_build": {
+    "command": "LAKE_BUILD_NO_REFRESH=1 lake-build Erdos9796Proof.P97.ATail.FrontierLiveClosure.Rigid221Placement",
+    "log": "scratch/runs/rigid221-s0-b3-opposite-row-edge-20260831/lean-verify-v1/events/lake-build-refresh.log",
+    "exit_code": 0,
+    "module_duration_seconds": 29.0,
+    "result": "BUILT"
+  },
+  "scratch_elaboration": {
+    "command": "lake env lean ../scratch/runs/rigid221-s0-b3-opposite-row-edge-20260831/lean-verify-v1/OppositeRowPartnerEdgeCheck.lean",
+    "working_directory": "lean",
+    "exit_code": 0,
+    "wall_time_seconds": 7.8,
+    "result": "ELABORATED"
+  },
+  "claim_boundary": "The source context proves that the v row has a distinct physical-class partner xv and that centerAt(v) is equidistant from v and xv. It does not prove strict-cap membership for xv or centerAt(v), so the literal B3 target remains open.",
+  "created_utc": "2026-08-31T15:27:28Z"
+}
