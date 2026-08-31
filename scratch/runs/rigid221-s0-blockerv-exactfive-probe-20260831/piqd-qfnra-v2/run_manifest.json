@@ -1,0 +1,22 @@
+{
+  "schema": "worktree-run-manifest/v1",
+  "lane_id": "rigid221-s0-blockerv-exactfive-probe-20260831",
+  "run_id": "piqd-qfnra-v2",
+  "root": "scratch/runs/rigid221-s0-blockerv-exactfive-probe-20260831/piqd-qfnra-v2",
+  "owner": "codex-rigid221-s0-blockerv-exactfive-probe",
+  "base_head": "8946b68087bc361f2701855f942297207972750e",
+  "output_classes": [
+    "artifacts",
+    "events",
+    "tmp"
+  ],
+  "source_digests": {
+    "scratch/runs/rigid221-s0-blockerv-exactfive-probe-20260831/piqd-qfnra-v2/artifacts/literal-blockerv-exactfive.smt2": "18d06b73e13c3427c35cccb2dc5c3d4375b5d9a7a866fe0990716d4f2c0e55ab",
+    "scripts/rigid221_s0_common_core_piqd.py": "847f2ac1b3cea173c38615d9879090fed62a1bdc2a31d45fefacf9c18bef35e2"
+  },
+  "input_digests": {
+    "docs/specs/p97-rigid221-s0-blockerv-exactfive-probe-v1.md": "48b8a84e8601c9b47947562afc094b8954242f3b7839dba89c3090fb288a7c95"
+  },
+  "created_utc": "2026-08-31T08:52:30Z",
+  "manifest_sha256": "e4cce622d90f59499031a4ca59aed875a0b4a44e4f47d948a83c362bfc2b8b69"
+}
