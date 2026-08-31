@@ -1,0 +1,17 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "rigid221-s0-symbolic-cap-ingress-20260831",
+  "owner": "CapThalesCartographer",
+  "base_head": "b1002c756d483d588a709fef7177c5f1e038545f",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/rigid221-s0-symbolic-cap-ingress-20260831.json",
+    "docs/audits/2026-08-31-rigid221-s0-symbolic-cap-ingress.md",
+    "intent/offspine.toml",
+    "lean/Erdos9796Proof/P97/Cap/OrientedCapDeterminantCone.lean",
+    "lean/Erdos9796Proof/P97/SurplusM44Packet/OrientedCapDeterminantCone.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-08-31T03:38:37Z",
+  "manifest_sha256": "5a9fb57067be11434d7985c770a1164d6f7c8a580aa1bb295856de96e14161e2"
+}

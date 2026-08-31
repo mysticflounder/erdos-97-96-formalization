@@ -32,3 +32,38 @@ category = "compat"
 reason = "Compatibility-only name for the experimental m0-distinct-s0-n cell after common-core canonicalization; no live coverage claim"
 registered_at = "2026-08-31T03:18:22+00:00"
 updated_at = "2026-08-31T03:18:22+00:00"
+
+[[offspine]]
+symbol = "Problem97.CircumscribedMECPacket.false_of_equalRadius_detCone_of_onArcOpposite"
+category = "compat"
+reason = "Oriented-cap compatibility theorem connecting MEC cap data to the invariant determinant cone."
+registered_at = "2026-08-31T03:50:14+00:00"
+updated_at = "2026-08-31T03:50:14+00:00"
+
+[[offspine]]
+symbol = "Problem97.CircumscribedMECPacket.radialSupport_of_onArcOpposite"
+category = "infra"
+reason = "Packet-level radial support for the support chord of an explicit OnArcOpposite cap."
+registered_at = "2026-08-31T03:50:14+00:00"
+updated_at = "2026-08-31T03:50:14+00:00"
+
+[[offspine]]
+symbol = "Problem97.SurplusCapPacket.false_of_equalRadius_detCone_of_mem_capByIndex"
+category = "compat"
+reason = "Indexed oriented-cap compatibility wrapper; source membership and orientation remain explicit antecedents."
+registered_at = "2026-08-31T03:50:16+00:00"
+updated_at = "2026-08-31T03:50:16+00:00"
+
+[[offspine]]
+symbol = "Problem97.SurplusCapPacket.radialSupport_of_mem_capByIndex"
+category = "infra"
+reason = "Indexed-cap wrapper that preserves the exact controlled chord in its conclusion."
+registered_at = "2026-08-31T03:50:15+00:00"
+updated_at = "2026-08-31T03:50:15+00:00"
+
+[[offspine]]
+symbol = "Problem97.radialSupport_of_cap_region_thales"
+category = "infra"
+reason = "Coordinate-free Thales-to-radial-support bridge for an explicitly selected cap chord."
+registered_at = "2026-08-31T03:50:13+00:00"
+updated_at = "2026-08-31T03:50:13+00:00"
