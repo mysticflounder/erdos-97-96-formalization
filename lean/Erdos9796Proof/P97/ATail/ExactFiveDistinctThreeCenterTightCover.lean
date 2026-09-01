@@ -1,0 +1,1194 @@
+/-
+Copyright (c) 2026 Adam McKenna. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Adam McKenna
+-/
+
+import Erdos9796Proof.P97.ATail.ExactFiveDistinctThreeCenterContinuation
+import Erdos9796Proof.P97.ATail.FiveCenterDeletionBoundary
+import Erdos9796Proof.P97.ATail.LargeCapUniqueFive
+
+/-!
+# Exact-five three-center tight-cover consequences
+
+The exact-twelve branch contains three four-point rows whose union has eleven
+points.  The retained source lies in the first two rows and outside the third.
+This forces the retained source to be the only repeated row point.
+-/
+
+open scoped EuclideanGeometry
+
+namespace Problem97
+namespace ExactFiveDistinctThreeCenterTightCover
+
+open ATailCommonDeletionTwoCenter
+open ATailCapApexRadiusRigidity
+open ATailCriticalPairFrontier
+open ATailFiveCenterDeletionBoundary
+open ATailLargeCapUniqueFive
+open ATailPhysicalSecondApexCommonDeletion
+open ATailUniqueRowProducerScratch
+open ExactFiveDistinctThreeCenterContinuation
+open FirstApexUniqueRadiusResidual
+
+/-- Three four-point sets with an eleven-point union and one named overlap
+have no other overlap. -/
+theorem intersections_of_card_four_union_card_eleven
+    {α : Type*} [DecidableEq α] (K₀ K₁ K₂ : Finset α) (retained : α)
+    (hK₀ : K₀.card = 4) (hK₁ : K₁.card = 4) (hK₂ : K₂.card = 4)
+    (hretainedK₀ : retained ∈ K₀) (hretainedK₁ : retained ∈ K₁)
+    (hunion : ((K₀ ∪ K₁) ∪ K₂).card = 11) :
+    K₀ ∩ K₁ = {retained} ∧ Disjoint K₀ K₂ ∧ Disjoint K₁ K₂ := by
+  have hretainedInter : retained ∈ K₀ ∩ K₁ := by
+    exact Finset.mem_inter_of_mem hretainedK₀ hretainedK₁
+  have hinterPos : 1 ≤ (K₀ ∩ K₁).card :=
+    Finset.one_le_card.mpr ⟨retained, hretainedInter⟩
+  have hcard₀₁ := Finset.card_union_add_card_inter K₀ K₁
+  have hcard₀₁₂ := Finset.card_union_add_card_inter (K₀ ∪ K₁) K₂
+  rw [hK₀, hK₁] at hcard₀₁
+  rw [hunion, hK₂] at hcard₀₁₂
+  have hcardUnion₀₁ : (K₀ ∪ K₁).card = 7 := by omega
+  have hcardInter₀₁ : (K₀ ∩ K₁).card = 1 := by omega
+  have hcardInter₀₁₂ : ((K₀ ∪ K₁) ∩ K₂).card = 0 := by omega
+  have hinterEq : K₀ ∩ K₁ = {retained} := by
+    obtain ⟨point, hinter⟩ := Finset.card_eq_one.mp hcardInter₀₁
+    have hretainedPoint : retained = point := by
+      rw [hinter] at hretainedInter
+      simpa using hretainedInter
+    simpa [hretainedPoint] using hinter
+  have hdisjointUnion : Disjoint (K₀ ∪ K₁) K₂ := by
+    rw [Finset.disjoint_iff_inter_eq_empty]
+    exact Finset.card_eq_zero.mp hcardInter₀₁₂
+  have hdisjoint₀₂ : Disjoint K₀ K₂ := by
+    rw [Finset.disjoint_left]
+    intro point hpoint₀ hpoint₂
+    exact Finset.disjoint_left.mp hdisjointUnion
+      (Finset.mem_union_left K₁ hpoint₀) hpoint₂
+  have hdisjoint₁₂ : Disjoint K₁ K₂ := by
+    rw [Finset.disjoint_left]
+    intro point hpoint₁ hpoint₂
+    exact Finset.disjoint_left.mp hdisjointUnion
+      (Finset.mem_union_right K₀ hpoint₁) hpoint₂
+  exact ⟨hinterEq, hdisjoint₀₂, hdisjoint₁₂⟩
+
+/-- Removing the unique shared point leaves disjoint blocks of cardinalities
+three, three, and four, which partition the other ten union points. -/
+theorem residual_partition_of_card_four_union_card_eleven
+    {α : Type*} [DecidableEq α] (K₀ K₁ K₂ : Finset α) (retained : α)
+    (hK₀ : K₀.card = 4) (hK₁ : K₁.card = 4) (hK₂ : K₂.card = 4)
+    (hretainedK₀ : retained ∈ K₀) (hretainedK₁ : retained ∈ K₁)
+    (hunion : ((K₀ ∪ K₁) ∪ K₂).card = 11) :
+    (K₀.erase retained).card = 3 ∧
+      (K₁.erase retained).card = 3 ∧
+      Disjoint (K₀.erase retained) (K₁.erase retained) ∧
+      Disjoint (K₀.erase retained) K₂ ∧
+      Disjoint (K₁.erase retained) K₂ ∧
+      (((K₀.erase retained) ∪ (K₁.erase retained)) ∪ K₂).card = 10 ∧
+      (K₀ ∪ K₁) ∪ K₂ =
+        insert retained
+          (((K₀.erase retained) ∪ (K₁.erase retained)) ∪ K₂) := by
+  rcases intersections_of_card_four_union_card_eleven
+      K₀ K₁ K₂ retained hK₀ hK₁ hK₂ hretainedK₀ hretainedK₁ hunion with
+    ⟨hinter, hdisjoint₀₂, hdisjoint₁₂⟩
+  have hcard₀ : (K₀.erase retained).card = 3 := by
+    rw [Finset.card_erase_of_mem hretainedK₀, hK₀]
+  have hcard₁ : (K₁.erase retained).card = 3 := by
+    rw [Finset.card_erase_of_mem hretainedK₁, hK₁]
+  have hdisjoint₀₁ :
+      Disjoint (K₀.erase retained) (K₁.erase retained) := by
+    rw [Finset.disjoint_left]
+    intro point hpoint₀ hpoint₁
+    have hpoint₀' := Finset.mem_erase.mp hpoint₀
+    have hpoint₁' := Finset.mem_erase.mp hpoint₁
+    have hpointInter : point ∈ K₀ ∩ K₁ :=
+      Finset.mem_inter_of_mem hpoint₀'.2 hpoint₁'.2
+    rw [hinter] at hpointInter
+    exact hpoint₀'.1 (by simpa using hpointInter)
+  have hdisjointErase₀₂ : Disjoint (K₀.erase retained) K₂ := by
+    rw [Finset.disjoint_left]
+    intro point hpoint₀ hpoint₂
+    exact Finset.disjoint_left.mp hdisjoint₀₂
+      (Finset.mem_erase.mp hpoint₀).2 hpoint₂
+  have hdisjointErase₁₂ : Disjoint (K₁.erase retained) K₂ := by
+    rw [Finset.disjoint_left]
+    intro point hpoint₁ hpoint₂
+    exact Finset.disjoint_left.mp hdisjoint₁₂
+      (Finset.mem_erase.mp hpoint₁).2 hpoint₂
+  have hdisjointUnion₂ :
+      Disjoint ((K₀.erase retained) ∪ (K₁.erase retained)) K₂ := by
+    rw [Finset.disjoint_left]
+    intro point hpoint hpoint₂
+    rcases Finset.mem_union.mp hpoint with hpoint₀ | hpoint₁
+    · exact Finset.disjoint_left.mp hdisjointErase₀₂ hpoint₀ hpoint₂
+    · exact Finset.disjoint_left.mp hdisjointErase₁₂ hpoint₁ hpoint₂
+  have hcardResidual :
+      (((K₀.erase retained) ∪ (K₁.erase retained)) ∪ K₂).card = 10 := by
+    rw [Finset.card_union_of_disjoint hdisjointUnion₂,
+      Finset.card_union_of_disjoint hdisjoint₀₁, hcard₀, hcard₁, hK₂]
+  have hunionPartition :
+      (K₀ ∪ K₁) ∪ K₂ =
+        insert retained
+          (((K₀.erase retained) ∪ (K₁.erase retained)) ∪ K₂) := by
+    ext point
+    by_cases hpoint : point = retained
+    · subst point
+      simp [hretainedK₀]
+    · simp [hpoint]
+  exact ⟨hcard₀, hcard₁, hdisjoint₀₁, hdisjointErase₀₂,
+    hdisjointErase₁₂, hcardResidual, hunionPartition⟩
+
+/-- In the tight-union branch, the retained source is the sole overlap among
+the three selected four-class supports. -/
+theorem tightPhysical_support_intersections
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F}
+    {deleted blocker : ℝ²}
+    {C : CommonDeletionTwoCenterPacket D H deleted blocker S.oppApex2}
+    (N : ExactFiveDistinctThreeCenterNormalForm R C)
+    (hunion :
+      ((N.firstApexClass.support ∪ N.blockerClass.support) ∪
+        N.secondApexClass.support).card = 11) :
+    N.firstApexClass.support ∩ N.blockerClass.support = {N.retained} ∧
+      Disjoint N.firstApexClass.support N.secondApexClass.support ∧
+      Disjoint N.blockerClass.support N.secondApexClass.support := by
+  exact intersections_of_card_four_union_card_eleven
+    N.firstApexClass.support N.blockerClass.support
+    N.secondApexClass.support N.retained
+    N.firstApexClass.support_card N.blockerClass.support_card
+    N.secondApexClass.support_card N.retained_mem_firstApexClass
+    N.retained_mem_blockerClass hunion
+
+/-- The exact union cardinality already forces the retained source outside
+the second-apex support. -/
+theorem tightPhysical_retained_not_mem_second
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F}
+    {deleted blocker : ℝ²}
+    {C : CommonDeletionTwoCenterPacket D H deleted blocker S.oppApex2}
+    (N : ExactFiveDistinctThreeCenterNormalForm R C)
+    (hunion :
+      ((N.firstApexClass.support ∪ N.blockerClass.support) ∪
+        N.secondApexClass.support).card = 11) :
+    N.retained ∉ N.secondApexClass.support := by
+  have hdisjoint := (tightPhysical_support_intersections N hunion).2.1
+  intro hretained
+  exact Finset.disjoint_left.mp hdisjoint
+    N.retained_mem_firstApexClass hretained
+
+/-- The two oriented interior sources are distinct members of the exact
+five-point first-apex radius class. -/
+theorem tightPhysical_deleted_retained_mem_firstApexClass
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F}
+    {deleted blocker : ℝ²}
+    {C : CommonDeletionTwoCenterPacket D H deleted blocker S.oppApex2}
+    (N : ExactFiveDistinctThreeCenterNormalForm R C) :
+    deleted ∈ SelectedClass D.A S.oppApex1 radius ∧
+      N.retained ∈ SelectedClass D.A S.oppApex1 radius ∧
+      deleted ≠ N.retained := by
+  rcases N.orientation with horientation | horientation
+  · rcases horientation with ⟨rfl, hretained, _⟩
+    exact ⟨
+      (Finset.mem_inter.mp R.interior.w_mem_interior).1,
+      hretained.symm ▸ (Finset.mem_inter.mp R.interior.q_mem_interior).1,
+      fun heq => R.interior.frontier.pair.q_ne_w
+        (hretained.symm.trans heq.symm)⟩
+  · rcases horientation with ⟨rfl, hretained, _⟩
+    exact ⟨
+      (Finset.mem_inter.mp R.interior.q_mem_interior).1,
+      hretained.symm ▸ (Finset.mem_inter.mp R.interior.w_mem_interior).1,
+      fun heq => R.interior.frontier.pair.q_ne_w
+        (heq.trans hretained)⟩
+
+/-- The two oriented sources remain named members of the first opposite
+strict cap interior. -/
+theorem tightPhysical_deleted_retained_mem_firstCapInterior
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F}
+    {deleted blocker : ℝ²}
+    {C : CommonDeletionTwoCenterPacket D H deleted blocker S.oppApex2}
+    (N : ExactFiveDistinctThreeCenterNormalForm R C) :
+    deleted ∈ S.capInteriorByIndex S.oppIndex1 ∧
+      N.retained ∈ S.capInteriorByIndex S.oppIndex1 ∧
+      deleted ≠ N.retained := by
+  have hne := (tightPhysical_deleted_retained_mem_firstApexClass N).2.2
+  rcases N.orientation with horientation | horientation
+  · rcases horientation with ⟨rfl, hretained, _⟩
+    exact ⟨
+      (Finset.mem_inter.mp R.interior.w_mem_interior).2,
+      hretained.symm ▸ (Finset.mem_inter.mp R.interior.q_mem_interior).2,
+      hne⟩
+  · rcases horientation with ⟨rfl, hretained, _⟩
+    exact ⟨
+      (Finset.mem_inter.mp R.interior.q_mem_interior).2,
+      hretained.symm ▸ (Finset.mem_inter.mp R.interior.w_mem_interior).2,
+      hne⟩
+
+/-- The blocker parameter is the critical-shell center selected at the
+retained source. -/
+theorem tightPhysical_blocker_eq_centerAt_retained
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F}
+    {deleted blocker : ℝ²}
+    {C : CommonDeletionTwoCenterPacket D H deleted blocker S.oppApex2}
+    (N : ExactFiveDistinctThreeCenterNormalForm R C) :
+    blocker = H.centerAt N.retained N.retained_mem_A := by
+  rcases N.orientation with horientation | horientation
+  · rcases horientation with ⟨_, hretained, hblocker⟩
+    simpa only [hretained] using hblocker
+  · rcases horientation with ⟨_, hretained, hblocker⟩
+    simpa only [hretained] using hblocker
+
+/-- The blocker normal row is the full exact critical shell selected at the
+retained source, rather than an arbitrary four-subset. -/
+theorem tightPhysical_blockerClass_support_eq_retainedCriticalShell
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F}
+    {deleted blocker : ℝ²}
+    {C : CommonDeletionTwoCenterPacket D H deleted blocker S.oppApex2}
+    (N : ExactFiveDistinctThreeCenterNormalForm R C) :
+    N.blockerClass.support =
+      (H.selectedAt N.retained N.retained_mem_A).toCriticalFourShell.support := by
+  calc
+    N.blockerClass.support = C.B₁ := N.blockerClass_support_eq
+    _ = (H.selectedAt N.retained
+          N.retained_mem_A).toCriticalFourShell.support :=
+      firstRow_support_eq_criticalShell_of_center_eq C N.retained_mem_A
+        (tightPhysical_blocker_eq_centerAt_retained N)
+
+/-- Exact selected-class form of the retained source's blocker row. -/
+theorem tightPhysical_blockerClass_eq_exactSelectedClass
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F}
+    {deleted blocker : ℝ²}
+    {C : CommonDeletionTwoCenterPacket D H deleted blocker S.oppApex2}
+    (N : ExactFiveDistinctThreeCenterNormalForm R C) :
+    N.blockerClass.support =
+      SelectedClass D.A
+        (H.centerAt N.retained N.retained_mem_A)
+        (H.selectedAt N.retained
+          N.retained_mem_A).toCriticalFourShell.radius := by
+  let shell :=
+    (H.selectedAt N.retained N.retained_mem_A).toCriticalFourShell
+  calc
+    N.blockerClass.support = shell.support := by
+      exact tightPhysical_blockerClass_support_eq_retainedCriticalShell N
+    _ = D.A.filter
+        (fun point => dist (H.centerAt N.retained N.retained_mem_A) point =
+          shell.radius) := shell.support_eq
+    _ = SelectedClass D.A
+        (H.centerAt N.retained N.retained_mem_A) shell.radius := rfl
+
+/-- Pointwise exactness of the retained source's blocker row. -/
+theorem tightPhysical_mem_blockerClass_iff
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F}
+    {deleted blocker point : ℝ²}
+    {C : CommonDeletionTwoCenterPacket D H deleted blocker S.oppApex2}
+    (N : ExactFiveDistinctThreeCenterNormalForm R C)
+    (hpointA : point ∈ D.A) :
+    point ∈ N.blockerClass.support ↔
+      dist (H.centerAt N.retained N.retained_mem_A) point =
+        (H.selectedAt N.retained
+          N.retained_mem_A).toCriticalFourShell.radius := by
+  rw [tightPhysical_blockerClass_eq_exactSelectedClass N,
+    mem_selectedClass]
+  simp only [hpointA, true_and]
+
+/-- Re-inserting the deleted source into the first selected support recovers
+the exact five-point first-apex radius class. -/
+theorem tightPhysical_firstApexClass_eq_insert_deleted
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F}
+    {deleted blocker : ℝ²}
+    {C : CommonDeletionTwoCenterPacket D H deleted blocker S.oppApex2}
+    (N : ExactFiveDistinctThreeCenterNormalForm R C) :
+    SelectedClass D.A S.oppApex1 radius =
+      insert deleted N.firstApexClass.support := by
+  have hdeleted :=
+    (tightPhysical_deleted_retained_mem_firstApexClass N).1
+  calc
+    SelectedClass D.A S.oppApex1 radius =
+        insert deleted
+          ((SelectedClass D.A S.oppApex1 radius).erase deleted) :=
+      (Finset.insert_erase hdeleted).symm
+    _ = insert deleted N.firstApexClass.support := by
+      rw [← N.firstApexClass_support_eq]
+
+/-- Pointwise exactness of the five-point first-apex radius class. -/
+theorem tightPhysical_mem_firstApexFive_iff
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F}
+    {deleted blocker point : ℝ²}
+    {C : CommonDeletionTwoCenterPacket D H deleted blocker S.oppApex2}
+    (N : ExactFiveDistinctThreeCenterNormalForm R C)
+    (hpointA : point ∈ D.A) :
+    point ∈ insert deleted N.firstApexClass.support ↔
+      dist S.oppApex1 point = radius := by
+  rw [← tightPhysical_firstApexClass_eq_insert_deleted N,
+    mem_selectedClass]
+  simp only [hpointA, true_and]
+
+/-- At cardinality twelve, robustness at both physical apexes saturates the
+cap budget: all three closed caps have cardinality five and both opposite
+strict interiors have cardinality three. -/
+theorem tightPhysical_exact_cap_profile
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F}
+    {deleted blocker : ℝ²}
+    {C : CommonDeletionTwoCenterPacket D H deleted blocker S.oppApex2}
+    (N : ExactFiveDistinctThreeCenterNormalForm R C)
+    (hcard : D.A.card = 12) :
+    S.surplusCap.card = 5 ∧
+      S.oppCap1.card = 5 ∧
+      S.oppCap2.card = 5 ∧
+      (S.capInteriorByIndex S.oppIndex1).card = 3 ∧
+      (S.capInteriorByIndex S.oppIndex2).card = 3 := by
+  have hcapEq₁ : S.capByIndex S.oppIndex1 = S.oppCap1 := by
+    rcases hi : S.surplusIdx with ⟨i, hi3⟩
+    interval_cases i <;>
+      simp [SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex1,
+        SurplusCapPacket.oppCap1, hi]
+  have hcapEq₂ : S.capByIndex S.oppIndex2 = S.oppCap2 := by
+    rcases hi : S.surplusIdx with ⟨i, hi3⟩
+    interval_cases i <;>
+      simp [SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex2,
+        SurplusCapPacket.oppCap2, hi]
+  have hfirstInterior :
+      3 ≤ (SelectedClass D.A S.oppApex1 radius ∩
+        S.capInteriorByIndex S.oppIndex1).card :=
+    firstApex_cardFive_interior_card_ge_three D S
+      R.interior.frontier.radius_pos R.class_card_eq_five
+  have hfirstInteriorCap :
+      3 ≤ (S.capInteriorByIndex S.oppIndex1).card :=
+    hfirstInterior.trans (Finset.card_le_card Finset.inter_subset_right)
+  have hfirstCapSum :=
+    ATailCapApexRadiusRigidity.capInteriorByIndex_card_add_two
+      S S.oppIndex1
+  have hfirst : 5 ≤ S.oppCap1.card := by
+    rw [hcapEq₁] at hfirstCapSum
+    omega
+  have hsecond : 5 ≤ S.oppCap2.card :=
+    ATailBiApexRobustCapBounds.second_oppCap_card_ge_five
+      N.secondApex_robust
+  have hsum := S.capSum
+  have hsurplus := S.surplus_card_gt_four
+  have hsurplusEq : S.surplusCap.card = 5 := by omega
+  have hfirstEq : S.oppCap1.card = 5 := by omega
+  have hsecondEq : S.oppCap2.card = 5 := by omega
+  have hfirstInteriorEq :
+      (S.capInteriorByIndex S.oppIndex1).card = 3 := by
+    rw [hcapEq₁, hfirstEq] at hfirstCapSum
+    omega
+  have hsecondCapSum :=
+    ATailCapApexRadiusRigidity.capInteriorByIndex_card_add_two
+      S S.oppIndex2
+  have hsecondInteriorEq :
+      (S.capInteriorByIndex S.oppIndex2).card = 3 := by
+    rw [hcapEq₂, hsecondEq] at hsecondCapSum
+    omega
+  exact ⟨hsurplusEq, hfirstEq, hsecondEq,
+    hfirstInteriorEq, hsecondInteriorEq⟩
+
+/-- A five-point second opposite cap and full deletion robustness force a
+unique positive K4 radius at the second physical apex, with complete ambient
+radius class of cardinality five. -/
+theorem nonempty_tightPhysical_secondApexUniqueFive
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F}
+    {deleted blocker : ℝ²}
+    {C : CommonDeletionTwoCenterPacket D H deleted blocker S.oppApex2}
+    (N : ExactFiveDistinctThreeCenterNormalForm R C)
+    (hcard : D.A.card = 12) :
+    Nonempty (LargeCapUniqueFiveSecondApexRadius D S) := by
+  classical
+  have hcenterEq :
+      S.oppApex2 = S.oppositeVertexByIndex S.oppIndex2 := by
+    rcases hi : S.surplusIdx with ⟨i, hi3⟩
+    interval_cases i <;>
+      simp [SurplusCapPacket.oppApex2, SurplusCapPacket.oppIndex2,
+        SurplusCapPacket.oppositeVertexByIndex, hi]
+  have hcapEq : S.capByIndex S.oppIndex2 = S.oppCap2 := by
+    rcases hi : S.surplusIdx with ⟨i, hi3⟩
+    interval_cases i <;>
+      simp [SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex2,
+        SurplusCapPacket.oppCap2, hi]
+  have hsecondEq := (tightPhysical_exact_cap_profile N hcard).2.2.1
+  have hcapByIndex : (S.capByIndex S.oppIndex2).card = 5 := by
+    rw [hcapEq, hsecondEq]
+  obtain ⟨secondRadius, hsecondRadiusPos, hfour⟩ :=
+    exists_selectedClass_card_ge_of_hasNEquidistantPointsAt
+      (D.K4 S.oppApex2 C.center₂_mem_A)
+  have hclassLeFive :
+      (SelectedClass D.A S.oppApex2 secondRadius).card ≤ 5 := by
+    have hle :=
+      oppositeVertex_selectedClass_card_le_five_of_cap_card_eq_five
+        S D.convex S.oppIndex2 hcapByIndex hsecondRadiusPos
+    simpa only [← hcenterEq] using hle
+  have hclassEqFive :
+      (SelectedClass D.A S.oppApex2 secondRadius).card = 5 := by
+    by_contra hnotFive
+    have hclassEqFour :
+        (SelectedClass D.A S.oppApex2 secondRadius).card = 4 := by
+      omega
+    obtain ⟨source, hsourceClass⟩ :=
+      Finset.card_pos.mp (by omega :
+        0 < (SelectedClass D.A S.oppApex2 secondRadius).card)
+    have hsourceA : source ∈ D.A :=
+      (mem_selectedClass.mp hsourceClass).1
+    obtain ⟨otherRadius, hotherRadiusPos, hfourErase⟩ :=
+      exists_selectedClass_card_ge_of_hasNEquidistantPointsAt
+        (N.secondApex_robust.survives source hsourceA)
+    have hfourOther :
+        4 ≤ (SelectedClass D.A S.oppApex2 otherRadius).card := by
+      rw [selectedClass_erase_eq] at hfourErase
+      exact hfourErase.trans
+        (Finset.card_le_card (Finset.erase_subset _ _))
+    by_cases hsame : otherRadius = secondRadius
+    · subst otherRadius
+      rw [selectedClass_erase_eq,
+        Finset.card_erase_of_mem hsourceClass,
+        hclassEqFour] at hfourErase
+      omega
+    · have hlarge :=
+        oppositeVertex_distinct_K4_radii_force_cap_card_ge_six
+          S D.convex S.oppIndex2 hotherRadiusPos hsecondRadiusPos
+          (by simpa only [← hcenterEq] using hfourOther)
+          (by simpa only [← hcenterEq] using hfour) hsame
+      rw [hcapEq, hsecondEq] at hlarge
+      omega
+  have hunique : ∀ otherRadius : ℝ, 0 < otherRadius →
+      4 ≤ (SelectedClass D.A S.oppApex2 otherRadius).card →
+      otherRadius = secondRadius := by
+    intro otherRadius hotherRadiusPos hfourOther
+    by_contra hne
+    have hlarge :=
+      oppositeVertex_distinct_K4_radii_force_cap_card_ge_six
+        S D.convex S.oppIndex2 hotherRadiusPos hsecondRadiusPos
+        (by simpa only [← hcenterEq] using hfourOther)
+        (by simpa only [← hcenterEq] using hfour) hne
+    rw [hcapEq, hsecondEq] at hlarge
+    omega
+  exact ⟨{
+    radius := secondRadius
+    radius_pos := hsecondRadiusPos
+    class_card_eq_five := hclassEqFive
+    unique_K4_radius := hunique }⟩
+
+/-- The unique five-point second-apex radius class fills the whole
+three-point strict interior of the second opposite cap. -/
+theorem tightPhysical_secondApexFive_inter_capInterior_eq_capInterior
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F}
+    {deleted blocker : ℝ²}
+    {C : CommonDeletionTwoCenterPacket D H deleted blocker S.oppApex2}
+    (N : ExactFiveDistinctThreeCenterNormalForm R C)
+    (hcard : D.A.card = 12)
+    (profile : LargeCapUniqueFiveSecondApexRadius D S) :
+    SelectedClass D.A S.oppApex2 profile.radius ∩
+        S.capInteriorByIndex S.oppIndex2 =
+      S.capInteriorByIndex S.oppIndex2 := by
+  refine Finset.eq_of_subset_of_card_le Finset.inter_subset_right ?_
+  have hinterior := three_le_capInterior_hits_of_largeCapUniqueFive profile
+  have hprofile := tightPhysical_exact_cap_profile N hcard
+  omega
+
+/-- The normal second-apex row lies in the complete unique five-point radius
+class, independently of any retained-deletion packet witness. -/
+theorem tightPhysical_normalSecond_subset_uniqueFive
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F}
+    {deleted blocker : ℝ²}
+    {C : CommonDeletionTwoCenterPacket D H deleted blocker S.oppApex2}
+    (N : ExactFiveDistinctThreeCenterNormalForm R C)
+    (profile : LargeCapUniqueFiveSecondApexRadius D S) :
+    N.secondApexClass.support ⊆
+      SelectedClass D.A S.oppApex2 profile.radius := by
+  have hnormalAtOwnRadius :
+      N.secondApexClass.support ⊆
+        SelectedClass D.A S.oppApex2 N.secondApexClass.radius := by
+    intro point hpoint
+    exact mem_selectedClass.mpr
+      ⟨N.secondApexClass.support_subset_A hpoint,
+        N.secondApexClass.support_eq_radius point hpoint⟩
+  have hnormalFour :
+      4 ≤ (SelectedClass D.A S.oppApex2
+        N.secondApexClass.radius).card := by
+    calc
+      4 = N.secondApexClass.support.card :=
+        N.secondApexClass.support_card.symm
+      _ ≤ (SelectedClass D.A S.oppApex2
+          N.secondApexClass.radius).card :=
+        Finset.card_le_card hnormalAtOwnRadius
+  have hnormalRadius : N.secondApexClass.radius = profile.radius :=
+    profile.unique_K4_radius N.secondApexClass.radius
+      N.secondApexClass.radius_pos hnormalFour
+  simpa only [hnormalRadius] using hnormalAtOwnRadius
+
+/-- Both source-selected second-apex rows lie in the same complete five-point
+radius class forced by exact-twelve robustness. -/
+theorem tightPhysical_secondRows_subset_uniqueFive
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F}
+    {deleted blocker : ℝ²}
+    {C : CommonDeletionTwoCenterPacket D H deleted blocker S.oppApex2}
+    (N : ExactFiveDistinctThreeCenterNormalForm R C)
+    (profile : LargeCapUniqueFiveSecondApexRadius D S)
+    (P : CommonDeletionTwoCenterPacket D H N.retained
+      S.oppApex1 S.oppApex2) :
+    N.secondApexClass.support ⊆
+        SelectedClass D.A S.oppApex2 profile.radius ∧
+      P.B₂ ⊆ SelectedClass D.A S.oppApex2 profile.radius := by
+  have hpacketAtOwnRadius :
+      P.B₂ ⊆ SelectedClass D.A S.oppApex2 P.row₂.radius := by
+    intro point hpoint
+    have hpointSkeleton := P.row₂.toQAllowedK4Class.subset hpoint
+    exact mem_selectedClass.mpr
+      ⟨(Finset.mem_erase.mp hpointSkeleton).2,
+        P.row₂.same_radius point hpoint⟩
+  have hpacketFour :
+      4 ≤ (SelectedClass D.A S.oppApex2 P.row₂.radius).card := by
+    calc
+      4 = P.B₂.card := P.B₂_card.symm
+      _ ≤ (SelectedClass D.A S.oppApex2 P.row₂.radius).card :=
+        Finset.card_le_card hpacketAtOwnRadius
+  have hpacketRadius : P.row₂.radius = profile.radius :=
+    profile.unique_K4_radius P.row₂.radius P.row₂.radius_pos hpacketFour
+  constructor
+  · exact tightPhysical_normalSecond_subset_uniqueFive N profile
+  · simpa only [hpacketRadius] using hpacketAtOwnRadius
+
+/-- The normal and physical retained-deletion rows at the second apex share
+at least three sources: each is a four-subset of the same five-point class. -/
+theorem tightPhysical_secondRows_inter_card_ge_three
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F}
+    {deleted blocker : ℝ²}
+    {C : CommonDeletionTwoCenterPacket D H deleted blocker S.oppApex2}
+    (N : ExactFiveDistinctThreeCenterNormalForm R C)
+    (hcard : D.A.card = 12)
+    (P : CommonDeletionTwoCenterPacket D H N.retained
+      S.oppApex1 S.oppApex2) :
+    3 ≤ (N.secondApexClass.support ∩ P.B₂).card := by
+  rcases nonempty_tightPhysical_secondApexUniqueFive N hcard with
+    ⟨profile⟩
+  have hsub := tightPhysical_secondRows_subset_uniqueFive N profile P
+  have hunionSub :
+      N.secondApexClass.support ∪ P.B₂ ⊆
+        SelectedClass D.A S.oppApex2 profile.radius :=
+    Finset.union_subset hsub.1 hsub.2
+  have hunionCard := Finset.card_le_card hunionSub
+  have hsum := Finset.card_union_add_card_inter
+    N.secondApexClass.support P.B₂
+  rw [profile.class_card_eq_five] at hunionCard
+  rw [N.secondApexClass.support_card, P.B₂_card] at hsum
+  omega
+
+/-- The only remaining second-apex row freedom is the sharp four-of-five
+dichotomy: the two rows coincide, or their intersection has cardinality three
+and their union is the complete unique five-point radius class. -/
+theorem exists_tightPhysical_secondRows_eq_or_union_uniqueFive
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F}
+    {deleted blocker : ℝ²}
+    {C : CommonDeletionTwoCenterPacket D H deleted blocker S.oppApex2}
+    (N : ExactFiveDistinctThreeCenterNormalForm R C)
+    (hcard : D.A.card = 12)
+    (P : CommonDeletionTwoCenterPacket D H N.retained
+      S.oppApex1 S.oppApex2) :
+    ∃ profile : LargeCapUniqueFiveSecondApexRadius D S,
+      N.secondApexClass.support = P.B₂ ∨
+        (N.secondApexClass.support ∩ P.B₂).card = 3 ∧
+          N.secondApexClass.support ∪ P.B₂ =
+            SelectedClass D.A S.oppApex2 profile.radius := by
+  rcases nonempty_tightPhysical_secondApexUniqueFive N hcard with
+    ⟨profile⟩
+  refine ⟨profile, ?_⟩
+  by_cases hrows : N.secondApexClass.support = P.B₂
+  · exact Or.inl hrows
+  · right
+    have hsub := tightPhysical_secondRows_subset_uniqueFive N profile P
+    have hunionSub :
+        N.secondApexClass.support ∪ P.B₂ ⊆
+          SelectedClass D.A S.oppApex2 profile.radius :=
+      Finset.union_subset hsub.1 hsub.2
+    have hunionCardLe := Finset.card_le_card hunionSub
+    rw [profile.class_card_eq_five] at hunionCardLe
+    have hsum := Finset.card_union_add_card_inter
+      N.secondApexClass.support P.B₂
+    rw [N.secondApexClass.support_card, P.B₂_card] at hsum
+    have hinterGe :
+        3 ≤ (N.secondApexClass.support ∩ P.B₂).card := by
+      omega
+    have hinterLe :
+        (N.secondApexClass.support ∩ P.B₂).card ≤ 4 := by
+      have hle := Finset.card_le_card
+        (Finset.inter_subset_left :
+          N.secondApexClass.support ∩ P.B₂ ⊆
+            N.secondApexClass.support)
+      simpa only [N.secondApexClass.support_card] using hle
+    have hinterNeFour :
+        (N.secondApexClass.support ∩ P.B₂).card ≠ 4 := by
+      intro hinterFour
+      have hinterEqNormal :
+          N.secondApexClass.support ∩ P.B₂ =
+            N.secondApexClass.support := by
+        refine Finset.eq_of_subset_of_card_le Finset.inter_subset_left ?_
+        rw [N.secondApexClass.support_card, hinterFour]
+      have hnormalSubPacket : N.secondApexClass.support ⊆ P.B₂ := by
+        intro point hpoint
+        have hpointInter :
+            point ∈ N.secondApexClass.support ∩ P.B₂ := by
+          rw [hinterEqNormal]
+          exact hpoint
+        exact (Finset.mem_inter.mp hpointInter).2
+      exact hrows (Finset.eq_of_subset_of_card_le hnormalSubPacket (by
+        rw [N.secondApexClass.support_card, P.B₂_card]))
+    have hinterEq :
+        (N.secondApexClass.support ∩ P.B₂).card = 3 := by
+      omega
+    have hunionCardEq :
+        (N.secondApexClass.support ∪ P.B₂).card = 5 := by
+      omega
+    have hunionEq :
+        N.secondApexClass.support ∪ P.B₂ =
+          SelectedClass D.A S.oppApex2 profile.radius := by
+      refine Finset.eq_of_subset_of_card_le hunionSub ?_
+      rw [profile.class_card_eq_five, hunionCardEq]
+    exact ⟨hinterEq, hunionEq⟩
+
+/-- The retained two-center packet is already implied by the normal form's
+full deletion robustness at the two physical apexes.  Its presence in the
+tight-cover endpoint contributes witness choices, not an additional survival
+hypothesis. -/
+theorem nonempty_retainedPacket_of_normalForm
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F}
+    {deleted blocker : ℝ²}
+    {C : CommonDeletionTwoCenterPacket D H deleted blocker S.oppApex2}
+    (N : ExactFiveDistinctThreeCenterNormalForm R C) :
+    Nonempty (CommonDeletionTwoCenterPacket D H N.retained
+      S.oppApex1 S.oppApex2) := by
+  have hfirstApexA : S.oppApex1 ∈ D.A := by
+    rcases hi : S.surplusIdx with ⟨i, hi3⟩
+    interval_cases i
+    · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v2_mem
+    · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v3_mem
+    · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v1_mem
+  have hsecondApexA : S.oppApex2 ∈ D.A := C.center₂_mem_A
+  have hapices : S.oppApex1 ≠ S.oppApex2 := by
+    rcases hi : S.surplusIdx with ⟨i, hi3⟩
+    interval_cases i
+    · simpa [SurplusCapPacket.oppApex1, SurplusCapPacket.oppApex2,
+        hi] using S.triangle.v23_ne
+    · simpa [SurplusCapPacket.oppApex1, SurplusCapPacket.oppApex2,
+        hi] using S.triangle.v13_ne.symm
+    · simpa [SurplusCapPacket.oppApex1, SurplusCapPacket.oppApex2,
+        hi] using S.triangle.v12_ne
+  exact nonempty_commonDeletionTwoCenterPacket H
+    N.retained_mem_A hfirstApexA hsecondApexA hapices
+    (R.firstApex_fullyDeletionRobust.survives
+      N.retained N.retained_mem_A)
+    (N.secondApex_robust.survives N.retained N.retained_mem_A)
+
+/-- In the exact-twelve branch the five-point first-apex radius class fills
+the whole three-point strict interior of the first opposite cap. -/
+theorem tightPhysical_firstApexFive_inter_capInterior_eq_capInterior
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F}
+    {deleted blocker : ℝ²}
+    {C : CommonDeletionTwoCenterPacket D H deleted blocker S.oppApex2}
+    (N : ExactFiveDistinctThreeCenterNormalForm R C)
+    (hcard : D.A.card = 12) :
+    SelectedClass D.A S.oppApex1 radius ∩
+        S.capInteriorByIndex S.oppIndex1 =
+      S.capInteriorByIndex S.oppIndex1 := by
+  refine Finset.eq_of_subset_of_card_le Finset.inter_subset_right ?_
+  have hinterior :
+      3 ≤ (SelectedClass D.A S.oppApex1 radius ∩
+        S.capInteriorByIndex S.oppIndex1).card :=
+    firstApex_cardFive_interior_card_ge_three D S
+      R.interior.frontier.radius_pos R.class_card_eq_five
+  have hprofile := tightPhysical_exact_cap_profile N hcard
+  omega
+
+/-- Convex cap counting forces a third strict-interior source in the first
+normal row, beyond the deleted and retained interior pair. -/
+theorem exists_firstApexResidual_mem_capInterior
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F}
+    {deleted blocker : ℝ²}
+    {C : CommonDeletionTwoCenterPacket D H deleted blocker S.oppApex2}
+    (N : ExactFiveDistinctThreeCenterNormalForm R C) :
+    ∃ third,
+      third ∈ N.firstApexClass.support.erase N.retained ∧
+        third ∈ S.capInteriorByIndex S.oppIndex1 := by
+  let interiorClass :=
+    SelectedClass D.A S.oppApex1 radius ∩
+      S.capInteriorByIndex S.oppIndex1
+  have hsources := tightPhysical_deleted_retained_mem_firstApexClass N
+  have hcapSources :=
+    tightPhysical_deleted_retained_mem_firstCapInterior N
+  have hdeletedMem : deleted ∈ interiorClass :=
+    Finset.mem_inter.mpr ⟨hsources.1, hcapSources.1⟩
+  have hretainedMem : N.retained ∈ interiorClass :=
+    Finset.mem_inter.mpr ⟨hsources.2.1, hcapSources.2.1⟩
+  have hretainedErase : N.retained ∈ interiorClass.erase deleted :=
+    Finset.mem_erase.mpr ⟨hsources.2.2.symm, hretainedMem⟩
+  have hcard : 3 ≤ interiorClass.card := by
+    exact firstApex_cardFive_interior_card_ge_three D S
+      R.interior.frontier.radius_pos R.class_card_eq_five
+  have hcardEraseDeleted := Finset.card_erase_of_mem hdeletedMem
+  have hcardEraseBoth := Finset.card_erase_of_mem hretainedErase
+  have hnonempty :
+      ((interiorClass.erase deleted).erase N.retained).Nonempty := by
+    exact Finset.card_pos.mp (by omega)
+  rcases hnonempty with ⟨third, hthird⟩
+  have hthirdRetained := Finset.mem_erase.mp hthird
+  have hthirdDeleted := Finset.mem_erase.mp hthirdRetained.2
+  have hthirdClass := (Finset.mem_inter.mp hthirdDeleted.2).1
+  have hthirdInterior := (Finset.mem_inter.mp hthirdDeleted.2).2
+  have hthirdSupport : third ∈ N.firstApexClass.support := by
+    rw [tightPhysical_firstApexClass_eq_insert_deleted N] at hthirdClass
+    rcases Finset.mem_insert.mp hthirdClass with hthirdEq | hthirdSupport
+    · exact False.elim (hthirdDeleted.1 hthirdEq)
+    · exact hthirdSupport
+  exact ⟨third,
+    Finset.mem_erase.mpr ⟨hthirdRetained.1, hthirdSupport⟩,
+    hthirdInterior⟩
+
+/-- At cardinality twelve the deleted source, retained source, and one
+residual first-row source are exactly the first opposite cap interior. -/
+theorem exists_firstCapInterior_eq_triple
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F}
+    {deleted blocker : ℝ²}
+    {C : CommonDeletionTwoCenterPacket D H deleted blocker S.oppApex2}
+    (N : ExactFiveDistinctThreeCenterNormalForm R C)
+    (hcard : D.A.card = 12) :
+    ∃ third,
+      third ∈ N.firstApexClass.support.erase N.retained ∧
+        S.capInteriorByIndex S.oppIndex1 =
+          ({deleted, N.retained, third} : Finset ℝ²) := by
+  rcases exists_firstApexResidual_mem_capInterior N with
+    ⟨third, hthirdResidual, hthirdInterior⟩
+  have hcapSources :=
+    tightPhysical_deleted_retained_mem_firstCapInterior N
+  have hthirdErase := Finset.mem_erase.mp hthirdResidual
+  have hdeletedNotSupport : deleted ∉ N.firstApexClass.support := by
+    rw [N.firstApexClass_support_eq]
+    simp
+  have hdeletedNeThird : deleted ≠ third := by
+    intro hEq
+    exact hdeletedNotSupport (hEq.symm ▸ hthirdErase.2)
+  have hretainedNeThird : N.retained ≠ third := hthirdErase.1.symm
+  have hnamedCard :
+      ({deleted, N.retained, third} : Finset ℝ²).card = 3 :=
+    Finset.card_eq_three.mpr ⟨deleted, N.retained, third,
+      hcapSources.2.2, hdeletedNeThird, hretainedNeThird, rfl⟩
+  have hnamedSubset :
+      ({deleted, N.retained, third} : Finset ℝ²) ⊆
+        S.capInteriorByIndex S.oppIndex1 := by
+    intro point hpoint
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hpoint
+    rcases hpoint with rfl | rfl | rfl
+    · exact hcapSources.1
+    · exact hcapSources.2.1
+    · exact hthirdInterior
+  have hinteriorCard :=
+    (tightPhysical_exact_cap_profile N hcard).2.2.2.1
+  have hnamedEq :
+      ({deleted, N.retained, third} : Finset ℝ²) =
+        S.capInteriorByIndex S.oppIndex1 := by
+    exact Finset.eq_of_subset_of_card_le hnamedSubset (by omega)
+  exact ⟨third, hthirdResidual, hnamedEq.symm⟩
+
+/-- Uniqueness of the first-apex four-class radius fixes the physical
+retained-deletion packet's first row: it is the deleted source together with
+the first normal row's residual triple. -/
+theorem tightPhysical_retainedPacket_firstRow_eq_insert_deleted_residual
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F}
+    {deleted blocker : ℝ²}
+    {C : CommonDeletionTwoCenterPacket D H deleted blocker S.oppApex2}
+    (N : ExactFiveDistinctThreeCenterNormalForm R C)
+    (P : CommonDeletionTwoCenterPacket D H N.retained
+      S.oppApex1 S.oppApex2) :
+    P.B₁ = insert deleted
+      (N.firstApexClass.support.erase N.retained) := by
+  have hsource := tightPhysical_deleted_retained_mem_firstApexClass N
+  have hclassEq := tightPhysical_firstApexClass_eq_insert_deleted N
+  have hpacketSubset :
+      P.B₁ ⊆ SelectedClass D.A S.oppApex1 P.row₁.radius := by
+    intro point hpoint
+    have hpointSkeleton :=
+      (Finset.mem_erase.mp (P.row₁.subset hpoint)).2
+    exact mem_selectedClass.mpr
+      ⟨(Finset.mem_erase.mp hpointSkeleton).2,
+        P.row₁.same_radius point hpoint⟩
+  have hpacketClassCard :
+      4 ≤ (SelectedClass D.A S.oppApex1 P.row₁.radius).card := by
+    rw [← P.B₁_card]
+    exact Finset.card_le_card hpacketSubset
+  have hpacketRadius : P.row₁.radius = radius :=
+    R.unique_fourClass_radius P.row₁.radius P.row₁.radius_pos
+      hpacketClassCard
+  have hpacketSubsetErase :
+      P.B₁ ⊆ (SelectedClass D.A S.oppApex1 radius).erase N.retained := by
+    intro point hpoint
+    refine Finset.mem_erase.mpr ⟨?_, ?_⟩
+    · exact fun hpointRetained => P.row₁.q_not_mem (hpointRetained ▸ hpoint)
+    · rw [← hpacketRadius]
+      exact hpacketSubset hpoint
+  have hpacketEq :
+      P.B₁ = (SelectedClass D.A S.oppApex1 radius).erase N.retained := by
+    apply Finset.eq_of_subset_of_card_le hpacketSubsetErase
+    rw [Finset.card_erase_of_mem hsource.2.1, R.class_card_eq_five,
+      P.B₁_card]
+  calc
+    P.B₁ = (SelectedClass D.A S.oppApex1 radius).erase N.retained :=
+      hpacketEq
+    _ = (insert deleted N.firstApexClass.support).erase N.retained := by
+      rw [hclassEq]
+    _ = insert deleted
+        (N.firstApexClass.support.erase N.retained) := by
+      exact Finset.erase_insert_of_ne hsource.2.2
+
+/-- In the tight union branch, the fixed first row of the retained-deletion
+packet is disjoint from both other normal-form rows. -/
+theorem tightPhysical_retainedPacket_firstRow_disjoint_normalOthers
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F}
+    {deleted blocker : ℝ²}
+    {C : CommonDeletionTwoCenterPacket D H deleted blocker S.oppApex2}
+    (N : ExactFiveDistinctThreeCenterNormalForm R C)
+    (hunion :
+      ((N.firstApexClass.support ∪ N.blockerClass.support) ∪
+        N.secondApexClass.support).card = 11)
+    (P : CommonDeletionTwoCenterPacket D H N.retained
+      S.oppApex1 S.oppApex2) :
+    Disjoint P.B₁ N.blockerClass.support ∧
+      Disjoint P.B₁ N.secondApexClass.support := by
+  have hpacket :=
+    tightPhysical_retainedPacket_firstRow_eq_insert_deleted_residual N P
+  have hnormal := tightPhysical_support_intersections N hunion
+  rw [hpacket]
+  constructor
+  · rw [Finset.disjoint_left]
+    intro point hpointPacket hpointBlocker
+    rcases Finset.mem_insert.mp hpointPacket with rfl | hpointResidual
+    · rw [N.blockerClass_support_eq] at hpointBlocker
+      exact C.row₁.q_not_mem hpointBlocker
+    · have hpointErase := Finset.mem_erase.mp hpointResidual
+      have hpointInter : point ∈
+          N.firstApexClass.support ∩ N.blockerClass.support :=
+        Finset.mem_inter_of_mem hpointErase.2 hpointBlocker
+      rw [hnormal.1] at hpointInter
+      exact hpointErase.1 (by simpa using hpointInter)
+  · rw [Finset.disjoint_left]
+    intro point hpointPacket hpointSecond
+    rcases Finset.mem_insert.mp hpointPacket with rfl | hpointResidual
+    · rw [N.secondApexClass_support_eq] at hpointSecond
+      exact C.row₂.q_not_mem hpointSecond
+    · exact Finset.disjoint_left.mp hnormal.2.1
+        (Finset.mem_erase.mp hpointResidual).2 hpointSecond
+
+/-- The tight branch decomposes its eleven row-union points into the retained
+source and three disjoint residual blocks of cardinalities three, three, and
+four. -/
+theorem tightPhysical_support_partition
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F}
+    {deleted blocker : ℝ²}
+    {C : CommonDeletionTwoCenterPacket D H deleted blocker S.oppApex2}
+    (N : ExactFiveDistinctThreeCenterNormalForm R C)
+    (hunion :
+      ((N.firstApexClass.support ∪ N.blockerClass.support) ∪
+        N.secondApexClass.support).card = 11) :
+    (N.firstApexClass.support.erase N.retained).card = 3 ∧
+      (N.blockerClass.support.erase N.retained).card = 3 ∧
+      Disjoint (N.firstApexClass.support.erase N.retained)
+        (N.blockerClass.support.erase N.retained) ∧
+      Disjoint (N.firstApexClass.support.erase N.retained)
+        N.secondApexClass.support ∧
+      Disjoint (N.blockerClass.support.erase N.retained)
+        N.secondApexClass.support ∧
+      (((N.firstApexClass.support.erase N.retained) ∪
+          (N.blockerClass.support.erase N.retained)) ∪
+        N.secondApexClass.support).card = 10 ∧
+      (N.firstApexClass.support ∪ N.blockerClass.support) ∪
+          N.secondApexClass.support =
+        insert N.retained
+          (((N.firstApexClass.support.erase N.retained) ∪
+              (N.blockerClass.support.erase N.retained)) ∪
+            N.secondApexClass.support) := by
+  exact residual_partition_of_card_four_union_card_eleven
+    N.firstApexClass.support N.blockerClass.support
+    N.secondApexClass.support N.retained
+    N.firstApexClass.support_card N.blockerClass.support_card
+    N.secondApexClass.support_card N.retained_mem_firstApexClass
+    N.retained_mem_blockerClass hunion
+
+/-- The deleted source and retained source extend the three residual row
+blocks to a partition of the full twelve-point carrier. -/
+theorem tightPhysical_carrier_eq_insert_deleted_partition
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F}
+    {deleted blocker : ℝ²}
+    {C : CommonDeletionTwoCenterPacket D H deleted blocker S.oppApex2}
+    (N : ExactFiveDistinctThreeCenterNormalForm R C)
+    (hunion :
+      ((N.firstApexClass.support ∪ N.blockerClass.support) ∪
+        N.secondApexClass.support).card = 11)
+    (herase :
+      D.A.erase deleted =
+        (N.firstApexClass.support ∪ N.blockerClass.support) ∪
+          N.secondApexClass.support) :
+    deleted ∉
+        insert N.retained
+          (((N.firstApexClass.support.erase N.retained) ∪
+              (N.blockerClass.support.erase N.retained)) ∪
+            N.secondApexClass.support) ∧
+      D.A =
+        insert deleted
+          (insert N.retained
+            (((N.firstApexClass.support.erase N.retained) ∪
+                (N.blockerClass.support.erase N.retained)) ∪
+              N.secondApexClass.support)) := by
+  rcases tightPhysical_support_partition N hunion with
+    ⟨_, _, _, _, _, _, hpartition⟩
+  constructor
+  · rw [← hpartition, ← herase]
+    simp
+  · calc
+      D.A = insert deleted (D.A.erase deleted) :=
+        (Finset.insert_erase C.q_mem_A).symm
+      _ = insert deleted
+          ((N.firstApexClass.support ∪ N.blockerClass.support) ∪
+            N.secondApexClass.support) := by rw [herase]
+      _ = insert deleted
+          (insert N.retained
+            (((N.firstApexClass.support.erase N.retained) ∪
+                (N.blockerClass.support.erase N.retained)) ∪
+              N.secondApexClass.support)) := by rw [hpartition]
+
+/-- The retained-deletion packet's two rows meet every normal-form row at a
+different center in at most two points. -/
+theorem tightPhysical_retainedPacket_cross_inter_card_le_two
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F}
+    {deleted blocker : ℝ²}
+    {C : CommonDeletionTwoCenterPacket D H deleted blocker S.oppApex2}
+    (N : ExactFiveDistinctThreeCenterNormalForm R C)
+    (P : CommonDeletionTwoCenterPacket D H N.retained
+      S.oppApex1 S.oppApex2) :
+    (P.B₁ ∩ N.blockerClass.support).card ≤ 2 ∧
+      (P.B₁ ∩ N.secondApexClass.support).card ≤ 2 ∧
+      (P.B₂ ∩ N.firstApexClass.support).card ≤ 2 ∧
+      (P.B₂ ∩ N.blockerClass.support).card ≤ 2 := by
+  let P₀ : SelectedFourClass D.A S.oppApex1 :=
+    qDeletedK4ClassToSelectedFourClass P.row₁ P.B₁_card
+  let P₂ : SelectedFourClass D.A S.oppApex2 :=
+    qDeletedK4ClassToSelectedFourClass P.row₂ P.B₂_card
+  have h₀₁ : (P₀.support ∩ N.blockerClass.support).card ≤ 2 :=
+    SelectedFourClass.inter_card_le_two P₀ N.blockerClass
+      N.freshThreeCenter.center₀_ne_center₁
+  have h₀₂ : (P₀.support ∩ N.secondApexClass.support).card ≤ 2 :=
+    SelectedFourClass.inter_card_le_two P₀ N.secondApexClass
+      N.freshThreeCenter.center₀_ne_center₂
+  have h₂₀ : (P₂.support ∩ N.firstApexClass.support).card ≤ 2 :=
+    SelectedFourClass.inter_card_le_two P₂ N.firstApexClass
+      N.freshThreeCenter.center₀_ne_center₂.symm
+  have h₂₁ : (P₂.support ∩ N.blockerClass.support).card ≤ 2 :=
+    SelectedFourClass.inter_card_le_two P₂ N.blockerClass
+      N.freshThreeCenter.center₁_ne_center₂.symm
+  simpa [P₀, P₂, qDeletedK4ClassToSelectedFourClass] using
+    ⟨h₀₁, h₀₂, h₂₀, h₂₁⟩
+
+/-- Source-invariant normal form for the remaining balanced tight-cover
+branch.  It intentionally omits the retained common-deletion packet: that
+packet is reconstructible from robustness and its stored rows are witness
+choices rather than invariant incidence data. -/
+structure BalancedTightCoverInvariant
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F)
+    {deleted blocker : ℝ²}
+    (C : CommonDeletionTwoCenterPacket D H deleted blocker S.oppApex2)
+    (N : ExactFiveDistinctThreeCenterNormalForm R C) : Type where
+  carrier_card_eq_twelve : D.A.card = 12
+  union_card_eq_eleven :
+    ((N.firstApexClass.support ∪ N.blockerClass.support) ∪
+      N.secondApexClass.support).card = 11
+  carrier_erase_deleted_eq_union :
+    D.A.erase deleted =
+      (N.firstApexClass.support ∪ N.blockerClass.support) ∪
+        N.secondApexClass.support
+  retained_not_mem_second : N.retained ∉ N.secondApexClass.support
+  support_intersections :
+    N.firstApexClass.support ∩ N.blockerClass.support = {N.retained} ∧
+      Disjoint N.firstApexClass.support N.secondApexClass.support ∧
+      Disjoint N.blockerClass.support N.secondApexClass.support
+  support_partition :
+    (N.firstApexClass.support.erase N.retained).card = 3 ∧
+      (N.blockerClass.support.erase N.retained).card = 3 ∧
+      Disjoint (N.firstApexClass.support.erase N.retained)
+        (N.blockerClass.support.erase N.retained) ∧
+      Disjoint (N.firstApexClass.support.erase N.retained)
+        N.secondApexClass.support ∧
+      Disjoint (N.blockerClass.support.erase N.retained)
+        N.secondApexClass.support ∧
+      (((N.firstApexClass.support.erase N.retained) ∪
+          (N.blockerClass.support.erase N.retained)) ∪
+        N.secondApexClass.support).card = 10 ∧
+      (N.firstApexClass.support ∪ N.blockerClass.support) ∪
+          N.secondApexClass.support =
+        insert N.retained
+          (((N.firstApexClass.support.erase N.retained) ∪
+              (N.blockerClass.support.erase N.retained)) ∪
+            N.secondApexClass.support)
+  carrier_partition :
+    deleted ∉
+        insert N.retained
+          (((N.firstApexClass.support.erase N.retained) ∪
+              (N.blockerClass.support.erase N.retained)) ∪
+            N.secondApexClass.support) ∧
+      D.A =
+        insert deleted
+          (insert N.retained
+            (((N.firstApexClass.support.erase N.retained) ∪
+                (N.blockerClass.support.erase N.retained)) ∪
+              N.secondApexClass.support))
+  blocker_support_eq :
+    N.blockerClass.support =
+      (H.selectedAt N.retained
+        N.retained_mem_A).toCriticalFourShell.support
+  cap_profile :
+    S.surplusCap.card = 5 ∧
+      S.oppCap1.card = 5 ∧
+      S.oppCap2.card = 5 ∧
+      (S.capInteriorByIndex S.oppIndex1).card = 3 ∧
+      (S.capInteriorByIndex S.oppIndex2).card = 3
+  firstInteriorThird : ℝ²
+  firstInteriorThird_mem :
+    firstInteriorThird ∈
+      N.firstApexClass.support.erase N.retained
+  firstInterior_eq :
+    S.capInteriorByIndex S.oppIndex1 =
+      ({deleted, N.retained, firstInteriorThird} : Finset ℝ²)
+  secondApexProfile : LargeCapUniqueFiveSecondApexRadius D S
+  normalSecond_subset_profile :
+    N.secondApexClass.support ⊆
+      SelectedClass D.A S.oppApex2 secondApexProfile.radius
+  secondInterior_eq :
+    SelectedClass D.A S.oppApex2 secondApexProfile.radius ∩
+        S.capInteriorByIndex S.oppIndex2 =
+      S.capInteriorByIndex S.oppIndex2
+
+/-- The exact-twelve tight-union hypotheses produce the invariant packet
+without using either the explicit retained-omission proof or the retained
+common-deletion witness from the historical endpoint. -/
+theorem nonempty_balancedTightCoverInvariant
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F)
+    {deleted blocker : ℝ²}
+    (C : CommonDeletionTwoCenterPacket D H deleted blocker S.oppApex2)
+    (N : ExactFiveDistinctThreeCenterNormalForm R C)
+    (hcard : D.A.card = 12)
+    (hunion :
+      ((N.firstApexClass.support ∪ N.blockerClass.support) ∪
+        N.secondApexClass.support).card = 11)
+    (herase :
+      D.A.erase deleted =
+        (N.firstApexClass.support ∪ N.blockerClass.support) ∪
+          N.secondApexClass.support) :
+    Nonempty (BalancedTightCoverInvariant R C N) := by
+  have hintersections := tightPhysical_support_intersections N hunion
+  have hpartition := tightPhysical_support_partition N hunion
+  have hcarrier :=
+    tightPhysical_carrier_eq_insert_deleted_partition N hunion herase
+  have hblocker :=
+    tightPhysical_blockerClass_support_eq_retainedCriticalShell N
+  have hcap := tightPhysical_exact_cap_profile N hcard
+  rcases exists_firstCapInterior_eq_triple N hcard with
+    ⟨third, hthird, hfirstInterior⟩
+  rcases nonempty_tightPhysical_secondApexUniqueFive N hcard with
+    ⟨secondProfile⟩
+  exact ⟨{
+    carrier_card_eq_twelve := hcard
+    union_card_eq_eleven := hunion
+    carrier_erase_deleted_eq_union := herase
+    retained_not_mem_second :=
+      tightPhysical_retained_not_mem_second N hunion
+    support_intersections := hintersections
+    support_partition := hpartition
+    carrier_partition := hcarrier
+    blocker_support_eq := hblocker
+    cap_profile := hcap
+    firstInteriorThird := third
+    firstInteriorThird_mem := hthird
+    firstInterior_eq := hfirstInterior
+    secondApexProfile := secondProfile
+    normalSecond_subset_profile :=
+      tightPhysical_normalSecond_subset_uniqueFive N secondProfile
+    secondInterior_eq :=
+      tightPhysical_secondApexFive_inter_capInterior_eq_capInterior
+        N hcard secondProfile }⟩
+
+end ExactFiveDistinctThreeCenterTightCover
+end Problem97
