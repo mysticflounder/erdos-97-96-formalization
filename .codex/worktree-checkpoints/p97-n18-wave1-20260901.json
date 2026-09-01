@@ -1,0 +1,25 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "p97-n18-wave1-20260901",
+  "owner": "codex-p97-n18-wave1-20260901",
+  "base_head": "cabbe8bb40c62a43642b0a89fbd40d44d9e6e749",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/p97-n18-wave1-20260901.json"
+  ],
+  "generated_roots": [
+    "scratch/runs/p97-n18-wave1-20260901/wave1-v1"
+  ],
+  "durable_paths": [
+    "scratch/runs/p97-n18-wave1-20260901/wave1-v1/REPORT.md",
+    "scratch/runs/p97-n18-wave1-20260901/wave1-v1/card18_v2_bridge.md",
+    "scratch/runs/p97-n18-wave1-20260901/wave1-v1/clause_family_manifest.json",
+    "scratch/runs/p97-n18-wave1-20260901/wave1-v1/comparison.json",
+    "scratch/runs/p97-n18-wave1-20260901/wave1-v1/controls.json",
+    "scratch/runs/p97-n18-wave1-20260901/wave1-v1/replay_report.json",
+    "scratch/runs/p97-n18-wave1-20260901/wave1-v1/run_manifest.json",
+    "scratch/runs/p97-n18-wave1-20260901/wave1-v1/runner.py",
+    "scratch/runs/p97-n18-wave1-20260901/wave1-v1/survivor_signatures.jsonl"
+  ],
+  "created_utc": "2026-09-01T20:34:09Z",
+  "manifest_sha256": "7509816343897677c60de73273da992567d2039cb42d9c1a8f56702d378457d6"
+}

@@ -1,0 +1,242 @@
+{
+  "cell": {
+    "exact": true,
+    "k": 4,
+    "n": 18,
+    "profile": null
+  },
+  "claim_boundary": "No metric realizability and no Card18 coverage. Completeness is claimed only by an individual mode with proof-checked COMPLETE_UNSAT for its exact finite CNF. SCC modes are conditional on the named guard.",
+  "command": [
+    "/Users/adam/projects/math-projects/erdos-97-96-formalization/.venv/bin/python3",
+    "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/runs/p97-n18-wave1-20260901/wave1-v1/runner.py",
+    "--modes",
+    "baseline",
+    "dual2",
+    "scc",
+    "dual2_scc",
+    "--accepted-survivor-cap",
+    "16",
+    "--candidate-solve-cap",
+    "128",
+    "--timeout",
+    "30",
+    "--motif-subset-cap",
+    "512"
+  ],
+  "command_shell": "/Users/adam/projects/math-projects/erdos-97-96-formalization/.venv/bin/python3 /Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/runs/p97-n18-wave1-20260901/wave1-v1/runner.py --modes baseline dual2 scc dual2_scc --accepted-survivor-cap 16 --candidate-solve-cap 128 --timeout 30 --motif-subset-cap 512",
+  "configuration": {
+    "accepted_survivor_cap": 16,
+    "candidate_solve_cap": 128,
+    "dry_controls": false,
+    "executed_modes": [
+      "baseline",
+      "dual2",
+      "scc",
+      "dual2_scc"
+    ],
+    "execution_mode": "SOLVER_WAVE",
+    "motif_subset_cap_per_r": 512,
+    "per_call_timeout_seconds": 30,
+    "requested_modes": [
+      "baseline",
+      "dual2",
+      "scc",
+      "dual2_scc"
+    ]
+  },
+  "modes": [
+    {
+      "accepted_survivors": 16,
+      "artifact_sha256": {
+        "base.cnf": "8219a04d90ddd2b38d7b4ae43e47f6c43d1b3b871bc2a720d7f52ddc053e10b6",
+        "current.cnf": "4373f495895f070aae00d21fe7ceae3f1df99230ffd55c2d73b34823c1457ac8",
+        "current.solve.json": "82b5bc65eb3b0b3d3384227b62eae864913ea8aa29d1380273f85262809f0407",
+        "last_solved.cnf": "0764915d1c1a8b514c3d40f7d01900014c8b844fbc38920e0270bbe78792e8e0"
+      },
+      "candidate_event_files": [
+        "events/baseline/candidate-0001.json",
+        "events/baseline/candidate-0002.json",
+        "events/baseline/candidate-0003.json",
+        "events/baseline/candidate-0004.json",
+        "events/baseline/candidate-0005.json",
+        "events/baseline/candidate-0006.json",
+        "events/baseline/candidate-0007.json",
+        "events/baseline/candidate-0008.json",
+        "events/baseline/candidate-0009.json",
+        "events/baseline/candidate-0010.json",
+        "events/baseline/candidate-0011.json",
+        "events/baseline/candidate-0012.json",
+        "events/baseline/candidate-0013.json",
+        "events/baseline/candidate-0014.json",
+        "events/baseline/candidate-0015.json",
+        "events/baseline/candidate-0016.json"
+      ],
+      "candidate_event_ledger": "events/baseline/ledger.jsonl",
+      "candidate_event_ledger_sha256": "8e4eb8cb88c42d7250a069ae015e9e4608fcf4b615d5cb7b8e0aa34cd94371cb",
+      "candidate_solves": 16,
+      "claim": "partial or inconclusive generic A-ROW exploration",
+      "guard_name": null,
+      "guard_reconstructions_from_unit": 0,
+      "guard_var": null,
+      "lazy_scc_cuts": 0,
+      "mode": "baseline",
+      "semantic_blocks": 16,
+      "status": "PARTIAL_SURVIVOR_CAP",
+      "terminal": null,
+      "unsat_verified": false
+    },
+    {
+      "accepted_survivors": 16,
+      "artifact_sha256": {
+        "base.cnf": "943a97c5e144b5c754e48339ed2e5b95ade43c6caa4d626434400ac5d660f367",
+        "current.cnf": "21cd538768f1f160aa28c348965cb44205c0dc5cc407f489d889dbce52ac0b47",
+        "current.solve.json": "0d3e73f32cdceee9239557a400a1f7f384bf89c4e5f4719fcee63f5688b7a83b",
+        "last_solved.cnf": "2848d60dd9dd568dd995ed704f274bcf4765ac1dc4a2e28526c363f615affbf0"
+      },
+      "candidate_event_files": [
+        "events/dual2/candidate-0001.json",
+        "events/dual2/candidate-0002.json",
+        "events/dual2/candidate-0003.json",
+        "events/dual2/candidate-0004.json",
+        "events/dual2/candidate-0005.json",
+        "events/dual2/candidate-0006.json",
+        "events/dual2/candidate-0007.json",
+        "events/dual2/candidate-0008.json",
+        "events/dual2/candidate-0009.json",
+        "events/dual2/candidate-0010.json",
+        "events/dual2/candidate-0011.json",
+        "events/dual2/candidate-0012.json",
+        "events/dual2/candidate-0013.json",
+        "events/dual2/candidate-0014.json",
+        "events/dual2/candidate-0015.json",
+        "events/dual2/candidate-0016.json"
+      ],
+      "candidate_event_ledger": "events/dual2/ledger.jsonl",
+      "candidate_event_ledger_sha256": "c0f74d591985326af34fabd4de0a37ed141a66c350259b9a51732e268052409e",
+      "candidate_solves": 16,
+      "claim": "partial or inconclusive generic A-ROW exploration",
+      "guard_name": null,
+      "guard_reconstructions_from_unit": 0,
+      "guard_var": null,
+      "lazy_scc_cuts": 0,
+      "mode": "dual2",
+      "semantic_blocks": 16,
+      "status": "PARTIAL_SURVIVOR_CAP",
+      "terminal": null,
+      "unsat_verified": false
+    },
+    {
+      "accepted_survivors": 16,
+      "artifact_sha256": {
+        "base.cnf": "e973bcb8dcac51277cfe80066a2ad515d15264685e4e1fe876a57c9d7fca0a84",
+        "current.cnf": "77a131153e59eef2e8e3dd105eac386aa0f876ffd028c2facda1be30126aba05",
+        "current.solve.json": "39d3829f073b749e62766c6e32baf63f091438a5f4281cc02cfe8622946290dd",
+        "last_solved.cnf": "c9541659715af1699d3b828479f81276d40906a64a540db034af05e2d2cff91f"
+      },
+      "candidate_event_files": [
+        "events/scc/candidate-0001.json",
+        "events/scc/candidate-0002.json",
+        "events/scc/candidate-0003.json",
+        "events/scc/candidate-0004.json",
+        "events/scc/candidate-0005.json",
+        "events/scc/candidate-0006.json",
+        "events/scc/candidate-0007.json",
+        "events/scc/candidate-0008.json",
+        "events/scc/candidate-0009.json",
+        "events/scc/candidate-0010.json",
+        "events/scc/candidate-0011.json",
+        "events/scc/candidate-0012.json",
+        "events/scc/candidate-0013.json",
+        "events/scc/candidate-0014.json",
+        "events/scc/candidate-0015.json",
+        "events/scc/candidate-0016.json"
+      ],
+      "candidate_event_ledger": "events/scc/ledger.jsonl",
+      "candidate_event_ledger_sha256": "3439769684ce0c7394827b54f6be23316e7a75e3b010eac467500445e3af2fcd",
+      "candidate_solves": 16,
+      "claim": "partial or inconclusive generic A-ROW exploration",
+      "guard_name": "MINIMAL-FAITHFUL-CONSEQUENCE",
+      "guard_reconstructions_from_unit": 0,
+      "guard_var": 307,
+      "lazy_scc_cuts": 0,
+      "mode": "scc",
+      "semantic_blocks": 16,
+      "status": "PARTIAL_SURVIVOR_CAP",
+      "terminal": null,
+      "unsat_verified": false
+    },
+    {
+      "accepted_survivors": 16,
+      "artifact_sha256": {
+        "base.cnf": "9d1764ec4948ec09118acb074e4e2872dfa86caa6a9ca047f12b6486d59b950c",
+        "current.cnf": "502fa849a744a3677bb802cdc58992ae1a4e802e594a8eba8a054a5c36cb2131",
+        "current.solve.json": "4116859b2c30f811f4f85cabc4fd73f1140ce7fef15345aed2388a648caa3180",
+        "last_solved.cnf": "43e68bc4bcdf5601c3496c1bd5539c8c8bc0a451129c06a19709bd8f0d282bb2"
+      },
+      "candidate_event_files": [
+        "events/dual2_scc/candidate-0001.json",
+        "events/dual2_scc/candidate-0002.json",
+        "events/dual2_scc/candidate-0003.json",
+        "events/dual2_scc/candidate-0004.json",
+        "events/dual2_scc/candidate-0005.json",
+        "events/dual2_scc/candidate-0006.json",
+        "events/dual2_scc/candidate-0007.json",
+        "events/dual2_scc/candidate-0008.json",
+        "events/dual2_scc/candidate-0009.json",
+        "events/dual2_scc/candidate-0010.json",
+        "events/dual2_scc/candidate-0011.json",
+        "events/dual2_scc/candidate-0012.json",
+        "events/dual2_scc/candidate-0013.json",
+        "events/dual2_scc/candidate-0014.json",
+        "events/dual2_scc/candidate-0015.json",
+        "events/dual2_scc/candidate-0016.json"
+      ],
+      "candidate_event_ledger": "events/dual2_scc/ledger.jsonl",
+      "candidate_event_ledger_sha256": "29a18fc214a4da4d0914060e94aa4998274002c41aac3f9e634ec874a1d79eaa",
+      "candidate_solves": 16,
+      "claim": "partial or inconclusive generic A-ROW exploration",
+      "guard_name": "MINIMAL-FAITHFUL-CONSEQUENCE",
+      "guard_reconstructions_from_unit": 0,
+      "guard_var": 307,
+      "lazy_scc_cuts": 0,
+      "mode": "dual2_scc",
+      "semantic_blocks": 16,
+      "status": "PARTIAL_SURVIVOR_CAP",
+      "terminal": null,
+      "unsat_verified": false
+    }
+  ],
+  "schema": "p97-generic-arow-n18-wave1-runner/v1",
+  "source": {
+    "backends": {
+      "cadical": {
+        "path": "/Users/adam/.local/bin/cadical",
+        "sha256": "66b34e225d5661f8e9b33fb8f77f2e9ae4c5639d8fe2a19067edb06c6d97d9d8",
+        "version": "3.0.0"
+      },
+      "drat-trim": {
+        "path": "/Users/adam/.local/bin/drat-trim",
+        "sha256": "eb781b99f2aaf5c9102eb6efd07c2d0aa71b44a0e8002a74e3dda1030be96a92",
+        "version": "usage: drat-trim [INPUT] [<PROOF>] [<option> ...]"
+      }
+    },
+    "custody_nonclaim": "These direct-file digests do not authenticate transitive imports, a bank, or source-to-finite theorem custody.",
+    "direct_file_digests": {
+      "classification": "direct-file SHA-256 only; non-transitive and not a bank source_manifest",
+      "sha256": {
+        "census/p97_search/cells.py": "76c84b93ec6f282064b4ff694e6bf135309ebbfaee94f1b025a86398f03cbc47",
+        "census/p97_search/sat_generate.py": "5a32d21476ca47945cf5be41cbf07fe4fe831fd91a88be7326bb3138df38d817",
+        "scratch/runs/p97-n18-wave1-20260901/wave1-v1/runner.py": "3c3302f2ef83755e7acbc59269acc7028969a0d191c49090532b35f6cd1feb71"
+      }
+    },
+    "git": {
+      "dirty": true,
+      "dirty_entry_count": 59,
+      "dirty_status_format": "git status --porcelain=v1 --untracked-files=all",
+      "dirty_status_sha256": "ed06cf5145d39162a092ba94ae197af7ea4b23a30c7e34a73c4476bb0d9ede89",
+      "head": "ac3f31c5fe45c9143af0a7db3d2e28ec4c1c7018"
+    },
+    "source_head": "ac3f31c5fe45c9143af0a7db3d2e28ec4c1c7018"
+  },
+  "surface": "generic A-ROW; not Card18"
+}

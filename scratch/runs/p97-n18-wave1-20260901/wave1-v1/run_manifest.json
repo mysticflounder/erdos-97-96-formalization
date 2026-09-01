@@ -1,0 +1,24 @@
+{
+  "schema": "worktree-run-manifest/v1",
+  "lane_id": "p97-n18-wave1-20260901",
+  "run_id": "wave1-v1",
+  "root": "scratch/runs/p97-n18-wave1-20260901/wave1-v1",
+  "owner": "codex-p97-n18-wave1-20260901",
+  "base_head": "cabbe8bb40c62a43642b0a89fbd40d44d9e6e749",
+  "output_classes": [
+    "artifacts",
+    "events",
+    "tmp"
+  ],
+  "source_digests": {
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221Card18AbstractPacket.lean": "457d944e0d9b0dbeb8871f984ccd7f5873875289bf47b93e570b59fc627dae48",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221Card18ArmCnf.lean": "076abeb793c61aad760e92d4847911979326292962fa2307c69d9f20e2d97011",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221Card18PositiveControls.lean": "4d17c9db4efb2c7c2c54f71820e90f87f6dfe2705b85cb5c45e6ce319d726328",
+    "census/p97_search/sat_generate.py": "5a32d21476ca47945cf5be41cbf07fe4fe831fd91a88be7326bb3138df38d817"
+  },
+  "input_digests": {
+    "docs/specs/p97-rigid221-card18-cegar-aggregate-v1.md": "cb50ca804284efd07a568d3339b2d853b53ab745b4f2c8674945031437c70565"
+  },
+  "created_utc": "2026-09-01T20:34:09Z",
+  "manifest_sha256": "0c02c22213fbd4d6b162259acf3f71a1a9e8079a8e3687fbd0204eddf6318738"
+}

@@ -1,0 +1,1227 @@
+{
+  "applicable": true,
+  "controls_passed": true,
+  "modes": [
+    {
+      "accepted_survivors": [
+        {
+          "all_prior_dynamic_clauses": true,
+          "candidate_index": 1,
+          "decoded_rows": true,
+          "guard_unit": true,
+          "scc_mode_strongly_connected": true,
+          "semantic_assignment_sha256": true,
+          "signature_payload": true,
+          "signature_sha256": true,
+          "static_clauses": true
+        },
+        {
+          "all_prior_dynamic_clauses": true,
+          "candidate_index": 2,
+          "decoded_rows": true,
+          "guard_unit": true,
+          "scc_mode_strongly_connected": true,
+          "semantic_assignment_sha256": true,
+          "signature_payload": true,
+          "signature_sha256": true,
+          "static_clauses": true
+        },
+        {
+          "all_prior_dynamic_clauses": true,
+          "candidate_index": 3,
+          "decoded_rows": true,
+          "guard_unit": true,
+          "scc_mode_strongly_connected": true,
+          "semantic_assignment_sha256": true,
+          "signature_payload": true,
+          "signature_sha256": true,
+          "static_clauses": true
+        },
+        {
+          "all_prior_dynamic_clauses": true,
+          "candidate_index": 4,
+          "decoded_rows": true,
+          "guard_unit": true,
+          "scc_mode_strongly_connected": true,
+          "semantic_assignment_sha256": true,
+          "signature_payload": true,
+          "signature_sha256": true,
+          "static_clauses": true
+        },
+        {
+          "all_prior_dynamic_clauses": true,
+          "candidate_index": 5,
+          "decoded_rows": true,
+          "guard_unit": true,
+          "scc_mode_strongly_connected": true,
+          "semantic_assignment_sha256": true,
+          "signature_payload": true,
+          "signature_sha256": true,
+          "static_clauses": true
+        },
+        {
+          "all_prior_dynamic_clauses": true,
+          "candidate_index": 6,
+          "decoded_rows": true,
+          "guard_unit": true,
+          "scc_mode_strongly_connected": true,
+          "semantic_assignment_sha256": true,
+          "signature_payload": true,
+          "signature_sha256": true,
+          "static_clauses": true
+        },
+        {
+          "all_prior_dynamic_clauses": true,
+          "candidate_index": 7,
+          "decoded_rows": true,
+          "guard_unit": true,
+          "scc_mode_strongly_connected": true,
+          "semantic_assignment_sha256": true,
+          "signature_payload": true,
+          "signature_sha256": true,
+          "static_clauses": true
+        },
+        {
+          "all_prior_dynamic_clauses": true,
+          "candidate_index": 8,
+          "decoded_rows": true,
+          "guard_unit": true,
+          "scc_mode_strongly_connected": true,
+          "semantic_assignment_sha256": true,
+          "signature_payload": true,
+          "signature_sha256": true,
+          "static_clauses": true
+        },
+        {
+          "all_prior_dynamic_clauses": true,
+          "candidate_index": 9,
+          "decoded_rows": true,
+          "guard_unit": true,
+          "scc_mode_strongly_connected": true,
+          "semantic_assignment_sha256": true,
+          "signature_payload": true,
+          "signature_sha256": true,
+          "static_clauses": true
+        },
+        {
+          "all_prior_dynamic_clauses": true,
+          "candidate_index": 10,
+          "decoded_rows": true,
+          "guard_unit": true,
+          "scc_mode_strongly_connected": true,
+          "semantic_assignment_sha256": true,
+          "signature_payload": true,
+          "signature_sha256": true,
+          "static_clauses": true
+        },
+        {
+          "all_prior_dynamic_clauses": true,
+          "candidate_index": 11,
+          "decoded_rows": true,
+          "guard_unit": true,
+          "scc_mode_strongly_connected": true,
+          "semantic_assignment_sha256": true,
+          "signature_payload": true,
+          "signature_sha256": true,
+          "static_clauses": true
+        },
+        {
+          "all_prior_dynamic_clauses": true,
+          "candidate_index": 12,
+          "decoded_rows": true,
+          "guard_unit": true,
+          "scc_mode_strongly_connected": true,
+          "semantic_assignment_sha256": true,
+          "signature_payload": true,
+          "signature_sha256": true,
+          "static_clauses": true
+        },
+        {
+          "all_prior_dynamic_clauses": true,
+          "candidate_index": 13,
+          "decoded_rows": true,
+          "guard_unit": true,
+          "scc_mode_strongly_connected": true,
+          "semantic_assignment_sha256": true,
+          "signature_payload": true,
+          "signature_sha256": true,
+          "static_clauses": true
+        },
+        {
+          "all_prior_dynamic_clauses": true,
+          "candidate_index": 14,
+          "decoded_rows": true,
+          "guard_unit": true,
+          "scc_mode_strongly_connected": true,
+          "semantic_assignment_sha256": true,
+          "signature_payload": true,
+          "signature_sha256": true,
+          "static_clauses": true
+        },
+        {
+          "all_prior_dynamic_clauses": true,
+          "candidate_index": 15,
+          "decoded_rows": true,
+          "guard_unit": true,
+          "scc_mode_strongly_connected": true,
+          "semantic_assignment_sha256": true,
+          "signature_payload": true,
+          "signature_sha256": true,
+          "static_clauses": true
+        },
+        {
+          "all_prior_dynamic_clauses": true,
+          "candidate_index": 16,
+          "decoded_rows": true,
+          "guard_unit": true,
+          "scc_mode_strongly_connected": true,
+          "semantic_assignment_sha256": true,
+          "signature_payload": true,
+          "signature_sha256": true,
+          "static_clauses": true
+        }
+      ],
+      "applicable": true,
+      "candidate_cnf_reconstruction": [
+        {
+          "candidate_index": 1,
+          "cnf_sha256_matches": true,
+          "command_matches_executed_path": true,
+          "dynamic_clause_count_matches": true,
+          "total_clause_count_matches": true
+        },
+        {
+          "candidate_index": 2,
+          "cnf_sha256_matches": true,
+          "command_matches_executed_path": true,
+          "dynamic_clause_count_matches": true,
+          "total_clause_count_matches": true
+        },
+        {
+          "candidate_index": 3,
+          "cnf_sha256_matches": true,
+          "command_matches_executed_path": true,
+          "dynamic_clause_count_matches": true,
+          "total_clause_count_matches": true
+        },
+        {
+          "candidate_index": 4,
+          "cnf_sha256_matches": true,
+          "command_matches_executed_path": true,
+          "dynamic_clause_count_matches": true,
+          "total_clause_count_matches": true
+        },
+        {
+          "candidate_index": 5,
+          "cnf_sha256_matches": true,
+          "command_matches_executed_path": true,
+          "dynamic_clause_count_matches": true,
+          "total_clause_count_matches": true
+        },
+        {
+          "candidate_index": 6,
+          "cnf_sha256_matches": true,
+          "command_matches_executed_path": true,
+          "dynamic_clause_count_matches": true,
+          "total_clause_count_matches": true
+        },
+        {
+          "candidate_index": 7,
+          "cnf_sha256_matches": true,
+          "command_matches_executed_path": true,
+          "dynamic_clause_count_matches": true,
+          "total_clause_count_matches": true
+        },
+        {
+          "candidate_index": 8,
+          "cnf_sha256_matches": true,
+          "command_matches_executed_path": true,
+          "dynamic_clause_count_matches": true,
+          "total_clause_count_matches": true
+        },
+        {
+          "candidate_index": 9,
+          "cnf_sha256_matches": true,
+          "command_matches_executed_path": true,
+          "dynamic_clause_count_matches": true,
+          "total_clause_count_matches": true
+        },
+        {
+          "candidate_index": 10,
+          "cnf_sha256_matches": true,
+          "command_matches_executed_path": true,
+          "dynamic_clause_count_matches": true,
+          "total_clause_count_matches": true
+        },
+        {
+          "candidate_index": 11,
+          "cnf_sha256_matches": true,
+          "command_matches_executed_path": true,
+          "dynamic_clause_count_matches": true,
+          "total_clause_count_matches": true
+        },
+        {
+          "candidate_index": 12,
+          "cnf_sha256_matches": true,
+          "command_matches_executed_path": true,
+          "dynamic_clause_count_matches": true,
+          "total_clause_count_matches": true
+        },
+        {
+          "candidate_index": 13,
+          "cnf_sha256_matches": true,
+          "command_matches_executed_path": true,
+          "dynamic_clause_count_matches": true,
+          "total_clause_count_matches": true
+        },
+        {
+          "candidate_index": 14,
+          "cnf_sha256_matches": true,
+          "command_matches_executed_path": true,
+          "dynamic_clause_count_matches": true,
+          "total_clause_count_matches": true
+        },
+        {
+          "candidate_index": 15,
+          "cnf_sha256_matches": true,
+          "command_matches_executed_path": true,
+          "dynamic_clause_count_matches": true,
+          "total_clause_count_matches": true
+        },
+        {
+          "candidate_index": 16,
+          "cnf_sha256_matches": true,
+          "command_matches_executed_path": true,
+          "dynamic_clause_count_matches": true,
+          "total_clause_count_matches": true
+        }
+      ],
+      "candidate_cnf_reconstruction_passed": true,
+      "candidate_event_ledger_matches_files": true,
+      "cuts": [],
+      "evidence_exists": true,
+      "mode": "baseline",
+      "passed": true,
+      "status": "PASS",
+      "terminal_cnf_byte_identity": false,
+      "terminal_unsat_verified": false
+    },
+    {
+      "accepted_survivors": [
+        {
+          "all_prior_dynamic_clauses": true,
+          "candidate_index": 1,
+          "decoded_rows": true,
+          "guard_unit": true,
+          "scc_mode_strongly_connected": true,
+          "semantic_assignment_sha256": true,
+          "signature_payload": true,
+          "signature_sha256": true,
+          "static_clauses": true
+        },
+        {
+          "all_prior_dynamic_clauses": true,
+          "candidate_index": 2,
+          "decoded_rows": true,
+          "guard_unit": true,
+          "scc_mode_strongly_connected": true,
+          "semantic_assignment_sha256": true,
+          "signature_payload": true,
+          "signature_sha256": true,
+          "static_clauses": true
+        },
+        {
+          "all_prior_dynamic_clauses": true,
+          "candidate_index": 3,
+          "decoded_rows": true,
+          "guard_unit": true,
+          "scc_mode_strongly_connected": true,
+          "semantic_assignment_sha256": true,
+          "signature_payload": true,
+          "signature_sha256": true,
+          "static_clauses": true
+        },
+        {
+          "all_prior_dynamic_clauses": true,
+          "candidate_index": 4,
+          "decoded_rows": true,
+          "guard_unit": true,
+          "scc_mode_strongly_connected": true,
+          "semantic_assignment_sha256": true,
+          "signature_payload": true,
+          "signature_sha256": true,
+          "static_clauses": true
+        },
+        {
+          "all_prior_dynamic_clauses": true,
+          "candidate_index": 5,
+          "decoded_rows": true,
+          "guard_unit": true,
+          "scc_mode_strongly_connected": true,
+          "semantic_assignment_sha256": true,
+          "signature_payload": true,
+          "signature_sha256": true,
+          "static_clauses": true
+        },
+        {
+          "all_prior_dynamic_clauses": true,
+          "candidate_index": 6,
+          "decoded_rows": true,
+          "guard_unit": true,
+          "scc_mode_strongly_connected": true,
+          "semantic_assignment_sha256": true,
+          "signature_payload": true,
+          "signature_sha256": true,
+          "static_clauses": true
+        },
+        {
+          "all_prior_dynamic_clauses": true,
+          "candidate_index": 7,
+          "decoded_rows": true,
+          "guard_unit": true,
+          "scc_mode_strongly_connected": true,
+          "semantic_assignment_sha256": true,
+          "signature_payload": true,
+          "signature_sha256": true,
+          "static_clauses": true
+        },
+        {
+          "all_prior_dynamic_clauses": true,
+          "candidate_index": 8,
+          "decoded_rows": true,
+          "guard_unit": true,
+          "scc_mode_strongly_connected": true,
+          "semantic_assignment_sha256": true,
+          "signature_payload": true,
+          "signature_sha256": true,
+          "static_clauses": true
+        },
+        {
+          "all_prior_dynamic_clauses": true,
+          "candidate_index": 9,
+          "decoded_rows": true,
+          "guard_unit": true,
+          "scc_mode_strongly_connected": true,
+          "semantic_assignment_sha256": true,
+          "signature_payload": true,
+          "signature_sha256": true,
+          "static_clauses": true
+        },
+        {
+          "all_prior_dynamic_clauses": true,
+          "candidate_index": 10,
+          "decoded_rows": true,
+          "guard_unit": true,
+          "scc_mode_strongly_connected": true,
+          "semantic_assignment_sha256": true,
+          "signature_payload": true,
+          "signature_sha256": true,
+          "static_clauses": true
+        },
+        {
+          "all_prior_dynamic_clauses": true,
+          "candidate_index": 11,
+          "decoded_rows": true,
+          "guard_unit": true,
+          "scc_mode_strongly_connected": true,
+          "semantic_assignment_sha256": true,
+          "signature_payload": true,
+          "signature_sha256": true,
+          "static_clauses": true
+        },
+        {
+          "all_prior_dynamic_clauses": true,
+          "candidate_index": 12,
+          "decoded_rows": true,
+          "guard_unit": true,
+          "scc_mode_strongly_connected": true,
+          "semantic_assignment_sha256": true,
+          "signature_payload": true,
+          "signature_sha256": true,
+          "static_clauses": true
+        },
+        {
+          "all_prior_dynamic_clauses": true,
+          "candidate_index": 13,
+          "decoded_rows": true,
+          "guard_unit": true,
+          "scc_mode_strongly_connected": true,
+          "semantic_assignment_sha256": true,
+          "signature_payload": true,
+          "signature_sha256": true,
+          "static_clauses": true
+        },
+        {
+          "all_prior_dynamic_clauses": true,
+          "candidate_index": 14,
+          "decoded_rows": true,
+          "guard_unit": true,
+          "scc_mode_strongly_connected": true,
+          "semantic_assignment_sha256": true,
+          "signature_payload": true,
+          "signature_sha256": true,
+          "static_clauses": true
+        },
+        {
+          "all_prior_dynamic_clauses": true,
+          "candidate_index": 15,
+          "decoded_rows": true,
+          "guard_unit": true,
+          "scc_mode_strongly_connected": true,
+          "semantic_assignment_sha256": true,
+          "signature_payload": true,
+          "signature_sha256": true,
+          "static_clauses": true
+        },
+        {
+          "all_prior_dynamic_clauses": true,
+          "candidate_index": 16,
+          "decoded_rows": true,
+          "guard_unit": true,
+          "scc_mode_strongly_connected": true,
+          "semantic_assignment_sha256": true,
+          "signature_payload": true,
+          "signature_sha256": true,
+          "static_clauses": true
+        }
+      ],
+      "applicable": true,
+      "candidate_cnf_reconstruction": [
+        {
+          "candidate_index": 1,
+          "cnf_sha256_matches": true,
+          "command_matches_executed_path": true,
+          "dynamic_clause_count_matches": true,
+          "total_clause_count_matches": true
+        },
+        {
+          "candidate_index": 2,
+          "cnf_sha256_matches": true,
+          "command_matches_executed_path": true,
+          "dynamic_clause_count_matches": true,
+          "total_clause_count_matches": true
+        },
+        {
+          "candidate_index": 3,
+          "cnf_sha256_matches": true,
+          "command_matches_executed_path": true,
+          "dynamic_clause_count_matches": true,
+          "total_clause_count_matches": true
+        },
+        {
+          "candidate_index": 4,
+          "cnf_sha256_matches": true,
+          "command_matches_executed_path": true,
+          "dynamic_clause_count_matches": true,
+          "total_clause_count_matches": true
+        },
+        {
+          "candidate_index": 5,
+          "cnf_sha256_matches": true,
+          "command_matches_executed_path": true,
+          "dynamic_clause_count_matches": true,
+          "total_clause_count_matches": true
+        },
+        {
+          "candidate_index": 6,
+          "cnf_sha256_matches": true,
+          "command_matches_executed_path": true,
+          "dynamic_clause_count_matches": true,
+          "total_clause_count_matches": true
+        },
+        {
+          "candidate_index": 7,
+          "cnf_sha256_matches": true,
+          "command_matches_executed_path": true,
+          "dynamic_clause_count_matches": true,
+          "total_clause_count_matches": true
+        },
+        {
+          "candidate_index": 8,
+          "cnf_sha256_matches": true,
+          "command_matches_executed_path": true,
+          "dynamic_clause_count_matches": true,
+          "total_clause_count_matches": true
+        },
+        {
+          "candidate_index": 9,
+          "cnf_sha256_matches": true,
+          "command_matches_executed_path": true,
+          "dynamic_clause_count_matches": true,
+          "total_clause_count_matches": true
+        },
+        {
+          "candidate_index": 10,
+          "cnf_sha256_matches": true,
+          "command_matches_executed_path": true,
+          "dynamic_clause_count_matches": true,
+          "total_clause_count_matches": true
+        },
+        {
+          "candidate_index": 11,
+          "cnf_sha256_matches": true,
+          "command_matches_executed_path": true,
+          "dynamic_clause_count_matches": true,
+          "total_clause_count_matches": true
+        },
+        {
+          "candidate_index": 12,
+          "cnf_sha256_matches": true,
+          "command_matches_executed_path": true,
+          "dynamic_clause_count_matches": true,
+          "total_clause_count_matches": true
+        },
+        {
+          "candidate_index": 13,
+          "cnf_sha256_matches": true,
+          "command_matches_executed_path": true,
+          "dynamic_clause_count_matches": true,
+          "total_clause_count_matches": true
+        },
+        {
+          "candidate_index": 14,
+          "cnf_sha256_matches": true,
+          "command_matches_executed_path": true,
+          "dynamic_clause_count_matches": true,
+          "total_clause_count_matches": true
+        },
+        {
+          "candidate_index": 15,
+          "cnf_sha256_matches": true,
+          "command_matches_executed_path": true,
+          "dynamic_clause_count_matches": true,
+          "total_clause_count_matches": true
+        },
+        {
+          "candidate_index": 16,
+          "cnf_sha256_matches": true,
+          "command_matches_executed_path": true,
+          "dynamic_clause_count_matches": true,
+          "total_clause_count_matches": true
+        }
+      ],
+      "candidate_cnf_reconstruction_passed": true,
+      "candidate_event_ledger_matches_files": true,
+      "cuts": [],
+      "evidence_exists": true,
+      "mode": "dual2",
+      "passed": true,
+      "status": "PASS",
+      "terminal_cnf_byte_identity": false,
+      "terminal_unsat_verified": false
+    },
+    {
+      "accepted_survivors": [
+        {
+          "all_prior_dynamic_clauses": true,
+          "candidate_index": 1,
+          "decoded_rows": true,
+          "guard_unit": true,
+          "scc_mode_strongly_connected": true,
+          "semantic_assignment_sha256": true,
+          "signature_payload": true,
+          "signature_sha256": true,
+          "static_clauses": true
+        },
+        {
+          "all_prior_dynamic_clauses": true,
+          "candidate_index": 2,
+          "decoded_rows": true,
+          "guard_unit": true,
+          "scc_mode_strongly_connected": true,
+          "semantic_assignment_sha256": true,
+          "signature_payload": true,
+          "signature_sha256": true,
+          "static_clauses": true
+        },
+        {
+          "all_prior_dynamic_clauses": true,
+          "candidate_index": 3,
+          "decoded_rows": true,
+          "guard_unit": true,
+          "scc_mode_strongly_connected": true,
+          "semantic_assignment_sha256": true,
+          "signature_payload": true,
+          "signature_sha256": true,
+          "static_clauses": true
+        },
+        {
+          "all_prior_dynamic_clauses": true,
+          "candidate_index": 4,
+          "decoded_rows": true,
+          "guard_unit": true,
+          "scc_mode_strongly_connected": true,
+          "semantic_assignment_sha256": true,
+          "signature_payload": true,
+          "signature_sha256": true,
+          "static_clauses": true
+        },
+        {
+          "all_prior_dynamic_clauses": true,
+          "candidate_index": 5,
+          "decoded_rows": true,
+          "guard_unit": true,
+          "scc_mode_strongly_connected": true,
+          "semantic_assignment_sha256": true,
+          "signature_payload": true,
+          "signature_sha256": true,
+          "static_clauses": true
+        },
+        {
+          "all_prior_dynamic_clauses": true,
+          "candidate_index": 6,
+          "decoded_rows": true,
+          "guard_unit": true,
+          "scc_mode_strongly_connected": true,
+          "semantic_assignment_sha256": true,
+          "signature_payload": true,
+          "signature_sha256": true,
+          "static_clauses": true
+        },
+        {
+          "all_prior_dynamic_clauses": true,
+          "candidate_index": 7,
+          "decoded_rows": true,
+          "guard_unit": true,
+          "scc_mode_strongly_connected": true,
+          "semantic_assignment_sha256": true,
+          "signature_payload": true,
+          "signature_sha256": true,
+          "static_clauses": true
+        },
+        {
+          "all_prior_dynamic_clauses": true,
+          "candidate_index": 8,
+          "decoded_rows": true,
+          "guard_unit": true,
+          "scc_mode_strongly_connected": true,
+          "semantic_assignment_sha256": true,
+          "signature_payload": true,
+          "signature_sha256": true,
+          "static_clauses": true
+        },
+        {
+          "all_prior_dynamic_clauses": true,
+          "candidate_index": 9,
+          "decoded_rows": true,
+          "guard_unit": true,
+          "scc_mode_strongly_connected": true,
+          "semantic_assignment_sha256": true,
+          "signature_payload": true,
+          "signature_sha256": true,
+          "static_clauses": true
+        },
+        {
+          "all_prior_dynamic_clauses": true,
+          "candidate_index": 10,
+          "decoded_rows": true,
+          "guard_unit": true,
+          "scc_mode_strongly_connected": true,
+          "semantic_assignment_sha256": true,
+          "signature_payload": true,
+          "signature_sha256": true,
+          "static_clauses": true
+        },
+        {
+          "all_prior_dynamic_clauses": true,
+          "candidate_index": 11,
+          "decoded_rows": true,
+          "guard_unit": true,
+          "scc_mode_strongly_connected": true,
+          "semantic_assignment_sha256": true,
+          "signature_payload": true,
+          "signature_sha256": true,
+          "static_clauses": true
+        },
+        {
+          "all_prior_dynamic_clauses": true,
+          "candidate_index": 12,
+          "decoded_rows": true,
+          "guard_unit": true,
+          "scc_mode_strongly_connected": true,
+          "semantic_assignment_sha256": true,
+          "signature_payload": true,
+          "signature_sha256": true,
+          "static_clauses": true
+        },
+        {
+          "all_prior_dynamic_clauses": true,
+          "candidate_index": 13,
+          "decoded_rows": true,
+          "guard_unit": true,
+          "scc_mode_strongly_connected": true,
+          "semantic_assignment_sha256": true,
+          "signature_payload": true,
+          "signature_sha256": true,
+          "static_clauses": true
+        },
+        {
+          "all_prior_dynamic_clauses": true,
+          "candidate_index": 14,
+          "decoded_rows": true,
+          "guard_unit": true,
+          "scc_mode_strongly_connected": true,
+          "semantic_assignment_sha256": true,
+          "signature_payload": true,
+          "signature_sha256": true,
+          "static_clauses": true
+        },
+        {
+          "all_prior_dynamic_clauses": true,
+          "candidate_index": 15,
+          "decoded_rows": true,
+          "guard_unit": true,
+          "scc_mode_strongly_connected": true,
+          "semantic_assignment_sha256": true,
+          "signature_payload": true,
+          "signature_sha256": true,
+          "static_clauses": true
+        },
+        {
+          "all_prior_dynamic_clauses": true,
+          "candidate_index": 16,
+          "decoded_rows": true,
+          "guard_unit": true,
+          "scc_mode_strongly_connected": true,
+          "semantic_assignment_sha256": true,
+          "signature_payload": true,
+          "signature_sha256": true,
+          "static_clauses": true
+        }
+      ],
+      "applicable": true,
+      "candidate_cnf_reconstruction": [
+        {
+          "candidate_index": 1,
+          "cnf_sha256_matches": true,
+          "command_matches_executed_path": true,
+          "dynamic_clause_count_matches": true,
+          "total_clause_count_matches": true
+        },
+        {
+          "candidate_index": 2,
+          "cnf_sha256_matches": true,
+          "command_matches_executed_path": true,
+          "dynamic_clause_count_matches": true,
+          "total_clause_count_matches": true
+        },
+        {
+          "candidate_index": 3,
+          "cnf_sha256_matches": true,
+          "command_matches_executed_path": true,
+          "dynamic_clause_count_matches": true,
+          "total_clause_count_matches": true
+        },
+        {
+          "candidate_index": 4,
+          "cnf_sha256_matches": true,
+          "command_matches_executed_path": true,
+          "dynamic_clause_count_matches": true,
+          "total_clause_count_matches": true
+        },
+        {
+          "candidate_index": 5,
+          "cnf_sha256_matches": true,
+          "command_matches_executed_path": true,
+          "dynamic_clause_count_matches": true,
+          "total_clause_count_matches": true
+        },
+        {
+          "candidate_index": 6,
+          "cnf_sha256_matches": true,
+          "command_matches_executed_path": true,
+          "dynamic_clause_count_matches": true,
+          "total_clause_count_matches": true
+        },
+        {
+          "candidate_index": 7,
+          "cnf_sha256_matches": true,
+          "command_matches_executed_path": true,
+          "dynamic_clause_count_matches": true,
+          "total_clause_count_matches": true
+        },
+        {
+          "candidate_index": 8,
+          "cnf_sha256_matches": true,
+          "command_matches_executed_path": true,
+          "dynamic_clause_count_matches": true,
+          "total_clause_count_matches": true
+        },
+        {
+          "candidate_index": 9,
+          "cnf_sha256_matches": true,
+          "command_matches_executed_path": true,
+          "dynamic_clause_count_matches": true,
+          "total_clause_count_matches": true
+        },
+        {
+          "candidate_index": 10,
+          "cnf_sha256_matches": true,
+          "command_matches_executed_path": true,
+          "dynamic_clause_count_matches": true,
+          "total_clause_count_matches": true
+        },
+        {
+          "candidate_index": 11,
+          "cnf_sha256_matches": true,
+          "command_matches_executed_path": true,
+          "dynamic_clause_count_matches": true,
+          "total_clause_count_matches": true
+        },
+        {
+          "candidate_index": 12,
+          "cnf_sha256_matches": true,
+          "command_matches_executed_path": true,
+          "dynamic_clause_count_matches": true,
+          "total_clause_count_matches": true
+        },
+        {
+          "candidate_index": 13,
+          "cnf_sha256_matches": true,
+          "command_matches_executed_path": true,
+          "dynamic_clause_count_matches": true,
+          "total_clause_count_matches": true
+        },
+        {
+          "candidate_index": 14,
+          "cnf_sha256_matches": true,
+          "command_matches_executed_path": true,
+          "dynamic_clause_count_matches": true,
+          "total_clause_count_matches": true
+        },
+        {
+          "candidate_index": 15,
+          "cnf_sha256_matches": true,
+          "command_matches_executed_path": true,
+          "dynamic_clause_count_matches": true,
+          "total_clause_count_matches": true
+        },
+        {
+          "candidate_index": 16,
+          "cnf_sha256_matches": true,
+          "command_matches_executed_path": true,
+          "dynamic_clause_count_matches": true,
+          "total_clause_count_matches": true
+        }
+      ],
+      "candidate_cnf_reconstruction_passed": true,
+      "candidate_event_ledger_matches_files": true,
+      "cuts": [],
+      "evidence_exists": true,
+      "mode": "scc",
+      "passed": true,
+      "status": "PASS",
+      "terminal_cnf_byte_identity": false,
+      "terminal_unsat_verified": false
+    },
+    {
+      "accepted_survivors": [
+        {
+          "all_prior_dynamic_clauses": true,
+          "candidate_index": 1,
+          "decoded_rows": true,
+          "guard_unit": true,
+          "scc_mode_strongly_connected": true,
+          "semantic_assignment_sha256": true,
+          "signature_payload": true,
+          "signature_sha256": true,
+          "static_clauses": true
+        },
+        {
+          "all_prior_dynamic_clauses": true,
+          "candidate_index": 2,
+          "decoded_rows": true,
+          "guard_unit": true,
+          "scc_mode_strongly_connected": true,
+          "semantic_assignment_sha256": true,
+          "signature_payload": true,
+          "signature_sha256": true,
+          "static_clauses": true
+        },
+        {
+          "all_prior_dynamic_clauses": true,
+          "candidate_index": 3,
+          "decoded_rows": true,
+          "guard_unit": true,
+          "scc_mode_strongly_connected": true,
+          "semantic_assignment_sha256": true,
+          "signature_payload": true,
+          "signature_sha256": true,
+          "static_clauses": true
+        },
+        {
+          "all_prior_dynamic_clauses": true,
+          "candidate_index": 4,
+          "decoded_rows": true,
+          "guard_unit": true,
+          "scc_mode_strongly_connected": true,
+          "semantic_assignment_sha256": true,
+          "signature_payload": true,
+          "signature_sha256": true,
+          "static_clauses": true
+        },
+        {
+          "all_prior_dynamic_clauses": true,
+          "candidate_index": 5,
+          "decoded_rows": true,
+          "guard_unit": true,
+          "scc_mode_strongly_connected": true,
+          "semantic_assignment_sha256": true,
+          "signature_payload": true,
+          "signature_sha256": true,
+          "static_clauses": true
+        },
+        {
+          "all_prior_dynamic_clauses": true,
+          "candidate_index": 6,
+          "decoded_rows": true,
+          "guard_unit": true,
+          "scc_mode_strongly_connected": true,
+          "semantic_assignment_sha256": true,
+          "signature_payload": true,
+          "signature_sha256": true,
+          "static_clauses": true
+        },
+        {
+          "all_prior_dynamic_clauses": true,
+          "candidate_index": 7,
+          "decoded_rows": true,
+          "guard_unit": true,
+          "scc_mode_strongly_connected": true,
+          "semantic_assignment_sha256": true,
+          "signature_payload": true,
+          "signature_sha256": true,
+          "static_clauses": true
+        },
+        {
+          "all_prior_dynamic_clauses": true,
+          "candidate_index": 8,
+          "decoded_rows": true,
+          "guard_unit": true,
+          "scc_mode_strongly_connected": true,
+          "semantic_assignment_sha256": true,
+          "signature_payload": true,
+          "signature_sha256": true,
+          "static_clauses": true
+        },
+        {
+          "all_prior_dynamic_clauses": true,
+          "candidate_index": 9,
+          "decoded_rows": true,
+          "guard_unit": true,
+          "scc_mode_strongly_connected": true,
+          "semantic_assignment_sha256": true,
+          "signature_payload": true,
+          "signature_sha256": true,
+          "static_clauses": true
+        },
+        {
+          "all_prior_dynamic_clauses": true,
+          "candidate_index": 10,
+          "decoded_rows": true,
+          "guard_unit": true,
+          "scc_mode_strongly_connected": true,
+          "semantic_assignment_sha256": true,
+          "signature_payload": true,
+          "signature_sha256": true,
+          "static_clauses": true
+        },
+        {
+          "all_prior_dynamic_clauses": true,
+          "candidate_index": 11,
+          "decoded_rows": true,
+          "guard_unit": true,
+          "scc_mode_strongly_connected": true,
+          "semantic_assignment_sha256": true,
+          "signature_payload": true,
+          "signature_sha256": true,
+          "static_clauses": true
+        },
+        {
+          "all_prior_dynamic_clauses": true,
+          "candidate_index": 12,
+          "decoded_rows": true,
+          "guard_unit": true,
+          "scc_mode_strongly_connected": true,
+          "semantic_assignment_sha256": true,
+          "signature_payload": true,
+          "signature_sha256": true,
+          "static_clauses": true
+        },
+        {
+          "all_prior_dynamic_clauses": true,
+          "candidate_index": 13,
+          "decoded_rows": true,
+          "guard_unit": true,
+          "scc_mode_strongly_connected": true,
+          "semantic_assignment_sha256": true,
+          "signature_payload": true,
+          "signature_sha256": true,
+          "static_clauses": true
+        },
+        {
+          "all_prior_dynamic_clauses": true,
+          "candidate_index": 14,
+          "decoded_rows": true,
+          "guard_unit": true,
+          "scc_mode_strongly_connected": true,
+          "semantic_assignment_sha256": true,
+          "signature_payload": true,
+          "signature_sha256": true,
+          "static_clauses": true
+        },
+        {
+          "all_prior_dynamic_clauses": true,
+          "candidate_index": 15,
+          "decoded_rows": true,
+          "guard_unit": true,
+          "scc_mode_strongly_connected": true,
+          "semantic_assignment_sha256": true,
+          "signature_payload": true,
+          "signature_sha256": true,
+          "static_clauses": true
+        },
+        {
+          "all_prior_dynamic_clauses": true,
+          "candidate_index": 16,
+          "decoded_rows": true,
+          "guard_unit": true,
+          "scc_mode_strongly_connected": true,
+          "semantic_assignment_sha256": true,
+          "signature_payload": true,
+          "signature_sha256": true,
+          "static_clauses": true
+        }
+      ],
+      "applicable": true,
+      "candidate_cnf_reconstruction": [
+        {
+          "candidate_index": 1,
+          "cnf_sha256_matches": true,
+          "command_matches_executed_path": true,
+          "dynamic_clause_count_matches": true,
+          "total_clause_count_matches": true
+        },
+        {
+          "candidate_index": 2,
+          "cnf_sha256_matches": true,
+          "command_matches_executed_path": true,
+          "dynamic_clause_count_matches": true,
+          "total_clause_count_matches": true
+        },
+        {
+          "candidate_index": 3,
+          "cnf_sha256_matches": true,
+          "command_matches_executed_path": true,
+          "dynamic_clause_count_matches": true,
+          "total_clause_count_matches": true
+        },
+        {
+          "candidate_index": 4,
+          "cnf_sha256_matches": true,
+          "command_matches_executed_path": true,
+          "dynamic_clause_count_matches": true,
+          "total_clause_count_matches": true
+        },
+        {
+          "candidate_index": 5,
+          "cnf_sha256_matches": true,
+          "command_matches_executed_path": true,
+          "dynamic_clause_count_matches": true,
+          "total_clause_count_matches": true
+        },
+        {
+          "candidate_index": 6,
+          "cnf_sha256_matches": true,
+          "command_matches_executed_path": true,
+          "dynamic_clause_count_matches": true,
+          "total_clause_count_matches": true
+        },
+        {
+          "candidate_index": 7,
+          "cnf_sha256_matches": true,
+          "command_matches_executed_path": true,
+          "dynamic_clause_count_matches": true,
+          "total_clause_count_matches": true
+        },
+        {
+          "candidate_index": 8,
+          "cnf_sha256_matches": true,
+          "command_matches_executed_path": true,
+          "dynamic_clause_count_matches": true,
+          "total_clause_count_matches": true
+        },
+        {
+          "candidate_index": 9,
+          "cnf_sha256_matches": true,
+          "command_matches_executed_path": true,
+          "dynamic_clause_count_matches": true,
+          "total_clause_count_matches": true
+        },
+        {
+          "candidate_index": 10,
+          "cnf_sha256_matches": true,
+          "command_matches_executed_path": true,
+          "dynamic_clause_count_matches": true,
+          "total_clause_count_matches": true
+        },
+        {
+          "candidate_index": 11,
+          "cnf_sha256_matches": true,
+          "command_matches_executed_path": true,
+          "dynamic_clause_count_matches": true,
+          "total_clause_count_matches": true
+        },
+        {
+          "candidate_index": 12,
+          "cnf_sha256_matches": true,
+          "command_matches_executed_path": true,
+          "dynamic_clause_count_matches": true,
+          "total_clause_count_matches": true
+        },
+        {
+          "candidate_index": 13,
+          "cnf_sha256_matches": true,
+          "command_matches_executed_path": true,
+          "dynamic_clause_count_matches": true,
+          "total_clause_count_matches": true
+        },
+        {
+          "candidate_index": 14,
+          "cnf_sha256_matches": true,
+          "command_matches_executed_path": true,
+          "dynamic_clause_count_matches": true,
+          "total_clause_count_matches": true
+        },
+        {
+          "candidate_index": 15,
+          "cnf_sha256_matches": true,
+          "command_matches_executed_path": true,
+          "dynamic_clause_count_matches": true,
+          "total_clause_count_matches": true
+        },
+        {
+          "candidate_index": 16,
+          "cnf_sha256_matches": true,
+          "command_matches_executed_path": true,
+          "dynamic_clause_count_matches": true,
+          "total_clause_count_matches": true
+        }
+      ],
+      "candidate_cnf_reconstruction_passed": true,
+      "candidate_event_ledger_matches_files": true,
+      "cuts": [],
+      "evidence_exists": true,
+      "mode": "dual2_scc",
+      "passed": true,
+      "status": "PASS",
+      "terminal_cnf_byte_identity": false,
+      "terminal_unsat_verified": false
+    }
+  ],
+  "passed": true,
+  "replay_performed": true,
+  "schema": "p97-generic-arow-wave1-replay/v1",
+  "scope": "exact row readback, trigger-sink cut replay, prior-cut/block replay, and proof-check status; no source or metric bridge",
+  "status": "PASS"
+}

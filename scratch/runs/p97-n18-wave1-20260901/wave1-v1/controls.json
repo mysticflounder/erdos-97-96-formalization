@@ -1,0 +1,315 @@
+{
+  "count_assertions": {
+    "baseline": {
+      "clauses": 209304,
+      "variables": 306
+    },
+    "dual2": {
+      "clauses": 294984,
+      "variables": 306
+    }
+  },
+  "local_clause_direction_controls": [
+    {
+      "clause": [
+        -2,
+        -3,
+        -4,
+        -19,
+        -20,
+        -21
+      ],
+      "falsifying_assignment_replay": true,
+      "falsifying_value_before": true,
+      "mutated_atom": 2,
+      "name": "R-CIRC2",
+      "one_atom_mutation_replay": true,
+      "satisfying_value_after": false,
+      "scope": "local clause-direction control; neither assignment is a full CNF model"
+    },
+    {
+      "clause": [
+        -35,
+        -36,
+        -52,
+        -53,
+        -69,
+        -70
+      ],
+      "falsifying_assignment_replay": true,
+      "falsifying_value_before": true,
+      "mutated_atom": 35,
+      "name": "DUAL2",
+      "one_atom_mutation_replay": true,
+      "satisfying_value_after": false,
+      "scope": "local clause-direction control; neither assignment is a full CNF model"
+    },
+    {
+      "clause": [
+        -307,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17
+      ],
+      "falsifying_assignment_replay": true,
+      "falsifying_value_before": false,
+      "guard_false_makes_clause_inert": true,
+      "guard_name": "MINIMAL-FAITHFUL-CONSEQUENCE",
+      "mutated_atom": 1,
+      "name": "guarded SCC boundary",
+      "one_atom_mutation_replay": true,
+      "satisfying_value_after": true,
+      "scope": "local clause-direction control; neither assignment is a full CNF model"
+    }
+  ],
+  "passed": true,
+  "positive_node": {
+    "definition": "S[p] = p + {1,2,3,5} modulo 18",
+    "modes": {
+      "baseline": {
+        "all_base_clauses_satisfied": true,
+        "decoded_exactly": true,
+        "rows": [
+          [
+            1,
+            2,
+            3,
+            5
+          ],
+          [
+            2,
+            3,
+            4,
+            6
+          ],
+          [
+            3,
+            4,
+            5,
+            7
+          ],
+          [
+            4,
+            5,
+            6,
+            8
+          ],
+          [
+            5,
+            6,
+            7,
+            9
+          ],
+          [
+            6,
+            7,
+            8,
+            10
+          ],
+          [
+            7,
+            8,
+            9,
+            11
+          ],
+          [
+            8,
+            9,
+            10,
+            12
+          ],
+          [
+            9,
+            10,
+            11,
+            13
+          ],
+          [
+            10,
+            11,
+            12,
+            14
+          ],
+          [
+            11,
+            12,
+            13,
+            15
+          ],
+          [
+            12,
+            13,
+            14,
+            16
+          ],
+          [
+            13,
+            14,
+            15,
+            17
+          ],
+          [
+            0,
+            14,
+            15,
+            16
+          ],
+          [
+            1,
+            15,
+            16,
+            17
+          ],
+          [
+            0,
+            2,
+            16,
+            17
+          ],
+          [
+            0,
+            1,
+            3,
+            17
+          ],
+          [
+            0,
+            1,
+            2,
+            4
+          ]
+        ]
+      },
+      "dual2": {
+        "all_base_clauses_satisfied": true,
+        "decoded_exactly": true,
+        "rows": [
+          [
+            1,
+            2,
+            3,
+            5
+          ],
+          [
+            2,
+            3,
+            4,
+            6
+          ],
+          [
+            3,
+            4,
+            5,
+            7
+          ],
+          [
+            4,
+            5,
+            6,
+            8
+          ],
+          [
+            5,
+            6,
+            7,
+            9
+          ],
+          [
+            6,
+            7,
+            8,
+            10
+          ],
+          [
+            7,
+            8,
+            9,
+            11
+          ],
+          [
+            8,
+            9,
+            10,
+            12
+          ],
+          [
+            9,
+            10,
+            11,
+            13
+          ],
+          [
+            10,
+            11,
+            12,
+            14
+          ],
+          [
+            11,
+            12,
+            13,
+            15
+          ],
+          [
+            12,
+            13,
+            14,
+            16
+          ],
+          [
+            13,
+            14,
+            15,
+            17
+          ],
+          [
+            0,
+            14,
+            15,
+            16
+          ],
+          [
+            1,
+            15,
+            16,
+            17
+          ],
+          [
+            0,
+            2,
+            16,
+            17
+          ],
+          [
+            0,
+            1,
+            3,
+            17
+          ],
+          [
+            0,
+            1,
+            2,
+            4
+          ]
+        ]
+      }
+    },
+    "scope": "full generic A-ROW positive model for baseline and DUAL2; no metric realizability claim"
+  },
+  "schema": "p97-generic-arow-wave1-controls/v1"
+}

@@ -1,0 +1,316 @@
+{
+  "families": [
+    {
+      "class": "ROOT_STATIC",
+      "name": "S-EXACT",
+      "scope": "each labelled center row has exactly four off-diagonal points"
+    },
+    {
+      "class": "ROOT_STATIC",
+      "name": "S-CIRC2",
+      "scope": "two distinct center rows have intersection size at most two"
+    },
+    {
+      "class": "ROOT_STATIC when selected",
+      "name": "DUAL2",
+      "scope": "each target pair is contained in rows of at most two centers",
+      "source_note": "pair-center bound from the source-backed perpendicular-bisector side argument; represented statically"
+    },
+    {
+      "class": "ASSUMPTION_CONTROL",
+      "name": "MINIMAL-FAITHFUL-CONSEQUENCE",
+      "scope": "unit guard enabling the conditional minimal-faithful consequence"
+    },
+    {
+      "antecedent": "MINIMAL-FAITHFUL-CONSEQUENCE",
+      "class": "SEMANTIC_REFINEMENT under the named guard only",
+      "name": "lazy sink-SCC boundary",
+      "scope": "for every proper sink C, some legal x[c,p] exits C; orientation is center c to selected point p"
+    },
+    {
+      "class": "ENUMERATION_CONTROL",
+      "name": "raw labelled semantic block",
+      "scope": "one complete labelled row-membership assignment"
+    }
+  ],
+  "mode_counts": [
+    {
+      "arithmetic_verified": true,
+      "base_clauses_before_guard": 209304,
+      "base_variables_before_guard": 306,
+      "conditional_scc": false,
+      "delta_vs_baseline": {
+        "guard_unit": 0,
+        "lazy_scc_cuts": 0,
+        "raw_semantic_blocks": 16,
+        "static_clause_tag_counts": {
+          "B-INDEG": 0,
+          "B-MEM": 0,
+          "B-TOTAL": 0,
+          "CAP-PROFILE": 0,
+          "CAP-TOTAL": 0,
+          "DUAL2": 0,
+          "S-CIRC2": 0,
+          "S-D1": 0,
+          "S-EXACT": 0,
+          "S-MINCUT": 0
+        },
+        "total_clauses": 16,
+        "variables": 0
+      },
+      "dynamic_clause_family_counts": {
+        "MINIMAL-FAITHFUL-CONSEQUENCE unit": 0,
+        "lazy sink-SCC boundary": 0,
+        "raw labelled semantic block": 16
+      },
+      "final_clause_count": 209320,
+      "final_clause_family_counts": {
+        "B-INDEG": 0,
+        "B-MEM": 0,
+        "B-TOTAL": 0,
+        "CAP-PROFILE": 0,
+        "CAP-TOTAL": 0,
+        "DUAL2": 0,
+        "MINIMAL-FAITHFUL-CONSEQUENCE unit": 0,
+        "S-CIRC2": 85680,
+        "S-D1": 0,
+        "S-EXACT": 123624,
+        "S-MINCUT": 0,
+        "lazy sink-SCC boundary": 0,
+        "raw labelled semantic block": 16
+      },
+      "final_variables": 306,
+      "mode": "baseline",
+      "static_clause_tag_counts": {
+        "B-INDEG": 0,
+        "B-MEM": 0,
+        "B-TOTAL": 0,
+        "CAP-PROFILE": 0,
+        "CAP-TOTAL": 0,
+        "DUAL2": 0,
+        "S-CIRC2": 85680,
+        "S-D1": 0,
+        "S-EXACT": 123624,
+        "S-MINCUT": 0
+      },
+      "static_dual2": false
+    },
+    {
+      "arithmetic_verified": true,
+      "base_clauses_before_guard": 294984,
+      "base_variables_before_guard": 306,
+      "conditional_scc": false,
+      "delta_vs_baseline": {
+        "guard_unit": 0,
+        "lazy_scc_cuts": 0,
+        "raw_semantic_blocks": 16,
+        "static_clause_tag_counts": {
+          "B-INDEG": 0,
+          "B-MEM": 0,
+          "B-TOTAL": 0,
+          "CAP-PROFILE": 0,
+          "CAP-TOTAL": 0,
+          "DUAL2": 85680,
+          "S-CIRC2": 0,
+          "S-D1": 0,
+          "S-EXACT": 0,
+          "S-MINCUT": 0
+        },
+        "total_clauses": 85696,
+        "variables": 0
+      },
+      "dynamic_clause_family_counts": {
+        "MINIMAL-FAITHFUL-CONSEQUENCE unit": 0,
+        "lazy sink-SCC boundary": 0,
+        "raw labelled semantic block": 16
+      },
+      "final_clause_count": 295000,
+      "final_clause_family_counts": {
+        "B-INDEG": 0,
+        "B-MEM": 0,
+        "B-TOTAL": 0,
+        "CAP-PROFILE": 0,
+        "CAP-TOTAL": 0,
+        "DUAL2": 85680,
+        "MINIMAL-FAITHFUL-CONSEQUENCE unit": 0,
+        "S-CIRC2": 85680,
+        "S-D1": 0,
+        "S-EXACT": 123624,
+        "S-MINCUT": 0,
+        "lazy sink-SCC boundary": 0,
+        "raw labelled semantic block": 16
+      },
+      "final_variables": 306,
+      "mode": "dual2",
+      "static_clause_tag_counts": {
+        "B-INDEG": 0,
+        "B-MEM": 0,
+        "B-TOTAL": 0,
+        "CAP-PROFILE": 0,
+        "CAP-TOTAL": 0,
+        "DUAL2": 85680,
+        "S-CIRC2": 85680,
+        "S-D1": 0,
+        "S-EXACT": 123624,
+        "S-MINCUT": 0
+      },
+      "static_dual2": true
+    },
+    {
+      "arithmetic_verified": true,
+      "base_clauses_before_guard": 209304,
+      "base_variables_before_guard": 306,
+      "conditional_scc": true,
+      "delta_vs_baseline": {
+        "guard_unit": 1,
+        "lazy_scc_cuts": 0,
+        "raw_semantic_blocks": 16,
+        "static_clause_tag_counts": {
+          "B-INDEG": 0,
+          "B-MEM": 0,
+          "B-TOTAL": 0,
+          "CAP-PROFILE": 0,
+          "CAP-TOTAL": 0,
+          "DUAL2": 0,
+          "S-CIRC2": 0,
+          "S-D1": 0,
+          "S-EXACT": 0,
+          "S-MINCUT": 0
+        },
+        "total_clauses": 17,
+        "variables": 1
+      },
+      "dynamic_clause_family_counts": {
+        "MINIMAL-FAITHFUL-CONSEQUENCE unit": 1,
+        "lazy sink-SCC boundary": 0,
+        "raw labelled semantic block": 16
+      },
+      "final_clause_count": 209321,
+      "final_clause_family_counts": {
+        "B-INDEG": 0,
+        "B-MEM": 0,
+        "B-TOTAL": 0,
+        "CAP-PROFILE": 0,
+        "CAP-TOTAL": 0,
+        "DUAL2": 0,
+        "MINIMAL-FAITHFUL-CONSEQUENCE unit": 1,
+        "S-CIRC2": 85680,
+        "S-D1": 0,
+        "S-EXACT": 123624,
+        "S-MINCUT": 0,
+        "lazy sink-SCC boundary": 0,
+        "raw labelled semantic block": 16
+      },
+      "final_variables": 307,
+      "mode": "scc",
+      "static_clause_tag_counts": {
+        "B-INDEG": 0,
+        "B-MEM": 0,
+        "B-TOTAL": 0,
+        "CAP-PROFILE": 0,
+        "CAP-TOTAL": 0,
+        "DUAL2": 0,
+        "S-CIRC2": 85680,
+        "S-D1": 0,
+        "S-EXACT": 123624,
+        "S-MINCUT": 0
+      },
+      "static_dual2": false
+    },
+    {
+      "arithmetic_verified": true,
+      "base_clauses_before_guard": 294984,
+      "base_variables_before_guard": 306,
+      "conditional_scc": true,
+      "delta_vs_baseline": {
+        "guard_unit": 1,
+        "lazy_scc_cuts": 0,
+        "raw_semantic_blocks": 16,
+        "static_clause_tag_counts": {
+          "B-INDEG": 0,
+          "B-MEM": 0,
+          "B-TOTAL": 0,
+          "CAP-PROFILE": 0,
+          "CAP-TOTAL": 0,
+          "DUAL2": 85680,
+          "S-CIRC2": 0,
+          "S-D1": 0,
+          "S-EXACT": 0,
+          "S-MINCUT": 0
+        },
+        "total_clauses": 85697,
+        "variables": 1
+      },
+      "dynamic_clause_family_counts": {
+        "MINIMAL-FAITHFUL-CONSEQUENCE unit": 1,
+        "lazy sink-SCC boundary": 0,
+        "raw labelled semantic block": 16
+      },
+      "final_clause_count": 295001,
+      "final_clause_family_counts": {
+        "B-INDEG": 0,
+        "B-MEM": 0,
+        "B-TOTAL": 0,
+        "CAP-PROFILE": 0,
+        "CAP-TOTAL": 0,
+        "DUAL2": 85680,
+        "MINIMAL-FAITHFUL-CONSEQUENCE unit": 1,
+        "S-CIRC2": 85680,
+        "S-D1": 0,
+        "S-EXACT": 123624,
+        "S-MINCUT": 0,
+        "lazy sink-SCC boundary": 0,
+        "raw labelled semantic block": 16
+      },
+      "final_variables": 307,
+      "mode": "dual2_scc",
+      "static_clause_tag_counts": {
+        "B-INDEG": 0,
+        "B-MEM": 0,
+        "B-TOTAL": 0,
+        "CAP-PROFILE": 0,
+        "CAP-TOTAL": 0,
+        "DUAL2": 85680,
+        "S-CIRC2": 85680,
+        "S-D1": 0,
+        "S-EXACT": 123624,
+        "S-MINCUT": 0
+      },
+      "static_dual2": true
+    }
+  ],
+  "schema": "p97-generic-arow-wave1-clause-family-manifest/v1",
+  "source": {
+    "backends": {
+      "cadical": {
+        "path": "/Users/adam/.local/bin/cadical",
+        "sha256": "66b34e225d5661f8e9b33fb8f77f2e9ae4c5639d8fe2a19067edb06c6d97d9d8",
+        "version": "3.0.0"
+      },
+      "drat-trim": {
+        "path": "/Users/adam/.local/bin/drat-trim",
+        "sha256": "eb781b99f2aaf5c9102eb6efd07c2d0aa71b44a0e8002a74e3dda1030be96a92",
+        "version": "usage: drat-trim [INPUT] [<PROOF>] [<option> ...]"
+      }
+    },
+    "custody_nonclaim": "These direct-file digests do not authenticate transitive imports, a bank, or source-to-finite theorem custody.",
+    "direct_file_digests": {
+      "classification": "direct-file SHA-256 only; non-transitive and not a bank source_manifest",
+      "sha256": {
+        "census/p97_search/cells.py": "76c84b93ec6f282064b4ff694e6bf135309ebbfaee94f1b025a86398f03cbc47",
+        "census/p97_search/sat_generate.py": "5a32d21476ca47945cf5be41cbf07fe4fe831fd91a88be7326bb3138df38d817",
+        "scratch/runs/p97-n18-wave1-20260901/wave1-v1/runner.py": "3c3302f2ef83755e7acbc59269acc7028969a0d191c49090532b35f6cd1feb71"
+      }
+    },
+    "git": {
+      "dirty": true,
+      "dirty_entry_count": 59,
+      "dirty_status_format": "git status --porcelain=v1 --untracked-files=all",
+      "dirty_status_sha256": "ed06cf5145d39162a092ba94ae197af7ea4b23a30c7e34a73c4476bb0d9ede89",
+      "head": "ac3f31c5fe45c9143af0a7db3d2e28ec4c1c7018"
+    },
+    "source_head": "ac3f31c5fe45c9143af0a7db3d2e28ec4c1c7018"
+  },
+  "surface": "generic A-ROW at k=4,n=18; not Card18",
+  "trust_boundary": "SCC families are conditional; no finite CNF family establishes metric realizability or Card18 source coverage"
+}
