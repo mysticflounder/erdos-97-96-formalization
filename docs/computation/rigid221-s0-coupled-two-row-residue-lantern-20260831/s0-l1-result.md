@@ -123,6 +123,26 @@ missing prerequisites are `D.K4` and a total all-source
 `R.minimal : D.Minimal` at the global card-minimal blocking-subdeletion
 producer.
 
+**EMPIRICALLY VERIFIED (finite total-system geometry only).** A 28-role S0-I
+extension partitions the carrier into seven pairwise-disjoint complete
+four-fibers and supplies a modeled shell assignment and deletion-blocking check
+for every source. The exact blocker graph contains
+`u→cu→fw→xv→cv→fp→xv` and the 3-cycle `xv→cv→fp→xv`. This demonstrates that
+total finite `shellAt`/`no_qfree` geometry and a blocker cycle are consistent.
+Only 8 of the 28 carrier points are centers of a four-point radius class, so
+global `D.K4` fails. Exact replay corrects two supplied values: the cap profile
+is `(8,10,13)`, not `(8,7,16)`, and the retained `Kdelta` row is centered at
+`xu`, not `fq`.
+
+The source-faithful named seed for a subsequent global-K4 completion has raw
+sharp envelope `|B|≤20`. A physical five-class must be represented in
+`FaithfulCarrierPattern` by a compatible four-subset. If
+`oppApex1=cv` or `oppApex1=cdelta`, compatibility forces the aliased prescribed
+rows to coincide and sharpens the envelope to
+`|B|≤15-|Ku∩Kv|`. The proper-subset branch yields an actual selected row
+centered at some `a∈B` with a support point `z∉B`; it forces no further center
+exclusion or cross-incidence.
+
 ## Completion matrix
 
 | Obligation | Statement | Label | Status | Evidence |
@@ -133,6 +153,8 @@ producer.
 | O4 | A different finite carrier supplies every active L1 cap/two-row field for S0-I and S0-N. | EMPIRICALLY VERIFIED | ✅ done | Separate exact witnesses and independent replay. |
 | O5 | Every source-legal equality/order/overlap cell is encoded. | CONJECTURED | ⬜ open | Remaining cells are `ENCODING_BLOCKED`. |
 | O6 | Either finite witness extends to a genuine global-`K4` `CounterexampleData`, `D.Minimal`, and total shell system. | CONJECTURED | ⬜ open | Finite L3 packet geometry replays, but no ambient global structure is supplied. |
+| O7 | Total modeled critical-shell geometry is itself inconsistent with the S0-I finite packet. | EMPIRICALLY REFUTED | ✅ exact model | A 28-role seven-block model replays every finite shell assignment and deletion blocker. |
+| O8 | The named rows plus global K4 close within the sharp `|B|≤20` endpoint or force a source-faithful escape. | CONJECTURED | 🟡 residual frozen | `B=A` needs bounded all-center K4 CEGAR; `B≠A` gives only the authenticated escape row. |
 
 The finite-core satisfiability statements are **EMPIRICALLY VERIFIED**. Any
 theorem-level or genuine-source-context conclusion remains **CONJECTURED**
@@ -155,6 +177,9 @@ externally replayed arithmetic premise.
 - `solver/s0-true-cap-wave2-l3-witnesses.json` retains both field-level finite
   L3 packets; its independent verifier rejects row, overlap, robustness,
   cap-growth, singleton-restoration, and scope-upgrade mutations.
+- `solver/s0-total-critical-system-wave1-model.json` retains the corrected
+  28-role total-system geometry; its verifier rejects partition, assignment,
+  deletion-blocker, orbit, census, discrepancy, and scope mutations.
 
 The result is not a counterexample to the Lean theorem, not L1 UNSAT, and not a
 promotion artifact. It rejects the requested starting seed and narrows the next

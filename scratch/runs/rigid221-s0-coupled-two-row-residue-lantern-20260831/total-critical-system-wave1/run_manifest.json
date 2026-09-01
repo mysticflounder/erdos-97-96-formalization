@@ -1,0 +1,26 @@
+{
+  "schema": "worktree-run-manifest/v1",
+  "lane_id": "rigid221-s0-coupled-two-row-residue-lantern-20260831",
+  "run_id": "total-critical-system-wave1",
+  "root": "scratch/runs/rigid221-s0-coupled-two-row-residue-lantern-20260831/total-critical-system-wave1",
+  "owner": "ResidueLantern",
+  "base_head": "f26de746bc16d15d891c42ad8cfb42876a63ab06",
+  "output_classes": [
+    "artifacts",
+    "events",
+    "tmp"
+  ],
+  "source_digests": {
+    "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/solver/rigid221_s0_total_critical_system_model.py": "9f4912f604844415434afbbfbf4ed5fccd23fb30ab51081a71701e385bdea890",
+    "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/solver/test_rigid221_s0_total_critical_system_model.py": "7944e4e52978531b7fc9ce223aff845e5aaeec6bf0727f90b935a0bc48825ed5",
+    "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/solver/test_verify_rigid221_s0_total_critical_system_model.py": "016c60ddb951fad0d1fed758ff03540d25056e569640da858e5ec028800669ae",
+    "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/solver/verify_rigid221_s0_total_critical_system_model.py": "41d1c2d53efdfb1806da0f314c6164a56de55acb299da907e6f4576f86a7a094",
+    "lean/Erdos9796Proof/P97/U1CarrierInjection.lean": "0763edd41bef51f9b5ca0c7d98d3178efdbe45f7ad130c723e672f6671379fc2"
+  },
+  "input_digests": {
+    "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/s0-source-constraint-manifest.md": "acd0f7715ac7b5a440575aed744b890b902b3295991b768d5be6ddb8271b3ead",
+    "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/solver/s0-true-cap-wave2-l3-witnesses.json": "c2a2539c1a4a9a48792b62fc6a1d9500f9a8969deec12079784258d7a8c94cd2"
+  },
+  "created_utc": "2026-09-01T09:35:00Z",
+  "manifest_sha256": "b19260231ddb95e71e55ab25c5051da9e437075335e0a4a1f028188521ce4d02"
+}

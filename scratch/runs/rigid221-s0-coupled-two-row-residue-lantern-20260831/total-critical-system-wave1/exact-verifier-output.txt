@@ -1,0 +1,10 @@
+{
+  "CounterexampleData": false,
+  "K4": false,
+  "Minimal": false,
+  "actual_typed_Lean_CriticalShellSystem": false,
+  "full_theorem": false,
+  "promotion_claim": false,
+  "status": "VERIFIED_SAT_EXACT_TOTAL_CRITICAL_SHELL_SYSTEM_GEOMETRIC_MODEL",
+  "total_finite_CriticalShellSystem_geometry": true
+}

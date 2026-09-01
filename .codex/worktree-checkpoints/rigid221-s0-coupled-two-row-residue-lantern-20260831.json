@@ -6,10 +6,12 @@
   "owned_paths": [
     ".codex/worktree-checkpoints/rigid221-s0-coupled-two-row-residue-lantern-20260831.json",
     "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/results.csv",
+    "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/s0-faithful-escape.md",
     "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/s0-l1-result.md",
     "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/s0-polynomial-model.md",
     "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/s0-role-and-cell-enumeration.json",
     "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/s0-source-constraint-manifest.md",
+    "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/s0-total-critical-system-wave1.md",
     "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/s0-true-cap-wave1.md",
     "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/s0-true-cap-wave2-l3.md",
     "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/s0-true-cap-wave2.md",
@@ -19,9 +21,11 @@
     "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/solver/rigid221_s0_coupled_two_row.py",
     "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/solver/rigid221_s0_l2_source_context_witnesses.py",
     "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/solver/rigid221_s0_l3_field_packet_witnesses.py",
+    "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/solver/rigid221_s0_total_critical_system_model.py",
     "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/solver/rigid221_s0_true_cap_obstruction.py",
     "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/solver/rigid221_s0_true_cap_search.py",
     "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/solver/rigid221_s0_true_cap_witnesses.py",
+    "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/solver/s0-total-critical-system-wave1-model.json",
     "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/solver/s0-true-cap-wave1-obstruction.json",
     "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/solver/s0-true-cap-wave1-result.json",
     "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/solver/s0-true-cap-wave2-l2-witnesses.json",
@@ -30,16 +34,19 @@
     "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/solver/test_rigid221_s0_coupled_two_row.py",
     "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/solver/test_rigid221_s0_l2_source_context_witnesses.py",
     "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/solver/test_rigid221_s0_l3_field_packet_witnesses.py",
+    "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/solver/test_rigid221_s0_total_critical_system_model.py",
     "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/solver/test_rigid221_s0_true_cap_obstruction.py",
     "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/solver/test_rigid221_s0_true_cap_search.py",
     "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/solver/test_rigid221_s0_true_cap_witnesses.py",
     "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/solver/test_verify_rigid221_s0_l2_source_context_witnesses.py",
     "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/solver/test_verify_rigid221_s0_l3_field_packet_witnesses.py",
+    "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/solver/test_verify_rigid221_s0_total_critical_system_model.py",
     "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/solver/test_verify_rigid221_s0_true_cap.py",
     "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/solver/test_verify_rigid221_s0_true_cap_witnesses.py",
     "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/solver/verify_rigid221_s0_coupled_two_row.py",
     "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/solver/verify_rigid221_s0_l2_source_context_witnesses.py",
     "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/solver/verify_rigid221_s0_l3_field_packet_witnesses.py",
+    "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/solver/verify_rigid221_s0_total_critical_system_model.py",
     "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/solver/verify_rigid221_s0_true_cap.py",
     "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/solver/verify_rigid221_s0_true_cap_witnesses.py"
   ],
@@ -48,7 +55,8 @@
     "scratch/runs/rigid221-s0-coupled-two-row-residue-lantern-20260831/l1-cap-wave2",
     "scratch/runs/rigid221-s0-coupled-two-row-residue-lantern-20260831/l1-v1",
     "scratch/runs/rigid221-s0-coupled-two-row-residue-lantern-20260831/l2-source-context-wave1",
-    "scratch/runs/rigid221-s0-coupled-two-row-residue-lantern-20260831/l3-field-packet-wave1"
+    "scratch/runs/rigid221-s0-coupled-two-row-residue-lantern-20260831/l3-field-packet-wave1",
+    "scratch/runs/rigid221-s0-coupled-two-row-residue-lantern-20260831/total-critical-system-wave1"
   ],
   "durable_paths": [
     "scratch/runs/rigid221-s0-coupled-two-row-residue-lantern-20260831/l1-cap-wave1/exact-verifier-output.txt",
@@ -66,8 +74,11 @@
     "scratch/runs/rigid221-s0-coupled-two-row-residue-lantern-20260831/l2-source-context-wave1/source-context-witness-report.json",
     "scratch/runs/rigid221-s0-coupled-two-row-residue-lantern-20260831/l3-field-packet-wave1/exact-verifier-output.txt",
     "scratch/runs/rigid221-s0-coupled-two-row-residue-lantern-20260831/l3-field-packet-wave1/field-packet-witness-report.json",
-    "scratch/runs/rigid221-s0-coupled-two-row-residue-lantern-20260831/l3-field-packet-wave1/run_manifest.json"
+    "scratch/runs/rigid221-s0-coupled-two-row-residue-lantern-20260831/l3-field-packet-wave1/run_manifest.json",
+    "scratch/runs/rigid221-s0-coupled-two-row-residue-lantern-20260831/total-critical-system-wave1/exact-verifier-output.txt",
+    "scratch/runs/rigid221-s0-coupled-two-row-residue-lantern-20260831/total-critical-system-wave1/run_manifest.json",
+    "scratch/runs/rigid221-s0-coupled-two-row-residue-lantern-20260831/total-critical-system-wave1/total-critical-system-report.json"
   ],
   "created_utc": "2026-09-01T04:27:42Z",
-  "manifest_sha256": "becfd6cb992617659be6c93fdf9380f850b421e47530783c07dfdb2eb9733687"
+  "manifest_sha256": "dd87273606df6c800fd11680bb96a864c30c96dcdfbb60ea338415de38b76bc4"
 }

@@ -26,9 +26,9 @@
     "lean/Erdos9796Proof/P97/U1CarrierInjection.lean": "0763edd41bef51f9b5ca0c7d98d3178efdbe45f7ad130c723e672f6671379fc2"
   },
   "input_digests": {
-    "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/s0-source-constraint-manifest.md": "96b9ea8a0b74c0c3afa00d685cbe8b45401f7ab27b9e444f4a5bdb65f1e2ebed",
+    "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/s0-source-constraint-manifest.md": "acd0f7715ac7b5a440575aed744b890b902b3295991b768d5be6ddb8271b3ead",
     "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/solver/s0-true-cap-wave2-witnesses.json": "2dea3de5a636c42cde11844421c4c45c7134c1834c91fe6ed1ca21b561c54870"
   },
   "created_utc": "2026-09-01T07:36:01Z",
-  "manifest_sha256": "13fd9eed2ae53544faebbb88f0ef29fbf401e41b01d48b592601adb86ec6677a"
+  "manifest_sha256": "a4aed2dd802a3395b913950ec7410c008477e75df525d85e9359462f505a9723"
 }

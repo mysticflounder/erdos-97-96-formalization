@@ -1,7 +1,8 @@
 # Rigid221 S0 coupled-two-row source-constraint manifest
 
 **Lane:** `rigid221-s0-coupled-two-row-residue-lantern-20260831`
-**Base HEAD:** `f26de746bc16d15d891c42ad8cfb42876a63ab06`
+**Original lane base HEAD (historical):** `f26de746bc16d15d891c42ad8cfb42876a63ab06`
+**Latest committed checkpoint before this update:** `15a7e2d1d9c0b6aa69e938063e8eb7e0f9bbe246`
 **Source state:** traced against the live worktree before computation
 **Claim state:** source map only; no solver, Lean-proof, or promotion claim
 
@@ -130,7 +131,8 @@ replay checks every active L1 row above. A formula UNSAT remains formula-scoped
 unless every source-legal discrete cell is covered and an exact contradiction or
 checked certificate is retained.
 
-Wave 1 retains no `SAT_EXACT` witness. Its exact fixed-coordinate verdict is
+True-cap repair wave 1 retains no `SAT_EXACT` witness. Its exact
+fixed-coordinate verdict is
 `UNSAT_FIXED_CELL_EXACT`, with `TC-02` as the first packet failure and `TC-03`
 as an independent minimized consequence conditional on `O = S.oppApex2`.
 Its bounded rational addition grid remains `ENCODING_BLOCKED`; S0-I and S0-N
@@ -174,3 +176,26 @@ missing prerequisites. After granting an abstract L3 packet over genuine
 every carrier source, and its blocker map, selected supports, no-qfree
 conditions, and derived all-source collisions are not encoded by a finite
 collection of displayed rows.
+
+The exact total-system wave adds three rows to S0-I and partitions 28 carrier
+roles into seven disjoint complete four-fibers. Every source receives its
+unique block center, and deleting that source leaves maximum positive-distance
+multiplicity three at the assigned center. Its status is
+`SAT_EXACT_TOTAL_CRITICAL_SHELL_SYSTEM_GEOMETRIC_MODEL`. This is an exhaustive
+finite replay of the displayed `shellAt` and `no_qfree` predicates, not a typed
+Lean `CriticalShellSystem`. Exactly 8 carrier points satisfy the modeled
+centerwise K4 predicate and 20 fail, so `D.K4`, `CounterexampleData`, and
+`D.Minimal` remain absent. The exact cap profile is `(8,10,13)`, and the
+retained `Kdelta` center is `xu`; the supplied `(8,7,16)` and `fq` center are
+recorded discrepancies.
+
+For the next global-K4 split, `FaithfulCarrierPattern` can preserve a four-point
+selected class at the physical center, not the entire physical five-class.
+Let `B` contain that compatible four-subset, the four named exact rows, and
+their centers. Its raw sharp source-derived envelope is `|B|≤20`. Compatible
+aliases `oppApex1=cv` or `oppApex1=cdelta` force the prescribed rows at the
+aliased center to agree and yield `|B|≤15-|Ku∩Kv|`. If `B=A`, this is a bounded
+all-center K4 endpoint still requiring exact CEGAR. If `B≠A`, the trusted escape
+API yields only `a∈B`, an actual selected four-class centered at `a`, and a
+support point `z∉B`. It does not force `a` away from O or named centers, nor any
+cross-incidence for `z`.
