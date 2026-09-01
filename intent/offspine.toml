@@ -13,6 +13,13 @@ registered_at = "2026-08-31T00:07:48+00:00"
 updated_at = "2026-08-31T00:07:48+00:00"
 
 [[offspine]]
+symbol = "Problem97.ATailFrontierLiveClosure.B1CardSixPhysicalIngress.physicalClassWithApex_card_eq_seven"
+category = "infra"
+reason = "Source cardinality half of the B1 card-six physical K7; named-role exhaustiveness and all auxiliary aliases remain separate"
+registered_at = "2026-09-01T17:12:14+00:00"
+updated_at = "2026-09-01T17:12:14+00:00"
+
+[[offspine]]
 symbol = "Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress.false_of_fixedCellNormalization"
 category = "infra"
 reason = "Bounded orientation-preserving similarity bridge for the experimental fixed-coordinate cells; live shape and order ingress remain open"
