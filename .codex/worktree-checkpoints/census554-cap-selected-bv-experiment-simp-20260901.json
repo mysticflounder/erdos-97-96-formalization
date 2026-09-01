@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "census554-cap-selected-bv-experiment-simp-20260901",
+  "owner": "codex-cap-selected-bv-simp",
+  "base_head": "d6d4c952021aeda94fc5a86f0fa651579f51e3a3",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/census554-cap-selected-bv-experiment-simp-20260901.json",
+    "lean/Erdos9796Proof/P97/Census554/CapSelectedBVExperiment.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-01T15:03:22Z",
+  "manifest_sha256": "a948bf5c0f1eabaeae92cf34a9e1c9c92be9535d2367466708023e1e426ab4de"
+}
