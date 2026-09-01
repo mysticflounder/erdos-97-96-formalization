@@ -3156,7 +3156,11 @@ The 25 recorded leaves are:
   `UNKNOWN` results do not close a universal leaf.  The first missing
   source-entitled producer is an order-sensitive metric contradiction (or a
   global full-carrier/K4 deletion-row coupling) for the one-inside/one-outside
-  cap arm; no current computational artifact supplies it.
+  cap arm; no current computational artifact supplies it.  The paired arm's
+  surviving descendant
+  `false_of_pairedCommonDeletion_fiveSurviveOneFail_triApexAllLarge_core` is
+  covered by `docs/plans/2026-09-01-d1-triapex-paired-common-deletion-closure-plan.md`
+  (2026-09-01).
 
 * **FreshThird / F-Γ (2 on-spine leaves).**
   `Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_crossBlockerCoincidence`;

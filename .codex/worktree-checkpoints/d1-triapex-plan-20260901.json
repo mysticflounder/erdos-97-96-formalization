@@ -1,0 +1,16 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "d1-triapex-plan-20260901",
+  "owner": "claude-fable-d1-triapex",
+  "base_head": "9a222da97112efc204a038ca2f71ff5a12078f94",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/d1-triapex-plan-20260901.json",
+    "docs/computational-closure-plan-2026-07-28.md",
+    "docs/plans/2026-09-01-d1-triapex-paired-common-deletion-closure-plan.md",
+    "docs/plans/README.md"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-01T23:33:45Z",
+  "manifest_sha256": "0580d0d353cf5ca7797a5cca00a7a07e3f136626f7d2547dbe9ce5989a5fc2df"
+}

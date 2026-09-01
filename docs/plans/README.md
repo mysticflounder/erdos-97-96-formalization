@@ -12,6 +12,9 @@ fixed count embedded in a plan. The repository-wide authored ledger is the
 
 ## Current or partially current plans
 
+- [TriApex paired common-deletion leaf](2026-09-01-d1-triapex-paired-common-deletion-closure-plan.md)
+  — covering plan for the sole open TriApex obligation
+  `false_of_pairedCommonDeletion_fiveSurviveOneFail_triApexAllLarge_core`.
 - [B1 equal-blocker continuation](2026-08-29-b1-global-continuation.md) —
   current B1 residual and validation boundary.
 - [B-family closure plan](2026-08-18-b-family-closure-plan.md) — current as
