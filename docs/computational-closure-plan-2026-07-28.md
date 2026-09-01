@@ -12109,6 +12109,26 @@ required by that result. The current bridge closes no FirstNonHit, F1, F2, F3,
 or publish-spine obligation. The project-native matrix and source accounting
 are in `docs/notes/2026-08-22-p97-literature-bridge.md`.
 
+An additional external repository belongs in the reuse record:
+[`sneed-and-feed/lean-theorems-1`](https://github.com/sneed-and-feed/lean-theorems-1/tree/333a9b0ca248d18b219532a39d31ead8c9f0ee96),
+at commit `333a9b0ca248d18b219532a39d31ead8c9f0ee96`, contains a Lean 4
+formalization of Lovász's Colorful Helly theorem.  A source audit of its
+`ColorfulHelly.lean` and `RadonHelly.lean` files found no explicit `sorry` or
+named custom axiom, but no fresh build or transitive axiom audit was run, so
+this remains discovery evidence rather than a verified local dependency.
+
+The theorem does not directly advance the B1 leaf.  Its proof passes through
+convex hulls and uses midpoint strict convexity, whereas B1 requires exact
+positive-radius shell membership, which distinct shell points do not preserve
+under midpoint.  The B1 ingress also lacks the colorful-transversal premise,
+and the theorem returns a common intersection rather than the required
+same-boundary-arc order fact.  The adjacent modules audited at that revision
+provide no direct publish-spine theorem.  Give this route no closure credit and
+do not add the Lean 4.34.0-rc1 repository as a dependency of the local Lean
+4.27.0 project.  Retain only the possible proof pattern: make an upstream
+finite choice extremal and prove a one-coordinate exchange that preserves the
+exact shell, omission, deletion, and cardinality data.
+
 #### 13.24.1.23 Pinned-fan interface survivor and bounded-lift pivot (2026-08-13)
 
 This subsection supersedes the claim in §13.24.1.22 that the pinned-endpoint

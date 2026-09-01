@@ -12207,6 +12207,17 @@ Those alternatives should be stored as tags in the consumer packet. None is pres
 
 **Status:** `[OPEN GLOBAL EQUAL-BLOCKER CONTINUATION CONSUMER]`.
 
+**External formalization note (non-load-bearing).**  A later reuse audit found
+a Lean 4 formalization of Lovász's Colorful Helly theorem in
+[`sneed-and-feed/lean-theorems-1`](https://github.com/sneed-and-feed/lean-theorems-1/blob/333a9b0ca248d18b219532a39d31ead8c9f0ee96/Formalization/ColorfulHelly.lean)
+at commit `333a9b0ca248d18b219532a39d31ead8c9f0ee96`; see [R27].  Its
+extremal finite-choice and one-color replacement pattern is relevant to the
+kind of upstream extremal choice listed above.  It does not prove I12: its
+convex-hull/midpoint step does not preserve exact positive-radius shell
+membership, the present B1 data does not supply its colorful-transversal
+premise, and its common-intersection conclusion does not supply the required
+same-boundary-arc order fact.  No external dependency is introduced.
+
 ---
 
 ### 16.5.I.B — Distinct-blocker/five-center branch
@@ -13571,3 +13582,4 @@ That is the exact frontier of the authoritative prose proof.
 - **[R24]** `f3_live_source_reconciliation.md` and `F3-closure-work-validation.txt`; prose structure was validated, but exact live-source declaration reconciliation and an integrated Lean build remain outstanding.
 - **[R25]** `f3_trace_graph_third_pass_addendum.md`, F3.55-F3.73; source of the rejection of the recursive interface and the universal physical-trace, sparse conflict-graph, survival-amplification, five-source, common-grid, diagonal, bounded-normal-form, and exact rational sharpness results.
 - **[R26]** `docs/notes/2026-08-22-p97-literature-bridge.md` and `docs/p97-prose-material-integration-ledger-2026-08-22.md`; project-native literature-status matrix and exact accounting for all 117 archive sources.
+- **[R27]** [`sneed-and-feed/lean-theorems-1`, `ColorfulHelly.lean`](https://github.com/sneed-and-feed/lean-theorems-1/blob/333a9b0ca248d18b219532a39d31ead8c9f0ee96/Formalization/ColorfulHelly.lean), commit `333a9b0ca248d18b219532a39d31ead8c9f0ee96`; source-level reuse audit only, with no fresh build or transitive axiom audit.
