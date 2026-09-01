@@ -109,13 +109,37 @@ counts as proof progress only if `M` strictly decreases and the raw on-spine
 - Lane checkpoint `.codex/worktree-checkpoints/dr-two-radius-20260901.json`.
 - This document.
 
-### Phase 1 — exact-12 kill-test (computational, decides the route)
+### Phase 1 — kill-test (computational, discovery gate only)
 
 Question tested first: is the branch refutable from its own binders at all?
 
-Build a D-R cell family under `census/card_head/` mirroring
-`b1_exact12_structural.py` and its static/metric stages, profile `(5,4,6)`
-only. Encode the full binder block, not a package sketch:
+Solver lane and approvals (sat-solvers skill policy):
+
+- every SAT stage runs through `piqd` (CaDiCaL, DRAT → LRAT captured by the
+  daemon); the metric stage is the existing `piqd` Z3 `QF_NRA` one-shot
+  profile used by `b1_exact12_metric_piqd.py`, with no local solver fallback;
+- any non-`piqd` invocation (cvc5 `--nl-cov` second opinion, Singular, msolve,
+  SymPy certificate replay) needs Adam's per-task approval before it runs;
+- every run carries a wall-clock timeout; no cube-and-conquer without a cube
+  cap.
+
+Two encodings, run in this order:
+
+1a. Cardinality-independent named-role quotient. Points are only the roles
+    the binders name: `a1`, `a2`, `a3`, the eight class points, the four
+    first-apex class points, the ingress source, its blocker, and the two
+    packet rows, with equality classes allowing coincidences. Convex cyclic
+    order is encoded on the named points only, which is sound because a
+    subset of a convex-position set is in convex position. A metric UNSAT
+    here is at a scope that lifts without an exact-cardinality argument. The
+    equality-only version of this quotient is already known SAT (July D-R
+    probes), so only the metric stage is informative.
+
+1b. Exact-12 full-carrier cube, profile `(5,4,6)` only, mirroring
+    `b1_exact12_structural.py` and its static and metric stages. This is the
+    tight diagnostic case; it adds a blocker for every carrier point, which
+    encoding 1a cannot name. Encode the full binder block, not a package
+    sketch:
 
 - roles `a1 = oppApex1`, `a2 = oppApex2`, `a3 = surplus apex`, interiors
   `I1 = {iq, iw}`, `I2 = {c1, c2, c1', c2'}`, `Is = {s1, s2, s3}`;
@@ -131,19 +155,40 @@ only. Encode the full binder block, not a package sketch:
 - every point has at least four equidistant points; convex cyclic order.
 
 Stages: equality-only SAT, static convex checks, then the metric stage on
-every surviving cell. Validate the encoding against a known instance before
-trusting any UNSAT: re-encode the closed exact-12 sibling
-`false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_exactTwelve_twoRadiusPartition`
-context and confirm the expected verdict.
+every surviving cell.
+
+Guardrails applied to both encodings:
+
+- Smoke test before any verdict is trusted: re-encode the closed exact-12
+  sibling context of
+  `false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_exactTwelve_twoRadiusPartition`
+  and confirm the expected verdict, and re-encode one hand-checked SAT
+  instance.
+- Cut admission record: every hard-clause block names the Lean theorem or
+  definition it images, or declares itself a relaxation. Blocks expected: cap
+  partition and adjacent one-hit bounds, `CriticalShellSystem` blocker
+  existence and uniqueness, `FullyDeletionRobustAt`, no-five, the ingress
+  packet fields, `ConvexIndep` cyclic order. No block may image an open
+  `sorry`.
+- Every verdict is reported as CONJECTURE until the encoding-to-claim map
+  has been adversarially audited by a second reader.
+- SAT models are read back independently and replayed in exact rational
+  arithmetic; a model that fails replay is not a witness.
+- UNSAT is reported only at the scope encoded: quotient scope for 1a, exact
+  12 for 1b.
 
 Decision rule:
 
-- all cells metrically infeasible → Phase 3;
-- some cell metrically feasible with every hypothesis encoded → stop, report,
-  and propose an upstream re-split; the branch does not close from its
-  binders at size 12;
+- 1a metrically UNSAT on every cell → the strongest outcome; Phase 3 targets
+  the quotient directly and Phase 4 shrinks to the occurrence theorem for the
+  named roles.
+- 1a SAT, 1b UNSAT on every cell → Phase 3 at exact 12; the 1a witness
+  records which global coupling the quotient lacks and seeds Phase 4.
+- 1b has a cell that is metrically feasible with every hypothesis encoded →
+  stop, report, and propose an upstream re-split; the branch does not close
+  from its binders at size 12.
 - feasible only because a hypothesis was omitted → add it, record the
-  addition, rerun.
+  addition in the cut admission record, rerun.
 
 Deliverables: manifests under `scratch/runs/dr-two-radius-20260901/<run-id>/`
 with `run_manifest.json`, `promotion_eligible = false` until Phase 3.
@@ -167,9 +212,15 @@ the Phase 3 ingress or by the leaf itself.
 
 ### Phase 3 — exact-12 closure through certificate ingress
 
-- Emit the Phase 1 certificates through
+- Extract exact Nullstellensatz certificates over ℚ for each metric-UNSAT
+  cell. This step runs Singular and SymPy outside `piqd` and therefore needs
+  Adam's approval before it starts. Cross-check every emptiness verdict on a
+  second engine (Singular char-0 `std`/`dim` as arbiter, SymPy Gröbner over
+  two random large primes) before banking it.
+- Emit the certificates through
   `census/p97_search/phase3_qq_certificate_lean_emitter.py` and pass the
-  Lean-ingress publication gate.
+  Lean-ingress publication gate. A Z3 UNSAT with no certificate stays
+  diagnostic; that cell falls back to Phase 4 core extraction.
 - Split the leaf into `card = 12` and `13 ≤ card` in the same checkpoint that
   closes the `card = 12` leaf, so the on-spine `sorry` count does not rise.
 - Independent promotion verifier plus a math-skeptic audit before any
