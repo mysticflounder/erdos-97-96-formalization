@@ -1,0 +1,13 @@
+{
+  "CommonDeletion": false,
+  "CounterexampleData": false,
+  "CriticalShellSystem": false,
+  "JointDeletion": false,
+  "Minimal": false,
+  "OriginalUniqueFourResidual": false,
+  "full_theorem": false,
+  "global_K4": false,
+  "l2_source_context_geometric_core": true,
+  "robust_surface": false,
+  "status": "VERIFIED_SAT_EXACT_L2_SOURCE_CONTEXT_GEOMETRIC_CORE"
+}

@@ -44,12 +44,12 @@
       {
         "id": "S0-I",
         "condition": "xu in J",
-        "status": "OPEN"
+        "status": "SAT_EXACT_L1_CAP_TWO_ROW_CORE"
       },
       {
         "id": "S0-N",
         "condition": "xu not in J; no endpoint or closed-cap inference",
-        "status": "OPEN"
+        "status": "SAT_EXACT_L1_CAP_TWO_ROW_CORE"
       }
     ],
     "contextual_peer": [

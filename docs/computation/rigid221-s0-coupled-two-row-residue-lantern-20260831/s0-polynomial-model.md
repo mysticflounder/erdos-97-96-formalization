@@ -3,7 +3,8 @@
 **Base HEAD:** `f26de746bc16d15d891c42ad8cfb42876a63ab06`
 **Arithmetic:** exact rational arithmetic; no tolerance and no nonlinear solver
 **Displayed-coordinate verdict:** `ROW_CORE_POSITIVE_CONTROL`; source status
-`SOURCE_INVALID`; S0-I and S0-N remain `OPEN`.
+`SOURCE_INVALID`. Separate wave-2 coordinates give
+`SAT_EXACT_L1_CAP_TWO_ROW_CORE` for S0-I and S0-N.
 
 ## Exact target
 
@@ -119,17 +120,40 @@ decides neither S0-I nor S0-N.
 | M1 | The displayed twelve-role coordinates satisfy the closed row equations, convexity checks, and deletion multiplicity bounds. | EMPIRICALLY VERIFIED | 🟡 row-core positive control | Exact producer plus independent exact verifier; no source cap claim. |
 | M2 | The displayed midpoint disk encloses every listed role with boundary `{v,xv}`. | EMPIRICALLY VERIFIED | 🟡 partial | Exact rational slack inventory. |
 | M3 | M2 forces the listed carriers into the MEC diameter branch and excludes `SurplusCapPacket.hCirc`. | PROVEN (pen-and-paper) | ✅ done | Radius lower bound and the source field requiring three distinct boundary vertices. |
-| M4 | Some different coordinate family supplies the source cap and decides S0-I or S0-N. | CONJECTURED | ⬜ open | No source-valid witness has been produced. |
+| M4 | Different coordinate families supply every active finite L1 cap/two-row field for S0-I and S0-N. | EMPIRICALLY VERIFIED | ✅ done | Separate exact witnesses and independent replay. |
+| M5 | A modeled first-apex extension satisfies the finite L2 fiber/blocker geometry in each branch. | EMPIRICALLY VERIFIED | ✅ finite core | Exact 16-role and 15-role extensions; no actual Lean source-context fields instantiated. |
+| M6 | Either finite carrier extends to a global-`K4` `CounterexampleData` and total `CriticalShellSystem`. | CONJECTURED | ⬜ open | The modeled carriers fail global `K4`; actual deletion packets and robust surface are absent. |
+| M7 | Adding an exact delta row satisfies every named finite geometric predicate abstracted from joint deletion, robust surface, and singleton global deletion. | EMPIRICALLY VERIFIED | ✅ field-level core | Exact 19-role and 18-role packets; typed dependent Lean packets remain unconstructed. |
 
-The finite seed rejection is **EMPIRICALLY VERIFIED** because its arithmetic
-premise is externally replayed. It is not an impossibility result for all L1
-coordinates. A source-faithful search still needs a different coordinate family
-with three distinct non-obtuse MEC-boundary vertices and the required rotated
-surplus-cap pattern.
+The finite seed rejection and both wave-2 finite-core satisfiability statements
+are **EMPIRICALLY VERIFIED** because their arithmetic premises are externally
+replayed. They are not theorem counterexamples. A source-faithful continuation
+still needs a genuine global-`K4` ambient extension and the total structures
+derived from it.
 
 Wave 1 additionally gives `UNSAT_FIXED_CELL_EXACT` for both S0 branches before
 the membership split: `hCirc` fails first at boundary cardinality two, and the
 conditional physical-`O` boundary consequence is independently contradicted by
 slack `3051/6749`. A finite rational addition grid with at most two new roles
-has been exhausted exactly, but it is only bounded evidence; the unrestricted
-coordinate family and both source S0 verdicts remain open.
+has been exhausted exactly, but it is only bounded evidence about that prior
+cell; wave 2 resolves the finite L1 cap/two-row cores with different coordinates.
+
+Wave 2 supplies exact rational L1 witnesses with MEC boundaries
+`{O,delta,xv}` and `{O,delta,xu}`, cap profiles `(5,4,7)` and `(5,3,7)`, and
+source caps `J={cu,cv,u,v,xu}` and `J={cu,cv,u,v,xv}` respectively. The
+independent verifier derives all nine endpoint memberships from the closed-cap
+filters. Exact first-apex extensions further verify cap profiles `(5,7,7)` and
+`(5,6,7)` plus the modeled first-fiber/blocker geometry. Those L2 certificates
+instantiate zero actual Lean `ExactFourMutualOmissionSourceContext` fields and
+explicitly make no `CounterexampleData`, robustness, global-deletion, or theorem
+claim.
+
+The L3 extensions add
+`Kdelta={delta,d1,d2,d3}` at radius squared `80656/54389`. S0-I has 19
+roles, cap profile `(5,10,7)`, and first-opposite cap growth; S0-N has 18
+roles, cap profile `(8,6,7)`, and surplus cap growth. Independent exact replay
+accepts the modeled common-deletion overlaps, row omissions, robustness checks,
+cap growth, and singleton deletion restoration. These are field-level finite
+predicates only. The global card-minimal blocking-subdeletion constructor first
+requires `R.minimal : D.Minimal` and uses `D.K4`; a total source-indexed
+`CriticalShellSystem` is also absent.

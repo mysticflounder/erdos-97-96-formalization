@@ -121,9 +121,9 @@ The exact twelve-role artifact in `scripts/rigid221_s0_l1.py` proves only
 model. It omits the actual cap/MEC packet and therefore decides neither S0-I nor
 S0-N. The later fourteen-role full-L1 fixed-order cells both ended
 `UNKNOWN_TIMEOUT`; the displayed coordinates are only a
-`ROW_CORE_POSITIVE_CONTROL`, with source status `SOURCE_INVALID`. S0-I and
-S0-N remain `OPEN`; cyclic orders, auxiliary overlaps, and legal role
-equalities not covered by the current formulas remain unencoded.
+`ROW_CORE_POSITIVE_CONTROL`, with source status `SOURCE_INVALID`. These prior
+cells do not decide S0-I or S0-N; cyclic orders, auxiliary overlaps, and legal
+role equalities not covered by the current formulas remain unencoded.
 
 The present lane may report `SAT_EXACT` only after an independent exact witness
 replay checks every active L1 row above. A formula UNSAT remains formula-scoped
@@ -134,4 +134,43 @@ Wave 1 retains no `SAT_EXACT` witness. Its exact fixed-coordinate verdict is
 `UNSAT_FIXED_CELL_EXACT`, with `TC-02` as the first packet failure and `TC-03`
 as an independent minimized consequence conditional on `O = S.oppApex2`.
 Its bounded rational addition grid remains `ENCODING_BLOCKED`; S0-I and S0-N
-remain `OPEN` outside the fixed cell.
+were unresolved by wave 1 outside the fixed cell.
+
+Wave 2 retains separate exact rational witnesses for the two active finite L1
+branches. S0-I has status `SAT_EXACT_L1_CAP_TWO_ROW_CORE` with 13 roles, MEC
+boundary `{O,delta,xv}`, cap profile `(5,4,7)`, and
+`J={cu,cv,u,v,xu}`. S0-N has the same status with 12 roles, MEC boundary
+`{O,delta,xu}`, cap profile `(5,3,7)`, and
+`J={cu,cv,u,v,xv}`. Independent replay reconstructs the physical five-fiber,
+both complete four-rows, all closed-cap memberships including the nine endpoint
+booleans, the non-obtuse MEC triangle, and the finite deletion bounds.
+
+The first-apex extensions have the narrower status
+`SAT_EXACT_L2_SOURCE_CONTEXT_GEOMETRIC_CORE`. They replay exact cap profiles
+`(5,7,7)` and `(5,6,7)`, the modeled first fibers, and modeled blocker
+geometry. They instantiate zero actual Lean
+`ExactFourMutualOmissionSourceContext` fields: the total
+`CriticalShellSystem`, actual common-deletion packets, robust-deletion surface,
+global `K4`, `CounterexampleData`, and theorem claim are all absent. In fact the
+two finite modeled carriers fail global `K4`. The first source-faithful target
+is therefore a genuine global-`K4` ambient extension; conditionally after that,
+the next missing fields are the `uPacket` and `vPacket` common-deletion packets.
+
+The L3 finite abstraction adds an exact `delta` four-row and replays every
+named finite geometric predicate of the two joint-deletion packets, robust
+surface, and singleton global deletion. Its status is
+`SAT_EXACT_L3_FIELD_LEVEL_GEOMETRIC_PACKET`: S0-I has 19 roles and cap profile
+`(5,10,7)`; S0-N has 18 roles and `(8,6,7)`; both delta rows have radius
+squared `80656/54389`. No field-level premise represented by the abstraction
+fails, and the independent verifier reports no supplied-value discrepancy.
+
+This does not upgrade the certificate to a typed Lean packet. It still has no
+genuine `D`, `H`, `F`, `R`, robust surface, or global-deletion value. Source
+mining identifies `D.K4` and a total `CriticalShellSystem` as the absolute
+missing prerequisites. After granting an abstract L3 packet over genuine
+`D/H/F/R`, the first still-missing downstream field is
+`R.minimal : D.Minimal`, used by
+`exists_global_cardMinimal_blocking_subdeletion`. The shell system is total over
+every carrier source, and its blocker map, selected supports, no-qfree
+conditions, and derived all-source collisions are not encoded by a finite
+collection of displayed rows.

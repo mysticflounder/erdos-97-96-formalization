@@ -1,0 +1,30 @@
+{
+  "schema": "worktree-run-manifest/v1",
+  "lane_id": "rigid221-s0-coupled-two-row-residue-lantern-20260831",
+  "run_id": "l3-field-packet-wave1",
+  "root": "scratch/runs/rigid221-s0-coupled-two-row-residue-lantern-20260831/l3-field-packet-wave1",
+  "owner": "ResidueLantern",
+  "base_head": "f26de746bc16d15d891c42ad8cfb42876a63ab06",
+  "output_classes": [
+    "artifacts",
+    "events",
+    "tmp"
+  ],
+  "source_digests": {
+    "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/solver/rigid221_s0_l3_field_packet_witnesses.py": "187b3b16d275af92065cb3f687b98ff0ddd3f0647a3a8dd3c7d9f81d382b178b",
+    "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/solver/test_rigid221_s0_l3_field_packet_witnesses.py": "becf8fdfe59f52a7e311e7ba3a04a4ebfe19c2db31e11101cbcb0eb44165c7fa",
+    "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/solver/test_verify_rigid221_s0_l3_field_packet_witnesses.py": "d33938f8474825e48331de48e3bb425dcd4cb6d583a9a04c3fc9d5809e2ac0d4",
+    "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/solver/verify_rigid221_s0_l3_field_packet_witnesses.py": "6ae84eb8e830d28dac2c2cbb76221b49e7b7502a842413d2df25eb5a1b2b8073",
+    "lean/Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean": "5b353a5241f69121d1bad051137c346527be803ffc82ae7cd458b6e632896418",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletion/Types.lean": "8cd091cf7b62c2236798390585e38184df8f366570b4c1d69892e01233b84587",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221Placement.lean": "49c8c3d6b8ed71c44b4f4287ce923fe63ac477432063db7875ca430753be1ea8",
+    "lean/Erdos9796Proof/P97/U1CarrierInjection.lean": "0763edd41bef51f9b5ca0c7d98d3178efdbe45f7ad130c723e672f6671379fc2",
+    "lean/Erdos9796Proof/P97/U1TwoShortCapReduction.lean": "30e455b737277a88b477e5d24fed5f2ad3e0d2af8f239ccb535bb4d892600298"
+  },
+  "input_digests": {
+    "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/s0-source-constraint-manifest.md": "96b9ea8a0b74c0c3afa00d685cbe8b45401f7ab27b9e444f4a5bdb65f1e2ebed",
+    "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/solver/s0-true-cap-wave2-l2-witnesses.json": "22c4ed8a5c49cd9c3e1c569624861d37ee1030f12cb3c90fc7aeb36dbd7fb475"
+  },
+  "created_utc": "2026-09-01T08:25:00Z",
+  "manifest_sha256": "e832291258b38fbda6e98cc98bfb731f6e56b4ad51d6a3f9f9fd4bacae4bcd16"
+}

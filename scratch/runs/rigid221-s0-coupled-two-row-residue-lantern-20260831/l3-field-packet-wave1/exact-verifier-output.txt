@@ -1,0 +1,14 @@
+{
+  "CounterexampleData": false,
+  "CriticalShellSystem": false,
+  "JointDeletion": false,
+  "K4": false,
+  "Minimal": false,
+  "OriginalUniqueFourResidual": false,
+  "Rigid221GlobalDeletion": false,
+  "RobustSurface": false,
+  "full_theorem": false,
+  "full_typed_Lean_packets": false,
+  "l3_named_field_level_finite_geometry": true,
+  "status": "VERIFIED_SAT_EXACT_L3_FIELD_LEVEL_GEOMETRIC_PACKET"
+}

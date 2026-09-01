@@ -1,0 +1,4175 @@
+{
+  "arithmetic": "fractions.Fraction only",
+  "branches": {
+    "S0-I": {
+      "all_named_finite_packet_geometry_replayed": true,
+      "caps": {
+        "J1": [
+          "d1",
+          "d2",
+          "d3",
+          "fp",
+          "fq",
+          "fw",
+          "r1",
+          "r2"
+        ],
+        "J2": [
+          "cu",
+          "cv",
+          "u",
+          "v",
+          "xu"
+        ],
+        "cardinalities": {
+          "C1": 5,
+          "C2": 10,
+          "C3": 7
+        },
+        "endpoint_pattern": {
+          "v1": {
+            "C1": false,
+            "C2": true,
+            "C3": true
+          },
+          "v2": {
+            "C1": true,
+            "C2": false,
+            "C3": true
+          },
+          "v3": {
+            "C1": true,
+            "C2": true,
+            "C3": false
+          }
+        },
+        "frames": {
+          "C1": {
+            "apex": "delta",
+            "endpoint1": "xv",
+            "endpoint2": "O"
+          },
+          "C2": {
+            "apex": "xv",
+            "endpoint1": "O",
+            "endpoint2": "delta"
+          },
+          "C3": {
+            "apex": "O",
+            "endpoint1": "delta",
+            "endpoint2": "xv"
+          }
+        },
+        "members": {
+          "C1": [
+            "O",
+            "q1",
+            "q2",
+            "s",
+            "xv"
+          ],
+          "C2": [
+            "O",
+            "d1",
+            "d2",
+            "d3",
+            "delta",
+            "fp",
+            "fq",
+            "fw",
+            "r1",
+            "r2"
+          ],
+          "C3": [
+            "cu",
+            "cv",
+            "delta",
+            "u",
+            "v",
+            "xu",
+            "xv"
+          ]
+        },
+        "membership_count_by_role": {
+          "O": 2,
+          "cu": 1,
+          "cv": 1,
+          "d1": 1,
+          "d2": 1,
+          "d3": 1,
+          "delta": 2,
+          "fp": 1,
+          "fq": 1,
+          "fw": 1,
+          "q1": 1,
+          "q2": 1,
+          "r1": 1,
+          "r2": 1,
+          "s": 1,
+          "u": 1,
+          "v": 1,
+          "xu": 1,
+          "xv": 2
+        },
+        "on_arc_opposite_truth_table": {
+          "C1": {
+            "O": true,
+            "cu": false,
+            "cv": false,
+            "d1": false,
+            "d2": false,
+            "d3": false,
+            "delta": false,
+            "fp": false,
+            "fq": false,
+            "fw": false,
+            "q1": true,
+            "q2": true,
+            "r1": false,
+            "r2": false,
+            "s": true,
+            "u": false,
+            "v": false,
+            "xu": false,
+            "xv": true
+          },
+          "C2": {
+            "O": true,
+            "cu": false,
+            "cv": false,
+            "d1": true,
+            "d2": true,
+            "d3": true,
+            "delta": true,
+            "fp": true,
+            "fq": true,
+            "fw": true,
+            "q1": false,
+            "q2": false,
+            "r1": true,
+            "r2": true,
+            "s": false,
+            "u": false,
+            "v": false,
+            "xu": false,
+            "xv": false
+          },
+          "C3": {
+            "O": false,
+            "cu": true,
+            "cv": true,
+            "d1": false,
+            "d2": false,
+            "d3": false,
+            "delta": true,
+            "fp": false,
+            "fq": false,
+            "fw": false,
+            "q1": false,
+            "q2": false,
+            "r1": false,
+            "r2": false,
+            "s": false,
+            "u": true,
+            "v": true,
+            "xu": true,
+            "xv": true
+          }
+        }
+      },
+      "cyclic_order": [
+        "O",
+        "fq",
+        "fw",
+        "fp",
+        "r1",
+        "r2",
+        "d3",
+        "d2",
+        "d1",
+        "delta",
+        "v",
+        "u",
+        "cu",
+        "cv",
+        "xu",
+        "xv",
+        "q1",
+        "q2",
+        "s"
+      ],
+      "finite_core": {
+        "actual_typed_CriticalShellSystem_instantiated": false,
+        "actual_typed_OriginalUniqueFourResidual_instantiated": false,
+        "critical_deletion_profiles": {
+          "delete_delta_at_xu": {
+            "maximum_positive_radius_multiplicity": 3,
+            "no_modeled_four_class": true,
+            "radius_classes": [
+              {
+                "multiplicity": 1,
+                "radius_squared": "400/54389",
+                "roles": [
+                  "xv"
+                ]
+              },
+              {
+                "multiplicity": 1,
+                "radius_squared": "285170769/3798376900",
+                "roles": [
+                  "q1"
+                ]
+              },
+              {
+                "multiplicity": 1,
+                "radius_squared": "119880601/492528125",
+                "roles": [
+                  "q2"
+                ]
+              },
+              {
+                "multiplicity": 1,
+                "radius_squared": "1005099661453/3198753062500",
+                "roles": [
+                  "cv"
+                ]
+              },
+              {
+                "multiplicity": 1,
+                "radius_squared": "1309933/3970000",
+                "roles": [
+                  "cu"
+                ]
+              },
+              {
+                "multiplicity": 1,
+                "radius_squared": "14717/19850",
+                "roles": [
+                  "s"
+                ]
+              },
+              {
+                "multiplicity": 1,
+                "radius_squared": "54333576701/54389489501",
+                "roles": [
+                  "fp"
+                ]
+              },
+              {
+                "multiplicity": 1,
+                "radius_squared": "13587985189/13597304389",
+                "roles": [
+                  "fw"
+                ]
+              },
+              {
+                "multiplicity": 1,
+                "radius_squared": "54370415189/54389054389",
+                "roles": [
+                  "fq"
+                ]
+              },
+              {
+                "multiplicity": 1,
+                "radius_squared": "1/1",
+                "roles": [
+                  "O"
+                ]
+              },
+              {
+                "multiplicity": 1,
+                "radius_squared": "6304958662253/5405892675625",
+                "roles": [
+                  "r1"
+                ]
+              },
+              {
+                "multiplicity": 1,
+                "radius_squared": "440339384031197/359060031265625",
+                "roles": [
+                  "r2"
+                ]
+              },
+              {
+                "multiplicity": 1,
+                "radius_squared": "207936/157609",
+                "roles": [
+                  "u"
+                ]
+              },
+              {
+                "multiplicity": 1,
+                "radius_squared": "529984/373577",
+                "roles": [
+                  "v"
+                ]
+              },
+              {
+                "multiplicity": 3,
+                "radius_squared": "80656/54389",
+                "roles": [
+                  "d1",
+                  "d2",
+                  "d3"
+                ]
+              }
+            ]
+          },
+          "delete_u_at_cu": {
+            "maximum_positive_radius_multiplicity": 3,
+            "no_modeled_four_class": true,
+            "radius_classes": [
+              {
+                "multiplicity": 1,
+                "radius_squared": "6200101/32229250000",
+                "roles": [
+                  "cv"
+                ]
+              },
+              {
+                "multiplicity": 3,
+                "radius_squared": "1309933/3970000",
+                "roles": [
+                  "q1",
+                  "q2",
+                  "xu"
+                ]
+              },
+              {
+                "multiplicity": 1,
+                "radius_squared": "3591949/9410000",
+                "roles": [
+                  "v"
+                ]
+              },
+              {
+                "multiplicity": 1,
+                "radius_squared": "5592103348581/14470933250000",
+                "roles": [
+                  "r2"
+                ]
+              },
+              {
+                "multiplicity": 1,
+                "radius_squared": "16903116337/43573946000",
+                "roles": [
+                  "r1"
+                ]
+              },
+              {
+                "multiplicity": 2,
+                "radius_squared": "570793/1370000",
+                "roles": [
+                  "delta",
+                  "xv"
+                ]
+              },
+              {
+                "multiplicity": 1,
+                "radius_squared": "226701876836821/543890543890000",
+                "roles": [
+                  "d1"
+                ]
+              },
+              {
+                "multiplicity": 1,
+                "radius_squared": "56700605886821/135973043890000",
+                "roles": [
+                  "d2"
+                ]
+              },
+              {
+                "multiplicity": 1,
+                "radius_squared": "226906461131389/543894895010000",
+                "roles": [
+                  "d3"
+                ]
+              },
+              {
+                "multiplicity": 1,
+                "radius_squared": "5429/10000",
+                "roles": [
+                  "s"
+                ]
+              },
+              {
+                "multiplicity": 1,
+                "radius_squared": "935054640137/1370012330000",
+                "roles": [
+                  "fp"
+                ]
+              },
+              {
+                "multiplicity": 1,
+                "radius_squared": "234490387793/342501370000",
+                "roles": [
+                  "fw"
+                ]
+              },
+              {
+                "multiplicity": 1,
+                "radius_squared": "940874337793/1370001370000",
+                "roles": [
+                  "fq"
+                ]
+              },
+              {
+                "multiplicity": 1,
+                "radius_squared": "6889/10000",
+                "roles": [
+                  "O"
+                ]
+              }
+            ]
+          },
+          "delete_v_at_cv": {
+            "maximum_positive_radius_multiplicity": 3,
+            "no_modeled_four_class": true,
+            "radius_classes": [
+              {
+                "multiplicity": 1,
+                "radius_squared": "6200101/32229250000",
+                "roles": [
+                  "cu"
+                ]
+              },
+              {
+                "multiplicity": 1,
+                "radius_squared": "1005099661453/3198753062500",
+                "roles": [
+                  "xu"
+                ]
+              },
+              {
+                "multiplicity": 1,
+                "radius_squared": "60911559588562/192724872015625",
+                "roles": [
+                  "q1"
+                ]
+              },
+              {
+                "multiplicity": 1,
+                "radius_squared": "204807208909/639750612500",
+                "roles": [
+                  "q2"
+                ]
+              },
+              {
+                "multiplicity": 1,
+                "radius_squared": "1107006085453/3198753062500",
+                "roles": [
+                  "u"
+                ]
+              },
+              {
+                "multiplicity": 3,
+                "radius_squared": "3214746049/8057312500",
+                "roles": [
+                  "r1",
+                  "r2",
+                  "xv"
+                ]
+              },
+              {
+                "multiplicity": 1,
+                "radius_squared": "479752512713/1103851812500",
+                "roles": [
+                  "delta"
+                ]
+              },
+              {
+                "multiplicity": 1,
+                "radius_squared": "190538175003858691061/438229607791669562500",
+                "roles": [
+                  "d1"
+                ]
+              },
+              {
+                "multiplicity": 1,
+                "radius_squared": "47654342953540941061/109557730619794562500",
+                "roles": [
+                  "d2"
+                ]
+              },
+              {
+                "multiplicity": 1,
+                "radius_squared": "190699337977976219549/438233113625026062500",
+                "roles": [
+                  "d3"
+                ]
+              },
+              {
+                "multiplicity": 1,
+                "radius_squared": "4350856049/8057312500",
+                "roles": [
+                  "s"
+                ]
+              },
+              {
+                "multiplicity": 1,
+                "radius_squared": "5498853749190441/8057385015812500",
+                "roles": [
+                  "fp"
+                ]
+              },
+              {
+                "multiplicity": 1,
+                "radius_squared": "1378901048160049/2014336182312500",
+                "roles": [
+                  "fw"
+                ]
+              },
+              {
+                "multiplicity": 1,
+                "radius_squared": "5532388625910049/8057320557312500",
+                "roles": [
+                  "fq"
+                ]
+              },
+              {
+                "multiplicity": 1,
+                "radius_squared": "5549207049/8057312500",
+                "roles": [
+                  "O"
+                ]
+              }
+            ]
+          }
+        },
+        "delta_row": {
+          "actual_blocker_proxy": "xu",
+          "center_in_carrier_erase_source": true,
+          "complete_exact_four_fiber": true,
+          "radius_squared": "80656/54389",
+          "roles": [
+            "d1",
+            "d2",
+            "d3",
+            "delta"
+          ],
+          "source": "delta",
+          "source_mem_support": true
+        },
+        "fibers": {
+          "Kdelta": {
+            "center": "xu",
+            "complete_modeled_carrier_fiber": true,
+            "radius_squared": "80656/54389",
+            "roles": [
+              "d1",
+              "d2",
+              "d3",
+              "delta"
+            ]
+          },
+          "Ku": {
+            "center": "cu",
+            "complete_modeled_carrier_fiber": true,
+            "radius_squared": "1309933/3970000",
+            "roles": [
+              "q1",
+              "q2",
+              "u",
+              "xu"
+            ]
+          },
+          "Kv": {
+            "center": "cv",
+            "complete_modeled_carrier_fiber": true,
+            "radius_squared": "3214746049/8057312500",
+            "roles": [
+              "r1",
+              "r2",
+              "v",
+              "xv"
+            ]
+          },
+          "first": {
+            "center": "xv",
+            "complete_modeled_carrier_fiber": true,
+            "radius_squared": "1/1",
+            "roles": [
+              "O",
+              "fp",
+              "fq",
+              "fw"
+            ]
+          },
+          "physical": {
+            "center": "O",
+            "complete_modeled_carrier_fiber": true,
+            "radius_squared": "1/1",
+            "roles": [
+              "delta",
+              "u",
+              "v",
+              "xu",
+              "xv"
+            ]
+          }
+        },
+        "modeled_blocker_center_by_source": {
+          "O": "xv",
+          "cu": "cv",
+          "cv": "cu",
+          "d1": "cu",
+          "d2": "cu",
+          "d3": "cu",
+          "delta": "xu",
+          "fp": "xv",
+          "fq": "xv",
+          "fw": "xv",
+          "q1": "cu",
+          "q2": "cu",
+          "r1": "cu",
+          "r2": "cu",
+          "s": "cu",
+          "u": "cu",
+          "v": "cv",
+          "xu": "cu",
+          "xv": "cu"
+        },
+        "modeled_first_apex_blocker_fiber_at_fq": [
+          "O",
+          "fp",
+          "fq",
+          "fw"
+        ],
+        "modeled_source_context_geometry_checks": {
+          "modeled_other_mem_J2": true,
+          "modeled_other_mem_physical_class": true,
+          "modeled_other_ne_source": true,
+          "modeled_other_not_mem_Ku": true,
+          "modeled_source_cross_card_le_two": true,
+          "modeled_source_mem_J2": true,
+          "modeled_source_mem_Ku": true,
+          "modeled_source_mem_physical_class": true,
+          "modeled_source_other_blockers_ne": true,
+          "modeled_source_outside_first_apex_blocker_fiber_proxy": true,
+          "modeled_source_survives_fq_or_fw": true,
+          "modeled_u_eq_source_arm": true,
+          "modeled_v_not_mem_Ku": true
+        },
+        "physical_traces": {
+          "Ku_inter_physical": [
+            "u",
+            "xu"
+          ],
+          "Kv_inter_physical": [
+            "v",
+            "xv"
+          ],
+          "disjoint_2_plus_2_plus_1": true,
+          "singleton_residue": [
+            "delta"
+          ]
+        }
+      },
+      "global_K4_census": {
+        "centers_with_a_modeled_four_class": [
+          "O",
+          "cu",
+          "cv",
+          "xu",
+          "xv"
+        ],
+        "centers_without_a_modeled_four_class": [
+          "d1",
+          "d2",
+          "d3",
+          "delta",
+          "fp",
+          "fq",
+          "fw",
+          "q1",
+          "q2",
+          "r1",
+          "r2",
+          "s",
+          "u",
+          "v"
+        ],
+        "global_K4_holds_on_modeled_carrier": false,
+        "maximum_positive_radius_multiplicity_by_modeled_center": {
+          "O": 5,
+          "cu": 4,
+          "cv": 4,
+          "d1": 1,
+          "d2": 1,
+          "d3": 1,
+          "delta": 1,
+          "fp": 1,
+          "fq": 1,
+          "fw": 1,
+          "q1": 1,
+          "q2": 1,
+          "r1": 1,
+          "r2": 1,
+          "s": 1,
+          "u": 1,
+          "v": 1,
+          "xu": 4,
+          "xv": 4
+        }
+      },
+      "global_deletion": {
+        "actual_typed_ExactFourMutualOmissionRigid221GlobalDeletion_instantiated": false,
+        "assignments": {
+          "center": "cu",
+          "deleted": [
+            "u"
+          ]
+        },
+        "modeled_blocked_radius_classes": [
+          {
+            "multiplicity": 1,
+            "radius_squared": "6200101/32229250000",
+            "roles": [
+              "cv"
+            ]
+          },
+          {
+            "multiplicity": 3,
+            "radius_squared": "1309933/3970000",
+            "roles": [
+              "q1",
+              "q2",
+              "xu"
+            ]
+          },
+          {
+            "multiplicity": 1,
+            "radius_squared": "3591949/9410000",
+            "roles": [
+              "v"
+            ]
+          },
+          {
+            "multiplicity": 1,
+            "radius_squared": "5592103348581/14470933250000",
+            "roles": [
+              "r2"
+            ]
+          },
+          {
+            "multiplicity": 1,
+            "radius_squared": "16903116337/43573946000",
+            "roles": [
+              "r1"
+            ]
+          },
+          {
+            "multiplicity": 2,
+            "radius_squared": "570793/1370000",
+            "roles": [
+              "delta",
+              "xv"
+            ]
+          },
+          {
+            "multiplicity": 1,
+            "radius_squared": "226701876836821/543890543890000",
+            "roles": [
+              "d1"
+            ]
+          },
+          {
+            "multiplicity": 1,
+            "radius_squared": "56700605886821/135973043890000",
+            "roles": [
+              "d2"
+            ]
+          },
+          {
+            "multiplicity": 1,
+            "radius_squared": "226906461131389/543894895010000",
+            "roles": [
+              "d3"
+            ]
+          },
+          {
+            "multiplicity": 1,
+            "radius_squared": "5429/10000",
+            "roles": [
+              "s"
+            ]
+          },
+          {
+            "multiplicity": 1,
+            "radius_squared": "935054640137/1370012330000",
+            "roles": [
+              "fp"
+            ]
+          },
+          {
+            "multiplicity": 1,
+            "radius_squared": "234490387793/342501370000",
+            "roles": [
+              "fw"
+            ]
+          },
+          {
+            "multiplicity": 1,
+            "radius_squared": "940874337793/1370001370000",
+            "roles": [
+              "fq"
+            ]
+          },
+          {
+            "multiplicity": 1,
+            "radius_squared": "6889/10000",
+            "roles": [
+              "O"
+            ]
+          }
+        ],
+        "modeled_field_checks": {
+          "modeled_blocked": true,
+          "modeled_center_is_cu": true,
+          "modeled_center_mem_carrier_outside_physical_class": true,
+          "modeled_center_ne_O": true,
+          "modeled_deleted_card_le_five": true,
+          "modeled_deleted_is_singleton_u": true,
+          "modeled_deleted_nonempty": true,
+          "modeled_deleted_subset_physical_class": true,
+          "modeled_geometry_MinimalDeletionCore_branch": true,
+          "modeled_restores": true,
+          "modeled_rigid": true
+        },
+        "modeled_geometry_branch": {
+          "actual_typed_MinimalDeletionCore_instantiated": false,
+          "constructor": "MinimalDeletionCore",
+          "modeled_MinimalDeletionCore_nonempty": true,
+          "modeled_distinct_equal_radius_deleted_pair_exists": false,
+          "modeled_geometry_disjunction_holds": true,
+          "modeled_shell": {
+            "actual_typed_CriticalSelectedFourClass_instantiated": false,
+            "assignments": {
+              "center": "cu",
+              "labels": [
+                "q1",
+                "q2",
+                "u",
+                "xu"
+              ],
+              "source": "u",
+              "support": [
+                "q1",
+                "q2",
+                "u",
+                "xu"
+              ]
+            },
+            "modeled_field_checks": {
+              "modeled_center_mem_carrier_erase_source": true,
+              "modeled_four_labels_pairwise_distinct": true,
+              "modeled_radius_squared_positive": true,
+              "modeled_source_mem_support": true,
+              "modeled_support_card_eq_four": true,
+              "modeled_support_eq_complete_ambient_fiber": true,
+              "modeled_support_eq_four_named_labels": true
+            },
+            "modeled_radius_squared": "1309933/3970000"
+          },
+          "modeled_singleton_core": {
+            "modeled_pairwise_disjoint_quantified_pairs": [
+              {
+                "implication_holds": true,
+                "s": "u",
+                "s_ne_t": false,
+                "t": "u"
+              }
+            ],
+            "modeled_shellAt_complete_ambient_fiber": true,
+            "modeled_shellAt_four_named_labels_pairwise_distinct": true,
+            "modeled_shellAt_index_roles": [
+              "u"
+            ],
+            "modeled_shellAt_source_mem_support": true,
+            "modeled_shellAt_support": [
+              "q1",
+              "q2",
+              "u",
+              "xu"
+            ],
+            "modeled_supports_pairwise_disjoint_vacuous_for_singleton": true
+          }
+        },
+        "modeled_restores_quantified_over_deleted": [
+          {
+            "deleted_erase_s": [],
+            "restored_K4_holds": true,
+            "restored_K4_support": [
+              "q1",
+              "q2",
+              "u",
+              "xu"
+            ],
+            "s": "u",
+            "s_mem_deleted": true
+          }
+        ]
+      },
+      "joint_deletion": {
+        "actual_typed_ExactFourMutualOmissionJointDeletion_instantiated": false,
+        "assignments": {
+          "actual_blocker_of_deleted_proxy": "xu",
+          "deleted": "delta"
+        },
+        "modeled_outer_field_checks": {
+          "modeled_blockers_cu_ne_cv": true,
+          "modeled_deleted_mem_physical_class": true,
+          "modeled_deleted_ne_u": true,
+          "modeled_deleted_ne_v": true,
+          "modeled_deleted_not_mem_Ku": true,
+          "modeled_deleted_not_mem_Kv": true
+        },
+        "modeled_uPacket": {
+          "actual_typed_CommonDeletionTwoCenterPacket_instantiated": false,
+          "assignments": {
+            "B1": [
+              "q1",
+              "q2",
+              "u",
+              "xu"
+            ],
+            "B2": [
+              "u",
+              "v",
+              "xu",
+              "xv"
+            ],
+            "actual_blocker_of_q": "xu",
+            "center1": "cu",
+            "center2": "O",
+            "q": "delta"
+          },
+          "modeled_outer_field_checks": {
+            "modeled_B1_card_eq_four": true,
+            "modeled_B2_card_eq_four": true,
+            "modeled_actual_blocker_ne_center1": true,
+            "modeled_actual_blocker_ne_center2": true,
+            "modeled_center1_mem_carrier": true,
+            "modeled_center2_mem_carrier": true,
+            "modeled_centers_ne": true,
+            "modeled_overlap_card_le_two": true,
+            "modeled_q_mem_carrier": true,
+            "modeled_survives1": true,
+            "modeled_survives2": true
+          },
+          "modeled_overlap_cardinality": 2,
+          "modeled_overlap_roles": [
+            "u",
+            "xu"
+          ],
+          "modeled_row1": {
+            "actual_typed_U5QDeletedK4Class_instantiated": false,
+            "modeled_cardinality": 4,
+            "modeled_cardinality_ge_four": true,
+            "modeled_q_not_mem": true,
+            "modeled_radius_squared": "1309933/3970000",
+            "modeled_radius_squared_positive": true,
+            "modeled_same_squared_radius": {
+              "q1": "1309933/3970000",
+              "q2": "1309933/3970000",
+              "u": "1309933/3970000",
+              "xu": "1309933/3970000"
+            },
+            "modeled_subset_of_carrier_erase_q_erase_center": true,
+            "modeled_support_roles": [
+              "q1",
+              "q2",
+              "u",
+              "xu"
+            ]
+          },
+          "modeled_row2": {
+            "actual_typed_U5QDeletedK4Class_instantiated": false,
+            "modeled_cardinality": 4,
+            "modeled_cardinality_ge_four": true,
+            "modeled_q_not_mem": true,
+            "modeled_radius_squared": "1/1",
+            "modeled_radius_squared_positive": true,
+            "modeled_same_squared_radius": {
+              "u": "1/1",
+              "v": "1/1",
+              "xu": "1/1",
+              "xv": "1/1"
+            },
+            "modeled_subset_of_carrier_erase_q_erase_center": true,
+            "modeled_support_roles": [
+              "u",
+              "v",
+              "xu",
+              "xv"
+            ]
+          }
+        },
+        "modeled_vPacket": {
+          "actual_typed_CommonDeletionTwoCenterPacket_instantiated": false,
+          "assignments": {
+            "B1": [
+              "r1",
+              "r2",
+              "v",
+              "xv"
+            ],
+            "B2": [
+              "u",
+              "v",
+              "xu",
+              "xv"
+            ],
+            "actual_blocker_of_q": "xu",
+            "center1": "cv",
+            "center2": "O",
+            "q": "delta"
+          },
+          "modeled_outer_field_checks": {
+            "modeled_B1_card_eq_four": true,
+            "modeled_B2_card_eq_four": true,
+            "modeled_actual_blocker_ne_center1": true,
+            "modeled_actual_blocker_ne_center2": true,
+            "modeled_center1_mem_carrier": true,
+            "modeled_center2_mem_carrier": true,
+            "modeled_centers_ne": true,
+            "modeled_overlap_card_le_two": true,
+            "modeled_q_mem_carrier": true,
+            "modeled_survives1": true,
+            "modeled_survives2": true
+          },
+          "modeled_overlap_cardinality": 2,
+          "modeled_overlap_roles": [
+            "v",
+            "xv"
+          ],
+          "modeled_row1": {
+            "actual_typed_U5QDeletedK4Class_instantiated": false,
+            "modeled_cardinality": 4,
+            "modeled_cardinality_ge_four": true,
+            "modeled_q_not_mem": true,
+            "modeled_radius_squared": "3214746049/8057312500",
+            "modeled_radius_squared_positive": true,
+            "modeled_same_squared_radius": {
+              "r1": "3214746049/8057312500",
+              "r2": "3214746049/8057312500",
+              "v": "3214746049/8057312500",
+              "xv": "3214746049/8057312500"
+            },
+            "modeled_subset_of_carrier_erase_q_erase_center": true,
+            "modeled_support_roles": [
+              "r1",
+              "r2",
+              "v",
+              "xv"
+            ]
+          },
+          "modeled_row2": {
+            "actual_typed_U5QDeletedK4Class_instantiated": false,
+            "modeled_cardinality": 4,
+            "modeled_cardinality_ge_four": true,
+            "modeled_q_not_mem": true,
+            "modeled_radius_squared": "1/1",
+            "modeled_radius_squared_positive": true,
+            "modeled_same_squared_radius": {
+              "u": "1/1",
+              "v": "1/1",
+              "xu": "1/1",
+              "xv": "1/1"
+            },
+            "modeled_subset_of_carrier_erase_q_erase_center": true,
+            "modeled_support_roles": [
+              "u",
+              "v",
+              "xu",
+              "xv"
+            ]
+          }
+        }
+      },
+      "mec": {
+        "all_carrier_points_enclosed": true,
+        "boundary_exactly_stated_triple": true,
+        "boundary_roles": [
+          "O",
+          "delta",
+          "xv"
+        ],
+        "center": [
+          "137/210",
+          "0/1"
+        ],
+        "enclosure_slacks": {
+          "O": "0/1",
+          "cu": "82751/210000",
+          "cv": "22218704307/56401187500",
+          "d1": "783902480/1142170142169",
+          "d2": "130111760/95181130723",
+          "d3": "777438640/380726426507",
+          "delta": "0/1",
+          "fp": "35074/7000063",
+          "fq": "35158/21000021",
+          "fw": "17558/5250021",
+          "q1": "32585353/200921700",
+          "q2": "5858977/26053125",
+          "r1": "1288766974/7332154375",
+          "r2": "3021073618354/18993099890625",
+          "s": "58/525",
+          "u": "568/8337",
+          "v": "904/32935",
+          "xu": "568/8337",
+          "xv": "0/1"
+        },
+        "positive_boundary_weights": {
+          "O": "3281/22050",
+          "delta": "18769/44100",
+          "xv": "18769/44100"
+        },
+        "radius_squared": "18769/44100",
+        "weighted_boundary_barycenter": [
+          "137/210",
+          "0/1"
+        ]
+      },
+      "packet_indices": {
+        "J1": [
+          "d1",
+          "d2",
+          "d3",
+          "fp",
+          "fq",
+          "fw",
+          "r1",
+          "r2"
+        ],
+        "J2": [
+          "cu",
+          "cv",
+          "u",
+          "v",
+          "xu"
+        ],
+        "oppApex1": "xv",
+        "oppApex2": "O",
+        "oppIndex1": 1,
+        "oppIndex2": 2,
+        "surplusIdx": 0
+      },
+      "points": {
+        "O": [
+          "0/1",
+          "0/1"
+        ],
+        "cu": [
+          "83/100",
+          "0/1"
+        ],
+        "cv": [
+          "26742987/32229250",
+          "223479/16114625"
+        ],
+        "d1": [
+          "41552703365/54389054389",
+          "-34930222592/54389054389"
+        ],
+        "d2": [
+          "10355125365/13597304389",
+          "-8731062592/13597304389"
+        ],
+        "d3": [
+          "41288394285/54389489501",
+          "-34918083328/54389489501"
+        ],
+        "delta": [
+          "105/137",
+          "-88/137"
+        ],
+        "fp": [
+          "529890/137001233",
+          "-628416/137001233"
+        ],
+        "fq": [
+          "176210/137000137",
+          "-209824/137000137"
+        ],
+        "fw": [
+          "88210/34250137",
+          "-104824/34250137"
+        ],
+        "q1": [
+          "105989/191354",
+          "240966/478385"
+        ],
+        "q2": [
+          "18727/49625",
+          "17551/49625"
+        ],
+        "r1": [
+          "191984514/544674325",
+          "-217793866/544674325"
+        ],
+        "r2": [
+          "2920790618/7235466625",
+          "-3273483378/7235466625"
+        ],
+        "s": [
+          "1/10",
+          "1/10"
+        ],
+        "u": [
+          "325/397",
+          "-228/397"
+        ],
+        "v": [
+          "741/941",
+          "-580/941"
+        ],
+        "xu": [
+          "325/397",
+          "228/397"
+        ],
+        "xv": [
+          "105/137",
+          "88/137"
+        ]
+      },
+      "robust_surface": {
+        "actual_typed_ExactFourPostCardElevenRobustSurface_instantiated": false,
+        "modeled_capGrowth": {
+          "constructor": "firstOpposite",
+          "modeled_firstOppCap_card_ge_five": true,
+          "modeled_oppositeCaps_card_add_two_eq_carrier": true,
+          "modeled_surplusCap_card_eq_five": true
+        },
+        "modeled_ingress": {
+          "actual_typed_ExactFourPhysicalCommonDeletionIngress_instantiated": false,
+          "assignments": {
+            "blocker": "cu",
+            "deleted": "fq",
+            "source": "u"
+          },
+          "modeled_deleted_is_pair": true,
+          "modeled_packet": {
+            "actual_typed_CommonDeletionTwoCenterPacket_instantiated": false,
+            "assignments": {
+              "B1": [
+                "q1",
+                "q2",
+                "u",
+                "xu"
+              ],
+              "B2": [
+                "u",
+                "v",
+                "xu",
+                "xv"
+              ],
+              "actual_blocker_of_q": "xv",
+              "center1": "cu",
+              "center2": "O",
+              "q": "fq"
+            },
+            "modeled_outer_field_checks": {
+              "modeled_B1_card_eq_four": true,
+              "modeled_B2_card_eq_four": true,
+              "modeled_actual_blocker_ne_center1": true,
+              "modeled_actual_blocker_ne_center2": true,
+              "modeled_center1_mem_carrier": true,
+              "modeled_center2_mem_carrier": true,
+              "modeled_centers_ne": true,
+              "modeled_overlap_card_le_two": true,
+              "modeled_q_mem_carrier": true,
+              "modeled_survives1": true,
+              "modeled_survives2": true
+            },
+            "modeled_overlap_cardinality": 2,
+            "modeled_overlap_roles": [
+              "u",
+              "xu"
+            ],
+            "modeled_row1": {
+              "actual_typed_U5QDeletedK4Class_instantiated": false,
+              "modeled_cardinality": 4,
+              "modeled_cardinality_ge_four": true,
+              "modeled_q_not_mem": true,
+              "modeled_radius_squared": "1309933/3970000",
+              "modeled_radius_squared_positive": true,
+              "modeled_same_squared_radius": {
+                "q1": "1309933/3970000",
+                "q2": "1309933/3970000",
+                "u": "1309933/3970000",
+                "xu": "1309933/3970000"
+              },
+              "modeled_subset_of_carrier_erase_q_erase_center": true,
+              "modeled_support_roles": [
+                "q1",
+                "q2",
+                "u",
+                "xu"
+              ]
+            },
+            "modeled_row2": {
+              "actual_typed_U5QDeletedK4Class_instantiated": false,
+              "modeled_cardinality": 4,
+              "modeled_cardinality_ge_four": true,
+              "modeled_q_not_mem": true,
+              "modeled_radius_squared": "1/1",
+              "modeled_radius_squared_positive": true,
+              "modeled_same_squared_radius": {
+                "u": "1/1",
+                "v": "1/1",
+                "xu": "1/1",
+                "xv": "1/1"
+              },
+              "modeled_subset_of_carrier_erase_q_erase_center": true,
+              "modeled_support_roles": [
+                "u",
+                "v",
+                "xu",
+                "xv"
+              ]
+            }
+          },
+          "modeled_source_mem_good_proxy": true
+        },
+        "modeled_outer_field_checks": {
+          "modeled_firstOppCap_card_ge_four": true,
+          "modeled_ingress_blocker_ne_secondApex": true,
+          "modeled_ingress_deleted_is_retained_pair_member": true,
+          "modeled_ingress_source_mem_carrier": true,
+          "modeled_ingress_source_mem_good_proxy": true,
+          "modeled_ingress_source_outside_first_blocker_fiber": true,
+          "modeled_radiusClassification_fivePointRadius": true,
+          "modeled_secondApex_fully_deletion_robust": true,
+          "modeled_secondOppCap_card_ge_five": true
+        },
+        "modeled_radiusClassification": {
+          "actual_typed_DeletionRobustRadiusClassification_instantiated": false,
+          "center": "O",
+          "class_cardinality": 5,
+          "class_cardinality_ge_five": true,
+          "class_roles": [
+            "delta",
+            "u",
+            "v",
+            "xu",
+            "xv"
+          ],
+          "constructor": "fivePointRadius",
+          "radius_squared": "1/1"
+        },
+        "modeled_secondApex_robust_deletion_checks": {
+          "O": {
+            "remaining_cardinality": 5,
+            "remaining_physical_fiber": [
+              "delta",
+              "u",
+              "v",
+              "xu",
+              "xv"
+            ],
+            "survives": true
+          },
+          "cu": {
+            "remaining_cardinality": 5,
+            "remaining_physical_fiber": [
+              "delta",
+              "u",
+              "v",
+              "xu",
+              "xv"
+            ],
+            "survives": true
+          },
+          "cv": {
+            "remaining_cardinality": 5,
+            "remaining_physical_fiber": [
+              "delta",
+              "u",
+              "v",
+              "xu",
+              "xv"
+            ],
+            "survives": true
+          },
+          "d1": {
+            "remaining_cardinality": 5,
+            "remaining_physical_fiber": [
+              "delta",
+              "u",
+              "v",
+              "xu",
+              "xv"
+            ],
+            "survives": true
+          },
+          "d2": {
+            "remaining_cardinality": 5,
+            "remaining_physical_fiber": [
+              "delta",
+              "u",
+              "v",
+              "xu",
+              "xv"
+            ],
+            "survives": true
+          },
+          "d3": {
+            "remaining_cardinality": 5,
+            "remaining_physical_fiber": [
+              "delta",
+              "u",
+              "v",
+              "xu",
+              "xv"
+            ],
+            "survives": true
+          },
+          "delta": {
+            "remaining_cardinality": 4,
+            "remaining_physical_fiber": [
+              "u",
+              "v",
+              "xu",
+              "xv"
+            ],
+            "survives": true
+          },
+          "fp": {
+            "remaining_cardinality": 5,
+            "remaining_physical_fiber": [
+              "delta",
+              "u",
+              "v",
+              "xu",
+              "xv"
+            ],
+            "survives": true
+          },
+          "fq": {
+            "remaining_cardinality": 5,
+            "remaining_physical_fiber": [
+              "delta",
+              "u",
+              "v",
+              "xu",
+              "xv"
+            ],
+            "survives": true
+          },
+          "fw": {
+            "remaining_cardinality": 5,
+            "remaining_physical_fiber": [
+              "delta",
+              "u",
+              "v",
+              "xu",
+              "xv"
+            ],
+            "survives": true
+          },
+          "q1": {
+            "remaining_cardinality": 5,
+            "remaining_physical_fiber": [
+              "delta",
+              "u",
+              "v",
+              "xu",
+              "xv"
+            ],
+            "survives": true
+          },
+          "q2": {
+            "remaining_cardinality": 5,
+            "remaining_physical_fiber": [
+              "delta",
+              "u",
+              "v",
+              "xu",
+              "xv"
+            ],
+            "survives": true
+          },
+          "r1": {
+            "remaining_cardinality": 5,
+            "remaining_physical_fiber": [
+              "delta",
+              "u",
+              "v",
+              "xu",
+              "xv"
+            ],
+            "survives": true
+          },
+          "r2": {
+            "remaining_cardinality": 5,
+            "remaining_physical_fiber": [
+              "delta",
+              "u",
+              "v",
+              "xu",
+              "xv"
+            ],
+            "survives": true
+          },
+          "s": {
+            "remaining_cardinality": 5,
+            "remaining_physical_fiber": [
+              "delta",
+              "u",
+              "v",
+              "xu",
+              "xv"
+            ],
+            "survives": true
+          },
+          "u": {
+            "remaining_cardinality": 4,
+            "remaining_physical_fiber": [
+              "delta",
+              "v",
+              "xu",
+              "xv"
+            ],
+            "survives": true
+          },
+          "v": {
+            "remaining_cardinality": 4,
+            "remaining_physical_fiber": [
+              "delta",
+              "u",
+              "xu",
+              "xv"
+            ],
+            "survives": true
+          },
+          "xu": {
+            "remaining_cardinality": 4,
+            "remaining_physical_fiber": [
+              "delta",
+              "u",
+              "v",
+              "xv"
+            ],
+            "survives": true
+          },
+          "xv": {
+            "remaining_cardinality": 4,
+            "remaining_physical_fiber": [
+              "delta",
+              "u",
+              "v",
+              "xu"
+            ],
+            "survives": true
+          }
+        }
+      },
+      "role_count": 19,
+      "role_distinctness": {
+        "all_roles_pairwise_distinct": true,
+        "pair_count": 171,
+        "pairwise_squared_distances": {
+          "O|cu": "6889/10000",
+          "O|cv": "5549207049/8057312500",
+          "O|d1": "54179055701/54389054389",
+          "O|d2": "13492385701/13597304389",
+          "O|d3": "53760461309/54389489501",
+          "O|delta": "1/1",
+          "O|fp": "36/1000009",
+          "O|fq": "4/1000001",
+          "O|fw": "4/250001",
+          "O|q1": "5362837/9567700",
+          "O|q2": "331858/1240625",
+          "O|r1": "3868927624/13616858125",
+          "O|r2": "332506392776/904433328125",
+          "O|s": "1/50",
+          "O|u": "1/1",
+          "O|v": "1/1",
+          "O|xu": "1/1",
+          "O|xv": "1/1",
+          "cu|cv": "6200101/32229250000",
+          "cu|q1": "1309933/3970000",
+          "cu|q2": "1309933/3970000",
+          "cu|s": "5429/10000",
+          "cu|xu": "1309933/3970000",
+          "cu|xv": "570793/1370000",
+          "cv|q1": "60911559588562/192724872015625",
+          "cv|q2": "204807208909/639750612500",
+          "cv|s": "4350856049/8057312500",
+          "cv|xu": "1005099661453/3198753062500",
+          "cv|xv": "3214746049/8057312500",
+          "d1|cu": "226701876836821/543890543890000",
+          "d1|cv": "190538175003858691061/438229607791669562500",
+          "d1|delta": "322624/54389054389",
+          "d1|q1": "706315477491655673/520378155677635300",
+          "d1|q2": "77010476830269737/67476420601353125",
+          "d1|s": "2697117031709/2719452719450",
+          "d1|u": "164101016528/21592454592433",
+          "d1|v": "62427001040/51180100180049",
+          "d1|xu": "80656/54389",
+          "d1|xv": "12295482551872/7451300451293",
+          "d2|cu": "56700605886821/135973043890000",
+          "d2|cv": "47654342953540941061/109557730619794562500",
+          "d2|d1": "80656000000/13597317986304389",
+          "d2|delta": "322624/13597304389",
+          "d2|q1": "176413856659705673/130094929202635300",
+          "d2|q2": "19217287592319737/16869155757603125",
+          "d2|s": "671975961709/679865219450",
+          "d2|u": "42410936528/5398129842433",
+          "d2|v": "17069977040/12795063430049",
+          "d2|xu": "80656/54389",
+          "d2|xv": "3073378231872/1862830701293",
+          "d3|cu": "226906461131389/543894895010000",
+          "d3|cv": "190699337977976219549/438233113625026062500",
+          "d3|d1": "1290496000000/54389543890489501",
+          "d3|d2": "80656000000/13597426764739501",
+          "d3|delta": "2903616/54389489501",
+          "d3|q1": "704997204874501057/520382318698717700",
+          "d3|q2": "76728135554027633/67476960412178125",
+          "d3|s": "2678709445381/2719474475050",
+          "d3|u": "175428188752/21592627331897",
+          "d3|v": "74726721360/51180509620441",
+          "d3|xu": "80656/54389",
+          "d3|xv": "12291563126848/7451360061637",
+          "delta|cu": "570793/1370000",
+          "delta|cv": "479752512713/1103851812500",
+          "delta|q1": "1780799389/1310774900",
+          "delta|q2": "194337821/169965625",
+          "delta|s": "6817/6850",
+          "delta|u": "400/54389",
+          "delta|v": "144/128917",
+          "delta|xu": "80656/54389",
+          "delta|xv": "30976/18769",
+          "fp|cu": "935054640137/1370012330000",
+          "fp|cv": "5498853749190441/8057385015812500",
+          "fp|d1": "7334927535136017637/7451367512997061637",
+          "fp|d2": "1826592905434867637/1862847466769311637",
+          "fp|d3": "7277874955943358733/7451427123877554733",
+          "fp|delta": "18547966489/18769168921",
+          "fp|q1": "735203293747661/1310786696974100",
+          "fp|q2": "45526377902714/169967154690625",
+          "fp|r1": "3782373883277716/13616980676723125",
+          "fp|r2": "325963829840206484/904441468024953125",
+          "fp|s": "138233093/6850061650",
+          "fp|u": "53760461309/54389489501",
+          "fp|v": "127408541725/128918160253",
+          "fp|xu": "54333576701/54389489501",
+          "fp|xv": "1/1",
+          "fq|cu": "940874337793/1370001370000",
+          "fq|cv": "5532388625910049/8057320557312500",
+          "fq|d1": "7393265456999255293/7451307902593451293",
+          "fq|d2": "1841152814580905293/1862832564123701293",
+          "fq|d3": "7336016210210097637/7451367512997061637",
+          "fq|delta": "18695160721/18769018769",
+          "fq|fp": "16000000/1000010000009",
+          "fq|fw": "1000000/250001250001",
+          "fq|q1": "734869432638629/1310776210774900",
+          "fq|q2": "45484408144746/169965794965625",
+          "fq|r1": "3839961153297524/13616871741858125",
+          "fq|r2": "330317773871356276/904434232558328125",
+          "fq|s": "137363677/6850006850",
+          "fq|u": "54179055701/54389054389",
+          "fq|v": "128413105525/128917128917",
+          "fq|xu": "54370415189/54389054389",
+          "fq|xv": "1/1",
+          "fw|cu": "234490387793/342501370000",
+          "fw|cv": "1378901048160049/2014336182312500",
+          "fw|d1": "1841016106258065293/1862832564123701293",
+          "fw|d2": "458466209011715293/465709538153951293",
+          "fw|d3": "1826728365603387637/1862847466769311637",
+          "fw|delta": "4655370721/4692268769",
+          "fw|fp": "1000000/250003250009",
+          "fw|q1": "183758576888629/327695035774900",
+          "fw|q2": "11376254694746/42491576215625",
+          "fw|r1": "17976933520708/64230719775625",
+          "fw|r2": "82034229889856276/226109236464578125",
+          "fw|s": "34443677/1712506850",
+          "fw|u": "13492385701/13597304389",
+          "fw|v": "31977571525/32229378917",
+          "fw|xu": "13587985189/13597304389",
+          "fw|xv": "1/1",
+          "q1|q2": "64186717/1195962500",
+          "q1|s": "3530437/9567700",
+          "q2|s": "350561/2481250",
+          "r1|cu": "16903116337/43573946000",
+          "r1|cv": "3214746049/8057312500",
+          "r1|d1": "12994049294033419097/56969849012917043125",
+          "r1|d2": "41851109080421298261/185152564747452810625",
+          "r1|d3": "165893739166813234349/740613962026294045625",
+          "r1|delta": "429340938713/1865509563125",
+          "r1|q1": "4466081179333457/5211280539302500",
+          "r1|q2": "614576596658/1081178535125",
+          "r1|r2": "822974988544/152849232453125",
+          "r1|s": "8540623093/27233716250",
+          "r1|u": "1339258517453/5405892675625",
+          "r1|v": "3214746049/13616858125",
+          "r1|xu": "6304958662253/5405892675625",
+          "r1|xv": "17123554449/13616858125",
+          "r2|cu": "5592103348581/14470933250000",
+          "r2|cv": "3214746049/8057312500",
+          "r2|d1": "80777125220435339089/487042311629850578125",
+          "r2|d2": "2017618617391398497989/12297855262071939640625",
+          "r2|d3": "7982975895704863231901/49191667004409175515625",
+          "r2|delta": "20773353724937/123907365953125",
+          "r2|q1": "324239797937621633/346133870140062500",
+          "r2|q2": "233561458989626/359060031265625",
+          "r2|s": "718824756677/1808866656250",
+          "r2|u": "67162278939197/359060031265625",
+          "r2|v": "157522556401/904433328125",
+          "r2|xu": "440339384031197/359060031265625",
+          "r2|xv": "1202968046401/904433328125",
+          "u|cu": "1309933/3970000",
+          "u|cv": "1107006085453/3198753062500",
+          "u|q1": "11789397/9567700",
+          "u|q2": "1309933/1240625",
+          "u|s": "19277/19850",
+          "u|xu": "207936/157609",
+          "u|xv": "80656/54389",
+          "v|cu": "3591949/9410000",
+          "v|cv": "3214746049/8057312500",
+          "v|q1": "11786261617/9003205700",
+          "v|q2": "1294850153/1167428125",
+          "v|s": "46381/47050",
+          "v|u": "1024/373577",
+          "v|xu": "529984/373577",
+          "v|xv": "204304/128917",
+          "xu|q1": "285170769/3798376900",
+          "xu|q2": "119880601/492528125",
+          "xu|s": "14717/19850",
+          "xu|xv": "400/54389",
+          "xv|q1": "84398749/1310774900",
+          "xv|q2": "39889021/169965625",
+          "xv|s": "5057/6850"
+        }
+      },
+      "strict_convexity": {
+        "all_edge_nonincident_orientations_strictly_positive": true,
+        "check_count": 323,
+        "edge_nonincident_orientations": {
+          "O->fq": {
+            "cu": "4353848/3425003425",
+            "cv": "20766711582/16114641114625",
+            "d1": "2563699907921440/7451307902593451293",
+            "d2": "634253285249440/1862832564123701293",
+            "d3": "2510380579228960/7451367512997061637",
+            "delta": "6525040/18769018769",
+            "fp": "24000/1000010000009",
+            "fw": "2000/250001250001",
+            "q1": "19611641740/13107762107749",
+            "q2": "7022035758/6798631798625",
+            "r1": "13908770348/544674869674325",
+            "r2": "263003391196/7235473860466625",
+            "s": "193017/685000685",
+            "u": "28016920/54389054389",
+            "v": "53277784/128917128917",
+            "xu": "108368680/54389054389",
+            "xv": "2000/1000001"
+          },
+          "cu->cv": {
+            "O": "18548757/1611462500",
+            "d1": "92966633181009773/87645921558333912500",
+            "d2": "23980479413459773/21911546123958912500",
+            "d3": "98877031791487957/87646622725005212500",
+            "delta": "226728409/220770362500",
+            "fp": "18464158571013/1611477003162500",
+            "fq": "18520589874557/1611464111462500",
+            "fw": "4623097599557/402867236462500",
+            "q1": "572806010709/154179897612500",
+            "q2": "9911503291/1599376531250",
+            "r1": "1828144399/272337162500",
+            "r2": "4351863111/723546662500",
+            "s": "32555029/3222925000",
+            "u": "183900729/639750612500",
+            "v": "1175357/1611462500",
+            "xu": "17677329/639750612500",
+            "xv": "1186657/1611462500"
+          },
+          "cv->xu": {
+            "O": "2976069843/6397506125",
+            "cu": "17677329/639750612500",
+            "d1": "38715567506753978/876459215583339125",
+            "d2": "9977417487181978/219115461239589125",
+            "d3": "41103697347921802/876466227250052125",
+            "delta": "37521390022/876458339125",
+            "fp": "2962555658792073/6397563702555125",
+            "fq": "2971570337582897/6397512522506125",
+            "fw": "741766402378397/1599382928756125",
+            "q1": "913014555487671/6120941935216250",
+            "q2": "158586552547213/634952482906250",
+            "r1": "7354797336382/27029463378125",
+            "r2": "17521633197558/71812006253125",
+            "s": "52208110597/127950122500",
+            "u": "32480786292/2539809931625",
+            "v": "196603316/6397506125",
+            "xv": "36474374/1279501225"
+          },
+          "d1->delta": {
+            "O": "80550920/54389054389",
+            "cu": "2134379138/1359726359725",
+            "cv": "1405342424636044/876459215583339125",
+            "d2": "161312000/13597317986304389",
+            "d3": "1935744000/54389543890489501",
+            "fp": "10955491744545400/7451367512997061637",
+            "fq": "11008743512956600/7451307902593451293",
+            "fw": "2745520520284600/1862832564123701293",
+            "q1": "14392699760372/5203781556776353",
+            "q2": "6428857025408/2699056824054125",
+            "r1": "16167423684424696/29624321486716862425",
+            "r2": "166592842304388632/393530187796919267125",
+            "s": "471829932/271945271945",
+            "u": "3694590080/21592454592433",
+            "v": "3349137024/51180100180049",
+            "xu": "161312000/54389054389",
+            "xv": "23291544320/7451300451293"
+          },
+          "d2->d1": {
+            "O": "20085310984000/13597317986304389",
+            "cu": "21346292766800/13597317986304389",
+            "cv": "2811000195181840576/1752925442840402916713",
+            "d3": "161312000000000/13597440362166265739501",
+            "delta": "161312000/13597317986304389",
+            "fp": "2731728354972879224000/1862849329616778406311637",
+            "fq": "2745016735318062136000/1862834426956265416701293",
+            "fw": "684590913009922136000/465710003863489446951293",
+            "q1": "3596526189720357600/1300950592975645026353",
+            "q2": "12846408850540384/5398135240562842433",
+            "r1": "161065641176349559680/296244399840028092924497",
+            "r2": "331773712822226935168/787063523835340909604137",
+            "s": "23545403882800/13597317986304389",
+            "u": "925004754864000/5398135240562842433",
+            "v": "838674889264000/12795076225112430049",
+            "xu": "40328080656000/13597317986304389",
+            "xv": "5822396693472000/1862832564123701293"
+          },
+          "d3->d2": {
+            "O": "20033012952000/13597426764739501",
+            "cu": "21348912780400/13597426764739501",
+            "cv": "2811330715881169728/1752939466229922250417",
+            "d1": "161312000000000/13597440362166265739501",
+            "delta": "483936000/13597426764739501",
+            "fp": "2724600388845237672000/1862864232396512560804733",
+            "fq": "2737864180605586408000/1862849329616778406311637",
+            "fw": "682805846353166408000/465713729539794678561637",
+            "q1": "3594885675189072800/1300961000569981237177",
+            "q2": "12835141964357152/5398178425601581897",
+            "r1": "160460236048380839040/296246769792856860320473",
+            "r2": "330370410584403749504/787069820337235090437233",
+            "s": "23499425248400/13597426764739501",
+            "u": "926424184592000/5398178425601581897",
+            "v": "840215643792000/12795178585619870441",
+            "xu": "40328241968000/13597426764739501",
+            "xv": "5821917760416000/1862847466769311637"
+          },
+          "delta->v": {
+            "O": "4308/128917",
+            "cu": "38229/3222925",
+            "cv": "5368782/441540725",
+            "d1": "3349137024/51180100180049",
+            "d2": "1675809024/12795063430049",
+            "d3": "10062297216/51180509620441",
+            "fp": "586722975852/17661787954661",
+            "fq": "589037596428/17661646661629",
+            "fw": "146969980428/4415424911629",
+            "q1": "1827254442/61671959045",
+            "q2": "198684816/6397506125",
+            "r1": "1182822396/74620382525",
+            "r2": "531940332/39650357105",
+            "s": "21222/644585",
+            "u": "3840/51180049",
+            "xu": "1240512/51180049",
+            "xv": "477312/17661629"
+          },
+          "fp->r1": {
+            "O": "38243421132/544679227068925",
+            "cu": "8936754974199151/27233961353446250",
+            "cv": "22664957922048279/68084903383615625",
+            "d1": "2315734954568234069421566/29624588105610242876761825",
+            "d2": "572101558830557708449566/7406169244821421508011825",
+            "d3": "2261134906934004595130094/29624825102078091290856425",
+            "delta": "454005244075182/5740081085264825",
+            "fq": "973905441291520/21787190869926082757",
+            "fw": "115998289882880/5446814057858332757",
+            "q1": "102820704316101347201/260566372041367686125",
+            "q2": "7366348450117408714/27029706643295403125",
+            "r2": "58548137949353792/30570121619243415625",
+            "s": "40555939609489/544679227068925",
+            "u": "26694306898321726/216237653146363225",
+            "v": "52541165726646/544679227068925",
+            "xu": "113279379391133182/216237653146363225",
+            "xv": "287013635638566/544679227068925"
+          },
+          "fq->fw": {
+            "O": "2000/250001250001",
+            "cu": "43465626850/34250171250137",
+            "cv": "41466256191812/32229411146378917",
+            "d1": "633614279138717357000/1862834426956265416701293",
+            "d2": "156738715414827357000/465710003863489446951293",
+            "d3": "620309007590776213000/1862849329616778406311637",
+            "delta": "1612814257000/4692273461268769",
+            "fp": "2000000000/250003500012250009",
+            "q1": "4903323615073900/3276953634699357749",
+            "q2": "14045711239416/13597317986304389",
+            "r1": "127521354600960/5446770483738036973",
+            "r2": "491041443548416/14471005604724133733",
+            "s": "9652804700/34250171250137",
+            "u": "6951784717000/13597317986304389",
+            "v": "13193569069000/32229411146378917",
+            "xu": "27087564589000/13597317986304389",
+            "xv": "500001000/250001250001"
+          },
+          "fw->fp": {
+            "O": "6000/250003250009",
+            "cu": "43392960550/34250445251233",
+            "cv": "41399263919436/32229668981410253",
+            "d1": "626317194723712071000/1862849329616778406311637",
+            "d2": "154917516224042071000/465713729539794678561637",
+            "d3": "613036510604368639000/1862864232396512560804733",
+            "delta": "1594402771000/4692310999418921",
+            "fq": "2000000000/250003500012250009",
+            "q1": "4903753205221700/3276979850302219741",
+            "q2": "14047431654248/13597426764739501",
+            "r1": "115998289882880/5446814057858332757",
+            "r2": "456190785077248/14471121372653203597",
+            "s": "9655014100/34250445251233",
+            "u": "6899434151000/13597426764739501",
+            "v": "13067923207000/32229668981410253",
+            "xu": "27083013767000/13597426764739501",
+            "xv": "500003000/250003250009"
+          },
+          "q1->q2": {
+            "O": "695023/119596250",
+            "cu": "155882027/1195962500",
+            "cv": "49282950920539/385449744031250",
+            "d1": "1520820166623740857/6504726945970441250",
+            "d2": "379580505824670857/1626186615032941250",
+            "d3": "1515821542601827713/6504778983733971250",
+            "delta": "3837067941/16384686250",
+            "fp": "117993661607339/16384833712176250",
+            "fq": "102809692216371/16384702634686250",
+            "fw": "27600382271371/4096187947186250",
+            "r1": "1684262174547673/13028201348256250",
+            "r2": "25308994535977957/173066935070031250",
+            "s": "756553/239192500",
+            "u": "27508593/119596250",
+            "v": "26194628733/112540071250",
+            "xu": "1294270341/47479711250",
+            "xv": "121522261/16384686250"
+          },
+          "q2->s": {
+            "O": "588/248125",
+            "cu": "2113211/9925000",
+            "cv": "668584196517/3198753062500",
+            "d1": "10102794079740329/26990568240541250",
+            "d2": "2521332497010329/6747662303041250",
+            "d3": "10067851133902961/26990784164871250",
+            "delta": "25491797/67986250",
+            "fp": "157158486489/33993430938125",
+            "fq": "106087790721/33993158993125",
+            "fw": "32905488221/8498315243125",
+            "q1": "756553/239192500",
+            "r1": "5478674423666/27029463378125",
+            "r2": "82677125526274/359060031265625",
+            "u": "183281/496250",
+            "v": "174221501/466971250",
+            "xu": "9996437/197011250",
+            "xv": "1266277/67986250"
+          },
+          "r1->r2": {
+            "O": "59512438688/30569846490625",
+            "cu": "1393145269212/30569846490625",
+            "cv": "282897652312/6113969298125",
+            "d1": "15330033163246063146032/1662665043441983903603125",
+            "d2": "3781742603410748746032/415667507858031559853125",
+            "d3": "14924371276429627514288/1662678344749030132428125",
+            "delta": "39127353967856/4188068969215625",
+            "fp": "58548137949353792/30570121619243415625",
+            "fq": "59181938608417088/30569877060471490625",
+            "fw": "14715126257217088/7642492192502740625",
+            "q1": "166277276131039336/2924831202683528125",
+            "q2": "2420583540642416/60681145283890625",
+            "s": "376712044248/30569846490625",
+            "u": "188964295650736/12136229056778125",
+            "v": "360051557488/30569846490625",
+            "xu": "902699833487536/12136229056778125",
+            "xv": "2296381227888/30569846490625"
+          },
+          "r2->d3": {
+            "O": "33168462213293078026/393533336035273404125",
+            "cu": "4754552884099936316613/19676666801763670206250",
+            "cv": "2425351398477754559536/9838333400881835103125",
+            "d1": "2648541815431614166016/3148269836548875515187233",
+            "d2": "330370410584403749504/787069820337235090437233",
+            "delta": "497647564910249688/393533336035273404125",
+            "fp": "32815692050447963442104998/393536877835297721585637125",
+            "fq": "33050217703420792474331222/393533729568609439398404125",
+            "fw": "8233156912284771903258222/98383727542154386304654125",
+            "q1": "69342152090395588282019167/188260444959234267432338125",
+            "q2": "5498165271628445761073801/19529091800750442679703125",
+            "r1": "14924371276429627514288/1662678344749030132428125",
+            "s": "546170647038842630389/3935333360352734041250",
+            "u": "5521927620363454379876/156232734406003541437625",
+            "v": "5699832614499429588/393533336035273404125",
+            "xu": "174577909919460436844/393533336035273404125",
+            "xv": "180198128751819131624/393533336035273404125"
+          },
+          "s->O": {
+            "cu": "83/1000",
+            "cv": "26296029/322292500",
+            "d1": "76482925957/543890543890",
+            "d2": "19086187957/135973043890",
+            "d3": "76206477613/543894895010",
+            "delta": "193/1370",
+            "fp": "579153/685006165",
+            "fq": "193017/685000685",
+            "fw": "96517/171250685",
+            "q1": "48013/9567700",
+            "q2": "588/248125",
+            "r1": "40977838/544674325",
+            "r2": "3097136998/36177333125",
+            "u": "553/3970",
+            "v": "1321/9410",
+            "xu": "97/3970",
+            "xv": "17/1370"
+          },
+          "u->cu": {
+            "O": "4731/9925",
+            "cv": "183900729/639750612500",
+            "d1": "16525824536611/539811364810825",
+            "d2": "4320205176611/134953246060825",
+            "d3": "18035813509499/539815683297425",
+            "delta": "1589/54389",
+            "fp": "645061606419/1359737237525",
+            "fq": "647119593491/1359726359725",
+            "fw": "161522782241/339932609725",
+            "q1": "3929799/23919250",
+            "q2": "1309933/4962500",
+            "r1": "2915972486767/10811785351250",
+            "r2": "34426801658811/143624012506250",
+            "s": "166891/397000",
+            "v": "162776/9339425",
+            "xu": "51414/3940225",
+            "xv": "59569/1359725"
+          },
+          "v->u": {
+            "O": "19552/373577",
+            "cu": "162776/9339425",
+            "cv": "22865744/1279501225",
+            "d1": "3671483391232/20318499771479453",
+            "d2": "1455348607232/5079640181729453",
+            "d3": "7974213113088/20318662319315077",
+            "delta": "3840/51180049",
+            "fp": "2663002686368/51180509620441",
+            "fq": "2673414037152/51180100180049",
+            "fw": "667051733152/12795063430049",
+            "q1": "20143344/450160285",
+            "q2": "2217792/46697125",
+            "r1": "5415673504/216235707025",
+            "r2": "12209744288/574496050025",
+            "s": "95728/1867885",
+            "xu": "5311488/148310069",
+            "xv": "2053888/51180049"
+          },
+          "xu->xv": {
+            "O": "4660/54389",
+            "cu": "1589/54389",
+            "cv": "36474374/1279501225",
+            "d1": "501032300160/7451300451293",
+            "d2": "125555900160/1862830701293",
+            "d3": "503413901440/7451360061637",
+            "delta": "499840/7451293",
+            "fp": "4658758060/54389489501",
+            "fq": "4659595340/54389054389",
+            "fw": "1164795340/13597304389",
+            "q1": "112906482/5203776353",
+            "q2": "22423552/539810825",
+            "r1": "3571349244/43247141405",
+            "r2": "47017579532/574496050025",
+            "s": "4006/54389",
+            "u": "1295040/21592433",
+            "v": "3290560/51180049"
+          },
+          "xv->q1": {
+            "O": "396770/13107749",
+            "cu": "476242327/3276937250",
+            "cv": "2194793125643/15417989761250",
+            "d1": "194395637105373996/712918073278360361",
+            "d2": "48534709776821196/178230053007610361",
+            "d3": "193881713677732364/712923776617243249",
+            "delta": "490307576/1795761613",
+            "fp": "416580378470/13107866969741",
+            "fq": "403374253030/13107762107749",
+            "fw": "102494428130/3276950357749",
+            "q2": "121522261/16384686250",
+            "r1": "42762974028051/260564026965125",
+            "r2": "631299377602927/3461338701400625",
+            "s": "29989691/1310774900",
+            "u": "3484254/13107749",
+            "v": "16678118158/61671959045",
+            "xu": "112906482/5203776353"
+          }
+        },
+        "minimum_orientation": "2000000000/250003500012250009",
+        "minimum_roles": [
+          "fq",
+          "fw",
+          "fp"
+        ]
+      }
+    },
+    "S0-N": {
+      "all_named_finite_packet_geometry_replayed": true,
+      "caps": {
+        "J1": [
+          "fp",
+          "fq",
+          "fw",
+          "qv1"
+        ],
+        "J2": [
+          "cu",
+          "cv",
+          "u",
+          "v",
+          "xv"
+        ],
+        "cardinalities": {
+          "C1": 8,
+          "C2": 6,
+          "C3": 7
+        },
+        "endpoint_pattern": {
+          "v1": {
+            "C1": false,
+            "C2": true,
+            "C3": true
+          },
+          "v2": {
+            "C1": true,
+            "C2": false,
+            "C3": true
+          },
+          "v3": {
+            "C1": true,
+            "C2": true,
+            "C3": false
+          }
+        },
+        "frames": {
+          "C1": {
+            "apex": "xu",
+            "endpoint1": "delta",
+            "endpoint2": "O"
+          },
+          "C2": {
+            "apex": "delta",
+            "endpoint1": "O",
+            "endpoint2": "xu"
+          },
+          "C3": {
+            "apex": "O",
+            "endpoint1": "xu",
+            "endpoint2": "delta"
+          }
+        },
+        "members": {
+          "C1": [
+            "O",
+            "d1",
+            "d2",
+            "d3",
+            "delta",
+            "qu1",
+            "qu2",
+            "qv2"
+          ],
+          "C2": [
+            "O",
+            "fp",
+            "fq",
+            "fw",
+            "qv1",
+            "xu"
+          ],
+          "C3": [
+            "cu",
+            "cv",
+            "delta",
+            "u",
+            "v",
+            "xu",
+            "xv"
+          ]
+        },
+        "membership_count_by_role": {
+          "O": 2,
+          "cu": 1,
+          "cv": 1,
+          "d1": 1,
+          "d2": 1,
+          "d3": 1,
+          "delta": 2,
+          "fp": 1,
+          "fq": 1,
+          "fw": 1,
+          "qu1": 1,
+          "qu2": 1,
+          "qv1": 1,
+          "qv2": 1,
+          "u": 1,
+          "v": 1,
+          "xu": 2,
+          "xv": 1
+        },
+        "on_arc_opposite_truth_table": {
+          "C1": {
+            "O": true,
+            "cu": false,
+            "cv": false,
+            "d1": true,
+            "d2": true,
+            "d3": true,
+            "delta": true,
+            "fp": false,
+            "fq": false,
+            "fw": false,
+            "qu1": true,
+            "qu2": true,
+            "qv1": false,
+            "qv2": true,
+            "u": false,
+            "v": false,
+            "xu": false,
+            "xv": false
+          },
+          "C2": {
+            "O": true,
+            "cu": false,
+            "cv": false,
+            "d1": false,
+            "d2": false,
+            "d3": false,
+            "delta": false,
+            "fp": true,
+            "fq": true,
+            "fw": true,
+            "qu1": false,
+            "qu2": false,
+            "qv1": true,
+            "qv2": false,
+            "u": false,
+            "v": false,
+            "xu": true,
+            "xv": false
+          },
+          "C3": {
+            "O": false,
+            "cu": true,
+            "cv": true,
+            "d1": false,
+            "d2": false,
+            "d3": false,
+            "delta": true,
+            "fp": false,
+            "fq": false,
+            "fw": false,
+            "qu1": false,
+            "qu2": false,
+            "qv1": false,
+            "qv2": false,
+            "u": true,
+            "v": true,
+            "xu": true,
+            "xv": true
+          }
+        }
+      },
+      "cyclic_order": [
+        "O",
+        "qu2",
+        "qu1",
+        "qv2",
+        "d3",
+        "d2",
+        "d1",
+        "delta",
+        "v",
+        "u",
+        "cv",
+        "cu",
+        "xv",
+        "xu",
+        "qv1",
+        "fq",
+        "fw",
+        "fp"
+      ],
+      "finite_core": {
+        "actual_typed_CriticalShellSystem_instantiated": false,
+        "actual_typed_OriginalUniqueFourResidual_instantiated": false,
+        "critical_deletion_profiles": {
+          "delete_delta_at_xv": {
+            "maximum_positive_radius_multiplicity": 3,
+            "no_modeled_four_class": true,
+            "radius_classes": [
+              {
+                "multiplicity": 1,
+                "radius_squared": "400/54389",
+                "roles": [
+                  "xu"
+                ]
+              },
+              {
+                "multiplicity": 1,
+                "radius_squared": "5641885957/19433189700",
+                "roles": [
+                  "cu"
+                ]
+              },
+              {
+                "multiplicity": 1,
+                "radius_squared": "119487481/336219300",
+                "roles": [
+                  "cv"
+                ]
+              },
+              {
+                "multiplicity": 1,
+                "radius_squared": "41281706041/114398616825",
+                "roles": [
+                  "qv1"
+                ]
+              },
+              {
+                "multiplicity": 1,
+                "radius_squared": "53760461309/54389489501",
+                "roles": [
+                  "fq"
+                ]
+              },
+              {
+                "multiplicity": 1,
+                "radius_squared": "13492385701/13597304389",
+                "roles": [
+                  "fw"
+                ]
+              },
+              {
+                "multiplicity": 1,
+                "radius_squared": "54179055701/54389054389",
+                "roles": [
+                  "fp"
+                ]
+              },
+              {
+                "multiplicity": 1,
+                "radius_squared": "1/1",
+                "roles": [
+                  "O"
+                ]
+              },
+              {
+                "multiplicity": 1,
+                "radius_squared": "157920610228/140890625325",
+                "roles": [
+                  "qu2"
+                ]
+              },
+              {
+                "multiplicity": 1,
+                "radius_squared": "70435746757/58839379925",
+                "roles": [
+                  "qu1"
+                ]
+              },
+              {
+                "multiplicity": 1,
+                "radius_squared": "207936/157609",
+                "roles": [
+                  "u"
+                ]
+              },
+              {
+                "multiplicity": 1,
+                "radius_squared": "9562688521/6892495650",
+                "roles": [
+                  "qv2"
+                ]
+              },
+              {
+                "multiplicity": 1,
+                "radius_squared": "529984/373577",
+                "roles": [
+                  "v"
+                ]
+              },
+              {
+                "multiplicity": 3,
+                "radius_squared": "80656/54389",
+                "roles": [
+                  "d1",
+                  "d2",
+                  "d3"
+                ]
+              }
+            ]
+          },
+          "delete_u_at_cu": {
+            "maximum_positive_radius_multiplicity": 3,
+            "no_modeled_four_class": true,
+            "radius_classes": [
+              {
+                "multiplicity": 1,
+                "radius_squared": "15027089338/4571657876925",
+                "roles": [
+                  "cv"
+                ]
+              },
+              {
+                "multiplicity": 1,
+                "radius_squared": "5641885957/19433189700",
+                "roles": [
+                  "xv"
+                ]
+              },
+              {
+                "multiplicity": 1,
+                "radius_squared": "1621838702727973/4977621096395940",
+                "roles": [
+                  "qv1"
+                ]
+              },
+              {
+                "multiplicity": 3,
+                "radius_squared": "18214681/48950100",
+                "roles": [
+                  "qu1",
+                  "qu2",
+                  "xu"
+                ]
+              },
+              {
+                "multiplicity": 1,
+                "radius_squared": "12716467413137/29990075672628",
+                "roles": [
+                  "qv2"
+                ]
+              },
+              {
+                "multiplicity": 1,
+                "radius_squared": "19660656101/46062044100",
+                "roles": [
+                  "v"
+                ]
+              },
+              {
+                "multiplicity": 1,
+                "radius_squared": "3108841697/6706163700",
+                "roles": [
+                  "delta"
+                ]
+              },
+              {
+                "multiplicity": 1,
+                "radius_squared": "1234658843944209709/2662349651246988900",
+                "roles": [
+                  "d1"
+                ]
+              },
+              {
+                "multiplicity": 1,
+                "radius_squared": "308780987497419709/665589409571988900",
+                "roles": [
+                  "d2"
+                ]
+              },
+              {
+                "multiplicity": 1,
+                "radius_squared": "1235605471845407381/2662370950022900100",
+                "roles": [
+                  "d3"
+                ]
+              },
+              {
+                "multiplicity": 1,
+                "radius_squared": "4578054373192073/6706224055473300",
+                "roles": [
+                  "fq"
+                ]
+              },
+              {
+                "multiplicity": 1,
+                "radius_squared": "1148251050106897/1676547631163700",
+                "roles": [
+                  "fw"
+                ]
+              },
+              {
+                "multiplicity": 1,
+                "radius_squared": "4607984041696897/6706170406163700",
+                "roles": [
+                  "fp"
+                ]
+              },
+              {
+                "multiplicity": 1,
+                "radius_squared": "33744481/48950100",
+                "roles": [
+                  "O"
+                ]
+              }
+            ]
+          },
+          "delete_v_at_cv": {
+            "maximum_positive_radius_multiplicity": 3,
+            "no_modeled_four_class": true,
+            "radius_classes": [
+              {
+                "multiplicity": 1,
+                "radius_squared": "15027089338/4571657876925",
+                "roles": [
+                  "cu"
+                ]
+              },
+              {
+                "multiplicity": 1,
+                "radius_squared": "40773384997/133479062100",
+                "roles": [
+                  "u"
+                ]
+              },
+              {
+                "multiplicity": 1,
+                "radius_squared": "633658738158641/1993242834339300",
+                "roles": [
+                  "qu1"
+                ]
+              },
+              {
+                "multiplicity": 1,
+                "radius_squared": "172813399585961/530312313723300",
+                "roles": [
+                  "qu2"
+                ]
+              },
+              {
+                "multiplicity": 3,
+                "radius_squared": "119487481/336219300",
+                "roles": [
+                  "qv1",
+                  "qv2",
+                  "xv"
+                ]
+              },
+              {
+                "multiplicity": 1,
+                "radius_squared": "17925979937/46062044100",
+                "roles": [
+                  "delta"
+                ]
+              },
+              {
+                "multiplicity": 1,
+                "radius_squared": "17934371534842657/46062090162044100",
+                "roles": [
+                  "d1"
+                ]
+              },
+              {
+                "multiplicity": 1,
+                "radius_squared": "4485766497532657/11515557087044100",
+                "roles": [
+                  "d2"
+                ]
+              },
+              {
+                "multiplicity": 1,
+                "radius_squared": "17952063302863913/46062458658396900",
+                "roles": [
+                  "d3"
+                ]
+              },
+              {
+                "multiplicity": 1,
+                "radius_squared": "20497720097/46062044100",
+                "roles": [
+                  "xu"
+                ]
+              },
+              {
+                "multiplicity": 1,
+                "radius_squared": "31455448020141713/46062458658396900",
+                "roles": [
+                  "fq"
+                ]
+              },
+              {
+                "multiplicity": 1,
+                "radius_squared": "7887526653416857/11515557087044100",
+                "roles": [
+                  "fw"
+                ]
+              },
+              {
+                "multiplicity": 1,
+                "radius_squared": "31644957679286857/46062090162044100",
+                "roles": [
+                  "fp"
+                ]
+              },
+              {
+                "multiplicity": 1,
+                "radius_squared": "231678841/336219300",
+                "roles": [
+                  "O"
+                ]
+              }
+            ]
+          }
+        },
+        "delta_row": {
+          "actual_blocker_proxy": "xv",
+          "center_in_carrier_erase_source": true,
+          "complete_exact_four_fiber": true,
+          "radius_squared": "80656/54389",
+          "roles": [
+            "d1",
+            "d2",
+            "d3",
+            "delta"
+          ],
+          "source": "delta",
+          "source_mem_support": true
+        },
+        "fibers": {
+          "Kdelta": {
+            "center": "xv",
+            "complete_modeled_carrier_fiber": true,
+            "radius_squared": "80656/54389",
+            "roles": [
+              "d1",
+              "d2",
+              "d3",
+              "delta"
+            ]
+          },
+          "Ku": {
+            "center": "cu",
+            "complete_modeled_carrier_fiber": true,
+            "radius_squared": "18214681/48950100",
+            "roles": [
+              "qu1",
+              "qu2",
+              "u",
+              "xu"
+            ]
+          },
+          "Kv": {
+            "center": "cv",
+            "complete_modeled_carrier_fiber": true,
+            "radius_squared": "119487481/336219300",
+            "roles": [
+              "qv1",
+              "qv2",
+              "v",
+              "xv"
+            ]
+          },
+          "first": {
+            "center": "delta",
+            "complete_modeled_carrier_fiber": true,
+            "radius_squared": "1/1",
+            "roles": [
+              "O",
+              "fp",
+              "fq",
+              "fw"
+            ]
+          },
+          "physical": {
+            "center": "O",
+            "complete_modeled_carrier_fiber": true,
+            "radius_squared": "1/1",
+            "roles": [
+              "delta",
+              "u",
+              "v",
+              "xu",
+              "xv"
+            ]
+          }
+        },
+        "modeled_blocker_center_by_source": {
+          "O": "delta",
+          "cu": "cv",
+          "cv": "cu",
+          "d1": "cu",
+          "d2": "cu",
+          "d3": "cu",
+          "delta": "xv",
+          "fp": "delta",
+          "fq": "delta",
+          "fw": "delta",
+          "qu1": "cu",
+          "qu2": "cu",
+          "qv1": "cu",
+          "qv2": "cu",
+          "u": "cu",
+          "v": "cv",
+          "xu": "cu",
+          "xv": "cu"
+        },
+        "modeled_first_apex_blocker_fiber_at_fq": [
+          "O",
+          "fp",
+          "fq",
+          "fw"
+        ],
+        "modeled_source_context_geometry_checks": {
+          "modeled_other_mem_J2": true,
+          "modeled_other_mem_physical_class": true,
+          "modeled_other_ne_source": true,
+          "modeled_other_not_mem_Ku": true,
+          "modeled_source_cross_card_le_two": true,
+          "modeled_source_mem_J2": true,
+          "modeled_source_mem_Ku": true,
+          "modeled_source_mem_physical_class": true,
+          "modeled_source_other_blockers_ne": true,
+          "modeled_source_outside_first_apex_blocker_fiber_proxy": true,
+          "modeled_source_survives_fq_or_fw": true,
+          "modeled_u_eq_source_arm": true,
+          "modeled_v_not_mem_Ku": true
+        },
+        "physical_traces": {
+          "Ku_inter_physical": [
+            "u",
+            "xu"
+          ],
+          "Kv_inter_physical": [
+            "v",
+            "xv"
+          ],
+          "disjoint_2_plus_2_plus_1": true,
+          "singleton_residue": [
+            "delta"
+          ]
+        }
+      },
+      "global_K4_census": {
+        "centers_with_a_modeled_four_class": [
+          "O",
+          "cu",
+          "cv",
+          "delta",
+          "xv"
+        ],
+        "centers_without_a_modeled_four_class": [
+          "d1",
+          "d2",
+          "d3",
+          "fp",
+          "fq",
+          "fw",
+          "qu1",
+          "qu2",
+          "qv1",
+          "qv2",
+          "u",
+          "v",
+          "xu"
+        ],
+        "global_K4_holds_on_modeled_carrier": false,
+        "maximum_positive_radius_multiplicity_by_modeled_center": {
+          "O": 5,
+          "cu": 4,
+          "cv": 4,
+          "d1": 1,
+          "d2": 1,
+          "d3": 1,
+          "delta": 4,
+          "fp": 1,
+          "fq": 1,
+          "fw": 1,
+          "qu1": 1,
+          "qu2": 1,
+          "qv1": 1,
+          "qv2": 1,
+          "u": 1,
+          "v": 1,
+          "xu": 1,
+          "xv": 4
+        }
+      },
+      "global_deletion": {
+        "actual_typed_ExactFourMutualOmissionRigid221GlobalDeletion_instantiated": false,
+        "assignments": {
+          "center": "cu",
+          "deleted": [
+            "u"
+          ]
+        },
+        "modeled_blocked_radius_classes": [
+          {
+            "multiplicity": 1,
+            "radius_squared": "15027089338/4571657876925",
+            "roles": [
+              "cv"
+            ]
+          },
+          {
+            "multiplicity": 1,
+            "radius_squared": "5641885957/19433189700",
+            "roles": [
+              "xv"
+            ]
+          },
+          {
+            "multiplicity": 1,
+            "radius_squared": "1621838702727973/4977621096395940",
+            "roles": [
+              "qv1"
+            ]
+          },
+          {
+            "multiplicity": 3,
+            "radius_squared": "18214681/48950100",
+            "roles": [
+              "qu1",
+              "qu2",
+              "xu"
+            ]
+          },
+          {
+            "multiplicity": 1,
+            "radius_squared": "12716467413137/29990075672628",
+            "roles": [
+              "qv2"
+            ]
+          },
+          {
+            "multiplicity": 1,
+            "radius_squared": "19660656101/46062044100",
+            "roles": [
+              "v"
+            ]
+          },
+          {
+            "multiplicity": 1,
+            "radius_squared": "3108841697/6706163700",
+            "roles": [
+              "delta"
+            ]
+          },
+          {
+            "multiplicity": 1,
+            "radius_squared": "1234658843944209709/2662349651246988900",
+            "roles": [
+              "d1"
+            ]
+          },
+          {
+            "multiplicity": 1,
+            "radius_squared": "308780987497419709/665589409571988900",
+            "roles": [
+              "d2"
+            ]
+          },
+          {
+            "multiplicity": 1,
+            "radius_squared": "1235605471845407381/2662370950022900100",
+            "roles": [
+              "d3"
+            ]
+          },
+          {
+            "multiplicity": 1,
+            "radius_squared": "4578054373192073/6706224055473300",
+            "roles": [
+              "fq"
+            ]
+          },
+          {
+            "multiplicity": 1,
+            "radius_squared": "1148251050106897/1676547631163700",
+            "roles": [
+              "fw"
+            ]
+          },
+          {
+            "multiplicity": 1,
+            "radius_squared": "4607984041696897/6706170406163700",
+            "roles": [
+              "fp"
+            ]
+          },
+          {
+            "multiplicity": 1,
+            "radius_squared": "33744481/48950100",
+            "roles": [
+              "O"
+            ]
+          }
+        ],
+        "modeled_field_checks": {
+          "modeled_blocked": true,
+          "modeled_center_is_cu": true,
+          "modeled_center_mem_carrier_outside_physical_class": true,
+          "modeled_center_ne_O": true,
+          "modeled_deleted_card_le_five": true,
+          "modeled_deleted_is_singleton_u": true,
+          "modeled_deleted_nonempty": true,
+          "modeled_deleted_subset_physical_class": true,
+          "modeled_geometry_MinimalDeletionCore_branch": true,
+          "modeled_restores": true,
+          "modeled_rigid": true
+        },
+        "modeled_geometry_branch": {
+          "actual_typed_MinimalDeletionCore_instantiated": false,
+          "constructor": "MinimalDeletionCore",
+          "modeled_MinimalDeletionCore_nonempty": true,
+          "modeled_distinct_equal_radius_deleted_pair_exists": false,
+          "modeled_geometry_disjunction_holds": true,
+          "modeled_shell": {
+            "actual_typed_CriticalSelectedFourClass_instantiated": false,
+            "assignments": {
+              "center": "cu",
+              "labels": [
+                "qu1",
+                "qu2",
+                "u",
+                "xu"
+              ],
+              "source": "u",
+              "support": [
+                "qu1",
+                "qu2",
+                "u",
+                "xu"
+              ]
+            },
+            "modeled_field_checks": {
+              "modeled_center_mem_carrier_erase_source": true,
+              "modeled_four_labels_pairwise_distinct": true,
+              "modeled_radius_squared_positive": true,
+              "modeled_source_mem_support": true,
+              "modeled_support_card_eq_four": true,
+              "modeled_support_eq_complete_ambient_fiber": true,
+              "modeled_support_eq_four_named_labels": true
+            },
+            "modeled_radius_squared": "18214681/48950100"
+          },
+          "modeled_singleton_core": {
+            "modeled_pairwise_disjoint_quantified_pairs": [
+              {
+                "implication_holds": true,
+                "s": "u",
+                "s_ne_t": false,
+                "t": "u"
+              }
+            ],
+            "modeled_shellAt_complete_ambient_fiber": true,
+            "modeled_shellAt_four_named_labels_pairwise_distinct": true,
+            "modeled_shellAt_index_roles": [
+              "u"
+            ],
+            "modeled_shellAt_source_mem_support": true,
+            "modeled_shellAt_support": [
+              "qu1",
+              "qu2",
+              "u",
+              "xu"
+            ],
+            "modeled_supports_pairwise_disjoint_vacuous_for_singleton": true
+          }
+        },
+        "modeled_restores_quantified_over_deleted": [
+          {
+            "deleted_erase_s": [],
+            "restored_K4_holds": true,
+            "restored_K4_support": [
+              "qu1",
+              "qu2",
+              "u",
+              "xu"
+            ],
+            "s": "u",
+            "s_mem_deleted": true
+          }
+        ]
+      },
+      "joint_deletion": {
+        "actual_typed_ExactFourMutualOmissionJointDeletion_instantiated": false,
+        "assignments": {
+          "actual_blocker_of_deleted_proxy": "xv",
+          "deleted": "delta"
+        },
+        "modeled_outer_field_checks": {
+          "modeled_blockers_cu_ne_cv": true,
+          "modeled_deleted_mem_physical_class": true,
+          "modeled_deleted_ne_u": true,
+          "modeled_deleted_ne_v": true,
+          "modeled_deleted_not_mem_Ku": true,
+          "modeled_deleted_not_mem_Kv": true
+        },
+        "modeled_uPacket": {
+          "actual_typed_CommonDeletionTwoCenterPacket_instantiated": false,
+          "assignments": {
+            "B1": [
+              "qu1",
+              "qu2",
+              "u",
+              "xu"
+            ],
+            "B2": [
+              "u",
+              "v",
+              "xu",
+              "xv"
+            ],
+            "actual_blocker_of_q": "xv",
+            "center1": "cu",
+            "center2": "O",
+            "q": "delta"
+          },
+          "modeled_outer_field_checks": {
+            "modeled_B1_card_eq_four": true,
+            "modeled_B2_card_eq_four": true,
+            "modeled_actual_blocker_ne_center1": true,
+            "modeled_actual_blocker_ne_center2": true,
+            "modeled_center1_mem_carrier": true,
+            "modeled_center2_mem_carrier": true,
+            "modeled_centers_ne": true,
+            "modeled_overlap_card_le_two": true,
+            "modeled_q_mem_carrier": true,
+            "modeled_survives1": true,
+            "modeled_survives2": true
+          },
+          "modeled_overlap_cardinality": 2,
+          "modeled_overlap_roles": [
+            "u",
+            "xu"
+          ],
+          "modeled_row1": {
+            "actual_typed_U5QDeletedK4Class_instantiated": false,
+            "modeled_cardinality": 4,
+            "modeled_cardinality_ge_four": true,
+            "modeled_q_not_mem": true,
+            "modeled_radius_squared": "18214681/48950100",
+            "modeled_radius_squared_positive": true,
+            "modeled_same_squared_radius": {
+              "qu1": "18214681/48950100",
+              "qu2": "18214681/48950100",
+              "u": "18214681/48950100",
+              "xu": "18214681/48950100"
+            },
+            "modeled_subset_of_carrier_erase_q_erase_center": true,
+            "modeled_support_roles": [
+              "qu1",
+              "qu2",
+              "u",
+              "xu"
+            ]
+          },
+          "modeled_row2": {
+            "actual_typed_U5QDeletedK4Class_instantiated": false,
+            "modeled_cardinality": 4,
+            "modeled_cardinality_ge_four": true,
+            "modeled_q_not_mem": true,
+            "modeled_radius_squared": "1/1",
+            "modeled_radius_squared_positive": true,
+            "modeled_same_squared_radius": {
+              "u": "1/1",
+              "v": "1/1",
+              "xu": "1/1",
+              "xv": "1/1"
+            },
+            "modeled_subset_of_carrier_erase_q_erase_center": true,
+            "modeled_support_roles": [
+              "u",
+              "v",
+              "xu",
+              "xv"
+            ]
+          }
+        },
+        "modeled_vPacket": {
+          "actual_typed_CommonDeletionTwoCenterPacket_instantiated": false,
+          "assignments": {
+            "B1": [
+              "qv1",
+              "qv2",
+              "v",
+              "xv"
+            ],
+            "B2": [
+              "u",
+              "v",
+              "xu",
+              "xv"
+            ],
+            "actual_blocker_of_q": "xv",
+            "center1": "cv",
+            "center2": "O",
+            "q": "delta"
+          },
+          "modeled_outer_field_checks": {
+            "modeled_B1_card_eq_four": true,
+            "modeled_B2_card_eq_four": true,
+            "modeled_actual_blocker_ne_center1": true,
+            "modeled_actual_blocker_ne_center2": true,
+            "modeled_center1_mem_carrier": true,
+            "modeled_center2_mem_carrier": true,
+            "modeled_centers_ne": true,
+            "modeled_overlap_card_le_two": true,
+            "modeled_q_mem_carrier": true,
+            "modeled_survives1": true,
+            "modeled_survives2": true
+          },
+          "modeled_overlap_cardinality": 2,
+          "modeled_overlap_roles": [
+            "v",
+            "xv"
+          ],
+          "modeled_row1": {
+            "actual_typed_U5QDeletedK4Class_instantiated": false,
+            "modeled_cardinality": 4,
+            "modeled_cardinality_ge_four": true,
+            "modeled_q_not_mem": true,
+            "modeled_radius_squared": "119487481/336219300",
+            "modeled_radius_squared_positive": true,
+            "modeled_same_squared_radius": {
+              "qv1": "119487481/336219300",
+              "qv2": "119487481/336219300",
+              "v": "119487481/336219300",
+              "xv": "119487481/336219300"
+            },
+            "modeled_subset_of_carrier_erase_q_erase_center": true,
+            "modeled_support_roles": [
+              "qv1",
+              "qv2",
+              "v",
+              "xv"
+            ]
+          },
+          "modeled_row2": {
+            "actual_typed_U5QDeletedK4Class_instantiated": false,
+            "modeled_cardinality": 4,
+            "modeled_cardinality_ge_four": true,
+            "modeled_q_not_mem": true,
+            "modeled_radius_squared": "1/1",
+            "modeled_radius_squared_positive": true,
+            "modeled_same_squared_radius": {
+              "u": "1/1",
+              "v": "1/1",
+              "xu": "1/1",
+              "xv": "1/1"
+            },
+            "modeled_subset_of_carrier_erase_q_erase_center": true,
+            "modeled_support_roles": [
+              "u",
+              "v",
+              "xu",
+              "xv"
+            ]
+          }
+        }
+      },
+      "mec": {
+        "all_carrier_points_enclosed": true,
+        "boundary_exactly_stated_triple": true,
+        "boundary_roles": [
+          "O",
+          "delta",
+          "xu"
+        ],
+        "center": [
+          "137/210",
+          "0/1"
+        ],
+        "enclosure_slacks": {
+          "O": "0/1",
+          "cu": "134646811/342650700",
+          "cv": "102939623/261503900",
+          "d1": "783902480/1142170142169",
+          "d2": "130111760/95181130723",
+          "d3": "777438640/380726426507",
+          "delta": "0/1",
+          "fp": "35158/21000021",
+          "fq": "35074/7000063",
+          "fw": "17558/5250021",
+          "qu1": "185536122/1037470175",
+          "qu2": "505709188/2484217575",
+          "qv1": "2526791392/10677204237",
+          "qv2": "1795710284/24123734775",
+          "u": "568/8337",
+          "v": "904/32935",
+          "xu": "0/1",
+          "xv": "568/8337"
+        },
+        "positive_boundary_weights": {
+          "O": "3281/22050",
+          "delta": "18769/44100",
+          "xu": "18769/44100"
+        },
+        "radius_squared": "18769/44100",
+        "weighted_boundary_barycenter": [
+          "137/210",
+          "0/1"
+        ]
+      },
+      "packet_indices": {
+        "J1": [
+          "fp",
+          "fq",
+          "fw",
+          "qv1"
+        ],
+        "J2": [
+          "cu",
+          "cv",
+          "u",
+          "v",
+          "xv"
+        ],
+        "oppApex1": "delta",
+        "oppApex2": "O",
+        "oppIndex1": 1,
+        "oppIndex2": 2,
+        "surplusIdx": 0
+      },
+      "points": {
+        "O": [
+          "0/1",
+          "0/1"
+        ],
+        "cu": [
+          "1353497/1631670",
+          "5809/163167"
+        ],
+        "cv": [
+          "9300031/11207310",
+          "-121768/5603655"
+        ],
+        "d1": [
+          "41552703365/54389054389",
+          "-34930222592/54389054389"
+        ],
+        "d2": [
+          "10355125365/13597304389",
+          "-8731062592/13597304389"
+        ],
+        "d3": [
+          "41288394285/54389489501",
+          "-34918083328/54389489501"
+        ],
+        "delta": [
+          "105/137",
+          "-88/137"
+        ],
+        "fp": [
+          "176210/137000137",
+          "209824/137000137"
+        ],
+        "fq": [
+          "529890/137001233",
+          "628416/137001233"
+        ],
+        "fw": [
+          "88210/34250137",
+          "104824/34250137"
+        ],
+        "qu1": [
+          "14367666/29642005",
+          "-2772128/5928401"
+        ],
+        "qu2": [
+          "9487663/23659215",
+          "-628634/1577281"
+        ],
+        "qv1": [
+          "2329986656/7626574455",
+          "665975608/2542191485"
+        ],
+        "qv2": [
+          "60466811/91899942",
+          "-272283047/459499710"
+        ],
+        "u": [
+          "325/397",
+          "-228/397"
+        ],
+        "v": [
+          "741/941",
+          "-580/941"
+        ],
+        "xu": [
+          "105/137",
+          "88/137"
+        ],
+        "xv": [
+          "325/397",
+          "228/397"
+        ]
+      },
+      "robust_surface": {
+        "actual_typed_ExactFourPostCardElevenRobustSurface_instantiated": false,
+        "modeled_capGrowth": {
+          "constructor": "surplus",
+          "modeled_surplusCap_card_ge_six": true
+        },
+        "modeled_ingress": {
+          "actual_typed_ExactFourPhysicalCommonDeletionIngress_instantiated": false,
+          "assignments": {
+            "blocker": "cu",
+            "deleted": "fq",
+            "source": "u"
+          },
+          "modeled_deleted_is_pair": true,
+          "modeled_packet": {
+            "actual_typed_CommonDeletionTwoCenterPacket_instantiated": false,
+            "assignments": {
+              "B1": [
+                "qu1",
+                "qu2",
+                "u",
+                "xu"
+              ],
+              "B2": [
+                "u",
+                "v",
+                "xu",
+                "xv"
+              ],
+              "actual_blocker_of_q": "delta",
+              "center1": "cu",
+              "center2": "O",
+              "q": "fq"
+            },
+            "modeled_outer_field_checks": {
+              "modeled_B1_card_eq_four": true,
+              "modeled_B2_card_eq_four": true,
+              "modeled_actual_blocker_ne_center1": true,
+              "modeled_actual_blocker_ne_center2": true,
+              "modeled_center1_mem_carrier": true,
+              "modeled_center2_mem_carrier": true,
+              "modeled_centers_ne": true,
+              "modeled_overlap_card_le_two": true,
+              "modeled_q_mem_carrier": true,
+              "modeled_survives1": true,
+              "modeled_survives2": true
+            },
+            "modeled_overlap_cardinality": 2,
+            "modeled_overlap_roles": [
+              "u",
+              "xu"
+            ],
+            "modeled_row1": {
+              "actual_typed_U5QDeletedK4Class_instantiated": false,
+              "modeled_cardinality": 4,
+              "modeled_cardinality_ge_four": true,
+              "modeled_q_not_mem": true,
+              "modeled_radius_squared": "18214681/48950100",
+              "modeled_radius_squared_positive": true,
+              "modeled_same_squared_radius": {
+                "qu1": "18214681/48950100",
+                "qu2": "18214681/48950100",
+                "u": "18214681/48950100",
+                "xu": "18214681/48950100"
+              },
+              "modeled_subset_of_carrier_erase_q_erase_center": true,
+              "modeled_support_roles": [
+                "qu1",
+                "qu2",
+                "u",
+                "xu"
+              ]
+            },
+            "modeled_row2": {
+              "actual_typed_U5QDeletedK4Class_instantiated": false,
+              "modeled_cardinality": 4,
+              "modeled_cardinality_ge_four": true,
+              "modeled_q_not_mem": true,
+              "modeled_radius_squared": "1/1",
+              "modeled_radius_squared_positive": true,
+              "modeled_same_squared_radius": {
+                "u": "1/1",
+                "v": "1/1",
+                "xu": "1/1",
+                "xv": "1/1"
+              },
+              "modeled_subset_of_carrier_erase_q_erase_center": true,
+              "modeled_support_roles": [
+                "u",
+                "v",
+                "xu",
+                "xv"
+              ]
+            }
+          },
+          "modeled_source_mem_good_proxy": true
+        },
+        "modeled_outer_field_checks": {
+          "modeled_firstOppCap_card_ge_four": true,
+          "modeled_ingress_blocker_ne_secondApex": true,
+          "modeled_ingress_deleted_is_retained_pair_member": true,
+          "modeled_ingress_source_mem_carrier": true,
+          "modeled_ingress_source_mem_good_proxy": true,
+          "modeled_ingress_source_outside_first_blocker_fiber": true,
+          "modeled_radiusClassification_fivePointRadius": true,
+          "modeled_secondApex_fully_deletion_robust": true,
+          "modeled_secondOppCap_card_ge_five": true
+        },
+        "modeled_radiusClassification": {
+          "actual_typed_DeletionRobustRadiusClassification_instantiated": false,
+          "center": "O",
+          "class_cardinality": 5,
+          "class_cardinality_ge_five": true,
+          "class_roles": [
+            "delta",
+            "u",
+            "v",
+            "xu",
+            "xv"
+          ],
+          "constructor": "fivePointRadius",
+          "radius_squared": "1/1"
+        },
+        "modeled_secondApex_robust_deletion_checks": {
+          "O": {
+            "remaining_cardinality": 5,
+            "remaining_physical_fiber": [
+              "delta",
+              "u",
+              "v",
+              "xu",
+              "xv"
+            ],
+            "survives": true
+          },
+          "cu": {
+            "remaining_cardinality": 5,
+            "remaining_physical_fiber": [
+              "delta",
+              "u",
+              "v",
+              "xu",
+              "xv"
+            ],
+            "survives": true
+          },
+          "cv": {
+            "remaining_cardinality": 5,
+            "remaining_physical_fiber": [
+              "delta",
+              "u",
+              "v",
+              "xu",
+              "xv"
+            ],
+            "survives": true
+          },
+          "d1": {
+            "remaining_cardinality": 5,
+            "remaining_physical_fiber": [
+              "delta",
+              "u",
+              "v",
+              "xu",
+              "xv"
+            ],
+            "survives": true
+          },
+          "d2": {
+            "remaining_cardinality": 5,
+            "remaining_physical_fiber": [
+              "delta",
+              "u",
+              "v",
+              "xu",
+              "xv"
+            ],
+            "survives": true
+          },
+          "d3": {
+            "remaining_cardinality": 5,
+            "remaining_physical_fiber": [
+              "delta",
+              "u",
+              "v",
+              "xu",
+              "xv"
+            ],
+            "survives": true
+          },
+          "delta": {
+            "remaining_cardinality": 4,
+            "remaining_physical_fiber": [
+              "u",
+              "v",
+              "xu",
+              "xv"
+            ],
+            "survives": true
+          },
+          "fp": {
+            "remaining_cardinality": 5,
+            "remaining_physical_fiber": [
+              "delta",
+              "u",
+              "v",
+              "xu",
+              "xv"
+            ],
+            "survives": true
+          },
+          "fq": {
+            "remaining_cardinality": 5,
+            "remaining_physical_fiber": [
+              "delta",
+              "u",
+              "v",
+              "xu",
+              "xv"
+            ],
+            "survives": true
+          },
+          "fw": {
+            "remaining_cardinality": 5,
+            "remaining_physical_fiber": [
+              "delta",
+              "u",
+              "v",
+              "xu",
+              "xv"
+            ],
+            "survives": true
+          },
+          "qu1": {
+            "remaining_cardinality": 5,
+            "remaining_physical_fiber": [
+              "delta",
+              "u",
+              "v",
+              "xu",
+              "xv"
+            ],
+            "survives": true
+          },
+          "qu2": {
+            "remaining_cardinality": 5,
+            "remaining_physical_fiber": [
+              "delta",
+              "u",
+              "v",
+              "xu",
+              "xv"
+            ],
+            "survives": true
+          },
+          "qv1": {
+            "remaining_cardinality": 5,
+            "remaining_physical_fiber": [
+              "delta",
+              "u",
+              "v",
+              "xu",
+              "xv"
+            ],
+            "survives": true
+          },
+          "qv2": {
+            "remaining_cardinality": 5,
+            "remaining_physical_fiber": [
+              "delta",
+              "u",
+              "v",
+              "xu",
+              "xv"
+            ],
+            "survives": true
+          },
+          "u": {
+            "remaining_cardinality": 4,
+            "remaining_physical_fiber": [
+              "delta",
+              "v",
+              "xu",
+              "xv"
+            ],
+            "survives": true
+          },
+          "v": {
+            "remaining_cardinality": 4,
+            "remaining_physical_fiber": [
+              "delta",
+              "u",
+              "xu",
+              "xv"
+            ],
+            "survives": true
+          },
+          "xu": {
+            "remaining_cardinality": 4,
+            "remaining_physical_fiber": [
+              "delta",
+              "u",
+              "v",
+              "xv"
+            ],
+            "survives": true
+          },
+          "xv": {
+            "remaining_cardinality": 4,
+            "remaining_physical_fiber": [
+              "delta",
+              "u",
+              "v",
+              "xu"
+            ],
+            "survives": true
+          }
+        }
+      },
+      "role_count": 18,
+      "role_distinctness": {
+        "all_roles_pairwise_distinct": true,
+        "pair_count": 153,
+        "pairwise_squared_distances": {
+          "O|cu": "33744481/48950100",
+          "O|cv": "231678841/336219300",
+          "O|d1": "54179055701/54389054389",
+          "O|d2": "13492385701/13597304389",
+          "O|d3": "53760461309/54389489501",
+          "O|delta": "1/1",
+          "O|fp": "4/1000001",
+          "O|fq": "36/1000009",
+          "O|fw": "4/250001",
+          "O|qu1": "67226756/148210025",
+          "O|qu2": "113442949/354888225",
+          "O|qv1": "18528402496/114398616825",
+          "O|qv2": "5404049281/6892495650",
+          "O|u": "1/1",
+          "O|v": "1/1",
+          "O|xu": "1/1",
+          "O|xv": "1/1",
+          "cu|fp": "4607984041696897/6706170406163700",
+          "cu|fq": "4578054373192073/6706224055473300",
+          "cu|fw": "1148251050106897/1676547631163700",
+          "cu|qv1": "1621838702727973/4977621096395940",
+          "cu|xu": "18214681/48950100",
+          "cu|xv": "5641885957/19433189700",
+          "cv|cu": "15027089338/4571657876925",
+          "cv|fp": "31644957679286857/46062090162044100",
+          "cv|fq": "31455448020141713/46062458658396900",
+          "cv|fw": "7887526653416857/11515557087044100",
+          "cv|qv1": "119487481/336219300",
+          "cv|xu": "20497720097/46062044100",
+          "cv|xv": "119487481/336219300",
+          "d1|cu": "1234658843944209709/2662349651246988900",
+          "d1|cv": "17934371534842657/46062090162044100",
+          "d1|delta": "322624/54389054389",
+          "d1|fp": "54179378325/54389054389",
+          "d1|fq": "54180513709324925/54389543890489501",
+          "d1|fw": "13544979626788325/13597317986304389",
+          "d1|qv1": "16107997113061454497/15672626177635505025",
+          "d1|u": "164101016528/21592454592433",
+          "d1|v": "62427001040/51180100180049",
+          "d1|xu": "12295482551872/7451300451293",
+          "d1|xv": "80656/54389",
+          "d2|cu": "308780987497419709/665589409571988900",
+          "d2|cv": "4485766497532657/11515557087044100",
+          "d2|d1": "80656000000/13597317986304389",
+          "d2|delta": "322624/13597304389",
+          "d2|fp": "13492560295548325/13597317986304389",
+          "d2|fq": "13492991701854925/13597426764739501",
+          "d2|fw": "13492708325/13597304389",
+          "d2|qv1": "4017501756754424497/3918168298866755025",
+          "d2|u": "42410936528/5398129842433",
+          "d2|v": "17069977040/12795063430049",
+          "d2|xu": "3073378231872/1862830701293",
+          "d2|xv": "80656/54389",
+          "d3|cu": "1235605471845407381/2662370950022900100",
+          "d3|cv": "17952063302863913/46062458658396900",
+          "d3|d1": "1290496000000/54389543890489501",
+          "d3|d2": "80656000000/13597426764739501",
+          "d3|delta": "2903616/54389489501",
+          "d3|fp": "53761480422444925/54389543890489501",
+          "d3|fq": "53763364925/54389489501",
+          "d3|fw": "13440652396134925/13597426764739501",
+          "d3|qv1": "117022629473034529/114399646412551425",
+          "d3|u": "175428188752/21592627331897",
+          "d3|v": "74726721360/51180509620441",
+          "d3|xu": "12291563126848/7451360061637",
+          "d3|xv": "80656/54389",
+          "delta|cu": "3108841697/6706163700",
+          "delta|cv": "17925979937/46062044100",
+          "delta|fp": "1/1",
+          "delta|fq": "1/1",
+          "delta|fw": "1/1",
+          "delta|qv1": "16146070495937/15672610505025",
+          "delta|u": "400/54389",
+          "delta|v": "144/128917",
+          "delta|xu": "30976/18769",
+          "delta|xv": "80656/54389",
+          "fq|fp": "16000000/1000010000009",
+          "fq|fw": "1000000/250003250009",
+          "fw|fp": "1000000/250001250001",
+          "qu1|cu": "18214681/48950100",
+          "qu1|cv": "633658738158641/1993242834339300",
+          "qu1|d1": "874572850271884909/8061003110720049725",
+          "qu1|d2": "215838506095614909/2015256823426299725",
+          "qu1|d3": "852219841640724181/8061067598680447525",
+          "qu1|delta": "2231426497/20304773425",
+          "qu1|fp": "9213921686174272/20304793729773425",
+          "qu1|fq": "9221849088528448/20304956167960825",
+          "qu1|fw": "2304462381254272/5076213661023425",
+          "qu1|qv1": "382766162262614468/678200874383946825",
+          "qu1|qv2": "1864664001859877/40861478103955650",
+          "qu1|u": "18214681/148210025",
+          "qu1|v": "15869893861/139465633525",
+          "qu1|xu": "194351481/148210025",
+          "qu1|xv": "70435746757/58839379925",
+          "qu2|cu": "18214681/48950100",
+          "qu2|cv": "172813399585961/530312313723300",
+          "qu2|d1": "3689175748126296436/19302034971540669525",
+          "qu2|d2": "913539666549216436/4825523219396919525",
+          "qu2|d3": "3619335171447707924/19302189387666025725",
+          "qu2|delta": "9381325988/48619686825",
+          "qu2|fp": "15551095525701613/48619735444686825",
+          "qu2|fq": "15570521313154517/48620124402181425",
+          "qu2|fw": "3890176989771613/12154970325936825",
+          "qu2|qu1": "18214681/1547312661",
+          "qu2|qv1": "80369922572613853/180438764744352825",
+          "qu2|qv2": "1126959048227077/10871402431327650",
+          "qu2|u": "72858724/354888225",
+          "qu2|v": "65715412244/333949819725",
+          "qu2|xu": "431891524/354888225",
+          "qu2|xv": "157920610228/140890625325",
+          "qv1|fp": "2513562972387979972/15672626177635505025",
+          "qv1|fq": "2464273227085099748/15672751558519545225",
+          "qv1|fw": "622214250191419972/3918168298866755025",
+          "qv2|cu": "12716467413137/29990075672628",
+          "qv2|cv": "119487481/336219300",
+          "qv2|d1": "12944316565938937/944272848321904050",
+          "qv2|d2": "3113077398588937/236068920284404050",
+          "qv2|d3": "11971117302250433/944280402497136450",
+          "qv2|delta": "13447138217/944271904050",
+          "qv2|fp": "740474985966033037/944272848321904050",
+          "qv2|fq": "740722505404097333/944280402497136450",
+          "qv2|fw": "185149392650433037/236068920284404050",
+          "qv2|qv1": "8015339712961/9380686579650",
+          "qv2|u": "71555259877/2736320773050",
+          "qv2|v": "119487481/6892495650",
+          "qv2|xu": "1451101626377/944271904050",
+          "qv2|xv": "9562688521/6892495650",
+          "u|cu": "18214681/48950100",
+          "u|cv": "40773384997/133479062100",
+          "u|fp": "54370415189/54389054389",
+          "u|fq": "54333576701/54389489501",
+          "u|fw": "13587985189/13597304389",
+          "u|qv1": "43720476250597/45416250879525",
+          "u|xu": "80656/54389",
+          "u|xv": "207936/157609",
+          "v|cu": "19660656101/46062044100",
+          "v|cv": "119487481/336219300",
+          "v|fp": "128899897205/128917128917",
+          "v|fq": "128866466845/128918160253",
+          "v|fw": "32220763205/32229378917",
+          "v|qv1": "114827469241/114398616825",
+          "v|u": "1024/373577",
+          "v|xu": "204304/128917",
+          "v|xv": "529984/373577",
+          "xu|fp": "18695160721/18769018769",
+          "xu|fq": "18547966489/18769168921",
+          "xu|fw": "4655370721/4692268769",
+          "xu|qv1": "5597016865217/15672610505025",
+          "xv|fp": "54179055701/54389054389",
+          "xv|fq": "53760461309/54389489501",
+          "xv|fw": "13492385701/13597304389",
+          "xv|qv1": "41281706041/114398616825",
+          "xv|xu": "400/54389"
+        }
+      },
+      "strict_convexity": {
+        "all_edge_nonincident_orientations_strictly_positive": true,
+        "check_count": 288,
+        "edge_nonincident_orientations": {
+          "O->qu2": {
+            "cu": "24479126/70977645",
+            "cv": "42692073909221/132578078430825",
+            "d1": "60415451439418654/1286802331436044635",
+            "d2": "279365635390918/6069840527543295",
+            "d3": "58038319572367886/1286812625844401715",
+            "delta": "155184206/3241312455",
+            "fp": "3652313358412/3241315696312455",
+            "fq": "3652934095236/1080447208937365",
+            "fw": "34458714404/15289270850235",
+            "qu1": "504028/88926015",
+            "qv1": "4547365430821208/20048751638261425",
+            "qv2": "267532204413889/10871402431327650",
+            "u": "756846/7886405",
+            "v": "296884474/4452664263",
+            "xu": "13321262/23659215",
+            "xv": "1742592638/3130902785"
+          },
+          "cu->xv": {
+            "O": "144859033/323886495",
+            "cv": "4214393941/9143315753850",
+            "d1": "1893455331456958/44372494187449815",
+            "d2": "487890987556958/11093156826199815",
+            "d3": "669889632770874/14790949722349445",
+            "delta": "611781014/14790816605",
+            "fp": "19814223167663563/44372494187449815",
+            "fq": "19751197410982067/44372849167048335",
+            "fw": "4945681616081063/11093156826199815",
+            "qu1": "6750911999/35303627955",
+            "qu2": "6637615151/28178125065",
+            "qv1": "1741070537280511/6222026370494925",
+            "qv2": "74411977361039/749751891815700",
+            "u": "1348772/107962165",
+            "v": "3022080516/101592397265",
+            "xu": "1774210/64777299"
+          },
+          "cv->cu": {
+            "O": "434932023091/9143315753850",
+            "d1": "4962162470348782117/1252635510911708277450",
+            "d2": "1284214999388272117/313159817203620777450",
+            "d3": "5311550259329919053/1252645531985774497050",
+            "delta": "4787457677717/1252634258277450",
+            "fp": "59492797969205931967/1252635510911708277450",
+            "fq": "59306719516052947703/1252645531985774497050",
+            "fw": "14849952188350311967/313159817203620777450",
+            "qu1": "19853161809931/996621417169650",
+            "qu2": "6548791951061/265156156861650",
+            "qv1": "372996470075219/12444052740989850",
+            "qv2": "3758156362171/374875945907850",
+            "u": "7385212741/9143315753850",
+            "v": "23845736581/9143315753850",
+            "xu": "31398534541/9143315753850",
+            "xv": "4214393941/9143315753850"
+          },
+          "d1->delta": {
+            "O": "80550920/54389054389",
+            "cu": "73493521406084/44372494187449815",
+            "cv": "1164464692076/767701502700735",
+            "d2": "161312000/13597317986304389",
+            "d3": "1935744000/54389543890489501",
+            "fp": "80761080/54389054389",
+            "fq": "81181158977720/54389543890489501",
+            "fw": "20242810105080/13597317986304389",
+            "qu1": "636906778938904/1612200622144009945",
+            "qu2": "237677194672224/428934110478681545",
+            "qv1": "749179304894984/348280581725233445",
+            "qv2": "689398716964/6295152322146027",
+            "u": "3694590080/21592454592433",
+            "v": "3349137024/51180100180049",
+            "xu": "23291544320/7451300451293",
+            "xv": "161312000/54389054389"
+          },
+          "d2->d1": {
+            "O": "20085310984000/13597317986304389",
+            "cu": "3675062110722632000/2218633583871328239963",
+            "cv": "19410146785191200/12795076225112430049",
+            "d3": "161312000000000/13597440362166265739501",
+            "delta": "161312000/13597317986304389",
+            "fp": "20137931640000/13597317986304389",
+            "fq": "20243112855864760000/13597440362166265739501",
+            "fw": "20190471640000/13597317986304389",
+            "qu1": "31732773558921912000/80610353547324926051989",
+            "qu2": "35534579540708872000/64340373932268518958927",
+            "qv1": "1261238657600228800/586992092439708448203",
+            "qv2": "57173652037136400/524598125229609632009",
+            "u": "925004754864000/5398135240562842433",
+            "v": "838674889264000/12795076225112430049",
+            "xu": "5822396693472000/1862832564123701293",
+            "xv": "40328080656000/13597317986304389"
+          },
+          "d3->d2": {
+            "O": "20033012952000/13597426764739501",
+            "cu": "3675467122951096000/2218651332922250159667",
+            "cv": "58237985051520800/38385535756859611323",
+            "d1": "161312000000000/13597440362166265739501",
+            "delta": "483936000/13597426764739501",
+            "fp": "20085734244714920000/13597440362166265739501",
+            "fq": "20190874920000/13597426764739501",
+            "fw": "20138334920000/13597426764739501",
+            "qu1": "31621100688984936000/80610998429508422467901",
+            "qu2": "35418271762792216000/64340888654745254630343",
+            "qv1": "112123980215070689600/52242714165085931010603",
+            "qv2": "170710558170227600/1573806966031244064243",
+            "u": "926424184592000/5398178425601581897",
+            "v": "840215643792000/12795178585619870441",
+            "xu": "5821917760416000/1862847466769311637",
+            "xv": "40328241968000/13597426764739501"
+          },
+          "delta->v": {
+            "O": "4308/128917",
+            "cu": "442544414/35058333565",
+            "cv": "583922/51180049",
+            "d1": "3349137024/51180100180049",
+            "d2": "1675809024/12795063430049",
+            "d3": "10062297216/51180509620441",
+            "fp": "4307851692/128917128917",
+            "fq": "4307529228/128918160253",
+            "fw": "1076923692/32229378917",
+            "qu1": "42004756092/3821358358585",
+            "qu2": "14862123792/1016691673385",
+            "qv1": "2158899396/69656046689",
+            "qv2": "40538206/10491910045",
+            "u": "3840/51180049",
+            "xu": "477312/17661629",
+            "xv": "1240512/51180049"
+          },
+          "fp->O": {
+            "cu": "45626685938/37256502256465",
+            "cv": "997141591552/767701502700735",
+            "d1": "108567840/54389054389",
+            "d2": "27089447911840/13597317986304389",
+            "d3": "108147529238560/54389543890489501",
+            "delta": "2000/1000001",
+            "fq": "24000/1000010000009",
+            "fw": "2000/250001250001",
+            "qu1": "5457064525184/4060958745954685",
+            "qu2": "3652313358412/3241315696312455",
+            "qv1": "136832434451504/1044841745175700335",
+            "qv2": "11141593646819/6295152322146027",
+            "u": "108368680/54389054389",
+            "v": "257681384/128917128917",
+            "xu": "6525040/18769018769",
+            "xv": "28016920/54389054389"
+          },
+          "fq->fw": {
+            "O": "6000/250003250009",
+            "cu": "6819054475194500/5588542400307934911",
+            "cv": "16566378382851700/12795178585619870441",
+            "d1": "27142311726445135000/13597440362166265739501",
+            "d2": "27089825135000/13597426764739501",
+            "d3": "27037285135000/13597426764739501",
+            "delta": "500003000/250003250009",
+            "fp": "2000000000/250003500012250009",
+            "qu1": "272932867436872000/203050373877854968433",
+            "qu2": "182680535577049000/162067729608930112419",
+            "qv1": "6676905775893381200/52242714165085931010603",
+            "qv2": "928605445134912900/524602322010414688081",
+            "u": "27083013767000/13597426764739501",
+            "v": "64412116967000/32229668981410253",
+            "xu": "1594402771000/4692310999418921",
+            "xv": "6899434151000/13597426764739501"
+          },
+          "fw->fp": {
+            "O": "2000/250001250001",
+            "cu": "6831513179331500/5588497692371103879",
+            "cv": "49778003719651700/38385228675337290147",
+            "d1": "27142095045000/13597317986304389",
+            "d2": "27089555045000/13597317986304389",
+            "d3": "27037178037375405000/13597440362166265739501",
+            "delta": "500001000/250001250001",
+            "fq": "2000000000/250003500012250009",
+            "qu1": "272892507491224000/203048749489483440937",
+            "qu2": "60882545362161000/54022144359587337497",
+            "qv1": "2253020554732686800/17414098742378017296689",
+            "qv2": "2785603863707912900/1573794375688828896027",
+            "u": "27087564589000/13597317986304389",
+            "v": "64416166989000/32229411146378917",
+            "xu": "1612814257000/4692273461268769",
+            "xv": "6951784717000/13597317986304389"
+          },
+          "qu1->qv2": {
+            "O": "139235809668449/6810246350659275",
+            "cu": "10646212574637509/81722956207911300",
+            "cv": "655835426211763/5448197080527420",
+            "d1": "2888960703704550827887/622003122029380476880450",
+            "d2": "677975696872836797887/155501247009220139380450",
+            "d3": "7606175076493348272949/1866024294148142075772150",
+            "delta": "9199696322412181/1866007500080641350",
+            "fp": "6490953696477218296556/311001561014690238440225",
+            "fq": "20267912165482325677012/933012147074071037886075",
+            "fw": "4967599125766648112168/233251870513830209070675",
+            "qu2": "356488295264149/236996573002942770",
+            "qv1": "2892136533705100703/27806235849741819825",
+            "u": "105521084503771/4540164233772850",
+            "v": "164242602482033/13620492701318550",
+            "xu": "1032927389811711/4540164233772850",
+            "xv": "1009040177349411/4540164233772850"
+          },
+          "qu2->qu1": {
+            "O": "504028/88926015",
+            "cu": "510011068/7736563305",
+            "cv": "176720741732471/2890202109791985",
+            "d1": "654782680919424118/140261454126528865215",
+            "d2": "52711192509134706/11688489575872538405",
+            "d3": "610346444288577062/140262576217039786935",
+            "delta": "1705520294/353303057595",
+            "fp": "2079167704127344/353303410898057595",
+            "fq": "2232505075606096/353306237322518355",
+            "fw": "538958745332344/88326117701807595",
+            "qv1": "12767565355247876/262237671428459439",
+            "qv2": "356488295264149/236996573002942770",
+            "u": "36429362/2578854435",
+            "v": "20513834282/2426702023335",
+            "xu": "96573954/859618145",
+            "xv": "112881700514/1023805210695"
+          },
+          "qv1->fq": {
+            "O": "135173149882512/348283367967101005",
+            "cu": "173171846283527794335082/852425284516319545242525",
+            "cv": "691241172890568028/3134550311703909045",
+            "d1": "81654746715400268895800/208970229750281383260603",
+            "d2": "20379272828178225907000/52242714165085931010603",
+            "d3": "81378571561977400/208970020780260603",
+            "delta": "408961350885917768/1044850103901303015",
+            "fp": "53742253080075924800/208970229750281383260603",
+            "fw": "6676905775893381200/52242714165085931010603",
+            "qu1": "8244311276806270115982592/30971452004092943477145075",
+            "qu2": "614774243177005752333364/2746703694552585201337025",
+            "qv2": "223925924173727746019/642582813899301354225",
+            "u": "53140194313178205312/138268497082939098985",
+            "v": "406433664229057088/1044850103901303015",
+            "xu": "557820410835440168/143144464234478513055",
+            "xv": "13184848447418128/348283367967101005"
+          },
+          "qv2->d3": {
+            "O": "345190970415643/12590405366628486",
+            "cu": "180448124988947169913/2505291063971548994100",
+            "cv": "13900229284441593/209840089443808100",
+            "d1": "1368852756372910400/6295208978516926314243",
+            "d2": "170710558170227600/1573806966031244064243",
+            "delta": "686010523692/2098400894438081",
+            "fp": "347942566717607073061/12590417957033852628486",
+            "fq": "353440556603461/12590405366628486",
+            "fw": "87673372275470720861/3147613932062488128486",
+            "qu1": "7606175076493348272949/1866024294148142075772150",
+            "qu2": "5155843287438379266691/744697768765542938496225",
+            "qv1": "88703811574003799537/1285165627798602708450",
+            "u": "24467474588964670/2499195465275754471",
+            "v": "41905852533034/10492004472190405",
+            "xu": "112363817090637548/862442767614051291",
+            "xv": "793101768557938/6295202683314243"
+          },
+          "u->cv": {
+            "O": "1020628934/2224651035",
+            "cu": "7385212741/9143315753850",
+            "d1": "2990768578642934/101592498857397265",
+            "d2": "781871347554934/25398200908647265",
+            "d3": "9792605134191218/304779934789726155",
+            "delta": "1712430766/60955438359",
+            "fp": "46538302766828234/101592498857397265",
+            "fq": "139191660774316318/304779934789726155",
+            "fw": "34850851809814202/76194602725941795",
+            "qu1": "10282744605386/55367856509425",
+            "qu2": "30855619028899/132578078430825",
+            "qv1": "2660418010694/9083250175905",
+            "qv2": "161592427631/1824213848700",
+            "v": "7456592/444930207",
+            "xu": "4312990282/101592397265",
+            "xv": "9521356/741550345"
+          },
+          "v->u": {
+            "O": "19552/373577",
+            "cu": "4749328/255900245",
+            "cv": "7456592/444930207",
+            "d1": "3671483391232/20318499771479453",
+            "d2": "1455348607232/5079640181729453",
+            "d3": "7974213113088/20318662319315077",
+            "delta": "3840/51180049",
+            "fp": "2678302097056/51180100180049",
+            "fq": "2677642265504/51180509620441",
+            "fw": "669493713056/12795063430049",
+            "qu1": "484551584/27893126705",
+            "qu2": "513047552/22263321315",
+            "qv1": "28858211488/605550011727",
+            "qv2": "564459472/91210692435",
+            "xu": "2053888/51180049",
+            "xv": "5311488/148310069"
+          },
+          "xu->qv1": {
+            "O": "4743490792/1044840700335",
+            "cu": "1889324710483861/6222026370494925",
+            "cv": "1034990550512/3134522101005",
+            "d1": "84619012570164992552/143143319089070945895",
+            "d2": "7039952272480568184/11928645709883231965",
+            "d3": "84339701777733476968/143144464234478513055",
+            "delta": "84758457678928/143143175945895",
+            "fp": "618841228500241352/143143319089070945895",
+            "fq": "557820410835440168/143144464234478513055",
+            "fw": "147040488152680352/35785937129649695895",
+            "qu1": "30476102632462392/75355652709327425",
+            "qu2": "20496161580831926/60146254914784275",
+            "qv2": "678469675621073/1285154061412050",
+            "u": "240846232684708/414801758032995",
+            "v": "614528585684/1044840700335",
+            "xv": "10702657004/208968140067"
+          },
+          "xv->xu": {
+            "O": "4660/54389",
+            "cu": "1774210/64777299",
+            "cv": "1553954/51180049",
+            "d1": "501032300160/7451300451293",
+            "d2": "125555900160/1862830701293",
+            "d3": "503413901440/7451360061637",
+            "delta": "499840/7451293",
+            "fp": "637172761260/7451300451293",
+            "fq": "634680451340/7451360061637",
+            "fw": "158981561260/1862830701293",
+            "qu1": "181511820/2353575197",
+            "qu2": "148799120/1878541671",
+            "qv1": "10702657004/208968140067",
+            "qv2": "150790638/2098382009",
+            "u": "1295040/21592433",
+            "v": "3290560/51180049"
+          }
+        },
+        "minimum_orientation": "2000000000/250003500012250009",
+        "minimum_roles": [
+          "fq",
+          "fw",
+          "fp"
+        ]
+      }
+    }
+  },
+  "claim_scope": {
+    "CounterexampleData": false,
+    "CriticalShellSystem": false,
+    "OriginalUniqueFourResidual": false,
+    "full_theorem": false,
+    "full_typed_Lean_packets": false,
+    "global_K4": false,
+    "l3_named_field_level_finite_geometry": true,
+    "lean_claim": false,
+    "promotion_claim": false
+  },
+  "first_unmodeled_next_interface": {
+    "exact_requirement": "supply R.minimal : D.Minimal to exists_global_cardMinimal_blocking_subdeletion; its construction invokes D.K4, then bind the finite rows through a total CriticalShellSystem whose source-indexed centerAt/selectedAt family covers every carrier source",
+    "name": "conditional downstream R.minimal : D.Minimal ingress",
+    "why_first": "absolute prerequisites D.K4 and a total CriticalShellSystem are absent; after granting an abstract L3 packet over genuine D/H/F/R, the first still-missing downstream field is R.minimal : D.Minimal"
+  },
+  "input_provenance": {
+    "kind": "deterministically replayed exact L2 certificate",
+    "path": "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/solver/s0-true-cap-wave2-l2-witnesses.json",
+    "schema": "rigid221-s0-l2-source-context-geometric-witnesses/v1",
+    "sha256": "22c4ed8a5c49cd9c3e1c569624861d37ee1030f12cb3c90fc7aeb36dbd7fb475",
+    "status": "SAT_EXACT_L2_SOURCE_CONTEXT_GEOMETRIC_CORE"
+  },
+  "schema": "rigid221-s0-l3-field-level-geometric-packet/v1",
+  "solver_invoked": false,
+  "source_anchors": {
+    "cap_growth": "lean/Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean:266",
+    "common_deletion_two_center_packet": "lean/Erdos9796Proof/P97/ATail/CommonDeletionTwoCenter.lean:30",
+    "coordinator_critical_shell_cover": "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Coordinator.lean:102",
+    "critical_selected_four_class": "lean/Erdos9796Proof/P97/U1CarrierInjection.lean:736",
+    "critical_shell_system_totality": "lean/Erdos9796Proof/P97/U1CarrierInjection.lean:1116",
+    "cross_deletion_survival_bridge": "lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean:781",
+    "fully_deletion_robust": "lean/Erdos9796Proof/P97/ATail/DeletionRobustness.lean:27",
+    "global_card_minimal_blocking_subdeletion": "lean/Erdos9796Proof/P97/ATail/GlobalMinimalDeletion.lean:190",
+    "global_deletion": "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221Placement.lean:52",
+    "joint_deletion": "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletion/Types.lean:42",
+    "minimal_deletion_core": "lean/Erdos9796Proof/P97/ATail/MinimalDeletionCore.lean:34",
+    "radius_classification": "lean/Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean:123",
+    "robust_ingress": "lean/Erdos9796Proof/P97/ATail/ExactFourPhysicalConsumer.lean:421",
+    "robust_surface": "lean/Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean:280",
+    "u5_q_deleted_k4_class": "lean/Erdos9796Proof/P97/U5GlobalIncidenceBasic.lean:243"
+  },
+  "status": "SAT_EXACT_L3_FIELD_LEVEL_GEOMETRIC_PACKET",
+  "supplied_value_discrepancies": []
+}

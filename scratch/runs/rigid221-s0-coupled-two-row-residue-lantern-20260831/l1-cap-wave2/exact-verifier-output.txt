@@ -1,0 +1,8 @@
+{
+  "counterexample_data": false,
+  "full_theorem": false,
+  "l1_cap_two_row_core": true,
+  "l2": false,
+  "l3": false,
+  "status": "VERIFIED_SAT_EXACT_L1_CAP_TWO_ROW_CORE"
+}

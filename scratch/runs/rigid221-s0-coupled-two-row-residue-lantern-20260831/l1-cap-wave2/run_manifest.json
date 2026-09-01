@@ -1,0 +1,32 @@
+{
+  "schema": "worktree-run-manifest/v1",
+  "lane_id": "rigid221-s0-coupled-two-row-residue-lantern-20260831",
+  "run_id": "l1-cap-wave2",
+  "root": "scratch/runs/rigid221-s0-coupled-two-row-residue-lantern-20260831/l1-cap-wave2",
+  "owner": "ResidueLantern",
+  "base_head": "f26de746bc16d15d891c42ad8cfb42876a63ab06",
+  "output_classes": [
+    "artifacts",
+    "events",
+    "tmp"
+  ],
+  "source_digests": {
+    "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/solver/rigid221_s0_true_cap_witnesses.py": "f050efc332c0ad6996e2869cad743473a4378a7f2039852a889753f3ff264404",
+    "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/solver/test_rigid221_s0_true_cap_witnesses.py": "5a8c986601d118cfcf6c8b68071d89aca5d77e76a09cf2952e14cbd084908169",
+    "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/solver/test_verify_rigid221_s0_true_cap_witnesses.py": "a416c69aac4aca5d33d707c45f3b61ac46d6230171249469fdbe5063e576138b",
+    "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/solver/verify_rigid221_s0_true_cap_witnesses.py": "29972375a67c30fb65d145deeb3ac54170fbe2d71f915987f1e2a25bd3b9c9bd",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletion/Types.lean": "8cd091cf7b62c2236798390585e38184df8f366570b4c1d69892e01233b84587",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221Placement.lean": "49c8c3d6b8ed71c44b4f4287ce923fe63ac477432063db7875ca430753be1ea8",
+    "lean/Erdos9796Proof/P97/Cap/PartitionFromMEC.lean": "69aac1234035af3fa8af657a4988a612aec3ba9c13049ddb51dde5c8d2b5144f",
+    "lean/Erdos9796Proof/P97/Cap/Structure.lean": "c37032098ca734b3732823b68f086b864f33a605fab97f4d15fc1010f9faeb11",
+    "lean/Erdos9796Proof/P97/Foundation.lean": "a391c93c43d33614d2c04166d97d6a5d88b750a5691b6c682233c1d1c9de9bd3",
+    "lean/Erdos9796Proof/P97/Moser/Triangle.lean": "7c78d8a21f64e82cf408a3c1b2e026298d6173838f6b91484d8386f31cf2a392",
+    "lean/Erdos9796Proof/P97/Moser/TriangleNonObtuse.lean": "1c8cbee10abf2c5ab422910550a83d49c3628c88196f7f6fa5da4f9ed74ebeaa",
+    "lean/Erdos9796Proof/P97/U1TwoShortCapReduction.lean": "30e455b737277a88b477e5d24fed5f2ad3e0d2af8f239ccb535bb4d892600298"
+  },
+  "input_digests": {
+    "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/s0-source-constraint-manifest.md": "96b9ea8a0b74c0c3afa00d685cbe8b45401f7ab27b9e444f4a5bdb65f1e2ebed"
+  },
+  "created_utc": "2026-09-01T07:17:53Z",
+  "manifest_sha256": "5e4c05d83b1b1706eb9997c20c5b3199b2586c9eb1928d657b240ca01b0c14b1"
+}

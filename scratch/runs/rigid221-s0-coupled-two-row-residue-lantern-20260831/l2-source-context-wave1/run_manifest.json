@@ -1,0 +1,34 @@
+{
+  "schema": "worktree-run-manifest/v1",
+  "lane_id": "rigid221-s0-coupled-two-row-residue-lantern-20260831",
+  "run_id": "l2-source-context-wave1",
+  "root": "scratch/runs/rigid221-s0-coupled-two-row-residue-lantern-20260831/l2-source-context-wave1",
+  "owner": "ResidueLantern",
+  "base_head": "f26de746bc16d15d891c42ad8cfb42876a63ab06",
+  "output_classes": [
+    "artifacts",
+    "events",
+    "tmp"
+  ],
+  "source_digests": {
+    "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/solver/rigid221_s0_l2_source_context_witnesses.py": "b682530d9f1b8df099db51558cb218ad1889d7809cccc0641bd08083acdc6f27",
+    "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/solver/test_rigid221_s0_l2_source_context_witnesses.py": "007a44205551e184937cd5116abe482e7403d714074bc7ec74c38b002d197996",
+    "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/solver/test_verify_rigid221_s0_l2_source_context_witnesses.py": "d3884e6107a1ac82c18b9019fc9ab75681227f0dd659683de014bbfd1b170ba1",
+    "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/solver/verify_rigid221_s0_l2_source_context_witnesses.py": "617e21f7c3b92e944b896059db302e97cc2fa7e74f9b94efbdcca08befea2e01",
+    "lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueArmRouteAudit/OriginalUniqueResidualDispatch.lean": "b8f7c43a89bfbd52718f313407fbf7e41b53c71a56d9d435abc7732c2d2f5bb7",
+    "lean/Erdos9796Proof/P97/ATail/ExactFourPhysicalConsumer.lean": "207c246b1986cff1301d66d27cc51a7dbab2791ca38bf7445320ffbb0b4854ef",
+    "lean/Erdos9796Proof/P97/ATail/ExactFourRobustCapExpansion.lean": "5b353a5241f69121d1bad051137c346527be803ffc82ae7cd458b6e632896418",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletion/Constructors.lean": "12608f78e86740a6e5888e050dc2d55734b5e1aa74bf882b4e27aa3af797946b",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletion/Types.lean": "8cd091cf7b62c2236798390585e38184df8f366570b4c1d69892e01233b84587",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221Placement.lean": "49c8c3d6b8ed71c44b4f4287ce923fe63ac477432063db7875ca430753be1ea8",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221SourceHeavy.lean": "2f791217320ef4e3e522ab9f3cdcbb285035bd77a85d3d996a13ec2acb9c4698",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean": "ae10256ac52a68d4d502df688b53dec71f4d4c98ca8ee7ba2fedb8360f5376ee",
+    "lean/Erdos9796Proof/P97/U1CarrierInjection.lean": "0763edd41bef51f9b5ca0c7d98d3178efdbe45f7ad130c723e672f6671379fc2"
+  },
+  "input_digests": {
+    "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/s0-source-constraint-manifest.md": "96b9ea8a0b74c0c3afa00d685cbe8b45401f7ab27b9e444f4a5bdb65f1e2ebed",
+    "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/solver/s0-true-cap-wave2-witnesses.json": "2dea3de5a636c42cde11844421c4c45c7134c1834c91fe6ed1ca21b561c54870"
+  },
+  "created_utc": "2026-09-01T07:36:01Z",
+  "manifest_sha256": "13fd9eed2ae53544faebbb88f0ef29fbf401e41b01d48b592601adb86ec6677a"
+}

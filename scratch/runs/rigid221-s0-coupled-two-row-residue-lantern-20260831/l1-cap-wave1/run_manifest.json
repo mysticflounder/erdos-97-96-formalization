@@ -24,9 +24,9 @@
     "lean/Erdos9796Proof/P97/SurplusM44Packet/Shard02.lean": "9be1f834138ec1d1e3656e26ea3d89752e73673ea35bfc631b826c70d1794f19"
   },
   "input_digests": {
-    "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/s0-source-constraint-manifest.md": "067392f77bfd3dc375b13ed5b5baf1e3ff8a65c8b3e9a757b2849350c333c269",
+    "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/s0-source-constraint-manifest.md": "96b9ea8a0b74c0c3afa00d685cbe8b45401f7ab27b9e444f4a5bdb65f1e2ebed",
     "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/solver/rigid221_s0_coupled_two_row.py": "830282ae980580f0cd2d935a0d7eb8f855da032ab6939bb21fabc28e0aa3aa3a"
   },
   "created_utc": "2026-09-01T06:29:51Z",
-  "manifest_sha256": "86f05f6c44ac6d50360df7f686a9b49505f3531753d20cdbff1cd401b7b5a9d9"
+  "manifest_sha256": "08ae85aa25c6b1ac174073c8bcf255d72a8bb6ca87ca471fdcd45dfd3cbdc1eb"
 }
