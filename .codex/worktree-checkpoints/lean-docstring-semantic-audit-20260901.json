@@ -1,0 +1,16 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "lean-docstring-semantic-audit-20260901",
+  "owner": "codex-lean-docstring-semantic-audit",
+  "base_head": "adb31b064cbe9e33ad1e6dd6a124efbea954257c",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/lean-docstring-semantic-audit-20260901.json",
+    "docs/audits/docstrings-2026-09-01/residue-lantern-semantic-audit.md",
+    "docs/audits/docstrings-2026-09-01/residue-lantern-source-manifest.sha256",
+    "docs/audits/docstrings-2026-09-01/residue-lantern-whole-tree.jsonl"
+  ],
+  "durable_paths": [],
+  "generated_roots": [],
+  "created_utc": "2026-09-01T23:15:33Z",
+  "manifest_sha256": "363c16e7955c9064d94886cbcae4571e8fbd05ce6527663832f489e603305d94"
+}
