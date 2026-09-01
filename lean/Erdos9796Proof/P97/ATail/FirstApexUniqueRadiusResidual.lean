@@ -86,7 +86,9 @@ private theorem firstApex_fullyDeletionRobust_of_exactFive
   exact fullyDeletionRobustAt_of_five_le_selectedClass
     F.radius_pos (by omega)
 
-private theorem retainedPair_doubleDeletion_obstructsFirstApex
+/-- A retained production pair obstructs simultaneous deletion at the first
+apex whenever the only four-or-larger first-apex radius is the retained one. -/
+theorem retainedPair_doubleDeletion_obstructsFirstApex
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
     (F : CriticalPairFrontier D S radius H)

@@ -8301,7 +8301,25 @@ These leaves coordinate the placement modules and the post-card-eleven continuat
 
 **Immediate consumer.** `false_of_originalFrontierUniqueRadiusArm`. This leaf has a compact contract and may be a high-leverage test of the all-blockers formulation.
 
-**Status.** [OPEN]
+**Lean realization (2026-08-31).**
+`ExactFiveCommonAdaptiveReselection.nonempty_swapped_or_distinct` chooses a
+third strict-interior exact-five point and splits its deletion at the physical
+second apex.  Criticality produces the swapped exact-four frontier.  Survival
+omits one old source from the surviving second-apex row, so the alternate pair
+formed by that source and the third point preserves the required double
+deletion.  If its obstruction centers coincided, the old common row would
+contain three distinct members of the first-apex selected class, contradicting
+`criticalFourShell_inter_selectedClass_card_le_two`.  The historical
+declaration dispatches the two outcomes to the existing exact-four and
+distinct exact-five consumers.
+
+The producer's axiom audit contains only `propext`, `Classical.choice`, and
+`Quot.sound`.  The historical declaration still reaches `sorryAx` through its
+pre-existing downstream consumers; this checkpoint removes the common-center
+declaration as an independent source-level obligation and does not close those
+consumers.
+
+**Status.** [SOURCE-CLEAN REDUCTION; DOWNSTREAM OPEN]
 
 #### 16.5.D `TriApexEndpointRetainedOmission.lean` - one-root frontier and historical endpoint specification
 

@@ -340,6 +340,30 @@ structure ExactFiveInteriorCriticalPairFrontier
     (H : CriticalShellSystem D.A) where
   interiorPair : Witness D S r
 
+/-- Build the exact-five interior frontier from a prescribed strict-interior
+pair whose simultaneous deletion preserves a four-point row at the second
+apex. -/
+noncomputable def ExactFiveInteriorCriticalPairFrontier.ofInteriorPair
+    (D : CounterexampleData) (S : SurplusCapPacket D.A)
+    (H : CriticalShellSystem D.A)
+    {r : ℝ} {q w : ℝ²}
+    (hq : q ∈ SelectedClass D.A S.oppApex1 r ∩
+      S.capInteriorByIndex S.oppIndex1)
+    (hw : w ∈ SelectedClass D.A S.oppApex1 r ∩
+      S.capInteriorByIndex S.oppIndex1)
+    (hqw : q ≠ w)
+    (hdouble :
+      HasNEquidistantPointsAt 4 ((D.A.erase q).erase w) S.oppApex2) :
+    ExactFiveInteriorCriticalPairFrontier D S r H :=
+  ⟨{
+    q := q
+    w := w
+    q_mem := hq
+    w_mem := hw
+    q_ne_w := hqw
+    secondApexDouble := hdouble
+  }⟩
+
 /-- The production critical-pair frontier determined by the interior pair. -/
 def ExactFiveInteriorCriticalPairFrontier.frontier
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {r : ℝ}

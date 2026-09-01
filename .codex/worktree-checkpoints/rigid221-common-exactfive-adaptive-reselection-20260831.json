@@ -1,0 +1,18 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "rigid221-common-exactfive-adaptive-reselection-20260831",
+  "owner": "codex-exact5-common-adaptive-reselection",
+  "base_head": "1e0deff355df517da18654adce7687fc25694c9d",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/rigid221-common-exactfive-adaptive-reselection-20260831.json",
+    "docs/erdos-97-descent-prose-proof-atomic.md",
+    "lean/Erdos9796Proof/P97/ATail/ExactFiveCommonAdaptiveReselection.lean",
+    "lean/Erdos9796Proof/P97/ATail/FirstApexExactFiveInteriorFrontier.lean",
+    "lean/Erdos9796Proof/P97/ATail/FirstApexUniqueRadiusResidual.lean",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221Closure.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-01T00:03:53Z",
+  "manifest_sha256": "91bf98b637f0d96e91a947c967408d594b470298b806313cda65d5cb09093ebe"
+}

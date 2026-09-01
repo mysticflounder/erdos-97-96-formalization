@@ -6,6 +6,7 @@ Authors: Adam McKenna
 
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.ContextFrames
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.Rigid221SourceHeavy
+import Erdos9796Proof.P97.ATail.ExactFiveCommonAdaptiveReselection
 
 namespace Problem97
 namespace ATailFrontierLiveClosure
@@ -1461,17 +1462,16 @@ private theorem exactFiveDistinct_carrierCard_ge_twelve_of_secondApexRobust
       SurplusCapPacket.oppCap2, hi] at hsum hsurplus hfirstCap hsecondCap
     omega
 
-/-- At carrier cardinality eleven, a critical physical-second-apex outcome
-reorients to an exact-four residual already closed by the checked
-card-eleven certificate. -/
-private theorem false_of_exactFiveDistinct_swapped_of_card_eq_eleven
-    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+/-- A swapped unique-four frontier carries the exact-four residual fields
+needed by the production eliminator. -/
+private theorem nonempty_exactFourResidual_of_swapped
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
     {H : CriticalShellSystem D.A}
-    {F : CriticalPairFrontier D S radius H}
-    (R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F)
-    (hcard : D.A.card = 11)
+    (hmin : D.Minimal)
+    (hNoM44 : ¬ ∃ T : SurplusCapPacket D.A, T.IsM44)
+    (hcard : 9 < D.A.card)
     (W : SwappedFirstApexUniqueFourFrontier D S H) :
-    False := by
+    Nonempty (FirstApexUniqueRadiusExactFourResidual W.frontier) := by
   rcases
       FirstApexInteriorPairGeometry.exists_exactFour_firstApex_interiorPair
         D W.packet W.radius_pos W.firstClass_card_eq_four with
@@ -1481,10 +1481,10 @@ private theorem false_of_exactFiveDistinct_swapped_of_card_eq_eleven
         ¬ HasNEquidistantPointsAt 4 (D.A.erase x) W.packet.oppApex1 :=
     ATailUniqueArmRouteAuditScratch.uniqueFour_every_classMember_blocks_firstApex
       W.firstClass_card_eq_four W.firstClass_unique_radius
-  let R4 : FirstApexUniqueRadiusExactFourResidual W.frontier := {
-    minimal := R.minimal
-    noM44 := R.noM44
-    carrier_card_gt_nine := R.carrier_card_gt_nine
+  exact ⟨{
+    minimal := hmin
+    noM44 := hNoM44
+    carrier_card_gt_nine := hcard
     class_card_eq_four := W.firstClass_card_eq_four
     unique_fourClass_radius := W.firstClass_unique_radius
     every_class_member_obstructs := hblocks
@@ -1497,10 +1497,24 @@ private theorem false_of_exactFiveDistinct_swapped_of_card_eq_eleven
       intro c hcA hcApex hcEq
       exact
         FirstApexInteriorPairGeometry.bisectorCenter_mem_firstApexInterior
-          hq hw hqw hcA hcApex hcEq }
+          hq hw hqw hcA hcApex hcEq
+  }⟩
+
+/-- At carrier cardinality eleven, a critical physical-second-apex outcome
+reorients to an exact-four residual already closed by the checked
+card-eleven certificate. -/
+private theorem false_of_exactFiveDistinct_swapped_of_card_eq_eleven
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F)
+    (hcard : D.A.card = 11)
+    (W : SwappedFirstApexUniqueFourFrontier D S H) :
+    False := by
   exact
     false_of_firstApexUniqueRadiusExactFourResidual_of_card_eq_eleven
-      R4 hcard
+      (nonempty_exactFourResidual_of_swapped
+        R.minimal R.noM44 R.carrier_card_gt_nine W).some hcard
 
 /-- The only genuinely open endpoint of the exact-five distinct-center
 residual after consuming its directed surviving row.  The critical
@@ -1684,16 +1698,25 @@ theorem false_of_firstApexUniqueRadiusExactFiveDistinctObstructionCentersResidua
     exact false_of_exactFiveDistinct_commonDeletion R C
       (Or.inr ⟨rfl, rfl⟩)
 
-/-- Open exact-five residual with a common selected obstruction center.
-This is a load-bearing production obligation for
-`false_of_originalFrontierUniqueRadiusArm`. -/
+/-- Reduce the exact-five common-obstruction-center residual by adaptive
+strict-interior reselection.  The resulting exact-four or distinct exact-five
+outcome is consumed by the existing production eliminators. -/
 theorem false_of_firstApexUniqueRadiusExactFiveCommonObstructionCenterResidual
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
     {F : CriticalPairFrontier D S radius H}
-    (_R : FirstApexUniqueRadiusExactFiveCommonObstructionCenterResidual F) :
+    (R : FirstApexUniqueRadiusExactFiveCommonObstructionCenterResidual F) :
     False := by
-  sorry
+  rcases
+      ExactFiveCommonAdaptiveReselection.nonempty_swapped_or_distinct R with
+    hswapped | hdistinct
+  · exact
+      false_of_firstApexUniqueRadiusExactFourResidual
+        (nonempty_exactFourResidual_of_swapped
+          R.minimal R.noM44 R.carrier_card_gt_nine hswapped.some).some
+  · exact
+      false_of_firstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual
+        hdistinct.some
 
 /-- Two-arm eliminator for the exact-five first-apex unique-radius residual.
 The distinct-obstruction-centers arm goes to the closed exact-five distinct
