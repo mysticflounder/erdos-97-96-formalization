@@ -143,6 +143,13 @@ rows to coincide and sharpens the envelope to
 centered at some `a∈B` with a support point `z∉B`; it forces no further center
 exclusion or cross-incidence.
 
+The first `B=A` CEGAR wave checked three structurally valid S0-N support
+signatures in one frozen 18-role label/alias/order cell. All three relaxed
+incidence/order formulas returned cvc5 UNSAT. These are exact-signature
+enumeration blocks only: the formulas omit the retained MEC, caps, `J`, endpoint
+geometry, and complete physical-center exclusions, and the wave provides
+neither exhaustive coverage nor bounded UNSAT.
+
 ## Completion matrix
 
 | Obligation | Statement | Label | Status | Evidence |
@@ -155,6 +162,7 @@ exclusion or cross-incidence.
 | O6 | Either finite witness extends to a genuine global-`K4` `CounterexampleData`, `D.Minimal`, and total shell system. | CONJECTURED | ⬜ open | Finite L3 packet geometry replays, but no ambient global structure is supplied. |
 | O7 | Total modeled critical-shell geometry is itself inconsistent with the S0-I finite packet. | EMPIRICALLY REFUTED | ✅ exact model | A 28-role seven-block model replays every finite shell assignment and deletion blocker. |
 | O8 | The named rows plus global K4 close within the sharp `|B|≤20` endpoint or force a source-faithful escape. | CONJECTURED | 🟡 residual frozen | `B=A` needs bounded all-center K4 CEGAR; `B≠A` gives only the authenticated escape row. |
+| O9 | The first three all-center support signatures in one fixed S0-N `B=A` cell are metrically realizable in the relaxed incidence/order model. | EMPIRICALLY REFUTED | 🟡 scoped blocks | Three cvc5 UNSAT receipts; no coverage or source-level impossibility claim. |
 
 The finite-core satisfiability statements are **EMPIRICALLY VERIFIED**. Any
 theorem-level or genuine-source-context conclusion remains **CONJECTURED**

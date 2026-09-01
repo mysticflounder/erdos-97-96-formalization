@@ -22,9 +22,9 @@
     "lean/Erdos9796Proof/P97/U1TwoShortCapReduction.lean": "30e455b737277a88b477e5d24fed5f2ad3e0d2af8f239ccb535bb4d892600298"
   },
   "input_digests": {
-    "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/s0-source-constraint-manifest.md": "acd0f7715ac7b5a440575aed744b890b902b3295991b768d5be6ddb8271b3ead",
+    "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/s0-source-constraint-manifest.md": "0f66a8222abdb519863b625579f4b875820c7f06b45d81f84f5efcc5c5ddbb59",
     "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/solver/s0-true-cap-wave2-l2-witnesses.json": "22c4ed8a5c49cd9c3e1c569624861d37ee1030f12cb3c90fc7aeb36dbd7fb475"
   },
   "created_utc": "2026-09-01T08:25:00Z",
-  "manifest_sha256": "47b49a8467900851bc59cfd7dd4140f523a24fb5b7e842aa71cba3ee9c07b684"
+  "manifest_sha256": "cbe0fc44423466e5b97faf32c3bfc44d96015f9ef4f549a59fe6b8cce4dde50c"
 }

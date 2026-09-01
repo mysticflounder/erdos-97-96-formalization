@@ -1,0 +1,1148 @@
+{
+  "arithmetic": "QF_NRA discovery with exact Fraction replay for rational SAT",
+  "cegar": {
+    "attempts": [
+      {
+        "block": {
+          "clause_class": "ENUMERATION_CONTROL",
+          "scope": "EXACT_COMPLETE_STRUCTURAL_SIGNATURE_ONLY",
+          "signature_sha256": "e96de6c35c0b1c8b76f53991f6313bc04d4ee74730853e9ebdd1bb8050675088",
+          "source_preserving_semantic_refinement": false
+        },
+        "candidate": {
+          "candidate_index": 1,
+          "complete_signature": {
+            "rows": [
+              {
+                "center": "O",
+                "exact": false,
+                "name": "physical_Q",
+                "origin": "SELECTED_FOUR_SUBSET_OF_SOURCE_PHYSICAL_FIVE_CLASS",
+                "support": [
+                  "v",
+                  "u",
+                  "xv",
+                  "xu"
+                ]
+              },
+              {
+                "center": "qu2",
+                "exact": false,
+                "name": "global_qu2",
+                "origin": "CEGAR_SELECTED_ROW_FROM_GLOBAL_K4",
+                "support": [
+                  "O",
+                  "qu1",
+                  "qv2",
+                  "d3"
+                ]
+              },
+              {
+                "center": "qu1",
+                "exact": false,
+                "name": "global_qu1",
+                "origin": "CEGAR_SELECTED_ROW_FROM_GLOBAL_K4",
+                "support": [
+                  "O",
+                  "qu2",
+                  "qv2",
+                  "d2"
+                ]
+              },
+              {
+                "center": "qv2",
+                "exact": false,
+                "name": "global_qv2",
+                "origin": "CEGAR_SELECTED_ROW_FROM_GLOBAL_K4",
+                "support": [
+                  "O",
+                  "qu2",
+                  "qu1",
+                  "d1"
+                ]
+              },
+              {
+                "center": "d3",
+                "exact": false,
+                "name": "global_d3",
+                "origin": "CEGAR_SELECTED_ROW_FROM_GLOBAL_K4",
+                "support": [
+                  "O",
+                  "d2",
+                  "d1",
+                  "v"
+                ]
+              },
+              {
+                "center": "d2",
+                "exact": false,
+                "name": "global_d2",
+                "origin": "CEGAR_SELECTED_ROW_FROM_GLOBAL_K4",
+                "support": [
+                  "O",
+                  "d3",
+                  "delta",
+                  "v"
+                ]
+              },
+              {
+                "center": "d1",
+                "exact": false,
+                "name": "global_d1",
+                "origin": "CEGAR_SELECTED_ROW_FROM_GLOBAL_K4",
+                "support": [
+                  "O",
+                  "delta",
+                  "u",
+                  "cv"
+                ]
+              },
+              {
+                "center": "delta",
+                "exact": true,
+                "name": "first",
+                "origin": "SOURCE_AUTHENTICATED_COMPLETE_FOUR_FIBER",
+                "support": [
+                  "O",
+                  "fq",
+                  "fw",
+                  "fp"
+                ]
+              },
+              {
+                "center": "v",
+                "exact": false,
+                "name": "global_v",
+                "origin": "CEGAR_SELECTED_ROW_FROM_GLOBAL_K4",
+                "support": [
+                  "O",
+                  "u",
+                  "cu",
+                  "xv"
+                ]
+              },
+              {
+                "center": "u",
+                "exact": false,
+                "name": "global_u",
+                "origin": "CEGAR_SELECTED_ROW_FROM_GLOBAL_K4",
+                "support": [
+                  "O",
+                  "cv",
+                  "cu",
+                  "xu"
+                ]
+              },
+              {
+                "center": "cv",
+                "exact": true,
+                "name": "Kv",
+                "origin": "SOURCE_AUTHENTICATED_COMPLETE_FOUR_FIBER",
+                "support": [
+                  "qv2",
+                  "v",
+                  "xv",
+                  "qv1"
+                ]
+              },
+              {
+                "center": "cu",
+                "exact": true,
+                "name": "Ku",
+                "origin": "SOURCE_AUTHENTICATED_COMPLETE_FOUR_FIBER",
+                "support": [
+                  "qu2",
+                  "qu1",
+                  "u",
+                  "xu"
+                ]
+              },
+              {
+                "center": "xv",
+                "exact": true,
+                "name": "Kdelta",
+                "origin": "SOURCE_AUTHENTICATED_COMPLETE_FOUR_FIBER",
+                "support": [
+                  "d3",
+                  "d2",
+                  "d1",
+                  "delta"
+                ]
+              },
+              {
+                "center": "xu",
+                "exact": false,
+                "name": "global_xu",
+                "origin": "CEGAR_SELECTED_ROW_FROM_GLOBAL_K4",
+                "support": [
+                  "O",
+                  "xv",
+                  "qv1",
+                  "fq"
+                ]
+              },
+              {
+                "center": "qv1",
+                "exact": false,
+                "name": "global_qv1",
+                "origin": "CEGAR_SELECTED_ROW_FROM_GLOBAL_K4",
+                "support": [
+                  "qu2",
+                  "qv2",
+                  "d3",
+                  "d1"
+                ]
+              },
+              {
+                "center": "fq",
+                "exact": false,
+                "name": "global_fq",
+                "origin": "CEGAR_SELECTED_ROW_FROM_GLOBAL_K4",
+                "support": [
+                  "O",
+                  "xu",
+                  "qv1",
+                  "fw"
+                ]
+              },
+              {
+                "center": "fw",
+                "exact": false,
+                "name": "global_fw",
+                "origin": "CEGAR_SELECTED_ROW_FROM_GLOBAL_K4",
+                "support": [
+                  "qu2",
+                  "d3",
+                  "d2",
+                  "v"
+                ]
+              },
+              {
+                "center": "fp",
+                "exact": false,
+                "name": "global_fp",
+                "origin": "CEGAR_SELECTED_ROW_FROM_GLOBAL_K4",
+                "support": [
+                  "qu2",
+                  "delta",
+                  "v",
+                  "u"
+                ]
+              }
+            ]
+          },
+          "metric_assertion_counts": {
+            "ambient_distinctness": 153,
+            "exact_off_row_exclusions": 52,
+            "physical_five_surplus_incidence": 1,
+            "positive_radii": 18,
+            "row_equalities": 54,
+            "similarity_gauge": 4,
+            "strict_convexity": 288,
+            "total": 570
+          },
+          "receipt_sha256": "1b89091627ce768ed399a920f7db3f8e915954d21faa59d324618b4fe011b271",
+          "schema": "rigid221-s0-faithful-ba-structural-receipt/v1",
+          "signature_sha256": "e96de6c35c0b1c8b76f53991f6313bc04d4ee74730853e9ebdd1bb8050675088",
+          "structural_replay": {
+            "accepted": true,
+            "checks": {
+              "C2_pairwise_intersections": 153,
+              "C4_distinct_center_pair_multiplicities": 71,
+              "center_omissions": 18,
+              "row_cardinality_four": 18
+            },
+            "maximum_pair_multiplicity": 2,
+            "row_count": 18
+          }
+        },
+        "disposition": "FORMULA_UNSAT_EXACT_SIGNATURE_BLOCKED",
+        "solver": {
+          "backend": "cvc5",
+          "binary_path": "/Users/adam/.local/bin/cvc5",
+          "binary_sha256": "fae4cef47a4e82e3b37f8928b5cb275c8a86d138a33e49d54a9933a157b57f74",
+          "command": [
+            "/Users/adam/.local/bin/cvc5",
+            "--lang=smt2",
+            "--nl-cov",
+            "--produce-models",
+            "--tlimit=10000",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/runs/rigid221-s0-coupled-two-row-residue-lantern-20260831/faithful-ba-cegar-wave1/tmp/candidate-0001.smt2"
+          ],
+          "returncode": 0,
+          "smt2_bytes": 75664,
+          "smt2_path": "scratch/runs/rigid221-s0-coupled-two-row-residue-lantern-20260831/faithful-ba-cegar-wave1/tmp/candidate-0001.smt2",
+          "smt2_sha256": "c0a001d84ad5e3ccf040bc08f2922f031aa0bcd14aa40a4e0fc94484937592de",
+          "status": "UNSAT",
+          "stderr_path": "scratch/runs/rigid221-s0-coupled-two-row-residue-lantern-20260831/faithful-ba-cegar-wave1/tmp/candidate-0001.stderr.log",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_path": "scratch/runs/rigid221-s0-coupled-two-row-residue-lantern-20260831/faithful-ba-cegar-wave1/tmp/candidate-0001.stdout.log",
+          "stdout_sha256": "5c17dfcc2a8f1f30d9e96df6a9825a5030ade046d560332c19de74d93d591a18",
+          "timed_out": false,
+          "timeout_ms": 10000
+        }
+      },
+      {
+        "block": {
+          "clause_class": "ENUMERATION_CONTROL",
+          "scope": "EXACT_COMPLETE_STRUCTURAL_SIGNATURE_ONLY",
+          "signature_sha256": "d35eceb4367800933ace7737a573cb85d31b7b2722a844064e03cacab76f809a",
+          "source_preserving_semantic_refinement": false
+        },
+        "candidate": {
+          "candidate_index": 2,
+          "complete_signature": {
+            "rows": [
+              {
+                "center": "O",
+                "exact": false,
+                "name": "physical_Q",
+                "origin": "SELECTED_FOUR_SUBSET_OF_SOURCE_PHYSICAL_FIVE_CLASS",
+                "support": [
+                  "v",
+                  "u",
+                  "xv",
+                  "xu"
+                ]
+              },
+              {
+                "center": "qu2",
+                "exact": false,
+                "name": "global_qu2",
+                "origin": "CEGAR_SELECTED_ROW_FROM_GLOBAL_K4",
+                "support": [
+                  "O",
+                  "qu1",
+                  "qv2",
+                  "d3"
+                ]
+              },
+              {
+                "center": "qu1",
+                "exact": false,
+                "name": "global_qu1",
+                "origin": "CEGAR_SELECTED_ROW_FROM_GLOBAL_K4",
+                "support": [
+                  "O",
+                  "qu2",
+                  "qv2",
+                  "d2"
+                ]
+              },
+              {
+                "center": "qv2",
+                "exact": false,
+                "name": "global_qv2",
+                "origin": "CEGAR_SELECTED_ROW_FROM_GLOBAL_K4",
+                "support": [
+                  "O",
+                  "qu2",
+                  "qu1",
+                  "d1"
+                ]
+              },
+              {
+                "center": "d3",
+                "exact": false,
+                "name": "global_d3",
+                "origin": "CEGAR_SELECTED_ROW_FROM_GLOBAL_K4",
+                "support": [
+                  "O",
+                  "d2",
+                  "d1",
+                  "v"
+                ]
+              },
+              {
+                "center": "d2",
+                "exact": false,
+                "name": "global_d2",
+                "origin": "CEGAR_SELECTED_ROW_FROM_GLOBAL_K4",
+                "support": [
+                  "O",
+                  "d3",
+                  "delta",
+                  "v"
+                ]
+              },
+              {
+                "center": "d1",
+                "exact": false,
+                "name": "global_d1",
+                "origin": "CEGAR_SELECTED_ROW_FROM_GLOBAL_K4",
+                "support": [
+                  "O",
+                  "delta",
+                  "u",
+                  "cv"
+                ]
+              },
+              {
+                "center": "delta",
+                "exact": true,
+                "name": "first",
+                "origin": "SOURCE_AUTHENTICATED_COMPLETE_FOUR_FIBER",
+                "support": [
+                  "O",
+                  "fq",
+                  "fw",
+                  "fp"
+                ]
+              },
+              {
+                "center": "v",
+                "exact": false,
+                "name": "global_v",
+                "origin": "CEGAR_SELECTED_ROW_FROM_GLOBAL_K4",
+                "support": [
+                  "O",
+                  "u",
+                  "cu",
+                  "xv"
+                ]
+              },
+              {
+                "center": "u",
+                "exact": false,
+                "name": "global_u",
+                "origin": "CEGAR_SELECTED_ROW_FROM_GLOBAL_K4",
+                "support": [
+                  "O",
+                  "cv",
+                  "cu",
+                  "xu"
+                ]
+              },
+              {
+                "center": "cv",
+                "exact": true,
+                "name": "Kv",
+                "origin": "SOURCE_AUTHENTICATED_COMPLETE_FOUR_FIBER",
+                "support": [
+                  "qv2",
+                  "v",
+                  "xv",
+                  "qv1"
+                ]
+              },
+              {
+                "center": "cu",
+                "exact": true,
+                "name": "Ku",
+                "origin": "SOURCE_AUTHENTICATED_COMPLETE_FOUR_FIBER",
+                "support": [
+                  "qu2",
+                  "qu1",
+                  "u",
+                  "xu"
+                ]
+              },
+              {
+                "center": "xv",
+                "exact": true,
+                "name": "Kdelta",
+                "origin": "SOURCE_AUTHENTICATED_COMPLETE_FOUR_FIBER",
+                "support": [
+                  "d3",
+                  "d2",
+                  "d1",
+                  "delta"
+                ]
+              },
+              {
+                "center": "xu",
+                "exact": false,
+                "name": "global_xu",
+                "origin": "CEGAR_SELECTED_ROW_FROM_GLOBAL_K4",
+                "support": [
+                  "O",
+                  "xv",
+                  "qv1",
+                  "fq"
+                ]
+              },
+              {
+                "center": "qv1",
+                "exact": false,
+                "name": "global_qv1",
+                "origin": "CEGAR_SELECTED_ROW_FROM_GLOBAL_K4",
+                "support": [
+                  "qu2",
+                  "qv2",
+                  "d3",
+                  "d1"
+                ]
+              },
+              {
+                "center": "fq",
+                "exact": false,
+                "name": "global_fq",
+                "origin": "CEGAR_SELECTED_ROW_FROM_GLOBAL_K4",
+                "support": [
+                  "O",
+                  "xu",
+                  "qv1",
+                  "fw"
+                ]
+              },
+              {
+                "center": "fw",
+                "exact": false,
+                "name": "global_fw",
+                "origin": "CEGAR_SELECTED_ROW_FROM_GLOBAL_K4",
+                "support": [
+                  "qu2",
+                  "d3",
+                  "d2",
+                  "v"
+                ]
+              },
+              {
+                "center": "fp",
+                "exact": false,
+                "name": "global_fp",
+                "origin": "CEGAR_SELECTED_ROW_FROM_GLOBAL_K4",
+                "support": [
+                  "qu2",
+                  "delta",
+                  "v",
+                  "cv"
+                ]
+              }
+            ]
+          },
+          "metric_assertion_counts": {
+            "ambient_distinctness": 153,
+            "exact_off_row_exclusions": 52,
+            "physical_five_surplus_incidence": 1,
+            "positive_radii": 18,
+            "row_equalities": 54,
+            "similarity_gauge": 4,
+            "strict_convexity": 288,
+            "total": 570
+          },
+          "receipt_sha256": "723a072022135a9ca9974004bf3bacc46ed8de356acb55ab0d25ff9f54b23c64",
+          "schema": "rigid221-s0-faithful-ba-structural-receipt/v1",
+          "signature_sha256": "d35eceb4367800933ace7737a573cb85d31b7b2722a844064e03cacab76f809a",
+          "structural_replay": {
+            "accepted": true,
+            "checks": {
+              "C2_pairwise_intersections": 153,
+              "C4_distinct_center_pair_multiplicities": 73,
+              "center_omissions": 18,
+              "row_cardinality_four": 18
+            },
+            "maximum_pair_multiplicity": 2,
+            "row_count": 18
+          }
+        },
+        "disposition": "FORMULA_UNSAT_EXACT_SIGNATURE_BLOCKED",
+        "solver": {
+          "backend": "cvc5",
+          "binary_path": "/Users/adam/.local/bin/cvc5",
+          "binary_sha256": "fae4cef47a4e82e3b37f8928b5cb275c8a86d138a33e49d54a9933a157b57f74",
+          "command": [
+            "/Users/adam/.local/bin/cvc5",
+            "--lang=smt2",
+            "--nl-cov",
+            "--produce-models",
+            "--tlimit=10000",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/runs/rigid221-s0-coupled-two-row-residue-lantern-20260831/faithful-ba-cegar-wave1/tmp/candidate-0002.smt2"
+          ],
+          "returncode": 0,
+          "smt2_bytes": 75668,
+          "smt2_path": "scratch/runs/rigid221-s0-coupled-two-row-residue-lantern-20260831/faithful-ba-cegar-wave1/tmp/candidate-0002.smt2",
+          "smt2_sha256": "8700333b787971e09f166550a871a40a2ae9f3029037ab64bc7458fb2ae0443f",
+          "status": "UNSAT",
+          "stderr_path": "scratch/runs/rigid221-s0-coupled-two-row-residue-lantern-20260831/faithful-ba-cegar-wave1/tmp/candidate-0002.stderr.log",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_path": "scratch/runs/rigid221-s0-coupled-two-row-residue-lantern-20260831/faithful-ba-cegar-wave1/tmp/candidate-0002.stdout.log",
+          "stdout_sha256": "5c17dfcc2a8f1f30d9e96df6a9825a5030ade046d560332c19de74d93d591a18",
+          "timed_out": false,
+          "timeout_ms": 10000
+        }
+      },
+      {
+        "block": {
+          "clause_class": "ENUMERATION_CONTROL",
+          "scope": "EXACT_COMPLETE_STRUCTURAL_SIGNATURE_ONLY",
+          "signature_sha256": "90b0febd7629b7ace4e53703b34b76508dbea93e21b024e44595aace92b8c507",
+          "source_preserving_semantic_refinement": false
+        },
+        "candidate": {
+          "candidate_index": 3,
+          "complete_signature": {
+            "rows": [
+              {
+                "center": "O",
+                "exact": false,
+                "name": "physical_Q",
+                "origin": "SELECTED_FOUR_SUBSET_OF_SOURCE_PHYSICAL_FIVE_CLASS",
+                "support": [
+                  "v",
+                  "u",
+                  "xv",
+                  "xu"
+                ]
+              },
+              {
+                "center": "qu2",
+                "exact": false,
+                "name": "global_qu2",
+                "origin": "CEGAR_SELECTED_ROW_FROM_GLOBAL_K4",
+                "support": [
+                  "O",
+                  "qu1",
+                  "qv2",
+                  "d3"
+                ]
+              },
+              {
+                "center": "qu1",
+                "exact": false,
+                "name": "global_qu1",
+                "origin": "CEGAR_SELECTED_ROW_FROM_GLOBAL_K4",
+                "support": [
+                  "O",
+                  "qu2",
+                  "qv2",
+                  "d2"
+                ]
+              },
+              {
+                "center": "qv2",
+                "exact": false,
+                "name": "global_qv2",
+                "origin": "CEGAR_SELECTED_ROW_FROM_GLOBAL_K4",
+                "support": [
+                  "O",
+                  "qu2",
+                  "qu1",
+                  "d1"
+                ]
+              },
+              {
+                "center": "d3",
+                "exact": false,
+                "name": "global_d3",
+                "origin": "CEGAR_SELECTED_ROW_FROM_GLOBAL_K4",
+                "support": [
+                  "O",
+                  "d2",
+                  "d1",
+                  "v"
+                ]
+              },
+              {
+                "center": "d2",
+                "exact": false,
+                "name": "global_d2",
+                "origin": "CEGAR_SELECTED_ROW_FROM_GLOBAL_K4",
+                "support": [
+                  "O",
+                  "d3",
+                  "delta",
+                  "v"
+                ]
+              },
+              {
+                "center": "d1",
+                "exact": false,
+                "name": "global_d1",
+                "origin": "CEGAR_SELECTED_ROW_FROM_GLOBAL_K4",
+                "support": [
+                  "O",
+                  "delta",
+                  "u",
+                  "cv"
+                ]
+              },
+              {
+                "center": "delta",
+                "exact": true,
+                "name": "first",
+                "origin": "SOURCE_AUTHENTICATED_COMPLETE_FOUR_FIBER",
+                "support": [
+                  "O",
+                  "fq",
+                  "fw",
+                  "fp"
+                ]
+              },
+              {
+                "center": "v",
+                "exact": false,
+                "name": "global_v",
+                "origin": "CEGAR_SELECTED_ROW_FROM_GLOBAL_K4",
+                "support": [
+                  "O",
+                  "u",
+                  "cu",
+                  "xv"
+                ]
+              },
+              {
+                "center": "u",
+                "exact": false,
+                "name": "global_u",
+                "origin": "CEGAR_SELECTED_ROW_FROM_GLOBAL_K4",
+                "support": [
+                  "O",
+                  "cv",
+                  "cu",
+                  "xu"
+                ]
+              },
+              {
+                "center": "cv",
+                "exact": true,
+                "name": "Kv",
+                "origin": "SOURCE_AUTHENTICATED_COMPLETE_FOUR_FIBER",
+                "support": [
+                  "qv2",
+                  "v",
+                  "xv",
+                  "qv1"
+                ]
+              },
+              {
+                "center": "cu",
+                "exact": true,
+                "name": "Ku",
+                "origin": "SOURCE_AUTHENTICATED_COMPLETE_FOUR_FIBER",
+                "support": [
+                  "qu2",
+                  "qu1",
+                  "u",
+                  "xu"
+                ]
+              },
+              {
+                "center": "xv",
+                "exact": true,
+                "name": "Kdelta",
+                "origin": "SOURCE_AUTHENTICATED_COMPLETE_FOUR_FIBER",
+                "support": [
+                  "d3",
+                  "d2",
+                  "d1",
+                  "delta"
+                ]
+              },
+              {
+                "center": "xu",
+                "exact": false,
+                "name": "global_xu",
+                "origin": "CEGAR_SELECTED_ROW_FROM_GLOBAL_K4",
+                "support": [
+                  "O",
+                  "xv",
+                  "qv1",
+                  "fq"
+                ]
+              },
+              {
+                "center": "qv1",
+                "exact": false,
+                "name": "global_qv1",
+                "origin": "CEGAR_SELECTED_ROW_FROM_GLOBAL_K4",
+                "support": [
+                  "qu2",
+                  "qv2",
+                  "d3",
+                  "d1"
+                ]
+              },
+              {
+                "center": "fq",
+                "exact": false,
+                "name": "global_fq",
+                "origin": "CEGAR_SELECTED_ROW_FROM_GLOBAL_K4",
+                "support": [
+                  "O",
+                  "xu",
+                  "qv1",
+                  "fw"
+                ]
+              },
+              {
+                "center": "fw",
+                "exact": false,
+                "name": "global_fw",
+                "origin": "CEGAR_SELECTED_ROW_FROM_GLOBAL_K4",
+                "support": [
+                  "qu2",
+                  "d3",
+                  "d2",
+                  "v"
+                ]
+              },
+              {
+                "center": "fp",
+                "exact": false,
+                "name": "global_fp",
+                "origin": "CEGAR_SELECTED_ROW_FROM_GLOBAL_K4",
+                "support": [
+                  "qu2",
+                  "delta",
+                  "v",
+                  "cu"
+                ]
+              }
+            ]
+          },
+          "metric_assertion_counts": {
+            "ambient_distinctness": 153,
+            "exact_off_row_exclusions": 52,
+            "physical_five_surplus_incidence": 1,
+            "positive_radii": 18,
+            "row_equalities": 54,
+            "similarity_gauge": 4,
+            "strict_convexity": 288,
+            "total": 570
+          },
+          "receipt_sha256": "3e558a1a55e99589a332c2b4800ed868874361fdc35fccf3075539fb2e8051bd",
+          "schema": "rigid221-s0-faithful-ba-structural-receipt/v1",
+          "signature_sha256": "90b0febd7629b7ace4e53703b34b76508dbea93e21b024e44595aace92b8c507",
+          "structural_replay": {
+            "accepted": true,
+            "checks": {
+              "C2_pairwise_intersections": 153,
+              "C4_distinct_center_pair_multiplicities": 74,
+              "center_omissions": 18,
+              "row_cardinality_four": 18
+            },
+            "maximum_pair_multiplicity": 2,
+            "row_count": 18
+          }
+        },
+        "disposition": "FORMULA_UNSAT_EXACT_SIGNATURE_BLOCKED",
+        "solver": {
+          "backend": "cvc5",
+          "binary_path": "/Users/adam/.local/bin/cvc5",
+          "binary_sha256": "fae4cef47a4e82e3b37f8928b5cb275c8a86d138a33e49d54a9933a157b57f74",
+          "command": [
+            "/Users/adam/.local/bin/cvc5",
+            "--lang=smt2",
+            "--nl-cov",
+            "--produce-models",
+            "--tlimit=10000",
+            "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/runs/rigid221-s0-coupled-two-row-residue-lantern-20260831/faithful-ba-cegar-wave1/tmp/candidate-0003.smt2"
+          ],
+          "returncode": 0,
+          "smt2_bytes": 75668,
+          "smt2_path": "scratch/runs/rigid221-s0-coupled-two-row-residue-lantern-20260831/faithful-ba-cegar-wave1/tmp/candidate-0003.smt2",
+          "smt2_sha256": "2b23eb3c9860af2ff2eb87e1d6a905b749d9eab72ce1796bd9510e29cf6a8c83",
+          "status": "UNSAT",
+          "stderr_path": "scratch/runs/rigid221-s0-coupled-two-row-residue-lantern-20260831/faithful-ba-cegar-wave1/tmp/candidate-0003.stderr.log",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_path": "scratch/runs/rigid221-s0-coupled-two-row-residue-lantern-20260831/faithful-ba-cegar-wave1/tmp/candidate-0003.stdout.log",
+          "stdout_sha256": "5c17dfcc2a8f1f30d9e96df6a9825a5030ade046d560332c19de74d93d591a18",
+          "timed_out": false,
+          "timeout_ms": 10000
+        }
+      }
+    ],
+    "blocked_exact_signatures": [
+      {
+        "clause_class": "ENUMERATION_CONTROL",
+        "scope": "EXACT_COMPLETE_STRUCTURAL_SIGNATURE_ONLY",
+        "signature_sha256": "e96de6c35c0b1c8b76f53991f6313bc04d4ee74730853e9ebdd1bb8050675088",
+        "source_preserving_semantic_refinement": false
+      },
+      {
+        "clause_class": "ENUMERATION_CONTROL",
+        "scope": "EXACT_COMPLETE_STRUCTURAL_SIGNATURE_ONLY",
+        "signature_sha256": "d35eceb4367800933ace7737a573cb85d31b7b2722a844064e03cacab76f809a",
+        "source_preserving_semantic_refinement": false
+      },
+      {
+        "clause_class": "ENUMERATION_CONTROL",
+        "scope": "EXACT_COMPLETE_STRUCTURAL_SIGNATURE_ONLY",
+        "signature_sha256": "90b0febd7629b7ace4e53703b34b76508dbea93e21b024e44595aace92b8c507",
+        "source_preserving_semantic_refinement": false
+      }
+    ],
+    "budgets": {
+      "max_candidates": 3,
+      "max_wall_seconds": 45.0,
+      "per_candidate_timeout_ms": 10000
+    },
+    "candidate_count": 3,
+    "complete_structural_coverage": false,
+    "reason": "EXPLICIT_CANDIDATE_CAP_REACHED",
+    "semantic_refinement_count": 0,
+    "signature_block_count": 3,
+    "status": "SCOPED_CANDIDATES_UNSAT_FIXED_BA_CEGAR_WAVE"
+  },
+  "claim_scope": {
+    "CounterexampleData": false,
+    "CriticalShellSystem": false,
+    "Lean_proof": false,
+    "bounded_UNSAT": false,
+    "complete_candidate_coverage": false,
+    "fixed_S0_N_B_eq_A_cell_only": true,
+    "global_theorem": false,
+    "relaxed_incidence_order_metric_model_only": true
+  },
+  "encoded_omitted_ledger": {
+    "encoded": [
+      "fixed S0-N exact-18 role domain and cyclic order",
+      "compatible prescribed SelectedFourClass rows",
+      "authenticated physical-five surplus incidence delta at O",
+      "one selected four-support at every remaining center",
+      "C2 pairwise selected-row intersection at most two",
+      "C4 point-pair multiplicity at most two distinct centers",
+      "row equidistance and positive squared radii",
+      "off-row radius exclusions for Ku, Kv, Kdelta, and F1 only",
+      "ambient distinctness and every edge/nonincident strict orientation"
+    ],
+    "omitted": [
+      "typed Lean FaithfulCarrierPattern construction",
+      "CounterexampleData, D.Minimal, and CriticalShellSystem",
+      "retained source coordinates, MEC, caps, J1/J2, and endpoint geometry",
+      "exact physical-O off-row constraints",
+      "complete support/order/alias/cardinality coverage beyond this cell",
+      "proof-carrying QF_NRA UNSAT",
+      "exact replay of nonrational algebraic SAT models"
+    ]
+  },
+  "first_unmodeled_next_interface": "authenticated exhaustive structural support/order cell coverage, followed by a checked terminal proof or exact positive model for every retained cell",
+  "fixed_cell": {
+    "branch": "S0-N",
+    "canonical_aliases": {
+      "O": 2,
+      "cu": 14,
+      "cv": 15,
+      "d1": 3,
+      "d2": 4,
+      "d3": 5,
+      "delta": 1,
+      "fp": 9,
+      "fq": 11,
+      "fw": 10,
+      "qu1": 7,
+      "qu2": 8,
+      "qv1": 12,
+      "qv2": 6,
+      "u": 16,
+      "v": 17,
+      "xu": 0,
+      "xv": 13
+    },
+    "carrier_cardinality": 18,
+    "cyclic_order": [
+      "O",
+      "qu2",
+      "qu1",
+      "qv2",
+      "d3",
+      "d2",
+      "d1",
+      "delta",
+      "v",
+      "u",
+      "cv",
+      "cu",
+      "xv",
+      "xu",
+      "qv1",
+      "fq",
+      "fw",
+      "fp"
+    ],
+    "named_centers": [
+      "O",
+      "delta",
+      "cv",
+      "cu",
+      "xv"
+    ],
+    "named_rows": [
+      {
+        "center": "O",
+        "exact": false,
+        "name": "physical_Q",
+        "origin": "SELECTED_FOUR_SUBSET_OF_SOURCE_PHYSICAL_FIVE_CLASS",
+        "support": [
+          "v",
+          "u",
+          "xv",
+          "xu"
+        ]
+      },
+      {
+        "center": "cu",
+        "exact": true,
+        "name": "Ku",
+        "origin": "SOURCE_AUTHENTICATED_COMPLETE_FOUR_FIBER",
+        "support": [
+          "qu2",
+          "qu1",
+          "u",
+          "xu"
+        ]
+      },
+      {
+        "center": "cv",
+        "exact": true,
+        "name": "Kv",
+        "origin": "SOURCE_AUTHENTICATED_COMPLETE_FOUR_FIBER",
+        "support": [
+          "qv2",
+          "v",
+          "xv",
+          "qv1"
+        ]
+      },
+      {
+        "center": "xv",
+        "exact": true,
+        "name": "Kdelta",
+        "origin": "SOURCE_AUTHENTICATED_COMPLETE_FOUR_FIBER",
+        "support": [
+          "d3",
+          "d2",
+          "d1",
+          "delta"
+        ]
+      },
+      {
+        "center": "delta",
+        "exact": true,
+        "name": "first",
+        "origin": "SOURCE_AUTHENTICATED_COMPLETE_FOUR_FIBER",
+        "support": [
+          "O",
+          "fq",
+          "fw",
+          "fp"
+        ]
+      }
+    ],
+    "named_union_equals_A": true,
+    "named_union_roles": [
+      "O",
+      "qu2",
+      "qu1",
+      "qv2",
+      "d3",
+      "d2",
+      "d1",
+      "delta",
+      "v",
+      "u",
+      "cv",
+      "cu",
+      "xv",
+      "xu",
+      "qv1",
+      "fq",
+      "fw",
+      "fp"
+    ],
+    "physical_five": {
+      "center": "O",
+      "roles": [
+        "delta",
+        "v",
+        "u",
+        "xv",
+        "xu"
+      ],
+      "selected_Q": [
+        "v",
+        "u",
+        "xv",
+        "xu"
+      ],
+      "surplus_incidence_role": "delta"
+    },
+    "retained_named_geometry_replay": {
+      "accepted": true,
+      "checks": {
+        "ambient_distinctness": 153,
+        "exact_off_row_exclusions": 52,
+        "physical_five_surplus_incidence": 1,
+        "positive_radii": 5,
+        "row_equalities": 15,
+        "strict_convexity": 288
+      },
+      "minimum_exact_gap_squared": "24498303584925762206224/28123115008655976150896289",
+      "minimum_orientation": "2000000000/250003500012250009",
+      "minimum_pair_distance_squared": "1000000/250003250009",
+      "minimum_row_radius_squared": "119487481/336219300"
+    },
+    "source_path": "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/solver/s0-true-cap-wave2-l3-witnesses.json",
+    "source_sha256": "c2a2539c1a4a9a48792b62fc6a1d9500f9a8969deec12079784258d7a8c94cd2"
+  },
+  "governance_revision_boundary": {
+    "checkpoint_meaning": "repository input checkpoint used by this audit rerun",
+    "current_input_checkpoint": "aeee9534c5bf00212459a743db1333a34ee30b3d",
+    "run_manifest_base_head": "f26de746bc16d15d891c42ad8cfb42876a63ab06",
+    "run_manifest_base_head_meaning": "historical original lane base retained as required by governance"
+  },
+  "relaxed_metric_model_scope": {
+    "classification": "RELAXED_INCIDENCE_ORDER_METRIC_MODEL",
+    "encoded_only": [
+      "similarity gauge O=(0,0), u=(1,0)",
+      "selected four-row equalities and positive radii",
+      "authenticated physical O-delta fifth incidence",
+      "off-row exclusions for named exact rows Ku, Kv, Kdelta, F1 only",
+      "ambient point distinctness",
+      "retained fixed cyclic-order strict convexity"
+    ],
+    "not_retained": {
+      "J1_J2_or_endpoint_geometry": false,
+      "MEC": false,
+      "cap_triples_or_cards": false,
+      "exact_physical_O_off_row_constraints": false,
+      "source_coordinates": false
+    }
+  },
+  "row_origin_guard": {
+    "Ku_Kv_Kdelta_F1": {
+      "guard": "retained S0-N complete modeled four-fiber",
+      "representation": "exact row with every off-row radius exclusion",
+      "source_origin": "source-authenticated named critical row geometry"
+    },
+    "physical_Q": {
+      "guard": "S0-N retained physical five-class and Q=C\\{delta}",
+      "representation": "nonexact selected four-class plus authenticated delta fifth incidence, with no O off-row exclusions",
+      "source_origin": "SelectedFourClass subset of physical SelectedClass"
+    },
+    "remaining_thirteen": {
+      "guard": "B=A and global HasNEquidistantProperty 4",
+      "representation": "one nonexact selected four-class per center",
+      "source_origin": "FaithfulCarrierPattern.classAt"
+    }
+  },
+  "schema": "rigid221-s0-faithful-ba-fixed-cell-cegar/v1",
+  "similarity_gauge": {
+    "center": "O",
+    "center_coordinates": [
+      "0/1",
+      "0/1"
+    ],
+    "justification": "u belongs to physical_Q at O and O != u; normalAxis sends O to (0,0) and u to (1,0), preserving distance equalities and strict convexity under the common positive similarity",
+    "witness": "u",
+    "witness_coordinates": [
+      "1/1",
+      "0/1"
+    ]
+  },
+  "solver_invoked": true,
+  "source_anchors": {
+    "faithful_carrier_pattern": "lean/Erdos9796Proof/P97/U1CarrierInjection.lean:1492",
+    "normal_axis": "lean/Erdos9796Proof/P97/U1CarrierInjection.lean:140",
+    "normalized_class_row": "lean/Erdos9796Proof/P97/U1CarrierInjection.lean:1592",
+    "prescribed_classes": "lean/Erdos9796Proof/P97/U1CarrierInjection.lean:1731",
+    "selected_four_class": "lean/Erdos9796Proof/P97/U1CarrierInjection.lean:400"
+  },
+  "status": "SCOPED_CANDIDATES_UNSAT_FIXED_BA_CEGAR_WAVE",
+  "wave_data_generalization_checkpoint": {
+    "candidate_general_theorem": null,
+    "outcome": "No stable general pattern is asserted from this capped first wave; each metric-UNSAT record remains an exact-signature enumeration block.",
+    "reviewed_exact_signature_blocks": 3
+  }
+}

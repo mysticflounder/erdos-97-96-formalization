@@ -126,6 +126,7 @@ decides neither S0-I nor S0-N.
 | M7 | Adding an exact delta row satisfies every named finite geometric predicate abstracted from joint deletion, robust surface, and singleton global deletion. | EMPIRICALLY VERIFIED | ✅ field-level core | Exact 19-role and 18-role packets; typed dependent Lean packets remain unconstructed. |
 | M8 | A finite S0-I carrier satisfies a total modeled shell assignment and deletion blocker at every source. | EMPIRICALLY VERIFIED | ✅ finite total-system model | Seven exact four-fibers partition 28 roles; global K4 fails at 20 centers. |
 | M9 | The compatible named rows either exhaust a global-K4 carrier within the sharp bound or have a faithful selected-row escape. | PROVEN (source API, conditional on genuine D.K4) | 🟡 split | Raw `|B|≤20`; proper `B` has an actual row escaping `B`, while `B=A` remains a bounded endpoint. |
+| M10 | Three fixed all-center support signatures in one S0-N 18-role `B=A` order cell satisfy the relaxed incidence/order metric formulas. | EMPIRICALLY REFUTED | 🟡 formula-scoped | Three cvc5 UNSAT receipts; no exhaustive candidate or order coverage. |
 
 The finite seed rejection and both wave-2 finite-core satisfiability statements
 are **EMPIRICALLY VERIFIED** because their arithmetic premises are externally
@@ -176,3 +177,10 @@ give `|B|≤15-|Ku∩Kv|`. If `B` is proper, the trusted escape theorem yields a
 actual selected class centered at `a∈B` with some support point `z∉B`; no
 further location or incidence is source-forced. If `B=A`, the remaining target
 is a bounded all-center K4 endpoint, not an established contradiction.
+
+Wave 1 at that endpoint emits three relaxed incidence/order QF_NRA cells. Each
+keeps all selected-row equalities, the authenticated fifth physical incidence,
+the named exact-row exclusions, ambient distinctness, and full fixed-order
+convexity, but omits the retained MEC/cap/`J`/endpoint geometry. Cvc5 returns
+UNSAT for all three signatures. These results block only those signatures and
+do not establish bounded UNSAT or a source-level contradiction.

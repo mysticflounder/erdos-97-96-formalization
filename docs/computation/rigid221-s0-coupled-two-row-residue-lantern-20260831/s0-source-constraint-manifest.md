@@ -199,3 +199,15 @@ all-center K4 endpoint still requiring exact CEGAR. If `B≠A`, the trusted esca
 API yields only `a∈B`, an actual selected four-class centered at `a`, and a
 support point `z∉B`. It does not force `a` away from O or named centers, nor any
 cross-incidence for `z`.
+
+The first fixed `B=A` CEGAR wave freezes one retained S0-N 18-role
+label/alias/cyclic-order cell. Three structurally valid all-center support
+signatures were emitted as relaxed incidence/order QF_NRA formulas; cvc5
+returned UNSAT for all three within the per-candidate limit. Each formula keeps
+the similarity gauge, selected-row equations, authenticated fifth physical
+incidence, exact off-row exclusions only for `Ku`, `Kv`, `Kdelta`, and `F1`,
+ambient distinctness, and every edge/nonincident orientation. It deliberately
+omits the retained coordinates, MEC, caps, `J`, endpoint geometry, and exact
+physical-center off-row constraints. Its status is
+`SCOPED_CANDIDATES_UNSAT_FIXED_BA_CEGAR_WAVE`: the three complete support
+signatures alone are blocked. Candidate coverage and bounded UNSAT are false.

@@ -1,0 +1,12 @@
+{
+  "CounterexampleData": false,
+  "CriticalShellSystem": false,
+  "Lean_proof": false,
+  "bounded_UNSAT": false,
+  "candidate_signature_count": 3,
+  "complete_candidate_coverage": false,
+  "fixed_S0_N_B_eq_A_cell_only": true,
+  "global_theorem": false,
+  "relaxed_incidence_order_metric_model_only": true,
+  "status": "VERIFIED_SCOPED_CANDIDATES_UNSAT_FIXED_BA_CEGAR_WAVE"
+}

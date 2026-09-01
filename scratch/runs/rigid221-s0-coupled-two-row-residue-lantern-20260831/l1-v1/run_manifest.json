@@ -30,10 +30,10 @@
   "input_digests": {
     "docs/audits/2026-08-29-rigid221-s0-l1-computation.md": "f29fe531fe9cafcc8e86ff9c52979fabad7c7574655a773bcb931a1c258a7f25",
     "docs/audits/2026-08-29-rigid221-s0-l1-source-constraint-manifest.md": "06d1e5444f924468c149a5887267c002c0709a047f4ba34fec1305148841f673",
-    "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/s0-source-constraint-manifest.md": "acd0f7715ac7b5a440575aed744b890b902b3295991b768d5be6ddb8271b3ead",
+    "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/s0-source-constraint-manifest.md": "0f66a8222abdb519863b625579f4b875820c7f06b45d81f84f5efcc5c5ddbb59",
     "docs/specs/p97-rigid221-s0-coupled-two-row-computational-spec-v1.md": "999087c43a9da08ab633ddf92eab0ac4860606fb84361c4c3b9a79ca0211f6f0",
     "scripts/rigid221_s0_l1.py": "6539acf3c5e061bf6ae82d25b089e58dd89085edd5c85fa2a48c6cf34d63e7e2"
   },
   "created_utc": "2026-09-01T04:37:10Z",
-  "manifest_sha256": "cb72ba3d4dfdae1b480f64844eb0b0ff5dd9a08b4f5f5efcc63550d7c773d7c5"
+  "manifest_sha256": "f44302d4b9f14796a01c81f9580d526e9cbda275c23f583da1caf101c74f6cd9"
 }
