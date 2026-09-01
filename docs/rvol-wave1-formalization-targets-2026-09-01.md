@@ -154,14 +154,24 @@ For every checkpoint: run the targeted Lean build, reject any new sorry-bearing
 declaration, audit `#print axioms`, and keep the result off-spine unless a real
 publish-spine consumer is established.
 
-## Initial formalization checkpoint
+## Formalization status
 
-The first checkpoint implements `AbstractRowSystem` and the cyclic row,
-blocker, and system definitions. For every `9 ≤ n` it proves row cardinality
-four, center exclusion, and the blocker-section property. It also proves the
-blocker map bijective and, for every nonzero modulus, proves that every
-nonempty support-closed set is the whole carrier.
+P1 is now formalized in `AbstractRowSystem.lean` and
+`Cyclic1248AbstractRowSystem.lean`. For every `9 ≤ n` the kernel-checked
+theorems establish:
 
-The row-intersection and pair-codegree bounds are not part of this checkpoint;
-they remain the next proof block and will be derived from the ordered-difference
-fibers rather than asserted as fields of the shared interface.
+- row cardinality four and center exclusion;
+- the blocker-section property and blocker-map bijectivity;
+- row-intersection and pair-codegree bounds of two; and
+- support minimality for every nonzero modulus.
+
+For `15 ≤ n`, separate theorems strengthen both incidence bounds to one. The
+proof is uniform: ordered offset pairs give integer gaps in `[-7,7]`; three
+pairwise-distinct congruent gaps would require total span at least `2n`, and
+two distinct congruent gaps would require span at least `n`. No solver,
+`native_decide`, or finite modulus enumeration is used.
+
+All public endpoint theorems are registered as deliberate off-spine
+infrastructure. The targeted build passes, their axiom closures contain only
+`propext`, `Classical.choice`, and `Quot.sound`, and the repository-wide count
+remains 28 on-spine sorry-bearing declarations with none off-spine.

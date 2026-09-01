@@ -146,11 +146,39 @@ registered_at = "2026-09-01T23:17:56+00:00"
 updated_at = "2026-09-01T23:17:56+00:00"
 
 [[offspine]]
+symbol = "Problem97.Cyclic1248AbstractRowSystem.system_pairCodegreeLE_one"
+category = "infra"
+reason = "Deliberate off-spine incidence obstruction for the cyclic 1-2-4-8 row-system formalization."
+registered_at = "2026-09-01T23:29:54+00:00"
+updated_at = "2026-09-01T23:29:54+00:00"
+
+[[offspine]]
+symbol = "Problem97.Cyclic1248AbstractRowSystem.system_pairCodegreeLE_two"
+category = "infra"
+reason = "Deliberate off-spine incidence obstruction for the cyclic 1-2-4-8 row-system formalization."
+registered_at = "2026-09-01T23:29:56+00:00"
+updated_at = "2026-09-01T23:29:56+00:00"
+
+[[offspine]]
 symbol = "Problem97.Cyclic1248AbstractRowSystem.system_rowCardEq"
 category = "infra"
 reason = "Deliberate off-spine combinatorial obstruction for the cyclic 1-2-4-8 row-system formalization."
 registered_at = "2026-09-01T23:17:54+00:00"
 updated_at = "2026-09-01T23:17:54+00:00"
+
+[[offspine]]
+symbol = "Problem97.Cyclic1248AbstractRowSystem.system_rowInterCardLE_one"
+category = "infra"
+reason = "Deliberate off-spine incidence obstruction for the cyclic 1-2-4-8 row-system formalization."
+registered_at = "2026-09-01T23:29:53+00:00"
+updated_at = "2026-09-01T23:29:53+00:00"
+
+[[offspine]]
+symbol = "Problem97.Cyclic1248AbstractRowSystem.system_rowInterCardLE_two"
+category = "infra"
+reason = "Deliberate off-spine incidence obstruction for the cyclic 1-2-4-8 row-system formalization."
+registered_at = "2026-09-01T23:29:55+00:00"
+updated_at = "2026-09-01T23:29:55+00:00"
 
 [[offspine]]
 symbol = "Problem97.Cyclic1248AbstractRowSystem.system_supportMinimal"
