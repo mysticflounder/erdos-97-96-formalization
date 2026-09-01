@@ -76,6 +76,45 @@ Structural negative control (plan guardrail, counting): the closed sibling
 closes by `hfive` against `_hnoFive`; the control asserts a five-class at
 `a2` and must be UNSAT at the structural stage.
 
+## 3a. Reuse map (audited 2026-09-01) and structural-first plan
+
+Audit of `census/card_head/b1_exact12_structural.py`, `sat_encoding.py`,
+the three `b1_exact12_static_*.py` layers and `b1_exact12_metric_piqd.py`:
+
+- `sat_encoding.CoverInstance` selects exactly one four-row per center
+  (`sat_encoding.py:135-142`). D-R needs two disjoint four-classes at `a2`
+  plus the packet row, so the row model is not reusable. Its profile table
+  (`profiles.py`, minimum `(5,5,4)`) has no `(5,4,6)`; the model-slot
+  profile `(5,6,4)` with `a2 = V` is the theorem-order `(5,4,6)`.
+- The E/G/C static layers check exact types
+  (`b1_exact12_static_equality.py:233-240`), so their installers are not
+  reusable; their clause generators are: the equality relation over the 66
+  edges with transitivity and duplicate-three-point-center clauses
+  (`static_equality.py:339-389`), `_cached_geometry_clause_delta(edges,
+  relation_variable_items)` (`static_geometry.py:336-676`, every rule names
+  its Lean theorem) and `_convex_clause_delta` (`static_convex.py:133-155`)
+  take only edges and the relation map.
+- `b1_exact12_metric_piqd.py` is pinned to the B1 lane, profile, run id,
+  cell index and producer path throughout; only the generic
+  `metric_realizability_piqd.build_stage_smt2` (rows with `exact` flags plus
+  cyclic order) is reusable.
+- Not present anywhere: no-five at `a2`, blocker existence and uniqueness
+  (`CriticalShellSystem`), `FullyDeletionRobustAt`, distinct radii, the
+  ingress packet fields, cyclic order at the SAT level. These are new D-R
+  clause blocks.
+
+Decision. Encoding 1b is built structural-first as one CNF over the
+edge-equality relation `eq(e, e')` on the 66 edges of the 12 points (as in
+the B1 E-layer), with the D-R blocks from Section 2 stated as cardinality
+and exclusion constraints on that relation (class of `z` at `c` = edges
+`cz'` equal to `cz`), plus the reusable G and C deltas. CaDiCaL through
+PIQD with DRAT capture decides it. Structural UNSAT at card 12 would be a
+finite incidence result with a checked proof and no coordinates, the same
+shape the B1 certificate ingress consumes; structural SAT yields explicit
+equality patterns, enumerated under a cap with blocking clauses, for the
+metric stage. New module: `census/card_head/dr_exact12_structural.py`
+(to be added to the lane's owned paths before it is written).
+
 ## 4. Static and metric stages
 
 Static layers (order and convexity consequences that need no coordinates)
