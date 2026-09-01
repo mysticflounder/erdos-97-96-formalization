@@ -8,7 +8,8 @@
     "census/card_head/dr_two_radius_quotient.py",
     "census/card_head/tests/test_dr_two_radius_quotient.py",
     "docs/audits/2026-09-01-dr-two-radius-quotient-wave.md",
-    "docs/plans/2026-09-01-dr-two-radius-branch-closure.md"
+    "docs/plans/2026-09-01-dr-two-radius-branch-closure.md",
+    "docs/specs/p97-dr-two-radius-exact12-cell-v1.md"
   ],
   "generated_roots": [
     "scratch/runs/dr-two-radius-20260901/q1a-wave-1",
@@ -20,5 +21,5 @@
     "certificates/p97_dr_two_radius/witness-z-exact-witness.json"
   ],
   "created_utc": "2026-09-01T20:19:21Z",
-  "manifest_sha256": "bc70748518950233b866ec27b3d89cf72b1658344d73cd500c5a8a5a4273bc29"
+  "manifest_sha256": "29a1af619fb554e7ad5447af42136d3431b6fa7e5ec922f2fe1cd72b4279efc0"
 }
