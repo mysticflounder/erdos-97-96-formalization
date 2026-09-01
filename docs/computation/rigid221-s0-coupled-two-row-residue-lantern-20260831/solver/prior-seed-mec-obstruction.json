@@ -55,6 +55,7 @@
     }
   },
   "remaining_gap": "Construct different coordinates with three distinct non-obtuse MEC-boundary vertices, a surplus cap different from the O-opposite cap, and exact S0-I or S0-N membership while preserving both ambient exact four-fibers.",
+  "row_core_status": "ROW_CORE_POSITIVE_CONTROL",
   "schema": "rigid221-s0-prior-seed-obstruction/v1",
   "source_obstruction": {
     "actual_boundary_cardinality": 2,

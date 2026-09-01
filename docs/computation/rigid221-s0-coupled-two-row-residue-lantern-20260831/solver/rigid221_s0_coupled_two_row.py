@@ -24,8 +24,9 @@ from typing import Any
 F = Fraction
 Point = tuple[F, F]
 
-LANE_STATUS = "ENCODING_BLOCKED"
-SEED_STATUS = "SOURCE_INVALID"
+LANE_STATUS = "OPEN"
+ROW_CORE_STATUS = "ROW_CORE_POSITIVE_CONTROL"
+SOURCE_STATUS = "SOURCE_INVALID"
 ORDER = (
     "O",
     "au",
@@ -198,6 +199,8 @@ def build_report() -> dict[str, Any]:
     return {
         "schema": "rigid221-s0-prior-seed-obstruction/v1",
         "status": LANE_STATUS,
+        "row_core_status": ROW_CORE_STATUS,
+        "source_status": SOURCE_STATUS,
         "claim_scope": {
             "row_core_exact": True,
             "seed_source_valid": False,
@@ -264,7 +267,8 @@ def main() -> None:
             args.row_core_output,
             {
                 "schema": report["schema"],
-                "status": SEED_STATUS,
+                "status": ROW_CORE_STATUS,
+                "source_status": SOURCE_STATUS,
                 "points": report["points"],
                 "cyclic_order": report["cyclic_order"],
                 "row_core": report["row_core"],
@@ -276,7 +280,8 @@ def main() -> None:
             args.mec_output,
             {
                 "schema": report["schema"],
-                "status": SEED_STATUS,
+                "status": SOURCE_STATUS,
+                "row_core_status": ROW_CORE_STATUS,
                 "prior_single_row_mec": report["prior_single_row_mec"],
                 "coupled_row_mec": report["coupled_row_mec"],
                 "source_obstruction": report["source_obstruction"],

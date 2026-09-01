@@ -1,7 +1,7 @@
 # Rigid221 S0 coupled-two-row L1 result
 
-**Outcome:** `SOURCE_INVALID` for the advertised starting seed;
-`ENCODING_BLOCKED` for the remaining source-legal L1 cells.
+**Outcome:** `ROW_CORE_POSITIVE_CONTROL` for the displayed coordinates, with
+source status `SOURCE_INVALID`; S0-I and S0-N are separately `OPEN`.
 **Base HEAD:** `f26de746bc16d15d891c42ad8cfb42876a63ab06`
 **Trust:** exact external `Fraction` replay; no solver verdict and no Lean claim
 
@@ -13,7 +13,8 @@ first exact obstruction to using that seed in the source L1 packet.
 
 ## Main result
 
-**EMPIRICALLY VERIFIED (finite exact replay).** The known twelve-role extension
+**EMPIRICALLY VERIFIED (finite exact replay; row-core positive control only).**
+The known twelve-role extension
 realizes the physical five-fiber, both complete four-point row fibers, the rigid
 `2+2+1` intersections, mutual omissions, all 120 strict convexity checks, and
 both modeled post-deletion multiplicity bounds. Thus adding `{v,xv}` and `Kv`
@@ -40,13 +41,17 @@ cap `J`. The manual wedge label on the old artifact cannot decide S0-I.
 
 ## Priority-question answers
 
-1. **Prior seed and extension:** `SOURCE_INVALID`. Their two-point MEC boundary
-   prevents construction of `SurplusCapPacket.hCirc`.
-2. **L1-S0-I:** `ENCODING_BLOCKED`. The prior candidate fails source ingress;
-   the previous fixed fourteen-role cell ended `UNKNOWN_TIMEOUT`; other legal
+1. **Prior seed and extension:** `ROW_CORE_POSITIVE_CONTROL`, with source status
+   `SOURCE_INVALID`. Their two-point MEC boundary prevents construction of
+   `SurplusCapPacket.hCirc`; the manual cap is not valid.
+2. **L1-S0-I:** `OPEN`. The fixed twelve-role cell is
+   `UNSAT_FIXED_CELL_EXACT` at the MEC ingress, and the bounded
+   coordinate-preserving repair grid produced no non-obtuse boundary triple.
+   The previous fixed fourteen-role cell ended `UNKNOWN_TIMEOUT`; other legal
    cells remain unencoded.
-3. **L1-S0-N:** `ENCODING_BLOCKED` for the same reasons. No exact S0-N witness
-   or source-exhaustive contradiction is available.
+3. **L1-S0-N:** `OPEN` for the same reasons. The fixed twelve-role rejection
+   applies before the S0 split, but no exact S0-N witness or source-exhaustive
+   contradiction is available.
 4. **First second-row distinction:** none in the exact closed row core. Both
    actual four-fibers and both deletion multiplicity checks pass. The first
    exact obstruction is earlier and independent of the second row: the prior
@@ -62,11 +67,28 @@ cap `J`. The manual wedge label on the old artifact cannot decide S0-I.
    supporting `SurplusCapPacket.hCirc`, the rotated surplus cap, and actual
    S0-I or S0-N membership, followed by legal equality/order coverage.
 
+## True-cap repair wave 1
+
+**EMPIRICALLY VERIFIED (finite exact replay).** In the fixed twelve-role cell,
+`hCirc` fails first because the MEC boundary has cardinality two (`TC-02`).
+Independently, conditional on the physical assignment `O = S.oppApex2`, the
+single minimized source consequence `TC-03` is refuted by the exact positive
+MEC slack `3051/6749` at `O`. Both fixed-cell S0 branches therefore have status
+`UNSAT_FIXED_CELL_EXACT` before membership in `J` is reached.
+
+**EMPIRICALLY VERIFIED (finite exact grid exhaustion).** A bounded rational
+repair family preserving all twelve coordinates and adding at most two
+Moser-only roles produced zero non-obtuse three-point MEC boundaries containing
+`O`. This is not an unrestricted contradiction: coordinate deformations,
+other rational or algebraic centers, S0-I, and S0-N remain open. The standalone
+wave verifier reports `VERIFIED_SCOPED_OBSTRUCTION` and reconstructs no
+`SAT_EXACT` witness.
+
 ## Completion matrix
 
 | Obligation | Statement | Label | Status | Evidence |
 |---|---|---|---|---|
-| O1 | The listed twelve roles satisfy the closed row core. | EMPIRICALLY VERIFIED | 🟡 partial | Exact producer and independent verifier; this is one fixed carrier. |
+| O1 | The listed twelve roles satisfy the closed row core. | EMPIRICALLY VERIFIED | 🟡 row-core positive control | Exact producer and independent verifier; this is not a source cap model. |
 | O2 | The displayed midpoint disk encloses both listed carriers with boundary `{v,xv}`. | EMPIRICALLY VERIFIED | 🟡 partial | Exact rational slacks in both MEC records. |
 | O3 | O2 implies that neither listed carrier supplies `SurplusCapPacket.hCirc`. | PROVEN (pen-and-paper) | ✅ done | Diameter lower bound plus the three-distinct-boundary source field. |
 | O4 | A different source-valid carrier decides S0-I or S0-N. | CONJECTURED | ⬜ open | No witness or source-exhaustive contradiction. |

@@ -19,7 +19,8 @@ import verify_rigid221_s0_coupled_two_row as verifier
 def split_documents(report: dict[str, object]) -> tuple[dict[str, object], dict[str, object]]:
     row = {
         "schema": report["schema"],
-        "status": producer.SEED_STATUS,
+        "status": producer.ROW_CORE_STATUS,
+        "source_status": producer.SOURCE_STATUS,
         "points": report["points"],
         "cyclic_order": report["cyclic_order"],
         "row_core": report["row_core"],
@@ -27,7 +28,8 @@ def split_documents(report: dict[str, object]) -> tuple[dict[str, object], dict[
     }
     mec = {
         "schema": report["schema"],
-        "status": producer.SEED_STATUS,
+        "status": producer.SOURCE_STATUS,
+        "row_core_status": producer.ROW_CORE_STATUS,
         "prior_single_row_mec": report["prior_single_row_mec"],
         "coupled_row_mec": report["coupled_row_mec"],
         "source_obstruction": report["source_obstruction"],
@@ -40,7 +42,9 @@ def test_exact_report_values() -> None:
     report = producer.build_report()
     row_core = report["row_core"]
     coupled_mec = report["coupled_row_mec"]
-    assert report["status"] == "ENCODING_BLOCKED"
+    assert report["status"] == "OPEN"
+    assert report["row_core_status"] == "ROW_CORE_POSITIVE_CONTROL"
+    assert report["source_status"] == "SOURCE_INVALID"
     assert report["claim_scope"]["seed_source_valid"] is False
     assert row_core["physical_radius_squared"] == "1/1"
     assert row_core["ku_radius_squared"] == "17/25"

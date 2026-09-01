@@ -147,8 +147,13 @@ def verify_documents(row_document: object, mec_document: object) -> dict[str, An
     mec = mec_document
     require(row.get("schema") == "rigid221-s0-prior-seed-obstruction/v1", "bad schema")
     require(mec.get("schema") == row.get("schema"), "schema mismatch")
-    require(row.get("status") == "SOURCE_INVALID", "bad row status")
+    require(row.get("status") == "ROW_CORE_POSITIVE_CONTROL", "bad row status")
+    require(row.get("source_status") == "SOURCE_INVALID", "bad row source status")
     require(mec.get("status") == "SOURCE_INVALID", "bad MEC status")
+    require(
+        mec.get("row_core_status") == "ROW_CORE_POSITIVE_CONTROL",
+        "bad MEC row-core status",
+    )
     require(row.get("cyclic_order") == list(ORDER), "cyclic order mismatch")
     raw_points = row.get("points")
     require(isinstance(raw_points, dict) and set(raw_points) == set(ORDER), "role mismatch")

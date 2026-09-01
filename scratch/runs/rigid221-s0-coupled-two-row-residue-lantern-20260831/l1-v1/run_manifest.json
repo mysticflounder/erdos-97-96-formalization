@@ -11,9 +11,9 @@
     "tmp"
   ],
   "source_digests": {
-    "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/solver/rigid221_s0_coupled_two_row.py": "93a1e223b0e72faa11c3ced3da089f78225798b1ea837d68928cb23f29a328ca",
-    "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/solver/test_rigid221_s0_coupled_two_row.py": "776a4c1b9e4218f822d19feb1deb4c370f19e1d4a16f825e3081c477d7a0f2dc",
-    "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/solver/verify_rigid221_s0_coupled_two_row.py": "8e1dff9d1d2e8d9aac64b16d330281c9bc175671522f1de0311f895d06a3c3a0",
+    "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/solver/rigid221_s0_coupled_two_row.py": "830282ae980580f0cd2d935a0d7eb8f855da032ab6939bb21fabc28e0aa3aa3a",
+    "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/solver/test_rigid221_s0_coupled_two_row.py": "ad34cd8c7537b667a053351f07de6fbcc7172669e411abb22276cd60ea62bf58",
+    "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/solver/verify_rigid221_s0_coupled_two_row.py": "107a8b2e69b20846e11f4ee0ca44ba901ff8fecc1d7e798e009237cfb01af491",
     "lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4LateChoiceTerminal/UniqueFourLateChoiceTerminal.lean": "f275a2caa634d3950dfc81dd86d48f7949d54df24c6c4e88c1a16559bdac24ee",
     "lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueArmRouteAudit/OriginalUniqueResidualDispatch.lean": "b8f7c43a89bfbd52718f313407fbf7e41b53c71a56d9d435abc7732c2d2f5bb7",
     "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletion/Types.lean": "8cd091cf7b62c2236798390585e38184df8f366570b4c1d69892e01233b84587",
@@ -30,10 +30,10 @@
   "input_digests": {
     "docs/audits/2026-08-29-rigid221-s0-l1-computation.md": "f29fe531fe9cafcc8e86ff9c52979fabad7c7574655a773bcb931a1c258a7f25",
     "docs/audits/2026-08-29-rigid221-s0-l1-source-constraint-manifest.md": "06d1e5444f924468c149a5887267c002c0709a047f4ba34fec1305148841f673",
-    "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/s0-source-constraint-manifest.md": "fbf6cd314db0ccb1735faeaa57431687d29fb533c00361ad010079d7bf3b8879",
+    "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/s0-source-constraint-manifest.md": "067392f77bfd3dc375b13ed5b5baf1e3ff8a65c8b3e9a757b2849350c333c269",
     "docs/specs/p97-rigid221-s0-coupled-two-row-computational-spec-v1.md": "999087c43a9da08ab633ddf92eab0ac4860606fb84361c4c3b9a79ca0211f6f0",
     "scripts/rigid221_s0_l1.py": "6539acf3c5e061bf6ae82d25b089e58dd89085edd5c85fa2a48c6cf34d63e7e2"
   },
   "created_utc": "2026-09-01T04:37:10Z",
-  "manifest_sha256": "2ad38e2401dd1262392c5352db3b3a8e0d01a24ce05b1693fba483bde7530508"
+  "manifest_sha256": "b6097ffbeb5ab745072d50fb8e6abcb109474e026308bc6e0e03143b6edad3d6"
 }

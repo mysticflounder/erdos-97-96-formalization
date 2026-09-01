@@ -120,10 +120,18 @@ The exact twelve-role artifact in `scripts/rigid221_s0_l1.py` proves only
 `SAT_12_ROLE_POSITIVE_CONTROL_EXACT` for a closed, all-distinct, disjoint-row
 model. It omits the actual cap/MEC packet and therefore decides neither S0-I nor
 S0-N. The later fourteen-role full-L1 fixed-order cells both ended
-`UNKNOWN_TIMEOUT`; all unencoded cyclic orders, auxiliary overlaps, and legal
-role equalities remain `ENCODING_BLOCKED`.
+`UNKNOWN_TIMEOUT`; the displayed coordinates are only a
+`ROW_CORE_POSITIVE_CONTROL`, with source status `SOURCE_INVALID`. S0-I and
+S0-N remain `OPEN`; cyclic orders, auxiliary overlaps, and legal role
+equalities not covered by the current formulas remain unencoded.
 
 The present lane may report `SAT_EXACT` only after an independent exact witness
 replay checks every active L1 row above. A formula UNSAT remains formula-scoped
 unless every source-legal discrete cell is covered and an exact contradiction or
 checked certificate is retained.
+
+Wave 1 retains no `SAT_EXACT` witness. Its exact fixed-coordinate verdict is
+`UNSAT_FIXED_CELL_EXACT`, with `TC-02` as the first packet failure and `TC-03`
+as an independent minimized consequence conditional on `O = S.oppApex2`.
+Its bounded rational addition grid remains `ENCODING_BLOCKED`; S0-I and S0-N
+remain `OPEN` outside the fixed cell.

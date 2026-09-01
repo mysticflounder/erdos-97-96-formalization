@@ -1,0 +1,248 @@
+{
+  "arithmetic": "fractions.Fraction only; no floating-point acceptance",
+  "claim_scope": {
+    "finite_bounded_grid_exhausted": true,
+    "l1_s0_i_decided": false,
+    "l1_s0_n_decided": false,
+    "lean_claim": false,
+    "promotion_claim": false,
+    "source_universal_claim": false,
+    "unrestricted_family_decided": false
+  },
+  "evidence_label": "EMPIRICALLY_VERIFIED_FINITE_EXACT_GRID_EXHAUSTION",
+  "exact_search_bounds": {
+    "boundary_parameterization": "For rational center c and slope t, p=(x,t*x), x=2*(c_x+t*c_y)/(1+t^2), so |p-c|^2=|c|^2 exactly.",
+    "one_added_role_centers": {
+      "definition": "for each old e!=O, c=e/2+s*(-e_y,e_x), s=k/2, |k|<=30; this is the full declared grid of circles through O and e",
+      "half_step_numerator_bound": 30
+    },
+    "slope_grid": {
+      "definition": "all distinct reduced n/d represented by |n|<=60 and 1<=d<=12",
+      "denominator_bound": 12,
+      "distinct_values": 899,
+      "maximum": "60/1",
+      "minimum": "-60/1",
+      "numerator_bound": 60
+    },
+    "two_added_role_centers": [
+      [
+        "2/1",
+        "0/1"
+      ],
+      [
+        "3/1",
+        "-1/1"
+      ],
+      [
+        "3/1",
+        "0/1"
+      ],
+      [
+        "4/1",
+        "-1/1"
+      ],
+      [
+        "5/1",
+        "-2/1"
+      ],
+      [
+        "5/1",
+        "-1/1"
+      ],
+      [
+        "5/1",
+        "0/1"
+      ],
+      [
+        "10/1",
+        "-5/1"
+      ]
+    ]
+  },
+  "fixed_input": {
+    "cyclic_order": [
+      "O",
+      "au",
+      "av",
+      "v",
+      "delta",
+      "u",
+      "cv",
+      "cu",
+      "xu",
+      "xv",
+      "bv",
+      "bu"
+    ],
+    "points": {
+      "O": [
+        "0/1",
+        "0/1"
+      ],
+      "au": [
+        "1/25",
+        "-8/25"
+      ],
+      "av": [
+        "237/2050",
+        "-2599/4100"
+      ],
+      "bu": [
+        "12/25",
+        "19/25"
+      ],
+      "bv": [
+        "13557/26650",
+        "2131/2665"
+      ],
+      "cu": [
+        "4/5",
+        "0/1"
+      ],
+      "cv": [
+        "79/100",
+        "-79/1640"
+      ],
+      "delta": [
+        "33/65",
+        "-56/65"
+      ],
+      "u": [
+        "3/5",
+        "-4/5"
+      ],
+      "v": [
+        "8/17",
+        "-15/17"
+      ],
+      "xu": [
+        "3/5",
+        "4/5"
+      ],
+      "xv": [
+        "228/397",
+        "325/397"
+      ]
+    },
+    "source_module": "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/solver/rigid221_s0_coupled_two_row.py"
+  },
+  "open_boundary": {
+    "exact_real_algebraic_coordinates_outside_the_rational_grid": "ENCODING_BLOCKED",
+    "reason": "Finite rational-grid exhaustion does not cover other rational centers/slopes, real-algebraic boundary points, or deformations of the old row coordinates.",
+    "universal_unsat_claim": false,
+    "unrestricted_addition_only_family": "OPEN",
+    "variable_old_coordinates": "ENCODING_BLOCKED"
+  },
+  "preserved_positive_control": {
+    "old_strict_convexity": {
+      "minimum_orientation": "2/5525",
+      "orientation_checks": 120
+    },
+    "row_core": {
+      "Ku": [
+        "au",
+        "bu",
+        "u",
+        "xu"
+      ],
+      "Kv": [
+        "av",
+        "bv",
+        "v",
+        "xv"
+      ],
+      "ku_radius_squared": "17/25",
+      "kv_radius_squared": "53649709/67240000",
+      "mutual_omissions": {
+        "u_not_in_Kv": true,
+        "v_not_in_Ku": true
+      },
+      "physical_radius_squared": "1/1",
+      "physical_roles": [
+        "delta",
+        "u",
+        "v",
+        "xu",
+        "xv"
+      ],
+      "post_u_max_positive_multiplicity": 3,
+      "post_u_profile": [
+        3,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "post_v_max_positive_multiplicity": 3,
+      "post_v_profile": [
+        3,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "residue_profile": "2+2+1"
+    }
+  },
+  "replay": {
+    "command": "uv run python docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/solver/rigid221_s0_true_cap_search.py",
+    "deterministic_json": true
+  },
+  "schema": "rigid221-s0-true-cap-bounded-coordinate-search/v1",
+  "search_counts": {
+    "one_added_role": {
+      "boundary_slope_values_tested": 40455,
+      "center_parameter_cells": 671,
+      "exact_enclosing_circles_with_boundary_O_and_one_old_role": 45,
+      "non_obtuse_boundary_triples": 0,
+      "source_packet_candidates": 0,
+      "strict_convex_single_insertions": 3394
+    },
+    "two_added_roles": {
+      "boundary_slope_values_tested": 7192,
+      "center_cells": 8,
+      "exact_enclosing_circles_strict_on_old_non_O_roles": 8,
+      "non_obtuse_boundary_pairs": 0,
+      "source_packet_candidates": 0,
+      "strict_convex_pair_insertions": 0,
+      "strict_convex_single_insertions": 273,
+      "unordered_boundary_pairs": 16385
+    }
+  },
+  "smallest_hypothesis_changed": {
+    "change": "add one or two all-distinct Moser-only carrier roles while preserving all twelve old rational coordinates, the old cyclic order as a subsequence, and every old row/support designation",
+    "maximum_new_roles": 2,
+    "old_coordinate_changes": 0
+  },
+  "solver_invoked": false,
+  "source_anchors": {
+    "on_arc_opposite": "lean/Erdos9796Proof/P97/Foundation.lean:83",
+    "opp_apex2": "lean/Erdos9796Proof/P97/U1TwoShortCapReduction.lean:305",
+    "opp_index2": "lean/Erdos9796Proof/P97/Cap/PartitionFromMEC.lean:550",
+    "rotated_packet": "lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean:273",
+    "surplus_cap_packet": "lean/Erdos9796Proof/P97/Cap/PartitionFromMEC.lean:332"
+  },
+  "source_contract_not_reached": {
+    "actual_S0_I_or_S0_N": "NOT_REACHED_NON_OBTUSE_BOUNDARY_FAILED",
+    "closed_OnArcOpposite_CapTriple": "NOT_REACHED_NON_OBTUSE_BOUNDARY_FAILED",
+    "endpoint_erased_strict_interior_J": "NOT_REACHED_NON_OBTUSE_BOUNDARY_FAILED",
+    "oppIndex2_and_oppApex2_mapping": "NOT_REACHED_NON_OBTUSE_BOUNDARY_FAILED",
+    "rotated_circumscribed_packet": "NOT_REACHED_NON_OBTUSE_BOUNDARY_FAILED",
+    "selected_surplus_cap_cardinality_gt_four": "NOT_REACHED_NON_OBTUSE_BOUNDARY_FAILED"
+  },
+  "status": "ENCODING_BLOCKED",
+  "strongest_discovered_scoped_obstruction": {
+    "first_failed_source_field": "the three nonnegative angle-dot-product fields of the genuine three-point MEC boundary (before CapTriple, surplus, rotation, or S0)",
+    "interpretation": "The grid contains exact circles through O and exact strict-convex boundary insertions, but no enumerated insertion set forms a non-obtuse boundary triple containing O. Therefore no enumerated candidate reaches the cap tests.",
+    "one_role_non_obtuse_survivors": 0,
+    "scope": "the exact finite grid above with all old coordinates fixed",
+    "two_role_non_obtuse_survivors": 0
+  },
+  "witness": null
+}

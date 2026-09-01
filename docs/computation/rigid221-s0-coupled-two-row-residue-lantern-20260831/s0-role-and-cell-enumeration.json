@@ -44,12 +44,12 @@
       {
         "id": "S0-I",
         "condition": "xu in J",
-        "status": "ENCODING_BLOCKED"
+        "status": "OPEN"
       },
       {
         "id": "S0-N",
         "condition": "xu not in J; no endpoint or closed-cap inference",
-        "status": "ENCODING_BLOCKED"
+        "status": "OPEN"
       }
     ],
     "contextual_peer": [
@@ -122,7 +122,10 @@
     "cyclic_orders": {
       "source_exhaustive_enumeration": "ENCODING_BLOCKED",
       "prior_fixed_m0_s0_i": "UNKNOWN_TIMEOUT",
-      "prior_fixed_m0_s0_n": "UNKNOWN_TIMEOUT"
+      "prior_fixed_m0_s0_n": "UNKNOWN_TIMEOUT",
+      "true_cap_fixed_12_role_s0_i": "UNSAT_FIXED_CELL_EXACT",
+      "true_cap_fixed_12_role_s0_n": "UNSAT_FIXED_CELL_EXACT",
+      "true_cap_bounded_addition_grid": "ENCODING_BLOCKED"
     }
   },
   "prior_seed_result": {
@@ -133,7 +136,8 @@
     ],
     "mec_boundary_cardinality": 2,
     "required_hCirc_boundary_cardinality": 3,
-    "status": "ENCODING_BLOCKED",
+    "status": "ROW_CORE_POSITIVE_CONTROL",
+    "source_status": "SOURCE_INVALID",
     "reason": "The actual SurplusCapPacket and therefore the source-defined cap J do not exist for the prior seed carrier."
   },
   "forbidden_assumptions": [

@@ -126,5 +126,6 @@
     ]
   },
   "schema": "rigid221-s0-prior-seed-obstruction/v1",
-  "status": "SOURCE_INVALID"
+  "source_status": "SOURCE_INVALID",
+  "status": "ROW_CORE_POSITIVE_CONTROL"
 }

@@ -1,0 +1,20 @@
+{
+  "bounded_grid_claim_boundary_verified": true,
+  "fixed_cell_boundary_roles": [
+    "v",
+    "xv"
+  ],
+  "fixed_cell_mec_exact": true,
+  "l1_s0_i_decided": false,
+  "l1_s0_n_decided": false,
+  "minimal_fixed_cell_source_core": [
+    "TC-03"
+  ],
+  "physical_O_boundary_required": true,
+  "physical_O_on_fixed_mec_boundary": false,
+  "physical_O_strict_interior_slack": "3051/6749",
+  "s0_i_fixed_cell": "UNSAT_FIXED_CELL_EXACT",
+  "s0_n_fixed_cell": "UNSAT_FIXED_CELL_EXACT",
+  "sat_exact_witness_reconstructed": false,
+  "status": "VERIFIED_SCOPED_OBSTRUCTION"
+}

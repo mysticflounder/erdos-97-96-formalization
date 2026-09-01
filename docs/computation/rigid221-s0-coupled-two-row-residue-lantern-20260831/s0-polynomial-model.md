@@ -2,6 +2,8 @@
 
 **Base HEAD:** `f26de746bc16d15d891c42ad8cfb42876a63ab06`
 **Arithmetic:** exact rational arithmetic; no tolerance and no nonlinear solver
+**Displayed-coordinate verdict:** `ROW_CORE_POSITIVE_CONTROL`; source status
+`SOURCE_INVALID`; S0-I and S0-N remain `OPEN`.
 
 ## Exact target
 
@@ -58,8 +60,8 @@ erasing its two Moser endpoints.
 
 ## Exact replay of the prior coordinate seed
 
-**EMPIRICALLY VERIFIED (finite exact replay).** The known opposite-row
-extension has exact fibers
+**EMPIRICALLY VERIFIED (finite exact replay; row-core positive control only).**
+The known opposite-row extension has exact fibers
 
 ```text
 d²(O,C)=1,
@@ -106,15 +108,15 @@ exactly `{v,xv}`.
 
 **PROVEN (pen-and-paper).** `SurplusCapPacket.hCirc` requires three
 pairwise-distinct MEC-boundary Moser vertices. The prior carrier has only the
-two boundary roles certified above and cannot supply that field. Its manually
-named wedge cannot be interpreted as the source cap `J`, and it decides neither
-S0-I nor S0-N.
+two boundary roles certified above and cannot supply that field. Its manual cap
+is invalid: the named wedge cannot be interpreted as the source cap `J`, and it
+decides neither S0-I nor S0-N.
 
 ## Completion matrix
 
 | Obligation | Statement | Label | Status | Evidence |
 |---|---|---|---|---|
-| M1 | The displayed twelve-role coordinates satisfy the closed row equations, convexity checks, and deletion multiplicity bounds. | EMPIRICALLY VERIFIED | 🟡 partial | Exact producer plus independent exact verifier. |
+| M1 | The displayed twelve-role coordinates satisfy the closed row equations, convexity checks, and deletion multiplicity bounds. | EMPIRICALLY VERIFIED | 🟡 row-core positive control | Exact producer plus independent exact verifier; no source cap claim. |
 | M2 | The displayed midpoint disk encloses every listed role with boundary `{v,xv}`. | EMPIRICALLY VERIFIED | 🟡 partial | Exact rational slack inventory. |
 | M3 | M2 forces the listed carriers into the MEC diameter branch and excludes `SurplusCapPacket.hCirc`. | PROVEN (pen-and-paper) | ✅ done | Radius lower bound and the source field requiring three distinct boundary vertices. |
 | M4 | Some different coordinate family supplies the source cap and decides S0-I or S0-N. | CONJECTURED | ⬜ open | No source-valid witness has been produced. |
@@ -124,3 +126,10 @@ premise is externally replayed. It is not an impossibility result for all L1
 coordinates. A source-faithful search still needs a different coordinate family
 with three distinct non-obtuse MEC-boundary vertices and the required rotated
 surplus-cap pattern.
+
+Wave 1 additionally gives `UNSAT_FIXED_CELL_EXACT` for both S0 branches before
+the membership split: `hCirc` fails first at boundary cardinality two, and the
+conditional physical-`O` boundary consequence is independently contradicted by
+slack `3051/6749`. A finite rational addition grid with at most two new roles
+has been exhausted exactly, but it is only bounded evidence; the unrestricted
+coordinate family and both source S0 verdicts remain open.
