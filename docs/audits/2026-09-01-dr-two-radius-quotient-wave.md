@@ -3,7 +3,7 @@
 Date: 2026-09-01. Lane `dr-two-radius-20260901`. Plan
 `docs/plans/2026-09-01-dr-two-radius-branch-closure.md`, Phase 1a.
 
-Status: Phase 1a settled SAT by an exact witness; Phase 1b not started. No
+Status: Phase 1a settled SAT by an exact witness; Phase 1b structural wave 1 SAT (incidence level only). No
 result here closes a Lean theorem, supplies coverage, or authorizes removing
 the live `sorry` at `Rigid221Closure.lean:1245`. Every verdict below is CONJECTURE-level
 evidence about one encoding until a second reader audits the
@@ -148,6 +148,38 @@ The `Z`-role cell (a third exact class at `a2` as the second ingress row,
 restart 0,
 smallest normalised margin 0.25, all 1028 atoms replayed over Q, three
 four-classes at `a2` and no five-class.
+
+## Phase 1b, wave 1: exact-12 structural CNF (piqd CaDiCaL)
+
+Encoder `census/card_head/dr_exact12_structural.py` (tests
+`census/card_head/tests/test_dr_exact12_structural.py`, 7 tests), built to
+`docs/specs/p97-dr-two-radius-exact12-cell-v1.md`: the equality relation on
+the 66 edges of the 12 labelled points (2145 relation variables,
+transitivity, duplicate-three-point-center) plus the D-R blocks as
+cardinality and exclusion clauses on the induced classes. 6281 variables,
+252,432 clauses. No geometry deltas, no cyclic order. Run root
+`scratch/runs/dr-two-radius-20260901/q1b-wave-1` (raw-DIMACS jobs through
+`piqc job submit-cnf`, backend cadical, budget 600 s).
+
+| CNF | piqd job | verdict | wall |
+|---|---|---|---:|
+| five-at-second-apex control (ten units asserting a five-class at `a2`) | `b1d14f34…` | UNSAT | 91 ms |
+| base | `8098fedb…` | SAT | 577 ms |
+
+Readback of the SAT model (`artifacts/base-sat-pattern.json`): every clause
+replays; the independent checker `check_pattern` reports no violation. The
+pattern has `X = {5,7,10,11}`, `Y = {4,6,8,9}` at `a2`, `U = {5,6,7,9}` at
+`a1`, source `a2` with blocker `10`, deleted `6`, `B2 = X`; it also has
+six-point classes at `a3` and at `3`, which no convex 12-gon realises.
+
+Reading. The pure incidence abstraction at card 12 is satisfiable
+(EMPIRICALLY VERIFIED at the CNF level; UNSAT of the control is the
+counting guardrail from the plan). The branch, if it closes at card 12,
+closes through geometry: the perpendicular-bisector and circumcenter
+consequences of convex position (the B1 G/C deltas, after a
+label-genericity audit) and the metric stage. Next wave: add the
+label-generic geometry deltas, enumerate surviving patterns under a cap
+with blocking clauses, and feed each to the constructive metric search.
 
 ## Claim boundary
 

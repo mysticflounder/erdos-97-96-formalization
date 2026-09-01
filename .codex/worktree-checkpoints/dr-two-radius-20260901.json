@@ -16,12 +16,13 @@
   "generated_roots": [
     "scratch/runs/dr-two-radius-20260901/q1a-wave-1",
     "scratch/runs/dr-two-radius-20260901/q1a-wave-2",
-    "scratch/runs/dr-two-radius-20260901/q1a-wave-3"
+    "scratch/runs/dr-two-radius-20260901/q1a-wave-3",
+    "scratch/runs/dr-two-radius-20260901/q1b-wave-1"
   ],
   "durable_paths": [
     "certificates/p97_dr_two_radius/witness-x-exact-witness.json",
     "certificates/p97_dr_two_radius/witness-z-exact-witness.json"
   ],
   "created_utc": "2026-09-01T20:19:21Z",
-  "manifest_sha256": "8b3b776f6b42a857aad9a2c262cefcd83ac5663b8ca58840132b2675f3826f14"
+  "manifest_sha256": "dec69f9f3525ef404bd67419496cd14c06766e518ccc78ce265e3e7353221749"
 }
