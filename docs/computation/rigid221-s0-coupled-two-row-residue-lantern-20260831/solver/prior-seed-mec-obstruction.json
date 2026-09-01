@@ -1,0 +1,66 @@
+{
+  "coupled_row_mec": {
+    "boundary_cardinality": 2,
+    "boundary_roles": [
+      "v",
+      "xv"
+    ],
+    "center": [
+      "3526/6749",
+      "-215/6749"
+    ],
+    "diameter_pair": [
+      "v",
+      "xv"
+    ],
+    "minimality_argument": "Every enclosing disk has radius at least dist(v,xv)/2 by the triangle inequality; the displayed midpoint disk has that radius and encloses every role.",
+    "radius_squared": "4900/6749",
+    "strict_interior_slacks": {
+      "O": "3051/6749",
+      "au": "346098/843625",
+      "av": "22469713527/113450690000",
+      "bu": "81996/843625",
+      "bv": "12714545823/368714742500",
+      "cu": "109331/168725",
+      "cv": "296870113959/453802760000",
+      "delta": "16426/438685",
+      "u": "258/1985",
+      "xu": "946/33745"
+    }
+  },
+  "prior_single_row_mec": {
+    "boundary_cardinality": 2,
+    "boundary_roles": [
+      "v",
+      "xv"
+    ],
+    "center": [
+      "3526/6749",
+      "-215/6749"
+    ],
+    "diameter_pair": [
+      "v",
+      "xv"
+    ],
+    "minimality_argument": "Every enclosing disk has radius at least dist(v,xv)/2 by the triangle inequality; the displayed midpoint disk has that radius and encloses every role.",
+    "radius_squared": "4900/6749",
+    "strict_interior_slacks": {
+      "O": "3051/6749",
+      "au": "346098/843625",
+      "bu": "81996/843625",
+      "cu": "109331/168725",
+      "delta": "16426/438685",
+      "u": "258/1985",
+      "xu": "946/33745"
+    }
+  },
+  "remaining_gap": "Construct different coordinates with three distinct non-obtuse MEC-boundary vertices, a surplus cap different from the O-opposite cap, and exact S0-I or S0-N membership while preserving both ambient exact four-fibers.",
+  "schema": "rigid221-s0-prior-seed-obstruction/v1",
+  "source_obstruction": {
+    "actual_boundary_cardinality": 2,
+    "conclusion": "The prior seed and its known coupled-row extension are in the MEC diameter branch, so neither supplies the source SurplusCapPacket needed to define the actual S0 cap J.",
+    "required_boundary_cardinality": 3,
+    "required_source_field": "SurplusCapPacket.hCirc"
+  },
+  "status": "SOURCE_INVALID"
+}

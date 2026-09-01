@@ -1,0 +1,39 @@
+{
+  "schema": "worktree-run-manifest/v1",
+  "lane_id": "rigid221-s0-coupled-two-row-residue-lantern-20260831",
+  "run_id": "l1-v1",
+  "root": "scratch/runs/rigid221-s0-coupled-two-row-residue-lantern-20260831/l1-v1",
+  "owner": "ResidueLantern",
+  "base_head": "f26de746bc16d15d891c42ad8cfb42876a63ab06",
+  "output_classes": [
+    "artifacts",
+    "events",
+    "tmp"
+  ],
+  "source_digests": {
+    "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/solver/rigid221_s0_coupled_two_row.py": "93a1e223b0e72faa11c3ced3da089f78225798b1ea837d68928cb23f29a328ca",
+    "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/solver/test_rigid221_s0_coupled_two_row.py": "776a4c1b9e4218f822d19feb1deb4c370f19e1d4a16f825e3081c477d7a0f2dc",
+    "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/solver/verify_rigid221_s0_coupled_two_row.py": "8e1dff9d1d2e8d9aac64b16d330281c9bc175671522f1de0311f895d06a3c3a0",
+    "lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4LateChoiceTerminal/UniqueFourLateChoiceTerminal.lean": "f275a2caa634d3950dfc81dd86d48f7949d54df24c6c4e88c1a16559bdac24ee",
+    "lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueArmRouteAudit/OriginalUniqueResidualDispatch.lean": "b8f7c43a89bfbd52718f313407fbf7e41b53c71a56d9d435abc7732c2d2f5bb7",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletion/Types.lean": "8cd091cf7b62c2236798390585e38184df8f366570b4c1d69892e01233b84587",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221Placement.lean": "49c8c3d6b8ed71c44b4f4287ce923fe63ac477432063db7875ca430753be1ea8",
+    "lean/Erdos9796Proof/P97/Cap/PartitionFromMEC.lean": "69aac1234035af3fa8af657a4988a612aec3ba9c13049ddb51dde5c8d2b5144f",
+    "lean/Erdos9796Proof/P97/Cap/Structure.lean": "c37032098ca734b3732823b68f086b864f33a605fab97f4d15fc1010f9faeb11",
+    "lean/Erdos9796Proof/P97/Foundation.lean": "a391c93c43d33614d2c04166d97d6a5d88b750a5691b6c682233c1d1c9de9bd3",
+    "lean/Erdos9796Proof/P97/Moser/Triangle.lean": "7c78d8a21f64e82cf408a3c1b2e026298d6173838f6b91484d8386f31cf2a392",
+    "lean/Erdos9796Proof/P97/Moser/TriangleNonObtuse.lean": "1c8cbee10abf2c5ab422910550a83d49c3628c88196f7f6fa5da4f9ed74ebeaa",
+    "lean/Erdos9796Proof/P97/U1CarrierInjection.lean": "0763edd41bef51f9b5ca0c7d98d3178efdbe45f7ad130c723e672f6671379fc2",
+    "lean/Erdos9796Proof/P97/U1TwoShortCapReduction.lean": "30e455b737277a88b477e5d24fed5f2ad3e0d2af8f239ccb535bb4d892600298",
+    "lean/Erdos9796Proof/P97/WitnessPacketInterface.lean": "da61a9053f423bf45bce7d80e56f7a05c5cee334a242b9a389be3d3e20220f04"
+  },
+  "input_digests": {
+    "docs/audits/2026-08-29-rigid221-s0-l1-computation.md": "f29fe531fe9cafcc8e86ff9c52979fabad7c7574655a773bcb931a1c258a7f25",
+    "docs/audits/2026-08-29-rigid221-s0-l1-source-constraint-manifest.md": "06d1e5444f924468c149a5887267c002c0709a047f4ba34fec1305148841f673",
+    "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/s0-source-constraint-manifest.md": "fbf6cd314db0ccb1735faeaa57431687d29fb533c00361ad010079d7bf3b8879",
+    "docs/specs/p97-rigid221-s0-coupled-two-row-computational-spec-v1.md": "999087c43a9da08ab633ddf92eab0ac4860606fb84361c4c3b9a79ca0211f6f0",
+    "scripts/rigid221_s0_l1.py": "6539acf3c5e061bf6ae82d25b089e58dd89085edd5c85fa2a48c6cf34d63e7e2"
+  },
+  "created_utc": "2026-09-01T04:37:10Z",
+  "manifest_sha256": "2ad38e2401dd1262392c5352db3b3a8e0d01a24ce05b1693fba483bde7530508"
+}

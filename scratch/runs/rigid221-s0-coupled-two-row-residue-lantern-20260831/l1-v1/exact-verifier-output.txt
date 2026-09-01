@@ -1,0 +1,12 @@
+{
+  "l1_s0_i_decided": false,
+  "l1_s0_n_decided": false,
+  "mec_boundary_cardinality": 2,
+  "mec_boundary_roles": [
+    "v",
+    "xv"
+  ],
+  "row_core_exact": true,
+  "status": "VERIFIED",
+  "surplus_cap_packet_available": false
+}

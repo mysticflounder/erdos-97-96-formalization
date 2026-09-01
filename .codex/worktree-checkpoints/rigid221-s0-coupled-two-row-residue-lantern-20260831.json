@@ -1,0 +1,30 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "rigid221-s0-coupled-two-row-residue-lantern-20260831",
+  "owner": "ResidueLantern",
+  "base_head": "f26de746bc16d15d891c42ad8cfb42876a63ab06",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/rigid221-s0-coupled-two-row-residue-lantern-20260831.json",
+    "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/results.csv",
+    "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/s0-l1-result.md",
+    "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/s0-polynomial-model.md",
+    "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/s0-role-and-cell-enumeration.json",
+    "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/s0-source-constraint-manifest.md",
+    "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/skeptic-s0-l1-result-2026-09-01.md",
+    "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/solver/prior-seed-mec-obstruction.json",
+    "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/solver/prior-seed-row-core.json",
+    "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/solver/rigid221_s0_coupled_two_row.py",
+    "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/solver/test_rigid221_s0_coupled_two_row.py",
+    "docs/computation/rigid221-s0-coupled-two-row-residue-lantern-20260831/solver/verify_rigid221_s0_coupled_two_row.py"
+  ],
+  "generated_roots": [
+    "scratch/runs/rigid221-s0-coupled-two-row-residue-lantern-20260831/l1-v1"
+  ],
+  "durable_paths": [
+    "scratch/runs/rigid221-s0-coupled-two-row-residue-lantern-20260831/l1-v1/exact-enumeration-report.json",
+    "scratch/runs/rigid221-s0-coupled-two-row-residue-lantern-20260831/l1-v1/exact-verifier-output.txt",
+    "scratch/runs/rigid221-s0-coupled-two-row-residue-lantern-20260831/l1-v1/run_manifest.json"
+  ],
+  "created_utc": "2026-09-01T04:27:42Z",
+  "manifest_sha256": "08ab913a8195d41abbb5500ee210900c328e2f49b9173fbafe85d56655a053f1"
+}

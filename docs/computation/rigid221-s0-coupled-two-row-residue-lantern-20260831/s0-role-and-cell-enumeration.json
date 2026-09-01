@@ -1,0 +1,150 @@
+{
+  "schema": "rigid221-s0-role-cell-enumeration/v1",
+  "base_head": "f26de746bc16d15d891c42ad8cfb42876a63ab06",
+  "s0_gate": "u = source",
+  "roles": {
+    "A": "D.A",
+    "C": "SelectedClass D.A S.oppApex2 rho",
+    "J": "S.capInteriorByIndex S.oppIndex2",
+    "Ku": "support ((lateFirstApexSystem R).selectedAt u.1 u.2)",
+    "Kv": "support ((lateFirstApexSystem R).selectedAt v.1 v.2)",
+    "O": "S.oppApex2",
+    "cu": "(lateFirstApexSystem R).centerAt u.1 u.2",
+    "cv": "(lateFirstApexSystem R).centerAt v.1 v.2",
+    "delta": "jointDeletion.deleted.1",
+    "other": "retained contextual peer",
+    "q": "R.interior_q",
+    "u": "source",
+    "v": "opposite rigid source",
+    "w": "R.interior_w",
+    "xu": "the other point of Ku intersect C",
+    "xv": "the other point of Kv intersect C"
+  },
+  "derived_normal_form": {
+    "C": [
+      "u",
+      "xu",
+      "delta",
+      "v",
+      "xv"
+    ],
+    "Iu": [
+      "u",
+      "xu"
+    ],
+    "Iv": [
+      "v",
+      "xv"
+    ],
+    "physical_roles_pairwise_distinct": true,
+    "physical_traces_disjoint": true
+  },
+  "cells": {
+    "s0_cap": [
+      {
+        "id": "S0-I",
+        "condition": "xu in J",
+        "status": "ENCODING_BLOCKED"
+      },
+      {
+        "id": "S0-N",
+        "condition": "xu not in J; no endpoint or closed-cap inference",
+        "status": "ENCODING_BLOCKED"
+      }
+    ],
+    "contextual_peer": [
+      {
+        "condition": "other = delta",
+        "source_legal": true
+      },
+      {
+        "condition": "other = v",
+        "source_legal": true
+      },
+      {
+        "condition": "other = xv",
+        "source_legal": true
+      }
+    ],
+    "source_survival": [
+      {
+        "id": "Q-OMIT",
+        "condition": "q not in Ku"
+      },
+      {
+        "id": "W-OMIT",
+        "condition": "w not in Ku"
+      },
+      {
+        "id": "BOTH-OMIT",
+        "condition": "q not in Ku and w not in Ku"
+      }
+    ],
+    "row_auxiliary_overlap": [
+      {
+        "id": "M0",
+        "shared_auxiliaries": 0
+      },
+      {
+        "id": "M1",
+        "shared_auxiliaries": 1
+      },
+      {
+        "id": "M2",
+        "shared_auxiliaries": 2
+      }
+    ],
+    "source_legal_equalities": {
+      "cu": [
+        "cu = av",
+        "cu = bv",
+        "neither"
+      ],
+      "cv": [
+        "cv = u",
+        "cv = xu",
+        "cv = delta",
+        "cv = au",
+        "cv = bu",
+        "none"
+      ],
+      "other": [
+        "other = delta",
+        "other = v",
+        "other = xv"
+      ],
+      "additional": [
+        "O may equal an auxiliary support point",
+        "a center may lie in the opposite row when no field forbids it",
+        "Moser endpoints may coincide with non-Moser roles only when all packet fields remain satisfied"
+      ]
+    },
+    "cyclic_orders": {
+      "source_exhaustive_enumeration": "ENCODING_BLOCKED",
+      "prior_fixed_m0_s0_i": "UNKNOWN_TIMEOUT",
+      "prior_fixed_m0_s0_n": "UNKNOWN_TIMEOUT"
+    }
+  },
+  "prior_seed_result": {
+    "known_coupled_row_core_exact": true,
+    "mec_boundary_roles": [
+      "v",
+      "xv"
+    ],
+    "mec_boundary_cardinality": 2,
+    "required_hCirc_boundary_cardinality": 3,
+    "status": "ENCODING_BLOCKED",
+    "reason": "The actual SurplusCapPacket and therefore the source-defined cap J do not exist for the prior seed carrier."
+  },
+  "forbidden_assumptions": [
+    "named-point adjacency",
+    "exact cap cardinality other than the selected surplus inequality",
+    "exact source carrier cardinality",
+    "endpoint inference from xu not in J",
+    "guessed role identities",
+    "anonymous replacement of actual selected rows",
+    "forced off-row disjointness",
+    "tolerance-based exactness",
+    "bounded UNSAT promoted to the source theorem"
+  ]
+}

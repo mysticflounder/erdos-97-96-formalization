@@ -1,0 +1,192 @@
+{
+  "claim_scope": {
+    "l1_s0_i_decided": false,
+    "l1_s0_n_decided": false,
+    "lean_claim": false,
+    "promotion_claim": false,
+    "row_core_exact": true,
+    "seed_source_valid": false,
+    "source_universal_claim": false
+  },
+  "coupled_row_mec": {
+    "boundary_cardinality": 2,
+    "boundary_roles": [
+      "v",
+      "xv"
+    ],
+    "center": [
+      "3526/6749",
+      "-215/6749"
+    ],
+    "diameter_pair": [
+      "v",
+      "xv"
+    ],
+    "minimality_argument": "Every enclosing disk has radius at least dist(v,xv)/2 by the triangle inequality; the displayed midpoint disk has that radius and encloses every role.",
+    "radius_squared": "4900/6749",
+    "strict_interior_slacks": {
+      "O": "3051/6749",
+      "au": "346098/843625",
+      "av": "22469713527/113450690000",
+      "bu": "81996/843625",
+      "bv": "12714545823/368714742500",
+      "cu": "109331/168725",
+      "cv": "296870113959/453802760000",
+      "delta": "16426/438685",
+      "u": "258/1985",
+      "xu": "946/33745"
+    }
+  },
+  "cyclic_order": [
+    "O",
+    "au",
+    "av",
+    "v",
+    "delta",
+    "u",
+    "cv",
+    "cu",
+    "xu",
+    "xv",
+    "bv",
+    "bu"
+  ],
+  "points": {
+    "O": [
+      "0/1",
+      "0/1"
+    ],
+    "au": [
+      "1/25",
+      "-8/25"
+    ],
+    "av": [
+      "237/2050",
+      "-2599/4100"
+    ],
+    "bu": [
+      "12/25",
+      "19/25"
+    ],
+    "bv": [
+      "13557/26650",
+      "2131/2665"
+    ],
+    "cu": [
+      "4/5",
+      "0/1"
+    ],
+    "cv": [
+      "79/100",
+      "-79/1640"
+    ],
+    "delta": [
+      "33/65",
+      "-56/65"
+    ],
+    "u": [
+      "3/5",
+      "-4/5"
+    ],
+    "v": [
+      "8/17",
+      "-15/17"
+    ],
+    "xu": [
+      "3/5",
+      "4/5"
+    ],
+    "xv": [
+      "228/397",
+      "325/397"
+    ]
+  },
+  "prior_single_row_mec": {
+    "boundary_cardinality": 2,
+    "boundary_roles": [
+      "v",
+      "xv"
+    ],
+    "center": [
+      "3526/6749",
+      "-215/6749"
+    ],
+    "diameter_pair": [
+      "v",
+      "xv"
+    ],
+    "minimality_argument": "Every enclosing disk has radius at least dist(v,xv)/2 by the triangle inequality; the displayed midpoint disk has that radius and encloses every role.",
+    "radius_squared": "4900/6749",
+    "strict_interior_slacks": {
+      "O": "3051/6749",
+      "au": "346098/843625",
+      "bu": "81996/843625",
+      "cu": "109331/168725",
+      "delta": "16426/438685",
+      "u": "258/1985",
+      "xu": "946/33745"
+    }
+  },
+  "remaining_gap": "Construct different coordinates with three distinct non-obtuse MEC-boundary vertices, a surplus cap different from the O-opposite cap, and exact S0-I or S0-N membership while preserving both ambient exact four-fibers.",
+  "row_core": {
+    "ku_radius_squared": "17/25",
+    "ku_roles": [
+      "au",
+      "bu",
+      "u",
+      "xu"
+    ],
+    "kv_radius_squared": "53649709/67240000",
+    "kv_roles": [
+      "av",
+      "bv",
+      "v",
+      "xv"
+    ],
+    "minimum_orientation": "2/5525",
+    "minimum_orientation_roles": [
+      "delta",
+      "u",
+      "v"
+    ],
+    "orientation_checks": 120,
+    "physical_radius_squared": "1/1",
+    "physical_roles": [
+      "delta",
+      "u",
+      "v",
+      "xu",
+      "xv"
+    ],
+    "post_u_max_positive_multiplicity": 3,
+    "post_u_profile": [
+      3,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "post_v_max_positive_multiplicity": 3,
+    "post_v_profile": [
+      3,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ]
+  },
+  "schema": "rigid221-s0-prior-seed-obstruction/v1",
+  "source_obstruction": {
+    "actual_boundary_cardinality": 2,
+    "conclusion": "The prior seed and its known coupled-row extension are in the MEC diameter branch, so neither supplies the source SurplusCapPacket needed to define the actual S0 cap J.",
+    "required_boundary_cardinality": 3,
+    "required_source_field": "SurplusCapPacket.hCirc"
+  },
+  "status": "ENCODING_BLOCKED"
+}

@@ -1,0 +1,130 @@
+{
+  "claim_scope": {
+    "l1_s0_i_decided": false,
+    "l1_s0_n_decided": false,
+    "lean_claim": false,
+    "promotion_claim": false,
+    "row_core_exact": true,
+    "seed_source_valid": false,
+    "source_universal_claim": false
+  },
+  "cyclic_order": [
+    "O",
+    "au",
+    "av",
+    "v",
+    "delta",
+    "u",
+    "cv",
+    "cu",
+    "xu",
+    "xv",
+    "bv",
+    "bu"
+  ],
+  "points": {
+    "O": [
+      "0/1",
+      "0/1"
+    ],
+    "au": [
+      "1/25",
+      "-8/25"
+    ],
+    "av": [
+      "237/2050",
+      "-2599/4100"
+    ],
+    "bu": [
+      "12/25",
+      "19/25"
+    ],
+    "bv": [
+      "13557/26650",
+      "2131/2665"
+    ],
+    "cu": [
+      "4/5",
+      "0/1"
+    ],
+    "cv": [
+      "79/100",
+      "-79/1640"
+    ],
+    "delta": [
+      "33/65",
+      "-56/65"
+    ],
+    "u": [
+      "3/5",
+      "-4/5"
+    ],
+    "v": [
+      "8/17",
+      "-15/17"
+    ],
+    "xu": [
+      "3/5",
+      "4/5"
+    ],
+    "xv": [
+      "228/397",
+      "325/397"
+    ]
+  },
+  "row_core": {
+    "ku_radius_squared": "17/25",
+    "ku_roles": [
+      "au",
+      "bu",
+      "u",
+      "xu"
+    ],
+    "kv_radius_squared": "53649709/67240000",
+    "kv_roles": [
+      "av",
+      "bv",
+      "v",
+      "xv"
+    ],
+    "minimum_orientation": "2/5525",
+    "minimum_orientation_roles": [
+      "delta",
+      "u",
+      "v"
+    ],
+    "orientation_checks": 120,
+    "physical_radius_squared": "1/1",
+    "physical_roles": [
+      "delta",
+      "u",
+      "v",
+      "xu",
+      "xv"
+    ],
+    "post_u_max_positive_multiplicity": 3,
+    "post_u_profile": [
+      3,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "post_v_max_positive_multiplicity": 3,
+    "post_v_profile": [
+      3,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ]
+  },
+  "schema": "rigid221-s0-prior-seed-obstruction/v1",
+  "status": "SOURCE_INVALID"
+}
