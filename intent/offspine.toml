@@ -188,6 +188,13 @@ registered_at = "2026-09-01T23:17:58+00:00"
 updated_at = "2026-09-01T23:17:58+00:00"
 
 [[offspine]]
+symbol = "Problem97.Cyclic1248KalmansonObstruction.false_of_realizesRows"
+category = "infra"
+reason = "Deliberate off-spine geometric obstruction showing the cyclic 1-2-4-8 incidence system has no equal-radius strict-CCW boundary realization."
+registered_at = "2026-09-01T23:45:02+00:00"
+updated_at = "2026-09-01T23:45:02+00:00"
+
+[[offspine]]
 symbol = "Problem97.SurplusCapPacket.false_of_equalRadius_detCone_of_mem_capByIndex"
 category = "compat"
 reason = "Indexed oriented-cap compatibility wrapper; source membership and orientation remain explicit antecedents."
