@@ -443,7 +443,7 @@ attestation**. The directly on-point statements:
 > — [`docs/nonpiqd-computation-validation-2026-08-18.md`](docs/nonpiqd-computation-validation-2026-08-18.md)
 
 A corpus-wide census of the family banks
-([`docs/audits/2026-08-16-scratch-computational-output-pattern-audit.md`](docs/audits/2026-08-16-scratch-computational-output-pattern-audit.md))
+([`docs/archive/2026-09-01-doc-sweep/audits/2026-08-16-scratch-computational-output-pattern-audit.md`](docs/archive/2026-09-01-doc-sweep/audits/2026-08-16-scratch-computational-output-pattern-audit.md))
 surveyed 159 of them. Of the 73 that record the full five-verdict vector, 61
 answer "no" to all five: no terminal UNSAT, no universal lift, no live-theorem
 closure, no Lean terminal ingress, no aggregate placement coverage.

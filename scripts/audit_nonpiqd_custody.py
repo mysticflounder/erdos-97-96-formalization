@@ -50,7 +50,7 @@ MAX_JSON_BYTES = 64 * 1024 * 1024
 MAX_JSON_DEPTH = 96
 MAX_JSON_NODES = 4_000_000
 
-# The documented preflight in docs/audits/2026-08-16-scratch-pattern-audit-verification.md
+# The documented preflight in docs/archive/2026-09-01-doc-sweep/audits/2026-08-16-scratch-pattern-audit-verification.md
 # excludes only "*-source/scratch/".  A "*-source/" directory is a whole
 # repository checkout, so excluding its scratch/ subtree alone leaves a 6.8x
 # residual inflation on *.lean.  Exclude the whole tree.

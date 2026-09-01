@@ -90,7 +90,7 @@ pattern died is what stops the next wave from re-proposing it.
 | Run id | Source | Outcome |
 |---|---|---|
 | `wf_d89e3f7c-4b5` | Open-ended LLM pattern mine over 7 lane clusters | 9 candidates, 3 nominated, all 3 killed as encoder artifacts |
-| `local-llm-audit-20260816` | [Local-LLM scratch audit](audits/2026-08-16-scratch-computational-output-pattern-audit.md), findings P1–P6 | 5 killed, 1 partly salvaged; see [the verification](audits/2026-08-16-scratch-pattern-audit-verification.md) |
+| `local-llm-audit-20260816` | [Local-LLM scratch audit](archive/2026-09-01-doc-sweep/audits/2026-08-16-scratch-computational-output-pattern-audit.md), findings P1–P6 | 5 killed, 1 partly salvaged; see [the verification](archive/2026-09-01-doc-sweep/audits/2026-08-16-scratch-pattern-audit-verification.md) |
 
 Across both runs the dominant kill reason is `encoder-artifact`: a hardcoded
 generator constant read as an achieved result. That is the single most useful

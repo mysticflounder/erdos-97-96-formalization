@@ -14395,9 +14395,9 @@ owner's `TwoSourceFirstFiberCollision.lean` before any additional computation.
 
 ## 2026-08-16 operator set (from scratch output-pattern audit) — WITHDRAWN
 
-Source: `docs/audits/2026-08-16-scratch-computational-output-pattern-audit.md`,
+Source: `docs/archive/2026-09-01-doc-sweep/audits/2026-08-16-scratch-computational-output-pattern-audit.md`,
 **verified and largely refuted** by
-`docs/audits/2026-08-16-scratch-pattern-audit-verification.md`.
+`docs/archive/2026-09-01-doc-sweep/audits/2026-08-16-scratch-pattern-audit-verification.md`.
 
 The audit's three operators were folded into this plan before verification.
 They are withdrawn here. The audit's counts were raw and undeduplicated: the

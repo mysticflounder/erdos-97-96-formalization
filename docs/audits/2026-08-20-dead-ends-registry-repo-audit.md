@@ -255,7 +255,7 @@ SAT-wave decision that rests on them.
   scope — it notes the witnesses are nonconvex and do not refute the
   `ConvexIndep` leaf — but the verdict outruns the evidence tier.
 - `docs/closure-plan-full-spec-2026-07-09.md:5462` and
-  `docs/audits/2026-07-09-full-closure-plan-audit.md:192` flatly assert "13/19
+  `docs/archive/2026-09-01-doc-sweep/audits/2026-07-09-full-closure-plan-audit.md:192` flatly assert "13/19
   decorated minimal-window types are realizable", which §10.11 holds at
   `REPORTED_RESULT_UNVERIFIED` pending replay. `census/candidate_d_probe/` exists
   with the described `STATE.md` and witness JSON, but no replay receipt was
