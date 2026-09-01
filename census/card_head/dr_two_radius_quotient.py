@@ -27,7 +27,7 @@ import os
 import subprocess
 import sys
 from collections.abc import Iterable, Mapping, Sequence
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from fractions import Fraction
 from itertools import combinations
@@ -595,10 +595,23 @@ def atom_counts(atoms: Sequence[Atom]) -> dict[str, int]:
     return dict(sorted(counts.items()))
 
 
-def variable_terms(cell: QuotientCell) -> tuple[str, ...]:
+def _variables_of(expr: Expr, found: set[str]) -> None:
+    if expr[0] == "var":
+        found.add(expr[1])
+    elif expr[0] != "const":
+        for item in expr[1:]:
+            _variables_of(item, found)
+
+
+def variable_terms(cell: QuotientCell, control: str = "none") -> tuple[str, ...]:
+    """Declared real variables: every coordinate the asserted atoms mention, in index order."""
+
     n = len(carrier_labels(cell))
-    terms = [f"{axis}_{point}" for point in range(n) for axis in ("x", "y")]
-    return tuple(terms) + ("ox", "oy", "rr")
+    terms = [f"{axis}_{point}" for point in range(n) for axis in ("x", "y")] + ["ox", "oy", "rr"]
+    used: set[str] = set()
+    for _family, _relation, expr in build_atoms(cell, control):
+        _variables_of(expr, used)
+    return tuple(term for term in terms if term in used)
 
 
 def build_journal(cell: QuotientCell, control: str = "none") -> tuple[tuple[str, ...], dict[str, int]]:
@@ -606,7 +619,7 @@ def build_journal(cell: QuotientCell, control: str = "none") -> tuple[tuple[str,
 
     atoms = build_atoms(cell, control)
     commands = ["(set-logic QF_NRA)"]
-    commands.extend(f"(declare-fun {term} () Real)" for term in variable_terms(cell))
+    commands.extend(f"(declare-fun {term} () Real)" for term in variable_terms(cell, control))
     for _family, relation, expr in atoms:
         commands.append(f"(assert ({relation} {_smt(expr)} 0))")
     return tuple(commands), atom_counts(atoms)
@@ -742,14 +755,50 @@ def verify_sat_model(
 
 
 # --------------------------------------------------------------------------
-# Constructive exact witness search (pure Python, no solver)
+# Constructive exact witness search (float optimisation, exact replay; no solver)
 # --------------------------------------------------------------------------
 
 Point = tuple[Fraction, Fraction]
 
+# Fixed near-equilateral rational Moser triangle with rational circumcentre.
+WITNESS_APEX_A3: Point = (Fraction(1, 2), Fraction(-6, 7))
+WITNESS_MEC_CENTER: Point = (Fraction(1, 2), Fraction(-665, 2352))
+WITNESS_MEC_RR: Fraction = Fraction(1, 4) + Fraction(665, 2352) ** 2
+
+# Cap each class point occupies (the generic placement, in class order).
+WITNESS_NEEDS: dict[str, tuple[str, ...]] = {
+    "U": ("I1", "I1", "I2", "Is"),
+    "X": ("I2", "I2", "Is", "I1"),
+    "Y": ("I2", "I2", "Is", "I1"),
+    "B1": ("I2", "Is", "I1", "I2"),
+    "Z": ("I2", "I2", "Is", "I1"),
+}
+
+# Target margins per strict family, in the units returned by `_atom_margin`
+# (lengths for orientation and distinctness atoms, squared lengths for the
+# exactness and bisector atoms, a fraction of rr for enclosure).
+MARGIN_TARGETS: dict[str, float] = {
+    "mec_enclosing": 0.02,
+    "nonobtuse": 0.05,
+    "cap_membership": 0.004,
+    "cap_exclusion": 0.004,
+    "convexity": 0.003,
+    "row_exactness": 0.004,
+    "bisector": 0.004,
+    "distinctness": 0.03,
+}
+_EXACT_FAMILIES = frozenset({"gauge", "mec_boundary", "row_equalities", "control"})
+_EDGE_FLOOR = 0.02  # keeps the edge-normalised convexity margin bounded near coincident points
+_RATIONAL_LIMIT = 10_000
+_CAP_START = {"Is": "a1", "I1": "a2", "I2": "a3"}
+
 
 def _circle_point(center: Point, radius: Fraction, t: Fraction) -> Point:
-    """Rational point on the circle |p - center| = radius (Pythagorean parameter t)."""
+    """Point on the circle |p - center| = radius with Pythagorean parameter t.
+
+    Exact over Q; the same map is used with floats during the search so the
+    rationalised parameters land within rounding of the optimised point.
+    """
 
     denominator = 1 + t * t
     return (center[0] + radius * (1 - t * t) / denominator, center[1] + radius * 2 * t / denominator)
@@ -775,124 +824,422 @@ def _fraction(value: float, limit: int) -> Fraction:
     return Fraction(value).limit_denominator(limit)
 
 
-def witness_search(
-    *,
-    b2_role: str = "X",
-    seed: int = 0,
-    trials: int = 2000,
-    cell_id: str = "witness",
-    diagnostics: dict[str, Any] | None = None,
-) -> tuple[QuotientCell, dict[str, Fraction], dict[str, Any]] | None:
-    """Sample rational configurations satisfying every row equality exactly.
+def _python_source(expr: Expr) -> str:
+    head = expr[0]
+    if head == "var":
+        return expr[1]
+    if head == "const":
+        return repr(expr[1])
+    parts = [_python_source(item) for item in expr[1:]]
+    if head == "+":
+        return "(" + "+".join(parts) + ")"
+    if head == "-":
+        return f"({parts[0]}-{parts[1]})"
+    if head == "*":
+        return "(" + "*".join(parts) + ")"
+    raise DRQuotientError("unknown expression head")
 
-    The Moser triangle and MEC are fixed rationally; every class point is a
-    rational point of its class circle, sampled into the cap its role needs.
-    The within-cap order is read off the sample, so the returned cell is the
-    one the witness realizes.  Every atom is then replayed exactly; only a
-    fully replayed sample is returned.
-    """
 
-    import random
+def _var_index(expr: Expr) -> int:
+    _fail(expr[0] == "var" and "_" in expr[1], "expected a point coordinate variable")
+    return int(expr[1].split("_")[1])
 
-    rng = random.Random(seed)
-    a2: Point = (Fraction(0), Fraction(0))
-    a1: Point = (Fraction(1), Fraction(0))
-    a3: Point = (Fraction(1, 4), Fraction(-3, 4))
-    center: Point = (Fraction(1, 2), Fraction(-1, 4))
-    rr = Fraction(5, 16)
-    groups = ["U", "X", "Y", "B1"] + (["Z"] if b2_role == "Z" else [])
-    needs = {
-        "U": ("I1", "I1", "I2", "Is"),
-        "X": ("I2", "I2", "Is", "I1"),
-        "Y": ("I2", "I2", "Is", "I1"),
-        "B1": ("I2", "Is", "I1", "I2"),
-        "Z": ("I2", "I2", "Is", "I1"),
-    }
-    failures: dict[str, int] = {} if diagnostics is None else diagnostics.setdefault("failures", {})
 
-    def inside(point: Point) -> bool:
-        return (point[0] - center[0]) ** 2 + (point[1] - center[1]) ** 2 <= rr
+def _signed_area_args(expr: Expr) -> tuple[int, int, int]:
+    """Recover (v, j, k) from an expression built by `_signed_area`."""
 
-    def sample_on(circle_center: Point, radius: Fraction, cap: str) -> Point | None:
-        for _attempt in range(80):
-            angle = rng.uniform(-math.pi, math.pi)
-            t = _fraction(math.tan(angle / 2), 400)
-            point = _circle_point(circle_center, radius, t)
-            if inside(point) and _cap_of(point, a1, a2, a3) == cap:
-                return point
-        return None
+    first = expr[1]
+    return _var_index(first[1][2]), _var_index(first[1][1]), _var_index(first[2][1])
 
-    for _trial in range(trials):
-        points: dict[str, Point] = {"a1": a1, "a2": a2, "a3": a3}
-        c1 = sample_on(center, _fraction(rng.uniform(0.35, 0.55), 60), "Is")
-        if c1 is None:
-            failures["c1"] = failures.get("c1", 0) + 1
-            continue
-        points["c1"] = c1
-        radii = {
-            "U": (a1, _fraction(rng.uniform(0.95, 0.999), 400)),
-            "X": (a2, _fraction(rng.uniform(0.71, 0.79), 400)),
-            "Y": (a2, _fraction(rng.uniform(0.71, 0.79), 400)),
-            "B1": (c1, _fraction(rng.uniform(0.45, 0.95), 400)),
-            "Z": (a2, _fraction(rng.uniform(0.71, 0.79), 400)),
-        }
-        ok = True
-        for group in groups:
-            circle_center, radius = radii[group]
-            for label, cap in zip(GROUPS[group], needs[group], strict=True):
-                point = sample_on(circle_center, radius, cap)
-                if point is None:
-                    ok = False
-                    failures[f"sample:{group}"] = failures.get(f"sample:{group}", 0) + 1
-                    break
-                points[label] = point
-            if not ok:
-                break
-        if not ok:
-            continue
-        labels = tuple(points)
-        placement = {label: _cap_of(points[label], a1, a2, a3) for label in labels if label not in APEX_LABELS}
-        if any(cap is None for cap in placement.values()):
-            failures["cap"] = failures.get("cap", 0) + 1
-            continue
 
-        def angle_about_center(label: str) -> float:
+@dataclass(frozen=True)
+class _CompiledAtom:
+    family: str
+    relation: str
+    code: Any
+    normaliser: tuple[int, ...] | None
+    triangle_code: Any
+
+
+def _compile_atoms(atoms: Sequence[Atom]) -> tuple[_CompiledAtom, ...]:
+    compiled: list[_CompiledAtom] = []
+    for family, relation, expr in atoms:
+        code = compile(_python_source(expr), "<atom>", "eval")
+        normaliser: tuple[int, ...] | None = None
+        triangle_code = None
+        if family == "convexity":
+            v, j, _k = _signed_area_args(expr)
+            normaliser = (v, j)
+        elif family == "mec_enclosing":
+            normaliser = (_var_index(expr[1][1][1][1]),)
+        elif family in {"cap_membership", "cap_exclusion"}:
+            _p, vj, vk = _signed_area_args(expr[1])
+            normaliser = (vj, vk)
+            triangle_code = compile(_python_source(expr[2]), "<atom>", "eval")
+        compiled.append(_CompiledAtom(family, relation, code, normaliser, triangle_code))
+    return tuple(compiled)
+
+
+def _atom_margin(atom: _CompiledAtom, values: Mapping[str, float]) -> float:
+    """Signed slack of one strict atom in comparable geometric units."""
+
+    if atom.family in _EXACT_FAMILIES:
+        return math.inf
+    if atom.family == "mec_enclosing" and atom.normaliser is not None and atom.normaliser[0] < len(APEX_LABELS):
+        return math.inf  # the three Moser vertices lie on the MEC by construction
+    value = float(eval(atom.code, {"__builtins__": {}}, values))
+    if atom.family == "mec_enclosing":
+        return -value / values["rr"]
+    if atom.family == "nonobtuse":
+        return value
+    if atom.family == "convexity":
+        assert atom.normaliser is not None
+        v, j = atom.normaliser
+        edge = math.hypot(values[f"x_{j}"] - values[f"x_{v}"], values[f"y_{j}"] - values[f"y_{v}"])
+        return value / max(edge, _EDGE_FLOOR)
+    if atom.family in {"cap_membership", "cap_exclusion"}:
+        assert atom.normaliser is not None
+        vj, vk = atom.normaliser
+        chord = math.hypot(values[f"x_{vk}"] - values[f"x_{vj}"], values[f"y_{vk}"] - values[f"y_{vj}"])
+        triangle = abs(float(eval(atom.triangle_code, {"__builtins__": {}}, values)))
+        signed = value / (chord * triangle)
+        return -signed if atom.family == "cap_membership" else signed
+    if atom.family in {"row_exactness", "bisector", "distinctness"}:
+        return math.copysign(math.sqrt(abs(value)), value)
+    raise DRQuotientError(f"no margin rule for family {atom.family}")
+
+
+@dataclass
+class _WitnessModel:
+    """Float search model over the rational parametrisation."""
+
+    b2_role: str
+    cell_id: str
+    groups: tuple[str, ...]
+    a1: tuple[float, float]
+    a2: tuple[float, float]
+    a3: tuple[float, float]
+    center: tuple[float, float]
+    rr: float
+    atoms_cache: dict[tuple[tuple[str, ...], ...], tuple[_CompiledAtom, ...]] = field(default_factory=dict)
+
+    @property
+    def radius_groups(self) -> tuple[str, ...]:
+        return tuple(group for group in self.groups if group != "B1")
+
+    def parameter_names(self) -> tuple[str, ...]:
+        names = [f"radius:{group}" for group in self.radius_groups]
+        names += ["c1:x", "c1:y", "radius:B1"]
+        for group in self.groups:
+            names += [f"angle:{label}" for label in GROUPS[group]]
+        return tuple(names)
+
+    def bounds(self) -> list[tuple[float, float]]:
+        bounds = [(0.87, 0.99)] * len(self.radius_groups)
+        bounds += [(0.05, 0.95), (0.005, 0.27), (0.3, 1.1)]
+        bounds += [(-math.pi + 1e-3, math.pi - 1e-3)] * (4 * len(self.groups))
+        return bounds
+
+    def unpack(self, params: Sequence[float]) -> tuple[dict[str, float], tuple[float, float], float, dict[str, float]]:
+        radii = dict(zip(self.radius_groups, params[: len(self.radius_groups)], strict=True))
+        offset = len(self.radius_groups)
+        c1 = (float(params[offset]), float(params[offset + 1]))
+        radii["B1"] = float(params[offset + 2])
+        offset += 3
+        angles: dict[str, float] = {}
+        for group in self.groups:
+            for label in GROUPS[group]:
+                angles[label] = float(params[offset])
+                offset += 1
+        return radii, c1, radii["B1"], angles
+
+    def circle_center(self, group: str, c1: tuple[float, float]) -> tuple[float, float]:
+        if group == "U":
+            return self.a1
+        if group == "B1":
+            return c1
+        return self.a2
+
+    def points(self, params: Sequence[float]) -> dict[str, tuple[float, float]]:
+        radii, c1, _rb, angles = self.unpack(params)
+        points: dict[str, tuple[float, float]] = {"a1": self.a1, "a2": self.a2, "a3": self.a3, "c1": c1}
+        for group in self.groups:
+            center = self.circle_center(group, c1)
+            for label in GROUPS[group]:
+                points[label] = _circle_point(center, radii[group], math.tan(angles[label] / 2))  # type: ignore[arg-type]
+        return points
+
+    def placement(self) -> dict[str, str]:
+        placement = {"c1": "Is"}
+        for group in self.groups:
+            placement.update(zip(GROUPS[group], WITNESS_NEEDS[group], strict=True))
+        return placement
+
+    def order(self, points: Mapping[str, tuple[float, float]]) -> dict[str, tuple[str, ...]]:
+        placement = self.placement()
+
+        def angle(label: str) -> float:
             px, py = points[label]
-            return math.atan2(float(py - center[1]), float(px - center[0]))
+            return math.atan2(float(py) - self.center[1], float(px) - self.center[0])
 
-        order = {
-            cap: tuple(sorted((label for label, where in placement.items() if where == cap), key=angle_about_center))
-            for cap in CAPS
-        }
-        # Is runs from a1 to a2 CCW, I1 from a2 to a3, I2 from a3 to a1: sort by angle
-        # measured CCW from the cap's starting apex.
-        starts = {"Is": "a1", "I1": "a2", "I2": "a3"}
+        order: dict[str, tuple[str, ...]] = {}
         for cap in CAPS:
-            base = angle_about_center(starts[cap])
-            order[cap] = tuple(sorted(order[cap], key=lambda label: (angle_about_center(label) - base) % (2 * math.pi)))
-        cell = QuotientCell(
-            cell_id=cell_id,
-            b2_role=b2_role,
-            placement={k: str(v) for k, v in placement.items()},
-            interior_order=order,
+            base = angle(_CAP_START[cap])
+            members = [label for label, where in placement.items() if where == cap]
+            order[cap] = tuple(sorted(members, key=lambda label: (angle(label) - base) % (2 * math.pi)))
+        return order
+
+    def cell(self, order: Mapping[str, tuple[str, ...]]) -> QuotientCell:
+        return QuotientCell(
+            cell_id=self.cell_id,
+            b2_role=self.b2_role,
+            placement=self.placement(),
+            interior_order={cap: tuple(order[cap]) for cap in CAPS},
             q_slot=0,
             w_slot=1,
             deleted="q",
         )
-        try:
-            carrier = validate_cell(cell)
-        except DRQuotientError as exc:
-            failures[f"cell:{exc}"] = failures.get(f"cell:{exc}", 0) + 1
-            continue
-        values: dict[str, Fraction] = {}
-        for position, label in enumerate(carrier):
+
+    def compiled(self, order: Mapping[str, tuple[str, ...]]) -> tuple[_CompiledAtom, ...]:
+        key = tuple(tuple(order[cap]) for cap in CAPS)
+        if key not in self.atoms_cache:
+            self.atoms_cache[key] = _compile_atoms(build_atoms(self.cell(order), "none"))
+        return self.atoms_cache[key]
+
+    def values(self, points: Mapping[str, tuple[float, float]], order: Mapping[str, tuple[str, ...]]) -> dict[str, float]:
+        values: dict[str, float] = {}
+        for position, label in enumerate(carrier_labels(self.cell(order))):
             values[f"x_{position}"], values[f"y_{position}"] = points[label]
-        values["ox"], values["oy"], values["rr"] = center[0], center[1], rr
-        accepted, evidence = replay_atoms(cell, "none", values)
-        if accepted:
-            return cell, values, {"trial": _trial, "failures": failures, "checks": evidence["checks"]}
-        key = f"atom:{evidence['reason']}"
-        failures[key] = failures.get(key, 0) + 1
+        values["ox"], values["oy"], values["rr"] = self.center[0], self.center[1], self.rr
+        return values
+
+    def worst(self, params: Sequence[float]) -> tuple[float, str]:
+        """Smallest normalised margin over every strict atom and its family."""
+
+        points = self.points(params)
+        order = self.order(points)
+        values = self.values(points, order)
+        worst_score, worst_family = math.inf, "none"
+        for atom in self.compiled(order):
+            margin = _atom_margin(atom, values)
+            if margin is math.inf:
+                continue
+            score = margin / MARGIN_TARGETS[atom.family]
+            if score < worst_score:
+                worst_score, worst_family = score, atom.family
+        return worst_score, worst_family
+
+    def objective(self, params: Sequence[float]) -> float:
+        return -self.worst(params)[0]
+
+    def initial_angles(self, radii: Mapping[str, float], c1: tuple[float, float], rng: Any = None) -> dict[str, float]:
+        """Spread each group's points along the feasible arc of its needed cap.
+
+        With ``rng`` the positions along each arc are random; otherwise they are
+        evenly spaced.
+        """
+
+        angles: dict[str, float] = {}
+        grid = [(-math.pi + 1e-3) + (2 * math.pi - 2e-3) * k / 1440 for k in range(1441)]
+        for group in self.groups:
+            center = self.circle_center(group, c1)
+            radius = radii[group]
+            feasible: dict[str, list[float]] = {cap: [] for cap in CAPS}
+            for theta in grid:
+                point = _circle_point(center, radius, math.tan(theta / 2))  # type: ignore[arg-type]
+                inside = (point[0] - self.center[0]) ** 2 + (point[1] - self.center[1]) ** 2 <= self.rr * 0.995
+                cap = _cap_of(point, self.a1, self.a2, self.a3)  # type: ignore[arg-type]
+                if inside and cap is not None:
+                    feasible[cap].append(theta)
+            for cap in CAPS:
+                labels = [label for label, need in zip(GROUPS[group], WITNESS_NEEDS[group], strict=True) if need == cap]
+                if not labels:
+                    continue
+                arc = feasible[cap]
+                if not arc:
+                    for label in labels:
+                        angles[label] = 0.0
+                    continue
+                # Choose the longest contiguous run of grid angles.
+                runs: list[list[float]] = [[arc[0]]]
+                for previous, theta in zip(arc, arc[1:], strict=False):
+                    if theta - previous > 3 * (2 * math.pi / 1440):
+                        runs.append([])
+                    runs[-1].append(theta)
+                run = max(runs, key=len)
+                if rng is None:
+                    positions = [(slot + 1) / (len(labels) + 1) for slot in range(len(labels))]
+                else:
+                    positions = sorted(float(v) for v in rng.uniform(0.1, 0.9, size=len(labels)))
+                for label, position in zip(labels, positions, strict=True):
+                    angles[label] = run[int(round(position * (len(run) - 1)))]
+        return angles
+
+    def pack(self, radii: Mapping[str, float], c1: tuple[float, float], angles: Mapping[str, float]) -> list[float]:
+        params = [radii[group] for group in self.radius_groups]
+        params += [c1[0], c1[1], radii["B1"]]
+        for group in self.groups:
+            params += [angles[label] for label in GROUPS[group]]
+        return params
+
+    def exact(self, params: Sequence[float]) -> tuple[QuotientCell, dict[str, Fraction]]:
+        """Rationalise the parameters and rebuild every point exactly on its circle."""
+
+        radii, c1, _rb, angles = self.unpack(params)
+        exact_radii = {group: _fraction(radius, _RATIONAL_LIMIT) for group, radius in radii.items()}
+        exact_c1: Point = (_fraction(c1[0], _RATIONAL_LIMIT), _fraction(c1[1], _RATIONAL_LIMIT))
+        a2: Point = (Fraction(0), Fraction(0))
+        a1: Point = (Fraction(1), Fraction(0))
+        centers: dict[str, Point] = {"U": a1, "X": a2, "Y": a2, "Z": a2, "B1": exact_c1}
+        points: dict[str, Point] = {"a1": a1, "a2": a2, "a3": WITNESS_APEX_A3, "c1": exact_c1}
+        for group in self.groups:
+            for label in GROUPS[group]:
+                t = _fraction(math.tan(angles[label] / 2), _RATIONAL_LIMIT)
+                points[label] = _circle_point(centers[group], exact_radii[group], t)
+        order = self.order({label: (float(p[0]), float(p[1])) for label, p in points.items()})
+        cell = self.cell(order)
+        values: dict[str, Fraction] = {}
+        for position, label in enumerate(validate_cell(cell)):
+            values[f"x_{position}"], values[f"y_{position}"] = points[label]
+        values["ox"], values["oy"], values["rr"] = WITNESS_MEC_CENTER[0], WITNESS_MEC_CENTER[1], WITNESS_MEC_RR
+        return cell, values
+
+
+def witness_model(b2_role: str = "X", cell_id: str = "witness") -> _WitnessModel:
+    _fail(b2_role in B2_ROLES, "b2_role must be X, Y, or Z")
+    groups = ("U", "X", "Y", "B1") + (("Z",) if b2_role == "Z" else ())
+    return _WitnessModel(
+        b2_role=b2_role,
+        cell_id=cell_id,
+        groups=groups,
+        a1=(1.0, 0.0),
+        a2=(0.0, 0.0),
+        a3=(float(WITNESS_APEX_A3[0]), float(WITNESS_APEX_A3[1])),
+        center=(float(WITNESS_MEC_CENTER[0]), float(WITNESS_MEC_CENTER[1])),
+        rr=float(WITNESS_MEC_RR),
+    )
+
+
+def _solve_fixed_order(
+    model: _WitnessModel,
+    x0: Sequence[float],
+    order: Mapping[str, tuple[str, ...]],
+    *,
+    iterations: int,
+) -> tuple[list[float], float]:
+    """Push every strict atom of the frozen cell to its target margin.
+
+    Residuals r_i = max(0, 1 - margin_i/target_i) for every strict atom of
+    the frozen cell are driven to zero by a bounded trust-region
+    least-squares solve with finite-difference Jacobians.  Freezing the
+    within-cap order makes the residuals a fixed family of piecewise-smooth
+    functions of the parameters.
+    """
+
+    import numpy as np
+    from scipy.optimize import least_squares
+
+    strict = [atom for atom in model.compiled(order) if atom.family not in _EXACT_FAMILIES]
+    targets = np.array([MARGIN_TARGETS[atom.family] for atom in strict])
+
+    def margins(x: Sequence[float]) -> Any:
+        points = model.points(x)
+        values = model.values(points, order)
+        return np.array([_atom_margin(atom, values) for atom in strict]) / targets
+
+    def residuals(x: Sequence[float]) -> Any:
+        return np.maximum(0.0, 1.0 - margins(x))
+
+    lower, upper = (np.array(side, dtype=float) for side in zip(*model.bounds(), strict=True))
+    x_start = np.clip(np.asarray(x0, dtype=float), lower + 1e-9, upper - 1e-9)
+    result = least_squares(
+        residuals, x_start, bounds=(lower, upper), method="trf", x_scale="jac",
+        max_nfev=iterations, ftol=1e-12, xtol=1e-12, gtol=1e-12,
+    )
+    x = [float(v) for v in result.x]
+    return x, float(margins(x).min())
+
+
+def witness_search(
+    *,
+    b2_role: str = "X",
+    seed: int = 0,
+    trials: int = 40,
+    cell_id: str = "witness",
+    diagnostics: dict[str, Any] | None = None,
+) -> tuple[QuotientCell, dict[str, Fraction], dict[str, Any]] | None:
+    """Search for an exactly replayed rational configuration of the generic placement.
+
+    The Moser triangle and MEC are fixed rationally; every class point is a
+    rational point of its class circle, so every equality holds exactly by
+    construction.  Each restart freezes the within-cap order read off the
+    current float configuration, maximises the smallest normalised slack of
+    the strict atoms by SLSQP, re-reads the order, and repeats until the
+    order is stable.  The parameters are then rationalised and every atom is
+    replayed with `Fraction` arithmetic by `replay_atoms`.  Only an exactly
+    replayed configuration is returned, together with the cell it realizes.
+    """
+
+    import numpy as np
+
+    model = witness_model(b2_role, cell_id)
+    rng = np.random.default_rng(seed)
+    history: list[dict[str, Any]] = [] if diagnostics is None else diagnostics.setdefault("restarts", [])
+
+    def sliver_height(x_coordinate: float) -> float:
+        """Height of the surplus-cap sliver above the chord a1 a2 at abscissa x."""
+
+        inside = model.rr - (x_coordinate - model.center[0]) ** 2
+        return model.center[1] + math.sqrt(inside) if inside > 0 else 0.0
+
+    for restart in range(trials):
+        if restart == 0:
+            # Designed start: the parameters of the first exactly replayed witness
+            # (q1a-wave-2, seed 0, restart 8), rounded.
+            radii = {"U": 0.9645, "X": 0.982, "Y": 0.9638, "Z": 0.905, "B1": 0.841}
+            c1 = (0.1335, 0.0103)
+            fractions = None
+        else:
+            radii = {group: float(rng.uniform(0.89, 0.98)) for group in ("U", "X", "Y", "Z")}
+            while abs(radii["X"] - radii["Y"]) < 0.015 or abs(radii["X"] - radii["Z"]) < 0.015 or abs(radii["Y"] - radii["Z"]) < 0.015:
+                radii["Y"], radii["Z"] = float(rng.uniform(0.89, 0.98)), float(rng.uniform(0.89, 0.98))
+            radii["B1"] = float(rng.uniform(0.5, 1.0))
+            cx = float(rng.uniform(0.1, 0.9))
+            c1 = (cx, float(rng.uniform(0.2, 0.9)) * sliver_height(cx))
+            fractions = rng
+        x = model.pack(radii, c1, model.initial_angles(radii, c1, fractions))
+        order = model.order(model.points(x))
+        rounds: list[dict[str, Any]] = []
+        score = -math.inf
+        for _round in range(10):
+            x, score = _solve_fixed_order(model, x, order, iterations=3000)
+            reread = model.order(model.points(x))
+            rounds.append({"frozen_score": score, "order_changed": reread != order})
+            if reread == order:
+                break
+            order = reread
+        score, family = model.worst(x)
+        record: dict[str, Any] = {
+            "restart": restart,
+            "min_normalised_margin": score,
+            "worst_family": family,
+            "rounds": rounds,
+        }
+        if score > 0:
+            cell, values = model.exact(x)
+            accepted, evidence = replay_atoms(cell, "none", values)
+            record["exact_replay"] = accepted if accepted else evidence
+            history.append(record)
+            if accepted:
+                return cell, values, {
+                    "restart": restart,
+                    "min_normalised_margin": score,
+                    "worst_family": family,
+                    "restarts": list(history),
+                    "checks": evidence["checks"],
+                }
+            continue
+        history.append(record)
     return None
 
 
@@ -1001,7 +1348,7 @@ def prepare_stage(cell: QuotientCell, control: str, *, timeout_ms: int) -> Prepa
     }
     variables = [
         {"id": f"{position:03d}-{term}", "term": term, "sort": "Real"}
-        for position, term in enumerate(variable_terms(cell))
+        for position, term in enumerate(variable_terms(cell, control))
     ]
     descriptor = {
         "schema": DESCRIPTOR_SCHEMA,
@@ -1044,9 +1391,26 @@ def prepare_stage(cell: QuotientCell, control: str, *, timeout_ms: int) -> Prepa
     return PreparedStage(cell, control, source_record, source_record_bytes, query)
 
 
-def _classification(raw_status: object, effective_status: object) -> str:
+def _algebraic_model(semantic_replay: object) -> bool:
+    """True when Z3 answered SAT with a non-rational (root-obj) model.
+
+    The exact replay cannot read such a model, so the verdict stays a bare
+    solver SAT: published as a diagnostic, never as a verified witness.
+    """
+
+    return (
+        type(semantic_replay) is dict
+        and semantic_replay.get("accepted") is False
+        and type(semantic_replay.get("evidence")) is dict
+        and semantic_replay["evidence"].get("reason") == "non-rational-readback"
+    )
+
+
+def _classification(raw_status: object, effective_status: object, semantic_replay: object = None) -> str:
     if raw_status == "SAT" and effective_status == "SAT_SEMANTICALLY_REPLAYED":
         return "SAT_EXACT_RATIONAL_REPLAYED_DIAGNOSTIC"
+    if raw_status == "SAT" and _algebraic_model(semantic_replay):
+        return "Z3_SAT_ALGEBRAIC_MODEL_NOT_RATIONALLY_REPLAYED_DIAGNOSTIC"
     if raw_status == "UNSAT":
         return "Z3_UNSAT_QUOTIENT_SCOPE_DIAGNOSTIC_NOT_CERTIFIED"
     if raw_status == "UNKNOWN":
@@ -1058,11 +1422,12 @@ def _compact_result(prepared: PreparedStage, engine: Mapping[str, object], outpu
     raw_status = engine.get("raw_status")
     effective_status = engine.get("effective_status")
     semantic_replay = engine.get("semantic_replay")
-    if raw_status == "SAT" and (
-        effective_status != "SAT_SEMANTICALLY_REPLAYED"
-        or type(semantic_replay) is not dict
-        or semantic_replay.get("accepted") is not True
-    ):
+    replayed = (
+        effective_status == "SAT_SEMANTICALLY_REPLAYED"
+        and type(semantic_replay) is dict
+        and semantic_replay.get("accepted") is True
+    )
+    if raw_status == "SAT" and not replayed and not _algebraic_model(semantic_replay):
         raise DRQuotientError("PIQD SAT did not pass exact-rational semantic replay")
     _fail(raw_status in {"SAT", "UNSAT", "UNKNOWN", None}, "PIQD returned an invalid raw status")
     status = raw_status if raw_status in {"SAT", "UNSAT", "UNKNOWN"} else "UNKNOWN"
@@ -1077,7 +1442,7 @@ def _compact_result(prepared: PreparedStage, engine: Mapping[str, object], outpu
         "scope": "named-role quotient; one fixed discrete cell; no carrier completeness",
         "status": status,
         "effective_status": effective_status,
-        "classification": _classification(raw_status, effective_status),
+        "classification": _classification(raw_status, effective_status, semantic_replay),
         "route": "piqd-z3-qfnra-one-shot",
         "workers": 1,
         "local_fallback": False,
@@ -1244,7 +1609,8 @@ def main(argv: list[str] | None = None) -> int:
             b2_role=arguments.b2_role, seed=arguments.seed, trials=arguments.trials, cell_id=arguments.cell_id, diagnostics=diagnostics
         )
         if found is None:
-            sys.stdout.write(json.dumps({"witness": None, "seed": arguments.seed, "trials": arguments.trials, "failures": diagnostics.get("failures")}, sort_keys=True) + "\n")
+            best = max((r["min_normalised_margin"] for r in diagnostics.get("restarts", [])), default=None)
+            sys.stdout.write(json.dumps({"witness": None, "seed": arguments.seed, "trials": arguments.trials, "best_min_normalised_margin": best}, sort_keys=True) + "\n")
             return 1
         cell, values, evidence = found
         root = REPOSITORY_ROOT / "scratch" / "runs" / LANE_ID / arguments.run_id
@@ -1256,7 +1622,7 @@ def main(argv: list[str] | None = None) -> int:
         witness_path = root / "artifacts" / f"{cell.cell_id}-exact-witness.json"
         payload = witness_payload(cell, values, evidence)
         witness_path.write_bytes(_canonical(payload) + b"\n")
-        sys.stdout.write(json.dumps({"witness": str(witness_path), "cell": str(cell_path), "trial": evidence["trial"], "omitted": {k: v.get("holds") for k, v in payload["omitted_fact_readback"].items() if "holds" in v}}, sort_keys=True) + "\n")
+        sys.stdout.write(json.dumps({"witness": str(witness_path), "cell": str(cell_path), "restart": evidence["restart"], "min_normalised_margin": evidence["min_normalised_margin"], "omitted": {k: v.get("holds") for k, v in payload["omitted_fact_readback"].items() if "holds" in v}}, sort_keys=True) + "\n")
         return 0
     cell = _resolve_cell(arguments)
     if arguments.command == "journal":

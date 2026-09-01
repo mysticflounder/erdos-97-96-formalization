@@ -3,9 +3,9 @@
 Date: 2026-09-01. Lane `dr-two-radius-20260901`. Plan
 `docs/plans/2026-09-01-dr-two-radius-branch-closure.md`, Phase 1a.
 
-Status: diagnostic computation in progress. No result here closes a Lean
-theorem, supplies coverage, or authorizes removing the live `sorry` at
-`Rigid221Closure.lean:1245`. Every verdict below is CONJECTURE-level
+Status: Phase 1a settled SAT by an exact witness; Phase 1b not started. No
+result here closes a Lean theorem, supplies coverage, or authorizes removing
+the live `sorry` at `Rigid221Closure.lean:1245`. Every verdict below is CONJECTURE-level
 evidence about one encoding until a second reader audits the
 encoding-to-claim map.
 
@@ -53,46 +53,115 @@ nlsat stall the QF_NRA reference describes: 43 real variables with 360
 strict orientation atoms are beyond a one-shot budget, for UNSAT and SAT
 alike. A timeout is the absence of a verdict, not evidence for either side.
 
-Consequences applied in the same checkpoint:
+Run root `scratch/runs/dr-two-radius-20260901/q1a-wave-2` (reduced
+five-point controls built from the same atom generators):
 
-- Negative and positive controls are now tiny systems built from the same
-  atom generators (`duplicate-center`: 5 points, 18 atoms; `small-sat`:
-  5 points, 31 atoms, with a hand-checked rational witness in the tests).
-  They run under `q1a-wave-2`; results are recorded when they publish.
-- The `source_digests` of `q1a-wave-1/run_manifest.json` were refreshed
-  after the encoder edits that added the reduced controls and the witness
-  search; the published custody trees under `q1a-wave-1/artifacts/*` carry
-  the exact executed encoder bytes as `implementation-0000` snapshots.
+| cell | control | atoms | declared reals | verdict | solve time |
+|---|---|---:|---:|---|---:|
+| generic-x | duplicate-center (three points equidistant from two centres) | 18 | 43 | UNKNOWN | 301 s (budget 300 s) |
+| generic-x | small-sat (three points on one circle, convex with two apexes) | 31 | 43 | SAT, algebraic model | under 1 s |
+
+Reading of the reduced controls:
+
+- The negative control is a genuine geometric UNSAT (two distinct circles
+  share at most two points), not a syntactic one, and Z3 4.17.0 nlsat does
+  not settle it in 300 s. The Z3 one-shot route is therefore not a usable
+  UNSAT instrument for this lane at any size; the only UNSAT it produced
+  (`five-at-second-apex`) was a syntactic clash with the exactness family.
+  A rerun with only the twelve mentioned reals declared (`q1a-wave-3`,
+  budget 300 s) is UNKNOWN as well, so the spare declarations were not the
+  cause.
+- The positive control returned SAT with the model `x_9 = root-obj(4x² − 7, 2)`
+  (an algebraic number). The exact-rational verifier rejected it as
+  `non-rational-readback`, as designed; the first run of the encoder then
+  treated that rejection as a failure and discarded the custody tree. The
+  encoder now publishes such a result with classification
+  `Z3_SAT_ALGEBRAIC_MODEL_NOT_RATIONALLY_REPLAYED_DIAGNOSTIC`: a bare solver
+  SAT, never a verified witness. The rational witness for this control is
+  the hand-checked pentagon in the tests, replayed exactly.
+
+Consequences applied in the same checkpoints:
+
+- Reduced controls now declare only the reals their atoms mention (the
+  journal for `generic-x`/`none` still declares all 43).
+- The `source_digests` of the `q1a-wave-1` and `q1a-wave-2` run manifests
+  were refreshed after the encoder edits; the published custody trees under
+  `*/artifacts/*` carry the exact executed encoder bytes as
+  `implementation-0000` snapshots.
 
 ## Constructive exact witness (no solver)
 
-`witness` subcommand: the Moser triangle and MEC are fixed rationally,
-every class point is a rational point of its class circle (Pythagorean
-parametrisation), so every equality holds exactly by construction; every
-inequality is then replayed with `Fraction` arithmetic by the same
-`replay_atoms` the PIQD verifier uses. The within-cap order is read off
-the sample, so the returned cell is the one the witness realises.
+`witness` subcommand. The Moser triangle is fixed as `a2 = (0,0)`,
+`a1 = (1,0)`, `a3 = (1/2, -6/7)` with rational circumcentre
+`(1/2, -665/2352)`; every class point is a rational point of its class
+circle (Pythagorean parametrisation), so every equality holds exactly by
+construction. A float search over the same parametrisation (class radii,
+the blocker `c1`, its row radius, one angle per class point) maximises the
+smallest normalised slack of the strict atoms: the within-cap order is read
+off the current configuration and frozen, a bounded trust-region
+least-squares solve drives hinge residuals of every strict atom to zero,
+the order is re-read, and the loop repeats until stable. The parameters are
+then rationalised (`limit_denominator(10000)`) and every atom is replayed
+with `Fraction` arithmetic by the same `replay_atoms` the PIQD verifier
+uses. Only an exactly replayed configuration is returned.
 
-Result of the first sampler (uniform random angles, 2000 trials, seed 1):
-no witness. Failure histogram: `sample:U 1249`, `sample:X 424`,
-`sample:Y 180`, `sample:B1 135`, `atom:convexity 12`. Twelve samples
-reached the full replay and all failed strict convexity: with the
-right-angled-adjacent triangle `a3 = (1/4, -3/4)` the class circles leave
-slivers of height about 0.02 to 0.05 beyond each chord, and 20 points in
-those slivers must form three convex chains. Blind sampling does not reach
-that set.
+History: a uniform random sampler (2000 trials) found nothing; SLSQP on the
+epigraph form converged to worse points than its start; the hinge
+least-squares form stalled once on two coincident row points (the
+edge-normalised convexity margin was singular there, now floored at 0.02)
+and once on the enclosure atoms of the three Moser vertices, which sit on
+the circle by construction and were wrongly counted as zero-margin atoms.
 
-Next step recorded for the lane: replace the sampler's inner loop with a
-margin-minimising local search over the same rational parametrisation
-(near-equilateral triangle `a3 = (1/2, -6/7)` gives about 13 percent radial
-room at each apex instead of 5 percent), then rationalise the parameters and
-replay exactly. Only an exactly replayed configuration counts as a witness.
+Result (`certificates/p97_dr_two_radius/witness-x-exact-witness.json`, also
+under `q1a-wave-2/artifacts/`; seed 0,
+restart 8 of the randomised restarts; the designed restart 0 now starts
+from its parameters and replays in a few seconds):
+
+- EMPIRICALLY VERIFIED, exact over Q: a 20-point configuration realising
+  the principal all-distinct cell with `B2 = X`, all 717 asserted atoms
+  replayed, smallest normalised margin 0.33 (worst family: distinctness,
+  two points about 0.01 apart).
+- Realised cell: `Is = X2, B1_1, Y2, c1, U3`; `I1 = U0, U1, B1_2, Y3, X3`;
+  `I2 = U2, Y0, X0, X1, Y1, B1_0, B1_3` (counterclockwise from a1, a2, a3
+  respectively). Class radii about 0.964 (`U`), 0.982 (`X`), 0.964 (`Y`);
+  the blocker `c1 ≈ (0.133, 0.010)` sits in the surplus cap next to `a2`
+  with row radius about 0.84, so its row lies near `a1`.
+- Omitted-fact readback on the witness: no five-class at `a2` (class sizes
+  4, 4, then singletons); the `U` radius is the unique four-radius at `a1`;
+  the `B1` radius is the unique four-radius at `c1`. The named points other
+  than `a1`, `a2`, `c1` carry no four-class, and `X`, `Y` have no named
+  unique-four blocker because `a2` carries two four-classes: these are
+  exactly the facts the named-role quotient cannot express (blockers of the
+  unnamed carrier points; the exact-12 count).
+
+Reading. Phase 1a is SAT: the named-role facts the Lean binders expose,
+with metric exactness and convex position on the named points, do not force
+a contradiction. Any closure of the branch must use what the quotient omits:
+the blocker of every carrier point (`CriticalShellSystem` at unnamed
+points), the exact carrier count, or the a2-blocker exclusion interacting
+with those. By the plan's decision rule the lane moves to encoding 1b
+(exact-12 full carrier, profile (5,4,6)).
+
+The `Z`-role cell (a third exact class at `a2` as the second ingress row,
+24 points, 1028 atoms) is realizable as well:
+`certificates/p97_dr_two_radius/witness-z-exact-witness.json`, designed
+restart 0,
+smallest normalised margin 0.25, all 1028 atoms replayed over Q, three
+four-classes at `a2` and no five-class.
 
 ## Claim boundary
 
 - PROVEN: nothing new.
-- EMPIRICALLY VERIFIED: one full-system negative control UNSAT in 2 ms;
-  two full-system one-shots UNKNOWN at budget.
-- Open: whether the generic cell is realizable. Degrees of freedom (39
-  free coordinates, 15 equalities) make SAT the expected outcome; nothing
-  here establishes it.
+- EMPIRICALLY VERIFIED (exact over Q, replayed by a test): the principal
+  cell of the named-role quotient with `B2 = X` is realizable; encoding 1a
+  is SAT at that cell. This is a statement about the encoded quotient, not
+  about the Lean obligation: the quotient omits the blockers of unnamed
+  points and the carrier count, and the encoding-to-claim map has not been
+  adversarially audited by a second reader.
+- EMPIRICALLY VERIFIED: one full-system negative control UNSAT in 2 ms
+  (syntactic); the reduced geometric negative control UNKNOWN at 300 s twice;
+  the reduced positive control SAT with an algebraic model.
+- Instrument finding: Z3 QF_NRA one-shot through PIQD is not a usable
+  UNSAT oracle for this lane. UNSAT-side evidence for 1b needs either a
+  counting/order argument provable in Lean or a Gröbner/CAD engine, which
+  needs Adam's approval before it runs.

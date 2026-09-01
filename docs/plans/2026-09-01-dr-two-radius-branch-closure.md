@@ -193,6 +193,15 @@ Decision rule:
 Deliverables: manifests under `scratch/runs/dr-two-radius-20260901/<run-id>/`
 with `run_manifest.json`, `promotion_eligible = false` until Phase 3.
 
+Status 2026-09-01: encoding 1a is SAT at the principal all-distinct cell
+with `B2 = X`, by an exact rational witness replayed over Q
+(`census/card_head/dr_two_radius_quotient.py`, audit
+`docs/audits/2026-09-01-dr-two-radius-quotient-wave.md`). Z3 QF_NRA through
+PIQD is compute-blocked on the full quotient and on an 18-atom geometric
+negative control, so it is not the UNSAT instrument for 1b. Next per the
+decision rule: encoding 1b. Its UNSAT side must come from Lean-provable
+counting/order arguments or from an algebra engine that needs approval.
+
 ### Phase 2 — Lean positive controls (on spine, cheap)
 
 Each item narrows the leaf and is needed by Phase 3 in any outcome.

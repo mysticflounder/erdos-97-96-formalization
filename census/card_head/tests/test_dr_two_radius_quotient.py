@@ -123,6 +123,10 @@ class Journal(unittest.TestCase):
             quotient.atom_counts(quotient.build_atoms(cell, "small-sat")),
             {"convexity": 15, "distinctness": 10, "gauge": 4, "row_equalities": 2, "total": 31},
         )
+        # Reduced controls declare only the coordinates their atoms mention.
+        self.assertEqual(len(quotient.variable_terms(cell, "duplicate-center")), 12)
+        self.assertEqual(len(quotient.variable_terms(cell, "small-sat")), 10)
+        self.assertEqual(len(quotient.variable_terms(cell, "none")), 43)
 
     def test_small_sat_control_has_a_hand_witness(self) -> None:
         # CCW pentagon a1=(1,0), a2=(0,0), X0=(-3/5,-4/5), X1=(0,-1), X2=(3/5,-4/5);
@@ -151,13 +155,39 @@ class Journal(unittest.TestCase):
         self.assertEqual(evidence["reason"], "convexity")
 
     def test_witness_search_returns_replayed_cell(self) -> None:
-        found = quotient.witness_search(seed=1, trials=400, cell_id="test-witness")
-        if found is None:
-            self.skipTest("no witness within 400 trials; the CLI run records the full search")
+        # Restart 0 starts from the published witness parameters and must replay.
+        found = quotient.witness_search(seed=1, trials=1, cell_id="test-witness")
+        self.assertIsNotNone(found)
+        assert found is not None
         cell, values, evidence = found
         accepted, replay = quotient.replay_atoms(cell, "none", values)
         self.assertTrue(accepted)
         self.assertEqual(replay["total"], quotient.atom_counts(quotient.build_atoms(cell))["total"])
+        self.assertEqual(evidence["restart"], 0)
+
+    def test_published_witness_replays_exactly(self) -> None:
+        path = quotient.REPOSITORY_ROOT / "certificates" / "p97_dr_two_radius" / "witness-x-exact-witness.json"
+        payload = json.loads(path.read_text())
+        self.assertEqual(payload["schema"], "p97-dr-two-radius-quotient-exact-witness/v1")
+        cell = quotient.cell_from_payload(payload["cell"])
+        labels = quotient.validate_cell(cell)
+        values = {}
+        for position, label in enumerate(labels):
+            values[f"x_{position}"] = Fraction(payload["coordinates"][label]["x"])
+            values[f"y_{position}"] = Fraction(payload["coordinates"][label]["y"])
+        values["ox"] = Fraction(payload["mec_center"]["x"])
+        values["oy"] = Fraction(payload["mec_center"]["y"])
+        values["rr"] = Fraction(payload["mec_squared_radius"])
+        accepted, replay = quotient.replay_atoms(cell, "none", values)
+        self.assertTrue(accepted, replay)
+        self.assertEqual(replay["checks"], payload["replay"]["checks"])
+        self.assertEqual(replay["total"], 717)
+        readback = quotient.omitted_fact_readback(cell, values)
+        self.assertTrue(readback["no_five_at_second_apex"]["holds"])
+        self.assertTrue(readback["unique_four_radius_at_first_apex"]["holds"])
+        self.assertTrue(readback["first_blocker_unique_four"]["holds"])
+        self.assertEqual(readback, payload["omitted_fact_readback"])
+        self.assertFalse(payload["promotion_eligible"])
 
     def test_every_ledger_family_is_asserted_or_structural(self) -> None:
         cell = quotient.generic_cell()
@@ -235,6 +265,21 @@ class Stage(unittest.TestCase):
         prepared = quotient.prepare_stage(cell, "none", timeout_ms=1000)
         with self.assertRaisesRegex(quotient.DRQuotientError, "semantic replay"):
             quotient._compact_result(prepared, {"raw_status": "SAT", "effective_status": "SAT"}, quotient.REPOSITORY_ROOT)
+        with self.assertRaisesRegex(quotient.DRQuotientError, "semantic replay"):
+            rejected = {"accepted": False, "evidence": {"reason": "convexity", "atom_index": 3}}
+            quotient._compact_result(
+                prepared,
+                {"raw_status": "SAT", "effective_status": "INCONCLUSIVE_SEMANTIC_REPLAY_REJECTED", "semantic_replay": rejected},
+                quotient.REPOSITORY_ROOT,
+            )
+        algebraic = {"accepted": False, "evidence": {"reason": "non-rational-readback", "detail": "root-obj"}}
+        result = quotient._compact_result(
+            prepared,
+            {"raw_status": "SAT", "effective_status": "INCONCLUSIVE_SEMANTIC_REPLAY_REJECTED", "semantic_replay": algebraic},
+            quotient.REPOSITORY_ROOT,
+        )
+        self.assertEqual(result["classification"], "Z3_SAT_ALGEBRAIC_MODEL_NOT_RATIONALLY_REPLAYED_DIAGNOSTIC")
+        self.assertEqual(result["status"], "SAT")
         result = quotient._compact_result(prepared, {"raw_status": "UNSAT", "effective_status": "UNSAT"}, quotient.REPOSITORY_ROOT)
         self.assertEqual(result["classification"], "Z3_UNSAT_QUOTIENT_SCOPE_DIAGNOSTIC_NOT_CERTIFIED")
         self.assertFalse(result["promotion_eligible"])
