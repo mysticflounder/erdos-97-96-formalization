@@ -125,6 +125,41 @@ registered_at = "2026-08-31T03:50:14+00:00"
 updated_at = "2026-08-31T03:50:14+00:00"
 
 [[offspine]]
+symbol = "Problem97.Cyclic1248AbstractRowSystem.beta_bijective"
+category = "infra"
+reason = "Deliberate off-spine combinatorial obstruction for the cyclic 1-2-4-8 row-system formalization."
+registered_at = "2026-09-01T23:17:57+00:00"
+updated_at = "2026-09-01T23:17:57+00:00"
+
+[[offspine]]
+symbol = "Problem97.Cyclic1248AbstractRowSystem.system_centerExcluded"
+category = "infra"
+reason = "Deliberate off-spine combinatorial obstruction for the cyclic 1-2-4-8 row-system formalization."
+registered_at = "2026-09-01T23:17:55+00:00"
+updated_at = "2026-09-01T23:17:55+00:00"
+
+[[offspine]]
+symbol = "Problem97.Cyclic1248AbstractRowSystem.system_hasBlockerSection"
+category = "infra"
+reason = "Deliberate off-spine combinatorial obstruction for the cyclic 1-2-4-8 row-system formalization."
+registered_at = "2026-09-01T23:17:56+00:00"
+updated_at = "2026-09-01T23:17:56+00:00"
+
+[[offspine]]
+symbol = "Problem97.Cyclic1248AbstractRowSystem.system_rowCardEq"
+category = "infra"
+reason = "Deliberate off-spine combinatorial obstruction for the cyclic 1-2-4-8 row-system formalization."
+registered_at = "2026-09-01T23:17:54+00:00"
+updated_at = "2026-09-01T23:17:54+00:00"
+
+[[offspine]]
+symbol = "Problem97.Cyclic1248AbstractRowSystem.system_supportMinimal"
+category = "infra"
+reason = "Deliberate off-spine combinatorial obstruction for the cyclic 1-2-4-8 row-system formalization."
+registered_at = "2026-09-01T23:17:58+00:00"
+updated_at = "2026-09-01T23:17:58+00:00"
+
+[[offspine]]
 symbol = "Problem97.SurplusCapPacket.false_of_equalRadius_detCone_of_mem_capByIndex"
 category = "compat"
 reason = "Indexed oriented-cap compatibility wrapper; source membership and orientation remain explicit antecedents."
