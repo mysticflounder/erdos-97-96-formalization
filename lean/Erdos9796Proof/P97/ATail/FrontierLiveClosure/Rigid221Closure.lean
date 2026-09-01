@@ -7,6 +7,7 @@ Authors: Adam McKenna
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.ContextFrames
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.Rigid221SourceHeavy
 import Erdos9796Proof.P97.ATail.ExactFiveCommonAdaptiveReselection
+import Erdos9796Proof.P97.ATail.ExactFiveDistinctThreeCenterContinuation
 
 namespace Problem97
 namespace ATailFrontierLiveClosure
@@ -44,6 +45,7 @@ open ATailTwoCollisionGlobalProducer
 open ATailTwoCenterCapLocalization
 open ATailUniqueFourLateChoiceTerminalScratch
 open FirstApexUniqueRadiusResidual
+open ExactFiveDistinctThreeCenterContinuation
 open Census554.GeneralCarrierBridge
 
 attribute [local instance] Classical.propDecidable
@@ -1410,58 +1412,6 @@ private theorem exactFiveDistinct_oppApex2_mem_A
   · simpa [SurplusCapPacket.oppApex2, hi] using S.triangle.v1_mem
   · simpa [SurplusCapPacket.oppApex2, hi] using S.triangle.v2_mem
 
-/-- The first physical opposite cap is the cap at the first opposite index. -/
-private theorem exactFiveDistinct_capByIndex_oppIndex1_eq_oppCap1
-    {A : Finset ℝ²} (S : SurplusCapPacket A) :
-    S.capByIndex S.oppIndex1 = S.oppCap1 := by
-  rcases hi : S.surplusIdx with ⟨i, hi3⟩
-  interval_cases i <;>
-    simp [SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex1,
-      SurplusCapPacket.oppCap1, hi]
-
-/-- An exact five-point first-apex class forces at least five points in the
-first physical opposite cap. -/
-private theorem exactFiveDistinct_firstOppCap_card_ge_five
-    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
-    {H : CriticalShellSystem D.A}
-    {F : CriticalPairFrontier D S radius H}
-    (R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F) :
-    5 ≤ S.oppCap1.card := by
-  have hinterior :
-      3 ≤ (SelectedClass D.A S.oppApex1 radius ∩
-        S.capInteriorByIndex S.oppIndex1).card :=
-    ATailUniqueRowProducerScratch.firstApex_cardFive_interior_card_ge_three
-      D S R.interior.frontier.radius_pos R.class_card_eq_five
-  have hinteriorCap : 3 ≤ (S.capInteriorByIndex S.oppIndex1).card :=
-    hinterior.trans (Finset.card_le_card Finset.inter_subset_right)
-  have hcap :=
-    ATailCapApexRadiusRigidity.capInteriorByIndex_card_add_two S S.oppIndex1
-  have hcapByIndex : 5 ≤ (S.capByIndex S.oppIndex1).card := by omega
-  simpa only [exactFiveDistinct_capByIndex_oppIndex1_eq_oppCap1] using
-    hcapByIndex
-
-/-- If the physical second apex is deletion-robust, the two exact-five cap
-bounds and the surplus cap force at least twelve carrier points. -/
-private theorem exactFiveDistinct_carrierCard_ge_twelve_of_secondApexRobust
-    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
-    {H : CriticalShellSystem D.A}
-    {F : CriticalPairFrontier D S radius H}
-    (R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F)
-    (hsecond : FullyDeletionRobustAt D S.oppApex2) :
-    12 ≤ D.A.card := by
-  have hfirstCap : 5 ≤ S.oppCap1.card :=
-    exactFiveDistinct_firstOppCap_card_ge_five R
-  have hsecondCap : 5 ≤ S.oppCap2.card :=
-    second_oppCap_card_ge_five hsecond
-  have hsum := S.capSum
-  have hsurplus := S.surplus_card_gt_four
-  rcases hi : S.surplusIdx with ⟨i, hi3⟩
-  interval_cases i
-  all_goals
-    simp only [SurplusCapPacket.surplusCap, SurplusCapPacket.oppCap1,
-      SurplusCapPacket.oppCap2, hi] at hsum hsurplus hfirstCap hsecondCap
-    omega
-
 /-- A swapped unique-four frontier carries the exact-four residual fields
 needed by the production eliminator. -/
 private theorem nonempty_exactFourResidual_of_swapped
@@ -1526,6 +1476,19 @@ which interior source was deleted and which source supplied the blocker row.
 Coordinator-interface frontier: one broad exact-five distinct-center leaf
 before this reduction, and one strictly stronger robust endpoint afterward;
 the immediate constructor fan-out remains one. -/
+theorem false_of_exactFiveDistinct_threeCenterNormalForm
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F)
+    {deleted center : ℝ²}
+    (C : CommonDeletionTwoCenterPacket D H deleted center S.oppApex2)
+    (_normalForm : ExactFiveDistinctThreeCenterNormalForm R C) :
+    False := by
+  sorry
+
+/-- The oriented robust endpoint reduces to a support-preserving three-center
+normal form with the retained source's second-row incidence resolved. -/
 theorem false_of_exactFiveDistinct_biApexRobust_postCardEleven
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -1543,7 +1506,9 @@ theorem false_of_exactFiveDistinct_biApexRobust_postCardEleven
             R.interior.frontier.pair.w_mem_A))
     (_secondApex_robust : FullyDeletionRobustAt D S.oppApex2) :
     False := by
-  sorry
+  exact
+    false_of_exactFiveDistinct_threeCenterNormalForm R _commonDeletion
+      (nonempty_normalForm R _commonDeletion _oriented _secondApex_robust).some
 
 /-- A physical-second-apex common-deletion packet for the exact-five
 distinct-center residual is terminal except at the explicit bi-apex-robust
@@ -1616,7 +1581,7 @@ private theorem false_of_exactFiveDistinct_commonDeletion_of_card_eq_eleven
   rcases physicalSecondApex_commonDeletion_robust_or_critical C with
     hrobust | hcritical
   · have hge12 :=
-      exactFiveDistinct_carrierCard_ge_twelve_of_secondApexRobust
+      carrierCard_ge_twelve_of_secondApexRobust
         R hrobust.some
     omega
   · rcases
