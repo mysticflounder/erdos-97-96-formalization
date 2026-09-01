@@ -99,6 +99,41 @@ structure ExactFiveDistinctThreeCenterNormalForm
     RetainedSourceAlternative D H S.oppApex1 blocker S.oppApex2 retained
       firstApexClass blockerClass secondApexClass
 
+/-- A strict source refinement of the three-center normal form.  Either a
+source distinct from the original deletion is omitted by all three rows, or
+the carrier has exactly twelve points, the three rows cover its deletion, and
+the retained source yields the physical continuation. -/
+inductive ExactFiveDistinctStrictThreeCenterAlternative
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F)
+    {deleted blocker : ℝ²}
+    (C : CommonDeletionTwoCenterPacket D H deleted blocker S.oppApex2)
+    (N : ExactFiveDistinctThreeCenterNormalForm R C) : Type
+  | distinctFresh
+      (fresh : ℝ²)
+      (fresh_ne_deleted : fresh ≠ deleted)
+      (packet :
+        ThreeCenterCommonDeletionExactRows D fresh
+          S.oppApex1 blocker S.oppApex2
+          N.firstApexClass.support N.blockerClass.support
+          N.secondApexClass.support)
+  | exactTwelveTightPhysical
+      (carrier_card_eq_twelve : D.A.card = 12)
+      (union_card_eq_eleven :
+        ((N.firstApexClass.support ∪ N.blockerClass.support) ∪
+          N.secondApexClass.support).card = 11)
+      (carrier_erase_deleted_eq_union :
+        D.A.erase deleted =
+          (N.firstApexClass.support ∪ N.blockerClass.support) ∪
+            N.secondApexClass.support)
+      (retained_not_mem_second :
+        N.retained ∉ N.secondApexClass.support)
+      (packet :
+        CommonDeletionTwoCenterPacket D H N.retained
+          S.oppApex1 S.oppApex2)
+
 private theorem oppApex1_mem_A
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex1 ∈ A := by
@@ -167,6 +202,134 @@ theorem carrierCard_ge_twelve_of_secondApexRobust
     simp only [SurplusCapPacket.surplusCap, SurplusCapPacket.oppCap1,
       SurplusCapPacket.oppCap2, hi] at hsum hsurplus hfirstCap hsecondCap
     omega
+
+/-- Refine the non-strict fresh source in the normal form into a genuinely
+new deletion source.  The sole obstruction is the exact-twelve cover, where
+the retained source must lie in the physical continuation rather than the
+five-incidence continuation. -/
+theorem nonempty_strictThreeCenterAlternative
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F)
+    {deleted blocker : ℝ²}
+    (C : CommonDeletionTwoCenterPacket D H deleted blocker S.oppApex2)
+    (N : ExactFiveDistinctThreeCenterNormalForm R C) :
+    Nonempty (ExactFiveDistinctStrictThreeCenterAlternative R C N) := by
+  classical
+  let U :=
+    (N.firstApexClass.support ∪ N.blockerClass.support) ∪
+      N.secondApexClass.support
+  have hdeletedK₀ : deleted ∉ N.firstApexClass.support := by
+    rw [N.firstApexClass_support_eq]
+    simp
+  have hdeletedK₁ : deleted ∉ N.blockerClass.support := by
+    rw [N.blockerClass_support_eq]
+    exact C.row₁.q_not_mem
+  have hdeletedK₂ : deleted ∉ N.secondApexClass.support := by
+    rw [N.secondApexClass_support_eq]
+    exact C.row₂.q_not_mem
+  have hdeletedU : deleted ∉ U := by
+    simp [U, hdeletedK₀, hdeletedK₁, hdeletedK₂]
+  have hUsubA : U ⊆ D.A := by
+    intro x hx
+    rcases Finset.mem_union.mp hx with hx | hx
+    · rcases Finset.mem_union.mp hx with hx | hx
+      · exact N.firstApexClass.support_subset_A hx
+      · exact N.blockerClass.support_subset_A hx
+    · exact N.secondApexClass.support_subset_A hx
+  have hUsubErase : U ⊆ D.A.erase deleted := by
+    intro x hx
+    exact Finset.mem_erase.mpr ⟨by
+      intro h
+      subst x
+      exact hdeletedU hx, hUsubA hx⟩
+  have hK₀K₁Card :
+      (N.firstApexClass.support ∪ N.blockerClass.support).card ≤ 7 := by
+    have hinterNonempty :
+        (N.firstApexClass.support ∩ N.blockerClass.support).Nonempty :=
+      ⟨N.retained, Finset.mem_inter.mpr
+        ⟨N.retained_mem_firstApexClass, N.retained_mem_blockerClass⟩⟩
+    have hinterCard :
+        1 ≤ (N.firstApexClass.support ∩ N.blockerClass.support).card :=
+      Finset.one_le_card.mpr hinterNonempty
+    have hsum := Finset.card_union_add_card_inter
+      N.firstApexClass.support N.blockerClass.support
+    rw [N.firstApexClass.support_card, N.blockerClass.support_card] at hsum
+    omega
+  have hUCard : U.card ≤ 11 := by
+    calc
+      U.card ≤
+          (N.firstApexClass.support ∪ N.blockerClass.support).card +
+            N.secondApexClass.support.card := by
+        dsimp [U]
+        exact Finset.card_union_le _ _
+      _ ≤ 11 := by rw [N.secondApexClass.support_card]; omega
+  have hcarrier : 12 ≤ D.A.card :=
+    carrierCard_ge_twelve_of_secondApexRobust R N.secondApex_robust
+  by_cases hEraseSub : D.A.erase deleted ⊆ U
+  · have hEraseEqU : D.A.erase deleted = U :=
+      Finset.Subset.antisymm hEraseSub hUsubErase
+    have hEraseCard := Finset.card_erase_of_mem C.q_mem_A
+    have hcardTwelve : D.A.card = 12 := by
+      rw [hEraseEqU] at hEraseCard
+      omega
+    have hUcardEleven : U.card = 11 := by
+      rw [hEraseEqU] at hEraseCard
+      omega
+    cases N.alternative with
+    | physical hretainedK₂ packet =>
+        exact ⟨.exactTwelveTightPhysical hcardTwelve
+          (by simpa [U] using hUcardEleven)
+          (by simpa [U] using hEraseEqU) hretainedK₂ packet⟩
+    | fiveIncidence packet =>
+        have hretainedK₂ : N.retained ∈ N.secondApexClass.support := by
+          rw [← packet.row₂_support_eq]
+          exact packet.a_mem_row₂
+        have hinterNonempty :
+            ((N.firstApexClass.support ∪ N.blockerClass.support) ∩
+              N.secondApexClass.support).Nonempty :=
+          ⟨N.retained, Finset.mem_inter.mpr
+            ⟨Finset.mem_union.mpr
+              (Or.inl N.retained_mem_firstApexClass), hretainedK₂⟩⟩
+        have hinterCard :
+            1 ≤ ((N.firstApexClass.support ∪ N.blockerClass.support) ∩
+              N.secondApexClass.support).card :=
+          Finset.one_le_card.mpr hinterNonempty
+        have hsum := Finset.card_union_add_card_inter
+          (N.firstApexClass.support ∪ N.blockerClass.support)
+          N.secondApexClass.support
+        have hUleTen : U.card ≤ 10 := by
+          rw [N.secondApexClass.support_card] at hsum
+          dsimp [U]
+          omega
+        omega
+  · rw [Finset.not_subset] at hEraseSub
+    rcases hEraseSub with ⟨fresh, hfreshErase, hfreshU⟩
+    have hfreshA : fresh ∈ D.A := (Finset.mem_erase.mp hfreshErase).2
+    have hfreshNeDeleted : fresh ≠ deleted :=
+      (Finset.mem_erase.mp hfreshErase).1
+    have hfreshK₀ : fresh ∉ N.firstApexClass.support := by
+      intro hfresh
+      exact hfreshU (Finset.mem_union.mpr
+        (Or.inl (Finset.mem_union.mpr (Or.inl hfresh))))
+    have hfreshK₁ : fresh ∉ N.blockerClass.support := by
+      intro hfresh
+      exact hfreshU (Finset.mem_union.mpr
+        (Or.inl (Finset.mem_union.mpr (Or.inr hfresh))))
+    have hfreshK₂ : fresh ∉ N.secondApexClass.support := by
+      intro hfresh
+      exact hfreshU (Finset.mem_union.mpr (Or.inr hfresh))
+    let packet :=
+      (nonempty_threeCenterCommonDeletionExactRows_of_omitted_selectedFourClasses
+        hfreshA N.freshThreeCenter.center₀_mem_A
+        N.freshThreeCenter.center₁_mem_A N.freshThreeCenter.center₂_mem_A
+        N.freshThreeCenter.center₀_ne_center₁
+        N.freshThreeCenter.center₀_ne_center₂
+        N.freshThreeCenter.center₁_ne_center₂
+        N.firstApexClass N.blockerClass N.secondApexClass
+        hfreshK₀ hfreshK₁ hfreshK₂).some
+    exact ⟨.distinctFresh fresh hfreshNeDeleted packet⟩
 
 private theorem nonempty_normalForm_of_orientedSources
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}

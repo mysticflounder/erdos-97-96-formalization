@@ -129,3 +129,40 @@ off-spine. This is the previously observed private-caller classification bug,
 not evidence that the successor is disconnected. The publish gate still fails,
 as expected, because `Problem97.erdos97_rhs` reaches `sorryAx` through this and
 other existing open leaves.
+
+## Strict-source correction
+
+The first checkpoint's cardinality argument supplied a point outside the three
+row supports, but did not prove that point distinct from `deleted`: the original
+deletion is itself outside all three rows.  Therefore `freshThreeCenter` in the
+original normal form is sound but not genuinely fresh.
+
+The corrected producer
+`Problem97.ExactFiveDistinctThreeCenterContinuation.nonempty_strictThreeCenterAlternative`
+splits on whether `D.A.erase deleted` is contained in the three-row union.
+
+- If containment fails, an escaping point is automatically in `D.A`, outside
+  all three supports, and distinct from `deleted`; it produces an exact
+  three-center deletion packet at a genuinely new source.
+- If containment holds, support containment gives equality between
+  `D.A.erase deleted` and the row union.  The carrier lower bound and the
+  eleven-point union bound force cardinalities twelve and eleven.  The
+  five-incidence alternative would put `retained` in the third row as well,
+  lowering the union bound to ten and contradicting that equality.  Hence the
+  tight branch necessarily carries the retained-source physical packet.
+
+The former broad leaf
+`false_of_exactFiveDistinct_threeCenterNormalForm` now has no direct `sorry`.
+It dispatches to exactly three explicit on-spine obligations:
+
+1. `false_of_exactFiveDistinct_threeCenter_distinctFresh_physical`;
+2. `false_of_exactFiveDistinct_threeCenter_distinctFresh_fiveIncidence`; and
+3. `false_of_exactFiveDistinct_threeCenter_exactTwelveTightPhysical`.
+
+Focused `lake-build` checks for the producer module and `Rigid221Closure`
+succeed.  `proof-blueprint axioms` reports only `propext`,
+`Classical.choice`, and `Quot.sound` for the strict producer.  Build
+`724e9d3ae80e` shows all three corrected leaves on the kernel spine and no direct `sorry`
+on `false_of_exactFiveDistinct_threeCenterNormalForm`.  The private-caller
+miner defect described above has since been repaired; it no longer affects
+the spine classification.

@@ -1466,16 +1466,92 @@ private theorem false_of_exactFiveDistinct_swapped_of_card_eq_eleven
       (nonempty_exactFourResidual_of_swapped
         R.minimal R.noM44 R.carrier_card_gt_nine W).some hcard
 
-/-- The only genuinely open endpoint of the exact-five distinct-center
-residual after consuming its directed surviving row.  The critical
-physical-second-apex arm reorients to the existing exact-four closure; this
-leaf records precisely the remaining bi-apex-robust, post-card-eleven arm.
-The common-deletion packet retains its source orientation instead of erasing
-which interior source was deleted and which source supplied the blocker row.
+/-- Open strict-source physical endpoint: a deletion source distinct from the
+original interior deletion preserves all three exact selected rows, while the
+retained source is omitted by the second row. -/
+theorem false_of_exactFiveDistinct_threeCenter_distinctFresh_physical
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F)
+    {deleted center : ℝ²}
+    (C : CommonDeletionTwoCenterPacket D H deleted center S.oppApex2)
+    (normalForm : ExactFiveDistinctThreeCenterNormalForm R C)
+    (fresh : ℝ²) (fresh_ne_deleted : fresh ≠ deleted)
+    (packet :
+      ATailThreeCenterCommonDeletion.ThreeCenterCommonDeletionExactRows D fresh
+        S.oppApex1 center S.oppApex2
+        normalForm.firstApexClass.support
+        normalForm.blockerClass.support
+        normalForm.secondApexClass.support)
+    (retained_not_mem_second :
+      normalForm.retained ∉ normalForm.secondApexClass.support)
+    (retainedPacket :
+      CommonDeletionTwoCenterPacket D H normalForm.retained
+        S.oppApex1 S.oppApex2) :
+    False := by
+  sorry
 
-Coordinator-interface frontier: one broad exact-five distinct-center leaf
-before this reduction, and one strictly stronger robust endpoint afterward;
-the immediate constructor fan-out remains one. -/
+/-- Open strict-source five-incidence endpoint: a deletion source distinct
+from the original interior deletion preserves all three exact rows, and the
+retained source lies in all three rows. -/
+theorem false_of_exactFiveDistinct_threeCenter_distinctFresh_fiveIncidence
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F)
+    {deleted center : ℝ²}
+    (C : CommonDeletionTwoCenterPacket D H deleted center S.oppApex2)
+    (normalForm : ExactFiveDistinctThreeCenterNormalForm R C)
+    (fresh : ℝ²) (fresh_ne_deleted : fresh ≠ deleted)
+    (packet :
+      ATailThreeCenterCommonDeletion.ThreeCenterCommonDeletionExactRows D fresh
+        S.oppApex1 center S.oppApex2
+        normalForm.firstApexClass.support
+        normalForm.blockerClass.support
+        normalForm.secondApexClass.support)
+    (incidence :
+      ATailRobustApexCommonDeletion.RobustApexFiveIncidenceContinuationPacket
+        D H S.oppApex1 center S.oppApex2 normalForm.retained
+        normalForm.firstApexClass.support
+        normalForm.blockerClass.support
+        normalForm.secondApexClass.support) :
+    False := by
+  sorry
+
+/-- Open tight-cover endpoint: the original deletion leaves exactly the
+eleven points covered by the three rows, and the retained source supplies the
+physical two-center continuation. -/
+theorem false_of_exactFiveDistinct_threeCenter_exactTwelveTightPhysical
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F)
+    {deleted center : ℝ²}
+    (C : CommonDeletionTwoCenterPacket D H deleted center S.oppApex2)
+    (normalForm : ExactFiveDistinctThreeCenterNormalForm R C)
+    (carrier_card_eq_twelve : D.A.card = 12)
+    (union_card_eq_eleven :
+      ((normalForm.firstApexClass.support ∪
+          normalForm.blockerClass.support) ∪
+        normalForm.secondApexClass.support).card = 11)
+    (carrier_erase_deleted_eq_union :
+      D.A.erase deleted =
+        (normalForm.firstApexClass.support ∪
+          normalForm.blockerClass.support) ∪
+        normalForm.secondApexClass.support)
+    (retained_not_mem_second :
+      normalForm.retained ∉ normalForm.secondApexClass.support)
+    (packet :
+      CommonDeletionTwoCenterPacket D H normalForm.retained
+        S.oppApex1 S.oppApex2) :
+    False := by
+  sorry
+
+/-- The bi-apex-robust exact-five endpoint splits soundly into a genuinely
+new three-center deletion source or the exact-twelve tight physical cover.
+The common-deletion packet retains its source orientation instead of erasing
+which interior source was deleted and which source supplied the blocker row. -/
 theorem false_of_exactFiveDistinct_threeCenterNormalForm
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -1483,9 +1559,25 @@ theorem false_of_exactFiveDistinct_threeCenterNormalForm
     (R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F)
     {deleted center : ℝ²}
     (C : CommonDeletionTwoCenterPacket D H deleted center S.oppApex2)
-    (_normalForm : ExactFiveDistinctThreeCenterNormalForm R C) :
+    (normalForm : ExactFiveDistinctThreeCenterNormalForm R C) :
     False := by
-  sorry
+  rcases nonempty_strictThreeCenterAlternative R C normalForm with ⟨strict⟩
+  cases strict with
+  | distinctFresh fresh fresh_ne_deleted packet =>
+      cases normalForm.alternative with
+      | physical hmissing retainedPacket =>
+          exact
+            false_of_exactFiveDistinct_threeCenter_distinctFresh_physical
+              R C normalForm fresh fresh_ne_deleted packet
+              hmissing retainedPacket
+      | fiveIncidence incidence =>
+          exact
+            false_of_exactFiveDistinct_threeCenter_distinctFresh_fiveIncidence
+              R C normalForm fresh fresh_ne_deleted packet incidence
+  | exactTwelveTightPhysical hcard hunion herase hmissing packet =>
+      exact
+        false_of_exactFiveDistinct_threeCenter_exactTwelveTightPhysical
+          R C normalForm hcard hunion herase hmissing packet
 
 /-- The oriented robust endpoint reduces to a support-preserving three-center
 normal form with the retained source's second-row incidence resolved. -/
