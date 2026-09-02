@@ -427,6 +427,50 @@ same scope with the same cut set is rejected.
 Deliverables: manifests under `scratch/runs/d1-triapex-plan-20260901/<run-id>/`
 with `run_manifest.json`, `promotion_eligible = false` until Phase 3.
 
+Status 2026-09-01 (Phase 2 assessment; no solver run was executed):
+
+- Instrument. The metric stage's only unapproved engine is Z3 `QF_NRA`
+  one-shot through `piqd`. The D-R lane ran that engine on an 18-atom genuine
+  geometric negative control (two distinct circles share at most two points)
+  and got `UNKNOWN` at 300 s twice, and `UNKNOWN` on its 717-atom generic
+  cell at 900 s (`docs/audits/2026-09-01-dr-two-radius-quotient-wave.md`,
+  "Runs"). The D2 smoke test of this plan is a larger genuine geometric
+  UNSAT: the kernel proof of the grid refutation uses chord reflections,
+  signed areas, and a polynomial escape lemma. Under the stop rule above, a
+  run of the same engine on a larger instance of the same kind repeats a
+  verdict at the same scope, so it was not executed. The metric stage is
+  instrument-blocked before the smoke gate; by the decision rule, Phase 3
+  proceeds by Lean order and counting per cell.
+- Dimension count (HEURISTIC; assumes generic independence of the
+  equalities). Fifteen points carry 30 coordinates and the similarity group
+  has dimension 4, so 26 degrees of freedom. The binders impose at least 27
+  polynomial equalities. `G.apex_rich` gives at each apex either one class of
+  six points (5 equalities) or two classes of four (6), so at least 15. The
+  critical shell system gives every point an exact four-point shell at a
+  non-apex blocker: `fullyDeletionRobustAt_of_apexRichClassStructure` makes
+  the apices robust, `isUniqueFourCenter_centerAt` and
+  `not_isUniqueFourCenter_of_fullyDeletionRobust` keep them out of the
+  blocker set. Each blocker centre carries exactly one four-point circle,
+  because a second one would survive the deletion of the blocked point,
+  against `no_qfree`. Covering fifteen points by four-point shells needs at
+  least four shells, so at least 12 equalities. At card 16 the same count
+  gives at least 27 equalities against 28 degrees of freedom. Reading: exact
+  15 is the tight case, in the direction the plan assumed (review question
+  2), and the risk of a genuine witness family sits at card 16 and above,
+  in Phase 4. A dimension count is not a refutation and does not change `M`.
+- Sharper SAT-side test, deferred. The D-R lane's solver-free constructive
+  witness search (`census/card_head/dr_two_radius_quotient.py`,
+  `witness_search`: float least squares on the atom margins, then exact
+  rational replay of every atom) is the sharper instrument for the
+  non-refutability side. Its obstacle here is the discrete skeleton: the
+  blocker assignment of all fifteen points, the shell memberships, and the
+  packet rows are not fixed by the nine Section 6 cells, so a witness search
+  needs a skeleton enumeration first. Deferred until a Phase 3 cell resists,
+  or until Adam authorizes a Gröbner engine for the pinned-skeleton
+  equalities. {{NEEDS_ADAM_INPUT}}.
+- No run root was created under `scratch/runs/d1-triapex-plan-20260901/`;
+  the lane checkpoint keeps `generated_roots` empty.
+
 ### Phase 3 — exact-15 closure per cell
 
 - 3a same-radius cells (all but `(1,1)`): after L5, wire
@@ -465,9 +509,10 @@ with `run_manifest.json`, `promotion_eligible = false` until Phase 3.
 
 ## 8. Effort
 
-In sessions: Phase 0 + Phase 1 (L1–L6), one, done 2026-09-01. Phase 2, one to
-two, dominated by the compute-block risk. Phase 3, two to four. Phase 4,
-unknown, at least three. {{UNVALIDATED}} until Phase 2 reports.
+In sessions: Phase 0 + Phase 1 (L1 to L6), one, done 2026-09-01. Phase 2,
+assessed without a run on 2026-09-01 (instrument-blocked; dimension count
+recorded). Phase 3, two to four. Phase 4, unknown, at least three.
+{{UNVALIDATED}} until Phase 3 reports its first cell.
 
 ## 9. Gates
 
@@ -508,8 +553,10 @@ public head `e6245182b`, the Phase 1 L5 commit), not as the six-question
 review requested. The six plan-specific questions (soundness of the Section 6
 cells, tightness of the exact-15 cell, the value of L6, the Phase 2 re-split
 rule, house-rule violations, omitted obstructions) remain unanswered.
-{{NEEDS_ADAM_INPUT}}: re-request the six-question review, or accept the audit
-as the review.
+Adam pointed to the audit file as the response on 2026-09-01; this plan
+proceeds with it as the review. The six questions stay open as the
+{{NEEDS_PROOF}} items of Sections 6 and 7; question 2 is partly addressed
+by the Phase 2 dimension count (HEURISTIC).
 
 | Audit finding | Verification at HEAD | Action |
 |---|---|---|
@@ -520,3 +567,4 @@ as the review.
 | §4.2 credits "structural UNSAT for selected D-R cells" to the TriApex lane | those cells belong to the D-R lane (label note above) | none |
 | §7: positive controls, structural UNSAT, and exact local models are not terminals | the Phase 1 status and Section 10 already record no frontier change | none |
 | §8 TriApex row: open input "end-to-end source-to-finite terminal", next result "close role map and certificate ingress" | matches Phases 2 and 3 | none |
+| §4.2 and §7: a structural SAT/UNSAT wave that does not strengthen the bridge is rejected | the Phase 2 metric stage was assessed as instrument-blocked and not run (Phase 2 status) | applied: no run; Phase 3 next |
