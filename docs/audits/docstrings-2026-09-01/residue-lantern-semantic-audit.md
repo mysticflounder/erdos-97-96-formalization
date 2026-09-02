@@ -9,7 +9,7 @@
 - HEAD stable during scan: `true`
 - Porcelain-v2 dirty-state SHA-256: `8266f60f81a2d51837f1bc84997b7c54dc3c71eb5f6baa01f2339eb70766e586` (64 path rows; branch headers excluded from this count)
 - Source-manifest SHA-256: `b98a0ad48f7703485f2d5bab517b1f9fd6fab524a485073c50e1799935b3f5c1` (5397 sorted source entries)
-- JSONL SHA-256: `122b720420c807c525a287e8855ebff149569aaf076f14df8619bd869f266955` (24957 full-text records)
+- JSONL SHA-256: `04bfdb61c31b0663190e4e08cc58c347053cf95e6f5d89d5ec2970163f54d9e8` (24957 full-text records)
 
 <details><summary>Exact pre-generation <code>git status --porcelain=v2 --branch --untracked-files=all</code></summary>
 
@@ -338,9 +338,9 @@ Move true module narrative to the module header; change a declaration-specific o
 to `/--`.
 
 The adjacency screen was manually adjudicated, not treated as an automatic error. Of
-the 33 blocks, 21 are intentional Markdown subsection/module narratives, 10 are
-conservative declaration-opener reviews, and 2 are confirmed semantic/metadata
-mismatches. The 12 non-clean rows appear in the complete findings table below; the
+the 33 blocks, 21 are intentional Markdown subsection/module narratives, 11 are
+optional low-priority declaration-opener style reviews, and 1 has a confirmed semantic
+trust mismatch. The 12 non-clean rows appear in the complete findings table below; the
 remaining 21 are recorded as `validated-intentional-module-section` in the JSONL.
 
 ## Module-doc appendix (exhaustive)
@@ -3660,10 +3660,11 @@ generated naming templates. An automated flag is a routing signal, not a verdict
 
 ### Disposition totals
 
-| Population | Confirmed mismatch | Conservative review | Validated clean | Automated-only / not manually validated |
+| Population | Confirmed mismatch | Conservative review | Validated clean | Automated-only or separate disposition |
 |---|---:|---:|---:|---:|
-| 21670 lexical `/--` records | 10 records | 10 records (6 finding groups) | 4061 records | 17586 records |
-| 3287 module `/-!` records | 2 | 10 | 21 adjacency candidates | 3254 separate module-census records |
+| 21667 source-attached declaration `/--` records | 10 records | 10 records (6 finding groups) | 4061 records | 17586 automated-only records |
+| 3 command-adjacent lexical `/--` records | 0 | 0 | 0 | 3 manually validated command docs with no declaration target |
+| 3287 module `/-!` records | 1 | 11 optional style reviews | 21 adjacency candidates | 3254 separate module-census records |
 | malformed `/-/` blocks (outside JSONL) | 4 | 0 | 0 | 0 |
 
 The 4061 clean declaration records comprise 3947 generated name/range templates, 108
@@ -3680,28 +3681,28 @@ environment constant. These 4921 records are not silently called environment-ver
 
 ### Complete risk-filtered finding table
 
-No suspected mismatch is omitted from this table. “Review” means the prose is
-plausibly intentional but should be clarified before the declaration becomes a public
-or active interface.
+No suspected mismatch is omitted from this table. R001-R006 are conservative semantic
+or pre-import risks. M005 and M007-M016 are optional low-priority opener/style reviews:
+their prose may intentionally be module narrative and is not classified as a defect.
 
 | ID | Source doc/comment → target | Verdict | Severity | Decisive mismatch | Proposed replacement or correction |
 |---|---|---|---|---|---|
 | D001 | `lean/Erdos9796Proof/P97/Census554/BaseSat.lean:117` → `Problem97.Census554.BaseSat.baseAssign` at 118 | confirmed | medium | “exactly the eleven” is not guaranteed for unrestricted `idx`; out-of-range choices and `xVar` collisions are permitted by the definition | “The base assignment sets each listed chosen `x` variable to true.” Add “exactly eleven” only with the later bounds/distinctness hypotheses. |
 | D002 | `lean/Erdos9796Proof/P97/Census554/CoverIndexBridge.lean:28` → `Problem97.Census554.CoverIndexBridge.classMask_mem_candMasks` at 30 | confirmed | medium | “exactly when” asserts both directions, while the theorem only proves `IsCandidateClass p K → classMask K ∈ candMasks p.val` | “A semantic candidate class has a mask in the encoder's candidate enumeration for that center.” |
-| D003 | `lean/Erdos9796Proof/P97/Census554/CapSelectedNogoodCertificate.lean:307` → `Problem97.Census554.CapSelectedNogoodCertificate.hasNogood` at 308 | confirmed | medium | the definition checks only `matchesRows`; it does not require `NogoodData.check` or `checkBank`, so “certified” is stronger than the declaration | “The current native prefix contains at least one matching nogood record.” State certification separately under a checked-bank premise. |
+| D003 | `lean/Erdos9796Proof/P97/Census554/CapSelectedNogoodCertificate.lean:307` → `Problem97.Census554.CapSelectedNogoodCertificate.hasNogood` at 308 | confirmed | medium | the definition checks only `matchesRows`; it does not require `NogoodData.check` or `checkBank`, so “certified” is stronger than the declaration | “The supplied bank contains at least one matching nogood record.” State certification separately under a checked-bank premise. |
 | D004 | `lean/Erdos9796Proof/P97/Census554/EquilateralShellBranchCertificates.lean:706` → `Problem97.Census554.EquilateralShellBranchCertificates.not_pentagonalAntiprismBranchSystem` at 707 | confirmed | medium | the doc omits the material hypothesis `ha : a ^ 2 = 3` | “Under `a ^ 2 = 3`, none of the 32 exact pentagonal-antiprism branch systems has a real solution.” |
-| D005 | `lean/Erdos9796Proof/P97/Census554/CirclePowerMatrix.lean:63` → `Problem97.Census554.CirclePowerMatrix.power_center_ne_zero` at 65 | confirmed | medium | “positive-radius” is not the theorem hypothesis; the theorem assumes only `radiusSq ≠ 0`, which also allows negative parameters | “A nonzero squared-radius parameter gives a canonical certified-nonzero diagonal entry when the center is used as the point column.” |
+| D005 | `lean/Erdos9796Proof/P97/Census554/CirclePowerMatrix.lean:63` → `Problem97.Census554.CirclePowerMatrix.power_center_ne_zero` at 65 | confirmed | medium | “positive-radius” is not the theorem hypothesis; the theorem assumes only `radiusSq ≠ 0`, which also allows negative parameters | “If `radiusSq ≠ 0`, then `power center radiusSq center ≠ 0`.” |
 | D006 | `lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean:956` → `Problem97.ATailFrontierLiveClosure.b1_globalGapOrClosedTerminal_of_counterexample` at 958 | confirmed | high | “Source-closed” and “former open declaration” conceal that the proof reaches `false_of_b1PhysicalClassFiveSixNormalForm`, whose body is `sorry` at 910 | “Conditional B1 adapter. This delegates to the narrower exact-five/six coordinator, whose physical-class-five/six consumer remains open.” |
 | D007 | `lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3CertificateSemantics.lean:32` → `Problem97.ExactFiveCommonShellV7.false_of_g3Checkpoint0_signedClauses_sat` at 33 | confirmed | high | “kernel-checked replay” omits native compiler trust; `#print axioms` includes `Lean.ofReduceBool` and `Lean.trustCompiler` | replace “kernel-checked replay” with “Lean-checked native-decision replay” and name the compiler-trust boundary |
 | D008 | `lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3CertificateSemantics.lean:42` → `Problem97.ExactFiveCommonShellV7.false_of_g3Checkpoint0_evalClauseD_sat` at 44 | confirmed | high | same native-decision axiom closure as D007 | replace “kernel-checked compact replay” with “Lean-checked native-decision compact replay” and name the compiler-trust boundary |
-| D009 | `lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoLratIngress/P5ExactTwoClosure.lean:115` → `Problem97.P5ExactTwoCertificateClosureScratch.false_of_bridgeClauses_sat` at 116 | confirmed | high | imported replay shards use `native_decide`; the theorem closure includes `Lean.ofReduceBool` and `Lean.trustCompiler` | replace “kernel-checked checkpointed replay” with “Lean-checked native-decision checkpointed replay” |
-| D010 | `lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4CertificateClosure/P4CertificateSemantics.lean:114` → `Problem97.P4ExactTwoCertificateClosureScratch.false_of_checkpoint0_signedClauses_sat` at 115 | confirmed | high | imported replay shards use `native_decide`; the theorem closure includes `Lean.ofReduceBool` and `Lean.trustCompiler` | replace “kernel-checked replay” with “Lean-checked native-decision replay” |
+| D009 | `lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoLratIngress/P5ExactTwoClosure.lean:115` → `Problem97.P5ExactTwoCertificateClosureScratch.false_of_bridgeClauses_sat` at 116 | confirmed | high | imported replay shards use `native_decide`; the theorem closure includes `Lean.ofReduceBool` and `Lean.trustCompiler` | replace “kernel-checked checkpointed replay” with “Lean-checked native-decision checkpointed replay (trusting `Lean.ofReduceBool` and `Lean.trustCompiler`)” |
+| D010 | `lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4CertificateClosure/P4CertificateSemantics.lean:114` → `Problem97.P4ExactTwoCertificateClosureScratch.false_of_checkpoint0_signedClauses_sat` at 115 | confirmed | high | imported replay shards use `native_decide`; the theorem closure includes `Lean.ofReduceBool` and `Lean.trustCompiler` | replace “kernel-checked replay” with “Lean-checked native-decision replay (trusting `Lean.ofReduceBool` and `Lean.trustCompiler`)” |
 | M001 | `lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/B1Live.lean:516-522` → `Problem97.ATailFrontierLiveClosure.b1_live_interior_deleted_or_third_or_live_source_interior` at 523 | confirmed | medium | `/-/` is an ordinary block opener, so the declaration receives no doc metadata | retain the text and change the opener to `/--` |
 | M002 | `lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/B1Live.lean:664-667` → `Problem97.ATailFrontierLiveClosure.b1_source_mem_outsideFirstApexFiber_of_not_mem_firstApexClass` at 668 | confirmed | medium | same malformed opener defect | retain the text and change the opener to `/--` |
 | M003 | `lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/B1Live.lean:703-708` → `Problem97.ATailFrontierLiveClosure.b1_live_both_interior_outside_or_firstApexClass_split` at 709 | confirmed | medium | same malformed opener defect | retain the text and change the opener to `/--` |
 | M004 | `lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean:52-56` → `Problem97.ATailFrontierLiveClosure.exists_exactFourMutualOmissionSourceContext_of_fivePointInteriorSource` at 57 | confirmed | medium | same malformed opener defect | retain the text and change the opener to `/--` |
-| M005 | `lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:803-807` → `...FreshThirdTwoCapSourceObstruction.FreshThirdNormalizedResidualRemainingCase` at 808 | confirmed | medium | the prose specifically describes the following inductive, but `/-!` creates module metadata | change to `/--`, or move the narrative to the module header and add a concise declaration doc |
-| M006 | `lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClassifier.lean:77` → `fourPointMasksReference` at 78 / `fourPointMasks_eq_reference` at 87 | confirmed | high | “Kernel-checked regression” is module metadata and the actual regression theorem uses `native_decide`, carrying native compiler trust | “Native-decision regression for the generated table.” Put declaration-specific prose on the theorem with `/--` |
+| M005 | `lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean:803-807` → `Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.FreshThirdTwoCapSourceObstruction.FreshThirdNormalizedResidualRemainingCase` at 808 | review | low | the prose is valid section narrative, but its declaration-adjacent placement may make readers expect declaration metadata | optional style change: retain as module narrative, or use `/--` if the intent is API documentation on the inductive |
+| M006 | `lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClassifier.lean:77` → `Problem97.Census554.CapSelectedNativeClassifier.fourPointMasksReference` at 78 / `Problem97.Census554.CapSelectedNativeClassifier.fourPointMasks_eq_reference` at 87 | confirmed | high | “Kernel-checked regression” is module metadata and the actual regression theorem uses `native_decide`, whose closure names `Lean.ofReduceBool` and `Lean.trustCompiler` | “Native-decision regression for the generated table (trusting `Lean.ofReduceBool` and `Lean.trustCompiler`).” Put declaration-specific prose on the theorem with `/--` |
 | R001 | `lean/Erdos9796Proof/P97/Census554/CapSelectedFiniteCode.lean:201` → `Problem97.Census554.CapSelectedFiniteCode.CapSelectedCountsOK` at 203 | review | low | “pair-count equality forces” describes a derivation not represented by this definition; the declaration only defines the exact cap-hit-count condition | “The exact cap-hit-count condition at all six surplus-cap centers.” |
 | R002 | `lean/Erdos9796Proof/P97/Census554/AlgebraicRowCollisionBank.lean:27` → `Problem97.Census554.EqualityCore.AlgebraicRowCollisionAlternative` at 28 | review | low | “currently banked” is time-sensitive, while the metric-core bridge says this bank is retired there and remains unimported | “The six algebraic row-collision alternatives retained in this off-spine module.” |
 | R003 | duplicate FQN `...FrozenBoundaryOrder.commonOrientationCoverage_orderedCut_4723` at `lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactTwelveRigid221OrderedCoverageCuts.lean:1564` and `lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactTwelveRigid221OrderedLongClosureCuts.lean:18` | review | medium | two lexical declarations claim the same FQN; both are currently unreachable, so the aggregate environment cannot adjudicate them | rename or remove one declaration before either module is imported |
