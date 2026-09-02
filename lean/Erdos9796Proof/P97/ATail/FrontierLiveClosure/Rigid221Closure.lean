@@ -6,7 +6,7 @@ Authors: Adam McKenna
 
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.ContextFrames
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.Rigid221SourceHeavy
-import Erdos9796Proof.P97.ATail.FrontierLiveClosure.Balanced555BoundaryIngress
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure.Balanced555FiniteUnsat
 import Erdos9796Proof.P97.ATail.ExactFiveCommonAdaptiveReselection
 import Erdos9796Proof.P97.ATail.ExactFiveDistinctThreeCenterContinuation
 import Erdos9796Proof.P97.ATail.ExactFiveDistinctThreeCenterTightCover
@@ -1554,13 +1554,15 @@ theorem false_of_exactFiveDistinct_threeCenter_exactTwelveTightPhysical
           carrier_erase_deleted_eq_union with
     ⟨invariant⟩
   rcases
-      ExactFiveDistinctThreeCenterTightCover.nonempty_balancedTightCoverFlexibleRolePacket
-        invariant with
-    ⟨rolePacket⟩
+      nonempty_balanced555SourceConfiguration R C normalForm invariant with
+    ⟨sourceConfiguration⟩
   rcases
-      nonempty_balanced555BoundaryLabeling R C normalForm invariant with
-    ⟨boundaryLabeling⟩
-  sorry
+      nonempty_balanced555FiniteConfiguration
+        R C normalForm invariant sourceConfiguration with
+    ⟨finiteConfiguration⟩
+  exact
+    Balanced555FiniteUnsat.false_of_balanced555FiniteConfiguration
+      finiteConfiguration
 
 /-- The bi-apex-robust exact-five endpoint splits soundly into a genuinely
 new three-center deletion source or the exact-twelve tight physical cover.
