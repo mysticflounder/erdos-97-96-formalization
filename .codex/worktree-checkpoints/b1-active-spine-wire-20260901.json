@@ -1,0 +1,15 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "b1-active-spine-wire-20260901",
+  "owner": "codex-registry-unblock",
+  "base_head": "aec7bc08fcb48defe0f90599bea615a8af84695e",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/b1-active-spine-wire-20260901.json",
+    "docs/plans/2026-08-29-b1-global-continuation.md",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-02T01:28:46Z",
+  "manifest_sha256": "22e3fa9e13e843b036a7b1781ea6c906e7ac32c6db2f5d0b708ff459ebd9482c"
+}

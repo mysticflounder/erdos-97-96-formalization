@@ -4,6 +4,8 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Adam McKenna
 -/
 
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure.B1CardFiveLocalRolePacket
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure.B1WinningLiveSliceIngress
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.ContextFrames
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.EqualBlockerContinuation
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.JointDeletionCore

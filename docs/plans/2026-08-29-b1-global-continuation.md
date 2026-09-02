@@ -278,13 +278,19 @@ they do not close `false_of_b1PhysicalClassFiveSixNormalForm` by themselves.
 
 ## 2026-09-01 PiQD producer update
 
-Current PiQD source supplies two useful but separate custody surfaces.  The
-declarative `piqc campaign run <plan.json>` command authenticates a finite
-branch universe, uploads named source files, runs one raw-DIMACS job per cell,
-and mints an aggregate receipt.  It does not drive Z3/cvc5 QF_NRA sessions and
-does not generate the cell formulas.  Stateful SMT sessions now attach an exact
-same-solver ground-formula replay to returned models, including per-solve
-assumptions, but do not yet share the campaign plan executor.
+The claimed declarative `piqc campaign run <plan.json>` surface is not currently
+usable.  PiQD message 8527 retracted its earlier Phase A completion claim after
+a whole-branch review found three end-to-end defects: the client reads a
+nonexistent top-level `campaign_id` instead of the daemon's nested
+`campaign.id`; the daemon refuses campaign records for failed or still-running
+jobs, so `ERROR` and `UNKNOWN` abort the run; and the plan's default
+`caller_checked` policy conflicts with the daemon default, preventing a default
+plan from minting complete coverage.  The hermetic client mocks did not model
+the daemon's actual response contract.  Treat Phase A as unavailable until the
+fixing commits land and a real client-to-daemon contract test passes.  Stateful
+SMT sessions' exact same-solver ground-formula replay, including per-solve
+assumptions, is unaffected, but it does not provide the missing campaign
+producer.
 
 Therefore Wave 8 must not reintroduce a project-local Python runner.  Its next
 admissible computational checkpoint is a typed B1 ingress plus a declarative
@@ -301,6 +307,16 @@ and remains unverified here until its source schema, producer invocation, tests,
 and live `GET /version` identity are checked.  Until then, the Lean-side work is
 to retain the source-complete role and continuation packets and avoid encoding
 stronger aliases or cyclic-order facts than their constructors provide.
+
+The committed packet checkpoint `aec7bc08f` is now wired into
+`TwoDeletionCollision` by importing `B1CardFiveLocalRolePacket` and
+`B1WinningLiveSliceIngress`; those imports transitively reach all four new B1
+modules without a cycle.  Focused builds of `TwoDeletionCollision` and the
+`FrontierLiveClosure` root pass.  From the active residual's `C` and `hnormal`,
+Lean can therefore construct the card-five/card-six local-role packet and the
+escape-row provenance star directly.  The spine still has exactly one open B1
+obligation: no current theorem consumes those packets to prove the missing
+global cyclic-placement contradiction.
 
 The missing post-wave theorem mines have now been backfilled for exact-12
 Waves 14--20 and normal-form Waves 1--6.  The normal-form campaign scan over
