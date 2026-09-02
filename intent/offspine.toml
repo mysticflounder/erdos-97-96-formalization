@@ -111,6 +111,13 @@ registered_at = "2026-08-31T06:04:18+00:00"
 updated_at = "2026-08-31T06:04:18+00:00"
 
 [[offspine]]
+symbol = "Problem97.AbstractRowSystem.supportStronglyConnected_of_supportMinimal"
+category = "infra"
+reason = "Reusable finite support-digraph theorem: support-minimal row systems are strongly connected."
+registered_at = "2026-09-02T00:01:01+00:00"
+updated_at = "2026-09-02T00:01:01+00:00"
+
+[[offspine]]
 symbol = "Problem97.CircumscribedMECPacket.false_of_equalRadius_detCone_of_onArcOpposite"
 category = "compat"
 reason = "Oriented-cap compatibility theorem connecting MEC cap data to the invariant determinant cone."
@@ -193,6 +200,27 @@ category = "infra"
 reason = "Deliberate off-spine geometric obstruction showing the cyclic 1-2-4-8 incidence system has no equal-radius strict-CCW boundary realization."
 registered_at = "2026-09-01T23:45:02+00:00"
 updated_at = "2026-09-01T23:45:02+00:00"
+
+[[offspine]]
+symbol = "Problem97.GeneralCarrierAbstractRowSystem.system_hasBlockerSection"
+category = "infra"
+reason = "Source-faithful carrier adapter export of the critical-shell blocker section."
+registered_at = "2026-09-02T00:01:03+00:00"
+updated_at = "2026-09-02T00:01:03+00:00"
+
+[[offspine]]
+symbol = "Problem97.GeneralCarrierAbstractRowSystem.system_rowInterCardLE_two"
+category = "infra"
+reason = "Source-faithful carrier adapter export of the geometric two-circle row-intersection bound."
+registered_at = "2026-09-02T00:01:02+00:00"
+updated_at = "2026-09-02T00:01:02+00:00"
+
+[[offspine]]
+symbol = "Problem97.GeneralCarrierAbstractRowSystem.system_supportStronglyConnected"
+category = "infra"
+reason = "Source-faithful carrier adapter export of strong connectivity under minimal-counterexample hypotheses."
+registered_at = "2026-09-02T00:01:04+00:00"
+updated_at = "2026-09-02T00:01:04+00:00"
 
 [[offspine]]
 symbol = "Problem97.SurplusCapPacket.false_of_equalRadius_detCone_of_mem_capByIndex"

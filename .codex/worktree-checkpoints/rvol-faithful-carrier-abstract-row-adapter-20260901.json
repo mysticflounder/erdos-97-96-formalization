@@ -1,0 +1,16 @@
+{
+  "base_head": "7740c71b7ca62b97127f01888739698758d1153d",
+  "created_utc": "2026-09-01T23:54:33Z",
+  "durable_paths": [],
+  "generated_roots": [],
+  "lane_id": "rvol-faithful-carrier-abstract-row-adapter-20260901",
+  "manifest_sha256": "88c959dc663c0c21a2d025d272e4117d6f3be181157fa3737d94a3ab09cbcd15",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/rvol-faithful-carrier-abstract-row-adapter-20260901.json",
+    "intent/offspine.toml",
+    "lean/Erdos9796Proof/P97/AbstractRowSystemConnectivity.lean",
+    "lean/Erdos9796Proof/P97/GeneralCarrierAbstractRowSystem.lean"
+  ],
+  "owner": "codex",
+  "schema": "worktree-lane-checkpoint/v1"
+}
