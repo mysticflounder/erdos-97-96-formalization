@@ -172,7 +172,12 @@ by an inequality.
 
 Run record (2026-09-02): `small` + the three families is UNSAT in
 `secondOpposite` (2,646 s) and `surplus` (1,735 s) but both proofs failed
-the daemon's drat-trim replay (unverified; plain-profile reruns pending);
+the daemon's drat-trim replay (unverified; cause: the replay shares the
+discovery timeout and runs under `--unsat`, see the audit; plain-profile
+reruns with 7,200 s pending, `firstOpposite` resubmitted plain at 21,600 s);
 `firstOpposite` and every `convex` + three-families run is UNKNOWN at
-3,600 s. Details in the audit subsection "P4.3".
+3,600 s. Details in the audit subsection "P4.3". The `StrictCapOrder` bridge has a
+design sketch in the plan (Step P4.3): signed-area facts from the cap
+packet, converted to `CyclicThree` on the ingress enumeration, then linear
+betweenness inside the closed cap interval by arithmetic.
 

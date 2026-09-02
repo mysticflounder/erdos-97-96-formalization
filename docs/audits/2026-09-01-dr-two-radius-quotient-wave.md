@@ -741,7 +741,18 @@ retained neither proof nor drat-trim output (reported in `#piqd`, messages
 9036 and 9040). They are therefore UNSAT UNVERIFIED (guardrail 5). The
 same CNF bytes were resubmitted with `solver-profile plain` and a 7,200 s
 budget (`ccf768aa…`, `8e76c1b3…`), the path that produced the verified
-card-12 proof; results pending. The convex-set variant being UNKNOWN in
+card-12 proof; results pending. Root cause, from the daemon source at
+commit `73543b5` (`piqd/src/runner.rs` lines 346-352 and 588-600): the
+proof replay is a second cadical run with the same `timeout_s` as the
+discovery run, a `default` discovery replays under `--unsat` (a different
+search), and a timed-out replay is only logged, so its truncated DRAT
+reaches drat-trim and fails as `s NOT VERIFIED`. With the machine at load
+about 110 on 32 cores, a replay of a 674k-clause CNF exceeding 3,600 s is
+expected. Posted as `#piqd` message 9058 with a request for a replay-timeout
+error class and a separate replay budget. Consequence for this lane: submit
+under `plain` (replay is the same search) with a budget of at least twice
+the expected discovery time. `firstOpposite` was resubmitted that way
+(`b35f2166…`, plain, 21,600 s, confirmed 22:50Z). The convex-set variant being UNKNOWN in
 all arms shows the extra small families carried weight in the two UNSAT
 runs. Reading so far: with cap betweenness added, the structural encoding
 excludes card 13 in two of three growth arms at the encoded scope, pending

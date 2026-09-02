@@ -561,7 +561,44 @@ certificate replay is then unnecessary for card 12.
   opened: identify `StrictCapOrder` with the boundary order on each closed
   cap ({{NEEDS_PROOF}}). If all arms go UNSAT, mine the core by family and
   look for the cardinality lift; if a survivor remains, add the cap-crossing
-  Kalmanson chain cores next.
+  Kalmanson chain cores next. Outcome so far (2026-09-02): `small` plus the
+  three families is UNSAT in `secondOpposite` (2,646 s) and `surplus`
+  (1,735 s) under profile `default`, both UNSAT UNVERIFIED because the
+  daemon's proof replay shares the discovery timeout and runs under
+  `--unsat` (root cause in the audit; `#piqd` 9058); `firstOpposite` and
+  every `convex` variant UNKNOWN at 3,600 s. Reruns under profile `plain`:
+  `ccf768aa…`, `8e76c1b3…` (7,200 s) and `firstOpposite` `b35f2166…`
+  (21,600 s), pending. Rule for this lane from here: `plain` profile with a
+  budget of at least twice the expected discovery time.
+- Bridge design for the `cap_betweenness` ingress obligation (read-only
+  source audit, 2026-09-02; no Lean written). The encoder's order object in
+  the card-12 ingress is `ConvexBoundaryEnumeration pt φ idx`
+  (`DRExactTwelveValuation.lean:416`), a CCW enumeration `φ` with
+  `orientation : idx = directIndex ∨ idx = mirrorIndex`; nothing in the
+  repository identifies the local `Fin m` order of a `StrictCapOrder` cap
+  with an external enumeration, and `StrictCapBlockData` only relates the
+  cap to its own internally built `phi`. Route that avoids the
+  identification: (1) `capByIndex_cgn4g_capData` (Shard01.lean:746, needs
+  `D.convex`) gives an ordered cap `L` with image `capByIndex i`;
+  (2) `CGN.index_strictly_between_of_equidistant`
+  (CapSelectedRowCounting.lean:49) gives `r < j < s` in `L`;
+  (3) `StrictCapOrder.subchord_open_side_iff_A` (CGN.lean:134) turns that
+  into `0 < signedArea2 (L r) (L s) (L j)` and, for the opposite apex `o`
+  (in `A`, not in the cap), `signedArea2 (L r) (L s) o ≤ 0`, strict by
+  convex independence (nonvanishing helpers: private copies in
+  `ArcPartitionCount.lean` and `N4d/FormAEndpointPairKill.lean:790`; a
+  public sibling in `Moser/NonDeg.lean` to verify); (4) on the CCW
+  enumeration, `signedArea2_neg_of_cyclicThree`
+  (Census554/CyclicOrderDistanceCores.lean:124) plus a cyclic trichotomy
+  (to add, omega) convert both signs into `CyclicThree` facts on `φ`
+  indices; (5) `capByIndex_interval_of_global_indices` (Shard01.lean:388)
+  places the closed cap in a closed `φ`-index interval with the opposite
+  apex outside it, after which `omega` yields linear betweenness in the
+  interval. The card-13 ingress then needs only a finite label-level check
+  that the encoder's closed-cap order is the `φ`-index order under
+  `directIndex`/`mirrorIndex`, in the style of `forward_direct_label`.
+  Still {{NEEDS_PROOF}}: steps (4) trichotomy and (5) apex-outside for the
+  three caps at card 13.
 - Generalizing `exists_fourHits_radialCyclicOrder_oppIndex1` to `oppIndex2`
   is a bounded Lean task, to be done only if the extracted core uses the strict
   cross-distance inequality.

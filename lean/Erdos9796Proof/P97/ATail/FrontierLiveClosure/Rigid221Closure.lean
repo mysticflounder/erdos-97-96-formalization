@@ -12,6 +12,7 @@ import Erdos9796Proof.P97.ATail.ExactFiveDistinctThreeCenterContinuation
 import Erdos9796Proof.P97.ATail.ExactFiveDistinctThreeCenterTightCover
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.DRExactTwelveTwoFamilyUnsat
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.DRExactTwelveTwoFamilyReplayIngress
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure.RobustApexFourIncidenceCyclicReduction
 
 namespace Problem97
 namespace ATailFrontierLiveClosure
@@ -1525,9 +1526,8 @@ theorem false_of_exactFiveDistinct_threeCenter_distinctFresh_physical
     False := by
   sorry
 
-/-- Open strict-source five-incidence endpoint: a deletion source distinct
-from the original interior deletion preserves all three exact rows, and the
-retained source lies in all three rows. -/
+/-- Open strict-source endpoint after the five-incidence surface is narrowed
+to four prefix-preserving missing-incidence positions by cyclic separation. -/
 theorem false_of_exactFiveDistinct_threeCenter_distinctFresh_fiveIncidence
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -1544,7 +1544,7 @@ theorem false_of_exactFiveDistinct_threeCenter_distinctFresh_fiveIncidence
         normalForm.blockerClass.support
         normalForm.secondApexClass.support)
     (incidence :
-      ATailRobustApexCommonDeletion.RobustApexFiveIncidenceContinuationPacket
+      RobustApexFourIncidenceContinuationPacket
         D H S.oppApex1 center S.oppApex2 normalForm.retained
         normalForm.firstApexClass.support
         normalForm.blockerClass.support
@@ -1618,9 +1618,13 @@ theorem false_of_exactFiveDistinct_threeCenterNormalForm
               R C normalForm fresh fresh_ne_deleted packet
               hmissing retainedPacket
       | fiveIncidence incidence =>
+          rcases
+              nonempty_robustApexFourIncidenceContinuationPacket
+                H incidence
+            with ⟨reducedIncidence⟩
           exact
             false_of_exactFiveDistinct_threeCenter_distinctFresh_fiveIncidence
-              R C normalForm fresh fresh_ne_deleted packet incidence
+              R C normalForm fresh fresh_ne_deleted packet reducedIncidence
   | exactTwelveTightPhysical hcard hunion herase hmissing packet =>
       exact
         false_of_exactFiveDistinct_threeCenter_exactTwelveTightPhysical
