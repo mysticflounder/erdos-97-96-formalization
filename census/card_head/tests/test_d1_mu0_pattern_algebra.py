@@ -248,3 +248,26 @@ def test_modular_script_has_no_real_root_call() -> None:
     assert f"ring R = {alg.PREFILTER_CHAR}," in script
     assert "nrRootsDeterm" not in script
     assert "nrRootsDeterm" in alg.singular_script(pattern)
+
+
+def test_raw_core_flag_disables_saturation() -> None:
+    args = alg.parse_args(["m.jsonl", "--artifacts", "a", "--core", "--raw-core"])
+    assert args.core and args.raw_core
+    pattern = alg.MetricPattern((), (("A0", ("A1", "A2")),))
+    assert "sat(" not in alg.singular_script(pattern, saturate=(), real_roots=False)
+    assert "sat(" in alg.singular_script(pattern, saturate=alg.all_pairs(pattern), real_roots=False)
+
+
+@needs_piqd
+def test_known_raw_core_negative_control(tmp_path: Path) -> None:
+    # The non-concyclic pattern is empty only after saturation (its raw
+    # variety is the coincidence P0.1 = P0.2), so raw core mining must not
+    # confirm a core.
+    pattern = alg.MetricPattern(
+        (("P0.3", ("A0", "A1", "P0.1", "P0.2")),),
+        (("A0", ("A1", "P0.1", "P0.2")), ("A1", ("A0", "P0.1", "P0.2"))),
+    )
+    assert not alg.is_empty_saturated(pattern, tmp_path, "raw_whole", timeout_s=120, saturate=False)
+    core, confirmed = alg.shrink_core(pattern, tmp_path, timeout_s=120, raw=True)
+    assert not confirmed
+    assert core == pattern

@@ -461,14 +461,19 @@ def is_empty_saturated(
     timeout_s: int,
     char: int = 0,
     strict: bool = True,
+    saturate: bool = True,
 ) -> bool:
     """One saturated run; True exactly when the distinct-point variety is empty.
 
     With ``strict=False`` a run that times out or fails counts as "not
     empty" (the conservative answer for a deletion step) instead of raising.
+    With ``saturate=False`` the run tests the raw ideal: True exactly when
+    the equations have no complex solution at all, coincident points
+    included (a stronger emptiness, and no saturation cost).
     """
 
-    script = singular_script(pattern, saturate=all_pairs(pattern), real_roots=False, char=char)
+    pairs = all_pairs(pattern) if saturate else ()
+    script = singular_script(pattern, saturate=pairs, real_roots=False, char=char)
     script_path = artifacts / f"{name}.sing"
     script_path.write_text(script, encoding="utf-8")
     run = run_script(script_path, timeout_s=timeout_s)
@@ -498,8 +503,13 @@ def shrink_core(
     timeout_s: int,
     step_timeout_s: int = 120,
     prefilter_char: int = PREFILTER_CHAR,
+    raw: bool = False,
 ) -> tuple[MetricPattern, bool]:
     """Deletion-minimal sub-pattern that is still empty after saturation.
+
+    With ``raw=True`` every step and the confirmation test raw emptiness
+    instead (no saturation): the core is then inconsistent even when points
+    are allowed to coincide.
 
     Every shell and class is dropped in turn and kept out when the rest stays
     empty.  Deletion steps run over ``GF(prefilter_char)`` with a short
@@ -519,7 +529,7 @@ def shrink_core(
         step += 1
         if is_empty_saturated(
             trial, artifacts, f"core-{pattern.key}-s{step}", timeout_s=step_timeout_s,
-            char=prefilter_char, strict=False,
+            char=prefilter_char, strict=False, saturate=not raw,
         ):
             del shells[index]
     for index in range(len(classes) - 1, -1, -1):
@@ -529,12 +539,13 @@ def shrink_core(
         step += 1
         if is_empty_saturated(
             trial, artifacts, f"core-{pattern.key}-s{step}", timeout_s=step_timeout_s,
-            char=prefilter_char, strict=False,
+            char=prefilter_char, strict=False, saturate=not raw,
         ):
             del classes[index]
     core = MetricPattern(tuple(shells), tuple(classes))
     confirmed = is_empty_saturated(
-        core, artifacts, f"core-{pattern.key}-confirm", timeout_s=timeout_s, char=0, strict=False
+        core, artifacts, f"core-{pattern.key}-confirm", timeout_s=timeout_s, char=0, strict=False,
+        saturate=not raw,
     )
     if not confirmed:
         return pattern, False
@@ -570,6 +581,11 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
         action="store_true",
         help="shrink every refuted pattern to a deletion-minimal core and skip patterns a known core covers",
     )
+    parser.add_argument(
+        "--raw-core",
+        action="store_true",
+        help="with --core: mine raw-emptiness cores (no distinctness saturation; only patterns whose raw ideal is empty)",
+    )
     return parser.parse_args(argv)
 
 
@@ -595,18 +611,21 @@ def main(argv: Sequence[str] | None = None) -> int:
             print(f"{key} records={records} COVERED_BY_CORE {covering}", flush=True)
             continue
         saturate: tuple[tuple[str, str], ...] = ()
-        if args.saturate_all_distinct or args.core:
+        if (args.saturate_all_distinct or args.core) and not args.raw_core:
             saturate = all_pairs(pattern)
         result = decide_pattern(
             pattern, records, args.artifacts, timeout_s=args.timeout, saturate=saturate, char=args.char
         )
         entry = result.to_json()
         if args.core and result.verdict in ("EMPTY_COMPLEX", "MOD_EMPTY_COMPLEX"):
-            core, confirmed = shrink_core(pattern, args.artifacts, timeout_s=args.timeout)
+            core, confirmed = shrink_core(
+                pattern, args.artifacts, timeout_s=args.timeout, raw=args.raw_core
+            )
             cores[core.key] = core
             coverage[core.key] = 1
             entry["core"] = core.key
             entry["core_confirmed"] = confirmed
+            entry["core_raw"] = args.raw_core
             entry["core_shells"] = len(core.shells)
             entry["core_classes"] = len(core.classes)
         results.append(entry)
