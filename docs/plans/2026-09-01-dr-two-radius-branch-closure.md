@@ -233,7 +233,12 @@ Each item narrows the leaf and is needed by Phase 3 in any outcome.
   class by `hnoFive`). Module
   `ATail/FrontierLiveClosure/TwoRadiusExactTwelveSecondCapRows.lean`,
   sorry-free, standard axioms; not imported by the spine yet.
-- L4 first-apex class census at exact 12.
+- L4 DONE 2026-09-01: `firstApexClass_census_of_twoRadiusBranch_exactTwelve`
+  (class card 4; interior part `{interior_q, interior_w}`; one point in the
+  closed surplus cap and one in the closed second cap; center excluded) and
+  `firstApexClass_radius_unique_of_twoRadiusBranch`. Module
+  `ATail/FrontierLiveClosure/TwoRadiusExactTwelveFirstApexClass.lean`,
+  sorry-free, standard axioms; not imported by the spine yet.
 - L5 port of the sorry-free scratch bound `d1_secondOppCap_card_ge_six`
   (`lean/scratch/d-package-bank/DPackageBank.lean:1253`) after a fresh
   elaboration and axiom check.
