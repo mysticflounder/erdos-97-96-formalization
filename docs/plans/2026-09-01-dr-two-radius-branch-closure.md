@@ -321,7 +321,10 @@ Lean route, in dependency order; every item names its consumer.
   pattern), and the parsed-formula equality by `native_decide` as in
   `checkpoint0_clauses_eq_bridgeClauses`. Steps, each with a named
   consumer:
-  - P3.4a `DRExactTwelveDimacs.clauses : List (List Int)`: a Lean
+  - P3.4a DONE 2026-09-02 (`ATail/FrontierLiveClosure/DRExactTwelveDimacs.lean`,
+    definition-only, 6,281 variables; byte-identical to the stored DIMACS by
+    `census/card_head/tests/test_dr_exact12_lean_dimacs.py`, sha256
+    `e29d1b26…`). Original item: `DRExactTwelveDimacs.clauses : List (List Int)`: a Lean
     generator of the wave-5 two-family CNF (`build("none",
     families=("two_circle_same_arc", "five_point_circle_isosceles_order"))`)
     in the encoder's variable layout (2,145 relation variables `eq(e, e')`
