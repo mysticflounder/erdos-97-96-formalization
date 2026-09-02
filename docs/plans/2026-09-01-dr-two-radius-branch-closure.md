@@ -224,10 +224,15 @@ Each item narrows the leaf and is needed by Phase 3 in any outcome.
   `secondOpposite` profile packet; the other two arms' data refuted).
   Module `ATail/FrontierLiveClosure/TwoRadiusExactTwelveProfile.lean`,
   sorry-free, standard axioms; not imported by the spine yet.
-- L2 `secondCapInterior_partition_of_twoRadiusBranch_exactTwelve`: the 2 + 2
-  split via the existing partition theorem.
-- L3 `exactFourTwoRadiusAdjacentCapGrid_oppIndex2_of_twoRadiusBranch_exactTwelve`
-  via the index-generic grid constructor.
+- L2 DONE 2026-09-01: `secondCapInterior_partition_of_twoRadiusBranch_exactTwelve`
+  (2 + 2 split, disjoint, union is the interior).
+- L3 DONE 2026-09-01: `exactFourTwoRadiusAdjacentCapGrid_oppIndex2_of_twoRadiusBranch_exactTwelve`
+  and the row census `secondApexRow_census_of_twoRadiusBranch_exactTwelve`
+  (each row: 2 points in the second-cap interior, 1 in the closed surplus
+  cap, 1 in the closed first cap, center excluded; support is the full
+  class by `hnoFive`). Module
+  `ATail/FrontierLiveClosure/TwoRadiusExactTwelveSecondCapRows.lean`,
+  sorry-free, standard axioms; not imported by the spine yet.
 - L4 first-apex class census at exact 12.
 - L5 port of the sorry-free scratch bound `d1_secondOppCap_card_ge_six`
   (`lean/scratch/d-package-bank/DPackageBank.lean:1253`) after a fresh
