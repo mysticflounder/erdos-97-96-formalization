@@ -1,0 +1,163 @@
+{
+  "schema": "p97-replay-provenance/v1",
+  "lane_id": "dr-two-radius-20260901",
+  "run_id": "p35-proof-retention",
+  "plan_item": "P3.5 certificate replay (docs/plans/2026-09-01-dr-two-radius-branch-closure.md)",
+  "written_utc": "2026-09-02T07:06:26Z",
+  "git_head_at_write": "e3b2077369537aea6a2e79e6ebee8f8f02e2b794",
+  "status": "STOPPED_BEFORE_MATERIALIZATION",
+  "stop_reason": "The retained compacted LRAT is not pure RUP: 5,090 additions carry negative (RAT) hints and 23,828 additions carry no hints; all RAT additions and 132,812 additions in total mention fresh variables 6282..12791 above the CNF's 6281 variables. scripts/materialize_checkpointed_rup.py is RUP-only (it rejects RAT hints), so no checkpointed/windowed package and no Lean replay modules were produced.",
+  "proof_format_finding": {
+    "piqd_proof_pipeline": "piqd re-solves the byte-identical CNF with cadical `--unsat` plus binary DRAT regardless of the job's solver_profile (piqd/src/runner.rs: solver::cadical::run_with(&cnf_replay, timeout_s, Some(\"--unsat\"), ...)), then runs `drat-trim <cnf> <drat> -L <lrat>` and accepts the LRAT only on exit 0 plus a whole-line `s VERIFIED` (piqd/src/proof.rs run_drat_trim / accept_drat_trim_output), then densifies clause ids with piqd_lrat::compact_lrat after piqd_lrat::detautologize (piqd/src/proof.rs compact_via_piqd_lrat).",
+    "compaction_semantics": "piqd_lrat::compact_lrat renumbers clause ids only (inputs through the detautologize map, learned clauses densely from n_input_kept+1); hint signs and literals are preserved. Negative hints in the compacted LRAT are therefore drat-trim RAT hints, not an encoding.",
+    "kept_cnf_equals_submitted_cnf": true,
+    "kept_cnf_blob_hash": "e29d1b2646d763425598fe0e5b1364118033b61df5aacdf5b907b6d0dad3bcb0",
+    "clause_map_exceptions": [],
+    "plain_and_unsat_jobs_same_proof_bytes": true,
+    "daemon_log_evidence": [
+      "piqd.log:40758 job 1c4d34fd-8ec8-4b05-8d52-338b421e4e5b UNSAT proof replay → UNSAT in 115358ms",
+      "piqd.log:40759 job aaaf9191-64e4-4965-86b5-2b37814f5596 UNSAT proof replay → UNSAT in 116261ms",
+      "piqd.log:40764 job 1c4d34fd proof captured: proof=ef446035… kept_cnf=Some(\"e29d1b26…\") format=compacted_lrat",
+      "piqd.log:40773 job aaaf9191 proof captured: proof=ef446035… kept_cnf=Some(\"e29d1b26…\")"
+    ],
+    "solver_transcript_note": "The job's solver transcript (piqc job log) is the discovery run; it shows the plain profile's disabled options (--compact=false … --vivify=false, --factor=false) and `c exit 20` in 94.98 s. The proof-producing replay with `--unsat` has no retained transcript; drat-trim's stdout (with its `RAT lemmas` line) is not retained by piqd either."
+  },
+  "jobs": {
+    "1c4d34fd-8ec8-4b05-8d52-338b421e4e5b": {
+      "solver_profile": "plain",
+      "backend": "cadical",
+      "proof_blob_hash": "ef44603571622e33fd9e41cfc0275451c2db65991efe77d389c88f3435d4a9c0",
+      "proof_format": "compacted_lrat",
+      "proof_size_bytes": 1915430548,
+      "daemon_sha256": "da1640451211fc1b97285211f9315bfdd94c3258a38ba1a391bb418586b00b50"
+    },
+    "aaaf9191-64e4-4965-86b5-2b37814f5596": {
+      "solver_profile": "unsat",
+      "backend": "cadical",
+      "proof_blob_hash": "ef44603571622e33fd9e41cfc0275451c2db65991efe77d389c88f3435d4a9c0",
+      "proof_format": "compacted_lrat",
+      "proof_size_bytes": 1915430548
+    }
+  },
+  "lrat_scan": {
+    "additions": 826522,
+    "deletions": 284761,
+    "rat_additions_negative_hint": 5090,
+    "rat_additions_with_extension_var": 5090,
+    "additions_with_no_hints": 23828,
+    "additions_containing_extension_var": 132812,
+    "first_extension_addition": "256285 6282 -2538 0 151224 151222 255681 256274 2429 0\n",
+    "max_var": 12791,
+    "declared_vars": 6281,
+    "empty_clause_ids": [
+      1080934
+    ],
+    "empty_clause_count": 1,
+    "first_add_id": 254413,
+    "last_add_id": 1080934,
+    "addition_ids_dense_consecutive": true,
+    "rat_without_extension_examples": [],
+    "no_hint_examples": [
+      "256299 6282 -2530 0 0\n",
+      "256352 6286 -2609 0 0\n",
+      "256362 6287 -2609 0 0\n"
+    ]
+  },
+  "lrat_scan_command": "cd scratch/runs/dr-two-radius-20260901/p35-proof-retention/tmp && timeout 1500 uv run python scan_lrat.py ../artifacts/proof-core2-plain.compacted_lrat 6281 > scan-plain.json",
+  "independent_drat_trim_check": {
+    "method": "Derived a textual DRAT view from the compacted LRAT (additions as literal lines, id-deletions expanded to literal deletions via the CNF/addition id table) with lrat_to_drat.py, then ran the local drat-trim in check mode with a timeout. drat-trim is a checker; no solver was run.",
+    "commands": [
+      "cd scratch/runs/dr-two-radius-20260901/p35-proof-retention/tmp && timeout 1500 uv run python lrat_to_drat.py ../../q1b-wave-5/artifacts/cnf-core2-none.cnf ../artifacts/proof-core2-plain.compacted_lrat derived-core2-plain.drat",
+      "cd scratch/runs/dr-two-radius-20260901/p35-proof-retention/tmp && timeout 2400 drat-trim ../../q1b-wave-5/artifacts/cnf-core2-none.cnf derived-core2-plain.drat > drat-trim-check.log"
+    ],
+    "derive_log": "cnf clauses=254412\ndrat additions=826522 deletions(ids)=1079943\nderive exit=0\n-rw-r--r--@ 1 adam  staff  174501472 Sep  2 00:04 derived-core2-plain.drat\n",
+    "drat_trim_log": "c parsing input formula with 6281 variables and 254412 clauses\nc finished parsing\nc detected empty clause; start verification via backward checking\nc 41919 of 254412 clauses in core                            \nc 807720 of 826524 lemmas in core using 255389755 resolution steps\nc 28283 RAT lemmas in core; 477544 redundant literals in core lemmas\ns VERIFIED\nc verification time: 82.247 seconds\ndrat-trim exit=0\n"
+  },
+  "artifact_fetch_commands": [
+    "piqc job proof 1c4d34fd-8ec8-4b05-8d52-338b421e4e5b --out scratch/runs/dr-two-radius-20260901/p35-proof-retention/artifacts/proof-core2-plain.compacted_lrat  (coordinator download; command form from `piqc job proof --help`)",
+    "piqc job log 1c4d34fd-8ec8-4b05-8d52-338b421e4e5b --out scratch/runs/dr-two-radius-20260901/p35-proof-retention/tmp/job-1c4d34fd-log.txt",
+    "piqc job clause-map 1c4d34fd-8ec8-4b05-8d52-338b421e4e5b > scratch/runs/dr-two-radius-20260901/p35-proof-retention/tmp/clause-map-plain.txt",
+    "piqc status 1c4d34fd-8ec8-4b05-8d52-338b421e4e5b"
+  ],
+  "files": {
+    "scratch/runs/dr-two-radius-20260901/q1b-wave-5/artifacts/cnf-core2-none.cnf": {
+      "sha256": "e29d1b2646d763425598fe0e5b1364118033b61df5aacdf5b907b6d0dad3bcb0",
+      "bytes": 6439462
+    },
+    "scratch/runs/dr-two-radius-20260901/p35-proof-retention/artifacts/proof-core2-plain.compacted_lrat": {
+      "sha256": "ef44603571622e33fd9e41cfc0275451c2db65991efe77d389c88f3435d4a9c0",
+      "bytes": 1915430548
+    },
+    "scratch/runs/dr-two-radius-20260901/p35-proof-retention/artifacts/proof-core2-unsat.compacted_lrat": {
+      "sha256": "ef44603571622e33fd9e41cfc0275451c2db65991efe77d389c88f3435d4a9c0",
+      "bytes": 1915430548
+    },
+    "scratch/runs/dr-two-radius-20260901/p35-proof-retention/artifacts/cnf-manifest-core2-plain-retain.json": {
+      "sha256": "147122c9699cc9eb71498ffaa108bc0d53db8841c53081b81d3fd50a2d3539ae",
+      "bytes": 6122
+    },
+    "scratch/runs/dr-two-radius-20260901/p35-proof-retention/artifacts/cnf-manifest-core2-unsat-retain.json": {
+      "sha256": "aa9c782b4cf25de006ac0cba4d83137117a9304055f02edc462cef4278991606",
+      "bytes": 6122
+    },
+    "scratch/runs/dr-two-radius-20260901/p35-proof-retention/artifacts/submit-core2-plain-retain.txt": {
+      "sha256": "f2e43b7b6ceac2b0dcc7dd3fc0cbe6d4a09c35e40801b1f448d5a7efde5b0add",
+      "bytes": 1807
+    },
+    "scratch/runs/dr-two-radius-20260901/p35-proof-retention/artifacts/confirm-core2-plain-retain.txt": {
+      "sha256": "3e346b4b65a1cc4adc15a5b904df7e432a21c509f5673fced172da48f7afc673",
+      "bytes": 163
+    },
+    "scratch/runs/dr-two-radius-20260901/p35-proof-retention/artifacts/submit-core2-unsat-retain.txt": {
+      "sha256": "aae48bf13dc4ae715112dd7d6b5a78f7893a676a3e8e679b640cd6f757b4cb60",
+      "bytes": 1807
+    },
+    "scratch/runs/dr-two-radius-20260901/p35-proof-retention/artifacts/confirm-core2-unsat-retain.txt": {
+      "sha256": "da14c5b7223bee076252d003bc40095d5f9d6702299a72800f3bd217a035f713",
+      "bytes": 163
+    },
+    "scratch/runs/dr-two-radius-20260901/p35-proof-retention/artifacts/log-core2-plain.txt": {
+      "sha256": "6b2c1838d44323c7c857ecdef9c5ac3ed72b322cc3d45cc55e715f2179484e2c",
+      "bytes": 43069
+    },
+    "scratch/runs/dr-two-radius-20260901/p35-proof-retention/tmp/job-1c4d34fd-log.txt": {
+      "sha256": "6b2c1838d44323c7c857ecdef9c5ac3ed72b322cc3d45cc55e715f2179484e2c",
+      "bytes": 43069
+    },
+    "scratch/runs/dr-two-radius-20260901/p35-proof-retention/tmp/clause-map-plain.txt": {
+      "sha256": "6042323d4f7104a060075ffa3b6b1c96f3061baf9e3220b66ca5514a98cfbc94",
+      "bytes": 935
+    },
+    "scratch/runs/dr-two-radius-20260901/p35-proof-retention/tmp/scan_lrat.py": {
+      "sha256": "f0490a98f5e5129c2f48b5fb524dcfa015185e345b69047b95471afa2add5357",
+      "bytes": 2146
+    },
+    "scratch/runs/dr-two-radius-20260901/p35-proof-retention/tmp/scan-plain.json": {
+      "sha256": "a3ddcca94f7b7778b1288f7f5b85c4379d9b4ea6e637fb3e3a12234ffcec20f6",
+      "bytes": 648
+    },
+    "scratch/runs/dr-two-radius-20260901/p35-proof-retention/tmp/lrat_to_drat.py": {
+      "sha256": "a173761d96663b95914f5f01c8af5640b1658b167550bd5ff0f0da4b1c43109d",
+      "bytes": 1387
+    },
+    "scratch/runs/dr-two-radius-20260901/p35-proof-retention/tmp/derived-core2-plain.drat": {
+      "sha256": "0c4a5cced53bb126ec9f17ec566dee174aaa4eb0846a6b7258e67b26d0b387dd",
+      "bytes": 174501472,
+      "retained": false,
+      "note": "reproducible DRAT view of the LRAT; deleted after hashing and after the drat-trim check (regenerate with lrat_to_drat.py)"
+    },
+    "scratch/runs/dr-two-radius-20260901/p35-proof-retention/tmp/drat-trim-check.log": {
+      "sha256": "f9ce556a4e7e99881898d870397c12975281f288102336fe1b4ae13ee5bcdde6",
+      "bytes": 410
+    }
+  },
+  "not_produced": {
+    "normalized_densified_lrat": "not produced (the compacted LRAT is already dense: additions 254413..1080934 consecutive; normalization was not needed and materialization was stopped)",
+    "checkpointed_package_manifest": "not produced",
+    "windowed_package_manifest": "not produced",
+    "compact_replay_manifest": "not produced",
+    "generated_lean_modules": "not produced",
+    "ingress_module": "not produced"
+  },
+  "next_step": "Obtain a profile-honouring `cadical --plain` proof replay through piqd (requested in #piqd), re-run scan_lrat.py, require rat_additions_negative_hint == 0 and additions_with_no_hints == 0 and max_var <= 6281, then materialize with scripts/materialize_checkpointed_rup.py."
+}

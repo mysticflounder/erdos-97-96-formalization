@@ -447,3 +447,42 @@ infrastructure for Phase 3, not a change to the obligation frontier.
   UNSAT oracle for this lane. UNSAT-side evidence for 1b needs either a
   counting/order argument provable in Lean or a Gröbner/CAD engine, which
   needs Adam's approval before it runs.
+
+## Phase 3, P3.5 proof retention (2026-09-02)
+
+piqd's LRAT parse cap was raised upstream (piqd commit `fde1b73`, `#piqd`
+#8761: default 2 GiB, `PIQD_LRAT_PARSE_MAX_BYTES`, raw-LRAT fallback
+retention, status error field). The daemon was rebuilt from master and
+restarted at 06:49Z (sha `da164045…`, `PIQD_LRAT_PARSE_MAX_BYTES=4294967296`).
+The two-family CNF (blob `e29d1b26…`, 254,412 clauses, 6,281 variables) was
+resubmitted with fresh provenance manifests (`resubmission` block) so the
+jobs do not deduplicate to the proof-less job `bdbe81da…`. Run root
+`scratch/runs/dr-two-radius-20260901/p35-proof-retention`.
+
+| profile | piqd job | verdict | wall | proof |
+|---|---|---|---:|---|
+| `plain` | `1c4d34fd…` | UNSAT | 95.0 s | `compacted_lrat`, 1,915,430,548 bytes, sha `ef446035…` |
+| `unsat` | `aaaf9191…` | UNSAT | 114.8 s | `compacted_lrat`, 1,915,430,548 bytes |
+
+Both proofs are byte-identical (sha `ef446035…`): piqd derives the proof
+from a separate `cadical --unsat` DRAT replay of the CNF regardless of the
+job's `solver_profile` (`piqd/src/runner.rs:530-575`), so the `plain`
+profile governs only the discovery run. `compacted_lrat` is textual LRAT
+with densified ids (`piqd_lrat::compact_lrat`), hint signs preserved.
+Independent check of the proof (scan plus a derived DRAT view checked by
+the local `drat-trim` in check mode, 82 s): 826,522 additions, 284,761
+deletion lines, 5,090 additions with negative (RAT) hints, 23,828
+additions with no hints, 132,812 additions mentioning fresh variables
+(max variable 12,791 against 6,281 declared), the empty clause derived
+once as the last addition; `s VERIFIED` with `28,283 RAT lemmas in core`.
+The certificate is valid but not pure RUP, so the project's checkpointed
+RUP checker cannot replay it (lean-usage generated-proofs requires a
+zero-RAT proof). P3.5 stopped before materialization; provenance in
+`docs/audits/2026-09-02-dr-two-radius-p35-replay-provenance.json` (copy of
+the run root's `replay-provenance.json`; status
+`STOPPED_BEFORE_MATERIALIZATION`). A profile-honouring (`--plain`) proof
+replay was requested from the piqd maintainers (`#piqd` #8765); the
+alternative, a manual `cadical --plain` + `drat-trim -L` run outside
+piqd, needs Adam's approval. Trust label: EMPIRICALLY VERIFIED (solver
+verdict, drat-trim replay inside piqd, and an independent drat-trim check);
+kernel replay pending.
