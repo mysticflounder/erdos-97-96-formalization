@@ -530,6 +530,62 @@ finite low-span kernel is proved and consumed by the leaf; no cell is closed):
 - The `twoRadii` cells at `i` are untouched by this checkpoint; the fan
   bound gives no two-point bound across two slices.
 
+Status 2026-09-01 (Phase 3a, second checkpoint: `μ = 0` terminal assessment;
+no Lean change, no build, no solver run; full record in
+`docs/audits/2026-09-01-d1-mu0-terminal-analysis.md`):
+
+- Verdict (HEURISTIC): the `μ = 0` paired fixed point is not refutable from
+  the hypotheses the leaf binds. An incidence witness satisfies every listed
+  constraint: the four same-radius interior points of cap `i` each carry a
+  distinct blocker centre in another cap, each actual shell meets cap `i`
+  only in its own source, so every pair (adjacent pairs included) mutually
+  omits, both cross-deletions survive, and the cover bound
+  `15 ≤ 4 · |centres|` holds with four centres. This is the O5/O6 finding of
+  Section 3, specialized to the `μ = 0` cell. A contradiction, if one
+  exists, is metric: realizability of that incidence pattern by points in
+  convex position with the three apices on the enclosing circle.
+- Route B (DERIVABLE; CONJECTURED until compiled): from
+  `criticalShellCenter_mem_capInteriorByIndex_of_two_hits`
+  (`AllLargeCapCanonicalInterfaces.lean:85`), `isUniqueFourCenter_centerAt`,
+  `G.apex_rich i`, and `CGN.index_strictly_between_of_equidistant`
+  (`CapSelectedRowCounting.lean:51`): if one interior slot's shell contains
+  another interior slot of cap `i`, the blocker centre is itself an interior
+  slot strictly between them. So adjacent interior slots never contain one
+  another in the `oneRadius` arm at `card = 15`. Consequences: `μ = 0` is
+  forced, the `μ = 1` arm of the prose descent is empty in this cell,
+  `finFour_exists_nearby_mutualFalse_of_card_le_two` is not needed here (the
+  pair can be taken as slots `1, 2`), and ingress item 6 collapses to
+  `μ = 0` with no step to take. The first-checkpoint statement above that the
+  interval count "starts at `0` or `1`" is therefore `0` once Route B is
+  compiled. First missing antecedent for a contradiction: any fact forcing
+  one shell to meet the slice in two points; the fan bound is an upper bound
+  only.
+- Route C (DERIVABLE; CONJECTURED until compiled): the private
+  `selectedClass_capInteriorByIndex_card_ge_two_of_card_four`
+  (`FirstApexInteriorPairGeometry.lean:232`) uses `card = 4` only in its
+  closing arithmetic, so it generalizes to `4 ≤ card`. Classes at one centre
+  with distinct radii are disjoint, and the interior of cap `i` lies in the
+  radius-`r` class, so the two-radii branch of `G.apex_rich i` is impossible
+  and the apex class at `i` has exactly six points: the four interior points
+  plus one point in each adjacent cap. First missing antecedent for a
+  contradiction: a fact excluding or locating those two adjacent-cap points.
+- Routes A, D, E, F are dead ends with named missing antecedents: A
+  (adjacent-slot bisector uniqueness) needs a second carrier bisector point
+  the binders deny; D (capacity count) is arithmetically slack without a
+  lower bound on fibre size; E (cap-interior equidistance kernels of
+  `Rigid221SourceHeavy.lean:3601` to `:3800`) needs a third co-cap shell
+  point or a bisector cycle, and the arrow-free witness shows no arrow set is
+  forced; F (a second circle through the pair) does not exist.
+- Smallest deciding experiment, not run: Stage 1, a named-role incidence SAT
+  at `card = 15` (predicted SAT; machine-checks the negative); Stage 2, a
+  `QF_NRA` realizability check of the returned model (needs Z3 or cvc5,
+  which needs per-task approval). UNSAT at Stage 2 with a usable core names
+  the metric identity a Lean consumer must encode. {{NEEDS_ADAM_INPUT}} on
+  whether to run Stage 1, Stage 2, or neither.
+- Allowed continuation without a decision: Route B and Route C as
+  infrastructure checkpoints (no cell closed, `M = 18` unchanged). Neither
+  is a terminal statement, so the Phase 3a rule above does not block them.
+
 ### Phase 4 — carrier size at least 16
 
 - Extract from the card-15 closures the smallest infeasible sub-pattern and
@@ -547,7 +603,8 @@ finite low-span kernel is proved and consumed by the leaf; no cell is closed):
 In sessions: Phase 0 + Phase 1 (L1 to L6), one, done 2026-09-01. Phase 2,
 assessed without a run on 2026-09-01 (instrument-blocked; dimension count
 recorded). Phase 3, two to four; the first Phase 3a checkpoint (cap-order lift,
-no cell closed) is done 2026-09-01. Phase 4, unknown, at least three.
+no cell closed) and the `μ = 0` terminal assessment (no route closes
+from proven facts) are done 2026-09-01. Phase 4, unknown, at least three.
 {{UNVALIDATED}} until Phase 3 reports its first cell.
 
 ## 9. Gates
