@@ -1364,6 +1364,24 @@ private theorem retained_not_mem_surplusCap_of_balancedTightCover
   exact S.capInteriorByIndex_not_mem_capByIndex_of_ne hretainedInterior
     S.surplusIdx_ne_oppIndex1.symm
 
+private theorem firstInteriorThird_not_mem_surplusCap_of_balancedTightCover
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F}
+    {deleted blocker : ℝ²}
+    {C : CommonDeletionTwoCenterPacket D H deleted blocker S.oppApex2}
+    {N : ExactFiveDistinctThreeCenterNormalForm R C}
+    (I : BalancedTightCoverInvariant R C N) :
+    I.firstInteriorThird ∉ S.surplusCap := by
+  have hthirdInterior :
+      I.firstInteriorThird ∈ S.capInteriorByIndex S.oppIndex1 := by
+    rw [I.firstInterior_eq]
+    simp
+  rw [← capByIndex_surplusIdx_eq_surplusCap S]
+  exact S.capInteriorByIndex_not_mem_capByIndex_of_ne hthirdInterior
+    S.surplusIdx_ne_oppIndex1.symm
+
 private theorem surplusCap_subset_balancedTightCover_rowIntersections
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -1523,6 +1541,45 @@ theorem balancedTightCover_apexRows_inter_surplusCap_card_eq_one
   have hsurplusCard := I.cap_profile.1
   constructor <;> omega
 
+/-- The normal second-apex four-row contains at least two points of the
+three-point second opposite interior.  Both sets lie in the same complete
+five-point radius class, so their cardinalities force a two-point overlap. -/
+theorem balancedTightCover_secondRow_inter_secondInterior_card_ge_two
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F}
+    {deleted blocker : ℝ²}
+    {C : CommonDeletionTwoCenterPacket D H deleted blocker S.oppApex2}
+    {N : ExactFiveDistinctThreeCenterNormalForm R C}
+    (I : BalancedTightCoverInvariant R C N) :
+    2 ≤ (N.secondApexClass.support ∩
+      S.capInteriorByIndex S.oppIndex2).card := by
+  have hinteriorSubsetProfile :
+      S.capInteriorByIndex S.oppIndex2 ⊆
+        SelectedClass D.A S.oppApex2 I.secondApexProfile.radius := by
+    intro point hpoint
+    have hpointInter :
+        point ∈ SelectedClass D.A S.oppApex2 I.secondApexProfile.radius ∩
+          S.capInteriorByIndex S.oppIndex2 := by
+      rw [I.secondInterior_eq]
+      exact hpoint
+    exact (Finset.mem_inter.mp hpointInter).1
+  have hunionSubsetProfile :
+      N.secondApexClass.support ∪ S.capInteriorByIndex S.oppIndex2 ⊆
+        SelectedClass D.A S.oppApex2 I.secondApexProfile.radius := by
+    intro point hpoint
+    rcases Finset.mem_union.mp hpoint with hpointRow | hpointInterior
+    · exact I.normalSecond_subset_profile hpointRow
+    · exact hinteriorSubsetProfile hpointInterior
+  have hunionCardLe := Finset.card_le_card hunionSubsetProfile
+  have hcardIdentity := Finset.card_union_add_card_inter
+    N.secondApexClass.support (S.capInteriorByIndex S.oppIndex2)
+  have hrowCard := N.secondApexClass.support_card
+  have hinteriorCard := I.cap_profile.2.2.2.2
+  have hprofileCard := I.secondApexProfile.class_card_eq_five
+  omega
+
 /-- The balanced cover canonically exposes the two distinct surplus-cap hits
 of the physical apex rows.  The retained blocker row is exactly the retained
 source together with the other three points of the surplus cap. -/
@@ -1641,6 +1698,200 @@ theorem exists_balancedTightCover_surplusCap_rowHits_blocker_eq_complement
           exact False.elim (hpointNeSecondHit hpointEq)
   exact ⟨firstHit, secondHit, hfirstHitCap, hsecondHitCap,
     hfirstHitEq, hsecondHitEq, hfirstHitNeSecondHit, hblockerSupportEq⟩
+
+/-- A source-faithful role packet for the balanced exact-twelve cover.  It
+records every decomposition forced by the current hypotheses without choosing
+unsupported geometric labels for the two flexible row points. -/
+structure BalancedTightCoverFlexibleRolePacket
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F}
+    {deleted blocker : ℝ²}
+    {C : CommonDeletionTwoCenterPacket D H deleted blocker S.oppApex2}
+    {N : ExactFiveDistinctThreeCenterNormalForm R C}
+    (I : BalancedTightCoverInvariant R C N) where
+  firstHit : ℝ²
+  secondHit : ℝ²
+  firstOther : ℝ²
+  secondRemainder : Finset ℝ²
+  firstHit_mem_surplusCap : firstHit ∈ S.surplusCap
+  secondHit_mem_surplusCap : secondHit ∈ S.surplusCap
+  firstHit_ne_secondHit : firstHit ≠ secondHit
+  firstInteriorThird_ne_firstHit : I.firstInteriorThird ≠ firstHit
+  firstOther_ne_firstInteriorThird : firstOther ≠ I.firstInteriorThird
+  firstOther_ne_firstHit : firstOther ≠ firstHit
+  firstOther_not_mem_surplusCap : firstOther ∉ S.surplusCap
+  firstResidual_inter_surplusCap_eq :
+    (N.firstApexClass.support.erase N.retained) ∩ S.surplusCap = {firstHit}
+  firstResidual_eq :
+    N.firstApexClass.support.erase N.retained =
+      {I.firstInteriorThird, firstHit, firstOther}
+  secondRow_inter_surplusCap_eq :
+    N.secondApexClass.support ∩ S.surplusCap = {secondHit}
+  secondRemainder_eq :
+    secondRemainder = N.secondApexClass.support \ S.surplusCap
+  secondRemainder_card_eq_three : secondRemainder.card = 3
+  secondRemainder_disjoint_surplusCap : Disjoint secondRemainder S.surplusCap
+  secondRow_eq :
+    N.secondApexClass.support = insert secondHit secondRemainder
+  secondInterior_hits_ge_two :
+    2 ≤ (N.secondApexClass.support ∩
+      S.capInteriorByIndex S.oppIndex2).card
+  blockerSupport_eq :
+    N.blockerClass.support =
+      insert N.retained (S.surplusCap \ {firstHit, secondHit})
+
+/-- The balanced exact-twelve invariant produces a flexible role packet with
+an exact first-row split, an exact second-row cap-complement split, and the
+forced two-of-three second-interior incidence. -/
+theorem nonempty_balancedTightCoverFlexibleRolePacket
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F}
+    {deleted blocker : ℝ²}
+    {C : CommonDeletionTwoCenterPacket D H deleted blocker S.oppApex2}
+    {N : ExactFiveDistinctThreeCenterNormalForm R C}
+    (I : BalancedTightCoverInvariant R C N) :
+    Nonempty (BalancedTightCoverFlexibleRolePacket I) := by
+  classical
+  rcases exists_balancedTightCover_surplusCap_rowHits_blocker_eq_complement I with
+    ⟨firstHit, secondHit, hfirstHitCap, hsecondHitCap, hfirstHitEq,
+      hsecondHitEq, hfirstHitNeSecondHit, hblockerSupportEq⟩
+  have hfirstHitInter :
+      firstHit ∈
+        (N.firstApexClass.support.erase N.retained) ∩ S.surplusCap := by
+    rw [hfirstHitEq]
+    simp
+  have hfirstHitResidual :
+      firstHit ∈ N.firstApexClass.support.erase N.retained :=
+    (Finset.mem_inter.mp hfirstHitInter).1
+  have hthirdResidual :
+      I.firstInteriorThird ∈ N.firstApexClass.support.erase N.retained :=
+    I.firstInteriorThird_mem
+  have hthirdNotCap : I.firstInteriorThird ∉ S.surplusCap :=
+    firstInteriorThird_not_mem_surplusCap_of_balancedTightCover I
+  have hthirdNeFirstHit : I.firstInteriorThird ≠ firstHit := by
+    intro hEq
+    apply hthirdNotCap
+    rw [hEq]
+    exact hfirstHitCap
+  have hfirstResidualCard :
+      (N.firstApexClass.support.erase N.retained).card = 3 :=
+    I.support_partition.1
+  have hfirstEraseThirdCard :
+      ((N.firstApexClass.support.erase N.retained).erase
+        I.firstInteriorThird).card = 2 := by
+    rw [Finset.card_erase_of_mem hthirdResidual, hfirstResidualCard]
+  have hfirstHitEraseThird :
+      firstHit ∈
+        (N.firstApexClass.support.erase N.retained).erase
+          I.firstInteriorThird :=
+    Finset.mem_erase.mpr ⟨hthirdNeFirstHit.symm, hfirstHitResidual⟩
+  have hremainingCard :
+      (((N.firstApexClass.support.erase N.retained).erase
+        I.firstInteriorThird).erase firstHit).card = 1 := by
+    rw [Finset.card_erase_of_mem hfirstHitEraseThird, hfirstEraseThirdCard]
+  rcases Finset.card_eq_one.mp hremainingCard with
+    ⟨firstOther, hremainingEq⟩
+  have hfirstOtherDoubleErase :
+      firstOther ∈
+        ((N.firstApexClass.support.erase N.retained).erase
+          I.firstInteriorThird).erase firstHit := by
+    rw [hremainingEq]
+    simp
+  have hfirstOtherEraseThird :
+      firstOther ∈
+        (N.firstApexClass.support.erase N.retained).erase
+          I.firstInteriorThird :=
+    (Finset.mem_erase.mp hfirstOtherDoubleErase).2
+  have hfirstOtherNeFirstHit : firstOther ≠ firstHit :=
+    (Finset.mem_erase.mp hfirstOtherDoubleErase).1
+  have hfirstOtherResidual :
+      firstOther ∈ N.firstApexClass.support.erase N.retained :=
+    (Finset.mem_erase.mp hfirstOtherEraseThird).2
+  have hfirstOtherNeThird : firstOther ≠ I.firstInteriorThird :=
+    (Finset.mem_erase.mp hfirstOtherEraseThird).1
+  have hfirstResidualEq :
+      N.firstApexClass.support.erase N.retained =
+        {I.firstInteriorThird, firstHit, firstOther} := by
+    ext point
+    simp only [Finset.mem_insert, Finset.mem_singleton]
+    constructor
+    · intro hpointResidual
+      by_cases hpointThird : point = I.firstInteriorThird
+      · exact Or.inl hpointThird
+      by_cases hpointFirstHit : point = firstHit
+      · exact Or.inr <| Or.inl hpointFirstHit
+      · have hpointDoubleErase :
+            point ∈
+              ((N.firstApexClass.support.erase N.retained).erase
+                I.firstInteriorThird).erase firstHit :=
+          Finset.mem_erase.mpr ⟨hpointFirstHit,
+            Finset.mem_erase.mpr ⟨hpointThird, hpointResidual⟩⟩
+        rw [hremainingEq] at hpointDoubleErase
+        exact Or.inr <| Or.inr <| Finset.mem_singleton.mp hpointDoubleErase
+    · intro hpoint
+      rcases hpoint with hpointThird | hpointFirstHit | hpointOther
+      · simpa [hpointThird] using hthirdResidual
+      · simpa [hpointFirstHit] using hfirstHitResidual
+      · simpa [hpointOther] using hfirstOtherResidual
+  have hfirstOtherNotCap : firstOther ∉ S.surplusCap := by
+    intro hfirstOtherCap
+    have hfirstOtherInter :
+        firstOther ∈
+          (N.firstApexClass.support.erase N.retained) ∩ S.surplusCap :=
+      Finset.mem_inter.mpr ⟨hfirstOtherResidual, hfirstOtherCap⟩
+    rw [hfirstHitEq] at hfirstOtherInter
+    exact hfirstOtherNeFirstHit (Finset.mem_singleton.mp hfirstOtherInter)
+  let secondRemainder := N.secondApexClass.support \ S.surplusCap
+  have hsecondRemainderCard : secondRemainder.card = 3 := by
+    have hrowCard := N.secondApexClass.support_card
+    have hpartition :=
+      Finset.card_sdiff_add_card_inter
+        N.secondApexClass.support S.surplusCap
+    have hinterCard :
+        (N.secondApexClass.support ∩ S.surplusCap).card = 1 := by
+      rw [hsecondHitEq]
+      simp
+    dsimp [secondRemainder]
+    omega
+  have hsecondHitSupport : secondHit ∈ N.secondApexClass.support := by
+    have hsecondHitInter :
+        secondHit ∈ N.secondApexClass.support ∩ S.surplusCap := by
+      rw [hsecondHitEq]
+      simp
+    exact (Finset.mem_inter.mp hsecondHitInter).1
+  have hsecondRemainderDisjoint : Disjoint secondRemainder S.surplusCap := by
+    rw [Finset.disjoint_left]
+    intro point hpointRemainder hpointCap
+    exact (Finset.mem_sdiff.mp hpointRemainder).2 hpointCap
+  have hsecondRowEq :
+      N.secondApexClass.support = insert secondHit secondRemainder := by
+    ext point
+    constructor
+    · intro hpointRow
+      by_cases hpointCap : point ∈ S.surplusCap
+      · have hpointInter :
+            point ∈ N.secondApexClass.support ∩ S.surplusCap :=
+          Finset.mem_inter.mpr ⟨hpointRow, hpointCap⟩
+        rw [hsecondHitEq] at hpointInter
+        exact Finset.mem_insert.mpr <| Or.inl <|
+          Finset.mem_singleton.mp hpointInter
+      · exact Finset.mem_insert.mpr <| Or.inr <|
+          Finset.mem_sdiff.mpr ⟨hpointRow, hpointCap⟩
+    · intro hpoint
+      rcases Finset.mem_insert.mp hpoint with hpointHit | hpointRemainder
+      · simpa [hpointHit] using hsecondHitSupport
+      · exact (Finset.mem_sdiff.mp hpointRemainder).1
+  exact ⟨⟨firstHit, secondHit, firstOther, secondRemainder,
+    hfirstHitCap, hsecondHitCap, hfirstHitNeSecondHit,
+    hthirdNeFirstHit, hfirstOtherNeThird, hfirstOtherNeFirstHit,
+    hfirstOtherNotCap, hfirstHitEq, hfirstResidualEq, hsecondHitEq,
+    rfl, hsecondRemainderCard, hsecondRemainderDisjoint, hsecondRowEq,
+    balancedTightCover_secondRow_inter_secondInterior_card_ge_two I,
+    hblockerSupportEq⟩⟩
 
 /-- The blocker center cannot lie in the surplus cap: its selected four-row
 has three surplus-cap points, whereas a positive-radius row centered in that

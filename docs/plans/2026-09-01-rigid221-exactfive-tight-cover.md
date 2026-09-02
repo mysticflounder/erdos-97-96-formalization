@@ -229,6 +229,52 @@ falls from `(at most one, unknown, arbitrary three-set)` to
 reduction, but it does not reduce the one open tight-cover leaf and therefore
 claims no closure credit.
 
+## Flexible role packet
+
+The source-supported remainder of the proposed role normal form is now a
+single Lean object,
+`BalancedTightCoverFlexibleRolePacket`.  Its constructor
+`nonempty_balancedTightCoverFlexibleRolePacket` strengthens the surplus-hit
+bridge in exactly the two directions justified by cardinality:
+
+```text
+firstResidual = {firstInteriorThird, firstHit, firstOther}
+secondRow = {secondHit} ∪ secondRemainder
+```
+
+Here `firstOther` is distinct from both named first-row points and lies
+outside the surplus cap.  The second remainder has cardinality three and is
+disjoint from the surplus cap.  The packet also retains the exact singleton
+surplus intersections, distinctness of the two cap hits, the blocker-support
+complement identity, and the forced bound
+
+```text
+2 ≤ |secondRow ∩ secondOppositeInterior|.
+```
+
+The last bound is the strongest second-interior conclusion forced by the
+current data: the four-point normal row and the three-point interior are both
+subsets of one five-point complete radius class.  Their overlap is therefore
+at least two, but can still omit one interior point.  Similarly, the unnamed
+`firstOther` cannot be identified with `surplusApex` without a new metric or
+incidence premise.  The packet deliberately preserves both freedoms.
+
+The live exact-twelve leaf now constructs and consumes this packet before its
+single existing admitted step.  The focused closure build passed at
+proof-blueprint build `f8a4ca4ea6a1`.  Proof-blueprint reports both the packet
+constructor and the second-interior lower bound on the live spine, and the
+constructor's literal axiom closure is exactly `propext`,
+`Classical.choice`, and `Quot.sound`.  The rooted subtree still has one open
+obligation; this checkpoint packages a sharper finite ingress but does not
+prove the endpoint.
+
+Independent verifier `exact12_flexible_packet_review` audited the working
+tree at HEAD `3e5eafe0170e8e02822d72b71a5e9d4c2e526e3d`.  It checked the
+opposite-index argument, both cardinality decompositions, every packet field,
+the direct consumer edge, and the two focused Lean modules.  Verdict: the
+local derivation and source-faithfulness pass; endpoint closure does not pass
+because the consumer still ends in its one pre-existing `sorry`.
+
 This closes the alias ambiguity among the three physical rows.  It does not
 yet supply the equal-distance closure or the global convex/order input needed
 by a finite collision consumer.
@@ -255,10 +301,12 @@ metric consequence of the balanced tight cover.
 
 ## Next gates
 
-1. Express the reduced balanced tight cover, including the fixed first-apex
+1. Express the reduced balanced tight cover from
+   `BalancedTightCoverFlexibleRolePacket`, including the fixed first-apex
    five-class, exact first interior triple, exact retained critical shell,
    unique second-apex five-class, convex independence, global `K4`,
-   row-center semantics, cyclic/order data, and every retained omission.
+   row-center semantics, cyclic/order data, every retained omission, and the
+   two explicitly flexible row roles.
    Treat a SAT result as a missing-source-hypothesis diagnosis, not as a
    theorem failure.
 2. Do not encode stored packet rows as independent source data.  If witness

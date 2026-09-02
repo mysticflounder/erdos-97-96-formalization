@@ -1553,10 +1553,9 @@ theorem false_of_exactFiveDistinct_threeCenter_exactTwelveTightPhysical
           carrier_erase_deleted_eq_union with
     ⟨invariant⟩
   rcases
-      ExactFiveDistinctThreeCenterTightCover.exists_balancedTightCover_surplusCap_rowHits_blocker_eq_complement
+      ExactFiveDistinctThreeCenterTightCover.nonempty_balancedTightCoverFlexibleRolePacket
         invariant with
-    ⟨firstHit, secondHit, firstHit_mem, secondHit_mem, firstHit_eq,
-      secondHit_eq, firstHit_ne_secondHit, blockerSupport_eq⟩
+    ⟨rolePacket⟩
   sorry
 
 /-- The bi-apex-robust exact-five endpoint splits soundly into a genuinely
