@@ -1,0 +1,15 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "b1-order-source-context-20260901",
+  "owner": "Codex-B1-Sorry",
+  "base_head": "1ac138b49b403f02793b34845d2c71be142453f9",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/b1-order-source-context-20260901.json",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/B1WinningSliceOrderOutcome.lean",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/CyclicPairSeparation.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-01T22:10:00Z",
+  "manifest_sha256": "7923083303215b57eba1cc53f7a34a96e1ac1480769e37a2ef580a003c92db91"
+}
