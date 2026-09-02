@@ -8,6 +8,12 @@ Twelve labelled points in the fixed profile ``(surplus, opp1, opp2) = (5, 4, 6)`
 The Boolean relation ``eq(e, e')`` on the 66 edges says two distances are equal.
 Every D-R hypothesis is stated as a cardinality or exclusion constraint on the
 per-center classes this relation induces.  No coordinates, no cyclic order.
+The label-generic equality cores of ``Problem97.Census554`` (``GENERIC_CORES``)
+are included as all-negative clauses on the relation: each Lean source needs
+only an injective realization, convex independence, and, for the order cores,
+orientation signs of carrier triples, which the fixed cyclic order
+``CYCLIC_ORDER`` supplies.  Cores with at most six labels are eager clause
+families; larger cores are checked lazily by ``core_violations``.
 
 Claim boundary.  A model is an equality pattern, not a configuration; an UNSAT
 is a statement about this CNF at card 12 under the cut admission record below.
@@ -22,11 +28,13 @@ import json
 import sys
 from collections.abc import Iterable, Mapping, Sequence
 from dataclasses import dataclass, field
-from itertools import combinations
+from itertools import combinations, permutations
 from pathlib import Path
 from typing import Any
 
-SCHEMA = "p97-dr-exact12-structural-cnf/v1"
+import numpy as np
+
+SCHEMA = "p97-dr-exact12-structural-cnf/v2"  # v1: incidence only (wave 1)
 TARGET_THEOREM = (
     "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenTwoRadiusBranch"
 )
@@ -48,6 +56,9 @@ CONTROLS = ("none", "five-at-second-apex", "first-apex-symmetry")
 SOURCE_CLAUSE_LEDGER: tuple[dict[str, str], ...] = (
     {"family": "transitivity", "content": "equality of distances is an equivalence relation", "status": "definition"},
     {"family": "duplicate_three_point_center", "content": "two distinct centers are not both equidistant from three common points (circumcenter uniqueness)", "status": "proved-source", "lean_sources": "b1_exact12_static_equality generic_duplicate_three_point_center_obstruction"},
+    {"family": "perp_bisector", "content": "three distinct points, each equidistant from two distinct points a, b, are collinear, contradicting convex independence of the carrier", "status": "proved-source", "lean_sources": "Problem97.Census554.EqualityCore.false_of_convexIndep_of_perpBisectorCore (PerpBisectorCore; ConvexIndep from CounterexampleData.convex)"},
+    {"family": "two_circle_same_arc", "content": "two distinct points equidistant from q and from v are mirror images in the line qv, hence on different sides of it; on the convex carrier with the fixed cyclic order they lie on different arcs of the chord qv", "status": "proved-source (core) + convex-position side/arc bridge", "lean_sources": "Problem97.Census554.FourPointTwoCircleBisectorOrderCore.false_of_core_of_same_side; side/arc bridge Problem97.onArc_iff_between and Problem97.signedArea2_neg_of_outside (ArcBlockContiguity.lean, proved, not yet imported by the aggregator) via exists_isCcwConvexPolygon_of_convexIndep"},
+    {"family": "generic_cores", "content": "label-generic equality cores of Problem97.Census554 (see GENERIC_CORES): each source theorem needs only an injective planar realization; cores with at most six labels are eager clause families named as in GENERIC_CORES, seven-label cores are lazy model checks", "status": "proved-source", "lean_sources": "GENERIC_CORES[*].lean"},
     {"family": "second_apex_rows", "content": "firstRow/secondRow: two disjoint full four-classes at oppApex2; each has two points in the second-cap interior and one point in each adjacent closed cap", "status": "proved-source", "lean_sources": "SelectedFourClass, _hdisjoint, _hnoFive, twoRichClassSlices_partition_of_capInterior_card_eq_four, exactFourTwoRadiusAdjacentCapGrid"},
     {"family": "first_apex_class", "content": "the oppApex1 class has exactly four points, contains interior_q and interior_w, one point in each adjacent closed cap, and is the unique four-class at oppApex1", "status": "proved-source", "lean_sources": "OriginalUniqueFourResidual.class_card_eq_four, interior_q_mem, interior_w_mem, unique_K4_radius, leftAdjacentCap_at_opposite_card_le_one_of_convexIndep"},
     {"family": "k4_everywhere", "content": "every point has at least four equidistant points", "status": "proved-source", "lean_sources": "CounterexampleData.K4"},
@@ -55,8 +66,8 @@ SOURCE_CLAUSE_LEDGER: tuple[dict[str, str], ...] = (
     {"family": "ingress", "content": "source with blocker outside {oppApex1, oppApex2}; deleted point in the first-apex class outside the surplus interior; B1 = source shell avoids deleted; B2 in {firstRow, secondRow} avoids deleted; |B1 ∩ B2| ≤ 2", "status": "RELAXATION: deleted ∈ {q, w} is projected to deleted ∈ U \\ surplus interior (closed-cap exclusion weakened to interior)", "lean_sources": "ExactFourPhysicalCommonDeletionIngress, CommonDeletionTwoCenterPacket, U5QDeletedK4Class, outsideFirstApexFiber, blocker_ne_secondApex"},
 )
 OMITTED_FACTS = (
-    "convex cyclic order (metric stage)",
-    "geometry and perpendicular-bisector deltas of the B1 static layers (label-genericity not yet audited)",
+    "metric positions along the cyclic order (only orientation signs of carrier triples are used, through CYCLIC_ORDER)",
+    "cores whose Lean statement needs non-carrier data (MECStraddlingRowCore, CircleIntersectionInequalityCore) or the card-11 macro-order machinery (SeparationCore)",
     "minimality / no M44",
     "bisector_center_mem_interior",
     "FullyDeletionRobustAt oppApex2 (implied by the two disjoint four-classes)",
@@ -142,7 +153,296 @@ def others(center: int) -> tuple[int, ...]:
     return tuple(label for label in LABELS if label != center)
 
 
-def build(control: str = "none") -> tuple[CNF, Layout]:
+# Cyclic order of the carrier (counterclockwise, from CapTriple endpoint
+# membership): a1, Is, a2, I1, a3, I2.  Within-cap orders are fixed WLOG: the
+# base CNF is invariant under relabelling inside Is, inside I2, and under the
+# swap of interior_q/interior_w, so every equality pattern has a relabelled
+# copy with this order.
+CYCLIC_ORDER = (A1, 3, 4, 5, A2, 6, 7, A3, 8, 9, 10, 11)
+
+# Label-generic cores of ``Problem97.Census554``.  Each entry names its labels
+# (one character per label, all distinct), the distance equalities it forces
+# as pairs of two-letter edges, and its Lean source.  Every source theorem
+# needs only ``Realizes`` (an injective planar realization) and the listed
+# equalities, so the all-negative clause over every injective label tuple is
+# sound for any 12 distinct points.  Cores with at most six labels are added
+# eagerly; seven-label cores (about four million instances each) are checked
+# lazily against models by ``core_violations``.
+GENERIC_CORES: dict[str, dict[str, Any]] = {
+    "equal_k4": {
+        "labels": "pxyz",
+        "equalities": (("px", "py"), ("px", "pz"), ("px", "xy"), ("px", "xz"), ("px", "yz")),
+        "lean": "Problem97.Census554.EqualityCore.not_realizes_of_equalK4Core (EqualK4Core)",
+    },
+    "equilateral_bisector": {
+        "labels": "pabcx",
+        "equalities": (("pa", "pb"), ("pa", "pc"), ("pa", "ab"), ("pa", "ax"), ("pa", "bx"), ("cx", "ca")),
+        "lean": "Problem97.Census554.EqualityCore.not_realizes_of_equilateralBisectorCollisionCore (EquilateralBisectorCollisionCore, Census554/FivePointCollision.lean)",
+    },
+    "hinge_five_cycle": {
+        "labels": "ABCDH",
+        "equalities": (("AB", "AD"), ("AB", "AH"), ("BA", "BC"), ("BA", "BH"), ("CA", "CD"), ("DB", "DH"), ("HC", "HD")),
+        "lean": "Problem97.Census554.EqualityCore.false_of_fivePointHingeCycleCore (FivePointHingeCycleCore, Census554/EquilateralHingeCollisions.lean)",
+    },
+    "equilateral_chain_bisector": {
+        "labels": "pqxyza",  # x, y, z = t1, t2, t3
+        "equalities": (("px", "pz"), ("px", "pq"), ("px", "xy"), ("px", "xq"), ("yp", "yx"), ("pz", "zy"), ("pz", "za"), ("ap", "aq")),
+        "lean": "Problem97.Census554.EqualityCore.not_realizes_of_equilateralChainBisectorCore (EquilateralChainBisectorCore); metric kernel Problem97.u5_qcritical_aux_center_metric_incompatibility",
+    },
+    "hinge_six_tail": {
+        "labels": "ABCDHT",
+        "equalities": (("AB", "AD"), ("AB", "AH"), ("BA", "BC"), ("BA", "BH"), ("CA", "CD"), ("CA", "CT"), ("DB", "DH"), ("DB", "DT"), ("HC", "HT")),
+        "lean": "Problem97.Census554.EqualityCore.false_of_sixPointHingeTailCore (SixPointHingeTailCore)",
+    },
+    "hinge_six_double_spoke": {
+        "labels": "ABCLHR",
+        "equalities": (("AB", "AL"), ("AB", "AH"), ("BA", "BC"), ("BA", "BH"), ("BA", "BR"), ("LB", "LC"), ("HC", "HR"), ("RA", "RC"), ("RA", "RL")),
+        "lean": "Problem97.Census554.EqualityCore.false_of_sixPointHingeDoubleSpokeCore (SixPointHingeDoubleSpokeCore)",
+    },
+    "six_point_five_row_interlock": {
+        "labels": "pqtuva",
+        "equalities": (("qp", "qt"), ("tp", "tq"), ("tp", "tv"), ("tp", "ta"), ("uq", "ut"), ("uq", "uv"), ("vq", "vu"), ("vq", "va"), ("at", "au")),
+        "lean": "Problem97.Census554.EqualityCore.not_realizes_of_sixPointFiveRowInterlockCollisionCore",
+    },
+    "six_point_six_row_interlock": {
+        "labels": "pqtuab",
+        "equalities": (("qp", "qa"), ("qp", "qt"), ("pq", "pu"), ("uq", "up"), ("aq", "au"), ("aq", "at"), ("aq", "ab"), ("tp", "tb"), ("bq", "bt")),
+        "lean": "Problem97.Census554.EqualityCore.not_realizes_of_sixPointSixRowInterlockCollisionCore",
+    },
+    "hinge_seven_closed_tail": {
+        "labels": "ABLMHRT",
+        "equalities": (("AB", "AL"), ("AB", "AM"), ("AB", "AH"), ("BA", "BH"), ("BA", "BR"), ("LB", "LH"), ("LB", "LT"), ("HM", "HR"), ("HM", "HT"), ("TA", "TM"), ("TA", "TR")),
+        "lean": "Problem97.Census554.EqualityCore.false_of_sevenPointHingeClosedTailCore (SevenPointHingeClosedTailCore)",
+    },
+    "seven_point_six_row_anchor": {
+        "labels": "pqtuvab",
+        "equalities": (("pu", "pq"), ("pv", "pq"), ("pa", "pq"), ("qt", "pq"), ("qa", "pq"), ("qb", "pq"), ("tq", "tp"), ("ut", "up"), ("uv", "up"), ("vb", "vq"), ("ba", "bp")),
+        "lean": "Problem97.Census554.EqualityCore.not_realizes_of_sevenPointSixRowAnchorCollisionCore",
+    },
+    "seven_point_six_row_interlock": {
+        "labels": "pqtuvab",
+        "equalities": (("pq", "pu"), ("pq", "qt"), ("pq", "qb"), ("tp", "tq"), ("up", "ut"), ("up", "uv"), ("up", "ua"), ("vq", "va"), ("vq", "vb"), ("ap", "av"), ("ap", "ab")),
+        "lean": "Problem97.Census554.EqualityCore.not_realizes_of_sevenPointSixRowInterlockCollisionCore",
+    },
+    "seven_point_seven_row_interlock": {
+        "labels": "pqtuvab",
+        "equalities": (("pq", "pu"), ("pq", "qt"), ("pq", "qv"), ("tp", "tb"), ("uq", "uv"), ("uq", "ua"), ("vp", "va"), ("aq", "at"), ("aq", "ab"), ("bq", "bu"), ("bq", "ba")),
+        "lean": "Problem97.Census554.EqualityCore.not_realizes_of_sevenPointSevenRowInterlockCollisionCore",
+    },
+    "seven_point_equilateral_median_interlock": {
+        "labels": "pqtavbu",
+        "equalities": (("tp", "tq"), ("qp", "qt"), ("qp", "qv"), ("qp", "qb"), ("at", "aq"), ("vt", "vb"), ("vt", "vu"), ("bq", "ba"), ("bq", "bu"), ("uq", "ua"), ("uq", "uv")),
+        "lean": "Problem97.Census554.EqualityCore.not_realizes_of_sevenPointEquilateralMedianInterlockCollisionCore",
+    },
+    # Order cores: the source theorem also needs orientation signs of carrier
+    # triples.  ``same`` lists triples that must all have one sign (the Lean
+    # module provides both the all-positive and the all-negative form, so the
+    # instance set is independent of the sign convention); ``opposite`` lists
+    # pairs of triples with different signs; ``cross`` lists pairs of chords
+    # that must cross.  On the convex carrier a triple's sign is fixed by the
+    # cyclic order (Problem97.onArc_iff_between / signedArea2_neg_of_outside).
+    "convex_five_point": {
+        "labels": "axbcy",
+        "equalities": (("xa", "xb"), ("ya", "yb"), ("cb", "cx"), ("cb", "cy")),
+        "orientation": {"same": ("axb", "bcy")},
+        "lean": "Problem97.Census554.ConvexFivePointCore.false_of_core_of_common_orientation",
+    },
+    "nested_equal_chord": {
+        "labels": "oabcd",
+        "equalities": (("oa", "ob"), ("oa", "oc"), ("oa", "od"), ("oa", "ad"), ("oa", "bc")),
+        "orientation": {"same": ("oad", "obc", "abd", "bcd")},
+        "lean": "Problem97.Census554.NestedEqualChordCore.false_of_core / false_of_core_of_neg",
+    },
+    "six_point_two_circle_order": {
+        "labels": "APQBDC",
+        "equalities": (("AB", "AC"), ("AB", "AD"), ("AB", "BC"), ("CD", "CP"), ("DA", "DQ")),
+        "orientation": {"same": ("ABC", "ABD", "BDC", "APB", "AQB", "QBD", "APQ")},
+        "lean": "Problem97.Census554.SixPointTwoCircleOrderCore.false_of_core / false_of_core_of_neg",
+    },
+    "six_point_nested_center_order": {
+        "labels": "OADEXC",
+        "equalities": (("OA", "OC"), ("OA", "AC"), ("OA", "OD"), ("OA", "OE"), ("DA", "DE"), ("DA", "DX"), ("EO", "EX")),
+        "orientation": {"same": ("OAC", "OAD", "ADC", "ODE", "OEX")},
+        "lean": "Problem97.Census554.SixPointNestedCenterOrderCore.false_of_core / false_of_core_of_neg",
+    },
+    "six_point_circle_chain_order": {
+        "labels": "OADECY",
+        "equalities": (("OA", "OC"), ("OA", "AC"), ("OA", "OD"), ("OA", "OE"), ("DA", "DE"), ("EA", "EC"), ("EA", "EY"), ("CD", "CY")),
+        "orientation": {"same": ("OAC", "OAE", "OAD", "CYO")},
+        "lean": "Problem97.Census554.SixPointCircleChainOrderCore.false_of_core / false_of_core_of_neg",
+    },
+    "six_point_two_circle_arc_overtake_order": {
+        "labels": "OACDEF",
+        "equalities": (("OA", "OC"), ("OA", "AC"), ("OA", "OD"), ("OA", "OE"), ("DA", "DE"), ("DA", "DF")),
+        "orientation": {"same": ("OAC", "OAD", "OAE", "OEC", "OEF", "EFC")},
+        "lean": "Problem97.Census554.SixPointTwoCircleArcOvertakeOrderCore.false_of_core / false_of_core_of_neg",
+    },
+    "convex_rhombus": {
+        "labels": "abcxyd",
+        "equalities": (("ab", "bc"), ("ab", "cd"), ("ab", "da"), ("ab", "by"), ("ab", "cy"), ("ab", "xd"), ("ab", "xa")),
+        "orientation": {"same": ("abc", "abd", "bcy", "xda", "cxy", "xyd")},
+        "lean": "Problem97.Census554.ConvexRhombusCore.false_of_core / false_of_core_of_neg",
+    },
+    "five_point_circle_isosceles_order": {
+        "labels": "WFPXZ",
+        "equalities": (("WF", "WX"), ("WF", "WZ"), ("PZ", "XZ")),
+        "orientation": {"opposite": (("WFZ", "XFZ"),), "cross": (("FX", "PZ"),)},
+        "lean": "Problem97.Census554.FivePointCircleIsoscelesOrderCore.false_of_core; chord-crossing bridge from interleaved cyclic order {{NEEDS_PROOF}} in Lean",
+    },
+    "five_row_circle_intersection_order": {
+        "labels": "OACDEFGH",  # F, G, H = X5, X6, X9
+        "equalities": (("OA", "OC"), ("OA", "OD"), ("OA", "OE"), ("OA", "AC"), ("DA", "DF"), ("OA", "EF"), ("OA", "AG"), ("DA", "DG"), ("CD", "CH"), ("OA", "EH")),
+        "orientation": {"same": ("OAC", "OAD", "OAE", "ODE", "ODC", "OEC")},
+        "lean": "Problem97.Census554.FiveRowCircleIntersectionOrderCore.false_of_core / false_of_core_of_neg",
+    },
+}
+EAGER_CORES = tuple(name for name, core in GENERIC_CORES.items() if len(core["labels"]) <= 6)
+LAZY_CORES = tuple(name for name, core in GENERIC_CORES.items() if len(core["labels"]) > 6)
+
+EDGES = tuple(combinations(LABELS, 2))
+_EDGE_INDEX = {edge: index for index, edge in enumerate(EDGES)}
+EDGE_TABLE = np.full((N, N), -1, dtype=np.int16)
+for _index, (_a, _b) in enumerate(EDGES):
+    EDGE_TABLE[_a, _b] = EDGE_TABLE[_b, _a] = _index
+
+
+def _core_index_pairs(core: Mapping[str, Any]) -> tuple[tuple[tuple[int, int], tuple[int, int]], ...]:
+    labels = core["labels"]
+    _fail(len(set(labels)) == len(labels), "core labels must be distinct")
+    position = {label: index for index, label in enumerate(labels)}
+
+    def pair(edge_name: str) -> tuple[int, int]:
+        _fail(len(edge_name) == 2 and edge_name[0] != edge_name[1], "edge name needs two distinct labels")
+        return position[edge_name[0]], position[edge_name[1]]
+
+    return tuple((pair(left), pair(right)) for left, right in core["equalities"])
+
+
+def core_clause(name: str, labels: Sequence[int], equal: Any) -> tuple[int, ...]:
+    """The all-negative clause of one core instance on concrete labels."""
+
+    core = GENERIC_CORES[name]
+    _fail(len(labels) == len(core["labels"]) and len(set(labels)) == len(labels), "instance needs distinct labels")
+    literals = []
+    for (i, j), (k, l) in _core_index_pairs(core):
+        first = _EDGE_INDEX[(min(labels[i], labels[j]), max(labels[i], labels[j]))]
+        second = _EDGE_INDEX[(min(labels[k], labels[l]), max(labels[k], labels[l]))]
+        literals.append(-equal(first, second))
+    return tuple(literals)
+
+
+_PERMUTATION_CACHE: dict[int, np.ndarray] = {}
+_INSTANCE_CACHE: dict[str, np.ndarray] = {}
+POSITION = np.zeros(N, dtype=np.int8)
+for _index, _label in enumerate(CYCLIC_ORDER):
+    POSITION[_label] = _index
+
+
+def _permutations(size: int) -> np.ndarray:
+    if size not in _PERMUTATION_CACHE:
+        _PERMUTATION_CACHE[size] = np.array(list(permutations(range(N), size)), dtype=np.int8)
+    return _PERMUTATION_CACHE[size]
+
+
+def _forward(pos: np.ndarray, i: int, j: int, k: int) -> np.ndarray:
+    """Labels i, j, k (columns of pos) appear in this order going forward."""
+
+    return ((pos[:, j] - pos[:, i]) % N) < ((pos[:, k] - pos[:, i]) % N)
+
+
+def core_instances(name: str) -> np.ndarray:
+    """Injective label tuples of the core that satisfy its orientation data."""
+
+    if name in _INSTANCE_CACHE:
+        return _INSTANCE_CACHE[name]
+    core = GENERIC_CORES[name]
+    labels = core["labels"]
+    perms = _permutations(len(labels))
+    orientation = core.get("orientation", {})
+    if orientation:
+        index = {label: i for i, label in enumerate(labels)}
+        pos = POSITION[perms].astype(np.int16)
+        mask = np.ones(len(perms), dtype=bool)
+        same = [_forward(pos, index[t[0]], index[t[1]], index[t[2]]) for t in orientation.get("same", ())]
+        if same:
+            stack = np.stack(same, axis=1)
+            mask &= stack.all(axis=1) | (~stack).all(axis=1)
+        for left, right in orientation.get("opposite", ()):
+            mask &= _forward(pos, index[left[0]], index[left[1]], index[left[2]]) != _forward(pos, index[right[0]], index[right[1]], index[right[2]])
+        for chord, other in orientation.get("cross", ()):
+            a, b = index[chord[0]], index[chord[1]]
+            between = [_forward(pos, a, index[z], b) for z in other]
+            mask &= between[0] != between[1]
+        perms = perms[mask]
+    _INSTANCE_CACHE[name] = perms
+    return perms
+
+
+def relation_matrix(layout: "Layout", assignment: Sequence[int]) -> np.ndarray:
+    """Symmetric 66x66 Boolean matrix of the equality relation in a model."""
+
+    truth = {abs(literal): literal > 0 for literal in assignment}
+    matrix = np.eye(len(EDGES), dtype=bool)
+    for (first, second), variable in layout.relation_variables.items():
+        matrix[first, second] = matrix[second, first] = truth.get(variable, False)
+    return matrix
+
+
+def core_violations(name: str, matrix: np.ndarray) -> np.ndarray:
+    """Every injective label tuple on which the core's equalities all hold."""
+
+    core = GENERIC_CORES[name]
+    perms = core_instances(name)
+    mask = np.ones(len(perms), dtype=bool)
+    for (i, j), (k, l) in _core_index_pairs(core):
+        first = EDGE_TABLE[perms[:, i], perms[:, j]]
+        second = EDGE_TABLE[perms[:, k], perms[:, l]]
+        mask &= matrix[first, second]
+    return perms[mask]
+
+
+def _same_arc(q: int, v: int, u: int, y: int) -> bool:
+    pq, pv = int(POSITION[q]), int(POSITION[v])
+
+    def forward(z: int) -> bool:
+        return (int(POSITION[z]) - pq) % N < (pv - pq) % N
+
+    return forward(u) == forward(y)
+
+
+def _geometry_nogoods(cnf: CNF, edge: Any, equal: Any) -> None:
+    """Label-generic all-negative nogoods on the equality relation."""
+
+    # PerpBisectorCore: a != b, p/q/r distinct, pa = pb, qa = qb, ra = rb
+    for a, b in combinations(LABELS, 2):
+        rest = tuple(z for z in LABELS if z not in (a, b))
+        for p, q, r in combinations(rest, 3):
+            cnf.add("perp_bisector", tuple(-equal(edge(z, a), edge(z, b)) for z in (p, q, r)))
+    # FourPointTwoCircleBisectorOrderCore on the fixed cyclic order: two
+    # distinct common points of the q-circle and the v-circle are mirror
+    # images in the line qv, so they lie on different sides of it; on a
+    # convex carrier that means different arcs of the chord qv.
+    for q, v in combinations(LABELS, 2):
+        rest = tuple(z for z in LABELS if z not in (q, v))
+        for u, y in combinations(rest, 2):
+            if _same_arc(q, v, u, y):
+                cnf.add("two_circle_same_arc", (-equal(edge(q, u), edge(q, y)), -equal(edge(u, v), edge(y, v))))
+    # eager generic cores, one clause per distinct literal set
+    for name in EAGER_CORES:
+        seen: set[frozenset[int]] = set()
+        for row in core_instances(name):
+            labels = tuple(int(x) for x in row)
+            clause = core_clause(name, labels, equal)
+            key = frozenset(clause)
+            if key in seen:
+                continue
+            seen.add(key)
+            cnf.add(name, clause)
+
+
+def build(control: str = "none", *, geometry: bool = True) -> tuple[CNF, Layout]:
+    """Build the structural CNF; ``geometry=False`` reproduces wave 1 (incidence only)."""
+
     _fail(control in CONTROLS, "unknown control")
     cnf = CNF()
     edges = tuple(combinations(LABELS, 2))
@@ -155,12 +455,17 @@ def build(control: str = "none") -> tuple[CNF, Layout]:
         _fail(a != b, "edge needs two endpoints")
         return edge_index[(min(a, b), max(a, b))]
 
+    def equal(first_edge: int, second_edge: int) -> int:
+        """Variable: the two (distinct) edges have equal length."""
+
+        _fail(first_edge != second_edge, "equal needs two distinct edges")
+        return relation[(min(first_edge, second_edge), max(first_edge, second_edge))]
+
     def same(center: int, a: int, b: int) -> int:
         """Variable: a and b are equidistant from center."""
 
         _fail(center not in (a, b) and a != b, "same needs three distinct points")
-        first, second = sorted((edge(center, a), edge(center, b)))
-        return relation[(first, second)]
+        return equal(edge(center, a), edge(center, b))
 
     # 1. transitivity of distance equality
     for first, second, third in combinations(range(len(edges)), 3):
@@ -173,6 +478,9 @@ def build(control: str = "none") -> tuple[CNF, Layout]:
         rest = tuple(label for label in LABELS if label not in (c1, c2))
         for p, q, r in combinations(rest, 3):
             cnf.add("duplicate_three_point_center", (-same(c1, p, q), -same(c1, p, r), -same(c2, p, q), -same(c2, p, r)))
+    # 2a. label-generic geometry nogoods (B1 static layers, audited 2026-09-01)
+    if geometry:
+        _geometry_nogoods(cnf, edge, equal)
 
     def exact_class(family: str, center: int, member: Mapping[int, int]) -> None:
         """member[z] holds exactly for the points of one full class at center."""
@@ -397,13 +705,14 @@ def check_pattern(pattern: Pattern) -> list[str]:
 # --------------------------------------------------------------------------
 
 
-def manifest(cnf: CNF, control: str) -> dict[str, Any]:
+def manifest(cnf: CNF, control: str, *, geometry: bool = True) -> dict[str, Any]:
     return {
         "schema": SCHEMA,
         "target_theorem": TARGET_THEOREM,
         "lane_id": LANE_ID,
         "promotion_eligible": PROMOTION_ELIGIBLE,
         "control": control,
+        "geometry": geometry,
         "n_variables": cnf.n_variables,
         "n_clauses": len(cnf.clauses),
         "clause_counts": dict(sorted(cnf.counts.items())),
@@ -419,10 +728,12 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--control", choices=CONTROLS, default="none")
     parser.add_argument("--cnf", type=Path, required=True, help="DIMACS output path")
     parser.add_argument("--manifest", type=Path, required=True)
+    parser.add_argument("--no-geometry", action="store_true", help="incidence-only CNF (wave 1)")
     arguments = parser.parse_args(argv)
-    cnf, _layout = build(arguments.control)
+    geometry = not arguments.no_geometry
+    cnf, _layout = build(arguments.control, geometry=geometry)
     arguments.cnf.write_bytes(cnf.dimacs())
-    arguments.manifest.write_text(json.dumps(manifest(cnf, arguments.control), indent=1, sort_keys=True) + "\n")
+    arguments.manifest.write_text(json.dumps(manifest(cnf, arguments.control, geometry=geometry), indent=1, sort_keys=True) + "\n")
     sys.stdout.write(json.dumps({"variables": cnf.n_variables, "clauses": len(cnf.clauses), "counts": cnf.counts}, sort_keys=True) + "\n")
     return 0
 

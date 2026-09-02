@@ -142,3 +142,70 @@ an 18-atom geometric UNSAT; it is not the UNSAT oracle here.
 Every stage result is a statement about this encoding at card 12. It carries
 no Lean closure, coverage, or promotion claim; `promotion_eligible = false`.
 Phase 3 (certificate ingress) is the only path to the spine.
+
+## 3b. Structural stage, waves 2 and 3 (added 2026-09-01)
+
+Encoder revision `p97-dr-exact12-structural-cnf/v2`
+(`census/card_head/dr_exact12_structural.py`); the incidence-only CNF of
+wave 1 is `build(geometry=False)`.
+
+Cyclic order. `CYCLIC_ORDER = (a1, s1, s2, s3, a2, iq, iw, a3, t1, t2, t3, t4)`
+(counterclockwise, from `CapTriple` endpoint membership). The within-cap
+orders are fixed without loss of generality: the base CNF is invariant under
+relabelling inside `Is`, inside `I2`, and under the swap `iq ↔ iw`, so every
+equality pattern of a configuration has a relabelled copy whose within-cap
+orders match. Only orientation signs of carrier triples are read from the
+order; no metric position is asserted.
+
+Sign convention. A core whose Lean module provides both the all-positive and
+the all-negative orientation form (`false_of_core` / `false_of_core_of_neg`,
+or `false_of_core_of_common_orientation`) is instantiated on every injective
+label tuple whose listed triples are all forward or all backward in the cyclic
+order. That instance set is invariant under flipping the sign convention, so
+the encoding does not depend on the orientation of `signedArea2`. The
+side/arc bridge (a triple's sign is fixed by the cyclic order on a convex
+carrier) is `Problem97.onArc_iff_between` and
+`Problem97.signedArea2_neg_of_outside` (`ArcBlockContiguity.lean`, proved,
+not yet imported by the aggregator) through
+`exists_isCcwConvexPolygon_of_convexIndep`.
+
+Core table (`GENERIC_CORES`; every source theorem needs only `Realizes`, that
+is an injective planar realization, plus the orientation signs where listed):
+
+| family | labels | Lean source |
+|---|---:|---|
+| `perp_bisector` | 5 | `EqualityCore.false_of_convexIndep_of_perpBisectorCore` |
+| `two_circle_same_arc` | 4 | `FourPointTwoCircleBisectorOrderCore.false_of_core_of_same_side` + bridge |
+| `equal_k4` | 4 | `EqualityCore.not_realizes_of_equalK4Core` |
+| `equilateral_bisector` | 5 | `not_realizes_of_equilateralBisectorCollisionCore` |
+| `hinge_five_cycle` | 5 | `false_of_fivePointHingeCycleCore` |
+| `equilateral_chain_bisector` | 6 | `not_realizes_of_equilateralChainBisectorCore` |
+| `hinge_six_tail`, `hinge_six_double_spoke` | 6 | `false_of_sixPointHingeTailCore`, `false_of_sixPointHingeDoubleSpokeCore` |
+| `six_point_five_row_interlock`, `six_point_six_row_interlock` | 6 | `not_realizes_of_sixPointFiveRowInterlockCollisionCore`, `…SixRow…` |
+| `convex_five_point`, `nested_equal_chord`, `five_point_circle_isosceles_order` | 5 | `ConvexFivePointCore`, `NestedEqualChordCore`, `FivePointCircleIsoscelesOrderCore` (order) |
+| `six_point_two_circle_order`, `six_point_nested_center_order`, `six_point_circle_chain_order`, `six_point_two_circle_arc_overtake_order`, `convex_rhombus` | 6 | the same-named `Census554` order cores |
+| lazy: `hinge_seven_closed_tail`, `seven_point_six_row_anchor`, `seven_point_six_row_interlock`, `seven_point_seven_row_interlock`, `seven_point_equilateral_median_interlock` | 7 | `EquilateralHingeCollisions`, the four seven-point row collisions |
+| lazy: `five_row_circle_intersection_order` | 8 | `FiveRowCircleIntersectionOrderCore` (order) |
+
+`five_point_circle_isosceles_order` also needs the chords `FX` and `PZ` to
+cross; the encoder reads that from interleaving in the cyclic order, and the
+Lean bridge (interleaved chords of a convex polygon cross) is
+{{NEEDS_PROOF}}. Cores whose statements need non-carrier data
+(`MECStraddlingRowCore`, `CircleIntersectionInequalityCore`) or the card-11
+macro-order machinery (`SeparationCore`) are omitted.
+
+Lazy loop (`census/card_head/dr_exact12_session_loop.py`). One `piqc session`
+(CaDiCaL kept alive) is seeded with the eager CNF; each SAT model is checked
+against the lazy cores by the vectorised `core_violations`, violated
+instances are appended, and the session is solved again. A model violating no
+core is a structural survivor: its signature (`X`, `Y`, `U`, source, deleted,
+`B2`, and for every point its blocker with the four-point shell) is recorded
+and blocked; the loop ends at UNSAT or at a cap. A session UNSAT carries no
+proof; the final formula is handed off as a raw-DIMACS job for a from-scratch
+solve with DRAT capture.
+
+Positive control: the distance-equality pattern of the regular 12-gon placed
+in `CYCLIC_ORDER` satisfies every pure-geometry family and triggers no lazy
+core (`test_dr_exact12_structural.py`). Differential control: the eager
+families reproduce the audited B1 generators for the three shared rules and
+contain the six B1-mined finite instances.

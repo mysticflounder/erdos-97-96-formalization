@@ -202,6 +202,17 @@ negative control, so it is not the UNSAT instrument for 1b. Next per the
 decision rule: encoding 1b. Its UNSAT side must come from Lean-provable
 counting/order arguments or from an algebra engine that needs approval.
 
+Status 2026-09-01, later: encoding 1b (`census/card_head/dr_exact12_structural.py`,
+spec `docs/specs/p97-dr-two-radius-exact12-cell-v1.md` sections 3a and 3b)
+is SAT at the incidence level (wave 1) and after the three label-generic B1
+geometry rules (wave 2, models replay). Wave 3 adds every label-generic
+`Census554` core, eight order cores on the fixed cyclic order (within-cap
+orders WLOG), and a piqd session loop with lazy seven- and eight-label cores
+and survivor enumeration (`census/card_head/dr_exact12_session_loop.py`).
+Results in the audit document. The structural stage cannot express the
+metric coupling of twelve four-classes on twenty degrees of freedom; the
+metric UNSAT side remains gated on an approved algebra engine.
+
 ### Phase 2 — Lean positive controls (on spine, cheap)
 
 Each item narrows the leaf and is needed by Phase 3 in any outcome.

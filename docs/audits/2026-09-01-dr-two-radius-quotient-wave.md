@@ -3,7 +3,7 @@
 Date: 2026-09-01. Lane `dr-two-radius-20260901`. Plan
 `docs/plans/2026-09-01-dr-two-radius-branch-closure.md`, Phase 1a.
 
-Status: Phase 1a settled SAT by an exact witness; Phase 1b structural wave 1 SAT (incidence level only). No
+Status: Phase 1a settled SAT by an exact witness; Phase 1b structural waves 1 and 2 SAT; wave 3 (all label-generic Census554 cores, fixed cyclic order) UNSAT in a piqd session, proof job pending, family-level core pending. No
 result here closes a Lean theorem, supplies coverage, or authorizes removing
 the live `sorry` at `Rigid221Closure.lean:1245`. Every verdict below is CONJECTURE-level
 evidence about one encoding until a second reader audits the
@@ -180,6 +180,61 @@ consequences of convex position (the B1 G/C deltas, after a
 label-genericity audit) and the metric stage. Next wave: add the
 label-generic geometry deltas, enumerate surviving patterns under a cap
 with blocking clauses, and feed each to the constructive metric search.
+
+## Phase 1b, wave 2: label-generic geometry nogoods (piqd CaDiCaL)
+
+Audit of the B1 static layers (`b1_exact12_static_geometry`,
+`b1_exact12_static_convex`): the three rules that quantify over all labels
+are label-generic, and their Lean sources need only an injective
+realization (`Realizes`) plus, for the bisector rule, `ConvexIndep`, both
+supplied by `CounterexampleData`; the six literal finite cores are
+B1-mined label instances of general theorems and were not imported. The
+encoder (`p97-dr-exact12-structural-cnf/v2`) adds `perp_bisector` (7,920),
+`equilateral_bisector` (95,040) and `equilateral_chain_bisector` (665,280)
+as all-negative clauses; a differential test reproduces the B1 generators
+clause for clause, and the regular 12-gon satisfies every family. The wave-1
+model violates 29 bisector and 12 equilateral clauses.
+
+Run root `scratch/runs/dr-two-radius-20260901/q1b-wave-2`:
+
+| CNF | piqd job | verdict | wall |
+|---|---|---|---:|
+| base + three generic rules (1,020,672 clauses) | `64de1f83…` | SAT | 1.8 s |
+
+Readback (`artifacts/base-sat-pattern.json`): every clause replays, the
+checker reports nothing; 258 true relation variables; `X = {5,7,10,11}`,
+`Y = {4,6,8,9}`, `U = {5,6,7,9}`, source `a2` with blocker `9`, deleted
+`6`, `B2 = X`; a seven-point class at `a3`. The structural residual is still
+wide: the three rules prune, the model moves.
+
+## Phase 1b, wave 3: all label-generic Census554 cores and the cyclic order
+
+Spec section 3b. The encoder now carries 25 clause families (4,067,694
+clauses): the eager cores with at most six labels, eight order cores
+instantiated on the fixed cyclic order (within-cap orders WLOG; sign
+convention independent), and six lazy seven- and eight-label cores checked
+against models by a vectorised checker. The regular 12-gon in the cyclic
+order satisfies every family and triggers no lazy core. Run root
+`scratch/runs/dr-two-radius-20260901/q1b-wave-3`, driven by
+`census/card_head/dr_exact12_session_loop.py` on a piqd CaDiCaL session
+(`artifacts/loop-log.jsonl`, `survivor-*.json`, `loop-summary.json`).
+
+Result (session `receipts.json`, solve 1, base 4,067,694 clauses, sha256
+`d57df331…`): UNSAT in 127 s on the eager CNF alone; no lazy core was ever
+consulted, no survivor. The identical CNF (blob `182909cb…`) runs as the
+one-shot raw-DIMACS job `4564e28a…` for the DRAT-checked proof; until that
+job completes the verdict is an unchecked incremental UNSAT.
+
+Reading (CONJECTURE, scope: this CNF at card 12). Hard-clause audit per
+Guardrail 4: every family names a proved Lean source except (i) `ingress`,
+which is a declared relaxation (weaker than the source, so it cannot cause a
+spurious UNSAT), (ii) the within-cap order fixed WLOG by the relabelling
+symmetry of the base CNF, (iii) the side/arc bridge, proved but in a module
+the aggregator does not import, and (iv) `five_point_circle_isosceles_order`,
+whose chord-crossing bridge is {{NEEDS_PROOF}} in Lean. Next: a family-level
+minimal core (assumption selectors per family in one session) to learn which
+theorems the Phase 3 ingress must cover and whether (iv) is needed at all;
+then the encoding-to-claim map goes to a second reader.
 
 ## Claim boundary
 
