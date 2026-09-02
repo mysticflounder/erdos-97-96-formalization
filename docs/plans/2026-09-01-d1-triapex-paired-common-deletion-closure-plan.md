@@ -807,7 +807,16 @@ rule; solver-free measurement, Stage 1b delegated):
   not a member.
 - Every ingredient is PROVEN in Lean (transitivity of real equality plus the
   two exactness statements), so the rule is a `PROVEN` cut for Stage 1, not
-  a solver verdict. It explains most of the Stage 2 emptiness verdicts
+  a solver verdict. Shape census of the shortest explanation chains: length
+  2 in 3000/3000, 2992/2993 and 2872/3000 of the violations, always the
+  equilateral triangle (`q` on `p`'s exact circle, `p, r` on `q`'s, `p, q`
+  on `r`'s, hence `r` on `p`'s); the rest have length 3. Reuse preflight
+  (key: the equilateral closure, consumer: Stage 1 block `CL0`, revision
+  `1f7e28811`): the metric core already exists as
+  `dist_eq_dist_of_mutual_bisector` (`ATail/TwoCenterBisectorParity.lean`,
+  PROVEN: two mutual equidistances give the third), and the membership step
+  is `mem_selectedClass` or `CriticalFourShell.support_eq`; no missing
+  antecedent, no circularity. It explains most of the Stage 2 emptiness verdicts
   without algebra. The remaining consistent patterns (7 in the sampled
   `i0-1R2R2R-in12`) are where Stage 2 still has work.
 - Stage 1b (delegated to the census agent, run root `stage1b-closure-01`):
