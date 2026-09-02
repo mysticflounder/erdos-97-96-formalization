@@ -205,6 +205,41 @@ theorem b1EscapeSourceContext_of_star
     cross_omission := W.escape.cross_omission
   }⟩
 
+/- Reuse the existing source-rich mutual-omission packet when an upstream
+producer retains it for the escape source. -/
+theorem b1EscapeSourceContext_of_exactFourSourceContext
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F))
+    (W : B1FiveSixWaveIngress C)
+    {other : CarrierVertex D.A}
+    (hcontext : ExactFourMutualOmissionSourceContext C.R C.rho
+      W.escape.escape.source other C.u C.v) :
+    Nonempty (B1EscapeSourceContext C) := by
+  have hsourceEscapeRow :
+      W.escape.escape.source.1 ∈
+        b1EscapeRow C W.escape.escape.source := by
+    rcases b1_escapeSource_mem_escapeRow_inter_liveSlice W.escape with hu | hv
+    · exact (Finset.mem_inter.mp hu).1
+    · exact (Finset.mem_inter.mp hv).1
+  refine ⟨{
+    source := W.escape.escape.source
+    escape := W.escape.escape
+    source_eq_escape := rfl
+    source_mem_physicalClass := by
+      simpa [b1PhysicalClass] using hcontext.source_mem_class
+    source_mem_secondCapInterior := hcontext.source_mem_interior
+    source_mem_liveRow := W.escape.escape_mem_live_slice
+    source_mem_escapeRow := hsourceEscapeRow
+    escapeBlocker_ne_common := W.escape.escape.escapeBlocker_ne_common
+    escapeBlocker_ne_apex := W.escape.escape.escapeBlocker_ne_apex
+    source_mem_outsideFirstApexFiber := hcontext.source_mem_outside
+    survives_retained_firstApex_deletion := hcontext.source_survives_q_or_w
+    cross_omission := W.escape.cross_omission
+  }⟩
+
 /-- The intended producer outcome for a five/six wave. -/
 def B1WinningSliceOrderOutcome
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
