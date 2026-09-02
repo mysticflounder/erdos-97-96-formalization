@@ -25,6 +25,7 @@ namespace ATailFrontierLiveClosure
 open scoped EuclideanGeometry
 open ATailCriticalPairFrontier
 open ATailExactFourPhysicalConsumer
+open ATailExactFourRobustCapExpansion
 open ATailSurvivalCover
 open ATailUniqueFourLateChoiceTerminalScratch
 open Census554.GeneralCarrierBridge
@@ -482,6 +483,40 @@ theorem b1_freshInteriorEscape_context_or_firstClass_or_bad
     (b1EscapeSourceContext_of_normalForm_sourceData C hnormal source
       hsourceClass hsourceInterior hsourceNeFirst hsourceNeSecond
       houtside hsurvives)
+
+/- The independent good-outside producer supplies the same source data with a
+   retained-deletion witness.  The normal-form adapter therefore succeeds
+   unless that good source is one of the two deleted roles; that coincidence
+   is kept explicit for the next consumer. -/
+theorem b1_goodOutsideInteriorSource_context_or_deleted
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F))
+    (hnormal : B1PhysicalClassFiveSixNormalForm C) :
+    Nonempty (B1EscapeSourceContext C) ∨
+      (∃ source : CarrierVertex D.A,
+        source.1 ∈ SelectedClass D.A S.oppApex2 C.rho ∧
+          source.1 ∈ S.capInteriorByIndex S.oppIndex2 ∧
+          source ∈ outsideFirstApexFiber C.R ∧
+          (HasNEquidistantPointsAt 4 (D.A.erase C.R.interior_q)
+              ((lateFirstApexSystem C.R).centerAt source.1 source.2) ∨
+            HasNEquidistantPointsAt 4 (D.A.erase C.R.interior_w)
+              ((lateFirstApexSystem C.R).centerAt source.1 source.2)) ∧
+          (source = C.first.deleted ∨ source = C.second.deleted)) := by
+  obtain ⟨source, hsourceClass, hsourceInterior, houtside, hsurvives⟩ :=
+    exists_interiorPairGoodOutsideSource_mem_secondClassInterior
+      C.R C.surface.secondApex_robust C.hrho C.hfive
+  by_cases hfirst : source = C.first.deleted
+  · exact Or.inr ⟨source, hsourceClass, hsourceInterior, houtside,
+      hsurvives, Or.inl hfirst⟩
+  by_cases hsecond : source = C.second.deleted
+  · exact Or.inr ⟨source, hsourceClass, hsourceInterior, houtside,
+      hsurvives, Or.inr hsecond⟩
+  exact Or.inl
+    (b1EscapeSourceContext_of_normalForm_sourceData C hnormal source
+      hsourceClass hsourceInterior hfirst hsecond houtside hsurvives)
 
 /-- Package the local star once the cap producer supplies its two missing
 global facts.  This adapter is intentionally neutral: it does not choose a

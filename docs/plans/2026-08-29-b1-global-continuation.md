@@ -291,6 +291,13 @@ survival directly from the complement of the bad set.  The focused
 consumer remains open until the first-class and bad-source residuals receive
 their own source-level consumers.
 
+The companion producer `b1_goodOutsideInteriorSource_context_or_deleted`
+reuses the checked good-outside strict-interior source theorem.  It constructs
+the same neutral context whenever that source is distinct from both deleted
+roles, and otherwise records the exact deleted-source coincidence together
+with its retained-deletion witness.  This removes the need to rediscover the
+goodness split downstream; it does not remove the coincidence residual.
+
 ## 2026-09-01 PiQD producer update
 
 The claimed declarative `piqc campaign run <plan.json>` surface is not currently
