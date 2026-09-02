@@ -127,6 +127,10 @@ def test_parse_output_and_verdicts() -> None:
     assert alg.verdict({"dim": 0, "vdim": 4, "real": 2}) == "FINITE_REAL_CANDIDATES"
     with pytest.raises(alg.D1Mu0AlgebraError):
         alg.parse_output("nothing here\n")
+    with pytest.raises(alg.D1Mu0AlgebraError):
+        alg.parse_output("equations 1\ndim_raw 4\ndim_sat 25\ndim 25\n")
+    with pytest.raises(alg.D1Mu0AlgebraError):
+        alg.parse_output("   ? `sat` undefined\ndim 3\n")
 
 
 def test_load_patterns_counts_records(tmp_path: Path) -> None:
@@ -206,3 +210,32 @@ def test_known_finite_real_and_complex_only(tmp_path: Path) -> None:
     script = alg.singular_script(real, extra=(f"({alg.squared_distance('A0', 'A2')})+1",))
     fields = _run(tmp_path, script, "complex_only")
     assert fields["dim"] == -1 or fields.get("real") == 0
+
+
+def test_contains_is_constraint_inclusion() -> None:
+    pattern = alg.metric_pattern(SAMPLE)
+    core = alg.MetricPattern(pattern.shells[:2], pattern.classes[:1])
+    assert alg.contains(pattern, core)
+    other = alg.MetricPattern((("P0.2", ("A0", "A1", "P1.1", "P2.1")),), ())
+    assert not alg.contains(pattern, other)
+
+
+@needs_piqd
+def test_known_core_of_non_concyclic_drops_one_class(tmp_path: Path) -> None:
+    # A circle through A0 = (0, 0) and A1 = (1, 0) meets the unit circle
+    # about A0 in A1 and at most one further point, so the shell together
+    # with either apex class alone already forces P0.1 = P0.2.  The
+    # deletion-minimal core keeps the shell and exactly one class; the shell
+    # alone and one class alone are realizable.
+    pattern = alg.MetricPattern(
+        (("P0.3", ("A0", "A1", "P0.1", "P0.2")),),
+        (("A0", ("A1", "P0.1", "P0.2")), ("A1", ("A0", "P0.1", "P0.2"))),
+    )
+    assert alg.is_empty_saturated(pattern, tmp_path, "whole", timeout_s=120)
+    core = alg.shrink_core(pattern, tmp_path, timeout_s=120)
+    assert core.shells == pattern.shells
+    assert len(core.classes) == 1
+    assert alg.contains(pattern, core)
+    assert not alg.is_empty_saturated(
+        alg.MetricPattern(pattern.shells, ()), tmp_path, "shell_only", timeout_s=120
+    )
