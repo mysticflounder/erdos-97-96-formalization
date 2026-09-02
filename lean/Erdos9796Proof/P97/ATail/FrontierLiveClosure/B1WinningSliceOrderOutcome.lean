@@ -65,6 +65,42 @@ theorem b1_cardSix_escapeSource_twoPoint
   · exact Or.inl ⟨hu, hcards.1⟩
   · exact Or.inr ⟨hv, hcards.2⟩
 
+/-- Source-oriented form of the exact card-five trace split.  The first two
+arms identify a genuine two-point live slice containing the escape source; the
+last two arms record that the source lies in a singleton slice.  No boundary
+order is inferred in either case. -/
+theorem b1_cardFive_escapeSource_trace
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F))
+    (hnormal : B1PhysicalClassFiveSixNormalForm C)
+    (hfive : (SelectedClass D.A S.oppApex2 C.rho).card = 5)
+    (E : B1EscapeRowProvenanceStar C) :
+    (E.escape.source.1 ∈ b1USlice C ∧ (b1USlice C).card = 2) ∨
+      (E.escape.source.1 ∈ b1VSlice C ∧ (b1VSlice C).card = 2) ∨
+      (E.escape.source.1 ∈ b1USlice C ∧ (b1USlice C).card = 1) ∨
+      (E.escape.source.1 ∈ b1VSlice C ∧ (b1VSlice C).card = 1) := by
+  have hsplit :
+      ((b1USlice C).card = 1 ∧ (b1VSlice C).card = 2) ∨
+        ((b1USlice C).card = 2 ∧ (b1VSlice C).card = 1) ∨
+        ((b1USlice C).card = 2 ∧ (b1VSlice C).card = 2 ∧
+          (b1USlice C ∩ b1VSlice C).card = 1) := by
+    simpa [b1USlice, b1VSlice, b1PhysicalClass] using
+      b1_live_slices_card_five_split C hnormal hfive
+  rcases E.escape_mem_live_slice with hu | hv
+  · rcases hsplit with hsingle | hrest
+    · exact Or.inr (Or.inr (Or.inl ⟨hu, hsingle.1⟩))
+    · rcases hrest with hpair | hshared
+      · exact Or.inl ⟨hu, hpair.1⟩
+      · exact Or.inl ⟨hu, hshared.1⟩
+  · rcases hsplit with hsingle | hrest
+    · exact Or.inr (Or.inl ⟨hv, hsingle.2⟩)
+    · rcases hrest with hpair | hshared
+      · exact Or.inr (Or.inr (Or.inr ⟨hv, hpair.2⟩))
+      · exact Or.inr (Or.inl ⟨hv, hshared.2.1⟩)
+
 /-- The source-rich alternative to a winning same-arc live pair.
 
 The `escape` field reuses the already checked local escape-star data.  The
