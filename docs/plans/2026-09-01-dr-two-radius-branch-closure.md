@@ -230,21 +230,71 @@ Each item narrows the leaf and is needed by Phase 3 in any outcome.
 None of these may be committed as a wrapper network; each must be consumed by
 the Phase 3 ingress or by the leaf itself.
 
-### Phase 3 — exact-12 closure through certificate ingress
+### Phase 3 — exact-12 closure through structural certificate ingress
 
-- Extract exact Nullstellensatz certificates over ℚ for each metric-UNSAT
-  cell. This step runs Singular and SymPy outside `piqd` and therefore needs
-  Adam's approval before it starts. Cross-check every emptiness verdict on a
-  second engine (Singular char-0 `std`/`dim` as arbiter, SymPy Gröbner over
-  two random large primes) before banking it.
-- Emit the certificates through
-  `census/p97_search/phase3_qq_certificate_lean_emitter.py` and pass the
-  Lean-ingress publication gate. A Z3 UNSAT with no certificate stays
-  diagnostic; that cell falls back to Phase 4 core extraction.
-- Split the leaf into `card = 12` and `13 ≤ card` in the same checkpoint that
-  closes the `card = 12` leaf, so the on-spine `sorry` count does not rise.
-- Independent promotion verifier plus a math-skeptic audit before any
-  promotion claim.
+Rewritten 2026-09-01 after waves 3 to 5: the card-12 leaf closes at CNF
+scope with the hard D-R blocks plus two order families, so no metric
+(Nullstellensatz) certificate is needed for card 12; that route moves to
+Phase 4 only if a growth arm needs it.
+
+Finite representation: the two-family CNF of wave 5 (base incidence CNF +
+`two_circle_same_arc` + `five_point_circle_isosceles_order`, 254,412
+clauses, sha256 `e29d1b26…`) over the 2145 relation variables
+`eq(e, e')` and the D-R selectors. Its UNSAT is reproduced from scratch
+(job `ad966d3c…`) and each family is necessary (one-family controls SAT).
+
+Lean route, in dependency order; every item names its consumer.
+
+- P3.1 Boundary order. `ZeroCutBoundaryIndexing.exists_with_capBlocks D S`
+  (`Census554/ZeroCutBoundaryIndexing.lean:206`, sorry-free, needs only
+  `CounterexampleData` and `SurplusCapPacket`) gives a `BoundaryIndexing`
+  with the surplus apex at index 0 and the three cap interiors in direct or
+  mirror blocks. Consumer: P3.4. This discharges skeptic item f2; no new
+  order theorem is needed, only the label-to-index map of the encoder's
+  `CYCLIC_ORDER` under the direct/mirror dichotomy (mirror = reversed
+  order; the encoder's order-family instance sets are reversal invariant).
+- P3.2 Same-arc wrapper. `FourPointTwoCircleBisectorOrderBridge.
+  false_of_three_rows_and_cyclic_subsequence` (`Census554/…Bridge.lean:159`,
+  off-spine module, sorry-free) already kills `q, u, y, v` in cyclic order
+  on a faithfully realized convex carrier; the wrapper states it on the
+  encoder's clause `¬(qu = qy ∧ uv = yv)` for `u, y` on one arc of `qv`.
+  Consumer: P3.4.
+- P3.3 Isosceles wrapper. Rotate the indexing with
+  `exists_isCcwConvexPolygon_cyclicShift_at_zero` (`ConvexCyclicOrder/
+  Basic.lean:196`) so the five labels are linear; the encoder's predicate
+  (W and X on opposite sides of `FZ`, `FX` crossing `PZ`) holds exactly for
+  the cyclic patterns `W, F, P, X, Z` and its reverse `Z, X, P, F, W`, which
+  after rotation are the linear chains consumed by
+  `FivePointCircleIsoscelesOrderBridge.false_of_core_of_ccw` (negative
+  signs) and by `FivePointCircleIsoscelesOrderCore.false_of_core` with
+  `hneg_of_ccw` on the reversed chain (positive signs; chords cross by
+  `CapCrossingKalmansonBridge.exists_mem_openSegment_diagonals_of_ccw` with
+  the roles `Z, X, P, F`). Consumer: P3.4.
+- P3.4 Valuation theorem. From the branch binders, `D.A.card = 12`, L1 to L4
+  and P3.1 to P3.3: every clause of the two-family CNF holds under the
+  valuation `eq(e, e') := dist e = dist e'` on the 12 labelled points, with
+  the D-R selectors read from the packet (source, deleted point, `B2`,
+  blockers, the `X`/`Y`/`U` classes). The `dist`-level statements of the two
+  cores are used directly (skeptic f5): `RowPattern` is not the carrier of
+  this valuation. Consumer: P3.5.
+- P3.5 Certificate replay. Store a checked, zero-RAT LRAT of the two-family
+  CNF (`piqd` job `bdbe81da…` or a `cadical --plain` rerun through `piqd`
+  if the proof has RAT lemmas), normalize it, and replay it with the
+  project's checkpointed RUP checker (`P97/Certificate/CheckpointedRup*.lean`)
+  per the lean-usage generated-proofs procedure. Consumer: the leaf theorem
+  at card 12 through P3.4 (UNSAT of the CNF + a valuation satisfying every
+  clause gives `False`).
+- P3.6 Split the leaf into `card = 12` and `13 ≤ card` in the checkpoint
+  that closes `card = 12`, so the on-spine `sorry` count does not rise;
+  independent promotion verifier and math-skeptic audit before any
+  promotion claim; transitive axiom audit of the leaf.
+
+Alternative to P3.5, to be tried first because it may be far smaller: mine
+the clause-level core of the two-family UNSAT (the LRAT's referenced input
+clauses, then a deletion shrink on a session). If the core is a few dozen
+clauses over a handful of labels, state it as one finite lemma over the
+named roles and prove it directly, with P3.1 to P3.4 as its hypotheses; the
+certificate replay is then unnecessary for card 12.
 
 ### Phase 4 — carrier size at least 13
 
