@@ -419,6 +419,70 @@ BISECTOR_LEAN_SOURCES = (
     "Problem97.mem_selectedClass",
 )
 
+# Stage 1e: the convexity bisector side rule.  Two carrier points equidistant
+# from both endpoints of a chord lie on opposite arcs of that chord (strict
+# Kalmanson inequality of the four points in their boundary order).
+BISECTOR_SIDES_LEAN_SOURCES = (
+    "CapCrossingKalmansonBridge.false_of_four_ccw_endpoint_centers_bisect_middle_pair",
+    "CapCrossingKalmansonBridge.false_of_four_ccw_middle_centers_bisect_endpoint_pair",
+    "CapCrossingKalmansonBridge.false_of_four_ccw_late_centers_bisect_early_pair",
+    "CapCrossingKalmansonBridge.dist_add_dist_lt_diagonal_sum_of_ccw",
+    "CapCrossingKalmansonBridge.complementary_dist_add_dist_lt_diagonal_sum_of_ccw",
+    "CounterexampleData.convex",
+    "CriticalFourShell.support_eq_radius",
+    "Problem97.mem_selectedClass",
+)
+# Scopes of the quadruple {chord endpoints, two centres}: ``cap`` = inside one
+# closed cap (order from the oriented complete cap), ``two`` = inside two
+# adjacent closed caps (order needs the two-cap concatenation), ``all`` = any
+# quadruple (order needs the global boundary enumeration), ``blocks`` = at most
+# one interior point per cap, so the four points lie in four distinct index
+# blocks of the boundary and only the proved three-cap block placement
+# (ZeroCutBoundaryIndexing.exists_with_capBlocks) orders them.
+BISECTOR_SIDES_SCOPES = ("cap", "two", "all", "blocks")
+NESTED_SCOPES = ("cap", "two", "all")
+# Global counterclockwise boundary order implied by the label convention: every
+# cap runs counterclockwise from apex (k+1)%3 through its interior to apex (k+2)%3.
+CYCLIC_ORDER: tuple[int, ...] = (1,) + interior(0) + (2,) + interior(1) + (0,) + interior(2)
+CYCLIC_POS = {label: position for position, label in enumerate(CYCLIC_ORDER)}
+
+
+def same_arc(x: int, y: int, p: int, q: int) -> bool:
+    """``p`` and ``q`` lie on the same open arc of the chord ``{x, y}``."""
+
+    i, j = sorted((CYCLIC_POS[x], CYCLIC_POS[y]))
+    inside_p = i < CYCLIC_POS[p] < j
+    inside_q = i < CYCLIC_POS[q] < j
+    return inside_p == inside_q
+
+
+def quadruple_scope(quadruple: Iterable[int]) -> str:
+    """Smallest scope of ``BISECTOR_SIDES_SCOPES`` containing the four labels."""
+
+    points = set(quadruple)
+    for k in range(3):
+        if points <= set(cap_by_index(k)):
+            return "cap"
+    for k in range(3):
+        if points <= set(cap_by_index(k)) | set(cap_by_index((k + 1) % 3)):
+            return "two"
+    return "all"
+
+
+def block_distinct(quadruple: Iterable[int]) -> bool:
+    """At most one interior point of each cap among the four labels."""
+
+    caps = [cap_of_interior(label) for label in quadruple if not is_apex(label)]
+    return len(caps) == len(set(caps))
+
+
+def scope_allows(scope: str, quadruple: Iterable[int]) -> bool:
+    if scope not in BISECTOR_SIDES_SCOPES:
+        raise D1Mu0CensusError(f"unknown bisector-sides scope {scope!r}")
+    if scope == "blocks":
+        return block_distinct(quadruple)
+    return NESTED_SCOPES.index(quadruple_scope(quadruple)) <= NESTED_SCOPES.index(scope)
+
 OMITTED_BINDERS = (
     "R.minimal (D.Minimal) beyond the critical shell system H it induces",
     "R.noM44 and the CriticalPairFrontier packet F except F.radius_pos",
@@ -500,7 +564,12 @@ ROUTE_OMITTED_BINDERS: dict[str, tuple[str, ...]] = {
 }
 
 
-def build(cell: Cell, equilateral: bool = False, bisector: bool = False) -> Encoding:
+def build(
+    cell: Cell,
+    equilateral: bool = False,
+    bisector: bool = False,
+    bisector_sides: str | None = None,
+) -> Encoding:
     cnf = Cnf()
     points = cell.points
     labels = tuple(range(N_LABELS))
@@ -1291,6 +1360,40 @@ def build(cell: Cell, equilateral: bool = False, bisector: bool = False) -> Enco
                     )
                 )
 
+    # -- BS1: Stage 1e convexity bisector side rule ----------------------------
+    if bisector_sides is not None:
+        if bisector_sides not in BISECTOR_SIDES_SCOPES:
+            raise D1Mu0CensusError(f"unknown bisector-sides scope {bisector_sides!r}")
+        cnf.begin(
+            f"BS1_bisector_same_arc_{bisector_sides}",
+            "ROOT_STATIC",
+            "DERIVED",
+            BISECTOR_SIDES_LEAN_SOURCES,
+            "two carrier points equidistant from both endpoints of a chord lie on "
+            "opposite arcs of the chord (strict Kalmanson inequality of the four "
+            "points in boundary order, false_of_four_ccw_*_bisect_*), so two "
+            "modelled objects with distinct centres on one open arc of {x, y} cannot "
+            "both contain x and y; exactness of each object as in CL0. DERIVED: the "
+            "boundary order of the quadruple is the label convention (every cap "
+            "counterclockwise from apex (k+1)%3 to apex (k+2)%3); scope cap needs "
+            "the oriented complete cap order restricted to four points, scope two "
+            "the concatenation of two adjacent oriented caps, scope all the global "
+            "enumeration, scope blocks only the three-cap index block placement "
+            "of ZeroCutBoundaryIndexing.exists_with_capBlocks; none of these order "
+            "adapters is compiled in Lean as a four-point order statement",
+        )
+        define_membership()
+        for x, y in combinations(labels, 2):
+            for op, oq in combinations(objects, 2):
+                p, q = op[1], oq[1]
+                if p == q or p in (x, y) or q in (x, y):
+                    continue
+                if not same_arc(x, y, p, q):
+                    continue
+                if not scope_allows(bisector_sides, (x, y, p, q)):
+                    continue
+                cnf.add((-mem(op, x), -mem(op, y), -mem(oq, x), -mem(oq, y)))
+
     omitted = OMITTED_BINDERS if not cell.apex_shells else tuple(
         item for item in OMITTED_BINDERS if not item.startswith("shell constraints of a role")
         and not item.startswith("G.notRobustCover_card")
@@ -1404,6 +1507,25 @@ def bisector_violations(pattern: Pattern) -> list[str]:
             bad.append(
                 f"BI1 {label_name(x)} {label_name(y)} equidistant from {len(centres)} centres"
             )
+    return bad
+
+
+def bisector_side_violations(pattern: Pattern, scope: str) -> list[str]:
+    """BS1 replay: two distinct modelled centres on one arc of a chord, both equidistant from its endpoints."""
+
+    bad: list[str] = []
+    c, S = pattern.centre, pattern.shell
+    for x, y in combinations(range(N_LABELS), 2):
+        centres = {c[p] for p in pattern.cell.points if x in S[p] and y in S[p]}
+        centres |= {k for (k, _t), cls in pattern.classes.items() if x in cls and y in cls}
+        for p, q in combinations(sorted(centres), 2):
+            if p in (x, y) or q in (x, y):
+                continue
+            if same_arc(x, y, p, q) and scope_allows(scope, (x, y, p, q)):
+                bad.append(
+                    f"BS1 {label_name(p)} {label_name(q)} on one arc of "
+                    f"{label_name(x)} {label_name(y)}"
+                )
     return bad
 
 
@@ -1692,6 +1814,221 @@ def closure_violation(pattern: Pattern) -> ClosureViolation | None:
                 obj.kind, obj.centre, x, witness, tuple(chain), tuple(antecedent), obj.member_key(x)
             )
     return best
+
+
+@dataclass(frozen=True)
+class KalmansonViolation:
+    """A strict convex-quadrilateral inequality contradicted by the equality closure.
+
+    ``immediate``: both diagonal distances of one quadruple (in boundary order)
+    equal side distances of the same inequality, so the strict inequality reads
+    ``0 < 0`` (or ``0 < -side``).  ``cycle``: single comparisons ``X > Y`` from
+    several quadruples close a directed cycle.  ``antecedent`` lists the object
+    memberships whose equalities were used; the cut is their negation.
+    """
+
+    kind: str
+    quadruples: tuple[tuple[int, int, int, int], ...]
+    chain_length: int
+    antecedent: tuple[tuple[Any, ...], ...]
+    detail: tuple[str, ...]
+
+    def to_json(self) -> dict[str, Any]:
+        return {
+            "kind": self.kind,
+            "quadruples": [[label_name(x) for x in q] for q in self.quadruples],
+            "chain_length": self.chain_length,
+            "antecedent": [list(map(str, key)) for key in self.antecedent],
+            "detail": list(self.detail),
+        }
+
+
+def _pair_adjacency(objects: Sequence[ClosureObject]) -> dict[frozenset[int], list[tuple[frozenset[int], int, int, int]]]:
+    adjacency: dict[frozenset[int], list[tuple[frozenset[int], int, int, int]]] = {}
+    for index, obj in enumerate(objects):
+        for m, m2 in combinations(sorted(obj.members), 2):
+            a, b = frozenset((obj.centre, m)), frozenset((obj.centre, m2))
+            adjacency.setdefault(a, []).append((b, index, m, m2))
+            adjacency.setdefault(b, []).append((a, index, m2, m))
+    return adjacency
+
+
+def _pair_path(
+    adjacency: Mapping[frozenset[int], Sequence[tuple[frozenset[int], int, int, int]]],
+    start: frozenset[int],
+    goal: frozenset[int],
+) -> list[tuple[int, int, int]] | None:
+    """Shortest chain of object equalities from ``start`` to ``goal`` (``[]`` when equal)."""
+
+    if start == goal:
+        return []
+    parent: dict[frozenset[int], tuple[frozenset[int], int, int, int] | None] = {start: None}
+    queue = [start]
+    while queue:
+        node = queue.pop(0)
+        for nxt, index, m, m2 in adjacency.get(node, ()):
+            if nxt in parent:
+                continue
+            parent[nxt] = (node, index, m, m2)
+            if nxt == goal:
+                edges: list[tuple[int, int, int]] = []
+                cur = nxt
+                while parent[cur] is not None:
+                    prev, i, a, b = parent[cur]  # type: ignore[misc]
+                    edges.append((i, a, b))
+                    cur = prev
+                edges.reverse()
+                return edges
+            queue.append(nxt)
+    return None
+
+
+def kalmanson_violation(pattern: Pattern, scope: str) -> KalmansonViolation | None:
+    """Closure-level Kalmanson oracle at the given bisector-sides scope.
+
+    Distances are quotiented by the transitive closure of the object equalities
+    (as in ``closure_violation``).  For every quadruple ``a < b < c < d`` in the
+    boundary order allowed by ``scope`` the strict inequalities
+    ``d(a,c) + d(b,d) > d(a,b) + d(c,d)`` and ``> d(a,d) + d(b,c)`` hold
+    (``dist_add_dist_lt_diagonal_sum_of_ccw`` and its complementary form).
+    Returns the immediate contradiction with the shortest explanation, else the
+    shortest comparison cycle, else ``None``.
+    """
+
+    objects = closure_objects(pattern)
+    adjacency = _pair_adjacency(objects)
+    parent: dict[frozenset[int], frozenset[int]] = {}
+
+    def find(pair: frozenset[int]) -> frozenset[int]:
+        parent.setdefault(pair, pair)
+        while parent[pair] != pair:
+            parent[pair] = parent[parent[pair]]
+            pair = parent[pair]
+        return pair
+
+    for pair, edges in adjacency.items():
+        for nxt, _i, _m, _m2 in edges:
+            ra, rb = find(pair), find(nxt)
+            if ra != rb:
+                parent[ra] = rb
+
+    def keys_of(edges: Sequence[tuple[int, int, int]]) -> list[tuple[Any, ...]]:
+        keys: list[tuple[Any, ...]] = []
+        for index, m, m2 in edges:
+            obj = objects[index]
+            _push_keys(keys, obj.centre_keys())
+            _push_keys(keys, (obj.member_key(m), obj.member_key(m2)))
+        return keys
+
+    def describe(edges: Sequence[tuple[int, int, int]]) -> str:
+        return " ".join(f"{objects[i].label()}:{label_name(m)}={label_name(m2)}" for i, m, m2 in edges)
+
+    ordered = sorted(range(N_LABELS), key=lambda label: CYCLIC_POS[label])
+    quadruples = [q for q in combinations(ordered, 4) if scope_allows(scope, q)]
+    best: KalmansonViolation | None = None
+    comparisons: dict[tuple[frozenset[int], frozenset[int]], tuple[tuple[int, ...], list[tuple[int, int, int]], frozenset[int], frozenset[int]]] = {}
+    for a, b, c, d in quadruples:
+        diagonals = (frozenset((a, c)), frozenset((b, d)))
+        for sides in ((frozenset((a, b)), frozenset((c, d))), (frozenset((a, d)), frozenset((b, c)))):
+            for i, j in ((0, 1), (1, 0)):
+                if find(diagonals[0]) == find(sides[i]) and find(diagonals[1]) == find(sides[j]):
+                    p0 = _pair_path(adjacency, diagonals[0], sides[i])
+                    p1 = _pair_path(adjacency, diagonals[1], sides[j])
+                    assert p0 is not None and p1 is not None
+                    edges = list(p0) + list(p1)
+                    if best is None or len(edges) < best.chain_length:
+                        antecedent: list[tuple[Any, ...]] = []
+                        _push_keys(antecedent, keys_of(edges))
+                        best = KalmansonViolation(
+                            "immediate", ((a, b, c, d),), len(edges), tuple(antecedent), (describe(p0), describe(p1))
+                        )
+            for i in (0, 1):
+                for j in (0, 1):
+                    if find(diagonals[i]) != find(sides[j]):
+                        continue
+                    rest_x, rest_y = diagonals[1 - i], sides[1 - j]
+                    if find(rest_x) == find(rest_y):
+                        p0 = _pair_path(adjacency, diagonals[i], sides[j])
+                        p1 = _pair_path(adjacency, rest_x, rest_y)
+                        assert p0 is not None and p1 is not None
+                        edges = list(p0) + list(p1)
+                        if best is None or len(edges) < best.chain_length:
+                            antecedent = []
+                            _push_keys(antecedent, keys_of(edges))
+                            best = KalmansonViolation(
+                                "immediate", ((a, b, c, d),), len(edges), tuple(antecedent), (describe(p0), describe(p1))
+                            )
+                        continue
+                    key = (find(rest_x), find(rest_y))
+                    if key not in comparisons:
+                        p0 = _pair_path(adjacency, diagonals[i], sides[j])
+                        assert p0 is not None
+                        comparisons[key] = ((a, b, c, d), list(p0), rest_x, rest_y)
+    if best is not None:
+        return best
+    successors: dict[frozenset[int], list[frozenset[int]]] = {}
+    for (x, y) in comparisons:
+        successors.setdefault(x, []).append(y)
+    cycle: list[frozenset[int]] | None = None
+    for start in successors:
+        prev: dict[frozenset[int], frozenset[int] | None] = {start: None}
+        queue = [start]
+        found = False
+        while queue and not found:
+            node = queue.pop(0)
+            for nxt in successors.get(node, ()):
+                if nxt == start:
+                    path = [node]
+                    while prev[path[-1]] is not None:
+                        path.append(prev[path[-1]])  # type: ignore[arg-type]
+                    path.reverse()
+                    if cycle is None or len(path) < len(cycle):
+                        cycle = path
+                    found = True
+                    break
+                if nxt not in prev:
+                    prev[nxt] = node
+                    queue.append(nxt)
+    if cycle is None:
+        return None
+    antecedent = []
+    quads: list[tuple[int, int, int, int]] = []
+    detail: list[str] = []
+    total = 0
+    n = len(cycle)
+    for k in range(n):
+        x, y = cycle[k], cycle[(k + 1) % n]
+        quad, cancel, x_rep, y_rep = comparisons[(x, y)]
+        _next_quad, _c, next_x_rep, _ny = comparisons[(y, cycle[(k + 2) % n])]
+        link = _pair_path(adjacency, y_rep, next_x_rep)
+        assert link is not None
+        quads.append(quad)  # type: ignore[arg-type]
+        _push_keys(antecedent, keys_of(list(cancel) + list(link)))
+        total += len(cancel) + len(link)
+        detail.append(
+            f"{'-'.join(label_name(v) for v in quad)}: cancel {describe(cancel) or 'direct'}; "
+            f"link {describe(link) or 'same pair'}"
+        )
+    return KalmansonViolation("cycle", tuple(quads), total, tuple(antecedent), tuple(detail))
+
+
+def kalmanson_clause(enc: Encoding, violation: KalmansonViolation) -> list[int]:
+    return [-enc.v(*key) for key in violation.antecedent]
+
+
+KS1_CUT_RECORD = {
+    "block_id": "KS1_kalmanson_cancellation",
+    "clause_class": "DERIVED_CUT",
+    "admission": "DERIVED",
+    "lean_sources": list(BISECTOR_SIDES_LEAN_SOURCES) + [s for s in CLOSURE_LEAN_SOURCES if s not in BISECTOR_SIDES_LEAN_SOURCES],
+    "antecedent": (
+        "transitivity of real equality plus exactness of SelectedClass and "
+        "CriticalFourShell.support give the distance classes; the strict inequalities "
+        "dist_add_dist_lt_diagonal_sum_of_ccw and its complementary form hold for every "
+        "quadruple in boundary order; the boundary order of the quadruple is the label "
+        "convention (DERIVED: no compiled four-point order adapter from the cap data)"
+    ),
+}
 
 
 def explanation_clause(enc: Encoding, violation: ClosureViolation) -> list[int]:
@@ -2001,7 +2338,14 @@ class CellRun:
         self.artifacts = artifacts
         self.args = args
         self.bisector = bool(getattr(args, "bisector", False))
-        self.enc = build(cell, equilateral=bool(getattr(args, "cl0", False)), bisector=self.bisector)
+        self.bisector_sides: str | None = getattr(args, "bisector_sides", None)
+        self.kalmanson: str | None = getattr(args, "kalmanson_oracle", None)
+        self.enc = build(
+            cell,
+            equilateral=bool(getattr(args, "cl0", False)),
+            bisector=self.bisector,
+            bisector_sides=self.bisector_sides,
+        )
         self.cnf_bytes = self.enc.cnf.dimacs()
         self.result: dict[str, Any] = {
             "cell": cell.name,
@@ -2009,6 +2353,8 @@ class CellRun:
             "is_target": cell.is_target,
             "cl0_static_block": bool(getattr(args, "cl0", False)),
             "bisector_static_block": self.bisector,
+            "bisector_sides_block": self.bisector_sides,
+            "kalmanson_oracle": self.kalmanson,
             "closure_oracle": bool(getattr(args, "closure", False)),
         }
         self.session_id: str | None = None
@@ -2019,6 +2365,8 @@ class CellRun:
         violations = replay(pattern)
         if self.bisector:
             violations = violations + bisector_violations(pattern)
+        if self.bisector_sides is not None:
+            violations = violations + bisector_side_violations(pattern, self.bisector_sides)
         return violations
 
     def log(self, message: str) -> None:
@@ -2194,6 +2542,8 @@ class CellRun:
         cut_clauses: list[list[int]] = []
         block_clauses: list[list[int]] = []
         chain_histogram: dict[int, int] = {}
+        kalmanson_cuts = 0
+        kalmanson_histogram: dict[str, int] = {}
         last: dict[str, Any] | None = None
         with models_path.open("w", encoding="utf-8") as handle, cuts_path.open("w", encoding="utf-8") as cuts_handle:
             while True:
@@ -2237,6 +2587,31 @@ class CellRun:
                         )
                         self.client.add_clauses(self.session_id, [clause])
                         continue
+                    if self.kalmanson is not None:
+                        kviolation = kalmanson_violation(pattern, self.kalmanson)
+                        if kviolation is not None:
+                            clause = kalmanson_clause(self.enc, kviolation)
+                            true_lits = {lit for lit in reply["model"] if lit > 0}
+                            if any((lit > 0 and lit in true_lits) or (lit < 0 and -lit not in true_lits) for lit in clause):
+                                raise D1Mu0CensusError("Kalmanson cut is not falsified by the model it explains")
+                            cut_clauses.append(clause)
+                            kalmanson_cuts += 1
+                            kkey = f"{kviolation.kind}:{kviolation.chain_length}"
+                            kalmanson_histogram[kkey] = kalmanson_histogram.get(kkey, 0) + 1
+                            cuts_handle.write(
+                                json.dumps(
+                                    {
+                                        "index": len(cut_clauses),
+                                        "rule": "KS1",
+                                        "solve_index": reply.get("solve_index"),
+                                        "violation": kviolation.to_json(),
+                                        "clause": clause,
+                                    }
+                                )
+                                + "\n"
+                            )
+                            self.client.add_clauses(self.session_id, [clause])
+                            continue
                 key = normalize_key(pattern.key(projection))
                 if key in seen:
                     raise D1Mu0CensusError("blocking clause did not exclude a repeated pattern")
@@ -2297,9 +2672,17 @@ class CellRun:
                 "cut_admission_record": CL1_CUT_RECORD,
                 "certification": certification,
             }
+            if self.kalmanson is not None:
+                entry["closure"]["kalmanson"] = {
+                    "scope": self.kalmanson,
+                    "cuts": kalmanson_cuts,
+                    "histogram": dict(sorted(kalmanson_histogram.items())),
+                    "cut_admission_record": KS1_CUT_RECORD,
+                }
         self.result.setdefault("enumeration", []).append(entry)
         self.log(
             f"enumeration {projection}: {status} with {len(keys)} survivors and {len(cut_clauses)} CL1 cuts"
+            + (f" (of which {kalmanson_cuts} KS1 cuts at scope {self.kalmanson})" if self.kalmanson is not None else "")
         )
 
     def run(self) -> dict[str, Any]:
@@ -2705,7 +3088,9 @@ def write_report(run_root: Path) -> Path:
             closure_rows.append(
                 f"| `{name}` | {parse_cell(name).route or '-'} | "
                 f"{'on' if record.get('cl0_static_block') else 'off'}"
-                f"{'+BI1' if record.get('bisector_static_block') else ''} | {base_verdict} | "
+                f"{'+BI1' if record.get('bisector_static_block') else ''}"
+                f"{'+BS1:' + str(record.get('bisector_sides_block')) if record.get('bisector_sides_block') else ''}"
+                f" | {base_verdict} | "
                 f"`{base_job.get('id', '-')}` | {status} | {closure.get('cuts', '-')} | "
                 f"{closure.get('survivors', '-')} | {closure.get('chain_length_histogram', '-')} | "
                 f"{cert.get('formula', '-')} | `{cert_job.get('id', '-')}` | "
@@ -2737,6 +3122,42 @@ def write_report(run_root: Path) -> Path:
             add("`perpBisector_carrier_card_le_two` from `D.convex`): no two labels are")
             add("equidistant from three distinct modelled centres; base models and")
             add("survivors are also replayed against it (`bisector_violations`).")
+            add("")
+        sides_scopes = sorted({
+            str(record.get("bisector_sides_block"))
+            for record_map in results.values() for record in record_map.values()
+            if record.get("bisector_sides_block")
+        })
+        if sides_scopes:
+            add(f"Stage 1e cells (`CL0` column `+BS1:<scope>`, scopes {', '.join(sides_scopes)}) add the")
+            add("static block `BS1_bisector_same_arc_<scope>` (ROOT_STATIC, DERIVED, the")
+            add("`false_of_four_ccw_*_bisect_*` Kalmanson theorems with the label boundary")
+            add("order): two modelled centres on one open arc of a chord are not both")
+            add("equidistant from its endpoints; survivors are replayed against it")
+            add("(`bisector_side_violations`). The boundary-order adapters are not compiled in Lean.")
+            add("")
+        kal_scopes = sorted({
+            str(record.get("kalmanson_oracle"))
+            for record_map in results.values() for record in record_map.values()
+            if record.get("kalmanson_oracle")
+        })
+        if kal_scopes:
+            kal_cuts = 0
+            kal_hist: dict[str, int] = {}
+            for record_map in results.values():
+                for record in record_map.values():
+                    for entry in record.get("enumeration", []):
+                        kal = (entry.get("closure") or {}).get("kalmanson") or {}
+                        kal_cuts += int(kal.get("cuts", 0))
+                        for k, v in (kal.get("histogram") or {}).items():
+                            kal_hist[k] = kal_hist.get(k, 0) + int(v)
+            add(f"Stage 1f cells (scopes {', '.join(kal_scopes)}) run the KS1 Kalmanson oracle in the")
+            add("closure loop (`KS1_kalmanson_cancellation`, DERIVED_CUT, DERIVED): a model whose")
+            add("distance-equality closure makes a strict convex-quadrilateral inequality read")
+            add("`0 < 0` (immediate) or closes a comparison cycle is cut by the negation of the")
+            add(f"memberships used. KS1 cuts in total: {kal_cuts}; kind:chain-length histogram")
+            add(f"{dict(sorted(kal_hist.items()))}. The boundary order of each quadruple is the")
+            add("label convention; no compiled four-point order adapter exists yet.")
             add("")
         add(f"Cells with closure: {closure_cells}; UNSAT from CL0 alone (base job): "
             f"{cl0_unsat}; UNSAT only after the CL1 oracle: {oracle_unsat}.")
@@ -2813,6 +3234,21 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
         "--bisector",
         action="store_true",
         help="Stage 1d: add the static BI1 convexity bisector bound (perpBisector_carrier_card_le_two)",
+    )
+    parser.add_argument(
+        "--bisector-sides",
+        choices=BISECTOR_SIDES_SCOPES,
+        default=None,
+        help="Stage 1e: add the static BS1 convexity bisector side rule at the given "
+        "quadruple scope (cap = one closed cap, two = two adjacent closed caps, all, "
+        "blocks = at most one interior point per cap)",
+    )
+    parser.add_argument(
+        "--kalmanson-oracle",
+        choices=BISECTOR_SIDES_SCOPES,
+        default=None,
+        help="Stage 1f: in the closure loop, cut every model whose distance-equality "
+        "closure contradicts a strict convex-quadrilateral inequality at the given scope (KS1)",
     )
     parser.add_argument(
         "--route",

@@ -2,7 +2,18 @@
  "base_head": "9a222da97112efc204a038ca2f71ff5a12078f94",
  "created_utc": "2026-09-01T23:33:45Z",
  "durable_paths": [
-  "scratch/runs/d1-triapex-plan-20260901/singular-smoke-01/run_manifest.json"
+  "scratch/runs/d1-triapex-plan-20260901/singular-smoke-01/run_manifest.json",
+  "scratch/runs/d1-triapex-plan-20260901/stage1-incidence-01/run_manifest.json",
+  "scratch/runs/d1-triapex-plan-20260901/stage1b-closure-01/run_manifest.json",
+  "scratch/runs/d1-triapex-plan-20260901/stage1c-reversehit-01/run_manifest.json",
+  "scratch/runs/d1-triapex-plan-20260901/stage1d-bisector-01/run_manifest.json",
+  "scratch/runs/d1-triapex-plan-20260901/stage1e-bisector-sides-01/run_manifest.json",
+  "scratch/runs/d1-triapex-plan-20260901/stage1e-bisector-sides-02/run_manifest.json",
+  "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-01/run_manifest.json",
+  "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-02/run_manifest.json",
+  "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03/run_manifest.json",
+  "scratch/runs/d1-triapex-plan-20260901/stage1g-farkas-01/run_manifest.json",
+  "scratch/runs/d1-triapex-plan-20260901/stage2-probe-01/run_manifest.json"
  ],
  "generated_roots": [
   "scratch/runs/d1-triapex-plan-20260901/singular-smoke-01",
@@ -10,10 +21,16 @@
   "scratch/runs/d1-triapex-plan-20260901/stage1b-closure-01",
   "scratch/runs/d1-triapex-plan-20260901/stage1c-reversehit-01",
   "scratch/runs/d1-triapex-plan-20260901/stage1d-bisector-01",
+  "scratch/runs/d1-triapex-plan-20260901/stage1e-bisector-sides-01",
+  "scratch/runs/d1-triapex-plan-20260901/stage1e-bisector-sides-02",
+  "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-01",
+  "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-02",
+  "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03",
+  "scratch/runs/d1-triapex-plan-20260901/stage1g-farkas-01",
   "scratch/runs/d1-triapex-plan-20260901/stage2-probe-01"
  ],
  "lane_id": "d1-triapex-plan-20260901",
- "manifest_sha256": "7a1dba84ce2e239df61764c3910531d2792d1a8c998e8834ccc02067d1f8f24f",
+ "manifest_sha256": "1ec823032b389045039ac33a0e2a64990a7ee36b629aadae553bf8e6f89b7f98",
  "owned_paths": [
   ".codex/worktree-checkpoints/d1-triapex-plan-20260901.json",
   "census/card_head/d1_mu0_incidence_census.py",

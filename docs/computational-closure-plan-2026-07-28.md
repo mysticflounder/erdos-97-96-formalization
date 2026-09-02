@@ -3168,7 +3168,18 @@ The 25 recorded leaves are:
   (2026-09-02) leave every cell SAT with survivors at the same order, and
   its Stage 2 Singular refutations of sampled patterns are one-engine
   discovery evidence (CONJECTURE at encoded scope); none is a closure
-  artifact.
+  artifact.  Its Stage 1e/1f censuses (2026-09-02) add the strict
+  convex-quadrilateral rule on the equality closure (static and as a
+  closure-level oracle, scope two adjacent caps): the uncapped target-cell
+  run ends with 387 survivors, that is 111 metric patterns forming 20
+  orbits under the label rotation and reflection, and its Stage 1g check
+  (QF_LRA through piqd SMT sessions, z3 and cvc5) shows every one of the
+  111 consistent with the complete linear form of that rule, plus triangle
+  inequalities, at the whole boundary; so the order layer alone does not
+  refute the residue and the remaining kill-test is metric (angle-form Gröbner runs on the
+  piqd Singular lane with characteristic-0 real-root counts, running; the
+  QF_NRA lane returned unknown even on the controls).  Still no
+  closure artifact.
 
 * **FreshThird / F-Γ (2 on-spine leaves).**
   `Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_crossBlockerCoincidence`;

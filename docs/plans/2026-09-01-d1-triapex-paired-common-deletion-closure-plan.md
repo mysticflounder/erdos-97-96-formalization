@@ -61,7 +61,7 @@ are unchanged since the 2026-08-30 source extract
 | `F : CriticalPairFrontier D S radius H` | frontier pair packet (`ATail/CriticalPairFrontier.lean:568`) | only `F.radius_pos` reaches the leaf |
 | `R : FrontierCommonDeletionParentResidual F` | `minimal : D.Minimal`, `noM44`, `9 < card`, `4 ≤ (SelectedClass D.A S.oppApex1 radius).card`, common-deletion residual (`ATail/OrientedPhysicalApexIngress.lean:251`) | `R.firstApexFullyDeletionRobust`, `R.actualBlocker_ne_firstApex`; `criticalShell_inter_frontierRadiusClass_card_le_two` (`ATail/FirstApexCriticalFiberRow.lean:178`) |
 | `P`, `O` | two distinct sources `kept`, `deleted` on `Γ(oppApex1, radius)` in the strict first opposite cap, distinct blockers, `deleted ∉ shell(kept)`, packet certifying `A \ {deleted}` keeps K4 at `oppApex1` and at `c(kept)` (`ATail/RetainedMatchingLargeCapConsumer.lean:203`) | packet rows are chosen four-subsets with `overlap_le_two` (`ATail/CommonDeletionTwoCenter.lean:30`) |
-| `J : PairedApexClassJointDeletion O` | `source` on `Γ(oppApex1, sourceRadius)`, class card `≥ 4`, omitted by both retained shells, two packets: `A \ {source}` keeps K4 at `oppApex1`, `c(kept)`, `c(deleted)` (`ATail/PairedCommonDeletionNormalForm.lean:93`) | `source ≠ kept, deleted`; `c(source) ∉ {c(kept), c(deleted)}` (`:140`, `:154`); four pairwise-distinct centres `oppApex1, c(kept), c(deleted), c(source)`. Both live producers set `sourceRadius := radius` (`TriApexEndpointRetainedOmission.lean:2012`, `PairedCommonDeletionNormalForm.lean:556`); `J` never records `sourceRadius ≠ radius` |
+| `J : PairedApexClassJointDeletion O` | `source` on `Γ(oppApex1, sourceRadius)`, class card `≥ 4`, omitted by both retained shells, two packets: `A \ {source}` keeps K4 at `oppApex1`, `c(kept)`, `c(deleted)` (`ATail/PairedCommonDeletionNormalForm.lean:93`) | `source ≠ kept, deleted`; `c(source) ∉ {c(kept), c(deleted)}` (`:140`, `:154`); four pairwise-distinct centres `oppApex1, c(kept), c(deleted), c(source)`. Both live producers instantiate `sourceRadius = radius` (`TriApexEndpointRetainedOmission.lean:2012`, `PairedCommonDeletionNormalForm.lean:556`), but `J` does not retain that equality (`sourceRadius` is a free field at `PairedCommonDeletionNormalForm.lean:93`), so a same-radius pair on the L6 row `K` is not proved to use the frontier radius of `kept` and `deleted` (Section 11 addendum, item 10) |
 | `G : TriApexAllLargeContext D S` (`Prop`) | all three caps `≥ 6`; all three apices apex-rich; `card ≤ 4 · |notRobustCenters|`; no point equidistant from all three MEC vertices (`ATail/AllLargeCapCanonicalInterfaces.lean:297`) | `15 ≤ card` from `capSum`; every blocker centre lies in some strict cap (`AllLargeCapCanonicalInterfaces.lean:317`); one-hit rule on other rich cap slices (`TriApexEndpointRetainedOmission.lean:312`, `:718`); at card 15: `capByIndex_card_eq_six_of_card_eq_fifteen`, `capInteriorByIndex_card_eq_four_of_card_eq_fifteen`, `twoRichClassSlices_partition_of_capInterior_card_eq_four` (`ATail/ExactFifteenApexProfile.lean:134`, `:158`, `:170`) |
 | `Q : TriApexFiveSurviveOneFail S H O.kept O.deleted …` | `W : StrictApexFourFamily`: three pairwise-disjoint four-point strict-cap supports, total twelve, each with `oneRadius`/`twoRadii` provenance (`ATail/ApexRichFourWitness.lean:30`, `ATail/TriApexFourWitness.lean:79`); `E ⊆ W.support \ (shell(kept) ∪ shell(deleted))`, `E.card = 4`; for every `x ∈ E`: K4 survives in `A \ {x}` at all three apices and both retained blockers, fails at `c(x)`, and `c(x)` differs from all five surviving centres (`ATail/TriApexFiveSurviveOneFail.lean:42`) | `Q.exists_distinct_same_index` (`:156`): two distinct points of `E` share one cap index. NOT reconstructible: `W.supportAt i = capInteriorByIndex i`, any `Fin 4` order of a support, any radius-class equality |
 
@@ -124,6 +124,12 @@ All as labelled by their sources.
 - O10 SOURCE-CHECKED. Provenance loss at the `J` adapter, listed in Section 2.
 - O11 UNRESOLVED (ledger label). The F1 "preferred bypass" is architectural,
   not a closed route (`docs/dead-ends.md:1567-1594`).
+- O12 EMPIRICALLY VERIFIED, exhaustive within the exact-15 incidence and
+  boundary-order abstraction (Stages 1e to 1g in Section 7): 111 metric
+  patterns in 20 dihedral orbits survive the complete boundary-order layer
+  (closure-level rule, full strict Kalmanson form, triangle inequalities) on
+  two SMT engines. L5 plus linear boundary-order inequalities is therefore
+  not a terminal by itself; any refutation of the residue is metric.
 
 ## 4. Routes tried
 
@@ -197,9 +203,12 @@ circular):
 | `Q.exists_distinct_same_index` | `ATail/TriApexFiveSurviveOneFail.lean:156` | same-index pair in `E` | none; zero consumers today |
 
 The first three chain into a same-radius mutually omitting pair on a
-four-row at the first apex containing `J.source`, from `J` and `G` alone.
-This is the "smallest helper" the 2026-08-23 audit asked for; it exists and
-is unconsumed. Phase 1 item L6 wires it.
+four-row at the first apex containing `J.source`, from `J` and `G` alone;
+the chain is now the proved theorem
+`exists_firstApex_mutualCrossDeletion_pair_through_source` (Phase 1 item
+L6; its binders are `J` and `G` only). Freshness of the pair relative to
+`{kept, deleted}` and its connection to the selected slice remain unproved
+({{NEEDS_PROOF}}, Section 11 addendum, items 9 and 11).
 
 Consumers whose antecedents the leaf does not supply (recorded so they are
 not re-derived):
@@ -243,7 +252,9 @@ Highest-risk load-bearing assumption: that the leaf is refutable from `J`,
 `G`, `Q` at all. Incidence content alone is satisfiable (O5, O6), every v87
 terminal is conditional, and no terminal has a contradiction consumer. The
 plan tests this assumption before investing in adapters, with one exception:
-the Phase 1 controls are needed in every outcome and are cheap.
+the Phase 1 controls are cheap and are consumed by the leaf prefix; L5 and
+L6 serve the Lean route only and do no work after a faithful metric
+countermodel (Section 11 addendum, item 13).
 
 Cell classification (Phase 1 checkpoint of 2026-09-01; theorem names are in
 `TriApexEndpointRetainedOmission.lean`). Two index choices are available and
@@ -272,6 +283,10 @@ they carry different proven facts:
 
 The measure below is anchored at the pair index `i`. When `i = j` both fact
 sets hold at once; whether Phase 3 needs `i = j` is open {{NEEDS_PROOF}}.
+Recorded route (Section 11 addendum, item 14): split on `i = j`; when
+`i ≠ j` the safe pair lies in a cap that holds a retained blocker centre,
+and at exact 15 L4 puts that centre inside the four-point witness support
+of that cap.
 
 Cells at `i`:
 
@@ -283,7 +298,13 @@ Cells at `i`:
 
 Measure `M` = number of (cardinality class, cell) pairs not covered by a
 checked terminal or replayed certificate, with cardinality classes
-`{15, ≥ 16}`. At base head `M = 18`. A checkpoint counts as proof progress
+`{15, ≥ 16}`. At base head `M = 18`. The count is sound only while every
+cell theorem is uniform in the pair index `i` (the cover theorem
+`strictApexFourWitness_safe_counts_of_pair` is stated for an arbitrary
+index, and every Phase 3a cell theorem takes `i : Fin 3` as a parameter); a
+cell theorem that fixes the role of `i` (first opposite cap, second
+opposite cap, surplus cap) refines the measure by that role (Section 11
+addendum, item 4). A checkpoint counts as proof progress
 only if `M` strictly decreases and the raw on-spine `sorry` count does not
 increase, except as allowed by the split rule in Phase 3.
 
@@ -329,7 +350,11 @@ and `M = 18` is unchanged. Phase 1 is complete.
   `K ∋ J.source` at `oppApex1` with `K.radius = J.sourceRadius`, carrying a
   mutually omitting pair `z ≠ w` with distinct blockers and both
   cross-deletions surviving. {{NEEDS_PROOF}} that the pair is not
-  `{kept, deleted}` again; `K` may contain them.
+  `{kept, deleted}` again; `K` may contain them. The minimum fresh
+  conclusion is that one endpoint is `J.source` or the unordered pair
+  differs from `{O.kept, O.deleted}`; for Phase 3 use the endpoints must
+  also connect to the selected strict-cap slice and its order (Section 11
+  addendum, item 9).
 - L5 order adapter (the 2026-08-30 extract's next interface test): done,
   `exists_orderedCap_six_of_card_eq_fifteen`. At card 15 the oriented
   complete cap order of every cap has exactly six slots
@@ -351,7 +376,11 @@ and `M = 18` is unchanged. Phase 1 is complete.
 Question: is each Section 6 cell refutable from its own binders at
 `card = 15`? At card 15 the carrier is the three apices plus the twelve
 strict-interior points, so the named-role quotient and the full carrier
-coincide; one encoding suffices.
+coincide; one encoding suffices. {{NEEDS_PROOF}}: cite a checked carrier-decomposition theorem;
+`capInteriorByIndex_card_eq_four_of_card_eq_fifteen` gives four
+strict-interior points per cap, and the partition of the twelve non-apex
+points into the three strict interiors is the missing citation (Section 11
+addendum, item 13).
 
 Solver lane and approvals (sat-solvers skill policy):
 
@@ -391,18 +420,38 @@ Guardrails:
   an open `sorry`.
 - Every verdict is CONJECTURE until the encoding-to-claim map is
   adversarially audited by a second reader.
-- SAT models are read back and replayed in exact rational arithmetic; a model
-  that fails replay is not a witness.
+- SAT models are read back and replayed in exact rational arithmetic or by
+  a certified real-algebraic replay (the equalities can force algebraic
+  coordinates, so rational-only replay can discard a valid witness); a
+  model that fails replay is not a witness. A countermodel claim needs every
+  field of `D`, `S`, `R`, `G`, `Q` encoded: the cap-side and partition
+  semantics of `SurplusCapPacket`, the residual and minimality fields of `R`
+  the target uses, exact `SelectedClass` membership including nonmembers,
+  deletion failure in `CriticalShellSystem` as the absence of every
+  four-point fiber after deletion, the definition of `notRobustCenters`, and
+  the class and radius semantics of the two witness constructors. A SAT
+  model of any relaxation is diagnostic only (Section 11 addendum, item 8).
 - UNSAT is reported only at scope `card = 15`.
 
 Decision rule:
 
 - a cell metrically SAT with every hypothesis encoded and an exact rational
-  witness: that cell does not close from its binders at 15. Stop, report, and
+  or certified real-algebraic witness: that cell does not close from its binders at 15. Stop, report, and
   propose an upstream re-split. First re-split candidate: retain the dropped
   provenance of Section 2 in `J` at both adapters (reverse-hit order,
   betweenness, acuteness; source-return U5 rows), because those facts are
-  already proved and cost no new obligation.
+  already proved and cost no new obligation. Preferred form (Section 11
+  addendum, item 12): route-specific terminal calls at the existing ingress
+  wrappers (a reverse-hit core receiving the reverse row, strict
+  betweenness, the acute inequalities and the fresh source; a source-return
+  core receiving the U5 rows and dangerous blockers) rather than optional
+  route data on the shared `J` interface, and only in the change that
+  closes that route or a child. Before either, run the route-delta sequence
+  on the surviving exact-15 patterns (item 7): the base `J, G, Q` cell; plus
+  the reverse-row exact intersection; plus reverse-hit betweenness and
+  order; plus the two acute inequalities; plus the fresh first-cap source;
+  separately plus the source-return U5 packet, recording which addition, if
+  any, changes satisfiability.
 - every cell UNSAT with certificate: Phase 3 certificate ingress at 15, then
   Phase 4.
 - `UNKNOWN` or compute-blocked: Phase 3 proceeds by Lean order and counting
@@ -455,7 +504,9 @@ Status 2026-09-01 (Phase 2 assessment; no solver run was executed):
   against `no_qfree`. Covering fifteen points by four-point shells needs at
   least four shells, so at least 12 equalities. At card 16 the same count
   gives at least 27 equalities against 28 degrees of freedom. Reading: exact
-  15 is the tight case, in the direction the plan assumed (review question
+  15 is the cheapest complete saturated falsification test (the
+  minimum-cardinality saturated case, not shown to be the hardest; Section
+  11 addendum, item 6), in the direction the plan assumed (review question
   2), and the risk of a genuine witness family sits at card 16 and above,
   in Phase 4. A dimension count is not a refutation and does not change `M`.
 - Sharper SAT-side test, deferred. The D-R lane's solver-free constructive
@@ -473,9 +524,16 @@ Status 2026-09-01 (Phase 2 assessment; no solver run was executed):
 
 ### Phase 3 — exact-15 closure per cell
 
-- 3a same-radius cells (all but `(1,1)`): after L5, wire
+- 3a `oneRadius` cells at exact 15: after L4 and L5 (the four middle slots
+  enumerate the full same-radius slice), wire
   `finFour_exists_nearby_mutualFalse_of_card_le_two` and the interval
-  descent. The descent terminals (`μ = 0` fixed point, disjoint `K2,2` plus
+  descent. The `twoRadii` cells with a same-radius safe pair (`(2,2)`,
+  `(2,1)`, `(1,2)`, `(2,0)`, `(0,2)`) get only two selected safe points on
+  one radius; at exact 15 `selectedClass_card_eq_four_of_twoRadii_card_eq_fifteen`
+  completes that radius class to four points with one in each adjacent
+  cap, which is not a four-point strict slice of cap `i`, so neither L5 nor
+  the `Fin 4` low-span kernel applies there and the same-cap-pair-to-four-
+  ordered-sources ingress stays missing (Section 11 addendum, item 5). The descent terminals (`μ = 0` fixed point, disjoint `K2,2` plus
   escapes) get Lean statements only in the change that also supplies their
   contradiction; until then they are `SKETCH — NOT PROMOTABLE`.
   {{NEEDS_PROOF}} for both terminals; {{NEEDS_PROOF}} for the MEC-cap
@@ -1045,6 +1103,348 @@ cores cover about one percent of the survivors):
   saturation probe has answered; work does not wait on it.
 - Lean leaf unchanged: single `sorry`, `M = 18`.
 
+Status 2026-09-02 (Phase 3a, fourteenth checkpoint, interim: the core
+classes do not saturate):
+
+- Saturation probe, chain 1 (twelve Stage 1d target-cell survivors not
+  covered by the four known cores; raw member-core mine through piqd
+  Singular, `summary-rawmembers12-stage1d-i0-1R1R1R-in12.json`): 6
+  `MOD_EMPTY_COMPLEX` with member cores confirmed over the rationals
+  (`11183807e73ec597` 7 points 16 equations, `287dd005d92303db` 8/19,
+  `2bf599a8350a41d5` 8/19, `6da2da721f039a7e` 8/18, `8d26a24bdb0e8dcf`
+  6/13, `9f3ee2c0b0f70e93` 7/16), 5 `MOD_TIMEOUT` at 120 s, 1
+  `MOD_POSITIVE_DIMENSIONAL` (raw ideal, coincidence component).
+- Chain 2 (twelve known raw-empty uncovered Stage 1b survivors) died at the
+  15:21Z piqd restart after 7 of 12: three came back as unconfirmed
+  full-pattern cores, four member cores were recovered from their
+  confirmation scripts (`recovered-member-cores-1b-partial.json`:
+  `9a5f1531ba3123c4` 7/11, `f0d283ad9046fb07` 6/9, `6ce1cb0ec2b7f37e`
+  7/11, `76f82b2b3411ba8a` 9/15); the five remaining keys run as chain
+  2b.
+- Isomorphism classes and coverage (no solver; `core_cover2.py`): the 14
+  cores form 14 classes (no two embed into each other). Coverage of the
+  2948 Stage 1d target-cell survivors up to relabelling: 4 cores 36, 10
+  cores 592, 14 cores 596. The four cores mined from Stage 1b survivors add
+  four patterns to the Stage 1d sample; three of them cover none. Core
+  classes are sample-specific, so route (a) has no visible bound: a
+  certified CEGAR would need a core per few tens of survivors, each core
+  costing 10 to 30 minutes of one-engine Singular time before any
+  certificate or Lean emission. CONJECTURE at the encoded scope, one engine.
+- Wave-data mine of the 14 member cores (structural census, no solver,
+  `core_census.py`): 6 to 9 points, 8 to 15 equidistance equations, 2 to 4
+  shells and 2 to 3 apex classes each; every core uses at least two apexes
+  as shell or class members, none contains an equilateral triple (three
+  points each equidistant from the other two) and none contains a point
+  equidistant from all three apexes. Each core is a minimal member set, so
+  no proper sub-gadget is empty, and no two cores embed into each other;
+  hence no equidistance-only statement common to the cores is available as
+  a uniform lemma. Only `A0` and `A1` are pinned, and every equation is a
+  difference of squared distances, so a raw empty ideal says that the
+  core's equidistances force `A0 = A1` in every real configuration; a
+  uniform metric lemma must therefore carry order or convexity
+  inequalities, which the equidistance algebra does not see. No general
+  theorem candidate; no corpus search triggered.
+- Reading: the exact-15 computational kill-test ends with a quantified
+  negative result unless chain 2b changes the curve. The leaf needs a
+  uniform metric lemma or an upstream re-split. {{NEEDS_ADAM_INPUT}} on
+  that choice; the lane records the final chain 2b numbers and stops the
+  probe. Chain 2b final numbers (2026-09-02, log
+  `stage2-probe-01/events/rawmembers-1b-uncovered-b-i0-1R1R1R-in12.log`):
+  4 of the 5 keys decided, all `MOD_EMPTY_COMPLEX` (raw ideal empty mod
+  32003; 45 to 48 equations): `01855bb4623c7663`, `01cbe1c2cc89e065` and
+  `01f7394fddd7adf2` are their own deletion-minimal cores (no member
+  refinement), `01dfdc3c7f766c71` shrinks to core `83dbdd32ae218a6c` with
+  member core `3932fbd27295c6cc`. The fifth key `01fa29493f7d2c99` was
+  stopped during its core shrink (37 trial scripts, most at the 120 s
+  timeout) because the daemon runs Singular scripts one at a time and the
+  timed-out trials blocked the residue run of the fifteenth checkpoint; its
+  base verdict receipt is in `stage2-probe-01/artifacts`, its core is not
+  mined. The probe is stopped.
+- Lean leaf unchanged: single `sorry`, `M = 18`. Guardrail 7: msolve
+  backend request #8815 pending with the piqd maintainer.
+
+Status 2026-09-02 (Phase 3a, fifteenth checkpoint: the convexity bisector
+side rule refutes every sampled Stage 1d survivor; Stage 1e census launched):
+
+- Wave-data mine, second pass (no solver, `kalmanson_probe.py` in the lane
+  scratchpad): each Stage 1d survivor's metric pattern (shells and apex
+  classes as distance equalities) was quotiented into equality classes and
+  tested against the strict convex-quadrilateral inequalities
+  `dist_add_dist_lt_diagonal_sum_of_ccw` and its complementary form
+  (`ATail/CapCrossingKalmanson.lean:240`, `:273`) for every quadruple of the
+  fifteen labels in the boundary order the label convention fixes (every cap
+  counterclockwise from apex `(k+1)%3` to apex `(k+2)%3`; `CYCLIC_ORDER` in
+  the encoder). Controls: the six-vertex two-`K2` triangle of
+  `false_of_six_ccw_two_k2_three_selected_rows` is rejected by a length-two
+  cycle; the regular 15-gon and a reflection-symmetric co-circular 15-gon are
+  not rejected.
+- Result: all 2941 distinct metric patterns of the target cell and every
+  sampled survivor of all 32 Stage 1d cells (2191 to 2967 patterns per cell,
+  capped enumeration) are rejected, and every rejection has one shape: two
+  carrier points equidistant from both endpoints of a chord and lying on the
+  same open arc of that chord (the diagonal sum of the quadruple cancels
+  against a side sum). That shape is PROVEN in Lean for a four-point
+  counterclockwise enumeration:
+  `false_of_four_ccw_endpoint_centers_bisect_middle_pair`,
+  `false_of_four_ccw_middle_centers_bisect_endpoint_pair`,
+  `false_of_four_ccw_late_centers_bisect_early_pair`
+  (`ATail/CapCrossingKalmanson.lean:504`, `:535`, `:569`). Witness scope on
+  the target cell (smallest point set containing some witness): 88 patterns
+  inside one closed cap, 483 inside one closed cap plus its opposite apex,
+  2370 inside two adjacent closed caps, none needing all three caps; 2927 of
+  2941 patterns carry at least ten witnesses. Cap-local witnesses alone
+  reject 116 of 2941 (88 immediate, 28 cycles), so the two-cap boundary
+  order is the load-bearing order fact.
+- Encoder: Stage 1e block `BS1_bisector_same_arc_<scope>` (`--bisector-sides
+  cap|two|all`, ROOT_STATIC, admission DERIVED with sources
+  `BISECTOR_SIDES_LEAN_SOURCES`): two modelled objects with distinct centres
+  on one open arc of `{x, y}` cannot both contain `x` and `y`, over the shared
+  membership variables of CL0/BI1; scope `cap` 180 clauses, `two` 3540, `all`
+  5460 at the target cell. Replay `bisector_side_violations`. Tests (28
+  total): boundary order and scopes, BI1 clause prefix unchanged, hand
+  witness clean at every scope, the BI1 negative-control witness (`A0` and
+  `P2.3` share `{P0.1, P0.3}` on one arc) silent at scope `cap` and rejected
+  at scopes `two` and `all` with the expected four-literal clauses.
+  Admission is DERIVED, not PROVEN, because no compiled Lean adapter yet
+  states the boundary order of a quadruple from the cap data: scope `cap`
+  needs the oriented complete cap order restricted to four points, scope
+  `two` the concatenation of two adjacent oriented caps at their shared apex,
+  scope `all` the global enumeration.
+- Lean order infrastructure (read-only trace, all already in the leaf's import
+  closure through `ExactFourAdjacentGridKalmanson`,
+  `TwoRadiusGridCapBoundarySigns` and `TwoRadiusGridEscapeSynchronization`):
+  `exists_isCcwConvexPolygon_of_convexIndep`
+  (`ConvexCyclicOrder/Construct.lean:1936`) gives the global
+  counterclockwise enumeration; `ZeroCutBoundaryIndexing.exists_with_capBlocks S`
+  (`Census554/ZeroCutBoundaryIndexing.lean:206`) gives a `BoundaryIndexing`
+  cut at the surplus apex whose three cap interiors occupy three disjoint
+  index blocks between the apex indices (`DirectBoundaryBlocks` or
+  `MirrorBoundaryBlocks`, `Census554/CapSelectedGeometry.lean:59`, `:75`);
+  `isCcwConvexPolygon_subsequence` (`ConvexCyclicOrder/Basic.lean:63`)
+  restricts to any strictly increasing index choice. Not proved: the slot
+  order of one cap's interior inside its block on a common boundary (only one
+  cap's `BoundaryCapBlock` is retained by
+  `strictCapBlockData_of_supportCap_on_boundary`), a cross-cap slot
+  comparison lemma, and the fourth `bisect` variant (early centres bisect the
+  late pair; one `linarith` from `dist_add_dist_lt_diagonal_sum_of_ccw`).
+- Block-distinct witnesses (`kal_blocks.py`): restricting to quadruples with
+  at most one interior point per cap (348 of the 1365 quadruples), every one
+  of the 2941 target-cell patterns still has a witness (2925 have at least
+  five). For such a quadruple the boundary order follows from the block
+  placement alone, so the only unproved order antecedent is a four-point
+  order lemma over `DirectBoundaryBlocks`/`MirrorBoundaryBlocks` (the same-arc
+  relation is invariant under the mirror). Encoder scope `blocks`
+  (`--bisector-sides blocks`) encodes exactly this family.
+- Stage 1e census launched: 32 route-free cells, `--cl0 --bisector
+  --bisector-sides two --closure`, run root `stage1e-bisector-sides-01`
+  (registered; manifests re-pinned to the new encoder and test digests), and
+  the same 32 cells at scope `blocks`, run root `stage1e-bisector-sides-02`.
+  The scope-two CNF of the target cell is pinned in the tests
+  (`STAGE1E_TARGET_TWO_CNF_SHA256`). Per-cell verdicts: 15 scope-`two` and
+  6 scope-`blocks` cells finished before the piqd lock incident of the
+  fifteenth checkpoint, all cap-hit with 2861 to 2966 survivors; the other
+  loops crashed and were not relaunched, because the static rule closed no
+  cell and the KS1 oracle superseded it.
+- Stage 1e outcome (static rule, scope `two`, target cell): base SAT, then
+  the closure loop hit the 3000 cap with 2949 survivors and 51 CL1 cuts, the
+  same profile as Stage 1d. The probe's total rejection was a property of the
+  capped Stage 1d sample, not of the survivor space: the 2510 distinct metric
+  patterns of the new sample are again all rejected by the probe at scope
+  `two` (1859 immediate, 651 length-two cycles), and every one of those
+  immediate witnesses uses a derived equality (a chain through two or more
+  objects), never two direct memberships (`kal_direct.py`). The static block
+  only sees direct memberships; the probe applies the same inequality to the
+  transitive closure of the equalities, exactly the closure the CL1 oracle
+  computes for its cuts. At scope `blocks` the same sample gives 2440
+  immediate, 59 cycles, 11 unrejected.
+- Encoder, Stage 1f: KS1 oracle `kalmanson_violation(pattern, scope)`
+  (`--kalmanson-oracle cap|two|all|blocks`, run inside the closure loop after
+  CL1 finds nothing): distances are quotiented by the closure of the object
+  equalities; for every quadruple in boundary order at the scope, an
+  immediate contradiction (both diagonal classes cancel against side classes)
+  or a comparison cycle yields the cut that negates the memberships along the
+  equality chains used (`kalmanson_clause`, record `KS1_kalmanson_cancellation`,
+  DERIVED_CUT, admission DERIVED, sources `BISECTOR_SIDES_LEAN_SOURCES` plus
+  the closure sources). The cut is checked to be falsified by the model it
+  explains, like a CL1 cut, and the certified formula includes it. Tests (31
+  total): on the BI1 negative-control pattern the KS1 cut is the immediate
+  chain of length two whose literals are the primary-variable image of the
+  static BS1 clause; the hand incidence witness `witness_i1` is refuted at
+  scope `two` by a length-two comparison cycle through `A1-P0.1-P0.2-A0` and
+  `A1-P0.2-A2-P2.1` (chain length three) and is clean at scopes `cap` and
+  `blocks`; scope validation. Censuses launched: `stage1f-kalmanson-01`
+  (scope `blocks`) and `stage1f-kalmanson-02` (scope `two`), 32 cells each,
+  `--cl0 --bisector --bisector-sides <scope> --kalmanson-oracle <scope>
+  --closure`; 33 concurrent piqd session clients then produced HTTP 500
+  `database is locked` replies that killed 20 of the 33 loops (noted on
+  #piqd, #8896), so the static runs stopped at 15 (scope `two`) and 6 (scope
+  `blocks`) cells, all cap-hit with 2861 to 2966 survivors, and the KS1
+  scope-`blocks` run was stopped deliberately (about one model in five
+  survives there). KS1 scope `two`, 24 of 32 cells completed: every cell hit
+  the 3000-cut cap with 0 survivors (2493 to 2937 of the 3000 cuts are KS1).
+  Long uncapped run on the target cell (`stage1f-kalmanson-03`, cap 200000,
+  6 h budget, scope `two`): complete after 22 min with 15543 CL1 cuts
+  (15246 KS1) and 387 survivors, which are 111 distinct metric patterns
+  (shells plus apex classes); the certified formula base + CL1 + KS1 cuts
+  is UNSAT (piqd job 96f9da83, proof 63e443a9). So the closure-level rule at
+  scope `two` is not a complete refutation, and the residue is the set of
+  patterns whose equality closure is consistent with every strict
+  convex-quadrilateral inequality inside two adjacent caps. Probe
+  (`kalmanson_probe.py`, no solver) on the 111 residue patterns: 0 rejected
+  at scope `all` (1365 quadruples) and, as the consistency check, 0 at scope
+  `two` (885). So the residue survives the closure-level rule over the whole
+  boundary; the gap is the rule's strength, not its scope: the rule tests
+  only two-class comparisons and comparison cycles, not a general positive
+  combination of the strict inequalities (a Farkas certificate over the
+  distance classes). Wave-data mine of the 15246 KS1 cuts: 9637 are
+  two-quadruple comparison cycles at scope (`two`,`two`) that are not
+  block-distinct, 2275 are block-distinct two-quadruple cycles, 1774 and 787
+  are single immediate chains (787 block-distinct), 567 mix a `cap` and a
+  `two` quadruple, 123 use three quadruples, 78 are inside one cap; chain
+  lengths 2 (57), 3 (9318), 4 (2932), 5 (2371), 6 (467), 7 or more (101).
+  Only 20 percent of the cuts are block-distinct, so the Lean route needs the
+  within-cap slot order inside the global boundary order and not only the
+  three-cap block placement. Metric layer on the 111 residue patterns
+  (`d1_mu0_pattern_algebra.py`, piqd Singular, modular prefilter
+  `--char 32003`, artifacts `stage1f-kalmanson-03/artifacts/metric-residue`,
+  log `events/metric-residue-mod.log`; serialized behind chain 2b in the
+  daemon's Singular lane; chain 2b stopped to free it): after 9 patterns,
+  1 `MOD_EMPTY_COMPLEX`, 1 `MOD_FINITE_UNKNOWN_REAL` (`0e31c5c5d735a779`,
+  raw ideal of dimension 0, vector-space dimension 1536, so finitely many
+  complex configurations and the real question open), 7 `MOD_TIMEOUT` at
+  120 s. The pass was then restarted on the 17 undecided representatives
+  of the 20 dihedral orbits (3 orbits of size 3, 17 of size 6; keys in
+  `tmp/dihedral-reps.txt`) with a 300 s limit, and the zero-dimensional
+  pattern runs separately in characteristic 0 with a 1800 s limit, where
+  the driver counts real roots (`nrRootsDeterm`; `FINITE_NO_REAL` would
+  refute it over the reals without any convexity). The characteristic-0
+  run timed out at 1800 s (the rational Gröbner basis of the 26-coordinate
+  form does not finish), and the representative pass was stopped after
+  deciding nothing while the serial lane was busy.
+- Angle form (metric encoder variant for the residue; scratch tool
+  `kal_angles.py`, copied to `stage1f-kalmanson-03/artifacts/tools/`,
+  artifacts `artifacts/metric-residue-angle`, piqd Singular lane only).
+  Because every residue pattern forces the three selected radii equal and
+  puts each cap's interior on the circle of that radius about the opposite
+  apex, the pattern is written with the special apex X at the origin, the
+  next apex Y at (1,0), the third apex Z on the unit circle about X, and
+  every interior point as its apex plus a unit vector (cap Z measured from
+  the direction Z to X): 26 circle variables with 13 circle relations and
+  the 27 pattern equalities as equal squared distances (40 equations, degree
+  at most 4, no chart gaps). Differential check against the coordinate form
+  on the two decided patterns: `0128294791aad010` empty over the complex
+  numbers in both forms, `0e31c5c5d735a779` zero-dimensional with vector
+  space dimension 1536 in both forms, in 6 s of Singular time where the
+  coordinate form needed 37 s (1.4 s against 1.7 s on the empty one). Verdicts
+  of the angle form on the 20 dihedral-orbit representatives (mod 32003,
+  300 s limit, `events/angle-reps-mod.log` and `events/angle-proto.log`):
+  4 empty over the complex numbers (`0128294791aad010`, `0a55d4c3c9ce4aaf`,
+  `3f5944d10bef23b7`, `6df4c7a8d7bf40b6`); 4 of dimension 2
+  (`0af6e34c9d121f64`, `353e5cf5d9489e5e`, `3642476c22a03be4`,
+  `60cd5309f72bf0e5`); 5 zero-dimensional with vector-space dimension 1536
+  (`0e31c5c5d735a779`, `172327e48f4004fb`, `32263a5344416a02`) or 2048
+  (`0d6996160cc83aab`, `3826b8a0dec4a6b0`); 7 undecided at 300 s
+  (`09de935481f89fcb`, `0ba2f8339583ff96`, `1412a71e2b2792b3`,
+  `4196eb64fac564cc`, `5815b1f6a42dcb08`, `5d4f4968fac1e0d5`,
+  `60e1264c2096add9`). Saturating `0af6e34c9d121f64` by every pairwise
+  squared distance (`--saturate`, `events/angle-sat-0af6.log`, 447 s) turns
+  its dimension-2 component into the empty set: that component consists of
+  configurations with coincident points only. A follow-up chain
+  (`artifacts/tools/angle_chain.sh` for the saturation pass, then
+  `angle_chain_v2.sh`; serial Singular lane) runs the saturation on the
+  other three positive-dimensional and the five zero-dimensional
+  representatives at 900 s (`events/angle-sat-mod.log`; first results:
+  `0d6996160cc83aab` keeps 192 of its 2048 solutions after saturation,
+  `0e31c5c5d735a779` does not finish the 105 saturations in 900 s), reruns
+  the seven undecided representatives at 900 s
+  (`events/angle-timeouts-900.log`), and then runs characteristic 0 at
+  1800 s by verdict class: the raw ideal for the empty representatives
+  (`events/angle-char0-empty.log`), the raw ideal with the real-root count
+  for the zero-dimensional ones (`--real`, `events/angle-char0-finite.log`;
+  `FINITE_NO_REAL` refutes without any saturation), and the saturated ideal
+  for the positive-dimensional ones whose saturation reached a verdict
+  (`events/angle-char0-sat-{empty,finite}.log`). {{NEEDS_UPDATE}}: chain
+  verdicts. A mod-p emptiness is evidence only; the characteristic-0 run is
+  the verdict that counts, and any real solution still needs the strict
+  convexity check of Guardrail 6 before it is a candidate configuration.
+- Residue structure (solver-free census of the 111 metric patterns): every
+  pattern has exactly 4 shells and 3 apex classes (27 equidistance
+  equations in the 26 pinned coordinates); the apex-class triple is one of
+  three label rotations of a single shape (37 patterns each): one apex has
+  both other apexes in its class, the other two apexes each have that apex
+  in their class, so all three selected radii equal the two apex distances
+  to the special apex, and each apex class also contains one interior point
+  of a neighbouring cap. The residue is closed under the label rotation
+  (37 orbits of size 3) and under the reflection that swaps A1 with A2 and
+  reverses the slot order; so the metric layer needs only orbit
+  representatives. No shell is common to all patterns (96 distinct shells,
+  the most frequent in 15 patterns).
+- Stage 1g (order layer, linear form; run root `stage1g-farkas-01`, tools
+  copied to `artifacts/tools/`, receipts in the daemon's SMT sessions):
+  the full linear form of the strict convex-quadrilateral rule. One real
+  variable per distance class of the pattern (the 105 pairs of the 15
+  boundary points modulo the shell and apex-class equalities), every class
+  positive, and for every counterclockwise quadruple at scope `all` both
+  strict inequalities `d(a,c)+d(b,d) > d(a,b)+d(c,d)` and
+  `> d(a,d)+d(b,c)` (2730 constraints), as QF_LRA through `piqc session`
+  (z3 and cvc5, the two engines of Guardrail 7, both piqd lanes). UNSAT
+  would mean a Farkas certificate over the classes, that is a refutation by
+  boundary order alone. Controls (both engines): the six-point two-K2
+  triangle UNSAT; the regular 15-gon (7 classes), the reflection-symmetric
+  co-circular 15-gon (56 classes) and the empty pattern (105 classes) SAT;
+  three Stage 1d survivors, which the closure-level probe rejects, UNSAT.
+  Result on the 111 residue patterns: SAT on z3 and SAT on cvc5 for all
+  111 (each has exactly 78 distance classes; z3 at most 107 ms). Adding the
+  strict triangle inequalities over the classes (455 triples, 1365 more
+  constraints) leaves all 111 SAT as well (z3).
+  So the order layer, in its complete linear form, does not refute the
+  residue: the residue is consistent with an abstract positive metric that
+  satisfies every strict Kalmanson and triangle inequality of the boundary
+  order. Reading: the Lean route for the residue cannot be a four-point
+  order lemma plus `linarith`; it needs planar metric algebra (the
+  equidistances are quadratic in coordinates) or a real-geometry
+  refutation. Next kill-test (running, `artifacts/nra-probe`): real
+  realizability with strict convexity as QF_NRA through the same SMT lane,
+  A0 = (0,0) and A1 = (1,0) pinned, all shell and apex-class equalities as
+  equal squared distances, and every directed boundary edge strictly left
+  of every other point (195 orientation inequalities); z3 finds the empty
+  convex control in 14 s; the two-K2 control and the zero-dimensional
+  pattern `0e31c5c5d735a779` follow with a 600 s limit. A SAT answer there
+  is a candidate real configuration and must be checked against the full
+  pattern and the leaf hypotheses (Guardrail 6); UNSAT on both engines
+  refutes the pattern in real strictly convex geometry at the encoded
+  boundary order. Result: not usable at this size. With a 600 s limit z3
+  answers UNKNOWN on the two-K2 control (six points with three equalities,
+  which the linear layer refutes in milliseconds), on the zero-dimensional
+  pattern and on the pattern `0128294791aad010` that is empty over the
+  complex numbers; cvc5 is cut off by the daemon deadline on the
+  zero-dimensional pattern. So real algebra with 26 coordinates and 195
+  orientation inequalities is beyond both engines here, and the metric
+  kill-test stays with Gröbner bases over the equalities.
+- Reading (CONJECTURE at the encoded scope): the target cell does not go
+  UNSAT under KS1 at scope `two`, and the 111-pattern residue survives the
+  closure-level rule at scope `all`; so route (a) is not bounded by the
+  closure-level Kalmanson rule alone. The next kill-test object is the
+  residue in the metric layer (running). If the metric layer refutes the
+  residue, the exact-15 census closes at the metric layer and the Lean route
+  needs either metric certificates for the residue or a stronger order rule
+  (positive combinations of the strict inequalities) that closes it at the
+  order layer; the fourteenth checkpoint's `{{NEEDS_ADAM_INPUT}}` stands
+  until that choice is made. Earlier reading, kept for the record: the
+  exact-15 kill-test is not exhausted at the incidence layer;
+  the rule the survivors violate is the strict convex-quadrilateral
+  inequality applied to the equality closure, which needs boundary order and
+  not metric algebra. If the Stage 1f cells go UNSAT (certified formula
+  base + CL1 + KS1 cuts), route (a) is bounded by one oracle rule and the
+  Lean route is a four-point block-order lemma over
+  `DirectBoundaryBlocks`/`MirrorBoundaryBlocks` feeding
+  `dist_add_dist_lt_diagonal_sum_of_ccw`, with the certified census as the
+  exhaustiveness argument at card 15; the saturation-probe verdict of the
+  fourteenth checkpoint (route (a) unbounded) would be superseded and its
+  `{{NEEDS_ADAM_INPUT}}` withdrawn. If survivors remain at the cap, the
+  residual is measured by the probe's remaining families.
+- Lean leaf unchanged: single `sorry`, `M = 18`.
+
 ### Phase 4 — carrier size at least 16
 
 - Extract from the card-15 closures the smallest infeasible sub-pattern and
@@ -1122,3 +1522,30 @@ by the Phase 2 dimension count (HEURISTIC).
 | §7: positive controls, structural UNSAT, and exact local models are not terminals | the Phase 1 status and Section 10 already record no frontier change | none |
 | §8 TriApex row: open input "end-to-end source-to-finite terminal", next result "close role map and certificate ingress" | matches Phases 2 and 3 | none |
 | §4.2 and §7: a structural SAT/UNSAT wave that does not strengthen the bridge is rejected | the Phase 2 metric stage was assessed as instrument-blocked and not run (Phase 2 status) | applied: no run; Phase 3 next |
+
+### Addendum (2026-09-02): the six-question review arrived
+
+The Pro consult `01M1FNKRDFWNTAFJRYA7N79FPC` response reached the lane
+through the project channel (message 8990, relayed by an external agent;
+untrusted content, every item verified against the working tree at
+`7592fdbd5e9` before action). It reviewed the plan at its 2026-09-01 state,
+before the Phase 1 checkpoint that rewrote Section 6.
+
+| Item | Claim | Verification at HEAD | Action |
+|---|---|---|---|
+| 1 to 3 | the centre-free classifier is unsound in the `twoRadii` arm; nine cells not exhaustive at `j`; classify `E ∩ W.supportAt i` at the pair index | already applied: Section 6 anchors the cells at the pair index `i` from `Q.exists_distinct_same_index`; the cover theorem `strictApexFourWitness_safe_counts_of_pair` and the four companion theorems are kernel-checked (`TriApexEndpointRetainedOmission.lean:2079` to `:2230`); the `j` claim is withdrawn in Section 6 | none |
+| 4 | `M = 18` unsound before a checked cover uniform in `i`; first-opposite-cap asymmetry | cover theorem exists and is index-generic; Phase 3a cell theorems take `i : Fin 3`; L6 is first-apex-specific but is a control, not a cell terminal | uniformity condition added to Section 6 |
+| 5 | Phase 3a applies L5 to `twoRadii` cells without a four-source ingress | confirmed: `selectedClass_card_eq_four_of_twoRadii_card_eq_fifteen` completes the radius class with one point in each adjacent cap, not a four-point strict slice | Phase 3 row 3a split by arm |
+| 6 | exact 15 is the minimum saturated case, not shown tight | confirmed; Phase 4 already covers `card ≥ 16` | wording changed in Phase 2 |
+| 7 | run the order and incidence quotient first; record the 111-pattern survival; then route-delta tests | matches Stages 1e to 1g | O12 recorded; route-delta sequence added to the Phase 2 decision rule |
+| 8 | Phase 2 encoding contract underspecified; rational-only replay too strict | confirmed | field list and real-algebraic replay added to Phase 2 |
+| 9 | L6 does not give a second independent pair | the plan already carries the `{{NEEDS_PROOF}}`; no "independent pair" claim remains | freshness criterion added to the L6 bullet |
+| 10 | binder map: `J` does not retain `sourceRadius = radius` | confirmed: `sourceRadius` is a free field of `PairedApexClassJointDeletion` | binder map row corrected |
+| 11 | the L6 chain paragraph overstates; check for `R.firstApexFullyDeletionRobust` | the chain is the proved theorem `exists_firstApex_mutualCrossDeletion_pair_through_source` with binders `J` and `G` only; the paragraph predates it | paragraph rewritten with the residual `{{NEEDS_PROOF}}` |
+| 12 | do not enlarge `J`; prefer route-specific terminal calls | agreed | recorded in the Phase 2 re-split candidate |
+| 13 | rigor-label violations | classification wording already fixed; L4 identity now proved; carrier decomposition at 15 has no cited theorem | `{{NEEDS_PROOF}}` added at the carrier sentence; Phase 1 control sentence relabelled |
+| 14 | add the `i = j` split as a route | agreed | recorded in Section 6 |
+| 15 | summary of 1 to 8 | covered above | none |
+
+None of the items changes the leaf, the measure, or the running exact-15
+kill-test; items 5, 8 and 13 tighten what a Phase 2 verdict may claim.

@@ -1,0 +1,22 @@
+{
+ "base_head": "9a222da97112efc204a038ca2f71ff5a12078f94",
+ "created_utc": "2026-09-02T16:17:18Z",
+ "input_digests": {
+  "docs/audits/2026-09-01-d1-mu0-terminal-analysis.md": "43fdc72ceb32248fd051d7d59e05549640292ad44a697397793059e1c88f103d"
+ },
+ "lane_id": "d1-triapex-plan-20260901",
+ "manifest_sha256": "7f81195e3c8a9e3616eda5119b18248e48927bf20ef7586e30a45095f8a9df61",
+ "output_classes": [
+  "artifacts",
+  "events",
+  "tmp"
+ ],
+ "owner": "claude-fable-d1-triapex",
+ "root": "scratch/runs/d1-triapex-plan-20260901/stage1e-bisector-sides-02",
+ "run_id": "stage1e-bisector-sides-02",
+ "schema": "worktree-run-manifest/v1",
+ "source_digests": {
+  "census/card_head/d1_mu0_incidence_census.py": "93f6fff73279383a1647b2ff22dac2d1b6b5adfc1929d5eb49fe5082d7e87c6b",
+  "census/card_head/tests/test_d1_mu0_incidence_census.py": "26dfd1e6c2820fa33693f73d86b73a18c4694033c87bae3f469721bf68fec2f1"
+ }
+}

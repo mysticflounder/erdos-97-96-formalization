@@ -1,0 +1,21 @@
+{
+ "base_head": "9a222da97112efc204a038ca2f71ff5a12078f94",
+ "created_utc": "2026-09-02T05:20:41Z",
+ "input_digests": {
+  "docs/audits/2026-09-01-d1-mu0-terminal-analysis.md": "43fdc72ceb32248fd051d7d59e05549640292ad44a697397793059e1c88f103d"
+ },
+ "lane_id": "d1-triapex-plan-20260901",
+ "manifest_sha256": "3da64d3e0afbe0e8a2f5e0ab73d3010a4b274f66806a943dec669f4f00966344",
+ "output_classes": [
+  "artifacts",
+  "events",
+  "tmp"
+ ],
+ "owner": "claude-fable-d1-triapex",
+ "root": "scratch/runs/d1-triapex-plan-20260901/stage2-probe-01",
+ "run_id": "stage2-probe-01",
+ "schema": "worktree-run-manifest/v1",
+ "source_digests": {
+  "census/card_head/d1_mu0_pattern_algebra.py": "0b54cb1085ae0df0f2eac75e45da568a3e55d303d6e0a5623705f74bfb3b17c6"
+ }
+}

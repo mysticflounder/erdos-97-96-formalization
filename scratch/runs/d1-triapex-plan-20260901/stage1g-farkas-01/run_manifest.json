@@ -1,0 +1,25 @@
+{
+ "base_head": "9a222da97112efc204a038ca2f71ff5a12078f94",
+ "created_utc": "2026-09-02T17:08:53Z",
+ "input_digests": {
+  "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03/artifacts/i0-1R1R1R-in12.long.full.models.jsonl": "e64fa93cdce728a141fea5c0b0bdb729f36b9a8c5168d67a89726852167f39c1",
+  "scratch/runs/d1-triapex-plan-20260901/stage1g-farkas-01/artifacts/tools/kal_lp.py": "bf3d20aa7b4618abd9197d5017956a0ea84facde6ccef8721081b7c6a33d9522",
+  "scratch/runs/d1-triapex-plan-20260901/stage1g-farkas-01/artifacts/tools/kalmanson_probe.py": "4e163a4a7dad6e8eec8a6750018e2b2694b53353fcb9e08a6ba70af624a703d6"
+ },
+ "lane_id": "d1-triapex-plan-20260901",
+ "manifest_sha256": "8496064e1e713ce37028039c4fe144b152564bd55445c25d140913306df9885f",
+ "output_classes": [
+  "artifacts",
+  "events",
+  "tmp"
+ ],
+ "owner": "claude-fable-d1-triapex",
+ "root": "scratch/runs/d1-triapex-plan-20260901/stage1g-farkas-01",
+ "run_id": "stage1g-farkas-01",
+ "schema": "worktree-run-manifest/v1",
+ "source_digests": {
+  "census/card_head/d1_mu0_incidence_census.py": "93f6fff73279383a1647b2ff22dac2d1b6b5adfc1929d5eb49fe5082d7e87c6b",
+  "census/card_head/d1_mu0_pattern_algebra.py": "0b54cb1085ae0df0f2eac75e45da568a3e55d303d6e0a5623705f74bfb3b17c6",
+  "census/card_head/tests/test_d1_mu0_incidence_census.py": "26dfd1e6c2820fa33693f73d86b73a18c4694033c87bae3f469721bf68fec2f1"
+ }
+}

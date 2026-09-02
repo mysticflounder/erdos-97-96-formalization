@@ -576,6 +576,8 @@ if __name__ == "__main__":
 
 
 STAGE1B_TARGET_CNF_SHA256 = "600dc7bbd95620ef5bde0dd3b9b21ee5f2cf59442f4db641a918f2b3ffaff0b7"
+# Stage 1e scope-two CNF of the target cell as run in stage1e-bisector-sides-01.
+STAGE1E_TARGET_TWO_CNF_SHA256 = "49986e50e8e8563eb2a938e9bf84bfe96092593356c7f1fa8a8758e468048351"
 
 
 def bisector_violating_witness() -> Pattern:
@@ -620,3 +622,131 @@ class BisectorTests(unittest.TestCase):
         self.assertTrue(all(len(clause) == 6 for clause in new))
         m01, m03 = enc_b.v("M", P(0, 2), P(0, 1)), enc_b.v("M", P(0, 2), P(0, 3))
         self.assertTrue(any(-m01 in clause and -m03 in clause for clause in new))
+
+
+class BisectorSidesTests(unittest.TestCase):
+    def test_boundary_order_and_scopes(self) -> None:
+        # cap 0 runs A1, P0.1..P0.4, A2; cap 1 runs A2, P1.*, A0; cap 2 runs A0, P2.*, A1
+        self.assertEqual(census.CYCLIC_ORDER[:6], (1, P(0, 1), P(0, 2), P(0, 3), P(0, 4), 2))
+        self.assertEqual(census.CYCLIC_ORDER[10], 0)
+        self.assertEqual(len(set(census.CYCLIC_ORDER)), census.N_LABELS)
+        # P0.2 is on the arc strictly between P0.1 and P0.3; A0 and P2.3 are on the other arc
+        self.assertFalse(census.same_arc(P(0, 1), P(0, 3), P(0, 2), 0))
+        self.assertTrue(census.same_arc(P(0, 1), P(0, 3), 0, P(2, 3)))
+        self.assertTrue(census.same_arc(P(0, 1), P(0, 3), P(0, 2), P(0, 2)))
+        self.assertEqual(census.quadruple_scope((1, P(0, 1), P(0, 3), 2)), "cap")
+        self.assertEqual(census.quadruple_scope((0, P(0, 1), P(0, 3), P(2, 3))), "two")
+        self.assertEqual(census.quadruple_scope((P(0, 1), P(1, 1), P(2, 1), 0)), "all")
+        self.assertTrue(census.block_distinct((P(0, 1), P(1, 1), P(2, 1), 0)))
+        self.assertFalse(census.block_distinct((P(0, 1), P(0, 3), 0, P(2, 3))))
+        self.assertTrue(census.scope_allows("blocks", (P(0, 1), P(1, 1), P(2, 1), 0)))
+        self.assertFalse(census.scope_allows("blocks", (P(0, 1), P(0, 3), 0, P(2, 3))))
+        self.assertTrue(census.scope_allows("all", (P(0, 1), P(1, 1), P(2, 1), 0)))
+        self.assertFalse(census.scope_allows("two", (P(0, 1), P(1, 1), P(2, 1), 0)))
+        with self.assertRaises(census.D1Mu0CensusError):
+            census.scope_allows("global", (0, 1, 2, 3))
+
+    def test_bi1_cnf_unchanged_and_bs1_blocks_admitted(self) -> None:
+        cell = witness_i1().cell
+        base = build(cell, equilateral=True, bisector=True).cnf.clauses
+        counts = {}
+        for scope in census.BISECTOR_SIDES_SCOPES:
+            enc = build(cell, equilateral=True, bisector=True, bisector_sides=scope)
+            self.assertEqual(enc.cnf.clauses[: len(base)], base)
+            block = [b for b in enc.cnf.blocks if b.block_id == f"BS1_bisector_same_arc_{scope}"]
+            self.assertEqual(len(block), 1)
+            self.assertEqual((block[0].clause_class, block[0].admission), ("ROOT_STATIC", "DERIVED"))
+            self.assertIn(
+                "CapCrossingKalmansonBridge.false_of_four_ccw_endpoint_centers_bisect_middle_pair",
+                block[0].lean_sources,
+            )
+            counts[scope] = block[0].clauses
+        self.assertLess(counts["cap"], counts["two"])
+        self.assertLess(counts["two"], counts["all"])
+        self.assertLess(counts["blocks"], counts["all"])
+        two = build(census.parse_cell("i0-1R1R1R-in12"), equilateral=True, bisector=True, bisector_sides="two")
+        self.assertEqual(hashlib.sha256(two.cnf.dimacs()).hexdigest(), STAGE1E_TARGET_TWO_CNF_SHA256)
+        self.assertTrue(all(len(c) == 4 for c in build(cell, bisector_sides="cap").cnf.clauses[-counts["cap"]:]))
+        with self.assertRaises(census.D1Mu0CensusError):
+            build(cell, bisector_sides="global")
+
+    def test_hand_witness_satisfies_bs1(self) -> None:
+        for scope in census.BISECTOR_SIDES_SCOPES:
+            enc = build(witness_i1().cell, equilateral=True, bisector=True, bisector_sides=scope)
+            self.assertEqual(failing_primary_clauses(enc, assignment_of(witness_i1(), enc)), [])
+            self.assertEqual(census.bisector_side_violations(witness_i1(), scope), [])
+
+    def test_same_arc_centres_fail_bs1(self) -> None:
+        # A0 and P2.3 share the pair {P0.1, P0.3} and lie on the same arc of that chord;
+        # the quadruple spans caps 0 and 2, so scope cap is silent and scope two rejects.
+        pattern = bisector_violating_witness()
+        self.assertEqual(census.bisector_side_violations(pattern, "cap"), [])
+        self.assertEqual(census.bisector_side_violations(pattern, "blocks"), [])
+        expected = ["BS1 A0 P2.3 on one arc of P0.1 P0.3"]
+        self.assertEqual(census.bisector_side_violations(pattern, "two"), expected)
+        self.assertEqual(census.bisector_side_violations(pattern, "all"), expected)
+        cell = pattern.cell
+        enc_cap = build(cell, equilateral=True, bisector_sides="cap")
+        enc_b = build(cell, equilateral=True, bisector=True)
+        without = set(failing_primary_clauses(enc_b, assignment_of(pattern, enc_b)))
+        enc_two = build(cell, equilateral=True, bisector=True, bisector_sides="two")
+        new = set(failing_primary_clauses(enc_two, assignment_of(pattern, enc_two))) - without
+        self.assertTrue(new)
+        self.assertTrue(all(len(clause) == 4 for clause in new))
+        m1, m3 = enc_two.v("M", P(2, 3), P(0, 1)), enc_two.v("M", P(2, 3), P(0, 3))
+        self.assertTrue(all(-m1 in clause and -m3 in clause for clause in new))
+        cap_new = set(failing_primary_clauses(enc_cap, assignment_of(pattern, enc_cap))) - set(
+            failing_primary_clauses(build(cell, equilateral=True), assignment_of(pattern, build(cell, equilateral=True)))
+        )
+        self.assertEqual(cap_new, set())
+
+
+class KalmansonOracleTests(unittest.TestCase):
+    def test_direct_same_arc_witness_is_an_immediate_cut(self) -> None:
+        pattern = bisector_violating_witness()
+        self.assertIsNone(census.kalmanson_violation(pattern, "cap"))
+        self.assertIsNone(census.kalmanson_violation(pattern, "blocks"))
+        for scope in ("two", "all"):
+            violation = census.kalmanson_violation(pattern, scope)
+            self.assertIsNotNone(violation)
+            assert violation is not None
+            self.assertEqual((violation.kind, violation.chain_length), ("immediate", 2))
+            self.assertEqual(violation.quadruples, ((P(0, 1), P(0, 3), 0, P(2, 3)),))
+            # the shell centred at P2.3 is realized by its smallest source point
+            src = min(x for x in pattern.cell.points if pattern.centre[x] == P(2, 3))
+            self.assertEqual(
+                set(violation.antecedent),
+                {
+                    ("A", 0, 0, P(0, 1)),
+                    ("A", 0, 0, P(0, 3)),
+                    ("c", src, P(2, 3)),
+                    ("s", src, P(0, 1)),
+                    ("s", src, P(0, 3)),
+                },
+            )
+            enc = build(pattern.cell, equilateral=True, bisector=True)
+            clause = census.kalmanson_clause(enc, violation)
+            assignment = assignment_of(pattern, enc)
+            self.assertTrue(all(assignment[-lit] for lit in clause))
+
+    def test_hand_witness_closes_a_comparison_cycle_at_scope_two(self) -> None:
+        pattern = witness_i1()
+        self.assertIsNone(census.kalmanson_violation(pattern, "cap"))
+        self.assertIsNone(census.kalmanson_violation(pattern, "blocks"))
+        violation = census.kalmanson_violation(pattern, "two")
+        self.assertIsNotNone(violation)
+        assert violation is not None
+        self.assertEqual((violation.kind, violation.chain_length), ("cycle", 3))
+        self.assertEqual(violation.quadruples, ((1, P(0, 1), P(0, 2), 0), (1, P(0, 2), 2, P(2, 1))))
+        enc = build(pattern.cell, equilateral=True, bisector=True)
+        clause = census.kalmanson_clause(enc, violation)
+        assignment = assignment_of(pattern, enc)
+        self.assertTrue(all(assignment[-lit] for lit in clause))
+        self.assertEqual(census.kalmanson_violation(pattern, "all"), violation)
+
+    def test_cut_record_and_scope_validation(self) -> None:
+        self.assertEqual(census.KS1_CUT_RECORD["clause_class"], "DERIVED_CUT")
+        self.assertEqual(census.KS1_CUT_RECORD["admission"], "DERIVED")
+        self.assertIn("CapCrossingKalmansonBridge.dist_add_dist_lt_diagonal_sum_of_ccw", census.KS1_CUT_RECORD["lean_sources"])
+        with self.assertRaises(census.D1Mu0CensusError):
+            census.kalmanson_violation(witness_i1(), "global")
