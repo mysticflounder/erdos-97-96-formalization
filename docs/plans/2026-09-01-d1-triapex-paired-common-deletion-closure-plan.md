@@ -791,6 +791,40 @@ Stage 2 first verdicts; all solver evidence CONJECTURE at encoded scope):
   Guardrail 7 second engine (piqd maintainer, #8669, no reply yet).
 - Lean leaf unchanged: single `sorry`, `M = 18`.
 
+Status 2026-09-01 (Phase 3a, ninth checkpoint: the distance-equality closure
+rule; solver-free measurement, Stage 1b delegated):
+
+- Observation (EMPIRICALLY VERIFIED on the Stage 1 samples, no solver): a
+  union-find closure over unordered point pairs, seeded by the equalities
+  every shell and every apex class asserts, followed by the exactness of
+  both objects (`mem_selectedClass`: a carrier point at the class radius is
+  in the class; `CriticalFourShell.support_eq`: a carrier point at the shell
+  radius is in the shell), refutes 2997 of 3000 sampled patterns in
+  `i0-1R1R1R-in12`, 3000 of 3000 in `i1-1R1R1R-in12`, 2993 of 3000 in
+  `i0-1R2R2R-in12`, and 3000 of 3000 in `i0-1R1R1R-ax15`. The audit witness
+  dies this way: `A1, A2` in class `A0` and `A0, A2` in class `A1` make the
+  apex triangle equilateral, so `A1` is at the radius of class `A2` but is
+  not a member.
+- Every ingredient is PROVEN in Lean (transitivity of real equality plus the
+  two exactness statements), so the rule is a `PROVEN` cut for Stage 1, not
+  a solver verdict. It explains most of the Stage 2 emptiness verdicts
+  without algebra. The remaining consistent patterns (7 in the sampled
+  `i0-1R2R2R-in12`) are where Stage 2 still has work.
+- Stage 1b (delegated to the census agent, run root `stage1b-closure-01`):
+  the closure oracle inside the piqd session enumeration, blocking the
+  explanation chain of each violation rather than the full pattern; a cell
+  that goes UNSAT is re-run as one raw-DIMACS job (base CNF plus the learned
+  cuts) so the UNSAT carries an LRAT proof; survivors are recorded with
+  their full patterns. Outcome not yet known.
+- Stage 2 driver (`161bb1335`): polls piqd to completion (the daemon runs
+  Singular one at a time and the client's wait gives up on queued runs),
+  modular prefilter over `GF(32003)` with `MOD_` verdicts and a `TIMEOUT`
+  verdict, core mining with modular deletion steps and a characteristic-0
+  confirmation. The characteristic-0 batch on `i0-1R1R1R-in12` refuted 71 of
+  72 patterns before one pattern exceeded eight minutes; the modular batch
+  over all 3000 is running.
+- Lean leaf unchanged: single `sorry`, `M = 18`.
+
 ### Phase 4 — carrier size at least 16
 
 - Extract from the card-15 closures the smallest infeasible sub-pattern and
