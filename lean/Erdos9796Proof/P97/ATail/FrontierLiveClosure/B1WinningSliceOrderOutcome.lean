@@ -400,6 +400,74 @@ theorem b1EscapeSourceContext_of_normalForm_sourceData
     cross_omission := b1_escapeRow_crossOmission C escape
   }⟩
 
+/- A source that is outside the first-apex fibre and is not interior-pair bad
+already has the retained-survival disjunction required by the source context.
+This form uses the residual's own `interior_q` and `interior_w`, so it does not
+need an identification with the frontier pair stored in `F`. -/
+theorem b1EscapeSourceContext_of_normalForm_sourceData_of_not_interiorPairBad
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F))
+    (hnormal : B1PhysicalClassFiveSixNormalForm C)
+    (source : CarrierVertex D.A)
+    (hsourceClass : source.1 ∈ SelectedClass D.A S.oppApex2 C.rho)
+    (hsourceInterior : source.1 ∈ S.capInteriorByIndex S.oppIndex2)
+    (hsourceNeFirst : source ≠ C.first.deleted)
+    (hsourceNeSecond : source ≠ C.second.deleted)
+    (houtside : source ∈ outsideFirstApexFiber C.R)
+    (hsourceNotBad : source ∉ interiorPairBadOutsideSources C.R) :
+    Nonempty (B1EscapeSourceContext C) := by
+  have hsurvives :
+      HasNEquidistantPointsAt 4 (D.A.erase C.R.interior_q)
+          ((lateFirstApexSystem C.R).centerAt source.1 source.2) ∨
+        HasNEquidistantPointsAt 4 (D.A.erase C.R.interior_w)
+          ((lateFirstApexSystem C.R).centerAt source.1 source.2) := by
+    by_cases hq :
+        HasNEquidistantPointsAt 4 (D.A.erase C.R.interior_q)
+          ((lateFirstApexSystem C.R).centerAt source.1 source.2)
+    · exact Or.inl hq
+    by_cases hw :
+        HasNEquidistantPointsAt 4 (D.A.erase C.R.interior_w)
+          ((lateFirstApexSystem C.R).centerAt source.1 source.2)
+    · exact Or.inr hw
+    exfalso
+    apply hsourceNotBad
+    exact Finset.mem_filter.mpr ⟨houtside, ⟨hq, hw⟩⟩
+  exact b1EscapeSourceContext_of_normalForm_sourceData C hnormal source
+    hsourceClass hsourceInterior hsourceNeFirst hsourceNeSecond houtside
+    hsurvives
+
+/- The named escape source now has a source-context split that is independent
+of the optional frontier-pair identifications. -/
+theorem b1_escapeSourceContext_or_firstClass_or_interiorPairBad
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F))
+    (hnormal : B1PhysicalClassFiveSixNormalForm C)
+    (W : B1FiveSixWaveIngress C) :
+    Nonempty (B1EscapeSourceContext C) ∨
+      (W.escape.escape.source.1 ∈
+        SelectedClass D.A S.oppApex1 radius) ∨
+      (W.escape.escape.source ∈ interiorPairBadOutsideSources C.R) := by
+  by_cases hfirst : W.escape.escape.source.1 ∈
+      SelectedClass D.A S.oppApex1 radius
+  · exact Or.inr (Or.inl hfirst)
+  have houtside : W.escape.escape.source ∈ outsideFirstApexFiber C.R :=
+    b1_source_mem_outsideFirstApexFiber_of_not_mem_firstApexClass C.R hfirst
+  by_cases hbad : W.escape.escape.source ∈ interiorPairBadOutsideSources C.R
+  · exact Or.inr (Or.inr hbad)
+  exact Or.inl
+    (b1EscapeSourceContext_of_normalForm_sourceData_of_not_interiorPairBad
+      C hnormal W.escape.escape.source
+      W.escape.escape.source_mem_class
+      W.escape.escape.source_mem_interior
+      W.escape.escape.source_ne_first
+      W.escape.escape.source_ne_second houtside hbad)
+
 /- The fresh strict-interior escape supplied by the live normal form can now be
    routed through the neutral source-context adapter.  The only alternatives
    left by this routing are the first-apex class and the explicitly named bad

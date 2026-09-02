@@ -418,6 +418,23 @@ pre-existing open declarations, including the five/six consumer, remain
 visible as `sorry` warnings; the new theorem itself has only the three core
 axioms.
 
+The card-five local-role packet now exports the same source-metric validation
+already available for card six: any `DuplicateCenterCore` over its four named
+rows is ruled out by the canonical carrier realization, both for a checked
+`DuplicateCenterData` record and for an assumed core.  This is a kernel-clean
+local certificate consumer, but it does not manufacture a certificate and does
+not close `false_of_b1PhysicalClassFiveSixNormalForm`; the missing global
+order/source-context producer remains the sole open B1 leaf.  A fresh history
+audit found no earlier source-clean proof of that leaf, including unreachable
+refactor commits.
+
+The source ingress now also has a residual split that uses the residual's own
+`interior_q`/`interior_w` fields: the named escape source either yields a full
+`B1EscapeSourceContext`, lies in the first-apex class, or belongs to the
+interior-pair-bad set.  This removes the optional frontier-pair identification
+from that adapter; it still does not discharge the first-class/bad alternatives
+or provide the missing boundary order.
+
 The B1-only invocation of the registry's own `BlueprintBackend`, alias planner,
 and factorization checker accepts the stable-ID migration and verifies the five
 roles with zero violations.  The canonical all-project generator currently
@@ -427,3 +444,26 @@ The independently verified B1 registry and ID-assignment delta was therefore
 applied narrowly. The 2026-08-30 registry re-anchor subsequently incorporated
 the validated B1 and Rigid221 factorization records. Historical receipts remain
 immutable.
+
+## 2026-09-02 closure audit
+
+The remaining leaf was rechecked against the current source and bounded
+theorem-mining results. No source-clean consumer derives `False` from the
+five/six normal form when both canonical deleted sources are strict
+second-cap-interior; the strongest available consequence is
+`b1_live_common_blocker_mem_secondCapInterior`, which places the common blocker
+in that cap. The tempting theorem
+`b1_live_two_interior_sources_or_third_interior_joint_deletion` is inside a
+parked block comment in `B1Live.lean` and is not an active declaration. The
+active cover producer adds a small-cover alternative and therefore does not
+close the residual.
+
+The target remains the sole open spine declaration:
+`false_of_b1PhysicalClassFiveSixNormalForm` at
+`TwoDeletionCollision.lean:932`. The positive
+`B1GlobalGapOrClosedTerminal` disjunction cannot replace it: its three arms
+are separately refuted by exact two-point bisector saturation, the carrier
+bisector bound, and the strict-interior escape with overlap at most two.
+Closing the leaf now requires one new global center/order/minimality theorem
+or a validated certificate beyond the present B1 interface; no such theorem
+has been found.

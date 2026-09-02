@@ -77,7 +77,7 @@ theorem exists_exactFourMutualOmissionSourceContext_of_fivePointInteriorSource
         HasNEquidistantPointsAt 4 (D.A.erase R.interior_w)
           ((lateFirstApexSystem R).centerAt source.1 source.2)) :
     ∃ other u v : CarrierVertex D.A,
-      ∃ jointDeletion : ExactFourMutualOmissionJointDeletion R rho u v,
+      ∃ _jointDeletion : ExactFourMutualOmissionJointDeletion R rho u v,
         u ≠ v ∧
         u.1 ∈ SelectedClass D.A S.oppApex2 rho ∧
         v.1 ∈ SelectedClass D.A S.oppApex2 rho ∧
@@ -904,7 +904,7 @@ theorem exists_exactFourMutualOmissionSourceContext_of_b1EscapeSourceContext
       (H := H) (F := F))
     (P : B1EscapeSourceContext C) :
     ∃ other u v : CarrierVertex D.A,
-      ∃ jointDeletion : ExactFourMutualOmissionJointDeletion C.R C.rho u v,
+      ∃ _jointDeletion : ExactFourMutualOmissionJointDeletion C.R C.rho u v,
         u ≠ v ∧
         u.1 ∈ SelectedClass D.A S.oppApex2 C.rho ∧
         v.1 ∈ SelectedClass D.A S.oppApex2 C.rho ∧

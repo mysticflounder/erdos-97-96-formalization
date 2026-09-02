@@ -640,6 +640,28 @@ theorem positiveRowsMatch_sourceRowChoices
   · exact u_support_subset_sourceMetricRows P
   · exact v_support_subset_sourceMetricRows P
 
+/- A checked duplicate-center record over the four exported source rows is
+inconsistent with their canonical planar realization. -/
+theorem false_of_duplicateCenterData_of_check
+    (P : B1CardFiveLocalRolePacket C)
+    (data : DuplicateCenterData (CarrierLabel D.A))
+    (hcheck : data.check P.sourceRowChoices = true) : False := by
+  rcases nonempty_duplicateCenterCore_of_positiveCheck
+      (positiveRowsMatch_sourceRowChoices P) data hcheck with ⟨core⟩
+  exact Census554.EqualityCore.not_realizes_of_duplicateCenterCore core
+    ⟨pointOf (A := D.A), realizes_sourceMetricRows P⟩
+
+/- A duplicate-center core cannot be realized by the four named card-five
+source rows.  This is the card-five counterpart of the card-six validation
+lemma; it is a local certificate consumer and does not claim that a
+certificate is present. -/
+theorem not_nonempty_duplicateCenterCore_sourceMetricRows
+    (P : B1CardFiveLocalRolePacket C) :
+    ¬ Nonempty (DuplicateCenterCore P.sourceMetricRows) := by
+  rintro ⟨core⟩
+  exact Census554.EqualityCore.not_realizes_of_duplicateCenterCore core
+    ⟨pointOf (A := D.A), realizes_sourceMetricRows P⟩
+
 end B1CardFiveLocalRolePacket
 
 end ATailFrontierLiveClosure
