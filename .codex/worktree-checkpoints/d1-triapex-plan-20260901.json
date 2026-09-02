@@ -9,10 +9,11 @@
   "scratch/runs/d1-triapex-plan-20260901/stage1-incidence-01",
   "scratch/runs/d1-triapex-plan-20260901/stage1b-closure-01",
   "scratch/runs/d1-triapex-plan-20260901/stage1c-reversehit-01",
+  "scratch/runs/d1-triapex-plan-20260901/stage1d-bisector-01",
   "scratch/runs/d1-triapex-plan-20260901/stage2-probe-01"
  ],
  "lane_id": "d1-triapex-plan-20260901",
- "manifest_sha256": "52583ff9f501cbfe8ed7cd48aa2f3aef8585178f66e384384f0f18630e4d2ae3",
+ "manifest_sha256": "7a1dba84ce2e239df61764c3910531d2792d1a8c998e8834ccc02067d1f8f24f",
  "owned_paths": [
   ".codex/worktree-checkpoints/d1-triapex-plan-20260901.json",
   "census/card_head/d1_mu0_incidence_census.py",

@@ -991,6 +991,60 @@ on the reverse-hit route; the survivors do not vanish):
 - Lean leaf unchanged: single `sorry`, `M = 18`. Guardrail 7: the piqd
   maintainer is triaging #8762.
 
+Status 2026-09-02 (Phase 3a, thirteenth checkpoint: Stage 1d convexity
+bisector bound; the incidence layer is exhausted, and the known metric
+cores cover about one percent of the survivors):
+
+- Encoder: static block `BI1_bisector_carrier_card_le_two` (`--bisector`;
+  ROOT_STATIC, PROVEN; `ConvexPerpendicularBisectorSides.perpBisector_carrier_card_le_two`
+  from `Dumitrescu.perpBisector_apex_bound` with `CounterexampleData.convex`):
+  no two labels are equidistant from three modelled objects with pairwise
+  distinct centres, over the CL0 membership variables and the apex classes
+  (30030 six-literal clauses in `i0-1R1R1R-in12`, 42900 in
+  `i0-1R2R2R-ax15`); the membership definition is shared with CL0 and the
+  CL0 CNF is byte-identical (test pins the Stage 1b sha256). Replay adds
+  `bisector_violations`. Tests: 24 (21 plus the CNF pin, the positive
+  control, and a three-centre negative control).
+- Run `stage1d-bisector-01` (all 32 route-free cells, CL0 + BI1 + CL1
+  oracle, cap 3000): every cell SAT and cap hit; base-model replays clean;
+  CL1 cuts 15 to 197; survivors 2803 to 2985 (3422 cuts, 92578 survivors
+  in total; target cell `i0-1R1R1R-in12`: 52 cuts, 2948 survivors, 2941
+  distinct metric patterns). No UNSAT, no LRAT. CONJECTURE at the encoded
+  scope.
+- Coverage measurement (no solver; `core_cover.py`, backtracking embedding
+  of a core's equidistance objects into a survivor's modelled shells and
+  apex classes, injective on labels): the four member cores of the eleventh
+  checkpoint refute, up to relabelling, 36 of the 2948 Stage 1d target-cell
+  survivors (all by the six-point core), 118 of the 2787 Stage 1b survivors
+  (55, 23, 21, 19 per core; 99 label-exact), and 251 of the 2935 Stage 1c
+  reverse-hit survivors. Each core class covers about one to four percent
+  of a capped sample, so the certified CEGAR of route (a) needs at least
+  tens of core classes per cell before the enumeration cap is even reached.
+- Second engine: the piqd maintainer answered #8762 (#8804): piqd has no
+  independent algebra engine, wrapping msolve through the Singular lane
+  would not be independent, and a direct msolve backend with hashes,
+  custody and timeouts is a separate implementation scope. Feature request
+  posted (#8815). Every Stage 2 verdict stays one-engine CONJECTURE.
+- Goal reassessment (evidence and tradeoff; no goal change): the four
+  incidence censuses (admitted rules, distance-equality closure, reverse-hit
+  provenance, convexity bisector bound) leave 2800 to 3000 survivors per
+  cell at the cap in all 32 cells, so no admitted incidence, order, or
+  closure rule refutes the mu = 0 terminal at card 15; the sampled metric
+  refutations are global rigidities of six to eight points with low
+  coverage per class. Route (b) is closed by Stage 1c and 1d, route (c) has
+  no support, and route (a) is unbounded unless the core classes saturate.
+  The next bounded probe answers exactly that: a raw member-core mine of
+  twelve Stage 1d target-cell survivors not covered by the known cores
+  (keys `0060d928b2c4b704` .. `0186bf5ac1c7611f`, chain launched in
+  `stage2-probe-01`, tag `rawmembers12-stage1d-i0-1R1R1R-in12`), followed
+  by the coverage measurement over the enlarged core set. If the classes
+  saturate, route (a) becomes bounded and continues with the certificate
+  emitter; if they do not, the exact-15 computational kill-test ends with a
+  quantified negative result and the leaf needs a uniform metric lemma or
+  an upstream re-split. {{NEEDS_ADAM_INPUT}} on that choice only when the
+  saturation probe has answered; work does not wait on it.
+- Lean leaf unchanged: single `sorry`, `M = 18`.
+
 ### Phase 4 — carrier size at least 16
 
 - Extract from the card-15 closures the smallest infeasible sub-pattern and

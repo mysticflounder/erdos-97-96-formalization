@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import tempfile
 import unittest
@@ -572,3 +573,50 @@ class PiqdSmokeTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+STAGE1B_TARGET_CNF_SHA256 = "600dc7bbd95620ef5bde0dd3b9b21ee5f2cf59442f4db641a918f2b3ffaff0b7"
+
+
+def bisector_violating_witness() -> Pattern:
+    """shell(P2.3) = shell(P1.3) gains P0.1 and P0.3: three centres (P0.2, P2.3, A0) equidistant."""
+
+    pattern = witness_i1()
+    for x in (P(1, 3), P(2, 4)):
+        pattern.shell[x] = frozenset({P(0, 1), P(0, 3), P(1, 3), P(2, 4)})
+    return pattern
+
+
+class BisectorTests(unittest.TestCase):
+    def test_cl0_cnf_unchanged_and_bi1_block_admitted(self) -> None:
+        enc = build(census.parse_cell("i0-1R1R1R-in12"), equilateral=True)
+        self.assertEqual(hashlib.sha256(enc.cnf.dimacs()).hexdigest(), STAGE1B_TARGET_CNF_SHA256)
+        cell = witness_i1().cell
+        enc_b = build(cell, equilateral=True, bisector=True)
+        block = [b for b in enc_b.cnf.blocks if b.block_id == "BI1_bisector_carrier_card_le_two"]
+        self.assertEqual(len(block), 1)
+        self.assertGreater(block[0].clauses, 0)
+        self.assertEqual((block[0].clause_class, block[0].admission), ("ROOT_STATIC", "PROVEN"))
+        self.assertIn("Dumitrescu.perpBisector_apex_bound", block[0].lean_sources)
+        only_b = build(cell, bisector=True)
+        self.assertTrue(only_b.has("M", P(0, 1), P(0, 2)))
+        self.assertEqual(failing_primary_clauses(only_b, assignment_of(witness_i1(), only_b)), [])
+
+    def test_hand_witness_satisfies_bi1(self) -> None:
+        enc_b = build(witness_i1().cell, equilateral=True, bisector=True)
+        self.assertEqual(failing_primary_clauses(enc_b, assignment_of(witness_i1(), enc_b)), [])
+        self.assertEqual(census.bisector_violations(witness_i1()), [])
+
+    def test_three_equidistant_centres_fail_bi1(self) -> None:
+        pattern = bisector_violating_witness()
+        violations = census.bisector_violations(pattern)
+        self.assertEqual(violations, ["BI1 P0.1 P0.3 equidistant from 3 centres"])
+        cell = pattern.cell
+        without = set(failing_primary_clauses(build(cell, equilateral=True), assignment_of(pattern, build(cell, equilateral=True))))
+        enc_b = build(cell, equilateral=True, bisector=True)
+        with_b = set(failing_primary_clauses(enc_b, assignment_of(pattern, enc_b)))
+        new = with_b - without
+        self.assertTrue(new)
+        self.assertTrue(all(len(clause) == 6 for clause in new))
+        m01, m03 = enc_b.v("M", P(0, 2), P(0, 1)), enc_b.v("M", P(0, 2), P(0, 3))
+        self.assertTrue(any(-m01 in clause and -m03 in clause for clause in new))

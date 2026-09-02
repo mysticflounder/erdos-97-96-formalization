@@ -409,6 +409,16 @@ CLOSURE_LEAN_SOURCES = (
             "CriticalFourShell.support_eq_radius",
         )
 
+# Stage 1d: the convexity bisector bound (route independent).
+BISECTOR_LEAN_SOURCES = (
+    "ConvexPerpendicularBisectorSides.false_of_three_distinct_equidistant_carriers",
+    "ConvexPerpendicularBisectorSides.perpBisector_carrier_card_le_two",
+    "Dumitrescu.perpBisector_apex_bound",
+    "CounterexampleData.convex",
+    "CriticalFourShell.support_eq_radius",
+    "Problem97.mem_selectedClass",
+)
+
 OMITTED_BINDERS = (
     "R.minimal (D.Minimal) beyond the critical shell system H it induces",
     "R.noM44 and the CriticalPairFrontier packet F except F.radius_pos",
@@ -490,7 +500,7 @@ ROUTE_OMITTED_BINDERS: dict[str, tuple[str, ...]] = {
 }
 
 
-def build(cell: Cell, equilateral: bool = False) -> Encoding:
+def build(cell: Cell, equilateral: bool = False, bisector: bool = False) -> Encoding:
     cnf = Cnf()
     points = cell.points
     labels = tuple(range(N_LABELS))
@@ -1186,19 +1196,20 @@ def build(cell: Cell, equilateral: bool = False) -> Encoding:
         cnf.add((-used,) + tuple(c(x, label) for x in points))
     used_regs = cnf.counter([cnf.var[("used", label)] for label in labels], "used")
 
-    # -- CL0: static equilateral closure (length-two distance-equality chains) --
-    if equilateral:
-        cnf.begin(
-            "CL0_equilateral_closure",
-            "ROOT_STATIC",
-            "PROVEN",
-            CLOSURE_LEAN_SOURCES,
-            "two equidistance facts make the triangle equilateral "
-            "(dist_eq_dist_of_mutual_bisector); exactness of the third object "
-            "(mem_selectedClass, CriticalFourShell.support_eq). M(z, y) is the "
-            "membership of y in the shell centred at the interior label z, "
-            "realized by any modelled source of centre z",
-        )
+    # -- membership objects shared by CL0 and BI1 ------------------------------
+    # M(z, y) is the membership of y in the shell centred at the interior label
+    # z, realized by any modelled source of centre z; apex classes are the apex
+    # objects.  The variables and their defining clauses are created inside the
+    # first block that needs them, so the CL0 CNF is unchanged when BI1 is off.
+    objects: list[tuple[str, int, int]] = [("I", z, 0) for z in all_interior]
+    objects.extend(("A", k, t) for (k, t) in cell.classes())
+    membership_defined = False
+
+    def define_membership() -> None:
+        nonlocal membership_defined
+        if membership_defined:
+            return
+        membership_defined = True
         for z in all_interior:
             for y in labels:
                 if y != z:
@@ -1213,14 +1224,26 @@ def build(cell: Cell, equilateral: bool = False) -> Encoding:
                         continue
                     cnf.add((-c(x, z), -s(x, y), m))
                     cnf.add((-m, -c(x, z), s(x, y)))
-        objects: list[tuple[str, int, int]] = [("I", z, 0) for z in all_interior]
-        objects.extend(("A", k, t) for (k, t) in cell.classes())
 
-        def mem(obj: tuple[str, int, int], y: int) -> int:
-            if obj[0] == "I":
-                return cnf.var[("M", obj[1], y)]
-            return A(obj[1], obj[2], y)
+    def mem(obj: tuple[str, int, int], y: int) -> int:
+        if obj[0] == "I":
+            return cnf.var[("M", obj[1], y)]
+        return A(obj[1], obj[2], y)
 
+    # -- CL0: static equilateral closure (length-two distance-equality chains) --
+    if equilateral:
+        cnf.begin(
+            "CL0_equilateral_closure",
+            "ROOT_STATIC",
+            "PROVEN",
+            CLOSURE_LEAN_SOURCES,
+            "two equidistance facts make the triangle equilateral "
+            "(dist_eq_dist_of_mutual_bisector); exactness of the third object "
+            "(mem_selectedClass, CriticalFourShell.support_eq). M(z, y) is the "
+            "membership of y in the shell centred at the interior label z, "
+            "realized by any modelled source of centre z",
+        )
+        define_membership()
         for op in objects:
             for oq in objects:
                 for orr in objects:
@@ -1237,6 +1260,36 @@ def build(cell: Cell, equilateral: bool = False) -> Encoding:
                             mem(op, rr),
                         )
                     )
+
+    # -- BI1: Stage 1d convexity bisector bound ---------------------------------
+    if bisector:
+        cnf.begin(
+            "BI1_bisector_carrier_card_le_two",
+            "ROOT_STATIC",
+            "PROVEN",
+            BISECTOR_LEAN_SOURCES,
+            "at most two carrier points are equidistant from two distinct carrier "
+            "points (D.convex through Dumitrescu.perpBisector_apex_bound), so three "
+            "modelled objects with pairwise distinct centres cannot all contain the "
+            "same two labels; exactness of each object as in CL0. Triples with a "
+            "centre among the two labels are skipped: no object contains its centre",
+        )
+        define_membership()
+        for x, y in combinations(labels, 2):
+            for op, oq, orr in combinations(objects, 3):
+                centres = {op[1], oq[1], orr[1]}
+                if len(centres) != 3 or x in centres or y in centres:
+                    continue
+                cnf.add(
+                    (
+                        -mem(op, x),
+                        -mem(op, y),
+                        -mem(oq, x),
+                        -mem(oq, y),
+                        -mem(orr, x),
+                        -mem(orr, y),
+                    )
+                )
 
     omitted = OMITTED_BINDERS if not cell.apex_shells else tuple(
         item for item in OMITTED_BINDERS if not item.startswith("shell constraints of a role")
@@ -1337,6 +1390,21 @@ def slices_of(cell: Cell, pattern: Pattern, k: int) -> tuple[tuple[int, ...], ..
         return (interior(k),)
     p = pattern.partition[k]
     return (slice_labels(k, p, 0), slice_labels(k, p, 1))
+
+
+def bisector_violations(pattern: Pattern) -> list[str]:
+    """BI1 replay: a pair of labels equidistant from three distinct modelled centres."""
+
+    bad: list[str] = []
+    c, S = pattern.centre, pattern.shell
+    for x, y in combinations(range(N_LABELS), 2):
+        centres = {c[p] for p in pattern.cell.points if x in S[p] and y in S[p]}
+        centres |= {k for (k, _t), cls in pattern.classes.items() if x in cls and y in cls}
+        if len(centres) > 2:
+            bad.append(
+                f"BI1 {label_name(x)} {label_name(y)} equidistant from {len(centres)} centres"
+            )
+    return bad
 
 
 def replay(pattern: Pattern) -> list[str]:
@@ -1932,16 +2000,26 @@ class CellRun:
         self.client = client
         self.artifacts = artifacts
         self.args = args
-        self.enc = build(cell, equilateral=bool(getattr(args, "cl0", False)))
+        self.bisector = bool(getattr(args, "bisector", False))
+        self.enc = build(cell, equilateral=bool(getattr(args, "cl0", False)), bisector=self.bisector)
         self.cnf_bytes = self.enc.cnf.dimacs()
         self.result: dict[str, Any] = {
             "cell": cell.name,
             "route": cell.route,
             "is_target": cell.is_target,
             "cl0_static_block": bool(getattr(args, "cl0", False)),
+            "bisector_static_block": self.bisector,
             "closure_oracle": bool(getattr(args, "closure", False)),
         }
         self.session_id: str | None = None
+
+    def check(self, pattern: Pattern) -> list[str]:
+        """Replay against the encoded contract, plus BI1 when the block is on."""
+
+        violations = replay(pattern)
+        if self.bisector:
+            violations = violations + bisector_violations(pattern)
+        return violations
 
     def log(self, message: str) -> None:
         line = f"{datetime.now(UTC).isoformat()} {self.cell.name} {message}"
@@ -1972,7 +2050,7 @@ class CellRun:
         if record.get("result") == "SAT":
             model = self.client.model(record["id"])
             pattern = decode(self.enc, model)
-            violations = replay(pattern)
+            violations = self.check(pattern)
             self.result["base_model_replay"] = {"violations": violations, "pattern": pattern.to_json()}
             if violations:
                 raise D1Mu0CensusError(f"base SAT model failed replay: {violations[:3]}")
@@ -2020,7 +2098,7 @@ class CellRun:
         }
         if reply["status"] == "SAT":
             pattern = decode(self.enc, reply["model"])
-            violations = replay(pattern)
+            violations = self.check(pattern)
             entry["replay_violations"] = violations
             if violations:
                 raise D1Mu0CensusError(f"query {name}: SAT model failed replay: {violations[:3]}")
@@ -2134,7 +2212,7 @@ class CellRun:
                     status = f"solver_{reply['status'].lower()}"
                     break
                 pattern = decode(self.enc, reply["model"])
-                violations = replay(pattern)
+                violations = self.check(pattern)
                 if violations:
                     raise D1Mu0CensusError(f"enumeration model failed replay: {violations[:3]}")
                 if use_oracle:
@@ -2626,7 +2704,8 @@ def write_report(run_root: Path) -> Path:
             proof = base_job.get("proof_blob_hash") if base_verdict == "UNSAT" else cert_job.get("proof_blob_hash")
             closure_rows.append(
                 f"| `{name}` | {parse_cell(name).route or '-'} | "
-                f"{'on' if record.get('cl0_static_block') else 'off'} | {base_verdict} | "
+                f"{'on' if record.get('cl0_static_block') else 'off'}"
+                f"{'+BI1' if record.get('bisector_static_block') else ''} | {base_verdict} | "
                 f"`{base_job.get('id', '-')}` | {status} | {closure.get('cuts', '-')} | "
                 f"{closure.get('survivors', '-')} | {closure.get('chain_length_histogram', '-')} | "
                 f"{cert.get('formula', '-')} | `{cert_job.get('id', '-')}` | "
@@ -2648,6 +2727,16 @@ def write_report(run_root: Path) -> Path:
             add("`RH2`-`RH6` (reverse-hit route) and `SR2` (source-return route, twoRadii")
             add("arm at cap 0 only); Section 1 lists their admission records and Section 2")
             add("the route provenance that stays omitted (metric or chosen-row content).")
+            add("")
+        if any(
+            record.get("bisector_static_block")
+            for record_map in results.values() for record in record_map.values()
+        ):
+            add("Stage 1d cells (`CL0` column `on+BI1`) add the static block")
+            add("`BI1_bisector_carrier_card_le_two` (ROOT_STATIC, PROVEN,")
+            add("`perpBisector_carrier_card_le_two` from `D.convex`): no two labels are")
+            add("equidistant from three distinct modelled centres; base models and")
+            add("survivors are also replayed against it (`bisector_violations`).")
             add("")
         add(f"Cells with closure: {closure_cells}; UNSAT from CL0 alone (base job): "
             f"{cl0_unsat}; UNSAT only after the CL1 oracle: {oracle_unsat}.")
@@ -2720,6 +2809,11 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--report", action="store_true", help="only aggregate an existing run root into REPORT.md")
     parser.add_argument("--cl0", action="store_true", help="add the static CL0 equilateral closure block")
     parser.add_argument("--closure", action="store_true", help="run the CL1 distance-equality closure oracle in the loop")
+    parser.add_argument(
+        "--bisector",
+        action="store_true",
+        help="Stage 1d: add the static BI1 convexity bisector bound (perpBisector_carrier_card_le_two)",
+    )
     parser.add_argument(
         "--route",
         choices=("none", "rh", "sr", "both"),

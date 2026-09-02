@@ -175,6 +175,63 @@ structure B1EscapeSourceContext
     C.first.deleted.1 ∉ b1EscapeRow C source ∨
       C.second.deleted.1 ∉ b1EscapeRow C source
 
+/- The equal-blocker normal form pins the common-row/class intersection to the
+two canonical deleted sources.  This lets a later producer reselect a source
+from the physical class without separately carrying common-row omission. -/
+theorem b1_source_not_mem_commonRow_of_class_of_ne_deletions
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F))
+    (source : CarrierVertex D.A)
+    (hsourceClass : source.1 ∈ b1PhysicalClass C)
+    (hsourceNeFirst : source ≠ C.first.deleted)
+    (hsourceNeSecond : source ≠ C.second.deleted) :
+    source.1 ∉ b1CommonRow C := by
+  classical
+  have hnormal :=
+    b1_live_normalForm C.R C.hcard C.surface C.rho C.hrho C.hfive
+      C.u C.v C.huNeV C.huClass C.hvClass C.hvOmitted C.huOmitted
+      C.first C.second C.hdeletedNe C.hblockersEq
+  have hpairSubset :
+      ({C.first.deleted.1, C.second.deleted.1} : Finset ℝ²) ⊆
+        b1CommonRow C ∩ b1PhysicalClass C := by
+    intro x hx
+    rcases Finset.mem_insert.mp hx with rfl | hx
+    · exact Finset.mem_inter.mpr ⟨
+        by simpa [b1CommonRow] using
+          ((lateFirstApexSystem C.R).selectedAt
+            C.first.deleted.1 C.first.deleted.2).toCriticalFourShell.q_mem_support,
+        by simpa [b1PhysicalClass] using C.first.deleted_mem_class⟩
+    · have hx' : x = C.second.deleted.1 := Finset.mem_singleton.mp hx
+      subst x
+      exact Finset.mem_inter.mpr ⟨
+        by simpa [b1CommonRow] using hnormal.2.2.1,
+        by simpa [b1PhysicalClass] using C.second.deleted_mem_class⟩
+  have hpairEq :
+      b1CommonRow C ∩ b1PhysicalClass C =
+        ({C.first.deleted.1, C.second.deleted.1} : Finset ℝ²) := by
+    have hinterCard :
+        (b1CommonRow C ∩ b1PhysicalClass C).card = 2 := by
+      simpa [b1CommonRow, b1PhysicalClass] using hnormal.2.2.2
+    have hdeletedValuesNe : C.first.deleted.1 ≠ C.second.deleted.1 := by
+      intro h
+      exact C.hdeletedNe (Subtype.ext h)
+    have hpairCard :
+        ({C.first.deleted.1, C.second.deleted.1} : Finset ℝ²).card = 2 := by
+      simp [hdeletedValuesNe]
+    refine (Finset.eq_of_subset_of_card_le hpairSubset ?_).symm
+    omega
+  intro hsourceRow
+  have hsourceInter :
+      source.1 ∈ b1CommonRow C ∩ b1PhysicalClass C :=
+    Finset.mem_inter.mpr ⟨hsourceRow, hsourceClass⟩
+  rw [hpairEq] at hsourceInter
+  rcases Finset.mem_insert.mp hsourceInter with hfirst | hsecond
+  · exact hsourceNeFirst (Subtype.ext hfirst)
+  · exact hsourceNeSecond (Subtype.ext (Finset.mem_singleton.mp hsecond))
+
 /- A source that escapes the saturated common row already carries all local
 data needed for a B1 escape witness.  This constructor is independent of the
 outside-first-apex and retained-survival facts, which are added only when the
