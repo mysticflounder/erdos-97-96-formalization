@@ -323,6 +323,65 @@ scope boundary: `boundaryLabeling` and `rolePacket` are presently ingress
 objects bound immediately before the existing `sorry`, not yet inputs to a
 terminal finite contradiction.
 
+## Balanced source configuration and finite contract
+
+`Balanced555SourceConfiguration` now combines the boundary-compatible labels
+with one faithful all-center selected-four-class pattern.  The selected
+classes at the first apex, retained blocker, and second apex are exactly the
+three normal-form classes.  Its derived API proves the exact three pinned
+finite rows, the Euclidean realization, the generic exact-four/source-cube
+constraints, and shared-pair alternation in the fixed cyclic labels.  The
+focused module build passed at proof-blueprint build `14580fcce1d4`.
+
+The corrected finite specification has also been reconstructed independently.
+For each orientation it has 1,656 pinned source roots and five two-Kalmanson
+families with 49,104 raw occurrences, 10,122 impossible antecedents, and
+38,982 effective clauses.  The report's historical 50,657-clause CNF cannot
+be authenticated: 544 non-Kalmanson clauses were never disclosed.  This lane
+therefore uses a fresh source-minimal schema with 148 variables and 50,113
+clauses, new hashes, and no claim of byte compatibility with that historical
+formula.
+
+`Balanced555FiniteConfiguration` is the Lean-side finite contract.  It keeps
+the orientation, relabeled selected classes, exact cap distribution,
+tight-cover partition, cyclic alternation, and Euclidean realization needed
+to justify every generated clause.  The flexible-role packet is not an input:
+the corrected root enumeration uses only consequences already present in
+`BalancedTightCoverInvariant`.
+
+The source constructor now builds this configuration with no admitted or
+native proof step.  The first generator draft was rejected before solver use:
+it had the wrong atom ledger and a synthetic contradictory Kalmanson pair.
+The repaired generator has an independent semantic audit, 12 passing focused
+tests, and the exact clause inventory above.  Its direct and mirror formulas
+have SHA-256 digests
+`f7337dc542b563c9bc3bff2460d749ea76d5e71c9975868d68688338c93751a3`
+and
+`4df1dc9bf6ce13d7a7148fe90954bd5f8e249ed5a895424c58c4419d2ea50cee`.
+Both 9,151-clause structural positive controls are SAT under PiQD.  Both full
+formulas are UNSAT under PiQD/CaDiCaL `plain`, with zero RAT lemmas: direct job
+`4c1a5491-968b-4ba6-84e7-3e50da11eed0` finished in 10.536 seconds and produced
+LRAT SHA-256
+`82bb9120fc6d78ca8f018a70d1309fb2b3ad59d22500955d929c21f79fd33c59`;
+mirror job `86287b50-c044-4e7d-9271-ee5e3a598ebb` finished in 12.372 seconds and
+produced LRAT SHA-256
+`963acaf45dfd250791001658f69a1b628a312db8e91053c5d1adda36df17ce9a`.
+The direct proof has now been normalized to a pure-RUP source, split into 77
+bounded windows, and emitted as the authenticated compact replay package with
+SHA-256
+`b83f6e91f056d7ce81ed5c00375e7473359536aa78ac2c38220da06d2b967e67`.
+The generated 158 Lean modules and 154 compact payloads build through
+`Balanced555DirectReplay.startUnsatisfiable`. A checked atom reflection maps
+the direct formula to the mirror formula, so the mirror LRAT remains custody
+evidence but is not duplicated in the production replay tree.
+
+The semantic ingress is complete. `Balanced555FiniteFormula` reconstructs the
+exact 50,113-clause formula, supplies checker-valid Kalmanson occurrence
+witnesses, and proves each Kalmanson no-good under the source valuation.
+`Balanced555FiniteStructuralSatisfaction` and its two focused helper modules
+prove the remaining nine clause families. `Balanced555FiniteUnsat` combines
+that valuation with the replay verdict and reflection transport.
+
 ## Reuse preflight
 
 The first concrete global candidate is
@@ -343,24 +402,19 @@ applies to the common-obstruction-center residual rather than this distinct-
 center residual.  The first missing antecedent remains a global ordered or
 metric consequence of the balanced tight cover.
 
-## Next gates
+## Closure checkpoint
 
-1. Express the reduced balanced tight cover from
-   `BalancedTightCoverFlexibleRolePacket`, including the fixed first-apex
-   five-class, exact first interior triple, exact retained critical shell,
-   unique second-apex five-class, convex independence, global `K4`,
-   row-center semantics, cyclic/order data, every retained omission, and the
-   two explicitly flexible row roles.
-   Treat a SAT result as a missing-source-hypothesis diagnosis, not as a
-   theorem failure.
-2. Do not encode stored packet rows as independent source data.  If witness
-   rows are retained for replay, enforce their proved four-of-five dichotomy
-   and distinguish witness selection from invariant survival facts.
-3. If the complete packet is UNSAT, retain the proof artifact and promote a
-   checked finite certificate through a named Lean consumer.
-4. Wire that consumer into the target and require the effective on-spine
-   count to fall from 28 to 27 before proceeding to the two distinct-fresh
-   leaves.
+All three former gates are complete. The target
+`false_of_exactFiveDistinct_threeCenter_exactTwelveTightPhysical` now calls
+`Balanced555FiniteUnsat.false_of_balanced555FiniteConfiguration` and contains
+no `sorry`. Its focused `Rigid221Closure` build passed at proof-blueprint build
+`93f7a22e1159`. The target-rooted spine is `0/1154` open; the effective global
+on-spine frontier outside this closed root fell from 28 to 27. Its exact axiom
+closure is the three standard core axioms plus the repository-approved native
+boundary `Lean.ofReduceBool` and `Lean.trustCompiler`.
+
+The next mathematical work is therefore one of the two distinct-fresh leaves,
+not further computation on this exact-twelve cell.
 
 ## PiQD interface audit
 
@@ -372,11 +426,12 @@ does not yet accept this packet: `MetricProblem` supports only the fixed
 not provide a shared typed model with exact source-semantic replay, and the
 campaign layer does not derive source-aware refinements or case matrices.
 
-Consequently this lane will not replace the missing ingress with another
-Python runner.  A computational attempt must use shared piqd/producer
-infrastructure and declarative B1 source data.  Until exact source assertions
-and their replay boundary are explicit, no solver result can discharge the
-Lean target.
+The finite ingress is now explicit enough for PiQD's raw-DIMACS lane.  The
+repository-local generator owns the source-semantic clause inventory and
+positive controls; PiQD owns byte custody, solver execution, and automatic
+DRAT/LRAT capture. The separate Lean source valuation, exact formula identity,
+checked certificate replay, and live consumer have now been supplied. PiQD
+remains the custody and solver layer; theorem-facing semantics stay in Lean.
 
 ## Frontier measure
 
@@ -387,5 +442,5 @@ Use the ordered deficit
 ```
 
 The first coordinate falls from unknown overlap patterns to the unique
-singleton/disjoint pattern.  No closure credit is claimed until the third
-coordinate falls from one to zero.
+singleton/disjoint pattern, and the third coordinate is now zero for the
+exact-twelve tight-cover leaf.
