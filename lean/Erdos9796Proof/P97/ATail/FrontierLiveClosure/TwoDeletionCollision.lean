@@ -5,6 +5,7 @@ Authors: Adam McKenna
 -/
 
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.B1FiveSixWaveIngress
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure.B1WinningSliceOrderOutcome
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.ContextFrames
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.EqualBlockerContinuation
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.JointDeletionCore
@@ -891,6 +892,34 @@ theorem false_of_b1_distinctBlocker_jointDeletions
       hdeletedNe hdeletedBlockersNe hfirstNotMem
   · exact false_of_b1_oneWayCrossOmission C second first
       hdeletedNe.symm hdeletedBlockersNe.symm hsecondNotMem
+
+/- A favorable B1 source context can be handed back to the exact-four ingress.
+   This adapter is intentionally source-producing: the rigid-221 terminal is
+   not used here because its current chain still carries an open axiom. -/
+theorem exists_exactFourMutualOmissionSourceContext_of_b1EscapeSourceContext
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F))
+    (P : B1EscapeSourceContext C) :
+    ∃ other u v : CarrierVertex D.A,
+      ∃ jointDeletion : ExactFourMutualOmissionJointDeletion C.R C.rho u v,
+        u ≠ v ∧
+        u.1 ∈ SelectedClass D.A S.oppApex2 C.rho ∧
+        v.1 ∈ SelectedClass D.A S.oppApex2 C.rho ∧
+        v.1 ∉
+          ((lateFirstApexSystem C.R).selectedAt
+            u.1 u.2).toCriticalFourShell.support ∧
+        u.1 ∉
+          ((lateFirstApexSystem C.R).selectedAt
+            v.1 v.2).toCriticalFourShell.support ∧
+        ExactFourMutualOmissionSourceContext C.R C.rho P.source other u v := by
+  exact exists_exactFourMutualOmissionSourceContext_of_fivePointInteriorSource
+      C.R C.surface C.rho C.hrho C.hfive P.source
+      P.source_mem_physicalClass P.source_mem_secondCapInterior
+      P.source_mem_outsideFirstApexFiber
+      P.survives_retained_firstApex_deletion
 
 /-- **Remaining B1 consumer.**  The source-clean producer has removed every
 case with a third joint deletion.  What remains is the full B1 context together

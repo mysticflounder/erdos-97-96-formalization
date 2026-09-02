@@ -298,6 +298,16 @@ roles, and otherwise records the exact deleted-source coincidence together
 with its retained-deletion witness.  This removes the need to rediscover the
 goodness split downstream; it does not remove the coincidence residual.
 
+The favorable source arm now has a sound ingress adapter in
+`TwoDeletionCollision.lean`: `exists_exactFourMutualOmissionSourceContext_of_b1EscapeSourceContext`
+feeds the retained source class/interior/outside/survival fields into
+`exists_exactFourMutualOmissionSourceContext_of_fivePointInteriorSource`.
+It deliberately stops before `false_of_exactFourMutualOmissionJointDeletion`,
+whose current rigid-221 dependency chain still carries `sorryAx`.  The
+remaining work is to produce the source context (or a direct order
+contradiction) from every five/six normal-form branch and then close the
+sound downstream consumer.
+
 ## 2026-09-01 PiQD producer update
 
 The claimed declarative `piqc campaign run <plan.json>` surface is not currently
