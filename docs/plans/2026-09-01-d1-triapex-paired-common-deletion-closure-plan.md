@@ -879,6 +879,64 @@ delivered; the closure rule refutes no cell):
 - Lean leaf unchanged: single `sorry`, `M = 18`. The Guardrail 7 second
   engine is still pending the piqd maintainer.
 
+Status 2026-09-02 (Phase 3a, eleventh checkpoint: Stage 2 on the closure
+survivors; the mined obstructions are global six- to eight-point rigidities):
+
+- Survivor batch (`--char 32003 --saturate-all-distinct --timeout 120`, the
+  first 40 closure survivors of `i0-1R1R1R-in12` by key): 33
+  `MOD_EMPTY_COMPLEX`, 7 `MOD_TIMEOUT`. 22 of the 33 are empty before
+  saturation (`dim_raw = -1`: no complex solution even with coincident
+  points); the other 11 carry a 3- to 8-dimensional coincidence component
+  that the distinctness saturation removes. One engine, modular, sampled:
+  CONJECTURE.
+- Core mining (`c4cb00bf5`: raw mode; this checkpoint: member level; steps
+  over `GF(32003)` at 120 s, confirmation over the rationals) on seven
+  raw-empty survivors: four object-level cores confirmed over the rationals
+  (3 to 4 shells plus 2 to 3 apex classes); the other three came back
+  unconfirmed because non-empty trials and the confirmation exceeded 120 s.
+  Refined member by member, the four cores have 6, 8, 8 and 8 points with
+  9, 13, 13 and 13 equations; three are confirmed over the rationals, one
+  only modulo 32003. The six-point core (`091c948a10b60a73`):
+  `|A1 A0| = |A1 A2| = |A1 P1.2|`; `P1.2` equidistant from `A1, A2`; `P0.4`
+  equidistant from `A1, A2, P1.2`; `|P1.2 P2.4| = |P1.2 A1|`; `P2.4`
+  equidistant from `A1, P0.4`; `A0` equidistant from `P0.4, P1.2, P2.4`.
+  The four cores share no sub-configuration; each is a rigid chain that
+  uses at least two apex classes and shells through two apices.
+- Reading (CONJECTURE at the encoded scope): the mu = 0 refutation at card
+  15 is metric and global. No admitted incidence or order rule and no
+  closure rule sees it, and every mined obstruction needs the apex circles
+  and three or four shells jointly, so a Lean route by order and counting
+  alone (the `UNKNOWN` branch of the Phase 2 decision rule) has no support
+  in the evidence. A certificate route exists in the repository:
+  `census/p97_search/phase3_qq_certificate_lean_emitter.py` accepts a
+  generic metric Nullstellensatz certificate
+  (`p97-generic-metric-qq-nullstellensatz-certificate-v1`, gauge
+  `A0 = (0, 0)`, `A1 = (1, 0)`, one `1 = sum cofactor * generator` identity
+  replayed over the rationals) and emits Lean data; each member core is such
+  a system of 9 to 13 quadrics. Its cost is the number of cores: the
+  incidence enumeration hits the 3000 cap in every cell, so the CEGAR loop
+  (mine a core, certify it, block its incidence sub-pattern, re-enumerate)
+  has no known bound, and every core is its own certificate.
+- Goal reassessment (three checkpoints since the last one): the exact-15
+  kill-test has answered the plan's highest-risk question with sampled,
+  one-engine evidence: the leaf's binders at card 15 are refutable, but
+  only metrically. Routes, with cost stated as work: (a) certified CEGAR at
+  card 15 with Nullstellensatz cuts through the existing emitter (unbounded
+  core count, then the card-15 ingress and the Phase 4 lift); (b) the first
+  re-split candidate of the decision rule, retaining the provenance dropped
+  at the leaf boundary (Section 2: reverse-hit rows, betweenness of the
+  reverse blocker, the base-angle acuteness inequalities, source-return U5
+  rows), then a census of the re-split cells (cheaper per cell; no evidence
+  yet that it removes survivors); (c) Lean order and counting per cell as
+  scheduled, which the evidence does not support. The lane continues with
+  the cheapest decisive test, Stage 1c: encode the dropped reverse-hit
+  provenance as census rules per route and measure the survivors; it needs
+  no new Lean and its outcome decides between (a) and (b).
+  {{NEEDS_ADAM_INPUT}} only if (a) is preferred despite the unbounded core
+  count; work does not wait on it.
+- Lean leaf unchanged: single `sorry`, `M = 18`. Guardrail 7 second engine:
+  follow-up posted to the piqd maintainer (#8762), unanswered.
+
 ### Phase 4 — carrier size at least 16
 
 - Extract from the card-15 closures the smallest infeasible sub-pattern and

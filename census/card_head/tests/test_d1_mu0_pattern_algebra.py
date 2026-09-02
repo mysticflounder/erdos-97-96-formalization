@@ -271,3 +271,25 @@ def test_known_raw_core_negative_control(tmp_path: Path) -> None:
     core, confirmed = alg.shrink_core(pattern, tmp_path, timeout_s=120, raw=True)
     assert not confirmed
     assert core == pattern
+
+
+def test_shrink_members_drops_unconstrained_members(monkeypatch: pytest.MonkeyPatch, tmp_path: Path) -> None:
+    # Oracle: a trial is "empty" exactly when it still contains the shell
+    # member P0.3 and the class member A2.  Everything else is droppable.
+    def fake_empty(pattern: alg.MetricPattern, *_args: object, **_kwargs: object) -> bool:
+        shell_ok = any("P0.3" in m for _c, m in pattern.shells)
+        class_ok = any("A2" in m for _a, m in pattern.classes)
+        return shell_ok and class_ok
+
+    monkeypatch.setattr(alg, "is_empty_saturated", fake_empty)
+    core = alg.MetricPattern(
+        (("P0.1", ("A0", "A1", "P0.3", "P1.4")),),
+        (("A0", ("A1", "A2", "P0.2")), ("A1", ("A0", "P1.1"))),
+    )
+    result, confirmed = alg.shrink_members(core, tmp_path, timeout_s=1)
+    assert confirmed
+    assert result.shells == (("P0.1", ("P1.4", "P0.3")),) or result.shells == (("P0.1", ("P0.3", "P1.4")),)
+    assert dict(result.classes)["A0"] in (("A2", "P0.2"), ("P0.2", "A2"))
+    assert len(dict(result.classes)["A1"]) == 2
+    args = alg.parse_args(["m.jsonl", "--artifacts", "a", "--core", "--raw-core", "--members"])
+    assert args.members

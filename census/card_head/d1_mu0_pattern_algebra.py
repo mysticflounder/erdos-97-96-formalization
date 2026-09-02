@@ -552,6 +552,55 @@ def shrink_core(
     return core, True
 
 
+def shrink_members(
+    core: MetricPattern,
+    artifacts: Path,
+    *,
+    timeout_s: int,
+    step_timeout_s: int = 120,
+    prefilter_char: int = PREFILTER_CHAR,
+    raw: bool = True,
+) -> tuple[MetricPattern, bool]:
+    """Member-level refinement of a core: drop single members while emptiness holds.
+
+    Every member of every shell and class is dropped in turn (an object keeps
+    at least two members, so it still asserts an equation) and stays out when
+    the rest is still empty.  Steps and the confirmation follow the same
+    modular-prefilter / characteristic-0 discipline as ``shrink_core``; the
+    result is minimal only up to timed-out steps, which keep their member.
+    """
+
+    shells = [(centre, list(members)) for centre, members in core.shells]
+    classes = [(apex, list(members)) for apex, members in core.classes]
+
+    def assemble() -> MetricPattern:
+        return MetricPattern(
+            tuple((c, tuple(m)) for c, m in shells if len(m) >= 2),
+            tuple((a, tuple(m)) for a, m in classes if len(m) >= 2),
+        )
+
+    step = 0
+    for objects in (shells, classes):
+        for _centre, members in objects:
+            for member in list(members):
+                if len(members) <= 2:
+                    break
+                members.remove(member)
+                trial = assemble()
+                step += 1
+                if not trial.points or not var_names(trial.points) or not is_empty_saturated(
+                    trial, artifacts, f"members-{core.key}-s{step}", timeout_s=step_timeout_s,
+                    char=prefilter_char, strict=False, saturate=not raw,
+                ):
+                    members.append(member)
+    result = assemble()
+    confirmed = is_empty_saturated(
+        result, artifacts, f"members-{core.key}-confirm", timeout_s=timeout_s, char=0, strict=False,
+        saturate=not raw,
+    )
+    return result, confirmed
+
+
 # --------------------------------------------------------------------------
 # Driver
 # --------------------------------------------------------------------------
@@ -582,6 +631,11 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
         help="shrink every refuted pattern to a deletion-minimal core and skip patterns a known core covers",
     )
     parser.add_argument(
+        "--members",
+        action="store_true",
+        help="with --core: refine every confirmed core member by member (drop members that carry no constraint)",
+    )
+    parser.add_argument(
         "--raw-core",
         action="store_true",
         help="with --core: mine raw-emptiness cores (no distinctness saturation; only patterns whose raw ideal is empty)",
@@ -596,6 +650,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     results: list[dict[str, Any]] = []
     counts: dict[str, int] = {}
     cores: dict[str, MetricPattern] = {}
+    member_cores: dict[str, MetricPattern] = {}
     coverage: dict[str, int] = {}
     wanted = {k for k in args.keys.split(",") if k}
     if wanted:
@@ -626,11 +681,22 @@ def main(argv: Sequence[str] | None = None) -> int:
             entry["core"] = core.key
             entry["core_confirmed"] = confirmed
             entry["core_raw"] = args.raw_core
+            if args.members and confirmed:
+                member_core, member_confirmed = shrink_members(
+                    core, args.artifacts, timeout_s=args.timeout, raw=args.raw_core
+                )
+                member_cores[member_core.key] = member_core
+                entry["member_core"] = member_core.key
+                entry["member_core_confirmed"] = member_confirmed
             entry["core_shells"] = len(core.shells)
             entry["core_classes"] = len(core.classes)
         results.append(entry)
         counts[result.verdict] = counts.get(result.verdict, 0) + 1
-        print(f"{key} records={records} {result.verdict} {result.fields} core={entry.get('core', '-')}", flush=True)
+        print(
+            f"{key} records={records} {result.verdict} {result.fields} core={entry.get('core', '-')}"
+            f" member_core={entry.get('member_core', '-')}",
+            flush=True,
+        )
     tag = args.tag or datetime.now(UTC).strftime("%Y%m%dT%H%M%SZ")
     summary = {
         "schema": SCHEMA,
@@ -646,6 +712,9 @@ def main(argv: Sequence[str] | None = None) -> int:
         "cores": {
             key: {"shells": core.shells, "classes": core.classes, "covers": coverage[key]}
             for key, core in cores.items()
+        },
+        "member_cores": {
+            key: {"shells": core.shells, "classes": core.classes} for key, core in member_cores.items()
         },
         "results": results,
     }
