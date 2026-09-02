@@ -343,7 +343,7 @@ wave-5 two-family CNF (base hard families plus `two_circle_same_arc` and
 | Wave | Selectors | Budget per solve | First solve | Outcome |
 |---|---|---|---|---|
 | 6 (`--by-group`, root `q1b-wave-6`) | 1,287 (`family:label-set`: 495 same-arc, 792 isosceles) | 900 s (two accidental parallel launches), then 3600 s (session `24d5736c…`) | UNKNOWN at 900 s, 900 s, and 3600 s | UNDECIDED; no core |
-| 7 (`--coarse`, root `q1b-wave-7`, session `d4fee929…`) | 78 (`family:coarse`: 66 chords `{q, v}`, 12 centers `W`) | 3600 s | UNSAT in 1,864 s; returned core = all 78 selectors | shrink RUNNING at the time of writing (drop 1 in progress after 24 min) |
+| 7 (`--coarse`, root `q1b-wave-7`, session `d4fee929…`) | 78 (`family:coarse`: 66 chords `{q, v}`, 12 centers `W`) | 3600 s | UNSAT in 1,864 s; returned core = all 78 selectors | shrink stopped 2026-09-02 03:20Z after drop 1 (`five_point_circle_isosceles_order:0`) returned UNKNOWN at 3600 s; no core beyond the family level |
 
 Reading (bookkeeping). Assumption-based solving of the same formula is
 much slower than the from-scratch job (360.8 s) because the 1,287 or 78
@@ -353,10 +353,11 @@ label-set core exists at this budget. The coarse first solve returned
 every selector, so the pruning must come from the deletion shrink, whose
 per-drop cost is of the same order as the first solve; a full shrink of
 78 drops at this pace is several days of solver time and is not a route
-to a small finite lemma. The coarse run is left running for its first few
-drops only to measure whether incremental solves are faster; its result,
-if any, is reported in a later section. No budget was widened beyond the
-3600 s per solve already in use.
+to a small finite lemma. The coarse run was left running for its first
+drop to measure whether incremental solves are faster: the first drop did
+not finish in 3600 s, so the mine was stopped (fail-closed; the session's
+two receipts are in `family-core-log.jsonl`, no summary file was written).
+No budget was widened beyond the 3600 s per solve already in use.
 
 Consequence for Phase 3: the certificate route (P3.5) is the primary
 route for card 12; the finite-lemma alternative needs a core-extraction
