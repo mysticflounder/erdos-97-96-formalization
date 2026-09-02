@@ -404,6 +404,21 @@ Lean route, in dependency order; every item names its consumer.
   is requested from the piqd maintainers (`#piqd` #8765), the manual
   `cadical --plain` alternative needs Adam's approval. See the audit's
   "Phase 3, P3.5 proof retention" section. Original item follows.
+  Certificate-independent half DONE 2026-09-02:
+  `ATail/FrontierLiveClosure/DRExactTwelveTwoFamilyUnsat.lean` (PROVEN;
+  axioms propext, Classical.choice, Quot.sound) defines
+  `ClausesUnsatisfiable` (no `ℕ → Prop` valuation satisfies every clause of
+  `clauses`), proves `clausesUnsatisfiable_of_formula` /
+  `clausesUnsatisfiable_of_formula_eq` (from `Unsatisfiable (PosFin n)` of a
+  compact-checker formula whose signed clauses lie in, or equal, `clauses`),
+  and `false_of_twoRadiusBranch_exactTwelve_of_clausesUnsatisfiable` (the
+  leaf's binders plus `hcard12`, conditional on `ClausesUnsatisfiable`).
+  What the generated replay must still supply: `startUnsatisfiable` for its
+  checkpoint-0 formula and `signedClausesOfFormula (formulaOfCompact
+  C0000.text) = clauses` (audited `native_decide`, as in
+  `G3Checkpoint0ClauseBank`). The drat-trim core of the retained proof uses
+  41,919 of the 254,412 input clauses, so the "small direct lemma"
+  alternative below does not apply.
 - P3.5 Certificate replay. Store a checked, zero-RAT LRAT of the two-family
   CNF (`piqd` job `bdbe81da…` or a `cadical --plain` rerun through `piqd`
   if the proof has RAT lemmas), normalize it, and replay it with the

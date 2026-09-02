@@ -486,3 +486,17 @@ alternative, a manual `cadical --plain` + `drat-trim -L` run outside
 piqd, needs Adam's approval. Trust label: EMPIRICALLY VERIFIED (solver
 verdict, drat-trim replay inside piqd, and an independent drat-trim check);
 kernel replay pending.
+
+### Certificate-independent bridge (2026-09-02)
+
+`ATail/FrontierLiveClosure/DRExactTwelveTwoFamilyUnsat.lean` (PROVEN; axioms
+propext, Classical.choice, Quot.sound; built and axiom-audited 2026-09-02)
+states `ClausesUnsatisfiable` at the `ℕ → Prop` semantics of the valuation
+modules, transports `Unsatisfiable (PosFin n) formula` from the compact
+checker boundary to it when `signedClausesOfFormula formula` is contained in
+or equal to `clauses`, and derives `False` from the leaf binders at
+`D.A.card = 12` (`false_of_twoRadiusBranch_exactTwelve_of_clausesUnsatisfiable`).
+The remaining certificate obligation is the replay package's
+`startUnsatisfiable` plus the checkpoint-0 clause identity. drat-trim's core
+for the retained `--unsat` proof: 41,919 of 254,412 input clauses, 807,720 of
+826,524 lemmas, 28,283 RAT lemmas.
