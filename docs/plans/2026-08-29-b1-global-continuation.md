@@ -309,14 +309,43 @@ to retain the source-complete role and continuation packets and avoid encoding
 stronger aliases or cyclic-order facts than their constructors provide.
 
 The committed packet checkpoint `aec7bc08f` is now wired into
-`TwoDeletionCollision` by importing `B1CardFiveLocalRolePacket` and
-`B1WinningLiveSliceIngress`; those imports transitively reach all four new B1
-modules without a cycle.  Focused builds of `TwoDeletionCollision` and the
-`FrontierLiveClosure` root pass.  From the active residual's `C` and `hnormal`,
-Lean can therefore construct the card-five/card-six local-role packet and the
-escape-row provenance star directly.  The spine still has exactly one open B1
-obligation: no current theorem consumes those packets to prove the missing
-global cyclic-placement contradiction.
+`TwoDeletionCollision` through `B1FiveSixWaveIngress`; that module transitively
+reaches all four new B1 modules without a cycle.  Its
+`nonempty_b1FiveSixWaveIngress` theorem packages one escape-row provenance star
+together with exactly one card-five or card-six local-role packet, directly
+from the active residual's `C` and `hnormal`.  Focused builds of the ingress,
+`TwoDeletionCollision`, and the `FrontierLiveClosure` root pass.  The spine
+still has exactly one open B1 obligation: no current theorem consumes this
+combined packet to prove the missing global cyclic-placement contradiction.
+
+The bounded reuse preflight for this combined-ingress candidate used the
+repository Lean index at source revision `aec7bc08f`.  It found no existing
+theorem pairing the escape-row star with the five/six local-role case; the
+closest hit, `B1CardSixPhysicalIngress.physicalClassWithApex_card_eq_seven`,
+supplies only the card-six physical-apex cardinality fact.  The immediate
+consumer is the typed campaign producer, and the first missing antecedent after
+this packaging remains its globally checked cyclic-placement conclusion.
+
+The pro-model exact-five bundle
+`p97-exact-five-closure-push-complete-2026-09-01.tar.gz` was audited at outer
+SHA-256 `09beda297ce10a4530dd3ac5801efc6432b95eb3c249f3cf760aaaf5f96aeb4b`.
+Its 53 regular files and all outer/nested checksum lists are byte-consistent,
+but the bundle contains no Lean build, axiom audit, solver input, executable
+validation source, PiQD receipt, or kernel certificate.  Its most important
+correction is valid: the proposed arbitrary flexible source pair does not
+supply the physical-class source fields required by the current B1 packet.
+
+The corrected exact-five trace split proposes a physical good pair or a
+fixed-point-free physical trace permutation of cycle type `2+3` or `5`; the
+included 3,125-map enumeration is regression evidence for that finite claim,
+not proof evidence.  This split is upstream of the present residual: the active
+B1 context already carries the physical good pair `u,v` and two distinct
+physical deletions omitted from both rows.  Formalizing the split would not
+consume `B1FiveSixWaveIngress` or narrow the current `sorry`.  The bundle's
+adjacent-boundary-edge center-uniqueness proposal is likewise only a supporting
+order lemma; without a source proof that the winning live pair is adjacent (or
+an equivalent global incidence argument), it does not produce
+`B1WinningLiveSliceSameBoundaryArc`.
 
 The missing post-wave theorem mines have now been backfilled for exact-12
 Waves 14--20 and normal-form Waves 1--6.  The normal-form campaign scan over

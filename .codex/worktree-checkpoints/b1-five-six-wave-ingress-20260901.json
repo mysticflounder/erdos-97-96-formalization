@@ -1,0 +1,16 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "b1-five-six-wave-ingress-20260901",
+  "owner": "codex-registry-unblock",
+  "base_head": "cef5db522ef23d0ba7f028016ee13e04dd9e5d2c",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/b1-five-six-wave-ingress-20260901.json",
+    "docs/plans/2026-08-29-b1-global-continuation.md",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/B1FiveSixWaveIngress.lean",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-02T01:47:10Z",
+  "manifest_sha256": "e037e47f9c13eb8977d5eb8e4d82220b90f3f43c948f244bf76bb247489fbf30"
+}
