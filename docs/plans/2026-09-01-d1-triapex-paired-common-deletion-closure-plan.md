@@ -685,6 +685,33 @@ on the pinned object, stated for the solver decision; read-only, no run):
 - Lean leaf unchanged by this checkpoint: single `sorry`, on-spine open
   obligations 28, `M = 18`.
 
+Status 2026-09-01 (Phase 3a, sixth checkpoint: the two-radii analogue of
+Route C compiled; no cell is closed):
+
+- `selectedClass_card_eq_four_of_twoRadii_card_eq_fifteen` is proved: when
+  the strict interior of cap `i` splits into two pairs at distinct radii
+  about the opposite apex, that apex's classes at those radii have exactly
+  four points each, the pair plus one point of each adjacent cap; the
+  six-point branch of `G.apex_rich i` is impossible there and the two-radii
+  branch is at exactly these radii. The private helpers
+  `selectedClass_adjacent_bounds` and
+  `selectedClass_capInteriorByIndex_card_ge_two_of_four_le_card` now serve
+  both Route C theorems. The dispatcher's `twoRadii` disjunct returns these
+  two exact four-point classes, so the leaf binding `hadjacentAtPair`
+  carries the apex class structure in both arms.
+- Axiom closure: `propext`, `Classical.choice`, `Quot.sound`. Leaf `sorry`
+  unchanged, `M = 18`. The on-spine open count is 36 at `eadc775d4`; the
+  eight new obligations belong to the D-R lane exact-12 mirror, not D1.
+- Direction change (Adam, 2026-09-01): stop gating on decisions. Non-piqd
+  solver runs stay unapproved; the algebra stage goes through piqd, and the
+  D1 use case was posted to the piqd maintainer (#8669 on `#piqd`, #8670
+  here) against PIQD-BACKEND-002: `piqc singular run` exists on daemon
+  0.1.0, a second engine for the Guardrail 7 cross-check does not. Stage 1
+  (piqd cadical incidence census at card 15, encoder
+  `census/card_head/d1_mu0_incidence_census.py`) is being built and run by a
+  background agent; its verdicts are CONJECTURE at the encoded scope until
+  the encoding-to-claim map is audited.
+
 ### Phase 4 — carrier size at least 16
 
 - Extract from the card-15 closures the smallest infeasible sub-pattern and

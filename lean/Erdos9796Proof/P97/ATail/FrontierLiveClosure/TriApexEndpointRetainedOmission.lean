@@ -2501,6 +2501,47 @@ theorem not_mem_selected_support_of_adjacent_interior_slots_of_oneRadius
     have h2 : k.1 + 1 < s.1 := Fin.lt_def.mp hbetween.2
     omega
 
+/-- The counting data of a class at the apex opposite cap `i`: its part
+outside the strict interior lies in the two adjacent caps, each of which it
+meets in at most one point. -/
+private theorem selectedClass_adjacent_bounds
+    {D : CounterexampleData} (S : SurplusCapPacket D.A) (i : Fin 3)
+    {ρ : ℝ} (hρ : 0 < ρ) :
+    (SelectedClass D.A (S.oppositeVertexByIndex i) ρ \
+        S.capInteriorByIndex i).card ≤
+      (SelectedClass D.A (S.oppositeVertexByIndex i) ρ ∩
+          S.leftAdjacentCapByIndex i).card +
+        (SelectedClass D.A (S.oppositeVertexByIndex i) ρ ∩
+          S.rightAdjacentCapByIndex i).card ∧
+    (SelectedClass D.A (S.oppositeVertexByIndex i) ρ ∩
+      S.leftAdjacentCapByIndex i).card ≤ 1 ∧
+    (SelectedClass D.A (S.oppositeVertexByIndex i) ρ ∩
+      S.rightAdjacentCapByIndex i).card ≤ 1 ∧
+    (SelectedClass D.A (S.oppositeVertexByIndex i) ρ \
+        S.capInteriorByIndex i).card +
+      (SelectedClass D.A (S.oppositeVertexByIndex i) ρ ∩
+        S.capInteriorByIndex i).card =
+      (SelectedClass D.A (S.oppositeVertexByIndex i) ρ).card := by
+  classical
+  exact ⟨le_trans
+      (Finset.card_le_card
+        (S.selectedClass_sdiff_capInteriorByIndex_subset_adjacentCaps i hρ))
+      (Finset.card_union_le _ _),
+    S.leftAdjacentCap_at_opposite_card_le_one_of_convexIndep D.convex i ρ,
+    S.rightAdjacentCap_at_opposite_card_le_one_of_convexIndep D.convex i ρ,
+    Finset.card_sdiff_add_card_inter _ _⟩
+
+/-- A class of at least four points at the apex opposite cap `i` has at least
+two members in the strict interior of cap `i`. -/
+private theorem selectedClass_capInteriorByIndex_card_ge_two_of_four_le_card
+    {D : CounterexampleData} (S : SurplusCapPacket D.A) (i : Fin 3)
+    {ρ : ℝ} (hρ : 0 < ρ)
+    (hcard : 4 ≤ (SelectedClass D.A (S.oppositeVertexByIndex i) ρ).card) :
+    2 ≤ (SelectedClass D.A (S.oppositeVertexByIndex i) ρ ∩
+      S.capInteriorByIndex i).card := by
+  obtain ⟨houtside, hleft, hright, hsplit⟩ := selectedClass_adjacent_bounds S i hρ
+  omega
+
 /-- At carrier size fifteen, when the four strict-interior points of cap `i`
 lie on one circle about the apex opposite cap `i`, that apex's class at that
 radius has exactly six points: the four strict-interior points and one point
@@ -2528,26 +2569,9 @@ theorem selectedClass_card_eq_six_of_oneRadius_card_eq_fifteen
   have hmeets : ∀ ρ : ℝ, 0 < ρ →
       4 ≤ (SelectedClass D.A (S.oppositeVertexByIndex i) ρ).card →
       2 ≤ (SelectedClass D.A (S.oppositeVertexByIndex i) ρ ∩
-        S.capInteriorByIndex i).card := by
-    intro ρ hρ hcardρ
-    have hleftOne :=
-      S.leftAdjacentCap_at_opposite_card_le_one_of_convexIndep D.convex i ρ
-    have hrightOne :=
-      S.rightAdjacentCap_at_opposite_card_le_one_of_convexIndep D.convex i ρ
-    have houtside :
-        (SelectedClass D.A (S.oppositeVertexByIndex i) ρ \
-          S.capInteriorByIndex i).card ≤
-        (SelectedClass D.A (S.oppositeVertexByIndex i) ρ ∩
-            S.leftAdjacentCapByIndex i).card +
-          (SelectedClass D.A (S.oppositeVertexByIndex i) ρ ∩
-            S.rightAdjacentCapByIndex i).card :=
-      le_trans
-        (Finset.card_le_card
-          (S.selectedClass_sdiff_capInteriorByIndex_subset_adjacentCaps i hρ))
-        (Finset.card_union_le _ _)
-    have hsplit := Finset.card_sdiff_add_card_inter
-      (SelectedClass D.A (S.oppositeVertexByIndex i) ρ) (S.capInteriorByIndex i)
-    omega
+        S.capInteriorByIndex i).card :=
+    fun ρ hρ hcardρ =>
+      selectedClass_capInteriorByIndex_card_ge_two_of_four_le_card S i hρ hcardρ
   have hradius_eq : ∀ ρ : ℝ, 0 < ρ →
       4 ≤ (SelectedClass D.A (S.oppositeVertexByIndex i) ρ).card → ρ = r := by
     intro ρ hρ hcardρ
@@ -2589,6 +2613,115 @@ theorem selectedClass_card_eq_six_of_oneRadius_card_eq_fifteen
     rw [Finset.inter_eq_right.mpr hslice]
     exact hfour
   exact ⟨by omega, by omega, by omega⟩
+
+/-- At carrier size fifteen, when the strict interior of cap `i` splits into
+two pairs at two distinct radii about the apex opposite cap `i`, that apex's
+classes at those two radii have exactly four points each: the pair and one
+point of each adjacent cap.  Every class of at least four points at that
+apex meets the strict interior, hence has one of the two radii, so the
+six-point branch of `ApexRichClassStructure` is impossible and its two-radii
+branch is at exactly these two radii. -/
+theorem selectedClass_card_eq_four_of_twoRadii_card_eq_fifteen
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    (G : TriApexAllLargeContext D S) (i : Fin 3)
+    {r₁ r₂ : ℝ} (hr₁ : 0 < r₁) (hr₂ : 0 < r₂) (hne : r₁ ≠ r₂)
+    {T₁ T₂ : Finset ℝ²}
+    (hT₁ : T₁ ⊆ SelectedClass D.A (S.oppositeVertexByIndex i) r₁ ∩
+      S.capInteriorByIndex i)
+    (hT₂ : T₂ ⊆ SelectedClass D.A (S.oppositeVertexByIndex i) r₂ ∩
+      S.capInteriorByIndex i)
+    (hc₁ : T₁.card = 2) (hc₂ : T₂.card = 2)
+    (hunion : T₁ ∪ T₂ = S.capInteriorByIndex i) :
+    ((SelectedClass D.A (S.oppositeVertexByIndex i) r₁).card = 4 ∧
+      (SelectedClass D.A (S.oppositeVertexByIndex i) r₁ ∩
+        S.leftAdjacentCapByIndex i).card = 1 ∧
+      (SelectedClass D.A (S.oppositeVertexByIndex i) r₁ ∩
+        S.rightAdjacentCapByIndex i).card = 1) ∧
+    ((SelectedClass D.A (S.oppositeVertexByIndex i) r₂).card = 4 ∧
+      (SelectedClass D.A (S.oppositeVertexByIndex i) r₂ ∩
+        S.leftAdjacentCapByIndex i).card = 1 ∧
+      (SelectedClass D.A (S.oppositeVertexByIndex i) r₂ ∩
+        S.rightAdjacentCapByIndex i).card = 1) := by
+  classical
+  -- a strict-interior point at distance `ρ` from the apex has `ρ = r₁` or
+  -- `ρ = r₂`
+  have hinteriorRadius : ∀ x ∈ S.capInteriorByIndex i, ∀ ρ : ℝ,
+      dist (S.oppositeVertexByIndex i) x = ρ → ρ = r₁ ∨ ρ = r₂ := by
+    intro x hx ρ hxρ
+    rw [← hunion] at hx
+    rcases Finset.mem_union.mp hx with h1 | h1
+    · left
+      have := (mem_selectedClass.mp (Finset.mem_inter.mp (hT₁ h1)).1).2
+      rw [← hxρ, ← this]
+    · right
+      have := (mem_selectedClass.mp (Finset.mem_inter.mp (hT₂ h1)).1).2
+      rw [← hxρ, ← this]
+  -- the class at `r₁` meets the strict interior exactly in `T₁`, and at `r₂`
+  -- exactly in `T₂`
+  have hinter₁ : SelectedClass D.A (S.oppositeVertexByIndex i) r₁ ∩
+      S.capInteriorByIndex i = T₁ := by
+    apply Finset.Subset.antisymm _ hT₁
+    intro x hx
+    have hxI := (Finset.mem_inter.mp hx).2
+    have hxr := (mem_selectedClass.mp (Finset.mem_inter.mp hx).1).2
+    rw [← hunion] at hxI
+    rcases Finset.mem_union.mp hxI with h1 | h1
+    · exact h1
+    · exfalso
+      apply hne
+      have := (mem_selectedClass.mp (Finset.mem_inter.mp (hT₂ h1)).1).2
+      rw [← hxr, ← this]
+  have hinter₂ : SelectedClass D.A (S.oppositeVertexByIndex i) r₂ ∩
+      S.capInteriorByIndex i = T₂ := by
+    apply Finset.Subset.antisymm _ hT₂
+    intro x hx
+    have hxI := (Finset.mem_inter.mp hx).2
+    have hxr := (mem_selectedClass.mp (Finset.mem_inter.mp hx).1).2
+    rw [← hunion] at hxI
+    rcases Finset.mem_union.mp hxI with h1 | h1
+    · exfalso
+      apply hne
+      have := (mem_selectedClass.mp (Finset.mem_inter.mp (hT₁ h1)).1).2
+      rw [← this, ← hxr]
+    · exact h1
+  -- any class of at least four points at the apex has radius `r₁` or `r₂`
+  have hradius_mem : ∀ ρ : ℝ, 0 < ρ →
+      4 ≤ (SelectedClass D.A (S.oppositeVertexByIndex i) ρ).card →
+      ρ = r₁ ∨ ρ = r₂ := by
+    intro ρ hρ hcardρ
+    have h2 := selectedClass_capInteriorByIndex_card_ge_two_of_four_le_card
+      S i hρ hcardρ
+    have hpos : 0 < (SelectedClass D.A (S.oppositeVertexByIndex i) ρ ∩
+        S.capInteriorByIndex i).card := by omega
+    obtain ⟨x, hx⟩ := Finset.card_pos.mp hpos
+    exact hinteriorRadius x (Finset.mem_inter.mp hx).2 ρ
+      (mem_selectedClass.mp (Finset.mem_inter.mp hx).1).2
+  obtain ⟨hout₁, hleft₁, hright₁, hsplit₁⟩ := selectedClass_adjacent_bounds S i hr₁
+  obtain ⟨hout₂, hleft₂, hright₂, hsplit₂⟩ := selectedClass_adjacent_bounds S i hr₂
+  rw [hinter₁, hc₁] at hsplit₁
+  rw [hinter₂, hc₂] at hsplit₂
+  -- both classes carry at least four points
+  have hfour : 4 ≤ (SelectedClass D.A (S.oppositeVertexByIndex i) r₁).card ∧
+      4 ≤ (SelectedClass D.A (S.oppositeVertexByIndex i) r₂).card := by
+    rcases G.apex_rich i with ⟨ρ, hρ, hρcard⟩ |
+      ⟨ρ₁, ρ₂, hρ₁, hρ₂, hne', hc'₁, hc'₂⟩
+    · exfalso
+      rcases hradius_mem ρ hρ (le_trans (by norm_num) hρcard) with h | h
+      · rw [h] at hρcard
+        omega
+      · rw [h] at hρcard
+        omega
+    · rcases hradius_mem ρ₁ hρ₁ hc'₁ with h1 | h1 <;>
+        rcases hradius_mem ρ₂ hρ₂ hc'₂ with h2 | h2
+      · exact absurd (h1.trans h2.symm) hne'
+      · rw [h1] at hc'₁
+        rw [h2] at hc'₂
+        exact ⟨hc'₁, hc'₂⟩
+      · rw [h1] at hc'₁
+        rw [h2] at hc'₂
+        exact ⟨hc'₂, hc'₁⟩
+      · exact absurd (h1.trans h2.symm) hne'
+  exact ⟨⟨by omega, by omega, by omega⟩, ⟨by omega, by omega, by omega⟩⟩
 
 /-- The Phase 3a state of the closure plan at carrier size fifteen: the four
 strict-interior points of cap `i` occupy the consecutive middle slots `1..4`
@@ -2692,8 +2825,8 @@ theorem adjacentMutualOmissionPairAt_of_oneRadius_card_eq_fifteen
 
 /-- Witness-level form of the Phase 3a state at carrier size fifteen: a strict
 apex witness whose support is the whole strict interior of cap `i` either is
-in the two-radii arm, with its raw data returned, or carries the
-adjacent-slot mutual-omission pair. -/
+in the two-radii arm, with its raw data and the two exact four-point apex
+classes returned, or carries the adjacent-slot mutual-omission pair. -/
 theorem twoRadii_or_adjacentMutualOmissionPairAt_of_card_eq_fifteen
     {D : CounterexampleData} {S : SurplusCapPacket D.A}
     {H : CriticalShellSystem D.A}
@@ -2705,7 +2838,17 @@ theorem twoRadii_or_adjacentMutualOmissionPairAt_of_card_eq_fifteen
           S.capInteriorByIndex i ∧
         T₂ ⊆ SelectedClass D.A (S.oppositeVertexByIndex i) r₂ ∩
           S.capInteriorByIndex i ∧
-        T₁.card = 2 ∧ T₂.card = 2 ∧ W.support = T₁ ∪ T₂) ∨
+        T₁.card = 2 ∧ T₂.card = 2 ∧ W.support = T₁ ∪ T₂ ∧
+        ((SelectedClass D.A (S.oppositeVertexByIndex i) r₁).card = 4 ∧
+          (SelectedClass D.A (S.oppositeVertexByIndex i) r₁ ∩
+            S.leftAdjacentCapByIndex i).card = 1 ∧
+          (SelectedClass D.A (S.oppositeVertexByIndex i) r₁ ∩
+            S.rightAdjacentCapByIndex i).card = 1) ∧
+        ((SelectedClass D.A (S.oppositeVertexByIndex i) r₂).card = 4 ∧
+          (SelectedClass D.A (S.oppositeVertexByIndex i) r₂ ∩
+            S.leftAdjacentCapByIndex i).card = 1 ∧
+          (SelectedClass D.A (S.oppositeVertexByIndex i) r₂ ∩
+            S.rightAdjacentCapByIndex i).card = 1)) ∨
       AdjacentMutualOmissionPairAt D S H i := by
   cases W with
   | oneRadius r hr T hT _ =>
@@ -2714,7 +2857,11 @@ theorem twoRadii_or_adjacentMutualOmissionPairAt_of_card_eq_fifteen
         G hcard i hr hT hW
   | twoRadii r₁ r₂ hr₁ hr₂ hne T₁ T₂ hT₁ hT₂ hcard₁ hcard₂ =>
       left
-      exact ⟨r₁, r₂, T₁, T₂, hr₁, hr₂, hne, hT₁, hT₂, hcard₁, hcard₂, rfl⟩
+      have hunion : T₁ ∪ T₂ = S.capInteriorByIndex i := hW
+      have hfour := selectedClass_card_eq_four_of_twoRadii_card_eq_fifteen G i
+        hr₁ hr₂ hne hT₁ hT₂ hcard₁ hcard₂ hunion
+      exact ⟨r₁, r₂, T₁, T₂, hr₁, hr₂, hne, hT₁, hT₂, hcard₁, hcard₂, rfl,
+        hfour.1, hfour.2⟩
 
 end TriApexLeafControls
 
