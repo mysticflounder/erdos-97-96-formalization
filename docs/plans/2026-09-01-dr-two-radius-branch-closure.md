@@ -310,13 +310,41 @@ Lean route, in dependency order; every item names its consumer.
   L4; `blockers` and `ingress` read the packet (`CriticalShellSystem`,
   `surface`); `two_circle_same_arc`, `five_point_circle_isosceles_order`
   are P3.2, P3.3 with the finite arc/pattern checks decided on `Fin 12`.
-  Open design choice {{NEEDS_ADAM_INPUT}}: reuse the Rigid221 exact-twelve
-  DIMACS ingress (`ExactTwelveRigid221TerminalRupIngress`, row-pattern and
-  nogood-bank language) or write a D-R-specific runtime DIMACS ingress for
-  the `dr_exact12_structural` layout. Precedent for scale: the
-  `ExactFiveCommonShellV7G3Replay` package (165 checkpoints, 2 shards,
-  `native_decide` windows) was accepted under the project's native-trust
-  audit.
+  Decision 2026-09-02 (Adam: "figure it out"): a D-R-specific ingress.
+  The Rigid221 language (row patterns, nogood banks, `terminalDimacs cell
+  bank`) would require re-encoding the CNF and would invalidate the wave-5
+  UNSAT; only its generic layer is reused: `CheckpointedRup.CompactIngress`,
+  `CheckpointedRup.SemanticBoundary` (`DimacsUnsatisfiable`,
+  `dimacsUnsatisfiable_of_checkedCompactTerminal`), the windowed tooling
+  (`scripts/materialize_windowed_rup.py`,
+  `scripts/emit_compact_windowed_rup_replay_package.py`, the G3 `ingress.py`
+  pattern), and the parsed-formula equality by `native_decide` as in
+  `checkpoint0_clauses_eq_bridgeClauses`. Steps, each with a named
+  consumer:
+  - P3.4a `DRExactTwelveDimacs.clauses : List (List Int)`: a Lean
+    generator of the wave-5 two-family CNF (`build("none",
+    families=("two_circle_same_arc", "five_point_circle_isosceles_order"))`)
+    in the encoder's variable layout (2,145 relation variables `eq(e, e')`
+    over the 66 edges of the 12 labels, then the D-R selector variables,
+    clause and literal order as emitted), checked against the stored DIMACS
+    (sha256 `e29d1b26…`) by a test that compares the Lean-evaluated list
+    with the file, and in Lean by `native_decide` against the parsed
+    checkpoint-0 text once the certificate exists. Consumer: P3.4b, P3.5.
+  - P3.4b valuation theorem: `∀ clause ∈ clauses, ∃ lit ∈ clause, val lit`
+    with `val` reading `eq(e, e')` as `dist e = dist e'` on the label-to-
+    point map of P3.1 (direct or mirror) and the selector variables from the
+    packet; proved family by family from L1 to L4, P3.2, P3.3,
+    `CounterexampleData.K4`, the shell system, and `surface`; the finite
+    arc and pattern side conditions decided on `Fin 12`. Consumer: leaf.
+  - P3.5 as below; P3.6 splits the leaf.
+  Scale precedent: `ExactFiveCommonShellV7G3Replay` replayed an 861 MB
+  source LRAT (421,331 additions, 93 M hints, 165 windows, 399 MB compact
+  binary; `compact-replay-manifest.json`). The two-family proof's LRAT is
+  1.95 GB (piqd log, job `bdbe81da…`), about 2.3 times the precedent, so
+  the replay is feasible in kind but needs roughly 400 windows; proof
+  retention is requested in `#piqd` message #8655 (configurable cap,
+  fallback retention of the drat-trim output). Try the `sat` and default
+  profiles as well, since proof size varies by run.
 - P3.5 Certificate replay. Store a checked, zero-RAT LRAT of the two-family
   CNF (`piqd` job `bdbe81da…` or a `cadical --plain` rerun through `piqd`
   if the proof has RAT lemmas), normalize it, and replay it with the
