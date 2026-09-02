@@ -19,12 +19,14 @@ target_symbol = ["Problem97.erdos97_rhs"]
 state = "wip"  # "wip" | "complete" — config compat; affects no verdict (sorry is always open work)
 
 [axioms]
-# Project-declared approved custom axioms (full FQ names). The Lean core
-# axioms (propext, Classical.choice, Quot.sound, Lean.ofReduceBool,
-# Lean.ofReduceNat) are always approved; do NOT list them here.
-# Lean.trustCompiler: native_decide certificate closure under the project's
-# bv_decide-standard policy (2026-06-05); approved by Adam 2026-07-06.
-approved = ["Lean.trustCompiler"]
+# Project-declared approved custom axioms (full FQ names). Native-reduction
+# trust is declared separately below and must match the observed closure.
+approved = []
+
+[trust]
+# native_decide certificate closure under the project's bv_decide-standard
+# policy (2026-06-05); compiler trust approved by Adam 2026-07-06.
+native_axioms = ["Lean.ofReduceBool", "Lean.trustCompiler"]
 
 [mining]
 # Generated certificate subtrees (Erdos9796Proof.P97.{Endpoint,Surplus}Certificate.*)
