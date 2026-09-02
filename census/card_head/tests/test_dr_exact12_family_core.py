@@ -34,6 +34,16 @@ class Relax(unittest.TestCase):
         self.assertEqual(sum(1 for c, f in zip(relaxed.clauses, cnf.families, strict=True) if f == "two_circle_same_arc" and -max(relaxed.selectors.values()) <= min(c)), cnf.counts["two_circle_same_arc"])
         self.assertEqual(fc.strip(relaxed), tuple(cnf.clauses))
 
+    def test_relax_coarse_uses_one_selector_per_chord_or_center(self) -> None:
+        cnf, _layout = dr.build(families=("two_circle_same_arc", "five_point_circle_isosceles_order"))
+        relaxed = fc.relax(cnf, ("two_circle_same_arc", "five_point_circle_isosceles_order"), coarse=True)
+        keys = sorted(relaxed.selectors)
+        self.assertEqual(sum(k.startswith("two_circle_same_arc:") for k in keys), 66)  # chords {q, v}
+        self.assertEqual(sum(k.startswith("five_point_circle_isosceles_order:") for k in keys), 12)  # centers W
+        self.assertEqual(fc.strip(relaxed), tuple(cnf.clauses))
+        with self.assertRaises(dr.DRStructuralError):
+            fc.relax(cnf, ("two_circle_same_arc",), by_group=True, coarse=True)
+
     def test_selectable_families_follow_the_eager_cores(self) -> None:
         cnf = dr.CNF()
         cnf.new_variable("v")

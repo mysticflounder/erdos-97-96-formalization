@@ -52,22 +52,27 @@ class Relaxed:
         return loop._clauses_dimacs(self.clauses, self.n_variables)
 
 
-def relax(cnf: dr.CNF, families: Sequence[str], *, by_group: bool = False) -> Relaxed:
+def relax(cnf: dr.CNF, families: Sequence[str], *, by_group: bool = False, coarse: bool = False) -> Relaxed:
     """Guard every clause of each listed family by ``-selector``; other clauses unchanged.
 
     With ``by_group`` the selector is per ``family:group`` (one per unordered
-    label set of the geometry clause) instead of per family.
+    label set of the geometry clause) instead of per family; with ``coarse``
+    it is per ``family:coarse`` (one per distinguished label set, see
+    ``dr_exact12_structural._group``).
     """
+
+    dr._fail(not (by_group and coarse), "by_group and coarse are exclusive")
 
     dr._fail(len(set(families)) == len(families) and set(families) <= set(cnf.counts), "unknown or repeated family")
     dr._fail(len(cnf.families) == len(cnf.clauses), "CNF without per-clause families")
     selectors: dict[str, int] = {}
     n_variables = cnf.n_variables
+    group_of = cnf.groups if by_group else cnf.coarse if coarse else [None] * len(cnf.families)
     keys = [
-        (f"{family}:{group}" if by_group else family) if family in families else None
-        for family, group in zip(cnf.families, cnf.groups, strict=True)
+        (f"{family}:{group}" if by_group or coarse else family) if family in families else None
+        for family, group in zip(cnf.families, group_of, strict=True)
     ]
-    if by_group:
+    if by_group or coarse:
         dr._fail(all(":None" not in key for key in keys if key), "geometry clause without a group")
     for key in keys:
         if key is not None and key not in selectors:
@@ -110,13 +115,14 @@ def run(
     drop_first: Sequence[str] = (),
     only_families: Sequence[str] | None = None,
     by_group: bool = False,
+    coarse: bool = False,
     max_solves: int = 400,
 ) -> dict[str, Any]:
     artifacts = run_root / "artifacts"
     artifacts.mkdir(parents=True, exist_ok=True)
     cnf, _layout = dr.build(control, families=only_families)
     families = selectable_families(cnf)
-    relaxed = relax(cnf, families, by_group=by_group)
+    relaxed = relax(cnf, families, by_group=by_group, coarse=coarse)
     families = tuple(relaxed.selectors)  # selector keys: families, or family:group
     cnf_path = artifacts / f"relaxed-{control}.cnf"
     cnf_path.write_bytes(relaxed.dimacs())
@@ -200,7 +206,7 @@ def run(
         "solver": loop.SESSION_SOLVER, "families": list(families), "hard_families": list(relaxed.hard_families),
         "first_core": core, "minimal_family_core": minimal, "outcome": outcome, "solves": solves,
         "session_clauses": final_status.get("clauses"),
-        "by_group": by_group, "only_families": None if only_families is None else list(only_families),
+        "by_group": by_group, "coarse": coarse, "only_families": None if only_families is None else list(only_families),
         "lean_sources": {f: dr.GENERIC_CORES[f]["lean"] for f in minimal if f in dr.GENERIC_CORES},
     }
     (artifacts / "family-core-summary.json").write_text(json.dumps(summary, indent=1, sort_keys=True) + "\n")
@@ -217,12 +223,13 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--drop-first", action="append", default=[], help="family to try dropping first (repeatable)")
     parser.add_argument("--family", action="append", default=None, help="build only these selectable families (repeatable)")
     parser.add_argument("--by-group", action="store_true", help="one selector per family:label-set instead of per family")
+    parser.add_argument("--coarse", action="store_true", help="one selector per family:distinguished-labels (chord, center)")
     parser.add_argument("--max-solves", type=int, default=400)
     arguments = parser.parse_args(argv)
     summary = run(
         run_root=arguments.run_root, control=arguments.control, solve_timeout_ms=arguments.solve_timeout_ms,
         label=arguments.label, drop_first=arguments.drop_first, only_families=arguments.family,
-        by_group=arguments.by_group, max_solves=arguments.max_solves,
+        by_group=arguments.by_group, coarse=arguments.coarse, max_solves=arguments.max_solves,
     )
     sys.stdout.write(json.dumps({k: summary[k] for k in ("outcome", "first_core", "minimal_family_core", "session")}, sort_keys=True) + "\n")
     return 0

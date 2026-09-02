@@ -246,3 +246,14 @@ Result (wave 4, 2026-09-01): minimal family core
 CNF plus any listed selectable families, which is how the wave-5 standalone
 two-family CNF (254,412 clauses) and its one-family controls are produced.
 
+
+Clause-level cores of the two-family CNF use finer selectors on the same
+session loop.  `--by-group` gives one selector per family and unordered
+label set (`family:group`, 1,287 selectors on the two-family CNF: 495
+same-arc label sets and 792 isosceles label sets); `--coarse` gives one
+selector per family and distinguished label set (`family:coarse`, 78
+selectors: the 66 chords `{q, v}` of the same-arc family and the 12
+centers `W` of the isosceles family).  The encoder records both keys per
+geometry clause (`CNF.groups`, `CNF.coarse`; see `_group`).  The shrink is
+the same deletion loop, so a result is one irreducible selector set at
+the chosen granularity, not a smallest one.
