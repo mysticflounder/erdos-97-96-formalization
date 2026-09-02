@@ -369,9 +369,18 @@ Lean route, in dependency order; every item names its consumer.
     surplus, first-opposite, second-opposite interiors; `pt` injective with
     image `D.A`) and `ConvexBoundaryEnumeration pt φ idx`, via
     `ZeroCutBoundaryIndexing.exists_with_capBlocks` and the L1 profile.
-    Remaining: the packet slice (`secondApexRows`, `firstApexClass`,
-    `blockers`, `ingress`) from an abstract `PacketValuation`, and the
-    instantiation of `K4Valuation`/`PacketValuation` from the branch data.
+    Packet families DONE 2026-09-02:
+    `ATail/FrontierLiveClosure/DRExactTwelvePacketFamilies.lean` (PROVEN;
+    axioms propext, Classical.choice, Quot.sound): `PacketData` (rows `X`,
+    `Y`, class `U`, `blocker`, `source`, `deleted`, `chosenRow`, `shell` as
+    label data) and the Prop structure `PacketValuation pt val P` extending
+    `K4Valuation`, whose fields state the encoder semantics of the packet
+    variables; `secondApexRows_holds`, `firstApexClass_holds`,
+    `blockers_holds`, `ingress_holds` prove the four packet families from
+    it (with `exactlyOne_holds`, `exactlyK_holds`, `exactClass_holds`).
+    Remaining: the instantiation of `PacketValuation` (hence `K4Valuation`)
+    from the branch data on the `LabelMap` of the boundary ingress, and the
+    assembly theorem `∀ clause ∈ clauses, clauseHolds val clause`.
   - P3.5 as below; P3.6 splits the leaf.
   Scale precedent: `ExactFiveCommonShellV7G3Replay` replayed an 861 MB
   source LRAT (421,331 additions, 93 M hints, 165 windows, 399 MB compact
