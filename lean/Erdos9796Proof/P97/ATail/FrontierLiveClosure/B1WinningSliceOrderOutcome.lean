@@ -24,6 +24,7 @@ namespace ATailFrontierLiveClosure
 open scoped EuclideanGeometry
 open ATailCriticalPairFrontier
 open ATailExactFourPhysicalConsumer
+open ATailSurvivalCover
 open ATailUniqueFourLateChoiceTerminalScratch
 open Census554.GeneralCarrierBridge
 
@@ -155,6 +156,73 @@ structure B1EscapeSourceContext
   cross_omission :
     C.first.deleted.1 ∉ b1EscapeRow C source ∨
       C.second.deleted.1 ∉ b1EscapeRow C source
+
+/- A source that escapes the saturated common row already carries all local
+data needed for a B1 escape witness.  This constructor is independent of the
+outside-first-apex and retained-survival facts, which are added only when the
+source context is formed. -/
+def b1EscapeWitness_of_sourceData
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F))
+    (source : CarrierVertex D.A)
+    (hsourceClass : source.1 ∈
+      SelectedClass D.A S.oppApex2 C.rho)
+    (hsourceInterior : source.1 ∈
+      S.capInteriorByIndex S.oppIndex2)
+    (hsourceNeFirst : source ≠ C.first.deleted)
+    (hsourceNeSecond : source ≠ C.second.deleted)
+    (hsourceNotCommonRow : source.1 ∉ b1CommonRow C) :
+    B1EscapeWitness C := by
+  have hsourceNotFirstRow :
+      source.1 ∉
+        ((lateFirstApexSystem C.R).selectedAt
+          C.first.deleted.1 C.first.deleted.2).toCriticalFourShell.support := by
+    simpa [b1CommonRow] using hsourceNotCommonRow
+  have hsurvives :
+      HasNEquidistantPointsAt 4 (D.A.erase source.1)
+        ((lateFirstApexSystem C.R).centerAt
+          C.first.deleted.1 C.first.deleted.2) :=
+    (cross_deletion_survives_iff_not_mem_selected_support
+      (lateFirstApexSystem C.R) C.first.deleted.2).mpr hsourceNotFirstRow
+  have hescapeNeCommon :
+      b1EscapeBlocker C source ≠ b1CommonBlocker C := by
+    intro hcenters
+    have hsupports :=
+      selectedSupports_eq_of_actualBlockers_eq
+        (lateFirstApexSystem C.R) source.2 C.first.deleted.2 (by
+          simpa [b1EscapeBlocker, b1CommonBlocker] using hcenters)
+    apply hsourceNotCommonRow
+    have hsourceSupport :=
+      ((lateFirstApexSystem C.R).selectedAt
+        source.1 source.2).toCriticalFourShell.q_mem_support
+    rw [hsupports] at hsourceSupport
+    simpa [b1CommonRow] using hsourceSupport
+  have hescapeNeApex :
+      b1EscapeBlocker C source ≠ S.oppApex2 := by
+    simpa [b1EscapeBlocker] using
+      C.surface.secondApex_robust.centerAt_ne
+        (lateFirstApexSystem C.R) source.1 source.2
+  have hoverlap :
+      ((b1EscapeRow C source ∩ b1CommonRow C).card ≤ 2) := by
+    simpa [b1EscapeRow, b1CommonRow] using
+      selected_support_inter_card_le_two_of_not_mem_other_selected_support
+        (lateFirstApexSystem C.R) source.2 C.first.deleted.2
+        hsourceNotFirstRow
+  exact {
+    source := source
+    source_mem_class := hsourceClass
+    source_mem_interior := hsourceInterior
+    source_ne_first := hsourceNeFirst
+    source_ne_second := hsourceNeSecond
+    source_not_mem_commonRow := hsourceNotCommonRow
+    commonBlocker_survives_source_deletion := by
+      simpa [b1CommonBlocker] using hsurvives
+    escapeBlocker_ne_common := hescapeNeCommon
+    escapeBlocker_ne_apex := hescapeNeApex
+    overlap_le_two := hoverlap }
 
 /-- Package the local star once the cap producer supplies its two missing
 global facts.  This adapter is intentionally neutral: it does not choose a
