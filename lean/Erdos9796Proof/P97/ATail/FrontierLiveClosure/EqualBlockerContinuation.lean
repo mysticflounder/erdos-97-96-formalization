@@ -77,6 +77,41 @@ noncomputable def b1CommonRow
   ((lateFirstApexSystem C.R).selectedAt
     C.first.deleted.1 C.first.deleted.2).toCriticalFourShell.support
 
+/-- Two distinct carrier labels naming the part of an exact row outside a
+chosen physical class.  This is the cardinality-polymorphic labeling unit used
+by the B1 local-role ingress; it makes no claim that completion pairs from
+different rows are disjoint. -/
+structure B1RowCompletionPair
+    (A row physicalClass : Finset ℝ²) where
+  first : CarrierVertex A
+  second : CarrierVertex A
+  first_ne_second : first ≠ second
+  complement_eq :
+    row \ physicalClass = {first.1, second.1}
+
+/-- Name any two-point row complement by distinct ambient carrier labels. -/
+theorem nonempty_b1RowCompletionPair_of_card_eq_two
+    {A row physicalClass : Finset ℝ²}
+    (hrowA : row ⊆ A)
+    (hcard : (row \ physicalClass).card = 2) :
+    Nonempty (B1RowCompletionPair A row physicalClass) := by
+  classical
+  obtain ⟨p, q, hpq, hcomplement⟩ := Finset.card_eq_two.mp hcard
+  have hpRow : p ∈ row :=
+    (Finset.mem_sdiff.mp (by rw [hcomplement]; simp)).1
+  have hqRow : q ∈ row :=
+    (Finset.mem_sdiff.mp (by rw [hcomplement]; simp)).1
+  let first : CarrierVertex A := ⟨p, hrowA hpRow⟩
+  let second : CarrierVertex A := ⟨q, hrowA hqRow⟩
+  refine ⟨{
+    first := first
+    second := second
+    first_ne_second := ?_
+    complement_eq := ?_ }⟩
+  · intro h
+    exact hpq (congrArg Subtype.val h)
+  · simpa [first, second] using hcomplement
+
 /-- The no-third-deletion branch, retaining both that negative provenance and
 the resulting exact five/six physical-class cover by the two known deletions
 and the two live-row slices. -/
@@ -298,6 +333,471 @@ theorem b1_thirdJointDeletion_or_physicalClassFiveSixNormalForm
     simpa [B1PhysicalClassFiveSixNormalForm,
       physicalClass, uSlice, vSlice, deletedPair] using
       And.intro hthird (And.intro hclassCard hcover)
+
+/-- In the exact five/six B1 normal form, one of the two live rows meets the
+physical second-apex radius class in exactly two points.  This is the finite
+counting ingress for the cardinality-free shared-pair order consumer; it makes
+no boundary-order claim. -/
+theorem b1_live_slice_card_eq_two_of_physicalClassFiveSixNormalForm
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F))
+    (hnormal : B1PhysicalClassFiveSixNormalForm C) :
+    let physicalClass := SelectedClass D.A S.oppApex2 C.rho
+    let uSlice :=
+      ((lateFirstApexSystem C.R).selectedAt
+        C.u.1 C.u.2).toCriticalFourShell.support ∩ physicalClass
+    let vSlice :=
+      ((lateFirstApexSystem C.R).selectedAt
+        C.v.1 C.v.2).toCriticalFourShell.support ∩ physicalClass
+    uSlice.card = 2 ∨ vSlice.card = 2 := by
+  classical
+  let physicalClass := SelectedClass D.A S.oppApex2 C.rho
+  let uSlice :=
+    ((lateFirstApexSystem C.R).selectedAt
+      C.u.1 C.u.2).toCriticalFourShell.support ∩ physicalClass
+  let vSlice :=
+    ((lateFirstApexSystem C.R).selectedAt
+      C.v.1 C.v.2).toCriticalFourShell.support ∩ physicalClass
+  let deletedPair : Finset ℝ² :=
+    {C.first.deleted.1, C.second.deleted.1}
+  have hnormal' :
+      (¬ ∃ third : ExactFourMutualOmissionJointDeletion
+          C.R C.rho C.u C.v,
+          third.deleted ≠ C.first.deleted ∧
+            third.deleted ≠ C.second.deleted) ∧
+        (physicalClass.card = 5 ∨ physicalClass.card = 6) ∧
+          physicalClass = deletedPair ∪ (uSlice ∪ vSlice) := by
+    simpa [B1PhysicalClassFiveSixNormalForm, physicalClass,
+      uSlice, vSlice, deletedPair] using hnormal
+  rcases hnormal' with ⟨_hnoThird, hclassFiveSix, hcover⟩
+  have hdeletedValuesNe :
+      C.first.deleted.1 ≠ C.second.deleted.1 := by
+    intro h
+    exact C.hdeletedNe (Subtype.ext h)
+  have hpairCard : deletedPair.card = 2 := by
+    simp [deletedPair, hdeletedValuesNe]
+  have hpairDisjointU : Disjoint deletedPair uSlice := by
+    rw [Finset.disjoint_left]
+    intro x hxPair hxU
+    have hxURow := (Finset.mem_inter.mp (show x ∈ uSlice from hxU)).1
+    rcases Finset.mem_insert.mp hxPair with rfl | hxSecond
+    · exact C.first.deleted_not_mem_uRow hxURow
+    · have hx : x = C.second.deleted.1 :=
+        Finset.mem_singleton.mp hxSecond
+      subst x
+      exact C.second.deleted_not_mem_uRow hxURow
+  have hpairDisjointV : Disjoint deletedPair vSlice := by
+    rw [Finset.disjoint_left]
+    intro x hxPair hxV
+    have hxVRow := (Finset.mem_inter.mp (show x ∈ vSlice from hxV)).1
+    rcases Finset.mem_insert.mp hxPair with rfl | hxSecond
+    · exact C.first.deleted_not_mem_vRow hxVRow
+    · have hx : x = C.second.deleted.1 :=
+        Finset.mem_singleton.mp hxSecond
+      subst x
+      exact C.second.deleted_not_mem_vRow hxVRow
+  have hpairDisjointUnion :
+      Disjoint deletedPair (uSlice ∪ vSlice) := by
+    rw [Finset.disjoint_left]
+    intro x hxPair hxUV
+    rcases Finset.mem_union.mp hxUV with hxU | hxV
+    · exact Finset.disjoint_left.mp hpairDisjointU hxPair hxU
+    · exact Finset.disjoint_left.mp hpairDisjointV hxPair hxV
+  have huTwo : uSlice.card ≤ 2 := by
+    simpa [uSlice, physicalClass] using
+      actualLateRow_secondClass_card_le_two C.R C.surface C.u
+  have hvTwo : vSlice.card ≤ 2 := by
+    simpa [vSlice, physicalClass] using
+      actualLateRow_secondClass_card_le_two C.R C.surface C.v
+  have hclassCardEq :
+      physicalClass.card = deletedPair.card + (uSlice ∪ vSlice).card := by
+    rw [hcover, Finset.card_union_of_disjoint hpairDisjointUnion]
+  have hunionLower : 3 ≤ (uSlice ∪ vSlice).card := by
+    rcases hclassFiveSix with hfive | hsix <;> omega
+  have hunionUpper :
+      (uSlice ∪ vSlice).card ≤ uSlice.card + vSlice.card :=
+    Finset.card_union_le _ _
+  have hresult : uSlice.card = 2 ∨ vSlice.card = 2 := by
+    by_cases hu : uSlice.card = 2
+    · exact Or.inl hu
+    · right
+      have huOne : uSlice.card ≤ 1 := by omega
+      omega
+  simpa [physicalClass, uSlice, vSlice] using hresult
+
+/-- The common blocker row always has exactly two support points outside the
+physical radius class.  They remain existential completion points rather than
+fixed labels. -/
+theorem b1_common_row_complement_card_eq_two
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F)) :
+    let physicalClass := SelectedClass D.A S.oppApex2 C.rho
+    (b1CommonRow C \ physicalClass).card = 2 := by
+  classical
+  let physicalClass := SelectedClass D.A S.oppApex2 C.rho
+  have hnormal :=
+    b1_live_normalForm C.R C.hcard C.surface C.rho C.hrho C.hfive
+      C.u C.v C.huNeV C.huClass C.hvClass C.hvOmitted C.huOmitted
+      C.first C.second C.hdeletedNe C.hblockersEq
+  have hinter :
+      (b1CommonRow C ∩ physicalClass).card = 2 := by
+    simpa [b1CommonRow, physicalClass] using hnormal.2.2.2
+  have hrowCard : (b1CommonRow C).card = 4 := by
+    simpa [b1CommonRow] using
+      ((lateFirstApexSystem C.R).selectedAt
+        C.first.deleted.1 C.first.deleted.2).toCriticalFourShell.support_card
+  have hsum :
+      (b1CommonRow C \ physicalClass).card + 2 = 2 + 2 := by
+    calc
+      (b1CommonRow C \ physicalClass).card + 2 =
+          (b1CommonRow C \ physicalClass).card +
+            (b1CommonRow C ∩ physicalClass).card := by rw [hinter]
+      _ = (b1CommonRow C).card :=
+        Finset.card_sdiff_add_card_inter (b1CommonRow C) physicalClass
+      _ = 4 := hrowCard
+      _ = 2 + 2 := by norm_num
+  exact Nat.add_right_cancel hsum
+
+/-- The two completion points on the common row can be named by distinct
+ambient carrier labels, without fixing the cardinality of the carrier. -/
+theorem nonempty_b1CommonRowCompletionPair
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F)) :
+    let physicalClass := SelectedClass D.A S.oppApex2 C.rho
+    Nonempty (B1RowCompletionPair D.A (b1CommonRow C) physicalClass) := by
+  let physicalClass := SelectedClass D.A S.oppApex2 C.rho
+  apply nonempty_b1RowCompletionPair_of_card_eq_two
+  · intro x hx
+    exact
+      ((lateFirstApexSystem C.R).selectedAt
+        C.first.deleted.1 C.first.deleted.2).toCriticalFourShell.support_subset_A hx
+  · simpa [physicalClass] using b1_common_row_complement_card_eq_two C
+
+/-- The live row supplied by the finite counting ingress has exactly two
+further support points outside the physical radius class.  This keeps the
+completion points unlabeled and does not assume a finite ambient carrier. -/
+theorem b1_live_row_complement_card_eq_two_of_physicalClassFiveSixNormalForm
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F))
+    (hnormal : B1PhysicalClassFiveSixNormalForm C) :
+    let physicalClass := SelectedClass D.A S.oppApex2 C.rho
+    let uRow :=
+      ((lateFirstApexSystem C.R).selectedAt
+        C.u.1 C.u.2).toCriticalFourShell.support
+    let vRow :=
+      ((lateFirstApexSystem C.R).selectedAt
+        C.v.1 C.v.2).toCriticalFourShell.support
+    ((uRow ∩ physicalClass).card = 2 ∧
+        (uRow \ physicalClass).card = 2) ∨
+      ((vRow ∩ physicalClass).card = 2 ∧
+        (vRow \ physicalClass).card = 2) := by
+  classical
+  let physicalClass := SelectedClass D.A S.oppApex2 C.rho
+  let uRow :=
+    ((lateFirstApexSystem C.R).selectedAt
+      C.u.1 C.u.2).toCriticalFourShell.support
+  let vRow :=
+    ((lateFirstApexSystem C.R).selectedAt
+      C.v.1 C.v.2).toCriticalFourShell.support
+  have hslice :
+      (uRow ∩ physicalClass).card = 2 ∨
+        (vRow ∩ physicalClass).card = 2 := by
+    simpa [physicalClass, uRow, vRow] using
+      b1_live_slice_card_eq_two_of_physicalClassFiveSixNormalForm C hnormal
+  have huRowCard : uRow.card = 4 := by
+    simpa [uRow] using
+      ((lateFirstApexSystem C.R).selectedAt
+        C.u.1 C.u.2).toCriticalFourShell.support_card
+  have hvRowCard : vRow.card = 4 := by
+    simpa [vRow] using
+      ((lateFirstApexSystem C.R).selectedAt
+        C.v.1 C.v.2).toCriticalFourShell.support_card
+  rcases hslice with huSlice | hvSlice
+  · left
+    refine ⟨huSlice, ?_⟩
+    have hsum :
+        (uRow \ physicalClass).card + 2 = 2 + 2 := by
+      calc
+        (uRow \ physicalClass).card + 2 =
+            (uRow \ physicalClass).card +
+              (uRow ∩ physicalClass).card := by rw [huSlice]
+        _ = uRow.card :=
+          Finset.card_sdiff_add_card_inter uRow physicalClass
+        _ = 4 := huRowCard
+        _ = 2 + 2 := by norm_num
+    exact Nat.add_right_cancel hsum
+  · right
+    refine ⟨hvSlice, ?_⟩
+    have hsum :
+        (vRow \ physicalClass).card + 2 = 2 + 2 := by
+      calc
+        (vRow \ physicalClass).card + 2 =
+            (vRow \ physicalClass).card +
+              (vRow ∩ physicalClass).card := by rw [hvSlice]
+        _ = vRow.card :=
+          Finset.card_sdiff_add_card_inter vRow physicalClass
+        _ = 4 := hvRowCard
+        _ = 2 + 2 := by norm_num
+    exact Nat.add_right_cancel hsum
+
+/-- In every five/six normal form, at least one live row has a pair of
+distinct carrier labels naming its two outside-class completion points. -/
+theorem nonempty_b1LiveRowCompletionPair_of_physicalClassFiveSixNormalForm
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F))
+    (hnormal : B1PhysicalClassFiveSixNormalForm C) :
+    let physicalClass := SelectedClass D.A S.oppApex2 C.rho
+    let uRow :=
+      ((lateFirstApexSystem C.R).selectedAt
+        C.u.1 C.u.2).toCriticalFourShell.support
+    let vRow :=
+      ((lateFirstApexSystem C.R).selectedAt
+        C.v.1 C.v.2).toCriticalFourShell.support
+    Nonempty (B1RowCompletionPair D.A uRow physicalClass) ∨
+      Nonempty (B1RowCompletionPair D.A vRow physicalClass) := by
+  let physicalClass := SelectedClass D.A S.oppApex2 C.rho
+  let uRow :=
+    ((lateFirstApexSystem C.R).selectedAt
+      C.u.1 C.u.2).toCriticalFourShell.support
+  let vRow :=
+    ((lateFirstApexSystem C.R).selectedAt
+      C.v.1 C.v.2).toCriticalFourShell.support
+  have hcomplements :=
+    b1_live_row_complement_card_eq_two_of_physicalClassFiveSixNormalForm
+      C hnormal
+  rcases hcomplements with hu | hv
+  · left
+    apply nonempty_b1RowCompletionPair_of_card_eq_two
+    · intro x hx
+      exact
+        ((lateFirstApexSystem C.R).selectedAt
+          C.u.1 C.u.2).toCriticalFourShell.support_subset_A hx
+    · simpa [physicalClass, uRow, vRow] using hu.2
+  · right
+    apply nonempty_b1RowCompletionPair_of_card_eq_two
+    · intro x hx
+      exact
+        ((lateFirstApexSystem C.R).selectedAt
+          C.v.1 C.v.2).toCriticalFourShell.support_subset_A hx
+    · simpa [physicalClass, uRow, vRow] using hv.2
+/-- On the six-point branch, both live rows contribute two physical points,
+and those two slices are disjoint.  Thus the six named physical roles used by
+the computational projection are source-entitled on this branch. -/
+theorem b1_live_slices_card_eq_two_disjoint_of_physicalClass_card_six
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F))
+    (hnormal : B1PhysicalClassFiveSixNormalForm C)
+    (hsix : (SelectedClass D.A S.oppApex2 C.rho).card = 6) :
+    let physicalClass := SelectedClass D.A S.oppApex2 C.rho
+    let uSlice :=
+      ((lateFirstApexSystem C.R).selectedAt
+        C.u.1 C.u.2).toCriticalFourShell.support ∩ physicalClass
+    let vSlice :=
+      ((lateFirstApexSystem C.R).selectedAt
+        C.v.1 C.v.2).toCriticalFourShell.support ∩ physicalClass
+    uSlice.card = 2 ∧ vSlice.card = 2 ∧ Disjoint uSlice vSlice := by
+  classical
+  let physicalClass := SelectedClass D.A S.oppApex2 C.rho
+  let uSlice :=
+    ((lateFirstApexSystem C.R).selectedAt
+      C.u.1 C.u.2).toCriticalFourShell.support ∩ physicalClass
+  let vSlice :=
+    ((lateFirstApexSystem C.R).selectedAt
+      C.v.1 C.v.2).toCriticalFourShell.support ∩ physicalClass
+  let deletedPair : Finset ℝ² :=
+    {C.first.deleted.1, C.second.deleted.1}
+  have hnormal' :
+      (¬ ∃ third : ExactFourMutualOmissionJointDeletion
+          C.R C.rho C.u C.v,
+          third.deleted ≠ C.first.deleted ∧
+            third.deleted ≠ C.second.deleted) ∧
+        (physicalClass.card = 5 ∨ physicalClass.card = 6) ∧
+          physicalClass = deletedPair ∪ (uSlice ∪ vSlice) := by
+    simpa [B1PhysicalClassFiveSixNormalForm, physicalClass,
+      uSlice, vSlice, deletedPair] using hnormal
+  have hdeletedValuesNe :
+      C.first.deleted.1 ≠ C.second.deleted.1 := by
+    intro h
+    exact C.hdeletedNe (Subtype.ext h)
+  have hpairCard : deletedPair.card = 2 := by
+    simp [deletedPair, hdeletedValuesNe]
+  have hpairDisjointU : Disjoint deletedPair uSlice := by
+    rw [Finset.disjoint_left]
+    intro x hxPair hxU
+    have hxURow := (Finset.mem_inter.mp (show x ∈ uSlice from hxU)).1
+    rcases Finset.mem_insert.mp hxPair with rfl | hxSecond
+    · exact C.first.deleted_not_mem_uRow hxURow
+    · have hx : x = C.second.deleted.1 :=
+        Finset.mem_singleton.mp hxSecond
+      subst x
+      exact C.second.deleted_not_mem_uRow hxURow
+  have hpairDisjointV : Disjoint deletedPair vSlice := by
+    rw [Finset.disjoint_left]
+    intro x hxPair hxV
+    have hxVRow := (Finset.mem_inter.mp (show x ∈ vSlice from hxV)).1
+    rcases Finset.mem_insert.mp hxPair with rfl | hxSecond
+    · exact C.first.deleted_not_mem_vRow hxVRow
+    · have hx : x = C.second.deleted.1 :=
+        Finset.mem_singleton.mp hxSecond
+      subst x
+      exact C.second.deleted_not_mem_vRow hxVRow
+  have hpairDisjointUnion :
+      Disjoint deletedPair (uSlice ∪ vSlice) := by
+    rw [Finset.disjoint_left]
+    intro x hxPair hxUV
+    rcases Finset.mem_union.mp hxUV with hxU | hxV
+    · exact Finset.disjoint_left.mp hpairDisjointU hxPair hxU
+    · exact Finset.disjoint_left.mp hpairDisjointV hxPair hxV
+  have hclassCardEq :
+      physicalClass.card = deletedPair.card + (uSlice ∪ vSlice).card := by
+    rw [hnormal'.2.2, Finset.card_union_of_disjoint hpairDisjointUnion]
+  have hunionCard : (uSlice ∪ vSlice).card = 4 := by
+    have hsix' : physicalClass.card = 6 := by
+      simpa [physicalClass] using hsix
+    omega
+  have huTwo : uSlice.card ≤ 2 := by
+    simpa [uSlice, physicalClass] using
+      actualLateRow_secondClass_card_le_two C.R C.surface C.u
+  have hvTwo : vSlice.card ≤ 2 := by
+    simpa [vSlice, physicalClass] using
+      actualLateRow_secondClass_card_le_two C.R C.surface C.v
+  have hunionUpper :
+      (uSlice ∪ vSlice).card ≤ uSlice.card + vSlice.card :=
+    Finset.card_union_le _ _
+  have huCard : uSlice.card = 2 := by omega
+  have hvCard : vSlice.card = 2 := by omega
+  have hdisjoint : Disjoint uSlice vSlice := by
+    apply Finset.card_union_eq_card_add_card.mp
+    omega
+  exact ⟨huCard, hvCard, hdisjoint⟩
+
+/-- Consequently, both live exact-four rows have two unlabeled completion
+points outside the physical class on the six-point branch. -/
+theorem b1_live_row_complements_card_eq_two_of_physicalClass_card_six
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F))
+    (hnormal : B1PhysicalClassFiveSixNormalForm C)
+    (hsix : (SelectedClass D.A S.oppApex2 C.rho).card = 6) :
+    let physicalClass := SelectedClass D.A S.oppApex2 C.rho
+    let uRow :=
+      ((lateFirstApexSystem C.R).selectedAt
+        C.u.1 C.u.2).toCriticalFourShell.support
+    let vRow :=
+      ((lateFirstApexSystem C.R).selectedAt
+        C.v.1 C.v.2).toCriticalFourShell.support
+    (uRow \ physicalClass).card = 2 ∧
+      (vRow \ physicalClass).card = 2 := by
+  classical
+  let physicalClass := SelectedClass D.A S.oppApex2 C.rho
+  let uRow :=
+    ((lateFirstApexSystem C.R).selectedAt
+      C.u.1 C.u.2).toCriticalFourShell.support
+  let vRow :=
+    ((lateFirstApexSystem C.R).selectedAt
+      C.v.1 C.v.2).toCriticalFourShell.support
+  have hslices :=
+    b1_live_slices_card_eq_two_disjoint_of_physicalClass_card_six
+      C hnormal hsix
+  have huSlice : (uRow ∩ physicalClass).card = 2 := by
+    simpa [uRow, physicalClass] using hslices.1
+  have hvSlice : (vRow ∩ physicalClass).card = 2 := by
+    simpa [vRow, physicalClass] using hslices.2.1
+  have huRowCard : uRow.card = 4 := by
+    simpa [uRow] using
+      ((lateFirstApexSystem C.R).selectedAt
+        C.u.1 C.u.2).toCriticalFourShell.support_card
+  have hvRowCard : vRow.card = 4 := by
+    simpa [vRow] using
+      ((lateFirstApexSystem C.R).selectedAt
+        C.v.1 C.v.2).toCriticalFourShell.support_card
+  constructor
+  · have hsum :
+        (uRow \ physicalClass).card + 2 = 2 + 2 := by
+      calc
+        (uRow \ physicalClass).card + 2 =
+            (uRow \ physicalClass).card +
+              (uRow ∩ physicalClass).card := by rw [huSlice]
+        _ = uRow.card :=
+          Finset.card_sdiff_add_card_inter uRow physicalClass
+        _ = 4 := huRowCard
+        _ = 2 + 2 := by norm_num
+    exact Nat.add_right_cancel hsum
+  · have hsum :
+        (vRow \ physicalClass).card + 2 = 2 + 2 := by
+      calc
+        (vRow \ physicalClass).card + 2 =
+            (vRow \ physicalClass).card +
+              (vRow ∩ physicalClass).card := by rw [hvSlice]
+        _ = vRow.card :=
+          Finset.card_sdiff_add_card_inter vRow physicalClass
+        _ = 4 := hvRowCard
+        _ = 2 + 2 := by norm_num
+    exact Nat.add_right_cancel hsum
+
+/-- On the six-point branch, both live rows have distinct ambient carrier
+labels naming their two outside-class completion points.  No cross-row
+distinctness is asserted. -/
+theorem nonempty_b1LiveRowCompletionPairs_of_physicalClass_card_six
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F))
+    (hnormal : B1PhysicalClassFiveSixNormalForm C)
+    (hsix : (SelectedClass D.A S.oppApex2 C.rho).card = 6) :
+    let physicalClass := SelectedClass D.A S.oppApex2 C.rho
+    let uRow :=
+      ((lateFirstApexSystem C.R).selectedAt
+        C.u.1 C.u.2).toCriticalFourShell.support
+    let vRow :=
+      ((lateFirstApexSystem C.R).selectedAt
+        C.v.1 C.v.2).toCriticalFourShell.support
+    Nonempty (B1RowCompletionPair D.A uRow physicalClass) ∧
+      Nonempty (B1RowCompletionPair D.A vRow physicalClass) := by
+  let physicalClass := SelectedClass D.A S.oppApex2 C.rho
+  let uRow :=
+    ((lateFirstApexSystem C.R).selectedAt
+      C.u.1 C.u.2).toCriticalFourShell.support
+  let vRow :=
+    ((lateFirstApexSystem C.R).selectedAt
+      C.v.1 C.v.2).toCriticalFourShell.support
+  have hcomplements :=
+    b1_live_row_complements_card_eq_two_of_physicalClass_card_six
+      C hnormal hsix
+  constructor
+  · apply nonempty_b1RowCompletionPair_of_card_eq_two
+    · intro x hx
+      exact
+        ((lateFirstApexSystem C.R).selectedAt
+          C.u.1 C.u.2).toCriticalFourShell.support_subset_A hx
+    · simpa [physicalClass, uRow, vRow] using hcomplements.1
+  · apply nonempty_b1RowCompletionPair_of_card_eq_two
+    · intro x hx
+      exact
+        ((lateFirstApexSystem C.R).selectedAt
+          C.v.1 C.v.2).toCriticalFourShell.support_subset_A hx
+    · simpa [physicalClass, uRow, vRow] using hcomplements.2
 
 noncomputable def b1EscapeBlocker
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}

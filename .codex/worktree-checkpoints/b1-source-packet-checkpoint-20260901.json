@@ -1,0 +1,19 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "b1-source-packet-checkpoint-20260901",
+  "owner": "codex-registry-unblock",
+  "base_head": "e908f69e3e01c17af8b19aaac56bbd2b441cae3b",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/b1-source-packet-checkpoint-20260901.json",
+    "docs/plans/2026-08-29-b1-global-continuation.md",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/B1CardFiveLocalRolePacket.lean",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/B1LiveSharedPairNonalternationIngress.lean",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/B1LocalRolePacket.lean",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/B1WinningLiveSliceIngress.lean",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/EqualBlockerContinuation.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-02T01:06:08Z",
+  "manifest_sha256": "02462d548f305e56e52afeca8f8101a54da897628d93c8613439822962039e12"
+}
