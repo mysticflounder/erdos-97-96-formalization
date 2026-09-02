@@ -230,8 +230,10 @@ proof-free discovery run; the job completed 2651 s after confirmation, so
 the DRAT replay (same 600 s budget, `--unsat`, proof tracing) or the
 drat-trim pass that follows it failed, and the daemon log for this period is
 empty. Resubmitted as job `9e243936…` (profile `unsat`, 3600 s; same blob,
-`artifacts/submit-none-unsat-t3600.txt`). Until a checked proof is stored
-the verdict is two agreeing unchecked UNSATs (Guardrail 5 open).
+`artifacts/submit-none-unsat-t3600.txt`); it finished UNSAT in 223.6 s
+with no stored proof (the LRAT compaction cap, see wave 5). Until a checked
+proof is stored the verdict is three agreeing unchecked UNSATs (Guardrail 5
+open).
 
 Reading (CONJECTURE, scope: this CNF at card 12). Hard-clause audit per
 Guardrail 4: every family names a proved Lean source except (i) `ingress`,
@@ -243,7 +245,8 @@ boundary-order wrapper for this carrier is not written, and (iv)
 `five_point_circle_isosceles_order`, whose chord-crossing bridge
 `FivePointCircleIsoscelesOrderBridge.false_of_core_of_ccw` is proved for the
 linear order `W < F < P < X < Z` while the wrapper from the cyclic predicate
-is {{NEEDS_PROOF}}. Next: a family-level
+was open at that time (proved later the same day, see "Phase 3, P3.2 and
+P3.3" below). Next: a family-level
 minimal core (assumption selectors per family in one session) to learn which
 theorems the Phase 3 ingress must cover and whether (iv) is needed at all;
 then the encoding-to-claim map goes to a second reader.
@@ -321,8 +324,8 @@ the compaction step refused the LRAT: `piqd-lrat parse: parse resource
 Bytes exceeded: observed 1950757765, limit 268435456`. So the two-family
 proof was checked by drat-trim inside piqd but not retained (the 1.95 GB
 LRAT exceeds the compactor's 256 MB cap, and the work directory is
-discarded). The wave-3 job `9e243936…` has a larger proof and fails the
-same way. Guardrail 5 therefore stays open in the sense that no artifact is
+discarded). The wave-3 job `9e243936…` finished UNSAT (223.6 s) with no
+stored proof in the same way. Guardrail 5 therefore stays open in the sense that no artifact is
 stored; retaining one needs either a larger compaction cap in piqd (a
 change outside this repository) or a manual `cadical --plain` + drat-trim
 run, which is a non-piqd solver run and needs Adam's approval.
@@ -365,6 +368,35 @@ and the Lean sources named there. Verdict NEEDS WORK, with these findings.
   (f5) `dist`-level restatements, since `RowPattern` records one class per
   center while the D-R pattern has two classes at `a2`; (f6) the checked
   proof; (f7) a built-tree axiom closure for every cited theorem.
+
+## Phase 3, P3.2 and P3.3: dist-level order wrappers (2026-09-01)
+
+New module `lean/Erdos9796Proof/P97/Census554/CyclicOrderDistanceCores.lean`
+(built with `lake-build Erdos9796Proof.P97.Census554.CyclicOrderDistanceCores`,
+no `sorry`, no warnings; axioms of every theorem: `propext`,
+`Classical.choice`, `Quot.sound`). On one CCW convex-polygon enumeration
+`φ : Fin n → ℝ²` (injective; `ConvexIndep` of its image where diagonals are
+needed):
+
+- `false_of_two_circle_same_arc`: for `iq < iv`, `u, y` distinct and off
+  the chord endpoints, and `u` strictly between `q` and `v` exactly when `y`
+  is, the equalities `dist q u = dist q y` and `dist u v = dist y v` are
+  contradictory. Kernel `twoCircle_sameSide_reflection_false`; chord sides
+  from `signedArea2_pos_of_between` and `signedArea2_neg_of_outside`.
+- `false_of_circle_isosceles_cyclic`: for indices in the cyclic pattern
+  `W,F,P,X,Z` or its reverse (`CyclicFive`, a five-way disjunction of linear
+  chains, so no re-cut of the enumeration is needed), the equalities
+  `WF = WX`, `WF = WZ`, `PZ = XZ` are contradictory. Kernel
+  `FivePointCircleIsoscelesOrderCore.metric_order_incompatibility`; signs
+  from `hneg_of_ccw` through `signedArea2_neg_of_cyclicThree`; the crossing
+  of `FX` with `PZ` from `exists_mem_openSegment_diagonals_of_cyclicFour`.
+
+These are the encoder's two clause families at the dist level (the
+same-arc predicate is the cyclic non-separation of `{u, y}` by `{q, v}`;
+the isosceles instance set was checked by enumeration to be exactly the two
+cyclic patterns, 7,920 instances). The module is not imported by any spine
+module yet; its consumer is the valuation theorem P3.4. This is
+infrastructure for Phase 3, not a change to the obligation frontier.
 
 ## Claim boundary
 

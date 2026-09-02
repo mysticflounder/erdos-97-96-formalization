@@ -253,13 +253,17 @@ Lean route, in dependency order; every item names its consumer.
   order theorem is needed, only the label-to-index map of the encoder's
   `CYCLIC_ORDER` under the direct/mirror dichotomy (mirror = reversed
   order; the encoder's order-family instance sets are reversal invariant).
-- P3.2 Same-arc wrapper. `FourPointTwoCircleBisectorOrderBridge.
+- P3.2 DONE 2026-09-01 as `Census554.CyclicOrderDistanceCores.
+  false_of_two_circle_same_arc` (dist level, `iq < iv`, same-arc as a
+  between-iff). Original item: `FourPointTwoCircleBisectorOrderBridge.
   false_of_three_rows_and_cyclic_subsequence` (`Census554/…Bridge.lean:159`,
   off-spine module, sorry-free) already kills `q, u, y, v` in cyclic order
   on a faithfully realized convex carrier; the wrapper states it on the
   encoder's clause `¬(qu = qy ∧ uv = yv)` for `u, y` on one arc of `qv`.
   Consumer: P3.4.
-- P3.3 Isosceles wrapper. Rotate the indexing with
+- P3.3 DONE 2026-09-01 as `Census554.CyclicOrderDistanceCores.
+  false_of_circle_isosceles_cyclic` (dist level, `CyclicFive` pattern or its
+  reverse; no re-cut needed). Original item: rotate the indexing with
   `exists_isCcwConvexPolygon_cyclicShift_at_zero` (`ConvexCyclicOrder/
   Basic.lean:196`) so the five labels are linear; the encoder's predicate
   (W and X on opposite sides of `FZ`, `FX` crossing `PZ`) holds exactly for

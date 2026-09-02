@@ -196,8 +196,11 @@ cross; the encoder reads that from interleaving in the cyclic order. The
 Lean bridge `FivePointCircleIsoscelesOrderBridge.false_of_core_of_ccw` is
 proved for the linear order `W < F < P < X < Z` on a ccw indexing (chords
 cross by `CapCrossingKalmansonBridge.exists_mem_openSegment_diagonals_of_ccw`);
-the wrapper from the encoder's cyclic predicate (rotation and reversal of the
-indexing) is {{NEEDS_PROOF}}. Cores whose statements need non-carrier data
+the wrapper from the encoder's cyclic predicate is
+`Census554.CyclicOrderDistanceCores.false_of_circle_isosceles_cyclic`
+(proved 2026-09-01, dist level, cyclic pattern `W,F,P,X,Z` or its
+reverse); the same-arc family has the dist-level wrapper
+`CyclicOrderDistanceCores.false_of_two_circle_same_arc`. Cores whose statements need non-carrier data
 (`MECStraddlingRowCore`, `CircleIntersectionInequalityCore`) or the card-11
 macro-order machinery (`SeparationCore`) are omitted.
 
