@@ -6,6 +6,7 @@ Authors: Adam McKenna
 
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.ContextFrames
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.Rigid221SourceHeavy
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure.Balanced555BoundaryIngress
 import Erdos9796Proof.P97.ATail.ExactFiveCommonAdaptiveReselection
 import Erdos9796Proof.P97.ATail.ExactFiveDistinctThreeCenterContinuation
 import Erdos9796Proof.P97.ATail.ExactFiveDistinctThreeCenterTightCover
@@ -1556,6 +1557,9 @@ theorem false_of_exactFiveDistinct_threeCenter_exactTwelveTightPhysical
       ExactFiveDistinctThreeCenterTightCover.nonempty_balancedTightCoverFlexibleRolePacket
         invariant with
     ⟨rolePacket⟩
+  rcases
+      nonempty_balanced555BoundaryLabeling R C normalForm invariant with
+    ⟨boundaryLabeling⟩
   sorry
 
 /-- The bi-apex-robust exact-five endpoint splits soundly into a genuinely

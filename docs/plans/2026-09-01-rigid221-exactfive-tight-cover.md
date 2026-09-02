@@ -279,6 +279,50 @@ This closes the alias ambiguity among the three physical rows.  It does not
 yet supply the equal-distance closure or the global convex/order input needed
 by a finite collision consumer.
 
+## Balanced boundary labeling
+
+`Balanced555BoundaryLabeling` now freezes the convex boundary coordinates of
+the balanced cap profile without imposing either of the two unsupported row
+identifications.  Its label bijection is induced by the inverse index carried
+by `Census554.GeneralCarrierBridge.BoundaryIndexing`, rather than by an
+unrelated cardinality labeling.  The associated point map is injective, has
+image exactly `D.A`, and is counterclockwise convex.
+
+Cutting the boundary at the surplus apex gives exactly two orientations.  In
+the direct orientation the three cap interiors occupy labels `{1,2,3}`,
+`{5,6,7}`, and `{9,10,11}` in second/surplus/first order, with the first and
+second opposite apices at labels `4` and `8`.  The mirror orientation swaps
+the first and second blocks and apex labels while leaving the surplus block
+fixed.  In both orientations the surplus apex has label `0`.
+
+`nonempty_balanced555BoundaryLabeling` derives this object from
+`BalancedTightCoverInvariant`.  It uses the existing zero-cut boundary theorem,
+the exact twelve-point carrier cardinality, and saturation of all three
+three-point open intervals.  The active exact-twelve leaf now consumes this
+labeling together with `BalancedTightCoverFlexibleRolePacket` before its single
+existing admitted step.
+
+This is source-side ingress only.  It does not reduce the open frontier: the
+next finite layer must combine the fixed boundary labels, faithful selected-row
+semantics, the flexible role packet, and the still-unfixed row roles in a named
+source-backed surface.  No solver closure is claimed until a checked finite
+certificate and its Lean consumer are both present.
+
+The focused build of `Balanced555BoundaryIngress` and `Rigid221Closure` passed
+at proof-blueprint build `3cbaed067306`.  The constructor's literal axiom
+closure is exactly `propext`, `Classical.choice`, and `Quot.sound`; the mined
+caller graph places both the constructor and its exact-twelve caller on the
+live spine.  The global frontier remains 28 on-spine declarations and zero
+off-spine declarations.
+
+Independent verifier `balanced555_boundary_promotion_review` checked the
+index-derived labeling, both orientation calculations, exact block
+saturation, boundary-property transport, and the direct live caller.  Verdict:
+the source-side promotion passes.  The verifier also confirmed the intended
+scope boundary: `boundaryLabeling` and `rolePacket` are presently ingress
+objects bound immediately before the existing `sorry`, not yet inputs to a
+terminal finite contradiction.
+
 ## Reuse preflight
 
 The first concrete global candidate is
