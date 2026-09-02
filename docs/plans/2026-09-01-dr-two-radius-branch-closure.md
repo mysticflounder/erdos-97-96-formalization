@@ -398,6 +398,12 @@ Lean route, in dependency order; every item names its consumer.
   retention is requested in `#piqd` message #8655 (configurable cap,
   fallback retention of the drat-trim output). Try the `sat` and default
   profiles as well, since proof size varies by run.
+- P3.5 BLOCKED 2026-09-02 on proof format: piqd's retained proof (jobs
+  `1c4d34fd…`/`aaaf9191…`, 1.9 GB) comes from a `--unsat` replay and has
+  28,283 RAT lemmas in core with fresh variables; a `--plain` proof replay
+  is requested from the piqd maintainers (`#piqd` #8765), the manual
+  `cadical --plain` alternative needs Adam's approval. See the audit's
+  "Phase 3, P3.5 proof retention" section. Original item follows.
 - P3.5 Certificate replay. Store a checked, zero-RAT LRAT of the two-family
   CNF (`piqd` job `bdbe81da…` or a `cadical --plain` rerun through `piqd`
   if the proof has RAT lemmas), normalize it, and replay it with the
