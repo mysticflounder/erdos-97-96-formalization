@@ -306,6 +306,30 @@ theorem b1_escapeSource_survives_retained_firstApex_deletion_of_not_bad_of_pair_
   apply hnotBad
   exact Finset.mem_filter.mpr ⟨houtside, hq, hw⟩
 
+/- The favorable source branch now packages the two global adapters above
+into the source context consumed downstream.  The pair identifications remain
+explicit because they are not definitional fields of the residual. -/
+theorem b1EscapeSourceContext_of_escape_source_outside_not_bad
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F))
+    (W : B1FiveSixWaveIngress C)
+    (hq_eq : C.R.interior_q = F.pair.q)
+    (hw_eq : C.R.interior_w = F.pair.w)
+    (hnotFirst : W.escape.escape.source.1 ∉
+      SelectedClass D.A S.oppApex1 radius)
+    (hnotBad : W.escape.escape.source ∉ badOutsideSources C.R) :
+    Nonempty (B1EscapeSourceContext C) := by
+  have houtside :=
+    b1_escapeSource_mem_outsideFirstApexFiber_of_not_mem_firstClass
+      C W hnotFirst
+  have hsurvives :=
+    b1_escapeSource_survives_retained_firstApex_deletion_of_not_bad_of_pair_identifications
+      C W hq_eq hw_eq houtside hnotBad
+  exact b1EscapeSourceContext_of_star C W houtside hsurvives
+
 /-- The intended producer outcome for a five/six wave. -/
 def B1WinningSliceOrderOutcome
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
