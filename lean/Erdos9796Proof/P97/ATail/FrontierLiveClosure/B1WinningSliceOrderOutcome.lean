@@ -240,6 +240,36 @@ theorem b1EscapeSourceContext_of_exactFourSourceContext
     cross_omission := W.escape.cross_omission
   }⟩
 
+/- A class-level non-membership proof is enough to discharge the outside-fiber
+part of the source context. -/
+theorem b1_escapeSource_mem_outsideFirstApexFiber_of_not_mem_firstClass
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F))
+    (W : B1FiveSixWaveIngress C)
+    (hnot : W.escape.escape.source.1 ∉
+      SelectedClass D.A S.oppApex1 radius) :
+    W.escape.escape.source ∈ outsideFirstApexFiber C.R := by
+  apply Finset.mem_sdiff.mpr
+  refine ⟨Finset.mem_univ _, ?_⟩
+  intro hsourceFiber
+  have hblockers := (Finset.mem_filter.mp hsourceFiber).2
+  apply hnot
+  apply
+    (lateFirstApexSystem_centerAt_eq_iff_mem_class C.R
+      W.escape.escape.source.2).mp
+  calc
+    (lateFirstApexSystem C.R).centerAt
+        W.escape.escape.source.1 W.escape.escape.source.2 =
+      (lateFirstApexSystem C.R).centerAt
+        F.pair.q F.pair.q_mem_A :=
+      congrArg Subtype.val hblockers
+    _ = S.oppApex1 :=
+      lateFirstApexSystem_centerAt_eq C.R F.pair.q_mem_A
+        (frontier_pair_q_mem_firstApexClass F)
+
 /-- The intended producer outcome for a five/six wave. -/
 def B1WinningSliceOrderOutcome
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
