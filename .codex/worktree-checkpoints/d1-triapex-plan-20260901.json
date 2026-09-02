@@ -1,20 +1,12 @@
 {
  "base_head": "9a222da97112efc204a038ca2f71ff5a12078f94",
  "created_utc": "2026-09-01T23:33:45Z",
- "durable_paths": [
-  "scratch/runs/d1-triapex-plan-20260901/singular-smoke-01/artifacts/receipt-e88da50d-c888-4c00-abca-6bddd1b77c9a.json",
-  "scratch/runs/d1-triapex-plan-20260901/singular-smoke-01/artifacts/receipt-fc2b27ef-4a6d-4773-b50b-3d1404fae148.json",
-  "scratch/runs/d1-triapex-plan-20260901/singular-smoke-01/artifacts/smoke_known.sing",
-  "scratch/runs/d1-triapex-plan-20260901/singular-smoke-01/artifacts/smoke_realroots.sing",
-  "scratch/runs/d1-triapex-plan-20260901/singular-smoke-01/artifacts/stdout-e88da50d-c888-4c00-abca-6bddd1b77c9a.txt",
-  "scratch/runs/d1-triapex-plan-20260901/singular-smoke-01/artifacts/stdout-fc2b27ef-4a6d-4773-b50b-3d1404fae148.txt",
-  "scratch/runs/d1-triapex-plan-20260901/singular-smoke-01/run_manifest.json"
- ],
+ "durable_paths": [],
  "generated_roots": [
   "scratch/runs/d1-triapex-plan-20260901/singular-smoke-01"
  ],
  "lane_id": "d1-triapex-plan-20260901",
- "manifest_sha256": "599e5446ff30ee46ab90acccb2855f829c53221b5665a18e245e99eb5300a7b3",
+ "manifest_sha256": "206051c8b362bb08d87f3fca8a00cd4a4fe8f81c242069834ba5c2ab9b5d34af",
  "owned_paths": [
   ".codex/worktree-checkpoints/d1-triapex-plan-20260901.json",
   "docs/audits/2026-09-01-d1-mu0-terminal-analysis.md",
