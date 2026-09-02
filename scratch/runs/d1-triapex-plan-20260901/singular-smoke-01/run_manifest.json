@@ -1,0 +1,22 @@
+{
+ "base_head": "9a222da97112efc204a038ca2f71ff5a12078f94",
+ "created_utc": "2026-09-02T04:58:45Z",
+ "input_digests": {
+  "docs/plans/2026-09-01-d1-triapex-paired-common-deletion-closure-plan.md": "f631b3035776b8b1c5d4f9bbf87a7d3643b585719c8d6cc110ffb9a29bc0f018"
+ },
+ "lane_id": "d1-triapex-plan-20260901",
+ "manifest_sha256": "c43c8d026e7838d70eb4b4a815054ace5b7781d863af686316a50f502923f4aa",
+ "output_classes": [
+  "artifacts",
+  "events",
+  "tmp"
+ ],
+ "owner": "claude-fable-d1-triapex",
+ "root": "scratch/runs/d1-triapex-plan-20260901/singular-smoke-01",
+ "run_id": "singular-smoke-01",
+ "schema": "worktree-run-manifest/v1",
+ "source_digests": {
+  "scratch/runs/d1-triapex-plan-20260901/singular-smoke-01/artifacts/smoke_known.sing": "a95d3ff85adcf03149850df26f061219abd1420d5ef9893d7e917417abc82296",
+  "scratch/runs/d1-triapex-plan-20260901/singular-smoke-01/artifacts/smoke_realroots.sing": "531caa5ebdb6af9aa12c573c4d562a3e699c8a6b225b587287b6aaa9b8fe4503"
+ }
+}

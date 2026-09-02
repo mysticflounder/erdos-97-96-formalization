@@ -1,0 +1,20 @@
+// Guardrail 1 smoke for real-root counting (rootsmr.lib, Hermite form).
+LIB "rootsmr.lib";
+ring R = 0,(x,y),dp;
+// (a) x^2+1, y-1 : 2 complex points, 0 real.
+ideal Ia = std(ideal(x^2+1, y-1));
+print("a_vdim"); print(vdim(Ia));
+print("a_real"); print(nrRootsDeterm(Ia));
+// (b) x^2-1, y-1 : 2 real points.
+ideal Ib = std(ideal(x^2-1, y-1));
+print("b_vdim"); print(vdim(Ib));
+print("b_real"); print(nrRootsDeterm(Ib));
+// (c) circle meets line at tangent: x^2+y^2-1, y-1 : 1 real point (double).
+ideal Ic = std(ideal(x^2+y^2-1, y-1));
+print("c_vdim"); print(vdim(Ic));
+print("c_real"); print(nrRootsDeterm(Ic));
+// (d) circle misses line: x^2+y^2-1, y-2 : 0 real.
+ideal Id = std(ideal(x^2+y^2-1, y-2));
+print("d_vdim"); print(vdim(Id));
+print("d_real"); print(nrRootsDeterm(Id));
+quit;

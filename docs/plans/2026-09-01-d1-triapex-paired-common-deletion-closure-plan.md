@@ -712,6 +712,30 @@ Route C compiled; no cell is closed):
   background agent; its verdicts are CONJECTURE at the encoded scope until
   the encoding-to-claim map is audited.
 
+Status 2026-09-01 (Phase 3a, seventh checkpoint: Singular through piqd
+validated for the algebra stage; infrastructure only, no cell is closed):
+
+- Guardrail 1 smoke runs of the piqd Singular lane (`piqc singular run`,
+  daemon 0.1.0, receipts under
+  `scratch/runs/d1-triapex-plan-20260901/singular-smoke-01/artifacts/`):
+  `std`/`dim`/`vdim` on four known ideals (a nonempty complex curve with no
+  real point, a zero-dimensional ideal of two complex points, the unit
+  ideal, and a Rabinowitsch non-forcing instance) and `nrRootsDeterm` from
+  `rootsmr.lib` on four zero-dimensional ideals with 0, 2, 1, 0 real roots.
+  All eight verdicts match the hand-known answers. Each run is attested
+  (`SINGLE_SPAWN_UNCONFINED_CHILDREN`, binary and script hashes on the
+  receipt), so the algebra stage's per-pattern scripts have a validated
+  execution path and a validated real-root count.
+- What this does not give: the Guardrail 7 second engine. Singular is one
+  engine; a decisive emptiness verdict on a surviving pattern still needs an
+  independent engine, and the only approved route to one is the piqd
+  maintainer (request #8669 on `#piqd`, no reply yet). Until it exists, a
+  Singular-only emptiness verdict is CONJECTURE at the encoded scope and is
+  recorded as one-engine evidence, not banked.
+- Stage 1 (piqd cadical incidence census) is still running in the
+  background agent; its encoder and run tree are validated and committed
+  when it reports. Leaf `sorry` unchanged, `M = 18`.
+
 ### Phase 4 — carrier size at least 16
 
 - Extract from the card-15 closures the smallest infeasible sub-pattern and

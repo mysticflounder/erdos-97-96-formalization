@@ -1,18 +1,28 @@
 {
-  "schema": "worktree-lane-checkpoint/v1",
-  "lane_id": "d1-triapex-plan-20260901",
-  "owner": "claude-fable-d1-triapex",
-  "base_head": "9a222da97112efc204a038ca2f71ff5a12078f94",
-  "owned_paths": [
-    ".codex/worktree-checkpoints/d1-triapex-plan-20260901.json",
-    "docs/audits/2026-09-01-d1-mu0-terminal-analysis.md",
-    "docs/computational-closure-plan-2026-07-28.md",
-    "docs/plans/2026-09-01-d1-triapex-paired-common-deletion-closure-plan.md",
-    "docs/plans/README.md",
-    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TriApexEndpointRetainedOmission.lean"
-  ],
-  "generated_roots": [],
-  "durable_paths": [],
-  "created_utc": "2026-09-01T23:33:45Z",
-  "manifest_sha256": "4d8efe863bc8a9d6048c5988c8adea85a69aa2c090f30d7dd4704203a180106c"
+ "base_head": "9a222da97112efc204a038ca2f71ff5a12078f94",
+ "created_utc": "2026-09-01T23:33:45Z",
+ "durable_paths": [
+  "scratch/runs/d1-triapex-plan-20260901/singular-smoke-01/artifacts/receipt-e88da50d-c888-4c00-abca-6bddd1b77c9a.json",
+  "scratch/runs/d1-triapex-plan-20260901/singular-smoke-01/artifacts/receipt-fc2b27ef-4a6d-4773-b50b-3d1404fae148.json",
+  "scratch/runs/d1-triapex-plan-20260901/singular-smoke-01/artifacts/smoke_known.sing",
+  "scratch/runs/d1-triapex-plan-20260901/singular-smoke-01/artifacts/smoke_realroots.sing",
+  "scratch/runs/d1-triapex-plan-20260901/singular-smoke-01/artifacts/stdout-e88da50d-c888-4c00-abca-6bddd1b77c9a.txt",
+  "scratch/runs/d1-triapex-plan-20260901/singular-smoke-01/artifacts/stdout-fc2b27ef-4a6d-4773-b50b-3d1404fae148.txt",
+  "scratch/runs/d1-triapex-plan-20260901/singular-smoke-01/run_manifest.json"
+ ],
+ "generated_roots": [
+  "scratch/runs/d1-triapex-plan-20260901/singular-smoke-01"
+ ],
+ "lane_id": "d1-triapex-plan-20260901",
+ "manifest_sha256": "599e5446ff30ee46ab90acccb2855f829c53221b5665a18e245e99eb5300a7b3",
+ "owned_paths": [
+  ".codex/worktree-checkpoints/d1-triapex-plan-20260901.json",
+  "docs/audits/2026-09-01-d1-mu0-terminal-analysis.md",
+  "docs/computational-closure-plan-2026-07-28.md",
+  "docs/plans/2026-09-01-d1-triapex-paired-common-deletion-closure-plan.md",
+  "docs/plans/README.md",
+  "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TriApexEndpointRetainedOmission.lean"
+ ],
+ "owner": "claude-fable-d1-triapex",
+ "schema": "worktree-lane-checkpoint/v1"
 }

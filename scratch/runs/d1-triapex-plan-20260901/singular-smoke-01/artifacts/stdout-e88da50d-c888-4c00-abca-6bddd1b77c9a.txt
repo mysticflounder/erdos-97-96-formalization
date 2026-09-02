@@ -1,0 +1,12 @@
+case_a_dim
+1
+case_b_dim
+0
+case_b_vdim
+2
+case_c_dim
+-1
+case_c_std
+1
+case_d_dim
+1

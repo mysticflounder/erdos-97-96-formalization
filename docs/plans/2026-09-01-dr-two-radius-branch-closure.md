@@ -339,6 +339,15 @@ Lean route, in dependency order; every item names its consumer.
     packet; proved family by family from L1 to L4, P3.2, P3.3,
     `CounterexampleData.K4`, the shell system, and `surface`; the finite
     arc and pattern side conditions decided on `Fin 12`. Consumer: leaf.
+    Progress 2026-09-02: `ATail/FrontierLiveClosure/TwoRadiusExactTwelveIngressRows.lean`
+    (PROVEN; axioms propext, Classical.choice, Quot.sound) supplies the
+    packet-side identities the `ingress` family needs: every
+    `SelectedFourClass` at `oppApex2` has radius `rho` or `otherRadius`;
+    `surface.ingress.packet.B₂` is `firstRow.support` or `secondRow.support`;
+    `packet.B₁` is the support of the source's late selected shell. Slice 1
+    (valuation carrier; transitivity, same-arc, isosceles, k4 families) and
+    the packet slice (secondApexRows, firstApexClass, blockers, ingress)
+    remain.
   - P3.5 as below; P3.6 splits the leaf.
   Scale precedent: `ExactFiveCommonShellV7G3Replay` replayed an 861 MB
   source LRAT (421,331 additions, 93 M hints, 165 windows, 399 MB compact

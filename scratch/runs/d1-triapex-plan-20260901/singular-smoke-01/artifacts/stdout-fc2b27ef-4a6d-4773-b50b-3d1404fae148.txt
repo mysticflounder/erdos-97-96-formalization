@@ -1,0 +1,16 @@
+a_vdim
+2
+a_real
+0
+b_vdim
+2
+b_real
+2
+c_vdim
+2
+c_real
+1
+d_vdim
+2
+d_real
+0

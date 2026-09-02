@@ -1,0 +1,23 @@
+// Guardrail 1 smoke: known answers.
+// (a) x^2+y^2+1 has no real root, but the complex variety is nonempty: dim 1 over C.
+// (b) x^2+1, y-1: dim 0, vdim 2 (two complex points, no real point).
+// (c) inconsistent ideal <x, x-1>: std = 1, dim -1.
+ring R = 0,(x,y),dp;
+ideal Ia = x^2+y^2+1;
+ideal Ga = std(Ia);
+print("case_a_dim"); print(dim(Ga));
+ideal Ib = x^2+1, y-1;
+ideal Gb = std(Ib);
+print("case_b_dim"); print(dim(Gb));
+print("case_b_vdim"); print(vdim(Gb));
+ideal Ic = x, x-1;
+ideal Gc = std(Ic);
+print("case_c_dim"); print(dim(Gc));
+print("case_c_std"); print(Gc);
+// (d) Rabinowitsch forcing: does x^2+y^2 force x on the variety? No over C (x=1,y=i).
+// Check 1 in <x^2+y^2, 1 - t*x>: expected NOT (std != 1).
+ring S = 0,(x,y,t),dp;
+ideal Id = x^2+y^2, 1-t*x;
+ideal Gd = std(Id);
+print("case_d_dim"); print(dim(Gd));
+quit;
