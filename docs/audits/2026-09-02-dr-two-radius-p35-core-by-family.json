@@ -1,0 +1,38 @@
+{
+ "core_clauses": 41919,
+ "unmatched": 0,
+ "by_family": {
+  "transitivity": [
+   18354,
+   137280
+  ],
+  "two_circle_same_arc": [
+   1915,
+   1980
+  ],
+  "five_point_circle_isosceles_order": [
+   6457,
+   7920
+  ],
+  "second_apex_rows": [
+   176,
+   379
+  ],
+  "first_apex_class": [
+   65,
+   1505
+  ],
+  "k4_everywhere": [
+   13095,
+   23772
+  ],
+  "blockers": [
+   1857,
+   51514
+  ],
+  "ingress": [
+   0,
+   30062
+  ]
+ }
+}

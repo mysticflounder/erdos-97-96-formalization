@@ -500,3 +500,35 @@ The remaining certificate obligation is the replay package's
 `startUnsatisfiable` plus the checkpoint-0 clause identity. drat-trim's core
 for the retained `--unsat` proof: 41,919 of 254,412 input clauses, 807,720 of
 826,524 lemmas, 28,283 RAT lemmas.
+
+### Core by clause family (2026-09-02, EMPIRICAL)
+
+drat-trim `-c` on the DRAT view of the retained proof (job `1c4d34fd…`,
+`s VERIFIED`, 81 s) and an exact clause match back to the encoder's emission
+order (`docs/audits/2026-09-02-dr-two-radius-p35-core-by-family.json`, all
+41,919 core clauses matched):
+
+| family | in core | emitted |
+|---|---|---|
+| transitivity | 18,354 | 137,280 |
+| two_circle_same_arc | 1,915 | 1,980 |
+| five_point_circle_isosceles_order | 6,457 | 7,920 |
+| second_apex_rows | 176 | 379 |
+| first_apex_class | 65 | 1,505 |
+| k4_everywhere | 13,095 | 23,772 |
+| blockers | 1,857 | 51,514 |
+| ingress | 0 | 30,062 |
+
+The ingress family (source, deleted vertex, chosen row, shell, overlap) is
+not used: the sub-CNF without it is UNSAT by the same checked proof. This is
+one core of one proof, not a minimal core; it says which hypotheses the
+card-12 contradiction can avoid (the deletion ingress), not which it needs.
+Consumer: Phase 4 pattern extraction; no Lean change for P3.5 follows.
+
+Cross-check and format probe (piqd, run root `p35-core-analysis`): the core
+CNF itself (`p cnf 6281 41919`, sha `b642aa6e…`) resubmitted as job
+`b347df4b…` (profile plain, 3600 s): UNSAT in 55 s, proof `compacted_lrat`
+1,643,742,538 bytes (blob `7411a2df…`). drat-trim on its DRAT view:
+`s VERIFIED`, 31,492 of 41,919 clauses in core, 741,489 of 759,735 lemmas,
+24,019 RAT lemmas. A smaller instance therefore does not give a RUP-only
+proof; the RAT content comes from the `--unsat` replay, not from the size.

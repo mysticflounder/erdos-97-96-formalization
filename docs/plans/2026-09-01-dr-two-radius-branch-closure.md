@@ -419,6 +419,9 @@ Lean route, in dependency order; every item names its consumer.
   `G3Checkpoint0ClauseBank`). The drat-trim core of the retained proof uses
   41,919 of the 254,412 input clauses, so the "small direct lemma"
   alternative below does not apply.
+  Resubmitting the 41,919-clause core to piqd (job `b347df4b…`, UNSAT
+  55 s) still yields 24,019 RAT lemmas, so a smaller instance is not a
+  way around the proof-format block.
 - P3.5 Certificate replay. Store a checked, zero-RAT LRAT of the two-family
   CNF (`piqd` job `bdbe81da…` or a `cadical --plain` rerun through `piqd`
   if the proof has RAT lemmas), normalize it, and replay it with the
@@ -440,6 +443,12 @@ certificate replay is then unnecessary for card 12.
 
 ### Phase 4 — carrier size at least 13
 
+- Evidence 2026-09-02 (EMPIRICAL, one drat-trim core of the retained
+  proof): the ingress family contributes 0 of its 30,062 clauses to the
+  core, so the card-12 contradiction already follows from the two rows,
+  the first-apex class, K4 everywhere, blockers, and the two geometry
+  families; see the audit's "Core by clause family". Start the extraction
+  from that no-ingress sub-CNF.
 - Extract from the size-12 certificates the smallest infeasible sub-pattern
   and state it as a cardinality-generic Lean core over boundary indices, in
   the style of `false_of_one_k1_three_cyclic_selected_rows`.
