@@ -21,7 +21,9 @@ from census.card_head.d1_mu0_incidence_census import (
     blocking_clause,
     build,
     cap_by_index,
+    closure_violation,
     decode,
+    explanation_clause,
     interior,
     interior_label,
     label_name,
@@ -150,6 +152,92 @@ class CardinalityEncoderTests(unittest.TestCase):
                     self.assertTrue(_satisfiable(cnf.clauses, forced, [v for v in aux if v != regs[j - 1]]))
                     wrong = fixed | {regs[j - 1]: not (total >= j)}
                     self.assertFalse(_satisfiable(cnf.clauses, wrong, [v for v in aux if v != regs[j - 1]]))
+
+
+def assignment_of(pattern: Pattern, enc: census.Encoding) -> dict[int, bool]:
+    """Primary-variable assignment of a pattern, including the CL0 membership aux."""
+
+    assignment: dict[int, bool] = {}
+    for x in pattern.cell.points:
+        for label in range(N_LABELS):
+            assignment[enc.v("c", x, label)] = pattern.centre[x] == label
+            assignment[enc.v("s", x, label)] = label in pattern.shell[x]
+    for (k, t), cls in pattern.classes.items():
+        for label in range(N_LABELS):
+            assignment[enc.v("A", k, t, label)] = label in cls
+    for name, value in pattern.roles.items():
+        for label in range(N_LABELS):
+            assignment[enc.v(name, label)] = label == value
+    for label in range(N_LABELS):
+        assignment[enc.v("E", label)] = label in pattern.E
+    for z in interior(0) + interior(1) + interior(2):
+        for y in range(N_LABELS):
+            if y != z and enc.has("M", z, y):
+                assignment[enc.v("M", z, y)] = any(
+                    pattern.centre[x] == z and y in pattern.shell[x] for x in pattern.cell.points
+                )
+    return assignment
+
+
+def failing_primary_clauses(enc: census.Encoding, assignment: dict[int, bool]) -> list[tuple[int, ...]]:
+    primary_only = [
+        clause for clause in enc.cnf.clauses if all(abs(lit) in assignment for lit in clause)
+    ]
+    return [
+        clause for clause in primary_only if not any(assignment[abs(lit)] == (lit > 0) for lit in clause)
+    ]
+
+
+def violating_witness() -> Pattern:
+    """The hand witness with class A2 = interior(2) + {A0, P0.1}: A1 is then forced into it."""
+
+    pattern = witness_i1()
+    pattern.classes[(2, 0)] = frozenset(interior(2)) | {0, P(0, 1)}
+    return pattern
+
+
+class ClosureOracleTests(unittest.TestCase):
+    def test_consistent_witness_has_no_violation(self) -> None:
+        self.assertIsNone(closure_violation(witness_i1()))
+
+    def test_equilateral_apex_triangle_forces_the_missing_class_member(self) -> None:
+        pattern = violating_witness()
+        violation = closure_violation(pattern)
+        self.assertIsNotNone(violation)
+        assert violation is not None
+        self.assertEqual((violation.kind, violation.centre, violation.missing), ("class", 2, 1))
+        self.assertEqual(violation.chain_length, 2)
+        self.assertEqual(violation.consequent, ("A", 2, 0, 1))
+        enc = build(pattern.cell)
+        assignment = assignment_of(pattern, enc)
+        clause = explanation_clause(enc, violation)
+        self.assertIn(enc.v("A", 2, 0, 1), clause)
+        self.assertFalse(any(assignment[abs(lit)] == (lit > 0) for lit in clause))
+        # a shell-side equilateral triangle P0.2, P0.3, P2.2: shell(P2.2) gains P0.3, so
+        # |P2.2 P0.2| = |P2.2 P0.3| and |P0.3 P0.2| = |P0.3 P2.2| force P2.2 onto shell(P0.2)
+        shell_case = witness_i1()
+        for x in (P(1, 4), P(2, 3)):
+            shell_case.shell[x] = frozenset({P(0, 2), P(0, 3), P(2, 3), P(1, 4)})
+        shell_violation = closure_violation(shell_case)
+        assert shell_violation is not None
+        self.assertEqual(
+            (shell_violation.kind, shell_violation.centre, shell_violation.missing, shell_violation.chain_length),
+            ("shell", P(0, 2), P(2, 2), 2),
+        )
+        self.assertEqual(shell_violation.consequent, ("s", P(0, 1), P(2, 2)))
+
+    def test_cl0_static_block_agrees_with_the_oracle_on_length_two_chains(self) -> None:
+        cell = witness_i1().cell
+        enc = build(cell, equilateral=True)
+        block = [b for b in enc.cnf.blocks if b.block_id == "CL0_equilateral_closure"]
+        self.assertEqual(len(block), 1)
+        self.assertGreater(block[0].clauses, 0)
+        self.assertEqual(block[0].admission, "PROVEN")
+        self.assertIn("Problem97.dist_eq_dist_of_mutual_bisector", block[0].lean_sources)
+        self.assertEqual(failing_primary_clauses(enc, assignment_of(witness_i1(), enc)), [])
+        failing = failing_primary_clauses(enc, assignment_of(violating_witness(), enc))
+        self.assertTrue(failing)
+        self.assertTrue(all(len(clause) == 6 for clause in failing))
 
 
 class EncodingTests(unittest.TestCase):

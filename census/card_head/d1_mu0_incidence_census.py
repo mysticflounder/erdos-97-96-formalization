@@ -391,6 +391,13 @@ class Encoding:
         return key in self.cnf.var
 
 
+CLOSURE_LEAN_SOURCES = (
+            "Problem97.dist_eq_dist_of_mutual_bisector",
+            "Problem97.mem_selectedClass",
+            "CriticalFourShell.support_eq",
+            "CriticalFourShell.support_eq_radius",
+        )
+
 OMITTED_BINDERS = (
     "R.minimal (D.Minimal) beyond the critical shell system H it induces",
     "R.noM44 and the CriticalPairFrontier packet F except F.radius_pos",
@@ -432,7 +439,7 @@ OMITTED_BINDERS = (
 )
 
 
-def build(cell: Cell) -> Encoding:
+def build(cell: Cell, equilateral: bool = False) -> Encoding:
     cnf = Cnf()
     points = cell.points
     labels = tuple(range(N_LABELS))
@@ -953,6 +960,58 @@ def build(cell: Cell) -> Encoding:
         cnf.add((-used,) + tuple(c(x, label) for x in points))
     used_regs = cnf.counter([cnf.var[("used", label)] for label in labels], "used")
 
+    # -- CL0: static equilateral closure (length-two distance-equality chains) --
+    if equilateral:
+        cnf.begin(
+            "CL0_equilateral_closure",
+            "ROOT_STATIC",
+            "PROVEN",
+            CLOSURE_LEAN_SOURCES,
+            "two equidistance facts make the triangle equilateral "
+            "(dist_eq_dist_of_mutual_bisector); exactness of the third object "
+            "(mem_selectedClass, CriticalFourShell.support_eq). M(z, y) is the "
+            "membership of y in the shell centred at the interior label z, "
+            "realized by any modelled source of centre z",
+        )
+        for z in all_interior:
+            for y in labels:
+                if y != z:
+                    cnf.new_var(("M", z, y))
+        for z in all_interior:
+            for y in labels:
+                if y == z:
+                    continue
+                m = cnf.var[("M", z, y)]
+                for x in points:
+                    if x == z:
+                        continue
+                    cnf.add((-c(x, z), -s(x, y), m))
+                    cnf.add((-m, -c(x, z), s(x, y)))
+        objects: list[tuple[str, int, int]] = [("I", z, 0) for z in all_interior]
+        objects.extend(("A", k, t) for (k, t) in cell.classes())
+
+        def mem(obj: tuple[str, int, int], y: int) -> int:
+            if obj[0] == "I":
+                return cnf.var[("M", obj[1], y)]
+            return A(obj[1], obj[2], y)
+
+        for op in objects:
+            for oq in objects:
+                for orr in objects:
+                    pp, qq, rr = op[1], oq[1], orr[1]
+                    if len({pp, qq, rr}) != 3:
+                        continue
+                    cnf.add(
+                        (
+                            -mem(op, qq),
+                            -mem(oq, pp),
+                            -mem(oq, rr),
+                            -mem(orr, pp),
+                            -mem(orr, qq),
+                            mem(op, rr),
+                        )
+                    )
+
     omitted = OMITTED_BINDERS if not cell.apex_shells else tuple(
         item for item in OMITTED_BINDERS if not item.startswith("shell constraints of a role")
         and not item.startswith("G.notRobustCover_card")
@@ -1164,6 +1223,169 @@ def replay(pattern: Pattern) -> list[str]:
     if z in points and w in points and c[z] == c[w]:
         bad.append("B4 z, w share a blocker")
     return bad
+
+
+@dataclass(frozen=True)
+class ClosureObject:
+    """One exact equidistance object of a pattern: a shell or an apex class."""
+
+    kind: str
+    centre: int
+    members: frozenset[int]
+    source: int | None
+    apex_class: tuple[int, int] | None
+
+    def centre_keys(self) -> tuple[tuple[Any, ...], ...]:
+        if self.kind == "shell":
+            return (("c", self.source, self.centre),)
+        return ()
+
+    def member_key(self, y: int) -> tuple[Any, ...]:
+        if self.kind == "shell":
+            return ("s", self.source, y)
+        assert self.apex_class is not None
+        return ("A", self.apex_class[0], self.apex_class[1], y)
+
+    def label(self) -> str:
+        if self.kind == "shell":
+            return f"shell@{label_name(self.centre)}"
+        assert self.apex_class is not None
+        return f"class A{self.apex_class[0]}.{self.apex_class[1]}"
+
+
+@dataclass(frozen=True)
+class ClosureViolation:
+    kind: str
+    centre: int
+    missing: int
+    witness: int
+    chain: tuple[tuple[str, int, int, int], ...]
+    antecedent: tuple[tuple[Any, ...], ...]
+    consequent: tuple[Any, ...]
+
+    @property
+    def chain_length(self) -> int:
+        return len(self.chain)
+
+    def to_json(self) -> dict[str, Any]:
+        return {
+            "kind": self.kind,
+            "centre": label_name(self.centre),
+            "missing": label_name(self.missing),
+            "witness": label_name(self.witness),
+            "chain_length": self.chain_length,
+            "chain": [
+                {"object": obj, "centre": label_name(o), "from": label_name(m), "to": label_name(m2)}
+                for obj, o, m, m2 in self.chain
+            ],
+            "antecedent": [list(map(str, key)) for key in self.antecedent],
+            "consequent": list(map(str, self.consequent)),
+        }
+
+
+def closure_objects(pattern: Pattern) -> list[ClosureObject]:
+    objects: list[ClosureObject] = []
+    by_centre: dict[int, int] = {}
+    for x in pattern.cell.points:
+        centre = pattern.centre[x]
+        if centre not in by_centre or x < by_centre[centre]:
+            by_centre[centre] = x
+    for centre in sorted(by_centre):
+        q = by_centre[centre]
+        objects.append(ClosureObject("shell", centre, pattern.shell[q], q, None))
+    for (k, t), members in sorted(pattern.classes.items()):
+        objects.append(ClosureObject("class", k, members, None, (k, t)))
+    return objects
+
+
+def _push_keys(antecedent: list[tuple[Any, ...]], keys: Iterable[tuple[Any, ...]]) -> None:
+    for key in keys:
+        if key not in antecedent:
+            antecedent.append(key)
+
+
+def closure_violation(pattern: Pattern) -> ClosureViolation | None:
+    """Distance-equality closure oracle over unordered label pairs.
+
+    Every object asserts ``dist(centre, y) = dist(centre, y')`` for its members
+    (``support_eq_radius`` / ``mem_selectedClass``); equality is transitive;
+    both objects are exact, so any of the fifteen carrier labels whose distance
+    to the centre equals the object's radius must be a member.  Returns the
+    violation with the shortest explanation chain, or ``None``.
+    """
+
+    objects = closure_objects(pattern)
+    adjacency: dict[frozenset[int], list[tuple[frozenset[int], int, int, int]]] = {}
+    for index, obj in enumerate(objects):
+        for m, m2 in combinations(sorted(obj.members), 2):
+            a, b = frozenset((obj.centre, m)), frozenset((obj.centre, m2))
+            adjacency.setdefault(a, []).append((b, index, m, m2))
+            adjacency.setdefault(b, []).append((a, index, m2, m))
+    best: ClosureViolation | None = None
+    for obj in objects:
+        targets = {frozenset((obj.centre, y)): y for y in obj.members}
+        for x in range(N_LABELS):
+            if x == obj.centre or x in obj.members:
+                continue
+            start = frozenset((obj.centre, x))
+            if start not in adjacency:
+                continue
+            parent: dict[frozenset[int], tuple[frozenset[int], int, int, int] | None] = {start: None}
+            queue = [start]
+            found: frozenset[int] | None = None
+            while queue and found is None:
+                node = queue.pop(0)
+                for nxt, index, m, m2 in adjacency.get(node, ()):
+                    if nxt in parent:
+                        continue
+                    parent[nxt] = (node, index, m, m2)
+                    if nxt in targets:
+                        found = nxt
+                        break
+                    queue.append(nxt)
+            if found is None:
+                continue
+            edges: list[tuple[int, int, int]] = []
+            node = found
+            while parent[node] is not None:
+                prev, index, m, m2 = parent[node]  # type: ignore[misc]
+                edges.append((index, m, m2))
+                node = prev
+            edges.reverse()
+            if best is not None and len(edges) >= best.chain_length:
+                continue
+            antecedent: list[tuple[Any, ...]] = []
+            chain: list[tuple[str, int, int, int]] = []
+            for index, m, m2 in edges:
+                edge_obj = objects[index]
+                _push_keys(antecedent, edge_obj.centre_keys())
+                _push_keys(antecedent, (edge_obj.member_key(m), edge_obj.member_key(m2)))
+                chain.append((edge_obj.label(), edge_obj.centre, m, m2))
+            witness = targets[found]
+            _push_keys(antecedent, obj.centre_keys())
+            _push_keys(antecedent, (obj.member_key(witness),))
+            best = ClosureViolation(
+                obj.kind, obj.centre, x, witness, tuple(chain), tuple(antecedent), obj.member_key(x)
+            )
+    return best
+
+
+def explanation_clause(enc: Encoding, violation: ClosureViolation) -> list[int]:
+    clause = [-enc.v(*key) for key in violation.antecedent]
+    clause.append(enc.v(*violation.consequent))
+    return clause
+
+
+CL1_CUT_RECORD = {
+    "block_id": "CL1_distance_equality_closure",
+    "clause_class": "DERIVED_CUT",
+    "admission": "PROVEN",
+    "lean_sources": list(CLOSURE_LEAN_SOURCES),
+    "antecedent": (
+        "transitivity of real equality plus exactness of SelectedClass and "
+        "CriticalFourShell.support; the metric core is dist_eq_dist_of_mutual_bisector"
+    ),
+}
 
 
 def sigma_key(key: tuple[Any, ...], projection: str) -> tuple[Any, ...]:
@@ -1422,6 +1644,14 @@ def with_units(cnf_bytes: bytes, units: Sequence[int]) -> bytes:
     return f"p cnf {nvars} {nclauses + len(units)}\n".encode("ascii") + rest + extra
 
 
+def with_clauses(cnf_bytes: bytes, clauses: Sequence[Sequence[int]]) -> bytes:
+    header, _, rest = cnf_bytes.partition(b"\n")
+    parts = header.split()
+    nvars, nclauses = int(parts[2]), int(parts[3])
+    extra = "".join(" ".join(str(lit) for lit in clause) + " 0\n" for clause in clauses).encode("ascii")
+    return f"p cnf {nvars} {nclauses + len(clauses)}\n".encode("ascii") + rest + extra
+
+
 def job_summary(record: Mapping[str, Any]) -> dict[str, Any]:
     keys = (
         "id",
@@ -1445,9 +1675,14 @@ class CellRun:
         self.client = client
         self.artifacts = artifacts
         self.args = args
-        self.enc = build(cell)
+        self.enc = build(cell, equilateral=bool(getattr(args, "cl0", False)))
         self.cnf_bytes = self.enc.cnf.dimacs()
-        self.result: dict[str, Any] = {"cell": cell.name, "is_target": cell.is_target}
+        self.result: dict[str, Any] = {
+            "cell": cell.name,
+            "is_target": cell.is_target,
+            "cl0_static_block": bool(getattr(args, "cl0", False)),
+            "closure_oracle": bool(getattr(args, "closure", False)),
+        }
         self.session_id: str | None = None
 
     def log(self, message: str) -> None:
@@ -1618,10 +1853,15 @@ class CellRun:
         start = time.monotonic()
         status = "complete"
         models_path = self.artifacts / f"{self.cell.name}.{self.args.tag}.{projection}.models.jsonl"
+        cuts_path = self.artifacts / f"{self.cell.name}.{self.args.tag}.{projection}.cuts.jsonl"
+        use_oracle = bool(getattr(self.args, "closure", False))
+        cut_clauses: list[list[int]] = []
+        block_clauses: list[list[int]] = []
+        chain_histogram: dict[int, int] = {}
         last: dict[str, Any] | None = None
-        with models_path.open("w", encoding="utf-8") as handle:
+        with models_path.open("w", encoding="utf-8") as handle, cuts_path.open("w", encoding="utf-8") as cuts_handle:
             while True:
-                if len(keys) >= cap:
+                if len(keys) + len(cut_clauses) >= cap:
                     status = "cap_hit"
                     break
                 if time.monotonic() - start > budget:
@@ -1639,6 +1879,28 @@ class CellRun:
                 violations = replay(pattern)
                 if violations:
                     raise D1Mu0CensusError(f"enumeration model failed replay: {violations[:3]}")
+                if use_oracle:
+                    violation = closure_violation(pattern)
+                    if violation is not None:
+                        clause = explanation_clause(self.enc, violation)
+                        true_lits = {lit for lit in reply["model"] if lit > 0}
+                        if any((lit > 0 and lit in true_lits) or (lit < 0 and -lit not in true_lits) for lit in clause):
+                            raise D1Mu0CensusError("closure cut is not falsified by the model it explains")
+                        cut_clauses.append(clause)
+                        chain_histogram[violation.chain_length] = chain_histogram.get(violation.chain_length, 0) + 1
+                        cuts_handle.write(
+                            json.dumps(
+                                {
+                                    "index": len(cut_clauses),
+                                    "solve_index": reply.get("solve_index"),
+                                    "violation": violation.to_json(),
+                                    "clause": clause,
+                                }
+                            )
+                            + "\n"
+                        )
+                        self.client.add_clauses(self.session_id, [clause])
+                        continue
                 key = normalize_key(pattern.key(projection))
                 if key in seen:
                     raise D1Mu0CensusError("blocking clause did not exclude a repeated pattern")
@@ -1650,7 +1912,30 @@ class CellRun:
                     )
                     + "\n"
                 )
-                self.client.add_clauses(self.session_id, [blocking_clause(self.enc, pattern, projection)])
+                block = blocking_clause(self.enc, pattern, projection)
+                block_clauses.append(block)
+                self.client.add_clauses(self.session_id, [block])
+        certification: dict[str, Any] | None = None
+        if status == "complete" and (cut_clauses or block_clauses):
+            extra = [tuple(cl) for cl in cut_clauses] + [tuple(cl) for cl in block_clauses]
+            certified = with_clauses(self.cnf_bytes, extra)
+            formula = "base+CL1_cuts" if not block_clauses else "base+CL1_cuts+survivor_blocks"
+            cert_path = self.artifacts / f"{self.cell.name}.{self.args.tag}.{projection}.certified.cnf"
+            cert_path.write_bytes(certified)
+            manifest = producer_manifest(self.enc, self.cnf_bytes, f"certify:{formula}:{len(extra)}")
+            _prepared, record = self.client.run_job(certified, manifest, self.args.timeout)
+            certification = {
+                "formula": formula,
+                "cut_clauses": len(cut_clauses),
+                "survivor_blocks": len(block_clauses),
+                "cnf_file": cert_path.name,
+                "cnf_sha256": sha256_hex(certified),
+                "job": job_summary(record),
+            }
+            self.log(
+                f"certification job {record.get('id')} -> {record.get('result')} "
+                f"proof {record.get('proof_blob_hash')}"
+            )
         orbits: int | None = None
         if self.cell.sigma_fixed:
             orbits = len({min(key, sigma_key(key, projection)) for key in keys})
@@ -1667,8 +1952,19 @@ class CellRun:
         }
         if projection == "capi":
             entry["statistics"] = capi_statistics(keys, self.cell)
+        if use_oracle:
+            entry["closure"] = {
+                "cuts": len(cut_clauses),
+                "survivors": len(keys),
+                "chain_length_histogram": dict(sorted(chain_histogram.items())),
+                "cuts_file": cuts_path.name,
+                "cut_admission_record": CL1_CUT_RECORD,
+                "certification": certification,
+            }
         self.result.setdefault("enumeration", []).append(entry)
-        self.log(f"enumeration {projection}: {status} with {len(keys)} patterns")
+        self.log(
+            f"enumeration {projection}: {status} with {len(keys)} survivors and {len(cut_clauses)} CL1 cuts"
+        )
 
     def run(self) -> dict[str, Any]:
         self.write_encoding()
@@ -1817,11 +2113,7 @@ def write_run_manifest(repo: Path, run_root: Path, run_id: str) -> None:
         "census/card_head/d1_mu0_incidence_census.py",
         "census/card_head/tests/test_d1_mu0_incidence_census.py",
     ]
-    inputs = [
-        ".codex/worktree-checkpoints/d1-triapex-plan-20260901.json",
-        "docs/plans/2026-09-01-d1-triapex-paired-common-deletion-closure-plan.md",
-        "docs/audits/2026-09-01-d1-mu0-terminal-analysis.md",
-    ]
+    inputs = ["docs/audits/2026-09-01-d1-mu0-terminal-analysis.md"]
     manifest: dict[str, Any] = {
         "schema": "worktree-run-manifest/v1",
         "lane_id": LANE_ID,
@@ -2051,6 +2343,72 @@ def write_report(run_root: Path) -> Path:
     add("in Section 4 are the exact instrument for location and arrow questions.")
     add("")
     lines.extend(stats_lines)
+    closure_rows: list[str] = []
+    cl0_unsat = oracle_unsat = closure_cells = 0
+    for name in sorted(results):
+        for tag, record in sorted(results[name].items()):
+            if not record.get("closure_oracle") and not record.get("cl0_static_block"):
+                continue
+            closure_cells += 1
+            base_verdict = record.get("verdict")
+            if base_verdict == "UNSAT":
+                cl0_unsat += 1
+            entries = record.get("enumeration", [])
+            closure = entries[0].get("closure", {}) if entries else {}
+            status = entries[0]["status"] if entries else "-"
+            if status == "complete" and closure.get("survivors", 0) == 0 and base_verdict == "SAT":
+                oracle_unsat += 1
+            cert = closure.get("certification") or {}
+            cert_job = cert.get("job", {})
+            base_job = record.get("base_job", {})
+            proof = base_job.get("proof_blob_hash") if base_verdict == "UNSAT" else cert_job.get("proof_blob_hash")
+            closure_rows.append(
+                f"| `{name}` | {'on' if record.get('cl0_static_block') else 'off'} | {base_verdict} | "
+                f"`{base_job.get('id', '-')}` | {status} | {closure.get('cuts', '-')} | "
+                f"{closure.get('survivors', '-')} | {closure.get('chain_length_histogram', '-')} | "
+                f"{cert.get('formula', '-')} | `{cert_job.get('id', '-')}` | "
+                f"{cert_job.get('result', '-')} | {(proof or '-')[:16]} |"
+            )
+    if closure_rows:
+        add("## 5b. Stage 1b: distance-equality closure (CL0 static block, CL1 oracle)")
+        add("")
+        add("`base verdict` is the raw-DIMACS job on the base formula (with CL0 when on);")
+        add("`status` is the session loop outcome (`complete` = UNSAT reached); `cuts` are")
+        add("CL1 explanation clauses (block `CL1_distance_equality_closure`, DERIVED_CUT,")
+        add("PROVEN); `survivors` are closure-consistent full patterns; the certification")
+        add("job re-solves base + cuts (+ survivor blocks) from scratch for an LRAT proof.")
+        add("")
+        add(f"Cells with closure: {closure_cells}; UNSAT from CL0 alone (base job): "
+            f"{cl0_unsat}; UNSAT only after the CL1 oracle: {oracle_unsat}.")
+        add("")
+        total_cuts = total_survivors = 0
+        length_totals: dict[int, int] = {}
+        for record_map in results.values():
+            for record in record_map.values():
+                for entry in record.get("enumeration", []):
+                    closure = entry.get("closure")
+                    if not closure:
+                        continue
+                    total_cuts += closure["cuts"]
+                    total_survivors += closure["survivors"]
+                    for length, count in closure["chain_length_histogram"].items():
+                        length_totals[int(length)] = length_totals.get(int(length), 0) + count
+        add(f"Totals over these cells: {total_cuts} CL1 cuts, {total_survivors} closure-consistent "
+            f"survivors; CL1 chain-length totals {dict(sorted(length_totals.items()))}.")
+        add("")
+        add("Convergence note: the static block CL0 is the direct encoding of every")
+        add("chain of length two (two objects plus the target object), and no CL1 cut of")
+        add("length two was produced while CL0 was on. A static encoding of length-three")
+        add("chains would replace the length-three cuts (ordered quadruples of objects,")
+        add("about 18^4 clauses of eight literals) but not the longer ones. It would not")
+        add("change the outcome: the loops stop at the cap because closure-consistent")
+        add("survivors dominate the iterations, not because the oracle keeps cutting;")
+        add("the distance-equality closure alone does not refute any cell at this scope.")
+        add("")
+        add("| cell | CL0 | base verdict | base job | loop status | CL1 cuts | survivors | chain lengths | certified formula | certification job | result | proof |")
+        add("|---|---|---|---|---|---|---|---|---|---|---|---|")
+        lines.extend(closure_rows)
+        add("")
     add("## 6. Defects and notes")
     add("")
     defects = [
@@ -2068,7 +2426,7 @@ def write_report(run_root: Path) -> Path:
     add("  does not yet declare this run root in `generated_roots` nor the encoder and")
     add("  test files in `owned_paths`; the lane owner must add them before staging.")
     add("")
-    path = run_root / "REPORT.md"
+    path = run_root / "artifacts" / "REPORT.md"
     path.write_text("\n".join(lines) + "\n", encoding="utf-8")
     return path
 
@@ -2089,6 +2447,8 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--queries", action="store_true")
     parser.add_argument("--dry-run", action="store_true", help="emit CNF and encoding records only")
     parser.add_argument("--report", action="store_true", help="only aggregate an existing run root into REPORT.md")
+    parser.add_argument("--cl0", action="store_true", help="add the static CL0 equilateral closure block")
+    parser.add_argument("--closure", action="store_true", help="run the CL1 distance-equality closure oracle in the loop")
     return parser.parse_args(argv)
 
 
@@ -2144,7 +2504,7 @@ def main(argv: Sequence[str] | None = None) -> int:
             key: sum(1 for t in client.trace if t["method"] + " " + t["target"].split("/")[1] == key)
             for key in sorted({t["method"] + " " + t["target"].split("/")[1] for t in client.trace})
         }
-    summary_path = run_root / f"summary-{args.tag}-{datetime.now(UTC).strftime('%Y%m%dT%H%M%SZ')}.json"
+    summary_path = artifacts / f"summary-{args.tag}-{datetime.now(UTC).strftime('%Y%m%dT%H%M%SZ')}.json"
     summary_path.write_text(json.dumps(results, indent=1, sort_keys=True) + "\n", encoding="utf-8")
     write_run_manifest(repo, run_root, args.run_id)
     print(f"summary written to {summary_path}")

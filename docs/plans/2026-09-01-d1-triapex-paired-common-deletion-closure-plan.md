@@ -834,6 +834,51 @@ rule; solver-free measurement, Stage 1b delegated):
   over all 3000 is running.
 - Lean leaf unchanged: single `sorry`, `M = 18`.
 
+Status 2026-09-01 (Phase 3a, tenth checkpoint: Stage 1b closure census
+delivered; the closure rule refutes no cell):
+
+- Stage 1b (`census/card_head/d1_mu0_incidence_census.py --cl0 --closure`,
+  run root `stage1b-closure-01`, every solver call through piqd): block
+  `CL0_equilateral_closure` (ROOT_STATIC, PROVEN; Lean sources
+  `dist_eq_dist_of_mutual_bisector`, `mem_selectedClass`,
+  `CriticalFourShell.support_eq`, `support_eq_radius`) adds, for every
+  interior label `z`, a membership variable `M(z, y)` tied to the shell of
+  every modelled source centred at `z` (sound under R5: same centre, same
+  shell; unrealized centres leave `M` free, which only weakens the clause),
+  and the six-literal equilateral clause over every ordered triple of
+  distinct exact objects (interior shells and apex classes). The oracle
+  `closure_violation` (block `CL1_distance_equality_closure`, DERIVED_CUT,
+  PROVEN) searches breadth-first over unordered label pairs through the
+  equalities each exact object asserts and blocks the shortest explanation
+  chain, not the pattern. Validation: 15 tests pass (the audit witness has
+  no violation; the witness with class `A2` enlarged by `A0, P0.1` forces
+  `A1` into class `A2` by a length-2 chain and the explanation clause is
+  falsified by exactly that assignment; the CL0 block agrees with the
+  oracle on length-2 chains), ruff clean; the admission records name the
+  four Lean sources above.
+- Outcome (CONJECTURE at the encoded incidence scope, card = 15): all 32
+  cells stay SAT with CL0 in the base formula; every enumeration hit the
+  3000 cap; CL1 cuts per cell 2 to 213, survivors 2787 to 2998 (target
+  cell `i0-1R1R1R-in12`: 213 cuts with chain lengths 3:136, 4:62, 5:14,
+  6:1, and 2787 survivors). No cell goes UNSAT, so no LRAT certificate
+  exists and no Lean route follows from Stage 1b. Survivor structure of the
+  target cell: 4 to 12 distinct centres, mode 10 (1253 of 2787), then 11
+  (753) and 12 (242); the closure rule pushes the survivors towards
+  patterns whose shells are pairwise distinct, which no admitted incidence
+  rule refutes.
+- Consequence: the mu = 0 refutation is not visible at the incidence layer
+  with the admitted rules plus distance-equality closure. Per Guardrail 3,
+  per-pattern algebra over at least 2787 survivors per cell is runaway
+  splitting, so the next probe is bounded: the modular Stage 2 batch on the
+  Stage 1 sample of `i0-1R1R1R-in12` was stopped at 610 of 3000 patterns,
+  all `MOD_EMPTY_COMPLEX` over `GF(32003)` after all-pairs distinctness
+  saturation (one engine, modular, sampled; not banked); a 40-pattern
+  modular batch and a 4-pattern core mine on the closure survivors of the
+  same cell are running, to find the smallest metrically inconsistent
+  sub-pattern, the candidate for the next universal Lean lemma.
+- Lean leaf unchanged: single `sorry`, `M = 18`. The Guardrail 7 second
+  engine is still pending the piqd maintainer.
+
 ### Phase 4 — carrier size at least 16
 
 - Extract from the card-15 closures the smallest infeasible sub-pattern and

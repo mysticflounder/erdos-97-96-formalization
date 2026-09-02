@@ -5,10 +5,11 @@
  "generated_roots": [
   "scratch/runs/d1-triapex-plan-20260901/singular-smoke-01",
   "scratch/runs/d1-triapex-plan-20260901/stage1-incidence-01",
+  "scratch/runs/d1-triapex-plan-20260901/stage1b-closure-01",
   "scratch/runs/d1-triapex-plan-20260901/stage2-probe-01"
  ],
  "lane_id": "d1-triapex-plan-20260901",
- "manifest_sha256": "9989d6b13517ddff19d554b620c121a2d3a983c68827b082ae1a6294d4dbfd0f",
+ "manifest_sha256": "4491c4c101ef6f3491b8150471aa71e9cafc181b74ee3fa0d79e18bf7b62dd5e",
  "owned_paths": [
   ".codex/worktree-checkpoints/d1-triapex-plan-20260901.json",
   "census/card_head/d1_mu0_incidence_census.py",
