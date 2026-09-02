@@ -749,6 +749,48 @@ validated for the algebra stage; infrastructure only, no cell is closed):
   background agent; its encoder and run tree are validated and committed
   when it reports. Leaf `sorry` unchanged, `M = 18`.
 
+Status 2026-09-01 (Phase 3a, eighth checkpoint: Stage 1 census delivered,
+Stage 2 first verdicts; all solver evidence CONJECTURE at encoded scope):
+
+- Stage 1 (`census/card_head/d1_mu0_incidence_census.py`, run root
+  `scratch/runs/d1-triapex-plan-20260901/stage1-incidence-01/`, report in
+  `artifacts/REPORT.md`): 15 labels (three apices, three caps of four
+  ordered slots), one centre and one four-point shell per modelled point,
+  22 clause blocks with cut-admission records (all `PROVEN` except R13
+  `DERIVED`, R7/Q1 `IMPLIED`, C1/C2 selectors); 59 of the 60 named Lean
+  sources resolve to declarations, the sixtieth is a selector description.
+  Every solver call went through piqd (raw-DIMACS jobs with automatic LRAT
+  on UNSAT, SAT sessions for queries and enumeration). Guardrail 1 smoke
+  tests passed: the audit witness is SAT with a clean replay, and the
+  adjacent-slot arrow, the centre-at-apex, and the same-centre-different-
+  shell instances are UNSAT with LRAT proofs (the first matches Route B).
+- Verdicts: all 32 cells (pair index 0 or 1, eight arm combinations,
+  `in12`/`ax15`) are SAT at the incidence level. In the 16 target cells all
+  six adjacent arrows are UNSAT and all six far arrows SAT; all nine
+  pair-centre cap placements are SAT; the minimum number of distinct
+  blocker centres is 3 (`in12`) and 4 (`ax15`). Every enumeration (`full`
+  and `capi` projections) hit the 3000-model cap, so pattern counts are
+  lower bounds; the incidence abstraction does not refute the leaf and does
+  not exhaust its pattern space. The encoding is a survivor superset
+  (Section 2 of the report lists the omitted binders).
+- Stage 2 on the target cell `i0-1R1R1R-in12` (one engine, Singular via
+  piqd, run root `stage2-probe-01`): the 3000 sampled models are 3000
+  distinct metric patterns over only 11 centre maps and 7 apex-class
+  systems; the variation is in the filler points of the shells. Every
+  pattern decided so far is EMPTY over the complex numbers once all fifteen
+  points are saturated distinct (unsaturated they are 4- to 6-dimensional,
+  all coincidence components), typically in well under a second, with rare
+  patterns near 90 s. A core-mining pass (deletion-minimal inconsistent
+  sub-pattern per refuted pattern, coverage counted) is running on a sample.
+- Consequence for the route. Per-pattern algebra over the full projection
+  is unbounded case splitting (Guardrail 3). The closure route is core
+  mining: recurring small inconsistent sub-patterns become circle-
+  intersection lemmas, proved in Lean and fed back to Stage 1 as `PROVEN`
+  cuts, until the incidence census turns UNSAT or a cell is refuted by a
+  Lean-provable core. Banking any Stage 2 emptiness verdict needs the
+  Guardrail 7 second engine (piqd maintainer, #8669, no reply yet).
+- Lean leaf unchanged: single `sorry`, `M = 18`.
+
 ### Phase 4 — carrier size at least 16
 
 - Extract from the card-15 closures the smallest infeasible sub-pattern and

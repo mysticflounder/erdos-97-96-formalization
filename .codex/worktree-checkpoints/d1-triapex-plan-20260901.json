@@ -3,13 +3,17 @@
  "created_utc": "2026-09-01T23:33:45Z",
  "durable_paths": [],
  "generated_roots": [
-  "scratch/runs/d1-triapex-plan-20260901/singular-smoke-01"
+  "scratch/runs/d1-triapex-plan-20260901/singular-smoke-01",
+  "scratch/runs/d1-triapex-plan-20260901/stage1-incidence-01",
+  "scratch/runs/d1-triapex-plan-20260901/stage2-probe-01"
  ],
  "lane_id": "d1-triapex-plan-20260901",
- "manifest_sha256": "5cf2f0b789b9c6105e0c6e8116ecf16bcb7838739bac528ec95c1f5145661840",
+ "manifest_sha256": "9989d6b13517ddff19d554b620c121a2d3a983c68827b082ae1a6294d4dbfd0f",
  "owned_paths": [
   ".codex/worktree-checkpoints/d1-triapex-plan-20260901.json",
+  "census/card_head/d1_mu0_incidence_census.py",
   "census/card_head/d1_mu0_pattern_algebra.py",
+  "census/card_head/tests/test_d1_mu0_incidence_census.py",
   "census/card_head/tests/test_d1_mu0_pattern_algebra.py",
   "docs/audits/2026-09-01-d1-mu0-terminal-analysis.md",
   "docs/computational-closure-plan-2026-07-28.md",
