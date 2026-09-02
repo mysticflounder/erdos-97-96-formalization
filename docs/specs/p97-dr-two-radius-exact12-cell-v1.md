@@ -12,9 +12,11 @@ carrier point, the carrier count, and full-class exactness for every incidence.
 
 ## 1. Carrier at card 12
 
-From the plan's Section 4 (arithmetic of checked lemmas, Lean statement is
-Phase 2 item L1, still {{NEEDS_PROOF}}): profile `(surplus, opp1, opp2) = (5, 4, 6)`,
-growth arm `secondOpposite` only.
+From the plan's Section 4 (Lean: `ATailFrontierLiveClosure.
+exactTwelve_profile_of_twoRadiusBranch` and
+`exactTwelve_secondOppositeCapGrowth_of_twoRadiusBranch`, proved 2026-09-01):
+profile `(surplus, opp1, opp2) = (5, 4, 6)`, interiors `3, 2, 4`, growth
+arm `secondOpposite` only.
 
 | role | points | source |
 |---|---|---|

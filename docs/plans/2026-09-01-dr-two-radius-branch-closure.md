@@ -70,8 +70,8 @@ Candidate routes recorded but unfinished:
 
 ## 4. Exact-12 rigidity
 
-Arithmetic consequence of checked lemmas; not yet stated in Lean.
-{{NEEDS_PROOF}} as a Lean lemma (Phase 2 item L1).
+Arithmetic consequence of checked lemmas; PROVEN in Lean 2026-09-01 as
+Phase 2 item L1 (`ATail/FrontierLiveClosure/TwoRadiusExactTwelveProfile.lean`).
 
 From `CounterexampleData.capSum` (`surplus + opp1 + opp2 = card + 3`),
 `capInteriorByIndex_card_add_two`, the two-member interior bound on both
@@ -217,7 +217,13 @@ metric UNSAT side remains gated on an approved algebra engine.
 
 Each item narrows the leaf and is needed by Phase 3 in any outcome.
 
-- L1 `exactTwelve_profile_of_twoRadiusBranch`: the Section 4 arithmetic.
+- L1 DONE 2026-09-01: `exactTwelve_profile_of_twoRadiusBranch` (interiors
+  `3, 2, 4`), `exactTwelve_capProfile_of_twoRadiusBranch` (`5, 4, 6`),
+  `four_le_oppInterior2_card_of_twoRadiusRows` (from the two radii alone),
+  and `exactTwelve_secondOppositeCapGrowth_of_twoRadiusBranch` (the
+  `secondOpposite` profile packet; the other two arms' data refuted).
+  Module `ATail/FrontierLiveClosure/TwoRadiusExactTwelveProfile.lean`,
+  sorry-free, standard axioms; not imported by the spine yet.
 - L2 `secondCapInterior_partition_of_twoRadiusBranch_exactTwelve`: the 2 + 2
   split via the existing partition theorem.
 - L3 `exactFourTwoRadiusAdjacentCapGrid_oppIndex2_of_twoRadiusBranch_exactTwelve`
