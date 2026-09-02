@@ -378,9 +378,17 @@ Lean route, in dependency order; every item names its consumer.
     variables; `secondApexRows_holds`, `firstApexClass_holds`,
     `blockers_holds`, `ingress_holds` prove the four packet families from
     it (with `exactlyOne_holds`, `exactlyK_holds`, `exactClass_holds`).
-    Remaining: the instantiation of `PacketValuation` (hence `K4Valuation`)
-    from the branch data on the `LabelMap` of the boundary ingress, and the
-    assembly theorem `∀ clause ∈ clauses, clauseHolds val clause`.
+    P3.4b DONE 2026-09-02:
+    `ATail/FrontierLiveClosure/DRExactTwelveBranchValuation.lean` (PROVEN;
+    axioms propext, Classical.choice, Quot.sound) instantiates
+    `PacketValuation` from the branch data (`packetVal pt P quad`, with
+    `labelsOf`/`labelOf` on the `LabelMap`, the late shell system, L3, L4,
+    the ingress rows, and `D.K4`) and proves
+    `exists_valuation_of_twoRadiusBranch_exactTwelve`: under exactly the
+    leaf's binders plus `hcard12 : D.A.card = 12`,
+    `∃ val, ∀ clause ∈ clauses, clauseHolds val clause`. Combined with a
+    kernel-checked `DimacsUnsatisfiable` replay of the same `clauses`
+    (P3.5), this closes the leaf at card 12.
   - P3.5 as below; P3.6 splits the leaf.
   Scale precedent: `ExactFiveCommonShellV7G3Replay` replayed an 861 MB
   source LRAT (421,331 additions, 93 M hints, 165 windows, 399 MB compact
