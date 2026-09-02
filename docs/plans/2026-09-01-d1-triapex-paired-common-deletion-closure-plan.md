@@ -586,6 +586,35 @@ no Lean change, no build, no solver run; full record in
   infrastructure checkpoints (no cell closed, `M = 18` unchanged). Neither
   is a terminal statement, so the Phase 3a rule above does not block them.
 
+Status 2026-09-01 (Phase 3a, third checkpoint: Route B compiled; the
+adjacent-slot pair replaces the low-span pair; no cell is closed):
+
+- `not_mem_selected_support_of_adjacent_interior_slots_of_oneRadius` is
+  proved: in the `oneRadius` arm, a strict-interior point of cap `i` never
+  lies on the actual critical shell of a strict-interior point at an
+  adjacent slot of the oriented complete cap order. Inputs:
+  `criticalShellCenter_mem_capInteriorByIndex_of_two_hits`,
+  `isUniqueFourCenter_centerAt`, `G.apex_rich i`, and
+  `CGN.index_strictly_between_of_equidistant`. Route B of the assessment
+  above is therefore PROVEN, not DERIVABLE.
+- `LowSpanMutualOmissionPairAt` is replaced by
+  `AdjacentMutualOmissionPairAt D S H i`: the same cap-order data, and slots
+  `s, t` of the strict interior with `t = s + 1` that mutually omit one
+  another, with both cross-deletions surviving and distinct blocker centres.
+  `adjacentMutualOmissionPairAt_of_oneRadius_card_eq_fifteen` proves it at
+  slots `1, 2` without `finFour_exists_nearby_mutualFalse_of_card_le_two`;
+  the dispatcher is `twoRadii_or_adjacentMutualOmissionPairAt_of_card_eq_fifteen`
+  and the leaf binds it as `hadjacentAtPair`. The interval count of the
+  first checkpoint is now `0` by construction; ingress item 6 has nothing
+  left to decrease.
+- Axiom closure of all three declarations: `propext`, `Classical.choice`,
+  `Quot.sound`. The leaf's single `sorry` is unchanged, the on-spine open
+  obligation count is 28 (unchanged), and `M = 18` is unchanged.
+- Still open: the `μ = 0` terminal has no contradiction consumer; the
+  incidence witness of the assessment above satisfies the new statement
+  too. Route C (exact six-point apex class) is the next infrastructure
+  candidate; the solver stages wait on the decision recorded above.
+
 ### Phase 4 — carrier size at least 16
 
 - Extract from the card-15 closures the smallest infeasible sub-pattern and
@@ -603,8 +632,9 @@ no Lean change, no build, no solver run; full record in
 In sessions: Phase 0 + Phase 1 (L1 to L6), one, done 2026-09-01. Phase 2,
 assessed without a run on 2026-09-01 (instrument-blocked; dimension count
 recorded). Phase 3, two to four; the first Phase 3a checkpoint (cap-order lift,
-no cell closed) and the `μ = 0` terminal assessment (no route closes
-from proven facts) are done 2026-09-01. Phase 4, unknown, at least three.
+no cell closed), the `μ = 0` terminal assessment (no route closes
+from proven facts), and the Route B checkpoint (adjacent-slot pair, no
+cell closed) are done 2026-09-01. Phase 4, unknown, at least three.
 {{UNVALIDATED}} until Phase 3 reports its first cell.
 
 ## 9. Gates

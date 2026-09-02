@@ -2398,13 +2398,116 @@ theorem exists_orderedCap_six_of_card_eq_fifteen
         Finset.card_univ, Fintype.card_fin]
 
 
+/-- In the one-radius arm, a strict-interior point of cap `i` never lies on
+the actual critical shell of a strict-interior point at an adjacent slot of
+the oriented complete cap order.  Two hits of the same-radius slice would put
+the blocker centre in the strict interior of cap `i`
+(`criticalShellCenter_mem_capInteriorByIndex_of_two_hits`), hence at a slot
+strictly between the two (`CGN.index_strictly_between_of_equidistant`), and
+adjacent slots have no slot between them. -/
+theorem not_mem_selected_support_of_adjacent_interior_slots_of_oneRadius
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    {H : CriticalShellSystem D.A}
+    (G : TriApexAllLargeContext D S) (i : Fin 3) {r : ℝ}
+    (hslice : S.capInteriorByIndex i ⊆
+      SelectedClass D.A (S.oppositeVertexByIndex i) r)
+    {L : CGN.OrderedCap 6} (Packet : CGN.MecCapPacket D.A L)
+    (side : CGN.MinorCapSideHypotheses Packet)
+    (order : CGN.StrictCapOrder D.A L)
+    (himage :
+      Finset.univ.image (fun k : Fin 4 => L.points ⟨k.1 + 1, by omega⟩) =
+        S.capInteriorByIndex i)
+    {s t : Fin 6} (hs : L.points s ∈ S.capInteriorByIndex i)
+    (ht : L.points t ∈ S.capInteriorByIndex i)
+    (hadj : t.1 = s.1 + 1 ∨ s.1 = t.1 + 1)
+    (hsA : L.points s ∈ D.A) :
+    L.points t ∉
+      (H.selectedAt (L.points s) hsA).toCriticalFourShell.support := by
+  classical
+  intro hmem
+  have hst : s ≠ t := by
+    intro h
+    subst h
+    omega
+  have hne : L.points s ≠ L.points t := fun h => hst (L.injective h)
+  have hsSlice : L.points s ∈
+      SelectedClass D.A (S.oppositeVertexByIndex i) r ∩
+        S.capInteriorByIndex i :=
+    Finset.mem_inter.mpr ⟨hslice hs, hs⟩
+  have htSlice : L.points t ∈
+      SelectedClass D.A (S.oppositeVertexByIndex i) r ∩
+        S.capInteriorByIndex i :=
+    Finset.mem_inter.mpr ⟨hslice ht, ht⟩
+  have hsub : ({L.points s, L.points t} : Finset ℝ²) ⊆
+      (H.selectedAt (L.points s) hsA).toCriticalFourShell.support ∩
+        (SelectedClass D.A (S.oppositeVertexByIndex i) r ∩
+          S.capInteriorByIndex i) := by
+    intro z hz
+    rcases Finset.mem_insert.mp hz with rfl | hz
+    · exact Finset.mem_inter.mpr
+        ⟨(H.selectedAt (L.points s) hsA).toCriticalFourShell.q_mem_support,
+          hsSlice⟩
+    · rw [Finset.mem_singleton.mp hz]
+      exact Finset.mem_inter.mpr ⟨hmem, htSlice⟩
+  have htwo : 2 ≤
+      ((H.selectedAt (L.points s) hsA).toCriticalFourShell.support ∩
+        (SelectedClass D.A (S.oppositeVertexByIndex i) r ∩
+          S.capInteriorByIndex i)).card := by
+    calc 2 = ({L.points s, L.points t} : Finset ℝ²).card :=
+          (Finset.card_pair hne).symm
+      _ ≤ _ := Finset.card_le_card hsub
+  have hcenter : H.centerAt (L.points s) hsA ∈ S.capInteriorByIndex i :=
+    criticalShellCenter_mem_capInteriorByIndex_of_two_hits hsA (G.apex_rich i)
+      (isUniqueFourCenter_centerAt H (L.points s) hsA) htwo
+  obtain ⟨k, -, hk⟩ := Finset.mem_image.mp (himage ▸ hcenter)
+  have hk' : L.points ⟨k.1 + 1, by omega⟩ = H.centerAt (L.points s) hsA := hk
+  have hds : dist (H.centerAt (L.points s) hsA) (L.points s) =
+      (H.selectedAt (L.points s) hsA).toCriticalFourShell.radius :=
+    (H.selectedAt (L.points s) hsA).toCriticalFourShell.support_eq_radius _
+      (H.selectedAt (L.points s) hsA).toCriticalFourShell.q_mem_support
+  have hdt : dist (H.centerAt (L.points s) hsA) (L.points t) =
+      (H.selectedAt (L.points s) hsA).toCriticalFourShell.radius :=
+    (H.selectedAt (L.points s) hsA).toCriticalFourShell.support_eq_radius _
+      hmem
+  have hradius :=
+    (H.selectedAt (L.points s) hsA).toCriticalFourShell.radius_pos
+  have hjs : (⟨k.1 + 1, by omega⟩ : Fin 6) ≠ s := by
+    intro h
+    have h0 : dist (H.centerAt (L.points s) hsA) (L.points s) = 0 := by
+      rw [← hk', h, dist_self]
+    rw [hds] at h0
+    exact hradius.ne' h0
+  have hjt : (⟨k.1 + 1, by omega⟩ : Fin 6) ≠ t := by
+    intro h
+    have h0 : dist (H.centerAt (L.points s) hsA) (L.points t) = 0 := by
+      rw [← hk', h, dist_self]
+    rw [hdt] at h0
+    exact hradius.ne' h0
+  have heq : dist (L.points ⟨k.1 + 1, by omega⟩) (L.points s) =
+      dist (L.points ⟨k.1 + 1, by omega⟩) (L.points t) := by
+    rw [hk', hds, hdt]
+  rcases hadj with h | h
+  · have hlt : s < t := Fin.lt_def.mpr (by omega)
+    have hbetween :=
+      CGN.index_strictly_between_of_equidistant Packet side order hlt hjs hjt heq
+    have h1 : s.1 < k.1 + 1 := Fin.lt_def.mp hbetween.1
+    have h2 : k.1 + 1 < t.1 := Fin.lt_def.mp hbetween.2
+    omega
+  · have hlt : t < s := Fin.lt_def.mpr (by omega)
+    have hbetween :=
+      CGN.index_strictly_between_of_equidistant Packet side order hlt hjt hjs
+        heq.symm
+    have h1 : t.1 < k.1 + 1 := Fin.lt_def.mp hbetween.1
+    have h2 : k.1 + 1 < s.1 := Fin.lt_def.mp hbetween.2
+    omega
+
 /-- The Phase 3a state of the closure plan at carrier size fifteen: the four
 strict-interior points of cap `i` occupy the consecutive middle slots `1..4`
-of the oriented complete cap order, and two of them, whose slots differ by at
-most two, mutually omit one another from their actual critical shells.  Both
-cross-deletions survive and the two blocker centres are distinct.  At most one
+of the oriented complete cap order, and two of them at adjacent slots
+mutually omit one another from their actual critical shells.  Both
+cross-deletions survive and the two blocker centres are distinct.  No
 strict-interior point lies between the pair in the cap order. -/
-def LowSpanMutualOmissionPairAt
+def AdjacentMutualOmissionPairAt
     (D : CounterexampleData) (S : SurplusCapPacket D.A)
     (H : CriticalShellSystem D.A) (i : Fin 3) : Prop :=
   ∃ (L : CGN.OrderedCap 6) (Packet : CGN.MecCapPacket D.A L)
@@ -2418,134 +2521,75 @@ def LowSpanMutualOmissionPairAt
     (∀ t : Fin 6, L.points t ∈ S.capInteriorByIndex i ↔ (t ≠ 0 ∧ t ≠ 5)) ∧
     Finset.univ.image (fun k : Fin 4 => L.points ⟨k.1 + 1, by omega⟩) =
       S.capInteriorByIndex i ∧
-    ∃ a b : Fin 4, a < b ∧ b.1 ≤ a.1 + 2 ∧
-      ∃ (ha : L.points ⟨a.1 + 1, by omega⟩ ∈ D.A)
-        (hb : L.points ⟨b.1 + 1, by omega⟩ ∈ D.A),
-        L.points ⟨b.1 + 1, by omega⟩ ∉
-          (H.selectedAt (L.points ⟨a.1 + 1, by omega⟩)
-            ha).toCriticalFourShell.support ∧
-        L.points ⟨a.1 + 1, by omega⟩ ∉
-          (H.selectedAt (L.points ⟨b.1 + 1, by omega⟩)
-            hb).toCriticalFourShell.support ∧
-        HasNEquidistantPointsAt 4 (D.A.erase (L.points ⟨b.1 + 1, by omega⟩))
-          (H.centerAt (L.points ⟨a.1 + 1, by omega⟩) ha) ∧
-        HasNEquidistantPointsAt 4 (D.A.erase (L.points ⟨a.1 + 1, by omega⟩))
-          (H.centerAt (L.points ⟨b.1 + 1, by omega⟩) hb) ∧
-        H.centerAt (L.points ⟨a.1 + 1, by omega⟩) ha ≠
-          H.centerAt (L.points ⟨b.1 + 1, by omega⟩) hb
+    ∃ s t : Fin 6, L.points s ∈ S.capInteriorByIndex i ∧
+      L.points t ∈ S.capInteriorByIndex i ∧ t.1 = s.1 + 1 ∧
+      ∃ (hs : L.points s ∈ D.A) (ht : L.points t ∈ D.A),
+        L.points t ∉
+          (H.selectedAt (L.points s) hs).toCriticalFourShell.support ∧
+        L.points s ∉
+          (H.selectedAt (L.points t) ht).toCriticalFourShell.support ∧
+        HasNEquidistantPointsAt 4 (D.A.erase (L.points t))
+          (H.centerAt (L.points s) hs) ∧
+        HasNEquidistantPointsAt 4 (D.A.erase (L.points s))
+          (H.centerAt (L.points t) ht) ∧
+        H.centerAt (L.points s) hs ≠ H.centerAt (L.points t) ht
 
-/-- Phase 3a of the closure plan: the order-retaining low-span pair.
+/-- Phase 3a of the closure plan: the order-retaining adjacent pair.
 
 At carrier size fifteen the four strict-interior points of cap `i` fill the
 consecutive middle slots `1..4` of the oriented complete cap order
 (`exists_orderedCap_six_of_card_eq_fifteen`).  When those four points lie on
-one circle about the apex opposite cap `i`, the actual critical shell of any
-one of them meets the slice in at most two points, because that apex is never
-a blocker centre.  The finite low-span kernel then returns a mutually omitting
-pair whose slots differ by at most two.  This retains the slot order that
+one circle about the apex opposite cap `i`, adjacent slots never lie on one
+another's actual critical shell
+(`not_mem_selected_support_of_adjacent_interior_slots_of_oneRadius`), so
+slots `1` and `2` form a mutually omitting pair with both cross-deletions
+surviving and distinct blocker centres.  This retains the slot order that
 `exists_mutualCrossDeletion_pair_of_sourceFaithfulFan_no_centerBlocker`
 discards; it does not narrow the residual. -/
-theorem lowSpanMutualOmissionPairAt_of_oneRadius_card_eq_fifteen
+theorem adjacentMutualOmissionPairAt_of_oneRadius_card_eq_fifteen
     {D : CounterexampleData} {S : SurplusCapPacket D.A}
     {H : CriticalShellSystem D.A}
     (G : TriApexAllLargeContext D S) (hcard : D.A.card = 15) (i : Fin 3)
-    {r : ℝ} (hr : 0 < r) {T : Finset ℝ²}
+    {r : ℝ} {T : Finset ℝ²}
     (hT : T ⊆ SelectedClass D.A (S.oppositeVertexByIndex i) r ∩
       S.capInteriorByIndex i)
-    (hTcard : T.card = 4) (hTeq : T = S.capInteriorByIndex i) :
-    LowSpanMutualOmissionPairAt D S H i := by
+    (hTeq : T = S.capInteriorByIndex i) :
+    AdjacentMutualOmissionPairAt D S H i := by
   classical
   obtain ⟨L, Packet, side, order, hcap, hends, hint, himage⟩ :=
     exists_orderedCap_six_of_card_eq_fifteen G hcard i
-  have himageT :
-      Finset.univ.image (fun k : Fin 4 => L.points ⟨k.1 + 1, by omega⟩) = T :=
-    himage.trans hTeq.symm
-  let slot : Fin 4 → ℝ² := fun k => L.points ⟨k.1 + 1, by omega⟩
-  have hslot_inj : Function.Injective slot := by
-    intro a b hab
-    have h := Fin.mk.inj_iff.mp (L.injective hab)
-    exact Fin.ext (by omega)
-  have hslot_mem (k : Fin 4) : slot k ∈ T := by
-    have h := Finset.mem_image_of_mem
-      (fun k : Fin 4 => L.points ⟨k.1 + 1, by omega⟩) (Finset.mem_univ k)
-    rwa [himageT] at h
-  have hTA : T ⊆ D.A := fun x hx =>
-    (mem_selectedClass.mp (Finset.mem_inter.mp (hT hx)).1).1
-  have hslot_A (k : Fin 4) : slot k ∈ D.A := hTA (hslot_mem k)
-  let Row : SelectedFourClass D.A (S.oppositeVertexByIndex i) :=
-    { support := T
-      support_subset_A := hTA
-      support_card := hTcard
-      radius := r
-      radius_pos := hr
-      support_eq_radius := fun x hx =>
-        (mem_selectedClass.mp (Finset.mem_inter.mp (hT hx)).1).2
-      center_not_mem := by
-        intro hmem
-        have h := (mem_selectedClass.mp (Finset.mem_inter.mp (hT hmem)).1).2
-        rw [dist_self] at h
-        exact hr.ne h }
-  have hfan :=
-    sourceFaithfulDeletionFan_of_triApexAllLargeContext (H := H) G Row
-  have hcenterNe : ∀ (w : ℝ²) (hw : w ∈ Row.support),
-      S.oppositeVertexByIndex i ≠ H.centerAt w (Row.support_subset_A hw) := by
-    intro w hw hcenter
-    have hunique := isUniqueFourCenter_centerAt H w (Row.support_subset_A hw)
-    rw [← hcenter] at hunique
-    exact not_isUniqueFourCenter_of_fullyDeletionRobust
-      (fullyDeletionRobustAt_of_apexRichClassStructure (G.apex_rich i))
-      (by simpa using hunique)
-  let contains : Fin 4 → Fin 4 → Bool := fun a b =>
-    decide (slot b ∈
-      (H.selectedAt (slot a) (hslot_A a)).toCriticalFourShell.support)
-  have hself (a : Fin 4) : contains a a = true := by
-    simp only [contains, decide_eq_true_eq]
-    exact (H.selectedAt (slot a) (hslot_A a)).toCriticalFourShell.q_mem_support
-  have hbound (a : Fin 4) :
-      (Finset.univ.filter fun b => contains a b).card ≤ 2 := by
-    have hinter :
-        (T ∩ (H.selectedAt (slot a) (hslot_A a)).toCriticalFourShell.support).card
-          ≤ 2 := by
-      rcases hfan (slot a) (hslot_mem a) with ⟨_, _, _, hsame | hdistinct⟩
-      · exact False.elim (hcenterNe (slot a) (hslot_mem a) hsame.1)
-      · exact hdistinct.2
-    refine le_trans (le_of_eq ?_) hinter
-    refine Finset.card_bij (fun b _ => slot b) ?_ ?_ ?_
-    · intro b hb
-      have hb' : contains a b = true := (Finset.mem_filter.mp hb).2
-      exact Finset.mem_inter.mpr ⟨hslot_mem b, by
-        simpa only [contains, decide_eq_true_eq] using hb'⟩
-    · intro b₁ _ b₂ _ h
-      exact hslot_inj h
-    · intro x hx
-      obtain ⟨k, _, hk⟩ :=
-        Finset.mem_image.mp (himageT ▸ (Finset.mem_inter.mp hx).1)
-      refine ⟨k, ?_, hk⟩
-      refine Finset.mem_filter.mpr ⟨Finset.mem_univ _, ?_⟩
-      simp only [contains, decide_eq_true_eq]
-      have hk' : slot k = x := hk
-      rw [hk']
-      exact (Finset.mem_inter.mp hx).2
-  obtain ⟨a, b, hab, hspan, hab_omit, hba_omit⟩ :=
-    finFour_exists_nearby_mutualFalse_of_card_le_two contains hself hbound
-  have hab' : slot b ∉
-      (H.selectedAt (slot a) (hslot_A a)).toCriticalFourShell.support := by
-    simpa only [contains, decide_eq_false_iff_not] using hab_omit
-  have hba' : slot a ∉
-      (H.selectedAt (slot b) (hslot_A b)).toCriticalFourShell.support := by
-    simpa only [contains, decide_eq_false_iff_not] using hba_omit
-  exact ⟨L, Packet, side, order, hcap, hends, hint, himage, a, b, hab, hspan,
-    hslot_A a, hslot_A b, hab', hba',
-    (cross_deletion_survives_iff_not_mem_selected_support H (hslot_A a)).mpr hab',
-    (cross_deletion_survives_iff_not_mem_selected_support H (hslot_A b)).mpr hba',
-    blocker_centers_ne_of_not_mem_other_selected_support H (hslot_A a)
-      (hslot_A b) hba'⟩
+  have hslice : S.capInteriorByIndex i ⊆
+      SelectedClass D.A (S.oppositeVertexByIndex i) r := by
+    intro x hx
+    have hxT : x ∈ T := by
+      rw [hTeq]
+      exact hx
+    exact (Finset.mem_inter.mp (hT hxT)).1
+  have h1 : L.points 1 ∈ S.capInteriorByIndex i :=
+    (hint 1).mpr ⟨by decide, by decide⟩
+  have h2 : L.points 2 ∈ S.capInteriorByIndex i :=
+    (hint 2).mpr ⟨by decide, by decide⟩
+  have h1A : L.points 1 ∈ D.A := (mem_selectedClass.mp (hslice h1)).1
+  have h2A : L.points 2 ∈ D.A := (mem_selectedClass.mp (hslice h2)).1
+  have h12 : L.points 2 ∉
+      (H.selectedAt (L.points 1) h1A).toCriticalFourShell.support :=
+    not_mem_selected_support_of_adjacent_interior_slots_of_oneRadius G i
+      hslice Packet side order himage h1 h2 (Or.inl (by decide)) h1A
+  have h21 : L.points 1 ∉
+      (H.selectedAt (L.points 2) h2A).toCriticalFourShell.support :=
+    not_mem_selected_support_of_adjacent_interior_slots_of_oneRadius G i
+      hslice Packet side order himage h2 h1 (Or.inr (by decide)) h2A
+  exact ⟨L, Packet, side, order, hcap, hends, hint, himage, 1, 2, h1, h2,
+    by decide, h1A, h2A, h12, h21,
+    (cross_deletion_survives_iff_not_mem_selected_support H h1A).mpr h12,
+    (cross_deletion_survives_iff_not_mem_selected_support H h2A).mpr h21,
+    blocker_centers_ne_of_not_mem_other_selected_support H h1A h2A h21⟩
 
 /-- Witness-level form of the Phase 3a state at carrier size fifteen: a strict
 apex witness whose support is the whole strict interior of cap `i` either is
-in the two-radii arm, with its raw data returned, or carries the low-span
-mutual-omission pair. -/
-theorem twoRadii_or_lowSpanMutualOmissionPairAt_of_card_eq_fifteen
+in the two-radii arm, with its raw data returned, or carries the
+adjacent-slot mutual-omission pair. -/
+theorem twoRadii_or_adjacentMutualOmissionPairAt_of_card_eq_fifteen
     {D : CounterexampleData} {S : SurplusCapPacket D.A}
     {H : CriticalShellSystem D.A}
     (G : TriApexAllLargeContext D S) (hcard : D.A.card = 15) (i : Fin 3)
@@ -2557,12 +2601,12 @@ theorem twoRadii_or_lowSpanMutualOmissionPairAt_of_card_eq_fifteen
         T₂ ⊆ SelectedClass D.A (S.oppositeVertexByIndex i) r₂ ∩
           S.capInteriorByIndex i ∧
         T₁.card = 2 ∧ T₂.card = 2 ∧ W.support = T₁ ∪ T₂) ∨
-      LowSpanMutualOmissionPairAt D S H i := by
+      AdjacentMutualOmissionPairAt D S H i := by
   cases W with
-  | oneRadius r hr T hT hTcard =>
+  | oneRadius r _ T hT _ =>
       right
-      exact lowSpanMutualOmissionPairAt_of_oneRadius_card_eq_fifteen
-        G hcard i hr hT hTcard hW
+      exact adjacentMutualOmissionPairAt_of_oneRadius_card_eq_fifteen
+        G hcard i hT hW
   | twoRadii r₁ r₂ hr₁ hr₂ hne T₁ T₂ hT₁ hT₂ hcard₁ hcard₂ =>
       left
       exact ⟨r₁, r₂, T₁, T₂, hr₁, hr₂, hne, hT₁, hT₂, hcard₁, hcard₂, rfl⟩
@@ -2620,9 +2664,9 @@ theorem false_of_pairedCommonDeletion_fiveSurviveOneFail_triApexAllLarge_core
   have hsixSlots := fun (hcard : D.A.card = 15) (k : Fin 3) =>
     exists_orderedCap_six_of_card_eq_fifteen G hcard k
   -- Phase 3a: at carrier size fifteen, the witness at the pair index is in
-  -- the two-radii arm or carries the order-retaining low-span pair.
-  have hlowSpanAtPair := fun (hcard : D.A.card = 15) =>
-    twoRadii_or_lowSpanMutualOmissionPairAt_of_card_eq_fifteen (H := H)
+  -- the two-radii arm or carries the adjacent-slot mutual-omission pair.
+  have hadjacentAtPair := fun (hcard : D.A.card = 15) =>
+    twoRadii_or_adjacentMutualOmissionPairAt_of_card_eq_fifteen (H := H)
       G hcard i (Q.W i) (hfifteen hcard i)
   sorry
 
