@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "firstfiber-crossed-row-kalmanson-20260902",
+  "owner": "firstfiber-crossed-row-kalmanson",
+  "base_head": "d580d14a7f1e94057da16aa7fb7c8471bbe3e875",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/firstfiber-crossed-row-kalmanson-20260902.json",
+    "docs/audits/2026-09-02-firstfiber-crossed-row-kalmanson.md"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-02T20:59:47Z",
+  "manifest_sha256": "c7c8824041a9700fa34bd008b11b2d6affa639c0c4462de15cc620588eff7356"
+}
