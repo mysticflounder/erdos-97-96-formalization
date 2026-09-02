@@ -42,6 +42,17 @@ theorem not_separated_of_cyclicAdjacent
       exact hp (hadj.mpr hq)
     exact hp (hsep.mpr hq)
 
+/-- If both points lie in one open index interval, they occupy the same cut
+side.  This is the order-only adapter used by a boundary producer: the
+geometric caller still has to prove the four strict inequalities. -/
+theorem cyclicAdjacent_of_common_strict_interval
+    {n : ℕ} {i j p q : Fin n}
+    (hp_left : i < p) (hp_right : p < j)
+    (hq_left : i < q) (hq_right : q < j) :
+    cyclicAdjacent i j p q := by
+  unfold cyclicAdjacent SurplusCOMPGBank.btw
+  simp [hp_left, hp_right, hq_left, hq_right]
+
 /-- The three perfect matchings cannot all be separated by one cut.
 
 This is the propositional core needed when two independent shared-pair

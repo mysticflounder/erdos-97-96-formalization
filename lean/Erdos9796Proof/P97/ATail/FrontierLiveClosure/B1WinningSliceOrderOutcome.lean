@@ -25,6 +25,7 @@ open scoped EuclideanGeometry
 open ATailCriticalPairFrontier
 open ATailExactFourPhysicalConsumer
 open ATailUniqueFourLateChoiceTerminalScratch
+open Census554.GeneralCarrierBridge
 
 attribute [local instance] Classical.propDecidable
 
@@ -64,6 +65,22 @@ theorem b1_cardSix_escapeSource_twoPoint
   rcases E.escape_mem_live_slice with hu | hv
   · exact Or.inl ⟨hu, hcards.1⟩
   · exact Or.inr ⟨hv, hcards.2⟩
+
+/- A card-six order producer needs only one same-arc assertion: the local
+packet supplies the two-point cardinalities for both live slices. -/
+def B1CardSixWinningSliceArc
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F)) : Prop :=
+  ∃ B : BoundaryIndexing D.A,
+    let apex : CarrierLabel D.A := ⟨S.oppApex2, b1_oppApex2_mem_A S⟩
+    let Hlate := lateFirstApexSystem C.R
+    let uBlocker := blockerLabel Hlate C.u.1 C.u.2
+    let vBlocker := blockerLabel Hlate C.v.1 C.v.2
+    B1SliceSameBoundaryArc B apex uBlocker (b1USlice C) ∨
+      B1SliceSameBoundaryArc B apex vBlocker (b1VSlice C)
 
 /-- Source-oriented form of the exact card-five trace split.  The first two
 arms identify a genuine two-point live slice containing the escape source; the
@@ -197,6 +214,44 @@ def B1WinningSliceOrderOutcome
       (H := H) (F := F)) : Prop :=
   Nonempty (B1WinningLiveSliceSameBoundaryArc C) ∨
     Nonempty (B1EscapeSourceContext C)
+
+/- The card-six producer interface maps one explicit winning-pair arc, or the
+two explicit source-context facts, into the common order-or-context outcome. -/
+theorem b1_cardSix_orderOutcome_of_arc_or_escapeSourceContext
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F))
+    (W : B1FiveSixWaveIngress C)
+    (P : B1CardSixLocalRolePacket C)
+    (_hcase : W.cardCase = B1FiveSixWaveCardCase.cardSix P)
+    (hproducer :
+      B1CardSixWinningSliceArc C ∨
+        (W.escape.escape.source ∈ outsideFirstApexFiber C.R ∧
+          (HasNEquidistantPointsAt 4 (D.A.erase C.R.interior_q)
+              ((lateFirstApexSystem C.R).centerAt
+                W.escape.escape.source.1 W.escape.escape.source.2) ∨
+            HasNEquidistantPointsAt 4 (D.A.erase C.R.interior_w)
+              ((lateFirstApexSystem C.R).centerAt
+                W.escape.escape.source.1 W.escape.escape.source.2)))) :
+    B1WinningSliceOrderOutcome C := by
+  rcases hproducer with harc | hsource
+  · rcases harc with ⟨B, hu | hv⟩
+    · left
+      refine ⟨B, ?_⟩
+      have hcards := b1_cardSix_liveSlices_card_two P
+      simpa [B1WinningLiveSliceSameBoundaryArc, b1USlice,
+        b1VSlice, b1PhysicalClass] using
+        (Or.inl ⟨hcards.1, hu⟩)
+    · left
+      refine ⟨B, ?_⟩
+      have hcards := b1_cardSix_liveSlices_card_two P
+      simpa [B1WinningLiveSliceSameBoundaryArc, b1USlice,
+        b1VSlice, b1PhysicalClass] using
+        (Or.inr ⟨hcards.2, hv⟩)
+  · right
+    exact b1EscapeSourceContext_of_star C W hsource.1 hsource.2
 
 /-- Neutral final dispatch once the order-or-context producer and the source
 consumer have both been supplied. -/
