@@ -8,6 +8,7 @@ import Erdos9796Proof.P97.ATail.FrontierLiveClosure.ContextFrames
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.Rigid221SourceHeavy
 import Erdos9796Proof.P97.ATail.ExactFiveCommonAdaptiveReselection
 import Erdos9796Proof.P97.ATail.ExactFiveDistinctThreeCenterContinuation
+import Erdos9796Proof.P97.ATail.ExactFiveDistinctThreeCenterTightCover
 
 namespace Problem97
 namespace ATailFrontierLiveClosure
@@ -1546,6 +1547,16 @@ theorem false_of_exactFiveDistinct_threeCenter_exactTwelveTightPhysical
       CommonDeletionTwoCenterPacket D H normalForm.retained
         S.oppApex1 S.oppApex2) :
     False := by
+  rcases
+      ExactFiveDistinctThreeCenterTightCover.nonempty_balancedTightCoverInvariant
+        R C normalForm carrier_card_eq_twelve union_card_eq_eleven
+          carrier_erase_deleted_eq_union with
+    ⟨invariant⟩
+  rcases
+      ExactFiveDistinctThreeCenterTightCover.exists_balancedTightCover_surplusCap_rowHits_blocker_eq_complement
+        invariant with
+    ⟨firstHit, secondHit, firstHit_mem, secondHit_mem, firstHit_eq,
+      secondHit_eq, firstHit_ne_secondHit, blockerSupport_eq⟩
   sorry
 
 /-- The bi-apex-robust exact-five endpoint splits soundly into a genuinely

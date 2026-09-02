@@ -138,6 +138,97 @@ omission and retained packet arguments are not used.  The remaining closure
 problem is the balanced `(5,5,5)` tight cover itself, not an arbitrary
 packet-row overlap search.
 
+## Blocker-cap localization
+
+The balanced invariant now supplies the source-side middle-center envelope
+without assuming an exact choice of four points from the second-apex
+five-class.  The two physical apex rows each meet the surplus cap in at most
+one point.  Since the five-point surplus cap is covered by the first residual,
+the three-point blocker residual, and the second row, the blocker residual
+must contain exactly three surplus-cap points.  The declarations are:
+
+- `balancedTightCover_blockerClass_inter_surplusCap_card_eq_three`;
+- `balancedTightCover_blocker_not_mem_surplusCap`; and
+- `balancedTightCover_blocker_mem_roleEnvelope`.
+
+The second declaration combines the exact three-point intersection with the
+general cap-row bound: a selected four-class centered inside a cap can meet
+that cap in at most two points.  The third then uses cap trichotomy, the two
+physical center inequalities, and blocker/source separation to prove
+
+```text
+blocker ∈ {surplusApex} ∪
+  ((first-opposite interior \ {retained}) ∪ second-opposite interior).
+```
+
+At the balanced profile this is exactly the conservative six-location
+middle-center envelope.  This closes the blocker-location item in the later
+468-cell source specification.  It does **not** prove the specification's
+stronger exact first/second row decompositions.  The `K₁` complement identity
+is discharged in the next checkpoint using the same cap budget.
+
+## Surplus-hit complement bridge
+
+The tight cover does force the part of the proposed role packet that depends
+only on the surplus cap.  The new theorem
+`balancedTightCover_apexRows_inter_surplusCap_card_eq_one` proves that the
+first residual and the second-apex row each meet the five-point surplus cap
+in exactly one point.  Since the residual blocks are disjoint, these two
+points are distinct.  The aggregate theorem
+`exists_balancedTightCover_surplusCap_rowHits_blocker_eq_complement` chooses
+them as `firstHit` and `secondHit` and proves
+
+```text
+blockerSupport =
+  {retained} ∪ (surplusCap \ {firstHit, secondHit}).
+```
+
+Thus the proposed `K₁` complement identity is now source-proved without
+assuming either stronger apex-row decomposition.  The active tight-cover
+leaf constructs the balanced invariant and consumes this aggregate theorem,
+so the declarations are present on the refreshed kernel spine rather than
+being detached helpers.  The focused `Rigid221Closure` build passed at
+proof-blueprint build `4c3a33ed1491`; the aggregate theorem's axiom closure
+is exactly `propext`, `Classical.choice`, and `Quot.sound`.  The global
+frontier remains 28 on-spine declarations and zero off-spine declarations,
+and the anchored subtree remains one open leaf.
+
+Independent verifier `exact12_complement_proof_review` re-read the effective
+instruction chain and checked this source state at HEAD
+`1ac138b49b403f02793b34845d2c71be142453f9`.  It reran
+`lake-build Erdos9796Proof.P97.ATail.FrontierLiveClosure.Rigid221Closure`,
+queried the aggregate theorem's literal axiom closure, and checked its live
+consumer with proof-blueprint.  Verdict: the aggregate theorem is proven and
+consumer-reachable; the target remains deliberately open because the bound
+role data do not yet yield `False`.
+
+Two stronger report-level identifications are not consequences of the
+current invariant:
+
+- the first residual contains the named first-interior third and its unique
+  surplus-cap hit, but nothing yet proves that it contains `surplusApex`;
+- the second row is a four-subset of the unique five-point second-apex class,
+  while the full class contains the three-point second interior, but nothing
+  yet proves that the normal four-row contains all three interior points.
+
+The first missing first-row premise can be stated as the metric incidence
+`dist surplusApex oppApex1 = firstApexRadius` (or directly as surplus-apex
+membership in the first residual).  The first missing second-row premise is
+`secondInterior ⊆ secondApexClass.support`.  Until one of these is derived
+from the live geometry, a finite ingress must retain the remaining unnamed
+row roles instead of hard-coding the proposed `C₀` and `C₂` forms.
+
+For this checkpoint the finite first-coordinate submeasure
+
+```text
+(apex surplus-hit counts, hit alias, blocker residual ambiguity)
+```
+
+falls from `(at most one, unknown, arbitrary three-set)` to
+`(exactly one, distinct, exact complement)`.  This is a strict source-role
+reduction, but it does not reduce the one open tight-cover leaf and therefore
+claims no closure credit.
+
 This closes the alias ambiguity among the three physical rows.  It does not
 yet supply the equal-distance closure or the global convex/order input needed
 by a finite collision consumer.

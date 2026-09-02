@@ -6,10 +6,11 @@
   "owned_paths": [
     ".codex/worktree-checkpoints/exactfive-threecenter-tight-cover-20260901.json",
     "docs/plans/2026-09-01-rigid221-exactfive-tight-cover.md",
-    "lean/Erdos9796Proof/P97/ATail/ExactFiveDistinctThreeCenterTightCover.lean"
+    "lean/Erdos9796Proof/P97/ATail/ExactFiveDistinctThreeCenterTightCover.lean",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221Closure.lean"
   ],
   "generated_roots": [],
   "durable_paths": [],
   "created_utc": "2026-09-01T20:00:00Z",
-  "manifest_sha256": "5e8c1b2adb0f380abcc511a20dc3babb71781409cbc14b88a568feec48378d2a"
+  "manifest_sha256": "5ad593695b6a9f654b4a913fa23c421d05cdc0c3e5acb36f43f527e7a84a29ba"
 }
