@@ -239,9 +239,10 @@ Each item narrows the leaf and is needed by Phase 3 in any outcome.
   `firstApexClass_radius_unique_of_twoRadiusBranch`. Module
   `ATail/FrontierLiveClosure/TwoRadiusExactTwelveFirstApexClass.lean`,
   sorry-free, standard axioms; not imported by the spine yet.
-- L5 port of the sorry-free scratch bound `d1_secondOppCap_card_ge_six`
-  (`lean/scratch/d-package-bank/DPackageBank.lean:1253`) after a fresh
-  elaboration and axiom check.
+- L5 SUBSUMED 2026-09-01: `four_le_oppInterior2_card_of_twoRadiusRows`
+  (in the L1 module) gives `6 ≤ oppCap2` from the two radii alone, so the
+  scratch bound `d1_secondOppCap_card_ge_six`
+  (`lean/scratch/d-package-bank/DPackageBank.lean:1253`) is not ported.
 
 None of these may be committed as a wrapper network; each must be consumed by
 the Phase 3 ingress or by the leaf itself.
@@ -297,6 +298,25 @@ Lean route, in dependency order; every item names its consumer.
   blockers, the `X`/`Y`/`U` classes). The `dist`-level statements of the two
   cores are used directly (skeptic f5): `RowPattern` is not the carrier of
   this valuation. Consumer: P3.5.
+  P3.4 design note (2026-09-01, after L1 to L4 and P3.2/P3.3). Inputs now
+  proved: cap interiors `3, 2, 4` (L1), the row census (L3), the first-apex
+  census (L4), the two order cores on a ccw enumeration (P3.2/P3.3), and
+  the cap-block boundary indexing (P3.1). The label map is fixed: surplus
+  apex `A3` at index 0, then `I2` (4), `A1`, `IS` (3), `A2`, `I1` (2) in the
+  direct blocks, or the reverse in the mirror blocks; both order families
+  are invariant under reversal, so one valuation covers both. Per family:
+  `transitivity` and `k4_everywhere` are generic (real equality,
+  `CounterexampleData.K4`); `second_apex_rows`, `first_apex_class` are L3,
+  L4; `blockers` and `ingress` read the packet (`CriticalShellSystem`,
+  `surface`); `two_circle_same_arc`, `five_point_circle_isosceles_order`
+  are P3.2, P3.3 with the finite arc/pattern checks decided on `Fin 12`.
+  Open design choice {{NEEDS_ADAM_INPUT}}: reuse the Rigid221 exact-twelve
+  DIMACS ingress (`ExactTwelveRigid221TerminalRupIngress`, row-pattern and
+  nogood-bank language) or write a D-R-specific runtime DIMACS ingress for
+  the `dr_exact12_structural` layout. Precedent for scale: the
+  `ExactFiveCommonShellV7G3Replay` package (165 checkpoints, 2 shards,
+  `native_decide` windows) was accepted under the project's native-trust
+  audit.
 - P3.5 Certificate replay. Store a checked, zero-RAT LRAT of the two-family
   CNF (`piqd` job `bdbe81da…` or a `cadical --plain` rerun through `piqd`
   if the proof has RAT lemmas), normalize it, and replay it with the
