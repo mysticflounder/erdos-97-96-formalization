@@ -645,6 +645,46 @@ no cell is closed):
   about a Moser vertex: four points in the opposite cap and one in each
   incident cap. {{NEEDS_ADAM_INPUT}} on the solver stages stays open.
 
+Status 2026-09-01 (Phase 3a, fifth checkpoint: the smallest metric question
+on the pinned object, stated for the solver decision; read-only, no run):
+
+- The pinned object at the pair index `i` in the `oneRadius` arm at
+  `card = 15` (all PROVEN, `AdjacentMutualOmissionPairAt`): the six-slot
+  strict cap order of cap `i` with the two chord apices at slots `0, 5`;
+  the four interior points at slots `1..4` on one circle of radius `r`
+  about the opposite apex; that apex's class at `r` of exactly six points,
+  one in each incident cap; slots `1, 2` mutually omitting with distinct
+  non-apex blocker centres, each centre carrying an exact four-point shell
+  through its source and no four-point class after that source is deleted.
+- There is no small refuting metric question. The pinned object alone
+  imposes 11 polynomial equalities (five for the six-point class, three per
+  shell) on the 26 degrees of freedom of the Phase 2 count, so on its own it
+  is a 15-parameter family (HEURISTIC, generic count) and Stage 2 on it is
+  predicted SAT. Refuting power only comes from the whole card-15 system:
+  the three apex classes (at least 15 equalities; at index `i` now exactly
+  the six-point class, so the two-radii branch is gone there) and the at
+  least four blocker shells covering all fifteen points (at least 12), that
+  is at least 27 equalities against 26 degrees of freedom. Generic counting
+  therefore predicts no witness family at card 15, but it cannot exclude a
+  non-generic (dependent) real solution, which is exactly the question a
+  solver has to answer.
+- Shape of the decisive question. Per incidence pattern (which twelve
+  interior labels are blocker centres, which four-point shells they carry,
+  and which points lie in which cap and slot), a degree-two polynomial
+  system of at least 27 equations in 26 normalized coordinates, expected to
+  be zero-dimensional or empty; the open conditions (convex position, cap
+  order, the deletion-survival disequalities, the unique-four-centre facts)
+  are then checked on the finitely many real solutions. This is
+  Gröbner-plus-real-root territory (msolve and Singular, cross-checked per
+  Guardrail 7), not `QF_NRA` search. The cost driver is the number of
+  incidence patterns that survive the PROVEN incidence bounds, which is
+  what Stage 1 (a piqd census of the named-role quotient at card 15) would
+  count; no encoder for that quotient has been verified to exist.
+  {{NEEDS_ADAM_INPUT}}: run Stage 1 to count patterns, run a per-pattern
+  algebra stage (needs per-task approval), or neither.
+- Lean leaf unchanged by this checkpoint: single `sorry`, on-spine open
+  obligations 28, `M = 18`.
+
 ### Phase 4 — carrier size at least 16
 
 - Extract from the card-15 closures the smallest infeasible sub-pattern and
