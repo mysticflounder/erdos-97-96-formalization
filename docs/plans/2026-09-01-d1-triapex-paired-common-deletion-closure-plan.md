@@ -732,6 +732,19 @@ validated for the algebra stage; infrastructure only, no cell is closed):
   maintainer (request #8669 on `#piqd`, no reply yet). Until it exists, a
   Singular-only emptiness verdict is CONJECTURE at the encoded scope and is
   recorded as one-engine evidence, not banked.
+- Stage 2 generator `census/card_head/d1_mu0_pattern_algebra.py`: projects a
+  Stage 1 model record to its metric content (distinct `(centre, shell)`
+  pairs and apex classes; roles and slices dropped), pins `A0 = (0, 0)`
+  and `A1 = (1, 0)` (26 variables), emits one Singular script per metric
+  pattern (`std`, `dim`, `vdim`, `nrRootsDeterm`, optional saturation by
+  named coincidences), and submits it only through `piqc singular run`.
+  Known-answer tests in `tests/test_d1_mu0_pattern_algebra.py` (11 pass):
+  a free class is a curve, one concyclic shell is a three-parameter
+  family, the non-concyclic four-set with a forced centre is finite
+  before and empty after saturating the coincidence, and the
+  equilateral apex triangle has exactly two real solutions. Verdict
+  labels: `EMPTY_COMPLEX`, `POSITIVE_DIMENSIONAL`, `FINITE_NO_REAL`,
+  `FINITE_REAL_CANDIDATES`; all one-engine CONJECTURE at encoded scope.
 - Stage 1 (piqd cadical incidence census) is still running in the
   background agent; its encoder and run tree are validated and committed
   when it reports. Leaf `sorry` unchanged, `M = 18`.

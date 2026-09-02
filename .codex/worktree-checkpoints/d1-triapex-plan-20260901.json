@@ -6,9 +6,11 @@
   "scratch/runs/d1-triapex-plan-20260901/singular-smoke-01"
  ],
  "lane_id": "d1-triapex-plan-20260901",
- "manifest_sha256": "206051c8b362bb08d87f3fca8a00cd4a4fe8f81c242069834ba5c2ab9b5d34af",
+ "manifest_sha256": "5cf2f0b789b9c6105e0c6e8116ecf16bcb7838739bac528ec95c1f5145661840",
  "owned_paths": [
   ".codex/worktree-checkpoints/d1-triapex-plan-20260901.json",
+  "census/card_head/d1_mu0_pattern_algebra.py",
+  "census/card_head/tests/test_d1_mu0_pattern_algebra.py",
   "docs/audits/2026-09-01-d1-mu0-terminal-analysis.md",
   "docs/computational-closure-plan-2026-07-28.md",
   "docs/plans/2026-09-01-d1-triapex-paired-common-deletion-closure-plan.md",
