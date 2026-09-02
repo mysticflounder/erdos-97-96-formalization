@@ -276,6 +276,21 @@ from every `B1GlobalTransportContext`.  These declarations are source producers,
 not terminal consumers: no theorem currently rules out every constructor, and
 they do not close `false_of_b1PhysicalClassFiveSixNormalForm` by themselves.
 
+## 2026-09-02 fresh interior source routing
+
+`b1_freshInteriorEscape_context_or_firstClass_or_bad` now routes the concrete
+strict-second-cap-interior escape source produced by
+`b1_live_exists_third_interior_escape`.  Under the five/six normal form and the
+frontier pair identifications, it either constructs a neutral
+`B1EscapeSourceContext`, or records that this source is in the first-apex class,
+or records membership in `badOutsideSources`.  The context arm uses the
+normal-form cover to recover live-row membership and derives retained-deletion
+survival directly from the complement of the bad set.  The focused
+`B1WinningSliceOrderOutcome` build is green and the file has no new `sorry`,
+`axiom`, or `admit`.  This is an upstream producer refinement; the target
+consumer remains open until the first-class and bad-source residuals receive
+their own source-level consumers.
+
 ## 2026-09-01 PiQD producer update
 
 The claimed declarative `piqc campaign run <plan.json>` surface is not currently

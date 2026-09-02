@@ -6,6 +6,7 @@ Authors: Adam McKenna
 
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.CyclicPairSeparation
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.B1FiveSixWaveIngress
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure.B1Live
 
 /-!
 # B1 winning-slice order outcome
@@ -232,6 +233,32 @@ theorem b1_source_not_mem_commonRow_of_class_of_ne_deletions
   · exact hsourceNeFirst (Subtype.ext hfirst)
   · exact hsourceNeSecond (Subtype.ext (Finset.mem_singleton.mp hsecond))
 
+/- The active B1 cover trichotomy reduces the no-third normal form to one of
+two source-producing arms: an interior canonical deletion, or an interior
+live-row source.  This is weaker than the parked both-deletions statement,
+but it is the exact provenance that remains available without reopening that
+commented formulation. -/
+theorem b1_normalForm_interior_deleted_or_live_source
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F))
+    (hnormal : B1PhysicalClassFiveSixNormalForm C) :
+    (C.first.deleted.1 ∈ S.capInteriorByIndex S.oppIndex2 ∨
+        C.second.deleted.1 ∈ S.capInteriorByIndex S.oppIndex2) ∨
+      (C.u.1 ∈ S.capInteriorByIndex S.oppIndex2 ∨
+        C.v.1 ∈ S.capInteriorByIndex S.oppIndex2) := by
+  rcases b1_live_interior_deleted_or_third_or_live_source_interior
+      C.R C.hcard C.surface C.rho C.hrho C.hfive C.u C.v C.huNeV
+      C.huClass C.hvClass C.hvOmitted C.huOmitted C.first C.second
+      C.hdeletedNe C.hblockersEq with hpair | hthird
+  · exact Or.inl hpair
+  · rcases hthird with hthird | hlive
+    · rcases hthird with ⟨third, _hthirdInterior, hthirdFirst, hthirdSecond⟩
+      exact (hnormal.1 ⟨third, hthirdFirst, hthirdSecond⟩).elim
+    · exact Or.inr hlive
+
 /- A source that escapes the saturated common row already carries all local
 data needed for a B1 escape witness.  This constructor is independent of the
 outside-first-apex and retained-survival facts, which are added only when the
@@ -299,6 +326,163 @@ def b1EscapeWitness_of_sourceData
     escapeBlocker_ne_apex := hescapeNeApex
     overlap_le_two := hoverlap }
 
+/- A fresh source can be turned into the full B1 source context without using
+the named escape star.  The normal-form cover supplies live-row membership;
+the local witness constructor supplies the escape row and blocker facts. -/
+theorem b1EscapeSourceContext_of_normalForm_sourceData
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F))
+    (hnormal : B1PhysicalClassFiveSixNormalForm C)
+    (source : CarrierVertex D.A)
+    (hsourceClass : source.1 ∈
+      SelectedClass D.A S.oppApex2 C.rho)
+    (hsourceInterior : source.1 ∈
+      S.capInteriorByIndex S.oppIndex2)
+    (hsourceNeFirst : source ≠ C.first.deleted)
+    (hsourceNeSecond : source ≠ C.second.deleted)
+    (houtside : source ∈ outsideFirstApexFiber C.R)
+    (hsurvives :
+      HasNEquidistantPointsAt 4 (D.A.erase C.R.interior_q)
+          ((lateFirstApexSystem C.R).centerAt source.1 source.2) ∨
+        HasNEquidistantPointsAt 4 (D.A.erase C.R.interior_w)
+          ((lateFirstApexSystem C.R).centerAt source.1 source.2)) :
+    Nonempty (B1EscapeSourceContext C) := by
+  classical
+  have hsourceNotCommonRow :=
+    b1_source_not_mem_commonRow_of_class_of_ne_deletions
+      C source (by simpa [b1PhysicalClass] using hsourceClass)
+      hsourceNeFirst hsourceNeSecond
+  let escape : B1EscapeWitness C :=
+    b1EscapeWitness_of_sourceData C source hsourceClass hsourceInterior
+      hsourceNeFirst hsourceNeSecond hsourceNotCommonRow
+  have hcover :
+      b1PhysicalClass C =
+        {C.first.deleted.1, C.second.deleted.1} ∪
+          (b1USlice C ∪ b1VSlice C) := by
+    simpa [b1PhysicalClass, b1USlice, b1VSlice] using hnormal.2.2
+  have hsourceCover :
+      source.1 ∈
+        {C.first.deleted.1, C.second.deleted.1} ∪
+          (b1USlice C ∪ b1VSlice C) := by
+    rw [← hcover]
+    simpa [b1PhysicalClass] using hsourceClass
+  have hsourceNotPair :
+      source.1 ∉ ({C.first.deleted.1, C.second.deleted.1} : Finset ℝ²) := by
+    simp only [Finset.mem_insert, Finset.mem_singleton, not_or]
+    exact ⟨fun h => hsourceNeFirst (Subtype.ext h),
+      fun h => hsourceNeSecond (Subtype.ext h)⟩
+  have hsourceLive :
+      source.1 ∈ b1USlice C ∨ source.1 ∈ b1VSlice C := by
+    rcases Finset.mem_union.mp hsourceCover with hpair | hlive
+    · exact (hsourceNotPair hpair).elim
+    · exact Finset.mem_union.mp hlive
+  have hsourceEscapeRow : source.1 ∈ b1EscapeRow C source := by
+    simpa [b1EscapeRow] using
+      ((lateFirstApexSystem C.R).selectedAt
+        source.1 source.2).toCriticalFourShell.q_mem_support
+  refine ⟨{
+    source := source
+    escape := escape
+    source_eq_escape := rfl
+    source_mem_physicalClass := by
+      simpa [b1PhysicalClass] using hsourceClass
+    source_mem_secondCapInterior := hsourceInterior
+    source_mem_liveRow := hsourceLive
+    source_mem_escapeRow := hsourceEscapeRow
+    escapeBlocker_ne_common := escape.escapeBlocker_ne_common
+    escapeBlocker_ne_apex := escape.escapeBlocker_ne_apex
+    source_mem_outsideFirstApexFiber := houtside
+    survives_retained_firstApex_deletion := hsurvives
+    cross_omission := b1_escapeRow_crossOmission C escape
+  }⟩
+
+/- The fresh strict-interior escape supplied by the live normal form can now be
+   routed through the neutral source-context adapter.  The only alternatives
+   left by this routing are the first-apex class and the explicitly named bad
+   outside-source set. -/
+theorem b1_freshInteriorEscape_context_or_firstClass_or_bad
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F))
+    (hnormal : B1PhysicalClassFiveSixNormalForm C)
+    (hq_eq : C.R.interior_q = F.pair.q)
+    (hw_eq : C.R.interior_w = F.pair.w) :
+    Nonempty (B1EscapeSourceContext C) ∨
+      (∃ source : CarrierVertex D.A,
+        source.1 ∈ SelectedClass D.A S.oppApex2 C.rho ∧
+          source.1 ∈ S.capInteriorByIndex S.oppIndex2 ∧
+          source ≠ C.first.deleted ∧
+          source ≠ C.second.deleted ∧
+          source.1 ∈ SelectedClass D.A S.oppApex1 radius) ∨
+      (∃ source : CarrierVertex D.A,
+        source.1 ∈ SelectedClass D.A S.oppApex2 C.rho ∧
+          source.1 ∈ S.capInteriorByIndex S.oppIndex2 ∧
+          source ≠ C.first.deleted ∧
+          source ≠ C.second.deleted ∧
+          source ∈ badOutsideSources C.R) := by
+  classical
+  obtain ⟨t, ht, htFirst, htSecond, _htNotRow, _htSurvivesCommon,
+    _htBlockerNe⟩ :=
+    b1_live_exists_third_interior_escape
+      C.R C.hcard C.surface C.rho C.hrho C.hfive C.u C.v C.huNeV
+      C.huClass C.hvClass C.hvOmitted C.huOmitted C.first C.second
+      C.hdeletedNe C.hblockersEq
+  have htClass : t ∈ SelectedClass D.A S.oppApex2 C.rho :=
+    (Finset.mem_inter.mp ht).1
+  have htInterior : t ∈ S.capInteriorByIndex S.oppIndex2 :=
+    (Finset.mem_inter.mp ht).2
+  have htA : t ∈ D.A := (mem_selectedClass.mp htClass).1
+  let source : CarrierVertex D.A := ⟨t, htA⟩
+  have hsourceClass : source.1 ∈ SelectedClass D.A S.oppApex2 C.rho := by
+    simpa [source] using htClass
+  have hsourceInterior : source.1 ∈ S.capInteriorByIndex S.oppIndex2 := by
+    simpa [source] using htInterior
+  have hsourceNeFirst : source ≠ C.first.deleted := by
+    intro h
+    apply htFirst
+    exact congrArg Subtype.val h
+  have hsourceNeSecond : source ≠ C.second.deleted := by
+    intro h
+    apply htSecond
+    exact congrArg Subtype.val h
+  by_cases hfirst : source.1 ∈ SelectedClass D.A S.oppApex1 radius
+  · exact Or.inr (Or.inl ⟨source, hsourceClass, hsourceInterior,
+      hsourceNeFirst, hsourceNeSecond, hfirst⟩)
+  have houtside : source ∈ outsideFirstApexFiber C.R :=
+    b1_source_mem_outsideFirstApexFiber_of_not_mem_firstApexClass C.R hfirst
+  by_cases hbad : source ∈ badOutsideSources C.R
+  · exact Or.inr (Or.inr ⟨source, hsourceClass, hsourceInterior,
+      hsourceNeFirst, hsourceNeSecond, hbad⟩)
+  have hsurvives :
+      HasNEquidistantPointsAt 4 (D.A.erase C.R.interior_q)
+          ((lateFirstApexSystem C.R).centerAt source.1 source.2) ∨
+        HasNEquidistantPointsAt 4 (D.A.erase C.R.interior_w)
+          ((lateFirstApexSystem C.R).centerAt source.1 source.2) := by
+    by_cases hq :
+        HasNEquidistantPointsAt 4 (D.A.erase F.pair.q)
+          ((lateFirstApexSystem C.R).centerAt source.1 source.2)
+    · left
+      simpa [hq_eq] using hq
+    by_cases hw :
+        HasNEquidistantPointsAt 4 (D.A.erase F.pair.w)
+          ((lateFirstApexSystem C.R).centerAt source.1 source.2)
+    · right
+      simpa [hw_eq] using hw
+    apply False.elim
+    apply hbad
+    simp only [badOutsideSources]
+    refine Finset.mem_filter.mpr ⟨houtside, ?_⟩
+    exact ⟨hq, hw⟩
+  exact Or.inl
+    (b1EscapeSourceContext_of_normalForm_sourceData C hnormal source
+      hsourceClass hsourceInterior hsourceNeFirst hsourceNeSecond
+      houtside hsurvives)
+
 /-- Package the local star once the cap producer supplies its two missing
 global facts.  This adapter is intentionally neutral: it does not choose a
 boundary order and does not import any downstream rigid closure. -/
@@ -349,17 +533,19 @@ theorem b1EscapeSourceContext_of_star
   }⟩
 
 /- Reuse the existing source-rich mutual-omission packet when an upstream
-producer retains it for the escape source. -/
-theorem b1EscapeSourceContext_of_exactFourSourceContext
+producer retains it for the escape source.  The auxiliary exact-four pair is
+quantified independently: a producer may generate a fresh pair rather than
+reuse the B1 context's named `u,v`. -/
+theorem b1EscapeSourceContext_of_exactFourSourceContext_any
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
     {F : CriticalPairFrontier D S radius H}
     (C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
       (H := H) (F := F))
     (W : B1FiveSixWaveIngress C)
-    {other : CarrierVertex D.A}
+    {other u v : CarrierVertex D.A}
     (hcontext : ExactFourMutualOmissionSourceContext C.R C.rho
-      W.escape.escape.source other C.u C.v) :
+      W.escape.escape.source other u v) :
     Nonempty (B1EscapeSourceContext C) := by
   have hsourceEscapeRow :
       W.escape.escape.source.1 ∈
@@ -383,6 +569,50 @@ theorem b1EscapeSourceContext_of_exactFourSourceContext
     cross_omission := W.escape.cross_omission
   }⟩
 
+/- Backward-compatible specialization for contexts whose auxiliary pair is
+the ambient B1 pair. -/
+theorem b1EscapeSourceContext_of_exactFourSourceContext
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F))
+    (W : B1FiveSixWaveIngress C)
+    {other : CarrierVertex D.A}
+    (hcontext : ExactFourMutualOmissionSourceContext C.R C.rho
+      W.escape.escape.source other C.u C.v) :
+    Nonempty (B1EscapeSourceContext C) := by
+  exact b1EscapeSourceContext_of_exactFourSourceContext_any C W hcontext
+
+/- A carrier-level version of the first-apex class adapter.  Keeping the
+source independent of the named escape star lets fresh interior producers
+reuse the same outside-fiber argument. -/
+theorem b1_mem_outsideFirstApexFiber_of_not_mem_firstApexClass
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F))
+    {source : CarrierVertex D.A}
+    (hnot : source.1 ∉
+      SelectedClass D.A S.oppApex1 radius) :
+    source ∈ outsideFirstApexFiber C.R := by
+  apply Finset.mem_sdiff.mpr
+  refine ⟨Finset.mem_univ _, ?_⟩
+  intro hsourceFiber
+  have hblockers := (Finset.mem_filter.mp hsourceFiber).2
+  apply hnot
+  apply
+    (lateFirstApexSystem_centerAt_eq_iff_mem_class C.R source.2).mp
+  calc
+    (lateFirstApexSystem C.R).centerAt source.1 source.2 =
+        (lateFirstApexSystem C.R).centerAt
+          F.pair.q F.pair.q_mem_A :=
+      congrArg Subtype.val hblockers
+    _ = S.oppApex1 :=
+      lateFirstApexSystem_centerAt_eq C.R F.pair.q_mem_A
+        (frontier_pair_q_mem_firstApexClass F)
+
 /- A class-level non-membership proof is enough to discharge the outside-fiber
 part of the source context. -/
 theorem b1_escapeSource_mem_outsideFirstApexFiber_of_not_mem_firstClass
@@ -395,23 +625,7 @@ theorem b1_escapeSource_mem_outsideFirstApexFiber_of_not_mem_firstClass
     (hnot : W.escape.escape.source.1 ∉
       SelectedClass D.A S.oppApex1 radius) :
     W.escape.escape.source ∈ outsideFirstApexFiber C.R := by
-  apply Finset.mem_sdiff.mpr
-  refine ⟨Finset.mem_univ _, ?_⟩
-  intro hsourceFiber
-  have hblockers := (Finset.mem_filter.mp hsourceFiber).2
-  apply hnot
-  apply
-    (lateFirstApexSystem_centerAt_eq_iff_mem_class C.R
-      W.escape.escape.source.2).mp
-  calc
-    (lateFirstApexSystem C.R).centerAt
-        W.escape.escape.source.1 W.escape.escape.source.2 =
-      (lateFirstApexSystem C.R).centerAt
-        F.pair.q F.pair.q_mem_A :=
-      congrArg Subtype.val hblockers
-    _ = S.oppApex1 :=
-      lateFirstApexSystem_centerAt_eq C.R F.pair.q_mem_A
-        (frontier_pair_q_mem_firstApexClass F)
+  exact b1_mem_outsideFirstApexFiber_of_not_mem_firstApexClass C hnot
 
 /- Outside sources that are not in the bad set carry one retained-deletion
 survival witness.  The residual's named interior points must be identified
@@ -472,6 +686,31 @@ theorem b1EscapeSourceContext_of_escape_source_outside_not_bad
     b1_escapeSource_survives_retained_firstApex_deletion_of_not_bad_of_pair_identifications
       C W hq_eq hw_eq houtside hnotBad
   exact b1EscapeSourceContext_of_star C W houtside hsurvives
+
+/- The source-context adapter therefore leaves only two explicit residual
+branches for the named escape source: first-apex-class membership or failure
+of retained-deletion goodness. -/
+theorem b1_escapeSourceContext_or_firstClass_or_bad
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F))
+    (W : B1FiveSixWaveIngress C)
+    (hq_eq : C.R.interior_q = F.pair.q)
+    (hw_eq : C.R.interior_w = F.pair.w) :
+    Nonempty (B1EscapeSourceContext C) ∨
+      (W.escape.escape.source.1 ∈
+        SelectedClass D.A S.oppApex1 radius) ∨
+      (W.escape.escape.source ∈ badOutsideSources C.R) := by
+  by_cases hfirst : W.escape.escape.source.1 ∈
+      SelectedClass D.A S.oppApex1 radius
+  · exact Or.inr (Or.inl hfirst)
+  · by_cases hbad : W.escape.escape.source ∈ badOutsideSources C.R
+    · exact Or.inr (Or.inr hbad)
+    · exact Or.inl
+        (b1EscapeSourceContext_of_escape_source_outside_not_bad
+          C W hq_eq hw_eq hfirst hbad)
 
 /-- The intended producer outcome for a five/six wave. -/
 def B1WinningSliceOrderOutcome
