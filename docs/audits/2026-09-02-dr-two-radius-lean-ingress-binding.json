@@ -1,0 +1,163 @@
+{
+  "aggregate": {
+    "byte_count": 81080,
+    "module": "Erdos9796Proof.P97.ATail.FrontierLiveClosure.Rigid221Closure",
+    "path": "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221Closure.lean",
+    "sha256": "cb3e1c3bc8651fa9ab87eb789c67891eaed9b93da067a103fd7f18a630ca7e94"
+  },
+  "build_evidence": {
+    "aggregate_built_line": "\u26a0 [11920/11920] Built Erdos9796Proof.P97.ATail.FrontierLiveClosure.Rigid221Closure (8.5s)",
+    "build_exit_line": "BUILD-EXIT=0",
+    "log_path": "scratch/runs/dr-two-radius-20260901/p35-proof-retention/artifacts/rigid221closure-rebuild-20260902T201611Z.log",
+    "log_sha256": "ba1394778578b92ddfb70abe95899e698a81748a07d4f79d7f8a2e5ce1d83cf9"
+  },
+  "closure": {
+    "external_imports": [
+      "FormalConjectures.ErdosProblems.\u00ab97\u00bb",
+      "FormalConjecturesForMathlib.Geometry.\u00ab2d\u00bb",
+      "Mathlib",
+      "Mathlib.Algebra.BigOperators.Group.Finset.Basic",
+      "Mathlib.Algebra.BigOperators.Group.Finset.Piecewise",
+      "Mathlib.Algebra.BigOperators.Group.Finset.Sigma",
+      "Mathlib.Algebra.BigOperators.Intervals",
+      "Mathlib.Algebra.Group.Nat.Even",
+      "Mathlib.Algebra.Order.BigOperators.Group.Finset",
+      "Mathlib.Analysis.Convex.Between",
+      "Mathlib.Analysis.Convex.Caratheodory",
+      "Mathlib.Analysis.Convex.Combination",
+      "Mathlib.Analysis.Convex.Extreme",
+      "Mathlib.Analysis.Convex.Hull",
+      "Mathlib.Analysis.Convex.Independent",
+      "Mathlib.Analysis.Convex.Join",
+      "Mathlib.Analysis.Convex.Segment",
+      "Mathlib.Analysis.Convex.StrictConvexSpace",
+      "Mathlib.Analysis.Convex.Topology",
+      "Mathlib.Analysis.InnerProductSpace.Basic",
+      "Mathlib.Analysis.InnerProductSpace.Orthonormal",
+      "Mathlib.Analysis.InnerProductSpace.PiL2",
+      "Mathlib.Analysis.InnerProductSpace.Projection.Minimal",
+      "Mathlib.Analysis.InnerProductSpace.TwoDim",
+      "Mathlib.Analysis.LocallyConvex.Separation",
+      "Mathlib.Analysis.Normed.Affine.AddTorsorBases",
+      "Mathlib.Analysis.Real.Pi.Bounds",
+      "Mathlib.Analysis.SpecialFunctions.Trigonometric.Angle",
+      "Mathlib.Analysis.SpecialFunctions.Trigonometric.Bounds",
+      "Mathlib.Data.Finset.Basic",
+      "Mathlib.Data.Finset.Card",
+      "Mathlib.Data.Finset.Filter",
+      "Mathlib.Data.Finset.Max",
+      "Mathlib.Data.Finset.Powerset",
+      "Mathlib.Data.Finset.SDiff",
+      "Mathlib.Data.Finset.Sigma",
+      "Mathlib.Data.Finset.Sort",
+      "Mathlib.Data.Fintype.Basic",
+      "Mathlib.Data.Fintype.BigOperators",
+      "Mathlib.Data.Fintype.EquivFin",
+      "Mathlib.Data.Fintype.Pi",
+      "Mathlib.Data.Fintype.Powerset",
+      "Mathlib.Data.Fintype.Prod",
+      "Mathlib.Data.List.FinRange",
+      "Mathlib.Data.Nat.Basic",
+      "Mathlib.Data.Nat.Bitwise",
+      "Mathlib.Data.Nat.Choose.Basic",
+      "Mathlib.Data.Rat.Defs",
+      "Mathlib.Data.Real.Basic",
+      "Mathlib.Geometry.Euclidean.Angle.Oriented.Basic",
+      "Mathlib.Geometry.Euclidean.Angle.Oriented.RightAngle",
+      "Mathlib.Geometry.Euclidean.Angle.Sphere",
+      "Mathlib.Geometry.Euclidean.PerpBisector",
+      "Mathlib.Geometry.Euclidean.Simplex",
+      "Mathlib.Geometry.Euclidean.Sphere.Basic",
+      "Mathlib.Geometry.Euclidean.Triangle",
+      "Mathlib.LinearAlgebra.AffineSpace.FiniteDimensional",
+      "Mathlib.Logic.Equiv.Fin.Rotate",
+      "Mathlib.Order.Interval.Finset.Fin",
+      "Mathlib.Tactic",
+      "Mathlib.Tactic.Linarith",
+      "Mathlib.Tactic.LinearCombination",
+      "Mathlib.Tactic.NormNum",
+      "Mathlib.Tactic.Positivity",
+      "Mathlib.Tactic.Ring",
+      "Mathlib.Topology.MetricSpace.ProperSpace",
+      "Mathlib.Topology.Order.Lattice",
+      "Std.Data.HashSet",
+      "Std.Sat.CNF",
+      "Std.Tactic.BVDecide.Reflect",
+      "graph",
+      "the"
+    ],
+    "module_count": 1518,
+    "modules_digest": "6655a234269edabd268aacebb7416da662c29059c925609e309b306aea35db31",
+    "per_module_digest": "6dc874627c6c885abc305d0fd4b5d4d734839e1b591c27b0b9fd6dcef7b53ae8"
+  },
+  "declarations": [
+    "Problem97.ATailFrontierLiveClosure.DRExactTwelveTwoFamilyReplayIngress.clausesUnsatisfiable",
+    "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenTwoRadiusBranch"
+  ],
+  "import_edge": {
+    "line": "import Erdos9796Proof.P97.ATail.FrontierLiveClosure.DRExactTwelveTwoFamilyReplayIngress",
+    "present": true
+  },
+  "ingress": {
+    "byte_count": 2386,
+    "module": "Erdos9796Proof.P97.ATail.FrontierLiveClosure.DRExactTwelveTwoFamilyReplayIngress",
+    "path": "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/DRExactTwelveTwoFamilyReplayIngress.lean",
+    "sha256": "ecf1d7bafd2eb7438ad1c216ea1a4e176df3a7d915d33955e1c16eabdc5220a4"
+  },
+  "parent": {
+    "byte_count": 6049,
+    "link_digest": "1f44434ef5d004254b69c1056977220af5db5d9e59cc2c2240d4ca9c13a20fa3",
+    "path": "docs/audits/2026-09-02-dr-two-radius-p35-replay-provenance.json",
+    "record_kind": "dr-two-radius-p35-replay-provenance",
+    "schema": "dr-two-radius-p35-replay-provenance/v1",
+    "sha256": "a7d8eeabbeec065d90851b726d2e8f720986a610b6e9d8e5835df9f531f51efd"
+  },
+  "recapture": {
+    "aggregate_sha256_recaptured": "cb3e1c3bc8651fa9ab87eb789c67891eaed9b93da067a103fd7f18a630ca7e94",
+    "closure_digest_recaptured": "6dc874627c6c885abc305d0fd4b5d4d734839e1b591c27b0b9fd6dcef7b53ae8",
+    "ingress_sha256_recaptured": "ecf1d7bafd2eb7438ad1c216ea1a4e176df3a7d915d33955e1c16eabdc5220a4",
+    "stable": true
+  },
+  "repo_head": "d580d14a7f1e94057da16aa7fb7c8471bbe3e875",
+  "roots": {
+    "lake_root": "lean",
+    "source_root": "lean"
+  },
+  "schema": "p97-lean-ingress-binding/v1",
+  "self_hash": {
+    "domain": "p97-lean-ingress-binding/v1",
+    "sha256": "b431a151dce759e8505ea03c85289b58e976c15343b5e83e3237e6688abc647e"
+  },
+  "semantic": {
+    "declarations": [
+      {
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Lean.ofReduceBool",
+          "Lean.trustCompiler",
+          "Quot.sound"
+        ],
+        "check_output": "Problem97.ATailFrontierLiveClosure.DRExactTwelveTwoFamilyReplayIngress.clausesUnsatisfiable : Problem97.ATailFrontierLiveClosure.DRExactTwelveTwoFamilyUnsat.ClausesUnsatisfiable",
+        "declaration": "Problem97.ATailFrontierLiveClosure.DRExactTwelveTwoFamilyReplayIngress.clausesUnsatisfiable"
+      },
+      {
+        "axioms": [
+          "propext",
+          "sorryAx",
+          "Classical.choice",
+          "Lean.ofReduceBool",
+          "Lean.trustCompiler",
+          "Quot.sound"
+        ],
+        "check_output": "@Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenTwoRadiusBranch : \u2200\n  {D : Problem97.CounterexampleData} {S : Problem97.SurplusCapPacket D.A} {radius : \u211d}\n  {H : Problem97.CriticalShellSystem D.A} {F : Problem97.ATailCriticalPairFrontier.CriticalPairFrontier D S radius H}\n  (R : Problem97.ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F),\n  12 \u2264 D.A.card \u2192\n    \u2200 (surface : Problem97.ATailExactFourRobustCapExpansion.ExactFourPostCardElevenRobustSurface R)\n      (rho otherRadius : \u211d) (firstRow secondRow : Problem97.SelectedFourClass D.A S.oppApex2),\n      otherRadius \u2260 rho \u2192\n        (\u2200 (candidateRadius : \u211d),\n            0 < candidateRadius \u2192 (Problem97.SelectedClass D.A S.oppApex2 candidateRadius).card < 5) \u2192\n          firstRow.radius = rho \u2192 secondRow.radius = otherRadius \u2192 Disjoint firstRow.support secondRow.support \u2192 False",
+        "declaration": "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenTwoRadiusBranch"
+      }
+    ],
+    "lean_version": "Lean (version 4.27.0, arm64-apple-darwin24.6.0, commit db93fe1608548721853390a10cd40580fe7d22ae, Release)",
+    "probe_sha256": "b6f702fa7d5cce3c650110a9135cfb9ca634805efec1d8a406f0c52d89ba4140",
+    "timeout_seconds": 900,
+    "toolchain": "leanprover/lean4:v4.27.0"
+  },
+  "written_utc": "2026-09-02T20:16:51Z"
+}

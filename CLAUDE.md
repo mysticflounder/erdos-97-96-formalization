@@ -122,6 +122,28 @@ a fresh reference/writer scan.  Never bulk-delete evidence merely to make
 Refer to the lean-usage skill for proof promotion guidelines, sorry policy,
 etc.  If you don't see this skill in your context, notify the user immediately.
 
+## Lean-ingress binding records
+
+Before a solver or certificate artifact is called promoted or
+consumer-reachable, bind it with the lean-usage promotion-contract item 9
+record:
+
+```bash
+uv run python scripts/bind_lean_ingress_record.py generate --repo-root . --lake-root lean --source-root lean \
+  --ingress-module <ingress module> --aggregate-module <named aggregate> \
+  --declaration <fully qualified theorem> [--declaration ...] \
+  --parent-record <provenance json> --parent-kind <record kind> \
+  --build-log <aggregate build log with BUILD-EXIT=0> --out docs/audits/<date>-<lane>-lean-ingress-binding.json
+uv run python scripts/bind_lean_ingress_record.py check --repo-root . --record <that json> [--semantic]
+```
+
+It captures ingress and aggregate bytes, the exact import edge, the
+repo-local import-closure digest, a `lake env lean` `#check`/`#print axioms`
+probe, the build evidence, a post-probe recapture, a typed parent link, and a
+domain-separated self-hash; `check` recomputes everything from the working
+tree.  Regenerate the record whenever the aggregate's committed bytes change.
+Example: `docs/audits/2026-09-02-dr-two-radius-lean-ingress-binding.json`.
+
 ## Memory
 
 This project uses nthdegree for persistent memory.

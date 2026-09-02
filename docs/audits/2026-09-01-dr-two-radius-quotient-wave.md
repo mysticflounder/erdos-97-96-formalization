@@ -3,11 +3,14 @@
 Date: 2026-09-01. Lane `dr-two-radius-20260901`. Plan
 `docs/plans/2026-09-01-dr-two-radius-branch-closure.md`, Phase 1a.
 
-Status: Phase 1a settled SAT by an exact witness; Phase 1b structural waves 1 and 2 SAT; wave 3 (all label-generic Census554 cores, fixed cyclic order) UNSAT in a piqd session and in a one-shot job (no stored proof yet; resubmitted); wave 4 minimal family core = {two_circle_same_arc, five_point_circle_isosceles_order}; wave 5 standalone two-family CNF UNSAT from scratch (360.8 s), one-family controls SAT; no checked proof stored yet (piqd proof pipeline failing silently; daemon restarted with logging, jobs rerunning). No
-result here closes a Lean theorem, supplies coverage, or authorizes removing
-the live `sorry` at `Rigid221Closure.lean:1245`. Every verdict below is CONJECTURE-level
-evidence about one encoding until a second reader audits the
-encoding-to-claim map.
+Status: Phase 1a settled SAT by an exact witness; Phase 1b structural waves 1 and 2 SAT; wave 3 (all label-generic Census554 cores, fixed cyclic order) UNSAT in a piqd session and in a one-shot job (no stored proof yet; resubmitted); wave 4 minimal family core = {two_circle_same_arc, five_point_circle_isosceles_order}; wave 5 standalone two-family CNF UNSAT from scratch (360.8 s), one-family controls SAT; no checked proof stored yet (piqd proof pipeline failing silently; daemon restarted with logging, jobs rerunning). Status update 2026-09-02: the exact `card = 12` cell of the leaf is PROVEN
+under the approved native trust boundary (`Lean.ofReduceBool`,
+`Lean.trustCompiler`; `.blueprint.toml` `[trust] native_axioms`) through the
+P3.5 replay and the P3.6 split; the residual
+`false_of_exactFourPostCardElevenTwoRadiusBranch_cardGeThirteen`
+(`12 < D.A.card`) is OPEN. Every Phase 1 verdict below is CONJECTURE-level
+evidence about one encoding; see "Claim boundary" and "Phase 3, P3.5 replay
+of the RUP-only proof" for what is proven.
 
 ## Encoder
 
@@ -433,7 +436,12 @@ infrastructure for Phase 3, not a change to the obligation frontier.
 
 ## Claim boundary
 
-- PROVEN: nothing new.
+- PROVEN (2026-09-02, approved native trust boundary): the `card = 12` arm
+  of `false_of_exactFourPostCardElevenTwoRadiusBranch`, through
+  `DRExactTwelveTwoFamilyReplayIngress.clausesUnsatisfiable` and
+  `exists_valuation_of_twoRadiusBranch_exactTwelve`. OPEN: the
+  `12 < card` residual `…_cardGeThirteen` (`Rigid221Closure.lean`).
+  Phase 1 and 2 results below add nothing proven beyond that.
 - EMPIRICALLY VERIFIED (exact over Q, replayed by a test): the principal
   cell of the named-role quotient with `B2 = X` is realizable; encoding 1a
   is SAT at that cell. This is a statement about the encoded quotient, not
@@ -532,3 +540,190 @@ CNF itself (`p cnf 6281 41919`, sha `b642aa6e…`) resubmitted as job
 `s VERIFIED`, 31,492 of 41,919 clauses in core, 741,489 of 759,735 lemmas,
 24,019 RAT lemmas. A smaller instance therefore does not give a RUP-only
 proof; the RAT content comes from the `--unsat` replay, not from the size.
+
+## Phase 3, P3.5 replay of the RUP-only proof (2026-09-02)
+
+Source proof: `piqd` job `7b1acbc4…` on the unchanged two-family CNF
+(`cnf-core2-none.cnf`, sha `e29d1b26…`, 254,412 clauses, 6,281 variables),
+daemon commit `c037147` (profile plain, `--plain` proof replay): UNSAT in
+82 s, `proof_replay_profile` plain, `drat_trim_rat_lemmas_in_core` 0,
+`compacted_lrat` 1,855,989,303 bytes (blob `804724d5…`). Run root
+`scratch/runs/dr-two-radius-20260901/p35-proof-retention/`.
+
+Pipeline (lean-usage generated-proofs procedure, precedent
+`ExactFiveCommonShellV7G3Replay`):
+
+| step | result |
+|---|---|
+| normalize | 645,181 additions, 232,731 deletions (899,040 ids), 231,631,678 hints, max literal 6,259; normalized stream byte-identical to the fetched proof |
+| checkpoint | split at addition 577,003; `start.cnf` sha `e29d1b26…` (the CNF itself); shards 871,651,056 and 871,354,309 bytes |
+| window | 389 windows (184 + 205), 390 checkpoints; windowed package sha `0de0bd00…` |
+| emit | 782 `.lean`, 389 `.cpf85`, 389 `.cpa85`; compact ascii85 1,145,482,936 bytes; manifest sha `2be9d35b…`; `n = 6282` |
+| ingress | `Generated/DRExactTwelveTwoFamilyReplay/ingress.py` relocates the package under `lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Generated/DRExactTwelveTwoFamilyReplay/`, namespace `DRExactTwelveTwoFamilyReplay`, module prefix `…Generated.DRExactTwelveTwoFamilyReplay.CompactWindowedRupReplay` |
+| build | `…CompactWindowedRupReplay.Compose`: 786 jobs, green |
+| verify | `--verify-replay-package`: `STRUCTURALLY_VERIFIED`, package sha `2be9d35b…` (re-hashes every listed artifact) |
+
+Durable record: `docs/audits/2026-09-02-dr-two-radius-p35-replay-provenance.json`
+(job status record, every stage manifest digest, axiom closure).
+
+Lean-ingress publication-gate binding (lean-usage promotion contract item
+9, fields a to i): `docs/audits/2026-09-02-dr-two-radius-lean-ingress-binding.json`,
+schema `p97-lean-ingress-binding/v1`, self-hash `0de3eabc…`, produced and
+re-checked by `scripts/bind_lean_ingress_record.py` (ingress module bytes,
+aggregate `Rigid221Closure.lean` bytes, exact import edge, 1,518-module
+repo-local import closure digest, `lake env lean` `#check`/`#print axioms`
+probe under the pinned toolchain, aggregate build log with `BUILD-EXIT=0`,
+post-probe recapture, typed parent link to the provenance record).
+
+Hand-written consumer `FrontierLiveClosure/DRExactTwelveTwoFamilyReplayIngress.lean`:
+
+- `checkpoint0_signedClauses_eq`:
+  `signedClausesOfFormula (formulaOfCompact C0000.text) = clauses`, decided
+  by `native_decide` under the generated-certificate policy (module build
+  15 s). The checkpoint-0 formula is the two-family CNF verbatim: no padding
+  unit and no reordering, so the membership fallback of
+  `clausesUnsatisfiable_of_formula` is not needed.
+- `clausesUnsatisfiable : ClausesUnsatisfiable` from
+  `DRExactTwelveTwoFamilyReplay.startUnsatisfiable` and the identity.
+
+Axiom closure (`#print axioms`, 2026-09-02 16:43Z):
+
+| declaration | axioms |
+|---|---|
+| `DRExactTwelveTwoFamilyReplay.startUnsatisfiable` | `propext`, `Classical.choice`, `Lean.ofReduceBool`, `Lean.trustCompiler`, `Quot.sound` |
+| `DRExactTwelveTwoFamilyReplayIngress.checkpoint0_signedClauses_eq` | same |
+| `DRExactTwelveTwoFamilyReplayIngress.clausesUnsatisfiable` | same |
+| `DRExactTwelveTwoFamilyUnsat.false_of_twoRadiusBranch_exactTwelve_of_clausesUnsatisfiable` | `propext`, `Classical.choice`, `Quot.sound` |
+
+No `sorryAx`, no custom axiom. `Lean.ofReduceBool` and `Lean.trustCompiler`
+are the repository's approved native trust boundary (`.blueprint.toml`
+`[trust] native_axioms`, approved 2026-07-06; precedent rows
+K-A-UNIQUE-POST11 and K-A-N11-EXACT5-G3 of the closure matrix); the card-12
+cell therefore closes under the same axiom set as the card-11 certificates.
+Evaluated-code audit of the new modules (`DRExactTwelve*.lean`,
+`CheckpointedRupSemanticBoundary.lean`, the generated package): no `unsafe`,
+`implemented_by`, `extern`, `partial`, `axiom`, or `sorry`; the evaluated
+surface adds `Std.HashSet (List Int)` in `DRExactTwelveDimacs` (core
+`Hashable` externs) to the `Array`/`ByteArray`/`String` primitives the G3
+precedent already relied on.
+
+Trust statement. The kernel checks the composition term of the windowed
+RUP replay (the `Unsatisfiable` proof of the generated package) and the
+valuation and transport theorems. The 389 window verdicts (each window's
+checker returns `true`) and the checkpoint-0 clause identity with `clauses`
+are accepted through `Lean.ofReduceBool` and rest on `Lean.trustCompiler`:
+the kernel does not re-evaluate compiled code. The solver, drat-trim,
+and the normalization scripts are discovery and packaging tools only; none
+of their output is trusted by the Lean proof.
+
+## Phase 4, P4.1 card-13 growth-arm CNFs (2026-09-02, EMPIRICAL)
+
+Spec `docs/specs/p97-dr-two-radius-card13-arms-v1.md`; encoder
+`census/card_head/dr_two_radius_arm_structural.py` (legacy mode reproduces
+the wave-5 CNF `e29d1b26…` byte for byte; 22 tests); run root
+`scratch/runs/dr-two-radius-20260901/p4-card13-arms/` (job ids in
+`events/jobs.json`). All CNFs: generic (card-free) forms of the row and
+first-apex-class constraints (at most one member per adjacent closed cap,
+exactly four members), no ingress family, control `none`. piqd, cadical,
+profile `default`, timeout 3600 s.
+
+| CNF | vars | clauses | result | wall |
+|---|---|---|---|---|
+| exact-12, generic forms, two families (`bcba06fd…`) | 6,259 | 226,209 | UNSAT, `compacted_lrat`, 33,002 RAT lemmas in core | 172 s |
+| card 13 `secondOpposite` (5,4,7), two families (`21df2d6e…`) | 9,618 | 384,179 | SAT | 4 s |
+| card 13 `surplus` (6,4,6), two families (`7bc01b54…`) | 9,618 | 384,186 | SAT | 23 s |
+| card 13 `firstOpposite` (5,5,6), two families (`40a6d160…`) | 9,618 | 384,180 | SAT | 8 s |
+
+Readback (`artifacts/readback-card13-two-families.txt`): each card-13 model
+satisfies every eager clause and violates none of the six lazy cores, so
+each is a structural survivor of its arm at the two-family scope. In every
+model the growth point of the arm lies in neither row and neither named
+class and serves as a blocker center; the rows keep interior slices 2 + 2.
+
+Reading. The card-12 contradiction does not need the exact-12 rigidity
+facts (the generic control is UNSAT), but one growth point defeats the
+two-family structural route in all three arms. The route that closed card
+12 therefore does not lift by cardinality; Phase 4 needs either the
+remaining Census554 cores (all-families rerun, jobs `6bf35a65…`,
+`7a18fea4…`, third arm pending, 7.4 M clauses each) or metric / order
+content that couples the growth point to the named roles. No Lean change
+follows from this section.
+
+All-families rerun (every `SELECTABLE_FAMILIES` core eager, 7,407,767 to
+7,407,774 clauses per arm, jobs `6bf35a65…`, `7a18fea4…`, `24e6766e…`,
+timeout 3600 s): UNKNOWN in all three arms at that budget. Inconclusive at
+this scale; the question moves to a lazy session loop over the two-family
+CNF that adds only violated instances of the 21 Census554 cores
+(`census/card_head/dr_two_radius_arm_lazy_loop.py`, results in
+`artifacts/lazy-<arm>-summary.json`).
+
+### P4.2 small-eager escalation (2026-09-02, EMPIRICAL, encoded scope)
+
+The lazy loop on `secondOpposite` added only `convex_five_point` instances
+(206 of its first 212 cuts, no survivor by iteration 45), so the family was
+made eager instead. Two CNFs per arm, cut admission unchanged: `convex` =
+the two base families plus `convex_five_point`; `small` = the two base
+families plus the eleven selectable families with at most 100k eager
+instances (`convex_five_point`, `convex_rhombus`,
+`duplicate_three_point_center`, `equal_k4`,
+`five_point_circle_isosceles_order`, `nested_equal_chord`, `perp_bisector`,
+`six_point_nested_center_order`, `six_point_two_circle_arc_overtake_order`,
+`six_point_two_circle_order`, `two_circle_same_arc`). Each CNF was validated
+before confirmation by per-family clause-count identity against the
+all-families manifest of its arm. piqd, cadical, `default`, 3600 s.
+
+| CNF | clauses | job | result | wall |
+|---|---|---|---|---|
+| `secondOpposite` convex (`53b37f3b…`) | 435,659 | `ae6aafd5…` | SAT | 378 s |
+| `firstOpposite` small (`3b16b3ea…`) | 674,184 | `c10383a3…` | SAT | 485 s |
+| `firstOpposite` convex (`b94762b6…`) | 435,660 | `4dd36532…` | SAT | 692 s |
+| `surplus` convex (`de1d4a93…`) | 435,666 | `6392b5c9…` | SAT | 1,118 s |
+| `secondOpposite` small (`620d969e…`) / `surplus` small (`d715ae96…`) | 674,183 / 674,190 | `b9a08d3b…` / `ffeec552…` | redundant once the arm was decided; left to finish | |
+
+Readback (`artifacts/readback-card13-<arm>-<variant>.txt`,
+`tmp/readback_all.py`, `tmp/replay_all.py`): each SAT model satisfies every
+clause of its own CNF, violates none of the 22 `GENERIC_CORES` (the sixteen
+eager and the six lazy cores, evaluated on the decoded relation matrix), and
+satisfies every one of the 7,407,767 to 7,407,774 clauses of the
+all-families DIMACS of its arm. So the all-families CNFs that were UNKNOWN at
+3600 s are in fact satisfiable in all three arms, with an explicit checked
+witness each (two independent witnesses for `firstOpposite`). In every
+witness the growth point again lies in neither row and outside the
+first-apex class. The lazy loop on `secondOpposite` was stopped at iteration
+53 (378 cuts, no survivor) once the eager jobs had decided the arm.
+
+Reading. At the encoded quotient scope the complete Census554 core bank,
+together with the rows, the first-apex class, the blocker map, k4, and
+transitivity, does not exclude a card-13 configuration in any of the three
+growth arms. The structural route that closed card 12 is therefore not
+extendable to card 13 by adding cores from the existing bank; spec section 7
+second bullet applies. This is a statement
+about the encoded abstraction, not a geometric realizability claim: a
+survivor is a candidate pattern, and no point configuration has been
+exhibited. The Phase 4 route changes to metric or order content that
+couples the growth point to the named roles before any Lean work. No Lean
+change follows from this section.
+
+### P4.3 route redesign preflight (2026-09-02, EMPIRICAL)
+
+Source audit (read-only, agent-run, statements re-read by hand for the
+facts used) of metric or order content derivable from the leaf
+hypotheses; the inventory and the cut admission records are in spec
+`p97-dr-two-radius-card13-arms-v1.md` section 8. Three families are
+encodable on the existing equality variables: `cap_betweenness`
+(`CGN.index_strictly_between_of_equidistant` via
+`capByIndex_cgn4g_capData`), `common_pair_localization`
+(`commonPhysicalPair_center_mem_capInteriorByIndex`), and
+`frontier_bisector_interior` (`R.bisector_center_mem_interior`).
+
+Preflight on the six P4.2 survivor models
+(`artifacts/readback-card13-new-families-check.txt`): all six violate
+`cap_betweenness` (5 to 8 instances each), none violates the other two.
+Reading: one-sided distance monotonicity along a minor cap is the first
+order fact found that the Census554 bank lacks and that bites on every
+survivor. Next wave: the `small` eager set plus the three families, one
+job per arm. The `StrictCapOrder`-to-boundary-order bridge is an open
+ingress obligation ({{NEEDS_PROOF}}); until it is proved, an UNSAT with
+that family is conditional on it (sat-solvers guardrail 4). No Lean change
+follows from this section.
+

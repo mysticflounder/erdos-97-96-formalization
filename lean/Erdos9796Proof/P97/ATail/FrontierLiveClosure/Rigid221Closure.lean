@@ -10,6 +10,8 @@ import Erdos9796Proof.P97.ATail.FrontierLiveClosure.Balanced555FiniteUnsat
 import Erdos9796Proof.P97.ATail.ExactFiveCommonAdaptiveReselection
 import Erdos9796Proof.P97.ATail.ExactFiveDistinctThreeCenterContinuation
 import Erdos9796Proof.P97.ATail.ExactFiveDistinctThreeCenterTightCover
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure.DRExactTwelveTwoFamilyUnsat
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure.DRExactTwelveTwoFamilyReplayIngress
 
 namespace Problem97
 namespace ATailFrontierLiveClosure
@@ -1240,6 +1242,28 @@ theorem false_of_exactFourPostCardElevenInteriorDeletionBranch
     ⟨hcard, surface⟩
     rho source hrho hfive hsourceClass hsourceInterior hsourceOutside hsurvives
 
+/-- The card-at-least-thirteen residual of the no-five two-distinct-radii
+branch of the post-card-eleven robust exact-four terminal.  The exact card-12
+cell is discharged by the two-family CNF replay; this leaf states what remains
+for every larger carrier. -/
+theorem false_of_exactFourPostCardElevenTwoRadiusBranch_cardGeThirteen
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F)
+    (_hcard : 12 < D.A.card)
+    (surface : ExactFourPostCardElevenRobustSurface R)
+    (rho otherRadius : ℝ)
+    (firstRow secondRow : SelectedFourClass D.A S.oppApex2)
+    (_hradii : otherRadius ≠ rho)
+    (_hnoFive : ∀ candidateRadius : ℝ, 0 < candidateRadius →
+      (SelectedClass D.A S.oppApex2 candidateRadius).card < 5)
+    (_hfirstRadius : firstRow.radius = rho)
+    (_hsecondRadius : secondRow.radius = otherRadius)
+    (_hdisjoint : Disjoint firstRow.support secondRow.support) :
+    False := by
+  sorry
+
 /-- The no-five two-distinct-radii branch of the post-card-eleven robust
 exact-four terminal.  It retains the two disjoint exact rows and their radius
 identifications.  Positivity, exact class cardinalities, and the strict-second-
@@ -1260,7 +1284,14 @@ theorem false_of_exactFourPostCardElevenTwoRadiusBranch
     (_hsecondRadius : secondRow.radius = otherRadius)
     (_hdisjoint : Disjoint firstRow.support secondRow.support) :
     False := by
-  sorry
+  rcases Nat.eq_or_lt_of_le _hcard with h12 | h13
+  · exact DRExactTwelveTwoFamilyUnsat.false_of_twoRadiusBranch_exactTwelve_of_clausesUnsatisfiable
+      DRExactTwelveTwoFamilyReplayIngress.clausesUnsatisfiable
+      R surface rho otherRadius firstRow secondRow _hradii _hnoFive _hfirstRadius
+      _hsecondRadius _hdisjoint h12.symm
+  · exact false_of_exactFourPostCardElevenTwoRadiusBranch_cardGeThirteen
+      R h13 surface rho otherRadius firstRow secondRow _hradii _hnoFive _hfirstRadius
+      _hsecondRadius _hdisjoint
 
 /-- The narrowed post-card-eleven robust exact-four terminal.  Its checked
 radius normal form now dispatches directly to two load-bearing branch

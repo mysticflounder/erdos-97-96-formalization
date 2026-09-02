@@ -23,6 +23,8 @@ data/
 !lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Generated/Unique4ExactTwoLratIngress/P5LargestWindowedReplay/data/**
 !lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Generated/ExactFiveCommonShellV7G3Replay/data/
 !lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Generated/ExactFiveCommonShellV7G3Replay/data/**
+!lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Generated/DRExactTwelveTwoFamilyReplay/data/
+!lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Generated/DRExactTwelveTwoFamilyReplay/data/**
 
 # tooling junk
 .nthdegree/

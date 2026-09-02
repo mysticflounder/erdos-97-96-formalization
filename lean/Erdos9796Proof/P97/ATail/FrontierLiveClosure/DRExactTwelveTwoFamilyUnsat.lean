@@ -13,8 +13,8 @@ This module is the certificate-independent half of the two-radius branch's
 card-12 closure.  It states unsatisfiability of the two-family CNF
 `DRExactTwelveDimacs.clauses` at the proposition-valued semantics used by
 `exists_valuation_of_twoRadiusBranch_exactTwelve` (`ClausesUnsatisfiable`),
-transports a kernel-checked `Unsatisfiable` verdict on a compact-checker
-formula to that statement whenever every signed clause of the checker formula
+transports an `Unsatisfiable` verdict on a compact-checker formula (proved
+under the repository's native trust boundary) to that statement whenever every signed clause of the checker formula
 is one of `clauses`, and derives `False` from the branch binders at
 `D.A.card = 12`.
 
@@ -67,8 +67,8 @@ theorem clauseSat_of_clauseHolds {val : ℕ → Prop} {clause : List ℤ}
   obtain ⟨lit, hmem, hlit⟩ := h
   exact ⟨lit, hmem, litSat_of_litHolds (hnz lit hmem) hlit⟩
 
-/-- A kernel-checked unsatisfiable checker formula whose signed clauses all belong to
-the two-family CNF rules out every valuation of that CNF. -/
+/-- An unsatisfiable checker formula whose signed clauses all belong to the
+two-family CNF rules out every valuation of that CNF. -/
 theorem clausesUnsatisfiable_of_formula {n : ℕ} {formula : DefaultFormula n}
     (hunsat : Unsatisfiable (PosFin n) formula)
     (hsub : ∀ clause ∈ signedClausesOfFormula formula, clause ∈ clauses) :
@@ -88,7 +88,7 @@ theorem clausesUnsatisfiable_of_formula_eq {n : ℕ} {formula : DefaultFormula n
     (hunsat : Unsatisfiable (PosFin n) formula)
     (heq : signedClausesOfFormula formula = clauses) :
     ClausesUnsatisfiable :=
-  clausesUnsatisfiable_of_formula hunsat fun clause hclause => heq ▸ hclause
+  clausesUnsatisfiable_of_formula hunsat fun _ hclause => heq ▸ hclause
 
 /-- Unsatisfiability of the two-family CNF closes the two-radius branch at carrier
 cardinality twelve, through the valuation of `DRExactTwelveBranchValuation`. -/

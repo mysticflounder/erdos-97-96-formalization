@@ -11,12 +11,16 @@ theorem. Every mathematical claim below carries a rigor label.
 
 ```text
 Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenTwoRadiusBranch
-lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221Closure.lean:1245
+lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221Closure.lean:1271
 ```
+
+Split 2026-09-02 (P3.6): the `card = 12` arm is closed; the live residual is
+`false_of_exactFourPostCardElevenTwoRadiusBranch_cardGeThirteen`
+(`Rigid221Closure.lean:1249`, `12 < D.A.card`).
 
 Publish target: `Problem97.erdos97_rhs`.
 Immediate consumer: `false_of_exactFourPostCardElevenRobustSurface_frame`
-(`Rigid221Closure.lean:1267`), which splits the robust surface with
+(`Rigid221Closure.lean:1298`), which splits the robust surface with
 `interiorPairGood_or_twoDistinctExactFourInteriorRows`
 (`ExactFourRobustCapExpansion.lean:1098`) and sends the two-radius arm here.
 The leaf retains `R` and `surface`, so no upstream hypothesis is lost at the
@@ -387,8 +391,8 @@ Lean route, in dependency order; every item names its consumer.
     `exists_valuation_of_twoRadiusBranch_exactTwelve`: under exactly the
     leaf's binders plus `hcard12 : D.A.card = 12`,
     `∃ val, ∀ clause ∈ clauses, clauseHolds val clause`. Combined with a
-    kernel-checked `DimacsUnsatisfiable` replay of the same `clauses`
-    (P3.5), this closes the leaf at card 12.
+    `ClausesUnsatisfiable` proof of the same `clauses` under the approved
+    native trust boundary (P3.5), this closes the leaf at card 12.
   - P3.5 as below; P3.6 splits the leaf.
   Scale precedent: `ExactFiveCommonShellV7G3Replay` replayed an 861 MB
   source LRAT (421,331 additions, 93 M hints, 165 windows, 399 MB compact
@@ -422,7 +426,62 @@ Lean route, in dependency order; every item names its consumer.
   Resubmitting the 41,919-clause core to piqd (job `b347df4b…`, UNSAT
   55 s) still yields 24,019 RAT lemmas, so a smaller instance is not a
   way around the proof-format block.
-- P3.5 Certificate replay. Store a checked, zero-RAT LRAT of the two-family
+- P3.5 UNBLOCKED 2026-09-02 15:26Z: piqd commit `c037147` (#piqd #8804)
+  replays profile-plain discoveries with `--plain`; daemon rebuilt (sha
+  `a0d1a2f4…`). Job `7b1acbc4…` on the same CNF bytes: UNSAT in 82 s,
+  `proof_replay_profile` plain, `drat_trim_rat_lemmas_in_core` 0,
+  `compacted_lrat` 1,855,989,303 bytes (blob `804724d5…`). The replay
+  pipeline below runs from that proof.
+- P3.5 DONE 2026-09-02 16:47Z (checked under the approved native trust
+  boundary `Lean.ofReduceBool`/`Lean.trustCompiler`; math-skeptic passed
+  the Lean chain 2026-09-02, promotion verifier pending). The RUP-only proof of job `7b1acbc4…` was
+  normalized (645,181 additions), checkpointed (split 577,003), windowed
+  (389 windows), emitted (package manifest sha `2be9d35b…`, `n = 6282`,
+  782 Lean modules, 778 payloads) and ingressed under
+  `FrontierLiveClosure/Generated/DRExactTwelveTwoFamilyReplay/`
+  (`ingress.py` records the source package sha and counts). The Compose
+  target builds (786 jobs). `DRExactTwelveTwoFamilyReplayIngress.lean`
+  proves `checkpoint0_signedClauses_eq` (the checkpoint-0 formula is
+  `clauses` verbatim, `native_decide`) and `clausesUnsatisfiable`; axioms
+  `{propext, Classical.choice, Lean.ofReduceBool, Lean.trustCompiler,
+  Quot.sound}`, the approved native trust boundary. Details and the trust
+  statement: audit, "Phase 3, P3.5 replay of the RUP-only proof".
+- P3.6 DONE 2026-09-02 16:50Z (build green). Independent promotion
+  verifier 2026-09-02 17:20Z: statement fidelity, split exhaustiveness,
+  certificate chain, build evidence, axiom closure, consumer reachability
+  (by import closure: 1,518 repo-local modules, no cycle) and docs all
+  PASS; promotion held only on the Lean-ingress binding record (contract
+  item 9 fields a, c, d, f, g, h, i) and on a fresh spine, which is blocked
+  by a foreign stale module (`Balanced555FiniteConfiguration`). Binding
+  record: `docs/audits/2026-09-02-dr-two-radius-lean-ingress-binding.json`
+  (self-hash `0de3eabc…`, `check` OK 2026-09-02) from
+  `scripts/bind_lean_ingress_record.py`; it binds the working-tree bytes of
+  `Rigid221Closure.lean` and must be regenerated if that file's committed
+  bytes differ. Verifier second pass 2026-09-02: all nine binding fields
+  present and independently recomputed (ingress sha, closure count,
+  axioms, build log, self-hash, parent link agree); post-capture drift of
+  the ingress cleared; the single remaining blocker is mechanical: the
+  co-owned aggregate was edited by the balanced555 lane after capture, so
+  the record is regenerated against the committed bytes at commit time
+  and `check --semantic` must exit 0 before any promotion claim.
+  Fresh `proof-blueprint spine` 2026-09-02 (after the foreign module was
+  rebuilt): `false_of_exactFourPostCardElevenTwoRadiusBranch` is on the
+  `Problem97.erdos97_rhs` spine with `…_cardGeThirteen` as its only open
+  child; the spine lists 28 open obligations, none new beyond that
+  residual replacing the former leaf.
+  `false_of_exactFourPostCardElevenTwoRadiusBranch` now splits on
+  `Nat.eq_or_lt_of_le _hcard`: the `card = 12` arm is
+  `DRExactTwelveTwoFamilyUnsat.false_of_twoRadiusBranch_exactTwelve_of_clausesUnsatisfiable
+  DRExactTwelveTwoFamilyReplayIngress.clausesUnsatisfiable …`; the
+  `12 < card` arm is the new on-spine leaf
+  `false_of_exactFourPostCardElevenTwoRadiusBranch_cardGeThirteen`
+  (`Rigid221Closure.lean`, same binders with `_hcard : 12 < D.A.card`,
+  Phase 4). The file's `sorry` count is unchanged (7 declarations); the
+  measure (§5) strictly decreases: the leaf's card-12 cell is discharged.
+  Axioms of the split leaf: `{propext, sorryAx, Classical.choice,
+  Lean.ofReduceBool, Lean.trustCompiler, Quot.sound}`; of the residual:
+  `{propext, sorryAx, Classical.choice, Quot.sound}`.
+- P3.5 (original item) Certificate replay. Store a checked, zero-RAT LRAT of the two-family
   CNF (`piqd` job `bdbe81da…` or a `cadical --plain` rerun through `piqd`
   if the proof has RAT lemmas), normalize it, and replay it with the
   project's checkpointed RUP checker (`P97/Certificate/CheckpointedRup*.lean`)
@@ -443,6 +502,11 @@ certificate replay is then unnecessary for card 12.
 
 ### Phase 4 — carrier size at least 13
 
+- Target (2026-09-02): the on-spine residual
+  `false_of_exactFourPostCardElevenTwoRadiusBranch_cardGeThirteen`
+  (`Rigid221Closure.lean`, binders of the two-radius leaf with
+  `_hcard : 12 < D.A.card`); consumer
+  `false_of_exactFourPostCardElevenTwoRadiusBranch`, card-12 arm closed.
 - Evidence 2026-09-02 (EMPIRICAL, one drat-trim core of the retained
   proof): the ingress family contributes 0 of its 30,062 clauses to the
   core, so the card-12 contradiction already follows from the two rows,
@@ -456,6 +520,45 @@ certificate replay is then unnecessary for card 12.
   with `secondOpposite`, where all growth is confined to the second cap.
 - If the core does not occur in some arm, report the exact missing incidence
   and stop; do not add off-spine lemmas.
+- Step P4.1 (2026-09-02, in progress): the card-12 drat-trim core uses 5,931
+  of 6,281 variables, so the exact-12 contradiction is global, not a small
+  sub-pattern; pattern extraction is deferred. Highest-risk assumption tested
+  first: one CNF per growth arm at card 13 with the generic (card-free) forms
+  of the row and first-apex-class constraints, spec
+  `docs/specs/p97-dr-two-radius-card13-arms-v1.md`, encoder
+  `census/card_head/dr_two_radius_arm_structural.py` (legacy mode reproduces
+  the wave-5 CNF byte for byte), run root
+  `scratch/runs/dr-two-radius-20260901/p4-card13-arms/`. Result (EMPIRICAL,
+  audit section "Phase 4, P4.1"): the exact-12 generic control is UNSAT
+  (172 s), but all three card-13 arms are SAT with the two order families
+  (4 to 23 s), readbacks clean. The structural route does not lift by
+  cardinality. The eager all-families rerun (7.4 M clauses per arm) was
+  UNKNOWN at 3600 s in every arm; a lazy session loop over the 21 Census554
+  cores (`dr_two_radius_arm_lazy_loop.py`) decides whether they restore
+  UNSAT before the route is redesigned. Spec section 7 decision rule applies.
+- Step P4.2 (2026-09-02, EMPIRICAL, audit subsection "P4.2 small-eager
+  escalation"): the lazy loop added almost only `convex_five_point` cuts, so
+  that family and the ten other small selectable families were made eager.
+  All three arms are SAT (`secondOpposite` 378 s, `firstOpposite` 485 s and
+  692 s, `surplus` 1,118 s) and each model replays clean against all 22
+  generic cores and against every clause of its arm's 7.4 M-clause
+  all-families CNF. The complete existing core bank does not exclude card 13
+  in any growth arm. Phase 4 route:
+  no further structural waves from the existing bank; the next step is
+  metric or order content that couples the growth point to the named roles
+  (candidates: the radial cyclic order at the growth point via
+  `exists_fourHits_radialCyclicOrder_*`, and the two-radius cross-distance
+  inequality), encoded as new cut families with named Lean sources before
+  any Lean work on `false_of_exactFourPostCardElevenTwoRadiusBranch_cardGeThirteen`.
+- Step P4.3 (2026-09-02, in progress; spec section 8, audit subsection
+  "P4.3"): source audit found three encodable families beyond the bank;
+  `cap_betweenness` (cap-order distance monotonicity) is violated by all six
+  card-13 survivors, the two bisector-localization families by none. Next
+  run: `small` eager set plus the three families per arm. Ingress obligation
+  opened: identify `StrictCapOrder` with the boundary order on each closed
+  cap ({{NEEDS_PROOF}}). If all arms go UNSAT, mine the core by family and
+  look for the cardinality lift; if a survivor remains, add the cap-crossing
+  Kalmanson chain cores next.
 - Generalizing `exists_fourHits_radialCyclicOrder_oppIndex1` to `oppIndex2`
   is a bounded Lean task, to be done only if the extracted core uses the strict
   cross-distance inequality.

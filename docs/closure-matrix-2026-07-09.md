@@ -3330,3 +3330,37 @@ serialized cell, finite Lean composition into
 the exact-cover arm of the live cap-nine leaf. The 2026-08-20 prose additions
 in A5 are exact-twelve facts and supply no new exact-seventeen antecedent;
 their prose A3/A4 conclusions cannot be added as clauses until formalized.
+
+### D-R two-radius branch: exact card-12 cell closed by RUP replay (2026-09-02)
+
+Lane `dr-two-radius-20260901`; plan
+`docs/plans/2026-09-01-dr-two-radius-branch-closure.md`; audit
+`docs/audits/2026-09-01-dr-two-radius-quotient-wave.md` ("Phase 3, P3.5
+replay of the RUP-only proof"); provenance
+`docs/audits/2026-09-02-dr-two-radius-p35-replay-provenance.json`.
+
+The on-spine leaf `false_of_exactFourPostCardElevenTwoRadiusBranch`
+(`FrontierLiveClosure/Rigid221Closure.lean`) now splits on
+`Nat.eq_or_lt_of_le` over `12 ≤ D.A.card`. The `card = 12` arm is closed by
+`DRExactTwelveTwoFamilyUnsat.false_of_twoRadiusBranch_exactTwelve_of_clausesUnsatisfiable`
+applied to `DRExactTwelveTwoFamilyReplayIngress.clausesUnsatisfiable`: the
+branch binders give a valuation of the 254,412-clause two-family CNF
+(`exists_valuation_of_twoRadiusBranch_exactTwelve`, core axioms only), and
+the generated package `Generated/DRExactTwelveTwoFamilyReplay` (389 compact
+RUP windows from `piqd` job `7b1acbc4…`, a RUP-only proof with 0 RAT lemmas)
+proves the CNF unsatisfiable; the checkpoint-0 clause identity with
+`DRExactTwelveDimacs.clauses` is decided by `native_decide`. The `12 < card`
+arm is the new load-bearing leaf
+`false_of_exactFourPostCardElevenTwoRadiusBranch_cardGeThirteen` (same
+binders, `12 < D.A.card`); the file's `sorry` count is unchanged.
+
+Axioms: the card-12 chain is `{propext, Classical.choice, Lean.ofReduceBool,
+Lean.trustCompiler, Quot.sound}` (approved native trust boundary,
+`.blueprint.toml` `[trust] native_axioms`); the split leaf adds `sorryAx`
+from the card-13 residual only.
+
+Status: DONE (card = 12 cell) UNDER THE APPROVED NATIVE TRUST BOUNDARY;
+math-skeptic passed the Lean chain 2026-09-02; independent promotion
+verifier pending at write time. OPEN: `…_cardGeThirteen` (Phase 4). Scope:
+this closes the exact-card-12 cell of one leaf, not the two-radius branch,
+not the robust-surface coordinator, and not `Problem97.erdos97_rhs`.
