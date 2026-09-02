@@ -83,6 +83,24 @@ def B1CardSixWinningSliceArc
     B1SliceSameBoundaryArc B apex uBlocker (b1USlice C) ∨
       B1SliceSameBoundaryArc B apex vBlocker (b1VSlice C)
 
+/- The card-five interface uses the same arc packet, but records the required
+card-two condition because one live slice may be a singleton. -/
+def B1CardFiveWinningSliceArc
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F)) : Prop :=
+  ∃ B : BoundaryIndexing D.A,
+    let apex : CarrierLabel D.A := ⟨S.oppApex2, b1_oppApex2_mem_A S⟩
+    let Hlate := lateFirstApexSystem C.R
+    let uBlocker := blockerLabel Hlate C.u.1 C.u.2
+    let vBlocker := blockerLabel Hlate C.v.1 C.v.2
+    (b1USlice C).card = 2 ∧
+        B1SliceSameBoundaryArc B apex uBlocker (b1USlice C) ∨
+      (b1VSlice C).card = 2 ∧
+        B1SliceSameBoundaryArc B apex vBlocker (b1VSlice C)
+
 /-- Source-oriented form of the exact card-five trace split.  The first two
 arms identify a genuine two-point live slice containing the escape source; the
 last two arms record that the source lies in a singleton slice.  No boundary
@@ -443,6 +461,38 @@ theorem b1_cardSix_orderOutcome_of_arc_or_escapeSourceContext
       simpa [B1WinningLiveSliceSameBoundaryArc, b1USlice,
         b1VSlice, b1PhysicalClass] using
         (Or.inr ⟨hcards.2, hv⟩)
+  · right
+    exact b1EscapeSourceContext_of_star C W hsource.1 hsource.2
+
+/- The card-five trace has a singleton arm.  The producer therefore has to
+choose the two-point slice in the arc arm, or supply the source-context arm. -/
+theorem b1_cardFive_orderOutcome_of_arc_or_escapeSourceContext
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F))
+    (W : B1FiveSixWaveIngress C)
+    (hproducer :
+      B1CardFiveWinningSliceArc C ∨
+        (W.escape.escape.source ∈ outsideFirstApexFiber C.R ∧
+          (HasNEquidistantPointsAt 4 (D.A.erase C.R.interior_q)
+              ((lateFirstApexSystem C.R).centerAt
+                W.escape.escape.source.1 W.escape.escape.source.2) ∨
+            HasNEquidistantPointsAt 4 (D.A.erase C.R.interior_w)
+              ((lateFirstApexSystem C.R).centerAt
+                W.escape.escape.source.1 W.escape.escape.source.2)))) :
+    B1WinningSliceOrderOutcome C := by
+  rcases hproducer with harc | hsource
+  · rcases harc with ⟨B, hu | hv⟩
+    · left
+      refine ⟨B, ?_⟩
+      simpa [B1WinningLiveSliceSameBoundaryArc, b1USlice,
+        b1VSlice, b1PhysicalClass] using Or.inl hu
+    · left
+      refine ⟨B, ?_⟩
+      simpa [B1WinningLiveSliceSameBoundaryArc, b1USlice,
+        b1VSlice, b1PhysicalClass] using Or.inr hv
   · right
     exact b1EscapeSourceContext_of_star C W hsource.1 hsource.2
 
