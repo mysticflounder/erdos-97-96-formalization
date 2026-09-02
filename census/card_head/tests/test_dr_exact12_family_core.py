@@ -26,6 +26,14 @@ class Relax(unittest.TestCase):
         self.assertNotIn("duplicate_three_point_center", relaxed.hard_families)
         self.assertIn("transitivity", relaxed.hard_families)
 
+    def test_relax_by_group_uses_one_selector_per_label_set(self) -> None:
+        cnf, _layout = dr.build(families=("two_circle_same_arc",))
+        relaxed = fc.relax(cnf, ("two_circle_same_arc",), by_group=True)
+        self.assertEqual(len(relaxed.selectors), 495)  # C(12, 4) label sets {q, v, u, y}
+        self.assertTrue(all(key.startswith("two_circle_same_arc:") for key in relaxed.selectors))
+        self.assertEqual(sum(1 for c, f in zip(relaxed.clauses, cnf.families, strict=True) if f == "two_circle_same_arc" and -max(relaxed.selectors.values()) <= min(c)), cnf.counts["two_circle_same_arc"])
+        self.assertEqual(fc.strip(relaxed), tuple(cnf.clauses))
+
     def test_selectable_families_follow_the_eager_cores(self) -> None:
         cnf = dr.CNF()
         cnf.new_variable("v")

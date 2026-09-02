@@ -52,19 +52,30 @@ class Relaxed:
         return loop._clauses_dimacs(self.clauses, self.n_variables)
 
 
-def relax(cnf: dr.CNF, families: Sequence[str]) -> Relaxed:
-    """Guard every clause of each listed family by ``-selector``; other clauses unchanged."""
+def relax(cnf: dr.CNF, families: Sequence[str], *, by_group: bool = False) -> Relaxed:
+    """Guard every clause of each listed family by ``-selector``; other clauses unchanged.
+
+    With ``by_group`` the selector is per ``family:group`` (one per unordered
+    label set of the geometry clause) instead of per family.
+    """
 
     dr._fail(len(set(families)) == len(families) and set(families) <= set(cnf.counts), "unknown or repeated family")
     dr._fail(len(cnf.families) == len(cnf.clauses), "CNF without per-clause families")
     selectors: dict[str, int] = {}
     n_variables = cnf.n_variables
-    for family in families:
-        n_variables += 1
-        selectors[family] = n_variables
+    keys = [
+        (f"{family}:{group}" if by_group else family) if family in families else None
+        for family, group in zip(cnf.families, cnf.groups, strict=True)
+    ]
+    if by_group:
+        dr._fail(all(":None" not in key for key in keys if key), "geometry clause without a group")
+    for key in keys:
+        if key is not None and key not in selectors:
+            n_variables += 1
+            selectors[key] = n_variables
     clauses = tuple(
-        clause + (-selectors[family],) if family in selectors else clause
-        for clause, family in zip(cnf.clauses, cnf.families, strict=True)
+        clause + (-selectors[key],) if key is not None else clause
+        for clause, key in zip(cnf.clauses, keys, strict=True)
     )
     hard = tuple(sorted(set(cnf.counts) - set(families)))
     return Relaxed(n_variables=n_variables, clauses=clauses, selectors=selectors, hard_families=hard)
@@ -97,12 +108,16 @@ def run(
     solve_timeout_ms: int,
     label: str,
     drop_first: Sequence[str] = (),
+    only_families: Sequence[str] | None = None,
+    by_group: bool = False,
+    max_solves: int = 400,
 ) -> dict[str, Any]:
     artifacts = run_root / "artifacts"
     artifacts.mkdir(parents=True, exist_ok=True)
-    cnf, _layout = dr.build(control)
+    cnf, _layout = dr.build(control, families=only_families)
     families = selectable_families(cnf)
-    relaxed = relax(cnf, families)
+    relaxed = relax(cnf, families, by_group=by_group)
+    families = tuple(relaxed.selectors)  # selector keys: families, or family:group
     cnf_path = artifacts / f"relaxed-{control}.cnf"
     cnf_path.write_bytes(relaxed.dimacs())
     manifest_path = artifacts / f"relaxed-manifest-{control}.json"
@@ -143,6 +158,7 @@ def run(
 
     status, core = solve(families, "all-families")
     outcome = "FULL_SAT"
+    outcome_cap = False
     minimal: list[str] = []
     if status == "UNSAT":
         # The reply core (assumption subset) is a family core already; shrink it.
@@ -154,6 +170,10 @@ def run(
         for family in order:
             if family in removed or family not in candidate:
                 continue
+            if len(solves) >= max_solves:
+                record({"event": "note", "text": f"solve cap {max_solves} reached; shrink stopped"})
+                outcome_cap = True
+                break
             trial = [f for f in candidate if f != family and f not in removed]
             trial_status, trial_core = solve(trial, f"drop:{family}")
             if trial_status == "UNSAT":
@@ -164,6 +184,8 @@ def run(
                 record({"event": "note", "text": f"{family}: solve status {trial_status}; kept (fail-closed)"})
         minimal = [f for f in candidate if f not in removed]
         outcome = "MINIMAL_CORE" if all(s["status"] in ("SAT", "UNSAT") for s in solves) else "MINIMAL_CORE_WITH_UNDECIDED"
+        if outcome_cap:
+            outcome = "CORE_SHRINK_CAPPED"
     elif status != "SAT":
         outcome = "UNDECIDED"
 
@@ -178,6 +200,7 @@ def run(
         "solver": loop.SESSION_SOLVER, "families": list(families), "hard_families": list(relaxed.hard_families),
         "first_core": core, "minimal_family_core": minimal, "outcome": outcome, "solves": solves,
         "session_clauses": final_status.get("clauses"),
+        "by_group": by_group, "only_families": None if only_families is None else list(only_families),
         "lean_sources": {f: dr.GENERIC_CORES[f]["lean"] for f in minimal if f in dr.GENERIC_CORES},
     }
     (artifacts / "family-core-summary.json").write_text(json.dumps(summary, indent=1, sort_keys=True) + "\n")
@@ -192,10 +215,14 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--solve-timeout-ms", type=int, default=900_000)
     parser.add_argument("--label", default=f"{dr.LANE_ID} family core")
     parser.add_argument("--drop-first", action="append", default=[], help="family to try dropping first (repeatable)")
+    parser.add_argument("--family", action="append", default=None, help="build only these selectable families (repeatable)")
+    parser.add_argument("--by-group", action="store_true", help="one selector per family:label-set instead of per family")
+    parser.add_argument("--max-solves", type=int, default=400)
     arguments = parser.parse_args(argv)
     summary = run(
         run_root=arguments.run_root, control=arguments.control, solve_timeout_ms=arguments.solve_timeout_ms,
-        label=arguments.label, drop_first=arguments.drop_first,
+        label=arguments.label, drop_first=arguments.drop_first, only_families=arguments.family,
+        by_group=arguments.by_group, max_solves=arguments.max_solves,
     )
     sys.stdout.write(json.dumps({k: summary[k] for k in ("outcome", "first_core", "minimal_family_core", "session")}, sort_keys=True) + "\n")
     return 0

@@ -96,18 +96,20 @@ class CNF:
     counts: dict[str, int] = field(default_factory=dict)
     names: dict[int, str] = field(default_factory=dict)
     families: list[str] = field(default_factory=list)  # family of clauses[i], in order
+    groups: list[str | None] = field(default_factory=list)  # label group of clauses[i] (geometry only)
 
     def new_variable(self, name: str) -> int:
         self.n_variables += 1
         self.names[self.n_variables] = name
         return self.n_variables
 
-    def add(self, family: str, literals: Iterable[int]) -> None:
+    def add(self, family: str, literals: Iterable[int], group: str | None = None) -> None:
         clause = tuple(sorted(set(literals), key=abs))
         _fail(bool(clause) and all(0 < abs(lit) <= self.n_variables for lit in clause), "bad clause")
         _fail(not any(-lit in clause for lit in clause), "tautological clause")
         self.clauses.append(clause)
         self.families.append(family)
+        self.groups.append(group)
         self.counts[family] = self.counts.get(family, 0) + 1
 
     def dimacs(self) -> bytes:
@@ -415,6 +417,12 @@ def _same_arc(q: int, v: int, u: int, y: int) -> bool:
 
 
 GEOMETRY_FAMILIES = ("duplicate_three_point_center", "perp_bisector", "two_circle_same_arc")
+
+
+def _group(*labels: int) -> str:
+    """Group key of a geometry clause: its unordered label set."""
+
+    return ".".join(str(z) for z in sorted(labels))
 SELECTABLE_FAMILIES = GEOMETRY_FAMILIES + EAGER_CORES
 
 
@@ -426,7 +434,7 @@ def _geometry_nogoods(cnf: CNF, edge: Any, equal: Any, families: frozenset[str])
         for a, b in combinations(LABELS, 2):
             rest = tuple(z for z in LABELS if z not in (a, b))
             for p, q, r in combinations(rest, 3):
-                cnf.add("perp_bisector", tuple(-equal(edge(z, a), edge(z, b)) for z in (p, q, r)))
+                cnf.add("perp_bisector", tuple(-equal(edge(z, a), edge(z, b)) for z in (p, q, r)), _group(a, b, p, q, r))
     # FourPointTwoCircleBisectorOrderCore on the fixed cyclic order: two
     # distinct common points of the q-circle and the v-circle are mirror
     # images in the line qv, so they lie on different sides of it; on a
@@ -436,7 +444,7 @@ def _geometry_nogoods(cnf: CNF, edge: Any, equal: Any, families: frozenset[str])
             rest = tuple(z for z in LABELS if z not in (q, v))
             for u, y in combinations(rest, 2):
                 if _same_arc(q, v, u, y):
-                    cnf.add("two_circle_same_arc", (-equal(edge(q, u), edge(q, y)), -equal(edge(u, v), edge(y, v))))
+                    cnf.add("two_circle_same_arc", (-equal(edge(q, u), edge(q, y)), -equal(edge(u, v), edge(y, v))), _group(q, v, u, y))
     # eager generic cores, one clause per distinct literal set
     for name in EAGER_CORES:
         if name not in families:
@@ -449,7 +457,7 @@ def _geometry_nogoods(cnf: CNF, edge: Any, equal: Any, families: frozenset[str])
             if key in seen:
                 continue
             seen.add(key)
-            cnf.add(name, clause)
+            cnf.add(name, clause, _group(*labels))
 
 
 def build(control: str = "none", *, geometry: bool = True, families: Sequence[str] | None = None) -> tuple[CNF, Layout]:
@@ -501,7 +509,7 @@ def build(control: str = "none", *, geometry: bool = True, families: Sequence[st
         for c1, c2 in combinations(LABELS, 2):
             rest = tuple(label for label in LABELS if label not in (c1, c2))
             for p, q, r in combinations(rest, 3):
-                cnf.add("duplicate_three_point_center", (-same(c1, p, q), -same(c1, p, r), -same(c2, p, q), -same(c2, p, r)))
+                cnf.add("duplicate_three_point_center", (-same(c1, p, q), -same(c1, p, r), -same(c2, p, q), -same(c2, p, r)), _group(c1, c2, p, q, r))
     # 2a. label-generic geometry nogoods (B1 static layers, audited 2026-09-01)
     _geometry_nogoods(cnf, edge, equal, active)
 

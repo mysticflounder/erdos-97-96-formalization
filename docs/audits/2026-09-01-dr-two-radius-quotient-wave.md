@@ -314,8 +314,19 @@ pipeline failure). The daemon had been started without `RUST_LOG`, so its
 restarted with `RUST_LOG=info` (no live sessions, only job `9e243936…`
 running, which the restart requeued), and the two-family CNF was resubmitted
 as job `bdbe81da…` (profile `unsat`, 3600 s) so the failure reason is
-logged. Until one of these stores a checked LRAT, Guardrail 5 stays open:
-the verdicts are session + one-shot UNSATs without a checked certificate.
+logged. Job `bdbe81da…` then showed the reason (daemon log, 01:19 UTC):
+discovery UNSAT in 114 s, proof replay UNSAT in 125 s, drat-trim accepted
+the DRAT (the pipeline only reaches compaction after `s VERIFIED`), and
+the compaction step refused the LRAT: `piqd-lrat parse: parse resource
+Bytes exceeded: observed 1950757765, limit 268435456`. So the two-family
+proof was checked by drat-trim inside piqd but not retained (the 1.95 GB
+LRAT exceeds the compactor's 256 MB cap, and the work directory is
+discarded). The wave-3 job `9e243936…` has a larger proof and fails the
+same way. Guardrail 5 therefore stays open in the sense that no artifact is
+stored; retaining one needs either a larger compaction cap in piqd (a
+change outside this repository) or a manual `cadical --plain` + drat-trim
+run, which is a non-piqd solver run and needs Adam's approval.
+{{NEEDS_ADAM_INPUT}}
 
 
 ## Second reader: encoding-to-claim map (math-skeptic, 2026-09-01)
