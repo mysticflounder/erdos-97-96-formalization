@@ -344,10 +344,27 @@ Lean route, in dependency order; every item names its consumer.
     packet-side identities the `ingress` family needs: every
     `SelectedFourClass` at `oppApex2` has radius `rho` or `otherRadius`;
     `surface.ingress.packet.B₂` is `firstRow.support` or `secondRow.support`;
-    `packet.B₁` is the support of the source's late selected shell. Slice 1
-    (valuation carrier; transitivity, same-arc, isosceles, k4 families) and
-    the packet slice (secondApexRows, firstApexClass, blockers, ingress)
-    remain.
+    `packet.B₁` is the support of the source's late selected shell.
+    Slice 1 DONE 2026-09-02: `ATail/FrontierLiveClosure/DRExactTwelveValuation.lean`
+    (PROVEN; 52 theorems, axioms at most propext, Classical.choice,
+    Quot.sound; no `native_decide`): `litHolds`/`clauseHolds`/`familyHolds`,
+    `RelationValuation pt val`, `ConvexBoundaryEnumeration pt φ idx`
+    (`idx = directIndex ∨ idx = mirrorIndex`, thirdApex at index 0),
+    `K4Valuation`, and `familyHolds` for `transitivity`, `twoCircleSameArc`,
+    `fivePointCircleIsoscelesOrder`, `k4Everywhere`. The encoder predicates
+    `forward`/`sameArc` are bridged to `CyclicThree` by kernel `decide` over
+    the 1,728 label triples and `omega` on offsets. Caveat for P3.4a/P3.5:
+    the mirror's `fivePointCircleIsoscelesOrder` is a fold read through
+    `abbrev` projections, which the kernel cannot unfold (deep recursion);
+    the valuation module restates the fold as the parametric
+    `dedupClauses` and uses a structural `rfl`. Any kernel reasoning on
+    `clauses` must route through that equation, or the mirror should be
+    refactored so the fold loop is a separate parametric definition.
+    Remaining: the packet slice (`secondApexRows`, `firstApexClass`,
+    `blockers`, `ingress`) from an abstract `PacketValuation`, the label-map
+    boundary ingress (`LabelMap` + `ConvexBoundaryEnumeration` from
+    `ZeroCutBoundaryIndexing.exists_with_capBlocks`), and the instantiation
+    of `K4Valuation`/`PacketValuation` from the branch data.
   - P3.5 as below; P3.6 splits the leaf.
   Scale precedent: `ExactFiveCommonShellV7G3Replay` replayed an 861 MB
   source LRAT (421,331 additions, 93 M hints, 165 windows, 399 MB compact
