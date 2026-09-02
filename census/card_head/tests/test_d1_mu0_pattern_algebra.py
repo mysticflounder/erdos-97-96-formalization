@@ -232,10 +232,19 @@ def test_known_core_of_non_concyclic_drops_one_class(tmp_path: Path) -> None:
         (("A0", ("A1", "P0.1", "P0.2")), ("A1", ("A0", "P0.1", "P0.2"))),
     )
     assert alg.is_empty_saturated(pattern, tmp_path, "whole", timeout_s=120)
-    core = alg.shrink_core(pattern, tmp_path, timeout_s=120)
+    core, confirmed = alg.shrink_core(pattern, tmp_path, timeout_s=120)
+    assert confirmed
     assert core.shells == pattern.shells
     assert len(core.classes) == 1
     assert alg.contains(pattern, core)
     assert not alg.is_empty_saturated(
         alg.MetricPattern(pattern.shells, ()), tmp_path, "shell_only", timeout_s=120
     )
+
+
+def test_modular_script_has_no_real_root_call() -> None:
+    pattern = alg.MetricPattern((), (("A0", ("A1", "A2")),))
+    script = alg.singular_script(pattern, char=alg.PREFILTER_CHAR)
+    assert f"ring R = {alg.PREFILTER_CHAR}," in script
+    assert "nrRootsDeterm" not in script
+    assert "nrRootsDeterm" in alg.singular_script(pattern)

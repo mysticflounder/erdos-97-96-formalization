@@ -3160,7 +3160,10 @@ The 25 recorded leaves are:
   surviving descendant
   `false_of_pairedCommonDeletion_fiveSurviveOneFail_triApexAllLarge_core` is
   covered by `docs/plans/2026-09-01-d1-triapex-paired-common-deletion-closure-plan.md`
-  (2026-09-01).
+  (2026-09-01).  Its Stage 1 piqd incidence census (2026-09-01) leaves all 32
+  card-15 cells SAT at the incidence level with capped enumeration, and its
+  Stage 2 Singular refutations of sampled patterns are one-engine discovery
+  evidence (CONJECTURE at encoded scope); neither is a closure artifact.
 
 * **FreshThird / F-Γ (2 on-spine leaves).**
   `Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_crossBlockerCoincidence`;

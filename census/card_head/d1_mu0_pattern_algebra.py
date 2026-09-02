@@ -42,6 +42,7 @@ import hashlib
 import json
 import subprocess
 import sys
+import time
 from collections.abc import Iterable, Mapping, Sequence
 from dataclasses import dataclass, field
 from datetime import UTC, datetime
@@ -55,6 +56,7 @@ PROMOTION_ELIGIBLE = False
 LANE_ID = "d1-triapex-plan-20260901"
 PROJECT_LABEL = "erdos-97-96-formalization"
 SOURCE_LABEL = "d1-triapex-plan-20260901/pattern-algebra"
+QUEUE_ALLOWANCE_S = 3600
 
 APEX_NAMES = ("A0", "A1", "A2")
 INTERIOR_NAMES = tuple(f"P{k}.{s}" for k in range(3) for s in range(1, 5))
@@ -221,12 +223,16 @@ def singular_script(
     saturate: Sequence[tuple[str, str]] = (),
     extra: Sequence[str] = (),
     real_roots: bool = True,
+    char: int = 0,
 ) -> str:
     """Emit the Singular script deciding one pattern.
 
     ``saturate`` lists point pairs whose coincidence locus is removed by
-    saturation (one pair at a time) before the dimension is read.  ``extra`` adds raw
-    polynomials (tests).  Output lines are ``key value`` pairs.
+    saturation (one pair at a time) before the dimension is read.  ``extra``
+    adds raw polynomials (tests).  ``char`` selects the coefficient field:
+    ``0`` is the rationals (the deciding field); a prime gives a modular
+    prefilter, which can report a unit ideal for an unlucky prime and is
+    therefore never the final word.  Output lines are ``key value`` pairs.
     """
 
     points = pattern.points
@@ -238,7 +244,7 @@ def singular_script(
         f"// pattern {pattern.key}",
         'LIB "elim.lib";',
         'LIB "rootsmr.lib";',
-        f"ring R = 0,({','.join(names)}),dp;",
+        f"ring R = {char},({','.join(names)}),dp;",
         "option(redSB);",
         "ideal I;",
     ]
@@ -261,7 +267,7 @@ def singular_script(
     lines.append('print("dim " + string(dim(G)));')
     lines.append("if (dim(G) == 0) {")
     lines.append('  print("vdim " + string(vdim(G)));')
-    if real_roots:
+    if real_roots and char == 0:
         lines.append('  print("real " + string(nrRootsDeterm(G)));')
     lines.append("}")
     lines.append("quit;")
@@ -320,7 +326,13 @@ def _piqc(args: Sequence[str]) -> str:
 
 
 def run_script(script_path: Path, *, timeout_s: int, source: str = SOURCE_LABEL) -> SingularRun:
-    """Submit one script through ``piqc singular run --wait`` and read it back."""
+    """Submit one script through ``piqc singular run --wait`` and read it back.
+
+    piqd executes Singular runs one at a time, so a queued run can outlive
+    the client's own wait; the receipt is then re-read until the daemon
+    reports the run finished (bounded by the run timeout plus a queue
+    allowance).
+    """
 
     receipt = json.loads(
         _piqc(
@@ -339,8 +351,12 @@ def run_script(script_path: Path, *, timeout_s: int, source: str = SOURCE_LABEL)
         )
     )
     run_id = receipt["id"]
-    stdout = _piqc(["singular", "stdout", run_id])
-    stderr = _piqc(["singular", "stderr", run_id])
+    deadline = time.monotonic() + timeout_s + QUEUE_ALLOWANCE_S
+    while receipt.get("state") != "finished" and time.monotonic() < deadline:
+        time.sleep(2.0)
+        receipt = json.loads(_piqc(["singular", "show", run_id]))
+    stdout = _piqc(["singular", "stdout", run_id]) if receipt.get("state") == "finished" else ""
+    stderr = _piqc(["singular", "stderr", run_id]) if receipt.get("state") == "finished" else ""
     return SingularRun(run_id, receipt, stdout, stderr)
 
 
@@ -383,8 +399,11 @@ def decide_pattern(
     *,
     timeout_s: int,
     saturate: Sequence[tuple[str, str]] = (),
+    char: int = 0,
 ) -> PatternResult:
-    script = singular_script(pattern, saturate=saturate)
+    """Decide one pattern; over a prime field every verdict is prefixed ``MOD_``."""
+
+    script = singular_script(pattern, saturate=saturate, char=char)
     script_path = artifacts / f"pattern-{pattern.key}.sing"
     script_path.write_text(script, encoding="utf-8")
     run = run_script(script_path, timeout_s=timeout_s)
@@ -410,8 +429,12 @@ def decide_pattern(
             result.verdict = verdict(result.fields)
         except D1Mu0AlgebraError as error:
             result.verdict = f"UNPARSED: {error}"
+    elif run.receipt.get("state") == "finished":
+        result.verdict = "TIMEOUT" if run.receipt.get("run_status") == "TIMED_OUT" else "RUN_FAILED"
     else:
         result.verdict = "RUN_FAILED"
+    if char != 0:
+        result.verdict = "MOD_" + result.verdict
     return result
 
 
@@ -430,10 +453,22 @@ def all_pairs(pattern: MetricPattern) -> tuple[tuple[str, str], ...]:
     return tuple(combinations(pattern.points, 2))
 
 
-def is_empty_saturated(pattern: MetricPattern, artifacts: Path, name: str, *, timeout_s: int) -> bool:
-    """One saturated run; True exactly when the distinct-point variety is empty."""
+def is_empty_saturated(
+    pattern: MetricPattern,
+    artifacts: Path,
+    name: str,
+    *,
+    timeout_s: int,
+    char: int = 0,
+    strict: bool = True,
+) -> bool:
+    """One saturated run; True exactly when the distinct-point variety is empty.
 
-    script = singular_script(pattern, saturate=all_pairs(pattern), real_roots=False)
+    With ``strict=False`` a run that times out or fails counts as "not
+    empty" (the conservative answer for a deletion step) instead of raising.
+    """
+
+    script = singular_script(pattern, saturate=all_pairs(pattern), real_roots=False, char=char)
     script_path = artifacts / f"{name}.sing"
     script_path.write_text(script, encoding="utf-8")
     run = run_script(script_path, timeout_s=timeout_s)
@@ -442,17 +477,36 @@ def is_empty_saturated(pattern: MetricPattern, artifacts: Path, name: str, *, ti
     )
     (artifacts / f"{name}.stdout.txt").write_text(run.stdout, encoding="utf-8")
     if run.receipt.get("run_status") != "RAN" or run.receipt.get("exit_code") != 0:
-        raise D1Mu0AlgebraError(f"{name}: Singular run failed: {run.stderr[:200]}")
-    return parse_output(run.stdout)["dim"] < 0
+        if strict:
+            raise D1Mu0AlgebraError(f"{name}: Singular run failed: {run.stderr[:200]}")
+        return False
+    try:
+        return parse_output(run.stdout)["dim"] < 0
+    except D1Mu0AlgebraError:
+        if strict:
+            raise
+        return False
 
 
-def shrink_core(pattern: MetricPattern, artifacts: Path, *, timeout_s: int) -> MetricPattern:
+PREFILTER_CHAR = 32003
+
+
+def shrink_core(
+    pattern: MetricPattern,
+    artifacts: Path,
+    *,
+    timeout_s: int,
+    step_timeout_s: int = 120,
+    prefilter_char: int = PREFILTER_CHAR,
+) -> tuple[MetricPattern, bool]:
     """Deletion-minimal sub-pattern that is still empty after saturation.
 
     Every shell and class is dropped in turn and kept out when the rest stays
-    empty.  The result is minimal with respect to deleting one constraint,
-    not necessarily of minimum size.  Distinctness is saturated over the
-    points the current sub-pattern mentions.
+    empty.  Deletion steps run over ``GF(prefilter_char)`` with a short
+    timeout (a timed-out step keeps its constraint), so the result is minimal
+    only up to those two approximations.  The returned flag says whether the
+    core was then confirmed empty over the rationals; when it was not, the
+    full pattern is returned with ``False``.
     """
 
     shells = list(pattern.shells)
@@ -463,16 +517,28 @@ def shrink_core(pattern: MetricPattern, artifacts: Path, *, timeout_s: int) -> M
         if not trial.points or not var_names(trial.points):
             continue
         step += 1
-        if is_empty_saturated(trial, artifacts, f"core-{pattern.key}-s{step}", timeout_s=timeout_s):
+        if is_empty_saturated(
+            trial, artifacts, f"core-{pattern.key}-s{step}", timeout_s=step_timeout_s,
+            char=prefilter_char, strict=False,
+        ):
             del shells[index]
     for index in range(len(classes) - 1, -1, -1):
         trial = MetricPattern(tuple(shells), tuple(classes[:index] + classes[index + 1 :]))
         if not trial.points or not var_names(trial.points):
             continue
         step += 1
-        if is_empty_saturated(trial, artifacts, f"core-{pattern.key}-s{step}", timeout_s=timeout_s):
+        if is_empty_saturated(
+            trial, artifacts, f"core-{pattern.key}-s{step}", timeout_s=step_timeout_s,
+            char=prefilter_char, strict=False,
+        ):
             del classes[index]
-    return MetricPattern(tuple(shells), tuple(classes))
+    core = MetricPattern(tuple(shells), tuple(classes))
+    confirmed = is_empty_saturated(
+        core, artifacts, f"core-{pattern.key}-confirm", timeout_s=timeout_s, char=0, strict=False
+    )
+    if not confirmed:
+        return pattern, False
+    return core, True
 
 
 # --------------------------------------------------------------------------
@@ -492,6 +558,13 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
         help="saturate by every pair of points the pattern mentions (expensive)",
     )
     parser.add_argument("--tag", default="", help="summary file tag")
+    parser.add_argument("--keys", default="", help="comma-separated pattern keys to decide (default: all)")
+    parser.add_argument(
+        "--char",
+        type=int,
+        default=0,
+        help="coefficient field characteristic: 0 (rationals, deciding) or a prime (modular prefilter)",
+    )
     parser.add_argument(
         "--core",
         action="store_true",
@@ -508,6 +581,9 @@ def main(argv: Sequence[str] | None = None) -> int:
     counts: dict[str, int] = {}
     cores: dict[str, MetricPattern] = {}
     coverage: dict[str, int] = {}
+    wanted = {k for k in args.keys.split(",") if k}
+    if wanted:
+        patterns = {k: v for k, v in patterns.items() if k in wanted}
     for index, (key, (pattern, records)) in enumerate(sorted(patterns.items())):
         if args.limit and index >= args.limit:
             break
@@ -521,13 +597,16 @@ def main(argv: Sequence[str] | None = None) -> int:
         saturate: tuple[tuple[str, str], ...] = ()
         if args.saturate_all_distinct or args.core:
             saturate = all_pairs(pattern)
-        result = decide_pattern(pattern, records, args.artifacts, timeout_s=args.timeout, saturate=saturate)
+        result = decide_pattern(
+            pattern, records, args.artifacts, timeout_s=args.timeout, saturate=saturate, char=args.char
+        )
         entry = result.to_json()
-        if args.core and result.verdict == "EMPTY_COMPLEX":
-            core = shrink_core(pattern, args.artifacts, timeout_s=args.timeout)
+        if args.core and result.verdict in ("EMPTY_COMPLEX", "MOD_EMPTY_COMPLEX"):
+            core, confirmed = shrink_core(pattern, args.artifacts, timeout_s=args.timeout)
             cores[core.key] = core
             coverage[core.key] = 1
             entry["core"] = core.key
+            entry["core_confirmed"] = confirmed
             entry["core_shells"] = len(core.shells)
             entry["core_classes"] = len(core.classes)
         results.append(entry)
@@ -540,6 +619,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         "promotion_eligible": PROMOTION_ELIGIBLE,
         "lane_id": LANE_ID,
         "engine": "Singular via piqc singular run (one engine; Guardrail 7 cross-check pending)",
+        "char": args.char,
         "models": [str(p) for p in args.models],
         "distinct_metric_patterns": len(patterns),
         "decided": len(results),
