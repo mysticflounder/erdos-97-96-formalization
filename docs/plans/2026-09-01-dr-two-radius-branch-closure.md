@@ -520,6 +520,9 @@ certificate replay is then unnecessary for card 12.
   with `secondOpposite`, where all growth is confined to the second cap.
 - If the core does not occur in some arm, report the exact missing incidence
   and stop; do not add off-spine lemmas.
+- P3.5/P3.6 committed 2026-09-02 as `2667106ff` (exact-path commit, 1,579
+  owned paths, staged hygiene gate passed; binding record `b431a151…`
+  regenerated against the fresh aggregate build before the commit).
 - Step P4.1 (2026-09-02, in progress): the card-12 drat-trim core uses 5,931
   of 6,281 variables, so the exact-12 contradiction is global, not a small
   sub-pattern; pattern extraction is deferred. Highest-risk assumption tested

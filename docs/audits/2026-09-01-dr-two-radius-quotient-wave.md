@@ -727,3 +727,24 @@ ingress obligation ({{NEEDS_PROOF}}); until it is proved, an UNSAT with
 that family is conditional on it (sat-solvers guardrail 4). No Lean change
 follows from this section.
 
+Runs (piqd, cadical, 3600 s unless noted; job ids in `events/jobs.json`):
+
+| arm | small set + 3 families | convex set + 3 families |
+|---|---|---|
+| `secondOpposite` | UNSAT 2,646 s (`204f8217…`), daemon drat-trim replay `s NOT VERIFIED`, no proof kept | UNKNOWN (`aff4b12d…`) |
+| `surplus` | UNSAT 1,735 s (`5b59c672…`), same replay failure | UNKNOWN (`b30fff97…`) |
+| `firstOpposite` | UNKNOWN (`c10383a3…`-style small set: `b3aa62d0…`) | UNKNOWN (`e967f13d…`) |
+
+Both UNSAT verdicts came from `solver-profile default`; the daemon's
+`--unsat` replay produced a DRAT that drat-trim rejected, and the pipeline
+retained neither proof nor drat-trim output (reported in `#piqd`, messages
+9036 and 9040). They are therefore UNSAT UNVERIFIED (guardrail 5). The
+same CNF bytes were resubmitted with `solver-profile plain` and a 7,200 s
+budget (`ccf768aa…`, `8e76c1b3…`), the path that produced the verified
+card-12 proof; results pending. The convex-set variant being UNKNOWN in
+all arms shows the extra small families carried weight in the two UNSAT
+runs. Reading so far: with cap betweenness added, the structural encoding
+excludes card 13 in two of three growth arms at the encoded scope, pending
+a checked proof and the `StrictCapOrder` bridge; `firstOpposite` is
+undecided at this budget.
+

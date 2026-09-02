@@ -170,3 +170,9 @@ producer needs two distinct four-classes at `S.oppApex1`, which
 `R.unique_K4_radius` forbids; no theorem relates `rho` and `otherRadius`
 by an inequality.
 
+Run record (2026-09-02): `small` + the three families is UNSAT in
+`secondOpposite` (2,646 s) and `surplus` (1,735 s) but both proofs failed
+the daemon's drat-trim replay (unverified; plain-profile reruns pending);
+`firstOpposite` and every `convex` + three-families run is UNKNOWN at
+3,600 s. Details in the audit subsection "P4.3".
+
