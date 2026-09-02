@@ -2294,6 +2294,109 @@ theorem exists_firstApex_mutualCrossDeletion_pair_through_source
       K hfan hcenterNe with ⟨z, w, hz, hw, hzw, hzs, hws, hne⟩
   exact ⟨K, hK, hradius, z, w, hz, hw, hzw, hzs, hws, hne⟩
 
+/-- In the oriented complete cap order of cap `i`, a slot lies in the strict
+cap interior exactly when it is neither endpoint slot. -/
+theorem orderedCap_points_mem_capInteriorByIndex_iff
+    {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3)
+    {m : ℕ} {L : CGN.OrderedCap m} (hm : 2 ≤ m)
+    (hcap : Finset.univ.image L.points = S.capByIndex i)
+    (hends :
+      (L.points (CGN.firstIndex hm) = (S.triangleByIndex i).v2 ∧
+          L.points (CGN.lastIndex hm) = (S.triangleByIndex i).v3) ∨
+        (L.points (CGN.firstIndex hm) = (S.triangleByIndex i).v3 ∧
+          L.points (CGN.lastIndex hm) = (S.triangleByIndex i).v2))
+    (t : Fin m) :
+    L.points t ∈ S.capInteriorByIndex i ↔
+      t ≠ CGN.firstIndex hm ∧ t ≠ CGN.lastIndex hm := by
+  constructor
+  · intro ht
+    have hv2 := S.capInteriorByIndex_ne_triangleByIndex_v2 ht
+    have hv3 := S.capInteriorByIndex_ne_triangleByIndex_v3 ht
+    rcases hends with ⟨hf, hl⟩ | ⟨hf, hl⟩
+    · exact ⟨fun h => hv2 (by rw [← hf, h]), fun h => hv3 (by rw [← hl, h])⟩
+    · exact ⟨fun h => hv3 (by rw [← hf, h]), fun h => hv2 (by rw [← hl, h])⟩
+  · rintro ⟨hf, hl⟩
+    have hcapMem : L.points t ∈ S.capByIndex i := by
+      rw [← hcap]
+      exact Finset.mem_image_of_mem L.points (Finset.mem_univ t)
+    have hne2 : L.points t ≠ (S.triangleByIndex i).v2 := by
+      intro h
+      rcases hends with ⟨hf', _⟩ | ⟨_, hl'⟩
+      · exact hf (L.injective (h.trans hf'.symm))
+      · exact hl (L.injective (h.trans hl'.symm))
+    have hne3 : L.points t ≠ (S.triangleByIndex i).v3 := by
+      intro h
+      rcases hends with ⟨_, hl'⟩ | ⟨hf', _⟩
+      · exact hl (L.injective (h.trans hl'.symm))
+      · exact hf (L.injective (h.trans hf'.symm))
+    have hneRight : L.points t ≠ S.rightOuterVertexByIndex i := by
+      fin_cases i <;>
+        simpa [SurplusCapPacket.rightOuterVertexByIndex,
+          SurplusCapPacket.triangleByIndex] using hne2
+    have hneLeft : L.points t ≠ S.leftOuterVertexByIndex i := by
+      fin_cases i <;>
+        simpa [SurplusCapPacket.leftOuterVertexByIndex,
+          SurplusCapPacket.triangleByIndex] using hne3
+    exact S.mem_capInteriorByIndex_of_mem_capByIndex_of_ne_outer i hcapMem
+      hneRight hneLeft
+
+/-- The slot count of a complete cap order is the closed cap cardinality. -/
+theorem orderedCap_card_eq_of_image_eq_capByIndex
+    {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3)
+    {m : ℕ} {L : CGN.OrderedCap m}
+    (hcap : Finset.univ.image L.points = S.capByIndex i) :
+    m = (S.capByIndex i).card := by
+  rw [← hcap, Finset.card_image_of_injective _ L.injective, Finset.card_univ,
+    Fintype.card_fin]
+
+/-- At carrier size fifteen with all caps large, the complete oriented cap
+order of cap `i` has exactly six slots.  Its endpoint slots `0` and `5` are the
+two Moser vertices of the cap, and its four consecutive middle slots `1..4`
+enumerate the strict cap interior injectively. -/
+theorem exists_orderedCap_six_of_card_eq_fifteen
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    (G : TriApexAllLargeContext D S) (hcard : D.A.card = 15) (i : Fin 3) :
+    ∃ (L : CGN.OrderedCap 6) (Packet : CGN.MecCapPacket D.A L)
+      (_ : CGN.MinorCapSideHypotheses Packet)
+      (_ : CGN.StrictCapOrder D.A L),
+      Finset.univ.image L.points = S.capByIndex i ∧
+      ((L.points 0 = (S.triangleByIndex i).v2 ∧
+          L.points 5 = (S.triangleByIndex i).v3) ∨
+        (L.points 0 = (S.triangleByIndex i).v3 ∧
+          L.points 5 = (S.triangleByIndex i).v2)) ∧
+      (∀ t : Fin 6, L.points t ∈ S.capInteriorByIndex i ↔ (t ≠ 0 ∧ t ≠ 5)) ∧
+      Finset.univ.image (fun k : Fin 4 => L.points ⟨k.1 + 1, by omega⟩) =
+        S.capInteriorByIndex i := by
+  classical
+  rcases S.capByIndex_cgn4g_capData_oriented D.convex i with
+    ⟨m, L, Packet, Hside, Hord, hcap, hends⟩
+  have hm6 : m = 6 := by
+    rw [orderedCap_card_eq_of_image_eq_capByIndex S i hcap]
+    exact ATailExactFifteenApexProfile.capByIndex_card_eq_six_of_card_eq_fifteen
+      S hcard G.cap_card_ge_six i
+  subst hm6
+  have hfirst : CGN.firstIndex Packet.hm = (0 : Fin 6) := Fin.ext (by simp)
+  have hlast : CGN.lastIndex Packet.hm = (5 : Fin 6) := Fin.ext (by simp)
+  have hmem : ∀ t : Fin 6,
+      L.points t ∈ S.capInteriorByIndex i ↔ (t ≠ 0 ∧ t ≠ 5) := by
+    intro t
+    rw [orderedCap_points_mem_capInteriorByIndex_iff S i Packet.hm hcap hends t,
+      hfirst, hlast]
+  refine ⟨L, Packet, Hside, Hord, hcap, ?_, hmem, ?_⟩
+  · simpa [hfirst, hlast] using hends
+  · apply Finset.eq_of_subset_of_card_le
+    · intro x hx
+      rcases Finset.mem_image.mp hx with ⟨k, _, rfl⟩
+      exact (hmem _).mpr
+        ⟨Fin.ne_of_val_ne (show k.1 + 1 ≠ 0 by omega),
+          Fin.ne_of_val_ne (show k.1 + 1 ≠ 5 by omega)⟩
+    · rw [ATailExactFifteenApexProfile.capInteriorByIndex_card_eq_four_of_card_eq_fifteen
+        S hcard G.cap_card_ge_six i,
+        Finset.card_image_of_injective _ (fun a b hab => Fin.ext (by
+          have h := Fin.mk.inj_iff.mp (L.injective hab)
+          omega)),
+        Finset.card_univ, Fintype.card_fin]
+
 end TriApexLeafControls
 
 /-- Residual contradiction after the tri-apex witness count has produced four
@@ -2344,6 +2447,8 @@ theorem false_of_pairedCommonDeletion_fiveSurviveOneFail_triApexAllLarge_core
   obtain ⟨K, hsourceK, hKradius, z, w, hzK, hwK, hzw, hzSurvives, hwSurvives,
       hzwBlockers⟩ :=
     exists_firstApex_mutualCrossDeletion_pair_through_source J G
+  have hsixSlots := fun (hcard : D.A.card = 15) (k : Fin 3) =>
+    exists_orderedCap_six_of_card_eq_fifteen G hcard k
   sorry
 
 /-- Escaping-source child of the paired common-deletion leaf.

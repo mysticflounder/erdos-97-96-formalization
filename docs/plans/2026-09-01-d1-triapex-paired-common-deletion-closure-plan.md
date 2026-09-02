@@ -301,10 +301,10 @@ Each item is proved as a kernel-checked lemma that the leaf consumes in its
 proof prefix. No wrapper networks. None of these reduces `M`; they are
 infrastructure every later phase needs.
 
-Status (2026-09-01): L1, L2, L3, L4, L6 are proved in
+Status (2026-09-01): L1 to L6 are proved in
 `TriApexEndpointRetainedOmission.lean` (section `TriApexLeafControls`) and
 consumed in the leaf's proof prefix; the leaf's single `sorry` is unchanged
-and `M = 18` is unchanged. L5 is open.
+and `M = 18` is unchanged. Phase 1 is complete.
 
 - L1 same-index pair: done, `exists_index_safe_pair_of_fiveSurviveOneFail`
   (consumes `Q.exists_distinct_same_index`; adds that both pair points avoid
@@ -330,12 +330,21 @@ and `M = 18` is unchanged. L5 is open.
   mutually omitting pair `z ≠ w` with distinct blockers and both
   cross-deletions surviving. {{NEEDS_PROOF}} that the pair is not
   `{kept, deleted}` again; `K` may contain them.
-- L5 order adapter (the 2026-08-30 extract's next interface test): from an
-  exact full same-radius strict slice at card 15 to four consecutive indices
-  of `capByIndex_cgn4g_capData_oriented`, retaining provenance. Decision
-  point: if this adapter cannot be proved, the same-radius reduction must be
-  revised rather than routed through the `Fin 4` kernel alone.
-  {{NEEDS_ADAM_INPUT}} on the revision if it fails.
+- L5 order adapter (the 2026-08-30 extract's next interface test): done,
+  `exists_orderedCap_six_of_card_eq_fifteen`. At card 15 the oriented
+  complete cap order of every cap has exactly six slots
+  (`orderedCap_card_eq_of_image_eq_capByIndex`), slots `0` and `5` are the
+  two Moser vertices of the cap, and a slot lies in the strict interior
+  exactly when it is not an endpoint slot
+  (`orderedCap_points_mem_capInteriorByIndex_iff`, cardinality-generic).
+  The four middle slots `1..4` are therefore consecutive and enumerate
+  `capInteriorByIndex i` injectively; with L4 they enumerate
+  `W.supportAt i`, which in the `oneRadius` arm is the full same-radius
+  slice. `StrictCapOrder` supplies the chord-projection order and the
+  between-slot characterization that the interval count `μ` of Phase 3a
+  needs. The decision point did not trigger. Not retained here: the
+  reverse-hit provenance of Section 2, which lives in `J`'s producer, not in
+  this cap-order adapter.
 
 ### Phase 2 — kill-test (computational, discovery gate only)
 
@@ -440,7 +449,7 @@ with `run_manifest.json`, `promotion_eligible = false` until Phase 3.
 
 ## 8. Effort
 
-In sessions: Phase 0 + Phase 1 items L1–L4, one. L5, one. Phase 2, one to
+In sessions: Phase 0 + Phase 1 (L1–L6), one, done 2026-09-01. Phase 2, one to
 two, dominated by the compute-block risk. Phase 3, two to four. Phase 4,
 unknown, at least three. {{UNVALIDATED}} until Phase 2 reports.
 
