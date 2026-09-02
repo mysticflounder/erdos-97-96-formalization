@@ -408,6 +408,22 @@ Decision rule:
 - `UNKNOWN` or compute-blocked: Phase 3 proceeds by Lean order and counting
   per cell, starting with the cells that carry a same-radius safe pair.
 
+Bridge and stop rule (review triage, Section 11): the only route from
+Phase 2 evidence to the leaf is
+
+```text
+source role packet (Section 2 binders at the pair index i and the
+blocker-free index j)
+  → exhaustive finite/order cells (Section 6)
+  → checked certificate, or a Lean order/counting proof, per cell
+  → the leaf
+```
+
+A further structural SAT/UNSAT wave is admitted only when it strengthens one
+arrow of that chain: a new source fact imaged by a hard clause, a cell removed
+by certificate, or a cell closed in Lean. A wave that repeats a verdict at the
+same scope with the same cut set is rejected.
+
 Deliverables: manifests under `scratch/runs/d1-triapex-plan-20260901/<run-id>/`
 with `run_manifest.json`, `promotion_eligible = false` until Phase 3.
 
@@ -477,4 +493,30 @@ untouched.
 - `docs/dead-ends.md:1567-1594` (F1 bypass, `UNRESOLVED`);
 - `docs/closure-evidence-status-ledger-2026-08-05.md` F1 TriApex row;
 - `docs/computational-closure-plan-2026-07-28.md` E1 section;
-- `docs/closure-matrix-2026-07-09.md` row K-A-LIVE-E1-SPLIT.
+- `docs/closure-matrix-2026-07-09.md` row K-A-LIVE-E1-SPLIT;
+- `docs/proof/CURRENT.md` and `docs/README.md`, whose reachable and off-spine
+  counts are anchored at an older revision than the registry and the live
+  spine (Section 11);
+- `proof-status/obligations.json`, regenerated at the same revision with
+  `scripts/gen_obligation_registry.py`.
+
+## 11. Review triage (2026-09-01)
+
+The Pro consult `01M1FNKRDFWNTAFJRYA7N79FPC` was answered out of band as a
+repository-wide audit (`/tmp/p97-closure-plan-audit-2026-09-01.md`, audited
+public head `e6245182b`, the Phase 1 L5 commit), not as the six-question
+review requested. The six plan-specific questions (soundness of the Section 6
+cells, tightness of the exact-15 cell, the value of L6, the Phase 2 re-split
+rule, house-rule violations, omitted obstructions) remain unanswered.
+{{NEEDS_ADAM_INPUT}}: re-request the six-question review, or accept the audit
+as the review.
+
+| Audit finding | Verification at HEAD | Action |
+|---|---|---|
+| §4.2: the plan must name the exact remaining bridge and reject structural waves that do not strengthen it | not stated before this triage | applied: Phase 2 "Bridge and stop rule" |
+| §1: `docs/proof/CURRENT.md` and `docs/README.md` report 25 reachable and 6 off-spine; the registry reports 27 at `020e43bfc`; Section 1 of this plan reports 28 at base head | confirmed by reading the three files | outside lane ownership; added to Section 10; reported to Adam |
+| §2: the plan index omits this plan | wrong at the audited head: `docs/plans/README.md:15` lists it since `f61b3b817` | none |
+| §2: the plan index omits the exact-five plan `2026-09-01-rigid221-exactfive-distinct-three-center.md` | confirmed | outside lane; reported to Adam |
+| §4.2 credits "structural UNSAT for selected D-R cells" to the TriApex lane | those cells belong to the D-R lane (label note above) | none |
+| §7: positive controls, structural UNSAT, and exact local models are not terminals | the Phase 1 status and Section 10 already record no frontier change | none |
+| §8 TriApex row: open input "end-to-end source-to-finite terminal", next result "close role map and certificate ingress" | matches Phases 2 and 3 | none |
