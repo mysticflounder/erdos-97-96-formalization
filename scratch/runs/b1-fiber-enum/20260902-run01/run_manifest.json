@@ -1,0 +1,17 @@
+{
+  "schema": "worktree-run-manifest/v1",
+  "lane_id": "b1-fiber-enum",
+  "run_id": "20260902-run01",
+  "root": "scratch/runs/b1-fiber-enum/20260902-run01",
+  "owner": "b1-fiber-enum",
+  "base_head": "eb6f1395df0f6b3fdbe5453bbd1358b18462d20f",
+  "output_classes": ["artifacts", "events", "tmp"],
+  "source_digests": {
+    "scratch/b1-fiber-enum-enumerate.py": "0f868aa67cf26b84c8a3842216e6b4861bf81e8a11edb87fc72faaa6dee9fdee"
+  },
+  "input_digests": {
+    "docs/audits/2026-08-22-f1-triapex-checkpoint4-review.md": "26004c4ef7a79540fd5b1e4568c140e413bd001a174cf0261c23d271c83b049e"
+  },
+  "created_utc": "2026-09-02T03:30:00Z",
+  "manifest_sha256": "5a68ab267eabd8f54d104c788fc3590d866c223b242ed55cec405ec952b7346a"
+}
