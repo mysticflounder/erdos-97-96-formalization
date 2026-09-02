@@ -270,6 +270,42 @@ theorem b1_escapeSource_mem_outsideFirstApexFiber_of_not_mem_firstClass
       lateFirstApexSystem_centerAt_eq C.R F.pair.q_mem_A
         (frontier_pair_q_mem_firstApexClass F)
 
+/- Outside sources that are not in the bad set carry one retained-deletion
+survival witness.  The residual's named interior points must be identified
+with the frontier pair points because the two structures store them separately. -/
+theorem b1_escapeSource_survives_retained_firstApex_deletion_of_not_bad_of_pair_identifications
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F))
+    (W : B1FiveSixWaveIngress C)
+    (hq_eq : C.R.interior_q = F.pair.q)
+    (hw_eq : C.R.interior_w = F.pair.w)
+    (houtside : W.escape.escape.source ∈ outsideFirstApexFiber C.R)
+    (hnotBad : W.escape.escape.source ∉ badOutsideSources C.R) :
+    HasNEquidistantPointsAt 4 (D.A.erase C.R.interior_q)
+        ((lateFirstApexSystem C.R).centerAt
+          W.escape.escape.source.1 W.escape.escape.source.2) ∨
+      HasNEquidistantPointsAt 4 (D.A.erase C.R.interior_w)
+        ((lateFirstApexSystem C.R).centerAt
+          W.escape.escape.source.1 W.escape.escape.source.2) := by
+  by_cases hq :
+      HasNEquidistantPointsAt 4 (D.A.erase F.pair.q)
+        ((lateFirstApexSystem C.R).centerAt
+          W.escape.escape.source.1 W.escape.escape.source.2)
+  · left
+    simpa [hq_eq] using hq
+  by_cases hw :
+      HasNEquidistantPointsAt 4 (D.A.erase F.pair.w)
+        ((lateFirstApexSystem C.R).centerAt
+          W.escape.escape.source.1 W.escape.escape.source.2)
+  · right
+    simpa [hw_eq] using hw
+  exfalso
+  apply hnotBad
+  exact Finset.mem_filter.mpr ⟨houtside, hq, hw⟩
+
 /-- The intended producer outcome for a five/six wave. -/
 def B1WinningSliceOrderOutcome
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
