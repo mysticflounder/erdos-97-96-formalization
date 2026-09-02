@@ -24,7 +24,7 @@ growth arm `secondOpposite` only.
 | `I2` (second-opposite interior) | `t1, t2, t3, t4` | `oppCap2.card = 6` |
 
 Twelve points, all distinct, in convex position, cyclic order
-`a1, Is, a2, I1, a3, I2` counterclockwise (cap `i` has endpoints
+`a1, Is, a2, I1, a3, I2` in one boundary orientation, up to reversal (cap `i` has endpoints
 `v_{i+1}, v_{i+2}`; see the 1a ledger). Within-cap orders are cell data.
 
 ## 2. Incidence structure
@@ -150,7 +150,8 @@ Encoder revision `p97-dr-exact12-structural-cnf/v2`
 wave 1 is `build(geometry=False)`.
 
 Cyclic order. `CYCLIC_ORDER = (a1, s1, s2, s3, a2, iq, iw, a3, t1, t2, t3, t4)`
-(counterclockwise, from `CapTriple` endpoint membership). The within-cap
+(one boundary orientation, up to reversal, from `CapTriple` endpoint
+membership; nothing below depends on which). The within-cap
 orders are fixed without loss of generality: the base CNF is invariant under
 relabelling inside `Is`, inside `I2`, and under the swap `iq ↔ iw`, so every
 equality pattern of a configuration has a relabelled copy whose within-cap
@@ -166,11 +167,14 @@ the encoding does not depend on the orientation of `signedArea2`. The
 side/arc bridge (a triple's sign is fixed by the cyclic order on a convex
 carrier) is `Problem97.onArc_iff_between` and
 `Problem97.signedArea2_neg_of_outside` (`ArcBlockContiguity.lean`, proved,
-not yet imported by the aggregator) through
+reachable from the aggregator through `SurplusM44Packet/Shard01`; import walk
+of 2026-09-01) through
 `exists_isCcwConvexPolygon_of_convexIndep`.
 
 Core table (`GENERIC_CORES`; every source theorem needs only `Realizes`, that
-is an injective planar realization, plus the orientation signs where listed):
+is an injective planar realization, plus the orientation signs where listed;
+`perp_bisector` additionally needs `ConvexIndep` of the carrier and carrier
+membership of its points, both supplied by `CounterexampleData.convex`):
 
 | family | labels | Lean source |
 |---|---:|---|
@@ -188,9 +192,12 @@ is an injective planar realization, plus the orientation signs where listed):
 | lazy: `five_row_circle_intersection_order` | 8 | `FiveRowCircleIntersectionOrderCore` (order) |
 
 `five_point_circle_isosceles_order` also needs the chords `FX` and `PZ` to
-cross; the encoder reads that from interleaving in the cyclic order, and the
-Lean bridge (interleaved chords of a convex polygon cross) is
-{{NEEDS_PROOF}}. Cores whose statements need non-carrier data
+cross; the encoder reads that from interleaving in the cyclic order. The
+Lean bridge `FivePointCircleIsoscelesOrderBridge.false_of_core_of_ccw` is
+proved for the linear order `W < F < P < X < Z` on a ccw indexing (chords
+cross by `CapCrossingKalmansonBridge.exists_mem_openSegment_diagonals_of_ccw`);
+the wrapper from the encoder's cyclic predicate (rotation and reversal of the
+indexing) is {{NEEDS_PROOF}}. Cores whose statements need non-carrier data
 (`MECStraddlingRowCore`, `CircleIntersectionInequalityCore`) or the card-11
 macro-order machinery (`SeparationCore`) are omitted.
 
@@ -209,3 +216,33 @@ in `CYCLIC_ORDER` satisfies every pure-geometry family and triggers no lazy
 core (`test_dr_exact12_structural.py`). Differential control: the eager
 families reproduce the audited B1 generators for the three shared rules and
 contain the six B1-mined finite instances.
+
+## 3c. Family-level minimal core (added 2026-09-01)
+
+`census/card_head/dr_exact12_family_core.py` relaxes the eager CNF of 3b:
+every clause of a *selectable* family carries one fresh selector literal
+`-s_F` (one variable per family), while `transitivity`, the D-R hypothesis
+blocks, `ingress`, and any control stay hard.  Selectable families are
+`duplicate_three_point_center`, `perp_bisector`, `two_circle_same_arc`, and
+every eager core of `GENERIC_CORES`.  Stripping the selector literals
+returns the 3b clause list (tested).
+
+One piqd session is seeded with the relaxed formula.  The first solve
+assumes every selector true, which must reproduce the wave-3 UNSAT; the
+assumption core the solver returns is a family core.  A deletion shrink
+then drops one family at a time (in a caller-chosen order, so the families
+whose Lean bridges are weakest are tried first): a drop that leaves the
+formula UNSAT is kept, and the returned core prunes further; a drop that
+makes it SAT is reverted.  A solve that is neither SAT nor UNSAT keeps its
+family (fail-closed) and is recorded.  The output is one irreducible family
+set: dropping any of its families makes the structural formula SAT.  It is
+a minimal core over families, not a smallest one, and it lists the source
+theorems a Phase 3 ingress must cover.  Every solve is a session receipt
+with the base hash of the relaxed formula.
+
+Result (wave 4, 2026-09-01): minimal family core
+`{two_circle_same_arc, five_point_circle_isosceles_order}`; see the audit.
+`build(families=...)` and the CLI flag `--family` build the base incidence
+CNF plus any listed selectable families, which is how the wave-5 standalone
+two-family CNF (254,412 clauses) and its one-family controls are produced.
+

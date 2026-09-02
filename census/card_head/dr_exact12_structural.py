@@ -7,7 +7,8 @@ Encoding 1b, structural stage, for
 Twelve labelled points in the fixed profile ``(surplus, opp1, opp2) = (5, 4, 6)``.
 The Boolean relation ``eq(e, e')`` on the 66 edges says two distances are equal.
 Every D-R hypothesis is stated as a cardinality or exclusion constraint on the
-per-center classes this relation induces.  No coordinates, no cyclic order.
+per-center classes this relation induces.  No coordinates; the only
+geometric input is the cyclic order ``CYCLIC_ORDER`` below.
 The label-generic equality cores of ``Problem97.Census554`` (``GENERIC_CORES``)
 are included as all-negative clauses on the relation: each Lean source needs
 only an injective realization, convex independence, and, for the order cores,
@@ -55,14 +56,14 @@ CONTROLS = ("none", "five-at-second-apex", "first-apex-symmetry")
 # itself a relaxation.  Families marked RELAXATION are weaker than the source.
 SOURCE_CLAUSE_LEDGER: tuple[dict[str, str], ...] = (
     {"family": "transitivity", "content": "equality of distances is an equivalence relation", "status": "definition"},
-    {"family": "duplicate_three_point_center", "content": "two distinct centers are not both equidistant from three common points (circumcenter uniqueness)", "status": "proved-source", "lean_sources": "b1_exact12_static_equality generic_duplicate_three_point_center_obstruction"},
+    {"family": "duplicate_three_point_center", "content": "two distinct centers are not both equidistant from three common points (circumcenter uniqueness)", "status": "proved-source", "lean_sources": "Problem97.Census554.EqualityCore.not_realizes_of_duplicateCenterCore (EqualityCore.lean; the B1 rule generic_duplicate_three_point_center_obstruction is the same clause)"},
     {"family": "perp_bisector", "content": "three distinct points, each equidistant from two distinct points a, b, are collinear, contradicting convex independence of the carrier", "status": "proved-source", "lean_sources": "Problem97.Census554.EqualityCore.false_of_convexIndep_of_perpBisectorCore (PerpBisectorCore; ConvexIndep from CounterexampleData.convex)"},
-    {"family": "two_circle_same_arc", "content": "two distinct points equidistant from q and from v are mirror images in the line qv, hence on different sides of it; on the convex carrier with the fixed cyclic order they lie on different arcs of the chord qv", "status": "proved-source (core) + convex-position side/arc bridge", "lean_sources": "Problem97.Census554.FourPointTwoCircleBisectorOrderCore.false_of_core_of_same_side; side/arc bridge Problem97.onArc_iff_between and Problem97.signedArea2_neg_of_outside (ArcBlockContiguity.lean, proved, not yet imported by the aggregator) via exists_isCcwConvexPolygon_of_convexIndep"},
-    {"family": "generic_cores", "content": "label-generic equality cores of Problem97.Census554 (see GENERIC_CORES): each source theorem needs only an injective planar realization; cores with at most six labels are eager clause families named as in GENERIC_CORES, seven-label cores are lazy model checks", "status": "proved-source", "lean_sources": "GENERIC_CORES[*].lean"},
+    {"family": "two_circle_same_arc", "content": "two distinct points equidistant from q and from v are mirror images in the line qv, hence on different sides of it; on the convex carrier with the fixed cyclic order they lie on different arcs of the chord qv", "status": "proved-source (core) + convex-position side/arc bridge", "lean_sources": "Problem97.Census554.FourPointTwoCircleBisectorOrderCore.false_of_core_of_same_side; side/arc bridge Problem97.onArc_iff_between and Problem97.signedArea2_neg_of_outside (ArcBlockContiguity.lean, proved, reachable from the aggregator by import walk through SurplusM44Packet/Shard01; audit 2026-09-01) via exists_isCcwConvexPolygon_of_convexIndep"},
+    {"family": "generic_cores", "content": "label-generic equality cores of Problem97.Census554 (see GENERIC_CORES): each source theorem needs only an injective planar realization, plus convex independence of the carrier and orientation signs of carrier triples where its table row says so; cores with at most six labels are eager clause families named as in GENERIC_CORES, seven-label cores are lazy model checks", "status": "proved-source", "lean_sources": "GENERIC_CORES[*].lean"},
     {"family": "second_apex_rows", "content": "firstRow/secondRow: two disjoint full four-classes at oppApex2; each has two points in the second-cap interior and one point in each adjacent closed cap", "status": "proved-source", "lean_sources": "SelectedFourClass, _hdisjoint, _hnoFive, twoRichClassSlices_partition_of_capInterior_card_eq_four, exactFourTwoRadiusAdjacentCapGrid"},
     {"family": "first_apex_class", "content": "the oppApex1 class has exactly four points, contains interior_q and interior_w, one point in each adjacent closed cap, and is the unique four-class at oppApex1", "status": "proved-source", "lean_sources": "OriginalUniqueFourResidual.class_card_eq_four, interior_q_mem, interior_w_mem, unique_K4_radius, leftAdjacentCap_at_opposite_card_le_one_of_convexIndep"},
     {"family": "k4_everywhere", "content": "every point has at least four equidistant points", "status": "proved-source", "lean_sources": "CounterexampleData.K4"},
-    {"family": "blockers", "content": "every point has a blocker other than oppApex2 whose unique four-class contains it; late system sends the first-apex class to oppApex1", "status": "proved-source", "lean_sources": "CriticalShellSystem.shellAt, no_qfree, CriticalFourShell.support_eq, lateFirstApexSystem, DeletionRobustRadiusClassification.twoDistinctRadii (no blocker at oppApex2)"},
+    {"family": "blockers", "content": "every point has a blocker other than oppApex2 whose unique four-class contains it; late system sends the first-apex class to oppApex1", "status": "proved-source", "lean_sources": "CriticalShellSystem.shellAt, no_qfree, CriticalFourShell.support_eq, lateFirstApexSystem, FullyDeletionRobustAt.centerAt_ne on surface.secondApex_robust (ATail/DeletionRobustness.lean; no blocker at oppApex2)"},
     {"family": "ingress", "content": "source with blocker outside {oppApex1, oppApex2}; deleted point in the first-apex class outside the surplus interior; B1 = source shell avoids deleted; B2 in {firstRow, secondRow} avoids deleted; |B1 ∩ B2| ≤ 2", "status": "RELAXATION: deleted ∈ {q, w} is projected to deleted ∈ U \\ surplus interior (closed-cap exclusion weakened to interior)", "lean_sources": "ExactFourPhysicalCommonDeletionIngress, CommonDeletionTwoCenterPacket, U5QDeletedK4Class, outsideFirstApexFiber, blocker_ne_secondApex"},
 )
 OMITTED_FACTS = (
@@ -94,6 +95,7 @@ class CNF:
     clauses: list[tuple[int, ...]] = field(default_factory=list)
     counts: dict[str, int] = field(default_factory=dict)
     names: dict[int, str] = field(default_factory=dict)
+    families: list[str] = field(default_factory=list)  # family of clauses[i], in order
 
     def new_variable(self, name: str) -> int:
         self.n_variables += 1
@@ -105,6 +107,7 @@ class CNF:
         _fail(bool(clause) and all(0 < abs(lit) <= self.n_variables for lit in clause), "bad clause")
         _fail(not any(-lit in clause for lit in clause), "tautological clause")
         self.clauses.append(clause)
+        self.families.append(family)
         self.counts[family] = self.counts.get(family, 0) + 1
 
     def dimacs(self) -> bytes:
@@ -153,7 +156,7 @@ def others(center: int) -> tuple[int, ...]:
     return tuple(label for label in LABELS if label != center)
 
 
-# Cyclic order of the carrier (counterclockwise, from CapTriple endpoint
+# Cyclic order of the carrier (one boundary orientation, up to reversal; from CapTriple endpoint
 # membership): a1, Is, a2, I1, a3, I2.  Within-cap orders are fixed WLOG: the
 # base CNF is invariant under relabelling inside Is, inside I2, and under the
 # swap of interior_q/interior_w, so every equality pattern has a relabelled
@@ -164,7 +167,8 @@ CYCLIC_ORDER = (A1, 3, 4, 5, A2, 6, 7, A3, 8, 9, 10, 11)
 # (one character per label, all distinct), the distance equalities it forces
 # as pairs of two-letter edges, and its Lean source.  Every source theorem
 # needs only ``Realizes`` (an injective planar realization) and the listed
-# equalities, so the all-negative clause over every injective label tuple is
+# equalities (plus convex independence and orientation signs where its entry
+# says so), so the all-negative clause over every injective label tuple is
 # sound for any 12 distinct points.  Cores with at most six labels are added
 # eagerly; seven-label cores (about four million instances each) are checked
 # lazily against models by ``core_violations``.
@@ -287,7 +291,7 @@ GENERIC_CORES: dict[str, dict[str, Any]] = {
         "labels": "WFPXZ",
         "equalities": (("WF", "WX"), ("WF", "WZ"), ("PZ", "XZ")),
         "orientation": {"opposite": (("WFZ", "XFZ"),), "cross": (("FX", "PZ"),)},
-        "lean": "Problem97.Census554.FivePointCircleIsoscelesOrderCore.false_of_core; chord-crossing bridge from interleaved cyclic order {{NEEDS_PROOF}} in Lean",
+        "lean": "Problem97.Census554.FivePointCircleIsoscelesOrderCore.false_of_core / false_of_core_of_neg; bridge FivePointCircleIsoscelesOrderBridge.false_of_core_of_ccw (proved: linear order W<F<P<X<Z on a ccw indexing, chords cross by CapCrossingKalmansonBridge.exists_mem_openSegment_diagonals_of_ccw); the wrapper from the cyclic predicate (rotation and reversal of the indexing) is {{NEEDS_PROOF}}",
     },
     "five_row_circle_intersection_order": {
         "labels": "OACDEFGH",  # F, G, H = X5, X6, X9
@@ -410,25 +414,33 @@ def _same_arc(q: int, v: int, u: int, y: int) -> bool:
     return forward(u) == forward(y)
 
 
-def _geometry_nogoods(cnf: CNF, edge: Any, equal: Any) -> None:
-    """Label-generic all-negative nogoods on the equality relation."""
+GEOMETRY_FAMILIES = ("duplicate_three_point_center", "perp_bisector", "two_circle_same_arc")
+SELECTABLE_FAMILIES = GEOMETRY_FAMILIES + EAGER_CORES
+
+
+def _geometry_nogoods(cnf: CNF, edge: Any, equal: Any, families: frozenset[str]) -> None:
+    """Label-generic all-negative nogoods on the equality relation (listed families only)."""
 
     # PerpBisectorCore: a != b, p/q/r distinct, pa = pb, qa = qb, ra = rb
-    for a, b in combinations(LABELS, 2):
-        rest = tuple(z for z in LABELS if z not in (a, b))
-        for p, q, r in combinations(rest, 3):
-            cnf.add("perp_bisector", tuple(-equal(edge(z, a), edge(z, b)) for z in (p, q, r)))
+    if "perp_bisector" in families:
+        for a, b in combinations(LABELS, 2):
+            rest = tuple(z for z in LABELS if z not in (a, b))
+            for p, q, r in combinations(rest, 3):
+                cnf.add("perp_bisector", tuple(-equal(edge(z, a), edge(z, b)) for z in (p, q, r)))
     # FourPointTwoCircleBisectorOrderCore on the fixed cyclic order: two
     # distinct common points of the q-circle and the v-circle are mirror
     # images in the line qv, so they lie on different sides of it; on a
     # convex carrier that means different arcs of the chord qv.
-    for q, v in combinations(LABELS, 2):
-        rest = tuple(z for z in LABELS if z not in (q, v))
-        for u, y in combinations(rest, 2):
-            if _same_arc(q, v, u, y):
-                cnf.add("two_circle_same_arc", (-equal(edge(q, u), edge(q, y)), -equal(edge(u, v), edge(y, v))))
+    if "two_circle_same_arc" in families:
+        for q, v in combinations(LABELS, 2):
+            rest = tuple(z for z in LABELS if z not in (q, v))
+            for u, y in combinations(rest, 2):
+                if _same_arc(q, v, u, y):
+                    cnf.add("two_circle_same_arc", (-equal(edge(q, u), edge(q, y)), -equal(edge(u, v), edge(y, v))))
     # eager generic cores, one clause per distinct literal set
     for name in EAGER_CORES:
+        if name not in families:
+            continue
         seen: set[frozenset[int]] = set()
         for row in core_instances(name):
             labels = tuple(int(x) for x in row)
@@ -440,10 +452,21 @@ def _geometry_nogoods(cnf: CNF, edge: Any, equal: Any) -> None:
             cnf.add(name, clause)
 
 
-def build(control: str = "none", *, geometry: bool = True) -> tuple[CNF, Layout]:
-    """Build the structural CNF; ``geometry=False`` reproduces wave 1 (incidence only)."""
+def build(control: str = "none", *, geometry: bool = True, families: Sequence[str] | None = None) -> tuple[CNF, Layout]:
+    """Build the structural CNF.
+
+    ``geometry=False`` reproduces wave 1 (incidence only, which still carries
+    ``duplicate_three_point_center``); ``families`` restricts the selectable
+    geometry families (``SELECTABLE_FAMILIES``) to the listed ones, for
+    reduced formulas such as the wave-4 minimal family core.
+    """
 
     _fail(control in CONTROLS, "unknown control")
+    if families is None:
+        active = frozenset(SELECTABLE_FAMILIES) if geometry else frozenset(("duplicate_three_point_center",))
+    else:
+        _fail(set(families) <= set(SELECTABLE_FAMILIES), "unknown family")
+        active = frozenset(families)
     cnf = CNF()
     edges = tuple(combinations(LABELS, 2))
     edge_index = {edge: index for index, edge in enumerate(edges)}
@@ -474,13 +497,13 @@ def build(control: str = "none", *, geometry: bool = True) -> tuple[CNF, Layout]
         cnf.add("transitivity", (-fs, -ft, st))
         cnf.add("transitivity", (-ft, -st, fs))
     # 2. two centers never share three equidistant points
-    for c1, c2 in combinations(LABELS, 2):
-        rest = tuple(label for label in LABELS if label not in (c1, c2))
-        for p, q, r in combinations(rest, 3):
-            cnf.add("duplicate_three_point_center", (-same(c1, p, q), -same(c1, p, r), -same(c2, p, q), -same(c2, p, r)))
+    if "duplicate_three_point_center" in active:
+        for c1, c2 in combinations(LABELS, 2):
+            rest = tuple(label for label in LABELS if label not in (c1, c2))
+            for p, q, r in combinations(rest, 3):
+                cnf.add("duplicate_three_point_center", (-same(c1, p, q), -same(c1, p, r), -same(c2, p, q), -same(c2, p, r)))
     # 2a. label-generic geometry nogoods (B1 static layers, audited 2026-09-01)
-    if geometry:
-        _geometry_nogoods(cnf, edge, equal)
+    _geometry_nogoods(cnf, edge, equal, active)
 
     def exact_class(family: str, center: int, member: Mapping[int, int]) -> None:
         """member[z] holds exactly for the points of one full class at center."""
@@ -705,7 +728,7 @@ def check_pattern(pattern: Pattern) -> list[str]:
 # --------------------------------------------------------------------------
 
 
-def manifest(cnf: CNF, control: str, *, geometry: bool = True) -> dict[str, Any]:
+def manifest(cnf: CNF, control: str, *, geometry: bool = True, families: Sequence[str] | None = None) -> dict[str, Any]:
     return {
         "schema": SCHEMA,
         "target_theorem": TARGET_THEOREM,
@@ -713,6 +736,7 @@ def manifest(cnf: CNF, control: str, *, geometry: bool = True) -> dict[str, Any]
         "promotion_eligible": PROMOTION_ELIGIBLE,
         "control": control,
         "geometry": geometry,
+        "families": None if families is None else list(families),
         "n_variables": cnf.n_variables,
         "n_clauses": len(cnf.clauses),
         "clause_counts": dict(sorted(cnf.counts.items())),
@@ -729,11 +753,12 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--cnf", type=Path, required=True, help="DIMACS output path")
     parser.add_argument("--manifest", type=Path, required=True)
     parser.add_argument("--no-geometry", action="store_true", help="incidence-only CNF (wave 1)")
+    parser.add_argument("--family", action="append", default=None, help="keep only this selectable geometry family (repeatable)")
     arguments = parser.parse_args(argv)
     geometry = not arguments.no_geometry
-    cnf, _layout = build(arguments.control, geometry=geometry)
+    cnf, _layout = build(arguments.control, geometry=geometry, families=arguments.family)
     arguments.cnf.write_bytes(cnf.dimacs())
-    arguments.manifest.write_text(json.dumps(manifest(cnf, arguments.control, geometry=geometry), indent=1, sort_keys=True) + "\n")
+    arguments.manifest.write_text(json.dumps(manifest(cnf, arguments.control, geometry=geometry, families=arguments.family), indent=1, sort_keys=True) + "\n")
     sys.stdout.write(json.dumps({"variables": cnf.n_variables, "clauses": len(cnf.clauses), "counts": cnf.counts}, sort_keys=True) + "\n")
     return 0
 

@@ -3,7 +3,7 @@
 Date: 2026-09-01. Lane `dr-two-radius-20260901`. Plan
 `docs/plans/2026-09-01-dr-two-radius-branch-closure.md`, Phase 1a.
 
-Status: Phase 1a settled SAT by an exact witness; Phase 1b structural waves 1 and 2 SAT; wave 3 (all label-generic Census554 cores, fixed cyclic order) UNSAT in a piqd session, proof job pending, family-level core pending. No
+Status: Phase 1a settled SAT by an exact witness; Phase 1b structural waves 1 and 2 SAT; wave 3 (all label-generic Census554 cores, fixed cyclic order) UNSAT in a piqd session and in a one-shot job (no stored proof yet; resubmitted); wave 4 minimal family core = {two_circle_same_arc, five_point_circle_isosceles_order}; wave 5 standalone two-family CNF UNSAT from scratch (360.8 s), one-family controls SAT; no checked proof stored yet (piqd proof pipeline failing silently; daemon restarted with logging, jobs rerunning). No
 result here closes a Lean theorem, supplies coverage, or authorizes removing
 the live `sorry` at `Rigid221Closure.lean:1245`. Every verdict below is CONJECTURE-level
 evidence about one encoding until a second reader audits the
@@ -28,7 +28,8 @@ Atom families and their Lean images are the module's
 derivation `source ∈ B1` (from `CriticalShellSystem.no_qfree`) is recorded
 there as a derived identity.
 
-Cyclic order convention: `a1, Is, a2, I1, a3, I2` counterclockwise, from
+Cyclic order convention: `a1, Is, a2, I1, a3, I2` in one boundary orientation
+(up to reversal), from
 `CapTriple` endpoint membership (cap `i` has endpoints `v_{i+1}, v_{i+2}`).
 Cap membership is asserted directly through `OnArcOpposite` sign products,
 not only through the order.
@@ -221,20 +222,138 @@ order satisfies every family and triggers no lazy core. Run root
 
 Result (session `receipts.json`, solve 1, base 4,067,694 clauses, sha256
 `d57df331…`): UNSAT in 127 s on the eager CNF alone; no lazy core was ever
-consulted, no survivor. The identical CNF (blob `182909cb…`) runs as the
-one-shot raw-DIMACS job `4564e28a…` for the DRAT-checked proof; until that
-job completes the verdict is an unchecked incremental UNSAT.
+consulted, no survivor. The identical CNF (blob `182909cb…`) ran as the
+one-shot raw-DIMACS job `4564e28a…` (default profile, 600 s): UNSAT in
+244.6 s, independently reproducing the session verdict, but the job stored
+no proof. Its transcript (`events/proof-job-4564e28a-log.txt`) ends at the
+proof-free discovery run; the job completed 2651 s after confirmation, so
+the DRAT replay (same 600 s budget, `--unsat`, proof tracing) or the
+drat-trim pass that follows it failed, and the daemon log for this period is
+empty. Resubmitted as job `9e243936…` (profile `unsat`, 3600 s; same blob,
+`artifacts/submit-none-unsat-t3600.txt`). Until a checked proof is stored
+the verdict is two agreeing unchecked UNSATs (Guardrail 5 open).
 
 Reading (CONJECTURE, scope: this CNF at card 12). Hard-clause audit per
 Guardrail 4: every family names a proved Lean source except (i) `ingress`,
 which is a declared relaxation (weaker than the source, so it cannot cause a
 spurious UNSAT), (ii) the within-cap order fixed WLOG by the relabelling
-symmetry of the base CNF, (iii) the side/arc bridge, proved but in a module
-the aggregator does not import, and (iv) `five_point_circle_isosceles_order`,
-whose chord-crossing bridge is {{NEEDS_PROOF}} in Lean. Next: a family-level
+symmetry of the base CNF, (iii) the side/arc bridge, proved in `ArcBlockContiguity.lean` (reachable
+from the aggregator through `SurplusM44Packet/Shard01`), whose cap-block
+boundary-order wrapper for this carrier is not written, and (iv)
+`five_point_circle_isosceles_order`, whose chord-crossing bridge
+`FivePointCircleIsoscelesOrderBridge.false_of_core_of_ccw` is proved for the
+linear order `W < F < P < X < Z` while the wrapper from the cyclic predicate
+is {{NEEDS_PROOF}}. Next: a family-level
 minimal core (assumption selectors per family in one session) to learn which
 theorems the Phase 3 ingress must cover and whether (iv) is needed at all;
 then the encoding-to-claim map goes to a second reader.
+
+## Phase 1b, wave 4: family-level minimal core
+
+Spec section 3c. Run root `scratch/runs/dr-two-radius-20260901/q1b-wave-4`,
+driven by `census/card_head/dr_exact12_family_core.py`: the wave-3 CNF with
+one selector per selectable family (19 selectable, the rest hard), one piqd
+CaDiCaL session, first solve under all selectors, then a deletion shrink
+over the returned family core, trying `five_point_circle_isosceles_order`,
+`two_circle_same_arc`, the six order cores and `convex_rhombus` first.
+
+Result (`artifacts/family-core-summary.json`, 13 session receipts): the
+first solve, under all 19 selectors, is UNSAT in 484 s with an assumption
+core of 15 families (`six_point_five_row_interlock`,
+`six_point_six_row_interlock`, `six_point_circle_chain_order`,
+`convex_rhombus` unused). Dropping `five_point_circle_isosceles_order` or
+`two_circle_same_arc` makes the formula SAT (12 s, 6 s). Every other family
+of the core drops in turn while UNSAT persists, in the order
+`convex_five_point`, `nested_equal_chord`, `six_point_two_circle_order`,
+`six_point_two_circle_arc_overtake_order`, `duplicate_three_point_center`,
+`equilateral_bisector`, `hinge_five_cycle`, `hinge_six_double_spoke`,
+`hinge_six_tail`, `perp_bisector` (11 s to 189 s each). Outcome
+`MINIMAL_CORE`:
+
+| minimal family core | Lean source |
+|---|---|
+| `two_circle_same_arc` | `FourPointTwoCircleBisectorOrderCore.false_of_core_of_same_side` + same-arc-to-same-side bridge |
+| `five_point_circle_isosceles_order` | `FivePointCircleIsoscelesOrderCore.false_of_core` / `_of_neg` via `FivePointCircleIsoscelesOrderBridge.false_of_core_of_ccw` + cyclic wrapper |
+
+Reading (CONJECTURE, scope: this CNF at card 12). With the hard blocks
+(transitivity, `second_apex_rows`, `first_apex_class`, `k4_everywhere`,
+`blockers`, `ingress`) fixed, two order families suffice for the
+contradiction, and each is necessary given the other. Both are order cores
+on the fixed cyclic order, so the whole structural contradiction at card 12
+runs through the boundary order of the carrier; the equality-only cores
+(`equal_k4`, the hinge and interlock families, `perp_bisector`) are not
+needed. This is one irreducible family set, not the unique or smallest one.
+The Phase 3 ingress therefore needs exactly: the cap-block boundary order
+(skeptic item f2), the two bridges named in the table, and the structural
+assembly L1 (item f1).
+
+## Phase 1b, wave 5: the two-family core as a standalone CNF
+
+Run root `scratch/runs/dr-two-radius-20260901/q1b-wave-5`. The encoder's
+`--family` filter builds the base incidence CNF plus exactly the two core
+families (254,412 clauses, sha256 `e29d1b26…`; 7,920 isosceles-order and
+1,980 same-arc clauses) and the two one-family controls. One-shot
+raw-DIMACS jobs, default profile, 3600 s:
+
+| CNF | job | verdict | wall |
+|---|---|---:|---:|
+| base + `two_circle_same_arc` only (246,492 clauses) | `2132db19…` | SAT | 0.8 s |
+| base + `five_point_circle_isosceles_order` only (252,432 clauses) | `38e2a8cc…` | SAT | 0.7 s |
+| base + both (254,412 clauses) | `ad966d3c…` | UNSAT | 360.8 s |
+
+The two controls confirm from scratch that neither family alone closes the
+formula, and the standalone job reproduces the session's two-selector UNSAT
+from scratch. The standalone two-family job is the certificate target: a
+checked LRAT on a 254k-clause CNF replaces the 4M-clause wave-3 proof for
+Guardrail 5, and the wave-3 formula contains this clause set.
+
+Proof capture: job `ad966d3c…` also stored no proof (718 s from
+confirmation: 361 s discovery, about 357 s replay, then an immediate
+pipeline failure). The daemon had been started without `RUST_LOG`, so its
+`warn`-level "proof pipeline failed" lines were never written; it was
+restarted with `RUST_LOG=info` (no live sessions, only job `9e243936…`
+running, which the restart requeued), and the two-family CNF was resubmitted
+as job `bdbe81da…` (profile `unsat`, 3600 s) so the failure reason is
+logged. Until one of these stores a checked LRAT, Guardrail 5 stays open:
+the verdicts are session + one-shot UNSATs without a checked certificate.
+
+
+## Second reader: encoding-to-claim map (math-skeptic, 2026-09-01)
+
+Read-only adversarial pass over spec sections 1 to 3c, the encoder ledger,
+and the Lean sources named there. Verdict NEEDS WORK, with these findings.
+
+- No over-strong hard family. Every family of the `none` build is implied
+  by the binders of the branch theorem plus `card = 12` and the two order
+  bridges; the ingress block is strictly weaker than its source (it admits
+  `deleted = a2`, which Lean excludes), and `B2 ∈ {X, Y}` is derived, not
+  assumed. The WLOG within-cap order holds: every non-order family is
+  invariant under the relabellings inside `Is`, inside `I2`, and `iq ↔ iw`
+  (the controls break this, but are not in the audited build). The sign
+  convention argument holds: both orientation variants exist for every
+  eager order core, and `_forward` on a convex indexing gives a nonzero
+  `signedArea2` sign for every distinct triple.
+- Citation errors, fixed in this checkpoint: `duplicate_three_point_center`
+  now cites `EqualityCore.not_realizes_of_duplicateCenterCore`; the blocker
+  exclusion at `a2` cites `FullyDeletionRobustAt.centerAt_ne`;
+  `ArcBlockContiguity.lean` is reachable from the aggregator (import walk),
+  not unimported; the chord-crossing bridge is proved for the linear order
+  (`FivePointCircleIsoscelesOrderBridge.false_of_core_of_ccw`) and only its
+  cyclic wrapper is open; `perp_bisector` needs `ConvexIndep` and carrier
+  membership, not only `Realizes`; "counterclockwise" is now "up to
+  reversal".
+- Under-strong (harmless for UNSAT): ingress drops `q_survives`,
+  `w_survives`, `secondApexDouble`, `actual_blocker_ne_center₁`; blockers
+  drop `bisector_center_mem_interior`, minimality, no-M44.
+- Lean prerequisites for a Phase 3 ingress, ranked: (f1) the structural
+  assembly L1 from the branch binders; (f2) a cap-block boundary indexing
+  with the caps contiguous in order `a1, Is, a2, I1, a3, I2` up to rotation
+  and reversal (prior art `ZeroCutBoundaryIndexing.exists_with_capBlocks`,
+  `FrozenBoundaryOrder`); (f3) a public cyclic-triple sign lemma (the
+  existing ones are `private`); (f4) the two wrappers of the wave-4 core;
+  (f5) `dist`-level restatements, since `RowPattern` records one class per
+  center while the D-R pattern has two classes at `a2`; (f6) the checked
+  proof; (f7) a built-tree axiom closure for every cited theorem.
 
 ## Claim boundary
 

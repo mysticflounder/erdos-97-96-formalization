@@ -272,3 +272,14 @@ reports.
 - Fresh `proof-blueprint spine` after every Lean change; a green
   `lake-build` alone is not evidence.
 - Solver results are diagnostic until replayed through the Lean-ingress gate.
+
+Status 2026-09-01, wave 4/5. Phase 1b closed at CNF scope: the structural
+formula (wave 3) is UNSAT, and the family-level minimal core is
+`{two_circle_same_arc, five_point_circle_isosceles_order}` over the hard
+D-R blocks (wave 4; standalone two-family CNF and its one-family controls
+in wave 5). The second-reader audit found no over-strong family and fixed
+citations. Phase 2/3 now targets exactly: L1 assembly, the cap-block
+boundary order, the same-arc and isosceles wrappers, and the `dist`-level
+core restatements (audit, second-reader section). Guardrail 5 open until a
+checked LRAT is stored (wave-5 job or the resubmitted wave-3 job).
+

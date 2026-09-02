@@ -56,6 +56,21 @@ class Build(unittest.TestCase):
         header = cnf.dimacs().split(b"\n", 1)[0]
         self.assertEqual(header, f"p cnf {cnf.n_variables} {len(cnf.clauses)}".encode())
 
+    def test_family_filter_builds_the_wave_four_core(self) -> None:
+        core = ("five_point_circle_isosceles_order", "two_circle_same_arc")
+        cnf, _layout = dr.build(families=core)
+        self.assertEqual(len(cnf.clauses), 254_412)
+        self.assertEqual(cnf.counts["five_point_circle_isosceles_order"], 7_920)
+        self.assertEqual(cnf.counts["two_circle_same_arc"], 1_980)
+        self.assertEqual(set(cnf.counts) & set(dr.SELECTABLE_FAMILIES), set(core))
+        self.assertEqual(len(cnf.families), len(cnf.clauses))
+        wave_one, _ = dr.build(geometry=False)
+        only_center, _ = dr.build(families=("duplicate_three_point_center",))
+        self.assertEqual(wave_one.dimacs(), only_center.dimacs())
+        with self.assertRaises(dr.DRStructuralError):
+            dr.build(families=("transitivity",))
+        self.assertEqual(dr.manifest(cnf, "none", families=core)["families"], list(core))
+
     def test_no_geometry_reproduces_wave_one(self) -> None:
         cnf, _ = dr.build(geometry=False)
         self.assertEqual(len(cnf.clauses), 252_432)
