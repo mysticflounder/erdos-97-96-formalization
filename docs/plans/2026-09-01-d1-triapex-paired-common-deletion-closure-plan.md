@@ -495,6 +495,41 @@ Status 2026-09-01 (Phase 2 assessment; no solver run was executed):
 - Independent promotion verifier plus a math-skeptic audit before any
   promotion claim.
 
+Status 2026-09-01 (Phase 3a, first checkpoint: the cap-order lift of the
+finite low-span kernel is proved and consumed by the leaf; no cell is closed):
+
+- `LowSpanMutualOmissionPairAt D S H i` names the Phase 3a state at
+  `card = 15`: the oriented complete cap order of cap `i` from L5, its four
+  middle slots enumerating `capInteriorByIndex i`, and slots `a < b ≤ a + 2`
+  whose points mutually omit one another from their actual critical shells,
+  with both cross-deletions surviving and distinct blocker centres. At most
+  one strict-interior point lies between the pair, so the interval count of
+  Phase 3a starts at `0` or `1`.
+- `lowSpanMutualOmissionPairAt_of_oneRadius_card_eq_fifteen` proves that
+  state in the `oneRadius` arm. Inputs: the L5 slots, the source-faithful
+  fan bound (each actual shell meets the same-radius slice in at most two
+  points, because the apex is never a blocker centre, as in L6), and
+  `finFour_exists_nearby_mutualFalse_of_card_le_two`. It retains the slot
+  order that `exists_mutualCrossDeletion_pair_of_sourceFaithfulFan_no_centerBlocker`
+  discards.
+- `twoRadii_or_lowSpanMutualOmissionPairAt_of_card_eq_fifteen` dispatches on
+  the witness constructor and returns the raw `twoRadii` data otherwise. The
+  leaf binds it as `hlowSpanAtPair` at the pair index `i` through L4.
+- Axiom closure of both theorems: `propext`, `Classical.choice`,
+  `Quot.sound`. The leaf's single `sorry` is unchanged, the on-spine open
+  obligation count is 28 (unchanged), and `M = 18` is unchanged. Of the
+  seven missing ingress fields listed in the 2026-08-30 extract (Section 5),
+  items 1 to 5 are now supplied at `card = 15` in the `oneRadius` arm; item
+  6 (the interval count and its strict decrease) and item 7 (the provenance
+  a terminal needs) are not.
+- Not done: the descent one-step and both terminals. No descent state,
+  successor, or terminal is defined in Lean, per the rule above. The prose
+  scheme (`docs/erdos-97-descent-prose-proof-atomic.md`, F3.37 to F3.39) is
+  marked superseded there; only its shrink lemmas are reusable. The `μ = 0`
+  paired fixed point still has no contradiction consumer. {{NEEDS_PROOF}}.
+- The `twoRadii` cells at `i` are untouched by this checkpoint; the fan
+  bound gives no two-point bound across two slices.
+
 ### Phase 4 — carrier size at least 16
 
 - Extract from the card-15 closures the smallest infeasible sub-pattern and
@@ -511,7 +546,8 @@ Status 2026-09-01 (Phase 2 assessment; no solver run was executed):
 
 In sessions: Phase 0 + Phase 1 (L1 to L6), one, done 2026-09-01. Phase 2,
 assessed without a run on 2026-09-01 (instrument-blocked; dimension count
-recorded). Phase 3, two to four. Phase 4, unknown, at least three.
+recorded). Phase 3, two to four; the first Phase 3a checkpoint (cap-order lift,
+no cell closed) is done 2026-09-01. Phase 4, unknown, at least three.
 {{UNVALIDATED}} until Phase 3 reports its first cell.
 
 ## 9. Gates
