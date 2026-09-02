@@ -1,15 +1,18 @@
 {
  "base_head": "9a222da97112efc204a038ca2f71ff5a12078f94",
  "created_utc": "2026-09-01T23:33:45Z",
- "durable_paths": [],
+ "durable_paths": [
+  "scratch/runs/d1-triapex-plan-20260901/singular-smoke-01/run_manifest.json"
+ ],
  "generated_roots": [
   "scratch/runs/d1-triapex-plan-20260901/singular-smoke-01",
   "scratch/runs/d1-triapex-plan-20260901/stage1-incidence-01",
   "scratch/runs/d1-triapex-plan-20260901/stage1b-closure-01",
+  "scratch/runs/d1-triapex-plan-20260901/stage1c-reversehit-01",
   "scratch/runs/d1-triapex-plan-20260901/stage2-probe-01"
  ],
  "lane_id": "d1-triapex-plan-20260901",
- "manifest_sha256": "4491c4c101ef6f3491b8150471aa71e9cafc181b74ee3fa0d79e18bf7b62dd5e",
+ "manifest_sha256": "52583ff9f501cbfe8ed7cd48aa2f3aef8585178f66e384384f0f18630e4d2ae3",
  "owned_paths": [
   ".codex/worktree-checkpoints/d1-triapex-plan-20260901.json",
   "census/card_head/d1_mu0_incidence_census.py",

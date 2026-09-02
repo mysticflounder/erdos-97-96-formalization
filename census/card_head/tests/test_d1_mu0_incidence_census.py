@@ -5,7 +5,7 @@ import json
 import tempfile
 import unittest
 import urllib.request
-from itertools import product
+from itertools import combinations, product
 from pathlib import Path
 
 from census.card_head import d1_mu0_incidence_census as census
@@ -21,11 +21,13 @@ from census.card_head.d1_mu0_incidence_census import (
     blocking_clause,
     build,
     cap_by_index,
+    cap_of_interior,
     closure_violation,
     decode,
     explanation_clause,
     interior,
     interior_label,
+    is_apex,
     label_name,
     parse_cell,
     replay,
@@ -162,6 +164,11 @@ def assignment_of(pattern: Pattern, enc: census.Encoding) -> dict[int, bool]:
         for label in range(N_LABELS):
             assignment[enc.v("c", x, label)] = pattern.centre[x] == label
             assignment[enc.v("s", x, label)] = label in pattern.shell[x]
+        for k in range(3):
+            centre = pattern.centre[x]
+            assignment[enc.v("cin", x, k)] = (not is_apex(centre)) and cap_of_interior(centre) == k
+    for x, y in combinations(pattern.cell.points, 2):
+        assignment[enc.v("samec", x, y)] = pattern.centre[x] == pattern.centre[y]
     for (k, t), cls in pattern.classes.items():
         for label in range(N_LABELS):
             assignment[enc.v("A", k, t, label)] = label in cls
@@ -333,6 +340,206 @@ class EncodingTests(unittest.TestCase):
         self.assertEqual(units["ii_adjacent_slot_arrow"][0], (enc.v("s", P(0, 1), P(0, 2)),))
         with self.assertRaises(census.D1Mu0CensusError):
             smoke_units(build(Cell(0, ("2R", "1R", "1R"))))
+
+
+def witness_i1_rh() -> Pattern:
+    """The hand witness moved into the reverse-hit route (checked by hand).
+
+    kept = P0.1, deleted = P0.3, reverse blocker c(P0.3) = P0.2 strictly between
+    them; shell(P0.3) = {P0.1, P0.3, P1.1, P2.1} meets the closed first cap
+    exactly in {P0.1, P0.3}; P0.1 moves to the new centre P0.4 with shell
+    {P0.1, A2, P1.2, P2.1}.
+    """
+
+    pattern = witness_i1()
+    pattern.cell = Cell(1, ("1R", "1R", "1R"), False, "rh")
+    pattern.centre[P(0, 1)] = P(0, 4)
+    pattern.shell[P(0, 1)] = frozenset({P(0, 1), 2, P(1, 2), P(2, 1)})
+    pattern.roles["kept"] = P(0, 1)
+    pattern.roles["deleted"] = P(0, 3)
+    return pattern
+
+
+def block_clauses(enc: census.Encoding, block_id: str) -> list[tuple[int, ...]]:
+    start = 0
+    for block in enc.cnf.blocks:
+        if block.block_id == block_id:
+            return enc.cnf.clauses[start : start + block.clauses]
+        start += block.clauses
+    raise KeyError(block_id)
+
+
+def failing_in_block(enc: census.Encoding, block_id: str, assignment: dict[int, bool]) -> list[tuple[int, ...]]:
+    return [
+        clause
+        for clause in block_clauses(enc, block_id)
+        if all(abs(lit) in assignment for lit in clause)
+        and not any(assignment[abs(lit)] == (lit > 0) for lit in clause)
+    ]
+
+
+RH_BLOCKS = (
+    "C3_reverse_coupling_route_selector",
+    "RH2_reverse_blocker_in_first_cap_interior",
+    "RH3_reverse_shell_meets_first_cap_exactly_in_pair",
+    "RH4_reverse_blocker_strictly_between_sources",
+    "RH5_fresh_first_cap_source_outside_reverse_shell",
+    "RH6_row_through_both_sources_has_reverse_blocker",
+)
+
+
+class RouteProvenanceTests(unittest.TestCase):
+    def test_route_cells_round_trip_and_route_free_encoding_is_unchanged(self) -> None:
+        cell = parse_cell("i1-1R1R1R-in12-rh")
+        self.assertEqual(cell, Cell(1, ("1R", "1R", "1R"), False, "rh"))
+        self.assertEqual(cell.name, "i1-1R1R1R-in12-rh")
+        self.assertTrue(all(c.route == "sr" and c.name.endswith("-sr") for c in all_cells(True, route="sr")))
+        with self.assertRaises(census.D1Mu0CensusError):
+            Cell(0, ("1R", "1R", "1R"), False, "xx")
+        with self.assertRaises(census.D1Mu0CensusError):
+            parse_cell("i0-1R1R1R-in12-rh-extra")
+        plain = build(Cell(1, ("1R", "1R", "1R")))
+        self.assertFalse(any(b.block_id[:2] in ("C3", "RH", "SR") for b in plain.cnf.blocks))
+        self.assertFalse(any(item.startswith("reverseHit_twoCenter") for item in plain.omitted_binders))
+        routed = build(Cell(1, ("1R", "1R", "1R"), False, "rh"))
+        self.assertEqual(routed.cnf.nvars, plain.cnf.nvars)
+        self.assertEqual(
+            [b.block_id for b in routed.cnf.blocks if b.block_id[:2] in ("C3", "RH", "SR")], list(RH_BLOCKS)
+        )
+        self.assertTrue(any(item.startswith("reverseHit_twoCenter_sqdist_acute") for item in routed.omitted_binders))
+        args = argparse.Namespace(apex_shells="both", cell="targets", route="rh")
+        self.assertEqual(len(census.select_cells(args)), 16)
+        self.assertTrue(all(c.route == "rh" and c.is_target for c in census.select_cells(args)))
+        args = argparse.Namespace(apex_shells="off", cell="i0-1R1R1R-in12,i1-2R1R1R-in12-sr", route="rh")
+        self.assertEqual([c.name for c in census.select_cells(args)], ["i0-1R1R1R-in12-rh", "i1-2R1R1R-in12-sr"])
+
+    def test_rh_blocks_carry_the_exact_lean_sources(self) -> None:
+        enc = build(Cell(0, ("1R", "2R", "2R"), True, "rh"))
+        blocks = {b.block_id: b for b in enc.cnf.blocks}
+        for block_id in RH_BLOCKS:
+            self.assertGreater(blocks[block_id].clauses, 0, block_id)
+        self.assertEqual(blocks["C3_reverse_coupling_route_selector"].admission, "SELECTOR")
+        self.assertIn("nonempty_retainedReverseCouplingOutcome", blocks["C3_reverse_coupling_route_selector"].lean_sources)
+        self.assertEqual(blocks["RH2_reverse_blocker_in_first_cap_interior"].admission, "PROVEN")
+        self.assertIn(
+            "RetainedReverseCouplingOutcome.reverseHit.reverseBlocker_mem_capInterior",
+            blocks["RH2_reverse_blocker_in_first_cap_interior"].lean_sources,
+        )
+        self.assertEqual(blocks["RH3_reverse_shell_meets_first_cap_exactly_in_pair"].admission, "IMPLIED")
+        self.assertIn(
+            "RetainedReverseCouplingOutcome.reverseHit.reverseShell_inter_cap_eq",
+            blocks["RH3_reverse_shell_meets_first_cap_exactly_in_pair"].lean_sources,
+        )
+        self.assertEqual(blocks["RH4_reverse_blocker_strictly_between_sources"].admission, "IMPLIED")
+        self.assertIn(
+            "exists_firstCap_cgn_order_between_reverseBlocker_of_reverseHit",
+            blocks["RH4_reverse_blocker_strictly_between_sources"].lean_sources,
+        )
+        self.assertIn(
+            "exists_fresh_firstCap_commonDeletion_of_reverseHit",
+            blocks["RH5_fresh_first_cap_source_outside_reverse_shell"].lean_sources,
+        )
+        self.assertEqual(blocks["RH6_row_through_both_sources_has_reverse_blocker"].admission, "PROVEN")
+        self.assertIn(
+            "actualRow_center_eq_reverseBlocker_of_reverseHit",
+            blocks["RH6_row_through_both_sources_has_reverse_blocker"].lean_sources,
+        )
+        derived = [b.block_id for b in enc.cnf.blocks if b.admission == "DERIVED"]
+        self.assertEqual(derived, ["R13_apex_class_twoRadii_exact_four_each"])
+        sr2 = build(Cell(1, ("2R", "1R", "1R"), False, "sr"))
+        self.assertIn("SR2_source_return_radius_dichotomy", [b.block_id for b in sr2.cnf.blocks])
+        self.assertIn("nonempty_sourceReturnRadiusOutcome", {b.block_id: b for b in sr2.cnf.blocks}["SR2_source_return_radius_dichotomy"].lean_sources)
+        sr1 = build(Cell(1, ("1R", "1R", "1R"), False, "sr"))
+        self.assertNotIn("SR2_source_return_radius_dichotomy", [b.block_id for b in sr1.cnf.blocks])
+        self.assertEqual(
+            [b.clauses for b in sr1.cnf.blocks if b.block_id == "C3_reverse_coupling_route_selector"], [12]
+        )
+
+    def test_rh_positive_control_satisfies_every_block_and_replays(self) -> None:
+        pattern = witness_i1_rh()
+        self.assertEqual(replay(pattern), [])
+        enc = build(pattern.cell)
+        assignment = assignment_of(pattern, enc)
+        self.assertEqual(failing_primary_clauses(enc, assignment), [])
+        for block_id in RH_BLOCKS:
+            self.assertEqual(failing_in_block(enc, block_id, assignment), [], block_id)
+        model = [v if assignment.get(v, False) else -v for v in range(1, enc.cnf.nvars + 1)]
+        decoded = decode(enc, model)
+        self.assertEqual(decoded.shell[decoded.roles["deleted"]] & set(cap_by_index(0)), {P(0, 1), P(0, 3)})
+
+    def test_rh_negative_controls_fail_the_named_block(self) -> None:
+        enc = build(witness_i1_rh().cell)
+        # (a) reverse omission: the sr-consistent witness fails the route selector
+        omission = witness_i1()
+        omission.cell = enc.cell
+        self.assertTrue(failing_in_block(enc, "C3_reverse_coupling_route_selector", assignment_of(omission, enc)))
+        self.assertTrue(any(v.startswith("C3 rh") for v in replay(omission)))
+        # (b) reverse blocker outside the first cap
+        outside = witness_i1_rh()
+        outside.centre[P(0, 3)] = P(2, 1)
+        self.assertTrue(failing_in_block(enc, "RH2_reverse_blocker_in_first_cap_interior", assignment_of(outside, enc)))
+        self.assertTrue(any(v.startswith("RH2") for v in replay(outside)))
+        # (c) exact intersection: shell(deleted) also contains the chord apex A1
+        extra = witness_i1_rh()
+        extra.shell[P(0, 3)] = frozenset({P(0, 1), P(0, 3), 1, P(2, 1)})
+        self.assertTrue(failing_in_block(enc, "RH3_reverse_shell_meets_first_cap_exactly_in_pair", assignment_of(extra, enc)))
+        self.assertTrue(any(v.startswith("RH3") for v in replay(extra)))
+        # (d) betweenness: the reverse blocker at slot 4 is not between slots 1 and 3
+        beside = witness_i1_rh()
+        beside.centre[P(0, 3)] = P(0, 4)
+        self.assertTrue(failing_in_block(enc, "RH4_reverse_blocker_strictly_between_sources", assignment_of(beside, enc)))
+        self.assertTrue(any(v.startswith("RH4") for v in replay(beside)))
+        # (e) fresh source: shell(deleted) swallows both spare interior slots
+        swallowed = witness_i1_rh()
+        swallowed.shell[P(0, 3)] = frozenset({P(0, 1), P(0, 3), P(0, 2), P(0, 4)})
+        self.assertTrue(failing_in_block(enc, "RH5_fresh_first_cap_source_outside_reverse_shell", assignment_of(swallowed, enc)))
+        self.assertTrue(any(v.startswith("RH5") for v in replay(swallowed)))
+        # (f) a second row through both sources with another centre
+        second = witness_i1_rh()
+        second.shell[P(1, 3)] = frozenset({P(2, 2), P(1, 3), P(0, 1), P(0, 3)})
+        self.assertTrue(failing_in_block(enc, "RH6_row_through_both_sources_has_reverse_blocker", assignment_of(second, enc)))
+        self.assertTrue(any(v.startswith("RH6") for v in replay(second)))
+
+    def test_sr_controls(self) -> None:
+        cell = Cell(1, ("1R", "1R", "1R"), False, "sr")
+        enc = build(cell)
+        positive = witness_i1()
+        positive.cell = cell
+        self.assertEqual(replay(positive), [])
+        self.assertEqual(failing_primary_clauses(enc, assignment_of(positive, enc)), [])
+        negative = witness_i1_rh()
+        negative.cell = cell
+        self.assertTrue(failing_in_block(enc, "C3_reverse_coupling_route_selector", assignment_of(negative, enc)))
+        self.assertTrue(any(v.startswith("C3 sr") for v in replay(negative)))
+
+
+@unittest.skipUnless(_piqd_reachable(), "piqd daemon is not reachable")
+class PiqdRouteTests(unittest.TestCase):
+    def test_route_cells_are_sat_and_replay(self) -> None:
+        client = Piqd()
+        for name in ("i0-1R1R1R-in12-rh", "i1-2R1R1R-in12-sr"):
+            cell = parse_cell(name)
+            enc = build(cell)
+            cnf = enc.cnf.dimacs()
+            _prepared, record = client.run_job(cnf, census.producer_manifest(enc, cnf, "base"), 60)
+            self.assertEqual(record["result"], "SAT", name)
+            pattern = decode(enc, client.model(record["id"]))
+            self.assertEqual(replay(pattern), [], name)
+            kept, deleted = pattern.roles["kept"], pattern.roles["deleted"]
+            self.assertEqual(kept in pattern.shell[deleted], cell.route == "rh", name)
+            if cell.route == "sr":
+                session = client.create_session(record["id"], f"{census.PROJECT_LABEL}:test:{name}")
+                try:
+                    reply = client.solve(session["id"], [-enc.v("srJoint")], 60_000)
+                    self.assertIn(reply["status"], ("SAT", "UNSAT"))
+                    if reply["status"] == "SAT":
+                        escape = decode(enc, reply["model"])
+                        self.assertEqual(replay(escape), [])
+                        retained = [cls for (k, _t), cls in escape.classes.items() if k == 0 and kept in cls]
+                        self.assertEqual(len(retained), 1)
+                        self.assertNotIn(escape.roles["source"], retained[0])
+                finally:
+                    client.close_session(session["id"])
 
 
 @unittest.skipUnless(_piqd_reachable(), "piqd daemon is not reachable")

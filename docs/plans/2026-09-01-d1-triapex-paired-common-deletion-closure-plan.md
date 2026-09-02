@@ -937,6 +937,60 @@ survivors; the mined obstructions are global six- to eight-point rigidities):
 - Lean leaf unchanged: single `sorry`, `M = 18`. Guardrail 7 second engine:
   follow-up posted to the piqd maintainer (#8762), unanswered.
 
+Status 2026-09-02 (Phase 3a, twelfth checkpoint: Stage 1c re-split census
+on the reverse-hit route; the survivors do not vanish):
+
+- Encoder: `Cell.route` (`rh` reverse hit, `sr` source return, none = the
+  leaf census), `--route none|rh|sr|both`. Blocks with admission records:
+  `C3` SELECTOR (the exhaustive PROVEN split
+  `nonempty_retainedReverseCouplingOutcome`,
+  `RetainedMatchingLargeCapConsumer.lean:313`); `RH2` PROVEN
+  (`reverseBlocker_mem_capInterior`: c(deleted) in the strict first cap);
+  `RH3` IMPLIED (`reverseShell_inter_cap_eq`; follows from C3, RH2, R1,
+  R7); `RH4` IMPLIED (`exists_firstCap_cgn_order_between_reverseBlocker_of_reverseHit`;
+  follows from R6); `RH5` IMPLIED at card 15
+  (`exists_fresh_firstCap_commonDeletion_of_reverseHit`); `RH6` PROVEN
+  (`actualRow_center_eq_reverseBlocker_of_reverseHit`: every modelled shell
+  through kept and deleted has centre c(deleted); the only reverse-hit block
+  not implied by the admitted rules); `SR2` PROVEN (twoRadii arm at cap 0
+  only: `nonempty_sourceReturnRadiusOutcome`, joint deletion or exact-four
+  partition). The omitted route provenance is recorded per route
+  (`ROUTE_OMITTED_BINDERS`: the acuteness inequalities
+  `reverseHit_twoCenter_sqdist_acute`, the signed-area sidedness inside
+  their proof, the packet rows, the U5 ingress rows). Route-free CNFs are
+  byte-identical to the Stage 1 and Stage 1b records. Tests: 21 (15 plus a
+  positive reverse-hit witness, six negative controls, source-return
+  controls, a piqd SAT-and-replay test).
+- Run `stage1c-reversehit-01` (16 target cells, route `rh`, CL0 on, CL1
+  oracle, cap 3000): every cell SAT and cap hit; CL1 cuts 8 to 122;
+  survivors 2878 to 2992 (905 cuts, 47095 survivors in total); no UNSAT,
+  no LRAT. Target cell `i0-1R1R1R-in12-rh`: 65 cuts, 2935 survivors; the
+  reverse blocker sits at slot `P0.3` in every sampled pattern; distinct
+  centres 9 to 12, mode 11. CONJECTURE at the encoded scope.
+- Source-return route: for the twelve target cells with cap 0 in the
+  oneRadius arm the `sr` CNF is the Stage 1b CNF plus the twelve C3
+  clauses, and a split of the Stage 1b samples (no solver) puts most Stage
+  1b survivors on that route (target cell: 2787 of 2787 with kept notin
+  shell(deleted)), so `sr` keeps survivors without a run. The four `i1-2R*`
+  cells carrying the new SR2 block were not run.
+- Decision-rule outcome: route (b), the re-split at the incidence level,
+  removes no survivors; apart from RH6 the reverse-hit provenance is
+  redundant with the admitted rules. Wave mine of the Stage 1c data (one
+  bounded reuse preflight): the general form of RH6,
+  `perpBisector_carrier_card_le_two`
+  (`ATail/ConvexPerpendicularBisectorSides.lean:25`, from
+  `Dumitrescu.perpBisector_apex_bound` with `D.convex`), is a
+  route-independent PROVEN incidence rule that the census still omits
+  (at most two carrier points are equidistant from two distinct carrier
+  points; listed in Section 2 under "D.convex beyond R6 and R10"). Next,
+  Stage 1d: encode it as a static block over the CL0 membership variables
+  and the apex classes, re-run the 32 route-free cells, and read the
+  survivors. It is the last admitted incidence rule known to be missing;
+  if survivors remain, route (a), certified CEGAR with an unbounded core
+  count, is the only route the evidence supports.
+- Lean leaf unchanged: single `sorry`, `M = 18`. Guardrail 7: the piqd
+  maintainer is triaging #8762.
+
 ### Phase 4 — carrier size at least 16
 
 - Extract from the card-15 closures the smallest infeasible sub-pattern and

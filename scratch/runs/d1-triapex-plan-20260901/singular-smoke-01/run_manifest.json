@@ -2,10 +2,10 @@
  "base_head": "9a222da97112efc204a038ca2f71ff5a12078f94",
  "created_utc": "2026-09-02T04:58:45Z",
  "input_digests": {
-  "docs/plans/2026-09-01-d1-triapex-paired-common-deletion-closure-plan.md": "f631b3035776b8b1c5d4f9bbf87a7d3643b585719c8d6cc110ffb9a29bc0f018"
+  "docs/audits/2026-09-01-d1-mu0-terminal-analysis.md": "43fdc72ceb32248fd051d7d59e05549640292ad44a697397793059e1c88f103d"
  },
  "lane_id": "d1-triapex-plan-20260901",
- "manifest_sha256": "c43c8d026e7838d70eb4b4a815054ace5b7781d863af686316a50f502923f4aa",
+ "manifest_sha256": "13a8ca9c64c34db6328eea0a900feb773e31e7fb97366446a74f4516efa25cc3",
  "output_classes": [
   "artifacts",
   "events",

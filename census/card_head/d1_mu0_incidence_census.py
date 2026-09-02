@@ -64,6 +64,10 @@ PARTITIONS: tuple[tuple[tuple[int, int], tuple[int, int]], ...] = (
     ((1, 4), (2, 3)),
 )
 PROJECTIONS = ("full", "capi", "centres")
+# Stage 1c route dimension: the exact reverse-coupling split of
+# ``nonempty_retainedReverseCouplingOutcome`` (rh = reverse hit, sr = source
+# return / paired common deletion).  ``None`` is the route-free leaf census.
+ROUTES = ("rh", "sr")
 
 
 class D1Mu0CensusError(ValueError):
@@ -162,19 +166,23 @@ class Cell:
     pair_index: int
     arms: tuple[str, str, str]
     apex_shells: bool = False
+    route: str | None = None
 
     def __post_init__(self) -> None:
         if self.pair_index not in (0, 1, 2):
             raise D1Mu0CensusError("pair index must be 0, 1, or 2")
         if len(self.arms) != 3 or any(arm not in ARMS for arm in self.arms):
             raise D1Mu0CensusError("arms must be three of 1R/2R")
+        if self.route is not None and self.route not in ROUTES:
+            raise D1Mu0CensusError("route must be rh, sr, or None")
 
     @property
     def name(self) -> str:
-        return (
+        base = (
             f"i{self.pair_index}-{''.join(self.arms)}-"
             f"{'ax15' if self.apex_shells else 'in12'}"
         )
+        return base if self.route is None else f"{base}-{self.route}"
 
     @property
     def is_target(self) -> bool:
@@ -204,15 +212,18 @@ class Cell:
 
 def parse_cell(name: str) -> Cell:
     parts = name.split("-")
-    if len(parts) != 3 or not parts[0].startswith("i") or len(parts[1]) != 6:
+    if len(parts) not in (3, 4) or not parts[0].startswith("i") or len(parts[1]) != 6:
         raise D1Mu0CensusError(f"bad cell name {name!r}")
     arms = (parts[1][0:2], parts[1][2:4], parts[1][4:6])
     if parts[2] not in ("in12", "ax15"):
         raise D1Mu0CensusError(f"bad cell name {name!r}")
-    return Cell(int(parts[0][1:]), arms, parts[2] == "ax15")
+    route = parts[3] if len(parts) == 4 else None
+    return Cell(int(parts[0][1:]), arms, parts[2] == "ax15", route)
 
 
-def all_cells(apex_shells: bool, pair_indices: Iterable[int] = (0, 1)) -> tuple[Cell, ...]:
+def all_cells(
+    apex_shells: bool, pair_indices: Iterable[int] = (0, 1), route: str | None = None
+) -> tuple[Cell, ...]:
     """Cells modulo the reflection: pair index 2 is the sigma-image of index 1."""
 
     cells: list[Cell] = []
@@ -220,7 +231,7 @@ def all_cells(apex_shells: bool, pair_indices: Iterable[int] = (0, 1)) -> tuple[
         for a0 in ARMS:
             for a1 in ARMS:
                 for a2 in ARMS:
-                    cells.append(Cell(i, (a0, a1, a2), apex_shells))
+                    cells.append(Cell(i, (a0, a1, a2), apex_shells, route))
     return tuple(cells)
 
 
@@ -437,6 +448,46 @@ OMITTED_BINDERS = (
         "label when apex shells are not modelled (12-point model only)"
     ),
 )
+
+# Stage 1c: provenance of each route that is not an incidence fact over the
+# fifteen labels (or is a chosen-row internal), hence still omitted.
+ROUTE_OMITTED_BINDERS: dict[str, tuple[str, ...]] = {
+    "rh": (
+        (
+            "reverseHit_twoCenter_sqdist_acute (TriApexEndpointRetainedOmission.lean): "
+            "both squared base-angle inequalities at oppApex1 and at c(deleted) over the "
+            "chord kept-deleted are metric; not encodable at the incidence level"
+        ),
+        (
+            "CGN.signedArea_product_neg_of_between_and_off_cap inside the acuteness proof: "
+            "oppApex1 and c(deleted) lie on opposite sides of the chord (signed-area "
+            "content beyond slot betweenness)"
+        ),
+        (
+            "the fresh packet rows CommonDeletionTwoCenterPacket D H fresh oppApex1 "
+            "c(deleted) beyond the survival fresh notin shell(deleted): chosen four-subsets (O9)"
+        ),
+    ),
+    "sr": (
+        (
+            "the U5 ingress rows of nonempty_sourceReturnU5Outcome "
+            "(RetainedSourceReturnJointU5Ingress, RetainedSourceReturnExactFourU5Ingress): "
+            "the dangerous triple T (three further retained-class points, noncollinear), "
+            "the q-deleted rows at the two retained blockers and at oppApex1 (chosen "
+            "four-subsets, O9), and the q-critical row at the source's own blocker; "
+            "each is a definitional repackaging of the radius-outcome data plus apex "
+            "robustness and carries no incidence content beyond SR2"
+        ),
+        (
+            "the reverse packet rows CommonDeletionTwoCenterPacket D H kept oppApex1 "
+            "c(deleted) beyond the survival kept notin shell(deleted) (O9)"
+        ),
+        (
+            "the twoRadiusGrid arm of nonempty_pairedCommonDeletionOutcome (closed "
+            "elsewhere; it does not reach the leaf)"
+        ),
+    ),
+}
 
 
 def build(cell: Cell, equilateral: bool = False) -> Encoding:
@@ -944,6 +995,181 @@ def build(cell: Cell, equilateral: bool = False) -> Encoding:
             if q in points and q2 in points:
                 cnf.add((-role("z", q), -role("w", q2), -samec(q, q2)))
 
+    # -- (i) Stage 1c: route provenance dropped at the leaf boundary -----------
+    if cell.route is not None:
+        cnf.begin(
+            "C3_reverse_coupling_route_selector",
+            "ASSUMPTION_CONTROL",
+            "SELECTOR",
+            (
+                "nonempty_retainedReverseCouplingOutcome",
+                "RetainedReverseCouplingOutcome.reverseHit.reverse_mem",
+                "RetainedReverseCouplingOutcome.pairedCommonDeletion.reverse_omission",
+            ),
+            "cell parameter: the exact reverse-coupling split (by_cases on kept in "
+            "shell(deleted), PROVEN exhaustive); rh fixes the reverse hit kept in "
+            "shell(deleted), sr fixes the reverse omission kept notin shell(deleted)",
+        )
+        for q in interior(0):
+            for q2 in interior(0):
+                if q == q2:
+                    continue
+                hit = s(q, q2) if cell.route == "rh" else -s(q, q2)
+                cnf.add((-role("deleted", q), -role("kept", q2), hit))
+    if cell.route == "rh":
+        cnf.begin(
+            "RH2_reverse_blocker_in_first_cap_interior",
+            "ROOT_STATIC",
+            "PROVEN",
+            (
+                "RetainedReverseCouplingOutcome.reverseHit.reverseBlocker_mem_capInterior",
+                "commonFirstApexPair_center_mem_firstCapInterior",
+                "nonempty_retainedReverseCouplingOutcome",
+            ),
+            "c(deleted) in capInteriorByIndex oppIndex1 = interior(0): the reverse "
+            "blocker and oppApex1 are both equidistant from the two strict first-cap "
+            "sources kept, deleted",
+        )
+        for q in interior(0):
+            cnf.add((-role("deleted", q), cin(q, 0)))
+        cnf.begin(
+            "RH3_reverse_shell_meets_first_cap_exactly_in_pair",
+            "ROOT_STATIC",
+            "IMPLIED",
+            (
+                "RetainedReverseCouplingOutcome.reverseHit.reverseShell_inter_cap_eq",
+                "CapSelectedRowCounting.selectedFourClass_inter_capByIndex_card_le_two",
+            ),
+            "PROVEN on its own: shell(deleted) ∩ capByIndex oppIndex1 = {kept, deleted}; "
+            "implied by C3(rh), RH2, R1 and R7 (the own-cap bound leaves no room for a "
+            "third closed-first-cap point)",
+        )
+        for q in interior(0):
+            for q2 in interior(0):
+                if q == q2:
+                    continue
+                for y in cap_by_index(0):
+                    if y in (q, q2):
+                        continue
+                    cnf.add((-role("deleted", q), -role("kept", q2), -s(q, y)))
+        cnf.begin(
+            "RH4_reverse_blocker_strictly_between_sources",
+            "ROOT_STATIC",
+            "IMPLIED",
+            (
+                "exists_firstCap_cgn_order_between_reverseBlocker_of_reverseHit",
+                "CGN.index_strictly_between_of_equidistant",
+                "SurplusCapPacket.capByIndex_cgn4g_capData",
+            ),
+            "PROVEN on its own: in the complete ordered first cap the slot of "
+            "c(deleted) lies strictly between the slots of kept and deleted; implied "
+            "by R6 with C3(rh), RH2 and R1",
+        )
+        for q in interior(0):
+            for q2 in interior(0):
+                if q == q2:
+                    continue
+                sq, sq2 = slot_of(0, q), slot_of(0, q2)
+                assert sq is not None and sq2 is not None
+                lo, hi = min(sq, sq2), max(sq, sq2)
+                for u in range(1, 5):
+                    if not (lo < u < hi):
+                        cnf.add(
+                            (-role("deleted", q), -role("kept", q2), -c(q, interior_label(0, u)))
+                        )
+        cnf.begin(
+            "RH5_fresh_first_cap_source_outside_reverse_shell",
+            "ROOT_STATIC",
+            "IMPLIED",
+            (
+                "exists_fresh_firstCap_commonDeletion_of_reverseHit",
+                "RetainedOmissionAllLargeNormalForm.reverseHitFreshCommonDeletion",
+                "cross_deletion_survives_iff_not_mem_selected_support",
+            ),
+            "PROVEN on its own (needs 5 <= card capByIndex oppIndex1): some strict "
+            "first-cap point other than kept, deleted lies outside shell(deleted), and "
+            "its deletion keeps K4 at oppApex1 and at c(deleted); only the omission is "
+            "imaged (the packet rows are chosen four-subsets); implied by RH3 at card 15",
+        )
+        for q in interior(0):
+            for q2 in interior(0):
+                if q == q2:
+                    continue
+                spare = tuple(y for y in interior(0) if y not in (q, q2))
+                cnf.add((-role("deleted", q), -role("kept", q2)) + tuple(-s(q, y) for y in spare))
+        cnf.begin(
+            "RH6_row_through_both_sources_has_reverse_blocker",
+            "ROOT_STATIC",
+            "PROVEN",
+            (
+                "actualRow_center_eq_reverseBlocker_of_reverseHit",
+                "Dumitrescu.perpBisector_apex_bound",
+            ),
+            "oppApex1 and c(deleted) exhaust the carrier bisector of kept, deleted "
+            "(convex independence: at most two carrier points are equidistant from two "
+            "distinct carrier points), so every modelled shell containing both kept "
+            "and deleted has centre c(deleted), hence (R5) equals shell(deleted)",
+        )
+        for x in points:
+            for q in interior(0):
+                if x == q:
+                    continue
+                for q2 in interior(0):
+                    if q == q2:
+                        continue
+                    cnf.add(
+                        (-role("deleted", q), -role("kept", q2), -s(x, q), -s(x, q2), samec(x, q))
+                    )
+    if cell.route == "sr" and cell.arms[0] == "2R":
+        cnf.begin(
+            "SR2_source_return_radius_dichotomy",
+            "ROOT_STATIC",
+            "PROVEN",
+            (
+                "nonempty_sourceReturnRadiusOutcome",
+                "RetainedSourceReturnJointDeletion.source_mem_radius",
+                "RetainedSourceReturnExactFourPartition.class_card_eq_four",
+                "RetainedSourceReturnExactFourPartition.firstHits_eq",
+                "RetainedSourceReturnExactFourPartition.secondHits_eq",
+                "RetainedSourceReturnExactFourPartition.hits_disjoint",
+                "RetainedSourceReturnExactFourPartition.hits_union_eq_class",
+                "nonempty_pairedCommonDeletionOutcome",
+                "pairedSourceReturnWalk",
+            ),
+            "twoRadii arm at cap 0 (in the oneRadius arm the exact-four arm is refuted "
+            "by R12, class card 6, so sr adds nothing beyond C3): either the source "
+            "lies on the retained class (the apex-0 class of kept and deleted; "
+            "jointDeletion), or that class has exactly four points split two and two, "
+            "shell(kept) meeting it in {kept, p1} and shell(deleted) in {deleted, p2} "
+            "with p1 != p2 (exactFourPartition), and then the escaping source lies on "
+            "the other apex-0 class (the escape arm of nonempty_pairedCommonDeletionOutcome; "
+            "its twoRadiusGrid arm is closed and does not reach the leaf)",
+        )
+        ret = [cnf.new_var(("retT", t)) for t in range(2)]
+        joint = cnf.new_var(("srJoint",))
+        cnf.exactly_one(ret)
+        for t in range(2):
+            for q in interior(0):
+                cnf.add((-role("kept", q), -A(0, t, q), ret[t]))
+                cnf.add((-role("kept", q), A(0, t, q), -ret[t]))
+        for t in range(2):
+            src_t = cnf.var[("srcT", t)]
+            cnf.add((-joint, -ret[t], src_t))
+            cnf.add((-joint, ret[t], -src_t))
+            cnf.add((joint, -ret[t], -src_t))
+            cnf.add((joint, ret[t], src_t))
+        for t in range(2):
+            for y in labels:
+                if y in interior(0):
+                    continue
+                for q in interior(0):
+                    for q2 in interior(0):
+                        if q == q2:
+                            continue
+                        guard = (joint, -ret[t], -A(0, t, y), -role("kept", q), -role("deleted", q2))
+                        cnf.add(guard + (s(q, y), s(q2, y)))
+                        cnf.add(guard + (-s(q, y), -s(q2, y)))
+
     # -- centre usage counter for the minimal-centre query --------------------
     cnf.begin(
         "Q1_distinct_centre_counter",
@@ -1016,6 +1242,8 @@ def build(cell: Cell, equilateral: bool = False) -> Encoding:
         item for item in OMITTED_BINDERS if not item.startswith("shell constraints of a role")
         and not item.startswith("G.notRobustCover_card")
     )
+    if cell.route is not None:
+        omitted = omitted + ROUTE_OMITTED_BINDERS[cell.route]
     return Encoding(cell, cnf, used_regs, omitted)
 
 
@@ -1222,6 +1450,34 @@ def replay(pattern: Pattern) -> list[str]:
         bad.append("B4 z lies on shell(w)")
     if z in points and w in points and c[z] == c[w]:
         bad.append("B4 z, w share a blocker")
+    if cell.route is not None and kept in interior(0) and deleted in interior(0) and kept != deleted:
+        if cell.route == "rh":
+            if kept not in S[deleted]:
+                bad.append("C3 rh: kept is not on shell(deleted)")
+            if is_apex(c[deleted]) or cap_of_interior(c[deleted]) != 0:
+                bad.append("RH2 reverse blocker is not in the first cap interior")
+            if S[deleted] & set(cap_by_index(0)) != {kept, deleted}:
+                bad.append("RH3 shell(deleted) does not meet the closed first cap exactly in {kept, deleted}")
+            if c[deleted] in interior(0):
+                u = slot_of(0, c[deleted])
+                sk, sd = slot_of(0, kept), slot_of(0, deleted)
+                assert u is not None and sk is not None and sd is not None
+                if not (min(sk, sd) < u < max(sk, sd)):
+                    bad.append("RH4 reverse blocker is not strictly between kept and deleted")
+            if all(y in S[deleted] for y in interior(0) if y not in (kept, deleted)):
+                bad.append("RH5 no fresh first-cap source outside shell(deleted)")
+            for x in points:
+                if kept in S[x] and deleted in S[x] and c[x] != c[deleted]:
+                    bad.append(f"RH6 shell of {label_name(x)} passes through both sources with another centre")
+        else:
+            if kept in S[deleted]:
+                bad.append("C3 sr: kept lies on shell(deleted)")
+            if cell.arms[0] == "2R" and len(src_class) == 1:
+                retained = [cls for cls in zero_classes if kept in cls]
+                if len(retained) == 1 and src_class[0] != retained[0]:
+                    outer = retained[0] - set(interior(0))
+                    if not all((y in S[kept]) != (y in S[deleted]) for y in outer):
+                        bad.append("SR2 exact-four arm: an adjacent-cap member of the retained class is not on exactly one retained shell")
     return bad
 
 
@@ -1592,6 +1848,7 @@ def encoding_record(enc: Encoding, cnf_bytes: bytes) -> dict[str, Any]:
             "pair_index": cell.pair_index,
             "arms": list(cell.arms),
             "apex_shells": cell.apex_shells,
+            "route": cell.route,
             "is_target": cell.is_target,
             "sigma_fixed": cell.sigma_fixed,
             "modelled_points": [label_name(x) for x in cell.points],
@@ -1679,6 +1936,7 @@ class CellRun:
         self.cnf_bytes = self.enc.cnf.dimacs()
         self.result: dict[str, Any] = {
             "cell": cell.name,
+            "route": cell.route,
             "is_target": cell.is_target,
             "cl0_static_block": bool(getattr(args, "cl0", False)),
             "closure_oracle": bool(getattr(args, "closure", False)),
@@ -2215,7 +2473,11 @@ def write_report(run_root: Path) -> Path:
     add("")
     add("## 1. Clause inventory and cut-admission records")
     add("")
-    rep = encodings.get("i0-1R2R1R-in12") or next(iter(encodings.values()))
+    rep = (
+        encodings.get("i0-1R2R1R-in12")
+        or encodings.get("i0-1R2R1R-in12-rh")
+        or next(iter(encodings.values()))
+    )
     add(f"Representative cell `{rep['cell']['name']}`: {rep['num_vars']} variables, "
         f"{rep['num_clauses']} clauses, CNF sha256 `{rep['cnf_sha256']}`.")
     add("")
@@ -2363,7 +2625,8 @@ def write_report(run_root: Path) -> Path:
             base_job = record.get("base_job", {})
             proof = base_job.get("proof_blob_hash") if base_verdict == "UNSAT" else cert_job.get("proof_blob_hash")
             closure_rows.append(
-                f"| `{name}` | {'on' if record.get('cl0_static_block') else 'off'} | {base_verdict} | "
+                f"| `{name}` | {parse_cell(name).route or '-'} | "
+                f"{'on' if record.get('cl0_static_block') else 'off'} | {base_verdict} | "
                 f"`{base_job.get('id', '-')}` | {status} | {closure.get('cuts', '-')} | "
                 f"{closure.get('survivors', '-')} | {closure.get('chain_length_histogram', '-')} | "
                 f"{cert.get('formula', '-')} | `{cert_job.get('id', '-')}` | "
@@ -2378,6 +2641,14 @@ def write_report(run_root: Path) -> Path:
         add("PROVEN); `survivors` are closure-consistent full patterns; the certification")
         add("job re-solves base + cuts (+ survivor blocks) from scratch for an LRAT proof.")
         add("")
+        if any(parse_cell(name).route for name in results):
+            add("Stage 1c route cells (`-rh` reverse hit, `-sr` source return) add the")
+            add("provenance dropped at the leaf boundary as blocks `C3` (route selector,")
+            add("the PROVEN exhaustive split of `nonempty_retainedReverseCouplingOutcome`),")
+            add("`RH2`-`RH6` (reverse-hit route) and `SR2` (source-return route, twoRadii")
+            add("arm at cap 0 only); Section 1 lists their admission records and Section 2")
+            add("the route provenance that stays omitted (metric or chosen-row content).")
+            add("")
         add(f"Cells with closure: {closure_cells}; UNSAT from CL0 alone (base job): "
             f"{cl0_unsat}; UNSAT only after the CL1 oracle: {oracle_unsat}.")
         add("")
@@ -2405,8 +2676,8 @@ def write_report(run_root: Path) -> Path:
         add("survivors dominate the iterations, not because the oracle keeps cutting;")
         add("the distance-equality closure alone does not refute any cell at this scope.")
         add("")
-        add("| cell | CL0 | base verdict | base job | loop status | CL1 cuts | survivors | chain lengths | certified formula | certification job | result | proof |")
-        add("|---|---|---|---|---|---|---|---|---|---|---|---|")
+        add("| cell | route | CL0 | base verdict | base job | loop status | CL1 cuts | survivors | chain lengths | certified formula | certification job | result | proof |")
+        add("|---|---|---|---|---|---|---|---|---|---|---|---|---|")
         lines.extend(closure_rows)
         add("")
     add("## 6. Defects and notes")
@@ -2449,17 +2720,33 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--report", action="store_true", help="only aggregate an existing run root into REPORT.md")
     parser.add_argument("--cl0", action="store_true", help="add the static CL0 equilateral closure block")
     parser.add_argument("--closure", action="store_true", help="run the CL1 distance-equality closure oracle in the loop")
+    parser.add_argument(
+        "--route",
+        choices=("none", "rh", "sr", "both"),
+        default="none",
+        help="Stage 1c route dimension: rh = reverse hit, sr = source return; "
+        "applied to bare cell names and to targets/all",
+    )
     return parser.parse_args(argv)
 
 
 def select_cells(args: argparse.Namespace) -> tuple[Cell, ...]:
     variants = {"off": (False,), "on": (True,), "both": (False, True)}[args.apex_shells]
+    routes: tuple[str | None, ...] = {
+        "none": (None,), "rh": ("rh",), "sr": ("sr",), "both": ("rh", "sr")
+    }[getattr(args, "route", "none")]
     if args.cell in ("targets", "all"):
-        cells = [cell for ax in variants for cell in all_cells(ax)]
+        cells = [cell for ax in variants for route in routes for cell in all_cells(ax, route=route)]
         if args.cell == "targets":
             cells = [cell for cell in cells if cell.is_target]
         return tuple(cells)
-    return tuple(parse_cell(name.strip()) for name in args.cell.split(","))
+    named: list[Cell] = []
+    for name in args.cell.split(","):
+        cell = parse_cell(name.strip())
+        if cell.route is None and len(routes) == 1 and routes[0] is not None:
+            cell = Cell(cell.pair_index, cell.arms, cell.apex_shells, routes[0])
+        named.append(cell)
+    return tuple(named)
 
 
 def main(argv: Sequence[str] | None = None) -> int:
