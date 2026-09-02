@@ -7,10 +7,11 @@
     ".codex/worktree-checkpoints/d1-triapex-plan-20260901.json",
     "docs/computational-closure-plan-2026-07-28.md",
     "docs/plans/2026-09-01-d1-triapex-paired-common-deletion-closure-plan.md",
-    "docs/plans/README.md"
+    "docs/plans/README.md",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TriApexEndpointRetainedOmission.lean"
   ],
   "generated_roots": [],
   "durable_paths": [],
   "created_utc": "2026-09-01T23:33:45Z",
-  "manifest_sha256": "0580d0d353cf5ca7797a5cca00a7a07e3f136626f7d2547dbe9ce5989a5fc2df"
+  "manifest_sha256": "330e2fa56d70e3a316c12e173677496f0d000418c6c0e596f52fbbf5a8809efc"
 }

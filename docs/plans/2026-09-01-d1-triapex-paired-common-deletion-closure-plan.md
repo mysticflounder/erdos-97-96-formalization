@@ -245,16 +245,38 @@ terminal is conditional, and no terminal has a contradiction consumer. The
 plan tests this assumption before investing in adapters, with one exception:
 the Phase 1 controls are needed in every outcome and are cheap.
 
-Cell classification (PROVEN ingredients, cell predicate {{UNVALIDATED}} until
-stated in Lean in Phase 1). Every blocker centre lies in some strict cap
-(`AllLargeCapCanonicalInterfaces.lean:317`). Choose a cap index `j` whose
-strict interior contains neither `c(kept)` nor `c(deleted)`; at most two
-indices are excluded, so `j` exists. By the one-hit rule (`:312`) each
-retained shell meets the rich slices of cap `j` in at most one point, so the
-four-point support `W.supportAt j` has at least two safe points. Cells:
+Cell classification (Phase 1 checkpoint of 2026-09-01; theorem names are in
+`TriApexEndpointRetainedOmission.lean`). Two index choices are available and
+they carry different proven facts:
 
-- `oneRadius` at `j`: safe count `s ∈ {2, 3, 4}` on one radius (3 cells);
-- `twoRadii` at `j`: safe pair `(s₁, s₂)` on the two two-point slices with
+- Pair index `i` (PROVEN): two of the four sources of `E` lie on one indexed
+  support `W.supportAt i`, and both avoid both retained shells
+  (`exists_index_safe_pair_of_fiveSurviveOneFail`). Hence at `i` the
+  `oneRadius` arm has safe count `s ∈ {2, 3, 4}` and the `twoRadii` arm has
+  safe pair `(s₁, s₂)` with `s₁ + s₂ ≥ 2`
+  (`strictApexFourWitness_safe_counts_of_pair`). The nine cells below are
+  exhaustive at `i`. Every safe point carries the full five-survive/one-fail
+  signature (`deletionSignature_of_not_mem_two_retainedShells`).
+- Blocker-free index `j` (PROVEN): every blocker centre lies in some strict
+  cap (`AllLargeCapCanonicalInterfaces.lean:317`), and some `j` avoids both
+  retained blocker centres (`exists_capIndex_avoiding_two_blockers`). The
+  one-hit rule (`:312`) then bounds each retained shell by one point per
+  radius slice of cap `j` (`strictApexFourWitness_safe_counts_of_oneHit`).
+  In the `oneRadius` arm this gives `s ≥ 2`. In the `twoRadii` arm it gives
+  only one hit per shell per slice, so the safe pairs `(1,0)`, `(0,1)`,
+  `(0,0)` are not excluded at `j`. The 2026-08-23 audit
+  (`docs/audits/2026-08-22-f1-triapex-checkpoint4-review.md`) already listed
+  zero-safe slices. The first version of this section claimed `s₁ + s₂ ≥ 2`
+  at `j` from the one-hit rule alone; that claim was wrong for the `twoRadii`
+  arm and is withdrawn.
+
+The measure below is anchored at the pair index `i`. When `i = j` both fact
+sets hold at once; whether Phase 3 needs `i = j` is open {{NEEDS_PROOF}}.
+
+Cells at `i`:
+
+- `oneRadius` at `i`: safe count `s ∈ {2, 3, 4}` on one radius (3 cells);
+- `twoRadii` at `i`: safe pair `(s₁, s₂)` on the two two-point slices with
   `s₁ + s₂ ≥ 2`: `(2,2), (2,1), (1,2), (2,0), (0,2), (1,1)` (6 cells). The
   cell `(1,1)` is the transverse saturation of item 2 above; every other cell
   carries a same-radius safe pair.
@@ -275,32 +297,39 @@ increase, except as allowed by the split rule in Phase 3.
 
 ### Phase 1 — Lean positive controls (on spine, cheap)
 
-Each item is proved inside the leaf's proof prefix or as a lemma the leaf
-consumes in the same change. No wrapper networks. None of these reduces `M`;
-they are infrastructure every later phase needs.
+Each item is proved as a kernel-checked lemma that the leaf consumes in its
+proof prefix. No wrapper networks. None of these reduces `M`; they are
+infrastructure every later phase needs.
 
-- L1 same-index pair: consume `Q.exists_distinct_same_index` (proved,
-  unconsumed) to name the shared index `i` and the pair.
-- L2 blocker localization: consume
-  `exists_criticalShell_center_with_otherRichCapSlice_card_le_one` (`:718`,
-  proved, unconsumed) at `O.kept`, `O.deleted`, `J.source`, and both pair
-  points; record each blocker's strict cap index.
-- L3 safe-slice classifier (checkpoint-4 step 1): the Section 6 cell
-  predicate as a proved exhaustive case split on the witness constructor at
-  `j`, with the per-point deletion signatures re-derived for the classifier's
-  safe points. {{NEEDS_PROOF}}: the producer's per-point lemmas are stated for
-  the selected `E`; the classifier needs them for arbitrary safe points of
-  `W.supportAt j`.
-- L4 exact-15 identity: `card = 15` implies `W.supportAt i = capInteriorByIndex i`
-  for every `i` (subset of card four into a set of card four).
-- L6 first-apex mutual-omission pair: chain the three Section 5 producers
-  from `J` and `G` to a same-radius four-row `K ∋ J.source` at `oppApex1`
-  carrying a mutually omitting pair with distinct blockers and both
-  cross-deletions surviving. This is a second same-radius pair, independent
-  of the cell index `j`, and is the natural ingress for the interval descent
-  of Phase 3a if L5 lands on the first cap instead of cap `j`.
-  {{NEEDS_PROOF}} that the pair is not `{kept, deleted}` again; `K` may
-  contain them.
+Status (2026-09-01): L1, L2, L3, L4, L6 are proved in
+`TriApexEndpointRetainedOmission.lean` (section `TriApexLeafControls`) and
+consumed in the leaf's proof prefix; the leaf's single `sorry` is unchanged
+and `M = 18` is unchanged. L5 is open.
+
+- L1 same-index pair: done, `exists_index_safe_pair_of_fiveSurviveOneFail`
+  (consumes `Q.exists_distinct_same_index`; adds that both pair points avoid
+  both retained shells).
+- L2 blocker localization: done for `O.kept` and `O.deleted`,
+  `exists_capIndex_avoiding_two_blockers` (consumes
+  `exists_criticalShell_center_with_otherRichCapSlice_card_le_one`, `:718`).
+  `J.source` and the pair points localize through the same producer when a
+  Phase 3 cell needs them; the prefix does not bind them yet.
+- L3 safe-slice classifier (checkpoint-4 step 1): done in two forms, see
+  Section 6: `strictApexFourWitness_safe_counts_of_pair` at the pair index
+  and `strictApexFourWitness_safe_counts_of_oneHit` at the blocker-free
+  index. The earlier {{NEEDS_PROOF}} on per-point signatures is closed by
+  `deletionSignature_of_not_mem_two_retainedShells`, which gives the full
+  signature for any carrier point outside both retained shells.
+- L4 exact-15 identity: done,
+  `strictApexFourFamily_supportAt_eq_capInteriorByIndex_of_card_eq_fifteen`
+  (reuses `ATailExactFifteenApexProfile.capInteriorByIndex_card_eq_four_of_card_eq_fifteen`,
+  reachable through the existing `EndpointFreshTwoShellSeed` import).
+- L6 first-apex mutual-omission pair: done,
+  `exists_firstApex_mutualCrossDeletion_pair_through_source`: a four-row
+  `K ∋ J.source` at `oppApex1` with `K.radius = J.sourceRadius`, carrying a
+  mutually omitting pair `z ≠ w` with distinct blockers and both
+  cross-deletions surviving. {{NEEDS_PROOF}} that the pair is not
+  `{kept, deleted}` again; `K` may contain them.
 - L5 order adapter (the 2026-08-30 extract's next interface test): from an
   exact full same-radius strict slice at card 15 to four consecutive indices
   of `capByIndex_cgn4g_capData_oriented`, retaining provenance. Decision
@@ -427,10 +456,13 @@ unknown, at least three. {{UNVALIDATED}} until Phase 2 reports.
 - Reuse preflight is re-run only when the candidate statement, ingress,
   consumer, imports, or source revision materially changes.
 
-## 10. Documents to synchronize at the first Lean checkpoint
+## 10. Documents to synchronize at the first frontier-changing checkpoint
 
 These carry the superseded v23 plan or an unresolved status and must be
-updated in the same change as the first Lean progress under this plan:
+updated in the same change as the first Lean checkpoint under this plan that
+changes the obligation frontier (a closed child, or a strict decrease of
+`M`). The Phase 1 checkpoint of 2026-09-01 changed no frontier and left them
+untouched.
 
 - `docs/erdos-97-descent-prose-proof-atomic.md` §16.5.D1;
 - `docs/dead-ends.md:1567-1594` (F1 bypass, `UNRESOLVED`);

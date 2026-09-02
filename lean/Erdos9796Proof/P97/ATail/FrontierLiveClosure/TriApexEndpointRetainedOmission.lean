@@ -2019,6 +2019,283 @@ theorem nonempty_pairedApexClassJointDeletion_of_reverseHit
     keptPacket := keptPacket
     deletedPacket := deletedPacket }⟩
 
+/- ### Positive controls for the paired common-deletion leaf
+
+The lemmas in this section are kernel-checked infrastructure for
+`false_of_pairedCommonDeletion_fiveSurviveOneFail_triApexAllLarge_core`.
+None of them closes that leaf or narrows its recorded obligation measure.
+The leaf consumes each of them in its proof prefix so that the publish spine
+records them.  See
+`docs/plans/2026-09-01-d1-triapex-paired-common-deletion-closure-plan.md`,
+Phase 1. -/
+
+section TriApexLeafControls
+
+open ATailTriApexFourWitness ATailApexRichFourWitness
+
+/-- A subset of one interior radius slice inherits the slice's one-hit bound
+against a shell support. -/
+theorem inter_card_le_one_of_subset_of_inter_card_le_one
+    {T K L : Finset ℝ²} (hT : T ⊆ L) (hKL : (K ∩ L).card ≤ 1) :
+    (T ∩ K).card ≤ 1 := by
+  refine le_trans (Finset.card_le_card ?_) hKL
+  intro z hz
+  rcases Finset.mem_inter.mp hz with ⟨hzT, hzK⟩
+  exact Finset.mem_inter.mpr ⟨hzK, hT hzT⟩
+
+/-- A four-point set meeting two sets in at most one point each keeps at
+least two points outside their union. -/
+theorem two_le_card_sdiff_union_of_card_four
+    {T K₁ K₂ : Finset ℝ²} (hT : T.card = 4)
+    (h₁ : (T ∩ K₁).card ≤ 1) (h₂ : (T ∩ K₂).card ≤ 1) :
+    2 ≤ (T \ (K₁ ∪ K₂)).card := by
+  have hsplit := Finset.card_sdiff_add_card_inter T (K₁ ∪ K₂)
+  rw [Finset.inter_union_distrib_left] at hsplit
+  have hle := Finset.card_union_le (T ∩ K₁) (T ∩ K₂)
+  omega
+
+/-- Two distinct points of a set outside `K` give at least two points of the
+set outside `K`. -/
+theorem two_le_card_sdiff_of_pair
+    {T K : Finset ℝ²} {x y : ℝ²} (hx : x ∈ T) (hy : y ∈ T) (hxy : x ≠ y)
+    (hxK : x ∉ K) (hyK : y ∉ K) :
+    2 ≤ (T \ K).card := by
+  have hsub : ({x, y} : Finset ℝ²) ⊆ T \ K := by
+    intro z hz
+    rcases Finset.mem_insert.mp hz with hzx | hzy
+    · subst hzx
+      exact Finset.mem_sdiff.mpr ⟨hx, hxK⟩
+    · rw [Finset.mem_singleton] at hzy
+      subst hzy
+      exact Finset.mem_sdiff.mpr ⟨hy, hyK⟩
+  calc
+    2 = ({x, y} : Finset ℝ²).card := (Finset.card_pair hxy).symm
+    _ ≤ (T \ K).card := Finset.card_le_card hsub
+
+/-- Safe-count classification of a strict apex four-witness that carries two
+distinct points outside a set `K`.  The one-radius arm keeps at least two of
+its four points outside `K`; the two-radii arm keeps at least two points
+outside `K` across its two two-point slices. -/
+theorem strictApexFourWitness_safe_counts_of_pair
+    {A : Finset ℝ²} {S : SurplusCapPacket A} {j : Fin 3}
+    (Wj : StrictApexFourWitness A S j) (K : Finset ℝ²) {x y : ℝ²}
+    (hx : x ∈ Wj.support) (hy : y ∈ Wj.support) (hxy : x ≠ y)
+    (hxK : x ∉ K) (hyK : y ∉ K) :
+    (∃ (r : ℝ) (T : Finset ℝ²), 0 < r ∧
+        T ⊆ SelectedClass A (S.oppositeVertexByIndex j) r ∩
+          S.capInteriorByIndex j ∧
+        T.card = 4 ∧ Wj.support = T ∧ 2 ≤ (T \ K).card) ∨
+    (∃ (r₁ r₂ : ℝ) (T₁ T₂ : Finset ℝ²), 0 < r₁ ∧ 0 < r₂ ∧ r₁ ≠ r₂ ∧
+        T₁ ⊆ SelectedClass A (S.oppositeVertexByIndex j) r₁ ∩
+          S.capInteriorByIndex j ∧
+        T₂ ⊆ SelectedClass A (S.oppositeVertexByIndex j) r₂ ∩
+          S.capInteriorByIndex j ∧
+        T₁.card = 2 ∧ T₂.card = 2 ∧ Wj.support = T₁ ∪ T₂ ∧
+        2 ≤ (T₁ \ K).card + (T₂ \ K).card) := by
+  have hpair := two_le_card_sdiff_of_pair hx hy hxy hxK hyK
+  cases Wj with
+  | oneRadius r hr T hT hcard =>
+      left
+      exact ⟨r, T, hr, hT, hcard, rfl, hpair⟩
+  | twoRadii r₁ r₂ hr₁ hr₂ hne T₁ T₂ hT₁ hT₂ hcard₁ hcard₂ =>
+      right
+      refine ⟨r₁, r₂, T₁, T₂, hr₁, hr₂, hne, hT₁, hT₂, hcard₁, hcard₂, rfl, ?_⟩
+      have hsplit : (T₁ ∪ T₂) \ K = (T₁ \ K) ∪ (T₂ \ K) :=
+        Finset.union_sdiff_distrib T₁ T₂ K
+      have hle := Finset.card_union_le (T₁ \ K) (T₂ \ K)
+      change 2 ≤ ((T₁ ∪ T₂) \ K).card at hpair
+      rw [hsplit] at hpair
+      omega
+
+/-- Safe-slice bounds of a strict apex four-witness at a cap in which two
+shell supports each meet every interior radius slice at most once.  The
+one-radius arm keeps at least two points outside both supports; in the
+two-radii arm each support meets each two-point slice at most once, so a
+slice may lose both of its points. -/
+theorem strictApexFourWitness_safe_counts_of_oneHit
+    {A : Finset ℝ²} {S : SurplusCapPacket A} {j : Fin 3}
+    (Wj : StrictApexFourWitness A S j) (K₁ K₂ : Finset ℝ²)
+    (h₁ : ∀ r : ℝ,
+      (K₁ ∩ (SelectedClass A (S.oppositeVertexByIndex j) r ∩
+        S.capInteriorByIndex j)).card ≤ 1)
+    (h₂ : ∀ r : ℝ,
+      (K₂ ∩ (SelectedClass A (S.oppositeVertexByIndex j) r ∩
+        S.capInteriorByIndex j)).card ≤ 1) :
+    (∃ (r : ℝ) (T : Finset ℝ²), 0 < r ∧
+        T ⊆ SelectedClass A (S.oppositeVertexByIndex j) r ∩
+          S.capInteriorByIndex j ∧
+        T.card = 4 ∧ Wj.support = T ∧ 2 ≤ (T \ (K₁ ∪ K₂)).card) ∨
+    (∃ (r₁ r₂ : ℝ) (T₁ T₂ : Finset ℝ²), 0 < r₁ ∧ 0 < r₂ ∧ r₁ ≠ r₂ ∧
+        T₁ ⊆ SelectedClass A (S.oppositeVertexByIndex j) r₁ ∩
+          S.capInteriorByIndex j ∧
+        T₂ ⊆ SelectedClass A (S.oppositeVertexByIndex j) r₂ ∩
+          S.capInteriorByIndex j ∧
+        T₁.card = 2 ∧ T₂.card = 2 ∧ Wj.support = T₁ ∪ T₂ ∧
+        (T₁ ∩ K₁).card ≤ 1 ∧ (T₁ ∩ K₂).card ≤ 1 ∧
+        (T₂ ∩ K₁).card ≤ 1 ∧ (T₂ ∩ K₂).card ≤ 1) := by
+  cases Wj with
+  | oneRadius r hr T hT hcard =>
+      left
+      exact ⟨r, T, hr, hT, hcard, rfl,
+        two_le_card_sdiff_union_of_card_four hcard
+          (inter_card_le_one_of_subset_of_inter_card_le_one hT (h₁ r))
+          (inter_card_le_one_of_subset_of_inter_card_le_one hT (h₂ r))⟩
+  | twoRadii r₁ r₂ hr₁ hr₂ hne T₁ T₂ hT₁ hT₂ hcard₁ hcard₂ =>
+      right
+      exact ⟨r₁, r₂, T₁, T₂, hr₁, hr₂, hne, hT₁, hT₂, hcard₁, hcard₂, rfl,
+        inter_card_le_one_of_subset_of_inter_card_le_one hT₁ (h₁ r₁),
+        inter_card_le_one_of_subset_of_inter_card_le_one hT₁ (h₂ r₁),
+        inter_card_le_one_of_subset_of_inter_card_le_one hT₂ (h₁ r₂),
+        inter_card_le_one_of_subset_of_inter_card_le_one hT₂ (h₂ r₂)⟩
+
+/-- Two carrier points have cap-localized canonical blockers, and some cap
+index avoids both.  At that index each canonical shell meets every interior
+radius slice in at most one point. -/
+theorem exists_capIndex_avoiding_two_blockers
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    {H : CriticalShellSystem D.A}
+    (G : TriApexAllLargeContext D S)
+    {x y : ℝ²} (hx : x ∈ D.A) (hy : y ∈ D.A) :
+    ∃ ix iy j : Fin 3,
+      H.centerAt x hx ∈ S.capInteriorByIndex ix ∧
+      H.centerAt y hy ∈ S.capInteriorByIndex iy ∧
+      ix ≠ j ∧ iy ≠ j ∧
+      ∀ r : ℝ,
+        ((H.selectedAt x hx).toCriticalFourShell.support ∩
+          (SelectedClass D.A (S.oppositeVertexByIndex j) r ∩
+            S.capInteriorByIndex j)).card ≤ 1 ∧
+        ((H.selectedAt y hy).toCriticalFourShell.support ∩
+          (SelectedClass D.A (S.oppositeVertexByIndex j) r ∩
+            S.capInteriorByIndex j)).card ≤ 1 := by
+  rcases exists_criticalShell_center_with_otherRichCapSlice_card_le_one G hx
+    with ⟨ix, hcx, honex⟩
+  rcases exists_criticalShell_center_with_otherRichCapSlice_card_le_one G hy
+    with ⟨iy, hcy, honey⟩
+  have hthird : ∀ a b : Fin 3, ∃ c : Fin 3, a ≠ c ∧ b ≠ c := by decide
+  rcases hthird ix iy with ⟨j, hjx, hjy⟩
+  exact ⟨ix, iy, j, hcx, hcy, hjx, hjy,
+    fun r => ⟨honex j hjx r, honey j hjy r⟩⟩
+
+/-- Every carrier point outside both retained canonical shells carries the
+five-survive/one-fail deletion signature: its deletion preserves K4 at the
+three rich apices and at both retained blockers, fails at its own canonical
+blocker, and that blocker differs from the five surviving centres. -/
+theorem deletionSignature_of_not_mem_two_retainedShells
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    {H : CriticalShellSystem D.A}
+    (G : TriApexAllLargeContext D S)
+    {q₁ q₂ : ℝ²} (hq₁ : q₁ ∈ D.A) (hq₂ : q₂ ∈ D.A)
+    {x : ℝ²} (hx : x ∈ D.A)
+    (hsafe :
+      x ∉ retainedShellSupport H q₁ hq₁ ∪ retainedShellSupport H q₂ hq₂) :
+    (∀ i : Fin 3,
+        HasNEquidistantPointsAt 4 (D.A.erase x) (S.oppositeVertexByIndex i)) ∧
+      HasNEquidistantPointsAt 4 (D.A.erase x) (H.centerAt q₁ hq₁) ∧
+      HasNEquidistantPointsAt 4 (D.A.erase x) (H.centerAt q₂ hq₂) ∧
+      ¬ HasNEquidistantPointsAt 4 (D.A.erase x) (H.centerAt x hx) ∧
+      (∀ i : Fin 3, H.centerAt x hx ≠ S.oppositeVertexByIndex i) ∧
+      H.centerAt x hx ≠ H.centerAt q₁ hq₁ ∧
+      H.centerAt x hx ≠ H.centerAt q₂ hq₂ := by
+  have hnot₁ : x ∉ retainedShellSupport H q₁ hq₁ :=
+    fun h => hsafe (Finset.mem_union.mpr (Or.inl h))
+  have hnot₂ : x ∉ retainedShellSupport H q₂ hq₂ :=
+    fun h => hsafe (Finset.mem_union.mpr (Or.inr h))
+  have hapex : ∀ i : Fin 3,
+      HasNEquidistantPointsAt 4 (D.A.erase x) (S.oppositeVertexByIndex i) :=
+    fun i =>
+      (fullyDeletionRobustAt_of_apexRichClassStructure (G.apex_rich i)).survives
+        x hx
+  have hret₁ : HasNEquidistantPointsAt 4 (D.A.erase x) (H.centerAt q₁ hq₁) :=
+    (cross_deletion_survives_iff_not_mem_selected_support H hq₁).mpr hnot₁
+  have hret₂ : HasNEquidistantPointsAt 4 (D.A.erase x) (H.centerAt q₂ hq₂) :=
+    (cross_deletion_survives_iff_not_mem_selected_support H hq₂).mpr hnot₂
+  have hfail : ¬ HasNEquidistantPointsAt 4 (D.A.erase x) (H.centerAt x hx) :=
+    H.no_qfree_at x hx
+  refine ⟨hapex, hret₁, hret₂, hfail, ?_, ?_, ?_⟩
+  · intro i heq
+    apply hfail
+    rw [heq]
+    exact hapex i
+  · intro heq
+    apply hfail
+    rw [heq]
+    exact hret₁
+  · intro heq
+    apply hfail
+    rw [heq]
+    exact hret₂
+
+/-- Two of the four selected sources share one indexed cap, and both lie
+outside both retained canonical shells. -/
+theorem exists_index_safe_pair_of_fiveSurviveOneFail
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    {H : CriticalShellSystem D.A} {q₁ q₂ : ℝ²}
+    {hq₁ : q₁ ∈ D.A} {hq₂ : q₂ ∈ D.A}
+    (Q : TriApexFiveSurviveOneFail S H q₁ q₂ hq₁ hq₂) :
+    ∃ i : Fin 3, ∃ x y : ℝ², x ∈ Q.E ∧ y ∈ Q.E ∧ x ≠ y ∧
+      x ∈ Q.W.supportAt i ∧ y ∈ Q.W.supportAt i ∧
+      x ∉ retainedShellSupport H q₁ hq₁ ∪ retainedShellSupport H q₂ hq₂ ∧
+      y ∉ retainedShellSupport H q₁ hq₁ ∪ retainedShellSupport H q₂ hq₂ := by
+  rcases Q.exists_distinct_same_index with ⟨x, y, hx, hy, hxy, i, hxi, hyi⟩
+  exact ⟨i, x, y, hx, hy, hxy, hxi, hyi,
+    (Finset.mem_sdiff.mp (Q.E_subset hx)).2,
+    (Finset.mem_sdiff.mp (Q.E_subset hy)).2⟩
+
+/-- At carrier size fifteen with all three caps large, every strict apex
+four-support is the whole strict interior of its cap. -/
+theorem strictApexFourFamily_supportAt_eq_capInteriorByIndex_of_card_eq_fifteen
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    (G : TriApexAllLargeContext D S)
+    (W : StrictApexFourFamily D.A S)
+    (hcard : D.A.card = 15) (i : Fin 3) :
+    W.supportAt i = S.capInteriorByIndex i := by
+  apply Finset.eq_of_subset_of_card_le (W.supportAt_subset_capInterior i)
+  rw [ATailExactFifteenApexProfile.capInteriorByIndex_card_eq_four_of_card_eq_fifteen
+    S hcard G.cap_card_ge_six i]
+  exact le_of_eq (W i).support_card_eq_four.symm
+
+/-- The escaping source lies on a selected four-row at the first apex on its
+own radius, and rich structure at that apex forces a mutually omitting pair on
+that row with distinct canonical blockers.  Whether that pair differs from the
+retained pair is not asserted here. -/
+theorem exists_firstApex_mutualCrossDeletion_pair_through_source
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    {P : RetainedInteriorDirectedOmission R}
+    {O : OrientedRetainedCommonDeletion P}
+    (J : PairedApexClassJointDeletion O)
+    (G : TriApexAllLargeContext D S) :
+    ∃ K : SelectedFourClass D.A S.oppApex1,
+      J.source ∈ K.support ∧ K.radius = J.sourceRadius ∧
+      ∃ z w : CriticalShellSystem.CarrierVertex D.A,
+        z.1 ∈ K.support ∧ w.1 ∈ K.support ∧ z ≠ w ∧
+        HasNEquidistantPointsAt 4 (D.A.erase w.1) (H.centerAt z.1 z.2) ∧
+        HasNEquidistantPointsAt 4 (D.A.erase z.1) (H.centerAt w.1 w.2) ∧
+        H.centerAt z.1 z.2 ≠ H.centerAt w.1 w.2 := by
+  rcases
+      ATailFirstApexCriticalFiberRow.nonempty_selectedFourClass_preserving_point
+        J.sourceRadius_pos J.source_mem_class J.sourceClass_card_ge_four with
+    ⟨K, hK⟩
+  have hradius : K.radius = J.sourceRadius := by
+    rw [← K.support_eq_radius J.source hK]
+    exact (mem_selectedClass.mp J.source_mem_class).2
+  have hfan := sourceFaithfulDeletionFan_of_triApexAllLargeContext (H := H) G K
+  have hcenterNe : ∀ (w : ℝ²) (hw : w ∈ K.support),
+      S.oppApex1 ≠ H.centerAt w (K.support_subset_A hw) := by
+    intro w hw hcenter
+    have hunique := isUniqueFourCenter_centerAt H w (K.support_subset_A hw)
+    rw [← hcenter] at hunique
+    exact not_isUniqueFourCenter_of_fullyDeletionRobust
+      (fullyDeletionRobustAt_of_apexRichClassStructure (G.apex_rich S.oppIndex1))
+      (by simpa using hunique)
+  rcases exists_mutualCrossDeletion_pair_of_sourceFaithfulFan_no_centerBlocker
+      K hfan hcenterNe with ⟨z, w, hz, hw, hzw, hzs, hws, hne⟩
+  exact ⟨K, hK, hradius, z, w, hz, hw, hzw, hzs, hws, hne⟩
+
+end TriApexLeafControls
+
 /-- Residual contradiction after the tri-apex witness count has produced four
 strict sources with the full five-survive/one-fail deletion signature.
 
@@ -2037,6 +2314,36 @@ theorem false_of_pairedCommonDeletion_fiveSurviveOneFail_triApexAllLarge_core
     (Q : TriApexFiveSurviveOneFail S H O.kept O.deleted
       O.kept_mem_A O.deleted_mem_A) :
     False := by
+  -- Phase 1 positive controls of the closure plan, consumed here so that the
+  -- publish spine records them.  They do not narrow the residual.
+  obtain ⟨i, x, y, hxE, hyE, hxy, hxi, hyi, hxSafe, hySafe⟩ :=
+    exists_index_safe_pair_of_fiveSurviveOneFail Q
+  have hcellsAtPair :=
+    strictApexFourWitness_safe_counts_of_pair (Q.W i)
+      (retainedShellSupport H O.kept O.kept_mem_A ∪
+        retainedShellSupport H O.deleted O.deleted_mem_A)
+      hxi hyi hxy hxSafe hySafe
+  have hxSignature :=
+    deletionSignature_of_not_mem_two_retainedShells G O.kept_mem_A
+      O.deleted_mem_A (Q.mem_A x hxE) hxSafe
+  have hySignature :=
+    deletionSignature_of_not_mem_two_retainedShells G O.kept_mem_A
+      O.deleted_mem_A (Q.mem_A y hyE) hySafe
+  obtain ⟨iKept, iDeleted, j, hkeptCenter, hdeletedCenter, hkj, hdj, honeHit⟩ :=
+    exists_capIndex_avoiding_two_blockers G O.kept_mem_A O.deleted_mem_A
+  have hcellsAtFree :=
+    strictApexFourWitness_safe_counts_of_oneHit (Q.W j)
+      (retainedShellSupport H O.kept O.kept_mem_A)
+      (retainedShellSupport H O.deleted O.deleted_mem_A)
+      (fun r => (honeHit r).1) (fun r => (honeHit r).2)
+  have hfifteen :
+      D.A.card = 15 → ∀ k : Fin 3, Q.W.supportAt k = S.capInteriorByIndex k :=
+    fun hcard k =>
+      strictApexFourFamily_supportAt_eq_capInteriorByIndex_of_card_eq_fifteen
+        G Q.W hcard k
+  obtain ⟨K, hsourceK, hKradius, z, w, hzK, hwK, hzw, hzSurvives, hwSurvives,
+      hzwBlockers⟩ :=
+    exists_firstApex_mutualCrossDeletion_pair_through_source J G
   sorry
 
 /-- Escaping-source child of the paired common-deletion leaf.
