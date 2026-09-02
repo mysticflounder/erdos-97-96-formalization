@@ -53,6 +53,21 @@ theorem cyclicAdjacent_of_common_strict_interval
   unfold cyclicAdjacent SurplusCOMPGBank.btw
   simp [hp_left, hp_right, hq_left, hq_right]
 
+/-- Two rotated perfect matchings on four roles cannot both be separated.
+
+The first separation uses the cut `(i,j)` and the pair `(a,b)`; the second
+would use the rotated cut `(b,j)` and pair `(a,i)`.  The sole non-degeneracy
+needed by the order argument is that the exchanged cut endpoints `i` and `b`
+are distinct. -/
+theorem separatedPair_rotated_incompatible
+    {n : ℕ} {i j a b : Fin n}
+    (hib : i ≠ b)
+    (hijab : separatedPair i j a b) :
+    ¬ separatedPair b j a i := by
+  intro hbjai
+  unfold separatedPair SurplusCOMPGBank.btw at hijab hbjai
+  omega
+
 /-- The three perfect matchings cannot all be separated by one cut.
 
 This is the propositional core needed when two independent shared-pair

@@ -1,0 +1,18 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "rigid221-exactfive-distinct-fiveincidence-20260902",
+  "owner": "codex-rigid221-rank3-fiveincidence",
+  "base_head": "92cb0b1910a50dd2b45583db28d2fd0f0a70db8b",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/rigid221-exactfive-distinct-fiveincidence-20260902.json",
+    "docs/audits/2026-09-02-rigid221-exactfive-distinct-fiveincidence.md",
+    "docs/plans/2026-09-01-rigid221-exactfive-distinct-three-center.md",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/CyclicPairSeparation.lean",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221Closure.lean",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/RobustApexFourIncidenceCyclicReduction.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-02T22:14:58Z",
+  "manifest_sha256": "d3e1179350c1cf3a9cbd24405aaba884d0840869611f5b6c44adecb6d788c37b"
+}

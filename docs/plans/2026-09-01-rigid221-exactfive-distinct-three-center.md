@@ -166,3 +166,53 @@ succeed.  `proof-blueprint axioms` reports only `propext`,
 on `false_of_exactFiveDistinct_threeCenterNormalForm`.  The private-caller
 miner defect described above has since been repaired; it no longer affects
 the spine classification.
+
+## Five-incidence cyclic reduction
+
+The retained-source-inclusion leaf previously accepted
+`RobustApexFiveIncidenceContinuationPacket`. Its continuation exposed five
+possible first missing incidences but erased the preceding positive tests.
+The ranked RVOL follow-up identified a strictly smaller source surface.
+
+Four positive incidences already contradict convex cyclic order:
+
+```text
+c₁ ∈ row₀,  O ∈ row₁,  O ∈ row₂,  c₁ ∈ row₂.
+```
+
+Indeed, `row₀,row₂` share `a,c₁`, while `row₁,row₂` share `a,O`.
+Shared-pair separation produces the rotated matchings
+
+```text
+separatedPair O c₂ a c₁
+separatedPair c₁ c₂ a O,
+```
+
+which `separatedPair_rotated_incompatible` excludes. The test
+`c₂ ∈ row₁` is therefore irrelevant to the live frontier.
+
+The new neutral packet `RobustApexFourIncidenceContinuationPacket` retains a
+boundary indexing, the three support identities, both non-apex common-point
+memberships, and one of four prefix-preserving constructors. The producer is
+exhaustive and introduces no admitted proof. The coordinator converts the
+old five-incidence packet to this packet before calling
+`false_of_exactFiveDistinct_threeCenter_distinctFresh_fiveIncidence`.
+
+This changes the second coordinate of the recorded progress measure from five
+unresolved incidence positions to four, with constructor fan-out still hidden
+inside the one existing on-spine admitted endpoint. No new obligation is
+created. The four remaining positions are:
+
+1. `c₁ ∉ row₀`;
+2. `c₁ ∈ row₀` and `O ∉ row₁`;
+3. the preceding positives and `O ∉ row₂`;
+4. the preceding positives and `c₁ ∉ row₂`.
+
+Current theorem-bank search finds no complete consumer for any of the four.
+In positions 3 and 4, the common-deletion packet at centers `O,c₂` admits the
+standard physical-second-apex robust/critical split; its critical arm reaches
+the existing swapped exact-four closure, while the robust arm remains. Since
+the normal form already records second-apex robustness, this observation does
+not yet close either position. The next strict reduction must supply new
+source synchronization or a second order constraint, not another generic
+Kalmanson identity.
