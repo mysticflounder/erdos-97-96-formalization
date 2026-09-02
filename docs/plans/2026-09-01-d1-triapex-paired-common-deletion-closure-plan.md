@@ -615,6 +615,36 @@ adjacent-slot pair replaces the low-span pair; no cell is closed):
   too. Route C (exact six-point apex class) is the next infrastructure
   candidate; the solver stages wait on the decision recorded above.
 
+Status 2026-09-01 (Phase 3a, fourth checkpoint: Route C compiled; the
+adjacent-slot state carries the circle and the exact six-point apex class;
+no cell is closed):
+
+- `selectedClass_card_eq_six_of_oneRadius_card_eq_fifteen` is proved: at
+  carrier size fifteen, when the four strict-interior points of cap `i` lie
+  on one circle about the apex opposite cap `i`, that apex's class at that
+  radius has exactly six points, with exactly one point in each adjacent
+  cap. Inputs: `capInteriorByIndex_card_eq_four_of_card_eq_fifteen`, the
+  public adjacent-cap one-point bounds and the sdiff cover from the
+  `SurplusM44Packet` shards, and `G.apex_rich i`. The private card-4 lemma
+  in `FirstApexInteriorPairGeometry.lean` was not touched; the `4 ≤ card`
+  bound is proved locally. Route C of the assessment above is therefore
+  PROVEN; the two-radii branch of `G.apex_rich i` is impossible in this
+  cell.
+- `AdjacentMutualOmissionPairAt` now also records a radius `r > 0` with the
+  strict interior of cap `i` in the apex class at `r`, that class of card
+  exactly six, and one point in each adjacent cap. The producer takes the
+  `oneRadius` positivity `hr` again; the dispatcher and the leaf binding
+  `hadjacentAtPair` are unchanged in shape.
+- Axiom closure of the three declarations: `propext`, `Classical.choice`,
+  `Quot.sound`. The leaf's single `sorry` is unchanged, the on-spine open
+  obligation count is 28 (unchanged), and `M = 18` is unchanged.
+- Still open: no contradiction consumer for the `μ = 0` terminal. The
+  incidence witness of the assessment satisfies the extended state as well
+  once the two adjacent-cap points at distance `r` from the apex are added.
+  Any consumer must now be written against a six-point cocircular class
+  about a Moser vertex: four points in the opposite cap and one in each
+  incident cap. {{NEEDS_ADAM_INPUT}} on the solver stages stays open.
+
 ### Phase 4 — carrier size at least 16
 
 - Extract from the card-15 closures the smallest infeasible sub-pattern and
@@ -633,8 +663,9 @@ In sessions: Phase 0 + Phase 1 (L1 to L6), one, done 2026-09-01. Phase 2,
 assessed without a run on 2026-09-01 (instrument-blocked; dimension count
 recorded). Phase 3, two to four; the first Phase 3a checkpoint (cap-order lift,
 no cell closed), the `μ = 0` terminal assessment (no route closes
-from proven facts), and the Route B checkpoint (adjacent-slot pair, no
-cell closed) are done 2026-09-01. Phase 4, unknown, at least three.
+from proven facts), the Route B checkpoint (adjacent-slot pair), and the
+Route C checkpoint (exact six-point apex class), none closing a cell, are
+done 2026-09-01. Phase 4, unknown, at least three.
 {{UNVALIDATED}} until Phase 3 reports its first cell.
 
 ## 9. Gates

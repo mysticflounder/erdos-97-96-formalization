@@ -2501,12 +2501,104 @@ theorem not_mem_selected_support_of_adjacent_interior_slots_of_oneRadius
     have h2 : k.1 + 1 < s.1 := Fin.lt_def.mp hbetween.2
     omega
 
+/-- At carrier size fifteen, when the four strict-interior points of cap `i`
+lie on one circle about the apex opposite cap `i`, that apex's class at that
+radius has exactly six points: the four strict-interior points and one point
+in each adjacent cap.  Every class of at least four points at that apex
+meets the strict interior of cap `i`
+(`selectedClass_sdiff_capInteriorByIndex_subset_adjacentCaps` with the
+one-point bounds on the adjacent caps), hence has the interior radius; so
+the two-radii branch of `ApexRichClassStructure` is impossible and its
+six-point branch is at the interior radius. -/
+theorem selectedClass_card_eq_six_of_oneRadius_card_eq_fifteen
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    (G : TriApexAllLargeContext D S) (hcard : D.A.card = 15) (i : Fin 3)
+    {r : ℝ} (hr : 0 < r)
+    (hslice : S.capInteriorByIndex i ⊆
+      SelectedClass D.A (S.oppositeVertexByIndex i) r) :
+    (SelectedClass D.A (S.oppositeVertexByIndex i) r).card = 6 ∧
+    (SelectedClass D.A (S.oppositeVertexByIndex i) r ∩
+      S.leftAdjacentCapByIndex i).card = 1 ∧
+    (SelectedClass D.A (S.oppositeVertexByIndex i) r ∩
+      S.rightAdjacentCapByIndex i).card = 1 := by
+  classical
+  have hfour : (S.capInteriorByIndex i).card = 4 :=
+    ATailExactFifteenApexProfile.capInteriorByIndex_card_eq_four_of_card_eq_fifteen
+      S hcard G.cap_card_ge_six i
+  have hmeets : ∀ ρ : ℝ, 0 < ρ →
+      4 ≤ (SelectedClass D.A (S.oppositeVertexByIndex i) ρ).card →
+      2 ≤ (SelectedClass D.A (S.oppositeVertexByIndex i) ρ ∩
+        S.capInteriorByIndex i).card := by
+    intro ρ hρ hcardρ
+    have hleftOne :=
+      S.leftAdjacentCap_at_opposite_card_le_one_of_convexIndep D.convex i ρ
+    have hrightOne :=
+      S.rightAdjacentCap_at_opposite_card_le_one_of_convexIndep D.convex i ρ
+    have houtside :
+        (SelectedClass D.A (S.oppositeVertexByIndex i) ρ \
+          S.capInteriorByIndex i).card ≤
+        (SelectedClass D.A (S.oppositeVertexByIndex i) ρ ∩
+            S.leftAdjacentCapByIndex i).card +
+          (SelectedClass D.A (S.oppositeVertexByIndex i) ρ ∩
+            S.rightAdjacentCapByIndex i).card :=
+      le_trans
+        (Finset.card_le_card
+          (S.selectedClass_sdiff_capInteriorByIndex_subset_adjacentCaps i hρ))
+        (Finset.card_union_le _ _)
+    have hsplit := Finset.card_sdiff_add_card_inter
+      (SelectedClass D.A (S.oppositeVertexByIndex i) ρ) (S.capInteriorByIndex i)
+    omega
+  have hradius_eq : ∀ ρ : ℝ, 0 < ρ →
+      4 ≤ (SelectedClass D.A (S.oppositeVertexByIndex i) ρ).card → ρ = r := by
+    intro ρ hρ hcardρ
+    have hpos : 0 < (SelectedClass D.A (S.oppositeVertexByIndex i) ρ ∩
+        S.capInteriorByIndex i).card := by
+      have := hmeets ρ hρ hcardρ
+      omega
+    obtain ⟨x, hx⟩ := Finset.card_pos.mp hpos
+    have hxρ := (mem_selectedClass.mp (Finset.mem_inter.mp hx).1).2
+    have hxr := (mem_selectedClass.mp (hslice (Finset.mem_inter.mp hx).2)).2
+    rw [← hxρ, ← hxr]
+  have hsix : 6 ≤ (SelectedClass D.A (S.oppositeVertexByIndex i) r).card := by
+    rcases G.apex_rich i with ⟨ρ, hρ, hρcard⟩ |
+      ⟨ρ₁, ρ₂, hρ₁, hρ₂, hne, hc₁, hc₂⟩
+    · have hρr : ρ = r := hradius_eq ρ hρ (le_trans (by norm_num) hρcard)
+      rw [hρr] at hρcard
+      exact hρcard
+    · exact absurd
+        ((hradius_eq ρ₁ hρ₁ hc₁).trans (hradius_eq ρ₂ hρ₂ hc₂).symm) hne
+  have hleftOne :=
+    S.leftAdjacentCap_at_opposite_card_le_one_of_convexIndep D.convex i r
+  have hrightOne :=
+    S.rightAdjacentCap_at_opposite_card_le_one_of_convexIndep D.convex i r
+  have houtside :
+      (SelectedClass D.A (S.oppositeVertexByIndex i) r \
+        S.capInteriorByIndex i).card ≤
+      (SelectedClass D.A (S.oppositeVertexByIndex i) r ∩
+          S.leftAdjacentCapByIndex i).card +
+        (SelectedClass D.A (S.oppositeVertexByIndex i) r ∩
+          S.rightAdjacentCapByIndex i).card :=
+    le_trans
+      (Finset.card_le_card
+        (S.selectedClass_sdiff_capInteriorByIndex_subset_adjacentCaps i hr))
+      (Finset.card_union_le _ _)
+  have hsplit := Finset.card_sdiff_add_card_inter
+    (SelectedClass D.A (S.oppositeVertexByIndex i) r) (S.capInteriorByIndex i)
+  have hinter : (SelectedClass D.A (S.oppositeVertexByIndex i) r ∩
+      S.capInteriorByIndex i).card = 4 := by
+    rw [Finset.inter_eq_right.mpr hslice]
+    exact hfour
+  exact ⟨by omega, by omega, by omega⟩
+
 /-- The Phase 3a state of the closure plan at carrier size fifteen: the four
 strict-interior points of cap `i` occupy the consecutive middle slots `1..4`
 of the oriented complete cap order, and two of them at adjacent slots
 mutually omit one another from their actual critical shells.  Both
 cross-deletions survive and the two blocker centres are distinct.  No
-strict-interior point lies between the pair in the cap order. -/
+strict-interior point lies between the pair in the cap order.  The four
+strict-interior points lie on one circle about the apex opposite cap `i`,
+and that apex's class at that radius has exactly six points, one in each
+adjacent cap besides the four. -/
 def AdjacentMutualOmissionPairAt
     (D : CounterexampleData) (S : SurplusCapPacket D.A)
     (H : CriticalShellSystem D.A) (i : Fin 3) : Prop :=
@@ -2521,6 +2613,14 @@ def AdjacentMutualOmissionPairAt
     (∀ t : Fin 6, L.points t ∈ S.capInteriorByIndex i ↔ (t ≠ 0 ∧ t ≠ 5)) ∧
     Finset.univ.image (fun k : Fin 4 => L.points ⟨k.1 + 1, by omega⟩) =
       S.capInteriorByIndex i ∧
+    (∃ r : ℝ, 0 < r ∧
+      S.capInteriorByIndex i ⊆
+        SelectedClass D.A (S.oppositeVertexByIndex i) r ∧
+      (SelectedClass D.A (S.oppositeVertexByIndex i) r).card = 6 ∧
+      (SelectedClass D.A (S.oppositeVertexByIndex i) r ∩
+        S.leftAdjacentCapByIndex i).card = 1 ∧
+      (SelectedClass D.A (S.oppositeVertexByIndex i) r ∩
+        S.rightAdjacentCapByIndex i).card = 1) ∧
     ∃ s t : Fin 6, L.points s ∈ S.capInteriorByIndex i ∧
       L.points t ∈ S.capInteriorByIndex i ∧ t.1 = s.1 + 1 ∧
       ∃ (hs : L.points s ∈ D.A) (ht : L.points t ∈ D.A),
@@ -2543,14 +2643,17 @@ one circle about the apex opposite cap `i`, adjacent slots never lie on one
 another's actual critical shell
 (`not_mem_selected_support_of_adjacent_interior_slots_of_oneRadius`), so
 slots `1` and `2` form a mutually omitting pair with both cross-deletions
-surviving and distinct blocker centres.  This retains the slot order that
+surviving and distinct blocker centres, and the apex class at the interior
+radius has exactly six points
+(`selectedClass_card_eq_six_of_oneRadius_card_eq_fifteen`).  This retains
+the slot order that
 `exists_mutualCrossDeletion_pair_of_sourceFaithfulFan_no_centerBlocker`
 discards; it does not narrow the residual. -/
 theorem adjacentMutualOmissionPairAt_of_oneRadius_card_eq_fifteen
     {D : CounterexampleData} {S : SurplusCapPacket D.A}
     {H : CriticalShellSystem D.A}
     (G : TriApexAllLargeContext D S) (hcard : D.A.card = 15) (i : Fin 3)
-    {r : ℝ} {T : Finset ℝ²}
+    {r : ℝ} (hr : 0 < r) {T : Finset ℝ²}
     (hT : T ⊆ SelectedClass D.A (S.oppositeVertexByIndex i) r ∩
       S.capInteriorByIndex i)
     (hTeq : T = S.capInteriorByIndex i) :
@@ -2565,6 +2668,7 @@ theorem adjacentMutualOmissionPairAt_of_oneRadius_card_eq_fifteen
       rw [hTeq]
       exact hx
     exact (Finset.mem_inter.mp (hT hxT)).1
+  have hsix := selectedClass_card_eq_six_of_oneRadius_card_eq_fifteen G hcard i hr hslice
   have h1 : L.points 1 ∈ S.capInteriorByIndex i :=
     (hint 1).mpr ⟨by decide, by decide⟩
   have h2 : L.points 2 ∈ S.capInteriorByIndex i :=
@@ -2579,7 +2683,8 @@ theorem adjacentMutualOmissionPairAt_of_oneRadius_card_eq_fifteen
       (H.selectedAt (L.points 2) h2A).toCriticalFourShell.support :=
     not_mem_selected_support_of_adjacent_interior_slots_of_oneRadius G i
       hslice Packet side order himage h2 h1 (Or.inr (by decide)) h2A
-  exact ⟨L, Packet, side, order, hcap, hends, hint, himage, 1, 2, h1, h2,
+  exact ⟨L, Packet, side, order, hcap, hends, hint, himage,
+    ⟨r, hr, hslice, hsix.1, hsix.2.1, hsix.2.2⟩, 1, 2, h1, h2,
     by decide, h1A, h2A, h12, h21,
     (cross_deletion_survives_iff_not_mem_selected_support H h1A).mpr h12,
     (cross_deletion_survives_iff_not_mem_selected_support H h2A).mpr h21,
@@ -2603,10 +2708,10 @@ theorem twoRadii_or_adjacentMutualOmissionPairAt_of_card_eq_fifteen
         T₁.card = 2 ∧ T₂.card = 2 ∧ W.support = T₁ ∪ T₂) ∨
       AdjacentMutualOmissionPairAt D S H i := by
   cases W with
-  | oneRadius r _ T hT _ =>
+  | oneRadius r hr T hT _ =>
       right
       exact adjacentMutualOmissionPairAt_of_oneRadius_card_eq_fifteen
-        G hcard i hT hW
+        G hcard i hr hT hW
   | twoRadii r₁ r₂ hr₁ hr₂ hne T₁ T₂ hT₁ hT₂ hcard₁ hcard₂ =>
       left
       exact ⟨r₁, r₂, T₁, T₂, hr₁, hr₂, hne, hT₁, hT₂, hcard₁, hcard₂, rfl⟩
