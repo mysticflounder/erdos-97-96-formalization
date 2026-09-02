@@ -360,11 +360,18 @@ Lean route, in dependency order; every item names its consumer.
     `dedupClauses` and uses a structural `rfl`. Any kernel reasoning on
     `clauses` must route through that equation, or the mirror should be
     refactored so the fold loop is a separate parametric definition.
+    Boundary ingress DONE 2026-09-02 (P3.1 discharged):
+    `ATail/FrontierLiveClosure/DRExactTwelveBoundaryIngress.lean` (PROVEN;
+    axioms propext, Classical.choice, Quot.sound):
+    `exists_labelMap_boundaryEnumeration` gives, from the branch binders and
+    `hcard12`, `pt φ idx` with `LabelMap S pt` (apex labels 0, 1, 2 are
+    `oppApex2`, `oppApex1`, `surplusApex`; labels 3-5, 6-7, 8-11 land in the
+    surplus, first-opposite, second-opposite interiors; `pt` injective with
+    image `D.A`) and `ConvexBoundaryEnumeration pt φ idx`, via
+    `ZeroCutBoundaryIndexing.exists_with_capBlocks` and the L1 profile.
     Remaining: the packet slice (`secondApexRows`, `firstApexClass`,
-    `blockers`, `ingress`) from an abstract `PacketValuation`, the label-map
-    boundary ingress (`LabelMap` + `ConvexBoundaryEnumeration` from
-    `ZeroCutBoundaryIndexing.exists_with_capBlocks`), and the instantiation
-    of `K4Valuation`/`PacketValuation` from the branch data.
+    `blockers`, `ingress`) from an abstract `PacketValuation`, and the
+    instantiation of `K4Valuation`/`PacketValuation` from the branch data.
   - P3.5 as below; P3.6 splits the leaf.
   Scale precedent: `ExactFiveCommonShellV7G3Replay` replayed an 861 MB
   source LRAT (421,331 additions, 93 M hints, 165 windows, 399 MB compact
