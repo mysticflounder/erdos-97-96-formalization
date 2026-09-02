@@ -120,6 +120,77 @@ structure RobustApexFourIncidenceContinuationPacket
   a_mem_row₂ : a ∈ surface.row₂.support
   continuation : RobustApexFourIncidenceContinuation D H surface
 
+/-- Once the first two cross-incidences are positive, the second row cannot
+place both preceding centers on its full radius circle.  This is stronger than
+a support-level exclusion: it also rules out an equal-radius point omitted
+from the selected four-point support. -/
+theorem RobustApexFourIncidenceContinuationPacket.secondRow_crossCenter_metric_exclusive
+    {D : CounterexampleData} {H : CriticalShellSystem D.A}
+    {O c₁ c₂ a : ℝ²} {B₀ B₁ B₂ : Finset ℝ²}
+    (P : RobustApexFourIncidenceContinuationPacket
+      D H O c₁ c₂ a B₀ B₁ B₂)
+    (hc₁K₀ : c₁ ∈ P.surface.row₀.support)
+    (hOK₁ : O ∈ P.surface.row₁.support) :
+    ¬ (dist c₂ O = P.surface.row₂.radius ∧
+      dist c₂ c₁ = P.surface.row₂.radius) := by
+  rintro ⟨hO₂, hc₁₂⟩
+  let B := P.boundaryIndexing
+  let OLabel : CarrierLabel D.A := ⟨O, P.surface.O_mem_A⟩
+  let c₁Label : CarrierLabel D.A := ⟨c₁, P.surface.c₁_mem_A⟩
+  let c₂Label : CarrierLabel D.A := ⟨c₂, P.surface.c₂_mem_A⟩
+  let aLabel : CarrierLabel D.A :=
+    ⟨a, P.surface.row₀.support_subset_A P.surface.a_mem_row₀⟩
+  have hO_ne_c₁ : OLabel ≠ c₁Label := by
+    intro h
+    exact P.surface.O_ne_c₁ (congrArg Subtype.val h)
+  have hO_ne_c₂ : OLabel ≠ c₂Label := by
+    intro h
+    exact P.surface.O_ne_c₂ (congrArg Subtype.val h)
+  have hc₁_ne_c₂ : c₁Label ≠ c₂Label := by
+    intro h
+    exact P.surface.c₁_ne_c₂ (congrArg Subtype.val h)
+  have ha_ne_O : aLabel ≠ OLabel := by
+    intro h
+    have haO : a = O := congrArg Subtype.val h
+    exact P.surface.row₀.center_not_mem (by
+      simpa only [haO] using P.surface.a_mem_row₀)
+  have ha_ne_c₁ : aLabel ≠ c₁Label := by
+    intro h
+    have hac₁ : a = c₁ := congrArg Subtype.val h
+    exact P.surface.row₁.center_not_mem (by
+      simpa only [hac₁] using P.a_mem_row₁)
+  have hsep02 :
+      separatedPair
+        (B.indexOf OLabel) (B.indexOf c₂Label)
+        (B.indexOf aLabel) (B.indexOf c₁Label) := by
+    apply SurplusCOMPGBank.btw_sep B.boundary_ccw B.boundary_injective
+    · exact B.index_injective.ne hO_ne_c₂
+    · exact B.index_injective.ne hO_ne_c₁.symm
+    · exact B.index_injective.ne hc₁_ne_c₂
+    · simpa only [B.point_eq, pointOf, dist_comm] using
+        (P.surface.row₀.support_eq_radius a P.surface.a_mem_row₀).trans
+          (P.surface.row₀.support_eq_radius c₁ hc₁K₀).symm
+    · simpa only [B.point_eq, pointOf, dist_comm] using
+        (P.surface.row₂.support_eq_radius a P.a_mem_row₂).trans hc₁₂.symm
+    · exact B.boundary_injective.ne (B.index_injective.ne ha_ne_c₁)
+  have hsep12 :
+      separatedPair
+        (B.indexOf c₁Label) (B.indexOf c₂Label)
+        (B.indexOf aLabel) (B.indexOf OLabel) := by
+    apply SurplusCOMPGBank.btw_sep B.boundary_ccw B.boundary_injective
+    · exact B.index_injective.ne hc₁_ne_c₂
+    · exact B.index_injective.ne hO_ne_c₁
+    · exact B.index_injective.ne hO_ne_c₂
+    · simpa only [B.point_eq, pointOf, dist_comm] using
+        (P.surface.row₁.support_eq_radius a P.a_mem_row₁).trans
+          (P.surface.row₁.support_eq_radius O hOK₁).symm
+    · simpa only [B.point_eq, pointOf, dist_comm] using
+        (P.surface.row₂.support_eq_radius a P.a_mem_row₂).trans hO₂.symm
+    · exact B.boundary_injective.ne (B.index_injective.ne ha_ne_O)
+  exact
+    (separatedPair_rotated_incompatible
+      (B.index_injective.ne hO_ne_c₁) hsep02) hsep12
+
 /-- A five-incidence packet reduces to four prefix-preserving source
 positions.  The unused `c₂ ∈ row₁` test is unnecessary: if the other four
 cross-incidences are positive, `row₀,row₂` share `a,c₁`, while `row₁,row₂`

@@ -81,6 +81,25 @@ gate for this checkpoint.
 The refined final constructor retains three positive cross-incidences; earlier
 constructors retain their shorter prefixes.  The obsolete
 `secondCenter_not_mem_firstRow` position is removed from the live endpoint.
+
+There is a further circle-level consequence in the last two positions.
+Whenever `c₁ ∈ row₀` and `O ∈ row₁`, the two equalities
+
+```text
+dist c₂ O = row₂.radius
+dist c₂ c₁ = row₂.radius
+```
+
+are incompatible.  They would reproduce the same two rotated separations as
+the all-positive support branch, but the proof uses the metric equalities
+directly and therefore does not assume that either point belongs to the
+chosen four-point support.  This is kernel-checked as
+`RobustApexFourIncidenceContinuationPacket.secondRow_crossCenter_metric_exclusive`.
+In the fourth support position, the positive membership `O ∈ row₂` therefore
+upgrades `c₁ ∉ row₂` to exclusion from the full row₂ radius circle.  In the
+third position it rules out the simultaneous full-circle hit by `O` and
+`c₁`.
+
 No current theorem closes all four remaining common-deletion positions.  The
 next proof obligation is a source-entitled consumer of those strictly narrower
 packets from the full exact-five and common-deletion context.  Adding a new
