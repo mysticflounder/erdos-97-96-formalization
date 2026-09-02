@@ -202,6 +202,13 @@ registered_at = "2026-09-01T23:45:02+00:00"
 updated_at = "2026-09-01T23:45:02+00:00"
 
 [[offspine]]
+symbol = "Problem97.Fin14RegressionRowSystem.verifies_fin14_regression"
+category = "diagnostic"
+reason = "Literal fourteen-point combinatorial regression for the weak row-system interface; not a geometric carrier or P97 counterexample."
+registered_at = "2026-09-02T00:47:37+00:00"
+updated_at = "2026-09-02T00:47:37+00:00"
+
+[[offspine]]
 symbol = "Problem97.GeneralCarrierAbstractRowSystem.system_hasBlockerSection"
 category = "infra"
 reason = "Source-faithful carrier adapter export of the critical-shell blocker section."

@@ -1,0 +1,15 @@
+{
+  "base_head": "11044dcc403c7145d64696059b5e1895e72a9231",
+  "created_utc": "2026-09-02T00:42:22Z",
+  "durable_paths": [],
+  "generated_roots": [],
+  "lane_id": "rvol-fin14-regression-formalization-20260901",
+  "manifest_sha256": "1bb0b56a7cb4089867fc6d85b209fc7a80abffa86459d2e30e0fb46866414dbd",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/rvol-fin14-regression-formalization-20260901.json",
+    "intent/offspine.toml",
+    "lean/Erdos9796Proof/P97/Fin14RegressionRowSystem.lean"
+  ],
+  "owner": "codex",
+  "schema": "worktree-lane-checkpoint/v1"
+}
