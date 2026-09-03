@@ -1,0 +1,14 @@
+{
+  "base_head": "8dfa891c36161dcfaa526a526296163659839266",
+  "created_utc": "2026-09-03T09:00:00Z",
+  "durable_paths": [],
+  "generated_roots": [],
+  "lane_id": "plus4-equality-profile-20260903",
+  "manifest_sha256": "ccb7adc55058abaefa31d88d97ad252b1bb33a145ea864f53cc5d742d1cad8ec",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/plus4-equality-profile-20260903.json",
+    "lean/Erdos9796Proof/P97/CapSelectedRowCounting.lean"
+  ],
+  "owner": "codex",
+  "schema": "worktree-lane-checkpoint/v1"
+}

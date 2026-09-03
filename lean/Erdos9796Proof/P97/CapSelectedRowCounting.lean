@@ -1092,6 +1092,47 @@ theorem SurplusCapPacket.selectedClass_support_inter_surplusCap_card_eq
           L.points j = (S.triangleByIndex S.surplusIdx).v3 then 1 else 2 := by
       simp only [hpointEndpoints]
 
+/-- The card-eleven equality profile also fixes the number of support points
+    outside the ordered cap: three for an endpoint row and two for an interior
+    row.  This is the outside-support normal form needed by pair-saturation
+    consumers. -/
+theorem orderedCap_selected_support_sdiff_card_eq_of_six_five
+    {A : Finset ℝ²} {L : CGN.OrderedCap 6}
+    (Packet : CGN.MecCapPacket A L)
+    (Hside : CGN.MinorCapSideHypotheses Packet)
+    (Hord : CGN.StrictCapOrder A L)
+    (hconv : ConvexIndep A) (F : FaithfulCarrierPattern A)
+    (houtside : (A \ Finset.univ.image L.points).card = 5)
+    (j : Fin 6) :
+    ((F.classAt (L.points j) (Packet.mem_A j)).support \
+        Finset.univ.image L.points).card =
+      if j = CGN.firstIndex Packet.hm then 3
+      else if j = CGN.lastIndex Packet.hm then 3 else 2 := by
+  classical
+  have hcap := orderedCap_selected_support_inter_card_eq_of_six_five
+    Packet Hside Hord hconv F houtside j
+  have hsplit :
+      ((F.classAt (L.points j) (Packet.mem_A j)).support \
+          Finset.univ.image L.points).card +
+          ((F.classAt (L.points j) (Packet.mem_A j)).support ∩
+            Finset.univ.image L.points).card = 4 := by
+    rw [Finset.card_sdiff_add_card_inter,
+      (F.classAt (L.points j) (Packet.mem_A j)).support_card]
+  rw [hcap] at hsplit
+  by_cases hfirst : j = CGN.firstIndex Packet.hm
+  · subst j
+    simp only [if_pos]
+    simp only [if_pos] at hsplit
+    omega
+  · by_cases hlast : j = CGN.lastIndex Packet.hm
+    · subst j
+      simp only [if_neg hfirst, if_pos]
+      simp only [if_neg hfirst, if_pos] at hsplit
+      omega
+    · simp only [if_neg hfirst, if_neg hlast]
+      simp only [if_neg hfirst, if_neg hlast] at hsplit
+      omega
+
 end CapSelectedRowCounting
 
 end Problem97
