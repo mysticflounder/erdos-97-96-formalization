@@ -1,0 +1,14 @@
+{
+  "base_head": "ef5e3239af374107f8c56e6885520414fd15d89c",
+  "created_utc": "2026-09-03T10:20:00Z",
+  "durable_paths": [],
+  "generated_roots": [],
+  "lane_id": "cap-betweenness-unit-20260903",
+  "manifest_sha256": "21ef7de28ecfa401880ea4b3d191397a241345a91fb8b837d001fad0490b6fc5",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/cap-betweenness-unit-20260903.json",
+    "lean/Erdos9796Proof/P97/CapSelectedRowCounting.lean"
+  ],
+  "owner": "codex",
+  "schema": "worktree-lane-checkpoint/v1"
+}

@@ -146,6 +146,21 @@ theorem boundary_indices_cyclically_between_of_equidistant
     linarith
   omega
 
+/-- A cap point that is not between two local cap indices in the retained
+global boundary block cannot be equidistant from those two points. -/
+theorem StrictCapBlockData.not_equidistant_of_boundary_not_between
+    {A C : Finset ℝ²} (B : StrictCapBlockData A C)
+    {j r s : Fin B.m}
+    (hrs : r < s) (hjr : j ≠ r) (hjs : j ≠ s)
+    (hnot : ¬ (B.Block.idx r < B.Block.idx j ∧
+      B.Block.idx j < B.Block.idx s)) :
+    dist (B.L.points j) (B.L.points r) ≠
+      dist (B.L.points j) (B.L.points s) := by
+  intro heq
+  have hlocal := index_strictly_between_of_equidistant
+    B.Packet B.Hside B.Hord hrs hjr hjs heq
+  exact hnot ⟨B.Block.idx_strict hlocal.1, B.Block.idx_strict hlocal.2⟩
+
 end CGN
 
 namespace CapSelectedRowCounting
