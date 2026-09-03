@@ -934,6 +934,28 @@ theorem tightPhysical_retainedPacket_fresh_not_mem_and_deleted_mem
   · rw [hrow]
     exact Finset.mem_insert.mpr (Or.inl rfl)
 
+/-- At the common second physical apex, the retained-deletion row and the
+normal-form second row either have the same radius or are disjoint.  This is
+the same-center selected-row dichotomy after converting the q-deleted row to
+its ambient four-class. -/
+theorem tightPhysical_retainedPacket_secondRow_sameCenter_radius_eq_or_disjoint
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F}
+    {deleted blocker : ℝ²}
+    {C : CommonDeletionTwoCenterPacket D H deleted blocker S.oppApex2}
+    (N : ExactFiveDistinctThreeCenterNormalForm R C)
+    (P : CommonDeletionTwoCenterPacket D H N.retained
+      S.oppApex1 S.oppApex2) :
+    P.row₂.radius = N.secondApexClass.radius ∨
+      Disjoint P.B₂ N.secondApexClass.support := by
+  let P₂ : SelectedFourClass D.A S.oppApex2 :=
+    qDeletedK4ClassToSelectedFourClass P.row₂ P.B₂_card
+  have h := selectedRows_sameCenter_radius_eq_or_disjoint_public
+    P₂ N.secondApexClass
+  simpa [P₂, qDeletedK4ClassToSelectedFourClass] using h
+
 /-- In the tight union branch, the fixed first row of the retained-deletion
 packet is disjoint from both other normal-form rows. -/
 theorem tightPhysical_retainedPacket_firstRow_disjoint_normalOthers

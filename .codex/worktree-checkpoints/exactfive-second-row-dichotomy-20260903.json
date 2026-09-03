@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "exactfive-second-row-dichotomy-20260903",
+  "owner": "codex-exactfive-second-row-dichotomy",
+  "base_head": "2ac8b3f3313b57e5bfc8dfd4f74a7ddafc1a7c83",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exactfive-second-row-dichotomy-20260903.json",
+    "lean/Erdos9796Proof/P97/ATail/ExactFiveDistinctThreeCenterTightCover.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-03T16:24:00Z",
+  "manifest_sha256": "23ba5088182fbaed939eb998c12693f3136e795e6197297c93ceda0c74137727"
+}
