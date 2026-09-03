@@ -313,8 +313,9 @@ Kalmanson and the first-apex equality `dist(O,a) = dist(O,d)`.  The governed
 build, proof-blueprint axiom audit, and adversarial proof audit all pass.
 
 The alias-only deliverable is now implemented and independently checked:
-961 profiles have `c₁ = U`, 6,642 have `c₁ ≠ U`, for 7,603 unique canonical
-partitions under the recorded abstract overlap rules.  This completes the
-finite alias prefix only.  The next execution step is to combine each alias
-profile with the now-proved source-authorized order cells before considering a
-governed PiQD run.
+961 profiles have `c₁ = U`, 1,837 have `c₁ ≠ U`, for 2,798 unique canonical
+partitions after enforcing the strict-cap distinctions `U ≠ u,v,e,x,y`.  The
+earlier 7,603 count included 4,805 source-incompatible partitions and is
+superseded.  This completes the finite alias prefix only.  The next execution
+step is to combine each alias profile with the now-proved source-authorized
+order cells before considering a governed PiQD run.

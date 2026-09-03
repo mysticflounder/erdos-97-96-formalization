@@ -303,14 +303,18 @@ under the audited abstract overlap rules:
 
 ```text
 c1 = U:     961 profiles
-c1 ≠ U:   6,642 profiles
-total:    7,603 profiles
+c1 ≠ U:   1,837 profiles
+total:    2,798 profiles
 ```
 
-All partitions and stable profile hashes are unique, and the focused Python
-suite passes all 25 tests.  These counts are exact for the encoded alias rules,
-not yet a Lean theorem that those rules exhaust the source.  They contain no
-cyclic placements, order cells, metric constraints, or solver verdict, so the
-live PiQD run remains unauthorized until these aliases are combined with the
-source-authorized cyclic-order cells and the source-to-profile coverage
-boundary is proved or explicitly retained as a conditional assumption.
+The radial-order audit exposed five additional source distinctions:
+`U ≠ u,v,e,x,y`, since `U` is a cap apex while those roles lie in strict cap
+interiors.  Enforcing them removes 4,805 source-incompatible profiles from the
+earlier 7,603-profile abstraction.  All 2,798 retained partitions and stable
+profile hashes are unique, and the focused Python suite passes all 25 tests.
+These counts are exact for the encoded alias rules, not yet a Lean theorem that
+those rules exhaust the source.  They contain no cyclic placements, order
+cells, metric constraints, or solver verdict, so the live PiQD run remains
+unauthorized until these aliases are combined with the source-authorized
+cyclic-order cells and the source-to-profile coverage boundary is proved or
+explicitly retained as a conditional assumption.
