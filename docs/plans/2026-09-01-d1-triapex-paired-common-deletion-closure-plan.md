@@ -2973,3 +2973,35 @@ the angle form gives all three apexes coordinates. That is a question about
 how the patterns were extracted, predating this wave, and it should be
 answered before the metric layer is called complete rather than complete at
 the encoded scope.
+
+### 37. The `in12` flag concerns shells, not existence; section 36's foundation holds (2026-09-03)
+
+Section 36 flagged, without resolving it, that the cell name marks the census
+as modelling twelve points while the angle form gives fifteen coordinates. The
+flag is discharged: `in12` says which points CARRY a shell, not which points
+exist.
+
+`Cell.points` returns the twelve cap-interior labels, and with `apex_shells`
+the three apexes as well (`census/card_head/d1_mu0_incidence_census.py:191-196`).
+It is consumed only as the index set of the shell data and the CNF variables --
+`pattern.centre[x]` and `pattern.shell[x]` for `x in cell.points`
+(`:1424-1427`), and the `c`/`s` literals at `:2072-2076`. The apex class
+objects are modelled separately by `Cell.classes()`, which emits one or two per
+apex for every arm regardless of `apex_shells` (`:204-210`).
+
+The model records agree. Each carries twelve `shell` keys and no apex key,
+three class centres `A0.0`, `A1.0`, `A2.0`, and apexes as ordinary members of
+shell supports and classes -- for example
+`"P0.1": ["A2", "P0.1", "P1.3", "P2.2"]` and
+`"A1.0": ["A0", "A2", "P1.1", ...]`.
+
+So the three apexes are genuine points of the configuration in an `in12` cell;
+what the flag withholds is only their own shells. Giving all three apexes
+coordinates in the angle form is correct, "exact-15" is the right description
+of the metric layer even here, and the section 36 chain -- which needs the
+apexes to be points of `A` -- is not affected.
+
+One naming trap worth recording: the encoding metadata field is
+`modelled_points` (`:2259`) and it holds `cell.points`, so it means
+shell-carrying points, not all points of the configuration. Reading it as the
+latter is what raised the flag.
