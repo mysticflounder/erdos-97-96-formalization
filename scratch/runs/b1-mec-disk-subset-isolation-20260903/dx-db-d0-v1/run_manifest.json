@@ -1,0 +1,5 @@
+{
+  "schema": "worktree-run-manifest/v1", "lane_id": "b1-mec-disk-subset-isolation-20260903", "run_id": "dx-db-d0-v1", "root": "scratch/runs/b1-mec-disk-subset-isolation-20260903/dx-db-d0-v1", "owner": "Codex-B1-Sorry", "base_head": "5d5e6faf74ef1b9ec5d008312ea3eaf50c0890f7", "output_classes": ["artifacts", "events", "tmp"],
+  "source_digests": {"census/endpoint_confinement/metric_realizability_piqd.py": "893f87b638af361dc2ec8fd7c1e4c983a9cd93a01f4bc6b3eeccc326d6292962", "census/endpoint_confinement/metric_realizability_probe.py": "15d5e10a9402e87e4bbe2d03694f421c47939f87fc72a98ef9c7d3dd6955075e", "census/p97_search/phase3_piqd_smt_source_adapter.py": "94058aa4e04b5acc27242b52781794944ea00a069b16805104d3263203d65e70"},
+  "input_digests": {"scratch/runs/b1-full-mec-elimination-wave-20260903/elimination-v1/source.json": "dc310082e5430b32bb6b0829ff627586f9d1a10111a3fe7fc9bfbbe8b955ee09"}, "created_utc": "2026-09-03T16:56:22Z", "manifest_sha256": "0b51c9d5d16da17e1b1dcd62ef13dd22aafff80f3bc1a93a0efe120c78cc79a5"
+}

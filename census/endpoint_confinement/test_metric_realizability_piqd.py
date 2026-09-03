@@ -321,10 +321,29 @@ def _mec_direct_source_document(
     }
 
 
+def _mec_center_zero_source_document() -> dict[str, Any]:
+    rows = (producer.MetricRow(0, (1, 3), True),)
+    system: dict[str, Any] = {
+        "n": 4,
+        "order": [0, 1, 2, 3],
+        "rows": [row.as_dict() for row in rows],
+        "mec_apices": [0, 1, 2],
+    }
+    identity = producer._direct_system_key(
+        system["n"], system["order"], rows, system["mec_apices"]
+    )
+    return {
+        "schema": producer.DIRECT_SYSTEM_MEC_SOURCE_SCHEMA,
+        "system_id": hashlib.sha256(identity.encode()).hexdigest()[:20],
+        **system,
+    }
+
+
 def _mec_values(
     variable_ids: Sequence[str],
     *,
     mx: str = "(/ 1 2)",
+    my: str = "(/ 1 2)",
     r2: str = "(/ 1 2)",
     third_x: str = "1",
     third_y: str = "1",
@@ -341,7 +360,7 @@ def _mec_values(
         "x_3": fourth_x,
         "y_3": fourth_y,
         "mec_x": mx,
-        "mec_y": "(/ 1 2)",
+        "mec_y": my,
         "mec_r2": r2,
     }
     terms = {
@@ -1233,6 +1252,7 @@ def test_direct_source_reconstructs_exact_six_point_row_and_capture(
     assert prepared.source_record["constraint_counts"]["exactness"] == 1
     assert prepared.source_record["normalization"]["mec_parameterization"] == {
         "schema": subject.MEC_PARAMETERIZATION_SCHEMA,
+        "selector": "fully-eliminated",
         "mode": "none",
         "declared_terms": [],
         "exact_substitutions": {},
@@ -1310,6 +1330,7 @@ def test_mec_direct_source_binds_apices_atoms_and_query_custody(
         )
         assert prepared.source_record["normalization"]["mec_parameterization"] == {
             "schema": subject.MEC_PARAMETERIZATION_SCHEMA,
+            "selector": "fully-eliminated",
             "mode": "gauge-fully-eliminated",
             "declared_terms": [],
             "third_apex": 2,
@@ -1326,8 +1347,8 @@ def test_mec_direct_source_binds_apices_atoms_and_query_custody(
         assert prepared.query.descriptor["semantic_input"][
             "source_record_sha256"
         ] == _sha(prepared.source_record_bytes)
-        assert prepared.query.descriptor["producer"]["version"] == "v4"
-        assert prepared.query.descriptor["semantic_verifier"]["version"] == "v4"
+        assert prepared.query.descriptor["producer"]["version"] == "v6"
+        assert prepared.query.descriptor["semantic_verifier"]["version"] == "v6"
         assert {
             "(assert (> y_2 0))",
             "(assert (<= (* y_2 (+ (- (* x_3 x_3) x_3) (* y_3 y_3))) (* y_3 (+ (- (* x_2 x_2) x_2) (* y_2 y_2)))))",
@@ -1405,6 +1426,7 @@ def test_ungauged_mec_parameterization_is_bound_into_descriptor_source_custody(
     assert system["system_id"] == document["system_id"]
     assert prepared.source_record["normalization"]["mec_parameterization"] == {
         "schema": subject.MEC_PARAMETERIZATION_SCHEMA,
+        "selector": "fully-eliminated",
         "mode": "full-three-variable",
         "declared_terms": ["mec_x", "mec_y", "mec_r2"],
         "exact_substitutions": {},
@@ -1580,12 +1602,27 @@ def test_mec_markdown_ledger_reports_encoded_packet() -> None:
                 "decisive_stage_counts": {"none": 1},
             },
             "selected_systems": 1,
-            "results": [{"mec_apices": [0, 1, 2]}],
-            "config": {"workers": 1, "timeout_seconds": 1},
+            "results": [
+                {
+                    "mec_apices": [0, 1, 2],
+                    "mec_parameterization_record": {
+                        "mode": "gauge-one-height-quadratic"
+                    },
+                }
+            ],
+            "config": {
+                "workers": 1,
+                "timeout_seconds": 1,
+                "mec_components": "disk-only",
+                "mec_disk_points": [2, 3],
+            },
             "smoke": {"passed": True},
         }
     )
-    assert "for each declared MEC packet" in markdown
+    assert "`mec_y` with a positive third-apex" in markdown
+    assert "ordered selected labels 2, 3" in markdown
+    assert "shared-radius anchor" in markdown
+    assert "nonobtuse inequalities" not in markdown
     assert "quantified minimum-radius clause" in markdown
     assert "minimal-enclosing-circle, nonobtuse-frame" not in markdown
 
@@ -1698,8 +1735,17 @@ def test_mec_component_selector_is_bound_into_query_and_source_identity(
     assert prepared.query.descriptor["semantic_input"]["mec_components"] == (
         mec_components
     )
+    disk_points = list(range(system["n"])) if disk_count else []
+    assert prepared.source_record["mec_disk_points"] == disk_points
+    assert prepared.query.descriptor["semantic_input"]["mec_disk_points"] == (
+        disk_points
+    )
     assert prepared.query.descriptor["query_id"] == (
-        f"{system['system_id']}-exact-metric-relaxation-mec-{mec_components}"
+        f"{system['system_id']}-exact-metric-relaxation-mec-{mec_components}-"
+        "param-fully-eliminated-"
+        f"{subject._sha(subject._canonical(prepared.source_record['normalization']['mec_parameterization']))[:16]}-"
+        "disk-"
+        f"{subject._sha(subject._canonical(disk_points))[:16]}"
     )
     assert prepared.source_record["constraint_counts"]["mec_disk"] == disk_count
     assert prepared.source_record["constraint_counts"]["mec_nonobtuse"] == (
@@ -1785,6 +1831,341 @@ def test_mec_component_replay_checks_only_selected_payload_atoms(
     assert replay.evidence == {"reason": "mec_nonobtuse"}
 
 
+def test_mec_disk_point_subset_controls_atoms_counts_and_query_identity(
+    tmp_path: Path, monkeypatch: Any
+) -> None:
+    monkeypatch.setattr(producer, "ROOT", tmp_path)
+    monkeypatch.setattr(subject, "_REPO_ROOT", tmp_path)
+    source = tmp_path / "direct-mec-system.json"
+    source.write_text(
+        json.dumps(
+            _mec_direct_source_document(), sort_keys=True, separators=(",", ":")
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    [system], _extraction = producer.extract_systems((source,))
+    selected = subject.prepare_stage(
+        system,
+        "exact-metric-relaxation",
+        timeout_ms=1000,
+        source_paths=(source,),
+        mec_components="disk-only",
+        mec_disk_points=(3, 1),
+    )
+    reversed_selection = subject.prepare_stage(
+        system,
+        "exact-metric-relaxation",
+        timeout_ms=1000,
+        source_paths=(source,),
+        mec_components="disk-only",
+        mec_disk_points=(1, 3),
+    )
+    atoms, counts = subject._stage_atoms(
+        system,
+        "exact-metric-relaxation",
+        mec_components="disk-only",
+        mec_disk_points=(3, 1),
+    )
+    all_atoms, _all_counts = subject._stage_atoms(
+        system, "exact-metric-relaxation", mec_components="disk-only"
+    )
+    assert atoms["mec_disk"] == [all_atoms["mec_disk"][3], all_atoms["mec_disk"][1]]
+    assert counts["mec_disk"] == 2
+    assert selected.source_record["mec_disk_points"] == [3, 1]
+    assert selected.query.descriptor["semantic_input"]["mec_disk_points"] == [3, 1]
+    assert selected.query.descriptor["query_id"] != (
+        reversed_selection.query.descriptor["query_id"]
+    )
+    assert selected.query.original_smt2 != reversed_selection.query.original_smt2
+
+
+@pytest.mark.parametrize(
+    ("mec_components", "mec_disk_points", "message"),
+    (
+        ("disk-only", (), "empty"),
+        ("disk-only", (1, 1), "distinct"),
+        ("disk-only", (4,), "outside"),
+        ("disk-only", (True,), "exact integers"),
+        ("nonobtuse-only", (1,), "disk-bearing"),
+    ),
+)
+def test_mec_disk_point_subset_rejects_invalid_selection(
+    mec_components: str,
+    mec_disk_points: Sequence[int],
+    message: str,
+) -> None:
+    document = _mec_direct_source_document()
+    system = {
+        "system_id": document["system_id"],
+        "n": document["n"],
+        "profile": [],
+        "order": document["order"],
+        "rows": document["rows"],
+        "sources": [],
+        "mec_apices": document["mec_apices"],
+    }
+    with pytest.raises(subject.EndpointMetricPiqdError, match=message):
+        subject.build_stage_smt2(
+            system,
+            "exact-metric-relaxation",
+            mec_components=mec_components,
+            mec_disk_points=mec_disk_points,
+        )
+
+
+def test_mec_disk_point_replay_checks_only_selected_labels(
+    tmp_path: Path, monkeypatch: Any
+) -> None:
+    monkeypatch.setattr(producer, "ROOT", tmp_path)
+    monkeypatch.setattr(subject, "_REPO_ROOT", tmp_path)
+    source = tmp_path / "direct-mec-system.json"
+    source.write_text(
+        json.dumps(
+            _mec_direct_source_document(), sort_keys=True, separators=(",", ":")
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    [system], _extraction = producer.extract_systems((source,))
+    inside_only = subject.prepare_stage(
+        system,
+        "exact-metric-relaxation",
+        timeout_ms=1000,
+        source_paths=(source,),
+        mec_components="disk-only",
+        mec_disk_points=(0, 1, 2),
+    )
+    ids = inside_only.query.descriptor["solve"]["readback_variable_ids"]
+    fourth_outside = _mec_values(ids, fourth_x="3", fourth_y="3")
+    replay = subject.verify_sat_model(
+        inside_only.query, "z3", "(model)", fourth_outside
+    )
+    assert replay.accepted is True
+    assert replay.evidence["mec_disk_points"] == [0, 1, 2]
+    assert replay.evidence["checks"]["mec_disk"] == 3
+
+    outside_only = subject.prepare_stage(
+        system,
+        "exact-metric-relaxation",
+        timeout_ms=1000,
+        source_paths=(source,),
+        mec_components="disk-only",
+        mec_disk_points=(3,),
+    )
+    replay = subject.verify_sat_model(
+        outside_only.query, "z3", "(model)", fourth_outside
+    )
+    assert replay.accepted is False
+    assert replay.evidence == {"reason": "mec_disk_polynomial"}
+
+
+def test_one_height_quadratic_parameterization_formulas_and_identity(
+    tmp_path: Path, monkeypatch: Any
+) -> None:
+    monkeypatch.setattr(producer, "ROOT", tmp_path)
+    monkeypatch.setattr(subject, "_REPO_ROOT", tmp_path)
+    source = tmp_path / "direct-mec-system.json"
+    source.write_text(
+        json.dumps(
+            _mec_center_zero_source_document(),
+            sort_keys=True,
+            separators=(",", ":"),
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    [system], _extraction = producer.extract_systems((source,))
+    prepared = subject.prepare_stage(
+        system,
+        "exact-metric-relaxation",
+        timeout_ms=1000,
+        source_paths=(source,),
+        mec_components="disk-only",
+        mec_disk_points=(3, 2),
+        mec_parameterization="one-height-quadratic",
+    )
+    commands = set(prepared.query.journal_commands)
+    assert "(declare-fun mec_y () Real)" in commands
+    assert not any("declare-fun mec_x" in command for command in commands)
+    assert not any("declare-fun mec_r2" in command for command in commands)
+    assert "(assert (> y_2 0))" in commands
+    assert (
+        "(assert (= (* 2 y_2 mec_y) "
+        "(+ (- (* x_2 x_2) x_2) (* y_2 y_2))))"
+    ) in commands
+    assert (
+        "(assert (<= (- (- (+ (* x_1 x_1) (* y_1 y_1)) x_3) "
+        "(* 2 mec_y y_3)) 0))"
+    ) in commands
+    assert (
+        "(assert (<= (- (+ (- (* x_2 x_2) x_2) (* y_2 y_2)) "
+        "(* 2 mec_y y_2)) 0))"
+    ) in commands
+    counts = prepared.source_record["constraint_counts"]
+    assert counts["mec_gauge"] == 1
+    assert counts["mec_boundary"] == 1
+    assert counts["mec_radius_pos"] == 0
+    assert counts["mec_disk"] == 2
+    assert prepared.source_record["mec_parameterization"] == (
+        "one-height-quadratic"
+    )
+    parameterization = prepared.source_record["normalization"][
+        "mec_parameterization"
+    ]
+    assert parameterization["center_zero_anchor"] == {
+        "row_index": 0,
+        "anchor": 1,
+        "support": [1, 3],
+        "anchor_radius_term": "(+ (* x_1 x_1) (* y_1 y_1))",
+        "rewrite": "x_a^2+y_a^2-x-2*mec_y*y<=0",
+    }
+    assert prepared.query.descriptor["semantic_input"][
+        "mec_parameterization_record"
+    ] == parameterization
+    default = subject.prepare_stage(
+        system,
+        "exact-metric-relaxation",
+        timeout_ms=1000,
+        source_paths=(source,),
+        mec_components="disk-only",
+        mec_disk_points=(3, 2),
+    )
+    assert prepared.query.descriptor["query_id"] != default.query.descriptor[
+        "query_id"
+    ]
+
+
+def test_one_height_quadratic_exact_replay_checks_boundary_and_anchor_rewrite(
+    tmp_path: Path, monkeypatch: Any
+) -> None:
+    monkeypatch.setattr(producer, "ROOT", tmp_path)
+    monkeypatch.setattr(subject, "_REPO_ROOT", tmp_path)
+    source = tmp_path / "direct-mec-system.json"
+    source.write_text(
+        json.dumps(
+            _mec_center_zero_source_document(),
+            sort_keys=True,
+            separators=(",", ":"),
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    [system], _extraction = producer.extract_systems((source,))
+    prepared = subject.prepare_stage(
+        system,
+        "exact-metric-relaxation",
+        timeout_ms=1000,
+        source_paths=(source,),
+        mec_components="disk-only",
+        mec_disk_points=(3, 2),
+        mec_parameterization="one-height-quadratic",
+    )
+    ids = prepared.query.descriptor["solve"]["readback_variable_ids"]
+    replay = subject.verify_sat_model(
+        prepared.query, "z3", "(model)", _mec_values(ids)
+    )
+    assert replay.accepted is True
+    assert replay.evidence["checks"]["mec_boundary"] == 1
+    assert replay.evidence["checks"]["mec_disk"] == 2
+    assert replay.evidence["shared_radius_rewrite"][
+        "selected_support_points"
+    ] == [3]
+    assert replay.evidence["reconstructed_mec_packet_checks"] == {
+        "mec_radius_pos": 1,
+        "mec_boundary": 3,
+        "mec_disk": 2,
+        "mec_nonobtuse": 0,
+    }
+    replay = subject.verify_sat_model(
+        prepared.query, "z3", "(model)", _mec_values(ids, my="0")
+    )
+    assert replay.accepted is False
+    assert replay.evidence == {"reason": "mec_one_height_boundary"}
+    prepared.query.descriptor["semantic_input"]["mec_parameterization_record"][
+        "disk_rewrite"
+    ] = "crossed"
+    with pytest.raises(subject.EndpointMetricPiqdError, match="metadata is crossed"):
+        subject.verify_sat_model(
+            prepared.query, "z3", "(model)", _mec_values(ids)
+        )
+
+
+def test_one_height_quadratic_rejects_non_gauge_mec() -> None:
+    document = _mec_direct_source_document((1, 2, 3))
+    system = {
+        "system_id": document["system_id"],
+        "n": document["n"],
+        "profile": [],
+        "order": document["order"],
+        "rows": document["rows"],
+        "sources": [],
+        "mec_apices": document["mec_apices"],
+    }
+    with pytest.raises(subject.EndpointMetricPiqdError, match="gauge apices"):
+        subject.build_stage_smt2(
+            system,
+            "exact-metric-relaxation",
+            mec_parameterization="one-height-quadratic",
+        )
+
+
+@pytest.mark.parametrize(
+    ("mec_parameterization", "expected_boundary", "expected_total"),
+    (
+        ("fully-eliminated", 0, 15),
+        ("one-height-quadratic", 1, 16),
+    ),
+)
+def test_final_constraint_ledger_tracks_gauge_mec_parameterization(
+    tmp_path: Path,
+    monkeypatch: Any,
+    mec_parameterization: str,
+    expected_boundary: int,
+    expected_total: int,
+) -> None:
+    document = _mec_center_zero_source_document()
+    system = {
+        "system_id": document["system_id"],
+        "n": document["n"],
+        "profile": [],
+        "order": document["order"],
+        "rows": document["rows"],
+        "sources": [],
+        "mec_apices": document["mec_apices"],
+    }
+    monkeypatch.setattr(
+        producer,
+        "extract_systems",
+        lambda captured: ([system], {"captured": captured[0].read_bytes()}),
+    )
+    variables = subject._variables(
+        system["n"],
+        mec_apices=system["mec_apices"],
+        mec_parameterization=mec_parameterization,
+    )
+    result = subject.run_staged_system(
+        system,
+        timeout_s=1,
+        transport=FakeEndpointPiqd(
+            ["SAT", "SAT"],
+            values=_mec_values([item["id"] for item in variables]),
+        ),
+        output_directory=tmp_path / mec_parameterization,
+        source_paths=(Path(producer.__file__),),
+        mec_components="disk-only",
+        mec_disk_points=(3, 2),
+        mec_parameterization=mec_parameterization,
+    )
+    counts = result["constraint_counts"]
+    assert counts["mec_gauge"] == 1
+    assert counts["mec_radius_pos"] == 0
+    assert counts["mec_boundary"] == expected_boundary
+    assert counts["mec_disk"] == 2
+    assert counts["mec_nonobtuse"] == 0
+    assert result["stages"][0]["total_constraints"] == expected_total
+
+
 def test_published_output_reconstruction_preserves_mec_component_selector(
     tmp_path: Path, monkeypatch: Any
 ) -> None:
@@ -1829,15 +2210,152 @@ def test_published_output_reconstruction_preserves_mec_component_selector(
         "00-exact-metric-relaxation/source-record.json",
         lambda record: record.__setitem__("mec_components", "disk-only"),
     )
-    with pytest.raises(
-        subject.EndpointMetricPiqdError, match="does not reconstruct"
-    ):
+    with pytest.raises(subject.EndpointMetricPiqdError, match="MEC disk"):
         subject.validate_published_output(root)
 
 
+def test_published_output_reconstructs_selected_mec_disk_points(
+    tmp_path: Path, monkeypatch: Any
+) -> None:
+    document = _mec_direct_source_document()
+    system = {
+        "system_id": document["system_id"],
+        "n": document["n"],
+        "profile": [],
+        "order": document["order"],
+        "rows": document["rows"],
+        "sources": [],
+        "mec_apices": document["mec_apices"],
+    }
+    monkeypatch.setattr(
+        producer,
+        "extract_systems",
+        lambda captured: ([system], {"captured": captured[0].read_bytes()}),
+    )
+    variable_ids = [item["id"] for item in subject._variables(4)]
+    produced = subject.run_staged_system(
+        system,
+        timeout_s=1,
+        transport=FakeEndpointPiqd(
+            ["SAT", "SAT"], values=_mec_values(variable_ids)
+        ),
+        output_directory=tmp_path / "run",
+        source_paths=(Path(producer.__file__),),
+        mec_components="disk-only",
+        mec_disk_points=(3, 1),
+        mec_parameterization="one-height-quadratic",
+    )
+    checked = subject.validate_published_output(tmp_path / "run")
+    assert produced["mec_disk_points"] == [3, 1]
+    assert checked["mec_disk_points"] == [3, 1]
+    assert produced["mec_parameterization"] == "one-height-quadratic"
+    assert checked["mec_parameterization"] == "one-height-quadratic"
+    assert produced["mec_parameterization_record"]["mode"] == (
+        "gauge-one-height-quadratic"
+    )
+    assert checked["mec_parameterization_record"] == produced[
+        "mec_parameterization_record"
+    ]
+    assert checked["constraint_counts"]["mec_disk"] == 2
+    assert all(stage["mec_disk_points"] == [3, 1] for stage in checked["stages"])
+    assert all(
+        stage["mec_parameterization_record"]
+        == checked["mec_parameterization_record"]
+        for stage in checked["stages"]
+    )
+
+    _rewrite_publication_json(
+        tmp_path / "run",
+        "00-exact-metric-relaxation/source-record.json",
+        lambda record: record.__setitem__(
+            "mec_parameterization", "fully-eliminated"
+        ),
+    )
+    with pytest.raises(
+        subject.EndpointMetricPiqdError, match="does not reconstruct"
+    ):
+        subject.validate_published_output(tmp_path / "run")
+
+
 def test_probe_cli_exposes_mec_component_selector() -> None:
-    args = producer._parse_args(["--mec-components", "disk-only"])
+    args = producer._parse_args(
+        [
+            "--mec-components",
+            "disk-only",
+            "--mec-disk-point",
+            "3",
+            "--mec-disk-point",
+            "1",
+            "--mec-parameterization",
+            "one-height-quadratic",
+        ]
+    )
     assert args.mec_components == "disk-only"
+    assert args.mec_disk_points == [3, 1]
+    assert args.mec_parameterization == "one-height-quadratic"
+
+
+def test_probe_main_authenticates_one_height_parameterization_config(
+    tmp_path: Path, monkeypatch: Any
+) -> None:
+    document = _mec_center_zero_source_document()
+    system = {
+        "system_id": document["system_id"],
+        "n": document["n"],
+        "profile": [],
+        "order": document["order"],
+        "rows": document["rows"],
+        "sources": [],
+        "mec_apices": document["mec_apices"],
+    }
+    configs: list[dict[str, object]] = []
+    monkeypatch.setattr(
+        producer, "run_smoke", lambda *_args, **_kwargs: {"passed": True}
+    )
+    monkeypatch.setattr(
+        producer,
+        "extract_systems",
+        lambda _inputs: ([system], {"schema": "fixture"}),
+    )
+    monkeypatch.setattr(
+        producer,
+        "_write_checkpoint",
+        lambda *_args, **kwargs: configs.append(kwargs["config"]),
+    )
+    monkeypatch.setattr(
+        producer,
+        "probe_system",
+        lambda *_args, **_kwargs: {
+            "system_id": system["system_id"],
+            "status": "UNKNOWN",
+        },
+    )
+    monkeypatch.setattr(neutral, "UrllibPiqdTransport", lambda _url: object())
+    assert (
+        producer.main(
+            [
+                "--out",
+                str(tmp_path / "out.json"),
+                "--markdown",
+                str(tmp_path / "out.md"),
+                "--piqd-output-directory",
+                str(tmp_path / "custody"),
+                "--mec-components",
+                "disk-only",
+                "--mec-disk-point",
+                "3",
+                "--mec-parameterization",
+                "one-height-quadratic",
+            ]
+        )
+        == 0
+    )
+    assert configs
+    assert configs[0]["mec_disk_points"] == [3]
+    assert configs[0]["mec_parameterization"] == "one-height-quadratic"
+    record = configs[0]["mec_parameterization_records"][system["system_id"]]
+    assert record["center_zero_anchor"]["anchor"] == 1
+    assert record["disk_rewrite"] == "x^2-x+y^2-2*mec_y*y<=0"
 
 
 def test_probe_dispatches_selector_and_rejects_partial_legacy_route(
@@ -1859,9 +2377,16 @@ def test_probe_dispatches_selector_and_rejects_partial_legacy_route(
         selected: Mapping[str, Any],
         *,
         mec_components: str,
+        mec_disk_points: Sequence[int] | None,
+        mec_parameterization: str,
         **_kwargs: object,
     ) -> dict[str, object]:
-        seen.update(system=selected, mec_components=mec_components)
+        seen.update(
+            system=selected,
+            mec_components=mec_components,
+            mec_disk_points=mec_disk_points,
+            mec_parameterization=mec_parameterization,
+        )
         return {"system_id": selected["system_id"], "status": "UNKNOWN"}
 
     monkeypatch.setattr(
@@ -1876,9 +2401,18 @@ def test_probe_dispatches_selector_and_rejects_partial_legacy_route(
         piqd_transport=object(),
         piqd_output_directory=tmp_path / "unused",
         mec_components="disk-only",
+        mec_disk_points=(3, 1),
+        mec_parameterization="one-height-quadratic",
     )
-    assert seen == {"system": system, "mec_components": "disk-only"}
+    assert seen == {
+        "system": system,
+        "mec_components": "disk-only",
+        "mec_disk_points": (3, 1),
+        "mec_parameterization": "one-height-quadratic",
+    }
     assert result["mec_components"] == "disk-only"
+    assert result["mec_disk_points"] == [3, 1]
+    assert result["mec_parameterization"] == "one-height-quadratic"
 
     with pytest.raises(ValueError, match="requires the PIQD solver route"):
         producer.probe_system(

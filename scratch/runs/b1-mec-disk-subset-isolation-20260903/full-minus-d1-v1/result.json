@@ -1,0 +1,1102 @@
+{
+  "config": {
+    "checkpoint_every": 1,
+    "local_fallback": false,
+    "mec_components": "full",
+    "mec_disk_points": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      11,
+      12,
+      13,
+      14,
+      15,
+      17
+    ],
+    "mec_parameterization": "one-height-quadratic",
+    "mec_parameterization_records": {
+      "82c2dfe781d609472430": {
+        "boundary_equation": "(= (* 2 y_16 mec_y) (+ (- (* x_16 x_16) x_16) (* y_16 y_16)))",
+        "center_zero_anchor": {
+          "anchor": 2,
+          "anchor_radius_term": "(+ (* x_2 x_2) (* y_2 y_2))",
+          "rewrite": "x_a^2+y_a^2-x-2*mec_y*y<=0",
+          "row_index": 0,
+          "support": [
+            2,
+            6,
+            7,
+            11,
+            14,
+            17
+          ]
+        },
+        "declared_terms": [
+          "mec_y"
+        ],
+        "disk_rewrite": "x^2-x+y^2-2*mec_y*y<=0",
+        "exact_substitutions": {
+          "mec_r2": "(+ (/ 1 4) (* mec_y mec_y))",
+          "mec_x": "(/ 1 2)"
+        },
+        "mode": "gauge-one-height-quadratic",
+        "omitted_boundary_apices": [
+          0,
+          1
+        ],
+        "radius_reconstruction": "1/4+mec_y^2",
+        "required_guard": "(> y_16 0)",
+        "schema": "p97-endpoint-metric-mec-parameterization/v3",
+        "selector": "one-height-quadratic",
+        "third_apex": 16
+      }
+    },
+    "piqd_server": "http://127.0.0.1:7272",
+    "resume": false,
+    "solver_route": "piqd",
+    "timeout_seconds": 120.0,
+    "workers": 1
+  },
+  "extraction": {
+    "deduplicated_assignments": 0,
+    "input_files": [
+      {
+        "path": "scratch/runs/b1-full-mec-elimination-wave-20260903/elimination-v1/source.json",
+        "sha256": "dc310082e5430b32bb6b0829ff627586f9d1a10111a3fe7fc9bfbbe8b955ee09"
+      }
+    ],
+    "raw_assignments": 0,
+    "raw_direct_systems": 1,
+    "rejected_non_sat_assignments": 0,
+    "source_family_counts": {
+      "direct-metric-system": 1
+    },
+    "unique_metric_systems": 1
+  },
+  "generated_at": "2026-09-03T17:04:57.264084+00:00",
+  "results": [
+    {
+      "claims": {
+        "euclidean_problem97": false,
+        "global": false,
+        "lean": false,
+        "proof": false,
+        "source_entitlement": false,
+        "theorem": false,
+        "universal": false
+      },
+      "constraint_counts": {
+        "convex_order": 288,
+        "distinctness": 153,
+        "equalities": 14,
+        "exact_exclusions": 0,
+        "mec_boundary": 1,
+        "mec_disk": 13,
+        "mec_gauge": 1,
+        "mec_nonobtuse": 3,
+        "mec_radius_pos": 0
+      },
+      "decisive_stage": null,
+      "exact_row_count": 0,
+      "local_fallback": false,
+      "mec_apices": [
+        1,
+        16,
+        0
+      ],
+      "mec_components": "full",
+      "mec_disk_points": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        11,
+        12,
+        13,
+        14,
+        15,
+        17
+      ],
+      "mec_parameterization": "one-height-quadratic",
+      "mec_parameterization_record": {
+        "boundary_equation": "(= (* 2 y_16 mec_y) (+ (- (* x_16 x_16) x_16) (* y_16 y_16)))",
+        "center_zero_anchor": {
+          "anchor": 2,
+          "anchor_radius_term": "(+ (* x_2 x_2) (* y_2 y_2))",
+          "rewrite": "x_a^2+y_a^2-x-2*mec_y*y<=0",
+          "row_index": 0,
+          "support": [
+            2,
+            6,
+            7,
+            11,
+            14,
+            17
+          ]
+        },
+        "declared_terms": [
+          "mec_y"
+        ],
+        "disk_rewrite": "x^2-x+y^2-2*mec_y*y<=0",
+        "exact_substitutions": {
+          "mec_r2": "(+ (/ 1 4) (* mec_y mec_y))",
+          "mec_x": "(/ 1 2)"
+        },
+        "mode": "gauge-one-height-quadratic",
+        "omitted_boundary_apices": [
+          0,
+          1
+        ],
+        "radius_reconstruction": "1/4+mec_y^2",
+        "required_guard": "(> y_16 0)",
+        "schema": "p97-endpoint-metric-mec-parameterization/v3",
+        "selector": "one-height-quadratic",
+        "third_apex": 16
+      },
+      "n": 18,
+      "order": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17
+      ],
+      "output_custody": {
+        "entries": 52,
+        "inventory_sha256": "e36e19093c2a105a2a8ebe4075eaf4e27518e3f4be5fa39adbf902ddf821ced5",
+        "publication": "atomic-directory-rename-no-replace"
+      },
+      "piqd_submitted": true,
+      "profile": [],
+      "proof_blueprint": {
+        "changed": false,
+        "relation": "OFF_SPINE",
+        "session_id": "019fdf9c",
+        "state": "OPEN"
+      },
+      "requested_solver_route": "piqd",
+      "route": "piqd-z3-qfnra",
+      "row_count": 4,
+      "rows": [
+        {
+          "center": 0,
+          "exact": false,
+          "support": [
+            2,
+            6,
+            7,
+            11,
+            14,
+            17
+          ]
+        },
+        {
+          "center": 5,
+          "exact": false,
+          "support": [
+            2,
+            3,
+            4,
+            6
+          ]
+        },
+        {
+          "center": 8,
+          "exact": false,
+          "support": [
+            7,
+            9,
+            10,
+            11
+          ]
+        },
+        {
+          "center": 15,
+          "exact": false,
+          "support": [
+            12,
+            13,
+            14,
+            17
+          ]
+        }
+      ],
+      "schema": "p97-endpoint-metric-realizability-piqd-result/v4",
+      "source_count": 1,
+      "sources": [
+        {
+          "context": {
+            "schema": "p97-endpoint-direct-metric-system-source-v2"
+          },
+          "family": "direct-metric-system",
+          "file": "scratch/runs/b1-full-mec-elimination-wave-20260903/elimination-v1/source.json",
+          "json_pointer": "",
+          "sha256": "dc310082e5430b32bb6b0829ff627586f9d1a10111a3fe7fc9bfbbe8b955ee09"
+        }
+      ],
+      "stages": [
+        {
+          "added_constraints": 189,
+          "classification": "UNKNOWN_INCONCLUSIVE",
+          "effective_status": "INCONCLUSIVE_UNKNOWN",
+          "engine": {
+            "artifacts": {
+              "closed_session": {
+                "bytes": 695,
+                "path": "z3.closed-session.json",
+                "sha256": "e429946bee2ed1054803eb28a9aec1dd967878248377c050b9102112713c8e60"
+              },
+              "receipts": {
+                "bytes": 1013,
+                "path": "z3.receipts.json",
+                "sha256": "6ee83a8fd7348c810a420602337d297c28026480cf5b8575d9168ace21d8846a"
+              },
+              "receipts_before": {
+                "bytes": 282,
+                "path": "z3.receipts-before.json",
+                "sha256": "678b59626655e89802d2d751c07d9130fa02fd865fc38deda9a325e7d1cdc2b4"
+              },
+              "session": {
+                "bytes": 689,
+                "path": "z3.session.json",
+                "sha256": "aed43f09ff387ef292e341607fdd5d918860867988e829e260eb96f3f17469a5"
+              },
+              "smt2": {
+                "bytes": 16311,
+                "path": "z3.smt2",
+                "sha256": "97497f4dbe615550484175264baf210c07ad5165f45a7e533b61e6451efe6b51"
+              },
+              "solve": {
+                "bytes": 186,
+                "path": "z3.solve.json",
+                "sha256": "0aeaf6c8bec519289bab2c666828d76efbfcd3d8d4766ab520cab3f92d7ea4f5"
+              }
+            },
+            "claims": {
+              "euclidean": false,
+              "lean": false,
+              "source_entitlement": false,
+              "theorem": false,
+              "universal": false
+            },
+            "effective_status": "INCONCLUSIVE_UNKNOWN",
+            "raw_status": "UNKNOWN",
+            "reconciled_from_receipt": false,
+            "reconciliation_attempts": 0,
+            "response_lost": false,
+            "result_digest_advisory": {
+              "algorithm": "piqd-smt-solve-result/v1",
+              "locally_recomputed": "a3bfe134a25a1170ba0ad0ff4529cbc84061e3456e3384cc0272c2eea6f48ddf",
+              "matches_daemon": true
+            },
+            "result_sha256": "a3bfe134a25a1170ba0ad0ff4529cbc84061e3456e3384cc0272c2eea6f48ddf",
+            "semantic_replay": null,
+            "session_id": "2068a7cd-db2a-4c9a-9946-36a94807453f",
+            "solve_index": 1,
+            "solver": "z3",
+            "solver_sha256": "b7a02cb75cccb7f35385c551c10453f32c12da23a7656e24233bc4b25d0f5a9a",
+            "solver_signature": "z3-4.17.0",
+            "unsat_assumptions": null
+          },
+          "journal_sha256": "97497f4dbe615550484175264baf210c07ad5165f45a7e533b61e6451efe6b51",
+          "mec_components": "full",
+          "mec_disk_points": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            11,
+            12,
+            13,
+            14,
+            15,
+            17
+          ],
+          "mec_parameterization": "one-height-quadratic",
+          "mec_parameterization_record": {
+            "boundary_equation": "(= (* 2 y_16 mec_y) (+ (- (* x_16 x_16) x_16) (* y_16 y_16)))",
+            "center_zero_anchor": {
+              "anchor": 2,
+              "anchor_radius_term": "(+ (* x_2 x_2) (* y_2 y_2))",
+              "rewrite": "x_a^2+y_a^2-x-2*mec_y*y<=0",
+              "row_index": 0,
+              "support": [
+                2,
+                6,
+                7,
+                11,
+                14,
+                17
+              ]
+            },
+            "declared_terms": [
+              "mec_y"
+            ],
+            "disk_rewrite": "x^2-x+y^2-2*mec_y*y<=0",
+            "exact_substitutions": {
+              "mec_r2": "(+ (/ 1 4) (* mec_y mec_y))",
+              "mec_x": "(/ 1 2)"
+            },
+            "mode": "gauge-one-height-quadratic",
+            "omitted_boundary_apices": [
+              0,
+              1
+            ],
+            "radius_reconstruction": "1/4+mec_y^2",
+            "required_guard": "(> y_16 0)",
+            "schema": "p97-endpoint-metric-mec-parameterization/v3",
+            "selector": "one-height-quadratic",
+            "third_apex": 16
+          },
+          "source_record_sha256": "c7225b51769c767ab7cebdc9a684fb1732267a92099b444607175e90ca754b72",
+          "stage": "exact-metric-relaxation",
+          "status": "UNKNOWN",
+          "total_constraints": 189
+        },
+        {
+          "added_constraints": 477,
+          "classification": "UNKNOWN_INCONCLUSIVE",
+          "effective_status": "INCONCLUSIVE_UNKNOWN",
+          "engine": {
+            "artifacts": {
+              "closed_session": {
+                "bytes": 683,
+                "path": "z3.closed-session.json",
+                "sha256": "5e0332db4a3d6af756b1600cfcae2214061491acf6acb76e4a39565e202ba81a"
+              },
+              "receipts": {
+                "bytes": 1013,
+                "path": "z3.receipts.json",
+                "sha256": "bf4d665a2024451e2731adb22c15815b6f41af5b8688d3bc4ac366e307f807ae"
+              },
+              "receipts_before": {
+                "bytes": 282,
+                "path": "z3.receipts-before.json",
+                "sha256": "68550bcc903aeae399fe3de0f7466c1303ab0f1dd884c4e2415d7044d35e491e"
+              },
+              "session": {
+                "bytes": 677,
+                "path": "z3.session.json",
+                "sha256": "837d6fab49eeb1514195df518cf9b4165cecb433e4945835572edf6d3c3c7a0a"
+              },
+              "smt2": {
+                "bytes": 38935,
+                "path": "z3.smt2",
+                "sha256": "bc5916fe4ab672f8f3223d9a8a84716ccb8f0044935130618daccb12fd7d5dfb"
+              },
+              "solve": {
+                "bytes": 186,
+                "path": "z3.solve.json",
+                "sha256": "8e8c533eb00c1d0f2429824cde3e07aeeea5187c94626201ffafb55dd2f05cb0"
+              }
+            },
+            "claims": {
+              "euclidean": false,
+              "lean": false,
+              "source_entitlement": false,
+              "theorem": false,
+              "universal": false
+            },
+            "effective_status": "INCONCLUSIVE_UNKNOWN",
+            "raw_status": "UNKNOWN",
+            "reconciled_from_receipt": false,
+            "reconciliation_attempts": 0,
+            "response_lost": false,
+            "result_digest_advisory": {
+              "algorithm": "piqd-smt-solve-result/v1",
+              "locally_recomputed": "a3bfe134a25a1170ba0ad0ff4529cbc84061e3456e3384cc0272c2eea6f48ddf",
+              "matches_daemon": true
+            },
+            "result_sha256": "a3bfe134a25a1170ba0ad0ff4529cbc84061e3456e3384cc0272c2eea6f48ddf",
+            "semantic_replay": null,
+            "session_id": "ca9176af-4ea9-4f87-8623-5e132cea3127",
+            "solve_index": 1,
+            "solver": "z3",
+            "solver_sha256": "b7a02cb75cccb7f35385c551c10453f32c12da23a7656e24233bc4b25d0f5a9a",
+            "solver_signature": "z3-4.17.0",
+            "unsat_assumptions": null
+          },
+          "journal_sha256": "bc5916fe4ab672f8f3223d9a8a84716ccb8f0044935130618daccb12fd7d5dfb",
+          "mec_components": "full",
+          "mec_disk_points": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            11,
+            12,
+            13,
+            14,
+            15,
+            17
+          ],
+          "mec_parameterization": "one-height-quadratic",
+          "mec_parameterization_record": {
+            "boundary_equation": "(= (* 2 y_16 mec_y) (+ (- (* x_16 x_16) x_16) (* y_16 y_16)))",
+            "center_zero_anchor": {
+              "anchor": 2,
+              "anchor_radius_term": "(+ (* x_2 x_2) (* y_2 y_2))",
+              "rewrite": "x_a^2+y_a^2-x-2*mec_y*y<=0",
+              "row_index": 0,
+              "support": [
+                2,
+                6,
+                7,
+                11,
+                14,
+                17
+              ]
+            },
+            "declared_terms": [
+              "mec_y"
+            ],
+            "disk_rewrite": "x^2-x+y^2-2*mec_y*y<=0",
+            "exact_substitutions": {
+              "mec_r2": "(+ (/ 1 4) (* mec_y mec_y))",
+              "mec_x": "(/ 1 2)"
+            },
+            "mode": "gauge-one-height-quadratic",
+            "omitted_boundary_apices": [
+              0,
+              1
+            ],
+            "radius_reconstruction": "1/4+mec_y^2",
+            "required_guard": "(> y_16 0)",
+            "schema": "p97-endpoint-metric-mec-parameterization/v3",
+            "selector": "one-height-quadratic",
+            "third_apex": 16
+          },
+          "source_record_sha256": "c83a55533de29a26549a39e4cf89ef6c0ca6ecf5dd4ba5d033652fe8d446cb18",
+          "stage": "full-convex",
+          "status": "UNKNOWN",
+          "total_constraints": 477
+        },
+        {
+          "added_constraints": 477,
+          "classification": "UNKNOWN_INCONCLUSIVE",
+          "effective_status": "INCONCLUSIVE_UNKNOWN",
+          "engine": {
+            "artifacts": {
+              "closed_session": {
+                "bytes": 694,
+                "path": "z3.closed-session.json",
+                "sha256": "c259452cfac218182d3f405d6ffa42a190def5a5c6252c38abc0ebf079fd1475"
+              },
+              "receipts": {
+                "bytes": 1013,
+                "path": "z3.receipts.json",
+                "sha256": "5c827696c09899c71d0b04c40c3b53c935c84633d23a0c257b40e301b0bede74"
+              },
+              "receipts_before": {
+                "bytes": 282,
+                "path": "z3.receipts-before.json",
+                "sha256": "cf83f14377e3fd1aff688d62f1c3f1c3da5b71f6b11c135e035b04f586002d60"
+              },
+              "session": {
+                "bytes": 688,
+                "path": "z3.session.json",
+                "sha256": "0fcdeebcf6dc44aafb03a9463a29bb77119e8e4dfcd768f27921355982135b47"
+              },
+              "smt2": {
+                "bytes": 38935,
+                "path": "z3.smt2",
+                "sha256": "bc5916fe4ab672f8f3223d9a8a84716ccb8f0044935130618daccb12fd7d5dfb"
+              },
+              "solve": {
+                "bytes": 186,
+                "path": "z3.solve.json",
+                "sha256": "16745e414e9d975de990c59a0dd0ce365126c8b80ba58ab1d3dd5cb1b691eda5"
+              }
+            },
+            "claims": {
+              "euclidean": false,
+              "lean": false,
+              "source_entitlement": false,
+              "theorem": false,
+              "universal": false
+            },
+            "effective_status": "INCONCLUSIVE_UNKNOWN",
+            "raw_status": "UNKNOWN",
+            "reconciled_from_receipt": false,
+            "reconciliation_attempts": 0,
+            "response_lost": false,
+            "result_digest_advisory": {
+              "algorithm": "piqd-smt-solve-result/v1",
+              "locally_recomputed": "a3bfe134a25a1170ba0ad0ff4529cbc84061e3456e3384cc0272c2eea6f48ddf",
+              "matches_daemon": true
+            },
+            "result_sha256": "a3bfe134a25a1170ba0ad0ff4529cbc84061e3456e3384cc0272c2eea6f48ddf",
+            "semantic_replay": null,
+            "session_id": "b9c80a23-38fe-42c1-97dc-b089aa04ad51",
+            "solve_index": 1,
+            "solver": "z3",
+            "solver_sha256": "b7a02cb75cccb7f35385c551c10453f32c12da23a7656e24233bc4b25d0f5a9a",
+            "solver_signature": "z3-4.17.0",
+            "unsat_assumptions": null
+          },
+          "journal_sha256": "bc5916fe4ab672f8f3223d9a8a84716ccb8f0044935130618daccb12fd7d5dfb",
+          "mec_components": "full",
+          "mec_disk_points": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            11,
+            12,
+            13,
+            14,
+            15,
+            17
+          ],
+          "mec_parameterization": "one-height-quadratic",
+          "mec_parameterization_record": {
+            "boundary_equation": "(= (* 2 y_16 mec_y) (+ (- (* x_16 x_16) x_16) (* y_16 y_16)))",
+            "center_zero_anchor": {
+              "anchor": 2,
+              "anchor_radius_term": "(+ (* x_2 x_2) (* y_2 y_2))",
+              "rewrite": "x_a^2+y_a^2-x-2*mec_y*y<=0",
+              "row_index": 0,
+              "support": [
+                2,
+                6,
+                7,
+                11,
+                14,
+                17
+              ]
+            },
+            "declared_terms": [
+              "mec_y"
+            ],
+            "disk_rewrite": "x^2-x+y^2-2*mec_y*y<=0",
+            "exact_substitutions": {
+              "mec_r2": "(+ (/ 1 4) (* mec_y mec_y))",
+              "mec_x": "(/ 1 2)"
+            },
+            "mode": "gauge-one-height-quadratic",
+            "omitted_boundary_apices": [
+              0,
+              1
+            ],
+            "radius_reconstruction": "1/4+mec_y^2",
+            "required_guard": "(> y_16 0)",
+            "schema": "p97-endpoint-metric-mec-parameterization/v3",
+            "selector": "one-height-quadratic",
+            "third_apex": 16
+          },
+          "source_record_sha256": "53b3014c9cf135c0a2cd306979a69d4434e472bab730ab76f94a9bfef89e2ff1",
+          "stage": "convex-only-relaxation",
+          "status": "UNKNOWN",
+          "total_constraints": 477
+        }
+      ],
+      "status": "UNKNOWN",
+      "system_id": "82c2dfe781d609472430",
+      "workers": 1
+    }
+  ],
+  "schema": "p97-global-confinement-metric-realizability-v3",
+  "selected_systems": 1,
+  "smoke": {
+    "passed": true,
+    "sat": {
+      "claims": {
+        "euclidean_problem97": false,
+        "global": false,
+        "lean": false,
+        "proof": false,
+        "source_entitlement": false,
+        "theorem": false,
+        "universal": false
+      },
+      "constraint_counts": {
+        "convex_order": 15,
+        "distinctness": 10,
+        "equalities": 3,
+        "exact_exclusions": 0
+      },
+      "decisive_stage": "full-convex",
+      "local_fallback": false,
+      "mec_components": "full",
+      "mec_disk_points": [],
+      "mec_parameterization": "fully-eliminated",
+      "mec_parameterization_record": {
+        "declared_terms": [],
+        "exact_substitutions": {},
+        "mode": "none",
+        "omitted_boundary_apices": [],
+        "schema": "p97-endpoint-metric-mec-parameterization/v3",
+        "selector": "fully-eliminated"
+      },
+      "model": {
+        "0": {
+          "x": "0",
+          "y": "0"
+        },
+        "1": {
+          "x": "1",
+          "y": "0"
+        },
+        "2": {
+          "x": "4/5",
+          "y": "3/5"
+        },
+        "3": {
+          "x": "0",
+          "y": "1"
+        },
+        "4": {
+          "x": "-4/5",
+          "y": "3/5"
+        }
+      },
+      "output_custody": {
+        "entries": 35,
+        "inventory_sha256": "581efa7be22013712857c40eae4ff9e45ff08ccf4ca24ca2bdd0f19cddfd12ff",
+        "publication": "atomic-directory-rename-no-replace"
+      },
+      "piqd_submitted": true,
+      "proof_blueprint": {
+        "changed": false,
+        "relation": "OFF_SPINE",
+        "session_id": "019fdf9c",
+        "state": "OPEN"
+      },
+      "requested_solver_route": "piqd",
+      "route": "piqd-z3-qfnra",
+      "schema": "p97-endpoint-metric-realizability-piqd-result/v4",
+      "stages": [
+        {
+          "added_constraints": 23,
+          "classification": "SAT_EXACT_RATIONAL_REPLAYED_DIAGNOSTIC",
+          "effective_status": "SAT_SEMANTICALLY_REPLAYED",
+          "engine": {
+            "artifacts": {
+              "closed_session": {
+                "bytes": 675,
+                "path": "z3.closed-session.json",
+                "sha256": "ad5b7e09d822449ce951ad67721f25b1a2e73df238712f28f19f0c4b7c57ac92"
+              },
+              "receipts": {
+                "bytes": 1630,
+                "path": "z3.receipts.json",
+                "sha256": "76e70dd8ed3a77302854537dbd7d0804826fa2df3d23403cc6bcba364c38a8d3"
+              },
+              "receipts_before": {
+                "bytes": 282,
+                "path": "z3.receipts-before.json",
+                "sha256": "e8e9e7ea6128f0d2318e8253a313128a111e812a6859ea998f35346f82db15db"
+              },
+              "semantic": {
+                "bytes": 1074,
+                "path": "z3.semantic.json",
+                "sha256": "62ccb7ab5b79d64340de690eeb0150e10b8aa58f330c537f63a7b1cdc79133f2"
+              },
+              "session": {
+                "bytes": 674,
+                "path": "z3.session.json",
+                "sha256": "7cc163c08887e4883b10104c523ed88e4b5e9d3d5dd5f5245b1611affb32657e"
+              },
+              "smt2": {
+                "bytes": 1646,
+                "path": "z3.smt2",
+                "sha256": "a257eb7e770c22c9c57bdac3c6b9016008119b008387dca468e2bf93c3ba5cee"
+              },
+              "solve": {
+                "bytes": 985,
+                "path": "z3.solve.json",
+                "sha256": "634a15a2e2c30aa0dfbeb1b4bf6bdf3a9dbeab696026f06efc9c412adbbf0bb5"
+              }
+            },
+            "claims": {
+              "euclidean": false,
+              "lean": false,
+              "source_entitlement": false,
+              "theorem": false,
+              "universal": false
+            },
+            "effective_status": "SAT_SEMANTICALLY_REPLAYED",
+            "raw_status": "SAT",
+            "reconciled_from_receipt": false,
+            "reconciliation_attempts": 0,
+            "response_lost": false,
+            "result_digest_advisory": {
+              "algorithm": "piqd-smt-solve-result/v1",
+              "locally_recomputed": "57765c24dd89dbdbdefacd292ead2891e3f696bfddec835ad748589d013f10f5",
+              "matches_daemon": true
+            },
+            "result_sha256": "57765c24dd89dbdbdefacd292ead2891e3f696bfddec835ad748589d013f10f5",
+            "semantic_replay": {
+              "accepted": true,
+              "evidence": {
+                "all_asserted_atoms_replayed": true,
+                "checks": {
+                  "convexity": 0,
+                  "distinctness": 10,
+                  "equalities": 3,
+                  "exactness": 0,
+                  "fixture_pins": 6,
+                  "gauge": 4
+                },
+                "coordinates": {
+                  "0": {
+                    "x": "0",
+                    "y": "0"
+                  },
+                  "1": {
+                    "x": "1",
+                    "y": "0"
+                  },
+                  "2": {
+                    "x": "4/5",
+                    "y": "3/5"
+                  },
+                  "3": {
+                    "x": "0",
+                    "y": "1"
+                  },
+                  "4": {
+                    "x": "-4/5",
+                    "y": "3/5"
+                  }
+                },
+                "exact_rational_readback": true,
+                "mec_components": "full",
+                "mec_disk_points": [],
+                "mec_parameterization": "fully-eliminated",
+                "mec_parameterization_record": {
+                  "declared_terms": [],
+                  "exact_substitutions": {},
+                  "mode": "none",
+                  "omitted_boundary_apices": [],
+                  "schema": "p97-endpoint-metric-mec-parameterization/v3",
+                  "selector": "fully-eliminated"
+                },
+                "model_sha256": "30817f8f662e9074f7623e6bb51ece16df1e0573254719debaee8e0ff81ea54e",
+                "stage": "exact-metric-relaxation",
+                "system_id": "smoke-sat",
+                "values_sha256": "579beb176bad0e6f0019f0f674958e04a6c1e1c096d7ef81448e92b19a894a97"
+              },
+              "model_sha256": "30817f8f662e9074f7623e6bb51ece16df1e0573254719debaee8e0ff81ea54e",
+              "values_sha256": "579beb176bad0e6f0019f0f674958e04a6c1e1c096d7ef81448e92b19a894a97",
+              "verifier": {
+                "id": "exact-rational-stage-replay",
+                "version": "v6"
+              }
+            },
+            "session_id": "4256d8e9-c36c-403d-88d3-6df217dbc074",
+            "solve_index": 1,
+            "solver": "z3",
+            "solver_sha256": "b7a02cb75cccb7f35385c551c10453f32c12da23a7656e24233bc4b25d0f5a9a",
+            "solver_signature": "z3-4.17.0",
+            "unsat_assumptions": null
+          },
+          "journal_sha256": "a257eb7e770c22c9c57bdac3c6b9016008119b008387dca468e2bf93c3ba5cee",
+          "mec_components": "full",
+          "mec_disk_points": [],
+          "mec_parameterization": "fully-eliminated",
+          "mec_parameterization_record": {
+            "declared_terms": [],
+            "exact_substitutions": {},
+            "mode": "none",
+            "omitted_boundary_apices": [],
+            "schema": "p97-endpoint-metric-mec-parameterization/v3",
+            "selector": "fully-eliminated"
+          },
+          "source_record_sha256": "a8fb8b1cd04eef68ec98942b22196ee744205a42dc017d84e3c0dc625f4f0caf",
+          "stage": "exact-metric-relaxation",
+          "status": "SAT",
+          "total_constraints": 23
+        },
+        {
+          "added_constraints": 38,
+          "classification": "SAT_EXACT_RATIONAL_REPLAYED_DIAGNOSTIC",
+          "effective_status": "SAT_SEMANTICALLY_REPLAYED",
+          "engine": {
+            "artifacts": {
+              "closed_session": {
+                "bytes": 663,
+                "path": "z3.closed-session.json",
+                "sha256": "f2989a73c8ce0e095d23317a5d96345e1a4469506f7de6137418a4f54b8bcb69"
+              },
+              "receipts": {
+                "bytes": 1630,
+                "path": "z3.receipts.json",
+                "sha256": "e9974e9e584455cb2829a8ad381155886f3355b35d1ed110e35c65b6d2a0b025"
+              },
+              "receipts_before": {
+                "bytes": 282,
+                "path": "z3.receipts-before.json",
+                "sha256": "220965230c96509289352ae8b4d2da52879eecdd375c496cb9116ef9ff0f0fe8"
+              },
+              "semantic": {
+                "bytes": 1063,
+                "path": "z3.semantic.json",
+                "sha256": "f136baa8d80553ad4c9ac7dd8ba60e9a13f169c14d6338e1d4869bac319aca8f"
+              },
+              "session": {
+                "bytes": 662,
+                "path": "z3.session.json",
+                "sha256": "dd3cf015d85f3c1b5a67062aeef158250031070b6f9d7d63fcaf1f9ed0e2b923"
+              },
+              "smt2": {
+                "bytes": 2771,
+                "path": "z3.smt2",
+                "sha256": "04e7437d61c3dac803ef7c09d04c9b35e74cea40f1448a80f4d952e437af8769"
+              },
+              "solve": {
+                "bytes": 985,
+                "path": "z3.solve.json",
+                "sha256": "861ff28fadf08630640c6ee80609ed4003475a73ac5d6099135a5d70f1c49691"
+              }
+            },
+            "claims": {
+              "euclidean": false,
+              "lean": false,
+              "source_entitlement": false,
+              "theorem": false,
+              "universal": false
+            },
+            "effective_status": "SAT_SEMANTICALLY_REPLAYED",
+            "raw_status": "SAT",
+            "reconciled_from_receipt": false,
+            "reconciliation_attempts": 0,
+            "response_lost": false,
+            "result_digest_advisory": {
+              "algorithm": "piqd-smt-solve-result/v1",
+              "locally_recomputed": "57765c24dd89dbdbdefacd292ead2891e3f696bfddec835ad748589d013f10f5",
+              "matches_daemon": true
+            },
+            "result_sha256": "57765c24dd89dbdbdefacd292ead2891e3f696bfddec835ad748589d013f10f5",
+            "semantic_replay": {
+              "accepted": true,
+              "evidence": {
+                "all_asserted_atoms_replayed": true,
+                "checks": {
+                  "convexity": 15,
+                  "distinctness": 10,
+                  "equalities": 3,
+                  "exactness": 0,
+                  "fixture_pins": 6,
+                  "gauge": 4
+                },
+                "coordinates": {
+                  "0": {
+                    "x": "0",
+                    "y": "0"
+                  },
+                  "1": {
+                    "x": "1",
+                    "y": "0"
+                  },
+                  "2": {
+                    "x": "4/5",
+                    "y": "3/5"
+                  },
+                  "3": {
+                    "x": "0",
+                    "y": "1"
+                  },
+                  "4": {
+                    "x": "-4/5",
+                    "y": "3/5"
+                  }
+                },
+                "exact_rational_readback": true,
+                "mec_components": "full",
+                "mec_disk_points": [],
+                "mec_parameterization": "fully-eliminated",
+                "mec_parameterization_record": {
+                  "declared_terms": [],
+                  "exact_substitutions": {},
+                  "mode": "none",
+                  "omitted_boundary_apices": [],
+                  "schema": "p97-endpoint-metric-mec-parameterization/v3",
+                  "selector": "fully-eliminated"
+                },
+                "model_sha256": "30817f8f662e9074f7623e6bb51ece16df1e0573254719debaee8e0ff81ea54e",
+                "stage": "full-convex",
+                "system_id": "smoke-sat",
+                "values_sha256": "579beb176bad0e6f0019f0f674958e04a6c1e1c096d7ef81448e92b19a894a97"
+              },
+              "model_sha256": "30817f8f662e9074f7623e6bb51ece16df1e0573254719debaee8e0ff81ea54e",
+              "values_sha256": "579beb176bad0e6f0019f0f674958e04a6c1e1c096d7ef81448e92b19a894a97",
+              "verifier": {
+                "id": "exact-rational-stage-replay",
+                "version": "v6"
+              }
+            },
+            "session_id": "40e7892e-e328-4e69-b464-9f7d7c117a8f",
+            "solve_index": 1,
+            "solver": "z3",
+            "solver_sha256": "b7a02cb75cccb7f35385c551c10453f32c12da23a7656e24233bc4b25d0f5a9a",
+            "solver_signature": "z3-4.17.0",
+            "unsat_assumptions": null
+          },
+          "journal_sha256": "04e7437d61c3dac803ef7c09d04c9b35e74cea40f1448a80f4d952e437af8769",
+          "mec_components": "full",
+          "mec_disk_points": [],
+          "mec_parameterization": "fully-eliminated",
+          "mec_parameterization_record": {
+            "declared_terms": [],
+            "exact_substitutions": {},
+            "mode": "none",
+            "omitted_boundary_apices": [],
+            "schema": "p97-endpoint-metric-mec-parameterization/v3",
+            "selector": "fully-eliminated"
+          },
+          "source_record_sha256": "9e4ee27addc38959ff52c86f685eb25f53515fed8df0535c87a4263f9ed6f952",
+          "stage": "full-convex",
+          "status": "SAT",
+          "total_constraints": 38
+        }
+      ],
+      "status": "SAT",
+      "system_id": "smoke-sat",
+      "verification": {
+        "all_asserted_atoms_replayed": true,
+        "checks": {
+          "convexity": 15,
+          "distinctness": 10,
+          "equalities": 3,
+          "exactness": 0,
+          "fixture_pins": 6,
+          "gauge": 4
+        },
+        "coordinates": {
+          "0": {
+            "x": "0",
+            "y": "0"
+          },
+          "1": {
+            "x": "1",
+            "y": "0"
+          },
+          "2": {
+            "x": "4/5",
+            "y": "3/5"
+          },
+          "3": {
+            "x": "0",
+            "y": "1"
+          },
+          "4": {
+            "x": "-4/5",
+            "y": "3/5"
+          }
+        },
+        "exact_rational_readback": true,
+        "mec_components": "full",
+        "mec_disk_points": [],
+        "mec_parameterization": "fully-eliminated",
+        "mec_parameterization_record": {
+          "declared_terms": [],
+          "exact_substitutions": {},
+          "mode": "none",
+          "omitted_boundary_apices": [],
+          "schema": "p97-endpoint-metric-mec-parameterization/v3",
+          "selector": "fully-eliminated"
+        },
+        "model_sha256": "30817f8f662e9074f7623e6bb51ece16df1e0573254719debaee8e0ff81ea54e",
+        "stage": "full-convex",
+        "system_id": "smoke-sat",
+        "values_sha256": "579beb176bad0e6f0019f0f674958e04a6c1e1c096d7ef81448e92b19a894a97"
+      },
+      "workers": 1
+    },
+    "unsat": {
+      "constraint_counts": {
+        "convex_order": 24,
+        "distinctness": 15,
+        "equalities": 6,
+        "exact_exclusions": 2
+      },
+      "decisive_stage": "equality-exact-off-circle",
+      "exact_off_circle_core": {
+        "center": 0,
+        "off_support": 5,
+        "support": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "local_fallback": false,
+      "mec_components": "full",
+      "mec_disk_points": [],
+      "mec_parameterization": "fully-eliminated",
+      "mec_parameterization_record": {
+        "declared_terms": [],
+        "exact_substitutions": {},
+        "mode": "none",
+        "omitted_boundary_apices": [],
+        "schema": "p97-endpoint-metric-mec-parameterization/v3",
+        "selector": "fully-eliminated"
+      },
+      "piqd_submitted": false,
+      "requested_solver_route": "piqd",
+      "route": "deterministic-symbolic-prefilter",
+      "stages": [
+        {
+          "added_constraints": 8,
+          "elapsed_sec": 0.0,
+          "stage": "equality-exact-off-circle",
+          "status": "UNSAT",
+          "total_constraints": 8
+        }
+      ],
+      "status": "UNSAT",
+      "system_id": "smoke-unsat"
+    }
+  },
+  "summary": {
+    "decisive_stage_counts": {
+      "none": 1
+    },
+    "stage_status_counts": {
+      "convex-only-relaxation": {
+        "UNKNOWN": 1
+      },
+      "exact-metric-relaxation": {
+        "UNKNOWN": 1
+      },
+      "full-convex": {
+        "UNKNOWN": 1
+      }
+    },
+    "status_counts": {
+      "UNKNOWN": 1
+    }
+  }
+}

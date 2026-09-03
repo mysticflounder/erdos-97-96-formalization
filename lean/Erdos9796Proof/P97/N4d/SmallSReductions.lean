@@ -166,6 +166,17 @@ theorem mec_circumcenter_y (v₁ v₃ O : ℝ²) (R : ℝ)
   rw [eq_div_iff (by positivity)]
   nlinarith [h, hOx]
 
+/-- In the normalized MEC frame, a point with the same squared distance from
+the origin as a fixed anchor lies in the MEC disk precisely when it satisfies
+the corresponding radical half-plane inequality. -/
+theorem gauge_commonRadius_disk_sq_iff_radicalHalfplane
+    (x y x₀ y₀ m : ℝ)
+    (hsame : x ^ 2 + y ^ 2 = x₀ ^ 2 + y₀ ^ 2) :
+    ((x - (1 / 2 : ℝ)) ^ 2 + (y - m) ^ 2 ≤
+        (1 / 4 : ℝ) + m ^ 2) ↔
+      x₀ ^ 2 + y₀ ^ 2 - x - 2 * m * y ≤ 0 := by
+  constructor <;> intro hdisk <;> nlinarith [hsame]
+
 /-- In the normalized frame, the third boundary equation and its positive
 height eliminate the remaining circumcenter coordinate from a squared-disk
 test.  This is the polynomial form used by the endpoint metric probe: it does

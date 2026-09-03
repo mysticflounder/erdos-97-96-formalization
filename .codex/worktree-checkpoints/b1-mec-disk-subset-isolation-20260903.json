@@ -1,0 +1,48 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "b1-mec-disk-subset-isolation-20260903",
+  "owner": "Codex-B1-Sorry",
+  "base_head": "5d5e6faf74ef1b9ec5d008312ea3eaf50c0890f7",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/b1-mec-disk-subset-isolation-20260903.json",
+    "census/endpoint_confinement/metric_realizability_piqd.py",
+    "census/endpoint_confinement/metric_realizability_probe.py",
+    "census/endpoint_confinement/test_metric_realizability_piqd.py",
+    "docs/audits/2026-09-03-b1-mec-disk-subset-isolation.md",
+    "lean/Erdos9796Proof/P97/N4d/SmallSReductions.lean"
+  ],
+  "generated_roots": [
+    "scratch/runs/b1-mec-disk-subset-isolation-20260903/dx-db-d0-v1",
+    "scratch/runs/b1-mec-disk-subset-isolation-20260903/dx-db-d1-v1",
+    "scratch/runs/b1-mec-disk-subset-isolation-20260903/dx-db-d2-v1",
+    "scratch/runs/b1-mec-disk-subset-isolation-20260903/dx-db-v2",
+    "scratch/runs/b1-mec-disk-subset-isolation-20260903/full-minus-d0-v1",
+    "scratch/runs/b1-mec-disk-subset-isolation-20260903/full-minus-d1-v1",
+    "scratch/runs/b1-mec-disk-subset-isolation-20260903/full-minus-d2-v1"
+  ],
+  "durable_paths": [
+    "scratch/runs/b1-mec-disk-subset-isolation-20260903/dx-db-d0-v1/REPORT.md",
+    "scratch/runs/b1-mec-disk-subset-isolation-20260903/dx-db-d0-v1/result.json",
+    "scratch/runs/b1-mec-disk-subset-isolation-20260903/dx-db-d0-v1/run_manifest.json",
+    "scratch/runs/b1-mec-disk-subset-isolation-20260903/dx-db-d1-v1/REPORT.md",
+    "scratch/runs/b1-mec-disk-subset-isolation-20260903/dx-db-d1-v1/result.json",
+    "scratch/runs/b1-mec-disk-subset-isolation-20260903/dx-db-d1-v1/run_manifest.json",
+    "scratch/runs/b1-mec-disk-subset-isolation-20260903/dx-db-d2-v1/REPORT.md",
+    "scratch/runs/b1-mec-disk-subset-isolation-20260903/dx-db-d2-v1/result.json",
+    "scratch/runs/b1-mec-disk-subset-isolation-20260903/dx-db-d2-v1/run_manifest.json",
+    "scratch/runs/b1-mec-disk-subset-isolation-20260903/dx-db-v2/REPORT.md",
+    "scratch/runs/b1-mec-disk-subset-isolation-20260903/dx-db-v2/result.json",
+    "scratch/runs/b1-mec-disk-subset-isolation-20260903/dx-db-v2/run_manifest.json",
+    "scratch/runs/b1-mec-disk-subset-isolation-20260903/full-minus-d0-v1/REPORT.md",
+    "scratch/runs/b1-mec-disk-subset-isolation-20260903/full-minus-d0-v1/result.json",
+    "scratch/runs/b1-mec-disk-subset-isolation-20260903/full-minus-d0-v1/run_manifest.json",
+    "scratch/runs/b1-mec-disk-subset-isolation-20260903/full-minus-d1-v1/REPORT.md",
+    "scratch/runs/b1-mec-disk-subset-isolation-20260903/full-minus-d1-v1/result.json",
+    "scratch/runs/b1-mec-disk-subset-isolation-20260903/full-minus-d1-v1/run_manifest.json",
+    "scratch/runs/b1-mec-disk-subset-isolation-20260903/full-minus-d2-v1/REPORT.md",
+    "scratch/runs/b1-mec-disk-subset-isolation-20260903/full-minus-d2-v1/result.json",
+    "scratch/runs/b1-mec-disk-subset-isolation-20260903/full-minus-d2-v1/run_manifest.json"
+  ],
+  "created_utc": "2026-09-03T16:11:18Z",
+  "manifest_sha256": "f27cab1e2d5d0fc40b6d0aeebc03240a93f87ec8a9d5db61ea5d0b195565127e"
+}

@@ -14,6 +14,9 @@ rewrites each disk atom polynomially before sending the query to PIQD.
 The ``full``, ``disk-only``, and ``nonobtuse-only`` component modes all retain
 the MEC reconstruction backbone: the height guard in the eliminated gauge
 case, or positive radius and three boundary equations in the ungauged case.
+The optional one-height quadratic gauge parameterization instead reads back
+only ``mec_y``, asserts the third boundary equation, and can rewrite selected
+center-zero row support disks through one deterministic shared-radius anchor.
 """
 
 from __future__ import annotations
@@ -39,13 +42,14 @@ from census.p97_search import phase3_piqd_smt_source_adapter as neutral
 
 from . import metric_realizability_probe as producer
 
-RESULT_SCHEMA = "p97-endpoint-metric-realizability-piqd-result/v2"
-SOURCE_SCHEMA = "p97-endpoint-metric-realizability-piqd-source/v2"
-DESCRIPTOR_SCHEMA = "p97-endpoint-metric-realizability-piqd-query/v2"
+RESULT_SCHEMA = "p97-endpoint-metric-realizability-piqd-result/v4"
+SOURCE_SCHEMA = "p97-endpoint-metric-realizability-piqd-source/v4"
+DESCRIPTOR_SCHEMA = "p97-endpoint-metric-realizability-piqd-query/v4"
 PROFILE_SCHEMA = "p97-piqd-z3-qfnra-one-shot/v1"
-NORMALIZATION_SCHEMA = "p97-endpoint-metric-smt-normalization/v3"
-MEC_PARAMETERIZATION_SCHEMA = "p97-endpoint-metric-mec-parameterization/v2"
+NORMALIZATION_SCHEMA = "p97-endpoint-metric-smt-normalization/v4"
+MEC_PARAMETERIZATION_SCHEMA = "p97-endpoint-metric-mec-parameterization/v3"
 MEC_COMPONENT_SELECTIONS = ("full", "disk-only", "nonobtuse-only")
+MEC_PARAMETERIZATIONS = ("fully-eliminated", "one-height-quadratic")
 STAGES = ("exact-metric-relaxation", "full-convex", "convex-only-relaxation")
 _SAT_REPLAY_INCONCLUSIVE_STATUSES = {
     "INCONCLUSIVE_SEMANTIC_REPLAY_REJECTED",
@@ -428,12 +432,56 @@ def _mec_gauge_reconstruction_terms(mec_apices: Sequence[int]) -> dict[str, str]
     }
 
 
+def _validate_mec_parameterization(
+    system: Mapping[str, Any], mec_parameterization: object
+) -> str:
+    if (
+        type(mec_parameterization) is not str
+        or mec_parameterization not in MEC_PARAMETERIZATIONS
+    ):
+        raise EndpointMetricPiqdError("MEC parameterization selector is invalid")
+    mec_apices = system.get("mec_apices")
+    if mec_parameterization == "one-height-quadratic" and (
+        mec_apices is None or not _mec_gauge_eliminated(mec_apices)
+    ):
+        raise EndpointMetricPiqdError(
+            "one-height quadratic MEC requires gauge apices 0 and 1"
+        )
+    return mec_parameterization
+
+
+def _center_zero_anchor(system: Mapping[str, Any]) -> dict[str, object] | None:
+    candidates = [
+        (tuple(sorted(row["support"])), index)
+        for index, row in enumerate(system["rows"])
+        if row["center"] == 0
+    ]
+    if not candidates:
+        return None
+    support, row_index = min(candidates)
+    anchor = support[0]
+    return {
+        "row_index": row_index,
+        "anchor": anchor,
+        "support": list(support),
+        "anchor_radius_term": (
+            f"(+ (* x_{anchor} x_{anchor}) (* y_{anchor} y_{anchor}))"
+        ),
+        "rewrite": "x_a^2+y_a^2-x-2*mec_y*y<=0",
+    }
+
+
 def _mec_parameterization(
-    mec_apices: Sequence[int] | None,
+    system: Mapping[str, Any], mec_parameterization: str
 ) -> dict[str, object]:
+    mec_parameterization = _validate_mec_parameterization(
+        system, mec_parameterization
+    )
+    mec_apices = system.get("mec_apices")
     if mec_apices is None:
         return {
             "schema": MEC_PARAMETERIZATION_SCHEMA,
+            "selector": mec_parameterization,
             "mode": "none",
             "declared_terms": [],
             "exact_substitutions": {},
@@ -442,8 +490,29 @@ def _mec_parameterization(
     if _mec_gauge_eliminated(mec_apices):
         third = _mec_gauge_third_apex(mec_apices)
         v = _coordinate(third, "y")
+        if mec_parameterization == "one-height-quadratic":
+            return {
+                "schema": MEC_PARAMETERIZATION_SCHEMA,
+                "selector": mec_parameterization,
+                "mode": "gauge-one-height-quadratic",
+                "declared_terms": ["mec_y"],
+                "third_apex": third,
+                "required_guard": f"(> {v} 0)",
+                "boundary_equation": (
+                    f"(= (* 2 {v} mec_y) {_gauge_norm2(third)})"
+                ),
+                "radius_reconstruction": "1/4+mec_y^2",
+                "exact_substitutions": {
+                    "mec_x": "(/ 1 2)",
+                    "mec_r2": "(+ (/ 1 4) (* mec_y mec_y))",
+                },
+                "disk_rewrite": "x^2-x+y^2-2*mec_y*y<=0",
+                "center_zero_anchor": _center_zero_anchor(system),
+                "omitted_boundary_apices": [0, 1],
+            }
         return {
             "schema": MEC_PARAMETERIZATION_SCHEMA,
+            "selector": mec_parameterization,
             "mode": "gauge-fully-eliminated",
             "declared_terms": [],
             "third_apex": third,
@@ -455,6 +524,7 @@ def _mec_parameterization(
         }
     return {
         "schema": MEC_PARAMETERIZATION_SCHEMA,
+        "selector": mec_parameterization,
         "mode": "full-three-variable",
         "declared_terms": ["mec_x", "mec_y", "mec_r2"],
         "exact_substitutions": {},
@@ -466,6 +536,18 @@ def _mec_d2(point: int, mec_x: str, mec_y: str) -> str:
     dx = _difference(_coordinate(point, "x"), mec_x)
     dy = _difference(_coordinate(point, "y"), mec_y)
     return f"(+ (* {dx} {dx}) (* {dy} {dy}))"
+
+
+def _one_height_disk_atom(
+    system: Mapping[str, Any], point: int
+) -> str:
+    x = _coordinate(point, "x")
+    y = _coordinate(point, "y")
+    anchor = _center_zero_anchor(system)
+    if anchor is not None and point in anchor["support"]:
+        left = anchor["anchor_radius_term"]
+        return f"(<= (- (- {left} {x}) (* 2 mec_y {y})) 0)"
+    return f"(<= (- {_gauge_norm2(point)} (* 2 mec_y {y})) 0)"
 
 
 def _cross(a: int, b: int, c: int) -> str:
@@ -537,17 +619,59 @@ def _validate_mec_components(
     return mec_components
 
 
+def _validate_mec_disk_points(
+    system: Mapping[str, Any],
+    mec_components: str,
+    mec_disk_points: object,
+    *,
+    _authenticated_empty: bool = False,
+) -> tuple[int, ...]:
+    """Return the ordered, effective set of asserted MEC disk labels."""
+
+    has_disk = "mec_apices" in system and mec_components in {"full", "disk-only"}
+    if mec_disk_points is None:
+        return tuple(range(system["n"])) if has_disk else ()
+    if not has_disk:
+        if _authenticated_empty and type(mec_disk_points) is list and not mec_disk_points:
+            return ()
+        raise EndpointMetricPiqdError(
+            "MEC disk point selection requires a disk-bearing MEC component mode"
+        )
+    if type(mec_disk_points) not in {list, tuple}:
+        raise EndpointMetricPiqdError("MEC disk points must be an ordered list or tuple")
+    if not mec_disk_points:
+        raise EndpointMetricPiqdError(
+            "MEC disk point selection is empty; use nonobtuse-only instead"
+        )
+    if any(type(point) is not int for point in mec_disk_points):
+        raise EndpointMetricPiqdError("MEC disk points must be exact integers")
+    points = tuple(mec_disk_points)
+    if len(points) != len(set(points)):
+        raise EndpointMetricPiqdError("MEC disk points must be distinct")
+    if any(point not in range(system["n"]) for point in points):
+        raise EndpointMetricPiqdError("MEC disk point is outside the system")
+    return points
+
+
 def _stage_atoms(
     system: Mapping[str, Any],
     stage: str,
     *,
     mec_components: str = "full",
+    mec_disk_points: Sequence[int] | None = None,
+    mec_parameterization: str = "fully-eliminated",
     _fixture_only: bool = False,
 ) -> tuple[dict[str, list[str]], dict[str, int]]:
     if type(stage) is not str or stage not in STAGES:
         raise EndpointMetricPiqdError("unknown metric PIQD stage")
     n = system["n"]
     mec_components = _validate_mec_components(system, mec_components)
+    mec_parameterization = _validate_mec_parameterization(
+        system, mec_parameterization
+    )
+    selected_disk_points = _validate_mec_disk_points(
+        system, mec_components, mec_disk_points
+    )
     atoms: dict[str, list[str]] = {
         "gauge": [
             "(= x_0 0)",
@@ -574,12 +698,19 @@ def _stage_atoms(
             canonical_apices = (0, 1, third)
             mec_gauge = [f"(> {v} 0)"]
             mec_radius_pos: list[str] = []
-            mec_boundary: list[str] = []
-            mec_disk = [
-                f"(<= (* {v} {_gauge_norm2(point)}) "
-                f"(* {_coordinate(point, 'y')} {q}))"
-                for point in range(n)
-            ]
+            if mec_parameterization == "one-height-quadratic":
+                mec_boundary = [f"(= (* 2 {v} mec_y) {q})"]
+                mec_disk = [
+                    _one_height_disk_atom(system, point)
+                    for point in selected_disk_points
+                ]
+            else:
+                mec_boundary = []
+                mec_disk = [
+                    f"(<= (* {v} {_gauge_norm2(point)}) "
+                    f"(* {_coordinate(point, 'y')} {q}))"
+                    for point in selected_disk_points
+                ]
         else:
             mec_x, mec_y, mec_r2 = _mec_terms(mec_apices)
             canonical_apices = tuple(mec_apices)
@@ -591,7 +722,7 @@ def _stage_atoms(
             ]
             mec_disk = [
                 f"(>= (- {mec_r2} {_mec_d2(point, mec_x, mec_y)}) 0)"
-                for point in range(n)
+                for point in selected_disk_points
             ]
         atoms.update(
             {
@@ -669,6 +800,8 @@ def build_stage_smt2(
     stage: str,
     *,
     mec_components: str = "full",
+    mec_disk_points: Sequence[int] | None = None,
+    mec_parameterization: str = "fully-eliminated",
     _fixture_only: bool = False,
 ) -> tuple[tuple[str, ...], dict[str, int]]:
     """Build the deterministic, terminal-command-free QF_NRA state journal."""
@@ -678,6 +811,8 @@ def build_stage_smt2(
         system,
         stage,
         mec_components=mec_components,
+        mec_disk_points=mec_disk_points,
+        mec_parameterization=mec_parameterization,
         _fixture_only=_fixture_only,
     )
     commands = ["(set-logic QF_NRA)"]
@@ -688,7 +823,13 @@ def build_stage_smt2(
                 f"(declare-fun y_{point} () Real)",
             ]
         )
-    if "mec_apices" in system and not _mec_gauge_eliminated(
+    if (
+        "mec_apices" in system
+        and _mec_gauge_eliminated(system["mec_apices"])
+        and mec_parameterization == "one-height-quadratic"
+    ):
+        commands.append("(declare-fun mec_y () Real)")
+    elif "mec_apices" in system and not _mec_gauge_eliminated(
         system["mec_apices"]
     ):
         commands.extend(
@@ -720,13 +861,20 @@ def _variables(
     *,
     include_mec: bool = False,
     mec_apices: Sequence[int] | None = None,
+    mec_parameterization: str = "fully-eliminated",
 ) -> list[dict[str, str]]:
     variables = [
         {"id": f"p{point:03d}-{axis}", "term": f"{axis}_{point}", "sort": "Real"}
         for point in range(n)
         for axis in ("x", "y")
     ]
-    if (include_mec or mec_apices is not None) and not (
+    if (
+        mec_apices is not None
+        and _mec_gauge_eliminated(mec_apices)
+        and mec_parameterization == "one-height-quadratic"
+    ):
+        variables.append({"id": "z001-mec-y", "term": "mec_y", "sort": "Real"})
+    elif (include_mec or mec_apices is not None) and not (
         mec_apices is not None and _mec_gauge_eliminated(mec_apices)
     ):
         variables.extend(
@@ -746,12 +894,20 @@ def prepare_stage(
     timeout_ms: int,
     source_paths: Sequence[Path] = (),
     mec_components: str = "full",
+    mec_disk_points: Sequence[int] | None = None,
+    mec_parameterization: str = "fully-eliminated",
     _fixture_only: bool = False,
 ) -> PreparedStage:
     """Freeze one endpoint system and one normalized one-shot PIQD query."""
 
     system = _validate_system(system)
     mec_components = _validate_mec_components(system, mec_components)
+    mec_parameterization = _validate_mec_parameterization(
+        system, mec_parameterization
+    )
+    selected_disk_points = _validate_mec_disk_points(
+        system, mec_components, mec_disk_points
+    )
     if type(timeout_ms) is not int or not 1 <= timeout_ms <= 3_600_000:
         raise EndpointMetricPiqdError("timeout_ms must be in 1..3600000")
     _validate_source_paths(source_paths)
@@ -791,11 +947,19 @@ def prepare_stage(
         system,
         stage,
         mec_components=mec_components,
+        mec_disk_points=selected_disk_points or None,
+        mec_parameterization=mec_parameterization,
         _fixture_only=_fixture_only,
     )
     journal = b"".join(command.encode() + b"\n" for command in commands)
-    variables = _variables(system["n"], mec_apices=system.get("mec_apices"))
-    mec_parameterization = _mec_parameterization(system.get("mec_apices"))
+    variables = _variables(
+        system["n"],
+        mec_apices=system.get("mec_apices"),
+        mec_parameterization=mec_parameterization,
+    )
+    mec_parameterization_record = _mec_parameterization(
+        system, mec_parameterization
+    )
     input_records = [
         {
             "path": os.path.relpath(item.path, producer.ROOT),
@@ -809,6 +973,8 @@ def prepare_stage(
         "system_id": system["system_id"],
         "stage": stage,
         "mec_components": mec_components,
+        "mec_disk_points": list(selected_disk_points),
+        "mec_parameterization": mec_parameterization,
         "system": system,
         "system_sha256": _sha(_canonical(system)),
         "order_sha256": _sha(_canonical(system["order"])),
@@ -822,7 +988,7 @@ def prepare_stage(
             "line_endings": "LF",
             "state_commands_only": True,
             "journal_sha256": _sha(journal),
-            "mec_parameterization": mec_parameterization,
+            "mec_parameterization": mec_parameterization_record,
         },
         "producer_source": {
             "path": os.path.relpath(producer_path, producer.ROOT),
@@ -872,6 +1038,9 @@ def prepare_stage(
         "system_id": system["system_id"],
         "stage": stage,
         "mec_components": mec_components,
+        "mec_disk_points": list(selected_disk_points),
+        "mec_parameterization": mec_parameterization,
+        "mec_parameterization_record": mec_parameterization_record,
         "system": system,
         "constraint_counts": counts,
         "fixture_only": _fixture_only,
@@ -881,10 +1050,15 @@ def prepare_stage(
     }
     descriptor = {
         "schema": DESCRIPTOR_SCHEMA,
-        "producer": {"id": "endpoint-metric-realizability", "version": "v4"},
-        "semantic_verifier": {"id": "exact-rational-stage-replay", "version": "v4"},
+        "producer": {"id": "endpoint-metric-realizability", "version": "v6"},
+        "semantic_verifier": {"id": "exact-rational-stage-replay", "version": "v6"},
         "stage_id": stage,
-        "query_id": f"{system['system_id']}-{stage}-mec-{mec_components}",
+        "query_id": (
+            f"{system['system_id']}-{stage}-mec-{mec_components}-"
+            f"param-{mec_parameterization}-"
+            f"{_sha(_canonical(mec_parameterization_record))[:16]}-disk-"
+            f"{_sha(_canonical(list(selected_disk_points)))[:16]}"
+        ),
         "sources": [
             {
                 "path": item.path,
@@ -1058,6 +1232,20 @@ def verify_sat_model(
     mec_components = _validate_mec_components(
         system, semantic.get("mec_components")
     )
+    mec_disk_points = _validate_mec_disk_points(
+        system,
+        mec_components,
+        semantic.get("mec_disk_points"),
+        _authenticated_empty=True,
+    )
+    mec_parameterization = _validate_mec_parameterization(
+        system, semantic.get("mec_parameterization")
+    )
+    mec_parameterization_record = _mec_parameterization(
+        system, mec_parameterization
+    )
+    if semantic.get("mec_parameterization_record") != mec_parameterization_record:
+        raise EndpointMetricPiqdError("SAT MEC parameterization metadata is crossed")
     fixture_only = semantic.get("fixture_only")
     fixture_pins = _fixture_pin_records(system, fixture_only)
     _authenticate_fixture_pin_packet(
@@ -1067,6 +1255,8 @@ def verify_sat_model(
         system,
         stage,
         mec_components=mec_components,
+        mec_disk_points=mec_disk_points or None,
+        mec_parameterization=mec_parameterization,
         _fixture_only=fixture_only,
     )
     if semantic.get("constraint_counts") != expected:
@@ -1110,7 +1300,16 @@ def verify_sat_model(
                     False, {"reason": "mec_gauge_orientation"}
                 )
             q = u * u - u + v * v
-            mec_center = (Fraction(1, 2), q / (2 * v))
+            if mec_parameterization == "one-height-quadratic":
+                mec_y = readback["mec_y"]
+                checked["mec_boundary"] += 1
+                if 2 * v * mec_y != q:
+                    return neutral.SemanticVerification(
+                        False, {"reason": "mec_one_height_boundary"}
+                    )
+            else:
+                mec_y = q / (2 * v)
+            mec_center = (Fraction(1, 2), mec_y)
             mec_r2 = Fraction(1, 4) + mec_center[1] ** 2
             canonical_apices = (0, 1, third)
             reconstructed_mec_checks = {
@@ -1145,12 +1344,28 @@ def verify_sat_model(
             if reconstructed_mec_checks is not None:
                 reconstructed_mec_checks["mec_boundary"] += 1
         if mec_components in {"full", "disk-only"}:
-            for point in range(system["n"]):
+            for point in mec_disk_points:
                 checked["mec_disk"] += 1
                 if gauge_eliminated:
                     x, y = points[point]
                     gauge_norm = x * x - x + y * y
-                    if v * gauge_norm > y * q:
+                    if mec_parameterization == "one-height-quadratic":
+                        anchor = _center_zero_anchor(system)
+                        if anchor is not None and point in anchor["support"]:
+                            anchor_point = points[anchor["anchor"]]
+                            disk_polynomial = (
+                                anchor_point[0] ** 2
+                                + anchor_point[1] ** 2
+                                - x
+                                - 2 * mec_y * y
+                            )
+                        else:
+                            disk_polynomial = gauge_norm - 2 * mec_y * y
+                        if disk_polynomial > 0:
+                            return neutral.SemanticVerification(
+                                False, {"reason": "mec_disk_quadratic"}
+                            )
+                    elif v * gauge_norm > y * q:
                         return neutral.SemanticVerification(
                             False, {"reason": "mec_disk_polynomial"}
                         )
@@ -1228,6 +1443,9 @@ def verify_sat_model(
         "system_id": system["system_id"],
         "stage": stage,
         "mec_components": mec_components,
+        "mec_disk_points": list(mec_disk_points),
+        "mec_parameterization": mec_parameterization,
+        "mec_parameterization_record": mec_parameterization_record,
         "model_sha256": _sha(model.encode()),
         "values_sha256": _sha(values.encode()),
         "exact_rational_readback": True,
@@ -1250,6 +1468,16 @@ def verify_sat_model(
         }
     if reconstructed_mec_checks is not None:
         evidence["reconstructed_mec_packet_checks"] = reconstructed_mec_checks
+    if mec_parameterization == "one-height-quadratic":
+        anchor = _center_zero_anchor(system)
+        evidence["shared_radius_rewrite"] = {
+            "center_zero_anchor": anchor,
+            "selected_support_points": (
+                []
+                if anchor is None
+                else [point for point in mec_disk_points if point in anchor["support"]]
+            ),
+        }
     return neutral.SemanticVerification(True, evidence)
 
 
@@ -1267,7 +1495,10 @@ def _classification(engine: Mapping[str, object]) -> str:
 
 
 def _result_constraint_counts(
-    system: Mapping[str, Any], mec_components: str
+    system: Mapping[str, Any],
+    mec_components: str,
+    mec_disk_points: Sequence[int] | None = None,
+    mec_parameterization: str = "fully-eliminated",
 ) -> dict[str, int]:
     rows = tuple(
         producer.MetricRow(row["center"], tuple(row["support"]), row["exact"])
@@ -1276,6 +1507,23 @@ def _result_constraint_counts(
     counts = producer._constraint_counts(
         system["n"], rows, system.get("mec_apices")
     )
+    selected_disk_points = _validate_mec_disk_points(
+        system, mec_components, mec_disk_points
+    )
+    mec_parameterization = _validate_mec_parameterization(
+        system, mec_parameterization
+    )
+    mec_apices = system.get("mec_apices")
+    if (
+        mec_apices is not None
+        and _mec_gauge_eliminated(mec_apices)
+        and mec_parameterization == "one-height-quadratic"
+    ):
+        counts["mec_gauge"] = 1
+        counts["mec_radius_pos"] = 0
+        counts["mec_boundary"] = 1
+    if "mec_apices" in system and mec_components in {"full", "disk-only"}:
+        counts["mec_disk"] = len(selected_disk_points)
     if mec_components == "disk-only":
         counts["mec_nonobtuse"] = 0
     elif mec_components == "nonobtuse-only":
@@ -2167,6 +2415,8 @@ def _validate_published_source_query(
             "system_id",
             "stage",
             "mec_components",
+            "mec_disk_points",
+            "mec_parameterization",
             "system",
             "system_sha256",
             "order_sha256",
@@ -2187,6 +2437,15 @@ def _validate_published_source_query(
     system = _validate_system(source["system"])
     mec_components = _validate_mec_components(
         system, source["mec_components"]
+    )
+    mec_disk_points = _validate_mec_disk_points(
+        system,
+        mec_components,
+        source["mec_disk_points"],
+        _authenticated_empty=True,
+    )
+    mec_parameterization = _validate_mec_parameterization(
+        system, source["mec_parameterization"]
     )
     profile = _expect_object(
         source["solver_profile"],
@@ -2252,6 +2511,8 @@ def _validate_published_source_query(
         timeout_ms=timeout_ms,
         source_paths=tuple(source_paths),
         mec_components=mec_components,
+        mec_disk_points=mec_disk_points or None,
+        mec_parameterization=mec_parameterization,
         _fixture_only=fixture_only,
     )
     if files.get("source-record.json") != prepared.source_record_bytes:
@@ -2538,12 +2799,20 @@ def run_staged_system(
     output_directory: Path,
     source_paths: Sequence[Path] = (),
     mec_components: str = "full",
+    mec_disk_points: Sequence[int] | None = None,
+    mec_parameterization: str = "fully-eliminated",
     _fixture_only: bool = False,
 ) -> dict[str, Any]:
     """Run at most three fresh, one-solve PIQD sessions with no fallback."""
 
     system = _validate_system(system)
     mec_components = _validate_mec_components(system, mec_components)
+    mec_parameterization = _validate_mec_parameterization(
+        system, mec_parameterization
+    )
+    selected_disk_points = _validate_mec_disk_points(
+        system, mec_components, mec_disk_points
+    )
     if (
         type(timeout_s) not in {int, float}
         or type(timeout_s) is bool
@@ -2571,6 +2840,8 @@ def run_staged_system(
                 timeout_ms=timeout_ms,
                 source_paths=source_paths,
                 mec_components=mec_components,
+                mec_disk_points=selected_disk_points or None,
+                mec_parameterization=mec_parameterization,
                 _fixture_only=_fixture_only,
             )
             stage_name = f"{index:02d}-{stage}"
@@ -2619,6 +2890,11 @@ def run_staged_system(
             stage_result = {
                 "stage": stage,
                 "mec_components": mec_components,
+                "mec_disk_points": list(selected_disk_points),
+                "mec_parameterization": mec_parameterization,
+                "mec_parameterization_record": prepared.source_record[
+                    "normalization"
+                ]["mec_parameterization"],
                 "status": raw,
                 "effective_status": effective,
                 "classification": _classification(engine),
@@ -2675,10 +2951,20 @@ def run_staged_system(
         "schema": RESULT_SCHEMA,
         "system_id": system["system_id"],
         "mec_components": mec_components,
+        "mec_disk_points": list(selected_disk_points),
+        "mec_parameterization": mec_parameterization,
+        "mec_parameterization_record": _mec_parameterization(
+            system, mec_parameterization
+        ),
         "status": final_status,
         "decisive_stage": decisive_stage,
         "stages": stages,
-        "constraint_counts": _result_constraint_counts(system, mec_components),
+        "constraint_counts": _result_constraint_counts(
+            system,
+            mec_components,
+            selected_disk_points or None,
+            mec_parameterization,
+        ),
         "route": "piqd-z3-qfnra",
         "workers": 1,
         "local_fallback": False,
@@ -2709,6 +2995,9 @@ def _validate_published_stage(
         {
             "stage",
             "mec_components",
+            "mec_disk_points",
+            "mec_parameterization",
+            "mec_parameterization_record",
             "status",
             "effective_status",
             "classification",
@@ -2727,6 +3016,11 @@ def _validate_published_stage(
     expected = {
         "stage": stage,
         "mec_components": prepared.source_record["mec_components"],
+        "mec_disk_points": prepared.source_record["mec_disk_points"],
+        "mec_parameterization": prepared.source_record["mec_parameterization"],
+        "mec_parameterization_record": prepared.source_record["normalization"][
+            "mec_parameterization"
+        ],
         "status": engine["raw_status"],
         "effective_status": engine["effective_status"],
         "classification": _classification(engine),
@@ -2759,8 +3053,30 @@ def _derive_published_result(
         raise EndpointMetricPiqdError("published endpoint stage count is invalid")
     actual_names = [item["stage"] for item in stages]
     selectors = [item["mec_components"] for item in stages]
+    disk_point_selectors = [item["mec_disk_points"] for item in stages]
+    parameterizations = [item["mec_parameterization"] for item in stages]
+    parameterization_records = [
+        item["mec_parameterization_record"] for item in stages
+    ]
     if any(selector != selectors[0] for selector in selectors[1:]):
         raise EndpointMetricPiqdError("published stages cross MEC component selectors")
+    if any(
+        selector != disk_point_selectors[0]
+        for selector in disk_point_selectors[1:]
+    ):
+        raise EndpointMetricPiqdError("published stages cross MEC disk point selectors")
+    if any(
+        parameterization != parameterizations[0]
+        for parameterization in parameterizations[1:]
+    ):
+        raise EndpointMetricPiqdError("published stages cross MEC parameterizations")
+    if any(
+        record != parameterization_records[0]
+        for record in parameterization_records[1:]
+    ):
+        raise EndpointMetricPiqdError(
+            "published stages cross MEC parameterization metadata"
+        )
     expected_names = ["exact-metric-relaxation"]
     first = stages[0]
     first_continues = first["status"] != "UNSAT" and (
@@ -2797,10 +3113,18 @@ def _derive_published_result(
         "schema": RESULT_SCHEMA,
         "system_id": system["system_id"],
         "mec_components": selectors[0],
+        "mec_disk_points": disk_point_selectors[0],
+        "mec_parameterization": parameterizations[0],
+        "mec_parameterization_record": parameterization_records[0],
         "status": final_status,
         "decisive_stage": decisive_stage,
         "stages": list(stages),
-        "constraint_counts": _result_constraint_counts(system, selectors[0]),
+        "constraint_counts": _result_constraint_counts(
+            system,
+            selectors[0],
+            disk_point_selectors[0] or None,
+            parameterizations[0],
+        ),
         "route": "piqd-z3-qfnra",
         "workers": 1,
         "local_fallback": False,

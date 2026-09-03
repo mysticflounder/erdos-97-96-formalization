@@ -57,7 +57,7 @@ DEFAULT_INPUTS = (
     HERE / "critical_shell_results_all_placements_n11_12.json",
     HERE / "shell_audit_results_all_frames_n11_12.json",
 )
-SCHEMA = "p97-global-confinement-metric-realizability-v2"
+SCHEMA = "p97-global-confinement-metric-realizability-v3"
 DIRECT_SYSTEM_SOURCE_SCHEMA = "p97-endpoint-direct-metric-system-source-v1"
 DIRECT_SYSTEM_MEC_SOURCE_SCHEMA = "p97-endpoint-direct-metric-system-source-v2"
 DIRECT_SYSTEM_SOURCE_SCHEMAS = frozenset(
@@ -1787,6 +1787,8 @@ def probe_system(
     piqd_output_directory: Path | None = None,
     source_paths: Sequence[Path] = (),
     mec_components: str = "full",
+    mec_disk_points: Sequence[int] | None = None,
+    mec_parameterization: str = "fully-eliminated",
     _piqd_fixture_only: bool = False,
 ) -> dict[str, Any]:
     """Dispatch one system; PIQD is default and local Z3 is explicit legacy."""
@@ -1807,9 +1809,13 @@ def probe_system(
     if type(workers) is not int or type(workers) is bool or workers < 1:
         raise ValueError("workers must be a positive exact integer")
     if solver_route == "legacy-local-z3":
-        if mec_components != "full":
+        if (
+            mec_components != "full"
+            or mec_disk_points is not None
+            or mec_parameterization != "fully-eliminated"
+        ):
             raise ValueError(
-                "partial MEC component selection requires the PIQD solver route"
+                "partial MEC selection requires the PIQD solver route"
             )
         legacy = dict(_probe_system(system, timeout_s))
         legacy.update(
@@ -1829,6 +1835,13 @@ def probe_system(
 
     from . import metric_realizability_piqd as piqd
 
+    selected_disk_points = piqd._validate_mec_disk_points(
+        system, mec_components, mec_disk_points
+    )
+    mec_parameterization = piqd._validate_mec_parameterization(
+        system, mec_parameterization
+    )
+
     transport = piqd_transport
     if transport is None:
         transport = neutral.UrllibPiqdTransport(piqd_server)
@@ -1843,12 +1856,19 @@ def probe_system(
                 output_directory=piqd_output_directory,
                 source_paths=source_paths,
                 mec_components=mec_components,
+                mec_disk_points=selected_disk_points or None,
+                mec_parameterization=mec_parameterization,
                 _fixture_only=_piqd_fixture_only,
             ),
         )
     )
     result.setdefault("route", "deterministic-symbolic-prefilter")
     result["mec_components"] = mec_components
+    result["mec_disk_points"] = list(selected_disk_points)
+    result["mec_parameterization"] = mec_parameterization
+    result["mec_parameterization_record"] = piqd._mec_parameterization(
+        system, mec_parameterization
+    )
     result["requested_solver_route"] = "piqd"
     result["piqd_submitted"] = result["route"] == "piqd-z3-qfnra"
     result["local_fallback"] = False
@@ -1944,6 +1964,53 @@ def _render_markdown(payload: Mapping[str, Any]) -> str:
     extraction = payload["extraction"]
     summary = payload["summary"]
     has_mec_packet = any("mec_apices" in result for result in payload["results"])
+    mec_modes = {
+        result["mec_parameterization_record"]["mode"]
+        for result in payload["results"]
+        if type(result.get("mec_parameterization_record")) is dict
+    }
+    mec_components = payload.get("config", {}).get("mec_components", "full")
+    selected_disks = payload.get("config", {}).get("mec_disk_points")
+    if selected_disks is None:
+        disk_scope = "every ambient label"
+    else:
+        disk_scope = "the ordered selected labels " + ", ".join(
+            str(point) for point in selected_disks
+        )
+    mec_ledger: list[str] = []
+    if has_mec_packet:
+        if mec_modes == {"gauge-one-height-quadratic"}:
+            mec_ledger.extend(
+                [
+                    "- for each gauge MEC packet, `mec_y` with a positive third-apex",
+                    "  height, its one third-apex boundary equation, and reconstructed",
+                    "  squared radius `1/4 + mec_y^2`;",
+                    f"- disk inequalities for {disk_scope}, using the recorded",
+                    "  deterministic center-zero shared-radius anchor on its support;",
+                ]
+            )
+        elif mec_modes == {"gauge-fully-eliminated"}:
+            mec_ledger.extend(
+                [
+                    "- for each gauge MEC packet, the positive third-apex height and",
+                    "  the fully eliminated center/radius reconstruction;",
+                    f"- polynomial disk inequalities for {disk_scope};",
+                ]
+            )
+        elif mec_modes == {"full-three-variable"}:
+            mec_ledger.extend(
+                [
+                    "- for each ungauged MEC packet, a positive squared radius and",
+                    "  its three apex boundary equations;",
+                    f"- disk inequalities for {disk_scope};",
+                ]
+            )
+        else:
+            mec_ledger.append(
+                "- the per-result authenticated MEC parameterization and selected disks;"
+            )
+        if mec_components in {"full", "nonobtuse-only"}:
+            mec_ledger.append("- the three MEC apex-triangle nonobtuse inequalities.")
     lines = [
         "# Metric realizability probe",
         "",
@@ -1981,15 +2048,7 @@ def _render_markdown(payload: Mapping[str, Any]) -> str:
             "- strict convexity in the cap frame's recorded cyclic order, using",
             "  the left-half-plane condition for every oriented hull edge; and",
             "- for every exact row, exclusion of each nonmember from its radius.",
-            *(
-                [
-                    "- for each declared MEC packet, a positive squared radius,",
-                    "  its three apices on the boundary, every ambient point in",
-                    "  the disk, and the three nonobtuse-triangle inequalities.",
-                ]
-                if has_mec_packet
-                else []
-            ),
+            *mec_ledger,
             "",
             "Before invoking QF_NRA, the probe deterministically closes row",
             "equalities and checks for two distinct centers equidistant from the",
@@ -2139,6 +2198,25 @@ def _parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
         ),
     )
     parser.add_argument(
+        "--mec-disk-point",
+        action="append",
+        type=int,
+        dest="mec_disk_points",
+        help=(
+            "assert the MEC disk atom for this point index; repeat to select an "
+            "ordered nonempty subset (default: every point)"
+        ),
+    )
+    parser.add_argument(
+        "--mec-parameterization",
+        choices=("fully-eliminated", "one-height-quadratic"),
+        default="fully-eliminated",
+        help=(
+            "use the default fully eliminated gauge MEC or retain only mec_y "
+            "with quadratic boundary and disk atoms"
+        ),
+    )
+    parser.add_argument(
         "--piqd-output-directory",
         type=Path,
         help="create-once PIQD custody root (default: <out>.piqd)",
@@ -2164,6 +2242,21 @@ def main(argv: Sequence[str] | None = None) -> int:
         )
     if args.mec_components != "full" and args.solver_route != "piqd":
         raise SystemExit("--mec-components requires --solver-route piqd")
+    if args.mec_disk_points is not None and args.solver_route != "piqd":
+        raise SystemExit("--mec-disk-point requires --solver-route piqd")
+    if (
+        args.mec_parameterization != "fully-eliminated"
+        and args.solver_route != "piqd"
+    ):
+        raise SystemExit("--mec-parameterization requires --solver-route piqd")
+    if args.mec_disk_points is not None and args.mec_components == "nonobtuse-only":
+        raise SystemExit(
+            "--mec-disk-point requires a disk-bearing MEC component mode"
+        )
+    if args.mec_disk_points is not None and len(args.mec_disk_points) != len(
+        set(args.mec_disk_points)
+    ):
+        raise SystemExit("--mec-disk-point values must be distinct")
 
     piqd_output_directory = args.piqd_output_directory
     if piqd_output_directory is None:
@@ -2249,6 +2342,18 @@ def main(argv: Sequence[str] | None = None) -> int:
         "piqd_server": args.piqd_server if args.solver_route == "piqd" else None,
         "local_fallback": False if args.solver_route == "piqd" else None,
         "mec_components": args.mec_components,
+        "mec_disk_points": args.mec_disk_points,
+        "mec_parameterization": args.mec_parameterization,
+        "mec_parameterization_records": (
+            {
+                system["system_id"]: piqd._mec_parameterization(
+                    system, args.mec_parameterization
+                )
+                for system in systems
+            }
+            if args.solver_route == "piqd"
+            else None
+        ),
     }
     _write_checkpoint(
         args.out,
@@ -2276,6 +2381,8 @@ def main(argv: Sequence[str] | None = None) -> int:
                     piqd_output_directory=piqd_output_directory / system_id,
                     source_paths=inputs,
                     mec_components=args.mec_components,
+                    mec_disk_points=args.mec_disk_points,
+                    mec_parameterization=args.mec_parameterization,
                 )
             except (
                 piqd.EndpointMetricPiqdError,
