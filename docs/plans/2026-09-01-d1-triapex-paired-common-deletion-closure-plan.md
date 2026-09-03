@@ -5186,3 +5186,49 @@ No solver was used and none is needed; the queued Singular realizability run is
 withdrawn as unnecessary.
 
 Leaf unchanged: single `sorry`, `M = 18`.
+
+### 68. The cyclic exclusion in polynomial form, and its algebraic core in Lean (2026-09-03)
+
+Section 67's criterion has a trigonometry-free restatement, which makes the
+algebraic half of the refutation directly formalizable.
+
+**From trigonometry to side lengths.**  With circumradius `R`, `sin α = a/(2R)`
+and `sin 2γ = 2 sin γ cos γ = (c/R) cos γ`, so `sin 2γ ≥ sin α` is
+`2 c cos γ ≥ a`.  The law of cosines `cos γ = (a² + b² - c²)/(2ab)` turns that
+into a homogeneous cubic in the side lengths, with `R` cancelling:
+
+    slot (0,1):   a² b ≤ c (a² + b² - c²)
+    slot (1,2):   b² c ≤ a (b² + c² - a²)
+    slot (2,0):   c² a ≤ b (c² + a² - b²)
+
+the second and third being the images of the first under `a ↦ b ↦ c ↦ a`.
+Checked against direct circle-intersection computation on the same
+`300 × 300` non-obtuse grid: `11473/11473` agreement, so the polynomial form
+and the trigonometric form of section 67 select the same configurations.
+
+**The sum-of-squares core.**  Put `x = b² + c² - a²`, `y = c² + a² - b²`,
+`z = a² + b² - c²`, so `y + z = 2a²`, `z + x = 2b²`, `x + y = 2c²`.  Each
+hypothesis has a positive left side, so each bracket is positive — non-obtuseness
+is a *consequence* here, not an added hypothesis.  Multiplying the three and
+cancelling `abc > 0` gives `a²b²c² ≤ xyz`, that is
+`(x + y)(y + z)(z + x) ≤ 8xyz`.  The exact identity
+
+    (x + y)(y + z)(z + x) - 8xyz = x (y - z)² + y (z - x)² + z (x - y)²
+
+then forces all three squares to vanish, so `x = y = z` and `a = b = c`.  This
+replaces the appeal to `cos α cos β cos γ ≤ 1/8`: the identity is that
+inequality's equality case, written so that a machine can check it by `ring`.
+
+**In Lean.**  `lean/Erdos9796Proof/P97/ATail/CyclicSideInequalities.lean`:
+
+* `Problem97.prod_add_sub_eight_mul_prod_eq` — the identity above, by `ring`;
+* `Problem97.eq_of_cyclic_side_inequalities` — from `0 < a, b, c` and the three
+  cubic inequalities, `a = b ∧ b = c`.
+
+Both are proved with no `sorry` and axiom closure
+`[propext, Classical.choice, Quot.sound]`.  They are the algebraic core of
+section 67 only.  The geometric half — that a foreign hit in slot `(i,j)`
+forces the corresponding cubic inequality — is still on paper, as is section 64.
+This file is off-spine infrastructure; it discharges no obligation.
+
+Leaf unchanged: single `sorry`, `M = 18`.
