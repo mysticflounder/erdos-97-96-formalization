@@ -5232,3 +5232,69 @@ forces the corresponding cubic inequality — is still on paper, as is section 6
 This file is off-spine infrastructure; it discharges no obligation.
 
 Leaf unchanged: single `sorry`, `M = 18`.
+
+### 69. A second, trigonometry-free derivation of the same criterion (2026-09-03)
+
+Section 67 derived the in-disk criterion through inscribed angles.  The
+following derivation uses only inner products, reaches the same criterion,
+and is much closer to what a Lean proof of the geometric half would produce.
+
+**The Gram elimination.**  Let `O` be the circumcentre, `u = A0 - O`,
+`v = A1 - O`, so `|u| = |v| = R`, and let `p = P - O`, `t = |p|²`.  The two
+circle constraints `|p - u| = c` and `|p - v| = a` are linear in `t`:
+
+    2 p·u = t + R² - c²,    2 p·v = t + R² - a²,
+
+and `2 u·v = 2R² - c²` because `c = |u - v|`.  Writing `p = λu + μv` and
+solving the 2×2 Gram system gives one scalar equation
+
+    Q(t) := t (R⁴ - s²) - R² (P₁² + P₂²) + 2 s P₁ P₂ = 0,
+
+with `s = R² - c²/2`, `P₁ = (t + R² - c²)/2`, `P₂ = (t + R² - a²)/2`.  Its
+leading coefficient in `t` is `-c²/4 < 0`, so `Q` opens downward and its two
+roots are the squared distances of the two intersection points from `O`.
+Evaluating at `t = R²` and expanding (an exact polynomial identity, checked
+on 20000 exact-rational points):
+
+    Q(R²) = (a²/4) (4R²c² - R²a² - c⁴).
+
+Since `a > 0`, and since one intersection point is always strictly outside
+the disk (section 67's Case 1, so the larger root exceeds `R²`), `Q` is
+nonnegative at `R²` exactly when the smaller root is at most `R²`:
+
+> **Slot `(0,1)` admits an in-disk hit exactly when `R² (4c² - a²) ≥ c⁴`.**
+
+**All three forms agree.**  On the same `300 × 300` non-obtuse grid, checked
+against direct circle intersection:
+
+| form | agreement |
+|---|---|
+| `R² (4c² - a²) ≥ c⁴` (this section, inner products only) | `11473/11473` |
+| `sin 2γ ≥ sin α` (section 67, inscribed angles) | `11473/11473` |
+| `a² b ≤ c (a² + b² - c²)` (section 68, side lengths) | `11473/11473` |
+
+The three are interchangeable through `c = 2R sin γ` and
+`cos γ = (a² + b² - c²)/(2ab)`; the middle form eliminates the side `b`, the
+last eliminates `R`.  Two derivations that share no steps landing on the same
+criterion is a differential check on both.
+
+**The Case-1 fact, checked.**  The criterion is exact only because the larger
+root always exceeds `R²`.  Over the non-obtuse grid, the number of samples with
+*both* intersection points in the closed disk is **zero** (`0` of `20298`;
+`6800` have exactly one, `13498` none).  Section 67 proves this: the first
+solution has `φ = γ + θ` with `θ ≤ π/2`, which meets the in-disk arc
+`[π/2 + γ, 3π/2 - γ]` only at `θ = π/2`, forcing `sin α = 0`.
+
+**Why this matters for formalization.**  `R² (4c² - a²) ≥ c⁴` is a polynomial
+consequence of `|p - u| = c`, `|p - v| = a`, `|u| = |v| = R` and `|p| ≤ R`,
+with no angles and no `arccos` branch anywhere.  The existing
+`Problem97.onArcOpposite_of_sameDist_apex_of_mem_mecDisk`
+(`U2/SameDistanceArcContainment.lean:95`) already works in exactly this
+register — same hypotheses shape, `dist_sq_coord` throughout — so it is the
+model to follow for the geometric half.  The remaining bridge to section 68's
+Lean theorem is the circumradius relation between `R` and `a, b, c`.
+
+Status: EMPIRICALLY VERIFIED as a cross-check, and PROVEN on paper as an
+alternative derivation of section 67's criterion.  No new Lean.
+
+Leaf unchanged: single `sorry`, `M = 18`.
