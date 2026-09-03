@@ -1,0 +1,15 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "ordered-cap-tightness-20260903",
+  "owner": "codex-ordered-cap-tightness",
+  "base_head": "a5ce524283a484d4d19dffabc01b19b6e113f587",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/ordered-cap-tightness-20260903.json",
+    "lean/Erdos9796Proof/P97/ATail/OrderedCapPairTightness.lean",
+    "lean/Erdos9796Proof/P97/ATail/TwoCenterCapLocalization.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-03T20:20:00Z",
+  "manifest_sha256": "0ec6aae87e409722334a8818932cd8cd69ce7770e8a6d5398bb98d9ffde9c86c"
+}

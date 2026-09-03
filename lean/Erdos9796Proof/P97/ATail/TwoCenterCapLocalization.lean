@@ -5,6 +5,7 @@ Authors: Adam McKenna
 -/
 
 import Erdos9796Proof.P97.CapSelectedRowCounting
+import Erdos9796Proof.P97.ATail.OrderedCapPairTightness
 
 /-!
 # Two-center localization in an indexed Moser cap
