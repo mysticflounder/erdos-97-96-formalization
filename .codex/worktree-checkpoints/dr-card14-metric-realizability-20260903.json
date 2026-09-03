@@ -1,0 +1,22 @@
+{
+  "base_head": "8dfa891c36161dcfaa526a526296163659839266",
+  "created_utc": "2026-09-03T08:56:50Z",
+  "durable_paths": [
+    "scratch/runs/dr-card14-metric-realizability-20260903/q1-positive-equalities/result_receipt.json",
+    "scratch/runs/dr-card14-metric-realizability-20260903/q1-positive-equalities/run_manifest.json",
+    "scratch/runs/dr-card14-metric-realizability-20260903/q1-positive-equalities/submission_receipt.json"
+  ],
+  "generated_roots": [
+    "scratch/runs/dr-card14-metric-realizability-20260903/q1-positive-equalities"
+  ],
+  "lane_id": "dr-card14-metric-realizability-20260903",
+  "manifest_sha256": "7ef376ec0c561d616812a6d9504b1059dc03731d8601462936d7ccdec4e815f2",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/dr-card14-metric-realizability-20260903.json",
+    "census/card_head/dr_card14_metric_realizability.py",
+    "census/card_head/tests/test_dr_card14_metric_realizability.py",
+    "docs/specs/p97-dr-card14-metric-realizability-v1.md"
+  ],
+  "owner": "dr-card14-metric-realizability",
+  "schema": "worktree-lane-checkpoint/v1"
+}

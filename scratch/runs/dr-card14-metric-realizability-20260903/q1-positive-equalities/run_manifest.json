@@ -1,0 +1,24 @@
+{
+  "base_head": "8dfa891c36161dcfaa526a526296163659839266",
+  "created_utc": "2026-09-03T08:59:11Z",
+  "input_digests": {
+    "scratch/runs/dr-card14-profile-probe-20260903/p4-card14-profiles/result_receipt.json": "428ff1665f00e43c1e3dc21e7610091b11cf9e691e1c728216303462f8b8cf43",
+    "scratch/runs/dr-card14-profile-probe-20260903/p4-card14-profiles/tmp/model-firstOppositeO1Six-corefamilies.json": "03166e4a947c0b66559edb8732a91828ad5a4e0ff5efb8a90e91e0959c233d84"
+  },
+  "lane_id": "dr-card14-metric-realizability-20260903",
+  "manifest_sha256": "f09e9d4d13648ff503540331052a50be41f7dabd8416357a24d47062f5fce07d",
+  "output_classes": [
+    "artifacts",
+    "events",
+    "tmp"
+  ],
+  "owner": "dr-card14-metric-realizability",
+  "root": "scratch/runs/dr-card14-metric-realizability-20260903/q1-positive-equalities",
+  "run_id": "q1-positive-equalities",
+  "schema": "worktree-run-manifest/v1",
+  "source_digests": {
+    "census/card_head/dr_card14_metric_realizability.py": "8ef448aaa89c9887d0e8f2eaa12685391255eb124a8fd97478f98cd9f56b7dfc",
+    "census/card_head/dr_two_radius_arm_structural.py": "37564e728241961d78683429b532860217f6368a31a8c79c5ccef7ec79829f55",
+    "docs/specs/p97-dr-card14-metric-realizability-v1.md": "cc37edcd2b4d59c8b3dea66eb75d86501571e3f86c0bbb050667971f1d6396ba"
+  }
+}
