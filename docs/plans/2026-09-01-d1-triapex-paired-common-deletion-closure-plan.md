@@ -4637,3 +4637,97 @@ forcing bounds (`:116, :151, :168, :211`).  No declaration in it relates a cap
 radius to a Moser side length, or two cap radii to each other.  Read in full.
 
 Leaf unchanged: single `sorry`, `M = 18`.
+
+### 61. The reduced condition is already named `EndpointRadiusAt`, and every producer is refuted by `cap_card_ge_six` (2026-09-03)
+
+An exhaustive read-only audit of every `P97` declaration mentioning an adjacent
+cap or adjacent interior together with `oppositeVertexByIndex` returned. It
+settles the section 59 forcing question and identifies the reduced condition
+with an object the repository already defines.
+
+**The reduced condition has a name.**  `SurplusCapPacket.EndpointRadiusAt`
+(`SurplusM44Packet/Shard03.lean:414`) reads
+
+```lean
+def EndpointRadiusAt (S : SurplusCapPacket A) (i : Fin 3) : Prop :=
+  ∀ {radius : ℝ}, 0 < radius →
+    4 ≤ (SelectedClass A (S.oppositeVertexByIndex i) radius).card →
+      dist (S.leftOuterVertexByIndex i) (S.oppositeVertexByIndex i) = radius ∧
+        dist (S.rightOuterVertexByIndex i) (S.oppositeVertexByIndex i) = radius
+```
+
+which is section 59's condition, quantified over radii rather than fixed at one.
+The single-radius form is exactly the hypothesis pair of the proved
+`selectedClass_subset_capByIndex_of_endpointRadius` (`:438`).  Read directly.
+That a route independent of this lane arrived at the same two distance
+equalities is confirmation that the section 59 reduction picks out the right
+object, not an artifact of how the census was read.
+
+**Every producer is gated on a four-point cap.**  All four producers carry
+`hcap : (S.capByIndex i).card = 4`:
+`endpointRadius_of_selectedClass_subset_capByIndex_of_cap_card_eq_four`
+(`Shard05.lean:322`), `endpointRadiusAt_of_moserCapContainmentAt_of_cap_card_eq_four`
+(`:352`), the dichotomy `endpointRadius_or_strictAdjacentEscapeAt_of_convexIndep`
+(`:362`), and `endpointRadiusAt_iff_noStrictAdjacentEscapeAt_of_convexIndep`
+(`:397`).  Verified by reading the statements.  `TriApexAllLargeContext` carries
+`cap_card_ge_six : ∀ i, 6 ≤ (S.capByIndex i).card`
+(`AllLargeCapCanonicalInterfaces.lean:297`), and at `D.A.card = 15` the profile
+is pinned to exactly six by `capByIndex_card_eq_six_of_card_eq_fifteen`
+(`ExactFifteenApexProfile.lean:134`).  So the gate is **refuted** in this
+regime, not merely unmet.  The same gate closes the trichotomy producer
+`moserCapFormsAt_of_convexIndep` (`Shard03.lean:705`).
+
+**This is the third gate of the same kind.**  Section 58 found the equilateral
+Moser family gated on `IsM44`, refuted by the same `cap_card_ge_six` field.  The
+pattern is now clear enough to state: the all-large-cap regime inherits the
+repository's *counting* lemmas but none of its *metric identification* lemmas,
+because the identification machinery was built for the four-point-cap and
+`(m,4,4)` regimes.  Sections 59 and 60 sharpened the target; this section says
+the tools that would hit it were built elsewhere.
+
+**Three clean negatives, recorded so they are not re-searched.**
+
+- No theorem anywhere in `P97` concludes that an apex-centred class meets an
+  adjacent-cap *interior* in the empty set, or in zero points.  The two nearest
+  misses, `pinnedRight_oppositeClass_disjoint_oppInterior` (`Q3SharedInterior.lean:944`)
+  and its mirror (`:1036`), are about the centre's *own* cap and need an
+  `IsM44`-regime packet.
+- No theorem concludes that an adjacent-cap hit *is* a Moser vertex.  The
+  closest, `moserSubpacketSelectorShapeAt_adjacent_named_or_outer`
+  (`Shard02.lean:1208`), proves a trichotomy in which the apex is one of three
+  options and is never forced.
+- There is no cardinality bridge between a closed adjacent cap and its interior:
+  only the subset lemmas (`Shard01.lean:1012,1022`) and the `≤ 1` transfer
+  (`:1094,:1112`).  The exact count does not cross.
+
+**What the pointwise transfer actually says.**
+`mem_leftAdjacentInteriorByIndex_of_mem_leftAdjacentCapByIndex_of_ne_outer`
+(`Shard02.lean:565`, mirror at `:595`) is the precise logical content of the
+section 59 lead: a selected point of the left adjacent closed cap that is not
+`leftOuterVertexByIndex i` lies in the left adjacent *interior*.  Its `0 < radius`
+is what excludes the other Moser vertex in that cap, namely the class centre.
+So the binary split is real and proved — but it supplies no reason to prefer
+either arm.
+
+**A constraint on the two-radii arm, stated carefully.**
+`ExactFourTwoRadiusAdjacentCapGrid.exists_strict_hits`
+(`SurplusM44Packet/ExactFourAdjacentDistribution.lean:157`) proves that on each
+side, at least one of the two radii has a genuine adjacent-*interior* hit.  The
+mechanism is that the only non-strict selected point in a positive-radius
+adjacent closed cap is its outer endpoint, and the two radius cells are
+disjoint, so at most one radius per side can take the apex.
+
+This does **not** refute the section 59 reduction, and it should not be read as
+doing so.  It forbids both radii from being apex-on-both-sides; it permits one
+radius apex-on-both-sides with the other interior-on-both-sides, which is all
+the reduction asks for.  The constraint is real but weaker than a refutation.
+
+**The concrete next test.**  The card-four dichotomy factors through
+`containment_or_strictAdjacentEscapeAt_of_convexIndep`.  The open question is
+whether that dichotomy needs the four-point cap essentially or only
+incidentally.  If it has a six-point analogue, the whole `EndpointRadiusAt`
+chain follows in this regime; if the four-point hypothesis is load-bearing, the
+`NoStrictAdjacentEscapeAt` route closes the way the `IsM44` routes did.  That is
+one bounded source question and it is the next thing to answer.  Untested.
+
+Leaf unchanged: single `sorry`, `M = 18`.
