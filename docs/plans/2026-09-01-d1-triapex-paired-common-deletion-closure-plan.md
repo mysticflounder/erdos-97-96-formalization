@@ -4087,3 +4087,58 @@ above) agree on what is missing and why. The remaining question is one of value,
 not of fact, and belongs to Adam.
 
 Leaf unchanged: single `sorry`, `M = 18`.
+
+### 57. The circle hypothesis is necessary, so the ingress cannot route around it (2026-09-03)
+
+Sections 55 and 56 established that the mixed apex/interior concyclicity has no
+producer. Before spending the effort to build one it is worth knowing whether
+the proved lemma actually needs it, or whether the circle memberships are an
+artifact of how the census normalizes the configuration. They are needed, and
+the statement is sharp.
+
+**What the circle is doing in the proof.** In the section 49 argument the
+reflection `σ` across line `A1 K` swaps `Q` and `P`, because `A1` and `K` are
+both equidistant from that pair. Since `σ` fixes `A1`, it carries line `A1 P` to
+line `A1 Q`, so the conclusion `A0, A1, Q` collinear holds exactly when `σ`
+carries line `A1 P` to line `A1 A0` — that is, exactly when **line `A1 K`
+bisects the angle at `A1` between lines `A1 A0` and `A1 P`**. Concyclicity plus
+`|K A0| = |K P|` supplies that by the inscribed-angle theorem, `K` being an arc
+midpoint of chord `A0 P`.
+
+**Why nothing weaker will do.** `|K A0| = |K P|` puts `K` on the perpendicular
+bisector `ℓ` of `A0 P`. The two bisector lines at `A1` each meet `ℓ` in a single
+point, and those two points are the two arc midpoints, both on the circumcircle
+of `A0 A1 P`. So for `K ∈ ℓ`, the bisector property holds only at those two
+points, and both lie on the circle. Concyclicity is therefore not merely
+sufficient — under the remaining five hypotheses it is **necessary**.
+
+**Checked exactly over ℚ**, `census/card_head/d1_arcmidpoint_circle_necessity.py`.
+Both directions, `fractions.Fraction` arithmetic throughout, no tolerance
+anywhere.
+
+| direction | construction | configurations | result |
+|---|---|---|---|
+| necessity | `K` free on `ℓ`, `Q = σ(P)`; concyclicity generically fails | 19991 | concyclicity and collinearity agree in every case, 0 disagreements |
+| sufficiency | `K`, `A0`, `A1` rational on the unit circle, `P` the reflection of `A0` across line `O K`; concyclicity exact by construction | 3938 | collinearity follows in every case, 0 counterexamples |
+
+The necessity batch supplies all three equidistances by construction and asserts
+them before counting, so it tests the circle hypothesis alone rather than a
+weaker configuration. Two degenerate families are screened out and named:
+`Q = P` is excluded by hypothesis, and `Q = A0` makes the conclusion true
+vacuously — the first sampling run flagged exactly one such case and nothing
+else, which is what prompted the screen.
+
+**Second use.** The sufficiency batch is also an independent known-answer test
+of the Lean statement, and a stronger one than section 52's: that check was a
+single configuration in floating point at 60 digits, this is 3938 configurations
+in exact rational arithmetic. It exercises the same slot map,
+`o = A2, a = A0, b = A1, k = P2.1, p = P2.3, q = P1.1`.
+
+**Consequence for the route.** Option (a) cannot be made cheaper by weakening
+the consumer. The ingress must produce the concyclicity of
+`{A0, A1, P2.1, P2.3}`, or the same content restated as the angle equality at
+`A1`; there is no third formulation and no partial credit. Sections 55 and 56
+priced option (a) at three new theorems, and this closes off the obvious way to
+reduce that price to two.
+
+Leaf unchanged: single `sorry`, `M = 18`.
