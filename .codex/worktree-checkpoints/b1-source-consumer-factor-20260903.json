@@ -1,0 +1,15 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "b1-source-consumer-factor-20260903",
+  "owner": "Codex-B1-Sorry",
+  "base_head": "fc6a9dafc37d03f03666c7e61634a56c71dd64e9",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/b1-source-consumer-factor-20260903.json",
+    "docs/audits/2026-09-03-b1-source-consumer-factor.md",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/B1WinningSliceOrderOutcome.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-03T17:56:38Z",
+  "manifest_sha256": "0789fdc057e3eca29565c8e5880872a61dc25e809a04662539020ff4f026183b"
+}

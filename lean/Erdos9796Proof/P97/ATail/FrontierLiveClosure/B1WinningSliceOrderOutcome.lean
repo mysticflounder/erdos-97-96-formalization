@@ -2087,6 +2087,28 @@ theorem b1_escapeSourceContext_or_goodCanonicalDeletionEndpoint
   · exact Or.inl hsource
   · exact Or.inr ⟨hcanonical.toEndpointResidual hnormal W.escape⟩
 
+/-- Reduce the five/six normal form to its two source-rich consumer
+obligations.  Both producers are already global: the first carries an escape
+source with retained-deletion survival, while the second retains the canonical
+deletion and boundary endpoint data.  Keeping the consumers separate prevents
+the broad normal form from hiding which global conclusion is still required. -/
+theorem false_of_b1PhysicalClassFiveSixNormalForm_of_escapeSource_and_goodCanonicalEndpoint
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F))
+    (hnormal : B1PhysicalClassFiveSixNormalForm C)
+    (hsource : B1EscapeSourceContext C → False)
+    (hcanonical : ∀ W : B1FiveSixWaveIngress C,
+      B1GoodCanonicalDeletionEndpointResidual C W.escape → False) :
+    False := by
+  obtain ⟨W⟩ := nonempty_b1FiveSixWaveIngress C hnormal
+  rcases b1_escapeSourceContext_or_goodCanonicalDeletionEndpoint
+      C hnormal W with hescape | hcanonicalResidual
+  · exact hsource hescape.some
+  · exact hcanonical W hcanonicalResidual.some
+
 /- A source that is outside the first-apex fibre and is not interior-pair bad
 already has the retained-survival disjunction required by the source context.
 This form uses the residual's own `interior_q` and `interior_w`, so it does not
