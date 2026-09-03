@@ -1133,6 +1133,47 @@ theorem orderedCap_selected_support_sdiff_card_eq_of_six_five
       simp only [if_neg hfirst, if_neg hlast] at hsplit
       omega
 
+/-- Consequently, the six selected rows contribute exactly ten outside pairs
+    in the card-eleven equality profile. -/
+theorem orderedCap_selected_outside_pair_count_eq_of_six_five
+    {A : Finset ℝ²} {L : CGN.OrderedCap 6}
+    (Packet : CGN.MecCapPacket A L)
+    (Hside : CGN.MinorCapSideHypotheses Packet)
+    (Hord : CGN.StrictCapOrder A L)
+    (hconv : ConvexIndep A) (F : FaithfulCarrierPattern A)
+    (houtside : (A \ Finset.univ.image L.points).card = 5) :
+    (∑ j : Fin 6,
+      Nat.choose
+        ((F.classAt (L.points j) (Packet.mem_A j)).support \
+          Finset.univ.image L.points).card 2) = 10 := by
+  classical
+  have hrow (j : Fin 6) :
+      Nat.choose
+        ((F.classAt (L.points j) (Packet.mem_A j)).support \
+          Finset.univ.image L.points).card 2 =
+        if j = CGN.firstIndex Packet.hm then 3
+        else if j = CGN.lastIndex Packet.hm then 3 else 1 := by
+    rw [orderedCap_selected_support_sdiff_card_eq_of_six_five
+      Packet Hside Hord hconv F houtside j]
+    by_cases hfirst : j = CGN.firstIndex Packet.hm
+    · simp [hfirst]
+    · by_cases hlast : j = CGN.lastIndex Packet.hm
+      · simp [hfirst, hlast]
+      · simp [hfirst, hlast]
+  calc
+    (∑ j : Fin 6,
+        Nat.choose
+          ((F.classAt (L.points j) (Packet.mem_A j)).support \
+            Finset.univ.image L.points).card 2) =
+        ∑ j : Fin 6,
+          (if j = CGN.firstIndex Packet.hm then 3
+           else if j = CGN.lastIndex Packet.hm then 3 else 1) := by
+      apply Finset.sum_congr rfl
+      intro j _hj
+      exact hrow j
+    _ = 10 := by
+      simp [CGN.firstIndex, CGN.lastIndex, Fin.sum_univ_succ]
+
 end CapSelectedRowCounting
 
 end Problem97
