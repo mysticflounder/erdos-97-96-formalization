@@ -25,12 +25,12 @@ namespace DRExactThirteenValuation
 open Census554.GeneralCarrierBridge
 open Census554.ZeroCutBoundaryIndexing
 
-theorem capLabel_boundary_between_of_equidistant
+private theorem capLabel_boundary_between_of_equidistant_core
     {D : CounterexampleData} {S : SurplusCapPacket D.A}
     {C : Finset ℝ²} (B : CGN.StrictCapBlockData D.A C)
     {p : Profile} {pt φ : Fin 13 → ℝ²} {idx : Fin 13 → Fin 13}
     (hL : LabelMap p S pt)
-    (hE : ConvexBoundaryEnumeration p pt φ idx)
+    (hpt : ∀ l, pt l = φ (idx l))
     (hBn : B.n = 13)
     (hphi : ∀ q : Fin 13, φ q = B.phi (Fin.cast hBn.symm q))
     {j r s : Fin 13}
@@ -49,7 +49,7 @@ theorem capLabel_boundary_between_of_equidistant
     obtain ⟨t, -, ht⟩ := Finset.mem_image.mp hlC
     have hpoint : pt l = B.phi (cast (idx l)) := by
       calc
-        pt l = φ (idx l) := hE.pt_eq l
+        pt l = φ (idx l) := hpt l
         _ = B.phi (cast (idx l)) := hphi (idx l)
     have hidx : B.Block.idx t = cast (idx l) := by
       apply B.phi_injective
@@ -136,6 +136,82 @@ theorem capLabel_boundary_between_of_equidistant
           _ < B.Block.idx tj := h.2
           _ = cast (idx j) := hij
       simpa [cast] using hcast
+
+/- The public theorem keeps the original finite-profile contract. -/
+theorem capLabel_boundary_between_of_equidistant
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    {C : Finset ℝ²} (B : CGN.StrictCapBlockData D.A C)
+    {p : Profile} {pt φ : Fin 13 → ℝ²} {idx : Fin 13 → Fin 13}
+    (hL : LabelMap p S pt)
+    (hE : ConvexBoundaryEnumeration p pt φ idx)
+    (hBn : B.n = 13)
+    (hphi : ∀ q : Fin 13, φ q = B.phi (Fin.cast hBn.symm q))
+    {j r s : Fin 13}
+    (hjC : pt j ∈ C) (hrC : pt r ∈ C) (hsC : pt s ∈ C)
+    (hrs : idx r < idx s) (hjr : j ≠ r) (hjs : j ≠ s)
+    (heq : dist (pt j) (pt r) = dist (pt j) (pt s)) :
+    (idx r < idx j ∧ idx j < idx s) ∨
+      (idx j < idx s ∧ idx s < idx r) ∨
+      (idx s < idx r ∧ idx r < idx j) := by
+  exact capLabel_boundary_between_of_equidistant_core B hL hE.pt_eq hBn hphi
+    hjC hrC hsC hrs hjr hjs heq
+
+/-- The cap transport only needs the pointwise boundary embedding.  This weaker
+interface supports a cyclically recut boundary, whose label order need not be
+one of the three unshifted profile orders. -/
+theorem capLabel_boundary_between_of_equidistant_of_pointwise
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    {C : Finset ℝ²} (B : CGN.StrictCapBlockData D.A C)
+    {p : Profile} {pt φ : Fin 13 → ℝ²} {idx : Fin 13 → Fin 13}
+    (hL : LabelMap p S pt)
+    (hpt : ∀ l : Fin 13, pt l = φ (idx l))
+    (hBn : B.n = 13)
+    (hphi : ∀ q : Fin 13, φ q = B.phi (Fin.cast hBn.symm q))
+    {j r s : Fin 13}
+    (hjC : pt j ∈ C) (hrC : pt r ∈ C) (hsC : pt s ∈ C)
+    (hrs : idx r < idx s) (hjr : j ≠ r) (hjs : j ≠ s)
+    (heq : dist (pt j) (pt r) = dist (pt j) (pt s)) :
+    (idx r < idx j ∧ idx j < idx s) ∨
+      (idx j < idx s ∧ idx s < idx r) ∨
+      (idx s < idx r ∧ idx r < idx j) := by
+  exact capLabel_boundary_between_of_equidistant_core B hL hpt hBn hphi
+    hjC hrC hsC hrs hjr hjs heq
+
+/-- Reindexing a pointwise boundary embedding after cutting the cyclic order at
+`cut`.  The new local index is the old index recentered by subtraction. -/
+theorem pointwise_eq_of_cyclicShift_sub
+    {pt φ : Fin 13 → ℝ²} {idx : Fin 13 → Fin 13}
+    (hpt : ∀ l : Fin 13, pt l = φ (idx l)) (cut : Fin 13) :
+    ∀ l : Fin 13,
+      pt l = (fun q : Fin 13 => φ (q + cut)) (idx l - cut) := by
+  intro l
+  simpa only [sub_add_cancel] using hpt l
+
+/-- Transport cap betweenness directly to a cyclically recut boundary.  The
+base enumeration still carries the source profile; only the local cap indices
+are recentered at `cut`. -/
+theorem capLabel_boundary_between_of_equidistant_of_cyclicShift
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    {C : Finset ℝ²} (B : CGN.StrictCapBlockData D.A C)
+    {p : Profile} {pt φ : Fin 13 → ℝ²} {idx : Fin 13 → Fin 13}
+    (hL : LabelMap p S pt)
+    (hE : ConvexBoundaryEnumeration p pt φ idx)
+    (cut : Fin 13)
+    (hBn : B.n = 13)
+    (hphi : ∀ q : Fin 13, φ (q + cut) = B.phi (Fin.cast hBn.symm q))
+    {j r s : Fin 13}
+    (hjC : pt j ∈ C) (hrC : pt r ∈ C) (hsC : pt s ∈ C)
+    (hrs : idx r - cut < idx s - cut)
+    (hjr : j ≠ r) (hjs : j ≠ s)
+    (heq : dist (pt j) (pt r) = dist (pt j) (pt s)) :
+    (idx r - cut < idx j - cut ∧ idx j - cut < idx s - cut) ∨
+      (idx j - cut < idx s - cut ∧ idx s - cut < idx r - cut) ∨
+      (idx s - cut < idx r - cut ∧ idx r - cut < idx j - cut) := by
+  exact capLabel_boundary_between_of_equidistant_of_pointwise
+    (φ := fun q : Fin 13 => φ (q + cut))
+    (idx := fun l : Fin 13 => idx l - cut) B hL
+    (pointwise_eq_of_cyclicShift_sub hE.pt_eq cut) hBn hphi
+    hjC hrC hsC hrs hjr hjs heq
 
 end DRExactThirteenValuation
 end ATailFrontierLiveClosure

@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "c3-shifted-cap-interface-20260903",
+  "owner": "codex-c3-shifted-cap-interface",
+  "base_head": "927720d0af25f9d370b526aff82a008daf9f2c10",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/c3-shifted-cap-interface-20260903.json",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/DRExactThirteenCapBetweenness.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-03T18:05:00Z",
+  "manifest_sha256": "e76293a5cfe48e0cd7b971ba5e51d50ff325e1e41351e4aca0ab28d6b94b9f54"
+}
