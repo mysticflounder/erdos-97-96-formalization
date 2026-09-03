@@ -5,6 +5,7 @@ Authors: Adam McKenna
 -/
 
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.DRExactThirteenBoundaryIngress
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure.DRZeroCutCapIntervals
 import Erdos9796Proof.P97.CapSelectedRowCounting
 
 /-!
@@ -29,6 +30,7 @@ namespace DRExactThirteenValuation
 open ATailCapApexRadiusRigidity
 open Census554.CapSelectedGeometry
 open Census554.GeneralCarrierBridge
+open Census554.ZeroCutBoundaryIndexing
 open ExactThirteenBoundaryBlocks
 
 /- ## The three finite strict profiles -/
@@ -372,6 +374,401 @@ theorem capLabel_not_equidistant_of_boundary_not_between
   have hlocal := CGN.index_strictly_between_of_equidistant
     B.Packet B.Hside B.Hord hrsLocal hjr' hjs' heq'
   exact hnot' ⟨B.Block.idx_strict hlocal.1, B.Block.idx_strict hlocal.2⟩
+
+/- ## Cap blocks and cyclic recut of the wrapping cap
+
+The two non-wrapping blocks retain the original boundary.  The remaining
+block is made ordinary by cutting the same cyclic boundary at `iw`; its
+explicit shifted enumeration is part of the result. -/
+
+theorem capBlock_of_interval_on_boundary
+    {D : CounterexampleData} (S : SurplusCapPacket D.A)
+    (B : BoundaryIndexing D.A) {i : Fin 3}
+    {u lo hi : Fin B.n} (hlohi : lo < hi)
+    (hinterval : ∀ x : ℝ², x ∈ S.capByIndex i ↔
+      ∃ q : Fin B.n, lo ≤ q ∧ q ≤ hi ∧ B.boundary q = x)
+    (hu : B.boundary u = (S.triangleByIndex i).v1)
+    (hends : (B.boundary lo = (S.triangleByIndex i).v2 ∧
+        B.boundary hi = (S.triangleByIndex i).v3) ∨
+      (B.boundary lo = (S.triangleByIndex i).v3 ∧
+        B.boundary hi = (S.triangleByIndex i).v2))
+    (hbase : signedArea2 (B.boundary u) (B.boundary lo)
+      (B.boundary hi) < 0) :
+    ∃ data : CGN.StrictCapBlockData D.A (S.capByIndex i),
+      data.n = B.n ∧ HEq data.phi B.boundary := by
+  have hneg : ∀ {a b c : Fin B.n}, a < b → b < c →
+      signedArea2 (B.boundary a) (B.boundary b) (B.boundary c) < 0 := by
+    intro a b c hab hbc
+    exact ExactFourAdjacentGridKalmanson.signedArea_strict_of_boundaryIndexing
+      B hab hbc
+  obtain ⟨m, L, Packet, Hside, Block, Hord, _, _⟩ :=
+    ExactFourAdjacentGridKalmanson.strictCapBlockData_of_supportCap_on_boundary
+      D.convex (S.capByIndex_subset i)
+      (S.circPacketByIndex i)
+      (S.circPacketByIndex i).inner_at_v1
+      B.boundary_injective B.boundary_image hlohi hinterval hu hends hneg hbase
+  let data : CGN.StrictCapBlockData D.A (S.capByIndex i) :=
+    { n := B.n, m := m, phi := B.boundary,
+      phi_injective := B.boundary_injective, phi_ccw := B.boundary_ccw,
+      L := L, Packet := Packet, Hside := Hside, Block := Block, Hord := Hord }
+  refine ⟨data, rfl, ?_⟩
+  change HEq B.boundary B.boundary
+  exact HEq.rfl
+
+theorem wrapping_capBlock_of_direct_zeroCutBlocks
+    {D : CounterexampleData} (S : SurplusCapPacket D.A)
+    (B : BoundaryIndexing D.A) (hn : 0 < B.n) (iv iw : Fin B.n)
+    (hzero : B.boundary (zeroIndex hn) =
+      S.oppositeVertexByIndex S.surplusIdx)
+    (hiv : B.boundary iv =
+      S.oppositeVertexByIndex S.oppIndex1)
+    (hiw : B.boundary iw =
+      S.oppositeVertexByIndex S.oppIndex2)
+    (O : DirectBoundaryBlocks S B.boundary hn iv iw) :
+    ∃ BW : CGN.StrictCapBlockData D.A
+        (S.capByIndex S.oppIndex1),
+      BW.n = B.n ∧
+        HEq BW.phi (fun q : Fin B.n => B.boundary (q + iw)) := by
+  classical
+  letI : NeZero B.n := ⟨Nat.ne_of_gt hn⟩
+  let iz : Fin B.n := zeroIndex hn
+  let phi : Fin B.n → ℝ² := fun t => B.boundary (t + iw)
+  let jU : Fin B.n := iz - iw
+  let jV : Fin B.n := iv - iw
+  have hphi0 : phi 0 = S.oppositeVertexByIndex S.oppIndex2 := by
+    simpa only [phi, zero_add] using hiw
+  have hphiU : phi jU = S.oppositeVertexByIndex S.surplusIdx := by
+    simpa only [phi, jU, sub_add_cancel, iz] using hzero
+  have hphiV : phi jV = S.oppositeVertexByIndex S.oppIndex1 := by
+    simpa only [phi, jV, sub_add_cancel] using hiv
+  have hjUpos : (0 : Fin B.n) < jU := by
+    apply Fin.pos_iff_ne_zero.mpr
+    intro hj
+    have hadd := congrArg (fun t : Fin B.n => t + iw) hj
+    have hiz : iz = iw := by
+      simpa only [jU, sub_add_cancel, zero_add] using hadd
+    exact (ne_of_gt (lt_trans O.apex_order.1 O.apex_order.2))
+      (by simpa only [iz] using hiz.symm)
+  have hjVpos : (0 : Fin B.n) < jV := by
+    apply Fin.pos_iff_ne_zero.mpr
+    intro hj
+    have hadd := congrArg (fun t : Fin B.n => t + iw) hj
+    have hivw : iv = iw := by
+      simpa only [jV, sub_add_cancel, zero_add] using hadd
+    exact (ne_of_gt O.apex_order.2) hivw.symm
+  have hjU_ne_jV : jU ≠ jV := by
+    intro heq
+    have hadd := congrArg (fun t : Fin B.n => t + iw) heq
+    have hizv : iz = iv := by
+      simpa only [jU, jV, sub_add_cancel] using hadd
+    exact (ne_of_gt O.apex_order.1) (by simpa only [iz] using hizv.symm)
+  have hneg : ∀ {i j k : Fin B.n}, i < j → j < k →
+      signedArea2 (B.boundary i) (B.boundary j) (B.boundary k) < 0 := by
+    intro i j k hij hjk
+    exact ExactFourAdjacentGridKalmanson.signedArea_strict_of_boundaryIndexing
+      B hij hjk
+  have hnegShift : ∀ {i j k : Fin B.n}, i < j → j < k →
+      signedArea2 (phi i) (phi j) (phi k) < 0 := by
+    intro i j k hij hjk
+    exact ExactFourAdjacentGridKalmanson.signedArea_strict_of_cyclicShift
+      hneg iw hij hjk
+  have hjU_lt_jV : jU < jV := by
+    rcases lt_or_gt_of_ne hjU_ne_jV with hlt | hgt
+    · exact hlt
+    · have hs := hnegShift hjVpos hgt
+      have ho := hneg O.apex_order.1 O.apex_order.2
+      have hswap :
+          signedArea2 (B.boundary iw) (B.boundary iv) (B.boundary iz) =
+            -signedArea2 (B.boundary iz) (B.boundary iv) (B.boundary iw) := by
+        simp [signedArea2]
+        ring
+      rw [hphi0, hphiV, hphiU] at hs
+      rw [← hiw, ← hiv, ← hzero] at hs
+      rw [hswap] at hs
+      exact (show False by linarith).elim
+  have hphiInj : Function.Injective phi :=
+    injective_cyclicShift B.boundary_injective iw
+  have hphiImage : Finset.univ.image phi = D.A := by
+    simpa only [phi, image_univ_cyclicShift B.boundary iw] using B.boundary_image
+  have hphiCcw : EuclideanGeometry.IsCcwConvexPolygon phi :=
+    isCcwConvexPolygon_cyclicShift B.boundary_injective B.boundary_ccw iw
+  have hinterval : ∀ x : ℝ²,
+      x ∈ S.capByIndex S.oppIndex1 ↔
+        ∃ q : Fin B.n, 0 ≤ q ∧ q ≤ jU ∧ phi q = x := by
+    apply S.capByIndex_interval_of_global_indices S.oppIndex1
+      hphiCcw hphiInj hphiImage hjUpos (Or.inr hjU_lt_jV)
+    · simpa [hphiV] using
+        (S.triangleByIndex_v1_eq_oppositeVertexByIndex S.oppIndex1).symm
+    · simpa [hphi0] using
+        S.triangleByIndex_oppIndex1_v2_eq_oppositeVertexByIndex_oppIndex2.symm
+    · simpa [hphiU] using
+        S.triangleByIndex_oppIndex1_v3_eq_oppositeVertexByIndex_surplusIdx.symm
+  have hbase : signedArea2 (phi jV) (phi 0) (phi jU) < 0 := by
+    have h := hnegShift hjUpos hjU_lt_jV
+    have hcycle : signedArea2 (phi jV) (phi 0) (phi jU) =
+        signedArea2 (phi 0) (phi jU) (phi jV) := by
+      simp [signedArea2]
+      ring
+    rw [hcycle]
+    exact h
+  obtain ⟨m, L, Packet, Hside, Block, Hord, hlo, hhi⟩ :=
+    ExactFourAdjacentGridKalmanson.strictCapBlockData_of_supportCap_on_boundary
+      D.convex (S.capByIndex_subset S.oppIndex1)
+      (S.circPacketByIndex S.oppIndex1)
+      (S.circPacketByIndex S.oppIndex1).inner_at_v1
+      hphiInj hphiImage hjUpos hinterval
+      (u := jV) (lo := 0) (hi := jU)
+      (by simpa [hphiV] using
+        (S.triangleByIndex_v1_eq_oppositeVertexByIndex S.oppIndex1).symm)
+      (Or.inl ⟨by simpa [hphi0] using
+        S.triangleByIndex_oppIndex1_v2_eq_oppositeVertexByIndex_oppIndex2.symm,
+        by simpa [hphiU] using
+        S.triangleByIndex_oppIndex1_v3_eq_oppositeVertexByIndex_surplusIdx.symm⟩)
+      hnegShift hbase
+  let BW : CGN.StrictCapBlockData D.A
+      (S.capByIndex S.oppIndex1) :=
+    { n := B.n, m := m, phi := phi,
+      phi_injective := hphiInj, phi_ccw := hphiCcw,
+      L := L, Packet := Packet, Hside := Hside, Block := Block, Hord := Hord }
+  refine ⟨BW, rfl, ?_⟩
+  · change HEq phi (fun q : Fin B.n => B.boundary (q + iw))
+    rfl
+
+theorem wrapping_capBlock_of_mirror_zeroCutBlocks
+    {D : CounterexampleData} (S : SurplusCapPacket D.A)
+    (B : BoundaryIndexing D.A) (hn : 0 < B.n) (iv iw : Fin B.n)
+    (hzero : B.boundary (zeroIndex hn) =
+      S.oppositeVertexByIndex S.surplusIdx)
+    (hiv : B.boundary iv =
+      S.oppositeVertexByIndex S.oppIndex1)
+    (hiw : B.boundary iw =
+      S.oppositeVertexByIndex S.oppIndex2)
+    (O : MirrorBoundaryBlocks S B.boundary hn iv iw) :
+    ∃ BW : CGN.StrictCapBlockData D.A
+        (S.capByIndex S.oppIndex2),
+      BW.n = B.n ∧
+        HEq BW.phi (fun q : Fin B.n => B.boundary (q + iw)) := by
+  classical
+  letI : NeZero B.n := ⟨Nat.ne_of_gt hn⟩
+  let iz : Fin B.n := zeroIndex hn
+  let phi : Fin B.n → ℝ² := fun t => B.boundary (t + iw)
+  let jU : Fin B.n := iz - iw
+  let jV : Fin B.n := iv - iw
+  have hphi0 : phi 0 = S.oppositeVertexByIndex S.oppIndex2 := by
+    simpa only [phi, zero_add] using hiw
+  have hphiU : phi jU = S.oppositeVertexByIndex S.surplusIdx := by
+    simpa only [phi, jU, sub_add_cancel, iz] using hzero
+  have hphiV : phi jV = S.oppositeVertexByIndex S.oppIndex1 := by
+    simpa only [phi, jV, sub_add_cancel] using hiv
+  have hjVpos : (0 : Fin B.n) < jV := by
+    apply Fin.pos_iff_ne_zero.mpr
+    intro hj
+    have hadd := congrArg (fun t : Fin B.n => t + iw) hj
+    have hivw : iv = iw := by
+      simpa only [jV, sub_add_cancel, zero_add] using hadd
+    exact (ne_of_gt O.apex_order.2) hivw
+  have hjUpos : (0 : Fin B.n) < jU := by
+    apply Fin.pos_iff_ne_zero.mpr
+    intro hj
+    have hadd := congrArg (fun t : Fin B.n => t + iw) hj
+    have hiz : iz = iw := by
+      simpa only [jU, sub_add_cancel, zero_add] using hadd
+    exact (ne_of_gt O.apex_order.1) (by simpa only [iz] using hiz.symm)
+  have hjV_ne_jU : jV ≠ jU := by
+    intro heq
+    have hadd := congrArg (fun t : Fin B.n => t + iw) heq
+    have hivz : iv = iz := by
+      simpa only [jV, jU, sub_add_cancel] using hadd
+    exact (ne_of_gt (lt_trans O.apex_order.1 O.apex_order.2))
+      (by simpa only [iz] using hivz)
+  have hneg : ∀ {i j k : Fin B.n}, i < j → j < k →
+      signedArea2 (B.boundary i) (B.boundary j) (B.boundary k) < 0 := by
+    intro i j k hij hjk
+    exact ExactFourAdjacentGridKalmanson.signedArea_strict_of_boundaryIndexing
+      B hij hjk
+  have hnegShift : ∀ {i j k : Fin B.n}, i < j → j < k →
+      signedArea2 (phi i) (phi j) (phi k) < 0 := by
+    intro i j k hij hjk
+    exact ExactFourAdjacentGridKalmanson.signedArea_strict_of_cyclicShift
+      hneg iw hij hjk
+  have hjV_lt_jU : jV < jU := by
+    rcases lt_or_gt_of_ne hjV_ne_jU with hlt | hgt
+    · exact hlt
+    · have hs := hnegShift hjUpos hgt
+      have ho := hneg O.apex_order.1 O.apex_order.2
+      have hswap :
+          signedArea2 (B.boundary iw) (B.boundary iz) (B.boundary iv) =
+            -signedArea2 (B.boundary iz) (B.boundary iw) (B.boundary iv) := by
+        simp [signedArea2]
+        ring
+      rw [hphi0, hphiU, hphiV] at hs
+      rw [← hiw, ← hzero, ← hiv] at hs
+      rw [hswap] at hs
+      exact (show False by linarith).elim
+  have hphiInj : Function.Injective phi :=
+    injective_cyclicShift B.boundary_injective iw
+  have hphiImage : Finset.univ.image phi = D.A := by
+    simpa only [phi, image_univ_cyclicShift B.boundary iw] using B.boundary_image
+  have hphiCcw : EuclideanGeometry.IsCcwConvexPolygon phi :=
+    isCcwConvexPolygon_cyclicShift B.boundary_injective B.boundary_ccw iw
+  have hinterval : ∀ x : ℝ²,
+      x ∈ S.capByIndex S.oppIndex2 ↔
+        ∃ q : Fin B.n, jV ≤ q ∧ q ≤ jU ∧ phi q = x := by
+    apply S.capByIndex_reverse_interval_of_global_indices S.oppIndex2
+      hphiCcw hphiInj hphiImage hjV_lt_jU (Or.inl hjVpos)
+    · simpa [hphi0] using
+        (S.triangleByIndex_v1_eq_oppositeVertexByIndex S.oppIndex2).symm
+    · simpa [hphiU] using
+        S.triangleByIndex_oppIndex2_v2_eq_oppositeVertexByIndex_surplusIdx.symm
+    · simpa [hphiV] using
+        S.triangleByIndex_oppIndex2_v3_eq_oppositeVertexByIndex_oppIndex1.symm
+  have hbase : signedArea2 (phi 0) (phi jV) (phi jU) < 0 :=
+    hnegShift hjVpos hjV_lt_jU
+  obtain ⟨m, L, Packet, Hside, Block, Hord, hlo, hhi⟩ :=
+    ExactFourAdjacentGridKalmanson.strictCapBlockData_of_supportCap_on_boundary
+      D.convex (S.capByIndex_subset S.oppIndex2)
+      (S.circPacketByIndex S.oppIndex2)
+      (S.circPacketByIndex S.oppIndex2).inner_at_v1
+      hphiInj hphiImage hjV_lt_jU hinterval
+      (u := 0) (lo := jV) (hi := jU)
+      (by simpa [hphi0] using
+        (S.triangleByIndex_v1_eq_oppositeVertexByIndex S.oppIndex2).symm)
+      (Or.inr ⟨by simpa [hphiV] using
+        S.triangleByIndex_oppIndex2_v3_eq_oppositeVertexByIndex_oppIndex1.symm,
+        by simpa [hphiU] using
+        S.triangleByIndex_oppIndex2_v2_eq_oppositeVertexByIndex_surplusIdx.symm⟩)
+      hnegShift hbase
+  let BW : CGN.StrictCapBlockData D.A
+      (S.capByIndex S.oppIndex2) :=
+    { n := B.n, m := m, phi := phi,
+      phi_injective := hphiInj, phi_ccw := hphiCcw,
+      L := L, Packet := Packet, Hside := Hside, Block := Block, Hord := Hord }
+  refine ⟨BW, rfl, ?_⟩
+  · change HEq phi (fun q : Fin B.n => B.boundary (q + iw))
+    rfl
+
+theorem all_capBlocks_of_zeroCutBlocks
+    {D : CounterexampleData} (S : SurplusCapPacket D.A)
+    (B : BoundaryIndexing D.A) (hn : 0 < B.n) (iv iw : Fin B.n)
+    (hzero : B.boundary (zeroIndex hn) =
+      S.oppositeVertexByIndex S.surplusIdx)
+    (hiv : B.boundary iv =
+      S.oppositeVertexByIndex S.oppIndex1)
+    (hiw : B.boundary iw =
+      S.oppositeVertexByIndex S.oppIndex2)
+    (hblocks : DirectBoundaryBlocks S B.boundary hn iv iw ∨
+      MirrorBoundaryBlocks S B.boundary hn iv iw) :
+    (∃ (BS : CGN.StrictCapBlockData D.A
+          (S.capByIndex S.surplusIdx))
+        (B2 : CGN.StrictCapBlockData D.A
+          (S.capByIndex S.oppIndex2))
+        (BW : CGN.StrictCapBlockData D.A
+          (S.capByIndex S.oppIndex1)),
+        BS.n = B.n ∧ HEq BS.phi B.boundary ∧
+          B2.n = B.n ∧ HEq B2.phi B.boundary ∧
+          BW.n = B.n ∧
+          HEq BW.phi (fun q : Fin B.n => B.boundary (q + iw))) ∨
+    (∃ (BS : CGN.StrictCapBlockData D.A
+          (S.capByIndex S.surplusIdx))
+        (B1 : CGN.StrictCapBlockData D.A
+          (S.capByIndex S.oppIndex1))
+        (BW : CGN.StrictCapBlockData D.A
+          (S.capByIndex S.oppIndex2)),
+        BS.n = B.n ∧ HEq BS.phi B.boundary ∧
+          B1.n = B.n ∧ HEq B1.phi B.boundary ∧
+          BW.n = B.n ∧
+          HEq BW.phi (fun q : Fin B.n => B.boundary (q + iw))) := by
+  classical
+  have hzero_surplus : B.boundary (zeroIndex hn) =
+      (S.triangleByIndex S.surplusIdx).v1 :=
+    hzero.trans (S.triangleByIndex_v1_eq_oppositeVertexByIndex
+      S.surplusIdx).symm
+  have hiv_surplus : B.boundary iv =
+      (S.triangleByIndex S.surplusIdx).v2 :=
+    hiv.trans S.triangleByIndex_surplusIdx_v2_eq_oppositeVertexByIndex_oppIndex1.symm
+  have hiw_surplus : B.boundary iw =
+      (S.triangleByIndex S.surplusIdx).v3 :=
+    hiw.trans S.triangleByIndex_surplusIdx_v3_eq_oppositeVertexByIndex_oppIndex2.symm
+  have hiv_first : B.boundary iv =
+      (S.triangleByIndex S.oppIndex1).v1 :=
+    hiv.trans (S.triangleByIndex_v1_eq_oppositeVertexByIndex
+      S.oppIndex1).symm
+  have hiw_first : B.boundary iw =
+      (S.triangleByIndex S.oppIndex1).v2 :=
+    hiw.trans S.triangleByIndex_oppIndex1_v2_eq_oppositeVertexByIndex_oppIndex2.symm
+  have hzero_first : B.boundary (zeroIndex hn) =
+      (S.triangleByIndex S.oppIndex1).v3 :=
+    hzero.trans S.triangleByIndex_oppIndex1_v3_eq_oppositeVertexByIndex_surplusIdx.symm
+  have hiw_second : B.boundary iw =
+      (S.triangleByIndex S.oppIndex2).v1 :=
+    hiw.trans (S.triangleByIndex_v1_eq_oppositeVertexByIndex
+      S.oppIndex2).symm
+  have hzero_second : B.boundary (zeroIndex hn) =
+      (S.triangleByIndex S.oppIndex2).v2 :=
+    hzero.trans S.triangleByIndex_oppIndex2_v2_eq_oppositeVertexByIndex_surplusIdx.symm
+  have hiv_second : B.boundary iv =
+      (S.triangleByIndex S.oppIndex2).v3 :=
+    hiv.trans S.triangleByIndex_oppIndex2_v3_eq_oppositeVertexByIndex_oppIndex1.symm
+  have hneg : ∀ {i j k : Fin B.n}, i < j → j < k →
+      signedArea2 (B.boundary i) (B.boundary j) (B.boundary k) < 0 := by
+    intro i j k hij hjk
+    exact ExactFourAdjacentGridKalmanson.signedArea_strict_of_boundaryIndexing
+      B hij hjk
+  have hcycle {a b c : ℝ²} :
+      signedArea2 a b c = signedArea2 b c a := by
+    simp [signedArea2]
+    ring
+  rcases hblocks with hdirect | hmirror
+  · have hS := capBlock_of_interval_on_boundary S B
+      hdirect.apex_order.2
+      (S.capByIndex_interval_of_global_indices S.surplusIdx
+        B.boundary_ccw B.boundary_injective B.boundary_image
+        hdirect.apex_order.2 (Or.inl hdirect.apex_order.1)
+        hzero_surplus hiv_surplus hiw_surplus)
+      hzero_surplus (Or.inl ⟨hiv_surplus, hiw_surplus⟩)
+      (hneg hdirect.apex_order.1 hdirect.apex_order.2)
+    have h2base : signedArea2 (B.boundary iw)
+        (B.boundary (zeroIndex hn)) (B.boundary iv) < 0 := by
+      rw [hcycle]
+      exact hneg hdirect.apex_order.1 hdirect.apex_order.2
+    have h2 := capBlock_of_interval_on_boundary S B
+      hdirect.apex_order.1
+      (S.capByIndex_interval_of_global_indices S.oppIndex2
+        B.boundary_ccw B.boundary_injective B.boundary_image
+        hdirect.apex_order.1 (Or.inr hdirect.apex_order.2)
+        hiw_second hzero_second hiv_second)
+      hiw_second (Or.inl ⟨hzero_second, hiv_second⟩) h2base
+    rcases hS with ⟨BS, hBS⟩
+    rcases h2 with ⟨B2, hB2⟩
+    obtain ⟨BW, hBWn, hBWphi⟩ :=
+      wrapping_capBlock_of_direct_zeroCutBlocks S B hn iv iw hzero hiv hiw hdirect
+    exact Or.inl ⟨BS, B2, BW, hBS.1, hBS.2, hB2.1, hB2.2,
+      hBWn, hBWphi⟩
+  · have hS := capBlock_of_interval_on_boundary S B
+      hmirror.apex_order.2
+      (S.capByIndex_reverse_interval_of_global_indices S.surplusIdx
+        B.boundary_ccw B.boundary_injective B.boundary_image
+        hmirror.apex_order.2 (Or.inl hmirror.apex_order.1)
+        hzero_surplus hiv_surplus hiw_surplus)
+      hzero_surplus (Or.inr ⟨hiw_surplus, hiv_surplus⟩)
+      (hneg hmirror.apex_order.1 hmirror.apex_order.2)
+    have h1base : signedArea2 (B.boundary iv)
+        (B.boundary (zeroIndex hn)) (B.boundary iw) < 0 := by
+      rw [hcycle]
+      exact hneg hmirror.apex_order.1 hmirror.apex_order.2
+    have h1 := capBlock_of_interval_on_boundary S B
+      hmirror.apex_order.1
+      (S.capByIndex_reverse_interval_of_global_indices S.oppIndex1
+        B.boundary_ccw B.boundary_injective B.boundary_image
+        hmirror.apex_order.1 (Or.inr hmirror.apex_order.2)
+        hiv_first hiw_first hzero_first)
+      hiv_first (Or.inr ⟨hzero_first, hiw_first⟩) h1base
+    rcases hS with ⟨BS, hBS⟩
+    rcases h1 with ⟨B1, hB1⟩
+    obtain ⟨BW, hBWn, hBWphi⟩ :=
+      wrapping_capBlock_of_mirror_zeroCutBlocks S B hn iv iw hzero hiv hiw hmirror
+    exact Or.inr ⟨BS, B1, BW, hBS.1, hBS.2, hB1.1, hB1.2,
+      hBWn, hBWphi⟩
 
 /- ## Source interval bounds
 
