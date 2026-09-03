@@ -3883,3 +3883,14 @@ This is a statement about the encoded census patterns, not about the Lean
 source. Which Lean accessors deliver these three groups is the open question.
 
 Leaf unchanged: single `sorry`, `M = 18`.
+
+**Known-answer test of the Lean statement (2026-09-03).** Section 44's Guardrail
+1 covered the encoder; the Lean statement needs its own. Instantiating
+`false_of_arcMidpoint_twoCircle_of_convexIndep` at the section 49 witness under
+the slot map `o = A2`, `a = A0`, `b = A1`, `k = P2.1`, `p = P2.3`, `q = P1.1`,
+all seven metric hypotheses hold to at worst 2e-61 at 60 digits, all six
+disequalities separate by at least 0.618, and the conclusion's `signedArea2` is
+4e-61. A mismatched slot would have broken a hypothesis here even though the
+abstract geometry is sound, so this checks the statement, not the mathematics.
+Incidentally `d(A1,P1.1) = 1 = r` in this witness, which is why the redundant
+radius tie was easy to miss.
