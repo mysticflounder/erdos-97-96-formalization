@@ -16,7 +16,7 @@ this document is restricted to that unproved subcase.
 
 The same module now also has a separate, solver-free **source-alias profiler**
 for branch 4. It retains `U` as a role and splits `c1 = U` from `c1 ≠ U`, but
-it deliberately makes no cyclic-order or cap-block choice. Its 7,603 profiles
+it deliberately makes no cyclic-order or cap-block choice. Its 2,798 profiles
 are equality partitions for the rules stated below, not a live branch census.
 
 The first executable profile is
@@ -121,14 +121,15 @@ The enumeration applies these exact combinatorial rules:
   once per label in it.
 - In the collapsed regime, the `U` class is exactly `{U,c1}`. In the separate
   regime, `U` is fresh or hosts one base equivalence class other than the
-  class hosted by `c2`.
+  class hosted by `c2`; that class may not contain `u` or `v`.
 - Each of `e,x,y` is fresh or attaches to a different eligible existing
-  class. An eligible class contains a role from `{p,q,s,t,U}` and contains
-  none of `c1,O,a,u,v,c2,d`. Injective host choice preserves the pairwise
+  class. An eligible class contains a role from `{p,q,s,t}` and contains none
+  of `U,c1,O,a,u,v,c2,d`. Injective host choice preserves the pairwise
   distinctness of `e,x,y` in `L`.
 - Distinctness within each named row, distinctness of the live separators
-  `U,O,c2`, disjointness of `K2` and `L`, and the source-proved `c1 ∉ L`
-  are checked on every resulting partition.
+  `U,O,c2`, disjointness of `K2` and `L`, the source-proved `c1 ∉ L`, and
+  the `HardSourceSwapExactGridRoles` consequences
+  `U ≠ u,v,e,x,y` are checked on every resulting partition.
 
 Canonical union-find representatives and canonical JSON hashing make the API
 deterministic. The independently tested counts are:
@@ -136,8 +137,8 @@ deterministic. The independently tested counts are:
 | alias regime | profiles |
 | --- | ---: |
 | `c1 = U` | 961 |
-| `c1 ≠ U` | 6,642 |
-| total | 7,603 |
+| `c1 ≠ U` | 1,837 |
+| total | 2,798 |
 
 These counts are exhaustive only for the five rules above. They do not assert
 that the abstract alias rules themselves are an exhaustive theorem about the
@@ -254,7 +255,7 @@ The pure tests include:
 - the reversed-sign negative control;
 - a known inconsistent system in which two equalities cancel one strict form;
 - deterministic direct/mirror generation and row-closure checks.
-- the exact 961/6,642 alias-regime counts, unique stable profile hashes, and
+- the exact 961/1,837 alias-regime counts, unique stable profile hashes, and
   source-rule validation for every generated partition;
 - a guard that the lazy alias prefix does not call the order-cell generator.
 

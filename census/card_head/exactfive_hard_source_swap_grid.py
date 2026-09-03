@@ -367,11 +367,15 @@ SOURCE_CLAUSE_LEDGER: tuple[dict[str, Any], ...] = (
         "sources": [
             "firstCenter_not_mem_secondRow",
             "hard-source-swap support disjointness and named row support facts",
+            (
+                "Problem97.ExactFiveDistinctSecondApexSourceSwapCyclic."
+                "HardSourceSwapExactGridRoles"
+            ),
         ],
         "note": (
             "the alias profiler enforces c1 ∉ L, K1 ∩ K2 = {O,a}, "
-            "the c2 host exclusions, and distinctness inside each named row; "
-            "it does not choose a cyclic order"
+            "the c2 host exclusions, U distinct from u,v,e,x,y, and "
+            "distinctness inside each named row; it does not choose a cyclic order"
         ),
     },
     {
@@ -546,8 +550,8 @@ def _eligible_c2_hosts(
 def _eligible_replacement_hosts(
     classes: Sequence[tuple[str, ...]],
 ) -> tuple[tuple[str, ...], ...]:
-    forbidden = {"c1", "O", "a", "u", "v", "c2", "d"}
-    entitled = {*_P_ROLES, *_S_ROLES, "U"}
+    forbidden = {"U", "c1", "O", "a", "u", "v", "c2", "d"}
+    entitled = {*_P_ROLES, *_S_ROLES}
     return tuple(
         klass
         for klass in classes
@@ -595,7 +599,12 @@ def iter_source_alias_profiles(
                     else:
                         surplus_options = (
                             None,
-                            *(klass for klass in base_classes if klass != c2_host),
+                            *(
+                                klass
+                                for klass in base_classes
+                                if klass != c2_host
+                                and not set(klass) & set(_V_ROLES)
+                            ),
                         )
                     for surplus_host in surplus_options:
                         pre_unions: list[tuple[str, str]] = list(base_unions)
@@ -663,6 +672,8 @@ def validate_source_alias_profile(profile: SourceAliasProfile) -> None:
             raise HardSourceSwapGridError("surplus-apex host record is inconsistent")
         if set(surplus_others) - set(_BASE_ALIAS_ROLES):
             raise HardSourceSwapGridError("surplus apex has a non-source host")
+        if set(surplus_others) & set(_V_ROLES):
+            raise HardSourceSwapGridError("surplus apex cannot host a u/v class")
     else:
         raise HardSourceSwapGridError("unknown alias regime")
 
@@ -673,6 +684,7 @@ def validate_source_alias_profile(profile: SourceAliasProfile) -> None:
         ("c2", "d", "e", "x", "y"),
         ("O", "c1", "c2"),
         ("U", "O", "c2"),
+        ("U", "u", "v", "e", "x", "y"),
     )
     for group in distinct_groups:
         if len({classes[role] for role in group}) != len(group):
@@ -720,9 +732,9 @@ def validate_source_alias_profile(profile: SourceAliasProfile) -> None:
         expected = () if host is None else host
         if other_roles != expected:
             raise HardSourceSwapGridError("replacement-host record is inconsistent")
-        if set(other_roles) - {*_P_ROLES, *_S_ROLES, "U"}:
+        if set(other_roles) - {*_P_ROLES, *_S_ROLES}:
             raise HardSourceSwapGridError("replacement extra has a forbidden alias")
-        if other_roles and not set(other_roles) & {*_P_ROLES, *_S_ROLES, "U"}:
+        if other_roles and not set(other_roles) & {*_P_ROLES, *_S_ROLES}:
             raise HardSourceSwapGridError("replacement extra lacks a source-entitled host")
 
 
@@ -1284,7 +1296,8 @@ def descriptor() -> dict[str, Any]:
                 "at most one p/q-to-s/t match and one p/q-to-u/v match",
                 "the two matchings use disjoint p/q endpoints",
                 "c2 is fresh or hosts one p/q/s/t class containing no u/v",
-                "e/x/y are fresh or injectively host source-entitled p/q/s/t/U classes",
+                "U is distinct from u/v/e/x/y",
+                "e/x/y are fresh or injectively host source-entitled p/q/s/t classes containing no U",
                 "c1 = U and c1 ≠ U are separate regimes",
             ],
             "omitted_layers": [
