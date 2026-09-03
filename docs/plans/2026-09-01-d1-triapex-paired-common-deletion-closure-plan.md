@@ -3197,6 +3197,11 @@ Leaf unchanged: single `sorry`, `M = 18`.
 
 ### 42. The collinearity core is ten equalities and one distinctness, and it holds over the rationals (2026-09-03)
 
+> **Corrected by section 44.** "Ten of twenty-seven" undercounts the
+> hypotheses: thirteen of the twenty-seven are carried by the gauge, so the
+> core keeps ten of the *fourteen non-trivial* equalities. Read "a
+> deletion-minimal core", not "the".
+
 Section 41 left the deletion-minimal core unmeasured. Greedy deletion, keeping
 each successful drop, settles it (job `48e18b04`, exit 0, 457.5 s).
 
@@ -3261,6 +3266,11 @@ Lean ingress exists. It does not move `M`. Leaf unchanged: single `sorry`,
 
 ### 43. The core transports across the orbit; the certificate lift does not finish (2026-09-03)
 
+> **Corrected by section 44.** "Ten of twenty-seven" undercounts the
+> hypotheses: thirteen of the twenty-seven are carried by the gauge, so the
+> core keeps ten of the *fourteen non-trivial* equalities. Read "a
+> deletion-minimal core", not "the".
+
 Section 42 mined the collinearity core on one pattern. Section 19's orbit
 reduction says a verdict on one member is a verdict on the orbit, but that
 licence was established for dimension and vdim, not for a hypothesis subset,
@@ -3299,5 +3309,103 @@ core `std` is a 2 s computation and `lift` exceeds 754 s, so the obstruction is
 `lift` itself and not the basis. It does not weaken section 42 — membership
 over ℚ is established by the zero normal form, which needs no cofactors. What
 is still missing is an explicit checkable identity for a Lean replay.
+
+Leaf unchanged: single `sorry`, `M = 18`.
+
+### 44. Guardrail 2 audit of the angle encoder: the map is sound, the headline count was wrong (2026-09-03)
+
+Guardrail 2 requires that a solver verdict stay CONJECTURE until somebody has
+tried to break the map from the encoding to the mathematical claim. This is
+that audit for the angle form (`kal_angles.py`) and the core miner
+(`collinear_core.py`). It is read-only and uses no solver; the four
+measurements below are exact rational arithmetic in a purpose-written
+polynomial routine, independent of Singular.
+
+**The determinant is the Lean function, not a lookalike.** `collinear_core.py`
+forms `det = ((xb)-(xa))*((yc)-(ya)) - ((yb)-(ya))*((xc)-(xa))`.
+`P97/Foundation.lean:75` defines
+`signedArea2 v vj vk = (vj 0 - v 0) * (vk 1 - v 1) - (vk 0 - v 0) * (vj 1 - v 1)`.
+With `(v, vj, vk) = (a, b, c)` these are the same polynomial, the two factors of
+the second product being written in the other order. So the mined object is
+literally `signedArea2 A0 A1 P1.1`, and `collinear_of_signedArea2_eq_zero`
+applies to it with no adapter.
+
+**The gauge neither loses nor gains configurations.** `structure()` establishes
+that one apex `X` has both other apexes in its class and that each apex's class
+contains its own cap, so every selected radius equals `d(A_X, A_Y)`. Sending
+`A_X` to the origin, `A_Y` to `(1,0)` and that common radius to 1 is a
+similarity; `signedArea2 = 0` is invariant under translation, rotation and
+scaling, and changes only sign under reflection, which the free sign of `sf`
+keeps in the variety. The scaling step needs `d(A_X, A_Y) ≠ 0`, which is the
+label distinctness recorded below.
+
+**The parameterization absorbs exactly thirteen of the pattern's equalities —
+no more, and none silently added.** `{c_i² + s_i² − 1}` has pairwise coprime
+leading terms, so it is a Gröbner basis and `c_i² → 1 − s_i²` is a canonical
+normal form. Reducing each of the 27 pattern equalities against it, over all
+111 patterns of the cell, gives 13 identically zero and 14 surviving, in every
+single pattern. Thirteen is also the count predicted from the class structure
+(5 from `A_X`'s six-member class, 4 from `A_Y`'s, 4 from `A_Z`'s), and 13 is
+the number of circle relations. The three counts agree, which is what a
+content-preserving change of coordinates should look like.
+
+**Correction to sections 42 and 43.** The headline "ten of twenty-seven
+equalities" overstates the reduction, because thirteen of those twenty-seven
+are the radius-uniformity hypotheses that the parameterization still enforces —
+they are carried, not dropped. For the source pattern `0d6996160cc83aab` the
+identically-zero indices are `{12,13,14,15,17,18,19,20,22,23,24,25,26}` and the
+core `{1,2,4,5,7,8,10,11,16,21}` meets that set in nothing, so the mined core
+contains no free generator and the greedy result is honest. The accurate
+statement is:
+
+> the core keeps **ten of the fourteen non-trivial equalities**, on top of the
+> thirteen radius equalities the gauge carries — a hypothesis set of 23
+> equalities and one distinctness, against the pattern's 27 and none.
+
+The four non-trivial equalities it drops are indices 0, 3, 6 and 9: one from
+each of the four cap-2 blocker shells. So the core asks each blocker to be
+equidistant from **three** of its four shell points, not all four. That
+matches the invariant group form used for the transport, where the four shell
+groups have three members each and the two apex groups have two.
+
+**The core is a deletion-minimal core, not the deletion-minimal core.** Greedy
+deletion tests generators in index order and keeps each successful drop, so the
+dropped generator is the first of each shell as an artifact of that order. A
+different order can produce a different ten-set. Sections 42 and 43 should be
+read with "a core" throughout.
+
+**Non-triviality falsifier: passed.** If `det` already vanished from the gauge
+alone the whole result would be vacuous. Two hundred exact rational
+configurations were built from random Pythagorean unit vectors, each checked to
+satisfy all thirteen circle relations, and `det` was non-zero in 200 of 200. The
+ten equalities are load-bearing.
+
+**Distinctness is sound, and its cost is the exact-15 scope.** The Rabinowitsch
+generator `u·d²(P1.1,P2.3) − 1` is satisfiable exactly when `P1.1 ≠ P2.3`, which
+is the correct encoding. The justification for assuming it is that
+`d1_mu0_incidence_census.py` labels the carrier directly — apexes are labels
+0, 1, 2 and `interior(k) = (3+4k+s)` gives labels 3 through 14, fifteen indices
+into a fifteen-element set — so all fifteen labels denote distinct points by
+construction. The same fact supplies `A0`, `A1`, `P1.1` pairwise distinct, which
+`ConvexIndep.not_three_collinear` needs, and `d(A_X, A_Y) ≠ 0`, which the
+scaling gauge needs. All three ride on `D.A.card = 15`, so they inherit the
+exact-15 gap section 40 already recorded. Nothing new is assumed here.
+
+**A latent defect that does not bite on this cell.** `structure()` builds
+`cls = {a: set(m) for a, m in pat.classes}`, so an apex carrying two classes
+would keep only the later one and could raise a spurious "no unique special
+apex". Measured over the cell: no apex has more than one class in any of the
+111 patterns, and `structure()` rejects none of them, so no pattern was
+silently excluded and every verdict in sections 36 through 43 covers the whole
+cell. The defect would bite on a cell where an apex carries two radii — the
+`2R` arms — and must be fixed before the tool is pointed at one.
+
+**Verdict.** The encoding-to-claim map is sound at the encoded scope, with the
+hypothesis count corrected as above. Guardrail 2 is discharged; the geometric
+reading is no longer conjectural *at the encoded scope*, which is: this cell,
+this orbit, `D.A.card = 15`, and Singular's `reduce` as the single engine.
+Guardrail 7 is still open — no second engine has confirmed the membership — and
+Guardrail 1 for the angle encoder is a self-consistency test, not a
+known-answer test. There is still no Lean ingress.
 
 Leaf unchanged: single `sorry`, `M = 18`.
