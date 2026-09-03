@@ -2100,3 +2100,35 @@ gets no further 3600 s rational slots without a specific reason.
 {{NEEDS_UPDATE}}: whether a mod-p ranking sweep over the unmeasured labelings
 of the 36-orbit finds one materially cheaper than 3.7 s, and if so whether its
 rational behaviour differs at all.
+
+### 21. The orbit claim as a named prediction, before the triage runs (2026-09-03)
+
+Section 19's partition should not be leaned on because nineteen verdicts happen
+to agree by orbit; agreement of coarse labels is weak evidence. The relabeling
+that realizes each merge is explicit, so it predicts far more than a label. It
+carries `0e31c5c5d735a779`'s collapsing pair to a NAMED pair of each orbit
+sibling, and carries its whole live set, with vector-space dimensions, onto
+theirs. Recorded here before the triages run
+(`artifacts/tools/orbit_predict.py`, solver-free):
+
+| key | raw vdim | predicted live pairs (vdim) |
+|---|---|---|
+| `172327e48f4004fb` | 1536 | **P0.1:P0.4 = 1536 (collapse)**, P0.2:P1.2 = 768, P0.2:P1.4 = 768, P0.3:P2.1 = 768, P1.2:P1.4 = 384, P1.3:P1.4 = 384, P2.1:P2.4 = 384 |
+| `32263a5344416a02` | 1536 | **P1.1:P1.4 = 1536 (collapse)**, P0.1:P1.3 = 768, P0.4:P1.3 = 768, P1.2:P2.4 = 768, P0.1:P0.2 = 384, P0.1:P0.4 = 384, P2.1:P2.4 = 384 |
+| `5d4f4968fac1e0d5` | 1536 | **P1.1:P1.4 = 1536 (collapse)**, P0.1:P1.3 = 768, P1.2:P2.1 = 768, P1.2:P2.3 = 768, P0.1:P0.4 = 384, P2.1:P2.3 = 384, P2.2:P2.3 = 384 |
+
+The collapsing pair is unique for each target: over every group element that
+maps `0e31c5c5d735a779` to that key, the image of `P0.1:P0.4` is the same one
+pair. So the prediction names 1 of 105 pairs and the full seven-element live
+set with its dimension profile, in advance. A triage that collapses at a
+different pair, or produces a different live set, refutes section 19 exactly as
+firmly as one that does not collapse at all. This is the falsifier the
+partition deserves, and it costs no solver time to state.
+
+Note also that the existing `-trace` artifacts for `172327e48f4004fb` and
+`1412a71e2b2792b3` do NOT bear on this. `sattrace` reports the quotient after
+saturating by a pair, so an unchanged vector-space dimension there means that
+saturation was a no-op; the collapse test is about `dim(I + d)`, a different
+computation. Those files were checked and set aside for that reason.
+
+{{NEEDS_UPDATE}}: the `172327e48f4004fb` triage against this table.
