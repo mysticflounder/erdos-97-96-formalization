@@ -2678,3 +2678,52 @@ The next question for this orbit is the one section 17 prescribes: saturating
 by the 38 live pairs, traced so that a timeout still reports how far it got.
 Empty means the orbit is refuted at the encoded scope; finite and nonempty
 puts it beside the 36-orbit. That run is submitted.
+
+### 31. The 3-orbit is refuted, and section 30 named the certificate's customers too narrowly (2026-09-03)
+
+Saturating `1412a71e2b2792b3` by its 38 live pairs empties the ideal. Daemon
+job `ff759d6f`, `RAN`, 406371 ms, verdict `EMPTY_COMPLEX`:
+
+    dim_raw 0
+    sattrace P0.1:P0.3   2048     (from 3072)
+    sattrace P0.2:P1.2   1024
+    sattrace P0.3:P2.3    512
+    sattrace P1.1:P1.2    256
+    ... sixteen further pairs hold at 256 ...
+    sattrace P1.2:P2.3     -1
+    dim_sat -1
+    dim -1
+
+Twenty-two of the thirty-eight pairs suffice; the twenty-second empties it.
+Removing the components on which some pair of the fifteen points coincides
+leaves nothing, so every solution of the raw system over the algebraic closure
+of GF(32003) has two of the fifteen points equal, and the pattern requires
+them distinct. That orbit of 3 patterns is refuted at the encoded scope mod
+32003, the same claim scope as the dim-2 and 1536 orbits.
+
+Where the layer stands. Four of the five orbits are refuted, 75 of the 111
+patterns: one empty over the rationals, one dim 2 and empty after saturation,
+one by collapse, and now one by saturation to the unit ideal. **The 36-orbit
+is the only survivor**, and the whole metric kill-test for this cell now rests
+on it alone.
+
+**Correction to section 30.** That section said the membership certificate has
+one customer, because a certificate asserts that a squared distance lies in
+the ideal and only a collapse asserts that. Too narrow. A saturation to the
+unit ideal is also a membership statement: adding the Rabinowitsch generator
+`u * prod(d) - 1` and reaching the unit ideal says that a power of the product
+of the live squared distances lies in the ideal, and that is certifiable by
+the same exact rational linear algebra, with the same coefficient-growth risk
+and no Gröbner basis. So the technique in principle reaches every mod-p
+refutation of this kind, not the collapse alone. What section 30 got right,
+and what does not change, is the 36-orbit: it neither collapses nor saturates
+to empty, so it presents no membership statement to certify. The route is
+blocked there for a reason no amount of certificate work removes.
+
+Claim scope, unchanged and worth restating because four orbits now carry it.
+Emptiness at a single prime is evidence for emptiness in characteristic 0, not
+a proof: a nonempty zero-dimensional variety over the rationals stays nonempty
+modulo all but finitely many primes, so `dim -1` at 32003 is what emptiness
+looks like, but 32003 is not known to be a lucky prime for this ideal. Three of
+the four refutations are mod-p only. The Rabinowitsch certificate above is the
+route that would upgrade them.
