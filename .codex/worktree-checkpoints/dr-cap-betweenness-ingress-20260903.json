@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "dr-cap-betweenness-ingress-20260903",
+  "owner": "codex-dr-cap-betweenness-ingress",
+  "base_head": "05eee6511a2db25ed537328c2a3e9a5ccce0d0c0",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/dr-cap-betweenness-ingress-20260903.json",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/DRExactThirteenBranchIngress.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-03T21:00:00Z",
+  "manifest_sha256": "38f10f5c1b977be1976033d2106e6f776c36f47c7b65a6c1e751546597994078"
+}

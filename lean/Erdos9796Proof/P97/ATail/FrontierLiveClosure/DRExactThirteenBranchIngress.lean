@@ -5,6 +5,7 @@ Authors: Adam McKenna
 -/
 
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.DRExactThirteenValuation
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure.DRExactThirteenCapBetweenness
 
 /-!
 # Exact-thirteen two-radius branch ingress
@@ -102,6 +103,32 @@ theorem of_twoRadiusBranch
         boundaryEnumeration := hE
         boundary_realization := hboundary
         orientation := hE.orientation }⟩
+
+/- ## Source-consumer cap betweenness -/
+
+/-- Transport the source cap-betweenness theorem through a live exact-thirteen
+branch ingress.  The finite label map and boundary enumeration remain part of
+the hypotheses, while the cap block supplies the local ordered-cap indices.
+This is the source-facing adapter used by the card-thirteen structural arms;
+it does not assert that any particular arm is contradictory. -/
+theorem cap_betweenness_of_ingress
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    {C : Finset ℝ²}
+    (P : ExactThirteenBranchIngress S)
+    (B : CGN.StrictCapBlockData D.A C)
+    (hBn : B.n = 13)
+    (hphi : ∀ q : Fin 13,
+      P.φ q = B.phi (Fin.cast hBn.symm q))
+    {j r s : Fin 13}
+    (hjC : P.pt j ∈ C) (hrC : P.pt r ∈ C) (hsC : P.pt s ∈ C)
+    (hrs : P.idx r < P.idx s) (hjr : j ≠ r) (hjs : j ≠ s)
+    (heq : dist (P.pt j) (P.pt r) = dist (P.pt j) (P.pt s)) :
+    (P.idx r < P.idx j ∧ P.idx j < P.idx s) ∨
+      (P.idx j < P.idx s ∧ P.idx s < P.idx r) ∨
+      (P.idx s < P.idx r ∧ P.idx r < P.idx j) := by
+  exact DRExactThirteenValuation.capLabel_boundary_between_of_equidistant
+    B P.labelMap P.boundaryEnumeration hBn hphi
+    hjC hrC hsC hrs hjr hjs heq
 
 end ExactThirteenBranchIngress
 
