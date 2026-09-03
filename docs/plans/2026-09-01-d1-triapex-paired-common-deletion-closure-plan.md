@@ -4877,3 +4877,72 @@ Nothing in this section proves it; the section replaces one open statement with 
 weaker open statement and identifies the object a proof must control.
 
 Leaf unchanged: single `sorry`, `M = 18`.
+
+### 64. A reflection argument bounds foreign hits by three; the gap is one (2026-09-03)
+
+Section 63 reduced ingress obligation (i) to "at most two of the six slots carry
+foreign cap-interior points".  The following argument proves at most *three*,
+from plane geometry alone, with no cardinality hypothesis.  It is recorded as a
+proof sketch: it is not yet formalized, and it does not reach the bound needed.
+
+**The pairing.**  Fix `i ≠ j` and let `k` be the third index.  A foreign hit in
+slot `(i, j)` is a point `x ∈ capInteriorByIndex j` with `dist Aᵢ x = ρᵢ`; in the
+one-radius arm cap `j`'s whole interior lies on the class at `Aⱼ`, so also
+`dist Aⱼ x = ρⱼ`.  A foreign hit in the reversed slot `(j, i)` is a point
+`y ∈ capInteriorByIndex i` with the same two equations.  So `x` and `y` both lie
+in
+
+    circle (Aᵢ, ρᵢ) ∩ circle (Aⱼ, ρⱼ).
+
+**The reflection.**  Two distinct circles meet in at most two points, and those
+two points are reflections of one another across the line joining the centres —
+here the line `Aᵢ Aⱼ`, which is a side of the Moser triangle.  So one lies
+strictly on each side of that line, unless the circles are tangent and the two
+coincide.
+
+**Both caps are on the same side.**  The line `Aᵢ Aⱼ` meets the MEC exactly at
+`Aᵢ` and `Aⱼ`.  Cap `i` is the segment beyond chord `Aⱼ A_k`: its arc runs from
+`Aⱼ` away from `Aᵢ` to `A_k`, so it lies strictly on the `A_k` side of line
+`Aᵢ Aⱼ` apart from the endpoint `Aⱼ`, and the chord `Aⱼ A_k` does too.  Cap `j`
+is the segment beyond chord `Aᵢ A_k` and lies strictly on the `A_k` side by the
+same argument.  The interiors erase the Moser endpoints, so
+`capInteriorByIndex i` and `capInteriorByIndex j` both sit strictly on the `A_k`
+side.
+
+**Conclusion.**  Of the two intersection points, only the one on the `A_k` side
+can be a member of either cap interior.  So `x` and `y` would have to be that
+same single point.  But a non-Moser carrier point lies in exactly one cap
+(`nonmoser_in_one`), so the two interiors are disjoint and `x ≠ y`.  Hence
+
+> **at most one of the two slots `(i, j)`, `(j, i)` carries a foreign hit.**
+
+Three unordered pairs give at most three foreign hits, so at least three apex
+hits.
+
+**Why that is one short.**  Section 63 needs four apex hits to force an
+escape-free index; three does not suffice.  With one foreign hit per unordered
+pair, the foreign hits can be distributed one per index — for instance in slots
+`(0,1)`, `(1,2)`, `(2,0)` — leaving every index with exactly one apex hit and no
+index escape-free.  That cyclic configuration is the single remaining case, and
+nothing above excludes it.
+
+Metrically it asks for three points `x₀ ∈ c₀ ∩ c₁`, `x₁ ∈ c₁ ∩ c₂`,
+`x₂ ∈ c₂ ∩ c₀` with `c_m = circle (A_m, ρ_m)`, one from each pair of the three
+apex circles, each landing in the correct cap interior.  That is a radical-centre
+configuration, and deciding it is the next concrete question.
+
+**Census check — the argument survives falsification.**  If any pattern carried
+foreign hits in both slots of one unordered pair, the argument would be wrong.
+Over all 111 metric patterns there are none.  Further, the two foreign hits
+always sit at two *different* indices, one each, and never two at one index —
+which is what leaves the third index with both slots apex-filled.  This is
+consistency evidence for the sketch, not a proof of it, and it says nothing
+about the cyclic case, which the census never exhibits.
+
+**Status.**  PROOF SKETCH, not formalized, and short of the target by one.
+Formalizing it needs the chord-separation side predicate `OnArcOpposite` that
+`CapPartition`'s arc-membership invariant already carries, plus the reflection
+step, for which `U2/WitnessReflectionKernel.inner_sub_centers_eq_zero` is the
+proved ingredient.  Nothing here is claimed as established.
+
+Leaf unchanged: single `sorry`, `M = 18`.
