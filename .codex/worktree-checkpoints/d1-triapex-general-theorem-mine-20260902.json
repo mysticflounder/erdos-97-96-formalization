@@ -1,0 +1,14 @@
+{
+  "base_head": "64fc8d5d1b89b94c6f2a913a57e7f1632d32acdf",
+  "created_utc": "2026-09-03T01:52:48Z",
+  "durable_paths": [],
+  "generated_roots": [],
+  "lane_id": "d1-triapex-general-theorem-mine-20260902",
+  "manifest_sha256": "43d954d962b820cc181ea356f30330c6728d2ac55b80ac8dc225bc9bcf0e7a84",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/d1-triapex-general-theorem-mine-20260902.json",
+    "docs/audits/2026-09-02-d1-triapex-computational-general-theorem-mine.md"
+  ],
+  "owner": "d1-triapex-general-theorem-mine-20260902",
+  "schema": "worktree-lane-checkpoint/v1"
+}
