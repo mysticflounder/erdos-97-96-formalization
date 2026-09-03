@@ -2049,6 +2049,34 @@ distance-geometry or Gram-matrix formulation may be markedly smaller. That is a
 materially different route rather than a tuning change, and it should not be
 started without weighing it against simply waiting for msolve.
 
+### 22. Interreduction is not uniformly beneficial (2026-09-03)
+
+The interred+elimpart differential returned enough to settle the reduction's
+value, and the answer is worse than "harmless but useless". Daemon wall, mod
+32003:
+
+    0128294791aad010   elimpart 4   dim -1                    1.3 s
+    0d6996160cc83aab   elimpart 5   dim 0, vdim 2048         21.0 s
+    32263a5344416a02   elimpart 5   no dim line             900.1 s, budget reached
+
+`32263a5344416a02` completes without the reduction and times out with it. So
+interreduction can turn a terminating computation into a non-terminating one:
+five fewer variables is bought with a denser generating set, and on this key the
+density costs more than the variables save. The reduction is therefore not a
+free preprocessing step and must not be applied by default.
+
+What the differential established, stated exactly: one key where both invariants
+are defined and agree across a transform that genuinely changed the system
+(`0d6996160cc83aab`, five substitutions, dimension and vector-space dimension
+preserved); one key where the transform lands on the unit ideal, which any
+destructive transform would also do, so it is not a test; and three keys with no
+output. That is one informative confirmation, not four. The plan for four
+informative keys was not achieved, and the evidence for exactness remains a
+single data point.
+
+This does not retroactively weaken the characteristic-0 conclusion of block 21,
+since four of the five dead routes never used the reduction at all.
+
 {{NEEDS_UPDATE}}: the remaining mod-p verdicts from chain v12, and the
 certificate verification for `0e31c5c5d735a779`.
 
