@@ -1,0 +1,14 @@
+{
+  "base_head": "fe4a93750e88d386986215e20ac574a479ad8932",
+  "created_utc": "2026-09-03T11:05:00Z",
+  "durable_paths": [],
+  "generated_roots": [],
+  "lane_id": "c3-exact13-retained-cap-ingress-20260903",
+  "manifest_sha256": "194b3b936c45bd4273bf94ae8008e27ed9435d09a5a4cd1e746ea674ea060ad3",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/c3-exact13-retained-cap-ingress-20260903.json",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/DRExactThirteenRetainedCapIngress.lean"
+  ],
+  "owner": "codex",
+  "schema": "worktree-lane-checkpoint/v1"
+}
