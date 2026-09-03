@@ -2309,3 +2309,47 @@ caveat of section 23 attached to the last two.
 
 {{NEEDS_UPDATE}}: whether the rational linear-algebra search reaches a
 certificate, and at what degree.
+
+### 25. A missing run manufactured a survivor claim (2026-09-03)
+
+Chain v16 wrote two lines to `events/angle-chain.log` reporting that
+`1412a71e2b2792b3` has no live pair, hence an already saturated ideal, hence
+solutions whose fifteen points are all distinct. **Both lines are retracted.**
+That triage never ran. Daemon job `9592f915` is still queued with `started_at`
+null, the client gave up after 5431 s, `kal_angles` recorded
+`NO_VERDICT(queued/None/Nonems)` with an empty field set, and the artifact
+`angle-1412a71e2b2792b3-rel.stdout.txt` is 0 bytes.
+
+The defect. The chain's `read_triage` guarded only on the stdout file being
+ABSENT, but `kal_angles` writes the file even when the run produced nothing. An
+empty file therefore parsed to zero `relevant` lines, zero lines was read as
+"no pair can vanish", and that took the branch concluding the raw ideal is
+already saturated. The retracted line's own "raw vdim None" was the parser
+reporting that it had nothing, and the conclusion was drawn past it.
+
+Why this one matters more than an ordinary bug: it fails toward a POSITIVE
+claim. Every other failure in this layer has produced a timeout or a missing
+verdict, which is visibly nothing. This one turns a run that did not happen
+into a surviving representative — the one outcome that would keep the TriApex
+leaf open — and it did so in the only orbit that has never been tested. A
+missing run must never be able to manufacture a survivor.
+
+Fix: a triage is accepted only if its output carries both a `dim_raw` and a
+`dim` line; their absence is recorded as no verdict rather than as an empty
+result. Applied to `artifacts/tools/angle_chain_v15.py` and `v16.py` and
+checked against the three stdout files on disk — the empty `1412a71e2b2792b3`
+file is now refused, while `0d6996160cc83aab` (raw 2048, 4 live) and
+`0e31c5c5d735a779` (raw 1536, 7 live) still parse correctly. The peer session
+found the defect and reports the same hole in its own chain v12; a second belt
+available to both is that a daemon run with `started_at` null cannot have
+produced anything, whatever the file says.
+
+Containment: the false conclusion never reached this document. Section 19 still
+records `1412a71e2b2792b3` as never triaged or saturated, and its
+`{{NEEDS_UPDATE}}` is still open. No verdict of any kind is established for that
+orbit.
+
+Also recorded, from chain v15's death: piqd rejects a byte-identical
+resubmission with `script blob <hash> was already stored` rather than
+deduplicating it to the existing run, so retrying an unchanged query fails
+instead of returning the earlier result.

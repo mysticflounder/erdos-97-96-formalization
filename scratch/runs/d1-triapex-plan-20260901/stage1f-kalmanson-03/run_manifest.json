@@ -9,8 +9,8 @@
   "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03/artifacts/tools/angle_chain_v12.py": "ac9ee3c418f13f5a62d0f2d737808c1e82854e12bd61ee2317c6ce476ac2401e",
   "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03/artifacts/tools/angle_chain_v13.py": "38bab49ff81dad74241f20477d05320b53f9bcf980a968b8ad4b30685aea1c91",
   "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03/artifacts/tools/angle_chain_v14.py": "25991120ca1628d5740a3d9be0c9692a51d911dbdeeef68d386d9c9c7b1258bd",
-  "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03/artifacts/tools/angle_chain_v15.py": "4288790484b41140a8d82ae95eff9f39127aaafe5fe805c7f36f9b6cd949ece6",
-  "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03/artifacts/tools/angle_chain_v16.py": "0a1f2294327f68a09f1d943217ad9f5ed11e9ebad88d9442aa9e2b94f29e6ef5",
+  "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03/artifacts/tools/angle_chain_v15.py": "7847189ce5542b5053377a8d3feab08b8680dfe023b11fc8f1c3a14dce95bc96",
+  "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03/artifacts/tools/angle_chain_v16.py": "3da76b1d51ae4e8cf0b88d0b2d9d1713419631e00d4e029bb14a4df268119a38",
   "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03/artifacts/tools/angle_chain_v2.sh": "dfc4a9091fef85ba3596795e19edbe9bc63ca1930b752bf7d5723484b451d44c",
   "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03/artifacts/tools/angle_chain_v3.sh": "2cd2bfff3a8588e41651305605fa4379fe803ed28bcb93228933a17190163afe",
   "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03/artifacts/tools/angle_chain_v4.py": "7e930b0fa6bf6d5cbdc0f8031e1c194ca297cfb7529ab16f655ddc83e93195ac",
@@ -44,5 +44,5 @@
   "census/card_head/d1_mu0_pattern_algebra.py": "0b54cb1085ae0df0f2eac75e45da568a3e55d303d6e0a5623705f74bfb3b17c6",
   "census/card_head/tests/test_d1_mu0_incidence_census.py": "26dfd1e6c2820fa33693f73d86b73a18c4694033c87bae3f469721bf68fec2f1"
  },
- "manifest_sha256": "ef8313494be692b37fe3e089cebc1017b93301b9a4ef327ff696305bceddd35b"
+ "manifest_sha256": "407cc0a8a841040c045ccb699b05e8b18cb64b96243fb2d636b3c262662909d7"
 }
