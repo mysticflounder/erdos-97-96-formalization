@@ -3894,3 +3894,72 @@ disequalities separate by at least 0.618, and the conclusion's `signedArea2` is
 abstract geometry is sound, so this checks the statement, not the mathematics.
 Incidentally `d(A1,P1.1) = 1 = r` in this witness, which is why the redundant
 radius tie was easy to miss.
+
+### 53. The ingress has no producers in the source, and section 52 overstated it (2026-09-03)
+
+A source reconnaissance of the sorry site corrects section 52. Section 52 is
+right about the census and wrong in what it implies about Lean: the three groups
+are uniform and asserted, but naming what must be produced is not the same as
+having a producer, and the Lean side has none of the three. Two structural
+claims were re-checked directly against source before recording.
+
+**Shells are indexed by source, not by centre** (`U1CarrierInjection.lean:1116`).
+`CriticalShellSystem.shellAt` takes `q ∈ A` and returns a centre together with a
+`CriticalSelectedFourClass A q center`; `centerAt q hq` is that centre. So a
+shell centred at `P2.1` cannot be asked for. One must first exhibit a carrier
+point `q` with `H.centerAt q hq = P2.1`, and nothing in scope at the sorry does
+that. This is the load-bearing missing primitive, and it is a single sentence:
+**"this named point is a blocker centre."** The repo has only the counting bound
+`G.notRobustCover_card` and the unnamed `CriticalShellSystem.exists_blocker_cycle`
+(`:1234`), which shows some centre is a source but names none. Once a source is
+named, `CriticalFourShell.support_eq_radius` (`:666`) supplies the distances.
+
+**Two apices on a third apex's circle has no producer.** The `A2` group needs
+`A0` and `A1` in `SelectedClass D.A A2 r`. Nothing in the repository puts an
+apex in another apex's selected class. `G.apex_rich` is cardinality only
+(`ApexRichClassStructure.lean:50`). `StrictApexFourWitness`
+(`ApexRichFourWitness.lean:30`) is the only source of "point at distance `r`
+from an apex" in the leaf, and its support is always inside a cap interior, so
+apices are never members. The one apex-membership statement in
+`TriApexAllLargeContext` is `no_center_covers_all_apices`
+(`AllLargeCapCanonicalInterfaces.lean:307`), and it is negative — no carrier
+point has all three apices in one class. It does not forbid the two-apex group
+the census asserts, but it does not supply it either.
+
+**The `A1` cross-cap equidistance is permitted, not forced.** `d(A1,P1.1)` is
+available from the cap-1 witness; `d(A1,P2.3)` needs a cap-2 interior point in
+`A1`'s class. The adjacent-cap one-hit bounds
+(`SurplusM44Packet/Shard01.lean:1063`) allow exactly one such point per adjacent
+cap but do not produce it.
+
+**Cardinality scope, and this is the sharper problem.**
+`false_of_pairedCommonDeletion_fiveSurviveOneFail_triApexAllLarge_core` has **no
+hypothesis on `D.A.card`** — verified against the signature at
+`TriApexEndpointRetainedOmission.lean:2874-2885`. Every card-fifteen tool in
+scope is a conditional `D.A.card = 15 → …`, including `hfifteen`, `hsixSlots`,
+`hadjacentAtPair`, and `exists_orderedCap_six_of_card_eq_fifteen` (`:2356`) —
+which is what gives the slot labels `Pk.s` their meaning in the first place. So
+the census labelling is only interpretable on the card-fifteen branch, and an
+ingress phrased in those labels closes that branch alone. The `≠ 15` branches
+would remain owed. Section 40's cardinality gap is therefore not a separate
+future item; it is inside this route.
+
+**Disequalities are the one part that is ready.** `A1 ≠ P2.1` and `A0 ≠ P2.3`
+come from `capInteriorByIndex_ne_oppositeVertexByIndex_of_mem`
+(`SurplusM44Packet/Shard02.lean:190`), which holds for any apex index, not only
+the cap's own; `P1.1 ≠ P2.3` from `capInteriorByIndex_ne_of_mem_of_mem_ne`
+(`Shard02.lean:242`) with `oppIndex1_ne_oppIndex2` (`Shard01.lean:1314`).
+Distinctness of two interior points of the *same* cap has no lemma and must be
+carried as data.
+
+**No circularity.** Nothing above consumes the sorry-carrying theorem; its only
+consumer is `false_of_pairedCommonDeletion_apexClassJointDeletion_triApexAllLarge_core`
+(`:2951`), which calls it.
+
+**Correction.** Section 52 and the checkpoint report framed the remaining work as
+"three extractions of fixed shape". That is the correct census-side statement and
+the wrong Lean-side one: all three extractions lack producers, two of them for
+structural reasons rather than missing plumbing. The honest position is that the
+geometry is finished and the source-occurrence problem is untouched.
+
+Leaf unchanged: single `sorry`, `M = 18`.
