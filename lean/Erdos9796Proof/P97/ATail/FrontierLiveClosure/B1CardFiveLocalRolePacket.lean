@@ -88,6 +88,80 @@ theorem nonempty_b1RowCompletionTriple_of_card_eq_three
     complement_eq := by
       simpa [firstLabel, secondLabel, thirdLabel] using hcomplement }⟩
 
+/-- In the exact-card-five B1 branch, the two original live slices contain
+exactly the three noncanonical physical-class points. -/
+theorem b1_liveSlices_union_card_eq_three
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F))
+    (hnormal : B1PhysicalClassFiveSixNormalForm C)
+    (hfive : (SelectedClass D.A S.oppApex2 C.rho).card = 5) :
+    let physicalClass := SelectedClass D.A S.oppApex2 C.rho
+    let uSlice :=
+      ((lateFirstApexSystem C.R).selectedAt
+        C.u.1 C.u.2).toCriticalFourShell.support ∩ physicalClass
+    let vSlice :=
+      ((lateFirstApexSystem C.R).selectedAt
+        C.v.1 C.v.2).toCriticalFourShell.support ∩ physicalClass
+    (uSlice ∪ vSlice).card = 3 := by
+  classical
+  let physicalClass := SelectedClass D.A S.oppApex2 C.rho
+  let uSlice :=
+    ((lateFirstApexSystem C.R).selectedAt
+      C.u.1 C.u.2).toCriticalFourShell.support ∩ physicalClass
+  let vSlice :=
+    ((lateFirstApexSystem C.R).selectedAt
+      C.v.1 C.v.2).toCriticalFourShell.support ∩ physicalClass
+  let deletedPair : Finset ℝ² :=
+    {C.first.deleted.1, C.second.deleted.1}
+  have hcover :
+      physicalClass = deletedPair ∪ (uSlice ∪ vSlice) := by
+    simpa [B1PhysicalClassFiveSixNormalForm, physicalClass,
+      uSlice, vSlice, deletedPair] using hnormal.2.2
+  have hdeletedValuesNe :
+      C.first.deleted.1 ≠ C.second.deleted.1 := by
+    intro h
+    exact C.hdeletedNe (Subtype.ext h)
+  have hpairCard : deletedPair.card = 2 := by
+    simp [deletedPair, hdeletedValuesNe]
+  have hpairDisjointU : Disjoint deletedPair uSlice := by
+    rw [Finset.disjoint_left]
+    intro x hxPair hxU
+    have hxURow := (Finset.mem_inter.mp
+      (show x ∈ uSlice from hxU)).1
+    rcases Finset.mem_insert.mp hxPair with rfl | hxSecond
+    · exact C.first.deleted_not_mem_uRow hxURow
+    · have hx : x = C.second.deleted.1 := Finset.mem_singleton.mp hxSecond
+      subst x
+      exact C.second.deleted_not_mem_uRow hxURow
+  have hpairDisjointV : Disjoint deletedPair vSlice := by
+    rw [Finset.disjoint_left]
+    intro x hxPair hxV
+    have hxVRow := (Finset.mem_inter.mp
+      (show x ∈ vSlice from hxV)).1
+    rcases Finset.mem_insert.mp hxPair with rfl | hxSecond
+    · exact C.first.deleted_not_mem_vRow hxVRow
+    · have hx : x = C.second.deleted.1 := Finset.mem_singleton.mp hxSecond
+      subst x
+      exact C.second.deleted_not_mem_vRow hxVRow
+  have hpairDisjointUnion :
+      Disjoint deletedPair (uSlice ∪ vSlice) := by
+    rw [Finset.disjoint_left]
+    intro x hxPair hxUV
+    rcases Finset.mem_union.mp hxUV with hxU | hxV
+    · exact Finset.disjoint_left.mp hpairDisjointU hxPair hxU
+    · exact Finset.disjoint_left.mp hpairDisjointV hxPair hxV
+  have hclassCardEq :
+      physicalClass.card = deletedPair.card + (uSlice ∪ vSlice).card := by
+    rw [hcover, Finset.card_union_of_disjoint hpairDisjointUnion]
+  have hfive' : physicalClass.card = 5 := by
+    simpa [physicalClass] using hfive
+  rw [hfive', hpairCard] at hclassCardEq
+  change (uSlice ∪ vSlice).card = 3
+  omega
+
 /-- Exact card-five trace split for the two live physical slices. -/
 theorem b1_live_slices_card_five_split
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
@@ -116,54 +190,9 @@ theorem b1_live_slices_card_five_split
   let vSlice :=
     ((lateFirstApexSystem C.R).selectedAt
       C.v.1 C.v.2).toCriticalFourShell.support ∩ physicalClass
-  let deletedPair : Finset ℝ² :=
-    {C.first.deleted.1, C.second.deleted.1}
-  have hnormal' :
-      (¬ ∃ third : ExactFourMutualOmissionJointDeletion
-          C.R C.rho C.u C.v,
-          third.deleted ≠ C.first.deleted ∧
-            third.deleted ≠ C.second.deleted) ∧
-        (physicalClass.card = 5 ∨ physicalClass.card = 6) ∧
-          physicalClass = deletedPair ∪ (uSlice ∪ vSlice) := by
-    simpa [B1PhysicalClassFiveSixNormalForm, physicalClass,
-      uSlice, vSlice, deletedPair] using hnormal
-  have hdeletedValuesNe :
-      C.first.deleted.1 ≠ C.second.deleted.1 := by
-    intro h
-    exact C.hdeletedNe (Subtype.ext h)
-  have hpairCard : deletedPair.card = 2 := by
-    simp [deletedPair, hdeletedValuesNe]
-  have hpairDisjointU : Disjoint deletedPair uSlice := by
-    rw [Finset.disjoint_left]
-    intro x hxPair hxU
-    have hxURow := (Finset.mem_inter.mp (show x ∈ uSlice from hxU)).1
-    rcases Finset.mem_insert.mp hxPair with rfl | hxSecond
-    · exact C.first.deleted_not_mem_uRow hxURow
-    · have hx : x = C.second.deleted.1 := Finset.mem_singleton.mp hxSecond
-      subst x
-      exact C.second.deleted_not_mem_uRow hxURow
-  have hpairDisjointV : Disjoint deletedPair vSlice := by
-    rw [Finset.disjoint_left]
-    intro x hxPair hxV
-    have hxVRow := (Finset.mem_inter.mp (show x ∈ vSlice from hxV)).1
-    rcases Finset.mem_insert.mp hxPair with rfl | hxSecond
-    · exact C.first.deleted_not_mem_vRow hxVRow
-    · have hx : x = C.second.deleted.1 := Finset.mem_singleton.mp hxSecond
-      subst x
-      exact C.second.deleted_not_mem_vRow hxVRow
-  have hpairDisjointUnion : Disjoint deletedPair (uSlice ∪ vSlice) := by
-    rw [Finset.disjoint_left]
-    intro x hxPair hxUV
-    rcases Finset.mem_union.mp hxUV with hxU | hxV
-    · exact Finset.disjoint_left.mp hpairDisjointU hxPair hxU
-    · exact Finset.disjoint_left.mp hpairDisjointV hxPair hxV
   have hunionCard : (uSlice ∪ vSlice).card = 3 := by
-    have hclassCardEq :
-        physicalClass.card = deletedPair.card + (uSlice ∪ vSlice).card := by
-      rw [hnormal'.2.2, Finset.card_union_of_disjoint hpairDisjointUnion]
-    have hfive' : physicalClass.card = 5 := by
-      simpa [physicalClass] using hfive
-    omega
+    simpa [uSlice, vSlice, physicalClass] using
+      b1_liveSlices_union_card_eq_three C hnormal hfive
   have huPos : 1 ≤ uSlice.card := by
     apply Finset.card_pos.mpr
     exact ⟨C.u.1, Finset.mem_inter.mpr ⟨

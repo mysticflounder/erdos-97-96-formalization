@@ -730,3 +730,15 @@ remaining unclassified fresh carrier in this recurrence.  Subsequent work
 should use the exact card-five/card-six live-slice traces to identify the
 allowed endpoint roles in these two arms; returning to an arbitrary fresh
 pair would discard the transport just proved.
+
+The exact-card-five count is now exposed independently of the three trace
+constructors.  `b1_liveSlices_union_card_eq_three` proves that the original
+live-slice union consists of exactly the three noncanonical physical-class
+points: the normal-form cover has a disjoint two-point canonical-deletion
+part and the whole physical class has cardinality five.  Consequently,
+`b1_cardFive_freshTriple_eq_originalLiveSlices` upgrades membership to exact
+identity whenever fresh `u`, fresh `v`, and the fresh joint deletion all lie
+in that union.  Their packet inequalities make those three points distinct,
+so they exhaust the original live union.  The unresolved exact-five cases are
+now the other-canonical deletion arm, and the live-deletion arm with
+`u = source`; the fully live triple has no further cardinal-role ambiguity.

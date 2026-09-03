@@ -452,6 +452,56 @@ theorem b1_freshPair_crossSystem_split
           hotherCanonical
   · exact Or.inl hlive
 
+/-- In the exact-card-five branch, three distinct fresh roles lying in the
+original live slices exhaust those slices.  This turns transported membership
+into an exact identity against the original B1 trace. -/
+theorem b1_cardFive_freshTriple_eq_originalLiveSlices
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F))
+    (hnormal : B1PhysicalClassFiveSixNormalForm C)
+    (hfive : (SelectedClass D.A S.oppApex2 C.rho).card = 5)
+    (u v : CarrierVertex D.A)
+    (huNeV : u ≠ v)
+    (jointDeletion :
+      ExactFourMutualOmissionJointDeletion C.R C.rho u v)
+    (huLive : u.1 ∈ b1USlice C ∨ u.1 ∈ b1VSlice C)
+    (hvLive : v.1 ∈ b1USlice C ∨ v.1 ∈ b1VSlice C)
+    (hdeletedLive :
+      jointDeletion.deleted.1 ∈ b1USlice C ∨
+        jointDeletion.deleted.1 ∈ b1VSlice C) :
+    ({u.1, v.1, jointDeletion.deleted.1} : Finset ℝ²) =
+      b1USlice C ∪ b1VSlice C := by
+  classical
+  have hliveCard : (b1USlice C ∪ b1VSlice C).card = 3 := by
+    simpa [b1USlice, b1VSlice, b1PhysicalClass] using
+      b1_liveSlices_union_card_eq_three C hnormal hfive
+  have htripleSubset :
+      ({u.1, v.1, jointDeletion.deleted.1} : Finset ℝ²) ⊆
+        b1USlice C ∪ b1VSlice C := by
+    intro x hx
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hx
+    rcases hx with rfl | rfl | rfl
+    · exact Finset.mem_union.mpr huLive
+    · exact Finset.mem_union.mpr hvLive
+    · exact Finset.mem_union.mpr hdeletedLive
+  have huValuesNe : u.1 ≠ v.1 := by
+    intro h
+    exact huNeV (Subtype.ext h)
+  have huDeletedNe : u.1 ≠ jointDeletion.deleted.1 := by
+    intro h
+    exact jointDeletion.deleted_ne_u (Subtype.ext h.symm)
+  have hvDeletedNe : v.1 ≠ jointDeletion.deleted.1 := by
+    intro h
+    exact jointDeletion.deleted_ne_v (Subtype.ext h.symm)
+  have htripleCard :
+      ({u.1, v.1, jointDeletion.deleted.1} : Finset ℝ²).card = 3 := by
+    simp [huValuesNe, huDeletedNe, hvDeletedNe]
+  apply Finset.eq_of_subset_of_card_le htripleSubset
+  rw [hliveCard, htripleCard]
+
 /-- Two distinct deleted sources cannot lie in one another's actual rows when
 their actual blockers are distinct from each other and from the physical apex. -/
 theorem false_of_exactFour_twoDeletion_blockerTwoCycle
