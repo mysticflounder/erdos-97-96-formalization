@@ -48,15 +48,47 @@ Formalizing this standalone obstruction does not establish that the live
 source packet exposes the required profile aliases, does not eliminate the
 direct-order cell, and does not close that broad endpoint.
 
+The role name `B` must be interpreted through each authenticated profile: it
+is the `c1`/`K1` center. In profile 282 specifically, `c1=U=c000`, so `B=U`
+there. That identification is profile-local and must never be assumed for a
+different profile without checking its role map.
+
 ## Lean result
 
 `Profile282K2OrderCore.lean` proves the obstruction first for every center
 `(1+s,-r)` with `s,r>0`, then specializes to `(3/2,-r)`. It also provides the
 reflected upper-right forms with both turns negative, matching the geometric
-shape expected from the authenticated direct order. A focused `lake env lean`
-check passes. `#print axioms` reports only `propext`, `Classical.choice`, and
-`Quot.sound`; there is no admitted or external computational trust. An
-independent adversarial audit certified the lower-right algebra, the four
-mirror source-atom correspondences, and the stated consumer boundary. The
-direct-order source-atom mapping still requires the successor PIQD wave and a
-separate audit.
+shape expected from the authenticated direct order.
+
+The new normalized theorem
+`normalized_twoEquilateralCircle_opposedTurns_false` and its coordinate-free
+consumer `twoEquilateralCircle_opposedTurns_false` both pass focused
+`lake env lean` builds. An independent audit checked both declarations and
+reported only `propext`, `Classical.choice`, and `Quot.sound`; there is no
+admitted or external computational trust in these lemmas.
+
+## Authenticated formula-scope mine
+
+The governed mine covered all 2,798 authenticated profiles. Its structural
+filter retained 558 profiles. Among those, 34 profiles had SAT-bearing engine
+cells, comprising 56 SAT cells. Exactly 50 of those cells match the opposed-
+turn obstruction. The obstruction rejects every SAT cell for 28 profiles.
+
+Six formula/profile-scope residuals remain:
+
+```text
+360  363  376  467  470  483
+```
+
+These counts concern the authenticated formulas and their engine cells. They
+do not establish a source bridge, wire the broad
+`false_of_exactFiveDistinct_threeCenter_distinctFresh_fiveIncidence` consumer,
+or close its `sorry`.
+
+## Next governed work
+
+Produce a durable mine/adapter for the six residual profiles. It must bind the
+authenticated formula inputs, preserve per-engine SAT-cell custody, replay any
+survivors, and keep formula/profile conclusions separate from live-source and
+Lean closure claims. Source wiring of the broad five-incidence consumer comes
+only after that residual adapter and a separate bridge audit.
