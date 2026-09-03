@@ -74,7 +74,6 @@ def countPoints (mask : RowMask) (points : List Nat) : Nat :=
 def supportPoints (mask : RowMask) : List Nat :=
   labels.filter fun point => has mask point
 
-/-! Kernel-checked regression for the generated table. -/
 def fourPointMasksReference : List RowMask :=
   (List.range 2048).filter fun support => countPoints support labels == 4
 
@@ -83,6 +82,8 @@ set_option maxHeartbeats 0 in
 set_option linter.style.maxHeartbeats false in
 set_option linter.style.nativeDecide false in
 set_option maxRecDepth 100000 in
+/-- Native-decision regression for the generated table, trusting
+    `Lean.ofReduceBool` and `Lean.trustCompiler`. -/
 theorem fourPointMasks_eq_reference :
     fourPointMasks = fourPointMasksReference := by
   native_decide

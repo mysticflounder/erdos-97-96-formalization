@@ -1,0 +1,15 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "docstring-opener-native-20260902",
+  "owner": "docstring_opener_native",
+  "base_head": "d580d14a7f1e94057da16aa7fb7c8471bbe3e875",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/docstring-opener-native-20260902.json",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/B1Live.lean",
+    "lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClassifier.lean"
+  ],
+  "durable_paths": [],
+  "generated_roots": [],
+  "created_utc": "2026-09-02T20:51:45Z",
+  "manifest_sha256": "2e0b9a2dbaf78854adf49ddcb20b88ff407d7da0a4bd3e69cbe8881c6f40221c"
+}

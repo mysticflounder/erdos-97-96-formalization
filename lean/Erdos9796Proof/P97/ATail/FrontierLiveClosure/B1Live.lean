@@ -513,7 +513,7 @@ theorem b1_live_interior_joint_deletion_or_small_cover
         exact houtside ⟨x, hx, hxNot⟩
       simpa [I, C, rowU, rowV] using hcover
 
-/-/ The row-cover branch has one further source-clean consequence.  A live
+/-- The row-cover branch has one further source-clean consequence.  A live
     critical row contains its own source, while its intersection with the
     physical second-apex class has cardinality at most two.  Thus, if neither
     deleted source is interior, two live rows can cover at most two interior
@@ -661,7 +661,7 @@ theorem b1_live_interior_deleted_or_third_or_live_source_interior
           Finset.card_union_le _ _
     omega
 
-/-/ The reusable robust-cap ingress keeps these two implications private in
+/-- The reusable robust-cap ingress keeps these two implications private in
     its implementation file.  Expose the source-clean forms here because the
     B1 live-source branch must account explicitly for the first-apex fiber
     and surplus-cap boundaries before it can consume that ingress. -/
@@ -700,7 +700,7 @@ theorem b1_secondCapInterior_not_mem_surplusCap
     simpa [SurplusCapPacket.capByIndex,
       SurplusCapPacket.surplusCap, hi] using hnot
 
-/-/ When both live B1 sources are strict second-cap-interior, this is the
+/-- When both live B1 sources are strict second-cap-interior, this is the
     exact source-clean split needed before entering the reusable robust-cap
     consumer.  The first arm is ready for its outside/survival ingress; the
     other two arms isolate the only remaining boundary, namely a source that
