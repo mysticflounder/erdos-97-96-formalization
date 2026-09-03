@@ -1418,9 +1418,39 @@ side rule refutes every sampled Stage 1d survivor; Stage 1e census launched):
   ideal, so a nonempty saturated ideal mod p gives a nonempty variety over
   the rationals, while a mod-p emptiness is evidence only and needs the
   characteristic-0 run.
-  {{NEEDS_UPDATE}}: saturated and real-root verdicts from chain v9. Any
-  real solution still needs the strict convexity check of Guardrail 6, and
-  the full-pattern check, before it is a candidate configuration.
+  Chain v9 was stopped on 2026-09-03 after its first run, which located the
+  real obstruction. The rational run on `0d6996160cc83aab` returned no
+  verdict at its 3600 s limit, and the captured output shows why: it stops
+  after `equations 40`, before the saturation begins. All four rational
+  attempts on that representative behave the same way — plain `std`,
+  `modStd`, `modStd` with full saturation, and the pair variant each print
+  `equations 40` and nothing further. The wall is therefore the FIRST
+  Gröbner basis over the rationals, not the saturation: the same raw ideal
+  takes 8 s mod 32003, and its full mod-p saturation takes 280 s to 604 s.
+  With 2048 points over the rationals the coefficients explode, and the
+  saturated ideal has only 192.
+  The replacement chain `artifacts/tools/angle_chain_v10.py` therefore
+  saturates INSIDE the ideal, so that the rational basis is computed once at
+  the smaller dimension. Two new modes in `artifacts/tools/kal_angles.py`
+  support this. `--relevant` asks, mod 32003 and for each of the 105 point
+  pairs, whether the squared distance can vanish on the variety at all:
+  `dim(I + d(a,b)) = -1` means saturating by that pair is a no-op. `--rabin`
+  then adds one variable u and one equation `u*d(a,b)-1` per selected pair,
+  so the ideal handed to `modStd` is already saturated by them. Using a
+  SUBSET of the pairs is sound for refutation: the resulting ideal J
+  satisfies I ⊆ J ⊆ I:(∏d)^∞, so V(J) contains the saturated variety, and no
+  real point of J gives no non-degenerate real configuration. The subset is
+  chosen greedily by the size of the degenerate component each pair carries,
+  which is a heuristic only and carries no part of the soundness. Logs:
+  `events/angle-v10-relevant.log`, `events/angle-v10-char0-rabin.log`.
+  {{NEEDS_UPDATE}}: the relevant-pair sets, and the rational real-root
+  verdicts from chain v10. Any real solution still needs the strict
+  convexity check of Guardrail 6, and the full-pattern check, before it is a
+  candidate configuration.
+  {{NEEDS_UPDATE}}: the mod-p saturated picture for the twelve
+  representatives chain v9 did not reach. That work is triage evidence, not
+  a decision: a mod-p emptiness is evidence only, by the direction recorded
+  above.
 - Residue structure (solver-free census of the 111 metric patterns): every
   pattern has exactly 4 shells and 3 apex classes (27 equidistance
   equations in the 26 pinned coordinates); the apex-class triple is one of
@@ -1636,3 +1666,71 @@ accepted and recorded here.
 None of the three changes the leaf or the measure. Items 1 and 3 bound what
 the exact-15 metric layer may claim: without item 3 the angle results are
 statements about the 20 representatives, not about all 111 patterns.
+
+### 16. Characteristic 0 is unreachable on the raw angle system; the elimpart reduction (2026-09-03)
+
+Chain v9 phase 1 ran representative `0d6996160cc83aab` over the rationals with
+`modStd`, full saturation and `nrRootsDeterm`, with a 3600 s budget. It reached
+the budget having printed only `equations 40`. The first Gröbner basis over the
+rationals never returned, so saturation and the real-root count were never
+attempted. Two earlier characteristic-0 attempts at 1800 s (chain v5, on the
+unsaturated ideal) failed the same way. Recorded conclusion: on the raw
+26-variable angle system, `modStd` over the rationals does not return a first
+basis inside an hour, and every characteristic-0 verdict in the queue as written
+was unreachable. Chain v9 was stopped for that reason; its second phase-1 run on
+`3826b8a0dec4a6b0` had already been queued and cannot be cancelled, so it runs to
+its own budget and supplies a second data point for free.
+
+The bottleneck is variable count, not saturation. `kal_angles.py` gained an
+`--elimpart` mode: `presolve.lib`'s `elimpart` substitutes every variable the
+ideal determines linearly and returns an isomorphism
+
+    k[x_1..x_26]/I  →  k[remaining vars]/EL[1] ,
+
+and the generated script pins the substituted variables `EL[2]` to zero in the
+same ring. `V(EL[1] + EL[2])` is then the graph of that isomorphism, so
+dimension, vector-space dimension and real points are unchanged while the
+Gröbner engine works in the reduced variable set. The reduction is exact and
+loses no point; it is not a rational parametrization of the unit circles, which
+would have dropped the antipodal point of each circle and broken a kill test.
+
+A second session was found driving the same lane and the same wall from the
+other side, with a Rabinowitsch pre-saturation: adjoin u and u*d(a,b)-1 for a
+subset of point pairs. That construction needs no validation, because
+I ⊆ J ⊆ I:(∏d)^∞ for any subset of pairs, so V(J) contains the saturated
+variety and no real point of J refutes a non-degenerate real configuration.
+Agreed division of the serial Singular lane: that session keeps the
+characteristic-0 route on `0d6996160cc83aab` and `3826b8a0dec4a6b0`; this lane
+runs no characteristic-0 job and keeps the mod-32003 work.
+
+Chain v11 is that half. It gates on a differential check before the remaining
+saturations: three representatives are re-run mod 32003 with `--elimpart`, and
+the observed dimension and vector-space dimension must both match the stored
+stdout of the first angle-form wave —
+
+    0128294791aad010   dim -1              empty over the complex numbers
+    0d6996160cc83aab   dim  0, vdim 2048   finite
+    09de935481f89fcb   dim  2              positive dimensional
+
+Both fields are compared, not the dimension alone: `0d6996160cc83aab` and
+`3826b8a0dec4a6b0` both read dimension 0 raw and dimension 0 saturated, so a
+transform that silently dropped points would still agree on the dimension.
+Any disagreement stops the chain. Agreement is evidence for the reduction on
+three representatives, not a proof of it.
+
+Banking rule for the reduced system, agreed with the peer session. A faulty
+reduction can fail two ways and the two are not symmetric. If it adds points,
+the spurious ones are caught downstream: any real solution is substituted back
+into the original angle-form system and must pass the strict-convexity and
+full-pattern checks (Guardrail 6). If it drops points, nothing catches it — a
+refutation carries no witness, so there is no object to substitute and no check
+to fail. Therefore a refutation is banked only from a run on the unreduced
+system, or from a reduced run that an unreduced run corroborates; the reduction
+may carry a positive count, which the Guardrail 6 checks then police, and may be
+used freely for triage. Three representatives agreeing is evidence of exactness,
+not a proof, and a refutation would be the one claim resting entirely on that
+evidence.
+
+{{NEEDS_UPDATE}}: elimpart differential result, the saturated mod-p verdicts
+from chain v11, and the characteristic-0 Rabinowitsch verdicts from the peer
+session.
