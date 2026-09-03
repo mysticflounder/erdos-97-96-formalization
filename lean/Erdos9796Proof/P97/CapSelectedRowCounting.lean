@@ -1174,6 +1174,24 @@ theorem orderedCap_selected_outside_pair_count_eq_of_six_five
     _ = 10 := by
       simp [CGN.firstIndex, CGN.lastIndex, Fin.sum_univ_succ]
 
+/-- The preceding row count saturates the full outside-pair universe when the
+    complement has five points. -/
+theorem orderedCap_outsidePairCount_eq_choose_of_six_five
+    {A : Finset ℝ²} {L : CGN.OrderedCap 6}
+    (Packet : CGN.MecCapPacket A L)
+    (Hside : CGN.MinorCapSideHypotheses Packet)
+    (Hord : CGN.StrictCapOrder A L)
+    (hconv : ConvexIndep A) (F : FaithfulCarrierPattern A)
+    (houtside : (A \ Finset.univ.image L.points).card = 5) :
+    (∑ j : Fin 6,
+      Nat.choose
+        ((F.classAt (L.points j) (Packet.mem_A j)).support \
+          Finset.univ.image L.points).card 2) =
+      Nat.choose (A \ Finset.univ.image L.points).card 2 := by
+  rw [orderedCap_selected_outside_pair_count_eq_of_six_five
+    Packet Hside Hord hconv F houtside, houtside]
+  norm_num [Nat.choose]
+
 end CapSelectedRowCounting
 
 end Problem97
