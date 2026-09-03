@@ -1838,6 +1838,89 @@ def B1GoodCanonicalDeletionResidual
       HasNEquidistantPointsAt 4 (D.A.erase C.R.interior_w)
         (b1CommonBlocker C))
 
+/-- A good canonical deletion has a strict-interior physical-class peer outside
+its actual row.  The peer has a distinct blocker, so equal canonical blockers
+exclude both deleted roles; the five/six normal-form cover then places it in
+one of the original live slices. -/
+theorem B1GoodCanonicalDeletionResidual.exists_omittedPeer_mem_liveSlice
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F)}
+    (P : B1GoodCanonicalDeletionResidual C)
+    (hnormal : B1PhysicalClassFiveSixNormalForm C) :
+    ∃ source peer : CarrierVertex D.A,
+      (source = C.first.deleted ∨ source = C.second.deleted) ∧
+      source.1 ∈ SelectedClass D.A S.oppApex2 C.rho ∧
+      source.1 ∈ S.capInteriorByIndex S.oppIndex2 ∧
+      peer ≠ C.first.deleted ∧
+      peer ≠ C.second.deleted ∧
+      peer.1 ∈ SelectedClass D.A S.oppApex2 C.rho ∧
+      peer.1 ∈ S.capInteriorByIndex S.oppIndex2 ∧
+      (peer.1 ∈ b1USlice C ∨ peer.1 ∈ b1VSlice C) ∧
+      peer.1 ∉
+        ((lateFirstApexSystem C.R).selectedAt
+          source.1 source.2).toCriticalFourShell.support ∧
+      (lateFirstApexSystem C.R).centerAt source.1 source.2 ≠
+        (lateFirstApexSystem C.R).centerAt peer.1 peer.2 := by
+  classical
+  have hcover :
+      b1PhysicalClass C =
+        {C.first.deleted.1, C.second.deleted.1} ∪
+          (b1USlice C ∪ b1VSlice C) := by
+    simpa [b1PhysicalClass, b1USlice, b1VSlice] using hnormal.2.2
+  have peer_mem_liveSlice
+      (peer : CarrierVertex D.A)
+      (hpeerClass : peer.1 ∈ SelectedClass D.A S.oppApex2 C.rho)
+      (hpeerNeFirst : peer ≠ C.first.deleted)
+      (hpeerNeSecond : peer ≠ C.second.deleted) :
+      peer.1 ∈ b1USlice C ∨ peer.1 ∈ b1VSlice C := by
+    have hpeerPhysical : peer.1 ∈ b1PhysicalClass C := by
+      simpa [b1PhysicalClass] using hpeerClass
+    rw [hcover] at hpeerPhysical
+    rcases Finset.mem_union.mp hpeerPhysical with hpair | hlive
+    · have hpeerNotPair :
+          peer.1 ∉ ({C.first.deleted.1, C.second.deleted.1} : Finset ℝ²) := by
+        simp only [Finset.mem_insert, Finset.mem_singleton, not_or]
+        exact ⟨fun h => hpeerNeFirst (Subtype.ext h),
+          fun h => hpeerNeSecond (Subtype.ext h)⟩
+      exact (hpeerNotPair hpair).elim
+    · exact Finset.mem_union.mp hlive
+  rcases P.1 with hfirstInterior | hsecondInterior
+  · have hlateCross :=
+      actualLateRow_secondClassInterior_card_le_two
+        C.R C.surface C.first.deleted C.first.deleted_mem_class hfirstInterior
+    obtain ⟨peer, hpeerNeFirst, hpeerClass, hpeerInterior,
+        hpeerOmitted, hblockersNe⟩ :=
+      exists_omittedSecondClassInteriorPeer
+        C.R C.first.deleted C.hrho C.hfive hlateCross
+    have hpeerNeSecond : peer ≠ C.second.deleted := by
+      intro hpeer
+      subst peer
+      exact hblockersNe C.hblockersEq
+    exact ⟨C.first.deleted, peer, Or.inl rfl,
+      C.first.deleted_mem_class, hfirstInterior, hpeerNeFirst, hpeerNeSecond,
+      hpeerClass, hpeerInterior,
+      peer_mem_liveSlice peer hpeerClass hpeerNeFirst hpeerNeSecond,
+      hpeerOmitted, hblockersNe⟩
+  · have hlateCross :=
+      actualLateRow_secondClassInterior_card_le_two
+        C.R C.surface C.second.deleted C.second.deleted_mem_class hsecondInterior
+    obtain ⟨peer, hpeerNeSecond, hpeerClass, hpeerInterior,
+        hpeerOmitted, hblockersNe⟩ :=
+      exists_omittedSecondClassInteriorPeer
+        C.R C.second.deleted C.hrho C.hfive hlateCross
+    have hpeerNeFirst : peer ≠ C.first.deleted := by
+      intro hpeer
+      subst peer
+      exact hblockersNe C.hblockersEq.symm
+    exact ⟨C.second.deleted, peer, Or.inr rfl,
+      C.second.deleted_mem_class, hsecondInterior, hpeerNeFirst, hpeerNeSecond,
+      hpeerClass, hpeerInterior,
+      peer_mem_liveSlice peer hpeerClass hpeerNeFirst hpeerNeSecond,
+      hpeerOmitted, hblockersNe⟩
+
 /-- Global robust-cap counting removes the broad first-class/interior-pair-bad
 alternatives.  Its good strict-interior source either lies outside the two
 canonical deletions and hence supplies the full escape-source context, or is
@@ -1889,6 +1972,21 @@ structure B1GoodCanonicalDeletionEndpointResidual
       (H := H) (F := F))
     (E : B1EscapeRowProvenanceStar C) : Prop where
   good : B1GoodCanonicalDeletionResidual C
+  omittedPeer :
+    ∃ source peer : CarrierVertex D.A,
+      (source = C.first.deleted ∨ source = C.second.deleted) ∧
+      source.1 ∈ SelectedClass D.A S.oppApex2 C.rho ∧
+      source.1 ∈ S.capInteriorByIndex S.oppIndex2 ∧
+      peer ≠ C.first.deleted ∧
+      peer ≠ C.second.deleted ∧
+      peer.1 ∈ SelectedClass D.A S.oppApex2 C.rho ∧
+      peer.1 ∈ S.capInteriorByIndex S.oppIndex2 ∧
+      (peer.1 ∈ b1USlice C ∨ peer.1 ∈ b1VSlice C) ∧
+      peer.1 ∉
+        ((lateFirstApexSystem C.R).selectedAt
+          source.1 source.2).toCriticalFourShell.support ∧
+      (lateFirstApexSystem C.R).centerAt source.1 source.2 ≠
+        (lateFirstApexSystem C.R).centerAt peer.1 peer.2
   endpoint :
     (C.first.deleted.1 ∈ S.capInteriorByIndex S.oppIndex2 ∧
       ((C.second.deleted.1 ∈ S.leftAdjacentCapByIndex S.oppIndex2 ∨
@@ -1917,6 +2015,7 @@ theorem B1GoodCanonicalDeletionResidual.toEndpointResidual
     {C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
       (H := H) (F := F)}
     (P : B1GoodCanonicalDeletionResidual C)
+    (hnormal : B1PhysicalClassFiveSixNormalForm C)
     (E : B1EscapeRowProvenanceStar C) :
     B1GoodCanonicalDeletionEndpointResidual C E := by
   classical
@@ -1940,7 +2039,7 @@ theorem B1GoodCanonicalDeletionResidual.toEndpointResidual
     rw [← hsupports]
     exact (Hlate.selectedAt C.first.deleted.1
       C.first.deleted.2).toCriticalFourShell.q_mem_support
-  refine ⟨P, ?_⟩
+  refine ⟨P, P.exists_omittedPeer_mem_liveSlice hnormal, ?_⟩
   rcases P.1 with hfirstInterior | hsecondInterior
   · left
     refine ⟨hfirstInterior, ?_⟩
@@ -1986,7 +2085,7 @@ theorem b1_escapeSourceContext_or_goodCanonicalDeletionEndpoint
   rcases b1_escapeSourceContext_or_goodCanonicalDeletion C hnormal with
     hsource | hcanonical
   · exact Or.inl hsource
-  · exact Or.inr ⟨hcanonical.toEndpointResidual W.escape⟩
+  · exact Or.inr ⟨hcanonical.toEndpointResidual hnormal W.escape⟩
 
 /- A source that is outside the first-apex fibre and is not interior-pair bad
 already has the retained-survival disjunction required by the source context.

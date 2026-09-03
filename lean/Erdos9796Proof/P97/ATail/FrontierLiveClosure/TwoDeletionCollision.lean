@@ -136,6 +136,322 @@ theorem exists_exactFourMutualOmissionSourceContext_of_fivePointInteriorSource
     ⟨other, u, v, jointDeletion, huNeV, huClass, hvClass,
       hvOmitted, huOmitted, context⟩
 
+/-- A good canonical B1 source produces a fresh mutually omitted pair whose
+joint deletion cannot be that source.  The original five/six normal-form cover
+then gives the exact remaining role split: the fresh deletion is one of the
+two canonical deletions, or it lies in one of the original live slices.
+
+This is the first cross-system consequence retained from the fresh-pair
+producer.  It deliberately does not identify the fresh pair with `C.u,C.v`. -/
+theorem B1GoodCanonicalDeletionResidual.exists_freshPair_deletion_role
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F)}
+    (P : B1GoodCanonicalDeletionResidual C)
+    (hnormal : B1PhysicalClassFiveSixNormalForm C) :
+    ∃ source other u v : CarrierVertex D.A,
+      ∃ jointDeletion : ExactFourMutualOmissionJointDeletion C.R C.rho u v,
+        (source = C.first.deleted ∨ source = C.second.deleted) ∧
+        u ≠ v ∧
+        u.1 ∈ SelectedClass D.A S.oppApex2 C.rho ∧
+        v.1 ∈ SelectedClass D.A S.oppApex2 C.rho ∧
+        v.1 ∉
+          ((lateFirstApexSystem C.R).selectedAt
+            u.1 u.2).toCriticalFourShell.support ∧
+        u.1 ∉
+          ((lateFirstApexSystem C.R).selectedAt
+            v.1 v.2).toCriticalFourShell.support ∧
+        ExactFourMutualOmissionSourceContext C.R C.rho source other u v ∧
+        jointDeletion.deleted ≠ source ∧
+        ((jointDeletion.deleted = C.first.deleted ∨
+            jointDeletion.deleted = C.second.deleted) ∨
+          jointDeletion.deleted.1 ∈ b1USlice C ∨
+            jointDeletion.deleted.1 ∈ b1VSlice C) := by
+  classical
+  have hcover :
+      b1PhysicalClass C =
+        {C.first.deleted.1, C.second.deleted.1} ∪
+          (b1USlice C ∪ b1VSlice C) := by
+    simpa [b1PhysicalClass, b1USlice, b1VSlice] using hnormal.2.2
+  have produce
+      (source : CarrierVertex D.A)
+      (hsourceCanonical :
+        source = C.first.deleted ∨ source = C.second.deleted)
+      (hsourceClass : source.1 ∈ SelectedClass D.A S.oppApex2 C.rho)
+      (hsourceInterior : source.1 ∈ S.capInteriorByIndex S.oppIndex2)
+      (hsourceOutside : source ∈ outsideFirstApexFiber C.R)
+      (hsourceSurvives :
+        HasNEquidistantPointsAt 4 (D.A.erase C.R.interior_q)
+            ((lateFirstApexSystem C.R).centerAt source.1 source.2) ∨
+          HasNEquidistantPointsAt 4 (D.A.erase C.R.interior_w)
+            ((lateFirstApexSystem C.R).centerAt source.1 source.2)) :
+      ∃ other u v : CarrierVertex D.A,
+        ∃ jointDeletion : ExactFourMutualOmissionJointDeletion C.R C.rho u v,
+          (source = C.first.deleted ∨ source = C.second.deleted) ∧
+          u ≠ v ∧
+          u.1 ∈ SelectedClass D.A S.oppApex2 C.rho ∧
+          v.1 ∈ SelectedClass D.A S.oppApex2 C.rho ∧
+          v.1 ∉
+            ((lateFirstApexSystem C.R).selectedAt
+              u.1 u.2).toCriticalFourShell.support ∧
+          u.1 ∉
+            ((lateFirstApexSystem C.R).selectedAt
+              v.1 v.2).toCriticalFourShell.support ∧
+          ExactFourMutualOmissionSourceContext C.R C.rho source other u v ∧
+          jointDeletion.deleted ≠ source ∧
+          ((jointDeletion.deleted = C.first.deleted ∨
+              jointDeletion.deleted = C.second.deleted) ∨
+            jointDeletion.deleted.1 ∈ b1USlice C ∨
+              jointDeletion.deleted.1 ∈ b1VSlice C) := by
+    obtain ⟨other, u, v, jointDeletion, huNeV, huClass, hvClass,
+        hvOmitted, huOmitted, context⟩ :=
+      exists_exactFourMutualOmissionSourceContext_of_fivePointInteriorSource
+        C.R C.surface C.rho C.hrho C.hfive source hsourceClass
+          hsourceInterior hsourceOutside hsourceSurvives
+    have hdeletedNeSource : jointDeletion.deleted ≠ source := by
+      intro hdeletedEq
+      apply jointDeletion.deleted_not_mem_uRow
+      rw [hdeletedEq]
+      exact context.source_mem_u_row
+    have hdeletedRole :
+        ((jointDeletion.deleted = C.first.deleted ∨
+            jointDeletion.deleted = C.second.deleted) ∨
+          jointDeletion.deleted.1 ∈ b1USlice C ∨
+            jointDeletion.deleted.1 ∈ b1VSlice C) := by
+      have hphysical : jointDeletion.deleted.1 ∈ b1PhysicalClass C := by
+        simpa [b1PhysicalClass] using jointDeletion.deleted_mem_class
+      rw [hcover] at hphysical
+      rcases Finset.mem_union.mp hphysical with hcanonical | hlive
+      · left
+        rcases Finset.mem_insert.mp hcanonical with hfirst | hsecond
+        · exact Or.inl (Subtype.ext hfirst)
+        · exact Or.inr (Subtype.ext (Finset.mem_singleton.mp hsecond))
+      · right
+        exact Finset.mem_union.mp hlive
+    exact ⟨other, u, v, jointDeletion, hsourceCanonical, huNeV,
+      huClass, hvClass, hvOmitted, huOmitted, context, hdeletedNeSource,
+      hdeletedRole⟩
+  rcases P.1 with hfirstInterior | hsecondInterior
+  · refine ⟨C.first.deleted, ?_⟩
+    exact produce C.first.deleted (Or.inl rfl) C.first.deleted_mem_class
+      hfirstInterior P.2.1 (by simpa [b1CommonBlocker] using P.2.2.2)
+  · refine ⟨C.second.deleted, ?_⟩
+    exact produce C.second.deleted (Or.inr rfl) C.second.deleted_mem_class
+      hsecondInterior P.2.2.1
+      (by simpa [b1CommonBlocker, C.hblockersEq] using P.2.2.2)
+
+/-- The fresh mutually omitted pair is not role-free once its source is one
+of the canonical B1 deletions.  Its `v` endpoint lies in an original live
+slice, while `u` is either the canonical source itself or lies in an original
+live slice.  This is the source-clean pair-transport fact retained by the
+normal-form cover and the source-row omissions. -/
+theorem b1_freshPair_source_or_mem_original_liveSlices
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F))
+    (hnormal : B1PhysicalClassFiveSixNormalForm C)
+    (source other u v : CarrierVertex D.A)
+    (huClass : u.1 ∈ SelectedClass D.A S.oppApex2 C.rho)
+    (hvClass : v.1 ∈ SelectedClass D.A S.oppApex2 C.rho)
+    (context :
+      ExactFourMutualOmissionSourceContext C.R C.rho source other u v)
+    (hsourceCanonical :
+      source = C.first.deleted ∨ source = C.second.deleted) :
+    (u = source ∨ u.1 ∈ b1USlice C ∨ u.1 ∈ b1VSlice C) ∧
+      (v.1 ∈ b1USlice C ∨ v.1 ∈ b1VSlice C) := by
+  classical
+  have hliveNormal :=
+    b1_live_normalForm C.R C.hcard C.surface C.rho C.hrho C.hfive
+      C.u C.v C.huNeV C.huClass C.hvClass C.hvOmitted C.huOmitted
+      C.first C.second C.hdeletedNe C.hblockersEq
+  have hsourceRowEq :
+      ((lateFirstApexSystem C.R).selectedAt
+          source.1 source.2).toCriticalFourShell.support =
+        b1CommonRow C := by
+    rcases hsourceCanonical with hfirst | hsecond
+    · subst source
+      rfl
+    · subst source
+      simpa [b1CommonRow] using hliveNormal.1.symm
+  have hfirstMemCommon : C.first.deleted.1 ∈ b1CommonRow C := by
+    simpa [b1CommonRow] using
+      ((lateFirstApexSystem C.R).selectedAt
+        C.first.deleted.1 C.first.deleted.2).toCriticalFourShell.q_mem_support
+  have hsecondMemCommon : C.second.deleted.1 ∈ b1CommonRow C := by
+    simpa [b1CommonRow] using hliveNormal.2.2.1
+  have live_mem_of_not_source_row
+      (x : CarrierVertex D.A)
+      (hxClass : x.1 ∈ SelectedClass D.A S.oppApex2 C.rho)
+      (hxNotSourceRow :
+        x.1 ∉
+          ((lateFirstApexSystem C.R).selectedAt
+            source.1 source.2).toCriticalFourShell.support) :
+      x.1 ∈ b1USlice C ∨ x.1 ∈ b1VSlice C := by
+    have hxNotCommon : x.1 ∉ b1CommonRow C := by
+      simpa [hsourceRowEq] using hxNotSourceRow
+    have hxNeFirst : x ≠ C.first.deleted := by
+      intro hx
+      apply hxNotCommon
+      rw [hx]
+      exact hfirstMemCommon
+    have hxNeSecond : x ≠ C.second.deleted := by
+      intro hx
+      apply hxNotCommon
+      rw [hx]
+      exact hsecondMemCommon
+    have hcover :
+        b1PhysicalClass C =
+          {C.first.deleted.1, C.second.deleted.1} ∪
+            (b1USlice C ∪ b1VSlice C) := by
+      simpa [b1PhysicalClass, b1USlice, b1VSlice] using hnormal.2.2
+    have hxPhysical : x.1 ∈ b1PhysicalClass C := by
+      simpa [b1PhysicalClass] using hxClass
+    rw [hcover] at hxPhysical
+    rcases Finset.mem_union.mp hxPhysical with hcanonical | hlive
+    · rcases Finset.mem_insert.mp hcanonical with hfirst | hsecond
+      · exact (hxNeFirst (Subtype.ext hfirst)).elim
+      · exact
+          (hxNeSecond (Subtype.ext (Finset.mem_singleton.mp hsecond))).elim
+    · exact Finset.mem_union.mp hlive
+  refine ⟨?_, live_mem_of_not_source_row v hvClass
+    context.v_not_mem_source_row⟩
+  rcases context.u_eq_source_or_not_mem_source_row with huEq | huNot
+  · exact Or.inl huEq
+  · exact Or.inr (live_mem_of_not_source_row u huClass huNot)
+
+/-- If the fresh-pair joint deletion is the canonical deletion opposite the
+chosen good source, both fresh pair endpoints are forced into the original B1
+live slices.  The source-context incidence also makes the fresh `u` blocker
+different from the canonical common blocker.  Thus this entire role branch
+has the pair transport that the bare fresh-pair producer forgets. -/
+theorem b1_freshPair_mem_original_liveSlices_of_deletion_eq_otherCanonical
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F))
+    (hnormal : B1PhysicalClassFiveSixNormalForm C)
+    (source other u v : CarrierVertex D.A)
+    (jointDeletion :
+      ExactFourMutualOmissionJointDeletion C.R C.rho u v)
+    (huClass : u.1 ∈ SelectedClass D.A S.oppApex2 C.rho)
+    (hvClass : v.1 ∈ SelectedClass D.A S.oppApex2 C.rho)
+    (context :
+      ExactFourMutualOmissionSourceContext C.R C.rho source other u v)
+    (hrole :
+      (source = C.first.deleted ∧
+          jointDeletion.deleted = C.second.deleted) ∨
+        (source = C.second.deleted ∧
+          jointDeletion.deleted = C.first.deleted)) :
+    (u.1 ∈ b1USlice C ∨ u.1 ∈ b1VSlice C) ∧
+      (v.1 ∈ b1USlice C ∨ v.1 ∈ b1VSlice C) ∧
+        (lateFirstApexSystem C.R).centerAt source.1 source.2 ≠
+        (lateFirstApexSystem C.R).centerAt u.1 u.2 := by
+  classical
+  have hsourceCanonical :
+      source = C.first.deleted ∨ source = C.second.deleted :=
+    hrole.imp And.left And.left
+  obtain ⟨huSourceOrLive, hvLive⟩ :=
+    b1_freshPair_source_or_mem_original_liveSlices C hnormal
+      source other u v huClass hvClass context hsourceCanonical
+  have hliveNormal :=
+    b1_live_normalForm C.R C.hcard C.surface C.rho C.hrho C.hfive
+      C.u C.v C.huNeV C.huClass C.hvClass C.hvOmitted C.huOmitted
+      C.first C.second C.hdeletedNe C.hblockersEq
+  have hdeletedMemSourceRow :
+      jointDeletion.deleted.1 ∈
+        ((lateFirstApexSystem C.R).selectedAt
+          source.1 source.2).toCriticalFourShell.support := by
+    rcases hrole with ⟨hsource, hdeleted⟩ | ⟨hsource, hdeleted⟩
+    · subst source
+      rw [hdeleted]
+      simpa using hliveNormal.2.2.1
+    · subst source
+      rw [hdeleted]
+      simpa using hliveNormal.2.1
+  have huNeSource : u ≠ source := by
+    intro huEq
+    subst source
+    exact jointDeletion.deleted_not_mem_uRow hdeletedMemSourceRow
+  have huNotSourceRow :
+      u.1 ∉
+        ((lateFirstApexSystem C.R).selectedAt
+          source.1 source.2).toCriticalFourShell.support := by
+    rcases context.u_eq_source_or_not_mem_source_row with huEq | huNot
+    · exact (huNeSource huEq).elim
+    · exact huNot
+  have huLive : u.1 ∈ b1USlice C ∨ u.1 ∈ b1VSlice C := by
+    rcases huSourceOrLive with huEq | huLive
+    · exact (huNeSource huEq).elim
+    · exact huLive
+  refine ⟨huLive, hvLive, ?_⟩
+  intro hblockersEq
+  have hsupportsEq :=
+    selectedSupports_eq_of_actualBlockers_eq (lateFirstApexSystem C.R)
+      source.2 u.2 hblockersEq
+  apply huNotSourceRow
+  rw [hsupportsEq]
+  exact ((lateFirstApexSystem C.R).selectedAt
+    u.1 u.2).toCriticalFourShell.q_mem_support
+
+/-- Exact cross-system split after generating a fresh mutually omitted pair
+from a good canonical source.  Either the fresh joint deletion is already in
+an original live slice, or both endpoints of the fresh pair are in original
+live slices and the source-to-`u` blocker is noncanonical. -/
+theorem b1_freshPair_crossSystem_split
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F))
+    (hnormal : B1PhysicalClassFiveSixNormalForm C)
+    (source other u v : CarrierVertex D.A)
+    (jointDeletion :
+      ExactFourMutualOmissionJointDeletion C.R C.rho u v)
+    (huClass : u.1 ∈ SelectedClass D.A S.oppApex2 C.rho)
+    (hvClass : v.1 ∈ SelectedClass D.A S.oppApex2 C.rho)
+    (context :
+      ExactFourMutualOmissionSourceContext C.R C.rho source other u v)
+    (hsourceCanonical :
+      source = C.first.deleted ∨ source = C.second.deleted)
+    (hdeletedNeSource : jointDeletion.deleted ≠ source)
+    (hdeletedRole :
+      ((jointDeletion.deleted = C.first.deleted ∨
+          jointDeletion.deleted = C.second.deleted) ∨
+        jointDeletion.deleted.1 ∈ b1USlice C ∨
+          jointDeletion.deleted.1 ∈ b1VSlice C)) :
+    (jointDeletion.deleted.1 ∈ b1USlice C ∨
+        jointDeletion.deleted.1 ∈ b1VSlice C) ∨
+      ((u.1 ∈ b1USlice C ∨ u.1 ∈ b1VSlice C) ∧
+        (v.1 ∈ b1USlice C ∨ v.1 ∈ b1VSlice C) ∧
+        (lateFirstApexSystem C.R).centerAt source.1 source.2 ≠
+          (lateFirstApexSystem C.R).centerAt u.1 u.2) := by
+  rcases hdeletedRole with hcanonical | hlive
+  · right
+    have hotherCanonical :
+        (source = C.first.deleted ∧
+            jointDeletion.deleted = C.second.deleted) ∨
+          (source = C.second.deleted ∧
+            jointDeletion.deleted = C.first.deleted) := by
+      rcases hsourceCanonical with hsourceFirst | hsourceSecond
+      · rcases hcanonical with hdeletedFirst | hdeletedSecond
+        · exact
+            (hdeletedNeSource (hdeletedFirst.trans hsourceFirst.symm)).elim
+        · exact Or.inl ⟨hsourceFirst, hdeletedSecond⟩
+      · rcases hcanonical with hdeletedFirst | hdeletedSecond
+        · exact Or.inr ⟨hsourceSecond, hdeletedFirst⟩
+        · exact
+            (hdeletedNeSource (hdeletedSecond.trans hsourceSecond.symm)).elim
+    exact
+      b1_freshPair_mem_original_liveSlices_of_deletion_eq_otherCanonical
+        C hnormal source other u v jointDeletion huClass hvClass context
+          hotherCanonical
+  · exact Or.inl hlive
+
 /-- Two distinct deleted sources cannot lie in one another's actual rows when
 their actual blockers are distinct from each other and from the physical apex. -/
 theorem false_of_exactFour_twoDeletion_blockerTwoCycle

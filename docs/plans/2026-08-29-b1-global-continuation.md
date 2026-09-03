@@ -657,17 +657,18 @@ and a joint deletion.  The remaining closure work is therefore to factor or
 prove an upstream canonical-deletion terminal, not to produce more local B1
 packets.
 
-The first canonical-deletion residual reduction should stay with the original
-B1 pair.  Choose the canonical deletion supplied by
-`B1GoodCanonicalDeletionResidual` and apply
+The first canonical-deletion residual reduction now stays with the original
+B1 pair.  `B1GoodCanonicalDeletionResidual.exists_omittedPeer_mem_liveSlice`
+chooses the canonical deletion supplied by the residual and applies
 `exists_omittedSecondClassInteriorPeer` to its actual row.  The omitted peer
 has a distinct blocker, so it cannot be either canonical deletion: it differs
 from the chosen source directly, and equality with the other deletion would
 contradict `C.hblockersEq`.  The normal-form cover then forces the peer into
-`b1USlice C` or `b1VSlice C`.  Formalize this as a field of the canonical
-endpoint residual before invoking the broader mutually-omitted-pair producer.
-This strictly reduces the free role of the omitted strict-interior peer while
-preserving the retained survival and adjacent-or-between endpoint data.
+`b1USlice C` or `b1VSlice C` of the original `C.u, C.v` pair.  The strengthened
+`B1GoodCanonicalDeletionEndpointResidual` retains this witness together with
+the retained survival and adjacent-or-between endpoint data.  This strictly
+reduces the free role of the omitted strict-interior peer before invoking the
+broader mutually-omitted-pair producer.
 
 Do not infer that a joint deletion generated later by
 `exists_exactFourMutualOmissionSourceContext_of_fivePointInteriorSource` is one
@@ -677,3 +678,55 @@ omitted pair `u, v`; its joint deletion is absent from the fresh `u`- and
 using the original rows of `C.u` and `C.v`.  No current equality or row-support
 transport identifies those pairs.  The first missing antecedent in both the
 exact-five and card-at-least-six recurrence remains that pair transport.
+
+The first cross-system residual is now formalized rather than left implicit.
+`B1GoodCanonicalDeletionResidual.exists_freshPair_deletion_role` runs the
+source-clean mutually-omitted-pair producer at whichever canonical deletion
+is strict-interior, transporting the residual's outside-first-fibre and
+retained-survival facts to that exact source.  The fresh joint deletion cannot
+equal the chosen canonical source: its packet omits the deletion from the
+fresh `u`-row, while the source context puts the chosen source in that row.
+The original normal-form cover then leaves only two roles for the fresh
+deletion: it is one of the two canonical deletions, or it lies in an original
+`b1USlice C`/`b1VSlice C`.  This removes the chosen-source coincidence from
+the fresh-pair recurrence without making the invalid fresh/original pair
+identification.  A bounded indexed search found no existing theorem already
+packaging this split.  The next split should distinguish the other-canonical
+case from the original-live-slice case and exploit the extra row omission in
+each branch.
+
+The fresh pair itself is now transported before that deletion-role split.
+`b1_freshPair_source_or_mem_original_liveSlices` uses the source context's
+`v_not_mem_source_row` and `u_eq_source_or_not_mem_source_row`.  A canonical
+source row is the common canonical row and contains both canonical deletions,
+so any physical-class endpoint omitted from it is noncanonical; the original
+normal-form cover then puts it in an original live slice.  Therefore fresh
+`v` is always in `b1USlice C` or `b1VSlice C`, and fresh `u` is either the
+chosen canonical source or in one of those slices.  The fresh pair is no
+longer arbitrary relative to the original B1 trace.
+
+The other-canonical branch now has that transport.  In
+`b1_freshPair_mem_original_liveSlices_of_deletion_eq_otherCanonical`, the
+fresh joint deletion is assumed to be the canonical deletion opposite the
+chosen good source.  If the fresh `u` were the source, the joint-deletion
+packet would omit the opposite canonical deletion from the source row,
+contradicting the equal-canonical-support normal form.  Hence the source
+context's second alternative puts `u` outside the source/common row; its
+explicit `v` omission does the same for `v`.  Since both canonical deletions
+belong to that common row, neither fresh endpoint is canonical, and the
+original normal-form cover puts both in `b1USlice C` or `b1VSlice C`.
+Equality of the fresh `u` blocker with the common blocker would identify the
+two supports and contradict the same omission, so blocker inequality is
+retained as well.  This closes pair transport for the entire
+fresh-deletion-equals-other-canonical branch.  The remaining cross-system
+branch is now specifically that the fresh deletion itself lies in an
+original live slice.
+
+`b1_freshPair_crossSystem_split` exposes this as the exact two-arm consumer
+contract.  Given the generated source context and deletion-role split, either
+the fresh deletion lies in an original live slice, or both fresh mutually
+omitted endpoints do and the source/`u` blockers are distinct.  There is no
+remaining unclassified fresh carrier in this recurrence.  Subsequent work
+should use the exact card-five/card-six live-slice traces to identify the
+allowed endpoint roles in these two arms; returning to an arbitrary fresh
+pair would discard the transport just proved.
