@@ -27,7 +27,7 @@ from typing import Any, Literal
 from census.card_head import exactfive_hard_source_swap_order_piqd as order_piqd
 from census.p97_search import phase3_piqd_smt_source_adapter as adapter
 
-LANE_ID = "exactfive-hard-source-swap-nra-canary-20260902"
+LANE_ID = "exactfive-hard-source-swap-nra-canary-r2-20260902"
 RUN_ID = "run-0001"
 RUN_ROOT = Path(__file__).resolve().parents[2] / "scratch" / "runs" / LANE_ID / RUN_ID
 CHECKPOINT_PATH = Path(__file__).resolve().parents[2] / ".codex" / "worktree-checkpoints" / f"{LANE_ID}.json"
@@ -399,9 +399,9 @@ def _create_once(path: Path, payload: bytes) -> None:
         if _read_regular(path) != payload: raise NraCanaryError(f"immutable record drifted: {path.name}")
 
 
-def _launch_record(root: Path, server: str, timeout_s: float, workers: int) -> dict[str, Any]:
+def _launch_record(root: Path, server: str, timeout_ms: int, workers: int) -> dict[str, Any]:
     manifest_sha = _sha(_read_regular(root / "run_manifest.json"))
-    record: dict[str, Any] = {"schema": "p97-exactfive-hard-source-swap-nra-canary-launch/v1", "lane_id": LANE_ID, "run_id": RUN_ID, "run_manifest_sha256": manifest_sha, "profile_index": PROFILE_INDEX, "profile_sha256": PROFILE_SHA256, "queries": ["control-positive", "control-negative", *ORDER_IDS], "server": server, "timeout_s": timeout_s, "workers": workers, "claims": dict(FALSE_CLAIMS)}
+    record: dict[str, Any] = {"schema": "p97-exactfive-hard-source-swap-nra-canary-launch/v1", "lane_id": LANE_ID, "run_id": RUN_ID, "run_manifest_sha256": manifest_sha, "profile_index": PROFILE_INDEX, "profile_sha256": PROFILE_SHA256, "queries": ["control-positive", "control-negative", *ORDER_IDS], "server": server, "timeout_ms": timeout_ms, "workers": workers, "claims": dict(FALSE_CLAIMS)}
     record["launch_sha256"] = _manifest_self_hash(record, "launch_sha256")
     return record
 
@@ -487,11 +487,12 @@ def _require_control_result(key: str, result: Mapping[str, Any]) -> None:
 
 def run_census(*, server: str = "http://127.0.0.1:7272", timeout_s: float = 60.0, workers: int = 2) -> dict[str, Any]:
     if type(workers) is not int or not 1 <= workers <= MAX_WORKERS: raise NraCanaryError("workers must lie in 1..20")
-    if type(timeout_s) not in {int, float} or not math.isfinite(timeout_s) or not 0 < timeout_s <= 3600: raise NraCanaryError("timeout must lie in (0,3600]")
+    if type(timeout_s) not in {int, float} or not math.isfinite(timeout_s) or not 0 < timeout_s <= 3600 or not float(timeout_s * 1000).is_integer(): raise NraCanaryError("timeout must be an exact millisecond value in (0,3600]")
+    timeout_ms = int(timeout_s * 1000)
     parsed = urllib.parse.urlsplit(server)
     if parsed.scheme not in {"http", "https"} or not parsed.netloc or parsed.username is not None or parsed.password is not None or parsed.query or parsed.fragment: raise NraCanaryError("invalid PIQD server URL")
     root = ensure_run_root()
-    launch = _launch_record(root, server, timeout_s, workers)
+    launch = _launch_record(root, server, timeout_ms, workers)
     launch_path = root / "events" / "launch.json"
     if launch_path.exists() and _strict_json(_read_regular(launch_path), "launch record") != launch:
         raise NraCanaryError("launch record differs on resume")
@@ -503,19 +504,19 @@ def run_census(*, server: str = "http://127.0.0.1:7272", timeout_s: float = 60.0
             raise NraCanaryError("terminal custody links drifted")
         for key in ("control-positive", "control-negative", *ORDER_IDS):
             system = build_control_system(key.removeprefix("control-")) if key.startswith("control-") else build_system(key)
-            verified = verify_adapter_tree(prepare_query(system, int(timeout_s * 1000)), root / "artifacts" / key)
+            verified = verify_adapter_tree(prepare_query(system, timeout_ms), root / "artifacts" / key)
             _require_control_result(key, verified)
             if terminal["results"][key]["result_sha256"] != _sha(_read_regular(root / "artifacts" / key / "result.json")) or terminal["results"][key]["overall_status"] != verified.get("overall_status"):
                 raise NraCanaryError("terminal result hash or status drifted")
         return terminal
-    transport = adapter.UrllibPiqdTransport(server, http_timeout_s=timeout_s + 40)
+    transport = adapter.UrllibPiqdTransport(server, http_timeout_s=timeout_ms / 1000 + 40)
     results = {}
     for control in CONTROL_IDS:
-        results[f"control-{control}"] = run_query(prepare_query(build_control_system(control), int(timeout_s * 1000)), root / "artifacts" / f"control-{control}", transport)
+        results[f"control-{control}"] = run_query(prepare_query(build_control_system(control), timeout_ms), root / "artifacts" / f"control-{control}", transport)
     expected_control = {"control-positive": "SAT", "control-negative": "UNSAT"}
     for key in expected_control: _require_control_result(key, results[key])
     def execute(order_id: str) -> tuple[str, dict[str, Any]]:
-        return order_id, run_query(prepare_query(build_system(order_id), int(timeout_s * 1000)), root / "artifacts" / order_id, transport)
+        return order_id, run_query(prepare_query(build_system(order_id), timeout_ms), root / "artifacts" / order_id, transport)
     with concurrent.futures.ThreadPoolExecutor(max_workers=min(workers, len(ORDER_IDS))) as pool:
         for key, value in pool.map(execute, ORDER_IDS): results[key] = value
     summary = {"schema": "p97-exactfive-hard-source-swap-nra-canary-result/v1", "run_manifest_sha256": _sha(_read_regular(root / "run_manifest.json")), "launch_sha256": launch["launch_sha256"], "results": {key: {"overall_status": value.get("overall_status"), "result_sha256": _sha(_read_regular(root / "artifacts" / key / "result.json"))} for key, value in results.items()}, "claims": dict(FALSE_CLAIMS)}

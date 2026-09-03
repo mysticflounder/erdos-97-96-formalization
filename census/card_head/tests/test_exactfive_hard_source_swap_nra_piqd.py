@@ -105,8 +105,18 @@ def test_launch_inputs_are_bounded_and_validated() -> None:
         canary.run_census(workers=21)
     with pytest.raises(canary.NraCanaryError, match="timeout"):
         canary.run_census(timeout_s=float("nan"))
+    with pytest.raises(canary.NraCanaryError, match="millisecond"):
+        canary.run_census(timeout_s=0.0001)
     with pytest.raises(canary.NraCanaryError, match="server"):
         canary.run_census(server="file:///tmp/piqd")
+
+
+def test_launch_record_is_strict_json(tmp_path) -> None:
+    manifest = tmp_path / "run_manifest.json"
+    manifest.write_text("{}\n", encoding="ascii")
+    launch = canary._launch_record(tmp_path, "http://127.0.0.1:7272", 300_000, 2)
+    assert canary._strict_json(canary._json(launch), "test launch") == launch
+    assert launch["timeout_ms"] == 300_000
 
 
 def test_wrong_profile_fails_closed(monkeypatch: pytest.MonkeyPatch) -> None:
