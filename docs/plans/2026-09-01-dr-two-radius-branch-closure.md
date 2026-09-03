@@ -592,6 +592,10 @@ certificate replay is then unnecessary for card 12.
   under `plain` for a smaller RUP certificate; the Lean obligations for
   the card-13 ingress are then the bridge lemma plus the card-12 family
   set already proved.
+- Core mining of the surplus RUP-only proof agrees: `cap_betweenness` 88/88,
+  `frontier_bisector_interior` 8/10, `common_pair_localization` 0, the same
+  three bank families unused (audit). Reduced secondOpposite CNF (core
+  families only, 577,337 clauses) submitted as `691ea617…` (plain).
 - Bridge design for the `cap_betweenness` ingress obligation (read-only
   source audit, 2026-09-02; no Lean written). The encoder's order object in
   the card-12 ingress is `ConvexBoundaryEnumeration pt φ idx`

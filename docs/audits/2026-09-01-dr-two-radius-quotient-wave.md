@@ -824,7 +824,24 @@ bisector field is used, and `common_pair_localization` carries nothing, so
 the only new Lean obligation for this arm is the cap-betweenness bridge.
 Four bank families (about 179k clauses) are unused or nearly so; a
 re-emission with the used families only, solved under `plain`, gives a
-smaller RUP certificate for the replay package. The convex-set variant being UNKNOWN in
+smaller RUP certificate for the replay package. That re-emission was
+done for secondOpposite (`p4-card13-arms/tmp/emit-reduced.sh`, families
+with core hits plus the always-on structural families; 577,337 clauses,
+sha `f4237acb…`) and submitted under `plain`, 21,600 s, as job
+`691ea617…` (04:14Z).
+
+Core by family for `a1954a67…` (surplus, `plain`), same procedure
+(`s VERIFIED`, 90,876 of 674,394 clauses in core, 0 RAT lemmas in core;
+`core-by-family-surplus-plain-21600.json`, every core clause matched):
+`transitivity` 47,307; `k4_everywhere` 22,897; `convex_five_point` 7,904;
+`five_point_circle_isosceles_order` 6,439; `two_circle_same_arc` 2,103;
+`six_point_two_circle_order` 1,817; `nested_equal_chord` 1,397;
+`second_apex_rows` 481; `blockers` 184; `duplicate_three_point_center` 91;
+`cap_betweenness` 88 of 88; `first_apex_class` 87; `perp_bisector` 70;
+`frontier_bisector_interior` 8 of 10;
+`six_point_two_circle_arc_overtake_order` 3; `common_pair_localization`,
+`equal_k4`, `convex_rhombus`, `six_point_nested_center_order` 0. The two
+arms agree on which families carry the refutation. The convex-set variant being UNKNOWN in
 all arms shows the extra small families carried weight in the two UNSAT
 runs. Reading so far: with cap betweenness added, the structural encoding
 excludes card 13 in two of three growth arms at the encoded scope, pending
