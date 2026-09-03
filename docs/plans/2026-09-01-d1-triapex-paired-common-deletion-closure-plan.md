@@ -2819,3 +2819,37 @@ invariant.
 
 Scope, stated plainly: this is a mod 32003 statement about the encoded system,
 one labeling, and it inherits the claim scope of section 31 unchanged.
+
+### 34. The collinearity is unique among all thirty-six triples, and a prediction for a sibling (2026-09-03)
+
+The other two apex lines are now probed against all twelve cap points, same
+ideal and same job family as section 33:
+
+    orient A0:A2:<all twelve cap points>   -1   never collinear
+    orient A1:A2:<all twelve cap points>   -1   never collinear
+
+With section 33 that completes the picture. Of the thirty-six (apex pair, cap
+point) triples, **exactly one** is collinear on the surviving variety and the
+other thirty-five are collinear nowhere. The forced degeneracy is a single
+named incidence, not a general flatness of the configuration.
+
+**Registered prediction, before the run.** `orbit_predict_orient.py` carries
+`0d6996160cc83aab`'s pattern to a sibling labeling by explicit relabeling and
+transports the collinear triple with it. For `72a0268b2d358aa0`, the cheapest
+labeling in the orbit at 2.514 s, exactly one image survives over the whole
+group:
+
+    predicted collinear triple   A0:A1:P0.4
+    transported Rabinowitsch pairs   P0.4:P2.2, P1.4:P2.3, P1.2:P1.3, P0.1:P1.4
+
+The same holds for `3826b8a0dec4a6b0`, also `A0:A1:P0.4`. The prediction is
+falsifiable three ways: the probe could find no forced collinearity, or find
+one at a different triple, or find more than one. Any of those refutes either
+the orbit partition or the section 33 reading. The transported pairs are part
+of the prediction too, since they are what must build a 192-point ideal on the
+target; if they do not, the test is inconclusive rather than passed.
+
+This tests a different invariant from sections 21 and 27, which predicted
+collapsing pairs and live-set dimensions. A relabeling that carries the metric
+pattern must carry every geometric consequence of it, so a forced incidence is
+as good a falsifier as a dimension, and it is one no earlier run measured.
