@@ -1,0 +1,90 @@
+{
+  "schema": "p97-exactfive-hard-source-swap-adaptive-order-nra-run-summary/v1",
+  "lane_id": "exactfive-hard-source-swap-adaptive-order-nra-20260903",
+  "run_id": "run-0001",
+  "base_head": "70dfa849d6feec3f2499a72f6b2851a76e490bb6",
+  "implementation_commit": "13eb8ca6e9e884f7bfe77c69b57fde8e3b4ab106",
+  "profile_index": 1697,
+  "profile_sha256": "59131cdcdaa474ab022dffd6ab990276ad1893caf70eb55940be3ec75a62ad5e",
+  "run_manifest": {
+    "file_sha256": "f170fa1bce24fa7c297ac957f2dff2d9c91c97f4602b26ee3eeb3027851bd327",
+    "manifest_sha256": "9e234df9028e786261b10e1f3bd9bb3a462338bf556827649b28a3d09f345a3e"
+  },
+  "launch": {
+    "file_sha256": "0703b9daace34c06fafe16c9611527f8d8da5feeb774e2bb6378dca7be9065dc",
+    "launch_sha256": "54ee08612c803bf88eca9f297c8efcfd862bc7b523f1a3896b80a31d37961943",
+    "timeout_ms": 300000,
+    "workers": 2,
+    "rounds": 1,
+    "max_fresh_orders": 2
+  },
+  "terminal": {
+    "file_sha256": "8e2934c3605bd46836732568bd74d6e598b3d8a7503c5e8dfc37070f93413f31",
+    "terminal_sha256": "e783b4a715dffaf73079381f3d5e978b0cdb7de0c2c1044a1424b4a5217f1af4",
+    "status": "PLANAR_UNKNOWN",
+    "status_class": "UNKNOWN"
+  },
+  "controls": {
+    "linear_positive": ["SAT", "SAT"],
+    "linear_negative": ["UNSAT", "UNSAT"],
+    "planar_positive": ["SAT", "SAT"],
+    "planar_negative": ["UNSAT", "UNSAT"]
+  },
+  "structural": {
+    "statuses": ["SAT", "SAT"],
+    "solve_ms": {"z3": 146, "cvc5": 2643},
+    "result_sha256": "1db3be66f62d21e4e48c42a8b505130da22d9c963279bcb6641892d4d6e41c7c",
+    "fresh_order_count": 2
+  },
+  "fresh_orders": [
+    {
+      "solver": "z3",
+      "order": ["c000", "c010", "c009", "c005", "c008", "c007", "c001", "c006", "c002", "c004", "c003"],
+      "order_sha256": "f2bc45e3f9e00afb3ab2dcf5c59800a7741a92ed0a9935e1bd99f0e494bbf391",
+      "origin_sha256": "60a934793509a4ead9dfdbe53dc3e4b49d029a5eceae1f9039f4bdefb9824c5f",
+      "planar_statuses": ["UNKNOWN", "UNKNOWN"],
+      "planar_solve_ms": {"z3": 306130, "cvc5": 330013},
+      "planar_result_sha256": "208c5696c84fda8e698afd5d2a78057af16cf46daa8222d6be01a275a55f2b44"
+    },
+    {
+      "solver": "cvc5",
+      "order": ["c000", "c008", "c009", "c007", "c005", "c010", "c001", "c006", "c002", "c004", "c003"],
+      "order_sha256": "d96095d04deb4a204b193231267c9d6a14d532af22677e6c4a5295b1c556d523",
+      "origin_sha256": "db07965b4bc53d6eb47891790106db81ead3de7385d6284701f31cc311968319",
+      "planar_statuses": ["UNKNOWN", "UNKNOWN"],
+      "planar_solve_ms": {"z3": 321049, "cvc5": 330011},
+      "planar_result_sha256": "017076408fc7f994bbf2e98eb02c750d32c2d89825b1170e5f095a2d8a995fa7"
+    }
+  ],
+  "shared_order_pattern": {
+    "class_chain": ["c000", "c009", "c001", "c006", "c002", "c004", "c003"],
+    "role_chain": ["U+c1", "x", "O", "t+e", "c2+q", "d", "a"],
+    "variable_prefix_classes": ["c005", "c007", "c008", "c010"]
+  },
+  "completed_resume": {
+    "status": "PASSED_NO_TRANSPORT",
+    "wall_seconds": 1.01
+  },
+  "launcher_measurement": {
+    "wall_seconds": 659.97,
+    "user_cpu_seconds": 1.18,
+    "system_cpu_seconds": 0.18,
+    "maximum_resident_set_bytes": 46104576,
+    "scope": "outer launcher observation; solver CPU is daemon-owned"
+  },
+  "wave_mine": {
+    "new_general_theorem_candidate": false,
+    "lean_corpus_search_triggered": false,
+    "reason": "the common direct-branch endpoint order reinforces an existing conditional candidate, while every new planar cell is UNKNOWN"
+  },
+  "recommended_next_step": "PIQD-governed Singular characteristic-zero equality-core probes for the two fresh orders; do not lengthen QF_NRA timeouts",
+  "claim_boundary": "diagnostic fixed-order cells only; UNKNOWN is no mathematical evidence",
+  "claims": {
+    "source_realization": false,
+    "all_order_elimination": false,
+    "live_closure": false,
+    "promotion": false,
+    "theorem": false
+  },
+  "summary_sha256": "57075db436e9b53274d927ca0f653d47b8d4759123ed576f2e6885f5afd20cca"
+}
