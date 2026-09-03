@@ -99,6 +99,23 @@ structure ExactFiveDistinctThreeCenterNormalForm
     RetainedSourceAlternative D H S.oppApex1 blocker S.oppApex2 retained
       firstApexClass blockerClass secondApexClass
 
+/-- The fresh source in the three-center continuation is genuinely distinct
+from the retained source.  The fresh source is omitted by the first exact row,
+whereas the retained source is a member of that row. -/
+theorem ExactFiveDistinctThreeCenterNormalForm.fresh_ne_retained
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F)
+    {deleted blocker : ℝ²}
+    (C : CommonDeletionTwoCenterPacket D H deleted blocker S.oppApex2)
+    (N : ExactFiveDistinctThreeCenterNormalForm R C) :
+    N.fresh ≠ N.retained := by
+  intro h
+  apply N.freshThreeCenter.row₀.q_not_mem
+  rw [h]
+  exact N.retained_mem_firstApexClass
+
 /-- A strict source refinement of the three-center normal form.  Either a
 source distinct from the original deletion is omitted by all three rows, or
 the carrier has exactly twelve points, the three rows cover its deletion, and
