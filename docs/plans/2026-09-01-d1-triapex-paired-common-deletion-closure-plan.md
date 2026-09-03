@@ -4002,3 +4002,46 @@ point, and the `A1` cross-cap equidistance. The cardinality-branch problem also
 stands, and remains the sharper of the two obstructions.
 
 Leaf unchanged: single `sorry`, `M = 18`.
+
+### 55. Concyclicity has no producer either; route reassessment (2026-09-03)
+
+Section 54 moved the circle obligation from an apex class to concyclicity and
+named three candidate producers. All three fail, and the failure is structural
+rather than incidental.
+
+**Checked directly.** `EuclideanGeometry.Cospherical` occurs in exactly three
+modules of the project — `U5GlobalIncidenceKernels.lean`, `OangleBridge.lean`,
+`ATail/SelectedFourGeometry.lean` — and for four-point sets it appears
+**only as a hypothesis** (`hcosph`, `hCosph`), never as a conclusion. The only
+places it is derived are three-point sets inside proofs, which is trivial. The
+repository consumes four-point cocircularity and never produces it.
+
+**Per-candidate, confirmed independently by ProofRelay97 (#9613).**
+`cospherical_of_two_zsmul_oangle_eq` needs an explicit doubled-`oangle`
+identity plus non-collinearity, and no live `D`/`G`/`Q` field supplies that
+angle identity. `u5_normalized_row_cocircular_of_row_numerator_eq_zero` needs a
+normalized-coordinate numerator equality that its own module does not produce.
+`SelectedFourClass` yields cocircularity only for four points of one interior
+support — and the quadruple this leaf needs, `{A0, A1, P2.1, P2.3}`, is
+**mixed**: two apices and two cap-2 interior points. Every cocircularity notion
+in the repository is homogeneous; the required one is not.
+
+**Position.** The geometry is finished, independently audited, and
+cardinality-free. The ingress needs three new theorems, not three lookups:
+concyclicity of a mixed apex/interior quadruple, a named blocker centre, and the
+`A1` cross-cap equidistance. Two independent reads now agree on all three.
+
+**Route tradeoff, for decision rather than for silent pivoting.** Card fifteen
+remains the only mechanism in the source that names the `P2.s` roles at all, and
+the leaf carries no cardinality hypothesis. So the census-label ingress, if all
+three new theorems were built, would close the card-fifteen branch and leave the
+`≠ 15` branches owed — and section 40 already lists 15 further census cells and
+the whole `≥ 16` class beyond that. The alternatives are (a) build the three
+ingress theorems and accept branch-at-a-time progress, (b) find a
+cardinality-free naming mechanism for the `P2.s` roles first, which would make
+one ingress serve every branch, or (c) treat the proved geometry as a banked
+general result and redirect the lane. Option (b) is the only one that changes
+the shape of the remaining work rather than its size, and nothing yet says it is
+achievable. Recording the comparison rather than choosing.
+
+Leaf unchanged: single `sorry`, `M = 18`.
