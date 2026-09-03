@@ -294,17 +294,69 @@ def test_manifest_and_cli(tmp_path) -> None:
 
 
 # --------------------------------------------------------------------------
-# NEW_FAMILIES cuts (cap_betweenness, common_pair_localization,
-# frontier_bisector_interior)
+# NEW_FAMILIES cuts
 # --------------------------------------------------------------------------
 
-NEW = ("cap_betweenness", "common_pair_localization", "frontier_bisector_interior")
+NEW = (
+    "cap_betweenness",
+    "common_pair_localization",
+    "frontier_bisector_interior",
+    "kalmanson_three_equality_schemas",
+)
+REFERENCE_KALMANSON_SCHEMAS = {
+    4: (
+        ("012", "013", "123"),
+        ("012", "102", "301"),
+        ("013", "023", "312"),
+        ("013", "103", "201"),
+    ),
+    5: (
+        ("124", "304", "402"),
+        ("103", "302", "423"),
+        ("132", "234", "024"),
+        ("012", "013", "423"),
+        ("012", "023", "413"),
+        ("012", "314", "324"),
+        ("013", "023", "412"),
+        ("012", "124", "314"),
+        ("043", "140", "203"),
+        ("410", "304", "241"),
+        ("103", "243", "340"),
+        ("341", "201", "104"),
+        ("012", "123", "413"),
+        ("012", "413", "423"),
+        ("013", "412", "423"),
+        ("014", "024", "312"),
+        ("023", "024", "134"),
+    ),
+    6: (
+        ("013", "412", "523"),
+        ("301", "415", "205"),
+        ("104", "245", "305"),
+        ("215", "305", "401"),
+        ("105", "245", "304"),
+        ("215", "301", "405"),
+        ("104", "203", "534"),
+        ("145", "205", "304"),
+        ("302", "401", "512"),
+        ("105", "302", "425"),
+        ("312", "401", "502"),
+        ("501", "241", "304"),
+        ("421", "301", "520"),
+        ("541", "031", "234"),
+        ("012", "325", "415"),
+        ("013", "235", "415"),
+        ("140", "250", "354"),
+        ("415", "305", "201"),
+        ("035", "215", "413"),
+    ),
+}
 GENERIC_SECOND_OPPOSITE_SHA256 = "21df2d6e3581ba21aa3e1798fb0095549e0ff0d2662cd9b3833701cda3308bb3"
 ARTIFACTS = Path(__file__).resolve().parents[3] / "scratch" / "runs" / "dr-two-radius-20260901" / "p4-card13-arms" / "artifacts"
 
 
 def _reference_new_family_clauses(layout: arm.Layout) -> dict[str, list[tuple[int, ...]]]:
-    """Independent reference for the three cut families, from the checker semantics.
+    """Independent reference for the new cut families, from the checker semantics.
 
     Deliberately re-derives the caps, the loop bounds and the relation-variable
     lookup rather than calling the encoder's helpers.
@@ -354,6 +406,12 @@ def _reference_new_family_clauses(layout: arm.Layout) -> dict[str, list[tuple[in
         if c in i1 or c == a1:
             continue
         out["frontier_bisector_interior"].append(clause(-same(c, iq, iw)))
+    for arity, schemas in REFERENCE_KALMANSON_SCHEMAS.items():
+        for roles in combinations(profile.cyclic_order, arity):
+            for schema in schemas:
+                out["kalmanson_three_equality_schemas"].append(
+                    clause(*(-same(roles[int(atom[0])], roles[int(atom[1])], roles[int(atom[2])]) for atom in schema))
+                )
     return out
 
 
@@ -376,6 +434,8 @@ def test_new_families_tuple_and_ledger() -> None:
     assert "label-level ingress pending" in ledger["cap_betweenness"]["status"]
     assert "commonPhysicalPair_center_mem_capInteriorByIndex" in ledger["common_pair_localization"]["lean_sources"]
     assert "bisector_center_mem_interior" in ledger["frontier_bisector_interior"]["lean_sources"]
+    assert "KalmansonThreeEqualitySchemas.lean" in ledger["kalmanson_three_equality_schemas"]["lean_sources"]
+    assert arm.KALMANSON_THREE_EQUALITY_SCHEMAS == REFERENCE_KALMANSON_SCHEMAS
 
 
 @pytest.mark.parametrize("name", ARMS_13)
@@ -391,6 +451,7 @@ def test_new_families_match_reference(name: str, generic_card13_new: dict[str, t
     assert all(len(c) == 1 and c[0] < 0 for c in grouped["cap_betweenness"])
     assert all(len(c) == 2 and all(lit < 0 for lit in c) for c in grouped["common_pair_localization"])
     assert all(len(c) == 1 and c[0] < 0 for c in grouped["frontier_bisector_interior"])
+    assert all(len(c) == 3 and all(lit < 0 for lit in c) for c in grouped["kalmanson_three_equality_schemas"])
 
 
 @pytest.mark.parametrize("name", ARMS_13)
@@ -404,6 +465,19 @@ def test_new_family_counts_closed_form(name: str, generic_card13_new: dict[str, 
     assert cnf.counts["cap_betweenness"] == sum(2 * comb(len(order), 3) for _n, order, _o, _i in caps)
     assert cnf.counts["common_pair_localization"] == sum(comb(len(interior), 2) * (profile.card - len(interior) - 1) for _n, _o2, _o, interior in caps)
     assert cnf.counts["frontier_bisector_interior"] == profile.card - len(profile.i1_labels) - 1
+    assert cnf.counts["kalmanson_three_equality_schemas"] == 4 * comb(profile.card, 4) + 17 * comb(profile.card, 5) + 19 * comb(profile.card, 6)
+
+
+def test_kalmanson_schema_inventory_matches_lean_source() -> None:
+    source = (
+        Path(__file__).resolve().parents[3]
+        / "lean/Erdos9796Proof/P97/ATail/KalmansonThreeEqualitySchemas.lean"
+    ).read_text()
+    arity_name = {4: "four", 5: "five", 6: "six"}
+    for arity, schemas in REFERENCE_KALMANSON_SCHEMAS.items():
+        for schema in schemas:
+            theorem = f"theorem false_of_{arity_name[arity]}_ccw_three_shell_equalities_{'_'.join(schema)}"
+            assert theorem in source
 
 
 def test_new_families_are_generic_only_and_off_by_default() -> None:
@@ -455,3 +529,43 @@ def test_new_families_replay_on_convex_model() -> None:
     assert any(not satisfied(clause) for clause in grouped["cap_betweenness"])
     assert all(satisfied(clause) for clause in grouped["common_pair_localization"])
     assert all(satisfied(clause) for clause in grouped["frontier_bisector_interior"])
+
+
+def test_kalmanson_schemas_reject_authenticated_card14_survivor() -> None:
+    model_path = (
+        Path(__file__).resolve().parents[3]
+        / "scratch/runs/dr-card14-profile-probe-20260903/p4-card14-profiles/tmp/model-firstOppositeO1Six-corefamilies.json"
+    )
+    if not model_path.exists():
+        pytest.skip(f"no recorded model at {model_path}")
+    assignment = json.loads(model_path.read_text())["assignment"]
+    truth = {abs(literal): literal > 0 for literal in assignment}
+    cnf, layout = arm.build(
+        arm.profile_for(14, "firstOppositeO1Six"),
+        mode="generic",
+        families=("kalmanson_three_equality_schemas",),
+        ingress=False,
+    )
+    clauses = _by_family(cnf)["kalmanson_three_equality_schemas"]
+
+    def satisfied(clause: tuple[int, ...]) -> bool:
+        return any(truth.get(abs(lit), False) == (lit > 0) for lit in clause)
+
+    assert any(not satisfied(clause) for clause in clauses)
+
+    index = {edge: position for position, edge in enumerate(layout.edges)}
+
+    def same(c: int, a: int, b: int) -> int:
+        first = index[(min(c, a), max(c, a))]
+        second = index[(min(c, b), max(c, b))]
+        return layout.relation_variables[(min(first, second), max(first, second))]
+
+    roles = (1, 5, 0, 8, 9, 2)
+    expected = tuple(
+        sorted(
+            (-same(roles[3], roles[0], roles[1]), -same(roles[4], roles[1], roles[5]), -same(roles[2], roles[0], roles[5])),
+            key=abs,
+        )
+    )
+    assert expected in clauses
+    assert not satisfied(expected)

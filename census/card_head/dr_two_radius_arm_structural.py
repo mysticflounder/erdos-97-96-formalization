@@ -71,7 +71,65 @@ APEXES = (A2, A1, A3)
 # Selectable cut families of this module (generic mode only), on top of the
 # exact-12 ``SELECTABLE_FAMILIES``.  See ``CUT_ADMISSION_LEDGER`` for the Lean
 # image and admission status of each.
-NEW_FAMILIES = ("cap_betweenness", "common_pair_localization", "frontier_bisector_interior")
+NEW_FAMILIES = (
+    "cap_betweenness",
+    "common_pair_localization",
+    "frontier_bisector_interior",
+    "kalmanson_three_equality_schemas",
+)
+
+# Source-backed, cardinality-independent contradictions from
+# ``KalmansonThreeEqualitySchemas.lean``.  An atom ``abc`` means that role
+# ``a`` is equidistant from roles ``b`` and ``c``.  The roles are instantiated
+# by every increasing subsequence of the retained cyclic boundary order.
+KALMANSON_THREE_EQUALITY_SCHEMAS: dict[int, tuple[tuple[str, str, str], ...]] = {
+    4: (
+        ("012", "013", "123"),
+        ("012", "102", "301"),
+        ("013", "023", "312"),
+        ("013", "103", "201"),
+    ),
+    5: (
+        ("124", "304", "402"),
+        ("103", "302", "423"),
+        ("132", "234", "024"),
+        ("012", "013", "423"),
+        ("012", "023", "413"),
+        ("012", "314", "324"),
+        ("013", "023", "412"),
+        ("012", "124", "314"),
+        ("043", "140", "203"),
+        ("410", "304", "241"),
+        ("103", "243", "340"),
+        ("341", "201", "104"),
+        ("012", "123", "413"),
+        ("012", "413", "423"),
+        ("013", "412", "423"),
+        ("014", "024", "312"),
+        ("023", "024", "134"),
+    ),
+    6: (
+        ("013", "412", "523"),
+        ("301", "415", "205"),
+        ("104", "245", "305"),
+        ("215", "305", "401"),
+        ("105", "245", "304"),
+        ("215", "301", "405"),
+        ("104", "203", "534"),
+        ("145", "205", "304"),
+        ("302", "401", "512"),
+        ("105", "302", "425"),
+        ("312", "401", "502"),
+        ("501", "241", "304"),
+        ("421", "301", "520"),
+        ("541", "031", "234"),
+        ("012", "325", "415"),
+        ("013", "235", "415"),
+        ("140", "250", "354"),
+        ("415", "305", "201"),
+        ("035", "215", "413"),
+    ),
+}
 
 # (|IS|, |I1|, |I2|) per (card, arm); specification section 2.
 ARM_SIZES: dict[int, dict[str, tuple[int, int, int]]] = {
@@ -98,6 +156,7 @@ CUT_ADMISSION_LEDGER: tuple[dict[str, str], ...] = (
     {"family": "cap_betweenness", "content": "in each closed cap, taken in boundary order, a cap point equidistant from two other cap points lies strictly between them in that order: for cap labels j and r < s with j outside {r, s} and j not strictly between r and s, the unit clause -same(j; r, s)", "status": "proved-source; exact-card-13 label-level ingress pending", "lean_sources": "CGN.boundary_indices_cyclically_between_of_equidistant (lean/Erdos9796Proof/P97/CapSelectedRowCounting.lean), applied to the ordered-cap data from SurplusCapPacket.capByIndex_cgn4g_capData and the retained CCW boundary enumeration; the exact-card-13 ingress must instantiate the finite direct/mirror label order"},
     {"family": "common_pair_localization", "content": "a center c outside a cap's interior and distinct from the cap's opposite apex a is not equidistant from two distinct interior points s < p that the opposite apex is also equidistant from: the clause (-same(c; s, p), -same(a; s, p))", "status": "proved-source", "lean_sources": "ATailTwoCenterCapLocalization.commonPhysicalPair_center_mem_capInteriorByIndex (lean/Erdos9796Proof/P97/ATail/TwoCenterCapLocalization.lean:121); antecedents all available at the leaf"},
     {"family": "frontier_bisector_interior", "content": "a center c distinct from A1 and outside I1 is not equidistant from interior_q and interior_w: the unit clause -same(c; interior_q, interior_w)", "status": "proved-source (leaf hypothesis field)", "lean_sources": "field OriginalUniqueFourResidual.bisector_center_mem_interior (lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/UniqueArmRouteAudit/OriginalUniqueResidualDispatch.lean:66)"},
+    {"family": "kalmanson_three_equality_schemas", "content": "for every increasing cyclic-order subsequence of four, five, or six boundary labels, forbid each banked triple of shell equalities; an atom abc means same(role[a]; role[b], role[c])", "status": "proved-source, GENERIC; cardinality-independent boundary consumer", "lean_sources": "Problem97.CapCrossingKalmansonBridge.false_of_{four,five,six}_ccw_three_shell_equalities_* (lean/Erdos9796Proof/P97/ATail/KalmansonThreeEqualitySchemas.lean)"},
     {"family": "second_apex_rows", "content": "two rows X, Y: full class at A2 (exact_class); exactly 4 members; at most 1 in IS ∪ {A1}; at most 1 in I1 ∪ {A3}; disjoint", "status": "SelectedFourClass.support_card; _hnoFive (a row is the full class at its radius); _hdisjoint; leftAdjacentCap_at_opposite_card_le_one_of_convexIndep, rightAdjacentCap_at_opposite_card_le_one_of_convexIndep (SurplusM44Packet/Shard01.lean:1064,1079, any radius, index oppIndex2). The interior slice ≥ 2 follows. Card 12 used the stronger exact forms (exactly 2 in I2, exactly 1 per adjacent cap); those are exact-12 rigidity and are NOT used here"},
     {"family": "first_apex_class", "content": "full class at A1; contains interior_q, interior_w; exactly 4 members; at most 1 in IS ∪ {A2}; at most 1 in I2 ∪ {A3}; unique four-class at A1", "status": "OriginalUniqueFourResidual.class_card_eq_four, interior_q_mem, interior_w_mem, unique_K4_radius; adjacent-cap lemmas above at index oppIndex1. Card 12 used exactly 1 per adjacent cap"},
     {"family": "k4_everywhere", "content": "every label has four equidistant labels", "status": "CounterexampleData.K4, GENERIC"},
@@ -413,6 +472,18 @@ def _new_family_nogoods(cnf: CNF, profile: Profile, same: Callable[[int, int, in
             if c in profile.i1_labels or c == A1:
                 continue
             cnf.add("frontier_bisector_interior", (-same(c, q, w),), _group(c, q, w), _group(c))
+    # kalmanson_three_equality_schemas: each source theorem rules out its three
+    # named shell equalities on any increasing four-, five-, or six-role
+    # subsequence of the cyclic boundary order.
+    if "kalmanson_three_equality_schemas" in families:
+        for arity, schemas in KALMANSON_THREE_EQUALITY_SCHEMAS.items():
+            for roles in combinations(profile.cyclic_order, arity):
+                for schema in schemas:
+                    literals = []
+                    for atom in schema:
+                        center, first, second = map(int, atom)
+                        literals.append(-same(roles[center], roles[first], roles[second]))
+                    cnf.add("kalmanson_three_equality_schemas", literals, _group(*roles), _group(*roles))
 
 
 # --------------------------------------------------------------------------

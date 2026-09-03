@@ -1,0 +1,16 @@
+{
+  "base_head": "3ca2885e2ed25ae3c82704097315dd4c8873cb26",
+  "created_utc": "2026-09-03T15:39:42Z",
+  "durable_paths": [],
+  "generated_roots": [],
+  "lane_id": "dr-kalmanson-schema-cut-20260903",
+  "manifest_sha256": "ac38eb7c6709db0fb53d9f38ba3c1da5bb23bd41dd568f04b4fe82d898b3ed2d",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/dr-kalmanson-schema-cut-20260903.json",
+    "census/card_head/dr_two_radius_arm_structural.py",
+    "census/card_head/tests/test_dr_two_radius_arm_structural.py",
+    "docs/specs/p97-dr-kalmanson-schema-cut-v1.md"
+  ],
+  "owner": "dr-kalmanson-schema-cut",
+  "schema": "worktree-lane-checkpoint/v1"
+}
