@@ -2886,3 +2886,90 @@ one forced incidence among all thirty-six (apex pair, cap point) triples, and
 that the three apexes are never collinear. The open question is unchanged and
 is not an algebra question: does the cell forbid a cap point on the line
 through two apexes?
+
+### 36. The cell does forbid the collinearity: the last orbit falls mod 32003 (2026-09-03)
+
+Sections 33 to 35 left one question, and it was not an algebra question: does
+the cell forbid a cap point from lying on the line through two apexes? It
+does, by a hypothesis the leaf already carries.
+
+The chain, each link read in source rather than inferred.
+
+1. `CounterexampleData` carries `convex : ConvexIndep A`
+   (`lean/Erdos9796Proof/P97/U1TwoShortCapReduction.lean:86-89`). The target
+   theorem takes `D : CounterexampleData`, so this is a live hypothesis at the
+   leaf, not something to be supplied.
+
+2. `ConvexIndep.not_three_collinear`
+   (`lean/Erdos9796Proof/P97/ConvexIndepHelpers.lean:67-76`) is a proved
+   theorem: for `hA : ConvexIndep A` and three pairwise-distinct members of
+   `A`, `Collinear ℝ {x,y,z}` is `False`. No `sorry`, and the same lemma is
+   already used elsewhere in the development.
+
+3. All three apexes are members of `A`. They are the vertices of
+   `S.triangle`, and `oppApex1_mem_A'`
+   (`lean/Erdos9796Proof/P97/ATail/FirstApexInteriorPairGeometry.lean:344-351`)
+   discharges membership from `S.triangle.v1_mem`, `v2_mem` and `v3_mem`, one
+   per surplus index, so all three vertex-membership facts exist.
+
+4. All twelve cap-interior points are members of `A`, by
+   `capInteriorByIndex_subset`
+   (`lean/Erdos9796Proof/P97/N8/N8bEndpointPair.lean:52-56`).
+
+5. The three points of the collinear triple are pairwise distinct on the
+   variety. In the relevance triage of `0d6996160cc83aab`, `A0:A1`,
+   `A0:P1.1` and `A1:P1.1` all read `dim -1`: those pairs can never coincide,
+   so no point of the variety identifies any two of them.
+
+6. The forced collinearity of section 33 says the orientation determinant of
+   that triple lies in the ideal mod 32003, so it vanishes at every point of
+   the distinctness-saturated variety.
+
+Points 1 to 4 say the cell forbids three distinct members of `A` from being
+collinear. Points 5 and 6 say every surviving point of the encoded system has
+exactly that. **The 36-orbit is refuted at the encoded scope mod 32003**, and
+with it all thirty-six of its patterns.
+
+A confirmation worth recording separately: the live pairs of
+`0d6996160cc83aab` are exactly the four Rabinowitsch pairs used to build the
+ideal, so `vdim 192` is the fully distinctness-saturated variety and not a
+partially saturated one. Saturating by the other 101 pairs is a no-op because
+each is `dim -1`.
+
+With this, all five orbits and all 111 residue metric patterns of cell
+`i0-1R1R1R-in12` are refuted mod 32003. Four of the five refutations are
+mod-p only; the empty orbit is the one settled over the rationals.
+
+**Correction to section 31.** That section said the 36-orbit "presents no
+membership statement to certify", and used that to conclude the certificate
+route was blocked there "for a reason no amount of certificate work removes".
+That is now wrong in the part that matters. The forced collinearity IS a
+membership statement -- the orientation determinant lies in the ideal -- and it
+is the same shape as a collapse, so the exact rational linear algebra the peer
+built for `0e31c5c5d735a779` applies to it directly. What section 31 had right
+is narrower than what it claimed: no COINCIDENCE membership statement exists
+here, because nothing collapses. It did not occur to me that a different
+polynomial could be the certified one.
+
+That correction is the route out of mod-p. Certifying the orientation
+determinant's membership over the rationals would upgrade this orbit's
+refutation from evidence at one prime to a proof, with no Gröbner basis
+needed.
+
+Scope, stated exactly. This is discovery evidence for a closure route, not a
+closure. The Lean bridge does not exist: `not_three_collinear` is not invoked
+in `TriApexEndpointRetainedOmission.lean` or
+`PairedCommonDeletionNormalForm.lean`, and writing it needs the ingress from
+the leaf's binders to the encoded metric pattern, which is the same ingress
+obligation the plan has carried throughout. The leaf is unchanged: one
+`sorry`, measure 18.
+
+One thing to check before leaning further on the encoding, flagged rather than
+resolved: the cell name's `in12` marks the incidence census as modelling the
+twelve cap-interior points and NOT the three apexes
+(`census/card_head/d1_mu0_incidence_census.py:179-196`, where `ax15` is the
+15-point alternative), yet the residue metric patterns carry apex classes and
+the angle form gives all three apexes coordinates. That is a question about
+how the patterns were extracted, predating this wave, and it should be
+answered before the metric layer is called complete rather than complete at
+the encoded scope.
