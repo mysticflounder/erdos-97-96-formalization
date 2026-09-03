@@ -5069,3 +5069,120 @@ job and not a direct engine invocation.  No such run has been made.
 **Status.**  OPEN, and now sharply stated.  Nothing in this section decides it.
 
 Leaf unchanged: single `sorry`, `M = 18`.
+
+### 67. The cyclic case is refuted: a trigonometric identity closes obligation (i) (2026-09-03)
+
+Section 66 left one open configuration.  This section decides it.  The
+refutation is elementary and needs no solver.
+
+(Numbering note: this document already contains two sections numbered 59 and
+two numbered 60, from parallel edits.  The later pair — "Obligation (i) reduces
+to one isosceles condition" and "The census forces one isosceles triangle" — are
+the ones sections 61–67 build on.)
+
+**The constraint that binds is the MEC disk, not the chord.**  A sweep of the
+cyclic configuration over the apex-angle square, using the source cap convention
+(`OnArcOpposite` is the *closed* half-plane test
+`signedArea2 v vj vk * signedArea2 vi vj vk ≤ 0`, `Foundation.lean:83`, and
+`capInteriorByIndex` only erases the two chord endpoints), classified every
+failure.  Over the non-obtuse scalene samples the failure reason was *never*
+"wrong side of the chord" — zero occurrences.  It was always that **both**
+points of `circle (Aᵢ, ρᵢ) ∩ circle (Aⱼ, ρⱼ)` lie strictly outside the MEC disk.
+Since a foreign hit is a carrier point and `A` lies in the closed MEC disk, that
+is fatal.  So the object to control is the disk, and section 64's reflection
+argument was attacking the wrong constraint.
+
+**The in-disk criterion, in closed form.**  Normalize the MEC to the unit circle
+at the origin.  Let `α, β, γ` be the inscribed angles at `A0, A1, A2`, so
+`α + β + γ = π`, the arcs are `2α, 2β, 2γ`, and `a = 2 sin α`, `b = 2 sin β`,
+`c = 2 sin γ`.  Non-obtuseness gives `α, β, γ ≤ π/2`; it is a
+`SurplusCapPacket` field (`triangleNonObtuse`, `PartitionFromMEC.lean:314`), not
+an added hypothesis.
+
+Place `A0 = (1,0)` and `A1` at angle `2γ`, and write a point of
+`circle (A0, c)` as `P = A0 + c (cos φ, sin φ)`.  Two identities:
+
+* Since `|A0| = 1` and `|P - A0| = c`,
+
+      |P|² - 1 = |P - A0|² + 2 (P - A0)·A0 + |A0|² - 1 = c² + 2 P·A0 - 2,
+
+  so with `P·A0 = P_x = 1 + c cos φ`, the point `P` lies in the closed unit disk
+  exactly when `cos φ ≤ -c/2 = -sin γ`.
+* `A1 - A0 = (cos 2γ - 1, sin 2γ) = c (-sin γ, cos γ)`, hence
+
+      |P - A1|² = 2c² (1 - sin (φ - γ)).
+
+Setting `|P - A1| = a` pins `sin (φ - γ) = 1 - a²/(2c²) = 1 - sin²α/(2 sin²γ)`.
+Writing `θ = arcsin (1 - sin²α/(2 sin²γ)) ∈ [-π/2, π/2]`, the two intersection
+points are `φ = γ + θ` and `φ = γ + π - θ`.  For `γ ≤ π/2` the in-disk arc is
+`φ ∈ [π/2 + γ, 3π/2 - γ]`.  The first point needs `θ ≥ π/2`, which forces
+`sin α = 0`; so it is always strictly outside.  The second is in the disk exactly
+when `θ ≥ 2γ - π/2`, and since both sides lie in `[-π/2, π/2]` (this is where
+non-obtuseness is used) that is `sin θ ≥ -cos 2γ`, which rearranges to
+
+    4 sin²γ cos²γ ≥ sin²α,   i.e.   sin 2γ ≥ sin α.
+
+> **Slot `(0,1)` in the cyclic assignment admits an in-disk hit exactly when
+> `sin 2γ ≥ sin α`.**
+
+The criterion also subsumes the existence condition `a ≤ 2c`.
+
+**The three slots, and the contradiction.**  The cyclic assignment is invariant
+under the relabeling `A0 → A1 → A2 → A0`, which sends `γ → α → β → γ`, so the
+three slots give
+
+    sin 2γ ≥ sin α,    sin 2α ≥ sin β,    sin 2β ≥ sin γ.
+
+Every term is positive, so the three may be multiplied.  Using
+`sin 2x = 2 sin x cos x` on the left and cancelling the positive factor
+`sin α sin β sin γ`:
+
+    8 cos α cos β cos γ ≥ 1.
+
+But in any triangle `cos α cos β cos γ ≤ 1/8`, with equality exactly for the
+equilateral triangle.  Hence equality holds throughout and `α = β = γ = π/3`.
+The cyclic case requires `a, b, c` pairwise distinct (section 65), so this is a
+contradiction.
+
+> **The cyclic configuration is impossible.**  The same computation with the
+> reversed cycle gives `sin 2α ≥ sin γ`, `sin 2β ≥ sin α`, `sin 2γ ≥ sin β`,
+> the same product, and the same contradiction, so the mirror case falls too.
+
+**Why the equilateral triangle sits exactly on the boundary.**  At
+`α = β = γ = π/3` all three inequalities are equalities, and the in-disk point
+of each slot is the third apex itself, lying *on* the MEC circle.  An apex is
+not a cap-interior point, so even that boundary configuration supplies no
+foreign hit.  The bound is therefore sharp and still strict where it is needed.
+
+**The counting consequence.**  Section 64 gives at most one foreign hit per
+unordered pair, so at most three in total.  Enumerating the eight ways to choose
+one slot from each of the three pairs: six of them put two foreign hits at a
+single index, and then the remaining three apex hits fall in the four slots of
+the other two indices, so one of those indices carries two — it is escape-free.
+The other two choices are the cyclic and anti-cyclic patterns, now refuted.  And
+with at most two foreign hits there are at least four apex hits over three
+indices of two slots each, so some index carries two (section 63).  In every
+case:
+
+> **some index `i` satisfies `¬ StrictAdjacentEscapeAt i r`.**
+
+Composing with section 62's
+`selectedClass_subset_capByIndex_of_not_strictAdjacentEscapeAt` (proved,
+axiom-clean) and the section 59/60 reduction gives ingress obligation (i).
+
+**Evidence and status.**  The closed-form criterion was checked against direct
+circle-intersection computation on a `300 × 300` angle grid: `11473/11473`
+agreement on non-obtuse triangles, and it correctly fails on obtuse ones, where
+the `arccos` branch changes and the criterion does not apply.  The three-condition
+system was solved on a `900 × 900` grid in both senses: exactly one solution
+each, the equilateral point, to `4.4e-16`.  The census configuration passes the
+same machinery as a positive control (99 realizations with live cap arcs at all
+three indices) and a wrong-radius negative control returns none.
+
+Rigor: the criterion derivation and the product argument are **PROVEN** on
+paper.  They rest on section 64, which remains a **PROOF SKETCH** — so ingress
+obligation (i) is proved modulo one unformalized step, and nothing here is Lean.
+No solver was used and none is needed; the queued Singular realizability run is
+withdrawn as unnecessary.
+
+Leaf unchanged: single `sorry`, `M = 18`.
