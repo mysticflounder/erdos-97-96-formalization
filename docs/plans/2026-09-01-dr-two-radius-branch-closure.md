@@ -675,7 +675,8 @@ certificate replay is then unnecessary for card 12.
   selection must pass through the existing interior-pair-good branch or a new
   producer of precisely those missing facts.
 
-  P4.5a first targets a source-clean producer provisionally named
+  P4.5a is the row-local fallback and targets a source-clean producer
+  provisionally named
   `two_full_secondApex_classes_largeInterior_or_grid`; the ingress-aligned-row,
   two-good-source, and `IngressRowDeletionOutcome` producers follow only on
   the appropriate arm. A producer
@@ -693,6 +694,39 @@ certificate replay is then unnecessary for card 12.
   must lower `c`. Refresh the compiled dependency graph, confirm the target on
   the kernel spine, and set the proof-blueprint anchor before any Lean
   implementation is promoted.
+
+- Step P4.5b (2026-09-03, primary source-count route under audit): the first
+  ingress-coupling proposal used the wrong deletion pair. In current source,
+  `goodOutsideSources R` records survival after deleting `F.pair.q` or
+  `F.pair.w`; `OriginalUniqueFourResidual` supplies no identification of those
+  points with `R.interior_q` and `R.interior_w`. The corrected route therefore
+  normalizes omissions over the frontier pair and constructs a neutral
+  `CommonDeletionTwoCenterPacket` for a prescribed surviving deletion.
+
+  The proof of `five_le_goodOutsideSources_card` exposes a stronger candidate
+  bound. The actual first-apex blocker fiber has cardinality four,
+  `goodOutsideSources` and `badOutsideSources` partition its complement, and
+  `badOutsideSources_card_le_two` is already proved. Factoring that arithmetic
+  should give
+  `D.A.card ≤ (goodOutsideSources R).card + 6`, hence the live
+  `12 < D.A.card` gives seven good outside sources. This statement and its
+  Lean proof are {{NEEDS_PROOF}} until the Luna lane reports a narrow check and
+  axiom audit.
+
+  A source-neutral finite classifier is then expected to show that seven good
+  sources contain two sources with distinct actual blockers and one common
+  omitted member of `{F.pair.q, F.pair.w}`. Its no-pair analysis has at most
+  two blocker fibers, complementary singleton omission sets, and each fiber
+  of cardinality at most three, contradicting the seven-source bound. This
+  classifier is externally enumerated but not yet kernel-checked. Its source
+  adapter should retain the two good sources and construct three exact rows at
+  their two distinct blockers and `S.oppApex2` after one common deletion.
+  Track this primary frontier by `ν = (s, k, t) ∈ {0,1}³`: `s` records the
+  missing seven-source theorem, `k` the missing kernel-checked classifier and
+  source adapter, and `t` the still-missing terminal for the resulting
+  source-rich three-center packet. The current state is `ν = (1,1,1)`; the
+  accepted source-count producer lowers `s`, the classifier/adapter lowers
+  `k`, and no closure is claimed until a terminal lowers `t`.
 - Generalizing `exists_fourHits_radialCyclicOrder_oppIndex1` to `oppIndex2`
   is a bounded Lean task, to be done only if the extracted core uses the strict
   cross-distance inequality.
