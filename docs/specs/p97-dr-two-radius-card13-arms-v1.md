@@ -140,7 +140,7 @@ over the fixed boundary order and cap membership. Cut admission record:
 
 | family | clause shape | Lean source | antecedents | status |
 |---|---|---|---|---|
-| `cap_betweenness` | for each closed cap in boundary order, cap labels j, r, s with pos(r) < pos(s), j ∉ {r, s}, and j not strictly between r and s: unit ¬same(j; r, s) | `CGN.index_strictly_between_of_equidistant` (`CapSelectedRowCounting.lean:51`) through `SurplusCapPacket.capByIndex_cgn4g_capData hconv i` (used the same way at `:305`) | `ConvexIndep D.A` | proved-source; bridge lemma pending: the ordered cap `StrictCapOrder` must be identified with the boundary cyclic order restricted to the closed cap {{NEEDS_PROOF}} |
+| `cap_betweenness` | for each closed cap in boundary order, cap labels j, r, s with pos(r) < pos(s), j ∉ {r, s}, and j not strictly between r and s: unit ¬same(j; r, s) | `CGN.boundary_indices_cyclically_between_of_equidistant` (`CapSelectedRowCounting.lean`), applied to the cap's ordered-cap data and the retained CCW boundary enumeration | `ConvexIndep D.A`; finite direct/mirror label-order instantiation in the exact-card-13 ingress | proved-source; label-level ingress pending |
 | `common_pair_localization` | for each cap with opposite apex a and interior Int, s < p in Int, label c ∉ Int with c ≠ a: ¬(same(c; s, p) ∧ same(a; s, p)) | `ATailTwoCenterCapLocalization.commonPhysicalPair_center_mem_capInteriorByIndex` (`TwoCenterCapLocalization.lean:121`) | all at the leaf | proved-source |
 | `frontier_bisector_interior` | for each label c ∉ I1 ∪ {A1}: unit ¬same(c; interior_q, interior_w) | field `OriginalUniqueFourResidual.bisector_center_mem_interior` (`OriginalUniqueResidualDispatch.lean:66`), previously in `OMITTED_FACTS` | leaf hypothesis `R` | proved-source |
 
@@ -187,4 +187,3 @@ secondOpposite jobs are in proof replay, `firstOpposite` in discovery);
 design sketch in the plan (Step P4.3): signed-area facts from the cap
 packet, converted to `CyclicThree` on the ingress enumeration, then linear
 betweenness inside the closed cap interval by arithmetic.
-

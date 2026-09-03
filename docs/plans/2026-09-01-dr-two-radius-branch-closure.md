@@ -596,35 +596,28 @@ certificate replay is then unnecessary for card 12.
   `frontier_bisector_interior` 8/10, `common_pair_localization` 0, the same
   three bank families unused (audit). Reduced secondOpposite CNF (core
   families only, 577,337 clauses) submitted as `691ea617…` (plain).
-- Bridge design for the `cap_betweenness` ingress obligation (read-only
-  source audit, 2026-09-02; no Lean written). The encoder's order object in
-  the card-12 ingress is `ConvexBoundaryEnumeration pt φ idx`
-  (`DRExactTwelveValuation.lean:416`), a CCW enumeration `φ` with
-  `orientation : idx = directIndex ∨ idx = mirrorIndex`; nothing in the
-  repository identifies the local `Fin m` order of a `StrictCapOrder` cap
-  with an external enumeration, and `StrictCapBlockData` only relates the
-  cap to its own internally built `phi`. Route that avoids the
-  identification: (1) `capByIndex_cgn4g_capData` (Shard01.lean:746, needs
-  `D.convex`) gives an ordered cap `L` with image `capByIndex i`;
-  (2) `CGN.index_strictly_between_of_equidistant`
-  (CapSelectedRowCounting.lean:49) gives `r < j < s` in `L`;
-  (3) `StrictCapOrder.subchord_open_side_iff_A` (CGN.lean:134) turns that
-  into `0 < signedArea2 (L r) (L s) (L j)` and, for the opposite apex `o`
-  (in `A`, not in the cap), `signedArea2 (L r) (L s) o ≤ 0`, strict by
-  convex independence (nonvanishing helpers: private copies in
-  `ArcPartitionCount.lean` and `N4d/FormAEndpointPairKill.lean:790`; a
-  public sibling in `Moser/NonDeg.lean` to verify); (4) on the CCW
-  enumeration, `signedArea2_neg_of_cyclicThree`
-  (Census554/CyclicOrderDistanceCores.lean:124) plus a cyclic trichotomy
-  (to add, omega) convert both signs into `CyclicThree` facts on `φ`
-  indices; (5) `capByIndex_interval_of_global_indices` (Shard01.lean:388)
-  places the closed cap in a closed `φ`-index interval with the opposite
-  apex outside it, after which `omega` yields linear betweenness in the
-  interval. The card-13 ingress then needs only a finite label-level check
-  that the encoder's closed-cap order is the `φ`-index order under
-  `directIndex`/`mirrorIndex`, in the style of `forward_direct_label`.
-  Still {{NEEDS_PROOF}}: steps (4) trichotomy and (5) apex-outside for the
-  three caps at card 13.
+- Bridge for the `cap_betweenness` ingress obligation completed 2026-09-03:
+  `CGN.boundary_indices_cyclically_between_of_equidistant`
+  (`CapSelectedRowCounting.lean`) transports the local strict-cap
+  betweenness conclusion to any injective CCW carrier enumeration through a
+  signed-area argument and a kernel-checked finite-order trichotomy. This
+  avoids identifying the ordered cap with a separately chosen enumeration.
+  Remaining ingress work is the finite direct/mirror label-order
+  instantiation for the three exact-card-13 profiles; the arbitrary-cardinality
+  lift from `12 < D.A.card` is still separate.
+- Arbitrary-cardinality lift audit completed 2026-09-03: selecting a proper
+  13-point subset cannot preserve the encoder's `k4_everywhere` family.
+  `ATailGlobalMinimalDeletion.not_hasNEquidistantProperty_of_nonempty_proper_subset
+  R.minimal` proves that every nonempty proper subset of `D.A` fails K4.
+  Hence the card-13 certificates can cover only `D.A.card = 13`; they do not
+  cover `13 < D.A.card`. Any closure of the present theorem must therefore
+  add a genuinely arbitrary-cardinality core/occurrence argument or split off
+  the exact-13 slice and retain a strict card-above-13 residual.
+- First-opposite PIQD update 2026-09-03 06:11Z: job `b35f2166…`
+  reached CaDiCaL exit 20 under the plain profile and entered proof replay;
+  job `c17e5d33…` exhausted its 21,600-second unsat-profile run as UNKNOWN.
+  The exit-20 result remains formula-scoped until PIQD emits checked proof
+  artifacts.
 - Generalizing `exists_fourHits_radialCyclicOrder_oppIndex1` to `oppIndex2`
   is a bounded Lean task, to be done only if the extracted core uses the strict
   cross-distance inequality.
@@ -652,4 +645,3 @@ citations. Phase 2/3 now targets exactly: L1 assembly, the cap-block
 boundary order, the same-arc and isosceles wrappers, and the `dist`-level
 core restatements (audit, second-reader section). Guardrail 5 open until a
 checked LRAT is stored (wave-5 job or the resubmitted wave-3 job).
-

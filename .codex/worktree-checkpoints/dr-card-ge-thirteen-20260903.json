@@ -1,0 +1,18 @@
+{
+  "base_head": "59c9ef148f22b5c7e941a08f86458aee75c127c2",
+  "created_utc": "2026-09-03T06:22:46Z",
+  "durable_paths": [],
+  "generated_roots": [],
+  "lane_id": "dr-card-ge-thirteen-20260903",
+  "manifest_sha256": "642806c72df01e40a5f1a007af8de3f313e79e6adec4d5f3e9bce6d0b0156780",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/dr-card-ge-thirteen-20260903.json",
+    "census/card_head/dr_two_radius_arm_structural.py",
+    "census/card_head/tests/test_dr_two_radius_arm_structural.py",
+    "docs/plans/2026-09-01-dr-two-radius-branch-closure.md",
+    "docs/specs/p97-dr-two-radius-card13-arms-v1.md",
+    "lean/Erdos9796Proof/P97/CapSelectedRowCounting.lean"
+  ],
+  "owner": "dr-card-ge-thirteen",
+  "schema": "worktree-lane-checkpoint/v1"
+}

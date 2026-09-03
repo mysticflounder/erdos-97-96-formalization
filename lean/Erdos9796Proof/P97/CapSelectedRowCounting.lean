@@ -67,6 +67,85 @@ theorem index_strictly_between_of_equidistant
     have hsj : s < j := by omega
     exact (hinj.2 hrs hsj) heq
 
+/-- If a carrier point on an ordered minor cap is equidistant from two other
+cap points, its image in any injective counterclockwise boundary enumeration
+lies cyclically between their images.  This is the enumeration-independent
+bridge from the local `StrictCapOrder` used by CGN to boundary-indexed finite
+valuations. -/
+theorem boundary_indices_cyclically_between_of_equidistant
+    {A : Finset ℝ²} {m n : ℕ} {L : OrderedCap m}
+    (Packet : MecCapPacket A L)
+    (Hside : MinorCapSideHypotheses Packet)
+    (Hord : StrictCapOrder A L)
+    {φ : Fin n → ℝ²} (hφinj : Function.Injective φ)
+    (hφccw : EuclideanGeometry.IsCcwConvexPolygon φ)
+    {j r s : Fin m} {ij ir is : Fin n}
+    (hrs : r < s) (hjr : j ≠ r) (hjs : j ≠ s)
+    (heq : dist (L.points j) (L.points r) =
+      dist (L.points j) (L.points s))
+    (hij : φ ij = L.points j)
+    (hir : φ ir = L.points r)
+    (his : φ is = L.points s) :
+    (ir < ij ∧ ij < is) ∨ (ij < is ∧ is < ir) ∨
+      (is < ir ∧ ir < ij) := by
+  have hlocal :=
+    index_strictly_between_of_equidistant
+      Packet Hside Hord hrs hjr hjs heq
+  have hpos :
+      0 < signedArea2 (L.points r) (L.points s) (L.points j) :=
+    (Hord.subchord_open_side_iff_A hrs (Packet.mem_A j)).2
+      ⟨j, hlocal.1, hlocal.2, rfl⟩
+  have harea : signedArea2 (φ ir) (φ ij) (φ is) < 0 := by
+    rw [hir, hij, his]
+    have hswap :
+        signedArea2 (L.points r) (L.points j) (L.points s) =
+          -signedArea2 (L.points r) (L.points s) (L.points j) := by
+      simp [signedArea2]
+    rw [hswap]
+    linarith
+  have hirj : ir ≠ ij := by
+    intro h
+    subst ij
+    simp [signedArea2] at harea
+  have hjis : ij ≠ is := by
+    intro h
+    subst is
+    simp [signedArea2] at harea
+  have hsir : is ≠ ir := by
+    intro h
+    subst is
+    simp [signedArea2] at harea
+  have hneg : ∀ {a b c : Fin n}, a < b → b < c →
+      signedArea2 (φ a) (φ b) (φ c) < 0 :=
+    Problem97.hneg_of_ccw hφinj hφccw
+  have hnot_irsj : ¬ (ir < is ∧ is < ij) := by
+    rintro ⟨hrsi, hsij⟩
+    have h := hneg hrsi hsij
+    have hswap : signedArea2 (φ ir) (φ is) (φ ij) =
+        -signedArea2 (φ ir) (φ ij) (φ is) := by
+      simp [signedArea2]
+    rw [hswap] at h
+    linarith
+  have hnot_sjir : ¬ (is < ij ∧ ij < ir) := by
+    rintro ⟨hsj, hjr⟩
+    have h := hneg hsj hjr
+    have hswap : signedArea2 (φ is) (φ ij) (φ ir) =
+        -signedArea2 (φ ir) (φ ij) (φ is) := by
+      simp [signedArea2]
+      ring
+    rw [hswap] at h
+    linarith
+  have hnot_jris : ¬ (ij < ir ∧ ir < is) := by
+    rintro ⟨hjr, hrs⟩
+    have h := hneg hjr hrs
+    have hswap : signedArea2 (φ ij) (φ ir) (φ is) =
+        -signedArea2 (φ ir) (φ ij) (φ is) := by
+      simp [signedArea2]
+      ring
+    rw [hswap] at h
+    linarith
+  omega
+
 end CGN
 
 namespace CapSelectedRowCounting

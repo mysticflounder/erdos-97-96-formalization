@@ -358,8 +358,11 @@ def test_new_families_tuple_and_ledger() -> None:
     for name in NEW:
         assert name in ledger
         assert ledger[name]["status"] and ledger[name]["lean_sources"]
-    assert "index_strictly_between_of_equidistant" in ledger["cap_betweenness"]["lean_sources"]
-    assert "{{NEEDS_PROOF}}" in ledger["cap_betweenness"]["status"]
+    assert (
+        "boundary_indices_cyclically_between_of_equidistant"
+        in ledger["cap_betweenness"]["lean_sources"]
+    )
+    assert "label-level ingress pending" in ledger["cap_betweenness"]["status"]
     assert "commonPhysicalPair_center_mem_capInteriorByIndex" in ledger["common_pair_localization"]["lean_sources"]
     assert "bisector_center_mem_interior" in ledger["frontier_bisector_interior"]["lean_sources"]
 
