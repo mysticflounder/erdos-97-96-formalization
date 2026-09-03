@@ -2452,3 +2452,48 @@ does not obviously predict rational tractability.
 No further 3600 s rational slot is authorized on this orbit. A bounded mod-p
 ranking sweep over the unmeasured labelings is the next thing worth spending
 lane time on, and only once the lane is free.
+
+### 27. The section 21 prediction lands exactly (2026-09-03)
+
+`172327e48f4004fb`'s relevance triage ran (47.3 s of daemon wall) and matches
+the section 21 prediction in every element. The prediction was committed as
+`e6f33f36a` before the run, and the triage output is:
+
+    dim_raw 0
+    relevant P0.1:P0.4 0 1536      <- predicted 1536, COLLAPSE
+    relevant P0.2:P1.2 0 768       <- predicted 768
+    relevant P0.2:P1.4 0 768       <- predicted 768
+    relevant P0.3:P2.1 0 768       <- predicted 768
+    relevant P1.2:P1.4 0 384       <- predicted 384
+    relevant P1.3:P1.4 0 384       <- predicted 384
+    relevant P2.1:P2.4 0 384       <- predicted 384
+    dim 0
+    vdim 1536                      <- predicted 1536
+
+Seven live pairs out of 105, named in advance, with their exact vector-space
+dimensions, the correct raw dimension, and no eighth live pair. The collapsing
+pair is the predicted one and its quotient dimension equals the raw one, so
+`172327e48f4004fb` is refuted mod 32003 at the encoded scope, by a 47 s triage
+rather than the 105-pair saturation that timed out on it yesterday.
+
+This is the strongest confirmation the five-orbit partition of section 19 can
+get short of a proof. Section 22 already retrodicted a four-pair live set on
+data collected before the partition existed; this predicts a seven-pair live
+set with its dimension profile, in writing and in the repository, before the
+computation ran. Two independent orbits, one retrodiction and one prediction,
+both exact.
+
+Standing scope: all of it is mod 32003. The soundness of the partition itself
+does not depend on that — patterns in one orbit differ by a permutation of the
+point labels, so their ideals differ by a ring automorphism — but the verdicts
+being transported are mod-p verdicts, and transporting them faithfully makes
+them no stronger than they were.
+
+Consequence for the layer: with `172327e48f4004fb` directly confirmed and
+`0e31c5c5d735a779` refuted by saturation (`dim_sat -1`), the 1536-orbit is
+established twice over, and `32263a5344416a02` and `5d4f4968fac1e0d5` need no
+run at all. The remaining work is unchanged: the 3-orbit is untested and the
+36-orbit is open.
+
+{{NEEDS_UPDATE}}: the `1412a71e2b2792b3` triage, now running, is the last
+untested orbit in the layer.
