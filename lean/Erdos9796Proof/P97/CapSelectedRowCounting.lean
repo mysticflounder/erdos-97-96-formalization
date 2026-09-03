@@ -1224,6 +1224,86 @@ theorem orderedCap_outsidePairCount_eq_choose_of_six_five
     Packet Hside Hord hconv F houtside, houtside]
   norm_num [Nat.choose]
 
+/-- In the same equality case, the outside pairs selected by the six rows
+    exhaust the complement's two-subsets.  Pairwise disjointness comes from
+    the ordered-cap owner relation, while the preceding count supplies the
+    matching cardinality. -/
+theorem orderedCap_selected_outside_pairs_cover_of_six_five
+    {A : Finset ℝ²} {L : CGN.OrderedCap 6}
+    (Packet : CGN.MecCapPacket A L)
+    (Hside : CGN.MinorCapSideHypotheses Packet)
+    (Hord : CGN.StrictCapOrder A L)
+    (hconv : ConvexIndep A) (F : FaithfulCarrierPattern A)
+    (houtside : (A \ Finset.univ.image L.points).card = 5) :
+    (Finset.univ.biUnion (fun j : Fin 6 =>
+      ((F.classAt (L.points j) (Packet.mem_A j)).support \
+        Finset.univ.image L.points).powersetCard 2)) =
+      (A \ Finset.univ.image L.points).powersetCard 2 := by
+  classical
+  let C : Finset ℝ² := Finset.univ.image L.points
+  let B : Finset ℝ² := A \ C
+  let K : ∀ j : Fin 6, SelectedFourClass A (L.points j) :=
+    fun j => F.classAt (L.points j) (Packet.mem_A j)
+  let hits : Fin 6 → Finset ℝ² := fun j => (K j).support \ C
+  let pairs : Fin 6 → Finset (Finset ℝ²) :=
+    fun j => (hits j).powersetCard 2
+  have hdisjoint :
+      ((Finset.univ : Finset (Fin 6)) : Set (Fin 6)).PairwiseDisjoint pairs := by
+    rintro r _hr s _hs hrs
+    change Disjoint (pairs r) (pairs s)
+    rw [Finset.disjoint_left]
+    intro xy hxr hxs
+    have hrData := Finset.mem_powersetCard.mp hxr
+    have hsData := Finset.mem_powersetCard.mp hxs
+    have hxyCard : xy.card = 2 := hrData.2
+    rw [Finset.card_eq_two] at hxyCard
+    rcases hxyCard with ⟨a, b, hab, rfl⟩
+    have haR : a ∈ hits r := hrData.1 (by simp)
+    have hbR : b ∈ hits r := hrData.1 (by simp)
+    have haS : a ∈ hits s := hsData.1 (by simp)
+    have hbS : b ∈ hits s := hsData.1 (by simp)
+    have haR' : a ∈ (K r).support := (Finset.mem_sdiff.mp haR).1
+    have hbR' : b ∈ (K r).support := (Finset.mem_sdiff.mp hbR).1
+    have haS' : a ∈ (K s).support := (Finset.mem_sdiff.mp haS).1
+    have hbS' : b ∈ (K s).support := (Finset.mem_sdiff.mp hbS).1
+    have hrOwner := orderedCap_outsidePair_owner_unique
+      Packet Hord hconv F
+      ((K r).support_subset_A haR') ((K r).support_subset_A hbR')
+      (Finset.mem_sdiff.mp haR).2 (Finset.mem_sdiff.mp hbR).2 hab
+      haR' hbR' haS' hbS'
+    exact hrs hrOwner
+  have hsubset : (Finset.univ.biUnion pairs) ⊆ B.powersetCard 2 := by
+    intro xy hxy
+    rcases Finset.mem_biUnion.mp hxy with ⟨j, _hj, hjxy⟩
+    have hjData := Finset.mem_powersetCard.mp hjxy
+    apply Finset.mem_powersetCard.mpr
+    refine ⟨?_, hjData.2⟩
+    intro x hx
+    have hx' : x ∈ hits j := hjData.1 hx
+    exact Finset.mem_sdiff.mpr
+      ⟨(K j).support_subset_A (Finset.mem_sdiff.mp hx').1,
+        (Finset.mem_sdiff.mp hx').2⟩
+  have hsum :
+      (∑ j : Fin 6, (pairs j).card) = (B.powersetCard 2).card := by
+    calc
+      (∑ j : Fin 6, (pairs j).card) =
+          ∑ j : Fin 6, Nat.choose (hits j).card 2 := by
+        apply Finset.sum_congr rfl
+        intro j _hj
+        exact Finset.card_powersetCard 2 (hits j)
+      _ = Nat.choose B.card 2 := by
+        simpa [B, C, K, hits, pairs] using
+          (orderedCap_outsidePairCount_eq_choose_of_six_five
+            Packet Hside Hord hconv F houtside)
+      _ = (B.powersetCard 2).card :=
+        (Finset.card_powersetCard 2 B).symm
+  have hcard :
+      (Finset.univ.biUnion pairs).card = (B.powersetCard 2).card := by
+    rw [Finset.card_biUnion hdisjoint]
+    exact hsum
+  apply Finset.eq_of_subset_of_card_le hsubset
+  exact le_of_eq hcard.symm
+
 end CapSelectedRowCounting
 
 end Problem97
