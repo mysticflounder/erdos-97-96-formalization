@@ -5776,3 +5776,52 @@ question than section 64.
 
 Scope unchanged.  **Obligation (i) is not closed.**  Leaf: two open
 obligations, `M = 18`.
+
+### 76. The non-obtuse polarization is now exported (2026-09-03)
+
+Section 75 left two routes.  Route A was the cheap one: of the thirteen
+hypothesis shapes of `false_of_cyclic_foreign_hits_of_ne`, the three
+non-obtuse ones — `0 ≤ b² + c² - a²` and its cyclic images — had no exported
+producer, even though the conversion they need had been written inline three
+times (`Q3SharedInterior.lean:197`, `:392`, `A1B2FrameNormalization.lean:467`).
+This section exports it.
+
+`ATail/NonObtusePolarization.lean` carries one general lemma and four
+consequences.  The general lemma is the parallelogram expansion of
+`‖(B - A) - (C - A)‖²`:
+
+    sq_add_sq_sub_sq_nonneg_of_inner_nonneg :
+      0 ≤ ⟪B - A, C - A⟫_ℝ → 0 ≤ dist A B ² + dist A C ² - dist B C ²
+
+No triangle hypothesis is needed.  The three points may coincide or be
+collinear; the statement is about one inner product and three distances.
+
+The four consequences read the three fields of
+`MEC.NonObtuseCircumscribedMoserTriangle` — `inner_at_v1`, `inner_at_v2`,
+`inner_at_v3` (`Moser/TriangleNonObtuse.lean:673`, `:676`, `:679`) — through
+that lemma.  Three are the per-apex forms `sq_side_at_v{1,2,3}`; the fourth,
+`nonObtuse_sides`, takes the three side names and returns the conjunction in
+the exact binder shape `eq_of_cyclic_foreign_hits` takes as `hna`, `hnb`,
+`hnc`, under `A₀ = v₁`, `A₁ = v₂`, `A₂ = v₃`:
+
+    (ha : dist v₂ v₃ = a) (hb : dist v₃ v₁ = b) (hc : dist v₁ v₂ = c) →
+      0 ≤ b² + c² - a² ∧ 0 ≤ c² + a² - b² ∧ 0 ≤ a² + b² - c²
+
+The import direction is safe: `Moser/` does not reach `ATail/`, so no cycle.
+
+**What this changes, and what it does not.**  Three of the thirteen hypothesis
+shapes now have a named producer.  Counting section 75's audit forward, the
+shapes stand as: MEC boundary and disk containment have producers; the three
+side equations are definitional once the sides are named; the three positivity
+facts follow from `S.triangle.v12_ne`/`v13_ne`/`v23_ne` and `dist_pos`; the
+three non-obtuse facts are this file.  That leaves exactly the two shapes
+section 75 named as having **no producer anywhere**: `dist q A = c` together
+with `dist q B = a`, a carrier point carrying two apex-centred radii at two
+different apices.
+
+So the blocker is unchanged and is now isolated.  Route A is finished; the
+chain is still a conditional, and Route B — find or build a foreign-hit
+producer — is still the whole question.
+
+Off-spine.  No promotion claim.  Scope unchanged.  Leaf: two open obligations,
+`M = 18`.
