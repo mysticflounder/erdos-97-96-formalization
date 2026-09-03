@@ -9,10 +9,12 @@
   "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03/artifacts/tools/angle_chain_v4.py": "7e930b0fa6bf6d5cbdc0f8031e1c194ca297cfb7529ab16f655ddc83e93195ac",
   "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03/artifacts/tools/angle_chain_v5.py": "23c2d829956df06f6e75da1ab586e2c207cb4ac8df47376a842d694ccbc30fe6",
   "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03/artifacts/tools/angle_chain_v6.py": "863e7ebf729d2ee69c23a4eebca03adf672b322ea3c3b84a3e6634541099fc5f",
-  "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03/artifacts/tools/kal_angles.py": "f8978c4ec7b9f648b85135f488d0f812f8da93bdf726ae8fefe16d9bddd8eff8"
+  "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03/artifacts/tools/angle_chain_v7.py": "1d97df2c3ee2d824394aba569dd67cd8ee4a04e101efc4f170ddff0fb3ed280a",
+  "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03/artifacts/tools/angle_chain_v8.py": "c33ce991358a91791a2b90af7fe6a4e5c11377e3289d65cf70f38da4c2e5cb12",
+  "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03/artifacts/tools/kal_angles.py": "c5220180a2bac1a209a6979e9c02b602c1cca58def7edb502cba835325b3065e"
  },
  "lane_id": "d1-triapex-plan-20260901",
- "manifest_sha256": "0320bd8149e2a09586ffafebb55f145ed464b617d4e63109a1a98f9566e35de2",
+ "manifest_sha256": "5cc9a6d12fd126cb7b6cad718ff1f49c92ebebb08f38e4a42dae20d30b4e1eb5",
  "output_classes": [
   "artifacts",
   "events",
