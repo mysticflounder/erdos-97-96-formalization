@@ -25,7 +25,11 @@ namespace DRExactThirteenValuation
 open Census554.GeneralCarrierBridge
 open Census554.ZeroCutBoundaryIndexing
 
-private theorem capLabel_boundary_between_of_equidistant_core
+/-- Core finite-label transport used by the direct, pointwise, and cyclic-shift
+cap-betweenness adapters below.  This is public so proof-blueprint can replay
+the declaration from an imported module rather than indexing an inaccessible
+private constant. -/
+theorem capLabel_boundary_between_of_equidistant_core
     {D : CounterexampleData} {S : SurplusCapPacket D.A}
     {C : Finset ℝ²} (B : CGN.StrictCapBlockData D.A C)
     {p : Profile} {pt φ : Fin 13 → ℝ²} {idx : Fin 13 → Fin 13}
