@@ -1391,18 +1391,36 @@ side rule refutes every sampled Stage 1d survivor; Stage 1e census launched):
   `4196eb64fac564cc`, `5815b1f6a42dcb08`, `60e1264c2096add9`), 3072
   (`1412a71e2b2792b3`), 1536 (`5d4f4968fac1e0d5`). Mod 32003 the 20 orbits
   therefore read: 4 empty, 5 of dimension 2 (2 of them empty after
-  saturation), 11 zero-dimensional. Queued on the serial lane
-  (`artifacts/tools/angle_chain_v{3,4,5,6}`): `slimgb` with saturation on
-  the three unsaturated dimension-2 representatives; for the two
-  saturated-empty ones a mod-p trace of which pair saturations empty the
-  ideal (`--sat-trace`) followed by a rational run saturating by those pairs
-  only (`--sat-pairs`); for the eleven zero-dimensional ones the same trace
-  with the vector-space dimension after each pair, then a rational run with
-  modular Gröbner reconstruction (`--modstd`), saturation by the effective
-  pairs only, and the real-root count on the reduced ideal.
-  {{NEEDS_UPDATE}}: targeted-saturation and real-root verdicts. A mod-p emptiness is evidence only; the characteristic-0 run is
-  the verdict that counts, and any real solution still needs the strict
-  convexity check of Guardrail 6 before it is a candidate configuration.
+  saturation), 11 zero-dimensional.
+  A first queue of chains (`angle_chain_v{3,4,5,6,7,8}`) traced the
+  saturation pair by pair (`--sat-trace`, `--sat-pairs`, `--sat-pre`) so
+  that a rational run could saturate by the effective pairs only. That
+  queue was withdrawn on 2026-09-03 and its chains stopped. The trace
+  recomputes a Gröbner basis after every one of the 105 pairs, so no trace
+  finished: 51 pairs on `0af6e34c9d121f64`, 71 on `3826b8a0dec4a6b0`, and
+  42 on `0d6996160cc83aab` with no reduction of the vector-space dimension
+  in those 42, each cut at its 900 s limit. Two rational real-root counts
+  on unsaturated ideals (`0d6996160cc83aab`, `3826b8a0dec4a6b0`, both of
+  vector-space dimension near 2048) also timed out at 1800 s. Plain
+  saturation, which performs the whole sequence in one pass, had already
+  completed for several representatives inside the same budget.
+  The replacement chain `artifacts/tools/angle_chain_v9.py` uses plain
+  `--saturate` and orders the work by decisiveness: first the rational
+  modular-Gröbner run with full saturation and real-root count on the two
+  representatives whose saturated ideal is finite mod p with 192 points
+  (`0d6996160cc83aab`, `3826b8a0dec4a6b0`); then the rational confirmation
+  of the two mod-p empty saturations (`0af6e34c9d121f64`,
+  `3642476c22a03be4`); then the mod-p saturated picture for the remaining
+  twelve, `slimgb` where `std` does not decide. Logs:
+  `events/angle-v9-char0-real.log`, `events/angle-v9-char0-empty.log`,
+  `events/angle-v9-modp.log`.
+  Direction of the modular evidence: reduction can only enlarge the initial
+  ideal, so a nonempty saturated ideal mod p gives a nonempty variety over
+  the rationals, while a mod-p emptiness is evidence only and needs the
+  characteristic-0 run.
+  {{NEEDS_UPDATE}}: saturated and real-root verdicts from chain v9. Any
+  real solution still needs the strict convexity check of Guardrail 6, and
+  the full-pattern check, before it is a candidate configuration.
 - Residue structure (solver-free census of the 111 metric patterns): every
   pattern has exactly 4 shells and 3 apex classes (27 equidistance
   equations in the 26 pinned coordinates); the apex-class triple is one of
