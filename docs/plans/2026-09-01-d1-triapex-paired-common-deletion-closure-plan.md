@@ -3845,3 +3845,41 @@ nothing more — the common value is free, so the ingress does **not** have to
 show that `A1`'s chord to `P2.3` has length `r`.
 
 Leaf unchanged: single `sorry`, `M = 18`.
+
+### 52. The metric ingress target is uniform across the orbit (2026-09-03)
+
+Before building the ingress it is worth knowing whether the pattern actually
+asserts what the section 50 lemma consumes, or whether some of it was only a
+convention of the angle encoder. It asserts all of it, and uniformly.
+
+Restating the lemma's needs as three census groups — a centre and a set of
+points it is equidistant from:
+
+| group | content | why the lemma needs it |
+|---|---|---|
+| `A2` | `{A0, A1, P2.1, P2.3}` | the four circle memberships |
+| `P2.1` | `{A0, P1.1, P2.3}` | `d(P2.1,A0) = d(P2.1,P1.1) = d(P2.1,P2.3)` |
+| `A1` | `{P1.1, P2.3}` | `d(A1,P1.1) = d(A1,P2.3)` |
+
+Transporting all three along each orbit relabeling and testing containment in
+each member's own shells and classes gives **36/36 for all three groups**, and
+the provenance is the same on every member: the circle memberships and the `A1`
+equidistance are **class** assertions, the `P2.1` equalities a **shell**
+assertion. Restricted to the source labelling, 18 of the cell's 111 patterns
+carry both core groups, and all 18 also assert the circle memberships.
+
+Two consequences. First, the circle memberships are not a gauge artifact — the
+pattern asserts them, so the ingress can obtain them from the source rather than
+having to reconstruct the normalization. Second, the ingress reduces to exactly
+three extractions with fixed shapes: two class memberships and one shell
+support, the same on every orbit member. That is a much narrower obligation
+than "derive the metric layer".
+
+Note the `A1` group needed here is `{P1.1, P2.3}`, not section 49's
+`{A2, P2.3}`. Both hold on all 36 members, but the first is what the lemma
+consumes, because the common distance is free and never has to equal `r`.
+
+This is a statement about the encoded census patterns, not about the Lean
+source. Which Lean accessors deliver these three groups is the open question.
+
+Leaf unchanged: single `sorry`, `M = 18`.
