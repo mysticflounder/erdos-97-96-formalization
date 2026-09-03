@@ -152,6 +152,15 @@ FreshThird's two-solver source-semantic protocol. Those callers may reuse the
 one-shot engine internally later, but their campaign or cross-solver control
 remains a separate code-defined boundary.
 
+This execution exclusion is not an exemption from the mandatory post-wave
+theorem mine.  Every terminal diagnostic run—including SAT, diagnostic UNSAT,
+UNKNOWN, timeout, budget stop, exact-algebra classification, and exhaustive
+enumeration—still needs a current-wave-only mine receipt before a successor is
+launched.  Until a campaign is migrated to the common controller, its bespoke
+boundary must emit a validated alternate-executor receipt and enforce that
+receipt as a successor precondition.  A theorem-bank reuse preflight and a
+follow-on classification run do not substitute for the receipt.
+
 The common engine performs, in order:
 
 1. strict canonical manifest validation;

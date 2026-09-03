@@ -340,3 +340,15 @@ MEC/minimality/blocker provenance only if an actual convex Euclidean survivor
 remains.  The wave mine also proposes six small source lemmas for future Lean
 use: every unresolved profile has `p,q` distinct from `u,v` and `t` distinct
 from `x,y`; the current theorem-bank search found no exact existing result.
+
+The first planar canary has now completed for profile 1697 and the two linear
+witness orders.  Controls returned `SAT/SAT` and `UNSAT/UNSAT` as required.
+For both target orders Z3 returned `UNSAT` in under 0.1 seconds while cvc5
+timed out (`UNKNOWN`) at the 330-second effective deadline, so both cells stay
+diagnostic and the profile remains open.  Full artifact replay passed with
+terminal self-hash
+`4ca0f89bf9ca93ea6a02443eb361ad53e9b0b4f13358aa3d53161a1e538591d2`.
+The next wave is adaptive: block these two permutations in the linear profile
+1697 query, request fresh PIQD order witnesses, and test each fresh cell in the
+same planar QF_NRA layer.  MEC/minimality/blocker constraints remain deferred
+until a genuine planar survivor is found.

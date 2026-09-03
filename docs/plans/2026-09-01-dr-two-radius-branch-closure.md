@@ -618,6 +618,16 @@ certificate replay is then unnecessary for card 12.
   job `c17e5d33…` exhausted its 21,600-second unsat-profile run as UNKNOWN.
   The exit-20 result remains formula-scoped until PIQD emits checked proof
   artifacts.
+- Step P4.4 (2026-09-03, in progress): the general-`n` reuse audit found no
+  reachable contradiction producer. `FaithfulCarrierPattern` retains one row
+  per center and therefore cannot retain both distinct-radius rows at
+  `S.oppApex2`; `false_of_shellMetricCoreAlternative` also requires an
+  unproduced `ShellMetricCoreAlternative`. The direct global-minimal-deletion
+  route returns an uncontrolled fresh center, so the no-five hypothesis at
+  `S.oppApex2` does not close either outcome. Run the six card-14 profiles in
+  `docs/specs/p97-dr-two-radius-card14-profile-probe-v1.md` with the admitted
+  cap-betweenness family to test whether a stable large-cardinality pattern
+  appears before designing a radius-indexed general-carrier row system.
 - Generalizing `exists_fourHits_radialCyclicOrder_oppIndex1` to `oppIndex2`
   is a bounded Lean task, to be done only if the extracted core uses the strict
   cross-distance inequality.

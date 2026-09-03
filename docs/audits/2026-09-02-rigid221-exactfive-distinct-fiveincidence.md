@@ -326,3 +326,14 @@ desired terminal: 202 abstract countermodels survive and 10 further profiles
 remain inconclusive.  The next experiment adds actual planar coordinates and
 strict convex orientation to a smallest 11-class survivor before any attempt
 to use MEC/minimality/blocker provenance.
+
+That first fixed-order planar canary is now complete.  Its controls passed;
+Z3 rejected both linear witness orders for profile 1697 in under 0.1 seconds,
+while cvc5 timed out on both at the 330-second effective deadline.  The two
+cells are useful solver-discovery rejections, but the result remains
+inconclusive and does not eliminate the alias profile or all cyclic orders.
+The authenticated terminal self-hash is
+`4ca0f89bf9ca93ea6a02443eb361ad53e9b0b4f13358aa3d53161a1e538591d2`,
+and a no-solver resume fully revalidated its custody tree.  The next bounded
+wave blocks these two linear permutations and adaptively requests fresh order
+witnesses for profile 1697 before adding any MEC/minimality/blocker data.

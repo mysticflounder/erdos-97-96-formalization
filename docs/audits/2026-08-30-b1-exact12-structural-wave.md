@@ -1,0 +1,792 @@
+# B1 exact-12 structural and first-metric wave
+
+Date: 2026-08-30
+
+Status: diagnostic computation in progress. No finite result in this document
+closes a Lean theorem, supplies arbitrary-cardinality coverage, or authorizes
+removal of the live `sorry`.
+
+## Target and source boundary
+
+The target is
+`Problem97.ATailFrontierLiveClosure.false_of_b1PhysicalClassFiveSixNormalForm`
+in `TwoDeletionCollision.lean`. Its input is a `B1GlobalTransportContext`
+together with `B1PhysicalClassFiveSixNormalForm`; the theorem statement is not
+being changed.
+
+The exact-12 base cube uses only:
+
+- one selected four-point row at each center;
+- center omission and the source-safe cap/Moser row restrictions;
+- pairwise selected-row intersection at most two; and
+- occurrence of a fixed source pair in at most two selected rows.
+
+The B1 cell then names the physical apex, deleted points `q,r`, live points
+`u,v`, one or two trace mates, and the common/u/v blocker roles. The current
+Python mapping of those roles into a labeled exact-12 cube is not yet a Lean
+ingress theorem. In particular, the generic labeled bridges for the physical
+apex row, common/live trace rows, B1 cover, cap-interior bound, and blocker role
+map remain absent. Every manifest therefore sets `promotion_eligible` to
+false.
+
+## Structural compiler
+
+`census/card_head/b1_exact12_structural.py` implements the four normalized
+trace branches:
+
+- card five: u-single/v-pair;
+- card five: u-pair/v-single;
+- card five: shared mate; and
+- card six: disjoint mate pairs.
+
+It accepts all three authorized exact-12 labeled cap profiles: `(5,5,5)`,
+`(5,6,4)`, and `(6,5,4)`. The cell stream is lazy and preserves every named
+role; it does not silently swap `q/r`, `u/v`, mates, blockers, trace arms, cap
+roles, or Moser vertices.
+
+Seven focused tests cover the branch table, all profiles, lazy enumeration,
+source-safe row admission, four-clause compilation, empty row groups,
+independent SAT readback, metadata drift, and malformed Boolean labels.
+
+## First structural canary
+
+The first locally compilable profile-`(5,5,5)` card-five cell was:
+
+```text
+physical = [0,2,6,7,8]
+q=0, r=2, u=6, v=7, mate=8
+commonBlocker=3, uBlocker=0, vBlocker=4
+arm = five_u_single_v_pair
+```
+
+The compiled source-safe structural formula had 42,924 variables and 373,372
+clauses, including four B1 target-row clauses. CaDiCaL returned SAT. Independent
+readback checked the complete CNF, decoded one row at every center, replayed
+the source-safe cube rules, and checked all four target intersections, the
+trace cover, cap-interior bound, and distinguished-center conditions.
+
+This verdict is positive diagnostic evidence only. It demonstrates that the
+current incidence layer does not force the B1 contradiction.
+
+## Schedule size and conservative symmetry audit
+
+The unsymmetrized schedule contains 39,344,760 labeled cells. Independent
+permutations within the three cap-interior blocks, fixing the Moser vertices
+and every named B1 role, reduce this to 374,395 conservative orbits by Burnside
+counting. That quotient is not yet a coverage certificate: a fixed labeled
+candidate cube must either expand every orbit or receive a checked transport
+theorem for candidate and clause variables. The older role-blind window
+canonicalizer is not valid for this schedule.
+
+Consequently the generator is usable for bounded canaries, but a full wave is
+not authorized until the role-preserving transport obligation is implemented
+or the schedule is sharded without quotienting.
+
+## First honest metric refinement
+
+Both deleted points lie in the positive-radius physical class centered at the
+second apex. The smallest directly sourced metric fact is therefore
+
+```text
+dist A2 q = dist A2 r
+```
+
+This is the `haEq` fact used at `TwoDeletionCollision.lean:187-189`. The next
+compiler slice introduces generic equality variables for the 66 labeled
+metric edges, selected-row implications, transitive closure, the generic
+duplicate-three-point-center obstruction, and one positive unit for this
+physical-apex equality. It does not add common/u/v blocker metric equations.
+
+The static relation layer still needs a Lean valuation from actual distance
+equality, and the B1 labels still need the generic exact-12 ingress listed
+above. SAT remains diagnostic; any later UNSAT must be rerun with proof output,
+checked independently, bound to the exact DIMACS stream, and consumed through
+kernel-checked coverage before it can affect the target theorem.
+
+## Static-equality canary
+
+The authenticated wave-2 run installed 2,145 relation variables, selected-row
+implications, transitivity, duplicate-center obstructions, and the physical
+apex unit. The resulting formula had 45,069 variables and 536,969 clauses.
+CaDiCaL returned SAT, and full assignment, structural, and canonical relation
+replay passed.
+
+That survivor contained an equilateral-bisector collision with labels
+`p=2, a=10, b=9, c=8, x=4`. Its six metric equalities were generated by four
+selected rows. The obstruction is covered by
+`Problem97.Census554.EqualityCore.not_realizes_of_equilateralBisectorCollisionCore`
+and the positive certificate interface
+`nonempty_equilateralBisectorCollisionCore_of_positiveCheck`. The complete
+ordered five-label clause family has 95,040 clauses.
+
+An initial governed runner attempt exposed a macOS-specific artifact error:
+CaDiCaL rejected a held `/dev/fd` DRAT destination as unwritable. The runner
+now uses a governed pathname for solver proof output. The failed attempt is
+retained in wave 1, while the successful source snapshot and run are retained
+in wave 2.
+
+## Equilateral-bisector canary
+
+The wave-3 run appended all 95,040 equilateral-bisector clauses without adding
+variables. The formula had 45,069 variables and 632,009 clauses. CaDiCaL again
+returned SAT; complete CNF replay, canonical equality replay, geometry-suffix
+replay, and every structural check passed. The earlier wave-2 survivor is
+covered by a focused regression test.
+
+Mining only the new wave-3 cube found no remaining equality-only,
+duplicate-center, equal-K4, equilateral, or three-triad core. Its first and
+only generic detector hit was a perpendicular-bisector core with focus pair
+`5,6` and points `0,7,9`, generated by rows centered at `0,5,6`. The minimal
+clause is
+
+```text
+not eq((0,5),(0,6)) or
+not eq((7,5),(7,6)) or
+not eq((9,5),(9,6)).
+```
+
+The governing source theorem is
+`Problem97.Census554.EqualityCore.false_of_convexIndep_of_perpBisectorCore`,
+with positive checker `nonempty_perpBisectorCore_of_positiveCheck` and the
+existing `SourceOrderPositiveNogood.ofPerpBisectorCertificate` consumer. The
+complete unordered focus/triple family has 7,920 clauses and is the wave-4
+refinement. It still requires the generic labeled metric/convex valuation and
+whole-formula Lean ingress before it can support theorem closure.
+
+## Perpendicular-bisector canary and ordered residual
+
+The wave-4 run appended all 7,920 perpendicular-bisector clauses and no
+variables. Its 45,069-variable, 639,929-clause formula remained SAT, with full
+CNF, structural, equality, geometry, and convex-suffix replay green. The
+wave-3 perpendicular survivor is covered by a focused regression test; the
+four B1 compiler layers now have 16 focused tests.
+
+No unordered generic detector matches the wave-4 cube. The first conditional
+hit is instead a convex-five-point core, so it cannot be installed without an
+authenticated cyclic boundary order. For profile `(5,5,5)`, the cap-block
+abstraction has 432 oriented orders: two orientations and arbitrary
+permutations within each three-point interior block. Running the full
+formalized metric-core detector, including both directions and the existing
+eight-point ordered core, leaves 48 calls without a symbolic core. The
+residual therefore consists of 24 reversal-paired boundary cycles.
+
+The legacy exact-real probe was then run on one genuine residual cycle with
+all twelve selected rows marked as positive rather than exact. No symbolic
+core fired, and all three 30-second Z3 stages returned `UNKNOWN`. This is not a
+verdict. It identifies the next computational boundary: authenticated
+source-order ingress for B1 plus a governed QF_NRA run on the twelve residual
+cycles.
+
+The existing exact-12 source-order bank cannot be imported unchanged. It is
+specialized to the Rigid221 `(5,6,4)` labeling, its 48 frozen orders, and a
+forced order within the four-point second-cap block. B1 needs an explicit role
+map and a profile-aware frozen boundary-order producer; silently identifying
+numeric labels would be unsound. B1 already supplies convex independence, so
+this is an ingress/labeling obligation rather than a new geometric assumption.
+
+## Authenticated metric run and six-label core
+
+Wave 5 replaced the legacy local probe with the source-authenticated B1 PIQD
+producer. The exact-metric and full-convex stages used the same system
+`87a799480578bbdc145e`; both returned `UNSAT_DISCOVERY_ONLY` under Z3 4.17.0.
+The exact-metric system digest is
+`ddd6c07041147a528941ec1c27d341c096b2aa6b1e9a37ac0c0308bd530dac64`
+and its row digest is
+`8b5794fa6ef83d25ded907760b2a7b48c50c571f7646a41b0500bf0f0b2e6018`.
+The result explicitly claims neither proof nor Lean closure.
+
+A direct replay reproduced the exact-metric contradiction in about fourteen
+seconds. Greedy row deletion reduced it to the five centers `0,1,2,3,5`:
+
+```text
+0:{1,3,4,6}
+1:{0,2,6,7}
+2:{0,1,9,10}
+3:{0,2,4,5}
+5:{0,4,6,8}
+```
+
+All five rows are positive, not exact. Atom inspection then removed the leaf
+labels `4,7,8,9,10`. With
+`p=0, q=6, t1=1, t2=2, t3=3, a=5`, the surviving obstruction is the following
+eight-relation core:
+
+```text
+pt1=pt3, pt1=pq,
+t1p=t1t2, t1p=t1q,
+t2p=t2t1,
+t3p=t3t2, t3p=t3a,
+ap=aq.
+```
+
+This is exactly the hypothesis pattern of the existing kernel theorem
+`Problem97.u5_qcritical_aux_center_metric_incompatibility`. The generic
+equality-closure wrapper
+`Problem97.Census554.EqualityCore.not_realizes_of_equilateralChainBisectorCore`
+now packages that theorem for an arbitrary label type. It builds successfully,
+and `proof-blueprint axioms` reports only `propext`, `Classical.choice`, and
+`Quot.sound`. Wave 6 adds every injective six-label instance of this
+theorem-backed clause before asking CaDiCaL for the next survivor.
+
+The arbitrary-cardinality route is through
+`Census554.GeneralCarrierBridge.CarrierLabel D.A` and a faithful carrier
+pattern, not through an exact-twelve subset. The remaining source-side gap is
+to pin the complete B1 row/role packet needed by a whole-pattern consumer; the
+exact-twelve run continues as finite discovery and does not by itself remove
+the live `sorry`.
+
+## Wave 6 rejection and authenticated Wave 7 residual
+
+Wave 6 is rejected evidence. Its recorded metadata does not authenticate the
+source and result bytes actually present, so neither its SAT assignment nor
+any derived observation is used below.
+
+Wave 7 reran the complete static stack with corrected v2 manifests. The
+formula had 45,069 variables and 1,305,209 clauses: 95,040 equilateral,
+665,280 q-critical auxiliary-center, and 7,920 perpendicular-bisector
+clauses beyond the structural/equality base. CaDiCaL returned SAT and every
+source, assignment, structural, equality, geometry, and convex replay passed.
+The canonical CNF SHA-256 is
+`38bfd42bad689ef537f9af7d13a814e6988db9b104b9cd05bf8cf635ae17c64e`;
+the result SHA-256 is
+`5043335dda6359c4c0bcd6eae7ed9df4d6e2848c5c1c80ecf9be0ed9dec32daf`.
+
+## Wave 8 exact core and kernel-checked certificate
+
+The authenticated Wave 8 exact-metric system
+`c1ce07be0c4de9e71d5c` returned `UNSAT_DISCOVERY_ONLY`. Removing all
+pairwise-distinct inequalities still left a QQ unit ideal. Deletion mining
+reduced the equality obstruction to six centers, seven labels, and eleven row
+relations. With roles `(p,q,t,u,v,a,b)`, the relations are
+
+```text
+pu=pq, pv=pq, pa=pq,
+qt=qp, qa=qp, qb=qp,
+tq=tp,
+ut=up, uv=up,
+vb=vq,
+ba=bp.
+```
+
+`Problem97.Census554.SevenPointSixRowAnchorCollision` proves this pattern
+forces `p=q`; its generic row-pattern wrapper therefore rejects any injective
+realization. An independent skeptic audit certified the relation map and
+wrapper. Singular also produced an exact QQ identity with 596 cofactor terms;
+fresh producer and standalone replays both returned `1`. The audited generic
+emitter generated
+`SevenPointSixRowAnchorCollisionCertificate.lean`; its focused adversarial
+suite has 67 tests, Ruff is clean, emitter `--check` passes, and the Lean
+module builds successfully. This certificate checks the metric identity only;
+coverage and source ingress remain separate obligations.
+
+## Wave 9 finite refinement and next survivor
+
+Wave 9 added one theorem-backed instance of the seven-label obstruction at
+labels `(0,1,2,3,4,6,7)`. Full enumeration is deliberately omitted while the
+source-level role map is absent. The v3 geometry layer therefore adds exactly
+one clause, for 1,305,210 clauses total. The authenticated CNF SHA-256 is
+`0e626e7266cfcbb8c3a2f5632f408bc75ea6bd794276af993252932ec85e997d`;
+the result SHA-256 is
+`559ba92ce30e3517ce587c3e56d000d076ff43a6f4e4e81c7d3af1861bd3e800`.
+CaDiCaL returned SAT with all replays green and the new cube
+
+```text
+0:{1,3,4,6}   1:{0,2,6,7}    2:{0,1,9,10}
+3:{0,2,4,5}   4:{1,5,7,8}    5:{0,4,7,9}
+6:{0,1,5,11}  7:{0,8,10,11}  8:{1,2,7,9}
+9:{1,4,10,11} 10:{2,5,8,11}  11:{2,3,8,9}.
+```
+
+The previous seven-label pattern has no embedding in this cube.
+
+## Wave 10 metric and exact-algebra split
+
+Three authenticated Z3 exact-metric runs, using distinct admissible boundary
+orders, each reached `UNKNOWN` after 900 seconds. Their common solver-result
+digest is
+`a3bfe134a25a1170ba0ad0ff4529cbc84061e3456e3384cc0272c2eea6f48ddf`.
+The primary full-convex stage returned `UNSAT_DISCOVERY_ONLY`; its result file
+SHA-256 is
+`7f75447604b73b7f1d6319f98e9fcf941031352b10631e32c0f4e19120d7f249`,
+and the daemon result digest was independently recomputed as
+`263c80e04403ba263e76bb8855a11960feb3a9e8341fd6e577c0a8b6e4104dcf`.
+
+The decisive evidence is exact algebra rather than the Z3 timeout frontier.
+Singular 4.4.1 computed that the ideal generated by all 36 row equalities,
+with only the standard two-point gauge and no distinctness or convexity
+inequalities, contains `1`. A fresh SymPy QQ replay passed exactly. Fifteen of
+the 36 lift cofactors were initially nonzero. Two deletion passes reduced the
+support to eleven relations on seven labels; all 55 pair deletions from that
+support are nonunit. With roles `(p,q,t,u,v,a,b) = (0,1,2,3,4,5,7)`, the
+relations are
+
+```text
+pq=pu,
+qp=qt, qp=qb,
+tp=tq,
+up=ut, up=uv, up=ua,
+vq=va, vq=vb,
+ap=av, ap=ab.
+```
+
+The pinned directed-triple automorphism group is trivial. The final generic
+certificate SHA-256 is
+`156a943dd31f25e51bc461753b79585b0aebf0731d0f6d6ab354442acc000146`;
+fresh Singular and generic-emitter replays pass. The emitter now performs
+sparse top-level additive normalization before applying its unchanged exact
+coefficient bounds, so it deterministically renders the 1,283-term maximum
+cofactor without increasing a resource limit. Its focused suite has 68 tests,
+Ruff is clean, and an independent adversarial audit passed. The resulting
+generated Lean certificate module built successfully in 1,079 seconds; it is
+an independent exact-data check rather than the lightweight theorem-facing
+kernel.
+`Problem97.Census554.EqualityCore.seven_point_six_row_interlock_collision`
+now proves the normalized contradiction with a kernel-checked `grobner`
+certificate, and
+`not_realizes_of_sevenPointSixRowInterlockCollisionCore` packages the exact
+eleven relations for arbitrary row patterns. The focused build and a second
+independent relation-orientation/injectivity audit passed; its axiom closure is
+only `propext`, `Classical.choice`, and `Quot.sound`. This still makes no
+source-coverage or live-closure claim.
+
+## Wave 11 finite refinement and next survivor
+
+Wave 11 adds exactly one theorem-backed interlock clause at labels
+`(p,q,t,u,v,a,b) = (0,1,2,3,4,5,7)`. The v4 static geometry layer has 760,322
+clauses, and the full convex CNF has 45,069 variables and 1,305,211 clauses.
+The tracked raw cell 2 CNF SHA-256 is
+`2b08cb602088947a024938a5c383bff5e2f9b026a4731435a8307cfec2bd1428`;
+the semantically replayed SAT result SHA-256 is
+`1a428aeaf477a664cdbf49fef51f78215faf918e95a70e8b0dcf32862c95d9e9`.
+Its survivor is
+
+```text
+0:{1,3,4,6}   1:{0,2,6,7}    2:{0,1,9,10}
+3:{0,2,4,5}   4:{1,5,7,8}    5:{0,4,8,9}
+6:{0,1,5,11}  7:{0,8,10,11}  8:{1,2,7,9}
+9:{1,4,8,10} 10:{2,5,8,11}  11:{5,6,9,10}.
+```
+
+The same governed run also checked raw cell 1. It returned UNSAT, and the
+runner independently verified its DRAT proof; that auxiliary result does not
+replace the tracked raw-cell-2 survivor. The Wave 11 clauses remain finite
+CEGAR instances pending generic positive source checkers and whole-formula
+Lean ingress. An exhaustive search of all `12P7 = 3,991,680` injective role
+maps, using the full transitive equality closure on the survivor's 66 metric
+edges, found no embedding of either existing seven-point kernel. The next
+exact-algebra probe must therefore mine a new relation pattern rather than
+merely relabel one of the two existing cores.
+
+The static-refinement audit passed the clause map, count decomposition,
+historical pins, source digests, tests, and lint checks. One custody limitation
+remains explicit: the SAT result retains the decoded cube and positive-variable
+count, but not the full auxiliary-variable assignment. Its full-CNF replay flag
+therefore authenticates the executed runner's generation-time check; it cannot
+be independently reconstructed from the retained cube alone. No promotion
+claim relies on that flag.
+
+## Wave 12 exact equality core
+
+The Wave 11 survivor's gauge-fixed ideal of all 36 row equalities contains
+`1` over QQ, without distinctness, convexity, or inequality generators. The
+full lift had fourteen nonzero cofactors. Minimizing that support first avoided
+the 180-second deletion cap hit by a direct pass over the redundant 36-row
+stream. The final core has six labels, five centers, and nine relations; every
+single deletion and every one of the 36 pair deletions is nonunit. With roles
+`(p,q,t,u,v,a) = (0,1,2,8,9,10)`, the relations are
+
+```text
+qp=qt,
+tp=tq, tp=tv, tp=ta,
+uq=ut, uq=uv,
+vq=vu, vq=va,
+at=au.
+```
+
+The exact Singular lift replay and hardened generic-emitter replay both pass.
+The generic certificate SHA-256 is
+`9aaac9ad9fe0ea78b033c122e8316a9316a9e1ab4f5df23b348d2b4cadf823f4`;
+it has nine nonzero cofactors and 661 cofactor terms total, with a maximum
+coefficient size of 16 bits. An independent emitter audit passed all 68
+focused tests, deterministic rendering, and Ruff.
+
+The required theorem-bank preflight found no unconditional local core whose
+relations fully embed into this target closure. The closest six-point
+five-circle B candidate covers only seven of nine fields, first missing
+`BO_BC` and `EO_EB`; the closest unconditional collision C candidate covers
+eight of nine, first missing `AO_AC`. Several order-sensitive cores match all
+their distance relations but additionally require signed-area or crossing
+hypotheses that this equality-only certificate does not supply. Direct local
+source inspection found one-way imports and no circular dependency. A new
+lightweight Lean relation kernel is therefore required; its generated exact
+certificate is independent supporting evidence rather than a substitute for
+the source/coverage bridge.
+
+`Problem97.Census554.EqualityCore.six_point_five_row_interlock_collision`
+now proves that the nine relations force `p=q`, and
+`not_realizes_of_sixPointFiveRowInterlockCollisionCore` packages the core for
+arbitrary row patterns. The focused build and an independent relation-map and
+injectivity audit passed; its axiom closure is only `propext`,
+`Classical.choice`, and `Quot.sound`. The separately generated exact
+certificate module passed deterministic emitter checking and built in 47
+seconds.
+
+## Wave 13 finite refinement and next survivor
+
+Wave 13 adds exactly one theorem-backed five-row interlock clause at labels
+`(p,q,t,u,v,a) = (0,1,2,8,9,10)`. The v5 static geometry layer has 760,323
+clauses, and the full convex CNF has 45,069 variables and 1,305,212 clauses.
+The tracked raw-cell-2 CNF SHA-256 is
+`613278fbba437a44553d35e0da2783d631a2811cf8806cf8e1127a24157cb374`;
+the semantically replayed SAT result SHA-256 is
+`5a9cc9e980f458e39ed35de9bf738b4bae01d1926b2d08225a15b5d4f445631f`.
+Every retained runner check is true, including source-safe cube replay,
+canonical equality/geometry/convex replay, and the generation-time full-CNF
+assignment check. The new survivor is
+
+```text
+0:{1,3,4,6}   1:{0,2,6,7}    2:{0,1,9,10}
+3:{0,2,4,5}   4:{1,5,7,8}    5:{0,4,8,9}
+6:{0,1,5,11}  7:{0,8,10,11}  8:{1,2,7,9}
+9:{1,4,8,10} 10:{3,5,7,9}   11:{2,3,5,8}.
+```
+
+The metric adapter pins the Wave 13 result, CNF, and run-manifest file hashes,
+checks the v5 five-family clause decomposition, and builds system ID
+`9d528784e959be1bf64e`. The focused geometry, convex, and metric-adapter suite
+has 22 passing tests; the wider owned structural/equality/geometry/convex,
+metric-adapter, and certificate-emitter suite has 100 passing tests, and Ruff
+is clean. Wave 14 is assigned to exact QQ equality-ideal mining of this
+survivor; no live-closure claim follows from the finite SAT iteration.
+
+The bounded theorem-bank preflight exhaustively tested injective maps for 27
+unconditional local equality cores against the full transitive equality
+closure of the Wave 13 cube and found no full embedding. Each of the three
+prior CEGAR kernels reaches all but one relation: the anchor kernel first
+misses `ba=bp`, the seven-point interlock first misses `ap=ab`, and the
+six-point interlock first misses `at=au`. Several order-sensitive kernels match
+all their metric relations but require signed-area or cyclic-order hypotheses
+not supplied by this equality-only source. Wave 14 therefore requires a new
+equality ideal/kernel rather than another relabeling of an existing
+unconditional theorem.
+
+## Wave 14 exact equality core
+
+The authenticated Wave 13 survivor's gauge-fixed ideal of all 36 row
+equalities contains `1` over QQ; the full membership check took 5.892 seconds.
+The exact lift initially used 21 relations. Label-first shrinking retained
+labels `[0,1,2,4,7,8,9]`, and relation shrinking produced the eleven source
+indices `[2,4,6,8,14,15,22,25,27,28,29]`. With roles
+`(p,q,t,u,v,a,b) = (0,1,2,4,7,8,9)`, the relations are
+
+```text
+pq=pu,
+qp=qt, qp=qv,
+tp=tb,
+uq=uv, uq=ua,
+vp=va,
+aq=at, aq=ab,
+bq=bu, bq=ba.
+```
+
+The final exact lift is UNIT, and both raw and normalized SymPy QQ replays
+return exactly `1`. The generic certificate SHA-256 is
+`0f715c57b30ce103d555cc4b772145d84b14ac70ad31b4f285668160ffd231e4`;
+its payload SHA-256 is
+`2a1250b9d1228d465a1c118cde32728c781a8fd10005afacf07d2ea155230590`.
+All eleven single deletions are directly NONUNIT. Fifty-four pair deletions
+are directly NONUNIT; the remaining pair `{2,28}` exhausted three exact
+Singular attempts. It is nevertheless NONUNIT by ideal inclusion, since its
+ideal is contained in either corresponding directly certified single-deletion
+ideal. The three timeouts remain preserved as visible evidence rather than
+being relabeled as direct computations.
+
+The target centered-relation multiplicities are `[1,1,1,2,2,2,2]` and do not
+match the prior anchor, interlock, or six-circle candidates under any label
+relabeling. The exact theorem-bank preflight therefore found no existing
+source-independent consumer. This classifies the result as a genuinely new
+small invariant kernel: its public theorem must remain independent of the QQ
+gauge and the finite cell, followed by a thin fixed-label adapter. The Wave 14
+run manifest self-hash is
+`6a8cdf419f84d3df804903743060c973a9ce607c049f335fb69d8358216d7178`;
+all 342 retained checksums, standalone exact replay, emitter validation, Ruff,
+and lane-local hygiene checks pass. This evidence still supplies no source
+coverage or live B1 closure by itself.
+
+`Problem97.Census554.EqualityCore.seven_point_seven_row_interlock_collision`
+now proves the source-independent eleven-relation contradiction, and
+`not_realizes_of_sevenPointSevenRowInterlockCollisionCore` packages the exact
+core for arbitrary row patterns. A monolithic coordinate `grobner` proof first
+hit the 16 GiB kernel limit; a first scalar staging still drove Lean to roughly
+124 GiB. The final proof instead derives a mixed-Gram reconstruction, reduces
+to eight low-degree equations in seven scalars, and applies an independently
+replayed exact identity `Σ Cᵢ fᵢ = 648 R`. The focused module now builds in ten
+seconds. Independent relation/orientation and source audits pass, and both
+public declarations have only `propext`, `Classical.choice`, and `Quot.sound`
+in their axiom closure.
+
+The separately generated exact certificate module is deterministic: input
+certificate SHA-256
+`0f715c57b30ce103d555cc4b772145d84b14ac70ad31b4f285668160ffd231e4`,
+output source SHA-256
+`bea2e6bfb25f095962559ff87c70d9892a53eaa535eac445fbbbb0521cd70826`.
+Emitter validation reports eleven facts and eleven nonzero cofactors, its 68
+focused tests pass, and no sorry, custom axiom, unsafe escape, or external
+implementation occurs. Its two established `native_decide` checks are an
+explicit compiler-trust boundary isolated from the handwritten
+promotion-facing theorem.
+
+## Wave 15 finite refinement and next survivor
+
+Wave 15 adds exactly one theorem-backed seven-row interlock clause at labels
+`(p,q,t,u,v,a,b) = (0,1,2,4,7,8,9)`. The v6 geometry suffix has 760,324
+clauses; the full convex CNF has 45,069 variables and 1,305,213 clauses. Its
+CNF SHA-256 is
+`a54729622f73b323c25dff97174e2bc385dab0dc42814d826380c071dd7012eb`;
+the authenticated SAT result SHA-256 is
+`8c5cc840cf1b8e10b309f866a4768ee2d8e5399469eb51e99e2aa5c9ee03ab0a`.
+All retained semantic checks pass. The new survivor is
+
+```text
+0:{1,3,4,6}   1:{0,2,6,7}    2:{0,1,9,10}
+3:{0,2,4,5}   4:{1,5,7,8}    5:{0,4,8,9}
+6:{0,1,5,11}  7:{0,8,10,11}  8:{1,2,7,9}
+9:{1,4,10,11} 10:{2,5,8,11} 11:{2,3,8,9}.
+```
+
+An exhaustive preflight over 29 unconditional local equality cores, including
+the new seven-row core, found no full embedding. The five-row and seven-row
+interlock cores both first miss the concrete equality `(1,9)=(8,9)`, giving
+the highest completion fanout of two, but no existing source API entails that
+relation. Adding it would therefore be an unsound refinement. The pinned
+metric adapter builds system ID `b31ae69353b378e12e00`; Wave 16 is assigned
+to exact equality-ideal classification of this survivor without changing the
+v6 parent. The wider owned structural/equality/geometry/convex,
+metric-adapter, and certificate-emitter suite has 102 passing tests, and Ruff
+is clean.
+
+## Wave 16 exact equality core
+
+The authenticated Wave 15 survivor's full 36-relation, gauge-fixed QQ ideal is
+UNIT; the exact membership check took 2.252 seconds. Label-first shrinking
+retained labels `[0,1,2,3,4,5]`, and relation minimization retained source
+indices `[1,2,4,7,10,11,12,13,16]`. With roles
+`(p,q,t,u,a,b) = (1,0,4,2,3,5)`, the exact nine oriented relations are
+
+```text
+qp=qa, qp=qt,
+pq=pu,
+uq=up,
+aq=au, aq=at, aq=ab,
+tp=tb,
+bq=bt.
+```
+
+All nine single deletions and all 36 pair deletions are directly NONUNIT; no
+timeout or monotonicity fallback is needed. The exact raw and normalized SymPy
+replays and the independent repository QQ loader pass. The certificate
+SHA-256 is
+`cc4804f3575ae4818faa0b5cd5cf6dcc5f72e7653b51c9b283ff18577ee512e1`;
+its payload SHA-256 is
+`36b276727703d6ddbcbb712b2bfecd7533e98e166726a4f88e3be5aeff1c8716`.
+The target centered-relation multiplicities `[1,1,1,1,2,3]` have no exact
+relabeling among the nearest existing kernels.
+
+The handwritten `SixPointSixRowInterlockCollision` module exposes the public
+theorem `six_point_six_row_interlock_collision`, the equality-closure structure
+`SixPointSixRowInterlockCollisionCore`, and
+`not_realizes_of_sixPointSixRowInterlockCollisionCore`; the structure packages
+exactly the nine oriented relations above, and the final theorem rules out an
+injective planar realization of any row pattern carrying that core. Its
+coordinate proof uses three low-degree Gram identities and exact
+`linear_combination` steps. The focused build is PASS with exit 0 (8.475 seconds
+wall time; 5.6 seconds for the target). Axiom checks of the public theorem/core
+API report only standard axioms, and the source has no `sorry`,
+`native_decide`, custom axiom, or `unsafe`. Its source SHA-256 is
+`88e06d7e3e10a15edf824df3d1ba7137a2bca4daba96dbaf92af3beb68afa2a6`.
+
+The separately generated `SixPointSixRowInterlockCollisionCertificate` module
+build is PASS; Lake reports 7.1 seconds. Its theorem checks include
+`Lean.ofReduceBool` and `Lean.trustCompiler`, arising from the two explicit
+`native_decide` proofs of `cofactor_indices_lt` and `checker`. The generated
+source has no `sorry`, custom axiom, or `unsafe`, and its source SHA-256 is
+`b870d2d51f482f2df5c41240c64f9c41bd9fc153c38b32fa62d48bb57cee6163`.
+
+Wave 16 therefore classified and minimized the Wave 15 survivor and supplied
+its source-independent contradiction/core API. It did not change generator v6
+or discharge the global `sorry`; source ingress, finite coverage, and live B1
+closure remain separate.
+
+## Wave 17 static geometry/convex v7
+
+Wave 17 adds exactly one width-9 six-point/six-row clause for roles
+`(p,q,t,u,a,b) = (1,0,4,2,3,5)`, preserving the v6 prefix. The v7 geometry has
+760,325 clauses; the full convex CNF has 45,069 variables and 1,305,214
+clauses. Its CNF SHA-256 is
+`fd3bf4e15cecfd88de1635bbe4eb1bdc3a4538b25ee9dd20f598eb54f80b2493`;
+the governed SAT result SHA-256 is
+`f663c379e8a6b21046dc50e6d62ce9d98c14d936be9f5133fa126002c476862b`,
+and the run-manifest file SHA-256 is
+`d7b7415c4bd6a98181fb176685136d0863f80ff07ff34e721f37b47e11a482fe`.
+The governed run reports SAT, all retained checks pass, and its model has
+30,739 positive variables. The new cube rows are
+
+```text
+0:{1,3,4,6}   1:{0,2,6,7}    2:{0,1,9,10}
+3:{0,2,4,5}   4:{1,5,7,8}    5:{0,7,8,9}
+6:{0,1,5,11}  7:{0,8,10,11}  8:{1,2,7,9}
+9:{1,4,10,11} 10:{2,5,8,11} 11:{2,3,8,9}.
+```
+
+The pinned metric adapter builds system ID `e28ad6ba21266e7ad92f`; all 14
+metric tests pass, and Ruff is clean. Wave 17 is diagnostic and non-promotable:
+it did not discharge the global `sorry`.
+
+## Wave 18 exact equality core and Lean replay
+
+The authenticated Wave 17 survivor's full 36-relation, gauge-fixed QQ ideal is
+UNIT. Label-first shrinking retained labels `[0,1,2,8,9,10,11]`, and relation
+minimization retained source indices `[4,7,8,9,25,29,30,32,33,35,36]`. With
+roles `(p,q,t,a,v,b,u) = (0,2,1,8,9,10,11)`, the ordered relations are
+
+```text
+tp=tq,
+qp=qt, qp=qv, qp=qb,
+at=aq,
+vt=vb, vt=vu,
+bq=ba, bq=bu,
+uq=ua, uq=uv.
+```
+
+All 11 single deletions and all 55 pair deletions are directly NONUNIT; no
+timeout or monotonicity fallback is used. The corrected Wave 18 v2 artifact
+root verifies all 319 recorded SHA-256 entries. Its main hashes are:
+
+```text
+generic certificate          ff8487625e6a8fa3aed717654e95cceb7dfb5b8c032c6b623529729a1853599c
+certificate payload          461dd235741bf88e2bf61404f5686e5aa96a1ded2ae7d86c005982c6ad7a20b7
+minimization summary         509b562bdd59f631782fa5529e8de5f70fba15cc884830c1540b5b33c4cdcebf
+classification handoff       9c1a7eead58fc0666c440f066dae13daaf509d9fb779e38e19005ed136ede47b
+generated preview            7bdf21a74a46fc1a10a12f2f986cf0d6fa2f024057a1b275dfd15c107c5b4238
+full probe summary           4d794fa71d1543856f87fd2e22276ea5fea562bd87c20c259023ca180375252f
+run-manifest file            30270b9f13435b34a698d03e435512bec9d8ac68673387fbe8ae5160f2fa335d
+```
+
+The handwritten `SevenPointEquilateralMedianInterlockCollision` module
+exposes `seven_point_equilateral_median_interlock_collision`, the core
+structure `SevenPointEquilateralMedianInterlockCollisionCore`, and
+`not_realizes_of_sevenPointEquilateralMedianInterlockCollisionCore`. Its
+focused build passes in 23 seconds with standard axioms only. The source has no
+`sorry`, `native_decide`, custom axiom, or `unsafe`; its SHA-256 is
+`d67307a016f78578645d920f8e1849cd0c1a19a2ac2cb0abb8bb21c6124d7e9e`.
+The underlying metric lemma does not need the first `tp=tq` hypothesis, but the
+public core theorem consumes all eleven fields.
+
+The generated `SevenPointEquilateralMedianInterlockCollisionCertificate`
+module has exact handwritten/generated/artifact relation correspondence.
+Deterministic emitter replay and `--check` pass, and 68 emitter tests pass. Its
+focused Lean build passes without warnings; the target module takes 788
+seconds and the wrapper takes 13 minutes 11 seconds. The 2,919-line source
+SHA-256 is
+`1e3fe2e31e17e198dcf6f64d6f647a186590504e09fb92e11401632ac74858a6`.
+There is no `sorryAx`, custom axiom, or `unsafe`. The theorems
+`cofactor_indices_lt`, `checker`, and their downstream handoff include
+`Lean.ofReduceBool` and `Lean.trustCompiler` through the two explicit
+`native_decide` checks. The generated module makes no coverage or P97 closure
+claim.
+
+## Wave 19 static geometry/convex v8
+
+Generator v8 preserves the v7 prefix and appends exactly one width-11 clause
+for roles `(p,q,t,a,v,b,u) = (0,2,1,8,9,10,11)`. In the full Wave 17 layout
+the clause is
+
+```text
+(-42935, -42999, -43015, -43016, -43902, -43986,
+ -43987, -44399, -44403, -44436, -44438).
+```
+
+The v8 geometry has 760,326 clauses; the full convex CNF has 45,069 variables
+and 1,305,215 clauses. The geometry/convex focused suite has 13 passing tests,
+Ruff is clean, and the Wave 17 survivor activates exactly the new clause. The
+governed Wave 19 run is SAT, with all retained replay checks true and 30,733
+positive variables. Its hashes are
+
+```text
+CNF                         d3ea806ab3032535faef6788a9d50018238688446ecb093d13fcbc3f462422e3
+authenticated SAT result    8886e33919689fed27c1a184e83a2e01d60ee545ee6fea2b0d3c4940aa2f136e
+run-manifest file           9561c4a93089d4260e47cd013399bdc7f0547e59c79db798565416f9aecb339e
+```
+
+The survivor is
+
+```text
+0:{1,3,4,6}   1:{0,2,6,7}    2:{0,1,9,10}
+3:{0,2,4,5}   4:{1,5,7,8}    5:{0,7,8,9}
+6:{0,1,5,11}  7:{0,8,10,11}  8:{1,2,7,9}
+9:{1,4,10,11} 10:{2,5,8,11} 11:{3,4,5,7}.
+```
+
+The pinned metric adapter builds system ID `d972d023a2ff60fd79f7`; all 15
+metric tests pass. The combined owned structural/equality/geometry/convex,
+metric, and certificate-emitter suite has 106 passing tests, and Ruff is clean.
+Wave 19 therefore does not supply finite UNSAT. Wave 20 is
+assigned one bounded exact equality-core classification of this survivor.
+Further generator refinement is allowed only if that classification yields a
+new source-entitled structural family. The concurrent arbitrary-cardinality
+ingress and projection-safety audit is recorded in
+`docs/audits/2026-08-31-b1-global-lift-ingress.md`.
+
+## Wave 20 exact equality-core classification
+
+The first canonical Singular probe (`std`, 180 seconds) and the Z3 QF_NRA
+probe (330 seconds) were inconclusive.  The audited seed-4 `dp` order with
+Singular `slimgb` proved the Wave 19 equality ideal unit over `QQ` in 0.062
+seconds.  The governed minimizer replayed an exact certificate and retained
+seven source labels, eleven relations, and source indices
+
+```text
+1, 6, 11, 12, 13, 14, 16, 24, 34, 35, 36.
+```
+
+All eleven single deletions and all 55 pair deletions are non-unit.  The pair
+audit used direct Singular checks in every case.  The final certificate and
+summary hashes are
+
+```text
+certificate                 91f44a66dbd6fb73d2856c9a146161af9d4ba1bc6efdca5b3530e57b456edfc5
+minimization summary        cfd3e4d1c27c41739524d9584c431b79807d467a722682ee9b8168930df34345
+classification handoff      31e686fda8c0c1a7daf30e96fbf48b8a4eccd3a399abae969b15484c9a3a4dc1
+source classification       5e6ec48405489b4a38ed540cc002241457eded7190df6b71d0b4c6b9baa0a2e6
+artifact SHA256SUMS          c746ff7701dfc92a621bee77cd9dbffb6dbe7a1468600bbd8aa1c363466beab5
+```
+
+All 320 artifact digests replay.  A single current-project/bank reuse search
+found no full match; the nearest installed seven-point, eleven-row families
+share at most seven relations after relabeling.  More importantly, ten of the
+eleven retained relations have no upstream B1 `EdgeClosure` producer.  Wave 20
+is therefore retained only as exact-model diagnostic evidence.  The CEGAR
+stop rule blocks generator v9 and returns the active proof lane to the
+source-faithful arbitrary-cardinality ingress described in the companion
+audit.
+
+## Post-wave theorem-mine compliance correction
+
+The theorem-mine backfill now has one canonical receipt for each completed
+Wave 14--20. The campaign scan is `PASS`, and every receipt is gated
+`HISTORICAL_BACKFILL_NON_AUTHORIZING`: these records document the historical
+search obligation only. They do not authorize theorem promotion, generator-v9
+changes, or closure of the live B1 `sorry`. Candidate waves record both the
+current-project `PROOF_BLUEPRINT_SEARCH` and cross-project
+`NTHDEGREE_DOCS_SEARCH`; SAT waves record `NO_NEW_PATTERN` and have no
+candidate search.
+
+| Wave | Verdict | Outcome | Candidate/search disposition | Receipt SHA-256 |
+| --- | --- | --- | --- | --- |
+| 14 | `ALGEBRA_COMPLETE` | `CANDIDATES` | `wave14-seven-point-seven-row-core`; project + cross-project searches recorded | `0e6e37d34bbb3bafbeb97b9f5c49194b9fd07cc2a07361d5caf2427310169d34` |
+| 15 | `SAT` | `NO_NEW_PATTERN` | No candidate; no search | `28c2d49a2649284a0fdb71bb79b89fafe0ea62a72bea319e81c9f7960d637712` |
+| 16 | `ALGEBRA_COMPLETE` | `CANDIDATES` | `wave16-six-point-six-row-core`; project + cross-project searches recorded | `6dfa85d2892967d5c14e5da61f888c49ce3cbbb1d815aeb8fe3bfc47142564ec` |
+| 17 | `SAT` | `NO_NEW_PATTERN` | No candidate; no search | `255052b42495d2e8374b389f69589ccc7c7dc9a70b260df6cf52215a3306bff7` |
+| 18 | `ALGEBRA_COMPLETE` | `CANDIDATES` | `wave18-seven-point-equilateral-median-core`; project + cross-project searches recorded | `a2f2bcc422ccb11be0bfdaef4cd0d49a2e5e16c5678711ca3ef8b9f94a9e4adc` |
+| 19 | `SAT` | `NO_NEW_PATTERN` | No candidate; no search | `628f7b9981f54343efeb5f7720429e6e6d8d17a1f2846cd8964530a8ec275e23` |
+| 20 | `ALGEBRA_COMPLETE` | `CANDIDATES` | `wave20-seven-label-eleven-relation-diagnostic`; project + cross-project searches recorded | `8f44232588bd0baa97bc4e7177a342cc3764b3d33de310016f1f75df518af499` |

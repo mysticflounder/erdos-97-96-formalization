@@ -24,7 +24,8 @@ Results are fixed-order diagnostics only.  They do not establish source
 realizability, alias-profile exhaustiveness, elimination of all orders, a
 Lean consumer, promotion, or a theorem.  The runner records a
 checkpoint-bound, source-digest-pinned `run_manifest.json` and an immutable
-self-hashed launch record.  It uses fresh sequential Z3 and cvc5 sessions
+self-hashed launch record with timeout measured in integer milliseconds.  It
+uses fresh sequential Z3 and cvc5 sessions
 inside each adapter query; the two fixed-order queries may run in a bounded
 pool of at most 20 workers.  Existing complete adapter trees are replayed and
 checked byte-for-byte before resume; incomplete trees fail closed without
@@ -33,3 +34,10 @@ per-query result hashes and is create-once/self-hashed.  SAT requires both the
 adapter's exact-rational replay and PIQD's daemon `model_replay` outcome
 `SATISFIED`.  Solver execution is intentionally separate from this
 implementation lane and must go through PIQD.
+
+The original implementation lane
+`exactfive-hard-source-swap-nra-canary-20260902/run-0001` stopped before any
+query submission: its launch record encoded the timeout as a JSON float, which
+the strict custody reader correctly rejected.  That launch record remains
+immutable.  Solver execution uses successor lane
+`exactfive-hard-source-swap-nra-canary-r2-20260902/run-0001`.
