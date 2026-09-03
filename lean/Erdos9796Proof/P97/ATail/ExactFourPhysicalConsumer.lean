@@ -394,6 +394,63 @@ theorem five_le_goodOutsideSources_card
   have hbad := badOutsideSources_card_le_two R
   omega
 
+/-- The exact-four residual leaves at most six carrier points outside the
+good-source count: four in the first-apex blocker fiber and at most two bad
+outside sources. -/
+theorem carrier_card_le_goodOutsideSources_card_add_six
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A} {F : CriticalPairFrontier D S radius H}
+    (R : OriginalUniqueFourResidual F) :
+    D.A.card ≤ (goodOutsideSources R).card + 6 := by
+  have hbadSubset :
+      badOutsideSources R ⊆ outsideFirstApexFiber R := by
+    intro source hsource
+    exact (Finset.mem_filter.mp hsource).1
+  have hinter :
+      outsideFirstApexFiber R ∩ badOutsideSources R =
+        badOutsideSources R :=
+    Finset.inter_eq_right.mpr hbadSubset
+  have hsplitGoodBad :=
+    Finset.card_sdiff_add_card_inter
+      (outsideFirstApexFiber R) (badOutsideSources R)
+  rw [hinter] at hsplitGoodBad
+  change
+    (goodOutsideSources R).card + (badOutsideSources R).card =
+      (outsideFirstApexFiber R).card at hsplitGoodBad
+  let Hlate := lateFirstApexSystem R
+  let anchor : CarrierVertex D.A := ⟨F.pair.q, F.pair.q_mem_A⟩
+  let fiber := actualBlockerFiber Hlate anchor
+  have hqClass := frontier_pair_q_mem_firstApexClass F
+  have hfiber : fiber.card = 4 := by
+    simpa [fiber, Hlate, anchor] using
+      lateFirstApex_actualBlockerFiber_card_eq_four R hqClass
+  have hsplitFiber :=
+    Finset.card_sdiff_add_card_inter
+      (Finset.univ : Finset (CarrierVertex D.A)) fiber
+  have hinterFiber :
+      (Finset.univ ∩ fiber : Finset (CarrierVertex D.A)) = fiber :=
+    Finset.inter_eq_right.mpr (Finset.subset_univ _)
+  have huniv :
+      (Finset.univ : Finset (CarrierVertex D.A)).card = D.A.card := by
+    simp
+  have houtside :
+      outsideFirstApexFiber R =
+        (Finset.univ : Finset (CarrierVertex D.A)) \ fiber := by
+    rfl
+  rw [hinterFiber, huniv, hfiber, ← houtside] at hsplitFiber
+  have hbad := badOutsideSources_card_le_two R
+  omega
+
+/-- The live large-cardinality branch supplies seven good outside sources. -/
+theorem seven_le_goodOutsideSources_card_of_card_gt_twelve
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A} {F : CriticalPairFrontier D S radius H}
+    (R : OriginalUniqueFourResidual F)
+    (hcard : 12 < D.A.card) :
+    7 ≤ (goodOutsideSources R).card := by
+  have hbound := carrier_card_le_goodOutsideSources_card_add_six R
+  omega
+
 private theorem good_source_survives_one
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A} {F : CriticalPairFrontier D S radius H}
