@@ -3005,3 +3005,45 @@ One naming trap worth recording: the encoding metadata field is
 `modelled_points` (`:2259`) and it holds `cell.points`, so it means
 shell-carrying points, not all points of the configuration. Reading it as the
 latter is what raised the flag.
+
+### 38. The certificate for the collinearity: two degrees eliminated, and a much simpler target (2026-09-03)
+
+Section 36 corrected section 31 and named the certificate route as the way to
+turn the last orbit's mod-p refutation into a proof.
+`artifacts/tools/cert_search_orient.py` runs it: same exact rational linear
+algebra as `cert_search.py`, but the generators carry the four Rabinowitsch
+generators `u_i*d_i - 1` so membership is in the saturated ideal, and the
+target is an orientation determinant rather than a squared distance.
+
+For `0d6996160cc83aab` and the triple `A0:A1:P1.1`, 44 generators in 30
+variables:
+
+    degree 0    44 unknowns,  159 equations    inconsistent
+    degree 1  1364 unknowns, 4446 equations    inconsistent
+
+Both are proofs that no certificate of that degree exists, not failed
+searches, exactly as the peer's section 20 bounds were. Degree 2 is 21824
+unknowns, past the dense exact elimination here, so the naive search hits the
+same wall.
+
+**But the target is much simpler than the distance was, and that is a real
+lever.** Writing out the gauge for `72a0268b2d358aa0`, where the special apex
+sits at the origin: `A0 = (1,0)`, `A1 = (cf,sf)`, `P0.4 = (1+c04, s04)`, so
+
+    det(A0, A1, P0.4) = (cf - 1)*s04 - sf*c04
+
+Three terms in four variables, against the six terms of a squared distance and
+the three the peer reached only after a hand simplification. Geometrically it
+says the unit vector from `A0` to `P0.4` is parallel to the direction from
+`A0` to `A1` -- the surviving configurations put that cap point on the line
+through two apexes at unit distance from one of them.
+
+The next lever follows from the shape rather than from more budget: a targeted
+search restricting cofactor monomials to the variables that actually occur,
+instead of all 30 at degree 2. The dense count is 21824 because it admits
+every monomial in every variable; the target involves four. That is not a
+guarantee -- the cofactors need not be supported on the target's variables --
+but it is a specific, bounded thing to try, and it is the first idea in this
+lane that attacks the degree wall rather than paying for it.
+
+Recorded so the next session does not redo the two dead degrees.
