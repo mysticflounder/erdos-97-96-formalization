@@ -1,0 +1,15 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "b1-endpoint-order-negative-control-20260903",
+  "owner": "Codex-B1-Sorry",
+  "base_head": "8ea1642c2856ca1d31ea6a5475a0e57ee1dde1bc",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/b1-endpoint-order-negative-control-20260903.json",
+    "docs/audits/2026-09-03-b1-endpoint-order-negative-control.md",
+    "scratch/negative-controls/B1EndpointProducerFiniteCountermodel.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-03T18:20:43Z",
+  "manifest_sha256": "a3ca347fc10706526828deb879830bc695e6cf15c0d3b4c8971c52facbed00e6"
+}
