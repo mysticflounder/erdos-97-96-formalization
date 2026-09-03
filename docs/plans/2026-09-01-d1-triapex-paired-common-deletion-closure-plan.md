@@ -3081,3 +3081,64 @@ already found `lift` reaching its budget on both 32003 and 2147483647. Nothing
 cheap remains. The mod-p refutation of the last orbit stands as evidence at
 one prime, and the honest next step for turning it into a proof is a better
 linear-algebra engine, not a cleverer restriction.
+
+### 40. The metric layer does not reach the leaf; my own next-step note was mis-scoped (2026-09-03)
+
+Sections 30 to 39 left a working note saying that the one remaining step from
+section 36 to a closure was a Lean ingress from the leaf binders to the
+encoded metric pattern. Read against source, that note was wrong, and it was
+wrong in the direction that wastes a session. This section records what the
+metric layer actually reaches.
+
+**The leaf carries no cardinality hypothesis.** `CounterexampleData`
+(`U1TwoShortCapReduction.lean:83`) has five fields — `A`, `nonempty`,
+`convex`, `K4`, `packet` — and none of them fixes `|A|`.
+`TriApexAllLargeContext` (`AllLargeCapCanonicalInterfaces.lean:297`) bounds
+the caps from below (`cap_card_ge_six`) and relates `|A|` to the not-robust
+centres, but supplies no upper bound. Inside
+`false_of_pairedCommonDeletion_fiveSurviveOneFail_triApexAllLarge_core` every
+exact-fifteen fact is parked under an undischarged binder — `hfifteen`,
+`hsixSlots` and `hadjacentAtPair` are all of the form
+`fun (hcard : D.A.card = 15) => …` — so `hcard` is never available in the
+branch that carries the `sorry`. Both consumers of the leaf's parent
+(`TriApexEndpointRetainedOmission.lean:2959`, `:3452`) are likewise
+general-cardinality, so the hypothesis is not supplied from above either.
+
+**What that costs.** The exact-15 metric layer therefore addresses the
+`card = 15` arm of a split the leaf does not yet perform. The split rule in
+Phase 3 permits introducing that split only in the same change that closes at
+least one resulting child, so the metric layer cannot be wired in until it
+closes something.
+
+**Census cells are not measure cells.** The measure `M` counts (cardinality
+class, cell) pairs over the classes `{15, ≥ 16}` and the nine leaf cells —
+three `oneRadius` and six `twoRadii`. The name `i0-1R1R1R-in12` belongs to
+the incidence-census vocabulary of Stage 1, one of 32 census cells (16 of
+them target cells), not to that list. A map from census cells to leaf cells
+would itself need proving, and none exists. So refuting every residue pattern
+of one census cell leaves `M = 18` untouched, which is what every checkpoint
+this session has reported.
+
+**What the layer does reach, stated exactly.** All 111 residue metric
+patterns of census cell `i0-1R1R1R-in12` are refuted mod 32003, and the claim
+scope is sound in both directions that were at risk. The residue is not a
+sample: the long run on this cell was uncapped (cap 200000, complete in about
+22 min, 15543 CL1 cuts, 387 survivors, 111 distinct patterns), so the earlier
+3000-model enumeration cap constrains the Stage 1 sample runs, not the
+residue. And the reduction from 111 patterns to orbit representatives passed
+its own falsifier in section 22, so the verdicts are statements about all 111
+patterns rather than about the representatives alone. The refutation is
+exhaustive within the exact-15 incidence and boundary-order abstraction, at
+one prime, for one census cell.
+
+**Distance still to run.** Four gaps separate that from a closure, and none
+is the ingress alone: the mod-p to characteristic-0 upgrade for four of the
+five orbits (sections 38 and 39); the Lean ingress; the other fifteen target
+census cells; and the entire `≥ 16` cardinality class, which is half the
+measure and which no run in this lane has touched.
+
+**Correction to the working note.** "The ingress turns section 36 into a
+closure" is withdrawn. A complete and correct ingress for this census cell
+would still leave `M = 18`, because the cell it closes is not a cell the
+measure counts and the cardinality arm it lives in is not one the leaf
+splits on.
