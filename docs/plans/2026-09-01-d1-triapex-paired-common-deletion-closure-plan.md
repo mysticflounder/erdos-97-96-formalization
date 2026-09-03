@@ -2564,3 +2564,46 @@ because plain `std` happened to suit their labelings.
 
 {{NEEDS_UPDATE}}: the `--slimgb` triage of `1412a71e2b2792b3`, which is the
 only remaining obstacle to a complete mod-32003 picture of all 111 patterns.
+
+### 29. Interreduction is not free, and the elimpart evidence is one point (2026-09-03)
+
+Two findings from the peer session (its commit `5d657015a`), both of which
+qualify section 26 rather than change its verdict.
+
+**`interred` + `elimpart` can make a computation strictly harder.** Mod 32003,
+daemon wall:
+
+| key | reduction | result |
+|---|---|---|
+| `0128294791aad010` | elimpart 4 | dim -1, 1.3 s |
+| `0d6996160cc83aab` | elimpart 5 | dim 0, vdim 2048, 21.0 s |
+| `32263a5344416a02` | elimpart 5 | no dim line, 900.1 s, budget reached |
+
+`32263a5344416a02` COMPLETES without the reduction and TIMES OUT with it. Five
+fewer variables is paid for with a denser generating set, and on that key the
+density costs more than the variables save. So the composition must not be
+applied by default, and the section 15 framing of it as strictly more reduced
+was wrong: fewer variables is not monotonically easier.
+
+The consequence for section 26 is a qualification in the direction of saying
+less. The final characteristic-0 run carried `interred` + `elimpart`, so its
+failure is not cleanly attributable to the variable count — it may have been
+fighting a denser system as well as a rational one. What survives untouched is
+the verdict itself, because four of the five dead rational routes used no
+reduction at all. "This encoding is not characteristic-0 tractable in Singular"
+therefore does not rest on the reduction, and section 26 should be read as one
+dead route among five rather than as the decisive one.
+
+**The `elimpart` exactness evidence is a single data point, not four.** The
+planned differential returned: one key where both invariants are defined and
+agree across a transform that genuinely changed the system
+(`0d6996160cc83aab`, five substitutions, dimension and vector-space dimension
+preserved); one key landing on the unit ideal, which any destructive transform
+would also do, so it is not a test; and three keys with no usable output, two
+whose jobs never ran and one that timed out. One informative confirmation.
+
+The banking rule stays exactly as written: `elimpart` may accelerate a search,
+but a refutation resting on it alone is not banked. Nothing in this layer
+currently rests on it — the composition-gated run produced no verdict — so the
+rule has not yet had to be invoked, and it should not be relaxed on the strength
+of one agreeing key.
