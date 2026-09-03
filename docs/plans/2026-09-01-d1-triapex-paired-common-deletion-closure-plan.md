@@ -1603,3 +1603,36 @@ before the Phase 1 checkpoint that rewrote Section 6.
 
 None of the items changes the leaf, the measure, or the running exact-15
 kill-test; items 5, 8 and 13 tighten what a Phase 2 verdict may claim.
+
+### Addendum (2026-09-03): artifact-hygiene and orbit-reduction gates
+
+An adversarial audit of the lane's artifacts (channel message 9116) raised
+three items that gate what a Phase 3a verdict may claim. All three are
+accepted and recorded here.
+
+1. **`probe02sat` is excluded from evidence.** Its `summary-probe02sat.json`
+   records `dim_raw` 4 and 5 with `dim_sat` 25 for `00097ad` and `0010f`,
+   while the current `pattern-<key>.stdout`/`receipt` files for those keys
+   show `dim_sat` −1; the earlier run identifiers and outputs are gone, so
+   the summary cannot be replayed. A saturated dimension above the raw
+   dimension is rejected by `parse_output` in any case. No verdict may cite
+   that probe.
+2. **Receipt-to-output hash binding.** Before any angle-form verdict is
+   promoted, each cited artifact must carry a receipt whose recorded output
+   digest matches the stored stdout bytes, and each run must write to a
+   distinct name. The angle-form runs already use one artifact name per
+   (representative, flag set) and no queued run overwrites an earlier one,
+   but the digest binding is not yet enforced by the tool.
+3. **Orbit reduction needs its own falsifier.** The reduction of the 111
+   metric patterns to 20 dihedral representatives assumes the group action
+   preserves the source predicates, the boundary order, and the angle gauge
+   (including renormalization), commutes with saturation, and transports
+   certificates. Minimal falsifier, to run before the reduction is cited:
+   take one pattern, generate its six label permutations, and compare the
+   normalized ideals (dimension and vector-space dimension mod 32003) and
+   the pattern metadata. A disagreement refutes the reduction; agreement is
+   evidence for it, not a proof.
+
+None of the three changes the leaf or the measure. Items 1 and 3 bound what
+the exact-15 metric layer may claim: without item 3 the angle results are
+statements about the 20 representatives, not about all 111 patterns.
