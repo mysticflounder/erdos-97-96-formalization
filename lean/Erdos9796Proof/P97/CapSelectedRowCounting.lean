@@ -1304,6 +1304,53 @@ theorem orderedCap_selected_outside_pairs_cover_of_six_five
   apply Finset.eq_of_subset_of_card_le hsubset
   exact le_of_eq hcard.symm
 
+/-- Every outside pair has a unique selected-row owner in the saturated
+    six-row profile. -/
+theorem orderedCap_selected_outside_pair_owner_existsUnique_of_six_five
+    {A : Finset ℝ²} {L : CGN.OrderedCap 6}
+    (Packet : CGN.MecCapPacket A L)
+    (Hside : CGN.MinorCapSideHypotheses Packet)
+    (Hord : CGN.StrictCapOrder A L)
+    (hconv : ConvexIndep A) (F : FaithfulCarrierPattern A)
+    (houtside : (A \ Finset.univ.image L.points).card = 5)
+    {xy : Finset ℝ²}
+    (hxy : xy ∈ (A \ Finset.univ.image L.points).powersetCard 2) :
+    ∃! j : Fin 6,
+      xy ∈ ((F.classAt (L.points j) (Packet.mem_A j)).support \
+        Finset.univ.image L.points).powersetCard 2 := by
+  classical
+  have hcover := orderedCap_selected_outside_pairs_cover_of_six_five
+    Packet Hside Hord hconv F houtside
+  have hmemUnion : xy ∈ Finset.univ.biUnion (fun j : Fin 6 =>
+      ((F.classAt (L.points j) (Packet.mem_A j)).support \
+        Finset.univ.image L.points).powersetCard 2) := by
+    rw [hcover]
+    exact hxy
+  rcases Finset.mem_biUnion.mp hmemUnion with ⟨j, _hj, hj⟩
+  refine ⟨j, hj, ?_⟩
+  intro k hk
+  have hxyCard : xy.card = 2 :=
+    (Finset.mem_powersetCard.mp hxy).2
+  rw [Finset.card_eq_two] at hxyCard
+  rcases hxyCard with ⟨a, b, hab, rfl⟩
+  have hjData := Finset.mem_powersetCard.mp hj
+  have hkData := Finset.mem_powersetCard.mp hk
+  have haJ : a ∈ (F.classAt (L.points j) (Packet.mem_A j)).support :=
+    (Finset.mem_sdiff.mp (hjData.1 (by simp))).1
+  have hbJ : b ∈ (F.classAt (L.points j) (Packet.mem_A j)).support :=
+    (Finset.mem_sdiff.mp (hjData.1 (by simp))).1
+  have haK : a ∈ (F.classAt (L.points k) (Packet.mem_A k)).support :=
+    (Finset.mem_sdiff.mp (hkData.1 (by simp))).1
+  have hbK : b ∈ (F.classAt (L.points k) (Packet.mem_A k)).support :=
+    (Finset.mem_sdiff.mp (hkData.1 (by simp))).1
+  have howner := orderedCap_outsidePair_owner_unique Packet Hord hconv F
+    ((F.classAt (L.points j) (Packet.mem_A j)).support_subset_A haJ)
+    ((F.classAt (L.points j) (Packet.mem_A j)).support_subset_A hbJ)
+    (Finset.mem_sdiff.mp (hjData.1 (by simp))).2
+    (Finset.mem_sdiff.mp (hjData.1 (by simp))).2 hab
+    haJ hbJ haK hbK
+  exact howner.symm
+
 end CapSelectedRowCounting
 
 end Problem97
