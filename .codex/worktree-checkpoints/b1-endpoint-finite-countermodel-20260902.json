@@ -1,0 +1,16 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "b1-endpoint-finite-countermodel-20260902",
+  "owner": "ResidueLantern",
+  "base_head": "0fb6f79f1792d490a37d78ae9d3909b77eb9e968",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/b1-endpoint-finite-countermodel-20260902.json",
+    "scratch/B1EndpointProducerFiniteCountermodel.lean"
+  ],
+  "durable_paths": [
+    "scratch/runs/b1-endpoint-finite-countermodel-20260902/REPORT.md"
+  ],
+  "generated_roots": [],
+  "created_utc": "2026-09-03T06:55:00Z",
+  "manifest_sha256": "375694d5c72affc220bd71ee17d26285bf4c3a18566af25870feee7f24c2e608"
+}
