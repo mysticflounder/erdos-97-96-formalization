@@ -438,6 +438,35 @@ theorem b1_freshV_cardFiveEndpoint_or_originalSource_or_adjacentCap
     · exact Or.inr (Or.inr (Or.inl (hsource.symm.trans hsourceV)))
   · exact Or.inr (Or.inr (Or.inr hadjacent))
 
+/-- Card-six endpoint refinement for the fresh second endpoint.  Both live
+slices have cardinality two, so installing an interior fresh endpoint as the
+named escape always produces the generic endpoint-order residual. -/
+theorem b1_freshV_cardSixEndpoint_or_adjacentCap
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F))
+    (P : B1CardSixLocalRolePacket C)
+    (E : B1EscapeRowProvenanceStar C)
+    (source other u v : CarrierVertex D.A)
+    (hvClass : v.1 ∈ SelectedClass D.A S.oppApex2 C.rho)
+    (hvLive : v.1 ∈ b1USlice C ∨ v.1 ∈ b1VSlice C)
+    (context :
+      ExactFourMutualOmissionSourceContext C.R C.rho source other u v)
+    (hsourceCanonical :
+      source = C.first.deleted ∨ source = C.second.deleted) :
+    (∃ E' : B1EscapeRowProvenanceStar C,
+      E'.escape.source = v ∧ B1CardSixEndpointOrderResidual C E') ∨
+        (v.1 ∈ S.leftAdjacentCapByIndex S.oppIndex2 ∨
+          v.1 ∈ S.rightAdjacentCapByIndex S.oppIndex2) := by
+  rcases b1_freshV_escapeStar_or_adjacentCap C E source other u v
+      hvClass hvLive context hsourceCanonical with hstar | hadjacent
+  · obtain ⟨E', hsource⟩ := hstar
+    obtain ⟨R⟩ := nonempty_b1CardSixEndpointOrderResidual C P E'
+    exact Or.inl ⟨E', hsource, R⟩
+  · exact Or.inr hadjacent
+
 /-- If the fresh-pair joint deletion is the canonical deletion opposite the
 chosen good source, both fresh pair endpoints are forced into the original B1
 live slices.  The source-context incidence also makes the fresh `u` blocker

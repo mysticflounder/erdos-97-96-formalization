@@ -809,3 +809,17 @@ completed successfully with 10,871 jobs.  Its subsequent best-effort
 proof-blueprint resync encountered the repository's unrelated stale indexed
 `ATailSevenSourcesOutsideTwoShells` declaration; the wrapper reported the
 module build itself as successful.
+
+The same replacement-star bridge is now connected to card six by
+`b1_freshV_cardSixEndpoint_or_adjacentCap`.  Because the card-six local packet
+certifies both live slices have cardinality two, an interior fresh `v` always
+produces a named `B1CardSixEndpointOrderResidual`; otherwise `v` lies in an
+adjacent cap.  There is no singleton-source alternative in this branch.  The
+remaining card-six problem is therefore purely geometric: consume the
+fresh-`v` adjacent placement or its mate/blocker-between endpoint packet using
+the retained fresh-pair omissions.
+
+The card-six refinement passed focused compilation, independent axiom and
+circularity audit, and the governed 10,871-job module build.  Its dependency
+closure contains only Lean's standard `propext`, `Classical.choice`, and
+`Quot.sound` axioms.
