@@ -74,6 +74,7 @@ class FakeEndpointPiqd:
         crossed_create: bool = False,
         reuse_session_id: bool = False,
         fail_solve: bool = False,
+        model_replay: Mapping[str, object] | None = None,
     ) -> None:
         self.statuses = list(statuses)
         self.values = values
@@ -83,6 +84,7 @@ class FakeEndpointPiqd:
         self.crossed_create = crossed_create
         self.reuse_session_id = reuse_session_id
         self.fail_solve = fail_solve
+        self.model_replay = model_replay
         self.sessions: dict[str, dict[str, Any]] = {}
         self.created_ids: list[str] = []
         self.deleted_ids: list[str] = []
@@ -146,6 +148,8 @@ class FakeEndpointPiqd:
             assert len(body["get_values"]) == 10
             status = self.statuses.pop(0)
             answer = self._answer(status, list(body["get_values"]))
+            if self.model_replay is not None:
+                answer["model_replay"] = dict(self.model_replay)
             digest = neutral.piqd_result_digest(answer)
             response = {
                 **answer,
@@ -494,6 +498,15 @@ def _run(tmp_path: Path, fake: FakeEndpointPiqd) -> dict[str, Any]:
     )
 
 
+def _model_replay() -> dict[str, object]:
+    return {
+        "outcome": "SATISFIED",
+        "script_sha256": _sha(b"endpoint-model-replay-script"),
+        "solver_sha256": _sha(b"binary:z3"),
+        "replay_ms": 2,
+    }
+
+
 def _hostile_path(raw: Path, touches: list[str]) -> Path:
     class HostilePath(type(Path())):
         def __fspath__(self) -> str:
@@ -579,6 +592,8 @@ def _rewrite_bound_engine_json(
     relative: str,
     artifact_key: str,
     mutate: Any,
+    *,
+    stage_relative: str = "00-exact-metric-relaxation/stage-result.json",
 ) -> None:
     target = root / relative
     value = json.loads(target.read_bytes())
@@ -596,8 +611,6 @@ def _rewrite_bound_engine_json(
     )
     target.write_bytes(payload)
     _reseal_publication_file(root, relative)
-    stage_relative = "00-exact-metric-relaxation/stage-result.json"
-
     def bind(stage: dict[str, Any]) -> None:
         stage["engine"]["artifacts"][artifact_key].update(
             {"bytes": len(payload), "sha256": _sha(payload)}
@@ -704,6 +717,243 @@ def test_standalone_validator_replays_complete_smoke_sat_publication(
     assert checked["verification"] == produced["verification"]
     assert checked["output_custody"] == produced["output_custody"]
     assert checked["claims"] == subject.FALSE_CLAIMS
+
+
+def test_standalone_validator_accepts_current_sat_model_replay_custody(
+    tmp_path: Path,
+) -> None:
+    produced = _run(
+        tmp_path,
+        FakeEndpointPiqd(["SAT", "SAT"], model_replay=_model_replay()),
+    )
+
+    checked = subject.validate_published_output(tmp_path / "run")
+
+    assert checked["stages"] == produced["stages"]
+    for stage in checked["stages"]:
+        assert stage["engine"]["raw_status"] == "SAT"
+        assert stage["engine"]["effective_status"] == "SAT_SEMANTICALLY_REPLAYED"
+
+
+@pytest.mark.parametrize(
+    "replay",
+    [
+        {**_model_replay(), "outcome": "VIOLATED"},
+        {**_model_replay(), "outcome": "UNDETERMINED", "reason": "replay timeout"},
+    ],
+    ids=["violated", "undetermined"],
+)
+def test_live_path_does_not_publish_non_satisfied_sat_model_replay(
+    tmp_path: Path, replay: dict[str, object]
+) -> None:
+    with pytest.raises(subject.EndpointMetricPiqdError, match="not SATISFIED"):
+        _run(tmp_path, FakeEndpointPiqd(["SAT"], model_replay=replay))
+    assert not (tmp_path / "run").exists()
+
+
+def test_live_response_loss_validates_reconciled_sat_model_replay(
+    tmp_path: Path,
+) -> None:
+    stage_directory = tmp_path / "stage"
+    stage_directory.mkdir()
+    (stage_directory / "z3.solve.json").write_bytes(b"not the reconciled solve\n")
+    (stage_directory / "z3.reconciled-solve.json").write_bytes(
+        subject._canonical(
+            {
+                "status": "SAT",
+                "model": "(model)",
+                "values": "((x 0))",
+                "model_replay": _model_replay(),
+            }
+        )
+        + b"\n"
+    )
+
+    subject._validate_live_sat_model_replay(
+        {"raw_status": "SAT", "response_lost": True}, stage_directory
+    )
+
+
+@pytest.mark.parametrize(
+    ("mutation", "message"),
+    [
+        (lambda replay: replay.pop("script_sha256"), "wrong keys"),
+        (lambda replay: replay.__setitem__("extra", 1), "wrong keys"),
+        (
+            lambda replay: replay.__setitem__("script_sha256", "A" * 64),
+            "lowercase SHA-256",
+        ),
+        (
+            lambda replay: replay.__setitem__("solver_sha256", "0" * 63),
+            "lowercase SHA-256",
+        ),
+        (lambda replay: replay.__setitem__("replay_ms", True), "bounded integer"),
+        (lambda replay: replay.__setitem__("outcome", "BROKEN"), "outcome is invalid"),
+        (
+            lambda replay: replay.__setitem__("reason", "unexpected"),
+            "decided outcome carries a reason",
+        ),
+        (
+            lambda replay: replay.__setitem__("outcome", "UNDETERMINED"),
+            "lacks a reason",
+        ),
+        (
+            lambda replay: replay.update(
+                {"outcome": "UNDETERMINED", "reason": False}
+            ),
+            "reason is not exact text",
+        ),
+    ],
+    ids=[
+        "missing-key",
+        "extra-key",
+        "bad-script-digest",
+        "bad-solver-digest",
+        "bad-replay-ms-type",
+        "bad-outcome",
+        "reason-on-decided",
+        "missing-undetermined-reason",
+        "bad-reason-type",
+    ],
+)
+def test_standalone_validator_rejects_malformed_model_replay(
+    tmp_path: Path, mutation: Any, message: str
+) -> None:
+    _run(tmp_path, FakeEndpointPiqd(["SAT", "SAT"], model_replay=_model_replay()))
+    root = tmp_path / "run"
+
+    def mutate_solve(value: dict[str, Any]) -> None:
+        mutation(value["model_replay"])
+
+    _rewrite_bound_engine_json(
+        root,
+        "00-exact-metric-relaxation/z3.solve.json",
+        "solve",
+        mutate_solve,
+    )
+
+    with pytest.raises(subject.EndpointMetricPiqdError, match=message):
+        subject.validate_published_output(root)
+
+
+def test_standalone_validator_rejects_malformed_receipt_model_replay(
+    tmp_path: Path,
+) -> None:
+    _run(tmp_path, FakeEndpointPiqd(["SAT", "SAT"], model_replay=_model_replay()))
+    root = tmp_path / "run"
+    _rewrite_bound_engine_json(
+        root,
+        "00-exact-metric-relaxation/z3.receipts.json",
+        "receipts",
+        lambda value: value["receipts"][0]["model_replay"].pop("script_sha256"),
+    )
+
+    with pytest.raises(subject.EndpointMetricPiqdError, match="wrong keys"):
+        subject.validate_published_output(root)
+
+
+@pytest.mark.parametrize(
+    ("outcome", "reason"),
+    [("VIOLATED", None), ("UNDETERMINED", "replay timeout")],
+)
+def test_standalone_validator_requires_satisfied_sat_model_replay(
+    tmp_path: Path, outcome: str, reason: str | None
+) -> None:
+    _run(tmp_path, FakeEndpointPiqd(["SAT", "SAT"], model_replay=_model_replay()))
+    root = tmp_path / "run"
+
+    def mutate_solve(value: dict[str, Any]) -> None:
+        replay = value["model_replay"]
+        replay["outcome"] = outcome
+        if reason is not None:
+            replay["reason"] = reason
+
+    _rewrite_bound_engine_json(
+        root,
+        "00-exact-metric-relaxation/z3.solve.json",
+        "solve",
+        mutate_solve,
+    )
+
+    with pytest.raises(subject.EndpointMetricPiqdError, match="not SATISFIED"):
+        subject.validate_published_output(root)
+
+
+@pytest.mark.parametrize("status", ["UNSAT", "UNKNOWN"])
+@pytest.mark.parametrize("artifact_key", ["solve", "receipts"])
+def test_standalone_validator_forbids_non_sat_model_replay(
+    tmp_path: Path, status: str, artifact_key: str
+) -> None:
+    statuses = ["UNSAT"] if status == "UNSAT" else ["UNKNOWN"] * 3
+    _run(tmp_path, FakeEndpointPiqd(statuses))
+    root = tmp_path / "run"
+    relative = f"00-exact-metric-relaxation/z3.{artifact_key}.json"
+
+    def add_replay(value: dict[str, Any]) -> None:
+        target = value if artifact_key == "solve" else value["receipts"][0]
+        target["model_replay"] = _model_replay()
+
+    _rewrite_bound_engine_json(root, relative, artifact_key, add_replay)
+
+    with pytest.raises(subject.EndpointMetricPiqdError, match=f"{status} carries"):
+        subject.validate_published_output(root)
+
+
+def test_standalone_validator_binds_receipt_model_replay_to_solve(
+    tmp_path: Path,
+) -> None:
+    _run(tmp_path, FakeEndpointPiqd(["SAT", "SAT"], model_replay=_model_replay()))
+    root = tmp_path / "run"
+    _rewrite_bound_engine_json(
+        root,
+        "00-exact-metric-relaxation/z3.receipts.json",
+        "receipts",
+        lambda value: value["receipts"][0]["model_replay"].__setitem__(
+            "replay_ms", 3
+        ),
+    )
+
+    with pytest.raises(subject.EndpointMetricPiqdError, match="solve and receipt disagree"):
+        subject.validate_published_output(root)
+
+
+def test_standalone_validator_binds_model_replay_to_receipt_solver_digest(
+    tmp_path: Path,
+) -> None:
+    _run(tmp_path, FakeEndpointPiqd(["SAT", "SAT"], model_replay=_model_replay()))
+    root = tmp_path / "run"
+    crossed = "f" * 64
+    _rewrite_bound_engine_json(
+        root,
+        "00-exact-metric-relaxation/z3.solve.json",
+        "solve",
+        lambda value: value["model_replay"].__setitem__("solver_sha256", crossed),
+    )
+    _rewrite_bound_engine_json(
+        root,
+        "00-exact-metric-relaxation/z3.receipts.json",
+        "receipts",
+        lambda value: value["receipts"][0]["model_replay"].__setitem__(
+            "solver_sha256", crossed
+        ),
+    )
+
+    with pytest.raises(
+        subject.EndpointMetricPiqdError,
+        match="model replay solver digest disagrees",
+    ):
+        subject.validate_published_output(root)
+
+
+def test_standalone_validator_keeps_historical_three_wave_unknown_valid(
+    tmp_path: Path,
+) -> None:
+    produced = _run(tmp_path, FakeEndpointPiqd(["UNKNOWN"] * 3))
+
+    checked = subject.validate_published_output(tmp_path / "run")
+
+    assert checked["stages"] == produced["stages"]
+    assert [stage["status"] for stage in checked["stages"]] == ["UNKNOWN"] * 3
 
 
 @pytest.mark.parametrize(

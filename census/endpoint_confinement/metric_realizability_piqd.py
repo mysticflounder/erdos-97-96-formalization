@@ -1645,7 +1645,14 @@ _SOLVE_REQUIRED = {
     "result_sha256",
     "effective_deadline_ms",
 }
-_ANSWER_OPTIONAL = {"interrupted_by", "core", "terminal_unsat", "model", "values"}
+_ANSWER_OPTIONAL = {
+    "interrupted_by",
+    "core",
+    "terminal_unsat",
+    "model",
+    "model_replay",
+    "values",
+}
 _RECEIPT_REQUIRED = {
     "solve_index",
     "base_commands",
@@ -1740,6 +1747,26 @@ def _validate_fresh_archived_session(session: Mapping[str, object]) -> None:
         raise EndpointMetricPiqdError("published PIQD session was not fresh")
 
 
+def _validate_model_replay(value: object, where: str) -> dict[str, Any]:
+    required = {"outcome", "script_sha256", "solver_sha256", "replay_ms"}
+    if type(value) is not dict or not required <= set(value) <= required | {"reason"}:
+        raise EndpointMetricPiqdError(f"{where} has the wrong keys")
+    replay = value
+    outcome = _expect_text(replay["outcome"], f"{where}.outcome")
+    if outcome not in {"SATISFIED", "VIOLATED", "UNDETERMINED"}:
+        raise EndpointMetricPiqdError(f"{where}.outcome is invalid")
+    _expect_digest(replay["script_sha256"], f"{where}.script_sha256")
+    _expect_digest(replay["solver_sha256"], f"{where}.solver_sha256")
+    _expect_int(replay["replay_ms"], f"{where}.replay_ms")
+    if outcome == "UNDETERMINED":
+        if "reason" not in replay:
+            raise EndpointMetricPiqdError(f"{where} undetermined outcome lacks a reason")
+        _expect_text(replay["reason"], f"{where}.reason")
+    elif "reason" in replay:
+        raise EndpointMetricPiqdError(f"{where} decided outcome carries a reason")
+    return replay
+
+
 def _validate_answer_shape(value: Mapping[str, object], where: str) -> None:
     status = value["status"]
     if type(status) is not str or status not in {"SAT", "UNSAT", "UNKNOWN"}:
@@ -1757,15 +1784,52 @@ def _validate_answer_shape(value: Mapping[str, object], where: str) -> None:
             _expect_text(member, f"{where}.core[{index}]")
     if "terminal_unsat" in value and type(value["terminal_unsat"]) is not bool:
         raise EndpointMetricPiqdError(f"{where}.terminal_unsat is not Boolean")
-    present = set(value) & _ANSWER_OPTIONAL
+    model_replay = None
+    if "model_replay" in value:
+        model_replay = _validate_model_replay(
+            value["model_replay"], f"{where}.model_replay"
+        )
+    present = (set(value) & _ANSWER_OPTIONAL) - {"model_replay"}
     if status == "SAT" and present != {"model", "values"}:
         raise EndpointMetricPiqdError(f"{where} SAT payload shape mismatch")
+    if (
+        status == "SAT"
+        and model_replay is not None
+        and model_replay["outcome"] != "SATISFIED"
+    ):
+        raise EndpointMetricPiqdError(
+            f"{where} SAT model replay outcome is not SATISFIED"
+        )
     if status == "UNSAT" and present != {"core", "terminal_unsat"}:
         raise EndpointMetricPiqdError(f"{where} UNSAT payload shape mismatch")
+    if status == "UNSAT" and model_replay is not None:
+        raise EndpointMetricPiqdError(f"{where} UNSAT carries a model replay")
     if status == "UNSAT" and value["terminal_unsat"] is not (len(value["core"]) == 0):
         raise EndpointMetricPiqdError(f"{where} terminal UNSAT flag mismatch")
     if status == "UNKNOWN" and not present <= {"interrupted_by"}:
         raise EndpointMetricPiqdError(f"{where} UNKNOWN payload shape mismatch")
+    if status == "UNKNOWN" and model_replay is not None:
+        raise EndpointMetricPiqdError(f"{where} UNKNOWN carries a model replay")
+
+
+def _validate_live_sat_model_replay(
+    engine: Mapping[str, object], stage_directory: Path
+) -> None:
+    if engine["raw_status"] != "SAT":
+        return
+    filename = (
+        "z3.reconciled-solve.json"
+        if engine["response_lost"]
+        else "z3.solve.json"
+    )
+    solve = _strict_json_artifact(
+        _read_nofollow(stage_directory / filename),
+        "live solve",
+        endpoint=False,
+    )
+    if type(solve) is not dict:
+        raise EndpointMetricPiqdError("live solve is not an exact object")
+    _validate_answer_shape(solve, "live solve")
 
 
 def _validate_archived_solve(value: object, *, timeout_ms: int) -> dict[str, Any]:
@@ -1844,6 +1908,12 @@ def _validate_archived_receipts(
     ):
         raise EndpointMetricPiqdError("receipt request vectors are not exact lists")
     _validate_answer_shape(receipt, "receipt")
+    if "model_replay" in receipt and (
+        receipt["model_replay"]["solver_sha256"] != receipt["solver_sha256"]
+    ):
+        raise EndpointMetricPiqdError(
+            "published receipt model replay solver digest disagrees"
+        )
     timeout_ms = query.descriptor["solver_profile"]["timeout_ms"]
     if not (
         receipt["solve_index"] == 1
@@ -2366,6 +2436,10 @@ def run_staged_system(
                 )
             finally:
                 os.close(descriptor)
+            _validate_live_sat_model_replay(
+                engine,
+                staging.parent_path / staging.staging_name / stage_name,
+            )
             raw = engine["raw_status"]
             effective = engine["effective_status"]
             stage_result = {

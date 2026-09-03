@@ -57,3 +57,24 @@ run must use a fresh generated root; earlier Wave A/B/C artifacts retain their
 captured runtime sources and results.
 
 This is computational infrastructure, not a Lean proof or a closure claim.
+
+## PIQD model-replay custody compatibility
+
+The first live gauge-MEC smoke query returned a SAT model that passed exact
+rational replay, but offline validation failed closed because current PIQD SAT
+solve and receipt records now include a `model_replay` object.  The generic
+PIQD adapter already authenticated that field; this endpoint adapter's copied
+validator did not yet admit it.
+
+The endpoint validator now checks the exact replay keys, outcome, digests,
+timing, and reason rules.  A present replay is accepted only on SAT and only
+with outcome `SATISFIED`; receipt and solve copies must agree, and the replay's
+solver digest must match the receipt's solver digest.  Historical records that
+predate this optional field remain valid.  Mutation tests cover malformed
+objects, non-SAT presence, non-satisfied outcomes, solve/receipt disagreement,
+crossed solver digests, and the reconciled response-loss path.  The expanded
+focused suite passes 119 tests.
+
+The pre-fix smoke publication is diagnostic only.  The governed run will use a
+fresh output root after this compatibility change is committed, and its
+current-source offline validation must pass before the target query launches.
