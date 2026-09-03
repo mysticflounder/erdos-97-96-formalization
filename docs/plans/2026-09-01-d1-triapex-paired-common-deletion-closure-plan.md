@@ -1363,8 +1363,44 @@ side rule refutes every sampled Stage 1d survivor; Stage 1e census launched):
   for the zero-dimensional ones (`--real`, `events/angle-char0-finite.log`;
   `FINITE_NO_REAL` refutes without any saturation), and the saturated ideal
   for the positive-dimensional ones whose saturation reached a verdict
-  (`events/angle-char0-sat-{empty,finite}.log`). {{NEEDS_UPDATE}}: chain
-  verdicts. A mod-p emptiness is evidence only; the characteristic-0 run is
+  (`events/angle-char0-sat-{empty,finite}.log`). Chain results so far: saturation at 900 s decides
+  3 of the 8 queued representatives (`0d6996160cc83aab` and
+  `3826b8a0dec4a6b0` keep exactly 192 of their 2048 solutions with all
+  points distinct; `3642476c22a03be4` becomes empty like `0af6e34c9d121f64`,
+  so its dimension-2 component is degenerate only) and times out on the
+  other 5 (`0e31c5c5d735a779`, `172327e48f4004fb`, `32263a5344416a02`,
+  `353e5cf5d9489e5e`, `60cd5309f72bf0e5`); the 900 s rerun decides only
+  `09de935481f89fcb` (dimension 2), and `0ba2f8339583ff96`,
+  `1412a71e2b2792b3`, `4196eb64fac564cc`, `5815b1f6a42dcb08`,
+  `5d4f4968fac1e0d5`, `60e1264c2096add9` stay undecided. So after the
+  mod-32003 passes: 4 orbits empty, 2 orbits empty after saturation, 2
+  orbits with 192 nondegenerate solutions, 3 orbits of dimension 2 with no
+  saturation verdict, 3 orbits zero-dimensional with no saturation verdict,
+  6 orbits with no verdict at all. Characteristic 0 runs on the 11
+  representatives with a usable mod-p verdict; a `slimgb` variant is queued
+  for the other 9. Characteristic-0 results (1800 s): the
+  four raw-empty representatives are empty over the rationals
+  (`0128294791aad010` 250 s, `0a55d4c3c9ce4aaf` 3 s, `3f5944d10bef23b7`
+  1030 s, `6df4c7a8d7bf40b6` 152 s), so those 4 orbits are refuted at the
+  encoded scope on one engine; the saturated runs on `0af6e34c9d121f64` and
+  `3642476c22a03be4` and the raw real-root count on `0d6996160cc83aab`
+  (vector-space dimension 2048) all time out, and the remaining raw counts
+  were stopped. The `slimgb` variant (`--slimgb`) decides all six
+  representatives that `std` could not, in 6 s to 40 s each: all
+  zero-dimensional, vector-space dimension 2048 (`0ba2f8339583ff96`,
+  `4196eb64fac564cc`, `5815b1f6a42dcb08`, `60e1264c2096add9`), 3072
+  (`1412a71e2b2792b3`), 1536 (`5d4f4968fac1e0d5`). Mod 32003 the 20 orbits
+  therefore read: 4 empty, 5 of dimension 2 (2 of them empty after
+  saturation), 11 zero-dimensional. Queued on the serial lane
+  (`artifacts/tools/angle_chain_v{3,4,5,6}`): `slimgb` with saturation on
+  the three unsaturated dimension-2 representatives; for the two
+  saturated-empty ones a mod-p trace of which pair saturations empty the
+  ideal (`--sat-trace`) followed by a rational run saturating by those pairs
+  only (`--sat-pairs`); for the eleven zero-dimensional ones the same trace
+  with the vector-space dimension after each pair, then a rational run with
+  modular Gröbner reconstruction (`--modstd`), saturation by the effective
+  pairs only, and the real-root count on the reduced ideal.
+  {{NEEDS_UPDATE}}: targeted-saturation and real-root verdicts. A mod-p emptiness is evidence only; the characteristic-0 run is
   the verdict that counts, and any real solution still needs the strict
   convexity check of Guardrail 6 before it is a candidate configuration.
 - Residue structure (solver-free census of the 111 metric patterns): every
