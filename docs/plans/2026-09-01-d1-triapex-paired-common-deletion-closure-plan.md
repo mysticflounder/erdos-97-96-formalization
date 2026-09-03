@@ -5650,3 +5650,50 @@ reach no consumer today.  Under the `lean-usage` promotion contract that means
 they carry no promotion claim, and this section makes none: the measure `M` is
 untouched at 18 because none of this is yet wired to the leaf.  Wiring is the
 next item, and it is separate work from proving these statements.
+
+### 74. The cyclic exclusion is one theorem now (2026-09-03)
+
+Sections 72 and 73 give one slot's cubic from one foreign hit; section 68 gives
+`a = b = c` from three cubics.  New file
+`lean/Erdos9796Proof/P97/ATail/CyclicForeignHitExclusion.lean` joins them, so
+the cyclic configuration is excluded by a single application.  Two theorems,
+both axiom-clean `[propext, Classical.choice, Quot.sound]`, clean on the first
+build:
+
+* `eq_of_cyclic_foreign_hits` — three cyclic foreign hits force `a = b ∧ b = c`;
+* `false_of_cyclic_foreign_hits_of_ne` — the contrapositive form section 67
+  actually needs, contradicting a scalene apex triangle.
+
+**The rotation is consistent, and that is the only content.**  The three slots
+are the same theorem read three times:
+
+| slot | plays `A`, `B`, `C` | needs `dist q Aᵢ` | and `dist q Aⱼ` | gives |
+|---|---|---|---|---|
+| `(0,1)` | `A₀ A₁ A₂` | `c` | `a` | `a²b ≤ c(a²+b²−c²)` |
+| `(1,2)` | `A₁ A₂ A₀` | `a` | `b` | `b²c ≤ a(b²+c²−a²)` |
+| `(2,0)` | `A₂ A₀ A₁` | `b` | `c` | `c²a ≤ b(c²+a²−b²)` |
+
+Those three conclusions are exactly `eq_of_cyclic_side_inequalities`'s three
+hypotheses, in order.  All three applications take the same three side-length
+equations `dist A₁ A₂ = a`, `dist A₂ A₀ = b`, `dist A₀ A₁ = c`, rotated — so
+**no `dist_comm` is needed anywhere**, and the Lean proof is three `have`s and
+one `exact`.  The three non-obtuse hypotheses are the three angles of the apex
+triangle, one per slot; together they are what `triangleNonObtuse` asserts.
+
+Checked before writing the Lean, on a deterministic grid of 10266 slot
+instances over two radii: **0** mismatches between a slot's conclusion and the
+corresponding section-68 hypothesis written in the global side lengths.  Pinned
+by `test_the_three_slots_map_onto_the_three_cubics` (8 tests pass).
+
+**What this does and does not do.**  It removes the hand assembly, so the
+remaining wiring is one application instead of three plus bookkeeping.  It does
+**not** wire anything: the file is off-spine like its dependencies, nothing on
+the leaf's spine imports it, and it carries no promotion claim.  `M` stays 18.
+
+The remaining work is unchanged in kind: produce, from a live
+`SurplusCapPacket` foreign hit, the twenty-one hypotheses of
+`false_of_cyclic_foreign_hits_of_ne` — and section 64, still a **PROOF
+SKETCH** and still the only conjectural link.
+
+Scope unchanged: one-radius arm, card-15 gated.  **Obligation (i) is not
+closed.**  Leaf unchanged: single `sorry`, `M = 18`.

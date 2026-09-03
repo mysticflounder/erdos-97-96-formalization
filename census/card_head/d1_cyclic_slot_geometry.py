@@ -326,3 +326,38 @@ def slot_cubic_counts(n=48, radii=(1.0, 1.7)):
                             ob_t += 1
                             ob_v += slack < -1e-9 * max(1.0, abs(slack))
     return ok_t, ok_v, ob_t, ob_v
+
+
+def slot_rotation_mismatches(n=60, radii=(1.0, 1.9)):
+    """Plan section 74's check that the three cyclic slots map onto section
+    68's three cubics under rotation of which apex plays each role.
+
+    The generic theorem's roles are A, B, C with a = dist B C, b = dist C A,
+    c = dist A B, and it concludes a^2 b <= c (a^2 + b^2 - c^2).  Slot (i,j)
+    sends (A, B, C) to (A_i, A_j, A_k) for the third index k.  This counts how
+    often the slot's conclusion differs from the corresponding hypothesis of
+    ``eq_of_cyclic_side_inequalities`` written in the global side lengths.
+    Zero is the claim.  Returns ``(mismatches, tested)``.
+    """
+    bad = tested = 0
+    for radius in radii:
+        for i in range(1, n):
+            for j in range(i + 1, n):
+                pts = [(radius, 0.0)]
+                for t in (2 * math.pi * i / n, 2 * math.pi * j / n):
+                    pts.append((radius * math.cos(t), radius * math.sin(t)))
+                if abs(signed_area2(*pts)) < 1e-9:
+                    continue
+                a, b, c = sides(pts)
+                target = [a * a * b - c * (a * a + b * b - c * c),
+                          b * b * c - a * (b * b + c * c - a * a),
+                          c * c * a - b * (c * c + a * a - b * b)]
+                for s, (p, q) in enumerate(((0, 1), (1, 2), (2, 0))):
+                    k = THIRD_INDEX[(p, q)]
+                    aa = dist(pts[q], pts[k])
+                    bb = dist(pts[k], pts[p])
+                    cc = dist(pts[p], pts[q])
+                    got = aa * aa * bb - cc * (aa * aa + bb * bb - cc * cc)
+                    tested += 1
+                    bad += abs(got - target[s]) > 1e-9 * max(1.0, abs(target[s]))
+    return bad, tested

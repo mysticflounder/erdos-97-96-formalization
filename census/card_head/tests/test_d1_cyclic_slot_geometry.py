@@ -62,3 +62,9 @@ def test_slot_cubic_holds_and_needs_the_non_obtuse_hypothesis():
     # Every obtuse case fails, and for a plain reason: c(a^2+b^2-c^2) < 0
     # while a^2 b > 0.  The hypothesis is load-bearing, not subtly so.
     assert (ob_t, ob_v) == (31680, 31680)
+
+
+def test_the_three_slots_map_onto_the_three_cubics():
+    bad, tested = G.slot_rotation_mismatches()
+    assert bad == 0
+    assert tested == 10266
