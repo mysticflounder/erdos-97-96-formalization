@@ -30,7 +30,7 @@
     "scratch/runs/d1-triapex-plan-20260901/stage2-probe-01"
   ],
   "lane_id": "d1-triapex-plan-20260901",
-  "manifest_sha256": "67d1ca2c3853b15242461f66bc15eed1cfba07ff2d05ca47cf81500f7925ce12",
+  "manifest_sha256": "f07b4352f63bcb9b4e300a5d14ef37562b6d522d1aa5f016c2edd3674dc3f1c2",
   "owned_paths": [
     ".codex/worktree-checkpoints/d1-triapex-plan-20260901.json",
     "census/card_head/d1_arcmidpoint_circle_necessity.py",
@@ -44,6 +44,7 @@
     "docs/plans/2026-09-01-d1-triapex-paired-common-deletion-closure-plan.md",
     "docs/plans/README.md",
     "docs/solve-prompts/2026-09-02-false-of-crossBlockerCoincidence-resolution-prompt.md",
+    "lean/Erdos9796Proof/P97/ATail/AdjacentCapContainment.lean",
     "lean/Erdos9796Proof/P97/ATail/ArcMidpointReflectionCollinear.lean",
     "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TriApexEndpointRetainedOmission.lean"
   ],

@@ -4731,3 +4731,78 @@ chain follows in this regime; if the four-point hypothesis is load-bearing, the
 one bounded source question and it is the next thing to answer.  Untested.
 
 Leaf unchanged: single `sorry`, `M = 18`.
+
+### 62. The card-four gate is removed; the residue is one escape-exclusion (2026-09-03)
+
+Section 61 recorded that every `EndpointRadiusAt` producer is gated on a
+four-point cap, refuted here by `cap_card_ge_six`.  Reading the form definitions
+shows why that gate was there, and that it is removable.
+
+**Why there are only three forms.**  `IsMoserCapFormAAt` / `BAt` / `CAt`
+(`Shard02.lean:1302,1316,1330`) are interior/interior, interior/outer and
+outer/interior.  There is no outer/outer form because outer/outer is not an
+escape at all: both outer vertices lie in cap `i` itself (`Shard01.lean:1371,1381`),
+so a class hitting both of them is *contained* in cap `i`.  The forms enumerate
+the escaped cases only.  So section 59's reduced condition is, in the
+repository's own terms, `MoserCapContainmentAt i` — the class at `Aᵢ` is
+contained in the closed cap `i` — and its negation is a strict adjacent escape.
+
+**Two new theorems, proved and axiom-clean.**  New module
+`lean/Erdos9796Proof/P97/ATail/AdjacentCapContainment.lean`:
+
+- `SurplusCapPacket.eq_oppositeVertexByIndex_of_mem_adjacentCaps` — a carrier
+  point lying in both closed caps adjacent to cap `i` is the Moser vertex
+  opposite cap `i`.  A non-Moser point would lie in two caps, which
+  `nonmoser_in_one` forbids; of the three vertices, `v2 ∉ C2` and `v3 ∉ C3`
+  (and their images) eliminate the other two.
+- `SurplusCapPacket.selectedClass_subset_capByIndex_of_not_strictAdjacentEscapeAt` —
+  absence of a strict adjacent escape contains the whole class in the closed cap,
+  **with no cardinality hypothesis and no convexity hypothesis**.
+
+The proof needs neither the trichotomy nor `ConvexIndep`: a selected point
+outside cap `i`'s strict interior lies in an adjacent closed cap by the cover
+lemma (`Shard02.lean:661`); if it also avoids cap `i`, not escaping puts it in
+the *other* adjacent cap too, and the first theorem then identifies it as the
+class centre, which `0 < radius` excludes.
+
+Both build clean with no new diagnostics and depend on exactly
+`[propext, Classical.choice, Quot.sound]`.  Verified by `#print axioms`.  This
+is the cardinality-free replacement for
+`moserCapContainmentAt_of_noStrictAdjacentEscapeAt_of_convexIndep`
+(`Shard03.lean:907`), which reaches the same conclusion only through the
+four-point-cap trichotomy.
+
+**What this does and does not buy.**  It removes the card-four gate from the
+containment step, so that step is now available in the all-large-cap regime.  It
+does **not** close obligation (i).  The chain to obligation (i) is
+
+    ∃ i, ¬ StrictAdjacentEscapeAt i r
+      → class ⊆ capByIndex i          (new, card-free)
+      → class = capByIndex i          (card-15 profile: 6 = 6)
+      → both outer vertices in class  → the two distance equalities.
+
+Every step after the first is now available.  The first is the whole remaining
+gap, and it is a single named property rather than three vague obligations.
+
+**The remaining step is circular in current source.**
+`not_strictAdjacentEscapeAtOppApex1_of_endpointRadius`
+(`U2NonSurplusOneHit.lean:1373`, mirror at `:1389`) derives no-escape *from* the
+two endpoint-radius distances, with no regime gate.  The converse direction —
+producing those distances — is `oppApex1/2_endpointRadiusWitness_or_strict_adjacent_escape`
+(`:2139,:2192`), which requires `D.IsM44`.  So each of the two is derivable from
+the other and neither has an unconditional producer in this regime.  Breaking
+that circle needs a genuinely new geometric input, not more search.
+
+**Independent confirmation.**  A read-only audit at revision `ed5c7c21b1e6`
+checked the section 61 structural claims and returned them PROVEN, with one
+count correction (the TriApex file has eight local card-15 declarations plus two
+imported primitives).  It independently confirms that `EndpointRadiusAt` has
+exactly two producers, both card-four gated; that the older direct-apex route
+and the equilateral transfers all require `D.IsM44`; and that
+`TriApexAllLargeContext` carries no metric field at all.  It also reports that
+the live `sorry` binds `hcard : D.A.card = 15` only as an implication and
+discharges no antecedent, so the card-15 tools are not currently reachable from
+the live consumer — a point section 53 raised and this confirms independently.
+
+Leaf unchanged: single `sorry`, `M = 18`.  The new module is off-spine
+infrastructure; it removes a gate rather than discharging an obligation.
