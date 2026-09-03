@@ -1,0 +1,14 @@
+{
+  "base_head": "41c696bd03d738154782322a9fcff125989e962f",
+  "created_utc": "2026-09-03T12:00:00Z",
+  "durable_paths": [],
+  "generated_roots": [],
+  "lane_id": "c3-card13-ingress-20260903",
+  "manifest_sha256": "e2185f2635e2d93d9bea750bfac5bec91974ada0d39369c91d84fa8b58c07dbf",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/c3-card13-ingress-20260903.json",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/DRExactThirteenBoundaryIngress.lean"
+  ],
+  "owner": "codex",
+  "schema": "worktree-lane-checkpoint/v1"
+}
