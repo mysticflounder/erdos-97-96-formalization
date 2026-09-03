@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "luna-swarm-capabilities-doc-20260903",
+  "owner": "luna-swarm-capabilities-doc",
+  "base_head": "4d0da0972a629d17141fd400cda7f970e81d05de",
+  "created_utc": "2026-09-03T21:29:20Z",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/luna-swarm-capabilities-doc-20260903.json",
+    "CLAUDE.md"
+  ],
+  "durable_paths": [],
+  "generated_roots": [],
+  "manifest_sha256": "b2f6298489203874d3d0ee69bdc83feef3d5e32735431a37c446e13b1b35605d"
+}

@@ -68,6 +68,31 @@ unverified until it reports `CHAIN VERIFY COMPLETE`.
 ## Communication with parallel agents
 You can send messages to parallel agents via the erdos-97-96-formalization nthdegree convo. (`nthdegree convo`)
 
+## Luna autoformalization swarm
+
+The `luna-swarm/` subtree hosts an on-demand pool of Lean workers.  Non-Luna
+agents dispatch work through the `erdos-97-96-formalization` nthdegree
+conversation.  Use the swarm when a task can be divided into independently
+owned, bounded Lean or documentation lanes, especially for:
+
+- targeted theorem and project-corpus searches;
+- small definitions, lemmas, proof repairs, or scoped Lean refactors;
+- narrow Lean compilation checks and axiom audits; and
+- documentation of formalization findings, blockers, and handoffs.
+
+A useful request names the exact theorem or source path, supplies the needed
+mathematical and import context, states the expected deliverable and validation
+command, and identifies the owned paths.  Luna workers can ask the requester in
+the conversation for missing context and can escalate a major mathematical
+blocker there before requesting a Pro consult.
+
+Do not use the swarm for Python, Rust, solver or certificate production,
+repository infrastructure, generic repository-wide `sorry` filling, or
+coordination among Luna workers.  A Luna worker does not delegate to another
+Luna worker.  Unless a lane closes a `sorry`, validate it with Lean LSP or a
+small `lake env lean` check rather than a full build.  Treat search results,
+external evidence, and prose as inputs to formalization, not proof closure.
+
 ## Worktree ownership and artifact hygiene
 
 Before a lane writes source or generates artifacts, give it a stable lane ID and
