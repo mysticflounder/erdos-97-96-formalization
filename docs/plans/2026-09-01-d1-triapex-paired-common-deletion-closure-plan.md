@@ -3412,6 +3412,10 @@ Leaf unchanged: single `sorry`, `M = 18`.
 
 ### 45. The core covers the whole 36-orbit, by functoriality rather than by thirty-four more solver runs (2026-09-03)
 
+> **Superseded by section 49.** The core is three equalities and three
+> distinctness conditions; the ten-equality set was inflated by missing
+> distinctness, not minimal.
+
 Section 43 transported the core to one sibling labeling and checked it with
 Singular. The plan's next step was recorded as "transport the core to the
 remaining 34 members, each run about 2 s". That is the wrong instrument. The
@@ -3626,5 +3630,85 @@ those compose into the target collinearity is open and is not claimed here.
 
 **Preflight scope.** This key is now spent. Re-run it only if the candidate
 statement, the ingress, the consumer, or the relevant source revision changes.
+
+Leaf unchanged: single `sorry`, `M = 18`.
+
+### 49. The core is three equalities and three distinctness conditions, and it has a synthetic proof (2026-09-03)
+
+Following section 47's direction produced a much stronger result than a
+reframing. The ten-equality core of sections 42–45 was not near-minimal; it was
+inflated, and the reason is instructive.
+
+**The circle collapse.** In this pattern the special apex is `A2`, so `A0`,
+`A1` and all four cap-2 interior points lie at distance `r` from `A2` — six of
+the core's points on one circle `C2`. On a circle, a point is equidistant from
+two others exactly when it is an arc midpoint of their chord. Every core group
+whose members both lie on `C2` is therefore an arc-midpoint condition, and the
+four cap-2 groups form a chain that solves in closed form. Putting `A1` at
+angle 0, the chain gives `P2.1 = (8a₀+3a₁)/11` and then forces
+`a₀ − a₁ = ±11π/15`, at which point all six angles are integer multiples of
+`π/15`:
+
+| point | `A1` | `P2.4` | `P2.3` | `P2.2` | `P2.1` | `A0` |
+|---|---|---|---|---|---|---|
+| angle | `0` | `4π/15` | `5π/15` | `6π/15` | `8π/15` | `11π/15` |
+
+Both apex conditions reduce to the *same* equation `5(a₀−a₁)/11 = ±π/3`, which
+is a good sign the encoding is coherent rather than over-determined. All chain
+and apex checks hold to 1e-61 at 60 digits.
+
+**What that exposes.** `A1`'s core group says `d(A1,P2.3) = d(A1,A2) = r`, so
+`P2.3` lies on `C1 := circle(A1, r)` — the same circle as `P1.1`. And `P2.1`'s
+group says `P1.1` and `P2.3` are both at distance `d(P2.1,A0)` from `P2.1`, so
+both lie on `K := circle(P2.1, d(P2.1,A0))`, which also passes through `A0`.
+So **`P1.1` and `P2.3` are the two intersection points of one circle pair**, and
+that is exactly what the distinctness hypothesis is for. Computing both
+intersections at the configuration above: one has
+`signedArea2(A0,A1,·) = −3.9e-61`, and the other is `P2.3` itself to 2.8e-61.
+The same holds with the labels exchanged on the `a₀ = −11π/15` branch.
+
+**The synthetic argument.** `A1` is the centre of `C1` and `P2.1` the centre of
+`K`, so both are equidistant from `P1.1` and `P2.3`; the line `A1P2.1` is the
+perpendicular bisector of `P1.1P2.3`, and reflection across it preserves both
+circles, hence permutes `C1 ∩ K = {P1.1, P2.3}`. It cannot fix both: that would
+put both on the mirror line with `A1` and `P2.1` each their midpoint, forcing
+`A1 = P2.1`. So it swaps them. Since `A0`, `A1`, `P2.1`, `P2.3` all lie on `C2`
+and `P2.1` is an arc midpoint of chord `A0P2.3`, the chord `A1P2.1` is a
+bisector of the inscribed angle `∠A0 A1 P2.3` — internal or external according
+to which arc midpoint `P2.1` is, which does not matter, because either way the
+reflection carries ray `A1→P2.3` onto the **line** `A1A0`. As `P2.3` is at
+distance `r` from `A1`, its image `P1.1` is at distance `r` from `A1` on that
+line. Hence `A0`, `A1`, `P1.1` are collinear. ∎
+
+**Verified hypothesis set.** The argument uses only two of the six core groups,
+so the subset was tested directly. Over ℚ, three metric equalities
+
+- `d(P2.1,A0) = d(P2.1,P1.1)`
+- `d(P2.1,A0) = d(P2.1,P2.3)`
+- `d(A1,A2) = d(A1,P2.3)`
+
+with three distinctness conditions `P1.1 ≠ P2.3`, `A1 ≠ P2.1`, `A0 ≠ P2.3`
+give `base 1` in 1.6 s. Every one of the six is individually necessary:
+dropping any equality gives `drop … 0`, and dropping any distinctness gives
+`base 0`.
+
+**Why the greedy core was inflated.** With only `P1.1 ≠ P2.3` supplied, the
+three-equality subset gives `base 0` — not because the geometry fails, but
+because the ideal still carries components on which labels coincide (`A1 =
+P2.1` makes the two circles concentric; `A0 = P2.3` degenerates the chord). The
+determinant genuinely does not vanish there. Greedy deletion therefore kept
+seven further equalities whose only job was to cut those components away. The
+distinctness conditions do it directly and are free, since the census label
+bijection makes all fifteen labels distinct points. **Supersedes the core of
+sections 42–45: three equalities, not ten of fourteen.**
+
+**Claim scope.** The hypothesis-set sufficiency is a Singular verdict over ℚ,
+one engine, at the exact-15 encoded scope — the same trust level as section 42,
+no better. The synthetic argument above is a proof sketch of my own and has had
+no adversarial audit and no formalization; it is not promoted, and the numeric
+configuration is a witness, not a proof. What has changed is tractability: a
+Lean ingress must now discharge three equalities and three distinctness
+conditions through two classical steps, instead of reproducing a cofactor
+identity that section 47 showed cannot be built.
 
 Leaf unchanged: single `sorry`, `M = 18`.
