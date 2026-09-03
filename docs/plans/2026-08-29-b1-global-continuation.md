@@ -742,3 +742,70 @@ in that union.  Their packet inequalities make those three points distinct,
 so they exhaust the original live union.  The unresolved exact-five cases are
 now the other-canonical deletion arm, and the live-deletion arm with
 `u = source`; the fully live triple has no further cardinal-role ambiguity.
+
+The fully live exact-card-five triple now has a further source-clean
+elimination.  `b1_cardFive_freshDeletion_eq_originalSource` proves that its
+fresh joint deletion is one of the original live sources `C.u` or `C.v`.  If
+it were neither, exact exhaustion would force the two fresh endpoints to be
+the original `C.u,C.v` pair in one of the two orientations.  The fresh
+deletion is then in one of the corresponding original row traces, while its
+joint-deletion packet says that it is omitted from both fresh endpoint rows,
+a direct contradiction.  Thus the live-deletion arm has only two residual
+forms: the fresh first endpoint is the chosen canonical source, or the fresh
+deletion is an original live source.  This does not yet consume either form,
+but it removes the generic three-role permutation residual without adding an
+order or metric assumption.
+
+`b1_cardFive_freshPair_role_split` wires that elimination into the complete
+fresh-pair transport packet.  Its three remaining arms are now exact: (1) the
+fresh first endpoint is the chosen canonical source and the fresh deletion is
+live; (2) the fresh deletion is one of the original live sources and both
+fresh endpoints are live; or (3) the fresh deletion is the canonical deletion
+opposite the chosen source, both fresh endpoints are live, and the source and
+fresh-first-endpoint blockers are distinct.  This is the current card-five
+consumer boundary.  The next theorem must use row geometry or deletion
+minimality to eliminate one of these three explicit arms; repeating the
+cardinality split cannot sharpen it further.
+
+The original-source deletion arm now carries an exact trace consequence.
+`b1_cardFive_oppositeSlice_singleton_of_freshDeletion` uses the fresh mutual
+omission and joint-deletion omission to prove that deleting `C.u` forces
+`b1VSlice C = {C.v}`, while deleting `C.v` forces
+`b1USlice C = {C.u}`.  This is the first direct bridge from the fresh-pair
+recurrence back into the card-five trace constructors.  It makes the next
+consumer concrete: combine the forced singleton with the already retained
+escape-source membership/identity split, then analyze whether the escape is
+the deleted original source or lies in the opposite two-point slice.
+
+The fresh-pair/escape-witness gap is now narrowed at the source-selection
+boundary.  `b1_freshV_escapeStar_or_adjacentCap` starts from the fresh
+endpoint `v`, whose source context says it is omitted from a canonical source
+row.  That row is the canonical common row, so `v` is outside the common row
+and distinct from both canonical deletions.  If `v` is strict second-cap
+interior, `b1EscapeWitness_of_sourceData` supplies the complete local escape
+witness and the theorem reuses the retained boundary to produce a new
+`B1EscapeRowProvenanceStar` whose named source is explicitly equal to `v`.
+If `v` is not strict-interior, the physical-class cap cover places it in an
+adjacent cap.  The next immediate consumer is therefore the card-specific
+endpoint-order producer applied to this replacement star; its adjacent arm
+must then be compared with the fresh pair's row omissions, while its interior
+arm has the fresh endpoint and named escape aligned.
+
+For exact card five, that replacement star is now consumed immediately by
+`b1_freshV_cardFiveEndpoint_or_originalSource_or_adjacentCap`.  The resulting
+fresh-`v` placement split is: a two-point endpoint-order residual with the
+named escape explicitly equal to `v`; `v = C.u`; `v = C.v`; or `v` in an
+adjacent second-cap block.  This is stronger than the earlier anonymous
+escape residual because the row omissions of the fresh pair remain available
+to the caller under an exact endpoint identity.  The next geometric step is
+to eliminate or exploit the adjacent placement and blocker-between arms using
+those fresh cross-row omissions.
+
+Verification checkpoint (2026-09-03): the three exact-card-five role/trace
+theorems and the fresh-`v` replacement-star theorem compile from source and
+passed independent source/axiom/circularity audits.  The governed
+`lake-build Erdos9796Proof.P97.ATail.FrontierLiveClosure.TwoDeletionCollision`
+completed successfully with 10,871 jobs.  Its subsequent best-effort
+proof-blueprint resync encountered the repository's unrelated stale indexed
+`ATailSevenSourcesOutsideTwoShells` declaration; the wrapper reported the
+module build itself as successful.
