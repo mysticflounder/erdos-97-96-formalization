@@ -2025,3 +2025,78 @@ live pair of vector-space dimension 1536.
 {{NEEDS_UPDATE}}: the `1412a71e2b2792b3` triage, the `172327e48f4004fb`
 falsifier, the certificate verification for `0e31c5c5d735a779`, and the
 characteristic-0 real-root count for the 36-orbit.
+
+### 20. Certificate verifier audit, and labeling cost inside one orbit (2026-09-03)
+
+**Verifier audit.** `artifacts/tools/verify_lift.py` (peer session) is the only
+route in this lane to a refutation rather than mod-p evidence, so it was read
+adversarially: the question is whether a FALSE certificate can pass, not
+whether a true one does.
+
+It cannot, and the reason is structural. The verifier never trusts the
+certificate's own text for anything load-bearing. Both the generators and the
+target squared distance are re-derived from the encoder (`kal_angles.coords`
+and `d2`) and expanded exactly over the rationals; each printed generator must
+equal one of those re-derived generators before it is used; and the final
+identity `d = sum I[q]*C[q]` is checked by exact rational expansion. So a
+passing check exhibits `d` as a rational combination of the encoder's own
+generators, which is a proof of membership independent of Singular, of the
+prime, and of the reconstruction. Every failure mode found — a wrong rational
+reconstruction, a mismatched prime, a generator that is not the encoder's, a
+polynomial that will not parse — makes the check fail rather than pass. It is
+fail-closed in the direction that matters.
+
+Two remarks, neither a soundness defect:
+
+- The generator check does not require the printed generators to be a
+  *bijection* onto the encoder's. A certificate repeating one generator and
+  omitting another would pass the count and the membership test. This is
+  harmless: a rational combination of genuine generators still lies in the
+  ideal, whichever ones appear.
+- The success message says the two points are "equal" at every solution. Over
+  the reals that is right, and the reals are the scope the refutation is about.
+  Over the complex numbers it is not: `(x1-x2)^2 + (y1-y2)^2 = 0` has nonzero
+  isotropic solutions, so `d` vanishing does not make the points coincide
+  there. The conclusion the certificate supports without qualification is that
+  the squared distance vanishes identically on the variety, hence no REAL
+  configuration has all fifteen points distinct.
+
+A false-reject to watch for rather than a defect: the verifier compares against
+the encoder's generators after dropping zero entries, matching `simplify(I,2)`.
+If that Singular call normalizes leading coefficients rather than only deleting
+zero generators, legitimate certificates would fail the generator comparison by
+a scalar. If a certificate that should verify reports "certificate generator q
+is not one of the encoder's generators", that is the first thing to check.
+
+**Labeling cost inside one orbit.** Section 19 established that patterns in one
+orbit have isomorphic ideals. Their *encoded* ideals differ by a permutation of
+the variables, and Gröbner cost is not invariant under that. The recorded
+receipts for the open 36-orbit show the spread is not small:
+
+| key | raw `std` mod 32003 |
+|---|---|
+| `3826b8a0dec4a6b0` | 3.7 s |
+| `0d6996160cc83aab` | 8.2 s |
+| `0ba2f8339583ff96`, `4196eb64fac564cc`, `5815b1f6a42dcb08`, `60e1264c2096add9` | all hit the 900 s cap |
+
+A factor of at least 245 between labelings of one and the same variety. This
+also explains retroactively why `slimgb` "decides all six representatives that
+`std` could not" in 6 to 40 s: several of those six are relabelings of ideals
+`std` had already solved quickly under a different name, so the comparison was
+never between algorithms alone.
+
+The consequence for the characteristic-0 wall is a genuine and previously
+unavailable lever, and also a caution. Every rational attempt so far has used
+`0d6996160cc83aab`, with one on `3826b8a0dec4a6b0`; the orbit has 36 members
+and 30 are unmeasured even mod p. A cheaper labeling is a different rational
+computation, not the same one retried. The caution is that the mod-p spread is
+dominated by monomial-order effects while the rational wall is coefficient
+growth in the lift, and the two need not track: `3826b8a0dec4a6b0` is 2.2 times
+cheaper than `0d6996160cc83aab` mod p and its characteristic-0 run died at the
+same first basis. So this is worth one bounded ranking sweep mod p, not another
+open-ended rational campaign, and it does not reopen the rule that the layer
+gets no further 3600 s rational slots without a specific reason.
+
+{{NEEDS_UPDATE}}: whether a mod-p ranking sweep over the unmeasured labelings
+of the 36-orbit finds one materially cheaper than 3.7 s, and if so whether its
+rational behaviour differs at all.
