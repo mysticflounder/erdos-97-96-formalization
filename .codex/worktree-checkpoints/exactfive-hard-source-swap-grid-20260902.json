@@ -1,0 +1,16 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "exactfive-hard-source-swap-grid-20260902",
+  "owner": "codex-rigid221-hard-source-swap-grid",
+  "base_head": "dd00b9afa9093cdaefa820a6fe4638bc29360cd8",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exactfive-hard-source-swap-grid-20260902.json",
+    "census/card_head/exactfive_hard_source_swap_grid.py",
+    "census/card_head/tests/test_exactfive_hard_source_swap_grid.py",
+    "docs/specs/p97-exactfive-hard-source-swap-grid-v1.md"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-03T02:54:34Z",
+  "manifest_sha256": "0e2b3762e58a0c399bf232b4f390515e1dfce19031af1d5c07e8a7aca8da1626"
+}
