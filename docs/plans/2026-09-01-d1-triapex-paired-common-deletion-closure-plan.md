@@ -2166,3 +2166,51 @@ data collected before the prediction existed.
 The section 21 predictions remain open and are still worth running, since they
 test a DIFFERENT orbit (the 1536 one) and would extend the check from the open
 orbit to a refuted one.
+
+### 23. The certificate target reduces, and the reduction is exact in every case (2026-09-03)
+
+The peer session reported that `0e31c5c5d735a779`'s saturation returned
+`dim_sat -1`, confirming the collapse test's prediction: that orbit is refuted
+at the encoded scope mod 32003. It also observed that the certificate target
+simplifies, since
+
+    d(P0.1,P0.4) = (c01^2+s01^2-1) + (c04^2+s04^2-1) + 2 - 2*(c01*c04+s01*s04)
+
+and the first two brackets are encoder circle generators, so membership of `d`
+reduces to membership of a three-term polynomial with the two circle generators
+added back at cofactor 1. Verified here by exact expansion over the encoder's
+own coordinates: residual exactly zero
+(`artifacts/tools/check_reduction.py`).
+
+The reduction is not case-free in principle, and the missing case analysis is
+worth recording because it decides whether the identity is exact. The encoder
+writes cap X points as `(c,s)`, cap Y points as `(1+c,s)`, and cap Z points as
+a rotation of `(1+c,s)` by `(cf,sf)`. In the Y case the translation cancels in
+a difference, so the identity is still exact; in the Z case it would hold only
+modulo the `cf` circle relation as well, and the certificate would need that
+generator too. All four collapsing pairs predicted in section 21 lie in the X
+cap:
+
+| key | collapsing pair | cap role |
+|---|---|---|
+| `0e31c5c5d735a779` | P0.1:P0.4 | cap 0 = X |
+| `172327e48f4004fb` | P0.1:P0.4 | cap 0 = X |
+| `32263a5344416a02` | P1.1:P1.4 | cap 1 = X |
+| `5d4f4968fac1e0d5` | P1.1:P1.4 | cap 1 = X |
+
+so the reduction is exact for the whole orbit.
+
+Geometrically `1 - (c01*c04 + s01*s04) = 0` says two unit vectors have inner
+product 1. Over the reals that is `P0.1 = P0.4` restated. Over the complex
+numbers it is NOT: `|u-v|^2 = 0` admits a nonzero isotropic difference. The
+consequence is a limit on a tempting shortcut. One would like to certify the
+LINEAR polynomials `c01 - c04` and `s01 - s04` instead, which would give a
+smaller certificate and a stronger statement, and in the peer's linear-algebra
+formulation those cost only an extra right-hand side against the same matrix.
+But `d` lying in the ideal does not imply they do, precisely because of the
+isotropic case, so a failure at every degree would be a true fact about the
+variety rather than a defect in the search.
+
+{{NEEDS_UPDATE}}: the cofactor degree reported by the mod-p `lift` run, which
+bounds the peer's rational linear-algebra search instead of leaving it to
+escalate degree by degree.
