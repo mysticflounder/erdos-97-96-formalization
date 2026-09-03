@@ -4045,3 +4045,45 @@ the shape of the remaining work rather than its size, and nothing yet says it is
 achievable. Recording the comparison rather than choosing.
 
 Leaf unchanged: single `sorry`, `M = 18`.
+
+### 56. Option (b) is closed; the decision narrows to two (2026-09-03)
+
+Section 55 put three options to Adam and named (b) — a cardinality-free naming
+mechanism for the `P2.s` roles — as the only one that changes the shape of the
+remaining work rather than its size. It is closed.
+
+**ProofRelay97 (#9639), on the direct question.** No cardinality-free
+role-naming mechanism exists. The source-neutral statements all quantify over
+arbitrary points of one selected class or support; the concrete `P2.1` / `P2.3`
+roles enter only through the exact-card-fifteen slot labelling and its cap
+decomposition. The mixed-quadruple theorem is cardinality-free once four points
+are supplied, but this branch has no cardinality-free producer of the two
+distinguished cap-2 interior roles.
+
+**Two further routes to the circle, checked here and also negative.** If the
+Moser triangle were equilateral, `d(A2,A0) = d(A2,A1)` would come for free and
+half of the apex gap would close; the source contains no equilateral Moser
+triangle — no `equilateral` declaration exists under `P97/Moser` or `P97/MEC`,
+and the only `moserTriangle` facts are MEC-sphere membership, cosphericality of
+the three vertices (trivial for three points), distinctness, and affine
+independence. Separately, if cap points lay on the MEC circle the whole
+quadruple would be concyclic on it; they do not. `capByIndex` returns the
+partition cells `C1`/`C2`/`C3` (`Cap/PartitionFromMEC.lean:466`), a chord
+partition of the carrier, and `PartitionFromMEC.lean` never mentions
+`mecSphere`. Cap interior points are interior to the disc, not on its boundary.
+
+**Where this leaves the decision.** Option (b) is eliminated, so the choice is:
+
+- **(a)** build the three ingress theorems — mixed apex/interior concyclicity, a
+  named blocker centre, the `A1` cross-cap equidistance — and accept
+  branch-at-a-time progress, with the card-fifteen branch first and 15 further
+  cells plus the `≥ 16` class behind it;
+- **(c)** treat the proved geometry as a banked general result and redirect the
+  lane.
+
+Nothing further can be learned about this choice by more searching: three
+independent reads (my source reconnaissance, ProofRelay97, and the two checks
+above) agree on what is missing and why. The remaining question is one of value,
+not of fact, and belongs to Adam.
+
+Leaf unchanged: single `sorry`, `M = 18`.
