@@ -68,6 +68,36 @@ theorem pairFamily_tight_of_pairwiseDisjoint_subset
   exact ⟨hpointwise,
     Finset.eq_of_subset_of_card_le hunion_subset hunion_card.symm.le⟩
 
+/-- Equality also gives a unique owner index for every ambient pair.  This is
+the relation form of the owner map; callers may define a chosen owner only
+after supplying whatever finite index type they need. -/
+theorem pairFamily_owner_existsUnique_of_tight
+    {α ι : Type*} [DecidableEq α] [Fintype ι] [DecidableEq ι]
+    (U : Finset (Finset α))
+    (pairs : ι → Finset (Finset α))
+    (weight : ι → ℕ)
+    (hdisjoint :
+      ((Finset.univ : Finset ι) : Set ι).PairwiseDisjoint pairs)
+    (hsubset : ∀ i, pairs i ⊆ U)
+    (hlower : ∀ i, weight i ≤ (pairs i).card)
+    (hsum : ∑ i, weight i = U.card) :
+    ∀ ⦃x : Finset α⦄, x ∈ U → ∃! i, x ∈ pairs i := by
+  have hcover :=
+    (pairFamily_tight_of_pairwiseDisjoint_subset U pairs weight hdisjoint
+      hsubset hlower hsum).2
+  intro x hx
+  have hxUnion : x ∈ Finset.univ.biUnion pairs := by
+    rw [hcover]
+    exact hx
+  rcases Finset.mem_biUnion.mp hxUnion with ⟨i, _hi, hxi⟩
+  refine ⟨i, hxi, ?_⟩
+  intro j hxj
+  by_contra hne
+  have hd : Disjoint (pairs i) (pairs j) :=
+    hdisjoint (Finset.mem_univ i) (Finset.mem_univ j)
+      (fun hij => hne hij.symm)
+  exact Finset.disjoint_left.mp hd hxi hxj
+
 /-- A nonempty two-subset family of cardinality one has exactly two
 elements.  This is the small inversion step needed to turn endpoint pair
 tightness into an outside-support cardinality. -/
