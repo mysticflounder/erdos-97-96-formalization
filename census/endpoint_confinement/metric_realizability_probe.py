@@ -37,7 +37,7 @@ from collections import Counter
 from collections.abc import Iterable, Mapping, Sequence
 from concurrent.futures import ProcessPoolExecutor, as_completed
 from dataclasses import dataclass
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from itertools import combinations, permutations
 from pathlib import Path
 from typing import Any
@@ -846,14 +846,25 @@ def _constraint_counts(
     }
     if mec_apices is not None:
         gauge_eliminated = {0, 1}.issubset(set(mec_apices))
-        counts.update(
-            {
-                "mec_radius_pos": 1,
-                "mec_boundary": 1 if gauge_eliminated else 3,
-                "mec_disk": n,
-                "mec_nonobtuse": 3,
-            }
-        )
+        if gauge_eliminated:
+            counts.update(
+                {
+                    "mec_gauge": 1,
+                    "mec_radius_pos": 0,
+                    "mec_boundary": 0,
+                    "mec_disk": n,
+                    "mec_nonobtuse": 3,
+                }
+            )
+        else:
+            counts.update(
+                {
+                    "mec_radius_pos": 1,
+                    "mec_boundary": 3,
+                    "mec_disk": n,
+                    "mec_nonobtuse": 3,
+                }
+            )
     return counts
 
 
@@ -977,7 +988,7 @@ def _normalize_assignment(
     merged: dict[tuple[int, tuple[int, ...]], bool] = {}
     for name, raw in assignment.items():
         if not isinstance(raw, Mapping):
-            raise ValueError(f"row {name!r} is not an object")
+            raise TypeError(f"row {name!r} is not an object")
         center = int(raw["center"])
         support = tuple(sorted(int(point) for point in raw["support"]))
         if len(support) != 4 or len(set(support)) != 4:
@@ -1128,6 +1139,13 @@ def _direct_system_from_source(
                 f"direct metric source at {path} has invalid MEC apices"
             )
         mec_apices = tuple(raw_mec_apices)
+        if {0, 1}.issubset(set(mec_apices)):
+            gauge_index = order.index(0)
+            if order[(gauge_index + 1) % n] != 1:
+                raise ValueError(
+                    f"direct metric source at {path} gauge MEC elimination "
+                    "requires directed hull edge 0 to 1"
+                )
 
     key = _direct_system_key(n, order, rows, mec_apices)
     expected_system_id = hashlib.sha256(key.encode()).hexdigest()[:20]
@@ -1194,7 +1212,12 @@ def extract_systems(paths: Sequence[Path]) -> tuple[list[dict[str, Any]], dict[s
                 by_key[key]["sources"].extend(direct_system["sources"])
             continue
 
-        def visit(value: Any, json_path: tuple[Any, ...], context: dict[str, Any]) -> None:
+        def visit(
+            value: Any,
+            json_path: tuple[Any, ...],
+            context: dict[str, Any],
+            source_path: Path = path,
+        ) -> None:
             nonlocal raw_assignments, rejected_non_sat
             if isinstance(value, dict):
                 next_context = dict(context)
@@ -1214,7 +1237,7 @@ def extract_systems(paths: Sequence[Path]) -> tuple[list[dict[str, Any]], dict[s
                     else:
                         if "n" not in next_context or "profile" not in next_context:
                             raise ValueError(
-                                f"missing frame metadata at {path}:{_json_pointer(json_path)}"
+                                f"missing frame metadata at {source_path}:{_json_pointer(json_path)}"
                             )
                         n = int(next_context["n"])
                         profile = tuple(int(x) for x in next_context["profile"])
@@ -1232,9 +1255,9 @@ def extract_systems(paths: Sequence[Path]) -> tuple[list[dict[str, Any]], dict[s
                             if field in next_context
                         }
                         source = {
-                            "file": os.path.relpath(path, ROOT),
+                            "file": os.path.relpath(source_path, ROOT),
                             "json_pointer": _json_pointer(json_path + ("assignment",)),
-                            "family": _source_family(path, json_path),
+                            "family": _source_family(source_path, json_path),
                             "context": source_context,
                         }
                         if key not in by_key:
@@ -1498,36 +1521,52 @@ def _probe_system(
         for constraint in row_exactness
     ]
     mec_constraints: list[Any] = []
-    mec_variables: tuple[Any, Any, Any] | None = None
+    mec_model_terms: tuple[Any, Any, Any] | None = None
     if mec_apices is not None:
         gauge_eliminated = {0, 1}.issubset(set(mec_apices))
         if gauge_eliminated:
-            mec_y = z3.Real("mec_y")
+            gauge_index = order.index(0)
+            if order[(gauge_index + 1) % n] != 1:
+                raise ValueError(
+                    "gauge MEC elimination requires directed hull edge 0 to 1"
+                )
+            [third_apex] = set(mec_apices) - {0, 1}
+            u, v = points[third_apex]
+            q = u**2 - u + v**2
             mec_x = z3.RealVal(1) / 2
+            mec_y = q / (2 * v)
             mec_r2 = z3.RealVal(1) / 4 + mec_y**2
-            boundary_apices = tuple(
-                apex for apex in mec_apices if apex not in {0, 1}
+            canonical_apices = (0, 1, third_apex)
+            mec_constraints.append(v > 0)
+            mec_constraints.extend(
+                v * (px**2 - px + py**2) <= py * q
+                for px, py in points.values()
             )
         else:
             mec_x, mec_y, mec_r2 = z3.Reals("mec_x mec_y mec_r2")
-            boundary_apices = mec_apices
-        mec_variables = (mec_x, mec_y, mec_r2)
+            canonical_apices = tuple(mec_apices)
 
-        def mec_d2(point: int) -> Any:
-            px, py = points[point]
-            return (px - mec_x) ** 2 + (py - mec_y) ** 2
+            def mec_d2(point: int) -> Any:
+                px, py = points[point]
+                return (px - mec_x) ** 2 + (py - mec_y) ** 2
 
-        mec_constraints.append(mec_r2 > 0)
-        mec_constraints.extend(mec_d2(apex) == mec_r2 for apex in boundary_apices)
-        mec_constraints.extend(mec_r2 - mec_d2(point) >= 0 for point in range(n))
+            mec_constraints.append(mec_r2 > 0)
+            mec_constraints.extend(
+                mec_d2(apex) == mec_r2 for apex in mec_apices
+            )
+            mec_constraints.extend(
+                mec_r2 - mec_d2(point) >= 0 for point in range(n)
+            )
+        mec_model_terms = (mec_x, mec_y, mec_r2)
+
         mec_constraints.extend(
             dot_at(
                 apex,
-                mec_apices[(index + 1) % 3],
-                mec_apices[(index + 2) % 3],
+                canonical_apices[(index + 1) % 3],
+                canonical_apices[(index + 2) % 3],
             )
             >= 0
-            for index, apex in enumerate(mec_apices)
+            for index, apex in enumerate(canonical_apices)
         )
 
     timeout_ms = max(1, int(timeout_s * 1000))
@@ -1696,8 +1735,8 @@ def _probe_system(
         "numeric_min_exact_radius_gap": min(exact_gaps, default=None),
     }
     result["model"] = exact_coordinates
-    if mec_variables is not None:
-        mec_x, mec_y, mec_r2 = mec_variables
+    if mec_model_terms is not None:
+        mec_x, mec_y, mec_r2 = mec_model_terms
         result["mec_model"] = {
             "x": encode_value(mec_x)[0],
             "y": encode_value(mec_y)[0],
@@ -1768,7 +1807,7 @@ def probe_system(
     if workers != 1:
         raise ValueError("PIQD metric route requires workers=1")
     if not isinstance(piqd_output_directory, Path):
-        raise ValueError("PIQD metric route requires an exact output Path")
+        raise TypeError("PIQD metric route requires an exact output Path")
     from census.p97_search import phase3_piqd_smt_source_adapter as neutral
 
     from . import metric_realizability_piqd as piqd
@@ -2034,7 +2073,7 @@ def _write_checkpoint(
         enriched.append(result)
     payload = {
         "schema": SCHEMA,
-        "generated_at": datetime.now(timezone.utc).isoformat(),
+        "generated_at": datetime.now(UTC).isoformat(),
         "extraction": extraction,
         "config": config,
         "smoke": smoke,

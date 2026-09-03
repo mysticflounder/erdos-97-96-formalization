@@ -8,8 +8,9 @@ version-2 direct system also exposes the circumscribed-MEC constraints named by
 ``CircumscribedMECPacket.disk_contains_A``; its nonobtuse apex-triangle packet
 is replayed alongside them.  The quantified minimum-radius clause remains
 outside this finite exposed packet.  When the MEC triangle contains both gauge
-labels, ``mec_x = 1/2`` and ``mec_r2 = 1/4 + mec_y^2`` are substituted into the
-packet, leaving only ``mec_y`` as a declared and read-back MEC variable.
+labels, its third apex ``(u,v)`` has ``v > 0`` and the boundary equations give
+``mec_y = (u^2-u+v^2)/(2*v)``.  The adapter eliminates every MEC variable and
+rewrites each disk atom polynomially before sending the query to PIQD.
 """
 
 from __future__ import annotations
@@ -39,8 +40,8 @@ RESULT_SCHEMA = "p97-endpoint-metric-realizability-piqd-result/v1"
 SOURCE_SCHEMA = "p97-endpoint-metric-realizability-piqd-source/v1"
 DESCRIPTOR_SCHEMA = "p97-endpoint-metric-realizability-piqd-query/v1"
 PROFILE_SCHEMA = "p97-piqd-z3-qfnra-one-shot/v1"
-NORMALIZATION_SCHEMA = "p97-endpoint-metric-smt-normalization/v2"
-MEC_PARAMETERIZATION_SCHEMA = "p97-endpoint-metric-mec-parameterization/v1"
+NORMALIZATION_SCHEMA = "p97-endpoint-metric-smt-normalization/v3"
+MEC_PARAMETERIZATION_SCHEMA = "p97-endpoint-metric-mec-parameterization/v2"
 STAGES = ("exact-metric-relaxation", "full-convex", "convex-only-relaxation")
 _SAT_REPLAY_INCONCLUSIVE_STATUSES = {
     "INCONCLUSIVE_SEMANTIC_REPLAY_REJECTED",
@@ -228,6 +229,12 @@ def _validate_system(value: object) -> dict[str, Any]:
             or any(apex not in range(n) for apex in mec_apices)
         ):
             raise EndpointMetricPiqdError("metric system MEC apices are invalid")
+        if _mec_gauge_eliminated(mec_apices):
+            gauge_index = system["order"].index(0)
+            if system["order"][(gauge_index + 1) % n] != 1:
+                raise EndpointMetricPiqdError(
+                    "gauge MEC elimination requires directed hull edge 0 to 1"
+                )
         rows = tuple(
             producer.MetricRow(row["center"], tuple(row["support"]), row["exact"])
             for row in system["rows"]
@@ -386,10 +393,35 @@ def _mec_gauge_eliminated(mec_apices: Sequence[int]) -> bool:
     return {0, 1}.issubset(set(mec_apices))
 
 
+def _mec_gauge_third_apex(mec_apices: Sequence[int]) -> int:
+    remaining = set(mec_apices) - {0, 1}
+    if not _mec_gauge_eliminated(mec_apices) or len(remaining) != 1:
+        raise EndpointMetricPiqdError("gauge MEC packet has no unique third apex")
+    return remaining.pop()
+
+
 def _mec_terms(mec_apices: Sequence[int]) -> tuple[str, str, str]:
     if _mec_gauge_eliminated(mec_apices):
-        return "(/ 1 2)", "mec_y", "(+ (/ 1 4) (* mec_y mec_y))"
+        raise EndpointMetricPiqdError("fully eliminated gauge MEC has no SMT terms")
     return "mec_x", "mec_y", "mec_r2"
+
+
+def _gauge_norm2(point: int) -> str:
+    x = _coordinate(point, "x")
+    y = _coordinate(point, "y")
+    return f"(+ (- (* {x} {x}) {x}) (* {y} {y}))"
+
+
+def _mec_gauge_reconstruction_terms(mec_apices: Sequence[int]) -> dict[str, str]:
+    third = _mec_gauge_third_apex(mec_apices)
+    v = _coordinate(third, "y")
+    q = _gauge_norm2(third)
+    mec_y = f"(/ {q} (* 2 {v}))"
+    return {
+        "mec_x": "(/ 1 2)",
+        "mec_y": mec_y,
+        "mec_r2": f"(+ (/ 1 4) (* {mec_y} {mec_y}))",
+    }
 
 
 def _mec_parameterization(
@@ -404,15 +436,18 @@ def _mec_parameterization(
             "omitted_boundary_apices": [],
         }
     if _mec_gauge_eliminated(mec_apices):
+        third = _mec_gauge_third_apex(mec_apices)
+        v = _coordinate(third, "y")
         return {
             "schema": MEC_PARAMETERIZATION_SCHEMA,
-            "mode": "gauge-eliminated",
-            "declared_terms": ["mec_y"],
-            "exact_substitutions": {
-                "mec_x": "(/ 1 2)",
-                "mec_r2": "(+ (/ 1 4) (* mec_y mec_y))",
-            },
-            "omitted_boundary_apices": [0, 1],
+            "mode": "gauge-fully-eliminated",
+            "declared_terms": [],
+            "third_apex": third,
+            "required_guard": f"(> {v} 0)",
+            "q_term": _gauge_norm2(third),
+            "exact_substitutions": _mec_gauge_reconstruction_terms(mec_apices),
+            "disk_rewrite": "v*(x^2-x+y^2)<=y*q",
+            "omitted_boundary_apices": [0, 1, third],
         }
     return {
         "schema": MEC_PARAMETERIZATION_SCHEMA,
@@ -511,27 +546,41 @@ def _stage_atoms(
     mec_apices = system.get("mec_apices")
     if mec_apices is not None:
         gauge_eliminated = _mec_gauge_eliminated(mec_apices)
-        mec_x, mec_y, mec_r2 = _mec_terms(mec_apices)
-        boundary_apices = (
-            [apex for apex in mec_apices if apex not in {0, 1}]
-            if gauge_eliminated
-            else mec_apices
-        )
+        if gauge_eliminated:
+            third = _mec_gauge_third_apex(mec_apices)
+            v = _coordinate(third, "y")
+            q = _gauge_norm2(third)
+            canonical_apices = (0, 1, third)
+            mec_gauge = [f"(> {v} 0)"]
+            mec_radius_pos: list[str] = []
+            mec_boundary: list[str] = []
+            mec_disk = [
+                f"(<= (* {v} {_gauge_norm2(point)}) "
+                f"(* {_coordinate(point, 'y')} {q}))"
+                for point in range(n)
+            ]
+        else:
+            mec_x, mec_y, mec_r2 = _mec_terms(mec_apices)
+            canonical_apices = tuple(mec_apices)
+            mec_gauge = []
+            mec_radius_pos = [f"(> {mec_r2} 0)"]
+            mec_boundary = [
+                f"(= {_mec_d2(apex, mec_x, mec_y)} {mec_r2})"
+                for apex in mec_apices
+            ]
+            mec_disk = [
+                f"(>= (- {mec_r2} {_mec_d2(point, mec_x, mec_y)}) 0)"
+                for point in range(n)
+            ]
         atoms.update(
             {
-                "mec_gauge": [],
-                "mec_radius_pos": [f"(> {mec_r2} 0)"],
-                "mec_boundary": [
-                    f"(= {_mec_d2(apex, mec_x, mec_y)} {mec_r2})"
-                    for apex in boundary_apices
-                ],
-                "mec_disk": [
-                    f"(>= (- {mec_r2} {_mec_d2(point, mec_x, mec_y)}) 0)"
-                    for point in range(n)
-                ],
+                "mec_gauge": mec_gauge,
+                "mec_radius_pos": mec_radius_pos,
+                "mec_boundary": mec_boundary,
+                "mec_disk": mec_disk,
                 "mec_nonobtuse": [
-                    f"(>= {_dot_at(apex, mec_apices[(index + 1) % 3], mec_apices[(index + 2) % 3])} 0)"
-                    for index, apex in enumerate(mec_apices)
+                    f"(>= {_dot_at(apex, canonical_apices[(index + 1) % 3], canonical_apices[(index + 2) % 3])} 0)"
+                    for index, apex in enumerate(canonical_apices)
                 ],
             }
         )
@@ -605,17 +654,16 @@ def build_stage_smt2(
                 f"(declare-fun y_{point} () Real)",
             ]
         )
-    if "mec_apices" in system:
-        if _mec_gauge_eliminated(system["mec_apices"]):
-            commands.append("(declare-fun mec_y () Real)")
-        else:
-            commands.extend(
-                [
-                    "(declare-fun mec_x () Real)",
-                    "(declare-fun mec_y () Real)",
-                    "(declare-fun mec_r2 () Real)",
-                ]
-            )
+    if "mec_apices" in system and not _mec_gauge_eliminated(
+        system["mec_apices"]
+    ):
+        commands.extend(
+            [
+                "(declare-fun mec_x () Real)",
+                "(declare-fun mec_y () Real)",
+                "(declare-fun mec_r2 () Real)",
+            ]
+        )
     for category in (
         "gauge",
         "fixture_pins",
@@ -644,9 +692,9 @@ def _variables(
         for point in range(n)
         for axis in ("x", "y")
     ]
-    if mec_apices is not None and _mec_gauge_eliminated(mec_apices):
-        variables.append({"id": "z001-mec-y", "term": "mec_y", "sort": "Real"})
-    elif include_mec or mec_apices is not None:
+    if (include_mec or mec_apices is not None) and not (
+        mec_apices is not None and _mec_gauge_eliminated(mec_apices)
+    ):
         variables.extend(
             [
                 {"id": "z000-mec-x", "term": "mec_x", "sort": "Real"},
@@ -790,8 +838,8 @@ def prepare_stage(
     }
     descriptor = {
         "schema": DESCRIPTOR_SCHEMA,
-        "producer": {"id": "endpoint-metric-realizability", "version": "v2"},
-        "semantic_verifier": {"id": "exact-rational-stage-replay", "version": "v2"},
+        "producer": {"id": "endpoint-metric-realizability", "version": "v3"},
+        "semantic_verifier": {"id": "exact-rational-stage-replay", "version": "v3"},
         "stage_id": stage,
         "query_id": f"{system['system_id']}-{stage}",
         "sources": [
@@ -985,9 +1033,12 @@ def verify_sat_model(
         "distinctness": 0,
         "convexity": 0,
     }
+    if points[0] != (0, 0) or points[1] != (1, 0):
+        return neutral.SemanticVerification(False, {"reason": "gauge"})
     mec_apices = system.get("mec_apices")
     mec_center: tuple[Fraction, Fraction] | None = None
     mec_r2: Fraction | None = None
+    reconstructed_mec_checks: dict[str, int] | None = None
     if mec_apices is not None:
         gauge_eliminated = _mec_gauge_eliminated(mec_apices)
         checked.update(
@@ -1000,41 +1051,83 @@ def verify_sat_model(
             }
         )
         if gauge_eliminated:
-            mec_center = (Fraction(1, 2), readback["mec_y"])
+            third = _mec_gauge_third_apex(mec_apices)
+            u, v = points[third]
+            checked["mec_gauge"] += 1
+            if v <= 0:
+                return neutral.SemanticVerification(
+                    False, {"reason": "mec_gauge_orientation"}
+                )
+            q = u * u - u + v * v
+            mec_center = (Fraction(1, 2), q / (2 * v))
             mec_r2 = Fraction(1, 4) + mec_center[1] ** 2
-            boundary_apices = [
-                apex for apex in mec_apices if apex not in {0, 1}
-            ]
+            canonical_apices = (0, 1, third)
+            reconstructed_mec_checks = {
+                "mec_radius_pos": 0,
+                "mec_boundary": 0,
+                "mec_disk": 0,
+                "mec_nonobtuse": 0,
+            }
         else:
             mec_center = (readback["mec_x"], readback["mec_y"])
             mec_r2 = readback["mec_r2"]
-            boundary_apices = mec_apices
-        checked["mec_radius_pos"] += 1
+            canonical_apices = tuple(mec_apices)
+        checked["mec_radius_pos"] += 0 if gauge_eliminated else 1
         if mec_r2 <= 0:
             return neutral.SemanticVerification(False, {"reason": "mec_radius_pos"})
-        for apex in boundary_apices:
-            checked["mec_boundary"] += 1
+        if reconstructed_mec_checks is not None:
+            reconstructed_mec_checks["mec_radius_pos"] += 1
+        for apex in canonical_apices:
+            if not gauge_eliminated:
+                checked["mec_boundary"] += 1
             if _distance_to(points[apex], mec_center) != mec_r2:
                 return neutral.SemanticVerification(
-                    False, {"reason": "mec_boundary"}
+                    False,
+                    {
+                        "reason": (
+                            "mec_reconstructed_boundary"
+                            if gauge_eliminated
+                            else "mec_boundary"
+                        )
+                    },
                 )
+            if reconstructed_mec_checks is not None:
+                reconstructed_mec_checks["mec_boundary"] += 1
         for point in range(system["n"]):
             checked["mec_disk"] += 1
+            if gauge_eliminated:
+                x, y = points[point]
+                gauge_norm = x * x - x + y * y
+                if v * gauge_norm > y * q:
+                    return neutral.SemanticVerification(
+                        False, {"reason": "mec_disk_polynomial"}
+                    )
             if mec_r2 - _distance_to(points[point], mec_center) < 0:
-                return neutral.SemanticVerification(False, {"reason": "mec_disk"})
-        for index, apex in enumerate(mec_apices):
+                return neutral.SemanticVerification(
+                    False,
+                    {
+                        "reason": (
+                            "mec_reconstructed_disk"
+                            if gauge_eliminated
+                            else "mec_disk"
+                        )
+                    },
+                )
+            if reconstructed_mec_checks is not None:
+                reconstructed_mec_checks["mec_disk"] += 1
+        for index, apex in enumerate(canonical_apices):
             checked["mec_nonobtuse"] += 1
             if _dot_product_at(
                 points,
                 apex,
-                mec_apices[(index + 1) % 3],
-                mec_apices[(index + 2) % 3],
+                canonical_apices[(index + 1) % 3],
+                canonical_apices[(index + 2) % 3],
             ) < 0:
                 return neutral.SemanticVerification(
                     False, {"reason": "mec_nonobtuse"}
                 )
-    if points[0] != (0, 0) or points[1] != (1, 0):
-        return neutral.SemanticVerification(False, {"reason": "gauge"})
+            if reconstructed_mec_checks is not None:
+                reconstructed_mec_checks["mec_nonobtuse"] += 1
     for pin in fixture_pins:
         checked["fixture_pins"] += 1
         expected_value = Fraction(pin["numerator"], pin["denominator"])
@@ -1101,6 +1194,8 @@ def verify_sat_model(
             "r2": str(mec_r2),
             "apices": list(mec_apices),
         }
+    if reconstructed_mec_checks is not None:
+        evidence["reconstructed_mec_packet_checks"] = reconstructed_mec_checks
     return neutral.SemanticVerification(True, evidence)
 
 
