@@ -5697,3 +5697,82 @@ SKETCH** and still the only conjectural link.
 
 Scope unchanged: one-radius arm, card-15 gated.  **Obligation (i) is not
 closed.**  Leaf unchanged: single `sorry`, `M = 18`.
+
+### 75. Producer audit: corrections to this plan, and the real blocker (2026-09-03)
+
+A read-only producer audit of the twenty-one hypotheses of
+`false_of_cyclic_foreign_hits_of_ne` returned findings that correct this plan.
+Every correction below was re-checked directly against the working tree.
+
+**CORRECTION 1 — the leaf is two obligations, not one, and `_core` is proved.**
+Earlier sections of this plan, and every status line I wrote, said "the leaf is
+a single `sorry` at `TriApexEndpointRetainedOmission.lean:2923`".  That is
+wrong.  Verified by direct `grep`:
+
+* `false_of_pairedCommonDeletion_fiveSurviveOneFail_triApexAllLarge_core`
+  (header `:2974`) has **no `sorry`**.  Its proof is a `by_cases` on
+  `D.A.card = 15` dispatching to two children;
+* `…_card_eq_fifteen` (header `:2882`) carries a `sorry` at **`:2931`**;
+* `…_card_ge_sixteen` (header `:2948`) carries a `sorry` at **`:2961`**.
+
+So the anchor reaches **two** open obligations.  "Single `sorry`" was only ever
+true as a count of the `sorryAx` *symbol*, which is one constant however many
+occurrences reach it; it was never a count of open obligations.  `M = 18` is a
+blueprint measure and is not a claim that one hole remains.
+
+**CORRECTION 2 — the card-15 gate is better than section 62 recorded.**  The
+card-15 child takes `(hcard : D.A.card = 15)` as a real binder, and `_core`'s
+case split discharges it.  Sections 63–74 therefore target a genuine child
+obligation, not a hypothesis nobody supplies.  The `≥ 16` branch at `:2961` is
+a **separate open obligation that none of this lane's work touches**, and it
+was not previously named in this plan.
+
+**CORRECTION 3 — `AllLargeEndpointRadius.lean` cannot be used at the `sorry`.**
+It `import`s `TriApexEndpointRetainedOmission` (line `:8`), so it is strictly
+downstream of both `sorry`s and unusable at either.  It is type-correct and
+axiom-clean — that validation stands — but its reachability is nil as written.
+Using it requires moving the statement upstream of the importing file.
+
+**THE REAL BLOCKER.**  Of the thirteen distinct hypothesis shapes:
+
+| hypothesis | producer |
+|---|---|
+| `dist A O = R`, `dist B O = R`, `dist C O = R` | **exists** — `MoserTriangle.v{1,2,3}_boundary` (`Moser/Triangle.lean:74,76,78`), or `S.circPacket.moser_on_boundary_{1,2,3}` in `‖·‖` form (`CircumscribedMECPacket.lean:91,93,95`, instantiated `Shard01.lean:267`) |
+| `dist q O ≤ R` | **exists** — `MEC.dist_mecSphere_center_le` (`MEC/Basic.lean:293`), or `S.circPacket.disk_contains_A` (`:107`) |
+| the three side equations | definitional, once the sides are named |
+| `0 < a`, `0 < b`, `0 < c` | not as stated, but `S.triangle.v12_ne`/`v13_ne`/`v23_ne` (`Cap/Structure.lean:111-113`) plus `dist_pos` give them |
+| `0 ≤ a² + b² − c²` | **none** — `triangleNonObtuse` carries only inner-product fields `inner_at_v{1,2,3}` (`Moser/TriangleNonObtuse.lean:673,676,679`).  The polarization to squared side lengths occurs *inline* in at least three proofs (`Q3SharedInterior.lean:212`, `:403`; `A1B2FrameNormalization.lean:467`) and is **exported nowhere**.  This one is a short lemma somebody should just write. |
+| `dist q A = c` and `dist q B = a` | **none, anywhere** |
+
+The last row is the blocker, and it is not a plumbing gap.  **No declaration in
+the tree gives a carrier point two apex-centred radii at two different
+apices.**  Every radius fact reachable at the `sorry` is single-apex
+`SelectedClass D.A (S.oppositeVertexByIndex k) r` membership.
+`AdjacentMutualOmissionPairAt` (`:2735`) names two singleton adjacent-cap hits
+but says nothing about their distance to the neighbouring apex;
+`StrictApexFourWitness`, `StrictAdjacentEscapeAt` and `EndpointRadiusAt` are
+all single-apex or apex-to-apex.  The only declarations pairing two different
+apex distances at one point are `EndpointEscapeRightAt`/`LeftAt`
+(`Shard02.lean:1356`, `:1374`), which are refuted escape branches and are not
+produced in this context.
+
+Two independent bounded searches of my own agree: zero declarations relate a
+carrier point to two apex-centred radii.
+
+**What this means for sections 63–74.**  Nothing proved there is retracted;
+all ten theorems stand, proved and axiom-clean.  But the object they consume —
+a *foreign hit*, a carrier point simultaneously on two apex circles — **has no
+producer in the source**.  Sections 63–66 introduced it as the reduced open
+configuration and it has been treated ever since as though the ingress existed.
+It does not.  Until something produces such a point at the `sorry`, the whole
+chain is a conditional: *if* a foreign hit exists in the cyclic pattern, *then*
+the apex triangle is equilateral.
+
+That is a materially different picture from "three of four links are Lean, one
+conjectural link remains", which is how sections 72–74 framed the state.  The
+honest frame is: the algebra and geometry are done; the **ingress that would
+make them apply is missing**, and finding or building it is a larger open
+question than section 64.
+
+Scope unchanged.  **Obligation (i) is not closed.**  Leaf: two open
+obligations, `M = 18`.
