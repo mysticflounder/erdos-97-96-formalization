@@ -1518,12 +1518,22 @@ side rule refutes every sampled Stage 1d survivor; Stage 1e census launched):
   engine. Guardrail 2 still applies: it proves a statement about the
   encoding. The open risk is that the cofactor coefficients are themselves
   large enough to defeat reconstruction, which is visible immediately.
-  {{NEEDS_UPDATE}}: the `interred`+`elimpart`+`rabin` composition gate mod
-  32003 for `0d6996160cc83aab`, which must return dimension 0 and
-  vector-space dimension 192, and the rational real-root count it gates. A
-  zero real count there would carry three qualifications: `elimpart`
-  exactness, the missing Guardrail 7 second engine, and the mod-32003
-  provenance of the four live pairs.
+  Composition gate, PASSED. `interred` followed by `elimpart` followed by
+  the four Rabinowitsch pairs, for `0d6996160cc83aab` mod 32003, returns
+  dimension 0 and vector-space dimension 192, the value `--saturate` gives
+  on that key, in 1543 s of daemon wall time (run `e0999b14`). The three
+  reductions therefore compose without changing the ideal's quotient
+  dimension at that characteristic, which is the Guardrail 1 condition for
+  spending the last rational slot on the composed system. Note the cost:
+  the composed mod-p run takes 1543 s against 8 s for the raw basis and
+  280 to 604 s for full saturation, so the reductions are not free even
+  where they succeed.
+  {{NEEDS_UPDATE}}: the rational real-root count that gate authorized, on
+  the composed system with `modStd` and a 3600 s budget. A zero real count
+  there would carry three qualifications, and none of them is discharged by
+  the gate above: `elimpart` exactness over the rationals, the missing
+  Guardrail 7 second engine, and the mod-32003 provenance of the four live
+  pairs. The gate licenses the attempt, not the verdict.
   {{NEEDS_UPDATE}}: the mod-p saturated picture for the twelve
   representatives chain v9 did not reach. That work is triage evidence, not
   a decision: a mod-p emptiness is evidence only, by the direction recorded
