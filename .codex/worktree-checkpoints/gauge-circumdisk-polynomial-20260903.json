@@ -1,0 +1,15 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "gauge-circumdisk-polynomial-20260903",
+  "owner": "Codex-B1-Sorry",
+  "base_head": "0d070f6befd5b4a194a01cdd8837b2f203a34a6d",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/gauge-circumdisk-polynomial-20260903.json",
+    "docs/audits/2026-09-03-gauge-circumdisk-polynomial.md",
+    "lean/Erdos9796Proof/P97/N4d/SmallSReductions.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-03T12:20:00Z",
+  "manifest_sha256": "1df5cc59d998d42cdf1f145c44fd3469070e83c9a1cb47f5dbf1c4073597cd58"
+}

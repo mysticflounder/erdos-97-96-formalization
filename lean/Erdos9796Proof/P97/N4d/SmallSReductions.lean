@@ -166,6 +166,42 @@ theorem mec_circumcenter_y (v₁ v₃ O : ℝ²) (R : ℝ)
   rw [eq_div_iff (by positivity)]
   nlinarith [h, hOx]
 
+/-- In the normalized frame, the third boundary equation and its positive
+height eliminate the remaining circumcenter coordinate from a squared-disk
+test.  This is the polynomial form used by the endpoint metric probe: it does
+not divide by the tested point's `y` coordinate. -/
+theorem gauge_boundary_disk_sq_iff_polynomial
+    (u v m x y : ℝ) (hv : 0 < v)
+    (hboundary :
+      (u - (1 / 2 : ℝ)) ^ 2 + (v - m) ^ 2 =
+        (1 / 4 : ℝ) + m ^ 2) :
+    ((x - (1 / 2 : ℝ)) ^ 2 + (y - m) ^ 2 ≤
+        (1 / 4 : ℝ) + m ^ 2) ↔
+      v * (x ^ 2 - x + y ^ 2) ≤
+        y * (u ^ 2 - u + v ^ 2) := by
+  have hm : 2 * v * m = u ^ 2 - u + v ^ 2 := by
+    nlinarith [hboundary]
+  have hym :
+      2 * v * m * y = (u ^ 2 - u + v ^ 2) * y :=
+    congrArg (fun value : ℝ => value * y) hm
+  constructor
+  · intro hdisk
+    have hdiff : 0 ≤ 2 * y * m - (x ^ 2 - x + y ^ 2) := by
+      nlinarith [hdisk]
+    have hmul : 0 ≤ v * (2 * y * m - (x ^ 2 - x + y ^ 2)) :=
+      mul_nonneg (le_of_lt hv) hdiff
+    nlinarith [hmul, hym]
+  · intro hpoly
+    have hmul : 0 ≤ v * (2 * y * m - (x ^ 2 - x + y ^ 2)) := by
+      nlinarith [hpoly, hym]
+    have hmul' : 0 ≤ (2 * y * m - (x ^ 2 - x + y ^ 2)) * v := by
+      calc
+        0 ≤ v * (2 * y * m - (x ^ 2 - x + y ^ 2)) := hmul
+        _ = (2 * y * m - (x ^ 2 - x + y ^ 2)) * v := mul_comm _ _
+    have hdiff : 0 ≤ 2 * y * m - (x ^ 2 - x + y ^ 2) :=
+      nonneg_of_mul_nonneg_left hmul' hv
+    nlinarith [hdiff]
+
 /-- The inner-product non-obtuse condition at `v₃` (interior angle of the
 triangle `v₁v₂v₃` at `v₃` is `≤ π/2`), `⟪v₁ − v₃, v₂ − v₃⟫ ≥ 0`, expands in
 the normalized frame to the nonnegativity of the `Oy`-numerator
