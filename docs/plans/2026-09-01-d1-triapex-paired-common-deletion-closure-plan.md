@@ -6082,3 +6082,55 @@ circumradius equations, and all six foreign-hit distance equations explicitly.
 The theorem is axiom-clean and builds under the governed workflow.  It is still
 off-spine: no current D1 producer supplies the three cyclic foreign-hit points,
 so this wrapper does not close either D1 child or section 64.
+
+### 79. The slot occupant is interior or one named vertex (2026-09-03)
+
+Section 77 left two open items and called the first the natural next lemma:
+each of section 63's six slots has exactly one occupant, and nothing in Lean
+said whether that occupant is an apex or a foreign hit.  This section says it.
+
+`ATail/SlotOccupantDichotomy.lean` proves the two mirror statements
+
+    mem_capInteriorByIndex_or_eq_oppositeVertex_of_mem_leftAdjacentCap
+    mem_capInteriorByIndex_or_eq_oppositeVertex_of_mem_rightAdjacentCap
+
+For a point `x` of the class centred on the vertex opposite cap `i`, lying in
+the closed left-adjacent cap, at positive radius `r`:
+
+    x ∈ S.capInteriorByIndex (leftAdjacentIndex i)
+      ∨ x = S.oppositeVertexByIndex (rightAdjacentIndex i)
+
+and the right-adjacent mirror, with the two adjacency directions exchanged.
+
+The proof is the erase-structure of a cap and nothing else.
+`capInteriorByIndex j` is literally `capByIndex j` with its two Moser
+endpoints erased (`Cap/PartitionFromMEC.lean:496`), so a point of the closed
+cap that is neither endpoint is interior.  One of the two endpoints of the
+left-adjacent cap is the class centre itself — that is
+`oppositeVertexByIndex_mem_leftAdjacentCapByIndex` (`Shard01.lean:1351`) read
+through the definition — and `0 < r` with `dist_self` rules it out.  The
+surviving endpoint is the vertex opposite the third cap.  Both theorems are
+axiom-clean, `[propext, Classical.choice, Quot.sound]`.
+
+**What is deliberately not assumed.**  No cardinality hypothesis, no
+`ConvexIndep`, no cap-size bound, no arm of the card-fifteen dichotomy.  The
+statement is about the cap's erase structure and the positivity of a radius,
+so it applies at every index in either arm, and it is not tied to the
+card-fifteen child.
+
+**Where this lands the section 63 slot model.**  Composing with what section
+77 recorded as already proved: both arms of the disjunction bound at
+`TriApexEndpointRetainedOmission.lean:2928` give each slot exactly one
+occupant, and this section splits that occupant into apex hit or foreign hit.
+So the slot model of section 63 is now Lean apart from its counting step —
+the dichotomy is proved, the tally is not.
+
+**What remains.**  Section 63's bound: at most two of the six slots are
+foreign.  That is the same statement section 64's reflection argument leaves
+one short of, and it is now the only combinatorial obstruction between the
+slot model and obligation (i).  The cyclic-exclusion chain of sections 68–76
+consumes three foreign hits in cyclic position; whether three can occur is
+exactly the gap.
+
+Off-spine.  No promotion claim.  Scope unchanged.  Leaf: two open obligations,
+`M = 18`.
