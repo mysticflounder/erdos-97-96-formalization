@@ -2853,3 +2853,36 @@ This tests a different invariant from sections 21 and 27, which predicted
 collapsing pairs and live-set dimensions. A relabeling that carries the metric
 pattern must carry every geometric consequence of it, so a forced incidence is
 as good a falsifier as a dimension, and it is one no earlier run measured.
+
+### 35. The section 34 prediction lands exactly (2026-09-03)
+
+The probe on `72a0268b2d358aa0` (job `65496582`, 126.9 s) matches the
+prediction committed in `1d01a1818` in every part:
+
+    equations 44
+    dim 0
+    vdim 192                       <- the transported pairs do build a 192-point ideal
+    orient A0:A1:P0.4   0 192      <- the predicted triple, collinear at every point
+    orient <the other thirty-six>  -1   never collinear
+
+Predicted `A0:A1:P0.4`, unique; found `A0:A1:P0.4`, unique. All three ways the
+prediction could have failed did not: there is a forced collinearity, it is at
+the named triple, and there is only one. The transported Rabinowitsch pairs
+reproducing `vdim 192` on a different labeling is a fourth check that was not
+guaranteed to pass.
+
+What this establishes and what it does not. It confirms the five-orbit
+partition again, on an invariant no earlier run measured -- sections 21 and 27
+predicted collapsing pairs and live-set dimensions, both metric; this is a
+forced incidence, and a relabeling that carries the metric pattern must carry
+it too. It also confirms the section 33 reading of the equal-finite-dimension
+test, since an artefact of that reading would not transport to a named triple
+under a group element found without reference to it. It does not refute the
+orbit: a forced collinearity is a property of the survivor, and only a cell
+constraint forbidding it turns that into a contradiction.
+
+Two labelings of the orbit now agree that the surviving variety has exactly
+one forced incidence among all thirty-six (apex pair, cap point) triples, and
+that the three apexes are never collinear. The open question is unchanged and
+is not an algebra question: does the cell forbid a cap point on the line
+through two apexes?
