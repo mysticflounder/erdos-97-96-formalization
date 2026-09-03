@@ -5,6 +5,7 @@ Authors: Adam McKenna
 -/
 
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.DRExactThirteenBoundaryIngress
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure.DRExactThirteenValuation
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.DRZeroCutCapIntervals
 
 /-!
@@ -28,6 +29,7 @@ open ATailExactFourRobustCapExpansion
 open Census554.CapSelectedGeometry
 open Census554.GeneralCarrierBridge
 open Census554.ZeroCutBoundaryIndexing
+open DRExactThirteenValuation
 
 namespace ExactThirteenBoundaryBlocks
 
@@ -80,6 +82,51 @@ theorem retained_nonwrapping_caps_of_twoRadiusBranch
     ExactThirteenBoundaryBlocks.of_twoRadiusBranch R surface rho otherRadius
       firstRow secondRow hradii hfirstRadius hsecondRadius hcard13
   exact ⟨P, hprofile, hstrict, P.retained_nonwrapping_caps⟩
+
+/- The complete direct/mirror package is kept alongside the retained
+non-wrapping projection.  The third cap block uses the cyclically recut boundary
+enumeration supplied by the zero-cut valuation theorem. -/
+
+/-- Branch-level exact-thirteen ingress with all three source cap blocks.
+This is the bookkeeping interface needed by a finite profile consumer: the
+first two blocks use the common boundary and the third uses its cyclic recut. -/
+theorem all_capBlocks_of_twoRadiusBranch
+    {radius : ℝ} {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F)
+    (surface : ExactFourPostCardElevenRobustSurface R)
+    (rho otherRadius : ℝ)
+    (firstRow secondRow : SelectedFourClass D.A S.oppApex2)
+    (hradii : otherRadius ≠ rho)
+    (hfirstRadius : firstRow.radius = rho)
+    (hsecondRadius : secondRow.radius = otherRadius)
+    (hcard13 : D.A.card = 13) :
+    ∃ P : ExactThirteenBoundaryBlocks S,
+      P.profile = exactThirteen_capProfile_of_twoRadiusBranch R surface rho otherRadius
+        firstRow secondRow hradii hfirstRadius hsecondRadius hcard13 ∧
+      P.strict_profile = exactThirteen_profile_of_twoRadiusBranch R surface rho otherRadius
+        firstRow secondRow hradii hfirstRadius hsecondRadius hcard13 ∧
+      ((∃ (BS : CGN.StrictCapBlockData D.A (S.capByIndex S.surplusIdx))
+          (B2 : CGN.StrictCapBlockData D.A (S.capByIndex S.oppIndex2))
+          (BW : CGN.StrictCapBlockData D.A (S.capByIndex S.oppIndex1)),
+          BS.n = P.B.n ∧ HEq BS.phi P.B.boundary ∧
+            B2.n = P.B.n ∧ HEq B2.phi P.B.boundary ∧
+            BW.n = P.B.n ∧
+              HEq BW.phi (fun q : Fin P.B.n => P.B.boundary (q + P.iw))) ∨
+        (∃ (BS : CGN.StrictCapBlockData D.A (S.capByIndex S.surplusIdx))
+          (B1 : CGN.StrictCapBlockData D.A (S.capByIndex S.oppIndex1))
+          (BW : CGN.StrictCapBlockData D.A (S.capByIndex S.oppIndex2)),
+          BS.n = P.B.n ∧ HEq BS.phi P.B.boundary ∧
+            B1.n = P.B.n ∧ HEq B1.phi P.B.boundary ∧
+            BW.n = P.B.n ∧
+              HEq BW.phi (fun q : Fin P.B.n => P.B.boundary (q + P.iw)))) := by
+  obtain ⟨P, hprofile, hstrict⟩ := ExactThirteenBoundaryBlocks.of_twoRadiusBranch
+    R surface rho otherRadius firstRow secondRow hradii hfirstRadius
+      hsecondRadius hcard13
+  have hblocks :=
+    DRExactThirteenValuation.all_capBlocks_of_zeroCutBlocks
+      S P.B P.hn P.iv P.iw P.surplus_eq P.first_eq P.second_eq P.blocks
+  exact ⟨P, hprofile, hstrict, hblocks⟩
 
 end ExactThirteenBoundaryBlocks
 

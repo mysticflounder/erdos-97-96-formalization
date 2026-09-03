@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "c3-all-cap-ingress-20260903",
+  "owner": "codex-c3-all-cap-ingress",
+  "base_head": "87f2db6a3d9378093372f388f28d91f1af27b7e6",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/c3-all-cap-ingress-20260903.json",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/DRExactThirteenRetainedCapIngress.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-03T15:58:46Z",
+  "manifest_sha256": "7e2dbde43f20061d73f842dc99bb93af98729f05d2377feca2d7026acb72702f"
+}
