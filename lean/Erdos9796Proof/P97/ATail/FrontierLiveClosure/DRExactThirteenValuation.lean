@@ -348,6 +348,424 @@ theorem mirror_boundary_interval_card_le
     card_le_of_Ioo B.surplus_between,
     card_le_of_Ioi B.opp2_after⟩
 
+private theorem interval_image_eq_of_saturation {n : ℕ}
+    {boundary : Fin n → ℝ²} (hinj : Function.Injective boundary)
+    {T : Finset ℝ²} {a b : Fin n}
+    (h : ∀ x ∈ T, ∃ q : Fin n, a < q ∧ q < b ∧ boundary q = x)
+    (hsat : T.card = (Finset.Ioo a b).card) :
+    (Finset.Ioo a b).image boundary = T := by
+  have hsub : T ⊆ (Finset.Ioo a b).image boundary := by
+    intro x hx
+    obtain ⟨q, hq1, hq2, hqx⟩ := h x hx
+    rw [← hqx]
+    exact Finset.mem_image_of_mem _ (Finset.mem_Ioo.mpr ⟨hq1, hq2⟩)
+  exact (Finset.eq_of_subset_of_card_le hsub (by
+    rw [Finset.card_image_of_injective _ hinj]
+    exact Nat.le_of_eq hsat.symm)).symm
+
+private theorem ray_image_eq_of_saturation {n : ℕ}
+    {boundary : Fin n → ℝ²} (hinj : Function.Injective boundary)
+    {T : Finset ℝ²} {a : Fin n}
+    (h : ∀ x ∈ T, ∃ q : Fin n, a < q ∧ boundary q = x)
+    (hsat : T.card = (Finset.Ioi a).card) :
+    (Finset.Ioi a).image boundary = T := by
+  have hsub : T ⊆ (Finset.Ioi a).image boundary := by
+    intro x hx
+    obtain ⟨q, hq, hqx⟩ := h x hx
+    rw [← hqx]
+    exact Finset.mem_image_of_mem _ (Finset.mem_Ioi.mpr hq)
+  exact (Finset.eq_of_subset_of_card_le hsub (by
+    rw [Finset.card_image_of_injective _ hinj]
+    exact Nat.le_of_eq hsat.symm)).symm
+
+private theorem surplusApex_eq_oppositeVertexByIndex
+    {A : Finset ℝ²} (S : SurplusCapPacket A) :
+    S.surplusApex = S.oppositeVertexByIndex S.surplusIdx := by
+  rcases hi : S.surplusIdx with ⟨i, hi3⟩
+  interval_cases i <;>
+    simp [SurplusCapPacket.surplusApex,
+      SurplusCapPacket.oppositeVertexByIndex, hi]
+
+private theorem oppApex1_eq_oppositeVertexByIndex
+    {A : Finset ℝ²} (S : SurplusCapPacket A) :
+    S.oppApex1 = S.oppositeVertexByIndex S.oppIndex1 := by
+  rcases hi : S.surplusIdx with ⟨i, hi3⟩
+  interval_cases i <;>
+    simp [SurplusCapPacket.oppApex1,
+      SurplusCapPacket.oppositeVertexByIndex,
+      SurplusCapPacket.oppIndex1, hi]
+
+private theorem oppApex2_eq_oppositeVertexByIndex
+    {A : Finset ℝ²} (S : SurplusCapPacket A) :
+    S.oppApex2 = S.oppositeVertexByIndex S.oppIndex2 := by
+  rcases hi : S.surplusIdx with ⟨i, hi3⟩
+  interval_cases i <;>
+    simp [SurplusCapPacket.oppApex2,
+      SurplusCapPacket.oppositeVertexByIndex,
+      SurplusCapPacket.oppIndex2, hi]
+
+/- The following conditional ingress is intentionally parameterized by the
+three interval saturation equalities.  The unconditional block package only
+provides the corresponding inclusions; this theorem isolates exactly the
+extra source-order hypothesis needed to realize the finite labels. -/
+theorem direct_labelMap_of_saturated_boundaryBlocks
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    (P : ExactThirteenBoundaryBlocks S) (p : Profile)
+    (hprofile : HasStrictProfile S p)
+    (B : DirectBoundaryBlocks S P.B.boundary P.hn P.iv P.iw)
+    (hsat2 : S.oppInterior2.card = (P.iv : ℕ) - 1)
+    (hsatS : (S.capInteriorByIndex S.surplusIdx).card =
+      (P.iw : ℕ) - (P.iv : ℕ) - 1)
+    (hsat1 : S.oppInterior1.card = 13 - 1 - (P.iw : ℕ)) :
+    ∃ pt φ : Fin 13 → ℝ², ∃ idx : Fin 13 → Fin 13,
+      LabelMap p S pt ∧ ConvexBoundaryEnumeration p pt φ idx := by
+  classical
+  let cast : Fin 13 → Fin P.B.n := Fin.cast P.card_n.symm
+  let boundary : Fin 13 → ℝ² := fun q => P.B.boundary (cast q)
+  let iv : Fin 13 := Fin.cast P.card_n P.iv
+  let iw : Fin 13 := Fin.cast P.card_n P.iw
+  have hboundary_injective : Function.Injective boundary := by
+    intro x y hxy
+    apply Fin.ext
+    have hcast : cast x = cast y := by
+      apply P.B.boundary_injective
+      exact hxy
+    have hv := congrArg (fun q : Fin P.B.n => q.val) hcast
+    simpa [cast] using hv
+  have hboundary_image : Finset.univ.image boundary = D.A := by
+    have hcast_surjective : Function.Surjective cast := by
+      intro q
+      refine ⟨Fin.cast P.card_n q, ?_⟩
+      simp [cast]
+    calc
+      Finset.univ.image boundary =
+          (Finset.univ.image cast).image P.B.boundary := by
+        simpa [boundary, Function.comp_def] using
+          (Finset.image_image (s := (Finset.univ : Finset (Fin 13)))
+            (f := cast) (g := P.B.boundary)).symm
+      _ = Finset.univ.image P.B.boundary := by
+        rw [Finset.image_univ_of_surjective hcast_surjective]
+      _ = D.A := P.B.boundary_image
+  have hboundary_ccw : EuclideanGeometry.IsCcwConvexPolygon boundary := by
+    intro i j k hij hjk
+    apply P.B.boundary_ccw
+    · simpa [cast] using hij
+    · simpa [cast] using hjk
+  have hd13 : DirectBoundaryBlocks S boundary (by norm_num) iv iw := by
+    refine
+      { apex_order := ?_
+        opp2_between := ?_
+        surplus_between := ?_
+        opp1_after := ?_ }
+    · change (0 : ℕ) < P.iv ∧ P.iv < P.iw
+      simpa only [zeroIndex] using B.apex_order
+    · intro x hx
+      obtain ⟨q, hq0, hqiv, hqx⟩ := B.opp2_between x hx
+      refine ⟨Fin.cast P.card_n q, ?_, ?_, ?_⟩
+      · change (0 : ℕ) < q
+        simpa only [zeroIndex] using hq0
+      · exact hqiv
+      · simpa [boundary, cast] using hqx
+    · intro x hx
+      obtain ⟨q, hqiv, hqiw, hqx⟩ := B.surplus_between x hx
+      refine ⟨Fin.cast P.card_n q, ?_, ?_, ?_⟩
+      · exact hqiv
+      · exact hqiw
+      · simpa [boundary, cast] using hqx
+    · intro x hx
+      obtain ⟨q, hqiw, hqx⟩ := B.opp1_after x hx
+      refine ⟨Fin.cast P.card_n q, ?_, ?_⟩
+      · exact hqiw
+      · simpa [boundary, cast] using hqx
+  have hsat2' : S.oppInterior2.card = (iv : ℕ) - 1 := by
+    simpa [iv] using hsat2
+  have hsatS' : (S.capInteriorByIndex S.surplusIdx).card =
+      (iw : ℕ) - (iv : ℕ) - 1 := by
+    simpa [iv, iw] using hsatS
+  have hsat1' : S.oppInterior1.card = 13 - 1 - (iw : ℕ) := by
+    simpa [iw] using hsat1
+  have hiv : iv = directIndex p firstApex := by
+    apply Fin.ext
+    cases p
+    · change (iv : ℕ) = 6
+      have hc := hprofile.2.2
+      omega
+    · change (iv : ℕ) = 5
+      have hc := hprofile.2.2
+      omega
+    · change (iv : ℕ) = 5
+      have hc := hprofile.2.2
+      omega
+  have hiw : iw = directIndex p secondApex := by
+    apply Fin.ext
+    cases p
+    · change (iw : ℕ) = 10
+      have hc2 := hprofile.2.2
+      have hcS := hprofile.1
+      omega
+    · change (iw : ℕ) = 10
+      have hc2 := hprofile.2.2
+      have hcS := hprofile.1
+      omega
+    · change (iw : ℕ) = 9
+      have hc2 := hprofile.2.2
+      have hcS := hprofile.1
+      omega
+  have hzero : zeroIndex (by norm_num : 0 < 13) = (0 : Fin 13) := rfl
+  have hsurplus : boundary 0 = S.surplusApex := by
+    rw [surplusApex_eq_oppositeVertexByIndex S]
+    simpa only [boundary, cast, hzero] using P.surplus_eq
+  have hfirst : boundary (directIndex p firstApex) = S.oppApex1 := by
+    rw [← hiv]
+    change P.B.boundary (cast iv) = S.oppApex1
+    have hcast : cast iv = P.iv := by
+      apply Fin.ext
+      rfl
+    rw [hcast, oppApex1_eq_oppositeVertexByIndex S]
+    exact P.first_eq
+  have hsecond : boundary (directIndex p secondApex) = S.oppApex2 := by
+    rw [← hiw]
+    change P.B.boundary (cast iw) = S.oppApex2
+    have hcast : cast iw = P.iw := by
+      apply Fin.ext
+      rfl
+    rw [hcast, oppApex2_eq_oppositeVertexByIndex S]
+    exact P.second_eq
+  have himage2 : (Finset.Ioo (0 : Fin 13) iv).image boundary = S.oppInterior2 := by
+    apply interval_image_eq_of_saturation hboundary_injective hd13.opp2_between
+    simpa [hzero, Fin.card_Ioo] using hsat2'
+  have himageS : (Finset.Ioo iv iw).image boundary =
+      S.capInteriorByIndex S.surplusIdx := by
+    apply interval_image_eq_of_saturation hboundary_injective hd13.surplus_between
+    simpa [Fin.card_Ioo] using hsatS'
+  have himage1 : (Finset.Ioi iw).image boundary = S.oppInterior1 := by
+    apply ray_image_eq_of_saturation hboundary_injective hd13.opp1_after
+    simpa [Fin.card_Ioi] using hsat1'
+  let pt : Fin 13 → ℝ² := fun l => boundary (directIndex p l)
+  have hconv : ConvexIndep (Finset.univ.image boundary) := by
+    rw [hboundary_image]
+    exact D.convex
+  refine ⟨pt, boundary, directIndex p, ?_, ?_⟩
+  · refine
+      { secondApex_eq := ?_
+        firstApex_eq := ?_
+        thirdApex_eq := ?_
+        surplusInterior_mem := ?_
+        firstOppositeInterior_mem := ?_
+        secondOppositeInterior_mem := ?_
+        injective := hboundary_injective.comp (directIndex_injective p)
+        image_eq := ?_ }
+    · simpa only [pt] using hsecond
+    · simpa only [pt] using hfirst
+    · change boundary (directIndex p thirdApex) = S.surplusApex
+      rw [directIndex_thirdApex p]
+      exact hsurplus
+    · intro z hz
+      have ho := directIndex_surplus_order p z hz
+      rw [← hiv, ← hiw] at ho
+      rw [← himageS]
+      exact Finset.mem_image_of_mem _ (Finset.mem_Ioo.mpr ho)
+    · intro z hz
+      have ho := directIndex_firstOpposite_order p z hz
+      rw [← hiw] at ho
+      rw [← himage1]
+      exact Finset.mem_image_of_mem _ (Finset.mem_Ioi.mpr ho)
+    · intro z hz
+      have ho := directIndex_secondOpposite_order p z hz
+      rw [← hiv] at ho
+      rw [← himage2]
+      exact Finset.mem_image_of_mem _ (Finset.mem_Ioo.mpr ho)
+    · dsimp [pt]
+      exact image_univ_comp (directIndex_injective p) |>.trans hboundary_image
+  · exact
+      { injective := hboundary_injective
+        ccw := hboundary_ccw
+        convexIndep := hconv
+        pt_eq := fun _ => rfl
+        orientation := Or.inl rfl }
+
+theorem mirror_labelMap_of_saturated_boundaryBlocks
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    (P : ExactThirteenBoundaryBlocks S) (p : Profile)
+    (hprofile : HasStrictProfile S p)
+    (B : MirrorBoundaryBlocks S P.B.boundary P.hn P.iv P.iw)
+    (hsat1 : S.oppInterior1.card = (P.iw : ℕ) - 1)
+    (hsatS : (S.capInteriorByIndex S.surplusIdx).card =
+      (P.iv : ℕ) - (P.iw : ℕ) - 1)
+    (hsat2 : S.oppInterior2.card = 13 - 1 - (P.iv : ℕ)) :
+    ∃ pt φ : Fin 13 → ℝ², ∃ idx : Fin 13 → Fin 13,
+      LabelMap p S pt ∧ ConvexBoundaryEnumeration p pt φ idx := by
+  classical
+  let cast : Fin 13 → Fin P.B.n := Fin.cast P.card_n.symm
+  let boundary : Fin 13 → ℝ² := fun q => P.B.boundary (cast q)
+  let iv : Fin 13 := Fin.cast P.card_n P.iv
+  let iw : Fin 13 := Fin.cast P.card_n P.iw
+  have hboundary_injective : Function.Injective boundary := by
+    intro x y hxy
+    apply Fin.ext
+    have hcast : cast x = cast y := by
+      apply P.B.boundary_injective
+      exact hxy
+    have hv := congrArg (fun q : Fin P.B.n => q.val) hcast
+    simpa [cast] using hv
+  have hboundary_image : Finset.univ.image boundary = D.A := by
+    have hcast_surjective : Function.Surjective cast := by
+      intro q
+      refine ⟨Fin.cast P.card_n q, ?_⟩
+      simp [cast]
+    calc
+      Finset.univ.image boundary =
+          (Finset.univ.image cast).image P.B.boundary := by
+        simpa [boundary, Function.comp_def] using
+          (Finset.image_image (s := (Finset.univ : Finset (Fin 13)))
+            (f := cast) (g := P.B.boundary)).symm
+      _ = Finset.univ.image P.B.boundary := by
+        rw [Finset.image_univ_of_surjective hcast_surjective]
+      _ = D.A := P.B.boundary_image
+  have hboundary_ccw : EuclideanGeometry.IsCcwConvexPolygon boundary := by
+    intro i j k hij hjk
+    apply P.B.boundary_ccw
+    · simpa [cast] using hij
+    · simpa [cast] using hjk
+  have hm13 : MirrorBoundaryBlocks S boundary (by norm_num) iv iw := by
+    refine
+      { apex_order := ?_
+        opp1_between := ?_
+        surplus_between := ?_
+        opp2_after := ?_ }
+    · change (0 : ℕ) < P.iw ∧ P.iw < P.iv
+      simpa only [zeroIndex] using B.apex_order
+    · intro x hx
+      obtain ⟨q, hq0, hqiw, hqx⟩ := B.opp1_between x hx
+      refine ⟨Fin.cast P.card_n q, ?_, ?_, ?_⟩
+      · change (0 : ℕ) < q
+        simpa only [zeroIndex] using hq0
+      · exact hqiw
+      · simpa [boundary, cast] using hqx
+    · intro x hx
+      obtain ⟨q, hqiw, hqiv, hqx⟩ := B.surplus_between x hx
+      refine ⟨Fin.cast P.card_n q, ?_, ?_, ?_⟩
+      · exact hqiw
+      · exact hqiv
+      · simpa [boundary, cast] using hqx
+    · intro x hx
+      obtain ⟨q, hqiv, hqx⟩ := B.opp2_after x hx
+      refine ⟨Fin.cast P.card_n q, ?_, ?_⟩
+      · exact hqiv
+      · simpa [boundary, cast] using hqx
+  have hsat1' : S.oppInterior1.card = (iw : ℕ) - 1 := by
+    simpa [iw] using hsat1
+  have hsatS' : (S.capInteriorByIndex S.surplusIdx).card =
+      (iv : ℕ) - (iw : ℕ) - 1 := by
+    simpa [iv, iw] using hsatS
+  have hsat2' : S.oppInterior2.card = 13 - 1 - (iv : ℕ) := by
+    simpa [iv] using hsat2
+  have hiw : iw = mirrorIndex p secondApex := by
+    apply Fin.ext
+    cases p
+    · change (iw : ℕ) = 3
+      have hc := hprofile.2.1
+      omega
+    · change (iw : ℕ) = 3
+      have hc := hprofile.2.1
+      omega
+    · change (iw : ℕ) = 4
+      have hc := hprofile.2.1
+      omega
+  have hiv : iv = mirrorIndex p firstApex := by
+    apply Fin.ext
+    cases p
+    · have hmap : mirrorIndex Profile.secondOpposite firstApex = 7 := by decide
+      rw [hmap]
+      change (iv : ℕ) = 7
+      have hc1 := hprofile.2.1
+      have hcS := hprofile.1
+      omega
+    · have hmap : mirrorIndex Profile.surplus firstApex = 8 := by decide
+      rw [hmap]
+      change (iv : ℕ) = 8
+      have hc1 := hprofile.2.1
+      have hcS := hprofile.1
+      omega
+    · have hmap : mirrorIndex Profile.firstOpposite firstApex = 8 := by decide
+      rw [hmap]
+      change (iv : ℕ) = 8
+      have hc1 := hprofile.2.1
+      have hcS := hprofile.1
+      omega
+  have hzero : zeroIndex (by norm_num : 0 < 13) = (0 : Fin 13) := rfl
+  have hsurplus : boundary 0 = S.surplusApex := by
+    rw [surplusApex_eq_oppositeVertexByIndex S]
+    simpa only [boundary, cast, hzero] using P.surplus_eq
+  have hfirst : boundary (mirrorIndex p firstApex) = S.oppApex1 := by
+    rw [← hiv]
+    change P.B.boundary (cast iv) = S.oppApex1
+    have hcast : cast iv = P.iv := by
+      apply Fin.ext
+      rfl
+    rw [hcast, oppApex1_eq_oppositeVertexByIndex S]
+    exact P.first_eq
+  have hsecond : boundary (mirrorIndex p secondApex) = S.oppApex2 := by
+    rw [← hiw]
+    change P.B.boundary (cast iw) = S.oppApex2
+    have hcast : cast iw = P.iw := by
+      apply Fin.ext
+      rfl
+    rw [hcast, oppApex2_eq_oppositeVertexByIndex S]
+    exact P.second_eq
+  have himage1 : (Finset.Ioo (0 : Fin 13) iw).image boundary = S.oppInterior1 := by
+    apply interval_image_eq_of_saturation hboundary_injective hm13.opp1_between
+    simpa [hzero, Fin.card_Ioo] using hsat1'
+  have himageS : (Finset.Ioo iw iv).image boundary =
+      S.capInteriorByIndex S.surplusIdx := by
+    apply interval_image_eq_of_saturation hboundary_injective hm13.surplus_between
+    simpa [Fin.card_Ioo] using hsatS'
+  have himage2 : (Finset.Ioi iv).image boundary = S.oppInterior2 := by
+    apply ray_image_eq_of_saturation hboundary_injective hm13.opp2_after
+    simpa [Fin.card_Ioi] using hsat2'
+  let pt : Fin 13 → ℝ² := fun l => boundary (mirrorIndex p l)
+  have hconv : ConvexIndep (Finset.univ.image boundary) := by
+    rw [hboundary_image]
+    exact D.convex
+  refine ⟨pt, boundary, mirrorIndex p, ?_, ?_⟩
+  · refine
+      { secondApex_eq := ?_
+        firstApex_eq := ?_
+        thirdApex_eq := ?_
+        surplusInterior_mem := ?_
+        firstOppositeInterior_mem := ?_
+        secondOppositeInterior_mem := ?_
+        injective := hboundary_injective.comp (mirrorIndex_injective p)
+        image_eq := ?_ }
+    · simpa only [pt] using hsecond
+    · simpa only [pt] using hfirst
+    · change boundary (mirrorIndex p thirdApex) = S.surplusApex
+      rw [mirrorIndex_thirdApex p]
+      exact hsurplus
+    · intro z hz
+      have ho := mirrorIndex_surplus_order p z hz
+      rw [← hiw, ← hiv] at ho
+      rw [← himageS]
+      exact Finset.mem_image_of_mem _ (Finset.mem_Ioo.mpr ho)
+    · intro z hz
+      have ho := mirrorIndex_firstOpposite_order p z hz
+      rw [← hiw] at ho
+      rw [← himage1]
+      exact Finset.mem_image_of_mem _ (Finset.mem_Ioo.mpr ho)
+    · intro z hz
+      have ho := mirrorIndex_secondOpposite_order p z hz
+      rw [← hiv] at ho
+      rw [← himage2]
+      exact Finset.mem_image_of_mem _ (Finset.mem_Ioi.mpr ho)
+    · dsimp [pt]
+      exact image_univ_comp (mirrorIndex_injective p) |>.trans hboundary_image
+  · exact
+      { injective := hboundary_injective
+        ccw := hboundary_ccw
+        convexIndep := hconv
+        pt_eq := fun _ => rfl
+        orientation := Or.inr rfl }
+
 /- The block package carries a strict profile disjunction; this is the
 finite choice needed by the profile-parametrized label map. -/
 theorem exists_profile_of_boundaryBlocks
