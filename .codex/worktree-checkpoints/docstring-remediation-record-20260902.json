@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "docstring-remediation-record-20260902",
+  "owner": "ResidueLantern",
+  "base_head": "ef2c2d6fe1c793530bc5a876b4b7719bde899fad",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/docstring-remediation-record-20260902.json",
+    "docs/audits/docstrings-2026-09-01/residue-lantern-remediation-2026-09-02.md"
+  ],
+  "durable_paths": [],
+  "generated_roots": [],
+  "created_utc": "2026-09-02T22:20:00Z",
+  "manifest_sha256": "3710da93de9d89c7e88d6f958e213e94587800fea4126f45a0480a15c05c1565"
+}
