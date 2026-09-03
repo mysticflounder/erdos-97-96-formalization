@@ -1418,3 +1418,7 @@ theorem exists_profile_of_boundaryBlocks
   · exact ⟨.secondOpposite, h⟩
   · exact ⟨.surplus, h⟩
   · exact ⟨.firstOpposite, h⟩
+
+end DRExactThirteenValuation
+end ATailFrontierLiveClosure
+end Problem97
