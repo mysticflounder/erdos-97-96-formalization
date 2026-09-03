@@ -108,4 +108,110 @@ theorem gram_det_eq_zero (p u v : ℝ²) :
             - (p 0 * v 0 + p 1 * v 1) * (u 0 * u 0 + u 1 * u 1)) = 0 := by
   ring
 
+/-- The Gram determinant of three plane vectors, written in coordinates.  Same
+statement as `gram_det_eq_zero`, with the points replaced by their two
+coordinates so that it composes with `dist_sq_coord`. -/
+private theorem gram_det_coord_eq_zero (px py ux uy vx vy : ℝ) :
+    (px * px + py * py)
+        * ((ux * ux + uy * uy) * (vx * vx + vy * vy) - (ux * vx + uy * vy) ^ 2)
+      - (px * ux + py * uy)
+        * ((px * ux + py * uy) * (vx * vx + vy * vy)
+            - (ux * vx + uy * vy) * (px * vx + py * vy))
+      + (px * vx + py * vy)
+        * ((px * ux + py * uy) * (ux * vx + uy * vy)
+            - (px * vx + py * vy) * (ux * ux + uy * uy)) = 0 := by
+  ring
+
+/-- The quadratic vanishes at the squared distance of a realizable
+configuration, in coordinates centred at the circle's centre. -/
+private theorem gramQuadratic_eq_zero_coord
+    (ux uy vx vy px py R2 a2 c2 t : ℝ)
+    (hu : ux ^ 2 + uy ^ 2 = R2)
+    (hv : vx ^ 2 + vy ^ 2 = R2)
+    (huv : (ux - vx) ^ 2 + (uy - vy) ^ 2 = c2)
+    (hpu : (px - ux) ^ 2 + (py - uy) ^ 2 = c2)
+    (hpv : (px - vx) ^ 2 + (py - vy) ^ 2 = a2)
+    (ht : px ^ 2 + py ^ 2 = t) :
+    gramQuadratic t R2 a2 c2 = 0 := by
+  have ht' : px * px + py * py = t := by linear_combination ht
+  have hu' : ux * ux + uy * uy = R2 := by linear_combination hu
+  have hv' : vx * vx + vy * vy = R2 := by linear_combination hv
+  have e1 : px * ux + py * uy = (t + R2 - c2) / 2 := by
+    linear_combination (norm := ring_nf)
+      (-1 / 2 : ℝ) * hpu + (1 / 2 : ℝ) * ht + (1 / 2 : ℝ) * hu
+  have e2 : px * vx + py * vy = (t + R2 - a2) / 2 := by
+    linear_combination (norm := ring_nf)
+      (-1 / 2 : ℝ) * hpv + (1 / 2 : ℝ) * ht + (1 / 2 : ℝ) * hv
+  have e3 : ux * vx + uy * vy = R2 - c2 / 2 := by
+    linear_combination (norm := ring_nf)
+      (-1 / 2 : ℝ) * huv + (1 / 2 : ℝ) * hu + (1 / 2 : ℝ) * hv
+  have hdet := gram_det_coord_eq_zero px py ux uy vx vy
+  rw [ht', hu', hv', e1, e2, e3] at hdet
+  unfold gramQuadratic
+  linear_combination hdet
+
+/-- **The bridge from distances to the quadratic.**  Let `A` and `B` lie on the
+circle of radius `R` about `O`, let `c` be the length of the chord `A B`, and
+let `q` be a point at distance `c` from `A` and distance `a` from `B`.  Then the
+quadratic of `InDiskCriterion` vanishes at `t = dist q O ^ 2`.
+
+The configuration is the one a foreign hit produces: `q` is a carrier point that
+realizes two apex radii at once, and the first of those radii coincides with the
+side joining the two apices. -/
+theorem gramQuadratic_eq_zero_of_dist
+    {O A B q : ℝ²} {R a c : ℝ}
+    (hAO : dist A O = R) (hBO : dist B O = R)
+    (hAB : dist A B = c) (hqA : dist q A = c) (hqB : dist q B = a) :
+    gramQuadratic (dist q O ^ 2) (R ^ 2) (a ^ 2) (c ^ 2) = 0 := by
+  have hAO_sq : (A 0 - O 0) ^ 2 + (A 1 - O 1) ^ 2 = R ^ 2 := by
+    have h : dist A O ^ 2 = R ^ 2 := by rw [hAO]
+    rwa [dist_sq_coord] at h
+  have hBO_sq : (B 0 - O 0) ^ 2 + (B 1 - O 1) ^ 2 = R ^ 2 := by
+    have h : dist B O ^ 2 = R ^ 2 := by rw [hBO]
+    rwa [dist_sq_coord] at h
+  have hAB_sq : ((A 0 - O 0) - (B 0 - O 0)) ^ 2 + ((A 1 - O 1) - (B 1 - O 1)) ^ 2
+      = c ^ 2 := by
+    have h : dist A B ^ 2 = c ^ 2 := by rw [hAB]
+    rw [dist_sq_coord] at h
+    linear_combination (norm := ring_nf) h
+  have hqA_sq : ((q 0 - O 0) - (A 0 - O 0)) ^ 2 + ((q 1 - O 1) - (A 1 - O 1)) ^ 2
+      = c ^ 2 := by
+    have h : dist q A ^ 2 = c ^ 2 := by rw [hqA]
+    rw [dist_sq_coord] at h
+    linear_combination (norm := ring_nf) h
+  have hqB_sq : ((q 0 - O 0) - (B 0 - O 0)) ^ 2 + ((q 1 - O 1) - (B 1 - O 1)) ^ 2
+      = a ^ 2 := by
+    have h : dist q B ^ 2 = a ^ 2 := by rw [hqB]
+    rw [dist_sq_coord] at h
+    linear_combination (norm := ring_nf) h
+  have hqO_sq : (q 0 - O 0) ^ 2 + (q 1 - O 1) ^ 2 = dist q O ^ 2 := by
+    rw [dist_sq_coord]
+  exact gramQuadratic_eq_zero_coord (A 0 - O 0) (A 1 - O 1) (B 0 - O 0)
+    (B 1 - O 1) (q 0 - O 0) (q 1 - O 1) (R ^ 2) (a ^ 2) (c ^ 2)
+    (dist q O ^ 2) hAO_sq hBO_sq hAB_sq hqA_sq hqB_sq hqO_sq
+
+/-- **The in-disk criterion in metric form.**  With `A`, `B` on the circle of
+radius `R` about `O`, chord length `dist A B = c`, and `q` in the closed disk at
+distance `c` from `A` and distance `a` from `B`, the three lengths satisfy
+
+  `c⁴ ≤ R² (4 c² - a²)`.
+
+This is `sq_le_of_gramQuadratic_eq_zero_of_le` supplied with the two facts a
+foreign hit provides: the vanishing of the quadratic, from
+`gramQuadratic_eq_zero_of_dist`, and disk membership. -/
+theorem pow_four_le_of_dist_eq_side_of_mem_disk
+    {O A B q : ℝ²} {R a c : ℝ} (hapos : 0 < a)
+    (hAO : dist A O = R) (hBO : dist B O = R)
+    (hAB : dist A B = c) (hqA : dist q A = c) (hqB : dist q B = a)
+    (hqO : dist q O ≤ R) :
+    c ^ 4 ≤ R ^ 2 * (4 * c ^ 2 - a ^ 2) := by
+  have hgram := gramQuadratic_eq_zero_of_dist hAO hBO hAB hqA hqB
+  have hdisk : dist q O ^ 2 ≤ R ^ 2 := by
+    have h0 : (0 : ℝ) ≤ dist q O := dist_nonneg
+    nlinarith [hqO, h0]
+  have h := sq_le_of_gramQuadratic_eq_zero_of_le (t := dist q O ^ 2)
+    (R2 := R ^ 2) (a2 := a ^ 2) (c2 := c ^ 2) (by positivity)
+    (sq_nonneg c) hgram hdisk
+  linear_combination h
+
 end Problem97

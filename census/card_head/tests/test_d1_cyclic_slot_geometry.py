@@ -48,3 +48,9 @@ def test_sum_of_squares_identity_exactly():
                    for _ in range(3))
         assert (x + y) * (y + z) * (z + x) - 8 * (x * y * z) == \
             x * (y - z) ** 2 + y * (z - x) ** 2 + z * (x - y) ** 2
+
+
+def test_bridge_theorem_holds_and_the_disk_hypothesis_is_load_bearing():
+    in_t, in_v, out_t, out_v = G.bridge_statement_counts()
+    assert (in_t, in_v) == (58368, 0)
+    assert (out_t, out_v) == (94240, 35872)

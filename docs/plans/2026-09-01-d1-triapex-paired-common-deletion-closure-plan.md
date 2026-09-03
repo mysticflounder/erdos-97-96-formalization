@@ -5467,3 +5467,93 @@ Scope is unchanged from section 67: one-radius arm, card-15 gated, and section
 64 is still conjectural.  This section adds no new claim about obligation (i).
 
 Leaf unchanged: single `sorry`, `M = 18`.
+
+### 72. The `dist`-to-inner-product bridge is now Lean (2026-09-03)
+
+Section 71 left the first link of the cyclic exclusion half formal: the
+criterion `c⁴ ≤ R²(4c² − a²)` was derived in Lean from `Q(t) = 0` and
+`t ≤ R²`, but nothing supplied those two facts from the metric data a
+`SurplusCapPacket` foreign hit actually carries.  That bridge is now proved.
+
+**The statement.**  In `lean/Erdos9796Proof/P97/ATail/InDiskCriterion.lean`:
+
+```lean
+theorem gramQuadratic_eq_zero_of_dist
+    {O A B q : ℝ²} {R a c : ℝ}
+    (hAO : dist A O = R) (hBO : dist B O = R)
+    (hAB : dist A B = c) (hqA : dist q A = c) (hqB : dist q B = a) :
+    gramQuadratic (dist q O ^ 2) (R ^ 2) (a ^ 2) (c ^ 2) = 0
+
+theorem pow_four_le_of_dist_eq_side_of_mem_disk
+    {O A B q : ℝ²} {R a c : ℝ} (hapos : 0 < a)
+    (hAO : dist A O = R) (hBO : dist B O = R)
+    (hAB : dist A B = c) (hqA : dist q A = c) (hqB : dist q B = a)
+    (hqO : dist q O ≤ R) :
+    c ^ 4 ≤ R ^ 2 * (4 * c ^ 2 - a ^ 2)
+```
+
+Both are axiom-clean: `[propext, Classical.choice, Quot.sound]`.
+
+**Why these are the right hypotheses.**  Every one is a fact the packet
+already supplies, at slot `(i,j)` of the cyclic configuration:
+
+| Lean hypothesis | packet source |
+|---|---|
+| `dist A O = R`, `dist B O = R` | the apices lie on the MEC boundary (`Moser/Triangle.lean:74,76,78`), so MEC = circumcircle |
+| `dist A B = c` | `c` names the side `AᵢAⱼ` |
+| `dist q A = c` | the slot condition `ρᵢ = c`, which is what makes the configuration cyclic |
+| `dist q B = a` | the second radius `ρⱼ = a` at the same foreign hit |
+| `dist q O ≤ R` | `q` is a carrier point, and `A ⊆` closed MEC disk (`MEC/Basic.lean:293`, `dist_mecSphere_center_le`) |
+| `0 < a` | `q ≠ Aⱼ`; a foreign hit is not an apex |
+
+The proof follows `Problem97.onArcOpposite_of_sameDist_apex_of_mem_mecDisk`
+(`U2/SameDistanceArcContainment.lean:95`): translate every `dist` to
+coordinates centred at `O` with `dist_sq_coord`, then work in the six
+coordinates.  Two private lemmas do the algebra.  `gram_det_coord_eq_zero` is
+the coordinate form of the already-proved `gram_det_eq_zero`.
+`gramQuadratic_eq_zero_coord` derives the three inner products
+
+  `⟪p,u⟫ = (t + R² − c²)/2`, `⟪p,v⟫ = (t + R² − a²)/2`, `⟪u,v⟫ = R² − c²/2`
+
+each by one `linear_combination`, rewrites them into the vanishing
+determinant, and closes with `linear_combination`.  No `nlinarith` on a
+degree-6 goal, and no case analysis on which of the two intersection points
+`q` is — that was the whole point of the root-sum form in section 71.
+
+**Verification (EMPIRICALLY VERIFIED, plain float arithmetic, no solver).**
+`census/card_head/d1_cyclic_slot_geometry.bridge_statement_counts` sweeps A and
+B over a deterministic angle grid on circles of two radii, sweeps `a`, and
+takes both points of `circle(A,c) ∩ circle(B,a)`:
+
+* **58368** configurations satisfy every hypothesis, and **0** violate the
+  conclusion;
+* **negative control**, the same sweep with the single hypothesis
+  `dist q O ≤ R` dropped: **35872 of 94240** violate it.
+
+So the disk hypothesis is load-bearing rather than decorative, and the
+hypothesis set is not vacuous.  Pinned by
+`test_bridge_theorem_holds_and_the_disk_hypothesis_is_load_bearing`
+(6 tests pass).  A separate 400000-sample random-float sweep found 255079
+hypothesis-satisfying points and 0 violations.
+
+**Updated link table for the cyclic exclusion.**
+
+| link | state |
+|---|---|
+| foreign hit in slot `(i,j)` ⟹ `c⁴ ≤ R²(4c² − a²)` | **Lean, complete** (this section) |
+| that criterion ⟹ the side-length cubic `a²b ≤ c(a²+b²−c²)` | on paper, needs the circumradius relation |
+| three cubics ⟹ equilateral | **Lean** (section 68) |
+| at most one foreign hit per unordered pair | section 64, **PROOF SKETCH** |
+
+Three of four links are Lean.  What remains is the circumradius relation —
+`4R²c² − R²a² − c⁴ ≥ 0` is `c⁴ ≤ R²(4c² − a²)`, and turning that into
+`a²b ≤ c(a²+b²−c²)` needs `R = abc/(4·area)` — and section 64.
+
+Scope is unchanged from section 67 and must not be restated more strongly:
+all of sections 63–72 lives in the **one-radius arm** and is **card-15
+gated**, section 62 recorded that the live `sorry` binds `hcard` only as an
+implication and discharges no antecedent, and section 64 is still
+conjectural.  **Obligation (i) is not closed.**  This section adds no new
+claim about it.
+
+Leaf unchanged: single `sorry`, `M = 18`.

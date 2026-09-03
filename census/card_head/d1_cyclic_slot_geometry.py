@@ -253,3 +253,37 @@ if __name__ == "__main__":                      # pragma: no cover
         print(f"cyclic sense {sense}: {len(sols)} solution(s), max deviation {dev}")
     print("both/one/none in disk:", both_points_in_disk_counts())
     print("census positive, negative control:", census_control())
+
+def bridge_statement_counts(n=40, m=30, radii=(1.0, 2.3)):
+    """Plan section 72's differential check of the Lean bridge theorem
+    ``Problem97.pow_four_le_of_dist_eq_side_of_mem_disk``.
+
+    Places A and B on the circle of radius R about the origin, sets
+    c = dist A B, picks a radius a, and takes q on both circle(A, c) and
+    circle(B, a).  The theorem claims c^4 <= R^2 (4 c^2 - a^2) whenever
+    dist q O <= R.  Dropping that one hypothesis is the negative control.
+
+    Returns ``(in_tested, in_violations, out_tested, out_violations)``.
+    """
+    in_t = in_v = out_t = out_v = 0
+    for radius in radii:
+        for i in range(1, n):
+            t1 = 2 * math.pi * i / n
+            a0 = (radius * math.cos(t1), radius * math.sin(t1))
+            for j in range(1, n):
+                t2 = 2 * math.pi * j / n
+                a1 = (radius * math.cos(t2), radius * math.sin(t2))
+                c = dist(a0, a1)
+                if c < 1e-9:
+                    continue
+                for k in range(1, m + 1):
+                    a = 2 * radius * k / (m + 1)
+                    slack = radius ** 2 * (4 * c ** 2 - a ** 2) - c ** 4
+                    for q in circle_intersections(a0, c, a1, a):
+                        if math.hypot(*q) <= radius + TOL:
+                            in_t += 1
+                            in_v += slack < -1e-9 * max(1.0, c ** 4)
+                        else:
+                            out_t += 1
+                            out_v += slack < -1e-9 * max(1.0, c ** 4)
+    return in_t, in_v, out_t, out_v
