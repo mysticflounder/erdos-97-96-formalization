@@ -7,6 +7,8 @@ Authors: Adam McKenna
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.DRExactThirteenBoundaryIngress
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.DRZeroCutCapIntervals
 import Erdos9796Proof.P97.CapSelectedRowCounting
+import Erdos9796Proof.P97.ATail.TwoCenterCapLocalization
+import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.UniqueArmRouteAudit.OriginalUniqueResidualDispatch
 
 /-!
 # Finite valuation ingress for the exact-thirteen two-radius profiles
@@ -274,6 +276,69 @@ structure LabelMap (p : Profile) {D : CounterexampleData}
     pt z ∈ S.oppInterior2
   injective : Function.Injective pt
   image_eq : Finset.univ.image pt = D.A
+
+/- ## Source-localization transports -/
+
+/-- A labelled common physical pair transports the source cap-localization
+theorem to its finite centre label.  The centre's carrier membership is
+recovered from `LabelMap.image_eq`; the source-cap memberships and physical
+inequality are kept explicit because the label contract supplies only the
+forward profile inclusions. -/
+theorem common_pair_localization_of_labels
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    {p : Profile} {pt : Fin 13 → ℝ²}
+    (hL : LabelMap p S pt) (i : Fin 3)
+    {c s w : Fin 13}
+    (hcenterNe : pt c ≠ S.oppositeVertexByIndex i)
+    (hsource : pt s ∈ S.capInteriorByIndex i)
+    (hpartner : pt w ∈ S.capInteriorByIndex i)
+    (hsw : s ≠ w)
+    (hcenterEq : dist (pt c) (pt s) = dist (pt c) (pt w))
+    (hphysicalEq :
+      dist (S.oppositeVertexByIndex i) (pt s) =
+        dist (S.oppositeVertexByIndex i) (pt w)) :
+    pt c ∈ S.capInteriorByIndex i := by
+  apply ATailTwoCenterCapLocalization.commonPhysicalPair_center_mem_capInteriorByIndex i
+  · rw [← hL.image_eq]
+    exact Finset.mem_image_of_mem _ (Finset.mem_univ c)
+  · exact hcenterNe
+  · exact hsource
+  · exact hpartner
+  · intro hsame
+    apply hsw
+    exact hL.injective hsame
+  · exact hcenterEq
+  · exact hphysicalEq
+
+/-- The exact-four original residual's bisector localization transports to
+finite labels once the two retained residual points are represented by
+labels.  `hc_ne_first` is explicit: `LabelMap` can derive the physical
+opposite-apex inequality from it, but does not encode a converse for profile
+membership. -/
+theorem frontier_bisector_interior_of_labels
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    {p : Profile} {pt : Fin 13 → ℝ²}
+    {radius : ℝ} {H : CriticalShellSystem D.A}
+    {F : ATailCriticalPairFrontier.CriticalPairFrontier D S radius H}
+    (R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F)
+    (hL : LabelMap p S pt) {c q w : Fin 13}
+    (hc_ne_first : c ≠ firstApex)
+    (hq : pt q = R.interior_q)
+    (hw : pt w = R.interior_w)
+    (heq : dist (pt c) (pt q) = dist (pt c) (pt w)) :
+    pt c ∈ S.capInteriorByIndex S.oppIndex1 := by
+  have hc_ne : pt c ≠ S.oppApex1 := by
+    intro h
+    apply hc_ne_first
+    apply hL.injective
+    calc
+      pt c = S.oppApex1 := h
+      _ = pt firstApex := hL.firstApex_eq.symm
+  apply R.bisector_center_mem_interior
+  · rw [← hL.image_eq]
+    exact Finset.mem_image_of_mem _ (Finset.mem_univ c)
+  · exact hc_ne
+  · simpa only [hq, hw] using heq
 
 structure ConvexBoundaryEnumeration (p : Profile)
     (pt φ : Fin 13 → ℝ²) (idx : Fin 13 → Fin 13) : Prop where
