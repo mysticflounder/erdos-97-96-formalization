@@ -444,3 +444,17 @@ Use the ordered deficit
 The first coordinate falls from unknown overlap patterns to the unique
 singleton/disjoint pattern, and the third coordinate is now zero for the
 exact-twelve tight-cover leaf.
+
+## General carrier row-system adapter (2026-09-03)
+
+The faithful-carrier adapter now exports the source-backed finite row-system
+surface used by the balanced exact-twelve cell.  In particular,
+`GeneralCarrierAbstractRowSystem.system_sharedPairAlternating` transports the
+geometric shared-pair separation theorem through the carrier labels and a
+compatible boundary indexing.  The same module also supplies pair codegree at
+most two, source coverage from the critical-shell blocker section, and the
+support-minimal/strong-connectivity consequences.  The adapter and its live
+consumer `Balanced555SourceConfiguration.sharedPairAlternating_selectedAt`
+build under the governed workflow and are axiom-clean apart from the standard
+Lean core axioms.  This closes an adapter gap; it does not close the remaining
+distinct-fresh exact-five leaves, whose obstruction is still geometric.

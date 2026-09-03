@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "general-carrier-row-system-closure-20260903",
+  "owner": "codex",
+  "base_head": "4634e76b608666dffd34d35413fe91d2a4f52149",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/general-carrier-row-system-closure-20260903.json",
+    "docs/plans/2026-09-01-rigid221-exactfive-tight-cover.md"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-03T00:00:00Z",
+  "manifest_sha256": "1a369bf2bb5b71e206a1aa76ffe386973a0e91d756384a3e437d116ae1d42886"
+}
