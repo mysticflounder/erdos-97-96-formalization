@@ -24,6 +24,7 @@
   "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03/artifacts/tools/check_reduction.py": "59dc8a086c72fec51f3fd93c270294bd51074b0d579e7795577a7e696c2e43a0",
   "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03/artifacts/tools/collinear_core.py": "17f378e848439d0e6ae2df249f50dfdcdf886907bd11bf01f27a3311d721dce9",
   "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03/artifacts/tools/kal_angles.py": "cfd7cc9aa998c61f3dcbb9b5203ff51d933d93a56b1b1ded31ea79f0842e4228",
+  "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03/artifacts/tools/orbit_core_closure.py": "e8198e401fcd4f95e6ed1cbe03abc46708f9014d88c67bfa7438422e0c4eaebe",
   "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03/artifacts/tools/orbit_falsifier.py": "45b7e4fd648fdca8ed3582f616faa0175e067d2f0e17ad796a94ebc6c0dbe252",
   "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03/artifacts/tools/orbit_full.py": "db3f599b0f960eb824421fd2f855cb9f96ec60a10138769903598eb551b07700",
   "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03/artifacts/tools/orbit_members.py": "ce5acae869bf8432345a7a0c547e6814500e22fca88958059fd881807aac39d4",
@@ -49,5 +50,5 @@
   "census/card_head/d1_mu0_pattern_algebra.py": "0b54cb1085ae0df0f2eac75e45da568a3e55d303d6e0a5623705f74bfb3b17c6",
   "census/card_head/tests/test_d1_mu0_incidence_census.py": "26dfd1e6c2820fa33693f73d86b73a18c4694033c87bae3f469721bf68fec2f1"
  },
- "manifest_sha256": "fdec856fcf3e8735e99629c6271396fcf6e467f270e94e38b088eac84911561a"
+ "manifest_sha256": "371ba853ee3e3da572f6f3716e8cda14b7ed58f9f93d856a62d157a724bf0d58"
 }

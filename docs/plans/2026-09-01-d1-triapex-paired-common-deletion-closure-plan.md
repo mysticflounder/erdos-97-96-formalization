@@ -3409,3 +3409,52 @@ Guardrail 1 for the angle encoder is a self-consistency test, not a
 known-answer test. There is still no Lean ingress.
 
 Leaf unchanged: single `sorry`, `M = 18`.
+
+### 45. The core covers the whole 36-orbit, by functoriality rather than by thirty-four more solver runs (2026-09-03)
+
+Section 43 transported the core to one sibling labeling and checked it with
+Singular. The plan's next step was recorded as "transport the core to the
+remaining 34 members, each run about 2 s". That is the wrong instrument. The
+transport does not need a solver at all, and running it 34 times would have
+bought confirmation of something the group action already gives.
+
+**Why relabeling carries the result.** What section 42 establishes, once the
+gauge is unwound, is a statement about labeled configurations:
+
+> for any planar configuration of the pattern's fifteen distinct points with
+> its radius structure, if the ten core equalities hold and `P1.1 ≠ P2.3`, then
+> `A0`, `A1`, `P1.1` are collinear.
+
+A relabeling `σ` is a bijection on point names. Given a configuration that
+satisfies the `σ`-image hypotheses, compose with `σ⁻¹` to get one satisfying
+the source hypotheses; the source statement makes the source triple collinear
+there; push forward again and the `σ`-image triple is collinear. Nothing in
+that argument touches the coordinates, so it does not care that the angle
+parameterization picks a different special apex for different members.
+
+**What can actually fail is containment.** The argument needs the target
+pattern to *assert* the `σ`-image of every core group, and to satisfy the gauge
+precondition so its own radius structure is the one the statement assumes.
+Both are finite combinatorial checks. `orbit_core_closure.py` runs them: for
+each core group `(centre, point set)` it looks for a shell or class of the
+target at that centre whose members contain the set, and it re-runs
+`kal_angles.structure`.
+
+**Result: 36 of 36 contained, no failures.** Every member of the orbit asserts
+the full `σ`-image of the core and admits the gauge. The special apex is `A0`
+for twelve members, `A1` for twelve and `A2` for twelve, so the check does
+exercise all three coordinate assignments and not just the source's.
+
+Two facts worth recording from the run. First, exactly 36 of the group's 82944
+relabelings land inside the cell, one per member, so each member's transported
+triple and distinctness pair are uniquely determined — there is no ambiguity to
+resolve. Second, the member `72a0268b2d358aa0` is predicted to have triple
+`{A0, A1, P0.4}` and distinctness `P0.4 : P2.2`, which is exactly what section
+43's Singular run found. That run is now a passed falsifier for this tool
+rather than one of thirty-five needed computations.
+
+The orbit tally is unchanged in kind — this makes the 36-orbit's collinearity
+uniform across its members, it does not refute a further orbit. Three of the
+five orbits still rest on mod-`p` evidence only.
+
+Leaf unchanged: single `sorry`, `M = 18`.
