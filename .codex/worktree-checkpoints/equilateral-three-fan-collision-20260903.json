@@ -1,0 +1,15 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "equilateral-three-fan-collision-20260903",
+  "owner": "codex-rigid221",
+  "base_head": "7e55a229c920c854a74f1269a6b8e178ffacbac9",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/equilateral-three-fan-collision-20260903.json",
+    "docs/plans/2026-09-03-equilateral-three-fan-collision.md",
+    "lean/Erdos9796Proof/P97/Census554/EquilateralThreeFanCollision.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-03T16:51:01Z",
+  "manifest_sha256": "85cba62ce4b5f20d47effb04de92799919d4940558e76b8567b5971548911c41"
+}
