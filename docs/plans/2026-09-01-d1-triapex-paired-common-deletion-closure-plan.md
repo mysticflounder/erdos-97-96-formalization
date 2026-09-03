@@ -4450,3 +4450,138 @@ rather than taken:
 Recording the comparison. The active goal is unchanged and no pivot is made here.
 
 Leaf unchanged: single `sorry`, `M = 18`.
+
+### 59. Obligation (i) reduces to one isosceles condition on the Moser triangle (2026-09-03)
+
+Section 58 left ingress obligation (i), concyclicity of a mixed apex/interior
+quadruple, as the gap with no producer, and recorded a counting lead as under
+test.  The lead's open question was whether `leftAdjacentCapByIndex` and
+`rightAdjacentCapByIndex` are the closed caps, which contain the Moser vertices,
+or the open interiors, which do not.  That question is now settled, and settling
+it collapses obligation (i) to a single named metric condition.
+
+**The adjacent caps are closed.**  `leftAdjacentCapByIndex` and
+`rightAdjacentCapByIndex` (`SurplusM44Packet/Shard01.lean:964,972`) are defined
+as `S.capByIndex` of the cyclically shifted index, and `capByIndex`
+(`Cap/PartitionFromMEC.lean:466`) is the closed cap — its own docstring records
+that "Moser vertices belong to two caps".  The open versions exist separately as
+`leftAdjacentInteriorByIndex` / `rightAdjacentInteriorByIndex` (`:958`), built
+from `capInteriorByIndex`, which erases both endpoint vertices.  So an adjacent
+hit *can* be an apex.  Verified by reading both definitions.
+
+**Which apex lies in which cap is a structure field, not an obligation.**
+`CapPartition` carries `v2_mem_C1`, `v3_mem_C1`, `v1_mem_C2`, `v3_mem_C2`,
+`v1_mem_C3`, `v2_mem_C3` (`Cap/PartitionFromMEC.lean:195-201`).  These are
+fields, so they are free from any `SurplusCapPacket`.  With
+`oppositeVertexByIndex` (`Shard01.lean:1055`) sending `0 ↦ v1`, `1 ↦ v2`,
+`2 ↦ v3`, and `capByIndex` sending `0 ↦ C1`, `1 ↦ C2`, `2 ↦ C3`:
+
+| cap `i` | apex `Aᵢ` | left adjacent | its vertices | right adjacent | its vertices |
+|---|---|---|---|---|---|
+| 0 | `v1` | `C2` | `v1`, `v3` | `C3` | `v1`, `v2` |
+| 1 | `v2` | `C3` | `v1`, `v2` | `C1` | `v2`, `v3` |
+| 2 | `v3` | `C1` | `v2`, `v3` | `C2` | `v1`, `v3` |
+
+**Consequence, proved from the above.**  In every row the centre apex `Aᵢ` is
+itself a vertex of both adjacent caps, and it is excluded from its own class:
+membership in `SelectedClass D.A Aᵢ r` requires `dist Aᵢ Aᵢ = r`, that is
+`0 = r`, which `0 < r` refutes.  So each adjacent closed cap offers **exactly
+one** apex candidate, and the two candidates are precisely the two other
+apices — one on the left, one on the right.  A hit is therefore either that
+apex or an interior point of the adjacent cap; there is no third case.
+
+**The reduction.**  `selectedClass_card_eq_six_of_oneRadius_card_eq_fifteen`
+(`TriApexEndpointRetainedOmission.lean:2554`, proved; the file's only `sorry` is
+the leaf at `:2923`) states that when the four strict-interior points of cap `i`
+lie on one circle about `Aᵢ`, that class has exactly six points: the four
+interior points, one point of the left adjacent closed cap, and one of the
+right.  Combining with the paragraph above:
+
+> Obligation (i) holds for index `i` when both adjacent hits are apices, and
+> that happens precisely when the two other apices are both at distance `r` from
+> `Aᵢ`, where `r` is cap `i`'s interior radius.
+
+In the other direction, if the two other apices are at distance `r` from `Aᵢ`
+then they lie in the class, and since each adjacent cap contributes exactly one
+point, they *are* the two adjacent hits.  So the condition is a genuine
+reduction in both directions, not merely a sufficient one.
+
+This supplies **all four** circle memberships of
+`false_of_arcMidpoint_twoCircle_of_convexIndep` at once, with `O := Aᵢ` and that
+same `r`: the two other apices give `hA` and `hB`, and any two of cap `i`'s four
+interior points give `hK` and `hP`.  The consumer needs two interior points; the
+class supplies four.
+
+The condition is that the Moser triangle is isosceles at `Aᵢ`, with the common
+side length equal to cap `i`'s interior radius.  Section 58 established that the
+*equilateral* case is refuted by `cap_card_ge_six`, since every equilateral
+producer is gated on `IsM44`.  The two facts sit together consistently: at most
+one apex can be distinguished this way, never all three.
+
+**Census evidence — EMPIRICAL, one cell, carrier size fifteen, one engine.**
+The 111 metric patterns of cell `i0-1R1R1R-in12` (the one-radius cell; file
+`…/stage1f-kalmanson-03/artifacts/i0-1R1R1R-in12.long.full.models.jsonl`) show:
+
+- every apex class has exactly six members, four of them the centre apex's own
+  cap interior — matching the proved card-six theorem exactly;
+- **exactly one** apex per pattern has both other apices in its class
+  (111 patterns with exactly one such apex, 0 with none, 0 with two or three);
+- the distinguished apex is `A0`, `A1`, `A2` in 37 patterns each, the even split
+  the dihedral relabelling predicts;
+- in all 111 patterns every foreign-cap hit comes from the distinguished apex's
+  own cap, with no exception.
+
+This is discovery evidence about the surviving patterns of one cell, not a
+theorem.  It says the reduced condition is satisfied throughout the cell, which
+is what makes it worth proving; it does not prove it.
+
+**Scope caveat.**  This cell is the *one-radius* arm.  Section 58's counting
+lead concerned the *two-radii* arm of
+`twoRadii_or_adjacentMutualOmissionPairAt_of_card_eq_fifteen` (`:2830`), whose
+class has card four rather than six.  The census data above is silent about that
+arm, and nothing here should be read as evidence for it.  Both arms need the
+same reduced condition, but only the one-radius arm has census support.
+
+**What changed.**  Obligation (i) was recorded as "mixed apex/interior
+concyclicity, no producer in source".  It is now one metric condition on three
+named points, with the interior half of the quadruple already supplied by a
+proved theorem.  The remaining question is whether the isosceles condition is
+forced — that is the next test, not a settled result.
+
+**Named vocabulary for the reduced condition.**  The repository already names
+the two other apices.  `leftOuterVertexByIndex` and `rightOuterVertexByIndex`
+(`Shard01.lean:1130,1139`) send `0 ↦ (v3, v2)`, `1 ↦ (v1, v3)`, `2 ↦ (v2, v1)` —
+exactly the two apices other than `oppositeVertexByIndex i`, matching the table
+above row for row.  Four membership lemmas make the incidence free rather than
+derived: `leftOuterVertexByIndex_mem_leftAdjacentCapByIndex` (`:1330`),
+`rightOuterVertexByIndex_mem_rightAdjacentCapByIndex` (`:1340`),
+`oppositeVertexByIndex_mem_leftAdjacentCapByIndex` (`:1351`) and its right
+sibling.  The last two confirm the exclusion argument's premise directly: the
+centre apex does lie in both of its own adjacent closed caps, and is kept out of
+the class only by `0 < r`.  So the reduced condition is stated in existing
+vocabulary as
+
+>     dist (S.oppositeVertexByIndex i) (S.leftOuterVertexByIndex i)  = r
+>   ∧ dist (S.oppositeVertexByIndex i) (S.rightOuterVertexByIndex i) = r
+
+with no new definitions needed, and the statement itself is cardinality-free.
+
+**The counting arm identifies no point, which is why the reduction is needed.**
+An independent trace of `selectedClass_card_eq_four_of_twoRadii_card_eq_fifteen`
+(`TriApexEndpointRetainedOmission.lean:2624`; proved, and note it carries no
+`card = 15` hypothesis despite its name) shows the `= 1` adjacent counts are a
+squeeze — `4 ≤ card` from `G.apex_rich`, `card ≤ 2 + 1 + 1` from
+`selectedClass_adjacent_bounds` (`:2507`), closed by `omega`.  No point-level
+witness is ever extracted from either adjacent cap.  The same holds for the
+one-radius arm.  So neither arm identifies the hit, and the reduction above is
+the thing that has to be proved rather than read off.
+
+The forward lead for proving it is the closed-to-interior transfer family at
+`SurplusM44Packet/Shard02.lean:565,595,623,641`, which moves membership from a
+closed adjacent cap to the adjacent interior given only that the point differs
+from the outer vertex.  That family splits the single hit into exactly two
+cases: it is the outer apex, or it is an adjacent-cap interior point.  Ruling
+out the second case for at least one index `i` closes obligation (i).  Untested
+so far; recorded as the next step, not as a result.
+
+Leaf unchanged: single `sorry`, `M = 18`.
