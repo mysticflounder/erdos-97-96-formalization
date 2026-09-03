@@ -68,6 +68,18 @@ theorem separatedPair_rotated_incompatible
   unfold separatedPair SurplusCOMPGBank.btw at hijab hbjai
   omega
 
+/-- Alternation is symmetric in the two pairs of endpoints.  The four cross
+distinctness hypotheses exclude exactly the degenerate cases where one point
+is also a cut endpoint. -/
+theorem separatedPair_exchange
+    {n : ℕ} {i j p q : Fin n}
+    (hip : i ≠ p) (hiq : i ≠ q)
+    (hjp : j ≠ p) (hjq : j ≠ q)
+    (hsep : separatedPair i j p q) :
+    separatedPair p q i j := by
+  unfold separatedPair SurplusCOMPGBank.btw at hsep ⊢
+  omega
+
 /-- The three perfect matchings cannot all be separated by one cut.
 
 This is the propositional core needed when two independent shared-pair

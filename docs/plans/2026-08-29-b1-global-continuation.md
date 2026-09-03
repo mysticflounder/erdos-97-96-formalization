@@ -503,3 +503,60 @@ an unrelated shared-worktree `lake build` still held the global build lock.
 three-pair pigeonhole theorem was separately checked from `import Mathlib`.
 An authoritative locked `lake-build` remains required before promotion beyond
 this checkpoint.
+
+## 2026-09-02 endpoint-order residual refinement
+
+The strict-cap branch now has a checked order consequence rather than only a
+placement statement.  `separatedPair_exchange` proves the order-only symmetry
+of alternating pairs.  Combined with strict-cap order convexity and the exact
+two-center separation theorem, this yields
+`B1EscapeRowProvenanceStar.liveRowBlocker_btw_of_two_points`: whenever two
+distinct points of one live row lie in both the physical second-apex class and
+the strict second cap, the live-row blocker lies strictly between their two
+indices in the retained linear boundary order.  This is only the linear-order
+component of Wave 6's `UNIT_BLOCKER_LIES_IN_OPEN_MINOR_ENDPOINT_ARC`; it does
+not identify the shorter cyclic arc.
+
+`B1EscapeSliceEndpointOrderResidual` packages the resulting exact split for
+any two-point live slice containing the escape source.  Its mate either lies
+in one of the two adjacent closed caps or the corresponding row blocker lies
+strictly between source and mate.  Card six always emits this sharpened packet
+via `nonempty_b1CardSixEndpointOrderResidual`.  Independently,
+`b1_cardSix_some_pair_blocker_btw` combines the six-point cap count with the
+three-pair pigeonhole theorem and proves that at least one of the deleted,
+`u`-live, or `v`-live physical pairs has its corresponding blocker between its
+endpoints.
+
+The same generic adapter also consumes both two-point arms of the exact
+card-five trace.  `nonempty_b1CardFiveEndpointOrderResidual` leaves only an
+endpoint-order packet or the explicit alternatives that the escape source is
+exactly `C.u` or exactly `C.v`: a singleton live slice already contains its
+canonical source, so its other member cannot be the escape source.  Thus the
+order formalization is no longer specific to card six, and the card-five
+singleton branch has been reduced from a cardinality fact to a role identity.
+`b1_fiveSixEndpointResidual_of_normalForm` now packages these two branches in
+one dependent residual directly from the original normal form, retaining the
+card-five/card-six role packet selected by the combined ingress.
+
+A bounded consumer audit found no active theorem that turns either the
+blocker-between packet or the adjacent-cap mate into `False`, a winning
+same-arc packet, or a source context.  The adjacent-cap audit does recover
+directed source/mate order separately in the direct/mirror and left/right cap
+cases, but the blocker remains unlocalized there.  The next mathematical
+consumer must therefore supply one of two genuinely global facts: locate the
+row blocker in the adjacent-mate branch, or combine the directed boundary
+crossing/blocker-between alternatives with deletion survival, mutual omission,
+or a proof-carrying endpoint certificate.  The top-level B1 theorem remains
+open at this checkpoint; no new `sorry` was introduced.
+
+The singleton-role follow-up mine found no hidden source-context bridge for
+`C.u` or `C.v`.  `B1GlobalTransportContext` gives their second-class
+membership, mutual row omissions, and joint-deletion packets, but not
+outside-first-apex-fiber membership or retained `interior_q`/`interior_w`
+survival.  The existing source-context adapter therefore still needs two
+source-specific antecedents: first-apex-class nonmembership and either one
+retained deletion survival or nonmembership in
+`interiorPairBadOutsideSources`.  The theorem that chooses some good outside
+source cannot identify that source with `C.u` or `C.v`, and the two-source
+first-apex split additionally requires both live sources to be strict
+second-cap-interior.

@@ -13,12 +13,14 @@ import Erdos9796Proof.P97.ATail.TwoRadiusGridEscapeSynchronization
 /-!
 # B1 winning-slice order outcome
 
-The five/six ingress retains the local escape row and a card-two live slice,
-but it intentionally forgets the cap provenance needed to force a boundary
-arc.  This module records the smallest source context that can carry that
-provenance back to a neutral downstream consumer.  The order-or-context
-producer itself remains an explicit proof obligation; no boundary order is
-asserted from the cardinality normal form alone.
+The five/six ingress retains the local escape row, the zero-cut cap blocks,
+and cardinality-specific live-slice roles.  This module turns that provenance
+into the source-clean consequences currently available: cap convexity,
+blocker-between-endpoints order for a strict-cap pair, adjacent-cap placement
+for an outside mate, and exact singleton-source identities in card five.  It
+also records the smallest source context that can feed a neutral downstream
+consumer.  The final global consumer of the sharpened endpoint residual
+remains an explicit proof obligation.
 -/
 
 namespace Problem97
@@ -167,6 +169,29 @@ theorem cyclicAdjacent_of_boundaryOrderConvex_of_endpoints_not_mem
   unfold cyclicAdjacent
   exact ⟨forward hp hq, forward hq hp⟩
 
+/-- If one endpoint of an alternating cut lies outside an order-convex block
+while the separated pair lies inside it, then the other cut endpoint lies
+strictly between the separated pair. -/
+theorem btw_secondCutEndpoint_of_separatedPair_of_boundaryOrderConvex
+    {A : Finset ℝ²} (B : BoundaryIndexing A) (C : Finset ℝ²)
+    (hconvex : BoundaryOrderConvex B C)
+    {i j p q : Fin B.n}
+    (hi : B.boundary i ∉ C)
+    (hp : B.boundary p ∈ C) (hq : B.boundary q ∈ C)
+    (hip : i ≠ p) (hiq : i ≠ q)
+    (hjp : j ≠ p) (hjq : j ≠ q)
+    (hsep : separatedPair i j p q) :
+    SurplusCOMPGBank.btw p q j := by
+  have hsep' : separatedPair p q i j :=
+    separatedPair_exchange hip hiq hjp hjq hsep
+  have hnoti : ¬ SurplusCOMPGBank.btw p q i := by
+    intro hbetween
+    rcases hbetween with ⟨hpi, hiq'⟩ | ⟨hqi, hip'⟩
+    · exact hi (hconvex hpi hiq' hp hq)
+    · exact hi (hconvex hqi hip' hq hp)
+  by_contra hnotj
+  exact hnoti (hsep'.mpr hnotj)
+
 /-- The second physical apex is the Moser vertex opposite the second indexed
 cap.  This local bridge exposes the indexed endpoint needed by the generic
 strict-cap exclusion theorem. -/
@@ -273,6 +298,125 @@ theorem b1_liveRowBlocker_mem_secondCapInterior_of_two_points
   exact ATailTwoCenterCapLocalization.commonPhysicalPair_center_mem_secondCapInterior
     hcenterA hcenterNe hsourceInterior hpartnerInterior
     (fun h => hsourcePartner (Subtype.ext h)) hcenterEq hphysicalEq
+
+/-- If a two-point live slice lies in the strict second cap, the exact-row
+blocker lies strictly between its two physical endpoints in the retained
+linear boundary order.  This is the source-provable linear-order component of
+the stronger endpoint-shadow relation exposed by the computational waves; it
+does not identify the shorter cyclic arc. -/
+theorem B1EscapeRowProvenanceStar.liveRowBlocker_btw_of_two_points
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F)}
+    (E : B1EscapeRowProvenanceStar C)
+    (row p q : CarrierVertex D.A)
+    (hpRow : p.1 ∈ ((lateFirstApexSystem C.R).selectedAt
+      row.1 row.2).toCriticalFourShell.support)
+    (hqRow : q.1 ∈ ((lateFirstApexSystem C.R).selectedAt
+      row.1 row.2).toCriticalFourShell.support)
+    (hpClass : p.1 ∈ SelectedClass D.A S.oppApex2 C.rho)
+    (hqClass : q.1 ∈ SelectedClass D.A S.oppApex2 C.rho)
+    (hpInterior : p.1 ∈ S.capInteriorByIndex S.oppIndex2)
+    (hqInterior : q.1 ∈ S.capInteriorByIndex S.oppIndex2)
+    (hpq : p ≠ q) :
+    SurplusCOMPGBank.btw
+      (E.boundary.indexOf p) (E.boundary.indexOf q)
+      (E.boundary.indexOf
+        (blockerLabel (lateFirstApexSystem C.R) row.1 row.2)) := by
+  let B := E.boundary
+  let apex : CarrierLabel D.A :=
+    ⟨S.oppApex2, b1_oppApex2_mem_A S⟩
+  let blocker : CarrierLabel D.A :=
+    blockerLabel (lateFirstApexSystem C.R) row.1 row.2
+  let ia := B.indexOf apex
+  let ib := B.indexOf blocker
+  let ip := B.indexOf p
+  let iq := B.indexOf q
+  let K := ((lateFirstApexSystem C.R).selectedAt
+    row.1 row.2).toCriticalFourShell
+  have hapexBlocker : apex ≠ blocker := by
+    intro h
+    exact C.surface.secondApex_robust.centerAt_ne
+      (lateFirstApexSystem C.R) row.1 row.2
+      (congrArg Subtype.val h).symm
+  have hpNeApex : p.1 ≠ S.oppApex2 := by
+    intro h
+    have hdist := (mem_selectedClass.mp hpClass).2
+    rw [h] at hdist
+    have hrhoZero : C.rho = 0 := by simpa using hdist.symm
+    exact (ne_of_gt C.hrho) hrhoZero
+  have hqNeApex : q.1 ≠ S.oppApex2 := by
+    intro h
+    have hdist := (mem_selectedClass.mp hqClass).2
+    rw [h] at hdist
+    have hrhoZero : C.rho = 0 := by simpa using hdist.symm
+    exact (ne_of_gt C.hrho) hrhoZero
+  have hip : ia ≠ ip := by
+    apply B.index_injective.ne
+    intro h
+    exact hpNeApex (congrArg Subtype.val h).symm
+  have hiq : ia ≠ iq := by
+    apply B.index_injective.ne
+    intro h
+    exact hqNeApex (congrArg Subtype.val h).symm
+  have hbp : ib ≠ ip := by
+    apply B.index_injective.ne
+    intro h
+    have hpoint :
+        (lateFirstApexSystem C.R).centerAt row.1 row.2 = p.1 :=
+      congrArg Subtype.val h
+    exact K.center_not_mem_support (by simpa [K, hpoint] using hpRow)
+  have hbq : ib ≠ iq := by
+    apply B.index_injective.ne
+    intro h
+    have hpoint :
+        (lateFirstApexSystem C.R).centerAt row.1 row.2 = q.1 :=
+      congrArg Subtype.val h
+    exact K.center_not_mem_support (by simpa [K, hpoint] using hqRow)
+  have hpPoint : B.boundary ip = p.1 := by
+    simpa [ip] using B.point_eq p
+  have hqPoint : B.boundary iq = q.1 := by
+    simpa [iq] using B.point_eq q
+  have hapexPoint : B.boundary ia = S.oppApex2 := by
+    simpa [ia, apex] using B.point_eq apex
+  have hblockerPoint :
+      B.boundary ib =
+        (lateFirstApexSystem C.R).centerAt row.1 row.2 := by
+    simpa [ib, blocker] using B.point_eq blocker
+  have hcenterA :
+      dist (B.boundary ip) (B.boundary ia) =
+        dist (B.boundary iq) (B.boundary ia) := by
+    rw [hpPoint, hqPoint, hapexPoint]
+    simpa only [dist_comm] using
+      (mem_selectedClass.mp hpClass).2.trans
+        (mem_selectedClass.mp hqClass).2.symm
+  have hcenterB :
+      dist (B.boundary ip) (B.boundary ib) =
+        dist (B.boundary iq) (B.boundary ib) := by
+    rw [hpPoint, hqPoint, hblockerPoint]
+    simpa only [dist_comm] using
+      (K.support_eq_radius p.1 hpRow).trans
+        (K.support_eq_radius q.1 hqRow).symm
+  have hsep : separatedPair ia ib ip iq :=
+    SurplusCOMPGBank.btw_sep B.boundary_ccw B.boundary_injective
+      (B.index_injective.ne hapexBlocker) hiq.symm hbq.symm hcenterA hcenterB
+      (B.boundary_injective.ne (B.index_injective.ne hpq))
+  have hapexOutside : B.boundary ia ∉
+      S.capInteriorByIndex S.oppIndex2 := by
+    rw [hapexPoint]
+    exact E.oppApex2_not_mem_secondCapInterior
+  exact btw_secondCutEndpoint_of_separatedPair_of_boundaryOrderConvex
+    B (S.capInteriorByIndex S.oppIndex2)
+    E.secondCapInterior_boundaryOrderConvex hapexOutside
+    (show B.boundary ip ∈ S.capInteriorByIndex S.oppIndex2 by
+      rw [hpPoint]
+      exact hpInterior)
+    (show B.boundary iq ∈ S.capInteriorByIndex S.oppIndex2 by
+      rw [hqPoint]
+      exact hqInterior)
+    hip hiq hbp hbq hsep
 
 /-- A member of the physical second-apex class outside the strict second cap
 must lie in one of that cap's two adjacent closed caps. -/
@@ -536,6 +680,83 @@ theorem b1_cardSix_interior_pair_and_blocker
       hsourceData.2 hotherData.2 (hv hsourceMem) (hv hotherMem)
       P.vPhysical.source_ne_other
 
+/-- Among the three disjoint physical pairs in card six, one pair has its
+actual blocker strictly between its endpoints in the retained boundary order.
+This consumes the complete-pair strict-cap pigeonhole and exact-row
+separation in one reusable statement. -/
+theorem b1_cardSix_some_pair_blocker_btw
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F))
+    (hnormal : B1PhysicalClassFiveSixNormalForm C)
+    (hsix : (SelectedClass D.A S.oppApex2 C.rho).card = 6)
+    (P : B1CardSixLocalRolePacket C)
+    (E : B1EscapeRowProvenanceStar C) :
+    SurplusCOMPGBank.btw
+        (E.boundary.indexOf C.first.deleted)
+        (E.boundary.indexOf C.second.deleted)
+        (E.boundary.indexOf
+          (blockerLabel (lateFirstApexSystem C.R)
+            C.first.deleted.1 C.first.deleted.2)) ∨
+      SurplusCOMPGBank.btw
+        (E.boundary.indexOf C.u)
+        (E.boundary.indexOf P.uPhysical.other)
+        (E.boundary.indexOf
+          (blockerLabel (lateFirstApexSystem C.R) C.u.1 C.u.2)) ∨
+      SurplusCOMPGBank.btw
+        (E.boundary.indexOf C.v)
+        (E.boundary.indexOf P.vPhysical.other)
+        (E.boundary.indexOf
+          (blockerLabel (lateFirstApexSystem C.R) C.v.1 C.v.2)) := by
+  rcases b1_cardSix_interior_pair_and_blocker C hnormal hsix P with
+    hdeleted | hu | hv
+  · left
+    have hnormal' := b1_live_normalForm
+      C.R C.hcard C.surface C.rho C.hrho C.hfive C.u C.v C.huNeV
+      C.huClass C.hvClass C.hvOmitted C.huOmitted C.first C.second
+      C.hdeletedNe C.hblockersEq
+    exact E.liveRowBlocker_btw_of_two_points
+      C.first.deleted C.first.deleted C.second.deleted
+      ((lateFirstApexSystem C.R).selectedAt
+        C.first.deleted.1 C.first.deleted.2).toCriticalFourShell.q_mem_support
+      hnormal'.2.2.1 C.first.deleted_mem_class
+      C.second.deleted_mem_class (hdeleted.1 (by simp))
+      (hdeleted.1 (by simp)) C.hdeletedNe
+  · right; left
+    have huSource : C.u.1 ∈ b1USlice C := by
+      exact Finset.mem_inter.mpr ⟨
+        ((lateFirstApexSystem C.R).selectedAt
+          C.u.1 C.u.2).toCriticalFourShell.q_mem_support,
+        C.huClass⟩
+    have huOther : P.uPhysical.other.1 ∈ b1USlice C := by
+      rw [show b1USlice C = {C.u.1, P.uPhysical.other.1} by
+        simpa [b1USlice, b1PhysicalClass] using P.uPhysical.slice_eq]
+      simp
+    have huSourceData := Finset.mem_inter.mp huSource
+    have huOtherData := Finset.mem_inter.mp huOther
+    exact E.liveRowBlocker_btw_of_two_points
+      C.u C.u P.uPhysical.other huSourceData.1 huOtherData.1
+      huSourceData.2 huOtherData.2 (hu.1 huSource) (hu.1 huOther)
+      P.uPhysical.source_ne_other
+  · right; right
+    have hvSource : C.v.1 ∈ b1VSlice C := by
+      exact Finset.mem_inter.mpr ⟨
+        ((lateFirstApexSystem C.R).selectedAt
+          C.v.1 C.v.2).toCriticalFourShell.q_mem_support,
+        C.hvClass⟩
+    have hvOther : P.vPhysical.other.1 ∈ b1VSlice C := by
+      rw [show b1VSlice C = {C.v.1, P.vPhysical.other.1} by
+        simpa [b1VSlice, b1PhysicalClass] using P.vPhysical.slice_eq]
+      simp
+    have hvSourceData := Finset.mem_inter.mp hvSource
+    have hvOtherData := Finset.mem_inter.mp hvOther
+    exact E.liveRowBlocker_btw_of_two_points
+      C.v C.v P.vPhysical.other hvSourceData.1 hvOtherData.1
+      hvSourceData.2 hvOtherData.2 (hv.1 hvSource) (hv.1 hvOther)
+      P.vPhysical.source_ne_other
+
 /-- In the card-six role packet both named live physical slices are genuinely
 two-point slices.  This is the first card-six reduction: it uses only the
 within-slice naming equalities and does not assume any boundary placement. -/
@@ -612,6 +833,108 @@ def B1CardSixCapOrderResidual
         (blockerLabel (lateFirstApexSystem C.R) row.1 row.2).1 ∈
           S.capInteriorByIndex S.oppIndex2))
 
+/-- The endpoint-order residual of any two-point live slice containing the
+escape source.  Either the other endpoint lies in an adjacent cap, or the
+live-row blocker lies strictly between the two endpoints. -/
+def B1EscapeSliceEndpointOrderResidual
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F))
+    (E : B1EscapeRowProvenanceStar C) : Prop :=
+  ∃ row mate : CarrierVertex D.A, ∃ slice : Finset ℝ²,
+    ((row = C.u ∧ slice = b1USlice C) ∨
+      (row = C.v ∧ slice = b1VSlice C)) ∧
+    E.escape.source.1 ∈ slice ∧
+    slice.card = 2 ∧
+    slice = {E.escape.source.1, mate.1} ∧
+    ((mate.1 ∈ S.leftAdjacentCapByIndex S.oppIndex2 ∨
+        mate.1 ∈ S.rightAdjacentCapByIndex S.oppIndex2) ∨
+      SurplusCOMPGBank.btw
+        (E.boundary.indexOf E.escape.source)
+        (E.boundary.indexOf mate)
+        (E.boundary.indexOf
+          (blockerLabel (lateFirstApexSystem C.R) row.1 row.2)))
+
+/-- Card-six name for the generic two-point escape-slice residual. -/
+abbrev B1CardSixEndpointOrderResidual
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F))
+    (E : B1EscapeRowProvenanceStar C) : Prop :=
+  B1EscapeSliceEndpointOrderResidual C E
+
+/-- Any named two-point live slice containing the escape source produces the
+generic endpoint-order residual. -/
+theorem b1EscapeSliceEndpointOrderResidual_of_twoPoint
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F)}
+    (E : B1EscapeRowProvenanceStar C)
+    (row : CarrierVertex D.A) (slice : Finset ℝ²)
+    (hrow : (row = C.u ∧ slice = b1USlice C) ∨
+      (row = C.v ∧ slice = b1VSlice C))
+    (hsource : E.escape.source.1 ∈ slice)
+    (hcard : slice.card = 2) :
+    B1EscapeSliceEndpointOrderResidual C E := by
+  classical
+  have hsliceA : slice ⊆ D.A := by
+    intro x hx
+    rcases hrow with hu | hv
+    · rcases hu with ⟨rfl, rfl⟩
+      exact ((lateFirstApexSystem C.R).selectedAt
+        C.u.1 C.u.2).toCriticalFourShell.support_subset_A
+          (Finset.mem_inter.mp hx).1
+    · rcases hv with ⟨rfl, rfl⟩
+      exact ((lateFirstApexSystem C.R).selectedAt
+        C.v.1 C.v.2).toCriticalFourShell.support_subset_A
+          (Finset.mem_inter.mp hx).1
+  obtain ⟨named⟩ :=
+    nonempty_b1NamedTwoPointSlice_of_card_eq_two hsliceA hsource hcard
+  refine ⟨row, named.other, slice, hrow, hsource, hcard,
+    named.slice_eq, ?_⟩
+  have hmate : named.other.1 ∈ slice := by
+    simpa [named.slice_eq]
+  have hsliceAs :
+      slice =
+        ((lateFirstApexSystem C.R).selectedAt
+            row.1 row.2).toCriticalFourShell.support ∩
+          SelectedClass D.A S.oppApex2 C.rho := by
+    rcases hrow with hu | hv
+    · rcases hu with ⟨rfl, rfl⟩
+      rfl
+    · rcases hv with ⟨rfl, rfl⟩
+      rfl
+  have hsourceData := Finset.mem_inter.mp (show
+    E.escape.source.1 ∈
+      ((lateFirstApexSystem C.R).selectedAt
+          row.1 row.2).toCriticalFourShell.support ∩
+        SelectedClass D.A S.oppApex2 C.rho by
+      rw [← hsliceAs]
+      exact hsource)
+  have hmateData := Finset.mem_inter.mp (show
+    named.other.1 ∈
+      ((lateFirstApexSystem C.R).selectedAt
+          row.1 row.2).toCriticalFourShell.support ∩
+        SelectedClass D.A S.oppApex2 C.rho by
+      rw [← hsliceAs]
+      exact hmate)
+  by_cases hmateInterior : named.other.1 ∈
+      S.capInteriorByIndex S.oppIndex2
+  · right
+    exact E.liveRowBlocker_btw_of_two_points
+      row E.escape.source named.other hsourceData.1 hmateData.1
+      hsourceData.2 hmateData.2 E.escape.source_mem_interior
+      hmateInterior named.source_ne_other
+  · left
+    exact b1_physicalClass_mem_adjacentCap_of_not_mem_secondCapInterior
+      C hmateData.2 hmateInterior
+
 /-- The card-six zero-cut ingress gives a complete, source-clean placement
 split.  In particular, putting the mate in the strict second cap forces the
 live-row blocker there too, so the blocker-outside same-arc adapter cannot
@@ -678,6 +1001,66 @@ theorem nonempty_b1CardSixCapOrderResidual
           (b1_physicalClass_mem_adjacentCap_of_not_mem_secondCapInterior
             C hmateData.2 hmate)⟩⟩
 
+/-- Exact-row separation consumes the strict-cap arm of the coarse card-six
+placement split and replaces it by the blocker-between-endpoints relation. -/
+theorem B1CardSixCapOrderResidual.toEndpointOrderResidual
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F)}
+    {E : B1EscapeRowProvenanceStar C}
+    (R : B1CardSixCapOrderResidual C E) :
+    B1CardSixEndpointOrderResidual C E := by
+  classical
+  rcases R with
+    ⟨row, mate, slice, hrow, hsource, hcard, hslice, hplacement⟩
+  refine ⟨row, mate, slice, hrow, hsource, hcard, hslice, ?_⟩
+  rcases hplacement with hadjacent | hinterior
+  · exact Or.inl hadjacent
+  · right
+    have hmate : mate.1 ∈ slice := by
+      rw [hslice]
+      simp
+    have hsliceAs :
+        slice =
+          ((lateFirstApexSystem C.R).selectedAt
+              row.1 row.2).toCriticalFourShell.support ∩
+            SelectedClass D.A S.oppApex2 C.rho := by
+      rcases hrow with hu | hv
+      · rcases hu with ⟨rfl, rfl⟩
+        rfl
+      · rcases hv with ⟨rfl, rfl⟩
+        rfl
+    rw [hsliceAs] at hsource hmate
+    have hsourceData := Finset.mem_inter.mp hsource
+    have hmateData := Finset.mem_inter.mp hmate
+    have hsourceMateVal : E.escape.source.1 ≠ mate.1 := by
+      intro heq
+      rw [hslice, heq] at hcard
+      simp at hcard
+    have hsourceMate : E.escape.source ≠ mate := by
+      intro h
+      exact hsourceMateVal (congrArg Subtype.val h)
+    exact E.liveRowBlocker_btw_of_two_points
+      row E.escape.source mate hsourceData.1 hmateData.1
+      hsourceData.2 hmateData.2 E.escape.source_mem_interior
+      hinterior.1 hsourceMate
+
+/-- The card-six ingress therefore always produces the sharpened endpoint
+order residual. -/
+theorem nonempty_b1CardSixEndpointOrderResidual
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F))
+    (P : B1CardSixLocalRolePacket C)
+    (E : B1EscapeRowProvenanceStar C) :
+    Nonempty (B1CardSixEndpointOrderResidual C E) := by
+  obtain ⟨R⟩ := nonempty_b1CardSixCapOrderResidual C P E
+  exact ⟨R.toEndpointOrderResidual⟩
+
 /- The card-five interface uses the same arc packet, but records the required
 card-two condition because one live slice may be a singleton. -/
 def B1CardFiveWinningSliceArc
@@ -731,6 +1114,124 @@ theorem b1_cardFive_escapeSource_trace
     · rcases hrest with hpair | hshared
       · exact Or.inr (Or.inr (Or.inr ⟨hv, hpair.2⟩))
       · exact Or.inr (Or.inl ⟨hv, hshared.2.1⟩)
+
+/-- A singleton `u` live slice containing the escape source identifies that
+source with the canonical `u` source. -/
+theorem b1_escapeSource_eq_u_of_uSlice_card_one
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F)}
+    (E : B1EscapeRowProvenanceStar C)
+    (hsource : E.escape.source.1 ∈ b1USlice C)
+    (hcard : (b1USlice C).card = 1) :
+    E.escape.source = C.u := by
+  classical
+  obtain ⟨x, hx⟩ := Finset.card_eq_one.mp hcard
+  have hsourceX : E.escape.source.1 = x := by
+    simpa [hx] using hsource
+  have huMem : C.u.1 ∈ b1USlice C := Finset.mem_inter.mpr ⟨
+    ((lateFirstApexSystem C.R).selectedAt
+      C.u.1 C.u.2).toCriticalFourShell.q_mem_support,
+    C.huClass⟩
+  have huX : C.u.1 = x := by
+    simpa [hx] using huMem
+  exact Subtype.ext (hsourceX.trans huX.symm)
+
+/-- A singleton `v` live slice containing the escape source identifies that
+source with the canonical `v` source. -/
+theorem b1_escapeSource_eq_v_of_vSlice_card_one
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F)}
+    (E : B1EscapeRowProvenanceStar C)
+    (hsource : E.escape.source.1 ∈ b1VSlice C)
+    (hcard : (b1VSlice C).card = 1) :
+    E.escape.source = C.v := by
+  classical
+  obtain ⟨x, hx⟩ := Finset.card_eq_one.mp hcard
+  have hsourceX : E.escape.source.1 = x := by
+    simpa [hx] using hsource
+  have hvMem : C.v.1 ∈ b1VSlice C := Finset.mem_inter.mpr ⟨
+    ((lateFirstApexSystem C.R).selectedAt
+      C.v.1 C.v.2).toCriticalFourShell.q_mem_support,
+    C.hvClass⟩
+  have hvX : C.v.1 = x := by
+    simpa [hx] using hvMem
+  exact Subtype.ext (hsourceX.trans hvX.symm)
+
+/-- The sharpened card-five residual: a two-point escape slice supplies the
+generic endpoint-order packet, while a singleton escape slice identifies the
+escape source with one of the two canonical live sources. -/
+def B1CardFiveEndpointOrderResidual
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F))
+    (E : B1EscapeRowProvenanceStar C) : Prop :=
+  B1EscapeSliceEndpointOrderResidual C E ∨
+    E.escape.source = C.u ∨ E.escape.source = C.v
+
+/-- Every exact card-five trace produces the endpoint-order-or-singleton
+residual without any additional global placement assumption. -/
+theorem nonempty_b1CardFiveEndpointOrderResidual
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F))
+    (hnormal : B1PhysicalClassFiveSixNormalForm C)
+    (hfive : (SelectedClass D.A S.oppApex2 C.rho).card = 5)
+    (E : B1EscapeRowProvenanceStar C) :
+    Nonempty (B1CardFiveEndpointOrderResidual C E) := by
+  rcases b1_cardFive_escapeSource_trace C hnormal hfive E with
+    huTwo | hvTwo | huOne | hvOne
+  · exact ⟨Or.inl (b1EscapeSliceEndpointOrderResidual_of_twoPoint
+      E C.u (b1USlice C) (Or.inl ⟨rfl, rfl⟩) huTwo.1 huTwo.2)⟩
+  · exact ⟨Or.inl (b1EscapeSliceEndpointOrderResidual_of_twoPoint
+      E C.v (b1VSlice C) (Or.inr ⟨rfl, rfl⟩) hvTwo.1 hvTwo.2)⟩
+  · exact ⟨Or.inr (Or.inl
+      (b1_escapeSource_eq_u_of_uSlice_card_one E huOne.1 huOne.2))⟩
+  · exact ⟨Or.inr (Or.inr
+      (b1_escapeSource_eq_v_of_vSlice_card_one E hvOne.1 hvOne.2))⟩
+
+/-- The combined five/six ingress after all currently source-provable
+endpoint-order refinements.  The cardinality-specific packet remains in the
+dependent match so no role provenance is discarded. -/
+def B1FiveSixEndpointResidual
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F)) : Prop :=
+  ∃ W : B1FiveSixWaveIngress C,
+    match W.cardCase with
+    | .cardFive _ => B1CardFiveEndpointOrderResidual C W.escape
+    | .cardSix _ => B1CardSixEndpointOrderResidual C W.escape
+
+/-- Every B1 five/six normal form emits the sharpened endpoint residual. -/
+theorem b1_fiveSixEndpointResidual_of_normalForm
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F))
+    (hnormal : B1PhysicalClassFiveSixNormalForm C) :
+    B1FiveSixEndpointResidual C := by
+  obtain ⟨W⟩ := nonempty_b1FiveSixWaveIngress C hnormal
+  refine ⟨W, ?_⟩
+  cases hcase : W.cardCase with
+  | cardFive P =>
+      simpa [hcase] using
+        (nonempty_b1CardFiveEndpointOrderResidual
+          C hnormal P.physicalClass_card W.escape).some
+  | cardSix P =>
+      simpa [hcase] using
+        (nonempty_b1CardSixEndpointOrderResidual C P W.escape).some
 
 /-- The source-rich alternative to a winning same-arc live pair.
 
