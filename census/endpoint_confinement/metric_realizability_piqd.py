@@ -33,6 +33,10 @@ DESCRIPTOR_SCHEMA = "p97-endpoint-metric-realizability-piqd-query/v1"
 PROFILE_SCHEMA = "p97-piqd-z3-qfnra-one-shot/v1"
 NORMALIZATION_SCHEMA = "p97-endpoint-metric-smt-normalization/v1"
 STAGES = ("exact-metric-relaxation", "full-convex", "convex-only-relaxation")
+_SAT_REPLAY_INCONCLUSIVE_STATUSES = {
+    "INCONCLUSIVE_SEMANTIC_REPLAY_REJECTED",
+    "INCONCLUSIVE_SEMANTIC_VERIFIER_FAILURE",
+}
 _SMOKE_SAT_FIXTURE_PINS = (
     ("x_2", 4, 5),
     ("y_2", 3, 5),
@@ -2165,7 +2169,16 @@ def run_staged_system(
             if raw == "UNSAT":
                 final_status, decisive_stage = "UNSAT", stage
                 break
-            if effective != "SAT_SEMANTICALLY_REPLAYED" and raw != "UNKNOWN":
+            relaxation_replay_rejected = (
+                stage == "exact-metric-relaxation"
+                and raw == "SAT"
+                and effective in _SAT_REPLAY_INCONCLUSIVE_STATUSES
+            )
+            if (
+                effective != "SAT_SEMANTICALLY_REPLAYED"
+                and raw != "UNKNOWN"
+                and not relaxation_replay_rejected
+            ):
                 break
             if stage == "full-convex":
                 if effective == "SAT_SEMANTICALLY_REPLAYED":
@@ -2273,6 +2286,10 @@ def _derive_published_result(
     first_continues = first["status"] != "UNSAT" and (
         first["effective_status"] == "SAT_SEMANTICALLY_REPLAYED"
         or first["status"] == "UNKNOWN"
+        or (
+            first["status"] == "SAT"
+            and first["effective_status"] in _SAT_REPLAY_INCONCLUSIVE_STATUSES
+        )
     )
     if first_continues:
         expected_names.append("full-convex")

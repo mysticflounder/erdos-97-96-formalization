@@ -1,0 +1,16 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "endpoint-direct-metric-source-20260903",
+  "owner": "Codex-B1-Sorry",
+  "base_head": "ae90cce573eaea37291bc9078b89a5727dd351be",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/endpoint-direct-metric-source-20260903.json",
+    "census/endpoint_confinement/metric_realizability_piqd.py",
+    "census/endpoint_confinement/metric_realizability_probe.py",
+    "census/endpoint_confinement/test_metric_realizability_piqd.py"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-03T07:17:36Z",
+  "manifest_sha256": "3d80ed528ace68c14bd54365f6d11426c5d357b62c0697a1829a698793c43c18"
+}

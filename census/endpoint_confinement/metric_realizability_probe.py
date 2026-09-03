@@ -10,6 +10,10 @@ realization: all ambient labels are distinct vertices of a strictly convex
 polygon in the recorded cyclic order, every row is equidistant from its center,
 and an exact row contains every point at that radius.
 
+The explicit direct-system source schema admits canonically ordered support
+sets of any cardinality at least two.  Legacy saved assignments retain their
+four-support interpretation.
+
 An UNSAT result is diagnostic evidence about that saved assignment.  A SAT
 result is only a realization of this row-level relaxation, not a Problem 97
 counterexample.  The production route uses one-shot PIQD Z3 sessions and
@@ -45,6 +49,8 @@ DEFAULT_INPUTS = (
     HERE / "shell_audit_results_all_frames_n11_12.json",
 )
 SCHEMA = "p97-global-confinement-metric-realizability-v1"
+DIRECT_SYSTEM_SOURCE_SCHEMA = "p97-endpoint-direct-metric-system-source-v1"
+DIRECT_SYSTEM_MAX_N = 64
 CONTEXT_FIELDS = (
     "n",
     "profile",
@@ -976,23 +982,157 @@ def _system_key(
     return json.dumps(payload, sort_keys=True, separators=(",", ":"))
 
 
+def _direct_system_from_source(
+    root: object, path: Path, source_sha256: str
+) -> tuple[str, dict[str, Any]]:
+    """Validate one canonical direct metric-system source document."""
+
+    required_keys = {
+        "schema",
+        "system_id",
+        "n",
+        "order",
+        "rows",
+    }
+    if type(root) is not dict or set(root) != required_keys:
+        raise ValueError(f"direct metric source at {path} has the wrong keys")
+    if root["schema"] != DIRECT_SYSTEM_SOURCE_SCHEMA:
+        raise ValueError(f"direct metric source at {path} has the wrong schema")
+
+    n = root["n"]
+    if type(n) is not int or not 3 <= n <= DIRECT_SYSTEM_MAX_N:
+        raise ValueError(
+            f"direct metric source at {path} has invalid n; "
+            f"expected 3..{DIRECT_SYSTEM_MAX_N}"
+        )
+    order = root["order"]
+    if (
+        type(order) is not list
+        or len(order) != n
+        or any(type(point) is not int for point in order)
+        or sorted(order) != list(range(n))
+    ):
+        raise ValueError(
+            f"direct metric source at {path} order is not a permutation of 0..{n - 1}"
+        )
+
+    raw_rows = root["rows"]
+    if type(raw_rows) is not list:
+        raise ValueError(f"direct metric source at {path} rows are not a list")
+    rows: list[MetricRow] = []
+    row_keys: set[tuple[int, tuple[int, ...]]] = set()
+    for index, raw_row in enumerate(raw_rows):
+        if type(raw_row) is not dict or set(raw_row) != {
+            "center",
+            "support",
+            "exact",
+        }:
+            raise ValueError(
+                f"direct metric source row {index} at {path} has the wrong keys"
+            )
+        center = raw_row["center"]
+        support = raw_row["support"]
+        exact = raw_row["exact"]
+        if type(center) is not int or center not in range(n):
+            raise ValueError(
+                f"direct metric source row {index} at {path} has an invalid center"
+            )
+        if (
+            type(support) is not list
+            or len(support) < 2
+            or any(type(point) is not int for point in support)
+            or any(point not in range(n) for point in support)
+            or center in support
+            or support != sorted(set(support))
+        ):
+            raise ValueError(
+                f"direct metric source row {index} at {path} has invalid or "
+                "noncanonical support"
+            )
+        if type(exact) is not bool:
+            raise ValueError(
+                f"direct metric source row {index} at {path} has a "
+                "non-Boolean exact flag"
+            )
+        key = (center, tuple(support))
+        if key in row_keys:
+            raise ValueError(
+                f"direct metric source row {index} at {path} duplicates an earlier row"
+            )
+        row_keys.add(key)
+        rows.append(MetricRow(center, key[1], exact))
+    if rows != sorted(rows, key=lambda row: (row.center, row.support)):
+        raise ValueError(f"direct metric source rows at {path} are not canonical")
+
+    key = json.dumps(
+        {
+            "n": n,
+            "order": list(order),
+            "rows": [row.as_dict() for row in rows],
+        },
+        sort_keys=True,
+        separators=(",", ":"),
+    )
+    expected_system_id = hashlib.sha256(key.encode()).hexdigest()[:20]
+    if type(root["system_id"]) is not str or root["system_id"] != expected_system_id:
+        raise ValueError(
+            f"direct metric source at {path} system_id is not the canonical digest"
+        )
+    source = {
+        "file": os.path.relpath(path, ROOT),
+        "json_pointer": "",
+        "family": "direct-metric-system",
+        "sha256": source_sha256,
+        "context": {"schema": DIRECT_SYSTEM_SOURCE_SCHEMA},
+    }
+    return key, {
+        "system_id": expected_system_id,
+        "n": n,
+        "profile": [],
+        "order": list(order),
+        "rows": [row.as_dict() for row in rows],
+        "sources": [source],
+    }
+
+
 def extract_systems(paths: Sequence[Path]) -> tuple[list[dict[str, Any]], dict[str, Any]]:
-    """Extract and metric-deduplicate every saved SAT assignment."""
+    """Extract canonical direct systems and saved four-support SAT assignments."""
 
     by_key: dict[str, dict[str, Any]] = {}
     raw_assignments = 0
+    raw_direct_systems = 0
     rejected_non_sat = 0
     input_files = []
 
     for path in paths:
         raw_bytes = path.read_bytes()
         root = json.loads(raw_bytes)
+        source_sha256 = hashlib.sha256(raw_bytes).hexdigest()
         input_files.append(
             {
                 "path": os.path.relpath(path, ROOT),
-                "sha256": hashlib.sha256(raw_bytes).hexdigest(),
+                "sha256": source_sha256,
             }
         )
+
+        direct_shape = type(root) is dict and {
+            "system_id",
+            "n",
+            "order",
+            "rows",
+        }.issubset(root)
+        if direct_shape and root.get("schema") != DIRECT_SYSTEM_SOURCE_SCHEMA:
+            raise ValueError(f"direct metric source at {path} has the wrong schema")
+        if type(root) is dict and root.get("schema") == DIRECT_SYSTEM_SOURCE_SCHEMA:
+            raw_direct_systems += 1
+            key, direct_system = _direct_system_from_source(
+                root, path, source_sha256
+            )
+            if key not in by_key:
+                by_key[key] = direct_system
+            else:
+                by_key[key]["sources"].extend(direct_system["sources"])
+            continue
 
         def visit(value: Any, json_path: tuple[Any, ...], context: dict[str, Any]) -> None:
             nonlocal raw_assignments, rejected_non_sat
@@ -1066,9 +1206,12 @@ def extract_systems(paths: Sequence[Path]) -> tuple[list[dict[str, Any]], dict[s
     extraction = {
         "input_files": input_files,
         "raw_assignments": raw_assignments,
+        "raw_direct_systems": raw_direct_systems,
         "rejected_non_sat_assignments": rejected_non_sat,
         "unique_metric_systems": len(systems),
-        "deduplicated_assignments": raw_assignments - len(systems),
+        "deduplicated_assignments": (
+            raw_assignments + raw_direct_systems - len(systems)
+        ),
         "source_family_counts": dict(
             sorted(
                 Counter(

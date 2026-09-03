@@ -277,6 +277,26 @@ def _smoke_sat() -> dict[str, Any]:
     return producer._smoke_systems()[0]
 
 
+def _direct_source_document() -> dict[str, Any]:
+    system: dict[str, Any] = {
+        "n": 8,
+        "order": list(range(8)),
+        "rows": [
+            {
+                "center": 0,
+                "support": [1, 2, 3, 4, 5, 6],
+                "exact": True,
+            }
+        ],
+    }
+    identity = json.dumps(system, sort_keys=True, separators=(",", ":"))
+    return {
+        "schema": producer.DIRECT_SYSTEM_SOURCE_SCHEMA,
+        "system_id": hashlib.sha256(identity.encode()).hexdigest()[:20],
+        **system,
+    }
+
+
 def _fixture_pins() -> list[dict[str, object]]:
     return [
         {"term": "x_2", "numerator": 4, "denominator": 5},
@@ -649,12 +669,24 @@ def test_receipt_and_exported_query_tampering_fail_closed(
     ids=["algebraic", "unparseable", "false-model", "false-fixture-pin"],
 )
 def test_unverifiable_sat_model_is_rejected(tmp_path: Path, values: str) -> None:
-    result = _run(tmp_path, FakeEndpointPiqd(["SAT"], values=values))
+    fake = FakeEndpointPiqd(["SAT", "SAT"], values=values)
+    result = _run(tmp_path, fake)
     assert result["status"] == "UNKNOWN"
+    assert result["decisive_stage"] is None
+    assert "model" not in result
+    assert "verification" not in result
+    assert [stage["stage"] for stage in result["stages"]] == list(
+        subject.STAGES[:2]
+    )
+    assert len(fake.created_ids) == 2
     assert result["stages"][0]["effective_status"] in {
         "INCONCLUSIVE_SEMANTIC_VERIFIER_FAILURE",
         "INCONCLUSIVE_SEMANTIC_REPLAY_REJECTED",
     }
+    validated = subject.validate_published_output(tmp_path / "run")
+    assert validated["status"] == "UNKNOWN"
+    assert validated["decisive_stage"] is None
+    assert "model" not in validated
 
 
 def test_tampered_source_packet_is_rejected_before_submission() -> None:
@@ -736,6 +768,113 @@ def test_source_contract_rejects_non_strict_builtin_systems(bad: object) -> None
             timeout_ms=1000,
             _fixture_only=True,
         )
+
+
+def test_direct_source_reconstructs_exact_six_point_row_and_capture(
+    tmp_path: Path, monkeypatch: Any
+) -> None:
+    monkeypatch.setattr(producer, "ROOT", tmp_path)
+    monkeypatch.setattr(subject, "_REPO_ROOT", tmp_path)
+    source = tmp_path / "direct-system.json"
+    source_bytes = (
+        json.dumps(_direct_source_document(), sort_keys=True, separators=(",", ":"))
+        + "\n"
+    ).encode()
+    source.write_bytes(source_bytes)
+
+    systems, extraction = producer.extract_systems((source,))
+
+    assert len(systems) == 1
+    [system] = systems
+    assert system["system_id"] == _direct_source_document()["system_id"]
+    assert system["profile"] == []
+    assert system["rows"] == [
+        {
+            "center": 0,
+            "support": [1, 2, 3, 4, 5, 6],
+            "exact": True,
+        }
+    ]
+    assert system["sources"] == [
+        {
+            "file": "direct-system.json",
+            "json_pointer": "",
+            "family": "direct-metric-system",
+            "sha256": _sha(source_bytes),
+            "context": {"schema": producer.DIRECT_SYSTEM_SOURCE_SCHEMA},
+        }
+    ]
+    assert extraction["raw_assignments"] == 0
+    assert extraction["raw_direct_systems"] == 1
+    assert extraction["input_files"] == [
+        {"path": "direct-system.json", "sha256": _sha(source_bytes)}
+    ]
+
+    prepared = subject.prepare_stage(
+        system,
+        "exact-metric-relaxation",
+        timeout_ms=1000,
+        source_paths=(source,),
+    )
+    assert prepared.source_record["constraint_counts"]["equalities"] == 5
+    assert prepared.source_record["constraint_counts"]["exactness"] == 1
+    captured = next(
+        item for item in prepared.query.source_files if item.path == "input-0000.json"
+    )
+    assert captured.payload == source_bytes
+
+
+@pytest.mark.parametrize(
+    ("defect", "message"),
+    [
+        ("wrong-keys", "wrong keys"),
+        ("missing-key", "wrong keys"),
+        ("wrong-schema", "wrong schema"),
+        ("boolean-n", "invalid n"),
+        ("bad-order", "not a permutation"),
+        ("noncanonical-support", "noncanonical support"),
+        ("nonboolean-exact", "non-Boolean exact"),
+        ("bad-system-id", "canonical digest"),
+    ],
+)
+def test_direct_source_rejects_malformed_documents(
+    tmp_path: Path, defect: str, message: str
+) -> None:
+    document = _direct_source_document()
+    if defect == "wrong-keys":
+        document["unexpected"] = None
+    elif defect == "missing-key":
+        del document["order"]
+    elif defect == "wrong-schema":
+        document["schema"] = "p97-endpoint-direct-metric-system-source-v0"
+    elif defect == "boolean-n":
+        document["n"] = True
+    elif defect == "bad-order":
+        document["order"][-1] = 6
+    elif defect == "noncanonical-support":
+        document["rows"][0]["support"] = [2, 1, 3, 4, 5, 6]
+    elif defect == "nonboolean-exact":
+        document["rows"][0]["exact"] = 1
+    else:
+        assert defect == "bad-system-id"
+        document["system_id"] = "0" * 20
+    source = tmp_path / f"{defect}.json"
+    source.write_text(json.dumps(document), encoding="utf-8")
+
+    with pytest.raises(ValueError, match=message):
+        producer.extract_systems((source,))
+
+
+def test_legacy_assignment_keeps_exact_four_support_contract() -> None:
+    assignment = {
+        "legacy": {"center": 0, "support": [4, 2, 3, 1], "exact": 1}
+    }
+    assert producer._normalize_assignment(assignment, 7) == (
+        producer.MetricRow(0, (1, 2, 3, 4), True),
+    )
+    assignment["legacy"]["support"] = [1, 2, 3, 4, 5, 6]
+    with pytest.raises(ValueError, match="four distinct points"):
+        producer._normalize_assignment(assignment, 7)
 
 
 def test_public_source_path_boundaries_reject_user_subclass_before_side_effects(
