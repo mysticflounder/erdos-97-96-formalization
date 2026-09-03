@@ -3581,3 +3581,50 @@ repository already proves in that idiom
 explore, not a route that has been shown to exist.
 
 Leaf unchanged: single `sorry`, `M = 18`.
+
+### 48. Reuse preflight for the circumcenter reading: the nearest proved theorem does not fire (2026-09-03)
+
+Section 47 made the circumcenter reframing the live direction, so this is the
+bounded reuse preflight for it, recorded before any derivation.
+
+**Search key.** "A point equidistant from three named points, in the TriApex
+`mu = 0` cell, with the core's four cap-2 centres." Corpus:
+`erdos-97-96-formalization-lean`.
+
+**Candidates.** The closest proved statements are
+`Rigid221SourceHeavy.false_of_capInterior_center_equidistant_three_points`
+(`lean/…/FrontierLiveClosure/Rigid221SourceHeavy.lean:3745`),
+`U5GlobalIncidenceBasic.eq_of_equidistant_three_noncollinear` (two centres
+equidistant from the same three noncollinear points coincide), `Moser.NonDeg`
+(three distinct points equidistant from a common centre are not collinear), and
+`N4d.SmallSReductions.eq_of_dist_eq_three_of_pairwise_ne`.
+
+**First missing antecedent, for the nearest candidate.**
+`false_of_capInterior_center_equidistant_three_points` requires all four of
+`d, c, a, b` to lie in the interior of **one** cap
+(`hd hc ha hb : _ ∈ S.capInteriorByIndex i`). Every core group fails that
+hypothesis, and not marginally — each one mixes caps:
+
+| centre | group | why it fails |
+|---|---|---|
+| `P2.1` | `A0, P1.1, P2.3` | `A0` is an apex, `P1.1` is cap-1 interior |
+| `P2.2` | `P0.3, P2.1, P2.4` | `P0.3` is cap-0 interior |
+| `P2.3` | `P0.1, P2.2, P2.4` | `P0.1` is cap-0 interior |
+| `P2.4` | `A1, P1.2, P2.1` | `A1` is an apex, `P1.2` is cap-1 interior |
+
+So the theorem does not fire on the core, and no rearrangement of the core's
+groups makes it fire. This is expected rather than surprising: the incidence
+census already images this theorem as a hard clause, so every pattern that
+survived to the metric layer avoids its hypotheses by construction. Chasing it
+here would be re-deriving a cut the census already applied.
+
+**Consequence for the direction.** The useful candidates are the ones that
+*produce* facts from an equidistance rather than refute it — `Moser.NonDeg`
+gives non-collinearity of each core group's three points, and
+`eq_of_equidistant_three_noncollinear` gives circumcenter uniqueness. Whether
+those compose into the target collinearity is open and is not claimed here.
+
+**Preflight scope.** This key is now spent. Re-run it only if the candidate
+statement, the ingress, the consumer, or the relevant source revision changes.
+
+Leaf unchanged: single `sorry`, `M = 18`.
