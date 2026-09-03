@@ -2625,3 +2625,56 @@ but a refutation resting on it alone is not banked. Nothing in this layer
 currently rests on it — the composition-gated run produced no verdict — so the
 rule has not yet had to be invoked, and it should not be relaxed on the strength
 of one agreeing key.
+
+### 30. The last orbit is measured, and it does not collapse either (2026-09-03)
+
+The `1412a71e2b2792b3` triage, resubmitted with `--slimgb` after section 28,
+ran to a verdict: daemon job `6281d38a`, 815.7 s client wall, complete stdout
+carrying both guard lines.
+
+    equations 40
+    dim_raw 0
+    ... 105 relevant lines ...
+    dim 0
+    vdim 3072
+
+The section 25 guard is what makes this readable as a verdict at all: the file
+has `dim_raw` and `dim`, so it is a run and not an artifact of a job that never
+started. 38 of the 105 pairs are live. Their quotient dimensions are
+
+    1536  P0.2:P1.2, P0.3:P2.3
+    1024  P0.1:P0.3, P0.2:P0.4
+     768  six pairs
+     512  ten pairs
+     256  eighteen pairs
+
+and the raw vector-space dimension is 3072. The top live quotient is exactly
+half the raw one, so **no pair collapses**: no squared distance lies in the
+ideal, and every solution of the raw system mod 32003 keeps all fifteen points
+distinct. This is the same shape as the open 36-orbit, not the refuted
+1536-orbit.
+
+Two consequences.
+
+The certificate route now has one customer, not two. Section 26 recorded that
+the membership certificate — the only method in this lane that yields a proof
+rather than mod-p evidence — certifies exactly what a collapse asserts, so it
+cannot be aimed at an orbit that does not collapse. Section 26 hoped the
+3-orbit might collapse and give it a second target. It does not. The
+certificate applies to the 1536-orbit alone.
+
+Collapse is the exception among the orbits that survive emptiness. Of the three
+orbits whose raw ideal is nonempty and zero-dimensional, one collapses
+(1536-orbit, 24 patterns, refuted) and two do not (36-orbit and 3-orbit, 39
+patterns). The two refuted-by-emptiness orbits never reached this test.
+
+Labeling cost, again. The same triage under plain `std` timed out at 900 s
+without emitting `dim_raw`; under `slimgb` the first basis takes 38.4 s and the
+105 quotient probes take the remaining 777 s. The section 20 effect is not
+confined to the raw basis: it decides whether the triage produces a verdict at
+all.
+
+The next question for this orbit is the one section 17 prescribes: saturating
+by the 38 live pairs, traced so that a timeout still reports how far it got.
+Empty means the orbit is refuted at the encoded scope; finite and nonempty
+puts it beside the 36-orbit. That run is submitted.
