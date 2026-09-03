@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "c3-aggregate-ingress-20260903",
+  "owner": "c3-aggregate-ingress",
+  "base_head": "cc8e8926b8e7917115383d039ba9e24e61112c06",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/c3-aggregate-ingress-20260903.json",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean"
+  ],
+  "durable_paths": [],
+  "generated_roots": [],
+  "created_utc": "2026-09-03T13:25:00Z",
+  "manifest_sha256": "9ac23c128e698197a83923705044ea3c32102de713a8379b9b20cd807150634e"
+}
