@@ -2770,3 +2770,52 @@ from stages 1e to 1g, none of which is in the ideal. The next route is
 therefore not more algebra on the same system but a system carrying more of
 the cell. That is a scoping step, not a run, and it is where this orbit should
 be picked up.
+
+### 33. The surviving orbit carries a forced collinearity (2026-09-03)
+
+Section 32 said the next route is a system carrying more of the cell, and the
+cheapest first question is what the 192 surviving points actually look like.
+`kal_angles.py` gained `--orient a:b:c`, which probes an orientation
+determinant against whatever ideal the flags have built, exactly as
+`--relevant` probes a squared distance. The two readings that decide anything
+are the extremes: `dim -1` means the determinant vanishes nowhere on the
+variety, so that triple is never collinear there; a quotient vdim equal to the
+ideal's own means the determinant lies in the ideal, so the triple is
+collinear at every point.
+
+Encoder check before the run, as Guardrail 1 requires. For the apex triple the
+emitted determinant reduces to `sf` under every gauge placement, since the
+gauge puts the special apex at the origin, the next at `(1,0)` and the third
+at `(cf,sf)`; the cap-point case picks up the `(1+c01, s01)` coordinates the
+encoder assigns to a `Y`-cap point. Both were read off the generated script
+rather than assumed.
+
+The run, against the 192-point Rabinowitsch ideal of `0d6996160cc83aab`
+(job `3bd7d1fa`, 90 s, `equations 44`, `dim 0`, `vdim 192`), probed the apex
+triple and all twelve cap points against the `A0A1` line:
+
+    orient A0:A1:A2    -1     never collinear
+    orient A0:A1:P1.1   0 192  COLLINEAR AT EVERY POINT
+    orient A0:A1:<the other eleven cap points>   -1   never collinear
+
+So the three apexes are never collinear on the surviving variety, and exactly
+one cap point, `P1.1`, lies on the line through two of the apexes at every one
+of the 192 points. The same equal-finite-dimension argument used for the
+collapse test gives it: `R/G` surjects onto `R/(G + det)`, equal finite
+dimensions force an isomorphism, so `det` lies in `G`.
+
+This is a structural fact about the survivor, not yet a refutation. It becomes
+one exactly when the cell forbids a cap point from lying on the line through
+two apexes, which is a question about the leaf's binders and the stage 1e to
+1g order data, not about the algebra. That question is open at the time of
+writing.
+
+Two immediate follow-ups, both cheap. The other two apex lines against all
+twelve cap points, for the complete collinearity picture; that run is
+submitted. And the same probe on a second labeling of the orbit, where the
+orbit map predicts in advance which cap point must be the collinear one --
+the same falsifier discipline that sections 21 and 27 used, applied to a new
+invariant.
+
+Scope, stated plainly: this is a mod 32003 statement about the encoded system,
+one labeling, and it inherits the claim scope of section 31 unchanged.
