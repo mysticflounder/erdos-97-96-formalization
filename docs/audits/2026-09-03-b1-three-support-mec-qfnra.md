@@ -35,7 +35,7 @@ the B1 ingress.
 
 The cyclic labels are
 
-`A,s,c00,c01,x0,b0,x1,x2,x3,b1,b2,x4,o1,x5,c10,c11,c20,c21`.
+`A,s,x0,c00,c01,b0,x1,x2,b1,c10,c11,x5,c20,c21,x4,b2,o1,x3`.
 
 The four row constraints are:
 
@@ -60,10 +60,11 @@ constraints, and 25 MEC constraints.  PIQD/Z3 returned:
 | full convex | 534 | `UNKNOWN` | 139944 ms |
 | convex-only relaxation | 484 | `UNKNOWN` | 126159 ms |
 
-The complete production publication revalidated offline against the exact
-archived runtime commit.  A direct cvc5 1.3.3 run on the weakest archived
-stage produced no verdict within the planned five-minute window and was
-interrupted after the process exceeded that window.  This is no solver result.
+The complete production custody bundle revalidated offline against the exact
+captured sources from commit `9470be3fe`.  A direct cvc5 1.3.3 run on the
+weakest archived stage produced no verdict within the planned five-minute
+window and was interrupted after the process exceeded that window.  This is no
+solver result.
 
 ## Wave B: equality-only rows
 
@@ -76,8 +77,8 @@ nonexact, removing all 50 off-circle exclusions.  PIQD/Z3 returned:
 | full convex | 484 | `UNKNOWN` | 125588 ms |
 | convex-only relaxation | 484 | `UNKNOWN` | 124876 ms |
 
-The production publication passes the adapter's complete offline custody and
-source-semantic validation.
+The production custody bundle passes complete offline validation against its
+captured sources, whose adapter and producer hashes match commit `ba74628e4`.
 
 ## Theorem mining checkpoint
 
@@ -92,3 +93,34 @@ by the gauge `A=(0,0)`, `s=(1,0)`: the MEC equations imply
 `mec_x=1/2` and `mec_r2=1/4+mec_y^2`.  Any further elimination must be checked
 against precisely the current `CircumscribedMECPacket` fields and must not add
 same-arc or deletion hypotheses.
+
+## Wave C: derived MEC gauge consequences
+
+Commit `41c696bd0` supplements any MEC system whose boundary tuple contains
+the two fixed gauge labels with the derived assertions
+`mec_x = 1/2` and `mec_r2 = 1/4 + mec_y^2`.  Exact replay verifies both
+identities.  These assertions follow by subtracting the boundary equations at
+`A=(0,0)` and `s=(1,0)`; they do not strengthen the geometric source packet.
+
+Rerunning equality-only system `82c2dfe781d609472430` with those two
+assertions returned:
+
+| Stage | Assertions | Raw result | Solve time |
+|---|---:|---|---:|
+| exact-metric relaxation | 198 | `UNKNOWN` | 131413 ms |
+| full convex | 486 | `UNKNOWN` | 126944 ms |
+| convex-only relaxation | 486 | `UNKNOWN` | 126848 ms |
+
+The production custody bundle passes complete offline validation against its
+captured sources from commit `41c696bd0`.  The normalization did not change the
+verdict, so further work must eliminate variables or use a smaller geometric
+parameterization rather than add more redundant equalities.  As in Waves A and
+B, no model or core was produced and there is no new data-mined Lean theorem
+candidate.
+
+Separately, commit `5f63d3540` promotes the source-clean disk-boundary
+projection inequality
+`norm_sq_le_two_inner_center_sub_of_mem_disk_at_boundary` and its
+`CircumscribedMECPacket` specialization.  This is the checked Lean fact behind
+the intended disk-to-half-space normalization; it does not by itself produce
+the missing B1 boundary-arc witness.

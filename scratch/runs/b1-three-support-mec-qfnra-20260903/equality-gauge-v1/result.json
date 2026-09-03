@@ -1,0 +1,762 @@
+{
+  "config": {
+    "checkpoint_every": 25,
+    "local_fallback": false,
+    "piqd_server": "http://127.0.0.1:7272",
+    "resume": false,
+    "solver_route": "piqd",
+    "timeout_seconds": 120.0,
+    "workers": 1
+  },
+  "extraction": {
+    "deduplicated_assignments": 0,
+    "input_files": [
+      {
+        "path": "scratch/runs/b1-three-support-mec-qfnra-20260903/equality-gauge-v1/source.json",
+        "sha256": "dc310082e5430b32bb6b0829ff627586f9d1a10111a3fe7fc9bfbbe8b955ee09"
+      }
+    ],
+    "raw_assignments": 0,
+    "raw_direct_systems": 1,
+    "rejected_non_sat_assignments": 0,
+    "source_family_counts": {
+      "direct-metric-system": 1
+    },
+    "unique_metric_systems": 1
+  },
+  "generated_at": "2026-09-03T10:35:20.450569+00:00",
+  "results": [
+    {
+      "claims": {
+        "euclidean_problem97": false,
+        "global": false,
+        "lean": false,
+        "proof": false,
+        "source_entitlement": false,
+        "theorem": false,
+        "universal": false
+      },
+      "constraint_counts": {
+        "convex_order": 288,
+        "distinctness": 153,
+        "equalities": 14,
+        "exact_exclusions": 0,
+        "mec_boundary": 3,
+        "mec_disk": 18,
+        "mec_nonobtuse": 3,
+        "mec_radius_pos": 1
+      },
+      "decisive_stage": null,
+      "exact_row_count": 0,
+      "local_fallback": false,
+      "mec_apices": [
+        1,
+        16,
+        0
+      ],
+      "n": 18,
+      "order": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17
+      ],
+      "output_custody": {
+        "entries": 52,
+        "inventory_sha256": "9bea0b164ca110078f6b0880a23df2159998758955de338a7f6b7fdd4d4c5a4f",
+        "publication": "atomic-directory-rename-no-replace"
+      },
+      "piqd_submitted": true,
+      "profile": [],
+      "proof_blueprint": {
+        "changed": false,
+        "relation": "OFF_SPINE",
+        "session_id": "019fdf9c",
+        "state": "OPEN"
+      },
+      "requested_solver_route": "piqd",
+      "route": "piqd-z3-qfnra",
+      "row_count": 4,
+      "rows": [
+        {
+          "center": 0,
+          "exact": false,
+          "support": [
+            2,
+            6,
+            7,
+            11,
+            14,
+            17
+          ]
+        },
+        {
+          "center": 5,
+          "exact": false,
+          "support": [
+            2,
+            3,
+            4,
+            6
+          ]
+        },
+        {
+          "center": 8,
+          "exact": false,
+          "support": [
+            7,
+            9,
+            10,
+            11
+          ]
+        },
+        {
+          "center": 15,
+          "exact": false,
+          "support": [
+            12,
+            13,
+            14,
+            17
+          ]
+        }
+      ],
+      "schema": "p97-endpoint-metric-realizability-piqd-result/v1",
+      "source_count": 1,
+      "sources": [
+        {
+          "context": {
+            "schema": "p97-endpoint-direct-metric-system-source-v2"
+          },
+          "family": "direct-metric-system",
+          "file": "scratch/runs/b1-three-support-mec-qfnra-20260903/equality-gauge-v1/source.json",
+          "json_pointer": "",
+          "sha256": "dc310082e5430b32bb6b0829ff627586f9d1a10111a3fe7fc9bfbbe8b955ee09"
+        }
+      ],
+      "stages": [
+        {
+          "added_constraints": 198,
+          "classification": "UNKNOWN_INCONCLUSIVE",
+          "effective_status": "INCONCLUSIVE_UNKNOWN",
+          "engine": {
+            "artifacts": {
+              "closed_session": {
+                "bytes": 620,
+                "path": "z3.closed-session.json",
+                "sha256": "34f4cae650a93c80f863d21d6680ad917a57e55f7d96ef73cdd7a3778dddb316"
+              },
+              "receipts": {
+                "bytes": 1030,
+                "path": "z3.receipts.json",
+                "sha256": "8637c3b290a88d7e6dafdf052794e00a8a4f30dc3ce84b9da7fcab37e5156c64"
+              },
+              "receipts_before": {
+                "bytes": 282,
+                "path": "z3.receipts-before.json",
+                "sha256": "d1a85d653ba9a2c5aea88ca6e1eb821ea008695dd2edb577ea5e2ac6d468c254"
+              },
+              "session": {
+                "bytes": 614,
+                "path": "z3.session.json",
+                "sha256": "f4c1c7c6d80528348ecb46e1080f5435669bd92a395f97ffd2a0f8ada7335f1b"
+              },
+              "smt2": {
+                "bytes": 17424,
+                "path": "z3.smt2",
+                "sha256": "7c1c3ccc93e98a0a7b39ca2b80c24ca3aa522942a8e9492e906ef8775054daed"
+              },
+              "solve": {
+                "bytes": 186,
+                "path": "z3.solve.json",
+                "sha256": "66443bc06ca146b6689ac3f1e7e10842faaf9e7aa3caeaf6f79a72ad652d08e2"
+              }
+            },
+            "claims": {
+              "euclidean": false,
+              "lean": false,
+              "source_entitlement": false,
+              "theorem": false,
+              "universal": false
+            },
+            "effective_status": "INCONCLUSIVE_UNKNOWN",
+            "raw_status": "UNKNOWN",
+            "reconciled_from_receipt": false,
+            "reconciliation_attempts": 0,
+            "response_lost": false,
+            "result_digest_advisory": {
+              "algorithm": "piqd-smt-solve-result/v1",
+              "locally_recomputed": "a3bfe134a25a1170ba0ad0ff4529cbc84061e3456e3384cc0272c2eea6f48ddf",
+              "matches_daemon": true
+            },
+            "result_sha256": "a3bfe134a25a1170ba0ad0ff4529cbc84061e3456e3384cc0272c2eea6f48ddf",
+            "semantic_replay": null,
+            "session_id": "458cab39-3074-425d-bb4a-41c319167931",
+            "solve_index": 1,
+            "solver": "z3",
+            "solver_sha256": "b7a02cb75cccb7f35385c551c10453f32c12da23a7656e24233bc4b25d0f5a9a",
+            "solver_signature": "z3-4.17.0",
+            "unsat_assumptions": null
+          },
+          "journal_sha256": "7c1c3ccc93e98a0a7b39ca2b80c24ca3aa522942a8e9492e906ef8775054daed",
+          "source_record_sha256": "9aa3636c39001ecd6c69ca1ffefb347fc4dee105456eb97e6c1df500a96fb52e",
+          "stage": "exact-metric-relaxation",
+          "status": "UNKNOWN",
+          "total_constraints": 198
+        },
+        {
+          "added_constraints": 486,
+          "classification": "UNKNOWN_INCONCLUSIVE",
+          "effective_status": "INCONCLUSIVE_UNKNOWN",
+          "engine": {
+            "artifacts": {
+              "closed_session": {
+                "bytes": 608,
+                "path": "z3.closed-session.json",
+                "sha256": "dcece2b22d7f9a684400e36753c45536c07ecd6f09dcad867066c4a3afeef811"
+              },
+              "receipts": {
+                "bytes": 1030,
+                "path": "z3.receipts.json",
+                "sha256": "5f5889a4cb5df148e60602eb4d31ecea37a22442b65df7a187dad0746c6f7ff7"
+              },
+              "receipts_before": {
+                "bytes": 282,
+                "path": "z3.receipts-before.json",
+                "sha256": "35a5f9acd7ecc61e50d97995455315837f13b79e19ea9a4d58ae30d8e0ef4d75"
+              },
+              "session": {
+                "bytes": 602,
+                "path": "z3.session.json",
+                "sha256": "acdc65b1a006353e7885de45c1c0ce0fc9ee9c3b5f84eeb29d7daece76cb00dc"
+              },
+              "smt2": {
+                "bytes": 40048,
+                "path": "z3.smt2",
+                "sha256": "4d77c0f7089c7de52f251ab8b09da188804ccb6eb1587d6e8e26443ab3c7ed70"
+              },
+              "solve": {
+                "bytes": 186,
+                "path": "z3.solve.json",
+                "sha256": "5adcd074e8425942dcc66d3b5906c20757f91cb21f21f114f2e49b59e2d203f0"
+              }
+            },
+            "claims": {
+              "euclidean": false,
+              "lean": false,
+              "source_entitlement": false,
+              "theorem": false,
+              "universal": false
+            },
+            "effective_status": "INCONCLUSIVE_UNKNOWN",
+            "raw_status": "UNKNOWN",
+            "reconciled_from_receipt": false,
+            "reconciliation_attempts": 0,
+            "response_lost": false,
+            "result_digest_advisory": {
+              "algorithm": "piqd-smt-solve-result/v1",
+              "locally_recomputed": "a3bfe134a25a1170ba0ad0ff4529cbc84061e3456e3384cc0272c2eea6f48ddf",
+              "matches_daemon": true
+            },
+            "result_sha256": "a3bfe134a25a1170ba0ad0ff4529cbc84061e3456e3384cc0272c2eea6f48ddf",
+            "semantic_replay": null,
+            "session_id": "7bfa6ecd-d5f8-4f3c-bc9a-e621ef1b1edf",
+            "solve_index": 1,
+            "solver": "z3",
+            "solver_sha256": "b7a02cb75cccb7f35385c551c10453f32c12da23a7656e24233bc4b25d0f5a9a",
+            "solver_signature": "z3-4.17.0",
+            "unsat_assumptions": null
+          },
+          "journal_sha256": "4d77c0f7089c7de52f251ab8b09da188804ccb6eb1587d6e8e26443ab3c7ed70",
+          "source_record_sha256": "dfbffcefac6b179c9fb8e57b1d6fcc7751e74c505489a56ec35e7d95dbe1e12a",
+          "stage": "full-convex",
+          "status": "UNKNOWN",
+          "total_constraints": 486
+        },
+        {
+          "added_constraints": 486,
+          "classification": "UNKNOWN_INCONCLUSIVE",
+          "effective_status": "INCONCLUSIVE_UNKNOWN",
+          "engine": {
+            "artifacts": {
+              "closed_session": {
+                "bytes": 619,
+                "path": "z3.closed-session.json",
+                "sha256": "41b434fda072d6523d94caf119f562dd6ee321103ddff0fa879c2920cde86211"
+              },
+              "receipts": {
+                "bytes": 1030,
+                "path": "z3.receipts.json",
+                "sha256": "84fe7432ff0ac661d8a02a18c2ac876eeb03fc06d003f9c202868e51c1b028d5"
+              },
+              "receipts_before": {
+                "bytes": 282,
+                "path": "z3.receipts-before.json",
+                "sha256": "95cc69fd85aac74b09d1a14446791916ed71bd148f62ec97eacf8d91251571ae"
+              },
+              "session": {
+                "bytes": 613,
+                "path": "z3.session.json",
+                "sha256": "28b916f6eeb2fa358cc20d67a474f7f71e9d8352fa2c82ebe122c8a80e501f0e"
+              },
+              "smt2": {
+                "bytes": 40048,
+                "path": "z3.smt2",
+                "sha256": "4d77c0f7089c7de52f251ab8b09da188804ccb6eb1587d6e8e26443ab3c7ed70"
+              },
+              "solve": {
+                "bytes": 186,
+                "path": "z3.solve.json",
+                "sha256": "fcdead2b8a51b34f852bf017a8fdc4cc5c439be33e2cf8afb08266f015931db2"
+              }
+            },
+            "claims": {
+              "euclidean": false,
+              "lean": false,
+              "source_entitlement": false,
+              "theorem": false,
+              "universal": false
+            },
+            "effective_status": "INCONCLUSIVE_UNKNOWN",
+            "raw_status": "UNKNOWN",
+            "reconciled_from_receipt": false,
+            "reconciliation_attempts": 0,
+            "response_lost": false,
+            "result_digest_advisory": {
+              "algorithm": "piqd-smt-solve-result/v1",
+              "locally_recomputed": "a3bfe134a25a1170ba0ad0ff4529cbc84061e3456e3384cc0272c2eea6f48ddf",
+              "matches_daemon": true
+            },
+            "result_sha256": "a3bfe134a25a1170ba0ad0ff4529cbc84061e3456e3384cc0272c2eea6f48ddf",
+            "semantic_replay": null,
+            "session_id": "15a73664-1c35-4695-b864-0241068e2d9e",
+            "solve_index": 1,
+            "solver": "z3",
+            "solver_sha256": "b7a02cb75cccb7f35385c551c10453f32c12da23a7656e24233bc4b25d0f5a9a",
+            "solver_signature": "z3-4.17.0",
+            "unsat_assumptions": null
+          },
+          "journal_sha256": "4d77c0f7089c7de52f251ab8b09da188804ccb6eb1587d6e8e26443ab3c7ed70",
+          "source_record_sha256": "0edf75b660cf67cc33880e94e53d3bd01774c040768e6a747e5fbc411f9ccb2a",
+          "stage": "convex-only-relaxation",
+          "status": "UNKNOWN",
+          "total_constraints": 486
+        }
+      ],
+      "status": "UNKNOWN",
+      "system_id": "82c2dfe781d609472430",
+      "workers": 1
+    }
+  ],
+  "schema": "p97-global-confinement-metric-realizability-v1",
+  "selected_systems": 1,
+  "smoke": {
+    "passed": true,
+    "sat": {
+      "claims": {
+        "euclidean_problem97": false,
+        "global": false,
+        "lean": false,
+        "proof": false,
+        "source_entitlement": false,
+        "theorem": false,
+        "universal": false
+      },
+      "constraint_counts": {
+        "convex_order": 15,
+        "distinctness": 10,
+        "equalities": 3,
+        "exact_exclusions": 0
+      },
+      "decisive_stage": "full-convex",
+      "local_fallback": false,
+      "model": {
+        "0": {
+          "x": "0",
+          "y": "0"
+        },
+        "1": {
+          "x": "1",
+          "y": "0"
+        },
+        "2": {
+          "x": "4/5",
+          "y": "3/5"
+        },
+        "3": {
+          "x": "0",
+          "y": "1"
+        },
+        "4": {
+          "x": "-4/5",
+          "y": "3/5"
+        }
+      },
+      "output_custody": {
+        "entries": 35,
+        "inventory_sha256": "9188d1cd5211698d8f4caf8b2988477c55b7590af2d4e03cc6081657db24980a",
+        "publication": "atomic-directory-rename-no-replace"
+      },
+      "piqd_submitted": true,
+      "proof_blueprint": {
+        "changed": false,
+        "relation": "OFF_SPINE",
+        "session_id": "019fdf9c",
+        "state": "OPEN"
+      },
+      "requested_solver_route": "piqd",
+      "route": "piqd-z3-qfnra",
+      "schema": "p97-endpoint-metric-realizability-piqd-result/v1",
+      "stages": [
+        {
+          "added_constraints": 23,
+          "classification": "SAT_EXACT_RATIONAL_REPLAYED_DIAGNOSTIC",
+          "effective_status": "SAT_SEMANTICALLY_REPLAYED",
+          "engine": {
+            "artifacts": {
+              "closed_session": {
+                "bytes": 604,
+                "path": "z3.closed-session.json",
+                "sha256": "b5ded2ae2ab7ab0fd23ef013d13145ca8669a422fb013cd16601a4dc5002cfc2"
+              },
+              "receipts": {
+                "bytes": 1630,
+                "path": "z3.receipts.json",
+                "sha256": "91da0c941daf4314a7739b25525fa53d05aa53410862386d209981bdbf3464e1"
+              },
+              "receipts_before": {
+                "bytes": 282,
+                "path": "z3.receipts-before.json",
+                "sha256": "ca66f270b2718bf04da52490a3bc82a52a97b7c480df786fb379218ea27e616e"
+              },
+              "semantic": {
+                "bytes": 782,
+                "path": "z3.semantic.json",
+                "sha256": "3d924a428352b2fb91bdc3760871b9ec01713bd3afc8f89db191e1d8f146be4c"
+              },
+              "session": {
+                "bytes": 603,
+                "path": "z3.session.json",
+                "sha256": "c4159a3881a192bf34b98f6c8f51c4a36b42cdade5385b081c9dfc0f8fa6e528"
+              },
+              "smt2": {
+                "bytes": 1646,
+                "path": "z3.smt2",
+                "sha256": "a257eb7e770c22c9c57bdac3c6b9016008119b008387dca468e2bf93c3ba5cee"
+              },
+              "solve": {
+                "bytes": 985,
+                "path": "z3.solve.json",
+                "sha256": "468b3614dcf2e9bed6af153d44fb7d4b294179e0f490898dcbd75d8ed9f4eb82"
+              }
+            },
+            "claims": {
+              "euclidean": false,
+              "lean": false,
+              "source_entitlement": false,
+              "theorem": false,
+              "universal": false
+            },
+            "effective_status": "SAT_SEMANTICALLY_REPLAYED",
+            "raw_status": "SAT",
+            "reconciled_from_receipt": false,
+            "reconciliation_attempts": 0,
+            "response_lost": false,
+            "result_digest_advisory": {
+              "algorithm": "piqd-smt-solve-result/v1",
+              "locally_recomputed": "57765c24dd89dbdbdefacd292ead2891e3f696bfddec835ad748589d013f10f5",
+              "matches_daemon": true
+            },
+            "result_sha256": "57765c24dd89dbdbdefacd292ead2891e3f696bfddec835ad748589d013f10f5",
+            "semantic_replay": {
+              "accepted": true,
+              "evidence": {
+                "all_asserted_atoms_replayed": true,
+                "checks": {
+                  "convexity": 0,
+                  "distinctness": 10,
+                  "equalities": 3,
+                  "exactness": 0,
+                  "fixture_pins": 6,
+                  "gauge": 4
+                },
+                "coordinates": {
+                  "0": {
+                    "x": "0",
+                    "y": "0"
+                  },
+                  "1": {
+                    "x": "1",
+                    "y": "0"
+                  },
+                  "2": {
+                    "x": "4/5",
+                    "y": "3/5"
+                  },
+                  "3": {
+                    "x": "0",
+                    "y": "1"
+                  },
+                  "4": {
+                    "x": "-4/5",
+                    "y": "3/5"
+                  }
+                },
+                "exact_rational_readback": true,
+                "model_sha256": "30817f8f662e9074f7623e6bb51ece16df1e0573254719debaee8e0ff81ea54e",
+                "stage": "exact-metric-relaxation",
+                "system_id": "smoke-sat",
+                "values_sha256": "579beb176bad0e6f0019f0f674958e04a6c1e1c096d7ef81448e92b19a894a97"
+              },
+              "model_sha256": "30817f8f662e9074f7623e6bb51ece16df1e0573254719debaee8e0ff81ea54e",
+              "values_sha256": "579beb176bad0e6f0019f0f674958e04a6c1e1c096d7ef81448e92b19a894a97",
+              "verifier": {
+                "id": "exact-rational-stage-replay",
+                "version": "v1"
+              }
+            },
+            "session_id": "d458be73-3abf-4873-b45d-6e7282a476a0",
+            "solve_index": 1,
+            "solver": "z3",
+            "solver_sha256": "b7a02cb75cccb7f35385c551c10453f32c12da23a7656e24233bc4b25d0f5a9a",
+            "solver_signature": "z3-4.17.0",
+            "unsat_assumptions": null
+          },
+          "journal_sha256": "a257eb7e770c22c9c57bdac3c6b9016008119b008387dca468e2bf93c3ba5cee",
+          "source_record_sha256": "b569bb3a031f9a86f7407ae47747de53c057fa8843447b1209a6213f37b6c440",
+          "stage": "exact-metric-relaxation",
+          "status": "SAT",
+          "total_constraints": 23
+        },
+        {
+          "added_constraints": 38,
+          "classification": "SAT_EXACT_RATIONAL_REPLAYED_DIAGNOSTIC",
+          "effective_status": "SAT_SEMANTICALLY_REPLAYED",
+          "engine": {
+            "artifacts": {
+              "closed_session": {
+                "bytes": 592,
+                "path": "z3.closed-session.json",
+                "sha256": "b9f0667a77a709bdf8034a73a1540c44aa7935cfe97062f7b68a6a984ccc6fbf"
+              },
+              "receipts": {
+                "bytes": 1630,
+                "path": "z3.receipts.json",
+                "sha256": "3fde7466949e230d9a84327fb96585079a903a5fe117d644321e4873a86fc924"
+              },
+              "receipts_before": {
+                "bytes": 282,
+                "path": "z3.receipts-before.json",
+                "sha256": "0afa985c52350147bfbf5f47fb46049f684d4ada520c890ece70d34b148437e6"
+              },
+              "semantic": {
+                "bytes": 771,
+                "path": "z3.semantic.json",
+                "sha256": "ddb00c09316926a20e1411b60d94ed8e1d897fb11fe643bc59887dbda67d5b6d"
+              },
+              "session": {
+                "bytes": 591,
+                "path": "z3.session.json",
+                "sha256": "2bc9b5388b923ad3e45bed4a2b646b25d70bdb5496bd99d42f42b34c626891f1"
+              },
+              "smt2": {
+                "bytes": 2771,
+                "path": "z3.smt2",
+                "sha256": "04e7437d61c3dac803ef7c09d04c9b35e74cea40f1448a80f4d952e437af8769"
+              },
+              "solve": {
+                "bytes": 985,
+                "path": "z3.solve.json",
+                "sha256": "2507f0048248bdf8bd6b9d1e2f79cc2d0ffe03153f327c4b9c6cc519c78cf703"
+              }
+            },
+            "claims": {
+              "euclidean": false,
+              "lean": false,
+              "source_entitlement": false,
+              "theorem": false,
+              "universal": false
+            },
+            "effective_status": "SAT_SEMANTICALLY_REPLAYED",
+            "raw_status": "SAT",
+            "reconciled_from_receipt": false,
+            "reconciliation_attempts": 0,
+            "response_lost": false,
+            "result_digest_advisory": {
+              "algorithm": "piqd-smt-solve-result/v1",
+              "locally_recomputed": "57765c24dd89dbdbdefacd292ead2891e3f696bfddec835ad748589d013f10f5",
+              "matches_daemon": true
+            },
+            "result_sha256": "57765c24dd89dbdbdefacd292ead2891e3f696bfddec835ad748589d013f10f5",
+            "semantic_replay": {
+              "accepted": true,
+              "evidence": {
+                "all_asserted_atoms_replayed": true,
+                "checks": {
+                  "convexity": 15,
+                  "distinctness": 10,
+                  "equalities": 3,
+                  "exactness": 0,
+                  "fixture_pins": 6,
+                  "gauge": 4
+                },
+                "coordinates": {
+                  "0": {
+                    "x": "0",
+                    "y": "0"
+                  },
+                  "1": {
+                    "x": "1",
+                    "y": "0"
+                  },
+                  "2": {
+                    "x": "4/5",
+                    "y": "3/5"
+                  },
+                  "3": {
+                    "x": "0",
+                    "y": "1"
+                  },
+                  "4": {
+                    "x": "-4/5",
+                    "y": "3/5"
+                  }
+                },
+                "exact_rational_readback": true,
+                "model_sha256": "30817f8f662e9074f7623e6bb51ece16df1e0573254719debaee8e0ff81ea54e",
+                "stage": "full-convex",
+                "system_id": "smoke-sat",
+                "values_sha256": "579beb176bad0e6f0019f0f674958e04a6c1e1c096d7ef81448e92b19a894a97"
+              },
+              "model_sha256": "30817f8f662e9074f7623e6bb51ece16df1e0573254719debaee8e0ff81ea54e",
+              "values_sha256": "579beb176bad0e6f0019f0f674958e04a6c1e1c096d7ef81448e92b19a894a97",
+              "verifier": {
+                "id": "exact-rational-stage-replay",
+                "version": "v1"
+              }
+            },
+            "session_id": "429c2ed9-f20d-479b-9757-d7144aabd2d2",
+            "solve_index": 1,
+            "solver": "z3",
+            "solver_sha256": "b7a02cb75cccb7f35385c551c10453f32c12da23a7656e24233bc4b25d0f5a9a",
+            "solver_signature": "z3-4.17.0",
+            "unsat_assumptions": null
+          },
+          "journal_sha256": "04e7437d61c3dac803ef7c09d04c9b35e74cea40f1448a80f4d952e437af8769",
+          "source_record_sha256": "5c49d5acc85abdf2b801819877dcbbf9c458f389b2aaf34396726b20310e7b7f",
+          "stage": "full-convex",
+          "status": "SAT",
+          "total_constraints": 38
+        }
+      ],
+      "status": "SAT",
+      "system_id": "smoke-sat",
+      "verification": {
+        "all_asserted_atoms_replayed": true,
+        "checks": {
+          "convexity": 15,
+          "distinctness": 10,
+          "equalities": 3,
+          "exactness": 0,
+          "fixture_pins": 6,
+          "gauge": 4
+        },
+        "coordinates": {
+          "0": {
+            "x": "0",
+            "y": "0"
+          },
+          "1": {
+            "x": "1",
+            "y": "0"
+          },
+          "2": {
+            "x": "4/5",
+            "y": "3/5"
+          },
+          "3": {
+            "x": "0",
+            "y": "1"
+          },
+          "4": {
+            "x": "-4/5",
+            "y": "3/5"
+          }
+        },
+        "exact_rational_readback": true,
+        "model_sha256": "30817f8f662e9074f7623e6bb51ece16df1e0573254719debaee8e0ff81ea54e",
+        "stage": "full-convex",
+        "system_id": "smoke-sat",
+        "values_sha256": "579beb176bad0e6f0019f0f674958e04a6c1e1c096d7ef81448e92b19a894a97"
+      },
+      "workers": 1
+    },
+    "unsat": {
+      "constraint_counts": {
+        "convex_order": 24,
+        "distinctness": 15,
+        "equalities": 6,
+        "exact_exclusions": 2
+      },
+      "decisive_stage": "equality-exact-off-circle",
+      "exact_off_circle_core": {
+        "center": 0,
+        "off_support": 5,
+        "support": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "local_fallback": false,
+      "piqd_submitted": false,
+      "requested_solver_route": "piqd",
+      "route": "deterministic-symbolic-prefilter",
+      "stages": [
+        {
+          "added_constraints": 8,
+          "elapsed_sec": 0.0,
+          "stage": "equality-exact-off-circle",
+          "status": "UNSAT",
+          "total_constraints": 8
+        }
+      ],
+      "status": "UNSAT",
+      "system_id": "smoke-unsat"
+    }
+  },
+  "summary": {
+    "decisive_stage_counts": {
+      "none": 1
+    },
+    "stage_status_counts": {
+      "convex-only-relaxation": {
+        "UNKNOWN": 1
+      },
+      "exact-metric-relaxation": {
+        "UNKNOWN": 1
+      },
+      "full-convex": {
+        "UNKNOWN": 1
+      }
+    },
+    "status_counts": {
+      "UNKNOWN": 1
+    }
+  }
+}
