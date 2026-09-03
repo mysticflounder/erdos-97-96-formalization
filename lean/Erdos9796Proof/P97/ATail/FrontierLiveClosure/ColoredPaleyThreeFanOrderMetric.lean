@@ -9,12 +9,9 @@ import Erdos9796Proof.P97.ATail.CapCrossingKalmanson
 /-!
 # Finite three-fan order and metric terminals
 
-This module isolates the source-neutral D–R layer for the three shared-pair
-separation pattern.  The requested two-orbit order classifier is not included:
-with the current linear `btw` relation, `x=1, b=3, c=2, y=4, d=5, z=6`
-satisfies the three separation facts but has order `A<X<C<B<Y<D<Z`, outside
-those two orbits.  The metric terminal below is independent of that API and
-consumes two strict Kalmanson inequalities.
+This module isolates the source-neutral metric terminal for the three
+shared-pair separation pattern.  It is independent of the finite order
+normalization and consumes two strict Kalmanson inequalities.
 -/
 
 open scoped Convex EuclideanGeometry
