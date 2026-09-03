@@ -657,6 +657,14 @@ certificate replay is then unnecessary for card 12.
   a standalone arithmetic lemma has no immediate consumer and is not a
   promotion target.
 
+  A second read-only source audit found that the two live rows currently give
+  only `4 ≤ (J₀ ∪ J₁).card`. The target does not supply the claimed
+  `5 ≤ (J₀ ∪ J₁).card`, and the available first-apex marginal bound is
+  per-radius rather than a bound on the union. Thus the Pro ingress sequence is
+  conditional on two earlier results: a source-clean split between a
+  five-point interior union and the exact adjacent-cap grid, followed on the
+  large-union arm by a union-localized bound on non-good points.
+
   A read-only source audit rejected the ambient-eight shortcut as the first
   producer. For every point of the two four-point rows, current source proves
   that its actual blocker differs from `S.oppApex2` and that its selected row
@@ -667,20 +675,24 @@ certificate replay is then unnecessary for card 12.
   selection must pass through the existing interior-pair-good branch or a new
   producer of precisely those missing facts.
 
-  P4.5a targets source-clean producers provisionally named
-  `IngressAlignedTwoRadiusRows` and `IngressRowDeletionOutcome`. A producer
+  P4.5a first targets a source-clean producer provisionally named
+  `two_full_secondApex_classes_largeInterior_or_grid`; the ingress-aligned-row,
+  two-good-source, and `IngressRowDeletionOutcome` producers follow only on
+  the appropriate arm. A producer
   counts only when the card-ge-thirteen call site supplies every premise from
   existing branch data and the target consumes its result without
   `sorry`, `native_decide`, or external evidence. Track the lexicographic
-  frontier measure `μ = (a, b, c)`, where `a ∈ {0,1,2}` is the number of
+  frontier measure `μ = (g, a, b, c)`, where `g ∈ {0,1}` records whether the
+  large-interior/grid split is still unresolved, `a ∈ {0,1,2}` is the number of
   missing source-selection levels (aligned rows, then a coupled source pair),
   `b ∈ {1,2,3}` is the number of still-unselected coupling outcomes, and
   `c ∈ {0,1}` records whether the crossed exact-five exception is still mixed
-  with larger nongrid unions. The current residual has `μ = (2,3,1)`; the
-  first accepted producer must lower `a`, the case split must lower `b` on
-  every child, and crossed localization must lower `c`. Refresh the compiled
-  dependency graph, confirm the target on the kernel spine, and set the
-  proof-blueprint anchor before any Lean implementation is promoted.
+  with larger nongrid unions. The current residual has `μ = (1,2,3,1)`; the
+  first accepted producer must lower `g` on every child, source selection must
+  then lower `a`, the coupling split must lower `b`, and crossed localization
+  must lower `c`. Refresh the compiled dependency graph, confirm the target on
+  the kernel spine, and set the proof-blueprint anchor before any Lean
+  implementation is promoted.
 - Generalizing `exists_fourHits_radialCyclicOrder_oppIndex1` to `oppIndex2`
   is a bounded Lean task, to be done only if the extracted core uses the strict
   cross-distance inequality.
