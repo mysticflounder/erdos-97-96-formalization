@@ -2132,3 +2132,37 @@ saturation was a no-op; the collapse test is about `dim(I + d)`, a different
 computation. Those files were checked and set aside for that reason.
 
 {{NEEDS_UPDATE}}: the `172327e48f4004fb` triage against this table.
+
+### 22. Section 19 passes a completed falsifier, unfitted (2026-09-03)
+
+The prediction in section 21 is still pending a solver run, but an equivalent
+test was already complete and had been overlooked. `0d6996160cc83aab` and
+`3826b8a0dec4a6b0` both lie in the open 36-orbit and BOTH already have a
+measured relevance triage, run days before the orbit partition existed. So the
+partition can be tested against them with no solver and no possibility of
+fitting (`artifacts/tools/orbit_retrodict.py`).
+
+Exactly one group element carries `0d6996160cc83aab` to `3826b8a0dec4a6b0`.
+Pushing the first key's four live pairs forward along it gives:
+
+| pushed forward | measured on `3826b8a0dec4a6b0` |
+|---|---|
+| P0.4:P2.2 vdim 1024 | P0.4:P2.2 vdim 1024 |
+| P1.3:P2.3 vdim 1024 | P1.3:P2.3 vdim 1024 |
+| P0.1:P1.3 vdim 512 | P0.1:P1.3 vdim 512 |
+| P1.2:P1.4 vdim 512 | P1.2:P1.4 vdim 512 |
+
+Exact agreement, including which pairs carry 1024 and which carry 512. The live
+set is 4 pairs of 105 and the map is unique, so there was one way for this to
+come out right and a very large number of ways for it to come out wrong.
+
+This is stronger evidence than the verdict-class agreement in section 19,
+because a coarse label like "vdim 2048" could match by accident across genuinely
+different patterns, whereas a named 4-element subset of 105 with its dimension
+profile could not. Section 19's partition now rests on an exhibited relabeling
+(which is what makes it sound), plus a quantitative prediction it satisfies on
+data collected before the prediction existed.
+
+The section 21 predictions remain open and are still worth running, since they
+test a DIFFERENT orbit (the 1536 one) and would extend the check from the open
+orbit to a refuted one.
