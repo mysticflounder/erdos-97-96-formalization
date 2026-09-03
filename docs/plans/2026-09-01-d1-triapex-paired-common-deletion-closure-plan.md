@@ -1950,6 +1950,24 @@ generators from the encoder rather than trusting Singular's echo. The honest
 risk is coefficient growth, which is the same wall in another guise; the failure
 is immediate and visible.
 
+### Numbering note: sections 19 to 22 appear twice (2026-09-03)
+
+Two sessions appended to this document at the same time and both continued the
+numbering from 18, so the headings 19, 20, 21 and 22 each occur twice. The
+first block of four (this heading onwards, from `71b6eb05b`) records the
+fail-open parser, the certificate degree bounds, the reduced characteristic-0
+composition and the interreduction differential. The second block (from
+`48a4e0117`) starts the orbit sequence: five orbits, verifier audit and
+labeling cost, the named prediction, the completed falsifier, and then 23
+onwards with no further collision.
+
+Every numeric cross-reference in this document points at the SECOND block:
+"section 19" means the orbit partition, "section 20" the labeling cost,
+"section 21" the named prediction, "section 22" the falsifier. Nothing cites
+the first block by number. The headings are left as written rather than
+renumbered, because both sessions' notes and commit messages already use the
+numbers they used.
+
 ### 19. A fail-open triage parser manufactured a survivor (2026-09-03)
 
 A chain on the other half of this lane recorded, for `1412a71e2b2792b3`,
