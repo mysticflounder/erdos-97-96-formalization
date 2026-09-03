@@ -51,8 +51,12 @@ direct-order cell, and does not close that broad endpoint.
 ## Lean result
 
 `Profile282K2OrderCore.lean` proves the obstruction first for every center
-`(1+s,-r)` with `s,r>0`, then specializes to `(3/2,-r)`. A focused
-`lake env lean` check passes. `#print axioms` reports only `propext`,
-`Classical.choice`, and `Quot.sound`; there is no admitted or external
-computational trust. An independent adversarial audit certified the algebra,
-the four source-atom correspondences, and the stated consumer boundary.
+`(1+s,-r)` with `s,r>0`, then specializes to `(3/2,-r)`. It also provides the
+reflected upper-right forms with both turns negative, matching the geometric
+shape expected from the authenticated direct order. A focused `lake env lean`
+check passes. `#print axioms` reports only `propext`, `Classical.choice`, and
+`Quot.sound`; there is no admitted or external computational trust. An
+independent adversarial audit certified the lower-right algebra, the four
+mirror source-atom correspondences, and the stated consumer boundary. The
+direct-order source-atom mapping still requires the successor PIQD wave and a
+separate audit.
