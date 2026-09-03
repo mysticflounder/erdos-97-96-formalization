@@ -3521,3 +3521,63 @@ counting arguments. No route is claimed here; the point is that the certificate
 is not the only shape an ingress could take, and it is currently the blocked one.
 
 Leaf unchanged: single `sorry`, `M = 18`.
+
+### 47. The certificate route is the wrong shape, not merely over budget (2026-09-03)
+
+The `--noredsb` retry from section 46 died the same way: the new `built` print
+appeared, so the ideal was constructed, and then `liftstd` was killed at 308.4 s
+without reaching `gens … basis …`. Removing `option(redSB)` changed nothing.
+The transformation-matrix computation now has four independent failures — two
+characteristics, two generating sets, with and without `redSB` — and no run has
+ever reached `lift`.
+
+**Why, measured in 1.5 s.** A `--basisinfo` mode reports the standard basis the
+cofactors would be expressed against:
+
+| quantity | value |
+|---|---|
+| `dim` | 5 |
+| basis size | 138 |
+| basis max degree | 4 |
+| basis monomials | 1701 |
+| `member` | 1 |
+
+So `std` on this ideal is 1.5 s and returns a 138-element basis, while
+`liftstd` on the *same* ideal cannot finish: what dies is not the basis but the
+24 × 138 matrix of polynomials expressing it in terms of the inputs. That is
+the whole diagnosis, and it is now a measurement rather than an inference.
+
+**The conclusion is about shape, not budget.** The reason to want cofactors was
+a Lean-checkable identity `det = Σ gᵢ·fᵢ`, verified by expansion with no
+Gröbner basis. An identity whose cofactor data Singular cannot construct is not
+one Lean would check by `ring` either — the two costs are the same polynomial
+arithmetic. Raising the budget therefore does not help, and neither does the
+targeted dense characteristic-0 search section 43 proposed. This is consistent
+with the earlier evidence already recorded as not-to-be-repeated: the
+`cert_search_orient` dense searches at degrees 0–1 unrestricted and 0–2
+restricted were all inconsistent, which is evidence that no *small* certificate
+exists against these generators.
+
+Two things this does not say. It does not weaken the membership: `member 1`
+here re-reports it on the core, and section 42's characteristic-0 verdict
+stands on a zero normal form, which needs no cofactors. And it does not prove
+no small certificate exists — only that nothing in this lane can find one, and
+that the low-degree searches that could have found one did not.
+
+**One further fact worth keeping.** `dim 5` says the core's variety is
+five-dimensional. The forced collinearity is therefore not a rigidity
+phenomenon — the core does not pin the configuration to finitely many shapes
+and then observe three points in a line. It cuts out a positive-dimensional
+family on which the determinant vanishes identically. Any synthetic proof
+should be expected to look like an identity between distances, not like a
+classification of configurations.
+
+**Direction.** The certificate route is closed at this shape. The reframing
+recorded in section 46 is now the live one rather than a fallback: the core is
+four circumcenter conditions and two perpendicular-bisector conditions, and the
+repository already proves in that idiom
+(`ConvexPerpendicularBisectorSides.perpBisector_carrier_card_le_two`,
+`false_of_three_distinct_equidistant_carriers`). That is a direction to
+explore, not a route that has been shown to exist.
+
+Leaf unchanged: single `sorry`, `M = 18`.
