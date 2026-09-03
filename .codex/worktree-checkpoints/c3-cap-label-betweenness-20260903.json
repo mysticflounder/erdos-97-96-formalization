@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "c3-cap-label-betweenness-20260903",
+  "owner": "codex-c3-cap-label-betweenness",
+  "base_head": "d17914da70d555c2faafff9086b9b9a94fa94c53",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/c3-cap-label-betweenness-20260903.json",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/DRExactThirteenCapBetweenness.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-03T14:40:00Z",
+  "manifest_sha256": "21fc5709ef1932ea19679e4b80024fbd2db8547a7d9aa484c35edf855a78a489"
+}
