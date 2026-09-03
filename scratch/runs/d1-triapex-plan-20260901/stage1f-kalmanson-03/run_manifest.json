@@ -17,7 +17,7 @@
     "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03/artifacts/tools/angle_chain_v7.py": "1d97df2c3ee2d824394aba569dd67cd8ee4a04e101efc4f170ddff0fb3ed280a",
     "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03/artifacts/tools/angle_chain_v8.py": "c33ce991358a91791a2b90af7fe6a4e5c11377e3289d65cf70f38da4c2e5cb12",
     "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03/artifacts/tools/angle_chain_v9.py": "eabd2c1d49fbf90a33510de653a73ef41a46a17d14cbe0ceeb311071c910a2eb",
-    "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03/artifacts/tools/kal_angles.py": "c9de451b33216ae04a9060729609826722f7bf25c55df333616aa2365acc0209"
+    "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03/artifacts/tools/kal_angles.py": "cfd7cc9aa998c61f3dcbb9b5203ff51d933d93a56b1b1ded31ea79f0842e4228"
   },
   "lane_id": "d1-triapex-plan-20260901",
   "output_classes": [
@@ -34,5 +34,5 @@
     "census/card_head/d1_mu0_pattern_algebra.py": "0b54cb1085ae0df0f2eac75e45da568a3e55d303d6e0a5623705f74bfb3b17c6",
     "census/card_head/tests/test_d1_mu0_incidence_census.py": "26dfd1e6c2820fa33693f73d86b73a18c4694033c87bae3f469721bf68fec2f1"
   },
-  "manifest_sha256": "e1d914664b52e5597c687e7a2e0dd3ab12c52626d10de67d1371718add998c59"
+  "manifest_sha256": "ef20af9d3377f375c0a95f5ca89bc104d9e96a16c9db9700a4229eea41da1ad6"
 }

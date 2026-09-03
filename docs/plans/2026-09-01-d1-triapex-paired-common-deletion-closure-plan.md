@@ -1479,11 +1479,51 @@ side rule refutes every sampled Stage 1d survivor; Stage 1e census launched):
   can therefore remove at most one variable, which is why `elimpart`
   substitutes none as written and would gain almost nothing after
   `interred`. That route is closed; the saturation lever is the live one.
-  {{NEEDS_UPDATE}}: the relevance triage for `3826b8a0dec4a6b0`, and the
-  rational real-root verdicts from the Rabinowitsch runs. A real solution
-  still needs the strict convexity check of Guardrail 6, and the
-  full-pattern check, before it is a candidate configuration; what the
-  triage removes is only the pairwise-distinctness part of that check.
+  Relevance triage, `3826b8a0dec4a6b0`, mod 32003: raw dimension 0 and
+  vector-space dimension 2048, four live pairs of 105, `P1.3:P2.3`,
+  `P0.4:P2.2`, `P1.2:P1.4` and `P0.1:P1.3`. Four live pairs again, as on
+  `0d6996160cc83aab`.
+  Guardrail 1 smoke test for `--rabin`, which the mode had never had: the
+  four-pair Rabinowitsch system for `0d6996160cc83aab` returns dimension 0
+  and vector-space dimension 192 mod 32003, the same value `--saturate`
+  gives on that key. The Rabinowitsch encoding therefore reproduces the
+  saturated ideal rather than approximating it.
+  The characteristic-0 wall survives Rabinowitsch pre-saturation. The
+  rational run on the four-pair system stopped at `equations 44` and reached
+  its 3600 s budget, exactly as the unsaturated attempts did. In hindsight
+  it could not have helped: the construction makes the system LARGER, 30
+  variables and 44 generators against 26 and 40, even though its solution
+  set is smaller. Four rational runs have now died in the first Gröbner
+  basis, one by plain `std` and three by `modStd`, so the accurate statement
+  is that Singular produces no first basis over the rationals for this
+  system by any route tried, modular or direct, saturated or not, against 8
+  to 53 s mod 32003.
+  Collapse test (peer session, adopted here): a triage line whose
+  vector-space dimension EQUALS the raw one refutes the key immediately.
+  R/I surjects onto R/(I + <d>), both are finite-dimensional, and equal
+  dimensions force the surjection to be an isomorphism, so d lies in I,
+  every point of the variety has that pair coincident, and the saturated
+  variety is empty. Neither `0d6996160cc83aab` (512, 1024, 512, 1024 against
+  2048) nor `3826b8a0dec4a6b0` (the same profile) collapses this way;
+  `0e31c5c5d735a779` does, at `P0.1:P0.4` with 1536 against a raw 1536.
+  Membership certificate route (this session's proposal, peer implementing).
+  The collapse test is a mod-32003 statement, but ideal membership has a
+  certificate: d = Σ fᵢgᵢ against the ORIGINAL generators is checkable by
+  exact expansion, with no Gröbner basis and no solver. Cofactors are
+  computed mod a large prime, reconstructed over the rationals, and the
+  identity is then verified exactly; a wrong reconstruction simply fails the
+  check, so the mod-p provenance drops out. If it verifies, the key is
+  refuted over the complex numbers, and hence over the reals, with no
+  dependence on the rational Gröbner basis, on `elimpart`, or on a second
+  engine. Guardrail 2 still applies: it proves a statement about the
+  encoding. The open risk is that the cofactor coefficients are themselves
+  large enough to defeat reconstruction, which is visible immediately.
+  {{NEEDS_UPDATE}}: the `interred`+`elimpart`+`rabin` composition gate mod
+  32003 for `0d6996160cc83aab`, which must return dimension 0 and
+  vector-space dimension 192, and the rational real-root count it gates. A
+  zero real count there would carry three qualifications: `elimpart`
+  exactness, the missing Guardrail 7 second engine, and the mod-32003
+  provenance of the four live pairs.
   {{NEEDS_UPDATE}}: the mod-p saturated picture for the twelve
   representatives chain v9 did not reach. That work is triage evidence, not
   a decision: a mod-p emptiness is evidence only, by the direction recorded
