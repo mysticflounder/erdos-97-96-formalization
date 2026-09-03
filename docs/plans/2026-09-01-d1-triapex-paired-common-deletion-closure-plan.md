@@ -3047,3 +3047,37 @@ but it is a specific, bounded thing to try, and it is the first idea in this
 lane that attacks the degree wall rather than paying for it.
 
 Recorded so the next session does not redo the two dead degrees.
+
+### 39. The targeted certificate search fails; the degree wall is the real obstruction (2026-09-03)
+
+Section 38's lever was that the determinant involves only four variables, so a
+certificate with cofactors supported there would be cheap. `cert_search_orient.py`
+gained `vars=` to test exactly that, on `72a0268b2d358aa0` and `A0:A1:P0.4`:
+
+    support {cf,sf,c04,s04}              degree 0    44 unknowns   164 eqs   inconsistent
+                                         degree 1   220           790        inconsistent
+                                         degree 2   660          2276        inconsistent
+    support {cf,sf,c04,s04,u0..u3}       degree 1  1100          3299        inconsistent
+                                         degree 2  1980          6597        inconsistent
+
+The lever does not work, and the reason is the one section 38 flagged as the
+risk rather than a surprise: the ideal's generators involve all twenty-six
+coordinate variables, so cofactors cancelling their monomials generally need
+those variables too. Restricting support cheapens the search by discarding
+most of what the cancellation needs.
+
+Note the claim scope carefully, because these are weaker statements than the
+section 38 bounds. Degrees 0 and 1 unrestricted are proofs that no certificate
+of that degree exists. The rows above prove only that no certificate of that
+degree **with cofactors supported on those variables** exists. They do not
+bound the unrestricted degree-2 question, which remains 21824 unknowns and out
+of reach of this dense exact solver.
+
+Where the certificate route stands. It applies -- section 36's correction to
+section 31 holds, the collinearity is a genuine membership statement -- but
+reaching it needs either a sparse or structured exact solver at unrestricted
+degree 2, or a `lift` that returns the true cofactor degree, and the peer
+already found `lift` reaching its budget on both 32003 and 2147483647. Nothing
+cheap remains. The mod-p refutation of the last orbit stands as evidence at
+one prime, and the honest next step for turning it into a proof is a better
+linear-algebra engine, not a cleverer restriction.
