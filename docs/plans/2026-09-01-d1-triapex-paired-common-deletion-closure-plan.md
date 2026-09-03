@@ -5720,6 +5720,10 @@ true as a count of the `sorryAx` *symbol*, which is one constant however many
 occurrences reach it; it was never a count of open obligations.  `M = 18` is a
 blueprint measure and is not a claim that one hole remains.
 
+(Origin of corrections 1 and 2: the split described in section 78, commit
+`495d3da6c`, which landed in the working tree while this audit was running.
+They report its effect, not a pre-existing miscount.)
+
 **CORRECTION 2 — the card-15 gate is better than section 62 recorded.**  The
 card-15 child takes `(hcard : D.A.card = 15)` as a real binder, and `_core`'s
 case split discharges it.  Sections 63–74 therefore target a genuine child
@@ -5826,7 +5830,97 @@ producer — is still the whole question.
 Off-spine.  No promotion claim.  Scope unchanged.  Leaf: two open obligations,
 `M = 18`.
 
-### 70. The cardinality split is performed at the leaf (2026-09-03)
+### 77. Correction to section 75: the two-apex-radii object is producible (2026-09-03)
+
+Section 75 said that no declaration anywhere gives a carrier point two
+apex-centred radii at two different apices, and concluded that the sections
+63–74 chain consumes an object with no producer.  The first half of that is
+true of any single declaration.  The conclusion drawn from it is wrong, and
+this section withdraws it.
+
+What section 75 failed to do was follow section 63's own derivation.  Section
+63 wrote it in prose: a foreign hit in slot `(i, j)` is a point of cap `j`'s
+interior lying on the class at apex `i`, and "in the one-radius arm cap `j`'s
+whole interior lies on the class at `Aⱼ`, so also `dist Aⱼ x = ρⱼ`."  That
+second radius is not missing from source.  It is one side of a disjunction
+that the card-15 child already invokes.
+
+**The disjunction, and what both arms give.**  At line 2928 of
+`TriApexEndpointRetainedOmission.lean` the proof already binds
+
+    hadjacentAtPair :=
+      twoRadii_or_adjacentMutualOmissionPairAt_of_card_eq_fifteen G hcard i (Q.W i) (hfifteen i)
+
+whose statement is at `:2830`.  Reading both arms:
+
+* **One-radius arm** — `AdjacentMutualOmissionPairAt D S H i` (`:2735`) carries
+  the conjunct `∃ r, 0 < r ∧ S.capInteriorByIndex i ⊆ SelectedClass D.A
+  (S.oppositeVertexByIndex i) r ∧ (that class).card = 6`.  Every point of cap
+  `i`'s interior is at distance `r` from the apex opposite `i`.
+* **Two-radii arm** (`:2837`–`:2852`) — `T₁ ⊆ SelectedClass (…) r₁ ∩
+  capInterior i`, `T₂ ⊆ SelectedClass (…) r₂ ∩ capInterior i`, and
+  `W.support = T₁ ∪ T₂` with `W.support = S.capInteriorByIndex i`.  So cap
+  `i`'s interior is `T₁ ∪ T₂`, and every point of it is at `r₁` or at `r₂`
+  from the apex opposite `i`.
+
+So **in both arms every point of a cap interior carries an apex-centred radius
+at its own apex**, with at worst a two-way split on which radius.  There is no
+missing lemma here; there is a case split.
+
+`SelectedClass A s d` is `A.filter (fun q => dist s q = d)`
+(`WitnessPacketInterface.lean:59`), so membership gives `dist s q = d`,
+centre first; `mem_selectedClass` (`:62`) and `dist_self_of_mem_selectedClass`
+(`:300`) are the two orientations.
+
+**The slot model is also proved source, in both arms.**  Both arms carry
+
+    (SelectedClass D.A (S.oppositeVertexByIndex i) r ∩ S.leftAdjacentCapByIndex i).card = 1
+    (SelectedClass D.A (S.oppositeVertexByIndex i) r ∩ S.rightAdjacentCapByIndex i).card = 1
+
+— the one-radius arm at `:2754`–`:2757`, the two-radii arm at `:2844`–`:2852`
+for each radius.  That is section 63's six slots, one occupant each, proved,
+at every index.  The one-hit upper bound alone was already
+`leftAdjacentCap_at_opposite_card_le_one_of_convexIndep` (`Shard01.lean:1064`)
+and its right twin (`:1079`); the arms upgrade `≤ 1` to `= 1`.
+`leftAdjacentCapByIndex_eq_capByIndex` (`:993`) identifies the adjacent cap
+with an indexed cap, so the two indices line up.
+
+**Ingress hypotheses that are available at the sorry.**  `D.convex :
+ConvexIndep D.A` is a `CounterexampleData` field
+(`U1TwoShortCapReduction.lean:88`), already used in this file at `:2595`.
+`G.cap_card_ge_six : ∀ i, 6 ≤ (S.capByIndex i).card` is a
+`TriApexAllLargeContext` field (`AllLargeCapCanonicalInterfaces.lean:297`),
+already used at `:2568`.
+
+**A constraint that is real but not a blocker.**  On a `PairedTwoRadiusGrid`,
+`not_sixPoint_class` (`PairedCommonDeletionNormalForm.lean:456`, via
+`classCard_le_four` at `:445`) proves `¬ ∃ r, 0 < r ∧ 6 ≤ (SelectedClass D.A
+S.oppApex1 r).card`.  So at the first apex the one-radius arm is excluded and
+richness must be the two-radius arm.  The two-radii arm still gives each
+interior point a definite apex radius, so this narrows the case split rather
+than removing the object.
+
+**What is therefore actually open.**  Not the two-apex-radii producer.  Two
+other things:
+
+1. **The apex-versus-foreign dichotomy.**  Each slot has exactly one occupant.
+   Section 63 argues the only apex candidate is `A_k` for `{i,j,k} = {0,1,2}`,
+   from the outer-vertex tables (`Shard01.lean:1130`, `:1139`) and
+   `oppositeVertexByIndex_mem_left/rightAdjacentCapByIndex` (`:1351`, `:1361`),
+   with `0 < r` excluding `Aᵢ` itself.  That argument is cited but not
+   assembled in Lean, and it is what separates an apex hit from a foreign hit.
+2. **The counting bound** — at most two of the six slots foreign — which is
+   section 63's stated residue and section 64's gap of one.  Unchanged.
+
+**Status of this section.**  This is a source audit, not a proof.  Every line
+cited above was read directly in the working tree; no Lean was written or
+built for it, and nothing here closes an obligation.  What it changes is the
+picture section 75 recorded: the chain of sections 63–74 is not blocked on a
+missing producer for its consumed object.  It is blocked on the dichotomy and
+the count, which is where section 63 said it was.
+
+Scope unchanged.  Off-spine.  Leaf: two open obligations, `M = 18`.
+### 78. The cardinality split is performed at the leaf (2026-09-03)
 
 Adam authorized option (e) of section 60.  This section records the change, its
 cost, and what it does and does not buy.
@@ -5967,93 +6061,14 @@ the file itself.  It compiles under the library glob, so a green build says
 nothing about it, and it reaches no consumer.  Making it load-bearing needs an
 import edge, which the reduction above would be the natural place to add.
 
-### 77. Correction to section 75: the two-apex-radii object is producible (2026-09-03)
+**This section is the origin of the two obligations section 75 reports.**
+Section 75's corrections 1 and 2 were written from a working tree that already
+contained this change but had not yet committed it, and they read the result as
+a long-standing miscount.  It was not one.  Before commit `495d3da6c` the leaf
+genuinely was one `sorry` at `:2923`, `_core` carried it directly, and no
+declaration in the file took `D.A.card = 15` as a binder.  Section 62's record
+that the live consumer discharged no card-fifteen antecedent was accurate when
+written, and sections 63-74 were, at the time they were written, targeting a
+hypothesis nobody supplied.  This change is what made that hypothesis real.
+The substance of section 75's corrections stands; only their history does not.
 
-Section 75 said that no declaration anywhere gives a carrier point two
-apex-centred radii at two different apices, and concluded that the sections
-63–74 chain consumes an object with no producer.  The first half of that is
-true of any single declaration.  The conclusion drawn from it is wrong, and
-this section withdraws it.
-
-What section 75 failed to do was follow section 63's own derivation.  Section
-63 wrote it in prose: a foreign hit in slot `(i, j)` is a point of cap `j`'s
-interior lying on the class at apex `i`, and "in the one-radius arm cap `j`'s
-whole interior lies on the class at `Aⱼ`, so also `dist Aⱼ x = ρⱼ`."  That
-second radius is not missing from source.  It is one side of a disjunction
-that the card-15 child already invokes.
-
-**The disjunction, and what both arms give.**  At line 2928 of
-`TriApexEndpointRetainedOmission.lean` the proof already binds
-
-    hadjacentAtPair :=
-      twoRadii_or_adjacentMutualOmissionPairAt_of_card_eq_fifteen G hcard i (Q.W i) (hfifteen i)
-
-whose statement is at `:2830`.  Reading both arms:
-
-* **One-radius arm** — `AdjacentMutualOmissionPairAt D S H i` (`:2735`) carries
-  the conjunct `∃ r, 0 < r ∧ S.capInteriorByIndex i ⊆ SelectedClass D.A
-  (S.oppositeVertexByIndex i) r ∧ (that class).card = 6`.  Every point of cap
-  `i`'s interior is at distance `r` from the apex opposite `i`.
-* **Two-radii arm** (`:2837`–`:2852`) — `T₁ ⊆ SelectedClass (…) r₁ ∩
-  capInterior i`, `T₂ ⊆ SelectedClass (…) r₂ ∩ capInterior i`, and
-  `W.support = T₁ ∪ T₂` with `W.support = S.capInteriorByIndex i`.  So cap
-  `i`'s interior is `T₁ ∪ T₂`, and every point of it is at `r₁` or at `r₂`
-  from the apex opposite `i`.
-
-So **in both arms every point of a cap interior carries an apex-centred radius
-at its own apex**, with at worst a two-way split on which radius.  There is no
-missing lemma here; there is a case split.
-
-`SelectedClass A s d` is `A.filter (fun q => dist s q = d)`
-(`WitnessPacketInterface.lean:59`), so membership gives `dist s q = d`,
-centre first; `mem_selectedClass` (`:62`) and `dist_self_of_mem_selectedClass`
-(`:300`) are the two orientations.
-
-**The slot model is also proved source, in both arms.**  Both arms carry
-
-    (SelectedClass D.A (S.oppositeVertexByIndex i) r ∩ S.leftAdjacentCapByIndex i).card = 1
-    (SelectedClass D.A (S.oppositeVertexByIndex i) r ∩ S.rightAdjacentCapByIndex i).card = 1
-
-— the one-radius arm at `:2754`–`:2757`, the two-radii arm at `:2844`–`:2852`
-for each radius.  That is section 63's six slots, one occupant each, proved,
-at every index.  The one-hit upper bound alone was already
-`leftAdjacentCap_at_opposite_card_le_one_of_convexIndep` (`Shard01.lean:1064`)
-and its right twin (`:1079`); the arms upgrade `≤ 1` to `= 1`.
-`leftAdjacentCapByIndex_eq_capByIndex` (`:993`) identifies the adjacent cap
-with an indexed cap, so the two indices line up.
-
-**Ingress hypotheses that are available at the sorry.**  `D.convex :
-ConvexIndep D.A` is a `CounterexampleData` field
-(`U1TwoShortCapReduction.lean:88`), already used in this file at `:2595`.
-`G.cap_card_ge_six : ∀ i, 6 ≤ (S.capByIndex i).card` is a
-`TriApexAllLargeContext` field (`AllLargeCapCanonicalInterfaces.lean:297`),
-already used at `:2568`.
-
-**A constraint that is real but not a blocker.**  On a `PairedTwoRadiusGrid`,
-`not_sixPoint_class` (`PairedCommonDeletionNormalForm.lean:456`, via
-`classCard_le_four` at `:445`) proves `¬ ∃ r, 0 < r ∧ 6 ≤ (SelectedClass D.A
-S.oppApex1 r).card`.  So at the first apex the one-radius arm is excluded and
-richness must be the two-radius arm.  The two-radii arm still gives each
-interior point a definite apex radius, so this narrows the case split rather
-than removing the object.
-
-**What is therefore actually open.**  Not the two-apex-radii producer.  Two
-other things:
-
-1. **The apex-versus-foreign dichotomy.**  Each slot has exactly one occupant.
-   Section 63 argues the only apex candidate is `A_k` for `{i,j,k} = {0,1,2}`,
-   from the outer-vertex tables (`Shard01.lean:1130`, `:1139`) and
-   `oppositeVertexByIndex_mem_left/rightAdjacentCapByIndex` (`:1351`, `:1361`),
-   with `0 < r` excluding `Aᵢ` itself.  That argument is cited but not
-   assembled in Lean, and it is what separates an apex hit from a foreign hit.
-2. **The counting bound** — at most two of the six slots foreign — which is
-   section 63's stated residue and section 64's gap of one.  Unchanged.
-
-**Status of this section.**  This is a source audit, not a proof.  Every line
-cited above was read directly in the working tree; no Lean was written or
-built for it, and nothing here closes an obligation.  What it changes is the
-picture section 75 recorded: the chain of sections 63–74 is not blocked on a
-missing producer for its consumed object.  It is blocked on the dichotomy and
-the count, which is where section 63 said it was.
-
-Scope unchanged.  Off-spine.  Leaf: two open obligations, `M = 18`.
