@@ -703,7 +703,8 @@ def pentagonalAntiprismBranchSystem
     branch_ppppm a z1x z1y z2x z2y z3x z3y ∨
     branch_ppppp a z1x z1y z2x z2y z3x z3y
 
-/-- None of the 32 exact pentagonal-antiprism branch systems has a real solution. -/
+/-- Under `a ^ 2 = 3`, none of the 32 exact pentagonal-antiprism branch systems
+has a real solution. -/
 theorem not_pentagonalAntiprismBranchSystem
     (a z1x z1y z2x z2y z3x z3y : ℝ) (ha : a ^ 2 = 3) :
     ¬ pentagonalAntiprismBranchSystem a z1x z1y z2x z2y z3x z3y := by

@@ -304,7 +304,7 @@ def NogoodData.matchesRows (data : NogoodData) (assigned : List Row) : Bool :=
 def checkBank (bank : List NogoodData) : Bool :=
   bank.all NogoodData.check
 
-/-- The current native prefix contains at least one certified nogood. -/
+/-- The supplied bank contains at least one matching nogood record. -/
 def hasNogood (bank : List NogoodData) (assigned : List Row) : Bool :=
   bank.any fun data => data.matchesRows assigned
 

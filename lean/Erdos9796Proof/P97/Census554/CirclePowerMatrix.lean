@@ -60,8 +60,7 @@ theorem power_center (center : Point2) (radiusSq : ℝ) :
     power center radiusSq center = -radiusSq := by
   simp [power, sqDist]
 
-/-- Positive-radius circles therefore give a canonical certified-nonzero
-diagonal entry when their center is used as the point column. -/
+/-- If `radiusSq ≠ 0`, then `power center radiusSq center ≠ 0`. -/
 theorem power_center_ne_zero
     (center : Point2) (radiusSq : ℝ) (hradius : radiusSq ≠ 0) :
     power center radiusSq center ≠ 0 := by

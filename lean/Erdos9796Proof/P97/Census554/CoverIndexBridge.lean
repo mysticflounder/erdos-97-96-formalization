@@ -25,8 +25,8 @@ def classMask (K : Finset (Fin 11)) : Nat :=
 set_option maxHeartbeats 1000000 in
 set_option maxRecDepth 10000 in
 set_option linter.style.nativeDecide false in
-/-- A class satisfies the semantic candidate predicate exactly when its mask
-occurs in the encoder's candidate enumeration for that center. -/
+/-- A semantic candidate class has a mask in the encoder's candidate enumeration
+for that center. -/
 theorem classMask_mem_candMasks (p : Fin 11) (K : Finset (Fin 11))
     (hK : IsCandidateClass p K) :
     classMask K ∈ candMasks p.val := by

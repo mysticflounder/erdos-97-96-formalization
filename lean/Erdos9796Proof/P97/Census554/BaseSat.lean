@@ -114,7 +114,7 @@ theorem xVar_inj {p q i j : Nat} (hp : p < 11) (hq : q < 11)
 
 /- ## Base assignment on the `x` variables -/
 
-/-- The base assignment: exactly the eleven chosen `x` variables are true. -/
+/-- The base assignment sets each listed chosen `x` variable to true. -/
 def baseAssign (idx : Nat → Nat) : Nat → Bool :=
   fun v => (List.range 11).any fun p => v == xVar p (idx p)
 

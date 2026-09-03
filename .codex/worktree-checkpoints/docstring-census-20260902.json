@@ -1,0 +1,18 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "docstring-census-20260902",
+  "owner": "docstring_census",
+  "base_head": "d580d14a7f1e94057da16aa7fb7c8471bbe3e875",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/docstring-census-20260902.json",
+    "lean/Erdos9796Proof/P97/Census554/BaseSat.lean",
+    "lean/Erdos9796Proof/P97/Census554/CapSelectedNogoodCertificate.lean",
+    "lean/Erdos9796Proof/P97/Census554/CirclePowerMatrix.lean",
+    "lean/Erdos9796Proof/P97/Census554/CoverIndexBridge.lean",
+    "lean/Erdos9796Proof/P97/Census554/EquilateralShellBranchCertificates.lean"
+  ],
+  "durable_paths": [],
+  "generated_roots": [],
+  "created_utc": "2026-09-02T20:51:45Z",
+  "manifest_sha256": "25f04d290b80a62adfb60088c2bed711d21393d159a008daf39b4e6860bbf23e"
+}
