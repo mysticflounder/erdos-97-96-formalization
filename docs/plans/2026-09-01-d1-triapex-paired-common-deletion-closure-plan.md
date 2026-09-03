@@ -4806,3 +4806,74 @@ the live consumer — a point section 53 raised and this confirms independently.
 
 Leaf unchanged: single `sorry`, `M = 18`.  The new module is off-spine
 infrastructure; it removes a gate rather than discharging an obligation.
+
+### 63. The escape-exclusion becomes a counting bound: at most two foreign hits (2026-09-03)
+
+Section 62 reduced ingress obligation (i) to `∃ i, ¬ StrictAdjacentEscapeAt i r`
+and recorded that the property is circular in current source.  Counting the
+adjacent-hit slots replaces it with a strictly weaker statement.
+
+**Six slots, one per ordered pair.**  At index `i` the class has exactly two
+non-interior members, one in each adjacent closed cap, and the two adjacent caps
+of `i` are exactly the two caps `j ≠ i`.  So the three classes present exactly
+six slots, indexed by the ordered pairs `(i, j)` with `i ≠ j`: slot `(i, j)` sits
+at the class centred on `Aᵢ` and lands in cap `j`.
+
+Each slot has exactly one apex candidate, and it is the apex of the *third*
+index.  From the outer-vertex tables (`Shard01.lean:1130,1139`) with cap `j`'s
+endpoints: cap `j` holds two Moser vertices, one of which is `Aᵢ` itself
+(`oppositeVertexByIndex_mem_left/rightAdjacentCapByIndex`, `:1351,:1361`) and is
+excluded by `0 < r`.  The survivor is `A_k` where `{i, j, k} = {0,1,2}`.  So
+filling slot `(i, j)` with an apex asserts exactly
+
+    dist Aᵢ A_k = ρᵢ,    ρᵢ = cap i's interior radius.
+
+**The pigeonhole.**  Index `i` owns two slots, so it carries at most two apex
+hits, and it carries exactly two precisely when both its adjacent hits are
+apices — which is `¬ StrictAdjacentEscapeAt i r`.  Now suppose the six slots
+carry at least four apex hits in total.  Three indices carrying at most one each
+give at most three.  So some index carries two, and that index is escape-free.
+
+> **Obligation (i) follows from: at most two of the six slots are foreign
+> cap-interior points.**
+
+This is strictly weaker than the section 60 metric structure.  It does not ask
+which sides are equal, or that all three radii agree — only that the foreign
+hits number at most two.  Four of the six equalities suffice; the census
+structure supplies exactly four, never five or six.
+
+**What a foreign hit is, metrically.**  A foreign hit in slot `(i, j)` is a
+point `x ∈ capInteriorByIndex j` with `dist Aᵢ x = ρᵢ`.  In the one-radius arm
+cap `j`'s whole interior lies on the class at `Aⱼ`, so also `dist Aⱼ x = ρⱼ`.
+Hence every foreign hit lies on
+
+    circle (Aᵢ, ρᵢ) ∩ circle (Aⱼ, ρⱼ),
+
+which holds at most two points, and at most one of them can be the slot's
+occupant by the one-hit bound (`Shard01.lean:1064,1079`).  So foreign hits are
+two-circle intersection points — the same object `U2/WitnessReflectionKernel`
+already handles, and section 58 recorded that `inner_sub_centers_eq_zero` and
+`twoCircle_midpoint_collinear` there are proved and cardinality-free.
+
+**Census check of the bookkeeping — EMPIRICAL, one cell, one engine.**  Over all
+111 metric patterns: six slots filled, six distinct slots, no slot filled twice,
+four apex hits and two foreign hits, in every pattern, with zero anomalies and no
+apex ever appearing in its own class.  The slot model is therefore an exact
+description of the census data, not an approximation to it.  It remains census
+evidence; the counting bound is not proved.
+
+**A sharpening of section 58 on `no_center_covers_all_apices`.**  Section 58
+recorded that this field is vacuous at an apex, which is correct, but the field
+quantifies over *every* carrier point, so vacuity at three of them leaves real
+content.  For a non-apex `p` it says no carrier point is at one positive
+distance from all three apices.  Since all three apices lie on the MEC boundary
+(`Moser/Triangle.lean:74,76,78`), the MEC centre is at a common distance from
+them, so the field says in particular that the MEC centre is not a carrier
+point.  That is modest but it is not nothing, and section 58 should not be read
+as saying the field is unusable.
+
+**What is still missing.**  A bound of two on the number of foreign hits.
+Nothing in this section proves it; the section replaces one open statement with a
+weaker open statement and identifies the object a proof must control.
+
+Leaf unchanged: single `sorry`, `M = 18`.
