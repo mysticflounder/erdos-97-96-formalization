@@ -6072,17 +6072,6 @@ written, and sections 63-74 were, at the time they were written, targeting a
 hypothesis nobody supplied.  This change is what made that hypothesis real.
 The substance of section 75's corrections stands; only their history does not.
 
-### 77. Source-facing cyclic wrapper (2026-09-03)
-
-`CyclicForeignHitExclusion.lean` now also exports
-`false_of_cyclic_foreign_hits_of_nonobtuse_triangle_of_ne`.  It combines the
-three exported side inequalities from `NonObtusePolarization` with the cyclic
-foreign-hit exclusion, while retaining positive side lengths, the three
-circumradius equations, and all six foreign-hit distance equations explicitly.
-The theorem is axiom-clean and builds under the governed workflow.  It is still
-off-spine: no current D1 producer supplies the three cyclic foreign-hit points,
-so this wrapper does not close either D1 child or section 64.
-
 ### 79. The slot occupant is interior or one named vertex (2026-09-03)
 
 Section 77 left two open items and called the first the natural next lemma:
@@ -6134,3 +6123,14 @@ exactly the gap.
 
 Off-spine.  No promotion claim.  Scope unchanged.  Leaf: two open obligations,
 `M = 18`.
+
+### 80. Source-facing cyclic wrapper (2026-09-03)
+
+`CyclicForeignHitExclusion.lean` now also exports
+`false_of_cyclic_foreign_hits_of_nonobtuse_triangle_of_ne`.  It combines the
+three exported side inequalities from `NonObtusePolarization` with the cyclic
+foreign-hit exclusion, while retaining positive side lengths, the three
+circumradius equations, and all six foreign-hit distance equations explicitly.
+The theorem is axiom-clean and builds under the governed workflow.  It is still
+off-spine: no current D1 producer supplies the three cyclic foreign-hit points,
+so this wrapper does not close either D1 child or section 64.
