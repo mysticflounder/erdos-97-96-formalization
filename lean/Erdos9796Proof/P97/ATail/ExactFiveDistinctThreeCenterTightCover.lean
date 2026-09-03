@@ -956,6 +956,32 @@ theorem tightPhysical_retainedPacket_secondRow_sameCenter_radius_eq_or_disjoint
     P₂ N.secondApexClass
   simpa [P₂, qDeletedK4ClassToSelectedFourClass] using h
 
+/-- In the exact-twelve tight-cover slice, the same-center dichotomy cannot
+choose the disjoint branch: both second-apex rows are four-subsets of the
+same five-point radius class and therefore share at least three sources. -/
+theorem tightPhysical_retainedPacket_secondRow_radius_eq_of_card_eq_twelve
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F}
+    {deleted blocker : ℝ²}
+    {C : CommonDeletionTwoCenterPacket D H deleted blocker S.oppApex2}
+    (N : ExactFiveDistinctThreeCenterNormalForm R C)
+    (hcard : D.A.card = 12)
+    (P : CommonDeletionTwoCenterPacket D H N.retained
+      S.oppApex1 S.oppApex2) :
+    P.row₂.radius = N.secondApexClass.radius := by
+  rcases tightPhysical_retainedPacket_secondRow_sameCenter_radius_eq_or_disjoint
+      N P with hradius | hdisjoint
+  · exact hradius
+  · have hinter := tightPhysical_secondRows_inter_card_ge_three N hcard P
+    have hzero :
+        (N.secondApexClass.support ∩ P.B₂).card = 0 := by
+      apply Finset.card_eq_zero.mpr
+      rw [Finset.inter_comm]
+      exact Finset.disjoint_iff_inter_eq_empty.mp hdisjoint
+    omega
+
 /-- In the tight union branch, the fixed first row of the retained-deletion
 packet is disjoint from both other normal-form rows. -/
 theorem tightPhysical_retainedPacket_firstRow_disjoint_normalOthers

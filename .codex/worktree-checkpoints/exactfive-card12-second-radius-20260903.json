@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "exactfive-card12-second-radius-20260903",
+  "owner": "codex-exactfive-card12-second-radius",
+  "base_head": "091b229a4f46d2ecc4662fa56f29c4fe1b031864",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exactfive-card12-second-radius-20260903.json",
+    "lean/Erdos9796Proof/P97/ATail/ExactFiveDistinctThreeCenterTightCover.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-03T16:33:00Z",
+  "manifest_sha256": "935d537ab09c5d0744f41a46817b5ca26d87af922c4244bf59204fe00df44cbd"
+}
