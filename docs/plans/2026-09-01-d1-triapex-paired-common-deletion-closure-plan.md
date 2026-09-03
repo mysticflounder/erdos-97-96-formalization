@@ -5825,3 +5825,235 @@ producer — is still the whole question.
 
 Off-spine.  No promotion claim.  Scope unchanged.  Leaf: two open obligations,
 `M = 18`.
+
+### 70. The cardinality split is performed at the leaf (2026-09-03)
+
+Adam authorized option (e) of section 60.  This section records the change, its
+cost, and what it does and does not buy.
+
+**What changed.**  In `TriApexEndpointRetainedOmission.lean` the single leaf
+became three declarations:
+
+* `…_triApexAllLarge_card_eq_fifteen` — the former leaf body verbatim, now with
+  `(hcard : D.A.card = 15)` as a hypothesis;
+* `…_triApexAllLarge_card_ge_sixteen` — new, `(hcard : 16 ≤ D.A.card)`, body
+  `sorry`;
+* `…_triApexAllLarge_core` — the coordinator, keeping the original signature and
+  therefore the original consumer edge, whose body is the `by_cases`.
+
+The coordinator's callers are untouched.  Section 60 recorded that the caller
+`…_apexClassJointDeletion_triApexAllLarge_core` supplies nothing beyond `J` and
+`G` and constructs `Q` itself, so the split could have gone at either end; it is
+placed at the leaf so that no consumer signature changes.
+
+**Exhaustiveness.**  `by_cases h15 : D.A.card = 15` is a decidable split on a
+`Nat` equality, so the two branches are exhaustive by construction.  The
+negative branch sharpens to `16 ≤ D.A.card` because the all-large hypothesis
+already forces the floor:
+
+    ATailExactFifteenApexProfile.card_ge_fifteen_of_all_cap_card_ge_six
+      S G.cap_card_ge_six : 15 ≤ D.A.card
+
+and `omega` closes `15 ≤ n → n ≠ 15 → 16 ≤ n`.  This is the strongest floor
+reachable here.  The sharper `card_ge_seventeen_of_one_cap_card_ge_eight`
+(`ExactFifteenApexProfile.lean:74`) needs `8 ≤ (S.capByIndex i).card`, and
+`TriApexAllLargeContext` supplies only `6 ≤`; `R.carrier_card_gt_nine` is weaker
+than the floor; and `R.minimal` and `G.notRobustCover_card` are upper bounds on
+`D.A.card`, not lower ones.  Every structure in the binder chain was read for a
+cardinality field and none carries another.
+
+**What became live.**  The three exact-fifteen facts that the leaf previously
+parked under an undischarged binder are now unconditional in the `= 15` child:
+
+    hfifteen        : ∀ k, Q.W.supportAt k = S.capInteriorByIndex k
+    hsixSlots       : ∀ k, (the six-slot ordered cap at k)
+    hadjacentAtPair : two-radii arm ∨ adjacent-slot mutual-omission pair at i
+
+Before the split each was a function out of `D.A.card = 15` whose antecedent no
+consumer discharged, which is what sections 53, 59 and 62 recorded independently.
+The remaining exact-fifteen tools of the file — the cap-order lift, the
+one-radius six-point class, the two-radii four-point classes, and the two
+endpoint-fresh row lemmas — are now applicable in that branch on the same
+footing.
+
+**The cost, stated plainly.**  The on-spine `sorry` count rises from one to two.
+Phase 3's split rule says the leaf is split only in the same change that closes
+at least one resulting child, and that rule is not met here: neither child
+closes.  The `= 15` child needs ingress obligation (i), which section 67 derives
+only in the one-radius arm and only from section 64, which self-labels PROOF
+SKETCH; obligations (ii) and (iii) and the two-radii branch are untouched.  The
+`≥ 16` child is Phase 4, which no run in this lane has begun.  The split is
+performed on Adam's explicit authorization, which overrides the lane's own
+do-not-fan-out constraint for this change; it is not an argument that the
+constraint was wrong.
+
+**The measure is unchanged.**  `M = 18` still.  `M` counts (cardinality class,
+cell) pairs not covered by a checked terminal or replayed certificate, over the
+classes `{15, ≥ 16}` and the nine leaf cells.  The split covers no cell.  So by
+the plan's own measure this change is **not proof progress**; it is the
+structural precondition that makes the exact-fifteen half of the measure
+addressable at all.  Recording it as anything stronger would repeat the error
+section 36 was corrected for.
+
+**The template's children were not reusable.**  `Rigid221SourceHeavy.lean:14496`
+performs the same `by_cases`, and its shape was copied.  Its two children were
+checked and are not applicable: they are stated over
+`ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual`,
+`ExactFourRigid221PhysicalApexSourceEqUContext`,
+`ExactFourRigid221SourceEqUBlockerVRowOtherSourceHeavyPacket` and
+`ExactFourRigid221PentagonBlockerVResidual`, and they read `lateFirstApexSystem R`,
+`P.v`, `P.rho` and `P.jointDeletion`.  The binder chains diverge at `R`.  Only
+`CounterexampleData`, `SurplusCapPacket` and the raw `D.A.card` bound are shared
+vocabulary.  A search for an existing `_card_eq_fifteen` / `_card_ge_sixteen`
+pair over `PairedApexClassJointDeletion` and `TriApexAllLargeContext` returned
+none: every `TriApexAllLargeContext`-parameterised card-fifteen theorem in the
+file concludes a structural fact, not `False`, and the TriApex namespace has no
+`≥ 16` theorem at all.  So both children had to be stated fresh, and that is why
+the split cannot be made sorry-count-neutral by reusing library work.
+
+**Build.**  `lake-build Erdos9796Proof.P97.ATail.FrontierLiveClosure.TriApexEndpointRetainedOmission`
+completed successfully, 11944 jobs, exit 0.  The module's six
+`unusedVariables` warnings are all at lines 5273-5285, in a structure unrelated
+to this change, and are unchanged by it; the split region introduces none.  The
+`by_cases` and the `omega` both elaborate as written, so the exhaustiveness
+argument above is kernel-checked rather than asserted.  The post-build
+proof-blueprint resync failed on an unrelated module
+(`ATailSevenSourcesOutsideTwoShells.exists_five_carrierVertices_outside_two_selected_supports`
+absent from the imported environment, another lane's work in progress); the
+resync is best-effort and the build itself is green.  The file now contains
+exactly two `sorry`, at the two children, and none elsewhere.
+
+**Section 64 is understated, and this changes where the remaining work is.**
+A read-only audit run alongside this change found that section 64's reflection
+argument is not merely unformalized — its pairing step is already a theorem:
+
+    SurplusCapPacket.twoCircle_sameSide_reflection_false_of_not_mem_capByIndex
+      (SurplusM44Packet/Shard01.lean:665)
+
+resting on `signedArea2_mul_pos_of_not_mem_capByIndex` (`Shard01.lean:653`),
+which derives the chord-side fact straight from `capByIndex_arc_membership`
+(`Shard01.lean:372`), and on `capInteriorByIndex_not_mem_capByIndex_of_ne`
+(`Shard02.lean:200`) for disjointness.  The kernel chain section 64 cites by its
+bottom lemma is proved to the top: `inner_sub_centers_eq_zero`
+(`U2/WitnessReflectionKernel.lean:61`) → `twoCircle_midpoint_collinear` (`:74`)
+→ `signedArea2_reflection_neg` (`:186`) → `twoCircle_sameSide_reflection_false`
+(`:200`).  That file is `sorry`-free throughout.
+
+Two corrections to section 64 follow.  First, `OnArcOpposite` (`Foundation.lean:83`)
+is **not** carried by `CapPartition`.  That structure has eleven fields, is
+stated over an arbitrary `[DecidableEq α]`, and cannot mention `signedArea2` at
+all; the `arc_membership` field is on the geometric `CapTriple`
+(`Cap/Structure.lean:201`), and `CapTriple.toCapPartition` (`:233`) drops it.
+The ingredient is available, the attribution is wrong.
+
+Second, and more useful, the missing unit is now located exactly.  The
+reflection is **pairwise and tight per pair**: fixing an unordered pair, the two
+circle intersections lie on opposite sides of the chord while both cap interiors
+lie strictly on the apex side, so at most one of that pair's two slots is
+foreign.  Three pairs give three.  The argument carries **no coupling between
+pairs**, so it cannot exclude choosing one permitted foreign slot from each pair
+in a consistent rotational direction — slots `(0,1)`, `(1,2)`, `(2,0)`.  That is
+precisely the cyclic case section 67 refutes.  So sections 64 and 67 together
+reach the bound of two, and the gap between them is neither of the two
+arguments: it is the geometric reduction "a foreign hit in slot `(i,j)` implies
+the cubic inequality of section 68", which exists only as prose.  A per-pair
+chord-side argument structurally cannot supply it, and no radical-centre or
+three-circle-concurrency lemma exists anywhere in the tree; the `radical` hits
+in `U5GlobalIncidenceBasic.lean` are two-centre axis algebra.
+
+**An import gap in section 68's Lean core.**  `ATail/CyclicSideInequalities.lean`
+is imported by nothing.  A search across `lean/` for the module name returns only
+the file itself.  It compiles under the library glob, so a green build says
+nothing about it, and it reaches no consumer.  Making it load-bearing needs an
+import edge, which the reduction above would be the natural place to add.
+
+### 77. Correction to section 75: the two-apex-radii object is producible (2026-09-03)
+
+Section 75 said that no declaration anywhere gives a carrier point two
+apex-centred radii at two different apices, and concluded that the sections
+63–74 chain consumes an object with no producer.  The first half of that is
+true of any single declaration.  The conclusion drawn from it is wrong, and
+this section withdraws it.
+
+What section 75 failed to do was follow section 63's own derivation.  Section
+63 wrote it in prose: a foreign hit in slot `(i, j)` is a point of cap `j`'s
+interior lying on the class at apex `i`, and "in the one-radius arm cap `j`'s
+whole interior lies on the class at `Aⱼ`, so also `dist Aⱼ x = ρⱼ`."  That
+second radius is not missing from source.  It is one side of a disjunction
+that the card-15 child already invokes.
+
+**The disjunction, and what both arms give.**  At line 2928 of
+`TriApexEndpointRetainedOmission.lean` the proof already binds
+
+    hadjacentAtPair :=
+      twoRadii_or_adjacentMutualOmissionPairAt_of_card_eq_fifteen G hcard i (Q.W i) (hfifteen i)
+
+whose statement is at `:2830`.  Reading both arms:
+
+* **One-radius arm** — `AdjacentMutualOmissionPairAt D S H i` (`:2735`) carries
+  the conjunct `∃ r, 0 < r ∧ S.capInteriorByIndex i ⊆ SelectedClass D.A
+  (S.oppositeVertexByIndex i) r ∧ (that class).card = 6`.  Every point of cap
+  `i`'s interior is at distance `r` from the apex opposite `i`.
+* **Two-radii arm** (`:2837`–`:2852`) — `T₁ ⊆ SelectedClass (…) r₁ ∩
+  capInterior i`, `T₂ ⊆ SelectedClass (…) r₂ ∩ capInterior i`, and
+  `W.support = T₁ ∪ T₂` with `W.support = S.capInteriorByIndex i`.  So cap
+  `i`'s interior is `T₁ ∪ T₂`, and every point of it is at `r₁` or at `r₂`
+  from the apex opposite `i`.
+
+So **in both arms every point of a cap interior carries an apex-centred radius
+at its own apex**, with at worst a two-way split on which radius.  There is no
+missing lemma here; there is a case split.
+
+`SelectedClass A s d` is `A.filter (fun q => dist s q = d)`
+(`WitnessPacketInterface.lean:59`), so membership gives `dist s q = d`,
+centre first; `mem_selectedClass` (`:62`) and `dist_self_of_mem_selectedClass`
+(`:300`) are the two orientations.
+
+**The slot model is also proved source, in both arms.**  Both arms carry
+
+    (SelectedClass D.A (S.oppositeVertexByIndex i) r ∩ S.leftAdjacentCapByIndex i).card = 1
+    (SelectedClass D.A (S.oppositeVertexByIndex i) r ∩ S.rightAdjacentCapByIndex i).card = 1
+
+— the one-radius arm at `:2754`–`:2757`, the two-radii arm at `:2844`–`:2852`
+for each radius.  That is section 63's six slots, one occupant each, proved,
+at every index.  The one-hit upper bound alone was already
+`leftAdjacentCap_at_opposite_card_le_one_of_convexIndep` (`Shard01.lean:1064`)
+and its right twin (`:1079`); the arms upgrade `≤ 1` to `= 1`.
+`leftAdjacentCapByIndex_eq_capByIndex` (`:993`) identifies the adjacent cap
+with an indexed cap, so the two indices line up.
+
+**Ingress hypotheses that are available at the sorry.**  `D.convex :
+ConvexIndep D.A` is a `CounterexampleData` field
+(`U1TwoShortCapReduction.lean:88`), already used in this file at `:2595`.
+`G.cap_card_ge_six : ∀ i, 6 ≤ (S.capByIndex i).card` is a
+`TriApexAllLargeContext` field (`AllLargeCapCanonicalInterfaces.lean:297`),
+already used at `:2568`.
+
+**A constraint that is real but not a blocker.**  On a `PairedTwoRadiusGrid`,
+`not_sixPoint_class` (`PairedCommonDeletionNormalForm.lean:456`, via
+`classCard_le_four` at `:445`) proves `¬ ∃ r, 0 < r ∧ 6 ≤ (SelectedClass D.A
+S.oppApex1 r).card`.  So at the first apex the one-radius arm is excluded and
+richness must be the two-radius arm.  The two-radii arm still gives each
+interior point a definite apex radius, so this narrows the case split rather
+than removing the object.
+
+**What is therefore actually open.**  Not the two-apex-radii producer.  Two
+other things:
+
+1. **The apex-versus-foreign dichotomy.**  Each slot has exactly one occupant.
+   Section 63 argues the only apex candidate is `A_k` for `{i,j,k} = {0,1,2}`,
+   from the outer-vertex tables (`Shard01.lean:1130`, `:1139`) and
+   `oppositeVertexByIndex_mem_left/rightAdjacentCapByIndex` (`:1351`, `:1361`),
+   with `0 < r` excluding `Aᵢ` itself.  That argument is cited but not
+   assembled in Lean, and it is what separates an apex hit from a foreign hit.
+2. **The counting bound** — at most two of the six slots foreign — which is
+   section 63's stated residue and section 64's gap of one.  Unchanged.
+
+**Status of this section.**  This is a source audit, not a proof.  Every line
+cited above was read directly in the working tree; no Lean was written or
+built for it, and nothing here closes an obligation.  What it changes is the
+picture section 75 recorded: the chain of sections 63–74 is not blocked on a
+missing producer for its consumed object.  It is blocked on the dichotomy and
+the count, which is where section 63 said it was.
+
+Scope unchanged.  Off-spine.  Leaf: two open obligations, `M = 18`.

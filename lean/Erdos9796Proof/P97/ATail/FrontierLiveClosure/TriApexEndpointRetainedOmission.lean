@@ -2865,13 +2865,21 @@ theorem twoRadii_or_adjacentMutualOmissionPairAt_of_card_eq_fifteen
 
 end TriApexLeafControls
 
-/-- Residual contradiction after the tri-apex witness count has produced four
-strict sources with the full five-survive/one-fail deletion signature.
+/-- Exact-fifteen child of the tri-apex five-survive/one-fail residual.
+
+Residual contradiction after the tri-apex witness count has produced four
+strict sources with the full five-survive/one-fail deletion signature, at
+carrier size exactly fifteen.
 
 The producer is now checked.  This residual must consume its cap/radius
 provenance; it must not repackage non-first-cap sources as
-`PairedApexClassJointDeletion`. -/
-theorem false_of_pairedCommonDeletion_fiveSurviveOneFail_triApexAllLarge_core
+`PairedApexClassJointDeletion`.
+
+`hcard` is what makes the exact-fifteen layer of this file usable: the cap
+profile is `6 = 6` on every closed cap and `4` on every interior, so the
+support identification, the six-slot cap order, and the two-radii/adjacent-pair
+dichotomy below are unconditional facts here rather than parked implications. -/
+theorem false_of_pairedCommonDeletion_fiveSurviveOneFail_triApexAllLarge_card_eq_fifteen
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
     {F : CriticalPairFrontier D S radius H}
@@ -2881,7 +2889,8 @@ theorem false_of_pairedCommonDeletion_fiveSurviveOneFail_triApexAllLarge_core
     (J : PairedApexClassJointDeletion O)
     (G : TriApexAllLargeContext D S)
     (Q : TriApexFiveSurviveOneFail S H O.kept O.deleted
-      O.kept_mem_A O.deleted_mem_A) :
+      O.kept_mem_A O.deleted_mem_A)
+    (hcard : D.A.card = 15) :
     False := by
   -- Phase 1 positive controls of the closure plan, consumed here so that the
   -- publish spine records them.  They do not narrow the residual.
@@ -2905,22 +2914,83 @@ theorem false_of_pairedCommonDeletion_fiveSurviveOneFail_triApexAllLarge_core
       (retainedShellSupport H O.kept O.kept_mem_A)
       (retainedShellSupport H O.deleted O.deleted_mem_A)
       (fun r => (honeHit r).1) (fun r => (honeHit r).2)
-  have hfifteen :
-      D.A.card = 15 → ∀ k : Fin 3, Q.W.supportAt k = S.capInteriorByIndex k :=
-    fun hcard k =>
+  have hfifteen : ∀ k : Fin 3, Q.W.supportAt k = S.capInteriorByIndex k :=
+    fun k =>
       strictApexFourFamily_supportAt_eq_capInteriorByIndex_of_card_eq_fifteen
         G Q.W hcard k
   obtain ⟨K, hsourceK, hKradius, z, w, hzK, hwK, hzw, hzSurvives, hwSurvives,
       hzwBlockers⟩ :=
     exists_firstApex_mutualCrossDeletion_pair_through_source J G
-  have hsixSlots := fun (hcard : D.A.card = 15) (k : Fin 3) =>
+  have hsixSlots := fun (k : Fin 3) =>
     exists_orderedCap_six_of_card_eq_fifteen G hcard k
   -- Phase 3a: at carrier size fifteen, the witness at the pair index is in
   -- the two-radii arm or carries the adjacent-slot mutual-omission pair.
-  have hadjacentAtPair := fun (hcard : D.A.card = 15) =>
+  have hadjacentAtPair :=
     twoRadii_or_adjacentMutualOmissionPairAt_of_card_eq_fifteen (H := H)
-      G hcard i (Q.W i) (hfifteen hcard i)
+      G hcard i (Q.W i) (hfifteen i)
   sorry
+
+/-- Carrier-size-at-least-sixteen child of the tri-apex five-survive/one-fail
+residual.
+
+Nothing in the exact-fifteen layer of this file applies here: the cap profile
+is no longer forced, so `capByIndex` may exceed six and `capInteriorByIndex`
+may exceed four, and the support identification
+`strictApexFourFamily_supportAt_eq_capInteriorByIndex_of_card_eq_fifteen`
+fails at its hypothesis rather than at its conclusion.
+
+This is Phase 4 of the closure plan.  The route recorded there is to extract
+the smallest infeasible sub-pattern of the exact-fifteen closures, state it as
+a cardinality-generic core over boundary indices, and prove an occurrence
+theorem from the leaf binders; `R.minimal` is available, so a deletion descent
+is a second option.  No part of that is done, and no run in this lane has
+touched this cardinality class. -/
+theorem false_of_pairedCommonDeletion_fiveSurviveOneFail_triApexAllLarge_card_ge_sixteen
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    {P : RetainedInteriorDirectedOmission R}
+    {O : OrientedRetainedCommonDeletion P}
+    (J : PairedApexClassJointDeletion O)
+    (G : TriApexAllLargeContext D S)
+    (Q : TriApexFiveSurviveOneFail S H O.kept O.deleted
+      O.kept_mem_A O.deleted_mem_A)
+    (hcard : 16 ≤ D.A.card) :
+    False := by
+  sorry
+
+/-- Residual contradiction after the tri-apex witness count has produced four
+strict sources with the full five-survive/one-fail deletion signature.
+
+Cardinality coordinator.  The all-large cap hypothesis already forces
+`15 ≤ D.A.card` through
+`ATailExactFifteenApexProfile.card_ge_fifteen_of_all_cap_card_ge_six`, so the
+two children below are exhaustive and the negative branch sharpens to
+`16 ≤ D.A.card` by arithmetic alone.  Splitting here is what makes the
+exact-fifteen layer of this file reachable from the live consumer; before the
+split its hypothesis was parked under an undischarged binder.  The same split
+is performed at `Rigid221SourceHeavy.lean` for the exact-four rigid arm. -/
+theorem false_of_pairedCommonDeletion_fiveSurviveOneFail_triApexAllLarge_core
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    {P : RetainedInteriorDirectedOmission R}
+    {O : OrientedRetainedCommonDeletion P}
+    (J : PairedApexClassJointDeletion O)
+    (G : TriApexAllLargeContext D S)
+    (Q : TriApexFiveSurviveOneFail S H O.kept O.deleted
+      O.kept_mem_A O.deleted_mem_A) :
+    False := by
+  by_cases h15 : D.A.card = 15
+  · exact false_of_pairedCommonDeletion_fiveSurviveOneFail_triApexAllLarge_card_eq_fifteen
+      J G Q h15
+  · have hfloor : 15 ≤ D.A.card :=
+      ATailExactFifteenApexProfile.card_ge_fifteen_of_all_cap_card_ge_six
+        S G.cap_card_ge_six
+    exact false_of_pairedCommonDeletion_fiveSurviveOneFail_triApexAllLarge_card_ge_sixteen
+      J G Q (by omega)
 
 /-- Escaping-source child of the paired common-deletion leaf.
 
