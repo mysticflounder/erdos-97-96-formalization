@@ -1,0 +1,13 @@
+{
+  "schema": "p97-endpoint-direct-metric-system-source-v2",
+  "system_id": "2238ecab2914b924a690",
+  "n": 16,
+  "order": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+  "rows": [
+    {"center": 0, "support": [2, 6, 7, 9, 12, 15], "exact": false},
+    {"center": 5, "support": [2, 3, 4, 6], "exact": false},
+    {"center": 8, "support": [7, 9], "exact": false},
+    {"center": 13, "support": [10, 11, 12, 15], "exact": false}
+  ],
+  "mec_apices": [1, 14, 0]
+}

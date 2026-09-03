@@ -1,0 +1,32 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "b1-mec-row-omission-q2-20260903",
+  "owner": "Codex-B1-Sorry",
+  "base_head": "927720d0af25f9d370b526aff82a008daf9f2c10",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/b1-mec-row-omission-q2-20260903.json",
+    "docs/audits/2026-09-03-b1-mec-disk-subset-isolation.md",
+    "docs/audits/2026-09-03-b1-mec-row-omission-q2.md"
+  ],
+  "generated_roots": [
+    "scratch/runs/b1-mec-row-omission-q2-20260903/omit-d0-v1",
+    "scratch/runs/b1-mec-row-omission-q2-20260903/omit-d1-v1",
+    "scratch/runs/b1-mec-row-omission-q2-20260903/omit-d2-v1"
+  ],
+  "durable_paths": [
+    "scratch/runs/b1-mec-row-omission-q2-20260903/omit-d0-v1/REPORT.md",
+    "scratch/runs/b1-mec-row-omission-q2-20260903/omit-d0-v1/result.json",
+    "scratch/runs/b1-mec-row-omission-q2-20260903/omit-d0-v1/run_manifest.json",
+    "scratch/runs/b1-mec-row-omission-q2-20260903/omit-d0-v1/source.json",
+    "scratch/runs/b1-mec-row-omission-q2-20260903/omit-d1-v1/REPORT.md",
+    "scratch/runs/b1-mec-row-omission-q2-20260903/omit-d1-v1/result.json",
+    "scratch/runs/b1-mec-row-omission-q2-20260903/omit-d1-v1/run_manifest.json",
+    "scratch/runs/b1-mec-row-omission-q2-20260903/omit-d1-v1/source.json",
+    "scratch/runs/b1-mec-row-omission-q2-20260903/omit-d2-v1/REPORT.md",
+    "scratch/runs/b1-mec-row-omission-q2-20260903/omit-d2-v1/result.json",
+    "scratch/runs/b1-mec-row-omission-q2-20260903/omit-d2-v1/run_manifest.json",
+    "scratch/runs/b1-mec-row-omission-q2-20260903/omit-d2-v1/source.json"
+  ],
+  "created_utc": "2026-09-03T17:16:26Z",
+  "manifest_sha256": "d663483a867e051033a189e965680b85e388c5f003ef803b79a4d32c5b87bc4e"
+}

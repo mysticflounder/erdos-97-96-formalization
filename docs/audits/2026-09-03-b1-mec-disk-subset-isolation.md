@@ -82,8 +82,11 @@ atom.  The Lean theorem
 `Problem97.gauge_commonRadius_disk_sq_iff_radicalHalfplane` in
 `P97/N4d/SmallSReductions.lean` supplies the kernel-side algebraic rewrite.
 Its focused elaboration is clean and its axioms are only `propext`,
-`Classical.choice`, and `Quot.sound`; the governed module build is pending the
-release of the shared Lean build lane.
+`Classical.choice`, and `Quot.sound`.  The later governed
+`Erdos9796Proof.P97.N4d.SmallSReductions` build completed successfully across
+8,009 jobs.  Its best-effort proof-blueprint resync subsequently failed on a
+stale private declaration in `DRExactThirteenCapBetweenness`; the Lean module
+build itself exited successfully.
 
 Focused verification passed:
 

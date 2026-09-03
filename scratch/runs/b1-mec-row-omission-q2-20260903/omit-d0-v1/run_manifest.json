@@ -1,0 +1,19 @@
+{
+  "schema": "worktree-run-manifest/v1",
+  "lane_id": "b1-mec-row-omission-q2-20260903",
+  "run_id": "omit-d0-v1",
+  "root": "scratch/runs/b1-mec-row-omission-q2-20260903/omit-d0-v1",
+  "owner": "Codex-B1-Sorry",
+  "base_head": "927720d0af25f9d370b526aff82a008daf9f2c10",
+  "output_classes": ["artifacts", "events", "tmp"],
+  "source_digests": {
+    "census/endpoint_confinement/metric_realizability_piqd.py": "893f87b638af361dc2ec8fd7c1e4c983a9cd93a01f4bc6b3eeccc326d6292962",
+    "census/endpoint_confinement/metric_realizability_probe.py": "15d5e10a9402e87e4bbe2d03694f421c47939f87fc72a98ef9c7d3dd6955075e",
+    "census/p97_search/phase3_piqd_smt_source_adapter.py": "94058aa4e04b5acc27242b52781794944ea00a069b16805104d3263203d65e70"
+  },
+  "input_digests": {
+    "scratch/runs/b1-mec-row-omission-q2-20260903/omit-d0-v1/source.json": "324a33f758bdc46f4999db80f1ff112182828165778b948b2b63a76d0d32f68b"
+  },
+  "created_utc": "2026-09-03T17:19:32Z",
+  "manifest_sha256": "b299ac2a2011540f730ca4515354cbbb6e66553eb974cc902ce7c06ea0a3d9fa"
+}
