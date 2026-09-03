@@ -1249,6 +1249,100 @@ theorem mirror_labelMap_of_saturated_boundaryBlocks
         pt_eq := fun _ => rfl
         orientation := Or.inr rfl }
 
+/- The strict profile fixes the three interior cardinalities.  Since the
+direct (respectively mirror) boundary intervals are disjoint and exhaust the
+thirteen boundary positions, the three upper bounds are simultaneously tight.
+These wrappers expose that arithmetic step before invoking the saturated label
+map constructors. -/
+
+theorem direct_labelMap_of_profile_boundaryBlocks
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    (P : ExactThirteenBoundaryBlocks S) (p : Profile)
+    (hprofile : HasStrictProfile S p)
+    (B : DirectBoundaryBlocks S P.B.boundary P.hn P.iv P.iw) :
+    ∃ pt φ : Fin 13 → ℝ², ∃ idx : Fin 13 → Fin 13,
+      LabelMap p S pt ∧ ConvexBoundaryEnumeration p pt φ idx := by
+  have hle := direct_boundary_interval_card_le P B
+  have hn13 : P.B.n = 13 := P.card_n
+  cases p with
+  | secondOpposite =>
+      rcases hprofile with ⟨hS, h1, h2⟩
+      have hsat2 : S.oppInterior2.card = (P.iv : ℕ) - 1 := by
+        omega
+      have hsatS : (S.capInteriorByIndex S.surplusIdx).card =
+          (P.iw : ℕ) - (P.iv : ℕ) - 1 := by
+        omega
+      have hsat1 : S.oppInterior1.card = 13 - 1 - (P.iw : ℕ) := by
+        omega
+      exact direct_labelMap_of_saturated_boundaryBlocks P .secondOpposite
+        ⟨hS, h1, h2⟩ B hsat2 hsatS hsat1
+  | surplus =>
+      rcases hprofile with ⟨hS, h1, h2⟩
+      have hsat2 : S.oppInterior2.card = (P.iv : ℕ) - 1 := by
+        omega
+      have hsatS : (S.capInteriorByIndex S.surplusIdx).card =
+          (P.iw : ℕ) - (P.iv : ℕ) - 1 := by
+        omega
+      have hsat1 : S.oppInterior1.card = 13 - 1 - (P.iw : ℕ) := by
+        omega
+      exact direct_labelMap_of_saturated_boundaryBlocks P .surplus
+        ⟨hS, h1, h2⟩ B hsat2 hsatS hsat1
+  | firstOpposite =>
+      rcases hprofile with ⟨hS, h1, h2⟩
+      have hsat2 : S.oppInterior2.card = (P.iv : ℕ) - 1 := by
+        omega
+      have hsatS : (S.capInteriorByIndex S.surplusIdx).card =
+          (P.iw : ℕ) - (P.iv : ℕ) - 1 := by
+        omega
+      have hsat1 : S.oppInterior1.card = 13 - 1 - (P.iw : ℕ) := by
+        omega
+      exact direct_labelMap_of_saturated_boundaryBlocks P .firstOpposite
+        ⟨hS, h1, h2⟩ B hsat2 hsatS hsat1
+
+theorem mirror_labelMap_of_profile_boundaryBlocks
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    (P : ExactThirteenBoundaryBlocks S) (p : Profile)
+    (hprofile : HasStrictProfile S p)
+    (B : MirrorBoundaryBlocks S P.B.boundary P.hn P.iv P.iw) :
+    ∃ pt φ : Fin 13 → ℝ², ∃ idx : Fin 13 → Fin 13,
+      LabelMap p S pt ∧ ConvexBoundaryEnumeration p pt φ idx := by
+  have hle := mirror_boundary_interval_card_le P B
+  have hn13 : P.B.n = 13 := P.card_n
+  cases p with
+  | secondOpposite =>
+      rcases hprofile with ⟨hS, h1, h2⟩
+      have hsat1 : S.oppInterior1.card = (P.iw : ℕ) - 1 := by
+        omega
+      have hsatS : (S.capInteriorByIndex S.surplusIdx).card =
+          (P.iv : ℕ) - (P.iw : ℕ) - 1 := by
+        omega
+      have hsat2 : S.oppInterior2.card = 13 - 1 - (P.iv : ℕ) := by
+        omega
+      exact mirror_labelMap_of_saturated_boundaryBlocks P .secondOpposite
+        ⟨hS, h1, h2⟩ B hsat1 hsatS hsat2
+  | surplus =>
+      rcases hprofile with ⟨hS, h1, h2⟩
+      have hsat1 : S.oppInterior1.card = (P.iw : ℕ) - 1 := by
+        omega
+      have hsatS : (S.capInteriorByIndex S.surplusIdx).card =
+          (P.iv : ℕ) - (P.iw : ℕ) - 1 := by
+        omega
+      have hsat2 : S.oppInterior2.card = 13 - 1 - (P.iv : ℕ) := by
+        omega
+      exact mirror_labelMap_of_saturated_boundaryBlocks P .surplus
+        ⟨hS, h1, h2⟩ B hsat1 hsatS hsat2
+  | firstOpposite =>
+      rcases hprofile with ⟨hS, h1, h2⟩
+      have hsat1 : S.oppInterior1.card = (P.iw : ℕ) - 1 := by
+        omega
+      have hsatS : (S.capInteriorByIndex S.surplusIdx).card =
+          (P.iv : ℕ) - (P.iw : ℕ) - 1 := by
+        omega
+      have hsat2 : S.oppInterior2.card = 13 - 1 - (P.iv : ℕ) := by
+        omega
+      exact mirror_labelMap_of_saturated_boundaryBlocks P .firstOpposite
+        ⟨hS, h1, h2⟩ B hsat1 hsatS hsat2
+
 /- The block package carries a strict profile disjunction; this is the
 finite choice needed by the profile-parametrized label map. -/
 theorem exists_profile_of_boundaryBlocks
