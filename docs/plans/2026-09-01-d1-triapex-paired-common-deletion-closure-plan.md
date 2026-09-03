@@ -3458,3 +3458,66 @@ uniform across its members, it does not refute a further orbit. Three of the
 five orbits still rest on mod-`p` evidence only.
 
 Leaf unchanged: single `sorry`, `M = 18`.
+
+### 46. The certificate blocker is `liftstd`, not `lift`; and Guardrail 1 now has a known-answer test (2026-09-03)
+
+**Correction to section 43.** That section read the failed characteristic-0
+certificate run as "`std` is 2 s and `lift` exceeds 754 s, so `lift` is the
+obstruction, not the basis". That diagnosis was wrong, and the mod-32003 rerun
+shows why. The certify script prints `gens … basis …` immediately *after*
+`liftstd` and before `lift`; neither run ever printed that line. So both died
+inside `liftstd`, and `lift` was never reached. `lift` has not been shown to be
+the obstruction, and is not currently known to be one.
+
+Two runs, same script, different characteristic:
+
+| characteristic | wall | exit | last output |
+|---|---|---|---|
+| 0 | 754.7 s | `null` | `metric 27` |
+| 32003 | 296.9 s | `null` | `metric 10` |
+
+`exit_code: null` in both receipts means the process was killed rather than
+returning. The informative part is that mod 32003 died **sooner** than
+characteristic 0, on a smaller generating set. If the blow-up were coefficient
+growth over ℚ, the modular run would have been the cheap one and would have
+finished. It was not, so the cost is in the size of the transformation matrix
+itself — the number of monomials Singular must carry — and not in the
+arithmetic. That also means a targeted dense characteristic-0 cofactor search,
+which section 43 listed as an untried option, is attacking the wrong quantity.
+
+**What is being tried now.** `liftstd` was called under `option(redSB)`, which
+makes it compute a *reduced* standard basis together with the transformation
+matrix. That is much more expensive than the basis alone, and no verdict in
+this lane needs a reduced basis. `collinear_core.py` gains a `--noredsb` flag
+and a `built` progress print, and the mod-32003 certificate is running again
+without `redSB`. If it also dies inside `liftstd`, the transformation-matrix
+route is exhausted at this shape and a Lean-checkable identity needs a
+different form — not a bigger budget.
+
+**Guardrail 1 now has a real test.** Section 44 recorded, as its own weakest
+point, that the only Guardrail 1 evidence for the angle encoder was a
+self-consistency check, which cannot catch an error shared by both code paths.
+`gauge_known_answer.py` supplies the missing known-answer test with no solver.
+The parameterization claims that fifteen specific distances — special apex to
+each other apex, and each apex to its own four cap points — are exactly the
+common radius. Each of those squared distances must therefore reduce to the
+constant 1 modulo the circle relations, identically in the twenty-six
+coordinates. A wrong rotation, a wrong centre, or a cap attached to the wrong
+apex would each show up as a normal form other than 1.
+
+Result: **1554 checks over all 111 patterns, no failures.** Guardrail 1 is now
+discharged for the angle encoder on an answer known in advance, not on
+agreement between two of its own modes.
+
+**A reframing worth recording.** Each three-member core group says a point is
+equidistant from three others, so it is a circumcenter condition, and each
+two-member apex group is a perpendicular-bisector condition. The core therefore
+reads: four circumcenter conditions and two perpendicular-bisector conditions
+force three points collinear. That is a classical-geometry statement, and it is
+a far better Lean target than a cofactor identity, because the repository
+already proves in this idiom — `ConvexPerpendicularBisectorSides.perpBisector_carrier_card_le_two`
+and `false_of_three_distinct_equidistant_carriers` are exactly perpendicular-bisector
+counting arguments. No route is claimed here; the point is that the certificate
+is not the only shape an ingress could take, and it is currently the blocked one.
+
+Leaf unchanged: single `sorry`, `M = 18`.
