@@ -201,6 +201,46 @@ theorem exactThirteen_capProfile_of_twoRadiusBranch
   · exact .surplus h.1 h.2.1 h.2.2
   · exact .firstOpposite h.1 h.2.1 h.2.2
 
+/-- Strict-interior form of the card-thirteen two-radius profile.  The three
+closed-cap alternatives above become the profiles `(3, 2, 5)`, `(4, 2, 4)`,
+and `(3, 3, 4)` after deleting the two endpoints of each cap. -/
+theorem exactThirteen_profile_of_twoRadiusBranch
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F)
+    (surface : ExactFourPostCardElevenRobustSurface R)
+    (rho otherRadius : ℝ)
+    (firstRow secondRow : SelectedFourClass D.A S.oppApex2)
+    (hradii : otherRadius ≠ rho)
+    (hfirstRadius : firstRow.radius = rho)
+    (hsecondRadius : secondRow.radius = otherRadius)
+    (hcard13 : D.A.card = 13) :
+    ((S.capInteriorByIndex S.surplusIdx).card = 3 ∧
+        S.oppInterior1.card = 2 ∧ S.oppInterior2.card = 5) ∨
+      ((S.capInteriorByIndex S.surplusIdx).card = 4 ∧
+        S.oppInterior1.card = 2 ∧ S.oppInterior2.card = 4) ∨
+      ((S.capInteriorByIndex S.surplusIdx).card = 3 ∧
+        S.oppInterior1.card = 3 ∧ S.oppInterior2.card = 4) := by
+  obtain hprofile := exactThirteen_capProfile_of_twoRadiusBranch R surface rho otherRadius
+    firstRow secondRow hradii hfirstRadius hsecondRadius hcard13
+  have hIS := capInteriorByIndex_card_add_two S S.surplusIdx
+  have hI1 := capInteriorByIndex_card_add_two S S.oppIndex1
+  have hI2 := capInteriorByIndex_card_add_two S S.oppIndex2
+  rw [capByIndex_surplusIdx_eq_surplusCap] at hIS
+  rw [capByIndex_oppIndex1_eq_oppCap1] at hI1
+  rw [capByIndex_oppIndex2_eq_oppCap2] at hI2
+  unfold SurplusCapPacket.oppInterior1 SurplusCapPacket.oppInterior2
+  rcases hprofile with h | h | h
+  · left
+    exact ⟨by omega, by omega, by omega⟩
+  · right
+    left
+    exact ⟨by omega, by omega, by omega⟩
+  · right
+    right
+    exact ⟨by omega, by omega, by omega⟩
+
 /-- The six closed-cap profiles compatible with the two-radius branch at
 carrier cardinality fourteen.  Constructor names match the diagnostic
 encoder profiles in `p97-dr-two-radius-card14-profile-probe-v1.md`. -/
