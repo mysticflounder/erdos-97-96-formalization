@@ -4946,3 +4946,70 @@ step, for which `U2/WitnessReflectionKernel.inner_sub_centers_eq_zero` is the
 proved ingredient.  Nothing here is claimed as established.
 
 Leaf unchanged: single `sorry`, `M = 18`.
+
+### 65. The open cyclic case is one scalene metric configuration (2026-09-03)
+
+Section 64 left exactly one configuration unexcluded: foreign hits in slots
+`(0,1)`, `(1,2)`, `(2,0)` (or the mirror), one per unordered pair and one per
+index.  Reading each slot as its distance equality turns that configuration into
+a concrete metric statement.
+
+**Slot equalities.**  Slot `(i, j)` apex-filled asserts `dist Aᵢ A_k = ρᵢ` with
+`k` the third index (section 63).  Write `a = dist A1 A2`, `b = dist A0 A2`,
+`c = dist A0 A1`.  The six slots read:
+
+| slot | apex candidate | equality |
+|---|---|---|
+| `(0,1)` | `A2` | `b = ρ₀` |
+| `(0,2)` | `A1` | `c = ρ₀` |
+| `(1,0)` | `A2` | `a = ρ₁` |
+| `(1,2)` | `A0` | `c = ρ₁` |
+| `(2,0)` | `A1` | `a = ρ₂` |
+| `(2,1)` | `A0` | `b = ρ₂` |
+
+**Validation against section 60.**  The census foreign set `{(0,1), (2,1)}`
+leaves the other four apex-filled, giving `c = ρ₀`, `a = ρ₁`, `c = ρ₁`,
+`a = ρ₂`, hence `ρ₀ = ρ₁ = ρ₂ = a = c`, with `b` unconstrained.  That is exactly
+the partition section 60 obtained independently by union-find on the raw census
+groups.  Two different routes to the same identification is a check on both.
+
+**The cyclic case, made concrete.**  Foreign at `(0,1)`, `(1,2)`, `(2,0)` leaves
+`(0,2)`, `(1,0)`, `(2,1)` apex-filled, so
+
+    ρ₀ = c,   ρ₁ = a,   ρ₂ = b,
+
+while the three foreign slots assert the negations `b ≠ ρ₀`, `c ≠ ρ₁`,
+`a ≠ ρ₂`, which substitute to `b ≠ c`, `c ≠ a`, `a ≠ b`.  So:
+
+> The open case is a **scalene** Moser triangle in which each cap's interior
+> radius equals one of that cap's own two endpoint distances, assigned
+> cyclically: cap `m`'s interior lies at `dist A_m (one endpoint of cap m)`.
+
+Concretely `ρ₀ = dist A0 A1` with `A1` an endpoint of cap 0, `ρ₁ = dist A1 A2`
+with `A2` an endpoint of cap 1, and `ρ₂ = dist A2 A0` with `A0` an endpoint of
+cap 2 — each cap using its endpoint in a consistent rotational sense, and never
+the other one.
+
+**Which census sets actually occur.**  Over the 111 patterns only three foreign
+sets appear, 37 each: `{(0,1),(2,1)}`, `{(1,0),(2,0)}`, `{(0,2),(1,2)}`.  In
+every one the two foreign hits land in the *same* cap — the cap opposite the
+distinguished apex — which is section 60's "all foreign hits come from the
+distinguished apex's own cap", now visible as a slot statement.  The cyclic sets
+occur zero times.  The census therefore never realizes the open case, but the
+census is the surviving set of one cell and is not a proof that it cannot be
+realized.
+
+**No counting obstruction remains.**  The cyclic case was checked against the
+class-size bookkeeping and is consistent with it: at index 0 the class is the
+four interior points of cap 0, plus `A1` filling slot `(0,2)`, plus the foreign
+hit filling `(0,1)`, totalling six, with `A1` correctly landing in an adjacent
+cap because it is a shared Moser vertex of caps 0 and 2.  So the case cannot be
+excluded by counting, and deciding it needs metric geometry.
+
+**Status.**  OPEN.  The next step is to decide whether a scalene Moser triangle
+with the cyclic radius assignment above admits a valid card-15 configuration.
+Refuting it closes ingress obligation (i) through sections 62–64.  Realizing it
+means obligation (i) is false as stated and the arc-midpoint route needs a
+different ingress.  Nothing here decides it.
+
+Leaf unchanged: single `sorry`, `M = 18`.
