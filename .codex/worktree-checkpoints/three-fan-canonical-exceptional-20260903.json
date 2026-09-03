@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "three-fan-canonical-exceptional-20260903",
+  "owner": "luna-swarm-radial-otter",
+  "base_head": "8526f8e379c81f0933501b3437bbb40ff522d4eb",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/three-fan-canonical-exceptional-20260903.json",
+    "lean/Erdos9796Proof/P97/Census554/SevenPointThreeFanCanonicalExceptional.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-03T21:46:00Z",
+  "manifest_sha256": "93647ab6fa5896148b9730156b95b3fef7fd3a23b4fb8dc8d99e582773501e51"
+}
