@@ -3963,3 +3963,42 @@ structural reasons rather than missing plumbing. The honest position is that the
 geometry is finished and the source-occurrence problem is untouched.
 
 Leaf unchanged: single `sorry`, `M = 18`.
+
+### 54. The circle gap is concyclicity, not an apex class (2026-09-03)
+
+Section 53 recorded "two apices on a third apex's circle has no producer" as the
+second structural gap. Re-reading the theorem statement narrows it. In
+
+```
+theorem signedArea2_eq_zero_of_arcMidpoint_twoCircle
+    {O A B K P R : ℝ²} {r : ℝ}
+    (hA : dist A O = r) (hB : dist B O = r) (hK : dist K O = r) (hP : dist P O = r)
+```
+
+`O` and `r` are **bound implicit variables**, not `S.surplusApex` and not any
+apex. What the lemma consumes is therefore
+
+  `A0`, `A1`, `P2.1`, `P2.3` are concyclic
+
+and nothing more. That `A2` happens to be the centre in the census is one
+witness for concyclicity, not a requirement of the lemma. Since any three
+non-collinear points are concyclic already, the whole content of the hypothesis
+is that the fourth point lies on the circle of the other three — a single
+condition, not four class memberships.
+
+This does not close the gap, and the ingress still owes that condition. But it
+changes what has to be produced: not "both other apices lie in `A2`'s selected
+class", which nothing in the repository supplies and which
+`StrictApexFourWitness` structurally cannot, but "these four points are
+cospherical", for which the vocabulary at least exists
+(`EuclideanGeometry.Cospherical`, and in-project
+`cospherical_of_two_zsmul_oangle_eq` in `OangleBridge.lean:154`, and
+`u5_normalized_row_cocircular_of_row_numerator_eq_zero` in
+`U5GlobalIncidenceKernels.lean:227`). Whether any of those is reachable from
+`D, G, Q` is open and is the next thing worth testing.
+
+The other two gaps of section 53 stand unchanged: the shell centred at a named
+point, and the `A1` cross-cap equidistance. The cardinality-branch problem also
+stands, and remains the sharper of the two obstructions.
+
+Leaf unchanged: single `sorry`, `M = 18`.
