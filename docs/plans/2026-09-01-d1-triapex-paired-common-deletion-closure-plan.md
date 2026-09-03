@@ -3712,3 +3712,114 @@ conditions through two classical steps, instead of reproducing a cofactor
 identity that section 47 showed cannot be built.
 
 Leaf unchanged: single `sorry`, `M = 18`.
+
+### 50. The section 49 route audited, generalized, and carried into Lean (2026-09-03)
+
+Section 49's argument survives audit, but three things about it were wrong or
+understated, and the Lean route it proposed is not the one to take.
+
+**Audit of the synthetic argument.** Stated gauge-free, the claim is: `A0`,
+`A1`, `P2.1`, `P2.3` on a circle of centre `A2` and radius `r`; `P1.1` and
+`P2.3` equidistant from `A1`; `A0`, `P1.1`, `P2.3` equidistant from `P2.1`;
+`P1.1 ≠ P2.3`, `A1 ≠ P2.1`, `A0 ≠ P2.3`. Then `A0`, `A1`, `P1.1` are
+collinear. Sampling this at 60 digits, with `P1.1` obtained by solving the
+circle pair rather than by reflecting `P2.3` (reflecting would assume the step
+under audit), gives 16000 configurations with no violation and worst
+`|signedArea2|` of 6e-57. So the argument's hypothesis usage is sound: it needs
+only two of section 49's six groups, and no gauge fact beyond them.
+
+**Generalization: the radius tie is not needed.** Section 49 obtains
+`d(A1,P1.1) = d(A1,P2.3) = r` by combining the mined equality
+`d(A1,A2) = d(A1,P2.3)` with the gauge. But step 1 of the argument needs only
+that `A1` is equidistant from `P1.1` and `P2.3`; the common value is free, and
+`A1`'s chord to `P2.3` never has to have length `r`. Re-running with `A1` free
+on the circle and that common distance unconstrained: 12000 configurations, no
+violation, worst 6e-57. The mined equality's whole role is to deliver
+equidistance, not a radius.
+
+**Correction to the necessity claim.** Section 49 called all six hypotheses
+individually necessary on the strength of Singular `base` drops. That is an
+ideal-theoretic statement and does not by itself say the geometric statement
+fails. A random sweep cannot settle it either — dropping `A0 ≠ P2.3` or
+`A1 ≠ P2.1` changes nothing under sampling, because random configurations never
+land on a measure-zero locus. A first probe of mine compounded this by pinning
+`P2.1` to the antipode on the `A0 = P2.3` locus, where the arc-midpoint
+condition is vacuous and `P2.1` must instead be swept freely; it reported no
+counterexample and was wrong. Sweeping `P2.1` free gives 3000 counterexamples
+out of 3000, worst `|signedArea2|` 4.0. `A1 = P2.1` makes the two circles
+concentric and coincident, leaving `P1.1` unconstrained. So all three
+disequalities are necessary for the geometric statement too — but that is now
+established by construction, not inferred from an ideal drop.
+
+**The internal/external hand-wave removed.** Section 49 had to wave through
+whether `P2.1` is the near or far arc midpoint ("which does not matter"). In
+complex coordinates it genuinely does not, and provably so. Normalizing to the
+unit circle and writing `a, b, k, p` for `A0, A1, P2.1, P2.3`, the arc-midpoint
+condition is exactly `k² = a·p`, which covers **both** midpoints in one
+equation. Reflection across the chord joining unit points `u, v` is
+`z ↦ u + v − u·v·conj z`, so `P1.1 = b + k − a·b/k`, and
+
+    (P1.1 − a)/(b − a) = 1 + w,   w = (k² − a·b)/(k·(b − a))
+
+with `conj w = w` because `conj x = 1/x` on the unit circle. The branch case
+split disappears into the squaring. Checked against an independent circle-circle
+solve at 50 digits: `|k² − a·p|` 2e-50, formula against solved root 2e-48,
+`|w − conj w|` 9e-45.
+
+**The Lean route is algebraic, not synthetic.** A reuse preflight over this
+project and mathlib returns nothing for the argument's second step. Mathlib has
+no arc-midpoint concept at all, no angle-bisector API, and no equal-chords /
+equal-angles lemma; the inscribed-angle theorem is present
+(`EuclideanGeometry.Sphere.oangle_center_eq_two_zsmul_oangle`) but is mod π and
+would need a `signedArea2` side pin. The first step fares better —
+`Problem97.twoCircle_midpoint_collinear` and `signedArea2_reflection_neg` in
+`U2/WitnessReflectionKernel.lean` already give it in `signedArea2` form — but
+building step 2 from scratch is the bulk of the work. A polynomial certificate
+avoids step 2 entirely.
+
+**Certificate.** Over ℚ with the centre at the origin, the four circle
+memberships plus the arc-midpoint equality generate an ideal in which the signed
+area is not a member on its own, but is after multiplication by the three
+squared distances, at exponent `(1,1,1)` and no lower. Keeping `P1.1` as a
+variable, `lift` succeeds — unlike section 47's system — but yields 7 cofactors
+of degree 6 and 4476 terms; substituting the reduced generator
+`(P1.1−P2.3)·(A1−P2.1)` for one difference barely helps (3837). Eliminating
+`P1.1` instead, by certifying the explicit reflection point cleared of its
+denominator, drops the system to 5 generators, `dim 4`, basis 11, and the
+certificate to **5 cofactors of degree 4 and 242 terms**, `verify 1` — an
+18-fold reduction. Runs: `cb58c926`, `ecabbc67`, `2c2db6f0`, `a22340e6`,
+`3015c2df` (piqd Singular lane, char 0).
+
+**No two-circle uniqueness needed.** Working the algebra out removes the last
+dependency. With `u = B − K` and `m = R + P − 2K`, the two distance hypotheses
+give `(R−P)·u = 0` and `(R−P)·m = 0`; in the plane `R ≠ P` forces `u ∥ m` via
+the identity `v₁·cross(u,m) = (u·v)m₂ − (m·v)u₂` and its partner; and the planar
+identity `‖u‖²m = (m·u)u + cross(u,m)·u^⊥` then pins `‖u‖²(R−K)` outright. So
+the file needs neither `two_circle_third_point_eq` nor an explicit second
+intersection point.
+
+**Lean.** `lean/Erdos9796Proof/P97/ATail/ArcMidpointReflectionCollinear.lean`
+states `Problem97.signedArea2_eq_zero_of_arcMidpoint_twoCircle` over `ℝ²` in
+`dist`/`signedArea2` vocabulary and proves it through the coordinate lemma and
+the certificate. The certificate is re-checked by `ring` inside
+`linear_combination`, so the file carries no solver trust: Singular supplied the
+cofactors, Lean verifies the identity.
+
+**Orbit.** Re-running the section 45 containment against the two-group core
+gives 36/36 with zero failures, `P2.1` matched by a shell and `A1` by a class on
+every member. This is a consistency check, not new evidence: the orbit size does
+not depend on the core, and the new core is a subset of the old one, so a
+run that was already 36/36 could not have come out otherwise.
+
+**Independent read.** ProofRelay97 (#9558) reached the same reusable statement
+and the same reuse verdict — no circle-intersection plus arc-midpoint
+collinearity theorem in the corpus — and confirms the disequalities remove
+exactly the degenerate circle and chord cases.
+
+**Claim scope.** The Lean theorem is a general plane-geometry fact and is proved
+outright; it is not a claim about the TriApex leaf. What still does not exist is
+the ingress: deriving the four circle memberships, the three equalities and the
+three disequalities from the live hypotheses `D, G, Q`. Until that exists this
+is infrastructure, and section 40's four gaps stand unchanged.
+
+Leaf unchanged: single `sorry`, `M = 18`.
