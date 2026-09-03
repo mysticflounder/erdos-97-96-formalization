@@ -82,6 +82,27 @@ theorem selectedSupports_eq_of_actualBlockers_eq
         exact hmemT' }
   exact (H.selectedFourClass_support_eq_shell source₁ hsource₁ K).symm
 
+/-- The actual-blocker fiber is contained in the anchor's selected support.
+This is the precise fiber-to-shell statement: equality requires the separate
+maximal-cardinality hypothesis below. -/
+theorem actualBlockerFiber_image_subset_selectedSupport
+    {A : Finset ℝ²} (H : CriticalShellSystem A)
+    (anchor : CriticalShellSystem.CarrierVertex A) :
+    (actualBlockerFiber H anchor).image (fun source => source.1) ⊆
+      (H.selectedAt anchor.1 anchor.2).toCriticalFourShell.support := by
+  intro z hz
+  rcases Finset.mem_image.mp hz with ⟨source, hsourceFiber, rfl⟩
+  have hblockerVertex := (Finset.mem_filter.mp hsourceFiber).2
+  have hcenter :
+      H.centerAt source.1 source.2 = H.centerAt anchor.1 anchor.2 :=
+    congrArg Subtype.val hblockerVertex
+  have hsupport :=
+    selectedSupports_eq_of_actualBlockers_eq H source.2 anchor.2 hcenter
+  have hsourceSupport :=
+    (H.selectedAt source.1 source.2).toCriticalFourShell.q_mem_support
+  rw [hsupport] at hsourceSupport
+  exact hsourceSupport
+
 /-- Every actual-blocker fiber has at most four source vertices. -/
 theorem actualBlockerFiber_card_le_four
     {A : Finset ℝ²} (H : CriticalShellSystem A)
@@ -91,19 +112,8 @@ theorem actualBlockerFiber_card_le_four
     (actualBlockerFiber H anchor).image fun source => source.1
   have hpoints :
       points ⊆
-        (H.selectedAt anchor.1 anchor.2).toCriticalFourShell.support := by
-    intro z hz
-    rcases Finset.mem_image.mp hz with ⟨source, hsourceFiber, rfl⟩
-    have hblockerVertex := (Finset.mem_filter.mp hsourceFiber).2
-    have hcenter :
-        H.centerAt source.1 source.2 = H.centerAt anchor.1 anchor.2 :=
-      congrArg Subtype.val hblockerVertex
-    have hsupport :=
-      selectedSupports_eq_of_actualBlockers_eq H source.2 anchor.2 hcenter
-    have hsourceSupport :=
-      (H.selectedAt source.1 source.2).toCriticalFourShell.q_mem_support
-    rw [hsupport] at hsourceSupport
-    exact hsourceSupport
+        (H.selectedAt anchor.1 anchor.2).toCriticalFourShell.support :=
+    actualBlockerFiber_image_subset_selectedSupport H anchor
   calc
     (actualBlockerFiber H anchor).card = points.card :=
       (Finset.card_image_of_injective _ Subtype.val_injective).symm
@@ -125,19 +135,8 @@ theorem actualBlockerFiber_image_eq_selectedSupport_of_card_eq_four
     (actualBlockerFiber H anchor).image fun source => source.1
   have hpoints :
       points ⊆
-        (H.selectedAt anchor.1 anchor.2).toCriticalFourShell.support := by
-    intro z hz
-    rcases Finset.mem_image.mp hz with ⟨source, hsourceFiber, rfl⟩
-    have hblockerVertex := (Finset.mem_filter.mp hsourceFiber).2
-    have hcenter :
-        H.centerAt source.1 source.2 = H.centerAt anchor.1 anchor.2 :=
-      congrArg Subtype.val hblockerVertex
-    have hsupport :=
-      selectedSupports_eq_of_actualBlockers_eq H source.2 anchor.2 hcenter
-    have hsourceSupport :=
-      (H.selectedAt source.1 source.2).toCriticalFourShell.q_mem_support
-    rw [hsupport] at hsourceSupport
-    exact hsourceSupport
+        (H.selectedAt anchor.1 anchor.2).toCriticalFourShell.support :=
+    actualBlockerFiber_image_subset_selectedSupport H anchor
   have hpointsCard : points.card = 4 := by
     calc
       points.card = (actualBlockerFiber H anchor).card :=

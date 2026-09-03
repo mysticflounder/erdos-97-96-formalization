@@ -1,0 +1,14 @@
+{
+  "base_head": "d8af92151e8622126e34f095914cb391aefac9f0",
+  "created_utc": "2026-09-03T00:00:00Z",
+  "durable_paths": [],
+  "generated_roots": [],
+  "lane_id": "actual-blocker-fiber-subset-20260903",
+  "manifest_sha256": "8c9bfe1ffb7417383944486f0e84df7f934677b0a190fd8857b9aee6287de17c",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/actual-blocker-fiber-subset-20260903.json",
+    "lean/Erdos9796Proof/P97/ATail/SurvivalCover.lean"
+  ],
+  "owner": "codex",
+  "schema": "worktree-lane-checkpoint/v1"
+}
