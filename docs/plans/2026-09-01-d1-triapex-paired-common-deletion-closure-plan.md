@@ -4585,3 +4585,55 @@ out the second case for at least one index `i` closes obligation (i).  Untested
 so far; recorded as the next step, not as a result.
 
 Leaf unchanged: single `sorry`, `M = 18`.
+
+### 60. The census forces one isosceles triangle with all three radii equal (2026-09-03)
+
+Section 59 reduced obligation (i) to "both other apices lie at cap `i`'s interior
+radius from `Aᵢ`".  Pushing the census one step further sharpens what that
+condition is worth, using no solver: an apex-hit is a distance equation, and
+distance is symmetric, so the hits force identifications among six quantities.
+
+Write `a = dist A1 A2`, `b = dist A0 A2`, `c = dist A0 A1` for the Moser sides
+and `r₀, r₁, r₂` for the three cap-interior radii.  A pattern asserting
+`A_j ∈ class(A_k)` asserts `side(j,k) = r_k`.  Closing those under union-find
+over all 111 metric patterns of cell `i0-1R1R1R-in12` gives one answer, with no
+exceptions and no second shape:
+
+| forced partition | patterns |
+|---|---|
+| `a = c = r₀ = r₁ = r₂`, `b` free | 37 |
+| `b = c = r₀ = r₁ = r₂`, `a` free | 37 |
+| `a = b = r₀ = r₁ = r₂`, `c` free | 37 |
+
+Every pattern has exactly four apex-hits, and the three rows are one shape under
+the dihedral relabelling.  So throughout the cell:
+
+> the Moser triangle is isosceles, and **all three** cap-interior radii are equal
+> to its two equal sides.
+
+The distinguished apex of section 59 is then identified: it is the apex between
+the two equal sides, that is the isosceles apex itself.  The odd side is never
+equal to the common radius, which is why the third apex-hit is absent — and this
+agrees with section 58's independent finding that the equilateral case is
+refuted by `cap_card_ge_six`, since equilateral would make all six quantities
+equal and give six apex-hits rather than four.
+
+This is a consequence of the census patterns, so it carries their status:
+discovery evidence at the encoded scope, one cell, carrier size fifteen, one
+engine.  The union-find step itself is exact, not sampled — it introduces no
+new uncertainty beyond the patterns it consumes.
+
+**Why it matters.**  The reduced condition of section 59 needed only one apex to
+be distinguished.  The census says something much more rigid holds: the whole
+configuration has a single free side and a single common radius.  A proof of any
+one of the three radius equalities `r₀ = r₁`, `r₁ = r₂`, `r₀ = r₂` would, with
+the apex-hit bookkeeping above, go a long way toward the rest.
+
+**Negative result, recorded so it is not re-searched.**
+`ATail/CapApexRadiusRigidity.lean` is named for radius rigidity but contains
+none.  Its 225 lines are cardinality ladders only — `capInteriorByIndex_card_add_two`
+(`:29`), the class-versus-cap bounds (`:79, :90, :104`), and the two-radius
+forcing bounds (`:116, :151, :168, :211`).  No declaration in it relates a cap
+radius to a Moser side length, or two cap radii to each other.  Read in full.
+
+Leaf unchanged: single `sorry`, `M = 18`.
