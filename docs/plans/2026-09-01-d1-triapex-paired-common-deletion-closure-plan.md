@@ -3823,3 +3823,25 @@ three disequalities from the live hypotheses `D, G, Q`. Until that exists this
 is infrastructure, and section 40's four gaps stand unchanged.
 
 Leaf unchanged: single `sorry`, `M = 18`.
+
+### 51. Consumer wiring proved; only the metric ingress remains (2026-09-03)
+
+`Problem97.false_of_arcMidpoint_twoCircle_of_convexIndep`, in the same module,
+closes the path from the section 50 lemma to `False`: the collinearity feeds
+`collinear_of_signedArea2_eq_zero` (`Moser/NonDeg.lean:109`) and then
+`ConvexIndep.not_three_collinear` (`ConvexIndepHelpers.lean:67`). Proved
+outright, axiom-clean, no new obligation.
+
+What that buys is a sharp statement of the remaining gap. The leaf now needs
+**nothing but metric data**: four circle memberships `dist · A2 = r` for `A0`,
+`A1`, `P2.1`, `P2.3`; the three equalities `d(P2.1,A0) = d(P2.1,P2.3)`,
+`d(P2.1,P1.1) = d(P2.1,P2.3)`, `d(A1,P1.1) = d(A1,P2.3)`; the three degeneracy
+disequalities `P1.1 ≠ P2.3`, `A1 ≠ P2.1`, `A0 ≠ P2.3`; the three carrier
+memberships; and the three distinctness facts among `A0`, `A1`, `P1.1` that
+`not_three_collinear` consumes. No geometry, no angle theory, no solver.
+
+Recall from section 50 that `d(A1,P1.1) = d(A1,P2.3)` is an equidistance and
+nothing more — the common value is free, so the ingress does **not** have to
+show that `A1`'s chord to `P2.3` has length `r`.
+
+Leaf unchanged: single `sorry`, `M = 18`.

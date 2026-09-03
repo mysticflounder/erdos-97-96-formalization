@@ -1,4 +1,6 @@
 import Erdos9796Proof.P97.Foundation
+import Erdos9796Proof.P97.ConvexIndepHelpers
+import Erdos9796Proof.P97.Moser.NonDeg
 
 /-!
 # Arc-midpoint reflection collinearity
@@ -143,5 +145,30 @@ theorem signedArea2_eq_zero_of_arcMidpoint_twoCircle
     (fun h => hAP' (by linear_combination h))
   unfold signedArea2
   linear_combination main
+
+/-- **Consumer form.**  A convex-independent carrier cannot hold the
+configuration.  `a`, `b`, `k`, `p` lie on the circle of centre `o` and radius
+`r`; `k` is equidistant from `a` and `p`; and `q` is a second point at distance
+`dist k p` from `k` and `dist b p` from `b`.  Then `a`, `b`, `q` are collinear,
+which three distinct points of a convex-independent set cannot be.
+
+This is the shape the TriApex leaf consumes.  What it still needs from the
+source is only the metric data: the four circle memberships, the three
+equalities, and the six disequalities. -/
+theorem false_of_arcMidpoint_twoCircle_of_convexIndep
+    {A : Finset ℝ²} (hA : ConvexIndep A)
+    {o a b k p q : ℝ²} {r : ℝ}
+    (hamem : a ∈ A) (hbmem : b ∈ A) (hqmem : q ∈ A)
+    (ha : dist a o = r) (hb : dist b o = r) (hk : dist k o = r)
+    (hp : dist p o = r)
+    (hmid : dist k a = dist k p)
+    (hkq : dist k q = dist k p) (hbq : dist b q = dist b p)
+    (hqp : q ≠ p) (hbk : b ≠ k) (hap : a ≠ p)
+    (hab : a ≠ b) (haq : a ≠ q) (hbqne : b ≠ q) :
+    False :=
+  hA.not_three_collinear hamem hbmem hqmem hab haq hbqne
+    (collinear_of_signedArea2_eq_zero _ _ _
+      (signedArea2_eq_zero_of_arcMidpoint_twoCircle ha hb hk hp hmid hkq hbq
+        hqp hbk hap))
 
 end Problem97
