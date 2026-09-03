@@ -1,0 +1,55 @@
+{
+  "backend": "cadical",
+  "base_head": "ae90cce573eaea37291bc9078b89a5727dd351be",
+  "created_utc": "2026-09-03T07:17:58Z",
+  "jobs": [
+    {
+      "cnf_sha256": "3dcd33b0e719cc962b33244fec37311fb19779ece8e57495860372f9c0c4208d",
+      "job_id": "d619bc14-f84a-42fb-a428-4bf05d2cc1fe",
+      "producer_manifest_sha256": "d61321fa5a34bfa21461d3da055dcdc2d971ffb47b81653bebb6fdf4a3bb1e4d",
+      "profile": "secondOpposite"
+    },
+    {
+      "cnf_sha256": "7dd28482aa0845f61a1a95c6fca4170e184dd7264ed50263cee55971f08a481b",
+      "job_id": "c2db250d-bfa5-45ce-8b9c-d6f66880247e",
+      "producer_manifest_sha256": "aa184ff9b8805bb7f59a8b084b73e1db0d279eccad870207e78a359081be43fd",
+      "profile": "surplusS6O1Four"
+    },
+    {
+      "cnf_sha256": "1c25b68f43d535b581cf36bc77775defcd8ec37a831aed65345bbd21f8156de8",
+      "job_id": "118d64dc-ad7a-4dc7-bf93-5b5eedbacf70",
+      "producer_manifest_sha256": "923aa348d63ae16d415d13859a2f1707bace346afeeb24869c07c150a47629ee",
+      "profile": "surplusS6O1Five"
+    },
+    {
+      "cnf_sha256": "222a55969d47d997594fa3cc4c0793723b269eb80cb6081ae4cdd8804dae2380",
+      "job_id": "f34b32cb-d360-420b-a9a6-62ab0b6cde58",
+      "producer_manifest_sha256": "31569ceac3fadb21ebe293e1926a30b631d28ccd6a794b490e32aaac110418c6",
+      "profile": "surplusS7"
+    },
+    {
+      "cnf_sha256": "327616797e90cd7e06d3b6f79e18fbeaec4643122920bb2eddcc256c882a19f8",
+      "job_id": "24f88f81-a5a5-40d5-a8f4-1aadb575445b",
+      "producer_manifest_sha256": "8c6ea5dab3a87424ce855a751e96b02c5a46efc7d2dedb9c87cd732b69870298",
+      "profile": "firstOppositeO1Five"
+    },
+    {
+      "cnf_sha256": "10bc45549961901b4e6b2d4aeed20d4fe163528806798cd99e742bb510990b0b",
+      "job_id": "2c036e4c-d8ce-4d0a-a6ed-e4465569207e",
+      "producer_manifest_sha256": "0a3f18e913aee9a2d2a3fd7862796ac9a3740ee04924a5669fdb0bb532628619",
+      "profile": "firstOppositeO1Six"
+    }
+  ],
+  "project": "erdos-97-96-formalization",
+  "receipt_sha256": "4c9b6faced89981c88ab305ced659efd19a13977f705e9d737eb35451b635fa4",
+  "schema": "piqd-card14-profile-probe-submissions/v1",
+  "solver_profile": "default",
+  "timeout_s": 21600,
+  "validation": {
+    "cnf_blob_hashes_match_local_sha256": true,
+    "manifest_clause_counts_match_dimacs_headers": true,
+    "manifest_variable_counts_match_dimacs_headers": true,
+    "profile_count": 6,
+    "unit_tests_passed": true
+  }
+}

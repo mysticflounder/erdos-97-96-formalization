@@ -7,7 +7,7 @@ Target:
 
 At carrier cardinality 14, the three closed cap sizes sum to 17. The branch
 binders give the lower bounds `surplus ≥ 5`, `opp1 ≥ 4`, and `opp2 ≥ 6`.
-Splitting on `ExactFourRobustCapGrowth` leaves exactly these strict-interior
+The cap sum and those lower bounds leave exactly these strict-interior
 profiles, where each entry subtracts the two cap endpoints:
 
 | profile | closed caps `(surplus, opp1, opp2)` | interiors `(IS, I1, I2)` |
@@ -27,3 +27,20 @@ ingress, solver-proof custody, and Lean replay.
 
 This probe does not justify restriction from larger carriers to card 14.
 Global minimality proves that a proper finite subset does not preserve K4.
+
+## Result (2026-09-03)
+
+All six core-family formulas are SAT. The authenticated job identifiers and
+digests are recorded in
+`scratch/runs/dr-card14-profile-probe-20260903/p4-card14-profiles/result_receipt.json`.
+The fastest survivor, `firstOppositeO1Six`, also satisfies the maximal
+12,837,786-clause formula obtained by adding every optional generic geometry
+family: an independent replay checked every clause and found zero violations.
+Thus the card-13 core families, and all currently encoded optional generic
+cores, do not extrapolate to a card-14 contradiction.
+
+The source arithmetic split is
+`ExactFourteenTwoRadiusCapProfile` together with
+`exactFourteen_capProfile_of_twoRadiusBranch` in
+`TwoRadiusExactTwelveProfile.lean`. It does not turn any SAT result into a
+geometric configuration and does not close the target.

@@ -1,0 +1,24 @@
+{
+  "base_head": "ae90cce573eaea37291bc9078b89a5727dd351be",
+  "created_utc": "2026-09-03T07:01:42Z",
+  "durable_paths": [
+    "scratch/runs/dr-card14-profile-probe-20260903/p4-card14-profiles/result_receipt.json",
+    "scratch/runs/dr-card14-profile-probe-20260903/p4-card14-profiles/run_manifest.json",
+    "scratch/runs/dr-card14-profile-probe-20260903/p4-card14-profiles/submission_receipt.json"
+  ],
+  "generated_roots": [
+    "scratch/runs/dr-card14-profile-probe-20260903/p4-card14-profiles"
+  ],
+  "lane_id": "dr-card14-profile-probe-20260903",
+  "manifest_sha256": "8b197530c44012e5da52fae8039cee7bd12754fda8b8b14f0960faf444fe283f",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/dr-card14-profile-probe-20260903.json",
+    "census/card_head/dr_two_radius_arm_structural.py",
+    "census/card_head/tests/test_dr_two_radius_arm_structural.py",
+    "docs/plans/2026-09-01-dr-two-radius-branch-closure.md",
+    "docs/specs/p97-dr-two-radius-card14-profile-probe-v1.md",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoRadiusExactTwelveProfile.lean"
+  ],
+  "owner": "dr-card14-profile-probe",
+  "schema": "worktree-lane-checkpoint/v1"
+}

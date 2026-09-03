@@ -1,0 +1,56 @@
+{
+  "all_profile_results": [
+    {
+      "job_id": "d619bc14-f84a-42fb-a428-4bf05d2cc1fe",
+      "profile": "secondOpposite",
+      "result": "SAT",
+      "wall_ms": 239804
+    },
+    {
+      "job_id": "c2db250d-bfa5-45ce-8b9c-d6f66880247e",
+      "profile": "surplusS6O1Four",
+      "result": "SAT",
+      "wall_ms": 100173
+    },
+    {
+      "job_id": "118d64dc-ad7a-4dc7-bf93-5b5eedbacf70",
+      "profile": "surplusS6O1Five",
+      "result": "SAT",
+      "wall_ms": 215424
+    },
+    {
+      "job_id": "f34b32cb-d360-420b-a9a6-62ab0b6cde58",
+      "profile": "surplusS7",
+      "result": "SAT",
+      "wall_ms": 394672
+    },
+    {
+      "job_id": "24f88f81-a5a5-40d5-a8f4-1aadb575445b",
+      "profile": "firstOppositeO1Five",
+      "result": "SAT",
+      "wall_ms": 189738
+    },
+    {
+      "job_id": "2c036e4c-d8ce-4d0a-a6ed-e4465569207e",
+      "model_check_outcome": "SATISFIED",
+      "model_sha256": "83ee49add8d665afc6e785ea053aa26dfd25b8230cf23aeeab2acd81939817d5",
+      "profile": "firstOppositeO1Six",
+      "result": "SAT",
+      "wall_ms": 45897
+    }
+  ],
+  "base_head": "ae90cce573eaea37291bc9078b89a5727dd351be",
+  "created_utc": "2026-09-03T08:43:19Z",
+  "maximal_family_replay": {
+    "cnf_clause_count": 12837786,
+    "cnf_sha256": "706c42a5956b0142d9b04f38cb5fcdf66252edb325097d045293168028ba2274",
+    "cnf_variable_count": 14313,
+    "manifest_sha256": "72873773019666485af4258e0b0b14a14c5b62e6d6181d99cea66987e30917c0",
+    "model_source_job_id": "2c036e4c-d8ce-4d0a-a6ed-e4465569207e",
+    "profile": "firstOppositeO1Six",
+    "violated_clause_count": 0
+  },
+  "receipt_sha256": "f36341dd68de5fc605da15ac3f8b393caec9415965ab135f4a2959d2e8e0a2f3",
+  "schema": "piqd-card14-profile-probe-results/v1",
+  "scope": "diagnostic equality-pattern formulas only; no geometric realization or Lean contradiction"
+}

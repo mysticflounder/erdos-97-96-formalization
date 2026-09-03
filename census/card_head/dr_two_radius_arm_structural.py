@@ -1,4 +1,4 @@
-"""D-R two-radius branch: profile-parametrized structural CNF (card 12 and the card-13 growth arms).
+"""D-R two-radius branch: profile-parametrized structural CNF.
 
 Phase 4 diagnostic encoder for
 ``Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenTwoRadiusBranch_cardGeThirteen``
@@ -51,7 +51,11 @@ from census.card_head.dr_exact12_structural import (
 )
 
 SCHEMA = "p97-dr-two-radius-arm-structural-cnf/v1"
-SPEC = "docs/specs/p97-dr-two-radius-card13-arms-v1.md"
+SPECS = {
+    12: "docs/specs/p97-dr-two-radius-card13-arms-v1.md",
+    13: "docs/specs/p97-dr-two-radius-card13-arms-v1.md",
+    14: "docs/specs/p97-dr-two-radius-card14-profile-probe-v1.md",
+}
 LANE_ID = exact12.LANE_ID
 PROMOTION_ELIGIBLE = False
 MODES = ("legacy", "generic")
@@ -59,6 +63,7 @@ CONTROLS = exact12.CONTROLS  # only "none" is valid in generic mode
 TARGET_THEOREMS = {
     12: exact12.TARGET_THEOREM,
     13: "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenTwoRadiusBranch_cardGeThirteen",
+    14: "Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenTwoRadiusBranch_cardGeThirteen",
 }
 A2, A1, A3 = exact12.A2, exact12.A1, exact12.A3
 APEXES = (A2, A1, A3)
@@ -72,6 +77,14 @@ NEW_FAMILIES = ("cap_betweenness", "common_pair_localization", "frontier_bisecto
 ARM_SIZES: dict[int, dict[str, tuple[int, int, int]]] = {
     12: {"exact12": (3, 2, 4)},
     13: {"secondOpposite": (3, 2, 5), "surplus": (4, 2, 4), "firstOpposite": (3, 3, 4)},
+    14: {
+        "secondOpposite": (3, 2, 6),
+        "surplusS6O1Four": (4, 2, 5),
+        "surplusS6O1Five": (4, 3, 4),
+        "surplusS7": (5, 2, 4),
+        "firstOppositeO1Five": (3, 3, 5),
+        "firstOppositeO1Six": (3, 4, 4),
+    },
 }
 
 # Cut admission record of the specification (section 4) for generic mode.
@@ -616,7 +629,7 @@ def manifest(cnf: CNF, profile: Profile, *, mode: str, control: str = "none", fa
     legacy = mode == "legacy"
     return {
         "schema": SCHEMA,
-        "spec": SPEC,
+        "spec": SPECS[profile.card],
         "target_theorem": TARGET_THEOREMS[profile.card],
         "lane_id": LANE_ID,
         "promotion_eligible": PROMOTION_ELIGIBLE,

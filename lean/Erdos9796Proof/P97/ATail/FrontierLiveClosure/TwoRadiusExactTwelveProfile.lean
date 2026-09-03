@@ -144,6 +144,83 @@ theorem exactTwelve_capProfile_of_twoRadiusBranch
   unfold SurplusCapPacket.oppInterior2 at hfour
   exact ⟨by omega, by omega, by omega⟩
 
+/-- The six closed-cap profiles compatible with the two-radius branch at
+carrier cardinality fourteen.  Constructor names match the diagnostic
+encoder profiles in `p97-dr-two-radius-card14-profile-probe-v1.md`. -/
+inductive ExactFourteenTwoRadiusCapProfile
+    {D : CounterexampleData} (S : SurplusCapPacket D.A) : Prop
+  | secondOpposite
+      (surplusCap_card_eq_five : S.surplusCap.card = 5)
+      (firstOppCap_card_eq_four : S.oppCap1.card = 4)
+      (secondOppCap_card_eq_eight : S.oppCap2.card = 8)
+  | surplusS6O1Four
+      (surplusCap_card_eq_six : S.surplusCap.card = 6)
+      (firstOppCap_card_eq_four : S.oppCap1.card = 4)
+      (secondOppCap_card_eq_seven : S.oppCap2.card = 7)
+  | surplusS6O1Five
+      (surplusCap_card_eq_six : S.surplusCap.card = 6)
+      (firstOppCap_card_eq_five : S.oppCap1.card = 5)
+      (secondOppCap_card_eq_six : S.oppCap2.card = 6)
+  | surplusS7
+      (surplusCap_card_eq_seven : S.surplusCap.card = 7)
+      (firstOppCap_card_eq_four : S.oppCap1.card = 4)
+      (secondOppCap_card_eq_six : S.oppCap2.card = 6)
+  | firstOppositeO1Five
+      (surplusCap_card_eq_five : S.surplusCap.card = 5)
+      (firstOppCap_card_eq_five : S.oppCap1.card = 5)
+      (secondOppCap_card_eq_seven : S.oppCap2.card = 7)
+  | firstOppositeO1Six
+      (surplusCap_card_eq_five : S.surplusCap.card = 5)
+      (firstOppCap_card_eq_six : S.oppCap1.card = 6)
+      (secondOppCap_card_eq_six : S.oppCap2.card = 6)
+
+/-- At carrier cardinality fourteen, the cap sum and the two disjoint-radius
+rows leave exactly the six profiles represented by
+`ExactFourteenTwoRadiusCapProfile`. -/
+theorem exactFourteen_capProfile_of_twoRadiusBranch
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F)
+    (surface : ExactFourPostCardElevenRobustSurface R)
+    (rho otherRadius : ℝ)
+    (firstRow secondRow : SelectedFourClass D.A S.oppApex2)
+    (hradii : otherRadius ≠ rho)
+    (hfirstRadius : firstRow.radius = rho)
+    (hsecondRadius : secondRow.radius = otherRadius)
+    (hcard14 : D.A.card = 14) :
+    ExactFourteenTwoRadiusCapProfile S := by
+  have hsum := S.capSum
+  have hsurplus := S.surplus_card_gt_four
+  have hopp1 := surface.firstOppCap_card_ge_four
+  have hI2 := capInteriorByIndex_card_add_two S S.oppIndex2
+  rw [capByIndex_oppIndex2_eq_oppCap2] at hI2
+  have hfour :=
+    four_le_oppInterior2_card_of_twoRadiusRows rho otherRadius firstRow secondRow
+      hradii hfirstRadius hsecondRadius
+  unfold SurplusCapPacket.oppInterior2 at hfour
+  have hprofiles :
+      (S.surplusCap.card = 5 ∧ S.oppCap1.card = 4 ∧
+        S.oppCap2.card = 8) ∨
+      (S.surplusCap.card = 6 ∧ S.oppCap1.card = 4 ∧
+        S.oppCap2.card = 7) ∨
+      (S.surplusCap.card = 6 ∧ S.oppCap1.card = 5 ∧
+        S.oppCap2.card = 6) ∨
+      (S.surplusCap.card = 7 ∧ S.oppCap1.card = 4 ∧
+        S.oppCap2.card = 6) ∨
+      (S.surplusCap.card = 5 ∧ S.oppCap1.card = 5 ∧
+        S.oppCap2.card = 7) ∨
+      (S.surplusCap.card = 5 ∧ S.oppCap1.card = 6 ∧
+        S.oppCap2.card = 6) := by
+    omega
+  rcases hprofiles with h | h | h | h | h | h
+  · exact .secondOpposite h.1 h.2.1 h.2.2
+  · exact .surplusS6O1Four h.1 h.2.1 h.2.2
+  · exact .surplusS6O1Five h.1 h.2.1 h.2.2
+  · exact .surplusS7 h.1 h.2.1 h.2.2
+  · exact .firstOppositeO1Five h.1 h.2.1 h.2.2
+  · exact .firstOppositeO1Six h.1 h.2.1 h.2.2
+
 /-- Strict-interior profile of the two-radius branch at carrier cardinality
 twelve: the surplus cap has three strict interior points, the first opposite
 cap two, and the second opposite cap four. -/

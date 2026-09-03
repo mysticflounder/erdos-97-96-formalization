@@ -1,0 +1,24 @@
+{
+  "base_head": "ae90cce573eaea37291bc9078b89a5727dd351be",
+  "created_utc": "2026-09-03T07:12:00Z",
+  "input_digests": {
+    "docs/plans/2026-09-01-dr-two-radius-branch-closure.md": "201ec44f62b45c01a003eb76c6b9c02ccaa79f988d872b837aff1e5157aac747"
+  },
+  "lane_id": "dr-card14-profile-probe-20260903",
+  "manifest_sha256": "79e3abb60ea8c3ab5de325e65de241df76e344571a6fb5d720bfb9413deaa98a",
+  "output_classes": [
+    "artifacts",
+    "events",
+    "tmp"
+  ],
+  "owner": "dr-card14-profile-probe",
+  "root": "scratch/runs/dr-card14-profile-probe-20260903/p4-card14-profiles",
+  "run_id": "p4-card14-profiles",
+  "schema": "worktree-run-manifest/v1",
+  "source_digests": {
+    "census/card_head/dr_exact12_structural.py": "6d4ab2df4d8d892f876da1b6b0abeb2742ca0fe94e7082a304dc45cef20b783e",
+    "census/card_head/dr_two_radius_arm_structural.py": "37564e728241961d78683429b532860217f6368a31a8c79c5ccef7ec79829f55",
+    "census/card_head/tests/test_dr_two_radius_arm_structural.py": "8b6d714d6cc030f5aa5967b55f8fa31984b1a92bcad8e280154b36e4c28e4d33",
+    "docs/specs/p97-dr-two-radius-card14-profile-probe-v1.md": "8182331b13320c890f8a7f61f55c2c322fb225b310393d31b7eb62f6297bff6c"
+  }
+}

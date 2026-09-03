@@ -102,6 +102,12 @@ def test_profile_table() -> None:
         (13, "secondOpposite"): (3, 2, 5),
         (13, "surplus"): (4, 2, 4),
         (13, "firstOpposite"): (3, 3, 4),
+        (14, "secondOpposite"): (3, 2, 6),
+        (14, "surplusS6O1Four"): (4, 2, 5),
+        (14, "surplusS6O1Five"): (4, 3, 4),
+        (14, "surplusS7"): (5, 2, 4),
+        (14, "firstOppositeO1Five"): (3, 3, 5),
+        (14, "firstOppositeO1Six"): (3, 4, 4),
     }
     profiles = {(p.card, p.arm): p for p in arm.all_profiles()}
     assert set(profiles) == set(expected)
@@ -121,6 +127,8 @@ def test_profile_table() -> None:
     assert exact.cyclic_order == exact12.CYCLIC_ORDER
     assert (exact.is_labels, exact.i1_labels, exact.i2_labels) == (exact12.IS, exact12.I1, exact12.I2)
     assert (exact.interior_q, exact.interior_w) == (exact12.IQ, exact12.IW)
+    with pytest.raises(exact12.DRStructuralError):
+        arm.profile_for(15, "surplus")
     with pytest.raises(exact12.DRStructuralError):
         arm.profile_for(14, "surplus")
     with pytest.raises(exact12.DRStructuralError):
@@ -280,6 +288,9 @@ def test_manifest_and_cli(tmp_path) -> None:
     assert payload["cnf_sha256"] == hashlib.sha256(cnf_path.read_bytes()).hexdigest()
     with pytest.raises(SystemExit):
         arm.main(argv + ["--family", "transitivity"])
+
+    assert arm.SPECS[14].endswith("card14-profile-probe-v1.md")
+    assert arm.TARGET_THEOREMS[14].endswith("_cardGeThirteen")
 
 
 # --------------------------------------------------------------------------
