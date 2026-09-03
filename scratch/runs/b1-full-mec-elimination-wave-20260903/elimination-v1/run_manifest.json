@@ -1,0 +1,23 @@
+{
+  "schema": "worktree-run-manifest/v1",
+  "lane_id": "b1-full-mec-elimination-wave-20260903",
+  "run_id": "elimination-v1",
+  "root": "scratch/runs/b1-full-mec-elimination-wave-20260903/elimination-v1",
+  "owner": "Codex-B1-Sorry",
+  "base_head": "d5ccd4812bee1be08b2aae466c3eb51acb028792",
+  "output_classes": [
+    "artifacts",
+    "events",
+    "tmp"
+  ],
+  "source_digests": {
+    "scratch/runs/b1-full-mec-elimination-wave-20260903/elimination-v1/artifacts/piqd/82c2dfe781d609472430/00-exact-metric-relaxation/source-0001-endpoint_adapter.py": "208c9bb56978907376810b46497006cc6f1577527066376a80879feba4bc4cae",
+    "scratch/runs/b1-full-mec-elimination-wave-20260903/elimination-v1/artifacts/piqd/82c2dfe781d609472430/00-exact-metric-relaxation/source-0002-legacy_producer.py": "2f22e76a2c367a7d63c2b0d7f9e8dacb19faa99a618367f6581f9cda4e8f169e",
+    "scratch/runs/b1-full-mec-elimination-wave-20260903/elimination-v1/artifacts/piqd/82c2dfe781d609472430/00-exact-metric-relaxation/source-0003-generic_adapter.py": "94058aa4e04b5acc27242b52781794944ea00a069b16805104d3263203d65e70"
+  },
+  "input_digests": {
+    "scratch/runs/b1-full-mec-elimination-wave-20260903/elimination-v1/source.json": "dc310082e5430b32bb6b0829ff627586f9d1a10111a3fe7fc9bfbbe8b955ee09"
+  },
+  "created_utc": "2026-09-03T12:50:48Z",
+  "manifest_sha256": "52ff75b64f27c24d6cb2330bc51d1531f9e6dd13dcfd1a50de97c64dae0a2139"
+}

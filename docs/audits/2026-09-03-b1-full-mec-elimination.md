@@ -63,3 +63,37 @@ not the solver parameterization.  The target assertion ladder becomes
 No solver was invoked for this implementation checkpoint.  A fresh committed-
 source PIQD control and target run are required before drawing any computational
 conclusion.  This change is computational infrastructure, not a B1 closure.
+
+## Governed PIQD wave
+
+The committed-source run is rooted at
+`scratch/runs/b1-full-mec-elimination-wave-20260903/elimination-v1`, with lane
+and execution base `d5ccd4812bee1be08b2aae466c3eb51acb028792`.  Its run
+manifest binds the target input plus exact endpoint-adapter, producer, and
+generic-adapter source captures.
+
+The four-point gauge-MEC control returned SAT in both stages, exact rational
+replay reconstructed and accepted the original MEC packet, and offline custody
+validation passed.  Its emitted SMT contains 8 point-coordinate declarations
+and no MEC declaration.
+
+Target system `82c2dfe781d609472430` returned `UNKNOWN` in all three stages:
+
+| stage | constraints | coordinate terms | solve ms |
+|---|---:|---:|---:|
+| exact metric | 193 | 36 | 120885 |
+| full convex | 481 | 36 | 128698 |
+| convex-only | 481 | 36 | 129461 |
+
+Offline custody validation passed.  The result has no model or UNSAT core and
+therefore gives no mathematical verdict.  It shows that complete gauge-MEC
+variable elimination, like the preceding one-variable normalization, does not
+make this monolithic residual decidable within the bounded PIQD/Z3 query.
+
+The required new-wave theorem mine confirmed the exact decomposition
+`4 gauge + 14 row equalities + 153 distinctness + 1 height guard + 18 disk + 3
+nonobtuse`, with 288 strict-orientation atoms added in the later stages.  The
+full-convex and convex-only journals are byte-identical.  No model, core,
+assumption subset, or decisive subformula was produced, so there is no new
+solver-derived theorem candidate and no changed key requiring another global
+Lean-corpus search.
