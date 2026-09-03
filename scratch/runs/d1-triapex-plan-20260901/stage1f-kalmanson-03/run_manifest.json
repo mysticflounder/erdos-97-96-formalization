@@ -6,6 +6,7 @@
   "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03/artifacts/tools/angle_chain.sh": "787d363e7074fce7d147441f321249d3157d3fb3f2d04ad181cedef780051504",
   "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03/artifacts/tools/angle_chain_v10.py": "ecdc9cf4055afb4ba5bd0a5650dd9e1fdbc27116d6cba88280687e3fc35dba07",
   "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03/artifacts/tools/angle_chain_v11.py": "2e3f4c64c598aa71f2cfb99c97e4fd5af00dc2c9ddf795bdd1fed41f06e9134a",
+  "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03/artifacts/tools/angle_chain_v12.py": "3f6be157dd16c177b849fed8f9445ca1c42053d1d2b409a194abbccc2486638f",
   "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03/artifacts/tools/angle_chain_v2.sh": "dfc4a9091fef85ba3596795e19edbe9bc63ca1930b752bf7d5723484b451d44c",
   "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03/artifacts/tools/angle_chain_v3.sh": "2cd2bfff3a8588e41651305605fa4379fe803ed28bcb93228933a17190163afe",
   "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03/artifacts/tools/angle_chain_v4.py": "7e930b0fa6bf6d5cbdc0f8031e1c194ca297cfb7529ab16f655ddc83e93195ac",
@@ -14,7 +15,7 @@
   "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03/artifacts/tools/angle_chain_v7.py": "1d97df2c3ee2d824394aba569dd67cd8ee4a04e101efc4f170ddff0fb3ed280a",
   "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03/artifacts/tools/angle_chain_v8.py": "c33ce991358a91791a2b90af7fe6a4e5c11377e3289d65cf70f38da4c2e5cb12",
   "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03/artifacts/tools/angle_chain_v9.py": "eabd2c1d49fbf90a33510de653a73ef41a46a17d14cbe0ceeb311071c910a2eb",
-  "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03/artifacts/tools/kal_angles.py": "93329a67219568b0f2fade5b3065559fb005b8dc6a58ea84e2a789248bbf79c8"
+  "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03/artifacts/tools/kal_angles.py": "f60be741f11196afd4f25054c1f46f6d29784f5c37a83fca9ac48fd5382afe32"
  },
  "lane_id": "d1-triapex-plan-20260901",
  "output_classes": [
@@ -31,5 +32,5 @@
   "census/card_head/d1_mu0_pattern_algebra.py": "0b54cb1085ae0df0f2eac75e45da568a3e55d303d6e0a5623705f74bfb3b17c6",
   "census/card_head/tests/test_d1_mu0_incidence_census.py": "26dfd1e6c2820fa33693f73d86b73a18c4694033c87bae3f469721bf68fec2f1"
  },
- "manifest_sha256": "c6a93fa11e75a0cc06f30288e023e2908a85c2167b03a955dd7db41d97305867"
+ "manifest_sha256": "67f2bf1c5ccf3d964fcb2fa760360147e4d81ad8d635bf061f5641461c639d13"
 }

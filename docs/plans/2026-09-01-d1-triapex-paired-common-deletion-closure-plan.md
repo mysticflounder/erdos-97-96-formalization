@@ -1443,10 +1443,47 @@ side rule refutes every sampled Stage 1d survivor; Stage 1e census launched):
   chosen greedily by the size of the degenerate component each pair carries,
   which is a heuristic only and carries no part of the soundness. Logs:
   `events/angle-v10-relevant.log`, `events/angle-v10-char0-rabin.log`.
-  {{NEEDS_UPDATE}}: the relevant-pair sets, and the rational real-root
-  verdicts from chain v10. Any real solution still needs the strict
-  convexity check of Guardrail 6, and the full-pattern check, before it is a
-  candidate configuration.
+  Relevance triage, `0d6996160cc83aab`, mod 32003, complete over all 105
+  pairs in 53 s of solver time: exactly FOUR distances can vanish on the
+  variety, `P0.1:P1.4` (vector-space dimension 512), `P0.1:P2.2` (1024),
+  `P0.2:P0.3` (512) and `P1.1:P2.3` (1024), against 2048 for the raw ideal.
+  The other 101 distances can never vanish there. This explains why the
+  withdrawn pair-by-pair trace made no progress: it recomputed a Gröbner
+  basis 105 times to discover 101 no-ops.
+  What the triage does and does not license. It is a statement mod 32003,
+  and reduction can only enlarge the initial ideal, so "this distance
+  cannot vanish mod p" does not give "cannot vanish over the rationals":
+  over the rationals more than four pairs may be live. The two directions
+  therefore differ.
+  Refutation is unconditional. The four-pair Rabinowitsch ideal J satisfies
+  I ⊆ J ⊆ I:(∏d)^∞ whatever the true live set is, because the four-pair
+  product divides the full one, so V(J) contains the fully saturated
+  variety and no real point of J gives no non-degenerate real
+  configuration. The greedy choice of pairs carries no part of this.
+  A positive result is NOT free of the distinctness check. If the run
+  returns a real point, pairwise distinctness of the 15 points rests on the
+  mod-p triage alone until it is confirmed either by a characteristic-0
+  triage or, more cheaply, by evaluating all 105 squared distances at an
+  explicit witness. Note that `nrRootsDeterm` only counts real roots and
+  returns none, so obtaining that witness is extra work. The strict
+  convexity check of Guardrail 6 and the full-pattern check apply on top:
+  pairwise distinctness is not convex position.
+  The four degenerate components overlap, since 2048 minus
+  512+1024+512+1024 is not the saturated 192, so only the saturated
+  vector-space dimension is comparable across representatives.
+  Linear-reduction probe (solver-free, exact rational arithmetic): reducing
+  every generator modulo the circle relations and substituting to a fixed
+  point pins exactly ONE of the 26 variables, `c22 = 1/2`, in two rounds,
+  for `0d6996160cc83aab` and `3826b8a0dec4a6b0` alike, leaving 13
+  nontrivial generators. A variable-elimination reduction of this encoding
+  can therefore remove at most one variable, which is why `elimpart`
+  substitutes none as written and would gain almost nothing after
+  `interred`. That route is closed; the saturation lever is the live one.
+  {{NEEDS_UPDATE}}: the relevance triage for `3826b8a0dec4a6b0`, and the
+  rational real-root verdicts from the Rabinowitsch runs. A real solution
+  still needs the strict convexity check of Guardrail 6, and the
+  full-pattern check, before it is a candidate configuration; what the
+  triage removes is only the pairwise-distinctness part of that check.
   {{NEEDS_UPDATE}}: the mod-p saturated picture for the twelve
   representatives chain v9 did not reach. That work is triage evidence, not
   a decision: a mod-p emptiness is evidence only, by the direction recorded
@@ -1731,6 +1768,57 @@ used freely for triage. Three representatives agreeing is evidence of exactness,
 not a proof, and a refutation would be the one claim resting entirely on that
 evidence.
 
-{{NEEDS_UPDATE}}: elimpart differential result, the saturated mod-p verdicts
-from chain v11, and the characteristic-0 Rabinowitsch verdicts from the peer
-session.
+### 17. The reduction route is dead; relevance-first saturation replaces it (2026-09-03)
+
+The differential ran and agreed on dimension and vector-space dimension for
+`0128294791aad010` (dim -1) and `0d6996160cc83aab` (dim 0, vdim 2048), but the
+agreement carries no information: `elimpart` substituted zero variables, so the
+reduced ideal is the original ideal and the differential compared a system
+against itself. Cause: `elimpart` reads the generators as written, and the
+angle-form generators acquire a linear part only after being reduced against one
+another. The apex-class equality between the special apex and a foreign-cap
+interior point does collapse to 2c - 1 once the circle relations are used, but
+there is one such equality per pattern, not one per apex.
+
+The peer session measured the ceiling of the whole route directly, in exact
+rational arithmetic with no solver: reduce every generator modulo the circle
+relations, substitute any linear one, iterate to a fixed point. For both
+`0d6996160cc83aab` and `3826b8a0dec4a6b0` this pins exactly one variable of 26
+(c22 = 1/2) in two rounds, leaving 13 nontrivial generators. One variable out of
+26 does not move the characteristic-0 wall, so no variable-elimination reduction
+of this encoding is worth pursuing, whether through `elimpart`, `interred`
+first, or by hand. Recorded as that session's measurement, not reproduced here.
+
+What replaced it is cheaper and unrelated to reduction. For each point pair, ask
+whether that squared distance can vanish on the variety at all, by testing
+dim(I + d(a,b)). On `0d6996160cc83aab` exactly four of the 105 pairs can:
+
+    P0.1:P1.4   dim 0, vdim  512
+    P0.1:P2.2   dim 0, vdim 1024
+    P0.2:P0.3   dim 0, vdim  512
+    P1.1:P2.3   dim 0, vdim 1024
+
+against dim 0, vdim 2048 for the raw ideal, at 53 s of daemon wall for the whole
+triage. Saturating by the other 101 is a no-op. This is why the pair-by-pair
+trace never finished: it recomputed a basis 105 times to discover 101 no-ops.
+The four component sizes must not be summed — 512 + 1024 + 512 + 1024 does not
+reach 2048 - 192, so the degenerate components overlap and only the saturated
+vector-space dimension is comparable.
+
+Chain v12 applies this to the eleven unresolved representatives: triage first,
+then saturate by the live pairs only; a key with no live pair needs no
+saturation run, its raw ideal already being saturated.
+
+Two scope limits on what the triage licenses. The refutation direction is
+unconditional: the live-pair product divides the full one, so I <= J <=
+I:(prod d)^oo holds whatever the true live set is over the rationals, and V(J)
+contains the fully saturated variety. The distinctness direction is not: over
+the rationals more pairs may be live than mod 32003, so "all fifteen points
+pairwise distinct" is supported mod p only. If a characteristic-0 run ever
+returns a positive real count, distinctness is established by evaluating all 105
+squared distances at an explicit real point, not by a characteristic-0 triage —
+but `nrRootsDeterm` counts real roots without returning any, so obtaining that
+witness is its own step and distinctness is not free.
+
+{{NEEDS_UPDATE}}: the saturated mod-p verdicts from chain v12, and the
+characteristic-0 four-pair Rabinowitsch verdicts from the peer session.
