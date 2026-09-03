@@ -1,0 +1,14 @@
+{
+  "base_head": "0e8431336b2a0713621877829ba9570effc2c67e",
+  "created_utc": "2026-09-03T09:45:00Z",
+  "durable_paths": [],
+  "generated_roots": [],
+  "lane_id": "c3-five-outside-two-supports-20260903",
+  "manifest_sha256": "11a85fe5ebcb33304f0789c5252a87c0dbcf9bb97977bc0cefc1ca036de61fb8",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/c3-five-outside-two-supports-20260903.json",
+    "lean/Erdos9796Proof/P97/ATail/SevenSourcesOutsideTwoShells.lean"
+  ],
+  "owner": "codex",
+  "schema": "worktree-lane-checkpoint/v1"
+}
