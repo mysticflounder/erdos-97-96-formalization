@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "exactfive-retained-packet-membership-20260903",
+  "owner": "codex-exactfive-retained-packet-membership",
+  "base_head": "5d5e6faf74ef1b9ec5d008312ea3eaf50c0890f7",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exactfive-retained-packet-membership-20260903.json",
+    "lean/Erdos9796Proof/P97/ATail/ExactFiveDistinctThreeCenterTightCover.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-03T16:17:11Z",
+  "manifest_sha256": "a652984ce287b2365720a85a31574af90f567b989c19bfb77f0a92ec5b1fbb34"
+}

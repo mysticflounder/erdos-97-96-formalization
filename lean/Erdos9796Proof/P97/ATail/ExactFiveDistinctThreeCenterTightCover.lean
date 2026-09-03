@@ -28,6 +28,7 @@ open ATailCriticalPairFrontier
 open ATailFiveCenterDeletionBoundary
 open ATailLargeCapUniqueFive
 open ATailPhysicalSecondApexCommonDeletion
+open ATailThreeCenterCommonDeletion
 open ATailUniqueRowProducerScratch
 open ExactFiveDistinctThreeCenterContinuation
 open FirstApexUniqueRadiusResidual
@@ -898,6 +899,40 @@ theorem tightPhysical_retainedPacket_firstRow_eq_insert_deleted_residual
     _ = insert deleted
         (N.firstApexClass.support.erase N.retained) := by
       exact Finset.erase_insert_of_ne hsource.2.2
+
+/-- The retained-deletion packet's first row contains the original deleted
+source, but not the fresh source from the three-center continuation.  The
+first assertion is the packet decomposition above; the second is the
+fresh-row omission transported through the residual triple. -/
+theorem tightPhysical_retainedPacket_fresh_not_mem_and_deleted_mem
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F}
+    {deleted blocker : ℝ²}
+    {C : CommonDeletionTwoCenterPacket D H deleted blocker S.oppApex2}
+    (N : ExactFiveDistinctThreeCenterNormalForm R C)
+    (P : CommonDeletionTwoCenterPacket D H N.retained
+      S.oppApex1 S.oppApex2)
+    (fresh : ℝ²) (fresh_ne_deleted : fresh ≠ deleted)
+    (packet :
+      ThreeCenterCommonDeletionExactRows D fresh
+        S.oppApex1 blocker S.oppApex2
+        N.firstApexClass.support N.blockerClass.support
+        N.secondApexClass.support) :
+    fresh ∉ P.B₁ ∧ deleted ∈ P.B₁ := by
+  have hrow := tightPhysical_retainedPacket_firstRow_eq_insert_deleted_residual N P
+  have hfreshResidual : fresh ∉ N.firstApexClass.support.erase N.retained := by
+    intro hfresh
+    exact packet.row₀.q_not_mem (Finset.mem_erase.mp hfresh).2
+  constructor
+  · rw [hrow]
+    intro hfresh
+    rcases Finset.mem_insert.mp hfresh with hdeleted | hfreshResidual'
+    · exact fresh_ne_deleted hdeleted
+    · exact hfreshResidual hfreshResidual'
+  · rw [hrow]
+    exact Finset.mem_insert.mpr (Or.inl rfl)
 
 /-- In the tight union branch, the fixed first row of the retained-deletion
 packet is disjoint from both other normal-form rows. -/
