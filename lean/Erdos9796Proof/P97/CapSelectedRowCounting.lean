@@ -491,6 +491,38 @@ theorem outsidePair_unique_capCenter
   rw [hcyc_a, hcyc_b] at hsep
   nlinarith
 
+/-- A pair of points outside an ordered cap has at most one selected-row
+    owner.  This packages the distance formulation above directly in terms
+    of a faithful carrier pattern. -/
+theorem orderedCap_outsidePair_owner_unique
+    {A : Finset ℝ²} {m : ℕ} {L : CGN.OrderedCap m}
+    (Packet : CGN.MecCapPacket A L)
+    (Hord : CGN.StrictCapOrder A L)
+    (hconv : ConvexIndep A) (F : FaithfulCarrierPattern A)
+    {a b : ℝ²} (haA : a ∈ A) (hbA : b ∈ A)
+    (haOutside : a ∉ Finset.univ.image L.points)
+    (hbOutside : b ∉ Finset.univ.image L.points)
+    (hab : a ≠ b) {r s : Fin m}
+    (haR : a ∈ (F.classAt (L.points r) (Packet.mem_A r)).support)
+    (hbR : b ∈ (F.classAt (L.points r) (Packet.mem_A r)).support)
+    (haS : a ∈ (F.classAt (L.points s) (Packet.mem_A s)).support)
+    (hbS : b ∈ (F.classAt (L.points s) (Packet.mem_A s)).support) :
+    r = s := by
+  by_contra hrs
+  rcases lt_or_gt_of_ne hrs with hrs' | hsr'
+  · exact outsidePair_unique_capCenter hconv Hord Packet.mem_A hrs'
+      haA hbA haOutside hbOutside hab
+      (((F.classAt (L.points r) (Packet.mem_A r)).support_eq_radius a haR).trans
+        ((F.classAt (L.points r) (Packet.mem_A r)).support_eq_radius b hbR).symm)
+      (((F.classAt (L.points s) (Packet.mem_A s)).support_eq_radius a haS).trans
+        ((F.classAt (L.points s) (Packet.mem_A s)).support_eq_radius b hbS).symm)
+  · exact outsidePair_unique_capCenter hconv Hord Packet.mem_A hsr'
+      haA hbA haOutside hbOutside hab
+      (((F.classAt (L.points s) (Packet.mem_A s)).support_eq_radius a haS).trans
+        ((F.classAt (L.points s) (Packet.mem_A s)).support_eq_radius b hbS).symm)
+      (((F.classAt (L.points r) (Packet.mem_A r)).support_eq_radius a haR).trans
+        ((F.classAt (L.points r) (Packet.mem_A r)).support_eq_radius b hbR).symm)
+
 /-- Outside pairs selected by distinct centers of one ordered cap are
 disjoint, so their total pair incidence is bounded by all pairs in the cap
 complement. -/
