@@ -107,7 +107,7 @@ theorem secondRow_support_eq_criticalShell_of_center_eq
     H.selectedFourClass_support_eq_shell source hsource
       (secondRowSelectedFourClass C)
 
-theorem selectedRows_sameCenter_radius_eq_or_disjoint
+private theorem selectedRows_sameCenter_radius_eq_or_disjoint
     {A : Finset ℝ²} {center : ℝ²}
     (K L : SelectedFourClass A center) :
     K.radius = L.radius ∨ Disjoint K.support L.support := by
@@ -119,6 +119,15 @@ theorem selectedRows_sameCenter_radius_eq_or_disjoint
     apply hradius
     exact (K.support_eq_radius z hzK).symm.trans
       (L.support_eq_radius z hzL)
+
+/-- Public source-facing name for the same-center selected-row dichotomy.
+The private proof remains in place so the existing obligation index keeps its
+stable declaration; downstream exact-five consumers can use this wrapper. -/
+theorem selectedRows_sameCenter_radius_eq_or_disjoint_public
+    {A : Finset ℝ²} {center : ℝ²}
+    (K L : SelectedFourClass A center) :
+    K.radius = L.radius ∨ Disjoint K.support L.support := by
+  exact selectedRows_sameCenter_radius_eq_or_disjoint K L
 
 private theorem five_le_selectedClass_of_row_and_extra
     {A : Finset ℝ²} {center extra : ℝ²}
