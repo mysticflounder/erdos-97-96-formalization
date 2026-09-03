@@ -4,12 +4,13 @@
   "durable_paths": [],
   "generated_roots": [],
   "lane_id": "rvol-faithful-carrier-abstract-row-adapter-20260901",
-  "manifest_sha256": "88c959dc663c0c21a2d025d272e4117d6f3be181157fa3737d94a3ab09cbcd15",
+  "manifest_sha256": "b8ff02f06463c692683effbb2700174ae60f7c6aed37750f15feb19fb9d75cd6",
   "owned_paths": [
     ".codex/worktree-checkpoints/rvol-faithful-carrier-abstract-row-adapter-20260901.json",
     "intent/offspine.toml",
     "lean/Erdos9796Proof/P97/AbstractRowSystemConnectivity.lean",
-    "lean/Erdos9796Proof/P97/GeneralCarrierAbstractRowSystem.lean"
+    "lean/Erdos9796Proof/P97/GeneralCarrierAbstractRowSystem.lean",
+    "lean/Erdos9796Proof/P97/GeneralCarrierFin9Compatibility.lean"
   ],
   "owner": "codex",
   "schema": "worktree-lane-checkpoint/v1"
