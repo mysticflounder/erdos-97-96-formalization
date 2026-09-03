@@ -216,3 +216,54 @@ the normal form already records second-apex robustness, this observation does
 not yet close either position. The next strict reduction must supply new
 source synchronization or a second order constraint, not another generic
 Kalmanson identity.
+
+## Pro-consult execution plan
+
+Consult `01M1JEJSNZY1VD0JPJ86W15MX1` verifies that the physical/source-swap
+reselection is the next source-entitled factorization, but not a closure.  The
+execution order is deliberately falsification-first:
+
+1. Reuse the existing import-safe conversion
+   `qDeletedK4ClassToSelectedFourClass` and its
+   `qDeletedK4Class_deleted_not_mem_support` theorem; the theorem-bank
+   preflight found that no new adapter is needed.
+2. Prove a finite selector that trims a positive selected class of cardinality
+   at least five to four points while avoiding two points at unequal center
+   distances.
+3. Package and prove
+   `exactFiveDistinct_secondApex_physical_or_hardSourceSwap` without changing
+   the admitted target.  Its interface must take the five-incidence premise
+   `normalForm.retained ∈ normalForm.secondApexClass.support` explicitly;
+   this fact is not a field of the bare normal form.  The hard packet must
+   retain positive distinct radii, exact full-class equalities, disjoint
+   supports, the `a`/`d` source swap, and the statement that every positive
+   second-apex class has cardinality below five.
+4. Before formalizing the branch-specific cap-order adapters, run a complete
+   direct/mirror order and equality census for the branch-four exact-grid
+   packet, followed by branch three.  Use SAT, order-sign, and known-UNSAT
+   controls.  Escalate surviving cells from equality/Kalmanson constraints to
+   planar distance-matrix and then source/MEC constraints only as needed.
+5. If every order cell is UNSAT, minimize a common exact cancellation and
+   formalize that certificate.  If a cell is SAT, retain it as a route
+   counterexample and add only the missing source or MEC layer exposed by the
+   survivor.
+6. Independently close
+   `false_of_exactFiveDistinct_threeCenter_distinctFresh_physical`; the generic
+   physical reselection arm depends on that rank-two obligation.
+7. Only after the census identifies a terminal should the import-safe cyclic
+   transport, canonical first-apex swapped row, two-full-class cap split, and
+   symmetric `oppIndex2` radial-crossing API be promoted.
+
+The census does not address the first two incidence branches by itself.  A
+grid UNSAT result would close only the corresponding hard source-swap arms;
+explicit noncircular consumers for branches one and two remain required.  No
+target rewrite is permitted until every constructor has a checked consumer,
+so this plan never increases or relocates the current admission.
+
+Steps 1--3 are now complete in the standalone module
+`ExactFiveDistinctSecondApexSourceSwap.lean`.  Focused Lean checking and an
+independent adversarial source audit pass.  The physical arm intentionally
+returns an omitted selected row rather than claiming a common-deletion packet;
+the first-apex survival needed to construct that packet remains the independent
+rank-two boundary.  Execution therefore proceeds to the branch-four and
+branch-three census scaffold without rewiring the admitted endpoint.

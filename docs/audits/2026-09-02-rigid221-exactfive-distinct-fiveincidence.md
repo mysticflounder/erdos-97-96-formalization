@@ -105,3 +105,56 @@ next proof obligation is a source-entitled consumer of those strictly narrower
 packets from the full exact-five and common-deletion context.  Adding a new
 admitted consumer, or merely moving the existing admission, would not count as
 closure.
+
+## Pro-consult correction and next residual
+
+Pro consult `01M1JEJSNZY1VD0JPJ86W15MX1` completed as conversation message
+`#9100`.  Its full report has file id `01M1JHAXEN92QERSEG5SXF3K2F`, size
+25,215 bytes, and SHA-256
+`747d58dc41add22c3bee228225b6f6f3c15294e8bb2b6ae38337a7ece4efd8db`.
+The consult independently confirms that the four-way reduction and metric
+exclusion are sound, but finds no current import-acyclic terminal.
+
+The next source-faithful reduction is a second-apex reselection dichotomy.
+It is a reduction of the five-incidence arm, not of the bare normal form:
+the construction needs the explicit premise
+`normalForm.retained ∈ normalForm.secondApexClass.support`, supplied by the
+incidence packet's `a_mem_row₂` field and support identity.  Writing `a` for
+`normalForm.retained`, `d` for the original deleted source, and `K₂` for the
+original second-apex row, either:
+
+1. there is a selected second-apex four-row omitting both `a` and `d`; or
+2. the original row and a replacement row are full, disjoint exact-four
+   classes at distinct positive radii, with the original row containing `a`
+   and omitting `d`, and the replacement containing `d` and omitting `a`.
+
+The first arm is not a terminal: in general it routes to the independent
+`false_of_exactFiveDistinct_threeCenter_distinctFresh_physical` obligation.
+The second arm is the minimal hard-source-swap residual.  In its fourth
+incidence branch, a cap-order transport plus the existing rotated-separation
+contradiction forces the replacement row to omit `c₁`.  Two such full
+second-apex classes give either at least five points in the second strict cap
+interior or an exact two-radius adjacent-cap grid.  The large alternative
+implies `|oppCap₂| ≥ 7`; it does not imply carrier cardinality at least fourteen
+without a separate `|oppCap₁| ≥ 6` premise.  The grid alternative gives a
+strict comparison `dist e d < dist e a`, not a contradiction.
+
+Branches one and two remain wholly open, and branch three remains a
+separated-pair/double-omission residual.  Therefore the next decisive check is
+a complete hard-source-swap grid order/equality census, run before extensive
+cap-order Lean plumbing.  A satisfying order/equality model refutes every
+closure using only the retained incidence, cap blocks, circle equalities, and
+Kalmanson inequalities; an all-cell UNSAT result must be minimized to a common
+certificate before formalization.
+
+The source-swap factorization is now implemented in
+`ExactFiveDistinctSecondApexSourceSwap.lean`.  The theorem
+`exactFiveDistinct_secondApex_physical_or_hardSourceSwap` proves the stated
+dichotomy with the five-incidence membership supplied explicitly.  Its hard
+packet records both full selected classes, positive unequal radii, disjoint
+supports, both source incidences and omissions, and the global bound that every
+positive second-apex selected class has cardinality below five.  The supporting
+avoid-two selector and the complete packet compile with focused `lake env lean`;
+the module contains no admission.  An independent adversarial audit found no
+source-role, cardinality, import-cycle, or statement-strength defect.  The live
+target remains unchanged with its one existing admission.
