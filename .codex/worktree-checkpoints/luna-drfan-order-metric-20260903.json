@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "luna-drfan-order-metric-20260903",
+  "owner": "luna-swarm-lemma-lantern",
+  "base_head": "8b8265db276c7ac2deb3c603427e281e8646c04f",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/luna-drfan-order-metric-20260903.json",
+    "lean/Erdos9796Proof/P97/ATail/ThreeFanOrderMetric.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-03T21:56:00Z",
+  "manifest_sha256": "8b41b92a4af533ecd1fb4e278926d3a55772ec73234656fb3c9818166a82cec1"
+}
