@@ -1950,6 +1950,63 @@ generators from the encoder rather than trusting Singular's echo. The honest
 risk is coefficient growth, which is the same wall in another guise; the failure
 is immediate and visible.
 
+### 19. A fail-open triage parser manufactured a survivor (2026-09-03)
+
+A chain on the other half of this lane recorded, for `1412a71e2b2792b3`,
+`raw vdim None, 0 live pairs []` and then concluded that the raw ideal is
+already saturated and its solutions all have the fifteen points distinct. None
+of that happened: the stdout artifact is 0 bytes and the daemon job was still
+queued with `started_at` null, so the triage had not run at all. The client gave
+up waiting, wrote an empty stdout, the parser found no `relevant` lines, and
+"no lines matched" was read as "zero pairs are live".
+
+The failure direction is what makes this serious. An empty triage reads as a
+fully saturated ideal, which reads as a representative whose solutions have all
+fifteen points distinct — a survivor. A missing run must never be able to
+manufacture one.
+
+The same hole was present in this lane's chain v12. Its `live_pairs` returned
+None only when the file was absent, but `kal_angles.py` writes the stdout file
+even when the daemon job never ran, so an existing empty file parsed to an empty
+list and took the "already saturated" branch. It had not yet bitten only because
+the one key triaged so far returned real output. Fixed: a triage is trusted only
+when its stdout carries both a `dim_raw` and a `dim` line, and their absence is
+recorded as NO OUTPUT with no conclusion drawn. The guard is tested against the
+empty 1412 artifact (None), the real 0e31 artifact (7 live pairs), and an absent
+key (None).
+
+General rule for this lane, and the reason it belongs in the plan rather than in
+a commit message: a parser that turns missing evidence into an empty result set
+must fail closed wherever an empty result set is the permissive branch. Checking
+the daemon state is a cheap second belt — a run whose `started_at` is null cannot
+have produced output, whatever the file says.
+
+### 20. Certificate degree bounds (2026-09-03)
+
+Exact linear algebra over the rationals, with no solver, settles the low degrees
+for the `0e31c5c5d735a779` membership certificate. Writing each cofactor with
+unknown rational coefficients turns d = sum f_q g_q into one linear system:
+
+    degree 0    40 unknowns, 103 equations     inconsistent
+    degree 1  1080 unknowns, 2513 equations    inconsistent
+
+Both are proofs of non-existence at that degree, not failed searches. Singular's
+`lift` over p = 2147483647 also reached its 900 s budget without returning, so
+the certificate needs degree-2 cofactors or a larger budget. Degree 2 is 15120
+unknowns, beyond the dense exact elimination used here. Next step is a `lift`
+mod 32003, where the basis is cheap, purely to learn the true cofactor degree
+and coefficient size; that decides between a targeted linear-algebra search and
+a longer large-prime lift.
+
+One simplification, derived by hand and used to validate the checker's
+arithmetic on the encoder's real generators:
+
+    d(P0.1,P0.4) = (c01^2+s01^2-1) + (c04^2+s04^2-1) + 2 - 2*(c01*c04 + s01*s04)
+
+The first two brackets are two of the encoder's own circle generators, so the
+membership question reduces to 1 - (c01*c04 + s01*s04), three terms rather than
+six; geometrically, the two unit vectors have inner product 1.
+
 {{NEEDS_UPDATE}}: the remaining mod-p verdicts from chain v12, the certificate
 verification for `0e31c5c5d735a779`, and the characteristic-0 four-pair
 Rabinowitsch verdicts from the peer session.
@@ -2214,3 +2271,41 @@ variety rather than a defect in the search.
 {{NEEDS_UPDATE}}: the cofactor degree reported by the mod-p `lift` run, which
 bounds the peer's rational linear-algebra search instead of leaving it to
 escalate degree by degree.
+
+### 24. Singular's `lift` is itself blocked on this system (2026-09-03)
+
+The mod-p membership certificate for `0e31c5c5d735a779` was to come from
+Singular's `lift`, run at a large prime and then reconstructed over the
+rationals. That job finished as `TIMED_OUT`: wall 900484 ms against a 900 s
+budget, null exit code, and a complete stdout of
+
+    equations 40
+    gens 40
+
+so it never reached the `lift` output at all.
+
+That is a substantive negative result rather than a scheduling accident.
+`lift` fails to complete in 900 s mod 32003 on a system whose raw Gröbner
+basis finishes in 3.7 to 8.2 s and whose full 105-pair saturation finishes in
+280 to 604 s. So the certificate-by-`lift` route is blocked by the computation
+itself, not merely queued behind other work, and it is blocked at the
+characteristic where everything else in this layer is cheap.
+
+Two consequences. First, the peer session's decision to abandon Singular and
+solve for the cofactors as an exact rational linear system was not only faster,
+it was the only route that was going to finish; a certificate is a solution of a
+linear system, and writing each cofactor with unknown rational coefficients
+turns membership into linear algebra that needs no Gröbner basis and no lane
+slot. Second, an earlier suggestion recorded here — that the cofactor degree
+be read off the mod-p `lift` instead of escalating degree by degree — is void,
+since no degree information exists in a run that never reached the call.
+
+What survives is the target-independence of that linear system: the matrix
+depends only on the generators and the chosen degree, so one factorization
+tests every right-hand side at the cost of an extra column solve. The targets
+worth testing together are `d` itself, the three-term reduction of section 23,
+and the linear polynomials `c01 - c04` and `s01 - s04`, with the isotropy
+caveat of section 23 attached to the last two.
+
+{{NEEDS_UPDATE}}: whether the rational linear-algebra search reaches a
+certificate, and at what degree.

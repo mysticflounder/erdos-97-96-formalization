@@ -6,7 +6,7 @@
   "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03/artifacts/tools/angle_chain.sh": "787d363e7074fce7d147441f321249d3157d3fb3f2d04ad181cedef780051504",
   "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03/artifacts/tools/angle_chain_v10.py": "ecdc9cf4055afb4ba5bd0a5650dd9e1fdbc27116d6cba88280687e3fc35dba07",
   "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03/artifacts/tools/angle_chain_v11.py": "2e3f4c64c598aa71f2cfb99c97e4fd5af00dc2c9ddf795bdd1fed41f06e9134a",
-  "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03/artifacts/tools/angle_chain_v12.py": "3f6be157dd16c177b849fed8f9445ca1c42053d1d2b409a194abbccc2486638f",
+  "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03/artifacts/tools/angle_chain_v12.py": "ac9ee3c418f13f5a62d0f2d737808c1e82854e12bd61ee2317c6ce476ac2401e",
   "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03/artifacts/tools/angle_chain_v13.py": "38bab49ff81dad74241f20477d05320b53f9bcf980a968b8ad4b30685aea1c91",
   "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03/artifacts/tools/angle_chain_v14.py": "25991120ca1628d5740a3d9be0c9692a51d911dbdeeef68d386d9c9c7b1258bd",
   "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03/artifacts/tools/angle_chain_v15.py": "4288790484b41140a8d82ae95eff9f39127aaafe5fe805c7f36f9b6cd949ece6",
@@ -19,6 +19,7 @@
   "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03/artifacts/tools/angle_chain_v7.py": "1d97df2c3ee2d824394aba569dd67cd8ee4a04e101efc4f170ddff0fb3ed280a",
   "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03/artifacts/tools/angle_chain_v8.py": "c33ce991358a91791a2b90af7fe6a4e5c11377e3289d65cf70f38da4c2e5cb12",
   "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03/artifacts/tools/angle_chain_v9.py": "eabd2c1d49fbf90a33510de653a73ef41a46a17d14cbe0ceeb311071c910a2eb",
+  "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03/artifacts/tools/cert_search.py": "fe7cffcdb023582a3fa75895e3e0519c17ba26ee8c0ffed8d59fb974f8afb848",
   "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03/artifacts/tools/check_reduction.py": "59dc8a086c72fec51f3fd93c270294bd51074b0d579e7795577a7e696c2e43a0",
   "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03/artifacts/tools/kal_angles.py": "cfd7cc9aa998c61f3dcbb9b5203ff51d933d93a56b1b1ded31ea79f0842e4228",
   "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03/artifacts/tools/orbit_falsifier.py": "45b7e4fd648fdca8ed3582f616faa0175e067d2f0e17ad796a94ebc6c0dbe252",
@@ -43,5 +44,5 @@
   "census/card_head/d1_mu0_pattern_algebra.py": "0b54cb1085ae0df0f2eac75e45da568a3e55d303d6e0a5623705f74bfb3b17c6",
   "census/card_head/tests/test_d1_mu0_incidence_census.py": "26dfd1e6c2820fa33693f73d86b73a18c4694033c87bae3f469721bf68fec2f1"
  },
- "manifest_sha256": "c5c64490771342c4f629738c8dc79ba832befe209fc459c23f1d3f5137a945dd"
+ "manifest_sha256": "ef8313494be692b37fe3e089cebc1017b93301b9a4ef327ff696305bceddd35b"
 }
