@@ -956,7 +956,7 @@ private theorem oppApex2_eq_oppositeVertexByIndex
 three interval saturation equalities.  The unconditional block package only
 provides the corresponding inclusions; this theorem isolates exactly the
 extra source-order hypothesis needed to realize the finite labels. -/
-theorem direct_labelMap_of_saturated_boundaryBlocks
+theorem direct_labelMap_of_saturated_boundaryBlocks_with_boundary
     {D : CounterexampleData} {S : SurplusCapPacket D.A}
     (P : ExactThirteenBoundaryBlocks S) (p : Profile)
     (hprofile : HasStrictProfile S p)
@@ -966,7 +966,8 @@ theorem direct_labelMap_of_saturated_boundaryBlocks
       (P.iw : ℕ) - (P.iv : ℕ) - 1)
     (hsat1 : S.oppInterior1.card = 13 - 1 - (P.iw : ℕ)) :
     ∃ pt φ : Fin 13 → ℝ², ∃ idx : Fin 13 → Fin 13,
-      LabelMap p S pt ∧ ConvexBoundaryEnumeration p pt φ idx := by
+      LabelMap p S pt ∧ ConvexBoundaryEnumeration p pt φ idx ∧
+        ∀ q : Fin 13, φ q = P.B.boundary (Fin.cast P.card_n.symm q) := by
   classical
   let cast : Fin 13 → Fin P.B.n := Fin.cast P.card_n.symm
   let boundary : Fin 13 → ℝ² := fun q => P.B.boundary (cast q)
@@ -1093,7 +1094,7 @@ theorem direct_labelMap_of_saturated_boundaryBlocks
   have hconv : ConvexIndep (Finset.univ.image boundary) := by
     rw [hboundary_image]
     exact D.convex
-  refine ⟨pt, boundary, directIndex p, ?_, ?_⟩
+  refine ⟨pt, boundary, directIndex p, ?_, ?_, ?_⟩
   · refine
       { secondApex_eq := ?_
         firstApex_eq := ?_
@@ -1131,8 +1132,27 @@ theorem direct_labelMap_of_saturated_boundaryBlocks
         convexIndep := hconv
         pt_eq := fun _ => rfl
         orientation := Or.inl rfl }
+  · intro q
+    rfl
 
-theorem mirror_labelMap_of_saturated_boundaryBlocks
+/-- The direct exact-thirteen label map with the provenance field erased. -/
+theorem direct_labelMap_of_saturated_boundaryBlocks
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    (P : ExactThirteenBoundaryBlocks S) (p : Profile)
+    (hprofile : HasStrictProfile S p)
+    (B : DirectBoundaryBlocks S P.B.boundary P.hn P.iv P.iw)
+    (hsat2 : S.oppInterior2.card = (P.iv : ℕ) - 1)
+    (hsatS : (S.capInteriorByIndex S.surplusIdx).card =
+      (P.iw : ℕ) - (P.iv : ℕ) - 1)
+    (hsat1 : S.oppInterior1.card = 13 - 1 - (P.iw : ℕ)) :
+    ∃ pt φ : Fin 13 → ℝ², ∃ idx : Fin 13 → Fin 13,
+      LabelMap p S pt ∧ ConvexBoundaryEnumeration p pt φ idx := by
+  obtain ⟨pt, φ, idx, hL, hE, _⟩ :=
+    direct_labelMap_of_saturated_boundaryBlocks_with_boundary P p hprofile B
+      hsat2 hsatS hsat1
+  exact ⟨pt, φ, idx, hL, hE⟩
+
+theorem mirror_labelMap_of_saturated_boundaryBlocks_with_boundary
     {D : CounterexampleData} {S : SurplusCapPacket D.A}
     (P : ExactThirteenBoundaryBlocks S) (p : Profile)
     (hprofile : HasStrictProfile S p)
@@ -1142,7 +1162,8 @@ theorem mirror_labelMap_of_saturated_boundaryBlocks
       (P.iv : ℕ) - (P.iw : ℕ) - 1)
     (hsat2 : S.oppInterior2.card = 13 - 1 - (P.iv : ℕ)) :
     ∃ pt φ : Fin 13 → ℝ², ∃ idx : Fin 13 → Fin 13,
-      LabelMap p S pt ∧ ConvexBoundaryEnumeration p pt φ idx := by
+      LabelMap p S pt ∧ ConvexBoundaryEnumeration p pt φ idx ∧
+        ∀ q : Fin 13, φ q = P.B.boundary (Fin.cast P.card_n.symm q) := by
   classical
   let cast : Fin 13 → Fin P.B.n := Fin.cast P.card_n.symm
   let boundary : Fin 13 → ℝ² := fun q => P.B.boundary (cast q)
@@ -1275,7 +1296,7 @@ theorem mirror_labelMap_of_saturated_boundaryBlocks
   have hconv : ConvexIndep (Finset.univ.image boundary) := by
     rw [hboundary_image]
     exact D.convex
-  refine ⟨pt, boundary, mirrorIndex p, ?_, ?_⟩
+  refine ⟨pt, boundary, mirrorIndex p, ?_, ?_, ?_⟩
   · refine
       { secondApex_eq := ?_
         firstApex_eq := ?_
@@ -1313,6 +1334,25 @@ theorem mirror_labelMap_of_saturated_boundaryBlocks
         convexIndep := hconv
         pt_eq := fun _ => rfl
         orientation := Or.inr rfl }
+  · intro q
+    rfl
+
+/-- The mirror exact-thirteen label map with the provenance field erased. -/
+theorem mirror_labelMap_of_saturated_boundaryBlocks
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    (P : ExactThirteenBoundaryBlocks S) (p : Profile)
+    (hprofile : HasStrictProfile S p)
+    (B : MirrorBoundaryBlocks S P.B.boundary P.hn P.iv P.iw)
+    (hsat1 : S.oppInterior1.card = (P.iw : ℕ) - 1)
+    (hsatS : (S.capInteriorByIndex S.surplusIdx).card =
+      (P.iv : ℕ) - (P.iw : ℕ) - 1)
+    (hsat2 : S.oppInterior2.card = 13 - 1 - (P.iv : ℕ)) :
+    ∃ pt φ : Fin 13 → ℝ², ∃ idx : Fin 13 → Fin 13,
+      LabelMap p S pt ∧ ConvexBoundaryEnumeration p pt φ idx := by
+  obtain ⟨pt, φ, idx, hL, hE, _⟩ :=
+    mirror_labelMap_of_saturated_boundaryBlocks_with_boundary P p hprofile B
+      hsat1 hsatS hsat2
+  exact ⟨pt, φ, idx, hL, hE⟩
 
 /- The strict profile fixes the three interior cardinalities.  Since the
 direct (respectively mirror) boundary intervals are disjoint and exhaust the
@@ -1320,13 +1360,14 @@ thirteen boundary positions, the three upper bounds are simultaneously tight.
 These wrappers expose that arithmetic step before invoking the saturated label
 map constructors. -/
 
-theorem direct_labelMap_of_profile_boundaryBlocks
+theorem direct_labelMap_of_profile_boundaryBlocks_with_boundary
     {D : CounterexampleData} {S : SurplusCapPacket D.A}
     (P : ExactThirteenBoundaryBlocks S) (p : Profile)
     (hprofile : HasStrictProfile S p)
     (B : DirectBoundaryBlocks S P.B.boundary P.hn P.iv P.iw) :
     ∃ pt φ : Fin 13 → ℝ², ∃ idx : Fin 13 → Fin 13,
-      LabelMap p S pt ∧ ConvexBoundaryEnumeration p pt φ idx := by
+      LabelMap p S pt ∧ ConvexBoundaryEnumeration p pt φ idx ∧
+        ∀ q : Fin 13, φ q = P.B.boundary (Fin.cast P.card_n.symm q) := by
   have hle := direct_boundary_interval_card_le P B
   have hn13 : P.B.n = 13 := P.card_n
   cases p with
@@ -1339,7 +1380,7 @@ theorem direct_labelMap_of_profile_boundaryBlocks
         omega
       have hsat1 : S.oppInterior1.card = 13 - 1 - (P.iw : ℕ) := by
         omega
-      exact direct_labelMap_of_saturated_boundaryBlocks P .secondOpposite
+      exact direct_labelMap_of_saturated_boundaryBlocks_with_boundary P .secondOpposite
         ⟨hS, h1, h2⟩ B hsat2 hsatS hsat1
   | surplus =>
       rcases hprofile with ⟨hS, h1, h2⟩
@@ -1350,7 +1391,7 @@ theorem direct_labelMap_of_profile_boundaryBlocks
         omega
       have hsat1 : S.oppInterior1.card = 13 - 1 - (P.iw : ℕ) := by
         omega
-      exact direct_labelMap_of_saturated_boundaryBlocks P .surplus
+      exact direct_labelMap_of_saturated_boundaryBlocks_with_boundary P .surplus
         ⟨hS, h1, h2⟩ B hsat2 hsatS hsat1
   | firstOpposite =>
       rcases hprofile with ⟨hS, h1, h2⟩
@@ -1361,16 +1402,29 @@ theorem direct_labelMap_of_profile_boundaryBlocks
         omega
       have hsat1 : S.oppInterior1.card = 13 - 1 - (P.iw : ℕ) := by
         omega
-      exact direct_labelMap_of_saturated_boundaryBlocks P .firstOpposite
+      exact direct_labelMap_of_saturated_boundaryBlocks_with_boundary P .firstOpposite
         ⟨hS, h1, h2⟩ B hsat2 hsatS hsat1
 
-theorem mirror_labelMap_of_profile_boundaryBlocks
+/-- The direct profile ingress with the provenance field erased. -/
+theorem direct_labelMap_of_profile_boundaryBlocks
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    (P : ExactThirteenBoundaryBlocks S) (p : Profile)
+    (hprofile : HasStrictProfile S p)
+    (B : DirectBoundaryBlocks S P.B.boundary P.hn P.iv P.iw) :
+    ∃ pt φ : Fin 13 → ℝ², ∃ idx : Fin 13 → Fin 13,
+      LabelMap p S pt ∧ ConvexBoundaryEnumeration p pt φ idx := by
+  obtain ⟨pt, φ, idx, hL, hE, _⟩ :=
+    direct_labelMap_of_profile_boundaryBlocks_with_boundary P p hprofile B
+  exact ⟨pt, φ, idx, hL, hE⟩
+
+theorem mirror_labelMap_of_profile_boundaryBlocks_with_boundary
     {D : CounterexampleData} {S : SurplusCapPacket D.A}
     (P : ExactThirteenBoundaryBlocks S) (p : Profile)
     (hprofile : HasStrictProfile S p)
     (B : MirrorBoundaryBlocks S P.B.boundary P.hn P.iv P.iw) :
     ∃ pt φ : Fin 13 → ℝ², ∃ idx : Fin 13 → Fin 13,
-      LabelMap p S pt ∧ ConvexBoundaryEnumeration p pt φ idx := by
+      LabelMap p S pt ∧ ConvexBoundaryEnumeration p pt φ idx ∧
+        ∀ q : Fin 13, φ q = P.B.boundary (Fin.cast P.card_n.symm q) := by
   have hle := mirror_boundary_interval_card_le P B
   have hn13 : P.B.n = 13 := P.card_n
   cases p with
@@ -1383,7 +1437,7 @@ theorem mirror_labelMap_of_profile_boundaryBlocks
         omega
       have hsat2 : S.oppInterior2.card = 13 - 1 - (P.iv : ℕ) := by
         omega
-      exact mirror_labelMap_of_saturated_boundaryBlocks P .secondOpposite
+      exact mirror_labelMap_of_saturated_boundaryBlocks_with_boundary P .secondOpposite
         ⟨hS, h1, h2⟩ B hsat1 hsatS hsat2
   | surplus =>
       rcases hprofile with ⟨hS, h1, h2⟩
@@ -1394,7 +1448,7 @@ theorem mirror_labelMap_of_profile_boundaryBlocks
         omega
       have hsat2 : S.oppInterior2.card = 13 - 1 - (P.iv : ℕ) := by
         omega
-      exact mirror_labelMap_of_saturated_boundaryBlocks P .surplus
+      exact mirror_labelMap_of_saturated_boundaryBlocks_with_boundary P .surplus
         ⟨hS, h1, h2⟩ B hsat1 hsatS hsat2
   | firstOpposite =>
       rcases hprofile with ⟨hS, h1, h2⟩
@@ -1405,8 +1459,20 @@ theorem mirror_labelMap_of_profile_boundaryBlocks
         omega
       have hsat2 : S.oppInterior2.card = 13 - 1 - (P.iv : ℕ) := by
         omega
-      exact mirror_labelMap_of_saturated_boundaryBlocks P .firstOpposite
+      exact mirror_labelMap_of_saturated_boundaryBlocks_with_boundary P .firstOpposite
         ⟨hS, h1, h2⟩ B hsat1 hsatS hsat2
+
+/-- The mirror profile ingress with the provenance field erased. -/
+theorem mirror_labelMap_of_profile_boundaryBlocks
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    (P : ExactThirteenBoundaryBlocks S) (p : Profile)
+    (hprofile : HasStrictProfile S p)
+    (B : MirrorBoundaryBlocks S P.B.boundary P.hn P.iv P.iw) :
+    ∃ pt φ : Fin 13 → ℝ², ∃ idx : Fin 13 → Fin 13,
+      LabelMap p S pt ∧ ConvexBoundaryEnumeration p pt φ idx := by
+  obtain ⟨pt, φ, idx, hL, hE, _⟩ :=
+    mirror_labelMap_of_profile_boundaryBlocks_with_boundary P p hprofile B
+  exact ⟨pt, φ, idx, hL, hE⟩
 
 /- The block package carries a strict profile disjunction; this is the
 finite choice needed by the profile-parametrized label map. -/

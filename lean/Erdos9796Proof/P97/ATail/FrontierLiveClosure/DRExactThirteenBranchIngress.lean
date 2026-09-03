@@ -42,6 +42,10 @@ structure ExactThirteenBranchIngress
   idx : Fin 13 → Fin 13
   labelMap : LabelMap profile S pt
   boundaryEnumeration : ConvexBoundaryEnumeration profile pt φ idx
+  /-- The finite boundary map is the retained source boundary, not merely an
+  arbitrary convex re-enumeration of the same carrier. -/
+  boundary_realization :
+    ∀ q : Fin 13, φ q = P.B.boundary (Fin.cast P.card_n.symm q)
   orientation : idx = directIndex profile ∨ idx = mirrorIndex profile
 
 namespace ExactThirteenBranchIngress
@@ -72,8 +76,8 @@ theorem of_twoRadiusBranch
       _hsecondRadius hcard13
   obtain ⟨p, hp⟩ := exists_profile_of_boundaryBlocks P
   rcases P.blocks with hdirect | hmirror
-  · obtain ⟨pt, φ, idx, hL, hE⟩ := direct_labelMap_of_profile_boundaryBlocks
-      P p hp hdirect
+  · obtain ⟨pt, φ, idx, hL, hE, hboundary⟩ :=
+      direct_labelMap_of_profile_boundaryBlocks_with_boundary P p hp hdirect
     exact ⟨
       { P := P
         profile := p
@@ -83,9 +87,10 @@ theorem of_twoRadiusBranch
         idx := idx
         labelMap := hL
         boundaryEnumeration := hE
+        boundary_realization := hboundary
         orientation := hE.orientation }⟩
-  · obtain ⟨pt, φ, idx, hL, hE⟩ := mirror_labelMap_of_profile_boundaryBlocks
-      P p hp hmirror
+  · obtain ⟨pt, φ, idx, hL, hE, hboundary⟩ :=
+      mirror_labelMap_of_profile_boundaryBlocks_with_boundary P p hp hmirror
     exact ⟨
       { P := P
         profile := p
@@ -95,6 +100,7 @@ theorem of_twoRadiusBranch
         idx := idx
         labelMap := hL
         boundaryEnumeration := hE
+        boundary_realization := hboundary
         orientation := hE.orientation }⟩
 
 end ExactThirteenBranchIngress
