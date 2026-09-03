@@ -54,7 +54,7 @@ theorem pairFamily_tight_of_pairwiseDisjoint_subset
     apply Nat.le_antisymm
     · by_contra hne
       have hlt : weight i < (pairs i).card :=
-        lt_of_le_of_ne (hlower i) (fun h => hne h.symm)
+        lt_of_le_of_ne (hlower i) (fun h => hne h.symm.le)
       have hsumLt : (∑ k, weight k) < ∑ k, (pairs k).card := by
         apply Finset.sum_lt_sum
         · intro k _hk
@@ -92,13 +92,13 @@ theorem card_eq_three_of_powersetCard_card_eq_three
     intro hsmall
     have hmono := Nat.choose_le_choose 2 hsmall
     rw [hchoose] at hmono
-    norm_num at hmono
+    norm_num [Nat.choose] at hmono
   have hlt_four : s.card < 4 := by
     by_contra hnot
     have hlarge : 4 ≤ s.card := by omega
     have hmono := Nat.choose_le_choose 2 hlarge
     rw [hchoose] at hmono
-    norm_num at hmono
+    norm_num [Nat.choose] at hmono
   omega
 
 end CapSelectedRowCounting
