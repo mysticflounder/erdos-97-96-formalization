@@ -4356,3 +4356,97 @@ does not go through cap containment at a four-point cap. The blocker-centre
 support control from section 58 is unchanged.
 
 Leaf unchanged: single `sorry`, `M = 18`.
+
+### 60. The counting route is exactly saturated, and option (a) is closed as scoped (2026-09-03)
+
+Section 59 reduced the ingress to one question: are the two adjacent-cap hits of
+the apex class the outer Moser vertices, or interior points of the adjacent caps?
+A fourth audit answers it, and the answer closes the route.
+
+**Every relevant bound is stated for the CLOSED cap.** Verified:
+`leftAdjacentCapByIndex i = capByIndex (leftAdjacentIndex i)` (`Shard01.lean:983`),
+and `capInteriorByIndex` (`Cap/PartitionFromMEC.lean:496`) is the only open one.
+This matters because the closed adjacent cap *already contains* the outer Moser
+vertex, so the one-hit slot the bound allows is exactly the slot an apex would
+occupy. There is no separate apex capacity to exploit.
+
+**The arithmetic, at `D.A.card = 15` with `G.cap_card_ge_six`.** Then
+`(capByIndex i).card = 6` and `(capInteriorByIndex i).card = 4`
+(`ExactFifteenApexProfile.lean:134`, `:158`). Writing `T` for the class at the
+apex and `I` for cap `i`'s interior:
+
+```
+|T| = |T ∩ I| + |T \ I|                                  Finset.card_sdiff_add_card_inter
+|T \ I| ≤ |T ∩ leftAdjCap| + |T ∩ rightAdjCap|           Shard02.lean:661
+|T ∩ leftAdjCap| ≤ 1, |T ∩ rightAdjCap| ≤ 1              Shard01.lean:1064, :1080
+|T ∩ I| ≤ 4
+```
+
+so `|T| ≤ 6`, which is exactly `oppositeVertex_selectedClass_card_le_cap_card`
+(`ATail/CapApexRadiusRigidity.lean:104`, read directly — it is the `card = 6`
+rung the ladder was extended to for precisely this terminal).
+
+The apex-free maximum is `4 + 1 + 1 = 6`: fill the interior, then take each
+adjacent slot from that cap's own four interior points rather than from the
+shared Moser vertex. And `G.apex_rich`'s first branch delivers exactly `6 ≤ |T|`.
+
+**Ceiling, apex-free maximum, and the hypothesis all coincide at 6.** The
+deficit is one point and it is unclosable, because there is no slack anywhere to
+close it with. The two-radii branch is worse: each class is exactly 4, the
+apex-free maximum is `2 + 1 + 1 = 4` per class, and the totals coincide again.
+The counting route does not force even *one* apex into the class, let alone two.
+
+**The bound that would close it is not a cardinality but an identification** —
+`T ∩ leftAdjacentCapByIndex i = {S.leftOuterVertexByIndex i}` and its right twin.
+That says the circle about the special apex meets the neighbouring cap exactly at
+the neighbouring apex, which is an isoceles condition on the Moser triangle. No
+such lemma exists: `MoserSelectorShapeAt` (`Shard02.lean:916`) and its subpacket
+twin produce `T ∩ leftAdjCap = {p}` for *some* `p`, never `p = leftOuterVertexByIndex i`.
+`MoserTriangle` (`Cap/Structure.lean:98`) carries membership, pairwise
+distinctness and non-collinearity, and no metric relation among `v1, v2, v3` at
+all.
+
+**Neither source can supply it.** Cap geometry cannot, by the saturation above.
+The residual stack cannot either: across `F, R, P, O, J, Q` **no field is a
+distance equality**, and the only equidistance content is `Q.W`, whose supports
+are confined to one cap each by `StrictApexFourFamily.supportAt_subset_capInterior`
+(`ATail/TriApexFourWitness.lean:59`).
+
+**What this does and does not establish.** It is not a proof that the metric
+facts are underivable at the sorry. The leaf concludes `False`, so a model of the
+*full* hypothesis set in which the metric facts fail would refute the leaf
+itself, and no such model is claimed. What is established is narrower and still
+decisive for the route: the census-label ingress needs an input that cap geometry
+provably cannot give — the counting is exactly saturated and the strengthening
+that would close it is false for a general `SurplusCapPacket` — and that the
+leaf's own residual stack contains no metric field to give it instead.
+
+**The cardinality gate, confirmed independently.** The leaf reaches only
+`15 ≤ D.A.card`, from `G.cap_card_ge_six` through `card_ge_fifteen_of_all_cap_card_ge_six`
+(`ExactFifteenApexProfile.lean:55`); `R.carrier_card_gt_nine` is another lower
+bound; `CounterexampleData` has no cardinality field. Read directly at
+`TriApexEndpointRetainedOmission.lean:2907-2922`, the leaf body binds `hfifteen`,
+`hsixSlots` and `hadjacentAtPair` as implications `D.A.card = 15 → …` and never
+discharges `hcard` before the `sorry` at line 2923. All nine card-fifteen tools
+in the file are unreachable as the proof stands.
+
+**Where this leaves the decision.** Section 56 put options (a) and (c) to Adam.
+Option (a) — build the three ingress theorems — is now closed as scoped: one of
+the three is not a theorem of cap geometry, and the counting that would have to
+prove it is saturated with no slack. The remaining routes, recorded for decision
+rather than taken:
+
+- **(c)** bank the proved geometry — `signedArea2_eq_zero_of_arcMidpoint_twoCircle`,
+  `false_of_arcMidpoint_twoCircle_of_convexIndep`, both axiom-clean, plus section
+  57's exact necessity result — as a general result, and redirect the lane.
+- **(d)** attack the leaf by a route that does not pass through the arc-midpoint
+  lemma at all. Nothing in this lane has scoped such a route.
+- **(e)** move the cardinality split to the caller, so the leaf takes
+  `hcard : D.A.card = 15` and the nine card-fifteen tools become live, the way
+  `Rigid221SourceHeavy.lean:14496` already splits. This is a statement change to
+  an on-spine leaf, and it addresses only the cardinality half; the circle half
+  stays open by the saturation above, so on its own it closes nothing.
+
+Recording the comparison. The active goal is unchanged and no pivot is made here.
+
+Leaf unchanged: single `sorry`, `M = 18`.
