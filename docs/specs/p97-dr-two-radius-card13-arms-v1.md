@@ -174,7 +174,14 @@ Run record (2026-09-02): `small` + the three families is UNSAT in
 `secondOpposite` (2,646 s) and `surplus` (1,735 s) but both proofs failed
 the daemon's drat-trim replay (unverified; cause: the replay shares the
 discovery timeout and runs under `--unsat`, see the audit; plain-profile
-reruns with 7,200 s pending, `firstOpposite` resubmitted plain at 21,600 s);
+reruns with 7,200 s timed out twice; at 21,600 s the `unsat`-profile job
+`ceac0a58…` verified secondOpposite UNSAT on 2026-09-03 03:39Z with a
+drat-trim-checked 14.1 GB uncompacted LRAT, 71,510 RAT lemmas in core, so
+EMPIRICAL at the encoded scope and not yet RUP-only; the `plain` job
+`a1954a67…` verified surplus UNSAT on 2026-09-03 04:00Z with a
+drat-trim-checked 14.2 GB uncompacted LRAT and 0 RAT lemmas in core, so
+RUP-only and EMPIRICAL at the encoded scope; the remaining surplus and
+secondOpposite jobs are in proof replay, `firstOpposite` in discovery);
 `firstOpposite` and every `convex` + three-families run is UNKNOWN at
 3,600 s. Details in the audit subsection "P4.3". The `StrictCapOrder` bridge has a
 design sketch in the plan (Step P4.3): signed-area facts from the cap

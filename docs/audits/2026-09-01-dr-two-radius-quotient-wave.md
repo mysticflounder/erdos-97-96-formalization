@@ -752,7 +752,79 @@ expected. Posted as `#piqd` message 9058 with a request for a replay-timeout
 error class and a separate replay budget. Consequence for this lane: submit
 under `plain` (replay is the same search) with a budget of at least twice
 the expected discovery time. `firstOpposite` was resubmitted that way
-(`b35f2166…`, plain, 21,600 s, confirmed 22:50Z). The convex-set variant being UNKNOWN in
+(`b35f2166…`, plain, 21,600 s, confirmed 22:50Z). The 7,200 s plain reruns
+timed out UNKNOWN twice (the second time as piqd run epoch 2, because a
+resubmission with a larger `--timeout` deduplicates to the same job: the
+timeout is not part of the job identity, the producer-manifest bytes are).
+Resubmissions at 21,600 s, 2026-09-03: profile `unsat` (replay under the
+same configuration) `ceac0a58…` secondOpposite, `e3e8e469…` surplus,
+`c17e5d33…` firstOpposite (00:04Z); profile `plain` with a provenance
+record extended by a `budget_note` field, `d5f5f998…` secondOpposite and
+`a1954a67…` surplus (02:04Z).
+
+**First verified card-13 UNSAT (EMPIRICAL, encoded scope).** Job
+`ceac0a58…` (secondOpposite, small set + three families, profile `unsat`,
+CNF blob `f248084c…`, 674,398 clauses): discovery UNSAT after 7,412 s wall
+under load, 5,714,112 conflicts; proof replay under `--unsat`; drat-trim
+verified the proof and the daemon retained it as `uncompacted_lrat`,
+14,131,917,572 bytes, blob `9cf8716a…`, with 71,510 RAT lemmas in core
+(compaction skipped above the 4 GiB ceiling; daemon sha `a0d1a2f4…`).
+The RAT count means this certificate is not a RUP-only replay candidate
+for the Lean checker; the `plain` job `d5f5f998…` on the same CNF bytes
+(discovery UNSAT at 4,132 s, replay pending) is the RUP-only candidate.
+Status of the claim: the secondOpposite growth arm at card 13 is
+excluded by the structural encoding at the encoded scope, conditional on
+the cut admission table of spec section 8, in particular on the
+`cap_betweenness` bridge ({{NEEDS_PROOF}}). Core-by-family mining of this
+proof runs from `p4-card13-arms/tmp/mine_core13.sh`; results are recorded
+below when available.
+
+**Second verified card-13 UNSAT, RUP-only (EMPIRICAL, encoded scope).**
+Job `a1954a67…` (surplus, small set + three families, profile `plain`,
+CNF blob `4fd9923a…`, 674,394 clauses, provenance record with the
+`budget_note` field): discovery UNSAT after 3,194 s wall at near-full CPU;
+proof replay under `--plain`; drat-trim verified, retained as
+`uncompacted_lrat`, 14,189,334,554 bytes, blob `2d3d7ad0…`,
+`drat_trim_rat_lemmas_in_core` 0 (2026-09-03 04:00Z). A zero RAT count is
+the RUP-only evidence the Lean replay checker needs, so this certificate
+is the first card-13 candidate for a replay ingress of the card-12 kind,
+pending the `cap_betweenness` bridge ({{NEEDS_PROOF}}) and a windowed
+RUP package of a size the checker can take (the card-12 package was built
+from a 1.9 GB LRAT; this one is 7.5 times larger, so core extraction and
+trimming come first).
+
+Core by family for `ceac0a58…` (secondOpposite), from an independent
+drat-trim run on the retained LRAT rendered as DRAT (`s VERIFIED`, 88,482
+of 674,398 clauses in core, 2,701,608 of 2,751,445 lemmas, 70,150 RAT
+lemmas in core, 1,659 s; `p4-card13-arms/artifacts/core-by-family-secondOpposite-unsat-21600.json`,
+every core clause matched an encoder clause):
+
+| family | in core / emitted |
+|---|---|
+| `transitivity` | 48,418 / 228,228 |
+| `k4_everywhere` | 15,187 / 38,623 |
+| `convex_five_point` | 6,625 / 51,480 |
+| `five_point_circle_isosceles_order` | 6,157 / 12,870 |
+| `blockers` | 5,750 / 95,935 |
+| `six_point_two_circle_order` | 2,346 / 20,592 |
+| `two_circle_same_arc` | 2,039 / 2,860 |
+| `nested_equal_chord` | 1,080 / 12,870 |
+| `second_apex_rows` | 659 / 2,450 |
+| `cap_betweenness` | 98 / 98 |
+| `duplicate_three_point_center` | 55 / 12,870 |
+| `perp_bisector` | 43 / 12,870 |
+| `first_apex_class` | 13 / 3,213 |
+| `frontier_bisector_interior` | 8 / 10 |
+| `six_point_two_circle_arc_overtake_order` | 4 / 82,368 |
+| `common_pair_localization` | 0 / 107 |
+| `equal_k4`, `convex_rhombus`, `six_point_nested_center_order` | 0 |
+
+Reading: every `cap_betweenness` clause is load-bearing, the frontier
+bisector field is used, and `common_pair_localization` carries nothing, so
+the only new Lean obligation for this arm is the cap-betweenness bridge.
+Four bank families (about 179k clauses) are unused or nearly so; a
+re-emission with the used families only, solved under `plain`, gives a
+smaller RUP certificate for the replay package. The convex-set variant being UNKNOWN in
 all arms shows the extra small families carried weight in the two UNSAT
 runs. Reading so far: with cap betweenness added, the structural encoding
 excludes card 13 in two of three growth arms at the encoded scope, pending

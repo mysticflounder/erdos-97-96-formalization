@@ -570,6 +570,28 @@ certificate replay is then unnecessary for card 12.
   `ccf768aa…`, `8e76c1b3…` (7,200 s) and `firstOpposite` `b35f2166…`
   (21,600 s), pending. Rule for this lane from here: `plain` profile with a
   budget of at least twice the expected discovery time.
+- 2026-09-03 03:39Z: first verified card-13 UNSAT, secondOpposite, job
+  `ceac0a58…` (profile `unsat`, 21,600 s): drat-trim-verified uncompacted
+  LRAT of 14.1 GB with 71,510 RAT lemmas in core. EMPIRICAL at the encoded
+  scope, conditional on the `cap_betweenness` bridge. Surplus (both
+  profiles) and the secondOpposite `plain` job have UNSAT discoveries in
+  replay; firstOpposite is in discovery under both profiles. Core mining by
+  family in progress (`p4-card13-arms/tmp/mine_core13.sh`).
+- 2026-09-03 04:00Z: surplus verified UNSAT and RUP-only, job `a1954a67…`
+  (profile `plain`, 21,600 s): discovery 3,194 s, drat-trim-verified
+  uncompacted LRAT of 14.2 GB, 0 RAT lemmas in core. EMPIRICAL at the
+  encoded scope, conditional on the `cap_betweenness` bridge. This is the
+  first card-13 certificate eligible for a replay ingress of the card-12
+  kind once the bridge lemma exists and the proof is trimmed to a
+  checker-sized RUP package.
+- Core mining of the secondOpposite proof (audit table): `cap_betweenness`
+  98/98 in core, `frontier_bisector_interior` 8/10, `common_pair_localization`
+  0/107; `equal_k4`, `convex_rhombus`, `six_point_nested_center_order`
+  unused and `six_point_two_circle_arc_overtake_order` 4/82,368. Next
+  encoding step: re-emit each arm with the used families only and solve
+  under `plain` for a smaller RUP certificate; the Lean obligations for
+  the card-13 ingress are then the bridge lemma plus the card-12 family
+  set already proved.
 - Bridge design for the `cap_betweenness` ingress obligation (read-only
   source audit, 2026-09-02; no Lean written). The encoder's order object in
   the card-12 ingress is `ConvexBoundaryEnumeration pt φ idx`
