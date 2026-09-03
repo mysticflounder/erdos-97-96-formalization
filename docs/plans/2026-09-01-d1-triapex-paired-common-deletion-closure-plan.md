@@ -2727,3 +2727,46 @@ modulo all but finitely many primes, so `dim -1` at 32003 is what emptiness
 looks like, but 32003 is not known to be a lucky prime for this ideal. Three of
 the four refutations are mod-p only. The Rabinowitsch certificate above is the
 route that would upgrade them.
+
+### 32. The labeling lever is spent (2026-09-03)
+
+Section 26 named the labeling spread as the one concrete untried lever on the
+open orbit: thirty of its thirty-six labelings were unmeasured even mod p, and
+a materially cheaper one would be a different rational computation rather than
+the same one retried. The sweep has now run, at a 30 s cap chosen because
+anything cheaper than the 3.665 s already tried finishes well inside it and a
+labeling in the 30 to 60 s band is no candidate at all.
+
+Ten of the twenty-nine completed. Every one of them returns `dim 0` and
+`vdim 2048`, exactly as a ring isomorphism requires; sixteen of the orbit's
+thirty-six labelings now carry that invariant and none disagrees. Daemon wall
+for the ten, against the two labelings whose cost was already known:
+
+    2514  72a0268b2d358aa0      3665  3826b8a0dec4a6b0   (known, died rationally)
+    2601  945beaee11bb6563      8163  0d6996160cc83aab   (known, died rationally)
+    2639  67ca589284a3d239
+    2888  fc932a4008e5021e
+    4095  d0005c6a8a9084f8
+    5078  7a95c8c74bedb703
+    5176  87d804d3b3b280c1
+    5294  aa95d62d7e36d222
+    6017  80c2cd277d4ef3ca
+    6367  999e18094e8ed7a1
+
+The cheapest labeling found is 2.514 s against 3.665 s, a factor of 1.46. The
+two labelings already tried over the rationals differ by a factor of 2.2 mod p
+and both died the same way, so a further 1.46 sits inside a spread already
+known not to predict rational tractability. **The lever is spent.** It bought
+ten confirmations of the partition and no reason to open another rational
+slot.
+
+Where that leaves the open orbit, stated plainly. The metric equalities alone
+do not refute it: 192 points mod 32003 with all fifteen distinct is a genuine
+survivor at the encoded scope, and every technique in this lane has now been
+aimed at that one ideal and failed -- five rational runs, the certificate
+(nothing to certify), and the labeling spread. What the encoding drops is what
+is left: reality of the solutions, and the cell's order and betweenness data
+from stages 1e to 1g, none of which is in the ideal. The next route is
+therefore not more algebra on the same system but a system carrying more of
+the cell. That is a scoping step, not a run, and it is where this orbit should
+be picked up.
