@@ -10,9 +10,14 @@ realization: all ambient labels are distinct vertices of a strictly convex
 polygon in the recorded cyclic order, every row is equidistant from its center,
 and an exact row contains every point at that radius.
 
-The explicit direct-system source schema admits canonically ordered support
-sets of any cardinality at least two.  Legacy saved assignments retain their
-four-support interpretation.
+The explicit direct-system source schemas admit canonically ordered support
+sets of any cardinality at least two.  Version 2 additionally carries the
+three distinct apex indices whose circumscribed circle supplies
+``CircumscribedMECPacket.radius_pos``,
+``CircumscribedMECPacket.moser_on_boundary``, and
+``CircumscribedMECPacket.disk_contains_A``.  Legacy direct sources and saved
+assignments retain their original interpretation.  As in the ATAIL geometry
+template, the quantified minimum-radius clause is not encoded.
 
 An UNSAT result is diagnostic evidence about that saved assignment.  A SAT
 result is only a realization of this row-level relaxation, not a Problem 97
@@ -50,6 +55,10 @@ DEFAULT_INPUTS = (
 )
 SCHEMA = "p97-global-confinement-metric-realizability-v1"
 DIRECT_SYSTEM_SOURCE_SCHEMA = "p97-endpoint-direct-metric-system-source-v1"
+DIRECT_SYSTEM_MEC_SOURCE_SCHEMA = "p97-endpoint-direct-metric-system-source-v2"
+DIRECT_SYSTEM_SOURCE_SCHEMAS = frozenset(
+    {DIRECT_SYSTEM_SOURCE_SCHEMA, DIRECT_SYSTEM_MEC_SOURCE_SCHEMA}
+)
 DIRECT_SYSTEM_MAX_N = 64
 CONTEXT_FIELDS = (
     "n",
@@ -822,8 +831,12 @@ def _formalized_metric_core(
     return None
 
 
-def _constraint_counts(n: int, rows: Sequence[MetricRow]) -> dict[str, int]:
-    return {
+def _constraint_counts(
+    n: int,
+    rows: Sequence[MetricRow],
+    mec_apices: Sequence[int] | None = None,
+) -> dict[str, int]:
+    counts = {
         "equalities": sum(len(row.support) - 1 for row in rows),
         "distinctness": n * (n - 1) // 2,
         "convex_order": n * (n - 2),
@@ -831,6 +844,16 @@ def _constraint_counts(n: int, rows: Sequence[MetricRow]) -> dict[str, int]:
             n - 1 - len(row.support) for row in rows if row.exact
         ),
     }
+    if mec_apices is not None:
+        counts.update(
+            {
+                "mec_radius_pos": 1,
+                "mec_boundary": 3,
+                "mec_disk": n,
+                "mec_nonobtuse": 3,
+            }
+        )
+    return counts
 
 
 def _metric_row_constraints(
@@ -982,22 +1005,48 @@ def _system_key(
     return json.dumps(payload, sort_keys=True, separators=(",", ":"))
 
 
+def _direct_system_key(
+    n: int,
+    order: Sequence[int],
+    rows: Sequence[MetricRow],
+    mec_apices: Sequence[int] | None = None,
+) -> str:
+    """Canonical identity payload for one versioned direct source."""
+
+    payload: dict[str, Any] = {
+        "n": n,
+        "order": list(order),
+        "rows": [row.as_dict() for row in rows],
+    }
+    if mec_apices is not None:
+        payload["mec_apices"] = list(mec_apices)
+    return json.dumps(payload, sort_keys=True, separators=(",", ":"))
+
+
 def _direct_system_from_source(
     root: object, path: Path, source_sha256: str
 ) -> tuple[str, dict[str, Any]]:
     """Validate one canonical direct metric-system source document."""
 
-    required_keys = {
+    legacy_keys = {
         "schema",
         "system_id",
         "n",
         "order",
         "rows",
     }
-    if type(root) is not dict or set(root) != required_keys:
+    if type(root) is not dict:
         raise ValueError(f"direct metric source at {path} has the wrong keys")
-    if root["schema"] != DIRECT_SYSTEM_SOURCE_SCHEMA:
+    schema = root.get("schema")
+    if schema not in DIRECT_SYSTEM_SOURCE_SCHEMAS:
         raise ValueError(f"direct metric source at {path} has the wrong schema")
+    required_keys = (
+        legacy_keys
+        if schema == DIRECT_SYSTEM_SOURCE_SCHEMA
+        else legacy_keys | {"mec_apices"}
+    )
+    if set(root) != required_keys:
+        raise ValueError(f"direct metric source at {path} has the wrong keys")
 
     n = root["n"]
     if type(n) is not int or not 3 <= n <= DIRECT_SYSTEM_MAX_N:
@@ -1064,15 +1113,22 @@ def _direct_system_from_source(
     if rows != sorted(rows, key=lambda row: (row.center, row.support)):
         raise ValueError(f"direct metric source rows at {path} are not canonical")
 
-    key = json.dumps(
-        {
-            "n": n,
-            "order": list(order),
-            "rows": [row.as_dict() for row in rows],
-        },
-        sort_keys=True,
-        separators=(",", ":"),
-    )
+    mec_apices: tuple[int, int, int] | None = None
+    if schema == DIRECT_SYSTEM_MEC_SOURCE_SCHEMA:
+        raw_mec_apices = root["mec_apices"]
+        if (
+            type(raw_mec_apices) is not list
+            or len(raw_mec_apices) != 3
+            or any(type(apex) is not int for apex in raw_mec_apices)
+            or len(set(raw_mec_apices)) != 3
+            or any(apex not in range(n) for apex in raw_mec_apices)
+        ):
+            raise ValueError(
+                f"direct metric source at {path} has invalid MEC apices"
+            )
+        mec_apices = tuple(raw_mec_apices)
+
+    key = _direct_system_key(n, order, rows, mec_apices)
     expected_system_id = hashlib.sha256(key.encode()).hexdigest()[:20]
     if type(root["system_id"]) is not str or root["system_id"] != expected_system_id:
         raise ValueError(
@@ -1083,9 +1139,9 @@ def _direct_system_from_source(
         "json_pointer": "",
         "family": "direct-metric-system",
         "sha256": source_sha256,
-        "context": {"schema": DIRECT_SYSTEM_SOURCE_SCHEMA},
+        "context": {"schema": schema},
     }
-    return key, {
+    system = {
         "system_id": expected_system_id,
         "n": n,
         "profile": [],
@@ -1093,6 +1149,9 @@ def _direct_system_from_source(
         "rows": [row.as_dict() for row in rows],
         "sources": [source],
     }
+    if mec_apices is not None:
+        system["mec_apices"] = list(mec_apices)
+    return key, system
 
 
 def extract_systems(paths: Sequence[Path]) -> tuple[list[dict[str, Any]], dict[str, Any]]:
@@ -1121,9 +1180,9 @@ def extract_systems(paths: Sequence[Path]) -> tuple[list[dict[str, Any]], dict[s
             "order",
             "rows",
         }.issubset(root)
-        if direct_shape and root.get("schema") != DIRECT_SYSTEM_SOURCE_SCHEMA:
+        if direct_shape and root.get("schema") not in DIRECT_SYSTEM_SOURCE_SCHEMAS:
             raise ValueError(f"direct metric source at {path} has the wrong schema")
-        if type(root) is dict and root.get("schema") == DIRECT_SYSTEM_SOURCE_SCHEMA:
+        if type(root) is dict and root.get("schema") in DIRECT_SYSTEM_SOURCE_SCHEMAS:
             raw_direct_systems += 1
             key, direct_system = _direct_system_from_source(
                 root, path, source_sha256
@@ -1238,7 +1297,12 @@ def _probe_system(
         MetricRow(int(row["center"]), tuple(row["support"]), bool(row["exact"]))
         for row in system["rows"]
     )
-    constraint_counts = _constraint_counts(n, rows)
+    mec_apices = (
+        tuple(int(apex) for apex in system["mec_apices"])
+        if "mec_apices" in system
+        else None
+    )
+    constraint_counts = _constraint_counts(n, rows, mec_apices)
     equality_core = _duplicate_center_core(rows, n)
     if equality_core is not None:
         equality_constraints = (
@@ -1403,6 +1467,12 @@ def _probe_system(
         cx, cy = points[c]
         return (bx - ax) * (cy - ay) - (by - ay) * (cx - ax)
 
+    def dot_at(vertex: int, left: int, right: int) -> Any:
+        vx, vy = points[vertex]
+        lx, ly = points[left]
+        rx, ry = points[right]
+        return (lx - vx) * (rx - vx) + (ly - vy) * (ry - vy)
+
     row_constraints = _metric_row_constraints(n, rows, d2)
     equalities = [
         constraint
@@ -1426,6 +1496,28 @@ def _probe_system(
         for _tag, _row_equalities, row_exactness in row_constraints
         for constraint in row_exactness
     ]
+    mec_constraints: list[Any] = []
+    mec_variables: tuple[Any, Any, Any] | None = None
+    if mec_apices is not None:
+        mec_x, mec_y, mec_r2 = z3.Reals("mec_x mec_y mec_r2")
+        mec_variables = (mec_x, mec_y, mec_r2)
+
+        def mec_d2(point: int) -> Any:
+            px, py = points[point]
+            return (px - mec_x) ** 2 + (py - mec_y) ** 2
+
+        mec_constraints.append(mec_r2 > 0)
+        mec_constraints.extend(mec_d2(apex) == mec_r2 for apex in mec_apices)
+        mec_constraints.extend(mec_r2 - mec_d2(point) >= 0 for point in range(n))
+        mec_constraints.extend(
+            dot_at(
+                apex,
+                mec_apices[(index + 1) % 3],
+                mec_apices[(index + 2) % 3],
+            )
+            >= 0
+            for index, apex in enumerate(mec_apices)
+        )
 
     timeout_ms = max(1, int(timeout_s * 1000))
 
@@ -1464,7 +1556,7 @@ def _probe_system(
 
     solver = new_solver()
     stages = []
-    metric_constraints = equalities + distinctness + exactness
+    metric_constraints = equalities + distinctness + exactness + mec_constraints
     full_constraints = metric_constraints + convexity
     final_model = None
     decisive_stage = None
@@ -1495,7 +1587,7 @@ def _probe_system(
         else:
             # Exact disequalities can obscure a simpler convex-only kill.
             convex_solver = new_solver()
-            convex_relaxation = equalities + distinctness + convexity
+            convex_relaxation = equalities + distinctness + convexity + mec_constraints
             convex_stage, convex_verdict, _ = check_stage(
                 convex_solver,
                 "convex-only-relaxation",
@@ -1593,6 +1685,14 @@ def _probe_system(
         "numeric_min_exact_radius_gap": min(exact_gaps, default=None),
     }
     result["model"] = exact_coordinates
+    if mec_variables is not None:
+        mec_x, mec_y, mec_r2 = mec_variables
+        result["mec_model"] = {
+            "x": encode_value(mec_x)[0],
+            "y": encode_value(mec_y)[0],
+            "r2": encode_value(mec_r2)[0],
+            "apices": list(mec_apices),
+        }
     if bad_assertions:
         result["status"] = "ERROR"
         result["decisive_stage"] = None

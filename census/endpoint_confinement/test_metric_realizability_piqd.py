@@ -297,6 +297,49 @@ def _direct_source_document() -> dict[str, Any]:
     }
 
 
+def _mec_direct_source_document() -> dict[str, Any]:
+    system: dict[str, Any] = {
+        "n": 4,
+        "order": [0, 1, 2, 3],
+        "rows": [],
+        "mec_apices": [0, 1, 2],
+    }
+    identity = json.dumps(system, sort_keys=True, separators=(",", ":"))
+    return {
+        "schema": producer.DIRECT_SYSTEM_MEC_SOURCE_SCHEMA,
+        "system_id": hashlib.sha256(identity.encode()).hexdigest()[:20],
+        **system,
+    }
+
+
+def _mec_values(variable_ids: Sequence[str], *, r2: str = "(/ 1 2)") -> str:
+    values = {
+        "x_0": "0",
+        "y_0": "0",
+        "x_1": "1",
+        "y_1": "0",
+        "x_2": "1",
+        "y_2": "1",
+        "x_3": "0",
+        "y_3": "1",
+        "mec_x": "(/ 1 2)",
+        "mec_y": "(/ 1 2)",
+        "mec_r2": r2,
+    }
+    terms = {
+        item["id"]: item["term"]
+        for item in subject._variables(4, include_mec=True)
+    }
+    return (
+        "("
+        + " ".join(
+            f"({terms[variable_id]} {values[terms[variable_id]]})"
+            for variable_id in variable_ids
+        )
+        + ")"
+    )
+
+
 def _fixture_pins() -> list[dict[str, object]]:
     return [
         {"term": "x_2", "numerator": 4, "denominator": 5},
@@ -822,6 +865,209 @@ def test_direct_source_reconstructs_exact_six_point_row_and_capture(
         item for item in prepared.query.source_files if item.path == "input-0000.json"
     )
     assert captured.payload == source_bytes
+
+
+def test_mec_direct_source_binds_apices_atoms_and_query_custody(
+    tmp_path: Path, monkeypatch: Any
+) -> None:
+    monkeypatch.setattr(producer, "ROOT", tmp_path)
+    monkeypatch.setattr(subject, "_REPO_ROOT", tmp_path)
+    document = _mec_direct_source_document()
+    source = tmp_path / "direct-mec-system.json"
+    source_bytes = (
+        json.dumps(document, sort_keys=True, separators=(",", ":")) + "\n"
+    ).encode()
+    source.write_bytes(source_bytes)
+
+    [system], extraction = producer.extract_systems((source,))
+
+    assert system["mec_apices"] == [0, 1, 2]
+    assert system["sources"][0]["context"] == {
+        "schema": producer.DIRECT_SYSTEM_MEC_SOURCE_SCHEMA
+    }
+    assert extraction["raw_direct_systems"] == 1
+    expected_counts = {
+        "mec_radius_pos": 1,
+        "mec_boundary": 3,
+        "mec_disk": 4,
+        "mec_nonobtuse": 3,
+    }
+    for stage, convexity, total in (
+        ("exact-metric-relaxation", 0, 21),
+        ("full-convex", 8, 29),
+        ("convex-only-relaxation", 8, 29),
+    ):
+        prepared = subject.prepare_stage(
+            system, stage, timeout_ms=1000, source_paths=(source,)
+        )
+        counts = prepared.source_record["constraint_counts"]
+        assert {key: counts[key] for key in expected_counts} == expected_counts
+        assert counts["convexity"] == convexity
+        assert counts["total"] == total
+        assert prepared.source_record["system_sha256"] == _sha(
+            subject._canonical(system)
+        )
+        assert prepared.query.descriptor["semantic_input"]["system"] == system
+        assert prepared.query.descriptor["variables"][-3:] == [
+            {"id": "z000-mec-x", "term": "mec_x", "sort": "Real"},
+            {"id": "z001-mec-y", "term": "mec_y", "sort": "Real"},
+            {"id": "z002-mec-r2", "term": "mec_r2", "sort": "Real"},
+        ]
+        assert prepared.query.descriptor["solve"]["readback_variable_ids"][-3:] == [
+            "z000-mec-x",
+            "z001-mec-y",
+            "z002-mec-r2",
+        ]
+        assert {
+            "(declare-fun mec_x () Real)",
+            "(declare-fun mec_y () Real)",
+            "(declare-fun mec_r2 () Real)",
+            "(assert (> mec_r2 0))",
+            "(assert (= (+ (* (- x_0 mec_x) (- x_0 mec_x)) (* (- y_0 mec_y) (- y_0 mec_y))) mec_r2))",
+            "(assert (>= (- mec_r2 (+ (* (- x_3 mec_x) (- x_3 mec_x)) (* (- y_3 mec_y) (- y_3 mec_y)))) 0))",
+            "(assert (>= (+ (* (- x_1 x_0) (- x_2 x_0)) (* (- y_1 y_0) (- y_2 y_0))) 0))",
+        } <= set(prepared.query.journal_commands)
+        captured = next(
+            item
+            for item in prepared.query.source_files
+            if item.path == "input-0000.json"
+        )
+        assert captured.payload == source_bytes
+
+    changed = dict(document)
+    changed["mec_apices"] = [0, 1, 3]
+    changed_identity = {
+        key: changed[key] for key in ("n", "order", "rows", "mec_apices")
+    }
+    changed_id = hashlib.sha256(
+        json.dumps(
+            changed_identity, sort_keys=True, separators=(",", ":")
+        ).encode()
+    ).hexdigest()[:20]
+    assert changed_id != document["system_id"]
+
+
+@pytest.mark.parametrize(
+    "mec_apices",
+    ([0, 1], [0, 1, 1], [0, 1, 4], [0, 1, True], "0,1,2"),
+)
+def test_mec_direct_source_strictly_rejects_invalid_apices(
+    tmp_path: Path, mec_apices: object
+) -> None:
+    document = _mec_direct_source_document()
+    document["mec_apices"] = mec_apices
+    source = tmp_path / "bad-mec-apices.json"
+    source.write_text(json.dumps(document), encoding="utf-8")
+    with pytest.raises(ValueError, match="invalid MEC apices"):
+        producer.extract_systems((source,))
+
+
+def test_mec_runtime_shape_and_system_id_fail_closed() -> None:
+    document = _mec_direct_source_document()
+    system = {
+        "system_id": document["system_id"],
+        "n": document["n"],
+        "profile": [],
+        "order": document["order"],
+        "rows": document["rows"],
+        "sources": [],
+        "mec_apices": document["mec_apices"],
+    }
+    assert subject._validate_system(system) == system
+    legacy = _smoke_sat()
+    assert subject._validate_system(legacy) == legacy
+    _legacy_commands, legacy_counts = subject.build_stage_smt2(
+        legacy, "full-convex", _fixture_only=True
+    )
+    assert not any(key.startswith("mec_") for key in legacy_counts)
+    crossed = json.loads(json.dumps(system))
+    crossed["mec_apices"] = [0, 1, 3]
+    with pytest.raises(subject.EndpointMetricPiqdError, match="does not bind"):
+        subject._validate_system(crossed)
+    malformed = json.loads(json.dumps(system))
+    malformed["mec_apices"] = [0, 0, 2]
+    with pytest.raises(subject.EndpointMetricPiqdError, match="apices are invalid"):
+        subject._validate_system(malformed)
+
+    rows = tuple(
+        producer.MetricRow(row["center"], tuple(row["support"]), row["exact"])
+        for row in system["rows"]
+    )
+    assert producer._constraint_counts(
+        system["n"], rows, system.get("mec_apices")
+    ) == {
+        "equalities": 0,
+        "distinctness": 6,
+        "convex_order": 8,
+        "exact_exclusions": 0,
+        "mec_radius_pos": 1,
+        "mec_boundary": 3,
+        "mec_disk": 4,
+        "mec_nonobtuse": 3,
+    }
+
+
+def test_direct_schema_versions_do_not_accept_each_others_shape(tmp_path: Path) -> None:
+    missing = _mec_direct_source_document()
+    del missing["mec_apices"]
+    missing_path = tmp_path / "v2-missing-mec.json"
+    missing_path.write_text(json.dumps(missing), encoding="utf-8")
+    with pytest.raises(ValueError, match="wrong keys"):
+        producer.extract_systems((missing_path,))
+
+    legacy_extra = _direct_source_document()
+    legacy_extra["mec_apices"] = [0, 1, 2]
+    legacy_path = tmp_path / "v1-extra-mec.json"
+    legacy_path.write_text(json.dumps(legacy_extra), encoding="utf-8")
+    with pytest.raises(ValueError, match="wrong keys"):
+        producer.extract_systems((legacy_path,))
+
+
+def test_mec_exact_fraction_replay_covers_every_assertion(
+    tmp_path: Path, monkeypatch: Any
+) -> None:
+    monkeypatch.setattr(producer, "ROOT", tmp_path)
+    monkeypatch.setattr(subject, "_REPO_ROOT", tmp_path)
+    source = tmp_path / "direct-mec-system.json"
+    source.write_text(
+        json.dumps(
+            _mec_direct_source_document(), sort_keys=True, separators=(",", ":")
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    [system], _extraction = producer.extract_systems((source,))
+    prepared = subject.prepare_stage(
+        system, "full-convex", timeout_ms=1000, source_paths=(source,)
+    )
+    variable_ids = prepared.query.descriptor["solve"]["readback_variable_ids"]
+    replay = subject.verify_sat_model(
+        prepared.query, "z3", "(model)", _mec_values(variable_ids)
+    )
+    assert replay.accepted is True
+    assert replay.evidence["checks"] == {
+        key: value
+        for key, value in prepared.source_record["constraint_counts"].items()
+        if key != "total"
+    }
+    assert replay.evidence["checks"]["mec_radius_pos"] == 1
+    assert replay.evidence["checks"]["mec_boundary"] == 3
+    assert replay.evidence["checks"]["mec_disk"] == 4
+    assert replay.evidence["checks"]["mec_nonobtuse"] == 3
+    assert replay.evidence["circumscribed_mec"] == {
+        "x": "1/2",
+        "y": "1/2",
+        "r2": "1/2",
+        "apices": [0, 1, 2],
+    }
+    rejected = subject.verify_sat_model(
+        prepared.query,
+        "z3",
+        "(model)",
+        _mec_values(variable_ids, r2="(/ 1 4)"),
+    )
+    assert rejected.accepted is False
+    assert rejected.evidence == {"reason": "mec_boundary"}
 
 
 @pytest.mark.parametrize(

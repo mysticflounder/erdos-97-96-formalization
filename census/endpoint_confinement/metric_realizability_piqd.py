@@ -1,7 +1,13 @@
 """PIQD Z3 adapter for endpoint-confinement metric realizability.
 
 This is finite diagnostic infrastructure.  UNSAT is discovery-only, while SAT
-is retained only after exact-rational replay of every generated assertion.
+is retained only after exact-rational replay of every generated assertion.  A
+version-2 direct system also exposes the circumscribed-MEC constraints named by
+``CircumscribedMECPacket.radius_pos``,
+``CircumscribedMECPacket.moser_on_boundary``, and
+``CircumscribedMECPacket.disk_contains_A``; its nonobtuse apex-triangle packet
+is replayed alongside them.  The quantified minimum-radius clause remains
+outside this finite exposed packet.
 """
 
 from __future__ import annotations
@@ -163,13 +169,17 @@ def _validate_builtin_tree(value: object, where: str) -> None:
 
 
 def _validate_system(value: object) -> dict[str, Any]:
-    if type(value) is not dict or set(value) != {
+    legacy_keys = {
         "system_id",
         "n",
         "profile",
         "order",
         "rows",
         "sources",
+    }
+    if type(value) is not dict or set(value) not in {
+        frozenset(legacy_keys),
+        frozenset(legacy_keys | {"mec_apices"}),
     }:
         raise EndpointMetricPiqdError("metric system has the wrong keys")
     _validate_builtin_tree(value, "metric system")
@@ -205,6 +215,28 @@ def _validate_system(value: object) -> dict[str, Any]:
             or type(exact) is not bool
         ):
             raise EndpointMetricPiqdError("metric row is invalid")
+    if "mec_apices" in system:
+        mec_apices = system["mec_apices"]
+        if (
+            type(mec_apices) is not list
+            or len(mec_apices) != 3
+            or any(type(apex) is not int for apex in mec_apices)
+            or len(set(mec_apices)) != 3
+            or any(apex not in range(n) for apex in mec_apices)
+        ):
+            raise EndpointMetricPiqdError("metric system MEC apices are invalid")
+        rows = tuple(
+            producer.MetricRow(row["center"], tuple(row["support"]), row["exact"])
+            for row in system["rows"]
+        )
+        identity = producer._direct_system_key(
+            n, system["order"], rows, mec_apices
+        )
+        expected_system_id = hashlib.sha256(identity.encode()).hexdigest()[:20]
+        if system["system_id"] != expected_system_id:
+            raise EndpointMetricPiqdError(
+                "metric system id does not bind its MEC apices"
+            )
     return system
 
 
@@ -347,12 +379,26 @@ def _d2(left: int, right: int) -> str:
     return f"(+ (* {dx} {dx}) (* {dy} {dy}))"
 
 
+def _mec_d2(point: int) -> str:
+    dx = _difference(_coordinate(point, "x"), "mec_x")
+    dy = _difference(_coordinate(point, "y"), "mec_y")
+    return f"(+ (* {dx} {dx}) (* {dy} {dy}))"
+
+
 def _cross(a: int, b: int, c: int) -> str:
     abx = _difference(_coordinate(b, "x"), _coordinate(a, "x"))
     aby = _difference(_coordinate(b, "y"), _coordinate(a, "y"))
     acx = _difference(_coordinate(c, "x"), _coordinate(a, "x"))
     acy = _difference(_coordinate(c, "y"), _coordinate(a, "y"))
     return f"(- (* {abx} {acy}) (* {aby} {acx}))"
+
+
+def _dot_at(vertex: int, left: int, right: int) -> str:
+    vlx = _difference(_coordinate(left, "x"), _coordinate(vertex, "x"))
+    vly = _difference(_coordinate(left, "y"), _coordinate(vertex, "y"))
+    vrx = _difference(_coordinate(right, "x"), _coordinate(vertex, "x"))
+    vry = _difference(_coordinate(right, "y"), _coordinate(vertex, "y"))
+    return f"(+ (* {vlx} {vrx}) (* {vly} {vry}))"
 
 
 def _fixture_pin_records(
@@ -418,6 +464,24 @@ def _stage_atoms(
         "distinctness": [],
         "convexity": [],
     }
+    mec_apices = system.get("mec_apices")
+    if mec_apices is not None:
+        atoms.update(
+            {
+                "mec_radius_pos": ["(> mec_r2 0)"],
+                "mec_boundary": [
+                    f"(= {_mec_d2(apex)} mec_r2)" for apex in mec_apices
+                ],
+                "mec_disk": [
+                    f"(>= (- mec_r2 {_mec_d2(point)}) 0)"
+                    for point in range(n)
+                ],
+                "mec_nonobtuse": [
+                    f"(>= {_dot_at(apex, mec_apices[(index + 1) % 3], mec_apices[(index + 2) % 3])} 0)"
+                    for index, apex in enumerate(mec_apices)
+                ],
+            }
+        )
     for row in system["rows"]:
         center, support = row["center"], row["support"]
         reference = _d2(center, support[0])
@@ -441,6 +505,12 @@ def _stage_atoms(
             for point in order
             if point not in {left, right}
         )
+    mec_categories = {
+        "mec_radius_pos",
+        "mec_boundary",
+        "mec_disk",
+        "mec_nonobtuse",
+    } & set(atoms)
     included = {
         "exact-metric-relaxation": {
             "gauge",
@@ -448,7 +518,7 @@ def _stage_atoms(
             "equalities",
             "exactness",
             "distinctness",
-        },
+        } | mec_categories,
         "full-convex": set(atoms),
         "convex-only-relaxation": {
             "gauge",
@@ -456,7 +526,7 @@ def _stage_atoms(
             "equalities",
             "distinctness",
             "convexity",
-        },
+        } | mec_categories,
     }[stage]
     selected = {
         name: values if name in included else [] for name, values in atoms.items()
@@ -481,6 +551,14 @@ def build_stage_smt2(
                 f"(declare-fun y_{point} () Real)",
             ]
         )
+    if "mec_apices" in system:
+        commands.extend(
+            [
+                "(declare-fun mec_x () Real)",
+                "(declare-fun mec_y () Real)",
+                "(declare-fun mec_r2 () Real)",
+            ]
+        )
     for category in (
         "gauge",
         "fixture_pins",
@@ -488,17 +566,30 @@ def build_stage_smt2(
         "exactness",
         "distinctness",
         "convexity",
+        "mec_radius_pos",
+        "mec_boundary",
+        "mec_disk",
+        "mec_nonobtuse",
     ):
-        commands.extend(f"(assert {atom})" for atom in atoms[category])
+        commands.extend(f"(assert {atom})" for atom in atoms.get(category, ()))
     return tuple(commands), counts
 
 
-def _variables(n: int) -> list[dict[str, str]]:
-    return [
+def _variables(n: int, *, include_mec: bool = False) -> list[dict[str, str]]:
+    variables = [
         {"id": f"p{point:03d}-{axis}", "term": f"{axis}_{point}", "sort": "Real"}
         for point in range(n)
         for axis in ("x", "y")
     ]
+    if include_mec:
+        variables.extend(
+            [
+                {"id": "z000-mec-x", "term": "mec_x", "sort": "Real"},
+                {"id": "z001-mec-y", "term": "mec_y", "sort": "Real"},
+                {"id": "z002-mec-r2", "term": "mec_r2", "sort": "Real"},
+            ]
+        )
+    return variables
 
 
 def prepare_stage(
@@ -549,7 +640,7 @@ def prepare_stage(
     producer_bytes = implementation_sources[1][2]
     commands, counts = build_stage_smt2(system, stage, _fixture_only=_fixture_only)
     journal = b"".join(command.encode() + b"\n" for command in commands)
-    variables = _variables(system["n"])
+    variables = _variables(system["n"], include_mec="mec_apices" in system)
     input_records = [
         {
             "path": os.path.relpath(item.path, producer.ROOT),
@@ -769,6 +860,26 @@ def _orientation(
     ) * (points[c][0] - points[a][0])
 
 
+def _distance_to(
+    point: tuple[Fraction, Fraction], center: tuple[Fraction, Fraction]
+) -> Fraction:
+    return (point[0] - center[0]) ** 2 + (point[1] - center[1]) ** 2
+
+
+def _dot_product_at(
+    points: Mapping[int, tuple[Fraction, Fraction]],
+    vertex: int,
+    left: int,
+    right: int,
+) -> Fraction:
+    return (
+        (points[left][0] - points[vertex][0])
+        * (points[right][0] - points[vertex][0])
+        + (points[left][1] - points[vertex][1])
+        * (points[right][1] - points[vertex][1])
+    )
+
+
 def verify_sat_model(
     query: neutral.SourceSemanticQuery,
     solver: str,
@@ -807,6 +918,44 @@ def verify_sat_model(
         "distinctness": 0,
         "convexity": 0,
     }
+    mec_apices = system.get("mec_apices")
+    mec_center: tuple[Fraction, Fraction] | None = None
+    mec_r2: Fraction | None = None
+    if mec_apices is not None:
+        checked.update(
+            {
+                "mec_radius_pos": 0,
+                "mec_boundary": 0,
+                "mec_disk": 0,
+                "mec_nonobtuse": 0,
+            }
+        )
+        mec_center = (readback["mec_x"], readback["mec_y"])
+        mec_r2 = readback["mec_r2"]
+        checked["mec_radius_pos"] += 1
+        if mec_r2 <= 0:
+            return neutral.SemanticVerification(False, {"reason": "mec_radius_pos"})
+        for apex in mec_apices:
+            checked["mec_boundary"] += 1
+            if _distance_to(points[apex], mec_center) != mec_r2:
+                return neutral.SemanticVerification(
+                    False, {"reason": "mec_boundary"}
+                )
+        for point in range(system["n"]):
+            checked["mec_disk"] += 1
+            if mec_r2 - _distance_to(points[point], mec_center) < 0:
+                return neutral.SemanticVerification(False, {"reason": "mec_disk"})
+        for index, apex in enumerate(mec_apices):
+            checked["mec_nonobtuse"] += 1
+            if _dot_product_at(
+                points,
+                apex,
+                mec_apices[(index + 1) % 3],
+                mec_apices[(index + 2) % 3],
+            ) < 0:
+                return neutral.SemanticVerification(
+                    False, {"reason": "mec_nonobtuse"}
+                )
     if points[0] != (0, 0) or points[1] != (1, 0):
         return neutral.SemanticVerification(False, {"reason": "gauge"})
     for pin in fixture_pins:
@@ -852,25 +1001,30 @@ def verify_sat_model(
         or sum(checked.values()) != expected["total"]
     ):
         raise EndpointMetricPiqdError("SAT replay did not cover every asserted atom")
-    return neutral.SemanticVerification(
-        True,
-        {
-            "system_id": system["system_id"],
-            "stage": stage,
-            "model_sha256": _sha(model.encode()),
-            "values_sha256": _sha(values.encode()),
-            "exact_rational_readback": True,
-            "all_asserted_atoms_replayed": True,
-            "checks": checked,
-            "coordinates": {
-                str(point): {
-                    "x": str(points[point][0]),
-                    "y": str(points[point][1]),
-                }
-                for point in range(system["n"])
-            },
+    evidence = {
+        "system_id": system["system_id"],
+        "stage": stage,
+        "model_sha256": _sha(model.encode()),
+        "values_sha256": _sha(values.encode()),
+        "exact_rational_readback": True,
+        "all_asserted_atoms_replayed": True,
+        "checks": checked,
+        "coordinates": {
+            str(point): {
+                "x": str(points[point][0]),
+                "y": str(points[point][1]),
+            }
+            for point in range(system["n"])
         },
-    )
+    }
+    if mec_center is not None and mec_r2 is not None:
+        evidence["circumscribed_mec"] = {
+            "x": str(mec_center[0]),
+            "y": str(mec_center[1]),
+            "r2": str(mec_r2),
+            "apices": list(mec_apices),
+        }
+    return neutral.SemanticVerification(True, evidence)
 
 
 def _classification(engine: Mapping[str, object]) -> str:
@@ -2203,6 +2357,7 @@ def run_staged_system(
                 producer.MetricRow(row["center"], tuple(row["support"]), row["exact"])
                 for row in system["rows"]
             ),
+            system.get("mec_apices"),
         ),
         "route": "piqd-z3-qfnra",
         "workers": 1,
