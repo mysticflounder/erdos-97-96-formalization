@@ -1,0 +1,14 @@
+{
+  "base_head": "fe4a93750e88d386986215e20ac574a479ad8932",
+  "created_utc": "2026-09-03T13:00:00Z",
+  "durable_paths": [],
+  "generated_roots": [],
+  "lane_id": "c3-zero-cut-cap-intervals-20260903",
+  "manifest_sha256": "5603cb4840ad6138f842825e705d3955e2b5fd8889b95daab1d60f73ccd8bc1b",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/c3-zero-cut-cap-intervals-20260903.json",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/DRZeroCutCapIntervals.lean"
+  ],
+  "owner": "codex",
+  "schema": "worktree-lane-checkpoint/v1"
+}
