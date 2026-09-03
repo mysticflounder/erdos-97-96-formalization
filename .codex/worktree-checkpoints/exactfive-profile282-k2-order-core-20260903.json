@@ -1,0 +1,15 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "exactfive-profile282-k2-order-core-20260903",
+  "owner": "codex-rigid221",
+  "base_head": "05eee6511a2db25ed537328c2a3e9a5ccce0d0c0",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exactfive-profile282-k2-order-core-20260903.json",
+    "docs/plans/2026-09-03-profile282-k2-order-core.md",
+    "lean/Erdos9796Proof/P97/Census554/Profile282K2OrderCore.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-03T20:52:40Z",
+  "manifest_sha256": "9b0ed41a99092cc7d28246b138673db6ef446d8cc06a93300cb99d7d82a3bf66"
+}
