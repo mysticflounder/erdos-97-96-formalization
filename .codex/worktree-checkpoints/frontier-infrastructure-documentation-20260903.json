@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "frontier-infrastructure-documentation-20260903",
+  "owner": "codex",
+  "base_head": "29614dfc71e902523fbdbac5191c964a187282b7",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/frontier-infrastructure-documentation-20260903.json",
+    "docs/plans/2026-09-01-rigid221-exactfive-tight-cover.md"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-03T23:40:00Z",
+  "manifest_sha256": "0c823c23aa0a0704d1883319cf5e07f4b1668f98f5897743a8ca9450879a65b9"
+}

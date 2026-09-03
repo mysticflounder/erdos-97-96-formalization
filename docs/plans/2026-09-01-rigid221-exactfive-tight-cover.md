@@ -458,3 +458,21 @@ consumer `Balanced555SourceConfiguration.sharedPairAlternating_selectedAt`
 build under the governed workflow and are axiom-clean apart from the standard
 Lean core axioms.  This closes an adapter gap; it does not close the remaining
 distinct-fresh exact-five leaves, whose obstruction is still geometric.
+
+## Global source-count and three-fan infrastructure (2026-09-03)
+
+The exact-four physical consumer now exports the global count needed by the
+large-cardinality branch.  `carrier_card_le_goodOutsideSources_card_add_six`
+records that the carrier has at most six points outside the good-source count,
+and `seven_le_goodOutsideSources_card_of_card_gt_twelve` therefore gives seven
+good outside sources whenever `12 < |A|`.  The standalone
+`ATailSevenSourcesOutsideTwoShells` module also provides the corresponding
+five/seven-point complements of two selected four-point supports.
+
+The source-clean `ATail.ThreeFanOrderMetric` module supplies the finite
+three-fan separation classifier, the one-cross-alias classifier, the
+two-cross-alias impossibility, and the crossed Kalmanson metric terminal.  Its
+metric theorem is ready for a live three-row occurrence, but no current C3,
+exact-five, TriApex, or TwoSource packet supplies that occurrence.  These
+results are infrastructure rather than registry closure; the remaining
+terminal `sorry`s still need source-level incidence or order producers.
