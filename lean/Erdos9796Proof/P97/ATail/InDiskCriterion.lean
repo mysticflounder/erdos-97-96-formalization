@@ -261,7 +261,7 @@ theorem side_cubic_of_pow_four_criterion_of_circumradius_relation
         H * c ^ 4 ≤ H * (R ^ 2 * (4 * c ^ 2 - a ^ 2)) := hmul
         _ = (H * R ^ 2) * (4 * c ^ 2 - a ^ 2) := by ring
         _ = (a ^ 2 * b ^ 2 * c ^ 2) * (4 * c ^ 2 - a ^ 2) := by rw [hHR]
-    dsimp [H]
+    dsimp [H] at hmul'
     nlinarith [hmul']
   have hnonneg_left : 0 ≤ a ^ 2 * b := by positivity
   have hnonneg_right : 0 ≤ c * (a ^ 2 + b ^ 2 - c ^ 2) :=
