@@ -54,3 +54,11 @@ def test_bridge_theorem_holds_and_the_disk_hypothesis_is_load_bearing():
     in_t, in_v, out_t, out_v = G.bridge_statement_counts()
     assert (in_t, in_v) == (58368, 0)
     assert (out_t, out_v) == (94240, 35872)
+
+
+def test_slot_cubic_holds_and_needs_the_non_obtuse_hypothesis():
+    ok_t, ok_v, ob_t, ob_v = G.slot_cubic_counts()
+    assert (ok_t, ok_v) == (68940, 0)
+    # Every obtuse case fails, and for a plain reason: c(a^2+b^2-c^2) < 0
+    # while a^2 b > 0.  The hypothesis is load-bearing, not subtly so.
+    assert (ob_t, ob_v) == (31680, 31680)

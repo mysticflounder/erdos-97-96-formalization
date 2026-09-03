@@ -110,8 +110,9 @@ theorem gram_det_eq_zero (p u v : ℝ²) :
 
 /-- The Gram determinant of three plane vectors, written in coordinates.  Same
 statement as `gram_det_eq_zero`, with the points replaced by their two
-coordinates so that it composes with `dist_sq_coord`. -/
-private theorem gram_det_coord_eq_zero (px py ux uy vx vy : ℝ) :
+coordinates so that it composes with `dist_sq_coord`.  Used again in
+`ATail/CircumradiusRelation.lean`, so it is not `private`. -/
+theorem gram_det_coord_eq_zero (px py ux uy vx vy : ℝ) :
     (px * px + py * py)
         * ((ux * ux + uy * uy) * (vx * vx + vy * vy) - (ux * vx + uy * vy) ^ 2)
       - (px * ux + py * uy)
@@ -213,5 +214,58 @@ theorem pow_four_le_of_dist_eq_side_of_mem_disk
     (R2 := R ^ 2) (a2 := a ^ 2) (c2 := c ^ 2) (by positivity)
     (sq_nonneg c) hgram hdisk
   linear_combination h
+
+/-- **The side-length form of the in-disk criterion.**  The displayed
+circumradius/Heron relation is the squared identity
+
+  `16 R² K² = a² b² c²`,  `16 K² =
+  2a²b² + 2b²c² + 2c²a² - a⁴ - b⁴ - c⁴`.
+
+Once that relation is supplied by a circumcircle packet, the metric criterion
+`c⁴ ≤ R²(4c²-a²)` is exactly the first cyclic cubic inequality.  Keeping the
+relation as a hypothesis makes this algebraic bridge independent of the
+eventual source-specific area API. -/
+theorem side_cubic_of_pow_four_criterion_of_circumradius_relation
+    {a b c R : ℝ}
+    (ha : 0 < a) (hb : 0 < b) (hc : 0 < c)
+    (htriangle : 0 < a ^ 2 + b ^ 2 - c ^ 2)
+    (hcircum :
+      R ^ 2 *
+          (2 * a ^ 2 * b ^ 2 + 2 * b ^ 2 * c ^ 2 + 2 * c ^ 2 * a ^ 2
+            - a ^ 4 - b ^ 4 - c ^ 4) =
+        a ^ 2 * b ^ 2 * c ^ 2)
+    (hcriterion : c ^ 4 ≤ R ^ 2 * (4 * c ^ 2 - a ^ 2)) :
+    a ^ 2 * b ≤ c * (a ^ 2 + b ^ 2 - c ^ 2) := by
+  let H : ℝ :=
+    2 * a ^ 2 * b ^ 2 + 2 * b ^ 2 * c ^ 2 + 2 * c ^ 2 * a ^ 2
+      - a ^ 4 - b ^ 4 - c ^ 4
+  have hprod : 0 < a ^ 2 * b ^ 2 * c ^ 2 := by positivity
+  have hHpos : 0 < H := by
+    by_contra hH
+    have hHle : H ≤ 0 := le_of_not_gt hH
+    have hnonpos : R ^ 2 * H ≤ 0 :=
+      mul_nonpos_of_nonneg_of_nonpos (sq_nonneg R) hHle
+    have hcircum' : R ^ 2 * H = a ^ 2 * b ^ 2 * c ^ 2 := by
+      simpa [H] using hcircum
+    nlinarith
+  have hmul := mul_le_mul_of_nonneg_left hcriterion hHpos.le
+  have hsq :
+      a ^ 4 * b ^ 2 ≤ c ^ 2 * (a ^ 2 + b ^ 2 - c ^ 2) ^ 2 := by
+    have hcircum' : R ^ 2 * H = a ^ 2 * b ^ 2 * c ^ 2 := by
+      simpa [H] using hcircum
+    have hHR : H * R ^ 2 = a ^ 2 * b ^ 2 * c ^ 2 := by
+      simpa [mul_comm] using hcircum'
+    have hmul' : H * c ^ 4 ≤
+        (a ^ 2 * b ^ 2 * c ^ 2) * (4 * c ^ 2 - a ^ 2) := by
+      calc
+        H * c ^ 4 ≤ H * (R ^ 2 * (4 * c ^ 2 - a ^ 2)) := hmul
+        _ = (H * R ^ 2) * (4 * c ^ 2 - a ^ 2) := by ring
+        _ = (a ^ 2 * b ^ 2 * c ^ 2) * (4 * c ^ 2 - a ^ 2) := by rw [hHR]
+    dsimp [H]
+    nlinarith [hmul']
+  have hnonneg_left : 0 ≤ a ^ 2 * b := by positivity
+  have hnonneg_right : 0 ≤ c * (a ^ 2 + b ^ 2 - c ^ 2) :=
+    (mul_pos hc htriangle).le
+  nlinarith [hsq]
 
 end Problem97

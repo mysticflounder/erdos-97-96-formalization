@@ -5557,3 +5557,96 @@ conjectural.  **Obligation (i) is not closed.**  This section adds no new
 claim about it.
 
 Leaf unchanged: single `sorry`, `M = 18`.
+
+### 73. The circumradius relation is now Lean; the exclusion has one open link (2026-09-03)
+
+Item (2) of section 72's remaining gap is closed.  New file
+`lean/Erdos9796Proof/P97/ATail/CircumradiusRelation.lean`, four theorems, all
+axiom-clean `[propext, Classical.choice, Quot.sound]`.
+
+**The passage is exact, not lossy.**  Write `H` for the Heron polynomial
+`2a²b² + 2b²c² + 2c²a² − a⁴ − b⁴ − c⁴`, sixteen times the squared area.  Two
+identities carry the whole section:
+
+1. `a²b²c² = R² H` for a triangle inscribed in a circle of radius `R` — the
+   law of sines with everything squared;
+2. `c² H − a²b²(4c² − a²) = (a²b)² − (c(a²+b²−c²))²`, a `ring` identity.
+
+The second says the in-disk criterion `c⁴ ≤ R²(4c² − a²)` **is** the cubic
+`a²b ≤ c(a²+b²−c²)` with both sides squared.  Nothing is given away in the
+passage; what is needed is only the correct square root, and that is the sign
+of `a²+b²−c²` — the angle at the apex opposite the side `c` is not obtuse.
+The packet supplies it as `triangleNonObtuse`
+(`PartitionFromMEC.lean:339`).
+
+**The first identity needed no new geometry.**  `a²b²c² = R² H` is the *same*
+vanishing Gram determinant that `InDiskCriterion` already uses, read for the
+three apices instead of for an apex pair and a hit.  Setting
+`u = R² − ⟪B,C⟫`, `v = R² − ⟪A,C⟫`, `w = R² − ⟪A,B⟫`, the determinant
+`R⁶ − R²(p²+q²+r²) + 2pqr = 0` becomes `R²(2Σuv − Σu²) = 2uvw`, which is the
+relation.  So `gram_det_coord_eq_zero` now serves both files and is no longer
+`private`.  Nothing else about `InDiskCriterion.lean` changed.
+
+**The four theorems.**
+
+* `heronPoly` — the definition, and `heronPoly_coord`, which identifies it
+  with four times the squared signed area (by `ring`);
+* `circumradius_relation_of_dist` — `a²b²c² = R² · heronPoly a² b² c²` from
+  `dist A O = dist B O = dist C O = R` and the three side lengths;
+* `sq_mul_le_of_pow_four_le` — criterion plus relation plus non-obtuse gives
+  the cubic.  `H > 0` is **not** assumed: it follows from the relation, since
+  `a²b²c² > 0` and `R² ≥ 0` force both factors of `R² H` to be positive;
+* `sq_mul_le_of_dist_eq_side_of_mem_disk` — the composition with section 72,
+  taking a packet's metric data straight to the cubic.
+
+**Verification (EMPIRICALLY VERIFIED, plain arithmetic, no solver).**  The
+three identities were checked on 20000 exact-rational points each, with zero
+failures: the squared-cubic identity, `a²b²c² = R²H` at rational points on a
+circle, and `H = 4·(signed area)²`.  The composed theorem was then swept
+directly by `d1_cyclic_slot_geometry.slot_cubic_counts`: **68940**
+configurations meet every hypothesis and **0** violate the cubic.  The
+negative control drops only the non-obtuse hypothesis and every one of its
+**31680** cases fails — for a plain reason, that `c(a²+b²−c²) < 0` while
+`a²b > 0`, so the control confirms the hypothesis is load-bearing without
+being subtle.  Pinned by
+`test_slot_cubic_holds_and_needs_the_non_obtuse_hypothesis` (7 tests pass).
+
+**Updated link table for the cyclic exclusion.**
+
+| link | state |
+|---|---|
+| foreign hit in slot `(i,j)` ⟹ `c⁴ ≤ R²(4c² − a²)` | **Lean** (section 72) |
+| that criterion ⟹ the cubic `a²b ≤ c(a²+b²−c²)` | **Lean** (this section) |
+| three cubics ⟹ equilateral | **Lean** (section 68) |
+| at most one foreign hit per unordered pair | section 64, **PROOF SKETCH** |
+
+Three of the four links are Lean and axiom-clean.  The one open link is
+section 64, which remains the only conjectural step and is unchanged by this
+section.
+
+Two obligations were **not** discharged here and must not be read as such:
+assembling the three cyclic slots into one application of
+`eq_of_cyclic_side_inequalities` (the Lean pieces exist; the assembly against
+a live `SurplusCapPacket` is not written), and section 64 itself.
+
+**Build note.**  A peer lane held `.lake/lake-build.lock` throughout (pid
+55213, `TriApexEndpointRetainedOmission`).  Its lock was not touched.  Both
+files were checked with a direct `lean` invocation against a private olean
+tree holding only `Foundation.olean` and this lane's two modules, which
+writes nothing into `.lake`.  A focused `lake-build` of both modules is
+queued and its result belongs in the next checkpoint.
+
+Scope unchanged and not restated more strongly: one-radius arm, card-15
+gated, section 64 conjectural.  **Obligation (i) is not closed.**
+
+Leaf unchanged: single `sorry`, `M = 18`.
+
+**Reachability, stated plainly.**  All three of `CyclicSideInequalities.lean`,
+`InDiskCriterion.lean` and `CircumradiusRelation.lean` are **off-spine**.  A
+source scan for importers finds exactly one edge, `CircumradiusRelation`
+importing `InDiskCriterion`; nothing on the leaf's spine imports any of them.
+They are proved general algebra and geometry, available for use, and they
+reach no consumer today.  Under the `lean-usage` promotion contract that means
+they carry no promotion claim, and this section makes none: the measure `M` is
+untouched at 18 because none of this is yet wired to the leaf.  Wiring is the
+next item, and it is separate work from proving these statements.

@@ -287,3 +287,42 @@ def bridge_statement_counts(n=40, m=30, radii=(1.0, 2.3)):
                             out_t += 1
                             out_v += slack < -1e-9 * max(1.0, c ** 4)
     return in_t, in_v, out_t, out_v
+
+
+def slot_cubic_counts(n=48, radii=(1.0, 1.7)):
+    """Plan section 73's differential check of the composed Lean theorem
+    ``Problem97.sq_mul_le_of_dist_eq_side_of_mem_disk``.
+
+    A, B, C sit on the circle of radius R about the origin; a = dist B C,
+    b = dist C A, c = dist A B; q lies on both circle(A, c) and circle(B, a).
+    With q in the closed disk and the angle at C not obtuse, the theorem claims
+    the cubic a^2 b <= c (a^2 + b^2 - c^2).  Dropping only the non-obtuse
+    hypothesis is the negative control.
+
+    Returns ``(ok_tested, ok_violations, obtuse_tested, obtuse_violations)``.
+    """
+    ok_t = ok_v = ob_t = ob_v = 0
+    for radius in radii:
+        for i in range(1, n):
+            for j in range(1, n):
+                for k in range(1, n):
+                    ts = (2 * math.pi * i / n, 2 * math.pi * j / n,
+                          2 * math.pi * k / n)
+                    pts = [(radius * math.cos(t), radius * math.sin(t))
+                           for t in ts]
+                    pa, pb, pc = pts
+                    if abs(signed_area2(pa, pb, pc)) < 1e-9:
+                        continue
+                    a, b, c = dist(pb, pc), dist(pc, pa), dist(pa, pb)
+                    gap = a * a + b * b - c * c
+                    slack = c * gap - a * a * b
+                    for q in circle_intersections(pa, c, pb, a):
+                        if math.hypot(*q) > radius + TOL:
+                            continue
+                        if gap >= 0.0:
+                            ok_t += 1
+                            ok_v += slack < -1e-9 * max(1.0, abs(slack))
+                        else:
+                            ob_t += 1
+                            ob_v += slack < -1e-9 * max(1.0, abs(slack))
+    return ok_t, ok_v, ob_t, ob_v

@@ -30,7 +30,7 @@
     "scratch/runs/d1-triapex-plan-20260901/stage2-probe-01"
   ],
   "lane_id": "d1-triapex-plan-20260901",
-  "manifest_sha256": "e580141b19d9c2cfe3a5899a2b9ae83752b2a0e7f63b8d894d5e1a8792bb88c7",
+  "manifest_sha256": "b86807ae42c457aac696f0da2de1091a18ca30b10f7748756c5dd4ab7435a44d",
   "owned_paths": [
     ".codex/worktree-checkpoints/d1-triapex-plan-20260901.json",
     "census/card_head/d1_arcmidpoint_circle_necessity.py",
@@ -48,6 +48,7 @@
     "docs/solve-prompts/2026-09-02-false-of-crossBlockerCoincidence-resolution-prompt.md",
     "lean/Erdos9796Proof/P97/ATail/AdjacentCapContainment.lean",
     "lean/Erdos9796Proof/P97/ATail/ArcMidpointReflectionCollinear.lean",
+    "lean/Erdos9796Proof/P97/ATail/CircumradiusRelation.lean",
     "lean/Erdos9796Proof/P97/ATail/CyclicSideInequalities.lean",
     "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TriApexEndpointRetainedOmission.lean",
     "lean/Erdos9796Proof/P97/ATail/InDiskCriterion.lean"
