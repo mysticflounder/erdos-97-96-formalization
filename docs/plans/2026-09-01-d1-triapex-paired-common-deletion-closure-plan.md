@@ -3142,3 +3142,55 @@ closure" is withdrawn. A complete and correct ingress for this census cell
 would still leave `M = 18`, because the cell it closes is not a cell the
 measure counts and the cardinality arm it lives in is not one the leaf
 splits on.
+
+### 41. The forced collinearity is an ideal membership; its core is not the individually necessary set (2026-09-03)
+
+Section 40 leaves the metric layer short of the leaf on four counts. The one
+mechanism found in this lane that is not intrinsically tied to `card = 15` is
+the forced collinearity of section 36, because both Lean facts it would use —
+`signedArea2` (`Foundation.lean:75`) and `ConvexIndep.not_three_collinear`
+(`ConvexIndepHelpers.lean:67`) — are cardinality-generic. That makes the size
+of its hypothesis set the question worth measuring, and this section measures
+it (`artifacts/tools/collinear_core.py`, piqd Singular lane, mod 32003,
+`slimgb`, pattern `0d6996160cc83aab`, triple `A0:A1:P1.1`, the four
+Rabinowitsch pairs `P1.1:P2.3`, `P0.1:P2.2`, `P0.2:P0.3`, `P0.1:P1.4`).
+
+**The determinant lies in the ideal, by a second and independent route.**
+`reduce(det, slimgb(I))` is zero, in 3.1 s (job `5e81c969`). Section 36 read
+membership off equal finite vector-space dimensions; a zero normal form is a
+different Singular code path reaching the same conclusion, so the membership
+is now cross-checked rather than resting on one computation. It also settles
+what sections 38 and 39 left open: a certificate exists, and those searches
+failed on cofactor degree alone.
+
+**Independent deletion sweep** (job `b28f57d9`, exit 0, 699 s, all 27 metric
+generators). Dropping generator `j` alone and re-testing, 9 of the 27 are
+individually necessary and 18 are individually droppable. The nine are all
+shell equalities at the four cap-2 interior points, two apiece, plus a single
+apex-class equality:
+
+| index | equality |
+|---|---|
+| 1, 2 | `|P2.1 A0| = |P2.1 P1.1| = |P2.1 P2.3|` |
+| 4, 5 | `|P2.2 P0.3| = |P2.2 P2.1| = |P2.2 P2.4|` |
+| 7, 8 | `|P2.3 P0.1| = |P2.3 P2.2| = |P2.3 P2.4|` |
+| 10, 11 | `|P2.4 A1| = |P2.4 P1.2| = |P2.4 P2.1|` |
+| 16 | `|A0 A2| = |A0 P2.2|` |
+
+**Those nine do not suffice** (job `799658d2`): restricted to them the ideal
+has dimension 5 and the determinant's normal form is non-zero. So the natural
+reading of the sweep — that the nine are the core — is wrong. Each of the
+eighteen is redundant given the other twenty-six, and they are still
+collectively load-bearing. Necessity one at a time is not joint sufficiency,
+and the sweep answers only the first question. A deletion-minimal sufficient
+subset needs sequential greedy deletion, where each successful drop is kept;
+that pass is running.
+
+**Claim scope.** A zero normal form proves membership, so every `dropped`
+verdict is a genuine sufficiency claim for the smaller hypothesis set. A
+non-zero normal form is not the converse: the determinant may still vanish on
+the variety through the radical. So `kept` means "not shown redundant", never
+"shown necessary for collinearity", and this mines a sufficient core, never a
+provably minimal one.
+
+Leaf unchanged: single `sorry`, `M = 18`.
