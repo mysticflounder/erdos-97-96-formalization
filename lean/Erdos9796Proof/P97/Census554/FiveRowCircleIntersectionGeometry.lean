@@ -28,7 +28,7 @@ namespace FiveRowCircleIntersectionGeometry
 /-- A positively oriented equilateral triangle has central oriented angle
 `pi / 3`.  This local adapter keeps the orientation explicit, so it agrees
 definitionally with `arcAngle`'s `stdOrientation`. -/
-private theorem equilateral_oangle_toReal_eq_pi_div_three
+theorem equilateral_oangle_toReal_eq_pi_div_three
     {o a c : ℝ²} {r : ℝ}
     (hr : 0 < r)
     (ha : dist a o = r) (hc : dist c o = r) (hac : dist a c = r)

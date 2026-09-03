@@ -1,0 +1,14 @@
+{
+  "base_head": "58846e40cac2bdd514d446b8edf15501fbe8b1e6",
+  "created_utc": "2026-09-03T09:15:00Z",
+  "durable_paths": [],
+  "generated_roots": [],
+  "lane_id": "equilateral-angle-export-20260903",
+  "manifest_sha256": "adef47fe1a4ea178a56c18f5a646148d7ff34027a78852e0e21dcaabd5f02119",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/equilateral-angle-export-20260903.json",
+    "lean/Erdos9796Proof/P97/Census554/FiveRowCircleIntersectionGeometry.lean"
+  ],
+  "owner": "codex",
+  "schema": "worktree-lane-checkpoint/v1"
+}
