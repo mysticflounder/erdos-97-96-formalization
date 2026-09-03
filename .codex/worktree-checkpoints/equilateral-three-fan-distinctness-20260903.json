@@ -1,0 +1,16 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "equilateral-three-fan-distinctness-20260903",
+  "owner": "codex-rigid221",
+  "base_head": "927720d0af25f9d370b526aff82a008daf9f2c10",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/equilateral-three-fan-distinctness-20260903.json",
+    "docs/plans/2026-09-03-equilateral-three-fan-distinctness.md",
+    "docs/skeptic-equilateral-three-fan-distinctness-2026-09-03.md",
+    "lean/Erdos9796Proof/P97/Census554/EquilateralThreeFanCollision.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-03T17:23:44Z",
+  "manifest_sha256": "47b78fc3ae9ef2682de20f20c23bc6dc8b3082443519995ea09cf8c4ffd48388"
+}
