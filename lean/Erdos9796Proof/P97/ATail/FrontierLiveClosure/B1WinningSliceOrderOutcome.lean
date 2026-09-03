@@ -7,6 +7,8 @@ Authors: Adam McKenna
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.CyclicPairSeparation
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.B1FiveSixWaveIngress
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.B1Live
+import Erdos9796Proof.P97.ATail.TwoCenterCapLocalization
+import Erdos9796Proof.P97.ATail.TwoRadiusGridEscapeSynchronization
 
 /-!
 # B1 winning-slice order outcome
@@ -28,9 +30,511 @@ open ATailExactFourPhysicalConsumer
 open ATailExactFourRobustCapExpansion
 open ATailSurvivalCover
 open ATailUniqueFourLateChoiceTerminalScratch
+open ATailTwoRadiusGridEscapeSynchronization
+open Census554.CapSelectedGeometry
 open Census554.GeneralCarrierBridge
 
 attribute [local instance] Classical.propDecidable
+
+/-- The zero-cut boundary retained by the B1 escape ingress makes the strict
+second cap order-convex.  This is the cap-contiguity input for the missing
+winning-pair producer; it does not place the live mate or its row blocker. -/
+theorem B1EscapeRowProvenanceStar.secondCapInterior_boundaryOrderConvex
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F)}
+    (E : B1EscapeRowProvenanceStar C) :
+    BoundaryOrderConvex E.boundary
+      (S.capInteriorByIndex S.oppIndex2) := by
+  letI : NeZero E.boundary.n := ⟨Nat.ne_of_gt E.boundary_nonempty⟩
+  intro i j k hij hjk hi hk
+  have hw1 : E.boundary.boundary E.oppApex2_index =
+      (S.triangleByIndex S.oppIndex2).v1 :=
+    E.oppApex2_at_index.trans
+      (S.triangleByIndex_v1_eq_oppositeVertexByIndex S.oppIndex2).symm
+  have hu2 : E.boundary.boundary (zeroIndex E.boundary_nonempty) =
+      (S.triangleByIndex S.oppIndex2).v2 :=
+    E.surplusApex_at_zero.trans
+      S.triangleByIndex_oppIndex2_v2_eq_oppositeVertexByIndex_surplusIdx.symm
+  have hv3 : E.boundary.boundary E.oppApex1_index =
+      (S.triangleByIndex S.oppIndex2).v3 :=
+    E.oppApex1_at_index.trans
+      S.triangleByIndex_oppIndex2_v3_eq_oppositeVertexByIndex_oppIndex1.symm
+  rcases E.cap_blocks with hdirect | hmirror
+  · rcases hdirect.opp2_between (E.boundary.boundary i) hi with
+      ⟨ii, hzoi, hiiiv, hii⟩
+    have hii' : ii = i := E.boundary.boundary_injective (hii.trans rfl)
+    subst ii
+    rcases hdirect.opp2_between (E.boundary.boundary k) hk with
+      ⟨ik, hzok, hkiv, hik⟩
+    have hik' : ik = k := E.boundary.boundary_injective (hik.trans rfl)
+    subst ik
+    have hzoj : zeroIndex E.boundary_nonempty < j := hzoi.trans hij
+    have hjiv : j < E.oppApex1_index := hjk.trans hkiv
+    have hjcap : E.boundary.boundary j ∈ S.capByIndex S.oppIndex2 := by
+      apply (S.capByIndex_interval_of_global_indices
+        S.oppIndex2 E.boundary.boundary_ccw E.boundary.boundary_injective
+        E.boundary.boundary_image hdirect.apex_order.1
+        (Or.inr hdirect.apex_order.2) hw1 hu2 hv3
+        (E.boundary.boundary j)).2
+      exact ⟨j, hzoj.le, hjiv.le, rfl⟩
+    apply S.mem_capInteriorByIndex_of_mem_capByIndex_of_ne_outer
+      S.oppIndex2 hjcap
+    · rw [S.rightOuterVertexByIndex_oppIndex2_eq_oppositeVertexByIndex_surplusIdx,
+        ← E.surplusApex_at_zero]
+      intro h
+      exact (ne_of_gt hzoj) (E.boundary.boundary_injective h)
+    · rw [S.leftOuterVertexByIndex_oppIndex2_eq_oppositeVertexByIndex_oppIndex1,
+        ← E.oppApex1_at_index]
+      intro h
+      exact (ne_of_lt hjiv) (E.boundary.boundary_injective h)
+  · rcases hmirror.opp2_after (E.boundary.boundary i) hi with
+      ⟨ii, hivii, hii⟩
+    have hii' : ii = i := E.boundary.boundary_injective (hii.trans rfl)
+    subst ii
+    have hivj : E.oppApex1_index < j := hivii.trans hij
+    have hjcap : E.boundary.boundary j ∈ S.capByIndex S.oppIndex2 := by
+      apply (S.capByIndex_complement_interval_of_global_indices
+        S.oppIndex2 E.boundary.boundary_ccw E.boundary.boundary_injective
+        E.boundary.boundary_image hmirror.apex_order.1
+        hmirror.apex_order.2 hw1 hu2 hv3 (E.boundary.boundary j)).2
+      exact ⟨j, Or.inr hivj.le, rfl⟩
+    apply S.mem_capInteriorByIndex_of_mem_capByIndex_of_ne_outer
+      S.oppIndex2 hjcap
+    · rw [S.rightOuterVertexByIndex_oppIndex2_eq_oppositeVertexByIndex_surplusIdx,
+        ← E.surplusApex_at_zero]
+      intro h
+      have hjzero : j = zeroIndex E.boundary_nonempty :=
+        E.boundary.boundary_injective h
+      subst j
+      exact (Fin.not_lt_zero _ (hmirror.apex_order.1.trans
+        (hmirror.apex_order.2.trans hivj))).elim
+    · rw [S.leftOuterVertexByIndex_oppIndex2_eq_oppositeVertexByIndex_oppIndex1,
+        ← E.oppApex1_at_index]
+      intro h
+      exact (ne_of_gt hivj) (E.boundary.boundary_injective h)
+
+/-- An order-convex boundary block lies entirely on one side of any cut whose
+two endpoints are outside the block. -/
+theorem cyclicAdjacent_of_boundaryOrderConvex_of_endpoints_not_mem
+    {A : Finset ℝ²} (B : BoundaryIndexing A) (C : Finset ℝ²)
+    (hconvex : BoundaryOrderConvex B C)
+    {i j p q : Fin B.n}
+    (hi : B.boundary i ∉ C) (hj : B.boundary j ∉ C)
+    (hp : B.boundary p ∈ C) (hq : B.boundary q ∈ C) :
+    cyclicAdjacent i j p q := by
+  have forward : ∀ {x y : Fin B.n},
+      B.boundary x ∈ C → B.boundary y ∈ C →
+      SurplusCOMPGBank.btw i j x → SurplusCOMPGBank.btw i j y := by
+    intro x y hx hy hbetween
+    rcases hbetween with ⟨hix, hxj⟩ | ⟨hjx, hxi⟩
+    · by_cases hiy : i < y
+      · by_cases hyj : y < j
+        · exact Or.inl ⟨hiy, hyj⟩
+        · have hjy : j ≤ y := le_of_not_gt hyj
+          have hjne : j ≠ y := by
+            intro h
+            subst y
+            exact hj hy
+          have hjy' : j < y := by omega
+          exact (hj (hconvex hxj hjy' hx hy)).elim
+      · have hyi : y ≤ i := le_of_not_gt hiy
+        have hyne : y ≠ i := by
+          intro h
+          subst y
+          exact hi hy
+        have hyi' : y < i := by omega
+        exact (hi (hconvex hyi' hix hy hx)).elim
+    · by_cases hjy : j < y
+      · by_cases hyi : y < i
+        · exact Or.inr ⟨hjy, hyi⟩
+        · have hiy : i ≤ y := le_of_not_gt hyi
+          have hine : i ≠ y := by
+            intro h
+            subst y
+            exact hi hy
+          have hiy' : i < y := by omega
+          exact (hi (hconvex hxi hiy' hx hy)).elim
+      · have hyj : y ≤ j := le_of_not_gt hjy
+        have hyne : y ≠ j := by
+          intro h
+          subst y
+          exact hj hy
+        have hyj' : y < j := by omega
+        exact (hj (hconvex hyj' hjx hy hx)).elim
+  unfold cyclicAdjacent
+  exact ⟨forward hp hq, forward hq hp⟩
+
+/-- The second physical apex is the Moser vertex opposite the second indexed
+cap.  This local bridge exposes the indexed endpoint needed by the generic
+strict-cap exclusion theorem. -/
+theorem b1_oppApex2_eq_oppositeVertexByIndex_oppIndex2
+    {A : Finset ℝ²} (S : SurplusCapPacket A) :
+    S.oppApex2 = S.oppositeVertexByIndex S.oppIndex2 := by
+  rcases hi : S.surplusIdx with ⟨index, hindex⟩
+  interval_cases index <;>
+    simp [SurplusCapPacket.oppApex2,
+      SurplusCapPacket.oppositeVertexByIndex,
+      SurplusCapPacket.oppIndex2, hi]
+
+/-- The second physical apex cannot lie in the strict interior of its indexed
+cap. -/
+theorem B1EscapeRowProvenanceStar.oppApex2_not_mem_secondCapInterior
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F)}
+    (_E : B1EscapeRowProvenanceStar C) :
+    S.oppApex2 ∉ S.capInteriorByIndex S.oppIndex2 := by
+  intro hmem
+  exact (S.capInteriorByIndex_ne_oppositeVertexByIndex_of_mem hmem)
+    (b1_oppApex2_eq_oppositeVertexByIndex_oppIndex2 S)
+
+/-- A live slice contained in the strict second cap lies on one boundary arc
+between the second apex and any row blocker outside that cap.  This is the
+generic cap-to-order adapter used by the card-six producer. -/
+theorem B1EscapeRowProvenanceStar.sliceSameBoundaryArc_of_subset_secondCapInterior
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F)}
+    (E : B1EscapeRowProvenanceStar C)
+    (source : CarrierLabel D.A) (slice : Finset ℝ²)
+    (hslice : slice ⊆ S.capInteriorByIndex S.oppIndex2)
+    (hsource : source.1 ∉ S.capInteriorByIndex S.oppIndex2) :
+    B1SliceSameBoundaryArc E.boundary
+      ⟨S.oppApex2, b1_oppApex2_mem_A S⟩ source slice := by
+  intro ix iy hx hy _hxy
+  have hapex :
+      E.boundary.boundary
+          (E.boundary.indexOf ⟨S.oppApex2, b1_oppApex2_mem_A S⟩) ∉
+        S.capInteriorByIndex S.oppIndex2 := by
+    rw [E.boundary.point_eq]
+    exact E.oppApex2_not_mem_secondCapInterior
+  have hsource' :
+      E.boundary.boundary (E.boundary.indexOf source) ∉
+        S.capInteriorByIndex S.oppIndex2 := by
+    rw [E.boundary.point_eq]
+    exact hsource
+  exact cyclicAdjacent_of_boundaryOrderConvex_of_endpoints_not_mem
+    E.boundary (S.capInteriorByIndex S.oppIndex2)
+    E.secondCapInterior_boundaryOrderConvex hapex hsource'
+    (hslice hx) (hslice hy)
+
+/-- If two distinct points of one actual live row also lie in the same
+physical second-apex class and in the strict second cap, then the live-row
+blocker is forced into that cap. -/
+theorem b1_liveRowBlocker_mem_secondCapInterior_of_two_points
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F))
+    (row source partner : CarrierVertex D.A)
+    (hsourceRow : source.1 ∈
+      ((lateFirstApexSystem C.R).selectedAt
+        row.1 row.2).toCriticalFourShell.support)
+    (hpartnerRow : partner.1 ∈
+      ((lateFirstApexSystem C.R).selectedAt
+        row.1 row.2).toCriticalFourShell.support)
+    (hsourceClass : source.1 ∈ SelectedClass D.A S.oppApex2 C.rho)
+    (hpartnerClass : partner.1 ∈ SelectedClass D.A S.oppApex2 C.rho)
+    (hsourceInterior : source.1 ∈ S.capInteriorByIndex S.oppIndex2)
+    (hpartnerInterior : partner.1 ∈ S.capInteriorByIndex S.oppIndex2)
+    (hsourcePartner : source ≠ partner) :
+    (lateFirstApexSystem C.R).centerAt row.1 row.2 ∈
+      S.capInteriorByIndex S.oppIndex2 := by
+  let K := ((lateFirstApexSystem C.R).selectedAt
+    row.1 row.2).toCriticalFourShell
+  have hcenterA :
+      (lateFirstApexSystem C.R).centerAt row.1 row.2 ∈ D.A :=
+    (Finset.mem_erase.mp K.center_mem).2
+  have hcenterNe :
+      (lateFirstApexSystem C.R).centerAt row.1 row.2 ≠ S.oppApex2 :=
+    C.surface.secondApex_robust.centerAt_ne
+      (lateFirstApexSystem C.R) row.1 row.2
+  have hsourceRow' : source.1 ∈ K.support := by
+    simpa [K] using hsourceRow
+  have hpartnerRow' : partner.1 ∈ K.support := by
+    simpa [K] using hpartnerRow
+  have hcenterEq :
+      dist ((lateFirstApexSystem C.R).centerAt row.1 row.2) source.1 =
+        dist ((lateFirstApexSystem C.R).centerAt row.1 row.2) partner.1 :=
+    (K.support_eq_radius source.1 hsourceRow').trans
+      (K.support_eq_radius partner.1 hpartnerRow').symm
+  have hphysicalEq :
+      dist S.oppApex2 source.1 = dist S.oppApex2 partner.1 :=
+    ((mem_selectedClass.mp hsourceClass).2).trans
+      ((mem_selectedClass.mp hpartnerClass).2).symm
+  exact ATailTwoCenterCapLocalization.commonPhysicalPair_center_mem_secondCapInterior
+    hcenterA hcenterNe hsourceInterior hpartnerInterior
+    (fun h => hsourcePartner (Subtype.ext h)) hcenterEq hphysicalEq
+
+/-- A member of the physical second-apex class outside the strict second cap
+must lie in one of that cap's two adjacent closed caps. -/
+theorem b1_physicalClass_mem_adjacentCap_of_not_mem_secondCapInterior
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F))
+    {x : ℝ²} (hxClass : x ∈ SelectedClass D.A S.oppApex2 C.rho)
+    (hxOutside : x ∉ S.capInteriorByIndex S.oppIndex2) :
+    x ∈ S.leftAdjacentCapByIndex S.oppIndex2 ∨
+      x ∈ S.rightAdjacentCapByIndex S.oppIndex2 := by
+  have hxClass' :
+      x ∈ SelectedClass D.A
+        (S.oppositeVertexByIndex S.oppIndex2) C.rho := by
+    simpa only [← b1_oppApex2_eq_oppositeVertexByIndex_oppIndex2 S] using
+      hxClass
+  have hxCover :=
+    S.selectedClass_sdiff_capInteriorByIndex_subset_adjacentCaps
+      S.oppIndex2 C.hrho (Finset.mem_sdiff.mpr ⟨hxClass', hxOutside⟩)
+  rcases Finset.mem_union.mp hxCover with hleft | hright
+  · exact Or.inl (Finset.mem_inter.mp hleft).2
+  · exact Or.inr (Finset.mem_inter.mp hright).2
+
+/-- A six-point physical class at the second opposite apex has at least four
+members in the strict second cap: at most one class member can occupy each of
+the two adjacent caps. -/
+theorem b1_physicalClass_secondCapInterior_card_ge_four_of_card_six
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F))
+    (hsix : (SelectedClass D.A S.oppApex2 C.rho).card = 6) :
+    4 ≤ (SelectedClass D.A S.oppApex2 C.rho ∩
+      S.capInteriorByIndex S.oppIndex2).card := by
+  classical
+  let T := SelectedClass D.A
+    (S.oppositeVertexByIndex S.oppIndex2) C.rho
+  let I := S.capInteriorByIndex S.oppIndex2
+  let L := T ∩ S.leftAdjacentCapByIndex S.oppIndex2
+  let R := T ∩ S.rightAdjacentCapByIndex S.oppIndex2
+  have hTcard : T.card = 6 := by
+    simpa only [T, ← b1_oppApex2_eq_oppositeVertexByIndex_oppIndex2 S] using
+      hsix
+  have houtsideSubset : T \ I ⊆ L ∪ R := by
+    simpa only [T, I, L, R] using
+      S.selectedClass_sdiff_capInteriorByIndex_subset_adjacentCaps
+        S.oppIndex2 C.hrho
+  have houtsideLe : (T \ I).card ≤ 2 := by
+    have hsub := Finset.card_le_card houtsideSubset
+    have hunion := Finset.card_union_le L R
+    have hleft : L.card ≤ 1 := by
+      simpa only [L, T] using
+        S.leftAdjacentCap_at_opposite_card_le_one_of_convexIndep
+          D.convex S.oppIndex2 C.rho
+    have hright : R.card ≤ 1 := by
+      simpa only [R, T] using
+        S.rightAdjacentCap_at_opposite_card_le_one_of_convexIndep
+          D.convex S.oppIndex2 C.rho
+    omega
+  have hsplit := Finset.card_sdiff_add_card_inter T I
+  have hinter : 4 ≤ (T ∩ I).card := by omega
+  simpa only [T, I,
+    ← b1_oppApex2_eq_oppositeVertexByIndex_oppIndex2 S] using hinter
+
+/-- Among three disjoint two-point packets, four members of their union in a
+set force one whole packet into that set. -/
+theorem one_pair_subset_of_three_disjoint_pairs_of_four_mem
+    {α : Type*} [DecidableEq α]
+    (I P₀ P₁ P₂ : Finset α)
+    (hP₀card : P₀.card = 2) (hP₁card : P₁.card = 2)
+    (hP₂card : P₂.card = 2)
+    (hP₀rest : Disjoint P₀ (P₁ ∪ P₂))
+    (hP₁P₂ : Disjoint P₁ P₂)
+    (hfour : 4 ≤ ((P₀ ∪ (P₁ ∪ P₂)) ∩ I).card) :
+    P₀ ⊆ I ∨ P₁ ⊆ I ∨ P₂ ⊆ I := by
+  by_contra hnone
+  simp only [not_or] at hnone
+  have inter_card_le_one : ∀ P : Finset α, P.card = 2 →
+      ¬ P ⊆ I → (P ∩ I).card ≤ 1 := by
+    intro P hPcard hPnot
+    by_contra hnotLe
+    have htwo : 2 ≤ (P ∩ I).card := by omega
+    have hsub : P ∩ I ⊆ P := Finset.inter_subset_left
+    have hcardLe : (P ∩ I).card ≤ P.card := Finset.card_le_card hsub
+    have hcardEq : (P ∩ I).card = P.card := by omega
+    have heq : P ∩ I = P := Finset.eq_of_subset_of_card_le hsub (by omega)
+    apply hPnot
+    intro x hx
+    exact (Finset.mem_inter.mp (heq.symm ▸ hx)).2
+  have hP₀inter := inter_card_le_one P₀ hP₀card hnone.1
+  have hP₁inter := inter_card_le_one P₁ hP₁card hnone.2.1
+  have hP₂inter := inter_card_le_one P₂ hP₂card hnone.2.2
+  have hdecomp :
+      (P₀ ∪ (P₁ ∪ P₂)) ∩ I =
+        (P₀ ∩ I) ∪ ((P₁ ∩ I) ∪ (P₂ ∩ I)) := by
+    ext x
+    simp only [Finset.mem_inter, Finset.mem_union]
+    tauto
+  have hP₁P₂inter : Disjoint (P₁ ∩ I) (P₂ ∩ I) := by
+    exact hP₁P₂.mono Finset.inter_subset_left Finset.inter_subset_left
+  have hP₀restInter :
+      Disjoint (P₀ ∩ I) ((P₁ ∩ I) ∪ (P₂ ∩ I)) := by
+    apply hP₀rest.mono Finset.inter_subset_left
+    intro x hx
+    rcases Finset.mem_union.mp hx with hx | hx
+    · exact Finset.mem_union.mpr (Or.inl (Finset.mem_inter.mp hx).1)
+    · exact Finset.mem_union.mpr (Or.inr (Finset.mem_inter.mp hx).1)
+  rw [hdecomp, Finset.card_union_of_disjoint hP₀restInter,
+    Finset.card_union_of_disjoint hP₁P₂inter] at hfour
+  omega
+
+/-- In card six, at least one of the three disjoint physical pairs—the two
+canonical deletions or one of the two live slices—lies wholly in the strict
+second cap. -/
+theorem b1_cardSix_one_pair_subset_secondCapInterior
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F))
+    (hnormal : B1PhysicalClassFiveSixNormalForm C)
+    (hsix : (SelectedClass D.A S.oppApex2 C.rho).card = 6) :
+    ({C.first.deleted.1, C.second.deleted.1} : Finset ℝ²) ⊆
+        S.capInteriorByIndex S.oppIndex2 ∨
+      b1USlice C ⊆ S.capInteriorByIndex S.oppIndex2 ∨
+      b1VSlice C ⊆ S.capInteriorByIndex S.oppIndex2 := by
+  classical
+  let deletedPair : Finset ℝ² :=
+    {C.first.deleted.1, C.second.deleted.1}
+  have hnormal' :
+      (¬ ∃ third : ExactFourMutualOmissionJointDeletion
+          C.R C.rho C.u C.v,
+          third.deleted ≠ C.first.deleted ∧
+            third.deleted ≠ C.second.deleted) ∧
+        ((SelectedClass D.A S.oppApex2 C.rho).card = 5 ∨
+          (SelectedClass D.A S.oppApex2 C.rho).card = 6) ∧
+        SelectedClass D.A S.oppApex2 C.rho =
+          deletedPair ∪ (b1USlice C ∪ b1VSlice C) := by
+    simpa [B1PhysicalClassFiveSixNormalForm, deletedPair, b1USlice,
+      b1VSlice, b1PhysicalClass] using hnormal
+  have hdeletedValuesNe :
+      C.first.deleted.1 ≠ C.second.deleted.1 := by
+    intro h
+    exact C.hdeletedNe (Subtype.ext h)
+  have hdeletedCard : deletedPair.card = 2 := by
+    simp [deletedPair, hdeletedValuesNe]
+  have hslices :=
+    b1_live_slices_card_eq_two_disjoint_of_physicalClass_card_six
+      C hnormal hsix
+  have huCard : (b1USlice C).card = 2 := by
+    simpa [b1USlice, b1PhysicalClass] using hslices.1
+  have hvCard : (b1VSlice C).card = 2 := by
+    simpa [b1VSlice, b1PhysicalClass] using hslices.2.1
+  have huvDisjoint : Disjoint (b1USlice C) (b1VSlice C) := by
+    simpa [b1USlice, b1VSlice, b1PhysicalClass] using hslices.2.2
+  have hdeletedDisjoint :
+      Disjoint deletedPair (b1USlice C ∪ b1VSlice C) := by
+    rw [Finset.disjoint_left]
+    intro x hxDeleted hxLive
+    rcases Finset.mem_union.mp hxLive with hxU | hxV
+    · have hxRow := (Finset.mem_inter.mp hxU).1
+      rcases Finset.mem_insert.mp hxDeleted with hxFirst | hxSecond
+      · subst x
+        exact C.first.deleted_not_mem_uRow hxRow
+      · have hx : x = C.second.deleted.1 :=
+          Finset.mem_singleton.mp hxSecond
+        subst x
+        exact C.second.deleted_not_mem_uRow hxRow
+    · have hxRow := (Finset.mem_inter.mp hxV).1
+      rcases Finset.mem_insert.mp hxDeleted with hxFirst | hxSecond
+      · subst x
+        exact C.first.deleted_not_mem_vRow hxRow
+      · have hx : x = C.second.deleted.1 :=
+          Finset.mem_singleton.mp hxSecond
+        subst x
+        exact C.second.deleted_not_mem_vRow hxRow
+  have hfour :=
+    b1_physicalClass_secondCapInterior_card_ge_four_of_card_six C hsix
+  rw [hnormal'.2.2] at hfour
+  simpa only [deletedPair] using
+    one_pair_subset_of_three_disjoint_pairs_of_four_mem
+      (S.capInteriorByIndex S.oppIndex2) deletedPair
+      (b1USlice C) (b1VSlice C) hdeletedCard huCard hvCard
+      hdeletedDisjoint huvDisjoint hfour
+
+/-- Card six contains a complete physical pair whose corresponding actual
+blocker lies in the same strict second cap.  The pair is either the two
+canonical deletions, with their common blocker, or one of the two live-row
+slices, with that row's blocker. -/
+theorem b1_cardSix_interior_pair_and_blocker
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F))
+    (hnormal : B1PhysicalClassFiveSixNormalForm C)
+    (hsix : (SelectedClass D.A S.oppApex2 C.rho).card = 6)
+    (P : B1CardSixLocalRolePacket C) :
+    ((({C.first.deleted.1, C.second.deleted.1} : Finset ℝ²) ⊆
+          S.capInteriorByIndex S.oppIndex2) ∧
+        b1CommonBlocker C ∈ S.capInteriorByIndex S.oppIndex2) ∨
+      ((b1USlice C ⊆ S.capInteriorByIndex S.oppIndex2) ∧
+        (lateFirstApexSystem C.R).centerAt C.u.1 C.u.2 ∈
+          S.capInteriorByIndex S.oppIndex2) ∨
+      ((b1VSlice C ⊆ S.capInteriorByIndex S.oppIndex2) ∧
+        (lateFirstApexSystem C.R).centerAt C.v.1 C.v.2 ∈
+          S.capInteriorByIndex S.oppIndex2) := by
+  classical
+  rcases b1_cardSix_one_pair_subset_secondCapInterior C hnormal hsix with
+    hdeleted | hu | hv
+  · have hfirst : C.first.deleted.1 ∈
+        S.capInteriorByIndex S.oppIndex2 := hdeleted (by simp)
+    have hsecond : C.second.deleted.1 ∈
+        S.capInteriorByIndex S.oppIndex2 := hdeleted (by simp)
+    left
+    refine ⟨hdeleted, ?_⟩
+    simpa only [b1CommonBlocker] using
+      b1_live_common_blocker_mem_secondCapInterior
+        C.R C.hcard C.surface C.rho C.hrho C.hfive C.u C.v C.huNeV
+        C.huClass C.hvClass C.hvOmitted C.huOmitted C.first C.second
+        C.hdeletedNe C.hblockersEq hfirst hsecond
+  · right; left
+    refine ⟨hu, ?_⟩
+    have hsourceMem : C.u.1 ∈ b1USlice C := by
+      exact Finset.mem_inter.mpr ⟨
+        ((lateFirstApexSystem C.R).selectedAt
+          C.u.1 C.u.2).toCriticalFourShell.q_mem_support,
+        C.huClass⟩
+    have hotherMem : P.uPhysical.other.1 ∈ b1USlice C := by
+      have hslice :
+          b1USlice C = {C.u.1, P.uPhysical.other.1} := by
+        simpa [b1USlice, b1PhysicalClass] using P.uPhysical.slice_eq
+      rw [hslice]
+      simp
+    have hsourceData := Finset.mem_inter.mp hsourceMem
+    have hotherData := Finset.mem_inter.mp hotherMem
+    exact b1_liveRowBlocker_mem_secondCapInterior_of_two_points
+      C C.u C.u P.uPhysical.other hsourceData.1 hotherData.1
+      hsourceData.2 hotherData.2 (hu hsourceMem) (hu hotherMem)
+      P.uPhysical.source_ne_other
+  · right; right
+    refine ⟨hv, ?_⟩
+    have hsourceMem : C.v.1 ∈ b1VSlice C := by
+      exact Finset.mem_inter.mpr ⟨
+        ((lateFirstApexSystem C.R).selectedAt
+          C.v.1 C.v.2).toCriticalFourShell.q_mem_support,
+        C.hvClass⟩
+    have hotherMem : P.vPhysical.other.1 ∈ b1VSlice C := by
+      have hslice :
+          b1VSlice C = {C.v.1, P.vPhysical.other.1} := by
+        simpa [b1VSlice, b1PhysicalClass] using P.vPhysical.slice_eq
+      rw [hslice]
+      simp
+    have hsourceData := Finset.mem_inter.mp hsourceMem
+    have hotherData := Finset.mem_inter.mp hotherMem
+    exact b1_liveRowBlocker_mem_secondCapInterior_of_two_points
+      C C.v C.v P.vPhysical.other hsourceData.1 hotherData.1
+      hsourceData.2 hotherData.2 (hv hsourceMem) (hv hotherMem)
+      P.vPhysical.source_ne_other
 
 /-- In the card-six role packet both named live physical slices are genuinely
 two-point slices.  This is the first card-six reduction: it uses only the
@@ -84,6 +588,95 @@ def B1CardSixWinningSliceArc
     let vBlocker := blockerLabel Hlate C.v.1 C.v.2
     B1SliceSameBoundaryArc B apex uBlocker (b1USlice C) ∨
       B1SliceSameBoundaryArc B apex vBlocker (b1VSlice C)
+
+/-- The exact card-six placement information still missing after the zero-cut
+cap order has been retained.  A two-point live slice containing the escape
+source either has its mate outside the strict second cap, or both points and
+the row blocker lie inside that cap. -/
+def B1CardSixCapOrderResidual
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F))
+    (E : B1EscapeRowProvenanceStar C) : Prop :=
+  ∃ row mate : CarrierVertex D.A, ∃ slice : Finset ℝ²,
+    ((row = C.u ∧ slice = b1USlice C) ∨
+      (row = C.v ∧ slice = b1VSlice C)) ∧
+    E.escape.source.1 ∈ slice ∧
+    slice.card = 2 ∧
+    slice = {E.escape.source.1, mate.1} ∧
+    ((mate.1 ∈ S.leftAdjacentCapByIndex S.oppIndex2 ∨
+        mate.1 ∈ S.rightAdjacentCapByIndex S.oppIndex2) ∨
+      (mate.1 ∈ S.capInteriorByIndex S.oppIndex2 ∧
+        (blockerLabel (lateFirstApexSystem C.R) row.1 row.2).1 ∈
+          S.capInteriorByIndex S.oppIndex2))
+
+/-- The card-six zero-cut ingress gives a complete, source-clean placement
+split.  In particular, putting the mate in the strict second cap forces the
+live-row blocker there too, so the blocker-outside same-arc adapter cannot
+close that branch. -/
+theorem nonempty_b1CardSixCapOrderResidual
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F))
+    (P : B1CardSixLocalRolePacket C)
+    (E : B1EscapeRowProvenanceStar C) :
+    Nonempty (B1CardSixCapOrderResidual C E) := by
+  classical
+  have huSubsetA : b1USlice C ⊆ D.A := by
+    intro x hx
+    apply ((lateFirstApexSystem C.R).selectedAt
+      C.u.1 C.u.2).toCriticalFourShell.support_subset_A
+    exact (Finset.mem_inter.mp hx).1
+  have hvSubsetA : b1VSlice C ⊆ D.A := by
+    intro x hx
+    apply ((lateFirstApexSystem C.R).selectedAt
+      C.v.1 C.v.2).toCriticalFourShell.support_subset_A
+    exact (Finset.mem_inter.mp hx).1
+  rcases b1_cardSix_escapeSource_twoPoint P E with hu | hv
+  · obtain ⟨named⟩ :=
+      nonempty_b1NamedTwoPointSlice_of_card_eq_two
+        huSubsetA hu.1 hu.2
+    by_cases hmate : named.other.1 ∈
+        S.capInteriorByIndex S.oppIndex2
+    · have hsourceData := Finset.mem_inter.mp hu.1
+      have hmateData := Finset.mem_inter.mp (show
+        named.other.1 ∈ b1USlice C by simp [named.slice_eq])
+      refine ⟨⟨C.u, named.other, b1USlice C, Or.inl ⟨rfl, rfl⟩,
+        hu.1, hu.2, named.slice_eq, Or.inr ⟨hmate, ?_⟩⟩⟩
+      exact b1_liveRowBlocker_mem_secondCapInterior_of_two_points
+        C C.u E.escape.source named.other hsourceData.1 hmateData.1
+        hsourceData.2 hmateData.2 E.escape.source_mem_interior hmate
+        named.source_ne_other
+    · have hmateData := Finset.mem_inter.mp (show
+        named.other.1 ∈ b1USlice C by simp [named.slice_eq])
+      exact ⟨⟨C.u, named.other, b1USlice C, Or.inl ⟨rfl, rfl⟩,
+        hu.1, hu.2, named.slice_eq, Or.inl
+          (b1_physicalClass_mem_adjacentCap_of_not_mem_secondCapInterior
+            C hmateData.2 hmate)⟩⟩
+  · obtain ⟨named⟩ :=
+      nonempty_b1NamedTwoPointSlice_of_card_eq_two
+        hvSubsetA hv.1 hv.2
+    by_cases hmate : named.other.1 ∈
+        S.capInteriorByIndex S.oppIndex2
+    · have hsourceData := Finset.mem_inter.mp hv.1
+      have hmateData := Finset.mem_inter.mp (show
+        named.other.1 ∈ b1VSlice C by simp [named.slice_eq])
+      refine ⟨⟨C.v, named.other, b1VSlice C, Or.inr ⟨rfl, rfl⟩,
+        hv.1, hv.2, named.slice_eq, Or.inr ⟨hmate, ?_⟩⟩⟩
+      exact b1_liveRowBlocker_mem_secondCapInterior_of_two_points
+        C C.v E.escape.source named.other hsourceData.1 hmateData.1
+        hsourceData.2 hmateData.2 E.escape.source_mem_interior hmate
+        named.source_ne_other
+    · have hmateData := Finset.mem_inter.mp (show
+        named.other.1 ∈ b1VSlice C by simp [named.slice_eq])
+      exact ⟨⟨C.v, named.other, b1VSlice C, Or.inr ⟨rfl, rfl⟩,
+        hv.1, hv.2, named.slice_eq, Or.inl
+          (b1_physicalClass_mem_adjacentCap_of_not_mem_secondCapInterior
+            C hmateData.2 hmate)⟩⟩
 
 /- The card-five interface uses the same arc packet, but records the required
 card-two condition because one live slice may be a singleton. -/

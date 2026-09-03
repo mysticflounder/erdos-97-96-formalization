@@ -51,7 +51,7 @@ open Census554.GeneralCarrierBridge
 
 attribute [local instance] Classical.propDecidable
 
-/-/ A strict second-cap source with the retained deletion-survival witness
+/-- A strict second-cap source with the retained deletion-survival witness
     supplies the complete ingress record needed by the rigid `2+2+1`
     consumer.  This is deliberately a producer theorem: it packages the
     source-clean five-point and omitted-peer arguments, but it does not claim
@@ -983,8 +983,8 @@ theorem false_of_b1GlobalTransportContext
   false_of_b1ThirdJointDeletionOrPhysicalClassFiveSixNormalForm C
     (b1_thirdJointDeletion_or_physicalClassFiveSixNormalForm C)
 
-/-- **Source-closed B1 adapter.**  The former open declaration now delegates
-to the strictly narrower exact-five/six coordinator. -/
+/-- **Conditional B1 adapter.**  This delegates to the narrower exact-five/six
+coordinator, whose physical-class-five/six consumer remains open. -/
 theorem b1_globalGapOrClosedTerminal_of_counterexample
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}

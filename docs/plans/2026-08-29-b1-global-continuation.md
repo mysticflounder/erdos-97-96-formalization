@@ -467,3 +467,39 @@ bisector bound, and the strict-interior escape with overlap at most two.
 Closing the leaf now requires one new global center/order/minimality theorem
 or a validated certificate beyond the present B1 interface; no such theorem
 has been found.
+
+## 2026-09-02 card-six cap residual checkpoint
+
+The zero-cut escape ingress now retains the boundary indices and cap-block
+certificate needed to prove that the strict second cap is order-convex.  The
+resulting cap-to-order adapter is intentionally conditional: a two-point slice
+inside the strict cap lies on one boundary arc only when its blocker is outside
+that cap.
+
+The card-six branch has been reduced further without adding an axiom.  Convex
+independence bounds the physical class outside the strict second cap by two,
+so an exact six-point class has at least four strict-interior members.  Since
+the normal form partitions that class into three disjoint two-point packets
+(the deleted pair and the two live slices), a finite pigeonhole lemma forces
+one complete packet into the strict cap.  The theorem
+`b1_cardSix_interior_pair_and_blocker` then localizes the corresponding actual
+blocker there as well: the common blocker for the deleted pair, or the `u`/`v`
+row blocker for the matching live pair.
+
+This corrects the tempting but invalid favorable split.  If the escape
+source's live mate is also strict-interior, the live-row blocker is forced
+strict-interior rather than outside, so the same-arc adapter does not apply.
+If the mate is outside, it is localized to one of the two adjacent closed
+caps.  `B1CardSixCapOrderResidual` records exactly those two placements.
+Current theorem mining found no source-clean consumer of a physical pair and
+its blocker all in one strict cap, and the distinct-cap shell consumers do not
+apply.
+
+Verification at this checkpoint used two artifact-free source checks because
+an unrelated shared-worktree `lake build` still held the global build lock.
+`B1WinningLiveSliceIngress.lean` compiled directly with no errors; its temporary
+`.olean` was then supplied through a copied Lean setup manifest while
+`B1WinningSliceOrderOutcome.lean` was compiled, also with no errors.  The pure
+three-pair pigeonhole theorem was separately checked from `import Mathlib`.
+An authoritative locked `lake-build` remains required before promotion beyond
+this checkpoint.

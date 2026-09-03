@@ -5,6 +5,7 @@ Authors: Adam McKenna
 -/
 
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.B1LiveSharedPairNonalternationIngress
+import Erdos9796Proof.P97.Census554.ZeroCutBoundaryIndexing
 
 /-!
 # B1 winning live-slice ingress
@@ -23,7 +24,9 @@ open ATailCriticalPairFrontier
 open ATailExactFourPhysicalConsumer
 open ATailExactFourRobustCapExpansion
 open ATailUniqueFourLateChoiceTerminalScratch
+open Census554.CapSelectedGeometry
 open Census554.GeneralCarrierBridge
+open Census554.ZeroCutBoundaryIndexing
 
 attribute [local instance] Classical.propDecidable
 
@@ -127,10 +130,10 @@ noncomputable def b1VSlice
     C.v.1 C.v.2).toCriticalFourShell.support ∩ b1PhysicalClass C
 
 /-- Source-entitled arbitrary-cardinality input for the escape-row wave.  It
-retains a complete-carrier boundary indexing, the forced card-two live-slice
-branch, a strict-cap escape source lying on a live row, and one original
-deletion omitted from the escape row.  No boundary order of the live pair is
-assumed. -/
+retains a complete-carrier zero-cut boundary indexing together with the three
+canonical cap blocks, the forced card-two live-slice branch, a strict-cap escape
+source lying on a live row, and one original deletion omitted from the escape
+row.  No boundary order of the live pair is assumed. -/
 structure B1EscapeRowProvenanceStar
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -138,6 +141,23 @@ structure B1EscapeRowProvenanceStar
     (C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
       (H := H) (F := F)) : Type where
   boundary : BoundaryIndexing D.A
+  boundary_nonempty : 0 < boundary.n
+  oppApex1_index : Fin boundary.n
+  oppApex2_index : Fin boundary.n
+  surplusApex_at_zero :
+    boundary.boundary (zeroIndex boundary_nonempty) =
+      S.oppositeVertexByIndex S.surplusIdx
+  oppApex1_at_index :
+    boundary.boundary oppApex1_index =
+      S.oppositeVertexByIndex S.oppIndex1
+  oppApex2_at_index :
+    boundary.boundary oppApex2_index =
+      S.oppositeVertexByIndex S.oppIndex2
+  cap_blocks :
+    DirectBoundaryBlocks S boundary.boundary boundary_nonempty
+        oppApex1_index oppApex2_index ∨
+      MirrorBoundaryBlocks S boundary.boundary boundary_nonempty
+        oppApex1_index oppApex2_index
   escape : B1EscapeWitness C
   winning_slice_card :
     (b1USlice C).card = 2 ∨ (b1VSlice C).card = 2
@@ -158,11 +178,8 @@ theorem nonempty_b1EscapeRowProvenanceStar
     (hnormal : B1PhysicalClassFiveSixNormalForm C) :
     Nonempty (B1EscapeRowProvenanceStar C) := by
   classical
-  have hncol : ¬ Collinear ℝ (D.A : Set ℝ²) :=
-    D.convex.not_collinear_of_card_ge_three (by
-      have hcard := C.hcard
-      omega)
-  rcases exists_boundaryIndexing D.convex hncol with ⟨B⟩
+  rcases exists_with_capBlocks S with
+    ⟨B, hn, iv, iw, hsurplus, hopp1, hopp2, hblocks⟩
   rcases nonempty_b1EscapeWitness C with ⟨E⟩
   have hwinning :
       (b1USlice C).card = 2 ∨ (b1VSlice C).card = 2 := by
@@ -192,6 +209,13 @@ theorem nonempty_b1EscapeRowProvenanceStar
     · exact Finset.mem_union.mp hlive
   exact ⟨{
     boundary := B
+    boundary_nonempty := hn
+    oppApex1_index := iv
+    oppApex2_index := iw
+    surplusApex_at_zero := hsurplus
+    oppApex1_at_index := hopp1
+    oppApex2_at_index := hopp2
+    cap_blocks := hblocks
     escape := E
     winning_slice_card := hwinning
     escape_mem_live_slice := hsourceLive
