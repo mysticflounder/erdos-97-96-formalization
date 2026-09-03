@@ -1,0 +1,14 @@
+{
+  "base_head": "efce82a2734abd599daaca15911ef7aa36692e11",
+  "created_utc": "2026-09-03T09:25:00Z",
+  "durable_paths": [],
+  "generated_roots": [],
+  "lane_id": "boundary-cap-betweenness-adapter-20260903",
+  "manifest_sha256": "3cdb9066703f4fda13e6f2e4e92b6b54bbfc8eb3405a08d2053d6d01f3d9085b",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/boundary-cap-betweenness-adapter-20260903.json",
+    "lean/Erdos9796Proof/P97/Census554/ZeroCutBoundaryIndexing.lean"
+  ],
+  "owner": "codex",
+  "schema": "worktree-lane-checkpoint/v1"
+}

@@ -6,6 +6,7 @@ Authors: Adam McKenna
 
 import Erdos9796Proof.P97.Census554.CapSelectedGeometry
 import Erdos9796Proof.P97.Census554.GeneralCarrierBridge
+import Erdos9796Proof.P97.CapSelectedRowCounting
 
 /-!
 # Zero-cut boundary indexing for a Moser cap packet
@@ -199,6 +200,35 @@ theorem capBlocks_of_zeroCutBoundary
           omega
         exact (hnot hq).elim
       · exact ⟨q, hq, hqx⟩
+
+/-- Transport the ordered-cap equidistance bridge to an already chosen
+    boundary indexing.  This is the source-facing form used by finite arm
+    encodings: the indices are the canonical labels supplied by `B.indexOf`.
+    No fresh boundary enumeration is introduced. -/
+theorem boundaryIndexing_cap_betweenness_of_equidistant
+    {A : Finset ℝ²} {m : ℕ} {L : CGN.OrderedCap m}
+    (Packet : CGN.MecCapPacket A L)
+    (Hside : CGN.MinorCapSideHypotheses Packet)
+    (Hord : CGN.StrictCapOrder A L)
+    (B : BoundaryIndexing A)
+    (hmem : ∀ t : Fin m, L.points t ∈ A)
+    {j r s : Fin m}
+    (hrs : r < s) (hjr : j ≠ r) (hjs : j ≠ s)
+    (heq : dist (L.points j) (L.points r) =
+      dist (L.points j) (L.points s)) :
+    (B.indexOf ⟨L.points r, hmem r⟩ < B.indexOf ⟨L.points j, hmem j⟩ ∧
+        B.indexOf ⟨L.points j, hmem j⟩ < B.indexOf ⟨L.points s, hmem s⟩) ∨
+      (B.indexOf ⟨L.points j, hmem j⟩ < B.indexOf ⟨L.points s, hmem s⟩ ∧
+        B.indexOf ⟨L.points s, hmem s⟩ < B.indexOf ⟨L.points r, hmem r⟩) ∨
+      (B.indexOf ⟨L.points s, hmem s⟩ < B.indexOf ⟨L.points r, hmem r⟩ ∧
+        B.indexOf ⟨L.points r, hmem r⟩ < B.indexOf ⟨L.points j, hmem j⟩) := by
+  have hpoint (t : Fin m) :
+      B.boundary (B.indexOf ⟨L.points t, hmem t⟩) = L.points t := by
+    simpa [GeneralCarrierBridge.pointOf] using
+      B.point_eq ⟨L.points t, hmem t⟩
+  exact CGN.boundary_indices_cyclically_between_of_equidistant
+    Packet Hside Hord B.boundary_injective B.boundary_ccw
+    hrs hjr hjs heq (hpoint j) (hpoint r) (hpoint s)
 
 /-- A zero-cut boundary indexing whose three strict Moser-cap interiors occur
 in the canonical direct or mirror blocks.  This uses no exact-cardinality or
