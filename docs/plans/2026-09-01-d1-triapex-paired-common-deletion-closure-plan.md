@@ -5013,3 +5013,59 @@ means obligation (i) is false as stated and the arc-midpoint route needs a
 different ingress.  Nothing here decides it.
 
 Leaf unchanged: single `sorry`, `M = 18`.
+
+### 66. The cyclic case restated as apex-circle incidence; four refutation attempts fail (2026-09-03)
+
+**A cleaner statement of the whole question.**  Let `c_m = circle (A_m, ρ_m)` be
+the class circle at apex `m`.  Slot `(i, j)` is apex-filled exactly when `c_i`
+passes through the third apex, so the apex-hit total is the number of
+(circle, other-apex) incidences.  Section 63's threshold then reads:
+
+> Obligation (i) holds exactly when some apex circle passes through **both**
+> other apices.
+
+The census case has incidence counts `1, 2, 1` — the distinguished apex's circle
+carries two, the others one each, totalling the observed four.  The open cyclic
+case has `1, 1, 1`, totalling three: **every apex circle passes through exactly
+one other apex, and which one is fixed cyclically** —
+`c₀ ∋ A1`, `c₁ ∋ A2`, `c₂ ∋ A0`.  This agrees with section 59, which asked for
+exactly the two-incidence circle, so the reformulations cohere.
+
+**Four attempts to refute the cyclic case, all unsuccessful.**  Recorded so they
+are not repeated.
+
+1. *Class-size counting.*  Consistent, as section 65 already recorded.  At index
+   0 the class is cap 0's four interior points, plus `A1` in slot `(0,2)`, plus
+   the foreign hit in `(0,1)`; the shared Moser vertex `A1` lands correctly in an
+   adjacent cap.  Same at the other two indices.  No contradiction.
+2. *Radius-versus-cap-height.*  Each `ρ_m` must be at least the distance from
+   `A_m` to cap `m`'s chord.  In the cyclic case `ρ_m` equals the distance from
+   `A_m` to one endpoint of that chord, and a perpendicular distance never
+   exceeds a distance to an endpoint, so the inequality holds automatically at
+   all three indices.  No obstruction.
+3. *Powers and radical axes.*  With `ρ₀ = c`, `ρ₁ = a`, `ρ₂ = b` the apex powers
+   are `pow₀(A1) = 0`, `pow₁(A2) = 0`, `pow₂(A0) = 0`, and the remaining six
+   values are the pairwise side-square differences.  The three radical axes are
+   concurrent for any three circles, so concurrency yields nothing, and no apex
+   lies on a radical axis in a way that forces a coincidence.  No obstruction.
+4. *The section 64 reflection argument, pushed further.*  It bounds foreign hits
+   by one per unordered pair.  The cyclic case uses exactly one per pair, so it
+   saturates the bound without violating it.  The argument cannot be sharpened
+   this way.
+
+**Assessment.**  The cyclic case is not refutable by counting, by elementary
+metric inequalities, or by the reflection argument.  Deciding it needs either a
+genuine geometric theorem about a scalene triangle carrying this cyclic
+incidence pattern together with four carrier points on each class circle inside
+the correct segment, or a realizability search.
+
+**Route note for the search.**  A realizability question of this shape is a real
+polynomial-system question — the apex coordinates, the twelve interior points,
+the three radius equalities, the cyclic incidences, the segment side conditions,
+and the scalene disequalities.  Under the lane's standing constraint every
+solver call goes through the piqd daemon, so this would be a `piqc singular run`
+job and not a direct engine invocation.  No such run has been made.
+
+**Status.**  OPEN, and now sharply stated.  Nothing in this section decides it.
+
+Leaf unchanged: single `sorry`, `M = 18`.
