@@ -227,3 +227,83 @@ The focused governed build of the new cyclic consumer succeeds.  This closes
 the promised branch-four replacement omission, not the whole branch-four
 hard source-swap residual: the two-full-class cap split and its exact-grid
 consumer remain downstream.
+
+The next cap split is also now checked in
+`hardSourceSwap_largeSecondInterior_or_exactAdjacentCapGrid`.  The two full,
+distinct-radius second-apex classes force `4 ≤ |oppInterior2|`.  If that
+interior has a fifth point, the theorem returns the large-cap arm directly;
+if not, the two radius slices each have exactly two interior points and the
+existing adjacent-cap distribution theorem packages the exact two-by-two
+grid.  This argument is cardinality-free and uses the hard packet's full-class
+equalities rather than an exact-twelve hypothesis.  The remaining grid work
+is the source-facing naming/placement adapter and the complete alias census.
+
+There is one arithmetic correction to the consult's large-arm discussion.
+The exact-five first-apex class already gives `|oppCap1| ≥ 5`; the large arm
+gives `|oppInterior2| ≥ 5`, hence `|oppCap2| ≥ 7`, while the surplus cap has
+cardinality at least five.  The cap-sum identity therefore yields
+`|A| ≥ 14`; no separate `|oppCap1| ≥ 6` premise is needed for fourteen.
+This is checked as
+`carrier_card_ge_fourteen_of_exactFiveFirstApex_of_largeSecondInterior`.
+It is a strict source consequence, though not yet a terminal contradiction.
+
+The theorem-bank preflight for this bound found the existing exact-five
+first-cap estimate only behind a private helper, plus public exact-twelve and
+both-caps-at-least-six variants, but no reusable theorem with the required
+`5 + 5 + 7` hypotheses.  The new public first-cap wrapper and cardinality
+bound record that missing source-facing interface.
+
+On the exact-grid arm, `exists_exactGridFourHits_with_source_roles` now names
+the adjacent-cap cells without an extra placement assumption.  The old class's
+surplus-side hit is `oppApex1`, its first-opposite-side hit is `retained`, and
+the replacement's first-opposite-side hit is `deleted`.  Its remaining
+surplus-side hit is strict: equality with `oppApex1` would violate the hard
+packet's disjoint full-class supports.  Thus the source map used by the next
+generator is
+
+```text
+old second-apex row:         {O, a, u, v}
+replacement second-apex row: {d, e, x, y},  e ∈ surplusInterior,
+```
+
+with `u,v,x,y` in the second strict cap interior after choosing the two-point
+radius slices.  The theorem-bank preflight found the existing `oppIndex1`
+four-hit Kalmanson producer but no `oppIndex2` analogue.  That symmetric
+radial-order/cross-distance theorem is the first missing metric adapter; its
+inequality is a strengthening for the census, not yet a terminal by itself.
+
+The source-facing packet is now exposed as `HardSourceSwapExactGridRoles`, and
+`nonempty_hardSourceSwapExactGridRoles_of_not_large` constructs it directly
+from the hard packet, the branch-four prefix `oppApex1 ∈ old`, and failure of
+the large-interior arm.  This makes the four grid cells, both two-point
+interior slices, and all four fixed source identities available to the next
+consumer without repeating singleton or `card = 2` extraction.
+
+The metric consumer is also isolated now.  Given the missing radial cyclic
+order packet, `HardSourceSwapExactGridRoles.replacementLeft_dist_deleted_lt_retained`
+specializes strict Kalmanson to
+
+```text
+dist(O,a) + dist(e,d) < dist(O,d) + dist(e,a),
+```
+
+then cancels `dist(O,a) = dist(O,d)` from the full first-apex selected class.
+Thus the sole geometric construction still missing on this arm is the radial
+cyclic order itself; the downstream strict source inequality already checks.
+
+The corrected solver-free alias profiler now enumerates both source regimes
+under the audited abstract overlap rules:
+
+```text
+c1 = U:     961 profiles
+c1 ≠ U:   6,642 profiles
+total:    7,603 profiles
+```
+
+All partitions and stable profile hashes are unique, and the focused Python
+suite passes all 25 tests.  These counts are exact for the encoded alias rules,
+not yet a Lean theorem that those rules exhaust the source.  They contain no
+cyclic placements, order cells, metric constraints, or solver verdict, so the
+live PiQD run remains unauthorized until the order layer is constructed and
+the source-to-profile coverage boundary is proved or explicitly retained as a
+conditional assumption.

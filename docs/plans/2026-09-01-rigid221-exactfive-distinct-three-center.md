@@ -286,3 +286,40 @@ branch-four theorem forcing the hard replacement row to omit `c₁` all build
 without an admission.  Execution now stays on step 5: derive the exact-grid
 source adapter and enumerate the unresolved `c₁` placements and cross-row
 aliases before launching PiQD.
+
+The structural front of step 5 is complete:
+`hardSourceSwap_largeSecondInterior_or_exactAdjacentCapGrid` gives the precise
+large-`oppInterior2`/exact-grid dichotomy directly from the hard source-swap
+packet, with no exact-twelve assumption.  The unfinished part of step 5 is now
+sharply limited to naming the exact-grid hits from the source incidences and
+enumerating blocker placements plus aliases involving the other two rows.
+The alternative large-interior arm has also been sharpened to the checked
+bound `|A| ≥ 14` using the existing exact-five first-cap estimate and cap sum;
+this improves the retained packet but does not by itself close the arm.
+
+The adjacent grid's source roles are now identified as well: old-left `O`,
+old-right `a`, replacement-right `d`, and a strict surplus-interior
+replacement-left point `e`.  The next two concrete deliverables are (i) the
+alias-only finite profile for the remaining points and (ii) the missing
+`oppIndex2` radial-order/Kalmanson adapter.  Neither deliverable authorizes a
+PiQD run until their combined order-cell space is complete.
+
+The exact-grid source interface is now packaged as
+`HardSourceSwapExactGridRoles`; its producer names the old and replacement
+two-point interior slices and fixes the source hits `O`, `a`, `d`, and strict
+surplus-interior `e`.  The remaining Lean prerequisite is therefore the
+`oppIndex2` radial-order/Kalmanson adapter, rather than further grid-role
+extraction.
+
+The downstream consumer is complete conditionally: a `RadialCyclicOrder` for
+the named hits implies `dist(e,d) < dist(e,a)` through strict Kalmanson and the
+first-apex equality `dist(O,a) = dist(O,d)`.  Work should therefore construct
+that order packet directly and avoid widening the finite census with an
+unproved metric assertion.
+
+The alias-only deliverable is now implemented and independently checked:
+961 profiles have `c₁ = U`, 6,642 have `c₁ ≠ U`, for 7,603 unique canonical
+partitions under the recorded abstract overlap rules.  This completes the
+finite alias prefix only.  The next execution step remains the `oppIndex2`
+radial cyclic-order constructor; afterward, combine each alias profile with
+the source-authorized order cells before considering a governed PiQD run.

@@ -46,6 +46,16 @@ theorem oppApex2_eq_oppositeVertexByIndex_oppIndex2
       SurplusCapPacket.oppositeVertexByIndex,
       SurplusCapPacket.oppIndex2, hi]
 
+/-- The indexed closed cap at `oppIndex2` is the named second opposite cap. -/
+theorem capByIndex_oppIndex2_eq_oppCap2
+    {A : Finset ℝ²} (S : SurplusCapPacket A) :
+    S.capByIndex S.oppIndex2 = S.oppCap2 := by
+  rcases hi : S.surplusIdx with ⟨i, hi3⟩
+  interval_cases i <;>
+    simp [SurplusCapPacket.capByIndex,
+      SurplusCapPacket.oppCap2,
+      SurplusCapPacket.oppIndex2, hi]
+
 /-- In either zero-cut cap-block orientation, two indices whose boundary
 points lie in `oppInterior1` occupy the same side of the cut `(oppApex1,
 oppApex2)`. -/
