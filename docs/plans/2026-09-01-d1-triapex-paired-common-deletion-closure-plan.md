@@ -2007,9 +2007,50 @@ The first two brackets are two of the encoder's own circle generators, so the
 membership question reduces to 1 - (c01*c04 + s01*s04), three terms rather than
 six; geometrically, the two unit vectors have inner product 1.
 
-{{NEEDS_UPDATE}}: the remaining mod-p verdicts from chain v12, the certificate
-verification for `0e31c5c5d735a779`, and the characteristic-0 four-pair
-Rabinowitsch verdicts from the peer session.
+### 21. The reduced composition also fails; five characteristic-0 routes dead (2026-09-03)
+
+The composition that the mod-p gate authorized — interreduction, elimination and
+the four-pair Rabinowitsch generator together, at 22 variables instead of 26 —
+ran over the rationals with `modStd` and a real-root count on a 3600 s budget.
+It printed `equations 44` and `elimpart 5`, confirming the reduction fired, and
+then reached the budget with no first basis. The gate had passed cleanly at
+dim 0, vdim 192 mod 32003, so the composition is correct; it is the
+characteristic-0 basis that is out of reach, and eliminating five variables does
+not change that.
+
+Five routes are now dead in the first Gröbner basis over the rationals for this
+encoding: plain `std`, `modStd`, `modStd` with full saturation, `modStd` with a
+four-pair Rabinowitsch generator, and that last one on the reduced system. The
+same ideal finishes mod 32003 in 8 to 53 seconds. Recorded conclusion: this
+encoding is not characteristic-0 tractable in Singular by any route available to
+this lane, and no further characteristic-0 slot should be spent on it.
+
+What follows from that for the metric layer. Every emptiness verdict it can
+currently produce — the four originally empty representatives, the two empty
+saturations, and `0e31c5c5d735a779` — is a mod-32003 statement. Reduction can
+only enlarge the initial ideal, so vdim over the rationals is at least vdim mod
+p, and emptiness mod p is evidence rather than proof. Two routes out remain, and
+they are independent of each other:
+
+1. The membership certificate of block 20, which needs no rational Gröbner basis
+   because the identity is checkable by expansion. Blocked on learning the true
+   cofactor degree, which one cheap mod-32003 `lift` would settle.
+2. An engine built for real solutions of zero-dimensional systems over the
+   rationals. Requested from the piqd maintainer as #9229 and #9231 against
+   msolve request #8815, with the timing table above. This would also supply the
+   Guardrail 7 second engine, which this lane does not currently have for any
+   algebra verdict.
+
+A third possibility, not attempted and recorded here only so it is not
+rediscovered as new: re-encoding. The 26 variables come from giving every
+interior point its own (c, s) pair on a unit circle. All the constraints are
+equal squared distances, hence statements about inner products, so a
+distance-geometry or Gram-matrix formulation may be markedly smaller. That is a
+materially different route rather than a tuning change, and it should not be
+started without weighing it against simply waiting for msolve.
+
+{{NEEDS_UPDATE}}: the remaining mod-p verdicts from chain v12, and the
+certificate verification for `0e31c5c5d735a779`.
 
 ### 19. The 111 patterns form five orbits, not twenty (2026-09-03)
 
