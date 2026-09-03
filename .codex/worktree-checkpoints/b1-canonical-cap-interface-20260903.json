@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "b1-canonical-cap-interface-20260903",
+  "owner": "luna-swarm-radial-otter",
+  "base_head": "0f564afdeef4d53bfa75690ad245112494415720",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/b1-canonical-cap-interface-20260903.json",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/B1WinningSliceOrderOutcome.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-03T18:35:00Z",
+  "manifest_sha256": "b843ad586063ab80111996920f924b31bf45cefa1f711f70474cda7c61e08db5"
+}

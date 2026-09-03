@@ -2604,6 +2604,73 @@ theorem b1_cardFive_orderOutcome_of_arc_or_escapeSourceContext
   · right
     exact b1EscapeSourceContext_of_star C W hsource.1 hsource.2
 
+/-- The canonical residual has no source-context branch.  Its missing global
+order input is exactly the card-specific winning-slice arc packet below. -/
+def B1GoodCanonicalEndpointCardArc
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F))
+    (W : B1FiveSixWaveIngress C)
+    (_R : B1GoodCanonicalDeletionEndpointResidual C W.escape) : Prop :=
+  match W.cardCase with
+  | .cardFive _ => B1CardFiveWinningSliceArc C
+  | .cardSix _ => B1CardSixWinningSliceArc C
+
+/-- The explicit card-arc antecedent is already sufficient for the existing
+two-circle contradiction.  Keeping this consumer separate records precisely
+which global field the canonical residual still needs. -/
+theorem false_of_b1GoodCanonicalEndpointCardArc
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F))
+    (W : B1FiveSixWaveIngress C)
+    (R : B1GoodCanonicalDeletionEndpointResidual C W.escape)
+    (hcardArc : B1GoodCanonicalEndpointCardArc C W R) : False := by
+  cases hcase : W.cardCase with
+  | cardFive P =>
+      have hArc : B1CardFiveWinningSliceArc C := by
+        simpa [B1GoodCanonicalEndpointCardArc, hcase] using hcardArc
+      rcases hArc with ⟨B, hArc⟩
+      apply false_of_b1WinningLiveSliceSameBoundaryArc C
+      refine ⟨B, ?_⟩
+      simpa [B1WinningLiveSliceSameBoundaryArc, b1USlice,
+        b1VSlice, b1PhysicalClass] using hArc
+  | cardSix P =>
+      have hArc : B1CardSixWinningSliceArc C := by
+        simpa [B1GoodCanonicalEndpointCardArc, hcase] using hcardArc
+      have hcards := b1_cardSix_liveSlices_card_two P
+      rcases hArc with ⟨B, hu | hv⟩
+      · apply false_of_b1WinningLiveSliceSameBoundaryArc C
+        refine ⟨B, ?_⟩
+        simpa [B1WinningLiveSliceSameBoundaryArc, b1USlice,
+          b1VSlice, b1PhysicalClass] using Or.inl ⟨hcards.1, hu⟩
+      · apply false_of_b1WinningLiveSliceSameBoundaryArc C
+        refine ⟨B, ?_⟩
+        simpa [B1WinningLiveSliceSameBoundaryArc, b1USlice,
+          b1VSlice, b1PhysicalClass] using Or.inr ⟨hcards.2, hv⟩
+
+/-- The source and canonical branches can now be dispatched with the arc
+contract as the sole canonical-branch antecedent. -/
+theorem false_of_b1PhysicalClassFiveSixNormalForm_of_escapeSource_and_goodCanonicalEndpointCardArc
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F))
+    (hnormal : B1PhysicalClassFiveSixNormalForm C)
+    (hsource : B1EscapeSourceContext C → False)
+    (hcanonical : ∀ (W : B1FiveSixWaveIngress C)
+      (R : B1GoodCanonicalDeletionEndpointResidual C W.escape),
+      B1GoodCanonicalEndpointCardArc C W R) : False := by
+  exact false_of_b1PhysicalClassFiveSixNormalForm_of_escapeSource_and_goodCanonicalEndpoint
+    C hnormal hsource (by
+      intro W R
+      exact false_of_b1GoodCanonicalEndpointCardArc C W R (hcanonical W R))
+
 /-- Neutral final dispatch once the order-or-context producer and the source
 consumer have both been supplied. -/
 theorem false_of_b1WinningSliceOrderOutcome
