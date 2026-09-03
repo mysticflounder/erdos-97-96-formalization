@@ -1,0 +1,15 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "exactfive-hard-source-swap-profile282-bo-source-qfnra-postrun-20260903",
+  "owner": "profile282-qfnra-postrun-audit",
+  "base_head": "c8303dba6a96b23ef8789d0586758bd7920f6b75",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exactfive-hard-source-swap-profile282-bo-source-qfnra-postrun-20260903.json",
+    "docs/audits/2026-09-03-rigid221-exactfive-hard-source-swap-profile282-bo-source-qfnra-run-0001.md",
+    "docs/computation/exactfive-hard-source-swap-profile282-bo-source-qfnra-20260903/run-0001-summary.json"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-03T19:59:00Z",
+  "manifest_sha256": "70b48962d5946c96759d6826864c6d6b534e19c4cd967e2ecf470b4d60883643"
+}

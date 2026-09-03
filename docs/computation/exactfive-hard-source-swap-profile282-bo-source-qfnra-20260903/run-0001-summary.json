@@ -1,0 +1,197 @@
+{
+  "schema": "p97-exactfive-hard-source-swap-profile282-bo-source-qfnra-postrun-summary/v1",
+  "audit_lane_id": "exactfive-hard-source-swap-profile282-bo-source-qfnra-postrun-20260903",
+  "source_lane_id": "exactfive-hard-source-swap-profile282-bo-source-qfnra-20260903",
+  "run_id": "run-0001",
+  "audit_base_head": "c8303dba6a96b23ef8789d0586758bd7920f6b75",
+  "source_run_base_head": "de54b4669df394568539d03f291c713910323463",
+  "verdict": {
+    "classification": "EMPIRICALLY_VERIFIED",
+    "status": "PASS_WITH_STRICT_FORMULA_SCOPE",
+    "scope": "two authenticated profile-282 source-order QF_NRA formulas",
+    "custody_pass": true,
+    "cross_engine_target_unsat": true,
+    "checked_unsat_proof": false,
+    "terminal_classification_correct": true
+  },
+  "profile": {
+    "index": 282,
+    "sha256": "9ab4cce5c41587dc4cfe5822d027a141d843e5ae646056a015ac185c95321f84",
+    "stream_sha256": "fd2e737527f98dbba812db3c1769b4d8fa9a3d5f2f6298c104b8bc3fe215a6a7",
+    "classes": [
+      ["U", "c1"],
+      ["O"],
+      ["c2", "p"],
+      ["a"],
+      ["d"],
+      ["q"],
+      ["s"],
+      ["t"],
+      ["u"],
+      ["v"],
+      ["e"],
+      ["x"],
+      ["y"]
+    ],
+    "authenticated_orders": {
+      "parent-z3-mirror": [
+        "c000", "c005", "c003", "c007", "c004", "c002", "c010",
+        "c006", "c001", "c012", "c008", "c011", "c009"
+      ],
+      "parent-cvc5-direct": [
+        "c000", "c012", "c008", "c009", "c005", "c011", "c001",
+        "c006", "c007", "c010", "c002", "c004", "c003"
+      ]
+    }
+  },
+  "parent_custody": {
+    "run_manifest_self_sha256": "81e3b3c6bcddef75fbc8a2d22eda9787f6f6db5c394aca2de68b689a91d86299",
+    "run_manifest_file_sha256": "b810ff3c29a5649213aed8bc70f14e21a9d8882f2ba9d6617b1e5da17c1c356e",
+    "launch_self_sha256": "142ce963789fca3efb419c4be21495cdbdb5195677a32cc9f736201a027b0494",
+    "launch_file_sha256": "54a3140f99d9c44d67457659af0bd56cd14a113d947544c5e805c4884c8c4a13",
+    "terminal_self_sha256": "6baab84ed88abc816965447f9b4f5ce90f62a7c90c8c4e777aa6496e6e62d9e2",
+    "terminal_file_sha256": "a417abb089676764c01375d30f95705ca3a0cc7826f04750e4dc2ab111d73958",
+    "profile_result_sha256": "842b1a82c889363a14916ffd268ff15021821c436070af7e9064d77760baa28d",
+    "profile_source_manifest_sha256": "044e303e38d3b1688b9b2145353dcc76b12005b600f73db6c978d6c14cd38782",
+    "parent_profile_statuses": [
+      "SAT_SEMANTICALLY_REPLAYED",
+      "SAT_SEMANTICALLY_REPLAYED"
+    ]
+  },
+  "run_manifest": {
+    "file_sha256": "461b20fade74dfed19f96e4678752a04106639a1a02175479786d9b4198d7e94",
+    "manifest_sha256": "5a3d9ef8ca8869a04573cd1fa525cf3938f0aac5ceb172e09064b24f0deda166"
+  },
+  "launch": {
+    "file_sha256": "f2e6032223a35372bd982325c9438474952e824501c1f92b5eeeaaa809d84780",
+    "launch_sha256": "ff8ebbdfa89ce8428b2b2471b49a0140a27ac1ff584acdc9ccaf68d88c1c2874",
+    "timeout_ms": 60000,
+    "workers": 2,
+    "transport": "PIQD HTTP adapter only"
+  },
+  "terminal": {
+    "file_sha256": "9a56ffd719a50ed45cd6b3c2a80402b6eddd208f1820b06b95f3ebbc0d25d4ad",
+    "terminal_sha256": "eacf4956d541580aae3bef79379873d375679e7371868e79ae54ec03044bbd98",
+    "status": "TARGETS_UNSAT_DISCOVERY_ONLY"
+  },
+  "formula_inventory": {
+    "target_variables": 19,
+    "target_commands": 323,
+    "normalization_assertions": 2,
+    "strict_signed_area_assertions": 286,
+    "row_equality_assertions": 13,
+    "radius_disequality_assertions": 1,
+    "source_strict_assertions": 1,
+    "identically_zero_area_assertions": 0,
+    "identically_zero_row_equalities": 1
+  },
+  "solver_binaries": {
+    "z3": {
+      "signature": "z3-4.17.0",
+      "sha256": "b7a02cb75cccb7f35385c551c10453f32c12da23a7656e24233bc4b25d0f5a9a"
+    },
+    "cvc5": {
+      "signature": "cvc5-1.3.3",
+      "sha256": "fae4cef47a4e82e3b37f8928b5cb275c8a86d138a33e49d54a9933a157b57f74"
+    }
+  },
+  "queries": {
+    "control-positive": {
+      "source_manifest_sha256": "4c0e62fe9cd69010b30fe9e46e1235a3104ff6068f660bc4c694a0d3d54a4b3e",
+      "semantic_sha256": "94446608ed6e1288c63602e43b3883d50ba9af6f370128a94561744084202afc",
+      "smt2_sha256": "14b7387aa93ca0a1268eab9075b0fb5cacca3642b773c0621001868d1b901926",
+      "raw_statuses": ["SAT", "SAT"],
+      "effective_statuses": ["SAT_SEMANTICALLY_REPLAYED", "SAT_SEMANTICALLY_REPLAYED"],
+      "solve_ms": {"z3": 1, "cvc5": 0},
+      "result_file_sha256": "7eb61bf082704639ba34d1cb95020471c499f39cacb1a2da5a3c571570a116a0"
+    },
+    "control-negative": {
+      "source_manifest_sha256": "a53c091165067e0d7c5d3e70472c3cb1ea52885a7e166723f4c944b9a0a6b08a",
+      "semantic_sha256": "c32f8b6379a4f880113699e9727cd672ff93b89a5e355cd383de47d975d8a122",
+      "smt2_sha256": "5e2424b83ed274fc462afcd82a8acf2b7e67d5072149a41b87af48d6c34fa901",
+      "raw_statuses": ["UNSAT", "UNSAT"],
+      "effective_statuses": ["UNSAT_DISCOVERY_ONLY", "UNSAT_DISCOVERY_ONLY"],
+      "solve_ms": {"z3": 0, "cvc5": 0},
+      "result_file_sha256": "068bd8e64ce1663d78c704371906e7806bd727b8295f1c646ef9606ccac31ea9"
+    },
+    "parent-z3-mirror": {
+      "source_manifest_sha256": "0f2ce1a0a6d25000b9337a89a0efc322f04dd2383642937a76d92958b95a8643",
+      "semantic_sha256": "2231d1fcf516b1f615f19676d543adce0e96af884ffa558fcaaad47d20cb1d93",
+      "system_sha256": "43cf4cf25c68a27a2f833d3d281e709aa787b0b24bc333c618299a7250d007da",
+      "smt2_sha256": "073a0fb9d19ed56b0b4e581bb11d1cd9dff4460a38e4504fae36b4c068963da4",
+      "smt2_bytes": 33346,
+      "raw_statuses": ["UNSAT", "UNSAT"],
+      "effective_statuses": ["UNSAT_DISCOVERY_ONLY", "UNSAT_DISCOVERY_ONLY"],
+      "solve_ms": {"z3": 10, "cvc5": 241},
+      "result_file_sha256": "144b2a1d4d7ab58f839820175d87d86e76e4989c0188c64f4e4a088e79d3205e"
+    },
+    "parent-cvc5-direct": {
+      "source_manifest_sha256": "97f6863e1294e73a6601451b79c5e1ab31dd3939ea0e118127765007fd7f3b2d",
+      "semantic_sha256": "bb47d75cb82915be043df02845e694ba8c15fcb37f0d8b944c16dae8b117200a",
+      "system_sha256": "24121735ea7639cdd24924dea7315a293fd939bcbeba689eb75dd8353dd8c0fa",
+      "smt2_sha256": "a46f48e81e4fb13e221d920fa0a1b1f1af7c8c8c1022e5859c5a574390a9ef01",
+      "smt2_bytes": 33378,
+      "raw_statuses": ["UNSAT", "UNSAT"],
+      "effective_statuses": ["UNSAT_DISCOVERY_ONLY", "UNSAT_DISCOVERY_ONLY"],
+      "solve_ms": {"z3": 17, "cvc5": 361},
+      "result_file_sha256": "fc9639404c188869717fccfac4ce6f7ad7807a68ab7a8cacbdbd441c62702223"
+    }
+  },
+  "custody_audit": {
+    "independent_digest_records_checked": 130,
+    "digest_mismatches": 0,
+    "run_tree_file_count": 122,
+    "run_tree_digest_algorithm": "sha256-of-lexicographically-sorted-shasum-lines/v1",
+    "run_tree_sha256_before_and_after_replay": "8013599feeefdcc5bbabfbfed593065df164c7b15fe05274871aed4d1ff28fd5",
+    "completed_no_transport_replay_exit": 0,
+    "completed_no_transport_replay_seconds": 2.261
+  },
+  "symbolic_scan": {
+    "equality_span_rank_including_modulus": 10,
+    "negative_scalar_area_pairs_before_equality_reduction": 0,
+    "area_assertions_forced_zero_by_rational_equality_span": 0,
+    "negative_scalar_area_pairs_after_rational_equality_reduction": 0,
+    "small_visible_contradiction_found": false,
+    "six_role_projection": {
+      "classes": ["c000", "c001", "c002", "c003", "c004", "c010"],
+      "direct_order": ["c000", "c001", "c010", "c002", "c004", "c003"],
+      "mirror_order": ["c000", "c003", "c004", "c002", "c010", "c001"],
+      "separate_solver_tested": false
+    }
+  },
+  "completed_wave_theorem_mine": {
+    "reviewed_only_new_wave_data": true,
+    "concrete_general_theorem_candidate": false,
+    "reason": "two full-formula UNSAT verdicts expose no core or target model; the six-role projection is only a successor probe",
+    "lean_corpus_search_run": false
+  },
+  "next_recommendation": {
+    "kind": "bounded PIQD-only assumption-core extraction",
+    "first_seed_classes": ["c000", "c001", "c002", "c003", "c004", "c010"],
+    "first_seed_area_assertions": 20,
+    "first_seed_row_equalities": 6,
+    "outer_role_blocks": {
+      "T0-tail": ["c005"],
+      "K1-tail": ["c006", "c007"],
+      "K2-tail": ["c008", "c009"],
+      "L-tail": ["c011", "c012"]
+    },
+    "requirements": [
+      "fresh immutable run root",
+      "named assumption for every optional assertion",
+      "fresh PIQD session for every shrink trial",
+      "fail closed on UNKNOWN or engine disagreement",
+      "independent cvc5 replay of each final z3-minimized core",
+      "no source, Lean, promotion, or closure claim"
+    ]
+  },
+  "claims": {
+    "live_source_completeness": false,
+    "source_realization": false,
+    "all_order_elimination": false,
+    "lean_ingress": false,
+    "live_closure": false,
+    "promotion": false,
+    "theorem": false
+  }
+}
