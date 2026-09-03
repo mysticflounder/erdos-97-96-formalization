@@ -5,7 +5,9 @@ from __future__ import annotations
 import itertools
 import math
 import unittest
+from dataclasses import replace
 from fractions import Fraction
+from unittest import mock
 
 from census.card_head import exactfive_hard_source_swap_grid as grid
 
@@ -40,6 +42,86 @@ class Profiles(unittest.TestCase):
         self.assertIn("unproved named-support identification", t0.source)
         self.assertIn(".blockerClass", k1.source)
         self.assertNotIn("firstBlockerClass", k1.source)
+
+
+class SourceAliasProfiles(unittest.TestCase):
+    def test_exact_regime_counts_and_unique_stable_ids(self) -> None:
+        profiles = tuple(grid.iter_source_alias_profiles())
+        counts = {
+            regime: sum(profile.regime == regime for profile in profiles)
+            for regime in grid.ALIAS_REGIMES
+        }
+        self.assertEqual(counts[grid.ALIAS_COLLAPSED], 961)
+        self.assertEqual(counts[grid.ALIAS_SEPARATE], 6_642)
+        self.assertEqual(len(profiles), 7_603)
+        self.assertEqual(len({profile.classes for profile in profiles}), 7_603)
+        self.assertEqual(len({profile.profile_id for profile in profiles}), 7_603)
+        self.assertEqual(
+            profiles[0].profile_id,
+            "e434c8aad283c55b3e51bbbc4aed96f7b3e67bdbc3efc8cff58086c26adf1505",
+        )
+        self.assertEqual(
+            grid.source_alias_profile_counts(),
+            {
+                grid.ALIAS_COLLAPSED: 961,
+                grid.ALIAS_SEPARATE: 6_642,
+                "total": 7_603,
+            },
+        )
+
+    def test_alias_enumerator_enforces_the_source_rules(self) -> None:
+        for profile in grid.iter_source_alias_profiles():
+            grid.validate_source_alias_profile(profile)
+            by_role = {
+                role: klass for klass in profile.classes for role in klass
+            }
+            self.assertLessEqual(len(profile.p_s_matching), 1)
+            self.assertLessEqual(len(profile.p_u_matching), 1)
+            self.assertTrue(
+                {left for left, _right in profile.p_s_matching}.isdisjoint(
+                    left for left, _right in profile.p_u_matching
+                )
+            )
+            self.assertTrue(
+                all(by_role["c1"] != by_role[role] for role in ("d", "e", "x", "y"))
+            )
+            self.assertTrue(
+                all(by_role["c1"] != by_role[role] for role in ("O", "a", "u", "v"))
+            )
+            if profile.c2_host is not None:
+                self.assertTrue(set(profile.c2_host) & {"p", "q", "s", "t"})
+                self.assertTrue(set(profile.c2_host).isdisjoint({"u", "v"}))
+            for replacement, host in profile.replacement_hosts:
+                actual = tuple(
+                    role for role in by_role[replacement] if role != replacement
+                )
+                self.assertEqual(actual, () if host is None else host)
+                self.assertTrue(set(actual) <= {"p", "q", "s", "t", "U"})
+            if profile.regime == grid.ALIAS_COLLAPSED:
+                self.assertEqual(by_role["c1"], ("U", "c1"))
+            else:
+                self.assertNotEqual(by_role["c1"], by_role["U"])
+
+    def test_alias_enumerator_is_lazy_and_does_not_construct_orders(self) -> None:
+        with mock.patch.object(
+            grid, "iter_order_cells", side_effect=AssertionError("order generator called")
+        ):
+            prefix = tuple(itertools.islice(grid.iter_source_alias_profiles(), 4))
+        self.assertEqual(len(prefix), 4)
+        self.assertTrue(
+            all(
+                profile.payload()["claim_boundary"]
+                == "source_alias_only_no_order_or_live_coverage"
+                for profile in prefix
+            )
+        )
+
+    def test_inconsistent_host_metadata_is_rejected(self) -> None:
+        profile = next(grid.iter_source_alias_profiles(grid.ALIAS_COLLAPSED))
+        with self.assertRaisesRegex(grid.HardSourceSwapGridError, "host record"):
+            grid.validate_source_alias_profile(
+                replace(profile, surplus_apex_host=None)
+            )
 
 
 class OrderCells(unittest.TestCase):
@@ -228,7 +310,6 @@ class ClaimBoundary(unittest.TestCase):
         required = {
             "named-row-supports",
             "replacement-cap-blocks",
-            "replacement-omits-first-center",
             "named-role-distinctness",
             "first-blocker-equals-surplus-apex",
             "cross-row-alias-partition-is-discrete",
@@ -237,12 +318,29 @@ class ClaimBoundary(unittest.TestCase):
         self.assertLessEqual(required, set(assumptions))
         self.assertTrue(all(not assumptions[name]["enforced"] for name in required))
         boundary = payload["enforcement_boundary"]
-        self.assertIn("support omissions including c1 ∉ L", boundary["metadata_only"])
+        self.assertTrue(
+            any("c1 ∉ L" in item for item in boundary["metadata_only"])
+        )
         self.assertIn("full-class claims", boundary["metadata_only"])
         self.assertIn("conditional", boundary["unsat_status"])
         quotient = payload["branch_four_collapsed_row_symmetry_quotient"]
         self.assertEqual(quotient["quotient_cells"], 102_960)
         self.assertFalse(quotient["reduced_constraint_signature_dedup"])
+
+    def test_descriptor_exposes_alias_only_boundary_and_exact_counts(self) -> None:
+        alias = grid.descriptor()["branch_four_source_alias_profiles"]
+        self.assertEqual(
+            alias["claim_boundary"], "source_alias_only_no_order_or_live_coverage"
+        )
+        self.assertTrue(alias["solver_free"])
+        self.assertFalse(alias["constructs_order_cells"])
+        self.assertEqual(
+            alias["regime_counts"],
+            {grid.ALIAS_COLLAPSED: 961, grid.ALIAS_SEPARATE: 6_642},
+        )
+        self.assertEqual(alias["total_profiles"], 7_603)
+        self.assertIn("c1 ∉ L", alias["encoded_constraints"])
+        self.assertTrue(any("cyclic" in item for item in alias["omitted_layers"]))
 
     def test_descriptor_exposes_missing_live_cases(self) -> None:
         coverage = grid.descriptor()["coverage_boundary"]

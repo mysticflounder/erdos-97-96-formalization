@@ -14,6 +14,11 @@ source neither identifies `c1 = U` nor places `c1` in a fixed separator slot.
 The v1 profile collapses `U` onto `c1`. Every count, quotient, and zero form in
 this document is restricted to that unproved subcase.
 
+The same module now also has a separate, solver-free **source-alias profiler**
+for branch 4. It retains `U` as a role and splits `c1 = U` from `c1 ≠ U`, but
+it deliberately makes no cyclic-order or cap-block choice. Its 7,603 profiles
+are equality partitions for the rules stated below, not a live branch census.
+
 The first executable profile is
 `firstCenter_not_mem_secondRow` (branch 4). The second profile is
 `robustCenter_not_mem_secondRow` (branch 3). Branches 1 and 2 are outside this
@@ -49,8 +54,9 @@ there is no `firstBlockerClass` field.
 
 The derived rows `K0 = T0 \ {d}` and `Orow = T0 \ {a}` add no new distance
 equalities and are retained as source metadata rather than duplicated atoms.
-The branch-4 metadata also records `c1 ∉ K2`, `c1 ∉ L`, full and
-disjoint `K2,L`, positive distinct radii, and all named-role distinctness.
+The branch-4 metadata also records the source-proved omissions `c1 ∉ K2`
+and `c1 ∉ L`, full and disjoint `K2,L`, positive distinct radii, and the
+conditional collapsed profile's named-role distinctness.
 The radius condition is replayed exactly as
 `d(c2,O) ≠ d(c2,d)`.
 
@@ -71,7 +77,6 @@ this quotient. The descriptor marks each of the following with
 - the displayed named support identities, including the choice of `e,x,y` as
   the non-`d` members of the replacement row;
 - `e ∈ surplusInterior` and `x,y ∈ oppInterior2` in branch 4;
-- the branch-4 candidate omission `c1 ∉ L`;
 - pairwise distinctness of the carrier points denoted by all remaining role
   symbols after collapsing `U` onto `c1`;
 - the discrete cross-row alias partition: differently named extras never
@@ -82,14 +87,63 @@ The Python cell validator checks that role *symbols* are unique and that they
 occupy their declared abstract blocks. It does not prove the corresponding
 point inequalities or Lean membership facts. The current linear constraints
 and model replay enforce row equalities, positive abstract distances, both
-Kalmanson signs, and the `K2/L` radius disequality. They do not enforce support
-omissions or full-class claims. Any future UNSAT verdict from this surface is
-therefore conditional on every assumption above.
+Kalmanson signs, and the `K2/L` radius disequality. They do not enforce even a
+source-proved omission such as `c1 ∉ L`, or any full-class claim. The separate
+alias profiler does enforce `c1 ∉ L` at the partition level. Any future UNSAT
+verdict from the collapsed order-cell surface remains conditional on every
+unproved assumption above.
 
-The absent live cases include `c1 ≠ U` at every cyclic position, other
-source-allowed equality cases for `c1`, and every cross-row alias partition in
-which differently named extras denote the same carrier point. The live source
-role `U` does not occur separately in the v1 cell schema.
+The absent **order-cell** cases include `c1 ≠ U` at every cyclic position,
+other source-allowed equality cases for `c1`, and every cross-row alias
+partition in which differently named extras denote the same carrier point. The
+live source role `U` does not occur separately in the v1 cell schema. The
+alias-only profiler below represents a restricted source-entitled family of
+those partitions, but does not turn them into order cells.
+
+## Branch-4 source-alias profiles
+
+`iter_source_alias_profiles` enumerates equality partitions before any cyclic
+order, Kalmanson form, or solver encoding is constructed. Its roles are
+
+```text
+U,O,c1,c2,a,d,p,q,s,t,u,v,e,x,y.
+```
+
+The enumeration applies these exact combinatorial rules:
+
+- The only additional `K1`/`K2` overlap comes from matching a member of
+  `{p,q}` with a member of `{s,t}` or `{u,v}`. Each matching is empty or has
+  one edge. The two matchings cannot use the same `{p,q}` endpoint; otherwise
+  an `{s,t}` point would equal a `{u,v}` point, contradicting
+  `K1 ∩ K2 = {O,a}`.
+- `c2` is either fresh or hosts one equivalence class containing a role from
+  `{p,q,s,t}` and no role from `{u,v}`. A matched class is counted once, not
+  once per label in it.
+- In the collapsed regime, the `U` class is exactly `{U,c1}`. In the separate
+  regime, `U` is fresh or hosts one base equivalence class other than the
+  class hosted by `c2`.
+- Each of `e,x,y` is fresh or attaches to a different eligible existing
+  class. An eligible class contains a role from `{p,q,s,t,U}` and contains
+  none of `c1,O,a,u,v,c2,d`. Injective host choice preserves the pairwise
+  distinctness of `e,x,y` in `L`.
+- Distinctness within each named row, distinctness of the live separators
+  `U,O,c2`, disjointness of `K2` and `L`, and the source-proved `c1 ∉ L`
+  are checked on every resulting partition.
+
+Canonical union-find representatives and canonical JSON hashing make the API
+deterministic. The independently tested counts are:
+
+| alias regime | profiles |
+| --- | ---: |
+| `c1 = U` | 961 |
+| `c1 ≠ U` | 6,642 |
+| total | 7,603 |
+
+These counts are exhaustive only for the five rules above. They do not assert
+that the abstract alias rules themselves are an exhaustive theorem about the
+Lean source. In particular, the profiler does not choose the position of `c1`,
+assign cap blocks, emit distance constraints, or invoke an order generator.
+Euclidean and minimum-enclosing-circle realizability remain excluded.
 
 ## Direct/mirror order cells
 
@@ -200,6 +254,9 @@ The pure tests include:
 - the reversed-sign negative control;
 - a known inconsistent system in which two equalities cancel one strict form;
 - deterministic direct/mirror generation and row-closure checks.
+- the exact 961/6,642 alias-regime counts, unique stable profile hashes, and
+  source-rule validation for every generated partition;
+- a guard that the lazy alias prefix does not call the order-cell generator.
 
 No SAT, SMT, LP, PiQD, or external solver is invoked by this version.
 
@@ -217,6 +274,7 @@ The following are intentionally absent:
 - a Lean ingress/coverage theorem or a named source-clean terminal consumer.
 
 A later solver wave may add these only under a new governed run manifest. It
-must first introduce `U` separately, enumerate or prove the position of `c1`,
-and cover source-allowed cross-row alias partitions. No verdict on the current
-collapsed cells may be described as live branch-4 coverage.
+must promote the separate-`U` alias profiles into an order census, enumerate or
+prove the position of `c1`, and establish a Lean exhaustiveness boundary for
+the source-allowed alias partitions. No verdict on the current collapsed cells
+or alias-only profiles may be described as live branch-4 coverage.

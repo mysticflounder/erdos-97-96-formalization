@@ -3,7 +3,9 @@
 This module deliberately does not invoke a solver.  It enumerates source-mapped
 direct/mirror boundary cells, constructs exact rational row equalities and the
 two strict Kalmanson forms for every ordered quadruple, and exposes replay
-functions for later model and cancellation-certificate artifacts.
+functions for later model and cancellation-certificate artifacts.  A separate
+branch-4 API enumerates source-entitled equality partitions without constructing
+any boundary order or linear constraint.
 
 The v1 cells collapse the live surplus apex ``U`` onto the critical blocker
 ``c1`` and assume every remaining role symbol denotes a distinct point.  The
@@ -26,6 +28,7 @@ from typing import Any, Literal
 SCHEMA = "p97-exactfive-c1-surplus-apex-collapse-order-equality/v1"
 CELL_SCHEMA = "p97-exactfive-c1-surplus-apex-collapse-order-cell/v1"
 QUOTIENT_SCHEMA = "p97-exactfive-c1-surplus-apex-collapse-row-symmetry/v1"
+ALIAS_PROFILE_SCHEMA = "p97-exactfive-branch4-source-alias-profile/v1"
 SEMANTIC_STATUS = "conditional_diagnostic_c1_eq_surplusApex_globally_distinct"
 PROMOTION_ELIGIBLE = False
 FALSE_CLAIMS = {
@@ -51,6 +54,35 @@ BRANCH_FOUR_SYMMETRY_GROUPS = (
     ("s", "t"),
     ("u", "v"),
     ("x", "y"),
+)
+
+ALIAS_COLLAPSED = "c1_eq_surplusApex"
+ALIAS_SEPARATE = "c1_ne_surplusApex"
+ALIAS_REGIMES = (ALIAS_COLLAPSED, ALIAS_SEPARATE)
+ALIAS_ROLES = (
+    "U",
+    "O",
+    "c1",
+    "c2",
+    "a",
+    "d",
+    "p",
+    "q",
+    "s",
+    "t",
+    "u",
+    "v",
+    "e",
+    "x",
+    "y",
+)
+_P_ROLES = ("p", "q")
+_S_ROLES = ("s", "t")
+_V_ROLES = ("u", "v")
+_REPLACEMENT_EXTRAS = ("e", "x", "y")
+_BASE_ALIAS_ROLES = (*_P_ROLES, *_S_ROLES, *_V_ROLES)
+_PRE_REPLACEMENT_ROLES = tuple(
+    role for role in ALIAS_ROLES if role not in _REPLACEMENT_EXTRAS
 )
 
 type Edge = tuple[str, str]
@@ -307,6 +339,11 @@ PROFILES = {
     BRANCH_THREE: BRANCH_THREE_COLLAPSED_PROFILE,
 }
 
+STRICT_KALMANSON_SOURCES = (
+    "Problem97.CapCrossingKalmansonBridge.dist_add_dist_lt_diagonal_sum_of_ccw",
+    "Problem97.CapCrossingKalmansonBridge.complementary_dist_add_dist_lt_diagonal_sum_of_ccw",
+)
+
 SOURCE_CLAUSE_LEDGER: tuple[dict[str, Any], ...] = (
     {
         "family": "branch-constructor",
@@ -325,6 +362,19 @@ SOURCE_CLAUSE_LEDGER: tuple[dict[str, Any], ...] = (
         ],
     },
     {
+        "family": "branch-four-source-alias-constraints",
+        "status": "proved-source-modeled-by-alias-profiler",
+        "sources": [
+            "firstCenter_not_mem_secondRow",
+            "hard-source-swap support disjointness and named row support facts",
+        ],
+        "note": (
+            "the alias profiler enforces c1 ∉ L, K1 ∩ K2 = {O,a}, "
+            "the c2 host exclusions, and distinctness inside each named row; "
+            "it does not choose a cyclic order"
+        ),
+    },
+    {
         "family": "direct-mirror-cap-blocks",
         "status": "documented-abstraction-assumption",
         "sources": [
@@ -338,16 +388,14 @@ SOURCE_CLAUSE_LEDGER: tuple[dict[str, Any], ...] = (
     {
         "family": "strict-kalmanson",
         "status": "proved-generic-source",
-        "sources": [
-            "Problem97.CapCrossingKalmansonBridge.dist_add_dist_lt_diagonal_sum_of_ccw",
-            "Problem97.CapCrossingKalmansonBridge.complementary_dist_add_dist_lt_diagonal_sum_of_ccw",
-        ],
+        "sources": list(STRICT_KALMANSON_SOURCES),
     },
 )
 
 UNPROVED_ABSTRACTION_ASSUMPTIONS: tuple[dict[str, Any], ...] = (
     {
         "assumption_id": "first-blocker-equals-surplus-apex",
+        "scope": "conditional-collapsed-order-cells",
         "branches": list(BRANCH_ORDER),
         "content": "c1 = U, where U is the surplus apex separator",
         "enforced": False,
@@ -355,6 +403,7 @@ UNPROVED_ABSTRACTION_ASSUMPTIONS: tuple[dict[str, Any], ...] = (
     },
     {
         "assumption_id": "named-row-supports",
+        "scope": "conditional-collapsed-order-cells",
         "branches": list(BRANCH_ORDER),
         "content": (
             "the abstract role names identify the displayed T0, K1, K2, and L "
@@ -364,18 +413,14 @@ UNPROVED_ABSTRACTION_ASSUMPTIONS: tuple[dict[str, Any], ...] = (
     },
     {
         "assumption_id": "replacement-cap-blocks",
+        "scope": "conditional-collapsed-order-cells",
         "branches": [BRANCH_FOUR],
         "content": "e is in surplusInterior and x,y are in oppInterior2",
         "enforced": False,
     },
     {
-        "assumption_id": "replacement-omits-first-center",
-        "branches": [BRANCH_FOUR],
-        "content": "c1 ∉ L",
-        "enforced": False,
-    },
-    {
         "assumption_id": "named-role-distinctness",
+        "scope": "conditional-collapsed-order-cells",
         "branches": list(BRANCH_ORDER),
         "content": (
             "after collapsing U onto c1, all displayed role names denote "
@@ -389,6 +434,7 @@ UNPROVED_ABSTRACTION_ASSUMPTIONS: tuple[dict[str, Any], ...] = (
     },
     {
         "assumption_id": "cross-row-alias-partition-is-discrete",
+        "scope": "conditional-collapsed-order-cells",
         "branches": list(BRANCH_ORDER),
         "content": "distinct row supports share only the roles displayed with the same name",
         "enforced": False,
@@ -396,12 +442,296 @@ UNPROVED_ABSTRACTION_ASSUMPTIONS: tuple[dict[str, Any], ...] = (
     },
     {
         "assumption_id": "full-selected-classes",
+        "scope": "conditional-collapsed-order-cells",
         "branches": list(BRANCH_ORDER),
         "content": "K2 and L are the full selected classes at their radii",
         "enforced": False,
         "note": "the current system asserts their internal row equalities only",
     },
 )
+
+
+AliasRegime = Literal["c1_eq_surplusApex", "c1_ne_surplusApex"]
+
+
+@dataclass(frozen=True)
+class SourceAliasProfile:
+    """One source-entitled equality partition before any cyclic-order choice."""
+
+    regime: AliasRegime
+    p_s_matching: tuple[tuple[str, str], ...]
+    p_u_matching: tuple[tuple[str, str], ...]
+    c2_host: tuple[str, ...] | None
+    surplus_apex_host: tuple[str, ...] | None
+    replacement_hosts: tuple[tuple[str, tuple[str, ...] | None], ...]
+    classes: tuple[tuple[str, ...], ...]
+
+    def payload(self) -> dict[str, Any]:
+        body = {
+            "schema": ALIAS_PROFILE_SCHEMA,
+            "regime": self.regime,
+            "p_s_matching": [list(pair) for pair in self.p_s_matching],
+            "p_u_matching": [list(pair) for pair in self.p_u_matching],
+            "c2_host": None if self.c2_host is None else list(self.c2_host),
+            "surplus_apex_host": (
+                None
+                if self.surplus_apex_host is None
+                else list(self.surplus_apex_host)
+            ),
+            "replacement_hosts": [
+                {"role": role, "host": None if host is None else list(host)}
+                for role, host in self.replacement_hosts
+            ],
+            "classes": [list(klass) for klass in self.classes],
+            "claim_boundary": "source_alias_only_no_order_or_live_coverage",
+        }
+        return {**body, "profile_sha256": _sha256_json(body)}
+
+    @property
+    def profile_id(self) -> str:
+        return self.payload()["profile_sha256"]
+
+
+def _small_matchings(
+    left: Sequence[str], right: Sequence[str]
+) -> Iterator[tuple[tuple[str, str], ...]]:
+    """The empty matching and every one-edge matching, in stable order."""
+
+    yield ()
+    for first in left:
+        for second in right:
+            yield ((first, second),)
+
+
+def _canonical_partition(
+    roles: Sequence[str], unions: Iterable[tuple[str, str]]
+) -> tuple[tuple[str, ...], ...]:
+    rank = {role: index for index, role in enumerate(ALIAS_ROLES)}
+    parent = {role: role for role in roles}
+
+    def find(role: str) -> str:
+        if parent[role] != role:
+            parent[role] = find(parent[role])
+        return parent[role]
+
+    for left, right in unions:
+        left_root, right_root = find(left), find(right)
+        if left_root != right_root:
+            if rank[left_root] < rank[right_root]:
+                parent[right_root] = left_root
+            else:
+                parent[left_root] = right_root
+    classes: dict[str, list[str]] = {}
+    for role in roles:
+        classes.setdefault(find(role), []).append(role)
+    canonical = [tuple(sorted(klass, key=rank.__getitem__)) for klass in classes.values()]
+    return tuple(sorted(canonical, key=lambda klass: tuple(rank[role] for role in klass)))
+
+
+def _class_map(classes: Sequence[tuple[str, ...]]) -> dict[str, tuple[str, ...]]:
+    return {role: klass for klass in classes for role in klass}
+
+
+def _eligible_c2_hosts(
+    base_classes: Sequence[tuple[str, ...]],
+) -> tuple[tuple[str, ...], ...]:
+    return tuple(
+        klass
+        for klass in base_classes
+        if set(klass) & {*_P_ROLES, *_S_ROLES}
+        and not set(klass) & set(_V_ROLES)
+    )
+
+
+def _eligible_replacement_hosts(
+    classes: Sequence[tuple[str, ...]],
+) -> tuple[tuple[str, ...], ...]:
+    forbidden = {"c1", "O", "a", "u", "v", "c2", "d"}
+    entitled = {*_P_ROLES, *_S_ROLES, "U"}
+    return tuple(
+        klass
+        for klass in classes
+        if not set(klass) & forbidden and set(klass) & entitled
+    )
+
+
+def _replacement_host_assignments(
+    eligible: Sequence[tuple[str, ...]],
+) -> Iterator[tuple[tuple[str, tuple[str, ...] | None], ...]]:
+    options: tuple[tuple[str, ...] | None, ...] = (None, *eligible)
+    for choices in itertools.product(options, repeat=len(_REPLACEMENT_EXTRAS)):
+        concrete = [host for host in choices if host is not None]
+        if len(concrete) != len(set(concrete)):
+            continue
+        yield tuple(zip(_REPLACEMENT_EXTRAS, choices, strict=True))
+
+
+def iter_source_alias_profiles(
+    regime: AliasRegime | None = None,
+) -> Iterator[SourceAliasProfile]:
+    """Enumerate corrected branch-4 alias partitions without constructing orders."""
+
+    regimes = ALIAS_REGIMES if regime is None else (regime,)
+    if any(item not in ALIAS_REGIMES for item in regimes):
+        raise HardSourceSwapGridError(f"unknown alias regime: {regime}")
+    for p_s_matching in _small_matchings(_P_ROLES, _S_ROLES):
+        for p_u_matching in _small_matchings(_P_ROLES, _V_ROLES):
+            if {pair[0] for pair in p_s_matching} & {
+                pair[0] for pair in p_u_matching
+            }:
+                continue
+            base_unions = (*p_s_matching, *p_u_matching)
+            base_classes = _canonical_partition(_BASE_ALIAS_ROLES, base_unions)
+            c2_options: tuple[tuple[str, ...] | None, ...] = (
+                None,
+                *_eligible_c2_hosts(base_classes),
+            )
+            for c2_host in c2_options:
+                for current_regime in regimes:
+                    if current_regime == ALIAS_COLLAPSED:
+                        surplus_options: tuple[tuple[str, ...] | None, ...] = (
+                            ("c1",),
+                        )
+                    else:
+                        surplus_options = (
+                            None,
+                            *(klass for klass in base_classes if klass != c2_host),
+                        )
+                    for surplus_host in surplus_options:
+                        pre_unions: list[tuple[str, str]] = list(base_unions)
+                        if c2_host is not None:
+                            pre_unions.extend(("c2", role) for role in c2_host)
+                        if current_regime == ALIAS_COLLAPSED:
+                            pre_unions.append(("U", "c1"))
+                        elif surplus_host is not None:
+                            pre_unions.extend(("U", role) for role in surplus_host)
+                        pre_classes = _canonical_partition(
+                            _PRE_REPLACEMENT_ROLES, pre_unions
+                        )
+                        eligible = _eligible_replacement_hosts(pre_classes)
+                        for replacement_hosts in _replacement_host_assignments(eligible):
+                            final_unions = list(pre_unions)
+                            for replacement, host in replacement_hosts:
+                                if host is not None:
+                                    final_unions.append((replacement, host[0]))
+                            profile = SourceAliasProfile(
+                                regime=current_regime,  # type: ignore[arg-type]
+                                p_s_matching=p_s_matching,
+                                p_u_matching=p_u_matching,
+                                c2_host=c2_host,
+                                surplus_apex_host=surplus_host,
+                                replacement_hosts=replacement_hosts,
+                                classes=_canonical_partition(ALIAS_ROLES, final_unions),
+                            )
+                            validate_source_alias_profile(profile)
+                            yield profile
+
+
+def validate_source_alias_profile(profile: SourceAliasProfile) -> None:
+    flattened = [role for klass in profile.classes for role in klass]
+    if sorted(flattened) != sorted(ALIAS_ROLES) or len(flattened) != len(set(flattened)):
+        raise HardSourceSwapGridError("alias classes do not partition the source roles")
+    class_edges = itertools.chain.from_iterable(
+        itertools.combinations(klass, 2) for klass in profile.classes
+    )
+    if profile.classes != _canonical_partition(ALIAS_ROLES, class_edges):
+        raise HardSourceSwapGridError("alias classes are not in canonical order")
+    classes = _class_map(profile.classes)
+
+    def same(left: str, right: str) -> bool:
+        return classes[left] == classes[right]
+
+    if profile.regime == ALIAS_COLLAPSED:
+        if profile.surplus_apex_host != ("c1",):
+            raise HardSourceSwapGridError("collapsed surplus-apex host record is inconsistent")
+        if not same("c1", "U") or classes["c1"] != ("U", "c1"):
+            raise HardSourceSwapGridError("collapsed regime must identify exactly U and c1")
+    elif profile.regime == ALIAS_SEPARATE:
+        if same("c1", "U"):
+            raise HardSourceSwapGridError("separate regime must keep U distinct from c1")
+        surplus_others = tuple(
+            role
+            for role in classes["U"]
+            if role != "U" and role not in _REPLACEMENT_EXTRAS
+        )
+        expected_surplus = (
+            ()
+            if profile.surplus_apex_host is None
+            else profile.surplus_apex_host
+        )
+        if surplus_others != expected_surplus:
+            raise HardSourceSwapGridError("surplus-apex host record is inconsistent")
+        if set(surplus_others) - set(_BASE_ALIAS_ROLES):
+            raise HardSourceSwapGridError("surplus apex has a non-source host")
+    else:
+        raise HardSourceSwapGridError("unknown alias regime")
+
+    distinct_groups = (
+        ("O", "a", "d", "c1", "p", "q"),
+        ("c1", "O", "a", "s", "t"),
+        ("c2", "O", "a", "u", "v"),
+        ("c2", "d", "e", "x", "y"),
+        ("O", "c1", "c2"),
+        ("U", "O", "c2"),
+    )
+    for group in distinct_groups:
+        if len({classes[role] for role in group}) != len(group):
+            raise HardSourceSwapGridError(f"source-distinct group collapsed: {group}")
+    for old in ("O", "a", "u", "v"):
+        for replacement in ("d", "e", "x", "y"):
+            if same(old, replacement):
+                raise HardSourceSwapGridError("K2 and L must be disjoint")
+    if any(same("c1", role) for role in ("d", "e", "x", "y")):
+        raise HardSourceSwapGridError("proved c1-not-in-L constraint failed")
+    if any(same("c1", role) for role in ("O", "a", "u", "v")):
+        raise HardSourceSwapGridError("branch c1-not-in-K2 constraint failed")
+
+    observed_ps = tuple(
+        (left, right)
+        for left in _P_ROLES
+        for right in _S_ROLES
+        if same(left, right)
+    )
+    observed_pu = tuple(
+        (left, right)
+        for left in _P_ROLES
+        for right in _V_ROLES
+        if same(left, right)
+    )
+    if observed_ps != profile.p_s_matching or len(observed_ps) > 1:
+        raise HardSourceSwapGridError("p/q-to-s/t matching record is inconsistent")
+    if observed_pu != profile.p_u_matching or len(observed_pu) > 1:
+        raise HardSourceSwapGridError("p/q-to-u/v matching record is inconsistent")
+    if any(same(left, right) for left in _S_ROLES for right in _V_ROLES):
+        raise HardSourceSwapGridError("K1 intersection K2 must be exactly O,a")
+
+    c2_others = tuple(role for role in classes["c2"] if role != "c2")
+    if c2_others != (() if profile.c2_host is None else profile.c2_host):
+        raise HardSourceSwapGridError("c2 host record is inconsistent")
+    if c2_others and not set(c2_others) & {*_P_ROLES, *_S_ROLES}:
+        raise HardSourceSwapGridError("c2 host must be a p/q/s/t equivalence class")
+    if set(c2_others) & set(_V_ROLES):
+        raise HardSourceSwapGridError("c2 cannot host a class containing u/v")
+
+    if tuple(role for role, _host in profile.replacement_hosts) != _REPLACEMENT_EXTRAS:
+        raise HardSourceSwapGridError("replacement-host records are not canonical")
+    for replacement, host in profile.replacement_hosts:
+        other_roles = tuple(role for role in classes[replacement] if role != replacement)
+        expected = () if host is None else host
+        if other_roles != expected:
+            raise HardSourceSwapGridError("replacement-host record is inconsistent")
+        if set(other_roles) - {*_P_ROLES, *_S_ROLES, "U"}:
+            raise HardSourceSwapGridError("replacement extra has a forbidden alias")
+        if other_roles and not set(other_roles) & {*_P_ROLES, *_S_ROLES, "U"}:
+            raise HardSourceSwapGridError("replacement extra lacks a source-entitled host")
+
+
+def source_alias_profile_counts() -> dict[str, int]:
+    counts = {regime: 0 for regime in ALIAS_REGIMES}
+    for profile in iter_source_alias_profiles():
+        counts[profile.regime] += 1
+    counts["total"] = sum(counts.values())
+    return counts
 
 
 def profile_for(branch: str) -> BranchProfile:
@@ -640,7 +970,7 @@ def kalmanson_constraint(
         f"kal:{kind}:{i}:{j}:{k}:{ell}",
         "strict",
         SignedForm.make((*diagonal, *subtracted)),
-        SOURCE_CLAUSE_LEDGER[3]["sources"][source_index],
+        STRICT_KALMANSON_SOURCES[source_index],
     )
 
 
@@ -891,6 +1221,7 @@ def known_unsat_fixture() -> tuple[tuple[LinearConstraint, ...], tuple[WeightedT
 
 
 def descriptor() -> dict[str, Any]:
+    alias_counts = source_alias_profile_counts()
     return {
         "schema": SCHEMA,
         "semantic_status": SEMANTIC_STATUS,
@@ -901,10 +1232,12 @@ def descriptor() -> dict[str, Any]:
             branch: profile.diagnostic_subcase for branch, profile in PROFILES.items()
         },
         "coverage_boundary": {
+            "scope": "conditional-collapsed-order-cells",
             "complete_live_branch_census": False,
             "live_boundary_separators": list(LIVE_SEPARATOR_ROLES),
             "conditional_profile_separators": list(COLLAPSED_SEPARATOR_ROLES),
             "missing_live_source_roles": ["U"],
+            "alias_profiler_includes_live_source_roles": ["U"],
             "conditional_identification": "c1 = U (surplus apex)",
             "omitted_live_case_families": [
                 "c1 distinct from U with every possible cyclic placement",
@@ -915,6 +1248,7 @@ def descriptor() -> dict[str, Any]:
         "source_clause_ledger": SOURCE_CLAUSE_LEDGER,
         "unproved_abstraction_assumptions": UNPROVED_ABSTRACTION_ASSUMPTIONS,
         "enforcement_boundary": {
+            "scope": "conditional-collapsed-order-cells",
             "enforced_by_cells": [
                 "symbol-level role uniqueness",
                 "the profile's declared cap-block placements",
@@ -927,12 +1261,38 @@ def descriptor() -> dict[str, Any]:
                 "K2/L radius disequality",
             ],
             "metadata_only": [
-                "support omissions including c1 ∉ L",
+                "source-proved c1 ∉ L (enforced separately by alias profiles)",
                 "full-class claims",
                 "pairwise distinctness of the represented carrier points",
                 "Lean realization of the named e/x/y replacement roles",
             ],
             "unsat_status": "conditional_on_all_unproved_abstraction_assumptions",
+        },
+        "branch_four_source_alias_profiles": {
+            "schema": ALIAS_PROFILE_SCHEMA,
+            "claim_boundary": "source_alias_only_no_order_or_live_coverage",
+            "solver_free": True,
+            "constructs_order_cells": False,
+            "regime_counts": {
+                ALIAS_COLLAPSED: alias_counts[ALIAS_COLLAPSED],
+                ALIAS_SEPARATE: alias_counts[ALIAS_SEPARATE],
+            },
+            "total_profiles": alias_counts["total"],
+            "encoded_constraints": [
+                "c1 ∉ L",
+                "K1 ∩ K2 = {O,a}",
+                "at most one p/q-to-s/t match and one p/q-to-u/v match",
+                "the two matchings use disjoint p/q endpoints",
+                "c2 is fresh or hosts one p/q/s/t class containing no u/v",
+                "e/x/y are fresh or injectively host source-entitled p/q/s/t/U classes",
+                "c1 = U and c1 ≠ U are separate regimes",
+            ],
+            "omitted_layers": [
+                "cyclic placement and order-cell generation",
+                "cap-block membership",
+                "Euclidean and minimum-enclosing-circle realizability",
+                "Lean exhaustiveness theorem for these abstract alias rules",
+            ],
         },
         "branch_four_collapsed_row_symmetry_quotient": {
             "schema": QUOTIENT_SCHEMA,
