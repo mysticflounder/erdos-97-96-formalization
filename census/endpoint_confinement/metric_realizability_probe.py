@@ -1874,6 +1874,7 @@ def _summary(results: Iterable[Mapping[str, Any]]) -> dict[str, Any]:
 def _render_markdown(payload: Mapping[str, Any]) -> str:
     extraction = payload["extraction"]
     summary = payload["summary"]
+    has_mec_packet = any("mec_apices" in result for result in payload["results"])
     lines = [
         "# Metric realizability probe",
         "",
@@ -1911,6 +1912,15 @@ def _render_markdown(payload: Mapping[str, Any]) -> str:
             "- strict convexity in the cap frame's recorded cyclic order, using",
             "  the left-half-plane condition for every oriented hull edge; and",
             "- for every exact row, exclusion of each nonmember from its radius.",
+            *(
+                [
+                    "- for each declared MEC packet, a positive squared radius,",
+                    "  its three apices on the boundary, every ambient point in",
+                    "  the disk, and the three nonobtuse-triangle inequalities.",
+                ]
+                if has_mec_packet
+                else []
+            ),
             "",
             "Before invoking QF_NRA, the probe deterministically closes row",
             "equalities and checks for two distinct centers equidistant from the",
@@ -1944,8 +1954,17 @@ def _render_markdown(payload: Mapping[str, Any]) -> str:
             "",
             "Not encoded:",
             "",
-            "- the diameter, minimal-enclosing-circle, nonobtuse-frame, and other",
-            "  geometric hypotheses not present in the saved row assignment; and",
+            *(
+                [
+                    "- the quantified minimum-radius clause and other global",
+                    "  geometric hypotheses outside the declared MEC packet; and",
+                ]
+                if has_mec_packet
+                else [
+                    "- the diameter, minimal-enclosing-circle, nonobtuse-frame, and other",
+                    "  geometric hypotheses not present in the saved row assignment; and",
+                ]
+            ),
             "- any selected radius classes not represented by a saved row.",
             "",
             "Therefore `UNSAT` soundly excludes a saved incidence assignment even",
@@ -1999,6 +2018,8 @@ def _write_checkpoint(
                 "sources": system["sources"],
             }
         )
+        if "mec_apices" in system:
+            result["mec_apices"] = system["mec_apices"]
         enriched.append(result)
     payload = {
         "schema": SCHEMA,

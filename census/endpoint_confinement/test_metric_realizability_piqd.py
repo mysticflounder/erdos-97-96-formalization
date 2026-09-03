@@ -1007,6 +1007,29 @@ def test_mec_runtime_shape_and_system_id_fail_closed() -> None:
     }
 
 
+def test_mec_markdown_ledger_reports_encoded_packet() -> None:
+    markdown = producer._render_markdown(
+        {
+            "extraction": {
+                "raw_assignments": 0,
+                "unique_metric_systems": 1,
+                "input_files": [],
+            },
+            "summary": {
+                "status_counts": {"UNKNOWN": 1},
+                "decisive_stage_counts": {"none": 1},
+            },
+            "selected_systems": 1,
+            "results": [{"mec_apices": [0, 1, 2]}],
+            "config": {"workers": 1, "timeout_seconds": 1},
+            "smoke": {"passed": True},
+        }
+    )
+    assert "for each declared MEC packet" in markdown
+    assert "quantified minimum-radius clause" in markdown
+    assert "minimal-enclosing-circle, nonobtuse-frame" not in markdown
+
+
 def test_direct_schema_versions_do_not_accept_each_others_shape(tmp_path: Path) -> None:
     missing = _mec_direct_source_document()
     del missing["mec_apices"]
