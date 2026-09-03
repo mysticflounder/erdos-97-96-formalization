@@ -1900,5 +1900,56 @@ squared distances at an explicit real point, not by a characteristic-0 triage �
 but `nrRootsDeterm` counts real roots without returning any, so obtaining that
 witness is its own step and distinctness is not free.
 
-{{NEEDS_UPDATE}}: the saturated mod-p verdicts from chain v12, and the
-characteristic-0 four-pair Rabinowitsch verdicts from the peer session.
+### 18. The triage refutes a representative outright (2026-09-03)
+
+The relevance triage does more than order the saturation. For
+`0e31c5c5d735a779` it reports seven live pairs of 105, and one of them carries
+the raw vector-space dimension:
+
+    P0.1:P0.4   dim 0, vdim 1536     <- equal to the raw vdim
+    P0.2:P1.4   dim 0, vdim  768
+    P0.3:P2.1   dim 0, vdim  768
+    P0.3:P2.4   dim 0, vdim  768
+    P1.1:P1.4   dim 0, vdim  384
+    P2.1:P2.3   dim 0, vdim  384
+    P2.1:P2.4   dim 0, vdim  384
+
+I is contained in I + <d(P0.1,P0.4)>, so R/(I + <d>) is a quotient of R/I; both
+are finite-dimensional of dimension 1536, and a surjection between
+finite-dimensional spaces of equal dimension is an isomorphism, so the two
+ideals are equal and d lies in I. Then V(I) is contained in V(d): every solution
+has P0.1 = P0.4, and the saturated variety — where the fifteen points are
+distinct — is empty. This was posted as a falsifiable prediction that the
+pending saturation run must return dim -1, and that run then returned
+`dim_raw 0, dim_sat -1, dim -1`. `0e31c5c5d735a779` is refuted at the encoded
+scope, from a 35 s triage rather than a 280-604 s saturation.
+
+The equal-vdim collapse is now a standing test on every triage: a live pair
+whose vector-space dimension equals the raw one refutes the representative
+immediately, and names the coinciding pair. It is discriminating rather than
+universal — `0d6996160cc83aab` (512, 1024, 512, 1024 against 2048) and
+`3826b8a0dec4a6b0` (512, 1024, 512, 1024 against 2048) both fail the test, and
+of the three keys triaged so far only `0e31c5c5d735a779` collapses.
+
+Scope: mod 32003. Over the rationals the vector-space dimension can only be
+larger, so equality mod p does not give equality over the rationals, and this
+stands at the same strength as the other mod-p emptiness results.
+
+That last limit may be removable, and unlike everything else today the route
+does not need a rational Groebner basis. Ideal membership has a certificate: if
+d lies in I over the rationals then d = sum f_q g_q for the encoder's own
+generators g_q, and that identity is checkable by pure expansion in exact
+rational arithmetic. Singular's `lift` supplies candidate cofactors modulo a
+large prime, where the computation is fast; rational reconstruction lifts each
+coefficient; and the identity is then verified exactly. The modular provenance
+drops out, because a wrong reconstruction simply fails the check — the same
+asymmetry as Guardrail 6, applied to a refutation that happens to have a
+witness. `kal_angles.py` gained `--lift a:b` for the certificate and
+`scratch/.../verify_lift.py` performs the rational check, re-deriving the
+generators from the encoder rather than trusting Singular's echo. The honest
+risk is coefficient growth, which is the same wall in another guise; the failure
+is immediate and visible.
+
+{{NEEDS_UPDATE}}: the remaining mod-p verdicts from chain v12, the certificate
+verification for `0e31c5c5d735a779`, and the characteristic-0 four-pair
+Rabinowitsch verdicts from the peer session.
