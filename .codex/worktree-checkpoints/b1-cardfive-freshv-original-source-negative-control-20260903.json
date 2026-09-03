@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "b1-cardfive-freshv-original-source-negative-control-20260903",
+  "owner": "luna-swarm-lemma-lantern-97",
+  "base_head": "d89373666e4c2a15205baade4740235ce61a86af",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/b1-cardfive-freshv-original-source-negative-control-20260903.json",
+    "scratch/negative-controls/B1FreshVOriginalSourceFiniteCountermodel.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-03T22:00:00Z",
+  "manifest_sha256": "b7bf05ad233a2863b36e5d9db02500a72561a4422649c0a6afe5bd41047011d6"
+}
