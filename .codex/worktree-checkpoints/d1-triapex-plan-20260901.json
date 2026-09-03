@@ -30,13 +30,15 @@
     "scratch/runs/d1-triapex-plan-20260901/stage2-probe-01"
   ],
   "lane_id": "d1-triapex-plan-20260901",
-  "manifest_sha256": "e6ac213c36017b2f2ab4655eddb6daae849029ef13dacd88e82d4edcfb037350",
+  "manifest_sha256": "1c5ffdb50260015f35416149ee946705df5dbf28757e9e82ec02f836c56bd31b",
   "owned_paths": [
     ".codex/worktree-checkpoints/d1-triapex-plan-20260901.json",
     "census/card_head/d1_arcmidpoint_circle_necessity.py",
+    "census/card_head/d1_cyclic_slot_geometry.py",
     "census/card_head/d1_mu0_incidence_census.py",
     "census/card_head/d1_mu0_pattern_algebra.py",
     "census/card_head/tests/test_d1_arcmidpoint_circle_necessity.py",
+    "census/card_head/tests/test_d1_cyclic_slot_geometry.py",
     "census/card_head/tests/test_d1_mu0_incidence_census.py",
     "census/card_head/tests/test_d1_mu0_pattern_algebra.py",
     "docs/audits/2026-09-01-d1-mu0-terminal-analysis.md",

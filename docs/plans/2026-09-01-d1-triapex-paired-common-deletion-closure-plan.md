@@ -5070,10 +5070,29 @@ job and not a direct engine invocation.  No such run has been made.
 
 Leaf unchanged: single `sorry`, `M = 18`.
 
-### 67. The cyclic case is refuted: a trigonometric identity closes obligation (i) (2026-09-03)
+### 67. The cyclic case is refuted, conditional on section 64 (2026-09-03)
 
 Section 66 left one open configuration.  This section decides it.  The
 refutation is elementary and needs no solver.
+
+**Scope, stated up front.**  Everything from section 63 through this section
+lives inside two hypotheses that earlier sections introduced and this one
+inherits without restating them.
+
+* **The one-radius arm.**  Sections 63 and 64 use "in the one-radius arm cap
+  `j`'s whole interior lies on the class at `Aⱼ`", which is what gives a foreign
+  hit its *second* distance equation and so puts it on a pair of class circles.
+  Without it there is no circle pair to parametrize and the whole computation
+  below has no object.  The two-radii branch of
+  `twoRadii_or_adjacentMutualOmissionPairAt_of_card_eq_fifteen`
+  (`TriApexEndpointRetainedOmission.lean:2830`) is a live branch and is
+  **untouched** by sections 63-69.  Section 59 already recorded this scope
+  limit; it applies verbatim here.
+* **Card fifteen.**  The six-slot model needs `(capByIndex i).card = 6` and
+  `(capInteriorByIndex i).card = 4`, that is `hcard : D.A.card = 15`.  Section
+  62 recorded that the live `sorry` binds `hcard` only as an implication and
+  discharges no antecedent, so the card-15 tools are not currently reachable
+  from the live consumer.  That remains true.
 
 (Numbering note: this document already contains two sections numbered 59 and
 two numbered 60, from parallel edits.  The later pair — "Obligation (i) reduces
@@ -5088,15 +5107,18 @@ cyclic configuration over the apex-angle square, using the source cap convention
 failure.  Over the non-obtuse scalene samples the failure reason was *never*
 "wrong side of the chord" — zero occurrences.  It was always that **both**
 points of `circle (Aᵢ, ρᵢ) ∩ circle (Aⱼ, ρⱼ)` lie strictly outside the MEC disk.
-Since a foreign hit is a carrier point and `A` lies in the closed MEC disk, that
-is fatal.  So the object to control is the disk, and section 64's reflection
-argument was attacking the wrong constraint.
+Since a foreign hit is a carrier point and `A` lies in the closed MEC disk
+(`MEC/Basic.lean:291`, `dist_mecSphere_center_le`), that
+is fatal.  So the object to control is the disk.  Section 64's reflection
+argument targets the chord side instead, which is why it could not decide this
+sub-case — but its *conclusion* (at most one foreign hit per unordered pair) is
+still needed below, and is not superseded.
 
 **The in-disk criterion, in closed form.**  Normalize the MEC to the unit circle
 at the origin.  Let `α, β, γ` be the inscribed angles at `A0, A1, A2`, so
 `α + β + γ = π`, the arcs are `2α, 2β, 2γ`, and `a = 2 sin α`, `b = 2 sin β`,
 `c = 2 sin γ`.  Non-obtuseness gives `α, β, γ ≤ π/2`; it is a
-`SurplusCapPacket` field (`triangleNonObtuse`, `PartitionFromMEC.lean:314`), not
+`SurplusCapPacket` field (`triangleNonObtuse`, `PartitionFromMEC.lean:339`), not
 an added hypothesis.
 
 Place `A0 = (1,0)` and `A1` at angle `2γ`, and write a point of
@@ -5122,8 +5144,14 @@ non-obtuseness is used) that is `sin θ ≥ -cos 2γ`, which rearranges to
 
     4 sin²γ cos²γ ≥ sin²α,   i.e.   sin 2γ ≥ sin α.
 
-> **Slot `(0,1)` in the cyclic assignment admits an in-disk hit exactly when
-> `sin 2γ ≥ sin α`.**
+> **For `γ ≤ π/2`, slot `(0,1)` in the cyclic assignment admits an in-disk
+> hit exactly when `sin 2γ ≥ sin α`.**
+
+The hypothesis is not cosmetic.  For `γ > π/2` the `arccos` branch inverts, the
+in-disk arc becomes `[3π/2 - γ, π/2 + γ]`, and the criterion is simply false —
+measured disagreement with direct circle intersection on the obtuse part of the
+grid is substantial, not marginal.  Non-obtuseness is available as a
+`SurplusCapPacket` field, so this costs nothing here.
 
 The criterion also subsumes the existence condition `a ≤ 2c`.
 
@@ -5140,7 +5168,10 @@ Every term is positive, so the three may be multiplied.  Using
     8 cos α cos β cos γ ≥ 1.
 
 But in any triangle `cos α cos β cos γ ≤ 1/8`, with equality exactly for the
-equilateral triangle.  Hence equality holds throughout and `α = β = γ = π/3`.
+equilateral triangle.  (Section 68 replaces this appeal with an exact
+sum-of-squares identity, proved in Lean as
+`Problem97.eq_of_cyclic_side_inequalities`; the bound holds for obtuse triangles
+too, where one cosine is negative and the product is below zero.)  Hence equality holds throughout and `α = β = γ = π/3`.
 The cyclic case requires `a, b, c` pairwise distinct (section 65), so this is a
 contradiction.
 
@@ -5166,9 +5197,13 @@ case:
 
 > **some index `i` satisfies `¬ StrictAdjacentEscapeAt i r`.**
 
-Composing with section 62's
+From there to ingress obligation (i) is three further links, not one, and all
+three are card-15 gated: section 62's
 `selectedClass_subset_capByIndex_of_not_strictAdjacentEscapeAt` (proved,
-axiom-clean) and the section 59/60 reduction gives ingress obligation (i).
+axiom-clean) gives the containment; the card-15 profile turns containment into
+`class = capByIndex i` by counting `6 = 6`; that puts both outer vertices in the
+class, which is the pair of distance equalities section 59 reduced obligation
+(i) to.  Section 62 records all three.
 
 **Evidence and status.**  The closed-form criterion was checked against direct
 circle-intersection computation on a `300 × 300` angle grid: `11473/11473`
@@ -5176,12 +5211,33 @@ agreement on non-obtuse triangles, and it correctly fails on obtuse ones, where
 the `arccos` branch changes and the criterion does not apply.  The three-condition
 system was solved on a `900 × 900` grid in both senses: exactly one solution
 each, the equilateral point, to `4.4e-16`.  The census configuration passes the
-same machinery as a positive control (99 realizations with live cap arcs at all
-three indices) and a wrong-radius negative control returns none.
+same machinery as a positive control and a wrong-radius negative control
+returns none.  The `99` is a count of *angle-grid samples* on the isosceles line
+of a 1200-point sweep that realize the census slot pattern with a live cap arc
+at all three indices; it is unrelated to the `111` metric patterns of the census
+itself, which are combinatorial.
 
-Rigor: the criterion derivation and the product argument are **PROVEN** on
-paper.  They rest on section 64, which remains a **PROOF SKETCH** — so ingress
-obligation (i) is proved modulo one unformalized step, and nothing here is Lean.
+Every number in this section and in sections 68-69 is pinned by
+`census/card_head/tests/test_d1_cyclic_slot_geometry.py`, over
+`census/card_head/d1_cyclic_slot_geometry.py`, which also records the source
+conventions it mirrors.
+
+Rigor.  This section's own content — the criterion derivation and the product
+argument — is **PROVEN** on paper, and nothing here is Lean.  It is not
+self-standing:
+
+* it depends on section 64, which self-labels **PROOF SKETCH, not established**;
+  that label stands, and nothing in this section is evidence for it;
+* it holds in the **one-radius arm** only, and says nothing about the two-radii
+  branch;
+* the composition to obligation (i) is **card-15 gated**, and section 62 records
+  that the live consumer does not discharge that antecedent.
+
+So the honest claim is: *the cyclic configuration is refuted*, and ingress
+obligation (i) follows in the one-radius arm from a conjectural section 64 under
+a hypothesis the live consumer cannot yet supply.  Calling obligation (i)
+"closed" would overstate all three.
+
 No solver was used and none is needed; the queued Singular realizability run is
 withdrawn as unnecessary.
 
@@ -5296,5 +5352,52 @@ Lean theorem is the circumradius relation between `R` and `a, b, c`.
 
 Status: EMPIRICALLY VERIFIED as a cross-check, and PROVEN on paper as an
 alternative derivation of section 67's criterion.  No new Lean.
+
+Leaf unchanged: single `sorry`, `M = 18`.
+
+### 70. Adversarial audit of section 67, and its disposition (2026-09-03)
+
+Section 67 was audited adversarially before being relied on, per the project's
+rule that a result is not established until it is both proved and audited.  The
+auditor re-derived every step independently — including deriving the slot `(1,2)`
+and `(2,0)` conditions from scratch rather than accepting the symmetry appeal —
+and reproduced the two headline numbers from section 67's own definitions.
+
+**Verdict: NEEDS WORK.  No mathematical defect was found.**  Every step of the
+derivation, the multiplication of the three inequalities, the product bound, and
+the eight-way counting enumeration survived attack.  The auditor also confirmed
+all three convention claims against the Lean source: `OnArcOpposite` is the
+closed half-plane test, `capInteriorByIndex` erases exactly the two chord
+endpoints, and `SurplusCapPacket` carries a non-obtuse triangle as a field.
+
+Every finding was a **labeling or dependency-disclosure** defect.  All eight are
+now fixed in place in section 67:
+
+| # | Finding | Disposition |
+|---|---|---|
+| F1 | the **one-radius arm** hypothesis was inherited silently | new scope paragraph; two-radii branch named as untouched |
+| F2 | the **card-15** gate was undisclosed, and the composition to obligation (i) is three links presented as one | scope paragraph plus the three links spelled out |
+| F3 | the title said "closes"; section 64 self-labels as not established | retitled; section 64's own label restored |
+| F4 | the boxed criterion omitted `γ ≤ π/2`, without which it is false | hypothesis moved into the box, with the reason |
+| F5 | the MEC-disk step was used without citation | `MEC/Basic.lean:291` cited |
+| F6 | `cos α cos β cos γ ≤ 1/8` asserted without citation | section 68's Lean lemma cited |
+| F7 | no verification script on disk for the quoted numbers | script and test committed, see below |
+| F8 | section 64 was dismissed in one paragraph and depended on in another | reworded: its target was wrong for this sub-case, its conclusion still holds |
+
+Plus a citation correction: the `triangleNonObtuse` field is at
+`PartitionFromMEC.lean:339`, not `:314` (which is inside the docstring).
+
+**The evidence is now reproducible.**  `census/card_head/d1_cyclic_slot_geometry.py`
+carries the slot geometry with the source conventions it mirrors recorded in its
+docstring, and `census/card_head/tests/test_d1_cyclic_slot_geometry.py` pins
+every number quoted in sections 67-69: the `11473/11473` agreement for all three
+forms of the criterion, the single equilateral solution in each sense, the
+Case-1 counts `(0, 6800, 13498)`, and the census positive and negative controls.
+
+**What the audit did not change.**  The mathematics of the cyclic exclusion, and
+the two Lean theorems of section 68, stand as they were.  What changed is the
+claim attached to them: the cyclic configuration is refuted, but obligation (i)
+is *not* closed — it follows in the one-radius arm, from a conjectural section
+64, under a card-15 hypothesis the live consumer does not discharge.
 
 Leaf unchanged: single `sorry`, `M = 18`.
