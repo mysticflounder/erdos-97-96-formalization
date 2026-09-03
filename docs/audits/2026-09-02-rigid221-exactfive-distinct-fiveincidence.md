@@ -268,9 +268,12 @@ replacement second-apex row: {d, e, x, y},  e ∈ surplusInterior,
 
 with `u,v,x,y` in the second strict cap interior after choosing the two-point
 radius slices.  The theorem-bank preflight found the existing `oppIndex1`
-four-hit Kalmanson producer but no `oppIndex2` analogue.  That symmetric
-radial-order/cross-distance theorem is the first missing metric adapter; its
-inequality is a strengthening for the census, not yet a terminal by itself.
+four-hit Kalmanson producer but no direct `oppIndex2` analogue.  The new
+`HardSourceSwapExactGridRoles.radialCyclicOrder` reuses that producer without
+duplicating its boundary proof: exact-five gives `|oppCap1| ≥ 5`, so the first
+opposite cap can validly be re-designated as surplus; its new `oppIndex1` is
+the original `oppIndex2`.  The theorem transports the resulting order back to
+the original four hits using their singleton grid cells.
 
 The source-facing packet is now exposed as `HardSourceSwapExactGridRoles`, and
 `nonempty_hardSourceSwapExactGridRoles_of_not_large` constructs it directly
@@ -279,17 +282,21 @@ the large-interior arm.  This makes the four grid cells, both two-point
 interior slices, and all four fixed source identities available to the next
 consumer without repeating singleton or `card = 2` extraction.
 
-The metric consumer is also isolated now.  Given the missing radial cyclic
-order packet, `HardSourceSwapExactGridRoles.replacementLeft_dist_deleted_lt_retained`
-specializes strict Kalmanson to
+The metric consumer is source-complete now.
+`HardSourceSwapExactGridRoles.source_replacementLeft_dist_deleted_lt_retained`
+specializes the constructed radial order and strict Kalmanson to
 
 ```text
 dist(O,a) + dist(e,d) < dist(O,d) + dist(e,a),
 ```
 
 then cancels `dist(O,a) = dist(O,d)` from the full first-apex selected class.
-Thus the sole geometric construction still missing on this arm is the radial
-cyclic order itself; the downstream strict source inequality already checks.
+The governed target build and proof-blueprint refresh pass.  Axiom audits of
+the order theorem and the source metric consequence report only `propext`,
+`Classical.choice`, and `Quot.sound`.  An independent adversarial proof audit
+certified the cap re-designation, cell transport, and trust boundary.  This
+strict inequality strengthens the finite census; it is not yet a terminal
+contradiction by itself.
 
 The corrected solver-free alias profiler now enumerates both source regimes
 under the audited abstract overlap rules:
@@ -304,6 +311,6 @@ All partitions and stable profile hashes are unique, and the focused Python
 suite passes all 25 tests.  These counts are exact for the encoded alias rules,
 not yet a Lean theorem that those rules exhaust the source.  They contain no
 cyclic placements, order cells, metric constraints, or solver verdict, so the
-live PiQD run remains unauthorized until the order layer is constructed and
-the source-to-profile coverage boundary is proved or explicitly retained as a
-conditional assumption.
+live PiQD run remains unauthorized until these aliases are combined with the
+source-authorized cyclic-order cells and the source-to-profile coverage
+boundary is proved or explicitly retained as a conditional assumption.

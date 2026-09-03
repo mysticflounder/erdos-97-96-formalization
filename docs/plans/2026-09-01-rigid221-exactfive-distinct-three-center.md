@@ -299,27 +299,22 @@ this improves the retained packet but does not by itself close the arm.
 
 The adjacent grid's source roles are now identified as well: old-left `O`,
 old-right `a`, replacement-right `d`, and a strict surplus-interior
-replacement-left point `e`.  The next two concrete deliverables are (i) the
-alias-only finite profile for the remaining points and (ii) the missing
-`oppIndex2` radial-order/Kalmanson adapter.  Neither deliverable authorizes a
-PiQD run until their combined order-cell space is complete.
+replacement-left point `e`.
 
 The exact-grid source interface is now packaged as
 `HardSourceSwapExactGridRoles`; its producer names the old and replacement
 two-point interior slices and fixes the source hits `O`, `a`, `d`, and strict
-surplus-interior `e`.  The remaining Lean prerequisite is therefore the
-`oppIndex2` radial-order/Kalmanson adapter, rather than further grid-role
-extraction.
+surplus-interior `e`.  Its `radialCyclicOrder` theorem now supplies the former
+`oppIndex2` gap by validly re-designating the exact-five first opposite cap as
+surplus and reusing the existing `oppIndex1` producer.
 
-The downstream consumer is complete conditionally: a `RadialCyclicOrder` for
-the named hits implies `dist(e,d) < dist(e,a)` through strict Kalmanson and the
-first-apex equality `dist(O,a) = dist(O,d)`.  Work should therefore construct
-that order packet directly and avoid widening the finite census with an
-unproved metric assertion.
+The downstream source theorem now proves `dist(e,d) < dist(e,a)` through strict
+Kalmanson and the first-apex equality `dist(O,a) = dist(O,d)`.  The governed
+build, proof-blueprint axiom audit, and adversarial proof audit all pass.
 
 The alias-only deliverable is now implemented and independently checked:
 961 profiles have `c₁ = U`, 6,642 have `c₁ ≠ U`, for 7,603 unique canonical
 partitions under the recorded abstract overlap rules.  This completes the
-finite alias prefix only.  The next execution step remains the `oppIndex2`
-radial cyclic-order constructor; afterward, combine each alias profile with
-the source-authorized order cells before considering a governed PiQD run.
+finite alias prefix only.  The next execution step is to combine each alias
+profile with the now-proved source-authorized order cells before considering a
+governed PiQD run.

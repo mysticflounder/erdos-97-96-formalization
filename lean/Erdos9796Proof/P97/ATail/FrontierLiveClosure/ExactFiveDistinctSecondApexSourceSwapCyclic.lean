@@ -494,6 +494,132 @@ theorem firstOppCap_card_ge_five_of_exactFiveFirstApex
   rw [hcapEq] at hcapCard
   omega
 
+/-- Re-designating the first opposite cap as surplus turns the original
+`oppIndex2` grid into an `oppIndex1` grid.  The existing radial-order producer
+can therefore be transported back to the source-named hits by singleton-cell
+uniqueness. -/
+theorem HardSourceSwapExactGridRoles.radialCyclicOrder
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F}
+    {deleted blocker : ℝ²}
+    {C : CommonDeletionTwoCenterPacket D H deleted blocker S.oppApex2}
+    {N : ExactFiveDistinctThreeCenterNormalForm R C}
+    {P : ExactFiveDistinctSecondApexHardSourceSwap R C N}
+    (Q : HardSourceSwapExactGridRoles R C N P) :
+    ExactFourAdjacentGridKalmanson.RadialCyclicOrder Q.hits := by
+  classical
+  have hfirst : 5 ≤ S.oppCap1.card :=
+    firstOppCap_card_ge_five_of_exactFiveFirstApex R
+  let Srot : SurplusCapPacket D.A :=
+    { hA := S.hA
+      hncol := S.hncol
+      triangleNonObtuse := S.triangleNonObtuse
+      hCirc := S.hCirc
+      partition := S.partition
+      surplusIdx := S.oppIndex1
+      surplus := by
+        rcases hi : S.surplusIdx with ⟨i, hi3⟩
+        interval_cases i <;>
+          simp [SurplusCapPacket.oppCap1,
+            SurplusCapPacket.oppIndex1, hi] at hfirst ⊢ <;>
+          omega }
+  have hcenter :
+      Srot.oppositeVertexByIndex Srot.oppIndex1 =
+        S.oppositeVertexByIndex S.oppIndex2 := by
+    rcases hi : S.surplusIdx with ⟨i, hi3⟩
+    interval_cases i <;>
+      simp [Srot, SurplusCapPacket.oppositeVertexByIndex,
+        SurplusCapPacket.oppIndex1, SurplusCapPacket.oppIndex2, hi]
+  have hleft :
+      Srot.leftAdjacentCapByIndex Srot.oppIndex1 =
+        S.leftAdjacentCapByIndex S.oppIndex2 := by
+    rcases hi : S.surplusIdx with ⟨i, hi3⟩
+    interval_cases i <;>
+      simp [Srot, SurplusCapPacket.leftAdjacentCapByIndex,
+        SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex1,
+        SurplusCapPacket.oppIndex2, hi]
+  have hright :
+      Srot.rightAdjacentCapByIndex Srot.oppIndex1 =
+        S.rightAdjacentCapByIndex S.oppIndex2 := by
+    rcases hi : S.surplusIdx with ⟨i, hi3⟩
+    interval_cases i <;>
+      simp [Srot, SurplusCapPacket.rightAdjacentCapByIndex,
+        SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex1,
+        SurplusCapPacket.oppIndex2, hi]
+  let Grot : Srot.ExactFourTwoRadiusAdjacentCapGrid Srot.oppIndex1
+      N.secondApexClass.radius P.replacement.radius :=
+    { radius_left_card_eq_one := by
+        simpa only [hcenter, hleft] using Q.grid.radius_left_card_eq_one
+      radius_right_card_eq_one := by
+        simpa only [hcenter, hright] using Q.grid.radius_right_card_eq_one
+      rho_left_card_eq_one := by
+        simpa only [hcenter, hleft] using Q.grid.rho_left_card_eq_one
+      rho_right_card_eq_one := by
+        simpa only [hcenter, hright] using Q.grid.rho_right_card_eq_one
+      left_disjoint := by
+        simpa only [hcenter, hleft] using Q.grid.left_disjoint
+      right_disjoint := by
+        simpa only [hcenter, hright] using Q.grid.right_disjoint }
+  rcases
+      ExactFourAdjacentGridKalmanson.exists_fourHits_radialCyclicOrder_oppIndex1
+        D Srot Grot P.old_radius_pos P.replacement_radius_pos P.radii_ne with
+    ⟨K, hKorder⟩
+  have hKRadiusLeft :
+      K.radiusLeft ∈
+        SelectedClass D.A (S.oppositeVertexByIndex S.oppIndex2)
+            N.secondApexClass.radius ∩
+          S.leftAdjacentCapByIndex S.oppIndex2 := by
+    simpa only [hcenter, hleft] using K.radiusLeft_mem
+  have hKRhoLeft :
+      K.rhoLeft ∈
+        SelectedClass D.A (S.oppositeVertexByIndex S.oppIndex2)
+            P.replacement.radius ∩
+          S.leftAdjacentCapByIndex S.oppIndex2 := by
+    simpa only [hcenter, hleft] using K.rhoLeft_mem
+  have hKRadiusRight :
+      K.radiusRight ∈
+        SelectedClass D.A (S.oppositeVertexByIndex S.oppIndex2)
+            N.secondApexClass.radius ∩
+          S.rightAdjacentCapByIndex S.oppIndex2 := by
+    simpa only [hcenter, hright] using K.radiusRight_mem
+  have hKRhoRight :
+      K.rhoRight ∈
+        SelectedClass D.A (S.oppositeVertexByIndex S.oppIndex2)
+            P.replacement.radius ∩
+          S.rightAdjacentCapByIndex S.oppIndex2 := by
+    simpa only [hcenter, hright] using K.rhoRight_mem
+  have hRadiusLeft : K.radiusLeft = Q.hits.radiusLeft :=
+    eq_of_mem_of_mem_of_card_eq_one Q.grid.radius_left_card_eq_one
+      hKRadiusLeft Q.hits.radiusLeft_mem
+  have hRhoLeft : K.rhoLeft = Q.hits.rhoLeft :=
+    eq_of_mem_of_mem_of_card_eq_one Q.grid.rho_left_card_eq_one
+      hKRhoLeft Q.hits.rhoLeft_mem
+  have hRadiusRight : K.radiusRight = Q.hits.radiusRight :=
+    eq_of_mem_of_mem_of_card_eq_one Q.grid.radius_right_card_eq_one
+      hKRadiusRight Q.hits.radiusRight_mem
+  have hRhoRight : K.rhoRight = Q.hits.rhoRight :=
+    eq_of_mem_of_mem_of_card_eq_one Q.grid.rho_right_card_eq_one
+      hKRhoRight Q.hits.rhoRight_mem
+  exact ⟨by
+    simpa only [hRadiusLeft, hRhoLeft, hRadiusRight, hRhoRight] using
+      hKorder.order⟩
+
+/-- Source-complete strict metric consequence of the hard exact-grid arm. -/
+theorem HardSourceSwapExactGridRoles.source_replacementLeft_dist_deleted_lt_retained
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F}
+    {deleted blocker : ℝ²}
+    {C : CommonDeletionTwoCenterPacket D H deleted blocker S.oppApex2}
+    {N : ExactFiveDistinctThreeCenterNormalForm R C}
+    {P : ExactFiveDistinctSecondApexHardSourceSwap R C N}
+    (Q : HardSourceSwapExactGridRoles R C N P) :
+    dist Q.hits.rhoLeft deleted < dist Q.hits.rhoLeft N.retained :=
+  Q.replacementLeft_dist_deleted_lt_retained Q.radialCyclicOrder
+
 /-- The large-interior arm already forces carrier cardinality at least
 fourteen.  The exact-five first-apex class supplies five points in the first
 opposite closed cap, while five strict second-cap points supply seven in the
