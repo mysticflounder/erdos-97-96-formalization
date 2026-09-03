@@ -1,0 +1,14 @@
+{
+  "base_head": "3822c2a6cb819e44dbf41e1486926e828ee7a45b",
+  "created_utc": "2026-09-03T11:55:37Z",
+  "durable_paths": [],
+  "generated_roots": [],
+  "lane_id": "exactfive-physical-source-negative-20260903",
+  "manifest_sha256": "0566225709454f5ec06b061396a1509480100ed0c8c5c369c33c9f1e2fe784d7",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exactfive-physical-source-negative-20260903.json",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221Closure.lean"
+  ],
+  "owner": "codex",
+  "schema": "worktree-lane-checkpoint/v1"
+}

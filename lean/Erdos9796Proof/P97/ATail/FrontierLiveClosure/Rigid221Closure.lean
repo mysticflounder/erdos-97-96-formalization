@@ -1500,6 +1500,31 @@ private theorem false_of_exactFiveDistinct_swapped_of_card_eq_eleven
       (nonempty_exactFourResidual_of_swapped
         R.minimal R.noM44 R.carrier_card_gt_nine W).some hcard
 
+/-- A genuinely fresh source cannot lie in the first-apex selected class:
+that class is the old first row with `deleted` removed. -/
+theorem fresh_not_mem_firstApexSelectedClass
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F)
+    {deleted center : ℝ²}
+    (C : CommonDeletionTwoCenterPacket D H deleted center S.oppApex2)
+    (normalForm : ExactFiveDistinctThreeCenterNormalForm R C)
+    (fresh : ℝ²) (fresh_ne_deleted : fresh ≠ deleted)
+    (packet :
+      ATailThreeCenterCommonDeletion.ThreeCenterCommonDeletionExactRows D fresh
+        S.oppApex1 center S.oppApex2
+        normalForm.firstApexClass.support
+        normalForm.blockerClass.support
+        normalForm.secondApexClass.support) :
+    fresh ∉ SelectedClass D.A S.oppApex1 radius := by
+  intro hfresh
+  have herase : fresh ∈ (SelectedClass D.A S.oppApex1 radius).erase deleted :=
+    Finset.mem_erase.mpr ⟨fresh_ne_deleted, hfresh⟩
+  apply packet.row₀.q_not_mem
+  rw [normalForm.firstApexClass_support_eq]
+  exact herase
+
 /-- Open strict-source physical endpoint: a deletion source distinct from the
 original interior deletion preserves all three exact selected rows, while the
 retained source is omitted by the second row. -/
