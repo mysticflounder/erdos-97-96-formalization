@@ -1,0 +1,19 @@
+{
+  "schema": "worktree-run-manifest/v1",
+  "lane_id": "b1-three-support-mec-qfnra-20260903",
+  "run_id": "equality-only-v1",
+  "root": "scratch/runs/b1-three-support-mec-qfnra-20260903/equality-only-v1",
+  "owner": "Codex-B1-Sorry",
+  "base_head": "9470be3fe14813a583b1bf664cd80dad8ff7b4b3",
+  "output_classes": ["artifacts", "events", "tmp"],
+  "source_digests": {
+    "scratch/runs/b1-three-support-mec-qfnra-20260903/equality-only-v1/artifacts/piqd/82c2dfe781d609472430/00-exact-metric-relaxation/source-0001-endpoint_adapter.py": "aefa489c8509e99e30d25158fd846ec4a3f13dd3854c0faca12d3697d42b9c7a",
+    "scratch/runs/b1-three-support-mec-qfnra-20260903/equality-only-v1/artifacts/piqd/82c2dfe781d609472430/00-exact-metric-relaxation/source-0002-legacy_producer.py": "df1f3d1b6019252e840b46ca38b12b330cfc7734fe199ff45861f64efce873c6",
+    "scratch/runs/b1-three-support-mec-qfnra-20260903/equality-only-v1/artifacts/piqd/82c2dfe781d609472430/00-exact-metric-relaxation/source-0003-generic_adapter.py": "94058aa4e04b5acc27242b52781794944ea00a069b16805104d3263203d65e70"
+  },
+  "input_digests": {
+    "scratch/runs/b1-three-support-mec-qfnra-20260903/equality-only-v1/source.json": "dc310082e5430b32bb6b0829ff627586f9d1a10111a3fe7fc9bfbbe8b955ee09"
+  },
+  "created_utc": "2026-09-03T09:45:10Z",
+  "manifest_sha256": "36b6e9670471084b5472264a2cb1d56dc4b967aeb2cea68e85b8eccf8c0a2c2e"
+}
