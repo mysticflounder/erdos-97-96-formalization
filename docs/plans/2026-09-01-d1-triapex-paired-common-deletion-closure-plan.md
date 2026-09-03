@@ -4142,3 +4142,121 @@ priced option (a) at three new theorems, and this closes off the obvious way to
 reduce that price to two.
 
 Leaf unchanged: single `sorry`, `M = 18`.
+
+### 58. Two corrections to sections 55 and 56, and the ingress gap restated (2026-09-03)
+
+Three independent read-only source audits of the ingress obligations returned.
+Two of my own recorded claims were wrong; both are corrected here, and each
+correction was re-checked directly against source before writing.
+
+**Correction 1 — section 55 was wrong about `Cospherical`.** Section 55 stated
+that for four-point sets `EuclideanGeometry.Cospherical` "appears only as a
+hypothesis, never as a conclusion". That is false. Five declarations conclude a
+four-point `Cospherical`:
+
+| declaration | file:line | first missing antecedent |
+|---|---|---|
+| `Problem97.SelectedFourClass.cospherical_of_mem` | `ATail/SelectedFourGeometry.lean:175` | four members of one `SelectedFourClass` support — homogeneous by construction, so it cannot serve a mixed apex/interior quadruple |
+| `Problem97.u5_normalized_row_cocircular_of_row_numerator_eq_zero` | `U5GlobalIncidenceKernels.lean:227` | the points are literal normalized coordinates `(0,0)`, `(1,0)`, `(α,β)`; needs a similarity into that frame, then the numerator equality |
+| `…_cocircular_insert_of_row_numerator_eq_zero` | `U5GlobalIncidenceKernels.lean:275` | same |
+| `Problem97.cospherical_of_two_zsmul_oangle_eq` | `OangleBridge.lean:154` | the doubled-`oangle` identity |
+| `Problem97.cospherical_of_opApolloniusArc` | `OangleBridge.lean:241` | `hArc.1`, which unfolds to the same doubled-`oangle` identity |
+
+Verified directly: `cospherical_of_mem` is a genuine four-point conclusion,
+proved by `⟨center, K.radius, …⟩`. Section 55's *conclusion* — that no producer
+reaches the mixed quadruple `{A0, A1, P2.1, P2.3}` — still stands, and for the
+reason it gave in the `SelectedFourClass` case. Its blanket statement about
+conclusion position does not.
+
+**Correction 2 — section 56 was wrong about the equilateral Moser triangle.**
+Section 56 stated "the source contains no equilateral Moser triangle". Producers
+do exist: `SurplusCapPacket.IsM44.exists_oppInterior_side_placement_of_moserCapContainment`
+(`SurplusM44Packet/Shard08.lean:783`), its exact-cap-class sibling (`:988`),
+`FiniteEndpointShell.n6_equilateral_moser_triangle` (`N9Endpoint/N67.lean:103`),
+and the `U2EquilateralMECTriangle` family. The first of these returns exactly the
+shape this ingress wants — all three apex sides equal to a common `d`, *and*
+every point of both opposite cap interiors at distance `d` from its apex.
+
+They are all gated on `S.IsM44`, which is `S.oppCap1.card = 4 ∧ S.oppCap2.card = 4`
+(`Cap/PartitionFromMEC.lean:443`), and `G.cap_card_ge_six` gives `6 ≤ card` for
+every cap. So the route is not merely absent, it is **refuted by the context** —
+a stronger and more useful statement than section 56's, and one that closes the
+family permanently rather than leaving it as an unsearched gap.
+
+**`no_center_covers_all_apices` is vacuous at an apex.** With `p = S.triangle.v3`
+and `r > 0`, the conjunct `v3 ∈ SelectedClass D.A v3 r` unfolds to
+`dist v3 v3 = r`, i.e. `0 = r`, which is false; the conjunction fails
+automatically. So that field, and `not_equidistant_from_three_apices`
+(`ATail/ApexTripleEquidistance.lean:46`), place no constraint at all on
+`A0, A1 ∈ SelectedClass D.A A2 r`. Section 53 said this field "does not forbid"
+the two-apex group; the sharper truth is that it cannot, on any input.
+
+**What the audits found is available, and was not known before.**
+
+- *Two apices on a common circle is producible.* `MEC.MoserTriangle.v1_boundary`,
+  `v2_boundary`, `v3_boundary` (`Moser/Triangle.lean:74,76,78`) put all three
+  apices on the MEC boundary. Verified. This supplies `hA` and `hB` of the
+  consumer with `O := (mec D.A S.hA).center`. It does **not** extend: the only
+  MEC fact about a cap point is `MinEnclosingCircle.enclosing`
+  (`MEC/Basic.lean:74`), an inequality, and the `Cap/` and `ATail/` layers never
+  mention the MEC circle at all.
+- *Step 1 of the section 49 synthetic argument is fully available and
+  cardinality-free.* The reflection chain `inner_sub_centers_eq_zero` →
+  `twoCircle_midpoint_collinear` → `signedArea2_reflection_neg`
+  (`U2/WitnessReflectionKernel.lean:61,74,186`) consumes equidistance only, no
+  circle. Both of the first two are proved outright; verified by reading them.
+  What the circle memberships buy is exactly step 2, the arc-midpoint transfer,
+  and section 57 showed that step cannot be weakened.
+
+**The blocker-centre gap, restated correctly.** Section 53 called "this named
+point is a blocker centre" the load-bearing missing primitive. That framing was
+imprecise in a way worth fixing. A `CriticalSelectedFourClass` at a *named*
+centre is producible three ways — `CriticalSelectedFourClass.exists_of_exactSelectedClass`
+(`U1CarrierInjection.lean:782`), `criticalSelectedFourClass_at_of_no_qfree`
+(`CriticalPairFrontier.lean:110`), `nonempty_criticalSelectedFourClass_of_isCanonicalBlocker`
+(`BlockerRelation.lean:130`). What is not producible is that **the named shell is
+the one `H` chose**.
+
+Moreover blocker centres are not scarce. Verified directly:
+`isUniqueFourCenter_centerAt` (`MinimalUniqueFourCover.lean:437`) makes every
+`H.centerAt x hx` a unique-four centre, and
+`exists_criticalShell_center_mem_capInteriorByIndex_of_triApexAllLarge`
+(`AllLargeCapCanonicalInterfaces.lean:317`) puts it inside some cap interior. So
+"a non-robust cap-interior blocker centre" exists for free, for every carrier
+point. **The real gap is control of a blocker centre's support, not its
+existence.**
+
+The one route that does name a centre for a *modified* system is
+`CriticalShellSystem.overrideExactSelectedClass_centerAt` (`:1340`) and
+`overrideAt_centerAt` (`:1376`), whose antecedent
+`¬ FullyDeletionRobustAt D K` is reachable through
+`isUniqueFourCenter_of_not_fullyDeletionRobust` (`MinimalUniqueFourCover.lean:279`)
+and `not_hasNEquidistantPointsAt_erase_of_mem_uniqueFourClass` (`:122`). It is
+blocked by transport: the leaf's `F, R, P, O, J, Q` are all indexed by `H`, and
+the library has rebase functions only for `SurvivorPairRelocationPacket`,
+`CriticalPairFrontier` and `JointDeletionCore` (`ATail/CriticalSystemRebase.lean:35,71,115`;
+`JointDeletion/RoundTrip.lean:220`). Five are missing —
+`FrontierCommonDeletionParentResidual`, `RetainedInteriorDirectedOmission`,
+`OrientedRetainedCommonDeletion`, `PairedApexClassJointDeletion`,
+`TriApexFiveSurviveOneFail`. A worked override-and-rebase for a *different*
+residual stack exists at `lean/scratch/canonical-row-override-rebase/Main.lean:423-534`,
+which is **not in the build** (`lean/lakefile.toml` declares only `Erdos9796`,
+`Erdos9796Proof`, `Challenge`, `Solution`), so it is a pattern to copy, not a
+dependency to import.
+
+**A live counting lead, under test and not yet a result.**
+`twoRadii_or_adjacentMutualOmissionPairAt_of_card_eq_fifteen`
+(`TriApexEndpointRetainedOmission.lean:2830`, proved — the file's only `sorry` is
+the leaf at line 2923) returns, on its two-radii arm, that
+`(SelectedClass D.A (S.oppositeVertexByIndex i) r_j).card = 4` **exactly**, and
+that this class meets the left adjacent cap in exactly one point and the right
+adjacent cap in exactly one point, while contributing two points to cap `i`'s own
+interior. The arithmetic `2 + 1 + 1 = 4` accounts for the whole class. So the
+class at `A2` is exactly two cap-2 interior points plus one point of each
+adjacent cap — which is the census group `{A0, A1, P2.1, P2.3}` precisely when
+those two adjacent-cap hits are the apices. Whether they must be turns on
+whether `leftAdjacentCapByIndex` / `rightAdjacentCapByIndex` are the closed caps,
+which contain the Moser vertices, or the open interiors, which do not. That is
+being checked; nothing is claimed until it is.
+
+Leaf unchanged: single `sorry`, `M = 18`.
