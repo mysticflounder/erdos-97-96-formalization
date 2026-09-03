@@ -3258,3 +3258,46 @@ established. The encoding-to-claim map has not had its adversarial audit
 been mined on one pattern rather than transported across the orbit, and no
 Lean ingress exists. It does not move `M`. Leaf unchanged: single `sorry`,
 `M = 18`.
+
+### 43. The core transports across the orbit; the certificate lift does not finish (2026-09-03)
+
+Section 42 mined the collinearity core on one pattern. Section 19's orbit
+reduction says a verdict on one member is a verdict on the orbit, but that
+licence was established for dimension and vdim, not for a hypothesis subset,
+so the core needed its own transport test.
+
+**Generator indices do not transport.** The core has to be stated invariantly,
+as a centre together with a set of points equidistant from it
+(`artifacts/tools/orbit_transport_core.py`). Carrying it to
+`72a0268b2d358aa0` by explicit relabeling, two of the six groups land on point
+sets that avoid that pattern's first-listed shell member, and no subset of the
+encoder's generators spans those. Reusing `--keep` with transported indices
+would therefore have silently tested six of the ten equalities and returned a
+pass on a weaker hypothesis set. The invariant form is also the form a Lean
+statement takes, so the tool now emits groups directly (`--groups`).
+
+**Smoke test first** (Guardrail 1): the group path re-derives the source
+verdict, `base 1` over ℚ on `0d6996160cc83aab`, before any transported run was
+believed. Cost 336.4 s against 2.1 s for the same ideal presented through
+`--keep` — the generator form changes the Gröbner cost by two orders of
+magnitude without changing the ideal, which is the labeling-dependent cost
+already recorded for `slimgb` in this lane.
+
+**The transport passes** (job `908f7cdf`, `char 0`, `base 1`, 2.1 s). The
+prediction was falsifiable on four counts and landed on all of them: a
+relabeling exists; it carries the collinear triple to `A0:A1:P0.4`, which is
+where section 36 independently found the collinearity for this key; it carries
+the distinctness to `P0.4 != P2.2`; and the transported ten equalities plus
+that one distinctness force the determinant into the ideal over the rationals.
+So the core is a statement about the orbit, not about one labeling.
+
+**The certificate lift does not finish.** `liftstd` plus `lift` over ℚ on the
+core (job `b2d4dbda`) ran 754.7 s and produced no output past the generator
+count, so it never reached the cofactor matrix. This is a bounded negative and
+it matches the earlier lift failures, but it now isolates the cost: on this
+core `std` is a 2 s computation and `lift` exceeds 754 s, so the obstruction is
+`lift` itself and not the basis. It does not weaken section 42 — membership
+over ℚ is established by the zero normal form, which needs no cofactors. What
+is still missing is an explicit checkable identity for a Lean replay.
+
+Leaf unchanged: single `sorry`, `M = 18`.
