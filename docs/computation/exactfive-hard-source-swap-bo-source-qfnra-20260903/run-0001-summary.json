@@ -1,0 +1,74 @@
+{
+  "schema": "p97-exactfive-hard-source-swap-bo-source-qfnra-run-summary/v1",
+  "lane_id": "exactfive-hard-source-swap-bo-source-qfnra-20260903",
+  "run_id": "run-0001",
+  "base_head": "c07dbadc08332e1e52a4857e5365611029a9f814",
+  "run_manifest": {
+    "file_sha256": "02489d81dee43ff399a7c68234ccf635117aefede51eee4938a6685089555e5a",
+    "manifest_sha256": "c590ae65656888c36a5912f60dff60ece655bd2e9d57d73130d21e1fd2b52e1e"
+  },
+  "launch": {
+    "file_sha256": "c1d30026f9d146d4c9cac4665071da5187865fb207feaa209aded46d058c9b15",
+    "launch_sha256": "f5c38817980b0f6baacd8cd372cab3de4c9259924072ae34916fbfaf1f661eb1",
+    "timeout_ms": 30000,
+    "workers": 2,
+    "transport": "PIQD HTTP adapter only"
+  },
+  "terminal": {
+    "file_sha256": "cc85bf5519f29fd7cc6df1e3e46eac6812d06c3c32bc17cfd439e39200950840",
+    "terminal_sha256": "f096b57cee76d66a8cfc6664e56362d1e98579e013fe0386cbca00ee996be179",
+    "status": "TARGETS_UNSAT_DISCOVERY_ONLY"
+  },
+  "formula_inventory": {
+    "variables": 13,
+    "normalization_assertions": 2,
+    "strict_signed_area_assertions": 165,
+    "row_equality_assertions": 13,
+    "radius_disequality_assertions": 1,
+    "source_strict_assertions": 1,
+    "fixed_zero_area_triple": ["c005", "c001", "c002"]
+  },
+  "controls": {
+    "positive": {
+      "raw_statuses": ["SAT", "SAT"],
+      "effective_statuses": ["SAT_SEMANTICALLY_REPLAYED", "SAT_SEMANTICALLY_REPLAYED"],
+      "solve_ms": {"z3": 0, "cvc5": 0},
+      "result_sha256": "3f71ed9c26e2d4ba721fe1bb56606e51d587663f2186efc01fb6ced28a3f945e"
+    },
+    "negative": {
+      "raw_statuses": ["UNSAT", "UNSAT"],
+      "effective_statuses": ["UNSAT_DISCOVERY_ONLY", "UNSAT_DISCOVERY_ONLY"],
+      "solve_ms": {"z3": 0, "cvc5": 0},
+      "result_sha256": "0959145a805c2808589b28cc9176b40bf62a8caf6b44d20570ea7f6bf9a989df"
+    }
+  },
+  "targets": {
+    "fresh-z3": {
+      "semantic_sha256": "aec812f6a6e1b8c05987567340e49b8dabe93aaed19cafb72a0f84deabd27187",
+      "smt2_sha256": "ae8ea79c836bd3e04abc11b1867c87391ac5892ffca770fd048e0e72e4d8d38e",
+      "raw_statuses": ["UNSAT", "UNSAT"],
+      "effective_statuses": ["UNSAT_DISCOVERY_ONLY", "UNSAT_DISCOVERY_ONLY"],
+      "solve_ms": {"z3": 0, "cvc5": 2},
+      "result_sha256": "ae2ae2eba925b852ebec2b18df313bd7437c86a24fda80cda2425f7fdaafc2d3"
+    },
+    "fresh-cvc5": {
+      "semantic_sha256": "6db5e8bdb301efc995cf3a4cae155bbdcdf1d4d782921000ea65e45b2c1d1431",
+      "smt2_sha256": "905189f0b7f5b3e8ec1a434193843a0a4c84beb8138b779b11513975d4cea8e8",
+      "raw_statuses": ["UNSAT", "UNSAT"],
+      "effective_statuses": ["UNSAT_DISCOVERY_ONLY", "UNSAT_DISCOVERY_ONLY"],
+      "solve_ms": {"z3": 0, "cvc5": 2},
+      "result_sha256": "8559d64bb89cd7d9eafbf318b6cfce1300bd95451c762db39214a700e1d8dfaf"
+    }
+  },
+  "wall_seconds": 2.78,
+  "no_transport_replay_seconds": 1.49,
+  "claim_boundary": "two authenticated profile-1697 source-order formulas only",
+  "claims": {
+    "formula_unsat": true,
+    "live_source_alias_completeness": false,
+    "all_order_elimination": false,
+    "live_closure": false,
+    "lean_proof": false,
+    "promotion": false
+  }
+}
