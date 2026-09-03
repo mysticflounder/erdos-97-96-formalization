@@ -9,11 +9,13 @@
     "docs/plans/2026-09-01-rigid221-exactfive-distinct-three-center.md",
     "lean/Erdos9796Proof/P97/ATail/ExactFiveDistinctSecondApexSourceSwap.lean",
     "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/CyclicPairSeparation.lean",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactFiveDistinctSecondApexSourceSwapCyclic.lean",
     "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221Closure.lean",
-    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/RobustApexFourIncidenceCyclicReduction.lean"
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/RobustApexFourIncidenceCyclicReduction.lean",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/SurplusCapCutAdjacency.lean"
   ],
   "generated_roots": [],
   "durable_paths": [],
   "created_utc": "2026-09-02T22:14:58Z",
-  "manifest_sha256": "f4efd7fe4b81dc2efba042a019c765a9fa73b2aaa072057823e1e9bb8ed2b06c"
+  "manifest_sha256": "50092353a684d36a90a202ff12cb3014d29d7bee3f389438e19a18a05551ca10"
 }

@@ -127,6 +127,95 @@ private theorem support_eq_selectedClass_of_all_positive_classes_small
   rw [K.support_card]
   omega
 
+/-- The retained source belongs to the full exact-five first-apex class, not
+only to the old four-row obtained by deleting the original source. -/
+theorem retained_mem_firstApex_selectedClass
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F}
+    {deleted blocker : ℝ²}
+    {C : CommonDeletionTwoCenterPacket D H deleted blocker S.oppApex2}
+    (N : ExactFiveDistinctThreeCenterNormalForm R C) :
+    N.retained ∈ SelectedClass D.A S.oppApex1 radius := by
+  have hretained :
+      N.retained ∈ (SelectedClass D.A S.oppApex1 radius).erase deleted := by
+    rw [← N.firstApexClass_support_eq]
+    exact N.retained_mem_firstApexClass
+  exact Finset.mem_of_mem_erase hretained
+
+/-- The source erased from the old first-apex row still belongs to its full
+exact-five radius class. -/
+theorem deleted_mem_firstApex_selectedClass
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F}
+    {deleted blocker : ℝ²}
+    {C : CommonDeletionTwoCenterPacket D H deleted blocker S.oppApex2}
+    (N : ExactFiveDistinctThreeCenterNormalForm R C) :
+    deleted ∈ SelectedClass D.A S.oppApex1 radius := by
+  rcases N.orientation with ⟨hdeleted, _, _⟩ | ⟨hdeleted, _, _⟩
+  · simpa only [hdeleted] using
+      (Finset.mem_inter.mp R.interior.w_mem_interior).1
+  · simpa only [hdeleted] using
+      (Finset.mem_inter.mp R.interior.q_mem_interior).1
+
+/-- The retained and deleted sources are distinct, as witnessed directly by
+membership in the erased old row. -/
+theorem retained_ne_deleted
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F}
+    {deleted blocker : ℝ²}
+    {C : CommonDeletionTwoCenterPacket D H deleted blocker S.oppApex2}
+    (N : ExactFiveDistinctThreeCenterNormalForm R C) :
+    N.retained ≠ deleted := by
+  have hretained :
+      N.retained ∈ (SelectedClass D.A S.oppApex1 radius).erase deleted := by
+    rw [← N.firstApexClass_support_eq]
+    exact N.retained_mem_firstApexClass
+  exact (Finset.mem_erase.mp hretained).1
+
+/-- The canonical first-apex source swap: erase the retained source from the
+full exact-five class instead of erasing the original deleted source. -/
+noncomputable def swappedFirstApexClass
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F)
+    {deleted blocker : ℝ²}
+    (C : CommonDeletionTwoCenterPacket D H deleted blocker S.oppApex2)
+    (N : ExactFiveDistinctThreeCenterNormalForm R C) :
+    SelectedFourClass D.A S.oppApex1 :=
+  ExactFiveCommonShellV7.selectedFourClassOfExactFiveErase
+    R.interior.frontier.radius_pos R.class_card_eq_five
+    (retained_mem_firstApex_selectedClass N)
+
+/-- Swapping the erased source inserts the old deleted source and removes the
+retained source from the old first-apex row. -/
+theorem swappedFirstApexClass_support_eq_insert_deleted_erase_retained
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F)
+    {deleted blocker : ℝ²}
+    (C : CommonDeletionTwoCenterPacket D H deleted blocker S.oppApex2)
+    (N : ExactFiveDistinctThreeCenterNormalForm R C) :
+    (swappedFirstApexClass R C N).support =
+      insert deleted (N.firstApexClass.support.erase N.retained) := by
+  classical
+  simp only [swappedFirstApexClass,
+    ExactFiveCommonShellV7.selectedFourClassOfExactFiveErase]
+  rw [N.firstApexClass_support_eq]
+  ext z
+  by_cases hzd : z = deleted
+  · subst z
+    simp [deleted_mem_firstApex_selectedClass N,
+      (retained_ne_deleted N).symm]
+  · simp [hzd]
+
 /-- The hard arm of second-apex reselection.  The old and replacement rows
 are the two complete positive radius classes, and their source incidences are
 swapped. -/

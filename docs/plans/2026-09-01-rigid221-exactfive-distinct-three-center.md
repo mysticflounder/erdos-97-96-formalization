@@ -238,21 +238,29 @@ execution order is deliberately falsification-first:
    retain positive distinct radii, exact full-class equalities, disjoint
    supports, the `a`/`d` source swap, and the statement that every positive
    second-apex class has cardinality below five.
-4. Before formalizing the branch-specific cap-order adapters, run a complete
-   direct/mirror order and equality census for the branch-four exact-grid
-   packet, followed by branch three.  Use SAT, order-sign, and known-UNSAT
-   controls.  Escalate surviving cells from equality/Kalmanson constraints to
-   planar distance-matrix and then source/MEC constraints only as needed.
-5. If every order cell is UNSAT, minimize a common exact cancellation and
+4. Formalize the source-facing cut-bit transport for the actual zero-cut
+   separators `U`, `O`, and `c₂`, and construct the canonical first-apex row
+   obtained by erasing the retained source from the exact-five class.  These
+   are required to prove the branch-four replacement omission without adding
+   source assumptions.
+5. Extend the census generator to cover every source-entitled placement of
+   the blocker `c₁` (including `c₁ = U`) and all admissible cross-row aliases.
+   The existing 102,960-cell generator is retained only as a conditional
+   collapsed-subcase diagnostic and must not be reported as the live census.
+6. Run the corrected complete direct/mirror order and equality census for the
+   branch-four exact-grid packet, followed by branch three.  Use PiQD with
+   order-sign and known-UNSAT controls.  Escalate surviving cells from
+   equality/Kalmanson constraints to planar distance-matrix and then
+   source/MEC constraints only as needed.
+7. If every order cell is UNSAT, minimize a common exact cancellation and
    formalize that certificate.  If a cell is SAT, retain it as a route
    counterexample and add only the missing source or MEC layer exposed by the
    survivor.
-6. Independently close
+8. Independently close
    `false_of_exactFiveDistinct_threeCenter_distinctFresh_physical`; the generic
    physical reselection arm depends on that rank-two obligation.
-7. Only after the census identifies a terminal should the import-safe cyclic
-   transport, canonical first-apex swapped row, two-full-class cap split, and
-   symmetric `oppIndex2` radial-crossing API be promoted.
+9. Only after the census identifies a terminal should the two-full-class cap
+   split and symmetric `oppIndex2` radial-crossing API be promoted.
 
 The census does not address the first two incidence branches by itself.  A
 grid UNSAT result would close only the corresponding hard source-swap arms;
@@ -266,4 +274,15 @@ independent adversarial source audit pass.  The physical arm intentionally
 returns an omitted selected row rather than claiming a common-deletion packet;
 the first-apex survival needed to construct that packet remains the independent
 rank-two boundary.  Execution therefore proceeds to the branch-four and
-branch-three census scaffold without rewiring the admitted endpoint.
+branch-three source adapters without rewiring the admitted endpoint.  The
+first scaffold run corrected the proposed role map: `c₁` is the blocker, not
+the surplus apex `U`, and cross-row aliases remain possible.  No live solver
+run is authorized until steps 4--5 provide the source-complete cell space.
+
+Step 4 is complete in the standalone source-swap module and
+`FrontierLiveClosure/ExactFiveDistinctSecondApexSourceSwapCyclic.lean`.  The
+canonical swapped first-apex row, direct/mirror cap-side transport, and the
+branch-four theorem forcing the hard replacement row to omit `c₁` all build
+without an admission.  Execution now stays on step 5: derive the exact-grid
+source adapter and enumerate the unresolved `c₁` placements and cross-row
+aliases before launching PiQD.

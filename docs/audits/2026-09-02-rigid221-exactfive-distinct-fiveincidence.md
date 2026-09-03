@@ -158,3 +158,72 @@ avoid-two selector and the complete packet compile with focused `lake env lean`;
 the module contains no admission.  An independent adversarial audit found no
 source-role, cardinality, import-cycle, or statement-strength defect.  The live
 target remains unchanged with its one existing admission.
+
+## Hard-source-swap census correction
+
+The first executable census scaffold exposed a source-role error in the
+proposed named-cell enumeration.  The three zero-cut separators are
+
+```text
+U  = oppositeVertexByIndex surplusIdx,
+O  = oppApex1,
+c₂ = oppApex2.
+```
+
+The blocker `c₁ = H.centerAt retained` is not a triangle apex.  The actual
+direct and mirror block orders are respectively
+
+```text
+U, oppInterior2, O, surplusInterior, c₂, oppInterior1
+U, oppInterior1, c₂, surplusInterior, O, oppInterior2.
+```
+
+The present hard packet does not localize `c₁` to one of these three strict
+interiors (and does not exclude `c₁ = U`).  It also does not make the
+row-local unnamed points globally distinct across the two full second-apex
+classes.  Consequently the current 102,960-cell Python enumeration is only a
+conditional diagnostic for the collapsed subcase `c₁ = U` with a stronger
+global-distinctness assumption.  Its tests and fixed-block validation pass,
+and a 200-cell diagnostic prefix reduced to the direct zero form, but no live
+PiQD solver run was launched and these results do not classify the source
+packet.
+
+The execution order is therefore corrected: first formalize the source-facing
+cap/order transport and canonical first-apex row obtained by swapping the
+deleted and retained sources; then enumerate all source-entitled placements
+of `c₁` and the admissible cross-row alias partitions.  Only that corrected
+grid is eligible for the live PiQD census.
+
+The theorem-bank preflight for the cut-bit transport found no exact existing
+congruence theorem; its first consumer is the branch-four proof of
+`c₁ ∉ replacement.support`, and the first missing antecedent is the cap-block
+adapter.  The preflight for the canonical swapped row likewise found the
+general constructor `selectedFourClassOfExactFiveErase` but no source-oriented
+wrapper; its immediate consumer is the same branch-four replacement omission.
+Both searches were made against source revision `b52803f70`.
+
+## Source-facing execution checkpoint
+
+The corrected step 4 is now formalized without changing the admitted target.
+`swappedFirstApexClass` canonically erases the retained source from the full
+exact-five first-apex class, and
+`swappedFirstApexClass_support_eq_insert_deleted_erase_retained` proves that
+its support is obtained from the old row by inserting `deleted` and erasing
+`retained`.  The zero-cut adapter proves that the retained and deleted sources,
+both lying in `oppInterior1`, have the same cut bit across `(oppApex1,
+oppApex2)` in both direct and mirror boundary orders.
+
+Combining these facts gives the checked branch-four consequence
+`hardSourceSwap_replacement_blocker_not_mem_of_fourth_prefix`: if the old
+first-apex row contains the blocker and the blocker/old-second-apex rows both
+contain `oppApex1` after their retained incidence, then the hard replacement
+second-apex row omits the blocker.  Otherwise the swapped first-apex row and
+replacement share `(deleted, blocker)`; cap-side transport changes that to
+the separated pair `(retained, blocker)`, which is rotated-incompatible with
+the separation from the blocker and old second-apex rows sharing
+`(retained, oppApex1)`.
+
+The focused governed build of the new cyclic consumer succeeds.  This closes
+the promised branch-four replacement omission, not the whole branch-four
+hard source-swap residual: the two-full-class cap split and its exact-grid
+consumer remain downstream.
