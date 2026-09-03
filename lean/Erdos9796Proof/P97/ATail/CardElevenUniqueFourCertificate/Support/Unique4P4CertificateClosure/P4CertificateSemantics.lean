@@ -112,7 +112,8 @@ theorem entails_formula_of_signedClauses_sat {n : Nat}
       (List.mem_map.mpr ⟨clause, hclause, rfl⟩))
 
 /-- Any source valuation satisfying every signed clause of the exact parsed
-P4 checkpoint-0 compact formula contradicts the kernel-checked replay. -/
+P4 checkpoint-0 compact formula contradicts the Lean-checked native-decision
+replay (trusting `Lean.ofReduceBool` and `Lean.trustCompiler`). -/
 theorem false_of_checkpoint0_signedClauses_sat (v : Nat → Prop)
     (h : ∀ clause ∈ signedClausesOfFormula
         (formulaOfCompact (n := CompactWindowedRupReplay.n)

@@ -1,0 +1,16 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "docstring-cert-trust-20260902",
+  "owner": "docstring_cert_trust",
+  "base_head": "d580d14a7f1e94057da16aa7fb7c8471bbe3e875",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/docstring-cert-trust-20260902.json",
+    "lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/ExactFiveCommonShellV7/G3CertificateSemantics.lean",
+    "lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4ExactTwoLratIngress/P5ExactTwoClosure.lean",
+    "lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4CertificateClosure/P4CertificateSemantics.lean"
+  ],
+  "durable_paths": [],
+  "generated_roots": [],
+  "created_utc": "2026-09-02T20:51:45Z",
+  "manifest_sha256": "70e3366d28b0eb5bb25a89fcc87a9f7624b0d33e780e02e7ba5fa80f6028d878"
+}

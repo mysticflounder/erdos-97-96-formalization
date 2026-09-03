@@ -30,7 +30,8 @@ open CheckpointedRup.CompactBoundary
 open CheckpointedRup.SemanticBoundary
 
 /-- Any source valuation satisfying every signed clause of the exact parsed G3
-checkpoint-0 formula contradicts the kernel-checked replay. -/
+checkpoint-0 formula contradicts the Lean-checked native-decision replay
+(trusting `Lean.ofReduceBool` and `Lean.trustCompiler`). -/
 theorem false_of_g3Checkpoint0_signedClauses_sat (v : Nat → Prop)
     (h : ∀ clause ∈ signedClausesOfFormula
         (formulaOfCompact (n := ExactFiveCommonShellV7G3Replay.n)
@@ -40,7 +41,8 @@ theorem false_of_g3Checkpoint0_signedClauses_sat (v : Nat → Prop)
   exact entails_formula_of_signedClauses_sat v _ h
 
 /-- Boolean DIMACS satisfaction of every parsed G3 checkpoint-0 clause is
-already enough to invoke the kernel-checked compact replay.  Downstream family
+already enough to invoke the Lean-checked native-decision compact replay
+(trusting `Lean.ofReduceBool` and `Lean.trustCompiler`).  Downstream family
 soundness therefore targets `evalClauseD` directly. -/
 theorem false_of_g3Checkpoint0_evalClauseD_sat (σ : Nat → Bool)
     (h : ∀ clause ∈

@@ -113,7 +113,8 @@ theorem entails_formula_of_signedClauses_sat {n : Nat}
         (List.mem_map.mpr ⟨clause, hclause, rfl⟩))
 
 /-- Any source valuation satisfying all occurrence-bridge clauses contradicts
-the kernel-checked checkpointed replay. -/
+the Lean-checked native-decision checkpointed replay (trusting
+`Lean.ofReduceBool` and `Lean.trustCompiler`). -/
 theorem false_of_bridgeClauses_sat (v : Nat → Prop)
     (h : ∀ clause ∈ bridgeClauses, clauseSat v clause) : False := by
   apply WindowedRupReplay.startUnsatisfiable (checkerAssignment v)
