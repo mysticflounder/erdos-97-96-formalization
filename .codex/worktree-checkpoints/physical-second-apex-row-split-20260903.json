@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "physical-second-apex-row-split-20260903",
+  "owner": "codex-physical-second-apex-row-split",
+  "base_head": "ac582e6e78035b52bf147ecce75ce4cd0bf04181",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/physical-second-apex-row-split-20260903.json",
+    "lean/Erdos9796Proof/P97/ATail/PhysicalSecondApexCommonDeletion.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-03T15:00:00Z",
+  "manifest_sha256": "1aec8f41f4379b78dda0c4402307771260dfa98bb4bba9ae1623d77718b075c9"
+}

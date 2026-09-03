@@ -107,7 +107,7 @@ theorem secondRow_support_eq_criticalShell_of_center_eq
     H.selectedFourClass_support_eq_shell source hsource
       (secondRowSelectedFourClass C)
 
-private theorem selectedRows_sameCenter_radius_eq_or_disjoint
+theorem selectedRows_sameCenter_radius_eq_or_disjoint
     {A : Finset ℝ²} {center : ℝ²}
     (K L : SelectedFourClass A center) :
     K.radius = L.radius ∨ Disjoint K.support L.support := by
