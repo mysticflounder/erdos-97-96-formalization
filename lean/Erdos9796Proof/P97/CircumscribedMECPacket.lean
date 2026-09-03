@@ -106,6 +106,40 @@ structure CircumscribedMECPacket (A : Finset ℝ²) (M : MoserTriangle A) where
   with radius `radius`. -/
   disk_contains_A : ∀ a ∈ A, ‖a - center‖ ≤ radius
 
+/-- A point in a closed disk lies in the center-facing quadratic half-space
+based at any boundary point of that disk.  This is the power-of-a-point
+expansion used to linearize disk containment once the distance from `a` is
+fixed. -/
+theorem norm_sq_le_two_inner_center_sub_of_mem_disk_at_boundary
+    (p a O : ℝ²) (hDisk : ‖p - O‖ ≤ ‖a - O‖) :
+    ‖p - a‖ ^ 2 ≤ 2 * inner ℝ (p - a) (O - a) := by
+  have hsq : ‖p - O‖ ^ 2 ≤ ‖a - O‖ ^ 2 := by
+    nlinarith [norm_nonneg (p - O), norm_nonneg (a - O)]
+  have hsub : p - O = (p - a) + (a - O) := by
+    abel
+  have hnorm :
+      ‖(p - a) + (a - O)‖ ^ 2 =
+        ‖p - a‖ ^ 2 + ‖a - O‖ ^ 2 +
+          2 * inner ℝ (p - a) (a - O) := by
+    rw [@norm_add_pow_two_real ℝ² _ _ (p - a) (a - O)]
+    ring
+  rw [hsub, hnorm] at hsq
+  have hopp : O - a = -(a - O) := by
+    abel
+  rw [hopp, inner_neg_right]
+  linarith
+
+/-- Specialize the boundary-point disk inequality to a
+`CircumscribedMECPacket`. -/
+theorem CircumscribedMECPacket.norm_sq_le_two_inner_center_sub_of_boundary
+    {A : Finset ℝ²} {M : MoserTriangle A}
+    (P : CircumscribedMECPacket A M) {p a : ℝ²}
+    (hp : p ∈ A) (ha : ‖a - P.center‖ = P.radius) :
+    ‖p - a‖ ^ 2 ≤ 2 * inner ℝ (p - a) (P.center - a) := by
+  apply norm_sq_le_two_inner_center_sub_of_mem_disk_at_boundary
+  rw [ha]
+  exact P.disk_contains_A p hp
+
 namespace MoserTriangle
 
 variable {A : Finset ℝ²}
