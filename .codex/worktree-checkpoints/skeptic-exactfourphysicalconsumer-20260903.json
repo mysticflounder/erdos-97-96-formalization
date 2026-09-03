@@ -1,0 +1,15 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "skeptic-exactfourphysicalconsumer-20260903",
+  "owner": "luna-swarm-lemma-lantern-97",
+  "base_head": "29614dfc71e902523fbdbac5191c964a187282b7",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/skeptic-exactfourphysicalconsumer-20260903.json"
+  ],
+  "generated_roots": [],
+  "durable_paths": [
+    "docs/skeptic-ExactFourPhysicalConsumer-2026-09-03.md"
+  ],
+  "created_utc": "2026-09-03T23:44:30Z",
+  "manifest_sha256": "9713c0bbbef83432cbb40c79076473e1af4ab4caadbabfdabf43e63ca0439251"
+}
