@@ -312,7 +312,9 @@ def _mec_direct_source_document() -> dict[str, Any]:
     }
 
 
-def _mec_values(variable_ids: Sequence[str], *, r2: str = "(/ 1 2)") -> str:
+def _mec_values(
+    variable_ids: Sequence[str], *, mx: str = "(/ 1 2)", r2: str = "(/ 1 2)"
+) -> str:
     values = {
         "x_0": "0",
         "y_0": "0",
@@ -322,7 +324,7 @@ def _mec_values(variable_ids: Sequence[str], *, r2: str = "(/ 1 2)") -> str:
         "y_2": "1",
         "x_3": "0",
         "y_3": "1",
-        "mec_x": "(/ 1 2)",
+        "mec_x": mx,
         "mec_y": "(/ 1 2)",
         "mec_r2": r2,
     }
@@ -887,15 +889,16 @@ def test_mec_direct_source_binds_apices_atoms_and_query_custody(
     }
     assert extraction["raw_direct_systems"] == 1
     expected_counts = {
+        "mec_gauge": 2,
         "mec_radius_pos": 1,
         "mec_boundary": 3,
         "mec_disk": 4,
         "mec_nonobtuse": 3,
     }
     for stage, convexity, total in (
-        ("exact-metric-relaxation", 0, 21),
-        ("full-convex", 8, 29),
-        ("convex-only-relaxation", 8, 29),
+        ("exact-metric-relaxation", 0, 23),
+        ("full-convex", 8, 31),
+        ("convex-only-relaxation", 8, 31),
     ):
         prepared = subject.prepare_stage(
             system, stage, timeout_ms=1000, source_paths=(source,)
@@ -922,6 +925,8 @@ def test_mec_direct_source_binds_apices_atoms_and_query_custody(
             "(declare-fun mec_x () Real)",
             "(declare-fun mec_y () Real)",
             "(declare-fun mec_r2 () Real)",
+            "(assert (= mec_x (/ 1 2)))",
+            "(assert (= mec_r2 (+ (/ 1 4) (* mec_y mec_y))))",
             "(assert (> mec_r2 0))",
             "(assert (= (+ (* (- x_0 mec_x) (- x_0 mec_x)) (* (- y_0 mec_y) (- y_0 mec_y))) mec_r2))",
             "(assert (>= (- mec_r2 (+ (* (- x_3 mec_x) (- x_3 mec_x)) (* (- y_3 mec_y) (- y_3 mec_y)))) 0))",
@@ -933,6 +938,23 @@ def test_mec_direct_source_binds_apices_atoms_and_query_custody(
             if item.path == "input-0000.json"
         )
         assert captured.payload == source_bytes
+
+    ungauged = json.loads(json.dumps(system))
+    ungauged["mec_apices"] = [1, 2, 3]
+    ungauged_rows = tuple(
+        producer.MetricRow(row["center"], tuple(row["support"]), row["exact"])
+        for row in ungauged["rows"]
+    )
+    ungauged_identity = producer._direct_system_key(
+        ungauged["n"], ungauged["order"], ungauged_rows, ungauged["mec_apices"]
+    )
+    ungauged["system_id"] = hashlib.sha256(ungauged_identity.encode()).hexdigest()[
+        :20
+    ]
+    _atoms, ungauged_counts = subject._stage_atoms(
+        subject._validate_system(ungauged), "full-convex"
+    )
+    assert ungauged_counts["mec_gauge"] == 0
 
     changed = dict(document)
     changed["mec_apices"] = [0, 1, 3]
@@ -1074,6 +1096,7 @@ def test_mec_exact_fraction_replay_covers_every_assertion(
         if key != "total"
     }
     assert replay.evidence["checks"]["mec_radius_pos"] == 1
+    assert replay.evidence["checks"]["mec_gauge"] == 2
     assert replay.evidence["checks"]["mec_boundary"] == 3
     assert replay.evidence["checks"]["mec_disk"] == 4
     assert replay.evidence["checks"]["mec_nonobtuse"] == 3
@@ -1090,7 +1113,15 @@ def test_mec_exact_fraction_replay_covers_every_assertion(
         _mec_values(variable_ids, r2="(/ 1 4)"),
     )
     assert rejected.accepted is False
-    assert rejected.evidence == {"reason": "mec_boundary"}
+    assert rejected.evidence == {"reason": "mec_gauge"}
+    rejected = subject.verify_sat_model(
+        prepared.query,
+        "z3",
+        "(model)",
+        _mec_values(variable_ids, mx="(/ 1 3)"),
+    )
+    assert rejected.accepted is False
+    assert rejected.evidence == {"reason": "mec_gauge"}
 
 
 @pytest.mark.parametrize(

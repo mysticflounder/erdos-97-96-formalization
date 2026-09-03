@@ -7,7 +7,9 @@ version-2 direct system also exposes the circumscribed-MEC constraints named by
 ``CircumscribedMECPacket.moser_on_boundary``, and
 ``CircumscribedMECPacket.disk_contains_A``; its nonobtuse apex-triangle packet
 is replayed alongside them.  The quantified minimum-radius clause remains
-outside this finite exposed packet.
+outside this finite exposed packet.  When the MEC triangle contains both gauge
+labels, the two boundary equations are supplemented by their exact consequences
+``mec_x = 1/2`` and ``mec_r2 = 1/4 + mec_y^2``.
 """
 
 from __future__ import annotations
@@ -466,8 +468,17 @@ def _stage_atoms(
     }
     mec_apices = system.get("mec_apices")
     if mec_apices is not None:
+        gauge_apices = {0, 1}.issubset(set(mec_apices))
         atoms.update(
             {
+                "mec_gauge": (
+                    [
+                        "(= mec_x (/ 1 2))",
+                        "(= mec_r2 (+ (/ 1 4) (* mec_y mec_y)))",
+                    ]
+                    if gauge_apices
+                    else []
+                ),
                 "mec_radius_pos": ["(> mec_r2 0)"],
                 "mec_boundary": [
                     f"(= {_mec_d2(apex)} mec_r2)" for apex in mec_apices
@@ -506,6 +517,7 @@ def _stage_atoms(
             if point not in {left, right}
         )
     mec_categories = {
+        "mec_gauge",
         "mec_radius_pos",
         "mec_boundary",
         "mec_disk",
@@ -566,6 +578,7 @@ def build_stage_smt2(
         "exactness",
         "distinctness",
         "convexity",
+        "mec_gauge",
         "mec_radius_pos",
         "mec_boundary",
         "mec_disk",
@@ -924,6 +937,7 @@ def verify_sat_model(
     if mec_apices is not None:
         checked.update(
             {
+                "mec_gauge": 0,
                 "mec_radius_pos": 0,
                 "mec_boundary": 0,
                 "mec_disk": 0,
@@ -932,6 +946,12 @@ def verify_sat_model(
         )
         mec_center = (readback["mec_x"], readback["mec_y"])
         mec_r2 = readback["mec_r2"]
+        if {0, 1}.issubset(set(mec_apices)):
+            checked["mec_gauge"] += 2
+            if mec_center[0] != Fraction(1, 2):
+                return neutral.SemanticVerification(False, {"reason": "mec_gauge"})
+            if mec_r2 != Fraction(1, 4) + mec_center[1] ** 2:
+                return neutral.SemanticVerification(False, {"reason": "mec_gauge"})
         checked["mec_radius_pos"] += 1
         if mec_r2 <= 0:
             return neutral.SemanticVerification(False, {"reason": "mec_radius_pos"})
@@ -2480,6 +2500,7 @@ def _derive_published_result(
                 producer.MetricRow(row["center"], tuple(row["support"]), row["exact"])
                 for row in system["rows"]
             ),
+            system.get("mec_apices"),
         ),
         "route": "piqd-z3-qfnra",
         "workers": 1,
