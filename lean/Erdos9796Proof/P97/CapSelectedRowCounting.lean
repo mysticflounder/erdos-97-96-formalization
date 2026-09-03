@@ -1366,6 +1366,142 @@ theorem orderedCap_selected_outside_pair_owner_existsUnique_of_six_five
     haJ hbJ haK hbK
   exact howner.symm
 
+/- ## The owner map and its saturated fibres -/
+
+/-- The unique selected row owning an outside pair.  The default value on
+outside pairs is only a totality device; all uses below are restricted to the
+two-subsets of the cap complement. -/
+noncomputable def orderedCap_selected_outside_pair_owner_of_six_five
+    {A : Finset ℝ²} {L : CGN.OrderedCap 6}
+    (Packet : CGN.MecCapPacket A L)
+    (Hside : CGN.MinorCapSideHypotheses Packet)
+    (Hord : CGN.StrictCapOrder A L)
+    (hconv : ConvexIndep A) (F : FaithfulCarrierPattern A)
+    (houtside : (A \ Finset.univ.image L.points).card = 5)
+    (xy : Finset ℝ²) : Fin 6 :=
+  if hxy : xy ∈ (A \ Finset.univ.image L.points).powersetCard 2 then
+    Classical.choose
+      (orderedCap_selected_outside_pair_owner_existsUnique_of_six_five
+        Packet Hside Hord hconv F houtside hxy)
+  else 0
+
+/-- The owner map sends every outside pair to a row that contains it. -/
+theorem orderedCap_selected_outside_pair_owner_mem_of_six_five
+    {A : Finset ℝ²} {L : CGN.OrderedCap 6}
+    (Packet : CGN.MecCapPacket A L)
+    (Hside : CGN.MinorCapSideHypotheses Packet)
+    (Hord : CGN.StrictCapOrder A L)
+    (hconv : ConvexIndep A) (F : FaithfulCarrierPattern A)
+    (houtside : (A \ Finset.univ.image L.points).card = 5)
+    {xy : Finset ℝ²}
+    (hxy : xy ∈ (A \ Finset.univ.image L.points).powersetCard 2) :
+    xy ∈ ((F.classAt
+      (L.points (orderedCap_selected_outside_pair_owner_of_six_five
+        Packet Hside Hord hconv F houtside xy)) (Packet.mem_A _)).support \
+    Finset.univ.image L.points).powersetCard 2 := by
+  classical
+  have howner :
+      orderedCap_selected_outside_pair_owner_of_six_five
+          Packet Hside Hord hconv F houtside xy =
+        Classical.choose
+          (orderedCap_selected_outside_pair_owner_existsUnique_of_six_five
+            Packet Hside Hord hconv F houtside hxy) := by
+    unfold orderedCap_selected_outside_pair_owner_of_six_five
+    rw [dif_pos hxy]
+  exact
+    (howner ▸ Classical.choose_spec
+      (orderedCap_selected_outside_pair_owner_existsUnique_of_six_five
+        Packet Hside Hord hconv F houtside hxy)).1
+
+/-- On an outside pair, the owner map is the unique row whose outside support
+contains that pair. -/
+theorem orderedCap_selected_outside_pair_owner_eq_of_six_five
+    {A : Finset ℝ²} {L : CGN.OrderedCap 6}
+    (Packet : CGN.MecCapPacket A L)
+    (Hside : CGN.MinorCapSideHypotheses Packet)
+    (Hord : CGN.StrictCapOrder A L)
+    (hconv : ConvexIndep A) (F : FaithfulCarrierPattern A)
+    (houtside : (A \ Finset.univ.image L.points).card = 5)
+    {xy : Finset ℝ²}
+    (hxy : xy ∈ (A \ Finset.univ.image L.points).powersetCard 2)
+    {j : Fin 6}
+    (hj : xy ∈ ((F.classAt (L.points j) (Packet.mem_A j)).support \
+        Finset.univ.image L.points).powersetCard 2) :
+    orderedCap_selected_outside_pair_owner_of_six_five
+      Packet Hside Hord hconv F houtside xy = j := by
+  exact
+    (orderedCap_selected_outside_pair_owner_existsUnique_of_six_five
+      Packet Hside Hord hconv F houtside hxy).unique
+      (orderedCap_selected_outside_pair_owner_mem_of_six_five
+        Packet Hside Hord hconv F houtside hxy)
+      hj
+
+/-- The owner-map fibre over a row is exactly that row's two-subsets outside
+the cap. -/
+theorem orderedCap_selected_outside_pair_owner_fiber_eq_of_six_five
+    {A : Finset ℝ²} {L : CGN.OrderedCap 6}
+    (Packet : CGN.MecCapPacket A L)
+    (Hside : CGN.MinorCapSideHypotheses Packet)
+    (Hord : CGN.StrictCapOrder A L)
+    (hconv : ConvexIndep A) (F : FaithfulCarrierPattern A)
+    (houtside : (A \ Finset.univ.image L.points).card = 5)
+    (j : Fin 6) :
+    ((A \ Finset.univ.image L.points).powersetCard 2).filter (fun xy =>
+      orderedCap_selected_outside_pair_owner_of_six_five
+        Packet Hside Hord hconv F houtside xy = j) =
+      ((F.classAt (L.points j) (Packet.mem_A j)).support \
+        Finset.univ.image L.points).powersetCard 2 := by
+  classical
+  ext xy
+  constructor
+  · intro hxy
+    have hfilter := Finset.mem_filter.mp hxy
+    have howner := hfilter.2
+    have hrow := orderedCap_selected_outside_pair_owner_mem_of_six_five
+      Packet Hside Hord hconv F houtside hfilter.1
+    rw [howner] at hrow
+    exact hrow
+  · intro hrow
+    have hrowData := Finset.mem_powersetCard.mp hrow
+    have hxyOutside : xy ∈ (A \ Finset.univ.image L.points).powersetCard 2 := by
+      apply Finset.mem_powersetCard.mpr
+      refine ⟨?_, hrowData.2⟩
+      intro x hx
+      have hxrow := hrowData.1 hx
+      exact Finset.mem_sdiff.mpr
+        ⟨(F.classAt (L.points j) (Packet.mem_A j)).support_subset_A
+            (Finset.mem_sdiff.mp hxrow).1,
+          (Finset.mem_sdiff.mp hxrow).2⟩
+    exact Finset.mem_filter.mpr ⟨hxyOutside,
+      orderedCap_selected_outside_pair_owner_eq_of_six_five
+        Packet Hside Hord hconv F houtside hxyOutside hrow⟩
+
+/-- The owner-map fibres have the exact saturated cardinalities: three pairs
+for each endpoint row and one pair for each interior row. -/
+theorem orderedCap_selected_outside_pair_owner_fiber_card_eq_of_six_five
+    {A : Finset ℝ²} {L : CGN.OrderedCap 6}
+    (Packet : CGN.MecCapPacket A L)
+    (Hside : CGN.MinorCapSideHypotheses Packet)
+    (Hord : CGN.StrictCapOrder A L)
+    (hconv : ConvexIndep A) (F : FaithfulCarrierPattern A)
+    (houtside : (A \ Finset.univ.image L.points).card = 5)
+    (j : Fin 6) :
+    (((A \ Finset.univ.image L.points).powersetCard 2).filter (fun xy =>
+      orderedCap_selected_outside_pair_owner_of_six_five
+        Packet Hside Hord hconv F houtside xy = j)).card =
+      if j = CGN.firstIndex Packet.hm then 3
+      else if j = CGN.lastIndex Packet.hm then 3 else 1 := by
+  rw [orderedCap_selected_outside_pair_owner_fiber_eq_of_six_five
+    Packet Hside Hord hconv F houtside j]
+  rw [Finset.card_powersetCard]
+  rw [orderedCap_selected_support_sdiff_card_eq_of_six_five
+    Packet Hside Hord hconv F houtside j]
+  by_cases hfirst : j = CGN.firstIndex Packet.hm
+  · simp [hfirst]
+  · by_cases hlast : j = CGN.lastIndex Packet.hm
+    · simp [hfirst, hlast]
+    · simp [hfirst, hlast]
+
 end CapSelectedRowCounting
 
 end Problem97

@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "cap-owner-map-20260903",
+  "owner": "codex-cap-owner-map",
+  "base_head": "c3207b6d2f0fb40ad2fa7920c83ea04cdf80cd51",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/cap-owner-map-20260903.json",
+    "lean/Erdos9796Proof/P97/CapSelectedRowCounting.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-03T17:10:00Z",
+  "manifest_sha256": "a66c80df753d4900096eff18d4ac77e6b4d744ed51d7474367239ee7fa78d724"
+}
