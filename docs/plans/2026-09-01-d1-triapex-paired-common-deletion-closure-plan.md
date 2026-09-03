@@ -1953,3 +1953,75 @@ is immediate and visible.
 {{NEEDS_UPDATE}}: the remaining mod-p verdicts from chain v12, the certificate
 verification for `0e31c5c5d735a779`, and the characteristic-0 four-pair
 Rabinowitsch verdicts from the peer session.
+
+### 19. The 111 patterns form five orbits, not twenty (2026-09-03)
+
+Every solver verdict in this layer is computed on representatives and claimed
+for all 111 residue metric patterns, so the reduction is the load-bearing
+assumption underneath the whole exact-15 metric argument. The producer of
+`tmp/dihedral-reps.txt` is not among the retained tools, so it was re-derived
+from the pattern algebra rather than trusted
+(`artifacts/tools/orbit_falsifier.py`, `orbit_reflection.py`, `orbit_full.py`;
+no solver involved).
+
+A first pass acted with the six bare apex relabelings, `A_k -> A_sigma(k)` and
+`P{k}.s -> P{sigma(k)}.s` with the within-cap index held fixed. Under that
+action the pattern set is NOT closed: all 333 odd relabelings — every
+transposition, on every one of the 111 patterns — leave the set, and only the
+three rotations preserve it. The defect was in the action, not the data. The
+labels `P{k}.1..4` inside one cap are arbitrary names, so the honest group is
+the six apex permutations composed with an independent relabeling of the four
+points inside each cap, of order `6 * 24^3`. Searching those relabelings shows
+each transposed image does land back in the set, 4 to 8 within-cap maps at a
+time.
+
+Under the honest group the 111 patterns form **five** orbits, of sizes 3, 24,
+24, 24 and 36. The twenty declared representatives all lie inside them and no
+orbit is left uncovered, so the twenty-representative pass was conservative
+rather than wrong: it ran twenty representatives where five suffice.
+
+The partition is confirmed, not assumed. Nineteen independent solver runs are
+spread across the five orbits, and no orbit contains two different verdicts:
+
+| orbit | representatives run | verdict |
+|---|---|---|
+| 36 | `0ba2f8339583ff96`, `0d6996160cc83aab`, `3826b8a0dec4a6b0`, `4196eb64fac564cc`, `5815b1f6a42dcb08`, `60e1264c2096add9` | dim 0, vdim 2048; saturates to 192 with all points distinct |
+| 24 | `0128294791aad010`, `0a55d4c3c9ce4aaf`, `3f5944d10bef23b7`, `6df4c7a8d7bf40b6` | empty over the complex numbers, and over the rationals |
+| 24 | `09de935481f89fcb`, `0af6e34c9d121f64`, `353e5cf5d9489e5e`, `3642476c22a03be4`, `60cd5309f72bf0e5` | dimension 2, empty after saturation |
+| 24 | `0e31c5c5d735a779`, `172327e48f4004fb`, `32263a5344416a02`, `5d4f4968fac1e0d5` | dim 0, vdim 1536; collapses at `P0.1:P0.4` |
+| 3 | `1412a71e2b2792b3` | dim 0, vdim 3072; never saturated or triaged |
+
+Six runs agree on the first row and four on the second; a partition that merged
+two genuinely different classes would have to survive that by coincidence.
+
+Soundness direction. Two patterns in one orbit differ by a permutation of the
+point labels, so their encoded ideals differ by a ring automorphism: dimension,
+vector-space dimension, emptiness and the real-root count are the same for
+both. Refuting one refutes the orbit. The risk in a partition of this kind is
+merging patterns no symmetry relates, and the explicit relabeling that realizes
+each merge is what rules that out here; it is exhibited, not inferred from the
+verdicts agreeing.
+
+What this changes in the queue. The layer has one orbit that is open after
+testing and one that was never tested:
+
+- the 36-orbit is the open one — 192 nondegenerate solutions mod 32003, and the
+  characteristic-0 wall recorded in section 15 is entirely about it;
+- the 3-orbit (`1412a71e2b2792b3`) has never been triaged or saturated, and is
+  the only untested part of the layer;
+- the other three orbits, 72 of the 111 patterns, are decided. The 24-orbit of
+  empty patterns is refuted over the rationals. The other two are refuted mod
+  32003 only, and the collapse orbit is the one the membership certificate can
+  upgrade to an exact refutation.
+
+So every remaining key in the twenty-representative list except
+`1412a71e2b2792b3` sits in an orbit whose verdict is already known, and running
+it again reconfirms a ring isomorphism. Chains v12 and v15 were stopped for
+that reason and replaced by v16, which triages `1412a71e2b2792b3` alone. The
+in-flight `172327e48f4004fb` triage was deliberately left running as a
+falsifier: it shares an orbit with `0e31c5c5d735a779` and must collapse at a
+live pair of vector-space dimension 1536.
+
+{{NEEDS_UPDATE}}: the `1412a71e2b2792b3` triage, the `172327e48f4004fb`
+falsifier, the certificate verification for `0e31c5c5d735a779`, and the
+characteristic-0 real-root count for the 36-orbit.
