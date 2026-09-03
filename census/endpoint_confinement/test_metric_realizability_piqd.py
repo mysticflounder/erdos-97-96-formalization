@@ -4,10 +4,13 @@ import builtins
 import hashlib
 import json
 import os
+import sys
 import uuid
 from collections.abc import Mapping, Sequence
 from dataclasses import replace
+from fractions import Fraction
 from pathlib import Path
+from types import SimpleNamespace
 from typing import Any
 
 import pytest
@@ -297,12 +300,14 @@ def _direct_source_document() -> dict[str, Any]:
     }
 
 
-def _mec_direct_source_document() -> dict[str, Any]:
+def _mec_direct_source_document(
+    mec_apices: Sequence[int] = (0, 1, 2),
+) -> dict[str, Any]:
     system: dict[str, Any] = {
         "n": 4,
         "order": [0, 1, 2, 3],
         "rows": [],
-        "mec_apices": [0, 1, 2],
+        "mec_apices": list(mec_apices),
     }
     identity = json.dumps(system, sort_keys=True, separators=(",", ":"))
     return {
@@ -339,6 +344,109 @@ def _mec_values(
             for variable_id in variable_ids
         )
         + ")"
+    )
+
+
+class _FakeArithmetic:
+    def __init__(self, evaluate: Any) -> None:
+        self.evaluate = evaluate
+
+    @staticmethod
+    def coerce(value: object) -> _FakeArithmetic:
+        if isinstance(value, _FakeArithmetic):
+            return value
+        return _FakeArithmetic(lambda _model: Fraction(value))
+
+    def binary(self, other: object, operation: Any) -> _FakeArithmetic:
+        right = self.coerce(other)
+        return _FakeArithmetic(
+            lambda model: operation(self.evaluate(model), right.evaluate(model))
+        )
+
+    def __add__(self, other: object) -> _FakeArithmetic:
+        return self.binary(other, lambda left, right: left + right)
+
+    def __radd__(self, other: object) -> _FakeArithmetic:
+        return self.coerce(other).__add__(self)
+
+    def __sub__(self, other: object) -> _FakeArithmetic:
+        return self.binary(other, lambda left, right: left - right)
+
+    def __rsub__(self, other: object) -> _FakeArithmetic:
+        return self.coerce(other).__sub__(self)
+
+    def __mul__(self, other: object) -> _FakeArithmetic:
+        return self.binary(other, lambda left, right: left * right)
+
+    def __rmul__(self, other: object) -> _FakeArithmetic:
+        return self.coerce(other).__mul__(self)
+
+    def __truediv__(self, other: object) -> _FakeArithmetic:
+        return self.binary(other, lambda left, right: left / right)
+
+    def __pow__(self, other: object) -> _FakeArithmetic:
+        return self.binary(other, lambda left, right: left ** int(right))
+
+    def __eq__(self, other: object) -> _FakeArithmetic:  # type: ignore[override]
+        return self.binary(other, lambda left, right: left == right)
+
+    def __gt__(self, other: object) -> _FakeArithmetic:
+        return self.binary(other, lambda left, right: left > right)
+
+    def __ge__(self, other: object) -> _FakeArithmetic:
+        return self.binary(other, lambda left, right: left >= right)
+
+
+class _FakeZ3Value:
+    def __init__(self, value: object) -> None:
+        self.value = value
+
+    def numerator_as_long(self) -> int:
+        assert isinstance(self.value, Fraction)
+        return self.value.numerator
+
+    def denominator_as_long(self) -> int:
+        assert isinstance(self.value, Fraction)
+        return self.value.denominator
+
+
+def _fake_z3_module(model_values: Mapping[str, Fraction]) -> object:
+    sat = object()
+    unsat = object()
+
+    def variable(name: str) -> _FakeArithmetic:
+        return _FakeArithmetic(lambda model: model[name])
+
+    class Model:
+        def eval(self, expression: _FakeArithmetic, **_kwargs: object) -> _FakeZ3Value:
+            return _FakeZ3Value(expression.evaluate(model_values))
+
+    class Solver:
+        def add(self, *_assertions: _FakeArithmetic) -> None:
+            pass
+
+        def set(self, *_args: object) -> None:
+            pass
+
+        def check(self) -> object:
+            return sat
+
+        def model(self) -> Model:
+            return Model()
+
+    return SimpleNamespace(
+        Real=variable,
+        Reals=lambda names: tuple(variable(name) for name in names.split()),
+        RealVal=lambda value: _FakeArithmetic.coerce(value),
+        Tactic=lambda _name: SimpleNamespace(solver=Solver),
+        sat=sat,
+        unsat=unsat,
+        simplify=lambda value: value,
+        is_true=lambda value: isinstance(value, _FakeZ3Value) and value.value is True,
+        is_rational_value=lambda value: (
+            isinstance(value, _FakeZ3Value) and isinstance(value.value, Fraction)
+        ),
+        is_algebraic_value=lambda _value: False,
     )
 
 
@@ -863,6 +971,20 @@ def test_direct_source_reconstructs_exact_six_point_row_and_capture(
     )
     assert prepared.source_record["constraint_counts"]["equalities"] == 5
     assert prepared.source_record["constraint_counts"]["exactness"] == 1
+    assert prepared.source_record["normalization"]["mec_parameterization"] == {
+        "schema": subject.MEC_PARAMETERIZATION_SCHEMA,
+        "mode": "none",
+        "declared_terms": [],
+        "exact_substitutions": {},
+        "omitted_boundary_apices": [],
+    }
+    assert prepared.query.descriptor["semantic_input"]["source_record_sha256"] == (
+        _sha(prepared.source_record_bytes)
+    )
+    assert all(
+        not variable["term"].startswith("mec_")
+        for variable in prepared.query.descriptor["variables"]
+    )
     captured = next(
         item for item in prepared.query.source_files if item.path == "input-0000.json"
     )
@@ -889,16 +1011,16 @@ def test_mec_direct_source_binds_apices_atoms_and_query_custody(
     }
     assert extraction["raw_direct_systems"] == 1
     expected_counts = {
-        "mec_gauge": 2,
+        "mec_gauge": 0,
         "mec_radius_pos": 1,
-        "mec_boundary": 3,
+        "mec_boundary": 1,
         "mec_disk": 4,
         "mec_nonobtuse": 3,
     }
     for stage, convexity, total in (
-        ("exact-metric-relaxation", 0, 23),
-        ("full-convex", 8, 31),
-        ("convex-only-relaxation", 8, 31),
+        ("exact-metric-relaxation", 0, 19),
+        ("full-convex", 8, 27),
+        ("convex-only-relaxation", 8, 27),
     ):
         prepared = subject.prepare_stage(
             system, stage, timeout_ms=1000, source_paths=(source,)
@@ -911,27 +1033,41 @@ def test_mec_direct_source_binds_apices_atoms_and_query_custody(
             subject._canonical(system)
         )
         assert prepared.query.descriptor["semantic_input"]["system"] == system
-        assert prepared.query.descriptor["variables"][-3:] == [
-            {"id": "z000-mec-x", "term": "mec_x", "sort": "Real"},
-            {"id": "z001-mec-y", "term": "mec_y", "sort": "Real"},
-            {"id": "z002-mec-r2", "term": "mec_r2", "sort": "Real"},
+        assert prepared.query.descriptor["variables"][-1:] == [
+            {"id": "z001-mec-y", "term": "mec_y", "sort": "Real"}
         ]
-        assert prepared.query.descriptor["solve"]["readback_variable_ids"][-3:] == [
-            "z000-mec-x",
-            "z001-mec-y",
-            "z002-mec-r2",
+        assert prepared.query.descriptor["solve"]["readback_variable_ids"][-1:] == [
+            "z001-mec-y"
         ]
+        assert prepared.source_record["normalization"]["schema"] == (
+            subject.NORMALIZATION_SCHEMA
+        )
+        assert prepared.source_record["normalization"]["mec_parameterization"] == {
+            "schema": subject.MEC_PARAMETERIZATION_SCHEMA,
+            "mode": "gauge-eliminated",
+            "declared_terms": ["mec_y"],
+            "exact_substitutions": {
+                "mec_x": "(/ 1 2)",
+                "mec_r2": "(+ (/ 1 4) (* mec_y mec_y))",
+            },
+            "omitted_boundary_apices": [0, 1],
+        }
+        assert prepared.query.descriptor["semantic_input"][
+            "source_record_sha256"
+        ] == _sha(prepared.source_record_bytes)
+        assert prepared.query.descriptor["producer"]["version"] == "v2"
+        assert prepared.query.descriptor["semantic_verifier"]["version"] == "v2"
         assert {
-            "(declare-fun mec_x () Real)",
             "(declare-fun mec_y () Real)",
-            "(declare-fun mec_r2 () Real)",
-            "(assert (= mec_x (/ 1 2)))",
-            "(assert (= mec_r2 (+ (/ 1 4) (* mec_y mec_y))))",
-            "(assert (> mec_r2 0))",
-            "(assert (= (+ (* (- x_0 mec_x) (- x_0 mec_x)) (* (- y_0 mec_y) (- y_0 mec_y))) mec_r2))",
-            "(assert (>= (- mec_r2 (+ (* (- x_3 mec_x) (- x_3 mec_x)) (* (- y_3 mec_y) (- y_3 mec_y)))) 0))",
+            "(assert (> (+ (/ 1 4) (* mec_y mec_y)) 0))",
+            "(assert (= (+ (* (- x_2 (/ 1 2)) (- x_2 (/ 1 2))) (* (- y_2 mec_y) (- y_2 mec_y))) (+ (/ 1 4) (* mec_y mec_y))))",
+            "(assert (>= (- (+ (/ 1 4) (* mec_y mec_y)) (+ (* (- x_3 (/ 1 2)) (- x_3 (/ 1 2))) (* (- y_3 mec_y) (- y_3 mec_y)))) 0))",
             "(assert (>= (+ (* (- x_1 x_0) (- x_2 x_0)) (* (- y_1 y_0) (- y_2 y_0))) 0))",
         } <= set(prepared.query.journal_commands)
+        assert not any(
+            "mec_x" in command or "mec_r2" in command
+            for command in prepared.query.journal_commands
+        )
         captured = next(
             item
             for item in prepared.query.source_files
@@ -951,10 +1087,21 @@ def test_mec_direct_source_binds_apices_atoms_and_query_custody(
     ungauged["system_id"] = hashlib.sha256(ungauged_identity.encode()).hexdigest()[
         :20
     ]
-    _atoms, ungauged_counts = subject._stage_atoms(
+    ungauged_commands, ungauged_counts = subject.build_stage_smt2(
         subject._validate_system(ungauged), "full-convex"
     )
     assert ungauged_counts["mec_gauge"] == 0
+    assert ungauged_counts["mec_boundary"] == 3
+    assert {
+        "(declare-fun mec_x () Real)",
+        "(declare-fun mec_y () Real)",
+        "(declare-fun mec_r2 () Real)",
+    } <= set(ungauged_commands)
+    assert subject._variables(4, mec_apices=ungauged["mec_apices"])[-3:] == [
+        {"id": "z000-mec-x", "term": "mec_x", "sort": "Real"},
+        {"id": "z001-mec-y", "term": "mec_y", "sort": "Real"},
+        {"id": "z002-mec-r2", "term": "mec_r2", "sort": "Real"},
+    ]
 
     changed = dict(document)
     changed["mec_apices"] = [0, 1, 3]
@@ -967,6 +1114,82 @@ def test_mec_direct_source_binds_apices_atoms_and_query_custody(
         ).encode()
     ).hexdigest()[:20]
     assert changed_id != document["system_id"]
+
+
+def test_ungauged_mec_parameterization_is_bound_into_descriptor_source_custody(
+    tmp_path: Path, monkeypatch: Any
+) -> None:
+    monkeypatch.setattr(producer, "ROOT", tmp_path)
+    monkeypatch.setattr(subject, "_REPO_ROOT", tmp_path)
+    document = _mec_direct_source_document([1, 2, 3])
+    source = tmp_path / "direct-ungauged-mec-system.json"
+    source.write_text(
+        json.dumps(document, sort_keys=True, separators=(",", ":")) + "\n",
+        encoding="utf-8",
+    )
+    [system], _extraction = producer.extract_systems((source,))
+
+    prepared = subject.prepare_stage(
+        system, "full-convex", timeout_ms=1000, source_paths=(source,)
+    )
+
+    assert system["system_id"] == document["system_id"]
+    assert prepared.source_record["normalization"]["mec_parameterization"] == {
+        "schema": subject.MEC_PARAMETERIZATION_SCHEMA,
+        "mode": "full-three-variable",
+        "declared_terms": ["mec_x", "mec_y", "mec_r2"],
+        "exact_substitutions": {},
+        "omitted_boundary_apices": [],
+    }
+    assert prepared.query.descriptor["semantic_input"]["source_record_sha256"] == (
+        _sha(prepared.source_record_bytes)
+    )
+    assert prepared.query.descriptor["variables"][-3:] == [
+        {"id": "z000-mec-x", "term": "mec_x", "sort": "Real"},
+        {"id": "z001-mec-y", "term": "mec_y", "sort": "Real"},
+        {"id": "z002-mec-r2", "term": "mec_r2", "sort": "Real"},
+    ]
+
+
+@pytest.mark.parametrize(
+    "mec_apices",
+    ([0, 1, 2], [1, 0, 2], [2, 0, 1], [1, 2, 0]),
+)
+def test_mec_gauge_elimination_is_independent_of_apex_order(
+    mec_apices: list[int],
+) -> None:
+    document = _mec_direct_source_document()
+    rows: tuple[producer.MetricRow, ...] = ()
+    identity = producer._direct_system_key(
+        document["n"], document["order"], rows, mec_apices
+    )
+    system = {
+        "system_id": hashlib.sha256(identity.encode()).hexdigest()[:20],
+        "n": document["n"],
+        "profile": [],
+        "order": document["order"],
+        "rows": [],
+        "sources": [],
+        "mec_apices": mec_apices,
+    }
+
+    validated = subject._validate_system(system)
+    assert validated["system_id"] == system["system_id"]
+    atoms, counts = subject._stage_atoms(validated, "full-convex")
+    assert counts["mec_gauge"] == 0
+    assert counts["mec_boundary"] == 1
+    assert len(atoms["mec_boundary"]) == 1
+    assert "x_2" in atoms["mec_boundary"][0]
+    assert all(
+        "mec_x" not in atom and "mec_r2" not in atom
+        for category in (
+            "mec_radius_pos",
+            "mec_boundary",
+            "mec_disk",
+            "mec_nonobtuse",
+        )
+        for atom in atoms[category]
+    )
 
 
 @pytest.mark.parametrize(
@@ -1023,7 +1246,7 @@ def test_mec_runtime_shape_and_system_id_fail_closed() -> None:
         "convex_order": 8,
         "exact_exclusions": 0,
         "mec_radius_pos": 1,
-        "mec_boundary": 3,
+        "mec_boundary": 1,
         "mec_disk": 4,
         "mec_nonobtuse": 3,
     }
@@ -1096,8 +1319,8 @@ def test_mec_exact_fraction_replay_covers_every_assertion(
         if key != "total"
     }
     assert replay.evidence["checks"]["mec_radius_pos"] == 1
-    assert replay.evidence["checks"]["mec_gauge"] == 2
-    assert replay.evidence["checks"]["mec_boundary"] == 3
+    assert replay.evidence["checks"]["mec_gauge"] == 0
+    assert replay.evidence["checks"]["mec_boundary"] == 1
     assert replay.evidence["checks"]["mec_disk"] == 4
     assert replay.evidence["checks"]["mec_nonobtuse"] == 3
     assert replay.evidence["circumscribed_mec"] == {
@@ -1106,22 +1329,81 @@ def test_mec_exact_fraction_replay_covers_every_assertion(
         "r2": "1/2",
         "apices": [0, 1, 2],
     }
-    rejected = subject.verify_sat_model(
-        prepared.query,
-        "z3",
-        "(model)",
-        _mec_values(variable_ids, r2="(/ 1 4)"),
+    old_variable_ids = [
+        *variable_ids[:-1],
+        "z000-mec-x",
+        "z001-mec-y",
+        "z002-mec-r2",
+    ]
+    with pytest.raises(subject.EndpointMetricPiqdError, match="arity mismatch"):
+        subject.verify_sat_model(
+            prepared.query,
+            "z3",
+            "(model)",
+            _mec_values(old_variable_ids),
+        )
+
+
+@pytest.mark.parametrize(
+    ("mec_apices", "expected_boundary", "expected_metric_total"),
+    [([0, 1, 2], 1, 15), ([1, 2, 3], 3, 17)],
+)
+def test_legacy_z3_mec_gauge_models_and_constraint_counts_without_solving(
+    monkeypatch: Any,
+    mec_apices: list[int],
+    expected_boundary: int,
+    expected_metric_total: int,
+) -> None:
+    fake_z3 = _fake_z3_module(
+        {
+            "x_2": Fraction(1),
+            "y_2": Fraction(1),
+            "x_3": Fraction(0),
+            "y_3": Fraction(1),
+            "mec_x": Fraction(1, 2),
+            "mec_y": Fraction(1, 2),
+            "mec_r2": Fraction(1, 2),
+        }
     )
-    assert rejected.accepted is False
-    assert rejected.evidence == {"reason": "mec_gauge"}
-    rejected = subject.verify_sat_model(
-        prepared.query,
-        "z3",
-        "(model)",
-        _mec_values(variable_ids, mx="(/ 1 3)"),
-    )
-    assert rejected.accepted is False
-    assert rejected.evidence == {"reason": "mec_gauge"}
+    monkeypatch.setitem(sys.modules, "z3", fake_z3)
+    document = _mec_direct_source_document()
+    system = {
+        "system_id": "legacy-z3-parity-fixture",
+        "n": document["n"],
+        "profile": [],
+        "order": document["order"],
+        "rows": [],
+        "sources": [],
+        "mec_apices": mec_apices,
+    }
+
+    result = producer._probe_system(system, 1)
+
+    assert result["status"] == "SAT"
+    assert result["constraint_counts"]["mec_boundary"] == expected_boundary
+    assert result["stages"] == [
+        {
+            "stage": "exact-metric-relaxation",
+            "added_constraints": expected_metric_total,
+            "total_constraints": expected_metric_total,
+            "status": "SAT",
+            "elapsed_sec": result["stages"][0]["elapsed_sec"],
+        },
+        {
+            "stage": "full-convex",
+            "added_constraints": 8,
+            "total_constraints": expected_metric_total + 8,
+            "status": "SAT",
+            "elapsed_sec": result["stages"][1]["elapsed_sec"],
+        },
+    ]
+    assert result["verification"]["all_z3_assertions_true"] is True
+    assert result["mec_model"] == {
+        "x": "1/2",
+        "y": "1/2",
+        "r2": "1/2",
+        "apices": mec_apices,
+    }
 
 
 @pytest.mark.parametrize(

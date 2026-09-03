@@ -845,10 +845,11 @@ def _constraint_counts(
         ),
     }
     if mec_apices is not None:
+        gauge_eliminated = {0, 1}.issubset(set(mec_apices))
         counts.update(
             {
                 "mec_radius_pos": 1,
-                "mec_boundary": 3,
+                "mec_boundary": 1 if gauge_eliminated else 3,
                 "mec_disk": n,
                 "mec_nonobtuse": 3,
             }
@@ -1499,7 +1500,17 @@ def _probe_system(
     mec_constraints: list[Any] = []
     mec_variables: tuple[Any, Any, Any] | None = None
     if mec_apices is not None:
-        mec_x, mec_y, mec_r2 = z3.Reals("mec_x mec_y mec_r2")
+        gauge_eliminated = {0, 1}.issubset(set(mec_apices))
+        if gauge_eliminated:
+            mec_y = z3.Real("mec_y")
+            mec_x = z3.RealVal(1) / 2
+            mec_r2 = z3.RealVal(1) / 4 + mec_y**2
+            boundary_apices = tuple(
+                apex for apex in mec_apices if apex not in {0, 1}
+            )
+        else:
+            mec_x, mec_y, mec_r2 = z3.Reals("mec_x mec_y mec_r2")
+            boundary_apices = mec_apices
         mec_variables = (mec_x, mec_y, mec_r2)
 
         def mec_d2(point: int) -> Any:
@@ -1507,7 +1518,7 @@ def _probe_system(
             return (px - mec_x) ** 2 + (py - mec_y) ** 2
 
         mec_constraints.append(mec_r2 > 0)
-        mec_constraints.extend(mec_d2(apex) == mec_r2 for apex in mec_apices)
+        mec_constraints.extend(mec_d2(apex) == mec_r2 for apex in boundary_apices)
         mec_constraints.extend(mec_r2 - mec_d2(point) >= 0 for point in range(n))
         mec_constraints.extend(
             dot_at(

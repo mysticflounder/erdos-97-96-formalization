@@ -8,8 +8,8 @@ version-2 direct system also exposes the circumscribed-MEC constraints named by
 ``CircumscribedMECPacket.disk_contains_A``; its nonobtuse apex-triangle packet
 is replayed alongside them.  The quantified minimum-radius clause remains
 outside this finite exposed packet.  When the MEC triangle contains both gauge
-labels, the two boundary equations are supplemented by their exact consequences
-``mec_x = 1/2`` and ``mec_r2 = 1/4 + mec_y^2``.
+labels, ``mec_x = 1/2`` and ``mec_r2 = 1/4 + mec_y^2`` are substituted into the
+packet, leaving only ``mec_y`` as a declared and read-back MEC variable.
 """
 
 from __future__ import annotations
@@ -39,7 +39,8 @@ RESULT_SCHEMA = "p97-endpoint-metric-realizability-piqd-result/v1"
 SOURCE_SCHEMA = "p97-endpoint-metric-realizability-piqd-source/v1"
 DESCRIPTOR_SCHEMA = "p97-endpoint-metric-realizability-piqd-query/v1"
 PROFILE_SCHEMA = "p97-piqd-z3-qfnra-one-shot/v1"
-NORMALIZATION_SCHEMA = "p97-endpoint-metric-smt-normalization/v1"
+NORMALIZATION_SCHEMA = "p97-endpoint-metric-smt-normalization/v2"
+MEC_PARAMETERIZATION_SCHEMA = "p97-endpoint-metric-mec-parameterization/v1"
 STAGES = ("exact-metric-relaxation", "full-convex", "convex-only-relaxation")
 _SAT_REPLAY_INCONCLUSIVE_STATUSES = {
     "INCONCLUSIVE_SEMANTIC_REPLAY_REJECTED",
@@ -381,9 +382,50 @@ def _d2(left: int, right: int) -> str:
     return f"(+ (* {dx} {dx}) (* {dy} {dy}))"
 
 
-def _mec_d2(point: int) -> str:
-    dx = _difference(_coordinate(point, "x"), "mec_x")
-    dy = _difference(_coordinate(point, "y"), "mec_y")
+def _mec_gauge_eliminated(mec_apices: Sequence[int]) -> bool:
+    return {0, 1}.issubset(set(mec_apices))
+
+
+def _mec_terms(mec_apices: Sequence[int]) -> tuple[str, str, str]:
+    if _mec_gauge_eliminated(mec_apices):
+        return "(/ 1 2)", "mec_y", "(+ (/ 1 4) (* mec_y mec_y))"
+    return "mec_x", "mec_y", "mec_r2"
+
+
+def _mec_parameterization(
+    mec_apices: Sequence[int] | None,
+) -> dict[str, object]:
+    if mec_apices is None:
+        return {
+            "schema": MEC_PARAMETERIZATION_SCHEMA,
+            "mode": "none",
+            "declared_terms": [],
+            "exact_substitutions": {},
+            "omitted_boundary_apices": [],
+        }
+    if _mec_gauge_eliminated(mec_apices):
+        return {
+            "schema": MEC_PARAMETERIZATION_SCHEMA,
+            "mode": "gauge-eliminated",
+            "declared_terms": ["mec_y"],
+            "exact_substitutions": {
+                "mec_x": "(/ 1 2)",
+                "mec_r2": "(+ (/ 1 4) (* mec_y mec_y))",
+            },
+            "omitted_boundary_apices": [0, 1],
+        }
+    return {
+        "schema": MEC_PARAMETERIZATION_SCHEMA,
+        "mode": "full-three-variable",
+        "declared_terms": ["mec_x", "mec_y", "mec_r2"],
+        "exact_substitutions": {},
+        "omitted_boundary_apices": [],
+    }
+
+
+def _mec_d2(point: int, mec_x: str, mec_y: str) -> str:
+    dx = _difference(_coordinate(point, "x"), mec_x)
+    dy = _difference(_coordinate(point, "y"), mec_y)
     return f"(+ (* {dx} {dx}) (* {dy} {dy}))"
 
 
@@ -468,23 +510,23 @@ def _stage_atoms(
     }
     mec_apices = system.get("mec_apices")
     if mec_apices is not None:
-        gauge_apices = {0, 1}.issubset(set(mec_apices))
+        gauge_eliminated = _mec_gauge_eliminated(mec_apices)
+        mec_x, mec_y, mec_r2 = _mec_terms(mec_apices)
+        boundary_apices = (
+            [apex for apex in mec_apices if apex not in {0, 1}]
+            if gauge_eliminated
+            else mec_apices
+        )
         atoms.update(
             {
-                "mec_gauge": (
-                    [
-                        "(= mec_x (/ 1 2))",
-                        "(= mec_r2 (+ (/ 1 4) (* mec_y mec_y)))",
-                    ]
-                    if gauge_apices
-                    else []
-                ),
-                "mec_radius_pos": ["(> mec_r2 0)"],
+                "mec_gauge": [],
+                "mec_radius_pos": [f"(> {mec_r2} 0)"],
                 "mec_boundary": [
-                    f"(= {_mec_d2(apex)} mec_r2)" for apex in mec_apices
+                    f"(= {_mec_d2(apex, mec_x, mec_y)} {mec_r2})"
+                    for apex in boundary_apices
                 ],
                 "mec_disk": [
-                    f"(>= (- mec_r2 {_mec_d2(point)}) 0)"
+                    f"(>= (- {mec_r2} {_mec_d2(point, mec_x, mec_y)}) 0)"
                     for point in range(n)
                 ],
                 "mec_nonobtuse": [
@@ -564,13 +606,16 @@ def build_stage_smt2(
             ]
         )
     if "mec_apices" in system:
-        commands.extend(
-            [
-                "(declare-fun mec_x () Real)",
-                "(declare-fun mec_y () Real)",
-                "(declare-fun mec_r2 () Real)",
-            ]
-        )
+        if _mec_gauge_eliminated(system["mec_apices"]):
+            commands.append("(declare-fun mec_y () Real)")
+        else:
+            commands.extend(
+                [
+                    "(declare-fun mec_x () Real)",
+                    "(declare-fun mec_y () Real)",
+                    "(declare-fun mec_r2 () Real)",
+                ]
+            )
     for category in (
         "gauge",
         "fixture_pins",
@@ -588,13 +633,20 @@ def build_stage_smt2(
     return tuple(commands), counts
 
 
-def _variables(n: int, *, include_mec: bool = False) -> list[dict[str, str]]:
+def _variables(
+    n: int,
+    *,
+    include_mec: bool = False,
+    mec_apices: Sequence[int] | None = None,
+) -> list[dict[str, str]]:
     variables = [
         {"id": f"p{point:03d}-{axis}", "term": f"{axis}_{point}", "sort": "Real"}
         for point in range(n)
         for axis in ("x", "y")
     ]
-    if include_mec:
+    if mec_apices is not None and _mec_gauge_eliminated(mec_apices):
+        variables.append({"id": "z001-mec-y", "term": "mec_y", "sort": "Real"})
+    elif include_mec or mec_apices is not None:
         variables.extend(
             [
                 {"id": "z000-mec-x", "term": "mec_x", "sort": "Real"},
@@ -653,7 +705,8 @@ def prepare_stage(
     producer_bytes = implementation_sources[1][2]
     commands, counts = build_stage_smt2(system, stage, _fixture_only=_fixture_only)
     journal = b"".join(command.encode() + b"\n" for command in commands)
-    variables = _variables(system["n"], include_mec="mec_apices" in system)
+    variables = _variables(system["n"], mec_apices=system.get("mec_apices"))
+    mec_parameterization = _mec_parameterization(system.get("mec_apices"))
     input_records = [
         {
             "path": os.path.relpath(item.path, producer.ROOT),
@@ -679,6 +732,7 @@ def prepare_stage(
             "line_endings": "LF",
             "state_commands_only": True,
             "journal_sha256": _sha(journal),
+            "mec_parameterization": mec_parameterization,
         },
         "producer_source": {
             "path": os.path.relpath(producer_path, producer.ROOT),
@@ -736,8 +790,8 @@ def prepare_stage(
     }
     descriptor = {
         "schema": DESCRIPTOR_SCHEMA,
-        "producer": {"id": "endpoint-metric-realizability", "version": "v1"},
-        "semantic_verifier": {"id": "exact-rational-stage-replay", "version": "v1"},
+        "producer": {"id": "endpoint-metric-realizability", "version": "v2"},
+        "semantic_verifier": {"id": "exact-rational-stage-replay", "version": "v2"},
         "stage_id": stage,
         "query_id": f"{system['system_id']}-{stage}",
         "sources": [
@@ -935,6 +989,7 @@ def verify_sat_model(
     mec_center: tuple[Fraction, Fraction] | None = None
     mec_r2: Fraction | None = None
     if mec_apices is not None:
+        gauge_eliminated = _mec_gauge_eliminated(mec_apices)
         checked.update(
             {
                 "mec_gauge": 0,
@@ -944,18 +999,20 @@ def verify_sat_model(
                 "mec_nonobtuse": 0,
             }
         )
-        mec_center = (readback["mec_x"], readback["mec_y"])
-        mec_r2 = readback["mec_r2"]
-        if {0, 1}.issubset(set(mec_apices)):
-            checked["mec_gauge"] += 2
-            if mec_center[0] != Fraction(1, 2):
-                return neutral.SemanticVerification(False, {"reason": "mec_gauge"})
-            if mec_r2 != Fraction(1, 4) + mec_center[1] ** 2:
-                return neutral.SemanticVerification(False, {"reason": "mec_gauge"})
+        if gauge_eliminated:
+            mec_center = (Fraction(1, 2), readback["mec_y"])
+            mec_r2 = Fraction(1, 4) + mec_center[1] ** 2
+            boundary_apices = [
+                apex for apex in mec_apices if apex not in {0, 1}
+            ]
+        else:
+            mec_center = (readback["mec_x"], readback["mec_y"])
+            mec_r2 = readback["mec_r2"]
+            boundary_apices = mec_apices
         checked["mec_radius_pos"] += 1
         if mec_r2 <= 0:
             return neutral.SemanticVerification(False, {"reason": "mec_radius_pos"})
-        for apex in mec_apices:
+        for apex in boundary_apices:
             checked["mec_boundary"] += 1
             if _distance_to(points[apex], mec_center) != mec_r2:
                 return neutral.SemanticVerification(
