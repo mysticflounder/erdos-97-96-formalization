@@ -1,36 +1,38 @@
 {
- "base_head": "9a222da97112efc204a038ca2f71ff5a12078f94",
- "created_utc": "2026-09-02T16:47:54Z",
- "input_digests": {
-  "docs/audits/2026-09-01-d1-mu0-terminal-analysis.md": "43fdc72ceb32248fd051d7d59e05549640292ad44a697397793059e1c88f103d",
-  "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03/artifacts/tools/angle_chain.sh": "787d363e7074fce7d147441f321249d3157d3fb3f2d04ad181cedef780051504",
-  "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03/artifacts/tools/angle_chain_v10.py": "ecdc9cf4055afb4ba5bd0a5650dd9e1fdbc27116d6cba88280687e3fc35dba07",
-  "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03/artifacts/tools/angle_chain_v11.py": "2e3f4c64c598aa71f2cfb99c97e4fd5af00dc2c9ddf795bdd1fed41f06e9134a",
-  "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03/artifacts/tools/angle_chain_v12.py": "3f6be157dd16c177b849fed8f9445ca1c42053d1d2b409a194abbccc2486638f",
-  "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03/artifacts/tools/angle_chain_v2.sh": "dfc4a9091fef85ba3596795e19edbe9bc63ca1930b752bf7d5723484b451d44c",
-  "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03/artifacts/tools/angle_chain_v3.sh": "2cd2bfff3a8588e41651305605fa4379fe803ed28bcb93228933a17190163afe",
-  "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03/artifacts/tools/angle_chain_v4.py": "7e930b0fa6bf6d5cbdc0f8031e1c194ca297cfb7529ab16f655ddc83e93195ac",
-  "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03/artifacts/tools/angle_chain_v5.py": "23c2d829956df06f6e75da1ab586e2c207cb4ac8df47376a842d694ccbc30fe6",
-  "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03/artifacts/tools/angle_chain_v6.py": "863e7ebf729d2ee69c23a4eebca03adf672b322ea3c3b84a3e6634541099fc5f",
-  "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03/artifacts/tools/angle_chain_v7.py": "1d97df2c3ee2d824394aba569dd67cd8ee4a04e101efc4f170ddff0fb3ed280a",
-  "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03/artifacts/tools/angle_chain_v8.py": "c33ce991358a91791a2b90af7fe6a4e5c11377e3289d65cf70f38da4c2e5cb12",
-  "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03/artifacts/tools/angle_chain_v9.py": "eabd2c1d49fbf90a33510de653a73ef41a46a17d14cbe0ceeb311071c910a2eb",
-  "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03/artifacts/tools/kal_angles.py": "f60be741f11196afd4f25054c1f46f6d29784f5c37a83fca9ac48fd5382afe32"
- },
- "lane_id": "d1-triapex-plan-20260901",
- "output_classes": [
-  "artifacts",
-  "events",
-  "tmp"
- ],
- "owner": "claude-fable-d1-triapex",
- "root": "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03",
- "run_id": "stage1f-kalmanson-03",
- "schema": "worktree-run-manifest/v1",
- "source_digests": {
-  "census/card_head/d1_mu0_incidence_census.py": "93f6fff73279383a1647b2ff22dac2d1b6b5adfc1929d5eb49fe5082d7e87c6b",
-  "census/card_head/d1_mu0_pattern_algebra.py": "0b54cb1085ae0df0f2eac75e45da568a3e55d303d6e0a5623705f74bfb3b17c6",
-  "census/card_head/tests/test_d1_mu0_incidence_census.py": "26dfd1e6c2820fa33693f73d86b73a18c4694033c87bae3f469721bf68fec2f1"
- },
- "manifest_sha256": "67f2bf1c5ccf3d964fcb2fa760360147e4d81ad8d635bf061f5641461c639d13"
+  "base_head": "9a222da97112efc204a038ca2f71ff5a12078f94",
+  "created_utc": "2026-09-02T16:47:54Z",
+  "input_digests": {
+    "docs/audits/2026-09-01-d1-mu0-terminal-analysis.md": "43fdc72ceb32248fd051d7d59e05549640292ad44a697397793059e1c88f103d",
+    "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03/artifacts/tools/angle_chain.sh": "787d363e7074fce7d147441f321249d3157d3fb3f2d04ad181cedef780051504",
+    "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03/artifacts/tools/angle_chain_v10.py": "ecdc9cf4055afb4ba5bd0a5650dd9e1fdbc27116d6cba88280687e3fc35dba07",
+    "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03/artifacts/tools/angle_chain_v11.py": "2e3f4c64c598aa71f2cfb99c97e4fd5af00dc2c9ddf795bdd1fed41f06e9134a",
+    "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03/artifacts/tools/angle_chain_v12.py": "3f6be157dd16c177b849fed8f9445ca1c42053d1d2b409a194abbccc2486638f",
+    "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03/artifacts/tools/angle_chain_v13.py": "38bab49ff81dad74241f20477d05320b53f9bcf980a968b8ad4b30685aea1c91",
+    "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03/artifacts/tools/angle_chain_v14.py": "25991120ca1628d5740a3d9be0c9692a51d911dbdeeef68d386d9c9c7b1258bd",
+    "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03/artifacts/tools/angle_chain_v2.sh": "dfc4a9091fef85ba3596795e19edbe9bc63ca1930b752bf7d5723484b451d44c",
+    "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03/artifacts/tools/angle_chain_v3.sh": "2cd2bfff3a8588e41651305605fa4379fe803ed28bcb93228933a17190163afe",
+    "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03/artifacts/tools/angle_chain_v4.py": "7e930b0fa6bf6d5cbdc0f8031e1c194ca297cfb7529ab16f655ddc83e93195ac",
+    "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03/artifacts/tools/angle_chain_v5.py": "23c2d829956df06f6e75da1ab586e2c207cb4ac8df47376a842d694ccbc30fe6",
+    "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03/artifacts/tools/angle_chain_v6.py": "863e7ebf729d2ee69c23a4eebca03adf672b322ea3c3b84a3e6634541099fc5f",
+    "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03/artifacts/tools/angle_chain_v7.py": "1d97df2c3ee2d824394aba569dd67cd8ee4a04e101efc4f170ddff0fb3ed280a",
+    "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03/artifacts/tools/angle_chain_v8.py": "c33ce991358a91791a2b90af7fe6a4e5c11377e3289d65cf70f38da4c2e5cb12",
+    "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03/artifacts/tools/angle_chain_v9.py": "eabd2c1d49fbf90a33510de653a73ef41a46a17d14cbe0ceeb311071c910a2eb",
+    "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03/artifacts/tools/kal_angles.py": "c9de451b33216ae04a9060729609826722f7bf25c55df333616aa2365acc0209"
+  },
+  "lane_id": "d1-triapex-plan-20260901",
+  "output_classes": [
+    "artifacts",
+    "events",
+    "tmp"
+  ],
+  "owner": "claude-fable-d1-triapex",
+  "root": "scratch/runs/d1-triapex-plan-20260901/stage1f-kalmanson-03",
+  "run_id": "stage1f-kalmanson-03",
+  "schema": "worktree-run-manifest/v1",
+  "source_digests": {
+    "census/card_head/d1_mu0_incidence_census.py": "93f6fff73279383a1647b2ff22dac2d1b6b5adfc1929d5eb49fe5082d7e87c6b",
+    "census/card_head/d1_mu0_pattern_algebra.py": "0b54cb1085ae0df0f2eac75e45da568a3e55d303d6e0a5623705f74bfb3b17c6",
+    "census/card_head/tests/test_d1_mu0_incidence_census.py": "26dfd1e6c2820fa33693f73d86b73a18c4694033c87bae3f469721bf68fec2f1"
+  },
+  "manifest_sha256": "e1d914664b52e5597c687e7a2e0dd3ab12c52626d10de67d1371718add998c59"
 }
