@@ -408,10 +408,10 @@ theorem equilateral_apex_chord_oangle_toReal_eq_pi_div_three_or_neg
   · exact Or.inl h
   · exact Or.inr h
 
-/-! The unsigned theorem above leaves the orientation branch to each caller.
-    This small adapter discharges the negative branch from a positive signed
-    angle hypothesis, which is the form supplied by the convex cyclic-order
-    API. -/
+/- The unsigned theorem above leaves the orientation branch to each caller.
+   This small adapter discharges the negative branch from a positive signed
+   angle hypothesis, which is the form supplied by the convex cyclic-order
+   API. -/
 
 /-- A positively oriented equilateral apex angle is the positive `π/3` branch.
 
