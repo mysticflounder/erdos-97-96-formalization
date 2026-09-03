@@ -23,8 +23,7 @@ namespace Problem97.ATailFrontierLiveClosure
 
 /-- In the exact-fifteen one-radius arm, excluding a strict adjacent escape
 forces both outer Moser vertices to lie at the selected radius from the opposite
-vertex.  This is the pointwise endpoint-radius payload used by the tri-apex
-all-large card-fifteen branch. -/
+vertex. -/
 theorem endpointRadius_of_not_strictAdjacentEscapeAt_of_oneRadius_card_eq_fifteen
     {D : CounterexampleData} {S : SurplusCapPacket D.A}
     (G : TriApexAllLargeContext D S) (hcard : D.A.card = 15) (i : Fin 3)
