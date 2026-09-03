@@ -566,6 +566,12 @@ class FakeCurrentPiqd:
             return {
                 "status": "SAT",
                 "model": "(model (define-fun x () Int 1))",
+                "model_replay": {
+                    "outcome": "SATISFIED",
+                    "script_sha256": _sha(f"replay:{solver}".encode()),
+                    "solver_sha256": _sha(f"binary:{solver}".encode()),
+                    "replay_ms": 2,
+                },
                 "values": "((x 1))",
             }
         if status == "UNSAT":

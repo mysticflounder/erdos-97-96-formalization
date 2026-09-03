@@ -1860,9 +1860,33 @@ _SOLVE_OPTIONAL = {
     "core_labels",
     "terminal_unsat",
     "model",
+    "model_replay",
     "values",
 }
 _SOLVE_RESPONSE_OPTIONAL = _SOLVE_OPTIONAL | {"replayed"}
+
+
+def _validate_model_replay(value: object, where: str) -> dict[str, Any]:
+    replay = _object(
+        value,
+        {"outcome", "script_sha256", "solver_sha256", "replay_ms"},
+        where,
+        optional={"reason"},
+    )
+    outcome = _string(replay["outcome"], f"{where}.outcome")
+    _fail(
+        outcome in {"SATISFIED", "VIOLATED", "UNDETERMINED"},
+        f"{where}.outcome is invalid",
+    )
+    _digest(replay["script_sha256"], f"{where}.script_sha256")
+    _digest(replay["solver_sha256"], f"{where}.solver_sha256")
+    _integer(replay["replay_ms"], f"{where}.replay_ms")
+    if outcome == "UNDETERMINED":
+        _fail("reason" in replay, f"{where} undetermined outcome lacks a reason")
+        _string(replay["reason"], f"{where}.reason")
+    else:
+        _fail("reason" not in replay, f"{where} decided outcome carries a reason")
+    return replay
 
 
 def _validate_answer_fields(
@@ -1898,10 +1922,13 @@ def _validate_answer_fields(
                 label is None or type(label) is str,
                 f"{where}.core_labels[{index}] is not text or null",
             )
-    present = set(obj) & _SOLVE_OPTIONAL
+    if "model_replay" in obj:
+        _validate_model_replay(obj["model_replay"], f"{where}.model_replay")
+    present = (set(obj) & _SOLVE_OPTIONAL) - {"model_replay"}
     if status == "SAT":
         _fail(present == {"model", "values"}, f"{where} SAT payload shape mismatch")
     elif status == "UNSAT":
+        _fail("model_replay" not in obj, f"{where} UNSAT carries a model replay")
         expected = {"core", "terminal_unsat"}
         if assumption_labels:
             expected.add("core_labels")
@@ -1927,6 +1954,7 @@ def _validate_answer_fields(
                 f"{where} core labels disagree with ordered assumption labels",
             )
     else:
+        _fail("model_replay" not in obj, f"{where} UNKNOWN carries a model replay")
         _fail(present <= {"interrupted_by"}, f"{where} UNKNOWN payload shape mismatch")
 
 
@@ -2086,6 +2114,11 @@ def _validate_receipts(
         assumptions=query.assumptions,
         assumption_labels=assumption_labels,
     )
+    if "model_replay" in receipt:
+        _fail(
+            receipt["model_replay"]["solver_sha256"] == receipt["solver_sha256"],
+            "receipt model replay solver digest disagrees",
+        )
     request_fields = {"request_id", "request_sha256"} & set(receipt)
     if request_id is None:
         _fail(
@@ -2139,6 +2172,7 @@ def _validate_receipts(
             "core",
             "terminal_unsat",
             "model",
+            "model_replay",
             "values",
         }
         _fail(
@@ -2162,6 +2196,7 @@ def _solve_from_receipt(receipt: Mapping[str, object]) -> dict[str, object]:
         "core_labels",
         "terminal_unsat",
         "model",
+        "model_replay",
         "values",
     )
     return {

@@ -1,7 +1,8 @@
 # P97 exact-five hard source-swap complete order/equality PIQD census v1
 
-Status: implemented producer and governed runner; no solver run is recorded by
-this specification.
+Status: implemented producer and governed runner; run-0001 stopped at an SMT
+adapter/daemon schema mismatch before any profile, and run-0002 is the repaired
+execution lane.
 
 ## Claim boundary
 
@@ -141,7 +142,7 @@ record is installed only after every launch-selected profile is present.
 
 The runner writes only below:
 
-`scratch/runs/exactfive-hard-source-swap-order-piqd-20260902/run-0001/`
+`scratch/runs/exactfive-hard-source-swap-order-piqd-r2-20260902/run-0001/`
 
 It creates a `worktree-run-manifest/v1` whose `base_head` is copied from the
 lane checkpoint, plus an immutable launch record.  Each control and profile is

@@ -34,7 +34,7 @@ from typing import Any, Literal
 from census.card_head import exactfive_hard_source_swap_grid as alias_grid
 from census.p97_search import phase3_piqd_smt_source_adapter as piqd_adapter
 
-LANE_ID = "exactfive-hard-source-swap-order-piqd-20260902"
+LANE_ID = "exactfive-hard-source-swap-order-piqd-r2-20260902"
 RUN_ID = "run-0001"
 RUN_MANIFEST_SCHEMA = "worktree-run-manifest/v1"
 LAUNCH_SCHEMA = "p97-exactfive-hard-source-swap-order-piqd-launch/v1"

@@ -1,6 +1,7 @@
 # Rigid221 exact-five hard source-swap order PIQD audit
 
-Status: producer preflight passed; solver controls and canary pending.
+Status: producer preflight and current PIQD-interface tests passed; repaired
+run-0002 controls and canary pending.
 
 ## Scope
 
@@ -19,12 +20,17 @@ crossing matching of every four quotient classes.
 
 - The corrected profile stream contains 2,798 unique profiles: 961 with
   `c1 = U` and 1,837 with `c1 != U`.
-- All 40 focused grid and order-producer tests pass.
+- All 41 focused grid and order-producer tests pass.  The complete shared SMT
+  adapter test target also passes, for 135 combined tests.
 - Ruff and `git diff --check` pass for the producer, tests, runner, and spec.
 - The worker limit is capped at 20 and both engines run through PIQD.
 - SAT results require complete exact-rational local replay of ranks, distances,
   rows, the cap skeleton, the source strict form, and every Kalmanson form.
-- Positive and negative controls are encoded, but have not yet been submitted.
+- The first run-0001 positive-control submission reached PIQD and returned SAT,
+  but the repository adapter rejected the daemon's new `model_replay` field
+  before local semantic acceptance.  No profile was submitted.  The adapter
+  now validates that field's exact schema and binds its solver digest; run-0001
+  remains immutable and run-0002 is the repaired successor.
 
 ## Claim boundary
 
