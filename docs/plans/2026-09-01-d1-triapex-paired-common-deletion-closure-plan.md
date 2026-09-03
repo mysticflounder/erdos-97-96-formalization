@@ -2497,3 +2497,42 @@ run at all. The remaining work is unchanged: the 3-orbit is untested and the
 
 {{NEEDS_UPDATE}}: the `1412a71e2b2792b3` triage, now running, is the last
 untested orbit in the layer.
+
+### 28. The last orbit's triage failed for an avoidable reason (2026-09-03)
+
+`1412a71e2b2792b3`'s relevance triage finished `TIMED_OUT` at 900052 ms. Its
+complete stdout is 13 bytes:
+
+    equations 40
+
+No `dim_raw` line, so it died in the FIRST Gröbner basis and never tested a
+single pair. Under the section 25 guard this is correctly recorded as no
+verdict; the last untested orbit remains untested.
+
+The reason is avoidable and was already in the data. Plain `std` cannot do this
+key: its raw run also finished `TIMED_OUT` at 900055 ms with the same 13 bytes.
+`slimgb` does the identical ideal in 38.4 s, returning dim 0 and vector-space
+dimension 3072. The triage was submitted without `--slimgb`, so it spent 900 s
+failing at a step a different algorithm completes in under a minute.
+
+This is the section 20 labeling effect showing up as an operational mistake
+rather than an observation. That section recorded that four of six labelings in
+the open orbit time out under `std` and finish in 8 to 15 s under `slimgb`, and
+that the earlier "slimgb decides what std could not" note was partly a labeling
+artefact. `1412a71e2b2792b3` is in exactly that category and the triage should
+have carried `--slimgb` from the start.
+
+Corrected run prepared, not yet submitted: the same triage with `--slimgb`.
+It is being held rather than queued because codex-rigid221 has a sequence of
+equality-core queries on the serial lane and was promised no foreign jobs
+during it; a `--slimgb` script differs in bytes from the timed-out one, so
+piqd's rejection of byte-identical resubmission does not apply.
+
+Note for anyone reusing the triage: `--relevant` computes the first basis once
+and then one `std(G, d)` per pair, so the algorithm flag matters only for the
+first basis — but that is precisely where this key fails, and where the 53 s
+`0d6996160cc83aab` triage and the 47 s `172327e48f4004fb` triage both succeeded
+because plain `std` happened to suit their labelings.
+
+{{NEEDS_UPDATE}}: the `--slimgb` triage of `1412a71e2b2792b3`, which is the
+only remaining obstacle to a complete mod-32003 picture of all 111 patterns.
