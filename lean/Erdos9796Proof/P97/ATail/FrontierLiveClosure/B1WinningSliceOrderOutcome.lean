@@ -7,6 +7,7 @@ Authors: Adam McKenna
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.CyclicPairSeparation
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.B1FiveSixWaveIngress
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.B1Live
+import Erdos9796Proof.P97.ATail.ConvexPerpendicularBisectorSides
 import Erdos9796Proof.P97.ATail.TwoCenterCapLocalization
 import Erdos9796Proof.P97.ATail.TwoRadiusGridEscapeSynchronization
 
@@ -298,6 +299,313 @@ theorem b1_liveRowBlocker_mem_secondCapInterior_of_two_points
   exact ATailTwoCenterCapLocalization.commonPhysicalPair_center_mem_secondCapInterior
     hcenterA hcenterNe hsourceInterior hpartnerInterior
     (fun h => hsourcePartner (Subtype.ext h)) hcenterEq hphysicalEq
+
+/-- Two distinct points of the physical second-apex class whose actual late
+rows contain each other have the same blocker.  Thus a B1 two-point live
+slice cannot retain the residual combination "reverse hit and distinct
+blockers".  The proof uses the physical apex and the two putative blockers as
+three carrier points on one perpendicular bisector, contradicting convex
+independence unless the blockers coincide. -/
+theorem b1_blocker_centers_eq_of_physicalClass_mutual_crossMembership
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F))
+    (x y : CarrierVertex D.A)
+    (hxy : x ≠ y)
+    (hxClass : x.1 ∈ SelectedClass D.A S.oppApex2 C.rho)
+    (hyClass : y.1 ∈ SelectedClass D.A S.oppApex2 C.rho)
+    (hyx : y.1 ∈
+      ((lateFirstApexSystem C.R).selectedAt
+        x.1 x.2).toCriticalFourShell.support)
+    (hxy' : x.1 ∈
+      ((lateFirstApexSystem C.R).selectedAt
+        y.1 y.2).toCriticalFourShell.support) :
+    (lateFirstApexSystem C.R).centerAt x.1 x.2 =
+      (lateFirstApexSystem C.R).centerAt y.1 y.2 := by
+  classical
+  let Hlate := lateFirstApexSystem C.R
+  let cx := Hlate.centerAt x.1 x.2
+  let cy := Hlate.centerAt y.1 y.2
+  let apex := S.oppApex2
+  have hxyValues : x.1 ≠ y.1 := by
+    intro h
+    exact hxy (Subtype.ext h)
+  have hapexA : apex ∈ D.A := by
+    simpa [apex] using C.first.uPacket.center₂_mem_A
+  have hcxA : cx ∈ D.A := by
+    simpa [cx, Hlate, CriticalShellSystem.blockerVertex] using
+      (Hlate.blockerVertex x).2
+  have hcyA : cy ∈ D.A := by
+    simpa [cy, Hlate, CriticalShellSystem.blockerVertex] using
+      (Hlate.blockerVertex y).2
+  have hcxNeApex : cx ≠ apex := by
+    simpa [cx, apex, Hlate] using
+      C.surface.secondApex_robust.centerAt_ne Hlate x.1 x.2
+  have hcyNeApex : cy ≠ apex := by
+    simpa [cy, apex, Hlate] using
+      C.surface.secondApex_robust.centerAt_ne Hlate y.1 y.2
+  by_contra hcxcy
+  have hapexEq : dist apex x.1 = dist apex y.1 :=
+    (mem_selectedClass.mp hxClass).2.trans
+      (mem_selectedClass.mp hyClass).2.symm
+  have hcxEq : dist cx x.1 = dist cx y.1 := by
+    exact
+      (Hlate.selectedAt x.1 x.2).toCriticalFourShell.support_eq_radius
+        x.1 (Hlate.selectedAt x.1 x.2).toCriticalFourShell.q_mem_support
+      |>.trans
+        ((Hlate.selectedAt x.1 x.2).toCriticalFourShell.support_eq_radius
+          y.1 hyx).symm
+  have hcyEq : dist cy x.1 = dist cy y.1 := by
+    exact
+      (Hlate.selectedAt y.1 y.2).toCriticalFourShell.support_eq_radius
+        x.1 hxy'
+      |>.trans
+        ((Hlate.selectedAt y.1 y.2).toCriticalFourShell.support_eq_radius
+          y.1 (Hlate.selectedAt y.1 y.2).toCriticalFourShell.q_mem_support).symm
+  exact ConvexPerpendicularBisectorSides.false_of_three_distinct_equidistant_carriers
+    D.convex x.2 y.2 hxyValues hapexA hcxA hcyA hcxNeApex.symm
+      hcyNeApex.symm hcxcy hapexEq hcxEq hcyEq
+
+/-- Distinct blockers turn the preceding rigidity statement into the exact
+non-reverse-incidence conclusion needed by the remaining B1 live-pair
+residual. -/
+theorem b1_physicalClass_not_reverseHit_of_blockers_ne
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F))
+    (x y : CarrierVertex D.A)
+    (hxy : x ≠ y)
+    (hxClass : x.1 ∈ SelectedClass D.A S.oppApex2 C.rho)
+    (hyClass : y.1 ∈ SelectedClass D.A S.oppApex2 C.rho)
+    (hyx : y.1 ∈
+      ((lateFirstApexSystem C.R).selectedAt
+        x.1 x.2).toCriticalFourShell.support)
+    (hblockersNe :
+      (lateFirstApexSystem C.R).centerAt x.1 x.2 ≠
+        (lateFirstApexSystem C.R).centerAt y.1 y.2) :
+    x.1 ∉
+      ((lateFirstApexSystem C.R).selectedAt
+        y.1 y.2).toCriticalFourShell.support := by
+  intro hxy'
+  exact hblockersNe
+    (b1_blocker_centers_eq_of_physicalClass_mutual_crossMembership
+      C x y hxy hxClass hyClass hyx hxy')
+
+/-- Exhaustive metric form of the reverse-incidence split for a physical
+live pair.  Either the two actual blockers coincide, or deleting the row
+source preserves the other endpoint's exact-four row. -/
+theorem b1_physicalClass_equalBlocker_or_crossDeletionSurvival
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F))
+    (x y : CarrierVertex D.A)
+    (hxy : x ≠ y)
+    (hxClass : x.1 ∈ SelectedClass D.A S.oppApex2 C.rho)
+    (hyClass : y.1 ∈ SelectedClass D.A S.oppApex2 C.rho)
+    (hyx : y.1 ∈
+      ((lateFirstApexSystem C.R).selectedAt
+        x.1 x.2).toCriticalFourShell.support) :
+    (lateFirstApexSystem C.R).centerAt x.1 x.2 =
+        (lateFirstApexSystem C.R).centerAt y.1 y.2 ∨
+      HasNEquidistantPointsAt 4 (D.A.erase x.1)
+        ((lateFirstApexSystem C.R).centerAt y.1 y.2) := by
+  by_cases hxy' : x.1 ∈
+      ((lateFirstApexSystem C.R).selectedAt
+        y.1 y.2).toCriticalFourShell.support
+  · exact Or.inl
+      (b1_blocker_centers_eq_of_physicalClass_mutual_crossMembership
+        C x y hxy hxClass hyClass hyx hxy')
+  · exact Or.inr
+      ((cross_deletion_survives_iff_not_mem_selected_support
+        (lateFirstApexSystem C.R) y.2).2 hxy')
+
+/-- Both card-six live pairs enter the same exact metric dichotomy: equality
+with the mate blocker or survival of the mate row after deleting the named
+live source. -/
+theorem b1_cardSix_livePairs_equalBlocker_or_crossDeletionSurvival
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F)}
+    (P : B1CardSixLocalRolePacket C) :
+    ((lateFirstApexSystem C.R).centerAt C.u.1 C.u.2 =
+          (lateFirstApexSystem C.R).centerAt
+            P.uPhysical.other.1 P.uPhysical.other.2 ∨
+        HasNEquidistantPointsAt 4 (D.A.erase C.u.1)
+          ((lateFirstApexSystem C.R).centerAt
+            P.uPhysical.other.1 P.uPhysical.other.2)) ∧
+      ((lateFirstApexSystem C.R).centerAt C.v.1 C.v.2 =
+          (lateFirstApexSystem C.R).centerAt
+            P.vPhysical.other.1 P.vPhysical.other.2 ∨
+        HasNEquidistantPointsAt 4 (D.A.erase C.v.1)
+          ((lateFirstApexSystem C.R).centerAt
+            P.vPhysical.other.1 P.vPhysical.other.2)) := by
+  have huData : P.uPhysical.other.1 ∈
+      ((lateFirstApexSystem C.R).selectedAt
+        C.u.1 C.u.2).toCriticalFourShell.support ∩
+          SelectedClass D.A S.oppApex2 C.rho := by
+    exact Eq.mp
+      (congrArg (fun T : Finset ℝ² ↦ P.uPhysical.other.1 ∈ T)
+        P.uPhysical.slice_eq.symm) (by simp)
+  have hvData : P.vPhysical.other.1 ∈
+      ((lateFirstApexSystem C.R).selectedAt
+        C.v.1 C.v.2).toCriticalFourShell.support ∩
+          SelectedClass D.A S.oppApex2 C.rho := by
+    exact Eq.mp
+      (congrArg (fun T : Finset ℝ² ↦ P.vPhysical.other.1 ∈ T)
+        P.vPhysical.slice_eq.symm) (by simp)
+  exact ⟨
+    b1_physicalClass_equalBlocker_or_crossDeletionSurvival
+      C C.u P.uPhysical.other P.uPhysical.source_ne_other
+        C.huClass (Finset.mem_inter.mp huData).2
+          (Finset.mem_inter.mp huData).1,
+    b1_physicalClass_equalBlocker_or_crossDeletionSurvival
+      C C.v P.vPhysical.other P.vPhysical.source_ne_other
+        C.hvClass (Finset.mem_inter.mp hvData).2
+          (Finset.mem_inter.mp hvData).1⟩
+
+/-- In the shared-pair card-five trace, the two named non-source endpoints
+are the same carrier.  The mutual omissions `u ∉ vRow` and `v ∉ uRow`
+exclude the other three possible intersections of the two named pairs. -/
+theorem b1_cardFive_sharedPair_other_eq
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F)}
+    (P : B1CardFiveSharedPairRows C) :
+    P.uPhysical.other = P.vPhysical.other := by
+  classical
+  let U := ((lateFirstApexSystem C.R).selectedAt
+    C.u.1 C.u.2).toCriticalFourShell.support ∩
+      SelectedClass D.A S.oppApex2 C.rho
+  let V := ((lateFirstApexSystem C.R).selectedAt
+    C.v.1 C.v.2).toCriticalFourShell.support ∩
+      SelectedClass D.A S.oppApex2 C.rho
+  have hinterCard : (U ∩ V).card = 1 := by
+    simpa [U, V] using P.overlap_card
+  have hinterPos : 0 < (U ∩ V).card := by omega
+  obtain ⟨z, hz⟩ := Finset.card_pos.mp hinterPos
+  have hzU : z ∈ ({C.u.1, P.uPhysical.other.1} : Finset ℝ²) := by
+    have := (Finset.mem_inter.mp hz).1
+    rw [← P.uPhysical.slice_eq]
+    simpa [U] using this
+  have hzV : z ∈ ({C.v.1, P.vPhysical.other.1} : Finset ℝ²) := by
+    have := (Finset.mem_inter.mp hz).2
+    rw [← P.vPhysical.slice_eq]
+    simpa [V] using this
+  simp only [Finset.mem_insert, Finset.mem_singleton] at hzU hzV
+  rcases hzU with rfl | rfl <;> rcases hzV with h | h
+  · exact (C.huNeV (Subtype.ext h)).elim
+  · exfalso
+    apply C.huOmitted
+    rw [h]
+    exact (Finset.mem_inter.mp (show
+      P.vPhysical.other.1 ∈ V by
+        rw [show V = {C.v.1, P.vPhysical.other.1} by
+          simpa [V] using P.vPhysical.slice_eq]
+        simp)).1
+  · exfalso
+    apply C.hvOmitted
+    rw [← h]
+    exact (Finset.mem_inter.mp (show
+      P.uPhysical.other.1 ∈ U by
+        rw [show U = {C.u.1, P.uPhysical.other.1} by
+          simpa [U] using P.uPhysical.slice_eq]
+        simp)).1
+  · exact Subtype.ext h
+
+/-- The shared mate in the card-five overlap trace cannot return both live
+sources in its own late row.  Otherwise mutual cross membership would make
+its blocker equal to both distinct canonical live blockers. -/
+theorem b1_cardFive_sharedPair_mate_omits_u_or_v
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F)}
+    (P : B1CardFiveSharedPairRows C) :
+    C.u.1 ∉ ((lateFirstApexSystem C.R).selectedAt
+        P.uPhysical.other.1 P.uPhysical.other.2).toCriticalFourShell.support ∨
+      C.v.1 ∉ ((lateFirstApexSystem C.R).selectedAt
+        P.uPhysical.other.1 P.uPhysical.other.2).toCriticalFourShell.support := by
+  classical
+  let mate := P.uPhysical.other
+  have hmateEq : mate = P.vPhysical.other :=
+    b1_cardFive_sharedPair_other_eq P
+  have hmateUData : mate.1 ∈
+      ((lateFirstApexSystem C.R).selectedAt
+        C.u.1 C.u.2).toCriticalFourShell.support ∩
+          SelectedClass D.A S.oppApex2 C.rho := by
+    have hotherUData : P.uPhysical.other.1 ∈
+        ((lateFirstApexSystem C.R).selectedAt
+          C.u.1 C.u.2).toCriticalFourShell.support ∩
+            SelectedClass D.A S.oppApex2 C.rho := by
+      exact Eq.mp
+        (congrArg (fun T : Finset ℝ² ↦ P.uPhysical.other.1 ∈ T)
+          P.uPhysical.slice_eq.symm) (by simp)
+    simpa [mate] using hotherUData
+  have hmateVData : mate.1 ∈
+      ((lateFirstApexSystem C.R).selectedAt
+        C.v.1 C.v.2).toCriticalFourShell.support ∩
+          SelectedClass D.A S.oppApex2 C.rho := by
+    have hotherVData : P.vPhysical.other.1 ∈
+        ((lateFirstApexSystem C.R).selectedAt
+          C.v.1 C.v.2).toCriticalFourShell.support ∩
+            SelectedClass D.A S.oppApex2 C.rho := by
+      exact Eq.mp
+        (congrArg (fun T : Finset ℝ² ↦ P.vPhysical.other.1 ∈ T)
+          P.vPhysical.slice_eq.symm) (by simp)
+    have hmateValue : mate.1 = P.vPhysical.other.1 :=
+      congrArg Subtype.val hmateEq
+    simpa only [hmateValue] using hotherVData
+  by_contra hneither
+  push_neg at hneither
+  have huEq :=
+    b1_blocker_centers_eq_of_physicalClass_mutual_crossMembership
+      C C.u mate P.uPhysical.source_ne_other C.huClass
+        (Finset.mem_inter.mp hmateUData).2
+        (Finset.mem_inter.mp hmateUData).1 hneither.1
+  have hvMateNe : C.v ≠ mate := by
+    rw [hmateEq]
+    exact P.vPhysical.source_ne_other
+  have hvEq :=
+    b1_blocker_centers_eq_of_physicalClass_mutual_crossMembership
+      C C.v mate hvMateNe C.hvClass
+        (Finset.mem_inter.mp hmateVData).2
+        (Finset.mem_inter.mp hmateVData).1 hneither.2
+  exact C.first.blockers_ne (huEq.trans hvEq.symm)
+
+/-- Survival form of the shared-mate incidence reduction.  One of the two
+canonical live sources can be erased while the shared mate's actual exact-four
+row survives. -/
+theorem b1_cardFive_sharedPair_mateRow_crossDeletionSurvival
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F)}
+    (P : B1CardFiveSharedPairRows C) :
+    HasNEquidistantPointsAt 4 (D.A.erase C.u.1)
+        ((lateFirstApexSystem C.R).centerAt
+          P.uPhysical.other.1 P.uPhysical.other.2) ∨
+      HasNEquidistantPointsAt 4 (D.A.erase C.v.1)
+        ((lateFirstApexSystem C.R).centerAt
+          P.uPhysical.other.1 P.uPhysical.other.2) := by
+  rcases b1_cardFive_sharedPair_mate_omits_u_or_v P with hu | hv
+  · exact Or.inl
+      ((cross_deletion_survives_iff_not_mem_selected_support
+        (lateFirstApexSystem C.R) P.uPhysical.other.2).2 hu)
+  · exact Or.inr
+      ((cross_deletion_survives_iff_not_mem_selected_support
+        (lateFirstApexSystem C.R) P.uPhysical.other.2).2 hv)
 
 /-- If a two-point live slice lies in the strict second cap, the exact-row
 blocker lies strictly between its two physical endpoints in the retained
@@ -1493,6 +1801,192 @@ theorem b1EscapeSourceContext_of_normalForm_sourceData
     survives_retained_firstApex_deletion := hsurvives
     cross_omission := b1_escapeRow_crossOmission C escape
   }⟩
+
+/-- The two canonical deletions have the same actual blocker, so membership
+outside the first-apex blocker fibre transfers between them. -/
+theorem b1_firstDeleted_mem_outsideFirstApexFiber_iff_secondDeleted
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F)) :
+    C.first.deleted ∈ outsideFirstApexFiber C.R ↔
+      C.second.deleted ∈ outsideFirstApexFiber C.R := by
+  have hblockers :
+      (lateFirstApexSystem C.R).blockerVertex C.first.deleted =
+        (lateFirstApexSystem C.R).blockerVertex C.second.deleted := by
+    exact Subtype.ext C.hblockersEq
+  simp [outsideFirstApexFiber, actualBlockerFiber, hblockers]
+
+/-- The only obstruction to turning the globally counted good strict-interior
+source into a B1 escape source is that the source is one of the two canonical
+deletions.  Equal canonical blockers strengthen that branch: at least one
+deletion is strict-interior, both are outside the first-apex blocker fibre,
+and the common blocker retains one of the two first-cap deletions. -/
+def B1GoodCanonicalDeletionResidual
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F)) : Prop :=
+  (C.first.deleted.1 ∈ S.capInteriorByIndex S.oppIndex2 ∨
+      C.second.deleted.1 ∈ S.capInteriorByIndex S.oppIndex2) ∧
+    C.first.deleted ∈ outsideFirstApexFiber C.R ∧
+    C.second.deleted ∈ outsideFirstApexFiber C.R ∧
+    (HasNEquidistantPointsAt 4 (D.A.erase C.R.interior_q)
+        (b1CommonBlocker C) ∨
+      HasNEquidistantPointsAt 4 (D.A.erase C.R.interior_w)
+        (b1CommonBlocker C))
+
+/-- Global robust-cap counting removes the broad first-class/interior-pair-bad
+alternatives.  Its good strict-interior source either lies outside the two
+canonical deletions and hence supplies the full escape-source context, or is
+itself a canonical deletion with the exact retained-survival data recorded by
+`B1GoodCanonicalDeletionResidual`. -/
+theorem b1_escapeSourceContext_or_goodCanonicalDeletion
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F))
+    (hnormal : B1PhysicalClassFiveSixNormalForm C) :
+    Nonempty (B1EscapeSourceContext C) ∨
+      B1GoodCanonicalDeletionResidual C := by
+  obtain ⟨source, hsourceClass, hsourceInterior, houtside, hsurvives⟩ :=
+    exists_interiorPairGoodOutsideSource_mem_secondClassInterior
+      C.R C.surface.secondApex_robust C.hrho C.hfive
+  by_cases hfirst : source = C.first.deleted
+  · right
+    subst source
+    refine ⟨Or.inl hsourceInterior, houtside,
+      (b1_firstDeleted_mem_outsideFirstApexFiber_iff_secondDeleted C).mp
+        houtside, ?_⟩
+    simpa [b1CommonBlocker] using hsurvives
+  by_cases hsecond : source = C.second.deleted
+  · right
+    subst source
+    refine ⟨Or.inr hsourceInterior,
+      (b1_firstDeleted_mem_outsideFirstApexFiber_iff_secondDeleted C).mpr
+        houtside, houtside, ?_⟩
+    rcases hsurvives with hq | hw
+    · left
+      simpa [b1CommonBlocker, C.hblockersEq] using hq
+    · right
+      simpa [b1CommonBlocker, C.hblockersEq] using hw
+  · left
+    exact b1EscapeSourceContext_of_normalForm_sourceData C hnormal source
+      hsourceClass hsourceInterior hfirst hsecond houtside hsurvives
+
+/-- Boundary-order refinement of the good canonical-deletion residual.  The
+other deletion is either in an adjacent cap, or both deleted sources are
+strict-interior and their common blocker lies between them in the retained
+linear boundary order. -/
+structure B1GoodCanonicalDeletionEndpointResidual
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F))
+    (E : B1EscapeRowProvenanceStar C) : Prop where
+  good : B1GoodCanonicalDeletionResidual C
+  endpoint :
+    (C.first.deleted.1 ∈ S.capInteriorByIndex S.oppIndex2 ∧
+      ((C.second.deleted.1 ∈ S.leftAdjacentCapByIndex S.oppIndex2 ∨
+          C.second.deleted.1 ∈ S.rightAdjacentCapByIndex S.oppIndex2) ∨
+        SurplusCOMPGBank.btw
+          (E.boundary.indexOf C.first.deleted)
+          (E.boundary.indexOf C.second.deleted)
+          (E.boundary.indexOf
+            (blockerLabel (lateFirstApexSystem C.R)
+              C.first.deleted.1 C.first.deleted.2)))) ∨
+    (C.second.deleted.1 ∈ S.capInteriorByIndex S.oppIndex2 ∧
+      ((C.first.deleted.1 ∈ S.leftAdjacentCapByIndex S.oppIndex2 ∨
+          C.first.deleted.1 ∈ S.rightAdjacentCapByIndex S.oppIndex2) ∨
+        SurplusCOMPGBank.btw
+          (E.boundary.indexOf C.second.deleted)
+          (E.boundary.indexOf C.first.deleted)
+          (E.boundary.indexOf
+            (blockerLabel (lateFirstApexSystem C.R)
+              C.second.deleted.1 C.second.deleted.2))))
+
+/-- Attach the zero-cut boundary order to the canonical-deletion residual. -/
+theorem B1GoodCanonicalDeletionResidual.toEndpointResidual
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F)}
+    (P : B1GoodCanonicalDeletionResidual C)
+    (E : B1EscapeRowProvenanceStar C) :
+    B1GoodCanonicalDeletionEndpointResidual C E := by
+  classical
+  let Hlate := lateFirstApexSystem C.R
+  have hsupports :
+      (Hlate.selectedAt C.first.deleted.1
+          C.first.deleted.2).toCriticalFourShell.support =
+        (Hlate.selectedAt C.second.deleted.1
+          C.second.deleted.2).toCriticalFourShell.support :=
+    selectedSupports_eq_of_actualBlockers_eq Hlate
+      C.first.deleted.2 C.second.deleted.2 C.hblockersEq
+  have hsecondFirstRow : C.second.deleted.1 ∈
+      (Hlate.selectedAt C.first.deleted.1
+        C.first.deleted.2).toCriticalFourShell.support := by
+    rw [hsupports]
+    exact (Hlate.selectedAt C.second.deleted.1
+      C.second.deleted.2).toCriticalFourShell.q_mem_support
+  have hfirstSecondRow : C.first.deleted.1 ∈
+      (Hlate.selectedAt C.second.deleted.1
+        C.second.deleted.2).toCriticalFourShell.support := by
+    rw [← hsupports]
+    exact (Hlate.selectedAt C.first.deleted.1
+      C.first.deleted.2).toCriticalFourShell.q_mem_support
+  refine ⟨P, ?_⟩
+  rcases P.1 with hfirstInterior | hsecondInterior
+  · left
+    refine ⟨hfirstInterior, ?_⟩
+    by_cases hsecondInside : C.second.deleted.1 ∈
+        S.capInteriorByIndex S.oppIndex2
+    · right
+      exact E.liveRowBlocker_btw_of_two_points C.first.deleted
+        C.first.deleted C.second.deleted
+        (Hlate.selectedAt C.first.deleted.1
+          C.first.deleted.2).toCriticalFourShell.q_mem_support
+        hsecondFirstRow C.first.deleted_mem_class
+        C.second.deleted_mem_class hfirstInterior hsecondInside C.hdeletedNe
+    · left
+      exact b1_physicalClass_mem_adjacentCap_of_not_mem_secondCapInterior
+        C C.second.deleted_mem_class hsecondInside
+  · right
+    refine ⟨hsecondInterior, ?_⟩
+    by_cases hfirstInside : C.first.deleted.1 ∈
+        S.capInteriorByIndex S.oppIndex2
+    · right
+      exact E.liveRowBlocker_btw_of_two_points C.second.deleted
+        C.second.deleted C.first.deleted
+        (Hlate.selectedAt C.second.deleted.1
+          C.second.deleted.2).toCriticalFourShell.q_mem_support
+        hfirstSecondRow C.second.deleted_mem_class
+        C.first.deleted_mem_class hsecondInterior hfirstInside C.hdeletedNe.symm
+    · left
+      exact b1_physicalClass_mem_adjacentCap_of_not_mem_secondCapInterior
+        C C.first.deleted_mem_class hfirstInside
+
+/-- Combined source-or-canonical-order producer from the five/six normal form
+and its retained wave boundary. -/
+theorem b1_escapeSourceContext_or_goodCanonicalDeletionEndpoint
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F))
+    (hnormal : B1PhysicalClassFiveSixNormalForm C)
+    (W : B1FiveSixWaveIngress C) :
+    Nonempty (B1EscapeSourceContext C) ∨
+      Nonempty (B1GoodCanonicalDeletionEndpointResidual C W.escape) := by
+  rcases b1_escapeSourceContext_or_goodCanonicalDeletion C hnormal with
+    hsource | hcanonical
+  · exact Or.inl hsource
+  · exact Or.inr ⟨hcanonical.toEndpointResidual W.escape⟩
 
 /- A source that is outside the first-apex fibre and is not interior-pair bad
 already has the retained-survival disjunction required by the source context.

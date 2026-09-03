@@ -560,3 +560,120 @@ retained deletion survival or nonmembership in
 source cannot identify that source with `C.u` or `C.v`, and the two-source
 first-apex split additionally requires both live sources to be strict
 second-cap-interior.
+
+## 2026-09-02 cross-incidence residual reduction
+
+The next residual pass works from the physical second-apex class rather than
+adding another endpoint-order packet.  Convex independence gives a generic
+blocker-rigidity lemma: if two distinct physical-class sources occur in each
+other's actual late rows, their blockers coincide.  Consequently, distinct
+blockers force the reverse row hit to be absent.  This closes the
+reverse-hit/distinct-blocker combination that remained unconstrained by the
+cardinality-only role packets.  In metric form every named live pair therefore
+gives either blocker equality or survival of the mate's exact-four row after
+deleting the distinguished live source.  Both card-six live pairs now emit
+that dichotomy directly.
+
+The first nontrivial application is the exact card-five shared-pair trace.
+Its two named non-source endpoints are one common mate: the one-point overlap,
+the exact two-point slice identities, and the original `u`/`v` mutual
+omissions exclude every other intersection.  That mate's actual row cannot
+then contain both `u` and `v`; reciprocal membership with both would identify
+the mate blocker with each of the two canonical live blockers, contradicting
+the blocker inequality stored in either canonical joint deletion.  The
+remaining shared-pair residual is therefore a genuine directed omission
+
+```text
+u ∉ row(mate)  ∨  v ∉ row(mate).
+```
+
+The source-clean survival adapter immediately converts this to the more useful
+metric disjunction that the mate's exact-four row survives deletion of `u` or
+survives deletion of `v`.
+
+This is a strict reduction of the card-five incidence surface, not yet the
+top-level B1 contradiction.  Its immediate next consumer must use the
+resulting cross-deletion survival or reindex the joint-deletion walk without
+calling the still-open rigid terminal.  The adjacent-cap card-six route was
+also checked against `firstApex_marginal_inter_secondClass_card_le_one`; it
+cannot force the escape source outside the first-apex class because the B1
+interface supplies no second distinct cross-class point.
+
+A source-clean consumer audit rules out a tempting but nonproductive next
+wrapper.  Pairing this mate-row survival with physical-second-apex robustness
+does construct `CommonDeletionTwoCenterPacket`, but the only import-reachable
+generic consumer, `physicalSecondApex_commonDeletion_robust_or_critical`,
+merely returns a robustness/critical-shell residual.  The paired and
+bi-survival consumers require a retained-first-apex orientation or two packets
+at a common blocker pair that B1 does not supply.  The existing
+`B1EscapeCrossDeletionPacket` is already constructible directly from a
+canonical-deletion omission and therefore does not consume the new `u`/`v`
+mate survival.  No common-deletion packet wrapper is added at this checkpoint;
+the first missing antecedent is still a global order/cross-role fact, not the
+local packet constructor.
+
+The global good-source count does, however, sharpen the source branch itself.
+`b1_escapeSourceContext_or_goodCanonicalDeletion` applies
+`exists_interiorPairGoodOutsideSource_mem_secondClassInterior` directly to the
+B1 physical class.  If its counted source is distinct from both known
+deletions, the normal-form cover constructs `B1EscapeSourceContext`.  Otherwise
+the new `B1GoodCanonicalDeletionResidual` records that at least one canonical
+deletion is strict second-cap-interior, both canonical deletions lie outside
+the first-apex blocker fibre, and their common blocker survives deletion of
+`R.interior_q` or `R.interior_w`.  The transfer to both sources uses their
+stored actual-blocker equality.  This eliminates the earlier broad
+first-class/interior-pair-bad alternatives for the globally counted source;
+the remaining source residual is now pinned to one of the two canonical
+deletions.  It does not remove the separately defined `badOutsideSources`
+alternative without identifying `R.interior_q/R.interior_w` with the frontier
+pair.  A direct source elaboration check accepts this theorem without new
+axioms; authoritative locked build verification remains part of the checkpoint
+gate.
+
+The equal canonical blockers also transfer outside-first-fibre membership
+between the two deletions, so the residual records both sources outside that
+fibre rather than only the counted one.  Its boundary refinement,
+`B1GoodCanonicalDeletionResidual.toEndpointResidual`, uses the zero-cut
+boundary retained by the wave ingress.  If the other deletion is not strict
+second-cap-interior, convex cap localization places it in an adjacent cap.  If
+both deletions are strict-interior, equality of their selected supports and
+the shared-pair separation theorem put their common blocker strictly between
+their boundary indices.  Thus the remaining canonical branch now carries the
+retained deletion survival and the exact adjacent-or-between order split; an
+active terminal consuming that combined packet is still missing.
+`b1_escapeSourceContext_or_goodCanonicalDeletionEndpoint` is the single
+normal-form/wave-ingress producer for this final dichotomy.
+
+The canonical residual exactly matches the hypotheses of
+`false_of_exactFourPostCardElevenInteriorDeletionBranch` in
+`Rigid221Closure.lean`: choose whichever canonical deletion is strict-interior,
+use its physical-class and outside-fibre fields, and rewrite the retained
+survival through the common-blocker equality.  This is not yet a legal B1
+consumer.  `Rigid221Closure` reaches `TwoDeletionCollision` through the
+source-heavy/legacy/two-deletion coordinator import chain, so importing it here
+would be circular; its terminal chain also still contains open sorry leaves.
+The source-clean part of that chain only reconstructs a mutually omitted pair
+and a joint deletion.  The remaining closure work is therefore to factor or
+prove an upstream canonical-deletion terminal, not to produce more local B1
+packets.
+
+The first canonical-deletion residual reduction should stay with the original
+B1 pair.  Choose the canonical deletion supplied by
+`B1GoodCanonicalDeletionResidual` and apply
+`exists_omittedSecondClassInteriorPeer` to its actual row.  The omitted peer
+has a distinct blocker, so it cannot be either canonical deletion: it differs
+from the chosen source directly, and equality with the other deletion would
+contradict `C.hblockersEq`.  The normal-form cover then forces the peer into
+`b1USlice C` or `b1VSlice C`.  Formalize this as a field of the canonical
+endpoint residual before invoking the broader mutually-omitted-pair producer.
+This strictly reduces the free role of the omitted strict-interior peer while
+preserving the retained survival and adjacent-or-between endpoint data.
+
+Do not infer that a joint deletion generated later by
+`exists_exactFourMutualOmissionSourceContext_of_fivePointInteriorSource` is one
+of the original canonical deletions.  That theorem chooses a fresh mutually
+omitted pair `u, v`; its joint deletion is absent from the fresh `u`- and
+`v`-rows, whereas `B1PhysicalClassFiveSixNormalForm` covers the physical class
+using the original rows of `C.u` and `C.v`.  No current equality or row-support
+transport identifies those pairs.  The first missing antecedent in both the
+exact-five and card-at-least-six recurrence remains that pair transport.
