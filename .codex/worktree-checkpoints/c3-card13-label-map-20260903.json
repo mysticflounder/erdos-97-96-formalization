@@ -1,0 +1,14 @@
+{
+  "base_head": "4b61461c931bf78982ebf3738f99a3ff9880f047",
+  "created_utc": "2026-09-03T00:00:00Z",
+  "durable_paths": [],
+  "generated_roots": [],
+  "lane_id": "c3-card13-label-map-20260903",
+  "manifest_sha256": "68b24486baa940096d15f8c95c280b1795f0a0c76a25475e33b6d4357fc73989",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/c3-card13-label-map-20260903.json",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/DRExactThirteenValuation.lean"
+  ],
+  "owner": "codex",
+  "schema": "worktree-lane-checkpoint/v1"
+}
