@@ -1,7 +1,6 @@
 # Rigid221 exact-five hard source-swap order PIQD audit
 
-Status: producer preflight and current PIQD-interface tests passed; repaired
-run-0002 controls and canary pending.
+Status: complete conditional census; abstract SAT survivors remain.
 
 ## Scope
 
@@ -30,7 +29,51 @@ crossing matching of every four quotient classes.
   but the repository adapter rejected the daemon's new `model_replay` field
   before local semantic acceptance.  No profile was submitted.  The adapter
   now validates that field's exact schema and binds its solver digest; run-0001
-  remains immutable and run-0002 is the repaired successor.
+  remains immutable.  The repaired successor is lane
+  `exactfive-hard-source-swap-order-piqd-r2-20260902`, run-0001.
+
+## Terminal result
+
+Both controls passed in Z3 and cvc5.  The full 2,798-profile run completed in
+1,103.60 seconds at 20 workers:
+
+| Z3 / cvc5 | profiles |
+|---|---:|
+| `SAT / SAT` | 122 |
+| `SAT / UNKNOWN` | 80 |
+| `UNSAT / UNKNOWN` | 10 |
+| `UNSAT / UNSAT` | 2,586 |
+
+There was no SAT/UNSAT disagreement.  The terminal self-hash is
+`6baab84ed88abc816965447f9b4f5ce90f62a7c90c8c4e777aa6496e6e62d9e2`.
+A complete resume verification of all controls, formulas, source snapshots,
+engine artifacts, and exact SAT replays reproduced that hash in 129.13
+seconds without a solver call.
+
+The daemon recorded 18,478.160 seconds of aggregate per-solve wall time
+(about 5 hours 8 minutes before 20-way overlap).  This is the best available
+CPU proxy because the daemon owns the solver children; it is not an exact
+process-rusage total.  The launching client used 294.85 user seconds and 72.65
+system seconds and peaked at 288 MB resident memory.
+
+All 202 Z3 SAT readbacks and all 122 cvc5 SAT readbacks passed complete exact
+local replay.  PIQD's additional model replay was retained as `UNDETERMINED`
+because its fresh replay script does not reproduce the journal's helper
+`define-fun` declarations; no daemon model-replay pass is claimed.
+
+## Completed-wave mine
+
+The order/equality-only terminal sought by the consult is false: 202 profiles
+have abstract SAT countermodels, and 10 more remain unresolved.  All 312
+ten-class profiles are eliminated, but survivors occur at every class count
+from 11 through 15.
+
+Six collision patterns occur in the input stream but in no unresolved profile:
+`p=u`, `p=v`, `q=u`, `q=v` (313 input profiles each) and `t=x`, `t=y` (451
+each).  These are concrete candidates for small selected-row/Kalmanson Lean
+lemmas.  A bounded current-project theorem-bank search found the exact-grid
+role and radial-order APIs but no theorem already proving these six
+distinctness facts.
 
 ## Claim boundary
 
@@ -42,5 +85,9 @@ or a Lean closure result.
 
 ## Next checkpoint
 
-Run both controls through PIQD, execute a small authenticated canary, measure
-wall and CPU cost, and only then launch or revise the full 2,798-profile run.
+Preserve a `SAT/SAT` witness as a durable abstract countermodel.  Then test a
+smallest 11-class survivor with genuine planar coordinates: squared Euclidean
+row equalities, the source strict comparison, and strict signed-area
+orientation for every ordered triple.  A planar survivor advances the lane to
+MEC/minimality/blocker provenance; fixed-order UNSAT only rejects that one
+order and cannot eliminate the profile without all-order coverage.

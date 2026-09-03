@@ -313,8 +313,16 @@ interiors.  Enforcing them removes 4,805 source-incompatible profiles from the
 earlier 7,603-profile abstraction.  All 2,798 retained partitions and stable
 profile hashes are unique, and the focused Python suite passes all 25 tests.
 These counts are exact for the encoded alias rules, not yet a Lean theorem that
-those rules exhaust the source.  They contain no cyclic placements, order
-cells, metric constraints, or solver verdict, so the live PiQD run remains
-unauthorized until these aliases are combined with the source-authorized
-cyclic-order cells and the source-to-profile coverage boundary is proved or
-explicitly retained as a conditional assumption.
+those rules exhaust the source.
+
+The successor conditional PIQD lane explicitly retained that missing coverage
+claim as false and combined every profile with a solver-selected direct or
+reflected source cap order, all four row packets, the radius disequality, the
+proved source strict comparison, and every strict Kalmanson quartet.  Its
+authenticated 2,798-profile terminal reports 2,586 `UNSAT/UNSAT`, 122
+`SAT/SAT`, 80 `SAT/UNKNOWN`, and 10 `UNSAT/UNKNOWN`, with no cross-solver
+SAT/UNSAT disagreement.  Consequently this abstraction cannot supply the
+desired terminal: 202 abstract countermodels survive and 10 further profiles
+remain inconclusive.  The next experiment adds actual planar coordinates and
+strict convex orientation to a smallest 11-class survivor before any attempt
+to use MEC/minimality/blocker provenance.

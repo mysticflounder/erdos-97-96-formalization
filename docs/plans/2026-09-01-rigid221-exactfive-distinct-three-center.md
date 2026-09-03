@@ -316,6 +316,27 @@ The alias-only deliverable is now implemented and independently checked:
 961 profiles have `c₁ = U`, 1,837 have `c₁ ≠ U`, for 2,798 unique canonical
 partitions after enforcing the strict-cap distinctions `U ≠ u,v,e,x,y`.  The
 earlier 7,603 count included 4,805 source-incompatible partitions and is
-superseded.  This completes the finite alias prefix only.  The next execution
-step is to combine each alias profile with the now-proved source-authorized
-order cells before considering a governed PiQD run.
+superseded.
+
+The complete conditional order/equality census has now run through PIQD.  A
+symbolic rank permutation replaced raw order enumeration while retaining the
+direct/reflected cap skeleton, all row equalities, the proved source strict
+comparison, and every strict Kalmanson quartet.  Both controls passed and the
+full 2,798-profile terminal has self-hash
+`6baab84ed88abc816965447f9b4f5ce90f62a7c90c8c4e777aa6496e6e62d9e2`:
+
+```text
+Z3 SAT / cvc5 SAT:          122
+Z3 SAT / cvc5 UNKNOWN:       80
+Z3 UNSAT / cvc5 UNKNOWN:     10
+Z3 UNSAT / cvc5 UNSAT:    2,586
+```
+
+Thus order, incidence, row equalities, and strict Kalmanson alone do not close
+the branch: 202 profiles have authenticated abstract SAT models, while another
+10 remain unresolved by timeout.  The next falsifiable layer is a fixed-order
+planar-coordinate/QF_NRA canary on a smallest 11-class survivor, followed by
+MEC/minimality/blocker provenance only if an actual convex Euclidean survivor
+remains.  The wave mine also proposes six small source lemmas for future Lean
+use: every unresolved profile has `p,q` distinct from `u,v` and `t` distinct
+from `x,y`; the current theorem-bank search found no exact existing result.
