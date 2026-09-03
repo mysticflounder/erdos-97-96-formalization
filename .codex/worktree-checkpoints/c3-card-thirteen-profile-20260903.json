@@ -1,0 +1,14 @@
+{
+  "base_head": "4bc37c6cfb61483744f1bbea994c568bd308707a",
+  "created_utc": "2026-09-03T10:10:00Z",
+  "durable_paths": [],
+  "generated_roots": [],
+  "lane_id": "c3-card-thirteen-profile-20260903",
+  "manifest_sha256": "e516354379a6967d8b8ff210abcb8591ac5fc974cb8e4a9b76edb5cc21f2da37",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/c3-card-thirteen-profile-20260903.json",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoRadiusExactTwelveProfile.lean"
+  ],
+  "owner": "codex",
+  "schema": "worktree-lane-checkpoint/v1"
+}

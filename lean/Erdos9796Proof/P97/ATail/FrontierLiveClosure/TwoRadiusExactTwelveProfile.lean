@@ -144,6 +144,63 @@ theorem exactTwelve_capProfile_of_twoRadiusBranch
   unfold SurplusCapPacket.oppInterior2 at hfour
   exact ⟨by omega, by omega, by omega⟩
 
+/-- The three closed-cap profiles compatible with the two-radius branch at
+carrier cardinality thirteen.  After removing the two endpoint vertices from
+each closed cap, these are the strict-interior profiles `(3, 2, 5)`,
+`(4, 2, 4)`, and `(3, 3, 4)` used by the card-thirteen arm encoder. -/
+inductive ExactThirteenTwoRadiusCapProfile
+    {D : CounterexampleData} (S : SurplusCapPacket D.A) : Prop
+  | secondOpposite
+      (surplusCap_card_eq_five : S.surplusCap.card = 5)
+      (firstOppCap_card_eq_four : S.oppCap1.card = 4)
+      (secondOppCap_card_eq_seven : S.oppCap2.card = 7)
+  | surplus
+      (surplusCap_card_eq_six : S.surplusCap.card = 6)
+      (firstOppCap_card_eq_four : S.oppCap1.card = 4)
+      (secondOppCap_card_eq_six : S.oppCap2.card = 6)
+  | firstOpposite
+      (surplusCap_card_eq_five : S.surplusCap.card = 5)
+      (firstOppCap_card_eq_five : S.oppCap1.card = 5)
+      (secondOppCap_card_eq_six : S.oppCap2.card = 6)
+
+/-- At carrier cardinality thirteen, the cap sum and the two disjoint-radius
+rows leave exactly the three profiles represented by
+`ExactThirteenTwoRadiusCapProfile`. -/
+theorem exactThirteen_capProfile_of_twoRadiusBranch
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F)
+    (surface : ExactFourPostCardElevenRobustSurface R)
+    (rho otherRadius : ℝ)
+    (firstRow secondRow : SelectedFourClass D.A S.oppApex2)
+    (hradii : otherRadius ≠ rho)
+    (hfirstRadius : firstRow.radius = rho)
+    (hsecondRadius : secondRow.radius = otherRadius)
+    (hcard13 : D.A.card = 13) :
+    ExactThirteenTwoRadiusCapProfile S := by
+  have hsum := S.capSum
+  have hsurplus := S.surplus_card_gt_four
+  have hopp1 := surface.firstOppCap_card_ge_four
+  have hI2 := capInteriorByIndex_card_add_two S S.oppIndex2
+  rw [capByIndex_oppIndex2_eq_oppCap2] at hI2
+  have hfour :=
+    four_le_oppInterior2_card_of_twoRadiusRows rho otherRadius firstRow secondRow
+      hradii hfirstRadius hsecondRadius
+  unfold SurplusCapPacket.oppInterior2 at hfour
+  have hprofiles :
+      (S.surplusCap.card = 5 ∧ S.oppCap1.card = 4 ∧
+        S.oppCap2.card = 7) ∨
+      (S.surplusCap.card = 6 ∧ S.oppCap1.card = 4 ∧
+        S.oppCap2.card = 6) ∨
+      (S.surplusCap.card = 5 ∧ S.oppCap1.card = 5 ∧
+        S.oppCap2.card = 6) := by
+    omega
+  rcases hprofiles with h | h | h
+  · exact .secondOpposite h.1 h.2.1 h.2.2
+  · exact .surplus h.1 h.2.1 h.2.2
+  · exact .firstOpposite h.1 h.2.1 h.2.2
+
 /-- The six closed-cap profiles compatible with the two-radius branch at
 carrier cardinality fourteen.  Constructor names match the diagnostic
 encoder profiles in `p97-dr-two-radius-card14-profile-probe-v1.md`. -/
