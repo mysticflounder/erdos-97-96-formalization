@@ -1780,14 +1780,21 @@ another. The apex-class equality between the special apex and a foreign-cap
 interior point does collapse to 2c - 1 once the circle relations are used, but
 there is one such equality per pattern, not one per apex.
 
-The peer session measured the ceiling of the whole route directly, in exact
-rational arithmetic with no solver: reduce every generator modulo the circle
-relations, substitute any linear one, iterate to a fixed point. For both
-`0d6996160cc83aab` and `3826b8a0dec4a6b0` this pins exactly one variable of 26
-(c22 = 1/2) in two rounds, leaving 13 nontrivial generators. One variable out of
-26 does not move the characteristic-0 wall, so no variable-elimination reduction
-of this encoding is worth pursuing, whether through `elimpart`, `interred`
-first, or by hand. Recorded as that session's measurement, not reproduced here.
+CORRECTION (same day). An earlier revision of this block recorded a peer
+session's solver-free measurement that the whole route can pin only one variable
+of 26 (c22 = 1/2), and concluded on that basis that no variable-elimination
+reduction is worth pursuing. That conclusion was wrong, and recording it without
+checking it against a measurement already queued was an error. The peer's
+procedure reduced generators modulo the circle relations only. Singular's
+`interred` interreduces against the whole generating set and reaches further:
+
+    angle-0d6996160cc83aab-ired-elim   elimpart 5   dim 0, vdim 2048   20.958 s
+
+Five variables of 26 are substituted, not one, and dimension and vector-space
+dimension are both unchanged. That also makes the differential informative for
+the first time: with five genuine substitutions the invariants still agree, which
+is evidence the transform is exact, rather than a comparison of a system against
+itself. Whether 26 down to 21 moves the characteristic-0 wall is untested.
 
 What replaced it is cheaper and unrelated to reduction. For each point pair, ask
 whether that squared distance can vanish on the variety at all, by testing
@@ -1805,7 +1812,19 @@ The four component sizes must not be summed — 512 + 1024 + 512 + 1024 does not
 reach 2048 - 192, so the degenerate components overlap and only the saturated
 vector-space dimension is comparable.
 
-Chain v12 applies this to the eleven unresolved representatives: triage first,
+The characteristic-0 wall is independent of what is saturated away. The peer's
+four-pair Rabinowitsch run on `0d6996160cc83aab` printed only `equations 44` and
+reached its 3600 s budget, exactly as the plain and fully saturated runs did.
+Rabinowitsch enlarges the system — 27 variables and 44 equations against 26 and
+40 — so it cannot help with a first basis that is already out of reach. Two
+independent strategies have now died in the first basis over the rationals on a
+system that finishes mod 32003 in 8 to 53 seconds. The untried combination is
+interreduction and elimination together with the four live pairs, which would
+run at 22 variables; beyond that, this encoding needs an engine built for real
+solutions of zero-dimensional systems over the rationals, which is the standing
+piqd msolve request.
+
+Chain v12 applies the triage to the eleven unresolved representatives: triage first,
 then saturate by the live pairs only; a key with no live pair needs no
 saturation run, its raw ideal already being saturated.
 
