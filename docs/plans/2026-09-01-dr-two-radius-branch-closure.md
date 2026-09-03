@@ -635,6 +635,52 @@ certificate replay is then unnecessary for card 12.
   existing generic core family. The exact arithmetic split is now represented
   by `ExactFourteenTwoRadiusCapProfile` and
   `exactFourteen_capProfile_of_twoRadiusBranch`.
+- Step P4.5 (2026-09-03, active): commit `f6c1a632e` added forty
+  source-backed Kalmanson three-equality schemas to the arbitrary-card
+  structural probe. The authenticated card-14 `firstOppositeO1Six` witness
+  violates schema `301_415_205` on labels `(1, 5, 0, 8, 9, 2)`. This is a
+  model-level diagnostic, not a contradiction for the full profile; the
+  maximal-formula statement in P4.4 is scoped to the families encoded before
+  these schemas were admitted.
+
+  The active source-faithful route is an ingress-coupling split. First produce
+  two rows at the distinct radii together with good-source witnesses, each
+  source's omitted member of `{q, w}`, and its blocker outside the selected
+  four-class. Then split two selected sources into: common deletion with equal
+  blockers, common deletion with distinct blockers (feeding a three-center
+  packet), or complementary crossed one-hit data. In the nongrid case the
+  crossed outcome is expected to localize to the exact union-cardinality-five
+  exception; larger unions should force a same-deletion pair by source
+  counting. These occurrence and localization claims remain
+  {{NEEDS_PROOF}}. The cap-excess hierarchy is retained as a guard and finite
+  profile splitter only when its cap bounds are produced from the live branch;
+  a standalone arithmetic lemma has no immediate consumer and is not a
+  promotion target.
+
+  A read-only source audit rejected the ambient-eight shortcut as the first
+  producer. For every point of the two four-point rows, current source proves
+  that its actual blocker differs from `S.oppApex2` and that its selected row
+  meets either pinned radius class in at most two points. Row membership does
+  not, however, supply membership in `outsideFirstApexFiber R` or retained
+  `q`/`w` survival, and no present theorem consumes the weaker eight-source
+  packet to `False`. That packet therefore does not lower `μ`; source
+  selection must pass through the existing interior-pair-good branch or a new
+  producer of precisely those missing facts.
+
+  P4.5a targets source-clean producers provisionally named
+  `IngressAlignedTwoRadiusRows` and `IngressRowDeletionOutcome`. A producer
+  counts only when the card-ge-thirteen call site supplies every premise from
+  existing branch data and the target consumes its result without
+  `sorry`, `native_decide`, or external evidence. Track the lexicographic
+  frontier measure `μ = (a, b, c)`, where `a ∈ {0,1,2}` is the number of
+  missing source-selection levels (aligned rows, then a coupled source pair),
+  `b ∈ {1,2,3}` is the number of still-unselected coupling outcomes, and
+  `c ∈ {0,1}` records whether the crossed exact-five exception is still mixed
+  with larger nongrid unions. The current residual has `μ = (2,3,1)`; the
+  first accepted producer must lower `a`, the case split must lower `b` on
+  every child, and crossed localization must lower `c`. Refresh the compiled
+  dependency graph, confirm the target on the kernel spine, and set the
+  proof-blueprint anchor before any Lean implementation is promoted.
 - Generalizing `exists_fourHits_radialCyclicOrder_oppIndex1` to `oppIndex2`
   is a bounded Lean task, to be done only if the extracted core uses the strict
   cross-distance inequality.
