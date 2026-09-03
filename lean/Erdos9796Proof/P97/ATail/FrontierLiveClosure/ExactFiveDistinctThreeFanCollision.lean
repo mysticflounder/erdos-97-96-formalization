@@ -67,5 +67,28 @@ theorem RobustApexFourIncidenceContinuationPacket.false_of_threeFan_shared_suppo
     hs_ne_O hs_ne_c₂ P.surface.O_ne_c₂
       (collinear_of_signedArea2_eq_zero s O c₂ hzero)
 
+/-- If the third center lies in the first row, then every common support of the
+first two rows is one of the two distinguished points. -/
+theorem RobustApexFourIncidenceContinuationPacket.threeFan_shared_support_restriction
+    {D : CounterexampleData} {H : CriticalShellSystem D.A}
+    {O c₁ c₂ a : ℝ²} {B₀ B₁ B₂ : Finset ℝ²}
+    (P : RobustApexFourIncidenceContinuationPacket D H O c₁ c₂ a B₀ B₁ B₂)
+    (hc₁K₀ : c₁ ∈ P.surface.row₀.support)
+    (hOK₁ : O ∈ P.surface.row₁.support)
+    (hOK₂ : O ∈ P.surface.row₂.support) :
+    c₂ ∉ P.surface.row₀.support ∨
+      ∀ ⦃s : ℝ²⦄,
+        s ∈ P.surface.row₀.support →
+        s ∈ P.surface.row₁.support →
+        s = a ∨ s = c₂ := by
+  by_cases hc₂K₀ : c₂ ∈ P.surface.row₀.support
+  · right
+    intro s hsK₀ hsK₁
+    by_contra hs
+    push_neg at hs
+    exact P.false_of_threeFan_shared_support hc₁K₀ hc₂K₀ hsK₀ hOK₁ hsK₁ hOK₂
+      hs.1.symm hs.2
+  · exact Or.inl hc₂K₀
+
 end ATailFrontierLiveClosure
 end Problem97
