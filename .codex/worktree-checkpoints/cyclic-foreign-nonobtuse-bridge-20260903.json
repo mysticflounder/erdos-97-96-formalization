@@ -1,0 +1,15 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "cyclic-foreign-nonobtuse-bridge-20260903",
+  "owner": "codex",
+  "base_head": "116310fed50b44a14b72f4a396d12afb9fe3ee12",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/cyclic-foreign-nonobtuse-bridge-20260903.json",
+    "docs/plans/2026-09-01-d1-triapex-paired-common-deletion-closure-plan.md",
+    "lean/Erdos9796Proof/P97/ATail/CyclicForeignHitExclusion.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-03T00:00:00Z",
+  "manifest_sha256": "4f3d1c7459e600f36c12b8b2d3a43b4e0fd6be89fa3e8138b9d51f21ab1fc4b5"
+}
