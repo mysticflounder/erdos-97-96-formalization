@@ -75,6 +75,36 @@ objects, non-SAT presence, non-satisfied outcomes, solve/receipt disagreement,
 crossed solver digests, and the reconciled response-loss path.  The expanded
 focused suite passes 119 tests.
 
-The pre-fix smoke publication is diagnostic only.  The governed run will use a
-fresh output root after this compatibility change is committed, and its
-current-source offline validation must pass before the target query launches.
+The pre-fix smoke publication is diagnostic only and was moved to quarantine.
+
+## Governed PIQD wave
+
+The publication-quality run is rooted at
+`scratch/runs/b1-mec-gauge-elimination-wave-20260903/elimination-v1` under lane
+`b1-mec-gauge-elimination-wave-20260903`.  Its run manifest repeats lane base
+`58a89bce6daffa5c2786b1d238c453bf329eae6d`; the run report records launch-time
+HEAD `3822c2a6cb819e44dbf41e1486926e828ee7a45b` and the exact captured runtime
+source digests.  A first completed publication at a nonconforming lane root was
+moved intact to quarantine and is not promoted.
+
+The four-point gauge-MEC control returned SAT in both stages.  Exact rational
+semantic replay accepted both models, current-source offline validation passed,
+and the emitted SMT declared only `mec_y`; the exact substitutions supplied
+`mec_x` and `mec_r2`.  After validation, this separate diagnostic tree was
+moved intact to `scratch/quarantine/b1-mec-gauge-elimination-gauge-control-20260903`
+because its bespoke root name is not one of the registered generated-output
+classes.  The target publication retains its own governed PIQD smoke gate under
+`artifacts/piqd/smoke-sat`.
+
+For target system `82c2dfe781d609472430`, the eliminated query reduced the
+Wave C assertion ladder from `198/486/486` to `194/482/482`.  All three stages
+returned `UNKNOWN` after solver times of 131014, 138895, and 129189 ms.  Offline
+validation passed.  There is no SAT model, UNSAT core, theorem claim, or Lean
+claim, so this wave is computationally inconclusive and does not close B1.
+
+The required new-wave theorem mine found no concrete general theorem candidate:
+the full-convex stage adds 288 strict orientation inequalities, while its SMT,
+original journal, and normalized journal are byte-identical to the convex-only
+stage; neither supplies a model, core, assumption subset, or decisive
+subformula.  Because the reuse-search key did not change, no further global
+Lean-corpus search was run.

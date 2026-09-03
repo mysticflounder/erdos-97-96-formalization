@@ -1,0 +1,23 @@
+{
+  "schema": "worktree-run-manifest/v1",
+  "lane_id": "b1-mec-gauge-elimination-wave-20260903",
+  "run_id": "elimination-v1",
+  "root": "scratch/runs/b1-mec-gauge-elimination-wave-20260903/elimination-v1",
+  "owner": "Codex-B1-Sorry",
+  "base_head": "58a89bce6daffa5c2786b1d238c453bf329eae6d",
+  "output_classes": [
+    "artifacts",
+    "events",
+    "tmp"
+  ],
+  "source_digests": {
+    "scratch/runs/b1-mec-gauge-elimination-wave-20260903/elimination-v1/artifacts/piqd/82c2dfe781d609472430/00-exact-metric-relaxation/source-0001-endpoint_adapter.py": "eda3bd9eaa94c0461996e92bfc2aaa430cb14dd8174a37573fc7858e69b0630b",
+    "scratch/runs/b1-mec-gauge-elimination-wave-20260903/elimination-v1/artifacts/piqd/82c2dfe781d609472430/00-exact-metric-relaxation/source-0002-legacy_producer.py": "a7e43319e4ab9797f21d662788ceedc3fa98bb7dd8f2d931340cca15169cc28b",
+    "scratch/runs/b1-mec-gauge-elimination-wave-20260903/elimination-v1/artifacts/piqd/82c2dfe781d609472430/00-exact-metric-relaxation/source-0003-generic_adapter.py": "94058aa4e04b5acc27242b52781794944ea00a069b16805104d3263203d65e70"
+  },
+  "input_digests": {
+    "scratch/runs/b1-mec-gauge-elimination-wave-20260903/elimination-v1/source.json": "dc310082e5430b32bb6b0829ff627586f9d1a10111a3fe7fc9bfbbe8b955ee09"
+  },
+  "created_utc": "2026-09-03T12:05:34Z",
+  "manifest_sha256": "20c2986441245b604e2129d1f5333f0a06c8e90f9db9fec313ca71aedea67635"
+}
