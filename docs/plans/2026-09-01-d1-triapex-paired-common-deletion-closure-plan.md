@@ -4260,3 +4260,99 @@ which contain the Moser vertices, or the open interiors, which do not. That is
 being checked; nothing is claimed until it is.
 
 Leaf unchanged: single `sorry`, `M = 18`.
+
+### 59. The circle fact has a name in the source, and one cause explains every dead end (2026-09-03)
+
+The third audit returns, and together with section 58 it collapses sections
+53–56 into a single structural statement. It also corrects section 53 a second
+time.
+
+**Correction 3 — section 53 was wrong about cross-cap membership.** Section 53
+said the adjacent-cap one-hit bounds "allow exactly one such point per adjacent
+cap but do not produce it". Producers do exist:
+
+- `SurplusCapPacket.selectedClass_exactOne_eachAdjacent_of_card_four_of_interior_card_two`
+  (`SurplusM44Packet/ExactFourAdjacentDistribution.lean:26`) — cardinality-free,
+  concludes `= 1` on each adjacent closed cap;
+- `SurplusCapPacket.ExactFourTwoRadiusAdjacentCapGrid.exists_strict_hits`
+  (`ExactFourAdjacentDistribution.lean:157`) — concludes a point of the adjacent
+  cap's **strict interior** inside the apex class, which is exactly the object
+  section 53 said had no producer;
+- `ExactFourAdjacentGridKalmanson.FourHits.exists`
+  (`ATail/ExactFourAdjacentGridKalmanson.lean:53`);
+- the closed-to-interior upgrades `mem_leftAdjacentInteriorByIndex_of_mem_leftAdjacentCapByIndex_of_ne_outer`
+  and its mirror (`SurplusM44Packet/Shard02.lean:565`).
+
+Their first missing antecedent is
+`(SelectedClass D.A (S.oppositeVertexByIndex i) r ∩ S.capInteriorByIndex i).card = 2`,
+which comes from `(S.capInteriorByIndex i).card = 4`, whose only producer is
+`ATailExactFifteenApexProfile.capInteriorByIndex_card_eq_four_of_card_eq_fifteen`
+(`ATail/ExactFifteenApexProfile.lean:158`).
+
+**The circle fact is a named predicate in the source.** `SurplusCapPacket.EndpointRadiusAt`
+(`SurplusM44Packet/Shard03.lean:414`), read directly:
+
+```lean
+def EndpointRadiusAt (S : SurplusCapPacket A) (i : Fin 3) : Prop :=
+  ∀ {radius : ℝ}, 0 < radius →
+    4 ≤ (SelectedClass A (S.oppositeVertexByIndex i) radius).card →
+      dist (S.leftOuterVertexByIndex i) (S.oppositeVertexByIndex i) = radius ∧
+        dist (S.rightOuterVertexByIndex i) (S.oppositeVertexByIndex i) = radius
+```
+
+`leftOuterVertexByIndex` and `rightOuterVertexByIndex` (`Shard01.lean:1130`,
+`:1139`) are, by their `match`, exactly the other two Moser vertices. So for the
+special apex's index, `EndpointRadiusAt` says precisely **the other two apices lie
+at the class radius from this one** — the census `A2` group's apex half, verbatim,
+in the source's own vocabulary. Sections 53–56 were searching for something the
+repository already names.
+
+**Its two producers are gated on a four-point cap.**
+`endpointRadiusAt_of_moserCapContainmentAt_of_cap_card_eq_four`
+(`SurplusM44Packet/Shard05.lean:350`) and
+`endpointRadiusAt_of_noStrictAdjacentEscapeAt_of_convexIndep` (`Shard05.lean:381`)
+both require `(S.capByIndex i).card = 4`. `G.cap_card_ge_six` gives `6 ≤ card`
+for every cap. Both are refuted.
+
+**One cause for every dead end.** Collecting sections 53–59, every producer of
+every one of the three ingress facts is gated on a *small* cap:
+
+| ingress fact | producer | gate | status under `G` |
+|---|---|---|---|
+| two apices on the third apex's circle | `endpointRadiusAt_of_*` (`Shard05.lean:350,381`) | `(capByIndex i).card = 4` | refuted by `cap_card_ge_six` |
+| equilateral apices, apices and cap interiors on one radius | `IsM44.exists_oppInterior_side_placement_*` (`Shard08.lean:783`) | `S.IsM44` (both opposite caps card 4) | refuted by `cap_card_ge_six` |
+| `A1` cross-cap equidistance, strict-interior form | `exists_strict_hits` (`ExactFourAdjacentDistribution.lean:157`) | `(capInteriorByIndex i).card = 4`, i.e. `D.A.card = 15` | not derivable |
+| `A1` cross-cap equidistance, `MoserCapFormsAt` route | `moserCapFormsAt_of_convexIndep` (`Shard03.lean:709`) | `(capByIndex i).card = 4` | refuted by `cap_card_ge_six` |
+
+**`TriApexAllLargeContext` is the complement of the regime in which this
+geometry was proved.** That is the honest one-line summary of the ingress
+problem, and it is a much better statement than "no producer exists". The facts
+are not missing by oversight; the all-large branch is exactly the case the
+existing cap-containment technique does not cover.
+
+**The single remaining gate is `D.A.card = 15`.** The one route not refuted
+outright — the two-radius adjacent grid — needs `(capInteriorByIndex i).card = 4`
+and therefore exact fifteen. Verified: `cap_card_ge_six` yields only the floor,
+`ATailExactFifteenApexProfile.card_ge_fifteen_of_all_cap_card_ge_six`
+(`ExactFifteenApexProfile.lean:55`) giving `15 ≤ A.card`, and nothing in the tree
+concludes equality. The leaf's own card-fifteen tools, `hfifteen` (`:2907`) and
+`hadjacentAtPair` (`:2920`), are stored as conditionals `D.A.card = 15 → …`
+precisely because the hypothesis is unavailable.
+
+The project already performs this split elsewhere: `Rigid221SourceHeavy.lean:14496`
+does `by_cases h15 : D.A.card = 15` and routes the `≥ 16` arm to a separate
+theorem. So splitting the leaf the same way is an established pattern here, not a
+novel manoeuvre — and it makes explicit what section 53 called the sharper
+problem. The `= 15` arm is reachable by the route above; the `≥ 16` arm is owed
+in full and nothing in this lane addresses it.
+
+**Where option (a) actually stands.** Not three lookups, and not three ordinary
+theorems either. On the `= 15` arm the `A1` cross-cap equidistance is reachable,
+with a residual gap in the one-radius sub-arm (the adjacent hit may be the outer
+Moser vertex; the predicate asserting it is `EndpointRadiusAt`, whose producers
+are refuted). The circle memberships need `EndpointRadiusAt` proved in the
+all-large regime, which is new mathematics rather than plumbing: a proof that
+does not go through cap containment at a four-point cap. The blocker-centre
+support control from section 58 is unchanged.
+
+Leaf unchanged: single `sorry`, `M = 18`.
