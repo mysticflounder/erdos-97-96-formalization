@@ -1816,9 +1816,20 @@ The characteristic-0 wall is independent of what is saturated away. The peer's
 four-pair Rabinowitsch run on `0d6996160cc83aab` printed only `equations 44` and
 reached its 3600 s budget, exactly as the plain and fully saturated runs did.
 Rabinowitsch enlarges the system — 27 variables and 44 equations against 26 and
-40 — so it cannot help with a first basis that is already out of reach. Two
-independent strategies have now died in the first basis over the rationals on a
-system that finishes mod 32003 in 8 to 53 seconds. The untried combination is
+40 — so it cannot help with a first basis that is already out of reach. Four
+characteristic-0 routes have now died in the first basis on `0d6996160cc83aab`,
+each printing its first line and nothing else before reaching its budget:
+
+    -char0                 std      "equations 40"   wall 1800.087 s / 1800 s
+    -pairs-modstd-char0    modStd   "equations 40"   wall 1800.016 s / 1800 s
+    -sat-modstd-char0      modStd   "equations 40"   wall 3600.038 s / 3600 s
+    -modstd-rab-char0      modStd   "equations 44"   wall 3600.038 s / 3600 s
+
+One of them is plain Buchberger, so the accurate statement is not that the
+modular algorithm fails but that Singular produces no first basis over the
+rationals for this system by any route tried, modular or direct, saturated or
+not, on a system that finishes mod 32003 in 8 to 53 seconds. The untried
+combination is
 interreduction and elimination together with the four live pairs, which would
 run at 22 variables; beyond that, this encoding needs an engine built for real
 solutions of zero-dimensional systems over the rationals, which is the standing
