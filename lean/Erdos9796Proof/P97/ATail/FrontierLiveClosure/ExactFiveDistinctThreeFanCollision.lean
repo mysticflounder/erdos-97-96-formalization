@@ -90,5 +90,52 @@ theorem RobustApexFourIncidenceContinuationPacket.threeFan_shared_support_restri
       hs.1.symm hs.2
   · exact Or.inl hc₂K₀
 
+/-- The first two row supports have only the distinguished intersection patterns
+when the third center lies in the first row. -/
+theorem RobustApexFourIncidenceContinuationPacket.threeFan_shared_support_intersection_normalForm
+    {D : CounterexampleData} {H : CriticalShellSystem D.A}
+    {O c₁ c₂ a : ℝ²} {B₀ B₁ B₂ : Finset ℝ²}
+    (P : RobustApexFourIncidenceContinuationPacket D H O c₁ c₂ a B₀ B₁ B₂)
+    (hc₁K₀ : c₁ ∈ P.surface.row₀.support)
+    (hOK₁ : O ∈ P.surface.row₁.support)
+    (hOK₂ : O ∈ P.surface.row₂.support) :
+    c₂ ∉ P.surface.row₀.support ∨
+      P.surface.row₀.support ∩ P.surface.row₁.support = {a} ∨
+      P.surface.row₀.support ∩ P.surface.row₁.support = {a, c₂} := by
+  by_cases hc₂K₀ : c₂ ∈ P.surface.row₀.support
+  · have hrest := P.threeFan_shared_support_restriction hc₁K₀ hOK₁ hOK₂
+    rcases hrest with hc₂not | hrest
+    · exact (hc₂not hc₂K₀).elim
+    · by_cases hc₂K₁ : c₂ ∈ P.surface.row₁.support
+      · right
+        right
+        ext x
+        constructor
+        · intro hx
+          rcases Finset.mem_inter.mp hx with ⟨hx₀, hx₁⟩
+          rcases hrest hx₀ hx₁ with hxa | hxc
+          · exact Finset.mem_insert.mpr (Or.inl hxa)
+          · exact Finset.mem_insert.mpr (Or.inr (Finset.mem_singleton.mpr hxc))
+        · intro hx
+          rcases Finset.mem_insert.mp hx with rfl | hx
+          · exact Finset.mem_inter.mpr ⟨P.surface.a_mem_row₀, P.a_mem_row₁⟩
+          · have hxc₂ : x = c₂ := Finset.mem_singleton.mp hx
+            subst x
+            exact Finset.mem_inter.mpr ⟨hc₂K₀, hc₂K₁⟩
+      · right
+        left
+        ext x
+        constructor
+        · intro hx
+          rcases Finset.mem_inter.mp hx with ⟨hx₀, hx₁⟩
+          rcases hrest hx₀ hx₁ with hxa | hxc
+          · exact Finset.mem_singleton.mpr hxa
+          · exact (hc₂K₁ (hxc ▸ hx₁)).elim
+        · intro hx
+          have hxa : x = a := Finset.mem_singleton.mp hx
+          subst x
+          exact Finset.mem_inter.mpr ⟨P.surface.a_mem_row₀, P.a_mem_row₁⟩
+  · exact Or.inl hc₂K₀
+
 end ATailFrontierLiveClosure
 end Problem97

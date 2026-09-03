@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "exactfive-three-fan-intersection-normalform-audit-20260903",
+  "owner": "three_fan_intersection_normalform_skeptic",
+  "base_head": "a5ce524283a484d4d19dffabc01b19b6e113f587",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exactfive-three-fan-intersection-normalform-audit-20260903.json",
+    "docs/skeptic-exactfive-three-fan-intersection-normalform-2026-09-03.md"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-03T19:05:36Z",
+  "manifest_sha256": "eea40fc0d2ebe692091844d6d496999e267d49abf07e80ce9d16e940da8734ec"
+}

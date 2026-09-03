@@ -1,0 +1,16 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "exactfive-three-fan-intersection-normalform-20260903",
+  "owner": "codex-rigid221",
+  "base_head": "a5ce524283a484d4d19dffabc01b19b6e113f587",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exactfive-three-fan-intersection-normalform-20260903.json",
+    ".codex/worktree-checkpoints/exactfive-three-fan-intersection-normalform-audit-20260903.json",
+    "docs/skeptic-exactfive-three-fan-intersection-normalform-2026-09-03.md",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactFiveDistinctThreeFanCollision.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-03T19:00:00Z",
+  "manifest_sha256": "d00d05c7c7d2a55ced51974df8936cc238bbc2127e8bfd93cbf9022d2bbd690f"
+}
