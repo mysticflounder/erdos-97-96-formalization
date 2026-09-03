@@ -2353,3 +2353,61 @@ Also recorded, from chain v15's death: piqd rejects a byte-identical
 resubmission with `script blob <hash> was already stored` rather than
 deduplicating it to the existing run, so retrying an unchanged query fails
 instead of returning the earlier result.
+
+### 26. The last characteristic-0 slot is spent, with no verdict (2026-09-03)
+
+The run the section 15 composition gate authorized has finished:
+`TIMED_OUT` at 3600023 ms against its 3600 s budget, recorded by the driver as
+`NO_VERDICT(finished/None/3600023ms)` with `Singular output has no dim line`.
+Its complete stdout is
+
+    equations 44
+    elimpart 5
+
+That second line is the informative one. `elimpart` substituted five variables
+over the rationals, the same five it substitutes mod 32003, so the run reached
+the fully reduced system and then died in the Gröbner basis anyway. The failure
+is not the reduction failing to apply; it is the maximally reduced rational
+system still not finishing.
+
+Five rational runs have now died on this orbit — plain `std`, `modStd`,
+`modStd` with saturation, `modStd` on the four-pair Rabinowitsch system, and
+now `modStd` on `interred` + `elimpart` + Rabinowitsch — against 3.7 to 8.2 s
+for the raw basis mod 32003 and 20.958 s for the reduced one. The
+characteristic-0 route on this encoding is exhausted, and the gate it passed
+turned out to license an attempt that failed exactly where its predecessors
+did. Recording that plainly: the gate was correctly specified and correctly
+passed, and it bought nothing.
+
+Where this leaves the layer. The five orbits of section 19 stand as:
+
+- three orbits, 72 of the 111 patterns, refuted — one of them over the
+  rationals, two mod 32003;
+- one orbit of 3 patterns never tested, and section 25 retracts the only claim
+  ever made about it;
+- the 36-orbit **open**, and now open with no route in view.
+
+The open orbit is the hard case for a specific structural reason worth stating,
+because it also rules out the technique that settled the others. Its saturated
+ideal has vector-space dimension 192 mod 32003 with all fifteen points
+distinct, so it does NOT collapse: no live pair's quotient dimension equals the
+raw one. The membership certificate — the one method in this lane that yields a
+proof rather than mod-p evidence — certifies that a squared distance lies in the
+ideal, which is exactly what a collapse asserts and exactly what this orbit
+denies. So the certificate route cannot be pointed at the open orbit at all. It
+upgrades the 1536-orbit and would upgrade the 3-orbit if that one collapses; it
+has nothing to say here.
+
+What remains for the open orbit, honestly: the 192 solutions mod 32003 are a
+genuine survivor at the encoded scope, and deciding whether any is real needs
+the rational real-root count that five runs have failed to produce. The only
+concrete untried lever is the labeling spread of section 20 — 30 of the 36
+labelings are unmeasured even mod p, and a materially cheaper one is a
+different rational computation rather than the same one retried. Its weakness
+is unchanged and now better evidenced: `3826b8a0dec4a6b0` is 2.2 times cheaper
+than `0d6996160cc83aab` mod p and both died rationally, so the mod-p spread
+does not obviously predict rational tractability.
+
+No further 3600 s rational slot is authorized on this orbit. A bounded mod-p
+ranking sweep over the unmeasured labelings is the next thing worth spending
+lane time on, and only once the lane is free.
