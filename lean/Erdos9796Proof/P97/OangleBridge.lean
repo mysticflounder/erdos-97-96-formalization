@@ -408,6 +408,48 @@ theorem equilateral_apex_chord_oangle_toReal_eq_pi_div_three_or_neg
   · exact Or.inl h
   · exact Or.inr h
 
+/-! The unsigned theorem above leaves the orientation branch to each caller.
+    This small adapter discharges the negative branch from a positive signed
+    angle hypothesis, which is the form supplied by the convex cyclic-order
+    API. -/
+
+/-- A positively oriented equilateral apex angle is the positive `π/3` branch.
+
+The unoriented equilateral-angle theorem only determines the two possible
+signs.  A positive principal oriented angle selects the positive one. -/
+theorem equilateral_apex_chord_oangle_toReal_eq_pi_div_three_of_pos
+    {V P : Type*} [NormedAddCommGroup V] [InnerProductSpace ℝ V]
+    [MetricSpace P] [NormedAddTorsor V P]
+    [Fact (Module.finrank ℝ V = 2)] [Module.Oriented ℝ V (Fin 2)]
+    {s : EuclideanGeometry.Sphere P} {p₁ p₂ p₃ : P}
+    (h1 : p₁ ∈ s) (h2 : p₂ ∈ s) (h3 : p₃ ∈ s)
+    (h12 : p₁ ≠ p₂) (h13 : p₁ ≠ p₃) (h23 : p₂ ≠ p₃)
+    (hd12 : dist p₁ p₂ = dist p₁ p₃)
+    (hd23 : dist p₂ p₃ = dist p₁ p₃)
+    (hpos : 0 < (∡ p₁ p₂ p₃).toReal) :
+    (∡ p₁ p₂ p₃).toReal = Real.pi / 3 := by
+  rcases equilateral_apex_chord_oangle_toReal_eq_pi_div_three_or_neg
+      h1 h2 h3 h12 h13 h23 hd12 hd23 with h | h
+  · exact h
+  · rw [h] at hpos
+    linarith [Real.pi_pos]
+
+/-- The same positive branch selected by the oriented-angle sign API. -/
+theorem equilateral_apex_chord_oangle_toReal_eq_pi_div_three_of_sign_pos
+    {V P : Type*} [NormedAddCommGroup V] [InnerProductSpace ℝ V]
+    [MetricSpace P] [NormedAddTorsor V P]
+    [Fact (Module.finrank ℝ V = 2)] [Module.Oriented ℝ V (Fin 2)]
+    {s : EuclideanGeometry.Sphere P} {p₁ p₂ p₃ : P}
+    (h1 : p₁ ∈ s) (h2 : p₂ ∈ s) (h3 : p₃ ∈ s)
+    (h12 : p₁ ≠ p₂) (h13 : p₁ ≠ p₃) (h23 : p₂ ≠ p₃)
+    (hd12 : dist p₁ p₂ = dist p₁ p₃)
+    (hd23 : dist p₂ p₃ = dist p₁ p₃)
+    (hsign : (∡ p₁ p₂ p₃).sign = 1) :
+    (∡ p₁ p₂ p₃).toReal = Real.pi / 3 := by
+  apply equilateral_apex_chord_oangle_toReal_eq_pi_div_three_of_pos
+    h1 h2 h3 h12 h13 h23 hd12 hd23
+  exact (Real.Angle.toReal_mem_Ioo_iff_sign_pos.mpr hsign).1
+
 /-- **Apollonius arc reverse bridge: cospherical implies `2 • oangle`
 equality.** Four points `{vj, Q, vi, vk}` that are cospherical (lie on
 some common sphere) and pairwise distinct in the apex/chord-endpoint

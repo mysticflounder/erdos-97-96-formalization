@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "oangle-positive-equilateral-20260903",
+  "owner": "codex-oangle-positive-equilateral",
+  "base_head": "55d0a09410696f9b0a6c3f388f57fd0c11a67ee4",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/oangle-positive-equilateral-20260903.json",
+    "lean/Erdos9796Proof/P97/OangleBridge.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-03T17:45:00Z",
+  "manifest_sha256": "8f65dc9dffba3ebfd42c079e02c6965781057cce0ebefacae53b8316a344cfb4"
+}
