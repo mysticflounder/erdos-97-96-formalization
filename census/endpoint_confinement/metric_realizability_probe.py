@@ -18,6 +18,10 @@ three distinct apex indices whose circumscribed circle supplies
 ``CircumscribedMECPacket.disk_contains_A``.  Legacy direct sources and saved
 assignments retain their original interpretation.  As in the ATAIL geometry
 template, the quantified minimum-radius clause is not encoded.
+The PIQD route can submit the full MEC packet or isolate its disk or
+nonobtuse payload.  Every mode retains the MEC reconstruction backbone: the
+height guard and exact reconstructed boundary definitions after gauge
+elimination, or the positive-radius and boundary atoms in the ungauged form.
 
 An UNSAT result is diagnostic evidence about that saved assignment.  A SAT
 result is only a realization of this row-level relaxation, not a Problem 97
@@ -53,7 +57,7 @@ DEFAULT_INPUTS = (
     HERE / "critical_shell_results_all_placements_n11_12.json",
     HERE / "shell_audit_results_all_frames_n11_12.json",
 )
-SCHEMA = "p97-global-confinement-metric-realizability-v1"
+SCHEMA = "p97-global-confinement-metric-realizability-v2"
 DIRECT_SYSTEM_SOURCE_SCHEMA = "p97-endpoint-direct-metric-system-source-v1"
 DIRECT_SYSTEM_MEC_SOURCE_SCHEMA = "p97-endpoint-direct-metric-system-source-v2"
 DIRECT_SYSTEM_SOURCE_SCHEMAS = frozenset(
@@ -1782,10 +1786,19 @@ def probe_system(
     piqd_server: str = "http://127.0.0.1:7272",
     piqd_output_directory: Path | None = None,
     source_paths: Sequence[Path] = (),
+    mec_components: str = "full",
     _piqd_fixture_only: bool = False,
 ) -> dict[str, Any]:
     """Dispatch one system; PIQD is default and local Z3 is explicit legacy."""
 
+    if type(mec_components) is not str or mec_components not in {
+        "full",
+        "disk-only",
+        "nonobtuse-only",
+    }:
+        raise ValueError("unknown MEC component selector")
+    if mec_components != "full" and "mec_apices" not in system:
+        raise ValueError("partial MEC component selection requires a MEC packet")
     if type(solver_route) is not str or solver_route not in {
         "piqd",
         "legacy-local-z3",
@@ -1794,6 +1807,10 @@ def probe_system(
     if type(workers) is not int or type(workers) is bool or workers < 1:
         raise ValueError("workers must be a positive exact integer")
     if solver_route == "legacy-local-z3":
+        if mec_components != "full":
+            raise ValueError(
+                "partial MEC component selection requires the PIQD solver route"
+            )
         legacy = dict(_probe_system(system, timeout_s))
         legacy.update(
             {
@@ -1825,11 +1842,13 @@ def probe_system(
                 transport=transport,
                 output_directory=piqd_output_directory,
                 source_paths=source_paths,
+                mec_components=mec_components,
                 _fixture_only=_piqd_fixture_only,
             ),
         )
     )
     result.setdefault("route", "deterministic-symbolic-prefilter")
+    result["mec_components"] = mec_components
     result["requested_solver_route"] = "piqd"
     result["piqd_submitted"] = result["route"] == "piqd-z3-qfnra"
     result["local_fallback"] = False
@@ -2111,6 +2130,15 @@ def _parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     )
     parser.add_argument("--piqd-server", default="http://127.0.0.1:7272")
     parser.add_argument(
+        "--mec-components",
+        choices=("full", "disk-only", "nonobtuse-only"),
+        default="full",
+        help=(
+            "select the full MEC packet or isolate its disk/nonobtuse component; "
+            "all modes retain the MEC boundary-reconstruction backbone"
+        ),
+    )
+    parser.add_argument(
         "--piqd-output-directory",
         type=Path,
         help="create-once PIQD custody root (default: <out>.piqd)",
@@ -2134,6 +2162,8 @@ def main(argv: Sequence[str] | None = None) -> int:
         raise SystemExit(
             "--explain-exact-core requires --solver-route legacy-local-z3"
         )
+    if args.mec_components != "full" and args.solver_route != "piqd":
+        raise SystemExit("--mec-components requires --solver-route piqd")
 
     piqd_output_directory = args.piqd_output_directory
     if piqd_output_directory is None:
@@ -2218,6 +2248,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         "solver_route": args.solver_route,
         "piqd_server": args.piqd_server if args.solver_route == "piqd" else None,
         "local_fallback": False if args.solver_route == "piqd" else None,
+        "mec_components": args.mec_components,
     }
     _write_checkpoint(
         args.out,
@@ -2244,6 +2275,7 @@ def main(argv: Sequence[str] | None = None) -> int:
                     piqd_server=args.piqd_server,
                     piqd_output_directory=piqd_output_directory / system_id,
                     source_paths=inputs,
+                    mec_components=args.mec_components,
                 )
             except (
                 piqd.EndpointMetricPiqdError,

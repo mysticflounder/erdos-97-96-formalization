@@ -1,0 +1,27 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "b1-mec-component-isolation-20260903",
+  "owner": "Codex-B1-Sorry",
+  "base_head": "366c5a62982cc9241bbb687d74d6e3a1ae10fe22",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/b1-mec-component-isolation-20260903.json",
+    "census/endpoint_confinement/metric_realizability_piqd.py",
+    "census/endpoint_confinement/metric_realizability_probe.py",
+    "census/endpoint_confinement/test_metric_realizability_piqd.py",
+    "docs/audits/2026-09-03-b1-mec-component-isolation.md"
+  ],
+  "generated_roots": [
+    "scratch/runs/b1-mec-component-isolation-20260903/disk-only-v1",
+    "scratch/runs/b1-mec-component-isolation-20260903/nonobtuse-only-v1"
+  ],
+  "durable_paths": [
+    "scratch/runs/b1-mec-component-isolation-20260903/disk-only-v1/REPORT.md",
+    "scratch/runs/b1-mec-component-isolation-20260903/disk-only-v1/result.json",
+    "scratch/runs/b1-mec-component-isolation-20260903/disk-only-v1/run_manifest.json",
+    "scratch/runs/b1-mec-component-isolation-20260903/nonobtuse-only-v1/REPORT.md",
+    "scratch/runs/b1-mec-component-isolation-20260903/nonobtuse-only-v1/result.json",
+    "scratch/runs/b1-mec-component-isolation-20260903/nonobtuse-only-v1/run_manifest.json"
+  ],
+  "created_utc": "2026-09-03T14:40:28Z",
+  "manifest_sha256": "715a54dda630289f93334486e6fda51c6871fd6856d0b8b42ed2b873a78302d2"
+}

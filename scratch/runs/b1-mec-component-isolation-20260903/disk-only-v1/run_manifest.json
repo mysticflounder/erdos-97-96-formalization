@@ -1,0 +1,23 @@
+{
+  "schema": "worktree-run-manifest/v1",
+  "lane_id": "b1-mec-component-isolation-20260903",
+  "run_id": "disk-only-v1",
+  "root": "scratch/runs/b1-mec-component-isolation-20260903/disk-only-v1",
+  "owner": "Codex-B1-Sorry",
+  "base_head": "366c5a62982cc9241bbb687d74d6e3a1ae10fe22",
+  "output_classes": [
+    "artifacts",
+    "events",
+    "tmp"
+  ],
+  "source_digests": {
+    "census/endpoint_confinement/metric_realizability_piqd.py": "e078ffe850630e88f1bdbfc1c36fb5591133e8e5967033e2a6b2710aa1ffa7dd",
+    "census/endpoint_confinement/metric_realizability_probe.py": "15c67dcf0ca3dd6b2ff7ab098380373e07b462eb71d2ce39343bd81712579d51",
+    "census/p97_search/phase3_piqd_smt_source_adapter.py": "94058aa4e04b5acc27242b52781794944ea00a069b16805104d3263203d65e70"
+  },
+  "input_digests": {
+    "scratch/runs/b1-full-mec-elimination-wave-20260903/elimination-v1/source.json": "dc310082e5430b32bb6b0829ff627586f9d1a10111a3fe7fc9bfbbe8b955ee09"
+  },
+  "created_utc": "2026-09-03T15:41:54Z",
+  "manifest_sha256": "3bb8d222d81211becb510f48f81ebdc34f7c4bd1cf30f7041933e5f69cc3ce40"
+}

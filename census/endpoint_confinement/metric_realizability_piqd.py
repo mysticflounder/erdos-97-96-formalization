@@ -11,6 +11,9 @@ outside this finite exposed packet.  When the MEC triangle contains both gauge
 labels, its third apex ``(u,v)`` has ``v > 0`` and the boundary equations give
 ``mec_y = (u^2-u+v^2)/(2*v)``.  The adapter eliminates every MEC variable and
 rewrites each disk atom polynomially before sending the query to PIQD.
+The ``full``, ``disk-only``, and ``nonobtuse-only`` component modes all retain
+the MEC reconstruction backbone: the height guard in the eliminated gauge
+case, or positive radius and three boundary equations in the ungauged case.
 """
 
 from __future__ import annotations
@@ -36,12 +39,13 @@ from census.p97_search import phase3_piqd_smt_source_adapter as neutral
 
 from . import metric_realizability_probe as producer
 
-RESULT_SCHEMA = "p97-endpoint-metric-realizability-piqd-result/v1"
-SOURCE_SCHEMA = "p97-endpoint-metric-realizability-piqd-source/v1"
-DESCRIPTOR_SCHEMA = "p97-endpoint-metric-realizability-piqd-query/v1"
+RESULT_SCHEMA = "p97-endpoint-metric-realizability-piqd-result/v2"
+SOURCE_SCHEMA = "p97-endpoint-metric-realizability-piqd-source/v2"
+DESCRIPTOR_SCHEMA = "p97-endpoint-metric-realizability-piqd-query/v2"
 PROFILE_SCHEMA = "p97-piqd-z3-qfnra-one-shot/v1"
 NORMALIZATION_SCHEMA = "p97-endpoint-metric-smt-normalization/v3"
 MEC_PARAMETERIZATION_SCHEMA = "p97-endpoint-metric-mec-parameterization/v2"
+MEC_COMPONENT_SELECTIONS = ("full", "disk-only", "nonobtuse-only")
 STAGES = ("exact-metric-relaxation", "full-convex", "convex-only-relaxation")
 _SAT_REPLAY_INCONCLUSIVE_STATUSES = {
     "INCONCLUSIVE_SEMANTIC_REPLAY_REJECTED",
@@ -521,12 +525,29 @@ def _authenticate_fixture_pin_packet(
         raise EndpointMetricPiqdError(f"{where} is crossed")
 
 
+def _validate_mec_components(
+    system: Mapping[str, Any], mec_components: object
+) -> str:
+    if type(mec_components) is not str or mec_components not in MEC_COMPONENT_SELECTIONS:
+        raise EndpointMetricPiqdError("MEC component selector is invalid")
+    if mec_components != "full" and "mec_apices" not in system:
+        raise EndpointMetricPiqdError(
+            "partial MEC component selection requires a declared MEC packet"
+        )
+    return mec_components
+
+
 def _stage_atoms(
-    system: Mapping[str, Any], stage: str, *, _fixture_only: bool = False
+    system: Mapping[str, Any],
+    stage: str,
+    *,
+    mec_components: str = "full",
+    _fixture_only: bool = False,
 ) -> tuple[dict[str, list[str]], dict[str, int]]:
     if type(stage) is not str or stage not in STAGES:
         raise EndpointMetricPiqdError("unknown metric PIQD stage")
     n = system["n"]
+    mec_components = _validate_mec_components(system, mec_components)
     atoms: dict[str, list[str]] = {
         "gauge": [
             "(= x_0 0)",
@@ -584,6 +605,10 @@ def _stage_atoms(
                 ],
             }
         )
+        if mec_components == "disk-only":
+            atoms["mec_nonobtuse"] = []
+        elif mec_components == "nonobtuse-only":
+            atoms["mec_disk"] = []
     for row in system["rows"]:
         center, support = row["center"], row["support"]
         reference = _d2(center, support[0])
@@ -640,12 +665,21 @@ def _stage_atoms(
 
 
 def build_stage_smt2(
-    system: Mapping[str, Any], stage: str, *, _fixture_only: bool = False
+    system: Mapping[str, Any],
+    stage: str,
+    *,
+    mec_components: str = "full",
+    _fixture_only: bool = False,
 ) -> tuple[tuple[str, ...], dict[str, int]]:
     """Build the deterministic, terminal-command-free QF_NRA state journal."""
 
     system = _validate_system(system)
-    atoms, counts = _stage_atoms(system, stage, _fixture_only=_fixture_only)
+    atoms, counts = _stage_atoms(
+        system,
+        stage,
+        mec_components=mec_components,
+        _fixture_only=_fixture_only,
+    )
     commands = ["(set-logic QF_NRA)"]
     for point in range(system["n"]):
         commands.extend(
@@ -711,11 +745,13 @@ def prepare_stage(
     *,
     timeout_ms: int,
     source_paths: Sequence[Path] = (),
+    mec_components: str = "full",
     _fixture_only: bool = False,
 ) -> PreparedStage:
     """Freeze one endpoint system and one normalized one-shot PIQD query."""
 
     system = _validate_system(system)
+    mec_components = _validate_mec_components(system, mec_components)
     if type(timeout_ms) is not int or not 1 <= timeout_ms <= 3_600_000:
         raise EndpointMetricPiqdError("timeout_ms must be in 1..3600000")
     _validate_source_paths(source_paths)
@@ -751,7 +787,12 @@ def prepare_stage(
     ]
     producer_path = implementation_sources[1][1]
     producer_bytes = implementation_sources[1][2]
-    commands, counts = build_stage_smt2(system, stage, _fixture_only=_fixture_only)
+    commands, counts = build_stage_smt2(
+        system,
+        stage,
+        mec_components=mec_components,
+        _fixture_only=_fixture_only,
+    )
     journal = b"".join(command.encode() + b"\n" for command in commands)
     variables = _variables(system["n"], mec_apices=system.get("mec_apices"))
     mec_parameterization = _mec_parameterization(system.get("mec_apices"))
@@ -767,6 +808,7 @@ def prepare_stage(
         "schema": SOURCE_SCHEMA,
         "system_id": system["system_id"],
         "stage": stage,
+        "mec_components": mec_components,
         "system": system,
         "system_sha256": _sha(_canonical(system)),
         "order_sha256": _sha(_canonical(system["order"])),
@@ -829,6 +871,7 @@ def prepare_stage(
     semantic = {
         "system_id": system["system_id"],
         "stage": stage,
+        "mec_components": mec_components,
         "system": system,
         "constraint_counts": counts,
         "fixture_only": _fixture_only,
@@ -838,10 +881,10 @@ def prepare_stage(
     }
     descriptor = {
         "schema": DESCRIPTOR_SCHEMA,
-        "producer": {"id": "endpoint-metric-realizability", "version": "v3"},
-        "semantic_verifier": {"id": "exact-rational-stage-replay", "version": "v3"},
+        "producer": {"id": "endpoint-metric-realizability", "version": "v4"},
+        "semantic_verifier": {"id": "exact-rational-stage-replay", "version": "v4"},
         "stage_id": stage,
-        "query_id": f"{system['system_id']}-{stage}",
+        "query_id": f"{system['system_id']}-{stage}-mec-{mec_components}",
         "sources": [
             {
                 "path": item.path,
@@ -1012,12 +1055,20 @@ def verify_sat_model(
         raise EndpointMetricPiqdError("SAT semantic input has the wrong type")
     system = _validate_system(semantic.get("system"))
     stage = semantic.get("stage")
+    mec_components = _validate_mec_components(
+        system, semantic.get("mec_components")
+    )
     fixture_only = semantic.get("fixture_only")
     fixture_pins = _fixture_pin_records(system, fixture_only)
     _authenticate_fixture_pin_packet(
         semantic.get("fixture_pins"), fixture_pins, "SAT fixture pins"
     )
-    _atoms, expected = _stage_atoms(system, stage, _fixture_only=fixture_only)
+    _atoms, expected = _stage_atoms(
+        system,
+        stage,
+        mec_components=mec_components,
+        _fixture_only=fixture_only,
+    )
     if semantic.get("constraint_counts") != expected:
         raise EndpointMetricPiqdError("SAT constraint counts are not authenticated")
     readback = _readback(values, query.get_values)
@@ -1093,41 +1144,43 @@ def verify_sat_model(
                 )
             if reconstructed_mec_checks is not None:
                 reconstructed_mec_checks["mec_boundary"] += 1
-        for point in range(system["n"]):
-            checked["mec_disk"] += 1
-            if gauge_eliminated:
-                x, y = points[point]
-                gauge_norm = x * x - x + y * y
-                if v * gauge_norm > y * q:
-                    return neutral.SemanticVerification(
-                        False, {"reason": "mec_disk_polynomial"}
-                    )
-            if mec_r2 - _distance_to(points[point], mec_center) < 0:
-                return neutral.SemanticVerification(
-                    False,
-                    {
-                        "reason": (
-                            "mec_reconstructed_disk"
-                            if gauge_eliminated
-                            else "mec_disk"
+        if mec_components in {"full", "disk-only"}:
+            for point in range(system["n"]):
+                checked["mec_disk"] += 1
+                if gauge_eliminated:
+                    x, y = points[point]
+                    gauge_norm = x * x - x + y * y
+                    if v * gauge_norm > y * q:
+                        return neutral.SemanticVerification(
+                            False, {"reason": "mec_disk_polynomial"}
                         )
-                    },
-                )
-            if reconstructed_mec_checks is not None:
-                reconstructed_mec_checks["mec_disk"] += 1
-        for index, apex in enumerate(canonical_apices):
-            checked["mec_nonobtuse"] += 1
-            if _dot_product_at(
-                points,
-                apex,
-                canonical_apices[(index + 1) % 3],
-                canonical_apices[(index + 2) % 3],
-            ) < 0:
-                return neutral.SemanticVerification(
-                    False, {"reason": "mec_nonobtuse"}
-                )
-            if reconstructed_mec_checks is not None:
-                reconstructed_mec_checks["mec_nonobtuse"] += 1
+                if mec_r2 - _distance_to(points[point], mec_center) < 0:
+                    return neutral.SemanticVerification(
+                        False,
+                        {
+                            "reason": (
+                                "mec_reconstructed_disk"
+                                if gauge_eliminated
+                                else "mec_disk"
+                            )
+                        },
+                    )
+                if reconstructed_mec_checks is not None:
+                    reconstructed_mec_checks["mec_disk"] += 1
+        if mec_components in {"full", "nonobtuse-only"}:
+            for index, apex in enumerate(canonical_apices):
+                checked["mec_nonobtuse"] += 1
+                if _dot_product_at(
+                    points,
+                    apex,
+                    canonical_apices[(index + 1) % 3],
+                    canonical_apices[(index + 2) % 3],
+                ) < 0:
+                    return neutral.SemanticVerification(
+                        False, {"reason": "mec_nonobtuse"}
+                    )
+                if reconstructed_mec_checks is not None:
+                    reconstructed_mec_checks["mec_nonobtuse"] += 1
     for pin in fixture_pins:
         checked["fixture_pins"] += 1
         expected_value = Fraction(pin["numerator"], pin["denominator"])
@@ -1174,6 +1227,7 @@ def verify_sat_model(
     evidence = {
         "system_id": system["system_id"],
         "stage": stage,
+        "mec_components": mec_components,
         "model_sha256": _sha(model.encode()),
         "values_sha256": _sha(values.encode()),
         "exact_rational_readback": True,
@@ -1210,6 +1264,23 @@ def _classification(engine: Mapping[str, object]) -> str:
     if engine.get("raw_status") == "UNKNOWN":
         return "UNKNOWN_INCONCLUSIVE"
     return "ERROR_OR_REPLAY_REJECTION_INCONCLUSIVE"
+
+
+def _result_constraint_counts(
+    system: Mapping[str, Any], mec_components: str
+) -> dict[str, int]:
+    rows = tuple(
+        producer.MetricRow(row["center"], tuple(row["support"]), row["exact"])
+        for row in system["rows"]
+    )
+    counts = producer._constraint_counts(
+        system["n"], rows, system.get("mec_apices")
+    )
+    if mec_components == "disk-only":
+        counts["mec_nonobtuse"] = 0
+    elif mec_components == "nonobtuse-only":
+        counts["mec_disk"] = 0
+    return counts
 
 
 def _write_immutable(directory_fd: int, name: str, payload: bytes) -> None:
@@ -2095,6 +2166,7 @@ def _validate_published_source_query(
             "schema",
             "system_id",
             "stage",
+            "mec_components",
             "system",
             "system_sha256",
             "order_sha256",
@@ -2113,6 +2185,9 @@ def _validate_published_source_query(
         "published endpoint source record",
     )
     system = _validate_system(source["system"])
+    mec_components = _validate_mec_components(
+        system, source["mec_components"]
+    )
     profile = _expect_object(
         source["solver_profile"],
         {
@@ -2176,6 +2251,7 @@ def _validate_published_source_query(
         stage,
         timeout_ms=timeout_ms,
         source_paths=tuple(source_paths),
+        mec_components=mec_components,
         _fixture_only=fixture_only,
     )
     if files.get("source-record.json") != prepared.source_record_bytes:
@@ -2461,11 +2537,13 @@ def run_staged_system(
     transport: neutral.PiqdTransport,
     output_directory: Path,
     source_paths: Sequence[Path] = (),
+    mec_components: str = "full",
     _fixture_only: bool = False,
 ) -> dict[str, Any]:
     """Run at most three fresh, one-solve PIQD sessions with no fallback."""
 
     system = _validate_system(system)
+    mec_components = _validate_mec_components(system, mec_components)
     if (
         type(timeout_s) not in {int, float}
         or type(timeout_s) is bool
@@ -2492,6 +2570,7 @@ def run_staged_system(
                 stage,
                 timeout_ms=timeout_ms,
                 source_paths=source_paths,
+                mec_components=mec_components,
                 _fixture_only=_fixture_only,
             )
             stage_name = f"{index:02d}-{stage}"
@@ -2539,6 +2618,7 @@ def run_staged_system(
             effective = engine["effective_status"]
             stage_result = {
                 "stage": stage,
+                "mec_components": mec_components,
                 "status": raw,
                 "effective_status": effective,
                 "classification": _classification(engine),
@@ -2594,17 +2674,11 @@ def run_staged_system(
     result: dict[str, Any] = {
         "schema": RESULT_SCHEMA,
         "system_id": system["system_id"],
+        "mec_components": mec_components,
         "status": final_status,
         "decisive_stage": decisive_stage,
         "stages": stages,
-        "constraint_counts": producer._constraint_counts(
-            system["n"],
-            tuple(
-                producer.MetricRow(row["center"], tuple(row["support"]), row["exact"])
-                for row in system["rows"]
-            ),
-            system.get("mec_apices"),
-        ),
+        "constraint_counts": _result_constraint_counts(system, mec_components),
         "route": "piqd-z3-qfnra",
         "workers": 1,
         "local_fallback": False,
@@ -2634,6 +2708,7 @@ def _validate_published_stage(
         result_value,
         {
             "stage",
+            "mec_components",
             "status",
             "effective_status",
             "classification",
@@ -2651,6 +2726,7 @@ def _validate_published_stage(
     total = prepared.source_record["constraint_counts"]["total"]
     expected = {
         "stage": stage,
+        "mec_components": prepared.source_record["mec_components"],
         "status": engine["raw_status"],
         "effective_status": engine["effective_status"],
         "classification": _classification(engine),
@@ -2682,6 +2758,9 @@ def _derive_published_result(
     if not 1 <= len(stages) <= 3:
         raise EndpointMetricPiqdError("published endpoint stage count is invalid")
     actual_names = [item["stage"] for item in stages]
+    selectors = [item["mec_components"] for item in stages]
+    if any(selector != selectors[0] for selector in selectors[1:]):
+        raise EndpointMetricPiqdError("published stages cross MEC component selectors")
     expected_names = ["exact-metric-relaxation"]
     first = stages[0]
     first_continues = first["status"] != "UNSAT" and (
@@ -2717,17 +2796,11 @@ def _derive_published_result(
     result: dict[str, Any] = {
         "schema": RESULT_SCHEMA,
         "system_id": system["system_id"],
+        "mec_components": selectors[0],
         "status": final_status,
         "decisive_stage": decisive_stage,
         "stages": list(stages),
-        "constraint_counts": producer._constraint_counts(
-            system["n"],
-            tuple(
-                producer.MetricRow(row["center"], tuple(row["support"]), row["exact"])
-                for row in system["rows"]
-            ),
-            system.get("mec_apices"),
-        ),
+        "constraint_counts": _result_constraint_counts(system, selectors[0]),
         "route": "piqd-z3-qfnra",
         "workers": 1,
         "local_fallback": False,
