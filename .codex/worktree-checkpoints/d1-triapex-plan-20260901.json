@@ -30,7 +30,7 @@
     "scratch/runs/d1-triapex-plan-20260901/stage2-probe-01"
   ],
   "lane_id": "d1-triapex-plan-20260901",
-  "manifest_sha256": "1c5ffdb50260015f35416149ee946705df5dbf28757e9e82ec02f836c56bd31b",
+  "manifest_sha256": "e580141b19d9c2cfe3a5899a2b9ae83752b2a0e7f63b8d894d5e1a8792bb88c7",
   "owned_paths": [
     ".codex/worktree-checkpoints/d1-triapex-plan-20260901.json",
     "census/card_head/d1_arcmidpoint_circle_necessity.py",
@@ -49,7 +49,8 @@
     "lean/Erdos9796Proof/P97/ATail/AdjacentCapContainment.lean",
     "lean/Erdos9796Proof/P97/ATail/ArcMidpointReflectionCollinear.lean",
     "lean/Erdos9796Proof/P97/ATail/CyclicSideInequalities.lean",
-    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TriApexEndpointRetainedOmission.lean"
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TriApexEndpointRetainedOmission.lean",
+    "lean/Erdos9796Proof/P97/ATail/InDiskCriterion.lean"
   ],
   "owner": "claude-fable-d1-triapex",
   "schema": "worktree-lane-checkpoint/v1"

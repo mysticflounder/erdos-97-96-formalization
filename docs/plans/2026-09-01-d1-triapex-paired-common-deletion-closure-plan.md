@@ -5401,3 +5401,69 @@ is *not* closed — it follows in the one-radius arm, from a conjectural section
 64, under a card-15 hypothesis the live consumer does not discharge.
 
 Leaf unchanged: single `sorry`, `M = 18`.
+
+### 71. The in-disk criterion is now algebraic, and its core is in Lean (2026-09-03)
+
+Section 69 derived the criterion from a Gram elimination but still leaned on
+section 67's trigonometric "Case 1" fact — that one intersection point always
+lies strictly outside the disk — to know the criterion was exact rather than
+merely sufficient.  That dependency is removable, and the whole geometric half
+becomes algebra.
+
+**The root sum does the work.**  Write `Q(t)` for the vanishing Gram
+determinant of `(p, u, v)` with the inner products replaced by their values,
+
+    2⟪p,u⟫ = t + R² - c²,   2⟪p,v⟫ = t + R² - a²,   2⟪u,v⟫ = 2R² - c²,
+
+a quadratic in `t = |p|²` whose roots are the two intersection points' squared
+distances from the centre.  Its root sum is `2R² + a²`, so its vertex sits
+strictly to the right of `R²` and the two roots are never both at most `R²`.
+That is exactly the Case-1 fact, and it is visible without trigonometry.
+
+Better, it can be stated without naming a root at all.  The following is a
+polynomial identity, verified by `ring`:
+
+    Q(R²) - (c²/4)(R² - t)(R² + a² - t) = Q(t).
+
+Given `Q(t) = 0` and `t ≤ R²`, both bracketed factors are nonnegative — the
+second because it exceeds the first by `a² > 0` — so `Q(R²) ≥ 0`.  And
+`Q(R²) = (a²/4)(4R²c² - R²a² - c⁴)`, so with `a² > 0`:
+
+> **`c⁴ ≤ R²(4c² - a²)`.**
+
+The certificate was checked first: over 20000 exact-rational points the ratio
+between the identity's two sides is the constant `1`, and `Q(R²)` matches its
+closed form at every one.
+
+**In Lean.**  `lean/Erdos9796Proof/P97/ATail/InDiskCriterion.lean`:
+
+* `Problem97.gramQuadratic` — the quadratic;
+* `Problem97.gramQuadratic_at_radius` — its value at `t = R²`, by `ring`;
+* `Problem97.gramQuadratic_sub_factored` — the factorization identity, by `ring`;
+* `Problem97.sq_le_of_gramQuadratic_eq_zero_of_le` — the criterion, from
+  `Q(t) = 0` and `t ≤ R²`, with **no angle hypothesis at all**;
+* `Problem97.gram_det_eq_zero` — three plane vectors have vanishing Gram
+  determinant, in coordinates.  This is the only place two-dimensionality is
+  used.
+
+**What is now Lean and what is not.**  The chain for the cyclic exclusion has
+four links.  Two are now Lean and axiom-clean:
+
+| link | state |
+|---|---|
+| foreign hit in slot `(i,j)` ⟹ `c⁴ ≤ R²(4c² - a²)` | **Lean core** (this section); the `dist`-to-inner-product bridge is still open |
+| that criterion ⟹ the side-length cubic | on paper, needs the circumradius relation |
+| three cubics ⟹ equilateral | **Lean** (section 68) |
+| at most one foreign hit per unordered pair | section 64, **PROOF SKETCH** |
+
+So the remaining unformalized geometry is one bridge lemma (turning the `dist`
+hypotheses of a `SurplusCapPacket` into the inner-product form these theorems
+consume, for which
+`Problem97.onArcOpposite_of_sameDist_apex_of_mem_mecDisk`
+(`U2/SameDistanceArcContainment.lean:95`) is the model), the circumradius
+relation, and section 64.
+
+Scope is unchanged from section 67: one-radius arm, card-15 gated, and section
+64 is still conjectural.  This section adds no new claim about obligation (i).
+
+Leaf unchanged: single `sorry`, `M = 18`.
