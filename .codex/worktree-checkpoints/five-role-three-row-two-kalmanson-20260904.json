@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "five-role-three-row-two-kalmanson-20260904",
+  "owner": "luna-swarm-radius-scribe",
+  "base_head": "56d88e19c7074d89c04c443d7c2a548fe6251f25",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/five-role-three-row-two-kalmanson-20260904.json",
+    "lean/Erdos9796Proof/P97/ATail/FiveRoleThreeRowTwoKalmansonCycle.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-04T10:58:58Z",
+  "manifest_sha256": "5954c1e36f0254c16535219d24ac061f8bd8d6f6ab7632669f50f833830b2650"
+}
