@@ -1,0 +1,15 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "exactfive-profile0034-source-gauge-split-postrun-20260904",
+  "owner": "write_profile0034_split_postrun",
+  "base_head": "a957d036f19a59bda73c70944f879b65cdbef405",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exactfive-profile0034-source-gauge-split-postrun-20260904.json",
+    "docs/audits/2026-09-04-exactfive-profile0034-source-gauge-split-postrun.md",
+    "docs/computation/exactfive-profile0034-source-gauge-split-20260904/run-0001-summary.json"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-04T04:46:44Z",
+  "manifest_sha256": "29a8f1a05037a3c8725d08f1b1af59f2857389a6635421f639328558e1a3c497"
+}

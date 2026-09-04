@@ -1,0 +1,104 @@
+{
+  "schema": "p97-exactfive-profile0034-source-gauge-split-postrun-summary/v1",
+  "lane_id": "exactfive-hard-source-swap-profile0034-source-gauge-split-qfnra-piqd-20260904",
+  "run_id": "run-0001",
+  "process_complete": true,
+  "status": "TARGET_INCONCLUSIVE",
+  "claim_boundary": "four authenticated fixed-order strict-radius cells only",
+  "claims": {
+    "source_realization": false,
+    "live_source_completeness": false,
+    "all_order_elimination": false,
+    "lean_ingress": false,
+    "theorem": false,
+    "promotion": false,
+    "live_closure": false
+  },
+  "formula_inventory_per_target": {
+    "coordinate_variable_declarations": 22,
+    "gauge_assertions": 0,
+    "strict_signed_area_assertions": 286,
+    "row_equality_assertions": 13,
+    "strict_radius_branch_assertions": 1,
+    "source_strict_assertions": 1,
+    "total_assertions": 301
+  },
+  "custody": {
+    "run_manifest_sha256": "e5b8ea0abe6e71693c97ec41cda5b8d98ac29dc2114f651b62b0873028538979",
+    "launch_sha256": "159c01803795b99f92540411606ab30b8032b28b3a4ec842fc03671a3927ae4b",
+    "terminal_sha256": "df6c3261b926038372b0002ac1270ee5f58a1f1d2e93769f1ae88e95b3770e70",
+    "source_digest_count": 6,
+    "input_digest_count": 11,
+    "fresh_session_count": 12,
+    "response_loss_count": 0,
+    "reconciliation_attempt_count": 0,
+    "producer_replay_verified": true
+  },
+  "timeout": {
+    "request_timeout_ms": 60000,
+    "adapter_effective_deadline_grace_ms": 30000,
+    "effective_deadline_ms": 90000
+  },
+  "queries": [
+    {
+      "key": "control-positive",
+      "z3": {"raw_status": "SAT", "effective_status": "SAT_SEMANTICALLY_REPLAYED", "wall_ms": 1},
+      "cvc5": {"raw_status": "SAT", "effective_status": "SAT_SEMANTICALLY_REPLAYED", "wall_ms": 0},
+      "result_sha256": "641b7e353ea96eb5a7430d6461af9d21f02437d49f84153afb31dd021a3e1821"
+    },
+    {
+      "key": "control-negative",
+      "z3": {"raw_status": "UNSAT", "effective_status": "UNSAT_DISCOVERY_ONLY", "wall_ms": 0},
+      "cvc5": {"raw_status": "UNSAT", "effective_status": "UNSAT_DISCOVERY_ONLY", "wall_ms": 0},
+      "result_sha256": "741c87cff78367002ef037f91efc01d2e7da803b2de6ce8fecae410aefc9b343"
+    },
+    {
+      "key": "parent-z3-mirror-radius-lt",
+      "z3": {"raw_status": "UNKNOWN", "effective_status": "INCONCLUSIVE_UNKNOWN", "wall_ms": 60879},
+      "cvc5": {"raw_status": "UNKNOWN", "effective_status": "INCONCLUSIVE_UNKNOWN", "wall_ms": 90011},
+      "result_sha256": "3165fb4448a34ab5b400404652953a459b8e6457f2a7cd5acd8472ecc349d3f2"
+    },
+    {
+      "key": "parent-z3-mirror-radius-gt",
+      "z3": {"raw_status": "UNKNOWN", "effective_status": "INCONCLUSIVE_UNKNOWN", "wall_ms": 61757},
+      "cvc5": {"raw_status": "UNKNOWN", "effective_status": "INCONCLUSIVE_UNKNOWN", "wall_ms": 90003},
+      "result_sha256": "19a8de14dec75352dfe629e339917fa3a390ea1cbbcdb36cafd7f8ddc47972b5"
+    },
+    {
+      "key": "parent-cvc5-direct-radius-lt",
+      "z3": {"raw_status": "UNKNOWN", "effective_status": "INCONCLUSIVE_UNKNOWN", "wall_ms": 61300},
+      "cvc5": {"raw_status": "UNKNOWN", "effective_status": "INCONCLUSIVE_UNKNOWN", "wall_ms": 90011},
+      "result_sha256": "ceeb4b6b61a21da03e21860cb3c800f2d1343e90e505420c555171cc0ac66992"
+    },
+    {
+      "key": "parent-cvc5-direct-radius-gt",
+      "z3": {"raw_status": "UNKNOWN", "effective_status": "INCONCLUSIVE_UNKNOWN", "wall_ms": 61264},
+      "cvc5": {"raw_status": "UNKNOWN", "effective_status": "INCONCLUSIVE_UNKNOWN", "wall_ms": 90006},
+      "result_sha256": "709e0ee2eee441084f61945a54e0b05923ecb948d0ebf2271d157ffce514414a"
+    }
+  ],
+  "target_outputs": {
+    "model": false,
+    "core": false,
+    "partial": false,
+    "proof": false
+  },
+  "wave_mine": {
+    "new_general_theorem_candidate": false,
+    "lean_corpus_search_triggered": false,
+    "reason": "all target sessions returned only authenticated UNKNOWN records without a model, core, partial stream, or proof"
+  },
+  "recommended_exact_reduction": {
+    "normalization": "write original y = sqrt(3) * Y and use squared distance dx^2 + 3*dY^2",
+    "fixed_apex_by_order": {
+      "parent-z3-mirror": ["1/2", "-1/2"],
+      "parent-cvc5-direct": ["1/2", "1/2"]
+    },
+    "coordinate_variable_declarations": 20,
+    "row_equality_assertions": 11,
+    "total_assertions": 299,
+    "forced_algebraic_anchor_removed": true,
+    "remaining_algebraic_readback_policy": "fail closed as inconclusive"
+  },
+  "summary_sha256": "cd1b9783d295bec067e9890fb7a8c6b7349c3e9b75baac3586ab51b696862ef6"
+}
