@@ -52,6 +52,9 @@ structure CardGeThirteenUncoveredThreeCenterPacket
   z_not_mem_row₁ : z ∉ W.row₁.support
   z_not_mem_row₂ : z ∉ W.row₂.support
   thirdRow : SelectedFourClass D.A S.oppApex2
+  thirdRow_named :
+    (z ∈ firstRow.support ∧ thirdRow = secondRow) ∨
+    (z ∈ secondRow.support ∧ thirdRow = firstRow)
   thirdRow_survives :
     HasNEquidistantPointsAt 4 (D.A.erase z) S.oppApex2
   thirdRow_omits : z ∉ thirdRow.support
@@ -187,11 +190,6 @@ theorem nonempty_cardGeThirteenUncoveredThreeCenterPacket_or_exactAdjacentCapGri
         rcases Finset.mem_union.mp hzRows with hz | hz
         · exact firstRow.support_subset_A hz
         · exact secondRow.support_subset_A hz
-      have hthirdSurvives :
-          HasNEquidistantPointsAt 4 (D.A.erase z) S.oppApex2 :=
-        surface.secondApex_robust.survives z hzA
-      obtain ⟨thirdRow, hthirdOmits⟩ :=
-        exists_selectedFourClass_avoiding_of_deletion_survives hthirdSurvives
       have hcenter₀A :
           (lateFirstApexSystem R).centerAt W.source₁.1 W.source₁.2 ∈ D.A :=
         (Finset.mem_erase.mp
@@ -205,24 +203,57 @@ theorem nonempty_cardGeThirteenUncoveredThreeCenterPacket_or_exactAdjacentCapGri
       have hcenter₂A : S.oppApex2 ∈ D.A := by
         simpa only [oppositeVertexByIndex_oppIndex2] using
           S.oppositeVertexByIndex_mem S.oppIndex2
-      have hexactRows :=
-        nonempty_threeCenterCommonDeletionExactRows_of_omitted_selectedFourClasses
-          hzA hcenter₀A hcenter₁A hcenter₂A W.blockers_ne
-          (surface.secondApex_robust.centerAt_ne
-            (lateFirstApexSystem R) W.source₁.1 W.source₁.2)
-          (surface.secondApex_robust.centerAt_ne
-            (lateFirstApexSystem R) W.source₂.1 W.source₂.2)
-          W.row₁ W.row₂ thirdRow hzC₀ hzC₁ hthirdOmits
-      exact Or.inl ⟨{
-        W := W
-        z := z
-        z_mem_rows := hzRows
-        z_not_mem_row₁ := hzC₀
-        z_not_mem_row₂ := hzC₁
-        thirdRow := thirdRow
-        thirdRow_survives := hthirdSurvives
-        thirdRow_omits := hthirdOmits
-        exactRows := hexactRows }⟩
+      rcases Finset.mem_union.mp hzRows with hzFirst | hzSecond
+      · have hzSecondNot : z ∉ secondRow.support := by
+          intro hzSecond
+          exact (Finset.disjoint_left.mp hdisjoint) hzFirst hzSecond
+        have hthirdSurvives :
+            HasNEquidistantPointsAt 4 (D.A.erase z) S.oppApex2 :=
+          selectedFourClass_survives_erase_of_not_mem secondRow hzSecondNot
+        have hexactRows :=
+          nonempty_threeCenterCommonDeletionExactRows_of_omitted_selectedFourClasses
+            hzA hcenter₀A hcenter₁A hcenter₂A W.blockers_ne
+            (surface.secondApex_robust.centerAt_ne
+              (lateFirstApexSystem R) W.source₁.1 W.source₁.2)
+            (surface.secondApex_robust.centerAt_ne
+              (lateFirstApexSystem R) W.source₂.1 W.source₂.2)
+            W.row₁ W.row₂ secondRow hzC₀ hzC₁ hzSecondNot
+        exact Or.inl ⟨{
+          W := W
+          z := z
+          z_mem_rows := hzRows
+          z_not_mem_row₁ := hzC₀
+          z_not_mem_row₂ := hzC₁
+          thirdRow := secondRow
+          thirdRow_named := Or.inl ⟨hzFirst, rfl⟩
+          thirdRow_survives := hthirdSurvives
+          thirdRow_omits := hzSecondNot
+          exactRows := hexactRows }⟩
+      · have hzFirstNot : z ∉ firstRow.support := by
+          intro hzFirst
+          exact (Finset.disjoint_left.mp hdisjoint) hzFirst hzSecond
+        have hthirdSurvives :
+            HasNEquidistantPointsAt 4 (D.A.erase z) S.oppApex2 :=
+          selectedFourClass_survives_erase_of_not_mem firstRow hzFirstNot
+        have hexactRows :=
+          nonempty_threeCenterCommonDeletionExactRows_of_omitted_selectedFourClasses
+            hzA hcenter₀A hcenter₁A hcenter₂A W.blockers_ne
+            (surface.secondApex_robust.centerAt_ne
+              (lateFirstApexSystem R) W.source₁.1 W.source₁.2)
+            (surface.secondApex_robust.centerAt_ne
+              (lateFirstApexSystem R) W.source₂.1 W.source₂.2)
+            W.row₁ W.row₂ firstRow hzC₀ hzC₁ hzFirstNot
+        exact Or.inl ⟨{
+          W := W
+          z := z
+          z_mem_rows := hzRows
+          z_not_mem_row₁ := hzC₀
+          z_not_mem_row₂ := hzC₁
+          thirdRow := firstRow
+          thirdRow_named := Or.inr ⟨hzSecond, rfl⟩
+          thirdRow_survives := hthirdSurvives
+          thirdRow_omits := hzFirstNot
+          exactRows := hexactRows }⟩
     · have hlarge' :
           5 ≤ ((firstRow.support ∩ S.capInteriorByIndex S.oppIndex2) ∪
             (secondRow.support ∩ S.capInteriorByIndex S.oppIndex2)).card := by
@@ -250,6 +281,8 @@ theorem nonempty_cardGeThirteenUncoveredThreeCenterPacket_or_exactAdjacentCapGri
           (lateFirstApexSystem R) W.source₂.1 W.source₂.2)
         hdouble hlarge').elim
   · exact Or.inr hgrid
+
+#print axioms nonempty_cardGeThirteenUncoveredThreeCenterPacket_or_exactAdjacentCapGrid
 
 end ATailFrontierLiveClosure
 end Problem97
