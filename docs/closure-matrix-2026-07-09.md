@@ -3269,6 +3269,23 @@ exact-eleven five-row normal form.
 A6 is a separate OPEN-TERMINAL. It is the `nextRowOnlyHit` complement of A5;
 none of the A5 common-deletion reductions closes it automatically.
 
+### 2026-09-04 source-clean Rigid221 reductions
+
+The current `Rigid221SourceHeavy.lean` source now contains checked local
+reductions for the deleted-blocker and A6 residuals.  The deleted-blocker
+chain closes the exact-six subcase, proves the second-cap lower bound, records
+the exact-seven interior normal form, and splits the next `v`-row center into
+the two named interior centers or an off-class center.  The A6-side helpers
+localize an erased-class `xu`-row center to `v`, export the exact four-point
+row after deleting `u`, split an interior next-row center between `u` and
+`xv`, and normalize the named-triple intersection to the singleton `{xu}`.
+
+These declarations compile as source-clean Lean consequences and narrow the
+recorded residual freedom.  They do not close the A5/A6 terminals: the exact
+twenty-four-cell A5 coverage and the exact-twelve A6 finite placement,
+whole-formula valuation, and terminal certificate remain absent.  The source
+file therefore remains OPEN-TERMINAL with its five existing `sorry` leaves.
+
 ### Canonical common-deletion formalization register
 
 Section 16.5.38 of the prose manuscript supplies a valid mathematical
