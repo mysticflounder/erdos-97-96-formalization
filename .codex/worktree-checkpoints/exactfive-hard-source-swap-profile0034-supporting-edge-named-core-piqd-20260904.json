@@ -1,0 +1,19 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "exactfive-hard-source-swap-profile0034-supporting-edge-named-core-piqd-20260904",
+  "owner": "profile0034-supporting-edge-named-core-impl",
+  "base_head": "a9a6426bb4045b2d2b61abd36b1ee47adb1678fc",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exactfive-hard-source-swap-profile0034-supporting-edge-named-core-piqd-20260904.json",
+    "census/card_head/exactfive_hard_source_swap_profile0034_supporting_edge_named_core_piqd.py",
+    "census/card_head/tests/test_exactfive_hard_source_swap_profile0034_supporting_edge_named_core_piqd.py",
+    "docs/specs/p97-exactfive-hard-source-swap-profile0034-supporting-edge-named-core-v1.md",
+    "scripts/run_exactfive_hard_source_swap_profile0034_supporting_edge_named_core_piqd.py"
+  ],
+  "generated_roots": [
+    "scratch/runs/exactfive-hard-source-swap-profile0034-supporting-edge-named-core-piqd-20260904/run-0001"
+  ],
+  "durable_paths": [],
+  "created_utc": "2026-09-04T15:17:03Z",
+  "manifest_sha256": "84932cc1bb799f520a1df2a964d80c37ae44533ee36d5066177ff51b25b3a34f"
+}
