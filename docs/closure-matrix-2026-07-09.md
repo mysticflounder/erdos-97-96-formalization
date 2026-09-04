@@ -3271,9 +3271,13 @@ none of the A5 common-deletion reductions closes it automatically.  The
 source-level theorem
 `exists_source_normalized_nextRowOnlyHitJob` now produces an individual
 normalized placement cell with its finite row semantics, and the selector
-assignment lemmas provide the corresponding partial valuation.  Aggregate
-coverage of all cells, a `CompiledNextRowJob` for each exact serialized
-formula, and a terminal certificate remain absent.
+assignment lemmas provide the corresponding partial valuation.  All twelve
+normalized schedule cells now have embedded clause-delta modules, checked
+delta-equality theorems, and typed `CompiledNextRowJob` wrappers; the complete
+collection is imported by `ExactTwelveRigid221NextRowClauseDeltaArtifacts`.
+The source producer still returns only existential representative membership:
+the consumer-facing dispatcher from that result into the named job collection,
+with a corresponding terminal bank, remains absent.
 The source ingress also exports the next-row-only-hit row after deleting `u`;
 under `D.A.card = 12`,
 `pentagonOffClassBlocker_nextRowOnlyHit_exactElevenCarrier_or_xuCollision`
@@ -3281,9 +3285,10 @@ narrows it to an exact-eleven five-survivor boundary or an explicit
 `xu`/next-row center collision.  Neither branch supplies the missing
 all-cell coverage or terminal UNSAT evidence.
 Four cell-specific next-row arm modules (`Cell0052`, `Cell0058`, `Cell0065`,
-and `Cell0071`) do provide checked `DimacsUnsatisfiable` declarations.  They
-are not an all-12 coverage theorem, and no source ingress currently selects
-one of those concrete jobs for every normalized placement cell.
+and `Cell0071`) do provide checked `DimacsUnsatisfiable` declarations for
+separate compact formulas.  They are not terminal certificates for the twelve
+typed clause-delta jobs, and no source ingress currently dispatches every
+normalized source representative to a matching typed job and terminal bank.
 
 ### 2026-09-04 source-clean Rigid221 reductions
 
@@ -3298,8 +3303,9 @@ row after deleting `u`, split an interior next-row center between `u` and
 
 These declarations compile as source-clean Lean consequences and narrow the
 recorded residual freedom.  They do not close the A5/A6 terminals: the exact
-twenty-four-cell A5 coverage and the exact-twelve A6 aggregate coverage,
-per-cell complete-job valuation, and terminal certificate remain absent.  The
+twenty-four-cell A5 coverage and the exact-twelve A6 source-to-job dispatcher,
+aggregate terminal coverage, and typed-job terminal certificates remain absent.
+The
 source file therefore remains OPEN-TERMINAL with its five existing `sorry`
 leaves.
 
