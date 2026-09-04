@@ -1,0 +1,22 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "luna-swarm-proofforge-two-point-row-deletion-survival-v2-20260904",
+  "owner": "luna-swarm-proofforge",
+  "base_head": "a1070d5308cbe50d5754f43ef5acdc7d9c221754",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/luna-swarm-proofforge-two-point-row-deletion-survival-v2-20260904.json",
+    "lean/Erdos9796Proof/P97/ATail/TwoPointSelectedRowDeletionSurvival.lean"
+  ],
+  "generated_roots": [
+    "scratch/runs/luna-swarm-proofforge-two-point-row-deletion-survival-v2-20260904/run-0001"
+  ],
+  "durable_paths": [
+    "scratch/runs/luna-swarm-proofforge-two-point-row-deletion-survival-v2-20260904/run-0001/axiom_probe.lean",
+    "scratch/runs/luna-swarm-proofforge-two-point-row-deletion-survival-v2-20260904/run-0001/axioms.log",
+    "scratch/runs/luna-swarm-proofforge-two-point-row-deletion-survival-v2-20260904/run-0001/focused-build.log",
+    "scratch/runs/luna-swarm-proofforge-two-point-row-deletion-survival-v2-20260904/run-0001/markers.log",
+    "scratch/runs/luna-swarm-proofforge-two-point-row-deletion-survival-v2-20260904/run-0001/run_manifest.json"
+  ],
+  "created_utc": "2026-09-04T09:48:00Z",
+  "manifest_sha256": "afb181ef200e26ecffc66331801de4411dff787d22f5908c7b41f0a495a1002d"
+}
