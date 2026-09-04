@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "center9-k4-row-domain-20260904",
+  "owner": "luna-swarm-radius-scribe",
+  "base_head": "817fdebab32ca6002c6b55b383263d74682b4a0b",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/center9-k4-row-domain-20260904.json",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/CardGeThirteenCenter9K4RowDomain.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-04T09:57:14Z",
+  "manifest_sha256": "d6f443089328d46b636d8a75e96ff9168eea7483b394feb1c5463a7470d0ad35"
+}
