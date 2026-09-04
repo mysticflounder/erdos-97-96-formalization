@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "infra-e-k2-cycle-20260904",
+  "owner": "infra-e-k2-cycle-20260904",
+  "base_head": "aa768618fe5b3e067b260134f5132592d6253268",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/infra-e-k2-cycle-20260904.json",
+    "lean/Erdos9796Proof/P97/ATail/FiveSelectedRowsThreeK2Cycle.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-04T00:00:00Z",
+  "manifest_sha256": "3b56fca9a181f4b1cc0dfb6ed82615cae92341e47778a1635e129f655e639754"
+}
