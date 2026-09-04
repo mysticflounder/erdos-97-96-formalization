@@ -23,7 +23,7 @@ not a general impossibility proof.
 ### F1: Exhaustive finite scope is correctly stated
 
 - **Location**: `docs/audits/2026-09-04-strict-kalmanson-local-collapse-producer.md:14-38,96-100`
-- **Quote**: “The complete independently generated catalog has ... **total** ... **202**.”
+- **Quote**: “a solver-free deterministic producer exhausts the inclusion-minimal one-Kalmanson equality collapses on exact supports four and five.”
 - **Stated label**: EMPIRICALLY VERIFIED
 - **Evidence present**: `complete_local_collapse_catalog` and the finite enumeration (`scripts/generate_strict_kalmanson_local_collapse_bank.py:239-280`); count/profile/minimality tests (`scripts/test_generate_strict_kalmanson_local_collapse_bank.py:30-61`).
 - **Actual label**: EMPIRICALLY VERIFIED on exact role counts four and five
@@ -52,7 +52,7 @@ not a general impossibility proof.
 
 ### F4: The historical 142-record correction is properly bounded
 
-- **Location**: `docs/audits/2026-09-04-strict-kalmanson-local-collapse-producer-2026-09-04.md:47-58`
+- **Location**: `docs/audits/2026-09-04-strict-kalmanson-local-collapse-producer.md:47-58`
 - **Quote**: “Therefore the earlier width-10 deletion heuristic in this producer was false and has been removed.”
 - **Stated label**: historical correction / count-only check
 - **Evidence present**: external Wave 6 receipt cited as nthdegree message `#12335`; local test checks only the old support histogram (`scripts/test_generate_strict_kalmanson_local_collapse_bank.py:78-88`).

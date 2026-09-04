@@ -5,10 +5,10 @@ cores whose induced equality closure collapses at least one strict Kalmanson
 comparison.  Only inclusion-minimal cores on exactly four or five cyclically
 ordered roles are retained.
 
-This is a candidate-catalog producer, not a reconstruction of the unavailable
-42,504-clause n=11 bank.  In particular, the independently generated five-role
-catalog is larger than the 130 five-role records forced by the Wave-5 n=12
-aggregate count.  A source-faithful selector for those records is still needed.
+The exhaustive 202-pattern catalog, increasing-subset lift, complete Berge
+family, and canonical p97monotone serializer reproduce the reported complete
+n=12 local-bank digest.  This does not reconstruct the later 42,504-clause
+n=11 CEGAR/base bank and makes no UNSAT claim.
 """
 
 from __future__ import annotations
@@ -38,6 +38,12 @@ P97MONOTONE_SEMANTICS: Final = (
     "not signed DIMACS CNF"
 )
 SUPPORTED_ROLE_COUNTS: Final = (4, 5)
+COMPLETE_N11_P97MONOTONE_SHA256: Final = (
+    "2204c11f66fa45eaf291b68541c94f20e1da85ec184113c280c5131699bd9862"
+)
+EXTERNAL_COMPLETE_N12_P97MONOTONE_SHA256: Final = (
+    "93407f5da9298bc5385e4083310220b4a720b2f154d51c0cb15ff3f2cf228465"
+)
 
 
 @dataclass(frozen=True, order=True)
@@ -264,28 +270,14 @@ def enumerate_minimal_local_collapses(
     return tuple(sorted(set(patterns)))
 
 
-def candidate_catalog() -> tuple[LocalCollapsePattern, ...]:
-    """Return the complete independently generated four/five-role candidate set."""
+def complete_local_collapse_catalog() -> tuple[LocalCollapsePattern, ...]:
+    """Return every minimal local collapse on exact supports four and five."""
 
     return tuple(
         pattern
         for role_count in SUPPORTED_ROLE_COUNTS
         for pattern in enumerate_minimal_local_collapses(role_count)
     )
-
-
-def count_matched_wave5_catalog() -> tuple[LocalCollapsePattern, ...]:
-    """Return the unique width-class selection matching the Wave-5 totals.
-
-    Independent enumeration gives all 12 four-role patterns and 190 five-role
-    patterns, with 60 and only 60 of the five-role patterns having width ten.
-    Removing that width class leaves the reported 142 records and, under
-    increasing-subset lifting, the reported 108,900 local clauses at n=12.
-
-    This count match does not authenticate the external catalog's membership.
-    """
-
-    return tuple(pattern for pattern in candidate_catalog() if pattern.width != 10)
 
 
 def instantiate_pattern(
@@ -303,19 +295,31 @@ def instantiate_pattern(
     )
 
 
-def candidate_local_bank(
+def canonical_bank_clauses(clauses: Iterable[Clause]) -> tuple[Clause, ...]:
+    """Canonicalize, deduplicate, and order clauses by width then atoms."""
+
+    return tuple(
+        sorted(
+            {canonical_clause(clause) for clause in clauses},
+            key=lambda clause: (len(clause), clause),
+        )
+    )
+
+
+def complete_local_collapse_bank(
     n: int, patterns: Iterable[LocalCollapsePattern] | None = None
 ) -> tuple[Clause, ...]:
-    """Lift and globally deduplicate a local catalog on an n-label carrier."""
+    """Lift the complete catalog on an n-label carrier unless one is supplied."""
 
     _validate_n(n)
-    inventory = candidate_catalog() if patterns is None else tuple(patterns)
-    clauses = {
+    inventory = (
+        complete_local_collapse_catalog() if patterns is None else tuple(patterns)
+    )
+    return canonical_bank_clauses(
         instantiate_pattern(pattern, labels)
         for pattern in inventory
         for labels in itertools.combinations(range(n), pattern.support_size)
-    }
-    return tuple(sorted(clauses))
+    )
 
 
 def complete_berge_bank(n: int) -> tuple[Clause, ...]:
@@ -332,18 +336,17 @@ def complete_berge_bank(n: int) -> tuple[Clause, ...]:
     patterns = complete_berge_patterns(parse_three_equality_schemas())
     if patterns != classification_complete_berge_patterns():
         raise ValueError("Lean-derived Berge patterns disagree with pinned classifier")
-    clauses = complete_berge_clauses(n, patterns)
-    return tuple(sorted(set(clauses)))
+    return canonical_bank_clauses(complete_berge_clauses(n, patterns))
 
 
-def count_matched_wave5_base_bank(n: int) -> tuple[Clause, ...]:
-    """Combine the count-matched local catalog with complete Berge clauses."""
+def complete_local_base_bank(n: int) -> tuple[Clause, ...]:
+    """Combine every support-four/five collapse with complete Berge clauses."""
 
-    local = set(candidate_local_bank(n, count_matched_wave5_catalog()))
+    local = set(complete_local_collapse_bank(n))
     berge = set(complete_berge_bank(n))
     if local & berge:
         raise AssertionError("local support-at-most-five bank overlaps Berge")
-    return tuple(sorted(local | berge))
+    return canonical_bank_clauses(local | berge)
 
 
 def solve_two_support_histogram(
@@ -377,7 +380,14 @@ def membership_var(n: int, center: int, member: int) -> int:
 def p97monotone_clause_ids(n: int, clause: Clause) -> tuple[int, ...]:
     """Return the increasing variable IDs for one canonical clause."""
 
-    return tuple(membership_var(n, center, member) for center, member in clause)
+    return tuple(
+        sorted(
+            {
+                membership_var(n, center, member)
+                for center, member in canonical_clause(clause)
+            }
+        )
+    )
 
 
 def _canonical_json_line(value: object) -> bytes:
@@ -395,17 +405,21 @@ def _comparison_record(comparison: KalmansonComparison) -> dict[str, object]:
 
 
 def serialize_catalog(patterns: Iterable[LocalCollapsePattern] | None = None) -> bytes:
-    """Serialize the candidate pattern catalog as canonical ASCII JSON Lines."""
+    """Serialize the complete pattern catalog as canonical ASCII JSON Lines."""
 
-    inventory = candidate_catalog() if patterns is None else tuple(sorted(patterns))
+    inventory = (
+        complete_local_collapse_catalog()
+        if patterns is None
+        else tuple(sorted(patterns))
+    )
     by_support = Counter(pattern.support_size for pattern in inventory)
     lines = [
         _canonical_json_line(
             {
                 "atom": "directed selected membership [center,member]",
                 "claim_scope": (
-                    "independently enumerated minimal local equality collapses; "
-                    "not the unavailable Wave-4 catalog"
+                    "complete independently enumerated minimal local equality "
+                    "collapses; not the historical 142-record subset"
                 ),
                 "pattern_count": len(inventory),
                 "pattern_count_by_support": {
@@ -435,14 +449,15 @@ def serialize_catalog(patterns: Iterable[LocalCollapsePattern] | None = None) ->
     return b"".join(lines)
 
 
-def serialize_bank_jsonl(n: int, clauses: Sequence[Clause]) -> bytes:
+def serialize_bank_jsonl(n: int, clauses: Iterable[Clause]) -> bytes:
     """Serialize one deterministic lifted bank as canonical JSON Lines."""
 
+    canonical = canonical_bank_clauses(clauses)
     header = _canonical_json_line(
         {
             "atom": "directed selected membership [center,member]",
             "clause": "disjunction of negations of all listed atoms",
-            "clause_count": len(clauses),
+            "clause_count": len(canonical),
             "n": n,
             "record": "header",
             "schema": BANK_SCHEMA,
@@ -452,15 +467,16 @@ def serialize_bank_jsonl(n: int, clauses: Sequence[Clause]) -> bytes:
         _canonical_json_line(
             {"atoms": [list(atom) for atom in clause], "record": "blocking_clause"}
         )
-        for clause in clauses
+        for clause in canonical
     )
 
 
-def serialize_bank_p97monotone(n: int, clauses: Sequence[Clause]) -> bytes:
+def serialize_bank_p97monotone(n: int, clauses: Iterable[Clause]) -> bytes:
     """Serialize one lifted bank in the custom positive no-good format."""
 
-    lines = [f"p97monotone {n} {len(clauses)}\n".encode("ascii")]
-    for clause in clauses:
+    canonical = canonical_bank_clauses(clauses)
+    lines = [f"p97monotone {n} {len(canonical)}\n".encode("ascii")]
+    for clause in canonical:
         ids = p97monotone_clause_ids(n, clause)
         lines.append((" ".join(map(str, ids)) + " 0\n").encode("ascii"))
     return b"".join(lines)
@@ -469,7 +485,11 @@ def serialize_bank_p97monotone(n: int, clauses: Sequence[Clause]) -> bytes:
 def catalog_summary(patterns: Iterable[LocalCollapsePattern] | None = None) -> dict[str, object]:
     """Return compact exact counts and the canonical catalog digest."""
 
-    inventory = candidate_catalog() if patterns is None else tuple(sorted(patterns))
+    inventory = (
+        complete_local_collapse_catalog()
+        if patterns is None
+        else tuple(sorted(patterns))
+    )
     body = serialize_catalog(inventory)
     return {
         "schema": CATALOG_SCHEMA,
@@ -497,8 +517,8 @@ def catalog_summary(patterns: Iterable[LocalCollapsePattern] | None = None) -> d
         "catalog_bytes": len(body),
         "catalog_sha256": hashlib.sha256(body).hexdigest(),
         "claim_scope": (
-            "candidate catalog only; no identity with the Wave-4 catalog or "
-            "the announced n=11 base is asserted"
+            "complete independently enumerated local-collapse catalog; no "
+            "identity with the historical 142-record subset is asserted"
         ),
     }
 
@@ -529,29 +549,20 @@ def main() -> None:
     parser.add_argument("--mode", choices=("catalog", "bank"), default="catalog")
     parser.add_argument("--n", type=int, default=12)
     parser.add_argument("--format", choices=("jsonl", "p97monotone"), default="jsonl")
-    parser.add_argument(
-        "--catalog-policy",
-        choices=("all-minimal", "wave5-count-matched"),
-        default="all-minimal",
-    )
     parser.add_argument("--include-berge", action="store_true")
     parser.add_argument("--output", type=Path)
     args = parser.parse_args()
 
-    inventory = (
-        candidate_catalog()
-        if args.catalog_policy == "all-minimal"
-        else count_matched_wave5_catalog()
-    )
+    inventory = complete_local_collapse_catalog()
     if args.mode == "catalog":
         if args.format != "jsonl":
             parser.error("catalog mode supports only --format jsonl")
         payload = serialize_catalog(inventory)
         summary = catalog_summary(inventory)
     else:
-        clauses = candidate_local_bank(args.n, inventory)
+        clauses = complete_local_collapse_bank(args.n, inventory)
         if args.include_berge:
-            clauses = tuple(sorted(set(clauses) | set(complete_berge_bank(args.n))))
+            clauses = complete_local_base_bank(args.n)
         payload = (
             serialize_bank_jsonl(args.n, clauses)
             if args.format == "jsonl"
@@ -564,13 +575,12 @@ def main() -> None:
             "clause_count": len(clauses),
             "output_bytes": len(payload),
             "output_sha256": hashlib.sha256(payload).hexdigest(),
-            "catalog_policy": args.catalog_policy,
             "include_berge": args.include_berge,
             "claim_scope": (
-                "count-matched reconstruction candidate only; no source identity "
-                "or UNSAT claim"
-                if args.catalog_policy == "wave5-count-matched"
-                else "candidate local-collapse bank only; no UNSAT claim"
+                "complete local equality-collapse and Berge bank; no identity "
+                "with the later 42,504-clause base and no UNSAT claim"
+                if args.include_berge
+                else "complete support-four/five local-collapse bank; no UNSAT claim"
             ),
         }
     if args.output is not None:

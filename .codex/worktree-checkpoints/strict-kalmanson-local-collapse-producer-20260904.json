@@ -7,6 +7,7 @@
     ".codex/worktree-checkpoints/strict-kalmanson-local-collapse-producer-20260904.json",
     "docs/audits/2026-09-04-strict-kalmanson-local-collapse-producer.md",
     "docs/skeptic-2026-09-04-strict-kalmanson-local-collapse-producer-2026-09-04-2.md",
+    "docs/skeptic-2026-09-04-strict-kalmanson-local-collapse-producer-2026-09-04-3.md",
     "docs/skeptic-2026-09-04-strict-kalmanson-local-collapse-producer-2026-09-04.md",
     "scripts/generate_strict_kalmanson_local_collapse_bank.py",
     "scripts/test_generate_strict_kalmanson_local_collapse_bank.py"
@@ -14,5 +15,5 @@
   "durable_paths": [],
   "generated_roots": [],
   "created_utc": "2026-09-04T15:28:37Z",
-  "manifest_sha256": "e4d4b617af4816b5221643f59e191f40740feb5f866dcd6cff823cd5f03e019a"
+  "manifest_sha256": "0081e60b158c14cdaaae53bf9f9146df2c25e9d1dbc46023e60a7ee24a8a1d63"
 }

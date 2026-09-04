@@ -21,17 +21,10 @@ sys.modules[SPEC.name] = producer
 SPEC.loader.exec_module(producer)
 
 EXPECTED_CATALOG_SHA256 = (
-    "b197f71c170d35f42c3deb9e881561647b1d43e94c160005a78f2dfbb01053bb"
+    "eb9d60d2541b8ce7ab646fc752afc9f74d0cca750ab30234efcfaef598ad63f6"
 )
-EXPECTED_COUNT_MATCHED_CATALOG_SHA256 = (
-    "24f9e0a6a5a028bd058a37b26eca5f558a6ef53ef944dcb6ce20b4d932ae56d1"
-)
-EXPECTED_COUNT_MATCHED_N11_P97MONOTONE_SHA256 = (
-    "42ee48f37d5fb3f0fb4b47289730071fa068db2358e52d61bad200df183fcef6"
-)
-EXPECTED_COUNT_MATCHED_N12_P97MONOTONE_SHA256 = (
-    "c829492de992b5b91cdf409fd17077a10defa68910843a0806c84926342b536b"
-)
+EXPECTED_COMPLETE_N11_BYTES = 3_160_394
+EXPECTED_COMPLETE_N12_BYTES = 5_744_962
 
 
 def test_minimal_catalog_counts_and_profiles() -> None:
@@ -55,7 +48,7 @@ def test_minimal_catalog_counts_and_profiles() -> None:
 
 
 def test_every_generated_pattern_has_exact_support_and_is_minimal() -> None:
-    for pattern in producer.candidate_catalog():
+    for pattern in producer.complete_local_collapse_catalog():
         assert producer.clause_support(pattern.atoms) == tuple(
             range(pattern.support_size)
         )
@@ -82,71 +75,57 @@ def test_reduced_four_role_enumeration_matches_all_directed_atom_subsets() -> No
     assert reduced == unrestricted
 
 
-def test_wave5_aggregate_forces_12_four_and_130_five_under_stated_model() -> None:
+def test_historical_142_record_subset_counts_do_not_select_membership() -> None:
     non_berge_count = 145_860 - 40 * math.comb(12, 6)
     assert non_berge_count == 108_900
     assert producer.solve_two_support_histogram(
         n=12, record_count=142, lifted_count=non_berge_count
     ) == (12, 130)
 
-    five = producer.enumerate_minimal_local_collapses(5)
-    assert len(five) - 130 == 60
-    assert sum(pattern.width == 10 for pattern in five) == 60
-
-    matched = producer.count_matched_wave5_catalog()
-    assert Counter(pattern.support_size for pattern in matched) == {4: 12, 5: 130}
-    assert 10 not in {pattern.width for pattern in matched}
-    matched_bytes = producer.serialize_catalog(matched)
-    assert len(matched_bytes) == 28_612
-    assert (
-        hashlib.sha256(matched_bytes).hexdigest()
-        == EXPECTED_COUNT_MATCHED_CATALOG_SHA256
-    )
+    assert Counter(
+        pattern.support_size
+        for pattern in producer.complete_local_collapse_catalog()
+    ) == {4: 12, 5: 190}
 
 
-def test_count_matched_base_reproduces_wave4_and_wave5_aggregate_counts() -> None:
-    catalog = producer.count_matched_wave5_catalog()
-
-    local11 = producer.candidate_local_bank(11, catalog)
+def test_complete_local_base_has_pinned_n11_and_external_n12_identities() -> None:
+    local11 = producer.complete_local_collapse_bank(11)
     berge11 = producer.complete_berge_bank(11)
-    assert len(local11) == 64_020
+    assert len(local11) == 91_740
     assert len(berge11) == 18_480
     assert not (set(local11) & set(berge11))
-    bank11 = producer.count_matched_wave5_base_bank(11)
-    assert len(bank11) == 82_500
+    bank11 = producer.complete_local_base_bank(11)
+    assert len(bank11) == 110_220
     stream11 = producer.serialize_bank_p97monotone(11, bank11)
-    assert len(stream11) == 2_242_441
+    assert len(stream11) == EXPECTED_COMPLETE_N11_BYTES
     assert (
         hashlib.sha256(stream11).hexdigest()
-        == EXPECTED_COUNT_MATCHED_N11_P97MONOTONE_SHA256
+        == producer.COMPLETE_N11_P97MONOTONE_SHA256
     )
 
-    local12 = producer.candidate_local_bank(12, catalog)
+    local12 = producer.complete_local_collapse_bank(12)
     berge12 = producer.complete_berge_bank(12)
-    assert len(local12) == 108_900
+    assert len(local12) == 156_420
     assert len(berge12) == 36_960
     assert not (set(local12) & set(berge12))
-    bank12 = producer.count_matched_wave5_base_bank(12)
-    assert len(bank12) == 145_860
+    bank12 = producer.complete_local_base_bank(12)
+    assert len(bank12) == 193_380
     stream12 = producer.serialize_bank_p97monotone(12, bank12)
-    assert len(stream12) == 4_103_362
+    assert len(stream12) == EXPECTED_COMPLETE_N12_BYTES
     assert (
         hashlib.sha256(stream12).hexdigest()
-        == EXPECTED_COUNT_MATCHED_N12_P97MONOTONE_SHA256
-    )
-    assert hashlib.sha256(stream12).hexdigest() != (
-        "bbd9707afc4e0d6ae91ee58b9f1a660a99505378902986a60cf77b0e43cb22b0"
+        == producer.EXTERNAL_COMPLETE_N12_P97MONOTONE_SHA256
     )
 
 
-def test_candidate_bank_uses_increasing_subset_lifts_without_duplicates() -> None:
-    catalog = producer.candidate_catalog()
-    bank5 = producer.candidate_local_bank(5, catalog)
+def test_complete_bank_uses_increasing_subset_lifts_without_duplicates() -> None:
+    catalog = producer.complete_local_collapse_catalog()
+    bank5 = producer.complete_local_collapse_bank(5, catalog)
     assert len(bank5) == 12 * math.comb(5, 4) + 190 * math.comb(5, 5)
     assert len(bank5) == 250
-    assert bank5 == tuple(sorted(set(bank5)))
+    assert bank5 == producer.canonical_bank_clauses(bank5)
 
-    bank11 = producer.candidate_local_bank(11, catalog)
+    bank11 = producer.complete_local_collapse_bank(11, catalog)
     assert len(bank11) == 12 * math.comb(11, 4) + 190 * math.comb(11, 5)
     assert len(bank11) == 91_740
 
@@ -161,23 +140,26 @@ def test_catalog_serialization_is_canonical_and_digest_pinned() -> None:
     assert header == {
         "atom": "directed selected membership [center,member]",
         "claim_scope": (
-            "independently enumerated minimal local equality collapses; "
-            "not the unavailable Wave-4 catalog"
+            "complete independently enumerated minimal local equality "
+            "collapses; not the historical 142-record subset"
         ),
         "pattern_count": 202,
         "pattern_count_by_support": {"4": 12, "5": 190},
         "record": "header",
         "schema": producer.CATALOG_SCHEMA,
     }
-    assert len(payload) == 41_152
+    assert len(payload) == 41_163
     assert hashlib.sha256(payload).hexdigest() == EXPECTED_CATALOG_SHA256
-    assert payload == producer.serialize_catalog(reversed(producer.candidate_catalog()))
+    assert payload == producer.serialize_catalog(
+        reversed(producer.complete_local_collapse_catalog())
+    )
 
 
 def test_jsonl_and_p97monotone_bank_formats_have_same_clause_order() -> None:
-    clauses = producer.candidate_local_bank(5)
-    jsonl = producer.serialize_bank_jsonl(5, clauses)
-    monotone = producer.serialize_bank_p97monotone(5, clauses)
+    clauses = producer.complete_local_collapse_bank(5)
+    scrambled = tuple(reversed(clauses)) + (clauses[0],)
+    jsonl = producer.serialize_bank_jsonl(5, scrambled)
+    monotone = producer.serialize_bank_p97monotone(5, scrambled)
 
     json_records = [json.loads(line) for line in jsonl.splitlines()[1:]]
     monotone_ids = [
