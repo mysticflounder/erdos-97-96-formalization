@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "exact12-aggregate-import-20260904",
+  "owner": "luna-swarm-lemma-lantern-97",
+  "base_head": "a9a6426bb4045b2d2b61abd36b1ee47adb1678fc",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exact12-aggregate-import-20260904.json",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-04T15:16:00Z",
+  "manifest_sha256": "9aee9c67a841ff21d7cd5adf9244e939f025a0f38f2d9c16d773118228529f72"
+}
