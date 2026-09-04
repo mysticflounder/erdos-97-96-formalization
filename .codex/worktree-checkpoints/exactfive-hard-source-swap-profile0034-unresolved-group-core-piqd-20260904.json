@@ -1,0 +1,19 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "exactfive-hard-source-swap-profile0034-unresolved-group-core-piqd-20260904",
+  "owner": "profile0034-unresolved-group-core-impl",
+  "base_head": "35e24a0e141ea7e3bb3099e503bbc88d31fe5414",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exactfive-hard-source-swap-profile0034-unresolved-group-core-piqd-20260904.json",
+    "census/card_head/exactfive_hard_source_swap_profile0034_unresolved_group_core_piqd.py",
+    "census/card_head/tests/test_exactfive_hard_source_swap_profile0034_unresolved_group_core_piqd.py",
+    "docs/specs/p97-exactfive-hard-source-swap-profile0034-unresolved-group-core-v1.md",
+    "scripts/run_exactfive_hard_source_swap_profile0034_unresolved_group_core_piqd.py"
+  ],
+  "generated_roots": [
+    "scratch/runs/exactfive-hard-source-swap-profile0034-unresolved-group-core-piqd-20260904/run-0001"
+  ],
+  "durable_paths": [],
+  "created_utc": "2026-09-04T19:14:00Z",
+  "manifest_sha256": "6fbdead6ce52cd41d4ddbccc0c04c1f35b977db0823ed6e0ab40695549807347"
+}
