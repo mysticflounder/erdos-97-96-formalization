@@ -1,0 +1,14 @@
+{
+  "base_head": "dd9fde6abc604e680e17566359238f287af9eec7",
+  "created_utc": "2026-09-04T00:58:36Z",
+  "durable_paths": [],
+  "generated_roots": [],
+  "lane_id": "proofrelay-p3-three-fan-order1-20260903",
+  "manifest_sha256": "a9ba5c315d5d0b4e4b3ac0ff6217a0ef3c7d2342a116c9663b20ba7ef87b4b55",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/proofrelay-p3-three-fan-order1-20260903.json",
+    "lean/Erdos9796Proof/P97/ATail/ThreeFanOrderOneTerminal.lean"
+  ],
+  "owner": "proofrelay-p3-three-fan-order1",
+  "schema": "worktree-lane-checkpoint/v1"
+}
