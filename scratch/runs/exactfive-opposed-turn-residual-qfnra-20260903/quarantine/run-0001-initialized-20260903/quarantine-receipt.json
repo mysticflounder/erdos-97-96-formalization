@@ -1,0 +1,39 @@
+{
+  "claims": {"promotion": false, "source_realization": false, "theorem": false},
+  "historical_evidence": {
+    "original_manifest_bytes_retained": false,
+    "original_manifest_self_hash_reported": "764277114b141b9f2ea7951c14085de068a19fb48744b58c29c3da8e18c2bd82",
+    "original_move_timestamp": null,
+    "original_move_timestamp_status": "unavailable_not_recorded",
+    "original_process_scan": null,
+    "original_process_scan_status": "unavailable_not_recorded",
+    "original_reference_scan": null,
+    "original_reference_scan_status": "unavailable_not_recorded",
+    "retained_replacement_manifest": {
+      "created_utc": "2026-09-03T23:00:06Z",
+      "file_sha256": "74ea21b93423ee3632c8722129a572dd388ed47b7171e47cd5fd94e4dc770978",
+      "manifest_sha256": "a6d221404021510a911e22d9050bd890e47560252297902d353786e05753ef2f"
+    }
+  },
+  "lane_id": "exactfive-opposed-turn-residual-qfnra-20260903",
+  "quarantined_root": "scratch/runs/exactfive-opposed-turn-residual-qfnra-20260903/quarantine/run-0001-initialized-20260903",
+  "reason": "run-0001 lost original create-once manifest provenance; this repaired receipt does not invent missing historical scans or timestamps",
+  "repair_audit": {
+    "completed_utc": "2026-09-03T23:49:09Z",
+    "process_scan": {
+      "command": "ps -axo pid=,comm=,args= | awk 'index($0,\"exactfive-opposed-turn-residual-qfnra-20260903\") && $2 !~ /awk|rg|bash/ {print}'",
+      "exit_code": 0,
+      "matching_processes": []
+    },
+    "reference_scan": {
+      "command": "rg -n 'exactfive-opposed-turn-residual-qfnra-20260903/(run-0001|run-0002)' --glob '!scratch/**' --glob '!**/__pycache__/**' --glob '!.git/**' .",
+      "exit_code": 1,
+      "reference_hits": []
+    },
+    "scope": "post-hoc only; does not reconstruct the original move"
+  },
+  "schema": "p97-exactfive-opposed-turn-residual-qfnra-quarantine/v1",
+  "solver_transport_launched": false,
+  "solver_transport_status_basis": "prelaunch audit found zero matching sessions; no run result exists",
+  "receipt_sha256": "74fd104b768806240a644301017f451d49396c47754a7d6db10d2b7ee862e3ab"
+}

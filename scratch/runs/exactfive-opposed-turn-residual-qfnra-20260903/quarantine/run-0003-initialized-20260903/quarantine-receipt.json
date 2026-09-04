@@ -1,0 +1,37 @@
+{
+  "claims": {"promotion": false, "source_realization": false, "theorem": false},
+  "inventory_after_move": {
+    "command": "find scratch/runs/exactfive-opposed-turn-residual-qfnra-20260903/quarantine/run-0003-initialized-20260903 -maxdepth 2 -print | sort",
+    "entries": ["artifacts/", "events/", "run_manifest.json", "tmp/"],
+    "exit_code": 0
+  },
+  "lane_id": "exactfive-opposed-turn-residual-qfnra-20260903",
+  "move": {
+    "command": "mv scratch/runs/exactfive-opposed-turn-residual-qfnra-20260903/run-0003 scratch/runs/exactfive-opposed-turn-residual-qfnra-20260903/quarantine/run-0003-initialized-20260903",
+    "completed_not_after_utc": "2026-09-03T23:49:09Z",
+    "exact_execution_timestamp": null,
+    "exact_execution_timestamp_status": "not_recorded; bounded by the stated UTC window",
+    "started_not_before_utc": "2026-09-03T23:42:30Z"
+  },
+  "process_scan": {
+    "command": "ps -axo pid=,comm=,args= | awk 'index($0,\"exactfive-opposed-turn-residual-qfnra-20260903/run-0003\") && $2 !~ /awk|rg|bash/ {print}'",
+    "exit_code": 0,
+    "matching_processes": []
+  },
+  "quarantined_root": "scratch/runs/exactfive-opposed-turn-residual-qfnra-20260903/quarantine/run-0003-initialized-20260903",
+  "reason": "source changes required rotation of the pristine initialized run-0003 manifest to run-0004",
+  "reference_scan": {
+    "command": "rg -n 'exactfive-opposed-turn-residual-qfnra-20260903/run-0003' --glob '!scratch/**' --glob '!**/__pycache__/**' --glob '!.git/**' .",
+    "exit_code": 1,
+    "reference_hits": []
+  },
+  "retained_manifest": {
+    "created_utc": "2026-09-03T23:27:11Z",
+    "file_sha256": "aff17f984a5c0604ca3b18e41dc192436806dd9ed773d5c2dfdccc9f78106129",
+    "manifest_sha256": "95abbe8e066b17e52fc0d5c4371c740b56778813f59bc6884fdaec40188c8718"
+  },
+  "schema": "p97-exactfive-opposed-turn-residual-qfnra-quarantine/v1",
+  "solver_transport_launched": false,
+  "solver_transport_status_basis": "run contained only an initialized manifest and empty artifacts/events/tmp directories",
+  "receipt_sha256": "d1eaf2cca234d231f4a7226ad407c0147a0381189d38c85dac3e655abd16fef3"
+}

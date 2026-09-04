@@ -1,0 +1,39 @@
+{
+  "claims": {"promotion": false, "source_realization": false, "theorem": false},
+  "historical_evidence": {
+    "original_move_timestamp": null,
+    "original_move_timestamp_status": "unavailable_not_recorded",
+    "original_reference_scan_record": {
+      "command": "rg -n 'exactfive-opposed-turn-residual-qfnra-20260903/(run-0001|run-0002)' --glob '!scratch/**' --glob '!**/__pycache__/**' --glob '!.git/**' .",
+      "recorded_exit_code": 0,
+      "recorded_hits": [],
+      "status": "internally_inconsistent_unrecoverable"
+    },
+    "retained_manifest": {
+      "created_utc": "2026-09-03T23:16:31Z",
+      "file_sha256": "5b4423c52c727d5fefe08e184d6b99f97b07d391a70f61b90b10bd2af828eff2",
+      "manifest_sha256": "9c7fa4d184c6449f923bd98f96beb104da99cc429a9484dea88c1e4a811f2751"
+    }
+  },
+  "lane_id": "exactfive-opposed-turn-residual-qfnra-20260903",
+  "quarantined_root": "scratch/runs/exactfive-opposed-turn-residual-qfnra-20260903/quarantine/run-0002-initialized-20260903",
+  "reason": "run-0002 was superseded during source rotation; its old reference-scan record claimed rg exit 0 with no hits and is explicitly rejected here",
+  "repair_audit": {
+    "completed_utc": "2026-09-03T23:49:09Z",
+    "process_scan": {
+      "command": "ps -axo pid=,comm=,args= | awk 'index($0,\"exactfive-opposed-turn-residual-qfnra-20260903\") && $2 !~ /awk|rg|bash/ {print}'",
+      "exit_code": 0,
+      "matching_processes": []
+    },
+    "reference_scan": {
+      "command": "rg -n 'exactfive-opposed-turn-residual-qfnra-20260903/(run-0001|run-0002)' --glob '!scratch/**' --glob '!**/__pycache__/**' --glob '!.git/**' .",
+      "exit_code": 1,
+      "reference_hits": []
+    },
+    "scope": "post-hoc only; cannot repair the original scan outcome"
+  },
+  "schema": "p97-exactfive-opposed-turn-residual-qfnra-quarantine/v1",
+  "solver_transport_launched": false,
+  "solver_transport_status_basis": "prelaunch-only root retained; no result or launch record exists",
+  "receipt_sha256": "72560040d5619cc6e8bf41ede3ee614373c13dd5db2f74a0748db98c4a08108a"
+}

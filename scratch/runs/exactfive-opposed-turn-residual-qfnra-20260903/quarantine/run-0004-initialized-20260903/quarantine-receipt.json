@@ -1,0 +1,44 @@
+{
+  "claims": {"promotion": false, "source_realization": false, "theorem": false},
+  "inventory_after_move": {
+    "command": "find scratch/runs/exactfive-opposed-turn-residual-qfnra-20260903/quarantine/run-0004-initialized-20260903 -maxdepth 2 -print | sort",
+    "entries": ["artifacts/", "events/", "run_manifest.json", "tmp/"],
+    "entry_representation": "root-relative; directories carry a trailing slash",
+    "exit_code": 0
+  },
+  "lane_id": "exactfive-opposed-turn-residual-qfnra-20260903",
+  "move": {
+    "command": "mv scratch/runs/exactfive-opposed-turn-residual-qfnra-20260903/run-0004 scratch/runs/exactfive-opposed-turn-residual-qfnra-20260903/quarantine/run-0004-initialized-20260903",
+    "completed_not_after_utc": "2026-09-04T00:10:06Z",
+    "exact_execution_timestamp": null,
+    "exact_execution_timestamp_status": "not_recorded; bounded by the stated UTC window",
+    "started_not_before_utc": "2026-09-04T00:08:36Z"
+  },
+  "process_scan": {
+    "command": "ps -axo pid=,comm=,args= | awk 'BEGIN {needle=\"exactfive-opposed-turn-residual-qfnra-20260903/\" \"run-0004\"} index($0, needle) {print}'",
+    "exit_code": 0,
+    "matching_processes": []
+  },
+  "quarantined_root": "scratch/runs/exactfive-opposed-turn-residual-qfnra-20260903/quarantine/run-0004-initialized-20260903",
+  "reason": "source and test changes required by the final independent audit invalidate the pristine initialized run-0004 manifest and require rotation to run-0005",
+  "reference_scan": {
+    "command": "rg -n --hidden --no-ignore 'exactfive-opposed-turn-residual-qfnra-20260903/run-0004' --glob '!scratch/**' --glob '!.git/**' --glob '!**/__pycache__/**' .",
+    "exit_code": 0,
+    "reference_hits": [
+      {
+        "classification": "expected pre-rotation generated_roots pin",
+        "line": 1,
+        "path": ".codex/worktree-checkpoints/exactfive-opposed-turn-residual-qfnra-20260903.json"
+      }
+    ]
+  },
+  "retained_manifest": {
+    "created_utc": "2026-09-04T00:01:05Z",
+    "file_sha256": "c1acf2cb0d7c1a4a722ebb1b6dc62acde2180853dc69fc2e948cded45a15cbb3",
+    "manifest_sha256": "bde2e447d559dba184803385fa749c9235f1269c3c14db7e1544ba87eb3f9b5e"
+  },
+  "schema": "p97-exactfive-opposed-turn-residual-qfnra-quarantine/v1",
+  "solver_transport_launched": false,
+  "solver_transport_status_basis": "run contained only an initialized manifest and empty artifacts/events/tmp directories",
+  "receipt_sha256": "f4702a715a046a6c88431b6934dd594889fa1d22ebf7f952c79b0252952948e9"
+}
